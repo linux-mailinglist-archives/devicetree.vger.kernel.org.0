@@ -2,211 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D2F434E380
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 10:51:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7888334E395
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 10:55:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231138AbhC3IvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 04:51:03 -0400
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:33959 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229816AbhC3Iu7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Mar 2021 04:50:59 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailout.nyi.internal (Postfix) with ESMTP id 488B85C01DD;
-        Tue, 30 Mar 2021 04:50:58 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Tue, 30 Mar 2021 04:50:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=DYuF8ynynyUmg6f7TaD/4Cm9Ex5
-        LmsY3DCYS1inVb+I=; b=RjkMMZ7Ogm7XVBdnoG+lxUzzkh2Votx/DWQ8H5r073x
-        shyp3beqFmAg3LZrmP74zPJqge02q7IxfqoZVxClXkv+lYtOCsCuNTYuQomhIWsi
-        8CMqjMnC+mrU0V4T/ajmGnSf4raTGWxzb/8LZka+C2paburpNHLhYNoEJQjH0k3b
-        5ZfXaDnNsfimby32c1BHSQxs0wTEhKguVpwX4zrzp2bbyMJQgY1r3ESzodnbgPs4
-        Tf7ev3vC59jAwrckodGZiLQx1LeQvc0C1H4LLKYL+/smbYMI/RmZmdvu4pU5rW9C
-        aBlE/4jelctzuv1oUwWEDkQ/5O8ra4C6K5Xn8srHn6w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=DYuF8y
-        nynyUmg6f7TaD/4Cm9Ex5LmsY3DCYS1inVb+I=; b=crrIKOXWIkCv14bpXIgj8k
-        ig9wzz/YtRttVsnNfF2dlCBDsYM3IVF+ITz6WxYxOqMxNnMo5VqL/KL+tM5TpNfA
-        CD/jiKQtRcR528hipEuHFZVF8EAsldzjull9tb1gqOSUPkNoOZDA4uj7PocO5qqT
-        77CGFpeYy6+Bgo/SLtEJYCoAp4BL5qoZGpIegiLVOIzfFP/xRBO/c8jf8aa3OnRs
-        H3p1eRbqHpPRUR8vtrGfbfuN6aaq1GnPHuJRsYZl2ptrlK7Tksv0jz6QiZMYhfUg
-        Ysu+xq7l2WV8zlspu6iwI/Ss8jFcAMHlcY4lywvlSRUx4vJ2xD8YVTOH2MRx2oAg
-        ==
-X-ME-Sender: <xms:ceZiYPyPNdrsF0mBbr03CZBJiDa8VXPf83eWhZLgBj8Vt7my0Ma5Bg>
-    <xme:ceZiYHM38LQcwayQkxBVAux4N7UNl3iZd0IrzGWNItWYZXD7gSLuEjnwAf0OHrt0E
-    UTIG4uyx_lsY6baNWc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudeitddgtdekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:ceZiYGPjQVV2XUxnND-PXMX7ke_SDLPcyCft6hHNox67yrAuzOcO8A>
-    <xmx:ceZiYBSwR7r-OhYrX97o78AWzm0u9gwMhVDnzHPheY66jLTXc5o0Lw>
-    <xmx:ceZiYAD6JnJEUvK_VmY-tkOWxdSqlDeC4Wqfi6hOLg1ilXOu0bLWug>
-    <xmx:cuZiYCEJd4-PJCjRtwtPtTEKuUXnXH1M_QVxvFvl09LxRATGwYthIA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 224C224005C;
-        Tue, 30 Mar 2021 04:50:57 -0400 (EDT)
-Date:   Tue, 30 Mar 2021 10:50:54 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Andre Przywara <andre.przywara@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        linux-sunxi@googlegroups.com
-Subject: Re: [RFC PATCH] arm64: dts: allwinner: a64/h5: Add CPU idle states
-Message-ID: <20210330085054.6ijkwc2jww6ovkvl@gilmour>
-References: <20210322062514.40747-1-samuel@sholland.org>
- <20210323015627.08f9afd6@slackpad.fritz.box>
- <ca26bade-abab-8e01-8014-bc7c72ea13fc@sholland.org>
+        id S229816AbhC3IzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 04:55:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57512 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231310AbhC3IzA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 04:55:00 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5830C061762;
+        Tue, 30 Mar 2021 01:54:59 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id e14so23587907ejz.11;
+        Tue, 30 Mar 2021 01:54:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=P7HNS/Ipii5EIzZR9IYki1b0ukYKIl9NuAxV1POMrSE=;
+        b=sG8lmF6BKVCyZ3vjjdjhF/BAGuXOpGhu3mjj1LvcoWKJ9jYIh6B/fXjLtU7M6gvpqu
+         6Hlpqnizr405/YY2FCulW6jBt0wamgpPi62GW+FuK1gmc8M92hTfKkGBStPtEiGrbvA8
+         Iwka7d/nPKJjBhYNUogKVN+2IlkNmPK9F6mkb0oOxRBwmemJliVeQePa3SvVK+MBhV1v
+         +VaLxBd3PYkdkowFqqHG4pNiUJaXivLuhQeyLVncv+X5lU9xTga14CZlduKZtP98hvPS
+         bbM9VnbFGCG5V/a0gcjZZzOA4oW/7xuY0U359MyTasWA4djf4FStJh4I3368jkDQ5zF3
+         vGwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=P7HNS/Ipii5EIzZR9IYki1b0ukYKIl9NuAxV1POMrSE=;
+        b=kSnk3P3bVenK0Q16nOa4PSgQmzWquwXcthJun3FVmo3Hn3ShidpLwmEKeP06fYLJKO
+         Wu3eHcwEuN6Pb3RoVH/o8998NLIakjE4ApHlVTaw85zOfxYUxn/il5eavPHTdhOAfP4u
+         4IbgBtHkVHwRViFPU+jFKt8WEJlu0FZn9/z2B8Q8NXolCc2dG+jkdrjeFCNV6GkQ/xXS
+         NRmTrKIVV1BX2AHrAlFeuLpBdpjyz77WcmGb/P7tyU1n/A4iqkst0jhd9EZySmhBmBcJ
+         /rpLnxUyt3O9lLxsrABOehu+WmFbv0uvGWq1kxPO8Wgf3epFUDlj9Xvd/+FjIPuQHEM0
+         G5gg==
+X-Gm-Message-State: AOAM531kazjtp8YlsPJSOzxc19rhPL/83ClL4bTHsE4wzp/1zt29WEBO
+        2e4760Lh1XEPgSii4H+rOee49sV/j5/enjllt1M=
+X-Google-Smtp-Source: ABdhPJy027q9fOnoFIO4xK0TfOdIcvSRegQVIDdJgpm87bR0iMSQWOJC8NT5qh6SSjodeYl60vtNBi0tJz5i5muZD8E=
+X-Received: by 2002:a17:906:9515:: with SMTP id u21mr32912350ejx.86.1617094498524;
+ Tue, 30 Mar 2021 01:54:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="fqu5tsevk4cqb364"
-Content-Disposition: inline
-In-Reply-To: <ca26bade-abab-8e01-8014-bc7c72ea13fc@sholland.org>
+References: <20210330083514.5874-1-adrien.grassein@gmail.com>
+ <20210330083514.5874-3-adrien.grassein@gmail.com> <0d173681-7eb6-798f-7d9b-66a221625d34@pengutronix.de>
+In-Reply-To: <0d173681-7eb6-798f-7d9b-66a221625d34@pengutronix.de>
+From:   Adrien Grassein <adrien.grassein@gmail.com>
+Date:   Tue, 30 Mar 2021 10:54:47 +0200
+Message-ID: <CABkfQAE_RkqGW5f6TkPJVGNZKOWVRr5LLTeRvWQuJ4riiR+SVw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/4] arm64: dts: imx8mq-nitrogen: add USB HOST support
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc:     DTML <devicetree@vger.kernel.org>, will@kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        bjorn.andersson@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>, catalin.marinas@arm.com,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Ahmad,
 
---fqu5tsevk4cqb364
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Le mar. 30 mars 2021 =C3=A0 10:38, Ahmad Fatoum <a.fatoum@pengutronix.de> a=
+ =C3=A9crit :
+>
+> Hello Adrien,
+>
+> On 30.03.21 10:35, Adrien Grassein wrote:
+> > Add the description for the USB host port.
+> > At this time, the port will not work directly from the
+> > kernel because it's connected through a resettable hub
+> > that is not handle in the kernel. It should be controlled
+> > in the bootloader or in the userspace.
+>
+> Couldn't you add a gpio-hog that gets the hub out of reset?
+>
 
-Hi Samuel,
+Let's try, I didn't think about this solution ^^.
 
-On Tue, Mar 23, 2021 at 11:44:50PM -0500, Samuel Holland wrote:
-> On 3/22/21 8:56 PM, Andre Przywara wrote:
-> >> I'm sending this patch as an RFC because it raises questions about how
-> >> we handle firmware versioning. How far back does (or should) our suppo=
-rt
-> >> for old TF-A and Crust versions go?
-> >>
-> >> cpuidle has a problem that without working firmware support, CPUs will
-> >> enter idle states and be unable to wake up. As a result, the system wi=
-ll
-> >> hang at some point during boot, usually before getting to userspace.
-> >>
-> >> For over a year[0], TF-A has exposed the PSCI CPU_SUSPEND function when
-> >> a SCPI implementation is present[1]. Implementing CPU_SUSPEND is
-> >> required for implementing SYSTEM_SUSPEND[2], even if CPU_SUSPEND is not
-> >> itself used for anything.=20
-> >>
-> >> However, there was no code to actually wake up a CPU once it called the
-> >> CPU_SUSPEND function, because I could not find the register providing
-> >> the necessary information. The fact that CPU_SUSPEND was broken affect=
-ed
-> >> nobody, because nothing ever called it -- there were no idle states in
-> >> the DTS. In hindsight, what I should have done was always return failu=
-re
-> >> from sunxi_validate_power_state(), but that ship has long sailed.
-> >>
-> >> I finally found the elusive register and implemented the wakeup code
-> >> earlier this month[3]. So now, CPU_SUSPEND actually works, if all of
-> >> your firmware is up to date, and cpuidle works if you add the states in
-> >> your device tree.
-> >>
-> >> Unfortunately, there is currently nothing verifying that compatibility.
-> >> So you can get into four possible scenarios:
-> >>   1) No idle states in DTS, any firmware =3D> Linux works, with baseli=
-ne
-> >>      power consumption.
-> >>   2) Idle states added to DTS, no Crust/SCPI =3D> Linux works, but eve=
-ry
-> >>      attempt to enter an idle state is rejected because CPU_SUSPEND is
-> >>      not hooked up. So power consumption increases by a sizable amount.
-> >>   3) Idle states added to DTS, "old" Crust/SCPI (before [3]) =3D> Linux
-> >>      fails to boot, because CPUs never return from idle states.
-> >>   4) Idle states added to DTS, "new" Crust/SCPI (after [3]) =3D> Linux
-> >>      works, with improved power consumption compared to the baseline.
-> >>
-> >> Obviously, we want to prevent scenario 3 if possible.
-> >=20
-> > So I think the core of the problem is that the DT describes some
-> > firmware feature, but we have the DT bundled with the kernel, not the
-> > firmware.
->=20
-> I would say the core problem is that the firmware lies about supporting
-> PSCI CPU_SUSPEND. Linux shouldn't be calling CPU_SUSPEND if the firmware
-> declares it as unavailable, regardless of what is in the DTS.
+> Cheers,
+> Ahmad
+>
+> >
+> > In the case of the Boundary's u-boot, this is done on the
+> > boot script:
+> > "
+> > starting USB...
+> > Bus usb@38100000: Register 2000140 NbrPorts 2
+> > Starting the controller
+> > USB XHCI 1.10
+> > Bus usb@38200000: Register 2000140 NbrPorts 2
+> > Starting the controller
+> > USB XHCI 1.10
+> > scanning bus usb@38100000 for devices... 1 USB Device(s) found
+> > scanning bus usb@38200000 for devices... 3 USB Device(s) found
+> > "
+> >
+> > Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
+> > ---
+> >  .../boot/dts/freescale/imx8mq-nitrogen.dts    | 22 +++++++++++++++++++
+> >  1 file changed, 22 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts b/arch/a=
+rm64/boot/dts/freescale/imx8mq-nitrogen.dts
+> > index b46f45a82be1..7a52e247c527 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts
+> > @@ -213,6 +213,22 @@ &usb3_phy0 {
+> >       status =3D "okay";
+> >  };
+> >
+> > +&usb_dwc3_1 {
+> > +     dr_mode =3D "host";
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +/*
+> > + * On this board, USB host is connected to a resettable hub.
+> > + * The reset signal is connected to the GPIO <&gpio1 14 GPIO_ACTIVE_LO=
+W>.
+> > + * You need to activate it in the bootloader or in the userspace.
+> > + */
+> > +&usb3_phy1 {
+> > +     status =3D "okay";
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&pinctrl_usb3_1>;
+> > +};
+> > +
+> >  &usdhc1 {
+> >       assigned-clocks =3D <&clk IMX8MQ_CLK_USDHC1>;
+> >       assigned-clock-rates =3D <400000000>;
+> > @@ -388,6 +404,12 @@ MX8MQ_IOMUXC_GPIO1_IO13_USB1_OTG_OC              0=
+x16
+> >               >;
+> >       };
+> >
+> > +     pinctrl_usb3_1: usb3-1grp {
+> > +             fsl,pins =3D <
+> > +                     MX8MQ_IOMUXC_GPIO1_IO14_GPIO1_IO14              0=
+x16
+> > +             >;
+> > +     };
+> > +
+> >       pinctrl_usdhc1: usdhc1grp {
+> >               fsl,pins =3D <
+> >                       MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK                 0=
+x83
+> >
+>
+> --
+> Pengutronix e.K.                           |                             =
+|
+> Steuerwalder Str. 21                       | http://www.pengutronix.de/  =
+|
+> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    =
+|
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 =
+|
 
-I would say we have two core problems :)
-
-> (Technically, per the PSCI standard, CPU_SUSPEND is a mandatory
-> function, but a quick survey of the TF-A platforms shows it is far from
-> universally implemented.)
-
-U-boot also implements CPU_SUSPEND but will return -1 if you don't have
-an implementation. I guess that at the moment we shouldn't be reporting
-it as supported if we don't
-
-But I also agree with Andre here, we shouldn't list cpuidles
-capabilities in the DTS if we don't always have them either.
-
-> > So is there any way we can detect an older crust version in U-Boot,
-> > then remove any potential idle states from the DT?
->=20
-> Let's assume that we are using a functioning SoC (H3) or the secure fuse
-> is blown (A64) and therefore U-Boot cannot access SRAM A2. I can think
-> of three ways it can learn about crust:
->=20
-> a) PSCI_FEATURES (e.g. is CPU_SUSPEND supported)
-> b) Metadata in the FIT image
-> c) Custom SMCs
->=20
-> TF-A has some additional methods available:
->=20
-> d) The SCPI-reported firmware version
-> e) The magic number at the beginning of the firmware binary
->=20
-> > Granted, this requires recent U-Boot as well, but at least we could try
-> > to mitigate the worst case a bit?
->=20
-> If we're okay with modifying firmware to solve this problem, then I
-> propose the following solution:
->=20
-> 1) Version bump crust or change its magic number.
-> 2) Modify TF-A to only report CPU_SUSPEND as available if it detects the
->    new crust version. This would involve conditionally setting
->    sunxi_scpi_psci_ops.validate_power_state, and updating psci_setup.c
->    to also check for .validate_power_state when setting psci_caps.
-> 3) Modify the Linux PSCI client to respect PSCI_FEATURES when setting
->    psci_ops.cpu_suspend. cpuidle-psci checks for this function before
->    setting up idle states.
-> 4) Finally, after some time, add the idle states to the DTS.
->=20
-> In fact, this solution solves both scenarios 2 and 3, because it also
-> takes care of the native PM implementation, which doesn't implement
-> CPU_SUSPEND at all.
->=20
-> Does that sound workable?
-
-If we can add the DT node at boot in crust (or in TF-A), then we don't
-really need PSCI_FEATURES, and it would magically work once the firmware
-is updated. It looks like a solid plan otherwise
-
-Maxime
-
---fqu5tsevk4cqb364
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYGLmbgAKCRDj7w1vZxhR
-xR6GAP9Xd46Sh1ZKV6TSYgW3Ro2ikOoq7BAh96jMt2rg5YtKswEArrxcKgP0z8lf
-RvhIhSmKDy+iQ+pMz2uu+FJp4/x9+gk=
-=05SX
------END PGP SIGNATURE-----
-
---fqu5tsevk4cqb364--
+Thanks,
+Adrien
