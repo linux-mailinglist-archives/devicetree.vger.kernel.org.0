@@ -2,102 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D2DC34F3F9
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 00:06:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65B8134F404
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 00:09:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232645AbhC3WFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 18:05:50 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:39812 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232848AbhC3WFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 18:05:45 -0400
-Received: by mail-oi1-f178.google.com with SMTP id i81so17997207oif.6;
-        Tue, 30 Mar 2021 15:05:45 -0700 (PDT)
+        id S232607AbhC3WIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 18:08:34 -0400
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:38568 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232793AbhC3WIS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 18:08:18 -0400
+Received: by mail-oi1-f175.google.com with SMTP id v25so1394346oic.5;
+        Tue, 30 Mar 2021 15:08:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=K57+sZPGNUEdeNlTqUnowLYV4JcIVUw0MSAp4gezLB4=;
-        b=ar0u/vif3EZklzDAs65+BIaMKVjH5XGbjHt7rSA1peilbk27WgN7CpduZf9aPREhir
-         nLjzKhObMMVca6fMdxb3qL0grWZ4VhaNyLIkz1WwTny2dcRCpznnvblwmFECt77FatMD
-         JbiqagqTtxl9XfOtaGqvF6Sp6fUNQfHG+buwn7x98aquJWcozqB1xGUf3IfAgxyivZsV
-         g/fJ0we0bJsGm3V0MEzBxiv1i8EwbkelN/k6CZNbzvRtonihBkpcuIxtQNPzN/VUQ9Ki
-         7WgIKZK5067T6Zx/At4IH5pUhMjU+ytJUWK+XCTYnfujoiQ/uYHeZTmhnnM40CvXEaCF
-         /fvw==
-X-Gm-Message-State: AOAM531aDPpHgHTxZ5wzJFe5zdwLdXCTOGjBKLpXoCdUdI56T72fZ58l
-        eHcOjlgxqRXtPLhxwOgjbGcyVfn3Lg==
-X-Google-Smtp-Source: ABdhPJyjT4fITT5nkHsfFaZVDJZo+ZYrw/hsB/2n8AZ79xoGHPmTkbIWolYQQdVP8dc22ukOImDz5w==
-X-Received: by 2002:a05:6808:13d0:: with SMTP id d16mr53428oiw.169.1617141945047;
-        Tue, 30 Mar 2021 15:05:45 -0700 (PDT)
+        bh=VAGjoWPvfg2FJLNwErmXF97+aE7omKK1hx3zyjfEqSU=;
+        b=TfssQsR60yxzeQP2Z3Pggw9lW4pIzwUjoocpzFWQBlpw0DC4bkgFomAAgFNETh/Tex
+         LAR2ITjCuyFTSrLovUPJCEdBO+nXqEVLHTxJgor6WNUlFgbv+SiPlk7E6/I7Dmwsv816
+         ihOSd8Hu0ZMieXdHtg4h3wsR900mGkERIHNyppvRU6mOM5p7Vzm4gdA1TOQBmTbYnpmk
+         XsNi/yo5hvuxtzXCouT22W4OGzf75bALles4lAPcPUxLMuYwmOKLKegtZHMPyKDciLjP
+         keXmWEJzidsZ1J+Yznu+tTgUNiS7bBuZJf14AKRR9X6loz+90RW6Jn8ETmCCAGwv5Hmc
+         SNew==
+X-Gm-Message-State: AOAM533peepq3K6ndNFlSgVAvGcRHN1VUMAL9rSRUK5tDc2PMSt19TAi
+        x8+yg6XMNPx3cjaRIozPIvngB/R5uA==
+X-Google-Smtp-Source: ABdhPJzACZhFWbLlTIot7iujFgNfSOY6cLiUSfe3tbunrW/ZGGT5KFwkDRKKg8xarjXH4J++qAK4Pw==
+X-Received: by 2002:aca:2416:: with SMTP id n22mr58581oic.161.1617142097807;
+        Tue, 30 Mar 2021 15:08:17 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h9sm41272ooi.22.2021.03.30.15.05.43
+        by smtp.gmail.com with ESMTPSA id e18sm39509otf.2.2021.03.30.15.08.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Mar 2021 15:05:44 -0700 (PDT)
-Received: (nullmailer pid 797160 invoked by uid 1000);
-        Tue, 30 Mar 2021 22:05:43 -0000
-Date:   Tue, 30 Mar 2021 17:05:43 -0500
+        Tue, 30 Mar 2021 15:08:17 -0700 (PDT)
+Received: (nullmailer pid 800728 invoked by uid 1000);
+        Tue, 30 Mar 2021 22:08:16 -0000
+Date:   Tue, 30 Mar 2021 17:08:16 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     Corey Minyard <minyard@acm.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Wolfram Sang <wsa@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        openipmi-developer@lists.sourceforge.net,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-Subject: Re: [PATCH v1 3/3] bindings: ipmi: Add binding for Aspeed SSIF BMC
- driver
-Message-ID: <20210330220543.GA795792@robh.at.kernel.org>
-References: <20210329121759.5644-1-quan@os.amperecomputing.com>
- <20210329121759.5644-4-quan@os.amperecomputing.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Ferruh Yigit <fery@cypress.com>, linux-input@vger.kernel.org,
+        Javier Martinez Canillas <javier@osg.samsung.com>,
+        devicetree@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: Re: [PATCH v2] Input: cyttsp - Convert bindings to YAML and extend
+Message-ID: <20210330220816.GA800699@robh.at.kernel.org>
+References: <20210329130758.2082126-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210329121759.5644-4-quan@os.amperecomputing.com>
+In-Reply-To: <20210329130758.2082126-1-linus.walleij@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 29, 2021 at 07:17:59PM +0700, Quan Nguyen wrote:
-> Add device tree binding document for the Aspeed SSIF BMC driver.
+On Mon, 29 Mar 2021 15:07:58 +0200, Linus Walleij wrote:
+> This converts the CYTTSP "Cypress TrueTouch Standard Product"
+> to YAML bindings and fixes and adds some things in the process:
 > 
-> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+> - Rename the bindings file to cypress,cy8ctma340 after the main
+>   product in the series.
+> - Add proper compatibles for the two known products:
+>   CY8CTMA340 and CY8CTST341.
+> - Deprecate "cypress,cyttsp-spi" and "cypress,cyttsp-i2c"
+>   because device compatibles should be named after the
+>   hardware and not after which bus they are connected to.
+>   The topology implicitly tells us which bus it is and what
+>   interface to used.
+> - Add VCPIN and VDD supplies, these are present just like
+>   on the CY8CTMA140.
+> 
+> Cc: devicetree@vger.kernel.org
+> Cc: Ferruh Yigit <fery@cypress.com>
+> Cc: Javier Martinez Canillas <javier@osg.samsung.com>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  .../bindings/ipmi/aspeed-ssif-bmc.txt          | 18 ++++++++++++++++++
-
-Bindings should now be in DT schema format.
-
->  1 file changed, 18 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ipmi/aspeed-ssif-bmc.txt
+> ChangeLog v1->v2:
+> - Use minItems and maxItems directly without -items
+> - Drop u32 type from all properties ending with "-ms"
+>   that thus have implicit types.
+> - Add maintiner to Cc.
 > 
-> diff --git a/Documentation/devicetree/bindings/ipmi/aspeed-ssif-bmc.txt b/Documentation/devicetree/bindings/ipmi/aspeed-ssif-bmc.txt
-> new file mode 100644
-> index 000000000000..1616f0188db9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ipmi/aspeed-ssif-bmc.txt
-> @@ -0,0 +1,18 @@
-> +# Aspeed SSIF (SMBus system interface) IPMI BMC interface
-> +
-> +The Aspeed AST2500 are commonly used as BMCs (Baseboard Management Controllers)
-> +and the SSIF slave interface can be used to perform in-band IPMI communication
-> +with their host.
-> +
-> +Required properties:
-> +
-> +- compatible : should be
-> +       "aspeed,ast2500-ssif-bmc"
-> +- reg: I2C address the registers
-> +
-> +Example:
-> +
-> +       ssif-bmc@10 {
-> +               compatible = "aspeed,ast2500-ssif-bmc";
-> +               reg = <0x10>;
-> +       };
-> -- 
-> 2.28.0
+> Patch to add the new compatibles to the Linux driver is sent
+> separately.
+> ---
+>  .../input/touchscreen/cypress,cy8ctma340.yaml | 149 ++++++++++++++++++
+>  .../bindings/input/touchscreen/cyttsp.txt     |  93 -----------
+>  2 files changed, 149 insertions(+), 93 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma340.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/cyttsp.txt
 > 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
