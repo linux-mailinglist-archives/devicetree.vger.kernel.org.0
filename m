@@ -2,75 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFE9634E481
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 11:35:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4879834E499
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 11:43:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231812AbhC3JfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 05:35:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57760 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231802AbhC3Jej (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Mar 2021 05:34:39 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 517D96196A;
-        Tue, 30 Mar 2021 09:34:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617096878;
-        bh=sHCKH0VrxIQRknBZUe53hpu6+EWa87sqvxZc/EQqBWw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=irmAXxbnLzYb3QuyRYDJ+n/7qzDQ3+YVJbjzYT9Ux6oij7W/7ziAd7JJvQQLofZBO
-         aOBM8wDdjL7MOOuFnmAUQkxEdDq4EX6TPRWkdu1ldABibJPam7o3aIzbYyGKI6gXrj
-         XIPwOXR882gwj4oAgO8xNctjRaA6crsK+VREY8AAFC7rZDMSaYohZ1U3rbVCimPcSX
-         wSw5xmz15x5ljjEHxJ3oBbc1dA1QJpcgboyvDgQ0xBonEicG/X5+ZU6dmFsdeZLm6K
-         eaXRRpn4jaTfwvePjhzdqBz8qn+/30gMI9v5LTCV9vVIqfGKFL60BctrE8c5rW3SDK
-         oWVCTARuQY58g==
-Date:   Tue, 30 Mar 2021 10:34:33 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Rob Clark <robdclark@gmail.com>
-Cc:     Eric Anholt <eric@anholt.net>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        Sean Paul <sean@poorly.run>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        Robin Murphy <robin.murphy@arm.com>,
+        id S230415AbhC3Jml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 05:42:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39578 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230248AbhC3Jma (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 05:42:30 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03015C061574
+        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 02:42:30 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id u9so23824135ejj.7
+        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 02:42:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=v6VbFOVaNZFibaVBnSDLK//9i3b0qySPXiFFUzfcK3I=;
+        b=YhVn8HBZTxcElEmF6mQOYtRdRlfZ/mNqJVUXJYpdRnIWSNswD0Wt0mtAgdlnQSNmji
+         9QMgFO+q2Kj1VR3shtlV5F89e2GOdCH0vd8pO0poV9Fk3OLlskF/f2Qi1jQ45vwngIt+
+         ZUHPWt/j7Kvl/0E1Z1TsmUQHZn16Yy1sSfpyd/eebchaiDVEuCzY8ULeSVFhdKmJWeaP
+         cuqQG2vz/N+K7IafzrXYEYSYwJLhk6tcmW4QYXNYxucEAcX1LQhjGFs49sme1f6taynM
+         tHRDJthuqwxO6K9FxYVZT2j7N+KS8PiSFfeyWNR7u3A1+z5mdyqtn0KZU1alIm47KjgE
+         d1/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=v6VbFOVaNZFibaVBnSDLK//9i3b0qySPXiFFUzfcK3I=;
+        b=AD0fjZEVpTh21+l/zAcvaAbNt+lfadEM0WzEqYfDTA0xTVXJu1Dr3Wp+iery3qE9R8
+         hQ+SpPM7hWOJxHbWMpWmfTtQ31gSp6UOBBr3mGggjou+wAvKhuzWe5QNyAkdg8g+WnhS
+         /uxv6KJxZ1kICOWU0wSB+8a+PD4BjmBDLulgcTfpSlA99qwlJtyBcZnnPtlZL9O/PTHe
+         pY0nWrq5o2wnF5pcfsEDBL6/12DuT/3kP/FJ3RXaGHgoi8LBgGMK2Z5PD6udyoBy6nyh
+         fMHRCp9J9c182KRkQY0Rol3Y0qKIIOr4aMBCPCQR+PfUFNhPAK1EQu5vI7Ks7A3YH+6b
+         19HQ==
+X-Gm-Message-State: AOAM533Fribw+T3OQyMsisDxmmgaS+oytBBqXdzcCFrdNRIVFUueh/4T
+        IQ8dVJdaxP/h81b8nl1KJQP1hQ==
+X-Google-Smtp-Source: ABdhPJwLRR/3EKdhrZYj144DyAFroQH65OuBeTtBKfOXrIgqAPJW4TQBTrI3jccJWYW2fmEFW7Jc1g==
+X-Received: by 2002:a17:906:14d4:: with SMTP id y20mr32510201ejc.190.1617097348710;
+        Tue, 30 Mar 2021 02:42:28 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id v15sm10626830edw.28.2021.03.30.02.42.27
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 30 Mar 2021 02:42:28 -0700 (PDT)
+Subject: Re: [RFC PATCH 0/4] mtd: core: OTP nvmem provider support
+To:     Michael Walle <michael@walle.cc>, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] iommu/arm-smmu-qcom: Skip the TTBR1 quirk for db820c.
-Message-ID: <20210330093432.GB5281@willie-the-truck>
-References: <20210326231303.3071950-1-eric@anholt.net>
- <20210329144729.GB4203@willie-the-truck>
- <CAF6AEGugpEk396DVtWX=W+uf3p-wcgBfCSpSLWGQJE1vKpJ4aw@mail.gmail.com>
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20210322181949.2805-1-michael@walle.cc>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <ace5b308-d6ea-b301-0d2e-29f95b91fe8b@linaro.org>
+Date:   Tue, 30 Mar 2021 10:42:27 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAF6AEGugpEk396DVtWX=W+uf3p-wcgBfCSpSLWGQJE1vKpJ4aw@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210322181949.2805-1-michael@walle.cc>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 29, 2021 at 09:02:50PM -0700, Rob Clark wrote:
-> On Mon, Mar 29, 2021 at 7:47 AM Will Deacon <will@kernel.org> wrote:
-> >
-> > On Fri, Mar 26, 2021 at 04:13:02PM -0700, Eric Anholt wrote:
-> > > db820c wants to use the qcom smmu path to get HUPCF set (which keeps
-> > > the GPU from wedging and then sometimes wedging the kernel after a
-> > > page fault), but it doesn't have separate pagetables support yet in
-> > > drm/msm so we can't go all the way to the TTBR1 path.
-> >
-> > What do you mean by "doesn't have separate pagetables support yet"? The
-> > compatible string doesn't feel like the right way to determine this.
+Hi Michael,
+
+On 22/03/2021 18:19, Michael Walle wrote:
+> The goal is to fetch a (base) MAC address from the OTP region of a SPI NOR
+> flash.
 > 
-> the compatible string identifies what it is, not what the sw
-> limitations are, so in that regard it seems right to me..
+> This is the first part, where I try to add the nvmem provider support to
+> the MTD core.
+> 
+> I'm not sure about the device tree bindings. Consider the following two
+> variants:
+> 
+> (1)
+>      flash@0 {
+>          ..
+> 
+>          otp {
+>              compatible = "mtd-user-otp";
+>              #address-cells = <1>;
+>              #size-cells = <1>;
+> 
+>              serial-number@0 {
+>                  reg = <0x0 0x8>;
+>              };
+>          };
+>      };
+> 
+> (2)
+>      flash@0 {
+>          ..
+> 
+>          otp {
+>              compatible = "mtd-user-otp";
+>              #address-cells = <1>;
+>              #size-cells = <1>;
+> 
+> 			some-useful-name {
+>                  compatible = "nvmem-cells";
+> 
+>                  serial-number@0 {
+>                      reg = <0x0 0x8>;
+>                  };
+> 			};
+>          };
+>      };
+> 
+> Both bindings use a subnode "opt[-N]". We cannot have the nvmem cells as
+> children to the flash node because of the legacy partition binding.
+> 
+> (1) seems to be the form which is used almost everywhere in the kernel.
+> That is, the nvmem cells are just children of the parent node.
+> 
+> (2) seem to be more natural, because there might also be other properties
+> inside the otp subnode and might be more future-proof.
+> 
+> At the moment this patch implements (1).
+> 
 
-Well it depends on what "doesn't have separate pagetables support yet"
-means. I can't tell if it's a hardware issue, a firmware issue or a driver
-issue.
 
-Will
+Have you looked at this series[1], are you both trying to do the same thing?
+
+[1] 
+https://lore.kernel.org/linux-mtd/20210312062830.20548-2-ansuelsmth@gmail.com/T/
+
+--srini
+
+
+> Michael Walle (4):
+>    nvmem: core: allow specifying of_node
+>    dt-bindings: mtd: add YAML schema for the generic MTD bindings
+>    dt-bindings: mtd: add OTP bindings
+>    mtd: core: add OTP nvmem provider support
+> 
+>   .../devicetree/bindings/mtd/common.txt        |  16 +-
+>   .../devicetree/bindings/mtd/mtd.yaml          | 110 +++++++++++++
+>   drivers/mtd/mtdcore.c                         | 149 ++++++++++++++++++
+>   drivers/nvmem/core.c                          |   4 +-
+>   include/linux/mtd/mtd.h                       |   2 +
+>   include/linux/nvmem-provider.h                |   2 +
+>   6 files changed, 267 insertions(+), 16 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/mtd/mtd.yaml
+> 
