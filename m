@@ -2,117 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD52E34DE20
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 04:18:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F281634DE10
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 04:13:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230500AbhC3CSB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 22:18:01 -0400
-Received: from segapp02.wistron.com ([103.200.3.19]:36578 "EHLO
-        segapp04.wistron.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230143AbhC3CRe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 22:17:34 -0400
-Received: from EXCHAPP02.whq.wistron (unknown [10.37.38.25])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by segapp04.wistron.com (MTA) with ESMTPS id 4F8Xtx1NKyzJvXF;
-        Tue, 30 Mar 2021 10:09:13 +0800 (CST)
-Received: from EXCHAPP03.whq.wistron (10.37.38.26) by EXCHAPP02.whq.wistron
- (10.37.38.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 30 Mar
- 2021 10:09:09 +0800
-Received: from gitserver.wistron.com (10.37.38.233) by EXCHAPP03.whq.wistron
- (10.37.38.26) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
- Transport; Tue, 30 Mar 2021 10:09:09 +0800
-From:   Nichole Wang <Nichole_Wang@wistron.com>
-To:     <linux-kernel@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <openbmc@lists.ozlabs.org>,
-        <small84206@gmail.com>, <Ben_Pai@wistron.com>,
-        Nichole Wang <Nichole_Wang@wistron.com>
-Subject: [PATCH linux dev-5.2 v1] ARM-dts-aspeed-Add-Mihawk-GPIO-Line-Names
-Date:   Tue, 30 Mar 2021 10:08:08 +0800
-Message-ID: <20210330020808.830-1-Nichole_Wang@wistron.com>
-X-Mailer: git-send-email 2.17.1
+        id S231196AbhC3CNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 22:13:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55726 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230509AbhC3CMs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 22:12:48 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 376ADC061764
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 19:12:48 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id ap14so9254619ejc.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 19:12:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pensando.io; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9uqxowpZkJw+kuwjzD0uTSbsW3f2tDCU9RKvi2lVi7k=;
+        b=NSOQpRq6WsIU2IEARAEG681bUJKLdRBSvihGBW8+vDY3QNI6ykoz6Lu5V+sPvB9xOV
+         KNr/nl47UxYRLvoBZggjRlRKwGpMDsdNjs0jpvMHiTbVvUX8G+bP17q+sbyGErJhgUbL
+         PpAe9mL8WEBwBvEXuvNq4Xe/PmycPbCaN7EGIz832KgcOsZnJYE3QT/9IkcVFB0FUezI
+         9YINBeeHQ/t80yeU3TiIb9V868xXZ+d0iiZK9No6gp2pdgz34dW84wit5qZzooSLAIW3
+         B0szg2plxGJkmEspTfYI85OvhyHFkWHejzKVt5pHW0WccR6uHWPsBRY4Wx2a0czwXUET
+         B3hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9uqxowpZkJw+kuwjzD0uTSbsW3f2tDCU9RKvi2lVi7k=;
+        b=UfSyA/qk6aXbJUR9rYECCiYzmbZr/f5dJXSAzOGWW/Impc31RflWUovmWu506EOTlv
+         0fC40FrSBKdzQKI1gc7ERgbkRaissSrmHQx/V7QhuMA40ofh46e/Yh1347/OdxNVVBVt
+         NQamakDqJC2hByX/qjETu+G2Jn136lDvLG7p6n3lsecn1kbH0WMAZkZDQHsDmSkO+ZJK
+         d2oLrgLTWYjtzogoDs86gjJgkuzaQvxaS+xyIYCkdlu0lPRbjzTYb68xVaHdoljcvd4U
+         QHzWBQnp1o1Lh6O9Kd2gI2d87xnJOSzN+eFJVdYSWTFOkbKFzuYJrGfp3/y+1Mne1H0Y
+         OuPQ==
+X-Gm-Message-State: AOAM531Je1ihhgtvYz6miuWEgrNCg8EeTGhGihaI9RegZWuRIwS3daq4
+        LNEYC2oGzkrnfxOzCgGB3LQa4kgKlZrs1JnpbdBfDw==
+X-Google-Smtp-Source: ABdhPJzNAVy9mcTp2mou2/gOFfzxffM9nOymAGcfBdgdn0QtqKpdoh3jjqSqF2VvxQlx2dzn3gX5U6Ms8pJ8x9oga9c=
+X-Received: by 2002:a17:906:495a:: with SMTP id f26mr30501651ejt.271.1617070366693;
+ Mon, 29 Mar 2021 19:12:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: A209195456C77E93CE25DE9BA20A1C537DD5B25BCA20237EE8026C67F0341C2F2000:8
-X-OriginalId: qf12UA9Der031919
-x-msw-jemd-newsletter: false
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wistron.com; s=security;
-        t=1617070155; bh=38Y/0UBHQhwzvJ5L4Ckmi8SW3WvoC9p+4R2IDtp/IWY=;
-        h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type;
-        b=d7hr2Bc0wqsVlSQYUnDwK0NWbCEVhG6c/O/v/rOgDubRJsxnkSHW82T22/ZKQ3KYA
-         w+S1HpwnHBoMX5f/Ea87y8cQt8UO+J/wqPXWG7DM9PDlVoRfHDjvH1m6/m1jCm3Kty
-         umcjngndqNDsMyA6Tn9Tt4f0UEVd/j5Pxl6g1nnk=
+References: <20210329015938.20316-1-brad@pensando.io> <20210329015938.20316-11-brad@pensando.io>
+ <20210329160052.GE5166@sirena.org.uk>
+In-Reply-To: <20210329160052.GE5166@sirena.org.uk>
+From:   Brad Larson <brad@pensando.io>
+Date:   Mon, 29 Mar 2021 19:12:36 -0700
+Message-ID: <CAK9rFnw7MhPzBLbwEGVmBS+0vBJ1QA2RVdZaQU-b_Xy6Pwrz0Q@mail.gmail.com>
+Subject: Re: [PATCH v2 10/13] dt-bindings: spi: cadence-qspi: Add support for
+ Pensando Elba SoC
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Name the GPIOs to help userspace work with them. The names describe the
-functionality the lines provide, not the net or ball name. This makes it
-easier to share userspace code across different systems and makes the
-use of the lines more obvious.
+On Mon, Mar 29, 2021 at 9:01 AM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Sun, Mar 28, 2021 at 06:59:35PM -0700, Brad Larson wrote:
+> > Add new vendor Pensando Systems Elba SoC compatible
+> > string and convert to json-schema.
+>
+> These are two unrelated changes and should be separate patches, again as
+> covered in submitting-patches.rst.  It is generally better to do the
+> changes adding new stuff first and then convert to YAML as the final
+> patches as the series since there is often a delay on reviews of YAML
+> conversions.
 
-Signed-off-by: Nichole Wang <Nichole_Wang@wistron.com>
----
- arch/arm/boot/dts/aspeed-bmc-opp-mihawk.dts | 33 +++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
-
-diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-mihawk.dts b/arch/arm/boot/dts/aspeed-bmc-opp-mihawk.dts
-index 577c211..15c1f0a 100644
---- a/arch/arm/boot/dts/aspeed-bmc-opp-mihawk.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-opp-mihawk.dts
-@@ -383,6 +383,39 @@
- 	};
- };
- 
-+&gpio {
-+	gpio-line-names =
-+	/*A0-A7*/	"","cfam-reset","","","","","","",
-+	/*B0-B7*/	"","","","","","","","",
-+	/*C0-C7*/	"","","","","","","","",
-+	/*D0-D7*/	"fsi-enable","","","","","","","",
-+	/*E0-E7*/	"","","","","","fsi-mux","fsi-clock","fsi-data",
-+	/*F0-F7*/	"","id-button","","","","","air-water","",
-+	/*G0-G7*/	"","","","","","","","",
-+	/*H0-H7*/	"","","","","","","","",
-+	/*I0-I7*/	"","","","","","","","",
-+	/*J0-J7*/	"","","checkstop","","","","","",
-+	/*K0-K7*/	"","","","","","","","",
-+	/*L0-L7*/	"","","","","","","","",
-+	/*M0-M7*/	"","","","","","","","",
-+	/*N0-N7*/	"","","","","","","","",
-+	/*O0-O7*/	"","","","","","","","",
-+	/*P0-P7*/	"","","","","","","","",
-+	/*Q0-Q7*/	"","","","","","","","",
-+	/*R0-R7*/	"","","fsi-trans","","","","","",
-+	/*S0-S7*/	"","","","","","","","",
-+	/*T0-T7*/	"","","","","","","","",
-+	/*U0-U7*/	"","","","","","","","",
-+	/*V0-V7*/	"","","","","","","","",
-+	/*W0-W7*/	"","","","","","","","",
-+	/*X0-X7*/	"","","","","","","","",
-+	/*Y0-Y7*/	"","","","","","","","",
-+	/*Z0-Z7*/	"presence-ps1","","presence-ps0","","","","","",
-+	/*AA0-AA7*/	"led-front-fault","power-button","led-front-id","","","","","",
-+	/*AB0-AB7*/	"","","","","","","","",
-+	/*AC0-AC7*/	"","","","","","","","";
-+};
-+
- &fmc {
- 	status = "okay";
- 	flash@0 {
--- 
-2.7.4
-
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------
-This email contains confidential or legally privileged information and is for the sole use of its intended recipient. 
-Any unauthorized review, use, copying or distribution of this email or the content of this email is strictly prohibited.
-If you are not the intended recipient, you may reply to the sender and should delete this e-mail immediately.
----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+The initial patch set only changed the text file and a request was made
+to convert to YAML.  I'll change this particular patch to modify just the
+text file as before and then the convert to YAML with a later patch in the set.
