@@ -2,256 +2,305 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BDC334DD04
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 02:32:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 378FE34DD11
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 02:37:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230252AbhC3AcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 20:32:13 -0400
-Received: from thorn.bewilderbeest.net ([71.19.156.171]:39667 "EHLO
-        thorn.bewilderbeest.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230204AbhC3Ab7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 20:31:59 -0400
-Received: from hatter.bewilderbeest.net (unknown [IPv6:2600:6c44:7f:ba20::7c6])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 3CD4FA8F;
-        Mon, 29 Mar 2021 17:25:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1617063904;
-        bh=w56QNwgTzFfQ20vdnp8aRrubhpSunslkOzk8MrUdZrs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=MK8VEoXaqnXH7v/g8EcaqO9T/0rkLDIvncZI8E7U1Do4HtUu0GgJuIMXBG3N4lAb9
-         gcWlsAeiXvmTgTJOUxknhUhuOAz3SaAfUn5ACUpPJ1wD8Y3SAhhjeItdGmzhtu9rq3
-         D05/dvDIiWIqUZNIwjsm2lotMzG+W3NBYgxNyFSM=
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     openbmc@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Zev Weiss <zev@bewilderbeest.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 3/3] ARM: dts: aspeed: add ASRock E3C246D4I BMC
-Date:   Mon, 29 Mar 2021 19:23:38 -0500
-Message-Id: <20210330002338.335-4-zev@bewilderbeest.net>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210330002338.335-1-zev@bewilderbeest.net>
-References: <20210330002338.335-1-zev@bewilderbeest.net>
+        id S229750AbhC3AhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 20:37:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35246 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229555AbhC3Ags (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 20:36:48 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F05FC061764
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 17:36:48 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id j2so15586788ybj.8
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 17:36:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=e0Xgly3/MZD4u1bhPt7p5rGuNpm9J7gxSx+RZ+5tojE=;
+        b=C4vCswuKGx7cZEieLZPlVR8c3eqhOf/MAUJSmS+mfzU0oAYPGNC2pXExMsIHePc8dB
+         rWCguwVZZzBcnF0wTxr9hv56xxr+VD9KVFLzvZ5EXnGd6R53Shi++nRdApMukMozoo9p
+         IgTwcJC4s8VjEROuuSaseZD72SDHm4KHdVPxUm1NhD4LEB5IATzMiYHOpFBxscH4/aDD
+         IBXMM9EWktQyj7uoSfsuXSvRnbphPGcdQ+Uqqgf5TEwvazTSjihZKdJWcgZijNuzPZ73
+         ALIREsE0obrykeojI1JdRoer7e6PHv9LPtPhQ78f/rhAd+a2eghSXuOz3xGDxLtK4097
+         sARA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=e0Xgly3/MZD4u1bhPt7p5rGuNpm9J7gxSx+RZ+5tojE=;
+        b=d3evfBRH3/0SUZooeZDv9xtKx1FbaVvvVFuNBQCCGbQ3yzNiJ/0Dz+l2CVn0ZslKzV
+         g4ctk9sbIf1/YnZB42uZFBinZxyRiS6mRQ1FlqNdpuOr1VOtSbReI7vGiwmvAEr2/uuu
+         npSbq63wwqZmq31LRhIINKOnc9N4ugn0F5MMaXfqEaU32L/6XF0tqJS3aqa048xGt8vc
+         oiNmPNUudpbV39BmQwzWFf9oiPCXeuwLfdkpbH+tT5GIpriuNeh7GnAbWnhvCOy2nGlr
+         TONiiciQFXfRk0pUZYcU9r3qH1ps9qjQws6BRS9ZizFLrEmL/5iM+0EFdvoqBRy4lRhD
+         ASgw==
+X-Gm-Message-State: AOAM533YGeOpjnCeFzSOJxwOl8FDJWnExxFWzJZh7NrsCchuYeWO4qXc
+        QPL4RYvUu4ESniXLVih4qyDKJKFCbuwwx4LNOd37QQ==
+X-Google-Smtp-Source: ABdhPJyYwafLcd1IwNEMrIVEuiKK2RtsWhb9Dqtvho+Jbbt5oB70NiQ04g1PlA8PLy5lpVslCYfdGZQG/r5zuSApP8Q=
+X-Received: by 2002:a25:ec0e:: with SMTP id j14mr4864458ybh.310.1617064606984;
+ Mon, 29 Mar 2021 17:36:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210316215123.GA3712408@robh.at.kernel.org> <20210318210318.144961-1-sebastian.reichel@collabora.com>
+ <20210326012720.GA2113788@robh.at.kernel.org> <CAGETcx9JmtbwAq_fpU5KfUzjcTw-uHPqKo3gAGjQwht=wxY8yg@mail.gmail.com>
+ <20210326095212.22ty5ueowiq36y6b@earth.universe> <CAGETcx81=GwChE0eZtKKAk4kDeq2S0ijS8X7FsMnk5HhzAcOhA@mail.gmail.com>
+ <20210329215300.4qnhmm4utmdectk5@earth.universe>
+In-Reply-To: <20210329215300.4qnhmm4utmdectk5@earth.universe>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 29 Mar 2021 17:36:11 -0700
+Message-ID: <CAGETcx9fpr_jXLH9OEBaDsKQcOyZd16WGBO+dXgYHUbCj+Ew=g@mail.gmail.com>
+Subject: Re: [RFC] clk: add boot clock support
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Collabora Kernel ML <kernel@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a relatively low-cost AST2500-based Xeon E-2100/E-2200 series
-mini-ITX board that we hope can provide a decent platform for OpenBMC
-development.
+On Mon, Mar 29, 2021 at 2:53 PM Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
+>
+> Hi,
+>
+> On Mon, Mar 29, 2021 at 01:03:20PM -0700, Saravana Kannan wrote:
+> > On Fri, Mar 26, 2021 at 2:52 AM Sebastian Reichel
+> > <sebastian.reichel@collabora.com> wrote:
+> > > On Thu, Mar 25, 2021 at 06:55:52PM -0700, Saravana Kannan wrote:
+> > > > On Thu, Mar 25, 2021 at 6:27 PM Rob Herring <robh@kernel.org> wrote:
+> > > > > On Thu, Mar 18, 2021 at 10:03:18PM +0100, Sebastian Reichel wrote:
+> > > > > > On Congatec's QMX6 system on module one of the i.MX6 fixed clocks
+> > > > > > is provided by an I2C RTC. Specifying this properly results in a
+> > > > > > circular dependency, since the I2C RTC (and thus its clock) cannot
+> > > > > > be initialized without the i.MX6 clock controller being initialized.
+> > > > > >
+> > > > > > With current code the following path is executed when i.MX6 clock
+> > > > > > controller is probed (and ckil clock is specified to be the I2C RTC
+> > > > > > via DT):
+> > > > > >
+> > > > > > 1. imx6q_obtain_fixed_clk_hw(ccm_node, "ckil", 0);
+> > > > > > 2. of_clk_get_by_name(ccm_node, "ckil");
+> > > > > > 3. __of_clk_get(ccm_node, 0, ccm_node->full_name, "ckil");
+> > > > > > 4. of_clk_get_hw(ccm_node, 0, "ckil")
+> > > > > > 5. spec = of_parse_clkspec(ccm_node, 0, "ckil"); // get phandle
+> > > > > > 6. of_clk_get_hw_from_clkspec(&spec); // returns -EPROBE_DEFER
+> > > > > > 7. error is propagated back, i.MX6q clock controller is probe deferred
+> > > > > > 8. I2C controller is never initialized without clock controller
+> > > > > >    I2C RTC is never initialized without I2C controller
+> > > > > >    CKIL clock is never initialized without I2C RTC
+> > > > > >    clock controller is never initialized without CKIL
+> > > > > >
+> > > > > > To fix the circular dependency this registers a dummy clock when
+> > > > > > the RTC clock is tried to be acquired. The dummy clock will later
+> > > > > > be unregistered when the proper clock is registered for the RTC
+> > > > > > DT node. IIUIC clk_core_reparent_orphans() will take care of
+> > > > > > fixing up the clock tree.
+> > > > > >
+> > > > > > NOTE: For now the patch is compile tested only. If this approach
+> > > > > > is the correct one I will do some testing and properly submit this.
+> > > > > > You can find all the details about the hardware in the following
+> > > > > > patchset:
+> > > > > >
+> > > > > > https://lore.kernel.org/linux-devicetree/20210222171247.97609-1-sebastian.reichel@collabora.com/
+> > > > > >
+> > > > > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > > > > > ---
+> > > > > >  .../bindings/clock/clock-bindings.txt         |   7 +
+> > > > > >  drivers/clk/clk.c                             | 146 ++++++++++++++++++
+> > > > > >  2 files changed, 153 insertions(+)
+> > > > > >
+> > > > > > diff --git a/Documentation/devicetree/bindings/clock/clock-bindings.txt b/Documentation/devicetree/bindings/clock/clock-bindings.txt
+> > > > > > index f2ea53832ac6..66d67ff4aa0f 100644
+> > > > > > --- a/Documentation/devicetree/bindings/clock/clock-bindings.txt
+> > > > > > +++ b/Documentation/devicetree/bindings/clock/clock-bindings.txt
+> > > > > > @@ -32,6 +32,13 @@ clock-output-names: Recommended to be a list of strings of clock output signal
+> > > > > >                   Clock consumer nodes must never directly reference
+> > > > > >                   the provider's clock-output-names property.
+> > > > > >
+> > > > > > +boot-clock-frequencies: This property is used to specify that a clock is enabled
+> > > > > > +                     by default with the provided frequency at boot time. This
+> > > > > > +                     is required to break circular clock dependencies. For clock
+> > > > > > +                     providers with #clock-cells = 0 this is a single u32
+> > > > > > +                     with the frequency in Hz. Otherwise it's a list of
+> > > > > > +                     clock cell specifier + frequency in Hz.
+> > > > >
+> > > > > Seems alright to me. I hadn't thought about the aspect of needing to
+> > > > > know the frequency. Other cases probably don't as you only need the
+> > > > > clocks once both components have registered.
+> > > > >
+> > > > > Note this could be lost being threaded in the other series.
+> > > >
+> > > > I read this thread and tried to understand it. But my head isn't right
+> > > > today (lack of sleep) so I couldn't wrap my head around it. I'll look
+> > > > at it again after the weekend. In the meantime, Sebastian can you
+> > > > please point me to the DT file and the specific device nodes (names or
+> > > > line number) where this cycle is present?
+> > >
+> > > I have not yet sent an updated DT file, but if you look at this
+> > > submission:
+> > >
+> > > https://lore.kernel.org/linux-devicetree/20210222171247.97609-7-sebastian.reichel@collabora.com/
+> > >
+> > > There is a node
+> > >
+> > > rtc: m41t62@68 { compatible = "st,m41t62"; };
+> > >
+> > > That is an I2C RTC, which provides a 32.768 kHz clock by default
+> > > (i.e. after power loss). This clock signal is used to provide the
+> > > i.MX6 CKIL:
+> > >
+> > > ------------------------------------
+> > > &clks {
+> > >     clocks = <&rtc>;
+> > >     clock-names = "ckil";
+> > > };
+> > > ------------------------------------
+> > >
+> > > > Keeping a clock on until all its consumers probe is part of my TODO
+> > > > list (next item after fw_devlink=on lands). I already have it working
+> > > > in AOSP, but need to clean it up for upstream. fw_devlink can also
+> > > > break *some* cycles (not all). So I'm wondering if the kernel will
+> > > > solve this automatically soon(ish). If it can solve it automatically,
+> > > > I'd rather not add new DT bindings because it'll make it more work for
+> > > > fw_devlink.
+> > >
+> > > As written above on Congatec QMX6 an I2C RTC provides one of the
+> > > SoC's input frequencies. The SoC basically expects that frequency
+> > > to be always enabled and this is what it works like before clock
+> > > support had been added to the RTC driver.
+> >
+> > Thanks. I skimmed through the RTC driver code and
+> > imx6q_obtain_fixed_clk_hw() and the DT files.
+> >
+> > >
+> > > With the link properly being described the Kernel tries to probe
+> > > the SoC's clock controller during early boot. Then it tries to get a
+> > > reference to the linked clock, using imx6q_obtain_fixed_clk_hw()
+> > > and that returns -EPROBE_DEFER (because the RTC driver has not
+> > > yet been probed).
+> >
+> > But the RTC (which is a proper I2C device) will never probe before
+> > CLK_OF_DECLARE() initializes the core clock controller. So, it's not
+> > clear how "protected-clocks" helps here since it doesn't change
+> > whether you get -EPROBE_DEFER from imx6q_obtain_fixed_clk_hw() (which
+> > is called from the CLK_OF_DECLARE() callback). Oof... I see what you
+> > are doing with of_clk_register_boot_clk(). You are having the consumer
+> > register its own clock and then use it. Kinda beats the whole point of
+> > describing the link in the first place.
+>
+> I agree, that it does not make sense from a code point of view for
+> this platform. All of this is just to make the DT look correct.
+> From a platform point of view the most logical way is to handle the
+> RTC clock as do-not-touch always enabled fixed-clock.
+>
+> > > Without the clock controller basically none of
+> > > the i.MX6 SoC drivers can probe including the I2C driver. Without
+> > > the I2C bus being registered, the RTC driver never probes and the
+> > > boot process is stuck.
+> > >
+> > > I'm not sure how fw_devlink can help here.
+> >
+> > I'll explain how it'd help. Let's assume "fsl,imx6q-ccm" was
+> > implemented as an actual platform device driver and not using
+> > CLK_OF_DECLARE() to initialize ALL the clocks. I'll get to this
+> > assumption later.
+> >
+> > In that case, fw_devlink will notice this cycle:
+> > syntax: consumer -(reason)-> supplier
+> > clks -(clocks property)-> rtc -(parent)-> i2c3  -(clocks property)-> clks.
+> >
+> > It'll then reason that it doesn't make sense for a device (clks) to
+> > have a supplier (rtc) whose parent (i2c3) in turn depends on the
+> > device (clks). It'll then drop the clks -> rtc dependency because
+> > that's the most illogical one in terms of probing.
+> >
+> > So all you'd need to do is delete any -EPROBE defer you might do in
+> > "fsl,imx6q-ccm" driver for "ckil". For cases where there's no cycle,
+> > fw_devlink will make sure the supplier of ckil has probed first. For
+> > cases where there's a cycle like this, it'll be smart enough to drop
+> > this dependency during probe ordering.
+>
+> What do you mean drop? Anything using ckil will not be registered?
+> That will basically kill the system within a few seconds, since the
+> watchdog hardware uses ckil.
 
-This initial device-tree provides the necessary configuration for
-basic BMC functionality such as host power control, serial console and
-KVM support, and POST code snooping.
+No, it means that it won't block CCM on ckil. It's not a generic
+"ignore dependency for all consumers of ckil". fw_devlink does this
+specifically to the link that causes a probe dependency cycle.
 
-Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
----
- .../boot/dts/aspeed-bmc-asrock-e3c246d4i.dts  | 188 ++++++++++++++++++
- 1 file changed, 188 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
+> > I don't know enough about the clocks in imx6q to comment if you can
+> > get away without using CLK_OF_DECLARE() at all. The only clock that
+> > really needs to use CLK_OF_DECLARE() is any clock that's needed for
+> > the scheduler timer. Other than that, everything else can be
+> > initialized by a normal driver. Including UART clocks. I can get into
+> > more specifics if you go down this path.
+> >
+> > So, that's how fw_devlink could help here if you massage
+> > drivers/clk/imx/clk-imx6q.c to be a proper platform driver. You'll
+> > have to set fw_devlink=on in the kernel commandline though (it's work
+> > in progress to set this by default). There are some additional details
+> > here about keeping clocks on, but we can discuss the solution for that
+> > if it becomes an issue.
+> >
+> > > I see exactly two
+> > > options to solve this:
+> > >
+> > > a) do not describe the link and keep RTC clock enabled somehow.
+> > >    (my initial patchset)
+> > > b) describe the link, but ignore it during boot.
+> > >    (what I'm trying to do here)
+> > >
+> >
+> > Even if you completely ignore fw_devlink, why not just model this
+> > clock as a fixed-clock in DT for this specific machine?
+> >
+> > It's clearly expecting the clock to be an always on fixed clock.
+>
+> Yes. SoC runs unreliably with this. Downstream vendor kernel does
+> not contain a clock driver for the squarewave pin of the RTC (i.e.
+> their driver does not yet contain 1373e77b4f10) and just works.
+> Upstream kernel disables the RTC's squarewave and then goes into
+> reboot loop because of watchdog going crazy.
+>
+> > This will also remove the need for adding "boot-clock-frequencies"
+> > binding.  "fixed-clocks" devices are initialized very early on
+> > (they use CLK_OF_DECLARE too) even without their parents probing
+> > (not sure I agree with this, but this is how it works now).
+> >
+> > Something like:
+> >
+> > rtc: m41t62@68 {
+> > compatible = "st,m41t62";
+> > reg = <0x68>;
+> >
+> >     clock-ckil {
+> >                     compatible = "fixed-clock";
+> >                     #clock-cells = <0>;
+> >                     clock-frequency = <32768>;
+> >             };
+> > };
+> >
+> > I hope this helps.
+>
+> This looks like a complex way of my initial patchset with
+> 'protected-clocks' property replaced by a fixed-clock
+> node. RTC driver needs to check if that exists and avoid
+> registering its own clock.
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
-new file mode 100644
-index 000000000000..27b34c3cf67a
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
-@@ -0,0 +1,188 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/dts-v1/;
-+
-+#include "aspeed-g5.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/i2c/i2c.h>
-+
-+/{
-+	model = "ASRock E3C246D4I BMC";
-+	compatible = "aspeed,ast2500";
-+
-+	aliases {
-+		serial4 = &uart5;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart5;
-+		bootargs = "console=tty0 console=ttyS4,115200 earlyprintk";
-+	};
-+
-+	memory@80000000 {
-+		reg = <0x80000000 0x20000000>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		heartbeat {
-+			/* BMC_HB_LED_N */
-+			gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "timer";
-+		};
-+
-+		system-fault {
-+			/* SYSTEM_FAULT_LED_N */
-+			gpios = <&gpio ASPEED_GPIO(Z, 2) GPIO_ACTIVE_LOW>;
-+			panic-indicator;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		uid-button {
-+			label = "uid-button";
-+			gpios = <&gpio ASPEED_GPIO(F, 1) GPIO_ACTIVE_LOW>;
-+			linux,code = <ASPEED_GPIO(F, 1)>;
-+		};
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>, <&adc 4>,
-+			<&adc 5>, <&adc 6>, <&adc 7>, <&adc 8>, <&adc 9>,
-+			<&adc 10>, <&adc 11>, <&adc 12>;
-+	};
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		spi-max-frequency = <100000000>; /* 100 MHz */
-+#include "openbmc-flash-layout.dtsi"
-+	};
-+};
-+
-+&uart5 {
-+	status = "okay";
-+};
-+
-+&vuart {
-+	status = "okay";
-+	aspeed,sirq-active-high;
-+};
-+
-+&mac0 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rgmii1_default &pinctrl_mdio1_default>;
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	/* thermal sensor, one diode run to a disconnected header */
-+	w83773g@4c {
-+		compatible = "nuvoton,w83773g";
-+		reg = <0x4c>;
-+	};
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+
-+	/* FRU EEPROM */
-+	eeprom@57 {
-+		compatible = "st,24c128", "atmel,24c128";
-+		reg = <0x57>;
-+		pagesize = <16>;
-+	};
-+};
-+
-+&video {
-+	status = "okay";
-+};
-+
-+&vhub {
-+	status = "okay";
-+};
-+
-+&lpc_ctrl {
-+	status = "okay";
-+};
-+
-+&lpc_snoop {
-+	status = "okay";
-+	snoop-ports = <0x80>;
-+};
-+
-+&gpio {
-+	status = "okay";
-+	gpio-line-names =
-+		/*  A */ "BMC_MAC1_INTB", "BMC_MAC2_INTB", "NMI_BTN_N", "BMC_NMI",
-+			"", "", "", "",
-+		/*  B */ "", "", "", "", "", "IRQ_BMC_PCH_SMI_LPC_N", "", "",
-+		/*  C */ "", "", "", "", "", "", "", "",
-+		/*  D */ "BMC_PSIN", "BMC_PSOUT", "BMC_RESETCON", "RESETCON",
-+			"", "", "", "",
-+		/*  E */ "", "", "", "", "", "", "", "",
-+		/*  F */ "LOCATORLED_STATUS_N", "LOCATORBTN", "", "",
-+			"", "", "BMC_PCH_SCI_LPC", "BMC_NCSI_MUX_CTL",
-+		/*  G */ "HWM_BAT_EN", "CHASSIS_ID0", "CHASSIS_ID1", "CHASSIS_ID2",
-+			"BMC_ALERT1_N_R", "BMC_ALERT2_N_R", "BMC_ALERT3_N", "SML0ALERT",
-+		/*  H */ "FM_ME_RCVR_N", "O_PWROK", "SKL_CNL_R", "D4_DIMM_EVENT_3V_N",
-+			"MFG_MODE_N", "BMC_RTCRST", "BMC_HB_LED_N", "BMC_CASEOPEN",
-+		/*  I */ "", "", "", "", "", "", "", "",
-+		/*  J */ "BMC_READY", "BMC_PCH_BIOS_CS_N", "BMC_SMI", "",
-+			"", "", "", "",
-+		/*  K */ "", "", "", "", "", "", "", "",
-+		/*  L */ "BMC_CTS1", "BMC_DCD1", "BMC_DSR1", "BMC_RI1",
-+			"BMC_DTR1", "BMC_RTS1", "BMC_TXD1", "BMC_RXD1",
-+		/*  M */ "BMC_LAN0_DIS_N", "BMC_LAN1_DIS_N", "", "",
-+			"", "", "", "",
-+		/*  N */ "", "", "", "", "", "", "", "",
-+		/*  O */ "", "", "", "", "", "", "", "",
-+		/*  P */ "", "", "", "", "", "", "", "",
-+		/*  Q */ "", "", "", "",
-+			"BMC_SBM_PRESENT_1_N", "BMC_SBM_PRESENT_2_N",
-+			"BMC_SBM_PRESENT_3_N", "BMC_PCIE_WAKE_N",
-+		/*  R */ "", "", "", "", "", "", "", "",
-+		/*  S */ "PCHHOT_BMC_N", "", "RSMRST",
-+			"", "", "", "", "",
-+		/*  T */ "", "", "", "", "", "", "", "",
-+		/*  U */ "", "", "", "", "", "", "", "",
-+		/*  V */ "", "", "", "", "", "", "", "",
-+		/*  W */ "PS_PWROK", /* dummy always-high signal */
-+			"", "", "", "", "", "", "",
-+		/*  X */ "", "", "", "", "", "", "", "",
-+		/*  Y */ "SLP_S3", "SLP_S5", "", "", "", "", "", "",
-+		/*  Z */ "CPU_CATERR_BMC_PCH_N", "", "SYSTEM_FAULT_LED_N", "BMC_THROTTLE_N",
-+			"", "", "", "",
-+		/* AA */ "CPU1_THERMTRIP_LATCH_N", "", "CPU1_PROCHOT_N", "",
-+			"", "", "IRQ_SMI_ACTIVE_N", "FM_BIOS_POST_CMPLT_N",
-+		/* AB */ "", "", "ME_OVERRIDE", "BMC_DMI_MODIFY",
-+			"", "", "", "",
-+		/* AC */ "LAD0", "LAD1", "LAD2", "LAD3",
-+			"CK_33M_BMC", "LFRAME", "SERIRQ", "S_PLTRST";
-+
-+	/* Assert BMC_READY so BIOS doesn't sit around waiting for it */
-+	bmc-ready {
-+		gpio-hog;
-+		gpios = <ASPEED_GPIO(J, 0) GPIO_ACTIVE_LOW>;
-+		output-high;
-+	};
-+};
-+
-+&adc {
-+	status = "okay";
-+};
-+
-+&kcs3 {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0xca2>;
-+};
--- 
-2.31.1
+If anything, I'd argue this is a lot more simpler because it avoids
+adding a new DT binding, it avoids changes to drivers/clk/clk.c.
+Instead of checking for "protected-clocks" you just check for this
+child node (or just any child node). Also, technically if you set the
+CLK_IGNORE_UNUSED flag for the clock, you don't even need to do any
+explicit checking in the RTC driver as long as some other driver
+doesn't try to get this clock and turn it on/off.
 
+-Saravana
