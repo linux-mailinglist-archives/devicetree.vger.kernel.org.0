@@ -2,158 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DA0134E2F0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 10:16:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3247034E336
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 10:36:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231379AbhC3IPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 04:15:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48912 "EHLO
+        id S229530AbhC3Ifq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 04:35:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231400AbhC3IPP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 04:15:15 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D408C061764;
-        Tue, 30 Mar 2021 01:15:13 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id h25so11188133pgm.3;
-        Tue, 30 Mar 2021 01:15:13 -0700 (PDT)
+        with ESMTP id S230248AbhC3IfV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 04:35:21 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51DF8C061762;
+        Tue, 30 Mar 2021 01:35:21 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id b2-20020a7bc2420000b029010be1081172so7940036wmj.1;
+        Tue, 30 Mar 2021 01:35:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=3gDOC0Z8XAHbqFwCKdnmHJhX1d7vqsYcID7spPCLu5I=;
-        b=pGCNEDaTrN3AHSTGljZgtNy5UYQtAcSOIdS0yv7w1jopGUUYzsIS6WjcT/JHAd2GOV
-         YwV/D9YJNr6dany6dy6hcm1wLekHfBihFXlCdsrdDEXQG6AJ3exPJPPT+SMA4t6yGX4T
-         s+fbUUhfsoFRmnMM8jFcYatzrYqEdP3+kAMFjI9vwtLxMYLfKQ0yHzkmcIKGDO54jzSz
-         Na7+EujqqnAXCbwkPG2YYjxJ6dzn+d36xycvEGF/St3VleFR1EJlIhW35rFKLbS9gnjN
-         gutr+YWB77FVgmpasJyJLu4QIFrfXOmdAEE8Rj89MHzBIjXzpfd9xnj7AgduAtnC/55/
-         XQEA==
+        bh=kCDnrdurBxHp4hqMgyHqr8HK9SC1LgyhjeSGAs35CXg=;
+        b=pE1wuzjDl5NiJTgvlwq/xZiPi0DfV9nOPXFBgQnalkn8T5D2qQri92Ezqz90SY+L8V
+         RTA0napESHabMe6FvOw9Ln46RgZLsfAtItVPGGKqw0OKkzUYLhuKRFKhqJpAp1AzSxbv
+         RtmA/F/fySZ4wYduR7MwyDs1r3eXRJHa6F+7ii8BcPdwY7dbYOU9QQqYoePQLCq7ZeHD
+         1XrCi0Vs0LzvC8kOrm/QMedHcMR6ExW/kuW6XyF5FAE+W8BvtIKKVYTod/2BkTDbEUdF
+         Vi1T805WeBpIfjJn6Z+QzNdC1CASw5uy2LihxVVGlSL89Yy4cp0S7SwH024MQZvlLtS8
+         Ka1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=3gDOC0Z8XAHbqFwCKdnmHJhX1d7vqsYcID7spPCLu5I=;
-        b=osYRJTFl14slRGVDuoARBf4Gjfhl3wFFUZalmvSKLRCEltPsJOHLvjtFK93hdvTcw/
-         M6tl7QUaAHaSdofCh/pPz9d2ZkD/QQb+ABYRc7CbBEJeQNXSXP7akWviewohJYT7/Gfj
-         fptbiOBcsw+soaqQ4W3Wd4GNUOpIi1Oofcsft2lhr6gOvJqE+Ygezj7f63yDHxOqNf9W
-         t2lhNNXa5EIjSeTzfBcdiu+tsCUJ37w+8L1IfhheROnu9IP7G6YVuwgU9Q9G62HYjClf
-         P1EKdgjml47hJJ8w9Od2FsVv1TqyFvIF6xufl+MCvG3UbDih1EU19UbkuBLZuXtr9s0f
-         ZkkQ==
-X-Gm-Message-State: AOAM532c99t7SLFsKIqoq9PTGwjMhYvovMgrc7m3BuIpPd2P1atNDS0N
-        lmQ7df2QvGnLtKSU3RVBRT3Nm3wQRVWBjY/a
-X-Google-Smtp-Source: ABdhPJxg6ZAutLMLoP1f0Pv7BdtYsOfweV3TfVh6CMeUI036JsmhfN+aCX8NawWvcWOk66blgOnprg==
-X-Received: by 2002:a62:dd8e:0:b029:20a:309:2fcd with SMTP id w136-20020a62dd8e0000b029020a03092fcdmr28785940pff.35.1617092112627;
-        Tue, 30 Mar 2021 01:15:12 -0700 (PDT)
-Received: from localhost.localdomain ([103.220.76.197])
-        by smtp.gmail.com with ESMTPSA id f20sm19496672pfa.10.2021.03.30.01.15.08
+        bh=kCDnrdurBxHp4hqMgyHqr8HK9SC1LgyhjeSGAs35CXg=;
+        b=na1VkU2mDJXPWC7VTN7LbRReZhR3m43jUxg+4VEHYnle7Zy/KkkjCJugEfQGFAm3K6
+         50faOMb8PDn3/ty7PyuywuzwMybuK6P84mpI0cmzi1motdUDYCp3/EOQ2gpzKcT+cQA+
+         CJISjZFd/B3+t9Soy+SjYozalwQDEHVnhvXRMzfGxf72lb/aMmB9JmpSy+VDj6jDxoXS
+         kjrpW9fsCjW88K2/fLRDSyOGtKCMl/Vlwv+GNIRYwV8A18hmtBGyPYnixqiUcW1wnLnv
+         MVKUJhorPnd0UvkLO5RuYypWbw6RWBrLlvQEdTz3oL9Pb4m9AmlFDdY8Cve4ssgVMjSB
+         UGHQ==
+X-Gm-Message-State: AOAM532fkguduTet4+5a4RAF0CGjBzdDBr7NlplTD2xVBnQ7Qi9jlqnH
+        ki64hGyr/umtwpSzvsXNc4s=
+X-Google-Smtp-Source: ABdhPJw7Gphw/yEy3iqJQuiu9+xzLv7r0ntuDECV95y2FfsdIh/gO3/CAh3IoPtlOgK9yxqFIWHfmQ==
+X-Received: by 2002:a1c:7415:: with SMTP id p21mr2844786wmc.187.1617093320070;
+        Tue, 30 Mar 2021 01:35:20 -0700 (PDT)
+Received: from localhost.localdomain (2a01cb0008bd2700a086f61fd085ac55.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:a086:f61f:d085:ac55])
+        by smtp.gmail.com with ESMTPSA id g9sm32830263wrp.14.2021.03.30.01.35.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Mar 2021 01:15:12 -0700 (PDT)
-From:   Carlis <zhangxuezhi3@gmail.com>
-To:     david@lechnology.com, zhangxuezhi1@yulong.com, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/1] dt-bindings: display: sitronix,st7789v-dbi: Add Waveshare 2inch LCD module
-Date:   Tue, 30 Mar 2021 08:15:05 +0000
-Message-Id: <20210330081505.116351-1-zhangxuezhi3@gmail.com>
+        Tue, 30 Mar 2021 01:35:19 -0700 (PDT)
+From:   Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        catalin.marinas@arm.com, will@kernel.org,
+        bjorn.andersson@linaro.org, krzk@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Adrien Grassein <adrien.grassein@gmail.com>
+Subject: [PATCH v1 0/4] Add peripheral support to imx8mq-nitrogen board
+Date:   Tue, 30 Mar 2021 10:35:10 +0200
+Message-Id: <20210330083514.5874-1-adrien.grassein@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Xuezhi Zhang" <zhangxuezhi1@yulong.com>
+Hi,
 
-Document support for the Waveshare 2inch LCD module display, which is a
-240x320 2" TFT display driven by a Sitronix ST7789V TFT Controller.
+this patch set aims is to add support of multiple peripheral of the
+Boundary8M board:
+  - USB Host (behind a resatable hub, started by u-boot);
+  - USB device;
+  - DB_DSIHD sub board for MIPI-DSI to HDMI output (via lt8912b chip).
 
-Signed-off-by: Xuezhi Zhang <zhangxuezhi1@yulong.com>
----
-v2:change compatible name.
-v3:change auther name.
----
- .../display/sitronix,st7789v-dbi.yaml         | 72 +++++++++++++++++++
- 1 file changed, 72 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/sitronix,st7789v-dbi.yaml
+Thanks, 
 
-diff --git a/Documentation/devicetree/bindings/display/sitronix,st7789v-dbi.yaml b/Documentation/devicetree/bindings/display/sitronix,st7789v-dbi.yaml
-new file mode 100644
-index 000000000000..6abf82966230
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/sitronix,st7789v-dbi.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/sitronix,st7789v-dbi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sitronix ST7789V Display Panels Device Tree Bindings
-+
-+maintainers:
-+  - Carlis <zhangxuezhi1@yulong.com>
-+
-+description:
-+  This binding is for display panels using a Sitronix ST7789V
-+  controller in SPI mode.
-+
-+allOf:
-+  - $ref: panel/panel-common.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - description:
-+          Waveshare 2" 240x320 Color TFT LCD
-+        items:
-+          - enum:
-+              - waveshare,ws2inch
-+          - const: sitronix,st7789v-dbi
-+
-+  spi-max-frequency:
-+    maximum: 32000000
-+
-+  dc-gpios:
-+    maxItems: 1
-+    description: Display data/command selection (D/CX)
-+
-+  backlight: true
-+  reg: true
-+  reset-gpios: true
-+  rotation: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - dc-gpios
-+  - reset-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    backlight: backlight {
-+            compatible = "gpio-backlight";
-+            gpios = <&gpio 18 GPIO_ACTIVE_HIGH>;
-+    };
-+
-+    spi {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            display@0{
-+                    compatible = "waveshare,ws2inch", "sitronix,st7789v-dbi";
-+                    reg = <0>;
-+                    spi-max-frequency = <32000000>;
-+                    dc-gpios = <&gpio 25 GPIO_ACTIVE_HIGH>;
-+                    reset-gpios = <&gpio 27 GPIO_ACTIVE_HIGH>;
-+                    rotation = <270>;
-+            };
-+    };
-+
-+...
+Adrien Grassein (4):
+  arm64: dts: imx8mq-nitrogen: add USB OTG support
+  arm64: dts: imx8mq-nitrogen: add USB HOST support
+  arm64: dts: imx8mq-nitrogen: add lt8912 MIPI-DSI to HDMI
+  arm64: defconfig: Enable LT8912B DRM bridge driver
+
+ .../boot/dts/freescale/imx8mq-nitrogen.dts    | 185 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ 2 files changed, 186 insertions(+)
+
 -- 
 2.25.1
 
