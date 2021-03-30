@@ -2,153 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D64D034E2B0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 10:05:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DA0134E2F0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 10:16:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229468AbhC3IEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 04:04:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46536 "EHLO
+        id S231379AbhC3IPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 04:15:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230223AbhC3IE0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 04:04:26 -0400
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C20AC061762
-        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 01:04:26 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id t16so7696675qvr.12
-        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 01:04:26 -0700 (PDT)
+        with ESMTP id S231400AbhC3IPP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 04:15:15 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D408C061764;
+        Tue, 30 Mar 2021 01:15:13 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id h25so11188133pgm.3;
+        Tue, 30 Mar 2021 01:15:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0hXTX8IXseXWS6sQ5v0psd9jBHZ3jQktmk6VWJvrFnY=;
-        b=AvdkhgznJpxH1Y85tc0K2FisAYU02f2ExRqH01ZlXjycjuvlr/ijazyhskTfgxv6z/
-         V2NuyyG79EEi+2rzN+aDLK493ag+xU/jBsSvNsF7rpVlukSgCkraSUKfLiakUcYfPqQb
-         Q+l+vEbwokSA1ovQLLaPmPE2t2VN3QkAIMZjkR/GiNfdn8jez1YBMn9b7LMDxqy9xwoS
-         XitJxW7dohNEtaBno1G7qsnTNuEivNHlDLd7AfnsmUdJXLw7uiO9Rp9KMk7YhaEUJfdP
-         VI0WITXd33/bkpCsR27neG9UVD+HaMNA9376YHZlbnO/M3mHlPd+E+KFzdVQLsinmW7u
-         4tvw==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3gDOC0Z8XAHbqFwCKdnmHJhX1d7vqsYcID7spPCLu5I=;
+        b=pGCNEDaTrN3AHSTGljZgtNy5UYQtAcSOIdS0yv7w1jopGUUYzsIS6WjcT/JHAd2GOV
+         YwV/D9YJNr6dany6dy6hcm1wLekHfBihFXlCdsrdDEXQG6AJ3exPJPPT+SMA4t6yGX4T
+         s+fbUUhfsoFRmnMM8jFcYatzrYqEdP3+kAMFjI9vwtLxMYLfKQ0yHzkmcIKGDO54jzSz
+         Na7+EujqqnAXCbwkPG2YYjxJ6dzn+d36xycvEGF/St3VleFR1EJlIhW35rFKLbS9gnjN
+         gutr+YWB77FVgmpasJyJLu4QIFrfXOmdAEE8Rj89MHzBIjXzpfd9xnj7AgduAtnC/55/
+         XQEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0hXTX8IXseXWS6sQ5v0psd9jBHZ3jQktmk6VWJvrFnY=;
-        b=aZ0TSUfGSyKy9CkaXhmXCHf7IVpF9Gb4cHJ2J+F41J6I9D0zEDrwzD6xzzNOXunbFk
-         RTISAV0y7zYr3MRdDq4/AvFdUbgtUuROqKI5jR/ND/AzRn11akEtzKsEPfG3NLN7cyQD
-         7EOSjMp9hi2sdJVy1wpemFBJlBAsJy7DtxDz9PxUAc5OzOYmiQyeC67EflONwbgfu+Xy
-         DBuZs9mtTcbD4heiavKdSXt4ghvk1j/3pRB35VV0O2E6YpIjcx8f8iIxVq9t9tS/weY5
-         JOShSGgm7fEnWmEUg3MtLzKbHnOuy7zzLQrhIELzPD1M+dkB4bXsGF9wJXcE+EJaEjsm
-         Eqhw==
-X-Gm-Message-State: AOAM533q3B/gz0CQsgvsEQGbUSSpevWa8Ee6BMt/0YB3xfL71dSbm7LH
-        E/Y9awZMHAifYbO/4mdEEVVGXltv6bwFS/fpmxApyw==
-X-Google-Smtp-Source: ABdhPJzODMwi5bI8/2BWHi0LOLZBUGzb2dOjHsDIuxM7K/fV9heoh5dmZ3joJPfWrl2fM7ixxIx6Ll+z2dooy8ho1Ss=
-X-Received: by 2002:a0c:a425:: with SMTP id w34mr28728433qvw.2.1617091465670;
- Tue, 30 Mar 2021 01:04:25 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3gDOC0Z8XAHbqFwCKdnmHJhX1d7vqsYcID7spPCLu5I=;
+        b=osYRJTFl14slRGVDuoARBf4Gjfhl3wFFUZalmvSKLRCEltPsJOHLvjtFK93hdvTcw/
+         M6tl7QUaAHaSdofCh/pPz9d2ZkD/QQb+ABYRc7CbBEJeQNXSXP7akWviewohJYT7/Gfj
+         fptbiOBcsw+soaqQ4W3Wd4GNUOpIi1Oofcsft2lhr6gOvJqE+Ygezj7f63yDHxOqNf9W
+         t2lhNNXa5EIjSeTzfBcdiu+tsCUJ37w+8L1IfhheROnu9IP7G6YVuwgU9Q9G62HYjClf
+         P1EKdgjml47hJJ8w9Od2FsVv1TqyFvIF6xufl+MCvG3UbDih1EU19UbkuBLZuXtr9s0f
+         ZkkQ==
+X-Gm-Message-State: AOAM532c99t7SLFsKIqoq9PTGwjMhYvovMgrc7m3BuIpPd2P1atNDS0N
+        lmQ7df2QvGnLtKSU3RVBRT3Nm3wQRVWBjY/a
+X-Google-Smtp-Source: ABdhPJxg6ZAutLMLoP1f0Pv7BdtYsOfweV3TfVh6CMeUI036JsmhfN+aCX8NawWvcWOk66blgOnprg==
+X-Received: by 2002:a62:dd8e:0:b029:20a:309:2fcd with SMTP id w136-20020a62dd8e0000b029020a03092fcdmr28785940pff.35.1617092112627;
+        Tue, 30 Mar 2021 01:15:12 -0700 (PDT)
+Received: from localhost.localdomain ([103.220.76.197])
+        by smtp.gmail.com with ESMTPSA id f20sm19496672pfa.10.2021.03.30.01.15.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Mar 2021 01:15:12 -0700 (PDT)
+From:   Carlis <zhangxuezhi3@gmail.com>
+To:     david@lechnology.com, zhangxuezhi1@yulong.com, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/1] dt-bindings: display: sitronix,st7789v-dbi: Add Waveshare 2inch LCD module
+Date:   Tue, 30 Mar 2021 08:15:05 +0000
+Message-Id: <20210330081505.116351-1-zhangxuezhi3@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210329120051.3401567-1-dmitry.baryshkov@linaro.org>
- <20210329120051.3401567-4-dmitry.baryshkov@linaro.org> <YGKYDzCzwz+1pxOi@builder.lan>
-In-Reply-To: <YGKYDzCzwz+1pxOi@builder.lan>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 30 Mar 2021 11:04:14 +0300
-Message-ID: <CAA8EJppuRyFk5arkjFAuHjeHpVrLiVpXPnXciOxkE1Y0OjKFSQ@mail.gmail.com>
-Subject: Re: [PATCH v4 3/4] drm/msm: add compatibles for sm8150/sm8250 display
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <sean@poorly.run>, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Mar 2021 at 06:16, Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Mon 29 Mar 07:00 CDT 2021, Dmitry Baryshkov wrote:
->
-> > From: Jonathan Marek <jonathan@marek.ca>
-> >
-> > The driver already has support for sm8150/sm8250, but the compatibles were
-> > never added.
-> >
-> > Also inverse the non-mdp4 condition in add_display_components() to avoid
-> > having to check every new compatible in the condition.
-> >
-> > Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 2 ++
-> >  drivers/gpu/drm/msm/msm_drv.c           | 6 +++---
-> >  2 files changed, 5 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> > index 5a8e3e1fc48c..fff12a4c8bfc 100644
-> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> > @@ -1219,6 +1219,8 @@ static const struct dev_pm_ops dpu_pm_ops = {
-> >  static const struct of_device_id dpu_dt_match[] = {
-> >       { .compatible = "qcom,sdm845-dpu", },
-> >       { .compatible = "qcom,sc7180-dpu", },
-> > +     { .compatible = "qcom,sm8150-dpu", },
-> > +     { .compatible = "qcom,sm8250-dpu", },
-> >       {}
-> >  };
-> >  MODULE_DEVICE_TABLE(of, dpu_dt_match);
-> > diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
-> > index 94525ac76d4e..928f13d4bfbc 100644
-> > --- a/drivers/gpu/drm/msm/msm_drv.c
-> > +++ b/drivers/gpu/drm/msm/msm_drv.c
-> > @@ -1185,9 +1185,7 @@ static int add_display_components(struct device *dev,
-> >        * Populate the children devices, find the MDP5/DPU node, and then add
-> >        * the interfaces to our components list.
-> >        */
-> > -     if (of_device_is_compatible(dev->of_node, "qcom,mdss") ||
-> > -         of_device_is_compatible(dev->of_node, "qcom,sdm845-mdss") ||
-> > -         of_device_is_compatible(dev->of_node, "qcom,sc7180-mdss")) {
-> > +     if (!of_device_is_compatible(dev->of_node, "qcom,mdp4")) {
->
-> Please consider reviewing my proposed alternative solution for this
-> hunk:
->
-> https://lore.kernel.org/linux-arm-msm/20210317025634.3987908-1-bjorn.andersson@linaro.org/
+From: "Xuezhi Zhang" <zhangxuezhi1@yulong.com>
 
-I'd slightly prefer Jonathan's approach, as it seems simpler, but no
-strong preference towards one or another.
+Document support for the Waveshare 2inch LCD module display, which is a
+240x320 2" TFT display driven by a Sitronix ST7789V TFT Controller.
 
->
-> For the rest
->
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->
-> Regards,
-> Bjorn
->
-> >               ret = of_platform_populate(dev->of_node, NULL, NULL, dev);
-> >               if (ret) {
-> >                       DRM_DEV_ERROR(dev, "failed to populate children devices\n");
-> > @@ -1320,6 +1318,8 @@ static const struct of_device_id dt_match[] = {
-> >       { .compatible = "qcom,mdss", .data = (void *)KMS_MDP5 },
-> >       { .compatible = "qcom,sdm845-mdss", .data = (void *)KMS_DPU },
-> >       { .compatible = "qcom,sc7180-mdss", .data = (void *)KMS_DPU },
-> > +     { .compatible = "qcom,sm8150-mdss", .data = (void *)KMS_DPU },
-> > +     { .compatible = "qcom,sm8250-mdss", .data = (void *)KMS_DPU },
-> >       {}
-> >  };
-> >  MODULE_DEVICE_TABLE(of, dt_match);
-> > --
-> > 2.30.2
-> >
+Signed-off-by: Xuezhi Zhang <zhangxuezhi1@yulong.com>
+---
+v2:change compatible name.
+v3:change auther name.
+---
+ .../display/sitronix,st7789v-dbi.yaml         | 72 +++++++++++++++++++
+ 1 file changed, 72 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/sitronix,st7789v-dbi.yaml
 
-
-
+diff --git a/Documentation/devicetree/bindings/display/sitronix,st7789v-dbi.yaml b/Documentation/devicetree/bindings/display/sitronix,st7789v-dbi.yaml
+new file mode 100644
+index 000000000000..6abf82966230
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/sitronix,st7789v-dbi.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/sitronix,st7789v-dbi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sitronix ST7789V Display Panels Device Tree Bindings
++
++maintainers:
++  - Carlis <zhangxuezhi1@yulong.com>
++
++description:
++  This binding is for display panels using a Sitronix ST7789V
++  controller in SPI mode.
++
++allOf:
++  - $ref: panel/panel-common.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - description:
++          Waveshare 2" 240x320 Color TFT LCD
++        items:
++          - enum:
++              - waveshare,ws2inch
++          - const: sitronix,st7789v-dbi
++
++  spi-max-frequency:
++    maximum: 32000000
++
++  dc-gpios:
++    maxItems: 1
++    description: Display data/command selection (D/CX)
++
++  backlight: true
++  reg: true
++  reset-gpios: true
++  rotation: true
++
++required:
++  - compatible
++  - reg
++  - dc-gpios
++  - reset-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    backlight: backlight {
++            compatible = "gpio-backlight";
++            gpios = <&gpio 18 GPIO_ACTIVE_HIGH>;
++    };
++
++    spi {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            display@0{
++                    compatible = "waveshare,ws2inch", "sitronix,st7789v-dbi";
++                    reg = <0>;
++                    spi-max-frequency = <32000000>;
++                    dc-gpios = <&gpio 25 GPIO_ACTIVE_HIGH>;
++                    reset-gpios = <&gpio 27 GPIO_ACTIVE_HIGH>;
++                    rotation = <270>;
++            };
++    };
++
++...
 -- 
-With best wishes
-Dmitry
+2.25.1
+
