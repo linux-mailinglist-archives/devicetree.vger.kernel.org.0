@@ -2,65 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B70B34E099
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 07:24:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E5DE34E173
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 08:47:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230243AbhC3FXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 01:23:40 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:32928 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230294AbhC3FX3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 01:23:29 -0400
-X-UUID: f27e7d8e5e3441b68c30088bed172cd5-20210330
-X-UUID: f27e7d8e5e3441b68c30088bed172cd5-20210330
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <pk.chi@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 169471129; Tue, 30 Mar 2021 13:23:25 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 30 Mar 2021 13:23:23 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 30 Mar 2021 13:23:23 +0800
-From:   Po-Kai Chi <pk.chi@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>, CC Hwang <cc.hwang@mediatek.com>,
-        Loda Chou <loda.chou@mediatek.com>,
-        Po-Kai Chi <pk.chi@mediatek.com>
-Subject: [PATCH v1 4/4] arm64: defconfig: Enable MediaTek DRAMC common driver
-Date:   Tue, 30 Mar 2021 13:22:11 +0800
-Message-ID: <1617081731-7408-5-git-send-email-pk.chi@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1617081731-7408-1-git-send-email-pk.chi@mediatek.com>
-References: <1617081731-7408-1-git-send-email-pk.chi@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+        id S230323AbhC3GrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 02:47:13 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:35286 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230463AbhC3Gq6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Mar 2021 02:46:58 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 85BB420594F;
+        Tue, 30 Mar 2021 08:46:54 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 104332058F2;
+        Tue, 30 Mar 2021 08:46:51 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 9DE5E402B0;
+        Tue, 30 Mar 2021 08:46:46 +0200 (CEST)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2] ASoC: ak5558: Add support for ak5552
+Date:   Tue, 30 Mar 2021 14:32:51 +0800
+Message-Id: <1617085972-6094-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit enables MediaTek DRAMC common driver to be built
-as a module by default for the ARM64 builds.
+From: Viorel Suman <viorel.suman@nxp.com>
 
-Signed-off-by: Po-Kai Chi <pk.chi@mediatek.com>
+AK5552 is a 32-bit 2ch ADC and has the same register
+map as AK5558.
+
+Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 ---
- arch/arm64/configs/defconfig |    1 +
- 1 file changed, 1 insertion(+)
+ sound/soc/codecs/ak5558.c | 93 ++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 88 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index d612f63..49d7464 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1163,3 +1163,4 @@ CONFIG_DEBUG_KERNEL=y
- # CONFIG_DEBUG_PREEMPT is not set
- # CONFIG_FTRACE is not set
- CONFIG_MEMTEST=y
-+CONFIG_MTK_DRAMC=m
+diff --git a/sound/soc/codecs/ak5558.c b/sound/soc/codecs/ak5558.c
+index 85bdd0534180..af12afa83b4f 100644
+--- a/sound/soc/codecs/ak5558.c
++++ b/sound/soc/codecs/ak5558.c
+@@ -9,6 +9,7 @@
+ #include <linux/gpio/consumer.h>
+ #include <linux/i2c.h>
+ #include <linux/module.h>
++#include <linux/of_device.h>
+ #include <linux/pm_runtime.h>
+ #include <linux/regmap.h>
+ #include <linux/regulator/consumer.h>
+@@ -23,6 +24,11 @@
+ 
+ #include "ak5558.h"
+ 
++enum ak555x_type {
++	AK5558,
++	AK5552,
++};
++
+ #define AK5558_NUM_SUPPLIES 2
+ static const char *ak5558_supply_names[AK5558_NUM_SUPPLIES] = {
+ 	"DVDD",
+@@ -59,6 +65,15 @@ static const struct soc_enum ak5558_mono_enum[] = {
+ 			ARRAY_SIZE(mono_texts), mono_texts),
+ };
+ 
++static const char * const mono_5552_texts[] = {
++	"2 Slot", "1 Slot (Fixed)", "2 Slot", "1 Slot (Optimal)",
++};
++
++static const struct soc_enum ak5552_mono_enum[] = {
++	SOC_ENUM_SINGLE(AK5558_01_POWER_MANAGEMENT2, 1,
++			ARRAY_SIZE(mono_5552_texts), mono_5552_texts),
++};
++
+ static const char * const digfil_texts[] = {
+ 	"Sharp Roll-Off", "Show Roll-Off",
+ 	"Short Delay Sharp Roll-Off", "Short Delay Show Roll-Off",
+@@ -74,6 +89,11 @@ static const struct snd_kcontrol_new ak5558_snd_controls[] = {
+ 	SOC_ENUM("AK5558 Digital Filter", ak5558_adcset_enum[0]),
+ };
+ 
++static const struct snd_kcontrol_new ak5552_snd_controls[] = {
++	SOC_ENUM("AK5552 Monaural Mode", ak5552_mono_enum[0]),
++	SOC_ENUM("AK5552 Digital Filter", ak5558_adcset_enum[0]),
++};
++
+ static const struct snd_soc_dapm_widget ak5558_dapm_widgets[] = {
+ 	/* Analog Input */
+ 	SND_SOC_DAPM_INPUT("AIN1"),
+@@ -97,6 +117,17 @@ static const struct snd_soc_dapm_widget ak5558_dapm_widgets[] = {
+ 	SND_SOC_DAPM_AIF_OUT("SDTO", "Capture", 0, SND_SOC_NOPM, 0, 0),
+ };
+ 
++static const struct snd_soc_dapm_widget ak5552_dapm_widgets[] = {
++	/* Analog Input */
++	SND_SOC_DAPM_INPUT("AIN1"),
++	SND_SOC_DAPM_INPUT("AIN2"),
++
++	SND_SOC_DAPM_ADC("ADC Ch1", NULL, AK5558_00_POWER_MANAGEMENT1, 0, 0),
++	SND_SOC_DAPM_ADC("ADC Ch2", NULL, AK5558_00_POWER_MANAGEMENT1, 1, 0),
++
++	SND_SOC_DAPM_AIF_OUT("SDTO", "Capture", 0, SND_SOC_NOPM, 0, 0),
++};
++
+ static const struct snd_soc_dapm_route ak5558_intercon[] = {
+ 	{"ADC Ch1", NULL, "AIN1"},
+ 	{"SDTO", NULL, "ADC Ch1"},
+@@ -123,6 +154,14 @@ static const struct snd_soc_dapm_route ak5558_intercon[] = {
+ 	{"SDTO", NULL, "ADC Ch8"},
+ };
+ 
++static const struct snd_soc_dapm_route ak5552_intercon[] = {
++	{"ADC Ch1", NULL, "AIN1"},
++	{"SDTO", NULL, "ADC Ch1"},
++
++	{"ADC Ch2", NULL, "AIN2"},
++	{"SDTO", NULL, "ADC Ch2"},
++};
++
+ static int ak5558_set_mcki(struct snd_soc_component *component)
+ {
+ 	return snd_soc_component_update_bits(component, AK5558_02_CONTROL1, AK5558_CKS,
+@@ -267,6 +306,18 @@ static struct snd_soc_dai_driver ak5558_dai = {
+ 	.ops = &ak5558_dai_ops,
+ };
+ 
++static struct snd_soc_dai_driver ak5552_dai = {
++	.name = "ak5558-aif",
++	.capture = {
++		.stream_name = "Capture",
++		.channels_min = 1,
++		.channels_max = 2,
++		.rates = SNDRV_PCM_RATE_KNOT,
++		.formats = AK5558_FORMATS,
++	},
++	.ops = &ak5558_dai_ops,
++};
++
+ static void ak5558_power_off(struct ak5558_priv *ak5558)
+ {
+ 	if (!ak5558->reset_gpiod)
+@@ -354,6 +405,21 @@ static const struct snd_soc_component_driver soc_codec_dev_ak5558 = {
+ 	.non_legacy_dai_naming	= 1,
+ };
+ 
++static const struct snd_soc_component_driver soc_codec_dev_ak5552 = {
++	.probe			= ak5558_probe,
++	.remove			= ak5558_remove,
++	.controls		= ak5552_snd_controls,
++	.num_controls		= ARRAY_SIZE(ak5552_snd_controls),
++	.dapm_widgets		= ak5552_dapm_widgets,
++	.num_dapm_widgets	= ARRAY_SIZE(ak5552_dapm_widgets),
++	.dapm_routes		= ak5552_intercon,
++	.num_dapm_routes	= ARRAY_SIZE(ak5552_intercon),
++	.idle_bias_on		= 1,
++	.use_pmdown_time	= 1,
++	.endianness		= 1,
++	.non_legacy_dai_naming	= 1,
++};
++
+ static const struct regmap_config ak5558_regmap = {
+ 	.reg_bits = 8,
+ 	.val_bits = 8,
+@@ -368,6 +434,7 @@ static int ak5558_i2c_probe(struct i2c_client *i2c)
+ {
+ 	struct ak5558_priv *ak5558;
+ 	int ret = 0;
++	int dev_id;
+ 	int i;
+ 
+ 	ak5558 = devm_kzalloc(&i2c->dev, sizeof(*ak5558), GFP_KERNEL);
+@@ -396,11 +463,26 @@ static int ak5558_i2c_probe(struct i2c_client *i2c)
+ 		return ret;
+ 	}
+ 
+-	ret = devm_snd_soc_register_component(&i2c->dev,
+-				     &soc_codec_dev_ak5558,
+-				     &ak5558_dai, 1);
+-	if (ret)
++	dev_id = (uintptr_t)of_device_get_match_data(&i2c->dev);
++	switch (dev_id) {
++	case AK5552:
++		ret = devm_snd_soc_register_component(&i2c->dev,
++						      &soc_codec_dev_ak5552,
++						      &ak5552_dai, 1);
++		break;
++	case AK5558:
++		ret = devm_snd_soc_register_component(&i2c->dev,
++						      &soc_codec_dev_ak5558,
++						      &ak5558_dai, 1);
++		break;
++	default:
++		dev_err(&i2c->dev, "unexpected device type\n");
++		return -EINVAL;
++	}
++	if (ret < 0) {
++		dev_err(&i2c->dev, "failed to register component: %d\n", ret);
+ 		return ret;
++	}
+ 
+ 	pm_runtime_enable(&i2c->dev);
+ 	regcache_cache_only(ak5558->regmap, true);
+@@ -416,7 +498,8 @@ static int ak5558_i2c_remove(struct i2c_client *i2c)
+ }
+ 
+ static const struct of_device_id ak5558_i2c_dt_ids[] __maybe_unused = {
+-	{ .compatible = "asahi-kasei,ak5558"},
++	{ .compatible = "asahi-kasei,ak5558", .data = (void *) AK5558 },
++	{ .compatible = "asahi-kasei,ak5552", .data = (void *) AK5552 },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, ak5558_i2c_dt_ids);
 -- 
-1.7.9.5
+2.27.0
 
