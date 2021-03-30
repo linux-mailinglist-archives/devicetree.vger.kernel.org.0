@@ -2,100 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DE4C34EB61
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 17:03:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DCD434EB82
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 17:06:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231951AbhC3PA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 11:00:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52166 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231652AbhC3PAP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 11:00:15 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57C98C061574;
-        Tue, 30 Mar 2021 08:00:14 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id k8so16555441wrc.3;
-        Tue, 30 Mar 2021 08:00:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eyleulbhx+njoqqH6BwP+l7pCWQF8y0aALwi12vfKYM=;
-        b=fCSzzlhwIZRxnh8WlrLMYbm5+Njdfj6dEm0bHf8r+xDzYIMacTSD3i3NQycSovzuSj
-         EVXrsaeA+8Q6clda2Fzt4qondyXdQQukQijU645yfl1pKwDdMg7e0hWT+6yAAVSUFuAI
-         +Wy1BnSqMiT25Xv8Eh/rM+OWoPrHHNKMd1huKxUhZX3A1kI+9r4cSt2vualljOOYrzRq
-         mNNZkNSVQQuKhfEkIKegbY/PcTiIj000vuo7Lx+eJ97k/smtTH32v+AczD0ypz4/NGG5
-         TXj0QNsAfH8tw3UI0GxZAqJ4Z4+5VzZoZJMbwM+UPAScRykVfUXfpx69lKfy1ADRVNE5
-         lX5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eyleulbhx+njoqqH6BwP+l7pCWQF8y0aALwi12vfKYM=;
-        b=HhN9E8BWcwMjgDojQ7xjkbppha6Ys6GadZ7evYve8m69CSiMGNFvEgu8dqESS/xz7X
-         5oeTJHOg2/2+Ry6aHEatHpvuTnLYHvQGSHjCUW8mNYXOWYw1JdWff54pjzI3hEhv+QYZ
-         wr6RF0jEWeN3Lm7zrBCreUtHoveamGPdo1JUuwpXwJlfAWOgD4AObl5vQfpXx+f8G0zj
-         2aOBCMD/xN1xO8FECueTSmooTOrrEjJn5eJy+CrzoZuy0qXhA9VefIkdG4ZBVHvdTwog
-         Q7UvVcjOg3zMzTeuSxvoj2rW8WGuZLtboSujjkQXARFdFIax8llUxB49NhmvWb25bAae
-         I1ZQ==
-X-Gm-Message-State: AOAM5303qZiXvtLVoPkHxB/1e4kwsB63uzeoEUISLP2SuYCDW0zomfsB
-        WiEI//bqk1qPCPCfJyogoeF+dLsio7EdEMpX5YhkWsqxEE8=
-X-Google-Smtp-Source: ABdhPJwtCDJtqvJEY4d1K+b5/Nk9wM8y2m8HXX6bF4f+S6YTvz+OX7rJ6BNzGHpGdn+v7GZmGIK8aRudda7rzHLsgwk=
-X-Received: by 2002:adf:d0c3:: with SMTP id z3mr35449048wrh.28.1617116413088;
- Tue, 30 Mar 2021 08:00:13 -0700 (PDT)
+        id S232007AbhC3PFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 11:05:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58048 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232397AbhC3PFd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Mar 2021 11:05:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9076E619C8;
+        Tue, 30 Mar 2021 15:05:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617116733;
+        bh=Ad141g+06Mj6kxA0pZroy2+ah/G8as714CayImOKtTk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cs7vS3PK1/F3nSAzLn1MyTZrf6CiZ/ol6wLci6u05BjhP5fULglV2DEHFr5mtcQ7N
+         9p5JpNmRdK+RmeQhdee4oa6MZW42laUwlviiywVlzvqIxYtXl5+NkS/0ddMLSwsvHu
+         09Km333AQDu8pdrNl0ozwcW0YI5yBvblkC3MlJlt+3zDGRBm0aZFu1kvCOx6Q7xu6T
+         bLqyVbsXupxbZW7K9flIi7SlcPPJX6pr5dMhQ7+oB1c7SaFsMsMpVI9acjeCbfRZAW
+         3/ST9M76hf37Gp4luwzFb+pOppgbtC5bsHGoP2btgl1UOTlxjokRDE841IN6/MNev6
+         rOnsRo00jf+iQ==
+Date:   Tue, 30 Mar 2021 16:05:21 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] ASoC: ak5558: Add support for ak5552
+Message-ID: <20210330150521.GD4976@sirena.org.uk>
+References: <1617085972-6094-1-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-References: <20210326231303.3071950-1-eric@anholt.net> <20210329144729.GB4203@willie-the-truck>
- <CAF6AEGugpEk396DVtWX=W+uf3p-wcgBfCSpSLWGQJE1vKpJ4aw@mail.gmail.com> <20210330093432.GB5281@willie-the-truck>
-In-Reply-To: <20210330093432.GB5281@willie-the-truck>
-From:   Rob Clark <robdclark@gmail.com>
-Date:   Tue, 30 Mar 2021 08:03:36 -0700
-Message-ID: <CAF6AEGvCCWvmRBhzY4MsdzgwfJ+GF2AUOS-_NTyhM8wtnDzY2Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] iommu/arm-smmu-qcom: Skip the TTBR1 quirk for db820c.
-To:     Will Deacon <will@kernel.org>
-Cc:     Eric Anholt <eric@anholt.net>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        Sean Paul <sean@poorly.run>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="a2FkP9tdjPU2nyhF"
+Content-Disposition: inline
+In-Reply-To: <1617085972-6094-1-git-send-email-shengjiu.wang@nxp.com>
+X-Cookie: Memory fault - where am I?
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 30, 2021 at 2:34 AM Will Deacon <will@kernel.org> wrote:
->
-> On Mon, Mar 29, 2021 at 09:02:50PM -0700, Rob Clark wrote:
-> > On Mon, Mar 29, 2021 at 7:47 AM Will Deacon <will@kernel.org> wrote:
-> > >
-> > > On Fri, Mar 26, 2021 at 04:13:02PM -0700, Eric Anholt wrote:
-> > > > db820c wants to use the qcom smmu path to get HUPCF set (which keeps
-> > > > the GPU from wedging and then sometimes wedging the kernel after a
-> > > > page fault), but it doesn't have separate pagetables support yet in
-> > > > drm/msm so we can't go all the way to the TTBR1 path.
-> > >
-> > > What do you mean by "doesn't have separate pagetables support yet"? The
-> > > compatible string doesn't feel like the right way to determine this.
-> >
-> > the compatible string identifies what it is, not what the sw
-> > limitations are, so in that regard it seems right to me..
->
-> Well it depends on what "doesn't have separate pagetables support yet"
-> means. I can't tell if it's a hardware issue, a firmware issue or a driver
-> issue.
 
-Just a driver issue (and the fact that currently we don't have
-physical access to a device... debugging a5xx per-process-pgtables by
-pushing untested things to the CI farm is kind of a difficult way to
-work)
+--a2FkP9tdjPU2nyhF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-BR,
--R
+On Tue, Mar 30, 2021 at 02:32:51PM +0800, Shengjiu Wang wrote:
+
+> +static const struct snd_kcontrol_new ak5552_snd_controls[] = {
+> +	SOC_ENUM("AK5552 Monaural Mode", ak5552_mono_enum[0]),
+> +	SOC_ENUM("AK5552 Digital Filter", ak5558_adcset_enum[0]),
+> +};
+
+It's a bit weird to have AK5552 in the control name - any reason for
+that?
+
+--a2FkP9tdjPU2nyhF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBjPjAACgkQJNaLcl1U
+h9DkEQf+Ol3YVjyLArT+FOt6sN18M3scwhn2xFn1/JazXAfsJTtIAzGG1YTItNdZ
+bivEU66vjQ90ao+FNXapny//1uwlfOPFYVieXVmOlx05Vgl8TsApelVN8lOopNH7
+48vLv4gGmIQILT3vTVbBbSetXJU8zIAQuSVCuZqt53I3KSaDd8KQyCuJmLKSfVfn
+3dNIQoJBHGioNlPqaUgm8f73NC/LRJJ7AtCGD7ylRQ86RYmEwIaTKOCkBRKbns+r
+UoYJ/GJ6vjLcFdjrvuHfc8Him6JpZlr5R6mHNanljL2+0moqW7b9NBeYPGGEK0FR
+VrtzZNwhGtfXJPCazDJOKUIVD8qYpQ==
+=VImg
+-----END PGP SIGNATURE-----
+
+--a2FkP9tdjPU2nyhF--
