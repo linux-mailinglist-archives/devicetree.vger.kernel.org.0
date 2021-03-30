@@ -2,60 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA2DA34E873
+	by mail.lfdr.de (Postfix) with ESMTP id EAD4134E874
 	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 15:09:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232152AbhC3NI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 09:08:58 -0400
-Received: from mail-oo1-f52.google.com ([209.85.161.52]:37442 "EHLO
-        mail-oo1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232136AbhC3NIq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 09:08:46 -0400
-Received: by mail-oo1-f52.google.com with SMTP id c12-20020a4ae24c0000b02901bad05f40e4so3754646oot.4
-        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 06:08:46 -0700 (PDT)
+        id S232079AbhC3NJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 09:09:00 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:41643 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231960AbhC3NIv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 09:08:51 -0400
+Received: by mail-ot1-f46.google.com with SMTP id l12-20020a9d6a8c0000b0290238e0f9f0d8so15512530otq.8;
+        Tue, 30 Mar 2021 06:08:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=1gfS/FZgsSlTDvonh4zEOwfHDiIijaYYz+3P+d8VVFw=;
-        b=o6sFjx8VnXVae28Cc60LAjAGh7fJCvrGpndImmm1gMmi11mqKUKIkCSjITrJwyz7wO
-         YJuCyvz1f7wMyRILacoyX5UBxtk6R4B9ZClhxG9kvXEhaX+wtUdixeNOocwkqX/Cg30h
-         e1rulEYR/FzTiXtCsbeE9COXyFqU7dwHShBpG7l6UQv0s+u8Wws6ryI0Bnu5Q89QrfCw
-         nnq66fF3isNJCQW4YHoMvRlIS4keOEMx9KcYYdoLkbGjeKNKJcs29+dA+hZBIb4yghKH
-         fo6lg9seeo4a2OhZYN2pmGeVS5Y4UfnSW05TX6NWxSqacjhJvBcCBJ6CjDgiZ4cIX6Q/
-         9gVw==
-X-Gm-Message-State: AOAM533LAlnTaKl3puwTVLUicYmJQILHYGW31yUmH88hf5AlB4T3Jk/F
-        L+b2/NuMH9hpInkSYskqbET1iizp8A==
-X-Google-Smtp-Source: ABdhPJzzvKlEfJNv8JhWPt3b0O+9AbUdIf1MqLuOlBsnaySUti5vvohhqfbs115O/M8S3LPGzvf1qg==
-X-Received: by 2002:a4a:eaca:: with SMTP id s10mr11984098ooh.5.1617109725675;
-        Tue, 30 Mar 2021 06:08:45 -0700 (PDT)
+        bh=iKB56ZUcP8zgJEiOdPOBtoB1UcSHBt1H37xe9WGB7n0=;
+        b=fULaSxisZg0KmC10B9dMd13/TXSQOZGbqVuOK47R/JMvxY1iClN9F9B/axzkuKbQ/P
+         chSYeg/lcM5+SYk3z8Xe9vtzsDPgD+Sr2Zwh9U5jRnzLEVq0sk7sUVajofep21KIhpEq
+         LlyMzH77BikZEjJvgGc0J3k6i5HVRNwrPP8Pg+BFJ8TR0CjgSzPtWAsIuSPE7HYNggRn
+         GqekubqKSfo8yDp+yuTqjHG5TTAaVgZCxooojGRrH9yfj36vSoOsp/Zyx/0ucus1wMUF
+         St4Hai7UngywKPe5XlgTdghOpudjpUHwa192DlatZjm8/Y18IvfyEDwNTxv+mTSRMGSn
+         pPeA==
+X-Gm-Message-State: AOAM532JQlztP/VHeR7XEl4twSry2nQZfY/N23JK8yApg9JZtjEeTBuB
+        wwyPD/nyEw2ew5nMNSRW8w==
+X-Google-Smtp-Source: ABdhPJxDqWGl0VBW7OfmjvVPNEmDWE+83l8ZMf8lB3tTWUlXMVcnv6l2OgsUMcG18Y0tl0Cc6B5taQ==
+X-Received: by 2002:a9d:7699:: with SMTP id j25mr21076624otl.177.1617109730364;
+        Tue, 30 Mar 2021 06:08:50 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m14sm5251681otn.69.2021.03.30.06.08.44
+        by smtp.gmail.com with ESMTPSA id 24sm4026567oij.58.2021.03.30.06.08.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Mar 2021 06:08:44 -0700 (PDT)
-Received: (nullmailer pid 173730 invoked by uid 1000);
+        Tue, 30 Mar 2021 06:08:49 -0700 (PDT)
+Received: (nullmailer pid 173733 invoked by uid 1000);
         Tue, 30 Mar 2021 13:08:43 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Daniel Mack <daniel@zonque.org>
-Cc:     dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
-        airlied@linux.ie, daniel@ffwll.ch, devicetree@vger.kernel.org
-In-Reply-To: <20210329191414.2191095-2-daniel@zonque.org>
-References: <20210329191414.2191095-1-daniel@zonque.org> <20210329191414.2191095-2-daniel@zonque.org>
-Subject: Re: [PATCH v7 1/2] dt-bindings: display: add bindings for newhaven, 1.8-128160EF
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>
+In-Reply-To: <20210329194602.17049-5-digetx@gmail.com>
+References: <20210329194602.17049-1-digetx@gmail.com> <20210329194602.17049-5-digetx@gmail.com>
+Subject: Re: [PATCH v1 4/6] dt-bindings: memory: tegra20: mc: Convert to schema
 Date:   Tue, 30 Mar 2021 08:08:43 -0500
-Message-Id: <1617109723.693046.173729.nullmailer@robh.at.kernel.org>
+Message-Id: <1617109723.704724.173732.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Mar 2021 21:14:13 +0200, Daniel Mack wrote:
-> This adds documentation for a new ILI9163 based, SPI connected display.
+On Mon, 29 Mar 2021 22:46:00 +0300, Dmitry Osipenko wrote:
+> Convert Tegra20 Memory Controller binding to schema.
 > 
-> Signed-off-by: Daniel Mack <daniel@zonque.org>
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 > ---
->  .../display/panel/ilitek,ili9163.yaml         | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9163.yaml
+>  .../memory-controllers/nvidia,tegra20-mc.txt  | 40 ----------
+>  .../memory-controllers/nvidia,tegra20-mc.yaml | 78 +++++++++++++++++++
+>  2 files changed, 78 insertions(+), 40 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-mc.txt
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-mc.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -63,14 +68,9 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/display/panel/panel/panel-common.yaml'
-xargs: dt-doc-validate: exited with status 255; aborting
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/display/panel/ilitek,ili9163.example.dt.yaml'
-Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/display/panel/panel/panel-common.yaml'
-make[1]: *** [scripts/Makefile.lib:377: Documentation/devicetree/bindings/display/panel/ilitek,ili9163.example.dt.yaml] Error 255
-make: *** [Makefile:1414: dt_binding_check] Error 2
+Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-mc.example.dt.yaml:0:0: /example-0/memory-controller@7000f000: failed to match any schema with compatible: ['nvidia,tegra20-mc']
 
-See https://patchwork.ozlabs.org/patch/1459781
+See https://patchwork.ozlabs.org/patch/1459800
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
