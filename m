@@ -2,83 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7F2B34E987
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 15:47:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA00A34E98E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 15:49:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232183AbhC3Nqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 09:46:47 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:45626 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232017AbhC3Nqh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 09:46:37 -0400
-Received: by mail-ot1-f42.google.com with SMTP id 91-20020a9d08640000b0290237d9c40382so15588903oty.12;
-        Tue, 30 Mar 2021 06:46:37 -0700 (PDT)
+        id S231434AbhC3Nsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 09:48:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36580 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232132AbhC3Ns0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 09:48:26 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E672C061574;
+        Tue, 30 Mar 2021 06:48:25 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id r12so24939748ejr.5;
+        Tue, 30 Mar 2021 06:48:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nHesdm8MfmQq/Mx8NCgtXN0WgABESjsUY5mxQL3k6c0=;
+        b=HU+nGVhHLhCXmZLHy9oIKWEpLG2TT7397bG0JOVGqK++Lu3k5mhhHDMXAbhCdrPk4o
+         NKp+l1J4f3QcUxOIfgD50GzqUtDg5l/lNIvrfRiPaPwad4JLOrT2D17wVDyK/Rxgc+oh
+         1LDnNAUYkXr6x+HO8aWwWn6Bc1b78+qBaBWAlAHbmRyO9C5KE7DzKXpYAcZ6T19ceewp
+         8nhL8D4jXyybEejBBS6y2CfseUAlgWtl6SJDz7cD77ZZ8Eye+EMnBGdYmIGjmxhkncYj
+         +WGDYdMgCErgTSTUr0B16ngdNvAH8ZV8PpARH/iiQqYaNTnG2K5nkPv+FmxM3cSlz8iQ
+         PcGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=x7Y9OAKTjUXB4SxJIaML037GXNn8syZ6IN33bLdFQVs=;
-        b=aaHv3LXVDPCShrZKaQ3VmrXwv/o2758Hyv3gLXBGptjHXf7Eoq9iVEvI8Qokvfs7UQ
-         dG5hbuZ7t+jWD/Qwc2z1IpgA54cOLIeU18F4vV+tRvHFi4dpY5xqxAfaQvfKGa33XlsQ
-         IfPDzO8AVHMkxbzygpHEzF0Jgb+XfoUs7NBVxtrwBoBTdnB13JbbrQ1WiJ2bdW82yyz8
-         Otf6GNtesPL3h3DUnGimPS3vqabRzqxziQxUHUZ3Fv6wg29h/Ke1Wuke32j9ZWDKVfQ/
-         SxrR+Q1sm1U604nhTNUdq1Q99J7wPoPFhhnwEgbpSdSBN264In7DNpDwFx2QlQQ0Gnel
-         EV4w==
-X-Gm-Message-State: AOAM531+aOe//mGp1O1KD4zDEZXNxfGIWjbqjZCs9Z+ciYHqWdJYk9Nm
-        7J/IvnxkigYdJrVJfiNB6Q==
-X-Google-Smtp-Source: ABdhPJzbxEuCJ/O4ZwoCSryf3zJezsAN+RxFpIRw2gGKF/WY7304MAxLEfpNTRv3CQDKhIxMv2X4Zw==
-X-Received: by 2002:a05:6830:20d2:: with SMTP id z18mr26903645otq.260.1617111996970;
-        Tue, 30 Mar 2021 06:46:36 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v6sm4341899ook.40.2021.03.30.06.46.35
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nHesdm8MfmQq/Mx8NCgtXN0WgABESjsUY5mxQL3k6c0=;
+        b=ejNjUFjq+g8L3Je4PrC7NpprqZociZFOZeZLtaQZtV5LARqdg5otnI7GHGBErTvF4f
+         4yf1NIYlC6kwxiIrrwi2LrRgvvXjlpv6kCGIdt0orYUGss2heh2coq2SCUTxMmVUpf3k
+         h2cGhhRmo2w3Ry8VECwKNaBmovRC7tqFXL568+PaftIjBer25H7qNABMWq6yvDPZhp7k
+         a30NUQ5ngJDELPGkPfhpfWpYWLqlgiE6u3t8XJDHMwZAAZOV/Fcjcd4Hip3KRvDfv5u2
+         cHzan6sebu/UR0VMo62FuEWEC+bsqQnYnT6Tihc0AjwP2AXfNDhAQqS1+BwyhlwYqKLX
+         dX4A==
+X-Gm-Message-State: AOAM532dVDhAcQrI0Blx217aK5BKccrfL23sYCYpKO42vZ+WuiMFPGW7
+        x1dmoQu/KCVXniDG0mbVORk=
+X-Google-Smtp-Source: ABdhPJybuNlr/uWKtmzBSulIZS8xUoDGyJn5OtJZVqQ+xY3jp5m1fxhITb3prHky6PSlJwU9nUNSMw==
+X-Received: by 2002:a17:907:2d9f:: with SMTP id gt31mr33128669ejc.233.1617112104324;
+        Tue, 30 Mar 2021 06:48:24 -0700 (PDT)
+Received: from localhost.localdomain ([188.24.140.160])
+        by smtp.gmail.com with ESMTPSA id l12sm11114681edb.39.2021.03.30.06.48.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Mar 2021 06:46:35 -0700 (PDT)
-Received: (nullmailer pid 223205 invoked by uid 1000);
-        Tue, 30 Mar 2021 13:46:34 -0000
-Date:   Tue, 30 Mar 2021 08:46:34 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        linux-tegra@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH v1 4/6] dt-bindings: memory: tegra20: mc: Convert to
- schema
-Message-ID: <20210330134634.GA216433@robh.at.kernel.org>
-References: <20210329194602.17049-1-digetx@gmail.com>
- <20210329194602.17049-5-digetx@gmail.com>
- <1617109723.704724.173732.nullmailer@robh.at.kernel.org>
+        Tue, 30 Mar 2021 06:48:23 -0700 (PDT)
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/6] Add support for Actions Semi Owl socinfo
+Date:   Tue, 30 Mar 2021 16:48:15 +0300
+Message-Id: <cover.1617110420.git.cristian.ciocaltea@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1617109723.704724.173732.nullmailer@robh.at.kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 30, 2021 at 08:08:43AM -0500, Rob Herring wrote:
-> On Mon, 29 Mar 2021 22:46:00 +0300, Dmitry Osipenko wrote:
-> > Convert Tegra20 Memory Controller binding to schema.
-> > 
-> > Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> > ---
-> >  .../memory-controllers/nvidia,tegra20-mc.txt  | 40 ----------
-> >  .../memory-controllers/nvidia,tegra20-mc.yaml | 78 +++++++++++++++++++
-> >  2 files changed, 78 insertions(+), 40 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-mc.txt
-> >  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-mc.yaml
-> > 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-mc.example.dt.yaml:0:0: /example-0/memory-controller@7000f000: failed to match any schema with compatible: ['nvidia,tegra20-mc']
+This patchset adds a socinfo driver which provides information about
+Actions Semi Owl SoCs to user space via sysfs: machine, family, soc_id,
+serial_number.
 
-Yes, this is a new warning. It's off by default for dt_binding_check 
-until we fix the existing warnings, but you can enable by adding 
-'DT_CHECKER_FLAGS=-m'. Support for this is in the dt/next branch.
+Please note the serial number is currently available only for the S500
+SoC variant.
 
-Rob
+This has been tested on the S500 SoC based RoseapplePi SBC.
+
+Thanks,
+Cristi
+
+Changes in v2:
+ - Exposed the memory range for reading the SoC serial number under
+   /reserved-memory DT node, according to Rob's review; as a consequence
+   added a new binding document (actions,owl-soc-serial.yaml) and updated
+   owl-socinfo.yaml
+
+ - Replaced the unportable usage of system_serial_{low,high} globals
+   with a public API to provide external access to SoC serial number
+   parts (e.g. Owl Ethernet MAC driver will use this to generate a
+   stable MAC address)
+
+ - Rebased patch series on v5.12-rc5
+
+Cristian Ciocaltea (6):
+  dt-bindings: reserved-memory: Add Owl SoC serial number binding
+  dt-bindings: soc: actions: Add Actions Semi Owl socinfo binding
+  soc: actions: Add Actions Semi Owl socinfo driver
+  arm: dts: owl-s500: Add reserved-memory range for Owl SoC serial
+    number
+  arm: dts: owl-s500: Add socinfo support
+  MAINTAINERS: Add entries for Owl reserved-memory and socinfo bindings
+
+ .../actions,owl-soc-serial.yaml               |  53 ++++++
+ .../bindings/soc/actions/owl-socinfo.yaml     |  57 +++++++
+ MAINTAINERS                                   |   2 +
+ arch/arm/boot/dts/owl-s500.dtsi               |  13 +-
+ drivers/soc/actions/Kconfig                   |   8 +
+ drivers/soc/actions/Makefile                  |   1 +
+ drivers/soc/actions/owl-socinfo.c             | 152 ++++++++++++++++++
+ include/linux/soc/actions/owl-serial-number.h |  20 +++
+ 8 files changed, 305 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/reserved-memory/actions,owl-soc-serial.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml
+ create mode 100644 drivers/soc/actions/owl-socinfo.c
+ create mode 100644 include/linux/soc/actions/owl-serial-number.h
+
+-- 
+2.31.1
+
