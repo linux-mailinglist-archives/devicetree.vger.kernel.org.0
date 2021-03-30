@@ -2,116 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0903E34E39C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 10:58:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89E3534E3B0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 10:59:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231628AbhC3I5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 04:57:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58026 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231614AbhC3I5Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 04:57:25 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57C1EC061762;
-        Tue, 30 Mar 2021 01:57:25 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id t5-20020a1c77050000b029010e62cea9deso7981656wmi.0;
-        Tue, 30 Mar 2021 01:57:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=MVk3x6ly3uTfXv9OyHlmA2lht7ASwMRy2yMGeaAU04s=;
-        b=PCZ0Bt4HUBMbaIE4ap2fsbPrFjmMEw7kqtUHhEqR3rh1xtZFns+5FEcLcDsY/ygtMX
-         ifwQt0i2MRHu+orfHe/1QEqvxvuWYp6Qo9d1KpHeWUgb/BdeYOt70GbBxnHEBbpd0SRC
-         xZiHlF4C3SmeqfGPQs9yctsZ00+HxkoT4UITpjGd9s6Dly0+aDzkZxgqtZbuLCvdqGXe
-         72wyvZiFTwK/IuwyQcHEqxurnyKCC8DRmVLm/coYZqgxRMcFbRzfI/c9cmg0/QftRHFv
-         /BNTfQC1xzLmak16Zp/7kXBBhhzOEh3xaKBwFB6/r3P8PH2a82l+82Wgz3UXvCH+RSYj
-         eLfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=MVk3x6ly3uTfXv9OyHlmA2lht7ASwMRy2yMGeaAU04s=;
-        b=SLQbKFW2F0Uw0PbTzOS2Bi3/bGe/J4l/zRJK2HrNOUe6f8awERkYK4hVFRvPcPzP52
-         LuLt9EspBC/vl3WxPj+gOJAq2f5mvm0j9TBfqGcA6TlPJx3JRyQdtAWFMnOgVZ322X69
-         r8XA6D3GAmCZ5W6MQy/dPcXEVE8xatuZFDW1Gnpx1NXPoDedMt7dH/SQ409+6iCbsqTN
-         Cc+zavJT4STvhPHY0BzrLUvtdG4JoLAt/cugYWzDPcMRY6cOqZoZBVh+Yw/fOek99g9h
-         K4AmdttAzDgjt0Hs6zLKvnDflbJUhAnM4vtvpOeBp916RB/KAV1PnblttSBEFc9uiXFM
-         wS6g==
-X-Gm-Message-State: AOAM530LhpCLzMzERfvBBRM17MiysWfelEKd1tU8xqMc5RG6g3rhWRlU
-        m8LdV1PieIIsTHw76KC1mx5oi31HheIRow==
-X-Google-Smtp-Source: ABdhPJy+NVavPPoVso7DUmLFx9qjpMJ8wh5HMbnY+yuGrAD54aoYMEamo2kTfTK2ef9pGXb93JGTUA==
-X-Received: by 2002:a7b:ce91:: with SMTP id q17mr3051502wmj.28.1617094643995;
-        Tue, 30 Mar 2021 01:57:23 -0700 (PDT)
-Received: from [192.168.1.10] (176.red-79-148-190.dynamicip.rima-tde.net. [79.148.190.176])
-        by smtp.gmail.com with ESMTPSA id w6sm33352228wrl.49.2021.03.30.01.57.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Mar 2021 01:57:23 -0700 (PDT)
-Subject: Re: [PATCH v9 00/22] pinctrl: add BCM63XX pincontrol support
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Michael Walle <michael@walle.cc>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <20210324081923.20379-1-noltari@gmail.com>
- <CACRpkdZE55ixxSp6H1SKx19trGE_uVGgkLttzAVQuLzw4=Jutw@mail.gmail.com>
-From:   =?UTF-8?Q?=c3=81lvaro_Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>
-Message-ID: <609f038d-3037-5cda-b489-f0816eb95658@gmail.com>
-Date:   Tue, 30 Mar 2021 10:57:23 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        id S230224AbhC3I6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 04:58:35 -0400
+Received: from out2-smtp.messagingengine.com ([66.111.4.26]:53261 "EHLO
+        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231593AbhC3I6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Mar 2021 04:58:09 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 56E105C0099;
+        Tue, 30 Mar 2021 04:58:09 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Tue, 30 Mar 2021 04:58:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=a9UqojEtfp6yjahhezHn9vr25p8
+        yj9GDDG7ODVtC6I0=; b=WtfHkpZyPzyMd0dVBsb9mqlCMlAxyAtoKwsiNhK8TGS
+        tf9ePR4gW5Xx8QgO85s2TBB+Y8fzAnQjCaISxLfqzpAzIGb5IYyKPeBD30m666zR
+        fEZQOSv/L29ChvpO0tcFV+Ff4K87kvX0AdGLJ3Gws36a7G6gyYCXT9Mh47/KBkWC
+        VsZ2EmYZ8V6APBOfHTIJNME9kAWJvYdxBVCmuqgU0I9A5aO9StupxHxTljBQW7lu
+        2PqqBEucYrTXQRBQtbYGotEoSslmpyuHfbih4nrX2VqmWt78xeSbgCN8O3NyJAZR
+        CvnVG8kg37Wg4g3TVgvrw36RjgyqorcwPGhNfLCim5g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=a9Uqoj
+        Etfp6yjahhezHn9vr25p8yj9GDDG7ODVtC6I0=; b=rA8Hd/3tXkTxm2w74mS3U2
+        tW4ltNxfBHIU4xWJrHtto2AhWj1AKZAcIjqCVBdXEYp9hO4DSALl9SkImscLFDiB
+        Hm8sQcpBcOQh+1HoHNom6rGlzTS0nNLFRy5mQmxwwOiPO/DgjjhWh6yjvDpU/Eks
+        ERNeItDbdUsKEy12e/i1xgMXwwjDISJ5lIwIa7mcQ1FOoQK9gimsSY+uSBo3O1gE
+        QFZ+YUQgT6GgK7xx0vXX5zXpe1R3bIWK7SeOKlkgoqSGqlHFX5usmGV3Rw5Pbm3U
+        Voqf03UvN+r3dWOO5krsZwaKv62tkt29jd0lhaykNhEYATRy2sh1SqhOiAYek0lQ
+        ==
+X-ME-Sender: <xms:HuhiYGcm2dg7Ss83h7B3L7_GsHBotYlyjTvpk6_S4Lh-9xUlCFfCjA>
+    <xme:HuhiYAMA4G2YSELbbXvH_cngEIW4Fgz_MUYzTEEVt32vJph0LvCyOs6hG8craklbo
+    Wf6AfgvwdYZurCKnEQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudeitddgtdelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpeffhffvuffkfhggtggujgesghdtre
+    ertddtvdenucfhrhhomhepofgrgihimhgvucftihhprghrugcuoehmrgigihhmvgestggv
+    rhhnohdrthgvtghhqeenucggtffrrghtthgvrhhnpeelkeeghefhuddtleejgfeljeffhe
+    ffgfeijefhgfeufefhtdevteegheeiheegudenucfkphepledtrdekledrieekrdejieen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigih
+    hmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:HuhiYHgLh5zqLGvk12bax2XlxJFnS5RW7Et5D7z1zU8n7DamjJ7Y4w>
+    <xmx:HuhiYD8eUeGobVF-nRJbekXroiDZkh65FfWV0VUfCMv2FjoG6Mz02w>
+    <xmx:HuhiYCs_DpHoPwuhfdYcFSu6o7A0gw6hppsVG5r9Jgd2krNUvBRYrQ>
+    <xmx:IehiYL7mEx9QUhYw1iuEpwzcfcdwQ5cxo5MW8V4zZgddM8U2KXsRFg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 9FCDF1080054;
+        Tue, 30 Mar 2021 04:58:06 -0400 (EDT)
+Date:   Tue, 30 Mar 2021 10:58:03 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Stephen Rothwell <sfr@canb.auug.org.au>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Subject: Re: [PATCH] dt-bindings: bcm2711-hdmi: Fix broken schema
+Message-ID: <20210330085803.vcsdz43uinhodwn2@gilmour>
+References: <20210218152837.1080819-1-maxime@cerno.tech>
+ <20210223212624.GA89721@robh.at.kernel.org>
+ <CAL_JsqKtGz3mtzc1KTASVtAcc7PSV7Z8Y-n8JjOzxua8EpQ5ZQ@mail.gmail.com>
+ <20210327100026.53cc228c@canb.auug.org.au>
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdZE55ixxSp6H1SKx19trGE_uVGgkLttzAVQuLzw4=Jutw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6ofgt3x6th5xd6lz"
+Content-Disposition: inline
+In-Reply-To: <20210327100026.53cc228c@canb.auug.org.au>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
 
-El 29/03/2021 a las 12:19, Linus Walleij escribió:
-> On Wed, Mar 24, 2021 at 9:19 AM Álvaro Fernández Rojas
-> <noltari@gmail.com> wrote:
-> 
->> This patchset adds appropriate binding documentation and drivers for
->> pin controller cores found in the BCM63XX MIPS SoCs currently supported.
-> 
-> I have applied and pushed the v9 patch series with all the ACKs
-> to the "devel" branch so the build servers can churn at it! Later
-> today I will integrate it into linux-next.
-> 
-> Any remaining issues can certainly be fixed in-tree.
-> 
-> Thanks for your perseverance in cleaning up these SoCs!!
+--6ofgt3x6th5xd6lz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Many thanks for your support! :D
+Hi Stephen,
 
-> 
-> Now, what about a patch set for the IRQ support? :)
+On Sat, Mar 27, 2021 at 10:00:26AM +1100, Stephen Rothwell wrote:
+> Hi Rob,
+>=20
+> On Fri, 26 Mar 2021 15:01:34 -0600 Rob Herring <robh+dt@kernel.org> wrote:
+> >
+> > On Tue, Feb 23, 2021 at 2:26 PM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Thu, 18 Feb 2021 16:28:37 +0100, Maxime Ripard wrote: =20
+> > > > For some reason, unevaluatedProperties doesn't work and
+> > > > additionalProperties is required. Fix it by switching to
+> > > > additionalProperties.
+> > > >
+> > > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > > > ---
+> > > >  .../devicetree/bindings/display/brcm,bcm2711-hdmi.yaml          | =
+2 +-
+> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > =20
+> > >
+> > > Applied, thanks! =20
+> >=20
+> > Something weird is going on with this fix. linux-next doesn't end up
+> > with the change even though 5.12-rc2 has it. I suspect it's because
+> > the original commit is in 2 branches (drm-misc-next and
+> > drm-misc-fixes), but the fix was applied by me. I'm not sure how
+> > linux-next didn't have a manual merge for this.
+>=20
+> I think it goes like this:
+>=20
+> Commit a99163e9e708 ("Merge drm/drm-next into drm-misc-next") was merged
+> into v5.12-rc1-dontuse and had "additionalProperties: false" and is the
+> common base for all later changes to this file.
+>=20
+> Commit 6ff92deff711 ("dt-binding: display: bcm2711-hdmi: Add CEC and
+> hotplug interrupts") changes to "unevaluatedProperties: false" and is
+> merged into v5.12-rc1-dontuse.
+>=20
+> Commit a3cb15cda1b8 ("dt-bindings: bcm2711-hdmi: Fix broken schema")
+> changes to "additionalProperties: false" and is merged into v5.12-rc2.
+>=20
+> Commit e7cbc68a28e1 ("dt-binding: display: bcm2711-hdmi: Add
+> CEC and hotplug interrupts") changes (from a99163e9e708) to
+> "unevaluatedProperties: false" in the drm-misc and then drm trees.
+>=20
+> When I come to merge the drm tree into linux-next, the merge base is
+> v5.12-rc3 and the only change to this file since v5.12-rc3 is in the
+> drm tree ...
+>=20
+> Another way to look at it is that one one side of my merge, the line
+> goes from "additionalProperties: false" to "unevaluatedProperties:
+> false" and back to "additionalProperties: false" (so no net change)
+> and on the other side if my merge the line changes to
+> "unevaluatedProperties: false".
 
-If you could give me some guidance on that matter it would be much 
-appreciated, because your comments [1] are now outdated since I switched 
-to GPIO_REGMAP
-[1] 
-http://patchwork.ozlabs.org/project/linux-gpio/patch/20210225164216.21124-3-noltari@gmail.com/
+So I guess the easiest fix for this would be to merge it through
+DRM-misc? Or should we just wait until all the branches gets merged in
+Linus' tree?
 
-> 
-> Yours,
-> Linus Walleij
-> 
+Maxime
 
-Best regards,
-Álvaro.
+
+--6ofgt3x6th5xd6lz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYGLoGwAKCRDj7w1vZxhR
+xcmwAP47LiptNIhBUxMg2mEFfPxgin3nCI19w3bKeljN5QSI3AEA2f6cuaCWbJb6
+sJC+UEFraFFiisWPpQdnuO+KFCvnJww=
+=dKbm
+-----END PGP SIGNATURE-----
+
+--6ofgt3x6th5xd6lz--
