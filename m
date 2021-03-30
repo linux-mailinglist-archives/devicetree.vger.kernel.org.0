@@ -2,139 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1608F34F503
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 01:27:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 740E734F52D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 01:55:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232519AbhC3X1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 19:27:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48926 "EHLO
+        id S232246AbhC3Xyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 19:54:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232758AbhC3X1J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 19:27:09 -0400
-Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7526BC061574;
-        Tue, 30 Mar 2021 16:27:09 -0700 (PDT)
-Received: by mail-qt1-x82e.google.com with SMTP id 1so12574143qtb.0;
-        Tue, 30 Mar 2021 16:27:09 -0700 (PDT)
+        with ESMTP id S229626AbhC3XyT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 19:54:19 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A4F3C061574
+        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 16:54:19 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id x7-20020a17090a2b07b02900c0ea793940so246230pjc.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 16:54:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=v3/mQcvUwNsY/UJc2jxu3Abaa2D2bXGCJS30gIHPjEs=;
-        b=Q8okifF2x7Cis24xXyTCsqdK6HSPnuU+16cgfbDheWc8gugJ8X+B/ISr+bIh+Jo4GJ
-         Ft5oK8XVv+9fMVUiuGcSdRLYEpDj1o5+MvtnoxIxsauXhAGJwhviS9YUW6ZgMidlx1UW
-         GGxnpmetsT/F4eGykAZdpSBR/TkVjXqfxF7Rg=
+        bh=4eVDKwhdLmciP93KTCC0yDxL5KfIZeE8g1SyVsqOLkA=;
+        b=AlKXlLsA5yjVpl1CX25zymbCDal6W0KEOLvxT4VwnOEYesq4ZDx+gAr/9NziioBh2d
+         EBqtWpicZr/mamdSf7J+UaN2FceX+60I+T9RVpm0muefken1m/AuVKntCTSKN7f3EOtW
+         XCnV6eRQfewJp0THXtwT2vxo10+wyU7BgTRMSYK2UVHaazCd1CWsG9NeoZb+SxzAbu6p
+         4/EbRqAglhHPqRkoLWWwPkqn0LhmqFg5evzFxUeejxyoWBnNXtLO7ZvhuakYQNYqI8Tj
+         Ddkz21c+cS5oD7gggWaFlzrQRHqqfzV0k22WBrx3lIY8ssKz0g3e4tEGLl2urNkAGEvF
+         rHEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=v3/mQcvUwNsY/UJc2jxu3Abaa2D2bXGCJS30gIHPjEs=;
-        b=LZF9HvZR6TzT/AKxrNHNslic1XNUrnY9plaCw3b/0jtl7RY+FbQbze8BU2grMIJhg/
-         /SjhZ7qGj3BSIVfXiKq0nJAuy1PcHgRrf8bb8tfT+SsSv8nH6ndHJwaLMFFVutDDigCP
-         PvqtV+KrKaz9As7j0p2sCPnEdINJUxM8/3eZQJAOPODQ5qTS4T0gv4BhHgxGVd2ZeZ4z
-         aUyFYIfKGIaVqW68Z5D7Z1V8q2BQESx2ut5HeaJoOHW+8D/raASu1YvLc+uFbp/cTov8
-         sG+tkmw7FaV9adwzKUWp3rQB4mCZgWdrKt8IkTp06qV7e5Dd4nMlIY0LCFZwJZocrGBp
-         nD8A==
-X-Gm-Message-State: AOAM533JRmffKMhdtqDKgzhccezQnTzP3nIqppAuiQvtbvKlAujePUwM
-        UMe7w3Et6LC6cDSOhdMBVUyCZBy2kISqsGv2RI8=
-X-Google-Smtp-Source: ABdhPJzEEpS2qBWaoDRJ4nevrrO4IATNTcu8uGU7/niHD9Gdp4fHrFKbwgSR99OPio8OGSwp13rYrGb8mGgTwFaYaCE=
-X-Received: by 2002:ac8:7547:: with SMTP id b7mr235856qtr.176.1617146828454;
- Tue, 30 Mar 2021 16:27:08 -0700 (PDT)
+        bh=4eVDKwhdLmciP93KTCC0yDxL5KfIZeE8g1SyVsqOLkA=;
+        b=EJU87o1kgdO+0ywKr6YpGV0ysSDV/VXHuCVqlbOO47hMxeF+aClIz3vfM9FpxkMb2t
+         btYPJhGSJEz/J7umlx9HHJ08TAkF+/+pKbpmVNtJ8efleskZrNcyLMOAlxj+ehSl7sCQ
+         GUNg0C1nEz1PzxGbYqPAjzs/3agrNLVXG3kTdpsH/hqr3avmpiQKVBZozv4XzWnB8fFw
+         HRiBwAxlvYUc4INcwBHjqT8Q/ZQciPHty+rrVABzTwRWaIKOy24sgbtPNUKDklrBsDD0
+         njU/QTdIEHeeK1p9tpHCeOMAw34+N4qGTiGM8sgnC+GhvrK082SgAnRt167R30z7I/eN
+         7dFg==
+X-Gm-Message-State: AOAM532w0eqNO4lOKbD8IHN4Gd2WPA26jc0dSWq3yjScaNnv1QRqS5ck
+        VCX4YyPXmi/xqqDtGZUuQdZlWvsGBMLQVUKBQiY=
+X-Google-Smtp-Source: ABdhPJyv6Y/IWr85TsPhRhzUNvg49VdAa4O+NvEAVMjplZUTBY5Ax+gXoj0f79QdzyQQRKgKWYrz9Zyim4Cb6CEbMPc=
+X-Received: by 2002:a17:902:be02:b029:e6:bb0d:6c1e with SMTP id
+ r2-20020a170902be02b02900e6bb0d6c1emr680485pls.77.1617148458772; Tue, 30 Mar
+ 2021 16:54:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210330002338.335-1-zev@bewilderbeest.net> <20210330002338.335-3-zev@bewilderbeest.net>
- <20210330223902.GA837825@robh.at.kernel.org>
-In-Reply-To: <20210330223902.GA837825@robh.at.kernel.org>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 30 Mar 2021 23:26:56 +0000
-Message-ID: <CACPK8Xcfcsz7KCdfLuweGGbaxVKczhMb7+nxA9TMbsAbAbhi3g@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: serial: 8250: update for aspeed,sirq-active-high
-To:     Rob Herring <robh@kernel.org>
-Cc:     Zev Weiss <zev@bewilderbeest.net>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        - <devicetree@vger.kernel.org>, linux-serial@vger.kernel.org
+References: <mhng-1b7b4cb7-2f9a-4bdb-b00c-14ec1d7008b0@palmerdabbelt-glaptop> <1afc3d35-55ff-eefd-3fc9-6342f85fa887@microchip.com>
+In-Reply-To: <1afc3d35-55ff-eefd-3fc9-6342f85fa887@microchip.com>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Tue, 30 Mar 2021 18:54:08 -0500
+Message-ID: <CABb+yY2s+ovT4Dhbsy4Mjn2EtgEwYdezhmUcL3H8GWCdaO2bPA@mail.gmail.com>
+Subject: Re: [PATCH v4 0/5] Add support for the PolarFire SoC system controller
+To:     Conor.Dooley@microchip.com
+Cc:     palmer@dabbelt.com, Rob Herring <robh+dt@kernel.org>,
+        Damien.LeMoal@wdc.com, aou@eecs.berkeley.edu,
+        paul.walmsley@sifive.com,
+        Devicetree List <devicetree@vger.kernel.org>,
+        linux-riscv@lists.infradead.org, j.neuschaefer@gmx.net,
+        Lewis.Hanly@microchip.com, Cyril.Jean@microchip.com,
+        Daire.McNamara@microchip.com, Atish.Patra@wdc.com,
+        Anup.Patel@wdc.com, david.abdurachmanov@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Mar 2021 at 22:39, Rob Herring <robh@kernel.org> wrote:
+On Tue, Mar 30, 2021 at 6:06 AM <Conor.Dooley@microchip.com> wrote:
+
+> >>  create mode 100644
+> >> Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
+> >>  create mode 100644 drivers/mailbox/mailbox-mpfs.c
+> >>  create mode 100644 drivers/soc/microchip/Kconfig
+> >>  create mode 100644 drivers/soc/microchip/Makefile
+> >>  create mode 100644 drivers/soc/microchip/mpfs-sys-controller.c
+> >>  create mode 100644 include/soc/microchip/mpfs.h
+> >
+> > The only problem I see here is that patch #3 (the driver for the system
+> > controller) comes before patch #4 (the DT bindings for that driver).
+> > That
+> > triggers a checkpatch warning.  I can just reorder it, but it would be
+> > great to
+> > have some reviews from the DT and mailbox people.  If not I'll try and
+> > find
+> > some time to take a closer look.
 >
-> On Mon, Mar 29, 2021 at 07:23:37PM -0500, Zev Weiss wrote:
-> > Update DT bindings documentation for the new incarnation of the
-> > aspeed,sirq-polarity-sense property.
+> I've had a fair bit of back and forth with Rob about the dt bindings,
+> hopefully this version he happy with - think all of his concerns have
+> now been addressed. Haven't heard anything from Jassi Brar on the device
+> tree side however
 >
-> Why?
->
-> This isn't a compatible change.
+Nowhere is explained how the controller works, and the bindings seem
+trivial, so I have no concern.
 
-We want to depreciate support for this property. It should have never
-been added to the bindings; in it's current form it describes a
-relationship that afaict doesn't exist ("This unrelated register over
-here dictates the polarity of your virtual serial port IRQ"). See
-https://lore.kernel.org/lkml/20200812112400.2406734-1-joel@jms.id.au/
-
-The intent is to remove it from both the bindings and the code.
-There's already no users of it in any device tree.
-
-How would you like Zev to go about doing this?
-
-Cheers,
-
-Joel
-
->
-> >
-> > Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
-> > ---
-> >  Documentation/devicetree/bindings/serial/8250.yaml | 14 ++++++--------
-> >  1 file changed, 6 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documentation/devicetree/bindings/serial/8250.yaml
-> > index f54cae9ff7b2..0bbb7121f720 100644
-> > --- a/Documentation/devicetree/bindings/serial/8250.yaml
-> > +++ b/Documentation/devicetree/bindings/serial/8250.yaml
-> > @@ -13,7 +13,7 @@ allOf:
-> >    - $ref: /schemas/serial.yaml#
-> >    - if:
-> >        required:
-> > -        - aspeed,sirq-polarity-sense
-> > +        - aspeed,sirq-active-high
-> >      then:
-> >        properties:
-> >          compatible:
-> > @@ -181,13 +181,11 @@ properties:
-> >    rng-gpios: true
-> >    dcd-gpios: true
-> >
-> > -  aspeed,sirq-polarity-sense:
-> > -    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +  aspeed,sirq-active-high:
-> > +    type: boolean
-> >      description: |
-> > -      Phandle to aspeed,ast2500-scu compatible syscon alongside register
-> > -      offset and bit number to identify how the SIRQ polarity should be
-> > -      configured. One possible data source is the LPC/eSPI mode bit. Only
-> > -      applicable to aspeed,ast2500-vuart.
-> > +      Set to indicate that the SIRQ polarity is active-high (default
-> > +      is active-low).  Only applicable to aspeed,ast2500-vuart.
-> >
-> >  required:
-> >    - reg
-> > @@ -227,7 +225,7 @@ examples:
-> >          interrupts = <8>;
-> >          clocks = <&syscon ASPEED_CLK_APB>;
-> >          no-loopback-test;
-> > -        aspeed,sirq-polarity-sense = <&syscon 0x70 25>;
-> > +        aspeed,sirq-active-high;
-> >      };
-> >
-> >  ...
-> > --
-> > 2.31.1
-> >
+-j
