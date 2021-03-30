@@ -2,259 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE55634E5A8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 12:44:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 499AC34E5C2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 12:49:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230303AbhC3KoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 06:44:09 -0400
-Received: from mail-lj1-f181.google.com ([209.85.208.181]:41639 "EHLO
-        mail-lj1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231799AbhC3Knp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 06:43:45 -0400
-Received: by mail-lj1-f181.google.com with SMTP id f26so19325952ljp.8;
-        Tue, 30 Mar 2021 03:43:44 -0700 (PDT)
+        id S231697AbhC3Ks7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 06:48:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53962 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231561AbhC3Ksp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 06:48:45 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E0D8C061574;
+        Tue, 30 Mar 2021 03:48:45 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id m20-20020a7bcb940000b029010cab7e5a9fso10029232wmi.3;
+        Tue, 30 Mar 2021 03:48:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Q//pqem2+12d7QEjvjgaohlrsZ0f7RzdSyBP0d8mQF8=;
+        b=XAAkVB7wU7qFKtSJlIbXEuV0fqSLgWmM7CgKkpyrJZrHMLETXXA0GIEtbJDfHnrIxa
+         DnrA9/t+AGUEYEiHhrppYvAvUcj6TjuE8CVO0pcajCmO+v324od1o1qi2gphEOkIiHzZ
+         kLEhzQRZh6e2vl8RSEjU0MXkRCltLjmubLh2ad1zSg64+wFfCYXOX3oy7FotQT6jKG9f
+         Tkzk6idkrKaYy/z1NzZSKhwqossCXQ3/BsHyA/tCexS6cAus2ZG8rJvg3/H+mqcO5v/E
+         zXcTeyYRpaytvboHZ09XiFGDw+afgcrmMZYlYgkcuWsm5HJm4H4PJh1xa4hLBZhHqXSk
+         rDLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:reply-to:to:cc
-         :in-reply-to:references:mime-version:date:user-agent
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=HqTyV9XHBTv3QvRJDRFCOrDcx5XVNhZVXJeUt2BzmEI=;
-        b=j4oRRg66IVldA9GYY64pcz+xFC9trmXDztNaMzNmFuAT6WmQUfTAo6uNIqyxqRRt4g
-         gnFCRL6d/QDbJlcHKZUTMXhmmzwZDm1XS6anYrTnmbp6Sl0yCQ6h8saiH285s3PeYXgv
-         OMaGRkubsYrr/AyvqCZwB6Z1lTxpcre03HLdSYOnKYXmkC7w8CqV8WOHE+FJcSsvqfuw
-         5+mHtRj1sqOUCEVw8OkPUP/O5NmsctbdbKibfLeXAAal2Sc7U0ITwh+IC84ctBd0wxz1
-         sxDsZ96dCln+dAh5XAm03Rl7dWgDTLvVHzzxVRxPfwmfl8vD8QE89OVbFqsE4vgcDHzs
-         G6Cw==
-X-Gm-Message-State: AOAM530eAWOo/E12DkRCxXETs11Tgc3wGx5P9AoC4IRBevDL+7E4lvpY
-        sZkWTGtZzUog/Z0lCRTBuT0=
-X-Google-Smtp-Source: ABdhPJz8bIm9ChCGHvliotntoZpXjKgHYjcpRUuUGu4jj2VZvDhRcW5QHWe4lw4TJ3iYFCfuq5Gwkg==
-X-Received: by 2002:a2e:3016:: with SMTP id w22mr21370133ljw.354.1617101023402;
-        Tue, 30 Mar 2021 03:43:43 -0700 (PDT)
-Received: from dc7vkhyyyyyyyyyyyyyby-3.rev.dnainternet.fi (dc7vkhyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::2])
-        by smtp.gmail.com with ESMTPSA id t13sm2753426ljk.47.2021.03.30.03.43.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Mar 2021 03:43:42 -0700 (PDT)
-Message-ID: <d4e78b93a62d2882492b46942a927293bad81d66.camel@fi.rohmeurope.com>
-Subject: Re: [PATCH v5 09/19] gpio: support ROHM BD71815 GPOs
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Reply-To: matti.vaittinen@fi.rohmeurope.com
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-In-Reply-To: <CAHp75VdRobc6jpFzAkd3U65BhiiNPLrF4qsnCKmsQBKMYbG4sg@mail.gmail.com>
-References: <cover.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
-         <118a6160880a212d20d0251f763cad295c741b4d.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
-         <CAHp75VdRobc6jpFzAkd3U65BhiiNPLrF4qsnCKmsQBKMYbG4sg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        bh=Q//pqem2+12d7QEjvjgaohlrsZ0f7RzdSyBP0d8mQF8=;
+        b=OR9Qg6ULl8+6oQjdS14MtTsXUupBueTnu7D3lggLMsRtr6Q5H4gDWURWb+NbgfMaTt
+         0QKwXwLNncOrW7qMsPEbEx5gMjkr0U3t0M7khiLnc6pstloewc9jyC2Y8Ljg8UwujKIH
+         wTSZJduw9qWncUoqVZUsHaQMdHQocsQfpmLiyhs5wySU2Xi/CtArYiKttC9cVA/En1XF
+         W8lr5EMpRUIdme7/BUQtwBSgbB+n5DNTruuro45eR6kHHF6bXb7oCtvQ7Iv4ThjmR4h6
+         Yc2wFjYDnEn3KEDrLbFhVyhr+p9M+2SbMpL6vBp78sPHnHHEjF0ovkwCH3x41k/Ca9cM
+         jqrg==
+X-Gm-Message-State: AOAM5309NMi5e/iH0weDbfDgGf6piNMnb6ago07U7svOMMl691Vt7Izj
+        Y7rePCdU24Ye582L/c/4Sr8=
+X-Google-Smtp-Source: ABdhPJwvPii3xPnYowk2vyInsF26PMhunrL16Vuj5UvYFQF18+YD+34YeHDpiFXR6Zds8mztAtBjQg==
+X-Received: by 2002:a7b:cf11:: with SMTP id l17mr3360588wmg.128.1617101323947;
+        Tue, 30 Mar 2021 03:48:43 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id p14sm2901836wmc.30.2021.03.30.03.48.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Mar 2021 03:48:43 -0700 (PDT)
+Subject: Re: [PATCH v10 1/4] dt-bindings: mediatek: Add smi dts binding for
+ Mediatek MT6765 SoC
+To:     Macpaul Lin <macpaul.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Wendell Lin <Wendell.Lin@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>,
+        Mars Cheng <mars.cheng@mediatek.com>,
+        Sean Wang <Sean.Wang@mediatek.com>,
+        Owen Chen <owen.chen@mediatek.com>,
+        Evan Green <evgreen@chromium.org>, Yong.Wu@mediatek.com,
+        Joerg Roedel <jroedel@suse.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Ryder Lee <Ryder.Lee@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Ainge Hsu <ainge.hsu@mediatek.com>,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Mediatek WSD Upstream <wsd_upstream@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>,
+        CC Hwang <cc.hwang@mediatek.com>,
+        Loda Chou <loda.chou@mediatek.com>
+References: <1615291538-9799-1-git-send-email-macpaul.lin@mediatek.com>
+ <1615358218-6540-1-git-send-email-macpaul.lin@mediatek.com>
+ <1615358218-6540-2-git-send-email-macpaul.lin@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <5caf003d-e7c5-1f2f-d499-726788d5e490@gmail.com>
+Date:   Tue, 30 Mar 2021 12:48:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Date:   Tue, 30 Mar 2021 13:43:38 +0300
-User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
+In-Reply-To: <1615358218-6540-2-git-send-email-macpaul.lin@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
-
-On Tue, 2021-03-30 at 13:11 +0300, Andy Shevchenko wrote:
-> On Mon, Mar 29, 2021 at 3:58 PM Matti Vaittinen
-> <matti.vaittinen@fi.rohmeurope.com> wrote:
-> > Support GPO(s) found from ROHM BD71815 power management IC. The IC
-> > has two
-> > GPO pins but only one is properly documented in data-sheet. The
-> > driver
-> 
-> in the datasheet
-> 
-> > exposes by default only the documented GPO. The second GPO is
-> > connected to
-> > E5 pin and is marked as GND in data-sheet. Control for this
-> > undocumented
-> 
-> in the datasheet
-> 
-> > pin can be enabled using a special DT property.
-> > 
-> > This driver is derived from work by Peter Yang <
-> > yanglsh@embest-tech.com>
-> > although not so much of original is left.
-> 
-> of the original
-> 
-> It seems you ignored my comments about the commit message. :-(
-
-Sorry. I didn't do that by purpose. I forgot to reword commit.
-Completely my bad.
-
-> > +struct bd71815_gpio {
-> > +       struct gpio_chip chip;
-> > +       struct device *dev;
-> 
-> Wondering why you need this. Is it the same as chip.parent?
-> 
-> > +       struct regmap *regmap;
-> > +};
-> 
-> ...
-> 
-> > +       int ret, bit;
-> > +
-> > +       bit = BIT(offset);
-> 
-> I prefer
->   int bit = BIT(offset);
->   int ret;
-> but I think we already discussed that. OK.
-
-Yes, we did.
-
-> ...
-> 
-> > +       default:
-> > +               break;
-> > +       }
-> > +       return -ENOTSUPP;
-> 
-> Here is a waste of line. Why break instead of direct return?
-
-As we discussed last time, I do prefer functions which are supposed to
-return a value, do so at the end of function. It's easier to read and
-does not cause issues if someone changes switch to if-else or does
-other modifications. IMO original is safer, reads better and does not
-cause issues even with old compilers.
-
-> ...
-> 
-> > +/* Template for GPIO chip */
-> > +static const struct gpio_chip bd71815gpo_chip = {
-> > +       .label                  = "bd71815",
-> > +       .owner                  = THIS_MODULE,
-> > +       .get                    = bd71815gpo_get,
-> > +       .get_direction          = bd71815gpo_direction_get,
-> > +       .set                    = bd71815gpo_set,
-> > +       .set_config             = bd71815_gpio_set_config,
-> > +       .can_sleep              = 1,
-> 
-> Strictly speaking this should be true (boolean type value).
-
-true.
-
-> 
-> > +};
-> 
-> ...
-> 
-> > +#define BD71815_TWO_GPIOS      0x3UL
-> > +#define BD71815_ONE_GPIO       0x1UL
-> 
-> Are they masks? Can you use BIT() and GENMASK()?
-
-Yes and yes. I personally prefer 0x3 over GENMASK() as for me the value
-3 as bitmask is perfectly readable. But I know others may prefer using
-GENMASK(). So yes, your comment is valid.
-
-> > +/*
-> > + * Sigh. The BD71815 and BD71817 were originally designed to
-> > support two GPO
-> > + * pins. At some point it was noticed the second GPO pin which is
-> > the E5 pin
-> > + * located at the center of IC is hard to use on PCB (due to the
-> > location). It
-> > + * was decided to not promote this second GPO and pin is marked as
-> > GND in the
-> 
-> and the pin
-> 
-> > + * datasheet. The functionality is still there though! I guess
-> > driving a GPO
-> > + * connected to the ground is a bad idea. Thus we do not support
-> > it by default.
-> > + * OTOH - the original driver written by colleagues at Embest did
-> > support
-> > + * controlling this second GPO. It is thus possible this is used
-> > in some of the
-> > + * products.
-> > + *
-> > + * This driver does not by default support configuring this second
-> > GPO
-> > + * but allows using it by providing the DT property
-> > + * "rohm,enable-hidden-gpo".
-> > + */
-> 
-
-I am sorry. I think I missed this one too.
-
-> ...
-> 
-> > +       /*
-> > +        * As writing of this the sysfs interface for GPIO control
-> > does not
-> > +        * respect the valid_mask. Do not trust it but rather set
-> > the ngpios
-> > +        * to 1 if "rohm,enable-hidden-gpo" is not given.
-> > +        *
-> > +        * This check can be removed later if the sysfs export is
-> > fixed and
-> > +        * if the fix is backported.
-> 
-> So, mark this comment with the TODO/FIXME keyword?
-
-I haven't used to use keywords like TODO/FIXME. Now that I think of it
-I've seen a few FIXME comments in sources so perhaps I should start
-using them where appropriate. I don't think it makes a big difference
-here though as I expect to be reworking this in near future (I'll
-revise ROHM PMIC GPIO drivers for regmap_gpio usage during this
-spring). I added this comment so I can revise this at that point.
-
-> 
-> > +        *
-> > +        * For now it is safest to just set the ngpios though.
-> > +        */
-> 
-> ...
-> 
-> > +       ret = devm_gpiochip_add_data(dev, &g->chip, g);
-> > +       if (ret < 0) {
-> > +               dev_err(dev, "could not register gpiochip, %d\n",
-> > ret);
-> > +               return ret;
-> > +       }
-> > +
-> > +       return ret;
-> 
-> 
-
-Sorry again. I somehow overlooked this comment as well.
-
-> ...
-> 
-> > +static struct platform_driver gpo_bd71815_driver = {
-> > +       .driver = {
-> > +               .name   = "bd71815-gpo",
-> > +               .owner  = THIS_MODULE,
-> 
-> Seems I commented on this. The module_*_driver() macro(s) will take
-> care of it.
-
-Yes you did. I missed this too. Sorry.
-
-Andy, how fatal do you think these issues are? I did put these comments
-on my 'things to clean-up' list.
-
-If you don't see them as fatal, then I rather not resend whole series
-of 19 patches just for these. I am anyway going to rework the ROHM PMIC
-GPIO drivers which I have authored during the next couple of months for
-regmap_gpio usage. This series has most of the acks except for the
-regulator part - so I was about to suggest to Lee that perhaps he could
-apply other but regulator stuff to MFD so I could squeeze the recipient
-list and amount of patches in series. 
-
-Best Regards
-	Matti Vaittinen
 
 
+On 10/03/2021 07:36, Macpaul Lin wrote:
+> From: Mars Cheng <mars.cheng@mediatek.com>
+> 
+> This patch adds MT6765 smi binding document
+> 
+> Signed-off-by: Mars Cheng <mars.cheng@mediatek.com>
+> Signed-off-by: Owen Chen <owen.chen@mediatek.com>
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+
+Patch looks good, but where is the driver part for it?
+
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+
+> ---
+>  .../bindings/memory-controllers/mediatek,smi-common.yaml         | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+> index a08a32340987..4a4f4377576f 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+> @@ -31,6 +31,7 @@ properties:
+>        - enum:
+>            - mediatek,mt2701-smi-common
+>            - mediatek,mt2712-smi-common
+> +          - mediatek,mt6765-smi-common
+>            - mediatek,mt6779-smi-common
+>            - mediatek,mt8167-smi-common
+>            - mediatek,mt8173-smi-common
+> 
