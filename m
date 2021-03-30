@@ -2,229 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FA8034F1FC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 22:13:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B173F34F273
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 22:53:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230031AbhC3UMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 16:12:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35450 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232057AbhC3UMk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 16:12:40 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37FC6C061762
-        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 13:12:39 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id w28so4672272lfn.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 13:12:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+bQAyUbHZezo5Tam5Z33+uMQ576wTWKAVOntw8JLrNs=;
-        b=VjSNyZ//FyUXZYEMNtcGFl810NcGi66Yfmv7C4GxC4KH+yc27VeS0cndAG7hJZ0bQO
-         6K80L1P3efxJkyuCKG2mNO5ZSbWB9Hmnfnj1XrOSigpFGvxoBqlEqvlCWPRhp1DKWe5P
-         /XfPF0BNfq7xU5JCbyNkYyfSJ4R7GIhTB/BvpOMgya1jFkdXvbqGEeNO7RI+AgjrA87j
-         zYZROKrnUtjPNUA7ewwhBCl4wLrY1S+u+c6kkasPX6TkOC6QKWY1Jyi65FPCSmOnFdCG
-         f0ahL/PmCBMUuyWDViUXB14yCrAIErTCG70iWU846r8O8/ipYsOeKb6dShLsped9jfkm
-         VLYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+bQAyUbHZezo5Tam5Z33+uMQ576wTWKAVOntw8JLrNs=;
-        b=IDcEyFixS9ampCae3+C/q884P5cfXaWxNj8Q6IT2SId9rqSSZqaUb0Q5imWl50yMtX
-         3ADlI0J+V+SiVlD5uFb/WZ3Rc56D8cuPtZ6KjAJ4m7oV/Qd9v8VBA1uhjBo1qUJ6AE5f
-         BCC8Eq6o83Hz/KevxPiS4RJB4lHybzzZGwMvxfQc1ozk521TZdpxe9QcbB6MLNU5OaaT
-         NtYaaIFcAINJF+V/JZEiovCdi4beHzdGg7jJpznVQqEZGmJ5GePJzMdoejFd4dLu9WkT
-         /OdUr+8B6PXIIp1tmf/e2XeAb7tiBWyqZDYO6S79BPJXXcLbVd9LixgD6BL+DRlo6K2z
-         ZGcg==
-X-Gm-Message-State: AOAM531UbI9HUoWSvFP5lVCKGTj9pR2y3KGJ6p+rUul3cIPNpLuIUEjz
-        2bKmelLLKgtcBwNQNJBzXzwoLg==
-X-Google-Smtp-Source: ABdhPJzF3z0HGqwBQ+G1msE66b6K8cSXUhjWSAGNljfATwAF4ezDqKoVZq5eqNnSCoorlJDNNNlGlQ==
-X-Received: by 2002:a05:6512:62:: with SMTP id i2mr20556428lfo.631.1617135157698;
-        Tue, 30 Mar 2021 13:12:37 -0700 (PDT)
-Received: from localhost.localdomain (c-14cb225c.014-348-6c756e10.bbcust.telenor.se. [92.34.203.20])
-        by smtp.gmail.com with ESMTPSA id p2sm290316lfg.116.2021.03.30.13.12.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Mar 2021 13:12:37 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>,
-        Simon Shields <simon@lineageos.org>,
-        Tomasz Figa <tfiga@chromium.org>
-Subject: [PATCH] Input: mms114 - Convert bindings to YAML and extend
-Date:   Tue, 30 Mar 2021 22:12:33 +0200
-Message-Id: <20210330201233.2360006-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.29.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S232667AbhC3Uwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 16:52:35 -0400
+Received: from st43p00im-ztbu10063701.me.com ([17.58.63.178]:53953 "EHLO
+        st43p00im-ztbu10063701.me.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232568AbhC3UwA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Mar 2021 16:52:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
+        t=1617137520; bh=ZKLWSMdxWfNs8QN6JF4XTqugfEbF2VXoXeQPmxKIWZc=;
+        h=From:To:Subject:Date:Message-Id;
+        b=YNkxX5LnpNCyuQuh0foeEdQrDo/+gSjUYQJzTrpg0bL6zlMxEvVf+1QhhATm5uxBU
+         ikW733Q0arc6QPbx95lZfp96F39VIAcqKhTBXZZ+Z2ZTD5bmSlsCVwYS15ddE+jrcV
+         VDCdrx528l3zo5vfFFCYhKZGVpM6ILRs4pcQTlP75rxt68cs5A39MnMHyvt/fn+hzc
+         QvPzu692n6+7IAvyj1dpffa050wguycG7gPCTHwPjRhmYV0Y633qqg2cNnRHesPWAH
+         jcg2O4h2JIrTUYc23R/pdy40nRRQKit6ynf9iZlIAVWdSiSOpahzAPu79yaFeL3lMr
+         bQBJjRPwPsWzQ==
+Received: from localhost (101.220.150.77.rev.sfr.net [77.150.220.101])
+        by st43p00im-ztbu10063701.me.com (Postfix) with ESMTPSA id 719E29A06A8;
+        Tue, 30 Mar 2021 20:51:59 +0000 (UTC)
+From:   Alain Volmat <avolmat@me.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Alain Volmat <avolmat@me.com>
+Subject: [PATCH v3 0/7] clk: st: embed clock outputs within drivers
+Date:   Tue, 30 Mar 2021 22:51:18 +0200
+Message-Id: <20210330205125.25708-1-avolmat@me.com>
+X-Mailer: git-send-email 2.17.1
+X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
+ =?UTF-8?Q?2903e8d5c8f:6.0.369,18.0.761,17.0.607.475.0000000_definitions?=
+ =?UTF-8?Q?=3D2021-03-30=5F09:2021-03-30=5F01,2021-03-30=5F09,2020-04-07?=
+ =?UTF-8?Q?=5F01_signatures=3D0?=
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 phishscore=0 mlxscore=0
+ clxscore=1015 mlxlogscore=903 suspectscore=0 spamscore=0 malwarescore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2103300153
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This converts the Melfas MMS114 bindings and extend like this:
+Most of ST clock drivers used by STi platform are updated in
+order to introduce clock outputs informations within each drivers
+and thus allow to avoid having to rely on clock-output-names properties
+within DT clock nodes.
+For that purpose, drivers are updated to allow handling both modes
+(with or without clock-output-names).
+Once all DT will have been updated, the legacy mode could be removed
+from the drivers.
+This will also allow, once all STi DT will be corrected, to remove the
+of_clk_detect_critical API from clk core code since STi clock drivers
+are the only drivers using this API.
 
-- Require nodename touchscreen@ (this seems to be the case for
-  all in-tree DTS files)
-- Add the mms134s and mms136 compatibles
-- Add the avdd and vdd power supplies
-- Define the I2C clock frequency property
+This serie also contains modifications within STi DTS in order to use
+the newly introduced compatible and remove clock-output-names
+properties.
 
-Cc: devicetree@vger.kernel.org
-Cc: Stephan Gerhold <stephan@gerhold.net>
-Cc: Simon Shields <simon@lineageos.org>
-Cc: Tomasz Figa <tfiga@chromium.org>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Alain Volmat (7):
+  clk: st: clkgen-pll: remove used variable of struct clkgen_pll
+  clk: st: flexgen: embed soc clock outputs within compatible data
+  dt-bindings: clock: st: flexgen: add new introduced compatible
+  clk: st: clkgen-pll: embed soc clock outputs within compatible data
+  dt-bindings: clock: st: clkgen-pll: add new introduced compatible
+  clk: st: clkgen-fsyn: embed soc clock outputs within compatible data
+  dt-bindings: clock: st: clkgen-fsyn: add new introduced compatible
+
+ .../bindings/clock/st/st,clkgen-pll.txt       |   3 +
+ .../bindings/clock/st/st,flexgen.txt          |  10 +
+ .../bindings/clock/st/st,quadfs.txt           |   3 +
+ drivers/clk/st/clk-flexgen.c                  | 366 +++++++++++++++++-
+ drivers/clk/st/clkgen-fsyn.c                  | 113 +++++-
+ drivers/clk/st/clkgen-pll.c                   | 121 +++++-
+ 6 files changed, 575 insertions(+), 41 deletions(-)
+
 ---
- .../input/touchscreen/melfas,mms114.yaml      | 87 +++++++++++++++++++
- .../bindings/input/touchscreen/mms114.txt     | 42 ---------
- 2 files changed, 87 insertions(+), 42 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/melfas,mms114.yaml
- delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/mms114.txt
+v3: - removal some useless CLK_IS_CRITICAL and add some comments
+    - only keep clk drivers/binding patches within the serie
+v2: fix drivers to update some clocks as CLK_IS_CRITICAL
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/melfas,mms114.yaml b/Documentation/devicetree/bindings/input/touchscreen/melfas,mms114.yaml
-new file mode 100644
-index 000000000000..62366886fb3e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/melfas,mms114.yaml
-@@ -0,0 +1,87 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/touchscreen/melfas,mms114.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Melfas MMS114 family touchscreen controller bindings
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+allOf:
-+  - $ref: touchscreen.yaml#
-+
-+properties:
-+  $nodename:
-+    pattern: "^touchscreen(@.*)?$"
-+
-+  compatible:
-+    items:
-+      - enum:
-+          - melfas,mms114
-+          - melfas,mms134s
-+          - melfas,mms136
-+          - melfas,mms152
-+          - melfas,mms345l
-+
-+  reg:
-+    description: I2C address
-+
-+  clock-frequency:
-+    description: I2C client clock frequency, defined for host
-+    minimum: 100000
-+    maximum: 400000
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  avdd-supply:
-+    description: Analog power supply regulator on AVDD pin
-+
-+  vdd-supply:
-+    description: Digital power supply regulator on VDD pin
-+
-+  touchscreen-size-x: true
-+  touchscreen-size-y: true
-+  touchscreen-fuzz-x: true
-+  touchscreen-fuzz-y: true
-+  touchscreen-fuzz-pressure: true
-+  touchscreen-inverted-x: true
-+  touchscreen-inverted-y: true
-+  touchscreen-swapped-x-y: true
-+  touchscreen-max-pressure: true
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - touchscreen-size-x
-+  - touchscreen-size-y
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      touchscreen@48 {
-+        compatible = "melfas,mms114";
-+        reg = <0x48>;
-+        interrupt-parent = <&gpio>;
-+        interrupts = <39 IRQ_TYPE_EDGE_FALLING>;
-+        avdd-supply = <&ldo1_reg>;
-+        vdd-supply = <&ldo2_reg>;
-+        touchscreen-size-x = <720>;
-+        touchscreen-size-y = <1280>;
-+        touchscreen-fuzz-x = <10>;
-+        touchscreen-fuzz-y = <10>;
-+        touchscreen-fuzz-pressure = <10>;
-+        touchscreen-inverted-x;
-+        touchscreen-inverted-y;
-+      };
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/mms114.txt b/Documentation/devicetree/bindings/input/touchscreen/mms114.txt
-deleted file mode 100644
-index 707234cfd7e6..000000000000
---- a/Documentation/devicetree/bindings/input/touchscreen/mms114.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--* MELFAS MMS114/MMS152/MMS345L touchscreen controller
--
--Required properties:
--- compatible: should be one of:
--	- "melfas,mms114"
--	- "melfas,mms152"
--	- "melfas,mms345l"
--- reg: I2C address of the chip
--- interrupts: interrupt to which the chip is connected
--- touchscreen-size-x: See [1]
--- touchscreen-size-y: See [1]
--
--Optional properties:
--- touchscreen-fuzz-x: See [1]
--- touchscreen-fuzz-y: See [1]
--- touchscreen-fuzz-pressure: See [1]
--- touchscreen-inverted-x: See [1]
--- touchscreen-inverted-y: See [1]
--- touchscreen-swapped-x-y: See [1]
--
--[1]: Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
--
--Example:
--
--	i2c@00000000 {
--		/* ... */
--
--		touchscreen@48 {
--			compatible = "melfas,mms114";
--			reg = <0x48>;
--			interrupts = <39 0>;
--			touchscreen-size-x = <720>;
--			touchscreen-size-y = <1280>;
--			touchscreen-fuzz-x = <10>;
--			touchscreen-fuzz-y = <10>;
--			touchscreen-fuzz-pressure = <10>;
--			touchscreen-inverted-x;
--			touchscreen-inverted-y;
--		};
--
--		/* ... */
--	};
 -- 
-2.29.2
+2.17.1
 
