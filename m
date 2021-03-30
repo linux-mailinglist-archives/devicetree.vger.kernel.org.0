@@ -2,109 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBE6F34E533
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 12:15:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA88F34E55D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 12:23:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231706AbhC3KPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 06:15:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46590 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231674AbhC3KOx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 06:14:53 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7167FC061574;
-        Tue, 30 Mar 2021 03:14:53 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id a12so2946003pfc.7;
-        Tue, 30 Mar 2021 03:14:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=V/FqWFnSs67qGcCEFGqG7am98bSaZbZjUwLFj3yQgog=;
-        b=khDuF+e2UuYu/nyY2Zxsnbnqhv47jLx34uo/yRN4QK2H6t+ttXEZhOrBD8rUGxgQtH
-         yGaa30NkbMvGs7tilcrtRgVmGNZtb2fXsrO0LiFioYnmhiNY92+a93ZfOMGBFc0uQhbe
-         B3QeVycVRAiHR5qa995KHYutnxDgvCI04oBHsg3YARBKMkBVOgObzGrsf7HL5gv2TzFl
-         oqUREAwz6TxMW4gyD/1ws7/t/GK+p7nVHM1BYpHz6+RaWfu9y4beFl5HN6VKsobi7zzX
-         UIOlPUBcmUSL+AF9sgOgqkIlKMVoadcsB0mPzBEjBZDcHDqFcWej0V29G37M/TaXhGpK
-         m65Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=V/FqWFnSs67qGcCEFGqG7am98bSaZbZjUwLFj3yQgog=;
-        b=XxkkbYdhc7wm8zDyWp8xr6EsnhGzEwNdzYREQ37JaLsAcBRhvFwePOaLK9YDhuLfXe
-         Kj04BrI1TqJXLGUZhiUoEepvyVqhV1+CiYUKJikde0J27mAxuMVTlIaegId8MlFtHka0
-         Y2RK7H+ypwPD8ABDuphPKIetmECVp8RR+v1JTNehWL20l927BuzMK4UNC0/Gr1N0aEPM
-         nkvCLh9c3WdVYiTQ4kEZpZVZAmu/RZou4I/6PKxnnkHLJMh4uc8yZtakOf942ExNvHFL
-         jDhVjwEilUQvfo2nzsMCizvGEhBWIh4CCwC55hd/8OS0ZgpZTFKdTb+r/F6zJh56TbQN
-         TB8w==
-X-Gm-Message-State: AOAM531wjIVvBHygL2xB0/wGX4M17a5kJMxFMrFs2hBMn/nj7HdL1Z/S
-        eP+2Vn5R9YHB0kRH8fLgq9Bmge0SH6AoP/e9HpI=
-X-Google-Smtp-Source: ABdhPJyILHEmzrLjVBkkaRHNJz9cY8t9hh5ubDELOkuJG/yLxLPEh9xv1zX8Yy2xEfobxgdNbHsAiXwFdw/fwQk6l9A=
-X-Received: by 2002:a63:c48:: with SMTP id 8mr5652768pgm.74.1617099292871;
- Tue, 30 Mar 2021 03:14:52 -0700 (PDT)
+        id S231716AbhC3KXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 06:23:23 -0400
+Received: from foss.arm.com ([217.140.110.172]:56452 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231812AbhC3KWy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Mar 2021 06:22:54 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C9802ED1;
+        Tue, 30 Mar 2021 03:22:53 -0700 (PDT)
+Received: from bogus (unknown [10.57.57.89])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 288FC3F792;
+        Tue, 30 Mar 2021 03:22:52 -0700 (PDT)
+Date:   Tue, 30 Mar 2021 11:22:44 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, Sudeep.Holla@arm.com,
+        Hector Yuan <hector.yuan@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wsd_upstream@mediatek.com
+Subject: Re: [PATCH v11 2/2] dt-bindings: cpufreq: add bindings for MediaTek
+ cpufreq HW
+Message-ID: <20210330102244.7dkzemtgrm7epmpv@bogus>
+References: <1615549235-27700-1-git-send-email-hector.yuan@mediatek.com>
+ <1615549235-27700-3-git-send-email-hector.yuan@mediatek.com>
+ <20210324160750.GA3154702@robh.at.kernel.org>
+ <20210330025643.mbeb7oqumv75o3y5@vireshk-i7>
 MIME-Version: 1.0
-References: <cover.1616760183.git.sander@svanheule.net> <31e5a5aeb833c43c07daafcf939864497ff1c349.1616760183.git.sander@svanheule.net>
- <CAHp75Vdi06dLxJNCo4f1CA=cS1MuPwG0nEAnVqt8BRrz9bnOtw@mail.gmail.com>
- <f5059092c1d4f3a23683a2eebfa37cb739881a8a.camel@svanheule.net>
- <CAHp75VfTkfBqHc1S1aUm0Pr-=L_FNDUqkoH_x+KJgkXdZ33VAA@mail.gmail.com> <537a2becc81360f314a4293f7bb619ed2a377cb6.camel@svanheule.net>
-In-Reply-To: <537a2becc81360f314a4293f7bb619ed2a377cb6.camel@svanheule.net>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 30 Mar 2021 13:14:36 +0300
-Message-ID: <CAHp75VftETTkOGx6AUvQi5s-ngo73WBdHnqsX84pCM6GAaHMyQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] gpio: Add Realtek Otto GPIO support
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Bert Vermeulen <bert@biot.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210330025643.mbeb7oqumv75o3y5@vireshk-i7>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 29, 2021 at 8:28 PM Sander Vanheule <sander@svanheule.net> wrote:
-> On Mon, 2021-03-29 at 13:26 +0300, Andy Shevchenko wrote:
-> > On Fri, Mar 26, 2021 at 11:11 PM Sander Vanheule <
-> > sander@svanheule.net> wrote:
+On Tue, Mar 30, 2021 at 08:26:43AM +0530, Viresh Kumar wrote:
+> On 24-03-21, 10:07, Rob Herring wrote:
+> > On Fri, Mar 12, 2021 at 07:40:35PM +0800, Hector Yuan wrote:
+> > > From: "Hector.Yuan" <hector.yuan@mediatek.com>
+> > > 
+> > > Add devicetree bindings for MediaTek HW driver.
+> > > 
+> > > Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
+> > > ---
+> > >  .../bindings/cpufreq/cpufreq-mediatek-hw.yaml      |  127 ++++++++++++++++++++
+> > >  1 file changed, 127 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+> > > new file mode 100644
+> > > index 0000000..0f3ad47
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+> > > @@ -0,0 +1,127 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/cpufreq/cpufreq-mediatek-hw.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: MediaTek's CPUFREQ Bindings
+> > > +
+> > > +maintainers:
+> > > +  - Hector Yuan <hector.yuan@mediatek.com>
+> > > +
+> > > +description:
+> > > +  CPUFREQ HW is a hardware engine used by MediaTek
+> > > +  SoCs to manage frequency in hardware. It is capable of controlling frequency
+> > > +  for multiple clusters.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: mediatek,cpufreq-hw
+> > > +
+> > > +  reg:
+> > > +    minItems: 1
+> > > +    maxItems: 2
+> > > +    description: |
+> > > +      Addresses and sizes for the memory of the
+> > > +      HW bases in each frequency domain.
+> > > +
+> > > +  "#performance-domain-cells":
+> > 
+> > A common binding schema for this and 'performance-domains' needs to land 
+> > first.
+> 
+> Sudeep, what happened to the series you had on this ? This patchset
+> has been blocked for a long time now, can we get that merged soonish
+> somehow ?
 
-...
+Sorry, it slipped through the cracks. I posted this as a fix for SCMI which
+we fixed it later. This got de-prioritised in my todo list. Sorry for that.
+I think main problem I had is to write a proper select statement in YAML
+scheme to check the DT nodes when it is present. I couldn't get anything
+similar for reference from clocks.
 
-> > AFAICS all, except one have this flag, I suggest you to do other way
-> > around, i.e. check compatible string in the code. Or do something more
-> > clever. What happens if you have this flag enabled for the fallback
-> > node?
-> >
-> > If two people ask the same, it might be a smoking gun.
-> >
->
-> Testing for the fallback wouldn't work, since of_device_is_compatible()
-> would always match. Setting the (inverse) flag only on the fallback
-> would indeed reduce the clutter.
->
-> If the port order is reversed w.r.t. to the current implementation,
-> enabling a GPIO+IRQ would enable the same pin on a different port. I
-> don't think the result would be catastrophical, but it would result in
-> unexpected behaviour. When A0 and C0 are then enabled, A0 interrupts
-> would actually come from C0, and vice versa.
->
->    Intended port | A | B | C | D
-> -----------------+---+---+---+---
-> Actual GPIO port | D | C | B | A
->  Actual IRQ port | B | A | D | C
->
-> If only the actual GPIO ports change, at least you can still use a
-> modified GPIO line number and polling. The user could just leave out
-> the optional irq-controller from the devicetree, but I would rather
-> have it enforced in some way.
-
-OK! Thanks for clarification.
+I had "select: false" which I knew was not acceptable as it can't go throw
+dt_bindings_check. I am happy if someone wants to pick up and work on that
+to push the change or provide suggestions that I can try out. I am unable
+to spend more time trying to understand whole YAML schema ATM.
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Regards,
+Sudeep
