@@ -2,108 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AB8934E3BF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 10:59:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC3A834E3D8
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 11:02:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231549AbhC3I7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 04:59:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58356 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231686AbhC3I65 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 04:58:57 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3220AC061762;
-        Tue, 30 Mar 2021 01:58:57 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id m11so11677556pfc.11;
-        Tue, 30 Mar 2021 01:58:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=F9tSrsqSDZKawmCDjVV+tzhmJdPbgKPqMa/CwWx5jps=;
-        b=C0EXNuAjqJ0RYeS2/x/rgzfMvYBNcw7W0kjMnzwTG3Uo4kuGO6m+vVr0bd09QrFmhO
-         /GI6tMuLAxdgtMJAn49vD7jxqQFbEjGZVf7WDLiJt7p43hqdXP03jErWYqDoBtUiezhN
-         /OmmOSIWHQTjljntLn7nveNxNhYaqd2c/hVfUbCREPF/j6LJ4Q6StVtS23DXrNKS6SzZ
-         vW0i8WLRZdbF7bqcVdZZz1CQ/GRLo4W7KI5dpfGcxnvK90paeAz42woR5uU5ai20PmWR
-         8+XQExdk2coXf1D+jE4e7Y864IaC9mdsvSGwrtTHCQZbPdzSuV8+JQvP8YS6N+OaefTy
-         PFfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=F9tSrsqSDZKawmCDjVV+tzhmJdPbgKPqMa/CwWx5jps=;
-        b=st5Kc7Yy1Yhxsy2yzF8uzV+2PQCNiaPcC8nG6yU2DBQGowErUd+E4xGtDOJksN17Ed
-         t04puVtemBg+Bp5dcrEUeeCVw0ybo//X3w6j7A7f5Uyp035glo9JUgCWlsKGnj330Pjd
-         yV3PSzzrpKOJbQRkzfO9I8oTFOqLEn17/edNbLYbg3TRcbbPdsX671DamuArr71zeXpU
-         kYBzDkGVDuC8INW+u/4FKvavWzc7I8YKKEIMnPSp22GIqUplHgUCVUPpyY5r1s0S2OBQ
-         pKpI23NDaHA6xRbSRy9xrIS+/Ls4WmluQU9//YPEdpqnm9cn0jTP/Flg+evh5KJeQokW
-         QpVA==
-X-Gm-Message-State: AOAM532LHml6EX8aOWczU8LldSNYQZHskwFPISK/Y8WhdLnNdA2cqU1L
-        xrZn7eKXJMGLls5Lj80wkIE=
-X-Google-Smtp-Source: ABdhPJz4JEITEdJIKes5VdRLdLAriYxA0JWe625kgdkuzO430nqFP/o7RLuxlnIZtT/OtWNqDsHohQ==
-X-Received: by 2002:a62:800c:0:b029:203:6990:78e2 with SMTP id j12-20020a62800c0000b0290203699078e2mr29079533pfd.3.1617094736831;
-        Tue, 30 Mar 2021 01:58:56 -0700 (PDT)
-Received: from fmin-OptiPlex-7060.nreal.work ([137.59.103.165])
-        by smtp.gmail.com with ESMTPSA id y8sm20952642pfp.140.2021.03.30.01.58.52
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 30 Mar 2021 01:58:56 -0700 (PDT)
-From:   dillon.minfei@gmail.com
-To:     robh@kernel.org, valentin.caron@foss.st.com,
-        Alexandre.torgue@foss.st.com, rong.a.chen@intel.com,
-        a.fatoum@pengutronix.de, mcoquelin.stm32@gmail.com,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux@armlinux.org.uk, afzal.mohd.ma@gmail.com,
-        gregkh@linuxfoundation.org, erwan.leray@foss.st.com,
-        erwan.leray@st.com, linux-serial@vger.kernel.org, lkp@intel.com,
-        patrice.chotard@foss.st.com
-Cc:     dillon min <dillon.minfei@gmail.com>
-Subject: [PATCH v8 6/6] dt-bindings: serial: stm32: Use 'type: object' instead of false for 'additionalProperties'
-Date:   Tue, 30 Mar 2021 16:58:24 +0800
-Message-Id: <1617094704-10040-7-git-send-email-dillon.minfei@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1617094704-10040-1-git-send-email-dillon.minfei@gmail.com>
-References: <1617094704-10040-1-git-send-email-dillon.minfei@gmail.com>
+        id S231637AbhC3JCT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 05:02:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49122 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231731AbhC3JCE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Mar 2021 05:02:04 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7338D6195D;
+        Tue, 30 Mar 2021 09:02:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617094924;
+        bh=hAv6DilAIxtCgBbhv9FLZwO8QDhSFQHMKU2AEqrqDRg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Ij2Ecc32OujdOVJlnOlW3Cr1yRgdFLx7hGTtQqIF677yJvrk4vxx9AC1aCvSm2Aa6
+         UJXoFPgy+fWr5MY/s/PFvyB57770/kvZYRtxr1V2z5rJxbOrshEQb7Z1vYX2l2kjAd
+         DMpECWGyE2xAPcRR/KtSvnBKPvyzMgGqd+SSI7mg5odbNKi3Eooc0qeSyZFlpslqJO
+         pub1Dgq9VyEtqL/Rg89jJjv9bHLDL++ZimXhx00aIq1UjvdQl3VfyVprxOqiiCg8PI
+         3PGk0waLway+WDS8oadOa6fKKy2HIP0cCcUUJvytxZFxrcgFtLtgoQIWr9vKL0jAK0
+         zYiZFRuVtRLGQ==
+Date:   Tue, 30 Mar 2021 14:31:59 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     broonie@kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     robh@kernel.org, devicetree@vger.kernel.org,
+        yung-chuan.liao@linux.intel.com,
+        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: Re: [PATCH v4 4/5] ASoC: dt-bindings: wsa881x: add bindings for port
+ mapping
+Message-ID: <YGLpBxw0DV3km1wM@vkoul-mobl.Dlink>
+References: <20210315165650.13392-1-srinivas.kandagatla@linaro.org>
+ <20210315165650.13392-5-srinivas.kandagatla@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210315165650.13392-5-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: dillon min <dillon.minfei@gmail.com>
+On 15-03-21, 16:56, Srinivas Kandagatla wrote:
+> WSA881x SoundWire device ports are statically assigned to master ports
+> at design time. So add bindings required to specify these mappings!
 
-To use additional properties 'bluetooth' on serial, need replace false with
-'type: object' for 'additionalProperties' to make it as a node, else will
-run into dtbs_check warnings.
+Mark, are you okay for 4, 5 to go thru sdw tree with your ack? The
+patches lgtm
 
-'arch/arm/boot/dts/stm32h750i-art-pi.dt.yaml: serial@40004800:
-'bluetooth' does not match any of the regexes: 'pinctrl-[0-9]+'
-
-Fixes: af1c2d81695b ("dt-bindings: serial: Convert STM32 UART to json-schema")
-Reported-by: kernel test robot <lkp@intel.com>
-Tested-by: Valentin Caron <valentin.caron@foss.st.com>
-Signed-off-by: dillon min <dillon.minfei@gmail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Link: https://lore.kernel.org/r/1616757302-7889-8-git-send-email-dillon.minfei@gmail.com
-Signed-off-by: dillon min <dillon.minfei@gmail.com>
----
-v8: no changes, this patch was merged to tty-next by Greg Kroah-Hartman
-
- Documentation/devicetree/bindings/serial/st,stm32-uart.yaml | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
-index 8631678283f9..865be05083c3 100644
---- a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
-@@ -80,7 +80,8 @@ required:
-   - interrupts
-   - clocks
- 
--additionalProperties: false
-+additionalProperties:
-+  type: object
- 
- examples:
-   - |
 -- 
-2.7.4
-
+~Vinod
