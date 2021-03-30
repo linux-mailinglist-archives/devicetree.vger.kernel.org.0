@@ -2,62 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3395734DE4F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 04:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D78034DE60
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 04:29:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230500AbhC3CY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Mar 2021 22:24:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53210 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231293AbhC3CYo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Mar 2021 22:24:44 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7B4E86196C;
-        Tue, 30 Mar 2021 02:24:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617071083;
-        bh=fBhHzGvP1lCCHePW0Kd7FME8VLq+s8l29XStBYpzrOE=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=er7ozKxVqEUtuvokDCQ5f8bWZt3hUwtPVyAJgC6VBHWVUsdqTT0pqSUYUqyBAhNrm
-         tEI9kNyMvPSMqAgC90LTUyhNXAMYQZvoU5h8tOccDZKfQNpPy1rPknxlHIna8gSP/3
-         EMX4gWkA3A+8SPK2DowjUfwG97+/kOPVMYZ2GvcB/tEOccZoO3I5NUidwCWxOrW4Zf
-         WkDU1GEq0Nvi9gfRrKIQCoJP5W3k61zc4KKPAgYzT2r/ruUeQzy516AyqrxwyKHphV
-         CNOVW1+N4zALOeLr3sZAJi4sz4JSmFVGP7pz8YWvB5oXIKtWlMmilJA1r/yG7GpDW+
-         yvrVToK+GXFIw==
-Content-Type: text/plain; charset="utf-8"
+        id S231129AbhC3C2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Mar 2021 22:28:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59134 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230523AbhC3C20 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Mar 2021 22:28:26 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F0DAC0613D9
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 19:28:26 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id u9so22414074ejj.7
+        for <devicetree@vger.kernel.org>; Mon, 29 Mar 2021 19:28:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pensando.io; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=as6TC2k6xEEVIuVX9cZ9mNSha9Pgs1VOeqieHwq2ZAk=;
+        b=0/Hcptk+lGf7RA7QeLI8de294bHY+a6+K92ctHUL8ogRG3PRJi/RvJGGeRNOVzBZ6Y
+         Cug7wcbQjiIeazHgGQ4vY9/DrdQ7aLvEjhZq1YapIeA0UPEcsZfp9NbpBfl6HT/5g9o0
+         aqmC7ovktIlGdSVnLxllh5zgTglmUD5sCzQW1wRApjaK3i2NGFrZszCzgp/bD468XxID
+         UECyTZMdRNYozflEzmeZkUXjklvH21iraJm7mCNoaRLpuQq/grxfpcjSo8ZnodelOoIP
+         xc3Yh9CKjzz6wy2jtyPdtDuSibDTYKHT313SllBRLqt0iNYx47SubGDemTVLxHWd6dBV
+         8h0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=as6TC2k6xEEVIuVX9cZ9mNSha9Pgs1VOeqieHwq2ZAk=;
+        b=ifis6/VC8Crg+qPl3brTOi83fBfiu1iPVFqhwQEMNLxgKSHevytDaXnVadhrGHmHO8
+         OQNQfr8bnFHLWdLefFeB9sTe6UCOi/C8nXgAht68++djEpkb+YvJ/XY5j+g9vH8Oi6OW
+         6QYoh0vks6XV3czRx5b7IryOmDZaJpH3/S/hoI6KAO/n4PWVpihTqNGf6VSAcdm5EMJ9
+         8J/510NbjnSZQY+cGVGqd5EJxnCXUQX0sGIeywApmivNBFDnxiFmP9aDvWhO2TyOYPQL
+         tuAfEcWTVRa8VjTT0ONi6GozF8l6t8Yb9e2l0cRj4C4kHNpfYdfnlk427zygevWVob2h
+         tV3Q==
+X-Gm-Message-State: AOAM531OFrnVlyxq/fbB3UpPjz3l6K748h5tcgHJ6s8hvzPXjN4NMzFh
+        QoQeJaarjiggcVlxVygNiWiLKPRkVTTifhxB++filQ==
+X-Google-Smtp-Source: ABdhPJxrtj444vLfa7by3n/VVs+in8qeM1zAKOJDHyFcmwzb3ptLOzZ9Ug2uMihG+7mETsyFGgfEz+SqnKrX+SstUUA=
+X-Received: by 2002:a17:906:e0d6:: with SMTP id gl22mr30819105ejb.444.1617071304549;
+ Mon, 29 Mar 2021 19:28:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210329164222.26794-1-dariobin@libero.it>
-References: <20210329164222.26794-1-dariobin@libero.it>
-Subject: Re: [PATCH v3 0/4] clk: ti: add am33xx spread spectrum clock support
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Grygorii Strashko <grygorii.strashko@ti.com>,
-        Dario Binacchi <dariobin@libero.it>,
-        =?utf-8?q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-omap@vger.kernel.org
-To:     Dario Binacchi <dariobin@libero.it>, linux-kernel@vger.kernel.org
-Date:   Mon, 29 Mar 2021 19:24:41 -0700
-Message-ID: <161707108197.3012082.13148389244272034996@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+References: <20210329015938.20316-1-brad@pensando.io> <20210329015938.20316-4-brad@pensando.io>
+ <20210329155843.GD5166@sirena.org.uk>
+In-Reply-To: <20210329155843.GD5166@sirena.org.uk>
+From:   Brad Larson <brad@pensando.io>
+Date:   Mon, 29 Mar 2021 19:28:14 -0700
+Message-ID: <CAK9rFny3RZSP8=RnekcLNz0KrBfko8jkc4pyXpfiEyF2TUmr4w@mail.gmail.com>
+Subject: Re: [PATCH v2 03/13] spi: dw: Add support for Pensando Elba SoC SPI
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Dario Binacchi (2021-03-29 09:42:17)
->=20
-> As reported by the TI spruh73x RM, MPU and LCD modules support spread
-> spectrum clocking (SSC) on their output clocks. SSC is used to spread
-> the spectral peaking of the clock to reduce any electromagnetic
-> interference (EMI) that may be caused due to the clock=E2=80=99s fundamen=
-tal
-> or any of its harmonics.
-> The series allows you to enable and adjust the spread spectrum clocking
-> for all am33xx PLLs for which it is supported.
->=20
+On Mon, Mar 29, 2021 at 8:58 AM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Sun, Mar 28, 2021 at 06:59:28PM -0700, Brad Larson wrote:
+>
+> > @@ -56,7 +56,7 @@ struct dw_spi_mscc {
+> >  /*
+> >   * The Designware SPI controller (referred to as master in the documentation)
+> >   * automatically deasserts chip select when the tx fifo is empty. The chip
+> > - * selects then needs to be either driven as GPIOs or, for the first 4 using the
+> > + * selects then needs to be either driven as GPIOs or, for the first 4 using
+> >   * the SPI boot controller registers. the final chip select is an OR gate
+> >   * between the Designware SPI controller and the SPI boot controller.
+> >   */
+>
+> This is an unrelated fix, please send as a separate patch as covered in
+> submitting-patches.rst.
 
-What is your merge strategy? Should all the patches go through clk tree?
-Or you'll send via arm-soc?
+I'll remove this.  Belongs in a trivial patch set.
+
+> > @@ -237,6 +237,31 @@ static int dw_spi_canaan_k210_init(struct platform_device *pdev,
+> >       return 0;
+> >  }
+> >
+> > +static void dw_spi_elba_set_cs(struct spi_device *spi, bool enable)
+> > +{
+> > +     struct dw_spi *dws = spi_master_get_devdata(spi->master);
+> > +
+> > +     if (!enable) {
+> > +             /*
+> > +              * Using a GPIO-based chip-select, the DW SPI
+> > +              * controller still needs its own CS bit selected
+> > +              * to start the serial engine.  On Elba the specific
+> > +              * CS doesn't matter to start the serial engine,
+> > +              * so using CS0.
+> > +              */
+>
+> Why does this comment only apply to one branch of the conditional?
+
+It doesn't, I'll move it outside the conditional.
