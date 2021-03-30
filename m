@@ -2,312 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C2A434EC61
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 17:28:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C32F34EC6C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 17:30:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232082AbhC3P14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 11:27:56 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:42750 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232413AbhC3P1d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 11:27:33 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 43F631F4594F
-Subject: Re: [PATCH v5 2/2] drm/bridge: anx7688: Add ANX7688 bridge driver
- support
-To:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Cc:     a.hajda@samsung.com, narmstrong@baylibre.com,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@siol.net, airlied@linux.ie, daniel@ffwll.ch,
-        chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
-        drinkcat@chromium.org, hsinyi@chromium.org, kernel@collabora.com,
-        dafna3@gmail.com, robh+dt@kernel.org
-References: <20210305124351.15079-1-dafna.hirschfeld@collabora.com>
- <20210305124351.15079-3-dafna.hirschfeld@collabora.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <5ba237ee-e5a0-6e33-4c2f-491bbd2b27c4@collabora.com>
-Date:   Tue, 30 Mar 2021 17:27:28 +0200
+        id S232319AbhC3P3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 11:29:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58542 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231636AbhC3P3Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 11:29:24 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAF19C061574;
+        Tue, 30 Mar 2021 08:29:23 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id b14so24396030lfv.8;
+        Tue, 30 Mar 2021 08:29:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=OSsJ/4+KgnHiu5gezRczsING3scAbDi33DDKOpy2Q28=;
+        b=dOTBZNhnDGa7nDdY5+QtDDh48H+hcfPpTnDpCUbV/Fpi47iVCM5+kQe7Bd5hH+8/oh
+         nVvlCz204RTDlF9lWgnzhBSFr4oOYA3ONB75zwe5dISLTRY9o/3Xdwjjm87GEtIMNrXw
+         tpYBDG4VZEfS7dTli+6+2dVQ3mw5TtZ70CqIdNpKO6Z8juq5BYmDNgC0SWI3pXzFSBLC
+         GgLdRqe2dp/BQ/W4SRNGzUVmKVdyxKw/SBg3pKbK6AYdKAH4nPbHD/Fan4vP/1u8za5C
+         UpEXUraQAXOwOZmTT9xPq5QG0vcQAF9aSPbbrTQZ0XrPki/5KB41lwM8EHtz0Mk+N4Ps
+         LW6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=OSsJ/4+KgnHiu5gezRczsING3scAbDi33DDKOpy2Q28=;
+        b=L3iztkydrbC/sX5EgfoCVtjTWzZNG/wZpFR//sbOz5loQ2RF5uyNLvC0TzP3S6z38S
+         L++OgQHi8mB9hIMQyo0DoOpTcXfn2OEz9hh28/NTabPktTULJf2mbDTqrlcojcyCfnDc
+         cOAD6JIJxPN7d1OSj1PuY7pYm0HXSq+YRaiCovWquzasc9KpkE7//uQKlbobhXwNpm4e
+         +UmHbA0Gj4vmo9epYwseN2nGIEuq6QK9NDXbkmevXZUtJ6n2o2ztVCld5nsiAVgrUggQ
+         oY3pZ8e3m6bwG6LhHBGV54Mvvdo121z6WeYizxKd9xD8w1+T6dwEYMegj3sSzlDrJJWW
+         qvng==
+X-Gm-Message-State: AOAM532/5WY4F8gapYq52/qFefKaojG/qzb/OKXAaehPlSoYaDt6+sCw
+        xDa+QOGPcrvOTS6FP3OyeC9Unit7krs=
+X-Google-Smtp-Source: ABdhPJyKCU1iIoyVTxHNos8jN66if7O3aIGQJzgxIM5LJMHGkYFrvzuq6bdiWgUgY2yvRdMUYeADPg==
+X-Received: by 2002:ac2:41d4:: with SMTP id d20mr19473965lfi.213.1617118162380;
+        Tue, 30 Mar 2021 08:29:22 -0700 (PDT)
+Received: from ?IPv6:2a00:1370:814d:b259:a10:76ff:fe69:21b6? ([2a00:1370:814d:b259:a10:76ff:fe69:21b6])
+        by smtp.googlemail.com with ESMTPSA id z7sm2743362ljo.64.2021.03.30.08.29.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Mar 2021 08:29:22 -0700 (PDT)
+Subject: Re: [PATCH v1 5/6] dt-bindings: memory: tegra20: emc: Convert to
+ schema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+References: <20210329194602.17049-1-digetx@gmail.com>
+ <20210329194602.17049-6-digetx@gmail.com>
+ <7e45375c-3e24-4fc1-5776-190db32681e5@canonical.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <989c3c70-3f0c-abff-ed07-c2dea3b66a2d@gmail.com>
+Date:   Tue, 30 Mar 2021 18:29:21 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210305124351.15079-3-dafna.hirschfeld@collabora.com>
+In-Reply-To: <7e45375c-3e24-4fc1-5776-190db32681e5@canonical.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dafna,
-
-Thank you for your patch and to work on this.
-
-On 5/3/21 13:43, Dafna Hirschfeld wrote:
-> From: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> 
-> This driver adds support for the ANX7688 HDMI to DP converter block of the
-> ANX7688 device.
-> 
-> For our use case, the only reason the Linux kernel driver is necessary is
-> to reject resolutions that require more bandwidth than what is available
-> on the DP side. DP bandwidth and lane count are reported by the bridge via
-> 2 registers and, as far as we know, only chips that have a firmware
-> version greater than 0.85 support these two registers.
+30.03.2021 11:48, Krzysztof Kozlowski пишет:
+>> +  power-domains:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      Phandle of the SoC "core" power domain.
+> I think the core checks the type, so you only need to limit max items.
 > 
 
-Maybe we should mention that this driver can be extended to support the typec
-controller part which is not implemented right now because due our hardware
-configuration we can't test.
+It's a bit confusing that both variants work and it's not apparent what
+variant is better.
 
-
-> Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> [The driver is OF only so should depends on CONFIG_OF]
-> Reported-by: kbuild test robot <lkp@intel.com>
-> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> [convert the driver to be a i2c driver]
-> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-> ---
->  drivers/gpu/drm/bridge/analogix/Kconfig       |  11 ++
->  drivers/gpu/drm/bridge/analogix/Makefile      |   1 +
->  .../drm/bridge/analogix/analogix-anx7688.c    | 186 ++++++++++++++++++
-
-You put the binding in bindings/usb/analogix,anx7688.yaml, which I think is the
-right place. So to be coherent that should go under usb/typec. But we only
-implemented the HDMI to DP bridge part (port0) because is what we can really test.
-
-But this chip is more a typec controller than a bridge, so maybe it should be
-placed there.
-
-
->  3 files changed, 198 insertions(+)
->  create mode 100644 drivers/gpu/drm/bridge/analogix/analogix-anx7688.c
-> 
-> diff --git a/drivers/gpu/drm/bridge/analogix/Kconfig b/drivers/gpu/drm/bridge/analogix/Kconfig
-> index 024ea2a570e7..323327aabc38 100644
-> --- a/drivers/gpu/drm/bridge/analogix/Kconfig
-> +++ b/drivers/gpu/drm/bridge/analogix/Kconfig
-> @@ -11,6 +11,17 @@ config DRM_ANALOGIX_ANX6345
->  	  ANX6345 transforms the LVTTL RGB output of an
->  	  application processor to eDP or DisplayPort.
->  
-> +config DRM_ANALOGIX_ANX7688
-> +	tristate "Analogix ANX7688 bridge"
-> +	depends on OF
-> +	select DRM_KMS_HELPER
-> +	select REGMAP_I2C
-> +	help
-> +	  ANX7688 is an ultra-low power 4K Ultra-HD (4096x2160p60)
-> +	  mobile HD transmitter designed for portable
-> +	  devices. The ANX7688 converts HDMI 2.0 to
-> +	  DisplayPort 1.3 Ultra-HD.
-> +
->  config DRM_ANALOGIX_ANX78XX
->  	tristate "Analogix ANX78XX bridge"
->  	select DRM_ANALOGIX_DP
-> diff --git a/drivers/gpu/drm/bridge/analogix/Makefile b/drivers/gpu/drm/bridge/analogix/Makefile
-> index 44da392bb9f9..8f2272b8b732 100644
-> --- a/drivers/gpu/drm/bridge/analogix/Makefile
-> +++ b/drivers/gpu/drm/bridge/analogix/Makefile
-> @@ -2,5 +2,6 @@
->  analogix_dp-objs := analogix_dp_core.o analogix_dp_reg.o analogix-i2c-dptx.o
->  obj-$(CONFIG_DRM_ANALOGIX_ANX6345) += analogix-anx6345.o
->  obj-$(CONFIG_DRM_ANALOGIX_ANX7625) += anx7625.o
-> +obj-$(CONFIG_DRM_ANALOGIX_ANX7688) += analogix-anx7688.o
->  obj-$(CONFIG_DRM_ANALOGIX_ANX78XX) += analogix-anx78xx.o
->  obj-$(CONFIG_DRM_ANALOGIX_DP) += analogix_dp.o
-> diff --git a/drivers/gpu/drm/bridge/analogix/analogix-anx7688.c b/drivers/gpu/drm/bridge/analogix/analogix-anx7688.c
-> new file mode 100644
-> index 000000000000..85a4b1a23035
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/analogix/analogix-anx7688.c
-> @@ -0,0 +1,186 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * ANX7688 HDMI->DP bridge driver
-> + *
-> + * Copyright 2020 Google LLC
-> + */
-> +
-> +#include <linux/types.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_print.h>
-> +
-> +/* Register addresses */
-> +#define ANX7688_VENDOR_ID_REG		0x00
-> +#define ANX7688_DEVICE_ID_REG		0x02
-> +
-> +#define ANX7688_FW_VERSION_REG		0x80
-> +
-> +#define ANX7688_DP_BANDWIDTH_REG	0x85
-> +#define ANX7688_DP_LANE_COUNT_REG	0x86
-> +
-> +#define ANX7688_VENDOR_ID		0x1f29
-> +#define ANX7688_DEVICE_ID		0x7688
-> +
-> +/* First supported firmware version (0.85) */
-> +#define ANX7688_MINIMUM_FW_VERSION	0x0085
-> +
-> +static const struct regmap_config anx7688_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +};
-> +
-> +struct anx7688 {
-> +	struct i2c_client *client;
-> +	struct regmap *regmap;
-> +	struct drm_bridge bridge;
-> +	bool filter;
-> +};
-> +
-> +static inline struct anx7688 *
-> +bridge_to_anx7688(struct drm_bridge *bridge)
-> +{
-> +	return container_of(bridge, struct anx7688, bridge);
-> +}
-> +
-> +static bool anx7688_bridge_mode_fixup(struct drm_bridge *bridge,
-> +				      const struct drm_display_mode *mode,
-> +				      struct drm_display_mode *adjusted_mode)
-> +{
-> +	struct anx7688 *anx = bridge_to_anx7688(bridge);
-> +	int totalbw, requiredbw;
-> +	u8 dpbw, lanecount;
-> +	u8 regs[2];
-> +	int ret;
-> +
-> +	if (!anx->filter)
-> +		return true;
-> +
-> +	/* Read both regs 0x85 (bandwidth) and 0x86 (lane count). */
-> +	ret = regmap_bulk_read(anx->regmap, ANX7688_DP_BANDWIDTH_REG, regs, 2);
-> +	if (ret < 0) {
-> +		DRM_ERROR("Failed to read bandwidth/lane count\n");
-> +		return false;
-> +	}
-> +	dpbw = regs[0];
-> +	lanecount = regs[1];
-> +
-> +	/* Maximum 0x19 bandwidth (6.75 Gbps Turbo mode), 2 lanes */
-> +	if (dpbw > 0x19 || lanecount > 2) {
-> +		DRM_ERROR("Invalid bandwidth/lane count (%02x/%d)\n", dpbw,
-> +			  lanecount);
-> +		return false;
-> +	}
-> +
-> +	/* Compute available bandwidth (kHz) */
-> +	totalbw = dpbw * lanecount * 270000 * 8 / 10;
-> +
-> +	/* Required bandwidth (8 bpc, kHz) */
-> +	requiredbw = mode->clock * 8 * 3;
-> +
-> +	DRM_DEBUG_KMS("DP bandwidth: %d kHz (%02x/%d); mode requires %d Khz\n",
-> +		      totalbw, dpbw, lanecount, requiredbw);
-> +
-> +	if (totalbw == 0) {
-> +		DRM_ERROR("Bandwidth/lane count are 0, not rejecting modes\n");
-> +		return true;
-> +	}
-> +
-> +	return totalbw >= requiredbw;
-> +}
-> +
-> +static const struct drm_bridge_funcs anx7688_bridge_funcs = {
-> +	.mode_fixup = anx7688_bridge_mode_fixup,
-> +};
-> +
-> +static int anx7688_bridge_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct anx7688 *anx7688;
-> +	u16 vendor, device, fw_version;
-> +	u8 buffer[4];
-> +	int ret;
-> +
-> +	anx7688 = devm_kzalloc(dev, sizeof(*anx7688), GFP_KERNEL);
-> +	if (!anx7688)
-> +		return -ENOMEM;
-> +
-> +	anx7688->client = client;
-> +	i2c_set_clientdata(client, anx7688);
-> +
-> +	anx7688->regmap = devm_regmap_init_i2c(client, &anx7688_regmap_config);
-> +
-> +	/* Read both vendor and device id (4 bytes). */
-> +	ret = regmap_bulk_read(anx7688->regmap, ANX7688_VENDOR_ID_REG,
-> +			       buffer, 4);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to read chip vendor/device id\n");
-> +		return ret;
-> +	}
-> +
-> +	vendor = (u16)buffer[1] << 8 | buffer[0];
-> +	device = (u16)buffer[3] << 8 | buffer[2];
-> +	if (vendor != ANX7688_VENDOR_ID || device != ANX7688_DEVICE_ID) {
-> +		dev_err(dev, "Invalid vendor/device id %04x/%04x\n",
-> +			vendor, device);
-> +		return -ENODEV;
-> +	}
-> +
-> +	ret = regmap_bulk_read(anx7688->regmap, ANX7688_FW_VERSION_REG,
-> +			       buffer, 2);
-> +	if (ret) {
-> +		dev_err(&client->dev, "Failed to read firmware version\n");
-> +		return ret;
-> +	}
-> +
-> +	fw_version = (u16)buffer[0] << 8 | buffer[1];
-> +	dev_info(dev, "ANX7688 firmware version 0x%04x\n", fw_version);
-> +
-> +	anx7688->bridge.of_node = dev->of_node;
-> +
-> +	/* FW version >= 0.85 supports bandwidth/lane count registers */
-> +	if (fw_version >= ANX7688_MINIMUM_FW_VERSION)
-> +		anx7688->filter = true;
-> +	else
-> +		/* Warn, but not fail, for backwards compatibility */
-> +		DRM_WARN("Old ANX7688 FW version (0x%04x), not filtering\n",
-> +			 fw_version);
-> +
-> +	anx7688->bridge.funcs = &anx7688_bridge_funcs;
-> +	drm_bridge_add(&anx7688->bridge);
-> +
-> +	return 0;
-> +}
-> +
-> +static int anx7688_bridge_remove(struct i2c_client *client)
-> +{
-> +	struct anx7688 *anx7688 = i2c_get_clientdata(client);
-> +
-> +	drm_bridge_remove(&anx7688->bridge);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id anx7688_bridge_match_table[] = {
-> +	{ .compatible = "analogix,anx7688", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, anx7688_bridge_match_table);
-> +
-> +static struct i2c_driver anx7688_bridge_driver = {
-> +	.probe_new = anx7688_bridge_probe,
-> +	.remove = anx7688_bridge_remove,
-> +	.driver = {
-> +		.name = "anx7688-bridge",
-> +		.of_match_table = anx7688_bridge_match_table,
-> +	},
-> +};
-> +
-> +module_i2c_driver(anx7688_bridge_driver);
-> +
-> +MODULE_DESCRIPTION("ANX7688 HDMI->DP bridge driver");
-> +MODULE_AUTHOR("Nicolas Boichat <drinkcat@chromium.org>");
-> +MODULE_AUTHOR("Enric Balletbo i Serra <enric.balletbo@collabora.com>");
-> +MODULE_LICENSE("GPL");
-> 
+I actually used the max items limit initially and then changed it to
+$ref phandle because it appeared to me that it's a better choice. I'll
+switch back to the limit in v2, thanks.
