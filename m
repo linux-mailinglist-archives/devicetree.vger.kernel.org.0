@@ -2,85 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4798434F45A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 00:36:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B95A734F45F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 00:39:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232884AbhC3WgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 18:36:25 -0400
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:46837 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232974AbhC3Wf7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 18:35:59 -0400
-Received: by mail-oi1-f172.google.com with SMTP id m13so18043734oiw.13;
-        Tue, 30 Mar 2021 15:35:58 -0700 (PDT)
+        id S232950AbhC3WjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 18:39:09 -0400
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:36397 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232883AbhC3WjF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 18:39:05 -0400
+Received: by mail-ot1-f54.google.com with SMTP id g8-20020a9d6c480000b02901b65ca2432cso17117643otq.3;
+        Tue, 30 Mar 2021 15:39:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=mIW2TN59yaf7zZvWo0eZuc3U3VKeCIk16a9IMwj2jH4=;
-        b=Jex/x1gCI/NUzl7+GOx0DoYROYgkJjbyw+H76iTdXxX3bUo4v3bXLNH3lfXgMf8d9x
-         rhxLWU0PhO2um1aeHU7NvgOZid9+p8fzZS3vHYtfHD/ZfKjVYx95f5pEV1rI5HgM049/
-         Dsff8SA17ZXrrMAKbzHFdXfjdqSF6BYEYuwf+dXo034MGrXeh511/f+NtjwIF5Ip/bvp
-         5999EoEUtiiMaHVzVTDVl91RI65YTqqbe7X31ZfODJ6tAqkB9mkSvwO00wr6GvjcH9v/
-         0ydHL2UI6mXw42WkKmk91kpwUVw4PjoDLXMOsdI8CTyOdszSJZpTwICl5ITYGbIBJfXV
-         fuwg==
-X-Gm-Message-State: AOAM5333PyK27Xc6zmRUP0hggd6EOTEsJkXjW6WPxIGB31/VNJlAlAJ1
-        ASFnqYxuym3r9zEgNgNJqg==
-X-Google-Smtp-Source: ABdhPJxdmGtnDEkcmeCwnDV30W9Zan2ZxgrLPrYWWYAT9Jbea/xyf4fodvHERtWQUKxb5eMS8C8WDg==
-X-Received: by 2002:aca:1c14:: with SMTP id c20mr129285oic.146.1617143758403;
-        Tue, 30 Mar 2021 15:35:58 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=+kL3ZRB3j6i01duxPJ9vYcO9kwxP1k0mr9iO+0pJBac=;
+        b=sPk1q1o/9jK45SPwIb01HUbKm06q5Yx3WRvEtU1Z832dmkeWAYG7kpU9+2q/t9w89R
+         W9Tt2KL/Ia+qtgP/7mWZEcLrN4QB2St/IKCpSHhfdMbnBBlhL/DGg9VVFyBem1St9Ht2
+         6xpao5FaWjVkf4MGz9a1SffhSIceqUkqR18S7G0+JyUWJeOmqgZRRQv2fQEi7Y3waDZb
+         VRTnt08MIxws0iunR+/U7dccvOWzGhaiJcFWvOpRaPryCcIl64DB6Xvr7UI4GYsWCtLn
+         Wx5fCviKHQfPq/JLkgyyNYYQmkgbZwSQfPw6WFrKS7RkqtYx01N0DpBymCGO6L4VO8rv
+         g+0A==
+X-Gm-Message-State: AOAM531LRh0uGXVV3Jfo/OTRRmrph3ZxcP/auiVE9UxOvYpEe1svxdid
+        KfpHQk+gtF43JRvq5qQ8+jVhDWRKsQ==
+X-Google-Smtp-Source: ABdhPJz1lPUhXrNxrHWj4A+J8TggtXB6qqS9Os++Ci/kdeMEGSETxa/ogDjwDKvpjvbG+y2lHU8MwA==
+X-Received: by 2002:a05:6830:4110:: with SMTP id w16mr138691ott.348.1617143944665;
+        Tue, 30 Mar 2021 15:39:04 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j35sm46218ota.54.2021.03.30.15.35.57
+        by smtp.gmail.com with ESMTPSA id v1sm42689otk.67.2021.03.30.15.39.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Mar 2021 15:35:57 -0700 (PDT)
-Received: (nullmailer pid 837656 invoked by uid 1000);
-        Tue, 30 Mar 2021 22:35:56 -0000
-Date:   Tue, 30 Mar 2021 17:35:56 -0500
+        Tue, 30 Mar 2021 15:39:04 -0700 (PDT)
+Received: (nullmailer pid 841804 invoked by uid 1000);
+        Tue, 30 Mar 2021 22:39:02 -0000
+Date:   Tue, 30 Mar 2021 17:39:02 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v1 5/6] dt-bindings: memory: tegra20: emc: Convert to
- schema
-Message-ID: <20210330223556.GA835644@robh.at.kernel.org>
-References: <20210329194602.17049-1-digetx@gmail.com>
- <20210329194602.17049-6-digetx@gmail.com>
- <7e45375c-3e24-4fc1-5776-190db32681e5@canonical.com>
- <2ded3a2d-6487-6e6d-d211-0cae45f4f948@gmail.com>
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Joel Stanley <joel@jms.id.au>, openbmc@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        - <devicetree@vger.kernel.org>, linux-serial@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: serial: 8250: update for
+ aspeed,sirq-active-high
+Message-ID: <20210330223902.GA837825@robh.at.kernel.org>
+References: <20210330002338.335-1-zev@bewilderbeest.net>
+ <20210330002338.335-3-zev@bewilderbeest.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2ded3a2d-6487-6e6d-d211-0cae45f4f948@gmail.com>
+In-Reply-To: <20210330002338.335-3-zev@bewilderbeest.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 30, 2021 at 06:32:20PM +0300, Dmitry Osipenko wrote:
-> 30.03.2021 11:48, Krzysztof Kozlowski пишет:
-> >> +  nvidia,use-ram-code:
-> >> +    type: boolean
-> >> +    description:
-> >> +      If present, the emc-tables@ sub-nodes will be addressed.
-> >> +
-> >> +patternProperties:
-> >> +  "^emc-table@[0-9]+$":
-> > This might not be easy but you should add constraints when emc-table and
-> > emc-tables are expected. The schema should check if proper node is used
-> > depending on "nvidia,use-ram-code".
-> > 
+On Mon, Mar 29, 2021 at 07:23:37PM -0500, Zev Weiss wrote:
+> Update DT bindings documentation for the new incarnation of the
+> aspeed,sirq-polarity-sense property.
+
+Why?
+
+This isn't a compatible change.
+
 > 
-> I'm afraid this is not doable. If you have an example how to do this,
-> please share it with me.
+> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> ---
+>  Documentation/devicetree/bindings/serial/8250.yaml | 14 ++++++--------
+>  1 file changed, 6 insertions(+), 8 deletions(-)
 > 
-> I see that there is a "dependencies:", but it doesn't work with the
-> patterns, IIUC.
-
-That's correct.
-
-Rob
-
+> diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documentation/devicetree/bindings/serial/8250.yaml
+> index f54cae9ff7b2..0bbb7121f720 100644
+> --- a/Documentation/devicetree/bindings/serial/8250.yaml
+> +++ b/Documentation/devicetree/bindings/serial/8250.yaml
+> @@ -13,7 +13,7 @@ allOf:
+>    - $ref: /schemas/serial.yaml#
+>    - if:
+>        required:
+> -        - aspeed,sirq-polarity-sense
+> +        - aspeed,sirq-active-high
+>      then:
+>        properties:
+>          compatible:
+> @@ -181,13 +181,11 @@ properties:
+>    rng-gpios: true
+>    dcd-gpios: true
+>  
+> -  aspeed,sirq-polarity-sense:
+> -    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +  aspeed,sirq-active-high:
+> +    type: boolean
+>      description: |
+> -      Phandle to aspeed,ast2500-scu compatible syscon alongside register
+> -      offset and bit number to identify how the SIRQ polarity should be
+> -      configured. One possible data source is the LPC/eSPI mode bit. Only
+> -      applicable to aspeed,ast2500-vuart.
+> +      Set to indicate that the SIRQ polarity is active-high (default
+> +      is active-low).  Only applicable to aspeed,ast2500-vuart.
+>  
+>  required:
+>    - reg
+> @@ -227,7 +225,7 @@ examples:
+>          interrupts = <8>;
+>          clocks = <&syscon ASPEED_CLK_APB>;
+>          no-loopback-test;
+> -        aspeed,sirq-polarity-sense = <&syscon 0x70 25>;
+> +        aspeed,sirq-active-high;
+>      };
+>  
+>  ...
+> -- 
+> 2.31.1
+> 
