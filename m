@@ -2,65 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BC2F34E87D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 15:09:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA2DA34E873
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 15:09:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232156AbhC3NJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 09:09:00 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:45867 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232148AbhC3NIw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 09:08:52 -0400
-Received: by mail-ot1-f44.google.com with SMTP id 91-20020a9d08640000b0290237d9c40382so15477042oty.12;
-        Tue, 30 Mar 2021 06:08:52 -0700 (PDT)
+        id S232152AbhC3NI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 09:08:58 -0400
+Received: from mail-oo1-f52.google.com ([209.85.161.52]:37442 "EHLO
+        mail-oo1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232136AbhC3NIq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 09:08:46 -0400
+Received: by mail-oo1-f52.google.com with SMTP id c12-20020a4ae24c0000b02901bad05f40e4so3754646oot.4
+        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 06:08:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=OHtm7+pyHj4oSPzbkg2pVPKvuBPEByRYF/PMRPFvQcY=;
-        b=p0iUXdBjx5CWWBF0ivRmeuVsoGRHEJKUwilJyF/wF+RBw/SVZ+yLfXueUFvK/cjKG5
-         /54zKhsb1gGPh/mD94ZSn1Ja0egyYNl+8jOucP3Rg6kMFgkg4PmnsO0Nie/4kYqBpZ0t
-         q0MJlvxpWrMK0FaKlXwQ5vG62jlQ7dTe0ugI7izMIFIAk3aaoVXFhfD6N/aDDm9skDjw
-         IBodqywKLxoEzi3pS978uC5FZ7eL3HCYuDKkQpCa+BLGuWbScwgHH0nPVOtTRiD5q3Vy
-         ILlWtH3HdKmEvJh6ra0Rayr+t2nckDYftabopGCUb3eCUmM7jdH+dYqTh4+AH5CUinnw
-         CizQ==
-X-Gm-Message-State: AOAM532+fJS79qJ46e55rtb9l6Xhd1OTLXCssRKuSQMMdULV/jVhwA1x
-        zRnmWgThwb2TAgoKCcfyIA==
-X-Google-Smtp-Source: ABdhPJyqrRcbqlskI2V3Xoi3zuER0rxOBkXIZwyBVfvjsdaD5kz6eFMj05kXN75bGJwSLt7W6ZNRGw==
-X-Received: by 2002:a05:6830:1c26:: with SMTP id f6mr27152881ote.53.1617109732172;
-        Tue, 30 Mar 2021 06:08:52 -0700 (PDT)
+        bh=1gfS/FZgsSlTDvonh4zEOwfHDiIijaYYz+3P+d8VVFw=;
+        b=o6sFjx8VnXVae28Cc60LAjAGh7fJCvrGpndImmm1gMmi11mqKUKIkCSjITrJwyz7wO
+         YJuCyvz1f7wMyRILacoyX5UBxtk6R4B9ZClhxG9kvXEhaX+wtUdixeNOocwkqX/Cg30h
+         e1rulEYR/FzTiXtCsbeE9COXyFqU7dwHShBpG7l6UQv0s+u8Wws6ryI0Bnu5Q89QrfCw
+         nnq66fF3isNJCQW4YHoMvRlIS4keOEMx9KcYYdoLkbGjeKNKJcs29+dA+hZBIb4yghKH
+         fo6lg9seeo4a2OhZYN2pmGeVS5Y4UfnSW05TX6NWxSqacjhJvBcCBJ6CjDgiZ4cIX6Q/
+         9gVw==
+X-Gm-Message-State: AOAM533LAlnTaKl3puwTVLUicYmJQILHYGW31yUmH88hf5AlB4T3Jk/F
+        L+b2/NuMH9hpInkSYskqbET1iizp8A==
+X-Google-Smtp-Source: ABdhPJzzvKlEfJNv8JhWPt3b0O+9AbUdIf1MqLuOlBsnaySUti5vvohhqfbs115O/M8S3LPGzvf1qg==
+X-Received: by 2002:a4a:eaca:: with SMTP id s10mr11984098ooh.5.1617109725675;
+        Tue, 30 Mar 2021 06:08:45 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u23sm4333697oof.17.2021.03.30.06.08.50
+        by smtp.gmail.com with ESMTPSA id m14sm5251681otn.69.2021.03.30.06.08.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Mar 2021 06:08:51 -0700 (PDT)
-Received: (nullmailer pid 173735 invoked by uid 1000);
+        Tue, 30 Mar 2021 06:08:44 -0700 (PDT)
+Received: (nullmailer pid 173730 invoked by uid 1000);
         Tue, 30 Mar 2021 13:08:43 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     cristian.birsan@microchip.com
-Cc:     linux@roeck-us.net, gregkh@linuxfoundation.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        heikki.krogerus@linux.intel.com, linux-kernel@vger.kernel.org
-In-Reply-To: <20210329213357.431083-2-cristian.birsan@microchip.com>
-References: <20210329213357.431083-1-cristian.birsan@microchip.com> <20210329213357.431083-2-cristian.birsan@microchip.com>
-Subject: Re: [RFC PATCH 1/2] dt-bindings: usb: Add DT bindings for Microchip sama7g5 tcpc
+To:     Daniel Mack <daniel@zonque.org>
+Cc:     dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
+        airlied@linux.ie, daniel@ffwll.ch, devicetree@vger.kernel.org
+In-Reply-To: <20210329191414.2191095-2-daniel@zonque.org>
+References: <20210329191414.2191095-1-daniel@zonque.org> <20210329191414.2191095-2-daniel@zonque.org>
+Subject: Re: [PATCH v7 1/2] dt-bindings: display: add bindings for newhaven, 1.8-128160EF
 Date:   Tue, 30 Mar 2021 08:08:43 -0500
-Message-Id: <1617109723.715948.173734.nullmailer@robh.at.kernel.org>
+Message-Id: <1617109723.693046.173729.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Mar 2021 00:33:56 +0300, cristian.birsan@microchip.com wrote:
-> From: Cristian Birsan <cristian.birsan@microchip.com>
+On Mon, 29 Mar 2021 21:14:13 +0200, Daniel Mack wrote:
+> This adds documentation for a new ILI9163 based, SPI connected display.
 > 
-> This patch adds DT bindings for the new Microchip USB Type-C Port
-> Controller (TCPC) embedded in sama7g5 SoC.
-> 
-> Signed-off-by: Cristian Birsan <cristian.birsan@microchip.com>
+> Signed-off-by: Daniel Mack <daniel@zonque.org>
 > ---
->  .../bindings/usb/microchip,sama7g5-tcpc.yaml  | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/microchip,sama7g5-tcpc.yaml
+>  .../display/panel/ilitek,ili9163.yaml         | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9163.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -68,9 +63,14 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/usb/microchip,sama7g5-tcpc.example.dt.yaml:0:0: /example-0/tcpcb@e0844000: failed to match any schema with compatible: ['microchip,sama7g5-typec']
+Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/display/panel/panel/panel-common.yaml'
+xargs: dt-doc-validate: exited with status 255; aborting
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/display/panel/ilitek,ili9163.example.dt.yaml'
+Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/display/panel/panel/panel-common.yaml'
+make[1]: *** [scripts/Makefile.lib:377: Documentation/devicetree/bindings/display/panel/ilitek,ili9163.example.dt.yaml] Error 255
+make: *** [Makefile:1414: dt_binding_check] Error 2
 
-See https://patchwork.ozlabs.org/patch/1459823
+See https://patchwork.ozlabs.org/patch/1459781
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
