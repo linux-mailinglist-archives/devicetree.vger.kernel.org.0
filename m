@@ -2,109 +2,342 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC91834E962
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 15:40:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 469AB34E97D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 15:46:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232193AbhC3Njt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 09:39:49 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:46883 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231574AbhC3NjR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 09:39:17 -0400
-Received: by mail-ot1-f54.google.com with SMTP id 68-20020a9d0f4a0000b02901b663e6258dso15552609ott.13;
-        Tue, 30 Mar 2021 06:39:17 -0700 (PDT)
+        id S231924AbhC3Npn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 09:45:43 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:24611 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231894AbhC3NpT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Mar 2021 09:45:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1617111918;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=TvixdV6Zx7/AWSYPQxJ6x7+mxKn8oXSTnyruFM7nqLc=;
+        b=CbuIpTxOJF4gDns3Fm09nzcXE/H9Ui6AG+A+j3CaiL/hQIqbJa822ODqUb3Ifm6Hw6Xsw+
+        y+Bc0+kn2Pwk2b/XTYJfe1cATAm2Zc7Ar6lO8ajUaAWM9sTa9r6Gbm6Ew2Nwp9L0ugFbkR
+        olU9/fGbeekuCgngjDu9vRJG6a/tZik=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-324--OhqGVRPNRupR7lDhQL4Tg-1; Tue, 30 Mar 2021 09:45:15 -0400
+X-MC-Unique: -OhqGVRPNRupR7lDhQL4Tg-1
+Received: by mail-qv1-f70.google.com with SMTP id x20so13022929qvd.21
+        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 06:45:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=lqijnVOuWfbRRkSa+v/huuzx4aTqy+55BzNMNQYQOmw=;
-        b=dQLEPjMjkbV/gT+v90b9bqYExX9l5kDJ9Z+p9o7CdC/dagiTdNi765aFDgeQB6kkoe
-         0aqLxX71/zvMbuAkR+B2EpTu1eK5IgjE1mV08IHiJC7nploZvO1gdzo0mYtUiI5N5j6S
-         q+9s7G5kdzgBIyU9AHQjoy7ISrgY1VsZLnHEks5oWLb4ixLQMtjK+pSt+0gqzQ2HzneA
-         sNZKdokpQ/t/HqnGtF355GqmMFGaTa9vhIkPnfcjBZvN75FV4ayheav0TctauDEaqEIn
-         WUILp2ofh6b+bzujweWljkyBPS+2uxo2comGVQo0CmXScU+UEFbc0vA1GwDgouj4FveG
-         70OQ==
-X-Gm-Message-State: AOAM533oxcmGp0HEz4jjueOaM3/LCtbrvqxK72HU8aqIKFHfWUaIc65t
-        DU67HIQgVtnwiqsuBD4vEw==
-X-Google-Smtp-Source: ABdhPJwxbZu8AQOzk0/3hMyaBD5iHVfWxjEtg8coy9Y5Y7UZGJOiPS0TYB4uByeZgog5mUBaiuue9A==
-X-Received: by 2002:a05:6830:4121:: with SMTP id w33mr11854225ott.153.1617111556881;
-        Tue, 30 Mar 2021 06:39:16 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 62sm3360563oto.60.2021.03.30.06.39.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Mar 2021 06:39:15 -0700 (PDT)
-Received: (nullmailer pid 213349 invoked by uid 1000);
-        Tue, 30 Mar 2021 13:39:13 -0000
-Date:   Tue, 30 Mar 2021 08:39:13 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     zhiyong tao <zhiyong.tao@mediatek.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        biao.huang@mediatek.com, linus.walleij@linaro.org,
-        hongzhou.yang@mediatek.com, srv_heupstream@mediatek.com,
-        jg_poxu@mediatek.com, devicetree@vger.kernel.org,
-        mark.rutland@arm.com, matthias.bgg@gmail.com,
-        sean.wang@mediatek.com, linux-gpio@vger.kernel.org,
-        erin.lo@mediatek.com, hui.liu@mediatek.com, sean.wang@kernel.org,
-        sj.huang@mediatek.com, eddie.huang@mediatek.com,
-        linux-mediatek@lists.infradead.org, seiya.wang@mediatek.com
-Subject: Re: [PATCH Resend v0 2/6] dt-bindings: pinctrl: mt8195: add binding
- document
-Message-ID: <20210330133913.GA212608@robh.at.kernel.org>
-References: <20210329113103.11003-1-zhiyong.tao@mediatek.com>
- <20210329113103.11003-3-zhiyong.tao@mediatek.com>
- <1617045684.216718.2905695.nullmailer@robh.at.kernel.org>
- <1617095128.10316.14.camel@mhfsdcap03>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=TvixdV6Zx7/AWSYPQxJ6x7+mxKn8oXSTnyruFM7nqLc=;
+        b=MiktAm1hhaPqef0vo6oJR7JbgPFTELGm8zAblrr4/TW+ZsLhou4WdWa/3IZS9fBECg
+         3ghmICNKmKwzbWpJgSPSpXHeC+XftkmDA6PNObMlwLAnYZyFgbCjR5mwacms2kJLKyZP
+         tivRnTjC+uqPqNirlEz2lK5mE5dmOPWY5XGgykdiLDrd3TeNoHiwznSZ3DVR98WjJU5u
+         +uUAURwIM7Rma/nnzY6jqq2Fbg0cu7sNX+TDQWG98HHGaqVAcsun8zDpeN6ImigomNA3
+         7pwueJPKbnrBfb46gQWbieJTh/hpTIBbN8I3tjKDlPVtaMOSVkL+VHV19aOiYYsv0M5g
+         ku0A==
+X-Gm-Message-State: AOAM5309Cn8dqeJ2ViUvC40+06wVBm5jyY857OdNiX0eS32M+GEVwXZk
+        QJ91mV/KM+vN7brHPasIUVNNm63R5uiRKF3PI6EVqx1EfC5xD28EDiOdFQVBqW1XXKYjU4Kz6bO
+        AEz+HkbTWPUDgq/mv0iEosQ==
+X-Received: by 2002:a05:6214:21a5:: with SMTP id t5mr30882336qvc.23.1617111914304;
+        Tue, 30 Mar 2021 06:45:14 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxWta3aXZ38aPclAoYDQJFro5Tq2uU5FOvwiKVCMd/yDGxvubtOY2HdUOFTotZZNLFON2BG/g==
+X-Received: by 2002:a05:6214:21a5:: with SMTP id t5mr30882305qvc.23.1617111914067;
+        Tue, 30 Mar 2021 06:45:14 -0700 (PDT)
+Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id g11sm15745881qkk.5.2021.03.30.06.45.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Mar 2021 06:45:13 -0700 (PDT)
+Subject: Re: [PATCH V4 XRT Alveo 06/20] fpga: xrt: char dev node helper
+ functions
+To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
+Cc:     linux-fpga@vger.kernel.org, maxz@xilinx.com,
+        sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
+        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
+        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
+References: <20210324052947.27889-1-lizhi.hou@xilinx.com>
+ <20210324052947.27889-7-lizhi.hou@xilinx.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <755d73b9-1e23-c2e9-1502-15df14b9ed35@redhat.com>
+Date:   Tue, 30 Mar 2021 06:45:11 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1617095128.10316.14.camel@mhfsdcap03>
+In-Reply-To: <20210324052947.27889-7-lizhi.hou@xilinx.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 30, 2021 at 05:05:28PM +0800, zhiyong tao wrote:
-> On Mon, 2021-03-29 at 14:21 -0500, Rob Herring wrote:
-> > On Mon, 29 Mar 2021 19:30:59 +0800, Zhiyong Tao wrote:
-> > > The commit adds mt8195 compatible node in binding document.
-> > > 
-> > > Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
-> > > ---
-> > >  .../bindings/pinctrl/pinctrl-mt8195.yaml      | 152 ++++++++++++++++++
-> > >  1 file changed, 152 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-> > > 
-> > 
-> > My bot found errors running 'make dt_binding_check' on your patch:
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.example.dts:19:18: fatal error: dt-bindings/pinctrl/mt8195-pinfunc.h: No such file or directory
-> >    19 |         #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
-> >       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> > compilation terminated.
-> > make[1]: *** [scripts/Makefile.lib:349: Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.example.dt.yaml] Error 1
-> > make[1]: *** Waiting for unfinished jobs....
-> > make: *** [Makefile:1380: dt_binding_check] Error 2
-> > 
-> > See https://patchwork.ozlabs.org/patch/1459558
-> > 
-> > This check can fail if there are any dependencies. The base for a patch
-> > series is generally the most recent rc1.
-> > 
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > date:
-> > 
-> > pip3 install dtschema --upgrade
-> > 
-> > Please check and re-submit.
-> > 
-> 
-> ==> I set the patch file "mt8195-pinfunc.h" patch in "4/6". so we should
-> add the file "mt8195-pinfunc.h" in this patch ? or we should put it
-> before this patch(2/6)?
+It is unclear from the changelog if this new patch was split from an existing patch or new content.
 
-It is part of the binding, so it belongs in this patch.
+the file ops seem to come from mgmnt/main.c, which call what could be file ops here.  why is this complicated redirection needed ?
 
-Rob
+On 3/23/21 10:29 PM, Lizhi Hou wrote:
+> Helper functions for char device node creation / removal for platform
+> drivers. This is part of platform driver infrastructure.
+>
+> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
+> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
+> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
+> ---
+>  drivers/fpga/xrt/lib/cdev.c | 232 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 232 insertions(+)
+>  create mode 100644 drivers/fpga/xrt/lib/cdev.c
+>
+> diff --git a/drivers/fpga/xrt/lib/cdev.c b/drivers/fpga/xrt/lib/cdev.c
+> new file mode 100644
+> index 000000000000..38efd24b6e10
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/lib/cdev.c
+> @@ -0,0 +1,232 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Xilinx Alveo FPGA device node helper functions.
+> + *
+> + * Copyright (C) 2020-2021 Xilinx, Inc.
+> + *
+> + * Authors:
+> + *	Cheng Zhen <maxz@xilinx.com>
+> + */
+> +
+> +#include "xleaf.h"
+> +
+> +extern struct class *xrt_class;
+> +
+> +#define XRT_CDEV_DIR		"xfpga"
+maybe "xrt_fpga" or just "xrt"
+> +#define INODE2PDATA(inode)	\
+> +	container_of((inode)->i_cdev, struct xrt_subdev_platdata, xsp_cdev)
+> +#define INODE2PDEV(inode)	\
+> +	to_platform_device(kobj_to_dev((inode)->i_cdev->kobj.parent))
+> +#define CDEV_NAME(sysdev)	(strchr((sysdev)->kobj.name, '!') + 1)
+> +
+> +/* Allow it to be accessed from cdev. */
+> +static void xleaf_devnode_allowed(struct platform_device *pdev)
+> +{
+> +	struct xrt_subdev_platdata *pdata = DEV_PDATA(pdev);
+> +
+> +	/* Allow new opens. */
+> +	mutex_lock(&pdata->xsp_devnode_lock);
+> +	pdata->xsp_devnode_online = true;
+> +	mutex_unlock(&pdata->xsp_devnode_lock);
+> +}
+> +
+> +/* Turn off access from cdev and wait for all existing user to go away. */
+> +static int xleaf_devnode_disallowed(struct platform_device *pdev)
+> +{
+> +	int ret = 0;
+> +	struct xrt_subdev_platdata *pdata = DEV_PDATA(pdev);
+> +
+> +	mutex_lock(&pdata->xsp_devnode_lock);
+> +
+> +	/* Prevent new opens. */
+> +	pdata->xsp_devnode_online = false;
+> +	/* Wait for existing user to close. */
+> +	while (!ret && pdata->xsp_devnode_ref) {
+> +		int rc;
+> +
+> +		mutex_unlock(&pdata->xsp_devnode_lock);
+> +		rc = wait_for_completion_killable(&pdata->xsp_devnode_comp);
+> +		mutex_lock(&pdata->xsp_devnode_lock);
+> +
+> +		if (rc == -ERESTARTSYS) {
+> +			/* Restore online state. */
+> +			pdata->xsp_devnode_online = true;
+> +			xrt_err(pdev, "%s is in use, ref=%d",
+> +				CDEV_NAME(pdata->xsp_sysdev),
+> +				pdata->xsp_devnode_ref);
+> +			ret = -EBUSY;
+> +		}
+> +	}
+> +
+> +	mutex_unlock(&pdata->xsp_devnode_lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static struct platform_device *
+> +__xleaf_devnode_open(struct inode *inode, bool excl)
+> +{
+> +	struct xrt_subdev_platdata *pdata = INODE2PDATA(inode);
+> +	struct platform_device *pdev = INODE2PDEV(inode);
+> +	bool opened = false;
+> +
+> +	mutex_lock(&pdata->xsp_devnode_lock);
+> +
+> +	if (pdata->xsp_devnode_online) {
+> +		if (excl && pdata->xsp_devnode_ref) {
+> +			xrt_err(pdev, "%s has already been opened exclusively",
+> +				CDEV_NAME(pdata->xsp_sysdev));
+> +		} else if (!excl && pdata->xsp_devnode_excl) {
+> +			xrt_err(pdev, "%s has been opened exclusively",
+> +				CDEV_NAME(pdata->xsp_sysdev));
+> +		} else {
+> +			pdata->xsp_devnode_ref++;
+> +			pdata->xsp_devnode_excl = excl;
+> +			opened = true;
+> +			xrt_info(pdev, "opened %s, ref=%d",
+> +				 CDEV_NAME(pdata->xsp_sysdev),
+> +				 pdata->xsp_devnode_ref);
+> +		}
+> +	} else {
+> +		xrt_err(pdev, "%s is offline", CDEV_NAME(pdata->xsp_sysdev));
+> +	}
+> +
+> +	mutex_unlock(&pdata->xsp_devnode_lock);
+> +
+> +	pdev = opened ? pdev : NULL;
+> +	return pdev;
+> +}
+> +
+> +struct platform_device *
+> +xleaf_devnode_open_excl(struct inode *inode)
+> +{
+> +	return __xleaf_devnode_open(inode, true);
+> +}
+This function is unused, remove.
+> +
+> +struct platform_device *
+> +xleaf_devnode_open(struct inode *inode)
+> +{
+> +	return __xleaf_devnode_open(inode, false);
+> +}
+> +EXPORT_SYMBOL_GPL(xleaf_devnode_open);
+does this really need to be exported ?
+> +
+> +void xleaf_devnode_close(struct inode *inode)
+> +{
+> +	struct xrt_subdev_platdata *pdata = INODE2PDATA(inode);
+> +	struct platform_device *pdev = INODE2PDEV(inode);
+> +	bool notify = false;
+> +
+> +	mutex_lock(&pdata->xsp_devnode_lock);
+> +
+> +	WARN_ON(pdata->xsp_devnode_ref == 0);
+> +	pdata->xsp_devnode_ref--;
+> +	if (pdata->xsp_devnode_ref == 0) {
+> +		pdata->xsp_devnode_excl = false;
+> +		notify = true;
+> +	}
+> +	if (notify) {
+> +		xrt_info(pdev, "closed %s, ref=%d",
+> +			 CDEV_NAME(pdata->xsp_sysdev), pdata->xsp_devnode_ref);
+xsp_devnode_ref will always be 0, so no need to report it.
+> +	} else {
+> +		xrt_info(pdev, "closed %s, notifying waiter",
+> +			 CDEV_NAME(pdata->xsp_sysdev));
+> +	}
+> +
+> +	mutex_unlock(&pdata->xsp_devnode_lock);
+> +
+> +	if (notify)
+> +		complete(&pdata->xsp_devnode_comp);
+> +}
+> +EXPORT_SYMBOL_GPL(xleaf_devnode_close);
+> +
+> +static inline enum xrt_subdev_file_mode
+> +devnode_mode(struct xrt_subdev_drvdata *drvdata)
+> +{
+> +	return drvdata->xsd_file_ops.xsf_mode;
+> +}
+> +
+> +int xleaf_devnode_create(struct platform_device *pdev, const char *file_name,
+> +			 const char *inst_name)
+> +{
+> +	struct xrt_subdev_drvdata *drvdata = DEV_DRVDATA(pdev);
+> +	struct xrt_subdev_file_ops *fops = &drvdata->xsd_file_ops;
+> +	struct xrt_subdev_platdata *pdata = DEV_PDATA(pdev);
+> +	struct cdev *cdevp;
+> +	struct device *sysdev;
+> +	int ret = 0;
+> +	char fname[256];
+> +
+> +	mutex_init(&pdata->xsp_devnode_lock);
+> +	init_completion(&pdata->xsp_devnode_comp);
+> +
+> +	cdevp = &DEV_PDATA(pdev)->xsp_cdev;
+> +	cdev_init(cdevp, &fops->xsf_ops);
+> +	cdevp->owner = fops->xsf_ops.owner;
+> +	cdevp->dev = MKDEV(MAJOR(fops->xsf_dev_t), pdev->id);
+> +
+> +	/*
+> +	 * Set pdev as parent of cdev so that when pdev (and its platform
+> +	 * data) will not be freed when cdev is not freed.
+> +	 */
+> +	cdev_set_parent(cdevp, &DEV(pdev)->kobj);
+> +
+> +	ret = cdev_add(cdevp, cdevp->dev, 1);
+> +	if (ret) {
+> +		xrt_err(pdev, "failed to add cdev: %d", ret);
+> +		goto failed;
+> +	}
+> +	if (!file_name)
+> +		file_name = pdev->name;
+> +	if (!inst_name) {
+> +		if (devnode_mode(drvdata) == XRT_SUBDEV_FILE_MULTI_INST) {
+> +			snprintf(fname, sizeof(fname), "%s/%s/%s.%u",
+> +				 XRT_CDEV_DIR, DEV_PDATA(pdev)->xsp_root_name,
+> +				 file_name, pdev->id);
+> +		} else {
+> +			snprintf(fname, sizeof(fname), "%s/%s/%s",
+> +				 XRT_CDEV_DIR, DEV_PDATA(pdev)->xsp_root_name,
+> +				 file_name);
+> +		}
+> +	} else {
+> +		snprintf(fname, sizeof(fname), "%s/%s/%s.%s", XRT_CDEV_DIR,
+> +			 DEV_PDATA(pdev)->xsp_root_name, file_name, inst_name);
+> +	}
+> +	sysdev = device_create(xrt_class, NULL, cdevp->dev, NULL, "%s", fname);
+> +	if (IS_ERR(sysdev)) {
+> +		ret = PTR_ERR(sysdev);
+> +		xrt_err(pdev, "failed to create device node: %d", ret);
+> +		goto failed_cdev_add;
+> +	}
+> +	pdata->xsp_sysdev = sysdev;
+> +
+> +	xleaf_devnode_allowed(pdev);
+> +
+> +	xrt_info(pdev, "created (%d, %d): /dev/%s",
+> +		 MAJOR(cdevp->dev), pdev->id, fname);
+> +	return 0;
+> +
+> +failed_cdev_add:
+> +	cdev_del(cdevp);
+> +failed:
+> +	cdevp->owner = NULL;
+> +	return ret;
+> +}
+> +
+> +int xleaf_devnode_destroy(struct platform_device *pdev)
+> +{
+> +	struct xrt_subdev_platdata *pdata = DEV_PDATA(pdev);
+> +	struct cdev *cdevp = &pdata->xsp_cdev;
+> +	dev_t dev = cdevp->dev;
+> +	int rc;
+> +
+> +	rc = xleaf_devnode_disallowed(pdev);
+> +	if (rc)
+> +		return rc;
+
+Failure of one leaf to be destroyed is not handled well.
+
+could a able to destroy check be done over the whole group ?
+
+Tom
+
+> +
+> +	xrt_info(pdev, "removed (%d, %d): /dev/%s/%s", MAJOR(dev), MINOR(dev),
+> +		 XRT_CDEV_DIR, CDEV_NAME(pdata->xsp_sysdev));
+> +	device_destroy(xrt_class, cdevp->dev);
+> +	pdata->xsp_sysdev = NULL;
+> +	cdev_del(cdevp);
+> +	return 0;
+> +}
+
