@@ -2,76 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88F6634F27E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 22:53:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 644DC34F28F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 22:55:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232565AbhC3Uwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 16:52:38 -0400
-Received: from st43p00im-ztbu10063701.me.com ([17.58.63.178]:56487 "EHLO
-        st43p00im-ztbu10063701.me.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232659AbhC3Uwb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Mar 2021 16:52:31 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-        t=1617137549; bh=D4dih7IDfleZeM1jkz2mIoV9uzt0mlpafIv8IABeh0E=;
-        h=From:To:Subject:Date:Message-Id;
-        b=ovzsUzFw534t7A4Noz29IwkdjyUQTn2qpX36nXkA3UlTZBAqYfcBQXpUb16qj802A
-         BuY62HOe0s5UkhIgfaeB+jGzN6l8dsi91CnaNF6zdJ6BLTkDASA0TGu3fj1C7CkJ8I
-         O8BaQNBsSrv4fwZ+J3nRIUtYtd4FxQn2HuAdeN9pFfIU1rqlSa7CcbFX5wZaOypsLr
-         psnRoWdyZ+32jYbPHjMHH1fsODvebL9YF06jKN39Im1EbvC4PCh6C2b32ckh0KrRPS
-         fmrzFJuE1BzulHbHmnKiPP4AmRYC0xykG+QBZRE/S3szohx3/0nupMbNdJRjOmGnOe
-         iNaPCHK7mp0LA==
-Received: from localhost (101.220.150.77.rev.sfr.net [77.150.220.101])
-        by st43p00im-ztbu10063701.me.com (Postfix) with ESMTPSA id 2C2D99A0182;
-        Tue, 30 Mar 2021 20:52:27 +0000 (UTC)
-From:   Alain Volmat <avolmat@me.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Alain Volmat <avolmat@me.com>
-Subject: [PATCH v3 7/7] dt-bindings: clock: st: clkgen-fsyn: add new introduced compatible
-Date:   Tue, 30 Mar 2021 22:51:25 +0200
-Message-Id: <20210330205125.25708-8-avolmat@me.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210330205125.25708-1-avolmat@me.com>
-References: <20210330205125.25708-1-avolmat@me.com>
-X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
- =?UTF-8?Q?2903e8d5c8f:6.0.369,18.0.761,17.0.607.475.0000000_definitions?=
- =?UTF-8?Q?=3D2021-03-30=5F12:2021-03-30=5F01,2021-03-30=5F12,2020-04-07?=
- =?UTF-8?Q?=5F01_signatures=3D0?=
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 mlxlogscore=999
- phishscore=0 mlxscore=0 adultscore=0 malwarescore=0 spamscore=0
- clxscore=1015 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2103300152
+        id S232545AbhC3UzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 16:55:16 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:40359 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232394AbhC3Uyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 16:54:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1617137694; x=1648673694;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=WDeyWZ+/Bo0B6egkKV7o1Q2mWeGTUV4+RWIdJ6r1dLA=;
+  b=T2iy1pEzToXjSQ0zMAZs9lRWjy0fVypOeEF6US8XN/mRmxDj4wdCfnDs
+   6cFxtPH9Gg8rac5nqWs7WoXgUZneFqX9bE3Wu5UARL/ZcBfFuOXcao6oC
+   mMoWGel0jvlZqaKu4Gj73avPdzDWfe8R40klxDRq9entkv0CQSdBHJ+v5
+   hNxI3Hyy17+UX66XbIt3HPVCFUUXrCIeI4P5lguTpHXCQuMadFBnHWmol
+   RKMIT4npLLKcRt5Q5DxhMq3yJ5FFVubEB/WWgQmscLZslI0jPw/YxAW1Q
+   axaOvx19m5Vj0MRl1j0L7oCGI/LnziJPdpWjkcVxHpDQH5bw+/OZ78WIt
+   A==;
+IronPort-SDR: ypNLkrgT2JTu/IBzsBFFkMdwgCybxrjMyyAV4nfPua5ujpGX/zMc9ZEqzP0rtpJJABKvvqplN9
+ DK9NwZNfcar4hhyQpcWWqkWuHMHyU/XmZDvRwVSuvQ7jfKQi1Mjoe7fGJeMUYqfqiNRbvEZXvk
+ EqvfsX8Q8dlWLa8/v+ORt6usUxrWZWV+uW5/KdDeNPQq8Fu0UbTPB0xNqiw7mgnWwg+mL6yJqQ
+ PimcXxMBVUDZfWX3TKyMZB2PAJn3MM/qt2HaON+3HareYzAenII+Nl55TkS/xreAwPaBL/ufWZ
+ Y/I=
+X-IronPort-AV: E=Sophos;i="5.81,291,1610434800"; 
+   d="scan'208";a="111925320"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 Mar 2021 13:54:53 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 30 Mar 2021 13:54:52 -0700
+Received: from cristi-P53.amer.actel.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Tue, 30 Mar 2021 13:54:50 -0700
+From:   <cristian.birsan@microchip.com>
+To:     <linux@roeck-us.net>, <heikki.krogerus@linux.intel.com>,
+        <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>
+CC:     <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Cristian Birsan <cristian.birsan@microchip.com>
+Subject: [RFC PATCH v2 0/2] usb: typec: Add driver for Microchip sama7g5 tcpc
+Date:   Tue, 30 Mar 2021 23:54:40 +0300
+Message-ID: <20210330205442.981649-1-cristian.birsan@microchip.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-New compatible are added, supporting various kind of clkgen-fsyn
-used for STiH407, STiH410 and STiH418
+From: Cristian Birsan <cristian.birsan@microchip.com>
 
-Signed-off-by: Alain Volmat <avolmat@me.com>
----
- Documentation/devicetree/bindings/clock/st/st,quadfs.txt | 3 +++
- 1 file changed, 3 insertions(+)
+This patch set adds initial driver support for Microchip USB Type-C Port
+Controller (TCPC) embedded in sama7g5 SoC.
 
-diff --git a/Documentation/devicetree/bindings/clock/st/st,quadfs.txt b/Documentation/devicetree/bindings/clock/st/st,quadfs.txt
-index d93d49342e60..c4ba2adb0b4f 100644
---- a/Documentation/devicetree/bindings/clock/st/st,quadfs.txt
-+++ b/Documentation/devicetree/bindings/clock/st/st,quadfs.txt
-@@ -12,6 +12,9 @@ This binding uses the common clock binding[1].
- Required properties:
- - compatible : shall be:
-   "st,quadfs"
-+  "st,quadfs-d0"
-+  "st,quadfs-d2"
-+  "st,quadfs-d3"
-   "st,quadfs-pll"
- 
- 
+The controller does not implement power delivery and the driver uses dummy
+functions to register the port with TCPM. The current silicon version is
+not able to trigger interrupts so the driver will poll for changes on
+CC1/CC2 lines.
+
+Support for sink is implemented and tested with an USB device. The plan is
+to extend the driver and add source support.
+
+Changes in v2:
+- fix DT bindings yamllint warnings/errors
+- fix compilation error reported by: kernel test robot <lkp@intel.com>
+
+Cristian Birsan (2):
+  dt-bindings: usb: Add DT bindings for Microchip sama7g5 tcpc
+  usb: typec: sama7g5_tcpc: add driver for Microchip sama7g5 tcpc
+
+ .../bindings/usb/microchip,sama7g5-tcpc.yaml  |  90 +++
+ drivers/usb/typec/tcpm/Kconfig                |   8 +
+ drivers/usb/typec/tcpm/Makefile               |   1 +
+ drivers/usb/typec/tcpm/sama7g5_tcpc.c         | 610 ++++++++++++++++++
+ 4 files changed, 709 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/microchip,sama7g5-tcpc.yaml
+ create mode 100644 drivers/usb/typec/tcpm/sama7g5_tcpc.c
+
 -- 
-2.17.1
+2.25.1
 
