@@ -2,88 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C956734EC7F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 17:32:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F332B34EC87
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 17:33:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232433AbhC3Pbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 11:31:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37860 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232224AbhC3PbJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Mar 2021 11:31:09 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6AB2E619A7;
-        Tue, 30 Mar 2021 15:31:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617118269;
-        bh=NtE7aeYpAIhUn0tc24UAQobx/yYBi5xZmalsJsMH4Dc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tTGTaCTHJ0XrdCjLcfU+o9chdyDWqDnmVlnbEuGom32oGmV+JhqPd5dBGP5P9D/xl
-         n6Wq8R7xqtbCBrNMqvPoMo9IG6TEEHqT61YZKzKwF1+6MEyUDdJGNkKS1ftc+nI0pL
-         J4uvSPGmDXKBnoL1g56r/KnrGhpmQ5E7BhjOqoenInO8qoDzOu12ORu8+AKO68bxVm
-         VTJ1LzC7TLZxkGMz8OGkX+61n2sVx2C5+jeUn2y89faPLQbsi0fWIUdkgodRq7uCT7
-         cNK3ZrMZ0GGpDlLTcV291cpIXmdb8SK+AGQnedN5C5QOuJGt1nqC4pxbLkbWXhv6C1
-         iD8kdbSWDthLA==
-Date:   Tue, 30 Mar 2021 16:31:04 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Rob Clark <robdclark@gmail.com>
-Cc:     Eric Anholt <eric@anholt.net>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        Sean Paul <sean@poorly.run>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] iommu/arm-smmu-qcom: Skip the TTBR1 quirk for db820c.
-Message-ID: <20210330153050.GB6567@willie-the-truck>
-References: <20210326231303.3071950-1-eric@anholt.net>
- <20210329144729.GB4203@willie-the-truck>
- <CAF6AEGugpEk396DVtWX=W+uf3p-wcgBfCSpSLWGQJE1vKpJ4aw@mail.gmail.com>
- <20210330093432.GB5281@willie-the-truck>
- <CAF6AEGvCCWvmRBhzY4MsdzgwfJ+GF2AUOS-_NTyhM8wtnDzY2Q@mail.gmail.com>
+        id S232383AbhC3Pcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 11:32:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59206 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231532AbhC3PcX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 11:32:23 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BEF7C061574;
+        Tue, 30 Mar 2021 08:32:23 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id i26so24360738lfl.1;
+        Tue, 30 Mar 2021 08:32:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=c2IZxiP/PHTUNylXu7cGThAF7WUnRTJb00OUl3ALDOE=;
+        b=V2WsCB9e+V4zvZcDi+ZiIVqL966DXzs5U1s6M1jZTGaLKgvlC4B/LL1fIdX3obzY5W
+         v4v0f+gQGfhvbjdqAgdmMnbQZf+8dKGXGlHa/ka+pQ9QgXqrDExWLpyiw6e0GiOzcEh1
+         ME0gJCTG+4vRvTSzZEqoq4l0W7gHBxSg6pzf9fGVt0bl6Du0r4Xy7mOpqtxDuOLN5TUz
+         ImgQ48ySQElZD0rVxrIn7Otmrceu+MzNz46m+b94mRa/tPr8IBXnOam6VeBNOV7M/tXl
+         SrqaffD19nG6GxBYX/ayZMP6/B3irEi+NYyWYvORNr5IXiKuGFIlXqdXf0eW1QZc3Bj4
+         GDuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=c2IZxiP/PHTUNylXu7cGThAF7WUnRTJb00OUl3ALDOE=;
+        b=WcXJ+ABgCbuU25VTcENvVpyVq5KS9trgMne+AIkYKskk32tFumSvT9J8gXeJq4avSu
+         qhqf8UV79eBMHYP+zHyTAPCA3jOcoXq2Acer4eDyRCPN27bb4hxOusxxk6x1V/hZYby8
+         d53CVgl+xKYCX7mu2I+htcamQTjHX4rFBXsKJoCbc2p0ZEkDps95GwnQCJvw73GF0BqW
+         0QgYy9AXZh4vRII1f7X9TedtigFjdmGDxYbqOZZHVFZLsIzlbyt4/HxJLZVAGrVaQOS6
+         PCYhUU/j14U6nPvZ3N6DD4PzXTDTJTjWImwatNnhBU4VyczqB9dvD8SekvbSJMh6+lIq
+         VywQ==
+X-Gm-Message-State: AOAM532R1zYxEOk7K2Rbhi4sSV7q83BDbVc9xQCpx5HksdWCCCGDNOv8
+        UG7BIoO76taZWvTeU+h1tDe2ZQvfuks=
+X-Google-Smtp-Source: ABdhPJzl+nrn7AEc/akvrf/8yMHU22UkGVLpS22NsjqkyIingW81F7l/JaMXP09VghP8+TQqhk8mfQ==
+X-Received: by 2002:ac2:4c29:: with SMTP id u9mr16310671lfq.164.1617118341879;
+        Tue, 30 Mar 2021 08:32:21 -0700 (PDT)
+Received: from ?IPv6:2a00:1370:814d:b259:a10:76ff:fe69:21b6? ([2a00:1370:814d:b259:a10:76ff:fe69:21b6])
+        by smtp.googlemail.com with ESMTPSA id j22sm225899lfh.31.2021.03.30.08.32.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Mar 2021 08:32:21 -0700 (PDT)
+Subject: Re: [PATCH v1 5/6] dt-bindings: memory: tegra20: emc: Convert to
+ schema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+References: <20210329194602.17049-1-digetx@gmail.com>
+ <20210329194602.17049-6-digetx@gmail.com>
+ <7e45375c-3e24-4fc1-5776-190db32681e5@canonical.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <2ded3a2d-6487-6e6d-d211-0cae45f4f948@gmail.com>
+Date:   Tue, 30 Mar 2021 18:32:20 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAF6AEGvCCWvmRBhzY4MsdzgwfJ+GF2AUOS-_NTyhM8wtnDzY2Q@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <7e45375c-3e24-4fc1-5776-190db32681e5@canonical.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 30, 2021 at 08:03:36AM -0700, Rob Clark wrote:
-> On Tue, Mar 30, 2021 at 2:34 AM Will Deacon <will@kernel.org> wrote:
-> >
-> > On Mon, Mar 29, 2021 at 09:02:50PM -0700, Rob Clark wrote:
-> > > On Mon, Mar 29, 2021 at 7:47 AM Will Deacon <will@kernel.org> wrote:
-> > > >
-> > > > On Fri, Mar 26, 2021 at 04:13:02PM -0700, Eric Anholt wrote:
-> > > > > db820c wants to use the qcom smmu path to get HUPCF set (which keeps
-> > > > > the GPU from wedging and then sometimes wedging the kernel after a
-> > > > > page fault), but it doesn't have separate pagetables support yet in
-> > > > > drm/msm so we can't go all the way to the TTBR1 path.
-> > > >
-> > > > What do you mean by "doesn't have separate pagetables support yet"? The
-> > > > compatible string doesn't feel like the right way to determine this.
-> > >
-> > > the compatible string identifies what it is, not what the sw
-> > > limitations are, so in that regard it seems right to me..
-> >
-> > Well it depends on what "doesn't have separate pagetables support yet"
-> > means. I can't tell if it's a hardware issue, a firmware issue or a driver
-> > issue.
+30.03.2021 11:48, Krzysztof Kozlowski пишет:
+>> +  nvidia,use-ram-code:
+>> +    type: boolean
+>> +    description:
+>> +      If present, the emc-tables@ sub-nodes will be addressed.
+>> +
+>> +patternProperties:
+>> +  "^emc-table@[0-9]+$":
+> This might not be easy but you should add constraints when emc-table and
+> emc-tables are expected. The schema should check if proper node is used
+> depending on "nvidia,use-ram-code".
 > 
-> Just a driver issue (and the fact that currently we don't have
-> physical access to a device... debugging a5xx per-process-pgtables by
-> pushing untested things to the CI farm is kind of a difficult way to
-> work)
 
-But then in that case, this is using the compatible string to identify a
-driver issue, no?
+I'm afraid this is not doable. If you have an example how to do this,
+please share it with me.
 
-Will
+I see that there is a "dependencies:", but it doesn't work with the
+patterns, IIUC.
