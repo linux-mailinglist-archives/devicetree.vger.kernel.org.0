@@ -2,138 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9F8334F0F7
-	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 20:24:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C80A234F12F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Mar 2021 20:47:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232579AbhC3SX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 14:23:59 -0400
-Received: from alln-iport-5.cisco.com ([173.37.142.92]:38405 "EHLO
-        alln-iport-5.cisco.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232786AbhC3SXp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 14:23:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=2604; q=dns/txt; s=iport;
-  t=1617128625; x=1618338225;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=xMStwoujyvRVt+OuzbkoYXvA32+qhvWOh/uecqwPFaM=;
-  b=HOKvwhRGp1THDDrVjcq0hqrsPhQf9jhzOj6t2M25Zty6l28YVrQm/gpt
-   yEjqgSvQ1fHwc6HMYoJ8rWqfIz1F4I/3xbaSxUEGMuMTZViAfhyEPNDEs
-   sX/53oxhy3KC+CbX1f4inK0aPjnmsHsBhVaQsNHEjsybZUlVbG6IzTgc6
-   U=;
-X-IPAS-Result: =?us-ascii?q?A0ADAAC0a2NgmJldJa1aGgEBAQEBAQEBAQEDAQEBARIBA?=
- =?us-ascii?q?QEBAgIBAQEBQIE8BQEBAQELAYN2ATkxjGWJLpAIFopFgXwLAQEBDQEBNAQBA?=
- =?us-ascii?q?YRQAoF6AiU0CQ4CAwEBAQMCAwEBAQEBBQEBAQIBBgQUAQEBAQEBAQGGQ4ZFA?=
- =?us-ascii?q?QIDOj8QCxguPBsGE4JwgwirOXWBNIkLgUQigRcBjUkmHIFJQoESgm4uPoo2B?=
- =?us-ascii?q?IJHgQ6CMCyUAYpMmw6BFIMRgSObNjEQpEK4EgIEBgUCFoFUOIFbMxoIGxWDJ?=
- =?us-ascii?q?FAZDY44jk8hAy84AgYKAQEDCYZaLIIZAQE?=
-IronPort-HdrOrdr: A9a23:OGIYBqgWvJdablCjWRAu+Iu5lnBQXmcji2hD6mlwRA09T+Wzna
- mV88gz/xnylToXRTUMmcqYPrOBXHPb8vdOkOwsFJ2lWxTrv3btEZF64eLZsl/dMgD36+I178
- 1dWodkDtmYNzVHpOb8pDK1CtMxhOSAmZrY4dv261dIYUVUZ7p77wF/YzzrcXFeYAVdH5I2GN
- 69y6N8xgaIQngcYsSlCnRtZYGqzOHjr57obQULABQq8mC17Q+A0qLwEBSTw34lPQ9n/LFKyw
- T4uj28wLm/uPemzRKZ8Gnf4/1t6b3c4+oGItCQgc4ILTipsCKUXcBKXr2Puy1dmpDJ1GoX
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-AV: E=Sophos;i="5.81,291,1610409600"; 
-   d="scan'208";a="689174954"
-Received: from rcdn-core-2.cisco.com ([173.37.93.153])
-  by alln-iport-5.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 30 Mar 2021 18:23:43 +0000
-Received: from zorba ([10.24.8.123])
-        by rcdn-core-2.cisco.com (8.15.2/8.15.2) with ESMTPS id 12UINdP0017615
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Tue, 30 Mar 2021 18:23:41 GMT
-Date:   Tue, 30 Mar 2021 11:23:39 -0700
-From:   Daniel Walker <danielwa@cisco.com>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Christophe Leroy <christophe.leroy@csgroup.eu>, will@kernel.org,
-        Rob Herring <robh@kernel.org>,
-        daniel@gimpelevich.san-francisco.ca.us, linux-arch@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        microblaze <monstr@monstr.eu>,
-        linux-mips <linux-mips@vger.kernel.org>,
-        nios2 <ley.foon.tan@intel.com>, openrisc@lists.librecores.org,
-        linux-hexagon@vger.kernel.org, linux-riscv@lists.infradead.org,
-        x86@kernel.org, linux-xtensa@linux-xtensa.org,
-        linux-sh@vger.kernel.org, sparclinux@vger.kernel.org
-Subject: Re: [PATCH v3 01/17] cmdline: Add generic function to build command
- line.
-Message-ID: <20210330182339.GU109100@zorba>
-References: <cover.1616765869.git.christophe.leroy@csgroup.eu>
- <878228ad88df38f8914c7aa25dede3ed05c50f48.1616765869.git.christophe.leroy@csgroup.eu>
- <20210330172714.GR109100@zorba>
- <D8C1FBF6-E5C0-4233-BCB8-694274EA28F9@goldelico.com>
+        id S232919AbhC3SrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 14:47:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45220 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231910AbhC3Sqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 14:46:38 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E01A9C0613D9
+        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 11:35:02 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id t23-20020a0568301e37b02901b65ab30024so16529596otr.4
+        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 11:35:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kali.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=7htaQKxbftoYBoBRvo6Fw3o/xGPBC8mf4mLzA2dc/4o=;
+        b=Ft5K1BDKQVSaTIL9aJRJ/hHCgyhttM6MmqYsQMbiLPuOd2RI52tQyVuF0WSh1DgmT0
+         jQONm6nzuGp4Jg11PZc07nR1wdwndptUnGbXhDajnM9XKugPZ50Gz9PgR2cvm0eOer80
+         yO8N6RxphvKTM098kSf/P/lKulCSAzDjTGFVr9XbbOPGJsLnLamWtsfU5EEv71VZZ+vd
+         zWmVYbudtEgS5wW4IRzsUcFhP8mPcS3ODLRX/9hSNHY8f/UGlzbQTYYfAbcqLkrCYccP
+         It6xI8BpDhRk6cDXlAoHpf1epj6vcxco20xdEDUFbPM7AEu7jJeNLKVnbQNixtHR89O0
+         cTDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=7htaQKxbftoYBoBRvo6Fw3o/xGPBC8mf4mLzA2dc/4o=;
+        b=XUwICGH8JkNjJc5OWtV6zZnPyRZomqiusMCKmCgZo3OJ5TnRPU8evEjNWaCLvz/z6E
+         MmhLKtGYFwjOBdR4cTa4GBwjzuvfSWeAQ9/v7fof+hNVtUbl+7OS7hAhWV3apmLEHgH+
+         qZiqc4Mtj0pePdVJ0w35gV5UhpluFPNpCP3JpRig0yHTIyTyp6JhlxWkQc9jeGsPnBdF
+         D3KejK9fJIC9en2LJgtElyBiLkRJ7fIU2MaWBVCXiD6itwqi3QjbSWKz0EStbP+RemBy
+         8Q62YPjTUpQEKhqZP4uMyYMtGZx97M1wOnbOwxxtTCduVsNvq532XWbZHzTnzOyCf/F/
+         rS8Q==
+X-Gm-Message-State: AOAM5326EXyg0QzQ0Sq9gqY8xqR8Hz3w7WSrC1tzZYtprOIDuyBBviPL
+        8s+oLOZqyG71R1HQocPvFqwxXg==
+X-Google-Smtp-Source: ABdhPJxm/HKy8G9IahnJtm9yGlmSCpqOeKz1dBEhVN8GGToPwn+I+VZJQQyGDe8lEGomZ9Kyg1y2uw==
+X-Received: by 2002:a9d:4811:: with SMTP id c17mr29460104otf.206.1617129302172;
+        Tue, 30 Mar 2021 11:35:02 -0700 (PDT)
+Received: from MacBook-Pro.hackershack.net (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
+        by smtp.gmail.com with ESMTPSA id g2sm5232437otn.32.2021.03.30.11.35.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Mar 2021 11:35:01 -0700 (PDT)
+Subject: Re: [v1] drm/msm/disp/dpu1: icc path needs to be set before dpu
+ runtime resume
+To:     Kalyan Thota <kalyan_t@codeaurora.org>, y@qualcomm.com,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Kalyan Thota <kalyant@codeaurora.org>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, mkrishn@codeaurora.org, hywu@google.com,
+        mka@google.com, midean@google.com
+References: <y> <1616404632-13693-1-git-send-email-kalyan_t@codeaurora.org>
+From:   Steev Klimaszewski <steev@kali.org>
+Message-ID: <823f7f00-444e-8e22-e8d0-2ced97e4c291@kali.org>
+Date:   Tue, 30 Mar 2021 13:34:59 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <D8C1FBF6-E5C0-4233-BCB8-694274EA28F9@goldelico.com>
-X-Outbound-SMTP-Client: 10.24.8.123, [10.24.8.123]
-X-Outbound-Node: rcdn-core-2.cisco.com
+In-Reply-To: <1616404632-13693-1-git-send-email-kalyan_t@codeaurora.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 30, 2021 at 08:07:30PM +0200, H. Nikolaus Schaller wrote:
-> 
-> > Am 30.03.2021 um 19:27 schrieb Daniel Walker <danielwa@cisco.com>:
-> > 
-> > On Fri, Mar 26, 2021 at 01:44:48PM +0000, Christophe Leroy wrote:
-> >> This code provides architectures with a way to build command line
-> >> based on what is built in the kernel and what is handed over by the
-> >> bootloader, based on selected compile-time options.
-> >> 
-> >> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
-> >> ---
-> >> v3:
-> >> - Addressed comments from Will
-> >> - Added capability to have src == dst
-> >> ---
-> >> include/linux/cmdline.h | 57 +++++++++++++++++++++++++++++++++++++++++
-> >> 1 file changed, 57 insertions(+)
-> >> create mode 100644 include/linux/cmdline.h
-> >> 
-> >> diff --git a/include/linux/cmdline.h b/include/linux/cmdline.h
-> >> new file mode 100644
-> >> index 000000000000..dea87edd41be
-> >> --- /dev/null
-> >> +++ b/include/linux/cmdline.h
-> >> @@ -0,0 +1,57 @@
-> >> +/* SPDX-License-Identifier: GPL-2.0 */
-> >> +#ifndef _LINUX_CMDLINE_H
-> >> +#define _LINUX_CMDLINE_H
-> >> +
-> >> +#include <linux/string.h>
-> >> +
-> >> +/* Allow architectures to override strlcat, powerpc can't use strings so early */
-> >> +#ifndef cmdline_strlcat
-> >> +#define cmdline_strlcat strlcat
-> >> +#endif
-> >> +
-> >> +/*
-> >> + * This function will append or prepend a builtin command line to the command
-> >> + * line provided by the bootloader. Kconfig options can be used to alter
-> >> + * the behavior of this builtin command line.
-> >> + * @dst: The destination of the final appended/prepended string.
-> >> + * @src: The starting string or NULL if there isn't one.
-> >> + * @len: the length of dest buffer.
-> >> + */
-> > 
-> > Append or prepend ? Cisco requires both at the same time. This is why my
-> > implementation provides both. I can't use this with both at once.
-> 
-> Just an idea: what about defining CMDLINE as a pattern where e.g. "$$" or "%%"
-> is replaced by the boot loader command line?
-> 
-> Then you can formulate replace, prepend, append, prepend+append with a single
-> CONFIG setting.
-> 
-> It may be a little more complex in code (scanning for the pattern and replacing
-> it and take care to temporary memory) but IMHO it could be worth to consider.
 
-In some cases this code could be used extremely early in boot up. For example in the
-prom_init.c powerpc code, or in efi changes. The flexibility to find and replace
-like that is not always an option due to the nature of the environment. It's not
-impossible of course.
+On 3/22/21 4:17 AM, Kalyan Thota wrote:
+> From: Kalyan Thota <kalyant@codeaurora.org>
+>
+> DPU runtime resume will request for a min vote on the AXI bus as
+> it is a necessary step before turning ON the AXI clock.
+>
+> The change does below
+> 1) Move the icc path set before requesting runtime get_sync.
+> 2) remove the dependency of hw catalog for min ib vote
+> as it is initialized at a later point.
+>
+> Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
+> ---
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 12 +++++++-----
+>  1 file changed, 7 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> index ed636f1..cab387f 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> @@ -44,6 +44,8 @@
+>  #define DPU_DEBUGFS_DIR "msm_dpu"
+>  #define DPU_DEBUGFS_HWMASKNAME "hw_log_mask"
+>  
+> +#define MIN_IB_BW	400000000ULL /* Min ib vote 400MB */
+> +
+>  static int dpu_kms_hw_init(struct msm_kms *kms);
+>  static void _dpu_kms_mmu_destroy(struct dpu_kms *dpu_kms);
+>  
+> @@ -932,6 +934,9 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
+>  		DPU_DEBUG("REG_DMA is not defined");
+>  	}
+>  
+> +	if (of_device_is_compatible(dev->dev->of_node, "qcom,sc7180-mdss"))
+> +		dpu_kms_parse_data_bus_icc_path(dpu_kms);
+> +
+>  	pm_runtime_get_sync(&dpu_kms->pdev->dev);
+>  
+>  	dpu_kms->core_rev = readl_relaxed(dpu_kms->mmio + 0x0);
+> @@ -1037,9 +1042,6 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
+>  
+>  	dpu_vbif_init_memtypes(dpu_kms);
+>  
+> -	if (of_device_is_compatible(dev->dev->of_node, "qcom,sc7180-mdss"))
+> -		dpu_kms_parse_data_bus_icc_path(dpu_kms);
+> -
+>  	pm_runtime_put_sync(&dpu_kms->pdev->dev);
+>  
+>  	return 0;
+> @@ -1196,10 +1198,10 @@ static int __maybe_unused dpu_runtime_resume(struct device *dev)
+>  
+>  	ddev = dpu_kms->dev;
+>  
+> +	WARN_ON(!(dpu_kms->num_paths));
+>  	/* Min vote of BW is required before turning on AXI clk */
+>  	for (i = 0; i < dpu_kms->num_paths; i++)
+> -		icc_set_bw(dpu_kms->path[i], 0,
+> -			dpu_kms->catalog->perf.min_dram_ib);
+> +		icc_set_bw(dpu_kms->path[i], 0, Bps_to_icc(MIN_IB_BW));
+>  
+>  	rc = msm_dss_enable_clk(mp->clk_config, mp->num_clk, true);
+>  	if (rc) {
 
-Daniel
+With this patch now applied to 5.12-rc5, I am seeing the following when
+booting the Lenovo Yoga C630 -
+
+Mar 30 13:16:03 c630 kernel: [    2.038491] ------------[ cut here ]------------
+Mar 30 13:16:03 c630 kernel: [    2.038495] WARNING: CPU: 3 PID: 125 at drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c:1196 dpu_runtime_resume+0xc0/0xf0 [msm]
+Mar 30 13:16:03 c630 kernel: [    2.038551] Modules linked in: ti_sn65dsi86 i2c_hid_of crct10dif_ce msm rtc_pm8xxx llcc_qcom ocmem drm_kms_helper i2c_qcom_geni phy_qcom_qusb2 ipa(+) qcom_common qcom_glink_smem qmi_helpers mdt_loader panel_simple drm pwm_bl
+Mar 30 13:16:03 c630 kernel: [    2.038599] CPU: 3 PID: 125 Comm: kworker/3:1 Not tainted 5.12.0-rc5 #1
+Mar 30 13:16:03 c630 kernel: [    2.038605] Hardware name: LENOVO 81JL/LNVNB161216, BIOS 9UCN33WW(V2.06) 06/ 4/2019
+Mar 30 13:16:03 c630 kernel: [    2.038610] Workqueue: events deferred_probe_work_func
+Mar 30 13:16:03 c630 kernel: [    2.038621] pstate: 60400005 (nZCv daif +PAN -UAO -TCO BTYPE=--)
+Mar 30 13:16:03 c630 kernel: [    2.038627] pc : dpu_runtime_resume+0xc0/0xf0 [msm]
+Mar 30 13:16:03 c630 kernel: [    2.038674] lr : pm_generic_runtime_resume+0x30/0x50
+Mar 30 13:16:03 c630 kernel: [    2.038683] sp : ffff800010b9b7e0
+Mar 30 13:16:03 c630 kernel: [    2.038685] x29: ffff800010b9b7e0 x28: 0000000000000000 
+Mar 30 13:16:03 c630 kernel: [    2.038692] x27: 0000000000000000 x26: ffff6b42c0c16cf4 
+Mar 30 13:16:03 c630 kernel: [    2.038698] x25: 000000007965f7df x24: 0000000000000001 
+Mar 30 13:16:03 c630 kernel: [    2.038705] x23: ffff6b42c0a34180 x22: ffffda2e0cc5b3d0 
+Mar 30 13:16:03 c630 kernel: [    2.038712] x21: ffffda2e0b3ed6a0 x20: ffff6b42c6845000 
+Mar 30 13:16:03 c630 kernel: [    2.038718] x19: ffff6b42c6851080 x18: ffffda2e0cce1220 
+Mar 30 13:16:03 c630 kernel: [    2.038725] x17: ffffda2e0cce1238 x16: ffffda2e0b23e5f0 
+Mar 30 13:16:03 c630 kernel: [    2.038731] x15: 0000000040000000 x14: 0000000000000000 
+Mar 30 13:16:03 c630 kernel: [    2.038738] x13: ffff6b42c5f0b5b0 x12: 0000000000000000 
+Mar 30 13:16:03 c630 kernel: [    2.038744] x11: 0000000000000001 x10: 0000000000003fff 
+Mar 30 13:16:03 c630 kernel: [    2.038750] x9 : 0000000000000000 x8 : 0000000000000000 
+Mar 30 13:16:03 c630 kernel: [    2.038755] x7 : 0000000000000000 x6 : 000000000c473b7e 
+Mar 30 13:16:03 c630 kernel: [    2.038761] x5 : 00ffffffffffffff x4 : 00221806fff8f800 
+Mar 30 13:16:03 c630 kernel: [    2.038768] x3 : 0000000000000018 x2 : ffffda2dc3d34320 
+Mar 30 13:16:03 c630 kernel: [    2.038774] x1 : 0000000000000000 x0 : 0000000000000000 
+Mar 30 13:16:03 c630 kernel: [    2.038781] Call trace:
+Mar 30 13:16:03 c630 kernel: [    2.038784]  dpu_runtime_resume+0xc0/0xf0 [msm]
+Mar 30 13:16:03 c630 kernel: [    2.038831]  pm_generic_runtime_resume+0x30/0x50
+Mar 30 13:16:03 c630 kernel: [    2.038836]  __genpd_runtime_resume+0x30/0xb0
+Mar 30 13:16:03 c630 kernel: [    2.038842]  genpd_runtime_resume+0x90/0x250
+Mar 30 13:16:03 c630 kernel: [    2.038848]  __rpm_callback+0x90/0x160
+Mar 30 13:16:03 c630 kernel: [    2.038854]  rpm_callback+0x24/0x84
+Mar 30 13:16:03 c630 kernel: [    2.038859]  rpm_resume+0x450/0x6ec
+Mar 30 13:16:03 c630 kernel: [    2.038865]  __pm_runtime_resume+0x3c/0x90
+Mar 30 13:16:03 c630 kernel: [    2.038870]  dpu_kms_hw_init+0x124/0x5dc [msm]
+Mar 30 13:16:03 c630 kernel: [    2.038918]  msm_drm_bind+0x468/0x594 [msm]
+Mar 30 13:16:03 c630 kernel: [    2.038965]  try_to_bring_up_master+0x164/0x1d0
+Mar 30 13:16:03 c630 kernel: [    2.038973]  component_master_add_with_match+0xb8/0x100
+Mar 30 13:16:03 c630 kernel: [    2.038979]  msm_pdev_probe+0x260/0x300 [msm]
+Mar 30 13:16:03 c630 kernel: [    2.039026]  platform_probe+0x68/0xe0
+Mar 30 13:16:03 c630 kernel: [    2.039032]  really_probe+0xe4/0x4c0
+Mar 30 13:16:03 c630 kernel: [    2.039036]  driver_probe_device+0x58/0xc0
+Mar 30 13:16:03 c630 kernel: [    2.039040]  __device_attach_driver+0xa8/0x104
+Mar 30 13:16:03 c630 kernel: [    2.039045]  bus_for_each_drv+0x78/0xd0
+Mar 30 13:16:03 c630 kernel: [    2.039051]  __device_attach+0xd8/0x17c
+Mar 30 13:16:03 c630 kernel: [    2.039055]  device_initial_probe+0x14/0x20
+Mar 30 13:16:03 c630 kernel: [    2.039059]  bus_probe_device+0x9c/0xa4
+Mar 30 13:16:03 c630 kernel: [    2.039065]  deferred_probe_work_func+0x74/0xb0
+Mar 30 13:16:03 c630 kernel: [    2.039069]  process_one_work+0x1d0/0x494
+Mar 30 13:16:03 c630 kernel: [    2.039076]  worker_thread+0x13c/0x470
+Mar 30 13:16:03 c630 kernel: [    2.039080]  kthread+0x158/0x160
+Mar 30 13:16:03 c630 kernel: [    2.039085]  ret_from_fork+0x10/0x34
+Mar 30 13:16:03 c630 kernel: [    2.039093] ---[ end trace 65a4c9cc3f59c59a ]---
+Mar 30 13:16:03 c630 kernel: [    2.039124] [drm:dpu_kms_hw_init:943] dpu hardware revision:0x40000000
+
