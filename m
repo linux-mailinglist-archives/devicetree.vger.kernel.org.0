@@ -2,244 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23F4835086F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 22:44:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB45335098C
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 23:34:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236757AbhCaUoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 16:44:15 -0400
-Received: from st43p00im-zteg10062001.me.com ([17.58.63.166]:38064 "EHLO
-        st43p00im-zteg10062001.me.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236760AbhCaUn5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Mar 2021 16:43:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-        t=1617223436; bh=VcVAguE+Ld81/uBqahOdREcVt6Dk0BmX80B63ohRlQg=;
-        h=From:To:Subject:Date:Message-Id;
-        b=JFlAze69sDkmGDPVUddvb8S6gmGWdUFdgHKBE/IRjzp9ijuhWWMcwLuVKzOTB/f7a
-         PBZScYf7z9T0RHSNAPT4fjvO5UM7PEKLjR5FXthFlLAmv6b9eNrTuXlZ/oPdCEyYV0
-         5EyR95nZSVMqYBPt+Gkdt50KlTBECofCr9HippQm7OMZLyNtKaCGH1th07CkrKN6iq
-         8tETQ0G/6oKxcX4cPQOzj4+dM2wq0cKDB5WjryLIz0EPB8tbr7YCUUNVYDsY0WM97E
-         yMAyqyoEnFLJ7yziMTCX54s1Km+bp/NZrz1gLMKUU4lwslZZihzzQwIuaXrRuNRsD+
-         9WvCYDTx8jFiA==
-Received: from localhost (101.220.150.77.rev.sfr.net [77.150.220.101])
-        by st43p00im-zteg10062001.me.com (Postfix) with ESMTPSA id 361C16C065C;
-        Wed, 31 Mar 2021 20:43:54 +0000 (UTC)
-From:   Alain Volmat <avolmat@me.com>
-To:     Patrice Chotard <patrice.chotard@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, avolmat@me.com
-Subject: [PATCH v3 13/13] ARM: dts: sti: Introduce 4KOpen (stih418-b2264) board
-Date:   Wed, 31 Mar 2021 22:42:28 +0200
-Message-Id: <20210331204228.26107-14-avolmat@me.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210331204228.26107-1-avolmat@me.com>
-References: <20210331204228.26107-1-avolmat@me.com>
-X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
- =?UTF-8?Q?2903e8d5c8f:6.0.369,18.0.761,17.0.607.475.0000000_definitions?=
- =?UTF-8?Q?=3D2021-03-31=5F08:2021-03-31=5F02,2021-03-31=5F08,2020-04-07?=
- =?UTF-8?Q?=5F01_signatures=3D0?=
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1015 bulkscore=0 mlxscore=0
- spamscore=0 suspectscore=0 malwarescore=0 mlxlogscore=999 phishscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2103310144
+        id S231156AbhCaVdb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 17:33:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53076 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229624AbhCaVdB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 17:33:01 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 622F9C06174A
+        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 14:33:01 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id f10so203593pgl.9
+        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 14:33:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=rk5hGcPQBnN1SN2dx/HkSBbBGNgs3jWmWn+abQ5G2Y8=;
+        b=ZID5pYwBKnZsdQnnwpRR2fq/yxgzUjbWR+eMz0HyUAl33Yvno2whFZuIsSHGMN+AAA
+         qFLI2n3BFzRa+Z1vjUFK6kLBYR5s43ZTXFok6gry+JBW8sQksfbhRMiAgRo1lGOHpCNK
+         Nv0yE7bohpDU39HXuT4qxc3nOPg++9fcDhZxReFSiIonZpp+HsgDhEkRaWwNwxaxIy4n
+         T6zCeSidKutLH7vemClxuFCSL2/Pz+bwpIoR3j4U3G6Z83Fl1xYI7bMwLri3ZcTXP9FH
+         oGQdlc0B/Ixc5T6baouEL6TBK88YWVOjCV+tqdXjZRXRHSHSKBPy2aK+2g2a15jmSprN
+         Mcvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=rk5hGcPQBnN1SN2dx/HkSBbBGNgs3jWmWn+abQ5G2Y8=;
+        b=FqzzfyJiAUrhaSq46t93iqmjr8GywEJZZtm5RVYguwP83uJFCwb4yoXGqLODy07O3O
+         rDw9vvvCn2cN9Y+F+u1u1T9oyZg1Ak+Lr4jrXGMz3+7JNoT6hys4vyeYrDYnid+ZaT0G
+         WjsLKJnYQizNY+Ul6DwGNUFHXB2GfPNiRCZHwLjf/5uG8nhhZPsCVnoTdI+jqaQ3opjb
+         mpEKoFQ5A8XwNtG/hRUR6CVeUeo/ttDPfp9YKeNZXwsvP4O8G4Fs4c/VjQxdg0yab54e
+         uny/0FPC3A6gmOP/oZd7k1U7eIKckOYhNbGYfram1sTpuxbABqUId7o4hIpIOe2Mys4T
+         wxqA==
+X-Gm-Message-State: AOAM531RBqeUnftWjN/8/yXlioYVXPfLVQiYHWAdGpSVDbDS0cpyvs7z
+        FdASmaZpKVft/IMF2I/oS5A0TQ==
+X-Google-Smtp-Source: ABdhPJwRaTBqO5x1qiRNai5Zvd2mJUmOrhI1W6j8wTIptF68N5rP1lqmo+HXIilbqYcec1BfNjCPyw==
+X-Received: by 2002:aa7:860f:0:b029:200:851:1bff with SMTP id p15-20020aa7860f0000b029020008511bffmr4789806pfn.64.1617226380862;
+        Wed, 31 Mar 2021 14:33:00 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id a21sm3121545pfk.83.2021.03.31.14.33.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Mar 2021 14:33:00 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>,
+        Hyeonki Hong <hhk7734@gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: meson: add GPIO line names to ODROID
+ N2/N2+
+In-Reply-To: <20210329161256.31171-4-christianshewitt@gmail.com>
+References: <20210329161256.31171-1-christianshewitt@gmail.com>
+ <20210329161256.31171-4-christianshewitt@gmail.com>
+Date:   Wed, 31 Mar 2021 14:32:59 -0700
+Message-ID: <7h35wbc8l0.fsf@baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-4KOpen (B2264) is a board based on the STMicroelectronics STiH418 soc:
-  - 2GB DDR
-  - HDMI
-  - Ethernet 1000-BaseT
-  - PCIe (mini PCIe connector)
-  - MicroSD slot
-  - USB2 and USB3 connectors
-  - Sata
-  - 40 pins GPIO header
+Hi Christian,
 
-Signed-off-by: Alain Volmat <avolmat@me.com>
----
-v3: add 300MHz opp, add led, add ethernet pinctrl
-v2: fix bootargs (removal of console=)
-    removal of rng11 node, moved into stih418.dtsi
+Christian Hewitt <christianshewitt@gmail.com> writes:
 
- arch/arm/boot/dts/Makefile          |   3 +-
- arch/arm/boot/dts/stih418-b2264.dts | 151 ++++++++++++++++++++++++++++
- 2 files changed, 153 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/stih418-b2264.dts
+> From: Hyeonki Hong <hhk7734@gmail.com>
+>
+> Add GPIO line-name identifiers to the ODROID N2/N2+ common dtsi.
+>
+> Signed-off-by: Hyeonki Hong <hhk7734@gmail.com>
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 8e5d4ab4e75e..3c1877627e91 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1061,7 +1061,8 @@ dtb-$(CONFIG_ARCH_STI) += \
- 	stih407-b2120.dtb \
- 	stih410-b2120.dtb \
- 	stih410-b2260.dtb \
--	stih418-b2199.dtb
-+	stih418-b2199.dtb \
-+	stih418-b2264.dtb
- dtb-$(CONFIG_ARCH_STM32) += \
- 	stm32f429-disco.dtb \
- 	stm32f469-disco.dtb \
-diff --git a/arch/arm/boot/dts/stih418-b2264.dts b/arch/arm/boot/dts/stih418-b2264.dts
-new file mode 100644
-index 000000000000..a99604bebf8c
---- /dev/null
-+++ b/arch/arm/boot/dts/stih418-b2264.dts
-@@ -0,0 +1,151 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2021 STMicroelectronics
-+ * Author: Alain Volmat <avolmat@me.com>
-+ */
-+/dts-v1/;
-+#include "stih418.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+/ {
-+	model = "STiH418 B2264";
-+	compatible = "st,stih418-b2264", "st,stih418";
-+
-+	chosen {
-+		stdout-path = &sbc_serial0;
-+	};
-+
-+	memory@40000000 {
-+		device_type = "memory";
-+		reg = <0x40000000 0xc0000000>;
-+	};
-+
-+	cpus {
-+		cpu@0 {
-+			operating-points-v2 = <&cpu_opp_table>;
-+			/* u-boot puts hpen in SBC dmem at 0xb8 offset */
-+			cpu-release-addr = <0x94100b8>;
-+		};
-+		cpu@1 {
-+			operating-points-v2 = <&cpu_opp_table>;
-+			/* u-boot puts hpen in SBC dmem at 0xb8 offset */
-+			cpu-release-addr = <0x94100b8>;
-+		};
-+		cpu@2 {
-+			operating-points-v2 = <&cpu_opp_table>;
-+			/* u-boot puts hpen in SBC dmem at 0xb8 offset */
-+			cpu-release-addr = <0x94100b8>;
-+		};
-+		cpu@3 {
-+			operating-points-v2 = <&cpu_opp_table>;
-+			/* u-boot puts hpen in SBC dmem at 0xb8 offset */
-+			cpu-release-addr = <0x94100b8>;
-+		};
-+	};
-+
-+	cpu_opp_table: opp_table {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp00 {
-+			opp-hz = /bits/ 64 <300000000>;
-+			opp-microvolt = <784000>;
-+		};
-+		opp01 {
-+			opp-hz = /bits/ 64 <500000000>;
-+			opp-microvolt = <784000>;
-+		};
-+		opp02 {
-+			opp-hz = /bits/ 64 <800000000>;
-+			opp-microvolt = <784000>;
-+		};
-+		opp03 {
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <784000>;
-+		};
-+		opp04 {
-+			opp-hz = /bits/ 64 <1500000000>;
-+			opp-microvolt = <784000>;
-+		};
-+	};
-+
-+	aliases {
-+		ttyAS0 = &sbc_serial0;
-+		ethernet0 = &ethernet0;
-+	};
-+
-+	soc {
-+		leds {
-+			compatible = "gpio-leds";
-+			green {
-+				gpios = <&pio1 3 GPIO_ACTIVE_HIGH>;
-+				default-state = "off";
-+			};
-+		};
-+
-+		pin-controller-sbc@961f080 {
-+			gmac1 {
-+				rgmii1-0 {
-+					st,pins {
-+						rxd0 = <&pio1 4 ALT1 IN DE_IO 300 CLK_A>;
-+						rxd1 = <&pio1 5 ALT1 IN DE_IO 300 CLK_A>;
-+						rxd2 = <&pio1 6 ALT1 IN DE_IO 300 CLK_A>;
-+						rxd3 = <&pio1 7 ALT1 IN DE_IO 300 CLK_A>;
-+						rxdv = <&pio2 0 ALT1 IN DE_IO 300 CLK_A>;
-+					};
-+				};
-+			};
-+		};
-+
-+	};
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ethernet0 {
-+	phy-mode = "rgmii";
-+	pinctrl-0 = <&pinctrl_rgmii1 &pinctrl_rgmii1_mdio_1>;
-+	st,tx-retime-src = "clkgen";
-+
-+	snps,reset-gpio = <&pio0 7 0>;
-+	snps,reset-active-low;
-+	snps,reset-delays-us = <0 10000 1000000>;
-+
-+	status = "okay";
-+};
-+
-+&miphy28lp_phy {
-+	phy_port0: port@9b22000 {
-+		st,sata-gen = <2>; /* SATA GEN3 */
-+		st,osc-rdy;
-+	};
-+};
-+
-+&mmc0 {
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&pwm1 {
-+	status = "okay";
-+};
-+
-+&sata0 {
-+	status = "okay";
-+};
-+
-+&sbc_serial0 {
-+	status = "okay";
-+};
-+
-+&spifsm {
-+	status = "okay";
-+};
-+
-+&st_dwc3 {
-+	status = "okay";
-+};
--- 
-2.17.1
+You need to add your SoB here also.
 
+Kevin
