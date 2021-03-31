@@ -2,106 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AABD8350501
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 18:49:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E2AE350524
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 18:54:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233900AbhCaQtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 12:49:02 -0400
-Received: from smtp-34-i2.italiaonline.it ([213.209.12.34]:33290 "EHLO
-        libero.it" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234035AbhCaQsj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Mar 2021 12:48:39 -0400
-Received: from oxapps-30-132.iol.local ([10.101.8.178])
-        by smtp-34.iol.local with ESMTPA
-        id Re1ElwntK5WrZRe1ElgaZ8; Wed, 31 Mar 2021 18:48:38 +0200
-x-libjamoibt: 1601
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
-        t=1617209318; bh=Of8HOIFaFMIakwrrvMX5k+cnZfAxOALZ7VG6BH9w3tM=;
-        h=From;
-        b=UFpNZMB0o878+Sdcv+0gOWek0RvnjpiOZNiokvvhnZ/9YTzLzgjs3pqSmc8modp0V
-         zW6X0vtmIFnUBMNwQqlcfWHNkspL+4ee9UEm9Un+vxzWtQNTMfAxiG6JdxdcW0VBVW
-         5cswqdqBqcgqMJGMiVD33/rMn+sPbtmNE3HWAah1f2Z+Qm5sHA3sGiDolNaG/hNY2t
-         V9RY8DRQDgoIWX2nIEmieiAg1Qy/alLN0MfMtUtbxuMUzNcyj+WMVP9ycyTmi9bugZ
-         ixtp6Dnn1lLlfdeO7zaC0r6xJLPcL/uHW/olo1ME9h0urT6jL3xnCizOv8uPFyWb1c
-         ruvOAZcDL3W4Q==
-X-CNFS-Analysis: v=2.4 cv=W4/96Tak c=1 sm=1 tr=0 ts=6064a7e6 cx=a_exe
- a=iUxb6lXnTT1s429i9ALYXg==:117 a=UPWQtH3J-JgA:10 a=IkcTkHD0fZMA:10
- a=_gZzKa99_6AA:10 a=2KMo9-giAAAA:8 a=VwQbUJbxAAAA:8 a=3UXsuAmxLgeg-JLg2n4A:9
- a=QEXdDO2ut3YA:10 a=jpCfQFe7a20IPbtE3JEv:22 a=UeCTMeHK7YUBiLmz_SX7:22
- a=AjGcO6oz07-iQ99wixmX:22
-Date:   Wed, 31 Mar 2021 18:48:36 +0200 (CEST)
-From:   Dario Binacchi <dariobin@libero.it>
-To:     Tony Lindgren <tony@atomide.com>, Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        id S229968AbhCaQyZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 12:54:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48916 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233757AbhCaQyF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 12:54:05 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F219C061574
+        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 09:54:04 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id c8so20354337wrq.11
+        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 09:54:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=xznif/MH/M9aiazIt+TNwkIsOPRFEi4pc4I4E7feLW4=;
+        b=Wk926Zyt5NAXknc85ifZFdrd+TO9JoBNPnmY9WYuuQC33cRHUHTXCafLp14OfaJiok
+         zMDuxi+Yb/lOZIUb5Rq3flGlAl8+qGNspGvohvQDQ/dLV/9RbLPegY3RSWH9PiRYgWed
+         Xoo/3U7DcD62z7r/coj38fXgrNVhte++FvMmm4PsWijLOGrdGHLL9vtNNPE169Fm/1KV
+         4axDbRRbn1T0aJVToDTbKoPlpZgiUKEqnM5ihaVnBqKxwEyPLqMzBqXcHqCe85WZjeyX
+         4Xi6neCT47iRXCEEj51oa56gBGTXj4mP2dXtsCdQysbhDOdrK2XoWEt2W5Zq58wTjSgp
+         sf1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=xznif/MH/M9aiazIt+TNwkIsOPRFEi4pc4I4E7feLW4=;
+        b=VPlEs9AhGCIVM5mPjs2RZucYw7AZf8rUo1eU9+iuX1L7+xFTzTbJphlqejOQhOS+HA
+         9nT3M6mPBNzl1SGrR4mXcSzK6fLm2yv9Fmo3ZXCmWp2CdtfebTNlqyhfW2XqlUmjsycI
+         RV+zBQdY7iAAEPIYtuf5bxqUMDRQtdlUHml+0cmyTyVZ6ujquKqgtwauX6hbdS4lqSPX
+         /nvQj2E7E5LntVPmTtTkytqAeFtd1IRXUlB2ekAW+u/CD8x5qE0AGSBWmt5AA6g43V7x
+         oKmUf99ccEys9ulMXL7HmwEQn5X4/tZg9TeqqdK8UmNUcPM1TnrEWNMyx1/F//HNio3Z
+         nvkA==
+X-Gm-Message-State: AOAM533J/n7CTDOiwAuZn6ktLd3+FyBY8xwJ3F1udiZxVvg7lAwkAz+A
+        X9LGhbOp/w0jKjiEjVNv0zseGA==
+X-Google-Smtp-Source: ABdhPJz5xMvEY9p8BlcNg5+yfUOg7rpIqdqRGBYPoR4/ELJyxsX1WBqLykwzflMtZ5F7GPdFvcZwAg==
+X-Received: by 2002:a05:6000:108b:: with SMTP id y11mr4946180wrw.196.1617209642816;
+        Wed, 31 Mar 2021 09:54:02 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:1573:1dd5:899d:6362? ([2a01:e34:ed2f:f020:1573:1dd5:899d:6362])
+        by smtp.googlemail.com with ESMTPSA id w6sm5388004wrl.49.2021.03.31.09.54.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 Mar 2021 09:54:02 -0700 (PDT)
+Subject: Re: [PATCH v2] thermal: cpufreq_cooling: fix slab OOB issue
+To:     Michael Kao <michael.kao@mediatek.com>, fan.chen@mediatek.com,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        srv_heupstream@mediatek.com
+Cc:     Eduardo Valentin <edubezval@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-omap@vger.kernel.org
-Message-ID: <1766999502.215268.1617209316614@mail1.libero.it>
-In-Reply-To: <YGQNyGDkAbUXRYtA@atomide.com>
-References: <20210329164222.26794-1-dariobin@libero.it>
- <161707108197.3012082.13148389244272034996@swboyd.mtv.corp.google.com>
- <YGQNyGDkAbUXRYtA@atomide.com>
-Subject: Re: [PATCH v3 0/4] clk: ti: add am33xx spread spectrum clock
- support
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>, hsinyi@chromium.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        brian-sy yang <brian-sy.yang@mediatek.com>
+References: <20201229050831.19493-1-michael.kao@mediatek.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <b3616c67-c65e-d145-c9a3-e6c209849266@linaro.org>
+Date:   Wed, 31 Mar 2021 18:54:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Priority: 3
-Importance: Normal
-X-Mailer: Open-Xchange Mailer v7.10.3-Rev34
-X-Originating-IP: 87.20.116.197
-X-Originating-Client: open-xchange-appsuite
-x-libjamsun: hnVdgKDLVYJ/y6bXwAkWv/iDAPJj0RoS
-x-libjamv: XJO1Mu8mf/8=
-X-CMAE-Envelope: MS4xfN81xeT9ObTSWwajh635DSRU2jTmBrUkcigubVWEJ+IwPVQ/Ygt8kqQAW+qK1LeT6WpbBNhHjtJW9N04ieC1Xn+TSsMO9W+DiFCEpy05BwRKdWJOY5kn
- /1ZdTc6fYO/qGQbp38/2XqT+23lHsNHm+oK2DN049bR2uyxOYlF/JL0gld5FekTaMXoF/ud1QHlVjL2h7RoDwwkRxPQ3ZKl/V2pdgT1TwxK0oBk3pEc9IJug
- H7ah7Oman9zOExhb22W8Y/4Wdw1lpP5K96fXiHOZOJ3uNeBad87R9lqiiEMGKOdDhHbmMwMzbM2BsUbR/9P2CC8syI+fcNI0B6dRM+PhRZPDJ2Ov2KnKuVjr
- yFDYHFZ2CLPxefmYcsOgNCY2tHf3sDSFF4kySmzJwpzUO3DFLL8vTyYyv3wsp2WXxKCZWitKNck5XJTgcM/3jb+S+n4w+DKfiCMgpU6MmZzRM/AFI4/IuXSM
- 8K0OMztguybu0+e74lT50zwKSgZSdAIzuFGTJSS2dOeLd2ysatueJ1YpxeapZRXAI7LZsaFeWvy65JxV9L7o7VAqye5rVFKfzYyHjg==
+In-Reply-To: <20201229050831.19493-1-michael.kao@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 29/12/2020 06:08, Michael Kao wrote:
+> From: brian-sy yang <brian-sy.yang@mediatek.com>
+> 
+> Slab OOB issue is scanned by KASAN in cpu_power_to_freq().
+> If power is limited below the power of OPP0 in EM table,
+> it will cause slab out-of-bound issue with negative array
+> index.
+> 
+> Return the lowest frequency if limited power cannot found
+> a suitable OPP in EM table to fix this issue.
+> 
+> Backtrace:
+> [<ffffffd02d2a37f0>] die+0x104/0x5ac
+> [<ffffffd02d2a5630>] bug_handler+0x64/0xd0
+> [<ffffffd02d288ce4>] brk_handler+0x160/0x258
+> [<ffffffd02d281e5c>] do_debug_exception+0x248/0x3f0
+> [<ffffffd02d284488>] el1_dbg+0x14/0xbc
+> [<ffffffd02d75d1d4>] __kasan_report+0x1dc/0x1e0
+> [<ffffffd02d75c2e0>] kasan_report+0x10/0x20
+> [<ffffffd02d75def8>] __asan_report_load8_noabort+0x18/0x28
+> [<ffffffd02e6fce5c>] cpufreq_power2state+0x180/0x43c
+> [<ffffffd02e6ead80>] power_actor_set_power+0x114/0x1d4
+> [<ffffffd02e6fac24>] allocate_power+0xaec/0xde0
+> [<ffffffd02e6f9f80>] power_allocator_throttle+0x3ec/0x5a4
+> [<ffffffd02e6ea888>] handle_thermal_trip+0x160/0x294
+> [<ffffffd02e6edd08>] thermal_zone_device_check+0xe4/0x154
+> [<ffffffd02d351cb4>] process_one_work+0x5e4/0xe28
+> [<ffffffd02d352f44>] worker_thread+0xa4c/0xfac
+> [<ffffffd02d360124>] kthread+0x33c/0x358
+> [<ffffffd02d289940>] ret_from_fork+0xc/0x18
+> 
+> Fixes: 371a3bc79c11b ("thermal/drivers/cpufreq_cooling: Fix wrong frequency converted from power")
+> Signed-off-by: brian-sy yang <brian-sy.yang@mediatek.com>
+> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> Reviewed-by: Lukasz Luba <lukasz.luba@arm.com>
+> ---
 
-> Il 31/03/2021 07:51 Tony Lindgren <tony@atomide.com> ha scritto:
->=20
-> =20
-> * Stephen Boyd <sboyd@kernel.org> [210330 02:25]:
-> > Quoting Dario Binacchi (2021-03-29 09:42:17)
-> > >=20
-> > > As reported by the TI spruh73x RM, MPU and LCD modules support spread
-> > > spectrum clocking (SSC) on their output clocks. SSC is used to spread
-> > > the spectral peaking of the clock to reduce any electromagnetic
-> > > interference (EMI) that may be caused due to the clock=E2=80=99s fund=
-amental
-> > > or any of its harmonics.
-> > > The series allows you to enable and adjust the spread spectrum clocki=
-ng
-> > > for all am33xx PLLs for which it is supported.
-> > >=20
-> >=20
-> > What is your merge strategy? Should all the patches go through clk tree=
-?
-> > Or you'll send via arm-soc?
->=20
-> Probably best to just merge all via the clk tree as that's where most of
-> the changes are.
->=20
+Applied, thanks
 
-This means that I no longer have to send patches to TI / OMAP maintainers, =
-commiters=20
-and fixers, as well as at linux-omap@vger.kernel.org ?
-Even if the a1e980789b06 ("am335x-spread-spectrum) clk: ti: add am33xx spre=
-ad spectrum clock support")=20
-patch is basically related to the AM33xx/AM43xx SOCs?
 
-Thanks and regards,
-Dario
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-> Regards,
->=20
-> Tony
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
