@@ -2,74 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCC95350814
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 22:18:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DBFF35081B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 22:19:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236644AbhCaURc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 16:17:32 -0400
-Received: from st43p00im-ztdg10071801.me.com ([17.58.63.171]:53167 "EHLO
-        st43p00im-ztdg10071801.me.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236640AbhCaURV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Mar 2021 16:17:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-        t=1617221840; bh=D4dih7IDfleZeM1jkz2mIoV9uzt0mlpafIv8IABeh0E=;
-        h=From:To:Subject:Date:Message-Id;
-        b=T2mR7WQ4Gx0/6kxxDvhUB4cyNhmFYBSxIgxN3ICnSS2R1wwrZZMlnKvB2VUfuLONG
-         qKQEEPTubQKA8A5BzIOzdLSxtjPyovV1KK6lojSPe+7s5N3PhFmozNSzO4NiRS3Sx5
-         1Y7v5GqIx6IdF1UzI2VZEgap2qigjKdOJbU3r2CxToJI5ppykLpRUN1BIgr2mu+noc
-         0LFpsiyCZXOH8haFUBfyt6DqLSma1XVkhTZ4ZvxBg9bZatLvgXpHEWyQk37JhXHolx
-         zgBMZflQRGGLR+tUX30lIWOo8gekIN7tbgEmsjVFDLvxg9+w+tl+cY+MT5zxU4Bjuh
-         MgoamUcRfRuUA==
-Received: from localhost (101.220.150.77.rev.sfr.net [77.150.220.101])
-        by st43p00im-ztdg10071801.me.com (Postfix) with ESMTPSA id 6BAF9540116;
-        Wed, 31 Mar 2021 20:17:19 +0000 (UTC)
-From:   Alain Volmat <avolmat@me.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Alain Volmat <avolmat@me.com>
-Subject: [PATCH v4 7/7] dt-bindings: clock: st: clkgen-fsyn: add new introduced compatible
-Date:   Wed, 31 Mar 2021 22:16:32 +0200
-Message-Id: <20210331201632.24530-8-avolmat@me.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210331201632.24530-1-avolmat@me.com>
-References: <20210331201632.24530-1-avolmat@me.com>
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-03-31_10:2021-03-31,2021-03-31 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 clxscore=1015 mlxscore=0
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-2006250000 definitions=main-2103310141
+        id S236452AbhCaUTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 16:19:01 -0400
+Received: from mout.kundenserver.de ([212.227.17.10]:59709 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236553AbhCaUSj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 16:18:39 -0400
+Received: from mail-ot1-f52.google.com ([209.85.210.52]) by
+ mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MuDsZ-1lkSbA1qrl-00uZkV; Wed, 31 Mar 2021 22:18:37 +0200
+Received: by mail-ot1-f52.google.com with SMTP id s11-20020a056830124bb029021bb3524ebeso100531otp.0;
+        Wed, 31 Mar 2021 13:18:37 -0700 (PDT)
+X-Gm-Message-State: AOAM532YTjJR4P0wQCsc16/sXbP1+nsPcuC77jL2isqOvkqVZxUWcLto
+        qxbu6h08ZoS3vKoEvete51s6daWL8JfWTppBAJk=
+X-Google-Smtp-Source: ABdhPJxsRxjHsGwWskqjS7tzLIlp3wnwgZmfEa2JmwdgPjoYnabwcBS4iIlqtbA+/XRCvJrTVW95ZXyg5/XzYNShilc=
+X-Received: by 2002:a9d:316:: with SMTP id 22mr3936070otv.210.1617221916064;
+ Wed, 31 Mar 2021 13:18:36 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210331014603.2496983-1-danielwa@cisco.com> <CAK8P3a1rbGPxjRiUTy3AKh4S9jqxk=SHoa9s0Z-3nhgQb3xJUw@mail.gmail.com>
+ <20210331175709.GE2469518@zorba>
+In-Reply-To: <20210331175709.GE2469518@zorba>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 31 Mar 2021 22:18:22 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a2ANBD5q-J+Mr0up+wFBdWJG3Z2ceUP=aB29G7WMq1Z3Q@mail.gmail.com>
+Message-ID: <CAK8P3a2ANBD5q-J+Mr0up+wFBdWJG3Z2ceUP=aB29G7WMq1Z3Q@mail.gmail.com>
+Subject: Re: [PATCH] arm64: Add support for cisco craw64 ARMv8 SoCs
+To:     Daniel Walker <danielwa@cisco.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Olof Johansson <olof@lixom.net>,
+        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Ofer Licht <olicht@cisco.com>, xe-linux-external@cisco.com,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:2b6oZ9fX3mI70piTo9N8a2OKF3xHZKgQ7GdVJfafpb9mUX+UCR1
+ +QQEDI2m+njUmbgwIW7uKwwLRURyM8yvXRcgZgOVALt/p1CVSDqMNUPh92zwZXL02ngSR9x
+ ThTfFuqpM6aow+XlbOa9P1tN4p+6e3/YCEYT9w5ARp+B1wpYeMJac+r2ppaeCCI8DeoTAai
+ St5a0gzjVD66YQ4g9r4nQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:tt/5YC3mqAA=:tXtYtGN+sJa5uV2UEvgwcg
+ h9HT4eV3AC7x7BAKayC0PjipO35ArGCgj8Smf5UZZ5tekg5Idi1CRjpqJ3APyFkrSwbWY9tWF
+ pIfyRFVQV3+ElXCgEoVhWWE66TSuvInrvWPIMpn0StTyIgELGToIH8o6UT4PJ6ph/+KF5c9Z1
+ PUFlE4tPXL1MJjf5JH133rjZGXoGEZRYD1SEMfEcfRTB6ZJ4i2GqGXJyQTZ5U8329eq8cZ7ji
+ +OQBvOC7W5PbmgUZ76cA6ZXkJarV5I5dz/YsXwA+sTN71XPH/NPJOOBPmnM+JpZOtqs/ujlUR
+ Cg3ntR+4hgKas7VhQWWpAnnurTS4ntwGCL0NXKehIX2gV5lJwiJacecEG3TRopvxN6wLLC5IH
+ SHVedwrcrnHsPF8e5ogYFod4MKiq0YH+ALIBL5DE8f6r5YaGRZJw+Fy0b2V2N9FA7/vAONYiy
+ PiT/FPWvuOCZLLKCODzs4kt1sTqKmjueFp/1dK2IHTapbXjqt27DFrr6/M4vU6CcSmn54NC3b
+ ZvxWs4csQxAcisiGs+rTAsTKHSzZpXUVd2mW8WBocW9hxDlyRbXAFANN4LBc1p1Jjb0LwCTk0
+ P30xjHQXyt6Xp/al6nPbXLLmg/ty8bryE/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-New compatible are added, supporting various kind of clkgen-fsyn
-used for STiH407, STiH410 and STiH418
+On Wed, Mar 31, 2021 at 7:57 PM Daniel Walker <danielwa@cisco.com> wrote:
+>
+> On Wed, Mar 31, 2021 at 09:04:15AM +0200, Arnd Bergmann wrote:
+> > On Wed, Mar 31, 2021 at 3:46 AM Daniel Walker <danielwa@cisco.com> wrote:
+> > > From: Ofer Licht <olicht@cisco.com>
+> >
+> > Thanks for the submission, it's always nice to see a new platform
+>
+>
+> > > Define craw64 config, dts and Makefile for Cisco
+> > > SoCs known as Craw.
+> >
+> > I'd like some more information about the platform, e.g. the target
+> > market and maybe a link to the product information.
+>
+> Our SoC is produced as an internal product. So SoC specifications aren't
+> widely available.
+>
+> Here is an example of a Cisco product which uses this SoC,
+>
+> https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9200-series-switches/nb-06-cat9200-ser-data-sheet-cte-en.html
+>
+> I suspect that's not really what your looking for tho.
 
-Signed-off-by: Alain Volmat <avolmat@me.com>
----
- Documentation/devicetree/bindings/clock/st/st,quadfs.txt | 3 +++
- 1 file changed, 3 insertions(+)
+No, that's pretty much exactly what I was looking for. Just put this one
+sentence and the link into the patch description and it will be fine.
 
-diff --git a/Documentation/devicetree/bindings/clock/st/st,quadfs.txt b/Documentation/devicetree/bindings/clock/st/st,quadfs.txt
-index d93d49342e60..c4ba2adb0b4f 100644
---- a/Documentation/devicetree/bindings/clock/st/st,quadfs.txt
-+++ b/Documentation/devicetree/bindings/clock/st/st,quadfs.txt
-@@ -12,6 +12,9 @@ This binding uses the common clock binding[1].
- Required properties:
- - compatible : shall be:
-   "st,quadfs"
-+  "st,quadfs-d0"
-+  "st,quadfs-d2"
-+  "st,quadfs-d3"
-   "st,quadfs-pll"
- 
- 
--- 
-2.17.1
+> >
+> > The memory size is usually filled by the boot loader, just put an
+> > empty node into the .dtsi file
+>
+> Arnd, I must regretfully inform you that Cisco has a deep dark addiction to
+> bootloaders which, are, um, how do I say this diplomatically, um , brain dead.
+>
+> You have some other comments below related to moving things into the bootloader,
+> and I can look into it, but bootloader inflexibility is wide spread inside
+> Cisco.
 
+Ok, no worries. If the bootloader can do it right, you should do it, but
+this part is not essential.
+
+        Arnd
