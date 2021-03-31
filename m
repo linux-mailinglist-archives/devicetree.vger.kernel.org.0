@@ -2,117 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2A7535019D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 15:44:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F07383501B0
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 15:52:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235888AbhCaNoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 09:44:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35942 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235809AbhCaNnt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 09:43:49 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A5DCC061574;
-        Wed, 31 Mar 2021 06:43:49 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id h13so22365878eds.5;
-        Wed, 31 Mar 2021 06:43:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=a+ghmHWrd0VtTpXMMo8zY7Xh4t5dWaWkK420iWQuOzE=;
-        b=hFVHUo9h/qlKnYSMTOoSPd1LJIxEdbBrg1QzBaoV1NgiHXV82hcZF5wDR7N/NMfntB
-         P9iTvb0REKeFfTPA+wNQXPS4nF9eJrImstfcWCAQ3UXKg5DhBVGmV+0LMSz3pIbLCQuM
-         QstQ4CsPDUJ0P6Fc9PZ5Ofhzk2Ik1GtngZraiVa6Q1E2bhUQr/P5Zkx7W+DMKbHyo8I/
-         As6aVdD386AX/0TQxCF9sHgFQiG4iQgAEVeADY2F6rFWsaVcwyVsHNzgBe0+iyDUzAqL
-         AZeDsF89/FiSqD5oaPbgd9wP8thzcL+ZcWQlbBgziupIha7+tAPrIzJCab72jFHK/0/M
-         WAaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=a+ghmHWrd0VtTpXMMo8zY7Xh4t5dWaWkK420iWQuOzE=;
-        b=sdfbcsgt5diK2qw2ah48POCBGEuGSIa9vUHmsLiQl1aWJfp2At4WPKcZ0FQXVA1oJ0
-         pMTtNEWE2GLJxKzkjl1asGTaUi/2Pdh2McxyMGun5cW0IScPM8REMFLn1CnUlgg8oNMs
-         hev8JV/5Nu5kFAMyLrWVGatWCQfJngAQNJe00nWMNXyLA1Nt2NFmTXOcI1/C6EeSGTtG
-         sHmbP6CNaQOpz94Lcx+pkB5aCygFSfeBwKDSCgqAVxZs1xg8F8R/kL2puXOfcYYoBpgg
-         zw9n4VsPbYGRGmfFOyW3rLMmkrK8lNuXgbfADPFAyfRhHqIISyToo3vrJibR5CSRygrs
-         OT7Q==
-X-Gm-Message-State: AOAM533vxwOzBZuvMM0EOZl7Rvn6IBdez0sO1JlwlTYdIM3aB0CYdRoO
-        c6s774lWIjCy9r0MHWnymjGJjRSqCer5+XsYCkU=
-X-Google-Smtp-Source: ABdhPJx8TL94WZcE0wlBpqElMqz9jeHvusM9qw/17ly9e8PKWRwngPkeCU2XsHwzp8Y86umlehcxte6M1qgFNMsnZh0=
-X-Received: by 2002:aa7:d687:: with SMTP id d7mr3771645edr.118.1617198228074;
- Wed, 31 Mar 2021 06:43:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210330184218.279738-1-jernej.skrabec@siol.net>
-In-Reply-To: <20210330184218.279738-1-jernej.skrabec@siol.net>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Wed, 31 Mar 2021 15:43:37 +0200
-Message-ID: <CAJiuCcc4hs781Hz_=tehcm4S2nci8e0DEJKeUY5ck=bpcgNUbg@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH] arm64: dts: allwinner: h6: beelink-gs1:
- Remove ext. 32 kHz osc reference
-To:     Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        id S235772AbhCaNvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 09:51:48 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:39568 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235758AbhCaNvo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 09:51:44 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12VDpPqq005310;
+        Wed, 31 Mar 2021 08:51:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1617198685;
+        bh=se4kokRgl6S4irb4URqKn533vejtAJPSsq4RTXSyHrw=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=IShYWirWC6sj4KLKL2avRDilOY72Em5+dYvCt3jkzEbhfNLOOd+nKUGpluGm66vdt
+         BTrKRPBtBW4S4YGksiq8VRdFzUnEK0QyYkXMOF32oyh+QsgfOt5o/RhO5gd7FAMVV8
+         Ee+1N+QSwOOcdVi0Aokil/5pH0cx9Nj7aEbx4348=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12VDpPCp021318
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 31 Mar 2021 08:51:25 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 31
+ Mar 2021 08:51:24 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 31 Mar 2021 08:51:24 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12VDpOXx129128;
+        Wed, 31 Mar 2021 08:51:24 -0500
+Date:   Wed, 31 Mar 2021 19:21:23 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Benoit Parrot <bparrot@ti.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Peter Chen <peter.chen@nxp.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <dmaengine@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: Re: [PATCH 00/16] CSI2RX support on J721E
+Message-ID: <20210331135121.77qxxcpkyy6zm7kl@ti.com>
+References: <20210330173348.30135-1-p.yadav@ti.com>
+ <YGRB/42Q6aVBLoAq@vkoul-mobl.Dlink>
+ <20210331114019.g4dnuhs2hno5fjdn@ti.com>
+ <YGRzwboQ0sL/bAWU@vkoul-mobl.Dlink>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <YGRzwboQ0sL/bAWU@vkoul-mobl.Dlink>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jernej,
+On 31/03/21 06:36PM, Vinod Koul wrote:
+> On 31-03-21, 17:10, Pratyush Yadav wrote:
+> > On 31/03/21 03:03PM, Vinod Koul wrote:
+> > > On 30-03-21, 23:03, Pratyush Yadav wrote:
+> > > > Hi,
+> > > > 
+> > > > This series adds support for CSI2 capture on J721E. It includes some
+> > > > fixes to the Cadence CSI2RX driver, adds Rx support to Cadence DPHY
+> > > > driver, and finally adds the TI CSI2RX wrapper driver.
+> > > > 
+> > > > Tested on TI's J721E with OV5640 sensor.
+> > > > 
+> > > > Paul Kocialkowski (1):
+> > > >   phy: Distinguish between Rx and Tx for MIPI D-PHY with submodes
+> > > > 
+> > > > Pratyush Yadav (15):
+> > > >   phy: cdns-dphy: Prepare for Rx support
+> > > >   phy: cdns-dphy: Allow setting mode
+> > > >   phy: cdns-dphy: Add Rx support
+> > > >   media: cadence: csi2rx: Add external DPHY support
+> > > >   media: cadence: csi2rx: Soft reset the streams before starting capture
+> > > >   media: cadence: csi2rx: Set the STOP bit when stopping a stream
+> > > >   media: cadence: csi2rx: Fix stream data configuration
+> > > >   media: cadence: csi2rx: Turn subdev power on before starting stream
+> > > >   media: cadence: csi2rx: Add wrappers for subdev calls
+> > > >   dmaengine: ti: k3-psil-j721e: Add entry for CSI2RX
+> > > >   dt-bindings: media: Add DT bindings for TI CSI2RX driver
+> > > >   media: ti-vpe: csi2rx: Add CSI2RX support
+> > > >   dt-bindings: phy: Convert Cadence DPHY binding to YAML
+> > > >   dt-bindings: phy: cdns,dphy: make clocks optional
+> > > >   dt-bindings: phy: cdns,dphy: add power-domains property
+> > > 
+> > > Is there any dependency between patches to various subsystems, if not
+> > > please do consider sending a series per subsystem...
+> > 
+> > Without patch 1, patch 5 and later won't build. Without patch 11, patch 
+> > 13 will not work.
+> 
+> Cover letter is a good place to mention this! And what do you mean by
+> not working, do we have compile time dependencies? I agree that for
+> everything to work all the pieces need to land
 
-On Tue, 30 Mar 2021 at 20:42, Jernej Skrabec <jernej.skrabec@siol.net> wrot=
-e:
->
-> Although every Beelink GS1 seems to have external 32768 Hz oscillator,
-> it works only on one from four tested. There are more reports of RTC
-> issues elsewhere, like Armbian forum.
->
-> One Beelink GS1 owner read RTC osc status register on Android which
-> shipped with the box. Reported value indicated problems with external
-> oscillator.
->
-> In order to fix RTC and related issues (HDMI-CEC and suspend/resume with
-> Crust) on all boards, switch to internal oscillator.
->
-> Fixes: 32507b868119 ("arm64: dts: allwinner: h6: Move ext. oscillator to =
-board DTs")
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+I have not tried it but patch 11 is not a compile time dependency. It 
+should be a run time dependency. Without it the driver will probably 
+fail to acquire the DMA channels and its probe will fail.
 
-Tested-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
-
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 4 ----
->  1 file changed, 4 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/ar=
-ch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> index 669d39fc716a..6249e9e02928 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> @@ -289,10 +289,6 @@ sw {
->         };
->  };
->
-> -&rtc {
-> -       clocks =3D <&ext_osc32k>;
-> -};
-> -
->  &spdif {
->         status =3D "okay";
->  };
-> --
-> 2.31.0
->
-> --
-> You received this message because you are subscribed to the Google Groups=
- "linux-sunxi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an=
- email to linux-sunxi+unsubscribe@googlegroups.com.
-> To view this discussion on the web, visit https://groups.google.com/d/msg=
-id/linux-sunxi/20210330184218.279738-1-jernej.skrabec%40siol.net.
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
