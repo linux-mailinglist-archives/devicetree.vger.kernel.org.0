@@ -2,68 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E5A034F97B
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 09:12:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B908934F9FB
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 09:31:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233921AbhCaHLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 03:11:44 -0400
-Received: from rtits2.realtek.com ([211.75.126.72]:60509 "EHLO
-        rtits2.realtek.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233823AbhCaHLe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 03:11:34 -0400
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.73 with qID 12V7Aqu36002573, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexmbs01.realtek.com.tw[172.21.6.94])
-        by rtits2.realtek.com.tw (8.15.2/2.71/5.88) with ESMTPS id 12V7Aqu36002573
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Wed, 31 Mar 2021 15:10:52 +0800
-Received: from localhost.localdomain (172.22.102.1) by
- RTEXMBS01.realtek.com.tw (172.21.6.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Wed, 31 Mar 2021 15:10:51 +0800
-From:   Jack Yu <jack.yu@realtek.com>
-To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh@kernel.org>
-CC:     <alsa-devel@alsa-project.org>, <lars@metafoo.de>,
-        <flove@realtek.com>, <kenny_chen@realtek.com>,
-        <kent_chen@realtek.com>, <oder_chiou@realtek.com>,
-        <shumingf@realtek.com>, <derek.fang@realtek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Jack Yu <jack.yu@realtek.com>
-Subject: [PATCH] dt-bindings: sound: add address-cells and size-cells information
-Date:   Wed, 31 Mar 2021 15:10:46 +0800
-Message-ID: <20210331071046.12526-1-jack.yu@realtek.com>
-X-Mailer: git-send-email 2.29.0
+        id S234084AbhCaHao convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 31 Mar 2021 03:30:44 -0400
+Received: from bizcloud-power.sawafuji.co.jp ([128.199.220.203]:46712 "EHLO
+        mta0.sawafuji.co.jp" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S234074AbhCaHaP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 03:30:15 -0400
+X-Greylist: delayed 636 seconds by postgrey-1.27 at vger.kernel.org; Wed, 31 Mar 2021 03:30:15 EDT
+From:   Albert Bourla <info@universalautomation.com.pk>
+To:     devicetree@vger.kernel.org
+Subject: Bidding invitation
+Date:   31 Mar 2021 09:15:09 +0200
+Message-ID: <20210331091509.192FA945477C535D@universalautomation.com.pk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [172.22.102.1]
-X-ClientProxiedBy: RTEXMBS01.realtek.com.tw (172.21.6.94) To
- RTEXMBS01.realtek.com.tw (172.21.6.94)
+Content-Type: text/plain;
+        charset="utf-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add address-cells and size-cells information to fix warnings
-for rt1019.yaml.
+Good Day Sir/Ms,
 
-Signed-off-by: Jack Yu <jack.yu@realtek.com>
----
- Documentation/devicetree/bindings/sound/rt1019.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+We are please to invite you or your company to quote the 
+following item listed below:
+ 
+Product/Model No: A702TH FYNE PRESSURE REGULATOR
+Model Number: A702TH
+Qty. 30 units
 
-diff --git a/Documentation/devicetree/bindings/sound/rt1019.yaml b/Documentation/devicetree/bindings/sound/rt1019.yaml
-index c24c29eafa54..3d5a91a942f4 100644
---- a/Documentation/devicetree/bindings/sound/rt1019.yaml
-+++ b/Documentation/devicetree/bindings/sound/rt1019.yaml
-@@ -26,6 +26,8 @@ additionalProperties: false
- examples:
-   - |
-     i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-         rt1019: codec@28 {
-             compatible = "realtek,rt1019";
-             reg = <0x28>;
--- 
-2.29.0
 
+Compulsory,Kindly send your quotation to: 
+quotation@pfizerbvsupply.com 
+for immediate approval.
+
+Kind Regards,
+Albert Bourla
+PFIZER B.V Supply Chain Manager
+Tel: +31(0)208080 880
+ADDRESS: Rivium Westlaan 142, 2909 LD
+Capelle aan den IJssel, Netherlands
