@@ -2,181 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29EEF34FBDF
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 10:49:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E81DB34FC26
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 11:06:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234267AbhCaIs2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 04:48:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56584 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234424AbhCaIsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 04:48:24 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E73B5C06175F
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 01:48:23 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id z1so21362085edb.8
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 01:48:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=6D6+xRXupTucxw0etSGVbGVI62Hei8H8bx8KxOcIYiA=;
-        b=R8k8EADw+X1IyYg6JsaBk6DM1a9NAcPtH3Pv221Ja6JagVQ870jwz1jrxNufsIjY2G
-         jgrhuPzf+XUDLohKFDCb6z5yPY1sILmIYfH3hjp3ZJ7AJxhyVRejQ/wVanFHuDSOWkq7
-         rNUsNV/8TtWGu5An6ptRin3ycFTznFnzUfhSEdUkTcPHrsX5cKwaXW0l/8QnXQtYi/Vy
-         dvNA6cJNSfMmW4Juct5bxTcY/SqVmsL7I6UU7mn71HbalzrBp6vMhR74lsmuZ28eke3R
-         Ay5OwbXZPW9TlzV4yh5La2fdzC8WN8PzUWGHsl2lxV0/sD6xbEPTshGUjbU6ZkD3yUCx
-         HGyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=6D6+xRXupTucxw0etSGVbGVI62Hei8H8bx8KxOcIYiA=;
-        b=HeUYid32L7PFh3SLFdu4AkEiOWNkUNuUJEu1qXjppMTnZXTBiD1eDcnMTs2QDbbF9k
-         CucGzBAExLWLyB7N+loVuahrg/dq9KPepWwB1CQLKvTSz4XPpOd/82zR7vFeTAS6MDO8
-         7KDLLa0QQpIW/xlDQWaP8RwIj1KOxb7PYxy/obW1sHUbKTe8Na/Pxv90WkdVFslVEwYi
-         5Jtn42YBb1yCdaHOGmmFJutN16ZFmjUrkix/rm2USwQ9GMH6DFH31q9yYpcjo2ZA/Vz+
-         KoMvTO3Qxe9Lpc0aftEdbwf9nuIlMk1jq5qkxeWaKYJOxF2+AgH0GL2ztoR77WdXhqpV
-         1Mrw==
-X-Gm-Message-State: AOAM5314qg2cm2dBqJnZ2YuJOC5d6JynTXyOE5GY7UAeWB9pIu1rlNHc
-        HHKlHXqRS2/4i9KtU94sOz8lZg==
-X-Google-Smtp-Source: ABdhPJw0M886QE8e3VvBe8+bL9ia7CmIeYA3xZCtF1VVW5vOTXZQAtrZwFeCF3pZq8Pa1l6IxQcHsw==
-X-Received: by 2002:a50:ec0e:: with SMTP id g14mr2365055edr.264.1617180502672;
-        Wed, 31 Mar 2021 01:48:22 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id g7sm747619ejw.51.2021.03.31.01.48.21
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 31 Mar 2021 01:48:22 -0700 (PDT)
-Subject: Re: [PATCH v7 1/2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai
- link for I2S driver
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
-        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Ajit Pandey <ajitp@codeaurora.org>,
-        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-References: <20210314061054.19451-1-srivasam@codeaurora.org>
- <20210314061054.19451-2-srivasam@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <2ac2e748-7e82-c670-5002-3fc6b361e1fe@linaro.org>
-Date:   Wed, 31 Mar 2021 09:48:21 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S234509AbhCaJGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 05:06:21 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:33558 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231278AbhCaJGC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 05:06:02 -0400
+X-UUID: 87618d900e8a4ccba2e4a5047aeac008-20210331
+X-UUID: 87618d900e8a4ccba2e4a5047aeac008-20210331
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1930010263; Wed, 31 Mar 2021 17:05:57 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 31 Mar 2021 17:05:55 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 31 Mar 2021 17:05:54 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mathias Nyman <mathias.nyman@intel.com>
+CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Frank Wunderlich <frank-w@public-files.de>
+Subject: [PATCH v4 1/4] dt-bindings: usb: mtk-xhci: support property usb2-lpm-disable
+Date:   Wed, 31 Mar 2021 17:05:50 +0800
+Message-ID: <1617181553-3503-1-git-send-email-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-In-Reply-To: <20210314061054.19451-2-srivasam@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 9E92C9300DAE5D1DAC21325A41700E2A992D850885A163C5B2CD71D869D44E792000:8
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support common property usb2-lpm-disable
 
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+v4: add acked-by Rob
+v3: remove redefinition of type and description suggested by Rob
+v2: no changes
+---
+ Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-On 14/03/2021 06:10, Srinivasa Rao Mandadapu wrote:
-> From: Ajit Pandey <ajitp@codeaurora.org>
-> 
-> Add dai link for supporting lpass I2S driver, which is used
-> for audio capture and playback.
-> Add lpass-cpu node with  pin controls and i2s primary
-> and secondary dai-links
-> 
-> Signed-off-by: Ajit Pandey <ajitp@codeaurora.org>
-> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> ---
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+index 45bf4ea00c9e..291749f49f35 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+@@ -104,6 +104,8 @@ properties:
+     description: supports USB3.0 LPM
+     type: boolean
+ 
++  usb2-lpm-disable: true
++
+   imod-interval-ns:
+     description:
+       Interrupt moderation interval value, it is 8 times as much as that
+-- 
+2.18.0
 
-
-LGTM,
-
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
->   arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 58 ++++++++++++++++++++
->   1 file changed, 58 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> index 436582279dad..fd345972a361 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> @@ -9,6 +9,7 @@
->   #include <dt-bindings/input/gpio-keys.h>
->   #include <dt-bindings/input/input.h>
->   #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include <dt-bindings/sound/sc7180-lpass.h>
->   
->   /* PMICs depend on spmi_bus label and so must come after SoC */
->   #include "pm6150.dtsi"
-> @@ -283,6 +284,42 @@ keyboard_backlight: keyboard-backlight {
->   			max-brightness = <1023>;
->   		};
->   	};
-> +
-> +	sound: sound {
-> +		compatible = "google,sc7180-trogdor";
-> +		model = "sc7180-rt5682-max98357a-1mic";
-> +
-> +		audio-routing =
-> +			"Headphone Jack", "HPOL",
-> +			"Headphone Jack", "HPOR";
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		dai-link@0 {
-> +			link-name = "MultiMedia0";
-> +			reg = <MI2S_PRIMARY>;
-> +			cpu {
-> +				sound-dai = <&lpass_cpu MI2S_PRIMARY>;
-> +			};
-> +
-> +			sound_multimedia0_codec: codec {
-> +				sound-dai = <&alc5682 0 /* aif1 */>;
-> +			};
-> +		};
-> +
-> +		dai-link@1 {
-> +			link-name = "MultiMedia1";
-> +			reg = <MI2S_SECONDARY>;
-> +			cpu {
-> +				sound-dai = <&lpass_cpu MI2S_SECONDARY>;
-> +			};
-> +
-> +			sound_multimedia1_codec: codec {
-> +				sound-dai = <&max98357a>;
-> +			};
-> +		};
-> +	};
->   };
->   
->   &qfprom {
-> @@ -720,6 +757,27 @@ &ipa {
->   	modem-init;
->   };
->   
-> +&lpass_cpu {
-> +	status = "okay";
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&sec_mi2s_active>, <&pri_mi2s_active>, <&pri_mi2s_mclk_active>;
-> +
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	mi2s@0 {
-> +		reg = <MI2S_PRIMARY>;
-> +		qcom,playback-sd-lines = <1>;
-> +		qcom,capture-sd-lines = <0>;
-> +	};
-> +
-> +	mi2s@1 {
-> +		reg = <MI2S_SECONDARY>;
-> +		qcom,playback-sd-lines = <0>;
-> +	};
-> +};
-> +
->   &mdp {
->   	status = "okay";
->   };
-> 
