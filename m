@@ -2,157 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57B3A350457
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 18:18:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AABD8350501
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 18:49:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233831AbhCaQSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 12:18:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40988 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233811AbhCaQRm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 12:17:42 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA45C061574;
-        Wed, 31 Mar 2021 09:17:42 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id b4so29948986lfi.6;
-        Wed, 31 Mar 2021 09:17:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=cPTB0etVorroutByXiQaQbWMvlGDX7gocxxMDABfiMQ=;
-        b=LcoO4OJ7AQzT3kBgCDGn0fHviE3dj8uDS24GDl2D2cIEG7wSrbY6TJWL+qBxfmlmJX
-         nRiKrsHvsi/vXgTg8KmA+cx8yf20qkNC7Vk0sTofQzX/u3ymQuNj8AxBt7NPtINcjZA8
-         lv55AsAP14CqbLsL1NgeP0Fz0hnpmchjKrYQhugqIOU1r8kdV0OOy8yX4rs7foxC/i+O
-         /OphruhiZsauPLa6yV5yJHxnAcqi0GnSR13BGrjb3Wl6wV/MUBzlcocJ0g5voZX7p8cA
-         4O3n6ZTEHXTqXHqjrY2AxfN+U6h8/mIS9fMZS+U+bHgGBQkYov6j3oFHB1lwQa51XS0E
-         01iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=cPTB0etVorroutByXiQaQbWMvlGDX7gocxxMDABfiMQ=;
-        b=gK+9HG0FzmpPMPh27LcvcnhnYKcv/dZ/uYWGOZzqpN5RMm6dU8wQggPV2e6RYHnGic
-         bk0ppdIX8WPLWq+w5NM4CfzhvzAI6+BoaqPjuzlDKsUyMvt2lBgehpoYTwc2lh+4noN7
-         t+h+m2btr+GlBZ/wqlidQpUHHT4O0uIpIxwfJyML6R6vZJmUDhz0E4RDDnbhsNSyOcP8
-         BhBJd2XDM5S2OENLnEKlbdxwcaJlfFKoDqarg8OvWkcZxLiiXXjiu15YAWMJv2lunfDM
-         etfZCOE+ChWzGWh04pJ8eLpbB3mEfWl3ypBd+zJMROeprw4lGNBx/PEps29zngbVEkro
-         UzCA==
-X-Gm-Message-State: AOAM530/hJhCm9qY0DZOHj2YRQJqvUdfcMqkGnllOlZyxb9/LiMiIYb4
-        hc79jngsE05JHkRCWFjRl8g=
-X-Google-Smtp-Source: ABdhPJyQewBVQCg+Ta5PS76RCRFrtQh/QvHmjcX+75R3stv2JOAmUc3tfyHrjK4nXfUQ+eWgbC/9aA==
-X-Received: by 2002:a19:430e:: with SMTP id q14mr2869941lfa.374.1617207460678;
-        Wed, 31 Mar 2021 09:17:40 -0700 (PDT)
-Received: from mobilestation ([95.79.127.110])
-        by smtp.gmail.com with ESMTPSA id b34sm281772ljf.137.2021.03.31.09.17.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Mar 2021 09:17:40 -0700 (PDT)
-Date:   Wed, 31 Mar 2021 19:17:38 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Brad Larson <brad@pensando.io>
-Cc:     linux-arm-kernel@lists.infradead.org, arnd@arndb.de,
-        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        broonie@kernel.org, adrian.hunter@intel.com,
-        ulf.hansson@linaro.org, olof@lixom.net, linux-gpio@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/13] Support Pensando Elba SoC
-Message-ID: <20210331161738.rc6oecz25z6ywqhl@mobilestation>
-References: <20210329015938.20316-1-brad@pensando.io>
+        id S233900AbhCaQtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 12:49:02 -0400
+Received: from smtp-34-i2.italiaonline.it ([213.209.12.34]:33290 "EHLO
+        libero.it" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S234035AbhCaQsj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 31 Mar 2021 12:48:39 -0400
+Received: from oxapps-30-132.iol.local ([10.101.8.178])
+        by smtp-34.iol.local with ESMTPA
+        id Re1ElwntK5WrZRe1ElgaZ8; Wed, 31 Mar 2021 18:48:38 +0200
+x-libjamoibt: 1601
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
+        t=1617209318; bh=Of8HOIFaFMIakwrrvMX5k+cnZfAxOALZ7VG6BH9w3tM=;
+        h=From;
+        b=UFpNZMB0o878+Sdcv+0gOWek0RvnjpiOZNiokvvhnZ/9YTzLzgjs3pqSmc8modp0V
+         zW6X0vtmIFnUBMNwQqlcfWHNkspL+4ee9UEm9Un+vxzWtQNTMfAxiG6JdxdcW0VBVW
+         5cswqdqBqcgqMJGMiVD33/rMn+sPbtmNE3HWAah1f2Z+Qm5sHA3sGiDolNaG/hNY2t
+         V9RY8DRQDgoIWX2nIEmieiAg1Qy/alLN0MfMtUtbxuMUzNcyj+WMVP9ycyTmi9bugZ
+         ixtp6Dnn1lLlfdeO7zaC0r6xJLPcL/uHW/olo1ME9h0urT6jL3xnCizOv8uPFyWb1c
+         ruvOAZcDL3W4Q==
+X-CNFS-Analysis: v=2.4 cv=W4/96Tak c=1 sm=1 tr=0 ts=6064a7e6 cx=a_exe
+ a=iUxb6lXnTT1s429i9ALYXg==:117 a=UPWQtH3J-JgA:10 a=IkcTkHD0fZMA:10
+ a=_gZzKa99_6AA:10 a=2KMo9-giAAAA:8 a=VwQbUJbxAAAA:8 a=3UXsuAmxLgeg-JLg2n4A:9
+ a=QEXdDO2ut3YA:10 a=jpCfQFe7a20IPbtE3JEv:22 a=UeCTMeHK7YUBiLmz_SX7:22
+ a=AjGcO6oz07-iQ99wixmX:22
+Date:   Wed, 31 Mar 2021 18:48:36 +0200 (CEST)
+From:   Dario Binacchi <dariobin@libero.it>
+To:     Tony Lindgren <tony@atomide.com>, Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-omap@vger.kernel.org
+Message-ID: <1766999502.215268.1617209316614@mail1.libero.it>
+In-Reply-To: <YGQNyGDkAbUXRYtA@atomide.com>
+References: <20210329164222.26794-1-dariobin@libero.it>
+ <161707108197.3012082.13148389244272034996@swboyd.mtv.corp.google.com>
+ <YGQNyGDkAbUXRYtA@atomide.com>
+Subject: Re: [PATCH v3 0/4] clk: ti: add am33xx spread spectrum clock
+ support
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210329015938.20316-1-brad@pensando.io>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Priority: 3
+Importance: Normal
+X-Mailer: Open-Xchange Mailer v7.10.3-Rev34
+X-Originating-IP: 87.20.116.197
+X-Originating-Client: open-xchange-appsuite
+x-libjamsun: hnVdgKDLVYJ/y6bXwAkWv/iDAPJj0RoS
+x-libjamv: XJO1Mu8mf/8=
+X-CMAE-Envelope: MS4xfN81xeT9ObTSWwajh635DSRU2jTmBrUkcigubVWEJ+IwPVQ/Ygt8kqQAW+qK1LeT6WpbBNhHjtJW9N04ieC1Xn+TSsMO9W+DiFCEpy05BwRKdWJOY5kn
+ /1ZdTc6fYO/qGQbp38/2XqT+23lHsNHm+oK2DN049bR2uyxOYlF/JL0gld5FekTaMXoF/ud1QHlVjL2h7RoDwwkRxPQ3ZKl/V2pdgT1TwxK0oBk3pEc9IJug
+ H7ah7Oman9zOExhb22W8Y/4Wdw1lpP5K96fXiHOZOJ3uNeBad87R9lqiiEMGKOdDhHbmMwMzbM2BsUbR/9P2CC8syI+fcNI0B6dRM+PhRZPDJ2Ov2KnKuVjr
+ yFDYHFZ2CLPxefmYcsOgNCY2tHf3sDSFF4kySmzJwpzUO3DFLL8vTyYyv3wsp2WXxKCZWitKNck5XJTgcM/3jb+S+n4w+DKfiCMgpU6MmZzRM/AFI4/IuXSM
+ 8K0OMztguybu0+e74lT50zwKSgZSdAIzuFGTJSS2dOeLd2ysatueJ1YpxeapZRXAI7LZsaFeWvy65JxV9L7o7VAqye5rVFKfzYyHjg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Brad
 
-On Sun, Mar 28, 2021 at 06:59:25PM -0700, Brad Larson wrote:
-> This series enables support for Pensando Elba SoC based platforms.
-> The Elba SoC has the following features:
-> 
-> - Sixteen ARM64 A72 cores
-> - Dual DDR 4/5 memory controllers
-> - 32 lanes of PCIe Gen3/4 to the Host
-> - Network interfaces: Dual 200GE, Quad 100GE, 50GE, 25GE, 10GE and
->   also a single 1GE management port.
-> - Storage/crypto offloads and 144 programmable P4 cores.
-> - QSPI and EMMC for SoC storage
-> - Two SPI interfaces for peripheral management
-> - I2C bus for platform management
-> 
-> See below for an overview of changes since v1.
-> 
-> == Patch overview ==
-> 
-> - 01    Fix typo, return code value and log message.
-> - 03    Remove else clause, intrinsic DW chip-select is never used.
-> - 08-11 Split out dts and bindings to sub-patches
-> - 10    Converted existing cadence-quadspi.txt to YAML schema
-> - 13    New driver should use <linux/gpio/driver.h>
+> Il 31/03/2021 07:51 Tony Lindgren <tony@atomide.com> ha scritto:
+>=20
+> =20
+> * Stephen Boyd <sboyd@kernel.org> [210330 02:25]:
+> > Quoting Dario Binacchi (2021-03-29 09:42:17)
+> > >=20
+> > > As reported by the TI spruh73x RM, MPU and LCD modules support spread
+> > > spectrum clocking (SSC) on their output clocks. SSC is used to spread
+> > > the spectral peaking of the clock to reduce any electromagnetic
+> > > interference (EMI) that may be caused due to the clock=E2=80=99s fund=
+amental
+> > > or any of its harmonics.
+> > > The series allows you to enable and adjust the spread spectrum clocki=
+ng
+> > > for all am33xx PLLs for which it is supported.
+> > >=20
+> >=20
+> > What is your merge strategy? Should all the patches go through clk tree=
+?
+> > Or you'll send via arm-soc?
+>=20
+> Probably best to just merge all via the clk tree as that's where most of
+> the changes are.
+>=20
 
-That would be super-useful if each changelog entry was also added to the
-individual patches below "---" splitter.
+This means that I no longer have to send patches to TI / OMAP maintainers, =
+commiters=20
+and fixers, as well as at linux-omap@vger.kernel.org ?
+Even if the a1e980789b06 ("am335x-spread-spectrum) clk: ti: add am33xx spre=
+ad spectrum clock support")=20
+patch is basically related to the AM33xx/AM43xx SOCs?
 
--Sergey
+Thanks and regards,
+Dario
 
-> 
-> Brad Larson (13):
->   gpio: Add Elba SoC gpio driver for spi cs control
->   spi: cadence-quadspi: Add QSPI support for Pensando Elba SoC
->   spi: dw: Add support for Pensando Elba SoC SPI
->   spidev: Add Pensando CPLD compatible
->   mmc: sdhci-cadence: Add Pensando Elba SoC support
->   arm64: Add config for Pensando SoC platforms
->   arm64: dts: Add Pensando Elba SoC support
->   dt-bindings: Add pensando vendor prefix
->   dt-bindings: mmc: Add Pensando Elba SoC binding
->   dt-bindings: spi: cadence-qspi: Add support for Pensando Elba SoC
->   dt-bindings: gpio: Add Pensando Elba SoC support
->   MAINTAINERS: Add entry for PENSANDO
->   gpio: Use linux/gpio/driver.h
-> 
->  .../bindings/gpio/pensando,elba-spics.yaml    |  50 +++
->  .../devicetree/bindings/mmc/cdns,sdhci.yaml   |   1 +
->  .../bindings/spi/cadence-quadspi.txt          |  68 ----
->  .../bindings/spi/cadence-quadspi.yaml         | 153 +++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  MAINTAINERS                                   |   9 +
->  arch/arm64/Kconfig.platforms                  |   5 +
->  arch/arm64/boot/dts/Makefile                  |   1 +
->  arch/arm64/boot/dts/pensando/Makefile         |   6 +
->  arch/arm64/boot/dts/pensando/elba-16core.dtsi | 170 ++++++++++
->  .../boot/dts/pensando/elba-asic-common.dtsi   | 112 +++++++
->  arch/arm64/boot/dts/pensando/elba-asic.dts    |   7 +
->  .../boot/dts/pensando/elba-flash-parts.dtsi   |  78 +++++
->  arch/arm64/boot/dts/pensando/elba.dtsi        | 310 ++++++++++++++++++
->  drivers/gpio/Kconfig                          |   6 +
->  drivers/gpio/Makefile                         |   1 +
->  drivers/gpio/gpio-elba-spics.c                | 113 +++++++
->  drivers/mmc/host/Kconfig                      |  15 +
->  drivers/mmc/host/Makefile                     |   1 +
->  drivers/mmc/host/sdhci-cadence-elba.c         | 137 ++++++++
->  drivers/mmc/host/sdhci-cadence.c              |  81 +++--
->  drivers/mmc/host/sdhci-cadence.h              |  68 ++++
->  drivers/spi/spi-cadence-quadspi.c             |   9 +
->  drivers/spi/spi-dw-mmio.c                     |  28 +-
->  drivers/spi/spidev.c                          |   1 +
->  25 files changed, 1321 insertions(+), 111 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/gpio/pensando,elba-spics.yaml
->  delete mode 100644 Documentation/devicetree/bindings/spi/cadence-quadspi.txt
->  create mode 100644 Documentation/devicetree/bindings/spi/cadence-quadspi.yaml
->  create mode 100644 arch/arm64/boot/dts/pensando/Makefile
->  create mode 100644 arch/arm64/boot/dts/pensando/elba-16core.dtsi
->  create mode 100644 arch/arm64/boot/dts/pensando/elba-asic-common.dtsi
->  create mode 100644 arch/arm64/boot/dts/pensando/elba-asic.dts
->  create mode 100644 arch/arm64/boot/dts/pensando/elba-flash-parts.dtsi
->  create mode 100644 arch/arm64/boot/dts/pensando/elba.dtsi
->  create mode 100644 drivers/gpio/gpio-elba-spics.c
->  create mode 100644 drivers/mmc/host/sdhci-cadence-elba.c
->  create mode 100644 drivers/mmc/host/sdhci-cadence.h
-> 
-> -- 
-> 2.17.1
-> 
+> Regards,
+>=20
+> Tony
