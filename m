@@ -2,313 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A635D34FC8E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 11:22:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CC4234FC9F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 11:25:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234473AbhCaJV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 05:21:28 -0400
-Received: from mail.bugwerft.de ([46.23.86.59]:55064 "EHLO mail.bugwerft.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234231AbhCaJVW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Mar 2021 05:21:22 -0400
-Received: from hq-00021.fritz.box (p57bc9f10.dip0.t-ipconnect.de [87.188.159.16])
-        by mail.bugwerft.de (Postfix) with ESMTPSA id B2F4F4C63BD;
-        Wed, 31 Mar 2021 09:21:20 +0000 (UTC)
-From:   Daniel Mack <daniel@zonque.org>
-To:     airlied@linux.ie, daniel@ffwll.ch
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Daniel Mack <daniel@zonque.org>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PATCH v8 2/2] drm/tiny: add driver for newhaven,1.8-128160EF
-Date:   Wed, 31 Mar 2021 11:21:14 +0200
-Message-Id: <20210331092114.3185882-3-daniel@zonque.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210331092114.3185882-1-daniel@zonque.org>
-References: <20210331092114.3185882-1-daniel@zonque.org>
+        id S234684AbhCaJYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 05:24:46 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:31795 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230385AbhCaJYW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 05:24:22 -0400
+X-UUID: 2100cf8565374bb3a42718d88be49673-20210331
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=u+Ijg4lsy4bGx46vUJvZGwFd68l93EFamC79EAYl9EA=;
+        b=RqpmjbANKVbkrl1gOdY/J3PVy31o3/yaDm3j15IGGjh7MmecffsM7LVE6T9bphNe/8XZYK/VA2XZcUtaYNXVSP9J0oWyChZssvqqY3xqHQi/PacDbYhwLfnSccUzq9hmiKWYIP6JfIIvBBwUyQi4WTin8L7WuUgYTc4Sg4bFVWU=;
+X-UUID: 2100cf8565374bb3a42718d88be49673-20210331
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1879917599; Wed, 31 Mar 2021 17:24:17 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS33N2.mediatek.inc
+ (172.27.4.76) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 31 Mar
+ 2021 17:24:14 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 31 Mar 2021 17:24:13 +0800
+Message-ID: <1617182653.2752.9.camel@mhfsdcap03>
+Subject: Re: [PATCH 05/16] media: cadence: csi2rx: Add external DPHY support
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Pratyush Yadav <p.yadav@ti.com>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        "Maxime Ripard" <mripard@kernel.org>,
+        Benoit Parrot <bparrot@ti.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Peter Chen <peter.chen@nxp.com>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <dmaengine@vger.kernel.org>,
+        "Vignesh Raghavendra" <vigneshr@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Date:   Wed, 31 Mar 2021 17:24:13 +0800
+In-Reply-To: <20210330173348.30135-6-p.yadav@ti.com>
+References: <20210330173348.30135-1-p.yadav@ti.com>
+         <20210330173348.30135-6-p.yadav@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-TM-SNTS-SMTP: B7647F850F179C64680EA36BB89EC8C5CE0165C255A9B1A1D3112A96B7C994732000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for Newhaven's NHD-1.8-128160EF display, featuring
-an Ilitek ILI9163 controller.
-
-Signed-off-by: Daniel Mack <daniel@zonque.org>
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
----
- drivers/gpu/drm/tiny/Kconfig   |  13 ++
- drivers/gpu/drm/tiny/Makefile  |   1 +
- drivers/gpu/drm/tiny/ili9163.c | 224 +++++++++++++++++++++++++++++++++
- 3 files changed, 238 insertions(+)
- create mode 100644 drivers/gpu/drm/tiny/ili9163.c
-
-diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
-index 2b6414f0fa759..9de0c0eeea6f5 100644
---- a/drivers/gpu/drm/tiny/Kconfig
-+++ b/drivers/gpu/drm/tiny/Kconfig
-@@ -41,6 +41,19 @@ config TINYDRM_HX8357D
- 
- 	  If M is selected the module will be called hx8357d.
- 
-+config TINYDRM_ILI9163
-+	tristate "DRM support for ILI9163 display panels"
-+	depends on DRM && SPI
-+	select DRM_KMS_HELPER
-+	select DRM_KMS_CMA_HELPER
-+	select DRM_MIPI_DBI
-+	select BACKLIGHT_CLASS_DEVICE
-+	help
-+	  DRM driver for the following Ilitek ILI9163 panels:
-+	  * NHD-1.8-128160EF 128x160 TFT
-+
-+	  If M is selected the module will be called ili9163.
-+
- config TINYDRM_ILI9225
- 	tristate "DRM support for ILI9225 display panels"
- 	depends on DRM && SPI
-diff --git a/drivers/gpu/drm/tiny/Makefile b/drivers/gpu/drm/tiny/Makefile
-index 6ae4e9e5a35fb..78016b2ed11b5 100644
---- a/drivers/gpu/drm/tiny/Makefile
-+++ b/drivers/gpu/drm/tiny/Makefile
-@@ -3,6 +3,7 @@
- obj-$(CONFIG_DRM_CIRRUS_QEMU)		+= cirrus.o
- obj-$(CONFIG_DRM_GM12U320)		+= gm12u320.o
- obj-$(CONFIG_TINYDRM_HX8357D)		+= hx8357d.o
-+obj-$(CONFIG_TINYDRM_ILI9163)		+= ili9163.o
- obj-$(CONFIG_TINYDRM_ILI9225)		+= ili9225.o
- obj-$(CONFIG_TINYDRM_ILI9341)		+= ili9341.o
- obj-$(CONFIG_TINYDRM_ILI9486)		+= ili9486.o
-diff --git a/drivers/gpu/drm/tiny/ili9163.c b/drivers/gpu/drm/tiny/ili9163.c
-new file mode 100644
-index 0000000000000..6fa9e59b69321
---- /dev/null
-+++ b/drivers/gpu/drm/tiny/ili9163.c
-@@ -0,0 +1,224 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+
-+#include <linux/backlight.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/property.h>
-+#include <linux/spi/spi.h>
-+
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_drv.h>
-+#include <drm/drm_fb_helper.h>
-+#include <drm/drm_gem_cma_helper.h>
-+#include <drm/drm_gem_framebuffer_helper.h>
-+#include <drm/drm_mipi_dbi.h>
-+#include <drm/drm_modeset_helper.h>
-+#include <video/mipi_display.h>
-+
-+#define ILI9163_FRMCTR1		0xb1
-+
-+#define ILI9163_PWCTRL1		0xc0
-+#define ILI9163_PWCTRL2		0xc1
-+#define ILI9163_VMCTRL1		0xc5
-+#define ILI9163_VMCTRL2		0xc7
-+#define ILI9163_PWCTRLA		0xcb
-+#define ILI9163_PWCTRLB		0xcf
-+
-+#define ILI9163_EN3GAM		0xf2
-+
-+#define ILI9163_MADCTL_BGR	BIT(3)
-+#define ILI9163_MADCTL_MV	BIT(5)
-+#define ILI9163_MADCTL_MX	BIT(6)
-+#define ILI9163_MADCTL_MY	BIT(7)
-+
-+static void yx240qv29_enable(struct drm_simple_display_pipe *pipe,
-+			     struct drm_crtc_state *crtc_state,
-+			     struct drm_plane_state *plane_state)
-+{
-+	struct mipi_dbi_dev *dbidev = drm_to_mipi_dbi_dev(pipe->crtc.dev);
-+	struct mipi_dbi *dbi = &dbidev->dbi;
-+	u8 addr_mode;
-+	int ret, idx;
-+
-+	if (!drm_dev_enter(pipe->crtc.dev, &idx))
-+		return;
-+
-+	drm_dbg_kms(&dbidev->drm, "\n");
-+
-+	ret = mipi_dbi_poweron_conditional_reset(dbidev);
-+	if (ret < 0)
-+		goto out_exit;
-+	if (ret == 1)
-+		goto out_enable;
-+
-+	/* Gamma */
-+	mipi_dbi_command(dbi, MIPI_DCS_SET_GAMMA_CURVE, 0x04);
-+	mipi_dbi_command(dbi, ILI9163_EN3GAM, 0x00);
-+
-+	/* Frame Rate */
-+	mipi_dbi_command(dbi, ILI9163_FRMCTR1, 0x0a, 0x14);
-+
-+	/* Power Control */
-+	mipi_dbi_command(dbi, ILI9163_PWCTRL1, 0x0a, 0x00);
-+	mipi_dbi_command(dbi, ILI9163_PWCTRL2, 0x02);
-+
-+	/* VCOM */
-+	mipi_dbi_command(dbi, ILI9163_VMCTRL1, 0x2f, 0x3e);
-+	mipi_dbi_command(dbi, ILI9163_VMCTRL2, 0x40);
-+
-+	/* Memory Access Control */
-+	mipi_dbi_command(dbi, MIPI_DCS_SET_PIXEL_FORMAT, MIPI_DCS_PIXEL_FMT_16BIT);
-+
-+	mipi_dbi_command(dbi, MIPI_DCS_EXIT_SLEEP_MODE);
-+	msleep(100);
-+
-+	mipi_dbi_command(dbi, MIPI_DCS_SET_DISPLAY_ON);
-+	msleep(100);
-+
-+out_enable:
-+	switch (dbidev->rotation) {
-+	default:
-+		addr_mode = 0;
-+		break;
-+	case 90:
-+		addr_mode = ILI9163_MADCTL_MV | ILI9163_MADCTL_MX;
-+		break;
-+	case 180:
-+		addr_mode = ILI9163_MADCTL_MX | ILI9163_MADCTL_MY;
-+		break;
-+	case 270:
-+		addr_mode = ILI9163_MADCTL_MV | ILI9163_MADCTL_MY;
-+		break;
-+	}
-+	addr_mode |= ILI9163_MADCTL_BGR;
-+	mipi_dbi_command(dbi, MIPI_DCS_SET_ADDRESS_MODE, addr_mode);
-+	mipi_dbi_enable_flush(dbidev, crtc_state, plane_state);
-+out_exit:
-+	drm_dev_exit(idx);
-+}
-+
-+static const struct drm_simple_display_pipe_funcs ili9163_pipe_funcs = {
-+	.enable = yx240qv29_enable,
-+	.disable = mipi_dbi_pipe_disable,
-+	.update = mipi_dbi_pipe_update,
-+	.prepare_fb = drm_gem_fb_simple_display_pipe_prepare_fb,
-+};
-+
-+static const struct drm_display_mode yx240qv29_mode = {
-+	DRM_SIMPLE_MODE(128, 160, 28, 35),
-+};
-+
-+DEFINE_DRM_GEM_CMA_FOPS(ili9163_fops);
-+
-+static struct drm_driver ili9163_driver = {
-+	DRM_GEM_CMA_DRIVER_OPS_VMAP,
-+	.date			= "20210208",
-+	.debugfs_init		= mipi_dbi_debugfs_init,
-+	.desc			= "Ilitek ILI9163",
-+	.driver_features	= DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
-+	.fops			= &ili9163_fops,
-+	.major			= 1,
-+	.minor			= 0,
-+	.name			= "ili9163",
-+};
-+
-+static const struct of_device_id ili9163_of_match[] = {
-+	{ .compatible = "newhaven,1.8-128160EF" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ili9163_of_match);
-+
-+static const struct spi_device_id ili9163_id[] = {
-+	{ "nhd-1.8-128160EF", 0 },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(spi, ili9163_id);
-+
-+static int ili9163_probe(struct spi_device *spi)
-+{
-+	struct device *dev = &spi->dev;
-+	struct mipi_dbi_dev *dbidev;
-+	struct drm_device *drm;
-+	struct mipi_dbi *dbi;
-+	struct gpio_desc *dc;
-+	u32 rotation = 0;
-+	int ret;
-+
-+	dbidev = devm_drm_dev_alloc(dev, &ili9163_driver,
-+				    struct mipi_dbi_dev, drm);
-+	if (IS_ERR(dbidev))
-+		return PTR_ERR(dbidev);
-+
-+	dbi = &dbidev->dbi;
-+	drm = &dbidev->drm;
-+
-+	dbi->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(dbi->reset)) {
-+		drm_err(drm, "Failed to get gpio 'reset'\n");
-+		return PTR_ERR(dbi->reset);
-+	}
-+
-+	dc = devm_gpiod_get_optional(dev, "dc", GPIOD_OUT_LOW);
-+	if (IS_ERR(dc)) {
-+		drm_err(drm, "Failed to get gpio 'dc'\n");
-+		return PTR_ERR(dc);
-+	}
-+
-+	dbidev->backlight = devm_of_find_backlight(dev);
-+	if (IS_ERR(dbidev->backlight))
-+		return PTR_ERR(dbidev->backlight);
-+
-+	device_property_read_u32(dev, "rotation", &rotation);
-+
-+	ret = mipi_dbi_spi_init(spi, dbi, dc);
-+	if (ret)
-+		return ret;
-+
-+	ret = mipi_dbi_dev_init(dbidev, &ili9163_pipe_funcs, &yx240qv29_mode, rotation);
-+	if (ret)
-+		return ret;
-+
-+	drm_mode_config_reset(drm);
-+
-+	ret = drm_dev_register(drm, 0);
-+	if (ret)
-+		return ret;
-+
-+	drm_fbdev_generic_setup(drm, 0);
-+
-+	spi_set_drvdata(spi, drm);
-+
-+	return 0;
-+}
-+
-+static int ili9163_remove(struct spi_device *spi)
-+{
-+	struct drm_device *drm = spi_get_drvdata(spi);
-+
-+	drm_dev_unplug(drm);
-+	drm_atomic_helper_shutdown(drm);
-+
-+	return 0;
-+}
-+
-+static void ili9163_shutdown(struct spi_device *spi)
-+{
-+	drm_atomic_helper_shutdown(spi_get_drvdata(spi));
-+}
-+
-+static struct spi_driver ili9163_spi_driver = {
-+	.driver = {
-+		.name = "ili9163",
-+		.of_match_table = ili9163_of_match,
-+	},
-+	.id_table = ili9163_id,
-+	.probe = ili9163_probe,
-+	.remove = ili9163_remove,
-+	.shutdown = ili9163_shutdown,
-+};
-+module_spi_driver(ili9163_spi_driver);
-+
-+MODULE_DESCRIPTION("Ilitek ILI9163 DRM driver");
-+MODULE_AUTHOR("Daniel Mack <daniel@zonque.org>");
-+MODULE_LICENSE("GPL");
--- 
-2.30.2
+T24gVHVlLCAyMDIxLTAzLTMwIGF0IDIzOjAzICswNTMwLCBQcmF0eXVzaCBZYWRhdiB3cm90ZToN
+Cj4gU29tZSBwbGF0Zm9ybXMgbGlrZSBUSSdzIEo3MjFFIGNhbiBoYXZlIHRoZSBDU0kyUlggcGFp
+cmVkIHdpdGggYW4NCj4gZXh0ZXJuYWwgRFBIWS4gQWRkIHN1cHBvcnQgdG8gZW5hYmxlIGFuZCBj
+b25maWd1cmUgdGhlIERQSFkgdXNpbmcgdGhlDQo+IGdlbmVyaWMgUEhZIGZyYW1ld29yay4NCj4g
+DQo+IEdldCB0aGUgcGl4ZWwgcmF0ZSBhbmQgYnBwIGZyb20gdGhlIHN1YmRldiBhbmQgcGFzcyB0
+aGVtIG9uIHRvIHRoZSBEUEhZDQo+IGFsb25nIHdpdGggdGhlIG51bWJlciBvZiBsYW5lcy4gQWxs
+IG90aGVyIHNldHRpbmdzIGFyZSBsZWZ0IHRvIHRoZWlyDQo+IGRlZmF1bHQgdmFsdWVzLg0KPiAN
+Cj4gU2lnbmVkLW9mZi1ieTogUHJhdHl1c2ggWWFkYXYgPHAueWFkYXZAdGkuY29tPg0KPiAtLS0N
+Cj4gIGRyaXZlcnMvbWVkaWEvcGxhdGZvcm0vY2FkZW5jZS9jZG5zLWNzaTJyeC5jIHwgMTQ3ICsr
+KysrKysrKysrKysrKysrLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCAxMzcgaW5zZXJ0aW9ucygrKSwg
+MTAgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tZWRpYS9wbGF0Zm9y
+bS9jYWRlbmNlL2NkbnMtY3NpMnJ4LmMgYi9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL2NhZGVuY2Uv
+Y2Rucy1jc2kycnguYw0KPiBpbmRleCBjNjhhM2VhYzYyY2QuLjMxYmQ4MGUzZjc4MCAxMDA2NDQN
+Cj4gLS0tIGEvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9jYWRlbmNlL2NkbnMtY3NpMnJ4LmMNCj4g
+KysrIGIvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9jYWRlbmNlL2NkbnMtY3NpMnJ4LmMNCj4gQEAg
+LTMwLDYgKzMwLDEyIEBADQo+ICAjZGVmaW5lIENTSTJSWF9TVEFUSUNfQ0ZHX0RMQU5FX01BUChs
+bGFuZSwgcGxhbmUpCSgocGxhbmUpIDw8ICgxNiArIChsbGFuZSkgKiA0KSkNCj4gICNkZWZpbmUg
+Q1NJMlJYX1NUQVRJQ19DRkdfTEFORVNfTUFTSwkJCUdFTk1BU0soMTEsIDgpDQo+ICANCj4gKyNk
+ZWZpbmUgQ1NJMlJYX0RQSFlfTEFORV9DVFJMX1JFRwkJMHg0MA0KPiArI2RlZmluZSBDU0kyUlhf
+RFBIWV9DTF9SU1QJCQlCSVQoMTYpDQo+ICsjZGVmaW5lIENTSTJSWF9EUEhZX0RMX1JTVChpKQkJ
+CUJJVCgoaSkgKyAxMikNCj4gKyNkZWZpbmUgQ1NJMlJYX0RQSFlfQ0xfRU4JCQlCSVQoNCkNCj4g
+KyNkZWZpbmUgQ1NJMlJYX0RQSFlfRExfRU4oaSkJCQlCSVQoaSkNCj4gKw0KPiAgI2RlZmluZSBD
+U0kyUlhfU1RSRUFNX0JBU0UobikJCSgoKG4pICsgMSkgKiAweDEwMCkNCj4gIA0KPiAgI2RlZmlu
+ZSBDU0kyUlhfU1RSRUFNX0NUUkxfUkVHKG4pCQkoQ1NJMlJYX1NUUkVBTV9CQVNFKG4pICsgMHgw
+MDApDQo+IEBAIC01NCw2ICs2MCwxMSBAQCBlbnVtIGNzaTJyeF9wYWRzIHsNCj4gIAlDU0kyUlhf
+UEFEX01BWCwNCj4gIH07DQo+ICANCj4gK3N0cnVjdCBjc2kycnhfZm10IHsNCj4gKwl1MzIJCQkJ
+Y29kZTsNCj4gKwl1OAkJCQlicHA7DQo+ICt9Ow0KPiArDQo+ICBzdHJ1Y3QgY3NpMnJ4X3ByaXYg
+ew0KPiAgCXN0cnVjdCBkZXZpY2UJCQkqZGV2Ow0KPiAgCXVuc2lnbmVkIGludAkJCWNvdW50Ow0K
+PiBAQCAtODUsNiArOTYsNTIgQEAgc3RydWN0IGNzaTJyeF9wcml2IHsNCj4gIAlpbnQJCQkJc291
+cmNlX3BhZDsNCj4gIH07DQo+ICANCj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgY3NpMnJ4X2ZtdCBm
+b3JtYXRzW10gPSB7DQo+ICsJew0KPiArCQkuY29kZQk9IE1FRElBX0JVU19GTVRfWVVZVjhfMlg4
+LA0KPiArCQkuYnBwCT0gMTYsDQo+ICsJfSwNCj4gKwl7DQo+ICsJCS5jb2RlCT0gTUVESUFfQlVT
+X0ZNVF9VWVZZOF8yWDgsDQo+ICsJCS5icHAJPSAxNiwNCj4gKwl9LA0KPiArCXsNCj4gKwkJLmNv
+ZGUJPSBNRURJQV9CVVNfRk1UX1lWWVU4XzJYOCwNCj4gKwkJLmJwcAk9IDE2LA0KPiArCX0sDQo+
+ICsJew0KPiArCQkuY29kZQk9IE1FRElBX0JVU19GTVRfVllVWThfMlg4LA0KPiArCQkuYnBwCT0g
+MTYsDQo+ICsJfSwNCj4gK307DQo+ICsNCj4gK3N0YXRpYyB1OCBjc2kycnhfZ2V0X2JwcCh1MzIg
+Y29kZSkNCj4gK3sNCj4gKwlpbnQgaTsNCj4gKw0KPiArCWZvciAoaSA9IDA7IGkgPCBBUlJBWV9T
+SVpFKGZvcm1hdHMpOyBpKyspIHsNCj4gKwkJaWYgKGZvcm1hdHNbaV0uY29kZSA9PSBjb2RlKQ0K
+PiArCQkJcmV0dXJuIGZvcm1hdHNbaV0uYnBwOw0KPiArCX0NCj4gKw0KPiArCXJldHVybiAwOw0K
+PiArfQ0KPiArDQo+ICtzdGF0aWMgczY0IGNzaTJyeF9nZXRfcGl4ZWxfcmF0ZShzdHJ1Y3QgY3Np
+MnJ4X3ByaXYgKmNzaTJyeCkNCj4gK3sNCj4gKwlzdHJ1Y3QgdjRsMl9jdHJsICpjdHJsOw0KPiAr
+DQo+ICsJY3RybCA9IHY0bDJfY3RybF9maW5kKGNzaTJyeC0+c291cmNlX3N1YmRldi0+Y3RybF9o
+YW5kbGVyLA0KPiArCQkJICAgICAgVjRMMl9DSURfUElYRUxfUkFURSk7DQo+ICsJaWYgKCFjdHJs
+KSB7DQo+ICsJCWRldl9lcnIoY3NpMnJ4LT5kZXYsICJubyBwaXhlbCByYXRlIGNvbnRyb2wgaW4g
+c3ViZGV2OiAlc1xuIiwNCj4gKwkJCWNzaTJyeC0+c291cmNlX3N1YmRldi0+bmFtZSk7DQo+ICsJ
+CXJldHVybiAtRUlOVkFMOw0KPiArCX0NCj4gKw0KPiArCXJldHVybiB2NGwyX2N0cmxfZ19jdHJs
+X2ludDY0KGN0cmwpOw0KPiArfQ0KPiArDQo+ICBzdGF0aWMgaW5saW5lDQo+ICBzdHJ1Y3QgY3Np
+MnJ4X3ByaXYgKnY0bDJfc3ViZGV2X3RvX2NzaTJyeChzdHJ1Y3QgdjRsMl9zdWJkZXYgKnN1YmRl
+dikNCj4gIHsNCj4gQEAgLTEwMSw2ICsxNTgsNTUgQEAgc3RhdGljIHZvaWQgY3NpMnJ4X3Jlc2V0
+KHN0cnVjdCBjc2kycnhfcHJpdiAqY3NpMnJ4KQ0KPiAgCXdyaXRlbCgwLCBjc2kycngtPmJhc2Ug
+KyBDU0kyUlhfU09GVF9SRVNFVF9SRUcpOw0KPiAgfQ0KPiAgDQo+ICtzdGF0aWMgaW50IGNzaTJy
+eF9jb25maWd1cmVfZXh0ZXJuYWxfZHBoeShzdHJ1Y3QgY3NpMnJ4X3ByaXYgKmNzaTJyeCkNCj4g
+K3sNCj4gKwl1bmlvbiBwaHlfY29uZmlndXJlX29wdHMgb3B0cyA9IHsgfTsNCj4gKwlzdHJ1Y3Qg
+cGh5X2NvbmZpZ3VyZV9vcHRzX21pcGlfZHBoeSAqY2ZnID0gJm9wdHMubWlwaV9kcGh5Ow0KPiAr
+CXN0cnVjdCB2NGwyX3N1YmRldl9mb3JtYXQgc2RfZm10Ow0KPiArCXM2NCBwaXhlbF9yYXRlOw0K
+PiArCWludCByZXQ7DQo+ICsJdTggYnBwOw0KPiArDQo+ICsJc2RfZm10LndoaWNoID0gVjRMMl9T
+VUJERVZfRk9STUFUX0FDVElWRTsNCj4gKwlzZF9mbXQucGFkID0gMDsNCj4gKw0KPiArCXJldCA9
+IHY0bDJfc3ViZGV2X2NhbGwoY3NpMnJ4LT5zb3VyY2Vfc3ViZGV2LCBwYWQsIGdldF9mbXQsIE5V
+TEwsDQo+ICsJCQkgICAgICAgJnNkX2ZtdCk7DQo+ICsJaWYgKHJldCkNCj4gKwkJcmV0dXJuIHJl
+dDsNCj4gKw0KPiArCWJwcCA9IGNzaTJyeF9nZXRfYnBwKHNkX2ZtdC5mb3JtYXQuY29kZSk7DQo+
+ICsJaWYgKCFicHApDQo+ICsJCXJldHVybiAtRUlOVkFMOw0KPiArDQo+ICsJcGl4ZWxfcmF0ZSA9
+IGNzaTJyeF9nZXRfcGl4ZWxfcmF0ZShjc2kycngpOw0KPiArCWlmIChwaXhlbF9yYXRlIDwgMCkN
+Cj4gKwkJcmV0dXJuIHBpeGVsX3JhdGU7DQo+ICsNCj4gKwlyZXQgPSBwaHlfbWlwaV9kcGh5X2dl
+dF9kZWZhdWx0X2NvbmZpZyhwaXhlbF9yYXRlLCBicHAsDQo+ICsJCQkJCSAgICAgICBjc2kycngt
+Pm51bV9sYW5lcywgY2ZnKTsNCj4gKwlpZiAocmV0KQ0KPiArCQlyZXR1cm4gcmV0Ow0KPiArDQo+
+ICsJcmV0ID0gcGh5X3NldF9tb2RlX2V4dChjc2kycngtPmRwaHksIFBIWV9NT0RFX01JUElfRFBI
+WSwNCj4gKwkJCSAgICAgICBQSFlfTUlQSV9EUEhZX1NVQk1PREVfUlgpOw0KPiArCWlmIChyZXQp
+DQo+ICsJCXJldHVybiByZXQ7DQo+ICsNCj4gKwlyZXQgPSBwaHlfcG93ZXJfb24oY3NpMnJ4LT5k
+cGh5KTsNCj4gKwlpZiAocmV0KQ0KPiArCQlyZXR1cm4gcmV0Ow0KU2VlbXMgcGh5X3Bvd2VyX29u
+LCB0aGVuIHBoeV9zZXRfbW9kZV9leHQ/DQoNCj4gKw0KPiArCXJldCA9IHBoeV9jb25maWd1cmUo
+Y3NpMnJ4LT5kcGh5LCAmb3B0cyk7DQo+ICsJaWYgKHJldCkgew0KPiArCQkvKiBDYW4ndCBkbyBh
+bnl0aGluZyBpZiBpdCBmYWlscy4gSWdub3JlIHRoZSByZXR1cm4gdmFsdWUuICovDQo+ICsJCXBo
+eV9wb3dlcl9vZmYoY3NpMnJ4LT5kcGh5KTsNCj4gKwkJcmV0dXJuIHJldDsNCj4gKwl9DQo+ICsN
+Cj4gKwlyZXR1cm4gMDsNCj4gK30NCj4gKw0KPiAgc3RhdGljIGludCBjc2kycnhfc3RhcnQoc3Ry
+dWN0IGNzaTJyeF9wcml2ICpjc2kycngpDQo+ICB7DQo+ICAJdW5zaWduZWQgaW50IGk7DQo+IEBA
+IC0xMzksNiArMjQ1LDE3IEBAIHN0YXRpYyBpbnQgY3NpMnJ4X3N0YXJ0KHN0cnVjdCBjc2kycnhf
+cHJpdiAqY3NpMnJ4KQ0KPiAgCWlmIChyZXQpDQo+ICAJCWdvdG8gZXJyX2Rpc2FibGVfcGNsazsN
+Cj4gIA0KPiArCS8qIEVuYWJsZSBEUEhZIGNsayBhbmQgZGF0YSBsYW5lcy4gKi8NCj4gKwlpZiAo
+Y3NpMnJ4LT5kcGh5KSB7DQo+ICsJCXJlZyA9IENTSTJSWF9EUEhZX0NMX0VOIHwgQ1NJMlJYX0RQ
+SFlfQ0xfUlNUOw0KPiArCQlmb3IgKGkgPSAwOyBpIDwgY3NpMnJ4LT5udW1fbGFuZXM7IGkrKykg
+ew0KPiArCQkJcmVnIHw9IENTSTJSWF9EUEhZX0RMX0VOKGNzaTJyeC0+bGFuZXNbaV0gLSAxKTsN
+Cj4gKwkJCXJlZyB8PSBDU0kyUlhfRFBIWV9ETF9SU1QoY3NpMnJ4LT5sYW5lc1tpXSAtIDEpOw0K
+PiArCQl9DQo+ICsNCj4gKwkJd3JpdGVsKHJlZywgY3NpMnJ4LT5iYXNlICsgQ1NJMlJYX0RQSFlf
+TEFORV9DVFJMX1JFRyk7DQo+ICsJfQ0KPiArDQo+ICAJLyoNCj4gIAkgKiBDcmVhdGUgYSBzdGF0
+aWMgbWFwcGluZyBiZXR3ZWVuIHRoZSBDU0kgdmlydHVhbCBjaGFubmVscw0KPiAgCSAqIGFuZCB0
+aGUgb3V0cHV0IHN0cmVhbS4NCj4gQEAgLTE2OSwxMCArMjg2LDIxIEBAIHN0YXRpYyBpbnQgY3Np
+MnJ4X3N0YXJ0KHN0cnVjdCBjc2kycnhfcHJpdiAqY3NpMnJ4KQ0KPiAgCWlmIChyZXQpDQo+ICAJ
+CWdvdG8gZXJyX2Rpc2FibGVfcGl4Y2xrOw0KPiAgDQo+ICsJaWYgKGNzaTJyeC0+ZHBoeSkgew0K
+PiArCQlyZXQgPSBjc2kycnhfY29uZmlndXJlX2V4dGVybmFsX2RwaHkoY3NpMnJ4KTsNCj4gKwkJ
+aWYgKHJldCkgew0KPiArCQkJZGV2X2Vycihjc2kycngtPmRldiwNCj4gKwkJCQkiRmFpbGVkIHRv
+IGNvbmZpZ3VyZSBleHRlcm5hbCBEUEhZOiAlZFxuIiwgcmV0KTsNCj4gKwkJCWdvdG8gZXJyX2Rp
+c2FibGVfc3lzY2xrOw0KPiArCQl9DQo+ICsJfQ0KPiArDQo+ICAJY2xrX2Rpc2FibGVfdW5wcmVw
+YXJlKGNzaTJyeC0+cF9jbGspOw0KPiAgDQo+ICAJcmV0dXJuIDA7DQo+ICANCj4gK2Vycl9kaXNh
+YmxlX3N5c2NsazoNCj4gKwljbGtfZGlzYWJsZV91bnByZXBhcmUoY3NpMnJ4LT5zeXNfY2xrKTsN
+Cj4gIGVycl9kaXNhYmxlX3BpeGNsazoNCj4gIAlmb3IgKDsgaSA+IDA7IGktLSkNCj4gIAkJY2xr
+X2Rpc2FibGVfdW5wcmVwYXJlKGNzaTJyeC0+cGl4ZWxfY2xrW2kgLSAxXSk7DQo+IEBAIC0yMDAs
+NiArMzI4LDEzIEBAIHN0YXRpYyB2b2lkIGNzaTJyeF9zdG9wKHN0cnVjdCBjc2kycnhfcHJpdiAq
+Y3NpMnJ4KQ0KPiAgDQo+ICAJaWYgKHY0bDJfc3ViZGV2X2NhbGwoY3NpMnJ4LT5zb3VyY2Vfc3Vi
+ZGV2LCB2aWRlbywgc19zdHJlYW0sIGZhbHNlKSkNCj4gIAkJZGV2X3dhcm4oY3NpMnJ4LT5kZXYs
+ICJDb3VsZG4ndCBkaXNhYmxlIG91ciBzdWJkZXZcbiIpOw0KPiArDQo+ICsJaWYgKGNzaTJyeC0+
+ZHBoeSkgew0KPiArCQl3cml0ZWwoMCwgY3NpMnJ4LT5iYXNlICsgQ1NJMlJYX0RQSFlfTEFORV9D
+VFJMX1JFRyk7DQo+ICsNCj4gKwkJaWYgKHBoeV9wb3dlcl9vZmYoY3NpMnJ4LT5kcGh5KSkNCj4g
+KwkJCWRldl93YXJuKGNzaTJyeC0+ZGV2LCAiQ291bGRuJ3QgcG93ZXIgb2ZmIERQSFlcbiIpOw0K
+PiArCX0NCj4gIH0NCj4gIA0KPiAgc3RhdGljIGludCBjc2kycnhfc19zdHJlYW0oc3RydWN0IHY0
+bDJfc3ViZGV2ICpzdWJkZXYsIGludCBlbmFibGUpDQo+IEBAIC0zMDYsMTUgKzQ0MSw2IEBAIHN0
+YXRpYyBpbnQgY3NpMnJ4X2dldF9yZXNvdXJjZXMoc3RydWN0IGNzaTJyeF9wcml2ICpjc2kycngs
+DQo+ICAJCXJldHVybiBQVFJfRVJSKGNzaTJyeC0+ZHBoeSk7DQo+ICAJfQ0KPiAgDQo+IC0JLyoN
+Cj4gLQkgKiBGSVhNRTogT25jZSB3ZSdsbCBoYXZlIGV4dGVybmFsIEQtUEhZIHN1cHBvcnQsIHRo
+ZSBjaGVjaw0KPiAtCSAqIHdpbGwgbmVlZCB0byBiZSByZW1vdmVkLg0KPiAtCSAqLw0KPiAtCWlm
+IChjc2kycngtPmRwaHkpIHsNCj4gLQkJZGV2X2VycigmcGRldi0+ZGV2LCAiRXh0ZXJuYWwgRC1Q
+SFkgbm90IHN1cHBvcnRlZCB5ZXRcbiIpOw0KPiAtCQlyZXR1cm4gLUVJTlZBTDsNCj4gLQl9DQo+
+IC0NCj4gIAljbGtfcHJlcGFyZV9lbmFibGUoY3NpMnJ4LT5wX2Nsayk7DQo+ICAJZGV2X2NmZyA9
+IHJlYWRsKGNzaTJyeC0+YmFzZSArIENTSTJSWF9ERVZJQ0VfQ0ZHX1JFRyk7DQo+ICAJY2xrX2Rp
+c2FibGVfdW5wcmVwYXJlKGNzaTJyeC0+cF9jbGspOw0KPiBAQCAtMzM5LDcgKzQ2NSw3IEBAIHN0
+YXRpYyBpbnQgY3NpMnJ4X2dldF9yZXNvdXJjZXMoc3RydWN0IGNzaTJyeF9wcml2ICpjc2kycngs
+DQo+ICAJICogRklYTUU6IE9uY2Ugd2UnbGwgaGF2ZSBpbnRlcm5hbCBELVBIWSBzdXBwb3J0LCB0
+aGUgY2hlY2sNCj4gIAkgKiB3aWxsIG5lZWQgdG8gYmUgcmVtb3ZlZC4NCj4gIAkgKi8NCj4gLQlp
+ZiAoY3NpMnJ4LT5oYXNfaW50ZXJuYWxfZHBoeSkgew0KPiArCWlmICghY3NpMnJ4LT5kcGh5ICYm
+IGNzaTJyeC0+aGFzX2ludGVybmFsX2RwaHkpIHsNCj4gIAkJZGV2X2VycigmcGRldi0+ZGV2LCAi
+SW50ZXJuYWwgRC1QSFkgbm90IHN1cHBvcnRlZCB5ZXRcbiIpOw0KPiAgCQlyZXR1cm4gLUVJTlZB
+TDsNCj4gIAl9DQo+IEBAIC00NjAsNiArNTg2LDcgQEAgc3RhdGljIGludCBjc2kycnhfcHJvYmUo
+c3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikNCj4gIAlkZXZfaW5mbygmcGRldi0+ZGV2LA0K
+PiAgCQkgIlByb2JlZCBDU0kyUlggd2l0aCAldS8ldSBsYW5lcywgJXUgc3RyZWFtcywgJXMgRC1Q
+SFlcbiIsDQo+ICAJCSBjc2kycngtPm51bV9sYW5lcywgY3NpMnJ4LT5tYXhfbGFuZXMsIGNzaTJy
+eC0+bWF4X3N0cmVhbXMsDQo+ICsJCSBjc2kycngtPmRwaHkgPyAiZXh0ZXJuYWwiIDoNCj4gIAkJ
+IGNzaTJyeC0+aGFzX2ludGVybmFsX2RwaHkgPyAiaW50ZXJuYWwiIDogIm5vIik7DQo+ICANCj4g
+IAlyZXR1cm4gMDsNCg0K
 
