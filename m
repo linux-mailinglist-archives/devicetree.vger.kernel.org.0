@@ -2,57 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F1B834FFAB
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 13:47:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA09534FFDE
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 14:03:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235277AbhCaLrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 07:47:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57718 "EHLO mail.kernel.org"
+        id S235347AbhCaMDK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 08:03:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33202 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235205AbhCaLrE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Mar 2021 07:47:04 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 546F961983;
-        Wed, 31 Mar 2021 11:47:03 +0000 (UTC)
+        id S235386AbhCaMCv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 31 Mar 2021 08:02:51 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E256961998;
+        Wed, 31 Mar 2021 12:02:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617191223;
-        bh=MEHIAOJCnD5NSU7ULLzWpFbC8P2mR31ilMdQBMXtbOc=;
+        s=k20201202; t=1617192171;
+        bh=ftBJKeSakF7XMeKo9EWSc1ghqWc3O5MDjEvFKjFi+3c=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bmP1RP5T5z4hKGvW98EtdBNRGmgIe9dzS3auzf3Op2eraqOzCajqJGuQ5s7AXikt6
-         emDr2FxSiK3XVUN5PvSID7n1dl0bjmDjzb+d8JlDLUqd5RjjodFV3qv7wcoegBb8CE
-         7/XW1HSWHbO+YtwlWiePfNvEvGB0HLOGWkr/afsbG+eAhWoW4FEQ/3EAMrcWAbv9bl
-         XhIFWjSF2s+CavpXg0zQkiZUi155OuXnICXwL8e9RL5dxd1PhtrvLeVsKB/NBfwY+F
-         T5483A70ZZLzjIgWOcz1ojyqZri9NkgTyhRdKsY+bx98ympZhlrw1MRdi8SBsGS7Vd
-         CmiyU4xF6JsOw==
-Date:   Wed, 31 Mar 2021 12:46:50 +0100
+        b=uAoNjg5b951dWWlc12n04W3gXcNDMZ4PaavYsgkSRzDUsb2v6tuRZuBcSpBrr8B3W
+         fydI57os6aO/jkq+3pFgKUbSkgNzvoFU8srGOS4G6cSG+kOfAjtWdMrJRBp+iyjXcU
+         gz/L0ZnI+Oaqxqh+gJQDJobjHgNpmJec2vyRTDKHjncKWA+ZqUl1NNzJpGsuey+tub
+         qvfs+qv96jluN2EoVK1l5EIHjsPkZTe5Z3XhVkWaPbPD0MdEpF+Bi0fR3h6jcDioUq
+         uGlhqn3tFRdcwtQZDVmb/vQSIv7uGdXi4TdsSCK9taLHWes2Vy57LEnO2cOpi40j7P
+         GNeMlDJHfYmaw==
+Date:   Wed, 31 Mar 2021 13:02:38 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     Jim Quinlan <jim2101024@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 1/6] dt-bindings: PCI: Add bindings for Brcmstb EP
- voltage regulators
-Message-ID: <20210331114650.GA4758@sirena.org.uk>
-References: <20210326191906.43567-1-jim2101024@gmail.com>
- <20210326191906.43567-2-jim2101024@gmail.com>
- <20210330150816.GA306420@robh.at.kernel.org>
- <20210330153023.GE4976@sirena.org.uk>
- <CANCKTBvDdkLk0o4NboaOTZ26vfwJjPAfnXK3ay4v9E91G2gYOQ@mail.gmail.com>
+To:     Jack Yu <jack.yu@realtek.com>
+Cc:     lgirdwood@gmail.com, robh@kernel.org, alsa-devel@alsa-project.org,
+        lars@metafoo.de, flove@realtek.com, kenny_chen@realtek.com,
+        kent_chen@realtek.com, oder_chiou@realtek.com,
+        shumingf@realtek.com, derek.fang@realtek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: sound: add address-cells and size-cells
+ information
+Message-ID: <20210331120238.GC4758@sirena.org.uk>
+References: <20210331071046.12526-1-jack.yu@realtek.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="3MwIy2ne0vdjdPXF"
+        protocol="application/pgp-signature"; boundary="FsscpQKzF/jJk6ya"
 Content-Disposition: inline
-In-Reply-To: <CANCKTBvDdkLk0o4NboaOTZ26vfwJjPAfnXK3ay4v9E91G2gYOQ@mail.gmail.com>
+In-Reply-To: <20210331071046.12526-1-jack.yu@realtek.com>
 X-Cookie: You can't take damsel here now.
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
@@ -60,47 +47,33 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---3MwIy2ne0vdjdPXF
+--FsscpQKzF/jJk6ya
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Tue, Mar 30, 2021 at 12:23:35PM -0400, Jim Quinlan wrote:
-> On Tue, Mar 30, 2021 at 11:30 AM Mark Brown <broonie@kernel.org> wrote:
+On Wed, Mar 31, 2021 at 03:10:46PM +0800, Jack Yu wrote:
+> Add address-cells and size-cells information to fix warnings
+> for rt1019.yaml.
 
-> > For a soldered down part I'd expect we'd want both (if the host even
-> > cares) - for anything except a supply that I/O or something else shared
-> > is referenced off there's no great reason why it has to be physically
-> > the same supply going to every device on the bus so each device should
-> > be able to specify separately.
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
-> Our developer and reference boards frequently have Mini and half-mini
-> PCIe sockets (a few exceptions), whereas production boards are mostly
-> soldered down.
-
-On reflection I think the above probably also applies to sockets - you'd
-just have to have a socket visible in the DT.
-
-> If I resubmit this pullreq  so that it  looks for "vpcie12v-supply"
-> and "vpcie3v3-supply" in the host node, will that be acceptable for
-> both of you?
-
-I think you will need both (assuming the controller actually physically
-gets the supplies) - like I say the sockets/devices may not all share
-the same 12V and 3.3V rails.
-
---3MwIy2ne0vdjdPXF
+--FsscpQKzF/jJk6ya
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBkYSoACgkQJNaLcl1U
-h9AzZwf+IHeeyiF1l7tnQ0F0NICTUvUfGXdva6I5FzgczPxucf1w9Y/VIHGfrFi4
-E09OZWs/FH0fFgUQWO+bqeaXYInpMnGsMCdXZSEYsABgQoMTtvoCQr+o1QKvJ/Ye
-5IR1iPxdigor4QKIXvTIi0sIC/iFvMVo6wFfIInf7qzmsLnZE/uuJmHh3Sq2I1JW
-urO6SiyAzZkdn6ZVA5Asu/8MeUmIMCC7Cidc25fBedch6a8+dqewQds0uZCJC40k
-k8rsYDdF1E8DuKITqLcNiYDS677bgx/F+0DXWRrVMYawSiOxmrLTk+fBYq3EzYq3
-8I/egyMtNle4xXbSt4WSpuODegtakw==
-=YqRz
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBkZN0ACgkQJNaLcl1U
+h9Az1Qf9EUsAnv1GNJ5Ggh+zxAswVpGZsiGdpMhjmCSiMwbU584ZI9XN8q05Fdzs
+jRENfkjkwiZy7xkGg+6LY1pplZdKeWxVF1KF1ZJwJ93G6acTy6c0XS0a8rgWxXHP
+nu9PvSiwB9ehWnUdTf9DLdgs91JjAWBGPfSC3TPPtooxS1nJAjFbqVmuqcd6bs5J
+fo3y8OjgyJzn2x9Zoz4tHd7/sFX3tQisSzZgUPYNH6yQQrHnSelviP/i8ktOFgNg
+tNT7aZnb2SxMmNoT7ZlWLyw5IANvThlT3cSfC6oXCRK4ylE+fK+vamKllPqAJmfy
+oPBuSYAz+JNrTezUwpeQh1M4B5EVVw==
+=63Oa
 -----END PGP SIGNATURE-----
 
---3MwIy2ne0vdjdPXF--
+--FsscpQKzF/jJk6ya--
