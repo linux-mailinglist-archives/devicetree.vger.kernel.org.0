@@ -2,129 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEB5834FCBD
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 11:27:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFEFC34FCF7
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 11:34:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234721AbhCaJ06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 05:26:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36662 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234725AbhCaJ0k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 05:26:40 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64560C061760
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 02:26:40 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id nh23-20020a17090b3657b02900c0d5e235a8so927900pjb.0
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 02:26:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=yP7PEulAPK6UHzRxTLeSHifkookZOtRjzWBAZ0O/gdc=;
-        b=LOw7EcVTffm/NjdpGaGKUcEGQ77gQ9JBGdonP44rzUgXmMgCpaNUUehuHZr1fxV1UH
-         3BBm56IlXAYsVcHNKpUz4rfO9dQS24nWfBTjUsvikelk59OREv70zUWGBbH2weoPqb1v
-         fe5f2NqgE0tBYaHEv53mPjfxC0q//a/k26g7ERe1p40gF7ZDAu55vDVITOsHtel4i7gk
-         t193rAIOVpfvOXumSpeM5SWmZTcuFe8Ui9c0OnT1wU6EWF4zKZPgVgDWc6s3/YmvsIVs
-         DSj7O3ADkHdwvuty7xC835x7GQzPyJUO+6tIJue0z3CAXUBR/aUoKr6JELz2lo+C+iNH
-         gfZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=yP7PEulAPK6UHzRxTLeSHifkookZOtRjzWBAZ0O/gdc=;
-        b=ClpQV/Qjd9mf5XgCGtKPhDCfOUtUoba81Kkhm1xHxScRNpBpQpbptxg/yivP2hDDl5
-         dUIWGD3hUbd8IDWLMnjZhMKw+ey4/utLKwilCOLujEldHQQHlaIxKYV6MA86Zf/BeL7I
-         vP1cXWMXEOUErbkzmFY0Gg+u3xg/1ADuvp/PiNd6waP2xtFozAeLwlz/BD9bzodi4nHj
-         zZIcsXe2efWBW2BggsPe7dHjwCsqGAOSSRllijfENEQpgheDlZi98MTIxU9K4HPt3/2p
-         pP7+wvzfySPZAnwHHESZk12oW9YUdbolti4VXpYXIDxOsU96wlPh0vzW+6FwC7kct70u
-         2oEQ==
-X-Gm-Message-State: AOAM530zS4KTMyuTc2gTlPfrIJLdbSNg4B3ZNSpVmWRgMWpvopVlzjhe
-        uNjXF/S4ZiBSO9U5IeiD0ubQrw==
-X-Google-Smtp-Source: ABdhPJyOcOzTnUY5eHiAJ1S0x1EGTnxPs4BI8SbPuOMDe+Jv2va6wUKiS7UneRWEWjd/DWnW7Vlmhw==
-X-Received: by 2002:a17:90b:1987:: with SMTP id mv7mr2512728pjb.152.1617182799984;
-        Wed, 31 Mar 2021 02:26:39 -0700 (PDT)
-Received: from hsinchu02.internal.sifive.com (114-34-229-221.HINET-IP.hinet.net. [114.34.229.221])
-        by smtp.gmail.com with ESMTPSA id 143sm1726505pfx.144.2021.03.31.02.26.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Mar 2021 02:26:39 -0700 (PDT)
-From:   Greentime Hu <greentime.hu@sifive.com>
-To:     greentime.hu@sifive.com, paul.walmsley@sifive.com, hes@sifive.com,
-        erik.danie@sifive.com, zong.li@sifive.com, bhelgaas@google.com,
-        robh+dt@kernel.org, aou@eecs.berkeley.edu, mturquette@baylibre.com,
-        sboyd@kernel.org, lorenzo.pieralisi@arm.com,
-        p.zabel@pengutronix.de, alex.dewar90@gmail.com,
-        khilman@baylibre.com, hayashi.kunihiko@socionext.com,
-        vidyas@nvidia.com, jh80.chung@samsung.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, helgaas@kernel.org
-Subject: [PATCH v3 6/6] riscv: dts: Add PCIe support for the SiFive FU740-C000 SoC
-Date:   Wed, 31 Mar 2021 17:26:05 +0800
-Message-Id: <20210331092605.105909-7-greentime.hu@sifive.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210331092605.105909-1-greentime.hu@sifive.com>
-References: <20210331092605.105909-1-greentime.hu@sifive.com>
+        id S234835AbhCaJeX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 05:34:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49082 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234707AbhCaJd4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 31 Mar 2021 05:33:56 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8C1C7619F0;
+        Wed, 31 Mar 2021 09:33:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617183235;
+        bh=nO6ttpQXe+OeRL88ACEvx2io7aYwd7vnwQG1o0nC6Gw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=h/JuXQ8QMS62JOS9+ByXnOqyzOo1u3p8/2y0FqKbbBkFG6wtSSRN6I1ayMSxygk3j
+         qldKxHUcR0scfwhsSdITKQ7+94rabU11oLcDAa1BiNj+WKDU6v94KuqL/+hOp43z3q
+         gQFfkJSlxy9axVYovQHURUYVgGQ91TetD/7hoDBWL3651g2Ipd0r0N5eqyDblVv5jt
+         QKCzfa6PyBL78BiutkrA8CljFwSwXHv1OCDCjsOFYera4llrAZ/r++C8x7oLnie10+
+         M5/ucomuSVbT3yqgBpg6NrNhKbc6VLYxhZMXzzifGCYvRuXL5JN8CanH/SizY8lZi0
+         MCw/bOOFpQPWQ==
+Date:   Wed, 31 Mar 2021 15:03:51 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Benoit Parrot <bparrot@ti.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Peter Chen <peter.chen@nxp.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        dmaengine@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: Re: [PATCH 00/16] CSI2RX support on J721E
+Message-ID: <YGRB/42Q6aVBLoAq@vkoul-mobl.Dlink>
+References: <20210330173348.30135-1-p.yadav@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210330173348.30135-1-p.yadav@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
----
- arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 33 ++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+On 30-03-21, 23:03, Pratyush Yadav wrote:
+> Hi,
+> 
+> This series adds support for CSI2 capture on J721E. It includes some
+> fixes to the Cadence CSI2RX driver, adds Rx support to Cadence DPHY
+> driver, and finally adds the TI CSI2RX wrapper driver.
+> 
+> Tested on TI's J721E with OV5640 sensor.
+> 
+> Paul Kocialkowski (1):
+>   phy: Distinguish between Rx and Tx for MIPI D-PHY with submodes
+> 
+> Pratyush Yadav (15):
+>   phy: cdns-dphy: Prepare for Rx support
+>   phy: cdns-dphy: Allow setting mode
+>   phy: cdns-dphy: Add Rx support
+>   media: cadence: csi2rx: Add external DPHY support
+>   media: cadence: csi2rx: Soft reset the streams before starting capture
+>   media: cadence: csi2rx: Set the STOP bit when stopping a stream
+>   media: cadence: csi2rx: Fix stream data configuration
+>   media: cadence: csi2rx: Turn subdev power on before starting stream
+>   media: cadence: csi2rx: Add wrappers for subdev calls
+>   dmaengine: ti: k3-psil-j721e: Add entry for CSI2RX
+>   dt-bindings: media: Add DT bindings for TI CSI2RX driver
+>   media: ti-vpe: csi2rx: Add CSI2RX support
+>   dt-bindings: phy: Convert Cadence DPHY binding to YAML
+>   dt-bindings: phy: cdns,dphy: make clocks optional
+>   dt-bindings: phy: cdns,dphy: add power-domains property
 
-diff --git a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-index d1bb22b11920..b2317c8e3a80 100644
---- a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-@@ -158,6 +158,7 @@ prci: clock-controller@10000000 {
- 			reg = <0x0 0x10000000 0x0 0x1000>;
- 			clocks = <&hfclk>, <&rtcclk>;
- 			#clock-cells = <1>;
-+			#reset-cells = <1>;
- 		};
- 		uart0: serial@10010000 {
- 			compatible = "sifive,fu740-c000-uart", "sifive,uart0";
-@@ -288,5 +289,37 @@ gpio: gpio@10060000 {
- 			clocks = <&prci PRCI_CLK_PCLK>;
- 			status = "disabled";
- 		};
-+		pcie@e00000000 {
-+			compatible = "sifive,fu740-pcie";
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			#interrupt-cells = <1>;
-+			reg = <0xe 0x00000000 0x0 0x80000000>,
-+			      <0xd 0xf0000000 0x0 0x10000000>,
-+			      <0x0 0x100d0000 0x0 0x1000>;
-+			reg-names = "dbi", "config", "mgmt";
-+			device_type = "pci";
-+			dma-coherent;
-+			bus-range = <0x0 0xff>;
-+			ranges = <0x81000000  0x0 0x60080000  0x0 0x60080000 0x0 0x10000>,      /* I/O */
-+				 <0x82000000  0x0 0x60090000  0x0 0x60090000 0x0 0xff70000>,    /* mem */
-+				 <0x82000000  0x0 0x70000000  0x0 0x70000000 0x0 0x1000000>,    /* mem */
-+				 <0xc3000000 0x20 0x00000000 0x20 0x00000000 0x20 0x00000000>;  /* mem prefetchable */
-+			num-lanes = <0x8>;
-+			interrupts = <56>, <57>, <58>, <59>, <60>, <61>, <62>, <63>, <64>;
-+			interrupt-names = "msi", "inta", "intb", "intc", "intd";
-+			interrupt-parent = <&plic0>;
-+			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-+			interrupt-map = <0x0 0x0 0x0 0x1 &plic0 57>,
-+					<0x0 0x0 0x0 0x2 &plic0 58>,
-+					<0x0 0x0 0x0 0x3 &plic0 59>,
-+					<0x0 0x0 0x0 0x4 &plic0 60>;
-+			clock-names = "pcie_aux";
-+			clocks = <&prci PRCI_CLK_PCIE_AUX>;
-+			pwren-gpios = <&gpio 5 0>;
-+			reset-gpios = <&gpio 8 0>;
-+			resets = <&prci 4>;
-+			status = "okay";
-+		};
- 	};
- };
+Is there any dependency between patches to various subsystems, if not
+please do consider sending a series per subsystem...
+
+Thanks
+
+
+> 
+>  .../devicetree/bindings/media/ti,csi2rx.yaml  |  70 ++
+>  .../devicetree/bindings/phy/cdns,dphy.txt     |  20 -
+>  .../devicetree/bindings/phy/cdns,dphy.yaml    |  52 +
+>  MAINTAINERS                                   |   7 +
+>  drivers/dma/ti/k3-psil-j721e.c                |  10 +
+>  drivers/media/platform/Kconfig                |  11 +
+>  drivers/media/platform/cadence/cdns-csi2rx.c  | 269 ++++-
+>  drivers/media/platform/ti-vpe/Makefile        |   1 +
+>  drivers/media/platform/ti-vpe/ti-csi2rx.c     | 964 ++++++++++++++++++
+>  drivers/phy/cadence/cdns-dphy.c               | 407 +++++++-
+>  include/linux/phy/phy-mipi-dphy.h             |  13 +
+>  11 files changed, 1754 insertions(+), 70 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/ti,csi2rx.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/phy/cdns,dphy.txt
+>  create mode 100644 Documentation/devicetree/bindings/phy/cdns,dphy.yaml
+>  create mode 100644 drivers/media/platform/ti-vpe/ti-csi2rx.c
+> 
+> --
+> 2.30.0
+
 -- 
-2.30.2
-
+~Vinod
