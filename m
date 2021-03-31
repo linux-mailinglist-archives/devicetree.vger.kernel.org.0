@@ -2,99 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9484034F582
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 02:33:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7378634F58F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 02:43:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232865AbhCaAct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Mar 2021 20:32:49 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:13077 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232812AbhCaAcj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 20:32:39 -0400
-X-UUID: 3b620f5789f040b58e1d623ca5e5f01e-20210331
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=DXPc7QmuVWhuN+C5z7frEfmFSAwLLesUieWs9jVeZXQ=;
-        b=ZIUjiD6L4vqVXZL6sF9W5z1cQ+GG+yJwtNzRFFccFvvos3aGDxvyJucFTBhvmKLirF7rToRkeBRiFEClwxVX6lk6zmFVmokpXQ3sPGhR4wMeqwWMPDZ29Jv40COPEpX+FjWG7dWFyEswAwWhax9bpPXKJQS9e0855HtOICh6Kl8=;
-X-UUID: 3b620f5789f040b58e1d623ca5e5f01e-20210331
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <zhiyong.tao@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1003236120; Wed, 31 Mar 2021 08:32:34 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 31 Mar
- 2021 08:32:24 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 31 Mar 2021 08:32:24 +0800
-Message-ID: <1617150743.10316.18.camel@mhfsdcap03>
-Subject: Re: [PATCH Resend v0 2/6] dt-bindings: pinctrl: mt8195: add binding
- document
-From:   zhiyong tao <zhiyong.tao@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <biao.huang@mediatek.com>,
-        <linus.walleij@linaro.org>, <hongzhou.yang@mediatek.com>,
-        <srv_heupstream@mediatek.com>, <jg_poxu@mediatek.com>,
-        <devicetree@vger.kernel.org>, <mark.rutland@arm.com>,
-        <matthias.bgg@gmail.com>, <sean.wang@mediatek.com>,
-        <linux-gpio@vger.kernel.org>, <erin.lo@mediatek.com>,
-        <hui.liu@mediatek.com>, <sean.wang@kernel.org>,
-        <sj.huang@mediatek.com>, <eddie.huang@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>, <seiya.wang@mediatek.com>
-Date:   Wed, 31 Mar 2021 08:32:23 +0800
-In-Reply-To: <20210330133913.GA212608@robh.at.kernel.org>
-References: <20210329113103.11003-1-zhiyong.tao@mediatek.com>
-         <20210329113103.11003-3-zhiyong.tao@mediatek.com>
-         <1617045684.216718.2905695.nullmailer@robh.at.kernel.org>
-         <1617095128.10316.14.camel@mhfsdcap03>
-         <20210330133913.GA212608@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S232878AbhCaAm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Mar 2021 20:42:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36908 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232824AbhCaAm4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Mar 2021 20:42:56 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08D0DC061574
+        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 17:42:56 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id f3so3738880pgv.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Mar 2021 17:42:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xiW5jawOlQ76P4FWk0YbQQAu/W4APliv2SXCnO1FSOk=;
+        b=W4aAjNrNmDfvwAuqOPd6gDGxwWuYV6QtwKbfDN+I3vVXBUPODzBQ5RSjDCJe+vWUrE
+         LCG7AmJ948RfbKzE+iiNChEci2WglLEi299qReDK9pRGY0NdjvLxgmvftIZwKX4zunXi
+         pIIWR/SquaGnxGdLrCDKvRfylJuaCQpeuBooNIZ+frdTr6b0aQ7rqeWyM6hbS/+X0FKm
+         w14bI73n5ASc8SGjn6U58xOfTtA1MFXbuc5K8TRsMDl5+Y6H10m+J9f4dXFJHb5EFCT9
+         6iMw3/CQs/rKmDweMkiRrgfeikKPEEqh3++wxEnMoOoin8MtngzACyzQC9ejAFiQFuPM
+         3OBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xiW5jawOlQ76P4FWk0YbQQAu/W4APliv2SXCnO1FSOk=;
+        b=nXNlWYplhE2h+IZEt0BuEcRp5xMLl6qshYsJEKTGyqzdkIl530Hno2RdvN/oDQY5U6
+         zjEhowfyumB01PxqeeNC+ncPyrz+mB+8mMJNHk0/tnJ2QcsYA4oXDlaT9zVDCpqkGf51
+         6s/k1cceq0/nTcy88cjuCP/mUlwH7M3QZBUKl91XygOL9lz6kevE025DY2T6iJn+pQSd
+         c+Xi/eXubtNQM+Fo1LBpIFmA+JbWPeMvsxUDD7DGr/hLS6ScgZOFz3mGZUi/f5AMBOA5
+         NMViQ2rrStD+Pbpp1TcfCweKyDat4scTzWf0b+ek+CQihTFbEmwTCi48GRLLEfUpn8MY
+         AdwA==
+X-Gm-Message-State: AOAM530JGK3PMdydkEwBtx5EZUJkzR2Ykpa9+9zLIJIsgZzHKQDu34R3
+        aT0WT//YTEcwK3oVrdH8B/Kp8gfJK8vYraobONw=
+X-Google-Smtp-Source: ABdhPJyEA9P2SjMFHNXzeYqlV4szqur3iLVrl0D8GCxO8dj4gYOdm5RcjCA49JmLS3eF02Cs+6igrU+HTh7yNQUWVA0=
+X-Received: by 2002:a62:68c4:0:b029:226:5dc5:4082 with SMTP id
+ d187-20020a6268c40000b02902265dc54082mr501620pfc.48.1617151375532; Tue, 30
+ Mar 2021 17:42:55 -0700 (PDT)
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: A48D422117B9453A0B782F79C39ADB8FF7E7B8CFD789280697FA7F235F1D758D2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <20210311113439.15458-1-conor.dooley@microchip.com>
+In-Reply-To: <20210311113439.15458-1-conor.dooley@microchip.com>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Tue, 30 Mar 2021 19:42:44 -0500
+Message-ID: <CABb+yY0uYf1C3SRmEtTxsvfqwJ-4Qt=G7jWVMnE_3giJ0siF4A@mail.gmail.com>
+Subject: Re: [PATCH v4 1/5] mbox: add polarfire soc system controller mailbox
+To:     conor.dooley@microchip.com
+Cc:     Rob Herring <robh+dt@kernel.org>, damien.lemoal@wdc.com,
+        aou@eecs.berkeley.edu, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, Devicetree List <devicetree@vger.kernel.org>,
+        linux-riscv@lists.infradead.org, j.neuschaefer@gmx.net,
+        lewis.hanly@microchip.com, cyril.jean@microchip.com,
+        daire.mcnamara@microchip.com, atish.patra@wdc.com,
+        anup.patel@wdc.com, david.abdurachmanov@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIxLTAzLTMwIGF0IDA4OjM5IC0wNTAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
-T24gVHVlLCBNYXIgMzAsIDIwMjEgYXQgMDU6MDU6MjhQTSArMDgwMCwgemhpeW9uZyB0YW8gd3Jv
-dGU6DQo+ID4gT24gTW9uLCAyMDIxLTAzLTI5IGF0IDE0OjIxIC0wNTAwLCBSb2IgSGVycmluZyB3
-cm90ZToNCj4gPiA+IE9uIE1vbiwgMjkgTWFyIDIwMjEgMTk6MzA6NTkgKzA4MDAsIFpoaXlvbmcg
-VGFvIHdyb3RlOg0KPiA+ID4gPiBUaGUgY29tbWl0IGFkZHMgbXQ4MTk1IGNvbXBhdGlibGUgbm9k
-ZSBpbiBiaW5kaW5nIGRvY3VtZW50Lg0KPiA+ID4gPiANCj4gPiA+ID4gU2lnbmVkLW9mZi1ieTog
-WmhpeW9uZyBUYW8gPHpoaXlvbmcudGFvQG1lZGlhdGVrLmNvbT4NCj4gPiA+ID4gLS0tDQo+ID4g
-PiA+ICAuLi4vYmluZGluZ3MvcGluY3RybC9waW5jdHJsLW10ODE5NS55YW1sICAgICAgfCAxNTIg
-KysrKysrKysrKysrKysrKysrDQo+ID4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgMTUyIGluc2VydGlv
-bnMoKykNCj4gPiA+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3MvcGluY3RybC9waW5jdHJsLW10ODE5NS55YW1sDQo+ID4gPiA+IA0KPiA+ID4g
-DQo+ID4gPiBNeSBib3QgZm91bmQgZXJyb3JzIHJ1bm5pbmcgJ21ha2UgZHRfYmluZGluZ19jaGVj
-aycgb24geW91ciBwYXRjaDoNCj4gPiA+IA0KPiA+ID4geWFtbGxpbnQgd2FybmluZ3MvZXJyb3Jz
-Og0KPiA+ID4gDQo+ID4gPiBkdHNjaGVtYS9kdGMgd2FybmluZ3MvZXJyb3JzOg0KPiA+ID4gRG9j
-dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BpbmN0cmwvcGluY3RybC1tdDgxOTUuZXhh
-bXBsZS5kdHM6MTk6MTg6IGZhdGFsIGVycm9yOiBkdC1iaW5kaW5ncy9waW5jdHJsL210ODE5NS1w
-aW5mdW5jLmg6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkNCj4gPiA+ICAgIDE5IHwgICAgICAg
-ICAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvcGluY3RybC9tdDgxOTUtcGluZnVuYy5oPg0KPiA+ID4g
-ICAgICAgfCAgICAgICAgICAgICAgICAgIF5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
-fn5+fn5+DQo+ID4gPiBjb21waWxhdGlvbiB0ZXJtaW5hdGVkLg0KPiA+ID4gbWFrZVsxXTogKioq
-IFtzY3JpcHRzL01ha2VmaWxlLmxpYjozNDk6IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9waW5jdHJsL3BpbmN0cmwtbXQ4MTk1LmV4YW1wbGUuZHQueWFtbF0gRXJyb3IgMQ0KPiA+
-ID4gbWFrZVsxXTogKioqIFdhaXRpbmcgZm9yIHVuZmluaXNoZWQgam9icy4uLi4NCj4gPiA+IG1h
-a2U6ICoqKiBbTWFrZWZpbGU6MTM4MDogZHRfYmluZGluZ19jaGVja10gRXJyb3IgMg0KPiA+ID4g
-DQo+ID4gPiBTZWUgaHR0cHM6Ly9wYXRjaHdvcmsub3psYWJzLm9yZy9wYXRjaC8xNDU5NTU4DQo+
-ID4gPiANCj4gPiA+IFRoaXMgY2hlY2sgY2FuIGZhaWwgaWYgdGhlcmUgYXJlIGFueSBkZXBlbmRl
-bmNpZXMuIFRoZSBiYXNlIGZvciBhIHBhdGNoDQo+ID4gPiBzZXJpZXMgaXMgZ2VuZXJhbGx5IHRo
-ZSBtb3N0IHJlY2VudCByYzEuDQo+ID4gPiANCj4gPiA+IElmIHlvdSBhbHJlYWR5IHJhbiAnbWFr
-ZSBkdF9iaW5kaW5nX2NoZWNrJyBhbmQgZGlkbid0IHNlZSB0aGUgYWJvdmUNCj4gPiA+IGVycm9y
-KHMpLCB0aGVuIG1ha2Ugc3VyZSAneWFtbGxpbnQnIGlzIGluc3RhbGxlZCBhbmQgZHQtc2NoZW1h
-IGlzIHVwIHRvDQo+ID4gPiBkYXRlOg0KPiA+ID4gDQo+ID4gPiBwaXAzIGluc3RhbGwgZHRzY2hl
-bWEgLS11cGdyYWRlDQo+ID4gPiANCj4gPiA+IFBsZWFzZSBjaGVjayBhbmQgcmUtc3VibWl0Lg0K
-PiA+ID4gDQo+ID4gDQo+ID4gPT0+IEkgc2V0IHRoZSBwYXRjaCBmaWxlICJtdDgxOTUtcGluZnVu
-Yy5oIiBwYXRjaCBpbiAiNC82Ii4gc28gd2Ugc2hvdWxkDQo+ID4gYWRkIHRoZSBmaWxlICJtdDgx
-OTUtcGluZnVuYy5oIiBpbiB0aGlzIHBhdGNoID8gb3Igd2Ugc2hvdWxkIHB1dCBpdA0KPiA+IGJl
-Zm9yZSB0aGlzIHBhdGNoKDIvNik/DQo+IA0KPiBJdCBpcyBwYXJ0IG9mIHRoZSBiaW5kaW5nLCBz
-byBpdCBiZWxvbmdzIGluIHRoaXMgcGF0Y2guDQo+IA0KPiBSb2INCg0KPT0+IFRoYW5rcyBmb3Ig
-eW91ciBzdWdnZXN0aW9uLiBXZSB3aWxsIGFkZCBpdCBpbiB0aGlzIHBhdGNoIGluIG5leHQNCnZl
-cnNpb24uDQoNCg==
+On Thu, Mar 11, 2021 at 5:34 AM <conor.dooley@microchip.com> wrote:
 
+> diff --git a/drivers/mailbox/mailbox-mpfs.c b/drivers/mailbox/mailbox-mpfs.c
+> new file mode 100644
+> index 000000000000..7aa6c8c87ea0
+> --- /dev/null
+> +++ b/drivers/mailbox/mailbox-mpfs.c
+> @@ -0,0 +1,277 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Microchip PolarFire SoC (MPFS) system controller/mailbox controller driver
+> + *
+> + * Copyright (c) 2020 Microchip Corporation. All rights reserved.
+> + *
+> + * Author: Conor Dooley <conor.dooley@microchip.com>
+> + *
+> + */
+> +
+> +#include <linux/io.h>
+> +#include <linux/err.h>
+> +#include <linux/init.h>
+> +#include <linux/module.h>
+> +#include <linux/kernel.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/mailbox_controller.h>
+> +#include <soc/microchip/mpfs.h>
+> +
+> +#define SERVICES_CR_OFFSET             0x50u
+> +#define SERVICES_SR_OFFSET             0x54u
+> +#define MAILBOX_REG_OFFSET             0x800u
+> +#define MSS_SYS_MAILBOX_DATA_OFFSET    0u
+> +#define SCB_MASK_WIDTH                 16u
+> +
+> +/* SCBCTRL service control register */
+> +
+> +#define SCB_CTRL_REQ (0)
+> +#define SCB_CTRL_REQ_MASK BIT(SCB_CTRL_REQ)
+> +
+> +#define SCB_CTRL_BUSY (1)
+> +#define SCB_CTRL_BUSY_MASK BIT(SCB_CTRL_BUSY)
+> +
+> +#define SCB_CTRL_ABORT (2)
+> +#define SCB_CTRL_ABORT_MASK BIT(SCB_CTRL_ABORT)
+> +
+> +#define SCB_CTRL_NOTIFY (3)
+> +#define SCB_CTRL_NOTIFY_MASK BIT(SCB_CTRL_NOTIFY)
+> +
+> +#define SCB_CTRL_POS (16)
+> +#define SCB_CTRL_MASK GENMASK(SCB_CTRL_POS + SCB_MASK_WIDTH, SCB_CTRL_POS)
+> +
+> +/* SCBCTRL service status register */
+> +
+> +#define SCB_STATUS_REQ (0)
+> +#define SCB_STATUS_REQ_MASK BIT(SCB_STATUS_REQ)
+> +
+> +#define SCB_STATUS_BUSY (1)
+> +#define SCB_STATUS_BUSY_MASK BIT(SCB_STATUS_BUSY)
+> +
+> +#define SCB_STATUS_ABORT (2)
+> +#define SCB_STATUS_ABORT_MASK BIT(SCB_STATUS_ABORT)
+> +
+> +#define SCB_STATUS_NOTIFY (3)
+> +#define SCB_STATUS_NOTIFY_MASK BIT(SCB_STATUS_NOTIFY)
+> +
+> +#define SCB_STATUS_POS (16)
+> +#define SCB_STATUS_MASK GENMASK(SCB_STATUS_POS + SCB_MASK_WIDTH, SCB_STATUS_POS)
+> +
+Please run checkpatch with strict option on the patchset.
+
+
+> +
+> +static int mpfs_mbox_send_data(struct mbox_chan *chan, void *data)
+> +{
+> +       u32 mailbox_val = 0u;
+> +       u16 options_select;
+> +       u32 tx_trigger;
+>
+just a nit... here and elsewhere, can the variables be lesser verbose?
+
+
+> +
+> +static void mpfs_mbox_rx_data(struct mbox_chan *chan)
+> +{
+> +       struct mpfs_mbox *mbox = mbox_chan_to_mpfs_mbox(chan);
+> +       u32 i;
+> +       u16 num_words = ALIGN((mbox->response_size), (4)) / 4U; //TODO better way?
+> +       struct mpfs_mss_response *response;
+> +
+> +       response = kmalloc(sizeof(*response), GFP_ATOMIC);
+> +       response->response_size = mbox->response_size;
+> +       response->response_msg = kcalloc(num_words, sizeof(response->response_msg), GFP_ATOMIC);
+> +
+> +       if (!response->response_msg) {
+> +               dev_err(mbox->dev, "failed to assign memory for response %d\n", -ENOMEM);
+> +               return;
+> +       }
+> +
+response_size is provided by the client driver.
+So why not simply get the buffer from the client and just fill it
+here? That is simpler and better (avoid alloc in isr) and the right
+thing to do.
+
+
+> +
+> +static int mpfs_mbox_probe(struct platform_device *pdev)
+> +{
+> +       struct mpfs_mbox *mbox;
+> +       struct resource *regs;
+> +       struct mbox_chan *chans;
+> +       int ret;
+> +
+> +       mbox = devm_kzalloc(&pdev->dev, sizeof(*mbox), GFP_KERNEL);
+> +       if (!mbox)
+> +               return -ENOMEM;
+> +
+> +       chans = devm_kzalloc(&pdev->dev, sizeof(*chans), GFP_KERNEL);
+>
+You may simply embed the mbox_chan in mpfs_mbox.
+
+cheers.
