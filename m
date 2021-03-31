@@ -2,213 +2,275 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1A7435052E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 19:02:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE51B35054C
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 19:17:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234119AbhCaRBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 13:01:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50468 "EHLO
+        id S233934AbhCaRQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 13:16:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234018AbhCaRBR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 13:01:17 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DE57C061574
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 10:01:17 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id u21so31078071ejo.13
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 10:01:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=KspNwzuOj9aLMXGk2fyODvGz7byP37BIX3QwCShIa1U=;
-        b=mfCmqZgpg+o9P0WseEbaUpCianBH4aueY2MbD8bcRz6g31+B/W8uqpCcIgaz3s+6w9
-         B0DEL4KazRRSF3ycZPlJQacoS5R8vwFLdizPiIHLKr6NRPhtivQPzY+ydqccz6WdECeF
-         O9w8aBRWZXB8CrStVsCGVOg+VVpeXOAUuUBrDsrfoLGjN8uatANCivyzTQta7ROHu8Om
-         0H+2zkFEz0BU4WV9JH4KXpWpxC/tZFC+aYcgqc6ccm8dJwzce/71lo6OmV9/nkpe8sII
-         VARSSWDSzJMYOlQHWKnHElfGLNq7GnFgsyJkbOZj9zOYYqrGYbr2dMUE8Fx2wy7+8uJ2
-         RNfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=KspNwzuOj9aLMXGk2fyODvGz7byP37BIX3QwCShIa1U=;
-        b=pxwUlGIkl/f/ihcem/Uf/sr6nfW3DkzhEAWUERuCr3YqF5Am2t01oTvqQ8tNdsD4rs
-         IXC/SLJu7FhIOzp092kpZa2WH3wHxwnizYFI9ecgxhCrl1M41dflv4E+wZcBc+32YJGM
-         H/8KqPeRayG7AqlApDqc+tVYiSQqfCwev0dy6aq17yWfMPOfPQC0hD5Ek+umcZ7tCsO7
-         /PYdu3jMw+73kvEVSAH5rHc5uMq5I8uUGpEGrFBLebebndfjYfDL50W2ifpGCKJ8Pfk7
-         kMepFYUbXDGdXaXZRuHnixrWL1Chix4EzO8edvSl161P0YWcWwjkvtqGxrCvmL/mvaJ/
-         UefQ==
-X-Gm-Message-State: AOAM531ciIEiJVzX7NRG1Hf+JRNxoITAFBC4bmAzsQc3rluU9nPo0VHF
-        RwApmU8oWfR6jkHl1ppN4DaMwA==
-X-Google-Smtp-Source: ABdhPJyZ/YGsfKKEJ78XYWOEq3oaf4XoaUn3hoN0mkzXk+2J11yt+vHn3WhwhlT7kxbdZeQ4exjF9A==
-X-Received: by 2002:a17:906:3882:: with SMTP id q2mr4587674ejd.540.1617210076003;
-        Wed, 31 Mar 2021 10:01:16 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id rs24sm1515247ejb.75.2021.03.31.10.01.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Mar 2021 10:01:15 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     vkoul@kernel.org
-Cc:     yung-chuan.liao@linux.intel.com,
-        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        robh@kernel.org, devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH] soundwire: qcom: wait for fifo space to be available before read/write
-Date:   Wed, 31 Mar 2021 18:00:33 +0100
-Message-Id: <20210331170033.17174-1-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
+        with ESMTP id S229787AbhCaRQs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 13:16:48 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08473C061574;
+        Wed, 31 Mar 2021 10:16:46 -0700 (PDT)
+Received: from [IPv6:2a02:810a:880:f54:d880:b6f8:f93d:245e] (unknown [IPv6:2a02:810a:880:f54:d880:b6f8:f93d:245e])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: dafna)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 220C01F45FA4;
+        Wed, 31 Mar 2021 18:16:44 +0100 (BST)
+Subject: Re: [PATCH v5 1/2] dt-bindings: usb: add analogix,anx7688.yaml
+To:     =?UTF-8?Q?Ond=c5=99ej_Jirman?= <megous@megous.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, a.hajda@samsung.com,
+        narmstrong@baylibre.com, jonas@kwiboo.se, jernej.skrabec@siol.net,
+        airlied@linux.ie, daniel@ffwll.ch, chunkuang.hu@kernel.org,
+        p.zabel@pengutronix.de, enric.balletbo@collabora.com,
+        drinkcat@chromium.org, hsinyi@chromium.org, kernel@collabora.com,
+        dafna3@gmail.com, robh+dt@kernel.org
+References: <20210305124351.15079-1-dafna.hirschfeld@collabora.com>
+ <20210305124351.15079-2-dafna.hirschfeld@collabora.com>
+ <YEJBgEPO4J5+/HhD@pendragon.ideasonboard.com>
+ <35f505ee-d939-4b42-490b-321b961bdec3@collabora.com>
+ <20210305172437.meu45ol7d4c3w2lr@core.my.home>
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Message-ID: <f90401b1-471b-c936-6661-d3d9c52abb2e@collabora.com>
+Date:   Wed, 31 Mar 2021 19:16:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20210305172437.meu45ol7d4c3w2lr@core.my.home>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If we write registers very fast we can endup in a situation where some
-of the writes will be dropped without any notice.
+Hi,
 
-So wait for the fifo space to be available before reading/writing the
-soundwire registers.
+On 05.03.21 18:24, Ondřej Jirman wrote:
+> Hello Dafna,
+> 
+> On Fri, Mar 05, 2021 at 04:14:03PM +0100, Dafna Hirschfeld wrote:
+>> Hi
+>>
+>> On 05.03.21 15:34, Laurent Pinchart wrote:
+>>> Hi Dafna,
+>>>
+>>> Thank you for the patch.
+>>>
+>>> On Fri, Mar 05, 2021 at 01:43:50PM +0100, Dafna Hirschfeld wrote:
+>>>> ANX7688 is a USB Type-C port controller with a MUX. It converts HDMI 2.0 to
+>>>> DisplayPort 1.3 Ultra-HDi (4096x2160p60).
+>>>> The integrated crosspoint switch (the MUX) supports USB 3.1 data transfer
+>>>> along with the DisplayPort Alternate Mode signaling over USB Type-C.
+>>>> Additionally, an on-chip microcontroller (OCM) is available to manage the
+>>>> signal switching, Channel Configuration (CC) detection, USB Power
+>>>> Delivery (USB-PD), Vendor Defined Message (VDM) protocol support and other
+>>>> functions as defined in the USB TypeC and USB Power Delivery
+>>>> specifications.
+>>>>
+>>>> ANX7688 is found on Acer Chromebook R13 (elm) and on
+>>>> Pine64 PinePhone.
+> 
+> Thanks for your work on the bindings. :) It would be great to find something
+> acceptable for mainlining.
+> 
+> A few comments based on my experience implementing the USB-PD part for PinePhone
+> are bellow.
+> 
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: analogix,anx7688
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  avdd33-supply:
+>>>> +    description: 3.3V Analog core supply voltage.
+>>>> +
+>>>> +  dvdd18-supply:
+>>>> +    description: 1.8V Digital I/O supply voltage.
+>>>> +
+>>>> +  avdd18-supply:
+>>>> +    description: 1.8V Analog core power supply voltage.
+>>>> +
+>>>> +  avdd10-supply:
+>>>> +    description: 1.0V Analog core power supply voltage.
+>>>> +
+>>>> +  dvdd10-supply:
+>>>> +    description: 1.0V Digital core supply voltage.
+>>>> +
+>>>
+>>> That's lots of supplies. If there's a reasonable chance that some of
+>>> them will always be driven by the same regulator (especially if the
+>>> ANX7688 documentation requires that), then they could be grouped. For
+>>> instance dvdd18-supply and avdd18-supply could be grouped into
+>>> vdd18-supply. It would still allow us to extend the bindings in a
+>>> backward compatible way later if a system uses different regulators. You
+>>> have more information about the hardware than I do, so it's your call.
+> 
+> On PinePhone, AVDD and DVDD for 1.0V are just separately fitlered outputs
+> from the same regulator. So it would work there to just use vdd18 and
+> vdd10. The same is true for reference design, so it's probably safe
+> to assume this can be simplified.
+> 
+>>>> +  hdmi5v-supply:
+>>>> +    description: 5V power supply for the HDMI.
+>>>> +
+>>>> +  hdmi_vt-supply:
+>>>> +    description: Termination voltage for HDMI input.
+>>>
+>>> Maybe hdmi-vt-supply ?
+>>>
+>>>> +
+>>>> +  clocks:
+>>>> +    description: The input clock specifier.
+>>>> +    maxItems: 1
+>>>
+>>> How about
+>>>
+>>>       items:
+>>>         - description: The input clock specifier.
+>>>
+>>>> +
+>>>> +  clock-names:
+>>>> +    items:
+>>>> +      - const: xtal
+>>>> +
+>>>> +  hpd-gpios:
+>>>> +    description: |
+>>>> +      In USB Type-C applications, DP_HPD has no use. In standard DisplayPort
+>>>> +      applications, DP_HPD is used as DP hot-plug.
+>>>> +    maxItems: 1
+> 
+> On PinePhone this is wired to a HDMI port on the SoC, and HPD is handled by the
+> sun4i HDMI DRM driver. Seems like HPD will be handled by HDMI controller on
+> many/all? other platforms too. Why have it here?
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- drivers/soundwire/qcom.c | 74 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 74 insertions(+)
+Right, I didn't have the full picture when listing all the pins of the anx7688.
+I was not sure what should be listed.
+I will remove that.
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 6affa3cd4039..9b45717577f2 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -24,6 +24,8 @@
- #define SWRM_COMP_CFG_IRQ_LEVEL_OR_PULSE_MSK			BIT(1)
- #define SWRM_COMP_CFG_ENABLE_MSK				BIT(0)
- #define SWRM_COMP_PARAMS					0x100
-+#define SWRM_COMP_PARAMS_WR_FIFO_DEPTH				GENMASK(14, 10)
-+#define SWRM_COMP_PARAMS_RD_FIFO_DEPTH				GENMASK(19, 15)
- #define SWRM_COMP_PARAMS_DOUT_PORTS_MASK			GENMASK(4, 0)
- #define SWRM_COMP_PARAMS_DIN_PORTS_MASK				GENMASK(9, 5)
- #define SWRM_INTERRUPT_STATUS					0x200
-@@ -51,6 +53,8 @@
- #define SWRM_CMD_FIFO_CMD					0x308
- #define SWRM_CMD_FIFO_FLUSH					0x1
- #define SWRM_CMD_FIFO_STATUS					0x30C
-+#define SWRM_RD_CMD_FIFO_CNT_MASK				GENMASK(20, 16)
-+#define SWRM_WR_CMD_FIFO_CNT_MASK				GENMASK(12, 8)
- #define SWRM_CMD_FIFO_CFG_ADDR					0x314
- #define SWRM_CONTINUE_EXEC_ON_CMD_IGNORE			BIT(31)
- #define SWRM_RD_WR_CMD_RETRIES					0x7
-@@ -104,6 +108,7 @@
- #define SWR_BROADCAST_CMD_ID    0x0F
- #define SWR_MAX_CMD_ID	14
- #define MAX_FIFO_RD_RETRY 3
-+#define SWR_OVERFLOW_RETRY_COUNT 30
- 
- struct qcom_swrm_port_config {
- 	u8 si;
-@@ -147,6 +152,8 @@ struct qcom_swrm_ctrl {
- 	int (*reg_read)(struct qcom_swrm_ctrl *ctrl, int reg, u32 *val);
- 	int (*reg_write)(struct qcom_swrm_ctrl *ctrl, int reg, int val);
- 	u32 slave_status;
-+	u32 wr_fifo_depth;
-+	u32 rd_fifo_depth;
- };
- 
- struct qcom_swrm_data {
-@@ -238,6 +245,63 @@ static u32 swrm_get_packed_reg_val(u8 *cmd_id, u8 cmd_data,
- 	return val;
- }
- 
-+static int swrm_wait_for_rd_fifo_avail(struct qcom_swrm_ctrl *swrm)
-+{
-+	u32 fifo_outstanding_cmd, value;
-+	u8 fifo_retry_count = SWR_OVERFLOW_RETRY_COUNT;
-+
-+	/* Check for fifo underflow during read */
-+	swrm->reg_read(swrm, SWRM_CMD_FIFO_STATUS, &value);
-+	fifo_outstanding_cmd = FIELD_GET(SWRM_RD_CMD_FIFO_CNT_MASK, value);
-+
-+	 /* Check number of outstanding commands in fifo before read */
-+	if (fifo_outstanding_cmd)
-+		return 0;
-+
-+	do {
-+		usleep_range(500, 510);
-+		swrm->reg_read(swrm, SWRM_CMD_FIFO_STATUS, &value);
-+		fifo_outstanding_cmd = FIELD_GET(SWRM_RD_CMD_FIFO_CNT_MASK, value);
-+		if (fifo_outstanding_cmd > 0)
-+			break;
-+	} while (fifo_retry_count--);
-+
-+	if (fifo_outstanding_cmd == 0) {
-+		dev_err_ratelimited(swrm->dev, "%s err read underflow\n", __func__);
-+		return -ENOMEM;
-+	}
-+
-+	return 0;
-+}
-+
-+static int swrm_wait_for_wr_fifo_avail(struct qcom_swrm_ctrl *swrm)
-+{
-+	u32 fifo_outstanding_cmd, value;
-+	u8 fifo_retry_count = SWR_OVERFLOW_RETRY_COUNT;
-+
-+	/* Check for fifo overflow during write */
-+	swrm->reg_read(swrm, SWRM_CMD_FIFO_STATUS, &value);
-+	fifo_outstanding_cmd = FIELD_GET(SWRM_WR_CMD_FIFO_CNT_MASK, value);
-+
-+	/* Check number of outstanding commands in fifo before write */
-+	if (fifo_outstanding_cmd != swrm->wr_fifo_depth)
-+		return 0;
-+
-+	do {
-+		usleep_range(500, 510);
-+		swrm->reg_read(swrm, SWRM_CMD_FIFO_STATUS, &value);
-+		fifo_outstanding_cmd = FIELD_GET(SWRM_WR_CMD_FIFO_CNT_MASK, value);
-+		if (fifo_outstanding_cmd < swrm->wr_fifo_depth)
-+			break;
-+	} while (fifo_retry_count--);
-+
-+	if (fifo_outstanding_cmd == swrm->wr_fifo_depth) {
-+		dev_err_ratelimited(swrm->dev, "%s err write overflow\n", __func__);
-+		return -ENOMEM;
-+	}
-+
-+	return 0;
-+}
- 
- static int qcom_swrm_cmd_fifo_wr_cmd(struct qcom_swrm_ctrl *swrm, u8 cmd_data,
- 				     u8 dev_addr, u16 reg_addr)
-@@ -256,6 +320,9 @@ static int qcom_swrm_cmd_fifo_wr_cmd(struct qcom_swrm_ctrl *swrm, u8 cmd_data,
- 					      dev_addr, reg_addr);
- 	}
- 
-+	if (swrm_wait_for_wr_fifo_avail(swrm))
-+		return SDW_CMD_FAIL_OTHER;
-+
- 	/* Its assumed that write is okay as we do not get any status back */
- 	swrm->reg_write(swrm, SWRM_CMD_FIFO_WR_CMD, val);
- 
-@@ -295,6 +362,9 @@ static int qcom_swrm_cmd_fifo_rd_cmd(struct qcom_swrm_ctrl *swrm,
- 	/* wait for FIFO RD CMD complete to avoid overflow */
- 	usleep_range(250, 255);
- 
-+	if (swrm_wait_for_rd_fifo_avail(swrm))
-+		return SDW_CMD_FAIL_OTHER;
-+
- 	do {
- 		swrm->reg_read(swrm, SWRM_CMD_FIFO_RD_FIFO_ADDR, &cmd_data);
- 		rval[0] = cmd_data & 0xFF;
-@@ -586,6 +656,10 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
- 				SWRM_INTERRUPT_STATUS_RMSK);
- 	}
- 	ctrl->slave_status = 0;
-+	ctrl->reg_read(ctrl, SWRM_COMP_PARAMS, &val);
-+	ctrl->rd_fifo_depth = FIELD_GET(SWRM_COMP_PARAMS_RD_FIFO_DEPTH, val);
-+	ctrl->wr_fifo_depth = FIELD_GET(SWRM_COMP_PARAMS_WR_FIFO_DEPTH, val);
-+
- 	return 0;
- }
- 
--- 
-2.21.0
+> 
+>>>> +  enable-gpios:
+>>>> +    description: Chip power down control. No internal pull-down or pull-up resistor.
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  reset-gpios:
+>>>> +    description: Reset input signal. Active low.
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  vbus-det-gpios:
+>>>> +    description: |
+>>>> +      An input gpio for VBUS detection and high voltage detection,
+>>>> +      external resistance divide VBUS voltage to 1/8.
+>>>> +    maxItems: 1
+> 
+> Why have this in the bindings? It seems that this is handled internally by the
+> ANX7688 via OCM firmware. And it's not really gpio either, it's an analog input
+> with AD converter hooked to it internally.
 
+I will remove that.
+
+> 
+>>>> +  interrupts:
+>>>> +    description: |
+>>>> +      The interrupt notifies 4 possible events - TCPC ALERT int, PD int, DP int, HDMI int.
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  cabledet-gpios:
+>>>> +    description: An output gpio, indicates by the device that a cable is plugged.
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  vbus-ctrl-gpios:
+>>>> +    description:
+>>>> +      External VBUS power path. Enable VBUS source and disable VBUS sink or vice versa.
+>>>> +    maxItems: 1
+> 
+> VBUS control seems to be already modelled by the usb-connector bindings. Why
+> have this here?
+
+dito
+> 
+>>>> +  vconn-en1-gpios:
+>>>> +    description: Controls the VCONN switch on the CC1 pin.
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  vconn-en2-gpios:
+>>>> +    description: Controls the VCONN switch on the CC2 pin.
+>>>> +    maxItems: 1
+> 
+> VCONN is a voltage regulator that can be enabled either on CC1 or CC2
+> pin, or disabled completely. This control is *partially* performed in reference
+> design directly by the OCM. OCM only decides which CC pin to switch
+> the VCONN regulator to, and informs the SoC when the base VCONN regulator
+> for the switches needs to be enabled.
+> 
+> So vconn-en1/2 gpios are irrelevant to the driver, but the driver needs
+> to control VCONN power supply somehow and defer control over it to the OCM.
+> 
+> I don't know how to express it in the bindings. Maybe a vconn-supply here
+> on the anx7688 node?
+> 
+> It may also be part of the usb-connector binding, but this is really when it
+> comes to anx7688 a parent regulator for the switches, and switches are not
+> controlled by this driver, just their parent regulator is.
+> 
+> Any ideas?
+
+Looking at the diagram in the schematics, I see that both vbus-supply and vconn-supply
+come directly from the PMIC so similarly to the vbus-supply, the vconn-supply
+can be part of the usb-connector. Then a driver can access the vconn-supply from the remote usb
+connector. Is there a problem with that?
+
+Thanks a lot for the review, I am not very familiar with usb and type-c, so your review helps a lot.
+I will send v6 soon.
+
+Thanks,
+Dafna
+
+> 
+> kind regards,
+> 	o.
+> 
+>>>> +  ports:
+>>>> +    $ref: /schemas/graph.yaml#/properties/ports
+>>>> +
+>>>> +    properties:
+>>>> +      port@0:
+>>>> +        $ref: /schemas/graph.yaml#/properties/port
+>>>> +        description: Video port for HDMI input.
+>>>> +
+>>>> +      port@1:
+>>>> +        $ref: /schemas/graph.yaml#/properties/port
+>>>> +        description: USB port for the USB3 input.
+>>>> +
+>>>> +      port@2:
+>>>> +        $ref: /schemas/graph.yaml#/properties/port
+>>>> +        description: USB Type-c connector, see connector/usb-connector.yaml.
+>>>> +
+>>>> +    required:
+>>>> +      - port@0
+>>>
+>>> As all the ports exist at the hardware level, should they always be
+>>> present ? The endpoints are optional of course, in case a port isn't
+>>> connected on a particular system.
+>>>
+>>>> +
+>>>> +required:
+>>>> +  - compatible
+>>>> +  - reg
+>>>
+>>> Shouldn't clocks and regulators be also required ?
+>>
+>> hmm, theoretically yes. Practically, in the case of Acer R13 (mediatek elm) device,
+>> the ANX7688 is powered up and controlled by the Embedded Controller. The kernel only
+>> needs to read few registers from that device for the drm bridge driver.
+>> (also mentioned that in the cover letter).
+>>
+>> Thanks,
+>> Dafna
