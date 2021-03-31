@@ -2,71 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68C66350154
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 15:36:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6265D35018E
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 15:42:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235763AbhCaNfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 09:35:37 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:39791 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235755AbhCaNf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 09:35:28 -0400
-Received: by mail-oi1-f179.google.com with SMTP id i81so20003121oif.6;
-        Wed, 31 Mar 2021 06:35:28 -0700 (PDT)
+        id S235630AbhCaNlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 09:41:32 -0400
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:40479 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235842AbhCaNlC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 09:41:02 -0400
+Received: by mail-ot1-f49.google.com with SMTP id w31-20020a9d36220000b02901f2cbfc9743so18926314otb.7;
+        Wed, 31 Mar 2021 06:41:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=OO7ubuY6oTKvyUG1gEO7CnoaNU1mo7KyFjqzNQtFekg=;
-        b=CI+oWxnSL9O06hUSl63jE6UVZqXwxahMrp2sDwKHmnrv0wLRD1RaPVXn5HCvbu4/aQ
-         tW2hQXlRZy3l3shyZwtWo7YZ4QnAAHpIN/ajZAuFdGe56wBjjeH60laVuuPKv1RhrdRv
-         b6ShaDj6vHksEJnsApLZRCoYnAnhgHIKU5mIf3LzI2OgfwLN3RJvvoscG2BY3vpPrQ57
-         pMOmle6+MiI+Z6frCCMFQOAIBvTKHULitW1Fgxap0CBBXAg8LCkP85jMHwdj/bHtPauz
-         eWwtJwYhSOsLni1f/VGHdlb/DyOKOJm4jbtXudYt3mdKt85/inD/QUNRx1u6Q7LjMIFp
-         rQTQ==
-X-Gm-Message-State: AOAM532DeoShuUIs/bEYTZGTdYfFPx1Lq2DQtppY7kBnEIZrB4Xx6nWH
-        ZMyeBWonfpNgoXfGdCVY4Q==
-X-Google-Smtp-Source: ABdhPJzR60WxulAypcTek0JQWaHluHrpPJGXqUHdYhkTq5G28iPykqY6g8W79IHDsXKCTbhxKKVeKQ==
-X-Received: by 2002:aca:6543:: with SMTP id j3mr2341007oiw.158.1617197728353;
-        Wed, 31 Mar 2021 06:35:28 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=jsgIdaqlH2C9MJUIwIFmOwXHosTK36DMQwbtDc67PdU=;
+        b=GlaMOk/EftBiN9LQOojhfQNTipiW4HdZpPp93eVlGY5wxRi5SVqVjg3BE7zWj5O36Y
+         CVRBXQHSvGv5hJdyZffayr2hnFGq8WDqji1s3SO6MePwtk8SRfakOwA1RaXr9eF80wUO
+         G+7FiK0gUW2ORuodrDKVwWtvTGs3TN1JBYDrd5jpYHFzozp7kpI66cc707eCmlEFH9It
+         TV1Pfu6FQRXfElF8oinDf7G2UGL6hylx7O43hwefm31jfRz/jgKxE44pQQOMGFcM80M7
+         CAz/b2r56S4XkqZtcAyExPzgfCpIqVrbOwg4LzQ25bvneT8ErQa7wqpQPylzZ+Eafrf3
+         QzZA==
+X-Gm-Message-State: AOAM530GfY6o8ZlaFbIiiO0rjeYuyxdmJ6JWIFMu9JSWnPxw8No9PIV7
+        uhRa5XhM6iDzy5GusT1vkw==
+X-Google-Smtp-Source: ABdhPJy9cZd8SNUZfNXUreF3fwUvIluuSS4fiqRj0Ql+EUHendHCquhblhKUmO6JrZ58igOXICq5Tg==
+X-Received: by 2002:a9d:4b8d:: with SMTP id k13mr2677027otf.354.1617198061936;
+        Wed, 31 Mar 2021 06:41:01 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m127sm433005oib.32.2021.03.31.06.35.25
+        by smtp.gmail.com with ESMTPSA id o6sm474874otj.81.2021.03.31.06.41.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Mar 2021 06:35:26 -0700 (PDT)
-Received: (nullmailer pid 2066047 invoked by uid 1000);
-        Wed, 31 Mar 2021 13:35:25 -0000
-Date:   Wed, 31 Mar 2021 08:35:25 -0500
+        Wed, 31 Mar 2021 06:41:01 -0700 (PDT)
+Received: (nullmailer pid 2074854 invoked by uid 1000);
+        Wed, 31 Mar 2021 13:40:59 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Carlis <zhangxuezhi3@gmail.com>
-Cc:     zhangxuezhi1@yulong.com, david@lechnology.com, daniel@ffwll.ch,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        airlied@linux.ie, robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/1] dt-bindings: display: sitronix, st7789v-dbi: Add
- Waveshare 2inch LCD module
-Message-ID: <20210331133525.GA2065994@robh.at.kernel.org>
-References: <20210330081505.116351-1-zhangxuezhi3@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210330081505.116351-1-zhangxuezhi3@gmail.com>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        devicetree@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-phy@lists.infradead.org,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        dmaengine@vger.kernel.org, Benoit Parrot <bparrot@ti.com>,
+        Helen Koike <helen.koike@collabora.com>,
+        Peter Chen <peter.chen@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+In-Reply-To: <20210330173348.30135-13-p.yadav@ti.com>
+References: <20210330173348.30135-1-p.yadav@ti.com> <20210330173348.30135-13-p.yadav@ti.com>
+Subject: Re: [PATCH 12/16] dt-bindings: media: Add DT bindings for TI CSI2RX driver
+Date:   Wed, 31 Mar 2021 08:40:59 -0500
+Message-Id: <1617198059.574658.2074853.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Mar 2021 08:15:05 +0000, Carlis wrote:
-> From: "Xuezhi Zhang" <zhangxuezhi1@yulong.com>
+On Tue, 30 Mar 2021 23:03:44 +0530, Pratyush Yadav wrote:
+> TI's J721E uses the Cadence CSI2RX and DPHY peripherals to facilitate
+> capture over a CSI-2 bus. The TI CSI2RX platform driver glues all the
+> parts together.
 > 
-> Document support for the Waveshare 2inch LCD module display, which is a
-> 240x320 2" TFT display driven by a Sitronix ST7789V TFT Controller.
-> 
-> Signed-off-by: Xuezhi Zhang <zhangxuezhi1@yulong.com>
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
 > ---
-> v2:change compatible name.
-> v3:change auther name.
-> ---
->  .../display/sitronix,st7789v-dbi.yaml         | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/sitronix,st7789v-dbi.yaml
+>  .../devicetree/bindings/media/ti,csi2rx.yaml  | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/ti,csi2rx.yaml
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/media/ti,csi2rx.example.dts:21.30-29.11: Warning (unit_address_vs_reg): /example-0/ticsi2rx: node has a reg or ranges property, but no unit name
+
+See https://patchwork.ozlabs.org/patch/1460166
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
