@@ -2,50 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C843B34FA8E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 09:43:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5113634FAA3
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 09:44:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233977AbhCaHl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 03:41:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41954 "EHLO
+        id S234140AbhCaHoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 03:44:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234238AbhCaHlb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 03:41:31 -0400
-Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDCBCC061574;
-        Wed, 31 Mar 2021 00:41:30 -0700 (PDT)
-Received: by mail-qv1-xf2d.google.com with SMTP id q9so9491248qvm.6;
-        Wed, 31 Mar 2021 00:41:30 -0700 (PDT)
+        with ESMTP id S234197AbhCaHnx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 03:43:53 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1EC2C061574;
+        Wed, 31 Mar 2021 00:43:53 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id x14so18472714qki.10;
+        Wed, 31 Mar 2021 00:43:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=jms.id.au; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=QR9n7jMBXuR7AUyYsxvNVDLdp7MMQ0XLcqNzq6Oedts=;
-        b=ItuOamKAmyL1iqPklk3GBvrSvM/SNq/FVZC+5ryPmXu7jROc6lUwTxNrOOD/xcWp2+
-         ymD4C6KALI+zjZuiS6LHcbLErQINHJmoTrnJ0Et+89desnpQaTEXUXoHYd8wMF75LlUu
-         C2weFnwQ8w1CEc06TsKIZ5QAORrxw7Ox6zFWQ=
+        bh=9fLwNldZAVcEFbnzafL88z8nyPvcygnyy6SA/tbSgoQ=;
+        b=cffktVa3X1Rg1vbLm4GZOPnYL7vaTyFmVPSCvCZFWM9vpiTgK2VHTmJ8VVvJxRlwaM
+         VWVVDlAJfY7QTeouHs2PlTtl6cVGrSx28JMZDz9Y63rTAskFRcSYm3QNtzhJ+g5P6Vth
+         c4JGC0JckCBhjSqoZ4Sn5q1midRjhQhPPh7EY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=QR9n7jMBXuR7AUyYsxvNVDLdp7MMQ0XLcqNzq6Oedts=;
-        b=l0OWGcyZdMj82/nx6xZlVEBQQzNq7c3D7qFO+XsXf9o7KkPpE/arYnLZg9JOm72apq
-         IHAwXNTnpNnZoMu9K1H5nhQiLZOv9z1WiR4ZAn5g3udiQ5d0Y2Z3A/wYQMjLbQ1CyDT+
-         h54OsBCwviYYnQjHYD2AHQWYP595JF/LSgjJhP7AvkioDIiqAs8MiV/rb2vhvictpXuC
-         6s1oHjOXhyN3uOHxX5IcVDHRrpSB8lDBuQhMo1RQQ4Q5ddHOXM+86uF0CQ3297DaIuRs
-         e9Yq4l0Z6PhRXjxa0mpav/2FR3xQ/mMHX5wY6IREn81Zw5lOODDLNbTxQwJuIkwZIh0J
-         DwBA==
-X-Gm-Message-State: AOAM533su9wcoz0siXNKAc6oXpk2rsK8Wy7EFOGv30J+5pJ8VxkK4t1R
-        sbMWwM2M5oVZNMar6eBBs1sJcC5u0bpcI00GeOTMAM+ctQO7wYwv
-X-Google-Smtp-Source: ABdhPJyRzi3fzNlKv54UZ4uRGyUMLMYtEitqX6uumolAz+qxX3eAEqUXtMwhLc+MEgT21jRm5FxrI/X79kntIIb+PhI=
-X-Received: by 2002:ad4:58e3:: with SMTP id di3mr1756404qvb.43.1617176490132;
- Wed, 31 Mar 2021 00:41:30 -0700 (PDT)
+        bh=9fLwNldZAVcEFbnzafL88z8nyPvcygnyy6SA/tbSgoQ=;
+        b=AcbdmNUcVHDo3AKMn8VjiWZOND16sQh0OisGEnjAWYTrrWnMekUeo8M0CubrnNKDTg
+         mhyAxSifn4zmsAle33wYNgircgVB/o8EAf+cqD/i4USf/1QT/3dF02UIM98jOJXzexhD
+         RhmhPGiG9fMiJljW17BwMnAQRVJJOxVgt5bTMpD0fL/YZsWq61hUMrqXCuPShKuht9jm
+         rtOjxtKoir00emIiM1skGoE3zHzeimiKXepT/xPmNbofj9rhGcBz7WpN9f+DefI1iqH0
+         7Btun6aNh1IFHat9adQov4rAZKEQgtYnYHMhnKDYevvb+N0SocDacyHBIdXF/CqYRt78
+         rdGw==
+X-Gm-Message-State: AOAM532tfBViMYPsOIs0wLxnayKUOJhpsSDARl9blD3Fj4/Nso4fwj16
+        6w3a/WLZxKSwsez/b1upMYn3dWUI10TB+PtM11A=
+X-Google-Smtp-Source: ABdhPJx0+wo2BnZkBPanhIURXpEVT9uMJNN95cUQIWK7OTUuooxK0Kdh+cOK8Nk7AwARUp8eroSraEjIGYAXCzOJXG0=
+X-Received: by 2002:a05:620a:1410:: with SMTP id d16mr1878260qkj.465.1617176632868;
+ Wed, 31 Mar 2021 00:43:52 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210330002338.335-1-zev@bewilderbeest.net> <20210330002338.335-4-zev@bewilderbeest.net>
-In-Reply-To: <20210330002338.335-4-zev@bewilderbeest.net>
+ <CACPK8XcwMYgc9R24KuGa0hqKQAxawDScHp1+y62aeEvcpvPiSw@mail.gmail.com>
+In-Reply-To: <CACPK8XcwMYgc9R24KuGa0hqKQAxawDScHp1+y62aeEvcpvPiSw@mail.gmail.com>
 From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 31 Mar 2021 07:41:18 +0000
-Message-ID: <CACPK8XcwMYgc9R24KuGa0hqKQAxawDScHp1+y62aeEvcpvPiSw@mail.gmail.com>
+Date:   Wed, 31 Mar 2021 07:43:40 +0000
+Message-ID: <CACPK8XfU_az1WpOFjtVbEbqO46sv4eWbjSGwbzua4niQZ3pUQw@mail.gmail.com>
 Subject: Re: [PATCH 3/3] ARM: dts: aspeed: add ASRock E3C246D4I BMC
 To:     Zev Weiss <zev@bewilderbeest.net>
 Cc:     OpenBMC Maillist <openbmc@lists.ozlabs.org>,
@@ -60,52 +61,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Mar 2021 at 00:25, Zev Weiss <zev@bewilderbeest.net> wrote:
+On Wed, 31 Mar 2021 at 07:41, Joel Stanley <joel@jms.id.au> wrote:
 >
-> This is a relatively low-cost AST2500-based Xeon E-2100/E-2200 series
-> mini-ITX board that we hope can provide a decent platform for OpenBMC
-> development.
+> On Tue, 30 Mar 2021 at 00:25, Zev Weiss <zev@bewilderbeest.net> wrote:
+> >
+> > This is a relatively low-cost AST2500-based Xeon E-2100/E-2200 series
+> > mini-ITX board that we hope can provide a decent platform for OpenBMC
+> > development.
+> >
+> > This initial device-tree provides the necessary configuration for
+> > basic BMC functionality such as host power control, serial console and
+> > KVM support, and POST code snooping.
+> >
+> > Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+
+> > +&vuart {
+> > +       status = "okay";
+> > +       aspeed,sirq-active-high;
 >
-> This initial device-tree provides the necessary configuration for
-> basic BMC functionality such as host power control, serial console and
-> KVM support, and POST code snooping.
->
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> We don't have support for this yet, but I'll leave it in and you will
+> need to send a follow up if the property changes.
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
-
-> ---
->  .../boot/dts/aspeed-bmc-asrock-e3c246d4i.dts  | 188 ++++++++++++++++++
->  1 file changed, 188 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
->
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
-> new file mode 100644
-> index 000000000000..27b34c3cf67a
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
-> @@ -0,0 +1,188 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/dts-v1/;
-> +
-> +#include "aspeed-g5.dtsi"
-> +#include <dt-bindings/gpio/aspeed-gpio.h>
-> +#include <dt-bindings/i2c/i2c.h>
-> +
-> +/{
-> +       model = "ASRock E3C246D4I BMC";
-> +       compatible = "aspeed,ast2500";
-
-Convention is to add a compatible for the board. I'll add
-asrock,e3c246d4Ii-bmc when I apply the patch.
-
-> +&vuart {
-> +       status = "okay";
-> +       aspeed,sirq-active-high;
-
-We don't have support for this yet, but I'll leave it in and you will
-need to send a follow up if the property changes.
-
-Cheers,
-
-Joel
+Oh, I missed that this was part of your series to add support for that
+property. Please keep the device tree out of the series when you
+re-send the vuart patches. They go through different trees, so it's
+easier if you send them separately in this case.
