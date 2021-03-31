@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3C6A34FC4F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 11:14:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F8F034FC47
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 11:14:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234533AbhCaJN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 05:13:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33738 "EHLO
+        id S234560AbhCaJN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 05:13:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234542AbhCaJNe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 05:13:34 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FDC9C06174A
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 02:13:34 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id v23so7577419ple.9
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 02:13:34 -0700 (PDT)
+        with ESMTP id S234546AbhCaJNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 05:13:36 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC95C06175F
+        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 02:13:36 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id h25so13777514pgm.3
+        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 02:13:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Pz7Z5j8vF+y9QTZ6X6Ijd3UIKgXWavlXGezKvBp98zM=;
-        b=QWSpZAyLCBFJZFXGbCObt6VVs2FSJdJUhL5c0D1d2UxZenJ89hmjkumKRnBZGN19EM
-         7DneS120Kl+QHDfW4abWa/rWiYbW8sCPZyS/RgiZVWiYFD/gLqNtIKTc1F4nJ/CCSrRv
-         UI06ShdtNRTRY/YXA1cFX28GfNbTyUvP9GCew=
+        bh=+aJ7wviR0oGA/7YbUnTjJ7Jb4IahT++RfnfTz9SeqeQ=;
+        b=AMgt+/p1d/4Xa2ZnvY4sRSDrjKp4AdUxhdzgMyxKgRR3DhAxvFaDRPXQq2rzMXs5kI
+         b44RzOEeSdeQAbtoI5cNQzXkbEK5W7sfvDsqea1MKFClYm8tYJh0NkIhiZUynzVIyRQa
+         wT+JFgBNcoyxXw6GrTlGhVVpkyOjZ6qa6iilw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Pz7Z5j8vF+y9QTZ6X6Ijd3UIKgXWavlXGezKvBp98zM=;
-        b=d75CZEq9+HOUg/O0gIMfPzIs29QhdEbr8HI+Yyl4bB5Ry8ltJYPLluX/xnu5Xe4ZSh
-         Lbjz/T5TpunWUP61KJ5A9TNL91gJ74N0rCZ/T5uNXAc/s7eieU0Vv9EFCKccH/VTVbKG
-         IEOyZe5WEpEJvGTfdTRlj9F/19fgBhpq7QOLQj0Q3cp+YX/mY3AkCVnwBasv0ELISjku
-         zXHPAhoK56y66nDTYxP0oPrpUeYjpsCtSt1yvscqbNEtwMZVKvCKxhagqphjLyRKinkl
-         vipGKfJ7LEgUCL4KUc9ogNSwbHFnVc5uvVorL7pO7niXx5ZtNn2GlbkgcEQ3bcV+w1sF
-         nhCg==
-X-Gm-Message-State: AOAM532vqScBxJuva8kYOL3W5rj2Onk8R8QSNlBYLnCLfpym6a+CYa5n
-        vbu1JS8a8Jov1mxY+wMF1PPwUw==
-X-Google-Smtp-Source: ABdhPJxGkCKZMCI4i/E1qaOe7U/FYbvm4Fs3hB9UQ3N4UPc+0s6R0VJ/mkrP9+mKkF1E+o67YCeLxw==
-X-Received: by 2002:a17:90a:6c22:: with SMTP id x31mr2583500pjj.213.1617182013867;
-        Wed, 31 Mar 2021 02:13:33 -0700 (PDT)
+        bh=+aJ7wviR0oGA/7YbUnTjJ7Jb4IahT++RfnfTz9SeqeQ=;
+        b=pElkVKTnNQWrdn2VZEjZ9HMlk4AqIRmMvMsLj5xvB3jfsbtPCAjvXDu8t6+e/C7DNi
+         hNnYXk7FCWHY/XDvbM5ejuQumX6iRIo+ls6GJfAq4nwKGUbmzMkF5sT6GvWbwOcgEZGE
+         I8ePYcpWC++KbsxRMTEe7hCCtXauRAv+RkecajFWCJfB3rF9MBE4volZDfLTVfl6AfIa
+         KZpy3VJ6crW56Zfe2Nzp9delC9PM0yZ1AqTX09PqtmFbZCNdwW4T/Akr/xoVqredrtWK
+         BysxAVXYO5f8dP23m+YqROFpwtHZJXpMXSIsmcwDRIGvZfyTJ0uZHT9UbUgY/K2iZyK9
+         Kz0Q==
+X-Gm-Message-State: AOAM533ISh/VUJULvbf0Kw06HbA1nbsDHwhergrz8mpLEcMtMOqshdg6
+        PQEWOTFs0qF+GqZpdvcQYi0sYQ==
+X-Google-Smtp-Source: ABdhPJzoQrhkW0rQVeqGkjnDbDH1+sfV1B+AsZuU3V2FimK7+URVHvLdgp4fHcXhoaOt18h19IvP/g==
+X-Received: by 2002:a63:b906:: with SMTP id z6mr2385314pge.302.1617182015788;
+        Wed, 31 Mar 2021 02:13:35 -0700 (PDT)
 Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:85fc:9f25:6293:28f1])
-        by smtp.gmail.com with ESMTPSA id s7sm1484723pjr.18.2021.03.31.02.13.32
+        by smtp.gmail.com with ESMTPSA id s7sm1484723pjr.18.2021.03.31.02.13.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Mar 2021 02:13:33 -0700 (PDT)
+        Wed, 31 Mar 2021 02:13:35 -0700 (PDT)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
 To:     Matthias Brugger <matthias.bgg@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -52,9 +52,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         linux-kernel@vger.kernel.org, Sean Wang <sean.wang@mediatek.com>,
         Ben Ho <Ben.Ho@mediatek.com>,
         Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Subject: [PATCH 2/4] dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-kodama
-Date:   Wed, 31 Mar 2021 17:13:25 +0800
-Message-Id: <20210331091327.1198529-2-hsinyi@chromium.org>
+Subject: [PATCH 3/4] arm64: dts: mt8183: Add kukui kakadu board
+Date:   Wed, 31 Mar 2021 17:13:26 +0800
+Message-Id: <20210331091327.1198529-3-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.31.0.291.g576ba9dcdaf-goog
 In-Reply-To: <20210331091327.1198529-1-hsinyi@chromium.org>
 References: <20210331091327.1198529-1-hsinyi@chromium.org>
@@ -64,33 +64,435 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Kodama is also known as Lenovo 10e Chromebook Tablet.
+From: Nicolas Boichat <drinkcat@chromium.org>
 
+Kakadu is also known as ASUS Chromebook Detachable CM3.
+
+Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 ---
- Documentation/devicetree/bindings/arm/mediatek.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+ .../boot/dts/mediatek/mt8183-kukui-kakadu.dts |  13 +
+ .../dts/mediatek/mt8183-kukui-kakadu.dtsi     | 378 ++++++++++++++++++
+ 3 files changed, 392 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index 9774f44b51d9..c6ecb510d372 100644
---- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -144,6 +144,15 @@ properties:
-           - const: google,kakadu-rev2
-           - const: google,kakadu
-           - const: mediatek,mt8183
-+      - description: Google Kodama (Lenovo 10e Chromebook Tablet)
-+        items:
-+          - enum:
-+              - google,kodama-sku16
-+              - google,kodama-sku272
-+              - google,kodama-sku288
-+              - google,kodama-sku32
-+          - const: google,kodama
-+          - const: mediatek,mt8183
- 
- 
- additionalProperties: true
+diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+index db4753d82a4b..fb891492ad66 100644
+--- a/arch/arm64/boot/dts/mediatek/Makefile
++++ b/arch/arm64/boot/dts/mediatek/Makefile
+@@ -15,6 +15,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-evb.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-evb.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-damu.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-juniper-sku16.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kakadu.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts
+new file mode 100644
+index 000000000000..20eb0dc68f09
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts
+@@ -0,0 +1,13 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2020 Google LLC
++ */
++
++/dts-v1/;
++#include "mt8183-kukui-kakadu.dtsi"
++
++/ {
++	model = "MediaTek kakadu board";
++	compatible = "google,kakadu-rev3", "google,kakadu-rev2",
++			"google,kakadu", "mediatek,mt8183";
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
+new file mode 100644
+index 000000000000..b442e38a3156
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
+@@ -0,0 +1,378 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2020 Google LLC
++ */
++
++#include "mt8183-kukui.dtsi"
++#include <dt-bindings/input/gpio-keys.h>
++
++/ {
++	ppvarn_lcd: ppvarn-lcd {
++		compatible = "regulator-fixed";
++		regulator-name = "ppvarn_lcd";
++		pinctrl-names = "default";
++		pinctrl-0 = <&ppvarn_lcd_en>;
++
++		enable-active-high;
++
++		gpio = <&pio 66 GPIO_ACTIVE_HIGH>;
++	};
++
++	ppvarp_lcd: ppvarp-lcd {
++		compatible = "regulator-fixed";
++		regulator-name = "ppvarp_lcd";
++		pinctrl-names = "default";
++		pinctrl-0 = <&ppvarp_lcd_en>;
++
++		enable-active-high;
++
++		gpio = <&pio 166 GPIO_ACTIVE_HIGH>;
++	};
++
++	pp1800_lcd: pp1800-lcd {
++		compatible = "regulator-fixed";
++		regulator-name = "pp1800_lcd";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pp1800_lcd_en>;
++
++		enable-active-high;
++
++		gpio = <&pio 36 GPIO_ACTIVE_HIGH>;
++	};
++
++	gpio-keys {
++		compatible = "gpio-keys";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pen_eject>;
++
++		pen-insert {
++			label = "Pen Insert";
++			/* Insert = low, eject = high */
++			gpios = <&pio 6 GPIO_ACTIVE_LOW>;
++			linux,code = <SW_PEN_INSERTED>;
++			linux,input-type = <EV_SW>;
++			wakeup-event-action = <EV_ACT_DEASSERTED>;
++			wakeup-source;
++		};
++	};
++};
++
++&bluetooth {
++	firmware-name = "nvm_00440302_i2s_eu.bin";
++};
++
++&i2c0 {
++	status = "okay";
++
++	touchscreen: touchscreen@10 {
++		compatible = "hid-over-i2c";
++		reg = <0x10>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&open_touch>;
++
++		interrupt-parent = <&pio>;
++		interrupts = <155 IRQ_TYPE_EDGE_FALLING>;
++
++		post-power-on-delay-ms = <10>;
++		hid-descr-addr = <0x0001>;
++	};
++};
++
++&mt6358_vcama2_reg {
++	regulator-min-microvolt = <2800000>;
++	regulator-max-microvolt = <2800000>;
++};
++
++&i2c2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c2_pins>;
++	status = "okay";
++	clock-frequency = <400000>;
++
++	eeprom@58 {
++		compatible = "atmel,24c32";
++		reg = <0x58>;
++		pagesize = <32>;
++	};
++};
++
++&i2c4 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c4_pins>;
++	status = "okay";
++	clock-frequency = <400000>;
++
++	eeprom@54 {
++		compatible = "atmel,24c32";
++		reg = <0x54>;
++		pagesize = <32>;
++	};
++};
++
++&mipi_tx0 {
++	drive-strength-microamp = <5800>;
++};
++
++&pio {
++	/* 192 lines */
++	gpio-line-names =
++		"SPI_AP_EC_CS_L",
++		"SPI_AP_EC_MOSI",
++		"SPI_AP_EC_CLK",
++		"I2S3_DO",
++		"USB_PD_INT_ODL",
++		"",
++		"",
++		"",
++		"",
++		"IT6505_HPD_L",
++		"I2S3_TDM_D3",
++		"SOC_I2C6_1V8_SCL",
++		"SOC_I2C6_1V8_SDA",
++		"DPI_D0",
++		"DPI_D1",
++		"DPI_D2",
++		"DPI_D3",
++		"DPI_D4",
++		"DPI_D5",
++		"DPI_D6",
++		"DPI_D7",
++		"DPI_D8",
++		"DPI_D9",
++		"DPI_D10",
++		"DPI_D11",
++		"DPI_HSYNC",
++		"DPI_VSYNC",
++		"DPI_DE",
++		"DPI_CK",
++		"AP_MSDC1_CLK",
++		"AP_MSDC1_DAT3",
++		"AP_MSDC1_CMD",
++		"AP_MSDC1_DAT0",
++		"AP_MSDC1_DAT2",
++		"AP_MSDC1_DAT1",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"OTG_EN",
++		"DRVBUS",
++		"DISP_PWM",
++		"DSI_TE",
++		"LCM_RST_1V8",
++		"AP_CTS_WIFI_RTS",
++		"AP_RTS_WIFI_CTS",
++		"SOC_I2C5_1V8_SCL",
++		"SOC_I2C5_1V8_SDA",
++		"SOC_I2C3_1V8_SCL",
++		"SOC_I2C3_1V8_SDA",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"SOC_I2C1_1V8_SDA",
++		"SOC_I2C0_1V8_SDA",
++		"SOC_I2C0_1V8_SCL",
++		"SOC_I2C1_1V8_SCL",
++		"AP_SPI_H1_MISO",
++		"AP_SPI_H1_CS_L",
++		"AP_SPI_H1_MOSI",
++		"AP_SPI_H1_CLK",
++		"I2S5_BCK",
++		"I2S5_LRCK",
++		"I2S5_DO",
++		"BOOTBLOCK_EN_L",
++		"MT8183_KPCOL0",
++		"SPI_AP_EC_MISO",
++		"UART_DBG_TX_AP_RX",
++		"UART_AP_TX_DBG_RX",
++		"I2S2_MCK",
++		"I2S2_BCK",
++		"CLK_5M_WCAM",
++		"CLK_2M_UCAM",
++		"I2S2_LRCK",
++		"I2S2_DI",
++		"SOC_I2C2_1V8_SCL",
++		"SOC_I2C2_1V8_SDA",
++		"SOC_I2C4_1V8_SCL",
++		"SOC_I2C4_1V8_SDA",
++		"",
++		"SCL8",
++		"SDA8",
++		"FCAM_PWDN_L",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"I2S_PMIC",
++		"I2S_PMIC",
++		"I2S_PMIC",
++		"I2S_PMIC",
++		"I2S_PMIC",
++		"I2S_PMIC",
++		"I2S_PMIC",
++		"I2S_PMIC",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		/*
++		 * AP_FLASH_WP_L is crossystem ABI. Rev1 schematics
++		 * call it BIOS_FLASH_WP_R_L.
++		 */
++		"AP_FLASH_WP_L",
++		"EC_AP_INT_ODL",
++		"IT6505_INT_ODL",
++		"H1_INT_OD_L",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"AP_SPI_FLASH_MISO",
++		"AP_SPI_FLASH_CS_L",
++		"AP_SPI_FLASH_MOSI",
++		"AP_SPI_FLASH_CLK",
++		"DA7219_IRQ",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"",
++		"";
++
++	ppvarp_lcd_en: ppvarp-lcd-en {
++		pins1 {
++			pinmux = <PINMUX_GPIO66__FUNC_GPIO66>;
++			output-low;
++		};
++	};
++
++	ppvarn_lcd_en: ppvarn-lcd-en {
++		pins1 {
++			pinmux = <PINMUX_GPIO166__FUNC_GPIO166>;
++			output-low;
++		};
++	};
++
++	pp1800_lcd_en: pp1800-lcd-en {
++		pins1 {
++			pinmux = <PINMUX_GPIO36__FUNC_GPIO36>;
++			output-low;
++		};
++	};
++
++	open_touch: open_touch {
++		irq_pin {
++			pinmux = <PINMUX_GPIO155__FUNC_GPIO155>;
++			input-enable;
++			bias-pull-up;
++		};
++
++		rst_pin {
++			pinmux = <PINMUX_GPIO156__FUNC_GPIO156>;
++
++			/*
++			 * The pen driver doesn't currently support  driving
++			 * this reset line.  By specifying output-high here
++			 * we're relying on the fact that this pin has a default
++			 * pulldown at boot (which makes sure the pen was in
++			 * reset if it was powered) and then we set it high here
++			 * to take it out of reset.  Better would be if the pen
++			 * driver could control this and we could remove
++			 * "output-high" here.
++			 */
++			output-high;
++		};
++	};
++
++	pen_eject: peneject {
++		pen_eject {
++			pinmux = <PINMUX_GPIO6__FUNC_GPIO6>;
++			input-enable;
++			/* External pull-up. */
++			bias-disable;
++		};
++	};
++};
++
++&qca_wifi {
++	qcom,ath10k-calibration-variant = "GO_KAKADU";
++};
++
++&panel {
++	status = "okay";
++	compatible = "boe,tv105wum-nw0";
++};
 -- 
 2.31.0.291.g576ba9dcdaf-goog
 
