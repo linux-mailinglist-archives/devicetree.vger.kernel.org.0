@@ -2,89 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25B6135008F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 14:42:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A804235009A
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 14:47:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235666AbhCaMmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 08:42:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41090 "EHLO mail.kernel.org"
+        id S235537AbhCaMqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 08:46:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42530 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235599AbhCaMlm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Mar 2021 08:41:42 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BC97F61994;
-        Wed, 31 Mar 2021 12:41:41 +0000 (UTC)
+        id S235450AbhCaMqY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 31 Mar 2021 08:46:24 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E315461959;
+        Wed, 31 Mar 2021 12:46:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617194502;
-        bh=zm1U2asdNanF5cpISHi4RXdhMiKXWLQuzRX4ihBNozA=;
+        s=k20201202; t=1617194783;
+        bh=TQkoHACl/sFM+5iuM6x9rFOysAjN+duolQetZcUwOWQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bIx7on3VSej6fZif3gPY4S0BCciwmdqBi8evHbPC6eFjv7eNNEIXKj57a0wQC7vmS
-         W1pEUMMEI9csOts1YH8DRwZ54hSS0A0Qe1Yka8uLQcTyJs36PfnQx/pgrQBcof/jil
-         xfOLo+IbUE6WEL/hxYFNxbktjwYA0Vnr55rFu/11pj9o0aBWoTmMWIS0vtJW1ixzAh
-         +mIF6tlZgPrbwRqFY88z1HKBkKz3WRmK3WXp8/zZhdfwH5NKDDnyMeJpddRy9n1s9+
-         ggHTGdBuOCw5PwcBnxRhjTMGvchd4S+qKAzbNzZ8ljFkEZmiTNFG3aAmtH5GJ62eFK
-         /HeDVj2SKWqVQ==
-Date:   Wed, 31 Mar 2021 13:41:29 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Sameer Pujar <spujar@nvidia.com>, linux-kernel@vger.kernel.org,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: Move port/ports properties out of
- audio-graph-port.yaml
-Message-ID: <20210331124129.GA12190@sirena.org.uk>
-References: <20210323163634.877511-1-robh@kernel.org>
- <20210323163634.877511-2-robh@kernel.org>
+        b=tqRxQ6KO5Yo+HpqJhww4Y98I+1ZL0YA14AIiEGQRGDc2J8BaKegd6HvMh8s2S6Pu9
+         hujaLdAsFyJWfrTLTxPDLXq/RrxSsZvSQVHG5SSedEqo4L8MYNBtUKtgzMNMKFp7Oy
+         NedtbimR2scRy2fmCQCZaUkM3CD2+UW+JIqAaRgqPdWq4W58jEsGaIefGBgdtV1XsE
+         +TwJHetOtZuV+LQVDRqeDSS/ge23LlmogViLNIDdgVZYhjbWCoDB2AEqosviKt12yI
+         CuSM46EowOq91jlcKyYWy3iuUGVuWmqHCO87SX1e22aGLxwFxJo3FSxVXghWjmMPMy
+         3xx3hJErZ0+/A==
+Date:   Wed, 31 Mar 2021 18:16:19 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alex Dewar <alex.dewar90@gmail.com>,
+        Atul Gopinathan <leoatul12@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Yu Chen <chenyu56@huawei.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-staging@lists.linux.dev, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v5 (RESEND) 1/7] phy: phy-hi3670-usb3: move driver from
+ staging into phy
+Message-ID: <YGRvG+3sD0gX2I+b@vkoul-mobl.Dlink>
+References: <cover.1616695231.git.mchehab+huawei@kernel.org>
+ <36c31dcdcd49d5a728a1fe4040bbaef5268d7f79.1616695231.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Q68bSM7Ycu6FN28Q"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210323163634.877511-2-robh@kernel.org>
-X-Cookie: Slow day.  Practice crawling.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <36c31dcdcd49d5a728a1fe4040bbaef5268d7f79.1616695231.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 25-03-21, 19:05, Mauro Carvalho Chehab wrote:
+> The phy USB3 driver for Hisilicon 970 (hi3670) is ready
+> for mainstream. Mode it from staging into the main driver's
+> phy/ directory.
 
---Q68bSM7Ycu6FN28Q
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Overall lgtm, some nits below. With those fixed:
 
-On Tue, Mar 23, 2021 at 10:36:32AM -0600, Rob Herring wrote:
-> Users of the audio-graph-port schema need to define how many ports
-> and what each port is, so they need to define 'ports' and/or 'port'
-> anyways. Let's drop 'ports' and 'port' from the schema and adjust users
-> to reference audio-graph-port.yaml from a port property.
+Acked-By: Vinod Koul <vkoul@kernel.org>
 
-This doesn't apply against current code, please check and resend:
+> +static int hi3670_phy_cr_clk(struct regmap *usb31misc)
+> +{
+> +	int ret;
+> +
+> +	/* Clock up */
+> +	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
+> +				 CFG54_USB31PHY_CR_CLK, CFG54_USB31PHY_CR_CLK);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Clock down */
+> +	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
+> +				 CFG54_USB31PHY_CR_CLK, 0);
+> +
+> +	return ret;
 
-Applying: ASoC: dt-bindings: Move port/ports properties out of audio-graph-port.yaml
-Using index info to reconstruct a base tree...
-M	Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
-Falling back to patching base and 3-way merge...
-Auto-merging Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
-CONFLICT (content): Merge conflict in Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
-error: Failed to merge in the changes.
+return regmap_update_bits() ?
+ (i see few more in driver like this, pls change others as well)
 
---Q68bSM7Ycu6FN28Q
-Content-Type: application/pgp-signature; name="signature.asc"
+> +static int hi3670_phy_cr_read(struct regmap *usb31misc, u32 addr, u32 *val)
+> +{
+> +	int reg;
+> +	int i;
+> +	int ret;
 
------BEGIN PGP SIGNATURE-----
+all these could be in a single line
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBkbfgACgkQJNaLcl1U
-h9DCTQf/VXrFjEDBwqi/S16woGqbw7uTfUGNiWntINuFSTdoWm5MZlK+x4xsuzsn
-twkOz7U17Di3KsZeCBBp2gc9V5st50Xstb4CwseS12fVuxi/Y32IsvTEWt6/1kDT
-6g8nkF9vQjlnxTrChB0XxoUgJxRp/tmE1PMmC9gUdRvfRZ6Qz5OVD2JWhSbDNVY7
-AZAcSqYWJGExtd7thkF5yn8bqlffzSspOLc2AyNQKbzoiht+EkungbwoXUDItn+i
-iM01+wByIhZq0xgWtdGPzq64jmni6MVb77dTOdX08eopkRsoc70YF8UX2VXpzhy2
-pecOljG+BTXB/OkkhdzH2ARE+jfF6Q==
-=5C9M
------END PGP SIGNATURE-----
-
---Q68bSM7Ycu6FN28Q--
+-- 
+~Vinod
