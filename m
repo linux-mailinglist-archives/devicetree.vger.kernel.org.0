@@ -2,132 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C807234FABE
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 09:51:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 366AA34FAC1
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 09:51:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234106AbhCaHug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 03:50:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43814 "EHLO
+        id S234111AbhCaHvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 03:51:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234098AbhCaHuF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 03:50:05 -0400
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94776C06174A
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 00:50:05 -0700 (PDT)
-Received: by mail-yb1-xb33.google.com with SMTP id l15so20298938ybm.0
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 00:50:05 -0700 (PDT)
+        with ESMTP id S234032AbhCaHup (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 03:50:45 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 101BFC061574;
+        Wed, 31 Mar 2021 00:50:45 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id c4so18516901qkg.3;
+        Wed, 31 Mar 2021 00:50:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        d=jms.id.au; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Hywtd1KIB/q90EXy+mvZhwXEbQdTlEqSmz3ryL7o6/w=;
-        b=vLQk20z5dr0eE0dUMRUz4Ku9kps5ZE3mVkEdzWhOmSfoLowIfxFDi8qbPbmtUeQV/N
-         y/97yULuDc6u/Vy6dZtwzkhDhQt5rboSukZltgFeXSIMvLfb/SouIFU7vj1+mQZp1Hcg
-         rosVO1RTLbphO8Ar9bwjD7JKzNND4GiNasrCtQKX/dN+HC8fZ4Dri8QLBvazp0yVIOil
-         JeEO/lRvQFrw7uLzcXRXzyAHl5Xisl4uScy+WykpQZFvCpyAYn6Y/3rRN7YGGkEA96jD
-         AUJ9vmzrAf4dC+JiGrYqDp91ikoI21VeErWYtu2+8l4eP5RS5J8MVPEnW7V4VyDjopLE
-         7DCw==
+        bh=PvFE5J3FezlEE8pnDN5zAGS+SdlnCyime9vQnsZ9wkY=;
+        b=PTGFvl2RypZxM0OoGUctoQGNsTqmeQLWPd4faKZB3LNwJY5otlqSbQokWFD+XxB4cZ
+         k7JcAGMHpQ6KFSA1ShU4X+lxf2geDdc31fr0WaZmQY56ejVKYekOO2OgPZ+IUK3N0tjk
+         rXeVUBoRE+TKa8974Zv0HzFjrsw95+klEl990=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Hywtd1KIB/q90EXy+mvZhwXEbQdTlEqSmz3ryL7o6/w=;
-        b=YLi2KTSqCPi2A+nJrdPmn2N/tUNrompoyqXGih28RjmJg/Boqntf9EbF7eonbnG0Uh
-         6ZsVsWmq1kLZVJYMASQKtRXKxzfjv4xawSNDTOi3uBtjhYqDk93FT3YJM9VeU5Px5PWW
-         nEqQweBMoTbSA4Q898W/pRgwU0//4m3JRoEn5kSacNsr7XjNY9vaMu++4v/e78FyQMyC
-         vrhpWJxJc62ZC5CLAWRxqRRCyGTYj9xTic9LfeQZEhUzxUHsZCsI/lRIAITV2MXlLMv3
-         mT1k/8YbhavVuJWOvLRL56BMZQibA3SzbhSz1IxiSii+ot1Q2DU6/X9JjzcUFvbh5WnE
-         oPmA==
-X-Gm-Message-State: AOAM532MO3Q5x4t0fbGaIwNx1lcxvyZJV+llQLdYdTYw/BdZac7eEo2p
-        lwdhB8e+kZrWqagTStEQRfbtQV94x/MTciWpEV+rgA==
-X-Google-Smtp-Source: ABdhPJzhJOj2g9a8AD8NuPdcxlXMqoVSl3CnHu20LndCvla/SjiEhUVueYLcJnaZwR5u4jWyluvxqTnu4Z7QJEaHJBI=
-X-Received: by 2002:a25:d2d3:: with SMTP id j202mr2883936ybg.157.1617177004878;
- Wed, 31 Mar 2021 00:50:04 -0700 (PDT)
+        bh=PvFE5J3FezlEE8pnDN5zAGS+SdlnCyime9vQnsZ9wkY=;
+        b=m8r5aiSO5rUpGB3pdak1r0kDB+UcAuqR+L51G8RtFU6oiISpNMIoTVD6SY9wQgHHj9
+         Dfj3GbTXQZM3edaetZevTVU6MfOiiwqCw5eo38bpnMR9P5P2cj1RZ7x+pQQW3wqGgSW3
+         whF3keRxgjf6Z3G4zTxYYcO5A87mJ0IwvtEulyuJNRN4oN4I6Qukq2HuohZim7jBRSEN
+         /5DTD+HWlsdhXkQLZJUxf3lhf5ogWW91+jtfYu1LYo2kDMFvGw2orde/u1JhhO+EcWxf
+         tPS3eM1TQW+aswufZeB1puuJ6FN8ypf63cHVDEb2Pk3lrzpv4AW9ML9u/UfCJQdHJQmQ
+         AV7w==
+X-Gm-Message-State: AOAM532BObE6OBum/xsSwpPbJ25nzXgERGxpNnNBJEpfGbPg4L5q1v72
+        znerAuRSQaJATo3UrdQ/YrKwAGDVuVYbGgeFSO1gE75gExTbhA==
+X-Google-Smtp-Source: ABdhPJyMt3JEgZQNa/c4w8WpbFN1v/ZWTRBHzplPfi6vA5v5QT21JEeEclDxFGpB1WMPbDt6DMynOc5coOB4FZ/iNj0=
+X-Received: by 2002:a37:d202:: with SMTP id f2mr1940297qkj.273.1617177044244;
+ Wed, 31 Mar 2021 00:50:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210315082339.9787-1-sander@svanheule.net> <cover.1617126277.git.sander@svanheule.net>
-In-Reply-To: <cover.1617126277.git.sander@svanheule.net>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Wed, 31 Mar 2021 09:49:54 +0200
-Message-ID: <CAMpxmJWGuS_ae_cGsvWmhu3NBtsnK-ZutJeCphJSR=Xn7qKFMg@mail.gmail.com>
-Subject: Re: [PATCH v6 0/2] Add Realtek Otto GPIO support
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     linux-devicetree <devicetree@vger.kernel.org>,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Bert Vermeulen <bert@biot.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
+References: <20210330002338.335-1-zev@bewilderbeest.net> <20210330002338.335-4-zev@bewilderbeest.net>
+ <CACPK8XcwMYgc9R24KuGa0hqKQAxawDScHp1+y62aeEvcpvPiSw@mail.gmail.com>
+In-Reply-To: <CACPK8XcwMYgc9R24KuGa0hqKQAxawDScHp1+y62aeEvcpvPiSw@mail.gmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 31 Mar 2021 07:50:32 +0000
+Message-ID: <CACPK8XfBsq6H5qsSNgwqdRhHXTUYnNQKekSNMnxXoVaAzMc=MQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] ARM: dts: aspeed: add ASRock E3C246D4I BMC
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 30, 2021 at 7:48 PM Sander Vanheule <sander@svanheule.net> wrote:
+On Wed, 31 Mar 2021 at 07:41, Joel Stanley <joel@jms.id.au> wrote:
 >
-> Add support for the GPIO controller employed by Realtek in multiple series of
-> MIPS SoCs. These include the supported RTL838x and RTL839x. The register layout
-> also matches the one found in the GPIO controller of other (Lexra-based) SoCs
-> such as RTL8196E, RTL8197D, and RTL8197F.
+> On Tue, 30 Mar 2021 at 00:25, Zev Weiss <zev@bewilderbeest.net> wrote:
+> >
+> > This is a relatively low-cost AST2500-based Xeon E-2100/E-2200 series
+> > mini-ITX board that we hope can provide a decent platform for OpenBMC
+> > development.
+> >
+> > This initial device-tree provides the necessary configuration for
+> > basic BMC functionality such as host power control, serial console and
+> > KVM support, and POST code snooping.
+> >
+> > Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
 >
-> For the platform name 'otto', I am not aware of any official resources as to
-> what hardware this specifically applies to. However, in all of the GPL archives
-> we've received, from vendors using compatible SoCs in their design, the
-> platform under the MIPS architecture is referred to by this name.
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
 >
-> The GPIO ports have been tested on a Zyxel GS1900-8 (RTL8380), and Zyxel
-> GS1900-48 (RTL8393). Furthermore, the GPIO ports and interrupt controller have
-> been tested on a Netgear GS110TPPv1 (RTL8381).
->
-> Changes in v6:
-> - Use devm_gpiochip_add_data()
-> - Code style for reading ngpios, header order
-> - Add Andy's Reviewed-by tag
->
-> Changes in v5:
-> - Edited code comments
-> - Fold functions that were used only once or twice (ISR/IMR accessors)
-> - Drop trivial functions for line to port/pin calculations
-> - Use gpio_irq_chip->init_hw() to initialise IRQ registers
-> - Invert GPIO_INTERRUPTS flag to GPIO_INTERRUPTS_DISABLED
-> - Support building as module
-> - Add Rob's Reviewed-by tag
->
-> Changes in v4:
-> - Fix pointer notation style
-> - Drop unused read_u16_reg() function
-> - Drop 'inline' specifier from functions
->
-> Changes in v3:
-> - Remove OF dependencies in driver probe
-> - Don't accept IRQ_TYPE_NONE as a valid interrupt type
-> - Remove (now unused) dev property from control structure
-> - Use u8/u16 port registers, instead of raw u32 registers
-> - Use 'line' name for gpiochip, 'port' and 'pin' names for hardware
-> - Renamed DT bindings file
-> - Dropped fallback-only DT compatible
-> - Various code style clean-ups
->
-> Changes in v2:
-> - Clarify structure and usage of IMR registers
-> - Added Linus' Reviewed-by tags
->
-> Sander Vanheule (2):
->   dt-bindings: gpio: Binding for Realtek Otto GPIO
->   gpio: Add Realtek Otto GPIO support
->
->  .../bindings/gpio/realtek,otto-gpio.yaml      |  78 +++++
->  drivers/gpio/Kconfig                          |  13 +
->  drivers/gpio/Makefile                         |   1 +
->  drivers/gpio/gpio-realtek-otto.c              | 325 ++++++++++++++++++
->  4 files changed, 417 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml
->  create mode 100644 drivers/gpio/gpio-realtek-otto.c
->
-> --
-> 2.30.2
->
+> > ---
+> >  .../boot/dts/aspeed-bmc-asrock-e3c246d4i.dts  | 188 ++++++++++++++++++
+> >  1 file changed, 188 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
+> >
+> > diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
+> > new file mode 100644
+> > index 000000000000..27b34c3cf67a
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
 
-Series applied, thanks!
-
-Bartosz
+When adding the device tree please also add it to the makefile in
+arch/arm/boot/dts.
