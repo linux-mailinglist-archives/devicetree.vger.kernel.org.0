@@ -2,99 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD3E835018F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 15:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2A7535019D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 15:44:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235982AbhCaNlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 09:41:35 -0400
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:37756 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235943AbhCaNlJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 09:41:09 -0400
-Received: by mail-ot1-f50.google.com with SMTP id t23-20020a0568301e37b02901b65ab30024so18972947otr.4;
-        Wed, 31 Mar 2021 06:41:09 -0700 (PDT)
+        id S235888AbhCaNoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 09:44:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35942 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235809AbhCaNnt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 09:43:49 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A5DCC061574;
+        Wed, 31 Mar 2021 06:43:49 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id h13so22365878eds.5;
+        Wed, 31 Mar 2021 06:43:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=a+ghmHWrd0VtTpXMMo8zY7Xh4t5dWaWkK420iWQuOzE=;
+        b=hFVHUo9h/qlKnYSMTOoSPd1LJIxEdbBrg1QzBaoV1NgiHXV82hcZF5wDR7N/NMfntB
+         P9iTvb0REKeFfTPA+wNQXPS4nF9eJrImstfcWCAQ3UXKg5DhBVGmV+0LMSz3pIbLCQuM
+         QstQ4CsPDUJ0P6Fc9PZ5Ofhzk2Ik1GtngZraiVa6Q1E2bhUQr/P5Zkx7W+DMKbHyo8I/
+         As6aVdD386AX/0TQxCF9sHgFQiG4iQgAEVeADY2F6rFWsaVcwyVsHNzgBe0+iyDUzAqL
+         AZeDsF89/FiSqD5oaPbgd9wP8thzcL+ZcWQlbBgziupIha7+tAPrIzJCab72jFHK/0/M
+         WAaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=Ysq2futYM+aXUbEnhYTDLe/Ns9IPCloyqMjrGa/P5Hs=;
-        b=GxsGX2gJThBMV9Rz4EWMnD0+e/P+wy1Pa2ny6/ieej8Ppl0VrJBWKZzhGU/dQLjDI9
-         Ho5e8SxSm4L9n3QFusROUs37XcLIq7R1kjjPKhVW5vs3PSxGauh4b5S2OSYMVYVR4/Gs
-         UsrdDcG7x+aMPSq0IPLgnOrmuDcJv0tTMcl0XLvDZv+0vv8AK/LfUDqdlKoYkvBnNK0u
-         Hly+0hFtWmb+xSfxGfDRJT9MMRZmoniv87CRaRoLhJGV/jOv86/lzWeDa4S6EZlxreQs
-         ecKLEKqaJxz5SODmuh4wik86io9lFNzsb2zzXJ7PHCHs6mSnW+iKvxSdtrO0D1Fv9rUX
-         Ugaw==
-X-Gm-Message-State: AOAM531AcrjO3ErV5tlzBFEkXgqaUdwM1Wut8mSR/2zplsi+EVBnuMgX
-        x4Ee5lg3Uv4+YycDJmQydA==
-X-Google-Smtp-Source: ABdhPJzTBBb/qkQn5k2zhMOHhTWR+p65BoV9tJQb6+MMqLy1cPlSH5hPasP869gBKLq+qYaQeEzuHA==
-X-Received: by 2002:a9d:7003:: with SMTP id k3mr2738828otj.351.1617198068778;
-        Wed, 31 Mar 2021 06:41:08 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 38sm468460oth.14.2021.03.31.06.41.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Mar 2021 06:41:07 -0700 (PDT)
-Received: (nullmailer pid 2074861 invoked by uid 1000);
-        Wed, 31 Mar 2021 13:40:59 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     airlied@linux.ie, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, kernel@pengutronix.de,
-        robh+dt@kernel.org, kishon@ti.com, linux-imx@nxp.com,
-        marcel.ziswiler@toradex.com, linux-arm-kernel@lists.infradead.org,
-        s.hauer@pengutronix.de, lee.jones@linaro.org,
-        jernej.skrabec@siol.net, shawnguo@kernel.org,
-        Laurent.pinchart@ideasonboard.com, mchehab@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        a.hajda@samsung.com, jonas@kwiboo.se, narmstrong@baylibre.com,
-        robert.foss@linaro.org, vkoul@kernel.org
-In-Reply-To: <1617172405-12962-8-git-send-email-victor.liu@nxp.com>
-References: <1617172405-12962-1-git-send-email-victor.liu@nxp.com> <1617172405-12962-8-git-send-email-victor.liu@nxp.com>
-Subject: Re: [PATCH v7 07/14] dt-bindings: mfd: Add i.MX8qm/qxp Control and Status Registers module binding
-Date:   Wed, 31 Mar 2021 08:40:59 -0500
-Message-Id: <1617198059.605916.2074860.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=a+ghmHWrd0VtTpXMMo8zY7Xh4t5dWaWkK420iWQuOzE=;
+        b=sdfbcsgt5diK2qw2ah48POCBGEuGSIa9vUHmsLiQl1aWJfp2At4WPKcZ0FQXVA1oJ0
+         pMTtNEWE2GLJxKzkjl1asGTaUi/2Pdh2McxyMGun5cW0IScPM8REMFLn1CnUlgg8oNMs
+         hev8JV/5Nu5kFAMyLrWVGatWCQfJngAQNJe00nWMNXyLA1Nt2NFmTXOcI1/C6EeSGTtG
+         sHmbP6CNaQOpz94Lcx+pkB5aCygFSfeBwKDSCgqAVxZs1xg8F8R/kL2puXOfcYYoBpgg
+         zw9n4VsPbYGRGmfFOyW3rLMmkrK8lNuXgbfADPFAyfRhHqIISyToo3vrJibR5CSRygrs
+         OT7Q==
+X-Gm-Message-State: AOAM533vxwOzBZuvMM0EOZl7Rvn6IBdez0sO1JlwlTYdIM3aB0CYdRoO
+        c6s774lWIjCy9r0MHWnymjGJjRSqCer5+XsYCkU=
+X-Google-Smtp-Source: ABdhPJx8TL94WZcE0wlBpqElMqz9jeHvusM9qw/17ly9e8PKWRwngPkeCU2XsHwzp8Y86umlehcxte6M1qgFNMsnZh0=
+X-Received: by 2002:aa7:d687:: with SMTP id d7mr3771645edr.118.1617198228074;
+ Wed, 31 Mar 2021 06:43:48 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210330184218.279738-1-jernej.skrabec@siol.net>
+In-Reply-To: <20210330184218.279738-1-jernej.skrabec@siol.net>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Wed, 31 Mar 2021 15:43:37 +0200
+Message-ID: <CAJiuCcc4hs781Hz_=tehcm4S2nci8e0DEJKeUY5ck=bpcgNUbg@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH] arm64: dts: allwinner: h6: beelink-gs1:
+ Remove ext. 32 kHz osc reference
+To:     Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 31 Mar 2021 14:33:18 +0800, Liu Ying wrote:
-> This patch adds bindings for i.MX8qm/qxp Control and Status Registers module.
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+Hi Jernej,
+
+On Tue, 30 Mar 2021 at 20:42, Jernej Skrabec <jernej.skrabec@siol.net> wrot=
+e:
+>
+> Although every Beelink GS1 seems to have external 32768 Hz oscillator,
+> it works only on one from four tested. There are more reports of RTC
+> issues elsewhere, like Armbian forum.
+>
+> One Beelink GS1 owner read RTC osc status register on Android which
+> shipped with the box. Reported value indicated problems with external
+> oscillator.
+>
+> In order to fix RTC and related issues (HDMI-CEC and suspend/resume with
+> Crust) on all boards, switch to internal oscillator.
+>
+> Fixes: 32507b868119 ("arm64: dts: allwinner: h6: Move ext. oscillator to =
+board DTs")
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+
+Tested-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+
 > ---
-> v6->v7:
-> * Add Rob's R-b tag.
-> 
-> v5->v6:
-> * Drop 'select' schema. (Rob)
-> 
-> v4->v5:
-> * Newly introduced in v5. (Rob)
-> 
->  .../devicetree/bindings/mfd/fsl,imx8qxp-csr.yaml   | 192 +++++++++++++++++++++
->  1 file changed, 192 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/fsl,imx8qxp-csr.yaml
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/mfd/fsl,imx8qxp-csr.example.dt.yaml:0:0: /example-0/syscon@56221000/pxl2dpi: failed to match any schema with compatible: ['fsl,imx8qxp-pxl2dpi']
-Documentation/devicetree/bindings/mfd/fsl,imx8qxp-csr.example.dt.yaml:0:0: /example-0/syscon@56221000/ldb: failed to match any schema with compatible: ['fsl,imx8qxp-ldb']
-Documentation/devicetree/bindings/mfd/fsl,imx8qxp-csr.example.dt.yaml:0:0: /example-0/phy@56228300: failed to match any schema with compatible: ['fsl,imx8qxp-mipi-dphy']
-
-See https://patchwork.ozlabs.org/patch/1460356
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+>  arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 4 ----
+>  1 file changed, 4 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/ar=
+ch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> index 669d39fc716a..6249e9e02928 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> @@ -289,10 +289,6 @@ sw {
+>         };
+>  };
+>
+> -&rtc {
+> -       clocks =3D <&ext_osc32k>;
+> -};
+> -
+>  &spdif {
+>         status =3D "okay";
+>  };
+> --
+> 2.31.0
+>
+> --
+> You received this message because you are subscribed to the Google Groups=
+ "linux-sunxi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an=
+ email to linux-sunxi+unsubscribe@googlegroups.com.
+> To view this discussion on the web, visit https://groups.google.com/d/msg=
+id/linux-sunxi/20210330184218.279738-1-jernej.skrabec%40siol.net.
