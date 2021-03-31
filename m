@@ -2,147 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6946C3505E6
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 20:01:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED44B350605
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 20:10:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233888AbhCaSAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 14:00:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35016 "EHLO
+        id S234707AbhCaSKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 14:10:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234641AbhCaSAX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 14:00:23 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68507C061574;
-        Wed, 31 Mar 2021 11:00:22 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id d13so9401433lfg.7;
-        Wed, 31 Mar 2021 11:00:22 -0700 (PDT)
+        with ESMTP id S234806AbhCaSKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 14:10:04 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E985C06174A
+        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 11:10:04 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id d8so8321961plh.11
+        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 11:10:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=4Q9oxhnKEAurSYSJEH9M9Sm61COtmi4Ok3DH92mW23E=;
-        b=h2lTTlH/+QWKj7wZpU0g5C99CDE6tQqaQ5ztaODdS8rmC29fLr6Zzr0goXM/KHuhl2
-         SyVQ7j0mH5NIPXKNx6/lMvjcpwv9brWlhMmZCkgWeEPXfzylyXH7h+bqw3mni+t4PMl0
-         fG5AJpoRqAasJFzkXcgOcKut8TxjqccYSPsxyw53RBMo0IElOIw/QV3nDuf5TnFw0BLL
-         jpK+4Tfixv6ijT1wIiBcEBuTco47NCIs2vvcz6cNgSBarbfQG1U0PtXcScq8AWk0Jq3c
-         TWrxaGq+WkHSH6yozer04Gx2dLaam2idQPQ5uzQ67bZ//KQJXqJid6tuQYIipJCBxGzH
-         ijYA==
+        bh=CRwTprnnI8wz+/z7qaTV17ZDi+HLSj0ilkKWjBU02K8=;
+        b=VPaEWj6gEDKV2/fVYPM6pBeCCmjH5CjUv8MDPhK+OFLA2zwsAWG/NkWeKzZStAo4GB
+         ccHdr3pCFCCtk6TdaQnzqtjSEnGZ83/QUQk1H6coKIXXsbFng0x/EdaWPa5gzO2xAwbH
+         ym9PALE98UahaphLi5qOR7TpbNea4i+jq5/Xg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=4Q9oxhnKEAurSYSJEH9M9Sm61COtmi4Ok3DH92mW23E=;
-        b=d2317/cLyDk/FScYCr60ImsEEGY1vLEGHdTyLgjFOfQxoaLLyo2s+Mgm436EQq3Kep
-         QGlMJ/A8w9QN3NmIdys9MWRbRHY0g4FxBuUVp7Itv77VD5KRii8vU2caz9ph10zEFTjV
-         NwwVZaf7qpu8xkxme9vcf1J8A+PwfZWI+mVJfKNuYRjIIwVuJJ+YvERXxuevkJF3ghwj
-         ZfvRAe/Ykd1YRWolZbo3v6Rz2wIKYoP7yMUCosfc7wVgKfvQqPOiom+otTeq4qWI0HXr
-         xu/UafPoc3638QPf4yjmGTeSWr/9CtTA5rGK9jCt3BQnNTzfLql8/FcRp6J3Y2fzJC7Q
-         WIgg==
-X-Gm-Message-State: AOAM531NN/zMFqDVZ4IJZZFV23YwYCRrBTjvFtNfuzjNcnnuiuPp8YRO
-        7qnQHqPTxXBIpUfsIL+lmA8=
-X-Google-Smtp-Source: ABdhPJyx4lAT+sVVFl5m4Yt0LNsve3Yt3vkYiD3cRMaY6C0bvxtOaE1jK6wf74B0uUteMcXor6j0Kg==
-X-Received: by 2002:a19:e0d:: with SMTP id 13mr2907573lfo.549.1617213620975;
-        Wed, 31 Mar 2021 11:00:20 -0700 (PDT)
-Received: from mobilestation ([95.79.127.110])
-        by smtp.gmail.com with ESMTPSA id q8sm292564lfc.223.2021.03.31.11.00.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Mar 2021 11:00:20 -0700 (PDT)
-Date:   Wed, 31 Mar 2021 21:00:18 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Brad Larson <brad@pensando.io>
-Cc:     linux-arm-kernel@lists.infradead.org, arnd@arndb.de,
-        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        broonie@kernel.org, adrian.hunter@intel.com,
-        ulf.hansson@linaro.org, olof@lixom.net, linux-gpio@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 03/13] spi: dw: Add support for Pensando Elba SoC SPI
-Message-ID: <20210331180018.jir2vusuf3sbare5@mobilestation>
-References: <20210329015938.20316-1-brad@pensando.io>
- <20210329015938.20316-4-brad@pensando.io>
+        bh=CRwTprnnI8wz+/z7qaTV17ZDi+HLSj0ilkKWjBU02K8=;
+        b=V+gQt6/hQ+4VDJmB/oKTkF0z3Clui1ReBbGwhZzXfHC997IwgZ19lUFOZVAvWtMRUC
+         5mr/OctEezxqyVBl/X/mZ+Z94Cz/yrR5N4iS7Z1IRTQKL+irvzzLYfiTvGvJGW7c9NP8
+         X0nEQScHyWHBQMQqbqO30wIkNwzWuAQ8sWScCut3Pr2jUZFhc1w4jv6HagCLtl3oq3ek
+         1q7hM5bO906xxAYCq/tvTeF0pborOBou8Lf3ouLHDtmK9YxEAcsYubW1ROxwhw4FDGQM
+         5AL6A4DtK9WGS6ArSfvatrCipvq1EumNU107CqZcTNHrqAUkRJu/JWc6Eo0oq8NXdG6v
+         lEjw==
+X-Gm-Message-State: AOAM5331lq8lOyYu7nUWNxRslaq+BwAyHT9v/6+Jwu97CGiS/QPj5mU1
+        3SpZbD+XR1Khcoi9mz8nCM1BsQ==
+X-Google-Smtp-Source: ABdhPJwbAA32TMbB3osF08sK5TFLMQEjnc+42H9avoEUrbO+Zx4wBht1hAmZNc5xM2IMK/M2zLeYyA==
+X-Received: by 2002:a17:902:c643:b029:e7:3c10:4695 with SMTP id s3-20020a170902c643b02900e73c104695mr4370404pls.41.1617214204060;
+        Wed, 31 Mar 2021 11:10:04 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:74b3:8070:8b1:c494])
+        by smtp.gmail.com with UTF8SMTPSA id i22sm3214254pgj.90.2021.03.31.11.10.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 Mar 2021 11:10:03 -0700 (PDT)
+Date:   Wed, 31 Mar 2021 11:10:00 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, rnayak@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [PATCH V3 2/5] regulator: qcom-rpmh: Add PM7325/PMR735A
+ regulator support
+Message-ID: <YGS6+OtDJe4E+jTi@google.com>
+References: <1617192339-3760-1-git-send-email-skakit@codeaurora.org>
+ <1617192339-3760-3-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210329015938.20316-4-brad@pensando.io>
+In-Reply-To: <1617192339-3760-3-git-send-email-skakit@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Mar 28, 2021 at 06:59:28PM -0700, Brad Larson wrote:
-> The Pensando Elba SoC uses a GPIO based chip select
-> for two DW SPI busses with each bus having two
-> chip selects.
+On Wed, Mar 31, 2021 at 05:35:36PM +0530, satya priya wrote:
+> Add support for PM7325/PMR735A regulators. This ensures
+> that consumers are able to modify the physical state of PMIC
+> regulators.
 > 
-> Signed-off-by: Brad Larson <brad@pensando.io>
-> ---
->  drivers/spi/spi-dw-mmio.c | 28 +++++++++++++++++++++++++++-
->  1 file changed, 27 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-> index 17c06039a74d..c323a5ceecb8 100644
-> --- a/drivers/spi/spi-dw-mmio.c
-> +++ b/drivers/spi/spi-dw-mmio.c
-> @@ -56,7 +56,7 @@ struct dw_spi_mscc {
->  /*
->   * The Designware SPI controller (referred to as master in the documentation)
->   * automatically deasserts chip select when the tx fifo is empty. The chip
-> - * selects then needs to be either driven as GPIOs or, for the first 4 using the
-> + * selects then needs to be either driven as GPIOs or, for the first 4 using
->   * the SPI boot controller registers. the final chip select is an OR gate
->   * between the Designware SPI controller and the SPI boot controller.
->   */
-> @@ -237,6 +237,31 @@ static int dw_spi_canaan_k210_init(struct platform_device *pdev,
->  	return 0;
->  }
->  
-> +static void dw_spi_elba_set_cs(struct spi_device *spi, bool enable)
-> +{
-> +	struct dw_spi *dws = spi_master_get_devdata(spi->master);
-> +
+> Signed-off-by: satya priya <skakit@codeaurora.org>
 
-> +	if (!enable) {
-
-Please, be more attentive to the review-comments given to you before
-resending a new patchset. One more time. This version of set_cs won't
-work for Active-high CS. Each SPI controller working with GPIO-based
-chip-select is marked as supporting that feature. So your DW
-SPI controller won't be able to work correctly with SPI-devices
-activated by active-high chip-select signal. Note default
-dw_spi_set_cs() callback supports that.
-
--Sergey
-
-> +		/*
-> +		 * Using a GPIO-based chip-select, the DW SPI
-> +		 * controller still needs its own CS bit selected
-> +		 * to start the serial engine.  On Elba the specific
-> +		 * CS doesn't matter to start the serial engine,
-> +		 * so using CS0.
-> +		 */
-> +		dw_writel(dws, DW_SPI_SER, BIT(0));
-> +	} else {
-> +		dw_writel(dws, DW_SPI_SER, 0);
-> +	}
-> +}
-> +
-> +static int dw_spi_elba_init(struct platform_device *pdev,
-> +			    struct dw_spi_mmio *dwsmmio)
-> +{
-> +	dwsmmio->dws.set_cs = dw_spi_elba_set_cs;
-> +	return 0;
-> +}
-> +
->  static int dw_spi_mmio_probe(struct platform_device *pdev)
->  {
->  	int (*init_func)(struct platform_device *pdev,
-> @@ -351,6 +376,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
->  	{ .compatible = "intel,keembay-ssi", .data = dw_spi_keembay_init},
->  	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
->  	{ .compatible = "canaan,k210-spi", dw_spi_canaan_k210_init},
-> +	{ .compatible = "pensando,elba-spi", .data = dw_spi_elba_init},
->  	{ /* end of table */}
->  };
->  MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
-> -- 
-> 2.17.1
-> 
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
