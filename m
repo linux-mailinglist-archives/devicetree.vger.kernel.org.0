@@ -2,128 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3468E35028F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 16:44:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B3923502DE
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 17:00:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236083AbhCaOoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 10:44:21 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:60799 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235929AbhCaOoN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 10:44:13 -0400
-Received: from localhost (lfbn-lyo-1-1679-174.w90-65.abo.wanadoo.fr [90.65.110.174])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 94CBE240012;
-        Wed, 31 Mar 2021 14:44:05 +0000 (UTC)
-Date:   Wed, 31 Mar 2021 16:44:04 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     nicolas.ferre@microchip.com, ludovic.desroches@microchip.com,
-        robh+dt@kernel.org, linux@armlinux.org.uk,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/24] ARM: at91: pm: move pm_bu to soc_pm data structure
-Message-ID: <YGSKtCZsZjibQPHG@piout.net>
-References: <20210331105908.23027-1-claudiu.beznea@microchip.com>
- <20210331105908.23027-2-claudiu.beznea@microchip.com>
+        id S236161AbhCaPAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 11:00:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52282 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235987AbhCaO7p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 10:59:45 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3FE0C061574;
+        Wed, 31 Mar 2021 07:59:42 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id n138so29620012lfa.3;
+        Wed, 31 Mar 2021 07:59:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=PsO89NOx80DUPq/uoqBfqzP3oyAMU/I135Iw3m4lDgM=;
+        b=l0hxprmLlYVfUUB4XOawxL21b7Mnqt1Tj5hOz4aCWZLoGkiocEAY3EIbRMDvZB9T0S
+         LTtsIBrykLpWKN3iH4v609s/WtQ5u8VwXQuMInZbGKj5yv0aMplLf5K4faExnwIZFsAj
+         YB0z5KfNXg8JhfB2EeAS1E3rTM0R5/LjbBAJs1wswgbgRduHlHVa1h7GU3drNZbWpGHC
+         65krI08iZU4q6rtsxYNDSeYVaok/9r7N34HAdda6kv1uMDImA91t5lkbLeLr+PSxH4Wr
+         JzYr2kpPpBwvYSZZAGTLF7kqsDy3BVtjfDWpLKacEufrqZnky01B00N7KFc58xxcxe/a
+         IgOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=PsO89NOx80DUPq/uoqBfqzP3oyAMU/I135Iw3m4lDgM=;
+        b=s7oNq8ec18htY2PL7noR4eitDqW953lm1c7KlMvzP6oKGHmfw+ReIh1Xt0gmVHCV3q
+         /Cs1ALNoC13eIgL2RSQhF9oZDOAjcpyoDRcG+VKxy7dumaLnZiV/yq5ZZeue/+d/fWo7
+         vpBnnQj8env1vhJhY+ZTJFKx2fRzNdd6f9jZCZgL1ltfMzXpT0HEEcU/Byjw0sjAbhnM
+         FF7rXxIVQoY+gy1fAUMwMlEHkvVVIZvU5a2JGdOLyWwjKLQ/aZaGwkNYt7DWD9x6EIsK
+         pdtZUJ9dq0ghTLYnIyAdqGO3aejg/FhU9+Hsys8mx49c3NSj5ZIEi38B+S/LJgbjdcl5
+         tbGw==
+X-Gm-Message-State: AOAM531mLSlGwcaShmMRCpyHsnGz7bEIz4cgE+plYViMMx1Fape9GOfE
+        S1vksTQbvk7xCV5HXU9dQsXvIaswud25lg==
+X-Google-Smtp-Source: ABdhPJx8es0d3p6vHRKIE2PW9CFQRyDk59ibGGL5NkPTZv7S9RNLZEkG8zAX1hwSptm5jyU2pU63Aw==
+X-Received: by 2002:ac2:58cf:: with SMTP id u15mr2423994lfo.397.1617202781069;
+        Wed, 31 Mar 2021 07:59:41 -0700 (PDT)
+Received: from ?IPv6:2a00:1370:814d:c71f:a10:76ff:fe69:21b6? ([2a00:1370:814d:c71f:a10:76ff:fe69:21b6])
+        by smtp.googlemail.com with ESMTPSA id f20sm262375ljn.123.2021.03.31.07.59.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 Mar 2021 07:59:40 -0700 (PDT)
+Subject: Re: [PATCH v2 5/6] dt-bindings: memory: tegra20: emc: Convert to
+ schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210330230445.26619-1-digetx@gmail.com>
+ <20210330230445.26619-6-digetx@gmail.com>
+ <1617198059.590387.2074856.nullmailer@robh.at.kernel.org>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <b4f7c7fb-1332-8490-fb4f-293fd357338e@gmail.com>
+Date:   Wed, 31 Mar 2021 17:59:39 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210331105908.23027-2-claudiu.beznea@microchip.com>
+In-Reply-To: <1617198059.590387.2074856.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/03/2021 13:58:45+0300, Claudiu Beznea wrote:
-> Move pm_bu to soc_pm data structure.
+31.03.2021 16:40, Rob Herring пишет:
+> On Wed, 31 Mar 2021 02:04:44 +0300, Dmitry Osipenko wrote:
+>> Convert Tegra20 External Memory Controller binding to schema.
+>>
+>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>> ---
+>>  .../memory-controllers/nvidia,tegra20-emc.txt | 130 --------
+>>  .../nvidia,tegra20-emc.yaml                   | 294 ++++++++++++++++++
+>>  2 files changed, 294 insertions(+), 130 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.txt
+>>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
+>>
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-
-> ---
->  arch/arm/mach-at91/pm.c | 34 +++++++++++++++++++++-------------
->  1 file changed, 21 insertions(+), 13 deletions(-)
+> My bot found errors running 'make dt_binding_check' on your patch:
 > 
-> diff --git a/arch/arm/mach-at91/pm.c b/arch/arm/mach-at91/pm.c
-> index 90dcdfe3b3d0..e13ceef7ac9a 100644
-> --- a/arch/arm/mach-at91/pm.c
-> +++ b/arch/arm/mach-at91/pm.c
-> @@ -27,10 +27,25 @@
->  #include "generic.h"
->  #include "pm.h"
->  
-> +/**
-> + * struct at91_pm_bu - AT91 power management backup unit data structure
-> + * @suspended: true if suspended to backup mode
-> + * @reserved: reserved
-> + * @canary: canary data for memory checking after exit from backup mode
-> + * @resume: resume API
-> + */
-> +struct at91_pm_bu {
-> +	int suspended;
-> +	unsigned long reserved;
-> +	phys_addr_t canary;
-> +	phys_addr_t resume;
-> +};
-> +
->  struct at91_soc_pm {
->  	int (*config_shdwc_ws)(void __iomem *shdwc, u32 *mode, u32 *polarity);
->  	int (*config_pmc_ws)(void __iomem *pmc, u32 mode, u32 polarity);
->  	const struct of_device_id *ws_ids;
-> +	struct at91_pm_bu *bu;
->  	struct at91_pm_data data;
->  };
->  
-> @@ -71,13 +86,6 @@ static int at91_pm_valid_state(suspend_state_t state)
->  
->  static int canary = 0xA5A5A5A5;
->  
-> -static struct at91_pm_bu {
-> -	int suspended;
-> -	unsigned long reserved;
-> -	phys_addr_t canary;
-> -	phys_addr_t resume;
-> -} *pm_bu;
-> -
->  struct wakeup_source_info {
->  	unsigned int pmc_fsmr_bit;
->  	unsigned int shdwc_mr_bit;
-> @@ -288,7 +296,7 @@ static int at91_suspend_finish(unsigned long val)
->  static void at91_pm_suspend(suspend_state_t state)
->  {
->  	if (soc_pm.data.mode == AT91_PM_BACKUP) {
-> -		pm_bu->suspended = 1;
-> +		soc_pm.bu->suspended = 1;
->  
->  		cpu_suspend(0, at91_suspend_finish);
->  
-> @@ -657,16 +665,16 @@ static int __init at91_pm_backup_init(void)
->  		goto securam_fail;
->  	}
->  
-> -	pm_bu = (void *)gen_pool_alloc(sram_pool, sizeof(struct at91_pm_bu));
-> -	if (!pm_bu) {
-> +	soc_pm.bu = (void *)gen_pool_alloc(sram_pool, sizeof(struct at91_pm_bu));
-> +	if (!soc_pm.bu) {
->  		pr_warn("%s: unable to alloc securam!\n", __func__);
->  		ret = -ENOMEM;
->  		goto securam_fail;
->  	}
->  
-> -	pm_bu->suspended = 0;
-> -	pm_bu->canary = __pa_symbol(&canary);
-> -	pm_bu->resume = __pa_symbol(cpu_resume);
-> +	soc_pm.bu->suspended = 0;
-> +	soc_pm.bu->canary = __pa_symbol(&canary);
-> +	soc_pm.bu->resume = __pa_symbol(cpu_resume);
->  
->  	return 0;
->  
-> -- 
-> 2.25.1
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.example.dts:33.26-55.15: Warning (unit_address_vs_reg): /example-0/external-memory-controller@7000f400/emc-tables@0: node has a unit name, but no reg or ranges property
+> 
+> See https://patchwork.ozlabs.org/patch/1460288
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
 > 
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+FYI, I'm aware about this warning and I think it's fine to skip it in
+the case of this binding. The dtbs_check doesn't bother with that warning.
