@@ -2,108 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A450235011A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 15:21:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B93EE350148
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 15:33:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235646AbhCaNUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 09:20:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59068 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235347AbhCaNUS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 09:20:18 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08BC6C061574;
-        Wed, 31 Mar 2021 06:20:17 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id h10so22271474edt.13;
-        Wed, 31 Mar 2021 06:20:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=v54OuxXjYPfnkf0eXlXYXJeCY6yKWqaMFwGEwHKRNUA=;
-        b=Va6gkTiy/Yw2vvFF7gj9/X/LvdR91Yg183cL1F2pUosKrIka4zePYCYvs2lndKX37O
-         fyPJ9gxmxTP7Aj95tFsoCgoE9J2mJc4w59JhsTD+Y7xIJs6utMQGCv7gKJiuNEjd3leb
-         6aSKBWWTiXcxRgLb548agTRau/AKJ5zkUxAFpRzb0QV6jxAky/+mNhhfP1kVW3rIoGU3
-         2CHKASXyYCRkGHl9N971+mZ05TVN/Bc2Kg/0gb8RtfX0dUwSzGLGkEL2cQ80buZnM7kZ
-         pLt/0qEG7gIfgUDP/jhcywl/L7G/f84L8/IMhEJQpcfMNkKHMeA1o0exjurp3atJIdpT
-         RmLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=v54OuxXjYPfnkf0eXlXYXJeCY6yKWqaMFwGEwHKRNUA=;
-        b=k6+2CH2nfTILLd4JzpAMuK3erumqfQtQGpm4fmjQy0aRa5qSUNKHnAV5ptzM0wbpZ1
-         +pef9mmDeoTOwcJBQDHYtT+MPW51qfspAshwNiSBZGZWY5erkPPyZeZab0TSVJyIifmn
-         vouvrnrVknYpexGpAl8ahoROf6q169q0G5jeCl42B3nFBPbgnpCPKE6AyEO/sTjjljc8
-         bkMi+IgrhU9M9XqICa5HS7ovdBYq5zXestYzIEA1GC+CxoGn0SBYADRVEncqNvEs8zsF
-         a8wqD1muczppfqRjGitn4RdU4TZlL/7EApVi2PWl5BPAvFDvdGoHPXACeTr4hYEcmZN7
-         BQgA==
-X-Gm-Message-State: AOAM532SKtEKUtrM3D8C2bVfhqZUyFZ2az0Rgr3YyBDJ1/Xw/CkeHTKx
-        Fx4heQ7cVb1CI3bS4/CLK/M=
-X-Google-Smtp-Source: ABdhPJyqP9Ogu0G2cFJk+43OiYbaDjJk8d5XhbXxxWVKEli1Te8lmQkzPqg96zlm2PEBrlf2Ewuu6g==
-X-Received: by 2002:a50:fd8b:: with SMTP id o11mr3632089edt.346.1617196815723;
-        Wed, 31 Mar 2021 06:20:15 -0700 (PDT)
-Received: from skbuf (5-12-16-165.residential.rdsnet.ro. [5.12.16.165])
-        by smtp.gmail.com with ESMTPSA id m7sm1540798edp.81.2021.03.31.06.20.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Mar 2021 06:20:15 -0700 (PDT)
-Date:   Wed, 31 Mar 2021 16:20:13 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Tobias Waldekranz <tobias@waldekranz.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, andrew@lunn.ch,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/3] net: dsa: Allow default tag protocol to be
- overridden from DT
-Message-ID: <20210331125753.5kbr4wexmudwmrjc@skbuf>
-References: <20210326105648.2492411-1-tobias@waldekranz.com>
- <20210326105648.2492411-3-tobias@waldekranz.com>
- <20210326125720.fzmqqmeotzbgt4kd@skbuf>
+        id S235701AbhCaNd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 09:33:27 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:35582 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235784AbhCaNdN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 09:33:13 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12VDWbfT128296;
+        Wed, 31 Mar 2021 08:32:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1617197557;
+        bh=YYcWMd00SGs3crRbWxcFqADJOgyNtBSyyx4h5FCJOLU=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=zESha82xuGVQgBYnpa0qk9GVYZ7gXXdsuOh/KJKx82e6XU/CIjU6lCoMF/ZNlz7TL
+         sw4UyFR0i0hWIxSEOImDpLNTnk/c1N2rb2vdgxUr/MujIUlexmNjjd9COB7g0qT4+x
+         Ar4nkUtW6HYrk/8Iyv+0FoJF+eGQVpYRJ6dqJ09o=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12VDWbc2119028
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 31 Mar 2021 08:32:37 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 31
+ Mar 2021 08:32:37 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 31 Mar 2021 08:32:36 -0500
+Received: from [10.250.234.114] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12VDWUVw091817;
+        Wed, 31 Mar 2021 08:32:30 -0500
+Subject: Re: [PATCH v5 2/5] phy: Add LVDS configuration options
+To:     Liu Ying <victor.liu@nxp.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <vkoul@kernel.org>, <robh+dt@kernel.org>, <a.hajda@samsung.com>,
+        <narmstrong@baylibre.com>, <Laurent.pinchart@ideasonboard.com>,
+        <jonas@kwiboo.se>, <jernej.skrabec@siol.net>, <airlied@linux.ie>,
+        <daniel@ffwll.ch>, <shawnguo@kernel.org>, <s.hauer@pengutronix.de>,
+        <kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
+        <agx@sigxcpu.org>, <robert.chiras@nxp.com>,
+        <martin.kepplinger@puri.sm>, <robert.foss@linaro.org>
+References: <1616662832-27048-1-git-send-email-victor.liu@nxp.com>
+ <1616662832-27048-3-git-send-email-victor.liu@nxp.com>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <f078a133-de32-0e08-2d87-f2dde7c240ec@ti.com>
+Date:   Wed, 31 Mar 2021 19:02:29 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210326125720.fzmqqmeotzbgt4kd@skbuf>
+In-Reply-To: <1616662832-27048-3-git-send-email-victor.liu@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 26, 2021 at 02:57:20PM +0200, Vladimir Oltean wrote:
-> Hi Tobias,
-> 
-> On Fri, Mar 26, 2021 at 11:56:47AM +0100, Tobias Waldekranz wrote:
-> >  	} else {
-> > -		dst->tag_ops = dsa_tag_driver_get(tag_protocol);
-> > -		if (IS_ERR(dst->tag_ops)) {
-> > -			if (PTR_ERR(dst->tag_ops) == -ENOPROTOOPT)
-> > -				return -EPROBE_DEFER;
-> > -			dev_warn(ds->dev, "No tagger for this switch\n");
-> > -			dp->master = NULL;
-> > -			return PTR_ERR(dst->tag_ops);
-> > -		}
-> > +		dst->tag_ops = tag_ops;
-> >  	}
-> 
-> This will conflict with George's bug fix for 'net', am I right?
-> https://patchwork.kernel.org/project/netdevbpf/patch/20210322202650.45776-1-george.mccollister@gmail.com/
-> 
-> Would you mind resending after David merges 'net' into 'net-next'?
-> 
-> This process usually looks like commit d489ded1a369 ("Merge
-> git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net"). However,
-> during this kernel development cycle, I have seen no merge of 'net' into
-> 'net-next' since commit 05a59d79793d ("Merge
-> git://git.kernel.org:/pub/scm/linux/kernel/git/netdev/net"), but that
-> comes directly from Linus Torvalds' v5.12-rc2.
-> 
-> Nonetheless, at some point (and sooner rather than later, I think),
-> David or Jakub should merge the two trees. I would prefer to do it this
-> way because the merge is going to be a bit messy otherwise, and I might
-> want to cherry-pick these patches to some trees and it would be nice if
-> the history was linear.
-> 
-> Thanks!
+Hi,
 
-Tobias, I think you can safely resend now, I see George's change is in
-net-next:
-https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git/tree/net/dsa/dsa2.c#n1084
+On 25/03/21 2:30 pm, Liu Ying wrote:
+> This patch allows LVDS PHYs to be configured through
+> the generic functions and through a custom structure
+> added to the generic union.
+> 
+> The parameters added here are based on common LVDS PHY
+> implementation practices.  The set of parameters
+> should cover all potential users.
+> 
+> Cc: Kishon Vijay Abraham I <kishon@ti.com>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+> v4->v5:
+> * Align kernel-doc style to include/linux/phy/phy.h. (Vinod)
+> * Trivial tweaks.
+> * Drop Robert's R-b tag.
+> 
+> v3->v4:
+> * Add Robert's R-b tag.
+> 
+> v2->v3:
+> * No change.
+> 
+> v1->v2:
+> * No change.
+> 
+>  include/linux/phy/phy-lvds.h | 32 ++++++++++++++++++++++++++++++++
+>  include/linux/phy/phy.h      |  4 ++++
+>  2 files changed, 36 insertions(+)
+>  create mode 100644 include/linux/phy/phy-lvds.h
+> 
+> diff --git a/include/linux/phy/phy-lvds.h b/include/linux/phy/phy-lvds.h
+> new file mode 100644
+> index 00000000..7a2f474
+> --- /dev/null
+> +++ b/include/linux/phy/phy-lvds.h
+> @@ -0,0 +1,32 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright 2020 NXP
+> + */
+> +
+> +#ifndef __PHY_LVDS_H_
+> +#define __PHY_LVDS_H_
+> +
+> +/**
+> + * struct phy_configure_opts_lvds - LVDS configuration set
+> + * @bits_per_lane_and_dclk_cycle:	Number of bits per data lane and
+> + *					differential clock cycle.
+
+phy_set_bus_width() instead?
+> + * @differential_clk_rate:		Clock rate, in Hertz, of the LVDS
+> + *					differential clock.
+
+Please use clk API's to get rate.
+> + * @lanes:				Number of active, consecutive,
+> + *					data lanes, starting from lane 0,
+> + *					used for the transmissions.
+> + * @is_slave:				Boolean, true if the phy is a slave
+> + *					which works together with a master
+> + *					phy to support dual link transmission,
+> + *					otherwise a regular phy or a master phy.
+
+For parameters that are known at design time, it doesn't have to be
+passed from consumer driver. So all these parameters do they really have
+to be passed at runtime?
+
+Thanks
+Kishon
+> + *
+> + * This structure is used to represent the configuration state of a LVDS phy.
+> + */
+> +struct phy_configure_opts_lvds {
+> +	unsigned int	bits_per_lane_and_dclk_cycle;
+> +	unsigned long	differential_clk_rate;
+> +	unsigned int	lanes;
+> +	bool		is_slave;
+> +};
+> +
+> +#endif /* __PHY_LVDS_H_ */
+> diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
+> index e435bdb..d450b44 100644
+> --- a/include/linux/phy/phy.h
+> +++ b/include/linux/phy/phy.h
+> @@ -17,6 +17,7 @@
+>  #include <linux/regulator/consumer.h>
+>  
+>  #include <linux/phy/phy-dp.h>
+> +#include <linux/phy/phy-lvds.h>
+>  #include <linux/phy/phy-mipi-dphy.h>
+>  
+>  struct phy;
+> @@ -51,10 +52,13 @@ enum phy_mode {
+>   *		the MIPI_DPHY phy mode.
+>   * @dp:		Configuration set applicable for phys supporting
+>   *		the DisplayPort protocol.
+> + * @lvds:	Configuration set applicable for phys supporting
+> + *		the LVDS phy mode.
+>   */
+>  union phy_configure_opts {
+>  	struct phy_configure_opts_mipi_dphy	mipi_dphy;
+>  	struct phy_configure_opts_dp		dp;
+> +	struct phy_configure_opts_lvds		lvds;
+>  };
+>  
+>  /**
+> 
