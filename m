@@ -2,150 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0231734FB0E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 10:04:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67F3E34FB49
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 10:12:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234063AbhCaIDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 04:03:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46732 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234062AbhCaID3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 04:03:29 -0400
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0FBEC061574;
-        Wed, 31 Mar 2021 01:03:28 -0700 (PDT)
-Received: by mail-qk1-x729.google.com with SMTP id g15so18521460qkl.4;
-        Wed, 31 Mar 2021 01:03:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NJcIw73a//r28j1htif+6qunnsNeiLwQMekHuL3zxuc=;
-        b=T/BjsSR2f4zCsI32B9vc+Fo0VhdeQ7uAqocnuUdCTzTRS2b8aqOi+l+XP+YZBKs8XO
-         C22J8Ac2zQiQguWOjOdGqHaXIhAF781x/YZ6AGJWgYrMpkkVVcMhOe+3cIDAUHkwgTgL
-         Q1Ay8yxsXn+jFIiLHipqKSgf835p4/9MfLpZ8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NJcIw73a//r28j1htif+6qunnsNeiLwQMekHuL3zxuc=;
-        b=oG9igCNNh1+JQGX3JBeCKL5+G323VSEy+0nrWSVDL7UgY+GEBdueXx2Y83dgkKU+z6
-         XztfnUIWPbXjxIONoouKouqzHgIrlgbVlmhks5MGIJ99y+slS1DzBM7DuMXWUC+y6uIc
-         7A3gFcHQJTC7USjNCcT1+pcON6hHbm3EWhzY6OiITXZvQePAeUCVsIRlN287Ez668UdZ
-         u9NzZL8m4ZHp2nKsQ6qGf31Cw+WsTqsM0GMnzP1ySNZCYpd5LeweqyPLJT+a4x0HUEkS
-         93Hq83lMAQaPEDqunaiXG+Stthp9g+T4Dt3+LoXdiJ1iOHWXWsS4xs3Kl4n63F7HuJt7
-         YjqQ==
-X-Gm-Message-State: AOAM531WNa35X0E6617qUvvwaEICHal6AiOerhnLVsrlwfpAOH5oG+3C
-        WTUvYJWO4Lt9d6wHkYBfNu9K9FF0HjtXrl4wVKg=
-X-Google-Smtp-Source: ABdhPJwC6hlddgOP7Z7aBjcCddCYiFSG8M/SJxjKms1t4Jq6myn+rgd/kJbDtXxbvYj9JRVxaoZOy7H1q4e9l7echc0=
-X-Received: by 2002:a05:620a:28c9:: with SMTP id l9mr1940310qkp.55.1617177807842;
- Wed, 31 Mar 2021 01:03:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210308171049.3962577-1-gmouse@google.com> <CADVsX8_e9GNeceV-op5HwbxEnzUG_68izC11K=g46YWvCZE2Ag@mail.gmail.com>
-In-Reply-To: <CADVsX8_e9GNeceV-op5HwbxEnzUG_68izC11K=g46YWvCZE2Ag@mail.gmail.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 31 Mar 2021 08:03:15 +0000
-Message-ID: <CACPK8XfcHRkRew6O-r=BumPRAW5X8__k6XMy-4gnDhwxVqCVWg@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: nuvoton: Fix flash layout
-To:     Anton Kachalov <gmouse@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Avi Fishman <avifishman70@gmail.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        id S233838AbhCaIMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 04:12:10 -0400
+Received: from polaris.svanheule.net ([84.16.241.116]:37068 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234304AbhCaILq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 04:11:46 -0400
+Received: from [192.168.1.109] (47.118-244-81.adsl-dyn.isp.belgacom.be [81.244.118.47])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 1E48E1E82E4;
+        Wed, 31 Mar 2021 10:11:43 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1617178303;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=8I4Akj4tbOIc1+p/z0TzNt8/RgQx346agZg2BTpdPKk=;
+        b=hVLcEXWk6qWe8v7SAyaRn3QAwucZyGZkIoYL2IbbtjBTRpDS++UdevwfPNYpEwy0nFZu3H
+        /YD7pQTZ8V49sqIuAvJ4flBulDzekcfKfoYYfCBShwopvG+Y1b3uQvZ7DjASoIZAJOQ6Wb
+        iE0jrvo/Pi1BDiXWVf83QmnvCBG5DWelb7/ne+gb3QXyTHnf5M1f7MlTj2GtMu4YOW+Bbl
+        mkgRArTxLCLZLZjD1usC33GT4Ty1sFK2m+IgssaqAIywp84wYaYR5GCK6l804eHWRfL4M9
+        ibjZnEsZijbSt1ZeIc9sFeHI3m4BISJusOzRTA066rtN/ku2JHOZBlSkDriQlA==
+Message-ID: <daa8e1897fb15048ae4aac44bfb01461b46c8d3d.camel@svanheule.net>
+Subject: Re: [PATCH v6 0/2] Add Realtek Otto GPIO support
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-devicetree <devicetree@vger.kernel.org>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        Bert Vermeulen <bert@biot.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Marc Zyngier <maz@kernel.org>
+Date:   Wed, 31 Mar 2021 10:11:41 +0200
+In-Reply-To: <CAMpxmJWGuS_ae_cGsvWmhu3NBtsnK-ZutJeCphJSR=Xn7qKFMg@mail.gmail.com>
+References: <20210315082339.9787-1-sander@svanheule.net>
+         <cover.1617126277.git.sander@svanheule.net>
+         <CAMpxmJWGuS_ae_cGsvWmhu3NBtsnK-ZutJeCphJSR=Xn7qKFMg@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anton,
+On Wed, 2021-03-31 at 09:49 +0200, Bartosz Golaszewski wrote:
+> On Tue, Mar 30, 2021 at 7:48 PM Sander Vanheule
+> <sander@svanheule.net> wrote:
+> > 
+> > Add support for the GPIO controller employed by Realtek in multiple
+> > series of MIPS SoCs. These include the supported RTL838x and
+> > RTL839x. The register layout also matches the one found in the GPIO
+> > controller of other (Lexra-based) SoCs such as RTL8196E, RTL8197D,
+> > and RTL8197F.
+> 
+> Series applied, thanks!
 
-On Thu, 25 Mar 2021 at 01:28, Anton Kachalov <gmouse@google.com> wrote:
->
-> Gently ping
->
-> On Mon, 8 Mar 2021 at 18:11, <gmouse@google.com> wrote:
-> >
-> > From: "Anton D. Kachalov" <gmouse@google.com>
-> >
-> > This change follows OpenBMC partitions' naming layout.
-> >
-> > Signed-off-by: Anton D. Kachalov <gmouse@google.com>
+Thanks for merging, and thanks for the discussion everyone!
 
-I believe you discussed what approach to take and this was agreed
-upon. Can I get an ack from some other nuvoton people before I apply?
+Best,
+Sander
 
-Cheers,
 
-Joel
-
-> > ---
-> >  arch/arm/boot/dts/nuvoton-npcm750-evb.dts | 38 +++++++----------------
-> >  1 file changed, 11 insertions(+), 27 deletions(-)
-> >
-> > diff --git a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-> > index 9f13d08f5804..55c5a89592d7 100644
-> > --- a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-> > +++ b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-> > @@ -78,8 +78,8 @@ partitions@80000000 {
-> >                         compatible = "fixed-partitions";
-> >                         #address-cells = <1>;
-> >                         #size-cells = <1>;
-> > -                       bbuboot1@0 {
-> > -                               label = "bb-uboot-1";
-> > +                       u-boot@0 {
-> > +                               label = "u-boot";
-> >                                 reg = <0x0000000 0x80000>;
-> >                                 read-only;
-> >                                 };
-> > @@ -88,38 +88,22 @@ bbuboot2@80000 {
-> >                                 reg = <0x0080000 0x80000>;
-> >                                 read-only;
-> >                                 };
-> > -                       envparam@100000 {
-> > -                               label = "env-param";
-> > +                       u-boot-env@100000 {
-> > +                               label = "u-boot-env";
-> >                                 reg = <0x0100000 0x40000>;
-> >                                 read-only;
-> >                                 };
-> > -                       spare@140000 {
-> > -                               label = "spare";
-> > -                               reg = <0x0140000 0xC0000>;
-> > -                               };
-> >                         kernel@200000 {
-> >                                 label = "kernel";
-> > -                               reg = <0x0200000 0x400000>;
-> > -                               };
-> > -                       rootfs@600000 {
-> > -                               label = "rootfs";
-> > -                               reg = <0x0600000 0x700000>;
-> > -                               };
-> > -                       spare1@D00000 {
-> > -                               label = "spare1";
-> > -                               reg = <0x0D00000 0x200000>;
-> > -                               };
-> > -                       spare2@0F00000 {
-> > -                               label = "spare2";
-> > -                               reg = <0x0F00000 0x200000>;
-> > +                               reg = <0x0200000 0x580000>;
-> >                                 };
-> > -                       spare3@1100000 {
-> > -                               label = "spare3";
-> > -                               reg = <0x1100000 0x200000>;
-> > +                       rofs@780000 {
-> > +                               label = "rofs";
-> > +                               reg = <0x0780000 0x1680000>;
-> >                                 };
-> > -                       spare4@1300000 {
-> > -                               label = "spare4";
-> > -                               reg = <0x1300000 0x0>;
-> > +                       rwfs@1e00000 {
-> > +                               label = "rwfs";
-> > +                               reg = <0x1e00000 0x200000>;
-> >                         };
-> >                 };
-> >         };
-> > --
-> > 2.30.1.766.gb4fecdf3b7-goog
-> >
