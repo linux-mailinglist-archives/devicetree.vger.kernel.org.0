@@ -2,176 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B93EE350148
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 15:33:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68C66350154
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 15:36:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235701AbhCaNd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 09:33:27 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:35582 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235784AbhCaNdN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 09:33:13 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12VDWbfT128296;
-        Wed, 31 Mar 2021 08:32:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1617197557;
-        bh=YYcWMd00SGs3crRbWxcFqADJOgyNtBSyyx4h5FCJOLU=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=zESha82xuGVQgBYnpa0qk9GVYZ7gXXdsuOh/KJKx82e6XU/CIjU6lCoMF/ZNlz7TL
-         sw4UyFR0i0hWIxSEOImDpLNTnk/c1N2rb2vdgxUr/MujIUlexmNjjd9COB7g0qT4+x
-         Ar4nkUtW6HYrk/8Iyv+0FoJF+eGQVpYRJ6dqJ09o=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12VDWbc2119028
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 31 Mar 2021 08:32:37 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 31
- Mar 2021 08:32:37 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 31 Mar 2021 08:32:36 -0500
-Received: from [10.250.234.114] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12VDWUVw091817;
-        Wed, 31 Mar 2021 08:32:30 -0500
-Subject: Re: [PATCH v5 2/5] phy: Add LVDS configuration options
-To:     Liu Ying <victor.liu@nxp.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <vkoul@kernel.org>, <robh+dt@kernel.org>, <a.hajda@samsung.com>,
-        <narmstrong@baylibre.com>, <Laurent.pinchart@ideasonboard.com>,
-        <jonas@kwiboo.se>, <jernej.skrabec@siol.net>, <airlied@linux.ie>,
-        <daniel@ffwll.ch>, <shawnguo@kernel.org>, <s.hauer@pengutronix.de>,
-        <kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
-        <agx@sigxcpu.org>, <robert.chiras@nxp.com>,
-        <martin.kepplinger@puri.sm>, <robert.foss@linaro.org>
-References: <1616662832-27048-1-git-send-email-victor.liu@nxp.com>
- <1616662832-27048-3-git-send-email-victor.liu@nxp.com>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <f078a133-de32-0e08-2d87-f2dde7c240ec@ti.com>
-Date:   Wed, 31 Mar 2021 19:02:29 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S235763AbhCaNfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 09:35:37 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:39791 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235755AbhCaNf2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 09:35:28 -0400
+Received: by mail-oi1-f179.google.com with SMTP id i81so20003121oif.6;
+        Wed, 31 Mar 2021 06:35:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=OO7ubuY6oTKvyUG1gEO7CnoaNU1mo7KyFjqzNQtFekg=;
+        b=CI+oWxnSL9O06hUSl63jE6UVZqXwxahMrp2sDwKHmnrv0wLRD1RaPVXn5HCvbu4/aQ
+         tW2hQXlRZy3l3shyZwtWo7YZ4QnAAHpIN/ajZAuFdGe56wBjjeH60laVuuPKv1RhrdRv
+         b6ShaDj6vHksEJnsApLZRCoYnAnhgHIKU5mIf3LzI2OgfwLN3RJvvoscG2BY3vpPrQ57
+         pMOmle6+MiI+Z6frCCMFQOAIBvTKHULitW1Fgxap0CBBXAg8LCkP85jMHwdj/bHtPauz
+         eWwtJwYhSOsLni1f/VGHdlb/DyOKOJm4jbtXudYt3mdKt85/inD/QUNRx1u6Q7LjMIFp
+         rQTQ==
+X-Gm-Message-State: AOAM532DeoShuUIs/bEYTZGTdYfFPx1Lq2DQtppY7kBnEIZrB4Xx6nWH
+        ZMyeBWonfpNgoXfGdCVY4Q==
+X-Google-Smtp-Source: ABdhPJzR60WxulAypcTek0JQWaHluHrpPJGXqUHdYhkTq5G28iPykqY6g8W79IHDsXKCTbhxKKVeKQ==
+X-Received: by 2002:aca:6543:: with SMTP id j3mr2341007oiw.158.1617197728353;
+        Wed, 31 Mar 2021 06:35:28 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id m127sm433005oib.32.2021.03.31.06.35.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Mar 2021 06:35:26 -0700 (PDT)
+Received: (nullmailer pid 2066047 invoked by uid 1000);
+        Wed, 31 Mar 2021 13:35:25 -0000
+Date:   Wed, 31 Mar 2021 08:35:25 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Carlis <zhangxuezhi3@gmail.com>
+Cc:     zhangxuezhi1@yulong.com, david@lechnology.com, daniel@ffwll.ch,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        airlied@linux.ie, robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/1] dt-bindings: display: sitronix, st7789v-dbi: Add
+ Waveshare 2inch LCD module
+Message-ID: <20210331133525.GA2065994@robh.at.kernel.org>
+References: <20210330081505.116351-1-zhangxuezhi3@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <1616662832-27048-3-git-send-email-victor.liu@nxp.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210330081505.116351-1-zhangxuezhi3@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 25/03/21 2:30 pm, Liu Ying wrote:
-> This patch allows LVDS PHYs to be configured through
-> the generic functions and through a custom structure
-> added to the generic union.
+On Tue, 30 Mar 2021 08:15:05 +0000, Carlis wrote:
+> From: "Xuezhi Zhang" <zhangxuezhi1@yulong.com>
 > 
-> The parameters added here are based on common LVDS PHY
-> implementation practices.  The set of parameters
-> should cover all potential users.
+> Document support for the Waveshare 2inch LCD module display, which is a
+> 240x320 2" TFT display driven by a Sitronix ST7789V TFT Controller.
 > 
-> Cc: Kishon Vijay Abraham I <kishon@ti.com>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> Signed-off-by: Xuezhi Zhang <zhangxuezhi1@yulong.com>
 > ---
-> v4->v5:
-> * Align kernel-doc style to include/linux/phy/phy.h. (Vinod)
-> * Trivial tweaks.
-> * Drop Robert's R-b tag.
+> v2:change compatible name.
+> v3:change auther name.
+> ---
+>  .../display/sitronix,st7789v-dbi.yaml         | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/sitronix,st7789v-dbi.yaml
 > 
-> v3->v4:
-> * Add Robert's R-b tag.
-> 
-> v2->v3:
-> * No change.
-> 
-> v1->v2:
-> * No change.
-> 
->  include/linux/phy/phy-lvds.h | 32 ++++++++++++++++++++++++++++++++
->  include/linux/phy/phy.h      |  4 ++++
->  2 files changed, 36 insertions(+)
->  create mode 100644 include/linux/phy/phy-lvds.h
-> 
-> diff --git a/include/linux/phy/phy-lvds.h b/include/linux/phy/phy-lvds.h
-> new file mode 100644
-> index 00000000..7a2f474
-> --- /dev/null
-> +++ b/include/linux/phy/phy-lvds.h
-> @@ -0,0 +1,32 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright 2020 NXP
-> + */
-> +
-> +#ifndef __PHY_LVDS_H_
-> +#define __PHY_LVDS_H_
-> +
-> +/**
-> + * struct phy_configure_opts_lvds - LVDS configuration set
-> + * @bits_per_lane_and_dclk_cycle:	Number of bits per data lane and
-> + *					differential clock cycle.
 
-phy_set_bus_width() instead?
-> + * @differential_clk_rate:		Clock rate, in Hertz, of the LVDS
-> + *					differential clock.
-
-Please use clk API's to get rate.
-> + * @lanes:				Number of active, consecutive,
-> + *					data lanes, starting from lane 0,
-> + *					used for the transmissions.
-> + * @is_slave:				Boolean, true if the phy is a slave
-> + *					which works together with a master
-> + *					phy to support dual link transmission,
-> + *					otherwise a regular phy or a master phy.
-
-For parameters that are known at design time, it doesn't have to be
-passed from consumer driver. So all these parameters do they really have
-to be passed at runtime?
-
-Thanks
-Kishon
-> + *
-> + * This structure is used to represent the configuration state of a LVDS phy.
-> + */
-> +struct phy_configure_opts_lvds {
-> +	unsigned int	bits_per_lane_and_dclk_cycle;
-> +	unsigned long	differential_clk_rate;
-> +	unsigned int	lanes;
-> +	bool		is_slave;
-> +};
-> +
-> +#endif /* __PHY_LVDS_H_ */
-> diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
-> index e435bdb..d450b44 100644
-> --- a/include/linux/phy/phy.h
-> +++ b/include/linux/phy/phy.h
-> @@ -17,6 +17,7 @@
->  #include <linux/regulator/consumer.h>
->  
->  #include <linux/phy/phy-dp.h>
-> +#include <linux/phy/phy-lvds.h>
->  #include <linux/phy/phy-mipi-dphy.h>
->  
->  struct phy;
-> @@ -51,10 +52,13 @@ enum phy_mode {
->   *		the MIPI_DPHY phy mode.
->   * @dp:		Configuration set applicable for phys supporting
->   *		the DisplayPort protocol.
-> + * @lvds:	Configuration set applicable for phys supporting
-> + *		the LVDS phy mode.
->   */
->  union phy_configure_opts {
->  	struct phy_configure_opts_mipi_dphy	mipi_dphy;
->  	struct phy_configure_opts_dp		dp;
-> +	struct phy_configure_opts_lvds		lvds;
->  };
->  
->  /**
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
