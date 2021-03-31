@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F8F034FC47
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 11:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E769D34FC4D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 11:14:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234560AbhCaJN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S234575AbhCaJN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 31 Mar 2021 05:13:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33754 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234546AbhCaJNg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 05:13:36 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC95C06175F
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 02:13:36 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id h25so13777514pgm.3
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 02:13:36 -0700 (PDT)
+        with ESMTP id S234552AbhCaJNi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 05:13:38 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 438AFC06174A
+        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 02:13:38 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id l76so13754155pga.6
+        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 02:13:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=+aJ7wviR0oGA/7YbUnTjJ7Jb4IahT++RfnfTz9SeqeQ=;
-        b=AMgt+/p1d/4Xa2ZnvY4sRSDrjKp4AdUxhdzgMyxKgRR3DhAxvFaDRPXQq2rzMXs5kI
-         b44RzOEeSdeQAbtoI5cNQzXkbEK5W7sfvDsqea1MKFClYm8tYJh0NkIhiZUynzVIyRQa
-         wT+JFgBNcoyxXw6GrTlGhVVpkyOjZ6qa6iilw=
+        bh=vXrKKsbeKxSiATgOBsDhgjpws5MfQknzcR0V39Z0Fms=;
+        b=Htn8DBY5SjRW3aAVQwGsMwZB0U/i2x6AHF8ipJP9WoRPGdrM4r0ZzMxfFoWXJ5Vx3n
+         fzpoQnoVnNnot2e4Sj3SCowPntYDqWO1a0GvsZJYZa3hrPPqz90AhjpX7mz9Wpe3KQc4
+         gUTfA41trCotLX3hGgKJ8jdz9n3UqnrsjAJRk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=+aJ7wviR0oGA/7YbUnTjJ7Jb4IahT++RfnfTz9SeqeQ=;
-        b=pElkVKTnNQWrdn2VZEjZ9HMlk4AqIRmMvMsLj5xvB3jfsbtPCAjvXDu8t6+e/C7DNi
-         hNnYXk7FCWHY/XDvbM5ejuQumX6iRIo+ls6GJfAq4nwKGUbmzMkF5sT6GvWbwOcgEZGE
-         I8ePYcpWC++KbsxRMTEe7hCCtXauRAv+RkecajFWCJfB3rF9MBE4volZDfLTVfl6AfIa
-         KZpy3VJ6crW56Zfe2Nzp9delC9PM0yZ1AqTX09PqtmFbZCNdwW4T/Akr/xoVqredrtWK
-         BysxAVXYO5f8dP23m+YqROFpwtHZJXpMXSIsmcwDRIGvZfyTJ0uZHT9UbUgY/K2iZyK9
-         Kz0Q==
-X-Gm-Message-State: AOAM533ISh/VUJULvbf0Kw06HbA1nbsDHwhergrz8mpLEcMtMOqshdg6
-        PQEWOTFs0qF+GqZpdvcQYi0sYQ==
-X-Google-Smtp-Source: ABdhPJzoQrhkW0rQVeqGkjnDbDH1+sfV1B+AsZuU3V2FimK7+URVHvLdgp4fHcXhoaOt18h19IvP/g==
-X-Received: by 2002:a63:b906:: with SMTP id z6mr2385314pge.302.1617182015788;
-        Wed, 31 Mar 2021 02:13:35 -0700 (PDT)
+        bh=vXrKKsbeKxSiATgOBsDhgjpws5MfQknzcR0V39Z0Fms=;
+        b=W4KRct6niYlsnG94Uhzh7wwgh4YGZdK7knV7bTeGrHQ2H+QhmqjQ99F2wFKx3INaKL
+         3sa2ECRV3ZVGr2OI41J0cIUv/P7oi0JbIF+3QLn9SybvH4Ci21AIGxSRx3xZyJ7cDCuM
+         b34i6ii5Z6IcaZ1HmK7G8ALXsPximCMXEG2zkmY3KQL9J9p2F6qwIewpYnbvXkARcFLp
+         KzHOMJQCeZ0aGIt0i/KT7JTQRr4gwkg4ZIgO0QL5FDV1tZjWHzUVeO/n589Ri/qJvPHU
+         0t6IHBv15b4OZ/V1EoAsfGQDTz62amcQhV8CPZSdaHZQ+oVRdbljqKUlDe6RgYQNh6zH
+         wpaw==
+X-Gm-Message-State: AOAM5329P5uX6ovcmqKqRs9x99/SottOE9oiO5kO8nTHaUrE98Uv4Zm9
+        RXjN55sANRmX3K5z/UF6ARKL6g==
+X-Google-Smtp-Source: ABdhPJz/aeak3Xn6zIrCwDF5Hex0Bp8AjywwkrMPIoPWeSeN85DXFzN53i5e9lB6c/pHEOS5f4dzZA==
+X-Received: by 2002:a63:4763:: with SMTP id w35mr2383384pgk.226.1617182017774;
+        Wed, 31 Mar 2021 02:13:37 -0700 (PDT)
 Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:85fc:9f25:6293:28f1])
-        by smtp.gmail.com with ESMTPSA id s7sm1484723pjr.18.2021.03.31.02.13.34
+        by smtp.gmail.com with ESMTPSA id s7sm1484723pjr.18.2021.03.31.02.13.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Mar 2021 02:13:35 -0700 (PDT)
+        Wed, 31 Mar 2021 02:13:37 -0700 (PDT)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
 To:     Matthias Brugger <matthias.bgg@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -52,9 +52,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         linux-kernel@vger.kernel.org, Sean Wang <sean.wang@mediatek.com>,
         Ben Ho <Ben.Ho@mediatek.com>,
         Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Subject: [PATCH 3/4] arm64: dts: mt8183: Add kukui kakadu board
-Date:   Wed, 31 Mar 2021 17:13:26 +0800
-Message-Id: <20210331091327.1198529-3-hsinyi@chromium.org>
+Subject: [PATCH 4/4] arm64: dts: mt8183: Add kukui kodama board
+Date:   Wed, 31 Mar 2021 17:13:27 +0800
+Message-Id: <20210331091327.1198529-4-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.31.0.291.g576ba9dcdaf-goog
 In-Reply-To: <20210331091327.1198529-1-hsinyi@chromium.org>
 References: <20210331091327.1198529-1-hsinyi@chromium.org>
@@ -64,64 +64,168 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nicolas Boichat <drinkcat@chromium.org>
+kodama is also known as Lenovo 10e Chromebook Tablet.
 
-Kakadu is also known as ASUS Chromebook Detachable CM3.
-
-Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 ---
- arch/arm64/boot/dts/mediatek/Makefile         |   1 +
- .../boot/dts/mediatek/mt8183-kukui-kakadu.dts |  13 +
- .../dts/mediatek/mt8183-kukui-kakadu.dtsi     | 378 ++++++++++++++++++
- 3 files changed, 392 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
+There are 4 skus in kodama:
+- OV5695 camera + AUO panel
+- GC5035 camera + AUO panel
+- OV5695 camera + BOE panel
+- GC5035 camera + BOE panel
+
+The camera node are not yet ready to sent, so there's only panel in this
+patch.
+---
+ arch/arm64/boot/dts/mediatek/Makefile         |   4 +
+ .../mediatek/mt8183-kukui-kodama-sku16.dts    |  21 ++
+ .../mediatek/mt8183-kukui-kodama-sku272.dts   |  21 ++
+ .../mediatek/mt8183-kukui-kodama-sku288.dts   |  21 ++
+ .../mediatek/mt8183-kukui-kodama-sku32.dts    |  21 ++
+ .../dts/mediatek/mt8183-kukui-kodama.dtsi     | 343 ++++++++++++++++++
+ 6 files changed, 431 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi
 
 diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index db4753d82a4b..fb891492ad66 100644
+index fb891492ad66..291087dccaa8 100644
 --- a/arch/arm64/boot/dts/mediatek/Makefile
 +++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -15,6 +15,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-evb.dtb
+@@ -16,6 +16,10 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-evb.dtb
  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-damu.dtb
  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-juniper-sku16.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kakadu.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kakadu.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku16.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku272.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku288.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku32.dtb
  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dts
 new file mode 100644
-index 000000000000..20eb0dc68f09
+index 000000000000..e3dd75bdaea4
 --- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts
-@@ -0,0 +1,13 @@
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dts
+@@ -0,0 +1,21 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 +/*
-+ * Copyright 2020 Google LLC
++ * Copyright 2021 Google LLC
++ *
++ * SKU: 0x10 => 16
++ *  - bit 8: Camera: 0 (OV5695)
++ *  - bits 7..4: Panel ID: 0x1 (AUO)
 + */
 +
 +/dts-v1/;
-+#include "mt8183-kukui-kakadu.dtsi"
++#include "mt8183-kukui-kodama.dtsi"
 +
 +/ {
-+	model = "MediaTek kakadu board";
-+	compatible = "google,kakadu-rev3", "google,kakadu-rev2",
-+			"google,kakadu", "mediatek,mt8183";
++	model = "MediaTek kodama sku16 board";
++	compatible = "google,kodama-sku16", "google,kodama", "mediatek,mt8183";
 +};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
++
++&panel {
++	status = "okay";
++	compatible = "auo,b101uan08.3";
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dts
 new file mode 100644
-index 000000000000..b442e38a3156
+index 000000000000..d81935ae07bc
 --- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
-@@ -0,0 +1,378 @@
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dts
+@@ -0,0 +1,21 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 +/*
 + * Copyright 2020 Google LLC
++ *
++ * SKU: 0x110 => 272
++ *  - bit 8: Camera: 1 (GC5035)
++ *  - bits 7..4: Panel ID: 0x1 (AUO)
 + */
 +
++/dts-v1/;
++#include "mt8183-kukui-kodama.dtsi"
++
++/ {
++	model = "MediaTek kodama sku272 board";
++	compatible = "google,kodama-sku272", "google,kodama", "mediatek,mt8183";
++};
++
++&panel {
++	status = "okay";
++	compatible = "auo,b101uan08.3";
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dts
+new file mode 100644
+index 000000000000..f4082fbe0517
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dts
+@@ -0,0 +1,21 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2020 Google LLC
++ *
++ * SKU: 0x120 => 288
++ *  - bit 8: Camera: 1 (GC5035)
++ *  - bits 7..4: Panel ID: 0x2 (BOE)
++ */
++
++/dts-v1/;
++#include "mt8183-kukui-kodama.dtsi"
++
++/ {
++	model = "MediaTek kodama sku288 board";
++	compatible = "google,kodama-sku288", "google,kodama", "mediatek,mt8183";
++};
++
++&panel {
++	status = "okay";
++	compatible = "boe,tv101wum-n53";
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dts
+new file mode 100644
+index 000000000000..7739358008ee
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dts
+@@ -0,0 +1,21 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2021 Google LLC
++ *
++ * SKU: 0x20 => 32
++ *  - bit 8: Camera: 0 (OV5695)
++ *  - bits 7..4: Panel ID: 0x2 (BOE)
++ */
++
++/dts-v1/;
++#include "mt8183-kukui-kodama.dtsi"
++
++/ {
++	model = "MediaTek kodama sku32 board";
++	compatible = "google,kodama-sku32", "google,kodama", "mediatek,mt8183";
++};
++
++&panel {
++	status = "okay";
++	compatible = "boe,tv101wum-n53";
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi
+new file mode 100644
+index 000000000000..2f5234a16ead
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi
+@@ -0,0 +1,343 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2021 Google LLC
++ */
++
++/dts-v1/;
 +#include "mt8183-kukui.dtsi"
-+#include <dt-bindings/input/gpio-keys.h>
 +
 +/ {
 +	ppvarn_lcd: ppvarn-lcd {
@@ -156,26 +260,6 @@ index 000000000000..b442e38a3156
 +
 +		gpio = <&pio 36 GPIO_ACTIVE_HIGH>;
 +	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pen_eject>;
-+
-+		pen-insert {
-+			label = "Pen Insert";
-+			/* Insert = low, eject = high */
-+			gpios = <&pio 6 GPIO_ACTIVE_LOW>;
-+			linux,code = <SW_PEN_INSERTED>;
-+			linux,input-type = <EV_SW>;
-+			wakeup-event-action = <EV_ACT_DEASSERTED>;
-+			wakeup-source;
-+		};
-+	};
-+};
-+
-+&bluetooth {
-+	firmware-name = "nvm_00440302_i2s_eu.bin";
 +};
 +
 +&i2c0 {
@@ -184,50 +268,45 @@ index 000000000000..b442e38a3156
 +	touchscreen: touchscreen@10 {
 +		compatible = "hid-over-i2c";
 +		reg = <0x10>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&open_touch>;
-+
 +		interrupt-parent = <&pio>;
-+		interrupts = <155 IRQ_TYPE_EDGE_FALLING>;
++		interrupts = <155 IRQ_TYPE_LEVEL_LOW>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&touch_default>;
 +
 +		post-power-on-delay-ms = <10>;
 +		hid-descr-addr = <0x0001>;
 +	};
 +};
 +
-+&mt6358_vcama2_reg {
-+	regulator-min-microvolt = <2800000>;
-+	regulator-max-microvolt = <2800000>;
-+};
-+
 +&i2c2 {
-+	pinctrl-names = "default";
++        pinctrl-names = "default";
 +	pinctrl-0 = <&i2c2_pins>;
 +	status = "okay";
 +	clock-frequency = <400000>;
 +
 +	eeprom@58 {
-+		compatible = "atmel,24c32";
++		compatible = "atmel,24c64";
 +		reg = <0x58>;
 +		pagesize = <32>;
 +	};
 +};
 +
 +&i2c4 {
-+	pinctrl-names = "default";
++        pinctrl-names = "default";
 +	pinctrl-0 = <&i2c4_pins>;
 +	status = "okay";
 +	clock-frequency = <400000>;
 +
 +	eeprom@54 {
-+		compatible = "atmel,24c32";
++		compatible = "atmel,24c64";
 +		reg = <0x54>;
 +		pagesize = <32>;
 +	};
 +};
 +
-+&mipi_tx0 {
-+	drive-strength-microamp = <5800>;
++&mt6358_vcama2_reg {
++	regulator-min-microvolt = <2800000>;
++	regulator-max-microvolt = <2800000>;
 +};
 +
 +&pio {
@@ -451,47 +530,37 @@ index 000000000000..b442e38a3156
 +		};
 +	};
 +
-+	open_touch: open_touch {
-+		irq_pin {
++	touch_default: touchdefault {
++		pin_irq {
 +			pinmux = <PINMUX_GPIO155__FUNC_GPIO155>;
 +			input-enable;
 +			bias-pull-up;
 +		};
 +
-+		rst_pin {
++		touch_pin_reset: pin_reset {
 +			pinmux = <PINMUX_GPIO156__FUNC_GPIO156>;
 +
 +			/*
-+			 * The pen driver doesn't currently support  driving
++			 * The touchscreen driver doesn't currently support driving
 +			 * this reset line.  By specifying output-high here
 +			 * we're relying on the fact that this pin has a default
-+			 * pulldown at boot (which makes sure the pen was in
++			 * pulldown at boot (which makes sure the controller was in
 +			 * reset if it was powered) and then we set it high here
-+			 * to take it out of reset.  Better would be if the pen
++			 * to take it out of reset.  Better would be if the touchscreen
 +			 * driver could control this and we could remove
 +			 * "output-high" here.
 +			 */
 +			output-high;
 +		};
 +	};
-+
-+	pen_eject: peneject {
-+		pen_eject {
-+			pinmux = <PINMUX_GPIO6__FUNC_GPIO6>;
-+			input-enable;
-+			/* External pull-up. */
-+			bias-disable;
-+		};
-+	};
 +};
 +
 +&qca_wifi {
-+	qcom,ath10k-calibration-variant = "GO_KAKADU";
++	qcom,ath10k-calibration-variant = "GO_KODAMA";
 +};
 +
-+&panel {
-+	status = "okay";
-+	compatible = "boe,tv105wum-nw0";
++&i2c_tunnel {
++        google,remote-bus = <2>;
 +};
 -- 
 2.31.0.291.g576ba9dcdaf-goog
