@@ -2,110 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EBB735059E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 19:37:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 345BE3505A6
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 19:40:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234526AbhCaRhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 13:37:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58190 "EHLO
+        id S233945AbhCaRjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 13:39:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234473AbhCaRhI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 13:37:08 -0400
-Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AB30C061574;
-        Wed, 31 Mar 2021 10:37:07 -0700 (PDT)
-Received: by mail-vs1-xe2a.google.com with SMTP id l8so8935274vsj.13;
-        Wed, 31 Mar 2021 10:37:07 -0700 (PDT)
+        with ESMTP id S233831AbhCaRjV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 13:39:21 -0400
+Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B25BC061574
+        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 10:39:21 -0700 (PDT)
+Received: by mail-oo1-xc33.google.com with SMTP id p2-20020a4aa8420000b02901bc7a7148c4so4798208oom.11
+        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 10:39:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=T5aWfvcz8u1FqqDGdDL6+xvWowM95AwK3yzA+ivU68k=;
-        b=LGe9GR1/zmzY7Bw4iwGyqNB2EfzGnXvve/KRMSnvZPaD9vRsQvM9zW7KnUMj7Z52WB
-         JUq8LviYd5S3NqWtANefpx78Oj9GNy3egbUVIPa7OPIJlLvoq+i85ViNPl04DBqAH9R7
-         798uNuQScz3YyGrdsFIQvUj/VYhHqazF56aY3EqcY5HVXqFjVNLpiCzV+hwktzO+veno
-         K/no0vaawRUmVpCstcMKSB86B6A0jxcjdh+67YFtGITjw7pgr+7PQjwQ0J7Fd5wjwzCp
-         vZRYCcj9L0J8zTtrorZLwVd1JLtzGyjFbceOnfANunmQhcuxzdHD2XIjYWUmOffyS0o2
-         /XuQ==
+        d=kali.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=NkmFG1QTNaWLlvVjiv9pwliViB1M7jgJYDg2EZ3dMok=;
+        b=TOLHVqL6Jx5pJUAWNL03GOlOr0ER1zBiBJAjBVnEGnlrF04kV320+FUpdYBKVW+egA
+         jPCDUgkB4zCW/A06Ju7bBpMInk36eKdBlwd2d1RkNpPgfx59ptOfA1o8FJnDeN2wPIGv
+         1kNbXvlMwzhLZe38pcCFWxsF1RJCHiLeYggDV7L/rNYO2iFjQAJ5p39gUmgU0SAOrlul
+         8Xef2fcv6lZNF3J61QQfUEvfuIH4pgkvr4Axk5Ak2NCXXkRIgkQRHcXQKtVjmDhEp7NW
+         4urErfWt521Hv9I0Js7wceHPr+SDyXeW5aR20MTOI4jQ5y0scz5QsY6gWCJNvyAjKF5z
+         F7zA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=T5aWfvcz8u1FqqDGdDL6+xvWowM95AwK3yzA+ivU68k=;
-        b=fTjcX/GUSkZNZSN1n5l55RCHkjzcT8mjEGvzZ7LFLvtUvxUvANc12DzHcN8n5snoml
-         xLDBczXxHagPBGPqKInPlvqR8OF1t8LkdxIdSuXfg5pMFvFswRNxUwAnYpjR+7sK//Ex
-         54xZZWIgOyKP7mFrZnSGfV5XMs3FKEovZYtH5g6PG9i7NHmZsNdNhEu0B7axDXTe3aqL
-         5aHvihCdotN/lerIRHUOm+21F+w9krR7OO/2HzKuE0S396WM+7976drA/aKxR+DQl+qd
-         clA689dQ75lXeblBdlQdowqCgerofv4KIrK+7NH3rzvjYP83HrvdVC9nax4gSFZaz2Xt
-         P9NA==
-X-Gm-Message-State: AOAM531oVRz2HSVtTfZbH9FVBCMIRkojHxZ1ANbhdKXhvrWQ/xLKO/rR
-        T5NcLiLPyGvPQ5SiQJDbxwiL+1qurZinnps9nfA=
-X-Google-Smtp-Source: ABdhPJzCfcI4pNU+3xrqudaT5wmZzJPE2MZmFf8fWWrNRShRIebblLgnhDIz2xErtIx2+kBt2nF5dMlJiVxMhH7uqCw=
-X-Received: by 2002:a05:6102:21d1:: with SMTP id r17mr2544845vsg.19.1617212226819;
- Wed, 31 Mar 2021 10:37:06 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=NkmFG1QTNaWLlvVjiv9pwliViB1M7jgJYDg2EZ3dMok=;
+        b=LQgLOCRJsNUjN/sWlehPOXiP/XLGrau+6+DcgTTtmmO9dQumNdmlovdZ/j2TAHrSQ8
+         gWG5cLGjhcv95EFmCEY6bZfpKHxZI679fA8CYBua5rwlZQ3vSdbT1jjVrvC05qzWu/Q+
+         SALseBncgcu1kfR+IBt1ZzDAL1qLEJaidjChcdwH4kZG7Z8r3pUiFTxVSSa4b2055fs6
+         /RPR3p1VFyb2vgVaM65Y5rSp4Nckjwu9VGkFqnGWQEfas7ZzWy0VEkmLQncgJSiQ+sPE
+         mq5HiK/mulVDghdr4+OWotJ/9ZN58BIIwVZHqtpFP4nv1ltFV8jH1D8mlGl9IwEt3LCO
+         oAiQ==
+X-Gm-Message-State: AOAM5304WzuB8HYtmNPp36elJScEQblSy1jx+olO/2vPh59SRoIKKn89
+        J8Ng2/SW+5GZYK8VmG2FsWo+Kw==
+X-Google-Smtp-Source: ABdhPJxprMiF0zGDn3aiZrgY4HoSDJt/e63ieUbL0NnjzPGhqKsxJMPTarGSMdBCXnNl3lnPLITsxw==
+X-Received: by 2002:a4a:2a46:: with SMTP id x6mr3638863oox.85.1617212360914;
+        Wed, 31 Mar 2021 10:39:20 -0700 (PDT)
+Received: from MacBook-Pro.hackershack.net (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
+        by smtp.gmail.com with ESMTPSA id v1sm557900ooh.3.2021.03.31.10.39.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 Mar 2021 10:39:20 -0700 (PDT)
+Subject: Re: [Freedreno] [v1] drm/msm/disp/dpu1: icc path needs to be set
+ before dpu runtime resume
+To:     kalyan_t@codeaurora.org
+Cc:     y@qualcomm.com, dri-devel@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, mkrishn@codeaurora.org,
+        hywu@google.com, dianders@chromium.org,
+        linux-kernel@vger.kernel.org, mka@google.com, robdclark@gmail.com,
+        midean@google.com
+References: <y> <1616404632-13693-1-git-send-email-kalyan_t@codeaurora.org>
+ <823f7f00-444e-8e22-e8d0-2ced97e4c291@kali.org>
+ <9847b4af5331f86641eb7be5a932078b@codeaurora.org>
+From:   Steev Klimaszewski <steev@kali.org>
+Message-ID: <b98d5a32-1776-6ae1-69ec-e06bc7143695@kali.org>
+Date:   Wed, 31 Mar 2021 12:39:17 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.9.0
 MIME-Version: 1.0
-References: <20210311154055.3496076-1-emil.l.velikov@gmail.com>
- <5ecf1d3b8a8f88d6387a1549faeb4f4180cf5d4b.camel@collabora.com>
- <CACvgo51uNyQgzGdW=f-0wxvjv-+OD1p7E4DJXRzu1GvnAHbcCQ@mail.gmail.com>
- <50b3b4b3-6c5b-3f1e-3499-c88574ce9f74@microchip.com> <YFxObibxqK23WTMf@piout.net>
- <CACvgo53V8sZ2PA0NTR1=JCqcFGBecqs7=aB4uofApOa-C0GZCA@mail.gmail.com> <3aeb1924-d461-ab8b-440b-81f33a1a8213@microchip.com>
-In-Reply-To: <3aeb1924-d461-ab8b-440b-81f33a1a8213@microchip.com>
-From:   Emil Velikov <emil.l.velikov@gmail.com>
-Date:   Wed, 31 Mar 2021 18:36:55 +0100
-Message-ID: <CACvgo53CCZ8N2w9+6s8KfVtoVYxZPGQYOWYrRTdXv_y9ZqMs5A@mail.gmail.com>
-Subject: Re: [PATCH v2 00/10] Microship SAMA5D4 VPU support et al
-To:     Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-media@vger.kernel.org,
-        linux-rockchip <linux-rockchip@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <9847b4af5331f86641eb7be5a932078b@codeaurora.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Mar 2021 at 10:54, Nicolas Ferre <nicolas.ferre@microchip.com> wrote:
->
-> On 25/03/2021 at 15:22, Emil Velikov wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> >
-> > Greetings all,
-> >
-> > On Thu, 25 Mar 2021 at 08:48, Alexandre Belloni
-> > <alexandre.belloni@bootlin.com> wrote:
-> >>
-> >> On 24/03/2021 14:44:14+0100, Nicolas Ferre wrote:
-> >>> Now, when we have the tag from Rob, how to coordinate these different
-> >>> pieces? Will it go through the media git tree? Will we benefit from a stable
-> >>> branch to share or will we just have to wait for the driver to hit Mainline
-> >>> before adding the defconfig and DT patches?
-> >>>
-> > Thanks for the Acked-by Nicolas.
-> >
-> >>
-> >> I think the defconfig and dt patches can go through at91 as soon as we
-> >> get Rob's ack. There is no build dependency so it can be taken at any
-> >> time. Worst case, we end up with a selected config option that doesn't
-> >> exist.
-> >>
-> > My personal preference is to merge everything in one go.
-> > I believe it will be easier from maintainer's point of view, plus odds
-> > of conflicts with the AT91 tree are close to zero.
-> >
-> > Then again, as long as the maintainers are happy - I'm fine either way.
->
-> I'm taking defconfig 2 last patches of your series right now. No need to
-> include them in subsequent versions.
->
-> For DT, I'm waiting for settlement on refined code. As indicated by
-> Alexandre, changes will need to travel through arm-soc tree so we'll
-> coordinate when patches are ready.
->
-Ack, dropped from v3 (also fixed the Microchip typo).
 
-Thanks again
-Emil
+On 3/31/21 7:34 AM, kalyan_t@codeaurora.org wrote:
+> On 2021-03-31 00:04, Steev Klimaszewski wrote:
+>> On 3/22/21 4:17 AM, Kalyan Thota wrote:
+>>> From: Kalyan Thota <kalyant@codeaurora.org>
+>>>
+>>> DPU runtime resume will request for a min vote on the AXI bus as
+>>> it is a necessary step before turning ON the AXI clock.
+>>>
+> Hi Steev,
+>
+> The WARN_ON is true only for the device with compatible
+> "qcom,sc7180-mdss". For other devices its a
+> false alarm. Can you please try with the below change ?
+>
+> https://patchwork.kernel.org/project/linux-arm-msm/patch/1617190020-7931-1-git-send-email-kalyan_t@codeaurora.org/
+>
+>
+> Thanks,
+> Kalyan
+>
+Hi Kalyan,
+
+Tested here, and it does get rid of the warning.  I'll keep a copy of
+the patch locally, since this is going to hit stable too at some point
+it seems, at least until another version comes out addressing the other
+comments from people way smarter than me.
+
+-- steev
+
