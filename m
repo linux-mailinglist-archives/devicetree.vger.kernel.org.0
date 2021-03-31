@@ -2,78 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA09534FFDE
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 14:03:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C24F734FFF3
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 14:07:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235347AbhCaMDK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 08:03:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33202 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235386AbhCaMCv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Mar 2021 08:02:51 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E256961998;
-        Wed, 31 Mar 2021 12:02:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617192171;
-        bh=ftBJKeSakF7XMeKo9EWSc1ghqWc3O5MDjEvFKjFi+3c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uAoNjg5b951dWWlc12n04W3gXcNDMZ4PaavYsgkSRzDUsb2v6tuRZuBcSpBrr8B3W
-         fydI57os6aO/jkq+3pFgKUbSkgNzvoFU8srGOS4G6cSG+kOfAjtWdMrJRBp+iyjXcU
-         gz/L0ZnI+Oaqxqh+gJQDJobjHgNpmJec2vyRTDKHjncKWA+ZqUl1NNzJpGsuey+tub
-         qvfs+qv96jluN2EoVK1l5EIHjsPkZTe5Z3XhVkWaPbPD0MdEpF+Bi0fR3h6jcDioUq
-         uGlhqn3tFRdcwtQZDVmb/vQSIv7uGdXi4TdsSCK9taLHWes2Vy57LEnO2cOpi40j7P
-         GNeMlDJHfYmaw==
-Date:   Wed, 31 Mar 2021 13:02:38 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Jack Yu <jack.yu@realtek.com>
-Cc:     lgirdwood@gmail.com, robh@kernel.org, alsa-devel@alsa-project.org,
-        lars@metafoo.de, flove@realtek.com, kenny_chen@realtek.com,
-        kent_chen@realtek.com, oder_chiou@realtek.com,
-        shumingf@realtek.com, derek.fang@realtek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: sound: add address-cells and size-cells
- information
-Message-ID: <20210331120238.GC4758@sirena.org.uk>
-References: <20210331071046.12526-1-jack.yu@realtek.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="FsscpQKzF/jJk6ya"
-Content-Disposition: inline
-In-Reply-To: <20210331071046.12526-1-jack.yu@realtek.com>
-X-Cookie: You can't take damsel here now.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S235429AbhCaMHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 08:07:00 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:8168 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235347AbhCaMGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 08:06:33 -0400
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 31 Mar 2021 05:06:32 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 31 Mar 2021 05:06:31 -0700
+X-QCInternal: smtphost
+Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 31 Mar 2021 17:35:59 +0530
+Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
+        id 76AB426F7; Wed, 31 Mar 2021 17:35:57 +0530 (IST)
+From:   satya priya <skakit@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, rnayak@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org,
+        satya priya <skakit@codeaurora.org>
+Subject: [PATCH V3 0/5] Add PM7325/PM8350C/PMR735A regulator support 
+Date:   Wed, 31 Mar 2021 17:35:34 +0530
+Message-Id: <1617192339-3760-1-git-send-email-skakit@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series is dependent on below series which adds DT files for SC7280 SoC
+https://lore.kernel.org/patchwork/project/lkml/list/?series=488871
 
---FsscpQKzF/jJk6ya
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+satya priya (5):
+  regulator: qcom-rpmh: Add pmic5_ftsmps520 buck
+  regulator: qcom-rpmh: Add PM7325/PMR735A regulator support
+  arm64: dts: qcom: sc7280: Add RPMh regulators for sc7280-idp
+  dt-bindings: regulator: Convert RPMh regulator bindings to YAML
+  dt-bindings: regulator: Add compatibles for PM7325/PMR735A
 
-On Wed, Mar 31, 2021 at 03:10:46PM +0800, Jack Yu wrote:
-> Add address-cells and size-cells information to fix warnings
-> for rt1019.yaml.
+ .../bindings/regulator/qcom,rpmh-regulator.txt     | 180 -----------------
+ .../bindings/regulator/qcom,rpmh-regulator.yaml    | 162 ++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts            | 212 +++++++++++++++++++++
+ drivers/regulator/qcom-rpmh-regulator.c            |  62 +++++-
+ 4 files changed, 435 insertions(+), 181 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
 
---FsscpQKzF/jJk6ya
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBkZN0ACgkQJNaLcl1U
-h9Az1Qf9EUsAnv1GNJ5Ggh+zxAswVpGZsiGdpMhjmCSiMwbU584ZI9XN8q05Fdzs
-jRENfkjkwiZy7xkGg+6LY1pplZdKeWxVF1KF1ZJwJ93G6acTy6c0XS0a8rgWxXHP
-nu9PvSiwB9ehWnUdTf9DLdgs91JjAWBGPfSC3TPPtooxS1nJAjFbqVmuqcd6bs5J
-fo3y8OjgyJzn2x9Zoz4tHd7/sFX3tQisSzZgUPYNH6yQQrHnSelviP/i8ktOFgNg
-tNT7aZnb2SxMmNoT7ZlWLyw5IANvThlT3cSfC6oXCRK4ylE+fK+vamKllPqAJmfy
-oPBuSYAz+JNrTezUwpeQh1M4B5EVVw==
-=63Oa
------END PGP SIGNATURE-----
-
---FsscpQKzF/jJk6ya--
