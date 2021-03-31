@@ -2,140 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFC523505DF
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 19:58:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6946C3505E6
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 20:01:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233867AbhCaR5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 13:57:49 -0400
-Received: from alln-iport-7.cisco.com ([173.37.142.94]:61870 "EHLO
-        alln-iport-7.cisco.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229787AbhCaR5Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 13:57:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=3142; q=dns/txt; s=iport;
-  t=1617213436; x=1618423036;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9+KK6SA8vleCLJAhsbCIqaUCPho3SAWet4gWR6pTR+U=;
-  b=Y4kDA9Ojs6PaUzcrC9+ZR+rkT3qMNoL5/0oJb97nLv23/e908ij4J5H3
-   lFlPFCLFYrPMi+HVd0+mXfheHvErZ6SXwDkNIsOxrSV9Wz3pjzUFcxSiQ
-   wt55FynGuRjTlN59qhjl6ZdBQuGooFhFSiNN5nbVSxtFOn/PeLUrWNx+8
-   A=;
-X-IronPort-AV: E=Sophos;i="5.81,293,1610409600"; 
-   d="scan'208";a="670998258"
-Received: from rcdn-core-3.cisco.com ([173.37.93.154])
-  by alln-iport-7.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 31 Mar 2021 17:57:12 +0000
-Received: from zorba ([10.24.8.227])
-        by rcdn-core-3.cisco.com (8.15.2/8.15.2) with ESMTPS id 12VHv9UF022319
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Wed, 31 Mar 2021 17:57:10 GMT
-Date:   Wed, 31 Mar 2021 10:57:09 -0700
-From:   Daniel Walker <danielwa@cisco.com>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Olof Johansson <olof@lixom.net>,
-        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Ofer Licht <olicht@cisco.com>, xe-linux-external@cisco.com,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] arm64: Add support for cisco craw64 ARMv8 SoCs
-Message-ID: <20210331175709.GE2469518@zorba>
-References: <20210331014603.2496983-1-danielwa@cisco.com>
- <CAK8P3a1rbGPxjRiUTy3AKh4S9jqxk=SHoa9s0Z-3nhgQb3xJUw@mail.gmail.com>
+        id S233888AbhCaSAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 14:00:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35016 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234641AbhCaSAX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 14:00:23 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68507C061574;
+        Wed, 31 Mar 2021 11:00:22 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id d13so9401433lfg.7;
+        Wed, 31 Mar 2021 11:00:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=4Q9oxhnKEAurSYSJEH9M9Sm61COtmi4Ok3DH92mW23E=;
+        b=h2lTTlH/+QWKj7wZpU0g5C99CDE6tQqaQ5ztaODdS8rmC29fLr6Zzr0goXM/KHuhl2
+         SyVQ7j0mH5NIPXKNx6/lMvjcpwv9brWlhMmZCkgWeEPXfzylyXH7h+bqw3mni+t4PMl0
+         fG5AJpoRqAasJFzkXcgOcKut8TxjqccYSPsxyw53RBMo0IElOIw/QV3nDuf5TnFw0BLL
+         jpK+4Tfixv6ijT1wIiBcEBuTco47NCIs2vvcz6cNgSBarbfQG1U0PtXcScq8AWk0Jq3c
+         TWrxaGq+WkHSH6yozer04Gx2dLaam2idQPQ5uzQ67bZ//KQJXqJid6tuQYIipJCBxGzH
+         ijYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=4Q9oxhnKEAurSYSJEH9M9Sm61COtmi4Ok3DH92mW23E=;
+        b=d2317/cLyDk/FScYCr60ImsEEGY1vLEGHdTyLgjFOfQxoaLLyo2s+Mgm436EQq3Kep
+         QGlMJ/A8w9QN3NmIdys9MWRbRHY0g4FxBuUVp7Itv77VD5KRii8vU2caz9ph10zEFTjV
+         NwwVZaf7qpu8xkxme9vcf1J8A+PwfZWI+mVJfKNuYRjIIwVuJJ+YvERXxuevkJF3ghwj
+         ZfvRAe/Ykd1YRWolZbo3v6Rz2wIKYoP7yMUCosfc7wVgKfvQqPOiom+otTeq4qWI0HXr
+         xu/UafPoc3638QPf4yjmGTeSWr/9CtTA5rGK9jCt3BQnNTzfLql8/FcRp6J3Y2fzJC7Q
+         WIgg==
+X-Gm-Message-State: AOAM531NN/zMFqDVZ4IJZZFV23YwYCRrBTjvFtNfuzjNcnnuiuPp8YRO
+        7qnQHqPTxXBIpUfsIL+lmA8=
+X-Google-Smtp-Source: ABdhPJyx4lAT+sVVFl5m4Yt0LNsve3Yt3vkYiD3cRMaY6C0bvxtOaE1jK6wf74B0uUteMcXor6j0Kg==
+X-Received: by 2002:a19:e0d:: with SMTP id 13mr2907573lfo.549.1617213620975;
+        Wed, 31 Mar 2021 11:00:20 -0700 (PDT)
+Received: from mobilestation ([95.79.127.110])
+        by smtp.gmail.com with ESMTPSA id q8sm292564lfc.223.2021.03.31.11.00.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Mar 2021 11:00:20 -0700 (PDT)
+Date:   Wed, 31 Mar 2021 21:00:18 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Brad Larson <brad@pensando.io>
+Cc:     linux-arm-kernel@lists.infradead.org, arnd@arndb.de,
+        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        broonie@kernel.org, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, olof@lixom.net, linux-gpio@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 03/13] spi: dw: Add support for Pensando Elba SoC SPI
+Message-ID: <20210331180018.jir2vusuf3sbare5@mobilestation>
+References: <20210329015938.20316-1-brad@pensando.io>
+ <20210329015938.20316-4-brad@pensando.io>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAK8P3a1rbGPxjRiUTy3AKh4S9jqxk=SHoa9s0Z-3nhgQb3xJUw@mail.gmail.com>
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-Outbound-SMTP-Client: 10.24.8.227, [10.24.8.227]
-X-Outbound-Node: rcdn-core-3.cisco.com
+In-Reply-To: <20210329015938.20316-4-brad@pensando.io>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 31, 2021 at 09:04:15AM +0200, Arnd Bergmann wrote:
-> On Wed, Mar 31, 2021 at 3:46 AM Daniel Walker <danielwa@cisco.com> wrote:
-> > From: Ofer Licht <olicht@cisco.com>
+On Sun, Mar 28, 2021 at 06:59:28PM -0700, Brad Larson wrote:
+> The Pensando Elba SoC uses a GPIO based chip select
+> for two DW SPI busses with each bus having two
+> chip selects.
 > 
-> Thanks for the submission, it's always nice to see a new platform
- 
-
-> > Define craw64 config, dts and Makefile for Cisco
-> > SoCs known as Craw.
+> Signed-off-by: Brad Larson <brad@pensando.io>
+> ---
+>  drivers/spi/spi-dw-mmio.c | 28 +++++++++++++++++++++++++++-
+>  1 file changed, 27 insertions(+), 1 deletion(-)
 > 
-> I'd like some more information about the platform, e.g. the target
-> market and maybe a link to the product information.
+> diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
+> index 17c06039a74d..c323a5ceecb8 100644
+> --- a/drivers/spi/spi-dw-mmio.c
+> +++ b/drivers/spi/spi-dw-mmio.c
+> @@ -56,7 +56,7 @@ struct dw_spi_mscc {
+>  /*
+>   * The Designware SPI controller (referred to as master in the documentation)
+>   * automatically deasserts chip select when the tx fifo is empty. The chip
+> - * selects then needs to be either driven as GPIOs or, for the first 4 using the
+> + * selects then needs to be either driven as GPIOs or, for the first 4 using
+>   * the SPI boot controller registers. the final chip select is an OR gate
+>   * between the Designware SPI controller and the SPI boot controller.
+>   */
+> @@ -237,6 +237,31 @@ static int dw_spi_canaan_k210_init(struct platform_device *pdev,
+>  	return 0;
+>  }
+>  
+> +static void dw_spi_elba_set_cs(struct spi_device *spi, bool enable)
+> +{
+> +	struct dw_spi *dws = spi_master_get_devdata(spi->master);
+> +
 
-Our SoC is produced as an internal product. So SoC specifications aren't
-widely available.
+> +	if (!enable) {
 
-Here is an example of a Cisco product which uses this SoC,
+Please, be more attentive to the review-comments given to you before
+resending a new patchset. One more time. This version of set_cs won't
+work for Active-high CS. Each SPI controller working with GPIO-based
+chip-select is marked as supporting that feature. So your DW
+SPI controller won't be able to work correctly with SPI-devices
+activated by active-high chip-select signal. Note default
+dw_spi_set_cs() callback supports that.
 
-https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9200-series-switches/nb-06-cat9200-ser-data-sheet-cte-en.html
+-Sergey
 
-I suspect that's not really what your looking for tho.
-
-> > Cc: xe-linux-external@cisco.com
-> > Signed-off-by: Ofer Licht <olicht@cisco.com>
-> > Signed-off-by: Daniel Walker <danielwa@cisco.com>
-> > ---
-> >  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
-> >  arch/arm64/Kconfig.platforms                  |   5 +
-> >  arch/arm64/boot/dts/Makefile                  |   1 +
-> >  arch/arm64/boot/dts/cisco/Makefile            |   5 +
-> >  .../arm64/boot/dts/cisco/craw64-dopplerg2.dts | 239 +++++++++++
-> >  arch/arm64/boot/dts/cisco/craw64.dtsi         | 392 ++++++++++++++++++
-> >  arch/arm64/configs/defconfig                  |   1 +
+> +		/*
+> +		 * Using a GPIO-based chip-select, the DW SPI
+> +		 * controller still needs its own CS bit selected
+> +		 * to start the serial engine.  On Elba the specific
+> +		 * CS doesn't matter to start the serial engine,
+> +		 * so using CS0.
+> +		 */
+> +		dw_writel(dws, DW_SPI_SER, BIT(0));
+> +	} else {
+> +		dw_writel(dws, DW_SPI_SER, 0);
+> +	}
+> +}
+> +
+> +static int dw_spi_elba_init(struct platform_device *pdev,
+> +			    struct dw_spi_mmio *dwsmmio)
+> +{
+> +	dwsmmio->dws.set_cs = dw_spi_elba_set_cs;
+> +	return 0;
+> +}
+> +
+>  static int dw_spi_mmio_probe(struct platform_device *pdev)
+>  {
+>  	int (*init_func)(struct platform_device *pdev,
+> @@ -351,6 +376,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
+>  	{ .compatible = "intel,keembay-ssi", .data = dw_spi_keembay_init},
+>  	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
+>  	{ .compatible = "canaan,k210-spi", dw_spi_canaan_k210_init},
+> +	{ .compatible = "pensando,elba-spi", .data = dw_spi_elba_init},
+>  	{ /* end of table */}
+>  };
+>  MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
+> -- 
+> 2.17.1
 > 
-> We have separate branches for dt, defconfig, and the rest, so it would be
-> good to split this patch up a little more.
-> 
-> There should also be an entry in the top-level MAINTAINERS file.
-> 
-> > diff --git a/arch/arm64/boot/dts/cisco/craw64-dopplerg2.dts b/arch/arm64/boot/dts/cisco/craw64-dopplerg2.dts
-> > new file mode 100644
-> > index 000000000000..20ecc57b4e5c
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/cisco/craw64-dopplerg2.dts
-> > @@ -0,0 +1,239 @@
-> > +/dts-v1/;
-> > +
-> > +#include "craw64.dtsi"
-> > +
-> > +/ {
-> > +       model = "Cisco Craw64 on DopplerG 2.0";
-> > +       compatible = "cisco,craw64-dopplerg2", "cisco,craw64";
-> > +
-> > +       memory {
-> > +               device_type = "memory";
-> > +               reg = <0x0 0x80000000 0x0 0x80000000>;
-> > +       };
-> 
-> The memory size is usually filled by the boot loader, just put an
-> empty node into the .dtsi file
-
-Arnd, I must regretfully inform you that Cisco has a deep dark addiction to
-bootloaders which, are, um, how do I say this diplomatically, um , brain dead.
-
-You have some other comments below related to moving things into the bootloader,
-and I can look into it, but bootloader inflexibility is wide spread inside
-Cisco.
-
-> 
-> > +       doppler {
-> > +               #address-cells = <2>;
-> > +               #size-cells = <2>;
-> > +               compatible = "simple-bus";
-> > +               ranges;
-> > +       };
-> 
-> What is this?
-> 
-
-It's a device, but the driver is not submitted. I can remove it along with the
-other device driver binding we have where the drivers and bindings aren't submitted.
-
-I'll do my best to fix the comments your given an resubmit.
-
-Daniel
