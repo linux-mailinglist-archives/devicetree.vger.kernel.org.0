@@ -2,91 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 366AA34FAC1
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 09:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0231734FB0E
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 10:04:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234111AbhCaHvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 03:51:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43960 "EHLO
+        id S234063AbhCaIDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 04:03:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234032AbhCaHup (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 03:50:45 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 101BFC061574;
-        Wed, 31 Mar 2021 00:50:45 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id c4so18516901qkg.3;
-        Wed, 31 Mar 2021 00:50:45 -0700 (PDT)
+        with ESMTP id S234062AbhCaID3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 04:03:29 -0400
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0FBEC061574;
+        Wed, 31 Mar 2021 01:03:28 -0700 (PDT)
+Received: by mail-qk1-x729.google.com with SMTP id g15so18521460qkl.4;
+        Wed, 31 Mar 2021 01:03:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=jms.id.au; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=PvFE5J3FezlEE8pnDN5zAGS+SdlnCyime9vQnsZ9wkY=;
-        b=PTGFvl2RypZxM0OoGUctoQGNsTqmeQLWPd4faKZB3LNwJY5otlqSbQokWFD+XxB4cZ
-         k7JcAGMHpQ6KFSA1ShU4X+lxf2geDdc31fr0WaZmQY56ejVKYekOO2OgPZ+IUK3N0tjk
-         rXeVUBoRE+TKa8974Zv0HzFjrsw95+klEl990=
+        bh=NJcIw73a//r28j1htif+6qunnsNeiLwQMekHuL3zxuc=;
+        b=T/BjsSR2f4zCsI32B9vc+Fo0VhdeQ7uAqocnuUdCTzTRS2b8aqOi+l+XP+YZBKs8XO
+         C22J8Ac2zQiQguWOjOdGqHaXIhAF781x/YZ6AGJWgYrMpkkVVcMhOe+3cIDAUHkwgTgL
+         Q1Ay8yxsXn+jFIiLHipqKSgf835p4/9MfLpZ8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=PvFE5J3FezlEE8pnDN5zAGS+SdlnCyime9vQnsZ9wkY=;
-        b=m8r5aiSO5rUpGB3pdak1r0kDB+UcAuqR+L51G8RtFU6oiISpNMIoTVD6SY9wQgHHj9
-         Dfj3GbTXQZM3edaetZevTVU6MfOiiwqCw5eo38bpnMR9P5P2cj1RZ7x+pQQW3wqGgSW3
-         whF3keRxgjf6Z3G4zTxYYcO5A87mJ0IwvtEulyuJNRN4oN4I6Qukq2HuohZim7jBRSEN
-         /5DTD+HWlsdhXkQLZJUxf3lhf5ogWW91+jtfYu1LYo2kDMFvGw2orde/u1JhhO+EcWxf
-         tPS3eM1TQW+aswufZeB1puuJ6FN8ypf63cHVDEb2Pk3lrzpv4AW9ML9u/UfCJQdHJQmQ
-         AV7w==
-X-Gm-Message-State: AOAM532BObE6OBum/xsSwpPbJ25nzXgERGxpNnNBJEpfGbPg4L5q1v72
-        znerAuRSQaJATo3UrdQ/YrKwAGDVuVYbGgeFSO1gE75gExTbhA==
-X-Google-Smtp-Source: ABdhPJyMt3JEgZQNa/c4w8WpbFN1v/ZWTRBHzplPfi6vA5v5QT21JEeEclDxFGpB1WMPbDt6DMynOc5coOB4FZ/iNj0=
-X-Received: by 2002:a37:d202:: with SMTP id f2mr1940297qkj.273.1617177044244;
- Wed, 31 Mar 2021 00:50:44 -0700 (PDT)
+        bh=NJcIw73a//r28j1htif+6qunnsNeiLwQMekHuL3zxuc=;
+        b=oG9igCNNh1+JQGX3JBeCKL5+G323VSEy+0nrWSVDL7UgY+GEBdueXx2Y83dgkKU+z6
+         XztfnUIWPbXjxIONoouKouqzHgIrlgbVlmhks5MGIJ99y+slS1DzBM7DuMXWUC+y6uIc
+         7A3gFcHQJTC7USjNCcT1+pcON6hHbm3EWhzY6OiITXZvQePAeUCVsIRlN287Ez668UdZ
+         u9NzZL8m4ZHp2nKsQ6qGf31Cw+WsTqsM0GMnzP1ySNZCYpd5LeweqyPLJT+a4x0HUEkS
+         93Hq83lMAQaPEDqunaiXG+Stthp9g+T4Dt3+LoXdiJ1iOHWXWsS4xs3Kl4n63F7HuJt7
+         YjqQ==
+X-Gm-Message-State: AOAM531WNa35X0E6617qUvvwaEICHal6AiOerhnLVsrlwfpAOH5oG+3C
+        WTUvYJWO4Lt9d6wHkYBfNu9K9FF0HjtXrl4wVKg=
+X-Google-Smtp-Source: ABdhPJwC6hlddgOP7Z7aBjcCddCYiFSG8M/SJxjKms1t4Jq6myn+rgd/kJbDtXxbvYj9JRVxaoZOy7H1q4e9l7echc0=
+X-Received: by 2002:a05:620a:28c9:: with SMTP id l9mr1940310qkp.55.1617177807842;
+ Wed, 31 Mar 2021 01:03:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210330002338.335-1-zev@bewilderbeest.net> <20210330002338.335-4-zev@bewilderbeest.net>
- <CACPK8XcwMYgc9R24KuGa0hqKQAxawDScHp1+y62aeEvcpvPiSw@mail.gmail.com>
-In-Reply-To: <CACPK8XcwMYgc9R24KuGa0hqKQAxawDScHp1+y62aeEvcpvPiSw@mail.gmail.com>
+References: <20210308171049.3962577-1-gmouse@google.com> <CADVsX8_e9GNeceV-op5HwbxEnzUG_68izC11K=g46YWvCZE2Ag@mail.gmail.com>
+In-Reply-To: <CADVsX8_e9GNeceV-op5HwbxEnzUG_68izC11K=g46YWvCZE2Ag@mail.gmail.com>
 From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 31 Mar 2021 07:50:32 +0000
-Message-ID: <CACPK8XfBsq6H5qsSNgwqdRhHXTUYnNQKekSNMnxXoVaAzMc=MQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] ARM: dts: aspeed: add ASRock E3C246D4I BMC
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
+Date:   Wed, 31 Mar 2021 08:03:15 +0000
+Message-ID: <CACPK8XfcHRkRew6O-r=BumPRAW5X8__k6XMy-4gnDhwxVqCVWg@mail.gmail.com>
+Subject: Re: [PATCH v2] ARM: dts: nuvoton: Fix flash layout
+To:     Anton Kachalov <gmouse@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Avi Fishman <avifishman70@gmail.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 31 Mar 2021 at 07:41, Joel Stanley <joel@jms.id.au> wrote:
->
-> On Tue, 30 Mar 2021 at 00:25, Zev Weiss <zev@bewilderbeest.net> wrote:
-> >
-> > This is a relatively low-cost AST2500-based Xeon E-2100/E-2200 series
-> > mini-ITX board that we hope can provide a decent platform for OpenBMC
-> > development.
-> >
-> > This initial device-tree provides the necessary configuration for
-> > basic BMC functionality such as host power control, serial console and
-> > KVM support, and POST code snooping.
-> >
-> > Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
->
-> Reviewed-by: Joel Stanley <joel@jms.id.au>
->
-> > ---
-> >  .../boot/dts/aspeed-bmc-asrock-e3c246d4i.dts  | 188 ++++++++++++++++++
-> >  1 file changed, 188 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
-> >
-> > diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
-> > new file mode 100644
-> > index 000000000000..27b34c3cf67a
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
+Hi Anton,
 
-When adding the device tree please also add it to the makefile in
-arch/arm/boot/dts.
+On Thu, 25 Mar 2021 at 01:28, Anton Kachalov <gmouse@google.com> wrote:
+>
+> Gently ping
+>
+> On Mon, 8 Mar 2021 at 18:11, <gmouse@google.com> wrote:
+> >
+> > From: "Anton D. Kachalov" <gmouse@google.com>
+> >
+> > This change follows OpenBMC partitions' naming layout.
+> >
+> > Signed-off-by: Anton D. Kachalov <gmouse@google.com>
+
+I believe you discussed what approach to take and this was agreed
+upon. Can I get an ack from some other nuvoton people before I apply?
+
+Cheers,
+
+Joel
+
+> > ---
+> >  arch/arm/boot/dts/nuvoton-npcm750-evb.dts | 38 +++++++----------------
+> >  1 file changed, 11 insertions(+), 27 deletions(-)
+> >
+> > diff --git a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
+> > index 9f13d08f5804..55c5a89592d7 100644
+> > --- a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
+> > +++ b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
+> > @@ -78,8 +78,8 @@ partitions@80000000 {
+> >                         compatible = "fixed-partitions";
+> >                         #address-cells = <1>;
+> >                         #size-cells = <1>;
+> > -                       bbuboot1@0 {
+> > -                               label = "bb-uboot-1";
+> > +                       u-boot@0 {
+> > +                               label = "u-boot";
+> >                                 reg = <0x0000000 0x80000>;
+> >                                 read-only;
+> >                                 };
+> > @@ -88,38 +88,22 @@ bbuboot2@80000 {
+> >                                 reg = <0x0080000 0x80000>;
+> >                                 read-only;
+> >                                 };
+> > -                       envparam@100000 {
+> > -                               label = "env-param";
+> > +                       u-boot-env@100000 {
+> > +                               label = "u-boot-env";
+> >                                 reg = <0x0100000 0x40000>;
+> >                                 read-only;
+> >                                 };
+> > -                       spare@140000 {
+> > -                               label = "spare";
+> > -                               reg = <0x0140000 0xC0000>;
+> > -                               };
+> >                         kernel@200000 {
+> >                                 label = "kernel";
+> > -                               reg = <0x0200000 0x400000>;
+> > -                               };
+> > -                       rootfs@600000 {
+> > -                               label = "rootfs";
+> > -                               reg = <0x0600000 0x700000>;
+> > -                               };
+> > -                       spare1@D00000 {
+> > -                               label = "spare1";
+> > -                               reg = <0x0D00000 0x200000>;
+> > -                               };
+> > -                       spare2@0F00000 {
+> > -                               label = "spare2";
+> > -                               reg = <0x0F00000 0x200000>;
+> > +                               reg = <0x0200000 0x580000>;
+> >                                 };
+> > -                       spare3@1100000 {
+> > -                               label = "spare3";
+> > -                               reg = <0x1100000 0x200000>;
+> > +                       rofs@780000 {
+> > +                               label = "rofs";
+> > +                               reg = <0x0780000 0x1680000>;
+> >                                 };
+> > -                       spare4@1300000 {
+> > -                               label = "spare4";
+> > -                               reg = <0x1300000 0x0>;
+> > +                       rwfs@1e00000 {
+> > +                               label = "rwfs";
+> > +                               reg = <0x1e00000 0x200000>;
+> >                         };
+> >                 };
+> >         };
+> > --
+> > 2.30.1.766.gb4fecdf3b7-goog
+> >
