@@ -2,108 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D47B350315
-	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 17:17:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2BE33503BE
+	for <lists+devicetree@lfdr.de>; Wed, 31 Mar 2021 17:46:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236239AbhCaPRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 11:17:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55874 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236248AbhCaPQe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 11:16:34 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEEE5C061763
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 08:16:32 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id z8so24226367ljm.12
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 08:16:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=8JEZ/zA3xATlZDMJU12dOWvOdzYQeAKq+WFclP2SIzc=;
-        b=qbYcdm4xTGvnx8vSR5cEEzlX4QPevzbSUUiaybTSD6iZl2QMnyZPs9MgWqr/JOgHx/
-         Y89Pa5oGp9XxJOiPih1dMOgzyyBsMmyDRZUraap75b5n/2Eoxu9GsMoXiGPV8nANqw/7
-         B1m81EjGhxdhaWsbJnTyfUBFR7ZBEXXuavPmrfaQPioRwPv8THNg2ac2KavXcxE1KxI5
-         wzzXhdsQSq64lW+0ISVjzrO/F0xNye0qvqN75wYdL2JxjvKa4ooVm3inkx8VkvRoZ6WO
-         5wmzy7kYMlvY+B9N4q/5F2vEZGRufL0EFE1aV0fYuKmImfU9lYi5EeW1kn9SJn9l2W45
-         91Jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=8JEZ/zA3xATlZDMJU12dOWvOdzYQeAKq+WFclP2SIzc=;
-        b=AaJTCGY6UN+C30GvNWj6mUzrLcPmiY1ZADjXO/hCxiWUIX0/GrzB8FTIyq53lW6mPs
-         UjWw8OJ4+wUu1pAMrqkuFUwv0ToPMhZ612evGzARnzzz9La3UL/3UYW+XDx42t/iKNLe
-         nbgdSLe7phX+PMtKuIeZ57UvfOtTKZ6VF8zKsC/Qk30X6nor+mUIwXKAnVZxMHKeMqQ1
-         mEznnJ8oaQGT+5UiXYs/J251WWtRvH3AxyJhkUC/POrVY3yO9t3UY/ncH2mMmFeA1F1S
-         RspCCaDOXYuTezOXYeorgcEwZzfmNmP168nvrqx8cX8WgR9y8o2INAoBvS/Iv0Hfu+E9
-         jfLA==
-X-Gm-Message-State: AOAM532S1jWvQAuDkZmB7IjNw0sD+aKaGHarqlzZdPasDfL5FZ42BW1x
-        Ib+d/dEhoAjph9JaHz6i1lHahQ==
-X-Google-Smtp-Source: ABdhPJxGjbzLHTGBc9+lfcvVF/MyEPH9b4JssJA1P5iYqZlQ1q+9A9sPvh3G6D8K0BOGXOCwwCG7nA==
-X-Received: by 2002:a2e:9b14:: with SMTP id u20mr2384835lji.463.1617203791003;
-        Wed, 31 Mar 2021 08:16:31 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id t201sm266738lff.70.2021.03.31.08.16.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Mar 2021 08:16:30 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
+        id S235420AbhCaPpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 11:45:30 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:40310 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235268AbhCaPpX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 11:45:23 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12VFiwYj052629;
+        Wed, 31 Mar 2021 10:44:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1617205498;
+        bh=MhCSFR7cZfsCaZa45RWsaqWYPkhv33SEgDDOOJ91lLE=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=rCii+ek16dqFYC7RIOwZrAZRX4S0lfpgxK/vxS3azev+ixae2aGgjJhnD6VjaE73z
+         AzSsQjujLu0f/TN8+EomY4kwybg7V/i8QttZlWyqZm3RLWJNm+ivWOnnaQ7m19slG5
+         1uy9Moz0+2q3LHUtXylAk2tOfVAPkl4JeRT2zcoc=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12VFiwnE001265
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 31 Mar 2021 10:44:58 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 31
+ Mar 2021 10:44:57 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 31 Mar 2021 10:44:57 -0500
+Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with SMTP id 12VFivVx084350;
+        Wed, 31 Mar 2021 10:44:57 -0500
+Date:   Wed, 31 Mar 2021 10:44:57 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+CC:     Pratyush Yadav <p.yadav@ti.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Manu Gautam <mgautam@codeaurora.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v6 7/7] arm64: dts: qcom: use dp_phy to provide clocks to dispcc
-Date:   Wed, 31 Mar 2021 18:16:14 +0300
-Message-Id: <20210331151614.3810197-8-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210331151614.3810197-1-dmitry.baryshkov@linaro.org>
-References: <20210331151614.3810197-1-dmitry.baryshkov@linaro.org>
+        Vinod Koul <vkoul@kernel.org>,
+        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Peter Chen <peter.chen@nxp.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <dmaengine@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH 13/16] media: ti-vpe: csi2rx: Add CSI2RX support
+Message-ID: <20210331154456.t6edvpw6mfwlf2zg@ti.com>
+References: <20210330173348.30135-1-p.yadav@ti.com>
+ <20210330173348.30135-14-p.yadav@ti.com>
+ <91bbf2a9-9d27-7f9b-1c17-ad6544a828f1@ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <91bbf2a9-9d27-7f9b-1c17-ad6544a828f1@ideasonboard.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Plug dp_phy-provided clocks to display clock controller.
+Pratyush,
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Tomi Valkeinen <tomi.valkeinen@ideasonboard.com> wrote on Wed [2021-Mar-31 09:06:35 +0300]:
+> Hi,
+> 
+> On 30/03/2021 20:33, Pratyush Yadav wrote:
+> > TI's J721E uses the Cadence CSI2RX and DPHY peripherals to facilitate
+> > capture over a CSI-2 bus.
+> > 
+> > The Cadence CSI2RX IP acts as a bridge between the TI specific parts and
+> > the CSI-2 protocol parts. TI then has a wrapper on top of this bridge
+> > called the SHIM layer. It takes in data from stream 0, repacks it, and
+> > sends it to memory over PSI-L DMA.
+> > 
+> > This driver acts as the "front end" to V4L2 client applications. It
+> > implements the required ioctls and buffer operations, passes the
+> > necessary calls on to the bridge, programs the SHIM layer, and performs
+> > DMA via the dmaengine API to finally return the data to a buffer
+> > supplied by the application.
+> > 
+> > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> > ---
+> >   MAINTAINERS                               |   7 +
+> >   drivers/media/platform/Kconfig            |  11 +
+> >   drivers/media/platform/ti-vpe/Makefile    |   1 +
+> >   drivers/media/platform/ti-vpe/ti-csi2rx.c | 964 ++++++++++++++++++++++
+> >   4 files changed, 983 insertions(+)
+> >   create mode 100644 drivers/media/platform/ti-vpe/ti-csi2rx.c
+> 
+> Some quick comments:
+> 
+> "ti-vpe" directory is not correct, this has nothing to do with VPE. That
+> said, the directory has already been abused by having CAL driver there,
+> perhaps we should rename the directory just to "ti". But if we do that,
+> I think we should have subdirs for cal, vpe and this new one.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 0f79e6885004..a2478bd3590a 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -2600,8 +2600,8 @@ dispcc: clock-controller@af00000 {
- 				 <&dsi0_phy 1>,
- 				 <&dsi1_phy 0>,
- 				 <&dsi1_phy 1>,
--				 <0>,
--				 <0>,
-+				 <&dp_phy 0>,
-+				 <&dp_phy 1>,
- 				 <0>,
- 				 <0>,
- 				 <0>,
-@@ -2614,8 +2614,8 @@ dispcc: clock-controller@af00000 {
- 				      "dsi0_phy_pll_out_dsiclk",
- 				      "dsi1_phy_pll_out_byteclk",
- 				      "dsi1_phy_pll_out_dsiclk",
--				      "dp_link_clk_divsel_ten",
--				      "dp_vco_divided_clk_src_mux",
-+				      "dp_phy_pll_link_clk",
-+				      "dp_phy_pll_vco_div_clk",
- 				      "dptx1_phy_pll_link_clk",
- 				      "dptx1_phy_pll_vco_div_clk",
- 				      "dptx2_phy_pll_link_clk",
--- 
-2.30.2
+I agree with Tomi here. This should create a ti directory under
+media/platform and then add a directory under that specifically for this
+driver/IP as a first step. Not sure what the correct name for that
+directory should be but it should meaningful. As a follow on step then the
+other drivers can be relocated to a proper directory structure.
+> 
+> "ti-csi2rx" is rather generic name. TI has had CSI-2 RX IPs before (CAL)
+> and probably will also have new ones in the future. If there's no clear
+> model name for the IP, as I think is the case here, it's probably best
+> to just use the SoC model in the name. E.g. the DSS on J7 is
+> "ti,j721e-dss".
+> 
+> This driver implements the legacy video API. I think it would be better
+> (and easier to maintain) to only implement the media-controller API,
+> unless you specifically need to support the legacy API for existing
+> userspace.
 
+We just went through a major rework with CAL to make it media controller
+compatible in order to be able to handle CSI2 virtual channels.
+I think as this is a new driver/IP which perform the same type of service
+it makes sense to make use the more current API instead of the legacy one.
+
+> 
+>  Tomi
+
+Benoit
