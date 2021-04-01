@@ -2,44 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C68A3351CCB
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:47:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 466F2351CBF
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:47:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235837AbhDASVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:21:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45710 "EHLO mail.kernel.org"
+        id S235935AbhDASVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 14:21:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45700 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239661AbhDASQp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Apr 2021 14:16:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 726AC611CA;
+        id S238898AbhDASPC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Apr 2021 14:15:02 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 824EF611F2;
         Thu,  1 Apr 2021 12:17:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
         s=k20201202; t=1617279476;
-        bh=BnEWnVkqMrbAWG8jRB7Ad1C4L7HMZywQ6hzq4TbT8UM=;
+        bh=Y8Sbo9hVCbxTKSZ3zBFEyFuLdewEeU0DD4dDrcxymF0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=LPnQs3u0SA4q5hbHfq4RzSQs+FvcWBNcfhCTKN6bcNlYj9sKG8msZVimUxSaFruSC
-         8f1cqbBCUwjkAGluou0uqBj+uvjPB8fqBsalkQmfIuD+D3wwo5qv8hiqVsQ59y9VCe
-         kbXqitfXDA+PXFQ7KGEcMYafOmZA6tKtx8Ill50H7BtHyJLojLog+YntFnsrwsTSa9
-         bT5TlGv2GcTzHNPMD7kXNU4DfRmzv7R5HmIeqHBXovFPOROhDgi4oEYGohT0HzVJtu
-         qflkxbJCbDg+Xx/5q6vRLu1FjoQlsj3yct872Nt8rh29A1TOt+ToVBfFbGzycP4PiK
-         hnOfig097Jhdg==
+        b=XmXJNkMDY6HjzWIpoy0p2LCBxwlOqEEt6xAj60aeGL/k5ZOXg8edAZgjaThxHz3+1
+         8bjY/8yuiwRvtWue1O2n3R67vGOdtPc2uerijwSRwnurgfL5kqEbPfi3BznuSYqGnc
+         OexgBFaq61MtJ9rZmpF5NwR7W5RsR9LAYjXFbYeFREEBNWtL2eNMs2Y4bo02Kg+KQg
+         HoIRs1osqCoXVhOaDOtwbkE/k/dCKDzbCxHnQ7cGzzsVAA0GM5BMGbsZrmQovtBjID
+         9UHzj3FbyuBDVqJQSCn+6l2XG27EDo6waC1eQUt9KUP5bFfrJwfT+Gux8TPSH/t+yg
+         yGzmFDyuRF5kg==
 Received: by mail.kernel.org with local (Exim 4.94)
         (envelope-from <mchehab@kernel.org>)
-        id 1lRwGo-001c3a-HY; Thu, 01 Apr 2021 14:17:54 +0200
+        id 1lRwGo-001c3e-Jw; Thu, 01 Apr 2021 14:17:54 +0200
 From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>
 Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
         "Jonathan Corbet" <corbet@lwn.net>,
-        =?UTF-8?q?Przemys=C5=82aw=20Gaj?= <pgaj@cadence.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vitor Soares <vitor.soares@synopsys.com>,
-        devicetree@vger.kernel.org, linux-i3c@lists.infradead.org,
+        Andy Whitcroft <apw@canonical.com>,
+        Dwaipayan Ray <dwaipayanray1@gmail.com>,
+        Joe Perches <joe@perches.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 27/32] dt-bindings: i3c: update i3c.yaml references
-Date:   Thu,  1 Apr 2021 14:17:47 +0200
-Message-Id: <22b7b53af1907f7cae27e26be725470c04b84725.1617279356.git.mchehab+huawei@kernel.org>
+Subject: [PATCH 29/32] docs: dt: update writing-schema.rst references
+Date:   Thu,  1 Apr 2021 14:17:49 +0200
+Message-Id: <7cfddf303f1508d26f90d87546d3812faebfc5ba.1617279356.git.mchehab+huawei@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <cover.1617279355.git.mchehab+huawei@kernel.org>
 References: <cover.1617279355.git.mchehab+huawei@kernel.org>
@@ -50,73 +49,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Changeset 5e4cdca887fd ("dt-bindings: i3c: Convert the bus description to yaml")
-renamed: Documentation/devicetree/bindings/i3c/i3c.txt
-to: Documentation/devicetree/bindings/i3c/i3c.yaml.
+Changeset b83db5b84900 ("docs: dt: Group DT docs into relevant sub-sections")
+renamed: Documentation/devicetree/writing-schema.rst
+to: Documentation/devicetree/bindings/writing-schema.rst.
 
 Update the cross-references accordingly.
 
-Fixes: 5e4cdca887fd ("dt-bindings: i3c: Convert the bus description to yaml")
+Fixes: b83db5b84900 ("docs: dt: Group DT docs into relevant sub-sections")
 Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 ---
- Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt   | 6 +++---
- .../devicetree/bindings/i3c/snps,dw-i3c-master.txt          | 6 +++---
- 2 files changed, 6 insertions(+), 6 deletions(-)
+ Documentation/devicetree/bindings/submitting-patches.rst | 2 +-
+ scripts/checkpatch.pl                                    | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt b/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt
-index 1cf6182f888c..3716589d6999 100644
---- a/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt
-+++ b/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt
-@@ -10,19 +10,19 @@ Required properties:
- - reg: I3C master registers
+diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Documentation/devicetree/bindings/submitting-patches.rst
+index ee4feb53f8d0..104fa8fb2c17 100644
+--- a/Documentation/devicetree/bindings/submitting-patches.rst
++++ b/Documentation/devicetree/bindings/submitting-patches.rst
+@@ -25,7 +25,7 @@ I. For patch submitters
  
- Mandatory properties defined by the generic binding (see
--Documentation/devicetree/bindings/i3c/i3c.txt for more details):
-+Documentation/devicetree/bindings/i3c/i3c.yaml for more details):
+        make dt_binding_check
  
- - #address-cells: shall be set to 1
- - #size-cells: shall be set to 0
+-     See Documentation/devicetree/writing-schema.rst for more details about
++     See Documentation/devicetree/bindings/writing-schema.rst for more details about
+      schema and tools setup.
  
- Optional properties defined by the generic binding (see
--Documentation/devicetree/bindings/i3c/i3c.txt for more details):
-+Documentation/devicetree/bindings/i3c/i3c.yaml for more details):
+   3) DT binding files should be dual licensed. The preferred license tag is
+diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+index 4dbda85fd7e5..3870c8a01987 100755
+--- a/scripts/checkpatch.pl
++++ b/scripts/checkpatch.pl
+@@ -3245,7 +3245,7 @@ sub process {
+ 		    ($line =~ /^new file mode\s*\d+\s*$/) &&
+ 		    ($realfile =~ m@^Documentation/devicetree/bindings/.*\.txt$@)) {
+ 			WARN("DT_SCHEMA_BINDING_PATCH",
+-			     "DT bindings should be in DT schema format. See: Documentation/devicetree/writing-schema.rst\n");
++			     "DT bindings should be in DT schema format. See: Documentation/devicetree/bindings/writing-schema.rst\n");
+ 		}
  
- - i2c-scl-hz
- - i3c-scl-hz
- 
- I3C device connected on the bus follow the generic description (see
--Documentation/devicetree/bindings/i3c/i3c.txt for more details).
-+Documentation/devicetree/bindings/i3c/i3c.yaml for more details).
- 
- Example:
- 
-diff --git a/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt b/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt
-index 5020eb71eb8d..07f35f36085d 100644
---- a/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt
-+++ b/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt
-@@ -9,19 +9,19 @@ Required properties:
- - reg: Offset and length of I3C master registers
- 
- Mandatory properties defined by the generic binding (see
--Documentation/devicetree/bindings/i3c/i3c.txt for more details):
-+Documentation/devicetree/bindings/i3c/i3c.yaml for more details):
- 
- - #address-cells: shall be set to 3
- - #size-cells: shall be set to 0
- 
- Optional properties defined by the generic binding (see
--Documentation/devicetree/bindings/i3c/i3c.txt for more details):
-+Documentation/devicetree/bindings/i3c/i3c.yaml for more details):
- 
- - i2c-scl-hz
- - i3c-scl-hz
- 
- I3C device connected on the bus follow the generic description (see
--Documentation/devicetree/bindings/i3c/i3c.txt for more details).
-+Documentation/devicetree/bindings/i3c/i3c.yaml for more details).
- 
- Example:
- 
+ # Check for wrappage within a valid hunk of the file
 -- 
 2.30.2
 
