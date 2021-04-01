@@ -2,144 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61CF8350C5F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 04:09:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40891350CCD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 04:52:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233367AbhDACId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 22:08:33 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:51260 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S233028AbhDACIS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 22:08:18 -0400
-X-UUID: 47acad642a104fb2a14041a079cb813c-20210401
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=xxoJj4PzGeFeHxkVicdKTYcSt15G5RUjI0591TbB/Mc=;
-        b=dvMoHBxp2+B60fJvac56osF3A+YFYzNYeApi6qe6NeBGp/h0I4cdCDUIvvHT84Aob9riMX78N+DmGDJ+9LYvYsmCdTKjgg0ARPvyaEnhrP2SVbehPeM5Bo3TAF4WP3i4DNDgYINdmmsDpwp9t+oVPjoAvgtlk3L8RJzlDqEYLlU=;
-X-UUID: 47acad642a104fb2a14041a079cb813c-20210401
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1636523368; Thu, 01 Apr 2021 10:08:13 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 1 Apr 2021 10:08:12 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 1 Apr 2021 10:08:12 +0800
-Message-ID: <1617242892.14305.5.camel@mtksdaap41>
-Subject: Re: [PATCH 3/3] drm/mediatek: dpi: add bus format negociation
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <yingjoe.chen@mediatek.com>,
-        <eddie.huang@mediatek.com>, <cawa.cheng@mediatek.com>,
-        <bibby.hsieh@mediatek.com>, <stonea168@163.com>,
-        <huijuan.xie@mediatek.com>, <rex-bc.chen@mediatek.com>
-Date:   Thu, 1 Apr 2021 10:08:12 +0800
-In-Reply-To: <20210330155330.28759-4-jitao.shi@mediatek.com>
-References: <20210330155330.28759-1-jitao.shi@mediatek.com>
-         <20210330155330.28759-4-jitao.shi@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S232419AbhDACvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 22:51:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36852 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229497AbhDACvd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 22:51:33 -0400
+X-Greylist: delayed 6830 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 31 Mar 2021 19:51:30 PDT
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E904AC0613E6;
+        Wed, 31 Mar 2021 19:51:30 -0700 (PDT)
+Received: from hatter.bewilderbeest.net (unknown [IPv6:2600:6c44:7f:ba20::7c6])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 5132A6F;
+        Wed, 31 Mar 2021 19:51:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1617245490;
+        bh=ACBP00g3dIGlkj6j3+YvdG5qoy4fOyiGS7DhceuyHdI=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=ODPjRldXoiewGaZVrbRmf0SDhWF2BicJmSqW6itb30q6LQ3Ld8Z+2pZZFMTdNdVYg
+         jNfvzRHu2O//a7ojX2him+GzTp7d6jwn9XxMM1cvcbmp7SOZgXFaoxvDjYYtLF97li
+         9M3aF9+w5dAVj5l9dwDqTC7nlGCPne1BBlRSjr3M=
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     openbmc@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Zev Weiss <zev@bewilderbeest.net>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH] ARM: dts: aspeed: add ASRock E3C246D4I BMC
+Date:   Wed, 31 Mar 2021 21:51:03 -0500
+Message-Id: <20210401025104.2278-1-zev@bewilderbeest.net>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <CACPK8XfBsq6H5qsSNgwqdRhHXTUYnNQKekSNMnxXoVaAzMc=MQ@mail.gmail.com>
+References: <CACPK8XfBsq6H5qsSNgwqdRhHXTUYnNQKekSNMnxXoVaAzMc=MQ@mail.gmail.com>
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIEppdGFvOg0KDQpPbiBUdWUsIDIwMjEtMDMtMzAgYXQgMjM6NTMgKzA4MDAsIEppdGFvIFNo
-aSB3cm90ZToNCj4gQWRkIHRoZSBhdG9taWNfZ2V0X291dHB1dF9idXNfZm10cywgYXRvbWljX2dl
-dF9pbnB1dF9idXNfZm10cyB0byBuZWdvY2lhdGUNCj4gdGhlIHBvc3NpYmxlIG91dHB1dCBhbmQg
-aW5wdXQgZm9ybWF0cyBmb3IgdGhlIGN1cnJlbnQgbW9kZSBhbmQgbW9uaXRvciwNCj4gYW5kIHVz
-ZSB0aGUgbmVnb3RpYXRlZCBmb3JtYXRzIGluIGEgYmFzaWMgYXRvbWljX2NoZWNrIGNhbGxiYWNr
-Lg0KPiANCj4gU2lnbmVkLW9mZi1ieTogSml0YW8gU2hpIDxqaXRhby5zaGlAbWVkaWF0ZWsuY29t
-Pg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHBpLmMgfCA5NiArKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKystLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDkx
-IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL21lZGlhdGVrL210a19kcGkuYyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9t
-dGtfZHBpLmMNCj4gaW5kZXggODdiYjI3NjQ5YzRjLi40ZTQ1ZDFiMDFiMGMgMTAwNjQ0DQo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHBpLmMNCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL21lZGlhdGVrL210a19kcGkuYw0KPiBAQCAtODEsNiArODEsOCBAQCBzdHJ1Y3QgbXRr
-X2RwaSB7DQo+ICAJc3RydWN0IHBpbmN0cmwgKnBpbmN0cmw7DQo+ICAJc3RydWN0IHBpbmN0cmxf
-c3RhdGUgKnBpbnNfZ3BpbzsNCj4gIAlzdHJ1Y3QgcGluY3RybF9zdGF0ZSAqcGluc19kcGk7DQo+
-ICsJdW5zaWduZWQgaW50IGluX2J1c19mb3JtYXQ7DQo+ICsJdW5zaWduZWQgaW50IG91dF9idXNf
-Zm9ybWF0Ow0KDQpXaHkgZG8geW91IGtlZXAgdGhlc2UgdHdvIHZhbHVlPyBZb3UgZG9lcyBub3Qg
-dXNlIHRoZW0uDQoNCj4gIAlib29sIGRkcl9lZGdlX3NlbDsNCj4gIAlpbnQgcmVmY291bnQ7DQo+
-ICB9Ow0KPiBAQCAtNTM0LDYgKzUzNiw5MiBAQCBzdGF0aWMgaW50IG10a19kcGlfc2V0X2Rpc3Bs
-YXlfbW9kZShzdHJ1Y3QgbXRrX2RwaSAqZHBpLA0KPiAgCXJldHVybiAwOw0KPiAgfQ0KPiAgDQo+
-ICsjZGVmaW5lIE1BWF9PVVRQVVRfU0VMX0ZPUk1BVFMJMg0KPiArDQo+ICtzdGF0aWMgdTMyICpt
-dGtfZHBpX2JyaWRnZV9hdG9taWNfZ2V0X291dHB1dF9idXNfZm10cyhzdHJ1Y3QgZHJtX2JyaWRn
-ZSAqYnJpZGdlLA0KPiArCQkJCQlzdHJ1Y3QgZHJtX2JyaWRnZV9zdGF0ZSAqYnJpZGdlX3N0YXRl
-LA0KPiArCQkJCQlzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsDQo+ICsJCQkJCXN0
-cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25uX3N0YXRlLA0KPiArCQkJCQl1bnNpZ25lZCBp
-bnQgKm51bV9vdXRwdXRfZm10cykNCj4gK3sNCj4gKwlzdHJ1Y3QgZHJtX2Rpc3BsYXlfbW9kZSAq
-bW9kZSA9ICZjcnRjX3N0YXRlLT5tb2RlOw0KPiArCXUzMiAqb3V0cHV0X2ZtdHM7DQo+ICsJc3Ry
-dWN0IG10a19kcGkgKmRwaSA9IGJyaWRnZV90b19kcGkoYnJpZGdlKTsNCj4gKw0KPiArCSpudW1f
-b3V0cHV0X2ZtdHMgPSAwOw0KPiArDQo+ICsJb3V0cHV0X2ZtdHMgPSBrY2FsbG9jKE1BWF9PVVRQ
-VVRfU0VMX0ZPUk1BVFMsIHNpemVvZigqb3V0cHV0X2ZtdHMpLA0KPiArCQkJICAgICAgR0ZQX0tF
-Uk5FTCk7DQo+ICsJaWYgKCFvdXRwdXRfZm10cykNCj4gKwkJcmV0dXJuIE5VTEw7DQo+ICsNCj4g
-KwkvKiBEZWZhdWx0IDhiaXQgUkdCIGZhbGxiYWNrICovDQo+ICsJaWYgKGRwaS0+Y29uZi0+ZHVh
-bF9lZGdlKSB7DQo+ICsJCW91dHB1dF9mbXRzWzBdID0gIE1FRElBX0JVU19GTVRfUkdCODg4XzJY
-MTJfTEU7DQo+ICsJCW91dHB1dF9mbXRzWzFdID0gIE1FRElBX0JVU19GTVRfUkdCODg4XzJYMTJf
-QkU7DQoNClNvIG10ODE4MyBkb2VzIG5vdCBzdXBwb3J0IE1FRElBX0JVU19GTVRfUkdCODg4XzFY
-MjQ/DQoNCj4gKwkJKm51bV9vdXRwdXRfZm10cyA9IDI7DQo+ICsJfSBlbHNlIHsNCj4gKwkJb3V0
-cHV0X2ZtdHNbMF0gPSAgTUVESUFfQlVTX0ZNVF9SR0I4ODhfMVgyNDsNCj4gKwkJKm51bV9vdXRw
-dXRfZm10cyA9IDE7DQo+ICsJfQ0KPiArDQo+ICsJcmV0dXJuIG91dHB1dF9mbXRzOw0KPiArfQ0K
-PiArDQo+ICsjZGVmaW5lIE1BWF9JTlBVVF9TRUxfRk9STUFUUwkxDQo+ICsNCj4gK3N0YXRpYyB1
-MzIgKm10a19kcGlfYnJpZGdlX2F0b21pY19nZXRfaW5wdXRfYnVzX2ZtdHMoc3RydWN0IGRybV9i
-cmlkZ2UgKmJyaWRnZSwNCj4gKwkJCQkJc3RydWN0IGRybV9icmlkZ2Vfc3RhdGUgKmJyaWRnZV9z
-dGF0ZSwNCj4gKwkJCQkJc3RydWN0IGRybV9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLA0KPiArCQkJ
-CQlzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqY29ubl9zdGF0ZSwNCj4gKwkJCQkJdTMyIG91
-dHB1dF9mbXQsDQo+ICsJCQkJCXVuc2lnbmVkIGludCAqbnVtX2lucHV0X2ZtdHMpDQo+ICt7DQo+
-ICsJdTMyICppbnB1dF9mbXRzOw0KPiArDQo+ICsJKm51bV9pbnB1dF9mbXRzID0gMDsNCj4gKw0K
-PiArCWlucHV0X2ZtdHMgPSBrY2FsbG9jKE1BWF9JTlBVVF9TRUxfRk9STUFUUywgc2l6ZW9mKCpp
-bnB1dF9mbXRzKSwNCj4gKwkJCSAgICAgR0ZQX0tFUk5FTCk7DQo+ICsJaWYgKCFpbnB1dF9mbXRz
-KQ0KPiArCQlyZXR1cm4gTlVMTDsNCj4gKw0KPiArCSpudW1faW5wdXRfZm10cyA9IDE7DQo+ICsJ
-aW5wdXRfZm10c1swXSA9IE1FRElBX0JVU19GTVRfUkdCODg4XzFYMjQ7DQo+ICsNCj4gKwlyZXR1
-cm4gaW5wdXRfZm10czsNCj4gK30NCj4gKw0KPiArc3RhdGljIGludCBtdGtfZHBpX2JyaWRnZV9h
-dG9taWNfY2hlY2soc3RydWN0IGRybV9icmlkZ2UgKmJyaWRnZSwNCj4gKwkJCQkgICAgICAgc3Ry
-dWN0IGRybV9icmlkZ2Vfc3RhdGUgKmJyaWRnZV9zdGF0ZSwNCj4gKwkJCQkgICAgICAgc3RydWN0
-IGRybV9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLA0KPiArCQkJCSAgICAgICBzdHJ1Y3QgZHJtX2Nv
-bm5lY3Rvcl9zdGF0ZSAqY29ubl9zdGF0ZSkNCj4gK3sNCj4gKwlzdHJ1Y3QgbXRrX2RwaSAqZHBp
-ID0gYnJpZGdlLT5kcml2ZXJfcHJpdmF0ZTsNCj4gKw0KPiArCWRwaS0+b3V0X2J1c19mb3JtYXQg
-PSBicmlkZ2Vfc3RhdGUtPm91dHB1dF9idXNfY2ZnLmZvcm1hdDsNCj4gKw0KPiArCWRwaS0+aW5f
-YnVzX2Zvcm1hdCA9IGJyaWRnZV9zdGF0ZS0+aW5wdXRfYnVzX2NmZy5mb3JtYXQ7DQo+ICsNCj4g
-KwlkZXZfZGJnKGRwaS0+ZGV2LCAiaW5wdXQgZm9ybWF0IDB4JTA0eCwgb3V0cHV0IGZvcm1hdCAw
-eCUwNHhcbiIsDQo+ICsJCWJyaWRnZV9zdGF0ZS0+aW5wdXRfYnVzX2NmZy5mb3JtYXQsDQo+ICsJ
-CWJyaWRnZV9zdGF0ZS0+b3V0cHV0X2J1c19jZmcuZm9ybWF0KTsNCj4gKw0KPiArCWlmIChkcGkt
-Pm91dF9idXNfZm9ybWF0ID09IE1FRElBX0JVU19GTVRfUkdCODg4XzJYMTJfTEUgfHwNCj4gKwkg
-ICAgZHBpLT5vdXRfYnVzX2Zvcm1hdCA9PSBNRURJQV9CVVNfRk1UX1JHQjg4OF8yWDEyX0JFKSB7
-DQoNCkkgdGhpbmsgeW91IGNvdWxkIHJlbW92ZSB0aGlzICdpZicgY2hlY2tpbmcuDQoNClJlZ2Fy
-ZHMsDQpDSy4NCg0KPiArCQlkcGktPmRkcl9lZGdlX3NlbCA9DQo+ICsJCQkoZHBpLT5vdXRfYnVz
-X2Zvcm1hdCA9PSBNRURJQV9CVVNfRk1UX1JHQjg4OF8yWDEyX0xFKSA/DQo+ICsJCQkgdHJ1ZSA6
-IGZhbHNlOw0KPiArCX0NCj4gKw0KPiArCWRwaS0+Yml0X251bSA9IE1US19EUElfT1VUX0JJVF9O
-VU1fOEJJVFM7DQo+ICsJZHBpLT5jaGFubmVsX3N3YXAgPSBNVEtfRFBJX09VVF9DSEFOTkVMX1NX
-QVBfUkdCOw0KPiArCWRwaS0+eWNfbWFwID0gTVRLX0RQSV9PVVRfWUNfTUFQX1JHQjsNCj4gKwlk
-cGktPmNvbG9yX2Zvcm1hdCA9IE1US19EUElfQ09MT1JfRk9STUFUX1JHQjsNCj4gKw0KPiArCXJl
-dHVybiAwOw0KPiArfQ0KPiArDQo+ICBzdGF0aWMgaW50IG10a19kcGlfYnJpZGdlX2F0dGFjaChz
-dHJ1Y3QgZHJtX2JyaWRnZSAqYnJpZGdlLA0KPiAgCQkJCSBlbnVtIGRybV9icmlkZ2VfYXR0YWNo
-X2ZsYWdzIGZsYWdzKQ0KPiAgew0KPiBAQCAtNTcyLDYgKzY2MCw5IEBAIHN0YXRpYyBjb25zdCBz
-dHJ1Y3QgZHJtX2JyaWRnZV9mdW5jcyBtdGtfZHBpX2JyaWRnZV9mdW5jcyA9IHsNCj4gIAkubW9k
-ZV9zZXQgPSBtdGtfZHBpX2JyaWRnZV9tb2RlX3NldCwNCj4gIAkuZGlzYWJsZSA9IG10a19kcGlf
-YnJpZGdlX2Rpc2FibGUsDQo+ICAJLmVuYWJsZSA9IG10a19kcGlfYnJpZGdlX2VuYWJsZSwNCj4g
-KwkuYXRvbWljX2NoZWNrID0gbXRrX2RwaV9icmlkZ2VfYXRvbWljX2NoZWNrLA0KPiArCS5hdG9t
-aWNfZ2V0X291dHB1dF9idXNfZm10cyA9IG10a19kcGlfYnJpZGdlX2F0b21pY19nZXRfb3V0cHV0
-X2J1c19mbXRzLA0KPiArCS5hdG9taWNfZ2V0X2lucHV0X2J1c19mbXRzID0gbXRrX2RwaV9icmlk
-Z2VfYXRvbWljX2dldF9pbnB1dF9idXNfZm10cywNCj4gIH07DQo+ICANCj4gIHN0YXRpYyB2b2lk
-IG10a19kcGlfc3RhcnQoc3RydWN0IG10a19kZHBfY29tcCAqY29tcCkNCj4gQEAgLTYyMSwxMSAr
-NzEyLDYgQEAgc3RhdGljIGludCBtdGtfZHBpX2JpbmQoc3RydWN0IGRldmljZSAqZGV2LCBzdHJ1
-Y3QgZGV2aWNlICptYXN0ZXIsIHZvaWQgKmRhdGEpDQo+ICAJCWdvdG8gZXJyX2NsZWFudXA7DQo+
-ICAJfQ0KPiAgDQo+IC0JZHBpLT5iaXRfbnVtID0gTVRLX0RQSV9PVVRfQklUX05VTV84QklUUzsN
-Cj4gLQlkcGktPmNoYW5uZWxfc3dhcCA9IE1US19EUElfT1VUX0NIQU5ORUxfU1dBUF9SR0I7DQo+
-IC0JZHBpLT55Y19tYXAgPSBNVEtfRFBJX09VVF9ZQ19NQVBfUkdCOw0KPiAtCWRwaS0+Y29sb3Jf
-Zm9ybWF0ID0gTVRLX0RQSV9DT0xPUl9GT1JNQVRfUkdCOw0KPiAtDQo+ICAJcmV0dXJuIDA7DQo+
-ICANCj4gIGVycl9jbGVhbnVwOg0KDQo=
+This is a relatively low-cost AST2500-based Xeon E-2100/E-2200 series
+mini-ITX board that we hope can provide a decent platform for OpenBMC
+development.
+
+This initial device-tree provides the necessary configuration for
+basic BMC functionality such as host power control, serial console and
+KVM support, and POST code snooping.
+
+Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+Reviewed-by: Joel Stanley <joel@jms.id.au>
+---
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/aspeed-bmc-asrock-e3c246d4i.dts  | 202 ++++++++++++++++++
+ 2 files changed, 203 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
+
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 8e5d4ab4e75e..b12911262ca1 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1406,6 +1406,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+ 	aspeed-bmc-ampere-mtjade.dtb \
+ 	aspeed-bmc-arm-centriq2400-rep.dtb \
+ 	aspeed-bmc-arm-stardragon4800-rep2.dtb \
++	aspeed-bmc-asrock-e3c246d4i.dts \
+ 	aspeed-bmc-bytedance-g220a.dtb \
+ 	aspeed-bmc-facebook-cmm.dtb \
+ 	aspeed-bmc-facebook-galaxy100.dtb \
+diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
+new file mode 100644
+index 000000000000..dcab6e78dfa4
+--- /dev/null
++++ b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
+@@ -0,0 +1,202 @@
++// SPDX-License-Identifier: GPL-2.0+
++/dts-v1/;
++
++#include "aspeed-g5.dtsi"
++#include <dt-bindings/gpio/aspeed-gpio.h>
++#include <dt-bindings/i2c/i2c.h>
++
++/{
++	model = "ASRock E3C246D4I BMC";
++	compatible = "asrock,e3c246d4i-bmc", "aspeed,ast2500";
++
++	aliases {
++		serial4 = &uart5;
++	};
++
++	chosen {
++		stdout-path = &uart5;
++		bootargs = "console=tty0 console=ttyS4,115200 earlyprintk";
++	};
++
++	memory@80000000 {
++		reg = <0x80000000 0x20000000>;
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		heartbeat {
++			/* BMC_HB_LED_N */
++			gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_LOW>;
++			linux,default-trigger = "timer";
++		};
++
++		system-fault {
++			/* SYSTEM_FAULT_LED_N */
++			gpios = <&gpio ASPEED_GPIO(Z, 2) GPIO_ACTIVE_LOW>;
++			panic-indicator;
++		};
++	};
++
++	gpio-keys {
++		compatible = "gpio-keys";
++
++		uid-button {
++			label = "uid-button";
++			gpios = <&gpio ASPEED_GPIO(F, 1) GPIO_ACTIVE_LOW>;
++			linux,code = <ASPEED_GPIO(F, 1)>;
++		};
++	};
++
++	iio-hwmon {
++		compatible = "iio-hwmon";
++		io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>, <&adc 4>,
++			<&adc 5>, <&adc 6>, <&adc 7>, <&adc 8>, <&adc 9>,
++			<&adc 10>, <&adc 11>, <&adc 12>;
++	};
++};
++
++&fmc {
++	status = "okay";
++	flash@0 {
++		status = "okay";
++		m25p,fast-read;
++		label = "bmc";
++		spi-max-frequency = <100000000>; /* 100 MHz */
++#include "openbmc-flash-layout.dtsi"
++	};
++};
++
++&uart5 {
++	status = "okay";
++};
++
++&vuart {
++	status = "okay";
++	aspeed,sirq-active-high;
++};
++
++&mac0 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rgmii1_default &pinctrl_mdio1_default>;
++};
++
++&i2c1 {
++	status = "okay";
++
++	/* thermal sensor, one diode run to a disconnected header */
++	w83773g@4c {
++		compatible = "nuvoton,w83773g";
++		reg = <0x4c>;
++	};
++};
++
++&i2c3 {
++	status = "okay";
++
++	/* FRU EEPROM */
++	eeprom@57 {
++		compatible = "st,24c128", "atmel,24c128";
++		reg = <0x57>;
++		pagesize = <16>;
++	};
++};
++
++&video {
++	status = "okay";
++};
++
++&vhub {
++	status = "okay";
++};
++
++&lpc_ctrl {
++	status = "okay";
++};
++
++&lpc_snoop {
++	status = "okay";
++	snoop-ports = <0x80>;
++};
++
++&gpio {
++	status = "okay";
++	gpio-line-names =
++		/*  A */ "BMC_MAC1_INTB", "BMC_MAC2_INTB", "NMI_BTN_N", "BMC_NMI",
++			"", "", "", "",
++		/*  B */ "", "", "", "", "", "IRQ_BMC_PCH_SMI_LPC_N", "", "",
++		/*  C */ "", "", "", "", "", "", "", "",
++		/*  D */ "BMC_PSIN", "BMC_PSOUT", "BMC_RESETCON", "RESETCON",
++			"", "", "", "",
++		/*  E */ "", "", "", "", "", "", "", "",
++		/*  F */ "LOCATORLED_STATUS_N", "LOCATORBTN", "", "",
++			"", "", "BMC_PCH_SCI_LPC", "BMC_NCSI_MUX_CTL",
++		/*  G */ "HWM_BAT_EN", "CHASSIS_ID0", "CHASSIS_ID1", "CHASSIS_ID2",
++			"BMC_ALERT1_N_R", "BMC_ALERT2_N_R", "BMC_ALERT3_N", "SML0ALERT",
++		/*  H */ "FM_ME_RCVR_N", "O_PWROK", "SKL_CNL_R", "D4_DIMM_EVENT_3V_N",
++			"MFG_MODE_N", "BMC_RTCRST", "BMC_HB_LED_N", "BMC_CASEOPEN",
++		/*  I */ "", "", "", "", "", "", "", "",
++		/*  J */ "BMC_READY", "BMC_PCH_BIOS_CS_N", "BMC_SMI", "",
++			"", "", "", "",
++		/*  K */ "", "", "", "", "", "", "", "",
++		/*  L */ "BMC_CTS1", "BMC_DCD1", "BMC_DSR1", "BMC_RI1",
++			"BMC_DTR1", "BMC_RTS1", "BMC_TXD1", "BMC_RXD1",
++		/*  M */ "BMC_LAN0_DIS_N", "BMC_LAN1_DIS_N", "", "",
++			"", "", "", "",
++		/*  N */ "", "", "", "", "", "", "", "",
++		/*  O */ "", "", "", "", "", "", "", "",
++		/*  P */ "", "", "", "", "", "", "", "",
++		/*  Q */ "", "", "", "",
++			"BMC_SBM_PRESENT_1_N", "BMC_SBM_PRESENT_2_N",
++			"BMC_SBM_PRESENT_3_N", "BMC_PCIE_WAKE_N",
++		/*  R */ "", "", "", "", "", "", "", "",
++		/*  S */ "PCHHOT_BMC_N", "", "RSMRST",
++			"", "", "", "", "",
++		/*  T */ "", "", "", "", "", "", "", "",
++		/*  U */ "", "", "", "", "", "", "", "",
++		/*  V */ "", "", "", "", "", "", "", "",
++		/*  W */ "PS_PWROK", /* dummy always-high signal */
++			"", "", "", "", "", "", "",
++		/*  X */ "", "", "", "", "", "", "", "",
++		/*  Y */ "SLP_S3", "SLP_S5", "", "", "", "", "", "",
++		/*  Z */ "CPU_CATERR_BMC_PCH_N", "", "SYSTEM_FAULT_LED_N", "BMC_THROTTLE_N",
++			"", "", "", "",
++		/* AA */ "CPU1_THERMTRIP_LATCH_N", "", "CPU1_PROCHOT_N", "",
++			"", "", "IRQ_SMI_ACTIVE_N", "FM_BIOS_POST_CMPLT_N",
++		/* AB */ "", "", "ME_OVERRIDE", "BMC_DMI_MODIFY",
++			"", "", "", "",
++		/* AC */ "LAD0", "LAD1", "LAD2", "LAD3",
++			"CK_33M_BMC", "LFRAME", "SERIRQ", "S_PLTRST";
++
++	/* Assert BMC_READY so BIOS doesn't sit around waiting for it */
++	bmc-ready {
++		gpio-hog;
++		gpios = <ASPEED_GPIO(J, 0) GPIO_ACTIVE_LOW>;
++		output-high;
++	};
++};
++
++&adc {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_adc0_default
++			&pinctrl_adc1_default
++			&pinctrl_adc2_default
++			&pinctrl_adc3_default
++			&pinctrl_adc4_default
++			&pinctrl_adc5_default
++			&pinctrl_adc6_default
++			&pinctrl_adc7_default
++			&pinctrl_adc8_default
++			&pinctrl_adc9_default
++			&pinctrl_adc10_default
++			&pinctrl_adc11_default
++			&pinctrl_adc12_default>;
++};
++
++&kcs3 {
++	status = "okay";
++	aspeed,lpc-io-reg = <0xca2>;
++};
+-- 
+2.31.1
 
