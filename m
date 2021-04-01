@@ -2,112 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 151EC351E88
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:55:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A218351CC4
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:47:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236838AbhDASnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:43:08 -0400
-Received: from mail.cognitivepilot.com ([91.218.251.140]:30620 "EHLO
-        mail.cognitivepilot.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238212AbhDASef (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:34:35 -0400
-Received: from mail.cognitivepilot.com (localhost [127.0.0.1])
-        by mail.cognitivepilot.com (Postfix) with ESMTP id 4FB5pL6XWbznf7qy
-        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 17:55:38 +0300 (MSK)
-X-Virus-Scanned: amavisd-new at cognitivepilot.com
-X-Spam-Flag: NO
-X-Spam-Score: 5.346
-X-Spam-Level: *****
-X-Spam-Status: No, score=5.346 tagged_above=2 required=6.2
-        tests=[FSL_HELO_NON_FQDN_1=0.001, HELO_NO_DOMAIN=3.099,
-        RDNS_NONE=1.274, SPF_SOFTFAIL=0.972] autolearn=no autolearn_force=no
-Received: from mail.cognitivepilot.com ([127.0.0.1])
-        by mail.cognitivepilot.com (mail.cognitivepilot.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 4GrTIx2me4-I for <devicetree@vger.kernel.org>;
-        Thu,  1 Apr 2021 17:55:38 +0300 (MSK)
-Received: from NervousEnergy (unknown [185.68.147.27])
-        by mail.cognitivepilot.com (Postfix) with ESMTPS id 4FB5pK6lfJznWZSK;
-        Thu,  1 Apr 2021 17:55:37 +0300 (MSK)
-Date:   Thu, 1 Apr 2021 17:55:37 +0300
-From:   Ivan Uvarov <i.uvarov@cognitivepilot.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Andre Przywara <andre.przywara@arm.com>,
-        Icenowy Zheng <icenowy@aosc.io>
-Subject: Re: [PATCH v3 3/4] dt-bindings: arm: add compatible strings for
- Forlinx OKA40i-C
-Message-ID: <20210401175420.39b75553@NervousEnergy>
-In-Reply-To: <20210401094001.sh3nvkj5psbdcig5@gilmour>
-References: <20210331155616.793550-1-i.uvarov@cognitivepilot.com>
-        <20210331155616.793550-4-i.uvarov@cognitivepilot.com>
-        <20210401094001.sh3nvkj5psbdcig5@gilmour>
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S235667AbhDASVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 14:21:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37146 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239238AbhDASPu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:15:50 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12AC5C0F26CA;
+        Thu,  1 Apr 2021 07:56:29 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id n8so2016723oie.10;
+        Thu, 01 Apr 2021 07:56:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=hmK4hQlTe/dm4OEhWDvI1X0E5xhesSt9X9vk7PN2+D0=;
+        b=Nt3OrrBvL3S9XKUVqA54ZvBGEsaBvezPl3jRLE0I2Bi0NWtYOZ61z05xk5t0aahcS3
+         iKsAk7vQVS9oV8UWzL8INOpgyzhugy7vON9xMXMREoLwQcdbduWVnLvXfkZquUmwvzbz
+         sjJiRCLDSWYIsmRe+BxuRCYgU4VJ9swJKjnVKyz5TrUaAjzFeIn9Kcc7XKOc4RdpA4rM
+         kR+XQ9PIs9NEbPwWMDk8Mu1UxX+NYGWpvDINS4NrOnA3yzvE+YdHi9I2d3T+iIL7hC0u
+         WmJJG2Zecscg0R3l06J+8g/yLQensHlob2lkGgQr8npEQ9Mhhq7zn9bP2Qdwtf4ZRxIB
+         q+7Q==
+X-Gm-Message-State: AOAM533+7v6il8Nkpt37Z0U4nFlnYvXbVBUu2I7mbeUniBP6ecZQl08+
+        l8rkVm+KjwyjC18vFZmDHA==
+X-Google-Smtp-Source: ABdhPJzSJezFFJWfsrLlTbHO7wSon9UUy58X1LwrBJKlLXSZ7+3BsgnGryhpiYtiaivLvDP+5R1zPg==
+X-Received: by 2002:a05:6808:249:: with SMTP id m9mr6434303oie.170.1617288986305;
+        Thu, 01 Apr 2021 07:56:26 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v65sm1092368oib.42.2021.04.01.07.56.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Apr 2021 07:56:24 -0700 (PDT)
+Received: (nullmailer pid 409162 invoked by uid 1000);
+        Thu, 01 Apr 2021 14:56:21 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Puranjay Mohan <puranjay12@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, alexandru.ardelean@analog.com,
+        knaack.h@gmx.de, devicetree@vger.kernel.org, lars@metafoo.de,
+        jic23@kernel.org, linux-iio@vger.kernel.org
+In-Reply-To: <20210401091648.87421-2-puranjay12@gmail.com>
+References: <20210401091648.87421-1-puranjay12@gmail.com> <20210401091648.87421-2-puranjay12@gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: temperature: Add DT bindings for TMP117
+Date:   Thu, 01 Apr 2021 09:56:21 -0500
+Message-Id: <1617288981.576340.409161.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 1 Apr 2021 11:40:01 +0200
-Maxime Ripard <maxime@cerno.tech> wrote:
-
-> On Wed, Mar 31, 2021 at 06:56:15PM +0300, Ivan Uvarov wrote:
-> > The OKA40i-C is a carrier/development board for the Forlinx
-> > FETA40i-C SoM based on the Allwinner R40/A40i SoC.
-> > 
-> > This patch adds the relevant dt-binding documentation in
-> > preparation for the next patch, which adds a devicetree for the SoM
-> > and board.
-> > 
-> > Signed-off-by: Ivan Uvarov <i.uvarov@cognitivepilot.com>
-> > 
-> >  2 files changed, 8 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> > b/Documentation/devicetree/bindings/arm/sunxi.yaml index
-> > 08607c7ec1..74f8decd78 100644 ---
-> > a/Documentation/devicetree/bindings/arm/sunxi.yaml +++
-> > b/Documentation/devicetree/bindings/arm/sunxi.yaml @@ -224,6
-> > +224,12 @@ properties:
-> >            - const: empire-electronix,m712
-> >            - const: allwinner,sun5i-a13
-> >  
-> > +      - description: Forlinx OKA40i-C Development board
-> > +        items:
-> > +          - const: forlinx,oka40i-c
-> > +          - const: forlinx,feta40i-c
-> > +          - const: allwinner,sun8i-r40
-> > +
-> >        - description: FriendlyARM NanoPi A64
-> >          items:
-> >            - const: friendlyarm,nanopi-a64
-> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > b/Documentation/devicetree/bindings/vendor-prefixes.yaml index
-> > f6064d84a4..e2ea1a731e 100644 ---
-> > a/Documentation/devicetree/bindings/vendor-prefixes.yaml +++
-> > b/Documentation/devicetree/bindings/vendor-prefixes.yaml @@ -403,6
-> > +403,8 @@ patternProperties: description: Firefly
-> >    "^focaltech,.*":
-> >      description: FocalTech Systems Co.,Ltd
-> > +  "^forlinx,.*":
-> > +    description: Baoding Forlinx Embedded Technology Co., Ltd.
-> >    "^frida,.*":
-> >      description: Shenzhen Frida LCD Co., Ltd.
-> >    "^friendlyarm,.*":
-> > -- 
-> > 2.25.1  
+On Thu, 01 Apr 2021 14:46:47 +0530, Puranjay Mohan wrote:
+> Add devicetree binding document for TMP117, a digital temperature sensor.
 > 
-> This part needs to be in a separate patch too
-> 
-> Maxime
+> Signed-off-by: Puranjay Mohan <puranjay12@gmail.com>
+> ---
+>  .../bindings/iio/temperature/ti,tmp117.yaml   | 34 +++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
 > 
 
-As in, a separate patch for just the vendor prefix?
+My bot found errors running 'make dt_binding_check' on your patch:
 
---
-Regards,
-Ivan Uvarov
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/iio/temperature/ti,tmp117.example.dts:21.13-26: Warning (reg_format): /example-0/tmp117@48:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/iio/temperature/ti,tmp117.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/iio/temperature/ti,tmp117.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/iio/temperature/ti,tmp117.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/iio/temperature/ti,tmp117.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/iio/temperature/ti,tmp117.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.example.dt.yaml: example-0: tmp117@48:reg:0: [72] is too short
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+
+See https://patchwork.ozlabs.org/patch/1460920
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
