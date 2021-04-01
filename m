@@ -2,213 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 594E5351DD6
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:52:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E78D7351CBD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:47:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235668AbhDAScM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:32:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37852 "EHLO
+        id S235629AbhDASVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 14:21:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234651AbhDASVF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:21:05 -0400
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7774C02259A;
-        Thu,  1 Apr 2021 08:23:32 -0700 (PDT)
-Received: by mail-io1-xd33.google.com with SMTP id b10so2585657iot.4;
-        Thu, 01 Apr 2021 08:23:32 -0700 (PDT)
+        with ESMTP id S237098AbhDASNm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:13:42 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F4DBC02259D
+        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 08:25:16 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id c16so2149386oib.3
+        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 08:25:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vx2Zm40GpoQXIGWSyhXgEsbGdSJ2UlNy5Co5SqD5faA=;
-        b=cPACo/4g9NO8OMR7+5BrAd5ie57tOrjM7cwUv7G6r12qP6IK3RyjsYVegXy5ekvk2D
-         GPpLT+REh/4iKj0swU9PpgBkWlaUla2ZBVNri/8N8v6Y3RqCXSlrWJQ+MAIqKfr5oubv
-         38y6+mrNoY527f+1Goub7+MaF+DqLgNIo4XSquc97l7dahtFTR1s3myaTkrn292Ju7PE
-         lS/b7ukSmNa1y+XqY27eiY8E0D0ZcEes5GG1vb3ufwq4GjozuyvWazdlwWUQdwR2HXAz
-         svJsfHahHNBbIwgMyyDzOOoLiwIxWMOwUkTYdAQkbOf8xm79M9DeU3AtomQzSuW7ET0d
-         d2zA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=s7L863S6WftXFsxqZvYmVjzveQfmGvn/T8RuaDXdB8Y=;
+        b=Quy7GKECsPq78+y0j2fMJeEExk2GgslmoEZfLbEM9G2zAStbR93VF+oUHs2OByX3Vm
+         Nxke/8gDcf02HyaifYKB0a9+yjihUm9KXxgg6SfnQWepA7aXZVWTPJRjLb72rF9Gs16I
+         9o+a6Sc1j6nrNmX8fs7Kd8VpHuqIt6bEUmwHCJpmzgLxNt+RYvVODBPqm7bqHNhdBLLD
+         VQu17bH6nU6cBql7ThLXY845wcX4jGgQScssItzMaMaiJ737oNgoXSNd5XsJOaasS5yL
+         6EwjAnoBqGDMPSpDQMkzgyIRySyE8jElg6lNtNZnwavawwms28vn6xgd5sbChdmcNsgG
+         2XHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vx2Zm40GpoQXIGWSyhXgEsbGdSJ2UlNy5Co5SqD5faA=;
-        b=LnJXJ0zAAmLIyyfgDktM63TfuYKVdAX2LZE+dYNLxQCGEszQC9z1LurjHPvOOJkh2U
-         5HGO3rOQ0gSp0kEFELpQ4gfTSfk9+CCARdzYDkSrJlIPxpOMjjTHpfbPBN4amrJUMjIc
-         wcxatLHG0R8kSsbwZz41sFo6n+atdDQ+h3TrV+da7kY8cJAPm9CojNmzpHgbSO8N9YF3
-         ALKMgHULLG3+jW8BWC19mxEmHnWViHC6YDXW5cxMGAG7CWhjjDOGs+z3ui6NKa9Icsf7
-         EBVVa9reUdHWUt1EOauKlga7c+qP7GwM3OMDRPNxutVdt6xfH/sVKvWB0MhzXw5fTbZm
-         cZPA==
-X-Gm-Message-State: AOAM532ydVZYvmhZ2Jb6NlxXtIm6y51GwXxkmFVALq9gaPrlF68TEaKE
-        si8rRiwTn5KLIvsp5nRpaol2eg2fTmkpMacNiq8=
-X-Google-Smtp-Source: ABdhPJwZpj7cQXPzU+FufA5B4amLrzxDD62b8BAP9GW38X1JPaYKGXOU0i40Mj7ZBNv3Y5B3gUSqFvh+tBSfbCr5akM=
-X-Received: by 2002:a5d:9d01:: with SMTP id j1mr7105410ioj.195.1617290612006;
- Thu, 01 Apr 2021 08:23:32 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=s7L863S6WftXFsxqZvYmVjzveQfmGvn/T8RuaDXdB8Y=;
+        b=ohojGeAV53QP1w4Y2djXZNMYa6i7EM4nXy0DrqDPl+ea9yzzQJIW1HZVCIgMbIYM27
+         p+JjxWVQAM2ugIvL/323coseSWXRWKH/9gBHJ+VFXz93YyoEM2G7TPMDp5FWBm58/a+g
+         bKZfxF82xPx9kVUzbWfdBfbu5qvI+oZHAiRypqLbvQ04CodTnXkorp16jatSCH2XVCmq
+         vaQdcHptHo4iCn5kqsauVogB5FuxzA3dKqXvsKwAdX8TzfW6H/RL2FFE2oej9nr/rlbR
+         KXrCHZh2K3NzDuxvpW+UYIlGtCHiJjwdKv0tgIrPT73FqYzcgS+kDBvtLx56+xhzwSxw
+         T0Ow==
+X-Gm-Message-State: AOAM532HfU/8ENUfSweqIMStlrz9wxVL4t2whYTmVhbDKqRyQcqFryRh
+        d/DuH6+cwiXy2IOy08tWXpRbrA==
+X-Google-Smtp-Source: ABdhPJzC7iaCFKp+0pSiFTwGsaf2QZnZFDySAjw3sBt/KwdJRmPcDHJ9ke9EElJHbtdrxPuO4rnEjQ==
+X-Received: by 2002:aca:db85:: with SMTP id s127mr6238984oig.142.1617290715450;
+        Thu, 01 Apr 2021 08:25:15 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 24sm1083622oij.58.2021.04.01.08.25.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Apr 2021 08:25:15 -0700 (PDT)
+Date:   Thu, 1 Apr 2021 10:25:12 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, kgunda@codeaurora.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH V2 1/3] pinctrl: qcom: spmi-gpio: Add support for four
+ variants
+Message-ID: <20210401152512.GP904837@yoga>
+References: <1617280546-9583-1-git-send-email-skakit@codeaurora.org>
+ <1617280546-9583-2-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
-References: <20210322185816.27582-1-nsaenz@kernel.org> <20210322185816.27582-5-nsaenz@kernel.org>
- <401100ea-90ad-57b1-50da-967118a090da@i2se.com> <78dec30c052e9bb76e52c38f3da5af371e5d65f5.camel@suse.de>
- <2d2a2638-8213-5d6e-0a3a-927ed5bb2ed7@i2se.com> <c7c8e20d3d11c7d6cd203797c5faffa8a4d202a6.camel@suse.de>
-In-Reply-To: <c7c8e20d3d11c7d6cd203797c5faffa8a4d202a6.camel@suse.de>
-From:   Alan Cooper <alcooperx@gmail.com>
-Date:   Thu, 1 Apr 2021 11:23:20 -0400
-Message-ID: <CAOGqxeUxOA_s6=KUh_XWFtRF_EWZgQH_y2MEdxUeDQTYMeb+3A@mail.gmail.com>
-Subject: Re: [PATCH 4/4] ARM: dts: Fix-up EMMC2 controller's frequency
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
-        linux-rpi-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>, phil@raspberrypi.com,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        ": Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1617280546-9583-2-git-send-email-skakit@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nicolas,
+On Thu 01 Apr 07:35 CDT 2021, satya priya wrote:
 
-Sorry, I just noticed this thread.
-This is a known bug in some newer Arasan cores.
-The problem happens when the difference between the core clock and the
-bus clock is too great.
-Limiting the clock to 200KHz minimum should be a good fix.
-In my experience, it's only eMMC that needs the clock to be retried
-below 400KHz and not SD or SDIO. That's because the CMD signal for
-eMMC starts out as open-drain during identification and the size of
-the pull-up on the CMD signal can require the <400KHz clock. Once eMMC
-is out of identification mode the CMD signal is switched to push-pull
-and can run at much higher clock rates.
-I don't think that SD and SDIO have any open-drain signals, so they
-shouldn't need to retry at slower clock speeds.
-I'm trying to get more detail on the bug, like the exact ratio of core
-clock to bus clock that causes the problem. When I first found this
-bug I was told that the failure would not happen at 200KHz, but we
-were using a 405MHz core clock.
+> Add PM7325, PM8350c, PMK8350 and PMR735A compatibles for GPIO
+> support.
+> 
+> Signed-off-by: satya priya <skakit@codeaurora.org>
+> Acked-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+> Changes in V2:
+>  - No change.
+> 
+>  drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> index 9801c71..90f4f78 100644
+> --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> @@ -1131,6 +1131,10 @@ static const struct of_device_id pmic_gpio_of_match[] = {
+>  	{ .compatible = "qcom,pm6150l-gpio", .data = (void *) 12 },
+>  	/* pmx55 has 11 GPIOs with holes on 3, 7, 10, 11 */
+>  	{ .compatible = "qcom,pmx55-gpio", .data = (void *) 11 },
+> +	{ .compatible = "qcom,pm7325-gpio", .data = (void *) 10 },
+> +	{ .compatible = "qcom,pm8350c-gpio", .data = (void *) 9 },
+> +	{ .compatible = "qcom,pmk8350-gpio", .data = (void *) 4 },
 
-One other question. Why are you using polling for the SD card, this
-newer controller supports the interrupt driven "Card Inserted" signal
-and avoids wasting time polling?
+Please try to keep the list sorted alphabetically, that way you'd see
+that linux-next already has pm8350c and pmk8350 defined - or at least
+Linus would notice when he tries to apply your patch.
 
-Al
+Regards,
+Bjorn
 
-
-On Fri, Mar 26, 2021 at 12:17 PM Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
->
-> On Thu, 2021-03-25 at 20:11 +0100, Stefan Wahren wrote:
-> > Am 24.03.21 um 16:34 schrieb Nicolas Saenz Julienne:
-> > > Hi Stefan,
-> > >
-> > > On Wed, 2021-03-24 at 16:16 +0100, Stefan Wahren wrote:
-> > > > Hi Nicolas,
-> > > >
-> > > > Am 22.03.21 um 19:58 schrieb Nicolas Saenz Julienne:
-> > > > > From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> > > > >
-> > > > > Force emmc2's frequency to 150MHz as the default 100MHz (set by FW)
-> > > > > seems to interfere with the VPU clock when setup at frequencies bigger
-> > > > > than 500MHz (a pretty common case). This ends up causing unwarranted
-> > > > > SDHCI CMD hangs  when no SD card is present.
-> > > > >
-> > > > > Signed-off-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
-> > > > > ---
-> > > > >  arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 6 ++++++
-> > > > >  1 file changed, 6 insertions(+)
-> > > > >
-> > > > > diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-> > > > > index 3b4ab947492a..9aa8408d9960 100644
-> > > > > --- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-> > > > > +++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-> > > > > @@ -257,6 +257,12 @@ &emmc2 {
-> > > > >         vqmmc-supply = <&sd_io_1v8_reg>;
-> > > > >         vmmc-supply = <&sd_vcc_reg>;
-> > > > >         broken-cd;
-> > > > > +       /*
-> > > > > +        * Force the frequency to 150MHz as the default 100MHz seems to
-> > > > > +        * interfere with the VPU clock when setup at frequencies bigger than
-> > > > > +        * 500MHz, causing unwarranted CMD hangs.
-> > > > > +        */
-> > > > > +       clock-frequency = <150000000>;
-> > > > i don't want to bike-shed here, but is there any chance to solve this in
-> > > > clk-bcm2835 in a less hacky way?
-> > > What do you have in mind?
-> > Sorry, nothing specific.
-> > >
-> > > All I can think of is adding some kind of heuristic to the clock's prepare()
-> > > callback. That said, I don't feel it would be a better solution than this.
-> >
-> > Based on my limited knowledge and an old SD card specification, all
-> > possibly connected devices could have different frequencies. So my
-> > concern here is, that in case we limit the frequency to a specific value
-> > we could break things just to suppress a warning.
->
-> SDHCI should be able to handle up to 233MHz IIRC, and there are divisors
-> available, it depends on the implementation but the worst kind provide /2^n.
-> Not perfect, but good enough for things to work.
->
-> Now, I've been having a deeper look into how clocks are handled, and found two
-> new clues:
->
->  - First of all RPi4's sdhci-iproc needs SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN,
->    that is, the controller isn't properly identifying the clock frequency fed
->    into it, and defaults to saying it's configured at 100MHz. I'm not an SDHCI
->    expert, so it's possible changing frequencies also needs a special operation
->    to recalculate this variable. But this was making all internal calculations
->    wrong when paired with this series.
->
->  - With this flag set SDHCI's core now properly calculates divisor values based
->    on whatever clock frequency I set in DT. And guess what, the issue reappears
->    even when running on 150MHz. It turns out, as I had some debugging enabled,
->    the issue only happens when the controller is configured at 100KHz (that
->    only happens while running the card detect thread).
->
-> So, I can now do this (note that for card detection try to communicate with the
-> card starting at 400KHz down to 100KHz in 100KHz steps):
->
-> ----->8-----
->
-> diff --git a/drivers/mmc/host/sdhci-iproc.c b/drivers/mmc/host/sdhci-iproc.c
-> index 536c382e2486..e5a5de63f347 100644
-> --- a/drivers/mmc/host/sdhci-iproc.c
-> +++ b/drivers/mmc/host/sdhci-iproc.c
-> @@ -173,6 +173,11 @@ static unsigned int sdhci_iproc_get_max_clock(struct sdhci_host *host)
->                 return pltfm_host->clock;
->  }
->
-> +static unsigned int sdhci_iproc_bcm2711_get_min_clock(struct sdhci_host *host)
-> +{
-> +       return 200000;
-> +}
-> +
->  static const struct sdhci_ops sdhci_iproc_ops = {
->         .set_clock = sdhci_set_clock,
->         .get_max_clock = sdhci_iproc_get_max_clock,
-> @@ -271,13 +276,15 @@ static const struct sdhci_ops sdhci_iproc_bcm2711_ops = {
->         .set_clock = sdhci_set_clock,
->         .set_power = sdhci_set_power_and_bus_voltage,
->         .get_max_clock = sdhci_iproc_get_max_clock,
-> +       .get_min_clock = sdhci_iproc_bcm2711_get_min_clock,
->         .set_bus_width = sdhci_set_bus_width,
->         .reset = sdhci_reset,
->         .set_uhs_signaling = sdhci_set_uhs_signaling,
+> +	{ .compatible = "qcom,pmr735a-gpio", .data = (void *) 4 },
+>  	{ },
 >  };
->
-> ----->8-----
->
->  Which is rather nicer than what this series introduces. But I can't still
->  explain why configuring the controller at 100KHz is causing the hangs (while
->  having the core clock setup at 500MHz), and I'm not sure if excluding 100KHz
->  from the polling frequency list is going to break support for older SD cards.
->
->  Regards,
->  Nicolas
->
->
+>  
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
