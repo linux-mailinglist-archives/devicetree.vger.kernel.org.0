@@ -2,110 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E78D7351CBD
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:47:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C268351CD1
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:47:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235629AbhDASVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:21:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37144 "EHLO
+        id S236412AbhDASVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 14:21:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237098AbhDASNm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:13:42 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F4DBC02259D
-        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 08:25:16 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id c16so2149386oib.3
-        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 08:25:16 -0700 (PDT)
+        with ESMTP id S236927AbhDASSk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:18:40 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3A67C02D553
+        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 08:48:16 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id v11so2281101wro.7
+        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 08:48:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=s7L863S6WftXFsxqZvYmVjzveQfmGvn/T8RuaDXdB8Y=;
-        b=Quy7GKECsPq78+y0j2fMJeEExk2GgslmoEZfLbEM9G2zAStbR93VF+oUHs2OByX3Vm
-         Nxke/8gDcf02HyaifYKB0a9+yjihUm9KXxgg6SfnQWepA7aXZVWTPJRjLb72rF9Gs16I
-         9o+a6Sc1j6nrNmX8fs7Kd8VpHuqIt6bEUmwHCJpmzgLxNt+RYvVODBPqm7bqHNhdBLLD
-         VQu17bH6nU6cBql7ThLXY845wcX4jGgQScssItzMaMaiJ737oNgoXSNd5XsJOaasS5yL
-         6EwjAnoBqGDMPSpDQMkzgyIRySyE8jElg6lNtNZnwavawwms28vn6xgd5sbChdmcNsgG
-         2XHA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=eQXI58zAvM15zhWnJhtaneb3Z5TB5viNxz6ThN07yYo=;
+        b=qa6RtSxJehdNDHEbtRQDoG4EjnNvOV+ZM3UIaISDIGaRWAvE0zgsBdS4zmi/EHd+7d
+         vI1+IG+eKz3jFoYzdABhdk1UQJ3v0kYL7my4xBC6Ew0NzGfcDAq1gHJOp/gNfS0A0cOc
+         0nfxHbHzpZ3E3Z1puZpD8a81zWNDrJknkp5TcRFikilIV4KAWo2PzdaD829hl1i0b27S
+         dpeLZA6sLK22L/cdQg646NJpv/pOjmCMMGY9IAabcxPBIKMd+o3CvmqOUybrGArngNiN
+         6nRmFjJ9Bp1J0f0iZOiYm/qyXM3gAC7ME2d5CWoLxl4G3hSU9rU8piaWw2rFDj90/PNJ
+         VQrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=s7L863S6WftXFsxqZvYmVjzveQfmGvn/T8RuaDXdB8Y=;
-        b=ohojGeAV53QP1w4Y2djXZNMYa6i7EM4nXy0DrqDPl+ea9yzzQJIW1HZVCIgMbIYM27
-         p+JjxWVQAM2ugIvL/323coseSWXRWKH/9gBHJ+VFXz93YyoEM2G7TPMDp5FWBm58/a+g
-         bKZfxF82xPx9kVUzbWfdBfbu5qvI+oZHAiRypqLbvQ04CodTnXkorp16jatSCH2XVCmq
-         vaQdcHptHo4iCn5kqsauVogB5FuxzA3dKqXvsKwAdX8TzfW6H/RL2FFE2oej9nr/rlbR
-         KXrCHZh2K3NzDuxvpW+UYIlGtCHiJjwdKv0tgIrPT73FqYzcgS+kDBvtLx56+xhzwSxw
-         T0Ow==
-X-Gm-Message-State: AOAM532HfU/8ENUfSweqIMStlrz9wxVL4t2whYTmVhbDKqRyQcqFryRh
-        d/DuH6+cwiXy2IOy08tWXpRbrA==
-X-Google-Smtp-Source: ABdhPJzC7iaCFKp+0pSiFTwGsaf2QZnZFDySAjw3sBt/KwdJRmPcDHJ9ke9EElJHbtdrxPuO4rnEjQ==
-X-Received: by 2002:aca:db85:: with SMTP id s127mr6238984oig.142.1617290715450;
-        Thu, 01 Apr 2021 08:25:15 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 24sm1083622oij.58.2021.04.01.08.25.14
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=eQXI58zAvM15zhWnJhtaneb3Z5TB5viNxz6ThN07yYo=;
+        b=Af9n2xCvCk6wtTpbcaY6UoCMsEoL5kThY9uZMh3lCDg2bAU+OeUIkI6MJPDNVOxvsc
+         qYM5J2jvxsdlNNwQV0dP8rg/Yh1HuEHc+eMGgZntwsPydigOrY2Sczt5HUPoNPpImYJi
+         2OZ1EbTQVs/aa8lgKG/pD/jtbm7Mpyx0uhd7pJzNlGLALA826YB/+qbEIkr6bxpNU0hI
+         dQaWdiCREJtLX66aQBmIDPrzRe04tvI2zLe4+RhgDIXakKoq6DWvnF2qcwFhVjMHb0xU
+         bHOXgj15JhOnRQrK06LQYUWVTebQvxzpbbPrTLsZBKM1p9nLCSu+wefu/R11hWCTyAqO
+         xlag==
+X-Gm-Message-State: AOAM5317jqUT6ljnDia6o5Uv8qnoW2C4vL5HzIsfCDZFd4PLGCKjBj/6
+        0XM60rtojfCjnQ9IkpHrRcu/JQ==
+X-Google-Smtp-Source: ABdhPJwaZfUexbQcEF/4acyTvCXSYeM92XQ1EEDNpmG5V7T4wXNFsmzkO4N4IY6aRHJTe4JNVNkWtA==
+X-Received: by 2002:adf:8151:: with SMTP id 75mr10543223wrm.152.1617292095498;
+        Thu, 01 Apr 2021 08:48:15 -0700 (PDT)
+Received: from localhost.localdomain ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
+        by smtp.gmail.com with ESMTPSA id y8sm8722505wmi.46.2021.04.01.08.48.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 08:25:15 -0700 (PDT)
-Date:   Thu, 1 Apr 2021 10:25:12 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, kgunda@codeaurora.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH V2 1/3] pinctrl: qcom: spmi-gpio: Add support for four
- variants
-Message-ID: <20210401152512.GP904837@yoga>
-References: <1617280546-9583-1-git-send-email-skakit@codeaurora.org>
- <1617280546-9583-2-git-send-email-skakit@codeaurora.org>
+        Thu, 01 Apr 2021 08:48:14 -0700 (PDT)
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     joro@8bytes.org, will@kernel.org
+Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
+        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
+        eric.auger@redhat.com, iommu@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
+        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
+        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
+        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
+        zhukeqian1@huawei.com, wangzhou1@hisilicon.com,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Subject: [PATCH v14 02/10] iommu/arm-smmu-v3: Use device properties for pasid-num-bits
+Date:   Thu,  1 Apr 2021 17:47:11 +0200
+Message-Id: <20210401154718.307519-3-jean-philippe@linaro.org>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210401154718.307519-1-jean-philippe@linaro.org>
+References: <20210401154718.307519-1-jean-philippe@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1617280546-9583-2-git-send-email-skakit@codeaurora.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 01 Apr 07:35 CDT 2021, satya priya wrote:
+The pasid-num-bits property shouldn't need a dedicated fwspec field,
+it's a job for device properties. Add properties for IORT, and access
+the number of PASID bits using device_property_read_u32().
 
-> Add PM7325, PM8350c, PMK8350 and PMR735A compatibles for GPIO
-> support.
-> 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> Acked-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
-> Changes in V2:
->  - No change.
-> 
->  drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> index 9801c71..90f4f78 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> @@ -1131,6 +1131,10 @@ static const struct of_device_id pmic_gpio_of_match[] = {
->  	{ .compatible = "qcom,pm6150l-gpio", .data = (void *) 12 },
->  	/* pmx55 has 11 GPIOs with holes on 3, 7, 10, 11 */
->  	{ .compatible = "qcom,pmx55-gpio", .data = (void *) 11 },
-> +	{ .compatible = "qcom,pm7325-gpio", .data = (void *) 10 },
-> +	{ .compatible = "qcom,pm8350c-gpio", .data = (void *) 9 },
-> +	{ .compatible = "qcom,pmk8350-gpio", .data = (void *) 4 },
+Suggested-by: Robin Murphy <robin.murphy@arm.com>
+Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Acked-by: Will Deacon <will@kernel.org>
+Reviewed-by: Eric Auger <eric.auger@redhat.com>
+Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+---
+ include/linux/iommu.h                       |  2 --
+ drivers/acpi/arm64/iort.c                   | 13 +++++++------
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c |  3 ++-
+ drivers/iommu/of_iommu.c                    |  5 -----
+ 4 files changed, 9 insertions(+), 14 deletions(-)
 
-Please try to keep the list sorted alphabetically, that way you'd see
-that linux-next already has pm8350c and pmk8350 defined - or at least
-Linus would notice when he tries to apply your patch.
+diff --git a/include/linux/iommu.h b/include/linux/iommu.h
+index 1d422bf722a1..16ce75693d83 100644
+--- a/include/linux/iommu.h
++++ b/include/linux/iommu.h
+@@ -572,7 +572,6 @@ struct iommu_group *fsl_mc_device_group(struct device *dev);
+  * @ops: ops for this device's IOMMU
+  * @iommu_fwnode: firmware handle for this device's IOMMU
+  * @flags: IOMMU_FWSPEC_* flags
+- * @num_pasid_bits: number of PASID bits supported by this device
+  * @num_ids: number of associated device IDs
+  * @ids: IDs which this device may present to the IOMMU
+  */
+@@ -580,7 +579,6 @@ struct iommu_fwspec {
+ 	const struct iommu_ops	*ops;
+ 	struct fwnode_handle	*iommu_fwnode;
+ 	u32			flags;
+-	u32			num_pasid_bits;
+ 	unsigned int		num_ids;
+ 	u32			ids[];
+ };
+diff --git a/drivers/acpi/arm64/iort.c b/drivers/acpi/arm64/iort.c
+index 2494138a6905..3912a1f6058e 100644
+--- a/drivers/acpi/arm64/iort.c
++++ b/drivers/acpi/arm64/iort.c
+@@ -968,15 +968,16 @@ static int iort_pci_iommu_init(struct pci_dev *pdev, u16 alias, void *data)
+ static void iort_named_component_init(struct device *dev,
+ 				      struct acpi_iort_node *node)
+ {
++	struct property_entry props[2] = {};
+ 	struct acpi_iort_named_component *nc;
+-	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
+-
+-	if (!fwspec)
+-		return;
+ 
+ 	nc = (struct acpi_iort_named_component *)node->node_data;
+-	fwspec->num_pasid_bits = FIELD_GET(ACPI_IORT_NC_PASID_BITS,
+-					   nc->node_flags);
++	props[0] = PROPERTY_ENTRY_U32("pasid-num-bits",
++				      FIELD_GET(ACPI_IORT_NC_PASID_BITS,
++						nc->node_flags));
++
++	if (device_add_properties(dev, props))
++		dev_warn(dev, "Could not add device properties\n");
+ }
+ 
+ static int iort_nc_iommu_map(struct device *dev, struct acpi_iort_node *node)
+diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+index 941ba5484731..bd77495023c8 100644
+--- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
++++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+@@ -2395,7 +2395,8 @@ static struct iommu_device *arm_smmu_probe_device(struct device *dev)
+ 		}
+ 	}
+ 
+-	master->ssid_bits = min(smmu->ssid_bits, fwspec->num_pasid_bits);
++	device_property_read_u32(dev, "pasid-num-bits", &master->ssid_bits);
++	master->ssid_bits = min(smmu->ssid_bits, master->ssid_bits);
+ 
+ 	/*
+ 	 * Note that PASID must be enabled before, and disabled after ATS:
+diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+index e505b9130a1c..a9d2df001149 100644
+--- a/drivers/iommu/of_iommu.c
++++ b/drivers/iommu/of_iommu.c
+@@ -210,11 +210,6 @@ const struct iommu_ops *of_iommu_configure(struct device *dev,
+ 					     of_pci_iommu_init, &info);
+ 	} else {
+ 		err = of_iommu_configure_device(master_np, dev, id);
+-
+-		fwspec = dev_iommu_fwspec_get(dev);
+-		if (!err && fwspec)
+-			of_property_read_u32(master_np, "pasid-num-bits",
+-					     &fwspec->num_pasid_bits);
+ 	}
+ 
+ 	/*
+-- 
+2.31.1
 
-Regards,
-Bjorn
-
-> +	{ .compatible = "qcom,pmr735a-gpio", .data = (void *) 4 },
->  	{ },
->  };
->  
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
