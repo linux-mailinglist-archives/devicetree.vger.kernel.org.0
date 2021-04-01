@@ -2,95 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05E9E351CD3
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:47:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 151EC351E88
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:55:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235176AbhDASVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:21:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38244 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237142AbhDASSs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:18:48 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3EE9C0045EA;
-        Thu,  1 Apr 2021 07:43:50 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id w3so3264428ejc.4;
-        Thu, 01 Apr 2021 07:43:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=RKzjLcplK3Qj6N++ugVsRlEJA8YUUn4W3Fexo0s7VWk=;
-        b=Yx8aJJF9roXhjRvDam2PZ/yiaGQfqO6XO6xisEn4pmEJrBCqSuW73+eIrydZ8+7iwJ
-         0Xt6ZBC77PaQOMtj4201lxCmu4wX/dkuj/RVa1r9XkwWmiRQb6dDdjmKsSQbv+vhRbPx
-         u+dMeYQZJW7ZhTvkhNs+vIBwagNotIf8JBLoxszWk8De+6QZjAP8C6RE4vgaOtm3f7Y7
-         Ht+vr4bDq4zY16YByGONEw2LshCyJbFte7VvJjH4on84mLfs3NRKmcU6be1j6clerxf2
-         ReXUEyf+PGGKQ4JcBruu2oQMLxw6Rtm/+5TX4V8pdtTbTApFFhkUb38ZpCbFZPyCNd/k
-         /U3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=RKzjLcplK3Qj6N++ugVsRlEJA8YUUn4W3Fexo0s7VWk=;
-        b=kFgPY31HYmO1vtuMSqoscZVtlw5fcAzCU7/Pcy/0bZWBpzUBi5mP/fQ0zMn+JMyLwE
-         gm/wWPAlDLxn621bsQntbHl2ZF1x3rygbFadHPXo8VOE6PlmSdaxpKY9oXynmtISJVl3
-         UNjxYtS7JP5rJoEl5hJXcbDlzOEfsVgoyNk1Eli97+dEW/RYOkqk3lRFNFLY9/OHr9ZK
-         JD9KYSmpZnlNtGpHYytzRZQZUmhjcnTiVyOtUoAxuyaLTDNO+DY6cDJoIcIdkKJqDOyp
-         1FjqHFeEBKH++5EjzAGPZhXYIWTkAjEEidvX0usC0d2025/0L8QYlGIitBn/aIRiS96k
-         fsXw==
-X-Gm-Message-State: AOAM531+AGZjLbnw5zfyZkZRuh7LpqTyHtHHgswUoSrNaTIBsShvR2B+
-        QhF94lddaibfjm/T3jK8dsE=
-X-Google-Smtp-Source: ABdhPJzZowtT7P8Uk03UXsaDI9qXGEjJgDB6omDUiNF5Lwe4cohmebQyyy0VbSRa7O5DF0gjk8/Vyw==
-X-Received: by 2002:a17:907:7785:: with SMTP id ky5mr9157045ejc.133.1617288229379;
-        Thu, 01 Apr 2021 07:43:49 -0700 (PDT)
-Received: from arch-x1c3.. (cpc92308-cmbg19-2-0-cust99.5-4.cable.virginm.net. [82.24.248.100])
-        by smtp.gmail.com with ESMTPSA id nd36sm2854950ejc.21.2021.04.01.07.43.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 07:43:48 -0700 (PDT)
-From:   Emil Velikov <emil.l.velikov@gmail.com>
-To:     kernel@collabora.com, Ezequiel Garcia <ezequiel@collabora.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org
-Cc:     emil.l.velikov@gmail.com
-Subject: [PATCH v4 4/9] media: hantro: imx: remove unused include
-Date:   Thu,  1 Apr 2021 15:43:31 +0100
-Message-Id: <20210401144336.2495479-5-emil.l.velikov@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210401144336.2495479-1-emil.l.velikov@gmail.com>
-References: <20210401144336.2495479-1-emil.l.velikov@gmail.com>
+        id S236838AbhDASnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 14:43:08 -0400
+Received: from mail.cognitivepilot.com ([91.218.251.140]:30620 "EHLO
+        mail.cognitivepilot.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238212AbhDASef (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:34:35 -0400
+Received: from mail.cognitivepilot.com (localhost [127.0.0.1])
+        by mail.cognitivepilot.com (Postfix) with ESMTP id 4FB5pL6XWbznf7qy
+        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 17:55:38 +0300 (MSK)
+X-Virus-Scanned: amavisd-new at cognitivepilot.com
+X-Spam-Flag: NO
+X-Spam-Score: 5.346
+X-Spam-Level: *****
+X-Spam-Status: No, score=5.346 tagged_above=2 required=6.2
+        tests=[FSL_HELO_NON_FQDN_1=0.001, HELO_NO_DOMAIN=3.099,
+        RDNS_NONE=1.274, SPF_SOFTFAIL=0.972] autolearn=no autolearn_force=no
+Received: from mail.cognitivepilot.com ([127.0.0.1])
+        by mail.cognitivepilot.com (mail.cognitivepilot.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 4GrTIx2me4-I for <devicetree@vger.kernel.org>;
+        Thu,  1 Apr 2021 17:55:38 +0300 (MSK)
+Received: from NervousEnergy (unknown [185.68.147.27])
+        by mail.cognitivepilot.com (Postfix) with ESMTPS id 4FB5pK6lfJznWZSK;
+        Thu,  1 Apr 2021 17:55:37 +0300 (MSK)
+Date:   Thu, 1 Apr 2021 17:55:37 +0300
+From:   Ivan Uvarov <i.uvarov@cognitivepilot.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Andre Przywara <andre.przywara@arm.com>,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: Re: [PATCH v3 3/4] dt-bindings: arm: add compatible strings for
+ Forlinx OKA40i-C
+Message-ID: <20210401175420.39b75553@NervousEnergy>
+In-Reply-To: <20210401094001.sh3nvkj5psbdcig5@gilmour>
+References: <20210331155616.793550-1-i.uvarov@cognitivepilot.com>
+        <20210331155616.793550-4-i.uvarov@cognitivepilot.com>
+        <20210401094001.sh3nvkj5psbdcig5@gilmour>
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Emil Velikov <emil.velikov@collabora.com>
+On Thu, 1 Apr 2021 11:40:01 +0200
+Maxime Ripard <maxime@cerno.tech> wrote:
 
-The current imx8 code does not use the jpeg encoder. Remove the
-unnecessary include.
+> On Wed, Mar 31, 2021 at 06:56:15PM +0300, Ivan Uvarov wrote:
+> > The OKA40i-C is a carrier/development board for the Forlinx
+> > FETA40i-C SoM based on the Allwinner R40/A40i SoC.
+> > 
+> > This patch adds the relevant dt-binding documentation in
+> > preparation for the next patch, which adds a devicetree for the SoM
+> > and board.
+> > 
+> > Signed-off-by: Ivan Uvarov <i.uvarov@cognitivepilot.com>
+> > 
+> >  2 files changed, 8 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > b/Documentation/devicetree/bindings/arm/sunxi.yaml index
+> > 08607c7ec1..74f8decd78 100644 ---
+> > a/Documentation/devicetree/bindings/arm/sunxi.yaml +++
+> > b/Documentation/devicetree/bindings/arm/sunxi.yaml @@ -224,6
+> > +224,12 @@ properties:
+> >            - const: empire-electronix,m712
+> >            - const: allwinner,sun5i-a13
+> >  
+> > +      - description: Forlinx OKA40i-C Development board
+> > +        items:
+> > +          - const: forlinx,oka40i-c
+> > +          - const: forlinx,feta40i-c
+> > +          - const: allwinner,sun8i-r40
+> > +
+> >        - description: FriendlyARM NanoPi A64
+> >          items:
+> >            - const: friendlyarm,nanopi-a64
+> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > b/Documentation/devicetree/bindings/vendor-prefixes.yaml index
+> > f6064d84a4..e2ea1a731e 100644 ---
+> > a/Documentation/devicetree/bindings/vendor-prefixes.yaml +++
+> > b/Documentation/devicetree/bindings/vendor-prefixes.yaml @@ -403,6
+> > +403,8 @@ patternProperties: description: Firefly
+> >    "^focaltech,.*":
+> >      description: FocalTech Systems Co.,Ltd
+> > +  "^forlinx,.*":
+> > +    description: Baoding Forlinx Embedded Technology Co., Ltd.
+> >    "^frida,.*":
+> >      description: Shenzhen Frida LCD Co., Ltd.
+> >    "^friendlyarm,.*":
+> > -- 
+> > 2.25.1  
+> 
+> This part needs to be in a separate patch too
+> 
+> Maxime
+> 
 
-Fixes: 8e4aaa687863 ("media: hantro: add initial i.MX8MQ support")
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-Reviewed-by: Ezequiel Garcia <ezequiel@collabora.com>
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-Signed-off-by: Emil Velikov <emil.velikov@collabora.com>
----
- drivers/staging/media/hantro/imx8m_vpu_hw.c | 1 -
- 1 file changed, 1 deletion(-)
+As in, a separate patch for just the vendor prefix?
 
-diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-index cb1ac02c03d2..f36c1bd681ba 100644
---- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
-+++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-@@ -9,7 +9,6 @@
- #include <linux/delay.h>
- 
- #include "hantro.h"
--#include "hantro_jpeg.h"
- #include "hantro_g1_regs.h"
- 
- #define CTRL_SOFT_RESET		0x00
--- 
-2.31.1
-
+--
+Regards,
+Ivan Uvarov
