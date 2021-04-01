@@ -2,132 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 746EF3517E7
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 19:47:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 925353518C7
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 19:49:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235609AbhDARnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 13:43:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57128 "EHLO
+        id S235154AbhDARrh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 13:47:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234640AbhDARik (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:38:40 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85F1CC02FE93;
-        Thu,  1 Apr 2021 09:00:38 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: benjamin.gaignard)
-        with ESMTPSA id 8220F1F46899
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To:     ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, lee.jones@linaro.org,
-        gregkh@linuxfoundation.org, mripard@kernel.org,
-        paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
-        emil.l.velikov@gmail.com
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
-        kernel@collabora.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: [PATCH v8 13/13] arm64: dts: imx8mq: Add node to G2 hardware
-Date:   Thu,  1 Apr 2021 18:00:03 +0200
-Message-Id: <20210401160003.88803-14-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210401160003.88803-1-benjamin.gaignard@collabora.com>
-References: <20210401160003.88803-1-benjamin.gaignard@collabora.com>
+        with ESMTP id S234912AbhDARlR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:41:17 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C03C4C02FEBC;
+        Thu,  1 Apr 2021 09:35:03 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id m13so2325363oiw.13;
+        Thu, 01 Apr 2021 09:35:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=KlUEVAQWKKMC6WmrOaozIA/WbDO/aRHlhtO4HdU7p0w=;
+        b=M8tuLRWagF/8GymxZmiiXXjNIqPhnsghw8OHR2tWDGzLJFDpCZXc44w62u7iyGlJwm
+         gAXrzmAHNKT+6lvSxhlr9rETiY7XQmPjtz1nje89XqFmHP1Amc26TBvATCYRiOb2E8xE
+         K7k3gNmGBNGZ+fG4MQwiNkaL0vetrt2lKd4LmMAHbTMv4IB8gy7eMP5HQZJrV2YBGHXK
+         4Q8rGozSNYXMOp/9MtbU+fmkoR8WLwsQCKvzKS4joQ9efqgSK+5sW2M98/x10uiDIFco
+         WNIFQNGCrPcAA2TU9i3k2hd9qok8E3gw747JBwIBZ1snXQTofI4HPmvEA3PpxLMv3XiU
+         mN7w==
+X-Gm-Message-State: AOAM5305LlDiufJwYozggLUHKMM/0xoiCQwZItz/s+Y0aQdSe82Ab2Or
+        fBKfcpY5egbpwwcqpTN/a3zGq/DV8w==
+X-Google-Smtp-Source: ABdhPJyscx428vC89YJUwIC9VUFcDOGdaUAcQCoOrObtzB8inxUwOmB3G6LXHPVe8CUV4A3IC5z/cQ==
+X-Received: by 2002:aca:1302:: with SMTP id e2mr6462641oii.170.1617294901664;
+        Thu, 01 Apr 2021 09:35:01 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id x20sm1111662oiv.35.2021.04.01.09.35.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Apr 2021 09:35:01 -0700 (PDT)
+Received: (nullmailer pid 567808 invoked by uid 1000);
+        Thu, 01 Apr 2021 16:35:00 -0000
+Date:   Thu, 1 Apr 2021 11:35:00 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, stanimir.varbanov@linaro.org,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: media: venus: Add sm8250 dt schema
+Message-ID: <20210401163500.GA567497@robh.at.kernel.org>
+References: <20210215160254.1572615-1-bryan.odonoghue@linaro.org>
+ <20210215160254.1572615-3-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210215160254.1572615-3-bryan.odonoghue@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Split VPU node in two: one for G1 and one for G2 since they are
-different hardware blocks.
-Add syscon for hardware control block.
-Remove reg-names property that is useless.
-Each VPU node only need one interrupt.
-Change G2 assigned clock to match to the specifications.
-In the both nodes all the clocks need to assigned to make
-sure that control block will be correctly clocked even if
-only one device node is enabled.
+On Mon, 15 Feb 2021 16:02:54 +0000, Bryan O'Donoghue wrote:
+> Add a schema description for the venus video encoder/decoder on the sm8250.
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  .../bindings/media/qcom,sm8250-venus.yaml     | 167 ++++++++++++++++++
+>  1 file changed, 167 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
+> 
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
----
-version 7:
- - use nxp,imx8m-vpu-ctrl as phandle syscon property name
-
-version 5:
- - use syscon instead of VPU reset
-
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 43 ++++++++++++++++++-----
- 1 file changed, 34 insertions(+), 9 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 17c449e12c2e..65158414d255 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -1329,15 +1329,16 @@ usb3_phy1: usb-phy@382f0040 {
- 			status = "disabled";
- 		};
- 
--		vpu: video-codec@38300000 {
-+		vpu_ctrl: syscon@38320000 {
-+			compatible = "nxp,imx8mq-vpu-ctrl", "syscon";
-+			reg = <0x38320000 0x10000>;
-+		};
-+
-+		vpu_g1: video-codec@38300000 {
- 			compatible = "nxp,imx8mq-vpu";
--			reg = <0x38300000 0x10000>,
--			      <0x38310000 0x10000>,
--			      <0x38320000 0x10000>;
--			reg-names = "g1", "g2", "ctrl";
--			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "g1", "g2";
-+			reg = <0x38300000 0x10000>;
-+			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "g1";
- 			clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
- 				 <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
- 				 <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
-@@ -1350,9 +1351,33 @@ vpu: video-codec@38300000 {
- 						 <&clk IMX8MQ_VPU_PLL_OUT>,
- 						 <&clk IMX8MQ_SYS1_PLL_800M>,
- 						 <&clk IMX8MQ_VPU_PLL>;
--			assigned-clock-rates = <600000000>, <600000000>,
-+			assigned-clock-rates = <600000000>, <300000000>,
-+					       <800000000>, <0>;
-+			power-domains = <&pgc_vpu>;
-+			nxp,imx8m-vpu-ctrl = <&vpu_ctrl>;
-+		};
-+
-+		vpu_g2: video-codec@38310000 {
-+			compatible = "nxp,imx8mq-vpu-g2";
-+			reg = <0x38310000 0x10000>;
-+			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "g2";
-+			clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
-+				 <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
-+				 <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
-+			clock-names = "g1", "g2",  "bus";
-+			assigned-clocks = <&clk IMX8MQ_CLK_VPU_G1>,
-+					  <&clk IMX8MQ_CLK_VPU_G2>,
-+					  <&clk IMX8MQ_CLK_VPU_BUS>,
-+					  <&clk IMX8MQ_VPU_PLL_BYPASS>;
-+			assigned-clock-parents = <&clk IMX8MQ_VPU_PLL_OUT>,
-+						 <&clk IMX8MQ_VPU_PLL_OUT>,
-+						 <&clk IMX8MQ_SYS1_PLL_800M>,
-+						 <&clk IMX8MQ_VPU_PLL>;
-+			assigned-clock-rates = <600000000>, <300000000>,
- 					       <800000000>, <0>;
- 			power-domains = <&pgc_vpu>;
-+			nxp,imx8m-vpu-ctrl = <&vpu_ctrl>;
- 		};
- 
- 		pcie0: pcie@33800000 {
--- 
-2.25.1
-
+Applied, thanks!
