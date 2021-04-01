@@ -2,97 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D646535128B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 11:41:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7557035128E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 11:44:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233760AbhDAJkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 05:40:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40616 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233527AbhDAJkq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 05:40:46 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D89E9C0613E6;
-        Thu,  1 Apr 2021 02:40:45 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a7so1930748ejs.3;
-        Thu, 01 Apr 2021 02:40:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=fZmQYEP/6uDQvDVxt6cb6vxDGnrh+P52fxUkAoEa5gA=;
-        b=hKPb3zzQUgcTpcda46PTiWKjDSRgecNDjjezIGnmdNnx5QKvZYeO7dLttj1qEpFKrI
-         TU6QjzuAlATJDXpUvmCESIhYm8I1jt+DNaZceLnykSGmZ+u62trnCkJROoxtC5/QtrUm
-         vEv6h6ac1n/5PTnx/lfwiHmCtV2RVkSqQLKEzyOhgU98xCyhOnjDluqOGJG2ZwFSMQPX
-         ePtFowu6uH/FpqMyvX7tCR0xRiIXmCqomw/AcV1SRGSCqZMpyd3Cxmq54m7Hz4BEn8Rf
-         RIr/iiG5uj/xFU1elx3S7eSezsUFSxROi4cEq1syeVb1dqRC7m61YcafQDrEtfXxs9uq
-         8Uow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=fZmQYEP/6uDQvDVxt6cb6vxDGnrh+P52fxUkAoEa5gA=;
-        b=Ma9O3lVLtlHDnK3gvkNxHs1OtBMcNwp2kS2dHaBGb1vnuTBs6yUsNqBoxU4gegreFz
-         x4SdtjCVBxTSb6CL2d7ov7Fg4Ig0NzvdjR5+czg8ouVXN0NZZkKWo5HhjB/fY0QCre2W
-         qNn8TUdZGa3Z/m9g5Ehegf5zPxfcgswOCLE9ZrQDytSNAK4MmgS+FyCLMOf1Oakt2j10
-         j6kQyxAgWOYYh0SIevgpBQ2yr8Arznoxeho39WUSugYtQZVD8yozDg8097sC5s7Uq7iy
-         +C8sNNMBEmyzYGqeRWo5hn55E5Ireiuj9+TmKHba/9OqAWo5OqP40txTgrpNSLh1HP+U
-         VCtA==
-X-Gm-Message-State: AOAM5311Lae+rEO56EZGMSyA21fuUMOQwMgcs09yhSIY8JAHXW3bXSAf
-        Mw2Qeba60NJnWhPbO7dm9BZVIcozCyM=
-X-Google-Smtp-Source: ABdhPJwu/Ydwj7Y2X33MOvvJpAkNpoja+icLlUKmfRFSjO9Ewbe9R3XUf8mdIn/tuQuRwZMlKrO/GA==
-X-Received: by 2002:a17:906:801:: with SMTP id e1mr7933219ejd.465.1617270044613;
-        Thu, 01 Apr 2021 02:40:44 -0700 (PDT)
-Received: from BV030612LT ([188.24.140.160])
-        by smtp.gmail.com with ESMTPSA id jj15sm2525032ejc.99.2021.04.01.02.40.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 02:40:44 -0700 (PDT)
-Date:   Thu, 1 Apr 2021 12:40:41 +0300
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/6] Add support for Actions Semi Owl socinfo
-Message-ID: <20210401094041.GA1993499@BV030612LT>
-References: <cover.1617110420.git.cristian.ciocaltea@gmail.com>
- <20210401052438.GB14052@work>
+        id S233616AbhDAJn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 05:43:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56794 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230284AbhDAJnG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Apr 2021 05:43:06 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8958560FE8;
+        Thu,  1 Apr 2021 09:43:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617270185;
+        bh=Yrz9+JUWWWv7fTZsYX+1n7GPNYO74iP0u1uRWzNvi1k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LTMT1i2w1rDsrdehRnXN2kA8j/04CGtN/4wASwI2hC7otfSvjl5Qeu1cdjaRV22Qf
+         /+i35ov2TbqjwLFeSq2UQEQlS8Or7pnp3G4E80tGTzm+DqzO1r8C4FYfDDVStLNMru
+         RIhd8uT3508g70HvDpF0M+EEBXMewf/gzM/nqGYSQrbCusQzjwtpvClxLtMuJx1VCK
+         UQT+C7BQDeNLx96rNQ7NhulvzPPNDCGN7Odrs5vfus7tURnPvvq/b8AvX6XDpy/fLg
+         9Usu14BmlWtw8dU4nWbN23KPkb5uNHsXEh57UE4H0OurWELIWEM/b41PUddtWzUb1n
+         ACGOgpgVykG3g==
+Received: from johan by xi.lan with local (Exim 4.93.0.4)
+        (envelope-from <johan@kernel.org>)
+        id 1lRtqw-0008PZ-UA; Thu, 01 Apr 2021 11:43:02 +0200
+Date:   Thu, 1 Apr 2021 11:43:02 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Rob Herring <robh@kernel.org>, Tony Lindgren <tony@atomide.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Cox <gnomes@lxorguk.ukuu.org.uk>,
+        Lee Jones <lee.jones@linaro.org>, Jiri Slaby <jslaby@suse.cz>,
+        Merlijn Wajer <merlijn@wizzup.org>,
+        Peter Hurley <peter@hurleysoftware.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH 3/6] dt-bindings: serdev: ngsm: Add binding for GNSS
+ child node
+Message-ID: <YGWVpvEci16RpAOg@hovoldconsulting.com>
+References: <20200512214713.40501-1-tony@atomide.com>
+ <20200512214713.40501-4-tony@atomide.com>
+ <20200527192817.GA2587830@bogus>
+ <20200528095151.GE10358@localhost>
+ <20210305104635.GA16695@duo.ucw.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="/Hd9/fYkpnpPNgUL"
 Content-Disposition: inline
-In-Reply-To: <20210401052438.GB14052@work>
+In-Reply-To: <20210305104635.GA16695@duo.ucw.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mani,
 
-On Thu, Apr 01, 2021 at 10:54:38AM +0530, Manivannan Sadhasivam wrote:
-> On Tue, Mar 30, 2021 at 04:48:15PM +0300, Cristian Ciocaltea wrote:
-> > This patchset adds a socinfo driver which provides information about
-> > Actions Semi Owl SoCs to user space via sysfs: machine, family, soc_id,
-> > serial_number.
-> > 
-> > Please note the serial number is currently available only for the S500
-> > SoC variant.
-> > 
-> > This has been tested on the S500 SoC based RoseapplePi SBC.
-> > 
-> 
-> Is this the soc_id provided by the vendor bootloader (uboot)? If so, under
-> what basis it provides? I don't think the SoC has the provision for
-> soc_id based on HW parameters.
+--/Hd9/fYkpnpPNgUL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-No, the soc_id is not provided by the bootloader, or at least I couldn't
-identify any related implementation. Instead, I provided this via the
-driver itself, since I've encountered this approach in some other soc
-drivers as well (e.g. imx/soc-imx.c, versatile/soc-integrator.c). 
+On Fri, Mar 05, 2021 at 11:46:35AM +0100, Pavel Machek wrote:
+> Hi!
+>=20
+> > > > For motorola modem case, we may have a GNSS device on channel 4.
+> > > > Let's add that to the binding and example.
+> > > >=20
+> > > > Signed-off-by: Tony Lindgren <tony@atomide.com>
+> > > > ---
+> > > >  .../devicetree/bindings/serdev/serdev-ngsm.yaml          | 9 +++++=
+++++
+> > > >  1 file changed, 9 insertions(+)
+>=20
+> >=20
+> > And since we're describing a mux, I think you need nodes for the virtual
+> > ports rather than a reg property in what should be a serial client. That
+> > is something like
+> >=20
+> > 	serial@nnn {
+> > 		modem {
+> > 			compatible =3D "etsi,ts27001-mux";
+> >=20
+> > 			serial@4 {
+> > 				compatible =3D "etsi,ts27001-serial";
+> > 				reg =3D <4>;
+> >=20
+> > 				gnss {
+> > 					compatible =3D "motorola,motmdm-gnss";
+> > 				};
+> > 			};
+> > 		};
+> > 	};
+> >=20
+> > This way you can actually use serdev for the client drivers (e.g. for
+> > gnss), and those drivers also be used for non-muxed ports if needed
+> > (e.g. over USB).
+>=20
+> I have done changes you requested, and then hit "serdev is busy
+> because it can have at most one child" limit in the code. You have
+> pretty clean driver in your inbox, and no reply. No help with serdev
+> core limitations, either. Can you start to communicate?
 
-Thanks,
-Cristi
+Heh, look at the devicetree example above that I gave you back in March.
+It has the virtual serial ports described ("serial@4"), which you were
+missing.
 
-> Thanks,
-> Mani
- 
-[...]
+Johan
+
+--/Hd9/fYkpnpPNgUL
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQQHbPq+cpGvN/peuzMLxc3C7H1lCAUCYGWVogAKCRALxc3C7H1l
+CP6uAQDltdfufHVUrRYNBelpVl3fEoTsf1GoHJoqhBC24nKaSAEA3NEtBSgdOhRM
+Pv+uTEMD+C+Z5GqmUMgcrl1pzCWVIwM=
+=JZxP
+-----END PGP SIGNATURE-----
+
+--/Hd9/fYkpnpPNgUL--
