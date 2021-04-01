@@ -2,124 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36C6A3511B3
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 11:16:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBF173511BD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 11:17:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233842AbhDAJP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 05:15:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34748 "EHLO
+        id S233491AbhDAJRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 05:17:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233921AbhDAJPH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 05:15:07 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1712C0613E6
-        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 02:15:06 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id h10so1106134edt.13
-        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 02:15:06 -0700 (PDT)
+        with ESMTP id S233580AbhDAJRB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 05:17:01 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ECA0C0613E6;
+        Thu,  1 Apr 2021 02:17:01 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id w10so1186138pgh.5;
+        Thu, 01 Apr 2021 02:17:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=pFG46RZYS5/Er5IhYN0FXoPQG4BJ55RdCsAsKwMxydU=;
-        b=WlIUaIocYVvnh0DL8RSf6KBIjvTv7HVcs95o9YIu6r52SNIk/q5QYyzo6GDWE7LpHl
-         lR+440cF3MLZmzmFSaH3P9x4WQwFDS6ENhwfuXULlj5hybDGIP+dlB7jQei4ezvaeyd3
-         yDhoytWciC4lLk0eIVlHubjybZDxMHTt8JZ2yEM/vp1kfdLTC8yXJ+Oc2m9MYkTXuKTP
-         iCMKopCKSg472suxVqhLV27KQrJwZO70iCfBNK0w6fivTHp4O7/7EFKJory3jbuTdADf
-         MuETethhOuwgJ/Ks0xr03ATL+oTF3xU+mzUimorr0vLA+vke1rCsqUHZAhKHoySgwSQz
-         iKAQ==
+        bh=u6qJZVH5i4Q7j4O++ZrOAMtKLGfb9nrQNFF7+p8Qy8o=;
+        b=Z0t+6RFl4ECTrFAKZGOtG32BqZRM61gwjFWCWkSoEzX7+u0s/qZAm664nkX+69daLe
+         K688KGPwuT0c1FarKnszPcFiEfCFYW5teYI42TkjGPIcf50yQ1FAGlbWM472eT91WOx2
+         e9hEG5KSwlbvGAwL5dOWe8Rk7KN6OXynalYKRDPr3sJNsDlpzkrONrDjF2gIEiobJ3MC
+         wEItWY7KKL3Pcy69IkzXwhyEyeF9nYU7PxoBPH0Lr8ZkEkqLedsRajg8fcrm936mKNas
+         KVsA9wUqseYQVagX5JYizSVv5Z86gJBA8BhaZNHsE4yKpMLz5f883n8jK+WbIevp+gFY
+         OIUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=pFG46RZYS5/Er5IhYN0FXoPQG4BJ55RdCsAsKwMxydU=;
-        b=UtO9VvphKND3AVcknrCrvRvCpqVTsCPQAKThXyTcy9XCG9NX/oSXYdmkoumZbV0K7r
-         v1IQHMhvRsasUEFl93FZxDJBgBDvbZ2uiMbj3UXBMrtIt/Gz83Fn3kZmL/DqbWHzHh0u
-         hD7HqD9UZfhiYXqVKrUdzT43RN6NNXR0tA9h3/d/qcm3xNaXGrELf1e2u2T5Gi9gOYGN
-         0MV8VU8w23/KBG9hXQc28+IJ/eLvWlM7JGg62nDGSCRQjgJJDqidZ+5bImTvHv4fZ5mJ
-         PadXQ5zcw00ZXRUqMrPAzzVz4kA3rubCeVxYdu79bbM/lEBxEipRE4TVBYDVtWTyWwZx
-         p/8g==
-X-Gm-Message-State: AOAM531pUUyC0+xSd4yjap2cIvvffJ21tJYbQk0qU+Ww0ZvBBwnnzgTi
-        8ZkmFf/UoHZJhjgbWNNBSu40vA==
-X-Google-Smtp-Source: ABdhPJxq9SvkUxPvdCl1mrkfMUE3n7OpohFqbLJ25k6jtzcdjAn8gW60BZeAuXxTc2WbWKY0s+B/4w==
-X-Received: by 2002:aa7:da14:: with SMTP id r20mr8590863eds.181.1617268505387;
-        Thu, 01 Apr 2021 02:15:05 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id gb4sm2426802ejc.122.2021.04.01.02.15.04
+        bh=u6qJZVH5i4Q7j4O++ZrOAMtKLGfb9nrQNFF7+p8Qy8o=;
+        b=j1gouBibKD14NwCj4EE5I4gxNfxXwYMI4EvhTE1O3KVK210zbRMBo0rNQZwtnWAawc
+         B++raY7uTy9gLA24hij1XUgro/shlz0rXAwDwwHW+dB+rw+t5oTtRyGP5DEgEKEY3oIC
+         GL6RBSTfrP3IV8YWtD0f55lDNysIqzUFocoN3PV5I95GCQc6AOjf7e8Fe1SDyowLoqfh
+         gxTQTBT0e2XH8l8rBArJ9RXQHm2QnVBMr5hVENiJN044olRTtwsv8PdtLRGarNXHF+rU
+         YHrsWND/je2ZgRUHFnxoDiBGo0BQT7yA7COBJNR6tOpl/ebrzwRBbLA9v8oDOliaipho
+         ERCg==
+X-Gm-Message-State: AOAM5304fpSczQ/NvR4jpMQqZnCMrMIlBcFXxiVa2ISksBqeyhlrMbOT
+        rIhdYoYcdT2awmQBPBKD4ds=
+X-Google-Smtp-Source: ABdhPJzGxVglJogtffkeRZNDNT4BXwCQyg+Sd1zZxEA0te+g4Wa3RSjrNqvmdYT0++JlDUpeDGGuUg==
+X-Received: by 2002:a63:504a:: with SMTP id q10mr6591261pgl.188.1617268621034;
+        Thu, 01 Apr 2021 02:17:01 -0700 (PDT)
+Received: from localhost.localdomain ([49.156.72.145])
+        by smtp.googlemail.com with ESMTPSA id q8sm4897044pgn.22.2021.04.01.02.16.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 02:15:04 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     vkoul@kernel.org
-Cc:     yung-chuan.liao@linux.intel.com,
-        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        robh@kernel.org, devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        coverity-bot <keescook+coverity-bot@chromium.org>
-Subject: [PATCH] soundwire: qcom: handle return correctly in qcom_swrm_transport_params
-Date:   Thu,  1 Apr 2021 10:15:02 +0100
-Message-Id: <20210401091502.15825-1-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
+        Thu, 01 Apr 2021 02:17:00 -0700 (PDT)
+From:   Puranjay Mohan <puranjay12@gmail.com>
+To:     alexandru.ardelean@analog.com, jic23@kernel.org,
+        devicetree@vger.kernel.org, knaack.h@gmx.de,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lars@metafoo.de
+Cc:     Puranjay Mohan <puranjay12@gmail.com>
+Subject: [PATCH v2 0/2] iio: temperature: add support for tmp117
+Date:   Thu,  1 Apr 2021 14:46:46 +0530
+Message-Id: <20210401091648.87421-1-puranjay12@gmail.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Looks like return from reg_write is set but not checked.
-Fix this by adding error return path.
+Add the dt-bindings and the driver for tmp117 sensor.
 
-Reported-by: coverity-bot <keescook+coverity-bot@chromium.org>
-Addresses-Coverity-ID: 1503591 ("UNUSED_VALUE")
-Fixes: 128eaf937adb ("soundwire: qcom: add support to missing transport params")
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- drivers/soundwire/qcom.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Changes since v1:
+1. Remove unused headers
+2. Add error checking in i2c read/write.
+3. Correct DT bindings.
+4. Correct implementation to return tmp in milli celcius.
+5. Remove unused mutex lock.
+6. Modify MAINTAINERS.
+Changes since v0:
+1. Correct Yaml syntax.
+2. Change IIO_CHAN_INFO_OFFSET to IIO_CHAN_INFO_CALIBBIAS.
+3. Implement IIO_CHAN_INFO_SCALE.
+4. Use devm_iio_device_register().
+5. Remove unused headers like delay.h
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 5fd4a99cc8ac..348d9a46f850 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -731,17 +731,23 @@ static int qcom_swrm_transport_params(struct sdw_bus *bus,
- 	value |= pcfg->si;
- 
- 	ret = ctrl->reg_write(ctrl, reg, value);
-+	if (ret)
-+		goto err;
- 
- 	if (pcfg->lane_control != SWR_INVALID_PARAM) {
- 		reg = SWRM_DP_PORT_CTRL_2_BANK(params->port_num, bank);
- 		value = pcfg->lane_control;
- 		ret = ctrl->reg_write(ctrl, reg, value);
-+		if (ret)
-+			goto err;
- 	}
- 
- 	if (pcfg->blk_group_count != SWR_INVALID_PARAM) {
- 		reg = SWRM_DP_BLOCK_CTRL2_BANK(params->port_num, bank);
- 		value = pcfg->blk_group_count;
- 		ret = ctrl->reg_write(ctrl, reg, value);
-+		if (ret)
-+			goto err;
- 	}
- 
- 	if (pcfg->hstart != SWR_INVALID_PARAM
-@@ -755,11 +761,15 @@ static int qcom_swrm_transport_params(struct sdw_bus *bus,
- 		ret = ctrl->reg_write(ctrl, reg, value);
- 	}
- 
-+	if (ret)
-+		goto err;
-+
- 	if (pcfg->bp_mode != SWR_INVALID_PARAM) {
- 		reg = SWRM_DP_BLOCK_CTRL3_BANK(params->port_num, bank);
- 		ret = ctrl->reg_write(ctrl, reg, pcfg->bp_mode);
- 	}
- 
-+err:
- 	return ret;
- }
- 
+Puranjay Mohan (2):
+  dt-bindings: iio: temperature: Add DT bindings for TMP117
+  iio: temperature: add driver support for ti tmp117
+
+ .../bindings/iio/temperature/ti,tmp117.yaml   |  34 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/temperature/Kconfig               |  10 +
+ drivers/iio/temperature/Makefile              |   1 +
+ drivers/iio/temperature/tmp117.c              | 179 ++++++++++++++++++
+ 5 files changed, 231 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+ create mode 100644 drivers/iio/temperature/tmp117.c
+
 -- 
-2.21.0
+2.30.1
 
