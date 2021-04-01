@@ -2,99 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90BC93519CD
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:03:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1E8B3519C7
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:03:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235545AbhDAR4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 13:56:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54730 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235304AbhDARw7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Apr 2021 13:52:59 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4694160BD3;
-        Thu,  1 Apr 2021 14:13:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617286421;
-        bh=+wXPixi0fZQhbgz0Af17sNTonL00PbC+xrFzRa/JnjU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=h4vm1k3Ek5jAd4sggNicGQCzz0W+Oj2XwkJsxB9gjTd2wD/J45we94vgwS8ruaMxU
-         5qdCtV9bd1pOTO6EyTcjMo09Ry+SipcQlsr1xpiWIzjHPBix9bRTGpS2NtYlpTx8/m
-         KZMc8e/C4hdl1qgamRyxHD6Iw5O737WXjiSTcmDTChXw5pV6217OsoyPbyGp97oBzp
-         Wl5j+LNZvylapBX0Rkjd0YqioJa2sqo8XMFF3zfWsQ3N9GhUW1Iw4EnQAdcUsj/kkR
-         9cBNh5vCPQTZByHMG8t1IN3zhQy6P1wPhOuz0aiBIOSCv0LJsAS6V/vXsz5cazo+o4
-         kAJ+BMpUphB2Q==
-Date:   Thu, 1 Apr 2021 15:13:28 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Pratyush Yadav <p.yadav@ti.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH 4/4] dt-bindings: spi: Convert cadence-quadspi.txt to
- cadence-quadspi.yaml
-Message-ID: <20210401141328.GH4758@sirena.org.uk>
-References: <20210331193930.tzsvbjup3wpxmh26@ti.com>
+        id S235285AbhDAR41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 13:56:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59940 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237254AbhDARvL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:51:11 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 312D7C0045E6;
+        Thu,  1 Apr 2021 07:43:46 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id hq27so3239082ejc.9;
+        Thu, 01 Apr 2021 07:43:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vGRnRc4EiqHm7b2pUbRyZl6rzcmsmwjQh7bNofLlUuY=;
+        b=MyxQ20sfTAywgbai+wk7ZvWXfSkJUVecChe18QL6TczcAgHEpUi2w36cjGqqHdmLzE
+         kjJbJDLGPTvM7YwygO5A5TpZEnRB1kA9oYHVF+s+Wka8H1Y+zdGE4YK/slo2aHhEfAEX
+         NR5XquLGwpYWs4DTY1hx/CC1t/f0qLdt6bXJj88olbVHwd6U6IJgW50bMDI4Ea7EZnYk
+         ObhTos73br5fMsJHRd1L6PO8UBsQpqfTxEpGEw7BWpEaRY+7naoPpd4O2M1/2WodPIST
+         KV84ahNPw0rSBoJ1igkLbar5Skp4m5j8sjZK9gxjRnzD7YkzSTEziFFNzOCG0s3cI9bA
+         RqrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vGRnRc4EiqHm7b2pUbRyZl6rzcmsmwjQh7bNofLlUuY=;
+        b=Fr5Seeypi5NLVIWPfQk3Z1XNGxlQTk/96/AmHiuinrwSJPoFlXITjrgj1Q8oKSN149
+         +fp/sr620ObHUZ0NqMdghT9xDZNNpzSmLz7egcu5T/3nM46gLYWQ6dpUCtymBFE/Zbho
+         AldEApQETH+jB7E+Dmz5Pm+T/B7bamXa/Z/hKlTCZ3pOS4Xk6yDycGcZ+wigrhQXRXfG
+         J/CFLpVqObwwzCzi7w80zFFYUShQxr/LQm1OksDE4iiVCuGeE9VdA8unZZTnF8DcNkmO
+         3+nmvzBBQr/J46oSoQku5fIReYNG2MhAQXB9hu2uq1IObn73PHl4+3CehYf0SMgHuc+D
+         04Hg==
+X-Gm-Message-State: AOAM533SnTdZgqMV9yyDQ1SB4FngdZhs1+x4Ph/HLhGpuGJM1kN2bECJ
+        YY+5DS0MNb57y/xOJxIsz+XqvOLzryBpbA==
+X-Google-Smtp-Source: ABdhPJxxYx3spcGpvcCzf2aWZy9En8ZfunJVJEDElWBWl5sWdu16b7F24NFDmMuQHwobVdPumTM1Xw==
+X-Received: by 2002:a17:907:76ed:: with SMTP id kg13mr9022159ejc.99.1617288224942;
+        Thu, 01 Apr 2021 07:43:44 -0700 (PDT)
+Received: from arch-x1c3.. (cpc92308-cmbg19-2-0-cust99.5-4.cable.virginm.net. [82.24.248.100])
+        by smtp.gmail.com with ESMTPSA id nd36sm2854950ejc.21.2021.04.01.07.43.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Apr 2021 07:43:44 -0700 (PDT)
+From:   Emil Velikov <emil.l.velikov@gmail.com>
+To:     kernel@collabora.com, Ezequiel Garcia <ezequiel@collabora.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org
+Cc:     emil.l.velikov@gmail.com
+Subject: [PATCH v4 0/9] Microchip SAMA5D4 VPU support et al
+Date:   Thu,  1 Apr 2021 15:43:27 +0100
+Message-Id: <20210401144336.2495479-1-emil.l.velikov@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="54u2kuW9sGWg/X+X"
-Content-Disposition: inline
-In-Reply-To: <20210331193930.tzsvbjup3wpxmh26@ti.com>
-X-Cookie: You can't take damsel here now.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi all,
 
---54u2kuW9sGWg/X+X
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This is here is another small revision of the series adding support for
+the Microchip SAMA5D4 VPU, which it based on the Hantro G1.
 
-On Thu, Apr 01, 2021 at 01:09:32AM +0530, Pratyush Yadav wrote:
+For more details, please see the v2 cover letter.
+https://lore.kernel.org/linux-media/20210311154055.3496076-1-emil.l.velikov@gmail.com
 
-> I did take a look by running git log on=20
-> Documentation/devicetree/bindings/spi/ and there is no single style=20
-> being used. Using "dt-bindings: spi:" is a popular choice. Some other=20
-> commits just use "spi:". And then some use "spi: dt-bindings:". The last=
-=20
-> commit to touch cadence-quadspi.txt (fcebca39938f) used the prefix=20
-> "dt-bindings: spi:".
+Changes since v2:
+ - Added RB (thanks Eze)
+ - Added AB (thanks Nicolas)
+ - Reworked Hantro driver to support modules lacking irq/clk name
+   (thanks RobH and Eze)
+ - Dropped defconfig patches - merged separatelly (thanks Nicolas)
 
-Yes, lots of people pick unfortunate subject lines for DT patches - that
-doesn't mean it's good.  I'm looking to see spi: same as for all other
-SPI patches.
+Changes since v3:
+ - Include the fixed dt-binding patch
+ - Reinstante clk/irq names within the SAMA driver (Eze)
+ - Use num_{clk,irq} in Hantro, instead of WARN_ON/NULL checks (Eze)
+ - Drop Nicolas ack from a patch he never gave it to. (Eze)
 
-> So on the prefix front I think the subject is good enough. Of course, if=
-=20
-> you have any other preference then it can be re-worded but let's first=20
-> be clear on what the expectation is. And then let's make sure to apply=20
-> it to all future patches uniformly. This way future contributors won't=20
-> have to take a guess on what the expected prefix is.
+Note: patches 6/9, 7/9 and 9/9 need reviews. Everything else has been
+covered already.
 
-I do edit some percentage of patches, but some do slip through for
-various reasons.  There's also some things that just get completely
-missed, especially if there isn't also a code patch nearby.
+Thanks
+Emil
 
-> Apart from the prefix is there anything else to improve? IMHO the=20
-> subject is good enough but I'm open to suggestions.
+Emil Velikov (9):
+  media: hantro: use G1_REG_INTERRUPT directly for the mpeg2
+  media: hantro: imx: reuse MB_DIM define
+  media: hantro: imx: remove duplicate dec_base init
+  media: hantro: imx: remove unused include
+  media: hantro: introduce hantro_g1.c for common API
+  media: hantro: add fallback handling for single irq/clk
+  media: dt-bindings: Document SAMA5D4 VDEC bindings
+  media: hantro: add initial SAMA5D4 support
+  ARM: dts: sama5d4: enable Hantro G1 VDEC
 
-There was the thing with constraints.
+ .../media/microchip,sama5d4-vdec.yaml         |  47 +++++++
+ arch/arm/boot/dts/sama5d4.dtsi                |   7 ++
+ drivers/staging/media/hantro/Kconfig          |  10 +-
+ drivers/staging/media/hantro/Makefile         |   4 +
+ drivers/staging/media/hantro/hantro_drv.c     |  40 ++++--
+ drivers/staging/media/hantro/hantro_g1.c      |  39 ++++++
+ .../media/hantro/hantro_g1_mpeg2_dec.c        |   5 +-
+ drivers/staging/media/hantro/hantro_hw.h      |   4 +
+ drivers/staging/media/hantro/imx8m_vpu_hw.c   |  27 +---
+ drivers/staging/media/hantro/rk3288_vpu_hw.c  |  36 +-----
+ .../staging/media/hantro/sama5d4_vdec_hw.c    | 117 ++++++++++++++++++
+ 11 files changed, 268 insertions(+), 68 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/microchip,sama5d4-vdec.yaml
+ create mode 100644 drivers/staging/media/hantro/hantro_g1.c
+ create mode 100644 drivers/staging/media/hantro/sama5d4_vdec_hw.c
 
---54u2kuW9sGWg/X+X
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.31.1
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBl1QcACgkQJNaLcl1U
-h9CWgwf/Sdw0YaskIA8e6qr7BHlJiZql3DhSyt1wcWgbNN2qbSSrhLyvlhbImcbl
-1r5g9Qa7X78tWxcmO3PEzfNW7dSM/PAzihAkubVvbgcQZvjf1FI5RIEtYoPBe4G7
-xcUJJppGIDRvz1+gMBIra6+Fokk93C0LJL+fyu1fuCOQ6jiH+sYA7ZCTG+/QeHFJ
-u9d0mdjPNRO1IRLitbSLH8rBjEmYliQtoOT/vEgtLpvLSOVcWk2/9okveu+dElQ7
-96tU6YSMWlJNagBKbJja8lqXpvwdeja42aTEodtJs3Ru/RNQEYV/E4BXttWCwKfN
-Cqpi11mjqlq+FU+qBNTpgVb3hTbEvg==
-=XkPv
------END PGP SIGNATURE-----
-
---54u2kuW9sGWg/X+X--
