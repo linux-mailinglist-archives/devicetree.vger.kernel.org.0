@@ -2,230 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72888350E85
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 07:43:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FABC350EA6
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 08:01:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230291AbhDAFnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 01:43:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41054 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229459AbhDAFnH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Apr 2021 01:43:07 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 328F260FE9;
-        Thu,  1 Apr 2021 05:43:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617255786;
-        bh=gG0lgUbAdmVVbzZ67XW/eaTa2hyRPP2HT9LTS0Rj7hY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=E0KaKE/thqDXIquxlakghIwpGsnjp5TOx/BTjLVxGMZgtHeUVtStUV7HWPFB8W3/+
-         /udSyrz4SG2GadZ6W/wsSefENYHwlIe5Hc8Pr2+L6aHxxtN3tmoT9d6bWTHBBHZcHM
-         d3qekV1FaVZYR2TKSyM3905Wo2Ad9piKuwKl10E/3IFPhJfhQU38QQMHQKT2I9ogyM
-         kXy18XKylGo7DXVAi17g7qA7+5AJFntarERdyVlC6KYFj+oRMXg7fVpoiD5JH5e7fw
-         fuAmjEco8FLDtntkwz/F2l6UzQI7lyGPSub8bbIsvR5nYiR4bq1EyulE6lnMbOkZw8
-         9PQji/qpNPBMw==
-Date:   Thu, 1 Apr 2021 11:13:00 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] arm: dts: owl-s500-roseapplepi: Add ATC2603C PMIC
-Message-ID: <20210401054300.GD14052@work>
-References: <2e0a2931ae3757f016948e7c78e8e54afa325ae0.1615538629.git.cristian.ciocaltea@gmail.com>
+        id S233371AbhDAGBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 02:01:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49030 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233343AbhDAGBC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 02:01:02 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA7A5C06178A
+        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 23:01:01 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id g15so665747pfq.3
+        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 23:01:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uAkl8M4METQp4Mm9sKB+PbWAOillZ+9QKk7wqLzx2ik=;
+        b=kloLjxLfd0OejQ8NPmE8+w+AelvEtQ5wlqJ/yxgI5sdP1+zxwHWcGzRx3VUVckPvL2
+         aLtsS2kfCfKKF8sTKs1VW8qVlADk/o6dFe1E5Nbmoc/sjbs8olBc0UZv+fQBpJebk4Z5
+         pC6TA6HkeTJJFxjjiIGACxFskYggw8STbfmDHlcuBtkilS3q1OlLKTE81NO7/BsR+WfD
+         CEi1IvIy8YeeaQtRv3onLS6bt0TSdb86oRp6gLVvO26l7P/24TCZyJ/8O0b+6S+8MAjY
+         pKVWBVvheFwbcIGltFqdAwZtCmdyiEKGZd7briO0U3NPokgMa/UKrqA9xVGMHxz3+j7Q
+         5XBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uAkl8M4METQp4Mm9sKB+PbWAOillZ+9QKk7wqLzx2ik=;
+        b=YHkUZ0SEJ7hlmuh036NfRNvlOSsnCirj3xW3AAqP6gN0Fk1FUTRQBh5hlRBcaFhw6Q
+         cVYp0nFncvKhoBi3BvVFPNq9BiNIgiEe0z8BceSmUicuCqQTJoIzI3RyGMBv/vSNrnq9
+         pg7hi78nyvhqBMGPficXGqdQ6aybaRC+qfrMKVZ8VpSlTN0jJqerpzGenc4/IeyB2e4Z
+         BUwd/i1dF+ci5HSjbsRlUE7dAY9QMAqPUiYqYT2Xi/QfNDrejvj0dhISAhJk/x1G2gBI
+         PF7N/zeH39rvOEMIp4MoYy0fOjd0uuya71BX+98HXd8ijy0Y7lbxbj4yw6+GzeM9+ro9
+         jGRA==
+X-Gm-Message-State: AOAM5339X9UHMnL+ch0A56sYxGswnXL2Mon7psnQRE47bULxJt7aDBhP
+        60QVM8GaTGDUtyutMUWZEdP8/w==
+X-Google-Smtp-Source: ABdhPJxaVYjdSka2klDIXVKJNz6O8INGxI7E/EAZ0NbbLCwgWADxmkZYkF03MJkl85Ic1XBys+NkDg==
+X-Received: by 2002:a63:f443:: with SMTP id p3mr6118424pgk.378.1617256861296;
+        Wed, 31 Mar 2021 23:01:01 -0700 (PDT)
+Received: from hsinchu02.internal.sifive.com (114-34-229-221.HINET-IP.hinet.net. [114.34.229.221])
+        by smtp.gmail.com with ESMTPSA id a6sm4037328pfc.61.2021.03.31.23.00.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Mar 2021 23:01:00 -0700 (PDT)
+From:   Greentime Hu <greentime.hu@sifive.com>
+To:     greentime.hu@sifive.com, paul.walmsley@sifive.com, hes@sifive.com,
+        erik.danie@sifive.com, zong.li@sifive.com, bhelgaas@google.com,
+        robh+dt@kernel.org, aou@eecs.berkeley.edu, mturquette@baylibre.com,
+        sboyd@kernel.org, lorenzo.pieralisi@arm.com,
+        p.zabel@pengutronix.de, alex.dewar90@gmail.com,
+        khilman@baylibre.com, hayashi.kunihiko@socionext.com,
+        vidyas@nvidia.com, jh80.chung@samsung.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, helgaas@kernel.org
+Subject: [PATCH v4 0/6] Add SiFive FU740 PCIe host controller driver support
+Date:   Thu,  1 Apr 2021 14:00:48 +0800
+Message-Id: <20210401060054.40788-1-greentime.hu@sifive.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2e0a2931ae3757f016948e7c78e8e54afa325ae0.1615538629.git.cristian.ciocaltea@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 12, 2021 at 11:49:27AM +0200, Cristian Ciocaltea wrote:
-> Add device tree node for ATC2603C PMIC and remove the 'fixed-3.1V'
-> dummy regulator used for the uSD supply.
-> 
-> Additionally, add 'SYSPWR' fixed regulator and provide cpu0 supply.
-> 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+This patchset includes SiFive FU740 PCIe host controller driver. We also
+add pcie_aux clock and pcie_power_on_reset controller to prci driver for
+PCIe driver to use it.
 
-Applied to for-next after fixing the patch subject as below:
+This is tested with e1000e: Intel(R) PRO/1000 Network Card, AMD Radeon R5
+230 graphics card and SP M.2 PCIe Gen 3 SSD in SiFive Unmatched based on
+v5.11 Linux kernel.
 
-"ARM: dts: owl-s500-roseapplepi: Add ATC2603C PMIC"
+Changes in v4:
+ - Fix Wunused-but-set-variable warning in prci driver
 
-Thanks,
-Mani
+Changes in v3:
+ - Remove items that has been defined
+ - Refine format of sifive,fu740-pcie.yaml
+ - Replace perstn-gpios with the common one
+ - Change DBI mapping space to 2GB from 4GB
+ - Refine drivers/reset/Kconfig
 
-> ---
-> Please note the patch depends on the ATC260x PMIC support which is queued
-> for merging in v5.13:
-> 
-> https://lore.kernel.org/lkml/cover.1611653995.git.cristian.ciocaltea@gmail.com/
-> https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/log/?h=for-mfd-next&qt=range&q=a38fd8748464831584a19438cbb3082b5a2dab15..eac013a0b7041f5cfc8feedf429a767675350102
-> 
->  arch/arm/boot/dts/owl-s500-roseapplepi.dts | 132 ++++++++++++++++++++-
->  1 file changed, 126 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/owl-s500-roseapplepi.dts b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-> index ff91561ca99c..b8c5db2344aa 100644
-> --- a/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-> +++ b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-> @@ -2,7 +2,7 @@
->  /*
->   * Roseapple Pi
->   *
-> - * Copyright (C) 2020 Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> + * Copyright (C) 2020-2021 Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
->   */
->  
->  /dts-v1/;
-> @@ -27,20 +27,140 @@ memory@0 {
->  		reg = <0x0 0x80000000>; /* 2GB */
->  	};
->  
-> -	/* Fixed regulator used in the absence of PMIC */
-> -	sd_vcc: sd-vcc {
-> +	syspwr: regulator-5v0 {
->  		compatible = "regulator-fixed";
-> -		regulator-name = "fixed-3.1V";
-> -		regulator-min-microvolt = <3100000>;
-> -		regulator-max-microvolt = <3100000>;
-> +		regulator-name = "SYSPWR";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
->  		regulator-always-on;
->  	};
->  };
->  
-> +&cpu0 {
-> +	cpu0-supply = <&vdd_cpu>;
-> +};
-> +
->  &i2c0 {
->  	status = "okay";
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&i2c0_pins>;
-> +
-> +	atc260x: pmic@65 {
-> +		compatible = "actions,atc2603c";
-> +		reg = <0x65>;
-> +		interrupt-parent = <&sirq>;
-> +		interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +		reset-time-sec = <6>;
-> +
-> +		regulators {
-> +			compatible = "actions,atc2603c-regulator";
-> +
-> +			dcdc1-supply = <&syspwr>;
-> +			dcdc2-supply = <&syspwr>;
-> +			dcdc3-supply = <&syspwr>;
-> +			ldo1-supply = <&syspwr>;
-> +			ldo2-supply = <&syspwr>;
-> +			ldo3-supply = <&syspwr>;
-> +			ldo5-supply = <&syspwr>;
-> +			ldo6-supply = <&syspwr>;
-> +			ldo7-supply = <&syspwr>;
-> +			ldo8-supply = <&syspwr>;
-> +			ldo11-supply = <&syspwr>;
-> +			ldo12-supply = <&syspwr>;
-> +			switchldo1-supply = <&vcc>;
-> +
-> +			vdd_cpu: dcdc1 {
-> +				regulator-name = "VDD_CPU";
-> +				regulator-min-microvolt = <700000>;
-> +				regulator-max-microvolt = <1400000>;
-> +				regulator-always-on;
-> +			};
-> +
-> +			vddq: dcdc2 {
-> +				regulator-name = "VDDQ";
-> +				regulator-min-microvolt = <1300000>;
-> +				regulator-max-microvolt = <2150000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +
-> +			vcc: dcdc3 {
-> +				regulator-name = "VCC";
-> +				regulator-min-microvolt = <2600000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-always-on;
-> +			};
-> +
-> +			vcc_3v3: ldo1 {
-> +				regulator-name = "VCC_3V3";
-> +				regulator-min-microvolt = <2600000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-always-on;
-> +			};
-> +
-> +			avcc: ldo2 {
-> +				regulator-name = "AVCC";
-> +				regulator-min-microvolt = <2600000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-always-on;
-> +			};
-> +
-> +			vdd_1v8: ldo3 {
-> +				regulator-name = "VDD_1V8";
-> +				regulator-min-microvolt = <1500000>;
-> +				regulator-max-microvolt = <2000000>;
-> +				regulator-always-on;
-> +			};
-> +
-> +			vcc_3v1: ldo5 {
-> +				regulator-name = "VCC_3V1";
-> +				regulator-min-microvolt = <2600000>;
-> +				regulator-max-microvolt = <3300000>;
-> +			};
-> +
-> +			avdd: ldo6 {
-> +				regulator-name = "AVDD";
-> +				regulator-min-microvolt = <700000>;
-> +				regulator-max-microvolt = <1400000>;
-> +				regulator-always-on;
-> +			};
-> +
-> +			sens_1v8: ldo7 {
-> +				regulator-name = "SENS_1V8";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +			};
-> +
-> +			ldo8: ldo8 {
-> +				regulator-name = "LDO8";
-> +				regulator-min-microvolt = <2300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +			};
-> +
-> +			svcc: ldo11 {
-> +				regulator-name = "SVCC";
-> +				regulator-min-microvolt = <2600000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-always-on;
-> +			};
-> +
-> +			rtc_vdd: ldo12 {
-> +				regulator-name = "RTC_VDD";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-always-on;
-> +			};
-> +
-> +			sd_vcc: switchldo1 {
-> +				regulator-name = "SD_VCC";
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +		};
-> +	};
->  };
->  
->  &i2c1 {
-> -- 
-> 2.30.2
-> 
+Changes in v2:
+ - Refine codes based on reviewers' feedback
+ - Remove define and use the common one
+ - Replace __raw_writel with writel_relaxed
+ - Split fu740_phyregreadwrite to write function
+ - Use readl_poll_timeout in stead of while loop checking
+ - Use dwc common codes
+ - Use gpio descriptors and the gpiod_* api.
+ - Replace devm_ioremap_resource with devm_platform_ioremap_resource_byname
+ - Replace devm_reset_control_get with devm_reset_control_get_exclusive
+ - Add more comments for delay and sleep
+ - Remove "phy ? x : y" expressions
+ - Refine code logic to remove possible infinite loop
+ - Replace magic number with meaningful define
+ - Remove fu740_pcie_pm_ops
+ - Use builtin_platform_driver
+
+Greentime Hu (5):
+  clk: sifive: Add pcie_aux clock in prci driver for PCIe driver
+  clk: sifive: Use reset-simple in prci driver for PCIe driver
+  MAINTAINERS: Add maintainers for SiFive FU740 PCIe driver
+  dt-bindings: PCI: Add SiFive FU740 PCIe host controller
+  riscv: dts: Add PCIe support for the SiFive FU740-C000 SoC
+
+Paul Walmsley (1):
+  PCI: fu740: Add SiFive FU740 PCIe host controller driver
+
+ .../bindings/pci/sifive,fu740-pcie.yaml       | 109 ++++++
+ MAINTAINERS                                   |   8 +
+ arch/riscv/boot/dts/sifive/fu740-c000.dtsi    |  33 ++
+ drivers/clk/sifive/Kconfig                    |   2 +
+ drivers/clk/sifive/fu740-prci.c               |  11 +
+ drivers/clk/sifive/fu740-prci.h               |   2 +-
+ drivers/clk/sifive/sifive-prci.c              |  54 +++
+ drivers/clk/sifive/sifive-prci.h              |  13 +
+ drivers/pci/controller/dwc/Kconfig            |   9 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pcie-fu740.c       | 324 ++++++++++++++++++
+ drivers/reset/Kconfig                         |   1 +
+ include/dt-bindings/clock/sifive-fu740-prci.h |   1 +
+ 13 files changed, 567 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-fu740.c
+
+-- 
+2.30.2
+
