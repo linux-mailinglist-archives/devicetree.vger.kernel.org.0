@@ -2,40 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B3E235132E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 12:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D214351338
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 12:18:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234054AbhDAKRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 06:17:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38834 "EHLO mail.kernel.org"
+        id S234122AbhDAKR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 06:17:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39160 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232565AbhDAKRP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Apr 2021 06:17:15 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3F2C960FDB;
-        Thu,  1 Apr 2021 10:17:14 +0000 (UTC)
+        id S233650AbhDAKRd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Apr 2021 06:17:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 76BC761056;
+        Thu,  1 Apr 2021 10:17:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617272234;
-        bh=zCVbEj+QZrf0qeL7NPNaHc+CKMjiPPmnunTrdUaxOoI=;
+        s=k20201202; t=1617272253;
+        bh=od8Rq9Kf78i1K8wp62RqoniFQY5B9m9Qer/wU2HFhRE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ZUdxuMIgpGv6gbqsJGu57OBWLcLkvfl/AXuSjoxd3fFQSCff+ySkgWI500HEoTwmW
-         Tqmu5jB3GKORD4KkusrZD4LEio0mYBJdIHKBLBxjKvQmA7iSShXc9td2XMtJNrUnOB
-         CsG9ORuMznyQjAlfhq4Jdg5QCiVmr+zEk6x0rG+kM4EIsdkyeJQmAcVbYCPOboVD3y
-         N02tmB4wHsAVLgJ8Px0WRqP766BkKeeOSgP/uaGBeLfzRdprQujut9/TisZAPElzh8
-         I1LAbJI5IOdG1Ef6d3e4DJU15i9ATR7ESQQYNWKQvE2FGDt++cMmnkMxtvEQ0ZFF7B
-         UuuS/V0VVfsnQ==
+        b=G2zA2X6s3PuWdSwbpQtYM1poOxuprTTUtDIxOUM4i9DGRNpTsmPKSc3hVkfCU9ibP
+         aaGR+xg7bNkoonkxd32NsnsO8j3iwJakkcVzoARHWJkqSIO3WTnAS45723NHKRp5b5
+         udEwtt0J8WFXitafA7IWUJBB2ieCx1bKh0VjRMDh3u1tO7sEBcNmtcXpRmAdWCAI3Q
+         TjO7wATmCNmBCEWTHhBgMt5lxFoY7h0Fsnic9pMFwWoF5ji+prlzLLpJ8JRH3tdd2b
+         E1CPJ94GogTLI/umXEce1RhY/ZzU7pde93xC5pRwDMBTMBatQZ96niENjoz4vfrO6s
+         l4ma2vgwqi6Mg==
 From:   Mark Brown <broonie@kernel.org>
-To:     robh@kernel.org, lgirdwood@gmail.com, Jack Yu <jack.yu@realtek.com>
-Cc:     Mark Brown <broonie@kernel.org>, derek.fang@realtek.com,
-        flove@realtek.com, linux-kernel@vger.kernel.org,
-        kent_chen@realtek.com, lars@metafoo.de, devicetree@vger.kernel.org,
-        oder_chiou@realtek.com, shumingf@realtek.com,
-        alsa-devel@alsa-project.org, kenny_chen@realtek.com
-Subject: Re: [PATCH] dt-bindings: sound: add address-cells and size-cells information
-Date:   Thu,  1 Apr 2021 11:16:23 +0100
-Message-Id: <161726938994.2219.8993456253882772159.b4-ty@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        linux-kernel@vger.kernel.org, Sameer Pujar <spujar@nvidia.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        linux-tegra@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lubomir Rintel <lkundrak@v3.sk>, alsa-devel@alsa-project.org
+Subject: Re: [PATCH 0/3] ASoC: dt-bindings: Rework audio-graph-port schema
+Date:   Thu,  1 Apr 2021 11:16:29 +0100
+Message-Id: <161726938993.2219.16015630418592937478.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210331071046.12526-1-jack.yu@realtek.com>
-References: <20210331071046.12526-1-jack.yu@realtek.com>
+In-Reply-To: <20210323163634.877511-1-robh@kernel.org>
+References: <20210323163634.877511-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -43,9 +48,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 31 Mar 2021 15:10:46 +0800, Jack Yu wrote:
-> Add address-cells and size-cells information to fix warnings
-> for rt1019.yaml.
+On Tue, 23 Mar 2021 10:36:31 -0600, Rob Herring wrote:
+> This series refactors the audio-graph-port.yaml schema moving the
+> 'port' node out of the schema and updating to use graph.yaml schema.
+> This allows users to define what each 'port' node is like other graph
+> binding users.
+> 
+> Rob
+> 
+> [...]
 
 Applied to
 
@@ -53,8 +64,12 @@ Applied to
 
 Thanks!
 
-[1/1] dt-bindings: sound: add address-cells and size-cells information
-      commit: e896ec390870287dcc92f3b46d80da88f3b4b1f8
+[1/3] ASoC: dt-bindings: Move port/ports properties out of audio-graph-port.yaml
+      commit: 9c1e0439ada9973ec99cc1e0887eb84fd26444b8
+[2/3] ASoC: dt-bindings: Use OF graph schema
+      commit: ec1c8302178a946986bb7b52ac7bb9ccdcdf7d92
+[3/3] ASoC: dt-bindings: socionext: Use audio-graph-port schema
+      commit: f1321c9766b2c9e79de268225e291dead0a8f969
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
