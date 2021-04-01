@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B79D3351DDC
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:52:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6112351DDE
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:52:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236256AbhDAScg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:32:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38214 "EHLO
+        id S236792AbhDASch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 14:32:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235299AbhDASWn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:22:43 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 751DCC0613B7
-        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 10:41:25 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id r10-20020a05600c35cab029010c946c95easo1290900wmq.4
-        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 10:41:25 -0700 (PDT)
+        with ESMTP id S237521AbhDASXF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:23:05 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16824C0613BC
+        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 10:41:26 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id v4so2597051wrp.13
+        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 10:41:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=psvxzM8AQK4wCtp0jeyZKJzBZ6tnLyY6y8gR0kB6FSQ=;
-        b=EMmIIpg/ifLBU7e7zLFrcXCCfIzMtCtKRsgGC+uiqADi9JOFm/C70JBublWsnaUVRa
-         oCZxA0b7R6+S5c6eIM6aTK2rShi4buAp9UTBOZvengzL3ry78NjgorwerN5w9uR+MQl8
-         wFmFFhZ2LNNFFsVxk0J3+YdAKYIcg8cUcRhCdKEVKLggbLG1cXV+bDuVQ7ZuRJAK/ERN
-         CMOnRVQTPWew4AuiSfQpcIXhFdYzII+5yg/DZRqYRH04pVABn08plYIKwbQekbvCfp/e
-         12IuwdtNhTCLqFVKRofcUj9ILp1si1+qG16Mtn5NI4n25XGQIuaaG8vYZK81s+vpZG54
-         mYSg==
+        bh=0ZgsNptth5FfPKBSZvQ+tJje7mvJfg0p78cr8chWRLw=;
+        b=tf9o30F6MYnry0VrC5y31+tuZSGrucir66iUnwJ2Dc/znhhvRqVeoQWJY0iKYWCqEd
+         zwxIRpss7aGcRpqMrahvIr8RRlX31peXJ6ZkzctDToHgUFvn98EkjivJha9BH3ncD7mU
+         QpFzeRg1E8Eb6BG649+BGwgWoRYzJ7YS4SylmJORN/Y7/ojKBxZ/Hr0UXI79YCNEaYVE
+         frT8URiYcshpG9WoiqGzEIuUC8NnuGuI9VxH05VXXpYNKEdKl59+oXvhaRGpPI2LqDBI
+         JkJPGdizoqGl7jAZbacCV7dp5FDN7obMc7YZgH8d0nzHRV+0B1g/I7H8qYPTMnuHlGoX
+         A+nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=psvxzM8AQK4wCtp0jeyZKJzBZ6tnLyY6y8gR0kB6FSQ=;
-        b=FWd6S/TkuTSXytwYNVYvqDZQmqI1tty31bJj2PpL4cFEdi131bGu40gLM2T8cndsYx
-         PhlIxqIH0RC5rbA0kDvL8GJ+7CkzcH6vqonPjjlup3v4z60N/x3elvm90cefw8kLS9Wu
-         tZarmNvqmS/LMoiQNO6jcUVA2fxpjKUvAS3ma0SR3leDo9rOv5VKgGlp3b/JPNRPG0Mf
-         SSA+i+7Y40Obe71t4wz/8EdPT617LISeK1ZNYy4ltdAhTz9+Juj8T985MNJP9j5623Uq
-         pZ36/Ikl9mCwWegdKo/VzIk4sG6Cj0fGs36bSRpCzt1ymuFrbLAE04tvx0uG5OcDBIZ2
-         xheg==
-X-Gm-Message-State: AOAM532cHpETfx/RqZQcsrJp30j7b998MDXyr4K7IRnp/tS/Q3gIph/F
-        xAxiSlDepdnURWAGMFTS/fJWAw==
-X-Google-Smtp-Source: ABdhPJw9y5hUwH+Md4zCAgqxbaMyEu7tTgsvmPNvwhDg27gxBbeU5ES38mvog43v+aumPaKRMfWa/Q==
-X-Received: by 2002:a7b:c7c6:: with SMTP id z6mr9036924wmk.156.1617298884186;
-        Thu, 01 Apr 2021 10:41:24 -0700 (PDT)
+        bh=0ZgsNptth5FfPKBSZvQ+tJje7mvJfg0p78cr8chWRLw=;
+        b=GKzD5Jvw2ouW4toqxsIdPu/N52F3wxwAdoKBkfW4BCmQdj9ZBZdXm8SFKFDcxmuw4u
+         eCGk/Yw7dMa5VCl79R3GZdEVLXPl8oPN0AHPcak2gciRwa+oGZvlck+SMstIrB9Bi2lw
+         9GDMEqBilW4Go0+TEMmphCcjJWbe/PgcAoL/jcKL5U/W30p64Yy5GDY5Nz6WMn8kMjZE
+         TFxdVjgOq+Iqat0TBJwuLuK/r44tRd/CjOA+Wy32mvBsou4yFZrYHV1oZKhVe2AuTudd
+         qImwj5o81estNKEG7FUXhfVTjS1RCbPYfIjEK+0KH7H6hHGhTCjWTD2aD18CZUsXoviA
+         Pe7g==
+X-Gm-Message-State: AOAM533p6ffhUTM+p0njhL/joe5iWz1LmTqdMnpoeh3j0Y60QFPNhr7Y
+        4UcA7rL0XE/U8SSZZq1vm9H2fg==
+X-Google-Smtp-Source: ABdhPJxkUMuDtiGWXylziNsNByMeDGM1dmOoSlMlLuTHvuYMwOZllTaHpJP7NZ7Mwj+pkbRHyLyaRw==
+X-Received: by 2002:a5d:4e43:: with SMTP id r3mr10918675wrt.280.1617298885288;
+        Thu, 01 Apr 2021 10:41:25 -0700 (PDT)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id o8sm9070242wmr.28.2021.04.01.10.41.23
+        by smtp.gmail.com with ESMTPSA id o8sm9070242wmr.28.2021.04.01.10.41.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 10:41:23 -0700 (PDT)
+        Thu, 01 Apr 2021 10:41:24 -0700 (PDT)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     bryan.odonoghue@linaro.org, jonathan@marek.ca,
         dikshita@codeaurora.org, dmitry.baryshkov@linaro.org,
-        Jonathan Marek <JonathanMarekjonathan@marek.ca>
-Subject: [PATCH v3 1/2] arm64: dts: qcom: sm8250: Add videocc DT node
-Date:   Thu,  1 Apr 2021 18:42:55 +0100
-Message-Id: <20210401174256.1810044-2-bryan.odonoghue@linaro.org>
+        Dikshita Agarwal <dikshita@qti.qualcomm.com>
+Subject: [PATCH v3 2/2] arm64: dts: qcom: sm8250: Add venus DT node
+Date:   Thu,  1 Apr 2021 18:42:56 +0100
+Message-Id: <20210401174256.1810044-3-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.30.1
 In-Reply-To: <20210401174256.1810044-1-bryan.odonoghue@linaro.org>
 References: <20210401174256.1810044-1-bryan.odonoghue@linaro.org>
@@ -65,49 +65,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jonathan Marek <Jonathan Marek jonathan@marek.ca>
+Add DT entries for the sm8250 venus encoder/decoder.
 
-This commit adds the videocc DTS node for sm8250.
-
+Co-developed-by: Jonathan Marek <jonathan@marek.ca>
 Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+Co-developed-by: Dikshita Agarwal <dikshita@qti.qualcomm.com>
+Signed-off-by: Dikshita Agarwal <dikshita@qti.qualcomm.com>
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 59 ++++++++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 947e1accae3a..23fb9a0e32b9 100644
+index 23fb9a0e32b9..cf602e8c40a7 100644
 --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -17,6 +17,7 @@
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
- #include <dt-bindings/sound/qcom,q6afe.h>
- #include <dt-bindings/thermal/thermal.h>
-+#include <dt-bindings/clock/qcom,videocc-sm8250.h>
- 
- / {
- 	interrupt-parent = <&intc>;
-@@ -2322,6 +2323,19 @@ usb_2_dwc3: dwc3@a800000 {
+@@ -2323,6 +2323,65 @@ usb_2_dwc3: dwc3@a800000 {
  			};
  		};
  
-+		videocc: clock-controller@abf0000 {
-+			compatible = "qcom,sm8250-videocc";
-+			reg = <0 0x0abf0000 0 0x10000>;
-+			clocks = <&gcc GCC_VIDEO_AHB_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK_A>;
-+			mmcx-supply = <&mmcx_reg>;
-+			clock-names = "iface", "bi_tcxo", "bi_tcxo_ao";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
++		venus: video-codec@aa00000 {
++			compatible = "qcom,sm8250-venus";
++			reg = <0 0x0aa00000 0 0x100000>;
++			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
++			power-domains = <&videocc MVS0C_GDSC>,
++					<&videocc MVS0_GDSC>,
++					<&rpmhpd SM8250_MX>;
++			power-domain-names = "venus", "vcodec0", "mx";
++			operating-points-v2 = <&venus_opp_table>;
++
++			clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
++				 <&videocc VIDEO_CC_MVS0C_CLK>,
++				 <&videocc VIDEO_CC_MVS0_CLK>;
++			clock-names = "iface", "core", "vcodec0_core";
++
++			interconnects = <&gem_noc MASTER_AMPSS_M0 &config_noc SLAVE_VENUS_CFG>,
++					<&mmss_noc MASTER_VIDEO_P0 &mc_virt SLAVE_EBI_CH0>;
++			interconnect-names = "cpu-cfg", "video-mem";
++
++			iommus = <&apps_smmu 0x2100 0x0400>;
++			memory-region = <&video_mem>;
++
++			resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>,
++				 <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
++			reset-names = "bus", "core";
++
++			video-decoder {
++				compatible = "venus-decoder";
++			};
++
++			video-encoder {
++				compatible = "venus-encoder";
++			};
++
++			venus_opp_table: venus-opp-table {
++				compatible = "operating-points-v2";
++
++				opp-720000000 {
++					opp-hz = /bits/ 64 <720000000>;
++					required-opps = <&rpmhpd_opp_low_svs>;
++				};
++
++				opp-1014000000 {
++					opp-hz = /bits/ 64 <1014000000>;
++					required-opps = <&rpmhpd_opp_svs>;
++				};
++
++				opp-1098000000 {
++					opp-hz = /bits/ 64 <1098000000>;
++					required-opps = <&rpmhpd_opp_svs_l1>;
++				};
++
++				opp-1332000000 {
++					opp-hz = /bits/ 64 <1332000000>;
++					required-opps = <&rpmhpd_opp_nom>;
++				};
++			};
 +		};
 +
- 		mdss: mdss@ae00000 {
- 			compatible = "qcom,sdm845-mdss";
- 			reg = <0 0x0ae00000 0 0x1000>;
+ 		videocc: clock-controller@abf0000 {
+ 			compatible = "qcom,sm8250-videocc";
+ 			reg = <0 0x0abf0000 0 0x10000>;
 -- 
 2.30.1
 
