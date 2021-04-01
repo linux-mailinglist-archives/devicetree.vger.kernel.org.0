@@ -2,122 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B9753510CD
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 10:24:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADB223510D8
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 10:29:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229612AbhDAIXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 04:23:20 -0400
-Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:35053 "EHLO
-        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233258AbhDAIWy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 04:22:54 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id A1FFD2D64;
-        Thu,  1 Apr 2021 04:22:53 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 01 Apr 2021 04:22:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=mFxFZVk7Wi/iNITvlOKppk48zHV
-        IoNvH1gnqNHIDvps=; b=arHCLQaxq3JBbz+8aKUOen66gJi5QFuJbHnh+o0flr1
-        msyTbECUujvTzYBS6kYQ5I403WMb5e2hl8fGt8JPujlLv43qpeUzzCv4b09cRknx
-        EkHMEtjiuO7uNSiPawtW/1EIPQWNQlLC5wvC139apmsgDUz9NHLEBmFUZGYt3Gbb
-        BGXfMap0YewlNxYGh0CytlW7EarMZmnw7vAb+H2MeS1pDI2guYV7DWMR9KrnWFTX
-        iz3qoEjZkYB/cWDGN7g6NO+xp1eOBDAc1SVa9Xic047rkY1tc/O0t5sUASD2w4OZ
-        vWlcJh8+swvrQ/EdKmC9XWVkxkFWSL1AdlXgsryXBhA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=mFxFZV
-        k7Wi/iNITvlOKppk48zHVIoNvH1gnqNHIDvps=; b=hAQMtW8Mmhk4LKxCLhtleT
-        a+5+GUC+ARmU5o0SZxDZYxu7/hSPURAw0m6piwuHQ1gHt5nSUo9PuSn/FufDI/9H
-        LARR5pSCFLa/Va/OynuELqyF1uqspG6/p4OMI7C/eBjwVulw8wtqS297SoZjJddj
-        z/G2e0NLbj8pI4MJmoNDfQnWioWQAq7Es6XVVswQ3NN1pumv1ItfIfqdkf6BWhZl
-        UvFyMI1I5a/+7R0gULiBafxvbR6mwYxfcpJfqmOn3+GDFR6jf10bWIqe2fnLoBTJ
-        dAbLF3FMCESLc4Pc3hCYTZojU7v7VrRL80h4yXjN/RB0Ap430zO8qHi9uaJptWNg
-        ==
-X-ME-Sender: <xms:3IJlYHkLZixJ00zl_SQzHNhdPnjzgX4hjefvLqzzeB0ha9hOumrBxw>
-    <xme:3IJlYK20Q18t53C4CqCOx-57Rbz9d8XF1ccWcp-GBKOdjx3GUdK5lmoettzZyg7pL
-    RDMQM-eZUd7wyMUi3U>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudeifedgudeftdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdej
-    vdfgveenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
-    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:3IJlYNqzA_GLs63No2neyANK5i6TXzLWcFNBbC2b5VmyVKJcPwLvow>
-    <xmx:3IJlYPnbBBCUx8LTDt-1ofAJ0g1XdLrFFr5pk0yMqKGkAjpMMbrzuA>
-    <xmx:3IJlYF0jgyMdfXAlmmHDQls_Z0WXJ9FzYoce70jEQZ_tli63sKgJIg>
-    <xmx:3YJlYN_bt5OaulYyGohJ4BH5KW-JwxS3VHq2H_HyM_YVDjYokCFKrQ>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id D2988108005C;
-        Thu,  1 Apr 2021 04:22:51 -0400 (EDT)
-Date:   Thu, 1 Apr 2021 10:22:49 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Jernej Skrabec <jernej.skrabec@siol.net>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Subject: Re: [linux-sunxi] [PATCH] arm64: dts: allwinner: h6: beelink-gs1:
- Remove ext. 32 kHz osc reference
-Message-ID: <20210401082249.cga2nxbh7rdsr5gz@gilmour>
-References: <20210330184218.279738-1-jernej.skrabec@siol.net>
- <CAJiuCcc4hs781Hz_=tehcm4S2nci8e0DEJKeUY5ck=bpcgNUbg@mail.gmail.com>
+        id S233496AbhDAI20 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 04:28:26 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:40816 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233195AbhDAI2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 04:28:01 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1318RrkV054419;
+        Thu, 1 Apr 2021 03:27:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1617265673;
+        bh=1YbiXVCeEYFqsRtESxaT0By+IL1CKNL6H/j7+kTcZyk=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=L0Lznd6Nv9f/Z0NB+E8jDqYi+x+tyoEOdC7YxCHYpPCgFPC8PIy4nthm6uo1ZqdGt
+         p9/3/mdUREekCtiDMZPYYQkIXBLlgg0Sm251mpSVqZoN8nMdlnXrfiRX5lWdCtEi8v
+         vdhdE2Kn0yzhMWFgzOKCy2XABLCbRAL7xFC62atg=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1318Rrfg094811
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 1 Apr 2021 03:27:53 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 1 Apr
+ 2021 03:27:53 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 1 Apr 2021 03:27:53 -0500
+Received: from [10.250.234.120] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1318RnZ2101922;
+        Thu, 1 Apr 2021 03:27:50 -0500
+Subject: Re: [PATCH 4/4] dt-bindings: spi: Convert cadence-quadspi.txt to
+ cadence-quadspi.yaml
+To:     Pratyush Yadav <p.yadav@ti.com>, Rob Herring <robh@kernel.org>
+CC:     Mark Brown <broonie@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210326130034.15231-1-p.yadav@ti.com>
+ <20210326130034.15231-5-p.yadav@ti.com>
+ <20210327183628.GA345487@robh.at.kernel.org>
+ <20210329182256.q4zhss6lezj3s44a@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <1161dc3b-c889-c5d7-f7c8-baf5b7b79505@ti.com>
+Date:   Thu, 1 Apr 2021 13:57:49 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="sahzod6j66lhpjug"
-Content-Disposition: inline
-In-Reply-To: <CAJiuCcc4hs781Hz_=tehcm4S2nci8e0DEJKeUY5ck=bpcgNUbg@mail.gmail.com>
+In-Reply-To: <20210329182256.q4zhss6lezj3s44a@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---sahzod6j66lhpjug
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 31, 2021 at 03:43:37PM +0200, Cl=E9ment P=E9ron wrote:
-> Hi Jernej,
->=20
-> On Tue, 30 Mar 2021 at 20:42, Jernej Skrabec <jernej.skrabec@siol.net> wr=
-ote:
-> >
-> > Although every Beelink GS1 seems to have external 32768 Hz oscillator,
-> > it works only on one from four tested. There are more reports of RTC
-> > issues elsewhere, like Armbian forum.
-> >
-> > One Beelink GS1 owner read RTC osc status register on Android which
-> > shipped with the box. Reported value indicated problems with external
-> > oscillator.
-> >
-> > In order to fix RTC and related issues (HDMI-CEC and suspend/resume with
-> > Crust) on all boards, switch to internal oscillator.
-> >
-> > Fixes: 32507b868119 ("arm64: dts: allwinner: h6: Move ext. oscillator t=
-o board DTs")
-> > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
->=20
-> Tested-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
+On 3/29/21 11:52 PM, Pratyush Yadav wrote:
+>>> +  cdns,fifo-depth:
+>>> +    description:
+>>> +      Size of the data FIFO in words.
+>>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+>>> +    enum: [ 128, 256 ]
+>>> +    default: 128
+>>> +
+>>> +  cdns,fifo-width:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description:
+>>> +      Bus width of the data FIFO in bytes.
+>>> +    default: 4
+>> I assume there's some constraints on this?
+> IIUC this is a matter of how the peripheral is implemented and there are 
+> no clear constraints. Different implementations can use different bus 
+> widths for the SRAM bus but I don't see any mention of minimum or 
+> maximum values. FWIW, all users in the kernel use a 4 byte bus.
+> 
 
-Applied, thanks!
-Maxime
+IMO a safe constraint would be to set a range of 1 to 4 (8/16/24/32 bit
+wide) given this represents SRAM bus width. Binding can always be
+updated if there exists an implementation with higher SRAM bus
+width/fifo-width (although that's highly unlikely given there are no
+such examples today).
 
---sahzod6j66lhpjug
-Content-Type: application/pgp-signature; name="signature.asc"
+But leaving it open ended with range of 0 to UINT_MAX sounds incorrect
+to me.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYGWC2QAKCRDj7w1vZxhR
-xdRUAP98mht4QDA0E+GvBBBjnbwPTWapaHzCmloS9QKs5nt9DwEAqMaEtKS1lKR7
-EKzh7XaCvKOipYOo8p2v3Vy6jfbTFAI=
-=z+KP
------END PGP SIGNATURE-----
-
---sahzod6j66lhpjug--
+>> With that,
+>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+> Thanks.
+> 
