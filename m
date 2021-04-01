@@ -2,159 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69CF9351F57
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 21:08:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99C5C351FEC
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 21:38:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234722AbhDATIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 15:08:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47672 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236980AbhDATGI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 15:06:08 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C598CC03D225;
-        Thu,  1 Apr 2021 10:57:06 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id b7so4171277ejv.1;
-        Thu, 01 Apr 2021 10:57:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=SU4RbOPNHP2ZwBcuTmWq/GTcYcUsYxKHBsEME1pvvGQ=;
-        b=Pk+H3SeIsgoAjYphDeLPalvCm6EsJbsA7KyLIPux7/WfS3x7EsLRgUNfTPL4QwprU3
-         sHWuE5J2TsFm5rYykvq+Vn4uw2nmvPDVjeEnQQ9hDzxbn3U3a3+3WlCHUhEXFpCW13N+
-         /vSnIMRA6aHL9eRRmias0UlyXR/0nbCS8ba+mBEVsLz40sOSo5NAq3LhSN6JvTD3ml7w
-         jBSXTrdIcjUwtNlUTLYVhXfob8OnG3eH7o5AsljAUNBylL1TTiQNWdx5zLunp4cptHFX
-         t2JIJe9XIsyu5Ul9/4lN3UokJtOwhYeQDo9BjnbedAGxHj37dVRX3RBJ4EY79+PMLPe9
-         +Bhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SU4RbOPNHP2ZwBcuTmWq/GTcYcUsYxKHBsEME1pvvGQ=;
-        b=sC7GFsv2emXQ62sK3W6+ZPincUPI+sZWOXmFHc8p+liV7ONS2fFGSeTEVW/0EvUH+o
-         Po0bc8wQTMRqFx28VYiMCQqob221BDg8peP9Ycp7ZfwkbBAzsyYGQdF6lAmhWtJUuSZn
-         +iGbjg8hMkko2OOilXcgjqvQYKTRl8zABYErgyFBoQR7WANZV3jqh7T/2xooe7NTzlJS
-         hLnulYnCciNzqzpvBZlBx4TwDTLPFCjivo7seh/qRn7Wt7euwJHpRXltsntxNRV7CrTo
-         xNRbVsH5l1mIPSR54lKIi4bRTwLw4oxJ+tsCoTzsm2dy87XHGyO9d1i9hfVObo5x/ha7
-         hqXQ==
-X-Gm-Message-State: AOAM530CjWhTB2m2MwT9yMwvmpe1Pe+3mLLKg7IQAikBZXDIGw9MDOkj
-        ODcqkUT07rTDs4wC4T+Y0zo=
-X-Google-Smtp-Source: ABdhPJzdA/tAYmJiie7zrEmMoslDQAs4DVN4ChKNsQPEoQCee4kryfkGjoQcSj/rqZOo4zGkwdVSvQ==
-X-Received: by 2002:a17:907:110c:: with SMTP id qu12mr10556442ejb.442.1617299825578;
-        Thu, 01 Apr 2021 10:57:05 -0700 (PDT)
-Received: from BV030612LT ([188.24.140.160])
-        by smtp.gmail.com with ESMTPSA id yk8sm3167870ejb.123.2021.04.01.10.57.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 10:57:05 -0700 (PDT)
-Date:   Thu, 1 Apr 2021 20:57:02 +0300
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/6] dt-bindings: soc: actions: Add Actions Semi Owl
- socinfo binding
-Message-ID: <20210401175702.GB2016477@BV030612LT>
-References: <cover.1617110420.git.cristian.ciocaltea@gmail.com>
- <15da0257b10aa62bfb7046437915d05a614c01ee.1617110420.git.cristian.ciocaltea@gmail.com>
- <20210401170818.GB610119@robh.at.kernel.org>
+        id S234689AbhDAThx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 15:37:53 -0400
+Received: from smtp-17.italiaonline.it ([213.209.10.17]:38895 "EHLO libero.it"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S234565AbhDAThw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Apr 2021 15:37:52 -0400
+Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
+ ([87.20.116.197])
+        by smtp-17.iol.local with ESMTPA
+        id S38SlkFJgtpGHS38Wly34z; Thu, 01 Apr 2021 21:37:50 +0200
+x-libjamoibt: 1601
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
+        t=1617305870; bh=YQB7g1tisjsO2/drdzJfID05HXMNLmMVG06wPqjwn88=;
+        h=From;
+        b=bqHrWqGHQHCwRxWwIwip8RK7Moc2HaHTTEil/uUqh+ipY0d43VmtwGRzQoAENdjXf
+         cvIKiXFiZfJhxf/GlhkLU1qCB/Lnun1pB9HugdgWawQZSr9siJg45Lilo7wWJ6KE9x
+         TX8TvzGOGFaO2PmC8TIY5hP0lqvXp7rdwWnQRc+Y1Gh3BGxfckF7hcJL+kbJYvbRYw
+         hf0+1h0cpxDtyDyPHiTrbQj6DRh+UKsGyPmtNT5QVNJkctmieynMTxbOXk90cdo9Tk
+         fPPWlGWot4+3kuAfBqBEG28uQVCOrLSUGvj2mET1xFe/mOCEIXJo9J5ubZ39DCEbDd
+         x2QSS3kfeNVYg==
+X-CNFS-Analysis: v=2.4 cv=Q7IXX66a c=1 sm=1 tr=0 ts=6066210e cx=a_exe
+ a=AVqmXbCQpuNSdJmApS5GbQ==:117 a=AVqmXbCQpuNSdJmApS5GbQ==:17
+ a=IkcTkHD0fZMA:10 a=1Ew--PDDX9GlwpKbZyQA:9 a=QEXdDO2ut3YA:10
+From:   Dario Binacchi <dariobin@libero.it>
+To:     linux-kernel@vger.kernel.org
+Cc:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Dario Binacchi <dariobin@libero.it>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: [PATCH v4 0/5] clk: ti: add am33xx spread spectrum clock support
+Date:   Thu,  1 Apr 2021 21:37:36 +0200
+Message-Id: <20210401193741.24639-1-dariobin@libero.it>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210401170818.GB610119@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4xfDiLzMti9f+2PiHEAAsu6xn+rVDM+lPnGENoR6zBoMCDhuA17etv25hLQb5jrSKjuAcMphCH4j+8tg/G5wT4AC9Exakc0HQKI9oab86fVstoTZdlfS6G
+ 9WoiF3Qx5zZx1dyZ07esTdm9XgZdhVG4puKiW+Rg8HcJg84o7ivevZa6Juoj9t7AVQFtkHok8+4O+SJ+B9bMjxJqC/q2bIePtlFAMN/z/nIem8dtpiFv2Lcy
+ pjFZJg98+FtwBAxf6cao3tiraGuo3pQ/vY63V4TsYHC8OVVYyVwRaUVx3XDmcWsQTcICWrC6oWN+TssYh9LdJMI2x5YbucWIEUw2LaDU6bN04ADkMGkocuTr
+ athPYBqo3jlp48xTGV+0Q67qnFPghdwkAeEAfQkeWZZhkSQRWJEREoMea1XJjyR9p7fuZFYBp/wP/0SdlnMjGGWnp3kHisPO+Rf6WmNNqs4WO31Kcxo1Xy7k
+ NFWPETc5yBfr5bOguHIJJrCLUU4PKymgrYJzW0ryrs+Sk7YE1JjUBZRvT050XUWfjINrHJMlV2BpS/6x9/daF/KNYdKzTe73lfASYrj6op7Hwe9wqmS1WYge
+ zzlcXVQHbvFX+6zqXpBCyrWXWfSmO6NuGErygIrguoISIA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 01, 2021 at 12:08:18PM -0500, Rob Herring wrote:
-> On Tue, Mar 30, 2021 at 04:48:17PM +0300, Cristian Ciocaltea wrote:
-> > Add devicetree binding for the Actions Semi Owl socinfo driver.
-> > 
-> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> > ---
-> >  .../bindings/soc/actions/owl-socinfo.yaml     | 57 +++++++++++++++++++
-> >  1 file changed, 57 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml b/Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml
-> > new file mode 100644
-> > index 000000000000..01e4a8b4f5ac
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml
-> > @@ -0,0 +1,57 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/soc/actions/owl-socinfo.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Actions Semi Owl SoC info module
-> > +
-> > +maintainers:
-> > +  - Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> > +
-> > +description: |
-> > +  Actions Semi Owl SoC info module provides access to various information
-> > +  about the S500, S700 and S900 SoC variants, such as serial number or id.
-> > +
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        enum:
-> > +          - actions,s500-soc
-> > +          - actions,s700-soc
-> > +          - actions,s900-soc
-> > +  required:
-> > +    - compatible
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - actions,s500-soc
-> > +          - actions,s700-soc
-> > +          - actions,s900-soc
-> > +      - const: simple-bus
-> > +
-> > +required:
-> > +  - compatible
-> > +
-> > +additionalProperties: true
-> > +
-> > +examples:
-> > +  - |
-> > +    / {
-> > +        compatible = "roseapplepi,roseapplepi", "actions,s500";
-> > +        model = "Roseapple Pi";
-> > +        #address-cells = <1>;
-> > +        #size-cells = <1>;
-> > +
-> > +        soc {
-> > +            compatible = "actions,s500-soc", "simple-bus";
-> 
-> What's the actual h/w for this bus? Still looks like abuse of DT to 
-> create your virtual soc_info driver.
+As reported by the TI spruh73x/spruhl7x RM, MPU and LCD modules support
+spread spectrum clocking (SSC) on their output clocks. SSC is used to
+spread the spectral peaking of the clock to reduce any electromagnetic
+interference (EMI) that may be caused due to the clock’s fundamental
+or any of its harmonics.
+The series allows you to enable and adjust the spread spectrum clocking
+for all am33xx/am43xx PLLs for which it is supported. All these issues
+have been fixed.
 
-Right, there is no bus involved in accessing soc info, but I assumed
-the already existing soc node in common DTS is a good candidate for
-binding the driver. (e.g. arch/arm/boot/dts/owl-s500.dtsi)
+Previous versions of the series did not supported SSC for am43xx SOCs,
+causing clock registration failure for DPLLs. Furthermore, for am33xx
+SOCs, clock registration failed for DPLLs for which SSC is not supported.
 
-Should I, instead, create a dedicated sub-node?
+Changes in v4:
+- Add Stephen Boyd review tag.
+- Add Rob Herring review tag.
+- Add SSC registers for CORE, DDR and PER PLLs.
+- Update commit message.
+- Update commit message.
 
-Thanks,
-Cristi
+Changes in v3:
+- Add '-hz' suffix to "ti,ssc-modfreq" binding.
+- Add Tony Lindgren acked tag.
+- Use "ti,ssc-modfreq-hz" binding instead of "ti,ssc-modfreq".
 
-> 
-> > +            #address-cells = <1>;
-> > +            #size-cells = <1>;
-> > +            ranges;
-> > +        };
-> > +    };
-> > +
-> > +...
-> > -- 
-> > 2.31.1
-> > 
+Changes in v2:
+- Remove SSC registers from dpll_core_ck@490 node (SSC is not supported)
+- Add SSC registers to dpll_mpu_ck@488 node.
+- Move the DT changes to the previous patch in the series.
+
+Dario Binacchi (5):
+  clk: ti: fix typo in routine description
+  dt-bindings: ti: dpll: add spread spectrum support
+  ARM: dts: am33xx-clocks: add spread spectrum support
+  ARM: dts: am43xx-clocks: add spread spectrum support
+  clk: ti: add am33xx/am43xx spread spectrum clock support
+
+ .../devicetree/bindings/clock/ti/dpll.txt     | 20 +++++
+ arch/arm/boot/dts/am33xx-clocks.dtsi          | 10 +--
+ arch/arm/boot/dts/am43xx-clocks.dtsi          | 12 +--
+ drivers/clk/ti/dpll.c                         | 42 +++++++++
+ drivers/clk/ti/dpll3xxx.c                     | 87 ++++++++++++++++++-
+ include/linux/clk/ti.h                        | 24 +++++
+ 6 files changed, 183 insertions(+), 12 deletions(-)
+
+-- 
+2.17.1
+
