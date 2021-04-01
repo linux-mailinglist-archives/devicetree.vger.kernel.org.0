@@ -2,175 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACA34351E8A
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:55:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07304351CC9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:47:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237043AbhDASnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:43:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:32790 "EHLO mail.kernel.org"
+        id S234987AbhDASVS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 14:21:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45700 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238357AbhDASh7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Apr 2021 14:37:59 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DF4D3610D0;
-        Thu,  1 Apr 2021 11:32:58 +0000 (UTC)
+        id S239627AbhDASQn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Apr 2021 14:16:43 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0169F6113E;
+        Thu,  1 Apr 2021 12:17:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617276781;
-        bh=hfjvB9ERt7bvtAIEkjFz4Hvuc2oFEMjwZBh8Tsw4mdI=;
+        s=k20201202; t=1617279476;
+        bh=wRad7N84rWD9dSoio69a4lZ1e70YET8Y/U4ELbCnnho=;
         h=From:To:Cc:Subject:Date:From;
-        b=YOBsd9WVnLhP8AWR4lzPTOPl5RcODxd2bxg/z8jI0NG5w+uhlfyhIqCrCqOZfuh4t
-         zRfRcCTUpp7ZD0VoUdODDpX0avFN0ZpCP73Fxcr1F49rIp/WqAkONKDIniby1yFcu9
-         V3rKBjxRvVLK/hUk0b4Hv3UKSIhCNxSz3ZkdzFIVeuZL4iKjlPoadB9lhegO68Lkud
-         rNEFJvuuhT2LcMNh3VTN8xEwIDICZk00cm9LSYb8ZU0hK5ZVi2G8p+bKpZynFdL0Ve
-         HfaxgSYas6h0lt/vn1AhhiDRt4frwjd02hjWEtqZ9ynXjy3A+7ZcNykrgJdYAM6dTb
-         D5cG0nRRuX+VQ==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sm8350: Add interconnects
-Date:   Thu,  1 Apr 2021 17:02:52 +0530
-Message-Id: <20210401113252.3078466-1-vkoul@kernel.org>
-X-Mailer: git-send-email 2.26.3
+        b=Q1xGCX8CjWBXtQC1pgo9/9vi4nDHYsR9ze0Q3GiyebU0GCkZVF2x7Dm68maSFFiUb
+         aYhFb4Mtsxe3dwyRk1InCmoNe+43BkSOmz3+yXmoJlqQon680CoD7Fu0OV/kMatoKB
+         POCl1bXAfQ85z4s39lkLH+3JCvV54zR+CeAxccTEvavGiJh0qGmRlyOcVNt9cvXxRq
+         kYRsUf12VYN3g12XZxM/SAQ9Jf1Po6QForEFkcVk/jW0b2lIFgc1wXKAcg30pF7BC8
+         U8xRKFjOp2o3cBdsuc5vEOD8ftGdy/B8MUbxDoRdCuirrnPb1300SCFtXBNU1EX6Km
+         N9eYgXDgwnnkA==
+Received: by mail.kernel.org with local (Exim 4.94)
+        (envelope-from <mchehab@kernel.org>)
+        id 1lRwGn-001c2K-FQ; Thu, 01 Apr 2021 14:17:53 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        =?UTF-8?q?Przemys=C5=82aw=20Gaj?= <pgaj@cadence.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andy Whitcroft <apw@canonical.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Dwaipayan Ray <dwaipayanray1@gmail.com>,
+        Joe Perches <joe@perches.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vitor Soares <vitor.soares@synopsys.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-i3c@lists.infradead.org, linux-iio@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-pm@vger.kernel.org, patches@opensource.cirrus.com
+Subject: [PATCH 00/32] Fix broken documentation file references
+Date:   Thu,  1 Apr 2021 14:17:20 +0200
+Message-Id: <cover.1617279355.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add interconnect nodes and add them for modem and cdsp nodes
+Each patch on this series can be applied independently. They fix broken
+file references.
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 79 ++++++++++++++++++++++++++++
- 1 file changed, 79 insertions(+)
+Most of them are due to DT binding renames, but there are also other
+unrelated changes.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index a0d459069211..72cd3e7574a0 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interconnect/qcom,sm8350.h>
- #include <dt-bindings/clock/qcom,gcc-sm8350.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/mailbox/qcom-ipcc.h>
-@@ -557,6 +558,62 @@ apps_smmu: iommu@15000000 {
- 					<GIC_SPI 707 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		config_noc: interconnect@1500000 {
-+			compatible = "qcom,sm8350-config-noc";
-+			reg = <0 0x01500000 0 0xa580>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		mc_virt: interconnect@1580000 {
-+			compatible = "qcom,sm8350-mc-virt";
-+			reg = <0 0x01580000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		system_noc: interconnect@1680000 {
-+			compatible = "qcom,sm8350-system-noc";
-+			reg = <0 0x01680000 0 0x1c200>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		aggre1_noc: interconnect@16e0000 {
-+			compatible = "qcom,sm8350-aggre1-noc";
-+			reg = <0 0x016e0000 0 0x1f180>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		aggre2_noc: interconnect@1700000 {
-+			compatible = "qcom,sm8350-aggre2-noc";
-+			reg = <0 0x01700000 0 0x33000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		mmss_noc: interconnect@1740000 {
-+			compatible = "qcom,sm8350-mmss-noc";
-+			reg = <0 0x01740000 0 0x1f080>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		lpass_ag_noc: interconnect@3c40000 {
-+			compatible = "qcom,sm8350-lpass-ag-noc";
-+			reg = <0 0x03c40000 0 0xf080>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		compute_noc: interconnect@a0c0000{
-+			compatible = "qcom,sm8350-compute-noc";
-+			reg = <0 0x0a0c0000 0 0xa180>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		tcsr_mutex: hwlock@1f40000 {
- 			compatible = "qcom,tcsr-mutex";
- 			reg = <0x0 0x01f40000 0x0 0x40000>;
-@@ -584,6 +641,8 @@ mpss: remoteproc@4080000 {
- 					<&rpmhpd SM8350_MSS>;
- 			power-domain-names = "load_state", "cx", "mss";
- 
-+			interconnects = <&mc_virt 0 &mc_virt 1>;
-+
- 			memory-region = <&pil_modem_mem>;
- 
- 			qcom,smem-states = <&smp2p_modem_out 0>;
-@@ -787,6 +846,10 @@ rpmhpd_opp_turbo_l1: opp10 {
- 					};
- 				};
- 			};
-+
-+			apps_bcm_voter: bcm_voter {
-+				compatible = "qcom,bcm-voter";
-+			};
- 		};
- 
- 		ufs_mem_hc: ufshc@1d84000 {
-@@ -925,6 +988,8 @@ cdsp: remoteproc@98900000 {
- 					<&rpmhpd SM8350_MXC>;
- 			power-domain-names = "load_state", "cx", "mxc";
- 
-+			interconnects = <&compute_noc 1 &mc_virt 1>;
-+
- 			memory-region = <&pil_cdsp_mem>;
- 
- 			qcom,smem-states = <&smp2p_cdsp_out 0>;
-@@ -1036,6 +1101,20 @@ usb_2_ssphy: phy@88ebe00 {
- 			};
- 		};
- 
-+		dc_noc: interconnect@90e0000 {
-+			compatible = "qcom,sm8350-dc-noc";
-+			reg = <0 0x090c0000 0 0x4200>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		gem_noc: interconnect@9100000 {
-+			compatible = "qcom,sm8350-gem-noc";
-+			reg = <0 0x09100000 0 0xb4000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		usb_1: usb@a6f8800 {
- 			compatible = "qcom,sm8350-dwc3", "qcom,dwc3";
- 			reg = <0 0x0a6f8800 0 0x400>;
+This series is based on next-20210401.
+
+Mauro Carvalho Chehab (32):
+  MAINTAINERS: update adi,ad5758.yaml reference
+  MAINTAINERS: update ste,mcde.yaml reference
+  MAINTAINERS: update brcm,bcm-v3d.yaml reference
+  MAINTAINERS: update fsl,dpaa2-console.yaml reference
+  MAINTAINERS: update st,hts221.yaml reference
+  MAINTAINERS: update dpot-dac.yaml reference
+  MAINTAINERS: update envelope-detector.yaml reference
+  MAINTAINERS: update current-sense-amplifier.yaml reference
+  MAINTAINERS: update current-sense-shunt.yaml reference
+  MAINTAINERS: update voltage-divider.yaml reference
+  MAINTAINERS: update invensense,mpu3050.yaml reference
+  MAINTAINERS: update lego,ev3-battery.yaml reference
+  MAINTAINERS: update marvell,armada-3700-utmi-phy.yaml reference
+  MAINTAINERS: update mtk-sd.yaml reference
+  MAINTAINERS: update atmel,sama5d2-adc.yaml reference
+  MAINTAINERS: update pni,rm3100.yaml reference
+  MAINTAINERS: update renesas,rcar-gyroadc.yaml reference
+  MAINTAINERS: update st,lsm6dsx.yaml reference
+  MAINTAINERS: update st,vl53l0x.yaml reference
+  MAINTAINERS: update snps,dw-axi-dmac.yaml reference
+  MAINTAINERS: update ti,dac7612.yaml reference
+  MAINTAINERS: update nxp,imx8-jpeg.yaml reference
+  MAINTAINERS: update ovti,ov2680.yaml reference
+  MAINTAINERS: update imi,rdacm2x-gmsl.yaml reference
+  dt-bindings:iio:dac: update microchip,mcp4725.yaml reference
+  dt-bindings: iommu: mediatek: update mediatek,iommu.yaml references
+  dt-bindings: i3c: update i3c.yaml references
+  dt-bindings: power: update battery.yaml reference
+  docs: dt: update writing-schema.rst references
+  Documentation: net: dsa: update configuration.rst reference
+  Documentation: update sysfs-platform_profile.rst reference
+  pinctrl: update pin-control.rst references
+
+ .../display/mediatek/mediatek,disp.txt        |  2 +-
+ .../bindings/i3c/cdns,i3c-master.txt          |  6 +--
+ .../bindings/i3c/snps,dw-i3c-master.txt       |  6 +--
+ .../bindings/media/mediatek-jpeg-decoder.txt  |  2 +-
+ .../bindings/media/mediatek-jpeg-encoder.txt  |  2 +-
+ .../bindings/media/mediatek-mdp.txt           |  2 +-
+ .../bindings/media/mediatek-vcodec.txt        |  2 +-
+ .../bindings/submitting-patches.rst           |  2 +-
+ Documentation/filesystems/cifs/cifsd.rst      |  2 +-
+ Documentation/power/power_supply_class.rst    |  2 +-
+ MAINTAINERS                                   | 48 +++++++++----------
+ include/linux/device.h                        |  2 +-
+ include/linux/iio/dac/mcp4725.h               |  2 +-
+ include/linux/mfd/madera/pdata.h              |  2 +-
+ include/linux/pinctrl/pinconf-generic.h       |  2 +-
+ include/linux/platform_profile.h              |  2 +-
+ scripts/checkpatch.pl                         |  2 +-
+ 17 files changed, 44 insertions(+), 44 deletions(-)
+
 -- 
-2.26.3
+2.30.2
+
 
