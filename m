@@ -2,79 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D23D4351006
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 09:23:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 014E435100B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 09:24:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233444AbhDAHWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 03:22:31 -0400
-Received: from www.zeus03.de ([194.117.254.33]:47022 "EHLO mail.zeus03.de"
+        id S233179AbhDAHXf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 03:23:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56126 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233618AbhDAHWL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Apr 2021 03:22:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=mnMIfumYMh8F0hw7EyjgC4+Z+Ouw
-        nM7eCOyDSjI8KYM=; b=2gVj55noXndvsPq79WweMvWuNwJG3C8R8QGDDEaMwD9J
-        3GVHt9VOpoEYdVWWQ2H1w/+WG78kv8LoHJ4fLu99ZYdWRUPz78YIcGk/ORybsvN1
-        9I9FcHI0RDlVAYrvI2myk+fjPyb7J8yxveyhCM0U12bSn2TJWOxPtS6LTpR42iE=
-Received: (qmail 858078 invoked from network); 1 Apr 2021 09:22:06 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 1 Apr 2021 09:22:06 +0200
-X-UD-Smtp-Session: l3s3148p1@sga5FuS+qKsgARa4RS5gAQuD4qucpEC3
-Date:   Thu, 1 Apr 2021 09:22:06 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org,
-        linux-renesas-soc@vger.kernel.org, yusuke.goda.sx@renesas.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: can: rcar_can: Document
- r8a77961 support
-Message-ID: <20210401072206.GB1036@ninjato>
-References: <20210312095030.534957-1-yoshihiro.shimoda.uh@renesas.com>
- <20210312095030.534957-2-yoshihiro.shimoda.uh@renesas.com>
+        id S233050AbhDAHXE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Apr 2021 03:23:04 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 46EBF6023C;
+        Thu,  1 Apr 2021 07:23:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617261784;
+        bh=J709AUoNNYTejo2qFGwK4/6PgplsILaGpLmxycENUFM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Yl3QqHt0VGFiJEHeSvxsHq86JpTpo5/0af2t5FhNqpzsvHgqdbsS+EXWRArF+53xQ
+         ATGYc3aoAfDRy/8m/946DbHam5H+hlHdw9fDht0in934LvojraXlB8xW1DPyyZ/M6n
+         4znVEh9Xn71D+36Sg/ot6/u6T4vB+HHHHPbHTzGW94LeEe35KKC22uxHDBgDAuaIEg
+         hf9Kvz6AuEIwRPXAd7srfbunXUCAtWYruuzu+Sq2MWKlDhEN7/PVyw7pOg2/o2IICM
+         NmwI0/UVk/+hyEZibRbk46rvj4bfhjo+S6gnZTsm10S3DHScqtxG3BgDGOW0gbALkI
+         yO8hUyhMr7UJw==
+Date:   Thu, 1 Apr 2021 12:52:59 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     broonie@kernel.org, robh@kernel.org, devicetree@vger.kernel.org,
+        yung-chuan.liao@linux.intel.com,
+        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: Re: [PATCH v4 0/5] soundwire: add static port map support
+Message-ID: <YGV009kiiArJsFMM@vkoul-mobl.Dlink>
+References: <20210315165650.13392-1-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jq0ap7NbKX2Kqbes"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210312095030.534957-2-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20210315165650.13392-1-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 15-03-21, 16:56, Srinivas Kandagatla wrote:
+> In some cases, SoundWire device ports are statically mapped to Controller
+> ports during design, however there is no way to expose this information
+> to the controller. Controllers like Qualcomm ones use this info to setup
+> static bandwidth parameters for those ports.
+> 
+> A generic port allocation is not possible in this cases!
+> This patch adds a new member m_port_map to SoundWire device so that
+> it can populate the static master port map and share it with controller
+> to be able to setup correct bandwidth parameters.
+> 
+> As a user of this feature this patchset also adds new bindings for
+> wsa881x smart speaker which has 4 ports which are statically mapped
+> to the 3 output and 1 input port of the controller.
+> 
+> Tested it on DB845c and SM8250 MTP.
+> 
+> thanks,
+> srini
+> 
+> Changes since v3:
+> 	- updated kernel doc for more clarity on m_port_map
+> 
+> Srinivas Kandagatla (5):
+>   soundwire: add static port mapping support
+>   soundwire: qcom: update port map allocation bit mask
+>   soundwire: qcom: add static port map support
 
---jq0ap7NbKX2Kqbes
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied all sdw patches, thanks
 
-On Fri, Mar 12, 2021 at 06:50:29PM +0900, Yoshihiro Shimoda wrote:
-> Document SoC specific bindings for R-Car M3-W+ (r8a77961) SoC.
->=20
-> Also as R8A7796 is now called R8A77960 so that update those
-> references.
->=20
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+>   ASoC: dt-bindings: wsa881x: add bindings for port mapping
+>   ASoC: codecs: wsa881x: add static port map support
+> 
+>  .../bindings/sound/qcom,wsa881x.yaml          |  9 ++++++
+>  drivers/soundwire/qcom.c                      | 31 +++++++++++++++----
+>  include/linux/soundwire/sdw.h                 |  2 ++
+>  sound/soc/codecs/wsa881x.c                    |  7 +++++
+>  4 files changed, 43 insertions(+), 6 deletions(-)
+> 
+> -- 
+> 2.21.0
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-
---jq0ap7NbKX2Kqbes
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmBldJUACgkQFA3kzBSg
-KbbUWg/+I1VDzyQOsART5FVrr0CqDTqQ/e3p6bewYBRK0datAAEIFA+i+h/XOmGC
-FKSWMymc/7oXfXdlnY8+vy8tE3DGIVnJl7ZN/DVS5DosVlw5AV+O107NMifiHzUQ
-BhvFgOxTW0E2hqoAVCMU+//GUzrSkZLlDvzIWrHPkvt5sTVBfnu20LCFDJnCKQn3
-VqbHuAuuR6HoOIj/vQwygJa9kpC8RUYT46uPCwooz3vUP+VESAOZAppIFpxL0WnM
-/WF87DH9Fwx3ZJSnp0zPMun7EYLDTt/+Vmx9xPu+fEGt9CXkIvTXwZGV59mg8AtB
-3wciX2cJwmJw9RL0mFKNd2oJL6z36VMhvFdb5YycrJ1Ib394LAkO5rmA7yrsqMq1
-PGJrlwPj6BFPxic5tjXpJz1Rhz3JvmiCYjFVeHDi/F0ZgEfK9J0CuU7BAS0mxnwq
-djqZfZsvIJsQEwH6p6WG+H9yegjoU6IYkugc7QUiHtxAldM5un/fZwUMJ0FTJjqV
-aI6dgPyp9+qNlSasz/1PiX9AT8RvIBoD29ZGFQTOJ3RXVsGLyzQGgUpRZNw44Wt5
-be9lThvOuvErRyZCVBQ5+Zxkkis7VpQgIwaPPNK+P+t9H11BA9qDwoCoERFDTld7
-vABEuLh2m6IpGmAnDp+Rc1sInW5US0ZnOcnq9ythgRdsycfX9DE=
-=YeJB
------END PGP SIGNATURE-----
-
---jq0ap7NbKX2Kqbes--
+-- 
+~Vinod
