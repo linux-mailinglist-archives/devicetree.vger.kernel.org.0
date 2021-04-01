@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7454A351CCE
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:47:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D0B7351CD9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:47:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236374AbhDASVY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:21:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37028 "EHLO
+        id S235953AbhDASVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 14:21:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239699AbhDASQr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:16:47 -0400
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13075C031178;
-        Thu,  1 Apr 2021 10:09:39 -0700 (PDT)
-Received: by mail-oi1-x22b.google.com with SMTP id n140so2443399oig.9;
-        Thu, 01 Apr 2021 10:09:39 -0700 (PDT)
+        with ESMTP id S237543AbhDASTc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:19:32 -0400
+Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B54E3C0319C4;
+        Thu,  1 Apr 2021 10:17:48 -0700 (PDT)
+Received: by mail-oo1-xc2d.google.com with SMTP id 125-20020a4a1a830000b02901b6a144a417so713141oof.13;
+        Thu, 01 Apr 2021 10:17:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=+aXNjJuVUumi5TRfsImw8Zt0yNPvfmonu1KMDych7KE=;
-        b=bsKpMqDArH3IKklMaeKoURaLp4jrZj8Qm2GRNbx1pyJrRQ9PY4t2DuObUD0WbcmmVF
-         YI/B+TfsS3VucSts2J78A9x0feiMxC7KE9MF74OyceydekNUkmu0zw1Yg49C/Wf81ulM
-         naJiFMn0GnMvMU14NoQHoRYC2/Wjv2TSWQ4/bX4xjBJ4X7+eLw82g6HwEm3UwMwnfr1J
-         bgsphZATRsTvELWFxAnrjOldSCLpg1SlRkhZPISpUI6O0qms6SsXTivQmZ2NR8u8ENpn
-         fttNL8Onj2N4aS/x453oEDdGhI5k901V32nzfrIPUr9C6LH4td4HjApBxM2rKJFGTf6L
-         v6Gg==
-X-Gm-Message-State: AOAM530eN2JKUi9utcJ1fC0mTsqIB3TzuDHbxoQs1CURQAIG/XwQw4GB
-        KY+7roAJogiJ7nJXv6gVtQ==
-X-Google-Smtp-Source: ABdhPJx8VdMpHnlAiOBeHsNkwA82OIfkMjQjd799V7gJHykNelnxJL3Z4wK3Gyo/lsR35Rm1qdYsig==
-X-Received: by 2002:a05:6808:146:: with SMTP id h6mr6901775oie.118.1617296975408;
-        Thu, 01 Apr 2021 10:09:35 -0700 (PDT)
+        bh=rTYpQxnYeisun6vuUDJAUFTYg5NuDKCDGsq0N/u9+TQ=;
+        b=RWcnkAuE/4lS55uJ9WqNlDsvP0mUpga3lNK034a+UvICNh2X8k2bw8IqGay1YQOQGs
+         HI5jqmWctPALEXXjxkiIhIxxLFShwddjID79gVrFr3xg63oN/TjFYPvpuIDwML6gEgMk
+         9o//h+0Z/6Dh4sLYhqlweeGqS7jE85Af+8X+p6u63+Gt0lE8SWPtWy4zlkyzgoC6dqPi
+         gJqk2ZzbxFhzbwpUeMKfFWZQhl8V9yOVLyoqx2Iia8HySGahu3DWSeEEn6LzOVB1w/VE
+         Rsn5l18sgHxkLSSqh4oj45UPQqZ3kxG1j52fltgPBIFSmYeQ3lk13mdqCsrlmha7H1z3
+         Qekg==
+X-Gm-Message-State: AOAM5327rdUggi8z4QoykYpbjcugb9gfKg+FOzal3RmthNezewbCuad4
+        VGIP0y04JT5gvdALdhX0A1Espyxj0Q==
+X-Google-Smtp-Source: ABdhPJzWzVT5IQc4aLRQt2NzaPCyhgFdVeHL9nOVBmHSD87cvob9pcfyrMrymy98s/V5kxzd6Smfbw==
+X-Received: by 2002:a4a:b102:: with SMTP id a2mr7975195ooo.30.1617297465008;
+        Thu, 01 Apr 2021 10:17:45 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g21sm1219961ooa.15.2021.04.01.10.09.33
+        by smtp.gmail.com with ESMTPSA id d1sm1246305oth.13.2021.04.01.10.17.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 10:09:34 -0700 (PDT)
-Received: (nullmailer pid 623796 invoked by uid 1000);
-        Thu, 01 Apr 2021 17:09:33 -0000
-Date:   Thu, 1 Apr 2021 12:09:33 -0500
+        Thu, 01 Apr 2021 10:17:44 -0700 (PDT)
+Received: (nullmailer pid 636777 invoked by uid 1000);
+        Thu, 01 Apr 2021 17:17:43 -0000
+Date:   Thu, 1 Apr 2021 12:17:43 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     Corey Minyard <minyard@acm.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Wolfram Sang <wsa@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        openipmi-developer@lists.sourceforge.net,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-Subject: Re: [PATCH v2 3/3] bindings: ipmi: Add binding for Aspeed SSIF BMC
- driver
-Message-ID: <20210401170933.GA622142@robh.at.kernel.org>
-References: <20210330141029.20412-1-quan@os.amperecomputing.com>
- <20210330141029.20412-4-quan@os.amperecomputing.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        linux-tegra@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/6] dt-bindings: memory: tegra124: emc: Replace core
+ regulator with power domain
+Message-ID: <20210401171743.GA636437@robh.at.kernel.org>
+References: <20210330230445.26619-1-digetx@gmail.com>
+ <20210330230445.26619-4-digetx@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210330141029.20412-4-quan@os.amperecomputing.com>
+In-Reply-To: <20210330230445.26619-4-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 30, 2021 at 09:10:29PM +0700, Quan Nguyen wrote:
-> Add device tree binding document for the Aspeed SSIF BMC driver.
+On Wed, 31 Mar 2021 02:04:42 +0300, Dmitry Osipenko wrote:
+> Power domain fits much better than a voltage regulator in regards to
+> a proper hardware description and from a software perspective as well.
+> Hence replace the core regulator with the power domain. Note that this
+> doesn't affect any existing DTBs because we haven't started to use the
+> regulator yet, and thus, it's okay to change it.
 > 
-> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 > ---
->  .../bindings/ipmi/aspeed-ssif-bmc.txt          | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ipmi/aspeed-ssif-bmc.txt
+>  .../bindings/memory-controllers/nvidia,tegra124-emc.yaml   | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+> 
 
-Same comment as you ignored on v1.
+Reviewed-by: Rob Herring <robh@kernel.org>
