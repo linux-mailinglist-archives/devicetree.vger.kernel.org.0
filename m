@@ -2,224 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6F1C351AF9
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:08:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2570B351949
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:02:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237604AbhDASEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:04:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34006 "EHLO
+        id S235043AbhDARwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 13:52:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235088AbhDASBg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:01:36 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C472C02FE92;
-        Thu,  1 Apr 2021 09:00:31 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: benjamin.gaignard)
-        with ESMTPSA id 497941F46898
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To:     ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, lee.jones@linaro.org,
-        gregkh@linuxfoundation.org, mripard@kernel.org,
-        paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
-        emil.l.velikov@gmail.com
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
-        kernel@collabora.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: [PATCH v8 12/13] media: hantro: IMX8M: add variant for G2/HEVC codec
-Date:   Thu,  1 Apr 2021 18:00:02 +0200
-Message-Id: <20210401160003.88803-13-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210401160003.88803-1-benjamin.gaignard@collabora.com>
-References: <20210401160003.88803-1-benjamin.gaignard@collabora.com>
+        with ESMTP id S236605AbhDARt0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:49:26 -0400
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44453C02FEAA
+        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 09:16:28 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id l123so294824pfl.8
+        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 09:16:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=T0rYie3R/Ll/Af9JkBaLcz+s5C8Xgvssk29GDuQKtVo=;
+        b=hZTs4t39HPYJt8nFN3+uw+fFkJwWZQ+USL2SvOKmRHoMWJYlqMgchLE/jdrKEQcQm7
+         gG67zb/7GhmqoLrWGHg/Yppb1uBDzTF4+FiwMtt71zoxlxDEOpkE6h66XxFp9l4QDcdE
+         pOik5kwxa6cfUCHP7d0vnJwUPTSuG6/ydSUHmYcQwMtYti/RPWW9m9F1HQ+cvqZO7y6g
+         vcsd0I9j/k/SQfuOIP2v5L4FHaNZcKbdeDIEDHbOc22oisyz2nLQzXyvKa9bg65dG5Ar
+         m2g128D1RWoAMw08JIBItzjtBpzSKa6iZmzUxG1MYB410HY9xC1t9vYZnw8gRJJ3KZju
+         BFiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=T0rYie3R/Ll/Af9JkBaLcz+s5C8Xgvssk29GDuQKtVo=;
+        b=lrlerUX+T1fXQNn13Q/huI7mqfSJbbDkRWYwXOkjZcXusBuWAN05TxOrrM1kbqiHcU
+         xpBL6C9LuCufH3dW35cakPkOrIxOIGaKesgSDuGez7xF8axZZOi2vrqPGZVv4s2V4b9N
+         CAf+XiJdeght+VW6aSRmo46mkGRw6s54pdhqXrdHNdTFhADhVczkB8/0eYECXytW7o61
+         I8/tB10GuXSlPuaYGVOTCXeNBNCWSRD2wWDIxNmC3zDbRaWLtx62I3jtAbO4wvBRH+MW
+         MB5xA57fAKMgnqcIsb+fZdQ2xK0eUcWNfcHFdOgzjngHNVpX8TSsh4yc7NTbrCuy4F4q
+         g+fw==
+X-Gm-Message-State: AOAM531Zk0+T70Qo4Crm+QdqBGQkyqXl8TzsQdJTMS/YBcPZr0GI44Uh
+        M55cE+IOPUhasIUHcSKpy896nbRPJ1D1
+X-Google-Smtp-Source: ABdhPJzRfPJ4ww9afESIc0EdZwAUVJbhKldoXwCOD5bB0LhtoJSQ3txH5Jvp0nJUZlBjYBX4u6rxEg==
+X-Received: by 2002:a63:c741:: with SMTP id v1mr8045403pgg.207.1617293787509;
+        Thu, 01 Apr 2021 09:16:27 -0700 (PDT)
+Received: from work ([103.77.37.138])
+        by smtp.gmail.com with ESMTPSA id t18sm6174736pfq.147.2021.04.01.09.16.24
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 01 Apr 2021 09:16:26 -0700 (PDT)
+Date:   Thu, 1 Apr 2021 21:46:22 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Boris Brezillon <boris.brezillon@collabora.com>
+Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Daniele.Palmas@telit.com,
+        bjorn.andersson@linaro.org
+Subject: Re: [PATCH v10 3/4] mtd: rawnand: Add support for secure regions in
+ NAND memory
+Message-ID: <20210401161622.GH14052@work>
+References: <20210401151955.143817-1-manivannan.sadhasivam@linaro.org>
+ <20210401151955.143817-4-manivannan.sadhasivam@linaro.org>
+ <20210401175421.65db63bf@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210401175421.65db63bf@collabora.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add variant to IMX8M to enable G2/HEVC codec.
-Define the capabilities for the hardware up to 3840x2160.
-G2 doesn't have postprocessor, use the same clocks and got it
-own interruption.
+On Thu, Apr 01, 2021 at 05:54:21PM +0200, Boris Brezillon wrote:
+> On Thu,  1 Apr 2021 20:49:54 +0530
+> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
+> 
+> > @@ -565,6 +608,11 @@ static int nand_block_isreserved(struct mtd_info *mtd, loff_t ofs)
+> >  
+> >  	if (!chip->bbt)
+> >  		return 0;
+> > +
+> > +	/* Check if the region is secured */
+> > +	if (nand_region_is_secured(chip, ofs, 0))
+> > +		return -EIO;
+> 
+> That would is still wrong, you should never pass a 0 size to
+> nand_region_is_secured().
+> 
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-Reviewed-by: Ezequiel Garcia <ezequiel@collabora.com>
----
-version 8:
- - Add Ezequiel Reviewed-by tag.
+Size doesn't matter here, that's why I passed 0. Maybe 1 would be
+appropriate?
 
-version 7:
- - Add Philipp Reviewed-by tag.
-
-version 5:
- - remove useless postproc fields for G2
-
-version 2:
-- remove useless clocks
-
- drivers/staging/media/hantro/hantro_drv.c   |  1 +
- drivers/staging/media/hantro/hantro_hw.h    |  1 +
- drivers/staging/media/hantro/imx8m_vpu_hw.c | 76 ++++++++++++++++++++-
- 3 files changed, 76 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-index 33b8bd38eac1..ed380a8bef93 100644
---- a/drivers/staging/media/hantro/hantro_drv.c
-+++ b/drivers/staging/media/hantro/hantro_drv.c
-@@ -574,6 +574,7 @@ static const struct of_device_id of_hantro_match[] = {
- #endif
- #ifdef CONFIG_VIDEO_HANTRO_IMX8M
- 	{ .compatible = "nxp,imx8mq-vpu", .data = &imx8mq_vpu_variant, },
-+	{ .compatible = "nxp,imx8mq-vpu-g2", .data = &imx8mq_vpu_g2_variant },
- #endif
- 	{ /* sentinel */ }
- };
-diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging/media/hantro/hantro_hw.h
-index 5788188aae50..b4e7490bbe45 100644
---- a/drivers/staging/media/hantro/hantro_hw.h
-+++ b/drivers/staging/media/hantro/hantro_hw.h
-@@ -193,6 +193,7 @@ extern const struct hantro_variant rk3399_vpu_variant;
- extern const struct hantro_variant rk3328_vpu_variant;
- extern const struct hantro_variant rk3288_vpu_variant;
- extern const struct hantro_variant imx8mq_vpu_variant;
-+extern const struct hantro_variant imx8mq_vpu_g2_variant;
- 
- extern const struct hantro_postproc_regs hantro_g1_postproc_regs;
- 
-diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-index 8d0c3425234b..6de43e0edc36 100644
---- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
-+++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-@@ -12,6 +12,7 @@
- #include "hantro.h"
- #include "hantro_jpeg.h"
- #include "hantro_g1_regs.h"
-+#include "hantro_g2_regs.h"
- 
- #define CTRL_SOFT_RESET		0x00
- #define RESET_G1		BIT(1)
-@@ -129,6 +130,26 @@ static const struct hantro_fmt imx8m_vpu_dec_fmts[] = {
- 	},
- };
- 
-+static const struct hantro_fmt imx8m_vpu_g2_dec_fmts[] = {
-+	{
-+		.fourcc = V4L2_PIX_FMT_NV12,
-+		.codec_mode = HANTRO_MODE_NONE,
-+	},
-+	{
-+		.fourcc = V4L2_PIX_FMT_HEVC_SLICE,
-+		.codec_mode = HANTRO_MODE_HEVC_DEC,
-+		.max_depth = 2,
-+		.frmsize = {
-+			.min_width = 48,
-+			.max_width = 3840,
-+			.step_width = MB_DIM,
-+			.min_height = 48,
-+			.max_height = 2160,
-+			.step_height = MB_DIM,
-+		},
-+	},
-+};
-+
- static irqreturn_t imx8m_vpu_g1_irq(int irq, void *dev_id)
- {
- 	struct hantro_dev *vpu = dev_id;
-@@ -147,6 +168,24 @@ static irqreturn_t imx8m_vpu_g1_irq(int irq, void *dev_id)
- 	return IRQ_HANDLED;
- }
- 
-+static irqreturn_t imx8m_vpu_g2_irq(int irq, void *dev_id)
-+{
-+	struct hantro_dev *vpu = dev_id;
-+	enum vb2_buffer_state state;
-+	u32 status;
-+
-+	status = vdpu_read(vpu, HEVC_REG_INTERRUPT);
-+	state = (status & HEVC_REG_INTERRUPT_DEC_RDY_INT) ?
-+		 VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
-+
-+	vdpu_write(vpu, 0, HEVC_REG_INTERRUPT);
-+	vdpu_write(vpu, HEVC_REG_CONFIG_DEC_CLK_GATE_E, HEVC_REG_CONFIG);
-+
-+	hantro_irq_done(vpu, state);
-+
-+	return IRQ_HANDLED;
-+}
-+
- static int imx8mq_vpu_hw_init(struct hantro_dev *vpu)
- {
- 	struct device_node *np = vpu->dev->of_node;
-@@ -176,6 +215,13 @@ static void imx8m_vpu_g1_reset(struct hantro_ctx *ctx)
- 	imx8m_soft_reset(vpu, RESET_G1);
- }
- 
-+static void imx8m_vpu_g2_reset(struct hantro_ctx *ctx)
-+{
-+	struct hantro_dev *vpu = ctx->dev;
-+
-+	imx8m_soft_reset(vpu, RESET_G2);
-+}
-+
- /*
-  * Supported codec ops.
-  */
-@@ -201,16 +247,28 @@ static const struct hantro_codec_ops imx8mq_vpu_codec_ops[] = {
- 	},
- };
- 
-+static const struct hantro_codec_ops imx8mq_vpu_g2_codec_ops[] = {
-+	[HANTRO_MODE_HEVC_DEC] = {
-+		.run = hantro_g2_hevc_dec_run,
-+		.reset = imx8m_vpu_g2_reset,
-+		.init = hantro_hevc_dec_init,
-+		.exit = hantro_hevc_dec_exit,
-+	},
-+};
-+
- /*
-  * VPU variants.
-  */
- 
- static const struct hantro_irq imx8mq_irqs[] = {
- 	{ "g1", imx8m_vpu_g1_irq },
--	{ "g2", NULL /* TODO: imx8m_vpu_g2_irq */ },
- };
- 
--static const char * const imx8mq_clk_names[] = { "g1", "g2", "bus" };
-+static const struct hantro_irq imx8mq_g2_irqs[] = {
-+	{ "g2", imx8m_vpu_g2_irq },
-+};
-+
-+static const char * const imx8mq_clk_names[] = { "g1", "g2", "bus"};
- 
- const struct hantro_variant imx8mq_vpu_variant = {
- 	.dec_fmts = imx8m_vpu_dec_fmts,
-@@ -228,3 +286,17 @@ const struct hantro_variant imx8mq_vpu_variant = {
- 	.clk_names = imx8mq_clk_names,
- 	.num_clocks = ARRAY_SIZE(imx8mq_clk_names),
- };
-+
-+const struct hantro_variant imx8mq_vpu_g2_variant = {
-+	.dec_offset = 0x0,
-+	.dec_fmts = imx8m_vpu_g2_dec_fmts,
-+	.num_dec_fmts = ARRAY_SIZE(imx8m_vpu_g2_dec_fmts),
-+	.codec = HANTRO_HEVC_DECODER,
-+	.codec_ops = imx8mq_vpu_g2_codec_ops,
-+	.init = imx8mq_vpu_hw_init,
-+	.runtime_resume = imx8mq_runtime_resume,
-+	.irqs = imx8mq_g2_irqs,
-+	.num_irqs = ARRAY_SIZE(imx8mq_g2_irqs),
-+	.clk_names = imx8mq_clk_names,
-+	.num_clocks = ARRAY_SIZE(imx8mq_clk_names),
-+};
--- 
-2.25.1
+Thanks,
+Mani
 
