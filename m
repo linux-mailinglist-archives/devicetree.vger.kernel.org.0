@@ -2,133 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01D163520B3
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 22:43:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B95335214F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 23:10:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234601AbhDAUnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 16:43:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41664 "EHLO
+        id S234345AbhDAVKK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 17:10:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234276AbhDAUnz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 16:43:55 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 404E0C061788
-        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 13:43:55 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id j34so313134pgj.12
-        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 13:43:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=TnAGkom8Le/1tSh1IELvZ1Rrn3to1YCHlf+sinRlIwM=;
-        b=Ldyj+5xxbV9Etk8DHCPhNAyEYkdcYT7rLxLCzKHU0qIBBuySi6gyDEXOai8sD8f2wp
-         aY5Tah5rIF9eOnQsVa9s4r2zKoVZtrYDoZOxcSJTNQjsKd2quyCyFjXiF829WO+3ppmQ
-         7AEQM2SAaeYHSoVlbQ6AEylgvXYACvboHzJiQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=TnAGkom8Le/1tSh1IELvZ1Rrn3to1YCHlf+sinRlIwM=;
-        b=Q+6e1P8501TuBP5o/wmTTTLREPvIQlJttDGQqGfosKqBGX0ACs3mT8zppq47LQLXhc
-         ePWWrADZUbr6tVZfpWQ5G/q9Jrpn5rn5m4EbEgM8V3AZWJ8I5vUrbXO8qckLPW//1wKB
-         QjyBiO+pcEgT3gbmL8UzjyCl71tKPeLXYi/mXhMMD9vy3qcLx/CeNzQUJROLinnTFVUr
-         gDxhcY+s2fw/7j6P4kTU/viE16lFhpD3jEjOLMV+G1TzX6LTVwbGK09Ylbu9NrCA20Q2
-         xVvJnLJahpSHcW4PQ7sSWjidBZkHqNshhAAxvUJOstOxXJtStPsl9+vb6zhPXlzUssjY
-         9qwQ==
-X-Gm-Message-State: AOAM531uqI0cW1n+HWK+KtTfIXQWYPG5ppK1qYiMinhMmCIxLlnDwrKE
-        7NgPMSsDkBa+7zAGcZcAIxZKKw==
-X-Google-Smtp-Source: ABdhPJzWYMInelb3OBb+GquXH+zlhP1gaOEP+g2jJ2fJflUKlb7bxDr5oaLogs1O3v7DD1Zfe9fG1w==
-X-Received: by 2002:a63:3008:: with SMTP id w8mr9117215pgw.342.1617309834858;
-        Thu, 01 Apr 2021 13:43:54 -0700 (PDT)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
-        by smtp.gmail.com with ESMTPSA id x4sm5925350pfn.134.2021.04.01.13.43.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 13:43:54 -0700 (PDT)
-Date:   Thu, 1 Apr 2021 13:43:53 -0700
-From:   Kees Cook <keescook@chromium.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     vkoul@kernel.org, yung-chuan.liao@linux.intel.com,
-        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        robh@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] soundwire: qcom: handle return correctly in
- qcom_swrm_transport_params
-Message-ID: <202104011343.B1944F3@keescook>
-References: <20210401091502.15825-1-srinivas.kandagatla@linaro.org>
+        with ESMTP id S234300AbhDAVKJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 17:10:09 -0400
+Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3C6DC061788;
+        Thu,  1 Apr 2021 14:10:09 -0700 (PDT)
+Received: from [192.168.1.101] (abae153.neoplus.adsl.tpnet.pl [83.6.168.153])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 035EE3F5D2;
+        Thu,  1 Apr 2021 23:10:06 +0200 (CEST)
+Subject: Re: [PATCH 5/6] clk: qcom: gcc-sdm660: Account for needed adjustments
+ in probe function
+To:     Stephen Boyd <sboyd@kernel.org>, phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Craig Tatlor <ctatlor97@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210220155618.176559-1-konrad.dybcio@somainline.org>
+ <20210220155618.176559-5-konrad.dybcio@somainline.org>
+ <161404077336.1254594.15002572465360321874@swboyd.mtv.corp.google.com>
+ <3917fba4-e5b0-911f-9220-f401a90aac38@somainline.org>
+ <161724198675.2260335.14358880292682931985@swboyd.mtv.corp.google.com>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+Message-ID: <abc821cc-ef43-3241-793a-cc4c85b72563@somainline.org>
+Date:   Thu, 1 Apr 2021 23:10:06 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210401091502.15825-1-srinivas.kandagatla@linaro.org>
+In-Reply-To: <161724198675.2260335.14358880292682931985@swboyd.mtv.corp.google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 01, 2021 at 10:15:02AM +0100, Srinivas Kandagatla wrote:
-> Looks like return from reg_write is set but not checked.
-> Fix this by adding error return path.
-> 
-> Reported-by: coverity-bot <keescook+coverity-bot@chromium.org>
-> Addresses-Coverity-ID: 1503591 ("UNUSED_VALUE")
-> Fixes: 128eaf937adb ("soundwire: qcom: add support to missing transport params")
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
-Thanks for fixing this!
+>>>> +
+>>>> +       /* Keep bimc gfx clock port on all the time */
+>>>> +       clk_prepare_enable(gcc_bimc_gfx_clk.clkr.hw.clk);
+>>>> +
+>>> Preferably just set these various bits with regmap_update_bits() during
+>>> probe. Also, please do it before regsitering the clks, not after.
+>> To be fair, now I think that simply adding CLK_IS_CRITICAL flag to the clocks in question is the smartest thing to do. Magic writes don't tell a whole lot.
+> This is how it's been done in various other qcom clk drivers. Usually
+> there is a comment about what is enabled, but really it's just setting
+> random bits that sadly aren't already set by default.
 
-Reviewed-by: Kees Cook <keescook@chromium.org>
+But why.. why should we give Linux less information about the hardware it's running on? It's a kernel after all, I know some parties would prefer to keep the hardware away from its users, but cmon, it's OSSLand out there!
 
--Kees
+Allocating a few bytes more in memory is proooobably a good trade-off for keeping an eye on the state of various clocks instead of simply setting some seemingly random bits and hoping nothing bad happens under the hood.. This isn't only a case for this clock, but for all ones that are effectively pinky-promise-trusted to function properly with no way of checking if they're even still alive other than poking the registers manually.. As of v5.12-rc2, there are *46* such trust credits..
 
-> ---
->  drivers/soundwire/qcom.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-> index 5fd4a99cc8ac..348d9a46f850 100644
-> --- a/drivers/soundwire/qcom.c
-> +++ b/drivers/soundwire/qcom.c
-> @@ -731,17 +731,23 @@ static int qcom_swrm_transport_params(struct sdw_bus *bus,
->  	value |= pcfg->si;
->  
->  	ret = ctrl->reg_write(ctrl, reg, value);
-> +	if (ret)
-> +		goto err;
->  
->  	if (pcfg->lane_control != SWR_INVALID_PARAM) {
->  		reg = SWRM_DP_PORT_CTRL_2_BANK(params->port_num, bank);
->  		value = pcfg->lane_control;
->  		ret = ctrl->reg_write(ctrl, reg, value);
-> +		if (ret)
-> +			goto err;
->  	}
->  
->  	if (pcfg->blk_group_count != SWR_INVALID_PARAM) {
->  		reg = SWRM_DP_BLOCK_CTRL2_BANK(params->port_num, bank);
->  		value = pcfg->blk_group_count;
->  		ret = ctrl->reg_write(ctrl, reg, value);
-> +		if (ret)
-> +			goto err;
->  	}
->  
->  	if (pcfg->hstart != SWR_INVALID_PARAM
-> @@ -755,11 +761,15 @@ static int qcom_swrm_transport_params(struct sdw_bus *bus,
->  		ret = ctrl->reg_write(ctrl, reg, value);
->  	}
->  
-> +	if (ret)
-> +		goto err;
-> +
->  	if (pcfg->bp_mode != SWR_INVALID_PARAM) {
->  		reg = SWRM_DP_BLOCK_CTRL3_BANK(params->port_num, bank);
->  		ret = ctrl->reg_write(ctrl, reg, pcfg->bp_mode);
->  	}
->  
-> +err:
->  	return ret;
->  }
->  
-> -- 
-> 2.21.0
-> 
+It's NOT easy to track down issues in big monolithic kernels, especially when people submitting changes to common code seem to think that only their hardware uses it (no hard feelings, but drm/msm broke on !a6xx *at least* two times within the last year) and since making sure the clocks are ticking properly is one of the most crucial things when looking into more complex issues, which may or may not randomly happen on a platform that is just being brought up for various reasons (e.g. half of mdm9607 hardware doesn't wanna play along without a ICC driver), I *really* think we should use CLK_IS_CRITICAL instead and give developers a way to check if everything's in tact with the clock, while still keeping the "never turn it off, don't touch it!" aspect.
 
--- 
-Kees Cook
+
+>>>> +       /* Set the HMSS_GPLL0_SRC for 300MHz to CPU subsystem */
+>>>> +       clk_set_rate(hmss_gpll0_clk_src.clkr.hw.clk, 300000000);
+>>> Is this not already the case?
+>>
+>> This is a mission-critical clock and we cannot trust the bootloader with setting it. Otherwise dragons might appear.
+>>
+> What does the bootloader set it to?
+
+Sorry but I can't check, nor do I remember right now. But we still shouldn't add a variable that might come from a lazy OEM not incorporating the fix into their release, especially since this one is used for clocking the AP.
+
+
+Konrad
+
