@@ -2,108 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21412351152
+	by mail.lfdr.de (Postfix) with ESMTP id DE6D6351154
 	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 10:58:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229459AbhDAI5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 04:57:30 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:56000 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233527AbhDAI5B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 04:57:01 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1318uqf5052252;
-        Thu, 1 Apr 2021 03:56:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1617267412;
-        bh=cGcqM28hwUnMq94RUS26mmi8GyO7P5f4FTSW7afpD1Y=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=iZfbQ5Sy9Wu91yo9y6VQYENbnmzoaYqIJePHSPdLbZTUa9ef+bukHc6ty6XBqSKJN
-         lft3Xt/UJu+ygFAm4JK9p+8o2r8LtzbxtMb4lhQDybXg005V5N1PMTllVY+ZVtwYKk
-         YltyydlpzG4nnepb4MfQ/+8kjiny3Bp27kGaFyuk=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1318uqga011899
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 1 Apr 2021 03:56:52 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 1 Apr
- 2021 03:56:52 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 1 Apr 2021 03:56:52 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1318uplB019785;
-        Thu, 1 Apr 2021 03:56:52 -0500
-Date:   Thu, 1 Apr 2021 14:26:51 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-CC:     Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 4/4] dt-bindings: spi: Convert cadence-quadspi.txt to
- cadence-quadspi.yaml
-Message-ID: <20210401085649.deocs3cbd7kiljrf@ti.com>
-References: <20210326130034.15231-1-p.yadav@ti.com>
- <20210326130034.15231-5-p.yadav@ti.com>
- <20210327183628.GA345487@robh.at.kernel.org>
- <20210329182256.q4zhss6lezj3s44a@ti.com>
- <1161dc3b-c889-c5d7-f7c8-baf5b7b79505@ti.com>
+        id S233383AbhDAI6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 04:58:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43166 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233650AbhDAI6A (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Apr 2021 04:58:00 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CBF966023B;
+        Thu,  1 Apr 2021 08:57:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617267480;
+        bh=qO5GnDQBxqX1f7x9zAi73eBzkaFPHd3HL6PpBB85bdk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OMfEcbl8tYPuX5WDV/d/OgcbQ4JUHkcqvauo65fQCWGZLSdEOyJdCKSebhVJ5N139
+         /fRmtaxVbip3YDuWsFYMDKtqOs4Xd6epo3gS2N5xpJGPgHVdEmamYy7AzcvpXEosP2
+         qaAd6IDmnhCg0n7BzRjeM+uRDfm+lbEw99nW4yPoCwBO0cqaESOj+V5MerHHeW8TwP
+         w/xULX4IvKezvZLKNY9Q++cRvNJE/SGXScv/NODcscd25v0fvpY8fZHzqK5YpQ/PLl
+         VRd1Aqr7RG76L5N8GCV0LhxcM4vdJWBwAMaTWReNAjFSSH9L/gNBndS5BG4l0MiV54
+         I1y0PfrhuBuIw==
+Date:   Thu, 1 Apr 2021 09:57:52 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+Cc:     joro@8bytes.org, lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
+        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
+        eric.auger@redhat.com, iommu@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
+        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
+        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
+        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
+        zhukeqian1@huawei.com, wangzhou1@hisilicon.com
+Subject: Re: [PATCH v13 00/10] iommu: I/O page faults for SMMUv3
+Message-ID: <20210401085752.GA8781@willie-the-truck>
+References: <20210302092644.2553014-1-jean-philippe@linaro.org>
+ <YGNdQ863Mohizx7A@myrica>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1161dc3b-c889-c5d7-f7c8-baf5b7b79505@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <YGNdQ863Mohizx7A@myrica>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/04/21 01:57PM, Vignesh Raghavendra wrote:
+On Tue, Mar 30, 2021 at 07:17:55PM +0200, Jean-Philippe Brucker wrote:
+> On Tue, Mar 02, 2021 at 10:26:36AM +0100, Jean-Philippe Brucker wrote:
+> > Add stall support to the SMMUv3 driver, along with a common I/O Page
+> > Fault handler.
 > 
-> 
-> On 3/29/21 11:52 PM, Pratyush Yadav wrote:
-> >>> +  cdns,fifo-depth:
-> >>> +    description:
-> >>> +      Size of the data FIFO in words.
-> >>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> >>> +    enum: [ 128, 256 ]
-> >>> +    default: 128
-> >>> +
-> >>> +  cdns,fifo-width:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description:
-> >>> +      Bus width of the data FIFO in bytes.
-> >>> +    default: 4
-> >> I assume there's some constraints on this?
-> > IIUC this is a matter of how the peripheral is implemented and there are 
-> > no clear constraints. Different implementations can use different bus 
-> > widths for the SRAM bus but I don't see any mention of minimum or 
-> > maximum values. FWIW, all users in the kernel use a 4 byte bus.
-> > 
-> 
-> IMO a safe constraint would be to set a range of 1 to 4 (8/16/24/32 bit
-> wide) given this represents SRAM bus width. Binding can always be
-> updated if there exists an implementation with higher SRAM bus
-> width/fifo-width (although that's highly unlikely given there are no
-> such examples today).
-> 
-> But leaving it open ended with range of 0 to UINT_MAX sounds incorrect
-> to me.
+> I only have review/ack tags and one assert_lockdep to add to this series.
+> Should I send a v14 now or wait a little longer?  Just making sure we can
+> get at least patches 1-6 in v5.13.
 
-Ok. Will respin.
+Easiest thing is probably to send a v14 containing just the patches
+targetting v5.13, so that Joerg can queue them up.
 
-> 
-> >> With that,
-> >>
-> >> Reviewed-by: Rob Herring <robh@kernel.org>
-> > Thanks.
-> > 
-
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+Will
