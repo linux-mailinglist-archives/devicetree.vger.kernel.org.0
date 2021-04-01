@@ -2,96 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ECA8350EED
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 08:17:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12AD5350F06
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 08:29:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233190AbhDAGRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 02:17:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52434 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233227AbhDAGQk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 02:16:40 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3023EC06178C
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 23:16:40 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id c4so1247807qkg.3
-        for <devicetree@vger.kernel.org>; Wed, 31 Mar 2021 23:16:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=/tdHq+eMgfvUCfgr19g4KGgjUw8dwNFaPcptJLMvv20=;
-        b=d1tet9Y2otJ4bPKkudFR7D1GN4TSxbb31ttdrlkl/P3sIGNBKqc6I78rPuwagFZLLP
-         91dZeX1IuFNgTohpD/7akTLAyWiZR/t0GCbC7hQJFaTYIzg/1yxYzN48AUTERaZYb92I
-         d5X5ASx9YOH20slwp7tXU1V8OlvUf4JNjbmasNAhuntVXe11XdwFpLt/Pqm/VPF3LI98
-         wj9AKLkB4qVEmBFKJposxVO3VlPRrmBgrjmHiJRND+jlasqobxNVWZF6L0k5Po8PJh5Q
-         DK3ZIR+/syfAhiRsujKvn1J0W61ILlAfeucEfPwH7DPcWSxFLVCfg/WaEjEWdcWbeJQO
-         TDHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=/tdHq+eMgfvUCfgr19g4KGgjUw8dwNFaPcptJLMvv20=;
-        b=TGcONrEQOG2lt5S0z4qwVSeP9z2dGZ0C/PUCPWm+n672fhBLfeWdkUG0uIMa1DSQYP
-         J4HGieAHV/+ytvhUQMvHz+NMudC4iqS+eqoeLjIiHNbgqzs7ms5vX2K+cJG2Thow1vvW
-         IbGApAsdZ04YXsXWvE28+kpt/GnRpWtjt4oIHMfM5AuymRoMFjnu06SPqJpRU6MLJyQh
-         reXxzgm2KxtylBlxRhGf7FTcvUKsMt9RDzakAn3LqZ0kV4qjUtAHrAjas64UlPXNiQXI
-         mGQ/Zz14iuOMLQhNt1LzFDv+4JFki5nbYNGzaq0V9oHxixmIKu6s72njm6V7DNMuBKSL
-         v5bQ==
-X-Gm-Message-State: AOAM530SryOramssvsdqC97cgZa/1xRQIARD7Guo1BPSc31fV7NaE5u0
-        mh7AsWbeInqKtpzRvO5ItGV+LRP9RsN6+3V9st0rUA==
-X-Google-Smtp-Source: ABdhPJxN7gKZfahwJhOWLIepnEZQQrrtp1Bkzqp9sIf8uf8W7egGtdMcqMlqet9G2ktx96KkylccNRofqZFJM0jdU/A=
-X-Received: by 2002:a37:66cd:: with SMTP id a196mr7046403qkc.374.1617257799357;
- Wed, 31 Mar 2021 23:16:39 -0700 (PDT)
+        id S233092AbhDAG3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 02:29:24 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:41330 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233050AbhDAG3M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 02:29:12 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1316SwGl010255;
+        Thu, 1 Apr 2021 01:28:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1617258538;
+        bh=83G0jg0CVCTALW/jk3X1pVsmYXT59w8rlxUSmNlwagg=;
+        h=Subject:To:References:From:Date:In-Reply-To;
+        b=FOz2lVVpT7wSH5QuRMgj7SJeikEmUZNaSt7qMo4eWcTeushfOjqTPiP33e8uudcIt
+         9kc5mm5hie8/ayTHNU3H3MShMOkK+9Xwvlf9C6LtISdZ4IjsX24Km9W4oN0oNaV8hu
+         aamgvGDr20LM0VtA1RMoCZwnkqa26HYOrcdUV9EE=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1316SvsK085229
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 1 Apr 2021 01:28:58 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 1 Apr
+ 2021 01:28:57 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 1 Apr 2021 01:28:57 -0500
+Received: from [10.250.234.120] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1316SsB7005171;
+        Thu, 1 Apr 2021 01:28:55 -0500
+Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-j721e-mcu: Fix ospi compatible
+To:     Pratyush Yadav <p.yadav@ti.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210326130034.15231-1-p.yadav@ti.com>
+ <20210326130034.15231-2-p.yadav@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <18b87b48-84b0-bae6-c5c3-6e849282302b@ti.com>
+Date:   Thu, 1 Apr 2021 11:58:53 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <cover.1615954045.git.greentime.hu@sifive.com> <161704512808.3012082.7539298875497991635@swboyd.mtv.corp.google.com>
-In-Reply-To: <161704512808.3012082.7539298875497991635@swboyd.mtv.corp.google.com>
-From:   Greentime Hu <greentime.hu@sifive.com>
-Date:   Thu, 1 Apr 2021 14:16:28 +0800
-Message-ID: <CAHCEehJyzsTOHpMhRQ4U3Ex+QiO8h2emBAq3ZemFrgqB-XRZNw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/6] Add SiFive FU740 PCIe host controller driver support
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     alex.dewar90@gmail.com, Albert Ou <aou@eecs.berkeley.edu>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        devicetree@vger.kernel.org, Erik Danie <erik.danie@sifive.com>,
-        hayashi.kunihiko@socionext.com, Bjorn Helgaas <helgaas@kernel.org>,
-        hes@sifive.com, jh80.chung@samsung.com, khilman@baylibre.com,
-        linux-clk@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-pci@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        lorenzo.pieralisi@arm.com,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org,
-        vidyas@nvidia.com, Zong Li <zong.li@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210326130034.15231-2-p.yadav@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Stephen Boyd <sboyd@kernel.org> =E6=96=BC 2021=E5=B9=B43=E6=9C=8830=E6=97=
-=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=883:12=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Quoting Greentime Hu (2021-03-17 23:08:07)
-> > This patchset includes SiFive FU740 PCIe host controller driver. We als=
-o
-> > add pcie_aux clock and pcie_power_on_reset controller to prci driver fo=
-r
-> > PCIe driver to use it.
-> >
-> > This is tested with e1000e: Intel(R) PRO/1000 Network Card, AMD Radeon =
-R5
-> > 230 graphics card and SP M.2 PCIe Gen 3 SSD in SiFive Unmatched based o=
-n
-> > v5.11 Linux kernel.
->
-> Can I merge the clk patches to clk-next? Or is the dts patch going to be
-> sent in for the merge window? I'd like to merge the clk patches if the
-> other patches are going to miss the next merge window.
 
-Hi Stephen,
 
-Thank you for reviewing. I am ok with either way. :)
+On 3/26/21 6:30 PM, Pratyush Yadav wrote:
+> The TI specific compatible should be followed by the generic
+> "cdns,qspi-nor" compatible.
+> 
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> ---
+
+Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
+
+>  arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> index 6c44afae9187..d56e3475aee7 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> @@ -180,7 +180,7 @@ fss: fss@47000000 {
+>  		ranges;
+>  
+>  		ospi0: spi@47040000 {
+> -			compatible = "ti,am654-ospi";
+> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
+>  			reg = <0x0 0x47040000 0x0 0x100>,
+>  				<0x5 0x00000000 0x1 0x0000000>;
+>  			interrupts = <GIC_SPI 840 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -197,7 +197,7 @@ ospi0: spi@47040000 {
+>  		};
+>  
+>  		ospi1: spi@47050000 {
+> -			compatible = "ti,am654-ospi";
+> +			compatible = "ti,am654-ospi", "cdns,qspi-nor";
+>  			reg = <0x0 0x47050000 0x0 0x100>,
+>  				<0x7 0x00000000 0x1 0x00000000>;
+>  			interrupts = <GIC_SPI 841 IRQ_TYPE_LEVEL_HIGH>;
+> 
