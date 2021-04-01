@@ -2,175 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C588B35194B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:02:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90BC93519CD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:03:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235050AbhDARwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 13:52:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48906 "EHLO mail.kernel.org"
+        id S235545AbhDAR4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 13:56:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54730 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237000AbhDARuA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Apr 2021 13:50:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D47D46128C;
-        Thu,  1 Apr 2021 14:11:54 +0000 (UTC)
+        id S235304AbhDARw7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Apr 2021 13:52:59 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4694160BD3;
+        Thu,  1 Apr 2021 14:13:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617286316;
-        bh=BB9hAFKo+2v0Bi2crV5qOykg9CQQiAJV0ZePZMybHXI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=PZp0eDC+B6J5Y/KoopU3KX0fE2iNUUtyF0cNc2wOdUHbZMMxFsOQH9SvtNqpQj/eH
-         EiPr/Yg/pg1IDouLScxCEOdVFVh2ivVSM764Bng6PUPZkfTBABJ7qJsw+gHj0lYeqz
-         7cVCSZOBiiXZvFguW2B9oBql2TEd4Skcb9tUYUlw5OSdF0sAnZZmpHbZsTGHVXmkQL
-         8KcMv1BPCu0za/nZas/m2wLljWjtvMcLu/PDX62f+fc3VaotF0GBthwwYDa7oOfWDh
-         VCJMdecayASnpTD2MUPHGTYXiI2vj2NYUJ5mMfm32lWCmv0c5HOxRc1Uf+qIM51nFp
-         nbcnJ7oHZQkTw==
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Lukas Wunner <lukas@wunner.de>
-Subject: [PATCH 2/2] dt-bindings:iio:dac:ti,dac082s085 yaml conversion
-Date:   Thu,  1 Apr 2021 15:09:56 +0100
-Message-Id: <20210401140956.224084-3-jic23@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210401140956.224084-1-jic23@kernel.org>
-References: <20210401140956.224084-1-jic23@kernel.org>
+        s=k20201202; t=1617286421;
+        bh=+wXPixi0fZQhbgz0Af17sNTonL00PbC+xrFzRa/JnjU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=h4vm1k3Ek5jAd4sggNicGQCzz0W+Oj2XwkJsxB9gjTd2wD/J45we94vgwS8ruaMxU
+         5qdCtV9bd1pOTO6EyTcjMo09Ry+SipcQlsr1xpiWIzjHPBix9bRTGpS2NtYlpTx8/m
+         KZMc8e/C4hdl1qgamRyxHD6Iw5O737WXjiSTcmDTChXw5pV6217OsoyPbyGp97oBzp
+         Wl5j+LNZvylapBX0Rkjd0YqioJa2sqo8XMFF3zfWsQ3N9GhUW1Iw4EnQAdcUsj/kkR
+         9cBNh5vCPQTZByHMG8t1IN3zhQy6P1wPhOuz0aiBIOSCv0LJsAS6V/vXsz5cazo+o4
+         kAJ+BMpUphB2Q==
+Date:   Thu, 1 Apr 2021 15:13:28 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH 4/4] dt-bindings: spi: Convert cadence-quadspi.txt to
+ cadence-quadspi.yaml
+Message-ID: <20210401141328.GH4758@sirena.org.uk>
+References: <20210331193930.tzsvbjup3wpxmh26@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="54u2kuW9sGWg/X+X"
+Content-Disposition: inline
+In-Reply-To: <20210331193930.tzsvbjup3wpxmh26@ti.com>
+X-Cookie: You can't take damsel here now.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-Fairly simple conversion with the exception of the XOR between
-spi-cpha and spi-cpol.
+--54u2kuW9sGWg/X+X
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: Lukas Wunner <lukas@wunner.de>
-Link: https://lore.kernel.org/r/20201031134110.724233-17-jic23@kernel.org
----
- .../bindings/iio/dac/ti,dac082s085.yaml       | 72 +++++++++++++++++++
- .../bindings/iio/dac/ti-dac082s085.txt        | 34 ---------
- 2 files changed, 72 insertions(+), 34 deletions(-)
+On Thu, Apr 01, 2021 at 01:09:32AM +0530, Pratyush Yadav wrote:
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/ti,dac082s085.yaml b/Documentation/devicetree/bindings/iio/dac/ti,dac082s085.yaml
-new file mode 100644
-index 000000000000..b0157050f1ee
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/dac/ti,dac082s085.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/dac/ti,dac082s085.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments DAC082s085 and similar DACs
-+
-+description:
-+  A family of Texas Instruments 8/10/12-bit 2/4-channel DACs
-+
-+maintainers:
-+  - Lukas Wunner <lukas@wunner.de>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,dac082s085
-+      - ti,dac102s085
-+      - ti,dac122s085
-+      - ti,dac084s085
-+      - ti,dac104s085
-+      - ti,dac124s085
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-cpha: true
-+  spi-cpol:
-+    description:
-+      Must be either spi-cpha, or spi-cpol but not both.
-+
-+  vref-supply:
-+    description: Needed to provide output scaling.
-+
-+  spi-max-frequency: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - vref-supply
-+
-+additionalProperties: false
-+
-+oneOf:
-+  - required:
-+      - spi-cpha
-+  - required:
-+      - spi-cpol
-+
-+examples:
-+  - |
-+    vref_2v5_reg: regulator-vref {
-+        compatible = "regulator-fixed";
-+        regulator-name = "2v5";
-+        regulator-min-microvolt = <2500000>;
-+        regulator-max-microvolt = <2500000>;
-+        regulator-always-on;
-+    };
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        dac@0 {
-+            compatible = "ti,dac082s085";
-+            reg = <0>;
-+            spi-max-frequency = <40000000>;
-+            spi-cpol;
-+            vref-supply = <&vref_2v5_reg>;
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/iio/dac/ti-dac082s085.txt b/Documentation/devicetree/bindings/iio/dac/ti-dac082s085.txt
-deleted file mode 100644
-index 9cb0e10df704..000000000000
---- a/Documentation/devicetree/bindings/iio/dac/ti-dac082s085.txt
-+++ /dev/null
-@@ -1,34 +0,0 @@
--Texas Instruments 8/10/12-bit 2/4-channel DAC driver
--
--Required properties:
-- - compatible:		Must be one of:
--			"ti,dac082s085"
--			"ti,dac102s085"
--			"ti,dac122s085"
--			"ti,dac084s085"
--			"ti,dac104s085"
--			"ti,dac124s085"
-- - reg: 		Chip select number.
-- - spi-cpha, spi-cpol:	SPI mode (0,1) or (1,0) must be used, so specify
--			either spi-cpha or spi-cpol (but not both).
-- - vref-supply: 	Phandle to the external reference voltage supply.
--
--For other required and optional properties of SPI slave nodes please refer to
--../../spi/spi-bus.txt.
--
--Example:
--	vref_2v5_reg: regulator-vref {
--		compatible = "regulator-fixed";
--		regulator-name = "2v5";
--		regulator-min-microvolt = <2500000>;
--		regulator-max-microvolt = <2500000>;
--		regulator-always-on;
--	};
--
--	dac@0 {
--		compatible = "ti,dac082s085";
--		reg = <0>;
--		spi-max-frequency = <40000000>;
--		spi-cpol;
--		vref-supply = <&vref_2v5_reg>;
--	};
--- 
-2.31.1
+> I did take a look by running git log on=20
+> Documentation/devicetree/bindings/spi/ and there is no single style=20
+> being used. Using "dt-bindings: spi:" is a popular choice. Some other=20
+> commits just use "spi:". And then some use "spi: dt-bindings:". The last=
+=20
+> commit to touch cadence-quadspi.txt (fcebca39938f) used the prefix=20
+> "dt-bindings: spi:".
 
+Yes, lots of people pick unfortunate subject lines for DT patches - that
+doesn't mean it's good.  I'm looking to see spi: same as for all other
+SPI patches.
+
+> So on the prefix front I think the subject is good enough. Of course, if=
+=20
+> you have any other preference then it can be re-worded but let's first=20
+> be clear on what the expectation is. And then let's make sure to apply=20
+> it to all future patches uniformly. This way future contributors won't=20
+> have to take a guess on what the expected prefix is.
+
+I do edit some percentage of patches, but some do slip through for
+various reasons.  There's also some things that just get completely
+missed, especially if there isn't also a code patch nearby.
+
+> Apart from the prefix is there anything else to improve? IMHO the=20
+> subject is good enough but I'm open to suggestions.
+
+There was the thing with constraints.
+
+--54u2kuW9sGWg/X+X
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBl1QcACgkQJNaLcl1U
+h9CWgwf/Sdw0YaskIA8e6qr7BHlJiZql3DhSyt1wcWgbNN2qbSSrhLyvlhbImcbl
+1r5g9Qa7X78tWxcmO3PEzfNW7dSM/PAzihAkubVvbgcQZvjf1FI5RIEtYoPBe4G7
+xcUJJppGIDRvz1+gMBIra6+Fokk93C0LJL+fyu1fuCOQ6jiH+sYA7ZCTG+/QeHFJ
+u9d0mdjPNRO1IRLitbSLH8rBjEmYliQtoOT/vEgtLpvLSOVcWk2/9okveu+dElQ7
+96tU6YSMWlJNagBKbJja8lqXpvwdeja42aTEodtJs3Ru/RNQEYV/E4BXttWCwKfN
+Cqpi11mjqlq+FU+qBNTpgVb3hTbEvg==
+=XkPv
+-----END PGP SIGNATURE-----
+
+--54u2kuW9sGWg/X+X--
