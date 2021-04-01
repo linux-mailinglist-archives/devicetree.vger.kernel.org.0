@@ -2,88 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE31C3517D7
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 19:47:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0800E3518CB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 19:49:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235496AbhDARmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 13:42:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57266 "EHLO
+        id S235495AbhDARrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 13:47:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234582AbhDARiK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:38:10 -0400
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E2D0C0D942E;
-        Thu,  1 Apr 2021 07:56:28 -0700 (PDT)
-Received: by mail-ot1-x331.google.com with SMTP id g8-20020a9d6c480000b02901b65ca2432cso2379034otq.3;
-        Thu, 01 Apr 2021 07:56:28 -0700 (PDT)
+        with ESMTP id S234968AbhDARlq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:41:46 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBAFEC00F7FC
+        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 08:15:30 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id l76so1719411pga.6
+        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 08:15:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=cGzmTTjWe1AbEuSBzNDXhCdxGNlI9I7Ym5rhNfsOEPE=;
+        b=p8Vu5ZvLUSLepbw2MVmx2WeN8I+Zxz5MU2S6/VR8IzPIHsXrQtI4YtTw5Ithnwu2Sr
+         34QwLJU5Ujb/2ElBq3VO13OHtVIsZ3iqJjNeChtJXsKzXUVTN9oQOiS+Rh3NyEY0sH7m
+         oHsIQgF1noCVG0hBMXQThunqlM5C9iF7Vgpm/axnPEW7lGzW772zMv98DTkS3tyHiICN
+         bmQkdGmL7Ff2mnAz2meAtZtrrhKnPLFJjiaBx4sWn386lnanoXLuKjGFC/aUSblE1gnx
+         7y83EYuPkbobFshrGX6+nic5asRx3GLqrWnOE+F3ZH+huVDcOHvHb4FDGRY7U2iVkNtT
+         ugiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=b51MdFXC3VyV3rk2wSYcP9E+sT/K1k0PZUFp+W5EgPY=;
-        b=axfyOe4pKnjLXgnZcjftqxCP79YXpFahjtPQIgnehX8FfHBQN8qsNCmuvgAU6uvaE0
-         +W976oQ3ljsrqi5Y6sCfNviRdnwM7tOA6W5fHoQkSO4XKaKAys+xdxz9QjFddUy49Y9d
-         S5YhEH9V+R2cO2DV4OqzQ2dbIR+LWDJDXnMf8d0oXG43Ylw+g30ZPifAn0sdcFtG3aOn
-         jhQV2POuwA8/0yU6nfyU/DNLjpkWWSkjI3032hRwkbGiUzKWraU/Ej7wZ8ZSzoRBWx11
-         HNHEI473qs2tDf3WPP5IOsCigrWJxxljTd3dXqq4oMWjnO9Adz8ZE93aCAgiNbqm7K2s
-         1nWQ==
-X-Gm-Message-State: AOAM530hR8UF1DohjH9GeNAIdugckXW3NyEdrAcibp91QYzjeOo8r0P+
-        Y7J1/inN2ZeO7AiYjYrUCBYc/y8X4A==
-X-Google-Smtp-Source: ABdhPJzvGwq10FN++hBJ+VBjgxixDeXeYVqnUGGXPtJLMldLSliVun6grNAzy9JrRlq2ysk537TmhA==
-X-Received: by 2002:a05:6830:4d:: with SMTP id d13mr7257198otp.295.1617288983889;
-        Thu, 01 Apr 2021 07:56:23 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t22sm1229535otl.49.2021.04.01.07.56.22
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=cGzmTTjWe1AbEuSBzNDXhCdxGNlI9I7Ym5rhNfsOEPE=;
+        b=d+jeO0s+9ZHjq+jE80B0W8ESB5jk9WwVwZGUQbz+u+0aC4eUxJ2P0E2bD0A9LzS2oB
+         mTFylgJEJhT+BgIxueA9pD/fKtO8IeDFRbJP90lZOrbEMC7PaAnLm38QQYjARyo6EKlt
+         sfvy1qaryK3uXTM25WMOjuIG90/aAkW2GpEZ5v5aJen+tkGrGyRteXOvGTV+eWExupw/
+         mYyVDnsWGa+lFtBAdG9WB+kTHEwtODZ6Mf/IwWoNTjAYi0zL/EkGNPnJKA1cOCpO1NYe
+         Cw8aZC2/aHZ/8Ps8q4TGcrhjxVOzBlBqHXkUNOyC/O7L05TZbkB0WPAEbfGov+C63qHQ
+         wHYQ==
+X-Gm-Message-State: AOAM532UDEt6yiZqJ7RZ1wEMRrKeRo2Lo9/sgAm/WcHQcZmG8iuuGQQO
+        GezDWTYYT3aSsoSqEN5QHocv
+X-Google-Smtp-Source: ABdhPJwRmhl3TIKgIdZ+RmULKMqYyRa10/cmsKN2X28wr+9oyOZImS9dX/firxN51T5kWZBZAaKQcQ==
+X-Received: by 2002:aa7:8b0f:0:b029:20d:1b60:e823 with SMTP id f15-20020aa78b0f0000b029020d1b60e823mr8022613pfd.16.1617290130298;
+        Thu, 01 Apr 2021 08:15:30 -0700 (PDT)
+Received: from localhost.localdomain ([103.77.37.138])
+        by smtp.gmail.com with ESMTPSA id 35sm5652769pgr.14.2021.04.01.08.15.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 07:56:23 -0700 (PDT)
-Received: (nullmailer pid 409159 invoked by uid 1000);
-        Thu, 01 Apr 2021 14:56:21 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     Rob Herring <robh+dt@kernel.org>, - <devicetree@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        Andrew Jeffery <andrew@aj.id.au>, openbmc@lists.ozlabs.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Joel Stanley <joel@jms.id.au>, Lubomir Rintel <lkundrak@v3.sk>
-In-Reply-To: <20210401005702.28271-4-zev@bewilderbeest.net>
-References: <YGOuhjD19SmjmQou@hatter.bewilderbeest.net> <20210401005702.28271-1-zev@bewilderbeest.net> <20210401005702.28271-4-zev@bewilderbeest.net>
-Subject: Re: [PATCH v2 3/3] dt-bindings: serial: 8250: add aspeed, sirq-active-high
-Date:   Thu, 01 Apr 2021 09:56:21 -0500
-Message-Id: <1617288981.559685.409158.nullmailer@robh.at.kernel.org>
+        Thu, 01 Apr 2021 08:15:29 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
+        boris.brezillon@collabora.com, Daniele.Palmas@telit.com,
+        bjorn.andersson@linaro.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v9 2/4] dt-bindings: mtd: Add a property to declare secure regions in NAND chips
+Date:   Thu,  1 Apr 2021 20:45:06 +0530
+Message-Id: <20210401151508.143075-3-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210401151508.143075-1-manivannan.sadhasivam@linaro.org>
+References: <20210401151508.143075-1-manivannan.sadhasivam@linaro.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 31 Mar 2021 19:57:02 -0500, Zev Weiss wrote:
-> This provides a simpler, more direct alternative to the deprecated
-> aspeed,sirq-polarity-sense property for indicating the polarity of
-> the Aspeed VUART's SIRQ line.
-> 
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
-> ---
->  Documentation/devicetree/bindings/serial/8250.yaml | 13 ++++++++++---
->  1 file changed, 10 insertions(+), 3 deletions(-)
-> 
+On a typical end product, a vendor may choose to secure some regions in
+the NAND memory which are supposed to stay intact between FW upgrades.
+The access to those regions will be blocked by a secure element like
+Trustzone. So the normal world software like Linux kernel should not
+touch these regions (including reading).
 
-My bot found errors running 'make dt_binding_check' on your patch:
+So let's add a property for declaring such secure regions so that the
+drivers can skip touching them.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/serial/8250.yaml:16:30: [warning] too few spaces after comma (commas)
-./Documentation/devicetree/bindings/serial/8250.yaml:17:30: [warning] too few spaces after comma (commas)
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ Documentation/devicetree/bindings/mtd/nand-controller.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-dtschema/dtc warnings/errors:
-
-See https://patchwork.ozlabs.org/patch/1460791
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+index d0e422f4b3e0..678b39952502 100644
+--- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
++++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+@@ -143,6 +143,13 @@ patternProperties:
+           Ready/Busy pins. Active state refers to the NAND ready state and
+           should be set to GPIOD_ACTIVE_HIGH unless the signal is inverted.
+ 
++      secure-regions:
++        $ref: /schemas/types.yaml#/definitions/uint64-matrix
++        description:
++          Regions in the NAND chip which are protected using a secure element
++          like Trustzone. This property contains the start address and size of
++          the secure regions present.
++
+     required:
+       - reg
+ 
+-- 
+2.25.1
 
