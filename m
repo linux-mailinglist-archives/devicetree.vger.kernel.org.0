@@ -2,78 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2FFB351BEC
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:12:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E94AE351B8C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:11:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237804AbhDASMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:12:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34416 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238169AbhDASFi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:05:38 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3687C031173;
-        Thu,  1 Apr 2021 10:00:48 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id d12so2408410oiw.12;
-        Thu, 01 Apr 2021 10:00:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WKEIMpfd6Br6VrmiUWAVbtVAUrC0kgehdl+Fl/pKQJQ=;
-        b=LgwwTniAHfLQagnSJuLXwNJnWIetCUyc27x75zYaXaQtQou8UfVmkri91OHhZTyH+J
-         TiprhUrM0m37Q7+f+svX27vLM3hLqgtdAwheod3UcQSsaQYf/B8WSmGdhUEkhbtvRiuB
-         OdIFeuNWGbmUzmFOO8Elx/qSj6z1jI4wEfjxqixjEgKdrRY25s6XPM9+1jdteLDgl20w
-         Cah/sIvYuf1aQqYlxD5ul3NqanD68t4c8N3HuU/Y7YkIPv8hRWez08hqt7f62XKkGUMr
-         HUvNo3OMYfrv7R79kDYsQCniaYQ8zjUXorqjYx2PwLRKRzXVeLylZI+Io72D2E47gZKa
-         9ZZQ==
-X-Gm-Message-State: AOAM531EdRi/7LPZhbORixKexImCE7xUNahwDW6GH1Angag3jhuAzFvy
-        f5kW/uctyuyI4YS+MHypqw==
-X-Google-Smtp-Source: ABdhPJzR81bjopWLPqc6w1mTmCc021FXCyaKQtJo6UxCgZG1+vbBqnz84aD7jxpgi0Ih5PpUvtsQFw==
-X-Received: by 2002:aca:57c5:: with SMTP id l188mr6419826oib.159.1617296445710;
-        Thu, 01 Apr 2021 10:00:45 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g61sm1277784otb.65.2021.04.01.10.00.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 10:00:44 -0700 (PDT)
-Received: (nullmailer pid 609987 invoked by uid 1000);
-        Thu, 01 Apr 2021 17:00:43 -0000
-Date:   Thu, 1 Apr 2021 12:00:43 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     peng.fan@oss.nxp.com
-Cc:     linux-arm-kernel@lists.infradead.org, bjorn.andersson@linaro.org,
-        ohad@wizery.com, kernel@pengutronix.de, devicetree@vger.kernel.org,
-        mathieu.poirier@linaro.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        shawnguo@kernel.org, linux-remoteproc@vger.kernel.org,
-        festevam@gmail.com, o.rempel@pengutronix.de, s.hauer@pengutronix.de
-Subject: Re: [PATCH V2 2/8] dt-bindings: remoteproc: imx_rproc: add i.MX7ULP
- support
-Message-ID: <20210401170043.GA609931@robh.at.kernel.org>
-References: <1617095574-6764-1-git-send-email-peng.fan@oss.nxp.com>
- <1617095574-6764-3-git-send-email-peng.fan@oss.nxp.com>
+        id S235821AbhDASIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 14:08:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38082 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237933AbhDASFC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Apr 2021 14:05:02 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A366661391;
+        Thu,  1 Apr 2021 17:07:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617296878;
+        bh=qFocNvtPsf8pAsFshLPeo3aKoGr3THZgmZB1NTwW9/w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JAIYYfUn3RhCo4ZlQdbcFNHvyHYBatFPqxCXKTPP+iq474Dc5Sjcvp4yVsRsj1m6b
+         w+gUCeSvoV5fo2+4P6Yg2EVHtuRhF1Ww0HfsZJ6CxKPikoELJYI7yb3RASqk39k5GL
+         lM5SktP9m2fwyioniLazyU6S+ZyX4yhsKsDD78B6n2G2I5uJVFjPz2Kyvonk0/Z8i/
+         Q5mhyhbJf0x8ptgTmu83TCHwNg++7ju+IjYUGbwmJgfUM4MWvMvP1GVApjwTTh5nVH
+         E4HSGMchCOQEWcxLU8/5WhXWfLR0S6xwl3RY82Lc/NnSZzO48YAw8mSqnV7k4YIqlB
+         UhWuS9IoV3JcQ==
+Date:   Thu, 1 Apr 2021 18:07:52 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+Cc:     joro@8bytes.org, vivek.gautam@arm.com, guohanjun@huawei.com,
+        linux-acpi@vger.kernel.org, zhangfei.gao@linaro.org,
+        lenb@kernel.org, devicetree@vger.kernel.org, kevin.tian@intel.com,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        rjw@rjwysocki.net, iommu@lists.linux-foundation.org,
+        sudeep.holla@arm.com, robin.murphy@arm.com,
+        linux-accelerators@lists.ozlabs.org
+Subject: Re: [PATCH v14 07/10] iommu/arm-smmu-v3: Maintain a SID->device
+ structure
+Message-ID: <20210401170752.GA9447@willie-the-truck>
+References: <20210401154718.307519-1-jean-philippe@linaro.org>
+ <20210401154718.307519-8-jean-philippe@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1617095574-6764-3-git-send-email-peng.fan@oss.nxp.com>
+In-Reply-To: <20210401154718.307519-8-jean-philippe@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Mar 2021 17:12:48 +0800, peng.fan@oss.nxp.com wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Thu, Apr 01, 2021 at 05:47:16PM +0200, Jean-Philippe Brucker wrote:
+> When handling faults from the event or PRI queue, we need to find the
+> struct device associated with a SID. Add a rb_tree to keep track of
+> SIDs.
 > 
-> Add i.MX7ULP compatible.
-> 
-> We use i.MX7ULP dual mode and in which case i.MX7ULP A7 core runs under
-> control of M4 core, M4 core starts by ROM and powers most serivces used
-> by A7 core, so A7 core has no power to start and stop M4 core. So
-> clocks and syscon are not required.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml          | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
+> Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Reviewed-by: Eric Auger <eric.auger@redhat.com>
+> Reviewed-by: Keqian Zhu <zhukeqian1@huawei.com>
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
 
-Acked-by: Rob Herring <robh@kernel.org>
+Acked-by: Will Deacon <will@kernel.org>
+
+Will
