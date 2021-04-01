@@ -2,283 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60BCB351E89
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:55:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69CF9351F57
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 21:08:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236989AbhDASnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:43:09 -0400
-Received: from mail.micronovasrl.com ([212.103.203.10]:50300 "EHLO
-        mail.micronovasrl.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236851AbhDAShc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:37:32 -0400
-Received: from mail.micronovasrl.com (mail.micronovasrl.com [127.0.0.1])
-        by mail.micronovasrl.com (Postfix) with ESMTP id B8647B04C52
-        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 20:37:14 +0200 (CEST)
-Authentication-Results: mail.micronovasrl.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)" header.d=micronovasrl.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=micronovasrl.com;
-         h=content-transfer-encoding:content-language:content-type
-        :content-type:in-reply-to:mime-version:user-agent:date:date
-        :message-id:from:from:references:to:subject:subject; s=dkim; t=
-        1617302233; x=1618166234; bh=e51YaMfjswIMeNYrTTvhqA6/Wl7n7fQ/6SR
-        qaEJ8ITg=; b=KrjO+5omQg4Ig2ibX9cO79t52wn/RIM9kBHYqxWUqO9ufb7AIRc
-        sdri5i6CeLaB0UQXTX9u80exjjAfKdHNi17wxmO3g5Hc94SW1yLPZHB/QdtgxAnq
-        2nRwPZ0lPwO9uE9LkmgHHL30KKohS4jSrgZHaGc6Bne/ZamMPPr6ag3M=
-X-Virus-Scanned: Debian amavisd-new at mail.micronovasrl.com
-X-Spam-Flag: NO
-X-Spam-Score: -2.441
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.441 tagged_above=-10 required=4.5
-        tests=[ALL_TRUSTED=-1, BAYES_00=-1.9, LOTS_OF_MONEY=0.001,
-        MONEY_NOHTML=0.458, NICE_REPLY_A=-0.001, URIBL_BLOCKED=0.001]
-        autolearn=no autolearn_force=no
-Received: from mail.micronovasrl.com ([127.0.0.1])
-        by mail.micronovasrl.com (mail.micronovasrl.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 5k2ugIlJzScg for <devicetree@vger.kernel.org>;
-        Thu,  1 Apr 2021 20:37:13 +0200 (CEST)
-Received: from [192.168.50.18] (146-241-168-220.dyn.eolo.it [146.241.168.220])
-        by mail.micronovasrl.com (Postfix) with ESMTPSA id 56E4BB04C3E;
-        Thu,  1 Apr 2021 20:37:13 +0200 (CEST)
-Subject: Re: [PATCH 2/3] dt-bindings: touchscreen: Add HY46XX bindings
-To:     Rob Herring <robh@kernel.org>,
-        Giulio Benetti <giulio.benetti@benettiengineering.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210305163834.70924-1-giulio.benetti@benettiengineering.com>
- <20210305163834.70924-3-giulio.benetti@benettiengineering.com>
- <20210306194120.GA1075725@robh.at.kernel.org>
-From:   Giulio Benetti <giulio.benetti@micronovasrl.com>
-Message-ID: <9cd14c69-9c30-a68c-dfd1-396613b5185a@micronovasrl.com>
-Date:   Thu, 1 Apr 2021 20:37:13 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        id S234722AbhDATIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 15:08:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47672 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236980AbhDATGI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 15:06:08 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C598CC03D225;
+        Thu,  1 Apr 2021 10:57:06 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id b7so4171277ejv.1;
+        Thu, 01 Apr 2021 10:57:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=SU4RbOPNHP2ZwBcuTmWq/GTcYcUsYxKHBsEME1pvvGQ=;
+        b=Pk+H3SeIsgoAjYphDeLPalvCm6EsJbsA7KyLIPux7/WfS3x7EsLRgUNfTPL4QwprU3
+         sHWuE5J2TsFm5rYykvq+Vn4uw2nmvPDVjeEnQQ9hDzxbn3U3a3+3WlCHUhEXFpCW13N+
+         /vSnIMRA6aHL9eRRmias0UlyXR/0nbCS8ba+mBEVsLz40sOSo5NAq3LhSN6JvTD3ml7w
+         jBSXTrdIcjUwtNlUTLYVhXfob8OnG3eH7o5AsljAUNBylL1TTiQNWdx5zLunp4cptHFX
+         t2JIJe9XIsyu5Ul9/4lN3UokJtOwhYeQDo9BjnbedAGxHj37dVRX3RBJ4EY79+PMLPe9
+         +Bhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=SU4RbOPNHP2ZwBcuTmWq/GTcYcUsYxKHBsEME1pvvGQ=;
+        b=sC7GFsv2emXQ62sK3W6+ZPincUPI+sZWOXmFHc8p+liV7ONS2fFGSeTEVW/0EvUH+o
+         Po0bc8wQTMRqFx28VYiMCQqob221BDg8peP9Ycp7ZfwkbBAzsyYGQdF6lAmhWtJUuSZn
+         +iGbjg8hMkko2OOilXcgjqvQYKTRl8zABYErgyFBoQR7WANZV3jqh7T/2xooe7NTzlJS
+         hLnulYnCciNzqzpvBZlBx4TwDTLPFCjivo7seh/qRn7Wt7euwJHpRXltsntxNRV7CrTo
+         xNRbVsH5l1mIPSR54lKIi4bRTwLw4oxJ+tsCoTzsm2dy87XHGyO9d1i9hfVObo5x/ha7
+         hqXQ==
+X-Gm-Message-State: AOAM530CjWhTB2m2MwT9yMwvmpe1Pe+3mLLKg7IQAikBZXDIGw9MDOkj
+        ODcqkUT07rTDs4wC4T+Y0zo=
+X-Google-Smtp-Source: ABdhPJzdA/tAYmJiie7zrEmMoslDQAs4DVN4ChKNsQPEoQCee4kryfkGjoQcSj/rqZOo4zGkwdVSvQ==
+X-Received: by 2002:a17:907:110c:: with SMTP id qu12mr10556442ejb.442.1617299825578;
+        Thu, 01 Apr 2021 10:57:05 -0700 (PDT)
+Received: from BV030612LT ([188.24.140.160])
+        by smtp.gmail.com with ESMTPSA id yk8sm3167870ejb.123.2021.04.01.10.57.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Apr 2021 10:57:05 -0700 (PDT)
+Date:   Thu, 1 Apr 2021 20:57:02 +0300
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/6] dt-bindings: soc: actions: Add Actions Semi Owl
+ socinfo binding
+Message-ID: <20210401175702.GB2016477@BV030612LT>
+References: <cover.1617110420.git.cristian.ciocaltea@gmail.com>
+ <15da0257b10aa62bfb7046437915d05a614c01ee.1617110420.git.cristian.ciocaltea@gmail.com>
+ <20210401170818.GB610119@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20210306194120.GA1075725@robh.at.kernel.org>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: it
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210401170818.GB610119@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob, All,
-
-Il 06/03/2021 20:41, Rob Herring ha scritto:
-> On Fri, Mar 05, 2021 at 05:38:33PM +0100, Giulio Benetti wrote:
->> From: Giulio Benetti <giulio.benetti@micronovasrl.com>
->>
->> This adds device tree bindings for the Hycon HY46XX touchscreen series.
->>
->> Signed-off-by: Giulio Benetti <giulio.benetti@micronovasrl.com>
->> ---
->>   .../input/touchscreen/hycon,hy46xx.yaml       | 130 ++++++++++++++++++
->>   MAINTAINERS                                   |   6 +
->>   2 files changed, 136 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml b/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
->> new file mode 100644
->> index 000000000000..cddd5e5bae92
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
->> @@ -0,0 +1,130 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/input/touchscreen/hycon-hy46xx.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: hyconon HY46XX series touchscreen controller Bindings
->> +
->> +description: |
->> +             There are 6 variants of the chip for various touch panel sizes and coverl len material
->> +              Glass: 0.3mm--4.0mm
->> +              PET/PMMA: 0.2mm--2.0mm
->> +               HY4613(B)-N048  < 6"
->> +               HY4614(B)-N068  7" .. 10.1"
->> +               HY4621-NS32  < 5"
->> +               HY4623-NS48  5.1" .. 7"
->> +              Glass: 0.3mm--8.0mm
->> +              PET/PMMA: 0.2mm--4.0mm
->> +               HY4633(B)-N048  < 6"
->> +               HY4635(B)-N048  < 7" .. 10.1"
->> +
->> +maintainers:
->> +  - Giulio Benetti <giulio.benetti@micronovasrl.com>
->> +
->> +allOf:
->> +  - $ref: touchscreen.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - hycon,hycon-hy4613
->> +      - hycon,hycon-hy4614
->> +      - hycon,hycon-hy4621
->> +      - hycon,hycon-hy4623
->> +      - hycon,hycon-hy4633
->> +      - hycon,hycon-hy4635
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  reset-gpios:
->> +    maxItems: 1
->> +
->> +  vcc-supply: true
->> +
->> +  threshold:
+On Thu, Apr 01, 2021 at 12:08:18PM -0500, Rob Herring wrote:
+> On Tue, Mar 30, 2021 at 04:48:17PM +0300, Cristian Ciocaltea wrote:
+> > Add devicetree binding for the Actions Semi Owl socinfo driver.
+> > 
+> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> > ---
+> >  .../bindings/soc/actions/owl-socinfo.yaml     | 57 +++++++++++++++++++
+> >  1 file changed, 57 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml b/Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml
+> > new file mode 100644
+> > index 000000000000..01e4a8b4f5ac
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml
+> > @@ -0,0 +1,57 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/soc/actions/owl-socinfo.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Actions Semi Owl SoC info module
+> > +
+> > +maintainers:
+> > +  - Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> > +
+> > +description: |
+> > +  Actions Semi Owl SoC info module provides access to various information
+> > +  about the S500, S700 and S900 SoC variants, such as serial number or id.
+> > +
+> > +select:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        enum:
+> > +          - actions,s500-soc
+> > +          - actions,s700-soc
+> > +          - actions,s900-soc
+> > +  required:
+> > +    - compatible
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - actions,s500-soc
+> > +          - actions,s700-soc
+> > +          - actions,s900-soc
+> > +      - const: simple-bus
+> > +
+> > +required:
+> > +  - compatible
+> > +
+> > +additionalProperties: true
+> > +
+> > +examples:
+> > +  - |
+> > +    / {
+> > +        compatible = "roseapplepi,roseapplepi", "actions,s500";
+> > +        model = "Roseapple Pi";
+> > +        #address-cells = <1>;
+> > +        #size-cells = <1>;
+> > +
+> > +        soc {
+> > +            compatible = "actions,s500-soc", "simple-bus";
 > 
-> Needs a vendor prefix here and all the custom properties.
+> What's the actual h/w for this bus? Still looks like abuse of DT to 
+> create your virtual soc_info driver.
 
-Sorry but I can't understand this ^^^, I've checked a lot of other yaml
-files but couldn't find something related to this. Can you help me by
-pointing me an example?
+Right, there is no bus involved in accessing soc info, but I assumed
+the already existing soc node in common DTS is a good candidate for
+binding the driver. (e.g. arch/arm/boot/dts/owl-s500.dtsi)
 
-> 
-> One of the touchscreen properties doesn't already address this?
-> 
->> +    description: Allows setting the sensitivity in the range from 0 to 255.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 0
->> +    maximum: 255
->> +
->> +  proximity-sensor-switch:
-> 
-> Why a switch rather than enable or disable?
+Should I, instead, create a dedicated sub-node?
 
-I've changed its name into enable.
+Thanks,
+Cristi
 
 > 
->> +    description: Allows enabling or disabling the Proximity Sensor.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 0
->> +    maximum: 1
-> 
-> Is this a hardware config or something a user would want to change at
-> runtime? The latter shouldn't be in DT.
-
-It's a hardware config that enable the 11th touch point, but I didn't
-handle it inside the driver, so it's better that I remove it for the
-moment.
-
-> What does not present mean? Unless there is a need for keeping the
-> default setting, then this could be boolean instead.
-
-I've changed all "enable" to boolean and rely on default of the
-controller.
-
-Does this sound ok for you so I can send a v2 patchset?
-
-Thank you
-Best regards
--- 
-Giulio Benetti
-CTO
-
-MICRONOVA SRL
-Sede: Via A. Niedda 3 - 35010 Vigonza (PD)
-Tel. 049/8931563 - Fax 049/8931346
-Cod.Fiscale - P.IVA 02663420285
-Capitale Sociale ¤ 26.000 i.v.
-Iscritta al Reg. Imprese di Padova N. 02663420285
-Numero R.E.A. 258642
-
-> Same questions for the rest of the properties.
->> +
->> +  glove-enable:
->> +    description: Allows enabling or disabling glove setting.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 0
->> +    maximum: 1
->> +
->> +  report-speed:
->> +    description: Allows setting the report speed(i.e 0x64 => 100Hz).
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 0
->> +    maximum: 255
->> +
->> +  power-noise-enable:
->> +    description: Allows enabling or disabling power noise filter.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 0
->> +    maximum: 1
->> +
->> +  filter-data:
->> +    description: Allows setting the filtering data before reporting touch
->> +                 in the range from 0 to 5.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 0
->> +    maximum: 5
->> +
->> +  gain:
->> +    description: Allows setting the sensitivity distance in the range from 0 to 5.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 0
->> +    maximum: 5
->> +
->> +  edge-offset:
->> +    description: Allows setting the edge compensation in the range from 0 to 16.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 0
->> +    maximum: 16
->> +
->> +  touchscreen-size-x: true
->> +  touchscreen-size-y: true
->> +  touchscreen-fuzz-x: true
->> +  touchscreen-fuzz-y: true
->> +  touchscreen-inverted-x: true
->> +  touchscreen-inverted-y: true
->> +  touchscreen-swapped-x-y: true
->> +  interrupt-controller: true
->> +
->> +additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/gpio/gpio.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    i2c {
->> +      #address-cells = <1>;
->> +      #size-cells = <0>;
->> +      hycon-hy4633@1c {
->> +        compatible = "hycon,hy4633";
->> +        reg = <0x1c>;
->> +        interrupt-parent = <&gpio2>;
->> +        interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
->> +        reset-gpios = <&gpio2 6 GPIO_ACTIVE_LOW>;
->> +      };
->> +    };
->> +
->> +...
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index d92f85ca831d..3f83daf6b2bf 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -8245,6 +8245,12 @@ S:	Maintained
->>   F:	mm/hwpoison-inject.c
->>   F:	mm/memory-failure.c
->>   
->> +HYCON HY46XX TOUCHSCREEN SUPPORT
->> +M:	Giulio Benetti <giulio.benetti@micronovasrl.com>
->> +L:	linux-input@vger.kernel.org
->> +S:	Maintained
->> +F:	Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
->> +
->>   HYGON PROCESSOR SUPPORT
->>   M:	Pu Wen <puwen@hygon.cn>
->>   L:	linux-kernel@vger.kernel.org
->> -- 
->> 2.25.1
->>
-
-
+> > +            #address-cells = <1>;
+> > +            #size-cells = <1>;
+> > +            ranges;
+> > +        };
+> > +    };
+> > +
+> > +...
+> > -- 
+> > 2.31.1
+> > 
