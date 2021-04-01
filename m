@@ -2,843 +2,693 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69D6F3518D5
+	by mail.lfdr.de (Postfix) with ESMTP id DA4203518D6
 	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 19:49:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234238AbhDARrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 13:47:55 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:56898 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236341AbhDARoX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:44:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1617299062;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=gSGkwZShHCu81Rw9f0Jx6S83C6mIwz3c5/Z0u/7jY+U=;
-        b=KodkrcJdMpRMwoFh75AjVEjMDhIHylGVVoVCyb/aWGnvzATNgIyOiXo05klxvQFikfrWsb
-        5r2K/unACjRpLRc9hxTKCSRxDzE85HaBWin8VTO259V6KQUGlk7sXKqCGG8t9kIyLHjDNQ
-        c4aQewEebIKNEKrpibTp0Ni4B2Z1aLc=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-542-pfocz_3pOceIhzh7BAf-eA-1; Thu, 01 Apr 2021 10:43:55 -0400
-X-MC-Unique: pfocz_3pOceIhzh7BAf-eA-1
-Received: by mail-qk1-f197.google.com with SMTP id u5so3869559qkj.10
-        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 07:43:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=gSGkwZShHCu81Rw9f0Jx6S83C6mIwz3c5/Z0u/7jY+U=;
-        b=S6ldCzVe4ckeeZ+jbDU7LY6o2MyN2NLQyAEM2qbiQx9XlJ54GujLIHtt72v6wudDcu
-         ik7boMN2C5G97R+llGNi6GOveItLCkFHzElnC73N+oz9mCHiei3Td3X/ed/xULstgNwt
-         2uBHnsZD57psesrUbCnhRqKAQe5yMzWsJtFM4YPITBsKF662NFXxivXZMIkIlsKI1FBq
-         D2UjhY8DE06n8SoGTqB664q+A9WeK+ZguzObe9CELn8BvU54GCBuAc/MSKZt0hbaFtkC
-         YXL9rx+vHOpzWOqPMVHodW2xbiMuO8oEfjm/BZfWQQQwLrkpwOhCFNKT72RQQLEZPnIF
-         pWcg==
-X-Gm-Message-State: AOAM532FTNEzr+ZZ//Jow+BHDYniGLgKOFfyIayYl9M+/XMclbIsnZ1r
-        BOsAWDOkgZ0r5zm/bjbMDgzM2E3dAxRSOnUrD28tAoboa/JCUJ0ufxuRxZYoZPT4H0X5pYkeQQE
-        sXH0DXALmv/vXcUvkCejXzg==
-X-Received: by 2002:a05:622a:1701:: with SMTP id h1mr6421629qtk.86.1617288235021;
-        Thu, 01 Apr 2021 07:43:55 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxuLDbMHXC9CNvo0t2A3qF2LXyPIzZ504k6tflBIRR+WR0egk4w4i3pHgMEitLwOK0HrA9UUg==
-X-Received: by 2002:a05:622a:1701:: with SMTP id h1mr6421591qtk.86.1617288234575;
-        Thu, 01 Apr 2021 07:43:54 -0700 (PDT)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id k126sm4082887qkb.4.2021.04.01.07.43.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Apr 2021 07:43:54 -0700 (PDT)
-Subject: Re: [PATCH V4 XRT Alveo 11/20] fpga: xrt: fpga-mgr and region
- implementation for xclbin download
-To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
-Cc:     linux-fpga@vger.kernel.org, maxz@xilinx.com,
-        sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
-        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
-        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
-References: <20210324052947.27889-1-lizhi.hou@xilinx.com>
- <20210324052947.27889-12-lizhi.hou@xilinx.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <7fea5bed-c64a-528b-5e03-54f41220be8c@redhat.com>
-Date:   Thu, 1 Apr 2021 07:43:51 -0700
+        id S236884AbhDARr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 13:47:57 -0400
+Received: from mout.web.de ([217.72.192.78]:55155 "EHLO mout.web.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236413AbhDARoo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Apr 2021 13:44:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+        s=dbaedf251592; t=1617299082;
+        bh=umachb5L4Rh+9LC8tk5fZUXerK5xUJY2V8FE3/GAhes=;
+        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+        b=RSv082TiHKICUuLqViPPc6XQarhVjvnJpRNa++qnzXWTKwr5pQ2AdJdGcATs9qQgY
+         5SZB0lJX8Fd6vV2MWPA1ByaE18wA6nsS0+jMM481pa+WTsGjq7WgBgzbDTrN6j2v3A
+         JLDxH58TNjfSB1ZK4e4UY6zxMh6xCO8H9kZwVsS8=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from [192.168.178.20] ([84.61.93.130]) by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1N79RG-1lg4k802CC-017Yip; Thu, 01
+ Apr 2021 16:52:48 +0200
+Subject: Re: [PATCH 1/3] arm64: dts: xilinx: Add the clock nodes for zynqmp
+To:     Michal Simek <michal.simek@xilinx.com>,
+        Rajan Vaja <rajan.vaja@xilinx.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, harini.katakam@xilinx.com,
+        ulf.hansson@linaro.org, xuwei5@hisilicon.com, mripard@kernel.org,
+        heiko@sntech.de
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <1573119856-13548-1-git-send-email-rajan.vaja@xilinx.com>
+ <1573119856-13548-2-git-send-email-rajan.vaja@xilinx.com>
+ <8b039dac-06c4-6b33-f53b-44b8fa144495@web.de>
+ <580bccb2-2e41-aec7-2612-99a2b231f2fc@xilinx.com>
+From:   Jan Kiszka <jan.kiszka@web.de>
+Message-ID: <09343e7d-fcd8-1a54-470f-c0d8741921b1@web.de>
+Date:   Thu, 1 Apr 2021 16:52:46 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.0
 MIME-Version: 1.0
-In-Reply-To: <20210324052947.27889-12-lizhi.hou@xilinx.com>
+In-Reply-To: <580bccb2-2e41-aec7-2612-99a2b231f2fc@xilinx.com>
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
 Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:vGywyNvXpMsw1mQSKhj7uufyvwRkYPhazD7qHn6z0LzqCZ902sy
+ +zR7pNGbscbj6FnJHzz+cYnR+smioMQod9m/1FyUTHjQeO7+AG4RACh5tHvYUwW0smUH+bh
+ en5YHCS9/toxVEvscDf3BSvek+BQ0Xt2RMQb/Y/dbcdB3zQI7kU51BhNhenneF70vVm8Nim
+ nkCtYE68lAyCHX6Rh/2DA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:GUg6T/KRTkg=:cyf+WX2Q7gadsEJOJeL7ng
+ DYkNdTjnBgpn1KO6UKAh+HqUwGIvLP3r0/Z8dm5aVlkub78x+vqxtqnG+7BC8iMPHbwAvQmj3
+ hJURYzvSo+j7eOeUE2sZpAYv4xAY0U9bKq0xYL/Ga2E3SW74DuC/ff9LaI9lAh0J+wPVTHQuj
+ A6tZDYjBtRQEhEU1VuQlDO4XzHKJroZvTOPpzytoQxcAFUkyNc1XXEADE7uprviejKqxgBnA3
+ Y/aau7ZBy3wT8me4ywlrKf2w0FkpyJ3JFoICWwUOBtPVE53kEOOk/tFJac4RneRfYCSLVV7GE
+ 7Soz4DNTaT5Bd4+rBQOiYhIazPAgzdVmjM3fMpYOwHYyXomN6kV5Lh5Vt441EdZ+xx5ikusGs
+ RTGNNH3Ov/Zn1OD0GFko0naKy+3KvG/61wCCzU9dnBlN5c64h3kt95FgCThKuMVNAxjaVlsT2
+ NNFyBMhzy+UVcu3mAN+dsMQWZyvte0qUA+b3k3uSI+qSjsCraP105eFvkilw8UKL7G8mZk2A0
+ CNubzrmPB/nu/tpmdH3A8A+nPsg5Uj6NYZH4UyhZBlQkHaGY+8OJDe8VmFTF9B+oQkGuyLIrs
+ dLwfZuau9u/zyyYHNNeGRFtKoITwO5xhgWAvu2bqfFi3UskmsvuXHHkVyIjhsmgxDx2Z8vWle
+ O/+yg7uKgkuSaax+Xwzt5PdoLxP00SDrUHnzTn+X5Hu6IoCtBM1iBLBwAJfINwLYBRS/X/eBB
+ ABFc3AoQ6MAHNbb28/TDF85JjQY3XO/SvZXrRw5Kvi3YLM9e9fBEQI6gxSF5XGMjGKaGVTcxi
+ RgJ4J52Qq+9H9iMCU8fRjl03Rs5bPmBMNWarO9i6JRBubSZo3JF6u23bzDFH7zVOtBin3AhdW
+ TsGzHcvySOlxjnCJ4DfxB5ow7HKp5W2/WzsltWUM2bEBhy6+BqSQmb0ZvtFddRfMuNm87v/Jj
+ 5eOrqHQPN8UzMGJKgmGlCsyiWA+urYhEtmCESYKd+pCxdOXJwhCPfJpEu4A01rXSpNgObcBvu
+ NAiin/zUQ2rk90MoVoqoOBPEI7M+XeJwz2Gn+lXcwSu3z1RQZi1shbstioxjF015/5UaZT+u1
+ oMjocX9FVEr89th6TBndZtqPg7bmgTnvm6cSvEySY05//6vyT8w0+q5kDovDAVhoMvmkSq/N5
+ cJZdiSxXMBsO/jOZjNwiibCX8f9oB3xnhdTlG1AScXz5k8a0FbTJMCAuW/jEilCophqb0=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-small alloc's should use kzalloc.
-
-On 3/23/21 10:29 PM, Lizhi Hou wrote:
-> fpga-mgr and region implementation for xclbin download which will be
-> called from main platform driver
+On 01.04.21 13:42, Michal Simek wrote:
+> Hi Jan,
 >
-> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
-> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
-> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
-> ---
->  drivers/fpga/xrt/mgmt/fmgr-drv.c    | 191 +++++++++++
->  drivers/fpga/xrt/mgmt/fmgr.h        |  19 ++
->  drivers/fpga/xrt/mgmt/main-region.c | 483 ++++++++++++++++++++++++++++
->  3 files changed, 693 insertions(+)
->  create mode 100644 drivers/fpga/xrt/mgmt/fmgr-drv.c
->  create mode 100644 drivers/fpga/xrt/mgmt/fmgr.h
-a better file name would be xrt-mgr.*
->  create mode 100644 drivers/fpga/xrt/mgmt/main-region.c
+> On 3/27/21 8:55 PM, Jan Kiszka wrote:
+>> On 07.11.19 10:44, Rajan Vaja wrote:
+>>> Add clock nodes for zynqmp based on CCF.
+>>>
+>>> Signed-off-by: Rajan Vaja <rajan.vaja@xilinx.com>
+>>> ---
+>>>  arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi     | 222 ++++++++++++=
++++++++++
+>>>  arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts  |   4 +-
+>>>  arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts  |   4 +-
+>>>  arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts  |   2 +-
+>>>  .../boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts    |   4 +-
+>>>  .../boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts    |   4 +-
+>>>  .../boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts    |   4 +-
+>>>  .../boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts    |   4 +-
+>>>  .../boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts    |   4 +-
+>>>  arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts  |   4 +-
+>>>  arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts  |   4 +-
+>>>  arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts  |   4 +-
+>>>  arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts  |   4 +-
+>>>  arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts  |   4 +-
+>>>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi             |  24 ++-
+>>>  15 files changed, 270 insertions(+), 26 deletions(-)
+>>>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+>>>
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm=
+64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+>>> new file mode 100644
+>>> index 0000000..9868ca1
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+>>> @@ -0,0 +1,222 @@
+>>> +// SPDX-License-Identifier: GPL-2.0+
+>>> +/*
+>>> + * Clock specification for Xilinx ZynqMP
+>>> + *
+>>> + * (C) Copyright 2017 - 2019, Xilinx, Inc.
+>>> + *
+>>> + * Michal Simek <michal.simek@xilinx.com>
+>>> + */
+>>> +
+>>> +#include <dt-bindings/clock/xlnx-zynqmp-clk.h>
+>>> +/ {
+>>> +	pss_ref_clk: pss_ref_clk {
+>>> +		u-boot,dm-pre-reloc;
+>>> +		compatible =3D "fixed-clock";
+>>> +		#clock-cells =3D <0>;
+>>> +		clock-frequency =3D <33333333>;
+>>> +	};
+>>> +
+>>> +	video_clk: video_clk {
+>>> +		u-boot,dm-pre-reloc;
+>>> +		compatible =3D "fixed-clock";
+>>> +		#clock-cells =3D <0>;
+>>> +		clock-frequency =3D <27000000>;
+>>> +	};
+>>> +
+>>> +	pss_alt_ref_clk: pss_alt_ref_clk {
+>>> +		u-boot,dm-pre-reloc;
+>>> +		compatible =3D "fixed-clock";
+>>> +		#clock-cells =3D <0>;
+>>> +		clock-frequency =3D <0>;
+>>> +	};
+>>> +
+>>> +	gt_crx_ref_clk: gt_crx_ref_clk {
+>>> +		u-boot,dm-pre-reloc;
+>>> +		compatible =3D "fixed-clock";
+>>> +		#clock-cells =3D <0>;
+>>> +		clock-frequency =3D <108000000>;
+>>> +	};
+>>> +
+>>> +	aux_ref_clk: aux_ref_clk {
+>>> +		u-boot,dm-pre-reloc;
+>>> +		compatible =3D "fixed-clock";
+>>> +		#clock-cells =3D <0>;
+>>> +		clock-frequency =3D <27000000>;
+>>> +	};
+>>> +};
+>>> +
+>>> +&can0 {
+>>> +	clocks =3D <&zynqmp_clk CAN0_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&can1 {
+>>> +	clocks =3D <&zynqmp_clk CAN1_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&cpu0 {
+>>> +	clocks =3D <&zynqmp_clk ACPU>;
+>>> +};
+>>> +
+>>> +&fpd_dma_chan1 {
+>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&fpd_dma_chan2 {
+>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&fpd_dma_chan3 {
+>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&fpd_dma_chan4 {
+>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&fpd_dma_chan5 {
+>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&fpd_dma_chan6 {
+>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&fpd_dma_chan7 {
+>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&fpd_dma_chan8 {
+>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&lpd_dma_chan1 {
+>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&lpd_dma_chan2 {
+>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&lpd_dma_chan3 {
+>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&lpd_dma_chan4 {
+>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&lpd_dma_chan5 {
+>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&lpd_dma_chan6 {
+>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&lpd_dma_chan7 {
+>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&lpd_dma_chan8 {
+>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&gem0 {
+>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM0_REF>,
+>>> +		 <&zynqmp_clk GEM0_TX>, <&zynqmp_clk GEM0_RX>,
+>>> +		 <&zynqmp_clk GEM_TSU>;
+>>> +	clock-names =3D "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
+>>> +};
+>>> +
+>>> +&gem1 {
+>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM1_REF>,
+>>> +		 <&zynqmp_clk GEM1_TX>, <&zynqmp_clk GEM1_RX>,
+>>> +		 <&zynqmp_clk GEM_TSU>;
+>>> +	clock-names =3D "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
+>>> +};
+>>> +
+>>> +&gem2 {
+>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM2_REF>,
+>>> +		 <&zynqmp_clk GEM2_TX>, <&zynqmp_clk GEM2_RX>,
+>>> +		 <&zynqmp_clk GEM_TSU>;
+>>> +	clock-names =3D "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
+>>> +};
+>>> +
+>>> +&gem3 {
+>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM3_REF>,
+>>> +		 <&zynqmp_clk GEM3_TX>, <&zynqmp_clk GEM3_RX>,
+>>> +		 <&zynqmp_clk GEM_TSU>;
+>>> +	clock-names =3D "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
+>>> +};
+>>> +
+>>> +&gpio {
+>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&i2c0 {
+>>> +	clocks =3D <&zynqmp_clk I2C0_REF>;
+>>> +};
+>>> +
+>>> +&i2c1 {
+>>> +	clocks =3D <&zynqmp_clk I2C1_REF>;
+>>> +};
+>>> +
+>>> +&pcie {
+>>> +	clocks =3D <&zynqmp_clk PCIE_REF>;
+>>> +};
+>>> +
+>>> +&sata {
+>>> +	clocks =3D <&zynqmp_clk SATA_REF>;
+>>> +};
+>>> +
+>>> +&sdhci0 {
+>>> +	clocks =3D <&zynqmp_clk SDIO0_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&sdhci1 {
+>>> +	clocks =3D <&zynqmp_clk SDIO1_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&spi0 {
+>>> +	clocks =3D <&zynqmp_clk SPI0_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&spi1 {
+>>> +	clocks =3D <&zynqmp_clk SPI1_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&ttc0 {
+>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&ttc1 {
+>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&ttc2 {
+>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&ttc3 {
+>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&uart0 {
+>>> +	clocks =3D <&zynqmp_clk UART0_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&uart1 {
+>>> +	clocks =3D <&zynqmp_clk UART1_REF>, <&zynqmp_clk LPD_LSBUS>;
+>>> +};
+>>> +
+>>> +&usb0 {
+>>> +	clocks =3D <&zynqmp_clk USB0_BUS_REF>, <&zynqmp_clk USB3_DUAL_REF>;
+>>> +};
+>>> +
+>>> +&usb1 {
+>>> +	clocks =3D <&zynqmp_clk USB1_BUS_REF>, <&zynqmp_clk USB3_DUAL_REF>;
+>>> +};
+>>> +
+>>> +&watchdog0 {
+>>> +	clocks =3D <&zynqmp_clk WDT>;
+>>> +};
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts b/arch/=
+arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts
+>>> index 0f7b4cf..2e05fa4 100644
+>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts
+>>> @@ -2,7 +2,7 @@
+>>>  /*
+>>>   * dts file for Xilinx ZynqMP ZC1232
+>>>   *
+>>> - * (C) Copyright 2017 - 2018, Xilinx, Inc.
+>>> + * (C) Copyright 2017 - 2019, Xilinx, Inc.
+>>>   *
+>>>   * Michal Simek <michal.simek@xilinx.com>
+>>>   */
+>>> @@ -10,7 +10,7 @@
+>>>  /dts-v1/;
+>>>
+>>>  #include "zynqmp.dtsi"
+>>> -#include "zynqmp-clk.dtsi"
+>>> +#include "zynqmp-clk-ccf.dtsi"
+>>>
+>>>  / {
+>>>  	model =3D "ZynqMP ZC1232 RevA";
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts b/arch/=
+arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
+>>> index 9092828..3d0aaa0 100644
+>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
+>>> @@ -2,7 +2,7 @@
+>>>  /*
+>>>   * dts file for Xilinx ZynqMP ZC1254
+>>>   *
+>>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
+>>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
+>>>   *
+>>>   * Michal Simek <michal.simek@xilinx.com>
+>>>   * Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+>>> @@ -11,7 +11,7 @@
+>>>  /dts-v1/;
+>>>
+>>>  #include "zynqmp.dtsi"
+>>> -#include "zynqmp-clk.dtsi"
+>>> +#include "zynqmp-clk-ccf.dtsi"
+>>>
+>>>  / {
+>>>  	model =3D "ZynqMP ZC1254 RevA";
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts b/arch/=
+arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts
+>>> index 4f404c5..1a8127d4 100644
+>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts
+>>> @@ -11,7 +11,7 @@
+>>>  /dts-v1/;
+>>>
+>>>  #include "zynqmp.dtsi"
+>>> -#include "zynqmp-clk.dtsi"
+>>> +#include "zynqmp-clk-ccf.dtsi"
+>>>
+>>>  / {
+>>>  	model =3D "ZynqMP ZC1275 RevA";
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts b/=
+arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+>>> index 9a3e39d..fa7eb1b 100644
+>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+>>> @@ -2,7 +2,7 @@
+>>>  /*
+>>>   * dts file for Xilinx ZynqMP zc1751-xm015-dc1
+>>>   *
+>>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
+>>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
+>>>   *
+>>>   * Michal Simek <michal.simek@xilinx.com>
+>>>   */
+>>> @@ -10,7 +10,7 @@
+>>>  /dts-v1/;
+>>>
+>>>  #include "zynqmp.dtsi"
+>>> -#include "zynqmp-clk.dtsi"
+>>> +#include "zynqmp-clk-ccf.dtsi"
+>>>  #include <dt-bindings/gpio/gpio.h>
+>>>
+>>>  / {
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts b/=
+arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+>>> index 2421ec7..4191dfa 100644
+>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+>>> @@ -2,7 +2,7 @@
+>>>  /*
+>>>   * dts file for Xilinx ZynqMP zc1751-xm016-dc2
+>>>   *
+>>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
+>>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
+>>>   *
+>>>   * Michal Simek <michal.simek@xilinx.com>
+>>>   */
+>>> @@ -10,7 +10,7 @@
+>>>  /dts-v1/;
+>>>
+>>>  #include "zynqmp.dtsi"
+>>> -#include "zynqmp-clk.dtsi"
+>>> +#include "zynqmp-clk-ccf.dtsi"
+>>>  #include <dt-bindings/gpio/gpio.h>
+>>>
+>>>  / {
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts b/=
+arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
+>>> index 7a49dee..3750690 100644
+>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
+>>> @@ -2,7 +2,7 @@
+>>>  /*
+>>>   * dts file for Xilinx ZynqMP zc1751-xm017-dc3
+>>>   *
+>>> - * (C) Copyright 2016 - 2018, Xilinx, Inc.
+>>> + * (C) Copyright 2016 - 2019, Xilinx, Inc.
+>>>   *
+>>>   * Michal Simek <michal.simek@xilinx.com>
+>>>   */
+>>> @@ -10,7 +10,7 @@
+>>>  /dts-v1/;
+>>>
+>>>  #include "zynqmp.dtsi"
+>>> -#include "zynqmp-clk.dtsi"
+>>> +#include "zynqmp-clk-ccf.dtsi"
+>>>
+>>>  / {
+>>>  	model =3D "ZynqMP zc1751-xm017-dc3 RevA";
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts b/=
+arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
+>>> index 54c7b4f..2366cd9 100644
+>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
+>>> @@ -2,7 +2,7 @@
+>>>  /*
+>>>   * dts file for Xilinx ZynqMP zc1751-xm018-dc4
+>>>   *
+>>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
+>>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
+>>>   *
+>>>   * Michal Simek <michal.simek@xilinx.com>
+>>>   */
+>>> @@ -10,7 +10,7 @@
+>>>  /dts-v1/;
+>>>
+>>>  #include "zynqmp.dtsi"
+>>> -#include "zynqmp-clk.dtsi"
+>>> +#include "zynqmp-clk-ccf.dtsi"
+>>>
+>>>  / {
+>>>  	model =3D "ZynqMP zc1751-xm018-dc4";
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts b/=
+arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
+>>> index b8b5ff1..9a894e6 100644
+>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
+>>> @@ -2,7 +2,7 @@
+>>>  /*
+>>>   * dts file for Xilinx ZynqMP zc1751-xm019-dc5
+>>>   *
+>>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
+>>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
+>>>   *
+>>>   * Siva Durga Prasad <siva.durga.paladugu@xilinx.com>
+>>>   * Michal Simek <michal.simek@xilinx.com>
+>>> @@ -11,7 +11,7 @@
+>>>  /dts-v1/;
+>>>
+>>>  #include "zynqmp.dtsi"
+>>> -#include "zynqmp-clk.dtsi"
+>>> +#include "zynqmp-clk-ccf.dtsi"
+>>>  #include <dt-bindings/gpio/gpio.h>
+>>>
+>>>  / {
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/=
+arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+>>> index e5699d0..3e39454 100644
+>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+>>> @@ -2,7 +2,7 @@
+>>>  /*
+>>>   * dts file for Xilinx ZynqMP ZCU100 revC
+>>>   *
+>>> - * (C) Copyright 2016 - 2018, Xilinx, Inc.
+>>> + * (C) Copyright 2016 - 2019, Xilinx, Inc.
+>>>   *
+>>>   * Michal Simek <michal.simek@xilinx.com>
+>>>   * Nathalie Chan King Choy
+>>> @@ -11,7 +11,7 @@
+>>>  /dts-v1/;
+>>>
+>>>  #include "zynqmp.dtsi"
+>>> -#include "zynqmp-clk.dtsi"
+>>> +#include "zynqmp-clk-ccf.dtsi"
+>>>  #include <dt-bindings/input/input.h>
+>>>  #include <dt-bindings/interrupt-controller/irq.h>
+>>>  #include <dt-bindings/gpio/gpio.h>
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/=
+arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+>>> index 2a3b665..f6e9558 100644
+>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+>>> @@ -2,7 +2,7 @@
+>>>  /*
+>>>   * dts file for Xilinx ZynqMP ZCU102 RevA
+>>>   *
+>>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
+>>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
+>>>   *
+>>>   * Michal Simek <michal.simek@xilinx.com>
+>>>   */
+>>> @@ -10,7 +10,7 @@
+>>>  /dts-v1/;
+>>>
+>>>  #include "zynqmp.dtsi"
+>>> -#include "zynqmp-clk.dtsi"
+>>> +#include "zynqmp-clk-ccf.dtsi"
+>>>  #include <dt-bindings/input/input.h>
+>>>  #include <dt-bindings/gpio/gpio.h>
+>>>
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/arch/=
+arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+>>> index 8f45614..f457f8a 100644
+>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+>>> @@ -2,7 +2,7 @@
+>>>  /*
+>>>   * dts file for Xilinx ZynqMP ZCU104
+>>>   *
+>>> - * (C) Copyright 2017 - 2018, Xilinx, Inc.
+>>> + * (C) Copyright 2017 - 2019, Xilinx, Inc.
+>>>   *
+>>>   * Michal Simek <michal.simek@xilinx.com>
+>>>   */
+>>> @@ -10,7 +10,7 @@
+>>>  /dts-v1/;
+>>>
+>>>  #include "zynqmp.dtsi"
+>>> -#include "zynqmp-clk.dtsi"
+>>> +#include "zynqmp-clk-ccf.dtsi"
+>>>  #include <dt-bindings/gpio/gpio.h>
+>>>
+>>>  / {
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/=
+arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+>>> index 93ce7eb..f15b99a 100644
+>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+>>> @@ -2,7 +2,7 @@
+>>>  /*
+>>>   * dts file for Xilinx ZynqMP ZCU106
+>>>   *
+>>> - * (C) Copyright 2016, Xilinx, Inc.
+>>> + * (C) Copyright 2016 - 2019, Xilinx, Inc.
+>>>   *
+>>>   * Michal Simek <michal.simek@xilinx.com>
+>>>   */
+>>> @@ -10,7 +10,7 @@
+>>>  /dts-v1/;
+>>>
+>>>  #include "zynqmp.dtsi"
+>>> -#include "zynqmp-clk.dtsi"
+>>> +#include "zynqmp-clk-ccf.dtsi"
+>>>  #include <dt-bindings/input/input.h>
+>>>  #include <dt-bindings/gpio/gpio.h>
+>>>
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/=
+arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+>>> index 8bb0001..e27cd60 100644
+>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+>>> @@ -2,7 +2,7 @@
+>>>  /*
+>>>   * dts file for Xilinx ZynqMP ZCU111
+>>>   *
+>>> - * (C) Copyright 2017 - 2018, Xilinx, Inc.
+>>> + * (C) Copyright 2017 - 2019, Xilinx, Inc.
+>>>   *
+>>>   * Michal Simek <michal.simek@xilinx.com>
+>>>   */
+>>> @@ -10,7 +10,7 @@
+>>>  /dts-v1/;
+>>>
+>>>  #include "zynqmp.dtsi"
+>>> -#include "zynqmp-clk.dtsi"
+>>> +#include "zynqmp-clk-ccf.dtsi"
+>>>  #include <dt-bindings/input/input.h>
+>>>  #include <dt-bindings/gpio/gpio.h>
+>>>
+>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/=
+dts/xilinx/zynqmp.dtsi
+>>> index 9aa6734..59a547b 100644
+>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+>>> @@ -2,7 +2,7 @@
+>>>  /*
+>>>   * dts file for Xilinx ZynqMP
+>>>   *
+>>> - * (C) Copyright 2014 - 2015, Xilinx, Inc.
+>>> + * (C) Copyright 2014 - 2019, Xilinx, Inc.
+>>>   *
+>>>   * Michal Simek <michal.simek@xilinx.com>
+>>>   *
+>>> @@ -124,6 +124,28 @@
+>>>  			     <1 10 0xf08>;
+>>>  	};
+>>>
+>>> +	firmware {
+>>> +		zynqmp_firmware: zynqmp-firmware {
+>>> +			compatible =3D "xlnx,zynqmp-firmware";
+>>> +			method =3D "smc";
+>>> +			zynqmp_clk: clock-controller {
+>>> +				u-boot,dm-pre-reloc;
+>>> +				#clock-cells =3D <1>;
+>>> +				compatible =3D "xlnx,zynqmp-clk";
+>>> +				clocks =3D <&pss_ref_clk>,
+>>> +					 <&video_clk>,
+>>> +					 <&pss_alt_ref_clk>,
+>>> +					 <&aux_ref_clk>,
+>>> +					 <&gt_crx_ref_clk>;
+>>> +				clock-names =3D "pss_ref_clk",
+>>> +					      "video_clk",
+>>> +					      "pss_alt_ref_clk",
+>>> +					      "aux_ref_clk",
+>>> +					      "gt_crx_ref_clk";
+>>> +			};
+>>> +		};
+>>> +	};
+>>> +
+>>>  	amba_apu: amba-apu@0 {
+>>>  		compatible =3D "simple-bus";
+>>>  		#address-cells =3D <2>;
+>>>
+>>
+>> Updating my Ultra96 setups from 5.4 to 5.10, I ran into a blocker:
+>> Starting from this commit on, I'm no longer getting the kernel to boot
+>> on both revision 1 and 2 (arm64 defconfig as reference). If I switch th=
+e
+>> DTBs back before this commit, even a kernel from today's head is fine.
+>>
+>> Further versions of potential relevance:
+>>  - PMUFW 2019.1 and 2020.2
+>>  - TF-A 2.3
+>>  - U-Boot 2020.10
+>>
+>> What's missing? I suspect someone forgot to document a subtle dependenc=
+y
+>> of this change.
 >
-> diff --git a/drivers/fpga/xrt/mgmt/fmgr-drv.c b/drivers/fpga/xrt/mgmt/fmgr-drv.c
-> new file mode 100644
-> index 000000000000..12e1cc788ad9
-> --- /dev/null
-> +++ b/drivers/fpga/xrt/mgmt/fmgr-drv.c
-> @@ -0,0 +1,191 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * FPGA Manager Support for Xilinx Alveo Management Function Driver
+> Does this fix your issue?
+> https://lore.kernel.org/linux-arm-kernel/20210316090540.973014-1-punit1.=
+agrawal@toshiba.co.jp/
+>
 
-Since there is only one fpga mgr for xrt, this could be shortened to
+Nope, CONFIG_COMMON_CLK_ZYNQMP=3Dy does not help. Maybe the defconfig is
+missing even more. If you have some reference, I'm happy to try. I
+suspect that earlyprintk will also not reveal more without clocks (but I
+didn't play with that yet).
 
-* FPGA Manager Support for Xilinx Alevo
+Meanwhile, I'm carrying a revert of this commit and a related cleanup.
+That helps for now.
 
-> + *
-> + * Copyright (C) 2020-2021 Xilinx, Inc.
-> + *
-> + * Authors: Sonal.Santan@xilinx.com
-> + */
-> +
-> +#include <linux/cred.h>
-> +#include <linux/efi.h>
-> +#include <linux/fpga/fpga-mgr.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/module.h>
-> +#include <linux/vmalloc.h>
-> +
-> +#include "xclbin-helper.h"
-> +#include "xleaf.h"
-> +#include "fmgr.h"
-> +#include "xleaf/axigate.h"
-> +#include "xleaf/icap.h"
-> +#include "xmgnt.h"
-> +
-> +struct xfpga_class {
-> +	const struct platform_device *pdev;
-> +	char                          name[64];
-> +};
-> +
-> +/*
-> + * xclbin download plumbing -- find the download subsystem, ICAP and
-> + * pass the xclbin for heavy lifting
-> + */
-> +static int xmgmt_download_bitstream(struct platform_device *pdev,
-> +				    const struct axlf *xclbin)
-> +
-> +{
-> +	struct xclbin_bit_head_info bit_header = { 0 };
-> +	struct platform_device *icap_leaf = NULL;
-> +	struct xrt_icap_wr arg;
-> +	char *bitstream = NULL;
-> +	u64 bit_len;
-> +	int ret;
-> +
-> +	ret = xrt_xclbin_get_section(DEV(pdev), xclbin, BITSTREAM, (void **)&bitstream, &bit_len);
-> +	if (ret) {
-> +		xrt_err(pdev, "bitstream not found");
-> +		return -ENOENT;
-> +	}
-> +	ret = xrt_xclbin_parse_bitstream_header(DEV(pdev), bitstream,
-> +						XCLBIN_HWICAP_BITFILE_BUF_SZ,
-> +						&bit_header);
-> +	if (ret) {
-> +		ret = -EINVAL;
-> +		xrt_err(pdev, "invalid bitstream header");
-> +		goto fail;
-> +	}
-> +	if (bit_header.header_length + bit_header.bitstream_length > bit_len) {
-> +		ret = -EINVAL;
-> +		xrt_err(pdev, "invalid bitstream length. header %d, bitstream %d, section len %lld",
-> +			bit_header.header_length, bit_header.bitstream_length, bit_len);
-> +		goto fail;
-> +	}
-> +
-> +	icap_leaf = xleaf_get_leaf_by_id(pdev, XRT_SUBDEV_ICAP, PLATFORM_DEVID_NONE);
-> +	if (!icap_leaf) {
-> +		ret = -ENODEV;
-> +		xrt_err(pdev, "icap does not exist");
-> +		goto fail;
-> +	}
-> +	arg.xiiw_bit_data = bitstream + bit_header.header_length;
-> +	arg.xiiw_data_len = bit_header.bitstream_length;
-> +	ret = xleaf_call(icap_leaf, XRT_ICAP_WRITE, &arg);
-> +	if (ret) {
-> +		xrt_err(pdev, "write bitstream failed, ret = %d", ret);
-> +		xleaf_put_leaf(pdev, icap_leaf);
-> +		goto fail;
-> +	}
-ok, free_header removed
-> +
-> +	xleaf_put_leaf(pdev, icap_leaf);
-> +	vfree(bitstream);
-> +
-> +	return 0;
-> +
-> +fail:
-> +	vfree(bitstream);
-> +
-> +	return ret;
-> +}
-> +
-> +/*
-> + * There is no HW prep work we do here since we need the full
-> + * xclbin for its sanity check.
-> + */
-> +static int xmgmt_pr_write_init(struct fpga_manager *mgr,
-> +			       struct fpga_image_info *info,
-> +			       const char *buf, size_t count)
-> +{
-> +	const struct axlf *bin = (const struct axlf *)buf;
-> +	struct xfpga_class *obj = mgr->priv;
-> +
-> +	if (!(info->flags & FPGA_MGR_PARTIAL_RECONFIG)) {
-> +		xrt_info(obj->pdev, "%s only supports partial reconfiguration\n", obj->name);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (count < sizeof(struct axlf))
-> +		return -EINVAL;
-> +
-> +	if (count > bin->header.length)
-> +		return -EINVAL;
-> +
-> +	xrt_info(obj->pdev, "Prepare download of xclbin %pUb of length %lld B",
-> +		 &bin->header.uuid, bin->header.length);
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * The implementation requries full xclbin image before we can start
-> + * programming the hardware via ICAP subsystem. The full image is required
-ok
-> + * for checking the validity of xclbin and walking the sections to
-> + * discover the bitstream.
-> + */
-> +static int xmgmt_pr_write(struct fpga_manager *mgr,
-> +			  const char *buf, size_t count)
-> +{
-> +	const struct axlf *bin = (const struct axlf *)buf;
-> +	struct xfpga_class *obj = mgr->priv;
-> +
-> +	if (bin->header.length != count)
-> +		return -EINVAL;
-> +
-> +	return xmgmt_download_bitstream((void *)obj->pdev, bin);
-> +}
-> +
-> +static int xmgmt_pr_write_complete(struct fpga_manager *mgr,
-> +				   struct fpga_image_info *info)
-> +{
-> +	const struct axlf *bin = (const struct axlf *)info->buf;
-> +	struct xfpga_class *obj = mgr->priv;
-> +
-> +	xrt_info(obj->pdev, "Finished download of xclbin %pUb",
-> +		 &bin->header.uuid);
-> +	return 0;
-> +}
-> +
-> +static enum fpga_mgr_states xmgmt_pr_state(struct fpga_manager *mgr)
-> +{
-> +	return FPGA_MGR_STATE_UNKNOWN;
-ok as-is
-> +}
-> +
-> +static const struct fpga_manager_ops xmgmt_pr_ops = {
-> +	.initial_header_size = sizeof(struct axlf),
-> +	.write_init = xmgmt_pr_write_init,
-> +	.write = xmgmt_pr_write,
-> +	.write_complete = xmgmt_pr_write_complete,
-> +	.state = xmgmt_pr_state,
-> +};
-> +
-> +struct fpga_manager *xmgmt_fmgr_probe(struct platform_device *pdev)
-> +{
-> +	struct xfpga_class *obj = devm_kzalloc(DEV(pdev), sizeof(struct xfpga_class),
-> +					       GFP_KERNEL);
-> +	struct fpga_manager *fmgr = NULL;
-> +	int ret = 0;
-> +
-> +	if (!obj)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	snprintf(obj->name, sizeof(obj->name), "Xilinx Alveo FPGA Manager");
-> +	obj->pdev = pdev;
-> +	fmgr = fpga_mgr_create(&pdev->dev,
-> +			       obj->name,
-> +			       &xmgmt_pr_ops,
-> +			       obj);
-> +	if (!fmgr)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	ret = fpga_mgr_register(fmgr);
-> +	if (ret) {
-> +		fpga_mgr_free(fmgr);
-> +		return ERR_PTR(ret);
-> +	}
-> +	return fmgr;
-> +}
-> +
-> +int xmgmt_fmgr_remove(struct fpga_manager *fmgr)
-> +{
-> +	fpga_mgr_unregister(fmgr);
-> +	return 0;
-> +}
-> diff --git a/drivers/fpga/xrt/mgmt/fmgr.h b/drivers/fpga/xrt/mgmt/fmgr.h
-> new file mode 100644
-> index 000000000000..ff1fc5f870f8
-> --- /dev/null
-> +++ b/drivers/fpga/xrt/mgmt/fmgr.h
-> @@ -0,0 +1,19 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2020-2021 Xilinx, Inc.
-> + *
-> + * Authors: Sonal.Santan@xilinx.com
-> + */
-> +
-> +#ifndef _XMGMT_FMGR_H_
-> +#define _XMGMT_FMGR_H_
-> +
-> +#include <linux/fpga/fpga-mgr.h>
-> +#include <linux/mutex.h>
-
-why do mutex.h and xclbin.h need to be included ?
-
-consider removing them.
-
-> +
-> +#include <linux/xrt/xclbin.h>
-ok enum removed.
-> +
-> +struct fpga_manager *xmgmt_fmgr_probe(struct platform_device *pdev);
-> +int xmgmt_fmgr_remove(struct fpga_manager *fmgr);
-> +
-> +#endif
-> diff --git a/drivers/fpga/xrt/mgmt/main-region.c b/drivers/fpga/xrt/mgmt/main-region.c
-> new file mode 100644
-> index 000000000000..96a674618e86
-> --- /dev/null
-> +++ b/drivers/fpga/xrt/mgmt/main-region.c
-> @@ -0,0 +1,483 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * FPGA Region Support for Xilinx Alveo Management Function Driver
-> + *
-> + * Copyright (C) 2020-2021 Xilinx, Inc.
-> + * Bulk of the code borrowed from XRT mgmt driver file, fmgr.c
-review this line, there is not fmgr.c
-> + *
-> + * Authors: Lizhi.Hou@xilinx.com
-> + */
-> +
-> +#include <linux/uuid.h>
-> +#include <linux/fpga/fpga-bridge.h>
-> +#include <linux/fpga/fpga-region.h>
-> +#include "metadata.h"
-> +#include "xleaf.h"
-> +#include "xleaf/axigate.h"
-> +#include "xclbin-helper.h"
-> +#include "xmgnt.h"
-> +
-> +struct xmgmt_bridge {
-> +	struct platform_device *pdev;
-> +	const char *bridge_name;
-ok
-> +};
-> +
-> +struct xmgmt_region {
-> +	struct platform_device *pdev;
-> +	struct fpga_region *region;
-> +	struct fpga_compat_id compat_id;
-> +	uuid_t intf_uuid;
-interface_uuid
-> +	struct fpga_bridge *bridge;
-> +	int group_instance;
-> +	uuid_t dep_uuid;
-dep ? expand.
-> +	struct list_head list;
-> +};
-> +
-> +struct xmgmt_region_match_arg {
-> +	struct platform_device *pdev;
-> +	uuid_t *uuids;
-> +	u32 uuid_num;
-> +};
-> +
-> +static int xmgmt_br_enable_set(struct fpga_bridge *bridge, bool enable)
-> +{
-> +	struct xmgmt_bridge *br_data = (struct xmgmt_bridge *)bridge->priv;
-> +	struct platform_device *axigate_leaf;
-> +	int rc;
-> +
-> +	axigate_leaf = xleaf_get_leaf_by_epname(br_data->pdev, br_data->bridge_name);
-> +	if (!axigate_leaf) {
-> +		xrt_err(br_data->pdev, "failed to get leaf %s",
-> +			br_data->bridge_name);
-> +		return -ENOENT;
-> +	}
-> +
-> +	if (enable)
-> +		rc = xleaf_call(axigate_leaf, XRT_AXIGATE_OPEN, NULL);
-> +	else
-> +		rc = xleaf_call(axigate_leaf, XRT_AXIGATE_CLOSE, NULL);
-> +
-> +	if (rc) {
-> +		xrt_err(br_data->pdev, "failed to %s gate %s, rc %d",
-> +			(enable ? "free" : "freeze"), br_data->bridge_name,
-> +			rc);
-> +	}
-> +
-> +	xleaf_put_leaf(br_data->pdev, axigate_leaf);
-> +
-> +	return rc;
-> +}
-> +
-> +const struct fpga_bridge_ops xmgmt_bridge_ops = {
-> +	.enable_set = xmgmt_br_enable_set
-> +};
-> +
-> +static void xmgmt_destroy_bridge(struct fpga_bridge *br)
-> +{
-> +	struct xmgmt_bridge *br_data = br->priv;
-> +
-> +	if (!br_data)
-> +		return;
-> +
-> +	xrt_info(br_data->pdev, "destroy fpga bridge %s", br_data->bridge_name);
-> +	fpga_bridge_unregister(br);
-> +
-> +	devm_kfree(DEV(br_data->pdev), br_data);
-> +
-> +	fpga_bridge_free(br);
-> +}
-> +
-> +static struct fpga_bridge *xmgmt_create_bridge(struct platform_device *pdev,
-> +					       char *dtb)
-> +{
-> +	struct fpga_bridge *br = NULL;
-> +	struct xmgmt_bridge *br_data;
-> +	const char *gate;
-> +	int rc;
-> +
-> +	br_data = devm_kzalloc(DEV(pdev), sizeof(*br_data), GFP_KERNEL);
-> +	if (!br_data)
-> +		return NULL;
-> +	br_data->pdev = pdev;
-> +
-> +	br_data->bridge_name = XRT_MD_NODE_GATE_ULP;
-> +	rc = xrt_md_find_endpoint(&pdev->dev, dtb, XRT_MD_NODE_GATE_ULP,
-> +				  NULL, &gate);
-> +	if (rc) {
-> +		br_data->bridge_name = XRT_MD_NODE_GATE_PLP;
-> +		rc = xrt_md_find_endpoint(&pdev->dev, dtb, XRT_MD_NODE_GATE_PLP,
-> +					  NULL, &gate);
-> +	}
-> +	if (rc) {
-> +		xrt_err(pdev, "failed to get axigate, rc %d", rc);
-> +		goto failed;
-> +	}
-> +
-> +	br = fpga_bridge_create(DEV(pdev), br_data->bridge_name,
-> +				&xmgmt_bridge_ops, br_data);
-> +	if (!br) {
-> +		xrt_err(pdev, "failed to create bridge");
-> +		goto failed;
-> +	}
-> +
-> +	rc = fpga_bridge_register(br);
-> +	if (rc) {
-> +		xrt_err(pdev, "failed to register bridge, rc %d", rc);
-> +		goto failed;
-> +	}
-> +
-> +	xrt_info(pdev, "created fpga bridge %s", br_data->bridge_name);
-> +
-> +	return br;
-> +
-> +failed:
-> +	if (br)
-> +		fpga_bridge_free(br);
-> +	if (br_data)
-> +		devm_kfree(DEV(pdev), br_data);
-> +
-> +	return NULL;
-> +}
-> +
-> +static void xmgmt_destroy_region(struct fpga_region *region)
-ok
-> +{
-> +	struct xmgmt_region *r_data = region->priv;
-> +
-> +	xrt_info(r_data->pdev, "destroy fpga region %llx.%llx",
-> +		 region->compat_id->id_l, region->compat_id->id_h);
-are the args ordered correctly ? I expected id_h to be first.
-> +
-> +	fpga_region_unregister(region);
-> +
-> +	if (r_data->group_instance > 0)
-> +		xleaf_destroy_group(r_data->pdev, r_data->group_instance);
-> +
-> +	if (r_data->bridge)
-> +		xmgmt_destroy_bridge(r_data->bridge);
-> +
-> +	if (r_data->region->info) {
-> +		fpga_image_info_free(r_data->region->info);
-> +		r_data->region->info = NULL;
-> +	}
-> +
-> +	fpga_region_free(region);
-> +
-> +	devm_kfree(DEV(r_data->pdev), r_data);
-> +}
-> +
-> +static int xmgmt_region_match(struct device *dev, const void *data)
-> +{
-> +	const struct xmgmt_region_match_arg *arg = data;
-> +	const struct fpga_region *match_region;
-ok
-> +	uuid_t compat_uuid;
-> +	int i;
-> +
-> +	if (dev->parent != &arg->pdev->dev)
-> +		return false;
-> +
-> +	match_region = to_fpga_region(dev);
-> +	/*
-> +	 * The device tree provides both parent and child uuids for an
-> +	 * xclbin in one array. Here we try both uuids to see if it matches
-> +	 * with target region's compat_id. Strictly speaking we should
-> +	 * only match xclbin's parent uuid with target region's compat_id
-> +	 * but given the uuids by design are unique comparing with both
-> +	 * does not hurt.
-> +	 */
-> +	import_uuid(&compat_uuid, (const char *)match_region->compat_id);
-> +	for (i = 0; i < arg->uuid_num; i++) {
-> +		if (uuid_equal(&compat_uuid, &arg->uuids[i]))
-> +			return true;
-> +	}
-> +
-> +	return false;
-> +}
-> +
-> +static int xmgmt_region_match_base(struct device *dev, const void *data)
-> +{
-> +	const struct xmgmt_region_match_arg *arg = data;
-> +	const struct fpga_region *match_region;
-> +	const struct xmgmt_region *r_data;
-> +
-> +	if (dev->parent != &arg->pdev->dev)
-> +		return false;
-> +
-> +	match_region = to_fpga_region(dev);
-> +	r_data = match_region->priv;
-> +	if (uuid_is_null(&r_data->dep_uuid))
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
-> +static int xmgmt_region_match_by_uuid(struct device *dev, const void *data)
-ok
-> +{
-> +	const struct xmgmt_region_match_arg *arg = data;
-> +	const struct fpga_region *match_region;
-> +	const struct xmgmt_region *r_data;
-> +
-> +	if (dev->parent != &arg->pdev->dev)
-> +		return false;
-> +
-> +	if (arg->uuid_num != 1)
-> +		return false;
-ok
-> +
-> +	match_region = to_fpga_region(dev);
-> +	r_data = match_region->priv;
-> +	if (uuid_equal(&r_data->dep_uuid, arg->uuids))
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
-> +static void xmgmt_region_cleanup(struct fpga_region *region)
-> +{
-> +	struct xmgmt_region *r_data = region->priv, *pdata, *temp;
-> +	struct platform_device *pdev = r_data->pdev;
-> +	struct xmgmt_region_match_arg arg = { 0 };
-> +	struct fpga_region *match_region = NULL;
-> +	struct device *start_dev = NULL;
-> +	LIST_HEAD(free_list);
-> +	uuid_t compat_uuid;
-> +
-> +	list_add_tail(&r_data->list, &free_list);
-> +	arg.pdev = pdev;
-> +	arg.uuid_num = 1;
-> +	arg.uuids = &compat_uuid;
-> +
-> +	/* find all regions depending on this region */
-> +	list_for_each_entry_safe(pdata, temp, &free_list, list) {
-ok
-> +		import_uuid(arg.uuids, (const char *)pdata->region->compat_id);
-> +		start_dev = NULL;
-> +		while ((match_region = fpga_region_class_find(start_dev, &arg,
-> +							      xmgmt_region_match_by_uuid))) {
-> +			pdata = match_region->priv;
-> +			list_add_tail(&pdata->list, &free_list);
-> +			start_dev = &match_region->dev;
-> +			put_device(&match_region->dev);
-> +		}
-> +	}
-> +
-> +	list_del(&r_data->list);
-> +
-> +	list_for_each_entry_safe_reverse(pdata, temp, &free_list, list)
-> +		xmgmt_destroy_region(pdata->region);
-> +
-> +	if (r_data->group_instance > 0) {
-> +		xleaf_destroy_group(pdev, r_data->group_instance);
-> +		r_data->group_instance = -1;
-> +	}
-> +	if (r_data->region->info) {
-> +		fpga_image_info_free(r_data->region->info);
-> +		r_data->region->info = NULL;
-> +	}
-> +}
-> +
-> +void xmgmt_region_cleanup_all(struct platform_device *pdev)
-> +{
-> +	struct xmgmt_region_match_arg arg = { 0 };
-> +	struct fpga_region *base_region;
-> +
-> +	arg.pdev = pdev;
-> +
-> +	while ((base_region = fpga_region_class_find(NULL, &arg, xmgmt_region_match_base))) {
-ok
-> +		put_device(&base_region->dev);
-> +
-> +		xmgmt_region_cleanup(base_region);
-> +		xmgmt_destroy_region(base_region);
-> +	}
-> +}
-> +
-> +/*
-> + * Program a region with a xclbin image. Bring up the subdevs and the
-ok
-> + * group object to contain the subdevs.
-> + */
-> +static int xmgmt_region_program(struct fpga_region *region, const void *xclbin, char *dtb)
-> +{
-> +	const struct axlf *xclbin_obj = xclbin;
-> +	struct fpga_image_info *info;
-> +	struct platform_device *pdev;
-> +	struct xmgmt_region *r_data;
-> +	int rc;
-> +
-> +	r_data = region->priv;
-> +	pdev = r_data->pdev;
-> +
-> +	info = fpga_image_info_alloc(&pdev->dev);
-> +	if (!info)
-> +		return -ENOMEM;
-> +
-> +	info->buf = xclbin;
-> +	info->count = xclbin_obj->header.length;
-> +	info->flags |= FPGA_MGR_PARTIAL_RECONFIG;
-> +	region->info = info;
-> +	rc = fpga_region_program_fpga(region);
-> +	if (rc) {
-> +		xrt_err(pdev, "programming xclbin failed, rc %d", rc);
-> +		return rc;
-> +	}
-> +
-> +	/* free bridges to allow reprogram */
-> +	if (region->get_bridges)
-> +		fpga_bridges_put(&region->bridge_list);
-> +
-> +	/*
-> +	 * Next bringup the subdevs for this region which will be managed by
-> +	 * its own group object.
-> +	 */
-> +	r_data->group_instance = xleaf_create_group(pdev, dtb);
-> +	if (r_data->group_instance < 0) {
-> +		xrt_err(pdev, "failed to create group, rc %d",
-> +			r_data->group_instance);
-> +		rc = r_data->group_instance;
-> +		return rc;
-> +	}
-> +
-> +	rc = xleaf_wait_for_group_bringup(pdev);
-> +	if (rc)
-> +		xrt_err(pdev, "group bringup failed, rc %d", rc);
-> +	return rc;
-> +}
-> +
-> +static int xmgmt_get_bridges(struct fpga_region *region)
-> +{
-> +	struct xmgmt_region *r_data = region->priv;
-> +	struct device *dev = &r_data->pdev->dev;
-> +
-> +	return fpga_bridge_get_to_list(dev, region->info, &region->bridge_list);
-> +}
-> +
-> +/*
-> + * Program/create FPGA regions based on input xclbin file.
-ok, dropped sentence
-> + * 1. Identify a matching existing region for this xclbin
-> + * 2. Tear down any previous objects for the found region
-> + * 3. Program this region with input xclbin
-> + * 4. Iterate over this region's interface uuids to determine if it defines any
-> + *    child region. Create fpga_region for the child region.
-> + */
-> +int xmgmt_process_xclbin(struct platform_device *pdev,
-> +			 struct fpga_manager *fmgr,
-> +			 const struct axlf *xclbin,
-> +			 enum provider_kind kind)
-> +{
-> +	struct fpga_region *region, *compat_region = NULL;
-> +	struct xmgmt_region_match_arg arg = { 0 };
-ok
-> +	struct xmgmt_region *r_data;
-> +	uuid_t compat_uuid;
-> +	char *dtb = NULL;
-> +	int rc, i;
-> +
-> +	rc = xrt_xclbin_get_metadata(DEV(pdev), xclbin, &dtb);
-> +	if (rc) {
-> +		xrt_err(pdev, "failed to get dtb: %d", rc);
-> +		goto failed;
-> +	}
-> +
-> +	rc = xrt_md_get_interface_uuids(DEV(pdev), dtb, 0, NULL);
-> +	if (rc < 0) {
-> +		xrt_err(pdev, "failed to get intf uuid");
-> +		rc = -EINVAL;
-ok
-> +		goto failed;
-> +	}
-> +	arg.uuid_num = rc;
-> +	arg.uuids = vzalloc(sizeof(uuid_t) * arg.uuid_num);
-uuids small, convert to bzalloc
-> +	if (!arg.uuids) {
-> +		rc = -ENOMEM;
-> +		goto failed;
-> +	}
-> +	arg.pdev = pdev;
-> +
-> +	rc = xrt_md_get_interface_uuids(DEV(pdev), dtb, arg.uuid_num, arg.uuids);
-> +	if (rc != arg.uuid_num) {
-> +		xrt_err(pdev, "only get %d uuids, expect %d", rc, arg.uuid_num);
-> +		rc = -EINVAL;
-> +		goto failed;
-> +	}
-> +
-> +	/* if this is not base firmware, search for a compatible region */
-> +	if (kind != XMGMT_BLP) {
-> +		compat_region = fpga_region_class_find(NULL, &arg, xmgmt_region_match);
-> +		if (!compat_region) {
-> +			xrt_err(pdev, "failed to get compatible region");
-> +			rc = -ENOENT;
-> +			goto failed;
-> +		}
-> +
-> +		xmgmt_region_cleanup(compat_region);
-> +
-> +		rc = xmgmt_region_program(compat_region, xclbin, dtb);
-> +		if (rc) {
-> +			xrt_err(pdev, "failed to program region");
-> +			goto failed;
-> +		}
-> +	}
-> +
-> +	if (compat_region)
-> +		import_uuid(&compat_uuid, (const char *)compat_region->compat_id);
-> +
-> +	/* create all the new regions contained in this xclbin */
-> +	for (i = 0; i < arg.uuid_num; i++) {
-> +		if (compat_region && uuid_equal(&compat_uuid, &arg.uuids[i])) {
-> +			/* region for this interface already exists */
-> +			continue;
-> +		}
-> +
-> +		region = fpga_region_create(DEV(pdev), fmgr, xmgmt_get_bridges);
-> +		if (!region) {
-> +			xrt_err(pdev, "failed to create fpga region");
-> +			rc = -EFAULT;
-> +			goto failed;
-> +		}
-> +		r_data = devm_kzalloc(DEV(pdev), sizeof(*r_data), GFP_KERNEL);
-> +		if (!r_data) {
-> +			rc = -ENOMEM;
-> +			fpga_region_free(region);
-> +			goto failed;
-> +		}
-> +		r_data->pdev = pdev;
-> +		r_data->region = region;
-> +		r_data->group_instance = -1;
-> +		uuid_copy(&r_data->intf_uuid, &arg.uuids[i]);
-> +		if (compat_region)
-> +			import_uuid(&r_data->dep_uuid, (const char *)compat_region->compat_id);
-> +		r_data->bridge = xmgmt_create_bridge(pdev, dtb);
-> +		if (!r_data->bridge) {
-> +			xrt_err(pdev, "failed to create fpga bridge");
-> +			rc = -EFAULT;
-> +			devm_kfree(DEV(pdev), r_data);
-> +			fpga_region_free(region);
-> +			goto failed;
-> +		}
-> +
-> +		region->compat_id = &r_data->compat_id;
-> +		export_uuid((char *)region->compat_id, &r_data->intf_uuid);
-> +		region->priv = r_data;
-> +
-> +		rc = fpga_region_register(region);
-> +		if (rc) {
-> +			xrt_err(pdev, "failed to register fpga region");
-> +			xmgmt_destroy_bridge(r_data->bridge);
-> +			fpga_region_free(region);
-> +			devm_kfree(DEV(pdev), r_data);
-> +			goto failed;
-> +		}
-> +
-> +		xrt_info(pdev, "created fpga region %llx%llx",
-> +			 region->compat_id->id_l, region->compat_id->id_h);
-
-see above comment on id_h
-
-destroy's info used %llx.%llx, for consistency need to add or remove a '.'
-
-Tom
-
-> +	}
-> +
-> +	if (compat_region)
-> +		put_device(&compat_region->dev);
-> +	vfree(dtb);
-> +	return 0;
-> +
-> +failed:
-> +	if (compat_region) {
-> +		put_device(&compat_region->dev);
-> +		xmgmt_region_cleanup(compat_region);
-> +	} else {
-> +		xmgmt_region_cleanup_all(pdev);
-> +	}
-> +
-> +	vfree(dtb);
-> +	return rc;
-> +}
-
+Jan
