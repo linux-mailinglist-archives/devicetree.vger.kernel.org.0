@@ -2,74 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 012D1351BEF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:12:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C8D3351943
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:02:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235014AbhDASML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:12:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35824 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236837AbhDASHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:07:39 -0400
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0ECAC0319C5;
-        Thu,  1 Apr 2021 10:18:30 -0700 (PDT)
-Received: by mail-ot1-x334.google.com with SMTP id y19-20020a0568301d93b02901b9f88a238eso2733001oti.11;
-        Thu, 01 Apr 2021 10:18:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LIjI2NUwDFlAYdJOBAJek6rk7rUaA28ZeDcvyQ9Nhm0=;
-        b=Q/L10nBE34UdT/g10T0xeDrajVtKUuryGAwndb66qHC5CgF2643yeNksqQSMV/HIyJ
-         jnQc0o1OdlLBbb1lW8yp+3mMRCO5sKdHKHhEuLnGskOGEeHzvE/DVs3ikGVhFDAmbJFC
-         MjR97vbLSOSyWF7575Io1gZaHTCnZg750h5jBV5eP7QEvrKgkm+KZpmMKZx4tgfuCsCc
-         qtmg2Z/c5xp/XVMI0X3aWJueyeo3zvGPQMkGIdJdy0cCk1ZNJavY6WgBlLt5PT65ycNO
-         CO1DoFqo1yi2E8hmj9aCKkXPaXv0eGhLvhRUkgCvHkTssxINBWv0eI03CGQSyw5HfaSf
-         Dmsw==
-X-Gm-Message-State: AOAM530+cEQ3siN6gyib1aRb5vIoRhm3LIC6MreKZkEIl9oU7RZsyA5D
-        XJgY8qSVFBOfmuJFN3wkoQ==
-X-Google-Smtp-Source: ABdhPJzTwRBGIosUW74Hf7hJbz23dNYIA7uex/H49XPguHIvYAQWA7pqj4y6jdKNAirvM1WZ0YDtZg==
-X-Received: by 2002:a05:6830:1515:: with SMTP id k21mr7651423otp.269.1617297506910;
-        Thu, 01 Apr 2021 10:18:26 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m14sm1316149otn.69.2021.04.01.10.18.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 10:18:26 -0700 (PDT)
-Received: (nullmailer pid 637987 invoked by uid 1000);
-        Thu, 01 Apr 2021 17:18:25 -0000
-Date:   Thu, 1 Apr 2021 12:18:25 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
+        id S234904AbhDARwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 13:52:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45208 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236462AbhDARpC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Apr 2021 13:45:02 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 13D9761155;
+        Thu,  1 Apr 2021 17:43:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617298985;
+        bh=7F89OoO2DJFxgS3Bk3MUOem8HAJsy7MMXYXeybjFq3w=;
+        h=From:To:Cc:Subject:Date:From;
+        b=RfNLCIWsIZNqG/8Br7UmoGGXXGtFkiGPTgJfgQj0NoUD9w15CFMrQeRq7CVjMPOhr
+         98E1dID4IQbq5T3Y8xgTQydJSQrELyDs3JmW6vkXtpLRaJdp5KwEJ2D+wQkP3yu5yo
+         9uLPIz5q9nUxYg+D5FRoAxRw9ZBQAYcRrFh27AG3G+PyIGbK4rAPiiaFh3gaS6BtKs
+         iBiqEXg4dWPHKQ4UlHx0Y0p6hTxZvwBcQSlZqiQPttVHSZurNPwCS5VaB++tBZEj/Z
+         qxfzeU12ILHpqUhz1SNJRdB9SpnJ1GRCxns8Yg8prtJUBVhjauGZHgKvi+X0WqZ32n
+         O5RNiD6x6lkgA==
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
 Cc:     devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-tegra@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>
-Subject: Re: [PATCH v2 4/6] dt-bindings: memory: tegra20: mc: Convert to
- schema
-Message-ID: <20210401171825.GA637934@robh.at.kernel.org>
-References: <20210330230445.26619-1-digetx@gmail.com>
- <20210330230445.26619-5-digetx@gmail.com>
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: [PATCH 0/6] dt-bindings: Add some missing IIO related binding docs.
+Date:   Thu,  1 Apr 2021 18:41:06 +0100
+Message-Id: <20210401174112.320497-1-jic23@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210330230445.26619-5-digetx@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 31 Mar 2021 02:04:43 +0300, Dmitry Osipenko wrote:
-> Convert Tegra20 Memory Controller binding to schema.
-> 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  .../memory-controllers/nvidia,tegra20-mc.txt  | 40 ----------
->  .../memory-controllers/nvidia,tegra20-mc.yaml | 79 +++++++++++++++++++
->  2 files changed, 79 insertions(+), 40 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-mc.txt
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-mc.yaml
-> 
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+First of what will probably be one of several sets to slowly but surely
+add yaml binding docs for all the defacto bindings hiding in IIO
+drivers.  Ultimate I'd like to clear the backlog of these and so go
+forward with full documenation, but there may be some cases we just decide
+are too complex to bother.  The fsl,mma955x parts are ignored (for now) on
+that basis (I think we have all the other accelerometers covered now)
+
+Some of these date back to board file days and some were added by people
+only interested in ACPI, but all can be instantiated from dt-bindings.
+A few may simply have slipped through the net during review.
+
+Testing done with hacked up qemu when anything was non trivial.
+
+Jonathan Cameron (6):
+  dt-bindings:iio:accel:adis16201 and adis16209 bindings
+  dt-bindings:iio:accel:bosch,bma220 device tree binding documentation
+  dt-bindings:iio:accel:fsl,mma7455 binding doc
+  dt-bindings:trivial-devices: Add memsic,mxc4005/mxc6255/mxc6655
+    entries
+  dt-bindings:trivial-devices: Add sensortek,stk8312 and
+    sensortek,s8ba50
+  dt-bindings:iio:adc:adi,ad7298 document bindings
+
+ .../bindings/iio/accel/adi,adis16201.yaml     | 55 +++++++++++++
+ .../bindings/iio/accel/bosch,bma220.yaml      | 50 +++++++++++
+ .../bindings/iio/accel/fsl,mma7455.yaml       | 82 +++++++++++++++++++
+ .../bindings/iio/adc/adi,ad7298.yaml          | 48 +++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  | 10 +++
+ 5 files changed, 245 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adis16201.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/bosch,bma220.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/fsl,mma7455.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7298.yaml
+
+-- 
+2.31.1
+
