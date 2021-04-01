@@ -2,121 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7557035128E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 11:44:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B09D351295
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 11:44:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233616AbhDAJn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 05:43:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56794 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230284AbhDAJnG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Apr 2021 05:43:06 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8958560FE8;
-        Thu,  1 Apr 2021 09:43:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617270185;
-        bh=Yrz9+JUWWWv7fTZsYX+1n7GPNYO74iP0u1uRWzNvi1k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LTMT1i2w1rDsrdehRnXN2kA8j/04CGtN/4wASwI2hC7otfSvjl5Qeu1cdjaRV22Qf
-         /+i35ov2TbqjwLFeSq2UQEQlS8Or7pnp3G4E80tGTzm+DqzO1r8C4FYfDDVStLNMru
-         RIhd8uT3508g70HvDpF0M+EEBXMewf/gzM/nqGYSQrbCusQzjwtpvClxLtMuJx1VCK
-         UQT+C7BQDeNLx96rNQ7NhulvzPPNDCGN7Odrs5vfus7tURnPvvq/b8AvX6XDpy/fLg
-         9Usu14BmlWtw8dU4nWbN23KPkb5uNHsXEh57UE4H0OurWELIWEM/b41PUddtWzUb1n
-         ACGOgpgVykG3g==
-Received: from johan by xi.lan with local (Exim 4.93.0.4)
-        (envelope-from <johan@kernel.org>)
-        id 1lRtqw-0008PZ-UA; Thu, 01 Apr 2021 11:43:02 +0200
-Date:   Thu, 1 Apr 2021 11:43:02 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Rob Herring <robh@kernel.org>, Tony Lindgren <tony@atomide.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Cox <gnomes@lxorguk.ukuu.org.uk>,
-        Lee Jones <lee.jones@linaro.org>, Jiri Slaby <jslaby@suse.cz>,
-        Merlijn Wajer <merlijn@wizzup.org>,
-        Peter Hurley <peter@hurleysoftware.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH 3/6] dt-bindings: serdev: ngsm: Add binding for GNSS
- child node
-Message-ID: <YGWVpvEci16RpAOg@hovoldconsulting.com>
-References: <20200512214713.40501-1-tony@atomide.com>
- <20200512214713.40501-4-tony@atomide.com>
- <20200527192817.GA2587830@bogus>
- <20200528095151.GE10358@localhost>
- <20210305104635.GA16695@duo.ucw.cz>
+        id S233840AbhDAJoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 05:44:02 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:59078 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229612AbhDAJnf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 05:43:35 -0400
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1319gKom021282;
+        Thu, 1 Apr 2021 11:43:16 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=ElCTswr//GFCTAToCJhfoRZXnB9MVrksSyYjSKrxAoU=;
+ b=Jqx/K1QwmWTis3eaCEw7rOD/e2XGnexB1jM0Kn6W6KfsQRexI8OipI+pwt05qsOB10mf
+ NXSeO7mOPPOg2OaacbUVHBSeMzPJdSVkKgjDNcg4CmjFnmZoCHxaS3vOUpmvqOtFii9l
+ 5hqI527BdNFlPoZ+ZfC5l0BeWduO09mYFaZmfANBpTPpSbdC9HMbbc8VyavSsJ+ob+tN
+ dr6hMlmx3iiAlhGrNwaV+a2CKMiU6iH/JgI0dbOtEne7wThijrLPTgyo3JQtcbzJM4y/
+ 5T9DvcTZAbMk6KYkLSSMabeln/z2M9Fy4hiGF1xORtt/4t1qDFUQ842Ijf5qdBdGbK97 CA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 37n291k6b9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 01 Apr 2021 11:43:16 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 39B9110002A;
+        Thu,  1 Apr 2021 11:43:16 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2888222D63D;
+        Thu,  1 Apr 2021 11:43:16 +0200 (CEST)
+Received: from lmecxl0912.lme.st.com (10.75.127.47) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 1 Apr
+ 2021 11:43:15 +0200
+Subject: Re: [PATCH] ARM: dts: stm32: Add PTP clock to Ethernet controller
+To:     Kurt Kanzenbach <kurt@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210316080644.19809-1-kurt@linutronix.de>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <ce610592-3d91-e5ad-ffe9-b8567af886f1@foss.st.com>
+Date:   Thu, 1 Apr 2021 11:43:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="/Hd9/fYkpnpPNgUL"
-Content-Disposition: inline
-In-Reply-To: <20210305104635.GA16695@duo.ucw.cz>
+In-Reply-To: <20210316080644.19809-1-kurt@linutronix.de>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-04-01_04:2021-03-31,2021-04-01 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Kurt
 
---/Hd9/fYkpnpPNgUL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 3/16/21 9:06 AM, Kurt Kanzenbach wrote:
+> Add the PTP clock to the Ethernet controller. Otherwise, the driver uses the
+> main clock to derive the PTP frequency which is not necessarily the correct one.
+> 
+> Tested with linuxptp on Olimex STMP1-OLinuXino-LIME2.
+> 
+> Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
+> ---
+>   arch/arm/boot/dts/stm32mp151.dtsi | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+> index 3c75abacb374..d1f596ea2fd5 100644
+> --- a/arch/arm/boot/dts/stm32mp151.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
+> @@ -1421,11 +1421,13 @@
+>   				      "mac-clk-tx",
+>   				      "mac-clk-rx",
+>   				      "eth-ck",
+> +				      "ptp_ref",
+>   				      "ethstp";
+>   			clocks = <&rcc ETHMAC>,
+>   				 <&rcc ETHTX>,
+>   				 <&rcc ETHRX>,
+>   				 <&rcc ETHCK_K>,
+> +				 <&rcc ETHPTP_K>,
+>   				 <&rcc ETHSTP>;
+>   			st,syscon = <&syscfg 0x4>;
+>   			snps,mixed-burst;
+> 
 
-On Fri, Mar 05, 2021 at 11:46:35AM +0100, Pavel Machek wrote:
-> Hi!
->=20
-> > > > For motorola modem case, we may have a GNSS device on channel 4.
-> > > > Let's add that to the binding and example.
-> > > >=20
-> > > > Signed-off-by: Tony Lindgren <tony@atomide.com>
-> > > > ---
-> > > >  .../devicetree/bindings/serdev/serdev-ngsm.yaml          | 9 +++++=
-++++
-> > > >  1 file changed, 9 insertions(+)
->=20
-> >=20
-> > And since we're describing a mux, I think you need nodes for the virtual
-> > ports rather than a reg property in what should be a serial client. That
-> > is something like
-> >=20
-> > 	serial@nnn {
-> > 		modem {
-> > 			compatible =3D "etsi,ts27001-mux";
-> >=20
-> > 			serial@4 {
-> > 				compatible =3D "etsi,ts27001-serial";
-> > 				reg =3D <4>;
-> >=20
-> > 				gnss {
-> > 					compatible =3D "motorola,motmdm-gnss";
-> > 				};
-> > 			};
-> > 		};
-> > 	};
-> >=20
-> > This way you can actually use serdev for the client drivers (e.g. for
-> > gnss), and those drivers also be used for non-muxed ports if needed
-> > (e.g. over USB).
->=20
-> I have done changes you requested, and then hit "serdev is busy
-> because it can have at most one child" limit in the code. You have
-> pretty clean driver in your inbox, and no reply. No help with serdev
-> core limitations, either. Can you start to communicate?
+Applied on stm32-next.
 
-Heh, look at the devicetree example above that I gave you back in March.
-It has the virtual serial ports described ("serial@4"), which you were
-missing.
-
-Johan
-
---/Hd9/fYkpnpPNgUL
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQQHbPq+cpGvN/peuzMLxc3C7H1lCAUCYGWVogAKCRALxc3C7H1l
-CP6uAQDltdfufHVUrRYNBelpVl3fEoTsf1GoHJoqhBC24nKaSAEA3NEtBSgdOhRM
-Pv+uTEMD+C+Z5GqmUMgcrl1pzCWVIwM=
-=JZxP
------END PGP SIGNATURE-----
-
---/Hd9/fYkpnpPNgUL--
+Thanks.
+Alex
