@@ -2,100 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADFE1351CD2
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:47:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6330351DD7
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:52:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234717AbhDASVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:21:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45704 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237026AbhDASSq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Apr 2021 14:18:46 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AEE366136A;
-        Thu,  1 Apr 2021 15:12:55 +0000 (UTC)
-Date:   Thu, 1 Apr 2021 16:13:04 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Puranjay Mohan <puranjay12@gmail.com>
-Cc:     alexandru.ardelean@analog.com, devicetree@vger.kernel.org,
-        knaack.h@gmx.de, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, lars@metafoo.de
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: temperature: Add DT bindings
- for TMP117
-Message-ID: <20210401161304.70c61fe6@jic23-huawei>
-In-Reply-To: <20210401091648.87421-2-puranjay12@gmail.com>
-References: <20210401091648.87421-1-puranjay12@gmail.com>
-        <20210401091648.87421-2-puranjay12@gmail.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S235101AbhDAScN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 14:32:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38310 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234720AbhDASVF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:21:05 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC71BC022595
+        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 08:20:26 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id l1so1168600plg.12
+        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 08:20:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Ww076wtEw/l52B1eQC1HZmnMQQ8Ebtr9JfK+3ViX3so=;
+        b=KiGvVnSH66DmF8HdRytw6CJzuJoS03Rgw4NS/QOUBG/qyDfowjfjPJb4Uk9rl3tzSl
+         FrtcqDfXNAt03yv2ZbMWSkUtZVxgRqCp/FxjadzOmk0LdPRI0xK8SS0cmsm50tBLUV8D
+         LT2bSRIZNrc7c9mY8GZxdhUIy6Sv/F6+JsIxaTreMmGzoIVgcnJMnqibzvnhl7vEeCSS
+         l+h74kxjQjZ+K2aItGMz6rzYzSTuvOU31WEx5Tonk1xxdAIDZpUuj/fNFiz29q66gypd
+         vbgOy/k/jbxvAJwSS59FAbQ0k7tPzSO6eZoOEiGcRgHuJj++WFr95/LbkGkaTmvTBXB+
+         F9IQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Ww076wtEw/l52B1eQC1HZmnMQQ8Ebtr9JfK+3ViX3so=;
+        b=hLf1gxYmRsXSBggh4XM8Rea1aOBq3mIZ1/v9TW1NP8pGyowCuKhlGEPp19s4IRQ/M/
+         KED7GcogskRlrAmTLlUhiMPVJHWUZTJQC6ZJ5px+Vqcw3nSVaIq9bcbclN8qbiKSQWNq
+         d6THkO4RvvTTbfsXSEclPNiPG0joOw4rzxJI697Rf3cLdMYZc4H5/ItZFFplKZgNHyY7
+         671ZCzH12noAi+2gY7Ixik+yfVENdS74CQZNgNVIkov0mxX7HE1O9/sRkCYAfUgy5ceL
+         9G/rJwS8QO0++ovbyUQ6pu7aVkdxd+FYAI0Tr4aq0hOyyxGUhhgDsaTH4RFggnzqJfNf
+         ecXA==
+X-Gm-Message-State: AOAM530AaErEyj7Sw8yvRximzhsRt9U97+E+NjGq4VgGywrtrJgSaGcE
+        RxjW29IQMWm0QEFUymhf9LEV
+X-Google-Smtp-Source: ABdhPJxAqh+RohpPAzLbk35v/zOJ3CC1I1F2tWRwN3E0X6lfjAeYaDbNp7Smee2wXabf5ZYkF4rWoQ==
+X-Received: by 2002:a17:902:c14c:b029:e5:cd82:a0b with SMTP id 12-20020a170902c14cb02900e5cd820a0bmr8410255plj.34.1617290426225;
+        Thu, 01 Apr 2021 08:20:26 -0700 (PDT)
+Received: from localhost.localdomain ([103.77.37.138])
+        by smtp.gmail.com with ESMTPSA id l22sm6500919pjl.14.2021.04.01.08.20.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Apr 2021 08:20:25 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
+        boris.brezillon@collabora.com, Daniele.Palmas@telit.com,
+        bjorn.andersson@linaro.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v10 4/4] mtd: rawnand: qcom: Add missing nand_cleanup() in error path
+Date:   Thu,  1 Apr 2021 20:49:55 +0530
+Message-Id: <20210401151955.143817-5-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210401151955.143817-1-manivannan.sadhasivam@linaro.org>
+References: <20210401151955.143817-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  1 Apr 2021 14:46:47 +0530
-Puranjay Mohan <puranjay12@gmail.com> wrote:
+Add missing nand_cleanup() in the alloc_bam_transaction() error path
+to cleanup the resources properly.
 
-> Add devicetree binding document for TMP117, a digital temperature sensor.
-> 
-> Signed-off-by: Puranjay Mohan <puranjay12@gmail.com>
-> ---
->  .../bindings/iio/temperature/ti,tmp117.yaml   | 34 +++++++++++++++++++
->  1 file changed, 34 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
-> new file mode 100644
-> index 000000000..1ead22317
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
-> @@ -0,0 +1,34 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/iio/temperature/ti,tmp117.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: "TI TMP117 - Digital temperature sensor with integrated NV memory"
-> +
-> +description: |
-> +    TI TMP117 - Digital temperature sensor with integrated NV memory that supports
-> +    I2C interface.
-> +      https://www.ti.com/lit/gpn/tmp1
-> +
-> +maintainers: 
-> +  - "Puranjay Mohan <puranjay12@gmail.com>"
-> +
-> +properties: 
-> +  compatible: 
-> +    enum: 
-> +      - "ti,tmp117"
-> +  reg: 
-> +    maxItems: 1
-> +required: 
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - | 
-> +    tmp117@48 {
-> +        compatible = "ti,tmp117";
-> +        reg = <0x48>;
-> +      };  
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ drivers/mtd/nand/raw/qcom_nandc.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-For the example embed it in an appropriate i2c description e.g.
+diff --git a/drivers/mtd/nand/raw/qcom_nandc.c b/drivers/mtd/nand/raw/qcom_nandc.c
+index 87c23bb320bf..fe74cf3aece5 100644
+--- a/drivers/mtd/nand/raw/qcom_nandc.c
++++ b/drivers/mtd/nand/raw/qcom_nandc.c
+@@ -2882,6 +2882,7 @@ static int qcom_nand_host_init_and_register(struct qcom_nand_controller *nandc,
+ 		if (!nandc->bam_txn) {
+ 			dev_err(nandc->dev,
+ 				"failed to allocate bam transaction\n");
++			nand_cleanup(chip);
+ 			return -ENOMEM;
+ 		}
+ 	}
+-- 
+2.25.1
 
-    i2c {
-        #address-cells = <1>;
-        #size-cells = <0>;
-
-        tmp117@48 {
-             compatible = "ti,tmp117";
-             reg = <0x48>;
-        };
-    };
