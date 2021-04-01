@@ -2,60 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE71D35207F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 22:17:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52E30352088
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 22:21:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234821AbhDAURR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 16:17:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35894 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234489AbhDAURR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 16:17:17 -0400
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41541C0613E6;
-        Thu,  1 Apr 2021 13:17:17 -0700 (PDT)
-Received: from [192.168.1.101] (abae153.neoplus.adsl.tpnet.pl [83.6.168.153])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id D33303F5DD;
-        Thu,  1 Apr 2021 22:17:12 +0200 (CEST)
-Subject: Re: [PATCH 1/9] dt-bindings: clk: qcom: Add bindings for MSM8994 GCC
- driver
-To:     Stephen Boyd <sboyd@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210313021919.435332-1-konrad.dybcio@somainline.org>
- <161730597895.2260335.4437139498852095330@swboyd.mtv.corp.google.com>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-ID: <407789fb-bb43-874b-af4b-a3c1fa74a1bc@somainline.org>
-Date:   Thu, 1 Apr 2021 22:17:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        id S234536AbhDAUVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 16:21:00 -0400
+Received: from mail-oi1-f174.google.com ([209.85.167.174]:34678 "EHLO
+        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234496AbhDAUU7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 16:20:59 -0400
+Received: by mail-oi1-f174.google.com with SMTP id x207so3013663oif.1;
+        Thu, 01 Apr 2021 13:20:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wcspT1L4njOmUk3kNinDGLJJyQmYO9IfUXHMGjOmchc=;
+        b=t80aklyFzMwRAdSRdindYeLkiQIo51JVrxWZilSVmU45Lcm//gmMnwDZgQqZYUq2PO
+         sa6RAVBFPpKPI68tizUe5fMi4LpmYfc37RShgoiWI1bbfQraXC9gJwLeiGqWw0aYtah/
+         LpKZzzWMvLH4FrJXZElWCG7aTkNldmURdXO9AYk5N/tJcrlhnC0N1kikezq30q1ZREsC
+         4epNkXBatrzBvScLzIPCTgKydW+NFONqZrRT5Xy75L00dba8BatVRNcjE6pKtcV2yZX0
+         cO65n5qh7v5f6cWY5Dwn8FUY0R6Pm9Sk9AjmHwuLBwRHW4P0MOf+lDn0S+8Cc2GJT9bW
+         RZcg==
+X-Gm-Message-State: AOAM530PPecGf60zRmwxMO9uYHUObW2eyM5HjcAkosttZYDd4fPjHtY4
+        EdjklED8EGdXOAOPNc+rle/3xfQtOw==
+X-Google-Smtp-Source: ABdhPJxSgHbdxE/ixaJPEKHjh0MqUdSxB7PgHMrhXuDd6DeB4sLEIkUcP/euJUM8nA8IUQBBb058zA==
+X-Received: by 2002:a54:4806:: with SMTP id j6mr7649267oij.15.1617308458832;
+        Thu, 01 Apr 2021 13:20:58 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id w23sm1306812oow.25.2021.04.01.13.20.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Apr 2021 13:20:58 -0700 (PDT)
+Received: (nullmailer pid 955677 invoked by uid 1000);
+        Thu, 01 Apr 2021 20:20:56 -0000
+Date:   Thu, 1 Apr 2021 15:20:56 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        alsa-devel <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: Re: [PATCH v2 2/2] ASoC: dt-bindings: renesas, rsnd: Clear warning
+ 'ports' does not match any of the regexes
+Message-ID: <20210401202056.GA947212@robh.at.kernel.org>
+References: <20210331091616.2306-1-thunder.leizhen@huawei.com>
+ <20210331091616.2306-3-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
-In-Reply-To: <161730597895.2260335.4437139498852095330@swboyd.mtv.corp.google.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210331091616.2306-3-thunder.leizhen@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Mar 31, 2021 at 05:16:16PM +0800, Zhen Lei wrote:
+> Currently, if there are more than two ports, or if there is only one port
+> but other properties(such as "#address-cells") is required, these ports
+> are placed under the "ports" node. So add the schema of property "ports".
 
-> Isn't this already documented in
-> Documentation/devicetree/bindings/clock/qcom,gcc.yaml
+A given binding should just use 'ports' or 'port' depending on it's 
+need. Supporting both forms is needless complexity.
 
+> Otherwise, warnings similar to the following will be reported:
+> arch/arm64/boot/dts/renesas/r8a774a1-beacon-rzg2m-kit.dt.yaml: \
+> sound@ec500000: 'ports' does not match any of the regexes: \
+> '^rcar_sound,ctu$', '^rcar_sound,dai$', '^rcar_sound,dvc$', ...
+> 
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> ---
+>  Documentation/devicetree/bindings/sound/renesas,rsnd.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> index 384191ee497f534..a42992fa687d3f3 100644
+> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> @@ -115,6 +115,11 @@ properties:
+>      $ref: audio-graph-port.yaml#
+>      unevaluatedProperties: false
+>  
+> +  ports:
 
-I wanted to document the custom property for the SONY SDHCI quirk, but if it's not necessary, we can just omit this patch.
+       $ref: /schemas/graph.yaml#/properties/ports
 
+> +    patternProperties:
+> +      '^port@[0-9]':
+> +        $ref: "#/properties/port"
 
-Konrad
+Then this should be: $ref: audio-graph-port.yaml#
 
+Also, what each port is should be defined, but that's a separate 
+problem.
+
+> +
+>  # use patternProperties to avoid naming "xxx,yyy" issue
+>  patternProperties:
+>    "^rcar_sound,dvc$":
+> -- 
+> 1.8.3
+> 
+> 
