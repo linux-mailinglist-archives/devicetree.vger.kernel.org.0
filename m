@@ -2,888 +2,713 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEBD0351B76
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:10:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 749D4351A4B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:04:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237695AbhDASIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:08:42 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:19744 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236392AbhDASCY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:02:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1617300144; x=1648836144;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=igf0kkYoOVqDqg+RAXk2vjuo15nQpvq1z9zl7asnf8w=;
-  b=XqSRdAqoTAg59nQ68nX42QYlQspRx0/VjpHO1FdR2x3aB78Vicd8wtSI
-   6P9aQgzia7Z5eZqEv51cXHExFdft6n+p/AHAFFjtNwT3OT9cK5vxpHH9J
-   G08Fclq9g2TrWAMJ5S1dUr7goUKHpuxxa5Jo2jDLJolVDNNcwynkqETd7
-   hCD6+qSxo1M9LWOZspjTQDAeMLT6g4vMMZTy+Dip1OqNInrJzsvVqSyEb
-   TprfYjcTZ1gyiF5nKQndCSVZSucO6dWb9mI/IkEbQma1maCpkXFAsWWIp
-   LoquhLHvy3GPqk3nqU2qIyL9ozRdPFePGtp+o2IOqfpCpeLITe1V/RelW
-   Q==;
-IronPort-SDR: TTLdfeRJND+SRpz0fczywQZjmZ9RD88QL5IDZqyNfkbytlXLm2LlCOiIlM5zrr/HtLXaLQGeYG
- OAs4WeRTBPbwtRbXrDU9ydfHXgkfAFHnEKEVXR+jC5HcEr2LhK8rrZlrY9CqfQ4sezTlUy6pYc
- eD5RpZdmcKOYhVvamICXjfHKeUDiWZrXdOAuS9knGjlvx92/SATv1St93pZo+i7A8GEjZulqnn
- PqzRIILSSIc7UYX9VeEjofo6VwWUEv1roc0ap4oXINf1uZcewwG3msPUcqps2JtCaN9UZDmWqy
- dfA=
-X-IronPort-AV: E=Sophos;i="5.81,296,1610434800"; 
-   d="scan'208";a="109338826"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Apr 2021 04:34:36 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+        id S234362AbhDAR64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 13:58:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32848 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235584AbhDAR4a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:56:30 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2062c.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe5b::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AA4FC05BD1B;
+        Thu,  1 Apr 2021 05:57:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JZiY+OjG+3v+jD8Crcnpw1JuFx+z7Co3OG1rNYjq2y2dy3CE/fZuKHzoupg+xzhMAZqAhY1IzHuOrZw0xgGEAPD2fwtIXDh8c1LgmF5boGgSh3bu02nuI3Bbwu1rcW0GamaSHyEtGNVqufaLJl1h7Tu5D9GI2AK39N1izsHpWbSGoFqOwE3WQoqRMyZBwFyvnL0tZjYCDOhexqCkU0MgcnkYKUdzQzDuptf2LDaAtU4eDfZSfLiymptPSPdRrh9VwOOSSZ1YTsyk3bER0FUyXfxlbGThFoZw5hzpFpOR/0kw4hyXRIoSIn41pxEqV6zDNtBtNcPtqiMBafO0h1Y5Zw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PoZhI5nUEFeYR6b/GHwNUQvmZkhT1e/8D2F+75CpHQA=;
+ b=eS8Pc+KzCBC7hK2/VCiDt0qNy5ITv5vVT9W8togKBf7BYLvSf1HrxS4lxVwl8GupU+V+uOMPUSek2WW87WQFahyLWbr/KHLgOpmtFNMEJng3FJ2ahQHvP4V6Vows+gdUHbZB2bjGtukNnF/gpVCnaXG7Mb6o3fbuJPrTnU4zzxJVGC2fQuv5QOs1WKR4SfHkBA5FsFHGtb4a8SJIaXRJ7tsDXo9SAw7lXcje3FJR0fnX6ueGvVTv0fpyIYEccTsobdi4Pk4xs4uKdo4yEOsT+v24VvqPzuueYEF/T7hswkatCaNEqcPXQOmaJQqKGvZa1OocylGn7VVuoFPtvYwfrg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PoZhI5nUEFeYR6b/GHwNUQvmZkhT1e/8D2F+75CpHQA=;
+ b=OHga+blgk1d87f8ooowk1fHVIrrwKEJPRRvrxpkUIURZidzLgZBZumW2FMWbi5AV6zCy63xvoZzCYA3bPBOPu9kdXzlKRleoDou8c42qp0rDNuRTtISCNoPL9Y4wBrTIEcPOKevaPWWWvkUsFSnIU+6B65cjYBIrs5eOP/QUHL8=
+Received: from CY4PR07CA0001.namprd07.prod.outlook.com (2603:10b6:903:165::11)
+ by BYAPR02MB5576.namprd02.prod.outlook.com (2603:10b6:a03:a1::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.27; Thu, 1 Apr
+ 2021 11:42:26 +0000
+Received: from CY1NAM02FT048.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:903:165:cafe::d5) by CY4PR07CA0001.outlook.office365.com
+ (2603:10b6:903:165::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.27 via Frontend
+ Transport; Thu, 1 Apr 2021 11:42:26 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ CY1NAM02FT048.mail.protection.outlook.com (10.152.74.227) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3977.25 via Frontend Transport; Thu, 1 Apr 2021 11:42:26 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 1 Apr 2021 04:34:36 -0700
-Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Thu, 1 Apr 2021 04:34:35 -0700
-From:   Eugen Hristev <eugen.hristev@microchip.com>
-To:     <devicetree@vger.kernel.org>, <linux-media@vger.kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Eugen Hristev <eugen.hristev@microchip.com>
-Subject: [PATCH 30/30] media: atmel: atmel-isc: add microchip-xisc driver
-Date:   Thu, 1 Apr 2021 14:27:23 +0300
-Message-ID: <20210401112723.189107-31-eugen.hristev@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210401112723.189107-1-eugen.hristev@microchip.com>
-References: <20210401112723.189107-1-eugen.hristev@microchip.com>
+ 15.1.2106.2; Thu, 1 Apr 2021 04:42:25 -0700
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2106.2 via Frontend Transport; Thu, 1 Apr 2021 04:42:25 -0700
+Envelope-to: linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ heiko@sntech.de,
+ mripard@kernel.org,
+ xuwei5@hisilicon.com,
+ ulf.hansson@linaro.org,
+ mark.rutland@arm.com,
+ robh+dt@kernel.org,
+ jan.kiszka@web.de
+Received: from [172.30.17.109] (port=40904)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1lRviS-0000Uq-D6; Thu, 01 Apr 2021 04:42:25 -0700
+Subject: Re: [PATCH 1/3] arm64: dts: xilinx: Add the clock nodes for zynqmp
+To:     Jan Kiszka <jan.kiszka@web.de>, Rajan Vaja <rajan.vaja@xilinx.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <michal.simek@xilinx.com>, <harini.katakam@xilinx.com>,
+        <ulf.hansson@linaro.org>, <xuwei5@hisilicon.com>,
+        <mripard@kernel.org>, <heiko@sntech.de>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1573119856-13548-1-git-send-email-rajan.vaja@xilinx.com>
+ <1573119856-13548-2-git-send-email-rajan.vaja@xilinx.com>
+ <8b039dac-06c4-6b33-f53b-44b8fa144495@web.de>
+From:   Michal Simek <michal.simek@xilinx.com>
+Message-ID: <580bccb2-2e41-aec7-2612-99a2b231f2fc@xilinx.com>
+Date:   Thu, 1 Apr 2021 13:42:20 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+In-Reply-To: <8b039dac-06c4-6b33-f53b-44b8fa144495@web.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 292f956e-25bc-46af-4f01-08d8f5033946
+X-MS-TrafficTypeDiagnostic: BYAPR02MB5576:
+X-Microsoft-Antispam-PRVS: <BYAPR02MB55762C63389648E66BCD2A3BC67B9@BYAPR02MB5576.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:162;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: FsKUZhGfaRxPygkqfAJ9dyJIqI13gP6pena/dJxSYPD725hFwfZOaRmG1mpoid1tWB1GTVmC1umgVqv906IPamFXHdAqRNVAITuME7amgPd0dwIPFFYsN9iEImu14vGBGYL2ST6mPj2nnHAdAYvIe/umHBKyi26eBAc8Ola/pWw8+T8UbJXbDl78hldymSTn19mDi0jdKqbK2lRhUXSeWAoZQ2pvxWLsJ5xmnXLl39ZFdmlo7uw+yk5DLmhiAf5+7Y5MasxYDgEFltSmLnid+iuTj2ruGIPjoouzdqs5ho8hICPlCF4BVOu2Zf4+F+87ioBz8ZL4t8jjdhGUadVBUnoU8Ljujk75YA5BzNzmFSds+oC7FXc6eCKgHCm5HMHsSeke3cMJT8ulv/FcMuopz8t1loVtyffTUF053UX+mPcSh9UToeGThtl7RZZcGUGBoxXvXZltGvDy97F7I7gINm9T2yG3wKEKaV6i6MAxsjsWNVrT1e1kJDgRe+igkWx9VpQ2Nz9Zyf0aaFOtFt5leXwYk1aEoU8g7KqYsgZBFOxn4xbD6/4wwb+ThqLYnMWWIwVwDnbCUIaX5JUNCRYdp89bgwlOONNonrbbJAgSnoJucDJvlH0a8nlkcPqXNE12uENb3RtmU3wIs1Tx2STtwaXH75TfsFi1pM0Cswzrx8iW7TCkFbx2wgVdu5SKepuMug+HweAMbetv5e4vPrH5y7mrkq6sdFPu1fTLBnt+Ba4xuWmYzq10DahH7JrtNR7AyJH1eSO7LxBtkpBwyqM5EqSAsVh1kRWSclAkF49fXq7kv3KVFmQatERbEhil1Z7HA8jeOYOLTrJXsWowRlOjrh+0DLtJeEQCJuV6E4IRlso=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(39860400002)(346002)(376002)(396003)(136003)(46966006)(36840700001)(47076005)(7416002)(110136005)(70586007)(9786002)(70206006)(44832011)(186003)(2616005)(966005)(36756003)(921005)(31696002)(82310400003)(36860700001)(426003)(53546011)(54906003)(8676002)(336012)(8936002)(31686004)(30864003)(5660300002)(2906002)(6666004)(4326008)(26005)(82740400003)(83380400001)(36906005)(478600001)(316002)(7636003)(356005)(50156003)(83996005)(43740500002)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2021 11:42:26.6911
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 292f956e-25bc-46af-4f01-08d8f5033946
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY1NAM02FT048.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5576
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add driver for the extended variant of the isc, the microchip XISC
-present on sama7g5 product.
+Hi Jan,
 
-Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
----
- drivers/media/platform/Makefile               |   1 +
- drivers/media/platform/atmel/Kconfig          |  11 +
- drivers/media/platform/atmel/Makefile         |   2 +
- drivers/media/platform/atmel/atmel-isc-base.c |   2 +-
- drivers/media/platform/atmel/atmel-isc-regs.h |  26 +
- .../media/platform/atmel/atmel-sama7g5-isc.c  | 644 ++++++++++++++++++
- 6 files changed, 685 insertions(+), 1 deletion(-)
- create mode 100644 drivers/media/platform/atmel/atmel-sama7g5-isc.c
+On 3/27/21 8:55 PM, Jan Kiszka wrote:
+> On 07.11.19 10:44, Rajan Vaja wrote:
+>> Add clock nodes for zynqmp based on CCF.
+>>
+>> Signed-off-by: Rajan Vaja <rajan.vaja@xilinx.com>
+>> ---
+>>  arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi     | 222 +++++++++++++++++++++
+>>  arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts  |   4 +-
+>>  arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts  |   4 +-
+>>  arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts  |   2 +-
+>>  .../boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts    |   4 +-
+>>  .../boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts    |   4 +-
+>>  .../boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts    |   4 +-
+>>  .../boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts    |   4 +-
+>>  .../boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts    |   4 +-
+>>  arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts  |   4 +-
+>>  arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts  |   4 +-
+>>  arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts  |   4 +-
+>>  arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts  |   4 +-
+>>  arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts  |   4 +-
+>>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi             |  24 ++-
+>>  15 files changed, 270 insertions(+), 26 deletions(-)
+>>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+>> new file mode 100644
+>> index 0000000..9868ca1
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+>> @@ -0,0 +1,222 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * Clock specification for Xilinx ZynqMP
+>> + *
+>> + * (C) Copyright 2017 - 2019, Xilinx, Inc.
+>> + *
+>> + * Michal Simek <michal.simek@xilinx.com>
+>> + */
+>> +
+>> +#include <dt-bindings/clock/xlnx-zynqmp-clk.h>
+>> +/ {
+>> +	pss_ref_clk: pss_ref_clk {
+>> +		u-boot,dm-pre-reloc;
+>> +		compatible = "fixed-clock";
+>> +		#clock-cells = <0>;
+>> +		clock-frequency = <33333333>;
+>> +	};
+>> +
+>> +	video_clk: video_clk {
+>> +		u-boot,dm-pre-reloc;
+>> +		compatible = "fixed-clock";
+>> +		#clock-cells = <0>;
+>> +		clock-frequency = <27000000>;
+>> +	};
+>> +
+>> +	pss_alt_ref_clk: pss_alt_ref_clk {
+>> +		u-boot,dm-pre-reloc;
+>> +		compatible = "fixed-clock";
+>> +		#clock-cells = <0>;
+>> +		clock-frequency = <0>;
+>> +	};
+>> +
+>> +	gt_crx_ref_clk: gt_crx_ref_clk {
+>> +		u-boot,dm-pre-reloc;
+>> +		compatible = "fixed-clock";
+>> +		#clock-cells = <0>;
+>> +		clock-frequency = <108000000>;
+>> +	};
+>> +
+>> +	aux_ref_clk: aux_ref_clk {
+>> +		u-boot,dm-pre-reloc;
+>> +		compatible = "fixed-clock";
+>> +		#clock-cells = <0>;
+>> +		clock-frequency = <27000000>;
+>> +	};
+>> +};
+>> +
+>> +&can0 {
+>> +	clocks = <&zynqmp_clk CAN0_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&can1 {
+>> +	clocks = <&zynqmp_clk CAN1_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&cpu0 {
+>> +	clocks = <&zynqmp_clk ACPU>;
+>> +};
+>> +
+>> +&fpd_dma_chan1 {
+>> +	clocks = <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&fpd_dma_chan2 {
+>> +	clocks = <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&fpd_dma_chan3 {
+>> +	clocks = <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&fpd_dma_chan4 {
+>> +	clocks = <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&fpd_dma_chan5 {
+>> +	clocks = <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&fpd_dma_chan6 {
+>> +	clocks = <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&fpd_dma_chan7 {
+>> +	clocks = <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&fpd_dma_chan8 {
+>> +	clocks = <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&lpd_dma_chan1 {
+>> +	clocks = <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&lpd_dma_chan2 {
+>> +	clocks = <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&lpd_dma_chan3 {
+>> +	clocks = <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&lpd_dma_chan4 {
+>> +	clocks = <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&lpd_dma_chan5 {
+>> +	clocks = <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&lpd_dma_chan6 {
+>> +	clocks = <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&lpd_dma_chan7 {
+>> +	clocks = <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&lpd_dma_chan8 {
+>> +	clocks = <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&gem0 {
+>> +	clocks = <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM0_REF>,
+>> +		 <&zynqmp_clk GEM0_TX>, <&zynqmp_clk GEM0_RX>,
+>> +		 <&zynqmp_clk GEM_TSU>;
+>> +	clock-names = "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
+>> +};
+>> +
+>> +&gem1 {
+>> +	clocks = <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM1_REF>,
+>> +		 <&zynqmp_clk GEM1_TX>, <&zynqmp_clk GEM1_RX>,
+>> +		 <&zynqmp_clk GEM_TSU>;
+>> +	clock-names = "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
+>> +};
+>> +
+>> +&gem2 {
+>> +	clocks = <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM2_REF>,
+>> +		 <&zynqmp_clk GEM2_TX>, <&zynqmp_clk GEM2_RX>,
+>> +		 <&zynqmp_clk GEM_TSU>;
+>> +	clock-names = "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
+>> +};
+>> +
+>> +&gem3 {
+>> +	clocks = <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM3_REF>,
+>> +		 <&zynqmp_clk GEM3_TX>, <&zynqmp_clk GEM3_RX>,
+>> +		 <&zynqmp_clk GEM_TSU>;
+>> +	clock-names = "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
+>> +};
+>> +
+>> +&gpio {
+>> +	clocks = <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&i2c0 {
+>> +	clocks = <&zynqmp_clk I2C0_REF>;
+>> +};
+>> +
+>> +&i2c1 {
+>> +	clocks = <&zynqmp_clk I2C1_REF>;
+>> +};
+>> +
+>> +&pcie {
+>> +	clocks = <&zynqmp_clk PCIE_REF>;
+>> +};
+>> +
+>> +&sata {
+>> +	clocks = <&zynqmp_clk SATA_REF>;
+>> +};
+>> +
+>> +&sdhci0 {
+>> +	clocks = <&zynqmp_clk SDIO0_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&sdhci1 {
+>> +	clocks = <&zynqmp_clk SDIO1_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&spi0 {
+>> +	clocks = <&zynqmp_clk SPI0_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&spi1 {
+>> +	clocks = <&zynqmp_clk SPI1_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&ttc0 {
+>> +	clocks = <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&ttc1 {
+>> +	clocks = <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&ttc2 {
+>> +	clocks = <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&ttc3 {
+>> +	clocks = <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&uart0 {
+>> +	clocks = <&zynqmp_clk UART0_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&uart1 {
+>> +	clocks = <&zynqmp_clk UART1_REF>, <&zynqmp_clk LPD_LSBUS>;
+>> +};
+>> +
+>> +&usb0 {
+>> +	clocks = <&zynqmp_clk USB0_BUS_REF>, <&zynqmp_clk USB3_DUAL_REF>;
+>> +};
+>> +
+>> +&usb1 {
+>> +	clocks = <&zynqmp_clk USB1_BUS_REF>, <&zynqmp_clk USB3_DUAL_REF>;
+>> +};
+>> +
+>> +&watchdog0 {
+>> +	clocks = <&zynqmp_clk WDT>;
+>> +};
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts
+>> index 0f7b4cf..2e05fa4 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts
+>> @@ -2,7 +2,7 @@
+>>  /*
+>>   * dts file for Xilinx ZynqMP ZC1232
+>>   *
+>> - * (C) Copyright 2017 - 2018, Xilinx, Inc.
+>> + * (C) Copyright 2017 - 2019, Xilinx, Inc.
+>>   *
+>>   * Michal Simek <michal.simek@xilinx.com>
+>>   */
+>> @@ -10,7 +10,7 @@
+>>  /dts-v1/;
+>>
+>>  #include "zynqmp.dtsi"
+>> -#include "zynqmp-clk.dtsi"
+>> +#include "zynqmp-clk-ccf.dtsi"
+>>
+>>  / {
+>>  	model = "ZynqMP ZC1232 RevA";
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
+>> index 9092828..3d0aaa0 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
+>> @@ -2,7 +2,7 @@
+>>  /*
+>>   * dts file for Xilinx ZynqMP ZC1254
+>>   *
+>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
+>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
+>>   *
+>>   * Michal Simek <michal.simek@xilinx.com>
+>>   * Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+>> @@ -11,7 +11,7 @@
+>>  /dts-v1/;
+>>
+>>  #include "zynqmp.dtsi"
+>> -#include "zynqmp-clk.dtsi"
+>> +#include "zynqmp-clk-ccf.dtsi"
+>>
+>>  / {
+>>  	model = "ZynqMP ZC1254 RevA";
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts
+>> index 4f404c5..1a8127d4 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts
+>> @@ -11,7 +11,7 @@
+>>  /dts-v1/;
+>>
+>>  #include "zynqmp.dtsi"
+>> -#include "zynqmp-clk.dtsi"
+>> +#include "zynqmp-clk-ccf.dtsi"
+>>
+>>  / {
+>>  	model = "ZynqMP ZC1275 RevA";
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+>> index 9a3e39d..fa7eb1b 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+>> @@ -2,7 +2,7 @@
+>>  /*
+>>   * dts file for Xilinx ZynqMP zc1751-xm015-dc1
+>>   *
+>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
+>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
+>>   *
+>>   * Michal Simek <michal.simek@xilinx.com>
+>>   */
+>> @@ -10,7 +10,7 @@
+>>  /dts-v1/;
+>>
+>>  #include "zynqmp.dtsi"
+>> -#include "zynqmp-clk.dtsi"
+>> +#include "zynqmp-clk-ccf.dtsi"
+>>  #include <dt-bindings/gpio/gpio.h>
+>>
+>>  / {
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+>> index 2421ec7..4191dfa 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+>> @@ -2,7 +2,7 @@
+>>  /*
+>>   * dts file for Xilinx ZynqMP zc1751-xm016-dc2
+>>   *
+>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
+>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
+>>   *
+>>   * Michal Simek <michal.simek@xilinx.com>
+>>   */
+>> @@ -10,7 +10,7 @@
+>>  /dts-v1/;
+>>
+>>  #include "zynqmp.dtsi"
+>> -#include "zynqmp-clk.dtsi"
+>> +#include "zynqmp-clk-ccf.dtsi"
+>>  #include <dt-bindings/gpio/gpio.h>
+>>
+>>  / {
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
+>> index 7a49dee..3750690 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
+>> @@ -2,7 +2,7 @@
+>>  /*
+>>   * dts file for Xilinx ZynqMP zc1751-xm017-dc3
+>>   *
+>> - * (C) Copyright 2016 - 2018, Xilinx, Inc.
+>> + * (C) Copyright 2016 - 2019, Xilinx, Inc.
+>>   *
+>>   * Michal Simek <michal.simek@xilinx.com>
+>>   */
+>> @@ -10,7 +10,7 @@
+>>  /dts-v1/;
+>>
+>>  #include "zynqmp.dtsi"
+>> -#include "zynqmp-clk.dtsi"
+>> +#include "zynqmp-clk-ccf.dtsi"
+>>
+>>  / {
+>>  	model = "ZynqMP zc1751-xm017-dc3 RevA";
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
+>> index 54c7b4f..2366cd9 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
+>> @@ -2,7 +2,7 @@
+>>  /*
+>>   * dts file for Xilinx ZynqMP zc1751-xm018-dc4
+>>   *
+>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
+>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
+>>   *
+>>   * Michal Simek <michal.simek@xilinx.com>
+>>   */
+>> @@ -10,7 +10,7 @@
+>>  /dts-v1/;
+>>
+>>  #include "zynqmp.dtsi"
+>> -#include "zynqmp-clk.dtsi"
+>> +#include "zynqmp-clk-ccf.dtsi"
+>>
+>>  / {
+>>  	model = "ZynqMP zc1751-xm018-dc4";
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
+>> index b8b5ff1..9a894e6 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
+>> @@ -2,7 +2,7 @@
+>>  /*
+>>   * dts file for Xilinx ZynqMP zc1751-xm019-dc5
+>>   *
+>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
+>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
+>>   *
+>>   * Siva Durga Prasad <siva.durga.paladugu@xilinx.com>
+>>   * Michal Simek <michal.simek@xilinx.com>
+>> @@ -11,7 +11,7 @@
+>>  /dts-v1/;
+>>
+>>  #include "zynqmp.dtsi"
+>> -#include "zynqmp-clk.dtsi"
+>> +#include "zynqmp-clk-ccf.dtsi"
+>>  #include <dt-bindings/gpio/gpio.h>
+>>
+>>  / {
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+>> index e5699d0..3e39454 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+>> @@ -2,7 +2,7 @@
+>>  /*
+>>   * dts file for Xilinx ZynqMP ZCU100 revC
+>>   *
+>> - * (C) Copyright 2016 - 2018, Xilinx, Inc.
+>> + * (C) Copyright 2016 - 2019, Xilinx, Inc.
+>>   *
+>>   * Michal Simek <michal.simek@xilinx.com>
+>>   * Nathalie Chan King Choy
+>> @@ -11,7 +11,7 @@
+>>  /dts-v1/;
+>>
+>>  #include "zynqmp.dtsi"
+>> -#include "zynqmp-clk.dtsi"
+>> +#include "zynqmp-clk-ccf.dtsi"
+>>  #include <dt-bindings/input/input.h>
+>>  #include <dt-bindings/interrupt-controller/irq.h>
+>>  #include <dt-bindings/gpio/gpio.h>
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+>> index 2a3b665..f6e9558 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+>> @@ -2,7 +2,7 @@
+>>  /*
+>>   * dts file for Xilinx ZynqMP ZCU102 RevA
+>>   *
+>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
+>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
+>>   *
+>>   * Michal Simek <michal.simek@xilinx.com>
+>>   */
+>> @@ -10,7 +10,7 @@
+>>  /dts-v1/;
+>>
+>>  #include "zynqmp.dtsi"
+>> -#include "zynqmp-clk.dtsi"
+>> +#include "zynqmp-clk-ccf.dtsi"
+>>  #include <dt-bindings/input/input.h>
+>>  #include <dt-bindings/gpio/gpio.h>
+>>
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+>> index 8f45614..f457f8a 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+>> @@ -2,7 +2,7 @@
+>>  /*
+>>   * dts file for Xilinx ZynqMP ZCU104
+>>   *
+>> - * (C) Copyright 2017 - 2018, Xilinx, Inc.
+>> + * (C) Copyright 2017 - 2019, Xilinx, Inc.
+>>   *
+>>   * Michal Simek <michal.simek@xilinx.com>
+>>   */
+>> @@ -10,7 +10,7 @@
+>>  /dts-v1/;
+>>
+>>  #include "zynqmp.dtsi"
+>> -#include "zynqmp-clk.dtsi"
+>> +#include "zynqmp-clk-ccf.dtsi"
+>>  #include <dt-bindings/gpio/gpio.h>
+>>
+>>  / {
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+>> index 93ce7eb..f15b99a 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+>> @@ -2,7 +2,7 @@
+>>  /*
+>>   * dts file for Xilinx ZynqMP ZCU106
+>>   *
+>> - * (C) Copyright 2016, Xilinx, Inc.
+>> + * (C) Copyright 2016 - 2019, Xilinx, Inc.
+>>   *
+>>   * Michal Simek <michal.simek@xilinx.com>
+>>   */
+>> @@ -10,7 +10,7 @@
+>>  /dts-v1/;
+>>
+>>  #include "zynqmp.dtsi"
+>> -#include "zynqmp-clk.dtsi"
+>> +#include "zynqmp-clk-ccf.dtsi"
+>>  #include <dt-bindings/input/input.h>
+>>  #include <dt-bindings/gpio/gpio.h>
+>>
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+>> index 8bb0001..e27cd60 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+>> @@ -2,7 +2,7 @@
+>>  /*
+>>   * dts file for Xilinx ZynqMP ZCU111
+>>   *
+>> - * (C) Copyright 2017 - 2018, Xilinx, Inc.
+>> + * (C) Copyright 2017 - 2019, Xilinx, Inc.
+>>   *
+>>   * Michal Simek <michal.simek@xilinx.com>
+>>   */
+>> @@ -10,7 +10,7 @@
+>>  /dts-v1/;
+>>
+>>  #include "zynqmp.dtsi"
+>> -#include "zynqmp-clk.dtsi"
+>> +#include "zynqmp-clk-ccf.dtsi"
+>>  #include <dt-bindings/input/input.h>
+>>  #include <dt-bindings/gpio/gpio.h>
+>>
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+>> index 9aa6734..59a547b 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+>> @@ -2,7 +2,7 @@
+>>  /*
+>>   * dts file for Xilinx ZynqMP
+>>   *
+>> - * (C) Copyright 2014 - 2015, Xilinx, Inc.
+>> + * (C) Copyright 2014 - 2019, Xilinx, Inc.
+>>   *
+>>   * Michal Simek <michal.simek@xilinx.com>
+>>   *
+>> @@ -124,6 +124,28 @@
+>>  			     <1 10 0xf08>;
+>>  	};
+>>
+>> +	firmware {
+>> +		zynqmp_firmware: zynqmp-firmware {
+>> +			compatible = "xlnx,zynqmp-firmware";
+>> +			method = "smc";
+>> +			zynqmp_clk: clock-controller {
+>> +				u-boot,dm-pre-reloc;
+>> +				#clock-cells = <1>;
+>> +				compatible = "xlnx,zynqmp-clk";
+>> +				clocks = <&pss_ref_clk>,
+>> +					 <&video_clk>,
+>> +					 <&pss_alt_ref_clk>,
+>> +					 <&aux_ref_clk>,
+>> +					 <&gt_crx_ref_clk>;
+>> +				clock-names = "pss_ref_clk",
+>> +					      "video_clk",
+>> +					      "pss_alt_ref_clk",
+>> +					      "aux_ref_clk",
+>> +					      "gt_crx_ref_clk";
+>> +			};
+>> +		};
+>> +	};
+>> +
+>>  	amba_apu: amba-apu@0 {
+>>  		compatible = "simple-bus";
+>>  		#address-cells = <2>;
+>>
+> 
+> Updating my Ultra96 setups from 5.4 to 5.10, I ran into a blocker:
+> Starting from this commit on, I'm no longer getting the kernel to boot
+> on both revision 1 and 2 (arm64 defconfig as reference). If I switch the
+> DTBs back before this commit, even a kernel from today's head is fine.
+> 
+> Further versions of potential relevance:
+>  - PMUFW 2019.1 and 2020.2
+>  - TF-A 2.3
+>  - U-Boot 2020.10
+> 
+> What's missing? I suspect someone forgot to document a subtle dependency
+> of this change.
 
-diff --git a/drivers/media/platform/Makefile b/drivers/media/platform/Makefile
-index eedc14aafb32..73ce083c2fc6 100644
---- a/drivers/media/platform/Makefile
-+++ b/drivers/media/platform/Makefile
-@@ -67,6 +67,7 @@ obj-$(CONFIG_VIDEO_RCAR_VIN)		+= rcar-vin/
- 
- obj-$(CONFIG_VIDEO_ATMEL_ISC)		+= atmel/
- obj-$(CONFIG_VIDEO_ATMEL_ISI)		+= atmel/
-+obj-$(CONFIG_VIDEO_ATMEL_XISC)		+= atmel/
- 
- obj-$(CONFIG_VIDEO_STM32_DCMI)		+= stm32/
- 
-diff --git a/drivers/media/platform/atmel/Kconfig b/drivers/media/platform/atmel/Kconfig
-index 1850fe7f9360..99b51213f871 100644
---- a/drivers/media/platform/atmel/Kconfig
-+++ b/drivers/media/platform/atmel/Kconfig
-@@ -12,6 +12,17 @@ config VIDEO_ATMEL_ISC
- 	   This module makes the ATMEL Image Sensor Controller available
- 	   as a v4l2 device.
- 
-+config VIDEO_ATMEL_XISC
-+	tristate "ATMEL eXtended Image Sensor Controller (XISC) support"
-+	depends on VIDEO_V4L2 && COMMON_CLK && VIDEO_V4L2_SUBDEV_API
-+	depends on ARCH_AT91 || COMPILE_TEST
-+	select VIDEOBUF2_DMA_CONTIG
-+	select REGMAP_MMIO
-+	select V4L2_FWNODE
-+	help
-+	   This module makes the ATMEL eXtended Image Sensor Controller
-+	   available as a v4l2 device.
-+
- config VIDEO_ATMEL_ISI
- 	tristate "ATMEL Image Sensor Interface (ISI) support"
- 	depends on VIDEO_V4L2 && OF
-diff --git a/drivers/media/platform/atmel/Makefile b/drivers/media/platform/atmel/Makefile
-index 2dba38994a70..c5c01556c653 100644
---- a/drivers/media/platform/atmel/Makefile
-+++ b/drivers/media/platform/atmel/Makefile
-@@ -1,5 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- atmel-isc-objs = atmel-sama5d2-isc.o atmel-isc-base.o
-+atmel-xisc-objs = atmel-sama7g5-isc.o atmel-isc-base.o
- 
- obj-$(CONFIG_VIDEO_ATMEL_ISI) += atmel-isi.o
- obj-$(CONFIG_VIDEO_ATMEL_ISC) += atmel-isc.o
-+obj-$(CONFIG_VIDEO_ATMEL_XISC) += atmel-xisc.o
-diff --git a/drivers/media/platform/atmel/atmel-isc-base.c b/drivers/media/platform/atmel/atmel-isc-base.c
-index f30493a1dccd..d6409406ce2f 100644
---- a/drivers/media/platform/atmel/atmel-isc-base.c
-+++ b/drivers/media/platform/atmel/atmel-isc-base.c
-@@ -592,7 +592,7 @@ static int isc_configure(struct isc_device *isc)
- 	mask = ISC_PFE_CFG0_BPS_MASK | ISC_PFE_CFG0_HPOL_LOW |
- 	       ISC_PFE_CFG0_VPOL_LOW | ISC_PFE_CFG0_PPOL_LOW |
- 	       ISC_PFE_CFG0_MODE_MASK | ISC_PFE_CFG0_CCIR_CRC |
--		   ISC_PFE_CFG0_CCIR656;
-+	       ISC_PFE_CFG0_CCIR656 | ISC_PFE_CFG0_MIPI;
- 
- 	regmap_update_bits(regmap, ISC_PFE_CFG0, mask, pfe_cfg0);
- 
-diff --git a/drivers/media/platform/atmel/atmel-isc-regs.h b/drivers/media/platform/atmel/atmel-isc-regs.h
-index 5f99bf7717c1..d06b72228d4f 100644
---- a/drivers/media/platform/atmel/atmel-isc-regs.h
-+++ b/drivers/media/platform/atmel/atmel-isc-regs.h
-@@ -26,6 +26,7 @@
- #define ISC_PFE_CFG0_PPOL_LOW   BIT(2)
- #define ISC_PFE_CFG0_CCIR656    BIT(9)
- #define ISC_PFE_CFG0_CCIR_CRC   BIT(10)
-+#define ISC_PFE_CFG0_MIPI	BIT(14)
- 
- #define ISC_PFE_CFG0_MODE_PROGRESSIVE   (0x0 << 4)
- #define ISC_PFE_CFG0_MODE_MASK          GENMASK(6, 4)
-@@ -184,6 +185,8 @@
- /* ISC Gamma Correction Control Register */
- #define ISC_GAM_CTRL    0x00000094
- 
-+#define ISC_GAM_CTRL_BIPART	BIT(4)
-+
- /* ISC_Gamma Correction Blue Entry Register */
- #define ISC_GAM_BENTRY	0x00000098
- 
-@@ -222,6 +225,8 @@
- 
- /* Offset for CSC register specific to sama5d2 product */
- #define ISC_SAMA5D2_CSC_OFFSET	0
-+/* Offset for CSC register specific to sama7g5 product */
-+#define ISC_SAMA7G5_CSC_OFFSET	0x11c
- 
- /* Color Space Conversion Control Register */
- #define ISC_CSC_CTRL    0x00000398
-@@ -246,6 +251,8 @@
- 
- /* Offset for CBC register specific to sama5d2 product */
- #define ISC_SAMA5D2_CBC_OFFSET	0
-+/* Offset for CBC register specific to sama7g5 product */
-+#define ISC_SAMA7G5_CBC_OFFSET	0x11c
- 
- /* Contrast And Brightness Control Register */
- #define ISC_CBC_CTRL    0x000003b4
-@@ -261,18 +268,30 @@
- #define ISC_CBC_CONTRAST	0x000003c0
- #define ISC_CBC_CONTRAST_MASK	GENMASK(11, 0)
- 
-+/* Hue Register */
-+#define ISC_CBCHS_HUE	0x4e0
-+/* Saturation Register */
-+#define ISC_CBCHS_SAT	0x4e4
-+
- /* Offset for SUB422 register specific to sama5d2 product */
- #define ISC_SAMA5D2_SUB422_OFFSET	0
-+/* Offset for SUB422 register specific to sama7g5 product */
-+#define ISC_SAMA7G5_SUB422_OFFSET	0x124
-+
- /* Subsampling 4:4:4 to 4:2:2 Control Register */
- #define ISC_SUB422_CTRL 0x000003c4
- 
- /* Offset for SUB420 register specific to sama5d2 product */
- #define ISC_SAMA5D2_SUB420_OFFSET	0
-+/* Offset for SUB420 register specific to sama7g5 product */
-+#define ISC_SAMA7G5_SUB420_OFFSET	0x124
- /* Subsampling 4:2:2 to 4:2:0 Control Register */
- #define ISC_SUB420_CTRL 0x000003cc
- 
- /* Offset for RLP register specific to sama5d2 product */
- #define ISC_SAMA5D2_RLP_OFFSET	0
-+/* Offset for RLP register specific to sama7g5 product */
-+#define ISC_SAMA7G5_RLP_OFFSET	0x124
- /* Rounding, Limiting and Packing Configuration Register */
- #define ISC_RLP_CFG     0x000003d0
- 
-@@ -303,6 +322,8 @@
- 
- /* Offset for HIS register specific to sama5d2 product */
- #define ISC_SAMA5D2_HIS_OFFSET	0
-+/* Offset for HIS register specific to sama7g5 product */
-+#define ISC_SAMA7G5_HIS_OFFSET	0x124
- /* Histogram Control Register */
- #define ISC_HIS_CTRL	0x000003d4
- 
-@@ -326,6 +347,8 @@
- 
- /* Offset for DMA register specific to sama5d2 product */
- #define ISC_SAMA5D2_DMA_OFFSET	0
-+/* Offset for DMA register specific to sama7g5 product */
-+#define ISC_SAMA7G5_DMA_OFFSET	0x13c
- 
- /* DMA Configuration Register */
- #define ISC_DCFG        0x000003e0
-@@ -376,11 +399,14 @@
- 
- /* Offset for version register specific to sama5d2 product */
- #define ISC_SAMA5D2_VERSION_OFFSET	0
-+#define ISC_SAMA7G5_VERSION_OFFSET	0x13c
- /* Version Register */
- #define ISC_VERSION	0x0000040c
- 
- /* Offset for version register specific to sama5d2 product */
- #define ISC_SAMA5D2_HIS_ENTRY_OFFSET	0
-+/* Offset for version register specific to sama7g5 product */
-+#define ISC_SAMA7G5_HIS_ENTRY_OFFSET	0x14c
- /* Histogram Entry */
- #define ISC_HIS_ENTRY	0x00000410
- 
-diff --git a/drivers/media/platform/atmel/atmel-sama7g5-isc.c b/drivers/media/platform/atmel/atmel-sama7g5-isc.c
-new file mode 100644
-index 000000000000..0bc914615e76
---- /dev/null
-+++ b/drivers/media/platform/atmel/atmel-sama7g5-isc.c
-@@ -0,0 +1,644 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Microchip eXtended Image Sensor Controller (XISC) driver
-+ *
-+ * Copyright (C) 2019-2021 Microchip Technology, Inc. and its subsidiaries
-+ *
-+ * Author: Eugen Hristev <eugen.hristev@microchip.com>
-+ *
-+ * Sensor-->PFE-->DPC-->WB-->CFA-->CC-->GAM-->VHXS-->CSC-->CBHS-->SUB-->RLP-->DMA-->HIS
-+ *
-+ * ISC video pipeline integrates the following submodules:
-+ * PFE: Parallel Front End to sample the camera sensor input stream
-+ * DPC: Defective Pixel Correction with black offset correction, green disparity
-+ *      correction and defective pixel correction (3 modules total)
-+ *  WB: Programmable white balance in the Bayer domain
-+ * CFA: Color filter array interpolation module
-+ *  CC: Programmable color correction
-+ * GAM: Gamma correction
-+ *VHXS: Vertical and Horizontal Scaler
-+ * CSC: Programmable color space conversion
-+ *CBHS: Contrast Brightness Hue and Saturation control
-+ * SUB: This module performs YCbCr444 to YCbCr420 chrominance subsampling
-+ * RLP: This module performs rounding, range limiting
-+ *      and packing of the incoming data
-+ * DMA: This module performs DMA master accesses to write frames to external RAM
-+ * HIS: Histogram module performs statistic counters on the frames
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/clkdev.h>
-+#include <linux/clk-provider.h>
-+#include <linux/delay.h>
-+#include <linux/interrupt.h>
-+#include <linux/math64.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_graph.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
-+#include <linux/videodev2.h>
-+
-+#include <media/v4l2-ctrls.h>
-+#include <media/v4l2-device.h>
-+#include <media/v4l2-event.h>
-+#include <media/v4l2-image-sizes.h>
-+#include <media/v4l2-ioctl.h>
-+#include <media/v4l2-fwnode.h>
-+#include <media/v4l2-subdev.h>
-+#include <media/videobuf2-dma-contig.h>
-+
-+#include "atmel-isc-regs.h"
-+#include "atmel-isc.h"
-+
-+#define ISC_SAMA7G5_MAX_SUPPORT_WIDTH   3264
-+#define ISC_SAMA7G5_MAX_SUPPORT_HEIGHT  2464
-+
-+#define ISC_SAMA7G5_PIPELINE \
-+	(WB_ENABLE | CFA_ENABLE | CC_ENABLE | GAM_ENABLES | CSC_ENABLE | \
-+	CBC_ENABLE | SUB422_ENABLE | SUB420_ENABLE)
-+
-+/* This is a list of the formats that the ISC can *output* */
-+const struct isc_format sama7g5_controller_formats[] = {
-+	{
-+		.fourcc		= V4L2_PIX_FMT_ARGB444,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_ARGB555,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_RGB565,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_ABGR32,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_XBGR32,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_YUV420,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_UYVY,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_VYUY,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_YUYV,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_YUV422P,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_GREY,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_Y10,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_Y16,
-+	},
-+};
-+
-+/* This is a list of formats that the ISC can receive as *input* */
-+struct isc_format sama7g5_formats_list[] = {
-+	{
-+		.fourcc		= V4L2_PIX_FMT_SBGGR8,
-+		.mbus_code	= MEDIA_BUS_FMT_SBGGR8_1X8,
-+		.pfe_cfg0_bps	= ISC_PFE_CFG0_BPS_EIGHT,
-+		.cfa_baycfg	= ISC_BAY_CFG_BGBG,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_SGBRG8,
-+		.mbus_code	= MEDIA_BUS_FMT_SGBRG8_1X8,
-+		.pfe_cfg0_bps	= ISC_PFE_CFG0_BPS_EIGHT,
-+		.cfa_baycfg	= ISC_BAY_CFG_GBGB,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_SGRBG8,
-+		.mbus_code	= MEDIA_BUS_FMT_SGRBG8_1X8,
-+		.pfe_cfg0_bps	= ISC_PFE_CFG0_BPS_EIGHT,
-+		.cfa_baycfg	= ISC_BAY_CFG_GRGR,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_SRGGB8,
-+		.mbus_code	= MEDIA_BUS_FMT_SRGGB8_1X8,
-+		.pfe_cfg0_bps	= ISC_PFE_CFG0_BPS_EIGHT,
-+		.cfa_baycfg	= ISC_BAY_CFG_RGRG,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_SBGGR10,
-+		.mbus_code	= MEDIA_BUS_FMT_SBGGR10_1X10,
-+		.pfe_cfg0_bps	= ISC_PFG_CFG0_BPS_TEN,
-+		.cfa_baycfg	= ISC_BAY_CFG_RGRG,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_SGBRG10,
-+		.mbus_code	= MEDIA_BUS_FMT_SGBRG10_1X10,
-+		.pfe_cfg0_bps	= ISC_PFG_CFG0_BPS_TEN,
-+		.cfa_baycfg	= ISC_BAY_CFG_GBGB,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_SGRBG10,
-+		.mbus_code	= MEDIA_BUS_FMT_SGRBG10_1X10,
-+		.pfe_cfg0_bps	= ISC_PFG_CFG0_BPS_TEN,
-+		.cfa_baycfg	= ISC_BAY_CFG_GRGR,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_SRGGB10,
-+		.mbus_code	= MEDIA_BUS_FMT_SRGGB10_1X10,
-+		.pfe_cfg0_bps	= ISC_PFG_CFG0_BPS_TEN,
-+		.cfa_baycfg	= ISC_BAY_CFG_RGRG,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_SBGGR12,
-+		.mbus_code	= MEDIA_BUS_FMT_SBGGR12_1X12,
-+		.pfe_cfg0_bps	= ISC_PFG_CFG0_BPS_TWELVE,
-+		.cfa_baycfg	= ISC_BAY_CFG_BGBG,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_SGBRG12,
-+		.mbus_code	= MEDIA_BUS_FMT_SGBRG12_1X12,
-+		.pfe_cfg0_bps	= ISC_PFG_CFG0_BPS_TWELVE,
-+		.cfa_baycfg	= ISC_BAY_CFG_GBGB,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_SGRBG12,
-+		.mbus_code	= MEDIA_BUS_FMT_SGRBG12_1X12,
-+		.pfe_cfg0_bps	= ISC_PFG_CFG0_BPS_TWELVE,
-+		.cfa_baycfg	= ISC_BAY_CFG_GRGR,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_SRGGB12,
-+		.mbus_code	= MEDIA_BUS_FMT_SRGGB12_1X12,
-+		.pfe_cfg0_bps	= ISC_PFG_CFG0_BPS_TWELVE,
-+		.cfa_baycfg	= ISC_BAY_CFG_RGRG,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_GREY,
-+		.mbus_code	= MEDIA_BUS_FMT_Y8_1X8,
-+		.pfe_cfg0_bps	= ISC_PFE_CFG0_BPS_EIGHT,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_YUYV,
-+		.mbus_code	= MEDIA_BUS_FMT_YUYV8_2X8,
-+		.pfe_cfg0_bps	= ISC_PFE_CFG0_BPS_EIGHT,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_UYVY,
-+		.mbus_code	= MEDIA_BUS_FMT_YUYV8_2X8,
-+		.pfe_cfg0_bps	= ISC_PFE_CFG0_BPS_EIGHT,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_RGB565,
-+		.mbus_code	= MEDIA_BUS_FMT_RGB565_2X8_LE,
-+		.pfe_cfg0_bps	= ISC_PFE_CFG0_BPS_EIGHT,
-+	},
-+	{
-+		.fourcc		= V4L2_PIX_FMT_Y10,
-+		.mbus_code	= MEDIA_BUS_FMT_Y10_1X10,
-+		.pfe_cfg0_bps	= ISC_PFG_CFG0_BPS_TEN,
-+	},
-+
-+};
-+
-+void isc_sama7g5_config_csc(struct isc_device *isc)
-+{
-+	struct regmap *regmap = isc->regmap;
-+
-+	/* Convert RGB to YUV */
-+	regmap_write(regmap, ISC_CSC_YR_YG + isc->offsets.csc,
-+		     0x42 | (0x81 << 16));
-+	regmap_write(regmap, ISC_CSC_YB_OY + isc->offsets.csc,
-+		     0x19 | (0x10 << 16));
-+	regmap_write(regmap, ISC_CSC_CBR_CBG + isc->offsets.csc,
-+		     0xFDA | (0xFB6 << 16));
-+	regmap_write(regmap, ISC_CSC_CBB_OCB + isc->offsets.csc,
-+		     0x70 | (0x80 << 16));
-+	regmap_write(regmap, ISC_CSC_CRR_CRG + isc->offsets.csc,
-+		     0x70 | (0xFA2 << 16));
-+	regmap_write(regmap, ISC_CSC_CRB_OCR + isc->offsets.csc,
-+		     0xFEE | (0x80 << 16));
-+}
-+
-+void isc_sama7g5_config_cbc(struct isc_device *isc)
-+{
-+	struct regmap *regmap = isc->regmap;
-+
-+	/* Configure what is set via v4l2 ctrls */
-+	regmap_write(regmap, ISC_CBC_BRIGHT + isc->offsets.cbc, isc->ctrls.brightness);
-+	regmap_write(regmap, ISC_CBC_CONTRAST + isc->offsets.cbc, isc->ctrls.contrast);
-+	/* Configure Hue and Saturation as neutral midpoint */
-+	regmap_write(regmap, ISC_CBCHS_HUE, 0);
-+	regmap_write(regmap, ISC_CBCHS_SAT, (1 << 4));
-+}
-+
-+void isc_sama7g5_config_cc(struct isc_device *isc)
-+{
-+	struct regmap *regmap = isc->regmap;
-+
-+	/* Configure each register at the neutral fixed point 1.0 or 0.0 */
-+	regmap_write(regmap, ISC_CC_RR_RG, (1 << 8));
-+	regmap_write(regmap, ISC_CC_RB_OR, 0);
-+	regmap_write(regmap, ISC_CC_GR_GG, (1 << 8) << 16);
-+	regmap_write(regmap, ISC_CC_GB_OG, 0);
-+	regmap_write(regmap, ISC_CC_BR_BG, 0);
-+	regmap_write(regmap, ISC_CC_BB_OB, (1 << 8));
-+}
-+
-+void isc_sama7g5_config_ctrls(struct isc_device *isc,
-+			      const struct v4l2_ctrl_ops *ops)
-+{
-+	struct isc_ctrls *ctrls = &isc->ctrls;
-+	struct v4l2_ctrl_handler *hdl = &ctrls->handler;
-+
-+	ctrls->contrast = 16;
-+
-+	v4l2_ctrl_new_std(hdl, ops, V4L2_CID_CONTRAST, -2048, 2047, 1, 16);
-+}
-+
-+void isc_sama7g5_config_dpc(struct isc_device *isc)
-+{
-+	u32 bay_cfg = isc->config.sd_format->cfa_baycfg;
-+	struct regmap *regmap = isc->regmap;
-+
-+	regmap_update_bits(regmap, ISC_DPC_CFG, ISC_DPC_CFG_BLOFF_MASK,
-+			   (64 << ISC_DPC_CFG_BLOFF_SHIFT));
-+	regmap_update_bits(regmap, ISC_DPC_CFG, ISC_DPC_CFG_BAYCFG_MASK,
-+			   (bay_cfg << ISC_DPC_CFG_BAYCFG_SHIFT));
-+}
-+
-+void isc_sama7g5_config_gam(struct isc_device *isc)
-+{
-+	struct regmap *regmap = isc->regmap;
-+
-+	regmap_update_bits(regmap, ISC_GAM_CTRL, ISC_GAM_CTRL_BIPART,
-+			   ISC_GAM_CTRL_BIPART);
-+}
-+
-+void isc_sama7g5_config_rlp(struct isc_device *isc)
-+{
-+	struct regmap *regmap = isc->regmap;
-+	u32 rlp_mode = isc->config.rlp_cfg_mode;
-+
-+	regmap_update_bits(regmap, ISC_RLP_CFG + isc->offsets.rlp,
-+			   ISC_RLP_CFG_MODE_MASK | ISC_RLP_CFG_LSH |
-+			   ISC_RLP_CFG_YMODE_MASK, rlp_mode);
-+}
-+
-+void isc_sama7g5_adapt_pipeline(struct isc_device *isc)
-+{
-+	isc->try_config.bits_pipeline &= ISC_SAMA7G5_PIPELINE;
-+}
-+
-+/* Gamma table with gamma 1/2.2 */
-+const u32 isc_sama7g5_gamma_table[][GAMMA_ENTRIES] = {
-+	/* index 0 --> gamma bipartite */
-+	{
-+	      0x980,  0x4c0320,  0x650260,  0x7801e0,  0x8701a0,  0x940180,
-+	   0xa00160,  0xab0120,  0xb40120,  0xbd0120,  0xc60100,  0xce0100,
-+	   0xd600e0,  0xdd00e0,  0xe400e0,  0xeb00c0,  0xf100c0,  0xf700c0,
-+	   0xfd00c0, 0x10300a0, 0x10800c0, 0x10e00a0, 0x11300a0, 0x11800a0,
-+	  0x11d00a0, 0x12200a0, 0x12700a0, 0x12c0080, 0x13000a0, 0x1350080,
-+	  0x13900a0, 0x13e0080, 0x1420076, 0x17d0062, 0x1ae0054, 0x1d8004a,
-+	  0x1fd0044, 0x21f003e, 0x23e003a, 0x25b0036, 0x2760032, 0x28f0030,
-+	  0x2a7002e, 0x2be002c, 0x2d4002c, 0x2ea0028, 0x2fe0028, 0x3120026,
-+	  0x3250024, 0x3370024, 0x3490022, 0x35a0022, 0x36b0020, 0x37b0020,
-+	  0x38b0020, 0x39b001e, 0x3aa001e, 0x3b9001c, 0x3c7001c, 0x3d5001c,
-+	  0x3e3001c, 0x3f1001c, 0x3ff001a, 0x40c001a },
-+};
-+
-+static int xisc_parse_dt(struct device *dev, struct isc_device *isc)
-+{
-+	struct device_node *np = dev->of_node;
-+	struct device_node *epn = NULL, *rem;
-+	struct isc_subdev_entity *subdev_entity;
-+	unsigned int flags;
-+	int ret;
-+	bool mipi_mode;
-+
-+	INIT_LIST_HEAD(&isc->subdev_entities);
-+
-+	mipi_mode = of_property_read_bool(np, "microchip,mipi-mode");
-+
-+	while (1) {
-+		struct v4l2_fwnode_endpoint v4l2_epn = { .bus_type = 0 };
-+
-+		epn = of_graph_get_next_endpoint(np, epn);
-+		if (!epn)
-+			return 0;
-+
-+		rem = of_graph_get_remote_port_parent(epn);
-+		if (!rem) {
-+			dev_notice(dev, "Remote device at %pOF not found\n",
-+				   epn);
-+			continue;
-+		}
-+
-+		ret = v4l2_fwnode_endpoint_parse(of_fwnode_handle(epn),
-+						 &v4l2_epn);
-+		if (ret) {
-+			of_node_put(rem);
-+			ret = -EINVAL;
-+			dev_err(dev, "Could not parse the endpoint\n");
-+			break;
-+		}
-+
-+		subdev_entity = devm_kzalloc(dev, sizeof(*subdev_entity),
-+					     GFP_KERNEL);
-+		if (!subdev_entity) {
-+			of_node_put(rem);
-+			ret = -ENOMEM;
-+			break;
-+		}
-+
-+		/* asd will be freed by the subsystem once it's added to the
-+		 * notifier list
-+		 */
-+		subdev_entity->asd = kzalloc(sizeof(*subdev_entity->asd),
-+					     GFP_KERNEL);
-+		if (!subdev_entity->asd) {
-+			of_node_put(rem);
-+			ret = -ENOMEM;
-+			break;
-+		}
-+
-+		flags = v4l2_epn.bus.parallel.flags;
-+
-+		if (flags & V4L2_MBUS_HSYNC_ACTIVE_LOW)
-+			subdev_entity->pfe_cfg0 = ISC_PFE_CFG0_HPOL_LOW;
-+
-+		if (flags & V4L2_MBUS_VSYNC_ACTIVE_LOW)
-+			subdev_entity->pfe_cfg0 |= ISC_PFE_CFG0_VPOL_LOW;
-+
-+		if (flags & V4L2_MBUS_PCLK_SAMPLE_FALLING)
-+			subdev_entity->pfe_cfg0 |= ISC_PFE_CFG0_PPOL_LOW;
-+
-+		if (v4l2_epn.bus_type == V4L2_MBUS_BT656)
-+			subdev_entity->pfe_cfg0 |= ISC_PFE_CFG0_CCIR_CRC |
-+					ISC_PFE_CFG0_CCIR656;
-+
-+		if (mipi_mode)
-+			subdev_entity->pfe_cfg0 |= ISC_PFE_CFG0_MIPI;
-+
-+		subdev_entity->asd->match_type = V4L2_ASYNC_MATCH_FWNODE;
-+		subdev_entity->asd->match.fwnode = of_fwnode_handle(rem);
-+		list_add_tail(&subdev_entity->list, &isc->subdev_entities);
-+	}
-+
-+	of_node_put(epn);
-+	return ret;
-+}
-+
-+static int microchip_xisc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct isc_device *isc;
-+	struct resource *res;
-+	void __iomem *io_base;
-+	struct isc_subdev_entity *subdev_entity;
-+	int irq;
-+	int ret;
-+	u32 ver;
-+
-+	isc = devm_kzalloc(dev, sizeof(*isc), GFP_KERNEL);
-+	if (!isc)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, isc);
-+	isc->dev = dev;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	io_base = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(io_base))
-+		return PTR_ERR(io_base);
-+
-+	isc->regmap = devm_regmap_init_mmio(dev, io_base, &isc_regmap_config);
-+	if (IS_ERR(isc->regmap)) {
-+		ret = PTR_ERR(isc->regmap);
-+		dev_err(dev, "failed to init register map: %d\n", ret);
-+		return ret;
-+	}
-+
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0)
-+		return irq;
-+
-+	ret = devm_request_irq(dev, irq, isc_interrupt, 0,
-+			       "microchip-sama7g5-xisc", isc);
-+	if (ret < 0) {
-+		dev_err(dev, "can't register ISR for IRQ %u (ret=%i)\n",
-+			irq, ret);
-+		return ret;
-+	}
-+
-+	isc->gamma_table = isc_sama7g5_gamma_table;
-+	isc->gamma_max = 0;
-+
-+	isc->max_width = ISC_SAMA7G5_MAX_SUPPORT_WIDTH;
-+	isc->max_height = ISC_SAMA7G5_MAX_SUPPORT_HEIGHT;
-+
-+	isc->config_dpc = isc_sama7g5_config_dpc;
-+	isc->config_csc = isc_sama7g5_config_csc;
-+	isc->config_cbc = isc_sama7g5_config_cbc;
-+	isc->config_cc = isc_sama7g5_config_cc;
-+	isc->config_gam = isc_sama7g5_config_gam;
-+	isc->config_rlp = isc_sama7g5_config_rlp;
-+	isc->config_ctrls = isc_sama7g5_config_ctrls;
-+
-+	isc->adapt_pipeline = isc_sama7g5_adapt_pipeline;
-+
-+	isc->offsets.csc = ISC_SAMA7G5_CSC_OFFSET;
-+	isc->offsets.cbc = ISC_SAMA7G5_CBC_OFFSET;
-+	isc->offsets.sub422 = ISC_SAMA7G5_SUB422_OFFSET;
-+	isc->offsets.sub420 = ISC_SAMA7G5_SUB420_OFFSET;
-+	isc->offsets.rlp = ISC_SAMA7G5_RLP_OFFSET;
-+	isc->offsets.his = ISC_SAMA7G5_HIS_OFFSET;
-+	isc->offsets.dma = ISC_SAMA7G5_DMA_OFFSET;
-+	isc->offsets.version = ISC_SAMA7G5_VERSION_OFFSET;
-+	isc->offsets.his_entry = ISC_SAMA7G5_HIS_ENTRY_OFFSET;
-+
-+	isc->controller_formats = sama7g5_controller_formats;
-+	isc->controller_formats_size = ARRAY_SIZE(sama7g5_controller_formats);
-+	isc->formats_list = sama7g5_formats_list;
-+	isc->formats_list_size = ARRAY_SIZE(sama7g5_formats_list);
-+
-+	/* sama7g5-isc RAM access port is full AXI4 - 32 bits per beat */
-+	isc->dcfg = ISC_DCFG_YMBSIZE_BEATS32 | ISC_DCFG_CMBSIZE_BEATS32;
-+
-+	ret = isc_pipeline_init(isc);
-+	if (ret)
-+		return ret;
-+
-+	isc->hclock = devm_clk_get(dev, "hclock");
-+	if (IS_ERR(isc->hclock)) {
-+		ret = PTR_ERR(isc->hclock);
-+		dev_err(dev, "failed to get hclock: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = clk_prepare_enable(isc->hclock);
-+	if (ret) {
-+		dev_err(dev, "failed to enable hclock: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = isc_clk_init(isc);
-+	if (ret) {
-+		dev_err(dev, "failed to init isc clock: %d\n", ret);
-+		goto unprepare_hclk;
-+	}
-+
-+	isc->ispck = isc->isc_clks[ISC_ISPCK].clk;
-+
-+	ret = clk_prepare_enable(isc->ispck);
-+	if (ret) {
-+		dev_err(dev, "failed to enable ispck: %d\n", ret);
-+		goto unprepare_hclk;
-+	}
-+
-+	/* ispck should be greater or equal to hclock */
-+	ret = clk_set_rate(isc->ispck, clk_get_rate(isc->hclock));
-+	if (ret) {
-+		dev_err(dev, "failed to set ispck rate: %d\n", ret);
-+		goto unprepare_clk;
-+	}
-+
-+	ret = v4l2_device_register(dev, &isc->v4l2_dev);
-+	if (ret) {
-+		dev_err(dev, "unable to register v4l2 device.\n");
-+		goto unprepare_clk;
-+	}
-+
-+	ret = xisc_parse_dt(dev, isc);
-+	if (ret) {
-+		dev_err(dev, "fail to parse device tree\n");
-+		goto unregister_v4l2_device;
-+	}
-+
-+	if (list_empty(&isc->subdev_entities)) {
-+		dev_err(dev, "no subdev found\n");
-+		ret = -ENODEV;
-+		goto unregister_v4l2_device;
-+	}
-+
-+	list_for_each_entry(subdev_entity, &isc->subdev_entities, list) {
-+		v4l2_async_notifier_init(&subdev_entity->notifier);
-+
-+		ret = v4l2_async_notifier_add_subdev(&subdev_entity->notifier,
-+						     subdev_entity->asd);
-+		if (ret) {
-+			fwnode_handle_put(subdev_entity->asd->match.fwnode);
-+			goto cleanup_subdev;
-+		}
-+
-+		subdev_entity->notifier.ops = &isc_async_ops;
-+
-+		ret = v4l2_async_notifier_register(&isc->v4l2_dev,
-+						   &subdev_entity->notifier);
-+		if (ret) {
-+			dev_err(dev, "fail to register async notifier\n");
-+			goto cleanup_subdev;
-+		}
-+
-+		if (video_is_registered(&isc->video_dev))
-+			break;
-+	}
-+
-+	pm_runtime_set_active(dev);
-+	pm_runtime_enable(dev);
-+	pm_request_idle(dev);
-+
-+	regmap_read(isc->regmap, ISC_VERSION + isc->offsets.version, &ver);
-+	dev_info(dev, "Microchip XISC version %x\n", ver);
-+
-+	return 0;
-+
-+cleanup_subdev:
-+	isc_subdev_cleanup(isc);
-+
-+unregister_v4l2_device:
-+	v4l2_device_unregister(&isc->v4l2_dev);
-+
-+unprepare_clk:
-+	clk_disable_unprepare(isc->ispck);
-+unprepare_hclk:
-+	clk_disable_unprepare(isc->hclock);
-+
-+	isc_clk_cleanup(isc);
-+
-+	return ret;
-+}
-+
-+static int microchip_xisc_remove(struct platform_device *pdev)
-+{
-+	struct isc_device *isc = platform_get_drvdata(pdev);
-+
-+	pm_runtime_disable(&pdev->dev);
-+
-+	isc_subdev_cleanup(isc);
-+
-+	v4l2_device_unregister(&isc->v4l2_dev);
-+
-+	clk_disable_unprepare(isc->ispck);
-+	clk_disable_unprepare(isc->hclock);
-+
-+	isc_clk_cleanup(isc);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused xisc_runtime_suspend(struct device *dev)
-+{
-+	struct isc_device *isc = dev_get_drvdata(dev);
-+
-+	clk_disable_unprepare(isc->ispck);
-+	clk_disable_unprepare(isc->hclock);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused xisc_runtime_resume(struct device *dev)
-+{
-+	struct isc_device *isc = dev_get_drvdata(dev);
-+	int ret;
-+
-+	ret = clk_prepare_enable(isc->hclock);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_prepare_enable(isc->ispck);
-+	if (ret)
-+		clk_disable_unprepare(isc->hclock);
-+
-+	return ret;
-+}
-+
-+static const struct dev_pm_ops microchip_xisc_dev_pm_ops = {
-+	SET_RUNTIME_PM_OPS(xisc_runtime_suspend, xisc_runtime_resume, NULL)
-+};
-+
-+static const struct of_device_id microchip_xisc_of_match[] = {
-+	{ .compatible = "microchip,sama7g5-isc" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, microchip_xisc_of_match);
-+
-+static struct platform_driver microchip_xisc_driver = {
-+	.probe	= microchip_xisc_probe,
-+	.remove	= microchip_xisc_remove,
-+	.driver	= {
-+		.name		= "microchip-sama7g5-xisc",
-+		.pm		= &microchip_xisc_dev_pm_ops,
-+		.of_match_table = of_match_ptr(microchip_xisc_of_match),
-+	},
-+};
-+
-+module_platform_driver(microchip_xisc_driver);
-+
-+MODULE_AUTHOR("Eugen Hristev <eugen.hristev@microchip.com>");
-+MODULE_DESCRIPTION("The V4L2 driver for Microchip-XISC");
-+MODULE_LICENSE("GPL v2");
-+MODULE_SUPPORTED_DEVICE("video");
--- 
-2.25.1
+Does this fix your issue?
+https://lore.kernel.org/linux-arm-kernel/20210316090540.973014-1-punit1.agrawal@toshiba.co.jp/
+
+Thanks,
+Michal
 
