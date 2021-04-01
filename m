@@ -2,105 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E59F73519D2
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:03:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8A2D351944
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:02:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236267AbhDAR4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 13:56:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60866 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234325AbhDARxb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:53:31 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62A57C02258F
-        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 08:20:16 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id q10so1747296pgj.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 08:20:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=I0ki0lC8MA7ZU5srSBRCAeZerDP7DRSW7mDv/jEyzhw=;
-        b=qQ0v8/k4NrH6jKqHmdH5VXybvg1m4144BVeYDTvfC96mDKCt11Vs81OC9ACNp+Zhp4
-         A5BoQrzj8lb2eWR43CMRD+1En5lcgIjRxX2LZan9wjifgdEP6YOd0eymSZskboVwCAnU
-         WABpIPUI8bJsBNhKiDsOESSHZXui8Ye72eq0WPv/fZc1CeXA09dhGjV9r7FBkveB0zbu
-         JTLDqxpnrdkuSa/+o5dTKcqYRN8G7UhDxWDSJtjm6hwKiZivqC/5+EsT1nkoFPjBdf/O
-         uSH37NVre7DHl6MXpEl1f3AUJ0gZGSRSehux30GBHeXBAXjDVMRLaE9FpgQKlW/2yacY
-         KkEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=I0ki0lC8MA7ZU5srSBRCAeZerDP7DRSW7mDv/jEyzhw=;
-        b=bcHP0QOjwIzHJhotQ4HZBZgvMlsSR+CUjlvmdbMlLFWgopWSqT+V0cIX8K2JNcyKQ0
-         NvrVzgN90fJ6ynAEoWj+abY8exTmk/TH5oej4/5r09k3ab1c9g2IFuNU1AXBciob4FD7
-         5NXxPDyzDDf42scOxuCEAq4FDDZXqKxFeGSEOXbM5u5j2E3Vb8oqdkBAKA8NHQM0cwZ7
-         /vObImrPULSrZwxlEvZrY1Qm1esu8eOTBV86j9Gt+4bkZQXorogs4BMRG6OMkBxP52jk
-         E5Jq3QFDqAz3PyhMw44p/dv6Q2cnICJlpEv1aDL/V9yOxQ3mPLEmbY6OaElSa9xfZff9
-         V/9w==
-X-Gm-Message-State: AOAM532GjaRsq5g+kjUJvgZf6Ap3t1h3FWGhAbMI7fqa/5h6P9oWXRL1
-        fU32qG3F3Vi035ikAb5ZvFKI
-X-Google-Smtp-Source: ABdhPJzwbbKb4PxWcqooRWmHcWkE3XNAzSdnNl7CBX4C1OfeHXT92d/xTOsH+fB0qhD9v7jbEPwu+g==
-X-Received: by 2002:a63:be0f:: with SMTP id l15mr3536418pgf.39.1617290415914;
-        Thu, 01 Apr 2021 08:20:15 -0700 (PDT)
-Received: from localhost.localdomain ([103.77.37.138])
-        by smtp.gmail.com with ESMTPSA id l22sm6500919pjl.14.2021.04.01.08.20.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 08:20:15 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        boris.brezillon@collabora.com, Daniele.Palmas@telit.com,
-        bjorn.andersson@linaro.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v10 2/4] dt-bindings: mtd: Add a property to declare secure regions in NAND chips
-Date:   Thu,  1 Apr 2021 20:49:53 +0530
-Message-Id: <20210401151955.143817-3-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210401151955.143817-1-manivannan.sadhasivam@linaro.org>
-References: <20210401151955.143817-1-manivannan.sadhasivam@linaro.org>
+        id S234937AbhDARwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 13:52:34 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:49282 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236550AbhDARpa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:45:30 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1617299130; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=5F0p2SwBfvxYJuM5YokPniaLIv8Fsk+9QwSZB8XZ6cA=;
+ b=j/q+DsvwsMDYr0OFXUHA6Yuqc3wCMlPZJV3fsfILyenOaORwjZd9QsVt+SCZp22iCkcHkYfT
+ SrwGoAZeCHZX2MN/uxTtbzzNn85l9CZ7Syxc9NLER+7TmnonPXDojsvUb1xJGqSSez9Wl6Q4
+ 6TcM3DcBzsa6KWAx7IC7AQ9PD88=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 6065e9fc8807bcde1dacb9c3 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 01 Apr 2021 15:42:52
+ GMT
+Sender: schowdhu=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id CE086C433ED; Thu,  1 Apr 2021 15:42:51 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: schowdhu)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D2EC2C433CA;
+        Thu,  1 Apr 2021 15:42:50 +0000 (UTC)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 01 Apr 2021 21:12:50 +0530
+From:   schowdhu@codeaurora.org
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org
+Subject: Re: [PATCH V2 3/5] DCC: Added the sysfs entries for DCC(Data Capture
+ and Compare) driver
+In-Reply-To: <161704857307.3012082.499264834486221320@swboyd.mtv.corp.google.com>
+References: <cover.1616651305.git.schowdhu@codeaurora.org>
+ <eeb3cfe92cba2c7981170f3c3ff96dd440b69f25.1616651305.git.schowdhu@codeaurora.org>
+ <161704857307.3012082.499264834486221320@swboyd.mtv.corp.google.com>
+Message-ID: <56a657ebc4b843575037e3ba9ec9cb9a@codeaurora.org>
+X-Sender: schowdhu@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On a typical end product, a vendor may choose to secure some regions in
-the NAND memory which are supposed to stay intact between FW upgrades.
-The access to those regions will be blocked by a secure element like
-Trustzone. So the normal world software like Linux kernel should not
-touch these regions (including reading).
+On 2021-03-30 01:39, Stephen Boyd wrote:
+> Quoting Souradeep Chowdhury (2021-03-25 01:02:34)
+>> The DCC is a DMA engine designed to store register values either in
+>> case of a system crash or in case of software triggers manually done
+>> by the user.Using DCC hardware and the sysfs interface of the driver
+>> the user can exploit various functionalities of DCC.The user can 
+>> specify
+>> the register addresses,the values of which is stored by DCC in it's
+>> dedicated SRAM.The register addresses can be used either to read from,
+>> write to,first read and store value and then write or to loop.All 
+>> these
+>> options can be exploited using the sysfs interface given to the user.
+>> Following are the sysfs interfaces exposed in DCC driver which are
+>> documented
+>> 1)trigger
+>> 2)config
+>> 3)config_write
+>> 4)config_reset
+>> 5)enable
+>> 6)rd_mod_wr
+>> 7)loop
+>> 
+>> Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
+>> ---
+>>  Documentation/ABI/testing/sysfs-driver-dcc | 114 
+>> +++++++++++++++++++++++++++++
+> 
+> Please combine this with the driver patch.
 
-So let's add a property for declaring such secure regions so that the
-drivers can skip touching them.
+Ack
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- Documentation/devicetree/bindings/mtd/nand-controller.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+> 
+>>  1 file changed, 114 insertions(+)
+>>  create mode 100644 Documentation/ABI/testing/sysfs-driver-dcc
+> 
+> Perhaps this should be an ioctl interface instead of a sysfs interface?
 
-diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-index d0e422f4b3e0..678b39952502 100644
---- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-+++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-@@ -143,6 +143,13 @@ patternProperties:
-           Ready/Busy pins. Active state refers to the NAND ready state and
-           should be set to GPIOD_ACTIVE_HIGH unless the signal is inverted.
- 
-+      secure-regions:
-+        $ref: /schemas/types.yaml#/definitions/uint64-matrix
-+        description:
-+          Regions in the NAND chip which are protected using a secure element
-+          like Trustzone. This property contains the start address and size of
-+          the secure regions present.
-+
-     required:
-       - reg
- 
--- 
-2.25.1
+The reasons for choosing sysfs over ioctl is as follows
 
+
+i) As can be seen from the sysfs attribute descriptions, most of it does 
+basic hardware manipulations like dcc_enable, dcc_disable, config reset 
+etc. As a result sysfs is preferred over ioctl as we just need to enter 
+a 0 or 1
+signal in such cases.
+
+ii) Existing similar debug hardwares are there for which drivers have 
+been written using sysfs interface. One such example is the 
+coresight-etm-trace driver. Following is the link for reference
+
+https://www.kernel.org/doc/html/latest/trace/coresight/coresight-etm4x-reference.html
+
+> 
+>> 
+>> diff --git a/Documentation/ABI/testing/sysfs-driver-dcc 
+>> b/Documentation/ABI/testing/sysfs-driver-dcc
+>> new file mode 100644
+>> index 0000000..05d24f0
+>> --- /dev/null
+>> +++ b/Documentation/ABI/testing/sysfs-driver-dcc
+>> @@ -0,0 +1,114 @@
+>> +What:           /sys/bus/platform/devices/.../trigger
+>> +Date:           March 2021
+>> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
+>> +Description:
+>> +               This is the sysfs interface for manual software
+>> +               triggers.The user can simply enter a 1 against
+>> +               the sysfs file and enable a manual trigger.
+>> +               Example:
+>> +               echo  1 > /sys/bus/platform/devices/.../trigger
+>> +
+>> +What:           /sys/bus/platform/devices/.../enable
+>> +Date:           March 2021
+>> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
+>> +Description:
+>> +               This sysfs interface is used for enabling the
+>> +               the dcc hardware.Without this being set to 1,
+> 
+> Space after period please.
+
+Ack
+
+> 
+>> +               the dcc hardware ceases to function.
+>> +               Example:
+>> +               echo  0 > /sys/bus/platform/devices/.../enable
+>> +               (disable interface)
+>> +               echo  1 > /sys/bus/platform/devices/.../enable
+>> +               (enable interface)
+>> +
+>> +What:           /sys/bus/platform/devices/.../config
+>> +Date:           March 2021
+>> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
+>> +Description:
+>> +               This is the most commonly used sysfs interface
+>> +               file and this basically stores the addresses of
+>> +               the registers which needs to be read in case of
+>> +               a hardware crash or manual software triggers.
+>> +               Example:
+>> +               echo  0x80000010 10 > 
+>> /sys/bus/platform/devices/../config
+>> +               This specifies that 10 words starting from address
+>> +               0x80000010 is to be read.In case there are no words to 
+>> be
+>> +               specified we can simply enter the address.
+>> +
+>> +What:           /sys/bus/platform/devices/.../config_write
+>> +Date:           March 2021
+>> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
+>> +Description:
+>> +               This file allows user to write a value to the register
+>> +               address given as argument.The values are entered in 
+>> the
+>> +               form of <register_address> <value>.The reason for this
+>> +               feature of dcc is that for accessing certain registers
+>> +               it is necessary to set some bits of soe other 
+>> register.
+> 
+> s/soe/some/?
+
+Ack
+
+> 
+>> +               That is achievable by giving DCC this privelege.
+> 
+> s/privelege/privilege/
+
+Ack
+
+> 
+>> +               Example:
+>> +               echo 0x80000000 0xFF > 
+>> /sys/bus/platform/devices/.../config_write
+>> +
+>> +What:           /sys/bus/platform/devices/.../config_reset
+>> +Date:           March 2021
+>> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
+>> +Description:
+>> +               This file is used to reset the configuration of
+>> +               a dcc driver to the default configuration.
+>> +               Example:
+>> +               echo  1 > /sys/bus/platform/devices/.../config_reset
+>> +
