@@ -2,398 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52122351CD4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:47:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60BCB351E89
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:55:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236507AbhDASVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:21:41 -0400
-Received: from mx0b-00268f01.pphosted.com ([148.163.159.192]:5552 "EHLO
-        mx0b-00268f01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237167AbhDASSw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:18:52 -0400
-Received: from pps.filterd (m0105197.ppops.net [127.0.0.1])
-        by mx0a-00268f01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 131IEVqW024091;
-        Thu, 1 Apr 2021 18:18:12 GMT
-Received: from nam12-dm6-obe.outbound.protection.outlook.com (mail-dm6nam12lp2172.outbound.protection.outlook.com [104.47.59.172])
-        by mx0a-00268f01.pphosted.com with ESMTP id 37n3ceuhp5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 01 Apr 2021 18:18:12 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GT4Vt3froka342vNCrd0QlOBVGbRUms38hxMeJlwtjZqO4iIINmwQyv1+hbt+DmNeZN/z9Pf3Ce/Q6Q0jxyE67RW9JIyu5Vu5yxj+MZZhD4YqHzUeAbzXiCSaBajz96Kj4jsCWW1YLARwbAcPBtLfIW4Npefy2dsau3bFgCMGzT3PNty1AeUzAAIjKMMjA2TEUjmz4xfo+QaoaG6PlwhNyuMGdXYYVEZI1UjRpzD1wmwlUtSrR+4KxwucByLGhaZsnKZVZbxHV/3Qdj7AFnfSj6TmNfW/jvWVWlIklGbN2H0LR6xGQlfWDDCV3k/G+U4864uYviL+yOvNadbvqdYrA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D6n771te6bi3qxA4ZtqeVJGmxpWBlw+7ByqZOVhCC0Q=;
- b=CoeQ2dnuGrGkvQMS3zMzzts9bgVmhVzIzmUtapp3cdqMEMCIPF5/yr1PBV34iQX1jH0/QwSWV1u9n81i1XGutIj/R6o6vzbEMaG6g8DL0M3TfDG8x0HFww0aqQsYfVhQrxuomCJtGvT8nPNjErsbKAkTy2CNmmI6Iqi7RbygXhdfg8r6jtKOPWfbQvzUdDFYBwcW4sT+sBD3xhVdx2HOZpoxp5QltkQ0AqD6dwAmYAf7aT7GfZAh5UfrME0MewH4hPGKKqLyCJB6W9qZxUFINtCXWEAadVGMyfmtvD6YxuYYhYNdmwMupS+Bhw2zQWVVqL2nn8pUH1J8nF0VCx8g4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=equinix.com; dmarc=pass action=none header.from=equinix.com;
- dkim=pass header.d=equinix.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=equinixinc.onmicrosoft.com; s=selector2-equinixinc-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D6n771te6bi3qxA4ZtqeVJGmxpWBlw+7ByqZOVhCC0Q=;
- b=F00hgXFU07boSiVxHx3QRrCb0eD5KhF3tn3oyDZ/Dut3VCqT15hdsVhnpODd/vcARElK/V0UXhVYSnW8U/3PsKrHDB9XZptPsta6k+QuIWXluGVu7RZue5fo/1i0ohx1CQxtEwp1jf/uJMcbyIZZmmWVqAPOErkuJA4AuHP7tqU=
-Received: from DM5PR04MB0762.namprd04.prod.outlook.com (2603:10b6:3:f3::13) by
- DM6PR04MB5531.namprd04.prod.outlook.com (2603:10b6:5:123::26) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3999.27; Thu, 1 Apr 2021 18:18:10 +0000
-Received: from DM5PR04MB0762.namprd04.prod.outlook.com
- ([fe80::4c98:aeb:87a8:13ad]) by DM5PR04MB0762.namprd04.prod.outlook.com
- ([fe80::4c98:aeb:87a8:13ad%5]) with mapi id 15.20.3977.033; Thu, 1 Apr 2021
- 18:18:09 +0000
-From:   Zev Weiss <zweiss@equinix.com>
-To:     Andrew Jeffery <andrew@aj.id.au>
-CC:     "openipmi-developer@lists.sourceforge.net" 
-        <openipmi-developer@lists.sourceforge.net>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "minyard@acm.org" <minyard@acm.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "ryan_chen@aspeedtech.com" <ryan_chen@aspeedtech.com>,
-        "tmaimon77@gmail.com" <tmaimon77@gmail.com>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "avifishman70@gmail.com" <avifishman70@gmail.com>,
-        "venture@google.com" <venture@google.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "tali.perry1@gmail.com" <tali.perry1@gmail.com>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "chiawei_wang@aspeedtech.com" <chiawei_wang@aspeedtech.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "benjaminfair@google.com" <benjaminfair@google.com>
-Subject: Re [PATCH v2 21/21] ipmi: kcs_bmc_aspeed: Optionally apply status
- address
-Thread-Topic: Re [PATCH v2 21/21] ipmi: kcs_bmc_aspeed: Optionally apply
- status address
-Thread-Index: AQHXJyNeAUueKu6Dl0GGRLjVvWP0kA==
-Date:   Thu, 1 Apr 2021 18:18:09 +0000
-Message-ID: <YGYOX4HcdKcWOUx1@packtop>
-References: <20210319062752.145730-1-andrew@aj.id.au>
- <20210319062752.145730-21-andrew@aj.id.au>
-In-Reply-To: <20210319062752.145730-21-andrew@aj.id.au>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: aj.id.au; dkim=none (message not signed)
- header.d=none;aj.id.au; dmarc=none action=none header.from=equinix.com;
-x-originating-ip: [24.181.166.149]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7608cad5-7260-44a4-1166-08d8f53a815a
-x-ms-traffictypediagnostic: DM6PR04MB5531:
-x-microsoft-antispam-prvs: <DM6PR04MB5531088A3E332A47D2E654B2C37B9@DM6PR04MB5531.namprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: U4QCcC1p9L1v3ToW9Xwq4TBV3xfFQWy/3v21xxhgk1GHwK0K7ctaaivvIkVwOg/yKvb52ZzQYXfwsmCGolbkDrcYDDNXGH94r2jFIFMUY4wRbwCyx1oI2cuT/8BkRZgyoHRwPK8y43t9lcCMlsR/mY+IU3M/ofJK6WrLUQOAyhmdBwehSdmjZw6qXPwBU5LvBaXQd54p0LKs04LM334uhw3xgf0GL3SwcP6zc5TAau8cxhGqshtIPI4c9ll8We83PfixpgwkJJZWid97yFM/56BpcNvY0JknSwxvq/oFYGC5JufE3qCT24fBLwtuijQdR/brDV/lLFpM8ZZUTHJCMcMUw4tsUhPEg34iMFa2JdBzEA2Va4oSqGv4aK4SelKVOtImtc3mWXdU29jOTWEjHwZNo3x660jQZKuK+18cMC2cTydvKMyTCV8gZP/Oq9Q0FYa/RfDzSN+2Z4UHQURWE+dFY6uGvLD+zTXKUK4bLliBRs/w5Vvac1VMNB+m9Il7vDTrEmdL0svuzDZdWZ3FsQQox25fWSlFJ7jeSc2NsHmSTjBF6TEvRbnhgJ6isClfsUiUu91vBXyM9Z+ubG9e/WVpe9YNZHtiTWd/hWscKiwj9z4b0vi3eqr3VKyMgtGOmKSIUFnNlErzK1Va/c6ntg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR04MB0762.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(366004)(396003)(136003)(376002)(39860400002)(346002)(8936002)(64756008)(478600001)(5660300002)(4326008)(66556008)(66446008)(6916009)(6512007)(26005)(66476007)(83380400001)(6486002)(7416002)(9686003)(6506007)(86362001)(316002)(71200400001)(66946007)(38100700001)(33716001)(8676002)(76116006)(2906002)(186003)(54906003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?3m+AaOfKI0JyT373TXLmB6CMAOu+OcOC6NaRec+hfmTxjnpkL3MrhT3IsCyb?=
- =?us-ascii?Q?Vm0Ju9dwW0euAyiVW5XftBhFA9v1iY+b2Il6J0xe1bfJ7hANuCo7/zXBrQGd?=
- =?us-ascii?Q?E3rOZQTsb7cyq8P7ReQbE4sVFDOzI36wHD2RAYpti7N8bIqn35c4Ig+JrFVz?=
- =?us-ascii?Q?0NnKS5AjQDFJbnqZsCME12eTLqTJ2sMjMhQvX/qJ5LtQTL/x4NNShamp2ewa?=
- =?us-ascii?Q?ouEAnpq9Jgyay1rYxW2z1UlsXkE+iMNum0rq1QxH5UcImEj401sDCVMtxJzN?=
- =?us-ascii?Q?Qv39gWo6tajXNkhCKmvNVHwPcjeRNyTwqnwglnPBWA4pgVvrVJe21l+v4Jxl?=
- =?us-ascii?Q?58ouRHVLvaNVjjIp5/RgSeCnh8FIEtV/lbhr/oHaHINhNZCJJzmSdwjWf1ut?=
- =?us-ascii?Q?/1ICMQgd+ocZ3hHcNQqiPeaX0Ii2CdOQn41VXOZet4V8Tp9JnhnOLjXze/vZ?=
- =?us-ascii?Q?RoFt2ku8FrDMvc2ncZn8i46Mfq/Kzz7lkMt+96Jx9lUUivqXrZm74F/1z5oB?=
- =?us-ascii?Q?bQcZ8cZQxFoSUhv4GbaxBSlVzGzjLDDh8FXu/VmElxVjryfld/bXEbgBDlBE?=
- =?us-ascii?Q?KRyAXOHQK8dVqIqTKGFGs+TSYh/0XqKr4/2JwP/J7LotIAVLo3uObo5Ku6kV?=
- =?us-ascii?Q?5R2mq/gG5nVWUePdtSgH/6UOPPY0YpnaMIz1KdwXPGbU5yJS0scLRUf7ORZ8?=
- =?us-ascii?Q?YWZTQStr74p4JswpNPRP//w7/vUTv08JbgrwAA81qqRsagEYsVKYStX/JdJ8?=
- =?us-ascii?Q?vcqrFn8Had9I2+/dAlK3XB5ctTPT0H5chT8QZwGVzqpPEHe2aHE9Ys1djMmo?=
- =?us-ascii?Q?CXhSaGNhOCdkFy4gT0We8R1pApeB1N7dbrWc5Chd2K/DPxyAygXLaqWqGs9N?=
- =?us-ascii?Q?9VNhUIULqbl+GdZ/AOySgGtwkLHXdPcH55xIrvN8tVop+fAKjnI1MooWI29e?=
- =?us-ascii?Q?uXFq5IFRRahsrBO+TRZcto3ejAXwMzzaLT71acjBK47VnVM1I4J3un2EGd4q?=
- =?us-ascii?Q?fptqpEMxMW12bo27LrQFfjLc+Qn8dYzhetg1XKyQn0LbZEny4PzW+K8Qsah+?=
- =?us-ascii?Q?pnE+WVCpDT7Q48nm8XhvDenrWC94lxevCbVf8u8hXG13SBKqdrODYs6JbXIw?=
- =?us-ascii?Q?oZIh3oRDK/CSvEhdUgvPOihc/zWcFG2TDncXixjOCFUJLZ5S1A5Te1jmnZNg?=
- =?us-ascii?Q?2qgcXK66/JDDlazVegCFtIAFYlUV4pgCJdG3PRClcr4P+9CcTee8vVkdMAAp?=
- =?us-ascii?Q?WoWTR5Vob8L757vK0TnR5U0RTU/z7cwfoVUCjDTAegMTwrGhccAoDPnjLKDh?=
- =?us-ascii?Q?DNzkWQk40Og1XJO3FP5dYHaL?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <AC3397F50CBE58469B51BB8E9DC2F662@namprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S236989AbhDASnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 14:43:09 -0400
+Received: from mail.micronovasrl.com ([212.103.203.10]:50300 "EHLO
+        mail.micronovasrl.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236851AbhDAShc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:37:32 -0400
+Received: from mail.micronovasrl.com (mail.micronovasrl.com [127.0.0.1])
+        by mail.micronovasrl.com (Postfix) with ESMTP id B8647B04C52
+        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 20:37:14 +0200 (CEST)
+Authentication-Results: mail.micronovasrl.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)" header.d=micronovasrl.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=micronovasrl.com;
+         h=content-transfer-encoding:content-language:content-type
+        :content-type:in-reply-to:mime-version:user-agent:date:date
+        :message-id:from:from:references:to:subject:subject; s=dkim; t=
+        1617302233; x=1618166234; bh=e51YaMfjswIMeNYrTTvhqA6/Wl7n7fQ/6SR
+        qaEJ8ITg=; b=KrjO+5omQg4Ig2ibX9cO79t52wn/RIM9kBHYqxWUqO9ufb7AIRc
+        sdri5i6CeLaB0UQXTX9u80exjjAfKdHNi17wxmO3g5Hc94SW1yLPZHB/QdtgxAnq
+        2nRwPZ0lPwO9uE9LkmgHHL30KKohS4jSrgZHaGc6Bne/ZamMPPr6ag3M=
+X-Virus-Scanned: Debian amavisd-new at mail.micronovasrl.com
+X-Spam-Flag: NO
+X-Spam-Score: -2.441
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.441 tagged_above=-10 required=4.5
+        tests=[ALL_TRUSTED=-1, BAYES_00=-1.9, LOTS_OF_MONEY=0.001,
+        MONEY_NOHTML=0.458, NICE_REPLY_A=-0.001, URIBL_BLOCKED=0.001]
+        autolearn=no autolearn_force=no
+Received: from mail.micronovasrl.com ([127.0.0.1])
+        by mail.micronovasrl.com (mail.micronovasrl.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id 5k2ugIlJzScg for <devicetree@vger.kernel.org>;
+        Thu,  1 Apr 2021 20:37:13 +0200 (CEST)
+Received: from [192.168.50.18] (146-241-168-220.dyn.eolo.it [146.241.168.220])
+        by mail.micronovasrl.com (Postfix) with ESMTPSA id 56E4BB04C3E;
+        Thu,  1 Apr 2021 20:37:13 +0200 (CEST)
+Subject: Re: [PATCH 2/3] dt-bindings: touchscreen: Add HY46XX bindings
+To:     Rob Herring <robh@kernel.org>,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210305163834.70924-1-giulio.benetti@benettiengineering.com>
+ <20210305163834.70924-3-giulio.benetti@benettiengineering.com>
+ <20210306194120.GA1075725@robh.at.kernel.org>
+From:   Giulio Benetti <giulio.benetti@micronovasrl.com>
+Message-ID: <9cd14c69-9c30-a68c-dfd1-396613b5185a@micronovasrl.com>
+Date:   Thu, 1 Apr 2021 20:37:13 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-X-OriginatorOrg: equinix.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR04MB0762.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7608cad5-7260-44a4-1166-08d8f53a815a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Apr 2021 18:18:09.8867
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 72adb271-2fc7-4afe-a5ee-9de6a59f6bfb
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: UGeVNydP2XiYIOmax/4ChE+ZeAJjVqku8jbSKXdvZCmnwLJQOZAo5sc4u1Ns6iAWArjOIJuSnUkBxYZpKpfaJg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR04MB5531
-X-Proofpoint-ORIG-GUID: 9xFTfW-aWC2nPu82TyuKK2VFTkpxKw2F
-X-Proofpoint-GUID: 9xFTfW-aWC2nPu82TyuKK2VFTkpxKw2F
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-04-01_09:2021-04-01,2021-04-01 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
- lowpriorityscore=0 impostorscore=0 mlxlogscore=999 suspectscore=0
- malwarescore=0 mlxscore=0 adultscore=0 spamscore=0 priorityscore=1501
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2103310000 definitions=main-2104010119
+In-Reply-To: <20210306194120.GA1075725@robh.at.kernel.org>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: it
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 19, 2021 at 01:27:52AM CDT, Andrew Jeffery wrote:
->Some Aspeed KCS devices can derive the status register address from the
->address of the data register. As such, the address of the status
->register can be implicit in the configuration if desired. On the other
->hand, sometimes address schemes might be requested that are incompatible
->with the default addressing scheme. Allow these requests where possible
->if the devicetree specifies the status register address.
->
->Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
->---
-> drivers/char/ipmi/kcs_bmc_aspeed.c | 113 +++++++++++++++++++++--------
-> 1 file changed, 81 insertions(+), 32 deletions(-)
->
->diff --git a/drivers/char/ipmi/kcs_bmc_aspeed.c b/drivers/char/ipmi/kcs_bm=
-c_aspeed.c
->index 7334b1f51dcc..98789b837690 100644
->--- a/drivers/char/ipmi/kcs_bmc_aspeed.c
->+++ b/drivers/char/ipmi/kcs_bmc_aspeed.c
->@@ -83,6 +83,8 @@
-> #define LPC_STR2             0x040
-> #define LPC_STR3             0x044
-> #define LPC_HICRB            0x100
->+#define     LPC_HICRB_EN16LADR2      BIT(5)
->+#define     LPC_HICRB_EN16LADR1      BIT(4)
-> #define     LPC_HICRB_IBFIE4         BIT(1)
-> #define     LPC_HICRB_LPC4E          BIT(0)
-> #define LPC_HICRC            0x104
->@@ -96,6 +98,11 @@
-> #define LPC_IDR4             0x114
-> #define LPC_ODR4             0x118
-> #define LPC_STR4             0x11C
->+#define LPC_LSADR12	     0x120
->+#define     LPC_LSADR12_LSADR2_MASK  GENMASK(31, 16)
->+#define     LPC_LSADR12_LSADR2_SHIFT 16
->+#define     LPC_LSADR12_LSADR1_MASK  GENMASK(15, 0)
->+#define     LPC_LSADR12_LSADR1_SHIFT 0
->
-> #define OBE_POLL_PERIOD	     (HZ / 2)
->
->@@ -123,7 +130,7 @@ struct aspeed_kcs_bmc {
->
-> struct aspeed_kcs_of_ops {
-> 	int (*get_channel)(struct platform_device *pdev);
->-	int (*get_io_address)(struct platform_device *pdev);
->+	int (*get_io_address)(struct platform_device *pdev, u32 addrs[2]);
-> };
->
-> static inline struct aspeed_kcs_bmc *to_aspeed_kcs_bmc(struct kcs_bmc_dev=
-ice *kcs_bmc)
->@@ -217,38 +224,64 @@ static void aspeed_kcs_updateb(struct kcs_bmc_device=
- *kcs_bmc, u32 reg, u8 mask,
->  *     C. KCS4
->  *        D / C : CA4h / CA5h
->  */
->-static void aspeed_kcs_set_address(struct kcs_bmc_device *kcs_bmc, u16 ad=
-dr)
->+static int aspeed_kcs_set_address(struct kcs_bmc_device *kcs_bmc, u32 add=
-rs[2], int nr_addrs)
-> {
-> 	struct aspeed_kcs_bmc *priv =3D to_aspeed_kcs_bmc(kcs_bmc);
->
->-	switch (kcs_bmc->channel) {
->+	if (WARN_ON(nr_addrs < 1 || nr_addrs > 2))
->+		return -EINVAL;
->+
->+	switch (priv->kcs_bmc.channel) {
-> 	case 1:
->-		regmap_update_bits(priv->map, LPC_HICR4,
->-				LPC_HICR4_LADR12AS, 0);
->-		regmap_write(priv->map, LPC_LADR12H, addr >> 8);
->-		regmap_write(priv->map, LPC_LADR12L, addr & 0xFF);
->+		regmap_update_bits(priv->map, LPC_HICR4, LPC_HICR4_LADR12AS, 0);
->+		regmap_write(priv->map, LPC_LADR12H, addrs[0] >> 8);
->+		regmap_write(priv->map, LPC_LADR12L, addrs[0] & 0xFF);
->+		if (nr_addrs =3D=3D 2) {
->+			regmap_update_bits(priv->map, LPC_LSADR12, LPC_LSADR12_LSADR1_MASK,
->+					   addrs[1] << LPC_LSADR12_LSADR1_SHIFT);
->+
->+			regmap_update_bits(priv->map, LPC_HICRB, LPC_HICRB_EN16LADR1,
->+					   LPC_HICRB_EN16LADR1);
->+		}
-> 		break;
->
-> 	case 2:
->-		regmap_update_bits(priv->map, LPC_HICR4,
->-				LPC_HICR4_LADR12AS, LPC_HICR4_LADR12AS);
->-		regmap_write(priv->map, LPC_LADR12H, addr >> 8);
->-		regmap_write(priv->map, LPC_LADR12L, addr & 0xFF);
->+		regmap_update_bits(priv->map, LPC_HICR4, LPC_HICR4_LADR12AS, LPC_HICR4_=
-LADR12AS);
->+		regmap_write(priv->map, LPC_LADR12H, addrs[0] >> 8);
->+		regmap_write(priv->map, LPC_LADR12L, addrs[0] & 0xFF);
->+		if (nr_addrs =3D=3D 2) {
->+			regmap_update_bits(priv->map, LPC_LSADR12, LPC_LSADR12_LSADR2_MASK,
->+					   addrs[1] << LPC_LSADR12_LSADR2_SHIFT);
->+
->+			regmap_update_bits(priv->map, LPC_HICRB, LPC_HICRB_EN16LADR2,
->+					   LPC_HICRB_EN16LADR2);
->+		}
-> 		break;
->
-> 	case 3:
->-		regmap_write(priv->map, LPC_LADR3H, addr >> 8);
->-		regmap_write(priv->map, LPC_LADR3L, addr & 0xFF);
->+		if (nr_addrs =3D=3D 2) {
->+			dev_err(priv->kcs_bmc.dev,
->+				"Channel 3 only supports inferred status IO address\n");
->+			return -EINVAL;
->+		}
->+
->+		regmap_write(priv->map, LPC_LADR3H, addrs[0] >> 8);
->+		regmap_write(priv->map, LPC_LADR3L, addrs[0] & 0xFF);
-> 		break;
->
-> 	case 4:
->-		regmap_write(priv->map, LPC_LADR4, ((addr + 1) << 16) |
->-			addr);
->+		if (nr_addrs =3D=3D 1)
->+			regmap_write(priv->map, LPC_LADR4, ((addrs[0] + 1) << 16) | addrs[0]);
->+		else
->+			regmap_write(priv->map, LPC_LADR4, (addrs[1] << 16) | addrs[0]);
->+
-> 		break;
->
-> 	default:
->-		break;
->+		return -EINVAL;
-> 	}
->+
->+	return 0;
-> }
->
-> static inline int aspeed_kcs_map_serirq_type(u32 dt_type)
->@@ -462,18 +495,18 @@ static int aspeed_kcs_of_v1_get_channel(struct platf=
-orm_device *pdev)
-> 	return channel;
-> }
->
->-static int aspeed_kcs_of_v1_get_io_address(struct platform_device *pdev)
->+static int
->+aspeed_kcs_of_v1_get_io_address(struct platform_device *pdev, u32 addrs[2=
-])
-> {
->-	u32 slave;
-> 	int rc;
->
->-	rc =3D of_property_read_u32(pdev->dev.of_node, "kcs_addr", &slave);
->-	if (rc || slave > 0xffff) {
->+	rc =3D of_property_read_u32(pdev->dev.of_node, "kcs_addr", addrs);
->+	if (rc || addrs[0] > 0xffff) {
-> 		dev_err(&pdev->dev, "no valid 'kcs_addr' configured\n");
-> 		return -EINVAL;
-> 	}
->
->-	return slave;
->+	return 1;
-> }
->
-> static int aspeed_kcs_of_v2_get_channel(struct platform_device *pdev)
->@@ -509,16 +542,27 @@ static int aspeed_kcs_of_v2_get_channel(struct platf=
-orm_device *pdev)
-> 	return -EINVAL;
-> }
->
->-static int aspeed_kcs_of_v2_get_io_address(struct platform_device *pdev)
->+static int
->+aspeed_kcs_of_v2_get_io_address(struct platform_device *pdev, u32 addrs[2=
-])
-> {
->-	uint32_t slave;
-> 	int rc;
->
->-	rc =3D of_property_read_u32(pdev->dev.of_node, "aspeed,lpc-io-reg", &sla=
-ve);
->-	if (rc || slave > 0xffff)
->+	rc =3D of_property_read_variable_u32_array(pdev->dev.of_node,
->+						 "aspeed,lpc-io-reg",
->+						 addrs, 1, 2);
->+	if (rc < 0)
->+		return rc;
->+
->+	if (WARN_ON(rc =3D=3D 0))
->+		return -EINVAL;
+Hello Rob, All,
 
-Is this check necessary?  It looks like
-of_property_read_variable_u32_array() should fail in that case given
-sz_min=3D=3D1, so this seems like it should be impossible to trigger.
+Il 06/03/2021 20:41, Rob Herring ha scritto:
+> On Fri, Mar 05, 2021 at 05:38:33PM +0100, Giulio Benetti wrote:
+>> From: Giulio Benetti <giulio.benetti@micronovasrl.com>
+>>
+>> This adds device tree bindings for the Hycon HY46XX touchscreen series.
+>>
+>> Signed-off-by: Giulio Benetti <giulio.benetti@micronovasrl.com>
+>> ---
+>>   .../input/touchscreen/hycon,hy46xx.yaml       | 130 ++++++++++++++++++
+>>   MAINTAINERS                                   |   6 +
+>>   2 files changed, 136 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml b/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
+>> new file mode 100644
+>> index 000000000000..cddd5e5bae92
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
+>> @@ -0,0 +1,130 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/input/touchscreen/hycon-hy46xx.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: hyconon HY46XX series touchscreen controller Bindings
+>> +
+>> +description: |
+>> +             There are 6 variants of the chip for various touch panel sizes and coverl len material
+>> +              Glass: 0.3mm--4.0mm
+>> +              PET/PMMA: 0.2mm--2.0mm
+>> +               HY4613(B)-N048  < 6"
+>> +               HY4614(B)-N068  7" .. 10.1"
+>> +               HY4621-NS32  < 5"
+>> +               HY4623-NS48  5.1" .. 7"
+>> +              Glass: 0.3mm--8.0mm
+>> +              PET/PMMA: 0.2mm--4.0mm
+>> +               HY4633(B)-N048  < 6"
+>> +               HY4635(B)-N048  < 7" .. 10.1"
+>> +
+>> +maintainers:
+>> +  - Giulio Benetti <giulio.benetti@micronovasrl.com>
+>> +
+>> +allOf:
+>> +  - $ref: touchscreen.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - hycon,hycon-hy4613
+>> +      - hycon,hycon-hy4614
+>> +      - hycon,hycon-hy4621
+>> +      - hycon,hycon-hy4623
+>> +      - hycon,hycon-hy4633
+>> +      - hycon,hycon-hy4635
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  reset-gpios:
+>> +    maxItems: 1
+>> +
+>> +  vcc-supply: true
+>> +
+>> +  threshold:
+> 
+> Needs a vendor prefix here and all the custom properties.
 
->+
->+	if (addrs[0] > 0xffff)
->+		return -EINVAL;
->+
->+	if (rc =3D=3D 2 && addrs[1] > 0xffff)
-> 		return -EINVAL;
->
->-	return slave;
->+	return rc;
-> }
->
-> static int aspeed_kcs_probe(struct platform_device *pdev)
->@@ -527,9 +571,11 @@ static int aspeed_kcs_probe(struct platform_device *p=
-dev)
-> 	struct kcs_bmc_device *kcs_bmc;
-> 	struct aspeed_kcs_bmc *priv;
-> 	struct device_node *np;
->-	int rc, channel, addr;
-> 	bool have_upstream_irq;
-> 	u32 upstream_irq[2];
->+	int rc, channel;
->+	int nr_addrs;
->+	u32 addrs[2];
->
-> 	np =3D pdev->dev.of_node->parent;
-> 	if (!of_device_is_compatible(np, "aspeed,ast2400-lpc-v2") &&
->@@ -547,9 +593,9 @@ static int aspeed_kcs_probe(struct platform_device *pd=
-ev)
-> 	if (channel < 0)
-> 		return channel;
->
->-	addr =3D ops->get_io_address(pdev);
->-	if (addr < 0)
->-		return addr;
->+	nr_addrs =3D ops->get_io_address(pdev, addrs);
->+	if (nr_addrs < 0)
->+		return nr_addrs;
->
-> 	np =3D pdev->dev.of_node;
-> 	rc =3D of_property_read_u32_array(np, "aspeed,lpc-interrupts", upstream_=
-irq, 2);
->@@ -578,7 +624,9 @@ static int aspeed_kcs_probe(struct platform_device *pd=
-ev)
-> 	priv->obe.remove =3D false;
-> 	timer_setup(&priv->obe.timer, aspeed_kcs_check_obe, 0);
->
->-	aspeed_kcs_set_address(kcs_bmc, addr);
->+	rc =3D aspeed_kcs_set_address(kcs_bmc, addrs, nr_addrs);
->+	if (rc)
->+		return rc;
->
-> 	/* Host to BMC IRQ */
-> 	rc =3D aspeed_kcs_config_downstream_irq(kcs_bmc, pdev);
->@@ -600,7 +648,8 @@ static int aspeed_kcs_probe(struct platform_device *pd=
-ev)
-> 	if (rc < 0)
-> 		return rc;
->
->-	dev_info(&pdev->dev, "Initialised channel %d at 0x%x\n", kcs_bmc->channe=
-l, addr);
->+	dev_info(&pdev->dev, "Initialised channel %d at 0x%x\n",
->+			kcs_bmc->channel, addrs[0]);
->
-> 	return 0;
-> }
->--=20
->2.27.0
->=
+Sorry but I can't understand this ^^^, I've checked a lot of other yaml
+files but couldn't find something related to this. Can you help me by
+pointing me an example?
+
+> 
+> One of the touchscreen properties doesn't already address this?
+> 
+>> +    description: Allows setting the sensitivity in the range from 0 to 255.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 0
+>> +    maximum: 255
+>> +
+>> +  proximity-sensor-switch:
+> 
+> Why a switch rather than enable or disable?
+
+I've changed its name into enable.
+
+> 
+>> +    description: Allows enabling or disabling the Proximity Sensor.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 0
+>> +    maximum: 1
+> 
+> Is this a hardware config or something a user would want to change at
+> runtime? The latter shouldn't be in DT.
+
+It's a hardware config that enable the 11th touch point, but I didn't
+handle it inside the driver, so it's better that I remove it for the
+moment.
+
+> What does not present mean? Unless there is a need for keeping the
+> default setting, then this could be boolean instead.
+
+I've changed all "enable" to boolean and rely on default of the
+controller.
+
+Does this sound ok for you so I can send a v2 patchset?
+
+Thank you
+Best regards
+-- 
+Giulio Benetti
+CTO
+
+MICRONOVA SRL
+Sede: Via A. Niedda 3 - 35010 Vigonza (PD)
+Tel. 049/8931563 - Fax 049/8931346
+Cod.Fiscale - P.IVA 02663420285
+Capitale Sociale ¤ 26.000 i.v.
+Iscritta al Reg. Imprese di Padova N. 02663420285
+Numero R.E.A. 258642
+
+> Same questions for the rest of the properties.
+>> +
+>> +  glove-enable:
+>> +    description: Allows enabling or disabling glove setting.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 0
+>> +    maximum: 1
+>> +
+>> +  report-speed:
+>> +    description: Allows setting the report speed(i.e 0x64 => 100Hz).
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 0
+>> +    maximum: 255
+>> +
+>> +  power-noise-enable:
+>> +    description: Allows enabling or disabling power noise filter.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 0
+>> +    maximum: 1
+>> +
+>> +  filter-data:
+>> +    description: Allows setting the filtering data before reporting touch
+>> +                 in the range from 0 to 5.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 0
+>> +    maximum: 5
+>> +
+>> +  gain:
+>> +    description: Allows setting the sensitivity distance in the range from 0 to 5.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 0
+>> +    maximum: 5
+>> +
+>> +  edge-offset:
+>> +    description: Allows setting the edge compensation in the range from 0 to 16.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 0
+>> +    maximum: 16
+>> +
+>> +  touchscreen-size-x: true
+>> +  touchscreen-size-y: true
+>> +  touchscreen-fuzz-x: true
+>> +  touchscreen-fuzz-y: true
+>> +  touchscreen-inverted-x: true
+>> +  touchscreen-inverted-y: true
+>> +  touchscreen-swapped-x-y: true
+>> +  interrupt-controller: true
+>> +
+>> +additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/gpio/gpio.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    i2c {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +      hycon-hy4633@1c {
+>> +        compatible = "hycon,hy4633";
+>> +        reg = <0x1c>;
+>> +        interrupt-parent = <&gpio2>;
+>> +        interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
+>> +        reset-gpios = <&gpio2 6 GPIO_ACTIVE_LOW>;
+>> +      };
+>> +    };
+>> +
+>> +...
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index d92f85ca831d..3f83daf6b2bf 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -8245,6 +8245,12 @@ S:	Maintained
+>>   F:	mm/hwpoison-inject.c
+>>   F:	mm/memory-failure.c
+>>   
+>> +HYCON HY46XX TOUCHSCREEN SUPPORT
+>> +M:	Giulio Benetti <giulio.benetti@micronovasrl.com>
+>> +L:	linux-input@vger.kernel.org
+>> +S:	Maintained
+>> +F:	Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
+>> +
+>>   HYGON PROCESSOR SUPPORT
+>>   M:	Pu Wen <puwen@hygon.cn>
+>>   L:	linux-kernel@vger.kernel.org
+>> -- 
+>> 2.25.1
+>>
+
+
