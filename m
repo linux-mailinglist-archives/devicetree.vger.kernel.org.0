@@ -2,113 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E522351E87
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:55:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60AB5351CC8
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:47:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236676AbhDASnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:43:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57612 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237177AbhDASdC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Apr 2021 14:33:02 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9321E61380;
-        Thu,  1 Apr 2021 16:03:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617293026;
-        bh=DDIhjfi1qYB8lYEU5sQDnqU44QrMSPnvKKTG/wBTR7E=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=n4bXsarivhKfpiMewB/SYgLxl+04RZj+PyAZrMOUXcU6zn1PWAA9jQX5WZdpLmqPH
-         dBUQaswpg1qgBbgH6FxTjjTSFGwbAy+XhvqNVrQxKINOwkyyHrfYIPT9looUFT9H3N
-         GM5FVKr8mFYIcQ8wmMQcy3tOI07QMjTvHmv45ea5J0NPGYhQG9eSpoik3apcq58Iz+
-         fSxSCpV+F26UwYK1Jj8FnUhwuYpSQGPlmvKA6dP512/Itee7gcB6OHC5ZoKHIlDdM3
-         XYqTIWNwO+QI1i5hlc0GOmW0GUYwGCkKtNlvzSe/xwIBNsAZookBPqwlrn8PMVySgC
-         2N0SS0M9EHXyw==
-Received: by mail-qk1-f170.google.com with SMTP id q3so2626324qkq.12;
-        Thu, 01 Apr 2021 09:03:46 -0700 (PDT)
-X-Gm-Message-State: AOAM533YWvRc38gFT8HNVRaeeTRY3bSb8N8MAt5sPsN3KAOaYiOhYuo7
-        D0P9qOtsyZ1+xjpcI8G6UoVceDTg5japknTalg==
-X-Google-Smtp-Source: ABdhPJwStHNYRy9pgsQh1o9wi8mUMc2/tEoZKnUVOsAiW6sjyZapwKzFBK6eZuazIzCCFNH9ne/QODq+UTX+o2r/Nm8=
-X-Received: by 2002:a37:6592:: with SMTP id z140mr9203928qkb.464.1617293025609;
- Thu, 01 Apr 2021 09:03:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <1617172405-12962-1-git-send-email-victor.liu@nxp.com>
- <1617172405-12962-8-git-send-email-victor.liu@nxp.com> <1617198059.605916.2074860.nullmailer@robh.at.kernel.org>
- <2e6b0bdd03da30446448e86eff69182e417ce43f.camel@nxp.com>
-In-Reply-To: <2e6b0bdd03da30446448e86eff69182e417ce43f.camel@nxp.com>
+        id S234775AbhDASVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 14:21:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36950 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239580AbhDASQj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:16:39 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CBA8C02FEA5;
+        Thu,  1 Apr 2021 09:09:54 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id z15so2261216oic.8;
+        Thu, 01 Apr 2021 09:09:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=FLBIDyYd3J/QtsHCQ3avUSdZOaQsAsWhMC43OlTTZSw=;
+        b=Iqtud0triEWyazPJmzlGRQ6Ocgrzhq5cXJjODDFqG+EbWlylLqxW5JEZ4Oqs3oVxjr
+         +/+UM+k/6eFJf0uYAophB0CwPJxJL2Veo6w2nrdTymgpR4O5w7bMNMA19bg0u+vz86xY
+         QA1+dqkdHKtOWypgr+6YeIDynkJadusJchIuTxvEmhlq6O3TraCUc9nywbgxd2NQ9aex
+         TyxGonDCQrcQdmBvi25wKwcyO0L86aURZX/6EoviSR+SgqdHDyi61sTlOh3BDX16H3hD
+         hGVr5OwgDDKXHQ0P9pWd5tEV9jGgOKo+vivBDmsNIgXhhZpmn35StNc1sszWGDGbEtSR
+         e6/g==
+X-Gm-Message-State: AOAM530z/9WHrfqFjQVEwDp41uxX8vPJMrqFiexuEeBbc2ImFMt86Pyq
+        uvQOdzoMPeYmSRVIl/i02Q==
+X-Google-Smtp-Source: ABdhPJzuyvMJcuMo9cj5QfUbMgNUWOVcunNaqBnqvwFCm8lZfeH3oWw+mP/behHNWR56hqSEeRKiIA==
+X-Received: by 2002:a54:4492:: with SMTP id v18mr6593685oiv.49.1617293393485;
+        Thu, 01 Apr 2021 09:09:53 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id b12sm1259828oti.17.2021.04.01.09.09.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Apr 2021 09:09:53 -0700 (PDT)
+Received: (nullmailer pid 524765 invoked by uid 1000);
+        Thu, 01 Apr 2021 16:09:51 -0000
+Date:   Thu, 1 Apr 2021 11:09:51 -0500
 From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 1 Apr 2021 11:03:34 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLn5simeQ20jHhvdWn54DdkVHJf-f1Q4ij-1ff=vHpi-w@mail.gmail.com>
-Message-ID: <CAL_JsqLn5simeQ20jHhvdWn54DdkVHJf-f1Q4ij-1ff=vHpi-w@mail.gmail.com>
-Subject: Re: [PATCH v7 07/14] dt-bindings: mfd: Add i.MX8qm/qxp Control and
- Status Registers module binding
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     David Airlie <airlied@linux.ie>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, Andrzej Hajda <a.hajda@samsung.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>, Vinod <vkoul@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Puranjay Mohan <puranjay12@gmail.com>
+Cc:     alexandru.ardelean@analog.com, jic23@kernel.org,
+        devicetree@vger.kernel.org, knaack.h@gmx.de,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lars@metafoo.de
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: temperature: Add DT bindings
+ for TMP117
+Message-ID: <20210401160951.GA522095@robh.at.kernel.org>
+References: <20210401091648.87421-1-puranjay12@gmail.com>
+ <20210401091648.87421-2-puranjay12@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210401091648.87421-2-puranjay12@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 1, 2021 at 4:18 AM Liu Ying <victor.liu@nxp.com> wrote:
->
-> On Wed, 2021-03-31 at 08:40 -0500, Rob Herring wrote:
-> > On Wed, 31 Mar 2021 14:33:18 +0800, Liu Ying wrote:
-> > > This patch adds bindings for i.MX8qm/qxp Control and Status Registers module.
-> > >
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > > ---
-> > > v6->v7:
-> > > * Add Rob's R-b tag.
-> > >
-> > > v5->v6:
-> > > * Drop 'select' schema. (Rob)
-> > >
-> > > v4->v5:
-> > > * Newly introduced in v5. (Rob)
-> > >
-> > >  .../devicetree/bindings/mfd/fsl,imx8qxp-csr.yaml   | 192 +++++++++++++++++++++
-> > >  1 file changed, 192 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/mfd/fsl,imx8qxp-csr.yaml
-> > >
-> >
-> > My bot found errors running 'make dt_binding_check' on your patch:
-> >
-> > yamllint warnings/errors:
-> >
-> > dtschema/dtc warnings/errors:
-> > Documentation/devicetree/bindings/mfd/fsl,imx8qxp-csr.example.dt.yaml:0:0: /example-0/syscon@56221000/pxl2dpi: failed to match any schema with compatible: ['fsl,imx8qxp-pxl2dpi']
-> > Documentation/devicetree/bindings/mfd/fsl,imx8qxp-csr.example.dt.yaml:0:0: /example-0/syscon@56221000/ldb: failed to match any schema with compatible: ['fsl,imx8qxp-ldb']
-> > Documentation/devicetree/bindings/mfd/fsl,imx8qxp-csr.example.dt.yaml:0:0: /example-0/phy@56228300: failed to match any schema with compatible: ['fsl,imx8qxp-mipi-dphy']
-> >
->
-> Sorry for the errors.
-> But, my patch passes 'make dt_binding_check' locally upon
-> v5.12-rc1-dontuse at least.
-> My yamllint and dt-schema are up to date.
->
-> Does your bot _additionally_ check all compatibles in example?
-> I guess I missed something?
+On Thu, Apr 01, 2021 at 02:46:47PM +0530, Puranjay Mohan wrote:
+> Add devicetree binding document for TMP117, a digital temperature sensor.
 
-Yes, it now adds 'DT_CHECKER_FLAGS=-m' which is new and pending in
-linux-next. It's off by default until we get rid of the ~90 existing
-cases.
+Please run checkpatch.pl and fix trailing WS.
 
-Rob
+> 
+> Signed-off-by: Puranjay Mohan <puranjay12@gmail.com>
+> ---
+>  .../bindings/iio/temperature/ti,tmp117.yaml   | 34 +++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+> new file mode 100644
+> index 000000000..1ead22317
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+> @@ -0,0 +1,34 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/iio/temperature/ti,tmp117.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: "TI TMP117 - Digital temperature sensor with integrated NV memory"
+> +
+> +description: |
+> +    TI TMP117 - Digital temperature sensor with integrated NV memory that supports
+> +    I2C interface.
+> +      https://www.ti.com/lit/gpn/tmp1
+> +
+> +maintainers: 
+> +  - "Puranjay Mohan <puranjay12@gmail.com>"
+
+Don't need quotes.
+
+> +
+> +properties: 
+> +  compatible: 
+> +    enum: 
+> +      - "ti,tmp117"
+
+Don't need quotes.
+
+Blank line here.
+
+> +  reg: 
+> +    maxItems: 1
+
+blank line here.
+
+> +required: 
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - | 
+> +    tmp117@48 {
+> +        compatible = "ti,tmp117";
+> +        reg = <0x48>;
+
+You could just add to trivial-devices.yaml.
+
+> +      };  
+> -- 
+> 2.30.1
+> 
