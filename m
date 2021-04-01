@@ -2,185 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A1513518CE
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 19:49:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 195B73517FE
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 19:48:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235721AbhDARrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 13:47:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58368 "EHLO
+        id S235794AbhDARnN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 13:43:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234365AbhDARmP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:42:15 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6C8BC08E750;
-        Thu,  1 Apr 2021 06:19:09 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id r12so2848198ejr.5;
-        Thu, 01 Apr 2021 06:19:09 -0700 (PDT)
+        with ESMTP id S234904AbhDARlO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:41:14 -0400
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9ECBC08EA7E
+        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 06:31:26 -0700 (PDT)
+Received: by mail-qv1-xf29.google.com with SMTP id 30so963228qva.9
+        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 06:31:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=VBkSNIu9jBA5fHU0Y3NWECYXpRzyBbvDWGafRk7gPpc=;
-        b=lDMMOIL14l7ufUNV6xs2UXcYTPSgFU8h2wjQriVcS2+u/77N67wZRjQT7FyV14XZZX
-         Vux7T+oSU2IBjynezw66qsucvl8LCudYt4kVtj7d/MhvU+9M1RHbFteRJnbPKK9savWX
-         TZ7Fxz0SZVhpokqQDQ9UayzUwX67BwAJ7jAkGTPMP2UDpoYx4zKsVqceBL5OGkNvKOD3
-         0nLBCS+X6SysnRGEbJKpSuPi2UyBPHD+iafNpad9mdqffyDnlkPEGkjTySN1Z/lwDCKM
-         FnT8+TMM7et/+H9Kj/T5wn8Bed6rojmWZbi8vv2j7EoBHAhqtJ1Kc9dEbGHDs4CZPmja
-         BH0g==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=M7URrjH3tF91DISeDksOmCw5FleOK4Jt+3qfSQ0iFrk=;
+        b=IetzjnnEEnrKVPOI7329Ipnch2bwPIbTtieTYatya9T4FGCuyLVG9yd96W2E/saio4
+         oHxwhsOmKTOftU4HQBBKaohi0d/LTaK5Z+KHpsbbZi+2NoPBznsZdAMLpsDRZ20vWiWz
+         qJiHz3Gh6vDCcQKxVVLcJdhlRKU/kYWbYs3SKUZkGptk4LEKHfNLKMiZ57ikRHEE1Ozn
+         tBE6oSsyGPQBlBWb6YWqoPbx8NX34qh1+G6RXQxOaya8foV+OU0d7ZJ0lbftgNj/uW1F
+         8BrhJ50NztOj0eTptkfAVtoUdJFeKHYUmruTTOcUZ2lVSLteKpSqtt/H7b9RZ/aa92K+
+         3P2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=VBkSNIu9jBA5fHU0Y3NWECYXpRzyBbvDWGafRk7gPpc=;
-        b=C81xjxLVtzQ41pH8DrgmT30/R0lL2n6ZN4BcwhZVRbbH4oUex+VDosnvZhW2zBfEmM
-         n2qgm+tBZ6eO3r4+aGFMG6esNR9KtNMVmur5cMZNhrHfDTUbD7WoXgTZAhDGdrLvBiXj
-         nhiY5xj/yBczfribgoLs5cDlmZCayLmWY/zIPGXEZahlB8OShQkpaSTkyQVjWRJNc49R
-         AxvDiuBNG6TstDx/MjOsuG53R0CaLDGGp4kLSe2iK+G/ertLvoPPSdytpdQbyqahRGTD
-         A9BEKdkSAbOB+IpBS1OIgL7yMGyhkaTsWfzLpH3gXRcTjsnePZYqZBLxhL3HTzeZD75l
-         QsDw==
-X-Gm-Message-State: AOAM530hrYF12RF03WAn2ZuCxlNOTuodZIVg0Bl3xk0iX0R0S+JHt3NF
-        lKlXeKRecRu3ucXvcJtkCrE=
-X-Google-Smtp-Source: ABdhPJxtVHhpwFKWAYnXpm2TJ6lXr751fh1nwggvs/oXsM+PTB9DFxC/IoGnBlNEJZovlhan+BixSQ==
-X-Received: by 2002:a17:906:4146:: with SMTP id l6mr9231494ejk.295.1617283148011;
-        Thu, 01 Apr 2021 06:19:08 -0700 (PDT)
-Received: from BV030612LT ([188.24.140.160])
-        by smtp.gmail.com with ESMTPSA id jv19sm2751559ejc.74.2021.04.01.06.19.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 06:19:07 -0700 (PDT)
-Date:   Thu, 1 Apr 2021 16:19:05 +0300
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
-        matheus@castello.eng.br
-Subject: Re: [PATCH v2 0/6] Add support for Actions Semi Owl socinfo
-Message-ID: <20210401131905.GA2001688@BV030612LT>
-References: <cover.1617110420.git.cristian.ciocaltea@gmail.com>
- <20210401052438.GB14052@work>
- <20210401094041.GA1993499@BV030612LT>
- <20210401102717.GF14052@work>
- <252dd954-c8f1-fa2a-c37a-ede386fc9d43@suse.de>
- <20210401105805.GA1998829@BV030612LT>
- <20210401110752.GG14052@work>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=M7URrjH3tF91DISeDksOmCw5FleOK4Jt+3qfSQ0iFrk=;
+        b=hvEso2esUESk823TFWPRQFk0lg6iuueDotdjDxZPlciSD1dQpQsr1kfd0VOwJs7SfJ
+         xjkFFK3Di5AKR1WcFxGjVMYvLExrsrSTMQYvespEFYYuitRj5mtdOYJsgN8Srp2WXfvM
+         a3IYBgRf4CUgO1SEEqj8qsaz3RRgNIzQKD4qRJ6ET0OJhpMbhiWhbXgrZgsZWkkBMYtV
+         NiBnx82Vr5oAf5kNQgCFNENtg/np4iQWH7UXBOMYUlyCDjhl11CDvRlFed/0/xJ3qCGB
+         gMnfzwchm5UPHba3KTzjcWsPfMLGWDQ1oysIFc+OSnZO2Evlp5V+bbtWmgg4oQc60mIV
+         eARQ==
+X-Gm-Message-State: AOAM531AjXxeY3LBDJOaKfd1NomIK2fEHRF/hXxVnprWMbFN3cREzcTq
+        vE2H3f+5mZtShaQgEnGTbt1HZQpmjHtDoSMOxnUisQ==
+X-Google-Smtp-Source: ABdhPJyT6XQnSSLZ4RVAMOiJfUESRdDAvqkGit4/yqxtj7VeHvsLQtGr6UTr3EFqfbTrOykoWr2jbFcAAaIeUX+1A1w=
+X-Received: by 2002:a0c:a425:: with SMTP id w34mr8013579qvw.2.1617283885963;
+ Thu, 01 Apr 2021 06:31:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210401110752.GG14052@work>
+References: <1617190020-7931-1-git-send-email-kalyan_t@codeaurora.org>
+ <84fdbdc7-7890-965a-bc6b-a19bd0ca4937@linaro.org> <CAF6AEGt_aAq4dF9QkS9uJ7vwvGeR42oToCQKpsWCrfuhy_j+pw@mail.gmail.com>
+ <d104a40f-65c3-2700-e829-bfe8f5712ac5@linaro.org> <96eb927abe1a22711709900cec7f8d11@codeaurora.org>
+In-Reply-To: <96eb927abe1a22711709900cec7f8d11@codeaurora.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 1 Apr 2021 16:31:14 +0300
+Message-ID: <CAA8EJpouKeor8J2QG3nUtLqyNTwd1J44BXDjk4fHCYhykeJ7Hw@mail.gmail.com>
+Subject: Re: [Freedreno] [v1] drm/msm/disp/dpu1: fix warn stack reported
+ during dpu resume
+To:     Kalyan Thota <kalyan_t@codeaurora.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Krishna Manikandan <mkrishn@codeaurora.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Daniel Hung-yu Wu <hywu@google.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@google.com>,
+        Michelle Dean <midean@google.com>,
+        Steev Klimaszewski <steev@kali.org>,
+        freedreno <freedreno@lists.freedesktop.org>, y@qualcomm.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 01, 2021 at 04:37:52PM +0530, Manivannan Sadhasivam wrote:
-> + Matheus
-> 
-> On Thu, Apr 01, 2021 at 01:58:05PM +0300, Cristian Ciocaltea wrote:
-> > Hi Mani, Andreas,
-> > 
-> > On Thu, Apr 01, 2021 at 12:49:37PM +0200, Andreas Färber wrote:
-> > > Hi,
-> > > 
-> > > On 01.04.21 12:27, Manivannan Sadhasivam wrote:
-> > > > On Thu, Apr 01, 2021 at 12:40:41PM +0300, Cristian Ciocaltea wrote:
-> > > >> On Thu, Apr 01, 2021 at 10:54:38AM +0530, Manivannan Sadhasivam wrote:
-> > > >>> On Tue, Mar 30, 2021 at 04:48:15PM +0300, Cristian Ciocaltea wrote:
-> > > >>>> This patchset adds a socinfo driver which provides information about
-> > > >>>> Actions Semi Owl SoCs to user space via sysfs: machine, family, soc_id,
-> > > >>>> serial_number.
-> > > >>>>
-> > > >>>> Please note the serial number is currently available only for the S500
-> > > >>>> SoC variant.
-> > > >>>>
-> > > >>>> This has been tested on the S500 SoC based RoseapplePi SBC.
-> > > >>>>
-> > > >>>
-> > > >>> Is this the soc_id provided by the vendor bootloader (uboot)? If so, under
-> > > >>> what basis it provides? I don't think the SoC has the provision for
-> > > >>> soc_id based on HW parameters.
-> > > >>
-> > > >> No, the soc_id is not provided by the bootloader, or at least I couldn't
-> > > >> identify any related implementation. Instead, I provided this via the
-> > > >> driver itself, since I've encountered this approach in some other soc
-> > > >> drivers as well (e.g. imx/soc-imx.c, versatile/soc-integrator.c). 
-> > > >>
-> > > > 
-> > > > Sorry, I was referring to serial_number. Since your comment says so, can
-> > > > you point to the corresponding code?
-> > > 
-> > > Seconded that this needs to be better understood. If this is just a
-> > > convention of some downstream U-Boot that's not implemented in mainline
-> > > (and maybe not even for Guitar or Labrador? tested on RoseapplePi only),
-> > > it might not be worth its own reserved-memory based kernel driver?
-> > 
-> > The serial number is actually provided by the s500-bootloader for which
-> > Actions did not provide the source code, at least it is not available
-> > in the xapp github repo. I did not find anything related to this in
-> > downstream U-Boot.
-> > 
-> 
-> Hmm, then we can consider this as the firmware dependent property. But
-> can we get consensus that this is common for all S500 SoCs?
+On Thu, 1 Apr 2021 at 16:19, <kalyan_t@codeaurora.org> wrote:
+>
+> On 2021-04-01 07:37, Dmitry Baryshkov wrote:
+> > On 01/04/2021 01:47, Rob Clark wrote:
+> >> On Wed, Mar 31, 2021 at 9:03 AM Dmitry Baryshkov
+> >> <dmitry.baryshkov@linaro.org> wrote:
+> >>>
+> >>> On 31/03/2021 14:27, Kalyan Thota wrote:
+> >>>> WARN_ON was introduced by the below commit to catch runtime resumes
+> >>>> that are getting triggered before icc path was set.
+> >>>>
+> >>>> "drm/msm/disp/dpu1: icc path needs to be set before dpu runtime
+> >>>> resume"
+> >>>>
+> >>>> For the targets where the bw scaling is not enabled, this WARN_ON is
+> >>>> a false alarm. Fix the WARN condition appropriately.
+> >>>
+> >>> Should we change all DPU targets to use bw scaling to the mdp from
+> >>> the
+> >>> mdss nodes? The limitation to sc7180 looks artificial.
+> >>
+> >> yes, we should, this keeps biting us on 845
+> >
+> > Done,
+> > https://lore.kernel.org/linux-arm-msm/20210401020533.3956787-2-dmitry.baryshkov@linaro.org/
+>
+> Hi Dmitry,
+>
+> https://lore.kernel.org/linux-arm-msm/20210401020533.3956787-2-dmitry.baryshkov@linaro.org/
+>
+> you need to add clk_inefficiency_factor, bw_inefficiency_factor in the
+> catalogue for the new
+> targets where bw scaling is being enabled. please reuse sc7180 values.
 
-This should work on all S500 SoCs, as the downstream Linux kernel doesn't
-use any conditional logic around reading those memory locations.
-Please see "owl_check_revision()" in arch/arm/mach-owl/board-owl.c, from
-any of the following repos:
+Done in patch 1 in that series.
 
-* https://github.com/xapp-le/kernel
-* https://github.com/LeMaker/linux-actions
+>
+> secondly, the AXI clock needs to be moved from mdss to mdp device like
+> as in sc7180 dt if its not done already.
 
-> Maybe,
-> Matheus can verify it on Labrador?
+Is this enough:
+sm8250 has <&gcc GCC_DISP_HF_AXI_CLK> both in mdss and mdp nodes
+sdm845 has <&gcc GCC_DISP_AXI_CLK> in mdss node and <&dispcc
+DISP_CC_MDSS_AXI_CLK> in the mdp node.
 
-The verification is pretty straightforward: the serial number is dumped
-on the serial console by the s500 bootloader right before starting
-U-boot:
 
-  load uboot: load address is 0x8000000, entry point is 0x8000040
-  in fourth
-  chip serial no = 9d,4b,f,6d,31,46,e,8,
-  [...]
-  U-Boot 2015.04 (Apr 23 2020 - 23:01:25)Actions-Semi
+>
+> lastly, if you are planning to remove the static votes from dpu_mdss, do
+> you also want to move the
+> interconnect paths from mdss device to mdp device in the dt ?
 
-The socinfo driver should provide the equivalent information, but in
-reversed order (due to integer representation on LE arch):
+I have no strong opinion on this. So far I did not change dt to be
+compatible with the current device trees.
 
-  $ cat /sys/devices/soc0/serial_number
-  080e46316d0f4b9d
-
-> I don't think adding a SOCINFO driver for a single board is a good idea.
-
-The driver could be used for all Owl SoC variants, including S700 and
-S900, even though accessing the serial number is currently supported
-only on S500.
-
-Unfortunately I do only have this S500 SoC based SBC to experiment with,
-therefore I cannot enable new features for the hardware I'm not able to
-validate.
-
-Btw, do you know where I could get an S700 or S900 board from? I
-couldn't find any so far..
-
-Thanks,
-Cristi
-
+>
+>
 > Thanks,
-> Mani
-> 
-> > Kind regards,
-> > Cristi
-> > 
-> > > Implementing a standard interface such as DMI tables or a DT property in
-> > > mainline U-Boot may be more useful then. Is it still Mani's S900 only?
-> > > 
-> > > Regards,
-> > > Andreas
-> > > 
-> > > -- 
-> > > SUSE Software Solutions Germany GmbH
-> > > Maxfeldstr. 5, 90409 Nürnberg, Germany
-> > > GF: Felix Imendörffer
-> > > HRB 36809 (AG Nürnberg)
+> Kalyan
+>
+> >
+> >>
+> >>>>
+> >>>> Reported-by: Steev Klimaszewski <steev@kali.org>
+> >>
+> >> Please add Fixes: tag as well
+> Adding Fixes tag above my sign-off, should i push another version or can
+> it be picked from here ?
+>
+> Fixes: Id252b9c2887 ("drm/msm/disp/dpu1: icc path needs to be set before
+> dpu runtime resume")
+> >>
+> >>>> Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
+> >>>> ---
+> >>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c  |  8 +++++---
+> >>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h  |  9 +++++++++
+> >>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c | 11 ++++++-----
+> >>>>    3 files changed, 20 insertions(+), 8 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> >>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> >>>> index cab387f..0071a4d 100644
+> >>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> >>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> >>>> @@ -294,6 +294,9 @@ static int
+> >>>> dpu_kms_parse_data_bus_icc_path(struct dpu_kms *dpu_kms)
+> >>>>        struct icc_path *path1;
+> >>>>        struct drm_device *dev = dpu_kms->dev;
+> >>>>
+> >>>> +     if (!dpu_supports_bw_scaling(dev))
+> >>>> +             return 0;
+> >>>> +
+> >>>>        path0 = of_icc_get(dev->dev, "mdp0-mem");
+> >>>>        path1 = of_icc_get(dev->dev, "mdp1-mem");
+> >>>>
+> >>>> @@ -934,8 +937,7 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
+> >>>>                DPU_DEBUG("REG_DMA is not defined");
+> >>>>        }
+> >>>>
+> >>>> -     if (of_device_is_compatible(dev->dev->of_node,
+> >>>> "qcom,sc7180-mdss"))
+> >>>> -             dpu_kms_parse_data_bus_icc_path(dpu_kms);
+> >>>> +     dpu_kms_parse_data_bus_icc_path(dpu_kms);
+> >>>>
+> >>>>        pm_runtime_get_sync(&dpu_kms->pdev->dev);
+> >>>>
+> >>>> @@ -1198,7 +1200,7 @@ static int __maybe_unused
+> >>>> dpu_runtime_resume(struct device *dev)
+> >>>>
+> >>>>        ddev = dpu_kms->dev;
+> >>>>
+> >>>> -     WARN_ON(!(dpu_kms->num_paths));
+> >>>> +     WARN_ON((dpu_supports_bw_scaling(ddev) &&
+> >>>> !dpu_kms->num_paths));
+> >>>>        /* Min vote of BW is required before turning on AXI clk */
+> >>>>        for (i = 0; i < dpu_kms->num_paths; i++)
+> >>>>                icc_set_bw(dpu_kms->path[i], 0,
+> >>>> Bps_to_icc(MIN_IB_BW));
+> >>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
+> >>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
+> >>>> index d6717d6..f7bcc0a 100644
+> >>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
+> >>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h
+> >>>> @@ -154,6 +154,15 @@ struct vsync_info {
+> >>>>
+> >>>>    #define to_dpu_global_state(x) container_of(x, struct
+> >>>> dpu_global_state, base)
+> >>>>
+> >>>> +/**
+> >>>> + * dpu_supports_bw_scaling: returns true for drivers that support
+> >>>> bw scaling.
+> >>>> + * @dev: Pointer to drm_device structure
+> >>>> + */
+> >>>> +static inline int dpu_supports_bw_scaling(struct drm_device *dev)
+> >>>> +{
+> >>>> +     return of_device_is_compatible(dev->dev->of_node,
+> >>>> "qcom,sc7180-mdss");
+> >>>> +}
+> >>>> +
+> >>>>    /* Global private object state for tracking resources that are
+> >>>> shared across
+> >>>>     * multiple kms objects (planes/crtcs/etc).
+> >>>>     */
+> >>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c
+> >>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c
+> >>>> index cd40788..8cd712c 100644
+> >>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c
+> >>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c
+> >>>> @@ -41,6 +41,9 @@ static int dpu_mdss_parse_data_bus_icc_path(struct
+> >>>> drm_device *dev,
+> >>>>        struct icc_path *path0 = of_icc_get(dev->dev, "mdp0-mem");
+> >>>>        struct icc_path *path1 = of_icc_get(dev->dev, "mdp1-mem");
+> >>>>
+> >>>> +     if (dpu_supports_bw_scaling(dev))
+> >>>> +             return 0;
+> >>>> +
+> >>>>        if (IS_ERR_OR_NULL(path0))
+> >>>>                return PTR_ERR_OR_ZERO(path0);
+> >>>>
+> >>>> @@ -276,11 +279,9 @@ int dpu_mdss_init(struct drm_device *dev)
+> >>>>
+> >>>>        DRM_DEBUG("mapped mdss address space @%pK\n",
+> >>>> dpu_mdss->mmio);
+> >>>>
+> >>>> -     if (!of_device_is_compatible(dev->dev->of_node,
+> >>>> "qcom,sc7180-mdss")) {
+> >>>> -             ret = dpu_mdss_parse_data_bus_icc_path(dev, dpu_mdss);
+> >>>> -             if (ret)
+> >>>> -                     return ret;
+> >>>> -     }
+> >>>> +     ret = dpu_mdss_parse_data_bus_icc_path(dev, dpu_mdss);
+> >>>> +     if (ret)
+> >>>> +             return ret;
+> >>>>
+> >>>>        mp = &dpu_mdss->mp;
+> >>>>        ret = msm_dss_parse_clock(pdev, mp);
+> >>>>
+> >>>
+> >>>
+> >>> --
+> >>> With best wishes
+> >>> Dmitry
+
+
+
+-- 
+With best wishes
+Dmitry
