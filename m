@@ -2,211 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F122B351163
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 11:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 752983511A3
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 11:14:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233553AbhDAJBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 05:01:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60006 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233665AbhDAJB2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 05:01:28 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06729C061788
-        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 02:01:22 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id l4so1725524ejc.10
-        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 02:01:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jeawG8MSfVqkUaUQtWGB1XMFCzIepDytNa9lre7e8Mw=;
-        b=FEl2YMxTXVENiSYhVxaNieJr41QVaMPMGAbtjUf0Lcupljd9MFs4+63s/XEefLX86R
-         j5pyDaWxXXyH+dA3uC9nREG6q9KH91YJevjvLMEA74/8t061DdCnVSgNU0LlpUaBoSdC
-         etLUdWLlFDQvbOxuzIfkrR6e9+C3bZ+KmNQCkF7e6Asm3NqVojfmMsI4h8WR7NoR9bWN
-         olH/pHoqmabUJbIDL2hHPAOPsNVGjKyoEZF4p77ig+wSAAnXyWZcw7O5ckhq+RdSfVOy
-         A2RvwCS7fHrckzzFc99HthIuDG/Nsk1GhY0qp/q+eTKc/FVmfkOF18vif9+qlO+dh9I5
-         MZdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jeawG8MSfVqkUaUQtWGB1XMFCzIepDytNa9lre7e8Mw=;
-        b=Fiv0Lkb1JtgtSmHivNm8ImyZAKX3cRe7Jk0kRI/YN6ApKUHuWR1i7BmYf3KtPBhpUH
-         jE0VRHjwlWwlKe6vgqxlFcXu7p3N2L1nPfILFEEdd9q0HS/WxEGyOfPqePNVRP7q2bdN
-         4K807MGJS6rdLBjix2CrtX0wAJV3G9RAi61lMy4LqsvhxkVwMAptMP0PnKmumnTPm99D
-         HXxzULrMI3bCkHRgOxQTOtUP8VkAcBQC1ZBTqiyjYgEGTZIHDVxBBPGQ8TPBCv7uCDjj
-         MTITvH/HoT0tjhy2SGUIyFp+tyyGqB84bS3a5LRhGupKRvHIeYU5vDyNBEuTqRN8MkQ0
-         Qg2w==
-X-Gm-Message-State: AOAM532eB2550ABNUvJ9vtZzVr0GGxg5PhR8K2n688gX6LlhN8tPEK6v
-        gOBJJWQiw6dCcH7eDqdWJILNrw==
-X-Google-Smtp-Source: ABdhPJyND7NWGHCHO2SVFXcbvtjRs4Uug5GLJ9Z0wsMVcYpCzK4a0hP/S/pqmI46Vcx93pGbGdmXIQ==
-X-Received: by 2002:a17:906:b202:: with SMTP id p2mr8135406ejz.244.1617267680719;
-        Thu, 01 Apr 2021 02:01:20 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id q26sm2500264eja.45.2021.04.01.02.01.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 02:01:19 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     vkoul@kernel.org
-Cc:     yung-chuan.liao@linux.intel.com,
-        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        robh@kernel.org, devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v2] soundwire: qcom: wait for fifo space to be available before read/write
-Date:   Thu,  1 Apr 2021 10:00:58 +0100
-Message-Id: <20210401090058.24041-1-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S233700AbhDAJOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 05:14:21 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:25685 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233050AbhDAJOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 05:14:01 -0400
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 01 Apr 2021 02:14:01 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 01 Apr 2021 02:13:59 -0700
+X-QCInternal: smtphost
+Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 01 Apr 2021 14:43:36 +0530
+Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
+        id 7CBEF26F7; Thu,  1 Apr 2021 14:43:34 +0530 (IST)
+From:   satya priya <skakit@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org,
+        satya priya <skakit@codeaurora.org>
+Subject: [PATCH V2 0/5] Add PMIC DT files for sc7280 
+Date:   Thu,  1 Apr 2021 14:43:11 +0530
+Message-Id: <1617268396-1837-1-git-send-email-skakit@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If we write registers very fast we can endup in a situation where some
-of the writes will be dropped without any notice.
+Changes in V2:
+ - As per Matthias's comments:
+    - I've Split the patch into per-PMIC patches and one sc7280 patch
+    - Removed 2nd critical point, thermal-governer property
+	- s/pm8325_tz/pm7325_temp_alarm and s/pm7325_temp_alarm/pm7325_thermal
+    - Fixed few other minor errors.
 
-So wait for the fifo space to be available before reading/writing the
-soundwire registers.
+ - As per Bjorn's comments, replaced '_' with '-' in node names and moved
+   DT files inclusion to board dts.
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
+This series is dependent on below series which adds DT files for SC7280 SoC
+https://lore.kernel.org/patchwork/project/lkml/list/?series=488871
 
-Changes since v1:
-        merged some of the loop code to make it simple as suggested by Pierre
-        updated error code and comments as suggested by Vinod
+satya priya (5):
+  arm64: dts: qcom: pm7325: Add PMIC peripherals for pm7325
+  arm64: dts: qcom: pm8350c: Add PMIC peripherals for pm8350c
+  arm64: dts: qcom: pmk8350: Add PMIC peripherals for pmk8350
+  arm64: dts: qcom: pmr735a: Add PMIC peripherals for pmr735a
+  arm64: dts: sc7280: Include PMIC DT files for sc7280
 
+ arch/arm64/boot/dts/qcom/pm7325.dtsi    |  53 +++++++++++++++++
+ arch/arm64/boot/dts/qcom/pm8350c.dtsi   |  53 +++++++++++++++++
+ arch/arm64/boot/dts/qcom/pmk8350.dtsi   | 100 ++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/pmr735a.dtsi   |  53 +++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts |   4 ++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi    |   3 +
+ 6 files changed, 266 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8350c.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pmk8350.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pmr735a.dtsi
 
- drivers/soundwire/qcom.c | 66 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 66 insertions(+)
-
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 6affa3cd4039..5fd4a99cc8ac 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -24,6 +24,8 @@
- #define SWRM_COMP_CFG_IRQ_LEVEL_OR_PULSE_MSK			BIT(1)
- #define SWRM_COMP_CFG_ENABLE_MSK				BIT(0)
- #define SWRM_COMP_PARAMS					0x100
-+#define SWRM_COMP_PARAMS_WR_FIFO_DEPTH				GENMASK(14, 10)
-+#define SWRM_COMP_PARAMS_RD_FIFO_DEPTH				GENMASK(19, 15)
- #define SWRM_COMP_PARAMS_DOUT_PORTS_MASK			GENMASK(4, 0)
- #define SWRM_COMP_PARAMS_DIN_PORTS_MASK				GENMASK(9, 5)
- #define SWRM_INTERRUPT_STATUS					0x200
-@@ -51,6 +53,8 @@
- #define SWRM_CMD_FIFO_CMD					0x308
- #define SWRM_CMD_FIFO_FLUSH					0x1
- #define SWRM_CMD_FIFO_STATUS					0x30C
-+#define SWRM_RD_CMD_FIFO_CNT_MASK				GENMASK(20, 16)
-+#define SWRM_WR_CMD_FIFO_CNT_MASK				GENMASK(12, 8)
- #define SWRM_CMD_FIFO_CFG_ADDR					0x314
- #define SWRM_CONTINUE_EXEC_ON_CMD_IGNORE			BIT(31)
- #define SWRM_RD_WR_CMD_RETRIES					0x7
-@@ -104,6 +108,7 @@
- #define SWR_BROADCAST_CMD_ID    0x0F
- #define SWR_MAX_CMD_ID	14
- #define MAX_FIFO_RD_RETRY 3
-+#define SWR_OVERFLOW_RETRY_COUNT 30
- 
- struct qcom_swrm_port_config {
- 	u8 si;
-@@ -147,6 +152,8 @@ struct qcom_swrm_ctrl {
- 	int (*reg_read)(struct qcom_swrm_ctrl *ctrl, int reg, u32 *val);
- 	int (*reg_write)(struct qcom_swrm_ctrl *ctrl, int reg, int val);
- 	u32 slave_status;
-+	u32 wr_fifo_depth;
-+	u32 rd_fifo_depth;
- };
- 
- struct qcom_swrm_data {
-@@ -238,6 +245,55 @@ static u32 swrm_get_packed_reg_val(u8 *cmd_id, u8 cmd_data,
- 	return val;
- }
- 
-+static int swrm_wait_for_rd_fifo_avail(struct qcom_swrm_ctrl *swrm)
-+{
-+	u32 fifo_outstanding_data, value;
-+	int fifo_retry_count = SWR_OVERFLOW_RETRY_COUNT;
-+
-+	do {
-+		/* Check for fifo underflow during read */
-+		swrm->reg_read(swrm, SWRM_CMD_FIFO_STATUS, &value);
-+		fifo_outstanding_data = FIELD_GET(SWRM_RD_CMD_FIFO_CNT_MASK, value);
-+
-+		/* Check if read data is available in read fifo */
-+		if (fifo_outstanding_data > 0)
-+			return 0;
-+
-+		usleep_range(500, 510);
-+	} while (fifo_retry_count--);
-+
-+	if (fifo_outstanding_data == 0) {
-+		dev_err_ratelimited(swrm->dev, "%s err read underflow\n", __func__);
-+		return -EIO;
-+	}
-+
-+	return 0;
-+}
-+
-+static int swrm_wait_for_wr_fifo_avail(struct qcom_swrm_ctrl *swrm)
-+{
-+	u32 fifo_outstanding_cmds, value;
-+	int fifo_retry_count = SWR_OVERFLOW_RETRY_COUNT;
-+
-+	do {
-+		/* Check for fifo overflow during write */
-+		swrm->reg_read(swrm, SWRM_CMD_FIFO_STATUS, &value);
-+		fifo_outstanding_cmds = FIELD_GET(SWRM_WR_CMD_FIFO_CNT_MASK, value);
-+
-+		/* Check for space in write fifo before writing */
-+		if (fifo_outstanding_cmds < swrm->wr_fifo_depth)
-+			return 0;
-+
-+		usleep_range(500, 510);
-+	} while (fifo_retry_count--);
-+
-+	if (fifo_outstanding_cmds == swrm->wr_fifo_depth) {
-+		dev_err_ratelimited(swrm->dev, "%s err write overflow\n", __func__);
-+		return -EIO;
-+	}
-+
-+	return 0;
-+}
- 
- static int qcom_swrm_cmd_fifo_wr_cmd(struct qcom_swrm_ctrl *swrm, u8 cmd_data,
- 				     u8 dev_addr, u16 reg_addr)
-@@ -256,6 +312,9 @@ static int qcom_swrm_cmd_fifo_wr_cmd(struct qcom_swrm_ctrl *swrm, u8 cmd_data,
- 					      dev_addr, reg_addr);
- 	}
- 
-+	if (swrm_wait_for_wr_fifo_avail(swrm))
-+		return SDW_CMD_FAIL_OTHER;
-+
- 	/* Its assumed that write is okay as we do not get any status back */
- 	swrm->reg_write(swrm, SWRM_CMD_FIFO_WR_CMD, val);
- 
-@@ -295,6 +354,9 @@ static int qcom_swrm_cmd_fifo_rd_cmd(struct qcom_swrm_ctrl *swrm,
- 	/* wait for FIFO RD CMD complete to avoid overflow */
- 	usleep_range(250, 255);
- 
-+	if (swrm_wait_for_rd_fifo_avail(swrm))
-+		return SDW_CMD_FAIL_OTHER;
-+
- 	do {
- 		swrm->reg_read(swrm, SWRM_CMD_FIFO_RD_FIFO_ADDR, &cmd_data);
- 		rval[0] = cmd_data & 0xFF;
-@@ -586,6 +648,10 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
- 				SWRM_INTERRUPT_STATUS_RMSK);
- 	}
- 	ctrl->slave_status = 0;
-+	ctrl->reg_read(ctrl, SWRM_COMP_PARAMS, &val);
-+	ctrl->rd_fifo_depth = FIELD_GET(SWRM_COMP_PARAMS_RD_FIFO_DEPTH, val);
-+	ctrl->wr_fifo_depth = FIELD_GET(SWRM_COMP_PARAMS_WR_FIFO_DEPTH, val);
-+
- 	return 0;
- }
- 
 -- 
-2.21.0
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
 
