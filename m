@@ -2,109 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1411350F24
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 08:40:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D74C5350FCD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 09:08:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233153AbhDAGjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 02:39:48 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:40805 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233240AbhDAGjR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 02:39:17 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1617259155; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=WTlV2xRuqBGN5yAQfQ5SfEWrU6o6mEBhlV6AOHQK0lI=;
- b=V4+0MlsHFfurvxacopLjaB/QYtw2Shx4rnOMWFuQ+zEK9cZn7am2ssdTYGyMVgl+87uXDqv+
- LNimgu2t+8F/AeDztrvP/er02UYp3RQcaBDkevUgK0B0k65rLR7D43Hg5gWtsbEQh2eVCUUF
- zY2MOfGq/WhNFuFknYTm73bnKQU=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 60656a938166b7eff7386473 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 01 Apr 2021 06:39:14
- GMT
-Sender: rojay=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 2E286C43461; Thu,  1 Apr 2021 06:39:14 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: rojay)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7533DC433CA;
-        Thu,  1 Apr 2021 06:39:13 +0000 (UTC)
+        id S233371AbhDAHHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 03:07:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48646 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233283AbhDAHHh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Apr 2021 03:07:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0A6C26100A;
+        Thu,  1 Apr 2021 07:07:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617260856;
+        bh=bVl57d/4fiyUdavdBfO/VSp+JHKCZiAnocwkVoIMVDI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WDKj2DSpEzRN15lhYNujT6MLgz+lAhTPmbYQL/gQ9HvrWDCZsNIaXc10i1iM6kwPu
+         lVIZdIkzxU19G8GuvpGiTlak0W2qU6fO1J5psT96i4Tq6klhfZJHI+M+Iu2r49jo/q
+         Sbkc4PrOV+x6wsh/IUcTHqtGiKesGQEFXsedvxREgu+BtKaTeGw623LU1w/q4lUzhe
+         RqMLJ/OHfxG8i8/HXdYnaIQEC3uvOABTD3hLwfVMh6GgxQa183RVQdIvCnWrWyDrDG
+         UYvuEPuxhYCyEBqoNxdmdYCCX+DdyYC515m+bd9RHtnNKQEoejKG2CQp6IrOlYV+Ju
+         j8tbEDYwYjykA==
+Date:   Thu, 1 Apr 2021 12:37:32 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     yung-chuan.liao@linux.intel.com,
+        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        robh@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] soundwire: qcom: wait for fifo space to be available
+ before read/write
+Message-ID: <YGVxNBKAESSLMeQ+@vkoul-mobl.Dlink>
+References: <20210331170033.17174-1-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 01 Apr 2021 12:09:13 +0530
-From:   rojay@codeaurora.org
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Matthias Kaehlcke <mka@chromium.org>, akashast@codeaurora.org,
-        msavaliy@qti.qualcomm.com, parashar@codeaurora.org,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-i2c@vger.kernel.org
-Subject: Re: [PATCH 3/3] i2c: i2c-qcom-geni: Add support for
- 'assigned-performance-states'
-In-Reply-To: <29b30a2c0c4d7292747a073d23daaa70@codeaurora.org>
-References: <20201224111210.1214-1-rojay@codeaurora.org>
- <20201224111210.1214-4-rojay@codeaurora.org> <YAGqKfDfB7EEuZVn@builder.lan>
- <6bfec3e6-3d26-7ade-d836-032273856ce2@codeaurora.org>
- <CAPDyKFqF0NE3QRAEfiqj5QOXXH2om4CpyyeudeqoovANfvjsaQ@mail.gmail.com>
- <20210119110516.fgbbllyg7lxwwfdz@vireshk-i7>
- <CAPDyKFogrWt=K3VtEZVH5bPL_fYt7rgdm5wGgq+QHtzX-n0z7g@mail.gmail.com>
- <29b30a2c0c4d7292747a073d23daaa70@codeaurora.org>
-Message-ID: <cfd90d2a05aa0411ee7a976a89a361af@codeaurora.org>
-X-Sender: rojay@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210331170033.17174-1-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-02-12 14:51, rojay@codeaurora.org wrote:
-> On 2021-01-20 19:01, Ulf Hansson wrote:
->> On Tue, 19 Jan 2021 at 12:05, Viresh Kumar <viresh.kumar@linaro.org> 
->> wrote:
->>> 
->>> On 19-01-21, 12:02, Ulf Hansson wrote:
->>> > As a matter of fact this was quite recently discussed [1], which also
->>> > pointed out some issues when using the "required-opps" in combination,
->>> > but perhaps that got resolved? Viresh?
->>> 
->>> Perhaps we never did anything there ..
->> 
->> Okay. Looks like we should pick up that discussion again, to conclude
->> on how to move forward.
->> 
+On 31-03-21, 18:00, Srinivas Kandagatla wrote:
+> If we write registers very fast we can endup in a situation where some
+> of the writes will be dropped without any notice.
 > 
-> Soft Reminder!
+> So wait for the fifo space to be available before reading/writing the
+> soundwire registers.
 > 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  drivers/soundwire/qcom.c | 74 ++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 74 insertions(+)
+> 
+> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+> index 6affa3cd4039..9b45717577f2 100644
+> --- a/drivers/soundwire/qcom.c
+> +++ b/drivers/soundwire/qcom.c
+> @@ -24,6 +24,8 @@
+>  #define SWRM_COMP_CFG_IRQ_LEVEL_OR_PULSE_MSK			BIT(1)
+>  #define SWRM_COMP_CFG_ENABLE_MSK				BIT(0)
+>  #define SWRM_COMP_PARAMS					0x100
+> +#define SWRM_COMP_PARAMS_WR_FIFO_DEPTH				GENMASK(14, 10)
+> +#define SWRM_COMP_PARAMS_RD_FIFO_DEPTH				GENMASK(19, 15)
+>  #define SWRM_COMP_PARAMS_DOUT_PORTS_MASK			GENMASK(4, 0)
+>  #define SWRM_COMP_PARAMS_DIN_PORTS_MASK				GENMASK(9, 5)
+>  #define SWRM_INTERRUPT_STATUS					0x200
+> @@ -51,6 +53,8 @@
+>  #define SWRM_CMD_FIFO_CMD					0x308
+>  #define SWRM_CMD_FIFO_FLUSH					0x1
+>  #define SWRM_CMD_FIFO_STATUS					0x30C
+> +#define SWRM_RD_CMD_FIFO_CNT_MASK				GENMASK(20, 16)
+> +#define SWRM_WR_CMD_FIFO_CNT_MASK				GENMASK(12, 8)
+>  #define SWRM_CMD_FIFO_CFG_ADDR					0x314
+>  #define SWRM_CONTINUE_EXEC_ON_CMD_IGNORE			BIT(31)
+>  #define SWRM_RD_WR_CMD_RETRIES					0x7
+> @@ -104,6 +108,7 @@
+>  #define SWR_BROADCAST_CMD_ID    0x0F
+>  #define SWR_MAX_CMD_ID	14
+>  #define MAX_FIFO_RD_RETRY 3
+> +#define SWR_OVERFLOW_RETRY_COUNT 30
+>  
+>  struct qcom_swrm_port_config {
+>  	u8 si;
+> @@ -147,6 +152,8 @@ struct qcom_swrm_ctrl {
+>  	int (*reg_read)(struct qcom_swrm_ctrl *ctrl, int reg, u32 *val);
+>  	int (*reg_write)(struct qcom_swrm_ctrl *ctrl, int reg, int val);
+>  	u32 slave_status;
+> +	u32 wr_fifo_depth;
+> +	u32 rd_fifo_depth;
+>  };
+>  
+>  struct qcom_swrm_data {
+> @@ -238,6 +245,63 @@ static u32 swrm_get_packed_reg_val(u8 *cmd_id, u8 cmd_data,
+>  	return val;
+>  }
+>  
+> +static int swrm_wait_for_rd_fifo_avail(struct qcom_swrm_ctrl *swrm)
+> +{
+> +	u32 fifo_outstanding_cmd, value;
+> +	u8 fifo_retry_count = SWR_OVERFLOW_RETRY_COUNT;
+> +
+> +	/* Check for fifo underflow during read */
+> +	swrm->reg_read(swrm, SWRM_CMD_FIFO_STATUS, &value);
+> +	fifo_outstanding_cmd = FIELD_GET(SWRM_RD_CMD_FIFO_CNT_MASK, value);
+> +
+> +	 /* Check number of outstanding commands in fifo before read */
+> +	if (fifo_outstanding_cmd)
+> +		return 0;
+> +
+> +	do {
+> +		usleep_range(500, 510);
+> +		swrm->reg_read(swrm, SWRM_CMD_FIFO_STATUS, &value);
+> +		fifo_outstanding_cmd = FIELD_GET(SWRM_RD_CMD_FIFO_CNT_MASK, value);
+> +		if (fifo_outstanding_cmd > 0)
+> +			break;
+> +	} while (fifo_retry_count--);
+> +
+> +	if (fifo_outstanding_cmd == 0) {
+> +		dev_err_ratelimited(swrm->dev, "%s err read underflow\n", __func__);
+> +		return -ENOMEM;
 
-Request Viresh, Uffe to discuss on the way forward.
+ENOMEM ? that should be EIO, we expected data but didnt get it in read
+fifo
 
->>> 
->>> --
->>> viresh
->> 
->> Kind regards
->> Uffe
-> 
-> - Roja
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int swrm_wait_for_wr_fifo_avail(struct qcom_swrm_ctrl *swrm)
+> +{
+> +	u32 fifo_outstanding_cmd, value;
+> +	u8 fifo_retry_count = SWR_OVERFLOW_RETRY_COUNT;
+> +
+> +	/* Check for fifo overflow during write */
+> +	swrm->reg_read(swrm, SWRM_CMD_FIFO_STATUS, &value);
+> +	fifo_outstanding_cmd = FIELD_GET(SWRM_WR_CMD_FIFO_CNT_MASK, value);
+> +
+> +	/* Check number of outstanding commands in fifo before write */
+> +	if (fifo_outstanding_cmd != swrm->wr_fifo_depth)
+> +		return 0;
+
+maybe the comment should say, check for space in write fifo?
+
+> +
+> +	do {
+> +		usleep_range(500, 510);
+> +		swrm->reg_read(swrm, SWRM_CMD_FIFO_STATUS, &value);
+> +		fifo_outstanding_cmd = FIELD_GET(SWRM_WR_CMD_FIFO_CNT_MASK, value);
+> +		if (fifo_outstanding_cmd < swrm->wr_fifo_depth)
+> +			break;
+> +	} while (fifo_retry_count--);
+> +
+> +	if (fifo_outstanding_cmd == swrm->wr_fifo_depth) {
+> +		dev_err_ratelimited(swrm->dev, "%s err write overflow\n", __func__);
+> +		return -ENOMEM;
+
+EIO or better error code here too
+
+-- 
+~Vinod
