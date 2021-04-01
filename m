@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF3A8352343
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 01:17:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ED7B352344
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 01:17:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234512AbhDAXRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S231160AbhDAXRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 1 Apr 2021 19:17:24 -0400
-Received: from smtpcmd0871.aruba.it ([62.149.156.71]:42648 "EHLO
+Received: from smtpcmd0871.aruba.it ([62.149.156.71]:58567 "EHLO
         smtpcmd0871.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231160AbhDAXRX (ORCPT
+        with ESMTP id S233710AbhDAXRX (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 19:17:23 -0400
 Received: from ubuntu.localdomain ([146.241.168.220])
         by Aruba Outgoing Smtp  with ESMTPSA
-        id S6YzlD4W1HTbyS6YzlYTd5; Fri, 02 Apr 2021 01:17:22 +0200
+        id S6YzlD4W1HTbyS6Z0lYTdO; Fri, 02 Apr 2021 01:17:22 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-        t=1617319042; bh=JSvoWMS/fePUFcFpVRkBCt4jZ6UaCd8sEYjvfe8v38w=;
+        t=1617319042; bh=dGQJyzoOvaZ/oMBlClhRLrTVTrIBTYOzUofqylrfAkk=;
         h=From:To:Subject:Date:MIME-Version;
-        b=hd5LhLrsSCsj5Q+rpeDeCfdscuOb56BYHurhjJZ8IVpI1+sqAMeCWMlrENzSVIObR
-         VuF4DDFcEKlUx40D0oYg+IWTkajWVCIiKHvGGZF6s+6Z5YuQ1MM0hU+IRwg3FZXuCQ
-         6dkaW9oAj8usTo9ch0zXo5NRuIl64aJJAxA1dg2stPqv86kQQA/iVzFwgVmvE9Xakf
-         m4ESn5IueyoGNMG5q0/6YzfGjc2WWvviUIkM/tc/FP7U02922wkF3BrbOm53fupjEH
-         0fYDLw+25pPCmXAegfr7xhbbUEwYaCtMZ+piEixFXM1ofic2gMBcuLohQbXy7gUDst
-         zgxbKp5kgTdxw==
+        b=EdQlCsy6ArI1ONne37C/1gNuBQejOwDdqoxe30xvZhD3vFr3tuSaJ8QpOmBPQwl1i
+         6OUyINM/eDbu0mmPkodZ+Yk4U1MXCYQtL1xNCf+FgU30jOnsg6ILsUbSB7tlz61osc
+         CJUecG4bQSW+Frk09BeAXFbwtw/46f0bp0t4twL7VAwJLoqPxzfUO9CO0XPw5RmUmu
+         dOhQjNDzU8UpzqBaU8ff+RTqmIs7gejZmoXFf+pO+AcWchLRVy8Rf278QIx12SyJXJ
+         MnT7AntKX6hWa+vutEahUIiqUu5iYojaNdEsJTQ3BbAB+lKlLagusOJS7B1QohvayO
+         stcUd2cqJN6mw==
 From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
 To:     Rob Herring <robh+dt@kernel.org>
 Cc:     Thierry Reding <thierry.reding@gmail.com>,
@@ -30,49 +30,49 @@ Cc:     Thierry Reding <thierry.reding@gmail.com>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Giulio Benetti <giulio.benetti@benettiengineering.com>
-Subject: [PATCH v3 0/9] Add 4 Jenson simple panels
-Date:   Fri,  2 Apr 2021 01:17:11 +0200
-Message-Id: <20210401231720.2470869-1-giulio.benetti@benettiengineering.com>
+        Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/9] dt-bindings: Add Jenson Display vendor prefix
+Date:   Fri,  2 Apr 2021 01:17:12 +0200
+Message-Id: <20210401231720.2470869-2-giulio.benetti@benettiengineering.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210305234427.572114-1-giulio.benetti@benettiengineering.com>
+In-Reply-To: <20210401231720.2470869-1-giulio.benetti@benettiengineering.com>
 References: <20210305234427.572114-1-giulio.benetti@benettiengineering.com>
+ <20210401231720.2470869-1-giulio.benetti@benettiengineering.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CMAE-Envelope: MS4wfOL9AQ4RcJL649SgpWxnuzzFzsY6X41cjGOyr1mDgbIcV3RK+zL7bNLpVfgTYd+Fq/MgpwJSKFTMyDYQ5sweB9MbYG7aPEPXB8VgXG8r8XAwEPxv7G07
- hUAQqG6AyHlCdSMDjG+6exQMKlCostH02aJfVN/kX7VzHnpikc+t/2/n1kNZKAETrqEDj9MmSWOPg3sr+fJUj+vDJPIqk56m7b0xA9FuuG6qjP5xhfbx/KYr
- bSlWdrS1F2vXwRTZU3PG6NQFG1WTEp+KicDyUt5OKYUfWDCzyBZgJbC7SN9Q7VWvKcjBzkvEQ9DTOHiWyB+AB6jfEJUvG/f4eVKYByQ6U2TkIWMPptWg1K9v
- 2ii7tPwAd/ndIFSTGmhKiX8RYRVTmxndOxovzcOIXG6SeG7j5WYHqTGSzRc4snh1MnRMXZbTpqTx1YDkxBkhserR0vXBSbd7+YIVDw3nkhBI4EOQAuU=
+ hUAQqG6AyHlCdSMDjG+6exQMKlCostH02aJKXCOfgYgXTgA6BMOr4URbrInDiIsA866dkKigfQmfU+MJ+mWSYYp4H1Cv3d1Elcu+aJLKBFt/tKeA7EeRjZ1p
+ wvrL0KnlL9yXEVJk0zNv/YvWD/AyLoJa+3CJYd5EhjslJWVckOvY/V0Z5PC4NZmMIDoKL44kKXpaIAyjXBrEb2S3QyvpR++2khiIRwimSnl/K4u/P7qXpX+U
+ 7onhEn2BFxkBDTdyY8cPE5VwhTHeNgtCQJyhkVRk9+3/zgLmr+FM3UNQZQMjbt7nmPLjzR4R90mxOb8vbx4jt3kDu3fC7aoZr3CUKIi5shKAMMtHXjQAf+a3
+ gmcvx/EdfjijInT1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patchset introduce Jenson vendor and add 4 of its panels to
-panel-simple driver.
+Update Documentation/devicetree/bindings/vendor-prefixes.yaml to
+include "jenson" as a vendor prefix for "Jenson Display".
+Company website: http://www.jensondisplay.com/
 
+Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
-V2-V3:
-* changed my SoB and authorship
-* added some forgotten acked-by
-* fixed alpha-numeric order on adding bindings
----
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Giulio Benetti (9):
-  dt-bindings: Add Jenson Display vendor prefix
-  dt-bindings: display/panel: add Jenson JT60245-01
-  dt-bindings: display/panel: add Jenson JT60248-01
-  dt-bindings: display/panel: add Jenson JT60249-01
-  dt-bindings: display/panel: add Jenson JT60250-02
-  drm/panel: simple: add Jenson JT60245-01
-  drm/panel: simple: add Jenson JT60248-01
-  drm/panel: simple: add Jenson JT60249-01
-  drm/panel: simple: add Jenson JT60250-02
-
- .../bindings/display/panel/panel-simple.yaml  |   8 ++
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- drivers/gpu/drm/panel/panel-simple.c          | 108 ++++++++++++++++++
- 3 files changed, 118 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index f6064d84a424..a1312637d6ff 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -553,6 +553,8 @@ patternProperties:
+     description: Japan Display Inc.
+   "^jedec,.*":
+     description: JEDEC Solid State Technology Association
++  "^jenson,.*":
++    description: Jenson Display
+   "^jesurun,.*":
+     description: Shenzhen Jesurun Electronics Business Dept.
+   "^jianda,.*":
 -- 
 2.25.1
 
