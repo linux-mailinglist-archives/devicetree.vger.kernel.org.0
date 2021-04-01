@@ -2,136 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5979D352AA7
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 14:28:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A59A2352ACF
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 14:50:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229599AbhDBM1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 08:27:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47968 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235373AbhDBM1n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 08:27:43 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94B49C0613E6;
-        Fri,  2 Apr 2021 05:27:41 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id 5C3AE1F442CC
-Message-ID: <5674859659f93ba547cad43528ac94ef145347b3.camel@collabora.com>
-Subject: Re: [PATCH v8 09/13] media: uapi: Add a control for HANTRO driver
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        lee.jones@linaro.org, gregkh@linuxfoundation.org,
-        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
-        emil.l.velikov@gmail.com
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
-        kernel@collabora.com
-Date:   Fri, 02 Apr 2021 09:27:28 -0300
-In-Reply-To: <20210401160003.88803-10-benjamin.gaignard@collabora.com>
-References: <20210401160003.88803-1-benjamin.gaignard@collabora.com>
-         <20210401160003.88803-10-benjamin.gaignard@collabora.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.2-1 
+        id S235426AbhDBMuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 08:50:24 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:37168 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229932AbhDBMuX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 08:50:23 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 131DqGu0040293;
+        Thu, 1 Apr 2021 08:52:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1617285136;
+        bh=lVDHzX91Sk11Ck57RNIL8h0yHHmjpnWZIpiFJQIw4mA=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=lWOBR6vf3FbeYg1fc6P29N9DqjxHBXON/QGyoGdmCFWuaOClLuCW1/67+qVcOfk2u
+         Y/yOglNRS7W2kcDj6TnDmuzSYgUhz1KGF7MM5rK8CH2BRVA3XHlFug7qpu0Kjpb/hz
+         u9Pn7UmM6eZV7G/sUYI/giSf4n6rof/W/TQrbSQA=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 131DqGmD015312
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 1 Apr 2021 08:52:16 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 1 Apr
+ 2021 08:52:16 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 1 Apr 2021 08:52:16 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 131DqGTr097711;
+        Thu, 1 Apr 2021 08:52:16 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     <linux-spi@vger.kernel.org>, Mark Brown <broonie@kernel.org>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: (subset) [PATCH 0/4] Convert Cadence QSPI bindings to yaml
+Date:   Thu, 1 Apr 2021 08:52:15 -0500
+Message-ID: <161728504983.2096.1063574920554874294.b4-ty@ti.com>
+X-Mailer: git-send-email 2.31.0
+In-Reply-To: <20210326130034.15231-1-p.yadav@ti.com>
+References: <20210326130034.15231-1-p.yadav@ti.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Benjamin,
-
-Thanks for the patch.
-
-On Thu, 2021-04-01 at 17:59 +0200, Benjamin Gaignard wrote:
-> The HEVC HANTRO driver needs to know the number of bits to skip at
-> the beginning of the slice header.
-> That is a hardware specific requirement so create a dedicated control
-> that this purpose.
+On Fri, 26 Mar 2021 18:30:30 +0530, Pratyush Yadav wrote:
+> This series picks up Ramuthevar's effort on converting the Cadence QSPI
+> bindings to yaml [0]. During the conversion process, I discovered that
+> some TI device tree files were not using the compatible correctly. Those
+> are fixed in patches 1-3.
 > 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> ---
-> version 5:
->  - Be even more verbose in control documentation.
->  - Do not create class for the control.
-> version 4:
-> - The control is now an integer which is enough to provide the numbers
->   of bits to skip.
-> version 3:
-> - Fix typo in field name
+> [0] https://patchwork.kernel.org/project/spi-devel-general/patch/20201116031003.19062-6-vadivel.muruganx.ramuthevar@linux.intel.com/
 > 
->  .../userspace-api/media/drivers/hantro.rst         | 14 ++++++++++++++
->  .../userspace-api/media/drivers/index.rst          |  1 +
->  include/uapi/linux/v4l2-controls.h                 | 13 +++++++++++++
->  3 files changed, 28 insertions(+)
->  create mode 100644 Documentation/userspace-api/media/drivers/hantro.rst
-> 
-> diff --git a/Documentation/userspace-api/media/drivers/hantro.rst b/Documentation/userspace-api/media/drivers/hantro.rst
-> new file mode 100644
-> index 000000000000..78dcd2a44a03
-> --- /dev/null
-> +++ b/Documentation/userspace-api/media/drivers/hantro.rst
-> @@ -0,0 +1,14 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +Hantro video decoder driver
-> +===========================
-> +
-> +The Hantro video decoder driver implements the following driver-specific controls:
-> +
-> +``V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP (integer)``
-> +    Specifies to Hantro HEVC video decoder driver the number of data (in bits) to
-> +    skip in the slice segment header.
-> +    If non-IDR, the bits to be skipped go from syntax element "pic_output_flag"
-> +    to before syntax element "slice_temporal_mvp_enabled_flag".
-> +    If IDR, the skipped bits are just "pic_output_flag"
-> +    (separate_colour_plane_flag is not supported).
-> diff --git a/Documentation/userspace-api/media/drivers/index.rst b/Documentation/userspace-api/media/drivers/index.rst
-> index 1a9038f5f9fa..12e3c512d718 100644
-> --- a/Documentation/userspace-api/media/drivers/index.rst
-> +++ b/Documentation/userspace-api/media/drivers/index.rst
-> @@ -33,6 +33,7 @@ For more details see the file COPYING in the source distribution of Linux.
->  
->         ccs
->         cx2341x-uapi
-> +        hantro
->         imx-uapi
->         max2175
->         meye-uapi
-> diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
-> index f3376aafea65..1dfb874b6272 100644
-> --- a/include/uapi/linux/v4l2-controls.h
-> +++ b/include/uapi/linux/v4l2-controls.h
-> @@ -869,6 +869,19 @@ enum v4l2_mpeg_mfc51_video_force_frame_type {
->  #define V4L2_CID_MPEG_MFC51_VIDEO_H264_ADAPTIVE_RC_STATIC              (V4L2_CID_CODEC_MFC51_BASE+53)
->  #define V4L2_CID_MPEG_MFC51_VIDEO_H264_NUM_REF_PIC_FOR_P               (V4L2_CID_CODEC_MFC51_BASE+54)
->  
-> +/*  MPEG-class control IDs specific to the Hantro driver as defined by V4L2 */
+> [...]
 
-We are moving away from "MPEG" terminology for codecs.
+Hi Pratyush Yadav,
 
-> +#define V4L2_CID_CODEC_HANTRO_BASE                             (V4L2_CTRL_CLASS_CODEC | 0x1200)
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-Using V4L2_CTRL_CLASS_CODEC_STATELESS is IMO better,
-since this belongs to a stateless decoder.
+[1/4] arm64: dts: ti: k3-j721e-mcu: Fix ospi compatible
+      commit: f1b6f6e7f595ed66ba5f5d628df3d259218d584b
+[2/4] arm64: dts: ti: k3-j7200-mcu: Fix ospi compatible
+      commit: 0e941f496a8bdc47d34199c17f81b09b0dbe14ae
+[3/4] arm64: dts: ti: k3-am64-main: Fix ospi compatible
+      commit: 112e5934ff3a7505e583365213a27f990922b76b
 
-And also, since we are still a bit unsure about the
-syntax of this parameter (given it's not documented):
 
-how about keeping the V4L2_CID_HANTRO_HEVC_SLICE_HEADER_SKIP
-definition in drivers/staging/media/hantro/hantro.h ?
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-This would be a hint for applications that this control
-is a quirk.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-Hans, Philipp, any thoughts on this?
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
+-- 
 Regards,
-Ezequiel
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
