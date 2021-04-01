@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DA3D3517FF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 19:48:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64DBC3518CF
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 19:49:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235809AbhDARnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 13:43:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57130 "EHLO
+        id S236394AbhDARrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 13:47:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234906AbhDARlP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:41:15 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2353C02D550
-        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 08:48:14 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id t5-20020a1c77050000b029010e62cea9deso1154266wmi.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 08:48:14 -0700 (PDT)
+        with ESMTP id S235138AbhDARmS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:42:18 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD2B1C02D556
+        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 08:48:17 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id w203-20020a1c49d40000b029010c706d0642so4083704wma.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 08:48:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/Rqc2+6jggGKUT8/YAMcYP1juQODWAVCbo22wEIJOzg=;
-        b=XkGSJlAzvgm3OxpT3lKOGiYqyTKylXidnXzbEQbvCvOrv1JBib0O+woGdI2pYUzsPs
-         YjutU8dIM58r6FFx5bM2W2CM8K58JHvsTmyfbNYnImC1dY0paQzXYNdCjmKlXRsfcDgm
-         Stf3yokmr8D+AOKQTwhqLBhdA0cqvjMkZ8pnxKFNO9KfoiXWpAwOaB93U9kQ38CRvfBy
-         lt6wN4kmg7pd0aOwB5QGaod87brX+NBDUPbTIFW4J9utStdorl8ftkrcD/5bzDb+OPvd
-         /qs2jGX46hUvuBn78thXYzyOco0wVORhvSd0yrP8wSpA/H0+dQsvw20J7EYNcXSEAnCZ
-         /Xyg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=x9VnvWleXoCq4M6l74+6R8Pt6mH42n0/TIw6tHc9m0s=;
+        b=ELNpZqvjV2tpdsGfwDdVSIYOMEo06hNAmBAYGz00nCzz6P7m31Rsai4XFH2EhXToD/
+         r6/HKm1mRACp7JdijV2odAhSrHedfiHGBJ0fLxuERhw0WWFkPUwNZn1N665dm0ITTJa0
+         PpNKtYTxMxDKaf0LVBoqu2bs0b4KT8nhhmNlWpW+WcSddCR7f0oOv3NLvJ4SKuC8gVlW
+         0k004zm1Eb9ZFIqbzNHIinDVKKZ+mNpB9YEmj9uuGxmZ01XayG3ltAF0Cz3zvzD8qzHO
+         jey3iq4KkxNShDIkfE6S+uZ3IhwMQKlOtlGUzNFw4nnBoPqjTZxBCY26sCaf6RNgrfc3
+         JMaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/Rqc2+6jggGKUT8/YAMcYP1juQODWAVCbo22wEIJOzg=;
-        b=F6Bmcp3wOZNy8xmvsIV0+eyDdyAtCakPFyXcYozzbvr1svw5XKULA2Fs0YrBSfc0ec
-         UxC9+TOqL8WxsmNvq8anJKCA/0Tz1gjWZo+VOYJIgE6U+wNg473u7A1bF/jVONdqwKaj
-         yxQkhJQ/Lz/dT086bBju6e7eyhE/DdMWQsybCb20DRuv3eHzhJaPkymLJqqaejHGz+qT
-         DeAUFyI0+BaUZj2ZB4xtmW/jtZBUzztm/FI8ErBwzIsbbuwUyU4UXpTQyn9WC/YkKQYf
-         7PQh5EejfjFr4q0fX5lEL5u95Z3aWp9ACEWUyTFIHUs+GPlriFUVi6jqb7LW8NKiXQNX
-         uU4w==
-X-Gm-Message-State: AOAM531u+qCkrBq2GCPyTflgkie7dn9G23dPHhtNEDjTothKGcpgj3PM
-        1L2ukOzk2l79JQ5+Nb44t4YhAw==
-X-Google-Smtp-Source: ABdhPJxN1jziZ4oZxiGvM5oGVMwG6ILgdWAeLhxA89O6osCdjCFgqJR9jExdn0MmdGKlbB9xdLtK0w==
-X-Received: by 2002:a1c:23c2:: with SMTP id j185mr8637858wmj.54.1617292093384;
-        Thu, 01 Apr 2021 08:48:13 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=x9VnvWleXoCq4M6l74+6R8Pt6mH42n0/TIw6tHc9m0s=;
+        b=jmV9dY+X1ex2Uw5qU7u8iOPtbXicZSsfUwt+WLip23ur8XExunXx+njAwtfq7t0Mhn
+         l5jnYGKBRKj2E5lvua1cVeTnXenrHJtDhLVvuvshgpesdOA9HhqUM5/kKlI3StFZoxbN
+         MKZvI4s6DCyyb13qKXvFbJCGrEi+i9vjYe9wQklloNj+oWlYt7AjnUpxDKd4+YMZvf5D
+         TUwA2D0N208vE+5keVqqmNqKhCH2yWujByY2P3z4e7c2eSD8fKp2hAok4cIASpoxF9tK
+         EfWutWwfBJuHKCsO8XkqZvaRGchVE/y304par6QTPj8/DXJG6ybB0ZELsnky3V0pemHx
+         1+1A==
+X-Gm-Message-State: AOAM530wbZrCzXtVC+pWkmpZ1/M/RQ3nFe/ult5AHKxd+jd/YH1q7HmA
+        qzdYsUlC4/P0mgq5R62EiFu0QA==
+X-Google-Smtp-Source: ABdhPJyWAAL1I1BwCzp1+WSRmFZywB7yMUt24/4+GrLJVIX+8q/Tl0kZMiKtpNt1QxjTrN1PL/OndA==
+X-Received: by 2002:a1c:bc8a:: with SMTP id m132mr8471783wmf.6.1617292096559;
+        Thu, 01 Apr 2021 08:48:16 -0700 (PDT)
 Received: from localhost.localdomain ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id y8sm8722505wmi.46.2021.04.01.08.48.12
+        by smtp.gmail.com with ESMTPSA id y8sm8722505wmi.46.2021.04.01.08.48.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 08:48:13 -0700 (PDT)
+        Thu, 01 Apr 2021 08:48:16 -0700 (PDT)
 From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
 To:     joro@8bytes.org, will@kernel.org
 Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
@@ -60,55 +60,77 @@ Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
         vdumpa@nvidia.com, zhangfei.gao@linaro.org,
         shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
         zhukeqian1@huawei.com, wangzhou1@hisilicon.com,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-Subject: [PATCH v14 00/10] iommu: I/O page faults for SMMUv3
-Date:   Thu,  1 Apr 2021 17:47:09 +0200
-Message-Id: <20210401154718.307519-1-jean-philippe@linaro.org>
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: [PATCH v14 03/10] iommu: Separate IOMMU_DEV_FEAT_IOPF from IOMMU_DEV_FEAT_SVA
+Date:   Thu,  1 Apr 2021 17:47:12 +0200
+Message-Id: <20210401154718.307519-4-jean-philippe@linaro.org>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210401154718.307519-1-jean-philippe@linaro.org>
+References: <20210401154718.307519-1-jean-philippe@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add stall support to the SMMUv3 driver, along with a common I/O Page
-Fault handler.
+Some devices manage I/O Page Faults (IOPF) themselves instead of relying
+on PCIe PRI or Arm SMMU stall. Allow their drivers to enable SVA without
+mandating IOMMU-managed IOPF. The other device drivers now need to first
+enable IOMMU_DEV_FEAT_IOPF before enabling IOMMU_DEV_FEAT_SVA. Enabling
+IOMMU_DEV_FEAT_IOPF on its own doesn't have any effect visible to the
+device driver, it is used in combination with other features.
 
-Since [v13] I added review and ack tags (Thanks!), and a lockdep_assert.
-It would be good to have all of it in v5.13, since patch 10 introduces
-the first user for the IOPF interface from patch 6.  But if that's not
-possible, please pick patches 1-6 so the Vt-d driver can start using
-them.
+Reviewed-by: Eric Auger <eric.auger@redhat.com>
+Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
+Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+---
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: David Woodhouse <dwmw2@infradead.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Joerg Roedel <joro@8bytes.org>
+Cc: Lu Baolu <baolu.lu@linux.intel.com>
+Cc: Will Deacon <will@kernel.org>
+Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
+Cc: Zhou Wang <wangzhou1@hisilicon.com>
+---
+ include/linux/iommu.h | 20 +++++++++++++++++---
+ 1 file changed, 17 insertions(+), 3 deletions(-)
 
-[v13] https://lore.kernel.org/linux-iommu/20210302092644.2553014-1-jean-philippe@linaro.org/
-
-Jean-Philippe Brucker (10):
-  iommu: Fix comment for struct iommu_fwspec
-  iommu/arm-smmu-v3: Use device properties for pasid-num-bits
-  iommu: Separate IOMMU_DEV_FEAT_IOPF from IOMMU_DEV_FEAT_SVA
-  iommu/vt-d: Support IOMMU_DEV_FEAT_IOPF
-  uacce: Enable IOMMU_DEV_FEAT_IOPF
-  iommu: Add a page fault handler
-  iommu/arm-smmu-v3: Maintain a SID->device structure
-  dt-bindings: document stall property for IOMMU masters
-  ACPI/IORT: Enable stall support for platform devices
-  iommu/arm-smmu-v3: Add stall support for platform devices
-
- drivers/iommu/Makefile                        |   1 +
- .../devicetree/bindings/iommu/iommu.txt       |  18 +
- drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h   |  56 ++-
- drivers/iommu/iommu-sva-lib.h                 |  53 ++
- include/linux/iommu.h                         |  26 +-
- drivers/acpi/arm64/iort.c                     |  15 +-
- .../iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c   |  59 ++-
- drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c   | 355 ++++++++++++--
- drivers/iommu/intel/iommu.c                   |  11 +-
- drivers/iommu/io-pgfault.c                    | 461 ++++++++++++++++++
- drivers/iommu/of_iommu.c                      |   5 -
- drivers/misc/uacce/uacce.c                    |  39 +-
- 12 files changed, 1025 insertions(+), 74 deletions(-)
- create mode 100644 drivers/iommu/io-pgfault.c
-
+diff --git a/include/linux/iommu.h b/include/linux/iommu.h
+index 16ce75693d83..45c4eb372f56 100644
+--- a/include/linux/iommu.h
++++ b/include/linux/iommu.h
+@@ -156,10 +156,24 @@ struct iommu_resv_region {
+ 	enum iommu_resv_type	type;
+ };
+ 
+-/* Per device IOMMU features */
++/**
++ * enum iommu_dev_features - Per device IOMMU features
++ * @IOMMU_DEV_FEAT_AUX: Auxiliary domain feature
++ * @IOMMU_DEV_FEAT_SVA: Shared Virtual Addresses
++ * @IOMMU_DEV_FEAT_IOPF: I/O Page Faults such as PRI or Stall. Generally
++ *			 enabling %IOMMU_DEV_FEAT_SVA requires
++ *			 %IOMMU_DEV_FEAT_IOPF, but some devices manage I/O Page
++ *			 Faults themselves instead of relying on the IOMMU. When
++ *			 supported, this feature must be enabled before and
++ *			 disabled after %IOMMU_DEV_FEAT_SVA.
++ *
++ * Device drivers query whether a feature is supported using
++ * iommu_dev_has_feature(), and enable it using iommu_dev_enable_feature().
++ */
+ enum iommu_dev_features {
+-	IOMMU_DEV_FEAT_AUX,	/* Aux-domain feature */
+-	IOMMU_DEV_FEAT_SVA,	/* Shared Virtual Addresses */
++	IOMMU_DEV_FEAT_AUX,
++	IOMMU_DEV_FEAT_SVA,
++	IOMMU_DEV_FEAT_IOPF,
+ };
+ 
+ #define IOMMU_PASID_INVALID	(-1U)
 -- 
 2.31.1
 
