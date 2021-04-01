@@ -2,75 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B84B351437
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 13:09:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78B0E35143A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 13:09:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234004AbhDALI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S233744AbhDALJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 07:09:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53320 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234035AbhDALI2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Thu, 1 Apr 2021 07:08:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59608 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233760AbhDALHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 07:07:32 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 117B6C0613E6
-        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 04:07:31 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id c3so773726qvz.7
-        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 04:07:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5hr4EJfC6Dy4LxB2ks0ND142hkf8rNwvgR5bFJx1My8=;
-        b=IwfvFudKaG7ulKrhClM3/mRjUThVsffOd8fFnuhBPUkS35EDofF6DoNmO2uJl0ZJe5
-         w9rFM1Svm6WR0jHPftrVEjfPU1eMR2oS0EwmA/dpM000mgQHQyWSWOa00XbSoRkoTy9a
-         AmV8tA/1UITRcKRQzP+3RAU311ay+sDi2dTLI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5hr4EJfC6Dy4LxB2ks0ND142hkf8rNwvgR5bFJx1My8=;
-        b=iup29IjlVqStvrg6bH1R+ox8OaPRWKdDfP427QI13XbKS74q/H+DyMKLotFInOBs7T
-         x7saIg5GWluXC7YcSvyOahO53nl1RX7eUevsheyUfT5m8JRtPSeglYkhDrKLWxmc+Ytm
-         R3TSvV/zhLi95HHeEi08w9ZX/nGYH+lrQ0WmXFRYBkYxkX7x4ilTbuFkyh/X/dx+YVP8
-         AL2aQo+nwKa6avd45VdeL89tHetOVypcMQaz2FJD4mh1163osMQ7L27yWOpX6WEtn678
-         Jd+hWXMze52nDpMnpIu56gZh54D4p233QGyGbNMj751dQAmTmzxKX4XW5D5ijUnjqnUS
-         2sDg==
-X-Gm-Message-State: AOAM532teK0Su6/UVbeNGAEK3eg3Nyu2IRnUSJK2bXLJY2BPJ8+HZfSs
-        psLNMc3Wd1WDCUGKe0SN8Xpg7+7y5/NNNZqgrUESdg==
-X-Google-Smtp-Source: ABdhPJxPeLgGNYuUVol7wcn3UD700JCejRwjzkrn+bZT/fTLQdwdf0L0H88XiIRNF+6k69uJk/9V3D5PfwQ6HMp9Q6E=
-X-Received: by 2002:ad4:56e1:: with SMTP id cr1mr7615297qvb.25.1617275251088;
- Thu, 01 Apr 2021 04:07:31 -0700 (PDT)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 41366610CA;
+        Thu,  1 Apr 2021 11:07:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617275279;
+        bh=ogd+y0+ZXpj/igXJ7ptSRR8VZf3rn4GEdDLItqgA/SY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OftIwAXvBBXjILGp6g/LnTvAHq00DxXPLg5xCuM5HEUpREg0qwheg/vNZUxXNN8I0
+         S01QMncG4IuZ4vWglC3QzCXJM/ZW3oEXCty58naVv6tzdHJw8EbzSRDeWdLAOccoy1
+         2UyPohCy/CjeukzhhRSbVuaDgmIo1XpPd1HIXStWxz3XAobydHGu+GbEBNfEGAQ2+3
+         hDydlKNk/wPHDiPYtX+izzLTI2gdZotZPlpKwcv4s456ixkIKd3niVhHlv25GbXKYa
+         ged+8ITp8ti4G4x8JRc/08wQqZYQjb+TlcNHplD2SzhkIaUk/iF3ru/sQJ2XBrT/Hq
+         pqvpwoCqsdyDA==
+Date:   Thu, 1 Apr 2021 16:37:52 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
+        matheus@castello.eng.br
+Subject: Re: [PATCH v2 0/6] Add support for Actions Semi Owl socinfo
+Message-ID: <20210401110752.GG14052@work>
+References: <cover.1617110420.git.cristian.ciocaltea@gmail.com>
+ <20210401052438.GB14052@work>
+ <20210401094041.GA1993499@BV030612LT>
+ <20210401102717.GF14052@work>
+ <252dd954-c8f1-fa2a-c37a-ede386fc9d43@suse.de>
+ <20210401105805.GA1998829@BV030612LT>
 MIME-Version: 1.0
-References: <20210223061830.1913700-1-daniel@0x0f.com> <20210223061830.1913700-2-daniel@0x0f.com>
- <1614108850.540354.4116103.nullmailer@robh.at.kernel.org> <CAFr9PX=h2JPdAwjYS2849ufH=wnxSti2Dj60fbq4bg8b8=xy_g@mail.gmail.com>
- <CAK8P3a1L62YT1WUxmmfLNmvERo7DbeVwfCHCxuKvxs7Uap+iXg@mail.gmail.com>
-In-Reply-To: <CAK8P3a1L62YT1WUxmmfLNmvERo7DbeVwfCHCxuKvxs7Uap+iXg@mail.gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Thu, 1 Apr 2021 20:07:20 +0900
-Message-ID: <CAFr9PXmT-FUUu-yMBWCe52KDHUSF2+Zhr8wk-NdC+cW+_8prKw@mail.gmail.com>
-Subject: Re: [PATCH 1/8] dt-bindings: clk: mstar msc313 cpupll binding description
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Rob Herring <robh@kernel.org>, SoC Team <soc@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Willy Tarreau <w@1wt.eu>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210401105805.GA1998829@BV030612LT>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd,
++ Matheus
 
-On Thu, 1 Apr 2021 at 20:04, Arnd Bergmann <arnd@arndb.de> wrote:
-> I found this is still in patchwork as not merged, and I have not
-> seen a replacement. Marking all eight patches as 'changes requested' now,
-> please resend.
+On Thu, Apr 01, 2021 at 01:58:05PM +0300, Cristian Ciocaltea wrote:
+> Hi Mani, Andreas,
+> 
+> On Thu, Apr 01, 2021 at 12:49:37PM +0200, Andreas Färber wrote:
+> > Hi,
+> > 
+> > On 01.04.21 12:27, Manivannan Sadhasivam wrote:
+> > > On Thu, Apr 01, 2021 at 12:40:41PM +0300, Cristian Ciocaltea wrote:
+> > >> On Thu, Apr 01, 2021 at 10:54:38AM +0530, Manivannan Sadhasivam wrote:
+> > >>> On Tue, Mar 30, 2021 at 04:48:15PM +0300, Cristian Ciocaltea wrote:
+> > >>>> This patchset adds a socinfo driver which provides information about
+> > >>>> Actions Semi Owl SoCs to user space via sysfs: machine, family, soc_id,
+> > >>>> serial_number.
+> > >>>>
+> > >>>> Please note the serial number is currently available only for the S500
+> > >>>> SoC variant.
+> > >>>>
+> > >>>> This has been tested on the S500 SoC based RoseapplePi SBC.
+> > >>>>
+> > >>>
+> > >>> Is this the soc_id provided by the vendor bootloader (uboot)? If so, under
+> > >>> what basis it provides? I don't think the SoC has the provision for
+> > >>> soc_id based on HW parameters.
+> > >>
+> > >> No, the soc_id is not provided by the bootloader, or at least I couldn't
+> > >> identify any related implementation. Instead, I provided this via the
+> > >> driver itself, since I've encountered this approach in some other soc
+> > >> drivers as well (e.g. imx/soc-imx.c, versatile/soc-integrator.c). 
+> > >>
+> > > 
+> > > Sorry, I was referring to serial_number. Since your comment says so, can
+> > > you point to the corresponding code?
+> > 
+> > Seconded that this needs to be better understood. If this is just a
+> > convention of some downstream U-Boot that's not implemented in mainline
+> > (and maybe not even for Guitar or Labrador? tested on RoseapplePi only),
+> > it might not be worth its own reserved-memory based kernel driver?
+> 
+> The serial number is actually provided by the s500-bootloader for which
+> Actions did not provide the source code, at least it is not available
+> in the xapp github repo. I did not find anything related to this in
+> downstream U-Boot.
+> 
 
-Understood. I will resend.
+Hmm, then we can consider this as the firmware dependent property. But
+can we get consensus that this is common for all S500 SoCs? Maybe,
+Matheus can verify it on Labrador?
+
+I don't think adding a SOCINFO driver for a single board is a good idea.
 
 Thanks,
+Mani
 
-Daniel
+> Kind regards,
+> Cristi
+> 
+> > Implementing a standard interface such as DMI tables or a DT property in
+> > mainline U-Boot may be more useful then. Is it still Mani's S900 only?
+> > 
+> > Regards,
+> > Andreas
+> > 
+> > -- 
+> > SUSE Software Solutions Germany GmbH
+> > Maxfeldstr. 5, 90409 Nürnberg, Germany
+> > GF: Felix Imendörffer
+> > HRB 36809 (AG Nürnberg)
