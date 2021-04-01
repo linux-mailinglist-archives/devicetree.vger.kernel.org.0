@@ -2,77 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2711351DD4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:52:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 012C4351EBA
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:55:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235775AbhDAScL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 14:32:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38214 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239307AbhDASUm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:20:42 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B089DC02FEA6;
-        Thu,  1 Apr 2021 09:12:23 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id g8-20020a9d6c480000b02901b65ca2432cso2602292otq.3;
-        Thu, 01 Apr 2021 09:12:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Q6dkaX8MCC1QWlhms6LKLDJBhv8fv/w3cbDi9ipTADQ=;
-        b=VkgbthkXc2HqBSrdop+tgqbqroR4hghxywA0i5NC9MI5fy0VRTmHUeM2U8n/bmVFqB
-         dcf6N7ZmgkbLmLXhdmkBtitwclAJhi2CpCGNAf2GROuHGSXTgvCDn+4RYN79OMSpwk/O
-         IrT0PhmYHLdZKoycZABOFDTSAfifh2S/bT0MgekHNGrNWt4pwgZ6Vutz6ldtw4aZHIGi
-         nds4/Cw9rCx6n2PawhJiiUPhNToTrNeH/2fmPLL7CF9mglGPPWnl0+iwD9M2YD8rOGPK
-         C6urzCvVgm80cSYpPF35xSTT5ODSmxLUuBkz8wJtzfgjlq8Ncc/4E2KehZSFCW4gTdY/
-         ZbIw==
-X-Gm-Message-State: AOAM533Kb0eabITxD/GiQueyqpsMLJPa2mde56ebv1lLRQAJ2rqeALSG
-        bOUUHzCnC/3cZ7I/pg40oOx6dPY4Tw==
-X-Google-Smtp-Source: ABdhPJyQS8ZYJmHSsmQe0gtNV4ljM0aMybfxwE16FwmOSPgDHIGJQ6KTnf9NOVhz5wJMxvHIf5PcFg==
-X-Received: by 2002:a9d:70cf:: with SMTP id w15mr7805191otj.283.1617293542965;
-        Thu, 01 Apr 2021 09:12:22 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e15sm1210740otk.64.2021.04.01.09.12.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 09:12:22 -0700 (PDT)
-Received: (nullmailer pid 530912 invoked by uid 1000);
-        Thu, 01 Apr 2021 16:12:21 -0000
-Date:   Thu, 1 Apr 2021 11:12:21 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Carlis <zhangxuezhi3@gmail.com>
-Cc:     devicetree@vger.kernel.org, daniel@ffwll.ch,
-        linux-kernel@vger.kernel.org, kraxel@redhat.com, airlied@linux.ie,
-        tzimmermann@suse.de, zhangxuezhi1@yulong.com, robh+dt@kernel.org,
-        sam@ravnborg.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: display: sitronix, st7789v-dbi: Add
- Waveshare 2inch LCD module
-Message-ID: <20210401161221.GA530733@robh.at.kernel.org>
-References: <20210331030550.119493-1-zhangxuezhi3@gmail.com>
- <20210331030550.119493-3-zhangxuezhi3@gmail.com>
+        id S236952AbhDASqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 14:46:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35178 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235598AbhDASnC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Apr 2021 14:43:02 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B32FA61378;
+        Thu,  1 Apr 2021 16:16:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617293765;
+        bh=zp3Tpu+kUph5azbHKo/cVTxK4hhcTlET7aKDSzeCMns=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=lNvRf4e1Nfc9GKuGcUaN0ir9vETDIpMi2U79MnBc+Q9xG1hMQob7fpW60rM/cjylH
+         szalDlN1ciZWkh+Q0ZIo0gqLQ7OxmpIynxKR16ev4hbo/5inHWcwz8upmKy1HuQwZU
+         HjHqQ9+9qXmHBfCjTTKgqEOn47JAou1pLETdRxbPJNpUdZQZgETOBtAfPdWJWeeOMq
+         kMBrc7EO7Wf/OEiVc/6ekKGT/7wgFOa5N5jAtmF3LXIKrl5NWhnZBNo8nZv6SAU4Vk
+         e249Fxae46RERG1LghVZl5E6vGnxmP7qA6zVMtM7tHaZDORrgl9PGffEuuwEwRwpNv
+         m3Q8Gd1ZH88gA==
+From:   Mark Brown <broonie@kernel.org>
+To:     devicetree <devicetree@vger.kernel.org>,
+        alsa-devel <alsa-devel@alsa-project.org>,
+        Zhen Lei <thunder.leizhen@huawei.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH 1/1] ASoC: intel, keembay-i2s: Fix a dt_binding_check warning
+Date:   Thu,  1 Apr 2021 17:15:47 +0100
+Message-Id: <161729333651.31618.6325079972879808660.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210329081435.2200-1-thunder.leizhen@huawei.com>
+References: <20210329081435.2200-1-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210331030550.119493-3-zhangxuezhi3@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 31 Mar 2021 03:05:50 +0000, Carlis wrote:
-> From: Xuezhi Zhang <zhangxuezhi1@yulong.com>
+On Mon, 29 Mar 2021 16:14:35 +0800, Zhen Lei wrote:
+> The property "dmas" contains two items: DMA "TX" and "RX" channel,
+> Therefore, its value also needs to be written in two parts.
 > 
-> Document support for the Waveshare 2inch LCD module display, which is a
-> 240x320 2" TFT display driven by a Sitronix ST7789V TFT Controller.
-> 
-> Signed-off-by: Xuezhi Zhang <zhangxuezhi1@yulong.com>
-> ---
-> v2:change compatible value.
-> v3:change author name.
-> v4:delete a maintainer.
-> ---
->  .../display/sitronix,st7789v-dbi.yaml         | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/sitronix,st7789v-dbi.yaml
-> 
+> Otherwise, below YAML check warning is reported:
+> Documentation/devicetree/bindings/sound/intel,keembay-i2s.example.dt.yaml:\
+> i2s@20140000: dmas: [[4294967295, 29, 4294967295, 33]] is too short
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/1] ASoC: intel, keembay-i2s: Fix a dt_binding_check warning
+      commit: 52cad756b777e82fabe05c728cc62b63b3c61fd3
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
