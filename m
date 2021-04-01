@@ -2,65 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C7D9351A16
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:04:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 012D1351BEF
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:12:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235894AbhDAR6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 13:58:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57204 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236641AbhDARzA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Apr 2021 13:55:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9D9EF613BC;
-        Thu,  1 Apr 2021 17:15:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617297309;
-        bh=Ph9+lnZtIzSHhSU0K6hxMEjAX5FATLhumPexdh/21YE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Ri+XLAtbo6oc/14qf6Nc6kPi+TD8uNByUFcX9gAWNIrqfgTCdfJl62m0qAureFoaL
-         vQsb20+HbosVH32lv0CWBjvCmH+4LFWlfr/Ew1I7yi4nqfA5VH+jLvv7MdhXQUc7TN
-         n8QrOpYaXLw/Y5MbKHhSF+31FYlygg8xNhSz48Hycir/Pzebgu2afUkQdg2iq/nJe6
-         92SaK/Y1oz8iCxjc6OS3EftTfhpde626t0I0Y/u22Wv4aOevCEyP7JrGivO7Xq/X55
-         OtqVoeUtTnYozo22/PNi9ALkon1ZN/S+BWzGPLe3cPH7ldlB23iV6KBzmLPiZMsGb3
-         /I/HrkcR1fqIQ==
-Date:   Thu, 1 Apr 2021 18:15:02 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc:     joro@8bytes.org, lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
-        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
-        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
-        eric.auger@redhat.com, iommu@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
-        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
-        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
-        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
-        zhukeqian1@huawei.com, wangzhou1@hisilicon.com
-Subject: Re: [PATCH v14 00/10] iommu: I/O page faults for SMMUv3
-Message-ID: <20210401171501.GC9447@willie-the-truck>
-References: <20210401154718.307519-1-jean-philippe@linaro.org>
+        id S235014AbhDASML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 14:12:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35824 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236837AbhDASHj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:07:39 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0ECAC0319C5;
+        Thu,  1 Apr 2021 10:18:30 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id y19-20020a0568301d93b02901b9f88a238eso2733001oti.11;
+        Thu, 01 Apr 2021 10:18:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LIjI2NUwDFlAYdJOBAJek6rk7rUaA28ZeDcvyQ9Nhm0=;
+        b=Q/L10nBE34UdT/g10T0xeDrajVtKUuryGAwndb66qHC5CgF2643yeNksqQSMV/HIyJ
+         jnQc0o1OdlLBbb1lW8yp+3mMRCO5sKdHKHhEuLnGskOGEeHzvE/DVs3ikGVhFDAmbJFC
+         MjR97vbLSOSyWF7575Io1gZaHTCnZg750h5jBV5eP7QEvrKgkm+KZpmMKZx4tgfuCsCc
+         qtmg2Z/c5xp/XVMI0X3aWJueyeo3zvGPQMkGIdJdy0cCk1ZNJavY6WgBlLt5PT65ycNO
+         CO1DoFqo1yi2E8hmj9aCKkXPaXv0eGhLvhRUkgCvHkTssxINBWv0eI03CGQSyw5HfaSf
+         Dmsw==
+X-Gm-Message-State: AOAM530+cEQ3siN6gyib1aRb5vIoRhm3LIC6MreKZkEIl9oU7RZsyA5D
+        XJgY8qSVFBOfmuJFN3wkoQ==
+X-Google-Smtp-Source: ABdhPJzTwRBGIosUW74Hf7hJbz23dNYIA7uex/H49XPguHIvYAQWA7pqj4y6jdKNAirvM1WZ0YDtZg==
+X-Received: by 2002:a05:6830:1515:: with SMTP id k21mr7651423otp.269.1617297506910;
+        Thu, 01 Apr 2021 10:18:26 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id m14sm1316149otn.69.2021.04.01.10.18.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Apr 2021 10:18:26 -0700 (PDT)
+Received: (nullmailer pid 637987 invoked by uid 1000);
+        Thu, 01 Apr 2021 17:18:25 -0000
+Date:   Thu, 1 Apr 2021 12:18:25 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-tegra@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Subject: Re: [PATCH v2 4/6] dt-bindings: memory: tegra20: mc: Convert to
+ schema
+Message-ID: <20210401171825.GA637934@robh.at.kernel.org>
+References: <20210330230445.26619-1-digetx@gmail.com>
+ <20210330230445.26619-5-digetx@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210401154718.307519-1-jean-philippe@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210330230445.26619-5-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 01, 2021 at 05:47:09PM +0200, Jean-Philippe Brucker wrote:
-> Add stall support to the SMMUv3 driver, along with a common I/O Page
-> Fault handler.
+On Wed, 31 Mar 2021 02:04:43 +0300, Dmitry Osipenko wrote:
+> Convert Tegra20 Memory Controller binding to schema.
 > 
-> Since [v13] I added review and ack tags (Thanks!), and a lockdep_assert.
-> It would be good to have all of it in v5.13, since patch 10 introduces
-> the first user for the IOPF interface from patch 6.  But if that's not
-> possible, please pick patches 1-6 so the Vt-d driver can start using
-> them.
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  .../memory-controllers/nvidia,tegra20-mc.txt  | 40 ----------
+>  .../memory-controllers/nvidia,tegra20-mc.yaml | 79 +++++++++++++++++++
+>  2 files changed, 79 insertions(+), 40 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-mc.txt
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-mc.yaml
+> 
 
-Patches 1-7 look good to me, but I'm not convinced about the utility of
-stalling faults so I'd prefer the later patches to come along with a
-real user.
-
-Will
+Reviewed-by: Rob Herring <robh@kernel.org>
