@@ -2,187 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6662C351272
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 11:38:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBF1E35127F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 11:41:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233830AbhDAJhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 05:37:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39776 "EHLO
+        id S233827AbhDAJjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 05:39:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233936AbhDAJhJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 05:37:09 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50451C0613E6;
-        Thu,  1 Apr 2021 02:37:09 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id lr1-20020a17090b4b81b02900ea0a3f38c1so4456479pjb.0;
-        Thu, 01 Apr 2021 02:37:09 -0700 (PDT)
+        with ESMTP id S229612AbhDAJiq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 05:38:46 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73D36C0613E6;
+        Thu,  1 Apr 2021 02:38:46 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id j9so1121909wrx.12;
+        Thu, 01 Apr 2021 02:38:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SRsyfN5Ras+hHwkeeBXTNewhBhlVp4my6jL5NaeELlI=;
-        b=Lej32Bpor3H3GqOFCSPbJjhT7vpL+8wPDuSRWvaQ3bCsoETVVjOt0BXas1XVdQ6YY9
-         7/ybmE6RFsdZPFWDEtdrdMbS3yy4snajjI1c9W05NZhy7hLk8Gl7T2R5UYMTmce7Pgo3
-         xz7A16Ep0J468eGtyYU6ilvZN9DZMrD7ixoc1R7q7Wds+S72t1lfmNKyWadTRwCN20l5
-         UzhrQxdvaqsbIinbMCRxcrrKvjFUrPXAoUiiFJuQ/RdkEFymnh8S0YqDLj/kEn0zd/K+
-         A1nXOC8YV1g2cILkwZSjrykm2G7uofrusMGLbU9zM9RXSdjOeiIUN271T+p/zepH66tp
-         XpLQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=zqr07vO7upTy6e/RfoTA/s/3/fiA55XFyYEasLBQqAs=;
+        b=p0kuOLQzv7pOsdzulIw0amiLHAVOfPGe5DwWjMeFJf5AzMxzaCYEMUgM9T3FypvUdv
+         e/bMIZ8nI3hxskYZiOGabqQ4a+/Y2k/My3Yt/DKyaMyNASskHbtDMWQ3q8/7FH/ZPl4L
+         ZCO3Q2Nu61go8RTQSXpvJB7nkG6W82+rnPyxrx29La6dgk2z/4Jg/y4LcEAmRJDzOMxu
+         y5NUQuQIkAkl+CMJ8ZpHUU48CBTdBLBgCE5jpe8XiDZI+GB6tGs2zefrZXHfZl/bREwq
+         VlowOiql+sUl6pTygLI9Fh98sNyvqagzrvW29OPzuieF3oUykBrV6XSh0h718fGf8Znv
+         kriw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SRsyfN5Ras+hHwkeeBXTNewhBhlVp4my6jL5NaeELlI=;
-        b=kn21SBrsFCuMQ6q+99stx4CrkEDreeE0csLXD1N6dYahaHp3Ij8AwKykmtx4oiyJ4b
-         skYwH+rdGx+6D7LuHVZIC9g4Pb4OT44Ilc55iQbtt3QfnIX9SqrPlW3FkzJZlhTVYih1
-         RznIBN+W5ogz9/aEJ899ciJH71caUZpCyDCxd84lWXRtDSFZZQjlcIdRNC2c3sTF4goT
-         O0AHjyQv7J3fXgJQD0HzvcKXE2yh9oVS7nqdqHJD6DLpoVH6lRps+GGxbU1AQ+n5q24Y
-         CSr+UiIkWs/nh7wkyYOqShEVZNX4Abk23Tljz/ADifyWBxdnljtX8UImimDLp6b3xJ3H
-         HnPQ==
-X-Gm-Message-State: AOAM5303PdxcsC3+fNrKRNRiGBlH393eleeO/oFzw/UjIAmMulKIuxoC
-        o45nwC0iQ4NiLtNP8/Xd0DgU8XR6XEBHxvjQBRo=
-X-Google-Smtp-Source: ABdhPJwgdTa9XvTPSPeUfTdQbPvjJLiU9q9OJasaD6mMJ1YMQ4z46ylE1+dsa/mIPrQbnXgjYrHD4Uup5I4GZ3+WmaQ=
-X-Received: by 2002:a17:902:7883:b029:e7:32bd:6b97 with SMTP id
- q3-20020a1709027883b02900e732bd6b97mr7298169pll.0.1617269828761; Thu, 01 Apr
- 2021 02:37:08 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=zqr07vO7upTy6e/RfoTA/s/3/fiA55XFyYEasLBQqAs=;
+        b=drY/OHU4H66uXTe6HY1W17InV+EaE9bqf6HvvEPh0bwtFAI9uEm1m+1vz3f0Gv3jZh
+         5wdVqC3oyq03AenYry2zEilJ30hyL55fek17oADMBZahFOiUbJ668hKm8pwi6WcCJ4Ma
+         RMN8/L/AFgSln6nQyiFPZpy0Ejz+c+Gyca/1qVPX8LO80r5Cora+m/HAFR4RxTvTbLaq
+         ee626qCCyRu2gh5Rz32sA8f2NlziwWZIcKCJfEOU/lI09nE7i7+TSmI9vGEE0pV269vo
+         vzeOQ4amvX5Ks25UCgJzZG6GTnKA4deKGu/Estwp7IBYhu6QnjuAk5ekqQ+lucPRcZSY
+         KrSQ==
+X-Gm-Message-State: AOAM530a4zI0BaaiaAkFH/D/HF44Hw7ECmctQw2MabmwUSz70JYrOUsf
+        7D7Wxr1CbkEw2ZESg/TzZKc=
+X-Google-Smtp-Source: ABdhPJweFebP/Y9EsngFkTBEoYEMOAIhx/IutptK0Pf+C/0UMSu2/tnCwPdU/DZEPTl2HAr4BMnZeA==
+X-Received: by 2002:adf:f587:: with SMTP id f7mr8572552wro.147.1617269925248;
+        Thu, 01 Apr 2021 02:38:45 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id k4sm12625016wrd.9.2021.04.01.02.38.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Apr 2021 02:38:44 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: mt8183: Add power-domains properity to mfgcfg
+To:     Enric Balletbo Serra <eballetbo@gmail.com>,
+        Ikjoon Jang <ikjn@chromium.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+References: <20210224091742.1060508-1-ikjn@chromium.org>
+ <CAFqH_50BWF4sQnJAnVZDf3Dbuw+LaN67q39DvOh7ipzqNeNEMw@mail.gmail.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <6df6486e-89fc-6ea8-2b36-59e2bf49eb3a@gmail.com>
+Date:   Thu, 1 Apr 2021 11:38:44 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210401091648.87421-1-puranjay12@gmail.com> <20210401091648.87421-3-puranjay12@gmail.com>
-In-Reply-To: <20210401091648.87421-3-puranjay12@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 1 Apr 2021 12:36:51 +0300
-Message-ID: <CAHp75Vcmyvi4V2D0cnmobTGHCS_ci2FC=cBF8tEoG9v51o8RmQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] iio: temperature: add driver support for ti tmp117
-To:     Puranjay Mohan <puranjay12@gmail.com>
-Cc:     Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAFqH_50BWF4sQnJAnVZDf3Dbuw+LaN67q39DvOh7ipzqNeNEMw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 1, 2021 at 12:19 PM Puranjay Mohan <puranjay12@gmail.com> wrote:
->
-> TMP117 is a Digital temperature sensor with integrated NV memory.
->
-> Add support for tmp117 driver in iio subsystem.
-
-+ blank line
-
-> Datasheet:-https://www.ti.com/lit/gpn/tmp117
-
-Make it a tag, i.e. remove the following blank line and use a space after colon.
-
->
-> Signed-off-by: Puranjay Mohan <puranjay12@gmail.com>
-
-...
-
-> +/*
-> + * tmp117.c - Digital temperature sensor with integrated NV memory
-
-It's useless and provokes an unneeded churn when having a file name
-inside the file.
-Please, drop it for good.
-
-> + *
-> + * Copyright (c) 2021 Puranjay Mohan <puranjay12@gmail.com>
-> + *
-> + * Driver for the Texas Instruments TMP117 Temperature Sensor
-
-> + *
-
-Redundant blank line.
-
-> + * (7-bit I2C slave address (0x48 - 0x4B), changeable via ADD pins)
-> + *
-> + * Note: This driver assumes that the sensor has been calibrated beforehand.
-> + */
-
-...
-
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-
-Missed:
-  bitops.h //sign_extend32()
-  types.h // s32
 
 
-> +
-> +#include <linux/iio/iio.h>
+On 24/02/2021 11:30, Enric Balletbo Serra wrote:
+> Hi Ikjoon,
+> 
+> Thank you for your patch.
+> 
+> Missatge de Ikjoon Jang <ikjn@chromium.org> del dia dc., 24 de febr.
+> 2021 a les 10:21:
+>>
+>> mfgcfg clock is under MFG_ASYNC power domain
+>>
+>> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
+>> Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
+>> ---
+>>
+>>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+>> index 5b782a4769e7..3384df5284c0 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+>> @@ -962,6 +962,7 @@ mfgcfg: syscon@13000000 {
+>>                         compatible = "mediatek,mt8183-mfgcfg", "syscon";
+>>                         reg = <0 0x13000000 0 0x1000>;
+>>                         #clock-cells = <1>;
+>> +                       power-domains = <&scpsys MT8183_POWER_DOMAIN_MFG_ASYNC>;
+> 
+> I don't think this will work in mainline, at least, the reference name
+> should be &spm
+> 
 
-...
+Correct. Would you mind to resend with the comment from Enric. Apart from that,
+patch looks fine to me.
 
-> +struct tmp117_data {
-> +       struct i2c_client *client;
-> +};
+Regards,
+Matthias
 
-Doesn't make any sense to have a separate structure for just one
-pointer member. Use that pointer directly.
-
-...
-
-> +       case IIO_CHAN_INFO_CALIBBIAS:
-> +               ret = i2c_smbus_read_word_swapped(data->client,
-> +                                       TMP117_REG_TEMP_OFFSET);
-> +               if (ret < 0)
-> +                       return ret;
-> +               *val = ((int16_t)ret * (int32_t)TMP117_RESOLUTION_10UC)
-> +                                                               / 10000;
-
-One line
-
-> +               *val2 = ((int16_t)ret * (int32_t)TMP117_RESOLUTION_10UC)
-> +                                                               % 10000;
-
-One line.
-
-I'll be honest, I do not like these explicit castings at all. Can you
-revisit and try to refactor that you won't need them?
-For example, I can't understand how ret can be higher than 16 bit
-since we checked on negative values beforehand.
-
-> +               return IIO_VAL_INT_PLUS_MICRO;
-> +
-> +       case IIO_CHAN_INFO_SCALE:
-> +               /* Conversion from 10s of uC to mC
-> +                * as IIO reports temperature in mC
-> +                */
-> +               *val = TMP117_RESOLUTION_10UC / 10000;
-> +               *val2 = (TMP117_RESOLUTION_10UC % 10000) * 100;
-> +               return IIO_VAL_INT_PLUS_MICRO;
-
-You use 10000 many times, can you give it an appropriate name (via #define)?
-
-...
-
-> +       s16 off;
-
-> +       case IIO_CHAN_INFO_CALIBBIAS:
-
-> +               off = (s16)val;
-
-Redundant explicit casting.
-
-> +               return i2c_smbus_write_word_swapped(data->client,
-> +                                               TMP117_REG_TEMP_OFFSET, off);
-
-...
-
-> +static const struct of_device_id tmp117_of_match[] = {
-> +       { .compatible = "ti,tmp117", },
-
-> +       { },
-
-No need to comma in terminator line(s).
-
-> +};
-
--- 
-With Best Regards,
-Andy Shevchenko
+> Thanks,
+>   Enric
+>>                 };
+>>
+>>                 mmsys: syscon@14000000 {
+>> --
+>> 2.30.0.617.g56c4b15f3c-goog
+>>
+>>
+>> _______________________________________________
+>> Linux-mediatek mailing list
+>> Linux-mediatek@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-mediatek
