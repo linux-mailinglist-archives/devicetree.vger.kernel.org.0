@@ -2,147 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1CCD35122C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 11:30:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CAB9351253
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 11:33:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233580AbhDAJZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 05:25:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37086 "EHLO
+        id S233842AbhDAJcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 05:32:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233748AbhDAJY7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 05:24:59 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB7BFC0613E6
-        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 02:24:58 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id ce10so1854713ejb.6
-        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 02:24:58 -0700 (PDT)
+        with ESMTP id S234179AbhDAJcb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 05:32:31 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8D84C0613E6;
+        Thu,  1 Apr 2021 02:32:30 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id v4so1092048wrp.13;
+        Thu, 01 Apr 2021 02:32:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=oOGfrAjnaHDyy1tyd/ITu7l8d1aLT0q9c434VgRCWEU=;
-        b=Hcyf8uZ1S+AbwrUswcBEuo0hbJdidSJ3m55scMsQLn6YgcfRifwgdwX9lFIdR0/EwD
-         sGhFr60G2F8wy8HLT6Fq5DhdGsBHMiuPlmytuu7EgzkSuqlo95gnVhKjzr1ar1reXWRy
-         zFyQ/s7NNZEF2DY6cBUFD4LsxM57FCe1SKmiy823/oelgR+egUmQIK7uO3UEGLNNyiHV
-         y+t6qvzdHTboH9aDRDUNYi0DYZsK6YNoYc5CDjo7AeQwjabpspIEd+IprIQHYt+yPhvS
-         WReETkGNvh5uLj8sisd8E9GbdkynxeV6Sz2jOsz2Nxo0HTjfX8ZYuwb52ygiKLE07zbC
-         Bj/Q==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=m7OrC6vj4Ru9A4xIjIuXg2uQCm2nhCLjuUpyEt8tkp4=;
+        b=doV/YsPMjbZWumawG16LSTXvaXbvbIqQJK+85kUXXkHAqlMAZVew+GoeoiCXhoOmKf
+         Wf0mAtYzU4Hd+RfB7y3yWvTvV6tKv/loIBWkpybrAz8acGW7g9XeULyIVtXWkMvcPHaS
+         0gg1yLhXMCoP/YDMI2rzRqzpFHVsL5KTSQT4EYYoa7F0CHUkQsbvLUibPXIbz9+ABzBb
+         Y/UPM+OeR6eJbHwglanaIz6WeaKJuk8rvBXbSiBXDBZMfTjFw+Cr3vzvKJY7adgj+T17
+         5nGyl5G2Qddu698VpYLhBVb1HyQPtrSJuTEHLjVsDsOnPEKq/4C8xFJ4QyxIQdbAUt5M
+         zoYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=oOGfrAjnaHDyy1tyd/ITu7l8d1aLT0q9c434VgRCWEU=;
-        b=Iqn3hRQKjxhErSOkSBTFN7fcbYZwGGrqvEJOhxftgya74cTiY/Woi/AVBKaP+vxxU8
-         yYHPEVVVgijd9cshO/couCcTnFZCfPBmR4E9c7tuuaoHxe8Jc0/hkt0oRfyktH/frdrF
-         cTx1A2TKJmQlLNgKDd5vfe6tc7rvyKHDguCyQf3hMTK4qY+GoVIEcP9gYZoAP1DOX4TD
-         ONXvpU2vBVX+SX2b7PDvR4zhhYhiLqpj7YuUyjmt3twxjzh3tNWofqx7p2U3B0Lvj8V4
-         BvMGj0jcntr1eOeQ/qmAnVuWqdQSSOTkSd0HFAs875QgBECOsVQpFmHbICTdItHfqY3t
-         v/yA==
-X-Gm-Message-State: AOAM532iZBC8+4VgqnH+1zU6obognCtR8zn9gepSijbMSsdYNi3ijD1N
-        d3Qtgdwyaf46s2PpP2IsLJaj1w==
-X-Google-Smtp-Source: ABdhPJzc8mO3rKu0OflJbxXCo6lNYZ1oXBNAu5JQfDr5Rx7+ZGLHFGAQPxX9JPUy+kSv8IfVBWKpyg==
-X-Received: by 2002:a17:907:94cc:: with SMTP id dn12mr8188592ejc.177.1617269097400;
-        Thu, 01 Apr 2021 02:24:57 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id cb17sm3221540edb.10.2021.04.01.02.24.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 02:24:56 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     vkoul@kernel.org
-Cc:     yung-chuan.liao@linux.intel.com,
-        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        robh@kernel.org, devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH] soundwire: qcom: cleanup internal port config indexing
-Date:   Thu,  1 Apr 2021 10:24:54 +0100
-Message-Id: <20210401092454.21299-1-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
+        bh=m7OrC6vj4Ru9A4xIjIuXg2uQCm2nhCLjuUpyEt8tkp4=;
+        b=k2L95vd1l53uWkgetCoTyTQVc60nI8kU7Q1RaCOs677ePSJ8AXpCLPHI9aE8pqQcG+
+         zgKd8ojEC/jPGFTtyaIfYCjP0bZOsC1p0kR9R4ch40i53AJXAByqHfwLLLmnPsiPvcjB
+         Roz1Tg2/9Zlv6jMXNxeZ0Q7TTmkKBCEhxRqiwCrU3NvT7QaphKdadgRJy/Rrr+VqgTSC
+         goJZaF7QKXWQ8i2MwE6Xj6rh4cF3QVhGhKdKxbD/mSs9FE0xPMYFoSajTE3aa80EPUZS
+         milqZZwmqVQY7dcFPZ5i8yINzsjvjA+OWtxfmc3cbb8AUbbY4FL8y7svUXaxc3maYqIZ
+         N2SQ==
+X-Gm-Message-State: AOAM5317SS8IS4h7flSZMHyB6M3W9VdTCW5m2PEfDCqLb/ygq7VzmgfM
+        UskbDyhP1QEjBmisGFsjFS8qd0Hlh8lZfw==
+X-Google-Smtp-Source: ABdhPJxHaKLGzIFoJky4dcK5r6tLtS/ecHY7Cyikt6QgG4Ix4m0ncb/XjwK//QYxBmD90AOX4tGT3Q==
+X-Received: by 2002:a5d:56c9:: with SMTP id m9mr8280936wrw.422.1617269549475;
+        Thu, 01 Apr 2021 02:32:29 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id u17sm8760176wrw.51.2021.04.01.02.32.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Apr 2021 02:32:29 -0700 (PDT)
+Subject: Re: [PATCH 1/2] dt-bindings: arm64: dts: mediatek: Add mt8183-pumpkin
+ board
+To:     Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>
+Cc:     mkorpershoek@baylibre.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20210217205945.830006-1-fparent@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <86a6d071-007d-5a20-bd59-ba09054b9fc1@gmail.com>
+Date:   Thu, 1 Apr 2021 11:32:22 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210217205945.830006-1-fparent@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Internally used portconfig array for storing port bandwidth
-params starts from offset zero. However port zero is not really
-used and we also copy the bus parameters to offset zero.
-So basically we endup with a code which has to subtract 1 from port
-number to get to port parameters.
 
-This is bit confusing to the reader so, make this bit more obvious by only
-copying the parameters to offset 1 instead of zero. This will avoid doing
--1 every time when we try to get port params.
 
-Similar thing has been recently done with din/dout_port_mask.
+On 17/02/2021 21:59, Fabien Parent wrote:
+> Add binding documentation for the MT8183 Pumpkin board.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- drivers/soundwire/qcom.c | 27 ++++++++++++++-------------
- 1 file changed, 14 insertions(+), 13 deletions(-)
+Whole series applied to v5.12-next/dts64
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 94fd58f9dda3..348d9a46f850 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -724,7 +724,7 @@ static int qcom_swrm_transport_params(struct sdw_bus *bus,
- 	int reg = SWRM_DP_PORT_CTRL_BANK((params->port_num), bank);
- 	int ret;
- 
--	pcfg = &ctrl->pconfig[params->port_num - 1];
-+	pcfg = &ctrl->pconfig[params->port_num];
- 
- 	value = pcfg->off1 << SWRM_DP_PORT_CTRL_OFFSET1_SHFT;
- 	value |= pcfg->off2 << SWRM_DP_PORT_CTRL_OFFSET2_SHFT;
-@@ -811,11 +811,11 @@ static int qcom_swrm_compute_params(struct sdw_bus *bus)
- 	struct qcom_swrm_port_config *pcfg;
- 	struct sdw_slave *slave;
- 	unsigned int m_port;
--	int i = 0;
-+	int i = 1;
- 
- 	list_for_each_entry(m_rt, &bus->m_rt_list, bus_node) {
- 		list_for_each_entry(p_rt, &m_rt->port_list, port_node) {
--			pcfg = &ctrl->pconfig[p_rt->num - 1];
-+			pcfg = &ctrl->pconfig[p_rt->num];
- 			p_rt->transport_params.port_num = p_rt->num;
- 			if (pcfg->word_length != SWR_INVALID_PARAM) {
- 				sdw_fill_port_params(&p_rt->port_params,
-@@ -832,7 +832,7 @@ static int qcom_swrm_compute_params(struct sdw_bus *bus)
- 				m_port = slave->m_port_map[p_rt->num];
- 				/* port config starts at offset 0 so -1 from actual port number */
- 				if (m_port)
--					pcfg = &ctrl->pconfig[m_port - 1];
-+					pcfg = &ctrl->pconfig[m_port];
- 				else
- 					pcfg = &ctrl->pconfig[i];
- 				p_rt->transport_params.port_num = p_rt->num;
-@@ -1167,15 +1167,16 @@ static int qcom_swrm_get_port_config(struct qcom_swrm_ctrl *ctrl)
- 	of_property_read_u8_array(np, "qcom,ports-lane-control", lane_control, nports);
- 
- 	for (i = 0; i < nports; i++) {
--		ctrl->pconfig[i].si = si[i];
--		ctrl->pconfig[i].off1 = off1[i];
--		ctrl->pconfig[i].off2 = off2[i];
--		ctrl->pconfig[i].bp_mode = bp_mode[i];
--		ctrl->pconfig[i].hstart = hstart[i];
--		ctrl->pconfig[i].hstop = hstop[i];
--		ctrl->pconfig[i].word_length = word_length[i];
--		ctrl->pconfig[i].blk_group_count = blk_group_count[i];
--		ctrl->pconfig[i].lane_control = lane_control[i];
-+		/* Valid port number range is from 1-14 */
-+		ctrl->pconfig[i + 1].si = si[i];
-+		ctrl->pconfig[i + 1].off1 = off1[i];
-+		ctrl->pconfig[i + 1].off2 = off2[i];
-+		ctrl->pconfig[i + 1].bp_mode = bp_mode[i];
-+		ctrl->pconfig[i + 1].hstart = hstart[i];
-+		ctrl->pconfig[i + 1].hstop = hstop[i];
-+		ctrl->pconfig[i + 1].word_length = word_length[i];
-+		ctrl->pconfig[i + 1].blk_group_count = blk_group_count[i];
-+		ctrl->pconfig[i + 1].lane_control = lane_control[i];
- 	}
- 
- 	return 0;
--- 
-2.21.0
+Thanks!
 
+> ---
+>  Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> index 53f0d4e3ea98..8f5a625cfb3d 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -123,6 +123,10 @@ properties:
+>            - const: google,krane-sku176
+>            - const: google,krane
+>            - const: mediatek,mt8183
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8183-pumpkin
+> +          - const: mediatek,mt8183
+>  
+>  additionalProperties: true
+>  
+> 
