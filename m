@@ -2,94 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2570B351949
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:02:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E29C351B7C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 20:11:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235043AbhDARwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 13:52:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59518 "EHLO
+        id S237744AbhDASIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 14:08:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236605AbhDARt0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:49:26 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44453C02FEAA
-        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 09:16:28 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id l123so294824pfl.8
-        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 09:16:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=T0rYie3R/Ll/Af9JkBaLcz+s5C8Xgvssk29GDuQKtVo=;
-        b=hZTs4t39HPYJt8nFN3+uw+fFkJwWZQ+USL2SvOKmRHoMWJYlqMgchLE/jdrKEQcQm7
-         gG67zb/7GhmqoLrWGHg/Yppb1uBDzTF4+FiwMtt71zoxlxDEOpkE6h66XxFp9l4QDcdE
-         pOik5kwxa6cfUCHP7d0vnJwUPTSuG6/ydSUHmYcQwMtYti/RPWW9m9F1HQ+cvqZO7y6g
-         vcsd0I9j/k/SQfuOIP2v5L4FHaNZcKbdeDIEDHbOc22oisyz2nLQzXyvKa9bg65dG5Ar
-         m2g128D1RWoAMw08JIBItzjtBpzSKa6iZmzUxG1MYB410HY9xC1t9vYZnw8gRJJ3KZju
-         BFiA==
+        with ESMTP id S237436AbhDASDn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 14:03:43 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8430C02FEB7
+        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 09:29:42 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id d12so2312824oiw.12
+        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 09:29:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=T0rYie3R/Ll/Af9JkBaLcz+s5C8Xgvssk29GDuQKtVo=;
-        b=lrlerUX+T1fXQNn13Q/huI7mqfSJbbDkRWYwXOkjZcXusBuWAN05TxOrrM1kbqiHcU
-         xpBL6C9LuCufH3dW35cakPkOrIxOIGaKesgSDuGez7xF8axZZOi2vrqPGZVv4s2V4b9N
-         CAf+XiJdeght+VW6aSRmo46mkGRw6s54pdhqXrdHNdTFhADhVczkB8/0eYECXytW7o61
-         I8/tB10GuXSlPuaYGVOTCXeNBNCWSRD2wWDIxNmC3zDbRaWLtx62I3jtAbO4wvBRH+MW
-         MB5xA57fAKMgnqcIsb+fZdQ2xK0eUcWNfcHFdOgzjngHNVpX8TSsh4yc7NTbrCuy4F4q
-         g+fw==
-X-Gm-Message-State: AOAM531Zk0+T70Qo4Crm+QdqBGQkyqXl8TzsQdJTMS/YBcPZr0GI44Uh
-        M55cE+IOPUhasIUHcSKpy896nbRPJ1D1
-X-Google-Smtp-Source: ABdhPJzRfPJ4ww9afESIc0EdZwAUVJbhKldoXwCOD5bB0LhtoJSQ3txH5Jvp0nJUZlBjYBX4u6rxEg==
-X-Received: by 2002:a63:c741:: with SMTP id v1mr8045403pgg.207.1617293787509;
-        Thu, 01 Apr 2021 09:16:27 -0700 (PDT)
-Received: from work ([103.77.37.138])
-        by smtp.gmail.com with ESMTPSA id t18sm6174736pfq.147.2021.04.01.09.16.24
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 01 Apr 2021 09:16:26 -0700 (PDT)
-Date:   Thu, 1 Apr 2021 21:46:22 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Daniele.Palmas@telit.com,
-        bjorn.andersson@linaro.org
-Subject: Re: [PATCH v10 3/4] mtd: rawnand: Add support for secure regions in
- NAND memory
-Message-ID: <20210401161622.GH14052@work>
-References: <20210401151955.143817-1-manivannan.sadhasivam@linaro.org>
- <20210401151955.143817-4-manivannan.sadhasivam@linaro.org>
- <20210401175421.65db63bf@collabora.com>
+         :mime-version:content-disposition:in-reply-to;
+        bh=knmO/xsZykb41plAgwrvQz8grpkqAEgxxYJ/73CKCWE=;
+        b=qFcuaYLtSQfV0S1Ms7jwM0R5Q4acQBwmI/qJHwcsq/QxuqgA2XGsMGlGYfpyhJGOwo
+         Nxc3qRKZF5D+yKNGwWjA1aILzmRgFtanxIfmnHCViYGZziXEQ7v08YKM94R8TxDl/dGl
+         IUMM9EA15hSlfpAFeDX/8vDwuH80mbGFb7OQgbc9aGnLoq6Osz6Fh1p+MDpQdpb4VLhY
+         JEUPsEaekDbiWdQCa9mVuCU1Yjk/HOvDRQ2cQrRyjh+HxqjpnXdhLeQhj4nI6hnjduIL
+         eycHiClPZH3UT1Wae95W+39J6IRDB8ROBsqZroi7Q3xeUSPuV4d+wnNKgPV14G9FBKbj
+         IQzQ==
+X-Gm-Message-State: AOAM533ZXGw3rj3JL3vYNm8wrRcUPFGIsUjt31FUWRL3isRUUdWfg/AA
+        uL1etmMwkId0qwlsVhSB7Q==
+X-Google-Smtp-Source: ABdhPJzqYQv3VxOLR8ru+2W4ZEnfo876uyIkUmhSIiJEZIUULJgdpbHc5mo0gk1gZGkfZb5gQAhsvg==
+X-Received: by 2002:aca:6204:: with SMTP id w4mr6803018oib.86.1617294581995;
+        Thu, 01 Apr 2021 09:29:41 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id p3sm1113076oif.53.2021.04.01.09.29.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Apr 2021 09:29:41 -0700 (PDT)
+Received: (nullmailer pid 559094 invoked by uid 1000);
+        Thu, 01 Apr 2021 16:29:40 -0000
+Date:   Thu, 1 Apr 2021 11:29:40 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Daniel Mack <daniel@zonque.org>
+Cc:     airlied@linux.ie, dri-devel@lists.freedesktop.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org, daniel@ffwll.ch
+Subject: Re: [PATCH v8 1/2] dt-bindings: display: add bindings for newhaven,
+ 1.8-128160EF
+Message-ID: <20210401162940.GA559064@robh.at.kernel.org>
+References: <20210331092114.3185882-1-daniel@zonque.org>
+ <20210331092114.3185882-2-daniel@zonque.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210401175421.65db63bf@collabora.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20210331092114.3185882-2-daniel@zonque.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 01, 2021 at 05:54:21PM +0200, Boris Brezillon wrote:
-> On Thu,  1 Apr 2021 20:49:54 +0530
-> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
+On Wed, 31 Mar 2021 11:21:13 +0200, Daniel Mack wrote:
+> This adds documentation for a new ILI9163 based, SPI connected display.
 > 
-> > @@ -565,6 +608,11 @@ static int nand_block_isreserved(struct mtd_info *mtd, loff_t ofs)
-> >  
-> >  	if (!chip->bbt)
-> >  		return 0;
-> > +
-> > +	/* Check if the region is secured */
-> > +	if (nand_region_is_secured(chip, ofs, 0))
-> > +		return -EIO;
-> 
-> That would is still wrong, you should never pass a 0 size to
-> nand_region_is_secured().
+> Signed-off-by: Daniel Mack <daniel@zonque.org>
+> ---
+>  .../display/panel/ilitek,ili9163.yaml         | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9163.yaml
 > 
 
-Size doesn't matter here, that's why I passed 0. Maybe 1 would be
-appropriate?
-
-Thanks,
-Mani
-
+Reviewed-by: Rob Herring <robh@kernel.org>
