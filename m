@@ -2,119 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAA9C3517EE
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 19:47:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DA3D3517FF
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 19:48:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235648AbhDARnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 13:43:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57172 "EHLO
+        id S235809AbhDARnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 13:43:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234695AbhDARjM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:39:12 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 948A5C0225A3
-        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 08:26:31 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id h6-20020a0568300346b02901b71a850ab4so2445626ote.6
-        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 08:26:31 -0700 (PDT)
+        with ESMTP id S234906AbhDARlP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 13:41:15 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2353C02D550
+        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 08:48:14 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id t5-20020a1c77050000b029010e62cea9deso1154266wmi.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 08:48:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=y1kLTUZ2DutDMLECPCDo/9HBwkSTm4jPer4fs/ISbQw=;
-        b=omBsYOeENt7SVjBE01WDqu8qkh6IuqJn18S0GxB8wH2g235QZGZzREfvWVIVJaIfO/
-         1TBmzjcHZeaLC1gXmZ6rI8Tlon9Hb6qxp1KLHxDAhJ20so+bIy87AGTfgQ+Q22cqtCJw
-         H4WvKG6fHJxtHglO3JEZM4qD/GaeefgOmd+tXSeqLdk4SklBHGNyWmy/0Hn/jBYf+HsX
-         pFbuUB1HhJH98ir9FIYsXxZb6i+xtPJzpKLENPuOd8GgAfqvlWooyCQaAIFJVGoEmGe0
-         EOqoltRJIhpiPjTBvaTbju0ULDdXLW5Hf688IH6WMu7qG0p1vO6emJ83VHxl7hPSfcP+
-         rkqg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/Rqc2+6jggGKUT8/YAMcYP1juQODWAVCbo22wEIJOzg=;
+        b=XkGSJlAzvgm3OxpT3lKOGiYqyTKylXidnXzbEQbvCvOrv1JBib0O+woGdI2pYUzsPs
+         YjutU8dIM58r6FFx5bM2W2CM8K58JHvsTmyfbNYnImC1dY0paQzXYNdCjmKlXRsfcDgm
+         Stf3yokmr8D+AOKQTwhqLBhdA0cqvjMkZ8pnxKFNO9KfoiXWpAwOaB93U9kQ38CRvfBy
+         lt6wN4kmg7pd0aOwB5QGaod87brX+NBDUPbTIFW4J9utStdorl8ftkrcD/5bzDb+OPvd
+         /qs2jGX46hUvuBn78thXYzyOco0wVORhvSd0yrP8wSpA/H0+dQsvw20J7EYNcXSEAnCZ
+         /Xyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=y1kLTUZ2DutDMLECPCDo/9HBwkSTm4jPer4fs/ISbQw=;
-        b=BEX4amt7n/reNDBiDvX4pbRYLH3mKy3qupX7DzEziws1esEyrJ/6XFz0aELDIe2FhS
-         q6jeCX9tXwcvdjoz4dqFN7IgPFZ2L0IOyBVfR1ZZezrb3LJvqz2js7H09pLNn9nXKBd5
-         DhmixNg11ihFZBRzXWCvQVjSnmKyu2eZjd54BJ3M+7KzkaOjU1yU7slsleI54dX191Ta
-         fIkY0Oy0GBr7Z6chTq21BOWMWIhvtIETsUo3XEmxw6qbHSj/AUyOVVEAxp9XNudcx1TW
-         9ySJ7K9COME7ZTQBsPuuSmC2ydZcq9LTQIhQjAVudUtwsh5TV/nCdjgSg96Y1tfMvOMU
-         27kw==
-X-Gm-Message-State: AOAM532XaoJBL6169f7TtTisuvYikApilMd2cZ7IXLrsRBlYtq/mjuu6
-        NkHa+zHjmX5BIy/QLsiMpeLidg==
-X-Google-Smtp-Source: ABdhPJwuxhgyUQPNdxqijp4NxdjFRqjeSz9/Ag+fpV3UkbEs/6cB1Wjoefn5mCAup82be648Kb/y8w==
-X-Received: by 2002:a9d:6013:: with SMTP id h19mr7353121otj.72.1617290791027;
-        Thu, 01 Apr 2021 08:26:31 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id m127sm1093411oib.32.2021.04.01.08.26.29
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/Rqc2+6jggGKUT8/YAMcYP1juQODWAVCbo22wEIJOzg=;
+        b=F6Bmcp3wOZNy8xmvsIV0+eyDdyAtCakPFyXcYozzbvr1svw5XKULA2Fs0YrBSfc0ec
+         UxC9+TOqL8WxsmNvq8anJKCA/0Tz1gjWZo+VOYJIgE6U+wNg473u7A1bF/jVONdqwKaj
+         yxQkhJQ/Lz/dT086bBju6e7eyhE/DdMWQsybCb20DRuv3eHzhJaPkymLJqqaejHGz+qT
+         DeAUFyI0+BaUZj2ZB4xtmW/jtZBUzztm/FI8ErBwzIsbbuwUyU4UXpTQyn9WC/YkKQYf
+         7PQh5EejfjFr4q0fX5lEL5u95Z3aWp9ACEWUyTFIHUs+GPlriFUVi6jqb7LW8NKiXQNX
+         uU4w==
+X-Gm-Message-State: AOAM531u+qCkrBq2GCPyTflgkie7dn9G23dPHhtNEDjTothKGcpgj3PM
+        1L2ukOzk2l79JQ5+Nb44t4YhAw==
+X-Google-Smtp-Source: ABdhPJxN1jziZ4oZxiGvM5oGVMwG6ILgdWAeLhxA89O6osCdjCFgqJR9jExdn0MmdGKlbB9xdLtK0w==
+X-Received: by 2002:a1c:23c2:: with SMTP id j185mr8637858wmj.54.1617292093384;
+        Thu, 01 Apr 2021 08:48:13 -0700 (PDT)
+Received: from localhost.localdomain ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
+        by smtp.gmail.com with ESMTPSA id y8sm8722505wmi.46.2021.04.01.08.48.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 08:26:30 -0700 (PDT)
-Date:   Thu, 1 Apr 2021 10:26:28 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, kgunda@codeaurora.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH V2 2/3] dt-bindings: pinctrl: qcom-pmic-gpio: Update the
- binding to add four new variants
-Message-ID: <20210401152628.GQ904837@yoga>
-References: <1617280546-9583-1-git-send-email-skakit@codeaurora.org>
- <1617280546-9583-3-git-send-email-skakit@codeaurora.org>
+        Thu, 01 Apr 2021 08:48:13 -0700 (PDT)
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     joro@8bytes.org, will@kernel.org
+Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
+        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
+        eric.auger@redhat.com, iommu@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
+        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
+        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
+        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
+        zhukeqian1@huawei.com, wangzhou1@hisilicon.com,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Subject: [PATCH v14 00/10] iommu: I/O page faults for SMMUv3
+Date:   Thu,  1 Apr 2021 17:47:09 +0200
+Message-Id: <20210401154718.307519-1-jean-philippe@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1617280546-9583-3-git-send-email-skakit@codeaurora.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 01 Apr 07:35 CDT 2021, satya priya wrote:
+Add stall support to the SMMUv3 driver, along with a common I/O Page
+Fault handler.
 
-> Update the binding to add PM7325, PM8350C, PMK8350 and PMR735A GPIO support.
-> 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> ---
-> Changes in V2:
->  - Placed this patch before conversion patch and updated commit text
->    to be more clear.
-> 
->  Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-> index 7648ab0..da7c35e 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-> @@ -30,6 +30,10 @@ PMIC's from Qualcomm.
->  		    "qcom,pm6150-gpio"
->  		    "qcom,pm6150l-gpio"
->  		    "qcom,pmx55-gpio"
-> +		    "qcom,pm7325-gpio"
-> +		    "qcom,pm8350c-gpio"
-> +		    "qcom,pmk8350-gpio"
-> +		    "qcom,pmr735a-gpio"
+Since [v13] I added review and ack tags (Thanks!), and a lockdep_assert.
+It would be good to have all of it in v5.13, since patch 10 introduces
+the first user for the IOPF interface from patch 6.  But if that's not
+possible, please pick patches 1-6 so the Vt-d driver can start using
+them.
 
-As with the driver, please try to keep these sorted alphabetically and
-please rebase on linux-next, which already defines 2 of these.
+[v13] https://lore.kernel.org/linux-iommu/20210302092644.2553014-1-jean-philippe@linaro.org/
 
-Regards,
-Bjorn
+Jean-Philippe Brucker (10):
+  iommu: Fix comment for struct iommu_fwspec
+  iommu/arm-smmu-v3: Use device properties for pasid-num-bits
+  iommu: Separate IOMMU_DEV_FEAT_IOPF from IOMMU_DEV_FEAT_SVA
+  iommu/vt-d: Support IOMMU_DEV_FEAT_IOPF
+  uacce: Enable IOMMU_DEV_FEAT_IOPF
+  iommu: Add a page fault handler
+  iommu/arm-smmu-v3: Maintain a SID->device structure
+  dt-bindings: document stall property for IOMMU masters
+  ACPI/IORT: Enable stall support for platform devices
+  iommu/arm-smmu-v3: Add stall support for platform devices
 
->  
->  		    And must contain either "qcom,spmi-gpio" or "qcom,ssbi-gpio"
->  		    if the device is on an spmi bus or an ssbi bus respectively
-> @@ -113,6 +117,10 @@ to specify in a pin configuration subnode:
->  		    gpio1-gpio12 for pm6150l
->  		    gpio1-gpio11 for pmx55 (holes on gpio3, gpio7, gpio10
->  					    and gpio11)
-> +		    gpio1-gpio10 for pm7325
-> +		    gpio1-gpio9 for pm8350c
-> +		    gpio1-gpio4 for pmk8350
-> +		    gpio1-gpio4 for pmr735a
->  
->  - function:
->  	Usage: required
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
+ drivers/iommu/Makefile                        |   1 +
+ .../devicetree/bindings/iommu/iommu.txt       |  18 +
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h   |  56 ++-
+ drivers/iommu/iommu-sva-lib.h                 |  53 ++
+ include/linux/iommu.h                         |  26 +-
+ drivers/acpi/arm64/iort.c                     |  15 +-
+ .../iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c   |  59 ++-
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c   | 355 ++++++++++++--
+ drivers/iommu/intel/iommu.c                   |  11 +-
+ drivers/iommu/io-pgfault.c                    | 461 ++++++++++++++++++
+ drivers/iommu/of_iommu.c                      |   5 -
+ drivers/misc/uacce/uacce.c                    |  39 +-
+ 12 files changed, 1025 insertions(+), 74 deletions(-)
+ create mode 100644 drivers/iommu/io-pgfault.c
+
+-- 
+2.31.1
+
