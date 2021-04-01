@@ -2,99 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A802350B74
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 02:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6C9C350C00
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 03:39:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231974AbhDAA6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Mar 2021 20:58:18 -0400
-Received: from thorn.bewilderbeest.net ([71.19.156.171]:50643 "EHLO
-        thorn.bewilderbeest.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232951AbhDAA5t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Mar 2021 20:57:49 -0400
-Received: from hatter.bewilderbeest.net (unknown [IPv6:2600:6c44:7f:ba20::7c6])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 3B062ADE;
-        Wed, 31 Mar 2021 17:57:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1617238669;
-        bh=VeSdxtND3tSvk8Zkgif2XWXT/Is3+dLyTKL7yc7Qvoc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Qw0d/+b7JOOOzLuE0outZCZECFMgfxfVMs0LradvxSyvSqCYckRGnvUOytFASHby/
-         nvFgoetdI4403Wy/K+GX26I48WvL7XsyEeMTRwGdzn23gHUEQkepDyi28Oc/cxXZev
-         Wv5fooTglZjs1VKGHJbGL3pTqaRMuSbkpFNFuSyE=
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     openbmc@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Zev Weiss <zev@bewilderbeest.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        - <devicetree@vger.kernel.org>, linux-serial@vger.kernel.org
-Subject: [PATCH v2 3/3] dt-bindings: serial: 8250: add aspeed,sirq-active-high
-Date:   Wed, 31 Mar 2021 19:57:02 -0500
-Message-Id: <20210401005702.28271-4-zev@bewilderbeest.net>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210401005702.28271-1-zev@bewilderbeest.net>
-References: <YGOuhjD19SmjmQou@hatter.bewilderbeest.net>
- <20210401005702.28271-1-zev@bewilderbeest.net>
+        id S230073AbhDABih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Mar 2021 21:38:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47276 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229497AbhDABiX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 31 Mar 2021 21:38:23 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 35DEF61001;
+        Thu,  1 Apr 2021 01:38:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617241103;
+        bh=lXPrmLD8cR13af0zzzzRyCkEh9/F2LOtjr4TPKAihQs=;
+        h=In-Reply-To:References:Subject:From:To:Date:From;
+        b=r0YN/a+crPqLnr9k3CcPd18eCft+dH+aFjTQw+bB1hAk8yooWEG22xb511q2/z8nl
+         rmWlrMwEFb/Ndd0BxBdLQelYlaDLtTWNhfC1LPfAKYwxOBL6Xn44dUD8rugmbfbADu
+         udLSYfBDbawC9QLg61U3wJcF6T9iXx8KNfUfX2+1BKdi5lrJy+3/CGp9p5Annu73nf
+         q51hNsYQGadMTZSayypg5fjojDLbB6Z6+ya8DzL5uKFdSU7sWYHxww08AxUmrPAza9
+         WqIeitQ7nNkNBIZ62d8UugpefyNHcMUfOxo76tIVxYJN9fgwlzPt1N7UE5WCObX+ZK
+         sC3apKlqudenQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210331092605.105909-2-greentime.hu@sifive.com>
+References: <20210331092605.105909-1-greentime.hu@sifive.com> <20210331092605.105909-2-greentime.hu@sifive.com>
+Subject: Re: [PATCH v3 1/6] clk: sifive: Add pcie_aux clock in prci driver for PCIe driver
+From:   Stephen Boyd <sboyd@kernel.org>
+To:     alex.dewar90@gmail.com, aou@eecs.berkeley.edu, bhelgaas@google.com,
+        devicetree@vger.kernel.org, erik.danie@sifive.com,
+        greentime.hu@sifive.com, hayashi.kunihiko@socionext.com,
+        helgaas@kernel.org, hes@sifive.com, jh80.chung@samsung.com,
+        khilman@baylibre.com, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-riscv@lists.infradead.org, lorenzo.pieralisi@arm.com,
+        mturquette@baylibre.com, p.zabel@pengutronix.de,
+        paul.walmsley@sifive.com, robh+dt@kernel.org, vidyas@nvidia.com,
+        zong.li@sifive.com
+Date:   Wed, 31 Mar 2021 18:38:21 -0700
+Message-ID: <161724110197.2260335.12311143415074941643@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This provides a simpler, more direct alternative to the deprecated
-aspeed,sirq-polarity-sense property for indicating the polarity of
-the Aspeed VUART's SIRQ line.
+Quoting Greentime Hu (2021-03-31 02:26:00)
+> We add pcie_aux clock in this patch so that pcie driver can use
+> clk_prepare_enable() and clk_disable_unprepare() to enable and disable
+> pcie_aux clock.
+>=20
+> Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
+> ---
 
-Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
----
- Documentation/devicetree/bindings/serial/8250.yaml | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+With robot fix
 
-diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documentation/devicetree/bindings/serial/8250.yaml
-index 491b9297432d..e79bb6ab9d2c 100644
---- a/Documentation/devicetree/bindings/serial/8250.yaml
-+++ b/Documentation/devicetree/bindings/serial/8250.yaml
-@@ -12,8 +12,9 @@ maintainers:
- allOf:
-   - $ref: /schemas/serial.yaml#
-   - if:
--      required:
--        - aspeed,sirq-polarity-sense
-+      anyOf:
-+        - required: [ aspeed,sirq-active-high ]
-+        - required: [ aspeed,sirq-polarity-sense ]
-     then:
-       properties:
-         compatible:
-@@ -190,6 +191,12 @@ properties:
-       applicable to aspeed,ast2500-vuart.
-     deprecated: true
- 
-+  aspeed,sirq-active-high:
-+    type: boolean
-+    description: |
-+      Set to indicate that the SIRQ polarity is active-high (default
-+      is active-low).  Only applicable to aspeed,ast2500-vuart.
-+
- required:
-   - reg
-   - interrupts
-@@ -228,7 +235,7 @@ examples:
-         interrupts = <8>;
-         clocks = <&syscon ASPEED_CLK_APB>;
-         no-loopback-test;
--        aspeed,sirq-polarity-sense = <&syscon 0x70 25>;
-+        aspeed,sirq-active-high;
-     };
- 
- ...
--- 
-2.31.1
-
+Acked-by: Stephen Boyd <sboyd@kernel.org>
