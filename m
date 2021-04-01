@@ -2,244 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC34E351229
-	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 11:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1CCD35122C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Apr 2021 11:30:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233780AbhDAJYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 05:24:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36992 "EHLO
+        id S233580AbhDAJZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 05:25:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233865AbhDAJYc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 05:24:32 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6B18C0613E6;
-        Thu,  1 Apr 2021 02:24:31 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id x16so1097937wrn.4;
-        Thu, 01 Apr 2021 02:24:31 -0700 (PDT)
+        with ESMTP id S233748AbhDAJY7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 05:24:59 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB7BFC0613E6
+        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 02:24:58 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id ce10so1854713ejb.6
+        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 02:24:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=QOZ406BEEbEWHKFv25vOlBMps7sISsv3QFK8sS1MwtA=;
-        b=SWab0PZ7BrG7ikUp/9BfwfF65yALwYpjPDfYWda+cCXfJR8UIxbUA30Clh6LoSKHVx
-         qp2BJ4aXaiyYw5IhnZJRGrt0OqFJ79M8GEKybnzBLjwTNDwjgF04Z1Nxp+R8b5r24yvv
-         hr3HMXaR0L29Ok2nRkRdD9vC/8Ek/07WsG14e95CrGFthD7V8OdD3GGsU+//2CW4B1vG
-         qsZs9jKpKm99reBy4uCkCtjeoJOS7p7c5RiwJyn3mDNobGyPikADdAU4JEy5Xj7AtVCU
-         64qLTbqH4DY1QJgnb5sDmU1DSzngtMlXbHwBhWSh0WWDHCTw3+qaUiPne1I5sOwU0a86
-         aV5Q==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=oOGfrAjnaHDyy1tyd/ITu7l8d1aLT0q9c434VgRCWEU=;
+        b=Hcyf8uZ1S+AbwrUswcBEuo0hbJdidSJ3m55scMsQLn6YgcfRifwgdwX9lFIdR0/EwD
+         sGhFr60G2F8wy8HLT6Fq5DhdGsBHMiuPlmytuu7EgzkSuqlo95gnVhKjzr1ar1reXWRy
+         zFyQ/s7NNZEF2DY6cBUFD4LsxM57FCe1SKmiy823/oelgR+egUmQIK7uO3UEGLNNyiHV
+         y+t6qvzdHTboH9aDRDUNYi0DYZsK6YNoYc5CDjo7AeQwjabpspIEd+IprIQHYt+yPhvS
+         WReETkGNvh5uLj8sisd8E9GbdkynxeV6Sz2jOsz2Nxo0HTjfX8ZYuwb52ygiKLE07zbC
+         Bj/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=QOZ406BEEbEWHKFv25vOlBMps7sISsv3QFK8sS1MwtA=;
-        b=N5UeKVSISAH3v57h4SPNFYIWlSwTsLA5qVnLyNjLAd2R+w9u8uVTsCz9Hn9ehzWr5O
-         GAcuqzKM+lgWBWaBvq2sQ2/KgArvd+TiH6DrwXZLbH9/BMd1/4pJBHoZTPF9+9+jXykj
-         gb5Kz/bczmw4/eYG7sOzl4NS00skqhfK7MT6Bfm93XMEiLlJczYWys12gYFhkbahzBYq
-         ynrWS8M7McQIxpqkNjcWTTbh0hZxnsg1yTuAWmczrG1k6LvxeLOqDg0FnVHwlGrG+wwb
-         J8+xjAGlUUJ/cjPFh496I2NpQV7qFnnPyutZTUW1kytlHmaPdQ8v01qN0WDOMeMYhbrz
-         hAxg==
-X-Gm-Message-State: AOAM531jczrxFWzE5TGrunQ5w/JwShT6zkaKO9SjlGAGNOzyspcJL6IT
-        MIlMSkcZ7oK1SfY1EimL+Ac=
-X-Google-Smtp-Source: ABdhPJxF7BHzMuUefc6Ht1IZf5VWDYA0aKA8LyX3aVJq/Cl/cTdsqEvTdPzMz3hnFIGM1PNtysKvFA==
-X-Received: by 2002:adf:f851:: with SMTP id d17mr8396821wrq.267.1617269070552;
-        Thu, 01 Apr 2021 02:24:30 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id s9sm8153450wmh.31.2021.04.01.02.24.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Apr 2021 02:24:29 -0700 (PDT)
-Subject: Re: [PATCH v10 2/4] soc: mediatek: add MT6765 scpsys and subdomain
- support
-To:     Macpaul Lin <macpaul.lin@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Wendell Lin <Wendell.Lin@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>,
-        Mars Cheng <mars.cheng@mediatek.com>,
-        Sean Wang <Sean.Wang@mediatek.com>,
-        Owen Chen <owen.chen@mediatek.com>,
-        Evan Green <evgreen@chromium.org>, Yong.Wu@mediatek.com,
-        Joerg Roedel <jroedel@suse.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Ryder Lee <Ryder.Lee@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org
-Cc:     Ainge Hsu <ainge.hsu@mediatek.com>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Mediatek WSD Upstream <wsd_upstream@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>,
-        CC Hwang <cc.hwang@mediatek.com>,
-        Loda Chou <loda.chou@mediatek.com>
-References: <1615291538-9799-1-git-send-email-macpaul.lin@mediatek.com>
- <1615358218-6540-1-git-send-email-macpaul.lin@mediatek.com>
- <1615358218-6540-3-git-send-email-macpaul.lin@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <da80f06b-31d6-b728-43ab-e543f3f6d038@gmail.com>
-Date:   Thu, 1 Apr 2021 11:24:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        bh=oOGfrAjnaHDyy1tyd/ITu7l8d1aLT0q9c434VgRCWEU=;
+        b=Iqn3hRQKjxhErSOkSBTFN7fcbYZwGGrqvEJOhxftgya74cTiY/Woi/AVBKaP+vxxU8
+         yYHPEVVVgijd9cshO/couCcTnFZCfPBmR4E9c7tuuaoHxe8Jc0/hkt0oRfyktH/frdrF
+         cTx1A2TKJmQlLNgKDd5vfe6tc7rvyKHDguCyQf3hMTK4qY+GoVIEcP9gYZoAP1DOX4TD
+         ONXvpU2vBVX+SX2b7PDvR4zhhYhiLqpj7YuUyjmt3twxjzh3tNWofqx7p2U3B0Lvj8V4
+         BvMGj0jcntr1eOeQ/qmAnVuWqdQSSOTkSd0HFAs875QgBECOsVQpFmHbICTdItHfqY3t
+         v/yA==
+X-Gm-Message-State: AOAM532iZBC8+4VgqnH+1zU6obognCtR8zn9gepSijbMSsdYNi3ijD1N
+        d3Qtgdwyaf46s2PpP2IsLJaj1w==
+X-Google-Smtp-Source: ABdhPJzc8mO3rKu0OflJbxXCo6lNYZ1oXBNAu5JQfDr5Rx7+ZGLHFGAQPxX9JPUy+kSv8IfVBWKpyg==
+X-Received: by 2002:a17:907:94cc:: with SMTP id dn12mr8188592ejc.177.1617269097400;
+        Thu, 01 Apr 2021 02:24:57 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id cb17sm3221540edb.10.2021.04.01.02.24.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Apr 2021 02:24:56 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     vkoul@kernel.org
+Cc:     yung-chuan.liao@linux.intel.com,
+        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        robh@kernel.org, devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH] soundwire: qcom: cleanup internal port config indexing
+Date:   Thu,  1 Apr 2021 10:24:54 +0100
+Message-Id: <20210401092454.21299-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <1615358218-6540-3-git-send-email-macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Macpaul,
+Internally used portconfig array for storing port bandwidth
+params starts from offset zero. However port zero is not really
+used and we also copy the bus parameters to offset zero.
+So basically we endup with a code which has to subtract 1 from port
+number to get to port parameters.
 
-On 10/03/2021 07:36, Macpaul Lin wrote:
-> From: Mars Cheng <mars.cheng@mediatek.com>
-> 
-> This adds scpsys support for MT6765
-> Add subdomain support for MT6765:
-> isp, mm, connsys, mfg, and cam.
-> 
-> Signed-off-by: Mars Cheng <mars.cheng@mediatek.com>
-> Signed-off-by: Owen Chen <owen.chen@mediatek.com>
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> ---
->  drivers/soc/mediatek/mtk-scpsys.c | 91 +++++++++++++++++++++++++++++++
->  1 file changed, 91 insertions(+)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-scpsys.c b/drivers/soc/mediatek/mtk-scpsys.c
+This is bit confusing to the reader so, make this bit more obvious by only
+copying the parameters to offset 1 instead of zero. This will avoid doing
+-1 every time when we try to get port params.
 
-the mtk-scpsys is the old version of the driver. Please port your code to the
-new driver: mtk-pm-domains.c
+Similar thing has been recently done with din/dout_port_mask.
 
-The biggest difference for you will be to describe the power domain hierarchy in
-DT instead as in the driver.
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+---
+ drivers/soundwire/qcom.c | 27 ++++++++++++++-------------
+ 1 file changed, 14 insertions(+), 13 deletions(-)
 
-Regards,
-Matthias
+diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+index 94fd58f9dda3..348d9a46f850 100644
+--- a/drivers/soundwire/qcom.c
++++ b/drivers/soundwire/qcom.c
+@@ -724,7 +724,7 @@ static int qcom_swrm_transport_params(struct sdw_bus *bus,
+ 	int reg = SWRM_DP_PORT_CTRL_BANK((params->port_num), bank);
+ 	int ret;
+ 
+-	pcfg = &ctrl->pconfig[params->port_num - 1];
++	pcfg = &ctrl->pconfig[params->port_num];
+ 
+ 	value = pcfg->off1 << SWRM_DP_PORT_CTRL_OFFSET1_SHFT;
+ 	value |= pcfg->off2 << SWRM_DP_PORT_CTRL_OFFSET2_SHFT;
+@@ -811,11 +811,11 @@ static int qcom_swrm_compute_params(struct sdw_bus *bus)
+ 	struct qcom_swrm_port_config *pcfg;
+ 	struct sdw_slave *slave;
+ 	unsigned int m_port;
+-	int i = 0;
++	int i = 1;
+ 
+ 	list_for_each_entry(m_rt, &bus->m_rt_list, bus_node) {
+ 		list_for_each_entry(p_rt, &m_rt->port_list, port_node) {
+-			pcfg = &ctrl->pconfig[p_rt->num - 1];
++			pcfg = &ctrl->pconfig[p_rt->num];
+ 			p_rt->transport_params.port_num = p_rt->num;
+ 			if (pcfg->word_length != SWR_INVALID_PARAM) {
+ 				sdw_fill_port_params(&p_rt->port_params,
+@@ -832,7 +832,7 @@ static int qcom_swrm_compute_params(struct sdw_bus *bus)
+ 				m_port = slave->m_port_map[p_rt->num];
+ 				/* port config starts at offset 0 so -1 from actual port number */
+ 				if (m_port)
+-					pcfg = &ctrl->pconfig[m_port - 1];
++					pcfg = &ctrl->pconfig[m_port];
+ 				else
+ 					pcfg = &ctrl->pconfig[i];
+ 				p_rt->transport_params.port_num = p_rt->num;
+@@ -1167,15 +1167,16 @@ static int qcom_swrm_get_port_config(struct qcom_swrm_ctrl *ctrl)
+ 	of_property_read_u8_array(np, "qcom,ports-lane-control", lane_control, nports);
+ 
+ 	for (i = 0; i < nports; i++) {
+-		ctrl->pconfig[i].si = si[i];
+-		ctrl->pconfig[i].off1 = off1[i];
+-		ctrl->pconfig[i].off2 = off2[i];
+-		ctrl->pconfig[i].bp_mode = bp_mode[i];
+-		ctrl->pconfig[i].hstart = hstart[i];
+-		ctrl->pconfig[i].hstop = hstop[i];
+-		ctrl->pconfig[i].word_length = word_length[i];
+-		ctrl->pconfig[i].blk_group_count = blk_group_count[i];
+-		ctrl->pconfig[i].lane_control = lane_control[i];
++		/* Valid port number range is from 1-14 */
++		ctrl->pconfig[i + 1].si = si[i];
++		ctrl->pconfig[i + 1].off1 = off1[i];
++		ctrl->pconfig[i + 1].off2 = off2[i];
++		ctrl->pconfig[i + 1].bp_mode = bp_mode[i];
++		ctrl->pconfig[i + 1].hstart = hstart[i];
++		ctrl->pconfig[i + 1].hstop = hstop[i];
++		ctrl->pconfig[i + 1].word_length = word_length[i];
++		ctrl->pconfig[i + 1].blk_group_count = blk_group_count[i];
++		ctrl->pconfig[i + 1].lane_control = lane_control[i];
+ 	}
+ 
+ 	return 0;
+-- 
+2.21.0
 
-> index ca75b14931ec..fc8d3858f1b4 100644
-> --- a/drivers/soc/mediatek/mtk-scpsys.c
-> +++ b/drivers/soc/mediatek/mtk-scpsys.c
-> @@ -15,6 +15,7 @@
->  
->  #include <dt-bindings/power/mt2701-power.h>
->  #include <dt-bindings/power/mt2712-power.h>
-> +#include <dt-bindings/power/mt6765-power.h>
->  #include <dt-bindings/power/mt6797-power.h>
->  #include <dt-bindings/power/mt7622-power.h>
->  #include <dt-bindings/power/mt7623a-power.h>
-> @@ -750,6 +751,81 @@ static const struct scp_subdomain scp_subdomain_mt2712[] = {
->  	{MT2712_POWER_DOMAIN_MFG_SC2, MT2712_POWER_DOMAIN_MFG_SC3},
->  };
->  
-> +/*
-> + * MT6765 power domain support
-> + */
-> +#define SPM_PWR_STATUS_MT6765			0x0180
-> +#define SPM_PWR_STATUS_2ND_MT6765		0x0184
-> +
-> +static const struct scp_domain_data scp_domain_data_mt6765[] = {
-> +	[MT6765_POWER_DOMAIN_VCODEC] = {
-> +		.name = "vcodec",
-> +		.sta_mask = BIT(26),
-> +		.ctl_offs = 0x300,
-> +		.sram_pdn_bits = GENMASK(8, 8),
-> +		.sram_pdn_ack_bits = GENMASK(12, 12),
-> +	},
-> +	[MT6765_POWER_DOMAIN_ISP] = {
-> +		.name = "isp",
-> +		.sta_mask = BIT(5),
-> +		.ctl_offs = 0x308,
-> +		.sram_pdn_bits = GENMASK(8, 8),
-> +		.sram_pdn_ack_bits = GENMASK(12, 12),
-> +	},
-> +	[MT6765_POWER_DOMAIN_MM] = {
-> +		.name = "mm",
-> +		.sta_mask = BIT(3),
-> +		.ctl_offs = 0x30C,
-> +		.sram_pdn_bits = GENMASK(8, 8),
-> +		.sram_pdn_ack_bits = GENMASK(12, 12),
-> +		.clk_id = {CLK_MM},
-> +	},
-> +	[MT6765_POWER_DOMAIN_CONN] = {
-> +		.name = "conn",
-> +		.sta_mask = BIT(1),
-> +		.ctl_offs = 0x32C,
-> +		.sram_pdn_bits = 0,
-> +		.sram_pdn_ack_bits = 0,
-> +	},
-> +	[MT6765_POWER_DOMAIN_MFG_ASYNC] = {
-> +		.name = "mfg_async",
-> +		.sta_mask = BIT(23),
-> +		.ctl_offs = 0x334,
-> +		.sram_pdn_bits = 0,
-> +		.sram_pdn_ack_bits = 0,
-> +		.clk_id = {CLK_MFG},
-> +	},
-> +	[MT6765_POWER_DOMAIN_MFG] = {
-> +		.name = "mfg",
-> +		.sta_mask = BIT(4),
-> +		.ctl_offs = 0x338,
-> +		.sram_pdn_bits = GENMASK(8, 8),
-> +		.sram_pdn_ack_bits = GENMASK(12, 12),
-> +	},
-> +	[MT6765_POWER_DOMAIN_CAM] = {
-> +		.name = "cam",
-> +		.sta_mask = BIT(25),
-> +		.ctl_offs = 0x344,
-> +		.sram_pdn_bits = GENMASK(9, 8),
-> +		.sram_pdn_ack_bits = GENMASK(13, 12),
-> +	},
-> +	[MT6765_POWER_DOMAIN_MFG_CORE0] = {
-> +		.name = "mfg_core0",
-> +		.sta_mask = BIT(7),
-> +		.ctl_offs = 0x34C,
-> +		.sram_pdn_bits = GENMASK(8, 8),
-> +		.sram_pdn_ack_bits = GENMASK(12, 12),
-> +	},
-> +};
-> +
-> +static const struct scp_subdomain scp_subdomain_mt6765[] = {
-> +	{MT6765_POWER_DOMAIN_MM, MT6765_POWER_DOMAIN_CAM},
-> +	{MT6765_POWER_DOMAIN_MM, MT6765_POWER_DOMAIN_ISP},
-> +	{MT6765_POWER_DOMAIN_MM, MT6765_POWER_DOMAIN_VCODEC},
-> +	{MT6765_POWER_DOMAIN_MFG_ASYNC, MT6765_POWER_DOMAIN_MFG},
-> +	{MT6765_POWER_DOMAIN_MFG, MT6765_POWER_DOMAIN_MFG_CORE0},
-> +};
-> +
->  /*
->   * MT6797 power domain support
->   */
-> @@ -1033,6 +1109,18 @@ static const struct scp_soc_data mt2712_data = {
->  	.bus_prot_reg_update = false,
->  };
->  
-> +static const struct scp_soc_data mt6765_data = {
-> +	.domains = scp_domain_data_mt6765,
-> +	.num_domains = ARRAY_SIZE(scp_domain_data_mt6765),
-> +	.subdomains = scp_subdomain_mt6765,
-> +	.num_subdomains = ARRAY_SIZE(scp_subdomain_mt6765),
-> +	.regs = {
-> +		.pwr_sta_offs = SPM_PWR_STATUS_MT6765,
-> +		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND_MT6765,
-> +	},
-> +	.bus_prot_reg_update = true,
-> +};
-> +
->  static const struct scp_soc_data mt6797_data = {
->  	.domains = scp_domain_data_mt6797,
->  	.num_domains = ARRAY_SIZE(scp_domain_data_mt6797),
-> @@ -1088,6 +1176,9 @@ static const struct of_device_id of_scpsys_match_tbl[] = {
->  	}, {
->  		.compatible = "mediatek,mt2712-scpsys",
->  		.data = &mt2712_data,
-> +	}, {
-> +		.compatible = "mediatek,mt6765-scpsys",
-> +		.data = &mt6765_data,
->  	}, {
->  		.compatible = "mediatek,mt6797-scpsys",
->  		.data = &mt6797_data,
-> 
