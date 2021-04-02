@@ -2,57 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D290352FEE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 21:49:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81B2235302C
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 22:13:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236372AbhDBTtH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 15:49:07 -0400
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:38913 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbhDBTtG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 15:49:06 -0400
+        id S236539AbhDBUNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 16:13:25 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:49473 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229647AbhDBUNZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 16:13:25 -0400
 X-Originating-IP: 91.175.115.186
 Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
         (Authenticated sender: gregory.clement@bootlin.com)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id C169940002;
-        Fri,  2 Apr 2021 19:49:00 +0000 (UTC)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 912D91BF203;
+        Fri,  2 Apr 2021 20:13:19 +0000 (UTC)
 From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/2] arm64: clearfog-gt-8k: Add DT for fan control
-In-Reply-To: <20210309151925.GG1463@shell.armlinux.org.uk>
-References: <20210309151925.GG1463@shell.armlinux.org.uk>
-Date:   Fri, 02 Apr 2021 21:49:00 +0200
-Message-ID: <87mtugcvrn.fsf@BL-laptop>
+To:     Rui Salvaterra <rsalvaterra@gmail.com>, andrew@lunn.ch,
+        kabel@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Rui Salvaterra <rsalvaterra@gmail.com>
+Subject: Re: [PATCH] ARM: dts: turris-omnia: fix hardware buffer management
+In-Reply-To: <20210217153038.1068170-1-rsalvaterra@gmail.com>
+References: <20210217153038.1068170-1-rsalvaterra@gmail.com>
+Date:   Fri, 02 Apr 2021 22:13:19 +0200
+Message-ID: <87h7kocun4.fsf@BL-laptop>
 MIME-Version: 1.0
 Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Russell,
+Hi Rui,
 
-> Hi,
+> Hardware buffer management has never worked on the Turris Omnia, as the
+> required MBus window hadn't been reserved. Fix thusly.
 >
-> This patch series adds the DT descriptions to control a PWM fan on the
-> SolidRun Clearfog GT8k platform.
+> Fixes: 018b88eee1a2 ("ARM: dts: turris-omnia: enable HW buffer management")
 >
->  .../dts/marvell/armada-8040-clearfog-gt-8k.dts     | 127 +++++++++++++++++++++
->  1 file changed, 127 insertions(+)
->
+> Signed-off-by: Rui Salvaterra <rsalvaterra@gmail.com>
 
-Applied on mvebu/dt64
+Applied on mvebu/fixes
 
 Thanks,
 
 Gregory
 
-
+> ---
+>  arch/arm/boot/dts/armada-385-turris-omnia.dts | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm/boot/dts/armada-385-turris-omnia.dts b/arch/arm/boot/dts/armada-385-turris-omnia.dts
+> index 646a06420c77..dc80a909ea88 100644
+> --- a/arch/arm/boot/dts/armada-385-turris-omnia.dts
+> +++ b/arch/arm/boot/dts/armada-385-turris-omnia.dts
+> @@ -32,7 +32,8 @@ soc {
+>  		ranges = <MBUS_ID(0xf0, 0x01) 0 0xf1000000 0x100000
+>  			  MBUS_ID(0x01, 0x1d) 0 0xfff00000 0x100000
+>  			  MBUS_ID(0x09, 0x19) 0 0xf1100000 0x10000
+> -			  MBUS_ID(0x09, 0x15) 0 0xf1110000 0x10000>;
+> +			  MBUS_ID(0x09, 0x15) 0 0xf1110000 0x10000
+> +			  MBUS_ID(0x0c, 0x04) 0 0xf1200000 0x100000>;
+>  
+>  		internal-regs {
+>  
 > -- 
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+> 2.30.1
+>
 
 -- 
 Gregory Clement, Bootlin
