@@ -2,121 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 013D3352E0A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 19:11:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C65C352E12
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 19:15:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235120AbhDBRLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 13:11:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37614 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234759AbhDBRLy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Apr 2021 13:11:54 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6219961152;
-        Fri,  2 Apr 2021 17:11:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617383512;
-        bh=YZ3G/97YtIoywVZIaPwmVWW1AObOMDr0oGWxrhfqG1g=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aPVRh6JSQNFNZ/Jt7JInaJIqkE/HzQ/rtPaeFvEpEYhdObfuwqq3bzp9Y70vgFnVm
-         4646UPA+P6SFk/+ptF8FGx1u1gpgrzSKt10QOFb88JGpgjoZ2HbJUlAym1gLU0SiC1
-         I/EQfkRwJ/ZlIHVJjRIswdtey+LN+ERP6uCAYT0fQPzzAubHbapziAwqSMyiqwxgj7
-         me6X2PRGug4B0b0u/HQqrKVRKYwWV08K8xPUOhSBEZPaK2dfmp4Xes2QCEKUciBgHa
-         qCc6NKumng7RGUvvm7t2au+5fKQqtEcPRCeJpnosCk/vSm0ihFgOa3ESdvIVyqqArT
-         gHzYgI/H2SE8w==
-Date:   Fri, 2 Apr 2021 18:11:39 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     mazziesaccount@gmail.com, Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-power@fi.rohmeurope.com, linux-arm-msm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [RFC PATCH v3 3/7] regulator: IRQ based event/error notification
- helpers
-Message-ID: <20210402171139.GB5402@sirena.org.uk>
-References: <cover.1615454845.git.matti.vaittinen@fi.rohmeurope.com>
- <0acca88796cab147398dbc346b3ea9728a9e3238.1615454845.git.matti.vaittinen@fi.rohmeurope.com>
+        id S235151AbhDBRPm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 13:15:42 -0400
+Received: from mail-pj1-f45.google.com ([209.85.216.45]:44865 "EHLO
+        mail-pj1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235025AbhDBRPm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 13:15:42 -0400
+Received: by mail-pj1-f45.google.com with SMTP id kk2-20020a17090b4a02b02900c777aa746fso2838452pjb.3;
+        Fri, 02 Apr 2021 10:15:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=UvIP879InQBCjMJDIitep6BsYoi5bmmOhvQA8lKUHK0=;
+        b=ghQVZOR0wFr7alCSqDXQfMSSle3qip09GvDsFMCKLdh1uwKaEDHoLLanYGV663odxi
+         YfZVVLLW51W4o3Ow1ekUZkSnVGhWYf6pnkR0f3Q5UUp0UKh+lhhFGqEuhyk+BJK6NjRH
+         Sqs6q9R96MWhjclGwEc21XqIZV5Q2VWes1wQIF52wj4BFXEVWUZfn5L1v7/FSA2/Tzl5
+         npAhH48lYXn0fP2cvz8BZdpViIT4gcblPqFtdL4vw4mx9LhjEi9909IVIySs9pfs63K2
+         JKBPmyn37FOx78tllrBpfonslB6P3EXfuw5zH+cgoZf9X8Y2T2RcSHeEio0uRwRfvOff
+         JjOQ==
+X-Gm-Message-State: AOAM531Oki4BZVpvb1kdO/x8hk9hvFHleyykmoKfZLedgmugtmB4LwZ+
+        G5VrfE1vHCSgkNAQ3bG4Ywk=
+X-Google-Smtp-Source: ABdhPJx+Hj0T3OLrIl0onRUSaCk9IlLMmDj6Vf6tZMxy/WkPxEEeOYtG2tzKgL5NnRcVVqiZhZ4hDg==
+X-Received: by 2002:a17:90a:bb07:: with SMTP id u7mr14846496pjr.49.1617383739652;
+        Fri, 02 Apr 2021 10:15:39 -0700 (PDT)
+Received: from localhost ([2601:647:5b00:1161:a4cc:eef9:fbc0:2781])
+        by smtp.gmail.com with ESMTPSA id q22sm7915406pfk.2.2021.04.02.10.15.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Apr 2021 10:15:38 -0700 (PDT)
+Date:   Fri, 2 Apr 2021 10:15:38 -0700
+From:   Moritz Fischer <mdf@kernel.org>
+To:     Nava kishore Manne <nava.manne@xilinx.com>
+Cc:     mdf@kernel.org, trix@redhat.com, robh+dt@kernel.org,
+        michal.simek@xilinx.com, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, git@xilinx.com
+Subject: Re: [PATCH 2/3] fpga: region: Add fpga-region property
+ 'power-domains'
+Message-ID: <YGdROrOOzltI/Bbe@epycbox.lan>
+References: <20210402092049.479-1-nava.manne@xilinx.com>
+ <20210402092049.479-3-nava.manne@xilinx.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="DBIVS5p969aUjpLe"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0acca88796cab147398dbc346b3ea9728a9e3238.1615454845.git.matti.vaittinen@fi.rohmeurope.com>
-X-Cookie: Dammit Jim, I'm an actor, not a doctor.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210402092049.479-3-nava.manne@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---DBIVS5p969aUjpLe
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Thu, Mar 11, 2021 at 12:22:36PM +0200, Matti Vaittinen wrote:
-
-> @@ -0,0 +1,423 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2021 ROHM Semiconductors
-
-Please make the entire comment a C++ one so things look more consistent.
-
-> +static void regulator_notifier_isr_work(struct work_struct *work)
-> +{
-
-> +	if (d->fatal_cnt && h->retry_cnt > d->fatal_cnt) {
-> +		if (d->die)
-> +			ret = d->die(rid);
-> +		else
-> +			BUG();
+On Fri, Apr 02, 2021 at 02:50:48PM +0530, Nava kishore Manne wrote:
+> Add fpga-region property 'power-domains' to allow to handle
+> the FPGA/PL power domins.
+> 
+> dt-bindings: fpga: Enable PM generic domain support
+> 
+> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> ---
+>  .../devicetree/bindings/fpga/fpga-region.txt       | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.txt b/Documentation/devicetree/bindings/fpga/fpga-region.txt
+> index e811cf825019..969ca53bb65e 100644
+> --- a/Documentation/devicetree/bindings/fpga/fpga-region.txt
+> +++ b/Documentation/devicetree/bindings/fpga/fpga-region.txt
+> @@ -196,6 +196,20 @@ Optional properties:
+>  - config-complete-timeout-us : The maximum time in microseconds time for the
+>  	FPGA to go to operating mode after the region has been programmed.
+>  - child nodes : devices in the FPGA after programming.
+> +- power-domains : A phandle and PM domain specifier as defined by bindings of
+> +	the power controller specified by phandle.
+> +Example:
+> +	fpga_full: fpga-full {
+> +                compatible = "fpga-region";
+> +                fpga-mgr = <&zynqmp_pcap>;
+> +                #address-cells = <2>;
+> +                #size-cells = <2>;
+> +                ranges;
+> +                power-domains = <&zynqmp_firmware PL_PD>;
+> +        };
 > +
-> +		/*
-> +		 * If the 'last resort' IC recovery failed we will have
-> +		 * nothing else left to do...
-> +		 */
-> +		BUG_ON(ret);
+> +	The PL_PD power domain will be turned on before loading the bitstream
+> +and turned off while removing/unloading the bitstream using overlays.
 
-This isn't good...  we should be trying to provide more system level
-handling of this, if nothing else it's quite possibly not a software bug
-here but rather a hardware failure.  An explicit message about what
-happened would be more likely to be understood as a hardware failure,
-and something which allows handling such as initiating a system shutdown
-would be good as well - I'm not sure if there's any existing mechanism
-to plumb userspace into, or perhaps some sort of policy configurable via
-sysfs.  That could be built on later though, I think the main thing here
-is that the logging should be clearer and distinguishable from a random
-software fault which is what BUG_ON() looks like.  The backtrace and
-whatnot that BUG_ON() provides aren't useful here and the message isn't
-going to be very distinctive, some custom prints will attract more
-attention.
+Can multiple regions share a power-domain or is this specific to full
+fpga reconfiguration?
 
-> +	/* Disable IRQ if HW keeps line asserted */
-> +	if (d->irq_off_ms)
-> +		disable_irq_nosync(irq);
-> +	/*
-> +	 * IRQ seems to be for us. Let's fire correct notifiers / store error
-
-Missing blank lines in the file.
-
-> + * This structure is passed to map_event and renable for reporting reulator
-
-regulator.
-
---DBIVS5p969aUjpLe
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBnUEoACgkQJNaLcl1U
-h9AZ2Qf9FKDfBsBEi1RJMy2x3lRPmLjdNeIDsae0HYA/8z/Xnsg+bL+co2BYSFx/
-+wh1NJuNyjY64qKyPD9qNf+4d0I1Cfo0krXcA9fm/wOHMch0RFKyUNwaZxYlUDcW
-+bbLI/uVevW0XHwBfwdc/VSlpeVHTAqZnqBnCjEaR8twPSvoYJk4ekLMMsA9auQ4
-/98Lkyfv0yZM12lHXBK/D+9mJ8EnoA6sAJLqiWuwl8d4lqq5AWP01BpHQ1r6Au8G
-vtpCndYpx+ST700AqypZO+PbwqqZ6+eWDaPIBvhI+SczibZBzDNvtJpFE3/xEo2/
-ozrQZ/eKkvGRUlfrtivVni8ErcvY0A==
-=Rhqr
------END PGP SIGNATURE-----
-
---DBIVS5p969aUjpLe--
+- Moritz
