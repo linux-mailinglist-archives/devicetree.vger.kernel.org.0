@@ -2,178 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 303CA352FB2
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 21:26:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92A75352FB8
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 21:26:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236372AbhDBT0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 15:26:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53958 "EHLO
+        id S236508AbhDBT0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 15:26:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbhDBT0C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 15:26:02 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FB85C0613E6;
-        Fri,  2 Apr 2021 12:25:59 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id x21so6367031eds.4;
-        Fri, 02 Apr 2021 12:25:59 -0700 (PDT)
+        with ESMTP id S235392AbhDBT0e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 15:26:34 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD1F8C0613E6
+        for <devicetree@vger.kernel.org>; Fri,  2 Apr 2021 12:26:31 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id bg21so62750pjb.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Apr 2021 12:26:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=eBa1l0nkkvfTf4uuzpNC8DhkE5lg+13JVTfQ5ud3GcE=;
-        b=A5owe0ywEifla9cqAwxdKeZzym4fxNR9UBjsxw86RxuLyevdtD34PPVnFCPX1XZDD8
-         97B1ynxpvQGkMusOuC2GvfxNZD666mpEf3EzauHUDxcBllWka/mZTCubSaZmPFi1YdQH
-         CS1GACuYXaOB4JHh1Titvx/SO6KfNDx3u80Hc8KRe7AP4Kngxul9MFdjW/ZyGu4in5mW
-         LGYQKbFegQEmaes5kRgHgCX3c/0eZ4KCXlkXadCj/rNDVvRb3SDI1hs31wiOmygCw+hr
-         r4c1XiCH6vVkxsoYbVyYFomUTjgQZeOc0vC5cX2ms5AA9DrjQ9vcEZaPOAf0bkSTA0V2
-         rd8g==
+        bh=N4s6Vtv2vZ6Bbjawt/rPkfCViiVZXuVBQF1DqpILNog=;
+        b=Qveu1dP3Ik/eATP/5cOdXPxeermVJGHI6+RBORNj4W2OT4aAAxar7/Tljz7dbKTjB6
+         tuUbpmAfXocO6pRSE6oA2E1aEA5NShAFvHSNwc7XxXX1434uDmtm+QM8DVC1VZaoFgLv
+         xVAi/cBacSuhHPu4OSgpBs9agiBBFCmcq06Yo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=eBa1l0nkkvfTf4uuzpNC8DhkE5lg+13JVTfQ5ud3GcE=;
-        b=dhSEVyhKJ5CgyHgVbQzHrOrgVd+Ptvcp4WW+/xDXPb1f7P36zJFQ44VGB9dn/U+Mne
-         5K/KQQBr22ts1sPV0YrmPAWTcG5BxsQLNs3ghP/9NAXzniiJJ0a9eEfQ0OO5BhJ5Yhrz
-         bUf1xndllDmQLOGBTx7pJtw+2PXu306GHzkaZKzQGl5y8fJvvocZgolrYG9bk1kSQrYu
-         Z7OfGUt2x8uQEVTali9PrxnaBWZfO7dQF8s/Y1HCtdCP9TF0Zgkp8D1NKCpAnyHjX+OG
-         FlrCcYHpteWsw9HVHrInuBi5JK0Wukm2TzyfUF2u+D7J2rp+oi3CL+cMrKmUsGzKreVm
-         bbXA==
-X-Gm-Message-State: AOAM533hbrOLQJGyvFj7dV/L0KdoS/cHSPvONNHbKZA+QcjxrtKEW3pi
-        wNtKf9yUMd48Ij5MFnNGGDfxWImXhJg=
-X-Google-Smtp-Source: ABdhPJyavIkdyCjowSW48m9XSi0klJz2e7GZPVIBZdf7s99BueQwLG4v7nsfEpVUkPZMMnS81OZ3+g==
-X-Received: by 2002:a05:6402:2787:: with SMTP id b7mr1875410ede.225.1617391558402;
-        Fri, 02 Apr 2021 12:25:58 -0700 (PDT)
-Received: from BV030612LT ([188.24.140.160])
-        by smtp.gmail.com with ESMTPSA id x24sm754352edr.36.2021.04.02.12.25.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Apr 2021 12:25:57 -0700 (PDT)
-Date:   Fri, 2 Apr 2021 22:25:55 +0300
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/6] dt-bindings: soc: actions: Add Actions Semi Owl
- socinfo binding
-Message-ID: <20210402192555.GA2052516@BV030612LT>
-References: <cover.1617110420.git.cristian.ciocaltea@gmail.com>
- <15da0257b10aa62bfb7046437915d05a614c01ee.1617110420.git.cristian.ciocaltea@gmail.com>
- <20210402180407.GA31906@thinkpad>
+        bh=N4s6Vtv2vZ6Bbjawt/rPkfCViiVZXuVBQF1DqpILNog=;
+        b=NHE6oVH3b0B3QvNPMVB8jmndN8PhSaMeeVyqjeTRro8o1iQj8pQh75js3BXMyCCWYW
+         FbJBXVYM1Gi6f5HfZeIzys/j1X7hPiPIM6BhqmQKrojuDCVo2rZ6W4nRL7SuHava4OxF
+         vFEhtD0YdyPMjsdK7gn2nvCsCmiPQeTfRd02KuqutGKUrDavqNdowXBYtvMK4MfspUG5
+         XtFdaNJ6uWsF96+m23NoxjkWNPvhPpKYaZvhpypJ/U+Jv3731+iIzYYZUTmlVgZumPRr
+         jcuREYFn7KNJ2yLKDelJhr+cX0LPTijUjHU3FQdJungW062cLvM372LcRNQR3OIH4iru
+         g3Wg==
+X-Gm-Message-State: AOAM531OF34maencdxumMQo+dw7Ae4b1138Y9hwbULN1hMNCckKOXWHj
+        onniw6cU0eAn81YXtSZIlWu9ig==
+X-Google-Smtp-Source: ABdhPJwo8sNbSknxNcF/K4Eabomcg0KEy77eQH9gY3NN8Kwnu6Ez/IY4NTcSNB/TdaiINWMGzLxiTg==
+X-Received: by 2002:a17:902:7401:b029:e4:5992:e64a with SMTP id g1-20020a1709027401b02900e45992e64amr14128720pll.75.1617391591301;
+        Fri, 02 Apr 2021 12:26:31 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:581c:e04f:7c08:c602])
+        by smtp.gmail.com with UTF8SMTPSA id h6sm9015932pfh.13.2021.04.02.12.26.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Apr 2021 12:26:30 -0700 (PDT)
+Date:   Fri, 2 Apr 2021 12:26:30 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [PATCH V2 4/5] arm64: dts: qcom: pmr735a: Add PMIC peripherals
+ for pmr735a
+Message-ID: <YGdv5pKMr7jD32Le@google.com>
+References: <1617268396-1837-1-git-send-email-skakit@codeaurora.org>
+ <1617268396-1837-5-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210402180407.GA31906@thinkpad>
+In-Reply-To: <1617268396-1837-5-git-send-email-skakit@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 02, 2021 at 11:34:07PM +0530, Manivannan Sadhasivam wrote:
-> On Tue, Mar 30, 2021 at 04:48:17PM +0300, Cristian Ciocaltea wrote:
-> > Add devicetree binding for the Actions Semi Owl socinfo driver.
-> > 
-> 
-> Devicetree binding shouldn't be added for a driver instead for an IP or hw.
-> 
-> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> > ---
-> >  .../bindings/soc/actions/owl-socinfo.yaml     | 57 +++++++++++++++++++
-> >  1 file changed, 57 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml b/Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml
-> > new file mode 100644
-> > index 000000000000..01e4a8b4f5ac
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml
-> > @@ -0,0 +1,57 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/soc/actions/owl-socinfo.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Actions Semi Owl SoC info module
-> > +
-> > +maintainers:
-> > +  - Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> > +
-> > +description: |
-> > +  Actions Semi Owl SoC info module provides access to various information
-> > +  about the S500, S700 and S900 SoC variants, such as serial number or id.
-> > +
-> 
-> S700/S900 are not yet confirmed, so please avoid them.
-> 
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        enum:
-> > +          - actions,s500-soc
-> > +          - actions,s700-soc
-> > +          - actions,s900-soc
-> > +  required:
-> > +    - compatible
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - actions,s500-soc
-> > +          - actions,s700-soc
-> > +          - actions,s900-soc
-> > +      - const: simple-bus
-> > +
-> > +required:
-> > +  - compatible
-> > +
-> > +additionalProperties: true
-> > +
-> > +examples:
-> > +  - |
-> > +    / {
-> > +        compatible = "roseapplepi,roseapplepi", "actions,s500";
-> > +        model = "Roseapple Pi";
-> > +        #address-cells = <1>;
-> > +        #size-cells = <1>;
-> > +
-> > +        soc {
-> > +            compatible = "actions,s500-soc", "simple-bus";
-> 
-> No. This shouldn't fall under /soc. I think you should added a separate
-> compatible for the reserved memory itself and add a corresponding socinfo
-> driver under drivers/soc.
-> 
-> This way it is obvious that the information is contained in a memory region and
-> a driver is used for parsing that.
+Same comments as '[1/5] arm64: dts: qcom: pm7325: Add PMIC peripherals
+for pm7325', plus another nit:
 
-I avoided on purpose to bind the driver on the reserved memory node
-in order to be able to handle also the S700 and S900 SoCs, for which
-we currently provide (only) the following information: machine, family,
-soc_id.
+'[3/5] arm64: dts: qcom: pmk8350: Add PMIC peripherals for pmk8350' has
+an ADC config for the die temperature of the pmr735a, hence it seems this
+patch should be before the 'pmk8350' one in this series.
 
-I assumed the serial_number is not mandatory and we can use the driver
-as it is for all SoC variants. I don't know how the serial number for
-S700 and S900 could be read, but I think it is very likely they require
-a different access method.
-
-Hence my intention was to keep the driver generic, not coupled strictly
-with the serial number information.
-
-Regards,
-Cristi
-
-> Thanks,
-> Mani
+On Thu, Apr 01, 2021 at 02:43:15PM +0530, satya priya wrote:
+> Add temp-alarm and GPIO support for pmr735a.
 > 
-> > +            #address-cells = <1>;
-> > +            #size-cells = <1>;
-> > +            ranges;
-> > +        };
-> > +    };
-> > +
-> > +...
-> > -- 
-> > 2.31.1
-> > 
+> Signed-off-by: satya priya <skakit@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/pmr735a.dtsi | 53 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmr735a.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pmr735a.dtsi b/arch/arm64/boot/dts/qcom/pmr735a.dtsi
+> new file mode 100644
+> index 0000000..07077fb
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/pmr735a.dtsi
+> @@ -0,0 +1,53 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/spmi/spmi.h>
+> +
+> +&spmi_bus {
+> +	pmr735a: pmic@4 {
+> +		compatible = "qcom,pmr735a", "qcom,spmi-pmic";
+> +		reg = <0x4 SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		pmr735a_temp_alarm: temp-alarm@a00 {
+> +			compatible = "qcom,spmi-temp-alarm";
+> +			reg = <0xa00>;
+> +			interrupts = <0x4 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+> +			#thermal-sensor-cells = <0>;
+> +		};
+> +
+> +		pmr735a_gpios: gpios@8800 {
+> +			compatible = "qcom,pmr735a-gpio", "qcom,spmi-gpio";
+> +			reg = <0x8800>;
+> +			gpio-controller;
+> +			gpio-ranges = <&pmr735a_gpios 0 0 4>;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +};
+> +
+> +&thermal_zones {
+> +	pmr735a_thermal: pmr735a-thermal {
+> +		polling-delay-passive = <100>;
+> +		polling-delay = <0>;
+> +		thermal-sensors = <&pmr735a_temp_alarm>;
+> +
+> +		trips {
+> +			pmr735a_trip0: trip0 {
+> +				temperature = <95000>;
+> +				hysteresis = <0>;
+> +				type = "passive";
+> +			};
+> +
+> +			pmr735a_trip1: trip1 {
+> +				temperature = <115000>;
+> +				hysteresis = <0>;
+> +				type = "critical";
+> +			};
+> +		};
+> +	};
+> +};
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
