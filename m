@@ -2,75 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3922352E76
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 19:33:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A4B4352E80
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 19:35:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234361AbhDBRdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 13:33:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45788 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234652AbhDBRdk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Apr 2021 13:33:40 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 17472610FC;
-        Fri,  2 Apr 2021 17:33:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617384819;
-        bh=8IASa5tOevrm7zrvU20QKNH/BDtSZcYWjppA/Xkc/4o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Tom7wZLx95KXsadqFUaHFR9S5Pmr4CZ6yJrzSWATPreZqFeyZMkA9YYad859z8ZUE
-         DRGtERA8hZGVq0oh91YSdjqdMOfKw+nWisg9lrTMgtUtknvrEkwthc4HybNlPGaW7g
-         zKDGc9gVNQ2xZDZ2ozhaPX8gOjxfrt9MHKEWc2Fd6pKVAPPSLT7h1T+UcTyEBuiqLD
-         PPiw6xpERKozI3MoR4wg58gJsiIXkEuiw28PWA4cBS3UOnRiPrW0vImDGMZ0bo7VDp
-         g3OZApsjoZUNXg/UcAysFuYiBS446BonzCwzyV0MB/s5E/8f5mtSyI05RQFdxEII/l
-         Tnlnx8ovpZz9g==
-Date:   Fri, 2 Apr 2021 18:33:26 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-power@fi.rohmeurope.com
-Subject: Re: [PATCH v5 14/19] regulator: bd718x7, bd71828: Use ramp-delay
- helper
-Message-ID: <20210402173326.GH5402@sirena.org.uk>
-References: <cover.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
- <42adb3a4055e6c661d01cf1dd6a9763d15b7e689.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
+        id S234984AbhDBRf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 13:35:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58356 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229722AbhDBRf6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 13:35:58 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22207C061788
+        for <devicetree@vger.kernel.org>; Fri,  2 Apr 2021 10:35:56 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id l1so2787776plg.12
+        for <devicetree@vger.kernel.org>; Fri, 02 Apr 2021 10:35:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=6yphnmbBHawP07rs28D4TVASXy1iDN0SAHVg/RCbgGw=;
+        b=fTSE0tGIVBQli5xgECb1c3YtQnQdzIATmTyASBCHwY0w1iUgAP1ZdVVk9VNC/Ipqud
+         KHG2toAPV40tAqSylh6q5r4w9BeTpgpUSlPYqMue19B8pIQ9jMAszXCMo4dpAeFRtyEf
+         awtOE63SQOs84KurOR87NM/Oi0I2RYYQv6MvI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6yphnmbBHawP07rs28D4TVASXy1iDN0SAHVg/RCbgGw=;
+        b=UC/qD1/0kMlQnBMEcl4iYM8hyeoGsOPyzzQ/4e54wt9j9eu/NS++dtDD86+1Y2nL+q
+         ylwaDCX1mjR1Zrmw8JeIK+q/EVBm14w0xNSHOiwKqn6as93yEEDgPksUqwlRDYVmb/EE
+         7RawvQN0b5BGvnKMM09Ikud8RczlczVqZAW6wYaIt/cDNUc31iPNKw3du8Ngy+HpWHDa
+         cTbv5xktLMfaCo2fiVACaCOqJ76QzZoX4tZ3+s2KeuIRmqgcPSwA95iPcw+3TlVQ1/7r
+         A/2dxcZ2hQYDVG0MaYv+pHJw2wA2BC/od0KZ2ZVyYxuBgPDVNueJYWUQrdr0cWQhQd9W
+         v9ag==
+X-Gm-Message-State: AOAM531TjOxwzRR1TFsbIe9AoPVWnLYW2Iv9KiBhoGlBXUAMioYktWl+
+        +gcYirXz8/u9GisAwP1NTAtGvg==
+X-Google-Smtp-Source: ABdhPJwpJcfoesHMdZYbEaX7By1bca37GeS8xAKreb0w71K97U0cTJN+EJblwv84hCl+dUWtukw9tA==
+X-Received: by 2002:a17:90b:4a81:: with SMTP id lp1mr14756118pjb.154.1617384955602;
+        Fri, 02 Apr 2021 10:35:55 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:581c:e04f:7c08:c602])
+        by smtp.gmail.com with UTF8SMTPSA id a18sm9430381pfa.18.2021.04.02.10.35.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Apr 2021 10:35:55 -0700 (PDT)
+Date:   Fri, 2 Apr 2021 10:35:54 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [PATCH V2 1/5] arm64: dts: qcom: pm7325: Add PMIC peripherals
+ for pm7325
+Message-ID: <YGdV+un4bGcF6jJH@google.com>
+References: <1617268396-1837-1-git-send-email-skakit@codeaurora.org>
+ <1617268396-1837-2-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="PNpeiK4tTqhYOExY"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <42adb3a4055e6c661d01cf1dd6a9763d15b7e689.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
-X-Cookie: Dammit Jim, I'm an actor, not a doctor.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <1617268396-1837-2-git-send-email-skakit@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Apr 01, 2021 at 02:43:12PM +0530, satya priya wrote:
 
---PNpeiK4tTqhYOExY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> subject: arm64: dts: qcom: pm7325: Add PMIC peripherals for pm7325
 
-On Mon, Mar 29, 2021 at 03:59:28PM +0300, Matti Vaittinen wrote:
-> Use generic regamp ramp-delay helper function instead of implementing own.
->=20
+nit: maybe just 'arm64: dts: qcom: Add pm7325 support/.dtsi' or similar?
 
-Acked-by: Mark Brown <broonie@kernel.org>
+> Add temp-alarm and GPIO support for pm7325.
 
---PNpeiK4tTqhYOExY
-Content-Type: application/pgp-signature; name="signature.asc"
+nit: it's more than that, you are adding the .dtsi for the PMIC itself.
 
------BEGIN PGP SIGNATURE-----
+> Signed-off-by: satya priya <skakit@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/pm7325.dtsi | 53 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+> new file mode 100644
+> index 0000000..1e0848a
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+> @@ -0,0 +1,53 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/spmi/spmi.h>
+> +
+> +&spmi_bus {
+> +	pm7325: pmic@1 {
+> +		compatible = "qcom,pm7325", "qcom,spmi-pmic";
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBnVWUACgkQJNaLcl1U
-h9A+Ugf/a3HG43GZgAtdE5eo1fA87VxQOCj8MUjZtqz+wiTe0UC5KbyG/I3dGjMP
-CkE8FRmKLMrFfR59OVRW4mmzc17FEKGJ/tUICLaLoNxcWwnNbr+zjr8uuCfW8rsy
-Caz1wbZxy5B3bZfN9dHAFttToV2nuLUG5iL7SD7CIBPeGjLIIL29D8HuVZ7Zrnhn
-cRCNgKBjms4scoLfM7N0CytYlXosPZd/CGw6PJWhQyGgpvuzwskdWPfWGcJGKhNY
-36cK2FN2iMGZzrM91CWCy60Xfqk31dKFnR4PHBJSnYpQhehnBqxmmoNLqhFGGy1U
-H8iFeEiwUcMHwjiUwTrIEOESCcdPpA==
-=gvbP
------END PGP SIGNATURE-----
+I saw the patches that add the compatible strings for the GPIOs, but
+can't find those that add the strings for the PMICs themselves. Could
+you provide a link if they have been sent already?
 
---PNpeiK4tTqhYOExY--
+> +		reg = <0x1 SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		pm7325_temp_alarm: temp-alarm@a00 {
+> +			compatible = "qcom,spmi-temp-alarm";
+> +			reg = <0xa00>;
+> +			interrupts = <0x1 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+> +			#thermal-sensor-cells = <0>;
+> +		};
+> +
+> +		pm7325_gpios: gpios@8800 {
+> +			compatible = "qcom,pm7325-gpio", "qcom,spmi-gpio";
+> +			reg = <0x8800>;
+> +			gpio-controller;
+> +			gpio-ranges = <&pm7325_gpios 0 0 10>;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +};
+> +
+> +&thermal_zones {
+> +	pm7325_thermal: pm7325-thermal {
+> +		polling-delay-passive = <100>;
+> +		polling-delay = <0>;
+> +		thermal-sensors = <&pm7325_temp_alarm>;
+> +
+> +		trips {
+> +			pm7325_trip0: trip0 {
+> +				temperature = <95000>;
+> +				hysteresis = <0>;
+> +				type = "passive";
+> +			};
+> +
+> +			pm7325_trip1: trip1 {
+
+nit: the critical trip point is often named <name>-crit. One reason for
+this could be that it allows to add other non-critical trip points (in
+the .dtsi itself or the <board>.dts), without messing up the
+enumeration scheme.
+
+> +				temperature = <115000>;
+> +				hysteresis = <0>;
+> +				type = "critical";
+> +			};
+> +		};
+> +	};
+> +};
