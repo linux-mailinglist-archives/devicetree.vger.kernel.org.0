@@ -2,116 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 352C0352D2F
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 18:10:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DEB2352D3A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 18:10:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234856AbhDBPVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 11:21:54 -0400
-Received: from pegase1.c-s.fr ([93.17.236.30]:8919 "EHLO pegase1.c-s.fr"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234968AbhDBPVy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Apr 2021 11:21:54 -0400
-Received: from localhost (mailhub1-int [192.168.12.234])
-        by localhost (Postfix) with ESMTP id 4FBkL51pq3z9v2lh;
-        Fri,  2 Apr 2021 17:21:49 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at c-s.fr
-Received: from pegase1.c-s.fr ([192.168.12.234])
-        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
-        with ESMTP id OssVJYy-p_xH; Fri,  2 Apr 2021 17:21:49 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase1.c-s.fr (Postfix) with ESMTP id 4FBkL50gT0z9v2lf;
-        Fri,  2 Apr 2021 17:21:49 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 155BE8BB7D;
-        Fri,  2 Apr 2021 17:21:51 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id 6n2Gg89KkRnV; Fri,  2 Apr 2021 17:21:51 +0200 (CEST)
-Received: from [192.168.4.90] (unknown [192.168.4.90])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 1C4F58BB7C;
-        Fri,  2 Apr 2021 17:21:50 +0200 (CEST)
-Subject: Re: [PATCH v3 11/17] riscv: Convert to GENERIC_CMDLINE
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andreas Schwab <schwab@linux-m68k.org>,
-        Will Deacon <will@kernel.org>,
-        Daniel Walker <danielwa@cisco.com>,
-        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
-        <linux-arch@vger.kernel.org>, devicetree@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        microblaze <monstr@monstr.eu>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        nios2 <ley.foon.tan@intel.com>,
-        Openrisc <openrisc@lists.librecores.org>,
-        linux-hexagon@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        X86 ML <x86@kernel.org>, linux-xtensa@linux-xtensa.org,
-        SH-Linux <linux-sh@vger.kernel.org>,
-        sparclinux <sparclinux@vger.kernel.org>
-References: <cover.1616765869.git.christophe.leroy@csgroup.eu>
- <46745e07b04139a22b5bd01dc37df97e6981e643.1616765870.git.christophe.leroy@csgroup.eu>
- <87zgyqdn3d.fsf@igel.home> <81a7e63f-57d4-5c81-acc5-35278fe5bb04@csgroup.eu>
- <CAL_JsqK2TT=j1QjiRgTYQvwHqivE-3HgYo2JzxTJSWO2wvK69Q@mail.gmail.com>
-From:   Christophe Leroy <christophe.leroy@csgroup.eu>
-Message-ID: <d71c83a8-cc10-b435-5a28-70ca4df6fdf9@csgroup.eu>
-Date:   Fri, 2 Apr 2021 17:21:51 +0200
-User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        id S235273AbhDBPXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 11:23:22 -0400
+Received: from smtpcmd15177.aruba.it ([62.149.156.177]:53092 "EHLO
+        smtpcmd15177.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235111AbhDBPXW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 11:23:22 -0400
+Received: from [192.168.126.129] ([146.241.148.6])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id SLdmlmMJ3LwkNSLdmleqO8; Fri, 02 Apr 2021 17:23:19 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1617376999; bh=Zjgzub5UB8H8XQ9V4GX5bcr4pkotkNmq2kr2buL9Beg=;
+        h=Subject:To:From:Date:MIME-Version:Content-Type;
+        b=X+qGZbDU9Q6w7LxLKkxe5wTWsTbkLVJZuooXOA+BodQ15Is0JLWXkXX/88gINGyzm
+         S7Ur8zROubQakL0IE3GptcbYyzHBkQn1FzxmUuAUX53zq501EFeqmc+V/m7r1FImfn
+         MlAZ4dUSALlA8hyN14yJo3xi0gDdv63FXIqTcsm/yjAA7xjg/Moq4GfNkN3mz6n5d/
+         NEoPHCl1wkIfUhNhUm64Ui0gwCeI81XW3p7IEEILKVR+EZQYOlfAtFvPHs4pAl+oCB
+         aHYFOMCvDUrNarcWfvRuPZmsxDE3O/adte1rzIGFYO2jMaeeCgN5XrZAfohJJobZWy
+         OLlox5yKa5QCw==
+Subject: Re: [PATCH v2 3/3] Input: add driver for the Hycon HY46XX touchpanel
+ series
+To:     =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.ne@posteo.net>
+References: <20210306194120.GA1075725@robh.at.kernel.org>
+ <20210401230358.2468618-1-giulio.benetti@benettiengineering.com>
+ <20210401230358.2468618-4-giulio.benetti@benettiengineering.com>
+ <YGbc7Qbu6s659Mx4@latitude>
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+Message-ID: <a4a060a1-8cf3-71f8-9f4a-498870a9cb53@benettiengineering.com>
+Date:   Fri, 2 Apr 2021 17:23:18 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqK2TT=j1QjiRgTYQvwHqivE-3HgYo2JzxTJSWO2wvK69Q@mail.gmail.com>
+In-Reply-To: <YGbc7Qbu6s659Mx4@latitude>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: fr
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4xfP0ZAjh3bi9ubFRtnjZE8kNgc6hXya9iP7Jl3K/EySvUDaWVVPU0Dx06B+pTmj0O83bOb72Isk0TMjZIeRHYRKgVDaK9J7C8eSVnJLmDxMnsi6xIZ6aL
+ gpSVT1Cs6g6Ji8tQVdRRu/8rE2StHnfe1TKGJWwuMQQpI8Oj1R65ApOIIX317tPE8zjKwApmUxDxUbhkNEUokNxdK1LK3Q0Ez+QdSg3QnKHSSGdu2kjMWMhe
+ 4mQhKd02sTfhFDG1h/9tKn1U0fqUzLp+tunyvWmNxgYz7S2G9CMzabtvhwDIYd7oDorYp+yu1nBRYIKL+lM7EtOJBEsXzdmP84StLcVB9Mr9V0n1trMPyZbH
+ Bs3i14B3ZDM9Tyuhvoo7vPy2P4HIg0zoQPGfxe8RAqCcANp9I24AUhm9/VQ5y/him10NG7SJqLEfYxq8jKeA2tQqSIO9C2PMJNqJn5DIOAmfYhms1Fk=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jonathan,
 
-
-Le 26/03/2021 à 16:26, Rob Herring a écrit :
-> On Fri, Mar 26, 2021 at 8:20 AM Christophe Leroy
-> <christophe.leroy@csgroup.eu> wrote:
->>
->>
->>
->> Le 26/03/2021 à 15:08, Andreas Schwab a écrit :
->>> On Mär 26 2021, Christophe Leroy wrote:
->>>
->>>> diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
->>>> index f8f15332caa2..e7c91ee478d1 100644
->>>> --- a/arch/riscv/kernel/setup.c
->>>> +++ b/arch/riscv/kernel/setup.c
->>>> @@ -20,6 +20,7 @@
->>>>    #include <linux/swiotlb.h>
->>>>    #include <linux/smp.h>
->>>>    #include <linux/efi.h>
->>>> +#include <linux/cmdline.h>
->>>>
->>>>    #include <asm/cpu_ops.h>
->>>>    #include <asm/early_ioremap.h>
->>>> @@ -228,10 +229,8 @@ static void __init parse_dtb(void)
->>>>       }
->>>>
->>>>       pr_err("No DTB passed to the kernel\n");
->>>> -#ifdef CONFIG_CMDLINE_FORCE
->>>> -    strlcpy(boot_command_line, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
->>>> +    cmdline_build(boot_command_line, NULL, COMMAND_LINE_SIZE);
->>>>       pr_info("Forcing kernel command line to: %s\n", boot_command_line);
->>>
->>> Shouldn't that message become conditional in some way?
->>>
->>
->> You are right, I did something similar on ARM but looks like I missed it on RISCV.
+On 4/2/21 10:59 AM, Jonathan Neuschäfer wrote:
+> Hi,
 > 
-> How is this hunk even useful? Under what conditions can you boot
-> without a DTB? Even with a built-in DTB, the DT cmdline handling would
-> be called.
+> a few remarks below.
+> 
+> On Fri, Apr 02, 2021 at 01:03:58AM +0200, Giulio Benetti wrote:
+>> This patch adds support for Hycon HY46XX.
+>>
+>> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+>> ---
+>> V1->V2:
+>> * removed proximity-sensor-switch property according to previous patch
+>> As suggested by Dmitry Torokhov
+>> * moved i2c communaction to regmap use
+>> * added macro to avoid magic number
+>> * removed cmd variable that could uninitiliazed since we're using regmap now
+>> * removed useless byte masking
+>> * removed useless struct hycon_hy46xx_i2c_chip_data
+>> * used IRQF_ONESHOT only for isr
+>> ---
+> 
+> 
+>> +config TOUCHSCREEN_HYCON_HY46XX
+>> +	tristate "Hycon hy46xx touchscreen support"
+>> +	depends on I2C
+>> +	help
+>> +	  Say Y here if you have a touchscreen using Hycon hy46xx,
+>> +	  or something similar enough.
+> 
+> The "something similar enough" part doesn't seem relevant, because the
+> driver only lists HY46xx chips (in the compatible strings), and no chips
+> that are similar enough to work with the driver, but have a different
+> part number.
+
+Right
+
+>> +static void hycon_hy46xx_get_defaults(struct device *dev, struct hycon_hy46xx_data *tsdata)
+>> +{
+>> +	bool val_bool;
+>> +	int error;
+>> +	u32 val;
+>> +
+>> +	error = device_property_read_u32(dev, "threshold", &val);
+> 
+> This seems to follow the old version of the binding, where
+> Hycon-specific properties didn't have the "hycon," prefix.
+> Please check that the driver still works with a devicetree that follows
+> the newest version of the binding.
+
+Ah yes, I've forgotten it while changing in bindings.
+
+>> +MODULE_AUTHOR("Giulio Benetti <giulio.benetti@micronovasrl.com>");
+> 
+> This is a different email address than you used in the DT binding. If
+> this is intentional, no problem (Just letting you know, in case it's
+> unintentional).
+
+I've missed that
+
+> 
+> Thanks,
+> Jonathan Neuschäfer
 > 
 
-Don't know, I wanted to keep as is today.
-
-Do you think the hunk should be completely removed ?
-
+Thank you!
+Best regards
+-- 
+Giulio Benetti
+Benetti Engineering sas
