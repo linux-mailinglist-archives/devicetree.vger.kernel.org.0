@@ -2,122 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78F1B352E71
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 19:33:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3922352E76
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 19:33:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236487AbhDBRca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 13:32:30 -0400
-Received: from pegase1.c-s.fr ([93.17.236.30]:19038 "EHLO pegase1.c-s.fr"
+        id S234361AbhDBRdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 13:33:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45788 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236523AbhDBRcP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Apr 2021 13:32:15 -0400
-Received: from localhost (mailhub1-int [192.168.12.234])
-        by localhost (Postfix) with ESMTP id 4FBnDW1HYQz9v3qR;
-        Fri,  2 Apr 2021 19:32:11 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at c-s.fr
-Received: from pegase1.c-s.fr ([192.168.12.234])
-        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
-        with ESMTP id JHnZja8v_c6i; Fri,  2 Apr 2021 19:32:11 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase1.c-s.fr (Postfix) with ESMTP id 4FBnDW0PJdz9v3qQ;
-        Fri,  2 Apr 2021 19:32:11 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 2E6368BB77;
-        Fri,  2 Apr 2021 19:32:13 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id ipqYX6I0tWmG; Fri,  2 Apr 2021 19:32:13 +0200 (CEST)
-Received: from [192.168.4.90] (unknown [192.168.4.90])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 32C7A8BB6F;
-        Fri,  2 Apr 2021 19:32:12 +0200 (CEST)
-Subject: Re: [PATCH 2/8] CMDLINE: drivers: of: ifdef out cmdline section
-To:     Daniel Walker <danielwa@cisco.com>, Will Deacon <will@kernel.org>,
-        ob Herring <robh@kernel.org>,
-        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        Andrew Morton <akpm@linux-foundation.org>, x86@kernel.org,
-        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     xe-linux-external@cisco.com,
-        Ruslan Ruslichenko <rruslich@cisco.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <41021d66db2ab427c14255d2a24bb4517c8b58fd.1617126961.git.danielwa@cisco.com>
- <0c4b839f023f87c451c8aa3c4f7a8d92729c2f02.1617126961.git.danielwa@cisco.com>
-From:   Christophe Leroy <christophe.leroy@csgroup.eu>
-Message-ID: <6d50809a-eb6b-b8bb-bb8b-88f66c52c0fa@csgroup.eu>
-Date:   Fri, 2 Apr 2021 19:32:08 +0200
-User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        id S234652AbhDBRdk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Apr 2021 13:33:40 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 17472610FC;
+        Fri,  2 Apr 2021 17:33:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617384819;
+        bh=8IASa5tOevrm7zrvU20QKNH/BDtSZcYWjppA/Xkc/4o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Tom7wZLx95KXsadqFUaHFR9S5Pmr4CZ6yJrzSWATPreZqFeyZMkA9YYad859z8ZUE
+         DRGtERA8hZGVq0oh91YSdjqdMOfKw+nWisg9lrTMgtUtknvrEkwthc4HybNlPGaW7g
+         zKDGc9gVNQ2xZDZ2ozhaPX8gOjxfrt9MHKEWc2Fd6pKVAPPSLT7h1T+UcTyEBuiqLD
+         PPiw6xpERKozI3MoR4wg58gJsiIXkEuiw28PWA4cBS3UOnRiPrW0vImDGMZ0bo7VDp
+         g3OZApsjoZUNXg/UcAysFuYiBS446BonzCwzyV0MB/s5E/8f5mtSyI05RQFdxEII/l
+         Tnlnx8ovpZz9g==
+Date:   Fri, 2 Apr 2021 18:33:26 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com
+Subject: Re: [PATCH v5 14/19] regulator: bd718x7, bd71828: Use ramp-delay
+ helper
+Message-ID: <20210402173326.GH5402@sirena.org.uk>
+References: <cover.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
+ <42adb3a4055e6c661d01cf1dd6a9763d15b7e689.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-In-Reply-To: <0c4b839f023f87c451c8aa3c4f7a8d92729c2f02.1617126961.git.danielwa@cisco.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: fr
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="PNpeiK4tTqhYOExY"
+Content-Disposition: inline
+In-Reply-To: <42adb3a4055e6c661d01cf1dd6a9763d15b7e689.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
+X-Cookie: Dammit Jim, I'm an actor, not a doctor.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--PNpeiK4tTqhYOExY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Le 30/03/2021 à 19:56, Daniel Walker a écrit :
-> It looks like there's some seepage of cmdline stuff into
-> the generic device tree code. This conflicts with the
-> generic cmdline implementation so I remove it in the case
-> when that's enabled.
-> 
-> Cc: xe-linux-external@cisco.com
-> Signed-off-by: Ruslan Ruslichenko <rruslich@cisco.com>
-> Signed-off-by: Daniel Walker <danielwa@cisco.com>
-> ---
->   drivers/of/fdt.c | 14 ++++++++++++++
->   1 file changed, 14 insertions(+)
-> 
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index dcc1dd96911a..d8805cd9717a 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -25,6 +25,7 @@
->   #include <linux/serial_core.h>
->   #include <linux/sysfs.h>
->   #include <linux/random.h>
-> +#include <linux/cmdline.h>
->   
->   #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
->   #include <asm/page.h>
-> @@ -1050,6 +1051,18 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
->   
->   	/* Retrieve command line */
->   	p = of_get_flat_dt_prop(node, "bootargs", &l);
-> +
-> +#if defined(CONFIG_GENERIC_CMDLINE) && defined(CONFIG_GENERIC_CMDLINE_OF)
-> +	/*
-> +	 * The builtin command line will be added here, or it can override
-> +	 * with the DT bootargs.
-> +	 */
-> +	cmdline_add_builtin(data,
-> +			    (l > 0 ? p : NULL), /* This is sanity checking */
-> +			    COMMAND_LINE_SIZE);
-> +#elif defined(CONFIG_GENERIC_CMDLINE)
-> +	strlcpy(data, p, COMMAND_LINE_SIZE);
-> +#else
+On Mon, Mar 29, 2021 at 03:59:28PM +0300, Matti Vaittinen wrote:
+> Use generic regamp ramp-delay helper function instead of implementing own.
+>=20
 
-Ugly.
+Acked-by: Mark Brown <broonie@kernel.org>
 
-Linux codying style recommend to limit the use of #ifdefs to headers as much as possible.
+--PNpeiK4tTqhYOExY
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Why do we need so many alternatives ? Allthough they are temporary, can we order the changes in 
-another way to reduce that ?
+-----BEGIN PGP SIGNATURE-----
 
->   	if (p != NULL && l > 0)
->   		strlcpy(data, p, min(l, COMMAND_LINE_SIZE));
->   
-> @@ -1070,6 +1083,7 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
->   		strlcpy(data, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
->   #endif
->   #endif /* CONFIG_CMDLINE */
-> +#endif /* CONFIG_GENERIC_CMDLINE */
->   
->   	pr_debug("Command line is: %s\n", (char *)data);
->   
-> 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBnVWUACgkQJNaLcl1U
+h9A+Ugf/a3HG43GZgAtdE5eo1fA87VxQOCj8MUjZtqz+wiTe0UC5KbyG/I3dGjMP
+CkE8FRmKLMrFfR59OVRW4mmzc17FEKGJ/tUICLaLoNxcWwnNbr+zjr8uuCfW8rsy
+Caz1wbZxy5B3bZfN9dHAFttToV2nuLUG5iL7SD7CIBPeGjLIIL29D8HuVZ7Zrnhn
+cRCNgKBjms4scoLfM7N0CytYlXosPZd/CGw6PJWhQyGgpvuzwskdWPfWGcJGKhNY
+36cK2FN2iMGZzrM91CWCy60Xfqk31dKFnR4PHBJSnYpQhehnBqxmmoNLqhFGGy1U
+H8iFeEiwUcMHwjiUwTrIEOESCcdPpA==
+=gvbP
+-----END PGP SIGNATURE-----
+
+--PNpeiK4tTqhYOExY--
