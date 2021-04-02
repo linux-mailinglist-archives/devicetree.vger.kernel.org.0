@@ -2,126 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A3B93526F8
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 09:34:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 894CD352701
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 09:43:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234352AbhDBHe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 03:34:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40950 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234327AbhDBHey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 03:34:54 -0400
-Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B6E0C0613E6;
-        Fri,  2 Apr 2021 00:34:54 -0700 (PDT)
-Received: by mail-io1-xd35.google.com with SMTP id z136so4580938iof.10;
-        Fri, 02 Apr 2021 00:34:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=S8YiWEgAWNK+PWFAwlRLwclHpIGKDlHTAlTUSmH/65s=;
-        b=jFUe8fj/rlXjI53aUF/H7YFiHByWQ4hDH19JCq4435UfFGgeAj9AUTeSGK+svJ0RbH
-         ouvKNhYESpEQcNmF/f8a6it7JO+IYvF0h25WjxQUibN12shEBIq8jmGshVWPW4Wwhuv6
-         GRM1waAT5nWoOhEnAZhrHYfJWxYBpC1FfhkfzaQ/0KhabL689p/gLsy2vZN+Tr5EseMg
-         8iWCvo/uD3oa/TBL2LONUyd8febqLoptvKPUDi89m9/+vC/LjW/4ibAIRMZkUtBdI7V0
-         UTxrOr6cNio2+ye0bbhAVOPNqczxXxASLoEeqlbLTSRMlbMiYUryty4PJBZU0DTLHYPm
-         WIKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=S8YiWEgAWNK+PWFAwlRLwclHpIGKDlHTAlTUSmH/65s=;
-        b=C7xZ7ehIGE/F1JjkYp6EfleN8zRGX4LNneA/6trB+8WHLGApALbrQcYOx/Tify+xMR
-         SSWXCtLhid512M1N0tZw9NVfEbw+nLlOj73TSSqH9g/Uu1YW8L5zC9hIfLgCPAP6zuRw
-         Y/g/VRZElfPzmBIERZgn4MsRZlDbB1JQ0S2azu6IcBwBPZaCTBg7xsYryGH+E4TaVAti
-         bVP9ptO06gJRwatuou5WHcubYhnjP03YtY8QW0rOiilEdS2PxP5YBdlsmzT2SoKbHz7c
-         RDrKwHLCvz9zDsqwiOG9A3dLpqY2wKFmc+n/oZUEtjEdP+WOcNSXmdXJ5LITwJszQPJz
-         0OIA==
-X-Gm-Message-State: AOAM532OLnG1QfuhrDTUBaQrUuv1qA0TA1CKWaTYoBi0nknxUj0xpYm7
-        WWEaQDao/Rxyjl0uvhW1eHLQK2gHvDgFudVevYg=
-X-Google-Smtp-Source: ABdhPJydMTWYDIZREgnTQx666V8nT2/KJLSYAkt+IR7zQKVsyhiAi4hsU4Dy1m0Xg401RwfZHKWoOLbX20rc26JQwNY=
-X-Received: by 2002:a05:6638:3791:: with SMTP id w17mr11482434jal.91.1617348893555;
- Fri, 02 Apr 2021 00:34:53 -0700 (PDT)
+        id S233901AbhDBHnk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 03:43:40 -0400
+Received: from fallback16.mail.ru ([94.100.177.128]:45638 "EHLO
+        fallback16.mail.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230492AbhDBHnk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 03:43:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru; s=mail3;
+        h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From; bh=EjB+5VqWLyWmjemoi1Psrq7kjjSi0B7hGL5GqtStktU=;
+        b=bHO3x7Yac3F8KPmGS9Py80Obs5pkstkJecMC4rWWbCmLArolrYryvYUIYWMZB3Voi2oIGFzXlKubo2vgIo7LNwJbZshNJpE7w2GiXDbLnfHB3sP6ZG9dvQQjjqZf0bJ7CJYmk1rvDt7u/1ryiVDK8OIFFdgx/NW28x+H7PRpjG8=;
+Received: from [10.161.64.46] (port=32786 helo=smtp38.i.mail.ru)
+        by fallback16.i with esmtp (envelope-from <shc_work@mail.ru>)
+        id 1lSESu-0005DU-Cr; Fri, 02 Apr 2021 10:43:36 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru; s=mail3;
+        h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=EjB+5VqWLyWmjemoi1Psrq7kjjSi0B7hGL5GqtStktU=;
+        b=dDLrGu1QnTvmcTn4SWAfgJqRVmDjRdZZtQHhSpfcx8nW3NHvTyclWSNTzwxFzj0EXcVyPVLO83zTC3vFWmC1zqlXmA+TKjW9l1WmpEBsdTWhFEUC2vKOlFIhhxWt9F6OYZ5h+CcUwUfES+HAR/sgs5TnvHDo9yPJn3p2PCH0M3g=;
+Received: by smtp38.i.mail.ru with esmtpa (envelope-from <shc_work@mail.ru>)
+        id 1lSESm-0008Jo-Vc; Fri, 02 Apr 2021 10:43:29 +0300
+From:   Alexander Shiyan <shc_work@mail.ru>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Russell King <linux@armlinux.org.uk>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Alexander Shiyan <shc_work@mail.ru>
+Subject: [PATCH RESEND 1/5] ARM: dts: clps711x: Add SYSCON nodes where it is used
+Date:   Fri,  2 Apr 2021 10:43:14 +0300
+Message-Id: <20210402074318.8582-1-shc_work@mail.ru>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20210401171759.318140-1-jic23@kernel.org> <20210401171759.318140-2-jic23@kernel.org>
-In-Reply-To: <20210401171759.318140-2-jic23@kernel.org>
-From:   Alexandru Ardelean <ardeleanalex@gmail.com>
-Date:   Fri, 2 Apr 2021 10:34:42 +0300
-Message-ID: <CA+U=DspFppB_cnufH6VLULKCaVQ796GsNykt90OJPPj_ThcyvQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] iio:adc:ad7476: Fix remove handling
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio <linux-iio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-7564579A: 78E4E2B564C1792B
+X-77F55803: 4F1203BC0FB41BD9ED7173E37F4E32947427BE79D20CABD4F844F00D7AFD5C3C182A05F5380850405EBBBDC06045099552F862CE218043E8C0F9E44CB6E34E36C93FE557E44E53BD
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE72F22E6DC541F75D9EA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F79006373768BF035B57E5168638F802B75D45FF914D58D5BE9E6BC131B5C99E7648C95C7B5A45DDF210A4CFD8CC875304DFB794E2A24CC2EBE77A08A471835C12D1D9774AD6D5ED66289B5278DA827A17800CE767883B903EA3BAEA9FA2833FD35BB23D2EF20D2F80756B5F868A13BD56FB6657A471835C12D1D977725E5C173C3A84C37EF884183F8E4D67117882F4460429728AD0CFFFB425014E868A13BD56FB6657D81D268191BDAD3DC09775C1D3CA48CF6B55DB95A1F615C1BA3038C0950A5D36C8A9BA7A39EFB766EC990983EF5C0329BA3038C0950A5D36D5E8D9A59859A8B6EF4EC40CFC69163A76E601842F6C81A1F004C90652538430CDED94BCBF13EF3B2DBA43225CD8A89F9FFED5BD9FB41755A91E23F1B6B78B78B5C8C57E37DE458BEDA766A37F9254B7
+X-B7AD71C0: AC4F5C86D027EB782CDD5689AFBDA7A24A6D60772A99906F8E1CD14B953EB46DE1576A519F2C84D1355D89D7DBCDD132
+X-C1DE0DAB: C20DE7B7AB408E4181F030C43753B8186998911F362727C414F749A5E30D975C7B5A45DDF210A4CFD8CC875304DFB794E2A24CC2EBE77A089C2B6934AE262D3EE7EAB7254005DCED556CBE7F905700A49510FB958DCE06DB6ED91DBE5ABE359A805C47957401F4817D06A436E56C8DB493EDB24507CE13387DFF0A840B692CF8
+X-C8649E89: 4E36BF7865823D7055A7F0CF078B5EC49A30900B95165D34D8C933888226C84167A8419DB0957F22AF023E1B45C4AF3A34DF8A5A68E7C2F03370FFE62A01EDD21D7E09C32AA3244C5857F9032FA443C710308F2B21D3B50AA8CE788DE6831205DCA3B3C10BC03908
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojiysexgWf334gUsXNGLx8EA==
+X-Mailru-Sender: 8261CADE3D3FA0B4C2F1292954F703E9C4D6AA0BA558CC225EB028756589B6C4FBB7BA11EF7D744E6B3B2BD4812BFD4DC77752E0C033A69E93554C27080790AB3B25A7FBAAF806F0AE208404248635DF
+X-Mras: Ok
+X-7564579A: 646B95376F6C166E
+X-77F55803: 6242723A09DB00B4DF7173A40FF1347DA6106AACE9855D49BE32B3BEF655D7B8049FFFDB7839CE9E750848576F542D0E69FA2D89D3021313F148FE0CC2B0B6399883450CEF473659
+X-C1DE0DAB: C20DE7B7AB408E4181F030C43753B8186998911F362727C414F749A5E30D975C7B5A45DDF210A4CFCE54234C43967288632FADF8EF0EE6599C2B6934AE262D3EE7EAB7254005DCED89C3600D1690B433699F904B3F4130E343918A1A30D5E7FCCB5012B2E24CD356
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5xhPKz0ZEsZ5k6NOOPWz5QAiZSCXKGQRq3/7KxbCLSB2ESzQkaOXqCBFZPLWFrEGlV1shfWe2EVcxl5toh0c/aCGOghz/frdRhzMe95NxDFdM/HWZ2FZeTeJieBEsDqftQ==
+X-Mailru-MI: 800
+X-Mras: Ok
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 1, 2021 at 8:47 PM Jonathan Cameron <jic23@kernel.org> wrote:
->
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
->
-> This driver was in an odd half way state between devm based cleanup
-> and manual cleanup (most of which was missing).
-> I would guess something went wrong with a rebase or similar.
-> Anyhow, this basially finishes the job as a precusor to improving
+This patch adds SYSCON descriptors to framebuffer, SPI, DAI
+and modem control GPIO nodes to further rework these drivers
+to remove the call to the syscon_regmap_lookup_by_compatible() function.
 
-2 typos in this commit description
+Signed-off-by: Alexander Shiyan <shc_work@mail.ru>
+---
+ arch/arm/boot/dts/ep7209.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> the regulator handling.
->
+diff --git a/arch/arm/boot/dts/ep7209.dtsi b/arch/arm/boot/dts/ep7209.dtsi
+index 365931f8b48d..dacbe0d8e67a 100644
+--- a/arch/arm/boot/dts/ep7209.dtsi
++++ b/arch/arm/boot/dts/ep7209.dtsi
+@@ -108,6 +108,7 @@ fb: fb@800002c0 {
+ 			compatible = "cirrus,ep7209-fb";
+ 			reg = <0x800002c0 0xd44>, <0x60000000 0xc000>;
+ 			clocks = <&clks CLPS711X_CLK_BUS>;
++			syscon = <&syscon1>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -147,6 +148,7 @@ spi: spi@80000500 {
+ 			reg = <0x80000500 0x4>;
+ 			interrupts = <15>;
+ 			clocks = <&clks CLPS711X_CLK_SPI>;
++			syscon = <&syscon3>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -170,6 +172,7 @@ dai: dai@80002000 {
+ 			clocks = <&clks CLPS711X_CLK_PLL>;
+ 			clock-names = "pll";
+ 			interrupts = <32>;
++			syscon = <&syscon3>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -181,6 +184,7 @@ syscon3: syscon@80002200 {
+ 
+ 	mctrl: mctrl {
+ 		compatible = "cirrus,ep7209-mctrl-gpio";
++		gpio,syscon-dev = <&syscon1 0 0>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 	};
+-- 
+2.26.2
 
-I was pretty surprised about this patch [before reading through it].
-Anyhow:
-
-Reviewed-by: Alexandru Ardelean <ardeleanalex@gmail.com>
-
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Fixes: 4bb2b8f94ace3 ("iio: adc: ad7476: implement devm_add_action_or_reset")
-> Cc: Michael Hennerich <michael.hennerich@analog.com>
-> ---
->  drivers/iio/adc/ad7476.c | 18 ++++--------------
->  1 file changed, 4 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/iio/adc/ad7476.c b/drivers/iio/adc/ad7476.c
-> index 17402714b387..9e9ff07cf972 100644
-> --- a/drivers/iio/adc/ad7476.c
-> +++ b/drivers/iio/adc/ad7476.c
-> @@ -321,25 +321,15 @@ static int ad7476_probe(struct spi_device *spi)
->         spi_message_init(&st->msg);
->         spi_message_add_tail(&st->xfer, &st->msg);
->
-> -       ret = iio_triggered_buffer_setup(indio_dev, NULL,
-> -                       &ad7476_trigger_handler, NULL);
-> +       ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev, NULL,
-> +                                             &ad7476_trigger_handler, NULL);
->         if (ret)
-> -               goto error_disable_reg;
-> +               return ret;
->
->         if (st->chip_info->reset)
->                 st->chip_info->reset(st);
->
-> -       ret = iio_device_register(indio_dev);
-> -       if (ret)
-> -               goto error_ring_unregister;
-> -       return 0;
-> -
-> -error_ring_unregister:
-> -       iio_triggered_buffer_cleanup(indio_dev);
-> -error_disable_reg:
-> -       regulator_disable(st->reg);
-> -
-> -       return ret;
-> +       return devm_iio_device_register(&spi->dev, indio_dev);
->  }
->
->  static const struct spi_device_id ad7476_id[] = {
-> --
-> 2.31.1
->
