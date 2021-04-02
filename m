@@ -2,280 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F0AB352A6C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 13:57:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 105E8352A73
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 14:02:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229932AbhDBL55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 07:57:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41504 "EHLO
+        id S229722AbhDBMCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 08:02:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235290AbhDBL55 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 07:57:57 -0400
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F966C0613E6
-        for <devicetree@vger.kernel.org>; Fri,  2 Apr 2021 04:57:56 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:7c3c:adbc:7a1a:b85f])
-        by laurent.telenet-ops.be with bizsmtp
-        id nnxu240034A7w6i01nxuyt; Fri, 02 Apr 2021 13:57:54 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1lSIQz-00CRkq-Kz; Fri, 02 Apr 2021 13:57:53 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1lSIQz-004Cyv-Bu; Fri, 02 Apr 2021 13:57:53 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Moritz Fischer <mdf@kernel.org>, Tom Rix <trix@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: fpga: fpga-region: Convert to sugar syntax
-Date:   Fri,  2 Apr 2021 13:57:49 +0200
-Message-Id: <e73c46db7f1474417cbc3c2d8f582d2e62833eeb.1617364549.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229599AbhDBMCE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 08:02:04 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74D0DC0613E6
+        for <devicetree@vger.kernel.org>; Fri,  2 Apr 2021 05:02:03 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <pza@pengutronix.de>)
+        id 1lSIUg-0007y7-6w; Fri, 02 Apr 2021 14:01:42 +0200
+Received: from pza by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <pza@pengutronix.de>)
+        id 1lSIUb-0007gY-Hi; Fri, 02 Apr 2021 14:01:37 +0200
+Date:   Fri, 2 Apr 2021 14:01:37 +0200
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Quan Nguyen <quan@os.amperecomputing.com>
+Cc:     Corey Minyard <minyard@acm.org>, Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Wolfram Sang <wsa@kernel.org>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+Subject: Re: [PATCH v2 2/3] drivers: char: ipmi: Add Aspeed SSIF BMC driver
+Message-ID: <20210402120137.GA26002@pengutronix.de>
+References: <20210330141029.20412-1-quan@os.amperecomputing.com>
+ <20210330141029.20412-3-quan@os.amperecomputing.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210330141029.20412-3-quan@os.amperecomputing.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 13:57:27 up 43 days, 15:21, 66 users,  load average: 0.04, 0.10,
+ 0.09
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: pza@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Using overlay sugar syntax makes the DTS files easier to read (and
-write).
+Hi Quan,
 
-While at it, fix two build issues:
-  - "/dts-v1/" and "/plugin/" must be separate statements.
-  - Add a missing closing curly brace.
+On Tue, Mar 30, 2021 at 09:10:28PM +0700, Quan Nguyen wrote:
+> The SMBus system interface (SSIF) IPMI BMC driver can be used to perform
+> in-band IPMI communication with their host in management (BMC) side.
+> 
+> This commits adds support specifically for Aspeed AST2500 which commonly
+> used as Board Management Controllers.
+> 
+> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+> ---
+[...]
+> diff --git a/drivers/char/ipmi/ssif_bmc_aspeed.c b/drivers/char/ipmi/ssif_bmc_aspeed.c
+> new file mode 100644
+> index 000000000000..a563fcff5acc
+> --- /dev/null
+> +++ b/drivers/char/ipmi/ssif_bmc_aspeed.c
+> @@ -0,0 +1,132 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * The driver for BMC side of Aspeed SSIF interface
+> + *
+> + * Copyright (c) 2021, Ampere Computing LLC
+> + *
+> + * This program is free software; you can redistribute it and/or
+> + * modify it under the terms of the GNU General Public License as
+> + * published by the Free Software Foundation; either version 2 of
+> + * the License, or (at your option) any later version.
+> + *
+> + * This program is distributed in the hope that it will be useful,
+> + * but WITHOUT ANY WARRANTY; without even the implied warranty of
+> + * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> + * GNU General Public License for more details.
+> + *
+> + * You should have received a copy of the GNU General Public License
+> + * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/miscdevice.h>
+> +#include <linux/module.h>
+> +#include <linux/poll.h>
+> +#include <linux/iopoll.h>
+> +
+> +#include "ssif_bmc.h"
+> +
+> +struct aspeed_i2c_bus {
+> +	struct i2c_adapter              adap;
+> +	struct device                   *dev;
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- .../devicetree/bindings/fpga/fpga-region.txt  | 187 ++++++++----------
- 1 file changed, 85 insertions(+), 102 deletions(-)
+This device handle is apparently unused.
 
-diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.txt b/Documentation/devicetree/bindings/fpga/fpga-region.txt
-index e811cf8250199b14..d787d57491a1c537 100644
---- a/Documentation/devicetree/bindings/fpga/fpga-region.txt
-+++ b/Documentation/devicetree/bindings/fpga/fpga-region.txt
-@@ -245,36 +245,31 @@ Base tree contains:
- 
- Overlay contains:
- 
--/dts-v1/ /plugin/;
--/ {
--	fragment@0 {
--		target = <&fpga_region0>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		__overlay__ {
--			#address-cells = <1>;
--			#size-cells = <1>;
--
--			firmware-name = "soc_system.rbf";
--			fpga-bridges = <&fpga_bridge1>;
--			ranges = <0x20000 0xff200000 0x100000>,
--				 <0x0 0xc0000000 0x20000000>;
--
--			gpio@10040 {
--				compatible = "altr,pio-1.0";
--				reg = <0x10040 0x20>;
--				altr,ngpio = <4>;
--				#gpio-cells = <2>;
--				clocks = <2>;
--				gpio-controller;
--			};
--
--			onchip-memory {
--				device_type = "memory";
--				compatible = "altr,onchipmem-15.1";
--				reg = <0x0 0x10000>;
--			};
--		};
-+/dts-v1/;
-+/plugin/;
-+
-+&fpga_region0 {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	firmware-name = "soc_system.rbf";
-+	fpga-bridges = <&fpga_bridge1>;
-+	ranges = <0x20000 0xff200000 0x100000>,
-+		 <0x0 0xc0000000 0x20000000>;
-+
-+	gpio@10040 {
-+		compatible = "altr,pio-1.0";
-+		reg = <0x10040 0x20>;
-+		altr,ngpio = <4>;
-+		#gpio-cells = <2>;
-+		clocks = <2>;
-+		gpio-controller;
-+	};
-+
-+	onchip-memory {
-+		device_type = "memory";
-+		compatible = "altr,onchipmem-15.1";
-+		reg = <0x0 0x10000>;
- 	};
- };
- 
-@@ -371,25 +366,22 @@ Live Device Tree contains:
- 	};
- 
- DT Overlay contains:
--/dts-v1/ /plugin/;
--/ {
--fragment@0 {
--	target = <&fpga_region0>;
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&fpga_region0 {
- 	#address-cells = <1>;
- 	#size-cells = <1>;
--	__overlay__ {
--		#address-cells = <1>;
--		#size-cells = <1>;
- 
--		firmware-name = "zynq-gpio.bin";
-+	firmware-name = "zynq-gpio.bin";
- 
--		gpio1: gpio@40000000 {
--			compatible = "xlnx,xps-gpio-1.00.a";
--			reg = <0x40000000 0x10000>;
--			gpio-controller;
--			#gpio-cells = <0x2>;
--			xlnx,gpio-width= <0x6>;
--		};
-+	gpio1: gpio@40000000 {
-+		compatible = "xlnx,xps-gpio-1.00.a";
-+		reg = <0x40000000 0x10000>;
-+		gpio-controller;
-+		#gpio-cells = <0x2>;
-+		xlnx,gpio-width= <0x6>;
- 	};
- };
- 
-@@ -402,41 +394,37 @@ This example programs the FPGA to have two regions that can later be partially
- configured.  Each region has its own bridge in the FPGA fabric.
- 
- DT Overlay contains:
--/dts-v1/ /plugin/;
--/ {
--	fragment@0 {
--		target = <&fpga_region0>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		__overlay__ {
--			#address-cells = <1>;
--			#size-cells = <1>;
--
--			firmware-name = "base.rbf";
--
--			fpga-bridge@4400 {
--				compatible = "altr,freeze-bridge-controller";
--				reg = <0x4400 0x10>;
--
--				fpga_region1: fpga-region1 {
--					compatible = "fpga-region";
--					#address-cells = <0x1>;
--					#size-cells = <0x1>;
--					ranges;
--				};
--			};
--
--			fpga-bridge@4420 {
--				compatible = "altr,freeze-bridge-controller";
--				reg = <0x4420 0x10>;
--
--				fpga_region2: fpga-region2 {
--					compatible = "fpga-region";
--					#address-cells = <0x1>;
--					#size-cells = <0x1>;
--					ranges;
--				};
--			};
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&fpga_region0 {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	firmware-name = "base.rbf";
-+
-+	fpga-bridge@4400 {
-+		compatible = "altr,freeze-bridge-controller";
-+		reg = <0x4400 0x10>;
-+
-+		fpga_region1: fpga-region1 {
-+			compatible = "fpga-region";
-+			#address-cells = <0x1>;
-+			#size-cells = <0x1>;
-+			ranges;
-+		};
-+	};
-+
-+	fpga-bridge@4420 {
-+		compatible = "altr,freeze-bridge-controller";
-+		reg = <0x4420 0x10>;
-+
-+		fpga_region2: fpga-region2 {
-+			compatible = "fpga-region";
-+			#address-cells = <0x1>;
-+			#size-cells = <0x1>;
-+			ranges;
- 		};
- 	};
- };
-@@ -451,28 +439,23 @@ differences are that the FPGA is partially reconfigured due to the
- "partial-fpga-config" boolean and the only bridge that is controlled during
- programming is the FPGA based bridge of fpga_region1.
- 
--/dts-v1/ /plugin/;
--/ {
--	fragment@0 {
--		target = <&fpga_region1>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		__overlay__ {
--			#address-cells = <1>;
--			#size-cells = <1>;
--
--			firmware-name = "soc_image2.rbf";
--			partial-fpga-config;
--
--			gpio@10040 {
--				compatible = "altr,pio-1.0";
--				reg = <0x10040 0x20>;
--				clocks = <0x2>;
--				altr,ngpio = <0x4>;
--				#gpio-cells = <0x2>;
--				gpio-controller;
--			};
--		};
-+/dts-v1/;
-+/plugin/;
-+
-+&fpga_region1 {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	firmware-name = "soc_image2.rbf";
-+	partial-fpga-config;
-+
-+	gpio@10040 {
-+		compatible = "altr,pio-1.0";
-+		reg = <0x10040 0x20>;
-+		clocks = <0x2>;
-+		altr,ngpio = <0x4>;
-+		#gpio-cells = <0x2>;
-+		gpio-controller;
- 	};
- };
- 
--- 
-2.25.1
+> +	void __iomem                    *base;
+> +	struct reset_control            *rst;
 
+This reset control handle is unused as well.
+
+> +	/* Synchronizes I/O mem access to base. */
+> +	spinlock_t                      lock;
+> +};
+
+regards
+Philipp
