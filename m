@@ -2,145 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92A75352FB8
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 21:26:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5371B352FCB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 21:33:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236508AbhDBT0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 15:26:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54086 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235392AbhDBT0e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 15:26:34 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD1F8C0613E6
-        for <devicetree@vger.kernel.org>; Fri,  2 Apr 2021 12:26:31 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id bg21so62750pjb.0
-        for <devicetree@vger.kernel.org>; Fri, 02 Apr 2021 12:26:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=N4s6Vtv2vZ6Bbjawt/rPkfCViiVZXuVBQF1DqpILNog=;
-        b=Qveu1dP3Ik/eATP/5cOdXPxeermVJGHI6+RBORNj4W2OT4aAAxar7/Tljz7dbKTjB6
-         tuUbpmAfXocO6pRSE6oA2E1aEA5NShAFvHSNwc7XxXX1434uDmtm+QM8DVC1VZaoFgLv
-         xVAi/cBacSuhHPu4OSgpBs9agiBBFCmcq06Yo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=N4s6Vtv2vZ6Bbjawt/rPkfCViiVZXuVBQF1DqpILNog=;
-        b=NHE6oVH3b0B3QvNPMVB8jmndN8PhSaMeeVyqjeTRro8o1iQj8pQh75js3BXMyCCWYW
-         FbJBXVYM1Gi6f5HfZeIzys/j1X7hPiPIM6BhqmQKrojuDCVo2rZ6W4nRL7SuHava4OxF
-         vFEhtD0YdyPMjsdK7gn2nvCsCmiPQeTfRd02KuqutGKUrDavqNdowXBYtvMK4MfspUG5
-         XtFdaNJ6uWsF96+m23NoxjkWNPvhPpKYaZvhpypJ/U+Jv3731+iIzYYZUTmlVgZumPRr
-         jcuREYFn7KNJ2yLKDelJhr+cX0LPTijUjHU3FQdJungW062cLvM372LcRNQR3OIH4iru
-         g3Wg==
-X-Gm-Message-State: AOAM531OF34maencdxumMQo+dw7Ae4b1138Y9hwbULN1hMNCckKOXWHj
-        onniw6cU0eAn81YXtSZIlWu9ig==
-X-Google-Smtp-Source: ABdhPJwo8sNbSknxNcF/K4Eabomcg0KEy77eQH9gY3NN8Kwnu6Ez/IY4NTcSNB/TdaiINWMGzLxiTg==
-X-Received: by 2002:a17:902:7401:b029:e4:5992:e64a with SMTP id g1-20020a1709027401b02900e45992e64amr14128720pll.75.1617391591301;
-        Fri, 02 Apr 2021 12:26:31 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:581c:e04f:7c08:c602])
-        by smtp.gmail.com with UTF8SMTPSA id h6sm9015932pfh.13.2021.04.02.12.26.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Apr 2021 12:26:30 -0700 (PDT)
-Date:   Fri, 2 Apr 2021 12:26:30 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S235904AbhDBTdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 15:33:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37846 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235256AbhDBTdY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Apr 2021 15:33:24 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3F2A861106;
+        Fri,  2 Apr 2021 19:33:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617392002;
+        bh=UKGAA0KBznLokaitUNDSSQOOPLiOQ/AEbThL2/Z8hG0=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=nFpYVWCKV2mtdWoynoI6+acnvex5sthViPUax7CahWdrIHhxcjFvYIAAXDB5KehOB
+         tFPeSoIkpJMyU/clwlFL3o41g4Kmd1Ube8MC/lzl7BZstGY7DDehbLXBRun3u0T0eC
+         Y271m3LDOmp00w1RtsvColrfF4r3Pg3b6OvhdliRMw4TrUegsnyDZHm3eMOTFGnc9D
+         +g1C97eYWVmSVIuyTmg2r497zC2p39vCwda4MUZrZLb9Dyk86PMH9V/n9AzEYcImnt
+         caM/Jn8D3sNCPx7IklNgxJ9EorOVYv1z3xWAheLtpCVnjoQSRkQwL0yVQf1o4H13w/
+         oz/xqM0VIQP4A==
+From:   Mark Brown <broonie@kernel.org>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-power@fi.rohmeurope.com,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-rtc@vger.kernel.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-gpio@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [PATCH V2 4/5] arm64: dts: qcom: pmr735a: Add PMIC peripherals
- for pmr735a
-Message-ID: <YGdv5pKMr7jD32Le@google.com>
-References: <1617268396-1837-1-git-send-email-skakit@codeaurora.org>
- <1617268396-1837-5-git-send-email-skakit@codeaurora.org>
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: (subset) [PATCH v5 00/19] Support ROHM BD71815 PMIC
+Date:   Fri,  2 Apr 2021 20:33:08 +0100
+Message-Id: <161739191157.32055.17669953847894989465.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <cover.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
+References: <cover.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1617268396-1837-5-git-send-email-skakit@codeaurora.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Same comments as '[1/5] arm64: dts: qcom: pm7325: Add PMIC peripherals
-for pm7325', plus another nit:
+On Mon, 29 Mar 2021 15:52:38 +0300, Matti Vaittinen wrote:
+> Patch series introducing support for ROHM BD71815 PMIC
+> 
+> ROHM BD71815 is a power management IC used in some battery powered
+> systems. It contains regulators, GPO(s), charger + coulomb counter, RTC
+> and a clock gate.
+> 
+> All regulators can be controlled via I2C. LDO4 can additionally be set to
+> be enabled/disabled by a GPIO. LDO3 voltage could be selected from two
+> voltages written into separate VSEL reisters using GPIO but this mode is
+> not supported by driver. On top of that the PMIC has the typical HW
+> state machine which is present also on many other ROHM PMICs.
+> 
+> [...]
 
-'[3/5] arm64: dts: qcom: pmk8350: Add PMIC peripherals for pmk8350' has
-an ADC config for the die temperature of the pmr735a, hence it seems this
-patch should be before the 'pmk8350' one in this series.
+Applied to
 
-On Thu, Apr 01, 2021 at 02:43:15PM +0530, satya priya wrote:
-> Add temp-alarm and GPIO support for pmr735a.
-> 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/pmr735a.dtsi | 53 +++++++++++++++++++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/pmr735a.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pmr735a.dtsi b/arch/arm64/boot/dts/qcom/pmr735a.dtsi
-> new file mode 100644
-> index 0000000..07077fb
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/pmr735a.dtsi
-> @@ -0,0 +1,53 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/spmi/spmi.h>
-> +
-> +&spmi_bus {
-> +	pmr735a: pmic@4 {
-> +		compatible = "qcom,pmr735a", "qcom,spmi-pmic";
-> +		reg = <0x4 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		pmr735a_temp_alarm: temp-alarm@a00 {
-> +			compatible = "qcom,spmi-temp-alarm";
-> +			reg = <0xa00>;
-> +			interrupts = <0x4 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-> +			#thermal-sensor-cells = <0>;
-> +		};
-> +
-> +		pmr735a_gpios: gpios@8800 {
-> +			compatible = "qcom,pmr735a-gpio", "qcom,spmi-gpio";
-> +			reg = <0x8800>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pmr735a_gpios 0 0 4>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
-> +};
-> +
-> +&thermal_zones {
-> +	pmr735a_thermal: pmr735a-thermal {
-> +		polling-delay-passive = <100>;
-> +		polling-delay = <0>;
-> +		thermal-sensors = <&pmr735a_temp_alarm>;
-> +
-> +		trips {
-> +			pmr735a_trip0: trip0 {
-> +				temperature = <95000>;
-> +				hysteresis = <0>;
-> +				type = "passive";
-> +			};
-> +
-> +			pmr735a_trip1: trip1 {
-> +				temperature = <115000>;
-> +				hysteresis = <0>;
-> +				type = "critical";
-> +			};
-> +		};
-> +	};
-> +};
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+
+Thanks!
+
+[10/19] regulator: helpers: Export helper voltage listing
+        commit: e3baacf54275647a018ee35bff3bc775a8a2a01a
+[13/19] regulator: Add regmap helper for ramp-delay setting
+        commit: fb8fee9efdcf084d9e31ba14cc4734d97e5dd972
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
