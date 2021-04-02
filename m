@@ -2,121 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7B74352ED3
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 19:58:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63EEE352EE9
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 20:04:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234207AbhDBR6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 13:58:54 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:34954 "EHLO inva020.nxp.com"
+        id S236050AbhDBSEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 14:04:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52300 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229722AbhDBR6x (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Apr 2021 13:58:53 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 414311A0C4D;
-        Fri,  2 Apr 2021 19:58:51 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 334E41A0C4B;
-        Fri,  2 Apr 2021 19:58:51 +0200 (CEST)
-Received: from localhost (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 1EC232030E;
-        Fri,  2 Apr 2021 19:58:51 +0200 (CEST)
-Date:   Fri, 2 Apr 2021 20:58:50 +0300
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, arnd@arndb.de,
-        peng.fan@nxp.com, Anson.Huang@nxp.com,
-        DTML <devicetree@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 0/2] Add imx8m power domain driver
-Message-ID: <20210402175850.6ovyum7ot4pgv2wx@fsr-ub1664-175>
-References: <20210402164506.520121-1-adrien.grassein@gmail.com>
- <20210402174228.wjl6paul5hxu7dnx@fsr-ub1664-175>
- <CABkfQAH+Gvu69UeDbxBGyQ1GroYuEqmrYFbkNE-qaLM2zpGRfQ@mail.gmail.com>
+        id S236045AbhDBSEP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Apr 2021 14:04:15 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8C47861103;
+        Fri,  2 Apr 2021 18:04:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617386654;
+        bh=kFNql03iRJYWFFqCOpmJeMMhSwVZGro/bynT35/QM7Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YhfIqSv9ITyDPO8D/gVwv1tf48FBxjioByYJt+Ln6wAreHnm8sNKJ73WUwvKShrhM
+         Drl4OfahXF53Dhe+fsRyJSUJceNSw+Id9vMmmQ8nTyxLpye3bJISmcEfoORt3MyL6G
+         QJPiKZDBajUT1N7UwNzKz9tNE4kIVwol0zHrJrdSrnEnLdfUzIrbaQjw+pbcos7XOO
+         4dKe4oQje+7TkDwAFzULs5h5Cw7g3Xje+SYnxcMeS5ip3Oh8wEEwrU8pFf6pVe8I2W
+         lbX3/1yiFUJmqPUyi6dLVksyJnytuTi13SbJkvugJrCy7nKzeJ6WWmt2UEKpFCdCk0
+         q63exufmS2fMw==
+Date:   Fri, 2 Apr 2021 23:34:07 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/6] dt-bindings: soc: actions: Add Actions Semi Owl
+ socinfo binding
+Message-ID: <20210402180407.GA31906@thinkpad>
+References: <cover.1617110420.git.cristian.ciocaltea@gmail.com>
+ <15da0257b10aa62bfb7046437915d05a614c01ee.1617110420.git.cristian.ciocaltea@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CABkfQAH+Gvu69UeDbxBGyQ1GroYuEqmrYFbkNE-qaLM2zpGRfQ@mail.gmail.com>
-User-Agent: NeoMutt/20180622
-X-Virus-Scanned: ClamAV using ClamSMTP
+In-Reply-To: <15da0257b10aa62bfb7046437915d05a614c01ee.1617110420.git.cristian.ciocaltea@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-04-02 19:48:41, Adrien Grassein wrote:
-> Hi,
-> 
-> Le ven. 2 avr. 2021 à 19:42, Abel Vesa <abel.vesa@nxp.com> a écrit :
-> >
-> > On 21-04-02 18:45:04, Adrien Grassein wrote:
-> > > Hi,
-> > >
-> > > this patch et aims to add the support of the i.MX 8 Power Domain driver.
-> > > Some devices (like usbotg2) can't work without this patch as their
-> > > attached power domain are down.
-> > >
-> > > The original drivr was taken from le imx kernel and aapted to fit with
-> > > the actual mainline (minor fixes).
-> > >
-> > > Thanks,
-> > >
-> >
-> > Big NACK for the whole series.
-> >
-> > This approach has already been rejected upstream.
-> 
-> So what is the correct approach?
-> At this point otg2 node of imx8mm is not working at all (and blocks the whole
-> boot of the kernel)
+On Tue, Mar 30, 2021 at 04:48:17PM +0300, Cristian Ciocaltea wrote:
+> Add devicetree binding for the Actions Semi Owl socinfo driver.
 > 
 
-Have a look at this thread:
+Devicetree binding shouldn't be added for a driver instead for an IP or hw.
 
-https://lkml.org/lkml/2020/4/27/706
-
-> >
-> > Plus, you changed the original author, this work was originally done by Jacky Bai.
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> ---
+>  .../bindings/soc/actions/owl-socinfo.yaml     | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml
 > 
-> I have not changed this, the original author is not mentioned on the
-> original patch.
+> diff --git a/Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml b/Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml
+> new file mode 100644
+> index 000000000000..01e4a8b4f5ac
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/actions/owl-socinfo.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/actions/owl-socinfo.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Actions Semi Owl SoC info module
+> +
+> +maintainers:
+> +  - Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> +
+> +description: |
+> +  Actions Semi Owl SoC info module provides access to various information
+> +  about the S500, S700 and S900 SoC variants, such as serial number or id.
+> +
 
-Here is the original commit:
+S700/S900 are not yet confirmed, so please avoid them.
 
-https://github.com/Freescale/linux-fslc/commit/7ebcf5ccf423afe4ccd9c53ef204018b0b653ce0
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - actions,s500-soc
+> +          - actions,s700-soc
+> +          - actions,s900-soc
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - actions,s500-soc
+> +          - actions,s700-soc
+> +          - actions,s900-soc
+> +      - const: simple-bus
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    / {
+> +        compatible = "roseapplepi,roseapplepi", "actions,s500";
+> +        model = "Roseapple Pi";
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        soc {
+> +            compatible = "actions,s500-soc", "simple-bus";
 
+No. This shouldn't fall under /soc. I think you should added a separate
+compatible for the reserved memory itself and add a corresponding socinfo
+driver under drivers/soc.
 
+This way it is obvious that the information is contained in a memory region and
+a driver is used for parsing that.
+
+Thanks,
+Mani
+
+> +            #address-cells = <1>;
+> +            #size-cells = <1>;
+> +            ranges;
+> +        };
+> +    };
+> +
+> +...
+> -- 
+> 2.31.1
 > 
-> >
-> > > Adrien Grassein (2):
-> > >   dt-bindings: power: Add documentation for imx8m power domain driver
-> > >   soc: imx: add Power Domain driver for i.MX8M(M|N|P)
-> > >
-> > >  .../bindings/power/fsl,imx-power-domain.yaml  |  89 +++++++
-> > >  MAINTAINERS                                   |  10 +
-> > >  drivers/soc/imx/Kconfig                       |   7 +
-> > >  drivers/soc/imx/Makefile                      |   1 +
-> > >  drivers/soc/imx/imx8m_pm_domains.c            | 233 ++++++++++++++++++
-> > >  include/dt-bindings/power/imx8mm-power.h      |  21 ++
-> > >  include/dt-bindings/power/imx8mn-power.h      |  15 ++
-> > >  include/dt-bindings/power/imx8mp-power.h      |  28 +++
-> > >  include/soc/imx/imx_sip.h                     |  12 +
-> > >  9 files changed, 416 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/power/fsl,imx-power-domain.yaml
-> > >  create mode 100644 drivers/soc/imx/imx8m_pm_domains.c
-> > >  create mode 100644 include/dt-bindings/power/imx8mm-power.h
-> > >  create mode 100644 include/dt-bindings/power/imx8mn-power.h
-> > >  create mode 100644 include/dt-bindings/power/imx8mp-power.h
-> > >  create mode 100644 include/soc/imx/imx_sip.h
-> > >
-> > > --
-> > > 2.25.1
-> > >
-> 
-> Thanks,
