@@ -2,97 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D180352E97
+	by mail.lfdr.de (Postfix) with ESMTP id EFEE8352E98
 	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 19:42:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235166AbhDBRmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S234488AbhDBRmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 2 Apr 2021 13:42:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47722 "EHLO mail.kernel.org"
+Received: from inva021.nxp.com ([92.121.34.21]:45938 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234652AbhDBRma (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Apr 2021 13:42:30 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F26136113E;
-        Fri,  2 Apr 2021 17:42:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617385349;
-        bh=YYpr5IaWCQsD7N7ywU8mjtGkvi9LGdVG8pQe6xdHBFc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kwGuZK+OavfMWRuZiKZKmvPq2vXhAZe7xsezIJP2dPOV8L67dJ0mVS1AIEvVXGJkZ
-         rQW+OwlBtd/qFsNFVdAhyBhplyQFsy+Loz2BBNs99SHFJD/qBcCen5YDbJ7ey4nBtf
-         T/TdIw8Q0JNaHOWFIlGfx0ajzLEGJ60cHQtEDzkhruLKHH+Z5lku5swAwrrfE1b0pP
-         kUoT8ggDq+casdOsXEiz8WW0+wARFq037ftfyvkyOsEbrvQ2HgNQbES2ViYalaiydo
-         91TXJy6p5gEVCKPodfQ9djdW7O4/S9z8a6qMFwBVs5SKW0kcHaXVEscqbc6cknLHxb
-         +ixPPZVKRE2gw==
-Date:   Fri, 2 Apr 2021 18:42:15 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-power@fi.rohmeurope.com
-Subject: Re: [PATCH v5 15/19] regulator: Support ROHM BD71815 regulators
-Message-ID: <20210402174215.GI5402@sirena.org.uk>
-References: <cover.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
- <eb20a8f466a9ccbc26d261f0102d203718a32fa0.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
+        id S234361AbhDBRmb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Apr 2021 13:42:31 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 83FD0201F7D;
+        Fri,  2 Apr 2021 19:42:28 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 76455201F7A;
+        Fri,  2 Apr 2021 19:42:28 +0200 (CEST)
+Received: from localhost (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 61B202030E;
+        Fri,  2 Apr 2021 19:42:28 +0200 (CEST)
+Date:   Fri, 2 Apr 2021 20:42:28 +0300
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        lgirdwood@gmail.com, broonie@kernel.org, arnd@arndb.de,
+        peng.fan@nxp.com, Anson.Huang@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 0/2] Add imx8m power domain driver
+Message-ID: <20210402174228.wjl6paul5hxu7dnx@fsr-ub1664-175>
+References: <20210402164506.520121-1-adrien.grassein@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="6lCXDTVICvIQMz0h"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <eb20a8f466a9ccbc26d261f0102d203718a32fa0.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
-X-Cookie: Dammit Jim, I'm an actor, not a doctor.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210402164506.520121-1-adrien.grassein@gmail.com>
+User-Agent: NeoMutt/20180622
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 21-04-02 18:45:04, Adrien Grassein wrote:
+> Hi,
+> 
+> this patch et aims to add the support of the i.MX 8 Power Domain driver.
+> Some devices (like usbotg2) can't work without this patch as their
+> attached power domain are down.
+> 
+> The original drivr was taken from le imx kernel and aapted to fit with
+> the actual mainline (minor fixes).
+> 
+> Thanks,
+> 
 
---6lCXDTVICvIQMz0h
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Big NACK for the whole series.
 
-On Mon, Mar 29, 2021 at 03:59:51PM +0300, Matti Vaittinen wrote:
+This approach has already been rejected upstream.
 
-Acked-by: Mark Brown <broonie@kernel.org>
+Plus, you changed the original author, this work was originally done by Jacky Bai.
 
-but...
-
-> @@ -0,0 +1,676 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright 2014 Embest Technology Co. Ltd. Inc.
-
-Please make the entire comment a C++ one so things look more
-intentional.
-
-> +#include <linux/regulator/driver.h>
-> +#include <linux/regulator/machine.h>
-
-A regulator driver generally shouldn't need machine interfaces...
-
-> +				ret = regulator_enable_regmap(rdev);
-> +			else
-> +				ret = regulator_disable_regmap(rdev);
-> +
-> +			if (ret)
-> +				dev_err(rdev_get_dev(rdev),
-> +					"LED status error\n");
-
-Better to print the error code, and that error message could be a bit
-more descriptive.
-
---6lCXDTVICvIQMz0h
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBnV3YACgkQJNaLcl1U
-h9CG4wf+Ld2glQBnwDCew6b6vrM1TQ2QiVAzZAJ6it/rr9KPdem694P58K+TjiPQ
-+xrTwHNQzxClt543Ojcnz/GgVNkzAX9EB+rryi4vd5dgIrflVFmVHIAcFRwdMm4G
-seyKLrNZMKjXrZYnsOWq8FBp9IQY8XHS3VTT+xZZ9bL9u7nwQLPRiTOw8pnO/Rm5
-bK+Z3nUUMjn1q/9qb7RxcJIoDdz4ZXHPBVeiXJHlH+Qte7uCX5DBwjCUUmYAd2js
-Aag6x5mNQQr1pu+c9EFgFHvpHwU7pf7tdHHlY6SDktsVUAgj3N8SKwJI5NAfSj7W
-lprOxHbcePNWLWGV/945wTEnsyFpJA==
-=KPCY
------END PGP SIGNATURE-----
-
---6lCXDTVICvIQMz0h--
+> Adrien Grassein (2):
+>   dt-bindings: power: Add documentation for imx8m power domain driver
+>   soc: imx: add Power Domain driver for i.MX8M(M|N|P)
+> 
+>  .../bindings/power/fsl,imx-power-domain.yaml  |  89 +++++++
+>  MAINTAINERS                                   |  10 +
+>  drivers/soc/imx/Kconfig                       |   7 +
+>  drivers/soc/imx/Makefile                      |   1 +
+>  drivers/soc/imx/imx8m_pm_domains.c            | 233 ++++++++++++++++++
+>  include/dt-bindings/power/imx8mm-power.h      |  21 ++
+>  include/dt-bindings/power/imx8mn-power.h      |  15 ++
+>  include/dt-bindings/power/imx8mp-power.h      |  28 +++
+>  include/soc/imx/imx_sip.h                     |  12 +
+>  9 files changed, 416 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/fsl,imx-power-domain.yaml
+>  create mode 100644 drivers/soc/imx/imx8m_pm_domains.c
+>  create mode 100644 include/dt-bindings/power/imx8mm-power.h
+>  create mode 100644 include/dt-bindings/power/imx8mn-power.h
+>  create mode 100644 include/dt-bindings/power/imx8mp-power.h
+>  create mode 100644 include/soc/imx/imx_sip.h
+> 
+> -- 
+> 2.25.1
+> 
