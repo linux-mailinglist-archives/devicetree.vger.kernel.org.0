@@ -2,185 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0162353104
-	for <lists+devicetree@lfdr.de>; Sat,  3 Apr 2021 00:26:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACE7D35319E
+	for <lists+devicetree@lfdr.de>; Sat,  3 Apr 2021 01:39:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231577AbhDBW0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 18:26:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36570 "EHLO
+        id S235241AbhDBXjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 19:39:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231406AbhDBW0c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 18:26:32 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 284C9C0613E6;
-        Fri,  2 Apr 2021 15:26:30 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id r12so9071296ejr.5;
-        Fri, 02 Apr 2021 15:26:30 -0700 (PDT)
+        with ESMTP id S235366AbhDBXju (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 19:39:50 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A352CC06178C
+        for <devicetree@vger.kernel.org>; Fri,  2 Apr 2021 16:39:47 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 15so7019612ljj.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Apr 2021 16:39:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=xEIpgBG61YTHEW9YtxoHbwMjHestDe0Z1cujeeYckiw=;
-        b=sQkY2cDhUNUvoRMcensMmIg7FoCyrErqVe682tPWFa8QduQOJt9t3/XpgBRXKnXwiL
-         CZ09OCz/1shYHx2GqvG8EFUGxVl4OPyjCu1NPCq3M0u4LU4FenRyssQNgwBuf55GW4oO
-         +wdWRjKRzJVZj2LfZIOonSy1WHeINLM4o8E+0KDagrLtxZeVIpKHggi1oYtxwDWFLsEP
-         UBsI2rMR7QA62a42eRkyzn3c5I2q4qc0vsztW9fuyh8bQkskn5iXTFEzXLElIn6co6Xn
-         gY71qv95r2+mmO2X6xuEvJ6HRb8kPrgBp3CoP/02MrbfxM7Evhnva1TLN9UPvid6ZiNB
-         B5Wg==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MqUyCQ8bApydwGreXPqVnRLc78HVU/m7ATGYH5tMkXg=;
+        b=CRV4wVaJgKNwAGzfnLsbhXrf3/5B0OdKHc/t5G3+AztIgYdXNASnYWvk+zZfNGxRA9
+         Pv3AmSbcvzkl8tFQUWb1fhhEniE/TIVl21lJ7WLosk/JLXrqpdE/oztF/LaPRaCITXHO
+         hKbPduoy7VoYEuR4SEla8ygjeKA1lsgnWvd+IvjkZHUZ8SldAjFxZtxA8spcO5pIWbsb
+         iWAPMoMF8zQZT98wHDWdwa4RXmuJTR7paQ4WYc+ar6VpVO07AQsFFzwQqDGPBQHwYNzS
+         iEcvmlaCMndVJDmRxlhKTZ4sdLqL1EYLaZB0TZgHtiqN4fLO85rb20ATEac39z6lcHl1
+         qmkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=xEIpgBG61YTHEW9YtxoHbwMjHestDe0Z1cujeeYckiw=;
-        b=p14G8kRL0zTigpcbGdaO3me2R1VtNsXAkcZS4solrz5R8n1aQwh4egG/LekbwrV+uD
-         0yRtLsLknvQFuDqfjpwW94/HY8oskjcwQ7XUsU0cdL4mwufnlj/Be2qrehcs6JLeBEln
-         PAVBubk43Dob5QCl5eDc48HNrdtp3NfuH4Rqt/LtKlN+9+nTiS7Y76KyXfyQ6vDES9ox
-         mnKKGORc/XpbZYBr35QLIJ4PoFp69M+6CznNCmXeEIyte3fKWM/XMLDi8f7DNwUGyBB+
-         aX41olcN+LIX53mESD9aQ446I2ko2yGHMQmGSdx86fj+SEvS1jUi30oR2xFJJMLPbijs
-         PLeA==
-X-Gm-Message-State: AOAM53204Ki1Za4v52oTbAFEZsJDetyD7oVX97EGhTfInnM5pOYzxHok
-        OjgERbwa0zRebM7vOw2+liBvv6lScmzsiDhv5tw=
-X-Google-Smtp-Source: ABdhPJzeeQivEAeXGEZIkfXzA6SHJU0afgYlPE8I1WKVuB/UM04pSNXqK8/9PJ1hhwepXD1Z6gJHkX0+zV+1+fX6xs0=
-X-Received: by 2002:a17:906:7842:: with SMTP id p2mr16793241ejm.87.1617402388704;
- Fri, 02 Apr 2021 15:26:28 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MqUyCQ8bApydwGreXPqVnRLc78HVU/m7ATGYH5tMkXg=;
+        b=l/h9yF2rUb53rLgzoOpV3WUVCmUoXf+CqcaifLJ/rCSQnKAW4AmsVQF77UMKZ13Dzr
+         rHMldhEebj3gXnMJBzkbA688zMJepRFyz4cCxwqONh2jAvnLjxrgETWxFKCO8WThukDz
+         oDh36aLQa0q3Ir9UEMsKqM9mIN0ac/SMEKFh3UBnD/14ww3MNliiX9g9lbvw5kBnFo9l
+         RiRcJBQmYNmLr+J9Kh42+psDsmrMNFUZ8MlvRXKCbBz35OrhOApObt2R3fytSiz5LSgX
+         a42RHB+Ze/0WmwE5/KoYKJE4RMG07rol0EL5NA3xS8zz+pZYmgLrBoBaZlW++GsKQRzP
+         pYBw==
+X-Gm-Message-State: AOAM533pwobJR4tw4Kqk+A3uI4R0NySMjno7zQeLp/HhRXd0CZL80EEv
+        cTXNuNuacEgqjOQLjnBKluwJ4A==
+X-Google-Smtp-Source: ABdhPJyFSpdNKrhaXLogMPPh4tFDp1fdxd0HOYG9LhFrVBtCNJ2uEagmXOd8XtRqY7ZnA7sT00/0PA==
+X-Received: by 2002:a2e:9b14:: with SMTP id u20mr9483055lji.463.1617406786121;
+        Fri, 02 Apr 2021 16:39:46 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id w30sm1013134lfq.210.2021.04.02.16.39.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Apr 2021 16:39:45 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH v1 1/4] dt-bindings: clock: separate SDM845 GCC clock bindings
+Date:   Sat,  3 Apr 2021 02:39:41 +0300
+Message-Id: <20210402233944.273275-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20210402164506.520121-1-adrien.grassein@gmail.com>
- <20210402174228.wjl6paul5hxu7dnx@fsr-ub1664-175> <CABkfQAH+Gvu69UeDbxBGyQ1GroYuEqmrYFbkNE-qaLM2zpGRfQ@mail.gmail.com>
- <20210402175850.6ovyum7ot4pgv2wx@fsr-ub1664-175> <CABkfQAESbRQsn3fWo4uKeVMMf84LurCLkdgvbPi+A4Kqr87enw@mail.gmail.com>
- <CAHCN7x+cb-Nz9_3aciJLWx=j603RFXgLG92WbBk0MMYwM_mx6g@mail.gmail.com>
-In-Reply-To: <CAHCN7x+cb-Nz9_3aciJLWx=j603RFXgLG92WbBk0MMYwM_mx6g@mail.gmail.com>
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Date:   Sat, 3 Apr 2021 00:26:17 +0200
-Message-ID: <CABkfQAEm=AE_p3YT_Xi+E8haW5eXqPHY-Lh3L--rU8VSeD40SA@mail.gmail.com>
-Subject: Re: [PATCH v1 0/2] Add imx8m power domain driver
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Abel Vesa <abel.vesa@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Peng Fan <peng.fan@nxp.com>, Anson Huang <Anson.Huang@nxp.com>,
-        DTML <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Separate qcom,gcc-sdm845 clock bindings, adding required clocks and
+clock-names properties.
 
-Le sam. 3 avr. 2021 =C3=A0 00:10, Adam Ford <aford173@gmail.com> a =C3=A9cr=
-it :
->
-> On Fri, Apr 2, 2021 at 1:16 PM Adrien Grassein
-> <adrien.grassein@gmail.com> wrote:
-> >
-> > Le ven. 2 avr. 2021 =C3=A0 19:58, Abel Vesa <abel.vesa@nxp.com> a =C3=
-=A9crit :
-> > >
-> > > On 21-04-02 19:48:41, Adrien Grassein wrote:
-> > > > Hi,
-> > > >
-> > > > Le ven. 2 avr. 2021 =C3=A0 19:42, Abel Vesa <abel.vesa@nxp.com> a =
-=C3=A9crit :
-> > > > >
-> > > > > On 21-04-02 18:45:04, Adrien Grassein wrote:
-> > > > > > Hi,
-> > > > > >
-> > > > > > this patch et aims to add the support of the i.MX 8 Power Domai=
-n driver.
-> > > > > > Some devices (like usbotg2) can't work without this patch as th=
-eir
-> > > > > > attached power domain are down.
-> > > > > >
-> > > > > > The original drivr was taken from le imx kernel and aapted to f=
-it with
-> > > > > > the actual mainline (minor fixes).
-> > > > > >
-> > > > > > Thanks,
-> > > > > >
-> > > > >
-> > > > > Big NACK for the whole series.
-> > > > >
-> > > > > This approach has already been rejected upstream.
-> > > >
-> > > > So what is the correct approach?
-> > > > At this point otg2 node of imx8mm is not working at all (and blocks=
- the whole
-> > > > boot of the kernel)
-> > > >
-> > >
-> > > Have a look at this thread:
-> > >
-> > > https://lkml.org/lkml/2020/4/27/706
-> > >
-> > Understood, so I will try to update the gpc driver (at least for otg).
->
-> Thanks for doing that. I know Lucas tried a few times to get something
-> going.  I'm willing to adapt whatever work you do on the Mini toward
-> the Nano if you don't have time.
->
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ .../bindings/clock/qcom,gcc-sdm845.yaml       | 84 +++++++++++++++++++
+ .../devicetree/bindings/clock/qcom,gcc.yaml   |  2 -
+ 2 files changed, 84 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
 
-NP, the problem here is that I don't have an Nano to test.
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
+new file mode 100644
+index 000000000000..4808fa7a6b8c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,gcc-sdm845.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Global Clock & Reset Controller Binding
++
++maintainers:
++  - Stephen Boyd <sboyd@kernel.org>
++  - Taniya Das <tdas@codeaurora.org>
++
++description: |
++  Qualcomm global clock control module which supports the clocks, resets and
++  power domains on SDM845
++
++  See also:
++  - dt-bindings/clock/qcom,gcc-sdm845.h
++
++properties:
++  compatible:
++    const: qcom,gcc-sdm845
++
++  clocks:
++    items:
++      - description: Board XO source
++      - description: Board active XO source
++      - description: Sleep clock source
++      - description: PCIE 0 Pipe clock source (Optional clock)
++      - description: PCIE 1 Pipe clock source (Optional clock)
++    minItems: 3
++    maxItems: 5
++
++  clock-names:
++    items:
++      - const: bi_tcxo
++      - const: bi_tcxo_ao
++      - const: sleep_clk
++      - const: pcie_0_pipe_clk # Optional clock
++      - const: pcie_1_pipe_clk # Optional clock
++    minItems: 3
++    maxItems: 5
++
++  '#clock-cells':
++    const: 1
++
++  '#reset-cells':
++    const: 1
++
++  '#power-domain-cells':
++    const: 1
++
++  reg:
++    maxItems: 1
++
++  protected-clocks:
++    description:
++      Protected clock specifier list as per common clock binding.
++
++required:
++  - compatible
++  - reg
++  - '#clock-cells'
++  - '#reset-cells'
++  - '#power-domain-cells'
++
++additionalProperties: false
++
++examples:
++  # Example for GCC for MSM8960:
++  - |
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    clock-controller@100000 {
++      compatible = "qcom,gcc-sdm845";
++      reg = <0x100000 0x1f0000>;
++      clocks = <&rpmhcc RPMH_CXO_CLK>,
++               <&rpmhcc RPMH_CXO_CLK_A>,
++               <&sleep_clk>;
++      clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk";
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++      #power-domain-cells = <1>;
++    };
++...
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
+index ee0467fb5e31..490edad25830 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
+@@ -32,7 +32,6 @@ description: |
+   - dt-bindings/clock/qcom,gcc-mdm9615.h
+   - dt-bindings/reset/qcom,gcc-mdm9615.h
+   - dt-bindings/clock/qcom,gcc-sdm660.h  (qcom,gcc-sdm630 and qcom,gcc-sdm660)
+-  - dt-bindings/clock/qcom,gcc-sdm845.h
+ 
+ properties:
+   compatible:
+@@ -52,7 +51,6 @@ properties:
+       - qcom,gcc-mdm9615
+       - qcom,gcc-sdm630
+       - qcom,gcc-sdm660
+-      - qcom,gcc-sdm845
+ 
+   '#clock-cells':
+     const: 1
+-- 
+2.30.2
 
-> adam
-> >
-> > > > >
-> > > > > Plus, you changed the original author, this work was originally d=
-one by Jacky Bai.
-> > > >
-> > > > I have not changed this, the original author is not mentioned on th=
-e
-> > > > original patch.
-> > >
-> > > Here is the original commit:
-> > >
-> > > https://github.com/Freescale/linux-fslc/commit/7ebcf5ccf423afe4ccd9c5=
-3ef204018b0b653ce0
-> > >
-> > >
-> > > >
-> > > > >
-> > > > > > Adrien Grassein (2):
-> > > > > >   dt-bindings: power: Add documentation for imx8m power domain =
-driver
-> > > > > >   soc: imx: add Power Domain driver for i.MX8M(M|N|P)
-> > > > > >
-> > > > > >  .../bindings/power/fsl,imx-power-domain.yaml  |  89 +++++++
-> > > > > >  MAINTAINERS                                   |  10 +
-> > > > > >  drivers/soc/imx/Kconfig                       |   7 +
-> > > > > >  drivers/soc/imx/Makefile                      |   1 +
-> > > > > >  drivers/soc/imx/imx8m_pm_domains.c            | 233 ++++++++++=
-++++++++
-> > > > > >  include/dt-bindings/power/imx8mm-power.h      |  21 ++
-> > > > > >  include/dt-bindings/power/imx8mn-power.h      |  15 ++
-> > > > > >  include/dt-bindings/power/imx8mp-power.h      |  28 +++
-> > > > > >  include/soc/imx/imx_sip.h                     |  12 +
-> > > > > >  9 files changed, 416 insertions(+)
-> > > > > >  create mode 100644 Documentation/devicetree/bindings/power/fsl=
-,imx-power-domain.yaml
-> > > > > >  create mode 100644 drivers/soc/imx/imx8m_pm_domains.c
-> > > > > >  create mode 100644 include/dt-bindings/power/imx8mm-power.h
-> > > > > >  create mode 100644 include/dt-bindings/power/imx8mn-power.h
-> > > > > >  create mode 100644 include/dt-bindings/power/imx8mp-power.h
-> > > > > >  create mode 100644 include/soc/imx/imx_sip.h
-> > > > > >
-> > > > > > --
-> > > > > > 2.25.1
-> > > > > >
-> > > >
-> > > > Thanks,
-> >
-> > Thanks,
-> >
-> > _______________________________________________
-> > linux-arm-kernel mailing list
-> > linux-arm-kernel@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-
-Thanks,
