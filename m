@@ -2,119 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A29B8352F38
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 20:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F0E5352F60
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 20:45:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236420AbhDBS1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 14:27:46 -0400
-Received: from thorn.bewilderbeest.net ([71.19.156.171]:53625 "EHLO
-        thorn.bewilderbeest.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236397AbhDBS1o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 14:27:44 -0400
-Received: from hatter.bewilderbeest.net (unknown [IPv6:2600:6c44:7f:ba20::7c6])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 043665DB;
-        Fri,  2 Apr 2021 11:27:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1617388063;
-        bh=mgtpZAxTDUHm/bMl07mKSDqadNdk4HKpdXOShF6xHOo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=j1a9SlHApQdS0XKseplHgQ30GYXdRn/2yBHUlXxe/SQy62nD/V//KF6sNnNjYPTjT
-         8ZOI1zPHZ8Te9kv0ybz02XpvzqrJxN/uRyTYuCHBrThvJgFDcyVtQhKhFdp4P/y5P6
-         V4FqmZsFU8zxiFnExyODrFCUv75+lK1IlRsO/L0w=
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     openbmc@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Zev Weiss <zev@bewilderbeest.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S235419AbhDBSpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 14:45:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45244 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229553AbhDBSpe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 14:45:34 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA3FC0613E6
+        for <devicetree@vger.kernel.org>; Fri,  2 Apr 2021 11:45:33 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id q6-20020a17090a4306b02900c42a012202so2927712pjg.5
+        for <devicetree@vger.kernel.org>; Fri, 02 Apr 2021 11:45:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=lBknpnUfvW7Mp8L8MjbRdTTbJ2YiP+RrDtDZ87i1HWc=;
+        b=a1l1lme4++l+zuVvbvuPg11j5VRcaKdhH+EdpHF4zqEVznOydK8W+SNJwIXmze+azb
+         HQzCWQ38y+RONCzZiM5t2cA9IZD6bGbCwLv6Snpgm1DkOINWhdsYHZUkDkIdzqjMrXk7
+         hCQgYTWI++hjt7Xc2CkMjSYTR1DI7wt8SLw6g=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=lBknpnUfvW7Mp8L8MjbRdTTbJ2YiP+RrDtDZ87i1HWc=;
+        b=OFlMHTD6UmKnMN9knVuwcM+kONH6mAe9kyyxifeh0MvbI7zcj/kw3PaA1kGvk2Skjv
+         U/8P7PwYxSQBGyXSbc+5hZc0UnHcSo8S2H40h4m7q+njBL1KS4OqIXTyfiUbKr5dFrr9
+         ii5bimSdTIFe7QHewWJLExNushI4UxBKl7nXUL2e5xYmgrYZievbGevZoSUn9OuxE6O2
+         rxGJFubOBHKxPtSfG3glSeMHN1C1flasCC97P8i47xGovXOLbeRfATGD0zJaKfylkEUo
+         Q8DnzhbRAzGHYX5Z9zukIBlPkXPkW1lpNr0+k+2wtUbMe+GDcn8EhrVfUG3zQ/rmEjcM
+         ZWpQ==
+X-Gm-Message-State: AOAM530U/J8HoJ33Y/QGDkfaZTO6/9SOMtRjWVWglKAA/+8TOy0O4snp
+        /yKL1gUD8rVboEAqeGC6qA1D4g==
+X-Google-Smtp-Source: ABdhPJyqvR/GeA0hGMMS3fUELGKBLUJ3jxozyY1rdnFq7+JShRmPb9RGh1zy5AHLN03Qvq9gS6OOXQ==
+X-Received: by 2002:a17:90a:fa02:: with SMTP id cm2mr3055188pjb.171.1617389133265;
+        Fri, 02 Apr 2021 11:45:33 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:581c:e04f:7c08:c602])
+        by smtp.gmail.com with UTF8SMTPSA id l10sm8194972pfc.125.2021.04.02.11.45.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Apr 2021 11:45:32 -0700 (PDT)
+Date:   Fri, 2 Apr 2021 11:45:31 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        - <devicetree@vger.kernel.org>, linux-serial@vger.kernel.org
-Subject: [PATCH v4 4/4] dt-bindings: serial: 8250: add aspeed,lpc-io-reg and aspeed,lpc-interrupts
-Date:   Fri,  2 Apr 2021 13:27:24 -0500
-Message-Id: <20210402182724.20848-5-zev@bewilderbeest.net>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210402182724.20848-1-zev@bewilderbeest.net>
-References: <20210402182724.20848-1-zev@bewilderbeest.net>
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [PATCH V2 3/5] arm64: dts: qcom: pmk8350: Add PMIC peripherals
+ for pmk8350
+Message-ID: <YGdmS8Ih5TGGMbdE@google.com>
+References: <1617268396-1837-1-git-send-email-skakit@codeaurora.org>
+ <1617268396-1837-4-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1617268396-1837-4-git-send-email-skakit@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These correspond to the existing lpc_address, sirq, and sirq_polarity
-sysfs attributes; the second element of aspeed,lpc-interrupts provides
-a replacement for the deprecated aspeed,sirq-polarity-sense property.
+On Thu, Apr 01, 2021 at 02:43:14PM +0530, satya priya wrote:
+> subject: arm64: dts: qcom: pmk8350: Add PMIC peripherals for pmk8350
 
-Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
----
- .../devicetree/bindings/serial/8250.yaml      | 27 ++++++++++++++++---
- 1 file changed, 24 insertions(+), 3 deletions(-)
+same nit as for 1/5: maybe just 'arm64: dts: qcom: Add pml7350 support/.dtsi'
+or similar since this adds the initial .dtsi for the pmk8350?
 
-diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documentation/devicetree/bindings/serial/8250.yaml
-index 491b9297432d..0e82b076e199 100644
---- a/Documentation/devicetree/bindings/serial/8250.yaml
-+++ b/Documentation/devicetree/bindings/serial/8250.yaml
-@@ -12,8 +12,13 @@ maintainers:
- allOf:
-   - $ref: /schemas/serial.yaml#
-   - if:
--      required:
--        - aspeed,sirq-polarity-sense
-+      anyOf:
-+        - required:
-+            - aspeed,lpc-io-reg
-+        - required:
-+            - aspeed,lpc-interrupts
-+        - required:
-+            - aspeed,sirq-polarity-sense
-     then:
-       properties:
-         compatible:
-@@ -190,6 +195,20 @@ properties:
-       applicable to aspeed,ast2500-vuart.
-     deprecated: true
- 
-+  aspeed,lpc-io-reg:
-+    $ref: '/schemas/types.yaml#/definitions/uint32'
-+    description: |
-+      The VUART LPC address.  Only applicable to aspeed,ast2500-vuart.
-+
-+  aspeed,lpc-interrupts:
-+    $ref: "/schemas/types.yaml#/definitions/uint32-array"
-+    minItems: 2
-+    maxItems: 2
-+    description: |
-+      A 2-cell property describing the VUART SIRQ number and SIRQ
-+      polarity (IRQ_TYPE_LEVEL_LOW or IRQ_TYPE_LEVEL_HIGH).  Only
-+      applicable to aspeed,ast2500-vuart.
-+
- required:
-   - reg
-   - interrupts
-@@ -221,6 +240,7 @@ examples:
-     };
-   - |
-     #include <dt-bindings/clock/aspeed-clock.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-     serial@1e787000 {
-         compatible = "aspeed,ast2500-vuart";
-         reg = <0x1e787000 0x40>;
-@@ -228,7 +248,8 @@ examples:
-         interrupts = <8>;
-         clocks = <&syscon ASPEED_CLK_APB>;
-         no-loopback-test;
--        aspeed,sirq-polarity-sense = <&syscon 0x70 25>;
-+        aspeed,lpc-io-reg = <0x3f8>;
-+        aspeed,lpc-interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
-     };
- 
- ...
--- 
-2.31.1
+> Add PON, GPIO, RTC and other PMIC infra modules support for pmk8350.
 
+nit: also mention that it adds the pmk8350 .dtsi in the first place.
+
+> Signed-off-by: satya priya <skakit@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/pmk8350.dtsi | 100 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmk8350.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pmk8350.dtsi b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+> new file mode 100644
+> index 0000000..13631f2
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+> @@ -0,0 +1,100 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> +
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/input/linux-event-codes.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/spmi/spmi.h>
+> +#include <dt-bindings/iio/qcom,spmi-adc7-pm8350.h>
+> +#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
+> +#include <dt-bindings/iio/qcom,spmi-adc7-pmr735a.h>
+> +#include <dt-bindings/iio/qcom,spmi-adc7-pmr735b.h>
+> +
+> +&spmi_bus {
+> +	pmk8350: pmic@0 {
+> +		compatible = "qcom,pmk8350", "qcom,spmi-pmic";
+
+Please provide a link to the binding if it has been sent.
+
+> +		reg = <0x0 SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		pmk8350_pon: pon@1300 {
+> +			compatible = "qcom,pm8998-pon";
+> +			reg = <0x1300>;
+> +
+> +			pwrkey {
+> +				compatible = "qcom,pmk8350-pwrkey";
+> +				interrupts = <0x0 0x13 0x7 IRQ_TYPE_EDGE_BOTH>;
+> +				linux,code = <KEY_POWER>;
+> +			};
+> +
+> +			resin {
+> +				compatible = "qcom,pmk8350-resin";
+> +				interrupts = <0x0 0x13 0x6 IRQ_TYPE_EDGE_BOTH>;
+> +				linux,code = <KEY_VOLUMEDOWN>;
+> +			};
+
+Is the usage of this keys really universal across different boards?
+
+At least for the volume down key for most PMICs the config is in the
+board file, which seems to make more sense.
+
+> +		};
+> +
+> +		pmk8350_vadc: adc@3100 {
+> +			compatible = "qcom,spmi-adc7";
+> +			reg = <0x3100>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			interrupts = <0x0 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "eoc-int-en-set";
+> +			#io-channel-cells = <1>;
+> +			io-channel-ranges;
+> +
+> +			pmk8350_die_temp {
+> +				reg = <PMK8350_ADC7_DIE_TEMP>;
+> +				label = "pmk8350_die_temp";
+> +				qcom,pre-scaling = <1 1>;
+> +			};
+> +
+> +			pm8350_die_temp {
+> +				reg = <PM8350_ADC7_DIE_TEMP>;
+> +				label = "pm8350_die_temp";
+> +				qcom,pre-scaling = <1 1>;
+> +			};
+
+nit: I think this should be 'alphabetical' order, so 'pm8350_die_temp' should
+be before 'pmk8350_die_temp'.
+
+> +
+> +			pmr735a_die_temp {
+> +				reg = <PMR735A_ADC7_DIE_TEMP>;
+> +				label = "pmr735a_die_temp";
+> +				qcom,pre-scaling = <1 1>;
+> +			};
+> +
+> +			pmr735b_die_temp {
+> +				reg = <PMR735B_ADC7_DIE_TEMP>;
+> +				label = "pmr735b_die_temp";
+> +				qcom,pre-scaling = <1 1>;
+> +			};
+
+Is it guaranteed that a board with the pmk8350 will always have the
+other 3 PMICs?
+
+> +		};
+> +
+> +		pmk8350_adc_tm: adc-tm@3400 {
+> +			compatible = "qcom,adc-tm7";
+> +			reg = <0x3400>;
+> +			interrupts = <0x0 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "threshold";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			#thermal-sensor-cells = <1>;
+> +			status = "disabled";
+> +		};
+> +
+> +		pmk8350_gpios: gpios@b000 {
+> +			compatible = "qcom,pmk8350-gpio", "qcom,spmi-gpio";
+> +			reg = <0xb000>;
+> +			gpio-controller;
+> +			gpio-ranges = <&pmk8350_gpios 0 0 4>;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+> +		pmk8350_rtc: rtc@6100 {
+
+nit: nodes should be ordered by address, hence 'rtc@6100' should be before
+'gpios@b000'.
+
+> +			compatible = "qcom,pmk8350-rtc";
+> +			reg = <0x6100>, <0x6200>;
+> +			reg-names = "rtc", "alarm";
+> +			interrupts = <0x0 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
+> +		};
+> +	};
+> +};
