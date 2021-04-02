@@ -2,91 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37207352C19
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 18:09:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0CD1352C1E
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 18:09:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235069AbhDBPCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 11:02:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53040 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235250AbhDBPCK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 11:02:10 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FBF4C06178C
-        for <devicetree@vger.kernel.org>; Fri,  2 Apr 2021 08:02:07 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id v8so2622978plz.10
-        for <devicetree@vger.kernel.org>; Fri, 02 Apr 2021 08:02:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Ww076wtEw/l52B1eQC1HZmnMQQ8Ebtr9JfK+3ViX3so=;
-        b=ybrJ/XWa/mCxIE3noK0GCj+uKoLYgbMhcMQgqAAFk3B5fG/hCSYv/F1qtTUUcWn2Mu
-         KxjVFEXJv/ORf4CfApwFggSqAln5Z3+I3OeriRpumvglfjwXC6h7dhcMnPmo07QJ/+ZG
-         wwHjxZZb0wehKDxWPQ3AgMwikrdDxH05aNo11bZYQFDvjaEI1ie62PbcR0VTcNg5pz5n
-         cAwjmX45Pn+yiGFbwQ3PqPvCRzA/Won4h4uiO+pCtAc2G9jgY63mG50TtcT9rQuodYpf
-         XLU5cPfAZmlgju7jpwNLZsdsq3RtrSCd+icLLJESKQcSj5RD+fFev/lCAQ92Dm7dekXh
-         GtPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Ww076wtEw/l52B1eQC1HZmnMQQ8Ebtr9JfK+3ViX3so=;
-        b=c9KES4DvDsESaKY1lXiMbJVRsUgEfrB1DqaXZh9WEHUvAUEslj0vl+tBpzM5+6TTGN
-         Ggwpno8iYbas7esmsj3aZOGTwfCwOMpmtISYGKFA/YyaWraG7TeYnla+6VJeQAM7WsyI
-         sQvOa5H7oEi6em4iia5qm83ZgYs9s7Pcx/Z7cNI+wdoEWcxt46ocVk1lCLMS9fO+W5rl
-         VDOYDd0DNfSXihee+svKYAEun9cmJMu2Aeq3+4YiuOBts+4hVzCUW0cke9HyKQmmtKFi
-         uU1KFSck8WRQhaZZNTiSdapoYLIlLOwilud+9lgXsj0C0RQrcbSj6b1NK3tzjuY3vdbl
-         w0VQ==
-X-Gm-Message-State: AOAM5314Zw8ry6O2sZKqdzvIlb4IKf3mgpebrMhNW0rEuboqRP507Hro
-        veNp6dhgbKPGRnIDNcF2YDX9
-X-Google-Smtp-Source: ABdhPJxz13FLUMPQqOofA5mU/CiwuDuOWUytmngYWZcm28AENSnwG/TOkh7u7d7f6fDaW5lwBooosw==
-X-Received: by 2002:a17:90a:c249:: with SMTP id d9mr14444710pjx.104.1617375725992;
-        Fri, 02 Apr 2021 08:02:05 -0700 (PDT)
-Received: from localhost.localdomain ([103.77.37.174])
-        by smtp.gmail.com with ESMTPSA id x7sm8773647pff.12.2021.04.02.08.02.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Apr 2021 08:02:05 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        boris.brezillon@collabora.com, Daniele.Palmas@telit.com,
-        bjorn.andersson@linaro.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v11 4/4] mtd: rawnand: qcom: Add missing nand_cleanup() in error path
-Date:   Fri,  2 Apr 2021 20:31:28 +0530
-Message-Id: <20210402150128.29128-5-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210402150128.29128-1-manivannan.sadhasivam@linaro.org>
-References: <20210402150128.29128-1-manivannan.sadhasivam@linaro.org>
+        id S234548AbhDBPH2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 11:07:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58246 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229553AbhDBPH2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Apr 2021 11:07:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5EA2761103;
+        Fri,  2 Apr 2021 15:07:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1617376046;
+        bh=gYmF2FZi4rLr2NP0zXXU+K8L7CMPYgLcBdksf70cB6M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BdrL33DWTrU8wijGjWbo+4VHUlSsOUXZi4osWEN97YcnWYg+aETJzq2kNQY53zWFh
+         pK+zRj7jn6wOgaNlCcCuMJXETRRxNxFW8os+cnXSuhvyfTmXvAAQd0BfbZo3OGmfGf
+         k/s8CYfBx5qVmMmrPJgpGCnsdyOqLmTQTa9BvkZQ=
+Date:   Fri, 2 Apr 2021 17:07:24 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Stephen Boyd <swboyd@chromium.org>, kernel-team@android.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] of: property: fw_devlink: Add support for
+ remote-endpoint
+Message-ID: <YGczLJ38pTgGam0g@kroah.com>
+References: <20210330185056.1022008-1-saravanak@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210330185056.1022008-1-saravanak@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing nand_cleanup() in the alloc_bam_transaction() error path
-to cleanup the resources properly.
+On Tue, Mar 30, 2021 at 11:50:55AM -0700, Saravana Kannan wrote:
+> remote-endpoint property seems to always come in pairs where two devices
+> point to each other. So, we can't really tell from DT if there is a
+> functional probe order dependency between these two devices.
+> 
+> However, there can be other dependencies between two devices that point
+> to each other with remote-endpoint. This non-remote-endpoint dependency
+> combined with one of the remote-endpoint dependency can lead to a cyclic
+> dependency[1].
+> 
+> To avoid this cyclic dependency from incorrectly blocking probes,
+> fw_devlink needs to be made aware of remote-endpoint dependencies even
+> though remote-endpoint dependencies by themselves won't affect probe
+> ordering (because fw_devlink will see the cyclic dependency between
+> remote-endpoint devices and ignore the dependencies that cause the
+> cycle).
+> 
+> Also, if a device ever needs to know if a non-probe-blocking
+> remote-endpoint has finished probing, it can now use the sync_state() to
+> figure it out.
+> 
+> [1] - https://lore.kernel.org/lkml/CAGETcx9Snf23wrXqjDhJiTok9M3GcoVYDSyNYSMj9QnSRrA=cA@mail.gmail.com/#t
+> Fixes: ea718c699055 ("Revert "Revert "driver core: Set fw_devlink=on by default""")
+> Reported-by: Stephen Boyd <swboyd@chromium.org>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+> Rob/Greg,
+> 
+> This needs to go into driver-core due to the Fixes.
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- drivers/mtd/nand/raw/qcom_nandc.c | 1 +
- 1 file changed, 1 insertion(+)
+Now picked up, thanks.
 
-diff --git a/drivers/mtd/nand/raw/qcom_nandc.c b/drivers/mtd/nand/raw/qcom_nandc.c
-index 87c23bb320bf..fe74cf3aece5 100644
---- a/drivers/mtd/nand/raw/qcom_nandc.c
-+++ b/drivers/mtd/nand/raw/qcom_nandc.c
-@@ -2882,6 +2882,7 @@ static int qcom_nand_host_init_and_register(struct qcom_nand_controller *nandc,
- 		if (!nandc->bam_txn) {
- 			dev_err(nandc->dev,
- 				"failed to allocate bam transaction\n");
-+			nand_cleanup(chip);
- 			return -ENOMEM;
- 		}
- 	}
--- 
-2.25.1
-
+greg k-h
