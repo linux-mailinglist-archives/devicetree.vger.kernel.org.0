@@ -2,193 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB6B8352581
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 04:30:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58DC43526AD
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 08:45:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233786AbhDBC36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 22:29:58 -0400
-Received: from mail-dm6nam12on2112.outbound.protection.outlook.com ([40.107.243.112]:56529
-        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233665AbhDBC35 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Apr 2021 22:29:57 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eNnQ9tJ7MjJksVa5eHt4K0mbaA9DhgE24sgkLRRy3A0gI12sjQB7YYzEDbgVUgGj8Vt8NGGtr4lDd5HGaXivQJoW0xEH+fv8eoRhsBykipNTIpM8oLMqAJAwG1HZYEsQKD36oTMeB4f06T/364yJfx/VlkxDzXjtnXLQoxXciKMxSWfqWt/Ve7a5Qe9gye9aGoXWpCbKTY+0hFaSfh5fTyOv9kKgU80JLF7G2fVhm0lfW5EFZkiNfRf+2b6Q/QGqU38Bzg3/y6R3EMIBBu98glIlIiTmUkhQjXIKpvRPOS+SOQi21VwRAgDDHLZgfyiWwXyyI5OXtbX/Srm62Uz2iw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MYWEJpnjiVn+kB4bTHhnq9Wx5Fg5jMwbzZ3LED/y7rM=;
- b=hW/X23jgbueoCYsgwLqz87OaMymPVppcoIFJqtaZYVU4qitsBW2afRNpcTxveI3jUd+GHzxyeTT5QnLuxv/B17teM3CwkZCa98BDODRH6e4XK1PfnFPmq2gD0wOrnoUy/3AX8NAiPY8lh1U4Kc5irvEuuYT6mKcrtVIrQL1trZphfrOFWwE5ibIkejwWRwzmpUqdnsPiwrD4frzH8WfPRYywMNMitQeV9TzRh9bimjiM4mJMx29BTDFz6coQ13Z0xEKWxohIxTbPBwEGcAJ0wbbC+WO//wbkebIDRGPb9PhQ4MtMdoU4Lasc2b0R0SdRE8lEuwmxUEHF2e0n7FhIzg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
- header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
+        id S231287AbhDBGpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 02:45:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58496 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229605AbhDBGpa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 02:45:30 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DFF5C0613E6;
+        Thu,  1 Apr 2021 23:45:27 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id e18so3881819wrt.6;
+        Thu, 01 Apr 2021 23:45:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MYWEJpnjiVn+kB4bTHhnq9Wx5Fg5jMwbzZ3LED/y7rM=;
- b=Tuc4pZ1VonUgMACU0LU3UKB+reZVDqrT2aCCGgfup+P8SVvp155/QbXQXmUaOeD4F0/MGhBOM5ci8kt2M/d6bPVEgcvsO283Q5FQSYz+v8/yZ3oC4lrmw/vdPNG+m8JYFM1s83jqujpQymY2XGQXpbM2qTpKYRJg7tBCxdA3AuM=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none
- header.from=analogixsemi.com;
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
- by SJ0PR04MB7597.namprd04.prod.outlook.com (2603:10b6:a03:320::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.28; Fri, 2 Apr
- 2021 02:29:54 +0000
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::6481:f617:8105:491f]) by BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::6481:f617:8105:491f%2]) with mapi id 15.20.3999.029; Fri, 2 Apr 2021
- 02:29:54 +0000
-Date:   Fri, 2 Apr 2021 10:29:47 +0800
-From:   Xin Ji <xji@analogixsemi.com>
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
-        <ricardo.canuelo@collabora.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Bernie Liang <bliang@analogixsemi.com>,
-        Sheng Pan <span@analogixsemi.com>,
-        Zhen Li <zhenli@analogixsemi.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 1/5] dt-bindings:drm/bridge:anx7625:add vendor define
- flags
-Message-ID: <20210402022947.GB2154388@anxtwsw-Precision-3640-Tower>
-References: <cover.1616135353.git.xji@analogixsemi.com>
- <4b09b40ce53c5b5fe7d2ba65a3c7a1b23f6eec04.1616135353.git.xji@analogixsemi.com>
- <YFc1ZlmSiNJOAoOl@pendragon.ideasonboard.com>
- <20210324075108.GA1466804@anxtwsw-Precision-3640-Tower>
- <CAG3jFyt8EigCBkZHXgy1E-XcfpfdC5FEWW4Gb8bZqMT1tFW3ow@mail.gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAG3jFyt8EigCBkZHXgy1E-XcfpfdC5FEWW4Gb8bZqMT1tFW3ow@mail.gmail.com>
-X-Originating-IP: [60.251.58.79]
-X-ClientProxiedBy: HK2PR0401CA0022.apcprd04.prod.outlook.com
- (2603:1096:202:2::32) To BY5PR04MB6739.namprd04.prod.outlook.com
- (2603:10b6:a03:229::8)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from anxtwsw-Precision-3640-Tower (60.251.58.79) by HK2PR0401CA0022.apcprd04.prod.outlook.com (2603:1096:202:2::32) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.28 via Frontend Transport; Fri, 2 Apr 2021 02:29:53 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7df83001-1f84-411d-d1d0-08d8f57f3312
-X-MS-TrafficTypeDiagnostic: SJ0PR04MB7597:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SJ0PR04MB75970EAD2ED69471B6080636C77A9@SJ0PR04MB7597.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +xPptzNZd0yIJQ2Igf1mBFTfC3b2slt28iDVUPowo2KsNx5y0DUxARKTYHHAZ3nua9U/WCTG4nAiouD/ATMUgM1g9oVT++IywXZ9nrMsnfPWeGz6Wx+H51S3VbIILEWSGgvSZHMJiNmrHy9OxgwZBurTa5lt9W1gYpqnJBM+CoBSiKIWicob8JJ8NyuOFJeoqBc2knVm9jbqi+hC2EMa+GLY6OEvzNlc7rhWC73wzKUghs1qmc9/ErLZncmP4rBqkdkRB/J2281Q690h2IS5T+W8A1XBgjNrl9ghoV46YUvYPjxkvDIWGu8zMAj8W1Loqj8snTr32s56y8YFuFkid1nMvFlul2cLmtDBOKXWgplKb7GrX/XoGtnEjvDkF0KYxhjSVnb9o5Cf7v/m9cGVHYxowhkGGUgBPb/wCxYhRLH7urc1usNqzB1DFRcxYUEV4NKarUIfmHlHulQ/t4LOceglvW6ko6011knJNvKDNNFmBd9rndiGUsGZBTAl6aoBEBxilvvcTxaT1bD0TteHh0AogKTm8gCxqV6mE2UMa4EjM1tChnC7wEdrO/xwW90OLaKsAXM+jm0h1JRpk1YP5uAV/gwgwn0TPIAy1atabGx7s5KP6C3q5np6OOcUAmPC4zQcYTxSBsZF484nJJ52uhujrWdPDiPnP7x+iPFep70=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(376002)(39840400004)(396003)(136003)(366004)(1076003)(5660300002)(7416002)(6666004)(316002)(55016002)(33656002)(83380400001)(52116002)(16526019)(55236004)(33716001)(26005)(8936002)(186003)(956004)(478600001)(4326008)(6916009)(6496006)(8676002)(86362001)(66476007)(54906003)(66556008)(66946007)(9686003)(2906002)(38100700001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?WFZRvtpnS/RVX2Mza9doNt15T5sDLgnDHiBvb+YPpkCRmQYDLy5qSk0u8Tnm?=
- =?us-ascii?Q?la/dWHt+/XBFYkib9rtbGylzFNq8de3iFN4pDGTANh54yGQIkwUeXQlARlpp?=
- =?us-ascii?Q?lmE7n0zeSS56gqDONDpDhdaomD/d67hbVdLLiI4T3XDme+fVRVlRO8nfflYd?=
- =?us-ascii?Q?eWMqyZqGnLI9g5KgioDaOLz280wU9zoFqyxLJA0iJgsGzvMWJkR7OdG/Bp50?=
- =?us-ascii?Q?2DsdAZCKzgSQZQKRptf11FiOTOV12EYdhIR8mWDxzO7Ee5FSDAv0nbWTTmmn?=
- =?us-ascii?Q?gEXpqx41ZBxufHp5/8tDzLmCPYc1ehWT3PeiVOXQ3tLOpkQhCD9UPl3vDh1R?=
- =?us-ascii?Q?M5VXuhaBp0wIc1ycROKCQjMJ9kuXU/QtyiMGju4T1V5KlQCOOIJvQNvjhZtS?=
- =?us-ascii?Q?yVVRidypxvkNe25EJMKSmVeUNm4urF69mAozGuV/5hzU7dc2i+lXZCZzkyC3?=
- =?us-ascii?Q?ri/B/5gi0NytgTs6Fjv02YMk1siMdysQL1md1k5bd+f3BAn8tWfr8Xgd9EK2?=
- =?us-ascii?Q?NJ4jwBO3GVqeXbiqZU1hYzeDinkB9Reo0rh0niUwknKtj6GQQfrjF4QE1Ha+?=
- =?us-ascii?Q?lr89RP1Bgu6MzO9jJl1wi0iUORSDkXGJ6PA3NVkXxeK1fdoRZt4StgoJYK26?=
- =?us-ascii?Q?bPJ57xqrTALSJaMW7wKpL7vC2/oUazIgV3y+feHdcaVfAIJ8AnjMk8KC1xPd?=
- =?us-ascii?Q?BvuVpP6YT8WAceL6bqFb2lUjwLZfmFhaTZrvJNtcURrnNcmhPx3j8Jtbu4u6?=
- =?us-ascii?Q?JFIBlLNwdau7rAsbgjZ5dSNcH6xYWGXIG5IALgWynyy1BkztUu61Zz3PY1FQ?=
- =?us-ascii?Q?mzz8E+FwFNxNolOpwi7OZpVo0KS3iv7NbdFEeDLImXdwa49Fzp9E9VJIv/5+?=
- =?us-ascii?Q?HEqrtUv2Ial2x4tl4ZHzTP+VuLwXty52lGma+ATbYlBXUnrADK2UvW1EySAD?=
- =?us-ascii?Q?bpU9Ty7kHHHCMuVHecopUCzypzcpPyhlegd22yWRnUO0nJt+ISxwTeMf6RNc?=
- =?us-ascii?Q?PTHG19bFSye5MRAtGaJvktwRtCGSartuGAVE9fkgVbpicB6cGxR5LJdPxhCd?=
- =?us-ascii?Q?aqm+ovC+gPcMrGme1Nsvo9PltXrZxQqRKV8d3Xw5se0VC0eAFi1WuIr/MJSg?=
- =?us-ascii?Q?MAhoYses8VfS84LzdnqD1f07PcghN5kuoleW3TlGmodOsDZv491YwFYUlqci?=
- =?us-ascii?Q?lH32hfWFVGx3lfHuwbVi8Pz1Y8I2cIHLvYINhD4FXOvE5IBUzjT9wfg4J/Ur?=
- =?us-ascii?Q?6EiWkve2AKO2W/C6xQLBnqwiqMSox0Owt1vtPfXUS0208KbkjVWDKSFKW/l8?=
- =?us-ascii?Q?DEjU/lqlb3RnttDd/TnDkgNh?=
-X-OriginatorOrg: analogixsemi.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7df83001-1f84-411d-d1d0-08d8f57f3312
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2021 02:29:54.3410
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RN5g9zXA25q448jGAmL5VQAit+ZKP6p14qx3AsZc0/IH9oszlyd+DWXmoxxiUYMf6XEEiijEhbhMfrPIOtgEUw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR04MB7597
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=ZeHJob2v/K/CaMbyyAWcKJg79Pbk2BJVjHV0z+90W88=;
+        b=Ca/t4hzjjq66+TKHWGZebJNSM9ZFmjugKYb+ufEu1KBPOmGgMRor4xIJ/HP4TGuzQH
+         tpb1O09F4TQ+4P9Iv2H5vKHIRWeSMB+QU0w4UtsS3aAA2ji5fWJBAiv3RR6sqdhUb35U
+         NhFbc9BSdDZX5WQPZPxbmY8tyhrOxj5lOxY2kH7O5i3Slp887MYk2UAXZbKO831vkVL2
+         BU+IBcLMWI15Rfy4Dmk1wTy3lnJqh13JpE94AaGWaS0HyygrsLLTpH2WsKeYdhFLCNuL
+         AsTtlUnf0xU8XBL9wyaYNLAxnhscDulUq1kaKe6t3OdIuQ3FN2agf61yIb1lCwfS55OD
+         nPEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=ZeHJob2v/K/CaMbyyAWcKJg79Pbk2BJVjHV0z+90W88=;
+        b=kajMr/TD1fhFDy4xir3Y5hzbxX1p/PZt29I/aMUM5TiJ83C7BFhHcQUJgH7cEFwno+
+         IgKFCThKJ0czAE2mbY1LnZAHyW1A/V782vLUYaSt74xg1Wg0r1KhD6KxBnxOlAn18ON2
+         z/a5D2ErSSLYWN2ncKaKSoP4jwJB2QnEVd06OsyFq2VDsrP6niWYQe4Pm8rCm9tOrocq
+         f6f7S43w2mX8MYyBIurrvFqNAOP/j/SNWaYv0w89AKG8WvhLMhvsksHzZqfHymkVNaw3
+         OMoQ0EO8nWlc7CohgeEEjdTXeWCiJISW0dK0yhEkseSKa6apYZGlXaDUtO/A4AgVlyb7
+         4GyA==
+X-Gm-Message-State: AOAM530zg/TznUOAl0nwvyqJUw4xgUkHRLEkogZGpPOWuSucJENgXqWy
+        CGQo9SlgNgflEVjwlUonrW1+UlNzfdc=
+X-Google-Smtp-Source: ABdhPJyYCI8e9Fk+PhwRSOIztpbdqLiUeyuSef8CcdwTahd9XaEWvsGbxrngaMYYo+9iKVTZOJIPvQ==
+X-Received: by 2002:adf:f144:: with SMTP id y4mr13901438wro.408.1617345926043;
+        Thu, 01 Apr 2021 23:45:26 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id m17sm13627131wrx.92.2021.04.01.23.45.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Apr 2021 23:45:25 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH v2 0/3] arm64: dts: meson: add support for MeCool KII-Pro/KIII-Pro
+Date:   Fri,  2 Apr 2021 06:45:18 +0000
+Message-Id: <20210402064521.30579-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 01, 2021 at 02:33:47PM +0200, Robert Foss wrote:
-> Hey Xin,
-> 
-> This series no longer applies to drm-misc/drm-misc-next, please rebase it.
-Hi Robert Foss, OK, I'll rebase it on the drm-misc-next after confirmed
-HDCP patch with Sean Paul.
-Thanks,
-Xin
-> 
-> On Wed, 24 Mar 2021 at 08:52, Xin Ji <xji@analogixsemi.com> wrote:
-> >
-> > On Sun, Mar 21, 2021 at 02:00:38PM +0200, Laurent Pinchart wrote:
-> > > Hi Xin,
-> > >
-> > > Thank you for the patch.
-> > >
-> > > On Fri, Mar 19, 2021 at 02:32:39PM +0800, Xin Ji wrote:
-> > > > Add 'bus-type' and 'data-lanes' define for port0. Define DP tx lane0,
-> > > > lane1 swing register array define, and audio enable flag.
-> > > >
-> > > > Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> > > > ---
-> > > >  .../display/bridge/analogix,anx7625.yaml      | 58 ++++++++++++++++++-
-> > > >  1 file changed, 57 insertions(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > > index c789784efe30..3f54d5876982 100644
-> > > > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > > @@ -34,6 +34,26 @@ properties:
-> > > >      description: used for reset chip control, RESET_N pin B7.
-> > > >      maxItems: 1
-> > > >
-> > > > +  analogix,lane0-swing:
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > > +    minItems: 1
-> > > > +    maxItems: 20
-> > > > +    description:
-> > > > +      an array of swing register setting for DP tx lane0 PHY, please don't
-> > > > +      add this property, or contact vendor.
-> > >
-> > > DT properties need to be documented. Contacting the vendor doesn't count
-> > > as documentation I'm afraid.
-> >
-> > Hi Laurent Pinchart, thanks for your comment. For the DP phy swing
-> > setting, it is hard to describe in here, needs to refer the anx7625
-> > datasheet and programming guide. Basically, no need to change the DP phy
-> > swing setting.
-> >
-> 
-> Laurent is right. But if the value practically is a constant, you can
-> move the swing register into the driver. It should still be documented
-> as well as possible, but we can be a little bit more flexible.
-> 
-> > > > @@ -73,6 +123,10 @@ examples:
-> > > >              enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
-> > > >              reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
-> > > >
-> > > > +            analogix,audio-enable;
-> > > > +            analogix,lane0-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
-> > > > +            analogix,lane1-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
-> > > > +
-> > > >              ports {
-> > > >                  #address-cells = <1>;
-> > > >                  #size-cells = <0>;
+This series adds support for the MeCool (Videostrong) KII Pro (GXL)
+and KIII Pro (GXM) Android STB devices. These are quite popular due
+to the embedded multi-standard tuner card (which is sadly not-yet
+supported in the kernel). Both devices closely follow the Amlogic
+reference designs with keys/buttons/LED details taken from known-
+working vendor kernel device-trees.
+
+Testing was made by Drazen Spio via the LibreELEC forums [0] as I
+don't own either device. Since dts files were added to LibreELEC
+nightly test images I've seen the number of active installs grow
+without reported issues.
+
+[0] https://forum.libreelec.tv/thread/23590-nightbuild-on-mecool-kiii-pro/
+
+Changes since v1:
+
+- Rebased on khilman/v5.13/dt64
+- Add ack on bindings from Rob
+- Add reviewed-by(s) from Neil
+
+Christian Hewitt (3):
+  dt-bindings: arm: amlogic: add MeCool KII/KIII Pro bindings
+  arm64: dts: meson: add initial device-tree for MeCool KII Pro
+  arm64: dts: meson: add initial device-tree for MeCool KIII Pro
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   2 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   2 +
+ .../meson-gxl-s905d-mecool-kii-pro.dts        |  86 +++++++++++++
+ .../dts/amlogic/meson-gxm-mecool-kiii-pro.dts | 113 ++++++++++++++++++
+ 4 files changed, 203 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905d-mecool-kii-pro.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dts
+
+-- 
+2.17.1
+
