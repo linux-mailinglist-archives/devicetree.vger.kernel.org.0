@@ -2,82 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABC58352769
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 10:23:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5E92352743
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 10:13:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229553AbhDBIXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 04:23:08 -0400
-Received: from fallback24.m.smailru.net ([94.100.187.223]:52296 "EHLO
-        fallback24.mail.ru" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229522AbhDBIXH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 04:23:07 -0400
-X-Greylist: delayed 2359 seconds by postgrey-1.27 at vger.kernel.org; Fri, 02 Apr 2021 04:23:07 EDT
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru; s=mail3;
-        h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From; bh=iUzvbWVgYLuxmSAMSV8Rs+c8S0OSX6KBmvEo/LsnDFw=;
-        b=TSdPIi7g968+ZX5Ixuns/9tw4rfWkWg9hojdhnSQObGHp/PA1n6gIqVnYGbF4UUC+HUD2b5KQeSB2NU9+TFKlvibAZteeYySh9JyY8ipnFRlMi9OTcU28YKNVPlumxGZMvqlB1hZnHW/3/PT9fQbp4YkSVfwCLNokmDWKWrZhao=;
-Received: from [10.161.64.46] (port=56436 helo=smtp38.i.mail.ru)
-        by fallback24.m.smailru.net with esmtp (envelope-from <shc_work@mail.ru>)
-        id 1lSET2-0002Ma-Vk; Fri, 02 Apr 2021 10:43:45 +0300
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru; s=mail3;
-        h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=iUzvbWVgYLuxmSAMSV8Rs+c8S0OSX6KBmvEo/LsnDFw=;
-        b=Gr9XkgwNtuihTarT+//GhfPEMwIEUHGM1DisjMlLw180Eeg3gNv8LXP/wzzBa4/4yv/iK7uZqG1IghoQLdtrmBaSABjUu0Z+vIsCTrA7TGgb0pb0Pnb761I5wYmSlcKZrntcvF4GmmXfS5q+r64PHVljmTsoqKba6pAU5UolqTE=;
-Received: by smtp38.i.mail.ru with esmtpa (envelope-from <shc_work@mail.ru>)
-        id 1lSESy-0008Jo-Ht; Fri, 02 Apr 2021 10:43:40 +0300
-From:   Alexander Shiyan <shc_work@mail.ru>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Russell King <linux@armlinux.org.uk>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Alexander Shiyan <shc_work@mail.ru>
-Subject: [PATCH RESEND 4/5] ARM: dts: clps711x: edb7211: Add unit-address to memory node
-Date:   Fri,  2 Apr 2021 10:43:17 +0300
-Message-Id: <20210402074318.8582-4-shc_work@mail.ru>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210402074318.8582-1-shc_work@mail.ru>
-References: <20210402074318.8582-1-shc_work@mail.ru>
+        id S231287AbhDBINc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 04:13:32 -0400
+Received: from www381.your-server.de ([78.46.137.84]:40276 "EHLO
+        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229722AbhDBINb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 04:13:31 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:Reply-To:Cc:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=WJYHZD/yI9+GiC21G4z8as+Vha9BjY024yCLrBq/FNg=; b=gfrgzGBNOQeO+oZDrXCXU45Y9f
+        68hnYKo9Xt0kzKUxqowB//IILbH82VFLsbpBztU4bs3hbL77VLV6Gtici84oyaO6i7/3x4DMT5tZT
+        8zTOt5XOnuvrN2WFmdbGDJigIaAS/BLfGAlpuTBT8MNx7+8SktcSqhkeXh2YJAfJoHqw5wHUK9PLK
+        azHnpsjZrP1VVRJgL3q9mbmQFa6Xw9iH+kewsuxKpLK4/1BmIJpH8Few+uJuk6qNq9UNisvRG/WWC
+        zKzJfe94RHNRnrKBofDV5+ErOuYUmJ/7fH+xZOrtQeU/PuwPPknklPgY2kdNj82eXLRYxlmsrmmqv
+        M+lmShPA==;
+Received: from sslproxy03.your-server.de ([88.198.220.132])
+        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92.3)
+        (envelope-from <lars@metafoo.de>)
+        id 1lSEvm-0002av-8M; Fri, 02 Apr 2021 10:13:26 +0200
+Received: from [2001:a61:2aa1:1e01:9e5c:8eff:fe01:8578]
+        by sslproxy03.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1lSEvm-000DeJ-17; Fri, 02 Apr 2021 10:13:26 +0200
+Subject: Re: [PATCH v2 2/2] iio: temperature: add driver support for ti tmp117
+To:     Puranjay Mohan <puranjay12@gmail.com>,
+        alexandru.ardelean@analog.com, jic23@kernel.org,
+        devicetree@vger.kernel.org, knaack.h@gmx.de,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210401091648.87421-1-puranjay12@gmail.com>
+ <20210401091648.87421-3-puranjay12@gmail.com>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+Message-ID: <7a9097bf-9f8d-0fe7-7b5e-84643bcff760@metafoo.de>
+Date:   Fri, 2 Apr 2021 10:13:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-7564579A: B8F34718100C35BD
-X-77F55803: 4F1203BC0FB41BD9ED7173E37F4E32947A0146560F8BA70927CAA5B950F38D9F182A05F53808504003FAD4D09062E19EE5498396DDD33D199612ACB8C61E8FDA4111E3FEA9D083C1
-X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE70CB15FA6C489297DEA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F79006371E4BC0E00C009995EA1F7E6F0F101C67CDEEF6D7F21E0D1D174C73DBBBFC7664DACD858F8408EEB928A37DB7A4A5AE1B142C06B03492CA41389733CBF5DBD5E913377AFFFEAFD269176DF2183F8FC7C084ED00A64A654CBE8941B15DA834481FCF19DD082D7633A0EF3E4896CB9E6436389733CBF5DBD5E9D5E8D9A59859A8B6A0EE70D6C4970CA7A471835C12D1D977C4224003CC836476EB9C4185024447017B076A6E789B0E975F5C1EE8F4F765FCCEAE2E64359CE04D3AA81AA40904B5D9CF19DD082D7633A078D18283394535A93AA81AA40904B5D98AA50765F790063741BC3E871AF2F68EEC76A7562686271EEC990983EF5C032935872C767BF85DA227C277FBC8AE2E8B37C49EB0B884C57175ECD9A6C639B01B4E70A05D1297E1BBCB5012B2E24CD356
-X-B7AD71C0: AC4F5C86D027EB782CDD5689AFBDA7A24A6D60772A99906F8E1CD14B953EB46D5666A48ABDE0FACA355D89D7DBCDD132
-X-C1DE0DAB: C20DE7B7AB408E4181F030C43753B8186998911F362727C414F749A5E30D975C7B5A45DDF210A4CFD331CA0BBB4A7C407C6AF5433B232B699C2B6934AE262D3EE7EAB7254005DCED7532B743992DF240BDC6A1CF3F042BAD6DF99611D93F60EF4280523C145DA091699F904B3F4130E343918A1A30D5E7FCCB5012B2E24CD356
-X-C8649E89: 4E36BF7865823D7055A7F0CF078B5EC49A30900B95165D3444047AE358B407547C01FDB4155DAADC93BC9C63B0B0501F7834E4674B6151D8D2DF3572CA787D051D7E09C32AA3244CA25460E21D176D5A44FFB3B35DF440E2BBA718C7E6A9E042DCA3B3C10BC03908
-X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojiysexgWf337ao0+LgYepDw==
-X-Mailru-Sender: 8261CADE3D3FA0B4C2F1292954F703E9C4D6AA0BA558CC22BE2D941A03E695E6E8AE2073681586076B3B2BD4812BFD4DC77752E0C033A69E93554C27080790AB3B25A7FBAAF806F0AE208404248635DF
-X-Mras: Ok
-X-7564579A: 646B95376F6C166E
-X-77F55803: 6242723A09DB00B4DF7173A40FF1347DA6106AACE9855D49D1810D09736A5E1D049FFFDB7839CE9E750848576F542D0E5BB53A7C63C55E7B7DC61321E65A7275084CEA1A8F969A8A
-X-7FA49CB5: 0D63561A33F958A522077EFD13269060A1EB21D383C29A68403C3DAF84A848BA8941B15DA834481FA18204E546F3947CD2B897A0B7B208E1F6B57BC7E64490618DEB871D839B7333395957E7521B51C2DFABB839C843B9C08941B15DA834481F8AA50765F79006371CE0A079F1B3D4BD389733CBF5DBD5E9B5C8C57E37DE458BD9DD9810294C998ED8FC6C240DEA76428AA50765F7900637CA2E0E4F693AC8F5D81D268191BDAD3DBD4B6F7A4D31EC0BEA7A3FFF5B025636AAAE862A0553A39223F8577A6DFFEA7C46CC729E650C927943847C11F186F3C59DAA53EE0834AAEE
-X-C1DE0DAB: C20DE7B7AB408E4181F030C43753B8186998911F362727C414F749A5E30D975C7B5A45DDF210A4CF5CBA337A6524DF3E24C651385B199ED09C2B6934AE262D3EE7EAB7254005DCED8DA55E71E02F9FC08E8E86DC7131B365E7726E8460B7C23C
-X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojiysexgWf335OZhmr4rBWJg==
-X-Mailru-MI: 800
-X-Mailru-Sender: A5480F10D64C90056E4657EF76348BF29E3761BE390A4DD49002EBA61072CD571AB5AE572836FD893786569BE0651809D50E20E2BC48EF5AFF3C6AF3E48A3A73EAB4BC95F72C04283CDA0F3B3F5B9367
-X-Mras: Ok
+In-Reply-To: <20210401091648.87421-3-puranjay12@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.102.4/26127/Thu Apr  1 13:11:26 2021)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The memory node requires a unit-address, add it.
+On 4/1/21 11:16 AM, Puranjay Mohan wrote:
+> TMP117 is a Digital temperature sensor with integrated NV memory.
+>
+> Add support for tmp117 driver in iio subsystem.
+> Datasheet:-https://www.ti.com/lit/gpn/tmp117
+>
+> Signed-off-by: Puranjay Mohan <puranjay12@gmail.com>
 
-Signed-off-by: Alexander Shiyan <shc_work@mail.ru>
----
- arch/arm/boot/dts/ep7211-edb7211.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Nice and clean driver. Just some comments about the CALIBBIAS.
 
-diff --git a/arch/arm/boot/dts/ep7211-edb7211.dts b/arch/arm/boot/dts/ep7211-edb7211.dts
-index da076479c8e2..7fb532f227af 100644
---- a/arch/arm/boot/dts/ep7211-edb7211.dts
-+++ b/arch/arm/boot/dts/ep7211-edb7211.dts
-@@ -7,7 +7,7 @@ / {
- 	model = "Cirrus Logic EP7211 Development Board";
- 	compatible = "cirrus,edb7211", "cirrus,ep7211", "cirrus,ep7209";
- 
--	memory {
-+	memory@c0000000 {
- 		device_type = "memory";
- 		reg = <0xc0000000 0x02000000>;
- 	};
--- 
-2.26.2
+> [...]
+> +#define TMP117_RESOLUTION_10UC		78125
+Isn't the unit here 100 uC?
+> +#define TMP117_DEVICE_ID		0x0117
+> +
+> +struct tmp117_data {
+> +	struct i2c_client *client;
+> +};
+> +
+> +static int tmp117_read_raw(struct iio_dev *indio_dev,
+> +		struct iio_chan_spec const *channel, int *val,
+> +		int *val2, long mask)
+> +{
+> [...]
+> +	case IIO_CHAN_INFO_CALIBBIAS:
+> +		ret = i2c_smbus_read_word_swapped(data->client,
+> +					TMP117_REG_TEMP_OFFSET);
+> +		if (ret < 0)
+> +			return ret;
+> +		*val = ((int16_t)ret * (int32_t)TMP117_RESOLUTION_10UC)
+> +								/ 10000;
+> +		*val2 = ((int16_t)ret * (int32_t)TMP117_RESOLUTION_10UC)
+> +								% 10000;
 
+If I understand this right CALBBIAS is written in one unit, but read in 
+another unit. E.g. if you do `echo 100 > ..._calibbias` and then `cat 
+..._calibbias` you'd read a different value back.
+
+I think that would be quite unexpected behavior. The unit should be the 
+same. Here in the read function you can just return the register value. 
+Just make sure to properly sign extend like for the RAW property.
+
+> +		return IIO_VAL_INT_PLUS_MICRO;
+> [...]
+> +}
+> +
+> +static int tmp117_write_raw(struct iio_dev *indio_dev,
+> +		struct iio_chan_spec const *channel, int val,
+> +		int val2, long mask)
+> +{
+> +	struct tmp117_data *data = iio_priv(indio_dev);
+> +	s16 off;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_CALIBBIAS:
+> +		off = (s16)val;
+This should have some input validation to avoid writing bogus values to 
+the register when the value is out of range. You can either reject out 
+of range values or clamp them into the valid range (using the clamp() 
+macro).
+> +		return i2c_smbus_write_word_swapped(data->client,
+> +						TMP117_REG_TEMP_OFFSET, off);
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+[...]
