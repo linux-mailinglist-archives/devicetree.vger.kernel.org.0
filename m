@@ -2,111 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AD583526EA
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 09:28:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A3B93526F8
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 09:34:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233521AbhDBH25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 03:28:57 -0400
-Received: from szxga04-in.huawei.com ([45.249.212.190]:15588 "EHLO
-        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229684AbhDBH25 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 03:28:57 -0400
-Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.58])
-        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4FBWp03hGsz19Kd9;
-        Fri,  2 Apr 2021 15:26:48 +0800 (CST)
-Received: from [10.40.166.221] (10.40.166.221) by
- DGGEMS413-HUB.china.huawei.com (10.3.19.213) with Microsoft SMTP Server id
- 14.3.498.0; Fri, 2 Apr 2021 15:28:46 +0800
-Message-ID: <6066C7AF.7030304@hisilicon.com>
-Date:   Fri, 2 Apr 2021 15:28:47 +0800
-From:   Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+        id S234352AbhDBHe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 03:34:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40950 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234327AbhDBHey (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 03:34:54 -0400
+Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B6E0C0613E6;
+        Fri,  2 Apr 2021 00:34:54 -0700 (PDT)
+Received: by mail-io1-xd35.google.com with SMTP id z136so4580938iof.10;
+        Fri, 02 Apr 2021 00:34:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=S8YiWEgAWNK+PWFAwlRLwclHpIGKDlHTAlTUSmH/65s=;
+        b=jFUe8fj/rlXjI53aUF/H7YFiHByWQ4hDH19JCq4435UfFGgeAj9AUTeSGK+svJ0RbH
+         ouvKNhYESpEQcNmF/f8a6it7JO+IYvF0h25WjxQUibN12shEBIq8jmGshVWPW4Wwhuv6
+         GRM1waAT5nWoOhEnAZhrHYfJWxYBpC1FfhkfzaQ/0KhabL689p/gLsy2vZN+Tr5EseMg
+         8iWCvo/uD3oa/TBL2LONUyd8febqLoptvKPUDi89m9/+vC/LjW/4ibAIRMZkUtBdI7V0
+         UTxrOr6cNio2+ye0bbhAVOPNqczxXxASLoEeqlbLTSRMlbMiYUryty4PJBZU0DTLHYPm
+         WIKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=S8YiWEgAWNK+PWFAwlRLwclHpIGKDlHTAlTUSmH/65s=;
+        b=C7xZ7ehIGE/F1JjkYp6EfleN8zRGX4LNneA/6trB+8WHLGApALbrQcYOx/Tify+xMR
+         SSWXCtLhid512M1N0tZw9NVfEbw+nLlOj73TSSqH9g/Uu1YW8L5zC9hIfLgCPAP6zuRw
+         Y/g/VRZElfPzmBIERZgn4MsRZlDbB1JQ0S2azu6IcBwBPZaCTBg7xsYryGH+E4TaVAti
+         bVP9ptO06gJRwatuou5WHcubYhnjP03YtY8QW0rOiilEdS2PxP5YBdlsmzT2SoKbHz7c
+         RDrKwHLCvz9zDsqwiOG9A3dLpqY2wKFmc+n/oZUEtjEdP+WOcNSXmdXJ5LITwJszQPJz
+         0OIA==
+X-Gm-Message-State: AOAM532OLnG1QfuhrDTUBaQrUuv1qA0TA1CKWaTYoBi0nknxUj0xpYm7
+        WWEaQDao/Rxyjl0uvhW1eHLQK2gHvDgFudVevYg=
+X-Google-Smtp-Source: ABdhPJydMTWYDIZREgnTQx666V8nT2/KJLSYAkt+IR7zQKVsyhiAi4hsU4Dy1m0Xg401RwfZHKWoOLbX20rc26JQwNY=
+X-Received: by 2002:a05:6638:3791:: with SMTP id w17mr11482434jal.91.1617348893555;
+ Fri, 02 Apr 2021 00:34:53 -0700 (PDT)
 MIME-Version: 1.0
-To:     Zhen Lei <thunder.leizhen@huawei.com>,
+References: <20210401171759.318140-1-jic23@kernel.org> <20210401171759.318140-2-jic23@kernel.org>
+In-Reply-To: <20210401171759.318140-2-jic23@kernel.org>
+From:   Alexandru Ardelean <ardeleanalex@gmail.com>
+Date:   Fri, 2 Apr 2021 10:34:42 +0300
+Message-ID: <CA+U=DspFppB_cnufH6VLULKCaVQ796GsNykt90OJPPj_ThcyvQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] iio:adc:ad7476: Fix remove handling
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio <linux-iio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@kernel.org>
-CC:     Zhangfei Gao <zhangfei.gao@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Subject: Re: [PATCH v4 1/1] arm64: dts: correct vendor prefix hisi to hisilicon
-References: <20210302113351.1204-1-thunder.leizhen@huawei.com> <20210302113351.1204-2-thunder.leizhen@huawei.com>
-In-Reply-To: <20210302113351.1204-2-thunder.leizhen@huawei.com>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.40.166.221]
-X-CFilter-Loop: Reflected
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhen Lei,
+On Thu, Apr 1, 2021 at 8:47 PM Jonathan Cameron <jic23@kernel.org> wrote:
+>
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+>
+> This driver was in an odd half way state between devm based cleanup
+> and manual cleanup (most of which was missing).
+> I would guess something went wrong with a rebase or similar.
+> Anyhow, this basially finishes the job as a precusor to improving
 
-On 2021/3/2 19:33, Zhen Lei wrote:
-> The vendor prefix of "Hisilicon Limited" is "hisilicon", it is clearly
-> stated in "vendor-prefixes.yaml".
-> 
-> Fixes: a4e36ae0fb33 ("arm64: dts: hi3660: add resources for clock and reset")
-> Fixes: 757a4b2913eb ("arm64: dts: hisilicon: hi3670: Add reset controller support")
-> Fixes: 305656e0989d ("arm64: dts: hisilicon: hi3670.dtsi: add iomcu_rst")
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
-> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+2 typos in this commit description
 
-Thanks!
-Applied to the hisilicon arm64 dt tree.
+> the regulator handling.
+>
 
-Best Regards,
-Wei
+I was pretty surprised about this patch [before reading through it].
+Anyhow:
 
+Reviewed-by: Alexandru Ardelean <ardeleanalex@gmail.com>
+
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Fixes: 4bb2b8f94ace3 ("iio: adc: ad7476: implement devm_add_action_or_reset")
+> Cc: Michael Hennerich <michael.hennerich@analog.com>
 > ---
->  arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 4 ++--
->  arch/arm64/boot/dts/hisilicon/hi3670.dtsi | 4 ++--
->  2 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> index cab89dc6f596121..8b8d3d07b67fe84 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> @@ -345,7 +345,7 @@
->  		crg_rst: crg_rst_controller {
->  			compatible = "hisilicon,hi3660-reset";
->  			#reset-cells = <2>;
-> -			hisi,rst-syscon = <&crg_ctrl>;
-> +			hisilicon,rst-syscon = <&crg_ctrl>;
->  		};
->  
->  
-> @@ -376,7 +376,7 @@
->  
->  		iomcu_rst: reset {
->  			compatible = "hisilicon,hi3660-reset";
-> -			hisi,rst-syscon = <&iomcu>;
-> +			hisilicon,rst-syscon = <&iomcu>;
->  			#reset-cells = <2>;
->  		};
->  
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> index 8830795c8efc5a5..37409f0639628d0 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> @@ -155,7 +155,7 @@
->  			compatible = "hisilicon,hi3670-reset",
->  				     "hisilicon,hi3660-reset";
->  			#reset-cells = <2>;
-> -			hisi,rst-syscon = <&crg_ctrl>;
-> +			hisilicon,rst-syscon = <&crg_ctrl>;
->  		};
->  
->  		pctrl: pctrl@e8a09000 {
-> @@ -196,7 +196,7 @@
->  
->  		iomcu_rst: reset {
->  			compatible = "hisilicon,hi3660-reset";
-> -			hisi,rst-syscon = <&iomcu>;
-> +			hisilicon,rst-syscon = <&iomcu>;
->  			#reset-cells = <2>;
->  		};
->  
-> 
+>  drivers/iio/adc/ad7476.c | 18 ++++--------------
+>  1 file changed, 4 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/iio/adc/ad7476.c b/drivers/iio/adc/ad7476.c
+> index 17402714b387..9e9ff07cf972 100644
+> --- a/drivers/iio/adc/ad7476.c
+> +++ b/drivers/iio/adc/ad7476.c
+> @@ -321,25 +321,15 @@ static int ad7476_probe(struct spi_device *spi)
+>         spi_message_init(&st->msg);
+>         spi_message_add_tail(&st->xfer, &st->msg);
+>
+> -       ret = iio_triggered_buffer_setup(indio_dev, NULL,
+> -                       &ad7476_trigger_handler, NULL);
+> +       ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev, NULL,
+> +                                             &ad7476_trigger_handler, NULL);
+>         if (ret)
+> -               goto error_disable_reg;
+> +               return ret;
+>
+>         if (st->chip_info->reset)
+>                 st->chip_info->reset(st);
+>
+> -       ret = iio_device_register(indio_dev);
+> -       if (ret)
+> -               goto error_ring_unregister;
+> -       return 0;
+> -
+> -error_ring_unregister:
+> -       iio_triggered_buffer_cleanup(indio_dev);
+> -error_disable_reg:
+> -       regulator_disable(st->reg);
+> -
+> -       return ret;
+> +       return devm_iio_device_register(&spi->dev, indio_dev);
+>  }
+>
+>  static const struct spi_device_id ad7476_id[] = {
+> --
+> 2.31.1
+>
