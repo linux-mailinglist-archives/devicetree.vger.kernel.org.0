@@ -2,126 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DEB2352D3A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 18:10:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0B26352D48
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 18:10:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235273AbhDBPXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 11:23:22 -0400
-Received: from smtpcmd15177.aruba.it ([62.149.156.177]:53092 "EHLO
-        smtpcmd15177.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235111AbhDBPXW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 11:23:22 -0400
-Received: from [192.168.126.129] ([146.241.148.6])
-        by Aruba Outgoing Smtp  with ESMTPSA
-        id SLdmlmMJ3LwkNSLdmleqO8; Fri, 02 Apr 2021 17:23:19 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-        t=1617376999; bh=Zjgzub5UB8H8XQ9V4GX5bcr4pkotkNmq2kr2buL9Beg=;
-        h=Subject:To:From:Date:MIME-Version:Content-Type;
-        b=X+qGZbDU9Q6w7LxLKkxe5wTWsTbkLVJZuooXOA+BodQ15Is0JLWXkXX/88gINGyzm
-         S7Ur8zROubQakL0IE3GptcbYyzHBkQn1FzxmUuAUX53zq501EFeqmc+V/m7r1FImfn
-         MlAZ4dUSALlA8hyN14yJo3xi0gDdv63FXIqTcsm/yjAA7xjg/Moq4GfNkN3mz6n5d/
-         NEoPHCl1wkIfUhNhUm64Ui0gwCeI81XW3p7IEEILKVR+EZQYOlfAtFvPHs4pAl+oCB
-         aHYFOMCvDUrNarcWfvRuPZmsxDE3O/adte1rzIGFYO2jMaeeCgN5XrZAfohJJobZWy
-         OLlox5yKa5QCw==
-Subject: Re: [PATCH v2 3/3] Input: add driver for the Hycon HY46XX touchpanel
- series
-To:     =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.ne@posteo.net>
-References: <20210306194120.GA1075725@robh.at.kernel.org>
- <20210401230358.2468618-1-giulio.benetti@benettiengineering.com>
- <20210401230358.2468618-4-giulio.benetti@benettiengineering.com>
- <YGbc7Qbu6s659Mx4@latitude>
-From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
-Message-ID: <a4a060a1-8cf3-71f8-9f4a-498870a9cb53@benettiengineering.com>
-Date:   Fri, 2 Apr 2021 17:23:18 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S235724AbhDBPXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 11:23:36 -0400
+Received: from pegase1.c-s.fr ([93.17.236.30]:8458 "EHLO pegase1.c-s.fr"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235634AbhDBPXg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Apr 2021 11:23:36 -0400
+Received: from localhost (mailhub1-int [192.168.12.234])
+        by localhost (Postfix) with ESMTP id 4FBkN2601bz9v2lr;
+        Fri,  2 Apr 2021 17:23:30 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at c-s.fr
+Received: from pegase1.c-s.fr ([192.168.12.234])
+        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
+        with ESMTP id omz2sWo61eF3; Fri,  2 Apr 2021 17:23:30 +0200 (CEST)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+        by pegase1.c-s.fr (Postfix) with ESMTP id 4FBkN25477z9v2lh;
+        Fri,  2 Apr 2021 17:23:30 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id A7DF98BB7C;
+        Fri,  2 Apr 2021 17:23:32 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+        with ESMTP id uhizq2EL8v5n; Fri,  2 Apr 2021 17:23:32 +0200 (CEST)
+Received: from [192.168.4.90] (unknown [192.168.4.90])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id 9D75E8BB6F;
+        Fri,  2 Apr 2021 17:23:31 +0200 (CEST)
+Subject: Re: [PATCH v3 01/17] cmdline: Add generic function to build command
+ line.
+To:     Rob Herring <robh@kernel.org>
+Cc:     Will Deacon <will@kernel.org>, Daniel Walker <danielwa@cisco.com>,
+        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
+        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
+        <linux-arch@vger.kernel.org>, devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        microblaze <monstr@monstr.eu>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        nios2 <ley.foon.tan@intel.com>,
+        Openrisc <openrisc@lists.librecores.org>,
+        linux-hexagon@vger.kernel.org,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        X86 ML <x86@kernel.org>, linux-xtensa@linux-xtensa.org,
+        SH-Linux <linux-sh@vger.kernel.org>,
+        sparclinux <sparclinux@vger.kernel.org>
+References: <cover.1616765869.git.christophe.leroy@csgroup.eu>
+ <878228ad88df38f8914c7aa25dede3ed05c50f48.1616765869.git.christophe.leroy@csgroup.eu>
+ <CAL_JsqKr3xekKSo3DtQvOOw_VoGC=FUTagZGY5g=CGGGdUZSMQ@mail.gmail.com>
+From:   Christophe Leroy <christophe.leroy@csgroup.eu>
+Message-ID: <53aa0b8c-4ee3-a6af-6fb8-2edc5cd79ea5@csgroup.eu>
+Date:   Fri, 2 Apr 2021 17:23:32 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-In-Reply-To: <YGbc7Qbu6s659Mx4@latitude>
+In-Reply-To: <CAL_JsqKr3xekKSo3DtQvOOw_VoGC=FUTagZGY5g=CGGGdUZSMQ@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Language: fr
 Content-Transfer-Encoding: 8bit
-X-CMAE-Envelope: MS4xfP0ZAjh3bi9ubFRtnjZE8kNgc6hXya9iP7Jl3K/EySvUDaWVVPU0Dx06B+pTmj0O83bOb72Isk0TMjZIeRHYRKgVDaK9J7C8eSVnJLmDxMnsi6xIZ6aL
- gpSVT1Cs6g6Ji8tQVdRRu/8rE2StHnfe1TKGJWwuMQQpI8Oj1R65ApOIIX317tPE8zjKwApmUxDxUbhkNEUokNxdK1LK3Q0Ez+QdSg3QnKHSSGdu2kjMWMhe
- 4mQhKd02sTfhFDG1h/9tKn1U0fqUzLp+tunyvWmNxgYz7S2G9CMzabtvhwDIYd7oDorYp+yu1nBRYIKL+lM7EtOJBEsXzdmP84StLcVB9Mr9V0n1trMPyZbH
- Bs3i14B3ZDM9Tyuhvoo7vPy2P4HIg0zoQPGfxe8RAqCcANp9I24AUhm9/VQ5y/him10NG7SJqLEfYxq8jKeA2tQqSIO9C2PMJNqJn5DIOAmfYhms1Fk=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
 
-On 4/2/21 10:59 AM, Jonathan Neuschäfer wrote:
-> Hi,
-> 
-> a few remarks below.
-> 
-> On Fri, Apr 02, 2021 at 01:03:58AM +0200, Giulio Benetti wrote:
->> This patch adds support for Hycon HY46XX.
+
+Le 26/03/2021 à 16:42, Rob Herring a écrit :
+> On Fri, Mar 26, 2021 at 7:44 AM Christophe Leroy
+> <christophe.leroy@csgroup.eu> wrote:
 >>
->> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
->> ---
->> V1->V2:
->> * removed proximity-sensor-switch property according to previous patch
->> As suggested by Dmitry Torokhov
->> * moved i2c communaction to regmap use
->> * added macro to avoid magic number
->> * removed cmd variable that could uninitiliazed since we're using regmap now
->> * removed useless byte masking
->> * removed useless struct hycon_hy46xx_i2c_chip_data
->> * used IRQF_ONESHOT only for isr
->> ---
+>> This code provides architectures with a way to build command line
+>> based on what is built in the kernel and what is handed over by the
+>> bootloader, based on selected compile-time options.
 > 
+> Note that I have this patch pending:
 > 
->> +config TOUCHSCREEN_HYCON_HY46XX
->> +	tristate "Hycon hy46xx touchscreen support"
->> +	depends on I2C
->> +	help
->> +	  Say Y here if you have a touchscreen using Hycon hy46xx,
->> +	  or something similar enough.
+> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210316193820.3137-1-alex@ghiti.fr/
 > 
-> The "something similar enough" part doesn't seem relevant, because the
-> driver only lists HY46xx chips (in the compatible strings), and no chips
-> that are similar enough to work with the driver, but have a different
-> part number.
+> It's going to need to be adapted for this. I've held off applying to
+> see if this gets settled.
 
-Right
+When reworking EFI, I found out that they are a similar handling, which in addition takes care of 
+space inside quotes.
 
->> +static void hycon_hy46xx_get_defaults(struct device *dev, struct hycon_hy46xx_data *tsdata)
->> +{
->> +	bool val_bool;
->> +	int error;
->> +	u32 val;
+I added something similar now in cmdline_build() function.
+
+
+> 
+>>
+>> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+>> ---
+>> v3:
+>> - Addressed comments from Will
+>> - Added capability to have src == dst
+>> ---
+>>   include/linux/cmdline.h | 57 +++++++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 57 insertions(+)
+>>   create mode 100644 include/linux/cmdline.h
+>>
+>> diff --git a/include/linux/cmdline.h b/include/linux/cmdline.h
+>> new file mode 100644
+>> index 000000000000..dea87edd41be
+>> --- /dev/null
+>> +++ b/include/linux/cmdline.h
+>> @@ -0,0 +1,57 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +#ifndef _LINUX_CMDLINE_H
+>> +#define _LINUX_CMDLINE_H
 >> +
->> +	error = device_property_read_u32(dev, "threshold", &val);
+>> +#include <linux/string.h>
+>> +
+>> +/* Allow architectures to override strlcat, powerpc can't use strings so early */
+>> +#ifndef cmdline_strlcat
+>> +#define cmdline_strlcat strlcat
+>> +#endif
+>> +
+>> +/*
+>> + * This function will append or prepend a builtin command line to the command
+>> + * line provided by the bootloader. Kconfig options can be used to alter
+>> + * the behavior of this builtin command line.
+>> + * @dst: The destination of the final appended/prepended string.
+>> + * @src: The starting string or NULL if there isn't one.
+>> + * @len: the length of dest buffer.
+>> + */
+>> +static __always_inline void __cmdline_build(char *dst, const char *src, size_t len)
+>> +{
+>> +       if (!len || src == dst)
+>> +               return;
+>> +
+>> +       if (IS_ENABLED(CONFIG_CMDLINE_FORCE) || !src) {
+>> +               dst[0] = 0;
+>> +               cmdline_strlcat(dst, CONFIG_CMDLINE, len);
+>> +               return;
+>> +       }
+>> +
+>> +       if (dst != src)
+>> +               dst[0] = 0;
+>> +
+>> +       if (IS_ENABLED(CONFIG_CMDLINE_PREPEND))
+>> +               cmdline_strlcat(dst, CONFIG_CMDLINE " ", len);
+>> +
+>> +       cmdline_strlcat(dst, src, len);
+>> +
+>> +       if (IS_ENABLED(CONFIG_CMDLINE_EXTEND))
 > 
-> This seems to follow the old version of the binding, where
-> Hycon-specific properties didn't have the "hycon," prefix.
-> Please check that the driver still works with a devicetree that follows
-> the newest version of the binding.
-
-Ah yes, I've forgotten it while changing in bindings.
-
->> +MODULE_AUTHOR("Giulio Benetti <giulio.benetti@micronovasrl.com>");
+> Should be APPEND.
 > 
-> This is a different email address than you used in the DT binding. If
-> this is intentional, no problem (Just letting you know, in case it's
-> unintentional).
-
-I've missed that
-
+>> +               cmdline_strlcat(dst, " " CONFIG_CMDLINE, len);
+>> +}
+>> +
+>> +#define cmdline_build(dst, src, len) do {                              \
 > 
-> Thanks,
-> Jonathan Neuschäfer
+> Perhaps a comment why we need this to be a define.
 > 
-
-Thank you!
-Best regards
--- 
-Giulio Benetti
-Benetti Engineering sas
+>> +       char *__c_dst = (dst);                                          \
+>> +       const char *__c_src = (src);                                    \
+>> +                                                                       \
+>> +       if (__c_src == __c_dst) {                                       \
+>> +               static char __c_tmp[COMMAND_LINE_SIZE] __initdata = ""; \
+>> +                                                                       \
+>> +               cmdline_strlcat(__c_tmp, __c_src, COMMAND_LINE_SIZE);   \
+>> +               __cmdline_build(__c_dst, __c_tmp, (len));               \
+>> +       } else {                                                        \
+>> +               __cmdline_build(__c_dst, __c_src, (len));               \
+>> +       }                                                               \
+>> +} while (0)
+>> +
+>> +#endif /* _LINUX_CMDLINE_H */
+>> --
+>> 2.25.0
+>>
