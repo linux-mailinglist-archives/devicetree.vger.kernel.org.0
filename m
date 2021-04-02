@@ -2,103 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F132353062
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 22:48:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8EE03530F8
+	for <lists+devicetree@lfdr.de>; Sat,  3 Apr 2021 00:10:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231577AbhDBUsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 16:48:25 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:45261 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229722AbhDBUsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 16:48:24 -0400
-Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id ED3AF200002;
-        Fri,  2 Apr 2021 20:48:18 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     kostap@marvell.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     lkundrak@v3.sk, linux@armlinux.org.uk,
-        sebastian.hesselbarth@gmail.com, andrew@lunn.ch,
-        robh+dt@kernel.org, vkoul@kernel.org, kishon@ti.com,
-        miquel.raynal@bootlin.com, mw@semihalf.com, jaz@semihalf.com,
-        nadavh@marvell.com, stefanc@marvell.com, bpeled@marvell.com,
-        Konstantin Porotchkin <kostap@marvell.com>
-Subject: Re: [PATCH v3 0/5] Add support for CP110 UTMI PHY
-In-Reply-To: <20210307163343.25684-1-kostap@marvell.com>
-References: <20210307163343.25684-1-kostap@marvell.com>
-Date:   Fri, 02 Apr 2021 22:48:18 +0200
-Message-ID: <877dlkct0t.fsf@BL-laptop>
+        id S234161AbhDBWKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 18:10:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33022 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229722AbhDBWKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 18:10:04 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14DBDC0613E6;
+        Fri,  2 Apr 2021 15:10:03 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id u21so9004323ejo.13;
+        Fri, 02 Apr 2021 15:10:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=tjO0cf2S9OYcNIa/GqCdKlOlb54R0YEGYyV9mPheIxM=;
+        b=uJIyafAFjYXzENLxNRGfP12as4MjsHlfo1KOv+yRJsAUcNIOHzMIzGEcmw1ojW7/St
+         AdozcCQC1oltkqOh3c32EnF8sN1fFZV1IIhneoAZrX0Wp0iBOgNbRDPDFlC0JOVp7rfh
+         BmhtFA68gKu4Vw/pFdPi+Pbe7Fdv07o7bnnG08EE19Y6tps6gNjQbqi7cLI24NmTj9r/
+         ocdENBHKdzB40s89cqQkBPKa2UXiJlY8FhIfpEDoVBW15HqZqvrVTC29+OmnGbnsyjJg
+         0OYNF8bugfnCrEraYhx9UqiVgtOnxxEdhaGVoWhJoyj9XnOfI7TZ+pkRAJVeFvkmUOEz
+         iOeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=tjO0cf2S9OYcNIa/GqCdKlOlb54R0YEGYyV9mPheIxM=;
+        b=WXXcPfbwtQo2yXQtjAWF8+Ii4b+uqc43XQI4GN5yTyHYXzzhDR98N6zkftZzRO3bPY
+         3s1XGod1H8PgNxbS+z9u7PtpTwx9wqD/O7mzcigM7DB4v9QDTPjZRzfnvN2uI5iKUTy/
+         ydofQ5poIajJb/eeG5w8/3gKsoZZTwnUQTJfzd92yf6KEvTUloE9sA9tS81V/1dF8kCM
+         F+787DkXU8gGr7nT5SBrqFgpqL4M81aH+SXc9qt29RTZdykOGrHQb8zLQHX5b0ijMzZL
+         oY/dbCRJb1A8deL8wYEfsjthmR6Zzdq58j2loiuQWDdHPjAPH8PDS8A5RmXSwVTRSkCo
+         yNrw==
+X-Gm-Message-State: AOAM533KB5QwAjmuhXjvpvK/BxQDVBRffgoQgtClKBeQ+xUdVS1/Havb
+        FY5fcphccbZ7v2HmsdmOX42bjijK29pOUJMxfV4=
+X-Google-Smtp-Source: ABdhPJxatYsLZ4Iweea2WJvIPqel18Arhd2gWwyU7X2mOkC8D1idWeZ+ktk5uk9vcv9BvfEgsPsH+9TiGm89MLuE6SQ=
+X-Received: by 2002:a17:906:ae8d:: with SMTP id md13mr16203946ejb.275.1617401401649;
+ Fri, 02 Apr 2021 15:10:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20210402164506.520121-1-adrien.grassein@gmail.com>
+ <20210402174228.wjl6paul5hxu7dnx@fsr-ub1664-175> <CABkfQAH+Gvu69UeDbxBGyQ1GroYuEqmrYFbkNE-qaLM2zpGRfQ@mail.gmail.com>
+ <20210402175850.6ovyum7ot4pgv2wx@fsr-ub1664-175> <CABkfQAESbRQsn3fWo4uKeVMMf84LurCLkdgvbPi+A4Kqr87enw@mail.gmail.com>
+In-Reply-To: <CABkfQAESbRQsn3fWo4uKeVMMf84LurCLkdgvbPi+A4Kqr87enw@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Fri, 2 Apr 2021 17:09:50 -0500
+Message-ID: <CAHCN7x+cb-Nz9_3aciJLWx=j603RFXgLG92WbBk0MMYwM_mx6g@mail.gmail.com>
+Subject: Re: [PATCH v1 0/2] Add imx8m power domain driver
+To:     Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     Abel Vesa <abel.vesa@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Peng Fan <peng.fan@nxp.com>, Anson Huang <Anson.Huang@nxp.com>,
+        DTML <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kosta,
-
-> From: Konstantin Porotchkin <kostap@marvell.com>
+On Fri, Apr 2, 2021 at 1:16 PM Adrien Grassein
+<adrien.grassein@gmail.com> wrote:
 >
-> This series of patches adds a new PHY driver for supporting CP110 UTMI
-> PHY in Linux. Currently the functionality of USB ports connected to
-> this PHY depends on boot loader setup.
-> The new driver eliminates kernel configuration dependency from the boot
-> loader. 
+> Le ven. 2 avr. 2021 =C3=A0 19:58, Abel Vesa <abel.vesa@nxp.com> a =C3=A9c=
+rit :
+> >
+> > On 21-04-02 19:48:41, Adrien Grassein wrote:
+> > > Hi,
+> > >
+> > > Le ven. 2 avr. 2021 =C3=A0 19:42, Abel Vesa <abel.vesa@nxp.com> a =C3=
+=A9crit :
+> > > >
+> > > > On 21-04-02 18:45:04, Adrien Grassein wrote:
+> > > > > Hi,
+> > > > >
+> > > > > this patch et aims to add the support of the i.MX 8 Power Domain =
+driver.
+> > > > > Some devices (like usbotg2) can't work without this patch as thei=
+r
+> > > > > attached power domain are down.
+> > > > >
+> > > > > The original drivr was taken from le imx kernel and aapted to fit=
+ with
+> > > > > the actual mainline (minor fixes).
+> > > > >
+> > > > > Thanks,
+> > > > >
+> > > >
+> > > > Big NACK for the whole series.
+> > > >
+> > > > This approach has already been rejected upstream.
+> > >
+> > > So what is the correct approach?
+> > > At this point otg2 node of imx8mm is not working at all (and blocks t=
+he whole
+> > > boot of the kernel)
+> > >
+> >
+> > Have a look at this thread:
+> >
+> > https://lkml.org/lkml/2020/4/27/706
+> >
+> Understood, so I will try to update the gpc driver (at least for otg).
+
+Thanks for doing that. I know Lucas tried a few times to get something
+going.  I'm willing to adapt whatever work you do on the Mini toward
+the Nano if you don't have time.
+
+adam
 >
-> v3:
-> - rebase on top of Linux 5.12-rc2
-> - convert Armada 3700 UTMI PHY DT binding document to YAML schema
-> - create a separate DT binding for Armada CP11x UTMI PHY in YAML format
-> - change UTMI PHY port node names from "phy" to "usb-phy"
+> > > >
+> > > > Plus, you changed the original author, this work was originally don=
+e by Jacky Bai.
+> > >
+> > > I have not changed this, the original author is not mentioned on the
+> > > original patch.
+> >
+> > Here is the original commit:
+> >
+> > https://github.com/Freescale/linux-fslc/commit/7ebcf5ccf423afe4ccd9c53e=
+f204018b0b653ce0
+> >
+> >
+> > >
+> > > >
+> > > > > Adrien Grassein (2):
+> > > > >   dt-bindings: power: Add documentation for imx8m power domain dr=
+iver
+> > > > >   soc: imx: add Power Domain driver for i.MX8M(M|N|P)
+> > > > >
+> > > > >  .../bindings/power/fsl,imx-power-domain.yaml  |  89 +++++++
+> > > > >  MAINTAINERS                                   |  10 +
+> > > > >  drivers/soc/imx/Kconfig                       |   7 +
+> > > > >  drivers/soc/imx/Makefile                      |   1 +
+> > > > >  drivers/soc/imx/imx8m_pm_domains.c            | 233 ++++++++++++=
+++++++
+> > > > >  include/dt-bindings/power/imx8mm-power.h      |  21 ++
+> > > > >  include/dt-bindings/power/imx8mn-power.h      |  15 ++
+> > > > >  include/dt-bindings/power/imx8mp-power.h      |  28 +++
+> > > > >  include/soc/imx/imx_sip.h                     |  12 +
+> > > > >  9 files changed, 416 insertions(+)
+> > > > >  create mode 100644 Documentation/devicetree/bindings/power/fsl,i=
+mx-power-domain.yaml
+> > > > >  create mode 100644 drivers/soc/imx/imx8m_pm_domains.c
+> > > > >  create mode 100644 include/dt-bindings/power/imx8mm-power.h
+> > > > >  create mode 100644 include/dt-bindings/power/imx8mn-power.h
+> > > > >  create mode 100644 include/dt-bindings/power/imx8mp-power.h
+> > > > >  create mode 100644 include/soc/imx/imx_sip.h
+> > > > >
+> > > > > --
+> > > > > 2.25.1
+> > > > >
+> > >
+> > > Thanks,
 >
-> v2:
-> - extend the comment about reference clock 
-> - fix driver probe function, add some prints
-> - move to usage of dr_mode from connected USB controller instead of
->   dedicated device tree property
+> Thanks,
 >
-> Konstantin Porotchkin (5):
->   drivers: phy: add support for Armada CP110 UTMI PHY
->   dt-bindings: phy: convert phy-mvebu-utmi to YAML schema
->   devicetree/bindings: add support for CP110 UTMI PHY
->   arch/arm64: dts: add support for Marvell CP110 UTMI PHY
->   arch/arm64: dts: enable CP110 UTMI PHY usage
-
-Patch 4 and 5 applied on mvebu/dt64.
-
-I've just modified the title to align with the other commits in
-arch/arm64/boot/dts/marvell. They now begin by "arm64: dts: marvell:".
-
-Thanks,
-
-Gregory
-
-
->
->  .../phy/marvell,armada-3700-utmi-phy.yaml     |  57 +++
->  .../phy/marvell,armada-cp110-utmi-phy.yaml    | 109 +++++
->  .../bindings/phy/phy-mvebu-utmi.txt           |  38 --
->  .../arm64/boot/dts/marvell/armada-7040-db.dts |  14 +-
->  .../arm64/boot/dts/marvell/armada-8040-db.dts |  21 +-
->  .../boot/dts/marvell/armada-8040-mcbin.dtsi   |  19 +-
->  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |  19 +
->  arch/arm64/boot/dts/marvell/cn9130-db.dts     |  12 +-
->  arch/arm64/boot/dts/marvell/cn9131-db.dts     |   9 +-
->  arch/arm64/boot/dts/marvell/cn9132-db.dts     |  11 +-
->  drivers/phy/marvell/Kconfig                   |   8 +
->  drivers/phy/marvell/Makefile                  |   1 +
->  drivers/phy/marvell/phy-mvebu-cp110-utmi.c    | 384 ++++++++++++++++++
->  13 files changed, 650 insertions(+), 52 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/marvell,armada-3700-utmi-phy.yaml
->  create mode 100644 Documentation/devicetree/bindings/phy/marvell,armada-cp110-utmi-phy.yaml
->  delete mode 100644 Documentation/devicetree/bindings/phy/phy-mvebu-utmi.txt
->  create mode 100644 drivers/phy/marvell/phy-mvebu-cp110-utmi.c
->
-> -- 
-> 2.17.1
->
-
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
