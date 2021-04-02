@@ -2,152 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C40635254C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 04:00:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB6B8352581
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 04:30:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233740AbhDBCAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 22:00:17 -0400
-Received: from mail-bn8nam12on2095.outbound.protection.outlook.com ([40.107.237.95]:35521
-        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
+        id S233786AbhDBC36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 22:29:58 -0400
+Received: from mail-dm6nam12on2112.outbound.protection.outlook.com ([40.107.243.112]:56529
+        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231179AbhDBCAQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Apr 2021 22:00:16 -0400
+        id S233665AbhDBC35 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Apr 2021 22:29:57 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=esm7jbPTN5+dUoGj7e9giAK8S4FlXHa1XBEvEfIo+Bpk/l70Y/jxErdkhZrCIn6xR8hUacSVZCPaD53EgS4TIQqsng/MgqeTqoAeKvjo2To8QOG90vCEb6DW+kxYS6WPSxSeLoa7mevLQ0GXA4J14gwn1J9d1k+rb7E0F4oSKbSMa6oLslT0p+NJ2w8J5f3dRWwMSZtQ1GgCRvHoB4LlhVhENjmtA041QPIeWS/IMxMM5wZeVqbDNa2XIQ3xHkZMJI2gI8Os1yd5Siw7wx7zYywU+w7oj+ONxAw+9hc4hx4r3BSM3hL5tuvlW0YlRwAyxWwDluyKeNzd7lGVCdn+OQ==
+ b=eNnQ9tJ7MjJksVa5eHt4K0mbaA9DhgE24sgkLRRy3A0gI12sjQB7YYzEDbgVUgGj8Vt8NGGtr4lDd5HGaXivQJoW0xEH+fv8eoRhsBykipNTIpM8oLMqAJAwG1HZYEsQKD36oTMeB4f06T/364yJfx/VlkxDzXjtnXLQoxXciKMxSWfqWt/Ve7a5Qe9gye9aGoXWpCbKTY+0hFaSfh5fTyOv9kKgU80JLF7G2fVhm0lfW5EFZkiNfRf+2b6Q/QGqU38Bzg3/y6R3EMIBBu98glIlIiTmUkhQjXIKpvRPOS+SOQi21VwRAgDDHLZgfyiWwXyyI5OXtbX/Srm62Uz2iw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hkdy81hfJcSZtZrQEavKcj0JmezxiyNDIfikQhOzEVM=;
- b=Dy595ZtVfDtlTxNazJ5zyyeY15TyHY7Ef/zoUA8SublL2x0K5BLMbiE3YR8gok38+x69aF+7hQzbUBgStVr22HsapZAeCLHZDyW7o4T1K0/iWAgXzcx+s8/69/VXKoC6ZaZUGphvQJwBBdEMRFDJv+inAGo5/7UEFVdRnoURSoiLyFgqbCfCCi2dz4MRIlw3o69gvRKLQez7QhPtyRXZNLTuTosSdBP5ccyxkVZmctpUMhR62rMZSsV1560R/hn1vVGqcVEKMBHihys0LUwfruBPDh8TA95TJ/EHVuD2Uxjgq5qKIUBFF9vyNpTOPXb1hel69ppCUp0MkHeaKyrsFg==
+ bh=MYWEJpnjiVn+kB4bTHhnq9Wx5Fg5jMwbzZ3LED/y7rM=;
+ b=hW/X23jgbueoCYsgwLqz87OaMymPVppcoIFJqtaZYVU4qitsBW2afRNpcTxveI3jUd+GHzxyeTT5QnLuxv/B17teM3CwkZCa98BDODRH6e4XK1PfnFPmq2gD0wOrnoUy/3AX8NAiPY8lh1U4Kc5irvEuuYT6mKcrtVIrQL1trZphfrOFWwE5ibIkejwWRwzmpUqdnsPiwrD4frzH8WfPRYywMNMitQeV9TzRh9bimjiM4mJMx29BTDFz6coQ13Z0xEKWxohIxTbPBwEGcAJ0wbbC+WO//wbkebIDRGPb9PhQ4MtMdoU4Lasc2b0R0SdRE8lEuwmxUEHF2e0n7FhIzg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=os.amperecomputing.com; dkim=pass
- header.d=os.amperecomputing.com; arc=none
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=os.amperecomputing.com; s=selector2;
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hkdy81hfJcSZtZrQEavKcj0JmezxiyNDIfikQhOzEVM=;
- b=QUDyr+EdFqacfapK9zcYbWyg0tbhFDgfxqqUrA+FDB/EMd3rYnMWd8BIOMLWnN3zN/dDplR09EzMKlUuuvfCtogt01xYAwbWBxrBgsrGw+tpfsxoiPs3J0gbB66VcAm49T6GvhL9Ml3xforKGhnU1wyOVGZcYoFEPhbdosESo6M=
-Authentication-Results: os.amperecomputing.com; dkim=none (message not signed)
- header.d=none;os.amperecomputing.com; dmarc=none action=none
- header.from=os.amperecomputing.com;
-Received: from MW2PR0102MB3482.prod.exchangelabs.com (2603:10b6:302:c::32) by
- CO2PR01MB2197.prod.exchangelabs.com (2603:10b6:102:8::22) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3999.28; Fri, 2 Apr 2021 02:00:10 +0000
-Received: from MW2PR0102MB3482.prod.exchangelabs.com
- ([fe80::d840:7aa7:58d4:b503]) by MW2PR0102MB3482.prod.exchangelabs.com
- ([fe80::d840:7aa7:58d4:b503%5]) with mapi id 15.20.3977.033; Fri, 2 Apr 2021
- 02:00:10 +0000
-Subject: Re: [PATCH v2 3/3] bindings: ipmi: Add binding for Aspeed SSIF BMC
- driver
-To:     Rob Herring <robh@kernel.org>
-Cc:     Corey Minyard <minyard@acm.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Wolfram Sang <wsa@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        openipmi-developer@lists.sourceforge.net,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-References: <20210330141029.20412-1-quan@os.amperecomputing.com>
- <20210330141029.20412-4-quan@os.amperecomputing.com>
- <20210401170933.GA622142@robh.at.kernel.org>
-From:   Quan Nguyen <quan@os.amperecomputing.com>
-Message-ID: <62acc395-de5b-fd5c-c74f-d7d713b43377@os.amperecomputing.com>
-Date:   Fri, 2 Apr 2021 08:59:58 +0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.9.0
-In-Reply-To: <20210401170933.GA622142@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [118.69.219.201]
-X-ClientProxiedBy: HK0PR03CA0100.apcprd03.prod.outlook.com
- (2603:1096:203:b0::16) To MW2PR0102MB3482.prod.exchangelabs.com
- (2603:10b6:302:c::32)
+ bh=MYWEJpnjiVn+kB4bTHhnq9Wx5Fg5jMwbzZ3LED/y7rM=;
+ b=Tuc4pZ1VonUgMACU0LU3UKB+reZVDqrT2aCCGgfup+P8SVvp155/QbXQXmUaOeD4F0/MGhBOM5ci8kt2M/d6bPVEgcvsO283Q5FQSYz+v8/yZ3oC4lrmw/vdPNG+m8JYFM1s83jqujpQymY2XGQXpbM2qTpKYRJg7tBCxdA3AuM=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none
+ header.from=analogixsemi.com;
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by SJ0PR04MB7597.namprd04.prod.outlook.com (2603:10b6:a03:320::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.28; Fri, 2 Apr
+ 2021 02:29:54 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::6481:f617:8105:491f]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::6481:f617:8105:491f%2]) with mapi id 15.20.3999.029; Fri, 2 Apr 2021
+ 02:29:54 +0000
+Date:   Fri, 2 Apr 2021 10:29:47 +0800
+From:   Xin Ji <xji@analogixsemi.com>
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
+        <ricardo.canuelo@collabora.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Bernie Liang <bliang@analogixsemi.com>,
+        Sheng Pan <span@analogixsemi.com>,
+        Zhen Li <zhenli@analogixsemi.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 1/5] dt-bindings:drm/bridge:anx7625:add vendor define
+ flags
+Message-ID: <20210402022947.GB2154388@anxtwsw-Precision-3640-Tower>
+References: <cover.1616135353.git.xji@analogixsemi.com>
+ <4b09b40ce53c5b5fe7d2ba65a3c7a1b23f6eec04.1616135353.git.xji@analogixsemi.com>
+ <YFc1ZlmSiNJOAoOl@pendragon.ideasonboard.com>
+ <20210324075108.GA1466804@anxtwsw-Precision-3640-Tower>
+ <CAG3jFyt8EigCBkZHXgy1E-XcfpfdC5FEWW4Gb8bZqMT1tFW3ow@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAG3jFyt8EigCBkZHXgy1E-XcfpfdC5FEWW4Gb8bZqMT1tFW3ow@mail.gmail.com>
+X-Originating-IP: [60.251.58.79]
+X-ClientProxiedBy: HK2PR0401CA0022.apcprd04.prod.outlook.com
+ (2603:1096:202:2::32) To BY5PR04MB6739.namprd04.prod.outlook.com
+ (2603:10b6:a03:229::8)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.0.100] (118.69.219.201) by HK0PR03CA0100.apcprd03.prod.outlook.com (2603:1096:203:b0::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.26 via Frontend Transport; Fri, 2 Apr 2021 02:00:04 +0000
+Received: from anxtwsw-Precision-3640-Tower (60.251.58.79) by HK2PR0401CA0022.apcprd04.prod.outlook.com (2603:1096:202:2::32) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.28 via Frontend Transport; Fri, 2 Apr 2021 02:29:53 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e82e0e80-3981-4066-a228-08d8f57b0b9f
-X-MS-TrafficTypeDiagnostic: CO2PR01MB2197:
+X-MS-Office365-Filtering-Correlation-Id: 7df83001-1f84-411d-d1d0-08d8f57f3312
+X-MS-TrafficTypeDiagnostic: SJ0PR04MB7597:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CO2PR01MB2197F8B4D840F35B8066B880F27A9@CO2PR01MB2197.prod.exchangelabs.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-Microsoft-Antispam-PRVS: <SJ0PR04MB75970EAD2ED69471B6080636C77A9@SJ0PR04MB7597.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qhbFWGCCRP/XkXDEpmbYuNdHvrSipz2Olr+KILkK2aU2XR4CTrB0BWx9zrTXsteNlXpZSMt2ISx0rq0T1JPse9bqvR+QNfuCydsoDl/aExH7YIbL3zIOHzfhW9MXHHt+QXRzoVHsyZoyk8tX1Ls+Nc95cBXXyT9FTYbaRPgpNPZhs+yFjxw2J/9bMh/tBtWFwiNR1mvYOKgJ002sgsS/rjsTngV0SMwq9/WzCjobNl9x+prgMEVBsq42Lb6JdVEJVnvajAR5UEuw0tYkBT1Y1xOLDJLPCDX1CDD0Sd+sBe+aTXuMyr8p2COt2Bdvm/abN8xUqJNusAnTs5ypfTIMc1FVyp6j5nfSZ2aMQi5P7RRSGj2a2ivegyg7Jz/WupC4x5ljpxGVMWUoSGntlUT2IdmHMKaDiDYjttVL/65VhXEVFq29XgbgASnbH26sjYQoqjL0GUaFHr/gw3HpPz44zYc2mgxp9/5Lo3pda7ZWDjcW6ociYzXdUija4gs/vI19d5MM9x1VlYcyqyxkmzPRSmOkQkjwxRvSQVZ7xWsG7l4DtZfEiuZhwV0dLWpqt5DSFG5Vfec3HUnpHQLZTSj29klaa0R1iejcZOIAMiN+B6e42qPE9KX8F93fvcGu0hT/gT7hQmj8wMWfA3IiHjHn22z+BIhzZr/nBoUxizxcH4Bbc+VRDQlFIY0PhDmr+1IEAvDDLd0DGSA5t4gu7o638/7Bll6985s8lZQLK2+q/GE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW2PR0102MB3482.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(396003)(136003)(39850400004)(346002)(376002)(86362001)(6916009)(478600001)(31696002)(2906002)(956004)(38100700001)(2616005)(6486002)(8676002)(8936002)(4744005)(83380400001)(16526019)(186003)(5660300002)(26005)(31686004)(16576012)(66556008)(7416002)(66476007)(66946007)(6666004)(4326008)(54906003)(52116002)(53546011)(316002)(107886003)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?V1VoTkc0RThWUjVHdjl4KzNtaWdoWDBjajh6eWk3Q1lKL0hPK2xKbDVwTzJy?=
- =?utf-8?B?bXU4L2lyY3RRTGhMVlArSFRuOGkxd2srYnczMXNodThmYWdWT09DZEVoUlZo?=
- =?utf-8?B?VUVWc3JqQnI5UXcrZm9JcC9TNW8vQ0pZTW9DbFNtTjQ4QXM2WFh3WTlUSFVO?=
- =?utf-8?B?Tk5kYWNOVFhoc2FlYTNrdUJlTWNibmNuZEVaZnBiYmZiU010T1FLK2NjRkpo?=
- =?utf-8?B?RWs4V3REVk1pYVZuTjVkbE0yc0dsUW5IUC95SXBNYU1UMU5DVk5jNU5FRFFC?=
- =?utf-8?B?ay9CL3VOWnV2ZmhoYTE1QzQxVFM0TzRjNXNBK2wvQ01odzZYVEtkQkFqZzMx?=
- =?utf-8?B?R2dpLzFLYk1yMXlXMitWa2lHK0J2UWc5dUdTdHdwcTltaGh0VEozRVZsRG1Y?=
- =?utf-8?B?NjZscVhhSGxoVkxqUFdPdzlFaTlnYWpFRC93dHR3dWloNURyMU1uSVVXZ2VI?=
- =?utf-8?B?Z2c1dTAvVHJUQmMyaVZaQmJTWlpYUUQrYkpwNkJlT1lsVTdUUnFqenZXVzRN?=
- =?utf-8?B?aWpZZXBiUTFJc1JoVC9vbisxUDMySUEzU1RDN0JDTHVhK0QvWENua1MzZllo?=
- =?utf-8?B?SElzR21ycUdDOUgwNDRKZlFpYnlycW8rNzRGalJ3Z09YUjNBbkh2WHhha09J?=
- =?utf-8?B?MDJRdnp5MnE2eUNZaHRZVEdMSVFrc1Q0eUhxcDN4WDZzeGVZT0grcWtBazZT?=
- =?utf-8?B?SGxORkR2MnhPaVpyZVdiV0Z2SVY3WG0zZCt1YlN1MHBnWWxjbXJVL1d0VWNW?=
- =?utf-8?B?THJGbHJwSkVJcFhRT0pwQUU1azQ3VmRUZFZVRWsxRUNHVDN1cTEyNHFURGV4?=
- =?utf-8?B?U3dZbU9GR2xUdEZCbGQzUHZranZ4WnlJNjhjRW83NDlZNUplTnRFM09ZQ0U5?=
- =?utf-8?B?Vmd6bXNzL2dVTGtKSlhRMWY5STlxd3UxZVJpaVBxeG5Ib2ZXSFFEZWpIM0hK?=
- =?utf-8?B?Q1E2SW5RM0JPQUNiOXZYby9hSER5YWlRQWlhTkNwYUhLdkpUeVhTbWVjN3hh?=
- =?utf-8?B?dkoyZUw1eFZWSnhZWWRSTCtSQ0pRTE5md0hCWHpSOGRmbEMwM3BYSnREb1pt?=
- =?utf-8?B?MWZoclh6UEd4Q29IMUFSRXNFcFBqSzlUWWk4dytNMWMrRTM5VGhsNmhpYXY1?=
- =?utf-8?B?VnFsTytYVnViMGdiYlgyYTIyUlhFM2VlZU83YjV0OHROeWc0VisvMVJpa1lT?=
- =?utf-8?B?NGFsa1lPcmlCVnNhSDQ4dFN4OXNnM0hJNHorZUI5QVhWeEN0STY4Uk5wVXdZ?=
- =?utf-8?B?RGhyMklnL2lhRTZtTVBuaFJqVlc3QWtObDhtUnIwR29FYy94bko3RnFSd3Yv?=
- =?utf-8?B?ejk0Snl0b0VSWUZzeGNvTzlNMkNiTHJ3ZHR2aDVFYU5LbEV4Nk4zUW5mS0p0?=
- =?utf-8?B?enI1RE5Od1FZV0tzK0pCcXpKNk1RTTIyZlUyd2E3UVh2RTk5a1BRNXcxWDRW?=
- =?utf-8?B?VE5uN0R0MnVDbUo4RDZta2hWcG1uaVhVWXVNOU03N09mQjdjRnBqeDVIZllQ?=
- =?utf-8?B?YnhOTTRpRHBSalVPbzRYWmVsVDRBL1pmR0hGRmgvMDlZU2FaMjFkRkZRaUdT?=
- =?utf-8?B?NUpLcHBxSlJ0UUpoSy9YdkZUYnlQaVRBOXlyUDNRMVNqb0VjaUNJNkNnYjJJ?=
- =?utf-8?B?VVlvblZ4TG9maXdFVTB1QkdOQ3BhZTN3aUdiZVdyNkhnLzNZMW14TW5YeFJR?=
- =?utf-8?B?d3NpTklwV0JRSVJwNG9UTGVsSGs5cmMybStBWGtpemRlK2ROSkVEQXJaODkv?=
- =?utf-8?Q?mdCEDCYMDZeV71LL2GM203Wkkwz5zjgRvJT+H0h?=
-X-OriginatorOrg: os.amperecomputing.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e82e0e80-3981-4066-a228-08d8f57b0b9f
-X-MS-Exchange-CrossTenant-AuthSource: MW2PR0102MB3482.prod.exchangelabs.com
+X-Microsoft-Antispam-Message-Info: +xPptzNZd0yIJQ2Igf1mBFTfC3b2slt28iDVUPowo2KsNx5y0DUxARKTYHHAZ3nua9U/WCTG4nAiouD/ATMUgM1g9oVT++IywXZ9nrMsnfPWeGz6Wx+H51S3VbIILEWSGgvSZHMJiNmrHy9OxgwZBurTa5lt9W1gYpqnJBM+CoBSiKIWicob8JJ8NyuOFJeoqBc2knVm9jbqi+hC2EMa+GLY6OEvzNlc7rhWC73wzKUghs1qmc9/ErLZncmP4rBqkdkRB/J2281Q690h2IS5T+W8A1XBgjNrl9ghoV46YUvYPjxkvDIWGu8zMAj8W1Loqj8snTr32s56y8YFuFkid1nMvFlul2cLmtDBOKXWgplKb7GrX/XoGtnEjvDkF0KYxhjSVnb9o5Cf7v/m9cGVHYxowhkGGUgBPb/wCxYhRLH7urc1usNqzB1DFRcxYUEV4NKarUIfmHlHulQ/t4LOceglvW6ko6011knJNvKDNNFmBd9rndiGUsGZBTAl6aoBEBxilvvcTxaT1bD0TteHh0AogKTm8gCxqV6mE2UMa4EjM1tChnC7wEdrO/xwW90OLaKsAXM+jm0h1JRpk1YP5uAV/gwgwn0TPIAy1atabGx7s5KP6C3q5np6OOcUAmPC4zQcYTxSBsZF484nJJ52uhujrWdPDiPnP7x+iPFep70=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(376002)(39840400004)(396003)(136003)(366004)(1076003)(5660300002)(7416002)(6666004)(316002)(55016002)(33656002)(83380400001)(52116002)(16526019)(55236004)(33716001)(26005)(8936002)(186003)(956004)(478600001)(4326008)(6916009)(6496006)(8676002)(86362001)(66476007)(54906003)(66556008)(66946007)(9686003)(2906002)(38100700001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?WFZRvtpnS/RVX2Mza9doNt15T5sDLgnDHiBvb+YPpkCRmQYDLy5qSk0u8Tnm?=
+ =?us-ascii?Q?la/dWHt+/XBFYkib9rtbGylzFNq8de3iFN4pDGTANh54yGQIkwUeXQlARlpp?=
+ =?us-ascii?Q?lmE7n0zeSS56gqDONDpDhdaomD/d67hbVdLLiI4T3XDme+fVRVlRO8nfflYd?=
+ =?us-ascii?Q?eWMqyZqGnLI9g5KgioDaOLz280wU9zoFqyxLJA0iJgsGzvMWJkR7OdG/Bp50?=
+ =?us-ascii?Q?2DsdAZCKzgSQZQKRptf11FiOTOV12EYdhIR8mWDxzO7Ee5FSDAv0nbWTTmmn?=
+ =?us-ascii?Q?gEXpqx41ZBxufHp5/8tDzLmCPYc1ehWT3PeiVOXQ3tLOpkQhCD9UPl3vDh1R?=
+ =?us-ascii?Q?M5VXuhaBp0wIc1ycROKCQjMJ9kuXU/QtyiMGju4T1V5KlQCOOIJvQNvjhZtS?=
+ =?us-ascii?Q?yVVRidypxvkNe25EJMKSmVeUNm4urF69mAozGuV/5hzU7dc2i+lXZCZzkyC3?=
+ =?us-ascii?Q?ri/B/5gi0NytgTs6Fjv02YMk1siMdysQL1md1k5bd+f3BAn8tWfr8Xgd9EK2?=
+ =?us-ascii?Q?NJ4jwBO3GVqeXbiqZU1hYzeDinkB9Reo0rh0niUwknKtj6GQQfrjF4QE1Ha+?=
+ =?us-ascii?Q?lr89RP1Bgu6MzO9jJl1wi0iUORSDkXGJ6PA3NVkXxeK1fdoRZt4StgoJYK26?=
+ =?us-ascii?Q?bPJ57xqrTALSJaMW7wKpL7vC2/oUazIgV3y+feHdcaVfAIJ8AnjMk8KC1xPd?=
+ =?us-ascii?Q?BvuVpP6YT8WAceL6bqFb2lUjwLZfmFhaTZrvJNtcURrnNcmhPx3j8Jtbu4u6?=
+ =?us-ascii?Q?JFIBlLNwdau7rAsbgjZ5dSNcH6xYWGXIG5IALgWynyy1BkztUu61Zz3PY1FQ?=
+ =?us-ascii?Q?mzz8E+FwFNxNolOpwi7OZpVo0KS3iv7NbdFEeDLImXdwa49Fzp9E9VJIv/5+?=
+ =?us-ascii?Q?HEqrtUv2Ial2x4tl4ZHzTP+VuLwXty52lGma+ATbYlBXUnrADK2UvW1EySAD?=
+ =?us-ascii?Q?bpU9Ty7kHHHCMuVHecopUCzypzcpPyhlegd22yWRnUO0nJt+ISxwTeMf6RNc?=
+ =?us-ascii?Q?PTHG19bFSye5MRAtGaJvktwRtCGSartuGAVE9fkgVbpicB6cGxR5LJdPxhCd?=
+ =?us-ascii?Q?aqm+ovC+gPcMrGme1Nsvo9PltXrZxQqRKV8d3Xw5se0VC0eAFi1WuIr/MJSg?=
+ =?us-ascii?Q?MAhoYses8VfS84LzdnqD1f07PcghN5kuoleW3TlGmodOsDZv491YwFYUlqci?=
+ =?us-ascii?Q?lH32hfWFVGx3lfHuwbVi8Pz1Y8I2cIHLvYINhD4FXOvE5IBUzjT9wfg4J/Ur?=
+ =?us-ascii?Q?6EiWkve2AKO2W/C6xQLBnqwiqMSox0Owt1vtPfXUS0208KbkjVWDKSFKW/l8?=
+ =?us-ascii?Q?DEjU/lqlb3RnttDd/TnDkgNh?=
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7df83001-1f84-411d-d1d0-08d8f57f3312
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2021 02:00:10.0487
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2021 02:29:54.3410
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: n2CFn5yZ7zkfKv5zGtFP+yWqfGEHcCxKGSV51Qr/eyXrCm/Le9hAuaipr+eYfA9xr8ERUS2nbL8ntmITfxqDUSMjnkHqviWdz3kCEpO4938=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO2PR01MB2197
+X-MS-Exchange-CrossTenant-UserPrincipalName: RN5g9zXA25q448jGAmL5VQAit+ZKP6p14qx3AsZc0/IH9oszlyd+DWXmoxxiUYMf6XEEiijEhbhMfrPIOtgEUw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR04MB7597
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/04/2021 00:09, Rob Herring wrote:
-> On Tue, Mar 30, 2021 at 09:10:29PM +0700, Quan Nguyen wrote:
->> Add device tree binding document for the Aspeed SSIF BMC driver.
->>
->> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
->> ---
->>   .../bindings/ipmi/aspeed-ssif-bmc.txt          | 18 ++++++++++++++++++
->>   1 file changed, 18 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/ipmi/aspeed-ssif-bmc.txt
+On Thu, Apr 01, 2021 at 02:33:47PM +0200, Robert Foss wrote:
+> Hey Xin,
 > 
-> Same comment as you ignored on v1.
+> This series no longer applies to drm-misc/drm-misc-next, please rebase it.
+Hi Robert Foss, OK, I'll rebase it on the drm-misc-next after confirmed
+HDCP patch with Sean Paul.
+Thanks,
+Xin
 > 
-
-Dear Rob,
-I really did not mean to do that.
-
-What happen is that there was a compilation error complaint by kernel 
-robot test on my v1. So I tried to send my v2 to fix that issue asap. 
-Unfortunately, your reply on my v1 arrived just right after I hit "git 
-send-email" to send out my v2.
-
-For this comment, I'll switch to use yaml file in next version.
-
-- Quan
+> On Wed, 24 Mar 2021 at 08:52, Xin Ji <xji@analogixsemi.com> wrote:
+> >
+> > On Sun, Mar 21, 2021 at 02:00:38PM +0200, Laurent Pinchart wrote:
+> > > Hi Xin,
+> > >
+> > > Thank you for the patch.
+> > >
+> > > On Fri, Mar 19, 2021 at 02:32:39PM +0800, Xin Ji wrote:
+> > > > Add 'bus-type' and 'data-lanes' define for port0. Define DP tx lane0,
+> > > > lane1 swing register array define, and audio enable flag.
+> > > >
+> > > > Signed-off-by: Xin Ji <xji@analogixsemi.com>
+> > > > ---
+> > > >  .../display/bridge/analogix,anx7625.yaml      | 58 ++++++++++++++++++-
+> > > >  1 file changed, 57 insertions(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> > > > index c789784efe30..3f54d5876982 100644
+> > > > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> > > > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> > > > @@ -34,6 +34,26 @@ properties:
+> > > >      description: used for reset chip control, RESET_N pin B7.
+> > > >      maxItems: 1
+> > > >
+> > > > +  analogix,lane0-swing:
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > > +    minItems: 1
+> > > > +    maxItems: 20
+> > > > +    description:
+> > > > +      an array of swing register setting for DP tx lane0 PHY, please don't
+> > > > +      add this property, or contact vendor.
+> > >
+> > > DT properties need to be documented. Contacting the vendor doesn't count
+> > > as documentation I'm afraid.
+> >
+> > Hi Laurent Pinchart, thanks for your comment. For the DP phy swing
+> > setting, it is hard to describe in here, needs to refer the anx7625
+> > datasheet and programming guide. Basically, no need to change the DP phy
+> > swing setting.
+> >
+> 
+> Laurent is right. But if the value practically is a constant, you can
+> move the swing register into the driver. It should still be documented
+> as well as possible, but we can be a little bit more flexible.
+> 
+> > > > @@ -73,6 +123,10 @@ examples:
+> > > >              enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
+> > > >              reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
+> > > >
+> > > > +            analogix,audio-enable;
+> > > > +            analogix,lane0-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
+> > > > +            analogix,lane1-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
+> > > > +
+> > > >              ports {
+> > > >                  #address-cells = <1>;
+> > > >                  #size-cells = <0>;
