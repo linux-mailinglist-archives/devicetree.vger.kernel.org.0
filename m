@@ -2,209 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F0E5352F60
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 20:45:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FFB4352F7B
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 21:02:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235419AbhDBSpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 14:45:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45244 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbhDBSpe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 14:45:34 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA3FC0613E6
-        for <devicetree@vger.kernel.org>; Fri,  2 Apr 2021 11:45:33 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id q6-20020a17090a4306b02900c42a012202so2927712pjg.5
-        for <devicetree@vger.kernel.org>; Fri, 02 Apr 2021 11:45:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=lBknpnUfvW7Mp8L8MjbRdTTbJ2YiP+RrDtDZ87i1HWc=;
-        b=a1l1lme4++l+zuVvbvuPg11j5VRcaKdhH+EdpHF4zqEVznOydK8W+SNJwIXmze+azb
-         HQzCWQ38y+RONCzZiM5t2cA9IZD6bGbCwLv6Snpgm1DkOINWhdsYHZUkDkIdzqjMrXk7
-         hCQgYTWI++hjt7Xc2CkMjSYTR1DI7wt8SLw6g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=lBknpnUfvW7Mp8L8MjbRdTTbJ2YiP+RrDtDZ87i1HWc=;
-        b=OFlMHTD6UmKnMN9knVuwcM+kONH6mAe9kyyxifeh0MvbI7zcj/kw3PaA1kGvk2Skjv
-         U/8P7PwYxSQBGyXSbc+5hZc0UnHcSo8S2H40h4m7q+njBL1KS4OqIXTyfiUbKr5dFrr9
-         ii5bimSdTIFe7QHewWJLExNushI4UxBKl7nXUL2e5xYmgrYZievbGevZoSUn9OuxE6O2
-         rxGJFubOBHKxPtSfG3glSeMHN1C1flasCC97P8i47xGovXOLbeRfATGD0zJaKfylkEUo
-         Q8DnzhbRAzGHYX5Z9zukIBlPkXPkW1lpNr0+k+2wtUbMe+GDcn8EhrVfUG3zQ/rmEjcM
-         ZWpQ==
-X-Gm-Message-State: AOAM530U/J8HoJ33Y/QGDkfaZTO6/9SOMtRjWVWglKAA/+8TOy0O4snp
-        /yKL1gUD8rVboEAqeGC6qA1D4g==
-X-Google-Smtp-Source: ABdhPJyqvR/GeA0hGMMS3fUELGKBLUJ3jxozyY1rdnFq7+JShRmPb9RGh1zy5AHLN03Qvq9gS6OOXQ==
-X-Received: by 2002:a17:90a:fa02:: with SMTP id cm2mr3055188pjb.171.1617389133265;
-        Fri, 02 Apr 2021 11:45:33 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:581c:e04f:7c08:c602])
-        by smtp.gmail.com with UTF8SMTPSA id l10sm8194972pfc.125.2021.04.02.11.45.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Apr 2021 11:45:32 -0700 (PDT)
-Date:   Fri, 2 Apr 2021 11:45:31 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [PATCH V2 3/5] arm64: dts: qcom: pmk8350: Add PMIC peripherals
- for pmk8350
-Message-ID: <YGdmS8Ih5TGGMbdE@google.com>
-References: <1617268396-1837-1-git-send-email-skakit@codeaurora.org>
- <1617268396-1837-4-git-send-email-skakit@codeaurora.org>
+        id S229553AbhDBTC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 15:02:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33666 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229722AbhDBTC1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Apr 2021 15:02:27 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 381A761151;
+        Fri,  2 Apr 2021 19:02:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617390145;
+        bh=ViFsXDUB1E7AWBfBJCrghovWOG7+1rHYDGYcDESiobc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Gb0iBUJPDJ+eaWDrat0XQQvUF1+X2c3Mt2qvyCL+aLpQ4qdoUK8jYbafG3MNFrR4c
+         des71nJQQRO47tL4D6tiiPYmkj43VphHWqjT7AEkB4HEhw1ZiPE/6jCIQmL70ak/XN
+         DMp6guhXEjbxi+ZpZ/GPNtXHEH4EFDKbAvEuiewRoY7DKQLEiohnQM97zdgpszy0x8
+         hQh9kgmvp7MLD1gkxOBTDcBCBocmEc/WB3dpyXFAsrN/eC5DX4bvsqigXJlXfhbsNX
+         7v6d5G6AivHACl5Rm77MffP4sjVEGhPIDr5Tmi2hqShBUKtqOvfykLLh3CPX7x+vN5
+         abXxZlILdQUjg==
+Date:   Fri, 2 Apr 2021 20:02:11 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com
+Subject: Re: [PATCH v5 16/19] regulator: bd71815: use ramp-delay helper
+Message-ID: <20210402190211.GJ5402@sirena.org.uk>
+References: <cover.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
+ <31db9c2bf1e9e1883d8caf4bf3b90475a8a1166e.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Ublo+h3cBgJ33ahC"
 Content-Disposition: inline
-In-Reply-To: <1617268396-1837-4-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <31db9c2bf1e9e1883d8caf4bf3b90475a8a1166e.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
+X-Cookie: Dammit Jim, I'm an actor, not a doctor.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 01, 2021 at 02:43:14PM +0530, satya priya wrote:
-> subject: arm64: dts: qcom: pmk8350: Add PMIC peripherals for pmk8350
 
-same nit as for 1/5: maybe just 'arm64: dts: qcom: Add pml7350 support/.dtsi'
-or similar since this adds the initial .dtsi for the pmk8350?
+--Ublo+h3cBgJ33ahC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> Add PON, GPIO, RTC and other PMIC infra modules support for pmk8350.
+On Mon, Mar 29, 2021 at 04:00:13PM +0300, Matti Vaittinen wrote:
+> Use generic regamp ramp-delay helper function instead of implementing own.
 
-nit: also mention that it adds the pmk8350 .dtsi in the first place.
+This is patching something which was just added in the previous patch...
 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/pmk8350.dtsi | 100 ++++++++++++++++++++++++++++++++++
->  1 file changed, 100 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/pmk8350.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pmk8350.dtsi b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
-> new file mode 100644
-> index 0000000..13631f2
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
-> @@ -0,0 +1,100 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> +
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/spmi/spmi.h>
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pm8350.h>
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pmr735a.h>
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pmr735b.h>
-> +
-> +&spmi_bus {
-> +	pmk8350: pmic@0 {
-> +		compatible = "qcom,pmk8350", "qcom,spmi-pmic";
+Acked-by: Mark Brown <broonie@kernel.org>
 
-Please provide a link to the binding if it has been sent.
+--Ublo+h3cBgJ33ahC
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +		reg = <0x0 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		pmk8350_pon: pon@1300 {
-> +			compatible = "qcom,pm8998-pon";
-> +			reg = <0x1300>;
-> +
-> +			pwrkey {
-> +				compatible = "qcom,pmk8350-pwrkey";
-> +				interrupts = <0x0 0x13 0x7 IRQ_TYPE_EDGE_BOTH>;
-> +				linux,code = <KEY_POWER>;
-> +			};
-> +
-> +			resin {
-> +				compatible = "qcom,pmk8350-resin";
-> +				interrupts = <0x0 0x13 0x6 IRQ_TYPE_EDGE_BOTH>;
-> +				linux,code = <KEY_VOLUMEDOWN>;
-> +			};
+-----BEGIN PGP SIGNATURE-----
 
-Is the usage of this keys really universal across different boards?
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBnajMACgkQJNaLcl1U
+h9AaTQf9Gzw/b+PuEoYrIwaA7DklAoHk0w6KLVtsZNCFYQQMNu3qCql4QDoO3rAd
+SDN7tGg3baWbFswp+SVxGvsPp3UOfvSuOtjpoZGRvItNKxqMIeh6uYRBdMyo49oW
+3+XhsX/963bAf0LTM5hHIe5Yx/G2qhUcisO4cOVYfPrXECVa5wIUJoYmhd4jqPO+
+UIlW9ncneYPrmInFuYFbwUsInOllgj6hQJ/YQN65JAdoCMhBm2NysQuIvmfgltCU
+4CKwE0UuJdX+CMbyrW+Sq4Rlp8NrEiRzMvZDVCENkMJTpWwlaDBOoOTPtDFJ1bHT
+7bV9xdLU8x7qJhde7W4U55A7d1b2UQ==
+=eDIV
+-----END PGP SIGNATURE-----
 
-At least for the volume down key for most PMICs the config is in the
-board file, which seems to make more sense.
-
-> +		};
-> +
-> +		pmk8350_vadc: adc@3100 {
-> +			compatible = "qcom,spmi-adc7";
-> +			reg = <0x3100>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			interrupts = <0x0 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "eoc-int-en-set";
-> +			#io-channel-cells = <1>;
-> +			io-channel-ranges;
-> +
-> +			pmk8350_die_temp {
-> +				reg = <PMK8350_ADC7_DIE_TEMP>;
-> +				label = "pmk8350_die_temp";
-> +				qcom,pre-scaling = <1 1>;
-> +			};
-> +
-> +			pm8350_die_temp {
-> +				reg = <PM8350_ADC7_DIE_TEMP>;
-> +				label = "pm8350_die_temp";
-> +				qcom,pre-scaling = <1 1>;
-> +			};
-
-nit: I think this should be 'alphabetical' order, so 'pm8350_die_temp' should
-be before 'pmk8350_die_temp'.
-
-> +
-> +			pmr735a_die_temp {
-> +				reg = <PMR735A_ADC7_DIE_TEMP>;
-> +				label = "pmr735a_die_temp";
-> +				qcom,pre-scaling = <1 1>;
-> +			};
-> +
-> +			pmr735b_die_temp {
-> +				reg = <PMR735B_ADC7_DIE_TEMP>;
-> +				label = "pmr735b_die_temp";
-> +				qcom,pre-scaling = <1 1>;
-> +			};
-
-Is it guaranteed that a board with the pmk8350 will always have the
-other 3 PMICs?
-
-> +		};
-> +
-> +		pmk8350_adc_tm: adc-tm@3400 {
-> +			compatible = "qcom,adc-tm7";
-> +			reg = <0x3400>;
-> +			interrupts = <0x0 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "threshold";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			#thermal-sensor-cells = <1>;
-> +			status = "disabled";
-> +		};
-> +
-> +		pmk8350_gpios: gpios@b000 {
-> +			compatible = "qcom,pmk8350-gpio", "qcom,spmi-gpio";
-> +			reg = <0xb000>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pmk8350_gpios 0 0 4>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +
-> +		pmk8350_rtc: rtc@6100 {
-
-nit: nodes should be ordered by address, hence 'rtc@6100' should be before
-'gpios@b000'.
-
-> +			compatible = "qcom,pmk8350-rtc";
-> +			reg = <0x6100>, <0x6200>;
-> +			reg-names = "rtc", "alarm";
-> +			interrupts = <0x0 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
-> +		};
-> +	};
-> +};
+--Ublo+h3cBgJ33ahC--
