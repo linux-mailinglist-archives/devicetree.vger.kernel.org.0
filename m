@@ -2,144 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB8123524EE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 03:10:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67C393524FE
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 03:15:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234015AbhDBBKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Apr 2021 21:10:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43366 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231168AbhDBBKd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 21:10:33 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81A93C061788
-        for <devicetree@vger.kernel.org>; Thu,  1 Apr 2021 18:10:33 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id f2-20020a17090a4a82b02900c67bf8dc69so3939882pjh.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Apr 2021 18:10:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=jXgYMA7YCHDSkhxOIGN+mMtiGXJRf6IQGVRpfhafWXA=;
-        b=N19112hWdtQxyfgCcDt0DhZfb4+8mWmRhR7MM3//DSDFmb7rUMs4igONxhRatjxPTM
-         SMnEZFtr0w8IPyC7jGOXxGxC/AF/flItO5xuXKily40SRRJ/ncXAZrgBU0IK9oZfkSCC
-         KZa7fdxQyGtuy2tZGJUzNeRH8VGT6mkRha5Sw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=jXgYMA7YCHDSkhxOIGN+mMtiGXJRf6IQGVRpfhafWXA=;
-        b=lRoWdtGEncm4O4h3AJFfOm9CbLo52uv3YLYed8WwgcdHrAnQ/0oMp5D3qP1bZeM436
-         Yg10GJa5Vb31s3vQX0j3eKLL4LhYRGgOz7q9djcoM9x7wJRAY7x94HU2Q1uwANYHuSZ6
-         S51uQFUnHhmQGyfHAt477qxKch0HDEXZR5JrUWLhkHPy/sBHNIv/vAT4jdQG+RDBdAZ/
-         Wvnt1xvPTDCMF2cYgbcicoZSfVbk2HorZS/prXD+/YHocU3ChHmPOn5pbkhyuzi3duBQ
-         2ZIfHRzH0a7YC52BO9gW6eql1Iwox6hPqkO6LB2OtFKxD99AtUOOwfsRcSbMPol8OGGf
-         FjUA==
-X-Gm-Message-State: AOAM531MA2ZL/RI+JpeWVrt2nwlKckZXWxB7kLv5Tu+Gm2s4Pw9TMcK7
-        7TDuWEa4CZdBmSi9s9vI9qYb3A==
-X-Google-Smtp-Source: ABdhPJycw1gGh96FUFq87p46EFqj1fP4tEKbORG/9YP8Yqh+ZkzZ0UsUt+GcKzZ8k5FI1ilZH1VkJQ==
-X-Received: by 2002:a17:90a:6e44:: with SMTP id s4mr10949129pjm.112.1617325832870;
-        Thu, 01 Apr 2021 18:10:32 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:201:450:f2a9:b3ca:879f])
-        by smtp.gmail.com with ESMTPSA id r23sm6764940pje.38.2021.04.01.18.10.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Apr 2021 18:10:32 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <56a657ebc4b843575037e3ba9ec9cb9a@codeaurora.org>
-References: <cover.1616651305.git.schowdhu@codeaurora.org> <eeb3cfe92cba2c7981170f3c3ff96dd440b69f25.1616651305.git.schowdhu@codeaurora.org> <161704857307.3012082.499264834486221320@swboyd.mtv.corp.google.com> <56a657ebc4b843575037e3ba9ec9cb9a@codeaurora.org>
-Subject: Re: [PATCH V2 3/5] DCC: Added the sysfs entries for DCC(Data Capture and Compare) driver
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org
-To:     schowdhu@codeaurora.org
-Date:   Thu, 01 Apr 2021 18:10:31 -0700
-Message-ID: <161732583102.2260335.10112716468679763483@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+        id S231168AbhDBBPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Apr 2021 21:15:04 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:54491 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233258AbhDBBPE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Apr 2021 21:15:04 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 7CE5E58044C;
+        Thu,  1 Apr 2021 21:15:03 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Thu, 01 Apr 2021 21:15:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=0IYE65VpdI2bLygqtwJCM7v6WhpJJA0
+        g0UEFyBjpU0c=; b=QmvoUwqBqnfx1N/MGhvy/CXchrLJ9pKf0ba83tlC1I2MHEn
+        Q/Zpw+BMj8VqMlIN7tp21P2oGAI8bzC4AtuuIqOyPljr8pqAJm5OwCRBF2G3KzdZ
+        +0lge3c9y/FXH/sBQDLuKqSwhXViOFmkepmfAhUK31Q6LOcyyX4z75vCHoa/p88H
+        bxqE3OeTgbiREgLf0mmfdsckm5WrtomoE0GeFxPCyodCGdeZ0DjSB8dcStUwv44a
+        Sa063Q1JNcLLKkAkTiCZJQXtrQqtY72bJ5lxn6r7qgDW4nrhnInLrYeuAp6GY1vK
+        gb7w1HKmwMFfUwcM0//f0pWH4JlsyRsFJSyEUaQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=0IYE65
+        VpdI2bLygqtwJCM7v6WhpJJA0g0UEFyBjpU0c=; b=JZhNp9tCjuZm6Fhs8D+onh
+        UMPFCVxpoIUSyAPmdl5WZk5qfCBwBUA9H+pODH9EcUHKTexrozJL0ZcgSxE1QGVh
+        fsB+Z5hyUwAQb/4AbPN1OPNnPJQej+EludzxYtmSoUgwZUxaRpgeWL0kQlJd9/Nn
+        0xPAyiuumWdIVeJcD45IY04MDBPkMKaRdf91uJlfOEqxHadvm2ouVu3W485PrxXk
+        p07c0sRMUV8md8msStm4Ogsljy/y6rOz+6t+sOyKKt9MSeC6sOvYzINzg1N5NjEl
+        Lf+zRigBfpEbQCe7Si0utAaqChRnteVd3dFwxDueJSmBHrwPXlaq4syyfiADyEPQ
+        ==
+X-ME-Sender: <xms:FHBmYLWXgTg11goRSzY6-ID7_HKnzWREooG98EJIwmjQ5xUydZGDAg>
+    <xme:FHBmYDlSTJYhFCHZIeH9q_7C0L94AT4ULnMZlpsquMmdkOf5vwUIQJnbOx_Xk1l-3
+    eVYFzqzDmC2pp8ZrQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudeihedggeehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhepuddttdekueeggedvtddtueekiedutdfguedutdefieeuteefieelteet
+    vddthfeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:FHBmYHaQSsLqg2gQxJA6cb6Ot9y1aHGLj4GO1zr8eehGrqfInae76Q>
+    <xmx:FHBmYGXyNH0cmhUTezL7C7IbOeld2ehKBU9ssTdVfByJ3RBwFzmODw>
+    <xmx:FHBmYFm3sShDYWCytyfX2Qso0ltJSaY0Xe11Oyo2cWnYtVFok4W-gg>
+    <xmx:F3BmYH6CNtcM8r5D52GnmJVbyfs6QGxeTwNmTIuBpjyLeImEoWftwQ>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 6F1B5A00073; Thu,  1 Apr 2021 21:15:00 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-273-g8500d2492d-fm-20210323.002-g8500d249
+Mime-Version: 1.0
+Message-Id: <639f957f-a0d7-4a06-8598-90da0e17820b@beta.fastmail.com>
+In-Reply-To: <20210402004716.15961-5-zev@bewilderbeest.net>
+References: <20210402004716.15961-1-zev@bewilderbeest.net>
+ <20210402004716.15961-5-zev@bewilderbeest.net>
+Date:   Fri, 02 Apr 2021 11:44:39 +1030
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Zev Weiss" <zev@bewilderbeest.net>,
+        "Joel Stanley" <joel@jms.id.au>
+Cc:     openbmc@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Lubomir Rintel" <lkundrak@v3.sk>, - <devicetree@vger.kernel.org>,
+        linux-serial@vger.kernel.org
+Subject: =?UTF-8?Q?Re:_[PATCH_v3_4/4]_dt-bindings:_serial:_8250:_add_aspeed,lpc-a?=
+ =?UTF-8?Q?ddress_and_aspeed,sirq?=
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting schowdhu@codeaurora.org (2021-04-01 08:42:50)
-> On 2021-03-30 01:39, Stephen Boyd wrote:
-> > Quoting Souradeep Chowdhury (2021-03-25 01:02:34)
-> >> The DCC is a DMA engine designed to store register values either in
-> >> case of a system crash or in case of software triggers manually done
-> >> by the user.Using DCC hardware and the sysfs interface of the driver
-> >> the user can exploit various functionalities of DCC.The user can=20
-> >> specify
-> >> the register addresses,the values of which is stored by DCC in it's
-> >> dedicated SRAM.The register addresses can be used either to read from,
-> >> write to,first read and store value and then write or to loop.All=20
-> >> these
-> >> options can be exploited using the sysfs interface given to the user.
-> >> Following are the sysfs interfaces exposed in DCC driver which are
-> >> documented
-> >> 1)trigger
-> >> 2)config
-> >> 3)config_write
-> >> 4)config_reset
-> >> 5)enable
-> >> 6)rd_mod_wr
-> >> 7)loop
-> >>=20
-> >> Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
-> >> ---
-> >>  Documentation/ABI/testing/sysfs-driver-dcc | 114=20
-> >> +++++++++++++++++++++++++++++
-> >=20
-> > Please combine this with the driver patch.
->=20
-> Ack
->=20
-> >=20
-> >>  1 file changed, 114 insertions(+)
-> >>  create mode 100644 Documentation/ABI/testing/sysfs-driver-dcc
-> >=20
-> > Perhaps this should be an ioctl interface instead of a sysfs interface?
->=20
-> The reasons for choosing sysfs over ioctl is as follows
 
-Cool, please add these details to the commit text.
 
->=20
->=20
-> i) As can be seen from the sysfs attribute descriptions, most of it does =
+On Fri, 2 Apr 2021, at 11:17, Zev Weiss wrote:
+> These correspond to the existing lpc_address, sirq, and sirq_polarity
+> sysfs attributes; the second element of aspeed,sirq provides a
+> replacement for the deprecated aspeed,sirq-polarity-sense property.
+> 
+> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> ---
+>  .../devicetree/bindings/serial/8250.yaml      | 27 ++++++++++++++++---
+>  1 file changed, 24 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/8250.yaml 
+> b/Documentation/devicetree/bindings/serial/8250.yaml
+> index 491b9297432d..a6e01f9b745f 100644
+> --- a/Documentation/devicetree/bindings/serial/8250.yaml
+> +++ b/Documentation/devicetree/bindings/serial/8250.yaml
+> @@ -12,8 +12,13 @@ maintainers:
+>  allOf:
+>    - $ref: /schemas/serial.yaml#
+>    - if:
+> -      required:
+> -        - aspeed,sirq-polarity-sense
+> +      anyOf:
+> +        - required:
+> +            - aspeed,lpc-address
 
-> basic hardware manipulations like dcc_enable, dcc_disable, config reset=20
-> etc. As a result sysfs is preferred over ioctl as we just need to enter=20
-> a 0 or 1
-> signal in such cases.
->=20
-> ii) Existing similar debug hardwares are there for which drivers have=20
-> been written using sysfs interface. One such example is the=20
-> coresight-etm-trace driver. Following is the link for reference
->=20
-> https://www.kernel.org/doc/html/latest/trace/coresight/coresight-etm4x-re=
-ference.html
+Why not aspeed,lpc-io-reg like the KCS binding?
 
-I wasn't deeply involved but I recall that the whole coresight sysfs
-interface was disliked and it mostly got rewritten to go through the
-perf tool instead. Pointing to the coresight sysfs API is not the best
-approach here.
+There are some things we can do to improve it, but we shouldn't go and invent something different. I prefer aspeed,lpc-io-reg because it's name derives from the generic 'reg' property as does it's behaviour (if you assume a related `#size-cells = 0`).
 
-Maybe a closer analog would be the watchdog subsystem, which is ioctl
-based and uses a character device like /dev/watchdog. Watchdogs are
-simple debug features that reboot the system when everything goes wrong.
-This looks like a hardware block that can be used to gather information
-when the watchdog fires.
+> +        - required:
+> +            - aspeed,sirq
 
-Reading the doc closer it is quite frightening that a device like this
-can let you read registers in the hardware on-demand and even store
-values of registers over time. This is like /dev/mem on steroids. This
-needs to be highly restricted as it sounds like it could be used to
-snoop on security keys that are set in the hardware or secrets stored in
-memory. Is the hardware restricted at all in what it can read?
+Why not aspeed,lpc-interrupts like the KCS binding?
+
+The generic IRQ property is 'interrupts', so like aspeed,lpc-io-reg the interrupts proposal for KCS follows in name and form. I'm hiding it behind the aspeed vendor prefix for now while I'm not satisfied that I understand the requirements of non-aspeed parts. Similarly, I added the lpc prefix because we don't tend to describe the host devicetree in the BMC devicetree (and so there's no parent interrupt controller that we can reference via a phandle) and we need a way to differentiate from the local interrupts property.
+
+I don't see a reason for either of them to differ from what we already have for KCS, and I don't see any reason to continue the sysfs naming scheme in the binding.
+
+Eventually I want to distil an LPC peripheral binding schema from what we've developed for the peripherals supported by aspeed and nuvoton SoCs.
+
+Cheers,
+
+Andrew
+
+> +        - required:
+> +            - aspeed,sirq-polarity-sense
+>      then:
+>        properties:
+>          compatible:
+> @@ -190,6 +195,20 @@ properties:
+>        applicable to aspeed,ast2500-vuart.
+>      deprecated: true
+>  
+> +  aspeed,lpc-address:
+> +    $ref: '/schemas/types.yaml#/definitions/uint32'
+> +    description: |
+> +      The VUART LPC address.  Only applicable to aspeed,ast2500-vuart.
+> +
+> +  aspeed,sirq:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32-array"
+> +    minItems: 2
+> +    maxItems: 2
+> +    description: |
+> +      A 2-cell property describing the VUART SIRQ number and SIRQ
+> +      polarity (IRQ_TYPE_LEVEL_LOW or IRQ_TYPE_LEVEL_HIGH).  Only
+> +      applicable to aspeed,ast2500-vuart.
+> +
+>  required:
+>    - reg
+>    - interrupts
+> @@ -221,6 +240,7 @@ examples:
+>      };
+>    - |
+>      #include <dt-bindings/clock/aspeed-clock.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+>      serial@1e787000 {
+>          compatible = "aspeed,ast2500-vuart";
+>          reg = <0x1e787000 0x40>;
+> @@ -228,7 +248,8 @@ examples:
+>          interrupts = <8>;
+>          clocks = <&syscon ASPEED_CLK_APB>;
+>          no-loopback-test;
+> -        aspeed,sirq-polarity-sense = <&syscon 0x70 25>;
+> +        aspeed,lpc-address = <0x3f8>;
+> +        aspeed,sirq = <4 IRQ_TYPE_LEVEL_LOW>;
+>      };
+>  
+>  ...
+> -- 
+> 2.31.1
+> 
+>
