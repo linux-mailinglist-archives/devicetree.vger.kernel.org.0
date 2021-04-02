@@ -2,100 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5847E352D17
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 18:10:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E9CE352C43
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 18:09:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235887AbhDBPVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 11:21:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57226 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235435AbhDBPVJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 11:21:09 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB958C0613E6;
-        Fri,  2 Apr 2021 08:21:07 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id d191so2654415wmd.2;
-        Fri, 02 Apr 2021 08:21:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WP3VoNZ5+TpRVICeSpHKbkMESNKhKPPMgvYTDtFR2No=;
-        b=efsvJeDH4bfJGtQdkNbnC9ctwhORj113XksECOyNa6qnTIizlFnNbshKjAd28C9NlE
-         xYKFm+dLni/z0kazJRzB3W1BZ7WwvreVw++K3NB2znXjFCTIHack9TTS3IWOrlD55WuS
-         KPUXjY8jP9nKMcDlCNUenwEJitCZbY1qHUVO8VKFEXZBw6kY5W3CzArvXH36OXdqx8lB
-         TPnbpIqax2bgGz9IjKpSswkfw4szZXVHzbY9ovIAxw4Evghu24HGSx/RRS+UwLPUBtyH
-         348aIxdoekK6fHqAokkMLa+uY/BFgnigXlHeB+B51hmHiyhj4XYjJ4m7WdIcOcoAmXGT
-         IMfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WP3VoNZ5+TpRVICeSpHKbkMESNKhKPPMgvYTDtFR2No=;
-        b=fmpG8KdYupIN+VAnLqV14+U+tqtMCJsleNdg6eY5KvQj/Cc4Jpl57zgmz8KN9vQPD4
-         Txdz/UmTbE3wtjNoUdnMlErgUMAMyJnSZBaJkruLfQ1410M45BN/fvZRFzyIFSm17ej+
-         vbavpC6j5EFSI4KO6wyDvHM+YisKKrlWnNvco6nknY0pwP7Mh6FyXFQ5B2g418Kx1Iti
-         lUosIoT9wflgKSQZat+Ag5jdRNHZocOl9ScBVEdJDfFQv4i5Ky0LRl1ikkFktrI3S48T
-         jlWOYTBxTinpsAukhFCgmHcpvlAHBG/uUmRyj025grnC7GedtWk8umPgawYL2c2RcpwY
-         hcrg==
-X-Gm-Message-State: AOAM533SoJ3BK/BW8L7rPcZYQGeUvIfonYdVYW+Gu1cgh18KrA1bFdTX
-        w4YU7qglVK3syaUQZgaX2/aRDOSCY4picJXZmxM=
-X-Google-Smtp-Source: ABdhPJwbbQ7KmfS8gkvdcBnX8Vt1oOMeWn3SKmQPsX2LZHyur7qUbf39fZLg5ba9thU15fnffhc2jopzrJHXrPc2T/E=
-X-Received: by 2002:a1c:4b15:: with SMTP id y21mr13582268wma.94.1617376866612;
- Fri, 02 Apr 2021 08:21:06 -0700 (PDT)
+        id S235979AbhDBPdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 11:33:13 -0400
+Received: from pegase1.c-s.fr ([93.17.236.30]:42979 "EHLO pegase1.c-s.fr"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235902AbhDBPdM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Apr 2021 11:33:12 -0400
+Received: from localhost (mailhub1-int [192.168.12.234])
+        by localhost (Postfix) with ESMTP id 4FBkb71LDWz9v2m9;
+        Fri,  2 Apr 2021 17:33:07 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at c-s.fr
+Received: from pegase1.c-s.fr ([192.168.12.234])
+        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
+        with ESMTP id 3l8bzcUaAS9w; Fri,  2 Apr 2021 17:33:07 +0200 (CEST)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+        by pegase1.c-s.fr (Postfix) with ESMTP id 4FBkb70P7lz9v2m7;
+        Fri,  2 Apr 2021 17:33:07 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id EB14E8BB77;
+        Fri,  2 Apr 2021 17:33:08 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+        with ESMTP id 9sXjhQ8q7Sww; Fri,  2 Apr 2021 17:33:08 +0200 (CEST)
+Received: from [192.168.4.90] (unknown [192.168.4.90])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id B4BFB8BB6F;
+        Fri,  2 Apr 2021 17:33:07 +0200 (CEST)
+Subject: Re: [PATCH v3 01/17] cmdline: Add generic function to build command
+ line.
+To:     Daniel Walker <danielwa@cisco.com>
+Cc:     will@kernel.org, robh@kernel.org,
+        daniel@gimpelevich.san-francisco.ca.us, linux-arch@vger.kernel.org,
+        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        microblaze <monstr@monstr.eu>, linux-mips@vger.kernel.org,
+        nios2 <ley.foon.tan@intel.com>, openrisc@lists.librecores.org,
+        linux-hexagon@vger.kernel.org, linux-riscv@lists.infradead.org,
+        x86@kernel.org, linux-xtensa@linux-xtensa.org,
+        linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
+        Andrew Morton <akpm@linux-foundation.org>
+References: <cover.1616765869.git.christophe.leroy@csgroup.eu>
+ <878228ad88df38f8914c7aa25dede3ed05c50f48.1616765869.git.christophe.leroy@csgroup.eu>
+ <20210330172714.GR109100@zorba>
+From:   Christophe Leroy <christophe.leroy@csgroup.eu>
+Message-ID: <9c74d82f-f58f-1ccb-bf22-8eb02a4cd55d@csgroup.eu>
+Date:   Fri, 2 Apr 2021 17:33:06 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-References: <1617364493-13518-1-git-send-email-kalyan_t@codeaurora.org>
-In-Reply-To: <1617364493-13518-1-git-send-email-kalyan_t@codeaurora.org>
-From:   Rob Clark <robdclark@gmail.com>
-Date:   Fri, 2 Apr 2021 08:24:31 -0700
-Message-ID: <CAF6AEGskP-TNTk33R=qSi39T3g=GttR8K_j+Qk4FQTo23Y7v-g@mail.gmail.com>
-Subject: Re: [v1] drm/msm/disp/dpu1: program 3d_merge only if block is attached
-To:     Kalyan Thota <kalyan_t@codeaurora.org>
-Cc:     y@qualcomm.com, dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Krishna Manikandan <mkrishn@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210330172714.GR109100@zorba>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: fr
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 2, 2021 at 4:55 AM Kalyan Thota <kalyan_t@codeaurora.org> wrote:
->
-> Update the 3d merge as active in the data path only if
-> the hw block is selected in the configuration.
->
-> Reported-by: Stephen Boyd <swboyd@chromium.org>
 
-Thanks, I've added:
 
-Fixes: 73bfb790ac78 ("msm:disp:dpu1: setup display datapath for SC7180 target")
+Le 30/03/2021 à 19:27, Daniel Walker a écrit :
+> On Fri, Mar 26, 2021 at 01:44:48PM +0000, Christophe Leroy wrote:
+>> This code provides architectures with a way to build command line
+>> based on what is built in the kernel and what is handed over by the
+>> bootloader, based on selected compile-time options.
+>>
+>> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+>> ---
+>> v3:
+>> - Addressed comments from Will
+>> - Added capability to have src == dst
+>> ---
+>>   include/linux/cmdline.h | 57 +++++++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 57 insertions(+)
+>>   create mode 100644 include/linux/cmdline.h
+>>
+>> diff --git a/include/linux/cmdline.h b/include/linux/cmdline.h
+>> new file mode 100644
+>> index 000000000000..dea87edd41be
+>> --- /dev/null
+>> +++ b/include/linux/cmdline.h
+>> @@ -0,0 +1,57 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +#ifndef _LINUX_CMDLINE_H
+>> +#define _LINUX_CMDLINE_H
+>> +
+>> +#include <linux/string.h>
+>> +
+>> +/* Allow architectures to override strlcat, powerpc can't use strings so early */
+>> +#ifndef cmdline_strlcat
+>> +#define cmdline_strlcat strlcat
+>> +#endif
+>> +
+>> +/*
+>> + * This function will append or prepend a builtin command line to the command
+>> + * line provided by the bootloader. Kconfig options can be used to alter
+>> + * the behavior of this builtin command line.
+>> + * @dst: The destination of the final appended/prepended string.
+>> + * @src: The starting string or NULL if there isn't one.
+>> + * @len: the length of dest buffer.
+>> + */
+> 
+> Append or prepend ? Cisco requires both at the same time. This is why my
+> implementation provides both. I can't use this with both at once.
+> 
 
-> Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
-> ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> index 8981cfa..92e6f1b 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> @@ -496,7 +496,9 @@ static void dpu_hw_ctl_intf_cfg_v1(struct dpu_hw_ctl *ctx,
->
->         DPU_REG_WRITE(c, CTL_TOP, mode_sel);
->         DPU_REG_WRITE(c, CTL_INTF_ACTIVE, intf_active);
-> -       DPU_REG_WRITE(c, CTL_MERGE_3D_ACTIVE, BIT(cfg->merge_3d - MERGE_3D_0));
-> +       if (cfg->merge_3d)
-> +               DPU_REG_WRITE(c, CTL_MERGE_3D_ACTIVE,
-> +                             BIT(cfg->merge_3d - MERGE_3D_0));
->  }
->
->  static void dpu_hw_ctl_intf_cfg(struct dpu_hw_ctl *ctx,
-> --
-> 2.7.4
->
+I think it can be added as a second step if dimmed necessary. The feeling I have from all the 
+discussion is that it's not what people from the community are looking for at the moment.
+
+Anyway, once all architectures are moved to generic handling, I believe it is then easier to split 
+CONFIG_CMDLINE in two configuration items in order to provide both appending and prepending at the 
+same time.
+
+I see some concerns about risk of double changes, but I have focussed in changing as little as 
+possible the existing configuration items, in order to minimise that.
