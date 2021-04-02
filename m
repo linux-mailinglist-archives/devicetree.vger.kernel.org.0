@@ -2,102 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0EA6352DF8
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 19:01:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 013D3352E0A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 19:11:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235608AbhDBRBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 13:01:51 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:12403 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229722AbhDBRBv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 13:01:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1617382910; x=1648918910;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=wnn/4GDKS6xCaUhSPQqycRexKj5vTxduSlVAt/wTHXQ=;
-  b=q9/0JAWe3nafhJgdEkdKXdGroWqyv9nt4dLerjO19gPPvne1KCmiA/ZP
-   zCdMoaZqA6OuTD5ilcU4Ypce5fwsmlNl1dYf+2BGxBJdFxLrFZ+oLlntd
-   v7aPyILZ553Em9Qc33cL2pB2o6ejj5gOUB8LtDj3//gKcLkaHUY/fUP1e
-   QdqQ3iOChPLAUXuid5MMQQd1MG8MbO4xl6w0z4QJUSW5lkHNVggCg2hbS
-   l0pcQSJpKcZQHm+7SK+xkRGILPapRYrpW1mfnYiYX2AOOm/YMlEmuc1t1
-   GvjwAF9u56ZkZIvO4Ckh7Rhma1KzfXRzcQZ9ApAzJJQt9YO6x8FYrcN05
-   Q==;
-IronPort-SDR: sIcJ3pWnvRD/sHOnKlsT4EuBfPA7ourfNGpo/bfvmskJ8ixA3obcrAkIJsemgYUmzcMpCZO8PG
- rUSpG3FWAe+3eiVzVrwZ1R9LrXzC+CL1C4zM8Dcja4Jy2Kg95YPoPga9+SIAii39isB/MWflsB
- lcCY1lHz/I9QhDU9ws0Ih1ROrJUkcXBCO8M+OGmwTJTQEWbO66Q76XFTCatguE2hU1dahSgHHD
- UuySDnMrhNO+EyB8bWd/c2ahM85csgkJ/37l1AixdRXoYLOucazfbdn1PmftnkiGs6eUwQsFDs
- PD4=
-X-IronPort-AV: E=Sophos;i="5.81,300,1610434800"; 
-   d="scan'208";a="112277841"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Apr 2021 10:01:49 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Fri, 2 Apr 2021 10:01:48 -0700
-Received: from ness.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
- Transport; Fri, 2 Apr 2021 10:01:47 -0700
-From:   <nicolas.ferre@microchip.com>
-To:     Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>
-Subject: [PATCH] ARM: dts: at91: sama5d2: add ETB and ETM unit name
-Date:   Fri, 2 Apr 2021 19:01:39 +0200
-Message-ID: <20210402170139.140595-1-nicolas.ferre@microchip.com>
-X-Mailer: git-send-email 2.31.1
+        id S235120AbhDBRLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 13:11:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37614 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234759AbhDBRLy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Apr 2021 13:11:54 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6219961152;
+        Fri,  2 Apr 2021 17:11:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617383512;
+        bh=YZ3G/97YtIoywVZIaPwmVWW1AObOMDr0oGWxrhfqG1g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aPVRh6JSQNFNZ/Jt7JInaJIqkE/HzQ/rtPaeFvEpEYhdObfuwqq3bzp9Y70vgFnVm
+         4646UPA+P6SFk/+ptF8FGx1u1gpgrzSKt10QOFb88JGpgjoZ2HbJUlAym1gLU0SiC1
+         I/EQfkRwJ/ZlIHVJjRIswdtey+LN+ERP6uCAYT0fQPzzAubHbapziAwqSMyiqwxgj7
+         me6X2PRGug4B0b0u/HQqrKVRKYwWV08K8xPUOhSBEZPaK2dfmp4Xes2QCEKUciBgHa
+         qCc6NKumng7RGUvvm7t2au+5fKQqtEcPRCeJpnosCk/vSm0ihFgOa3ESdvIVyqqArT
+         gHzYgI/H2SE8w==
+Date:   Fri, 2 Apr 2021 18:11:39 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     mazziesaccount@gmail.com, Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-power@fi.rohmeurope.com, linux-arm-msm@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [RFC PATCH v3 3/7] regulator: IRQ based event/error notification
+ helpers
+Message-ID: <20210402171139.GB5402@sirena.org.uk>
+References: <cover.1615454845.git.matti.vaittinen@fi.rohmeurope.com>
+ <0acca88796cab147398dbc346b3ea9728a9e3238.1615454845.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="DBIVS5p969aUjpLe"
+Content-Disposition: inline
+In-Reply-To: <0acca88796cab147398dbc346b3ea9728a9e3238.1615454845.git.matti.vaittinen@fi.rohmeurope.com>
+X-Cookie: Dammit Jim, I'm an actor, not a doctor.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-Add unit address to the ETB and ETM nodes.
+--DBIVS5p969aUjpLe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-It also allow us to get rid of the warnings:
-../arch/arm/boot/dts/sama5d2.dtsi:43.6-57.4: Warning
-(unit_address_vs_reg): /etb: node has a reg or ranges property, but no
-unit name
-../arch/arm/boot/dts/sama5d2.dtsi:59.6-73.4: Warning
-(unit_address_vs_reg): /etm: node has a reg or ranges property, but no
-unit name
-when we compile with W=1.
+On Thu, Mar 11, 2021 at 12:22:36PM +0200, Matti Vaittinen wrote:
 
-Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
----
- arch/arm/boot/dts/sama5d2.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> @@ -0,0 +1,423 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2021 ROHM Semiconductors
 
-diff --git a/arch/arm/boot/dts/sama5d2.dtsi b/arch/arm/boot/dts/sama5d2.dtsi
-index 2c4952427296..a27294394508 100644
---- a/arch/arm/boot/dts/sama5d2.dtsi
-+++ b/arch/arm/boot/dts/sama5d2.dtsi
-@@ -40,7 +40,7 @@ pmu {
- 		interrupts = <2 IRQ_TYPE_LEVEL_HIGH 0>;
- 	};
- 
--	etb {
-+	etb@740000 {
- 		compatible = "arm,coresight-etb10", "arm,primecell";
- 		reg = <0x740000 0x1000>;
- 
-@@ -56,7 +56,7 @@ etb_in: endpoint {
- 		};
- 	};
- 
--	etm {
-+	etm@73C000 {
- 		compatible = "arm,coresight-etm3x", "arm,primecell";
- 		reg = <0x73C000 0x1000>;
- 
--- 
-2.31.1
+Please make the entire comment a C++ one so things look more consistent.
 
+> +static void regulator_notifier_isr_work(struct work_struct *work)
+> +{
+
+> +	if (d->fatal_cnt && h->retry_cnt > d->fatal_cnt) {
+> +		if (d->die)
+> +			ret = d->die(rid);
+> +		else
+> +			BUG();
+> +
+> +		/*
+> +		 * If the 'last resort' IC recovery failed we will have
+> +		 * nothing else left to do...
+> +		 */
+> +		BUG_ON(ret);
+
+This isn't good...  we should be trying to provide more system level
+handling of this, if nothing else it's quite possibly not a software bug
+here but rather a hardware failure.  An explicit message about what
+happened would be more likely to be understood as a hardware failure,
+and something which allows handling such as initiating a system shutdown
+would be good as well - I'm not sure if there's any existing mechanism
+to plumb userspace into, or perhaps some sort of policy configurable via
+sysfs.  That could be built on later though, I think the main thing here
+is that the logging should be clearer and distinguishable from a random
+software fault which is what BUG_ON() looks like.  The backtrace and
+whatnot that BUG_ON() provides aren't useful here and the message isn't
+going to be very distinctive, some custom prints will attract more
+attention.
+
+> +	/* Disable IRQ if HW keeps line asserted */
+> +	if (d->irq_off_ms)
+> +		disable_irq_nosync(irq);
+> +	/*
+> +	 * IRQ seems to be for us. Let's fire correct notifiers / store error
+
+Missing blank lines in the file.
+
+> + * This structure is passed to map_event and renable for reporting reulator
+
+regulator.
+
+--DBIVS5p969aUjpLe
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBnUEoACgkQJNaLcl1U
+h9AZ2Qf9FKDfBsBEi1RJMy2x3lRPmLjdNeIDsae0HYA/8z/Xnsg+bL+co2BYSFx/
++wh1NJuNyjY64qKyPD9qNf+4d0I1Cfo0krXcA9fm/wOHMch0RFKyUNwaZxYlUDcW
++bbLI/uVevW0XHwBfwdc/VSlpeVHTAqZnqBnCjEaR8twPSvoYJk4ekLMMsA9auQ4
+/98Lkyfv0yZM12lHXBK/D+9mJ8EnoA6sAJLqiWuwl8d4lqq5AWP01BpHQ1r6Au8G
+vtpCndYpx+ST700AqypZO+PbwqqZ6+eWDaPIBvhI+SczibZBzDNvtJpFE3/xEo2/
+ozrQZ/eKkvGRUlfrtivVni8ErcvY0A==
+=Rhqr
+-----END PGP SIGNATURE-----
+
+--DBIVS5p969aUjpLe--
