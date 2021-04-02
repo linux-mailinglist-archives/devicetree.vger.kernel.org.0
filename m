@@ -2,119 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 588D1352A03
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 12:58:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2076352A1C
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 13:11:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229722AbhDBK6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 06:58:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56998 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229599AbhDBK6l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 06:58:41 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B220C0613E6;
-        Fri,  2 Apr 2021 03:58:41 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 197672C1;
-        Fri,  2 Apr 2021 12:58:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1617361119;
-        bh=o16YH/amK93o9sUsyfCF2kW9i62zSal5yr6Wff73gGw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kx4XXqd3VRUrP3Velb+mNLGyx25fqfqRT0i3xkTijHxD4jxV+YpE4yGtyfMmY2iXp
-         drld9qdcUOkJ4O3aBP43rV2dslhKBZiQzvhbBfZ4juJyF9VLMTzW30TumcZpXoCuxS
-         W13lxx4pdwY0THf0JbG+xp/LM/qknhEt6GSuNKSk=
-Date:   Fri, 2 Apr 2021 13:57:55 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Pratyush Yadav <p.yadav@ti.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S229932AbhDBLLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 07:11:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60736 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234563AbhDBLLa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Apr 2021 07:11:30 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 847C7610A0;
+        Fri,  2 Apr 2021 11:11:27 +0000 (UTC)
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1lSHi1-005IZB-HJ; Fri, 02 Apr 2021 12:11:25 +0100
+Date:   Fri, 02 Apr 2021 12:11:24 +0100
+Message-ID: <87blaxeyar.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Benoit Parrot <bparrot@ti.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Peter Chen <peter.chen@nxp.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        dmaengine@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Subject: Re: [PATCH 00/16] CSI2RX support on J721E
-Message-ID: <YGb4s1rSuZLr3Iv0@pendragon.ideasonboard.com>
-References: <20210330173348.30135-1-p.yadav@ti.com>
- <YGRB/42Q6aVBLoAq@vkoul-mobl.Dlink>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YGRB/42Q6aVBLoAq@vkoul-mobl.Dlink>
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: Re: [PATCH 5/6] PCI: keystone: Add PCI legacy interrupt support for AM654
+In-Reply-To: <20210325090026.8843-6-kishon@ti.com>
+References: <20210325090026.8843-1-kishon@ti.com>
+        <20210325090026.8843-6-kishon@ti.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: kishon@ti.com, bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, lokeshvutla@ti.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 31, 2021 at 03:03:51PM +0530, Vinod Koul wrote:
-> On 30-03-21, 23:03, Pratyush Yadav wrote:
-> > Hi,
-> > 
-> > This series adds support for CSI2 capture on J721E. It includes some
-> > fixes to the Cadence CSI2RX driver, adds Rx support to Cadence DPHY
-> > driver, and finally adds the TI CSI2RX wrapper driver.
-> > 
-> > Tested on TI's J721E with OV5640 sensor.
-> > 
-> > Paul Kocialkowski (1):
-> >   phy: Distinguish between Rx and Tx for MIPI D-PHY with submodes
-> > 
-> > Pratyush Yadav (15):
-> >   phy: cdns-dphy: Prepare for Rx support
-> >   phy: cdns-dphy: Allow setting mode
-> >   phy: cdns-dphy: Add Rx support
-> >   media: cadence: csi2rx: Add external DPHY support
-> >   media: cadence: csi2rx: Soft reset the streams before starting capture
-> >   media: cadence: csi2rx: Set the STOP bit when stopping a stream
-> >   media: cadence: csi2rx: Fix stream data configuration
-> >   media: cadence: csi2rx: Turn subdev power on before starting stream
-> >   media: cadence: csi2rx: Add wrappers for subdev calls
-> >   dmaengine: ti: k3-psil-j721e: Add entry for CSI2RX
-> >   dt-bindings: media: Add DT bindings for TI CSI2RX driver
-> >   media: ti-vpe: csi2rx: Add CSI2RX support
-> >   dt-bindings: phy: Convert Cadence DPHY binding to YAML
-> >   dt-bindings: phy: cdns,dphy: make clocks optional
-> >   dt-bindings: phy: cdns,dphy: add power-domains property
+On Thu, 25 Mar 2021 09:00:25 +0000,
+Kishon Vijay Abraham I <kishon@ti.com> wrote:
 > 
-> Is there any dependency between patches to various subsystems, if not
-> please do consider sending a series per subsystem...
+> Add PCI legacy interrupt support for AM654. AM654 has a single HW
+> interrupt line for all the four legacy interrupts INTA/INTB/INTC/INTD.
+> The HW interrupt line connected to GIC is a pulse interrupt whereas
+> the legacy interrupts by definition is level interrupt. In order to
+> provide level interrupt functionality to edge interrupt line, PCIe
+> in AM654 has provided IRQ_EOI register. When the SW writes to IRQ_EOI
+> register after handling the interrupt, the IP checks the state of
+> legacy interrupt and re-triggers pulse interrupt invoking the handler
+> again.
+> 
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> ---
+>  drivers/pci/controller/dwc/pci-keystone.c | 87 +++++++++++++++++++++--
+>  1 file changed, 82 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
+> index dfa9a7fcf9b7..84a25207d0d3 100644
+> --- a/drivers/pci/controller/dwc/pci-keystone.c
+> +++ b/drivers/pci/controller/dwc/pci-keystone.c
+> @@ -118,6 +118,7 @@ struct keystone_pcie {
+>  	/* PCI Device ID */
+>  	u32			device_id;
+>  	struct			device_node *legacy_intc_np;
+> +	struct irq_domain	*legacy_irq_domain;
+>  
+>  	int			msi_host_irq;
+>  	int			num_lanes;
+> @@ -289,6 +290,29 @@ static irqreturn_t ks_pcie_handle_error_irq(struct keystone_pcie *ks_pcie)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> +static void ks_pcie_am654_legacy_irq_handler(struct irq_desc *desc)
+> +{
+> +	struct keystone_pcie *ks_pcie = irq_desc_get_handler_data(desc);
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	int virq, i;
+> +	u32 reg;
+> +
+> +	chained_irq_enter(chip, desc);
+> +
+> +	for (i = 0; i < PCI_NUM_INTX; i++) {
+> +		reg = ks_pcie_app_readl(ks_pcie, IRQ_STATUS(i));
+> +		if (!(reg & INTx_EN))
+> +			continue;
+> +
+> +		virq = irq_linear_revmap(ks_pcie->legacy_irq_domain, i);
+> +		generic_handle_irq(virq);
 
-Splitting the series per subsystem will facilitate merging, but for the
-first versions, keeping all patches together facilitate review. I'd
-prefer if we could have a v2 that still includes everything, until we
-agree on the interface between the two subsystems. At that point, we can
-split the series if needed.
+I'm on my way to kill irq_linear_revmap(), so I'd rather you didn't
+add more instances. Consider using irq_find_mapping() instead.
 
-> > 
-> >  .../devicetree/bindings/media/ti,csi2rx.yaml  |  70 ++
-> >  .../devicetree/bindings/phy/cdns,dphy.txt     |  20 -
-> >  .../devicetree/bindings/phy/cdns,dphy.yaml    |  52 +
-> >  MAINTAINERS                                   |   7 +
-> >  drivers/dma/ti/k3-psil-j721e.c                |  10 +
-> >  drivers/media/platform/Kconfig                |  11 +
-> >  drivers/media/platform/cadence/cdns-csi2rx.c  | 269 ++++-
-> >  drivers/media/platform/ti-vpe/Makefile        |   1 +
-> >  drivers/media/platform/ti-vpe/ti-csi2rx.c     | 964 ++++++++++++++++++
-> >  drivers/phy/cadence/cdns-dphy.c               | 407 +++++++-
-> >  include/linux/phy/phy-mipi-dphy.h             |  13 +
-> >  11 files changed, 1754 insertions(+), 70 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/media/ti,csi2rx.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/phy/cdns,dphy.txt
-> >  create mode 100644 Documentation/devicetree/bindings/phy/cdns,dphy.yaml
-> >  create mode 100644 drivers/media/platform/ti-vpe/ti-csi2rx.c
+> +		ks_pcie_app_writel(ks_pcie, IRQ_STATUS(i), INTx_EN);
+> +		ks_pcie_app_writel(ks_pcie, IRQ_EOI, i);
+
+What are these writes for? The first one feels like an Ack, and the
+second one has EOI written over it.
+
+If that's what they are, llease move these to a proper irq_chip
+structure and use the appropriate flow handler, instead of
+dummy_irq_chip and handle_simple_irq.
+
+Thanks,
+
+	M.
 
 -- 
-Regards,
-
-Laurent Pinchart
+Without deviation from the norm, progress is not possible.
