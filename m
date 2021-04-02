@@ -2,107 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A51E6352B75
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 16:42:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0932B352B84
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 16:42:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235797AbhDBO1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 10:27:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45512 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235755AbhDBO1h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 10:27:37 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6243C061788
-        for <devicetree@vger.kernel.org>; Fri,  2 Apr 2021 07:27:35 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id j25so3718364pfe.2
-        for <devicetree@vger.kernel.org>; Fri, 02 Apr 2021 07:27:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=T3DVNLHJQeSHfhXNKz9gWp+Tv1DR+kLOwzGQWhc+nWA=;
-        b=P7PnM9/F2Rzjf71XMFNGpkG+o4amPJ9qgD+JRcXsUoz805jFetgua3n/+Fqp6EggUt
-         VRLWl6TP2Wqr+yiujTkrQVaeDNyU9PVkvxtWRQNmecAoMARtvVOE2cmr33ke26IMPQoC
-         ONeD+8CXvvl5IQkINWc8dBBxsSpsNY+JsmW4gbxCIhDrVmkwoNmeyQ6HNoHqe50Add9y
-         etKmbMJVsYI/8KKCoH12VcRrwrBGbWzZuN7Z1PzZO1qY1D0J9dXWYSiJpWwCXfrPgDBr
-         MMYbeWXhev1YdG+Meukulm71mxAMMi9TLWgKLsrcegnKrxsA5tfTZevKmAYt9Gm+hRnH
-         s5Jg==
+        id S235876AbhDBOgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 10:36:02 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:26293 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235869AbhDBOgC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 10:36:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1617374161;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=dbSLew8mhA3CPW9rGzb5rYU5719GfEykfUChPKVn5Jw=;
+        b=bvumKqG3kF3ZQfGDgmEz9RZrgbTASGKMfUKxk5UKCcwLLofsYmz1zt23pwPQodOSkqLZxQ
+        CjVGeFPwZI1S861UB0PIB6D/m4FVUa4gv5ZS6NsPjLfYLHuoqp5TpVC3fDVBMjhs0D4FQe
+        LR0qrbY4RnQUc+WE0Mk/LGPva+G+yio=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-256-a5162AggPVGbMVMMfy08dA-1; Fri, 02 Apr 2021 10:35:57 -0400
+X-MC-Unique: a5162AggPVGbMVMMfy08dA-1
+Received: by mail-qv1-f71.google.com with SMTP id r5so5279728qvc.11
+        for <devicetree@vger.kernel.org>; Fri, 02 Apr 2021 07:35:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=T3DVNLHJQeSHfhXNKz9gWp+Tv1DR+kLOwzGQWhc+nWA=;
-        b=pEnrA22iBSQylL+u83NS8tF8J2UhSbJnGy1mr6f/QIhyT59srWdQnZ+vru5ha6GrlT
-         IXs7AY/MYzE9fA++bQNHIlHsCW9WPy+zExcttlUSYedlKJP2FQuoMoebjrAjldQUjEfb
-         xgy9rRYkYX3ryVFVVOdW1ow7L2/HToCCPemx/3i3ZDvgnTRN1pYs1CIeIcdtNgiKI8/1
-         +mjHNAMzZsGkWc01eqPX0L6qnYEN+jvUkoXBzaqYwHB68ucskkArjEBM7o8bdI8Nw/dW
-         NsdrnamsS4lVhNvqaqaAX8UrGW6TmiQ4kiURbGaidhnPC8D2azclEGvEfHBdOqKu3peR
-         RNkQ==
-X-Gm-Message-State: AOAM531uoYu7XXf8BDmI1U1Y18cc3wTsqzV2Y0Ty0sSoJP7G9TupgxCo
-        1EHPgqHecIjmPNZRGn1k/SB9
-X-Google-Smtp-Source: ABdhPJyg2TA0SpbCUUf/oOc4ML06NB7wRTSDPCziI9Y/12+4l5psy1DKY3L9m8r9PO487eIRbvnaGw==
-X-Received: by 2002:a63:d7:: with SMTP id 206mr12092114pga.30.1617373655350;
-        Fri, 02 Apr 2021 07:27:35 -0700 (PDT)
-Received: from work ([103.77.37.174])
-        by smtp.gmail.com with ESMTPSA id w4sm8187408pjk.55.2021.04.02.07.27.31
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 02 Apr 2021 07:27:34 -0700 (PDT)
-Date:   Fri, 2 Apr 2021 19:57:30 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Daniele.Palmas@telit.com,
-        bjorn.andersson@linaro.org
-Subject: Re: [PATCH v10 3/4] mtd: rawnand: Add support for secure regions in
- NAND memory
-Message-ID: <20210402142730.GA10498@work>
-References: <20210401151955.143817-1-manivannan.sadhasivam@linaro.org>
- <20210401151955.143817-4-manivannan.sadhasivam@linaro.org>
- <20210401175421.65db63bf@collabora.com>
- <20210401161622.GH14052@work>
- <20210402105154.0a2a3af5@collabora.com>
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=dbSLew8mhA3CPW9rGzb5rYU5719GfEykfUChPKVn5Jw=;
+        b=Yd8EYQ4VPX/EaYIQjCnAoFfVZa1dkuI6upGCT2k7uOBu32d/2L/bk2q/3ygZD595IL
+         aTsFT5gmPE9xyyEQ9YfJf++bptgdM4k2ZXm6fMNMEMeKsro1JYMlSNeupIM9kJKyACOc
+         N8Sjnugco77PlmQeNeqwr57Kmba10prmJvtqL+QOR3AIRv43KViiV3I30Yk2Nqnk6Ksp
+         RC1/Bc8keiNDnLTzwSpjzphRJFb2vivzeM1AFLN3v/48YX8/s026TZe5HEKQBxagR841
+         1ywJcs9RwIZKnM2TSNFvvHkzXl6hUGgjQUpVFR+OJqS4N+dX+1lWAJQvYn7QsbFWEV7x
+         /www==
+X-Gm-Message-State: AOAM532rKq4BGoxDJgiXSa80SFMuuDrqSxEmiQHxDsBg6nn6BDrUY8sR
+        guzgmIENeEOcSwuq+KtJbGnv9ksoANs0QQXbE1HbEnIjmMEcaBZhC5b+CkUwVLpdEYw2tDtupVS
+        49+1+phyqSN94V8jPkygl6A==
+X-Received: by 2002:a37:615:: with SMTP id 21mr13401239qkg.421.1617374157126;
+        Fri, 02 Apr 2021 07:35:57 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJw2JYxQhsnq8GXwaJBpbPQ9qEbMufMffGDiB8BqHyePDcCzZbxxbZ8pdHCByvdi8v+81NIOKw==
+X-Received: by 2002:a37:615:: with SMTP id 21mr13401229qkg.421.1617374156960;
+        Fri, 02 Apr 2021 07:35:56 -0700 (PDT)
+Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id g17sm6488596qts.93.2021.04.02.07.35.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Apr 2021 07:35:56 -0700 (PDT)
+Subject: Re: [PATCH RFC 0/3] Adds support to allow the bitstream configuration
+ from pre-allocated dma-buffer
+To:     Nava kishore Manne <nava.manne@xilinx.com>, mdf@kernel.org,
+        robh+dt@kernel.org, michal.simek@xilinx.com,
+        sumit.semwal@linaro.org, christian.koenig@amd.com,
+        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linaro-mm-sig@lists.linaro.org, git@xilinx.com
+References: <20210402090933.32276-1-nava.manne@xilinx.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <979ebb17-bc76-e0ef-10b4-996edc12dfa3@redhat.com>
+Date:   Fri, 2 Apr 2021 07:35:53 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210402105154.0a2a3af5@collabora.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20210402090933.32276-1-nava.manne@xilinx.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 02, 2021 at 10:51:54AM +0200, Boris Brezillon wrote:
-> On Thu, 1 Apr 2021 21:46:22 +0530
-> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
-> 
-> > On Thu, Apr 01, 2021 at 05:54:21PM +0200, Boris Brezillon wrote:
-> > > On Thu,  1 Apr 2021 20:49:54 +0530
-> > > Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
-> > >   
-> > > > @@ -565,6 +608,11 @@ static int nand_block_isreserved(struct mtd_info *mtd, loff_t ofs)
-> > > >  
-> > > >  	if (!chip->bbt)
-> > > >  		return 0;
-> > > > +
-> > > > +	/* Check if the region is secured */
-> > > > +	if (nand_region_is_secured(chip, ofs, 0))
-> > > > +		return -EIO;  
-> > > 
-> > > That would is still wrong, you should never pass a 0 size to
-> > > nand_region_is_secured().
-> > >   
-> > 
-> > Size doesn't matter here, that's why I passed 0. Maybe 1 would be
-> > appropriate?
-> 
-> You're checking if a block is reserved, so I think passing the
-> eraseblock size would make more sense, but I actually don't understand
-> why you need to check if the region is secure here (looks like
-> nand_block_isreserved() does not access the flash).
-> 
+Please add to this patch cover letter what you want to discuss.
 
-Ah yes indeed, brain fade...
+Got this new feature, not sure about ...
 
-Thanks,
-Mani
+Tom
+
+On 4/2/21 2:09 AM, Nava kishore Manne wrote:
+> Nava kishore Manne (3):
+>   fpga: region: Add fpga-region property 'fpga-config-from-dmabuf'
+>   fpga: support loading from a pre-allocated buffer
+>   fpga: zynqmp: Use the scatterlist interface
+>
+>  .../devicetree/bindings/fpga/fpga-region.txt  |   2 +
+>  drivers/fpga/fpga-mgr.c                       | 126 +++++++++++++++++-
+>  drivers/fpga/of-fpga-region.c                 |   3 +
+>  drivers/fpga/zynqmp-fpga.c                    |  35 +++++
+>  include/linux/fpga/fpga-mgr.h                 |   6 +-
+>  5 files changed, 169 insertions(+), 3 deletions(-)
+>
+
