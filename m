@@ -2,126 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B01E353056
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 22:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F132353062
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 22:48:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234207AbhDBUfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 16:35:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40864 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231149AbhDBUfq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 16:35:46 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2D1AC06178C
-        for <devicetree@vger.kernel.org>; Fri,  2 Apr 2021 13:35:42 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id g15so4249850pfq.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Apr 2021 13:35:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bYNefTtueRtbK9O76WmEEWHha/LaZSXchRlV45JIZY8=;
-        b=ECzeFdIxkBHD3YuCPbITfi9978+nZyYdB2UVcft7Fw5RKrXyQLUz9marixQu3+5aui
-         Fgijkbi2pQCLb6wq23xYFNjKmrJxj6s4Qvkq4DRJ3VFJMxo5C02xxeQ2os/qLQNKyzqE
-         IWNIujy4eiu4ixYhTF43C8aUNJHDCUSs7h7vg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bYNefTtueRtbK9O76WmEEWHha/LaZSXchRlV45JIZY8=;
-        b=It9enmqa57w7FBw9/ufihRoszo25zwvhQqEQI4+jsyCZP572s9qrTtG7lxgKZMuMb3
-         2btam2dsemwltaCC/kJTB5R3wJyyDaBqiz/Q9jDxvTDVktuZfi/VEOzn2d/1a5HXEtgm
-         o1Dz95AUTqt2TWrkVy4W4vvk0CQCS/esawLqwr3tR4sE3l/H+wOR1f297Qt4gRhkjTCA
-         fgX6MxHBaVtbsl6GkfnXiD2qqFkuXCtwDh1AZhzs8tfNssestSVejtlDMnJr/Hwq0urG
-         7NnISma0Kx63iaZ/iMzWh/9aSFNUXSk4dtA2Vty50K8rV3kXvxBeyWq8X/YiTZlGBl2W
-         C5vA==
-X-Gm-Message-State: AOAM532SGp5DREdUK7p9mglhvRe5X29n5paozYKcj9adSfG9Th1TQGKV
-        F12At5kzlImBOrU7Ml3/qVdJ7w==
-X-Google-Smtp-Source: ABdhPJxTz7TYSh6p4CoKhJAPlT3l2XcEh6VEdLMIe6/tWCfwXt3SK7RLev4FROoopZ5UmHf/w9E0xQ==
-X-Received: by 2002:a62:8ccc:0:b029:1f6:c5e2:69ff with SMTP id m195-20020a628ccc0000b02901f6c5e269ffmr13801935pfd.46.1617395742219;
-        Fri, 02 Apr 2021 13:35:42 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:581c:e04f:7c08:c602])
-        by smtp.gmail.com with UTF8SMTPSA id h18sm5277415pgj.51.2021.04.02.13.35.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Apr 2021 13:35:41 -0700 (PDT)
-Date:   Fri, 2 Apr 2021 13:35:40 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [PATCH V2 1/5] arm64: dts: qcom: pm7325: Add PMIC peripherals
- for pm7325
-Message-ID: <YGeAHKOq65WBr9Yr@google.com>
-References: <1617268396-1837-1-git-send-email-skakit@codeaurora.org>
- <1617268396-1837-2-git-send-email-skakit@codeaurora.org>
- <YGdV+un4bGcF6jJH@google.com>
+        id S231577AbhDBUsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 16:48:25 -0400
+Received: from relay12.mail.gandi.net ([217.70.178.232]:45261 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229722AbhDBUsY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 16:48:24 -0400
+Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
+        (Authenticated sender: gregory.clement@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id ED3AF200002;
+        Fri,  2 Apr 2021 20:48:18 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     kostap@marvell.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     lkundrak@v3.sk, linux@armlinux.org.uk,
+        sebastian.hesselbarth@gmail.com, andrew@lunn.ch,
+        robh+dt@kernel.org, vkoul@kernel.org, kishon@ti.com,
+        miquel.raynal@bootlin.com, mw@semihalf.com, jaz@semihalf.com,
+        nadavh@marvell.com, stefanc@marvell.com, bpeled@marvell.com,
+        Konstantin Porotchkin <kostap@marvell.com>
+Subject: Re: [PATCH v3 0/5] Add support for CP110 UTMI PHY
+In-Reply-To: <20210307163343.25684-1-kostap@marvell.com>
+References: <20210307163343.25684-1-kostap@marvell.com>
+Date:   Fri, 02 Apr 2021 22:48:18 +0200
+Message-ID: <877dlkct0t.fsf@BL-laptop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YGdV+un4bGcF6jJH@google.com>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 02, 2021 at 10:35:54AM -0700, Matthias Kaehlcke wrote:
-> On Thu, Apr 01, 2021 at 02:43:12PM +0530, satya priya wrote:
-> 
-> > subject: arm64: dts: qcom: pm7325: Add PMIC peripherals for pm7325
-> 
-> nit: maybe just 'arm64: dts: qcom: Add pm7325 support/.dtsi' or similar?
-> 
-> > Add temp-alarm and GPIO support for pm7325.
-> 
-> nit: it's more than that, you are adding the .dtsi for the PMIC itself.
-> 
-> > Signed-off-by: satya priya <skakit@codeaurora.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/pm7325.dtsi | 53 ++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 53 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi b/arch/arm64/boot/dts/qcom/pm7325.dtsi
-> > new file mode 100644
-> > index 0000000..1e0848a
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
-> > @@ -0,0 +1,53 @@
-> > +// SPDX-License-Identifier: BSD-3-Clause
-> > +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> > +
-> > +#include <dt-bindings/interrupt-controller/irq.h>
-> > +#include <dt-bindings/spmi/spmi.h>
-> > +
-> > +&spmi_bus {
-> > +	pm7325: pmic@1 {
-> > +		compatible = "qcom,pm7325", "qcom,spmi-pmic";
-> 
-> I saw the patches that add the compatible strings for the GPIOs, but
-> can't find those that add the strings for the PMICs themselves. Could
-> you provide a link if they have been sent already?
-> 
-> > +		reg = <0x1 SPMI_USID>;
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +
-> > +		pm7325_temp_alarm: temp-alarm@a00 {
-> > +			compatible = "qcom,spmi-temp-alarm";
-> > +			reg = <0xa00>;
-> > +			interrupts = <0x1 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-> > +			#thermal-sensor-cells = <0>;
-> > +		};
-> > +
-> > +		pm7325_gpios: gpios@8800 {
-> > +			compatible = "qcom,pm7325-gpio", "qcom,spmi-gpio";
-> > +			reg = <0x8800>;
-> > +			gpio-controller;
-> > +			gpio-ranges = <&pm7325_gpios 0 0 10>;
+Hi Kosta,
 
-The GPIO enumeration is a bit confusing. The pm7325 has GPIO_01 to
-GPIO_10, however IIUC they are mapped such that under Linux
-enumeration starts with 0. I guess it makes sense to start with 0 and
-it's done consistently for 'qcom,spmi-gpio', but it's something that must
-be taken into account when using/configuring those GPIOs.
+> From: Konstantin Porotchkin <kostap@marvell.com>
+>
+> This series of patches adds a new PHY driver for supporting CP110 UTMI
+> PHY in Linux. Currently the functionality of USB ports connected to
+> this PHY depends on boot loader setup.
+> The new driver eliminates kernel configuration dependency from the boot
+> loader. 
+>
+> v3:
+> - rebase on top of Linux 5.12-rc2
+> - convert Armada 3700 UTMI PHY DT binding document to YAML schema
+> - create a separate DT binding for Armada CP11x UTMI PHY in YAML format
+> - change UTMI PHY port node names from "phy" to "usb-phy"
+>
+> v2:
+> - extend the comment about reference clock 
+> - fix driver probe function, add some prints
+> - move to usage of dr_mode from connected USB controller instead of
+>   dedicated device tree property
+>
+> Konstantin Porotchkin (5):
+>   drivers: phy: add support for Armada CP110 UTMI PHY
+>   dt-bindings: phy: convert phy-mvebu-utmi to YAML schema
+>   devicetree/bindings: add support for CP110 UTMI PHY
+>   arch/arm64: dts: add support for Marvell CP110 UTMI PHY
+>   arch/arm64: dts: enable CP110 UTMI PHY usage
+
+Patch 4 and 5 applied on mvebu/dt64.
+
+I've just modified the title to align with the other commits in
+arch/arm64/boot/dts/marvell. They now begin by "arm64: dts: marvell:".
+
+Thanks,
+
+Gregory
+
+
+>
+>  .../phy/marvell,armada-3700-utmi-phy.yaml     |  57 +++
+>  .../phy/marvell,armada-cp110-utmi-phy.yaml    | 109 +++++
+>  .../bindings/phy/phy-mvebu-utmi.txt           |  38 --
+>  .../arm64/boot/dts/marvell/armada-7040-db.dts |  14 +-
+>  .../arm64/boot/dts/marvell/armada-8040-db.dts |  21 +-
+>  .../boot/dts/marvell/armada-8040-mcbin.dtsi   |  19 +-
+>  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |  19 +
+>  arch/arm64/boot/dts/marvell/cn9130-db.dts     |  12 +-
+>  arch/arm64/boot/dts/marvell/cn9131-db.dts     |   9 +-
+>  arch/arm64/boot/dts/marvell/cn9132-db.dts     |  11 +-
+>  drivers/phy/marvell/Kconfig                   |   8 +
+>  drivers/phy/marvell/Makefile                  |   1 +
+>  drivers/phy/marvell/phy-mvebu-cp110-utmi.c    | 384 ++++++++++++++++++
+>  13 files changed, 650 insertions(+), 52 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/marvell,armada-3700-utmi-phy.yaml
+>  create mode 100644 Documentation/devicetree/bindings/phy/marvell,armada-cp110-utmi-phy.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/phy/phy-mvebu-utmi.txt
+>  create mode 100644 drivers/phy/marvell/phy-mvebu-cp110-utmi.c
+>
+> -- 
+> 2.17.1
+>
+
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
