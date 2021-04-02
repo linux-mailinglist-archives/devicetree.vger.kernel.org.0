@@ -2,96 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0932B352B84
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 16:42:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D051352BEE
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 18:09:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235876AbhDBOgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 10:36:02 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:26293 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235869AbhDBOgC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 10:36:02 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1617374161;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=dbSLew8mhA3CPW9rGzb5rYU5719GfEykfUChPKVn5Jw=;
-        b=bvumKqG3kF3ZQfGDgmEz9RZrgbTASGKMfUKxk5UKCcwLLofsYmz1zt23pwPQodOSkqLZxQ
-        CjVGeFPwZI1S861UB0PIB6D/m4FVUa4gv5ZS6NsPjLfYLHuoqp5TpVC3fDVBMjhs0D4FQe
-        LR0qrbY4RnQUc+WE0Mk/LGPva+G+yio=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-256-a5162AggPVGbMVMMfy08dA-1; Fri, 02 Apr 2021 10:35:57 -0400
-X-MC-Unique: a5162AggPVGbMVMMfy08dA-1
-Received: by mail-qv1-f71.google.com with SMTP id r5so5279728qvc.11
-        for <devicetree@vger.kernel.org>; Fri, 02 Apr 2021 07:35:57 -0700 (PDT)
+        id S234397AbhDBOpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 10:45:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49416 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234488AbhDBOpl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 10:45:41 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3505C0613E6;
+        Fri,  2 Apr 2021 07:45:39 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id u10so5827057lju.7;
+        Fri, 02 Apr 2021 07:45:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Rl/AH5bOU3o25vlCH5L0QV/2swJFfE1imy/Wnue8Qhk=;
+        b=M7NkqyA1ID0tT6z8DU66Gt8ajgUmfOAqC3szK++GrkOCNnAtfisJx9wSC1tmgtOR4S
+         gMw30FIL1OE/oS346jf5tcgLBLUy6YD86q6sXA9s7v89AqRwgkM1L7yHPUIU48wzymqk
+         p3HDTc5ClsByc1XYmr5egrGAQo9MlvGzLedNAx/1dskM+arkqBhZn3P+RLhZa50rCFa7
+         uJEpgGqd2m9MgqHVfLLHvw98szZdmD6/Dw9+H9yfnTnm71TScybBw1uxNQLnIrIX8l+D
+         vq7Yp/WAEVQIB6GdYYpPKAL+RMk+y3e5l2iW5aLWXdaifkrpjBL5s+GKPlwStA5C0aIV
+         kP/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=dbSLew8mhA3CPW9rGzb5rYU5719GfEykfUChPKVn5Jw=;
-        b=Yd8EYQ4VPX/EaYIQjCnAoFfVZa1dkuI6upGCT2k7uOBu32d/2L/bk2q/3ygZD595IL
-         aTsFT5gmPE9xyyEQ9YfJf++bptgdM4k2ZXm6fMNMEMeKsro1JYMlSNeupIM9kJKyACOc
-         N8Sjnugco77PlmQeNeqwr57Kmba10prmJvtqL+QOR3AIRv43KViiV3I30Yk2Nqnk6Ksp
-         RC1/Bc8keiNDnLTzwSpjzphRJFb2vivzeM1AFLN3v/48YX8/s026TZe5HEKQBxagR841
-         1ywJcs9RwIZKnM2TSNFvvHkzXl6hUGgjQUpVFR+OJqS4N+dX+1lWAJQvYn7QsbFWEV7x
-         /www==
-X-Gm-Message-State: AOAM532rKq4BGoxDJgiXSa80SFMuuDrqSxEmiQHxDsBg6nn6BDrUY8sR
-        guzgmIENeEOcSwuq+KtJbGnv9ksoANs0QQXbE1HbEnIjmMEcaBZhC5b+CkUwVLpdEYw2tDtupVS
-        49+1+phyqSN94V8jPkygl6A==
-X-Received: by 2002:a37:615:: with SMTP id 21mr13401239qkg.421.1617374157126;
-        Fri, 02 Apr 2021 07:35:57 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJw2JYxQhsnq8GXwaJBpbPQ9qEbMufMffGDiB8BqHyePDcCzZbxxbZ8pdHCByvdi8v+81NIOKw==
-X-Received: by 2002:a37:615:: with SMTP id 21mr13401229qkg.421.1617374156960;
-        Fri, 02 Apr 2021 07:35:56 -0700 (PDT)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id g17sm6488596qts.93.2021.04.02.07.35.54
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Rl/AH5bOU3o25vlCH5L0QV/2swJFfE1imy/Wnue8Qhk=;
+        b=ACxyLs9GtDakeDheIwERvX32Tt7qbgwsftXGSECSktbyvFUqO574pJusO6WdwCc00s
+         42GDwzlCQDgw83pAe+Aya8xBLk1PZ1V8s97rSd0oMmVddZr7eIemw5jnaOe/Sl421JLJ
+         KSPsrEepV5Lnup1duuGOBgYXgrJOJffFMc5hnnZUfTLSSLjB7kL12LPgnsfYbJlHwMR3
+         chZ+0tHwJ2NmY0HLSLSw3zHABNvqnrB8kvCsFha3hcXnTaRrJwmQ/XPGvZkoQBMtoztZ
+         VHrBzqc6k8k2iUQYuBz1FqntmBNuuTfeB18yAtglxzRSICJ6CtKtS8A483NcVwhob7QS
+         XOSg==
+X-Gm-Message-State: AOAM531OCNfwgaanYqXtpnAnk61XHy8iwoS7byjr0DCcukX6Ho92N4k5
+        YrNXFi6DHSW+ss1EG4lCERiTw8mzN7s=
+X-Google-Smtp-Source: ABdhPJy3qAkxvudbG0sXL/fImwxjqWcSzYdHSMMPTL/enfImSjgISBNXc/vNovsEgTv5hAmsQPS5uA==
+X-Received: by 2002:a2e:5315:: with SMTP id h21mr8254981ljb.299.1617374738142;
+        Fri, 02 Apr 2021 07:45:38 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-193-85.dynamic.spd-mgts.ru. [109.252.193.85])
+        by smtp.googlemail.com with ESMTPSA id j22sm883511lfr.37.2021.04.02.07.45.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Apr 2021 07:35:56 -0700 (PDT)
-Subject: Re: [PATCH RFC 0/3] Adds support to allow the bitstream configuration
- from pre-allocated dma-buffer
-To:     Nava kishore Manne <nava.manne@xilinx.com>, mdf@kernel.org,
-        robh+dt@kernel.org, michal.simek@xilinx.com,
-        sumit.semwal@linaro.org, christian.koenig@amd.com,
-        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linaro-mm-sig@lists.linaro.org, git@xilinx.com
-References: <20210402090933.32276-1-nava.manne@xilinx.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <979ebb17-bc76-e0ef-10b4-996edc12dfa3@redhat.com>
-Date:   Fri, 2 Apr 2021 07:35:53 -0700
+        Fri, 02 Apr 2021 07:45:37 -0700 (PDT)
+Subject: Re: [PATCH v2 5/6] dt-bindings: memory: tegra20: emc: Convert to
+ schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210330230445.26619-1-digetx@gmail.com>
+ <20210330230445.26619-6-digetx@gmail.com>
+ <1617198059.590387.2074856.nullmailer@robh.at.kernel.org>
+ <b4f7c7fb-1332-8490-fb4f-293fd357338e@gmail.com>
+ <20210401155506.GA498681@robh.at.kernel.org>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <a584f3b9-ba15-a027-2496-bf757cf7ca06@gmail.com>
+Date:   Fri, 2 Apr 2021 17:45:04 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210402090933.32276-1-nava.manne@xilinx.com>
+In-Reply-To: <20210401155506.GA498681@robh.at.kernel.org>
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
 Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Please add to this patch cover letter what you want to discuss.
+01.04.2021 18:55, Rob Herring пишет:
+> On Wed, Mar 31, 2021 at 05:59:39PM +0300, Dmitry Osipenko wrote:
+>> 31.03.2021 16:40, Rob Herring пишет:
+>>> On Wed, 31 Mar 2021 02:04:44 +0300, Dmitry Osipenko wrote:
+>>>> Convert Tegra20 External Memory Controller binding to schema.
+>>>>
+>>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>>>> ---
+>>>>  .../memory-controllers/nvidia,tegra20-emc.txt | 130 --------
+>>>>  .../nvidia,tegra20-emc.yaml                   | 294 ++++++++++++++++++
+>>>>  2 files changed, 294 insertions(+), 130 deletions(-)
+>>>>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.txt
+>>>>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
+>>>>
+>>>
+>>> My bot found errors running 'make dt_binding_check' on your patch:
+>>>
+>>> yamllint warnings/errors:
+>>>
+>>> dtschema/dtc warnings/errors:
+>>> Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.example.dts:33.26-55.15: Warning (unit_address_vs_reg): /example-0/external-memory-controller@7000f400/emc-tables@0: node has a unit name, but no reg or ranges property
+>>>
+>>> See https://patchwork.ozlabs.org/patch/1460288
+>>>
+>>> This check can fail if there are any dependencies. The base for a patch
+>>> series is generally the most recent rc1.
+>>>
+>>> If you already ran 'make dt_binding_check' and didn't see the above
+>>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>>> date:
+>>>
+>>> pip3 install dtschema --upgrade
+>>>
+>>> Please check and re-submit.
+>>>
+>>
+>> FYI, I'm aware about this warning and I think it's fine to skip it in
+>> the case of this binding. 
+> 
+> It's not because dt_binding_check should be warning free.
+> 
+>> The dtbs_check doesn't bother with that warning.
+> 
+> With W=1 it will. It's off by default because there are too many of 
+> these warnings. Patches welcome.
 
-Got this new feature, not sure about ...
+Such warning could be silenced with some kind of a new pragma option in
+schema which will tell what warnings are inappropriate.
 
-Tom
-
-On 4/2/21 2:09 AM, Nava kishore Manne wrote:
-> Nava kishore Manne (3):
->   fpga: region: Add fpga-region property 'fpga-config-from-dmabuf'
->   fpga: support loading from a pre-allocated buffer
->   fpga: zynqmp: Use the scatterlist interface
->
->  .../devicetree/bindings/fpga/fpga-region.txt  |   2 +
->  drivers/fpga/fpga-mgr.c                       | 126 +++++++++++++++++-
->  drivers/fpga/of-fpga-region.c                 |   3 +
->  drivers/fpga/zynqmp-fpga.c                    |  35 +++++
->  include/linux/fpga/fpga-mgr.h                 |   6 +-
->  5 files changed, 169 insertions(+), 3 deletions(-)
->
-
+But since there is no such option today, perhaps indeed should be better
+to just add a dummy reg property and fix the device-trees.
