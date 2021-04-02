@@ -2,183 +2,335 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BEE835293D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 12:02:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56FAB3529BD
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 12:29:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234976AbhDBKCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 06:02:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44682 "EHLO
+        id S229924AbhDBK3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 06:29:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234926AbhDBKCJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 06:02:09 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 239B2C0613E6;
-        Fri,  2 Apr 2021 03:02:07 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CAEF72C1;
-        Fri,  2 Apr 2021 12:02:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1617357725;
-        bh=BwK8ADmyN5yPbUxid040ws2OoDNAKB3jwfGdu8fQZu4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Q6U9n5vdWLQqcMaG+9TqXJIFsIVakimELdS5Z4Q0CD1sqXzXU/wZzECK/T3glx4Qb
-         RYFYe4xlxpBoHt9Em4McABWRJBPpzbetZ5xp3Qc9rIs63dc1STbbKAKWC2Mo+5BRmu
-         1DLv5hDerBLDJY2N3NBSy04VBkudO9QtsHBZMong=
-Date:   Fri, 2 Apr 2021 13:01:20 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Pratyush Yadav <p.yadav@ti.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Benoit Parrot <bparrot@ti.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Peter Chen <peter.chen@nxp.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        dmaengine@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Subject: Re: [PATCH 12/16] dt-bindings: media: Add DT bindings for TI CSI2RX
- driver
-Message-ID: <YGbrcKPA9K8Ws0lv@pendragon.ideasonboard.com>
-References: <20210330173348.30135-1-p.yadav@ti.com>
- <20210330173348.30135-13-p.yadav@ti.com>
- <20210401155201.GA488101@robh.at.kernel.org>
+        with ESMTP id S229553AbhDBK3B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 06:29:01 -0400
+X-Greylist: delayed 595 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 02 Apr 2021 03:29:00 PDT
+Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [IPv6:2001:4b7a:2000:18::170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56276C0613E6
+        for <devicetree@vger.kernel.org>; Fri,  2 Apr 2021 03:29:00 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 6A4271F542;
+        Fri,  2 Apr 2021 12:19:00 +0200 (CEST)
+Subject: Re: [RFC PATCH 2/2] drivers: soc: qcom: Add SDPM clock monitor driver
+To:     Manaf Meethalavalappu Pallikunhi <manafm@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ram Chandrasekar <rkumbako@codeaurora.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Akhil P Oommen <akhilpo@codeaurora.org>
+References: <1617346747-8611-1-git-send-email-manafm@codeaurora.org>
+ <1617346747-8611-3-git-send-email-manafm@codeaurora.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <56471ee3-5bde-4169-2fb9-f33dd144ae48@somainline.org>
+Date:   Fri, 2 Apr 2021 12:19:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210401155201.GA488101@robh.at.kernel.org>
+In-Reply-To: <1617346747-8611-3-git-send-email-manafm@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 01, 2021 at 10:52:01AM -0500, Rob Herring wrote:
-> On Tue, Mar 30, 2021 at 11:03:44PM +0530, Pratyush Yadav wrote:
-> > TI's J721E uses the Cadence CSI2RX and DPHY peripherals to facilitate
-> > capture over a CSI-2 bus. The TI CSI2RX platform driver glues all the
-> > parts together.
-> > 
-> > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> > ---
-> >  .../devicetree/bindings/media/ti,csi2rx.yaml  | 70 +++++++++++++++++++
-> >  1 file changed, 70 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/ti,csi2rx.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/ti,csi2rx.yaml b/Documentation/devicetree/bindings/media/ti,csi2rx.yaml
-> > new file mode 100644
-> > index 000000000000..ebd894364391
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/ti,csi2rx.yaml
-> > @@ -0,0 +1,70 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/ti,csi2rx.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: TI CSI2RX Wrapper Device Tree Bindings
-> > +
+Il 02/04/21 08:59, Manaf Meethalavalappu Pallikunhi ha scritto:
+> Add SDPM clock monitor driver, which will register for clock rate
+> change notification and write the clock rate into SDPM CSR register.
+> 
+> Signed-off-by: Ram Chandrasekar <rkumbako@codeaurora.org>
+> Signed-off-by: Manaf Meethalavalappu Pallikunhi <manafm@codeaurora.org>
+> ---
+>   drivers/soc/qcom/Kconfig            |   8 ++
+>   drivers/soc/qcom/Makefile           |   1 +
+>   drivers/soc/qcom/sdpm_clk_monitor.c | 217 ++++++++++++++++++++++++++++++++++++
+>   3 files changed, 226 insertions(+)
+>   create mode 100644 drivers/soc/qcom/sdpm_clk_monitor.c
+> 
+> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+> index 9464ff4..1f04d69 100644
+> --- a/drivers/soc/qcom/Kconfig
+> +++ b/drivers/soc/qcom/Kconfig
+> @@ -237,4 +237,12 @@ config QCOM_APR
+>   	  used by audio driver to configure QDSP6
+>   	  ASM, ADM and AFE modules.
+>   
+> +config QCOM_SDPM_CLOCK_MONITOR
+> +	tristate "Qualcomm SDPM Clock Monitor"
+> +	depends on COMMON_CLK
+> +	help
+> +	    This enables the Qualcomm SDPM Clock Monitor. This driver can register
+> +	    for different clock rate change notifications and write the clock
+> +	    rate into the SDPM CSR register. This driver will receive the clock
+> +	    list and the CSR details from devicetree.
+>   endmenu
+> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
+> index d658a10..4eef767 100644
+> --- a/drivers/soc/qcom/Makefile
+> +++ b/drivers/soc/qcom/Makefile
+> @@ -29,3 +29,4 @@ obj-$(CONFIG_QCOM_RPMPD) += rpmpd.o
+>   obj-$(CONFIG_QCOM_KRYO_L2_ACCESSORS) +=	kryo-l2-accessors.o
+>   obj-$(CONFIG_QCOM_LLCC_PERFMON) += llcc_perfmon.o
+>   obj-$(CONFIG_QCOM_MEMORY_DUMP_V2) += memory_dump_v2.o
+> +obj-$(CONFIG_QCOM_SDPM_CLOCK_MONITOR) += sdpm_clk_monitor.o
+> diff --git a/drivers/soc/qcom/sdpm_clk_monitor.c b/drivers/soc/qcom/sdpm_clk_monitor.c
+> new file mode 100644
+> index 00000000..1aee119
+> --- /dev/null
+> +++ b/drivers/soc/qcom/sdpm_clk_monitor.c
+> @@ -0,0 +1,217 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> + */
+> +
+> +#define pr_fmt(fmt) "%s " fmt, KBUILD_MODNAME
+> +
+> +#include <linux/clk.h>
+> +#include <linux/err.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +
+> +#define SDPM_DRIVER		"sdpm-clk-monitor"
+> +#define CSR_MAX_VAL		7
+> +#define CSR_OFFSET		0xF00
+> +#define FREQ_HZ_TO_MHZ(f)	DIV_ROUND_UP((f), 1000000)
+> +#define SDPM_CSR_OFFSET(id)	(CSR_OFFSET + (id * 4))
+> +
+> +struct sdpm_clk_instance;
+> +struct sdpm_clk_data {
+> +	struct list_head		sdpm_node;
+> +	struct notifier_block		clk_rate_nb;
+> +	struct clk			*clk;
+> +	const char			*clock_name;
+> +	uint32_t			csr_id;
+> +	struct sdpm_clk_instance	*sdpm_inst;
+> +};
+> +
+> +struct sdpm_clk_instance {
+> +	struct device			*dev;
+> +	void __iomem			*regmap;
+> +	struct list_head		sdpm_instances;
+> +};
+> +
+> +static void sdpm_csr_write(struct sdpm_clk_data *sdpm_data,
+> +				unsigned long clk_rate)
+> +{
+> +	struct sdpm_clk_instance *sdpm_inst = sdpm_data->sdpm_inst;
+> +
+> +	writel_relaxed(clk_rate, sdpm_inst->regmap +
+> +			SDPM_CSR_OFFSET(sdpm_data->csr_id));
+> +	dev_dbg(sdpm_inst->dev, "clock:%s offset:0x%x frequency:%u\n",
+> +			sdpm_data->clock_name,
+> +			SDPM_CSR_OFFSET(sdpm_data->csr_id),
+> +			clk_rate);
+> +}
+> +
+> +static int sdpm_clock_notifier(struct notifier_block *nb,
+> +					unsigned long event, void *data)
+> +{
+> +	struct clk_notifier_data *ndata = data;
+> +	struct sdpm_clk_data *sdpm_data = container_of(nb,
+> +				struct sdpm_clk_data, clk_rate_nb);
+> +
+> +	dev_dbg(sdpm_data->sdpm_inst->dev, "clock:%s event:%lu\n",
+> +			sdpm_data->clock_name, event);
+> +	switch (event) {
+> +	case PRE_RATE_CHANGE:
+> +		if (ndata->new_rate > ndata->old_rate)
+> +			sdpm_csr_write(sdpm_data,
+> +					FREQ_HZ_TO_MHZ(ndata->new_rate));
+> +		return NOTIFY_DONE;
+> +	case POST_RATE_CHANGE:
+> +		if (ndata->new_rate < ndata->old_rate)
+> +			sdpm_csr_write(sdpm_data,
+> +					FREQ_HZ_TO_MHZ(ndata->new_rate));
+> +		return NOTIFY_DONE;
+> +	case ABORT_RATE_CHANGE:
+> +		if (ndata->new_rate > ndata->old_rate)
+> +			sdpm_csr_write(sdpm_data,
+> +					FREQ_HZ_TO_MHZ(ndata->old_rate));
+> +		return NOTIFY_DONE;
+> +	default:
+> +		return NOTIFY_DONE;
+> +	}
+> +}
+> +
+> +static int sdpm_clk_device_remove(struct platform_device *pdev)
+> +{
+> +	struct sdpm_clk_instance *sdpm_inst =
+> +		(struct sdpm_clk_instance *)dev_get_drvdata(&pdev->dev);
+> +	struct sdpm_clk_data *sdpm_data = NULL, *next = NULL;
+> +
+> +	list_for_each_entry_safe(sdpm_data, next,
+> +			&sdpm_inst->sdpm_instances, sdpm_node) {
+> +		clk_notifier_unregister(sdpm_data->clk,
+> +					&sdpm_data->clk_rate_nb);
+> +		list_del(&sdpm_data->sdpm_node);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int sdpm_clk_device_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *dev_node = dev->of_node;
+> +	int ret = 0, idx = 0, clk_ct = 0, csr = 0, csr_ct = 0;
+> +	struct sdpm_clk_instance *sdpm_inst = NULL;
+> +	struct sdpm_clk_data *sdpm_data = NULL;
+> +	struct resource *res;
+> +
+> +	sdpm_inst = devm_kzalloc(dev, sizeof(*sdpm_inst), GFP_KERNEL);
+> +	if (!sdpm_inst)
+> +		return -ENOMEM;
+> +	sdpm_inst->dev = dev;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	if (!res) {
+> +		dev_err(dev, "Couldn't get MEM resource\n");
+> +		return -EINVAL;
+> +	}
+> +	dev_dbg(dev, "sdpm@0x%x size:%d\n", res->start,
+> +			resource_size(res));
+> +	dev_set_drvdata(dev, sdpm_inst);
+> +
+> +	sdpm_inst->regmap = devm_ioremap_resource(dev, res);
+> +	if (!sdpm_inst->regmap) {
+> +		dev_err(dev, "Couldn't get regmap\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = of_property_count_strings(dev_node, "clock-names");
+> +	if (ret <= 0) {
+> +		dev_err(dev, "Couldn't get clock names. %d\n", ret);
+> +		return ret;
+> +	}
+> +	clk_ct = ret;
+> +	ret = of_property_count_u32_elems(dev_node, "csr-id");
+> +	if (ret <= 0) {
+> +		dev_err(dev, "Couldn't get csr ID array. %d\n", ret);
+> +		return ret;
+> +	}
+> +	csr_ct = ret;
+> +
+> +	if (csr_ct != clk_ct) {
+> +		dev_err(dev, "Invalid csr:%d and clk:%d count.\n", csr_ct,
+> +				clk_ct);
+> +		return -EINVAL;
+> +	}
+> +
+> +	INIT_LIST_HEAD(&sdpm_inst->sdpm_instances);
+> +
+> +	for (idx = 0; idx < clk_ct; idx++) {
+> +
+> +		sdpm_data = devm_kzalloc(dev, sizeof(*sdpm_data), GFP_KERNEL);
+> +		if (!sdpm_data) {
+> +			ret = -ENOMEM;
+> +			goto clk_err_exit;
+> +		}
+> +
+> +		ret = of_property_read_string_index(dev_node, "clock-names",
+> +				idx, &sdpm_data->clock_name);
+> +		if (ret < 0) {
+> +			dev_err(dev, "Couldn't get clk name index:%d. %d\n",
+> +					idx, ret);
+> +			goto clk_err_exit;
+> +		}
+> +
+> +		sdpm_data->clk = devm_clk_get(dev, sdpm_data->clock_name);
+> +		if (IS_ERR(sdpm_data->clk)) {
+> +			ret = PTR_ERR(sdpm_data->clk);
+> +			goto clk_err_exit;
+> +		}
+> +
+> +		ret = of_property_read_u32_index(dev_node, "csr-id", idx, &csr);
+> +		if (ret < 0) {
+> +			dev_err(dev, "Couldn't get CSR for index:%d. %d\n",
+> +					idx, ret);
+> +			goto clk_err_exit;
+> +		}
+> +
+> +		if (ret > CSR_MAX_VAL) {
+> +			dev_err(dev, "Invalid CSR %d\n", csr);
+> +			ret = -EINVAL;
+> +			goto clk_err_exit;
+> +		}
+> +
+> +		dev_dbg(dev, "SDPM clock:%s csr:%d initialized\n",
+> +				sdpm_data->clock_name, csr);
+> +		sdpm_data->csr_id = csr;
+> +		sdpm_data->sdpm_inst = sdpm_inst;
+> +		sdpm_data->clk_rate_nb.notifier_call = sdpm_clock_notifier;
+> +		sdpm_csr_write(sdpm_data,
+> +			FREQ_HZ_TO_MHZ(clk_get_rate(sdpm_data->clk)));
+> +		clk_notifier_register(sdpm_data->clk, &sdpm_data->clk_rate_nb);
+> +		list_add(&sdpm_data->sdpm_node, &sdpm_inst->sdpm_instances);
+> +	}
+> +
+> +	return 0;
+> +
+> +clk_err_exit:
+> +	sdpm_clk_device_remove(pdev);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct of_device_id sdpm_clk_device_match[] = {
+> +	{.compatible = "qcom,sdpm"},
+> +	{}
+> +};
+> +
+> +static struct platform_driver sdpm_clk_device_driver = {
+> +	.probe          = sdpm_clk_device_probe,
+> +	.remove         = sdpm_clk_device_remove,
+> +	.driver         = {
+> +		.name   = SDPM_DRIVER,
+> +		.of_match_table = sdpm_clk_device_match,
+> +	},
+> +};
+> +module_platform_driver(sdpm_clk_device_driver);
+> +
+> +MODULE_DESCRIPTION("Qualcomm Technologies, Inc. SDPM Clock Monitor Driver");
+> +MODULE_LICENSE("GPL v2");
+> 
+Hello!
 
-A description would be useful, especially given that the TRM doesn't
-mention "CSI2RX".
+Thanks for the patch. A few things to point out:
 
-> > +maintainers:
-> > +  - Pratyush Yadav <p.yadav@ti.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: ti,csi2rx
-> > +
-> > +  dmas:
-> > +    description: RX DMA Channel 0
-> 
-> items:
->   - description: RX DMA Channel 0
-> 
-> Or just 'maxItems: 1'
-> 
-> > +
-> > +  dma-names:
-> > +    items:
-> > +      - const: rx0
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +    description: Base address and size of the TI wrapper registers.
-> 
-> That's all 'reg' properties, drop 'description'.
+Before getting into a big lack of time situation, I have written a 
+functional driver for the Qualcomm System Performance Dynamic Monitoring 
+(SPDM), which has to yet be cleaned up before sending.
+This driver appears to be "SDPM" instead, but the finalities of this new 
+block seem to be very similar - if not the same - as the SPDM.
 
-According to SPRUIL1B, there are four register banks for the CSI_RX_IF,
-and two register banks for the DPHY_RX. What's your plan to support
-these ? Not everything need to be implemented at once, but backward
-compatibility need to be taken into account in the design.
+My SPDM implementation was done as an interconnect driver, as that is 
+actually controlling the bandwidth of the CCI on the SoC.
 
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +    description:
-> > +      PM domain provider node and an args specifier containing
-> > +      the device id value.
-> 
-> Drop.
-> 
-> > +
-> > +  ranges: true
-> > +
-> > +  "#address-cells":
-> > +    const: 2
-> > +
-> > +  "#size-cells":
-> > +    const: 2
-> > +
-> > +patternProperties:
-> > +  "csi-bridge@":
-> 
-> "^csi-bridge@"
-> 
-> > +    type: object
-> > +    description: CSI2 bridge node.
-> 
-> Just an empty node?
 
-Even if the node is optional, it would be useful to include it in the
-example below, to show how it's supposed to be used.
+Is this block doing the same and/or anything similar?
+In case it does, I suggest to look at my *still a bit dirty* (sorry!) 
+driver for the SPDM-TZ.
 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - dmas
-> > +  - dma-names
-> > +  - power-domains
-> > +  - "#address-cells"
-> > +  - "#size-cells"
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
-> > +
-> > +    ti_csi2rx0: ticsi2rx {
-> > +        compatible = "ti,csi2rx";
-> > +        dmas = <&main_udmap 0x4940>;
-> > +        dma-names = "rx0";
-> > +        reg = <0x0 0x4500000 0x0 0x1000>;
-> > +        power-domains = <&k3_pds 26 TI_SCI_PD_EXCLUSIVE>;
-> > +        #address-cells = <2>;
-> > +        #size-cells = <2>;
-> > +    };
+Please, look at the last three commits from this branch:
+https://github.com/SoMainline/linux/commits/angelo/v5.12-rc4-feat-spdmtz
 
--- 
-Regards,
-
-Laurent Pinchart
+Yours,
+- Angelo
