@@ -2,128 +2,276 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C528A352B60
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 16:42:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6D4B352B72
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 16:42:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235366AbhDBOVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 10:21:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44168 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234161AbhDBOV2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 10:21:28 -0400
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDC1BC0613E6;
-        Fri,  2 Apr 2021 07:21:27 -0700 (PDT)
-Received: by mail-ot1-x32f.google.com with SMTP id w21-20020a9d63950000b02901ce7b8c45b4so5070376otk.5;
-        Fri, 02 Apr 2021 07:21:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:reply-to:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wFmEeiu8O3e8Ysh2Egg3y980B0w0wNYvL3AQsHO1K90=;
-        b=TEke5GjgaqkttHMJd3gpOWOLZlhz+MiKptNdXq8ft1He/cIpADCj3tiZwUM9IYSw4V
-         Gvvu7NIe9GL7P0s/lWgZAEyAviwLVRetY8SiH2c1VbyO1i/Tg8l9AY+WD+1EF/woPpfw
-         rZBUW88EJspY50LRle0kjWmjeV/75EIcGor9r23rtDPE1G/M2kQMM3+y/hl6247D6rrf
-         y7vV3SgypcrgIZcQipJSxG4KqvseVfEv3W9fsNylo2RXNfyFebh5btWeiLqZ4G04uUYr
-         V4Cpss+112fE1xJx7eNhLhi30991uwkZKC31i9X3CgMq/2og6LMqgjONxTaOAPOtmXMz
-         SGkA==
+        id S235617AbhDBO1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 10:27:30 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:27430 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229932AbhDBO1a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 10:27:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1617373648;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=OlFhstH5ifpKXg1c5LfRAdgsK6/QKPfii7GaU15lKI8=;
+        b=R5UxOYgxnpYrEqAVOOZzVzgm7mQ160+JhGJqv/5M15MEfvk+rnBIZ445TmbjC0KsxN0MIH
+        RR6SeRNuYFhH5Xjsx8XTMmGnC5dyXGzPMECgaGgNHdZNEnoL6EzMa4XCN6bBkglKyxIoS3
+        0d0LjY2k1qZYWMcV+QHaE54LU2MVvE4=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-540-kXf4PWI7Oce2CAOo1tXkIw-1; Fri, 02 Apr 2021 10:27:27 -0400
+X-MC-Unique: kXf4PWI7Oce2CAOo1tXkIw-1
+Received: by mail-qv1-f71.google.com with SMTP id i7so5240222qvh.22
+        for <devicetree@vger.kernel.org>; Fri, 02 Apr 2021 07:27:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :reply-to:references:mime-version:content-disposition:in-reply-to;
-        bh=wFmEeiu8O3e8Ysh2Egg3y980B0w0wNYvL3AQsHO1K90=;
-        b=IA5++HDuJo7x1aitCT7JXsGSYbisldjnknUbFICjZkPfWdiJt8mrEziW5LQeh/uNnU
-         p5f1K3MyB2ZEI/IpBco4843ZK2D6MFieUBgLpuEewEgJsRXtzXK5A/FfAGYxjNBbXq63
-         CwNInn89tAT2A8jBvHLao6XngRLYwo2jtqusXt6P/JVwk9+WPE7qkb1wdPjjtrfNeK6m
-         IN2wZS5DLdBG1ShKP49J84jzfg96TSrnBPbjehsq71kmNTb3SXWsTJBTdVQD+usT52QE
-         2eiBs0EdRXUl3/nF2rt7mj5PCjRrjXTHIcAtX3Edii4ZO4v8xphpb6JjERoT7w9F4SAQ
-         tdyg==
-X-Gm-Message-State: AOAM5304tLN1svkjus4XBwzIfq8UShRMRgaRHKHRE8zd9AF+gjy+Vxtn
-        9wZq+33jJ6W6Vg9nHarC6Q==
-X-Google-Smtp-Source: ABdhPJwB49R/AXpP58aqRK6or0bUV24xyuHImwp2nt06uXJKkyQwip4E4SqGVpKu38xSByynoJ4+9g==
-X-Received: by 2002:a05:6830:15d2:: with SMTP id j18mr11707892otr.75.1617373286969;
-        Fri, 02 Apr 2021 07:21:26 -0700 (PDT)
-Received: from serve.minyard.net (serve.minyard.net. [2001:470:b8f6:1b::1])
-        by smtp.gmail.com with ESMTPSA id b22sm1904897ots.59.2021.04.02.07.21.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Apr 2021 07:21:26 -0700 (PDT)
-Sender: Corey Minyard <tcminyard@gmail.com>
-Received: from minyard.net (unknown [IPv6:2001:470:b8f6:1b:f99f:823a:495e:5af])
-        by serve.minyard.net (Postfix) with ESMTPSA id 371D6180570;
-        Fri,  2 Apr 2021 14:21:25 +0000 (UTC)
-Date:   Fri, 2 Apr 2021 09:21:24 -0500
-From:   Corey Minyard <minyard@acm.org>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Wolfram Sang <wsa@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        openipmi-developer@lists.sourceforge.net,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-Subject: Re: [PATCH v2 0/3] Add Aspeed SSIF BMC driver
-Message-ID: <20210402142124.GV507977@minyard.net>
-Reply-To: minyard@acm.org
-References: <20210330141029.20412-1-quan@os.amperecomputing.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=OlFhstH5ifpKXg1c5LfRAdgsK6/QKPfii7GaU15lKI8=;
+        b=J07dVqx82V6h64gtNXqKEDStlPjcGkIF8XhYbjUkuJCeaw+4dHWZI34X1bJ2P86Luo
+         yf6gAdwYiG4w9XIl71X0AQxk6ESWdxkOT5EHofzwYwd30+Ofmnsm2AXe+SPyaIBOGb5u
+         96y8v01bY5YPq9SiMLltjfiCrJSDpiBFSdRm2rfOwtqrsN4BtDqkbtymZkMGerXS0D1P
+         mDlh49t4KgHuTnm0Dw7c+Zpjd2y/qh3HPtQ5e9OSdHCYLksBLlHGCQXJcEJBSMhc9a7R
+         nQiB5T/7bzrW18UP5y9z3bQxVWzbF+9hTi1ba/pDMRmurrsz8Qx97bh4H/bzuqfzExMc
+         W8Ag==
+X-Gm-Message-State: AOAM531b3VO0WAktYzfRrOhUp6MzNuX8FgxSGn0snnDx0YowluCZjN3m
+        eT8+n4gCcWPx4DCthKzPEB7gNqT00K3M4YnMdoy9uPsYPEUS2Ub4oMufBcXUmuveptZPCgE9+bg
+        t3lsNd4XjcNwqeTLGi0OuWQ==
+X-Received: by 2002:a0c:f7d1:: with SMTP id f17mr12708613qvo.38.1617373647073;
+        Fri, 02 Apr 2021 07:27:27 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxgE/y9eyO+whwfj+xcSQhO6V0McPLXb84KTyhDVqJvR+jXjA1eEha/Wv9JDLpb4rXgTb026A==
+X-Received: by 2002:a0c:f7d1:: with SMTP id f17mr12708604qvo.38.1617373646924;
+        Fri, 02 Apr 2021 07:27:26 -0700 (PDT)
+Received: from trix.remote.csb (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id i17sm7059714qtr.33.2021.04.02.07.27.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Apr 2021 07:27:26 -0700 (PDT)
+Subject: Re: [PATCH V4 XRT Alveo 13/20] fpga: xrt: User Clock Subsystem
+ platform driver
+To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
+Cc:     linux-fpga@vger.kernel.org, maxz@xilinx.com,
+        sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
+        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
+        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
+References: <20210324052947.27889-1-lizhi.hou@xilinx.com>
+ <20210324052947.27889-14-lizhi.hou@xilinx.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <a5db6c62-e716-1ea8-ad7a-e5ea5adc5c23@redhat.com>
+Date:   Fri, 2 Apr 2021 07:27:24 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210330141029.20412-1-quan@os.amperecomputing.com>
+In-Reply-To: <20210324052947.27889-14-lizhi.hou@xilinx.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 30, 2021 at 09:10:26PM +0700, Quan Nguyen wrote:
-> This series add support for the Aspeed specific SSIF BMC driver which
-> is to perform in-band IPMI communication with the host in management
-> (BMC) side.
 
-I don't have any specific feedback for this, but I'm wondering if it's
-really necessary.
+On 3/23/21 10:29 PM, Lizhi Hou wrote:
+> Add User Clock Subsystem (UCS) driver. UCS is a hardware function
+ok
+> discovered by walking xclbin metadata. A platform device node will be
+> created for it.  UCS enables/disables the dynamic region clocks.
+>
+> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
+> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
+> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
+> ---
+>  drivers/fpga/xrt/lib/xleaf/ucs.c | 167 +++++++++++++++++++++++++++++++
+ok on removing ucs.h
+>  1 file changed, 167 insertions(+)
+>  create mode 100644 drivers/fpga/xrt/lib/xleaf/ucs.c
+>
+> diff --git a/drivers/fpga/xrt/lib/xleaf/ucs.c b/drivers/fpga/xrt/lib/xleaf/ucs.c
+> new file mode 100644
+> index 000000000000..d91ee229e7cb
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/lib/xleaf/ucs.c
+> @@ -0,0 +1,167 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Xilinx Alveo FPGA UCS Driver
+> + *
+> + * Copyright (C) 2020-2021 Xilinx, Inc.
+> + *
+> + * Authors:
+> + *      Lizhi Hou<Lizhi.Hou@xilinx.com>
+> + */
+> +
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/io.h>
+> +#include "metadata.h"
+> +#include "xleaf.h"
+> +#include "xleaf/clock.h"
+> +
+> +#define UCS_ERR(ucs, fmt, arg...)   \
+> +	xrt_err((ucs)->pdev, fmt "\n", ##arg)
+> +#define UCS_WARN(ucs, fmt, arg...)  \
+> +	xrt_warn((ucs)->pdev, fmt "\n", ##arg)
+> +#define UCS_INFO(ucs, fmt, arg...)  \
+> +	xrt_info((ucs)->pdev, fmt "\n", ##arg)
+> +#define UCS_DBG(ucs, fmt, arg...)   \
+> +	xrt_dbg((ucs)->pdev, fmt "\n", ##arg)
+> +
+> +#define XRT_UCS		"xrt_ucs"
+> +
+> +#define XRT_UCS_CHANNEL1_REG			0
+> +#define XRT_UCS_CHANNEL2_REG			8
+> +
+> +#define CLK_MAX_VALUE			6400
+> +
+> +static const struct regmap_config ucs_regmap_config = {
+> +	.reg_bits = 32,
+> +	.val_bits = 32,
+> +	.reg_stride = 4,
+> +	.max_register = 0x1000,
+> +};
+> +
+> +struct xrt_ucs {
+> +	struct platform_device	*pdev;
+> +	struct regmap		*regmap;
+ok
+> +	struct mutex		ucs_lock; /* ucs dev lock */
+> +};
+> +
+> +static void xrt_ucs_event_cb(struct platform_device *pdev, void *arg)
+> +{
+> +	struct xrt_event *evt = (struct xrt_event *)arg;
+> +	enum xrt_events e = evt->xe_evt;
+> +	struct platform_device *leaf;
+> +	enum xrt_subdev_id id;
+> +	int instance;
+> +
+> +	id = evt->xe_subdev.xevt_subdev_id;
+> +	instance = evt->xe_subdev.xevt_subdev_instance;
+> +
+> +	if (e != XRT_EVENT_POST_CREATION) {
+> +		xrt_dbg(pdev, "ignored event %d", e);
+> +		return;
+> +	}
+> +
+> +	if (id != XRT_SUBDEV_CLOCK)
+> +		return;
+ok
+> +
+> +	leaf = xleaf_get_leaf_by_id(pdev, XRT_SUBDEV_CLOCK, instance);
+> +	if (!leaf) {
+> +		xrt_err(pdev, "does not get clock subdev");
+> +		return;
+> +	}
+> +
+> +	xleaf_call(leaf, XRT_CLOCK_VERIFY, NULL);
+> +	xleaf_put_leaf(pdev, leaf);
+> +}
+ok on removing ucs_check.
+> +
+> +static int ucs_enable(struct xrt_ucs *ucs)
+> +{
+> +	int ret;
+> +
+> +	mutex_lock(&ucs->ucs_lock);
+ok
+> +	ret = regmap_write(ucs->regmap, XRT_UCS_CHANNEL2_REG, 1);
+> +	mutex_unlock(&ucs->ucs_lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int
+> +xrt_ucs_leaf_call(struct platform_device *pdev, u32 cmd, void *arg)
 
-Why can't the BMC just open the I2C device and use it?  Is there any
-functionality that this provides that cannot be accomplished from
-userland access to the I2C device?  I don't see any.
+ok
 
-If it tied into some existing framework to give abstract access to a BMC
-slave side interface, I'd be ok with this.  But I don't see that.
+Looks fine.
 
-Unless there is a big need to have this in the kernel, I'm against
-including this and would suggest you do all this work in userland.
-Perhaps write a library.  Sorry, but I'm trying to do my part to reduce
-unnecessary things in the kernel.
+Reviewed-by: Tom Rix <trix@redhat.com>
 
-Thanks,
+> +{
+> +	switch (cmd) {
+> +	case XRT_XLEAF_EVENT:
+> +		xrt_ucs_event_cb(pdev, arg);
+> +		break;
+> +	default:
+> +		xrt_err(pdev, "unsupported cmd %d", cmd);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int ucs_probe(struct platform_device *pdev)
+> +{
+> +	struct xrt_ucs *ucs = NULL;
+> +	void __iomem *base = NULL;
+> +	struct resource *res;
+> +
+> +	ucs = devm_kzalloc(&pdev->dev, sizeof(*ucs), GFP_KERNEL);
+> +	if (!ucs)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, ucs);
+> +	ucs->pdev = pdev;
+> +	mutex_init(&ucs->ucs_lock);
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	if (!res)
+> +		return -EINVAL;
+> +
+> +	base = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+> +
+> +	ucs->regmap = devm_regmap_init_mmio(&pdev->dev, base, &ucs_regmap_config);
+> +	if (IS_ERR(ucs->regmap)) {
+> +		UCS_ERR(ucs, "map base %pR failed", res);
+> +		return PTR_ERR(ucs->regmap);
+> +	}
+> +	ucs_enable(ucs);
+> +
+> +	return 0;
+> +}
+> +
+> +static struct xrt_subdev_endpoints xrt_ucs_endpoints[] = {
+> +	{
+> +		.xse_names = (struct xrt_subdev_ep_names[]) {
+> +			{ .ep_name = XRT_MD_NODE_UCS_CONTROL_STATUS },
+> +			{ NULL },
+> +		},
+> +		.xse_min_ep = 1,
+> +	},
+> +	{ 0 },
+> +};
+> +
+> +static struct xrt_subdev_drvdata xrt_ucs_data = {
+> +	.xsd_dev_ops = {
+> +		.xsd_leaf_call = xrt_ucs_leaf_call,
+> +	},
+> +};
+> +
+> +static const struct platform_device_id xrt_ucs_table[] = {
+> +	{ XRT_UCS, (kernel_ulong_t)&xrt_ucs_data },
+> +	{ },
+> +};
+> +
+> +static struct platform_driver xrt_ucs_driver = {
+> +	.driver = {
+> +		.name = XRT_UCS,
+> +	},
+> +	.probe = ucs_probe,
+> +	.id_table = xrt_ucs_table,
+> +};
+> +
+> +XRT_LEAF_INIT_FINI_FUNC(XRT_SUBDEV_UCS, ucs);
 
--corey
-
-> 
-> v2:
->   + Fixed compiling error with COMPILE_TEST for arc
-> 
-> Quan Nguyen (3):
->   i2c: i2c-core-smbus: Expose PEC calculate function for generic use
->   drivers: char: ipmi: Add Aspeed SSIF BMC driver
->   bindings: ipmi: Add binding for Aspeed SSIF BMC driver
-> 
->  .../bindings/ipmi/aspeed-ssif-bmc.txt         |  18 +
->  drivers/char/ipmi/Kconfig                     |  22 +
->  drivers/char/ipmi/Makefile                    |   2 +
->  drivers/char/ipmi/ssif_bmc.c                  | 645 ++++++++++++++++++
->  drivers/char/ipmi/ssif_bmc.h                  |  92 +++
->  drivers/char/ipmi/ssif_bmc_aspeed.c           | 132 ++++
->  drivers/i2c/i2c-core-smbus.c                  |  12 +-
->  include/linux/i2c.h                           |   1 +
->  8 files changed, 922 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/ipmi/aspeed-ssif-bmc.txt
->  create mode 100644 drivers/char/ipmi/ssif_bmc.c
->  create mode 100644 drivers/char/ipmi/ssif_bmc.h
->  create mode 100644 drivers/char/ipmi/ssif_bmc_aspeed.c
-> 
-> -- 
-> 2.28.0
-> 
