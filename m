@@ -2,156 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41A3E3527AF
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 10:59:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E35B3527D5
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 11:06:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234161AbhDBI7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 04:59:37 -0400
-Received: from mout.gmx.net ([212.227.15.19]:48441 "EHLO mout.gmx.net"
+        id S229599AbhDBJGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 05:06:00 -0400
+Received: from marcansoft.com ([212.63.210.85]:34044 "EHLO mail.marcansoft.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229742AbhDBI7f (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Apr 2021 04:59:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1617353966;
-        bh=/LjJASVgOV0maQa24Uvuz0z3QL8rMLEvyUWzo5UmwUg=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=FgfmEnS/VDXHh/rD3LuU2aR0S92D4gBe3RFvC2mx/9m8dMBMokJcq4xWnB6dJ28o6
-         A/BhSgZrDsDD1USu/zunhlb8OaDQ19g8U/WlPnKDzjYqKECu3SYi8UTg8QU3l1hEGS
-         FmaM08z9J+81RQBqtTJp/ep+itvy8SwLRP0YdGMM=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.215.134]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1N0oBr-1lnCJc3CmT-00wpBH; Fri, 02
- Apr 2021 10:59:25 +0200
-Date:   Fri, 2 Apr 2021 10:59:25 +0200
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Giulio Benetti <giulio.benetti@benettiengineering.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>
-Subject: Re: [PATCH v2 3/3] Input: add driver for the Hycon HY46XX touchpanel
- series
-Message-ID: <YGbc7Qbu6s659Mx4@latitude>
-References: <20210306194120.GA1075725@robh.at.kernel.org>
- <20210401230358.2468618-1-giulio.benetti@benettiengineering.com>
- <20210401230358.2468618-4-giulio.benetti@benettiengineering.com>
+        id S229553AbhDBJF7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Apr 2021 05:05:59 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: hector@marcansoft.com)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 21EE142720;
+        Fri,  2 Apr 2021 09:05:50 +0000 (UTC)
+From:   Hector Martin <marcan@marcan.st>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Hector Martin <marcan@marcan.st>, Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Tony Lindgren <tony@atomide.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Alexander Graf <graf@amazon.com>,
+        Will Deacon <will@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 00/18] Apple M1 SoC platform bring-up
+Date:   Fri,  2 Apr 2021 18:05:24 +0900
+Message-Id: <20210402090542.131194-1-marcan@marcan.st>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="F4oZXRIuQxOUFdge"
-Content-Disposition: inline
-In-Reply-To: <20210401230358.2468618-4-giulio.benetti@benettiengineering.com>
-X-Provags-ID: V03:K1:3GJOwttnlBZYPjNdxhcwkJCPSeiGZav7VXEdvSBAqj1EC8/xUA/
- 5/q6/bEM9DHyeXT+F1tOmpDMAuY+tr+nh9y8QgLYWDCYNgKU32gnHp+GGrPImr47+XQyzRI
- VHylP5BfTvVSw4Jt08XbXj+E0nJG5mruymiemu4UHj0kYDgVquI/C51XISGL1au+YOxhZoF
- 87pE9YiQxWL0hTArqehIA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:458nIHpDN6k=:YR51a7hCfisNAFzFG6HHwK
- R7W76FjWFpVJ8qZAYtKoWchuM58Mam0j/hnf3HSPHDasDy1Ny7sKC/K8GuvuhFtBsGeQ7Q8vB
- wcWETzfBh+kYcyHrjTgm8E2xj+jiudkA1e6y8ZfbFixpLjEdx0jMwzuKcl6rkTH6oDupbL8EZ
- tgbZPo24F4wpkq3ZNxeR4YJttfUzhmue4BtuiXoTUKKgpNRjxtjtOYtsZ9Fo4eTkd30/YFb80
- +3fxlF+8qzpe0MZezYw9Lzu92Amnpe9gjTjp/MeNdLSIbPbaQmpJplVy9aAdRuCblDAukkf9F
- jMW4iDqLyQLjuckvUyBFZ+AaeQDK+pL3Qk7ghkYpfnOSFOzcW4L1U41OcAXWKmyZi/F2B1X+z
- auSfa84Q+X14AHwhb03GJ+YuLlXMCVRUQzvhe7cboChkxb64qJSa0irtkBgVCaDJIrck1Ic7V
- iKuj4wsAR5PHtnESSdmSHC0suQSLgfELF/5oG4/enWEp0qzPScagEYrQk/GPr0sKiC/gDHg0Z
- 8oeCQ4B4DsunoQfUGASJyIHP6ZZhpL2iMq8j4+l/F87YoMQ8n5EFDWkG8idKWOTzL6yb45xNy
- X2AcmTsswjJo5W5588XbkI0WZ21o5VmXhENy4AiBxA6lLwBtGjRwiUZxDudoq/19nlDfZ0tbU
- D1P0t2vnfXCdBGqJ7AOJb2+iOYREt+CwHHyuvqzAUWjI0lzULSWO8XAc76T81QqVmjudj5LeW
- DV7OWcy9WqVnAUxChk5vuxVvsAQ++zrQRpmOYJAZCfLsBPpBvSrwC1dCCyk9Nq5jTzm++o88P
- LsbgmI/h0cNuinWsiFPHfF1FVMaTE0QHXvWwMeYOR4UZeLhiNpdYp7vw7c21/c0T54LlQlOss
- Qbqg3ZGPIdmw155f6Mb3BPxH0/wSTeI4p0r4Qieta3+3GddNGUkB3zZ4QGes+7LWWS3CY60B2
- ipmfy7O1ELP2ZXuWcwxATqD4kqFRVnJAaAa2+yxcasHNS7TDjNKANK5ImOT625y7PYDZ7N3oM
- SaTxYEREYtQZI9eRul9W3bls7r4FCqFOHnF2QahK1NyGNHTKWytWkVwGn9ErcU76vbqE8Ic5U
- e+jlKuQ0YUCtPQG5pWN89ybeNBdmha2Nkui3MRkTWfFdlrPYkiyVIH80v570eiAokvEWcIetD
- XWIVLvqpNvecR27/8YBacfj0TQZffpleNFtvnYbDDg9rmOSXvCdkxGG5pQnFpo/Xv7sE6rbRE
- oFrrMEKb4l1gSxSoc
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series brings up initial support for the Apple M1 SoC, used in the
+2020 Mac Mini, MacBook Pro, and MacBook Air models.
 
---F4oZXRIuQxOUFdge
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The following features are supported in this initial port:
 
-Hi,
+- UART (samsung-style) with earlycon support
+- Interrupts, including affinity and IPIs (Apple Interrupt Controller)
+- SMP (through standard spin-table support)
+- simplefb-based framebuffer
+- Devicetree for the Mac Mini (should work for the others too at this
+  stage)
 
-a few remarks below.
+See below for an overview of changes since v3.
 
-On Fri, Apr 02, 2021 at 01:03:58AM +0200, Giulio Benetti wrote:
-> This patch adds support for Hycon HY46XX.
->=20
-> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
-> ---
-> V1->V2:
-> * removed proximity-sensor-switch property according to previous patch
-> As suggested by Dmitry Torokhov
-> * moved i2c communaction to regmap use
-> * added macro to avoid magic number
-> * removed cmd variable that could uninitiliazed since we're using regmap =
-now
-> * removed useless byte masking
-> * removed useless struct hycon_hy46xx_i2c_chip_data
-> * used IRQF_ONESHOT only for isr
-> ---
+== Merge notes ==
 
+This patchset has several dependencies:
 
-> +config TOUCHSCREEN_HYCON_HY46XX
-> +	tristate "Hycon hy46xx touchscreen support"
-> +	depends on I2C
-> +	help
-> +	  Say Y here if you have a touchscreen using Hycon hy46xx,
-> +	  or something similar enough.
+* Build dep on the FIQ support series in [1].
+* Runtime dep on the Samsung TTY changes in tty-next (modulo DT validation).
+* Runtime dep on the nVHE changes being reviewed in [2].
 
-The "something similar enough" part doesn't seem relevant, because the
-driver only lists HY46xx chips (in the compatible strings), and no chips
-that are similar enough to work with the driver, but have a different
-part number.
+A tree containing this patchset on top of the required dependencies is
+available at [3][4], for those who want to test it.
 
-> +static void hycon_hy46xx_get_defaults(struct device *dev, struct hycon_h=
-y46xx_data *tsdata)
-> +{
-> +	bool val_bool;
-> +	int error;
-> +	u32 val;
-> +
-> +	error =3D device_property_read_u32(dev, "threshold", &val);
+This series is expected to be merged by Arnd via the SoC tree.
+Maintainers, please ack if you are happy with the patches. We will
+coordinate with Arnd and Mark on the FIQ series to make sure all
+that goes smoothly.
 
-This seems to follow the old version of the binding, where
-Hycon-specific properties didn't have the "hycon," prefix.
-Please check that the driver still works with a devicetree that follows
-the newest version of the binding.
+[1] https://lore.kernel.org/linux-arm-kernel/20210315115629.57191-1-mark.rutland@arm.com/T/
+[2] https://lore.kernel.org/linux-arm-kernel/20210330173947.999859-1-maz@kernel.org/T/
+[3] git://github.com/AsahiLinux/linux.git upstream-bringup-v4
+[4] https://github.com/AsahiLinux/linux/tree/upstream-bringup-v4
 
-> +MODULE_AUTHOR("Giulio Benetti <giulio.benetti@micronovasrl.com>");
+== Testing notes ==
 
-This is a different email address than you used in the DT binding. If
-this is intentional, no problem (Just letting you know, in case it's
-unintentional).
+This has been tested on an Apple M1 Mac Mini booting to a framebuffer
+and serial console, with SMP and KASLR, with an arm64 defconfig
+(+ CONFIG_FB_SIMPLE for the fb). In addition, the AIC driver now supports
+running in EL1, tested in UP mode only.
 
+== Patch overview ==
 
-Thanks,
-Jonathan Neusch=C3=A4fer
+- 01-02 Core platform DT bindings
+- 03-04 CPU DT bindings and MIDR defines
+- 05-06 Add interrupt-names support to the ARM timer driver
+        This is used to cleanly express the lack of a secure timer;
+        platforms in the past have used various hacks like dummy
+        IRQs here.
+- 07-12 ioremap_np() (nGnRnE) support
+        The fabric in these SoCs only supports nGnRnE accesses for
+        standard MMIO, except for PCI ranges which use nGnRE. Linux
+        currently defaults to the latter on ARM64, so this adds a new
+        ioremap type and DT properties to automatically select it for
+        drivers using OF and devm abstractions, under buses specified
+        in DT.
+- 13-15 AIC (Apple Interrupt Controller) driver and support defines
+        This also embeds FIQ handling for this platform.
+- 16    Introduce CONFIG_ARCH_APPLE & add it to defconfig
+- 17    simple-framebuffer bindings for Apple (trivial)
+- 18    Add the initial M1 Mac Mini (j274) devicetree
 
---F4oZXRIuQxOUFdge
-Content-Type: application/pgp-signature; name="signature.asc"
+== About the hardware ==
 
------BEGIN PGP SIGNATURE-----
+These machines officially support booting unsigned/user-provided
+XNU-like kernels, with a very different boot protocol and devicetree
+format. We are developing an initial bootloader, m1n1 [1], to take care
+of as many hardware peculiarities as possible and present a standard
+Linux arm64 boot protocol and device tree. In the future, I expect that
+production setups will add U-Boot and perhaps GRUB into the boot chain,
+to make the boot process similar to other ARM64 platforms.
 
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmBm3OUACgkQCDBEmo7z
-X9upNQ/8DWmEiVnx/iq6BM00GmeRFWSkwuLnvC1jVHjRJPHIhpa8f0SYBg9wbADt
-z3AjK4OyxECPBB0mf3tcBq8MO9dRQ7tXc6P4/UhBZqDkprxkZQoKKGogYxWwAmbP
-vaoDO6XO+iQ+3huy5Go0s0qWz1TOwX2cNsDM6Wh4ThHcL6OryofS+bqK7H3F8SW5
-Ej4OiubMxfQQ75ep6HNiDQpOZY8xFMxwsLh7nl6E1kGR93Q2lWy2FllgHQdx9tmY
-cJNzFFuFU2yZYCUsuDC/2/EOIV44Lrxe2/C5O+FQqJYo8fUrjB/CkmUadHjKpcJG
-R7NFuwl1SH1qf+yox9Pxgd4DFkR0fTNNCjkZU0efBA4cyq/V9QVdqFilImIYkTAD
-8jSjgJHGBBRxISz2QsAYMiWs2OU/CsEoX7e9S3uxy/XuIp6a+1yUwtAeZAlcfkX7
-+Qc8uVHTkzw+isi3xojy7YCs8+x1I62oQWsN9j9r+TMt6souLc5jPiFHUHk+g4Yo
-S1HiHk0Jn5q9yIR2QblDK5kBJw4W2aNTcnMrmCh5lODk9LC6+qnisyDvX+B/PKVZ
-Qfol/vuaO1to+waAiigNua4egVpDcj7EO7jW74W5z+4rTV5iVF7X8E+pgd3XrVm2
-EJGGT7W41TFH0ueu/v2x7KN1p4Iq1VHO/DTqd/ho0Cv0IQooZIs=
-=yZTH
------END PGP SIGNATURE-----
+The machines expose their debug UART over USB Type C, triggered with
+vendor-specific USB-PD commands. Currently, the easiest way to get a
+serial console on these machines is to use a second M1 box and a simple
+USB C cable [2]. You can also build a DIY interface using an Arduino, a
+FUSB302 chip or board, and a 1.2V UART-TTL adapter [3]. In the coming
+weeks we will be designing an open hardware project to provide
+serial/debug connectivity to these machines (and, hopefully, also
+support other UART-over-Type C setups from other vendors). Please
+contact me privately if you are interested in getting an early prototype
+version of one of these devices.
 
---F4oZXRIuQxOUFdge--
+We also have WIP/not merged yet support for loading kernels and
+interacting via dwc3 usb-gadget, which works with a standard C-C or C-A
+cable and any Linux host.
+
+A quickstart guide to booting Linux kernels on these machines is
+available at [4], and we are documenting the hardware at [5].
+
+[1] https://github.com/AsahiLinux/m1n1/
+[2] https://github.com/AsahiLinux/macvdmtool/
+[3] https://github.com/AsahiLinux/vdmtool/
+[4] https://github.com/AsahiLinux/docs/wiki/Developer-Quickstart
+[5] https://github.com/AsahiLinux/docs/wiki
+
+== Project Blurb ==
+
+Asahi Linux is an open community project dedicated to developing and
+maintaining mainline support for Apple Silicon on Linux. Feel free to
+drop by #asahi and #asahi-dev on freenode to chat with us, or check
+our website for more information on the project:
+
+https://asahilinux.org/
+
+== Changes since v3 ==
+
+* Serial patches have already been merged into tty-next and are
+  no longer included
+* nVHE fixup patches are being reviewed separately and no longer
+  part of this series
+* Updated arm,arch-timer bindings to be more restrictive, renamed
+  phys-secure to sec-phys
+* Reordered ioremap() variants list in device-io.rst
+* Removed sysreg_apple.h (defines are in drivers now)
+* Many cleanups, bug fixes, and reworks to AIC, including some bug
+  fixes from Marc's KVM series, kernel as EL1 support, and more.
+* Simplified non-posted MMIO DT handling to only apply to direct
+  children of a bus, and only use "nonposted-mmio". Removed quirk
+  optimization.
+* Implemented default pci_remap_cfgspace() in terms of ioremap_np()
+  and removed arch-specific pci_remap_cfgspace override for arm64
+  (arm32 can come later)
+* Replaced license in AIC bindings header with GPL-2.0+ OR MIT
+* Other minor typo/style fixes
+
+Arnd Bergmann (1):
+  docs: driver-api: device-io: Document I/O access functions
+
+Hector Martin (17):
+  dt-bindings: vendor-prefixes: Add apple prefix
+  dt-bindings: arm: apple: Add bindings for Apple ARM platforms
+  dt-bindings: arm: cpus: Add apple,firestorm & icestorm compatibles
+  arm64: cputype: Add CPU implementor & types for the Apple M1 cores
+  dt-bindings: timer: arm,arch_timer: Add interrupt-names support
+  arm64: arch_timer: Implement support for interrupt-names
+  asm-generic/io.h:  Add a non-posted variant of ioremap()
+  docs: driver-api: device-io: Document ioremap() variants & access
+    funcs
+  arm64: Implement ioremap_np() to map MMIO as nGnRnE
+  asm-generic/io.h: implement pci_remap_cfgspace using ioremap_np
+  of/address: Add infrastructure to declare MMIO as non-posted
+  arm64: Move ICH_ sysreg bits from arm-gic-v3.h to sysreg.h
+  dt-bindings: interrupt-controller: Add DT bindings for apple-aic
+  irqchip/apple-aic: Add support for the Apple Interrupt Controller
+  arm64: Kconfig: Introduce CONFIG_ARCH_APPLE
+  dt-bindings: display: Add apple,simple-framebuffer
+  arm64: apple: Add initial Apple Mac mini (M1, 2020) devicetree
+
+ .../devicetree/bindings/arm/apple.yaml        |  64 ++
+ .../devicetree/bindings/arm/cpus.yaml         |   2 +
+ .../bindings/display/simple-framebuffer.yaml  |   5 +
+ .../interrupt-controller/apple,aic.yaml       |  88 ++
+ .../bindings/timer/arm,arch_timer.yaml        |  19 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ Documentation/driver-api/device-io.rst        | 356 ++++++++
+ .../driver-api/driver-model/devres.rst        |   1 +
+ MAINTAINERS                                   |  14 +
+ arch/arm64/Kconfig.platforms                  |   7 +
+ arch/arm64/boot/dts/Makefile                  |   1 +
+ arch/arm64/boot/dts/apple/Makefile            |   2 +
+ arch/arm64/boot/dts/apple/t8103-j274.dts      |  45 +
+ arch/arm64/boot/dts/apple/t8103.dtsi          | 135 +++
+ arch/arm64/configs/defconfig                  |   1 +
+ arch/arm64/include/asm/cputype.h              |   6 +
+ arch/arm64/include/asm/io.h                   |  11 +-
+ arch/arm64/include/asm/sysreg.h               |  60 ++
+ arch/sparc/include/asm/io_64.h                |   4 +
+ drivers/clocksource/arm_arch_timer.c          |  24 +-
+ drivers/irqchip/Kconfig                       |   8 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-apple-aic.c               | 837 ++++++++++++++++++
+ drivers/of/address.c                          |  43 +-
+ include/asm-generic/io.h                      |  22 +-
+ include/asm-generic/iomap.h                   |   9 +
+ include/clocksource/arm_arch_timer.h          |   1 +
+ .../interrupt-controller/apple-aic.h          |  15 +
+ include/linux/cpuhotplug.h                    |   1 +
+ include/linux/io.h                            |  23 +-
+ include/linux/ioport.h                        |   1 +
+ include/linux/irqchip/arm-gic-v3.h            |  56 --
+ include/linux/of_address.h                    |   1 +
+ lib/devres.c                                  |  22 +
+ 34 files changed, 1807 insertions(+), 80 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/apple.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
+ create mode 100644 arch/arm64/boot/dts/apple/Makefile
+ create mode 100644 arch/arm64/boot/dts/apple/t8103-j274.dts
+ create mode 100644 arch/arm64/boot/dts/apple/t8103.dtsi
+ create mode 100644 drivers/irqchip/irq-apple-aic.c
+ create mode 100644 include/dt-bindings/interrupt-controller/apple-aic.h
+
+--
+2.30.0
+
