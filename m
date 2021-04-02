@@ -2,96 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5371B352FCB
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 21:33:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50735352FD7
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 21:36:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235904AbhDBTdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 15:33:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37846 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235256AbhDBTdY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Apr 2021 15:33:24 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3F2A861106;
-        Fri,  2 Apr 2021 19:33:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617392002;
-        bh=UKGAA0KBznLokaitUNDSSQOOPLiOQ/AEbThL2/Z8hG0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=nFpYVWCKV2mtdWoynoI6+acnvex5sthViPUax7CahWdrIHhxcjFvYIAAXDB5KehOB
-         tFPeSoIkpJMyU/clwlFL3o41g4Kmd1Ube8MC/lzl7BZstGY7DDehbLXBRun3u0T0eC
-         Y271m3LDOmp00w1RtsvColrfF4r3Pg3b6OvhdliRMw4TrUegsnyDZHm3eMOTFGnc9D
-         +g1C97eYWVmSVIuyTmg2r497zC2p39vCwda4MUZrZLb9Dyk86PMH9V/n9AzEYcImnt
-         caM/Jn8D3sNCPx7IklNgxJ9EorOVYv1z3xWAheLtpCVnjoQSRkQwL0yVQf1o4H13w/
-         oz/xqM0VIQP4A==
-From:   Mark Brown <broonie@kernel.org>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-power@fi.rohmeurope.com,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-rtc@vger.kernel.org,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-gpio@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: (subset) [PATCH v5 00/19] Support ROHM BD71815 PMIC
-Date:   Fri,  2 Apr 2021 20:33:08 +0100
-Message-Id: <161739191157.32055.17669953847894989465.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
+        id S235256AbhDBTgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 15:36:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56222 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229553AbhDBTgP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 15:36:15 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A7B4C0613E6;
+        Fri,  2 Apr 2021 12:36:12 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id dm8so6387733edb.2;
+        Fri, 02 Apr 2021 12:36:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Xi+ZyJuMSLaDa1dKwITGdmUDXOKtDig9K+Jaf/axxfk=;
+        b=tcfXhE6EL4zxR1dZRvSAuLtSWcX+tOCYimOzB6/Eb/iGOuK6e6O1dPHcuITeQ2FHzM
+         H/JKxbFyTRwTb2QW4Ul6Bu+86bTNZQkomiw4+NFb3XwJD+96jjY4ulrr9JZ+FI6/kpBk
+         LvfyRR4sE5dkevhMBE875Kr0YOTwIuG+RC9B5P+e0bbUc2ZZ6AcQCXTBcqVOwv2/fvKU
+         QuA4pxAq2mNu3u+5mj/tZ71S/y6bm6Vq4LbCUfiJ0P8fSpyNiKYTfBg+H3EtJ+rmIO6x
+         SiwIJyvXRRHhfiQeU+ehDeZDqgx8B71NSUyq+fbT7FgsGOqvmoCfO9tF2pdE8f6ggcZu
+         qMTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Xi+ZyJuMSLaDa1dKwITGdmUDXOKtDig9K+Jaf/axxfk=;
+        b=o5etxXQU2036WNPaj15FkP8Vc3i860LEVqojDsa3ZEDhwr/HqNVQz/E4219hkLiUmJ
+         8rEFkfH/97xeHQGN7sJBuM6QoRPcah56Kbcx+L5cDpZPwo4MwheVAgYxiWRZmbMuESJw
+         pGwKFGKKvw3xMvNwQXep6kn5lUJ2YA07YM1xjpoUte0c8bY3VLhHK7b/Wk2lEN1Zx9c7
+         GW6t9jHMcKNCdvFJsxqpVgDyxUiSaSqv5POOLzIqlyJ2qHcx5kCFY9FTK5rSWSv3zQfa
+         mzyt4BCMbiizViy+LYyFWhcyO9GXdUsOWb7g/OYB4P7BDzPloZrTq1MF5Gk6R+INMvwC
+         /lFw==
+X-Gm-Message-State: AOAM532/bjnZhxth+UOVdH1p9mgQeiAFLn7QJJ7E1R/7ekl9nJWu3lUb
+        6ay9h0dEF0BX0fPbp3EQH9k=
+X-Google-Smtp-Source: ABdhPJyjyvUkydVsh0G7xHKclDnoK9r6BF7X6k5qcAUwqSFMJdjGHxlj54UcTdFEVAHaWmzslcAtTw==
+X-Received: by 2002:aa7:dd05:: with SMTP id i5mr16979097edv.300.1617392170896;
+        Fri, 02 Apr 2021 12:36:10 -0700 (PDT)
+Received: from BV030612LT ([188.24.140.160])
+        by smtp.gmail.com with ESMTPSA id cw14sm6018205edb.8.2021.04.02.12.36.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Apr 2021 12:36:10 -0700 (PDT)
+Date:   Fri, 2 Apr 2021 22:36:08 +0300
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Manivannan Sadhasivam <mani@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/6] soc: actions: Add Actions Semi Owl socinfo driver
+Message-ID: <20210402193608.GB2052516@BV030612LT>
+References: <cover.1617110420.git.cristian.ciocaltea@gmail.com>
+ <75ec4eff3e6113f4e72daa1b428c355b28005297.1617110420.git.cristian.ciocaltea@gmail.com>
+ <20210402181624.GC31906@thinkpad>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210402181624.GC31906@thinkpad>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Mar 2021 15:52:38 +0300, Matti Vaittinen wrote:
-> Patch series introducing support for ROHM BD71815 PMIC
+On Fri, Apr 02, 2021 at 11:46:24PM +0530, Manivannan Sadhasivam wrote:
+> On Tue, Mar 30, 2021 at 04:48:18PM +0300, Cristian Ciocaltea wrote:
+> > The driver provides information about the Action Semi Owl family of
+> > SoCs (S500, S700 and S900) to user space via sysfs: machine, family,
+> > soc_id, serial_number.
+> > 
+> > Note the serial number is currently provided only for the S500 SoC
+> > variant.
+> > 
+> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> > ---
+> >  drivers/soc/actions/Kconfig                   |   8 +
+> >  drivers/soc/actions/Makefile                  |   1 +
+> >  drivers/soc/actions/owl-socinfo.c             | 152 ++++++++++++++++++
+> >  include/linux/soc/actions/owl-serial-number.h |  20 +++
+> >  4 files changed, 181 insertions(+)
+> >  create mode 100644 drivers/soc/actions/owl-socinfo.c
+> >  create mode 100644 include/linux/soc/actions/owl-serial-number.h
+> > 
+> > diff --git a/drivers/soc/actions/Kconfig b/drivers/soc/actions/Kconfig
+> > index 1aca2058a40c..15faade9282d 100644
+> > --- a/drivers/soc/actions/Kconfig
+> > +++ b/drivers/soc/actions/Kconfig
+> > @@ -14,4 +14,12 @@ config OWL_PM_DOMAINS
+> >  	  power-gating on Actions Semiconductor S500, S700 and S900 SoCs.
+> >  	  If unsure, say 'n'.
+> >  
+> > +config OWL_SOCINFO
+> > +	bool "Actions Semi Owl SoC info driver"
+> > +	default ARCH_ACTIONS
+> > +	select SOC_BUS
+> > +	help
+> > +	  Say 'y' here to support the Action Semiconductor Owl socinfo
 > 
-> ROHM BD71815 is a power management IC used in some battery powered
-> systems. It contains regulators, GPO(s), charger + coulomb counter, RTC
-> and a clock gate.
+> Actions Semi
 > 
-> All regulators can be controlled via I2C. LDO4 can additionally be set to
-> be enabled/disabled by a GPIO. LDO3 voltage could be selected from two
-> voltages written into separate VSEL reisters using GPIO but this mode is
-> not supported by driver. On top of that the PMIC has the typical HW
-> state machine which is present also on many other ROHM PMICs.
+> > +	  driver, providing information about the SoC to user space.
+> > +
+> >  endif
+> > diff --git a/drivers/soc/actions/Makefile b/drivers/soc/actions/Makefile
+> > index 4db9e7b050e5..4b2591d3089f 100644
+> > --- a/drivers/soc/actions/Makefile
+> > +++ b/drivers/soc/actions/Makefile
+> > @@ -2,3 +2,4 @@
+> >  
+> >  obj-$(CONFIG_OWL_PM_DOMAINS_HELPER) += owl-sps-helper.o
+> >  obj-$(CONFIG_OWL_PM_DOMAINS) += owl-sps.o
+> > +obj-$(CONFIG_OWL_SOCINFO) += owl-socinfo.o
+> > diff --git a/drivers/soc/actions/owl-socinfo.c b/drivers/soc/actions/owl-socinfo.c
+> > new file mode 100644
+> > index 000000000000..f28eafac3792
+> > --- /dev/null
+> > +++ b/drivers/soc/actions/owl-socinfo.c
+> > @@ -0,0 +1,152 @@
 > 
 > [...]
+> 
+> > + * Access SoC's serial number stored by the bootloader in DDR memory.
+> > + */
+> > +static int owl_socinfo_read_serial_rmem(struct device *dev)
+> > +{
+> > +	struct reserved_mem *rmem;
+> > +	struct device_node *np;
+> > +	int ret = 0;
+> > +
+> > +	np = of_find_compatible_node(NULL, NULL, "actions,owl-soc-serial");
+> > +	if (!np)
+> > +		return -ENXIO;
+> > +
+> > +	rmem = of_reserved_mem_lookup(np);
+> 
+> If you do this correctly, you could use "pdev->dev.of_node" here instead of
+> using "of_find_compatible_node()" for getting np.
 
-Applied to
+Right, as previously explained, my intention was to avoid binding the
+driver on the serial number node in order to keep it generic enough.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+> > +	if (!rmem) {
+> > +		dev_err(dev, "failed to acquire reserved memory region\n");
+> > +		ret = -EINVAL;
+> > +		goto out_put;
+> > +	}
+> > +
+> 
+> [...]
+> 
+> > +static const struct of_device_id owl_socinfo_of_match[] = {
+> > +	{ .compatible = "actions,s500-soc", .data = &s500_soc_info, },
+> > +	{ .compatible = "actions,s700-soc", .data = &s700_soc_info, },
+> > +	{ .compatible = "actions,s900-soc", .data = &s900_soc_info, },
+> 
+> Please don't add S700/S900 for now.
 
-Thanks!
+I assumed we can use the driver for S700/S900, even though the serial
+number is not provided for them.
 
-[10/19] regulator: helpers: Export helper voltage listing
-        commit: e3baacf54275647a018ee35bff3bc775a8a2a01a
-[13/19] regulator: Add regmap helper for ramp-delay setting
-        commit: fb8fee9efdcf084d9e31ba14cc4734d97e5dd972
+> > +	{ }
+> > +};
+> > +
+> > +static struct platform_driver owl_socinfo_platform_driver = {
+> > +	.probe = owl_socinfo_probe,
+> > +	.driver = {
+> > +		.name = "owl-socinfo",
+> > +		.of_match_table = owl_socinfo_of_match,
+> > +	},
+> > +};
+> > +
+> > +static int __init owl_socinfo_init(void)
+> > +{
+> > +	return platform_driver_register(&owl_socinfo_platform_driver);
+> > +}
+> > +subsys_initcall(owl_socinfo_init);
+> > diff --git a/include/linux/soc/actions/owl-serial-number.h b/include/linux/soc/actions/owl-serial-number.h
+> > new file mode 100644
+> > index 000000000000..f8595417668f
+> > --- /dev/null
+> > +++ b/include/linux/soc/actions/owl-serial-number.h
+> > @@ -0,0 +1,20 @@
+> > +/* SPDX-License-Identifier: GPL-2.0+ */
+> > +/*
+> > + * Copyright (c) 2021 Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> > + */
+> > +
+> > +#ifndef __SOC_ACTIONS_OWL_SERIAL_NUMBER_H__
+> > +#define __SOC_ACTIONS_OWL_SERIAL_NUMBER_H__
+> > +
+> > +#if IS_ENABLED(CONFIG_OWL_SOCINFO)
+> > +u32 owl_get_soc_serial_low(void);
+> > +u32 owl_get_soc_serial_high(void);
+> 
+> Where are these APIs used?
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+This will be used by the Ethernet MAC driver to generate a stable
+address. Initially I used the global 'system_serial_{low,high}'
+variables to pass this information outside the driver, but that is
+not portable, i.e. only supported on ARM32, not ARM64.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Thanks for the review,
+Cristi
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> Thanks,
+> Mani
+> 
+> > +#else
+> > +static inline u32 owl_get_soc_serial_low(void)
+> > +{ return 0; }
+> > +
+> > +static inline u32 owl_get_soc_serial_high(void)
+> > +{ return 0; }
+> > +#endif /* CONFIG_OWL_SOCINFO */
+> > +
+> > +#endif /* __SOC_ACTIONS_OWL_SERIAL_NUMBER_H__ */
+> > -- 
+> > 2.31.1
+> > 
