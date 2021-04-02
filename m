@@ -2,75 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81B2235302C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 22:13:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B01E353056
+	for <lists+devicetree@lfdr.de>; Fri,  2 Apr 2021 22:35:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236539AbhDBUNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 16:13:25 -0400
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:49473 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229647AbhDBUNZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 16:13:25 -0400
-X-Originating-IP: 91.175.115.186
-Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 912D91BF203;
-        Fri,  2 Apr 2021 20:13:19 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Rui Salvaterra <rsalvaterra@gmail.com>, andrew@lunn.ch,
-        kabel@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Rui Salvaterra <rsalvaterra@gmail.com>
-Subject: Re: [PATCH] ARM: dts: turris-omnia: fix hardware buffer management
-In-Reply-To: <20210217153038.1068170-1-rsalvaterra@gmail.com>
-References: <20210217153038.1068170-1-rsalvaterra@gmail.com>
-Date:   Fri, 02 Apr 2021 22:13:19 +0200
-Message-ID: <87h7kocun4.fsf@BL-laptop>
+        id S234207AbhDBUfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 16:35:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40864 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231149AbhDBUfq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 16:35:46 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2D1AC06178C
+        for <devicetree@vger.kernel.org>; Fri,  2 Apr 2021 13:35:42 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id g15so4249850pfq.3
+        for <devicetree@vger.kernel.org>; Fri, 02 Apr 2021 13:35:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=bYNefTtueRtbK9O76WmEEWHha/LaZSXchRlV45JIZY8=;
+        b=ECzeFdIxkBHD3YuCPbITfi9978+nZyYdB2UVcft7Fw5RKrXyQLUz9marixQu3+5aui
+         Fgijkbi2pQCLb6wq23xYFNjKmrJxj6s4Qvkq4DRJ3VFJMxo5C02xxeQ2os/qLQNKyzqE
+         IWNIujy4eiu4ixYhTF43C8aUNJHDCUSs7h7vg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bYNefTtueRtbK9O76WmEEWHha/LaZSXchRlV45JIZY8=;
+        b=It9enmqa57w7FBw9/ufihRoszo25zwvhQqEQI4+jsyCZP572s9qrTtG7lxgKZMuMb3
+         2btam2dsemwltaCC/kJTB5R3wJyyDaBqiz/Q9jDxvTDVktuZfi/VEOzn2d/1a5HXEtgm
+         o1Dz95AUTqt2TWrkVy4W4vvk0CQCS/esawLqwr3tR4sE3l/H+wOR1f297Qt4gRhkjTCA
+         fgX6MxHBaVtbsl6GkfnXiD2qqFkuXCtwDh1AZhzs8tfNssestSVejtlDMnJr/Hwq0urG
+         7NnISma0Kx63iaZ/iMzWh/9aSFNUXSk4dtA2Vty50K8rV3kXvxBeyWq8X/YiTZlGBl2W
+         C5vA==
+X-Gm-Message-State: AOAM532SGp5DREdUK7p9mglhvRe5X29n5paozYKcj9adSfG9Th1TQGKV
+        F12At5kzlImBOrU7Ml3/qVdJ7w==
+X-Google-Smtp-Source: ABdhPJxTz7TYSh6p4CoKhJAPlT3l2XcEh6VEdLMIe6/tWCfwXt3SK7RLev4FROoopZ5UmHf/w9E0xQ==
+X-Received: by 2002:a62:8ccc:0:b029:1f6:c5e2:69ff with SMTP id m195-20020a628ccc0000b02901f6c5e269ffmr13801935pfd.46.1617395742219;
+        Fri, 02 Apr 2021 13:35:42 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:581c:e04f:7c08:c602])
+        by smtp.gmail.com with UTF8SMTPSA id h18sm5277415pgj.51.2021.04.02.13.35.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Apr 2021 13:35:41 -0700 (PDT)
+Date:   Fri, 2 Apr 2021 13:35:40 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [PATCH V2 1/5] arm64: dts: qcom: pm7325: Add PMIC peripherals
+ for pm7325
+Message-ID: <YGeAHKOq65WBr9Yr@google.com>
+References: <1617268396-1837-1-git-send-email-skakit@codeaurora.org>
+ <1617268396-1837-2-git-send-email-skakit@codeaurora.org>
+ <YGdV+un4bGcF6jJH@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YGdV+un4bGcF6jJH@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rui,
+On Fri, Apr 02, 2021 at 10:35:54AM -0700, Matthias Kaehlcke wrote:
+> On Thu, Apr 01, 2021 at 02:43:12PM +0530, satya priya wrote:
+> 
+> > subject: arm64: dts: qcom: pm7325: Add PMIC peripherals for pm7325
+> 
+> nit: maybe just 'arm64: dts: qcom: Add pm7325 support/.dtsi' or similar?
+> 
+> > Add temp-alarm and GPIO support for pm7325.
+> 
+> nit: it's more than that, you are adding the .dtsi for the PMIC itself.
+> 
+> > Signed-off-by: satya priya <skakit@codeaurora.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/pm7325.dtsi | 53 ++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 53 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+> > new file mode 100644
+> > index 0000000..1e0848a
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+> > @@ -0,0 +1,53 @@
+> > +// SPDX-License-Identifier: BSD-3-Clause
+> > +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> > +
+> > +#include <dt-bindings/interrupt-controller/irq.h>
+> > +#include <dt-bindings/spmi/spmi.h>
+> > +
+> > +&spmi_bus {
+> > +	pm7325: pmic@1 {
+> > +		compatible = "qcom,pm7325", "qcom,spmi-pmic";
+> 
+> I saw the patches that add the compatible strings for the GPIOs, but
+> can't find those that add the strings for the PMICs themselves. Could
+> you provide a link if they have been sent already?
+> 
+> > +		reg = <0x1 SPMI_USID>;
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +
+> > +		pm7325_temp_alarm: temp-alarm@a00 {
+> > +			compatible = "qcom,spmi-temp-alarm";
+> > +			reg = <0xa00>;
+> > +			interrupts = <0x1 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+> > +			#thermal-sensor-cells = <0>;
+> > +		};
+> > +
+> > +		pm7325_gpios: gpios@8800 {
+> > +			compatible = "qcom,pm7325-gpio", "qcom,spmi-gpio";
+> > +			reg = <0x8800>;
+> > +			gpio-controller;
+> > +			gpio-ranges = <&pm7325_gpios 0 0 10>;
 
-> Hardware buffer management has never worked on the Turris Omnia, as the
-> required MBus window hadn't been reserved. Fix thusly.
->
-> Fixes: 018b88eee1a2 ("ARM: dts: turris-omnia: enable HW buffer management")
->
-> Signed-off-by: Rui Salvaterra <rsalvaterra@gmail.com>
-
-Applied on mvebu/fixes
-
-Thanks,
-
-Gregory
-
-> ---
->  arch/arm/boot/dts/armada-385-turris-omnia.dts | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm/boot/dts/armada-385-turris-omnia.dts b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-> index 646a06420c77..dc80a909ea88 100644
-> --- a/arch/arm/boot/dts/armada-385-turris-omnia.dts
-> +++ b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-> @@ -32,7 +32,8 @@ soc {
->  		ranges = <MBUS_ID(0xf0, 0x01) 0 0xf1000000 0x100000
->  			  MBUS_ID(0x01, 0x1d) 0 0xfff00000 0x100000
->  			  MBUS_ID(0x09, 0x19) 0 0xf1100000 0x10000
-> -			  MBUS_ID(0x09, 0x15) 0 0xf1110000 0x10000>;
-> +			  MBUS_ID(0x09, 0x15) 0 0xf1110000 0x10000
-> +			  MBUS_ID(0x0c, 0x04) 0 0xf1200000 0x100000>;
->  
->  		internal-regs {
->  
-> -- 
-> 2.30.1
->
-
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+The GPIO enumeration is a bit confusing. The pm7325 has GPIO_01 to
+GPIO_10, however IIUC they are mapped such that under Linux
+enumeration starts with 0. I guess it makes sense to start with 0 and
+it's done consistently for 'qcom,spmi-gpio', but it's something that must
+be taken into account when using/configuring those GPIOs.
