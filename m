@@ -2,75 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D098D353386
-	for <lists+devicetree@lfdr.de>; Sat,  3 Apr 2021 13:01:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1622B35340B
+	for <lists+devicetree@lfdr.de>; Sat,  3 Apr 2021 14:40:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236479AbhDCLBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Apr 2021 07:01:12 -0400
-Received: from mout.kundenserver.de ([217.72.192.74]:42423 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235604AbhDCLBL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Apr 2021 07:01:11 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]) by
- mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MLhwM-1lAycD1uxU-00HitC for <devicetree@vger.kernel.org>; Sat, 03 Apr
- 2021 13:01:05 +0200
-Received: by mail-ot1-f46.google.com with SMTP id w21-20020a9d63950000b02901ce7b8c45b4so7054974otk.5
-        for <devicetree@vger.kernel.org>; Sat, 03 Apr 2021 04:01:05 -0700 (PDT)
-X-Gm-Message-State: AOAM532aOuocyTUTLFIccEBFRopcpmUpfsvWFGMgUC1eoGy0KKsXBqZN
-        tSXuL8ZcbHKxzkkb9h+Akauwq/y3/yhFy61v3Zk=
-X-Google-Smtp-Source: ABdhPJxmDCy40BnQNDuza+e7TX61A2LzhXZ16Jpv7p6mVUu7ZW5dEILJ8jTvtCVrNM2gnG2hno7+2QGM1n/9qSSi0z0=
-X-Received: by 2002:a9d:316:: with SMTP id 22mr14641784otv.210.1617447664188;
- Sat, 03 Apr 2021 04:01:04 -0700 (PDT)
+        id S231755AbhDCMlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Apr 2021 08:41:00 -0400
+Received: from mslow1.mail.gandi.net ([217.70.178.240]:49047 "EHLO
+        mslow1.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230409AbhDCMlA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Apr 2021 08:41:00 -0400
+X-Greylist: delayed 1373 seconds by postgrey-1.27 at vger.kernel.org; Sat, 03 Apr 2021 08:40:59 EDT
+Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
+        by mslow1.mail.gandi.net (Postfix) with ESMTP id 205F3CD688
+        for <devicetree@vger.kernel.org>; Sat,  3 Apr 2021 12:09:25 +0000 (UTC)
+X-Originating-IP: 2.7.49.219
+Received: from [192.168.1.100] (lfbn-lyo-1-457-219.w2-7.abo.wanadoo.fr [2.7.49.219])
+        (Authenticated sender: alex@ghiti.fr)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 53949C0004;
+        Sat,  3 Apr 2021 12:09:02 +0000 (UTC)
+Subject: Re: [PATCH] driver: of: Properly truncate command line if too long
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Dmitry Vyukov <dvyukov@google.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210316193820.3137-1-alex@ghiti.fr>
+From:   Alex Ghiti <alex@ghiti.fr>
+Message-ID: <ee702ff7-f43c-745c-4157-b1cba53bb0b2@ghiti.fr>
+Date:   Sat, 3 Apr 2021 08:09:01 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-References: <20210402074318.8582-1-shc_work@mail.ru>
-In-Reply-To: <20210402074318.8582-1-shc_work@mail.ru>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Sat, 3 Apr 2021 13:00:00 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a2kkRX1YpU4LPsxezYQWZBOPB8vxGr-03y78m3u=9OnjA@mail.gmail.com>
-Message-ID: <CAK8P3a2kkRX1YpU4LPsxezYQWZBOPB8vxGr-03y78m3u=9OnjA@mail.gmail.com>
-Subject: Re: [PATCH RESEND 1/5] ARM: dts: clps711x: Add SYSCON nodes where it
- is used
-To:     Alexander Shiyan <shc_work@mail.ru>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:InlHdQHgbcX0Ss/IuZbS5JxRo9kxHwjeBxa1GlGOFklHhVrJTf+
- HuSMJrwFqjYz/OzUam+Jk/Djbw7EpOo6OH/mKrsXvcnKuTeP3/DL5EltvOTVEeQm85ajaze
- uTGIrNCjIPEpYFzveftLS19tID9xBt1R8Le3zOovlvLFtpXiB0dTwaRT17GzKE3yLJorBN0
- uX4c/qDUd6CxuFMToYPFA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:Pd6quimOZOo=:/M9gZSbUheTlKkjf8IqJwd
- klhBFDvvKiQQ5wAT7KJ56y1l0GeHBMPNs5S1iUlI2aTBhZwMI5iA3bu9s7up9PbEbMX0qr/ic
- NIOsi+8nm0L/tkDa2lCAMwCamkz+38V54UP57AqX395SR1XRltKtnbhWWt+3LzKiEv5xzOrCb
- z1OAl6rB10uFNWcDmoxETAUz9yGiPHmIE3lwg1Gm1fSQP8CTOt7Y4hnyxV/yF6GaN4+1tEFsU
- EpQn277fCSehEsipQTK6OwmZ6992XkInfv91yIRrjvBQEQePj/jCFgrFnLiG6YSztrXE0eyQ5
- GZWPLlOHC/Bx6HHofEsewjsg75xZ0BsE9cV18t3kz7U0615avscXBZK+bLN3O4SpMzeFHRaYa
- Hx1jQ4k6cImTPIfo8nMilR/8FpwVUbITOHnsqFZU6B8fqPCnCCVR15QBLOkTiR/8mMxFkCAg8
- UTijfp/taPH/5fMv8IWyPRA5Xiuudp4c+2liEqTvULk04bJecHy+3W4wjKfWZHrsn/UwRcRxA
- tEi74XcIDvqS734jrZE32KrTaK2YP6q/bUJhiqFLhh1/3D17J8eR7D1J03PhIwFj2twxp6bIE
- VT5Y2uSYKWWKorgwsCSAAfS1UXjkj0z7xn
+In-Reply-To: <20210316193820.3137-1-alex@ghiti.fr>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: fr
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 2, 2021 at 9:43 AM Alexander Shiyan <shc_work@mail.ru> wrote:
->
-> This patch adds SYSCON descriptors to framebuffer, SPI, DAI
-> and modem control GPIO nodes to further rework these drivers
-> to remove the call to the syscon_regmap_lookup_by_compatible() function.
->
-> Signed-off-by: Alexander Shiyan <shc_work@mail.ru>
-> ---
->  arch/arm/boot/dts/ep7209.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
+Hi,
 
-The patches all look good. Can you resend them to soc@kernel.org
-to make them end up in patchwork for me to pick them up into the soc tree?
+Le 3/16/21 à 3:38 PM, Alexandre Ghiti a écrit :
+> In case the command line given by the user is too long, warn about it
+> and truncate it to the last full argument.
+> 
+> This is what efi already does in commit 80b1bfe1cb2f ("efi/libstub:
+> Don't parse overlong command lines").
+> 
+> Reported-by: Dmitry Vyukov <dvyukov@google.com>
+> Signed-off-by: Alexandre Ghiti <alex@ghiti.fr>
+> ---
+>   drivers/of/fdt.c | 21 ++++++++++++++++++++-
+>   1 file changed, 20 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index dcc1dd96911a..de4c6f9bac39 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -25,6 +25,7 @@
+>   #include <linux/serial_core.h>
+>   #include <linux/sysfs.h>
+>   #include <linux/random.h>
+> +#include <linux/ctype.h>
+>   
+>   #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
+>   #include <asm/page.h>
+> @@ -1050,9 +1051,27 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+>   
+>   	/* Retrieve command line */
+>   	p = of_get_flat_dt_prop(node, "bootargs", &l);
+> -	if (p != NULL && l > 0)
+> +	if (p != NULL && l > 0) {
+>   		strlcpy(data, p, min(l, COMMAND_LINE_SIZE));
+>   
+> +		/*
+> +		 * If the given command line size is larger than
+> +		 * COMMAND_LINE_SIZE, truncate it to the last complete
+> +		 * parameter.
+> +		 */
+> +		if (l > COMMAND_LINE_SIZE) {
+> +			char *cmd_p = (char *)data + COMMAND_LINE_SIZE - 1;
+> +
+> +			while (!isspace(*cmd_p))
+> +				cmd_p--;
+> +
+> +			*cmd_p = '\0';
+> +
+> +			pr_err("Command line is too long: truncated to %d bytes\n",
+> +			       (int)(cmd_p - (char *)data + 1));
+> +		}
+> +	}
+> +
+>   	/*
+>   	 * CONFIG_CMDLINE is meant to be a default in case nothing else
+>   	 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
+> 
+
+Any thought about that ?
 
 Thanks,
 
-        Arnd
+Alex
