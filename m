@@ -2,104 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1622B35340B
-	for <lists+devicetree@lfdr.de>; Sat,  3 Apr 2021 14:40:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B76D735343C
+	for <lists+devicetree@lfdr.de>; Sat,  3 Apr 2021 16:00:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231755AbhDCMlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Apr 2021 08:41:00 -0400
-Received: from mslow1.mail.gandi.net ([217.70.178.240]:49047 "EHLO
-        mslow1.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230409AbhDCMlA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Apr 2021 08:41:00 -0400
-X-Greylist: delayed 1373 seconds by postgrey-1.27 at vger.kernel.org; Sat, 03 Apr 2021 08:40:59 EDT
-Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
-        by mslow1.mail.gandi.net (Postfix) with ESMTP id 205F3CD688
-        for <devicetree@vger.kernel.org>; Sat,  3 Apr 2021 12:09:25 +0000 (UTC)
-X-Originating-IP: 2.7.49.219
-Received: from [192.168.1.100] (lfbn-lyo-1-457-219.w2-7.abo.wanadoo.fr [2.7.49.219])
-        (Authenticated sender: alex@ghiti.fr)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 53949C0004;
-        Sat,  3 Apr 2021 12:09:02 +0000 (UTC)
-Subject: Re: [PATCH] driver: of: Properly truncate command line if too long
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Dmitry Vyukov <dvyukov@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210316193820.3137-1-alex@ghiti.fr>
-From:   Alex Ghiti <alex@ghiti.fr>
-Message-ID: <ee702ff7-f43c-745c-4157-b1cba53bb0b2@ghiti.fr>
-Date:   Sat, 3 Apr 2021 08:09:01 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
-MIME-Version: 1.0
-In-Reply-To: <20210316193820.3137-1-alex@ghiti.fr>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: fr
-Content-Transfer-Encoding: 8bit
+        id S236380AbhDCOAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Apr 2021 10:00:14 -0400
+Received: from ciao.gmane.io ([116.202.254.214]:44846 "EHLO ciao.gmane.io"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230440AbhDCOAN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 3 Apr 2021 10:00:13 -0400
+Received: from list by ciao.gmane.io with local (Exim 4.92)
+        (envelope-from <gldd-devicetree-discuss-3@m.gmane-mx.org>)
+        id 1lSgoq-0004SF-U2
+        for devicetree@vger.kernel.org; Sat, 03 Apr 2021 16:00:08 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To:     devicetree@vger.kernel.org
+From:   "Andrey Jr. Melnikov" <temnota.am@gmail.com>
+Subject: Re: [PATCH v5 1/2] pinctrl: Add driver for Awinic AW9523/B I2C GPIO Expander
+Date:   Sat, 3 Apr 2021 16:48:13 +0300
+Message-ID: <r98mjh-2c6.ln1@banana.localnet>
+References: <20210125182219.213214-1-angelogioacchino.delregno@somainline.org>
+User-Agent: tin/2.2.1-20140504 ("Tober an Righ") (UNIX) (Linux/4.4.66-bananian (armv7l))
+Cc:     linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+In gmane.linux.kernel.gpio AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org> wrote:
+> The Awinic AW9523(B) is a multi-function I2C gpio expander in a
+> TQFN-24L package, featuring PWM (max 37mA per pin, or total max
+> power 3.2Watts) for LED driving capability.
 
-Le 3/16/21 à 3:38 PM, Alexandre Ghiti a écrit :
-> In case the command line given by the user is too long, warn about it
-> and truncate it to the last full argument.
-> 
-> This is what efi already does in commit 80b1bfe1cb2f ("efi/libstub:
-> Don't parse overlong command lines").
-> 
-> Reported-by: Dmitry Vyukov <dvyukov@google.com>
-> Signed-off-by: Alexandre Ghiti <alex@ghiti.fr>
-> ---
->   drivers/of/fdt.c | 21 ++++++++++++++++++++-
->   1 file changed, 20 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index dcc1dd96911a..de4c6f9bac39 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -25,6 +25,7 @@
->   #include <linux/serial_core.h>
->   #include <linux/sysfs.h>
->   #include <linux/random.h>
-> +#include <linux/ctype.h>
->   
->   #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
->   #include <asm/page.h>
-> @@ -1050,9 +1051,27 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
->   
->   	/* Retrieve command line */
->   	p = of_get_flat_dt_prop(node, "bootargs", &l);
-> -	if (p != NULL && l > 0)
-> +	if (p != NULL && l > 0) {
->   		strlcpy(data, p, min(l, COMMAND_LINE_SIZE));
->   
-> +		/*
-> +		 * If the given command line size is larger than
-> +		 * COMMAND_LINE_SIZE, truncate it to the last complete
-> +		 * parameter.
-> +		 */
-> +		if (l > COMMAND_LINE_SIZE) {
-> +			char *cmd_p = (char *)data + COMMAND_LINE_SIZE - 1;
-> +
-> +			while (!isspace(*cmd_p))
-> +				cmd_p--;
-> +
-> +			*cmd_p = '\0';
-> +
-> +			pr_err("Command line is too long: truncated to %d bytes\n",
-> +			       (int)(cmd_p - (char *)data + 1));
-> +		}
-> +	}
-> +
->   	/*
->   	 * CONFIG_CMDLINE is meant to be a default in case nothing else
->   	 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
-> 
+> It has two ports with 8 pins per port (for a total of 16 pins),
+> configurable as either PWM with 1/256 stepping or GPIO input/output,
+> 1.8V logic input; each GPIO can be configured as input or output
+> independently from each other.
 
-Any thought about that ?
+I can't see where PWM output registers is programmed. I'm rightly
+understands - this driver for GPIO only?
 
-Thanks,
+> This IC also has an internal interrupt controller, which is capable
+> of generating an interrupt for each GPIO, depending on the
+> configuration, and will raise an interrupt on the INTN pin to
+> advertise this to an external interrupt controller.
 
-Alex
+
