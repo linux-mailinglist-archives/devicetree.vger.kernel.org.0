@@ -2,116 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBB713531A3
-	for <lists+devicetree@lfdr.de>; Sat,  3 Apr 2021 01:39:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44C8F353202
+	for <lists+devicetree@lfdr.de>; Sat,  3 Apr 2021 04:05:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235788AbhDBXjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Apr 2021 19:39:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52372 "EHLO
+        id S234488AbhDCCFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Apr 2021 22:05:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235228AbhDBXjw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 19:39:52 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFADEC061788
-        for <devicetree@vger.kernel.org>; Fri,  2 Apr 2021 16:39:49 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id z8so6924313ljm.12
-        for <devicetree@vger.kernel.org>; Fri, 02 Apr 2021 16:39:49 -0700 (PDT)
+        with ESMTP id S231216AbhDCCFk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Apr 2021 22:05:40 -0400
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5441BC0613E6;
+        Fri,  2 Apr 2021 19:05:38 -0700 (PDT)
+Received: by mail-pg1-x52a.google.com with SMTP id f29so2075539pgm.8;
+        Fri, 02 Apr 2021 19:05:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=iXyC+Ex2hhHEAnZmoCpz05Kya4MLUb/eMrgyTrPfEno=;
-        b=zQ9lEASWvryBJyOy3CWl9yPjiZK+55+0hlnfWQTr9GMXpTGAWhpfrn2bueLeuL1UBL
-         iOgaicjC9tqzfgbM+QbFgl1y9NI4Sr3Rqv5hyF4k2V0ng7UZwhBbRx+rMgIjSSzEUzqZ
-         8v15JaVfM6lRB1+NOzOINQMWG5x8TVUQrM9WAL32dK2CS97WeWpH1hUFaB0gKO4GtVpR
-         /CXWVtAC0UIq0ZAeMJ1yTrCgi4XGVFpjjkL+UCf8M4l4+Q8bCW4jqVq82uEdiH7qyUXO
-         +V0sxrVNxVu4PXxUpObNlbZrxrf385LEfRTUiTDtmMnY5Dfk7sXcR/fCrvuabVhxsFRG
-         q4yA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jDmDmlQgBZSIrU2MP/TQeW+PUwzt+cJeJDtCDLSCiHA=;
+        b=OnLcBdwBQB9Vwo7YGX1pIgbvtTMwzG6FHwLr9UoNKV46KyvOegmt53Y89NLsaQfN21
+         fO/kLXHWveE2Wi+Kx8n2b3A4NxSnHmieke1kKcPZtYxHYRBUhgL1/dp35kLQt2xUwKq7
+         v/LcjRAI3bjuBvzAWVn9d8cefGj1+/6d4CSLe+5OWPSeEek6jVH4s9LRDiDjQjpoVPft
+         e0ETlME1Hd6Lv5o61HHOrV1ne3BcyYxez3omCSEtdVKd1Hg7aKRh9FF7UMITMVrjrutu
+         XC3YfVpvI+44CvUkjpGZFnupEFjcIjnIMGwHEQo7VlcVW0c8m/f0BOUxLU/mUIGz9m2q
+         EfBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=iXyC+Ex2hhHEAnZmoCpz05Kya4MLUb/eMrgyTrPfEno=;
-        b=T3kEyrAm+DWTfB3wfl7EZRMTJ2wCimXoR9/fyqYeHPgLH3i1X+a79QMhw/lnTU8svt
-         WdmxZXz7mT/bJ1aJWB/L29m5TXviduvhN9MGizDw3lyMO7vnUCBjzGmeNDdWJKx13JRP
-         n+Gouz21e904758nxKNNLeEQdJGh33UpvLLpLk19FVGGBTEK9K9OWcW7p8yoxsJQ8vLZ
-         z71FB6Pg6hwN94BpCpxZmOv2uLfnFmCd+sO6yMCaJpBAXKhc7b4odETaJ8Yx5tLVjakZ
-         xkwLuV/BDiB9BUykZMqmQ2a+d0WA2+zVr92+mxwTgvyZIHULg+k3VsB3Vfogb22iA4xq
-         v0Ww==
-X-Gm-Message-State: AOAM530ftnFME+PZneYbxtSe6YyGyo/fU/FproeiEkAN1bmUj8qLbpeY
-        NIrhUvG6ouVAelXYeyZPGhSObA==
-X-Google-Smtp-Source: ABdhPJwG6viz6cBRcTIqj6vJzfWXTELf5FbT4tN+KOwGOZxQenGK/4t1rdLCZpndQftx6ij3AUpQLw==
-X-Received: by 2002:a2e:b544:: with SMTP id a4mr9678649ljn.504.1617406788385;
-        Fri, 02 Apr 2021 16:39:48 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id w30sm1013134lfq.210.2021.04.02.16.39.47
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jDmDmlQgBZSIrU2MP/TQeW+PUwzt+cJeJDtCDLSCiHA=;
+        b=Dzd+Qa0b7t7EOo4LJ+hxUxuYIkcyYnSY3bkzqgr36jdMMqW1EeBfFW7zZornc3h/4o
+         Yt1QVlTa4THKmVY7fKs5FSnHTB0MX5TXjOvkDlWJDE3pJivLyVL3gdJJBDPV6eZp9MU9
+         m2UZsYQY/d5X5smcrnE398DbNAl7LgrqcZgmIPHHYmowNuefM6IU2ebyNMvtHr1umyg9
+         vomr3qJGVyzFagd3IM0cicoRF5CXxjShFj/BUG5732EKD50gxgbSgZXCVlCRn1KNo24i
+         wVo7b60dQZQi1Moq19VnH8V51J1FiJ6EgnQk8p+bdNY5lD/FjFILNOYG5gFwaaboL3Lq
+         kdEQ==
+X-Gm-Message-State: AOAM530NUxzg6i9ocgAfrxcbAi7YIVSgJKvUt5/+zhPUmeOC6A+cko2I
+        goPQb+3moAXZMyxtb533QBc=
+X-Google-Smtp-Source: ABdhPJxTadWTrGSrAJoCwI5/jjrL5p9pjDpr4boVyEUsCc/P8xeQrl0bH2k+B/WyJY7knMMezBJqIQ==
+X-Received: by 2002:a05:6a00:80b:b029:22e:e873:7f0e with SMTP id m11-20020a056a00080bb029022ee8737f0emr14588464pfk.61.1617415537687;
+        Fri, 02 Apr 2021 19:05:37 -0700 (PDT)
+Received: from localhost.localdomain ([116.246.26.51])
+        by smtp.gmail.com with ESMTPSA id y29sm9513289pfp.206.2021.04.02.19.05.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Apr 2021 16:39:47 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: [PATCH v1 4/4] arm64: dts: qcom: sdm845: add required clocks on the gcc
-Date:   Sat,  3 Apr 2021 02:39:44 +0300
-Message-Id: <20210402233944.273275-4-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210402233944.273275-1-dmitry.baryshkov@linaro.org>
-References: <20210402233944.273275-1-dmitry.baryshkov@linaro.org>
+        Fri, 02 Apr 2021 19:05:37 -0700 (PDT)
+From:   Youlin Song <syl.loop@gmail.com>
+To:     robh+dt@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
+        paulus@samba.org
+Cc:     devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, Youlin Song <syl.loop@gmail.com>
+Subject: [PATCH] powerpc/dts: fix not include DTC_FLAGS
+Date:   Sat,  3 Apr 2021 10:04:23 +0800
+Message-Id: <20210403020423.85278-1-syl.loop@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Specify input clocks to the SDM845's Global Clock Controller as required
-by the bindings.
+I wanted to build the fsl dts in my machine and found that
+the dtb have not extra space,so uboot will cause about
+FDT_ERR_NOSPACE issue.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Signed-off-by: Youlin Song <syl.loop@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/powerpc/boot/dts/Makefile | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 454f794af547..86f717d5bfb6 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -1061,6 +1061,16 @@ soc: soc@0 {
- 		gcc: clock-controller@100000 {
- 			compatible = "qcom,gcc-sdm845";
- 			reg = <0 0x00100000 0 0x1f0000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK_A>,
-+				 <&sleep_clk>,
-+				 <&pcie0_lane>,
-+				 <&pcie1_lane>;
-+			clock-names = "bi_tcxo",
-+				      "bi_tcxo_ao",
-+				      "sleep_clk",
-+				      "pcie_0_pipe_clk",
-+				      "pcie_1_pipe_clk";
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 			#power-domain-cells = <1>;
-@@ -2062,6 +2072,7 @@ pcie0_lane: lanes@1c06200 {
- 				clocks = <&gcc GCC_PCIE_0_PIPE_CLK>;
- 				clock-names = "pipe0";
+diff --git a/arch/powerpc/boot/dts/Makefile b/arch/powerpc/boot/dts/Makefile
+index fb335d05aae8..c21165c0cd76 100644
+--- a/arch/powerpc/boot/dts/Makefile
++++ b/arch/powerpc/boot/dts/Makefile
+@@ -2,5 +2,6 @@
  
-+				#clock-cells = <0>;
- 				#phy-cells = <0>;
- 				clock-output-names = "pcie_0_pipe_clk";
- 			};
-@@ -2170,6 +2181,7 @@ pcie1_lane: lanes@1c06200 {
- 				clocks = <&gcc GCC_PCIE_1_PIPE_CLK>;
- 				clock-names = "pipe0";
+ subdir-y += fsl
  
-+				#clock-cells = <0>;
- 				#phy-cells = <0>;
- 				clock-output-names = "pcie_1_pipe_clk";
- 			};
++DTC_FLAGS   ?= -p 1024
+ dtstree		:= $(srctree)/$(src)
+ dtb-$(CONFIG_OF_ALL_DTBS) := $(patsubst $(dtstree)/%.dts,%.dtb, $(wildcard $(dtstree)/*.dts))
 -- 
-2.30.2
+2.25.1
 
