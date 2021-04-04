@@ -2,127 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D7DF353907
-	for <lists+devicetree@lfdr.de>; Sun,  4 Apr 2021 19:20:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 215E5353935
+	for <lists+devicetree@lfdr.de>; Sun,  4 Apr 2021 19:41:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231281AbhDDRU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Apr 2021 13:20:57 -0400
-Received: from pegase1.c-s.fr ([93.17.236.30]:63707 "EHLO pegase1.c-s.fr"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231272AbhDDRU4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 4 Apr 2021 13:20:56 -0400
-Received: from localhost (mailhub1-int [192.168.12.234])
-        by localhost (Postfix) with ESMTP id 4FD0tP1t4vz9tymG;
-        Sun,  4 Apr 2021 19:20:45 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at c-s.fr
-Received: from pegase1.c-s.fr ([192.168.12.234])
-        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
-        with ESMTP id ffq992l6CBkv; Sun,  4 Apr 2021 19:20:45 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase1.c-s.fr (Postfix) with ESMTP id 4FD0tP0d2fz9tymF;
-        Sun,  4 Apr 2021 19:20:45 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 9F2F08B78E;
-        Sun,  4 Apr 2021 19:20:48 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id b-KtXSnASDF0; Sun,  4 Apr 2021 19:20:48 +0200 (CEST)
-Received: from po16121vm.idsi0.si.c-s.fr (unknown [192.168.4.90])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 4454D8B76A;
-        Sun,  4 Apr 2021 19:20:48 +0200 (CEST)
-Received: by po16121vm.idsi0.si.c-s.fr (Postfix, from userid 0)
-        id 06D3A67685; Sun,  4 Apr 2021 17:20:48 +0000 (UTC)
-Message-Id: <34d20d1dbb88f26d418b33985557b0475374a1a5.1617556785.git.christophe.leroy@csgroup.eu>
-From:   Christophe Leroy <christophe.leroy@csgroup.eu>
-Subject: [RFC PATCH v6 1/1] cmdline: Add capability to both append and prepend at
- the same time
-To:     will@kernel.org, danielwa@cisco.com, robh@kernel.org,
-        daniel@gimpelevich.san-francisco.ca.us, arnd@kernel.org,
-        akpm@linux-foundation.org
-Cc:     linux-arch@vger.kernel.org, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org,
-        microblaze <monstr@monstr.eu>, linux-mips@vger.kernel.org,
-        nios2 <ley.foon.tan@intel.com>, openrisc@lists.librecores.org,
-        linux-hexagon@vger.kernel.org, linux-riscv@lists.infradead.org,
-        x86@kernel.org, linux-xtensa@linux-xtensa.org,
-        linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
-        linux-mm@kvack.org
-Date:   Sun,  4 Apr 2021 17:20:48 +0000 (UTC)
+        id S231152AbhDDRly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Apr 2021 13:41:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54720 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230237AbhDDRlx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Apr 2021 13:41:53 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D398AC061756
+        for <devicetree@vger.kernel.org>; Sun,  4 Apr 2021 10:41:46 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id g8-20020a9d6c480000b02901b65ca2432cso9490479otq.3
+        for <devicetree@vger.kernel.org>; Sun, 04 Apr 2021 10:41:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Ti6WoHsz7Zlbgo2CzLLD8u2iAE4onCIPC/xc2UxmFJs=;
+        b=q7v/ZtoIP6tiq3K9PiNpnwNtZ7tXoCUN7Wsms2gM+yxytM2550C9QiP3fiZd6v20ug
+         TuoyppMtIhuGFOGdqcYNh08ib9q2Y7pDmim+rebTtYoKt1rOhnW0q/lMFh5GDu6W7nHp
+         BPjrgsqIwAKuFD3lny1YEauIWppCuZO1jahaJWxbyCOvbhE6PNdebjdrLCGQzhXyQDP3
+         aFidUd8qw50P/c0rU484OJkPwY1erBF57E+VEADiQlSZbNBkTif2lhWPBeT3xVTm0Oh9
+         IvxCJpujVcJ+BVv4WKm+6r17zkMf13L1GF4v/akRU+ed86aXP4X+DDWK92T1gTx/pJX8
+         J+jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Ti6WoHsz7Zlbgo2CzLLD8u2iAE4onCIPC/xc2UxmFJs=;
+        b=C9w5zCrZ0RZbreCW8JInjhV/Iutky8TmOoIcL12+q90hKiEaZPEP1mtDft0kdJ59WE
+         lH/GNKBYD0df12yKH0db6mRGfJPeM/pNiCXpnC6dtZD/JII8q0ntlLQNpws+wKkBHK/Y
+         1QXgj+vUxpFSF3ELxQdf3zzwx3C3pHTcGzKx7MGrkWADH1MW2rcuDgqQetU/Zo3PweaD
+         4ESEld3w/hbZubtybf4ZDOo8crTtHwzJkt683EeH4NVPCb/J2qIRp+bdcYwHbc4/PJoo
+         /9Fph/VVLStwaOesw2tbHohoxUcBrTsczsnx6zFREXjtOkDPB1YO6cXtCKJdQdjh5On4
+         0+cA==
+X-Gm-Message-State: AOAM531AGmTOex6NfyquXXKNE5AOavR60GVa0rfYP8qSvUWMAhrQEPQZ
+        n0hRu7q3ogKU8VC72usco9Sqbw==
+X-Google-Smtp-Source: ABdhPJz4dn7UOTKMDQfK19GfRDF9/qJYqjtbL8usgrR9XGnRSKr6pbZ1f8hG7SCNoqNAg0GYbLIxOQ==
+X-Received: by 2002:a05:6830:210e:: with SMTP id i14mr19342717otc.229.1617558106129;
+        Sun, 04 Apr 2021 10:41:46 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 62sm3404698oto.60.2021.04.04.10.41.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Apr 2021 10:41:45 -0700 (PDT)
+Date:   Sun, 4 Apr 2021 12:41:43 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [PATCH V2 0/5] Add PMIC DT files for sc7280
+Message-ID: <YGn6V6/hhXb1WaIc@builder.lan>
+References: <1617268396-1837-1-git-send-email-skakit@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1617268396-1837-1-git-send-email-skakit@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-One user has expressed the need to both append and prepend some
-built-in parameters to the command line provided by the bootloader.
+On Thu 01 Apr 04:13 CDT 2021, satya priya wrote:
 
-Allthough it is a corner case, it is easy to implement so let's do it.
+> Changes in V2:
+>  - As per Matthias's comments:
+>     - I've Split the patch into per-PMIC patches and one sc7280 patch
+>     - Removed 2nd critical point, thermal-governer property
+> 	- s/pm8325_tz/pm7325_temp_alarm and s/pm7325_temp_alarm/pm7325_thermal
+>     - Fixed few other minor errors.
+> 
+>  - As per Bjorn's comments, replaced '_' with '-' in node names and moved
+>    DT files inclusion to board dts.
+> 
+> This series is dependent on below series which adds DT files for SC7280 SoC
+> https://lore.kernel.org/patchwork/project/lkml/list/?series=488871
 
-When the user chooses to prepend the bootloader provided command line
-with the built-in command line, he is offered the possibility to enter
-an additionnal built-in command line to be appended after the
-bootloader provided command line.
+No need to mention this dependency, as you posted this after said series
+had been picked up.
 
-It is a complementary feature which has no impact on the already
-existing ones and/or the existing defconfig.
+However, also picked up are patches from Vinod adding initial pm8350c
+and pmk8350 files, so please rebase you changes onto linux-next - in
+addition to follow up on Matthias feedback.
 
-Suggested-by: Daniel Walker <danielwa@cisco.com>
-Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
----
-Sending this out as an RFC, applies on top of the series
-("Implement GENERIC_CMDLINE"). I will add it to the series next spin
-unless someone is against it.
----
- include/linux/cmdline.h |  3 +++
- init/Kconfig            | 12 +++++++++++-
- 2 files changed, 14 insertions(+), 1 deletion(-)
+Thanks,
+Bjorn
 
-diff --git a/include/linux/cmdline.h b/include/linux/cmdline.h
-index 020028e2bdf0..fb274a4d5519 100644
---- a/include/linux/cmdline.h
-+++ b/include/linux/cmdline.h
-@@ -36,6 +36,9 @@ static __always_inline bool __cmdline_build(char *dst, const char *src)
- 
- 	len = cmdline_strlcat(dst, src, COMMAND_LINE_SIZE);
- 
-+	if (IS_ENABLED(CONFIG_CMDLINE_PREPEND))
-+		len = cmdline_strlcat(dst, " " CONFIG_CMDLINE_MORE, COMMAND_LINE_SIZE);
-+
- 	if (IS_ENABLED(CONFIG_CMDLINE_APPEND))
- 		len = cmdline_strlcat(dst, " " CONFIG_CMDLINE, COMMAND_LINE_SIZE);
- 
-diff --git a/init/Kconfig b/init/Kconfig
-index fa002e3765ab..cd3087ff4f28 100644
---- a/init/Kconfig
-+++ b/init/Kconfig
-@@ -128,6 +128,14 @@ config CMDLINE
- 	  If this string is not empty, additional choices are proposed
- 	  below to determine how it will be used by the kernel.
- 
-+config CMDLINE_MORE
-+	string "Additional default kernel command string" if GENERIC_CMDLINE && CMDLINE_PREPEND
-+	default ""
-+	help
-+	  Defines an additional default kernel command string.
-+	  If this string is not empty, it is appended to the
-+	  command-line arguments provided by the bootloader
-+
- choice
- 	prompt "Kernel command line type" if CMDLINE != ""
- 	default CMDLINE_PREPEND if ARCH_WANT_CMDLINE_PREPEND_BY_DEFAULT
-@@ -154,7 +162,9 @@ config CMDLINE_PREPEND
- 	bool "Prepend to the bootloader kernel arguments"
- 	help
- 	  The default kernel command string will be prepended to the
--	  command-line arguments provided by the bootloader.
-+	  command-line arguments provided by the bootloader. When this
-+	  option is selected, another string can be added which will
-+	  be appended.
- 
- config CMDLINE_FORCE
- 	bool "Always use the default kernel command string"
--- 
-2.25.0
-
+> 
+> satya priya (5):
+>   arm64: dts: qcom: pm7325: Add PMIC peripherals for pm7325
+>   arm64: dts: qcom: pm8350c: Add PMIC peripherals for pm8350c
+>   arm64: dts: qcom: pmk8350: Add PMIC peripherals for pmk8350
+>   arm64: dts: qcom: pmr735a: Add PMIC peripherals for pmr735a
+>   arm64: dts: sc7280: Include PMIC DT files for sc7280
+> 
+>  arch/arm64/boot/dts/qcom/pm7325.dtsi    |  53 +++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pm8350c.dtsi   |  53 +++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pmk8350.dtsi   | 100 ++++++++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pmr735a.dtsi   |  53 +++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts |   4 ++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi    |   3 +
+>  6 files changed, 266 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pm8350c.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmk8350.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmr735a.dtsi
+> 
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
