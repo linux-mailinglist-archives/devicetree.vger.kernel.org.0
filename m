@@ -2,202 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4D8535398A
-	for <lists+devicetree@lfdr.de>; Sun,  4 Apr 2021 21:44:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 433CE3539B9
+	for <lists+devicetree@lfdr.de>; Sun,  4 Apr 2021 22:28:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231468AbhDDTpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Apr 2021 15:45:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52830 "EHLO
+        id S231468AbhDDU2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Apr 2021 16:28:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231442AbhDDTo5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Apr 2021 15:44:57 -0400
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 786C8C06178C
-        for <devicetree@vger.kernel.org>; Sun,  4 Apr 2021 12:44:43 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id d10so2032418pgf.12
-        for <devicetree@vger.kernel.org>; Sun, 04 Apr 2021 12:44:43 -0700 (PDT)
+        with ESMTP id S231445AbhDDU2l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Apr 2021 16:28:41 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C7DCC061756
+        for <devicetree@vger.kernel.org>; Sun,  4 Apr 2021 13:28:36 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id g18-20020a7bc4d20000b0290116042cfdd8so1572046wmk.4
+        for <devicetree@vger.kernel.org>; Sun, 04 Apr 2021 13:28:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1gVXYTt/wzzvsZpY0S8Ku5EMWZnneAZjbi5/gEN+9Z4=;
-        b=Zhg0BOdZ9NRM5lmaM7rboPD1Z3jkVYbpRfCPSIf03TbB19dEc4nt5Qu73HvAsXp7vE
-         HpHRkBCR3GB77aZ3m5SeMIe1fHGuLQuzzFuhiDsRyG1FrmVlITz4UP6XDyJDqxqW0QA2
-         ORfaLSRFmRz5dzkGOWdCBYwPQ3MWcvLm1lmhFOFcOw8022lRSJiij4Ppq33we3420/LP
-         SeNq0qG9g5Rp2qVBb7ou553bcVIrwTr2CJEFfO80qmnu8rkh9OKZdnntZpOttRAzvyOU
-         Yjhpc15wFJJC64b0h2p5JGttV+CU4i2r8VagqutGYiHWXEWLRMNtYtwxitHJFn6YlQC9
-         3Ddw==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=p4Z+wpe/vlKTP8y/0b+d0+U+PvDT/FlgjYt5lTllbW4=;
+        b=NWlntXXj0Z1wwNIlEqKpTd+qYBTsIkNjs+EELfp9hGpc3vKDTi0VLBCsZfeGileN53
+         cwgNJ6P1EXl1kXYhCinsy8dI3ocFgYwrz+KJmWB2ROn041jIYe15UnfLuyf8NXr/Oe98
+         7oIDHCOTfYeeXJCEK7+HEcQWLBEQqW1ie76EblqdwLwPGPaO/cUd+OkXpg1hxMKcD3SF
+         i2X0P1KSxWv53mU/jQFPmlB/lTfH694GSLTc5lCvu3KLOroGQ/9qi/zCO5eu6+6lrdTz
+         ww2ZC3fOc7I25sBX+K+e8SarGHkNb1OMthUEqjQlVZsILILcPpCVJndCGGFQ+ywb4Jxu
+         GqpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=1gVXYTt/wzzvsZpY0S8Ku5EMWZnneAZjbi5/gEN+9Z4=;
-        b=ZFDEo6qCytx6H/7hXp8fI3VSZWXo2MpkwbWM+LNFF24zpQ8vcqUd/cCjtfERn25Pg6
-         fVkp8sIYXKw+qaLHdSWz34lDezfHD6GWSJRk6nYiKuGAI56upYWK5jtLIfP0Tk1fwf2O
-         n+3LQZ6UzgXrJ2Eg0cLl5FwvmdktOiun9huSNn4VsstS649NCNWwoQn9DWTV4qStR5yy
-         Zw4RIh7/Md0uY1F5ZNw1nwRQ474+s1QdCd+5ofO3Pl6EavUXH6dmPaLgneyl34rFtWXn
-         jA1sQzHYa4KiR3G2kvMq9MX21GciptKF031/BMFTFavVETSOn0hR1To8For522c0NGpC
-         3dKQ==
-X-Gm-Message-State: AOAM53199QfoJgre4LVlQg0v3Pb1P3yK4b3T5CUNfcFcWoPGupIeet+R
-        8dw0lsTn3/Ssh/dKe/bJmcgf/g==
-X-Google-Smtp-Source: ABdhPJz8MtSWzD2hT6GOsb6g/JBLSmBgcQChZFDAZBBC0Xz879Wf37YxtGusWicuJNGO+VCUn1sx/g==
-X-Received: by 2002:aa7:854c:0:b029:20a:68ac:7923 with SMTP id y12-20020aa7854c0000b029020a68ac7923mr21238420pfn.19.1617565482786;
-        Sun, 04 Apr 2021 12:44:42 -0700 (PDT)
-Received: from localhost.localdomain ([49.207.217.34])
-        by smtp.gmail.com with ESMTPSA id r10sm1884057pjf.5.2021.04.04.12.44.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Apr 2021 12:44:42 -0700 (PDT)
-From:   Amit Pundir <amit.pundir@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: [PATCH v4] arm64: dts: qcom: sdm845-xiaomi-beryllium: Add DSI and panel bits
-Date:   Mon,  5 Apr 2021 01:14:37 +0530
-Message-Id: <20210404194437.537011-1-amit.pundir@linaro.org>
-X-Mailer: git-send-email 2.25.1
+        bh=p4Z+wpe/vlKTP8y/0b+d0+U+PvDT/FlgjYt5lTllbW4=;
+        b=mR/rc9qlbc4bQC4nfVJexKDiIR3u1B/Ftu0h1496H7O+ElAlbZyslEtoOwhVqh6gU6
+         MMoDJKG+hx2olzd7JaUYDXTp3IkpZRDJQ16nHjPa1Pq604OwXp/e/hj8yB623h2TX8qT
+         qUAdoqFMSrAhCZFxF5ucvIEfOOnq74mVq0llSba+/3YCjRmATefFUQMJRH9wE1ftXnbg
+         S2wrHWO7MhEZbdMNTi/49qWqjgVOt5EoyseHNr0GuYZU6WjUnEdqJADkYlIGKYGGI9cT
+         dz3vnCh6DyYk3IbDAsQGifI+XYzl7UnYwWR9owhhAlndvQ0DL50cJTvQh0LRxSRiq5KE
+         SvSg==
+X-Gm-Message-State: AOAM530fKRLrYCmKq69LqIiu/PM6IaHM4CW64Ql4uTJxP8nAIaw4ih4d
+        Fe0DqWD+fboSk66okOtEunD+Mw==
+X-Google-Smtp-Source: ABdhPJzyhdDpLRNsqZ9OZoNfAvSvJhyGUY7UxDjuu2c41Xlv9nxAeDBSy8Bq2XWJNBulCTrYeu6eDA==
+X-Received: by 2002:a05:600c:4fc8:: with SMTP id o8mr12314827wmq.87.1617568114719;
+        Sun, 04 Apr 2021 13:28:34 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:6d68:6b9a:7a3c:4a9f? ([2a01:e34:ed2f:f020:6d68:6b9a:7a3c:4a9f])
+        by smtp.googlemail.com with ESMTPSA id f7sm19957499wmq.11.2021.04.04.13.28.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 04 Apr 2021 13:28:34 -0700 (PDT)
+Subject: Re: [PATCH 05/14] dt-bindings: timer: nuvoton,npcm7xx: Add
+ wpcm450-timer
+To:     =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        openbmc@lists.ozlabs.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20210320181610.680870-1-j.neuschaefer@gmx.net>
+ <20210320181610.680870-6-j.neuschaefer@gmx.net>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <623f26fa-38f3-c7fc-a857-126d93a0e886@linaro.org>
+Date:   Sun, 4 Apr 2021 22:28:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20210320181610.680870-6-j.neuschaefer@gmx.net>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sumit Semwal <sumit.semwal@linaro.org>
+On 20/03/2021 19:16, Jonathan Neuschäfer wrote:
+> Add a compatible string for WPCM450, which has essentially the same
+> timer controller.
+> 
+> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
+> ---
 
-Enabling the Display panel for beryllium requires DSI
-labibb regulators and panel dts nodes to be added.
-It is also required to keep some of the regulators as
-always-on.
+Applied, thanks
 
-Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
-Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
----
-v4: Added Konrad's reviewed-by from v3. Added over current
-    protection, pull-down and soft-start properties. Couldn't
-    boot with downstream max-microamp values, so skipped it.
-    Smoke tested on v5.12-rc5.
-v3: Addressed Konrad's concerns. Configured labibb regulators
-    explicitly based on downstream microvolt values. Display
-    comes up fine with default discharge-resistor-kohms and
-    soft-start-us properties, so didn't touch them.
-    Smoke tested on next-20210209.
-v2: Rebased to mainline (v5.11-rc6) and fixed build warnings.
 
- .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts | 71 +++++++++++++++++++
- 1 file changed, 71 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-index 86cbae63eaf7..7d029425336e 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-@@ -157,6 +157,14 @@ vreg_l13a_2p95: ldo13 {
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
-+		vreg_l14a_1p8: ldo14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-boot-on;
-+			regulator-always-on;
-+		};
-+
- 		vreg_l17a_1p3: ldo17 {
- 			regulator-min-microvolt = <1304000>;
- 			regulator-max-microvolt = <1304000>;
-@@ -191,6 +199,7 @@ vreg_l26a_1p2: ldo26 {
- 			regulator-min-microvolt = <1200000>;
- 			regulator-max-microvolt = <1200000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-boot-on;
- 		};
- 	};
- };
-@@ -200,6 +209,43 @@ &cdsp_pas {
- 	firmware-name = "qcom/sdm845/cdsp.mdt";
- };
- 
-+&dsi0 {
-+	status = "okay";
-+	vdda-supply = <&vreg_l26a_1p2>;
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	panel@0 {
-+		compatible = "tianma,fhd-video";
-+		reg = <0>;
-+		vddi0-supply = <&vreg_l14a_1p8>;
-+		vddpos-supply = <&lab>;
-+		vddneg-supply = <&ibb>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-+
-+		port {
-+			tianma_nt36672a_in_0: endpoint {
-+				remote-endpoint = <&dsi0_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&dsi0_out {
-+	remote-endpoint = <&tianma_nt36672a_in_0>;
-+	data-lanes = <0 1 2 3>;
-+};
-+
-+&dsi0_phy {
-+	status = "okay";
-+	vdds-supply = <&vreg_l1a_0p875>;
-+};
-+
- &gcc {
- 	protected-clocks = <GCC_QSPI_CORE_CLK>,
- 			   <GCC_QSPI_CORE_CLK_SRC>,
-@@ -215,6 +261,31 @@ zap-shader {
- 	};
- };
- 
-+&ibb {
-+	regulator-min-microvolt = <4600000>;
-+	regulator-max-microvolt = <6000000>;
-+	regulator-over-current-protection;
-+	regulator-pull-down;
-+	regulator-soft-start;
-+	qcom,discharge-resistor-kohms = <300>;
-+};
-+
-+&lab {
-+	regulator-min-microvolt = <4600000>;
-+	regulator-max-microvolt = <6000000>;
-+	regulator-over-current-protection;
-+	regulator-pull-down;
-+	regulator-soft-start;
-+};
-+
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_mdp {
-+	status = "okay";
-+};
-+
- &mss_pil {
- 	status = "okay";
- 	firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mdt";
 -- 
-2.25.1
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
