@@ -2,108 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 636B9354765
-	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 22:10:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBAA7354767
+	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 22:11:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240630AbhDEUKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Apr 2021 16:10:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45872 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240551AbhDEUKT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Apr 2021 16:10:19 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BD45E613C6;
-        Mon,  5 Apr 2021 20:10:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617653413;
-        bh=rA9Zw09mciODJSeIM6nLu1weM/1jrMiqvN1zY0ZxHSg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=a2wZHdPHPxGrE89siTyA8zgo6TKoPjjIwMqsUhmkVbn6s4cXVFePs9xSw17+uqopn
-         Fn5OFCNbk4uqQe7KurPl++k2gmNFrYCCfBeF0KwJRUE89mec3UPSn1r2pVDWninHls
-         CnCkISCQSmFj6gLty+IrzlfDr/L3oDXpfZU2JL9Jn3aqTzcRSur9cifN99wpgLqcKC
-         1QlIsDhIloODxgDQZFcmNY+AkkiQbdMHm/BIyh/3FUjK8MApqX7Ga4OqPabGvQ6xbN
-         FYF7nOSzxPqv3uF73lBMMICzgOJUyX23iYqHeGwqQIKWQPOCkVQG5G+JSr9uH4+DRh
-         RxZZv4aU8N1sg==
-Received: by mail-lj1-f172.google.com with SMTP id s17so13921401ljc.5;
-        Mon, 05 Apr 2021 13:10:12 -0700 (PDT)
-X-Gm-Message-State: AOAM530foF3sIqK4Igu9V+X3kRT7Kee4AqOv+YroGGboR7/f9KQoATn6
-        s3h8qo3qczwPxwN2GK/viT43yzobL6yHFEVGmAw=
-X-Google-Smtp-Source: ABdhPJzLJMYoipMVG9xL5GkooeRMfaNFnIj44znyKkjoO9ZYjIYhgyAWmpvGtsOPDAiaxl/tDjhC9PG/mE4R9Eip2fU=
-X-Received: by 2002:a2e:8919:: with SMTP id d25mr17398026lji.187.1617653411035;
- Mon, 05 Apr 2021 13:10:11 -0700 (PDT)
+        id S236350AbhDEULG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Apr 2021 16:11:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58524 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235370AbhDEULF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 16:11:05 -0400
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8833DC061756;
+        Mon,  5 Apr 2021 13:10:58 -0700 (PDT)
+Received: by mail-il1-x12b.google.com with SMTP id c15so2315872ilj.1;
+        Mon, 05 Apr 2021 13:10:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yipPMaEHRBCVVLHFCEOHBoiBt4r0IqzPMd/p47fHFz8=;
+        b=kXRuxDPCx2X1t6vPGgEQFce+rxUsWibPfNujCMhY4lrrhQE2hFCAksFpimzWUkV8gf
+         b5i+XTx2jDeLrvQ0DCzyjwr1rq93K7ht8MaA+IkzzaNkQinH6zsNLhFSWHH0bvz1eCCV
+         MMbzEK6fqiM5u1B6dydC80VAvqHepjKH2CxZFG4rTrwGrCIQCXVq27AQSO1he18AJNDz
+         B1BskbqyayR3s2CezqEx3UDeBs9EXauCjDhD777+34ZcM52FpMWaN/OAhdW0kwr3czLy
+         CPw+TTKpzmxwWHj5WyYP79ynDgHYuit9zBHjvQihnehwTSCLoqbDEpWMhJs/FKYz+hZ9
+         WW5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yipPMaEHRBCVVLHFCEOHBoiBt4r0IqzPMd/p47fHFz8=;
+        b=kSWIbuNiiXU4a5y00kxdVjAdpubCUvuol1KPFjZCkiObVHrFjRvyQYyuZ8jq1OIB3f
+         NjJINhOwN8womnGIAeuRrmI7RPb+0Lb0snJXRQQGrSWbFrK2uuVIBdRY2GeCyw0Soj+v
+         KtneofNKkoNgCjRfwkMD/K/d1Cjrpf0qE/gJwUq7po+6ToTvHMxqJivxHNORgPejhZQT
+         W2bRP/W5tZavelLqzdFGDX+ZVQ/9EZWjNF7n4t5uZsnF6MPMTyRk1/HW+8OG/VcrpyUI
+         9E0cMNFZOqBvZYbQNQALs5a9QyzMGXzXW+fvqVKiDKgzh1u+RePNRgTbqYJSxRMfU2M1
+         TG3w==
+X-Gm-Message-State: AOAM533bCTcdC5wFwGp8jbczcLON670hTpgLjwLc7zWu1515gUHfEcOj
+        UWwLHDtQpVAkZHF4z4EeXwvo6ry/IiQv7DjurD9QQ6URH55xW+wz
+X-Google-Smtp-Source: ABdhPJyUgVzb6RWclGt3JbqMEbsLVzUDNX+nBpGEUf004VfGHr05DyUKIhgb12qjPc2VShHEvczv9qGyLhf1wuQqowM=
+X-Received: by 2002:a05:6e02:104b:: with SMTP id p11mr20272403ilj.77.1617653457957;
+ Mon, 05 Apr 2021 13:10:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210405200259.23525-1-petr.vorel@gmail.com>
-In-Reply-To: <20210405200259.23525-1-petr.vorel@gmail.com>
-From:   Ricardo Ribalda Delgado <ribalda@kernel.org>
-Date:   Mon, 5 Apr 2021 22:09:54 +0200
-X-Gmail-Original-Message-ID: <CAPybu_2_iCHO37PfQhu8+6WrSb_VMXgGzkiAhw7+B-wLOd7GRQ@mail.gmail.com>
-Message-ID: <CAPybu_2_iCHO37PfQhu8+6WrSb_VMXgGzkiAhw7+B-wLOd7GRQ@mail.gmail.com>
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8994: Reserve gpio ranges
-To:     Petr Vorel <petr.vorel@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        devicetree@vger.kernel.org
+References: <20210405031436.2465475-1-ilya.lipnitskiy@gmail.com> <CAGETcx9ifDoWeBN1KR4zKfs-q73iGo9C-joz4UqayeE3euDQWg@mail.gmail.com>
+In-Reply-To: <CAGETcx9ifDoWeBN1KR4zKfs-q73iGo9C-joz4UqayeE3euDQWg@mail.gmail.com>
+From:   Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
+Date:   Mon, 5 Apr 2021 13:10:47 -0700
+Message-ID: <CALCv0x3-A3PruJJ6wmzBZ5544Zj8_R7wFXkOm6H-a5tG406wYQ@mail.gmail.com>
+Subject: Re: [PATCH] of: property: do not create device links from *nr-gpios
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        stable <stable@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Petr
+Hi Saravana,
 
-On Mon, Apr 5, 2021 at 10:03 PM Petr Vorel <petr.vorel@gmail.com> wrote:
+On Mon, Apr 5, 2021 at 1:01 PM Saravana Kannan <saravanak@google.com> wrote:
 >
-> Reserve pins 0-3 and 85-88 as these aren't meant to be accessible
-> from the application CPUs. Fix similar to 9134586715e3.
+> On Sun, Apr 4, 2021 at 8:14 PM Ilya Lipnitskiy
+> <ilya.lipnitskiy@gmail.com> wrote:
+> >
+> > [<vendor>,]nr-gpios property is used by some GPIO drivers[0] to indicate
+> > the number of GPIOs present on a system, not define a GPIO. nr-gpios is
+> > not configured by #gpio-cells and can't be parsed along with other
+> > "*-gpios" properties.
+> >
+> > scripts/dtc/checks.c also has a special case for nr-gpio{s}. However,
+> > nr-gpio is not really special, so we only need to fix nr-gpios suffix
+> > here.
 >
-> Fixes: 3edfb7bd76bd ("gpiolib: Show correct direction from the beginning")
+> The only example of this that I see is "snps,nr-gpios".
+arch/arm64/boot/dts/apm/apm-shadowcat.dtsi uses "apm,nr-gpios", with
+parsing code in drivers/gpio/gpio-xgene-sb.c. There is also code in
+drivers/gpio/gpio-adnp.c and drivers/gpio/gpio-mockup.c using
+"nr-gpios" without any vendor prefix.
 
-Why the Fixes?
+I personally don't think causing regressions is good for any reason,
+so I think we need to fix this in stable releases. The patch can be
+reverted when nr-gpios is no longer special. The logic here should
+also be aligned with scripts/dtc/checks.c, I actually submitted a
+patch to warn about "nr-gpios" only and not "nr-gpio" in dtc as well:
+https://www.spinics.net/lists/devicetree-compiler/msg03619.html
 
-Is the behaviour different if that patch is not applied?
-
->
-> Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
-> ---
-> Hi,
->
-> tested on latest qcom/for-next.
->
-> Simple testing with /sys/class/gpio/export showed that 85-88.
-> 3 disables UART. I expect 0-2 are also reserved as on other msm8998.
->
-> for i in $(seq 0 146); do echo $i > /sys/class/gpio/export; done
->
-> I expect it's just angler specific, thus I haven't added it to msm8994.dtsi
-> (otherwise Konrad would have fixed it).
->
-> Kind regards,
-> Petr
->
->  arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
-> index baa55643b40f..0dc94101d5de 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  /* Copyright (c) 2015, Huawei Inc. All rights reserved.
->   * Copyright (c) 2016, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2021 Petr Vorel <petr.vorel@gmail.com>
->   */
->
->  /dts-v1/;
-> @@ -32,3 +33,7 @@ serial@f991e000 {
->                 };
->         };
->  };
-> +
-> +&tlmm {
-> +       gpio-reserved-ranges = <0 4>, <85 4>;
-> +};
-> --
-> 2.30.2
->
+Ilya
