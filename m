@@ -2,115 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3553B35474C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 22:03:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7E0A35474F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 22:04:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233745AbhDEUDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Apr 2021 16:03:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56808 "EHLO
+        id S240456AbhDEUEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Apr 2021 16:04:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233253AbhDEUDR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 16:03:17 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BA17C061756;
-        Mon,  5 Apr 2021 13:03:10 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id w3so18406702ejc.4;
-        Mon, 05 Apr 2021 13:03:10 -0700 (PDT)
+        with ESMTP id S234721AbhDEUEG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 16:04:06 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E3E4C061788
+        for <devicetree@vger.kernel.org>; Mon,  5 Apr 2021 13:03:59 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id d191so6215685wmd.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Apr 2021 13:03:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=l2r5xpqBxPdoX4BFUkxb3XsKvWxRSxdMaDCbCTJRu1w=;
-        b=lTWnuxE61Y/JJoVGNQZFpyWzJJO3IaronmJ37ay78cq7PjoeeBWkr0yrmwwN2M/kO2
-         FL+hNmCbXG15B/q+TE59yEhe4K+F9ZS8oetROE9gE7BfU2xAaMKL8FGw2xdmuL48xcDO
-         Ox+kj5CXMioBCU1hGKYkjhuPeU5yziGdscVFD21Ad5YHMXJFve9qXVyWfkVTOv7HenW8
-         hISGAGRQVcRTuEsGHieJXRZr80OdFoOQMK4jCJN3855Qia8VlvoA+HNAQO8uYUDBkMsb
-         pJ2T5kVlqAvAO/GB0ojpnBVwuns+kY8jU8Y/h5A/DsPYMc3KfufJSLI9GMM8V0A4cll3
-         eRzQ==
+        bh=JoeUTxMIo7LMD3N8t52A8FukB5jFgXLkXXTJN8fbj+g=;
+        b=g73AJIK25WP7XEAoyKc7uRpenUTjoxW84YeeUt/evdm9XIRXr69JfRXYFkGMqzV5Zc
+         GLOq1FHgWcnsdC99b/QWDG3U5HDN2zu5WBLYCpn85QVnMBfA8sXYpyDCPsAIxI0tLYIa
+         XgkpOommHHa+TIbX4L+25NYFLckVmXa+WcFXhq5IcdTiUFiWSp65ukjESs2uvBCel5Ii
+         jdG4lRVNtnm6815RFBeOE/lNW5XkI1JajH7PLM4cKaDqqVcPNwgmI2qFUpqHAWgjjE81
+         8CPbdEWde5U89020coWs3O8nXg5Mdy0kAGsghHkIzD4h5RMOpJkA2+HtP6qmDRjC0Yjt
+         p8XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=l2r5xpqBxPdoX4BFUkxb3XsKvWxRSxdMaDCbCTJRu1w=;
-        b=WK3G5Dc6/91EcsJiKSRtTi2bDhm7AMcI5boJygXeX5pKgu+2tkuSTIb6vWW65lQIWQ
-         uJxkp9t10pjv0H2id4lBUAwAv3QT0b6enwEdIBnesn27oVto8Jt7ucz3iBcZWbBGNg4e
-         xYEqfsTwoSJJN65hfR47qirdwyTVlcsFDNuREiPQtgXtM/8D7eV5Sc2PF24T2sE+daIu
-         SawTJ+flBtTxNCwvdoPuz70bFIb4PmTBwp6gDm6uYRvd6lJA7vw249RxwFwxnRsV5gzG
-         d+LUT7hZCAUe9rGty1lsVZ9Dkd0sqSwY9PUBMoE6MelPLQbwNw4g+5PSJgmZBD6ULwy7
-         Vgvw==
-X-Gm-Message-State: AOAM530rwMXvqcr46OsldRxlb2GB5/QTVfxpZEczqSMuDWmKifYr27vs
-        V4r0SyiYs1a1UMx3MaBArKdB45GkRMTgOA==
-X-Google-Smtp-Source: ABdhPJy41b0aFigVZSDGNT13cSHtum2FZcK0hKD5I1gZsD6MshQ5EyQo7/fBlNQ4BHDjaE9GiGCkZg==
-X-Received: by 2002:a17:907:105c:: with SMTP id oy28mr11849496ejb.552.1617652989026;
-        Mon, 05 Apr 2021 13:03:09 -0700 (PDT)
-Received: from localhost.localdomain ([62.201.25.198])
-        by smtp.gmail.com with ESMTPSA id bo19sm5203932edb.17.2021.04.05.13.03.06
+        bh=JoeUTxMIo7LMD3N8t52A8FukB5jFgXLkXXTJN8fbj+g=;
+        b=J72nG6EBG+8p5W8fWeTU2DR2Ck7cKroAuIdqxxS04M4oFrf+JSSfF1BR61RlV9YhKe
+         Qabgmi4NuxhaNGkroyITEv0CX87hbqLA55Op6SbxcPpMck8LwpDqWN/5C7NNwmzz/WfX
+         zuQ49pqxOl62dNlv0oUBWLalNPQpJvRLFt2aa2F+lRKB9bf2J8vkKJxz1uywJqR/KVf0
+         ceytnek6XES4yTp70ZxoBifEScLFyLEgqnkyH/0hrT9bUXK6KtR8jjoM4EKodgAVSTkF
+         aqGXt34NI1yQZ0/WkaVI3asPFI+5qlDIrv7HAIMgD6Y5YMDydrGePD9stCyPf6MdEnFg
+         M7IA==
+X-Gm-Message-State: AOAM532Eoo4MDpZ2eE+BmYkwZyIKeBB/UlR7nX/3GsjjMRc69/bHjAF/
+        uYVu+6Wxkk7TyVajsVL8Pm0vtQ==
+X-Google-Smtp-Source: ABdhPJy+F/Eu8jOmRExeF5RKu7rRF45ePmTNcKbmTRjD6JUofz2BXs66rVi7VFML/IEm1eiXtHzCBA==
+X-Received: by 2002:a1c:7406:: with SMTP id p6mr645945wmc.103.1617653038083;
+        Mon, 05 Apr 2021 13:03:58 -0700 (PDT)
+Received: from localhost.localdomain ([88.160.162.107])
+        by smtp.gmail.com with ESMTPSA id i26sm657406wmb.18.2021.04.05.13.03.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Apr 2021 13:03:07 -0700 (PDT)
-From:   Petr Vorel <petr.vorel@gmail.com>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Petr Vorel <petr.vorel@gmail.com>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ricardo Ribalda <ribalda@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/1] arm64: dts: qcom: msm8994: Reserve gpio ranges
-Date:   Mon,  5 Apr 2021 22:02:59 +0200
-Message-Id: <20210405200259.23525-1-petr.vorel@gmail.com>
-X-Mailer: git-send-email 2.30.2
+        Mon, 05 Apr 2021 13:03:57 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     mkorpershoek@baylibre.com, Fabien Parent <fparent@baylibre.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v2 1/2] dt-bindings: mediatek: mmsys: add mt8167 binding
+Date:   Mon,  5 Apr 2021 22:03:52 +0200
+Message-Id: <20210405200354.2194930-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reserve pins 0-3 and 85-88 as these aren't meant to be accessible
-from the application CPUs. Fix similar to 9134586715e3.
+Add binding documentation for MT8167 SoC.
 
-Fixes: 3edfb7bd76bd ("gpiolib: Show correct direction from the beginning")
-
-Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
-Hi,
+V2: Rebased + fix typo in commit message.
 
-tested on latest qcom/for-next.
+ .../devicetree/bindings/arm/mediatek/mediatek,mmsys.txt          | 1 +
+ 1 file changed, 1 insertion(+)
 
-Simple testing with /sys/class/gpio/export showed that 85-88.
-3 disables UART. I expect 0-2 are also reserved as on other msm8998.
-
-for i in $(seq 0 146); do echo $i > /sys/class/gpio/export; done
-
-I expect it's just angler specific, thus I haven't added it to msm8994.dtsi
-(otherwise Konrad would have fixed it).
-
-Kind regards,
-Petr
-
- arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
-index baa55643b40f..0dc94101d5de 100644
---- a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0-only
- /* Copyright (c) 2015, Huawei Inc. All rights reserved.
-  * Copyright (c) 2016, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2021 Petr Vorel <petr.vorel@gmail.com>
-  */
- 
- /dts-v1/;
-@@ -32,3 +33,7 @@ serial@f991e000 {
- 		};
- 	};
- };
-+
-+&tlmm {
-+	gpio-reserved-ranges = <0 4>, <85 4>;
-+};
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
+index d8c9108c3b4a..78c50733985c 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
+@@ -13,6 +13,7 @@ Required Properties:
+ 	- "mediatek,mt6779-mmsys", "syscon"
+ 	- "mediatek,mt6797-mmsys", "syscon"
+ 	- "mediatek,mt7623-mmsys", "mediatek,mt2701-mmsys", "syscon"
++	- "mediatek,mt8167-mmsys", "syscon"
+ 	- "mediatek,mt8173-mmsys", "syscon"
+ 	- "mediatek,mt8183-mmsys", "syscon"
+ - #clock-cells: Must be 1
 -- 
-2.30.2
+2.31.0
 
