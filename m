@@ -2,87 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B34D035475C
+	by mail.lfdr.de (Postfix) with ESMTP id 6488235475B
 	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 22:08:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240542AbhDEUIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S240530AbhDEUIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 5 Apr 2021 16:08:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57954 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233455AbhDEUIg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 16:08:36 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48C8CC061756
-        for <devicetree@vger.kernel.org>; Mon,  5 Apr 2021 13:08:26 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id u5-20020a7bcb050000b029010e9316b9d5so6147942wmj.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Apr 2021 13:08:26 -0700 (PDT)
+        with ESMTP id S233256AbhDEUIf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 16:08:35 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A981BC06178C
+        for <devicetree@vger.kernel.org>; Mon,  5 Apr 2021 13:08:27 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id y124-20020a1c32820000b029010c93864955so8103485wmy.5
+        for <devicetree@vger.kernel.org>; Mon, 05 Apr 2021 13:08:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=UzJH7Fk4Fc61upKjMDDFY31BpQ2CJ0Y/l0pKp7AosC0=;
-        b=mODRn7zvxl0fGW6yidpUQBRF97c/OL+PBw/eoFfwBcpqF5W6k26SYTHEjDXBWxi2bT
-         TYQyvSBlDlFu6LSvRqq+gQjAU9sJUS1Zn6f2p1Tr9SysGLQ4OHC7YzjwSFZfzKxq2Wv4
-         7Mm7oIyndndB6lp2nFL1eEkyv1MSQo/Va3rEgZ1FORGHaDQPTLWNbWjjBpZH1xwjp3dh
-         BV3cygGjErNUadI2ZyLGiFNdNDcSXX6n4WEFDdMsDIF4NhrJvoeWbby2EUzII+U6wFZV
-         Sbwb1vq8Iu9eDwYQruPqUY99gvUvcY9/uPRlPEWwU+UoglD0GmSdPuNw36McAhos1TXr
-         jdbQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=8aknEMXfHwgN2+JZLeFSPHnrU6CH5XTJuE/06jhcA4M=;
+        b=PeMmuOhPfspxHBXQBSuaj+W2sB7MTucUvkDloX4KsqMG5rMb8sTP7aROvNS+Gka7qb
+         WUj8as9h5MfSEWB4jkxHpaOVzbN2SOWFTueVB3rObZ6IGLNQUogIhEqB8V9MTjSwZ+vg
+         XlUxk5+sCp4l3fhbVpulvFSTrqbGeoV7T1cbaUzOFjfVf50fPGi3FfOPqa83TAXB0/Y8
+         WATdKCCeoSZeOOqLCgmJ+LKff428wbCuoZCpWZTiOXWkxaYA/5f+lsLA+f+BD7Cd7Pdh
+         vpiR92fJ1S6XBbuCHhJy5yeddomOSuzZ4NI4llOFRZevhS2xNLPghAxoKbj6ow1yEQkw
+         JmDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=UzJH7Fk4Fc61upKjMDDFY31BpQ2CJ0Y/l0pKp7AosC0=;
-        b=LA9sLcctMviyfgSqae+Wy3cw/rnBvtxfr+xa3Bpbjz25OBbY5ZKYfFc3Tvcwc8tdNR
-         6aIumnqfdZE1dYUlyLtW9J2gfWgof6axkJRmGXQtji1PacnRUMNHb9LLT+alqpsqnKLI
-         f7MeAvg5IDmD8U+po1usw7M2/dX8aj4lsGuDQtE8qlys7SPhMTVRtQPo+eVvaDVinPIw
-         lxDp0k7aDxgIkrTke3XFX2mEciaRHQMHvE+dxOFXExDgE5G6mGl5kK7VFfOLDT9da/zR
-         ka0AEzesafCT1tKcisllgZOI4yD91PP1DkisAHaCUx5Qf+RrBAFPOsUaAKZEBQ0SOQYC
-         FSHw==
-X-Gm-Message-State: AOAM530HTgN0zPz/R/l7XrenM6YJe1y6Jk3pGeclsMqjZS3iak4QKDCX
-        lrkkyo4otn0qBF/4mMWWLGnWDw==
-X-Google-Smtp-Source: ABdhPJxjoSeWcA1NNDsqV2aXCmphXzWc6o535OR+3DoQcmV5mwnWNxuP21QvzdZfY/H1pw/6atiHKg==
-X-Received: by 2002:a1c:7d56:: with SMTP id y83mr717892wmc.6.1617653305072;
-        Mon, 05 Apr 2021 13:08:25 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=8aknEMXfHwgN2+JZLeFSPHnrU6CH5XTJuE/06jhcA4M=;
+        b=q6t8XDDP0+V68RDMSCyKlj4XarBB2UhYY3g1mBbhKXLyQX48C3wDU6qPeqLGMZKDED
+         663Q7ABolGtfkydTCY7B8qQJiB9K3JQEVRHjKUJEAygMW8eB+PVfaKEd2WdXCoUTPstJ
+         TxlyyKWXvhmMc+OiDVXDk4bWw6oHOMNjKkCDz8QnZC0lszAxEAKrf9bgHfrpaB3HsgH0
+         R9sC+Iq+rGz2UveIAcGhoauznhASZ4UwDsnQ/ksaxkpQNQtZhNOdLSAxpHpf7azo1kCX
+         340OhkqESRR3JU76ftvjUftzm0O63f/rsCIySvZIDt6w7eAWaenPBfRU7IhE7xbuwI97
+         GQnA==
+X-Gm-Message-State: AOAM530D66Wzw0SHg8V/OHiwkVrWTO1MhtTy3HClP2JWpZPbQ8MuQq2A
+        6VKDuSp9AJ8vqUakq88DoKFOLQ==
+X-Google-Smtp-Source: ABdhPJzPj8X6QTxHPnI9UzmRqR2H2VyXqprQJZiKTL4Sys9bnTOxc1P7fNfj75aFRhkg1Gxn6jMDlQ==
+X-Received: by 2002:a1c:197:: with SMTP id 145mr727322wmb.48.1617653306403;
+        Mon, 05 Apr 2021 13:08:26 -0700 (PDT)
 Received: from localhost.localdomain ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id v185sm609420wmb.25.2021.04.05.13.08.23
+        by smtp.gmail.com with ESMTPSA id v185sm609420wmb.25.2021.04.05.13.08.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Apr 2021 13:08:24 -0700 (PDT)
+        Mon, 05 Apr 2021 13:08:25 -0700 (PDT)
 From:   Fabien Parent <fparent@baylibre.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>
 Cc:     mkorpershoek@baylibre.com, Fabien Parent <fparent@baylibre.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/5] arm64: dts: mediatek: mt8167: add mmsys node
-Date:   Mon,  5 Apr 2021 22:08:17 +0200
-Message-Id: <20210405200821.2203458-1-fparent@baylibre.com>
+Subject: [PATCH 2/5] arm64: dts: mediatek: mt8167: add smi_common node
+Date:   Mon,  5 Apr 2021 22:08:18 +0200
+Message-Id: <20210405200821.2203458-2-fparent@baylibre.com>
 X-Mailer: git-send-email 2.31.0
+In-Reply-To: <20210405200821.2203458-1-fparent@baylibre.com>
+References: <20210405200821.2203458-1-fparent@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add node for MMSYS.
+Add the smi_common node.
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8167.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8167.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8167.dtsi b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-index 156fbdad01fb..9d765034dfb0 100644
+index 9d765034dfb0..4b951f81db9e 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8167.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-@@ -125,5 +125,11 @@ pio: pinctrl@1000b000 {
- 			#interrupt-cells = <2>;
- 			interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
+@@ -131,5 +131,14 @@ mmsys: mmsys@14000000 {
+ 			reg = <0 0x14000000 0 0x1000>;
+ 			#clock-cells = <1>;
  		};
 +
-+		mmsys: mmsys@14000000 {
-+			compatible = "mediatek,mt8167-mmsys", "syscon";
-+			reg = <0 0x14000000 0 0x1000>;
-+			#clock-cells = <1>;
++		smi_common: smi@14017000 {
++			compatible = "mediatek,mt8167-smi-common";
++			reg = <0 0x14017000 0 0x1000>;
++			clocks = <&mmsys CLK_MM_SMI_COMMON>,
++				 <&mmsys CLK_MM_SMI_COMMON>;
++			clock-names = "apb", "smi";
++			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
 +		};
  	};
  };
