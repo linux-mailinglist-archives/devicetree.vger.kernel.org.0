@@ -2,196 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B52623541E4
-	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 13:56:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76B983541F8
+	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 14:12:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233928AbhDEL4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Apr 2021 07:56:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34954 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233778AbhDEL4m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Apr 2021 07:56:42 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 49874613B2;
-        Mon,  5 Apr 2021 11:56:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617623796;
-        bh=qD0D8WJ+lKgn1aSNGRrMa7S04oUn0rYr1F45lHkry/8=;
-        h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-        b=grZdC7ijpY1lPm1OzB+Ap4hhqBk1646Ne/QNClL1tj4bVhkGMMkTgaw+LQLAIfzkj
-         ftW1KmF0x4JjgtfUIo4BY/lkUhR7n1wCzQi9xQl3vinFi5R/DoNomN+KplwaOYUnAx
-         P3wSX1TMQvB2eB7yykUc6fyLpLMKasbAcHz3XYqKP9vwkIA2sJwSz8VYvSPs0ayxxi
-         U4gngg4bafEuPPXldR3kvtA5CtWIti13xscPaTwNgQYBRMZYe8PzV9FQ9LPiurkfx4
-         jbg6SfzH9QtXxv2ul5b4iYCnIRnbLCczsSplkVZ53ddRw/sIkTDGPybA7hU1MVtI83
-         eNrj5Kcslqnag==
-Received: by mail-lf1-f49.google.com with SMTP id 12so16914329lfq.13;
-        Mon, 05 Apr 2021 04:56:35 -0700 (PDT)
-X-Gm-Message-State: AOAM532mpBUCAwgHOs5bYnzq84s2VZt9gM6j00BDfHWUAjV3UUgfo0TH
-        1ufmto3QN4RQavEnsai/Z+2FlS/l+rNPd4jQnM0=
-X-Google-Smtp-Source: ABdhPJwyUesL4g5lSOGAcVCqL7ntODZwSA2VUpWJDrzGbvihgoTOYhadpu89RuJjTOFujFsjdeHrDEdGzko2qkzu0KQ=
-X-Received: by 2002:ac2:46ee:: with SMTP id q14mr17318622lfo.303.1617623793546;
- Mon, 05 Apr 2021 04:56:33 -0700 (PDT)
+        id S233619AbhDEMND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Apr 2021 08:13:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39208 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233156AbhDEMNC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 08:13:02 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9899BC061756;
+        Mon,  5 Apr 2021 05:06:13 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id hq27so16453276ejc.9;
+        Mon, 05 Apr 2021 05:06:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=4rSfRvLWrKrxqOWFWFbi1dZLa9tAVnjrn923CZO/U4g=;
+        b=Ma/2dT10LaCxunfVJKFCuXhGAXK8K97CAw0pfQ1qHNkE4Ul9XOGU3qS+cKtNWFWOCv
+         s7wmsUZXtu0U73/t1YOdIVJKMh890U2UQOckB8H6GsfeC/lIX525nESn4F/tu25R2DU5
+         XJ+RTS6iKZOwj6wHFfKDQ88+qjACpwYjvGxTWNjDep2MrnNZrVrf5EZ6TpYk1SUIuFJv
+         USQI+ad3RLfBQV4edo/hSV2qHzP+5DlY4FJxZv2cMrqBHWZy+q9I5sGCVnsjPdWo1kpT
+         Rb50TsVdQPJsQ2E7UpCURBJHUqQ0cbAHRGAbXgkQCJU9c4V4ePmkOf2MXCxOpgxxdaJo
+         4rLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=4rSfRvLWrKrxqOWFWFbi1dZLa9tAVnjrn923CZO/U4g=;
+        b=lq0wCyLwADkOdCJz4Q9iup9exl4gikQIF2lobDtFJsWPas8X9LjJsKSdt7J2at/iCo
+         n1Y8+0Qd1fEhPTA7oEE8Z+bANiJaT4EoLQPda2jrBQ1N3cKDrJs9bBtYbDEpFKvzWKha
+         wXi069ui9BGBEcmKWeV7SAJt8H7q6lHQcoYpCwva6Zi/vAYycSM9iMzfjgf7o0pyq0Kl
+         RTCTuOksEgkk4EBz6qVZ7lXp297ObC+/c6EvK+twJdbmX9vKm/LPCAfS8JihpNzTSew/
+         k8oxDp/YadZQyq8Q0ZTO3xzlLtEO6jhblEYxoWZL9LkNZ99Ms9+hj3QvvJH3WcXIcIn2
+         PNgA==
+X-Gm-Message-State: AOAM532dAujeyBTOeNcPgxV0SQ0HQSVXFxYUmAqZBHqjmo4LoOpU/fv6
+        ztr8JFHN3LMDvNWeOZZkSH/LUMqZLpnFGA==
+X-Google-Smtp-Source: ABdhPJyHCrBP9yUQFBO7FgOBG7YXEFb6sEQFEXhIIiXi/+6S+EKx9/fBFD7RGOaVQLDPa6CdqSG2sg==
+X-Received: by 2002:a17:906:2704:: with SMTP id z4mr10264061ejc.137.1617624372271;
+        Mon, 05 Apr 2021 05:06:12 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id d19sm10914090edr.45.2021.04.05.05.06.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Apr 2021 05:06:11 -0700 (PDT)
+Subject: Re: [PATCH v6 1/4] usb: dwc3: of-simple: bail probe if no dwc3 child
+ node
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     heiko@sntech.de, robh+dt@kernel.org, balbi@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20210401213652.14676-1-jbx6244@gmail.com>
+ <20210401213652.14676-2-jbx6244@gmail.com> <YGq2IaygRQaAcLli@kroah.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <abd513bc-dee9-d87b-6841-338bfb2f30d0@gmail.com>
+Date:   Mon, 5 Apr 2021 14:06:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-References: <20210405093423.16149-1-cnsztl@gmail.com> <c12341c8-8590-8314-d59b-3d5903041491@gmail.com>
-In-Reply-To: <c12341c8-8590-8314-d59b-3d5903041491@gmail.com>
-Reply-To: wens@kernel.org
-From:   Chen-Yu Tsai <wens@kernel.org>
-Date:   Mon, 5 Apr 2021 19:56:21 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65vdH-6h-y_SLUqSqgAOh3+2=BHV8hgABbKcEF23GBWkg@mail.gmail.com>
-Message-ID: <CAGb2v65vdH-6h-y_SLUqSqgAOh3+2=BHV8hgABbKcEF23GBWkg@mail.gmail.com>
-Subject: Re: [PATCH v2] rockchip: enabled LAN port on NanoPi R2S
-To:     Johan Jonker <jbx6244@gmail.com>, Tianling Shen <cnsztl@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        David Bauer <mail@david-bauer.net>,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <YGq2IaygRQaAcLli@kroah.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 5, 2021 at 7:03 PM Johan Jonker <jbx6244@gmail.com> wrote:
->
-> Hi Tianling,
->
-> On 4/5/21 11:34 AM, Tianling Shen wrote:
-> > From: David Bauer <mail@david-bauer.net>
-> >
-> > Enable the USB3 port on the FriendlyARM NanoPi R2S.
-> > This is required for the USB3 attached LAN port to work.
-> >
-> > Signed-off-by: David Bauer <mail@david-bauer.net>
-> > [added device node for USB Ethernet controller]
-> > Signed-off-by: Tianling Shen <cnsztl@gmail.com>
-> > ---
-> >  .../boot/dts/rockchip/rk3328-nanopi-r2s.dts   | 32 +++++++++++++++++++
-> >  1 file changed, 32 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
-> > index faf496d789cf..18936b393d9d 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
-> > @@ -13,6 +13,10 @@
-> >       model = "FriendlyElec NanoPi R2S";
-> >       compatible = "friendlyarm,nanopi-r2s", "rockchip,rk3328";
-> >
-> > +     aliases {
-> > +             ethernet1 = &r8153;
-> > +     };
-> > +
-> >       chosen {
-> >               stdout-path = "serial2:1500000n8";
-> >       };
-> > @@ -37,6 +41,16 @@
-> >               };
-> >       };
-> >
->
-> > +     vcc_rtl8153: vcc-rtl8153-regulator {
->
-> sort nodename
->
-> > +             compatible = "regulator-fixed";
-> > +             gpio = <&gpio2 RK_PC6 GPIO_ACTIVE_HIGH>;
-> > +             pinctrl-names = "default";
-> > +             pinctrl-0 = <&rtl8153_en_drv>;
-> > +             regulator-always-on;
->
-> > +             regulator-name = "vcc_rtl8153";
->
-> exception to the sort rule
-> sort regulator-name above all other regulator properties
->
-> > +             enable-active-high;
->
-> sort
->
-> ----
-> Heiko's sort rules:
->
-> compatible
-> reg
-> interrupts
-> [alphabetical]
-> status [if needed]
->
-> ----
->
-> > +     };
-> > +
-> >       leds {
-> >               compatible = "gpio-leds";
-> >               pinctrl-0 = <&lan_led_pin>,  <&sys_led_pin>, <&wan_led_pin>;
-> > @@ -265,6 +279,12 @@
-> >                       };
-> >               };
-> >       };
-> > +
-> > +     usb {
-> > +             rtl8153_en_drv: rtl8153-en-drv {
-> > +                     rockchip,pins = <2 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-> > +             };
-> > +     };
-> >  };
-> >
-> >  &io_domains {
-> > @@ -364,6 +384,18 @@
-> >       dr_mode = "host";
-> >  };
-> >
-> > +&usbdrd3 {
-> > +     dr_mode = "host";
-> > +     status = "okay";
-> > +
->
-> > +     r8153: usb-eth@2 {
->
-> With YAML undocumented additional properties and nodes generate
-> notifications.
-> We need a change in the documents below for that.
-> rockchip,dwc3.yaml > usb-drd.yaml > usb.yaml
->
-> Is there a standard for the usb-eth nodename?
+On 4/5/21 9:02 AM, Greg KH wrote:
+> On Thu, Apr 01, 2021 at 11:36:49PM +0200, Johan Jonker wrote:
+>> For some of the dwc3-of-simple compatible SoCs we
+>> don't want to bind this driver to a dwc3 node,
+>> but bind that node to the 'snps,dwc3' driver instead.
+>> The kernel has no logic to decide which driver to bind
+>> to if there are 2 matching drivers, so bail probe if no
+>> dwc3 child node.
+>>
+>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>> ---
+>>  drivers/usb/dwc3/dwc3-of-simple.c | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/drivers/usb/dwc3/dwc3-of-simple.c b/drivers/usb/dwc3/dwc3-of-simple.c
+>> index 71fd620c5..8d3baa5df 100644
+>> --- a/drivers/usb/dwc3/dwc3-of-simple.c
+>> +++ b/drivers/usb/dwc3/dwc3-of-simple.c
+>> @@ -38,6 +38,10 @@ static int dwc3_of_simple_probe(struct platform_device *pdev)
+>>  
+>>  	int			ret;
+>>  
+>> +	/* Bail probe if no dwc3 child node. */
+>> +	if (!of_get_compatible_child(dev->of_node, "snps,dwc3"))
+>> +		return -ENODEV;
+> 
 
-The USB devices binding seems to specify "device" and then
-"interface" sub-nodes.
+> Why is this part of the "convert to yaml" patch series?  Shouldn't this
+> be a separate, independant patch?
+independent
 
-> > +             compatible = "realtek,rtl8153";
->
-> Since a while Rob has improved has scripts.
-> There's no escape anymore.
-> Add a YAML document to this serie for "realtek,rtl8153".
 
-Actually it should be "usbbda,8153", which conforms to
+Hi Greg,
 
-    Documentation/devicetree/bindings/usb/usb-device.yaml
+As pointed out by Rob in the v3 review process the YAML conversion has
+some side effects for new dt files. A good habit is to fix things before
+they become in effect. That's why this patch is placed before the dtsi
+changes and why Heiko asked to have a look at it.
 
-Giving "realtek,rtl8153" to the kernel will not help it match any
-device.
+For the sake of completeness there are other less optimal options:
+- remove rk3399 support from dwc3-of-simple.c
+- unselect CONFIG_USB_DWC3_OF_SIMPLE for new rk3399 device trees
 
-ChenYu
+In that case at least have it on record why USB maintainers didn't apply
+it in case someone else start to complain about it later when Heiko goes
+ahead with it.
 
-> Improve checking for undocumented compatible strings
-> https://github.com/devicetree-org/dt-schema/commit/93e7ada8d53af099074cb5d53f7caa12835784e0
->
-> > +             reg = <2>;
->
-> Why 2 ?
->
-> > +
->
-> > +             local-mac-address = [ 00 00 00 00 00 00 ]; /* Filled in by U-Boot */
->
-> This is a private property.
-> In a generic dts that's up to the user.
->
-> > +     };
-> > +};
-> > +
-> >  &usb_host0_ehci {
-> >       status = "okay";
-> >  };
-> >
->
+Johan Jonker
+
+> 
+> thanks,
+> 
+> greg k-h
+> 
+
