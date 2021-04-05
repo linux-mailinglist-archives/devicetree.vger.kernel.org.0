@@ -2,132 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA2BC3548FE
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 00:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F169035490B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 00:58:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233158AbhDEWwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Apr 2021 18:52:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37102 "EHLO
+        id S232637AbhDEW55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Apr 2021 18:57:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230437AbhDEWwc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 18:52:32 -0400
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A92EAC061756
-        for <devicetree@vger.kernel.org>; Mon,  5 Apr 2021 15:52:25 -0700 (PDT)
-Received: by mail-ot1-x32f.google.com with SMTP id h6-20020a0568300346b02901b71a850ab4so12820085ote.6
-        for <devicetree@vger.kernel.org>; Mon, 05 Apr 2021 15:52:25 -0700 (PDT)
+        with ESMTP id S232662AbhDEW5z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 18:57:55 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1DA3C061788
+        for <devicetree@vger.kernel.org>; Mon,  5 Apr 2021 15:57:46 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id a6so6182703wrw.8
+        for <devicetree@vger.kernel.org>; Mon, 05 Apr 2021 15:57:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=k5GMqhkUGovABW/6dLiczI0yDUQVdhGyMGEk3hXdqkk=;
-        b=R8wU+6ucoSTOj00LOlpy2CLoMcmwoNKe6I5pY4T3QpClT4arSyT4c9J/2fQv8DZCYS
-         RbWxahXX9VVPsJt9/1Knnc9YrGR16U8IInaY9vk+MCmyBc8/WllxqaMXJ33VoZK4Og0G
-         tJZEWyaalpjGVXoNLeX4DNCVWFqQmsYE/M2IFdPaauFA1t4YoqeSj5xhrKjMGy+N1bcQ
-         XkFZPZgIWWrkCP2UYXQDv4Z8rmi2a5VqN+BQ8JekLgi5QDJV7Fh8OuR6BNpONy9ceRa7
-         siwU4v522PHOiXVlDAUCl90jzWfuiN4La4xvOZfWvdKch6nr/KdffEwermEHpxa+OMZo
-         DIsg==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=GsALzx0Rjvc16XQc7wuGcWWs8xedjpRc0kR3W8dinuE=;
+        b=mE3omOY/EFLMCJc3dDUmtHxXvkjrAkxlLz4C5kho710fWtkKrs6ZnjM8oPE3yIfemZ
+         nAdrNh3jOusTpcwmN1PxGMxadU2rImNXnLBV5kTnh0A4+8lcIAgARsmLkfeSUc7vYpux
+         Ot8/2TingupqyorxLkpeX0YUlKZM7PR8Uik+ttPgJzZMXa9UkpRN7kkvjjP0/r1zSqhg
+         h06zgNv0WDXi3DJP//DDOmhTghhWfl/+RTbqSW5NRKf8Sz8kP6UXadxiHcuBitO7EgrP
+         RsX4eBSJMkGdwuIR9icrUTB8HdBv9sfGDgfQu9ju+IT8ELS5BAFBp32+ZaYQiBHokiIR
+         Uzyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=k5GMqhkUGovABW/6dLiczI0yDUQVdhGyMGEk3hXdqkk=;
-        b=KY8hAZuon/FkdqGmHQLoHY8AeiOGqm48VF48dpqtRN+dv1BRwSeRCWcMM6SlKUtLFQ
-         V/ycqhi34FTvgyYnlDLmOIAgRgTaRIV5+Tn1JyaXiWYddrP5ycQcI371DPQE8mtw/pDO
-         uvxnjz4ZAfE7RsuKwf4RD/2AgQ1dQAaKbN6dM6MGj+BSt6gwoAGIaKre71jdSzRLoF3O
-         9wWYTY1x7MmrZ1p51xWF+42kNMbMM+zu9LcEI9GDxrn0xTzhpcDejUUF42+ty9w9tiE/
-         5XuZprAnVToszbe/GcgTxytXxJapHWh0iJ7RkrN+AFrFf8UmJx5IgBw773DlQmUwer12
-         yWjw==
-X-Gm-Message-State: AOAM530zm4MnFNsEoOgCcxl1fkNYHkwvr6G1fL5Ljd/wAk/ec3j6Ali3
-        /UG5nTcxp0t5p4nfA5hfc0KfL6ri/kX3lQ==
-X-Google-Smtp-Source: ABdhPJw6GcbXUZaKVe2HBQSQJU7vnMkj3H9OR8XCdVx7cDpd8YbrSKNTmm0K1io0+sgwhCkfJ3pg+w==
-X-Received: by 2002:a05:6830:204e:: with SMTP id f14mr24755972otp.38.1617663144987;
-        Mon, 05 Apr 2021 15:52:24 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 24sm3312099oij.58.2021.04.05.15.52.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Apr 2021 15:52:24 -0700 (PDT)
-Date:   Mon, 5 Apr 2021 17:52:22 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Petr Vorel <petr.vorel@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ricardo Ribalda <ribalda@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8994: Reserve gpio ranges
-Message-ID: <20210405225222.GD904837@yoga>
-References: <20210405200259.23525-1-petr.vorel@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=GsALzx0Rjvc16XQc7wuGcWWs8xedjpRc0kR3W8dinuE=;
+        b=XzNGsgxUfhif9HDBeTpsdTKAaF6k4LPwVVuRmVGOgXnkTdHmtjPYqU6GfuZTqOoBzz
+         NCAZH3aJS+V/moKwd2pA5t87ivYG8W+qIf72647caCfqSodcf0W/K72rAk/kQlGcbneY
+         ez2CRW2xee83G2KBTAdIJ4jiJm8okzJDYJ6XoOa6XQ06UMXOEEOAEUysxQWAuKhNFAf0
+         1U+4JaMZnyPl9+wj3qZ2G8SQ/VwHUzzahh2/8d9EuOmz+8ZXuyDEJJGtBlEcL4q6A57Y
+         GR4PUp8yRPI5lE7FKNTNcFPblIk+8PLoByAs768PjxXVVOx27r2qn5Y49d7rokCn4MY6
+         4EjQ==
+X-Gm-Message-State: AOAM532IbGMHsYbEcC7f73DZAHik+pZnagaHMjroktxOEkYAwCE1PJ1+
+        N8KLTeh0rq6QxkZdwIgpOcFreg==
+X-Google-Smtp-Source: ABdhPJxB7LQBvAilsUzNItl26qAaZg+6/4Bbyj6m+LxE0fncKjRk1axkNV4VyzHNOL7bW6aOas0ypw==
+X-Received: by 2002:a05:6000:1209:: with SMTP id e9mr6545242wrx.36.1617663465585;
+        Mon, 05 Apr 2021 15:57:45 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:d506:6f5d:adb6:da14? ([2a01:e34:ed2f:f020:d506:6f5d:adb6:da14])
+        by smtp.googlemail.com with ESMTPSA id c2sm910286wmr.22.2021.04.05.15.57.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Apr 2021 15:57:44 -0700 (PDT)
+Subject: Re: [PATCH v14 0/9] Add support for ipq8064 tsens
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Amit Kucheria <amitk@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210404144823.31867-1-ansuelsmth@gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <00314fdb-c9f4-03b0-5639-a8b8f5afbba2@linaro.org>
+Date:   Tue, 6 Apr 2021 00:57:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210405200259.23525-1-petr.vorel@gmail.com>
+In-Reply-To: <20210404144823.31867-1-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 05 Apr 15:02 CDT 2021, Petr Vorel wrote:
+On 04/04/2021 16:48, Ansuel Smith wrote:
+> This patchset convert msm8960 to reg_filed, use int_common instead 
+> of a custom function and fix wrong tsens get_temp function for msm8960.
+> Ipq8064 SoCs tsens driver is based on 8960 tsens driver. Ipq8064 needs
+> to be registered as a gcc child as the tsens regs on this platform are
+> shared with the controller.
+> This is based on work and code here
+> https://git.linaro.org/people/amit.kucheria/kernel.git/log/?h=wrk3/tsens-8960-breakage
 
-> Reserve pins 0-3 and 85-88 as these aren't meant to be accessible
-> from the application CPUs. Fix similar to 9134586715e3.
-> 
-> Fixes: 3edfb7bd76bd ("gpiolib: Show correct direction from the beginning")
-> 
-> Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
-> ---
-> Hi,
-> 
-> tested on latest qcom/for-next.
-> 
-> Simple testing with /sys/class/gpio/export showed that 85-88.
-> 3 disables UART. I expect 0-2 are also reserved as on other msm8998.
-> 
+Applied, the series.
 
-Are you saying that once you export these gpios the uart stops working?
+Fixed a minor conflict with patch 9/9 and "dt-bindings: thermal:
+qcom-tsens: Add compatible for sm8350"
 
-We use gpio-reserved-ranges to denote GPIOs that are owned by TZ, so
-touching their registers causes the device to reboot. And per the
-gpiolib patch you reference, this would happen as we register the
-gpiochip.
+Thanks
 
-It sounds instead like what you want is to make sure that these pins are
-considered busy, muxing in the uart (i.e define a state for uart).
+  -- Daniel
 
-Regards,
-Bjorn
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-> for i in $(seq 0 146); do echo $i > /sys/class/gpio/export; done
-> 
-> I expect it's just angler specific, thus I haven't added it to msm8994.dtsi
-> (otherwise Konrad would have fixed it).
-> 
-> Kind regards,
-> Petr
-> 
->  arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
-> index baa55643b40f..0dc94101d5de 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  /* Copyright (c) 2015, Huawei Inc. All rights reserved.
->   * Copyright (c) 2016, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2021 Petr Vorel <petr.vorel@gmail.com>
->   */
->  
->  /dts-v1/;
-> @@ -32,3 +33,7 @@ serial@f991e000 {
->  		};
->  	};
->  };
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = <0 4>, <85 4>;
-> +};
-> -- 
-> 2.30.2
-> 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
