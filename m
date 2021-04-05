@@ -2,240 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4487C35451C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 18:25:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61FD6354582
+	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 18:44:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233879AbhDEQZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Apr 2021 12:25:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36508 "EHLO mail.kernel.org"
+        id S242614AbhDEQoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Apr 2021 12:44:00 -0400
+Received: from foss.arm.com ([217.140.110.172]:56070 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233795AbhDEQZb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Apr 2021 12:25:31 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CC1F4613B1;
-        Mon,  5 Apr 2021 16:25:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617639925;
-        bh=w90Al8UaQbEJVuWG1mLWXHAH5ooii7iwT892IfFmog8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SHWPQsBjqWdAUwT89GesDL5EFdLHXxeP64C4a2wpU2y9bPcp/LvihmFDkPSu6XLzg
-         1mjc7bTnxg1zUbqDwQttubzN+hxaghPwlB00yjkA6LZxfatDbdKZ3AiDpaLBZNhoZR
-         USEOZE8WfEsXY30x7otLnJGinE3MpwDPMja2Y4HTnvC/UP0VRsukhFIVRrUmAdWTei
-         VZVz0kmqfwQJGO4e2xTUmsRm0grme4yPn6Gcp0joqugbY5QtI+lPKWsTLzcbJD7WsE
-         PPfM/zxmBddsgd0ykqGRVj7HpcVdCPDDYu7Mn7d0OorXjWyQqbF8gns5pVN2qwucz0
-         OoXPdx8kJaXhg==
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Michael Hennerich <michael.hennerich@analog.com>
-Subject: [PATCH v2 2/2] dt-bindings:iio:adc:adi,ad7474: Add missing binding document
-Date:   Mon,  5 Apr 2021 17:23:25 +0100
-Message-Id: <20210405162325.627977-3-jic23@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210405162325.627977-1-jic23@kernel.org>
-References: <20210405162325.627977-1-jic23@kernel.org>
+        id S242605AbhDEQn7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Apr 2021 12:43:59 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3EC8731B;
+        Mon,  5 Apr 2021 09:43:53 -0700 (PDT)
+Received: from ewhatever.cambridge.arm.com (ewhatever.cambridge.arm.com [10.1.197.1])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 7786F3F694;
+        Mon,  5 Apr 2021 09:43:51 -0700 (PDT)
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+To:     maz@kernel.org, mathieu.poirier@linaro.org
+Cc:     coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, anshuman.khandual@arm.com,
+        mike.leach@linaro.org, catalin.marinas@arm.com, will@kernel.org,
+        peterz@infradead.org, leo.yan@linaro.org, robh@kernel.org,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v6 14/20] dts: bindings: Document device tree bindings for ETE
+Date:   Mon,  5 Apr 2021 17:43:01 +0100
+Message-Id: <20210405164307.1720226-15-suzuki.poulose@arm.com>
+X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20210405164307.1720226-1-suzuki.poulose@arm.com>
+References: <20210405164307.1720226-1-suzuki.poulose@arm.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Document the device tree bindings for Embedded Trace Extensions.
+ETE can be connected to legacy coresight components and thus
+could optionally contain a connection graph as described by
+the CoreSight bindings.
 
-This binding covers class of simple SPI ADCs which only provide
-data output - they don't have MOSI pin.
-
-The only real variation between them is over how many supplies they
-use and which one is used for the reference.
-
-Michael listed as maintainer for this one as it is his driver and
-falls under the catch all MAINTAINERS entry for ADI devices.
-
-Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: Michael Hennerich <michael.hennerich@analog.com>
+Cc: devicetree@vger.kernel.org
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Mike Leach <mike.leach@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
 ---
- .../bindings/iio/adc/adi,ad7476.yaml          | 173 ++++++++++++++++++
- 1 file changed, 173 insertions(+)
+ .../devicetree/bindings/arm/ete.yaml          | 75 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 76 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/ete.yaml
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml
+diff --git a/Documentation/devicetree/bindings/arm/ete.yaml b/Documentation/devicetree/bindings/arm/ete.yaml
 new file mode 100644
-index 000000000000..bebf5b435947
+index 000000000000..7f9b2d1e1147
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml
-@@ -0,0 +1,173 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2019 Analog Devices Inc.
++++ b/Documentation/devicetree/bindings/arm/ete.yaml
+@@ -0,0 +1,75 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# Copyright 2021, Arm Ltd
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/iio/adc/adi,ad7476.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++$id: "http://devicetree.org/schemas/arm/ete.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+title: AD7476 and similar simple SPI ADCs from multiple manufacturers.
++title: ARM Embedded Trace Extensions
 +
 +maintainers:
-+  - Michael Hennerich <michael.hennerich@analog.com>
++  - Suzuki K Poulose <suzuki.poulose@arm.com>
++  - Mathieu Poirier <mathieu.poirier@linaro.org>
 +
 +description: |
-+  A lot of simple SPI ADCs have very straight forward interfaces.
-+  They typically don't provide a MOSI pin, simply reading out data
-+  on MISO when the clock toggles.
++  Arm Embedded Trace Extension(ETE) is a per CPU trace component that
++  allows tracing the CPU execution. It overlaps with the CoreSight ETMv4
++  architecture and has extended support for future architecture changes.
++  The trace generated by the ETE could be stored via legacy CoreSight
++  components (e.g, TMC-ETR) or other means (e.g, using a per CPU buffer
++  Arm Trace Buffer Extension (TRBE)). Since the ETE can be connected to
++  legacy CoreSight components, a node must be listed per instance, along
++  with any optional connection graph as per the coresight bindings.
++  See bindings/arm/coresight.txt.
 +
 +properties:
++  $nodename:
++    pattern: "^ete([0-9a-f]+)$"
 +  compatible:
-+    enum:
-+      - adi,ad7091
-+      - adi,ad7091r
-+      - adi,ad7273
-+      - adi,ad7274
-+      - adi,ad7276
-+      - adi,ad7277
-+      - adi,ad7278
-+      - adi,ad7466
-+      - adi,ad7467
-+      - adi,ad7468
-+      - adi,ad7475
-+      - adi,ad7476
-+      - adi,ad7476a
-+      - adi,ad7477
-+      - adi,ad7477a
-+      - adi,ad7478
-+      - adi,ad7478a
-+      - adi,ad7495
-+      - adi,ad7910
-+      - adi,ad7920
-+      - adi,ad7940
-+      - ti,adc081s
-+      - ti,adc101s
-+      - ti,adc121s
-+      - ti,ads7866
-+      - ti,ads7867
-+      - ti,ads7868
-+      - lltc,ltc2314-14
++    items:
++      - const: arm,embedded-trace-extension
 +
-+  reg:
-+    maxItems: 1
++  cpu:
++    description: |
++      Handle to the cpu this ETE is bound to.
++    $ref: /schemas/types.yaml#/definitions/phandle
 +
-+  vcc-supply:
-+    description:
-+      Main powersupply voltage for the chips, sometimes referred to as VDD on
-+      datasheets.  If there is no separate vref-supply, then this is needed
-+      to establish channel scaling.
-+
-+  vdrive-supply:
-+    description:
-+      Some devices have separate supply for their digital control side.
-+
-+  vref-supply:
-+    description:
-+      Some devices have a specific reference voltage supplied on a different pin
-+      to the other supplies. Needed to be able to establish channel scaling
-+      unless there is also an internal reference available (e.g. ad7091r)
-+
-+  spi-max-frequency: true
-+
-+  adi,conversion-start-gpios:
-+    description: A GPIO used to trigger the start of a conversion
++  out-ports:
++    description: |
++      Output connections from the ETE to legacy CoreSight trace bus.
++    $ref: /schemas/graph.yaml#/properties/ports
++    properties:
++      port:
++        description: Output connection from the ETE to legacy CoreSight Trace bus.
++        $ref: /schemas/graph.yaml#/properties/port
 +
 +required:
 +  - compatible
-+  - reg
++  - cpu
 +
 +additionalProperties: false
 +
-+allOf:
-+  # Devices where reference is vcc
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,ad7091
-+              - adi,ad7276
-+              - adi,ad7277
-+              - adi,ad7278
-+              - adi,ad7466
-+              - adi,ad7467
-+              - adi,ad7468
-+              - adi,ad7940
-+              - ti,adc081s
-+              - ti,adc101s
-+              - ti,adc121s
-+              - ti,ads7866
-+              - ti,ads7868
-+      required:
-+        - vcc-supply
-+  # Devices with a vref
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,ad7091r
-+              - adi,ad7273
-+              - adi,ad7274
-+              - adi,ad7475
-+              - lltc,ltc2314-14
-+    then:
-+      properties:
-+        vref-supply: true
-+    else:
-+      properties:
-+        vref-supply: false
-+  # Devices with a vref where it is not optional
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,ad7273
-+              - adi,ad7274
-+              - adi,ad7475
-+              - lltc,ltc2314-14
-+    then:
-+      required:
-+        - vref-supply
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,ad7475
-+              - adi,ad7495
-+    then:
-+      properties:
-+        vdrive-supply: true
-+    else:
-+      properties:
-+        vdrive-supply: false
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,ad7091
-+              - adi,ad7091r
-+    then:
-+      properties:
-+        adi,conversion-start-gpios: true
-+    else:
-+      properties:
-+        adi,conversion-start-gpios: false
-+
 +examples:
-+  - |
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
 +
-+      adc@0 {
-+        compatible = "adi,ad7091r";
-+        reg = <0>;
-+        spi-max-frequency = <5000000>;
-+        vcc-supply = <&adc_vcc>;
-+        vref-supply = <&adc_vref>;
-+      };
++# An ETE node without legacy CoreSight connections
++  - |
++    ete0 {
++      compatible = "arm,embedded-trace-extension";
++      cpu = <&cpu_0>;
 +    };
++# An ETE node with legacy CoreSight connections
++  - |
++   ete1 {
++      compatible = "arm,embedded-trace-extension";
++      cpu = <&cpu_1>;
++
++      out-ports {        /* legacy coresight connection */
++         port {
++             ete1_out_port: endpoint {
++                remote-endpoint = <&funnel_in_port0>;
++             };
++         };
++      };
++   };
++
 +...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index aa84121c5611..2a20a36c724a 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1761,6 +1761,7 @@ F:	Documentation/ABI/testing/sysfs-bus-coresight-devices-*
+ F:	Documentation/devicetree/bindings/arm/coresight-cpu-debug.txt
+ F:	Documentation/devicetree/bindings/arm/coresight-cti.yaml
+ F:	Documentation/devicetree/bindings/arm/coresight.txt
++F:	Documentation/devicetree/bindings/arm/ete.yaml
+ F:	Documentation/trace/coresight/*
+ F:	drivers/hwtracing/coresight/*
+ F:	include/dt-bindings/arm/coresight-cti-dt.h
 -- 
-2.31.1
+2.24.1
 
