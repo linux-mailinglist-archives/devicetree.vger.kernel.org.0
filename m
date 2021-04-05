@@ -2,67 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B99F53546EF
-	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 21:07:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CAA7354748
+	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 22:01:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235455AbhDETHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Apr 2021 15:07:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44854 "EHLO
+        id S233196AbhDEUB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Apr 2021 16:01:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232593AbhDETHn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 15:07:43 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F22E0C061756;
-        Mon,  5 Apr 2021 12:07:32 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id p19so6165313wmq.1;
-        Mon, 05 Apr 2021 12:07:32 -0700 (PDT)
+        with ESMTP id S240397AbhDEUB1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 16:01:27 -0400
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DE08C061756
+        for <devicetree@vger.kernel.org>; Mon,  5 Apr 2021 13:01:18 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id 11so5113882ybe.8
+        for <devicetree@vger.kernel.org>; Mon, 05 Apr 2021 13:01:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=message-id:from:mime-version:content-transfer-encoding
-         :content-description:subject:to:date:reply-to;
-        bh=V+ZL6IBlYhDhqaW2K8qSQL0I2+furW7I5Lbh2PK3hX0=;
-        b=s4koPLXnSctu9mPd2QI+zwCK/+G0h7x311CbqBSBNr7txVKYqiGb2YyjtI3YeUoaZW
-         UaJCWYScmp/R0rVfLCrqYPqq1JeAfbQGluWXEquUkZyNwkEQsy07mUu6f3x7y+0Ryu2e
-         CCtn+ETQRI+SdRglxtiHriDIYqwD/EDceiDWjzJu6J6cvqCGOIGp9YvNxaotjxKvryCu
-         TLZT8JozWuMqHRH2ymGF6/apCB+lzNAIwH+BAj8CLVQsKG0axAfAIt0elUTZ0IMvZDtH
-         tgwLT747QcMqWD4LJ+DLL4BcxI6XbnFSDivR1Uej/g60xVBQrq2NJZWH1H+uQPJ7W2gX
-         PoEA==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pIFMsp1xtnQm4fljPPOMNWkY8KrPxBHkP5mmYwWGYOg=;
+        b=mAbehSQyEDZIVj209oPai5x0WzcM3FBJI+fXL28yXmj51FYUXWIfYHCDhQNPeK/eBV
+         33oYC4LCRTZylzp6DhIYO40quEbp+B97DRda5Td/KiYCfZA6W0h5BaEZaMwm6i4ONeCw
+         CKWzvz6dXtwRR9nbUg0F1RSYy8T/beXJb99VRaJrqqL1O5ovi8KGf8nPUDevefJuyFMP
+         W3ff45YKrKvpkmEtrFA0Dw4hyi8R+pCP+REF4Rz48wVZs1aSMdK2zW2PlFl9aRS1CMZS
+         MJ90HeVpgtNCVIZKOL9bZx+ynL+MEwYCsN47pHtICQbRdIYUp2rELGgS4+gaz4DwZySZ
+         SFVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:from:mime-version
-         :content-transfer-encoding:content-description:subject:to:date
-         :reply-to;
-        bh=V+ZL6IBlYhDhqaW2K8qSQL0I2+furW7I5Lbh2PK3hX0=;
-        b=I42jR8XQAsEwtI+BN3ePplJojUPrj4Hnz3J+yISrBc8703D4miUNItuVMAD8rMJh8n
-         2wDn/fQatD2iKL7pBHA/WRbCWkI71issJ3KYMEIG6YutfgxL+NLp20vJOU3vI0rsJ1SC
-         YED8pSfIPdmdjOvPMkoICrLSU+Xl5NM6axxA9+IW+M0dOCT1lpWCKcbBW1El+CVyBzDO
-         C6preogdQNSjeRGqktLYEg44ltrYozbwuIgEtij/iYf+TseEl5a7SsshzcUaZi2W+cUV
-         nnZsb84zrSofp6hJKl4aw6xZZTkRH/QW9Me/dDdC7+zeHukcwzkg0h7YQ1aZS4yJvJEk
-         rdgw==
-X-Gm-Message-State: AOAM531u6FIyQsy+yMT5gHyZ9GCbep9bLVdBLfY/6m2yHOsb7T71WzfQ
-        V0pWmDQdU9wdvS0ygla0x6w=
-X-Google-Smtp-Source: ABdhPJx/Hbiyzkqg2TG02U7n1O0t5RxSYwaOATbglK8VfhoWsDHmG9a+OVqtlMFM1yzNXoxyDxgnsA==
-X-Received: by 2002:a1c:f305:: with SMTP id q5mr503964wmq.96.1617649651780;
-        Mon, 05 Apr 2021 12:07:31 -0700 (PDT)
-Received: from [192.168.1.152] ([102.64.185.200])
-        by smtp.gmail.com with ESMTPSA id j26sm29384267wrh.57.2021.04.05.12.07.27
-        (version=TLS1 cipher=AES128-SHA bits=128/128);
-        Mon, 05 Apr 2021 12:07:31 -0700 (PDT)
-Message-ID: <606b5ff3.1c69fb81.96d16.a0eb@mx.google.com>
-From:   Vanina curt <akoelekouevidjin95@gmail.com>
-X-Google-Original-From: Vanina curt
-Content-Type: text/plain; charset="iso-8859-1"
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pIFMsp1xtnQm4fljPPOMNWkY8KrPxBHkP5mmYwWGYOg=;
+        b=dYmIF9UDnt6P54GM12dl29G0NTY0GJnrIa4Z6DMPuxSAv92R0klLpBcsmrVeFfxwEd
+         EPdNeWdVprLtUbwtMvu4/4EcNCd2uiaw4HqxMCBujHXA26L/+02RAggEjEwPfxM7Lo9x
+         K9GeXH6+8z8ruHOY78GaETsbEJ7m0Rd+4M0P6fbUwmOSlRkHDF2wLMkldGfcEUtqkoig
+         uoKbGFxriyGnrlxXb/Z9681a5JDhgu+94wAj20RGUowiiIjsy6j1keu2RMKQg9MrBQjh
+         87gAZEU991bNMUTO6lr4/iFjQJ0QqRyyyQkLn7AtBwifXVxUii6NHUbeswGiROzCarOb
+         PXeA==
+X-Gm-Message-State: AOAM531sjnZySeL2AHDggQILsiaH/SktrmEkA5V3JaeQKFHdmsUMVh3h
+        cmaPtfCTUnXgqBUZPEkCI3RHKl9vpBm6yrxzR8OI1Q==
+X-Google-Smtp-Source: ABdhPJzEz4Bacy1Qyh6foMuxZWgQ4WwrTvcePdu/RGd29dTLOPzSZhs71CTh5wKDRXclrsHmhYPATlDOgex29PQYZD4=
+X-Received: by 2002:a25:c985:: with SMTP id z127mr40988055ybf.20.1617652876933;
+ Mon, 05 Apr 2021 13:01:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Description: Mail message body
-Subject: HI,
-To:     Recipients <Vanina@vger.kernel.org>
-Date:   Mon, 05 Apr 2021 19:07:20 +0000
-Reply-To: curtisvani9008@gmail.com
+References: <20210405031436.2465475-1-ilya.lipnitskiy@gmail.com>
+In-Reply-To: <20210405031436.2465475-1-ilya.lipnitskiy@gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 5 Apr 2021 13:00:40 -0700
+Message-ID: <CAGETcx9ifDoWeBN1KR4zKfs-q73iGo9C-joz4UqayeE3euDQWg@mail.gmail.com>
+Subject: Re: [PATCH] of: property: do not create device links from *nr-gpios
+To:     Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        stable <stable@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-How are you? I'm Vanina. I picked interest in you and I would like to know =
-more about you and establish relationship with you. i will wait for your re=
-sponse. thank you.
+On Sun, Apr 4, 2021 at 8:14 PM Ilya Lipnitskiy
+<ilya.lipnitskiy@gmail.com> wrote:
+>
+> [<vendor>,]nr-gpios property is used by some GPIO drivers[0] to indicate
+> the number of GPIOs present on a system, not define a GPIO. nr-gpios is
+> not configured by #gpio-cells and can't be parsed along with other
+> "*-gpios" properties.
+>
+> scripts/dtc/checks.c also has a special case for nr-gpio{s}. However,
+> nr-gpio is not really special, so we only need to fix nr-gpios suffix
+> here.
+
+The only example of this that I see is "snps,nr-gpios". I personally
+would like to deprecate such overlapping/ambiguous definitions.
+
+Maybe fix up the DT? This warning is a nice reminder that the DT needs
+to be updated (if it can be). Outside of that, it's not causing any
+issues that I know of.
+
+If they are, then we can pick up a patch similar to this. I'd also
+limit this fix to "snps,nr-gpios" so that future attempts to use
+-gpios for anything other than listing GPIOs triggers a warning.
+
+Rob, thoughts?
+
+Thanks,
+Saravana
+
+>
+> [0]: nr-gpios is referenced in Documentation/devicetree/bindings/gpio:
+>  - gpio-adnp.txt
+>  - gpio-xgene-sb.txt
+>  - gpio-xlp.txt
+>  - snps,dw-apb-gpio.yaml
+>
+> Fixes errors such as:
+>   OF: /palmbus@300000/gpio@600: could not find phandle
+>
+> Call Trace:
+>   of_phandle_iterator_next+0x8c/0x16c
+>   __of_parse_phandle_with_args+0x38/0xb8
+>   of_parse_phandle_with_args+0x28/0x3c
+>   parse_suffix_prop_cells+0x80/0xac
+>   parse_gpios+0x20/0x2c
+>   of_link_to_suppliers+0x18c/0x288
+>   of_link_to_suppliers+0x1fc/0x288
+>   device_add+0x4e0/0x734
+>   of_platform_device_create_pdata+0xb8/0xfc
+>   of_platform_bus_create+0x170/0x214
+>   of_platform_populate+0x88/0xf4
+>   __dt_register_buses+0xbc/0xf0
+>   plat_of_setup+0x1c/0x34
+>
+> Fixes: 7f00be96f125 ("of: property: Add device link support for interrupt-parent, dmas and -gpio(s)")
+> Signed-off-by: Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
+> Cc: Saravana Kannan <saravanak@google.com>
+> Cc: <stable@vger.kernel.org> # 5.5.x
+> ---
+>  drivers/of/property.c | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 2bb3158c9e43..24672c295603 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1271,7 +1271,16 @@ DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
+>  DEFINE_SIMPLE_PROP(remote_endpoint, "remote-endpoint", NULL)
+>  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+>  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+> -DEFINE_SUFFIX_PROP(gpios, "-gpios", "#gpio-cells")
+> +
+> +static struct device_node *parse_gpios(struct device_node *np,
+> +                                      const char *prop_name, int index)
+> +{
+> +       if (!strcmp_suffix(prop_name, "nr-gpios"))
+> +               return NULL;
+> +
+> +       return parse_suffix_prop_cells(np, prop_name, index, "-gpios",
+> +                                      "#gpio-cells");
+> +}
+>
+>  static struct device_node *parse_iommu_maps(struct device_node *np,
+>                                             const char *prop_name, int index)
+> --
+> 2.31.1
+>
