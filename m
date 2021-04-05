@@ -2,115 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F37E3539C5
-	for <lists+devicetree@lfdr.de>; Sun,  4 Apr 2021 22:33:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4922A353B0B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 05:14:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231478AbhDDUdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Apr 2021 16:33:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35024 "EHLO
+        id S231697AbhDEDPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Apr 2021 23:15:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231532AbhDDUdk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Apr 2021 16:33:40 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99E11C061794
-        for <devicetree@vger.kernel.org>; Sun,  4 Apr 2021 13:33:31 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id f6so3183732wrv.12
-        for <devicetree@vger.kernel.org>; Sun, 04 Apr 2021 13:33:31 -0700 (PDT)
+        with ESMTP id S230240AbhDEDPA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Apr 2021 23:15:00 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06056C061756;
+        Sun,  4 Apr 2021 20:14:50 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id cl21-20020a17090af695b02900c61ac0f0e9so7703869pjb.1;
+        Sun, 04 Apr 2021 20:14:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=qLAy95bvS1zAnYuhC/w4xxxlm+O0tzNR1N2BJpqbw5w=;
-        b=Uj0Y5h5dAclSEpTTchKZoN6d6/X2/jxuIIdiY2TiTyk3Va6KgXWEIR7nXrbx2G6DmG
-         DEj8NTV0WHUfrymtdaelg8IdCSbFubY9BkAoUgH6qQf8EqAg7oNdPZikt1hBXz6v20zs
-         A8AaPWXWp0Z2jemWr2KvX3VEPPGU3IlyIZPwCyiC+SenicBH6/PCmHtanTK6GQ1U+Ifg
-         VY2SBWvWpq0G2yymbRGsBY5fsQ3VQ4aGS/FzsLk9krR6A4W7hb8uudpCoMiP1AUhW51x
-         KAc2oi6Fi2BSvj3YthT1WKevVUyAKnRg3u5L4ySofPzK4gqEB2ss/pH/Whz46Pfeo62Z
-         VcVg==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GceNoV8TahQ5tN9ED1/8GY0CKdqmMX+dizORs2wOPsI=;
+        b=oonZHvVjrqKGsVfVWgbSh45r1gbAqGTpubcxSoGv0u2cP96yTsOIQhWkqMLQEOVXQr
+         O+/mCU4+0I8R5v9ZgUEGMVKhG0hbXLB/pzpACTWW48BxWaLq21bxB9R4wwKHEZV0fC7m
+         jKLdmwNFtmtYi/Z00HiWkOnhKFYl9+tmwu0ex+70eij4dIoNhMYoT8nyteiAmYQTcW2y
+         /IgjTnOY78+D1foGeDG925vTBhzK+Q2WgvRI06/IvfP/w/qUokr+iZqO8nunN+gajuQL
+         84JoEv3DrvM8m0mQLAW29kHisyX41fGeToWyWD4Qkn/yXxoLzpjoF8yOAj8p0QRtGiaG
+         +h1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=qLAy95bvS1zAnYuhC/w4xxxlm+O0tzNR1N2BJpqbw5w=;
-        b=QNb4nhl2kOPy4V5P/TrJnhaiKNtp8F1L+0z27F6rn6WVa4M5vszEMqFqYR3jSrsGZK
-         z3dMVV7n917+Fo8bEaEZdsGL+OZiw0AXPBDh6xFaXwuQt8DbuAdymbYSk8z7aYdOsxJg
-         TN2xu7ooyTQG5Ph1YlXN/odduGDL8BWFcEKa+ZgtYXgMGsmPc/VwQDtFXqYmNLFFtvrR
-         fDLG7rfl0jY6ccadJUaUDVSML644UX5V1ZR+czlLrt03snw6INIqub8Q6VUz989FR6w3
-         1rrnFfEnKMj1xEEDiFdznXTKStOu/1Ok42NNqUTrOUMgEEnK0NAzexjLvve8tKHEqEOJ
-         zqag==
-X-Gm-Message-State: AOAM532g2on7jWG9uCMP5cX7RD69nwQTNDx8KTWcTCvol37qRtWzGwF5
-        amcTDKD1zClBVhZI/ucS0MRDzA==
-X-Google-Smtp-Source: ABdhPJyhT6Ya2IgUD2RMKPgOE6BwHgGaUQpbUoSsELec3O9UxvF/KjbQKc6zYs03mvxBXK/bekFFsg==
-X-Received: by 2002:a05:6000:10c4:: with SMTP id b4mr8456271wrx.386.1617568410016;
-        Sun, 04 Apr 2021 13:33:30 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:6d68:6b9a:7a3c:4a9f? ([2a01:e34:ed2f:f020:6d68:6b9a:7a3c:4a9f])
-        by smtp.googlemail.com with ESMTPSA id u19sm8383785wml.28.2021.04.04.13.33.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Apr 2021 13:33:29 -0700 (PDT)
-Subject: Re: [PATCH v2 1/8] dt-bindings: timer: Add compatible for Mediatek
- MT8195
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fabien Parent <fparent@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-serial@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, srv_heupstream@mediatek.com
-References: <20210319023427.16711-1-seiya.wang@mediatek.com>
- <20210319023427.16711-3-seiya.wang@mediatek.com>
- <bf7ad31e-974a-3e0a-12bd-32973c7c3cbd@gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <11bf6761-8902-bfa5-8577-d397846e7638@linaro.org>
-Date:   Sun, 4 Apr 2021 22:33:26 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        bh=GceNoV8TahQ5tN9ED1/8GY0CKdqmMX+dizORs2wOPsI=;
+        b=lnYx5UB/7FRLBBUREaRj2Jo98vXERKFKI2RnseBEPajuVKHE5Fu8azKHd7kMXXbe5O
+         jCDtlvQuUSUPyFln/KdJxBNO2hrIa8uKrdB0WvOIZKx4RH0u7XhQhYx+yHmqWQyJ0t8c
+         V5sGohaz+b01o4nRWjcwfGtBu+143uNQ+o0M/sJDxz8aZZf6NqYqZWhMQrpHr5PP0wFJ
+         QDYUU1CSEK7g2RB7sgmO1cwXmKqy7gkzZbGf7PsbLtxrqnNTcuYHtEAJswbQvI37qsXq
+         f9o5BhgeFrD7TW3CAdLlKELBv+dv+qc8m3npcxmYO9y6nlmpy1IgjMiMc6m4KOpX8zzc
+         rIiA==
+X-Gm-Message-State: AOAM530c7fGr6AEnwk0crzAmsGOk87j4FswgaL8owpyyYavgvCbSGBMc
+        Nb1MtgKnvFXY7UbT2nXIsVc=
+X-Google-Smtp-Source: ABdhPJx62jtib582/bFqAeaS2CUsNz1xMeq1v3YYPikqmnk+wjAN1aJARvS2nqB0757Y+1j8r+IfHg==
+X-Received: by 2002:a17:902:7883:b029:e7:32bd:6b97 with SMTP id q3-20020a1709027883b02900e732bd6b97mr22335934pll.0.1617592490431;
+        Sun, 04 Apr 2021 20:14:50 -0700 (PDT)
+Received: from z640-arch.lan ([2602:61:7344:f100::678])
+        by smtp.gmail.com with ESMTPSA id ot17sm13835918pjb.50.2021.04.04.20.14.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Apr 2021 20:14:50 -0700 (PDT)
+From:   Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
+        Saravana Kannan <saravanak@google.com>, stable@vger.kernel.org
+Subject: [PATCH] of: property: do not create device links from *nr-gpios
+Date:   Sun,  4 Apr 2021 20:14:36 -0700
+Message-Id: <20210405031436.2465475-1-ilya.lipnitskiy@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <bf7ad31e-974a-3e0a-12bd-32973c7c3cbd@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/03/2021 13:52, Matthias Brugger wrote:
-> 
-> 
-> On 19/03/2021 03:34, Seiya Wang wrote:
->> This commit adds dt-binding documentation of timer for Mediatek MT8195 SoC
->> Platform.
->>
->> Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
-> 
-> Applied to v5.12-next/dts64
+[<vendor>,]nr-gpios property is used by some GPIO drivers[0] to indicate
+the number of GPIOs present on a system, not define a GPIO. nr-gpios is
+not configured by #gpio-cells and can't be parsed along with other
+"*-gpios" properties.
 
-Usually bindings go through the subsystem maintainer.
+scripts/dtc/checks.c also has a special case for nr-gpio{s}. However,
+nr-gpio is not really special, so we only need to fix nr-gpios suffix
+here.
 
+[0]: nr-gpios is referenced in Documentation/devicetree/bindings/gpio:
+ - gpio-adnp.txt
+ - gpio-xgene-sb.txt
+ - gpio-xlp.txt
+ - snps,dw-apb-gpio.yaml
 
+Fixes errors such as:
+  OF: /palmbus@300000/gpio@600: could not find phandle
+
+Call Trace:
+  of_phandle_iterator_next+0x8c/0x16c
+  __of_parse_phandle_with_args+0x38/0xb8
+  of_parse_phandle_with_args+0x28/0x3c
+  parse_suffix_prop_cells+0x80/0xac
+  parse_gpios+0x20/0x2c
+  of_link_to_suppliers+0x18c/0x288
+  of_link_to_suppliers+0x1fc/0x288
+  device_add+0x4e0/0x734
+  of_platform_device_create_pdata+0xb8/0xfc
+  of_platform_bus_create+0x170/0x214
+  of_platform_populate+0x88/0xf4
+  __dt_register_buses+0xbc/0xf0
+  plat_of_setup+0x1c/0x34
+
+Fixes: 7f00be96f125 ("of: property: Add device link support for interrupt-parent, dmas and -gpio(s)")
+Signed-off-by: Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
+Cc: Saravana Kannan <saravanak@google.com>
+Cc: <stable@vger.kernel.org> # 5.5.x
+---
+ drivers/of/property.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index 2bb3158c9e43..24672c295603 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -1271,7 +1271,16 @@ DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
+ DEFINE_SIMPLE_PROP(remote_endpoint, "remote-endpoint", NULL)
+ DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+ DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+-DEFINE_SUFFIX_PROP(gpios, "-gpios", "#gpio-cells")
++
++static struct device_node *parse_gpios(struct device_node *np,
++				       const char *prop_name, int index)
++{
++	if (!strcmp_suffix(prop_name, "nr-gpios"))
++		return NULL;
++
++	return parse_suffix_prop_cells(np, prop_name, index, "-gpios",
++				       "#gpio-cells");
++}
+ 
+ static struct device_node *parse_iommu_maps(struct device_node *np,
+ 					    const char *prop_name, int index)
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+2.31.1
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
