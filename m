@@ -2,121 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B17F35431F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 17:00:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71892354392
+	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 17:51:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241380AbhDEPBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Apr 2021 11:01:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41718 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237824AbhDEPBC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Apr 2021 11:01:02 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DF027613B2;
-        Mon,  5 Apr 2021 15:00:53 +0000 (UTC)
-Date:   Mon, 5 Apr 2021 16:01:12 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Alexandru Ardelean <ardeleanalex@gmail.com>
-Cc:     linux-iio <linux-iio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH 1/3] iio:adc:ad7476: Fix remove handling
-Message-ID: <20210405160112.13c55d0f@jic23-huawei>
-In-Reply-To: <CA+U=DspFppB_cnufH6VLULKCaVQ796GsNykt90OJPPj_ThcyvQ@mail.gmail.com>
-References: <20210401171759.318140-1-jic23@kernel.org>
-        <20210401171759.318140-2-jic23@kernel.org>
-        <CA+U=DspFppB_cnufH6VLULKCaVQ796GsNykt90OJPPj_ThcyvQ@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S241654AbhDEPvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Apr 2021 11:51:50 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:36121 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236221AbhDEPvu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 11:51:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1617637904; x=1649173904;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=IzWL5rMe178emJ/yAcOpVpD5OzbH2As9J+9cxuGn0Pw=;
+  b=A3waNLpwEfvAiUbC6BgK4n5EG9I4gOmJSm8QtcfdRuvoDO7kFgFwkTNw
+   JmbvIeLWwk4/2ZBXRd8FGB8Tad73zGA+wLDaJ65n+UrEKv7Gbe9d+jRKL
+   U/A3S24rl3zJisn9XDuPvWtYDnQc4UKXwZJCDsIkVyTrh1r9JUER/4h1T
+   iT/K4qVboPeLadqiN1JmFomgsjPKZhj/eWNUb+kmluss99OZFrZPsodA5
+   2sV+3S8EXTjcyfgBrvULSGXtgXBawC2lGdYQp1c5gt0pOHIE/rZQyFjKg
+   Obn2sZ0GTmvNqPw7gdQ8WzSKec6RVVsH9dXQvI3b+ji5xzvIcERYrRk73
+   g==;
+IronPort-SDR: o3t4j2y0EjXDeXDZpHFdMS3OyBfD3hRPyVZhv0TLCA7/MHgCWcYEe0A+wCcJ9XpUcZv4vsOVtJ
+ hzL0Ik4StmbQaZy/65e41qbXf9DvKhq1U+AnX/EQdBwbqfk0drzjiqa+FQLxK2jDvFZF+Jm2Da
+ fVE/3n7QE54KCmCE1NWh/8KfrxGR6dBC/AkedLpVyqgAmlmdEnK0NZSd1Tc87OPEyOl+KlgnT0
+ XL7KNfnIoZiMsq28roqI0J4NdQO0hant5ZyolDxXkCN8UnbVKiN7tzWrXTPQek+0X8XoNf2SQn
+ D3c=
+X-IronPort-AV: E=Sophos;i="5.81,307,1610434800"; 
+   d="scan'208";a="112481451"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Apr 2021 08:51:43 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Mon, 5 Apr 2021 08:51:43 -0700
+Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Mon, 5 Apr 2021 08:51:24 -0700
+From:   Eugen Hristev <eugen.hristev@microchip.com>
+To:     <devicetree@vger.kernel.org>, <linux-media@vger.kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eugen Hristev <eugen.hristev@microchip.com>
+Subject: [PATCH v2 00/30] media: atmel: atmel-isc: add support for xisc
+Date:   Mon, 5 Apr 2021 18:50:35 +0300
+Message-ID: <20210405155105.162529-1-eugen.hristev@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2 Apr 2021 10:34:42 +0300
-Alexandru Ardelean <ardeleanalex@gmail.com> wrote:
+Hello,
 
-> On Thu, Apr 1, 2021 at 8:47 PM Jonathan Cameron <jic23@kernel.org> wrote:
-> >
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> >
-> > This driver was in an odd half way state between devm based cleanup
-> > and manual cleanup (most of which was missing).
-> > I would guess something went wrong with a rebase or similar.
-> > Anyhow, this basially finishes the job as a precusor to improving  
-> 
-> 2 typos in this commit description
+This series adds support for a variant of the ISC named XISC.
+This block is present in the product named sama7g5.
 
-One day I'll learn how to type /spell or at least to remember to use
-a spell checker on commit descriptions.
-> 
-> > the regulator handling.
-> >  
-> 
-> I was pretty surprised about this patch [before reading through it].
-Yup. This one definitely got a wtf followed by a groan that it had snuck
-through.  Has that look of a rebase going horribly wrong to me and
-I missed it completely in the original reviews :(
+I started by moving code around, the code which was specialized for sama5d2
+type of ISC, to have it inside the dedicated sama5d2 file.
 
+I added several new pipeline elements to the code base, which would be common
+to sama5d2 and the new sama7g5, but only used by the new style pipeline.
 
-> Anyhow:
-> 
-> Reviewed-by: Alexandru Ardelean <ardeleanalex@gmail.com>
+I separated the input and output formats on a per-product separate array.
+
+I added the new sama7g5 compatible driver for the xisc, which is similar with
+the sama5d2, but with differences in terms of DT, clocks and callbacks to
+specific operations.
+
+I added the binding for the xisc by copying and modifying the existing
+isc one. I know that it has to be converted to yaml, and I will do that if
+it looks good.
+
+Feedback is appreciated.
 Thanks,
+Eugen
 
-Applied to the togreg branch of iio.git and marked for stable.
-Bit late in cycle to do another fixes pull request so this one
-can wait for the merge window.
+Changes in v2:
+- Fixed krobot warnings with W=1 regarding functions with no prototype
+- Fixed new sama7g5 driver to use the new subdev fwnode API in kernel 5.12. my driver was
+based on old 5.10 style API.
 
-> 
-> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > Fixes: 4bb2b8f94ace3 ("iio: adc: ad7476: implement devm_add_action_or_reset")
-> > Cc: Michael Hennerich <michael.hennerich@analog.com>
-> > ---
-> >  drivers/iio/adc/ad7476.c | 18 ++++--------------
-> >  1 file changed, 4 insertions(+), 14 deletions(-)
-> >
-> > diff --git a/drivers/iio/adc/ad7476.c b/drivers/iio/adc/ad7476.c
-> > index 17402714b387..9e9ff07cf972 100644
-> > --- a/drivers/iio/adc/ad7476.c
-> > +++ b/drivers/iio/adc/ad7476.c
-> > @@ -321,25 +321,15 @@ static int ad7476_probe(struct spi_device *spi)
-> >         spi_message_init(&st->msg);
-> >         spi_message_add_tail(&st->xfer, &st->msg);
-> >
-> > -       ret = iio_triggered_buffer_setup(indio_dev, NULL,
-> > -                       &ad7476_trigger_handler, NULL);
-> > +       ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev, NULL,
-> > +                                             &ad7476_trigger_handler, NULL);
-> >         if (ret)
-> > -               goto error_disable_reg;
-> > +               return ret;
-> >
-> >         if (st->chip_info->reset)
-> >                 st->chip_info->reset(st);
-> >
-> > -       ret = iio_device_register(indio_dev);
-> > -       if (ret)
-> > -               goto error_ring_unregister;
-> > -       return 0;
-> > -
-> > -error_ring_unregister:
-> > -       iio_triggered_buffer_cleanup(indio_dev);
-> > -error_disable_reg:
-> > -       regulator_disable(st->reg);
-> > -
-> > -       return ret;
-> > +       return devm_iio_device_register(&spi->dev, indio_dev);
-> >  }
-> >
-> >  static const struct spi_device_id ad7476_id[] = {
-> > --
-> > 2.31.1
-> >  
+Eugen Hristev (30):
+  media: atmel: atmel-isc: specialize gamma table into product specific
+  media: atmel: atmel-isc: specialize driver name constant
+  media: atmel: atmel-isc: add checks for limiting frame sizes
+  media: atmel: atmel-isc: specialize max width and max height
+  media: atmel: atmel-isc: specialize dma cfg
+  media: atmel: atmel-isc: extract CSC submodule config into separate
+    function
+  media: atmel: atmel-isc-base: add id to clock debug message
+  media: atmel: atmel-isc: create register offsets struct
+  media: atmel: atmel-isc: extract CBC submodule config into separate
+    function
+  media: atmel: atmel-isc: add CBC to the reg offsets struct
+  media: atmel: atmel-isc: add SUB422 and SUB420 to register offsets
+  media: atmel: atmel-isc: add RLP to register offsets
+  media: atmel: atmel-isc: add HIS to register offsets
+  media: atmel: atmel-isc: add DMA to register offsets
+  media: atmel: atmel-isc: add support for version register
+  media: atmel: atmel-isc: add his_entry to register offsets
+  media: atmel: atmel-isc: add register description for additional
+    modules
+  media: atmel: atmel-isc: extend pipeline with extra modules
+  media: atmel: atmel-isc: add CC initialization function
+  media: atmel: atmel-isc: create product specific v4l2 controls config
+  media: atmel: atmel-isc: create callback for DPC submodule product
+    specific
+  media: atmel: atmel-isc: create callback for GAM submodule product
+    specific
+  media: atmel: atmel-isc: create callback for RLP submodule product
+    specific
+  media: atmel: atmel-isc: move the formats list into product specific
+    code
+  media: atmel: atmel-isc: create an adapt pipeline callback for product
+    specific
+  media: atmel: atmel-isc-regs: add additional fields for sama7g5 type
+    pipeline
+  media: atmel: atmel-isc-base: add support for more formats and
+    additional pipeline modules
+  dt-bindings: media: atmel: add microchip-xisc binding
+  media: atmel: atmel-isc-sama5d2: remove duplicate define
+  media: atmel: atmel-isc: add microchip-xisc driver
+
+ .../bindings/media/microchip-xisc.txt         |  64 ++
+ drivers/media/platform/Makefile               |   1 +
+ drivers/media/platform/atmel/Kconfig          |  11 +
+ drivers/media/platform/atmel/Makefile         |   2 +
+ drivers/media/platform/atmel/atmel-isc-base.c | 381 ++++-------
+ drivers/media/platform/atmel/atmel-isc-regs.h | 133 +++-
+ drivers/media/platform/atmel/atmel-isc.h      | 122 +++-
+ .../media/platform/atmel/atmel-sama5d2-isc.c  | 311 ++++++++-
+ .../media/platform/atmel/atmel-sama7g5-isc.c  | 643 ++++++++++++++++++
+ 9 files changed, 1391 insertions(+), 277 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/microchip-xisc.txt
+ create mode 100644 drivers/media/platform/atmel/atmel-sama7g5-isc.c
+
+-- 
+2.25.1
 
