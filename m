@@ -2,212 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DDA535459D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 18:48:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 924963545C3
+	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 19:02:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231814AbhDEQru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Apr 2021 12:47:50 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:55715 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbhDEQrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 12:47:48 -0400
-Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id CEB002224E;
-        Mon,  5 Apr 2021 18:47:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1617641259;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=lACUh6+pO6Mh+0/uWp/aTCFDfW7S2kCGechEIv6LxiY=;
-        b=lwFE87EYukRw6Yc6p60CLMzC5zc1q4XkEPTn8w8EvzA1JTUuv+YccJm62Q7VbOfBftWYWl
-        UYVpBPvEm+zmXff6Nt+50Y7ystqKWnOHm4H8B+opiuB/6tPwdRVQ2hz+cKHZqMG/Bd3MLL
-        hij5E+nDvi2JnjZOiwmh02pWHeeGxPw=
-From:   Michael Walle <michael@walle.cc>
-To:     ath9k-devel@qca.qualcomm.com, UNGLinuxDriver@microchip.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, netdev@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-amlogic@lists.infradead.org, linux-oxnas@groups.io,
-        linux-omap@vger.kernel.org, linux-wireless@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-staging@lists.linux.dev
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Andreas Larsson <andreas@gaisler.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Joyce Ooi <joyce.ooi@intel.com>,
-        Chris Snook <chris.snook@gmail.com>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Sunil Goutham <sgoutham@marvell.com>,
-        Fugang Duan <fugang.duan@nxp.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Pantelis Antoniou <pantelis.antoniou@gmail.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Yisen Zhuang <yisen.zhuang@huawei.com>,
-        Salil Mehta <salil.mehta@huawei.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Vadym Kochan <vkochan@marvell.com>,
-        Taras Chornyi <tchornyi@marvell.com>,
-        Mirko Lindner <mlindner@marvell.com>,
-        Stephen Hemminger <stephen@networkplumber.org>,
-        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bryan Whitehead <bryan.whitehead@microchip.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Byungho An <bh74.an@samsung.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Wingman Kwok <w-kwok2@ti.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Stanislaw Gruszka <stf_xl@wp.pl>,
-        Helmut Schaa <helmut.schaa@googlemail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        =?UTF-8?q?J=C3=A9r=C3=B4me=20Pouiller?= 
-        <jerome.pouiller@silabs.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH 2/2] of: net: fix of_get_mac_addr_nvmem() for PCI and DSA nodes
-Date:   Mon,  5 Apr 2021 18:46:43 +0200
-Message-Id: <20210405164643.21130-3-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210405164643.21130-1-michael@walle.cc>
-References: <20210405164643.21130-1-michael@walle.cc>
+        id S232676AbhDERCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Apr 2021 13:02:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45850 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232877AbhDERC3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 13:02:29 -0400
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09632C061756;
+        Mon,  5 Apr 2021 10:02:23 -0700 (PDT)
+Received: by mail-oi1-x229.google.com with SMTP id x2so12243616oiv.2;
+        Mon, 05 Apr 2021 10:02:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition:user-agent;
+        bh=ABRbsCX1jEMC1SjlaLIus8yukReuvU1jzZ48riQcml4=;
+        b=pHNrb0HKjA4iJCZYAaU2LkN2lkpDnQu1YBt+GInagTvEa4lP7ZRgdVjp2rlrKXhPMg
+         A8L/yMmJ+6tU3BAGlViUfxa2ncoqC4D5KugKlKJS5KV/JEqYmbwmYbPzet4lrC9RDCam
+         hj9dHHmNbLMKSxXkl6OhzEsD4j2Pe+jPT25Z4ZAtofdqYQe4IoqbkRjnnwKBXNpnwiDD
+         aIhjrx2TyXR6NV+DlFum1UQjjMIgO7In89T7zt36ObFYUzzocwz8NTuMAEKmbTnNbS3r
+         wJBWU18eKFPeQxdXNMSBGXN8Tl3M+kMpCByPzj1AUal5Qt8u6BpSrFadFQ3Q/SY0A75F
+         k4Xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :mime-version:content-disposition:user-agent;
+        bh=ABRbsCX1jEMC1SjlaLIus8yukReuvU1jzZ48riQcml4=;
+        b=RcaZ8mJ/HJV70h8y2s3vHWBJ80vPIosKbJHEvO1doHlIeHiXsWpjw6CgWCFu82/Ofl
+         f4QK4SffGVRxHFP4bBQeXLVNJh8dKgm6D32vJYzfGu0ZW4FKmTMrVCE8ypAkuYOCxDJm
+         0HB3huJ+OtqU76u+S3Ghb3MjTxatT97lDuc+IVjp7gPiFKPI4LJE5hJzL6Pnjhx08o8i
+         ByRtG6Vz0EPyRaA5+vgKZEHvOP0CyXo9w/1TE9KSSMK6+sJX1GLTFS0ICJwZQ4eeLV1q
+         VeUssVlApNtJpofQeh4eXgkaojrg582P4N0yT2iEDwVxoO2B2BhNXXBkWk6jo8DdEr4I
+         00mg==
+X-Gm-Message-State: AOAM530Xk1IfW3yOgYrsfekbQ7QImleKqWJQt+0mH5joAb2kCerruXCj
+        4pAM9rUne31YPeWGW+RK6u8=
+X-Google-Smtp-Source: ABdhPJxTzhcIw/kcBA44VLmacyEq8LHk1n0j+YPzcPx8UKAn9zKMyrJVL4LSYOA7KWIToi2jYUnVZg==
+X-Received: by 2002:aca:4487:: with SMTP id r129mr84141oia.106.1617642142356;
+        Mon, 05 Apr 2021 10:02:22 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id p22sm4204736otf.25.2021.04.05.10.02.21
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 05 Apr 2021 10:02:21 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Mon, 5 Apr 2021 10:02:20 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     frowand.list@gmail.com
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] of: properly check for error returned by
+ fdt_get_name()
+Message-ID: <20210405170220.GA52569@roeck-us.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-of_get_mac_address() already supports fetching the MAC address by an
-nvmem provider. But until now, it was just working for platform devices.
-Esp. it was not working for DSA ports and PCI devices. It gets more
-common that PCI devices have a device tree binding since SoCs contain
-integrated root complexes.
+On Sun, Apr 04, 2021 at 10:28:45PM -0500, frowand.list@gmail.com wrote:
+> From: Frank Rowand <frank.rowand@sony.com>
+> 
+> fdt_get_name() returns error values via a parameter pointer
+> instead of in function return.  Fix check for this error value
+> in populate_node() and callers of populate_node().
+> 
+> Chasing up the caller tree showed callers of various functions
+> failing to initialize the value of pointer parameters that
+> can return error values.  Initialize those values to NULL.
+> 
+> The bug was introduced by
+> commit e6a6928c3ea1 ("of/fdt: Convert FDT functions to use libfdt")
+> but this patch can not be backported directly to that commit
+> because the relevant code has further been restructured by
+> commit dfbd4c6eff35 ("drivers/of: Split unflatten_dt_node()")
+> 
+> The bug became visible by triggering a crash on openrisc with:
+> commit 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9")
+> as reported in:
+> https://lore.kernel.org/lkml/20210327224116.69309-1-linux@roeck-us.net/
+> 
+> Fixes: commit 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9")
+> Reported-by: Guenter Roeck <linux@roeck-us.net>
+> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+> 
 
-Use the nvmem of_* binding to fetch the nvmem cells by a struct
-device_node. We still have to try to read the cell by device first
-because there might be a nvmem_cell_lookup associated with that device.
+With this patch applied, the kernel no longer crashes, and the log message
+is as expected:
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
-Please note, that I've kept the nvmem_get_mac_address() which operates
-on a device. The new of_get_mac_addr_nvmem() is almost identical and
-there are no users of the former function right now, but it seems to be
-the "newer" version to get the MAC address for a "struct device". Thus
-I've kept it. Please advise, if I should kill it though.
+### dt-test ### start of unittest - you will see error messages
+### dt-test ### unittest_data_add: unflatten testcases tree failed
 
- drivers/of/of_net.c | 37 +++++++++++++++++++++++++++++++------
- 1 file changed, 31 insertions(+), 6 deletions(-)
+Tested-by: Guenter Roeck <linux@roeck-us.net>
 
-diff --git a/drivers/of/of_net.c b/drivers/of/of_net.c
-index 2344ad7fff5e..2323c6063eaf 100644
---- a/drivers/of/of_net.c
-+++ b/drivers/of/of_net.c
-@@ -11,6 +11,7 @@
- #include <linux/phy.h>
- #include <linux/export.h>
- #include <linux/device.h>
-+#include <linux/nvmem-consumer.h>
- 
- /**
-  * of_get_phy_mode - Get phy mode for given device_node
-@@ -56,18 +57,42 @@ static int of_get_mac_addr(struct device_node *np, const char *name, u8 *addr)
- 	return -ENODEV;
- }
- 
--static int of_get_mac_addr_nvmem(struct device_node *np, u8 addr)
-+static int of_get_mac_addr_nvmem(struct device_node *np, u8 *addr)
- {
- 	struct platform_device *pdev = of_find_device_by_node(np);
-+	struct nvmem_cell *cell;
-+	const void *mac;
-+	size_t len;
- 	int ret;
- 
--	if (!pdev)
--		return -ENODEV;
-+	/* Try lookup by device first, there might be a nvmem_cell_lookup
-+	 * associated with a given device.
-+	 */
-+	if (pdev) {
-+		ret = nvmem_get_mac_address(&pdev->dev, addr);
-+		put_device(&pdev->dev);
-+		return ret;
-+	}
-+
-+	cell = of_nvmem_cell_get(np, "mac-address");
-+	if (IS_ERR(cell))
-+		return PTR_ERR(cell);
-+
-+	mac = nvmem_cell_read(cell, &len);
-+	nvmem_cell_put(cell);
-+
-+	if (IS_ERR(mac))
-+		return PTR_ERR(mac);
-+
-+	if (len != ETH_ALEN || !is_valid_ether_addr(mac)) {
-+		kfree(mac);
-+		return -EINVAL;
-+	}
- 
--	ret = nvmem_get_mac_address(&pdev->dev, addr);
--	put_device(&pdev->dev);
-+	ether_addr_copy(addr, mac);
-+	kfree(mac);
- 
--	return ret;
-+	return 0;
- }
- 
- /**
--- 
-2.20.1
+Thanks,
+Guenter
 
+> ---
+> 
+> This patch papers over the unaligned pointer passed to
+> of_fdt_unflatten_tree() bug that Guenter reported in
+> https://lore.kernel.org/lkml/20210327224116.69309-1-linux@roeck-us.net/
+> 
+> I will create a separate patch to fix that problem.
+> 
+>  drivers/of/fdt.c      | 36 +++++++++++++++++++++++-------------
+>  drivers/of/overlay.c  |  2 +-
+>  drivers/of/unittest.c | 15 ++++++++++-----
+>  3 files changed, 34 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index dcc1dd96911a..adb26aff481d 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -205,7 +205,7 @@ static void populate_properties(const void *blob,
+>  		*pprev = NULL;
+>  }
+>  
+> -static bool populate_node(const void *blob,
+> +static int populate_node(const void *blob,
+>  			  int offset,
+>  			  void **mem,
+>  			  struct device_node *dad,
+> @@ -214,24 +214,24 @@ static bool populate_node(const void *blob,
+>  {
+>  	struct device_node *np;
+>  	const char *pathp;
+> -	unsigned int l, allocl;
+> +	int len;
+>  
+> -	pathp = fdt_get_name(blob, offset, &l);
+> +	pathp = fdt_get_name(blob, offset, &len);
+>  	if (!pathp) {
+>  		*pnp = NULL;
+> -		return false;
+> +		return len;
+>  	}
+>  
+> -	allocl = ++l;
+> +	len++;
+>  
+> -	np = unflatten_dt_alloc(mem, sizeof(struct device_node) + allocl,
+> +	np = unflatten_dt_alloc(mem, sizeof(struct device_node) + len,
+>  				__alignof__(struct device_node));
+>  	if (!dryrun) {
+>  		char *fn;
+>  		of_node_init(np);
+>  		np->full_name = fn = ((char *)np) + sizeof(*np);
+>  
+> -		memcpy(fn, pathp, l);
+> +		memcpy(fn, pathp, len);
+>  
+>  		if (dad != NULL) {
+>  			np->parent = dad;
+> @@ -295,6 +295,7 @@ static int unflatten_dt_nodes(const void *blob,
+>  	struct device_node *nps[FDT_MAX_DEPTH];
+>  	void *base = mem;
+>  	bool dryrun = !base;
+> +	int ret;
+>  
+>  	if (nodepp)
+>  		*nodepp = NULL;
+> @@ -322,9 +323,10 @@ static int unflatten_dt_nodes(const void *blob,
+>  		    !of_fdt_device_is_available(blob, offset))
+>  			continue;
+>  
+> -		if (!populate_node(blob, offset, &mem, nps[depth],
+> -				   &nps[depth+1], dryrun))
+> -			return mem - base;
+> +		ret = populate_node(blob, offset, &mem, nps[depth],
+> +				   &nps[depth+1], dryrun);
+> +		if (ret < 0)
+> +			return ret;
+>  
+>  		if (!dryrun && nodepp && !*nodepp)
+>  			*nodepp = nps[depth+1];
+> @@ -372,6 +374,10 @@ void *__unflatten_device_tree(const void *blob,
+>  {
+>  	int size;
+>  	void *mem;
+> +	int ret;
+> +
+> +	if (mynodes)
+> +		*mynodes = NULL;
+>  
+>  	pr_debug(" -> unflatten_device_tree()\n");
+>  
+> @@ -392,7 +398,7 @@ void *__unflatten_device_tree(const void *blob,
+>  
+>  	/* First pass, scan for size */
+>  	size = unflatten_dt_nodes(blob, NULL, dad, NULL);
+> -	if (size < 0)
+> +	if (size <= 0)
+>  		return NULL;
+>  
+>  	size = ALIGN(size, 4);
+> @@ -410,12 +416,16 @@ void *__unflatten_device_tree(const void *blob,
+>  	pr_debug("  unflattening %p...\n", mem);
+>  
+>  	/* Second pass, do actual unflattening */
+> -	unflatten_dt_nodes(blob, mem, dad, mynodes);
+> +	ret = unflatten_dt_nodes(blob, mem, dad, mynodes);
+> +
+>  	if (be32_to_cpup(mem + size) != 0xdeadbeef)
+>  		pr_warn("End of tree marker overwritten: %08x\n",
+>  			be32_to_cpup(mem + size));
+>  
+> -	if (detached && mynodes) {
+> +	if (ret <= 0)
+> +		return NULL;
+> +
+> +	if (detached && mynodes && *mynodes) {
+>  		of_node_set_flag(*mynodes, OF_DETACHED);
+>  		pr_debug("unflattened tree is detached\n");
+>  	}
+> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+> index 50bbe0edf538..e12c643b6ba8 100644
+> --- a/drivers/of/overlay.c
+> +++ b/drivers/of/overlay.c
+> @@ -1017,7 +1017,7 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
+>  	const void *new_fdt;
+>  	int ret;
+>  	u32 size;
+> -	struct device_node *overlay_root;
+> +	struct device_node *overlay_root = NULL;
+>  
+>  	*ovcs_id = 0;
+>  	ret = 0;
+> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+> index eb100627c186..f9b5b698249f 100644
+> --- a/drivers/of/unittest.c
+> +++ b/drivers/of/unittest.c
+> @@ -1408,7 +1408,7 @@ static void attach_node_and_children(struct device_node *np)
+>  static int __init unittest_data_add(void)
+>  {
+>  	void *unittest_data;
+> -	struct device_node *unittest_data_node, *np;
+> +	struct device_node *unittest_data_node = NULL, *np;
+>  	/*
+>  	 * __dtb_testcases_begin[] and __dtb_testcases_end[] are magically
+>  	 * created by cmd_dt_S_dtb in scripts/Makefile.lib
+> @@ -1417,10 +1417,10 @@ static int __init unittest_data_add(void)
+>  	extern uint8_t __dtb_testcases_end[];
+>  	const int size = __dtb_testcases_end - __dtb_testcases_begin;
+>  	int rc;
+> +	void *ret;
+>  
+>  	if (!size) {
+> -		pr_warn("%s: No testcase data to attach; not running tests\n",
+> -			__func__);
+> +		pr_warn("%s: testcases is empty\n", __func__);
+>  		return -ENODATA;
+>  	}
+>  
+> @@ -1429,9 +1429,14 @@ static int __init unittest_data_add(void)
+>  	if (!unittest_data)
+>  		return -ENOMEM;
+>  
+> -	of_fdt_unflatten_tree(unittest_data, NULL, &unittest_data_node);
+> +	ret = of_fdt_unflatten_tree(unittest_data, NULL, &unittest_data_node);
+> +	if (!ret) {
+> +		pr_warn("%s: unflatten testcases tree failed\n", __func__);
+> +		kfree(unittest_data);
+> +		return -ENODATA;
+> +	}
+>  	if (!unittest_data_node) {
+> -		pr_warn("%s: No tree to attach; not running tests\n", __func__);
+> +		pr_warn("%s: testcases tree is empty\n", __func__);
+>  		kfree(unittest_data);
+>  		return -ENODATA;
+>  	}
+> -- 
+> Frank Rowand <frank.rowand@sony.com>
+> 
