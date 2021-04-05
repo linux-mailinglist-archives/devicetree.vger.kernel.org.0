@@ -2,94 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E97B6353C6F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 10:39:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72B42353C7C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 10:45:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232266AbhDEIkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Apr 2021 04:40:03 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:23190 "EHLO m43-7.mailgun.net"
+        id S232563AbhDEIpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Apr 2021 04:45:38 -0400
+Received: from mx2.suse.de ([195.135.220.15]:36444 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231842AbhDEIkC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Apr 2021 04:40:02 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1617611997; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=JVZGK6nKznNaKGPdGtvDUf+GzgIviD/t/iszxilbzTU=;
- b=fL91L6RmcbPX8iBF+BTZU9DxHtOa0nsRq+WSjFMDIvJBLDNw1JYQoahl1ZVZH5LGs+poMXhH
- RXXSrq3HKIxvJhZo9iHiOFYd4GzH1TZdXWACtC9Ng4CItuz6pB1PCc3mVQ/JKQQaCgK4+igM
- 7lfBW0h7AKfH3F4rVOLqAhAzbBI=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 606accdcf34440a9d4717030 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 05 Apr 2021 08:39:56
- GMT
-Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id A9879C43461; Mon,  5 Apr 2021 08:39:56 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3806CC433CA;
-        Mon,  5 Apr 2021 08:39:56 +0000 (UTC)
+        id S231979AbhDEIpi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Apr 2021 04:45:38 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 163A1B12D;
+        Mon,  5 Apr 2021 08:45:31 +0000 (UTC)
+Message-ID: <4d4e3de99dbee711cf47878bf98a7cc34c3f1e65.camel@suse.de>
+Subject: Re: [PATCH 4/4] ARM: dts: Fix-up EMMC2 controller's frequency
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Alan Cooper <alcooperx@gmail.com>
+Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
+        linux-rpi-kernel@lists.infradead.org,
+        Florian Fainelli <f.fainelli@gmail.com>, phil@raspberrypi.com,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        ": Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 05 Apr 2021 10:45:29 +0200
+In-Reply-To: <CAOGqxeUxOA_s6=KUh_XWFtRF_EWZgQH_y2MEdxUeDQTYMeb+3A@mail.gmail.com>
+References: <20210322185816.27582-1-nsaenz@kernel.org>
+         <20210322185816.27582-5-nsaenz@kernel.org>
+         <401100ea-90ad-57b1-50da-967118a090da@i2se.com>
+         <78dec30c052e9bb76e52c38f3da5af371e5d65f5.camel@suse.de>
+         <2d2a2638-8213-5d6e-0a3a-927ed5bb2ed7@i2se.com>
+         <c7c8e20d3d11c7d6cd203797c5faffa8a4d202a6.camel@suse.de>
+         <CAOGqxeUxOA_s6=KUh_XWFtRF_EWZgQH_y2MEdxUeDQTYMeb+3A@mail.gmail.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-38waL8wK1Aj1RRmL0Xy5"
+User-Agent: Evolution 3.38.4 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 05 Apr 2021 14:09:56 +0530
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        saiprakash.ranjan=codeaurora.org@codeaurora.org
-Subject: Re: [PATCHv2 0/4] Enable various hardware blocks on SC7280 SoC
-In-Reply-To: <cover.1615832893.git.saiprakash.ranjan@codeaurora.org>
-References: <cover.1615832893.git.saiprakash.ranjan@codeaurora.org>
-Message-ID: <aa366984b231ccb7cb2a75aa9bc0fd1b@codeaurora.org>
-X-Sender: saiprakash.ranjan@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
 
-On 2021-03-16 00:05, Sai Prakash Ranjan wrote:
-> This series enables various hardware blocks such as LLCC, IPCC, AOSS 
-> QMP
-> and Coresight on SC7280 SoC.
-> 
-> Changes in v2:
->  * Rename qmp to power-controller (Stephen)
->  * Drop the ipcc mailbox dt-binding from this series and send it 
-> separately
->  * Collect review tags
-> 
-> Sai Prakash Ranjan (4):
->   arm64: dts: qcom: sc7280: Add device tree node for LLCC
->   arm64: dts: qcom: sc7280: Add IPCC for SC7280 SoC
->   arm64: dts: qcom: sc7280: Add AOSS QMP node
->   arm64: dts: qcom: sc7280: Add Coresight support
-> 
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 520 +++++++++++++++++++++++++++
->  1 file changed, 520 insertions(+)
+--=-38waL8wK1Aj1RRmL0Xy5
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Gentle Ping!
+Hi Alan,
 
-Thanks,
-Sai
+On Thu, 2021-04-01 at 11:23 -0400, Alan Cooper wrote:
+> Nicolas,
+>=20
+> Sorry, I just noticed this thread.
+> This is a known bug in some newer Arasan cores.
+> The problem happens when the difference between the core clock and the bu=
+s
+> clock is too great.
+> Limiting the clock to 200KHz minimum should be a good fix.
 
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
-member
-of Code Aurora Forum, hosted by The Linux Foundation
+Great, that's what I was hoping to hear :). Out of curiosity, can you share
+more details on how the failure occurs?
+
+> In my experience, it's only eMMC that needs the clock to be retried
+
+> below 400KHz and not SD or SDIO. That's because the CMD signal for
+> eMMC starts out as open-drain during identification and the size of
+> the pull-up on the CMD signal can require the <400KHz clock. Once eMMC
+> is out of identification mode the CMD signal is switched to push-pull
+> and can run at much higher clock rates.
+
+Fair enough, I need to do some tests, some of the compute modules use an eM=
+MC.
+
+> I don't think that SD and SDIO have any open-drain signals, so they
+> shouldn't need to retry at slower clock speeds.
+
+Noted.
+
+> I'm trying to get more detail on the bug, like the exact ratio of core
+> clock to bus clock that causes the problem. When I first found this
+> bug I was told that the failure would not happen at 200KHz, but we
+> were using a 405MHz core clock.
+
+That would be nice to have.
+
+> One other question. Why are you using polling for the SD card, this
+> newer controller supports the interrupt driven "Card Inserted" signal
+> and avoids wasting time polling?
+
+I believe the line isn't routed on RPi4.
+
+> Al
+
+
+--=-38waL8wK1Aj1RRmL0Xy5
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAmBqzikACgkQlfZmHno8
+x/5vvAf+LwODH29W1eKi1mUblY7T8nHOw5yF+PQbXyMex7hzFkTJYqotZkZnT4RS
++RAKLLEH8r+drFB3D2hz/TJEazqr6fvhiJMQlE5mZMsAY4fUhDJUcKuuPLgXidXM
+vDNEVEFnoshhZnX/cTNVaxdNBKEzUPCD85kbqZNScQFifR2BtiTFMcebavyVJHP2
+ELOLaKtx1XaqEmtfxufzh6lFAHR9WTIRZffL4c+b8a90kdiApV8NV9RLILO5KIzx
+XNA+Zi0L0vfAGEGrNu397g9lkZPYq6VKOy/cwB9hmI1yiJOxLLeqaY5yQb96NtaY
+sZwwA0sB1TKPJXGdQVsX1Kt1+1SqIA==
+=H6cA
+-----END PGP SIGNATURE-----
+
+--=-38waL8wK1Aj1RRmL0Xy5--
+
