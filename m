@@ -2,250 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E277B354760
-	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 22:08:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 636B9354765
+	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 22:10:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240564AbhDEUIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Apr 2021 16:08:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57984 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240546AbhDEUIj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 16:08:39 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D5BAC061788
-        for <devicetree@vger.kernel.org>; Mon,  5 Apr 2021 13:08:32 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id z6-20020a1c4c060000b029010f13694ba2so6137810wmf.5
-        for <devicetree@vger.kernel.org>; Mon, 05 Apr 2021 13:08:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=zBI59S0esvtyRJVOZTHC86ExpUhwst9TBLwdi/kDYn8=;
-        b=tiGffN4digjOme3ZvvrFri/s9NDzwTOWr1qHeG7BhTyV469zeXcoPoWnAOWuxGsYAi
-         Az5xcWk7WCcViBojAQEXw5P/uuykrC+FsLOcTwv9ubhKl9S3/hJRgTCCENfz+BrqWfC8
-         ba6I1hvGtwuyC8L6h+lyGyzCHxZ/QLnrrzO4Zglshtj0IhwYd2Kxug+1/FTNIYOfL3VW
-         SBUcPjQIKzojr6sSAiwT8Li40JANAE3kv9jDylR8RBujP55GTbjMeQ6Y78a9pvYvtWZN
-         cacolBfsSb0/bf5zJ145x7bvf2NLcro51gQMdpFj38C9jhg4E3+wNxMbsAD0xenGezdf
-         be3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=zBI59S0esvtyRJVOZTHC86ExpUhwst9TBLwdi/kDYn8=;
-        b=ffaIjJexPxlePyNFBBsEQS8pGzp2qTWZswytMhzpYS0/REw2HREm5QtvNSn7PvWIA/
-         1keAht81bEEkDB2cz/BufKnHwpNzuikzhjkLH5NPP5VSz2kQ47rpflfUOSA0q4GEyFow
-         r0ZFrrDX2C17n2xQTBHMQOULr1k0IdhwIq6O3lJXsfuAt2P6fSGRKQ2FYk4M0/WLsJ6d
-         6aZNZSSmIr8xOwM/EtDuRE6NaaHQ2xxaW0fCOIHbNOx7uoPdl9WR+r0yrBVJrHx+9zD0
-         Q685r4CeFHLFtUzMSK/go5NHct5e0eqkXAssB+KORtRQWUNkcUNBY5APbSeoem9pCKMx
-         trIg==
-X-Gm-Message-State: AOAM532QEQlLY/PKFrf5TiAjh5Dv3IPazNBhJG7qe3IaJ8el6txyckR3
-        ToHO8VKuJTryDm+tVtPejpugPA==
-X-Google-Smtp-Source: ABdhPJyfy0YtdT4isJjzVUiZ5iElNhki0/lybno+DvYH9leDZPbn06qlgznbrXa6NBC610NsrAp3HA==
-X-Received: by 2002:a05:600c:228d:: with SMTP id 13mr689696wmf.49.1617653310820;
-        Mon, 05 Apr 2021 13:08:30 -0700 (PDT)
-Received: from localhost.localdomain ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id v185sm609420wmb.25.2021.04.05.13.08.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Apr 2021 13:08:30 -0700 (PDT)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     mkorpershoek@baylibre.com, Fabien Parent <fparent@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] arm64: dts: mediatek: mt8167: add some DRM nodes
-Date:   Mon,  5 Apr 2021 22:08:21 +0200
-Message-Id: <20210405200821.2203458-5-fparent@baylibre.com>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210405200821.2203458-1-fparent@baylibre.com>
-References: <20210405200821.2203458-1-fparent@baylibre.com>
+        id S240630AbhDEUKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Apr 2021 16:10:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45872 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240551AbhDEUKT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Apr 2021 16:10:19 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BD45E613C6;
+        Mon,  5 Apr 2021 20:10:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617653413;
+        bh=rA9Zw09mciODJSeIM6nLu1weM/1jrMiqvN1zY0ZxHSg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=a2wZHdPHPxGrE89siTyA8zgo6TKoPjjIwMqsUhmkVbn6s4cXVFePs9xSw17+uqopn
+         Fn5OFCNbk4uqQe7KurPl++k2gmNFrYCCfBeF0KwJRUE89mec3UPSn1r2pVDWninHls
+         CnCkISCQSmFj6gLty+IrzlfDr/L3oDXpfZU2JL9Jn3aqTzcRSur9cifN99wpgLqcKC
+         1QlIsDhIloODxgDQZFcmNY+AkkiQbdMHm/BIyh/3FUjK8MApqX7Ga4OqPabGvQ6xbN
+         FYF7nOSzxPqv3uF73lBMMICzgOJUyX23iYqHeGwqQIKWQPOCkVQG5G+JSr9uH4+DRh
+         RxZZv4aU8N1sg==
+Received: by mail-lj1-f172.google.com with SMTP id s17so13921401ljc.5;
+        Mon, 05 Apr 2021 13:10:12 -0700 (PDT)
+X-Gm-Message-State: AOAM530foF3sIqK4Igu9V+X3kRT7Kee4AqOv+YroGGboR7/f9KQoATn6
+        s3h8qo3qczwPxwN2GK/viT43yzobL6yHFEVGmAw=
+X-Google-Smtp-Source: ABdhPJzLJMYoipMVG9xL5GkooeRMfaNFnIj44znyKkjoO9ZYjIYhgyAWmpvGtsOPDAiaxl/tDjhC9PG/mE4R9Eip2fU=
+X-Received: by 2002:a2e:8919:: with SMTP id d25mr17398026lji.187.1617653411035;
+ Mon, 05 Apr 2021 13:10:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210405200259.23525-1-petr.vorel@gmail.com>
+In-Reply-To: <20210405200259.23525-1-petr.vorel@gmail.com>
+From:   Ricardo Ribalda Delgado <ribalda@kernel.org>
+Date:   Mon, 5 Apr 2021 22:09:54 +0200
+X-Gmail-Original-Message-ID: <CAPybu_2_iCHO37PfQhu8+6WrSb_VMXgGzkiAhw7+B-wLOd7GRQ@mail.gmail.com>
+Message-ID: <CAPybu_2_iCHO37PfQhu8+6WrSb_VMXgGzkiAhw7+B-wLOd7GRQ@mail.gmail.com>
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8994: Reserve gpio ranges
+To:     Petr Vorel <petr.vorel@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add all the DRM nodes required to get DSI to work on MT8167 SoC.
+Hi Petr
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt8167.dtsi | 149 +++++++++++++++++++++++
- 1 file changed, 149 insertions(+)
+On Mon, Apr 5, 2021 at 10:03 PM Petr Vorel <petr.vorel@gmail.com> wrote:
+>
+> Reserve pins 0-3 and 85-88 as these aren't meant to be accessible
+> from the application CPUs. Fix similar to 9134586715e3.
+>
+> Fixes: 3edfb7bd76bd ("gpiolib: Show correct direction from the beginning")
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8167.dtsi b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-index 3ba03ca749b2..8ca92d6b203a 100644
---- a/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-@@ -16,6 +16,19 @@
- / {
- 	compatible = "mediatek,mt8167";
- 
-+	aliases {
-+		aal0 = &aal;
-+		ccorr0 = &ccorr;
-+		color0 = &color;
-+		dither0 = &dither;
-+		dsi0 = &dsi;
-+		ovl0 = &ovl0;
-+		pwm0 = &disp_pwm;
-+		rdma0 = &rdma0;
-+		rdma1 = &rdma1;
-+		wdma0 = &wdma;
-+	};
-+
- 	soc {
- 		topckgen: topckgen@10000000 {
- 			compatible = "mediatek,mt8167-topckgen", "syscon";
-@@ -114,6 +127,13 @@ vdecsys: syscon@16000000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		mutex: mutex@14015000 {
-+			compatible = "mediatek,mt8167-disp-mutex";
-+			reg = <0 0x14015000 0 0x1000>;
-+			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+		};
-+
- 		pio: pinctrl@1000b000 {
- 			compatible = "mediatek,mt8167-pinctrl";
- 			reg = <0 0x1000b000 0 0x1000>;
-@@ -126,6 +146,135 @@ pio: pinctrl@1000b000 {
- 			interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		rdma1: rdma1@1400a000 {
-+			compatible = "mediatek,mt8167-disp-rdma",
-+				     "mediatek,mt2701-disp-rdma";
-+			reg = <0 0x1400a000 0 0x1000>;
-+			interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+			clocks = <&mmsys CLK_MM_DISP_RDMA1>;
-+			iommus = <&iommu M4U_PORT_DISP_RDMA1>;
-+			mediatek,larb = <&larb0>;
-+		};
-+
-+		disp_pwm: disp_pwm@1100f000 {
-+			compatible = "mediatek,mt8167-disp-pwm",
-+				     "mediatek,mt8173-disp-pwn";
-+			reg = <0 0x1100f000 0 0x1000>;
-+			#pwm-cells = <2>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+			clocks = <&topckgen CLK_TOP_PWM_SEL>,
-+				 <&topckgen CLK_TOP_PWM_MM>,
-+				  <&mmsys CLK_MM_DISP_PWM_26M>,
-+				  <&mmsys CLK_MM_DISP_PWM_MM>;
-+			clock-names = "pwm_sel",
-+				      "pwm_mm",
-+				      "main",
-+				      "mm";
-+			status = "disabled";
-+		};
-+
-+		dsi: dsi@14012000 {
-+			compatible = "mediatek,mt8167-dsi",
-+				     "mediatek,mt2701-dsi";
-+			reg = <0 0x14012000 0 0x1000>;
-+			interrupts = <GIC_SPI 171 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+			clocks = <&mmsys CLK_MM_DSI_ENGINE>,
-+				 <&mmsys CLK_MM_DSI_DIGITAL>,
-+				 <&mipi_tx>;
-+			clock-names = "engine", "digital", "hs";
-+			phys = <&mipi_tx>;
-+			phy-names = "dphy";
-+			status = "disabled";
-+		};
-+
-+		mipi_tx: mipi_dphy@14018000 {
-+			compatible = "mediatek,mt8167-mipi-tx",
-+				     "mediatek,mt2701-mipi-tx";
-+			reg = <0 0x14018000 0 0x90>;
-+			clocks = <&topckgen CLK_TOP_MIPI_26M_DBG>;
-+			clock-output-names = "mipi_tx0_pll";
-+			#clock-cells = <0>;
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		ovl0: ovl0@14007000 {
-+			compatible = "mediatek,mt8167-disp-ovl",
-+				     "mediatek,mt8173-disp-ovl";
-+			reg = <0 0x14007000 0 0x1000>;
-+			interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+			clocks = <&mmsys CLK_MM_DISP_OVL0>;
-+			iommus = <&iommu M4U_PORT_DISP_OVL0>;
-+			mediatek,larb = <&larb0>;
-+		};
-+
-+		rdma0: rdma0@14009000 {
-+			compatible = "mediatek,mt8167-disp-rdma",
-+				     "mediatek,mt2701-disp-rdma";
-+			reg = <0 0x14009000 0 0x1000>;
-+			interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+			clocks = <&mmsys CLK_MM_DISP_RDMA0>;
-+			iommus = <&iommu M4U_PORT_DISP_RDMA0>;
-+			mediatek,larb = <&larb0>;
-+		};
-+
-+		color: color@1400c000 {
-+			compatible = "mediatek,mt8167-disp-color",
-+				     "mediatek,mt8173-disp-color";
-+			reg = <0 0x1400c000 0 0x1000>;
-+			interrupts = <GIC_SPI 165 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+			clocks = <&mmsys CLK_MM_DISP_COLOR>;
-+		};
-+
-+		ccorr: ccorr@1400d000 {
-+			compatible = "mediatek,mt8167-disp-ccorr",
-+				     "mediatek,mt8183-disp-ccorr";
-+			reg = <0 0x1400d000 0 0x1000>;
-+			interrupts = <GIC_SPI 166 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+			clocks = <&mmsys CLK_MM_DISP_CCORR>;
-+		};
-+
-+		aal: aal@1400e000 {
-+			compatible = "mediatek,mt8167-disp-aal";
-+			reg = <0 0x1400e000 0 0x1000>;
-+			interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+			clocks = <&mmsys CLK_MM_DISP_AAL>;
-+		};
-+
-+		gamma: gamma@1400f000 {
-+			compatible = "mediatek,mt8167-disp-gamma",
-+				     "mediatek,mt8173-disp-gamma";
-+			reg = <0 0x1400f000 0 0x1000>;
-+			interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+			clocks = <&mmsys CLK_MM_DISP_GAMMA>;
-+		};
-+
-+		dither: dither@14010000 {
-+			compatible = "mediatek,mt8167-disp-dither";
-+			reg = <0 0x14010000 0 0x1000>;
-+			interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+			clocks = <&mmsys CLK_MM_DISP_DITHER>;
-+		};
-+
-+		wdma: wdma0@1400b000 {
-+			compatible = "mediatek,mt8167-disp-wdma";
-+			reg = <0 0x1400b000 0 0x1000>;
-+			interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+			clocks = <&mmsys CLK_MM_DISP_WDMA>;
-+			iommus = <&iommu M4U_PORT_DISP_WDMA0>;
-+			mediatek,larb = <&larb0>;
-+		};
-+
- 		mmsys: mmsys@14000000 {
- 			compatible = "mediatek,mt8167-mmsys", "syscon";
- 			reg = <0 0x14000000 0 0x1000>;
--- 
-2.31.0
+Why the Fixes?
 
+Is the behaviour different if that patch is not applied?
+
+>
+> Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
+> ---
+> Hi,
+>
+> tested on latest qcom/for-next.
+>
+> Simple testing with /sys/class/gpio/export showed that 85-88.
+> 3 disables UART. I expect 0-2 are also reserved as on other msm8998.
+>
+> for i in $(seq 0 146); do echo $i > /sys/class/gpio/export; done
+>
+> I expect it's just angler specific, thus I haven't added it to msm8994.dtsi
+> (otherwise Konrad would have fixed it).
+>
+> Kind regards,
+> Petr
+>
+>  arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
+> index baa55643b40f..0dc94101d5de 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  /* Copyright (c) 2015, Huawei Inc. All rights reserved.
+>   * Copyright (c) 2016, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2021 Petr Vorel <petr.vorel@gmail.com>
+>   */
+>
+>  /dts-v1/;
+> @@ -32,3 +33,7 @@ serial@f991e000 {
+>                 };
+>         };
+>  };
+> +
+> +&tlmm {
+> +       gpio-reserved-ranges = <0 4>, <85 4>;
+> +};
+> --
+> 2.30.2
+>
