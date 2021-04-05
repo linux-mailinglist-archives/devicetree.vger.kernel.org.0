@@ -2,103 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42D963547E2
-	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 22:55:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A77303547E6
+	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 22:56:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236844AbhDEUzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Apr 2021 16:55:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40052 "EHLO
+        id S237756AbhDEU4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Apr 2021 16:56:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236040AbhDEUzs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 16:55:48 -0400
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32D3AC061756;
-        Mon,  5 Apr 2021 13:55:42 -0700 (PDT)
-Received: by mail-io1-xd2d.google.com with SMTP id x17so13279686iog.2;
-        Mon, 05 Apr 2021 13:55:42 -0700 (PDT)
+        with ESMTP id S237443AbhDEU4x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 16:56:53 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C917FC061756;
+        Mon,  5 Apr 2021 13:56:46 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id f8so9934803edd.11;
+        Mon, 05 Apr 2021 13:56:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=/pl2zZp1doMtSTurK4t2K/SYdeF+JJEMQaZ0JlLiuBg=;
-        b=D8Rf66/lLIh1WUBvCEqNjZ3WXVXn1eGogGxvnOAnYlXhqjunF39UxzMoM0WC6+V+tT
-         tp/8cXUjWc+7kaq9qDGA7cEB1hab9WmsOMPbFeU7sG4yx4U5GyIceTg2DHZV/yORK0wX
-         6adZUF/tq4oqNy09B9I1QF7G6YAVnBH3onilFkf0M4NqRuJkkoa37tzjRP+lKrS128HL
-         QMSDAJuoozMjIEloApGLSm52QfwXoqm8Pdn0+4cHK66fpjX7B0lxmYl1rYPnCsCRnsWa
-         YTRfcZy0DmSZROzDoLPJTxZ6Oc9022Dpgo4BcFJWpM5dtOthg/dvk3zp9dYUJrfJwgLu
-         69zw==
+        bh=QQ/sz4QIHDjzJ8nBtshigsYBFNP5a7OC28YN9pA/Mgs=;
+        b=pqY0VoiUuzbRQXs8ucTKXxClB62OzQM+BlbkkZ2Hye6SXe/syKCvG6pTuMLdaVubLl
+         5mgLqR8fESyG3no3UFkaTx1QNBSPOiD3mpwRa6Tyia2y19PsRP2Kg0dccNPZzXp1vh1h
+         QT3K4XtgNf1kTxFvziOT/8W9P3N1PdcHhUuqGvbq8F7dH2rhg/34XVPlgCXN3CydNaM9
+         kKHHfKXjwg5HVDkEjBvrd/lutrJglYGOecJlYhiruWYFyhGnet76U46FxPZH5q2xvFLy
+         aO7xfTHcQHF0FvHGQjJSbyyoSy+vy7q0SMFhXl4o/qLIiAy2zvfHxpW7iq+jB1hPq2xO
+         EvSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=/pl2zZp1doMtSTurK4t2K/SYdeF+JJEMQaZ0JlLiuBg=;
-        b=pLRtb5DE39ly2F/Ak/fhSe2e/in0x09vrpOx+XUzkTMsEHHQ7F5EA2Y5yi4qYZ28ca
-         0UFTRqpw37Uz4tch23qF7T3YLh6fIk42yQIOhZGyh1dSTyyHYcZBCSW9nLpR34xFisoM
-         luS+z6hlSp7IEhhb4ba3SBT19D2UKP3YYbCMbHfOS/v+J/jeTVDjOQdlQc1Uit8Ly3u9
-         A/RPSMA8Giw3TsHZAjkntTxUlc9YY4nzWb4obQwGXZO2KONn4YZl0iAHN/arFMJxJlOD
-         u7jYcaG5JZ9MW9BQgZepn/nPbE1yviVLgMC20hUV8lyt1mzaLPqIj1C6UyuNE6WV6ZHT
-         5SVA==
-X-Gm-Message-State: AOAM530nSLgByRJrqSrBukG4TMOX88ku9MJFb4Wntvg3X+37XXtd2ffO
-        TXsuyfVdQM+VLjL5ZDyepDfmVgtJBCe0hfnGUiI=
-X-Google-Smtp-Source: ABdhPJwnu0V3PtTwT2C7foXC/kfe25JyBEml2UQhZ1Oa0qeiPg/w0Snj0rQr01eCXlPS+fGI+4w/sfLu8CqCgXe8VCQ=
-X-Received: by 2002:a5d:848a:: with SMTP id t10mr21442006iom.68.1617656141715;
- Mon, 05 Apr 2021 13:55:41 -0700 (PDT)
+        bh=QQ/sz4QIHDjzJ8nBtshigsYBFNP5a7OC28YN9pA/Mgs=;
+        b=YUNT9uvdbHaBFZUpjCS+bsRqA/FBo7bq5WspaVmKaEWTdQtCsbny9u8SgSvwwLWoTz
+         Au4urQ9ooa6MF02Wk7m5Yq+oc1A/hOQxfx3X1rmMhQjG/++Z/cna9PBC4qpq2WSR3tEU
+         d4863KqAcdMBFn47Y8qh0t42F0uh6iyMnDi1kvkgWtfvP2fl9+AM9+Y4h0P8J2PhdYUl
+         1+33PDnnV2GSBIJlLo0/YfXS8tCLbq8LPyzEc6tgu8/ayDWzVjZCzpG1mjxqxlgnKiR/
+         tmx5yfhA54frMN40bn0HtP+ETBQ3Sj9fKawFWa4MI+awh65jID8j3Gt9EbC4r2uiWUqY
+         nXKw==
+X-Gm-Message-State: AOAM533oUZL8FW1j5vejp8Di4hjIM7WyaPUpi7L6ZcSKYniWRTX368Dj
+        IABLz9GMjWiAzXHdy6/mu5BgVjDACo04ocuTpdY=
+X-Google-Smtp-Source: ABdhPJzX3Q8IXaEZkwIhW5K8Z3KZLRUvOlw+9yPPAdzK4VJIqdsuppTBkPO+VE5uuz4LwXuK1++UzZHn2k9D3o8cyOU=
+X-Received: by 2002:a05:6402:1713:: with SMTP id y19mr33533620edu.52.1617656205602;
+ Mon, 05 Apr 2021 13:56:45 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210405031436.2465475-1-ilya.lipnitskiy@gmail.com>
- <CAGETcx9ifDoWeBN1KR4zKfs-q73iGo9C-joz4UqayeE3euDQWg@mail.gmail.com>
- <CALCv0x3-A3PruJJ6wmzBZ5544Zj8_R7wFXkOm6H-a5tG406wYQ@mail.gmail.com> <CAGETcx8tgKoWAoqSgEQS8DRyMqzd7fGDfsWwsBEywVAPXRo1_A@mail.gmail.com>
-In-Reply-To: <CAGETcx8tgKoWAoqSgEQS8DRyMqzd7fGDfsWwsBEywVAPXRo1_A@mail.gmail.com>
-From:   Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
-Date:   Mon, 5 Apr 2021 13:55:31 -0700
-Message-ID: <CALCv0x0sSxdoLbqc9srSYWQQAZ56pgcWY1=3pDuCgeiNWO3Nmg@mail.gmail.com>
-Subject: Re: [PATCH] of: property: do not create device links from *nr-gpios
-To:     Saravana Kannan <saravanak@google.com>
+References: <20210329161256.31171-1-christianshewitt@gmail.com> <20210329161256.31171-3-christianshewitt@gmail.com>
+In-Reply-To: <20210329161256.31171-3-christianshewitt@gmail.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Mon, 5 Apr 2021 22:56:34 +0200
+Message-ID: <CAFBinCAJMvdus+bUjDpJxrATfifG7BstdKi=x_yUEYH0RqhJUQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: meson: add saradc node to ODROID N2/N2+
+To:     Christian Hewitt <christianshewitt@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        stable <stable@vger.kernel.org>
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Hyeonki Hong <hhk7734@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 5, 2021 at 1:19 PM Saravana Kannan <saravanak@google.com> wrote:
+On Tue, Mar 30, 2021 at 1:18 AM Christian Hewitt
+<christianshewitt@gmail.com> wrote:
 >
-> On Mon, Apr 5, 2021 at 1:10 PM Ilya Lipnitskiy
-> <ilya.lipnitskiy@gmail.com> wrote:
-> >
-> > Hi Saravana,
-> >
-> > On Mon, Apr 5, 2021 at 1:01 PM Saravana Kannan <saravanak@google.com> wrote:
-> > >
-> > > On Sun, Apr 4, 2021 at 8:14 PM Ilya Lipnitskiy
-> > > <ilya.lipnitskiy@gmail.com> wrote:
-> > > >
-> > > > [<vendor>,]nr-gpios property is used by some GPIO drivers[0] to indicate
-> > > > the number of GPIOs present on a system, not define a GPIO. nr-gpios is
-> > > > not configured by #gpio-cells and can't be parsed along with other
-> > > > "*-gpios" properties.
-> > > >
-> > > > scripts/dtc/checks.c also has a special case for nr-gpio{s}. However,
-> > > > nr-gpio is not really special, so we only need to fix nr-gpios suffix
-> > > > here.
-> > >
-> > > The only example of this that I see is "snps,nr-gpios".
-> > arch/arm64/boot/dts/apm/apm-shadowcat.dtsi uses "apm,nr-gpios", with
-> > parsing code in drivers/gpio/gpio-xgene-sb.c. There is also code in
-> > drivers/gpio/gpio-adnp.c and drivers/gpio/gpio-mockup.c using
-> > "nr-gpios" without any vendor prefix.
+> From: Hyeonki Hong <hhk7734@gmail.com>
 >
-> Ah ok. I just grepped the DT files. I'm not sure what Rob's position
-> is on supporting DT files not in upstream. Thanks for the
-> clarification.
-For the offending drivers and docs that don't have any dts/dtsi files
-in-tree, can we just "sed -i 's/nr-gpios/ngpios'" and call it good?
+> Add the meson saradc node to the ODROID N2/N2+ common dtsi.
+in general I am fine with this as some SAR ADC channels seem to be on
+the pin headers...
 
-> Looks like even the DT spec has an exception only for vendor,nr and not just nr.
-> https://github.com/devicetree-org/dt-schema/blob/master/schemas/gpio/gpio-consumer.yaml#L20
-Thanks for linking the spec. I can re-spin the patch with ",nr-gpios"
-as the special suffix to align with the spec.
-
-Ilya
+[...]
+> +&saradc {
+> +       status = "okay";
+> +};
+...but a vref-supply should be provided to get meaningful numbers
