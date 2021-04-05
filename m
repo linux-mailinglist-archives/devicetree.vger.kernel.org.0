@@ -2,139 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18952353C4A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 10:14:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9C87353C6B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Apr 2021 10:34:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232317AbhDEIOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Apr 2021 04:14:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48448 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232041AbhDEIOJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Apr 2021 04:14:09 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 30A6D6139C;
-        Mon,  5 Apr 2021 08:14:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617610443;
-        bh=a92XBC6+vQ67hke8nAq6hrsWpIpBDgHPoei6eyrljaU=;
-        h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-        b=pOtsEywCGZwF0vLb6gApQRc+BRTznECgwuZqvx1mhV1u3aLV4KB3/bYPVaxAKo02c
-         YLl6Tz9HZNP+UTznonbxRwWspAkH8j6P+Qk0Q25NfpxXZOvi+CQiWPXv/yxmXj3EuF
-         iIsvT7dAut/IkWF6P4g3MKo6OMM1MrNobhy2FPdPkQpLpdubp4cZCl/LvSmVeZug7M
-         bPCnzkySQW3g6uYhy8rQEAEtIfaUet84+yY8NITdqPghcZs+OWb6U7OzLTSEjIL3sG
-         XosBM8IGc8wc3jND3L0LR3lwSwhvM1nCaIVFJa1na4RtZDf9auGcKuqxaAPg9ROk6G
-         0iH1B0USB5YAA==
-Received: by mail-lj1-f181.google.com with SMTP id 184so11894350ljf.9;
-        Mon, 05 Apr 2021 01:14:03 -0700 (PDT)
-X-Gm-Message-State: AOAM531sWkkhP/mz+0ScyVZAjDkQKXolPelMTJ3bJrXOt0Jbk8qY7qtS
-        K6AOIP2Lk+p2LIEZoV0xMu+T79TAqxz2sWByD9o=
-X-Google-Smtp-Source: ABdhPJw0+QWtwYYDXiy1mXyiNkRuNjehDVi+EMUMSiAzw/0A0was8kKG5w3L1MXHhXNVeSTsG/ZcIW3PS9Fr/6+o13s=
-X-Received: by 2002:a2e:7d04:: with SMTP id y4mr15991236ljc.94.1617610441474;
- Mon, 05 Apr 2021 01:14:01 -0700 (PDT)
+        id S232509AbhDEIec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Apr 2021 04:34:32 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:51756 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232236AbhDEIec (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 04:34:32 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1358YIgH001353;
+        Mon, 5 Apr 2021 03:34:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1617611658;
+        bh=vjydxmGku5rf0yRyw4g2LgzWuCMb6BltUJU8Anl8Yps=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=sRjWJoZV6zqsAUMUpu9bxu30imuYFpf/WQ4x1BbHoCCkGAEvbOgbBHgOSD1f6gP68
+         wQ4yc9eP+zHaxCOIX4PqzhbcBXOOnZM1jcHexmYJ/b63ktO5bU8DDuJPlXeLqnaLnH
+         w20rVGg1pEOPfGDWtzCxB+IYN9SE+Xhk3OIf1RU4=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1358YIO5059945
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 5 Apr 2021 03:34:18 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 5 Apr
+ 2021 03:34:18 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 5 Apr 2021 03:34:18 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1358YHjH007138;
+        Mon, 5 Apr 2021 03:34:18 -0500
+Date:   Mon, 5 Apr 2021 14:04:17 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH 4/4] dt-bindings: spi: Convert cadence-quadspi.txt to
+ cadence-quadspi.yaml
+Message-ID: <20210405083415.x6azwdzanvsbiljn@ti.com>
+References: <20210331193930.tzsvbjup3wpxmh26@ti.com>
+ <20210401141328.GH4758@sirena.org.uk>
 MIME-Version: 1.0
-References: <20210405074459.4217-1-cnsztl@gmail.com>
-In-Reply-To: <20210405074459.4217-1-cnsztl@gmail.com>
-Reply-To: wens@kernel.org
-From:   Chen-Yu Tsai <wens@kernel.org>
-Date:   Mon, 5 Apr 2021 16:13:49 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66K3SFSkm9T_D6X5o7jSYOoYpYeS_yMp1k6nMonmjiHZA@mail.gmail.com>
-Message-ID: <CAGb2v66K3SFSkm9T_D6X5o7jSYOoYpYeS_yMp1k6nMonmjiHZA@mail.gmail.com>
-Subject: Re: [PATCH] rockchip: enabled LAN port on NanoPi R2S
-To:     Tianling Shen <cnsztl@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        David Bauer <mail@david-bauer.net>,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210401141328.GH4758@sirena.org.uk>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 01/04/21 03:13PM, Mark Brown wrote:
+> On Thu, Apr 01, 2021 at 01:09:32AM +0530, Pratyush Yadav wrote:
+> 
+> > I did take a look by running git log on 
+> > Documentation/devicetree/bindings/spi/ and there is no single style 
+> > being used. Using "dt-bindings: spi:" is a popular choice. Some other 
+> > commits just use "spi:". And then some use "spi: dt-bindings:". The last 
+> > commit to touch cadence-quadspi.txt (fcebca39938f) used the prefix 
+> > "dt-bindings: spi:".
+> 
+> Yes, lots of people pick unfortunate subject lines for DT patches - that
+> doesn't mean it's good.  I'm looking to see spi: same as for all other
+> SPI patches.
 
-On Mon, Apr 5, 2021 at 3:46 PM Tianling Shen <cnsztl@gmail.com> wrote:
->
-> From: David Bauer <mail@david-bauer.net>
->
-> Enable the USB3 port on the FriendlyARM NanoPi R2S.
-> This is required for the USB3 attached LAN port to work.
->
-> Signed-off-by: David Bauer <mail@david-bauer.net>
-> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
-> ---
->  .../boot/dts/rockchip/rk3328-nanopi-r2s.dts   | 23 +++++++++++++++++++
->  1 file changed, 23 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
-> index faf496d789cf..6ba9799a95c5 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
-> @@ -37,6 +37,18 @@
->                 };
->         };
->
-> +       vcc_rtl8153: vcc-rtl8153-regulator {
-> +               compatible = "regulator-fixed";
-> +               gpio = <&gpio2 RK_PC6 GPIO_ACTIVE_HIGH>;
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&rtl8153_en_drv>;
-> +               regulator-always-on;
-> +               regulator-name = "vcc_rtl8153";
-> +               regulator-min-microvolt = <5000000>;
-> +               regulator-max-microvolt = <5000000>;
+All right. "spi: dt-bindings:" it is from now on.
 
-This is just a simple switch, not an actual regulator.
-It would make more sense to drop the voltage range and
-instead have the implementation pass-through voltage
-constraints from its parent.
+> 
+> > So on the prefix front I think the subject is good enough. Of course, if 
+> > you have any other preference then it can be re-worded but let's first 
+> > be clear on what the expectation is. And then let's make sure to apply 
+> > it to all future patches uniformly. This way future contributors won't 
+> > have to take a guess on what the expected prefix is.
+> 
+> I do edit some percentage of patches, but some do slip through for
+> various reasons.  There's also some things that just get completely
+> missed, especially if there isn't also a code patch nearby.
+> 
+> > Apart from the prefix is there anything else to improve? IMHO the 
+> > subject is good enough but I'm open to suggestions.
+> 
+> There was the thing with constraints.
 
-> +               enable-active-high;
-> +       };
-> +
->         leds {
->                 compatible = "gpio-leds";
->                 pinctrl-0 = <&lan_led_pin>,  <&sys_led_pin>, <&wan_led_pin>;
-> @@ -265,6 +277,12 @@
->                         };
->                 };
->         };
-> +
-> +       usb {
-> +               rtl8153_en_drv: rtl8153-en-drv {
-> +                       rockchip,pins = <2 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-> +               };
-> +       };
->  };
->
->  &io_domains {
-> @@ -364,6 +382,11 @@
->         dr_mode = "host";
->  };
->
-> +&usbdrd3 {
-> +       dr_mode = "host";
-> +       status = "okay";
+Will send a follow up patch to add the constraints that Vignesh 
+suggested.
 
-Please also add a device node for the actual Ethernet controller, and
-set up an aliases node for it, so that the bootloader has some place
-to fill in a MAC address.
-
-
-ChenYu
-
-> +};
-> +
->  &usb_host0_ehci {
->         status = "okay";
->  };
-> --
-> 2.17.1
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
