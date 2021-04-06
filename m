@@ -2,123 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4D6B355C1D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 21:21:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01483355C2C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 21:28:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240953AbhDFTWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 15:22:05 -0400
-Received: from marcansoft.com ([212.63.210.85]:49944 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229488AbhDFTWF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Apr 2021 15:22:05 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 30DF941E64;
-        Tue,  6 Apr 2021 19:21:48 +0000 (UTC)
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210402090542.131194-1-marcan@marcan.st>
- <20210402090542.131194-16-marcan@marcan.st> <87ft03p9cd.wl-maz@kernel.org>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH v4 15/18] irqchip/apple-aic: Add support for the Apple
- Interrupt Controller
-Message-ID: <5a4a0ab4-5a4e-1f1c-f6c6-97439b95e7ee@marcan.st>
-Date:   Wed, 7 Apr 2021 04:21:46 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S233955AbhDFT2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 15:28:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52716 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233527AbhDFT2l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 15:28:41 -0400
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAD4DC06174A;
+        Tue,  6 Apr 2021 12:28:32 -0700 (PDT)
+Received: by mail-il1-x12b.google.com with SMTP id c18so7540010iln.7;
+        Tue, 06 Apr 2021 12:28:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=V+9IBnnDWwF5bA/uOPxMCh5R3le9aBNY4U0lwaK9R/w=;
+        b=adwamlucztIc0MSna8H9oes/oLiAN/OySUHgtAuhHRvhxzetLmHo+Z+cpsbZhOWVAF
+         +2Ez3O5x2unjOXI13majOCOiPDDxnoUhDE23FnNiWrswHIP6eguB05bX4vYKY2VceHHE
+         Zm+RoO9NaFqEi6o/+4E/3kld2u8Pt6ik8o1DE2+T0XTYXBISrn+I9AXK0I+aT20FxVGZ
+         BjOvdipncmX3hHTQj0OzNap6+BHa9Hqh4IBMyGT6wcmPismEK3DWjZ7PK0Z4BjSpQRBF
+         U+NyMR1h8a3+mnsD97AF+Gj/xqpUJVAHS3YNAngIDvGnXltCtLloDRbB3kHUNgFMSUWi
+         3bkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=V+9IBnnDWwF5bA/uOPxMCh5R3le9aBNY4U0lwaK9R/w=;
+        b=eEd8oeWLPGUENSvKfkYfX72MiCL2XYdO/LQw7bdR0xhQAFDju6mjPXpJ/OIBWzqAAy
+         Cbz55FXWN2fzSYFTXKWoMSrfEnCfOpT+Vo8Z0b2paTbtRR4qbSOhGhNO1UJ6P8TNw6S/
+         MyHy86ygl6fHgC3XB4JLoGb82nPyo9UnvUbP1JmXr9UyjtHU8EoHsPAnNHU0T5xw8gU3
+         lqrAWoFWhRolVchyjSFASc9gQYFYE93kUJpd0cop1mQODPzmaiXiRXMGV0g0np804iZF
+         2O2IrwhOnsdlGoBOiNxTMG/4wgXYo9WzP8Sdh5UkCTMSCFG7t/AXtUKTZ3pjCLNlYXD9
+         KEfw==
+X-Gm-Message-State: AOAM530h0vC3xu/UxBAZqXPL84ckqo6cMK4tyEtHYPjAH1UtgqmR955H
+        41IbMR8el9+aTocZuVj1IdN+sMuWCNYs0b31Y2Q=
+X-Google-Smtp-Source: ABdhPJyqK17Dv9uOZS3bqIAfHhKcyL5NNUmYoe+6UcKRBsMoIbFQeSZA1n50HL6M3lTekmKnkesydMWPsOqyv/i/Qmk=
+X-Received: by 2002:a05:6e02:ec9:: with SMTP id i9mr5379002ilk.0.1617737312092;
+ Tue, 06 Apr 2021 12:28:32 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <87ft03p9cd.wl-maz@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 8bit
+References: <20210405031436.2465475-1-ilya.lipnitskiy@gmail.com>
+ <CAGETcx9ifDoWeBN1KR4zKfs-q73iGo9C-joz4UqayeE3euDQWg@mail.gmail.com>
+ <CALCv0x3-A3PruJJ6wmzBZ5544Zj8_R7wFXkOm6H-a5tG406wYQ@mail.gmail.com>
+ <CAGETcx8tgKoWAoqSgEQS8DRyMqzd7fGDfsWwsBEywVAPXRo1_A@mail.gmail.com> <20210406174050.GA1963300@robh.at.kernel.org>
+In-Reply-To: <20210406174050.GA1963300@robh.at.kernel.org>
+From:   Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
+Date:   Tue, 6 Apr 2021 12:28:21 -0700
+Message-ID: <CALCv0x2D6Y78XK7aeyyivcXqXZreHZd3kJc49tvtHx9eX+YH2w@mail.gmail.com>
+Subject: Re: [PATCH] of: property: do not create device links from *nr-gpios
+To:     Rob Herring <robh@kernel.org>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        stable <stable@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/04/2021 03.16, Marc Zyngier wrote:
-> Hi Hector,
-> 
-> On Fri, 02 Apr 2021 10:05:39 +0100,
-> Hector Martin <marcan@marcan.st> wrote:
->> +		/*
->> +		 * In EL1 the non-redirected registers are the guest's,
->> +		 * not EL2's, so remap the hwirqs to match.
->> +		 */
->> +		if (!is_kernel_in_hyp_mode()) {
->> +			switch (fwspec->param[1]) {
->> +			case AIC_TMR_GUEST_PHYS:
->> +				*hwirq = ic->nr_hw + AIC_TMR_HV_PHYS;
->> +				break;
->> +			case AIC_TMR_GUEST_VIRT:
->> +				*hwirq = ic->nr_hw + AIC_TMR_HV_VIRT;
->> +				break;
->> +			case AIC_TMR_HV_PHYS:
->> +			case AIC_TMR_HV_VIRT:
->> +				return -ENOENT;
->> +			default:
->> +				break;
->> +			}
->> +		}
-> 
-> Urgh, this is nasty. You are internally remapping the hwirq from one
-> timer to another in order to avoid accessing the enable register
-> which happens to be an EL2 only register?
+On Tue, Apr 6, 2021 at 10:40 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Mon, Apr 05, 2021 at 01:18:56PM -0700, Saravana Kannan wrote:
+> > On Mon, Apr 5, 2021 at 1:10 PM Ilya Lipnitskiy
+> > <ilya.lipnitskiy@gmail.com> wrote:
+> > >
+> > > Hi Saravana,
+> > >
+> > > On Mon, Apr 5, 2021 at 1:01 PM Saravana Kannan <saravanak@google.com> wrote:
+> > > >
+> > > > On Sun, Apr 4, 2021 at 8:14 PM Ilya Lipnitskiy
+> > > > <ilya.lipnitskiy@gmail.com> wrote:
+> > > > >
+> > > > > [<vendor>,]nr-gpios property is used by some GPIO drivers[0] to indicate
+> > > > > the number of GPIOs present on a system, not define a GPIO. nr-gpios is
+> > > > > not configured by #gpio-cells and can't be parsed along with other
+> > > > > "*-gpios" properties.
+> > > > >
+> > > > > scripts/dtc/checks.c also has a special case for nr-gpio{s}. However,
+> > > > > nr-gpio is not really special, so we only need to fix nr-gpios suffix
+> > > > > here.
+> > > >
+> > > > The only example of this that I see is "snps,nr-gpios".
+> > > arch/arm64/boot/dts/apm/apm-shadowcat.dtsi uses "apm,nr-gpios", with
+> > > parsing code in drivers/gpio/gpio-xgene-sb.c. There is also code in
+> > > drivers/gpio/gpio-adnp.c and drivers/gpio/gpio-mockup.c using
+> > > "nr-gpios" without any vendor prefix.
+> >
+> > Ah ok. I just grepped the DT files. I'm not sure what Rob's position
+> > is on supporting DT files not in upstream. Thanks for the
+> > clarification.
+>
+> If it's something we had documented, then we have to support it
+Do I read this correctly as a sort-of Ack of my proposed [PATCH v2] in
+this thread, since it aligns the code with the published DT schema?
 
-The remapping is to make the IRQs route properly at all.
-
-There are EL2 and EL0 timers, and on GIC each timer goes to its own IRQ. 
-But here there are no real IRQs, everything's a FIQ. However, thanks to 
-VHE, the EL2 timer shows up as the EL0 timer, and the EL0 timer is 
-accessed via EL02 registers, when in EL2. So in EL2/VHE mode, "HV" means 
-EL0 and "guest" means EL02, while in EL1, there is no HV and "guest" 
-means EL0. And since we figure out which IRQ fired by reading timer 
-registers, this is what matters. So I map the guest IRQs to the HV 
-hwirqs in EL1 mode, which makes this all work out. Then the timer code 
-goes and ends up undoing all this logic again, so we map to separate 
-fake "IRQs" only to end up right back at using the same timer registers 
-anuway :-)
-
-Really, the ugliness here is that the constant meaning is overloaded. In 
-fwspec context they mean what they say on the tin, while in hwirq 
-context "HV" means EL0 and "guest" means EL02 (other FIQs would be 
-passed through unchanged). Perhaps some additional defines might help 
-clarify this? Say, at the top of this file (not in the binding),
-
-/*
-  * Pass-through mapping from real timers to the correct registers to
-  * access them in EL2/VHE mode. When running in EL1, this gets
-  * overridden to access the guest timer using EL0 registers.
-  */
-#define AIC_TMR_EL0_PHYS AIC_TMR_HV_PHYS
-#define AIC_TMR_EL0_VIRT AIC_TMR_HV_VIRT
-#define AIC_TMR_EL02_PHYS AIC_TMR_GUEST_PHYS
-#define AIC_TMR_EL02_VIRT AIC_TMR_GUEST_VIRT
-
-Then the irqchip/FIQ dispatch side can use the EL* constants, the 
-default pass-through mapping is appropriate for VHE/EL2 mode, and 
-translation can adjust it for EL1 mode.
-
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Ilya
