@@ -2,154 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9333F35557A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 15:42:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE6AE35557F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 15:43:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344631AbhDFNnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 09:43:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33128 "EHLO
+        id S1344649AbhDFNnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 09:43:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229911AbhDFNnC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 09:43:02 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B45EC06174A;
-        Tue,  6 Apr 2021 06:42:54 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id x207so15139158oif.1;
-        Tue, 06 Apr 2021 06:42:54 -0700 (PDT)
+        with ESMTP id S229911AbhDFNne (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 09:43:34 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCEF4C06174A;
+        Tue,  6 Apr 2021 06:43:26 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id w10so4898267pgh.5;
+        Tue, 06 Apr 2021 06:43:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=lt4sv34czLumj9lamFG+hII5iPKl32geBidKJH2Mums=;
-        b=DVVx/9QnzgdY+xu+hKMJ/n444NDQlyvkbhsA4lhRYFPy/y+A58v9EIkIU/o98iuKgW
-         r31lrzpE4WQwYCYCGuB2lfRZBJ1DqeKc9MniSvPxV1ZFCtEr5YoPAx2zBq8qVSkslcx4
-         CclR72qjR37cfxES1IeTrp7ZTAtw06e48MoxMbUkryKD8ajxs7vQf2vDNnxz/k/k4sGQ
-         dHaQUDXED8gKJwqtarjGeZk637wY6RT54ctkPcoljZTmUqDyIHArdP/13r62V75YgeV+
-         OW0dQXwP7dLLWVrKJyJuhIMIe59F2VnyV3x2qewSlDm4Ue/HlBS6Sfi1VF6ePCS100JR
-         VVDg==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=jSs0GImijstRdBi/hnd8BpYG0s2XqMpukkAAlW6Mojo=;
+        b=opLce27cL+3ZlmbaKha0CMsQyLnq5SwVfZwLI7r7Mi8H0hvPw8fUyx+eCwBVIBuhdR
+         nFTnEcxKkIXEiwTCr/1/H3p9juxLV7FZKjlA4EzKa8l4c6mSeUoH/2xky4vO9+4oeolP
+         8s+I8xFM5+joUQqZLBO6Hvb4MRwcFaOxYSrWrLQ56lMDET7muIu02FrqZ0mwzuKzmdEA
+         at41fKHrLEHDlJrdveavN8LMfzUD4C3kfTKKcSBCbtixhf5LI/XcvGKPN4BzdB6JiHit
+         aKmj/m7VzAN2ijPHlM0rRjF2k6s6Lutc8lhV46zlTxaNuQq/5BnhMnQKzTuMZJ4PGT5W
+         9dpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=lt4sv34czLumj9lamFG+hII5iPKl32geBidKJH2Mums=;
-        b=AUhPITqg6FHvQBVuCw7i2VxH7sfFOFQRc3E4xwKPUc3N/1/UyVgPh86wjG3KBJliDl
-         +2xZwLmgyTlCu1F3740eA5s9h70elsrWrpN91KujbxfHcVkY/+sX9Vcya+yBDZzgYmr7
-         +TQNh2OmhuvQakZ3qqNP65i89lEX0EIoavA9MULlBuWYa6nQTBsdqQgDa3s8CBs6QULW
-         cgi/KMIUFnt/UVe1mgvwCb0smw4dPT37IXxBkIbgjt8Aa59P+CUtajUq6awVANg5nhsj
-         3F7gNs5zmyUk/2/qtyUUmykHst6rla+LoiLwDHeqpZWcFsYDi1ubDmE9vr0PLoqnldi/
-         RibA==
-X-Gm-Message-State: AOAM533F/AkAZ/W7uP8QO31zfVUkabsBAD3t2lNnt5N5ejSeprrjgsLh
-        cjsDUdibAhXxDXOW5CJQWdbN5aCRfWA=
-X-Google-Smtp-Source: ABdhPJyp1+z8Lc38oa1Q3ULrHflbvJyHenIdEGwnir9Ns2lnBcFW0w1/vDycGAdFoawXGDkciHJs0g==
-X-Received: by 2002:a54:4e08:: with SMTP id a8mr3410167oiy.135.1617716573532;
-        Tue, 06 Apr 2021 06:42:53 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id r15sm4753274ote.27.2021.04.06.06.42.51
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jSs0GImijstRdBi/hnd8BpYG0s2XqMpukkAAlW6Mojo=;
+        b=fiU+it4hBZmKtGH9TK6xlzZpPZDdbrWDDhVTgWdPbTjRaV0nCpd6LoGvzhjUDtpJGg
+         jeUapoO2zDvLil+k4yXOsGnXbHB8F+nEQ2zGnHd09J47xYxb72ezK8ZPS3fpOpm3qq6c
+         pMhN8vEc5hW+fd8DY8aRUvYC6/cTE42h9jcKWGdL0dteUyESGFb4oLxlME7a3Tn/1NUU
+         4i5J7zaI0yN+cuqOZXE+dkUf7l9QzqqdLcwzczR9EfB78QUX99us6Pwc4A/zAtIJK19o
+         uAYm1OVHagAYSEZpWOgSzZE+MqJQ8/hfZhlz9fKtrH+phjSqlTwM3IL0QgFM+GxTDGPf
+         kXsQ==
+X-Gm-Message-State: AOAM531sbrJa51zm3L7ZVlIp2mr8Y0xhrapLoUAZLBlmRC+VxQoO5hQX
+        qK8ZxYHQeUSF5LFSWHRuYX8=
+X-Google-Smtp-Source: ABdhPJw4eZiisfrOoYDIWxTG5w9zSLLx4Ne+quT5NeHqLNvnTTR79P3ttNpkO/OU0fJ026VzH/i6WA==
+X-Received: by 2002:a63:4d0:: with SMTP id 199mr27823666pge.304.1617716606266;
+        Tue, 06 Apr 2021 06:43:26 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id g15sm2294162pjd.2.2021.04.06.06.43.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Apr 2021 06:42:53 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH v2 07/10] watchdog: npcm: Add support for WPCM450
-To:     =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        openbmc@lists.ozlabs.org
-Cc:     Tomer Maimon <tmaimon77@gmail.com>, Joel Stanley <joel@jms.id.au>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        linux-watchdog@vger.kernel.org
-References: <20210406120921.2484986-1-j.neuschaefer@gmx.net>
- <20210406120921.2484986-8-j.neuschaefer@gmx.net>
-From:   Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
- nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
- hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
- c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
- 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
- GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
- sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
- Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
- HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
- BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
- l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
- J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
- cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
- wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
- hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
- nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
- QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
- trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
- WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
- HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-Message-ID: <6b305447-4873-9bbc-1118-02310919e968@roeck-us.net>
-Date:   Tue, 6 Apr 2021 06:42:51 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Tue, 06 Apr 2021 06:43:25 -0700 (PDT)
+Subject: Re: [PATCH v2 4/6] soc: mediatek: devapc: rename variable for new IC
+ support
+To:     Nina Wu <nina-cm.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>
+Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Neal Liu <neal.liu@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        Jackson-kt.Chang@mediatek.com
+References: <1617259087-5502-1-git-send-email-nina-cm.wu@mediatek.com>
+ <1617259087-5502-4-git-send-email-nina-cm.wu@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <a76686d1-3544-fcb9-4c3e-1498ec29ff47@gmail.com>
+Date:   Tue, 6 Apr 2021 15:43:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210406120921.2484986-8-j.neuschaefer@gmx.net>
+In-Reply-To: <1617259087-5502-4-git-send-email-nina-cm.wu@mediatek.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/6/21 5:09 AM, Jonathan Neuschäfer wrote:
-> Add a compatible string for WPCM450, which has essentially the same
-> watchdog mechanism as NPCM750.
+Regarding the commit subject:
+"soc: mediatek: devapc: rename variable for new IC support"
+maybe something like:
+"soc: mediatek: devapc: rename register variable infra_base"
+
+Other then that looks good to me.
+
+On 01/04/2021 08:38, Nina Wu wrote:
+> From: Nina Wu <Nina-CM.Wu@mediatek.com>
 > 
-> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
-
-Acked-by: Guenter Roeck <linux@roeck-us.net>
-
+> For new ICs, there are multiple devapc HWs for different subsys.
+> For example, there is devapc respectively for infra, peri, peri2, etc.
+> So we rename the variable 'infra_base' to 'base' for code readability.
+> 
+> Signed-off-by: Nina Wu <Nina-CM.Wu@mediatek.com>
 > ---
+>  drivers/soc/mediatek/mtk-devapc.c | 24 ++++++++++++------------
+>  1 file changed, 12 insertions(+), 12 deletions(-)
 > 
-> v2:
-> - Added patch description
-> ---
->  drivers/watchdog/npcm_wdt.c | 1 +
->  1 file changed, 1 insertion(+)
+> diff --git a/drivers/soc/mediatek/mtk-devapc.c b/drivers/soc/mediatek/mtk-devapc.c
+> index 68c3e35..bcf6e3c 100644
+> --- a/drivers/soc/mediatek/mtk-devapc.c
+> +++ b/drivers/soc/mediatek/mtk-devapc.c
+> @@ -45,7 +45,7 @@ struct mtk_devapc_data {
+>  
+>  struct mtk_devapc_context {
+>  	struct device *dev;
+> -	void __iomem *infra_base;
+> +	void __iomem *base;
+>  	u32 vio_idx_num;
+>  	struct clk *infra_clk;
+>  	const struct mtk_devapc_data *data;
+> @@ -56,7 +56,7 @@ static void clear_vio_status(struct mtk_devapc_context *ctx)
+>  	void __iomem *reg;
+>  	int i;
+>  
+> -	reg = ctx->infra_base + ctx->data->vio_sta_offset;
+> +	reg = ctx->base + ctx->data->vio_sta_offset;
+>  
+>  	for (i = 0; i < VIO_MOD_TO_REG_IND(ctx->vio_idx_num - 1); i++)
+>  		writel(GENMASK(31, 0), reg + 4 * i);
+> @@ -71,7 +71,7 @@ static void mask_module_irq(struct mtk_devapc_context *ctx, bool mask)
+>  	u32 val;
+>  	int i;
+>  
+> -	reg = ctx->infra_base + ctx->data->vio_mask_offset;
+> +	reg = ctx->base + ctx->data->vio_mask_offset;
+>  
+>  	if (mask)
+>  		val = GENMASK(31, 0);
+> @@ -113,11 +113,11 @@ static int devapc_sync_vio_dbg(struct mtk_devapc_context *ctx)
+>  	int ret;
+>  	u32 val;
+>  
+> -	pd_vio_shift_sta_reg = ctx->infra_base +
+> +	pd_vio_shift_sta_reg = ctx->base +
+>  			       ctx->data->vio_shift_sta_offset;
+> -	pd_vio_shift_sel_reg = ctx->infra_base +
+> +	pd_vio_shift_sel_reg = ctx->base +
+>  			       ctx->data->vio_shift_sel_offset;
+> -	pd_vio_shift_con_reg = ctx->infra_base +
+> +	pd_vio_shift_con_reg = ctx->base +
+>  			       ctx->data->vio_shift_con_offset;
+>  
+>  	/* Find the minimum shift group which has violation */
+> @@ -159,8 +159,8 @@ static void devapc_extract_vio_dbg(struct mtk_devapc_context *ctx)
+>  	void __iomem *vio_dbg0_reg;
+>  	void __iomem *vio_dbg1_reg;
+>  
+> -	vio_dbg0_reg = ctx->infra_base + ctx->data->vio_dbg0_offset;
+> -	vio_dbg1_reg = ctx->infra_base + ctx->data->vio_dbg1_offset;
+> +	vio_dbg0_reg = ctx->base + ctx->data->vio_dbg0_offset;
+> +	vio_dbg1_reg = ctx->base + ctx->data->vio_dbg1_offset;
+>  
+>  	vio_dbgs.vio_dbg0 = readl(vio_dbg0_reg);
+>  	vio_dbgs.vio_dbg1 = readl(vio_dbg1_reg);
+> @@ -198,7 +198,7 @@ static irqreturn_t devapc_violation_irq(int irq_number, void *data)
+>   */
+>  static void start_devapc(struct mtk_devapc_context *ctx)
+>  {
+> -	writel(BIT(31), ctx->infra_base + ctx->data->apc_con_offset);
+> +	writel(BIT(31), ctx->base + ctx->data->apc_con_offset);
+>  
+>  	mask_module_irq(ctx, false);
+>  }
+> @@ -210,7 +210,7 @@ static void stop_devapc(struct mtk_devapc_context *ctx)
+>  {
+>  	mask_module_irq(ctx, true);
+>  
+> -	writel(BIT(2), ctx->infra_base + ctx->data->apc_con_offset);
+> +	writel(BIT(2), ctx->base + ctx->data->apc_con_offset);
+>  }
+>  
+>  static const struct mtk_devapc_data devapc_mt6779 = {
+> @@ -249,8 +249,8 @@ static int mtk_devapc_probe(struct platform_device *pdev)
+>  	ctx->data = of_device_get_match_data(&pdev->dev);
+>  	ctx->dev = &pdev->dev;
+>  
+> -	ctx->infra_base = of_iomap(node, 0);
+> -	if (!ctx->infra_base)
+> +	ctx->base = of_iomap(node, 0);
+> +	if (!ctx->base)
+>  		return -EINVAL;
+>  
+>  	if (of_property_read_u32(node, "vio_idx_num", &ctx->vio_idx_num))
 > 
-> diff --git a/drivers/watchdog/npcm_wdt.c b/drivers/watchdog/npcm_wdt.c
-> index 765577f11c8db..28a24caa2627c 100644
-> --- a/drivers/watchdog/npcm_wdt.c
-> +++ b/drivers/watchdog/npcm_wdt.c
-> @@ -229,6 +229,7 @@ static int npcm_wdt_probe(struct platform_device *pdev)
-> 
->  #ifdef CONFIG_OF
->  static const struct of_device_id npcm_wdt_match[] = {
-> +	{.compatible = "nuvoton,wpcm450-wdt"},
->  	{.compatible = "nuvoton,npcm750-wdt"},
->  	{},
->  };
-> --
-> 2.30.2
-> 
-
