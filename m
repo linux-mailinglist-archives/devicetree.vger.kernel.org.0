@@ -2,384 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08238354C92
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 08:09:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 890DB354CD0
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 08:25:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231390AbhDFGJY convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 6 Apr 2021 02:09:24 -0400
-Received: from mail-eopbgr1320125.outbound.protection.outlook.com ([40.107.132.125]:48864
-        "EHLO APC01-PU1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230125AbhDFGJX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Apr 2021 02:09:23 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bquQJVI/VdaU+tBsrbc1CHkB7Ia2boqq8mbi6pW6IWppoQclpQcJoa5uaXII3fSeu9OW3VwLee/tQteOrXsmlup2Ppvd7S4KOEznfN5OPPqcWSmu4PDNmqweq/oW/Fg/UXJBNzWSGRPncwiYIyUGwyoHCMGvNtR3o4ZU/veLfy5t4rWO8f8A8i1sIyZBDW+LgkoNY2hpqczpA2tzkntDRGsSRc0pVZKcsyYyva4qXkKC+vxijQA4Y5EVpPuKOc+SvfBE3DxAkfSVj4rLIqqZ21+uEAr4haaBpRsGLlvFEKiuod7PK8r90Ip7x8n+4WosxO+fg+qsmhGaOPfVr7rhEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8RaYoeKY4LG7cfN1Y4s7AoP/rWst4MVjFqq55TFmQRI=;
- b=nqgaAO4fxVpiclU88fS2oHlTJQGQB31O7taYk8uAp4E2wNUEmTHX8qjNpNjmxFTCHuHjZ+2eQOm69/ZtWLb1c6J8t2moCscwvfhuvN4p+rdsY8y3iWMjyr511Nk88k5E2st6pXm2dFapDdF7VQRLIp3Hi0smOt+TGCQMthCcziIaUO1/jN/ogfP3+gTRiANjOhnfh3qhginOaWjgAqpsvCJRcUmJsbq/000WEt9DPBmmLW+Fs2HsHWVtW1kAp5hccNoZlVHk2rSjcep1igcDWeYIAUV/gMhL0u2tQa21xZPOb00JkRaPdYzndxaw/gaW5vqCHasLD/Ijzuzxbt58zg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-Received: from HK0PR06MB3779.apcprd06.prod.outlook.com (2603:1096:203:b8::10)
- by HK0PR06MB3668.apcprd06.prod.outlook.com (2603:1096:203:b7::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.32; Tue, 6 Apr
- 2021 06:09:12 +0000
-Received: from HK0PR06MB3779.apcprd06.prod.outlook.com
- ([fe80::20c8:80da:5b1d:fc06]) by HK0PR06MB3779.apcprd06.prod.outlook.com
- ([fe80::20c8:80da:5b1d:fc06%4]) with mapi id 15.20.3999.032; Tue, 6 Apr 2021
- 06:09:12 +0000
-From:   ChiaWei Wang <chiawei_wang@aspeedtech.com>
-To:     Andrew Jeffery <andrew@aj.id.au>,
-        "openipmi-developer@lists.sourceforge.net" 
-        <openipmi-developer@lists.sourceforge.net>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "minyard@acm.org" <minyard@acm.org>
-CC:     "joel@jms.id.au" <joel@jms.id.au>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "tmaimon77@gmail.com" <tmaimon77@gmail.com>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "avifishman70@gmail.com" <avifishman70@gmail.com>,
-        "venture@google.com" <venture@google.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "tali.perry1@gmail.com" <tali.perry1@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "benjaminfair@google.com" <benjaminfair@google.com>
-Subject: RE: [PATCH v2 21/21] ipmi: kcs_bmc_aspeed: Optionally apply status
- address
-Thread-Topic: [PATCH v2 21/21] ipmi: kcs_bmc_aspeed: Optionally apply status
- address
-Thread-Index: AQHXHIla9MoZtxcSoU+tfUZbCeW/RaqnHWVA
-Date:   Tue, 6 Apr 2021 06:09:12 +0000
-Message-ID: <HK0PR06MB3779BE4C5C6E2758DC60FDCA91769@HK0PR06MB3779.apcprd06.prod.outlook.com>
-References: <20210319062752.145730-1-andrew@aj.id.au>
- <20210319062752.145730-21-andrew@aj.id.au>
-In-Reply-To: <20210319062752.145730-21-andrew@aj.id.au>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: aj.id.au; dkim=none (message not signed)
- header.d=none;aj.id.au; dmarc=none action=none header.from=aspeedtech.com;
-x-originating-ip: [211.20.114.70]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 128f78fe-39c3-4749-9615-08d8f8c27fef
-x-ms-traffictypediagnostic: HK0PR06MB3668:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <HK0PR06MB366809CEB906989F6582ABC091769@HK0PR06MB3668.apcprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: gaeEJXIs4gLScJaF2uQCCwh3DTzjWOckUa2zW/LkDVQvZ8e9Tf+V/+MHyl/BSnObsPz89tEzfHeK+TnXIHai6Z5XFNz8p9HMPdC+Nqfyu/4kzKnZN87sUdoufjbdrOK0lwZp4aq5Iukd6nBsSy24dC+GRc8YunMIL0dSGmkv/eqIgkUf0jAcP8HZNe9zq7OvFayCjGOGGyA/6YbfH3fRYxFJlqQKqyHoJ7YmWGs8OqsOQADCyCmqKIxKl6pX42+LaKpMVOk4j7TeiCxA/odbl8RYsM9C7LVjjV5n6y2TAl34+KCV0bHdYMBT34KahiM/CIj/+CxQcLanjHs2S9nZ+6c7ObSk15x68coqpH7c64Igf1K2778YNGb9L6t+YmZAhsmOSyDOw+hND0/ooFTUFP6p3XcFpGucXdn0vysKwgbdiGqKnuPZQj0ny/+4n0gTBNs9CVNIDRMBGtZFUH/8lrCi7kIggYUQeE6LRqncVTfEZwduJ3nTGfNGNbK55URTrBXUJ24pyA3nMs0XCcKZ6bhSTx12DhfFMvgQrWE+shwowL5cVyWLDiBYs3bZFXaMPqH4j7En0kBhDwFfA+rsZlrKO/BV56oj77deOIuGxm4y03/MvJxJiRRYH7y+upAErtih4TD2CI4iV9mAAgS9RfNtoozRvbzfO4WGrBwxuRI=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3779.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(39840400004)(376002)(346002)(366004)(136003)(396003)(76116006)(52536014)(64756008)(53546011)(38100700001)(66446008)(2906002)(66556008)(66476007)(55236004)(83380400001)(66946007)(7696005)(26005)(8676002)(7416002)(54906003)(86362001)(186003)(4326008)(33656002)(55016002)(316002)(110136005)(6506007)(71200400001)(5660300002)(9686003)(8936002)(478600001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?XzwimQh/hnyMcABh7YONLUoco53Gavsm5VDbw1aNq7oyO/ZivQBTb3BxDGw0?=
- =?us-ascii?Q?D/p3cK7b/37BdbQ1kD8xqDY7UsxC5PQD8Sy2eeb9bo7y0dcg86809z1M7hPf?=
- =?us-ascii?Q?2aBG0jSSlr1SH2y6I0ZMD1+wbT3KhdDv7/JIfrZUsv5S/ruk2cTQuhK60Z6x?=
- =?us-ascii?Q?JEe642u7f+/F2INotw3xfDQj082Y3W6Yor/p2ZkxWJtmgm18oEIqDC3yZv21?=
- =?us-ascii?Q?dmGbNomP9tbi/jmMD1L3ICAcyv6ccb+VaEt7BEQQOTCTm/ZGX4q3wZuLPGmz?=
- =?us-ascii?Q?KFYrD+io5Ql6v+uQk72P4R+BAd1Df+W3ck0XavOBNO1fQ7AJgq+iKR8HYMpX?=
- =?us-ascii?Q?KDZHFbL81pjCrEDqQzTXGr7EBxLzWZbTRZ8yf4mDsIr0spz9X0g4/YD32Sry?=
- =?us-ascii?Q?FTB0PmPEh5/hQLrZb1A4Pckixo7caorCAxtwGboNX/y/vkfikKKGHzj3JslA?=
- =?us-ascii?Q?Rmw5wgEirbtBzpF/woBpQffAXcv28RR7o5s2pNmHJOU0a6PvGqFVmy8zAzUa?=
- =?us-ascii?Q?qdy0793eGJtfCD5y8kiNsbGki/eoPokeoh8PuO7vdin+YnHp37HIfvRXx88Q?=
- =?us-ascii?Q?HgzrcfRNczraeDH4N3oeA8Yh1HFMHKiC7CKlb4w6p3WN9yG9duhy6fReoX8p?=
- =?us-ascii?Q?OvZHAYG8W+CUGbj6qXqbeW8y3Hp0b9UMR+Ht2RZfkLVAL+dn0QPDep2rAVno?=
- =?us-ascii?Q?vsYi3tywMlRFJkvsA/ShUYkniGXGX29DndxONV63LHqiXMnk7NAs3C78SrzW?=
- =?us-ascii?Q?lY6kG3VpjWeGADv/Dpi4uW8qhOy7WhHbyB7luO3XTczSU1usW8YOVpqCXfQr?=
- =?us-ascii?Q?q/qKIDDPZD/Kxmt70JYiONpF9yxQQ8e2KjLnbH/6fHk3/vKCGLwwPS5GmtbX?=
- =?us-ascii?Q?pf/nFJzhEk6bvMKiGpz7albWUuexncjV1hC2tvD9tDVKhTKUGhXwGaKaWiLY?=
- =?us-ascii?Q?mzG87MCTpCS2We7kyRXKVKN2XZrdGni1dojNXGhZyY7pN+uXxtjJaMCiHZOo?=
- =?us-ascii?Q?uG7ok7lZP51wr+BzG4bGU3BhgXw79nafYtLIlEXdj4DjKxgLTjKKQ0tENjiJ?=
- =?us-ascii?Q?0ppHyeolpF4+5bNyJxOmAfiXWK+TSgcK1xkuseU6K6EzGYauhCTVVYWhfJCC?=
- =?us-ascii?Q?d1ePag+QTUypZRET3xyDpK9TAMRkzO3h+sVwkXhm/MlOB+yTCAzuB/6I3ysl?=
- =?us-ascii?Q?P3xWD2ov3ACNS73Zh+7hU813Iu9F9byn/Bn15gDG1ADuHJXQwz0ToscgpP05?=
- =?us-ascii?Q?g9cWH1VT9Qx0ziJjvLF4JhNOXzBnxKUsO8VGq8gfqNC8lNMjbsIF/s8I2PhZ?=
- =?us-ascii?Q?a7Uce2uf2se4PwBwepD+EFer?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        id S237711AbhDFGZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 02:25:54 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:20361 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233173AbhDFGZx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 02:25:53 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1617690346; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=f92wVMK9bCrrW0j7gjmYx05GftzaGTr5ndyjqBMq6ps=; b=wL1rgONKcLe1R0pgP8VBSW8be8LpDJR/zUbytoP4eXbtRIghrHC3ExxD+97PdffdBi4RZy7B
+ /JO3ZscojLFOpKc7XDSK4EN0E0mgaQLeCeCv+fUYmKz79lZjFOQEaP6lQpLuxRdH8+MD/kSo
+ A3PYRiT3/Vi9sStIpBB0rhNn7JM=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 606bfee68807bcde1d9bf855 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 06 Apr 2021 06:25:42
+ GMT
+Sender: mkshah=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id C8DF4C433CA; Tue,  6 Apr 2021 06:25:42 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [192.168.29.129] (unknown [49.36.71.14])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: mkshah)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C46FBC433CA;
+        Tue,  6 Apr 2021 06:25:36 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C46FBC433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=mkshah@codeaurora.org
+Subject: Re: [PATCH v6 1/4] dt-bindings: Introduce SoC sleep stats bindings
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
+        rnayak@codeaurora.org, ilina@codeaurora.org, lsrao@codeaurora.org,
+        Mahesh Sivasubramanian <msivasub@codeaurora.org>,
+        devicetree@vger.kernel.org
+References: <1612448508-9179-1-git-send-email-mkshah@codeaurora.org>
+ <1612448508-9179-2-git-send-email-mkshah@codeaurora.org>
+ <YEuhxqDRly658D9S@builder.lan>
+From:   Maulik Shah <mkshah@codeaurora.org>
+Message-ID: <3d131469-965a-0a31-a04c-5881feb41b13@codeaurora.org>
+Date:   Tue, 6 Apr 2021 11:55:33 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3779.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 128f78fe-39c3-4749-9615-08d8f8c27fef
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Apr 2021 06:09:12.5427
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: AYey/+Gh5z2DY5L8NKMPLcQIjBY3/drh4GXTtiZWtfHRZqTGofSA9M4nOvLWOiCs4BDTY78H7Pc1F/bfEoh6TDacJoydY0N/l7tpQSavz/Q=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR06MB3668
+In-Reply-To: <YEuhxqDRly658D9S@builder.lan>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reviewed-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+Hi,
 
-> -----Original Message-----
-> From: Andrew Jeffery <andrew@aj.id.au>
-> Sent: Friday, March 19, 2021 2:28 PM
-> To: openipmi-developer@lists.sourceforge.net; openbmc@lists.ozlabs.org;
-> minyard@acm.org
-> Subject: [PATCH v2 21/21] ipmi: kcs_bmc_aspeed: Optionally apply status
-> address
-> 
-> Some Aspeed KCS devices can derive the status register address from the
-> address of the data register. As such, the address of the status register can be
-> implicit in the configuration if desired. On the other hand, sometimes address
-> schemes might be requested that are incompatible with the default addressing
-> scheme. Allow these requests where possible if the devicetree specifies the
-> status register address.
-> 
-> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
-> ---
->  drivers/char/ipmi/kcs_bmc_aspeed.c | 113 +++++++++++++++++++++--------
->  1 file changed, 81 insertions(+), 32 deletions(-)
-> 
-> diff --git a/drivers/char/ipmi/kcs_bmc_aspeed.c
-> b/drivers/char/ipmi/kcs_bmc_aspeed.c
-> index 7334b1f51dcc..98789b837690 100644
-> --- a/drivers/char/ipmi/kcs_bmc_aspeed.c
-> +++ b/drivers/char/ipmi/kcs_bmc_aspeed.c
-> @@ -83,6 +83,8 @@
->  #define LPC_STR2             0x040
->  #define LPC_STR3             0x044
->  #define LPC_HICRB            0x100
-> +#define     LPC_HICRB_EN16LADR2      BIT(5)
-> +#define     LPC_HICRB_EN16LADR1      BIT(4)
->  #define     LPC_HICRB_IBFIE4         BIT(1)
->  #define     LPC_HICRB_LPC4E          BIT(0)
->  #define LPC_HICRC            0x104
-> @@ -96,6 +98,11 @@
->  #define LPC_IDR4             0x114
->  #define LPC_ODR4             0x118
->  #define LPC_STR4             0x11C
-> +#define LPC_LSADR12	     0x120
-> +#define     LPC_LSADR12_LSADR2_MASK  GENMASK(31, 16)
-> +#define     LPC_LSADR12_LSADR2_SHIFT 16
-> +#define     LPC_LSADR12_LSADR1_MASK  GENMASK(15, 0)
-> +#define     LPC_LSADR12_LSADR1_SHIFT 0
-> 
->  #define OBE_POLL_PERIOD	     (HZ / 2)
-> 
-> @@ -123,7 +130,7 @@ struct aspeed_kcs_bmc {
-> 
->  struct aspeed_kcs_of_ops {
->  	int (*get_channel)(struct platform_device *pdev);
-> -	int (*get_io_address)(struct platform_device *pdev);
-> +	int (*get_io_address)(struct platform_device *pdev, u32 addrs[2]);
->  };
-> 
->  static inline struct aspeed_kcs_bmc *to_aspeed_kcs_bmc(struct
-> kcs_bmc_device *kcs_bmc) @@ -217,38 +224,64 @@ static void
-> aspeed_kcs_updateb(struct kcs_bmc_device *kcs_bmc, u32 reg, u8 mask,
->   *     C. KCS4
->   *        D / C : CA4h / CA5h
->   */
-> -static void aspeed_kcs_set_address(struct kcs_bmc_device *kcs_bmc, u16
-> addr)
-> +static int aspeed_kcs_set_address(struct kcs_bmc_device *kcs_bmc, u32
-> +addrs[2], int nr_addrs)
->  {
->  	struct aspeed_kcs_bmc *priv = to_aspeed_kcs_bmc(kcs_bmc);
-> 
-> -	switch (kcs_bmc->channel) {
-> +	if (WARN_ON(nr_addrs < 1 || nr_addrs > 2))
-> +		return -EINVAL;
-> +
-> +	switch (priv->kcs_bmc.channel) {
->  	case 1:
-> -		regmap_update_bits(priv->map, LPC_HICR4,
-> -				LPC_HICR4_LADR12AS, 0);
-> -		regmap_write(priv->map, LPC_LADR12H, addr >> 8);
-> -		regmap_write(priv->map, LPC_LADR12L, addr & 0xFF);
-> +		regmap_update_bits(priv->map, LPC_HICR4, LPC_HICR4_LADR12AS,
-> 0);
-> +		regmap_write(priv->map, LPC_LADR12H, addrs[0] >> 8);
-> +		regmap_write(priv->map, LPC_LADR12L, addrs[0] & 0xFF);
-> +		if (nr_addrs == 2) {
-> +			regmap_update_bits(priv->map, LPC_LSADR12,
-> LPC_LSADR12_LSADR1_MASK,
-> +					   addrs[1] << LPC_LSADR12_LSADR1_SHIFT);
-> +
-> +			regmap_update_bits(priv->map, LPC_HICRB,
-> LPC_HICRB_EN16LADR1,
-> +					   LPC_HICRB_EN16LADR1);
-> +		}
->  		break;
-> 
->  	case 2:
-> -		regmap_update_bits(priv->map, LPC_HICR4,
-> -				LPC_HICR4_LADR12AS, LPC_HICR4_LADR12AS);
-> -		regmap_write(priv->map, LPC_LADR12H, addr >> 8);
-> -		regmap_write(priv->map, LPC_LADR12L, addr & 0xFF);
-> +		regmap_update_bits(priv->map, LPC_HICR4, LPC_HICR4_LADR12AS,
-> LPC_HICR4_LADR12AS);
-> +		regmap_write(priv->map, LPC_LADR12H, addrs[0] >> 8);
-> +		regmap_write(priv->map, LPC_LADR12L, addrs[0] & 0xFF);
-> +		if (nr_addrs == 2) {
-> +			regmap_update_bits(priv->map, LPC_LSADR12,
-> LPC_LSADR12_LSADR2_MASK,
-> +					   addrs[1] << LPC_LSADR12_LSADR2_SHIFT);
-> +
-> +			regmap_update_bits(priv->map, LPC_HICRB,
-> LPC_HICRB_EN16LADR2,
-> +					   LPC_HICRB_EN16LADR2);
-> +		}
->  		break;
-> 
->  	case 3:
-> -		regmap_write(priv->map, LPC_LADR3H, addr >> 8);
-> -		regmap_write(priv->map, LPC_LADR3L, addr & 0xFF);
-> +		if (nr_addrs == 2) {
-> +			dev_err(priv->kcs_bmc.dev,
-> +				"Channel 3 only supports inferred status IO address\n");
-> +			return -EINVAL;
-> +		}
-> +
-> +		regmap_write(priv->map, LPC_LADR3H, addrs[0] >> 8);
-> +		regmap_write(priv->map, LPC_LADR3L, addrs[0] & 0xFF);
->  		break;
-> 
->  	case 4:
-> -		regmap_write(priv->map, LPC_LADR4, ((addr + 1) << 16) |
-> -			addr);
-> +		if (nr_addrs == 1)
-> +			regmap_write(priv->map, LPC_LADR4, ((addrs[0] + 1) << 16) |
-> addrs[0]);
-> +		else
-> +			regmap_write(priv->map, LPC_LADR4, (addrs[1] << 16) |
-> addrs[0]);
-> +
->  		break;
-> 
->  	default:
-> -		break;
-> +		return -EINVAL;
->  	}
-> +
-> +	return 0;
->  }
-> 
->  static inline int aspeed_kcs_map_serirq_type(u32 dt_type) @@ -462,18
-> +495,18 @@ static int aspeed_kcs_of_v1_get_channel(struct platform_device
-> *pdev)
->  	return channel;
->  }
-> 
-> -static int aspeed_kcs_of_v1_get_io_address(struct platform_device *pdev)
-> +static int
-> +aspeed_kcs_of_v1_get_io_address(struct platform_device *pdev, u32
-> +addrs[2])
->  {
-> -	u32 slave;
->  	int rc;
-> 
-> -	rc = of_property_read_u32(pdev->dev.of_node, "kcs_addr", &slave);
-> -	if (rc || slave > 0xffff) {
-> +	rc = of_property_read_u32(pdev->dev.of_node, "kcs_addr", addrs);
-> +	if (rc || addrs[0] > 0xffff) {
->  		dev_err(&pdev->dev, "no valid 'kcs_addr' configured\n");
->  		return -EINVAL;
->  	}
-> 
-> -	return slave;
-> +	return 1;
->  }
-> 
->  static int aspeed_kcs_of_v2_get_channel(struct platform_device *pdev) @@
-> -509,16 +542,27 @@ static int aspeed_kcs_of_v2_get_channel(struct
-> platform_device *pdev)
->  	return -EINVAL;
->  }
-> 
-> -static int aspeed_kcs_of_v2_get_io_address(struct platform_device *pdev)
-> +static int
-> +aspeed_kcs_of_v2_get_io_address(struct platform_device *pdev, u32
-> +addrs[2])
->  {
-> -	uint32_t slave;
->  	int rc;
-> 
-> -	rc = of_property_read_u32(pdev->dev.of_node, "aspeed,lpc-io-reg",
-> &slave);
-> -	if (rc || slave > 0xffff)
-> +	rc = of_property_read_variable_u32_array(pdev->dev.of_node,
-> +						 "aspeed,lpc-io-reg",
-> +						 addrs, 1, 2);
-> +	if (rc < 0)
-> +		return rc;
-> +
-> +	if (WARN_ON(rc == 0))
-> +		return -EINVAL;
-> +
-> +	if (addrs[0] > 0xffff)
-> +		return -EINVAL;
-> +
-> +	if (rc == 2 && addrs[1] > 0xffff)
->  		return -EINVAL;
-> 
-> -	return slave;
-> +	return rc;
->  }
-> 
->  static int aspeed_kcs_probe(struct platform_device *pdev) @@ -527,9
-> +571,11 @@ static int aspeed_kcs_probe(struct platform_device *pdev)
->  	struct kcs_bmc_device *kcs_bmc;
->  	struct aspeed_kcs_bmc *priv;
->  	struct device_node *np;
-> -	int rc, channel, addr;
->  	bool have_upstream_irq;
->  	u32 upstream_irq[2];
-> +	int rc, channel;
-> +	int nr_addrs;
-> +	u32 addrs[2];
-> 
->  	np = pdev->dev.of_node->parent;
->  	if (!of_device_is_compatible(np, "aspeed,ast2400-lpc-v2") && @@ -547,9
-> +593,9 @@ static int aspeed_kcs_probe(struct platform_device *pdev)
->  	if (channel < 0)
->  		return channel;
-> 
-> -	addr = ops->get_io_address(pdev);
-> -	if (addr < 0)
-> -		return addr;
-> +	nr_addrs = ops->get_io_address(pdev, addrs);
-> +	if (nr_addrs < 0)
-> +		return nr_addrs;
-> 
->  	np = pdev->dev.of_node;
->  	rc = of_property_read_u32_array(np, "aspeed,lpc-interrupts",
-> upstream_irq, 2); @@ -578,7 +624,9 @@ static int aspeed_kcs_probe(struct
-> platform_device *pdev)
->  	priv->obe.remove = false;
->  	timer_setup(&priv->obe.timer, aspeed_kcs_check_obe, 0);
-> 
-> -	aspeed_kcs_set_address(kcs_bmc, addr);
-> +	rc = aspeed_kcs_set_address(kcs_bmc, addrs, nr_addrs);
-> +	if (rc)
-> +		return rc;
-> 
->  	/* Host to BMC IRQ */
->  	rc = aspeed_kcs_config_downstream_irq(kcs_bmc, pdev); @@ -600,7
-> +648,8 @@ static int aspeed_kcs_probe(struct platform_device *pdev)
->  	if (rc < 0)
->  		return rc;
-> 
-> -	dev_info(&pdev->dev, "Initialised channel %d at 0x%x\n",
-> kcs_bmc->channel, addr);
-> +	dev_info(&pdev->dev, "Initialised channel %d at 0x%x\n",
-> +			kcs_bmc->channel, addrs[0]);
-> 
->  	return 0;
->  }
-> --
-> 2.27.0
+On 3/12/2021 10:45 PM, Bjorn Andersson wrote:
+> On Thu 04 Feb 08:21 CST 2021, Maulik Shah wrote:
+>
+>> From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+>>
+>> Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
+>> SoC sleep stats driver. The driver is used for displaying SoC sleep
+>> statistic maintained by Always On Processor or Resource Power Manager.
+>>
+>> Cc: devicetree@vger.kernel.org
+>> Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+>> Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+>> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+>> ---
+>>   .../bindings/soc/qcom/soc-sleep-stats.yaml         | 46 ++++++++++++++++++++++
+>>   1 file changed, 46 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+>> new file mode 100644
+>> index 0000000..1e012ba
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+>> @@ -0,0 +1,46 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/soc/qcom/soc-sleep-stats.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Technologies, Inc. (QTI) SoC sleep stats bindings
+>> +
+>> +maintainers:
+>> +  - Maulik Shah <mkshah@codeaurora.org>
+>> +  - Lina Iyer <ilina@codeaurora.org>
+>> +
+>> +description:
+>> +  Always On Processor/Resource Power Manager maintains statistics of the SoC
+>> +  sleep modes involving powering down of the rails and oscillator clock.
+>> +
+>> +  Statistics includes SoC sleep mode type, number of times low power mode were
+>> +  entered, time of last entry, time of last exit and accumulated sleep duration.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - qcom,rpmh-sleep-stats
+>> +      - qcom,rpm-sleep-stats
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +examples:
+>> +  # Example of rpmh sleep stats
+>> +  - |
+>> +    rpmh-sleep-stats@c3f0000 {
+>> +      compatible = "qcom,rpmh-sleep-stats";
+>> +      reg = <0 0x0c3f0000 0 0x400>;
+> The example is built with #address-cells = <1> and #size-cells = <1>, so
+> this needs to be reg = <0x0c3f0000 0x400>.
+>
+> Regards,
+> Bjorn
+
+Thanks, Fixed in v7.
+
+Thanks,
+Maulik
+>
+>> +    };
+>> +  # Example of rpm sleep stats
+>> +  - |
+>> +    rpm-sleep-stats@4690000 {
+>> +      compatible = "qcom,rpm-sleep-stats";
+>> +      reg = <0 0x04690000 0 0x400>;
+>> +    };
+>> +...
+>> -- 
+>> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+>> of Code Aurora Forum, hosted by The Linux Foundation
+>>
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
 
