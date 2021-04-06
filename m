@@ -2,325 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5814B355BD4
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 20:55:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D650355BF0
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 21:04:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240446AbhDFSzO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 14:55:14 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:38844 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239795AbhDFSzJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 14:55:09 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 136Ishfb009079;
-        Tue, 6 Apr 2021 13:54:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1617735283;
-        bh=kQbNzrF7H82xGpKlMst9m3Fs0xnlp9w54dXKEwPlWBE=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=kFP+EYPVCuDhQNXUoQs8jCFmvH3/BA2IOptP/4ITP2Z3zPwHXf7BausRsRkgRdYgQ
-         bf6RZMQlumFq3iacbU0a3NcEggo2zdHPgRLysQ8BN0YQyHH4585/GmkfanxrOe5w4C
-         D0MuSZ3jQyJ1VJqrpv4w2hCyv8D9jb8AeFmdGjD0=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 136Ishgr087495
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 6 Apr 2021 13:54:43 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 6 Apr
- 2021 13:54:43 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 6 Apr 2021 13:54:43 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 136IsgCU034245;
-        Tue, 6 Apr 2021 13:54:42 -0500
-Date:   Wed, 7 Apr 2021 00:24:41 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Benoit Parrot <bparrot@ti.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Peter Chen <peter.chen@nxp.com>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <dmaengine@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Subject: Re: [PATCH 05/16] media: cadence: csi2rx: Add external DPHY support
-Message-ID: <20210406185439.6o5hkejtinq7y7sy@ti.com>
-References: <20210330173348.30135-1-p.yadav@ti.com>
- <20210330173348.30135-6-p.yadav@ti.com>
- <1617182653.2752.9.camel@mhfsdcap03>
+        id S233820AbhDFTEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 15:04:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47564 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230391AbhDFTEm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 15:04:42 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1A6EC06174A;
+        Tue,  6 Apr 2021 12:04:33 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id h10so17814980edt.13;
+        Tue, 06 Apr 2021 12:04:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=LUs9XCcyO38dnpQfCCErPK9kbceKsMJW9AomZ2ltfZg=;
+        b=c06VSNerePCuaMgNeajGyGqs3sjrO1yx1Dg2G8q8SP7jjie93CVtIipY87mMEwQMLo
+         HD120wLUiXqIuLFkFkzYTA8qkycws1676OsS3V+2Ig3DFetSsNTiBF43oS6EVSkYU+cM
+         /asEvQPfM/OTYGtoycZjlu+FZ1qyKYqqu3HK5f1V2l4wtM6w2goLJyeVLRVlL3YaGlMb
+         JDeBAN554nuNG7wI490hy/oQk73W22tWf0+Kgh1jF1gwauv5sX2baa4MBpXHjUtfd0Hq
+         aeWVWhslHQSyWSB1MH+P3dN0EHUHUujzmoun0nd0Q9JglG8utSfbHt2iyyzREEbszKDN
+         ZN5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=LUs9XCcyO38dnpQfCCErPK9kbceKsMJW9AomZ2ltfZg=;
+        b=Yw6B7WanU2x7Y3873N8K6RXMqXv7Rda6LcuFNExcw+qeALpLZOf/IH2dJbc3hhzijl
+         fZS93i00qt9WAfz1qyLLtMcWrMrPgoYcuAuZqbjGi2lBve7XFlmFDI9L/mQYF79bG/89
+         loGZOqwhMWzagC4vjiNdQA/eLz9a1aGdtRbMJ77A7VTVSvzpdlo35v+pbYfzFBqKFbpL
+         MM6P10r8qjeEpSCdJdypwebZkz1zTUAE9A7zMcVcLAFEEbBcp2vQjVSEQNQRNRkV8wIV
+         0D7ye6ZPiaU57eUOE0H1Ql+/pmEC4+n86rukTjB9gSER61Jd8pqzcjD1T6rNc365EH2s
+         vSHg==
+X-Gm-Message-State: AOAM5316CiwnPcz2dTAMqiWd/xfga0ZKSyd2v8fXyxATPtdnlOTrW9hk
+        hNqFfjvX/7NaFVwQE8+O7mI7e0SSKidI+Q==
+X-Google-Smtp-Source: ABdhPJwnwbybytM9+pESinCANbkSL/NZzrl3ilccwsjlyHnygG5SeKxP3e87GSHwhOU4fHnptGgj/w==
+X-Received: by 2002:a05:6402:3493:: with SMTP id v19mr41022098edc.355.1617735872135;
+        Tue, 06 Apr 2021 12:04:32 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id h17sm14037494eds.26.2021.04.06.12.04.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Apr 2021 12:04:31 -0700 (PDT)
+Subject: Re: [PATCH v1 1/2] dt-bindings: pwm: convert pwm-rockchip.txt to YAML
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210406155053.29101-1-jbx6244@gmail.com>
+Message-ID: <8f05dc0d-8fb7-c200-5251-d9e147b1d00d@gmail.com>
+Date:   Tue, 6 Apr 2021 21:04:29 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1617182653.2752.9.camel@mhfsdcap03>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20210406155053.29101-1-jbx6244@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/03/21 05:24PM, Chunfeng Yun wrote:
-> On Tue, 2021-03-30 at 23:03 +0530, Pratyush Yadav wrote:
-> > Some platforms like TI's J721E can have the CSI2RX paired with an
-> > external DPHY. Add support to enable and configure the DPHY using the
-> > generic PHY framework.
-> > 
-> > Get the pixel rate and bpp from the subdev and pass them on to the DPHY
-> > along with the number of lanes. All other settings are left to their
-> > default values.
-> > 
-> > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> > ---
-> >  drivers/media/platform/cadence/cdns-csi2rx.c | 147 +++++++++++++++++--
-> >  1 file changed, 137 insertions(+), 10 deletions(-)
-> > 
-> > diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
-> > index c68a3eac62cd..31bd80e3f780 100644
-> > --- a/drivers/media/platform/cadence/cdns-csi2rx.c
-> > +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
-> > @@ -30,6 +30,12 @@
-> >  #define CSI2RX_STATIC_CFG_DLANE_MAP(llane, plane)	((plane) << (16 + (llane) * 4))
-> >  #define CSI2RX_STATIC_CFG_LANES_MASK			GENMASK(11, 8)
-> >  
-> > +#define CSI2RX_DPHY_LANE_CTRL_REG		0x40
-> > +#define CSI2RX_DPHY_CL_RST			BIT(16)
-> > +#define CSI2RX_DPHY_DL_RST(i)			BIT((i) + 12)
-> > +#define CSI2RX_DPHY_CL_EN			BIT(4)
-> > +#define CSI2RX_DPHY_DL_EN(i)			BIT(i)
-> > +
-> >  #define CSI2RX_STREAM_BASE(n)		(((n) + 1) * 0x100)
-> >  
-> >  #define CSI2RX_STREAM_CTRL_REG(n)		(CSI2RX_STREAM_BASE(n) + 0x000)
-> > @@ -54,6 +60,11 @@ enum csi2rx_pads {
-> >  	CSI2RX_PAD_MAX,
-> >  };
-> >  
-> > +struct csi2rx_fmt {
-> > +	u32				code;
-> > +	u8				bpp;
-> > +};
-> > +
-> >  struct csi2rx_priv {
-> >  	struct device			*dev;
-> >  	unsigned int			count;
-> > @@ -85,6 +96,52 @@ struct csi2rx_priv {
-> >  	int				source_pad;
-> >  };
-> >  
-> > +static const struct csi2rx_fmt formats[] = {
-> > +	{
-> > +		.code	= MEDIA_BUS_FMT_YUYV8_2X8,
-> > +		.bpp	= 16,
-> > +	},
-> > +	{
-> > +		.code	= MEDIA_BUS_FMT_UYVY8_2X8,
-> > +		.bpp	= 16,
-> > +	},
-> > +	{
-> > +		.code	= MEDIA_BUS_FMT_YVYU8_2X8,
-> > +		.bpp	= 16,
-> > +	},
-> > +	{
-> > +		.code	= MEDIA_BUS_FMT_VYUY8_2X8,
-> > +		.bpp	= 16,
-> > +	},
-> > +};
-> > +
-> > +static u8 csi2rx_get_bpp(u32 code)
-> > +{
-> > +	int i;
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(formats); i++) {
-> > +		if (formats[i].code == code)
-> > +			return formats[i].bpp;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static s64 csi2rx_get_pixel_rate(struct csi2rx_priv *csi2rx)
-> > +{
-> > +	struct v4l2_ctrl *ctrl;
-> > +
-> > +	ctrl = v4l2_ctrl_find(csi2rx->source_subdev->ctrl_handler,
-> > +			      V4L2_CID_PIXEL_RATE);
-> > +	if (!ctrl) {
-> > +		dev_err(csi2rx->dev, "no pixel rate control in subdev: %s\n",
-> > +			csi2rx->source_subdev->name);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	return v4l2_ctrl_g_ctrl_int64(ctrl);
-> > +}
-> > +
-> >  static inline
-> >  struct csi2rx_priv *v4l2_subdev_to_csi2rx(struct v4l2_subdev *subdev)
-> >  {
-> > @@ -101,6 +158,55 @@ static void csi2rx_reset(struct csi2rx_priv *csi2rx)
-> >  	writel(0, csi2rx->base + CSI2RX_SOFT_RESET_REG);
-> >  }
-> >  
-> > +static int csi2rx_configure_external_dphy(struct csi2rx_priv *csi2rx)
-> > +{
-> > +	union phy_configure_opts opts = { };
-> > +	struct phy_configure_opts_mipi_dphy *cfg = &opts.mipi_dphy;
-> > +	struct v4l2_subdev_format sd_fmt;
-> > +	s64 pixel_rate;
-> > +	int ret;
-> > +	u8 bpp;
-> > +
-> > +	sd_fmt.which = V4L2_SUBDEV_FORMAT_ACTIVE;
-> > +	sd_fmt.pad = 0;
-> > +
-> > +	ret = v4l2_subdev_call(csi2rx->source_subdev, pad, get_fmt, NULL,
-> > +			       &sd_fmt);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	bpp = csi2rx_get_bpp(sd_fmt.format.code);
-> > +	if (!bpp)
-> > +		return -EINVAL;
-> > +
-> > +	pixel_rate = csi2rx_get_pixel_rate(csi2rx);
-> > +	if (pixel_rate < 0)
-> > +		return pixel_rate;
-> > +
-> > +	ret = phy_mipi_dphy_get_default_config(pixel_rate, bpp,
-> > +					       csi2rx->num_lanes, cfg);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = phy_set_mode_ext(csi2rx->dphy, PHY_MODE_MIPI_DPHY,
-> > +			       PHY_MIPI_DPHY_SUBMODE_RX);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = phy_power_on(csi2rx->dphy);
-> > +	if (ret)
-> > +		return ret;
-> Seems phy_power_on, then phy_set_mode_ext?
+Hi,
 
-Shouldn't the mode be set before the PHY is powered on so the correct 
-power on procedure can be performed based on the mode of operation?
+Question for Heiko:
+rv1108.dtsi and rk3328.dtsi have a undocumented "interrupts" property
+AFAICT without driver support.
+Please advise what to do with it.
 
+
+See build log:
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210406155053.29101-1-jbx6244@gmail.com/
+
+====
+
+Question for Rob:
+It looks like that recent "improvements" with regard to checking for
+undocumented compatible strings make it almost impossible to do any
+useful dt_checking, let alone for the average user. Maybe reduce the
+notification blurb output a bit for things that have nothing to do with
+this document. Unable to fall back to previous versions for older kernels.
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master
+--upgrade
+
+make ARCH=arm dtbs_check
+make ARCH=arm dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+
+make ARCH=arm64 dtbs_check
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+
+
+On 4/6/21 5:50 PM, Johan Jonker wrote:
+> Current dts files with 'pwm' nodes are manually verified.
+> In order to automate this process pwm-rockchip.txt
+> has to be converted to yaml.
 > 
-> > +
-> > +	ret = phy_configure(csi2rx->dphy, &opts);
-> > +	if (ret) {
-> > +		/* Can't do anything if it fails. Ignore the return value. */
-> > +		phy_power_off(csi2rx->dphy);
-> > +		return ret;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static int csi2rx_start(struct csi2rx_priv *csi2rx)
-> >  {
-> >  	unsigned int i;
-> > @@ -139,6 +245,17 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
-> >  	if (ret)
-> >  		goto err_disable_pclk;
-> >  
-> > +	/* Enable DPHY clk and data lanes. */
-> > +	if (csi2rx->dphy) {
-> > +		reg = CSI2RX_DPHY_CL_EN | CSI2RX_DPHY_CL_RST;
-> > +		for (i = 0; i < csi2rx->num_lanes; i++) {
-> > +			reg |= CSI2RX_DPHY_DL_EN(csi2rx->lanes[i] - 1);
-> > +			reg |= CSI2RX_DPHY_DL_RST(csi2rx->lanes[i] - 1);
-> > +		}
-> > +
-> > +		writel(reg, csi2rx->base + CSI2RX_DPHY_LANE_CTRL_REG);
-> > +	}
-> > +
-> >  	/*
-> >  	 * Create a static mapping between the CSI virtual channels
-> >  	 * and the output stream.
-> > @@ -169,10 +286,21 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
-> >  	if (ret)
-> >  		goto err_disable_pixclk;
-> >  
-> > +	if (csi2rx->dphy) {
-> > +		ret = csi2rx_configure_external_dphy(csi2rx);
-> > +		if (ret) {
-> > +			dev_err(csi2rx->dev,
-> > +				"Failed to configure external DPHY: %d\n", ret);
-> > +			goto err_disable_sysclk;
-> > +		}
-> > +	}
-> > +
-> >  	clk_disable_unprepare(csi2rx->p_clk);
-> >  
-> >  	return 0;
-> >  
-> > +err_disable_sysclk:
-> > +	clk_disable_unprepare(csi2rx->sys_clk);
-> >  err_disable_pixclk:
-> >  	for (; i > 0; i--)
-> >  		clk_disable_unprepare(csi2rx->pixel_clk[i - 1]);
-> > @@ -200,6 +328,13 @@ static void csi2rx_stop(struct csi2rx_priv *csi2rx)
-> >  
-> >  	if (v4l2_subdev_call(csi2rx->source_subdev, video, s_stream, false))
-> >  		dev_warn(csi2rx->dev, "Couldn't disable our subdev\n");
-> > +
-> > +	if (csi2rx->dphy) {
-> > +		writel(0, csi2rx->base + CSI2RX_DPHY_LANE_CTRL_REG);
-> > +
-> > +		if (phy_power_off(csi2rx->dphy))
-> > +			dev_warn(csi2rx->dev, "Couldn't power off DPHY\n");
-> > +	}
-> >  }
-> >  
-> >  static int csi2rx_s_stream(struct v4l2_subdev *subdev, int enable)
-> > @@ -306,15 +441,6 @@ static int csi2rx_get_resources(struct csi2rx_priv *csi2rx,
-> >  		return PTR_ERR(csi2rx->dphy);
-> >  	}
-> >  
-> > -	/*
-> > -	 * FIXME: Once we'll have external D-PHY support, the check
-> > -	 * will need to be removed.
-> > -	 */
-> > -	if (csi2rx->dphy) {
-> > -		dev_err(&pdev->dev, "External D-PHY not supported yet\n");
-> > -		return -EINVAL;
-> > -	}
-> > -
-> >  	clk_prepare_enable(csi2rx->p_clk);
-> >  	dev_cfg = readl(csi2rx->base + CSI2RX_DEVICE_CFG_REG);
-> >  	clk_disable_unprepare(csi2rx->p_clk);
-> > @@ -339,7 +465,7 @@ static int csi2rx_get_resources(struct csi2rx_priv *csi2rx,
-> >  	 * FIXME: Once we'll have internal D-PHY support, the check
-> >  	 * will need to be removed.
-> >  	 */
-> > -	if (csi2rx->has_internal_dphy) {
-> > +	if (!csi2rx->dphy && csi2rx->has_internal_dphy) {
-> >  		dev_err(&pdev->dev, "Internal D-PHY not supported yet\n");
-> >  		return -EINVAL;
-> >  	}
-> > @@ -460,6 +586,7 @@ static int csi2rx_probe(struct platform_device *pdev)
-> >  	dev_info(&pdev->dev,
-> >  		 "Probed CSI2RX with %u/%u lanes, %u streams, %s D-PHY\n",
-> >  		 csi2rx->num_lanes, csi2rx->max_lanes, csi2rx->max_streams,
-> > +		 csi2rx->dphy ? "external" :
-> >  		 csi2rx->has_internal_dphy ? "internal" : "no");
-> >  
-> >  	return 0;
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+>  .../devicetree/bindings/pwm/pwm-rockchip.txt       | 27 ---------
+>  .../devicetree/bindings/pwm/pwm-rockchip.yaml      | 66 ++++++++++++++++++++++
+>  2 files changed, 66 insertions(+), 27 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-rockchip.txt
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-rockchip.txt b/Documentation/devicetree/bindings/pwm/pwm-rockchip.txt
+> deleted file mode 100644
+> index f70956dea..000000000
+> --- a/Documentation/devicetree/bindings/pwm/pwm-rockchip.txt
+> +++ /dev/null
+> @@ -1,27 +0,0 @@
+> -Rockchip PWM controller
+> -
+> -Required properties:
+> - - compatible: should be "rockchip,<name>-pwm"
+> -   "rockchip,rk2928-pwm": found on RK29XX,RK3066 and RK3188 SoCs
+> -   "rockchip,rk3288-pwm": found on RK3288 SOC
+> -   "rockchip,rv1108-pwm", "rockchip,rk3288-pwm": found on RV1108 SoC
+> -   "rockchip,vop-pwm": found integrated in VOP on RK3288 SoC
+> - - reg: physical base address and length of the controller's registers
+> - - clocks: See ../clock/clock-bindings.txt
+> -   - For older hardware (rk2928, rk3066, rk3188, rk3228, rk3288, rk3399):
+> -     - There is one clock that's used both to derive the functional clock
+> -       for the device and as the bus clock.
+> -   - For newer hardware (rk3328 and future socs): specified by name
+> -     - "pwm": This is used to derive the functional clock.
+> -     - "pclk": This is the APB bus clock.
+> - - #pwm-cells: must be 2 (rk2928) or 3 (rk3288). See pwm.yaml in this directory
+> -   for a description of the cell format.
+> -
+> -Example:
+> -
+> -	pwm0: pwm@20030000 {
+> -		compatible = "rockchip,rk2928-pwm";
+> -		reg = <0x20030000 0x10>;
+> -		clocks = <&cru PCLK_PWM01>;
+> -		#pwm-cells = <2>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml b/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+> new file mode 100644
+> index 000000000..cfd637d3e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/pwm-rockchip.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip PWM controller
+> +
+> +maintainers:
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: rockchip,rk2928-pwm
+> +      - const: rockchip,rk3288-pwm
+> +      - const: rockchip,vop-pwm
+> +      - items:
+> +          - enum:
+> +              - rockchip,rv1108-pwm
+> +          - const: rockchip,rk3288-pwm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 2
+> +    description:
+> +      For older hardware (rk2928, rk3066, rk3188, rk3228, rk3288, rk3399)
+> +        There is one clock that is used both to derive the functional clock
+> +        for the device and as the bus clock.
+> +      For newer hardware (rk3328 and future SoCs) that is also specified
+> +      with clock names.
+> +        "pwm" is used to derive the functional clock for the device.
+> +        "pclk" is used as the APB bus clock.
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    items:
+> +      - const: pwm
+> +      - const: pclk
+> +
+> +  "#pwm-cells":
+> +    enum: [2, 3]
+> +    description:
+> +      Must be 2 (rk2928) or 3 (rk3288).
+> +      See pwm.yaml for a description of the cell format.
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - "#pwm-cells"
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3188-cru-common.h>
+> +    pwm0: pwm@20030000 {
+> +      compatible = "rockchip,rk2928-pwm";
+> +      reg = <0x20030000 0x10>;
+> +      clocks = <&cru PCLK_PWM01>;
+> +      #pwm-cells = <2>;
+> +    };
 > 
 
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
