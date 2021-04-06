@@ -2,175 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68C38355989
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 18:47:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C35A3559BF
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 18:56:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235491AbhDFQr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 12:47:59 -0400
-Received: from mail-oo1-f49.google.com ([209.85.161.49]:44911 "EHLO
-        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232032AbhDFQr7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 12:47:59 -0400
-Received: by mail-oo1-f49.google.com with SMTP id p2-20020a4aa8420000b02901bc7a7148c4so3834382oom.11;
-        Tue, 06 Apr 2021 09:47:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KsEFQn5ynPj9Q6od5ymvE84NEzlALObqjlPA4SQWRs8=;
-        b=Caw06k2MWg1OwP78wZ8gxa1iBXixjWgwRK2lx5HicQ+kWOMh530QGvjE3JBelhmRd0
-         l07PZY89Xc+IP2Fe3Q07P00Zrud9P99oyC3rVkj5hNHogjeFOs2WXWYX6NHrkcS77WDB
-         P94qXGk/+0YrRAgXMMq1WAsVWu8yQuFD3GSljzjKlW2YkKn3Ln9bZZmwVfedZBvP9wye
-         sb+bJ+cmCDA7UEeKzcLBmFvfHHy+K6I9ZkNz1T//ij1po0BAvYPxqH/ngulIh+neVnwM
-         dBeZx5xLXFV3/2z9Ru2STWfxz+G2LpmUaRNkVTanJflI0gOfcrhU00ZS71tPKGEe4II+
-         yk1w==
-X-Gm-Message-State: AOAM533bh+Z9JfB6jSH1+OBEj7zpjZAA7gedjUbhfsCpclV+KT8gGytY
-        EzrbMCvb+rUCHrDKj0jiVw==
-X-Google-Smtp-Source: ABdhPJwPZn4vyuV4WbEQb7jrirEmMI3mRcpb+G+wNqe7KnEHeN8KG33o//cShwHkWNjdpn2Mmze2sA==
-X-Received: by 2002:a4a:d354:: with SMTP id d20mr27213126oos.12.1617727670969;
-        Tue, 06 Apr 2021 09:47:50 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m16sm4687480otj.11.2021.04.06.09.47.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Apr 2021 09:47:50 -0700 (PDT)
-Received: (nullmailer pid 1942347 invoked by uid 1000);
-        Tue, 06 Apr 2021 16:47:48 -0000
-Date:   Tue, 6 Apr 2021 11:47:48 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 12/18] of/address: Add infrastructure to declare MMIO
- as non-posted
-Message-ID: <20210406164748.GA1937719@robh.at.kernel.org>
-References: <20210402090542.131194-1-marcan@marcan.st>
- <20210402090542.131194-13-marcan@marcan.st>
+        id S1346631AbhDFQ4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 12:56:31 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:46230 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232598AbhDFQ40 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 12:56:26 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 136Gtw5h047850;
+        Tue, 6 Apr 2021 11:55:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1617728158;
+        bh=+9XjRgYfCOrNjdj1kkEqP/Q3v02FwLNYKDPldfbcuiI=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=tjAN7lxASQ7GQgzBSfvPUAJVbed53QtBUL9oOxt1+Px6vCgCJYXJKr17FC9lKR7rS
+         oJwnUGUbf3qZ1to0kpE4KZPESWsmElTk4g34/qqHqGNT6PTMWOW6qTbBOTu8lbineW
+         KkEhEZ7bcZx3Sq/y1NYfjS6Iepw1ZCwLjlrx9lrU=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 136Gtwrb021543
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 6 Apr 2021 11:55:58 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 6 Apr
+ 2021 11:55:58 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 6 Apr 2021 11:55:58 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 136Gtvuo052410;
+        Tue, 6 Apr 2021 11:55:57 -0500
+Date:   Tue, 6 Apr 2021 22:25:56 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     =?iso-8859-1?Q?P=E9ter?= Ujfalusi <peter.ujfalusi@gmail.com>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Benoit Parrot <bparrot@ti.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Peter Chen <peter.chen@nxp.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <dmaengine@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: Re: [PATCH 11/16] dmaengine: ti: k3-psil-j721e: Add entry for CSI2RX
+Message-ID: <20210406165554.5mhn4u5enbf2tvaz@ti.com>
+References: <20210330173348.30135-1-p.yadav@ti.com>
+ <20210330173348.30135-12-p.yadav@ti.com>
+ <78a5983c-04c8-4a4c-04fe-bb1f31e87375@gmail.com>
+ <20210406150942.4kyjh2ehsvklupjr@ti.com>
+ <54b0846e-d633-2a03-2c64-f1f0a85c2410@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20210402090542.131194-13-marcan@marcan.st>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <54b0846e-d633-2a03-2c64-f1f0a85c2410@gmail.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 02, 2021 at 06:05:36PM +0900, Hector Martin wrote:
-> This implements the 'nonposted-mmio' boolean property. Placing this
-> property in a bus marks all direct child devices as requiring
-> non-posted MMIO mappings. If no such property is found, the default
-> is posted MMIO.
+On 06/04/21 06:33PM, Péter Ujfalusi wrote:
 > 
-> of_mmio_is_nonposted() performs this check to determine if a given
-> device has requested non-posted MMIO.
 > 
-> of_address_to_resource() uses this to set the IORESOURCE_MEM_NONPOSTED
-> flag on resources that require non-posted MMIO.
+> On 4/6/21 6:09 PM, Pratyush Yadav wrote:
+> > On 04/04/21 04:24PM, Péter Ujfalusi wrote:
+> >> Hi Pratyush,
+> >>
+> >> On 3/30/21 8:33 PM, Pratyush Yadav wrote:
+> >>> The CSI2RX subsystem uses PSI-L DMA to transfer frames to memory. It can
+> >>> have up to 32 threads but the current driver only supports using one. So
+> >>> add an entry for that one thread.
+> >>
+> >> If you are absolutely sure that the other threads are not going to be
+> >> used, then:
+> > 
+> > The opposite in fact. I do expect other threads to be used in the 
+> > future. But the current driver can only use one so I figured it is 
+> > better to add just the thread that is currently needed and then I can 
+> > always add the rest later.
+> > 
+> > Why does this have to be a one-and-done deal? Is there anything wrong 
+> > with adding the other threads when the driver can actually use them?
 > 
-> of_iomap() and of_io_request_and_map() then use this flag to pick the
-> correct ioremap() variant.
-> 
-> This mechanism is currently restricted to builds that support Apple ARM
-> platforms, as an optimization.
-> 
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->  drivers/of/address.c       | 43 ++++++++++++++++++++++++++++++++++++--
->  include/linux/of_address.h |  1 +
->  2 files changed, 42 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/of/address.c b/drivers/of/address.c
-> index 73ddf2540f3f..6485cc536e81 100644
-> --- a/drivers/of/address.c
-> +++ b/drivers/of/address.c
-> @@ -847,6 +847,9 @@ static int __of_address_to_resource(struct device_node *dev,
->  		return -EINVAL;
->  	memset(r, 0, sizeof(struct resource));
->  
-> +	if (of_mmio_is_nonposted(dev))
-> +		flags |= IORESOURCE_MEM_NONPOSTED;
-> +
->  	r->start = taddr;
->  	r->end = taddr + size - 1;
->  	r->flags = flags;
-> @@ -896,7 +899,10 @@ void __iomem *of_iomap(struct device_node *np, int index)
->  	if (of_address_to_resource(np, index, &res))
->  		return NULL;
->  
-> -	return ioremap(res.start, resource_size(&res));
-> +	if (res.flags & IORESOURCE_MEM_NONPOSTED)
-> +		return ioremap_np(res.start, resource_size(&res));
-> +	else
-> +		return ioremap(res.start, resource_size(&res));
->  }
->  EXPORT_SYMBOL(of_iomap);
->  
-> @@ -928,7 +934,11 @@ void __iomem *of_io_request_and_map(struct device_node *np, int index,
->  	if (!request_mem_region(res.start, resource_size(&res), name))
->  		return IOMEM_ERR_PTR(-EBUSY);
->  
-> -	mem = ioremap(res.start, resource_size(&res));
-> +	if (res.flags & IORESOURCE_MEM_NONPOSTED)
-> +		mem = ioremap_np(res.start, resource_size(&res));
-> +	else
-> +		mem = ioremap(res.start, resource_size(&res));
-> +
->  	if (!mem) {
->  		release_mem_region(res.start, resource_size(&res));
->  		return IOMEM_ERR_PTR(-ENOMEM);
-> @@ -1094,3 +1104,32 @@ bool of_dma_is_coherent(struct device_node *np)
->  	return false;
->  }
->  EXPORT_SYMBOL_GPL(of_dma_is_coherent);
-> +
-> +/**
-> + * of_mmio_is_nonposted - Check if device uses non-posted MMIO
-> + * @np:	device node
-> + *
-> + * Returns true if the "nonposted-mmio" property was found for
-> + * the device's bus.
-> + *
-> + * This is currently only enabled on builds that support Apple ARM devices, as
-> + * an optimization.
-> + */
-> +bool of_mmio_is_nonposted(struct device_node *np)
-> +{
-> +	struct device_node *parent;
-> +	bool nonposted;
-> +
-> +	if (!IS_ENABLED(CONFIG_ARCH_APPLE))
-> +		return false;
-> +
-> +	parent = of_get_parent(np);
-> +	if (!parent)
-> +		return false;
-> +
-> +	nonposted = of_property_read_bool(parent, "nonposted-mmio");
-> +
-> +	of_node_put(parent);
-> +	return nonposted;
-> +}
-> +EXPORT_SYMBOL_GPL(of_mmio_is_nonposted);
+> You can skip CCing DMAengine (and me ;) ). Less subsystems is the better
+> when sending patches...
 
-Is this needed outside of of/address.c? If not, please make it static 
-and don't export.
+I'm a bit confused here. If you are no longer interested in maintaining 
+the TI DMA drivers then that's fine, I can skip CCing you. But the patch 
+is still relevant to the dmaengine list so why should I skip CCing it? 
+And if I don't CC the dmaengine list then on which list would I get 
+comments/reviews for the patch?
 
-With that,
+> 
+> > 
+> >> Acked-by: Peter Ujfalusi <peter.ujfalusi@gmail.com>
+> >>
+> >> but I would consider adding the other threads if there is a chance that
+> >> the cs2rx will need to support it in the future.
+> >>
+> >>> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> >>> ---
+> >>>  drivers/dma/ti/k3-psil-j721e.c | 10 ++++++++++
+> >>>  1 file changed, 10 insertions(+)
+> >>>
+> >>> diff --git a/drivers/dma/ti/k3-psil-j721e.c b/drivers/dma/ti/k3-psil-j721e.c
+> >>> index 7580870ed746..19ffa31e6dc6 100644
+> >>> --- a/drivers/dma/ti/k3-psil-j721e.c
+> >>> +++ b/drivers/dma/ti/k3-psil-j721e.c
+> >>> @@ -58,6 +58,14 @@
+> >>>  		},					\
+> >>>  	}
+> >>>  
+> >>> +#define PSIL_CSI2RX(x)					\
+> >>> +	{						\
+> >>> +		.thread_id = x,				\
+> >>> +		.ep_config = {				\
+> >>> +			.ep_type = PSIL_EP_NATIVE,	\
+> >>> +		},					\
+> >>> +	}
+> >>> +
+> >>>  /* PSI-L source thread IDs, used for RX (DMA_DEV_TO_MEM) */
+> >>>  static struct psil_ep j721e_src_ep_map[] = {
+> >>>  	/* SA2UL */
+> >>> @@ -138,6 +146,8 @@ static struct psil_ep j721e_src_ep_map[] = {
+> >>>  	PSIL_PDMA_XY_PKT(0x4707),
+> >>>  	PSIL_PDMA_XY_PKT(0x4708),
+> >>>  	PSIL_PDMA_XY_PKT(0x4709),
+> >>> +	/* CSI2RX */
+> >>> +	PSIL_CSI2RX(0x4940),
+> >>>  	/* CPSW9 */
+> >>>  	PSIL_ETHERNET(0x4a00),
+> >>>  	/* CPSW0 */
+> >>>
+> >>
+> >> -- 
+> >> Péter
+> > 
+> 
+> -- 
+> Péter
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
