@@ -2,190 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ACD7355933
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 18:30:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D19E935593A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 18:31:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346429AbhDFQaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 12:30:13 -0400
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:47068 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346426AbhDFQaM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 12:30:12 -0400
-Received: by mail-oi1-f175.google.com with SMTP id m13so15695159oiw.13;
-        Tue, 06 Apr 2021 09:30:04 -0700 (PDT)
+        id S232385AbhDFQcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 12:32:04 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:46841 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243985AbhDFQcD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 12:32:03 -0400
+Received: by mail-oi1-f179.google.com with SMTP id m13so15701784oiw.13;
+        Tue, 06 Apr 2021 09:31:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=D2hEsi6JFE07gneiywvOCYJVqCpw+M6VpQTy6q9ipN0=;
-        b=pfF6wwi++bpGU4/DTo8YmFud1p7chLLQD9G4LYZSe1yZDoyShAlKaQCsLjIwtn60OW
-         /irH9Lyvf69EZCV62kk3zk0NuyA7e27Yy37qrFB04W4GZT/+6jESKbYoLDW9gI6ZAPew
-         +v1B+tt4nr06fkuRVKrf7SaP1ycVJAf1sOYspPtd9qlUa7VUoMbaWURNkHdIAs4n7bKV
-         31b/SOF61ZjQkCqnwMY7q9UhI8LhevSZ/Bk+kVNQA+/yDbVED8RzjvkpjJqBnYDa9XNW
-         qh3hxDaluKbpe9Vvm2abCSEPnCVyuWl0yKbVujIUbkmR1XuG3QIUQhICykvqxWEKmfJb
-         7/2Q==
-X-Gm-Message-State: AOAM5325fZpbrvLr/5Y8CFq4SwGLoGEMNYiIJnHyB9omf6ZtXco9IgsY
-        +GbCSAFab7B9+5VUBRr5yQ==
-X-Google-Smtp-Source: ABdhPJzEkdAGtjLvNovj6nI0aO1oe6vveWO5yByt0P7mzz4mUHa6gSdQLq68mZ6NfcxanOtirCgnoQ==
-X-Received: by 2002:aca:b6d7:: with SMTP id g206mr3897766oif.53.1617726603711;
-        Tue, 06 Apr 2021 09:30:03 -0700 (PDT)
+        bh=YP3e4a3p21hXudocTBXWvAjnARys/nIu9ypDgjHtU/0=;
+        b=pfzYdy24paxOMB60LUD043jbJFWCPaJ6/DxofXYawGx1Be2kbNHX72n4yPlMK9RvNo
+         RUDN4RpWmsJYsC2Tzjckr9evaQtka2vOGCXH5ZH3WVJEaNo8xG3Lo//sDsO4lVpPFq/v
+         gJv9ZtVqM1VC6zesH20T1og2gfpiTrxNS6F92AzcJbXyOS3vnyJn99CPpQ7KlW6ZmKhO
+         +Zdibxt72YggyNHnwI29xfkslUCsVILd4cVvaztXtigUnEUe0pH4+2nFNHllxvmJS8o/
+         zSLpygXPkiHf77zIUvUtMAAGLot9P67wDvs6P5E3Vq7FdAaTihicDL8qHp41K3e0eXQW
+         nrqw==
+X-Gm-Message-State: AOAM531GopoldhQVjNM8LJqT1FM8Ww5NCuoQU1aeVswGd3zMVziRn425
+        r3HpwjM+Tph9vc616T90uQ==
+X-Google-Smtp-Source: ABdhPJwO1ar3Q3AELO4z6vtDhDYzr71jD2j5comjLfYe2J0Q90uxLsBEobt+OhPckaWtee8I7biRzg==
+X-Received: by 2002:aca:180c:: with SMTP id h12mr4132885oih.109.1617726714839;
+        Tue, 06 Apr 2021 09:31:54 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d2sm4849681otl.48.2021.04.06.09.30.02
+        by smtp.gmail.com with ESMTPSA id 3sm4276319ood.46.2021.04.06.09.31.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Apr 2021 09:30:02 -0700 (PDT)
-Received: (nullmailer pid 1916137 invoked by uid 1000);
-        Tue, 06 Apr 2021 16:30:01 -0000
-Date:   Tue, 6 Apr 2021 11:30:01 -0500
+        Tue, 06 Apr 2021 09:31:54 -0700 (PDT)
+Received: (nullmailer pid 1920001 invoked by uid 1000);
+        Tue, 06 Apr 2021 16:31:52 -0000
+Date:   Tue, 6 Apr 2021 11:31:52 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Peter Chen <peter.chen@nxp.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-usb@vger.kernel.org,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Bastien Nocera <hadess@hadess.net>, devicetree@vger.kernel.org,
-        Stephen Boyd <swboyd@chromium.org>
-Subject: Re: [PATCH v6 1/5] dt-bindings: usb: Add binding for Realtek RTS5411
- hub controller
-Message-ID: <20210406163001.GA1910748@robh.at.kernel.org>
-References: <20210405201817.3977893-1-mka@chromium.org>
- <20210405124900.v6.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Daniele.Palmas@telit.com, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, bjorn.andersson@linaro.org,
+        boris.brezillon@collabora.com, devicetree@vger.kernel.org,
+        vigneshr@ti.com, linux-mtd@lists.infradead.org,
+        miquel.raynal@bootlin.com, linux-kernel@vger.kernel.org,
+        richard@nod.at
+Subject: Re: [PATCH v9 2/4] dt-bindings: mtd: Add a property to declare
+ secure regions in NAND chips
+Message-ID: <20210406163152.GA1919684@robh.at.kernel.org>
+References: <20210401151508.143075-1-manivannan.sadhasivam@linaro.org>
+ <20210401151508.143075-3-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210405124900.v6.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+In-Reply-To: <20210401151508.143075-3-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 05, 2021 at 01:18:13PM -0700, Matthias Kaehlcke wrote:
-> The Realtek RTS5411 is a USB 3.0 hub controller with 4 ports.
+On Thu, 01 Apr 2021 20:45:06 +0530, Manivannan Sadhasivam wrote:
+> On a typical end product, a vendor may choose to secure some regions in
+> the NAND memory which are supposed to stay intact between FW upgrades.
+> The access to those regions will be blocked by a secure element like
+> Trustzone. So the normal world software like Linux kernel should not
+> touch these regions (including reading).
 > 
-> This initial version of the binding only describes USB related
-> aspects of the RTS5411, it does not cover the option of
-> connecting the controller as an i2c slave.
+> So let's add a property for declaring such secure regions so that the
+> drivers can skip touching them.
 > 
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
+>  Documentation/devicetree/bindings/mtd/nand-controller.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> Changes in v7:
-> - added type ref for 'companion-hub' property
-> 
-> Changes in v6:
-> - Realtek binding instead of generic onboard_usb_hub
-> - added 'companion-hub' property
-> - added reference to 'usb-device.yaml'
-> - 'fixed' indentation of compatible entries to keep yamllint happy
-> - added 'additionalProperties' entry
-> - updated commit message
-> 
-> Changes in v5:
-> - updated 'title'
-> - only use standard USB compatible strings
-> - deleted 'usb_hub' node
-> - renamed 'usb_controller' node to 'usb-controller'
-> - removed labels from USB nodes
-> - added 'vdd-supply' to USB nodes
-> 
-> Changes in v4:
-> - none
-> 
-> Changes in v3:
-> - updated commit message
-> - removed recursive reference to $self
-> - adjusted 'compatible' definition to support multiple entries
-> - changed USB controller phandle to be a node
-> 
-> Changes in v2:
-> - removed 'wakeup-source' and 'power-off-in-suspend' properties
-> - consistently use spaces for indentation in example
-> 
->  .../bindings/usb/realtek,rts5411.yaml         | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-> new file mode 100644
-> index 000000000000..b59001972749
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/realtek,rts5411.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Binding for the Realtek RTS5411 USB 3.0 hub controller
-> +
-> +maintainers:
-> +  - Matthias Kaehlcke <mka@chromium.org>
-> +
-> +allOf:
-> +  - $ref: usb-device.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - usbbda,5411
-> +          - usbbda,411
-> +
 
-reg: true
 
-to fix the error.
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-> +  vdd-supply:
-> +    description:
-> +      phandle to the regulator that provides power to the hub.
-> +
-> +  companion-hub:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle'
-> +    description:
-> +      phandle to the companion hub on the controller.
+If a tag was not added on purpose, please state why and what changed.
 
-This should be required I think. I suppose you could only hook up 2.0 
-ports, but why. And 3.0 only wouldn't be USB compliant, would it?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    usb-controller {
-
-'usb' is the standard name.
-
-> +        dr_mode = "host";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        /* 2.0 hub on port 1 */
-> +        hub_2_0: hub@1 {
-> +            compatible = "usbbda,5411";
-> +            reg = <1>;
-> +            vdd-supply = <&pp3300_hub>;
-> +            companion-hub = <&hub_3_0>;
-> +        };
-> +
-> +        /* 3.0 hub on port 2 */
-> +        hub_3_0: hub@2 {
-> +            compatible = "usbbda,411";
-> +            reg = <2>;
-> +            vdd-supply = <&pp3300_hub>;
-> +            companion-hub = <&hub_2_0>;
-> +        };
-> +    };
-> -- 
-> 2.31.0.208.g409f899ff0-goog
-> 
