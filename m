@@ -2,95 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98B39355A6C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 19:32:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8E62355A83
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 19:38:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230291AbhDFRck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 13:32:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55826 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229459AbhDFRci (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Apr 2021 13:32:38 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C3AEE613D2;
-        Tue,  6 Apr 2021 17:32:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617730350;
-        bh=l7ZORsHdTMCrLBnQ9+hAv3mWIjTfuNAKq8QmXDtsC1I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tCUb2XK4f21ACck/w8OUtFM+7LCE5RPjVquaCt1zuHy6/I1z+NTUeBuaH3jAVL9pS
-         TMRyrYZcji5gKhbzOuqftA04iCWDufVxp8D3l150Z0qip8rUQegnMf2kpdR0JrzxxZ
-         rbBvW+ElJqnB74RD7e8TwjX4qV2Fj1+0qBILcD9wGQdAkr8m6ZvSHSVAaKjDjKufXl
-         LlSsSuiG0EIbshdjg8l0oRukEdXkQ0Qnrt/L4lVNAjO3m+zSwGYmPKa/fqhYlsQWkN
-         n3YsVD2g4KJdCSK7HfIkiI6h5ut+HlWKyORE59FITOss5VEwk0fAHYnp7jOhV5y7aE
-         9T/NbawySqKUA==
-Date:   Tue, 6 Apr 2021 18:32:11 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Jim Quinlan <jim2101024@gmail.com>
-Cc:     linux-pci <linux-pci@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Rob Herring <robh@kernel.org>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 2/6] dt-bindings: PCI: Add bindings for Brcmstb
- endpoint device voltage regulators
-Message-ID: <20210406173211.GP6443@sirena.org.uk>
-References: <20210401212148.47033-1-jim2101024@gmail.com>
- <20210401212148.47033-3-jim2101024@gmail.com>
- <20210406164708.GM6443@sirena.org.uk>
- <CANCKTBsiujTkOdh60etBqF_hE8exg6m9TDxkGHVVAGVS2SFCcQ@mail.gmail.com>
+        id S244843AbhDFRit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 13:38:49 -0400
+Received: from rcdn-iport-5.cisco.com ([173.37.86.76]:4421 "EHLO
+        rcdn-iport-5.cisco.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244714AbhDFRit (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 13:38:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=cisco.com; i=@cisco.com; l=1449; q=dns/txt; s=iport;
+  t=1617730721; x=1618940321;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wHC75exw7z/XvWxaqurh75hAcW+P/hc1Ce2AN8KLAVE=;
+  b=G8CemyZRO1sUomjCmS+YE/C6uWze7voF3/OnkJPzCjlApsHtQw/NACu6
+   IbzaOOj9YEiobtqOgYiAKbgbugARDCXIRPa+ZrNQSpdtmv1Zjt672WTLx
+   0k1ILORDVGZtFP7Z+NpOxvDGSwgPkZcfBivMfAolYWZryTkHbcjWyFPfw
+   w=;
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3Ad70PFKyAZuY1VAyfgTLAKrPwkb1zdoIgy1?=
+ =?us-ascii?q?knxilNYDZeG/b2q+mFmvMH2RjozBsQQmgng9CcOK+GKEmskKJdy48XILukQU?=
+ =?us-ascii?q?3aqHKlRbsSj7fK7jX8F0TFnNJ1+rxnd8FFZeHYLV8/tsri5Rn9LtBI+qjizI?=
+ =?us-ascii?q?mNpcPzi0hgVhtrbaYI1XYbNi++HldtTAdLQboVfaD82uN9qzCteWsaY62Abx?=
+ =?us-ascii?q?FvY8H5q9LGj57gaxIdbiRG1CC1kTiq5LTmeiL34j4iVVp0rYsKwCzijxHz4L?=
+ =?us-ascii?q?mlvrWdzBLRvlWjiah+qZ/G1sZJAtCKh4wuDgjUziysZIhnRtS5zVcInN0=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0AGAAAsnGxg/4YNJK1aGgEBAQEBAQE?=
+ =?us-ascii?q?BAQEDAQEBARIBAQEBAgIBAQEBQIE+BQEBAQELAYIqgU0BOY0XiTGQDYpcgXw?=
+ =?us-ascii?q?LAQEBDQEBNAQBAYRQAoF2AiU0CQ4CAwEBDAEBBQEBAQIBBgRxE4VdhkUBBTo?=
+ =?us-ascii?q?6BRALGC48GwaGDKtXdYE0gQGIH4FEIoEXAY1MJxyBSUKBE4MiPoo5BIJHghe?=
+ =?us-ascii?q?gOZwpgxWBJptHMhCkYS24EQIEBgUCFoFUOoFZMxoIGxWDJU8ZDo4rFo5HIQN?=
+ =?us-ascii?q?nAgYKAQEDCYw0XQEB?=
+X-IronPort-AV: E=Sophos;i="5.82,201,1613433600"; 
+   d="scan'208";a="611888528"
+Received: from alln-core-12.cisco.com ([173.36.13.134])
+  by rcdn-iport-5.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 06 Apr 2021 17:38:39 +0000
+Received: from zorba ([10.24.14.212])
+        by alln-core-12.cisco.com (8.15.2/8.15.2) with ESMTPS id 136HcajD016593
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+        Tue, 6 Apr 2021 17:38:37 GMT
+Date:   Tue, 6 Apr 2021 10:38:36 -0700
+From:   Daniel Walker <danielwa@cisco.com>
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     will@kernel.org, robh@kernel.org,
+        daniel@gimpelevich.san-francisco.ca.us, arnd@kernel.org,
+        akpm@linux-foundation.org, linux-arch@vger.kernel.org,
+        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        microblaze <monstr@monstr.eu>, linux-mips@vger.kernel.org,
+        nios2 <ley.foon.tan@intel.com>, openrisc@lists.librecores.org,
+        linux-hexagon@vger.kernel.org, linux-riscv@lists.infradead.org,
+        x86@kernel.org, linux-xtensa@linux-xtensa.org,
+        linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
+        linux-mm@kvack.org
+Subject: Re: [PATCH v4 19/20] mips: Convert to GENERIC_CMDLINE
+Message-ID: <20210406173836.GW2469518@zorba>
+References: <cover.1617375802.git.christophe.leroy@csgroup.eu>
+ <a01b6cdbae01fff77e26f7a5c40ee5260e1952b5.1617375802.git.christophe.leroy@csgroup.eu>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="XFI+TFG+M3u0jUjZ"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CANCKTBsiujTkOdh60etBqF_hE8exg6m9TDxkGHVVAGVS2SFCcQ@mail.gmail.com>
-X-Cookie: BARBARA STANWYCK makes me nervous!!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <a01b6cdbae01fff77e26f7a5c40ee5260e1952b5.1617375802.git.christophe.leroy@csgroup.eu>
+X-Outbound-SMTP-Client: 10.24.14.212, [10.24.14.212]
+X-Outbound-Node: alln-core-12.cisco.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Apr 02, 2021 at 03:18:21PM +0000, Christophe Leroy wrote:
+> -config CMDLINE_BOOL
+> -	bool "Built-in kernel command line"
+> -	help
+> -	  For most systems, it is firmware or second stage bootloader that
+> -	  by default specifies the kernel command line options.  However,
+> -	  it might be necessary or advantageous to either override the
+> -	  default kernel command line or add a few extra options to it.
+> -	  For such cases, this option allows you to hardcode your own
+> -	  command line options directly into the kernel.  For that, you
+> -	  should choose 'Y' here, and fill in the extra boot arguments
+> -	  in CONFIG_CMDLINE.
+> -
+> -	  The built-in options will be concatenated to the default command
+> -	  line if CMDLINE_OVERRIDE is set to 'N'. Otherwise, the default
+> -	  command line will be ignored and replaced by the built-in string.
+> -
+> -	  Most MIPS systems will normally expect 'N' here and rely upon
+> -	  the command line from the firmware or the second-stage bootloader.
+> -
 
---XFI+TFG+M3u0jUjZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Tue, Apr 06, 2021 at 01:26:51PM -0400, Jim Quinlan wrote:
-> On Tue, Apr 6, 2021 at 12:47 PM Mark Brown <broonie@kernel.org> wrote:
+See how you complained that I have CMDLINE_BOOL in my changed, and you think it
+shouldn't exist.
 
-> > No great problem with having these in the controller node (assming it
-> > accurately describes the hardware) but I do think we ought to also be
-> > able to describe these per slot.
+Yet here mips has it, and you just deleted it with no feature parity in your
+changes for this.
 
-> Can you explain what you think that would look like in the DT?
+In my changes I tried to maintain as much feature parity as I could with the
+architectures. I did the same huge conversion a long time ago you've done here to be sure all
+platforms have the features needed.
 
-I *think* that's just some properties on the nodes for the endpoints,
-note that the driver could just ignore them for now.  Not sure where or
-if we document any extensions but child nodes are in section 4 of the
-v2.1 PCI bus binding.
-
---XFI+TFG+M3u0jUjZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBsmxsACgkQJNaLcl1U
-h9ACywf+KdfAcRIo9HqlXhzf7hzuIYFQXCWFSHKxpQ7dqGhH0scIPouum9B1SCZ9
-utspOixjsm62QU3xLf22B52P5Tz94BqNP6IdvMfRCpwiWd0k8fIWc1kf3tu8MX2e
-amdXE1Gm7B63eEnIOOGMbqI50uAQ7zShGlJCvWqOTnw/87wE55XR8aqR5hrXnYja
-6D4v7aplC2vryKQRWr6jXIg98bxgxLgzlxr6Qd1hZJ0p1sXJTAR6ZzxCyc6QlbwE
-S4KKrFn6at+6x/ctz33dVAz3nXuNmy4ibWA0zbjnXQKe14vTspxEgsM1nyRE449o
-wl9ZQ1IbxUr6LkxUkU9HxdSq1K1c7g==
-=sxfG
------END PGP SIGNATURE-----
-
---XFI+TFG+M3u0jUjZ--
+Daniel
