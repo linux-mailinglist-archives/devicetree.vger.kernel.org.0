@@ -2,110 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 373E5355CE0
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 22:29:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B130355CE3
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 22:30:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234223AbhDFUaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 16:30:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37866 "EHLO
+        id S234012AbhDFUaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 16:30:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231650AbhDFUaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 16:30:03 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C589C06174A;
-        Tue,  6 Apr 2021 13:29:53 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id bg21so5502297pjb.0;
-        Tue, 06 Apr 2021 13:29:53 -0700 (PDT)
+        with ESMTP id S231650AbhDFUaN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 16:30:13 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8995C06174A;
+        Tue,  6 Apr 2021 13:30:03 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id c4so16450472qkg.3;
+        Tue, 06 Apr 2021 13:30:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2j7CLcad6ed96rIyV9YQHxN3DzjnAJyxSEvNXU02X20=;
-        b=nYUal0e85vIHS7aZRNgDglng+qm0qJNbkP5HRG0HaavzZxy1YeoJJfFLszSNBsJOJ3
-         7l1zFyXVZonWUYgDSnlmVgLwLS99tZfdfwJJqMX+H8QPJHz5wSqQuDvmwqF9YTABZkMi
-         PhR/GWFY1fQsDgoq/mDMgHUGE14wsY9ypMkjEC60wDCH6LL7O3tJD3I1PFzTc6qI18I+
-         fA0sG3FrA0QZoOJpyYpjoroSbNfLiph7XbBQVEfzbxeNVCUmppbZxwfqBIrJEkIVSKRs
-         gJROKbp2sN9X02bfYVBhJUXj9r0//MzDD8TujZiyZ0106e6BukA2/M60AKVUTqh2hWxJ
-         zTDQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=rFWTvnpJmpxXvRgAFEwpmVlAO1PN7uCT5Wr0ZlRsOlg=;
+        b=i0XGu1GuQ73wV+fSkC0Cy6ZaKgG66Ke4Lr3E5zNTArNo+f3Cas7wa9fOEgvJmFm8XE
+         SGIk2LCWA7ZEGGXUy0Xs1NEt7VT4fzVPZpA7hoo0zIfZxtoK6WfK7eisOC7axcR+pR1m
+         SIqYfIny93LIMsq6Kk7Iii2jcOHSMfpJjl5tjhGK/gVVWmJl1Omi7xf/ZNvoVnTDIsyY
+         UkXJl7y7WPQEQ187i6zd0vB0MG8CsJyByuwwhgIJ1FyTKsEWSmxRx0LR6hDeAw6uhAXm
+         ffFVnxhHpUZgYUlMTXkiWjqBqof24qTJVx1/8bxyeRmvc82nmYQMBLtjRw8oHufFUb7f
+         BzCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=2j7CLcad6ed96rIyV9YQHxN3DzjnAJyxSEvNXU02X20=;
-        b=CeK2JIjCLhB942tr6CbkhVm93XKmjybxdLBy8Mnm+L0XqIMzLReFZwECvX95TyNq8P
-         DTuXh767OkCaMfQUWdKuPDV525v01RqvL6FWi7baec6OeCTdeRztXNpk0zL3Tj28MBVq
-         KJxvB4I4EHPnXtczxNz4YEgiZeI4Y3JdybXdoCoQwExEGNINsO6npcRmyFf5xijAQDmO
-         zK+ZEveFdbt4oIblFp47qE8SLPUzQ8clq3C8U+1MxAhtWMGBJygMrFlOyUZVc+f8Uh3x
-         R3DWX+Unvju70nvwG+9AwVVks44mbuTvR314CquaRn7O02ti5xKtFaKnktA78CkyMhIy
-         JiRg==
-X-Gm-Message-State: AOAM533d4BnnIrFmP9WjbOkuNBoHkJtqoOXMXSpPFDYFFtNKLqfN3g5n
-        vSEhH598UHpYTQ5uc1d+DKxmwn9BB+BRvw==
-X-Google-Smtp-Source: ABdhPJzBnFguFi88gpmuor8iHJxiRXt/MFPep7vFboCRsnlXbgdwOM+ls2m8kZboCUNU/tBINz5c8g==
-X-Received: by 2002:a17:902:7788:b029:e9:11:5334 with SMTP id o8-20020a1709027788b02900e900115334mr41037pll.70.1617740993171;
-        Tue, 06 Apr 2021 13:29:53 -0700 (PDT)
-Received: from dell5510.suse.de ([62.201.25.198])
-        by smtp.gmail.com with ESMTPSA id x13sm4921040pgf.13.2021.04.06.13.29.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Apr 2021 13:29:52 -0700 (PDT)
-From:   Petr Vorel <petr.vorel@gmail.com>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Petr Vorel <petr.vorel@gmail.com>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ricardo Ribalda <ribalda@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 1/1] arm64: dts: qcom: angler: Reserve GPIO ranges
-Date:   Tue,  6 Apr 2021 22:29:36 +0200
-Message-Id: <20210406202936.22500-1-petr.vorel@gmail.com>
-X-Mailer: git-send-email 2.30.2
+        bh=rFWTvnpJmpxXvRgAFEwpmVlAO1PN7uCT5Wr0ZlRsOlg=;
+        b=JopdFH3oZ8sAmMUkkaLOA4BbLP8eUGO21i4mThQnA5VFznHliTjJRkYUItj5qOS7mt
+         /WT4hq5Bk0xoCkbFaj+LzwLOmsyn2hnEjGz5okejtJM8XaloahuDrx6mBKGRQnJ4uvfh
+         aiRw99t6rDVDsObJ4ELC73jLWf+9yo486Ud5Dx4E907qrmxx07ukZHYRktcsRog+pZFI
+         R4z7GdjAUMb2GUaaKvxIBQxOk8LHtRQC7HbjGjc7Wr4D1WnSxqlejETvJbUSyYz8KR0p
+         zRZh0CiGNiYf7D8ouUxdXS8l1ADTBhkk3kjnCdNruc1c2VN76wPD4D6VOJdyDCc41bz+
+         jOsw==
+X-Gm-Message-State: AOAM533dJhANT+bBWTkkyVCAV1j7NOVPJgeU39itfsM9EMQJ1yHTHiyM
+        V5/7mYFH+7eYmx5/KDl5C7g=
+X-Google-Smtp-Source: ABdhPJyTKwBCExnMK0DlX3zcyPIut/98t2ajn30cpY+OtX+QH1Z9muYVhE0Z7q7tmGreQuvQ6agAzQ==
+X-Received: by 2002:a37:7c8:: with SMTP id 191mr31272465qkh.53.1617741003128;
+        Tue, 06 Apr 2021 13:30:03 -0700 (PDT)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id 75sm16445829qkd.114.2021.04.06.13.30.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Apr 2021 13:30:02 -0700 (PDT)
+Subject: Re: [PATCH 1/1] of: properly check for error returned by
+ fdt_get_name()
+To:     Rob Herring <robh@kernel.org>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kernel@vger.kernel.org
+References: <20210405032845.1942533-1-frowand.list@gmail.com>
+ <20210406192100.GA2050740@robh.at.kernel.org>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <86171ba4-7251-2a3b-01fe-5da4af3eb8af@gmail.com>
+Date:   Tue, 6 Apr 2021 15:30:01 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210406192100.GA2050740@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reserve GPIO pins 85-88 as these aren't meant to be accessible from the
-application CPUs (causes reboot). Yet another fix similar to
-9134586715e3, 5f8d3ab136d0, which is needed to allow angler boot after
-3edfb7bd76bd ("gpiolib: Show correct direction from the beginning").
+On 4/6/21 2:21 PM, Rob Herring wrote:
+> On Sun, Apr 04, 2021 at 10:28:45PM -0500, frowand.list@gmail.com wrote:
+>> From: Frank Rowand <frank.rowand@sony.com>
+>>
+>> fdt_get_name() returns error values via a parameter pointer
+>> instead of in function return.  Fix check for this error value
+>> in populate_node() and callers of populate_node().
+>>
+>> Chasing up the caller tree showed callers of various functions
+>> failing to initialize the value of pointer parameters that
+>> can return error values.  Initialize those values to NULL.
+>>
+>> The bug was introduced by
+>> commit e6a6928c3ea1 ("of/fdt: Convert FDT functions to use libfdt")
+>> but this patch can not be backported directly to that commit
+>> because the relevant code has further been restructured by
+>> commit dfbd4c6eff35 ("drivers/of: Split unflatten_dt_node()")
+>>
+>> The bug became visible by triggering a crash on openrisc with:
+>> commit 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9")
+>> as reported in:
+>> https://lore.kernel.org/lkml/20210327224116.69309-1-linux@roeck-us.net/
+>>
+>> Fixes: commit 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9")
+>> Reported-by: Guenter Roeck <linux@roeck-us.net>
+>> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+>>
+>> ---
+>>
+>> This patch papers over the unaligned pointer passed to
+>> of_fdt_unflatten_tree() bug that Guenter reported in
+>> https://lore.kernel.org/lkml/20210327224116.69309-1-linux@roeck-us.net/
+>>
+>> I will create a separate patch to fix that problem.
 
-Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
----
-Changes v1->v2:
-* Remove <0 4> (not needed)
-* Remove from commit message: Fixes: 3edfb7bd76bd ("gpiolib: Show
-  correct direction from the beginning") - although fix is needed after
-  3edfb7bd76bd, I'm not sure if this commit is to blame commits which
-  added/modified DTS.
+Likely to be tomorrow (Wed 4/7).
 
-Kind regards,
-Petr
+-Frank
 
- arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
-index baa55643b40f..fd8e8e1cb2be 100644
---- a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0-only
- /* Copyright (c) 2015, Huawei Inc. All rights reserved.
-  * Copyright (c) 2016, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2021 Petr Vorel <petr.vorel@gmail.com>
-  */
- 
- /dts-v1/;
-@@ -32,3 +33,7 @@ serial@f991e000 {
- 		};
- 	};
- };
-+
-+&tlmm {
-+	gpio-reserved-ranges = <85 4>;
-+};
--- 
-2.30.2
+> 
+> Got an ETA for that?
+> 
+> Rob
+> .
+> 
 
