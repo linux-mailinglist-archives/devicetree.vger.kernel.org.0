@@ -2,132 +2,453 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8574535594A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 18:35:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43E683559A2
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 18:51:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346462AbhDFQgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 12:36:01 -0400
-Received: from rcdn-iport-4.cisco.com ([173.37.86.75]:63769 "EHLO
-        rcdn-iport-4.cisco.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232063AbhDFQgB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 12:36:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=2214; q=dns/txt; s=iport;
-  t=1617726953; x=1618936553;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=YVi6Pd95NNQkukWDzEdKyppnaWlfPPnzy+EUME4WOBg=;
-  b=YE+TJnJB+iv9Us/gqqe8m/ZYf/XQC399UOOQ+66Rb47XOHkWNJK1c12X
-   oyFh6W/Tq7HskKh4Zv2Jmv1TfqoCm0YLpdX9PVBwZadIGYI3IldBxQKgB
-   n4YN4sICTsxMYcdDYz4jg/VvpR+k5ngpSDG2BrEZJdjpjlqAAYmZP+flW
-   Q=;
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3A7NO2kKE3yH2CO2oOpLqFkpHXdLJzesId70?=
- =?us-ascii?q?hD6mlaQ3VuHfCwvcaogfgdyFvYiCwJXmshhNCHP8C7MBbh3LRy5pQcOqrnYR?=
- =?us-ascii?q?Lvv3GmIJonwYzpxTDhHCOWzJ846Y5Lda9iBNrsSWVrlMqS2njbL/8MyMSKmZ?=
- =?us-ascii?q?rDuc7w1HFoJDsGV4hB6ENDBh+fAglKQmB9dP0EPb69wuYCmDa6Y3QQaa2Adx?=
- =?us-ascii?q?o4dszOvcfCmp6jQTNuPX8awTKDhz+p97L2eiLwtnwjeghCzrs4/W/OnxaR3M?=
- =?us-ascii?q?WemsumwRzR3XK71fprsebmo+EuOOW8zuAINzOpsQqzfYJnQbHHhiwtufqi8k?=
- =?us-ascii?q?xCqqirnz4Qe+Ju9njWYma55Tzq1gWI6kdX11bSjXmFnHDkvcv1AAgfNvMEr4?=
- =?us-ascii?q?dYfhzFgnBQxe1B7A=3D=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0AKAAAkjWxg/4wNJK1aGgEBAQEBAQE?=
- =?us-ascii?q?BAQEDAQEBARIBAQEBAgIBAQEBQIE+BQEBAQELAYIqgU0BOTGMZokuA5AMFop?=
- =?us-ascii?q?GFIFoCwEBAQ0BATQEAQGBFgGDNAMCAoF2AiU0CQ4CAwEBDAEBBQEBAQIBBgR?=
- =?us-ascii?q?xE4VdhkUBBTIBRhALEgYuPA0OBhOFeatQdYE0gQGIHYFEFA6BFwGNTCccgUl?=
- =?us-ascii?q?CgRODIj6EGA6GEQSCQAeBDoIVExKULIpcnCmDFYEmj1qLbTIQpGG4PgIEBgU?=
- =?us-ascii?q?CFoFUOoFZMxoIGxWDJFAZDp0IIQMvOAIGAQkBAQMJin8BJwSCGQEB?=
-X-IronPort-AV: E=Sophos;i="5.82,310,1613433600"; 
-   d="scan'208";a="857074414"
-Received: from alln-core-7.cisco.com ([173.36.13.140])
-  by rcdn-iport-4.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 06 Apr 2021 16:35:52 +0000
-Received: from zorba ([10.24.14.212])
-        by alln-core-7.cisco.com (8.15.2/8.15.2) with ESMTPS id 136GZnnO027751
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Tue, 6 Apr 2021 16:35:51 GMT
-Date:   Tue, 6 Apr 2021 09:35:49 -0700
-From:   Daniel Walker <danielwa@cisco.com>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Will Deacon <will@kernel.org>, ob Herring <robh@kernel.org>,
-        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        Andrew Morton <akpm@linux-foundation.org>, x86@kernel.org,
-        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        xe-linux-external@cisco.com,
-        Ruslan Ruslichenko <rruslich@cisco.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/8] CMDLINE: drivers: of: ifdef out cmdline section
-Message-ID: <20210406163549.GS2469518@zorba>
-References: <41021d66db2ab427c14255d2a24bb4517c8b58fd.1617126961.git.danielwa@cisco.com>
- <0c4b839f023f87c451c8aa3c4f7a8d92729c2f02.1617126961.git.danielwa@cisco.com>
- <6d50809a-eb6b-b8bb-bb8b-88f66c52c0fa@csgroup.eu>
+        id S1346634AbhDFQv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 12:51:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46544 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235353AbhDFQv0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 12:51:26 -0400
+Received: from mail.pqgruber.com (mail.pqgruber.com [IPv6:2a05:d014:575:f70b:4f2c:8f1d:40c4:b13e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F560C06174A
+        for <devicetree@vger.kernel.org>; Tue,  6 Apr 2021 09:51:18 -0700 (PDT)
+Received: from workstation.tuxnet (213-47-165-233.cable.dynamic.surfer.at [213.47.165.233])
+        by mail.pqgruber.com (Postfix) with ESMTPSA id 7EF82C6B24A;
+        Tue,  6 Apr 2021 18:43:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pqgruber.com;
+        s=mail; t=1617727393;
+        bh=fbinmK2xbm5TEy2L5dDL+kQye7hyk/ia6eShZeHQ9iA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=XssYxVjP2s2PikVgAjfFAfq+r1LcF+wg9lh22dbyBY4u79jNNs8uPfXc7XGpEfgZq
+         gfw83xKXnHsy5cpbUAg1qWXj36KVXpJDJhUMC6oyhyOOtTlMAVoMug0mVUSgwIuQF+
+         H7/kwLvQGe3VIi+zWCUGhIgI3LEdpDrfevJ1vqkQ=
+From:   Clemens Gruber <clemens.gruber@pqgruber.com>
+To:     linux-pwm@vger.kernel.org
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sven Van Asbroeck <TheSven73@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Clemens Gruber <clemens.gruber@pqgruber.com>
+Subject: [PATCH v7 1/8] pwm: pca9685: Switch to atomic API
+Date:   Tue,  6 Apr 2021 18:41:33 +0200
+Message-Id: <20210406164140.81423-1-clemens.gruber@pqgruber.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <6d50809a-eb6b-b8bb-bb8b-88f66c52c0fa@csgroup.eu>
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-Outbound-SMTP-Client: 10.24.14.212, [10.24.14.212]
-X-Outbound-Node: alln-core-7.cisco.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 02, 2021 at 07:32:08PM +0200, Christophe Leroy wrote:
-> 
-> 
-> Le 30/03/2021 à 19:56, Daniel Walker a écrit :
-> > It looks like there's some seepage of cmdline stuff into
-> > the generic device tree code. This conflicts with the
-> > generic cmdline implementation so I remove it in the case
-> > when that's enabled.
-> > 
-> > Cc: xe-linux-external@cisco.com
-> > Signed-off-by: Ruslan Ruslichenko <rruslich@cisco.com>
-> > Signed-off-by: Daniel Walker <danielwa@cisco.com>
-> > ---
-> >   drivers/of/fdt.c | 14 ++++++++++++++
-> >   1 file changed, 14 insertions(+)
-> > 
-> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > index dcc1dd96911a..d8805cd9717a 100644
-> > --- a/drivers/of/fdt.c
-> > +++ b/drivers/of/fdt.c
-> > @@ -25,6 +25,7 @@
-> >   #include <linux/serial_core.h>
-> >   #include <linux/sysfs.h>
-> >   #include <linux/random.h>
-> > +#include <linux/cmdline.h>
-> >   #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
-> >   #include <asm/page.h>
-> > @@ -1050,6 +1051,18 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
-> >   	/* Retrieve command line */
-> >   	p = of_get_flat_dt_prop(node, "bootargs", &l);
-> > +
-> > +#if defined(CONFIG_GENERIC_CMDLINE) && defined(CONFIG_GENERIC_CMDLINE_OF)
-> > +	/*
-> > +	 * The builtin command line will be added here, or it can override
-> > +	 * with the DT bootargs.
-> > +	 */
-> > +	cmdline_add_builtin(data,
-> > +			    (l > 0 ? p : NULL), /* This is sanity checking */
-> > +			    COMMAND_LINE_SIZE);
-> > +#elif defined(CONFIG_GENERIC_CMDLINE)
-> > +	strlcpy(data, p, COMMAND_LINE_SIZE);
-> > +#else
-> 
-> Ugly.
-> 
-> Linux codying style recommend to limit the use of #ifdefs to headers as much as possible.
-> 
-> Why do we need so many alternatives ? Allthough they are temporary, can we
-> order the changes in another way to reduce that ?
+The switch to the atomic API goes hand in hand with a few fixes to
+previously experienced issues:
+- The duty cycle is no longer lost after disable/enable (previously the
+  OFF registers were cleared in disable and the user was required to
+  call config to restore the duty cycle settings)
+- If one sets a period resulting in the same prescale register value,
+  the sleep and write to the register is now skipped
 
-I think this whole section can be removed down even all the CMDLINE ifdef's ..
-The only architecture which needs this is powerpc because it calls this function
-three times.
+Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
+---
+Changes since v6:
+- Order of a comparison switched for improved readability
 
-If powerpc were made to call this only once , and then call the generic handling
-for the command line then this whole section would get removed.
+Changes since v5:
+- Function documentation for set_duty
+- Variable initializations
+- Print warning if all LEDs channel
+- Changed EOPNOTSUPP to EINVAL
+- Improved error messages
+- Register reset corrections moved to this patch
 
-Daniel
+Changes since v4:
+- Patches split up
+- Use a single set_duty function
+- Improve readability / new macros
+- Added a patch to restrict prescale changes to the first user
+
+Changes since v3:
+- Refactoring: Extracted common functions
+- Read prescale register value instead of caching it
+- Return all zeros and disabled for "all LEDs" channel state
+- Improved duty calculation / mapping to 0..4096
+
+Changes since v2:
+- Always set default prescale value in probe
+- Simplified probe code
+- Inlined functions with one callsite
+
+Changes since v1:
+- Fixed a logic error
+- Impoved PM runtime handling and fixed !CONFIG_PM
+- Write default prescale reg value if invalid in probe
+- Reuse full_off/_on functions throughout driver
+- Use cached prescale value whenever possible
+
+ drivers/pwm/pwm-pca9685.c | 261 ++++++++++++++------------------------
+ 1 file changed, 92 insertions(+), 169 deletions(-)
+
+diff --git a/drivers/pwm/pwm-pca9685.c b/drivers/pwm/pwm-pca9685.c
+index 4a55dc18656c..5a2ce97e71fd 100644
+--- a/drivers/pwm/pwm-pca9685.c
++++ b/drivers/pwm/pwm-pca9685.c
+@@ -51,7 +51,6 @@
+ #define PCA9685_PRESCALE_MAX	0xFF	/* => min. frequency of 24 Hz */
+ 
+ #define PCA9685_COUNTER_RANGE	4096
+-#define PCA9685_DEFAULT_PERIOD	5000000	/* Default period_ns = 1/200 Hz */
+ #define PCA9685_OSC_CLOCK_MHZ	25	/* Internal oscillator with 25 MHz */
+ 
+ #define PCA9685_NUMREGS		0xFF
+@@ -71,10 +70,14 @@
+ #define LED_N_OFF_H(N)	(PCA9685_LEDX_OFF_H + (4 * (N)))
+ #define LED_N_OFF_L(N)	(PCA9685_LEDX_OFF_L + (4 * (N)))
+ 
++#define REG_ON_H(C)	((C) >= PCA9685_MAXCHAN ? PCA9685_ALL_LED_ON_H : LED_N_ON_H((C)))
++#define REG_ON_L(C)	((C) >= PCA9685_MAXCHAN ? PCA9685_ALL_LED_ON_L : LED_N_ON_L((C)))
++#define REG_OFF_H(C)	((C) >= PCA9685_MAXCHAN ? PCA9685_ALL_LED_OFF_H : LED_N_OFF_H((C)))
++#define REG_OFF_L(C)	((C) >= PCA9685_MAXCHAN ? PCA9685_ALL_LED_OFF_L : LED_N_OFF_L((C)))
++
+ struct pca9685 {
+ 	struct pwm_chip chip;
+ 	struct regmap *regmap;
+-	int period_ns;
+ #if IS_ENABLED(CONFIG_GPIOLIB)
+ 	struct mutex lock;
+ 	struct gpio_chip gpio;
+@@ -87,6 +90,51 @@ static inline struct pca9685 *to_pca(struct pwm_chip *chip)
+ 	return container_of(chip, struct pca9685, chip);
+ }
+ 
++/* Helper function to set the duty cycle ratio to duty/4096 (e.g. duty=2048 -> 50%) */
++static void pca9685_pwm_set_duty(struct pca9685 *pca, int channel, unsigned int duty)
++{
++	if (duty == 0) {
++		/* Set the full OFF bit, which has the highest precedence */
++		regmap_write(pca->regmap, REG_OFF_H(channel), LED_FULL);
++	} else if (duty >= PCA9685_COUNTER_RANGE) {
++		/* Set the full ON bit and clear the full OFF bit */
++		regmap_write(pca->regmap, REG_ON_H(channel), LED_FULL);
++		regmap_write(pca->regmap, REG_OFF_H(channel), 0);
++	} else {
++		/* Set OFF time (clears the full OFF bit) */
++		regmap_write(pca->regmap, REG_OFF_L(channel), duty & 0xff);
++		regmap_write(pca->regmap, REG_OFF_H(channel), (duty >> 8) & 0xf);
++		/* Clear the full ON bit */
++		regmap_write(pca->regmap, REG_ON_H(channel), 0);
++	}
++}
++
++static unsigned int pca9685_pwm_get_duty(struct pca9685 *pca, int channel)
++{
++	unsigned int off_h = 0, val = 0;
++
++	if (WARN_ON(channel >= PCA9685_MAXCHAN)) {
++		/* HW does not support reading state of "all LEDs" channel */
++		return 0;
++	}
++
++	regmap_read(pca->regmap, LED_N_OFF_H(channel), &off_h);
++	if (off_h & LED_FULL) {
++		/* Full OFF bit is set */
++		return 0;
++	}
++
++	regmap_read(pca->regmap, LED_N_ON_H(channel), &val);
++	if (val & LED_FULL) {
++		/* Full ON bit is set */
++		return PCA9685_COUNTER_RANGE;
++	}
++
++	val = 0;
++	regmap_read(pca->regmap, LED_N_OFF_L(channel), &val);
++	return ((off_h & 0xf) << 8) | (val & 0xff);
++}
++
+ #if IS_ENABLED(CONFIG_GPIOLIB)
+ static bool pca9685_pwm_test_and_set_inuse(struct pca9685 *pca, int pwm_idx)
+ {
+@@ -138,34 +186,23 @@ static int pca9685_pwm_gpio_request(struct gpio_chip *gpio, unsigned int offset)
+ static int pca9685_pwm_gpio_get(struct gpio_chip *gpio, unsigned int offset)
+ {
+ 	struct pca9685 *pca = gpiochip_get_data(gpio);
+-	struct pwm_device *pwm = &pca->chip.pwms[offset];
+-	unsigned int value;
+ 
+-	regmap_read(pca->regmap, LED_N_ON_H(pwm->hwpwm), &value);
+-
+-	return value & LED_FULL;
++	return pca9685_pwm_get_duty(pca, offset) != 0;
+ }
+ 
+ static void pca9685_pwm_gpio_set(struct gpio_chip *gpio, unsigned int offset,
+ 				 int value)
+ {
+ 	struct pca9685 *pca = gpiochip_get_data(gpio);
+-	struct pwm_device *pwm = &pca->chip.pwms[offset];
+-	unsigned int on = value ? LED_FULL : 0;
+-
+-	/* Clear both OFF registers */
+-	regmap_write(pca->regmap, LED_N_OFF_L(pwm->hwpwm), 0);
+-	regmap_write(pca->regmap, LED_N_OFF_H(pwm->hwpwm), 0);
+ 
+-	/* Set the full ON bit */
+-	regmap_write(pca->regmap, LED_N_ON_H(pwm->hwpwm), on);
++	pca9685_pwm_set_duty(pca, offset, value ? PCA9685_COUNTER_RANGE : 0);
+ }
+ 
+ static void pca9685_pwm_gpio_free(struct gpio_chip *gpio, unsigned int offset)
+ {
+ 	struct pca9685 *pca = gpiochip_get_data(gpio);
+ 
+-	pca9685_pwm_gpio_set(gpio, offset, 0);
++	pca9685_pwm_set_duty(pca, offset, 0);
+ 	pm_runtime_put(pca->chip.dev);
+ 	pca9685_pwm_clear_inuse(pca, offset);
+ }
+@@ -246,167 +283,56 @@ static void pca9685_set_sleep_mode(struct pca9685 *pca, bool enable)
+ 	}
+ }
+ 
+-static int pca9685_pwm_config(struct pwm_chip *chip, struct pwm_device *pwm,
+-			      int duty_ns, int period_ns)
++static int pca9685_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
++			     const struct pwm_state *state)
+ {
+ 	struct pca9685 *pca = to_pca(chip);
+-	unsigned long long duty;
+-	unsigned int reg;
+-	int prescale;
+-
+-	if (period_ns != pca->period_ns) {
+-		prescale = DIV_ROUND_CLOSEST(PCA9685_OSC_CLOCK_MHZ * period_ns,
+-					     PCA9685_COUNTER_RANGE * 1000) - 1;
+-
+-		if (prescale >= PCA9685_PRESCALE_MIN &&
+-			prescale <= PCA9685_PRESCALE_MAX) {
+-			/*
+-			 * Putting the chip briefly into SLEEP mode
+-			 * at this point won't interfere with the
+-			 * pm_runtime framework, because the pm_runtime
+-			 * state is guaranteed active here.
+-			 */
+-			/* Put chip into sleep mode */
+-			pca9685_set_sleep_mode(pca, true);
+-
+-			/* Change the chip-wide output frequency */
+-			regmap_write(pca->regmap, PCA9685_PRESCALE, prescale);
+-
+-			/* Wake the chip up */
+-			pca9685_set_sleep_mode(pca, false);
+-
+-			pca->period_ns = period_ns;
+-		} else {
+-			dev_err(chip->dev,
+-				"prescaler not set: period out of bounds!\n");
+-			return -EINVAL;
+-		}
+-	}
++	unsigned long long duty, prescale;
++	unsigned int val = 0;
+ 
+-	if (duty_ns < 1) {
+-		if (pwm->hwpwm >= PCA9685_MAXCHAN)
+-			reg = PCA9685_ALL_LED_OFF_H;
+-		else
+-			reg = LED_N_OFF_H(pwm->hwpwm);
++	if (state->polarity != PWM_POLARITY_NORMAL)
++		return -EINVAL;
+ 
+-		regmap_write(pca->regmap, reg, LED_FULL);
+-
+-		return 0;
++	prescale = DIV_ROUND_CLOSEST_ULL(PCA9685_OSC_CLOCK_MHZ * state->period,
++					 PCA9685_COUNTER_RANGE * 1000) - 1;
++	if (prescale < PCA9685_PRESCALE_MIN || prescale > PCA9685_PRESCALE_MAX) {
++		dev_err(chip->dev, "pwm not changed: period out of bounds!\n");
++		return -EINVAL;
+ 	}
+ 
+-	if (duty_ns == period_ns) {
+-		/* Clear both OFF registers */
+-		if (pwm->hwpwm >= PCA9685_MAXCHAN)
+-			reg = PCA9685_ALL_LED_OFF_L;
+-		else
+-			reg = LED_N_OFF_L(pwm->hwpwm);
+-
+-		regmap_write(pca->regmap, reg, 0x0);
+-
+-		if (pwm->hwpwm >= PCA9685_MAXCHAN)
+-			reg = PCA9685_ALL_LED_OFF_H;
+-		else
+-			reg = LED_N_OFF_H(pwm->hwpwm);
+-
+-		regmap_write(pca->regmap, reg, 0x0);
+-
+-		/* Set the full ON bit */
+-		if (pwm->hwpwm >= PCA9685_MAXCHAN)
+-			reg = PCA9685_ALL_LED_ON_H;
+-		else
+-			reg = LED_N_ON_H(pwm->hwpwm);
+-
+-		regmap_write(pca->regmap, reg, LED_FULL);
++	duty = PCA9685_COUNTER_RANGE * state->duty_cycle;
++	duty = DIV_ROUND_CLOSEST_ULL(duty, state->period);
+ 
++	if (duty < 1 || !state->enabled) {
++		pca9685_pwm_set_duty(pca, pwm->hwpwm, 0);
++		return 0;
++	} else if (duty == PCA9685_COUNTER_RANGE) {
++		pca9685_pwm_set_duty(pca, pwm->hwpwm, duty);
+ 		return 0;
+ 	}
+ 
+-	duty = PCA9685_COUNTER_RANGE * (unsigned long long)duty_ns;
+-	duty = DIV_ROUND_UP_ULL(duty, period_ns);
+-
+-	if (pwm->hwpwm >= PCA9685_MAXCHAN)
+-		reg = PCA9685_ALL_LED_OFF_L;
+-	else
+-		reg = LED_N_OFF_L(pwm->hwpwm);
+-
+-	regmap_write(pca->regmap, reg, (int)duty & 0xff);
+-
+-	if (pwm->hwpwm >= PCA9685_MAXCHAN)
+-		reg = PCA9685_ALL_LED_OFF_H;
+-	else
+-		reg = LED_N_OFF_H(pwm->hwpwm);
+-
+-	regmap_write(pca->regmap, reg, ((int)duty >> 8) & 0xf);
+-
+-	/* Clear the full ON bit, otherwise the set OFF time has no effect */
+-	if (pwm->hwpwm >= PCA9685_MAXCHAN)
+-		reg = PCA9685_ALL_LED_ON_H;
+-	else
+-		reg = LED_N_ON_H(pwm->hwpwm);
+-
+-	regmap_write(pca->regmap, reg, 0);
+-
+-	return 0;
+-}
+-
+-static int pca9685_pwm_enable(struct pwm_chip *chip, struct pwm_device *pwm)
+-{
+-	struct pca9685 *pca = to_pca(chip);
+-	unsigned int reg;
+-
+-	/*
+-	 * The PWM subsystem does not support a pre-delay.
+-	 * So, set the ON-timeout to 0
+-	 */
+-	if (pwm->hwpwm >= PCA9685_MAXCHAN)
+-		reg = PCA9685_ALL_LED_ON_L;
+-	else
+-		reg = LED_N_ON_L(pwm->hwpwm);
+-
+-	regmap_write(pca->regmap, reg, 0);
+-
+-	if (pwm->hwpwm >= PCA9685_MAXCHAN)
+-		reg = PCA9685_ALL_LED_ON_H;
+-	else
+-		reg = LED_N_ON_H(pwm->hwpwm);
+-
+-	regmap_write(pca->regmap, reg, 0);
++	regmap_read(pca->regmap, PCA9685_PRESCALE, &val);
++	if (prescale != val) {
++		/*
++		 * Putting the chip briefly into SLEEP mode
++		 * at this point won't interfere with the
++		 * pm_runtime framework, because the pm_runtime
++		 * state is guaranteed active here.
++		 */
++		/* Put chip into sleep mode */
++		pca9685_set_sleep_mode(pca, true);
+ 
+-	/*
+-	 * Clear the full-off bit.
+-	 * It has precedence over the others and must be off.
+-	 */
+-	if (pwm->hwpwm >= PCA9685_MAXCHAN)
+-		reg = PCA9685_ALL_LED_OFF_H;
+-	else
+-		reg = LED_N_OFF_H(pwm->hwpwm);
++		/* Change the chip-wide output frequency */
++		regmap_write(pca->regmap, PCA9685_PRESCALE, (int)prescale);
+ 
+-	regmap_update_bits(pca->regmap, reg, LED_FULL, 0x0);
++		/* Wake the chip up */
++		pca9685_set_sleep_mode(pca, false);
++	}
+ 
++	pca9685_pwm_set_duty(pca, pwm->hwpwm, duty);
+ 	return 0;
+ }
+ 
+-static void pca9685_pwm_disable(struct pwm_chip *chip, struct pwm_device *pwm)
+-{
+-	struct pca9685 *pca = to_pca(chip);
+-	unsigned int reg;
+-
+-	if (pwm->hwpwm >= PCA9685_MAXCHAN)
+-		reg = PCA9685_ALL_LED_OFF_H;
+-	else
+-		reg = LED_N_OFF_H(pwm->hwpwm);
+-
+-	regmap_write(pca->regmap, reg, LED_FULL);
+-
+-	/* Clear the LED_OFF counter. */
+-	if (pwm->hwpwm >= PCA9685_MAXCHAN)
+-		reg = PCA9685_ALL_LED_OFF_L;
+-	else
+-		reg = LED_N_OFF_L(pwm->hwpwm);
+-
+-	regmap_write(pca->regmap, reg, 0x0);
+-}
+-
+ static int pca9685_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
+ {
+ 	struct pca9685 *pca = to_pca(chip);
+@@ -422,15 +348,13 @@ static void pca9685_pwm_free(struct pwm_chip *chip, struct pwm_device *pwm)
+ {
+ 	struct pca9685 *pca = to_pca(chip);
+ 
+-	pca9685_pwm_disable(chip, pwm);
++	pca9685_pwm_set_duty(pca, pwm->hwpwm, 0);
+ 	pm_runtime_put(chip->dev);
+ 	pca9685_pwm_clear_inuse(pca, pwm->hwpwm);
+ }
+ 
+ static const struct pwm_ops pca9685_pwm_ops = {
+-	.enable = pca9685_pwm_enable,
+-	.disable = pca9685_pwm_disable,
+-	.config = pca9685_pwm_config,
++	.apply = pca9685_pwm_apply,
+ 	.request = pca9685_pwm_request,
+ 	.free = pca9685_pwm_free,
+ 	.owner = THIS_MODULE,
+@@ -461,7 +385,6 @@ static int pca9685_pwm_probe(struct i2c_client *client,
+ 			ret);
+ 		return ret;
+ 	}
+-	pca->period_ns = PCA9685_DEFAULT_PERIOD;
+ 
+ 	i2c_set_clientdata(client, pca);
+ 
+@@ -484,9 +407,9 @@ static int pca9685_pwm_probe(struct i2c_client *client,
+ 	reg &= ~(MODE1_ALLCALL | MODE1_SUB1 | MODE1_SUB2 | MODE1_SUB3);
+ 	regmap_write(pca->regmap, PCA9685_MODE1, reg);
+ 
+-	/* Clear all "full off" bits */
+-	regmap_write(pca->regmap, PCA9685_ALL_LED_OFF_L, 0);
+-	regmap_write(pca->regmap, PCA9685_ALL_LED_OFF_H, 0);
++	/* Reset OFF registers to POR default */
++	regmap_write(pca->regmap, PCA9685_ALL_LED_OFF_L, LED_FULL);
++	regmap_write(pca->regmap, PCA9685_ALL_LED_OFF_H, LED_FULL);
+ 
+ 	pca->chip.ops = &pca9685_pwm_ops;
+ 	/* Add an extra channel for ALL_LED */
+-- 
+2.31.1
+
