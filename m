@@ -2,118 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B515A355F3D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 01:09:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A530355F53
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 01:19:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235648AbhDFXJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 19:09:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44364 "EHLO
+        id S244298AbhDFXTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 19:19:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233608AbhDFXJ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 19:09:57 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A6DEC06175F
-        for <devicetree@vger.kernel.org>; Tue,  6 Apr 2021 16:09:48 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id 82so7464755yby.7
-        for <devicetree@vger.kernel.org>; Tue, 06 Apr 2021 16:09:48 -0700 (PDT)
+        with ESMTP id S242895AbhDFXTW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 19:19:22 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1728C06175F
+        for <devicetree@vger.kernel.org>; Tue,  6 Apr 2021 16:19:12 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id y1so18386099ljm.10
+        for <devicetree@vger.kernel.org>; Tue, 06 Apr 2021 16:19:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Y6OSfvw2JXRLchQT/g4OM5pjorvMrh2aWfsdWLGR9gE=;
-        b=ajc9PJAU/6AhhM0RhU0k1Mux2Yl+3pnFstkqg8+oM2TYiRXR+skoQr1Z1VkTCft7GN
-         AnYuq70p0b/LRP6MrmyKfs7O8sci7KHn8wkfT4m24ss3Xu0kIQmK2nCQxq3bhZt4+gwc
-         eVBeiZ0dMUn0s3nAnQtKH9D+zc2shuf6Q+agPMmGL6OLJigGjhzHrdDlEv2M62riuqlz
-         eZJMjz1ysW5Har69nUCu8X2s44NHjMjNx/py5ZtVUXxPID5rjZEyOP06GFDI3ZzrdKFs
-         JPKyD98eLlSssi71FnxAx8IVVgSHNGLiMa0L4w3ybM3yqKakpNNylvKlWT3RYFeplZJy
-         v/lQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=An90/BURB2tY8YsEOev/snpm4gJka+Hd4KI5AsNMlV0=;
+        b=oQLU6JtI8mNCEZztqetDwYwjWY5yp9ByIeK4o9mrNGce+JWZk3uXkeR1XVxFYW0rTI
+         fa8SFTzpeHykIvQ3+xREmkxSa9dKHg3nK2KpOAxsXInnef4sNo/I+nTl2hDUQAdCecRz
+         TubCDfT9ynpzZCo6Mb9hE1wurSO9pa7anIXe5yZkkC6umCoc5vJ40nlyxjKXgjBs1/p0
+         XZ2ST1bkdNWMzY4Zoz/RMYMMz2f7rYM6FBy6O2eiVqMvY6ItIsgnRxCeCjlCGGGVF8qt
+         rbs76zEaSuIDEl0JE6x4Dh5+cELDUs9fO5XjhvQhnbhLt92RJIRjiOO8L50uuvY5WTkT
+         2LlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Y6OSfvw2JXRLchQT/g4OM5pjorvMrh2aWfsdWLGR9gE=;
-        b=o5PqHTKUtI1Y4NmK+FDxuwalez1HBFvgy/sB2aV7C00WlFNI18ELlvbuI+NPPVF3pO
-         9k6q874O+IalVRHZkiWvodDmzXX5qCMoOnZyCFcgxR+WDSdq6qFTpSEOryoDGwgPeCAB
-         s3I3k05TWs6QfDvT50ge6LO7GjG/mfjtA0BaipZ2S1Nu1xhvTYE6nNpUbL1pYMHtX+mP
-         75TU1HnOQ8xtB7iK+qrQUv6D4u75nh2eowUSHpXAha8pjw5bI3iHQod+UJIVCIGCqhEr
-         xJMyfdXw15rqYcfBZkK//5rKfEjXsib8F7TY97LqUmf5pvqQ0sHWUAhuQw+tzx8l+L+n
-         wXcg==
-X-Gm-Message-State: AOAM530R/Da4XYWWxUVKFC36YPRI4GqWSFuYADxLMvS9agLCuwsLeBR7
-        NIXrCZGfq1KE44rh2BnyllCaycsBuch7bfRs6DytHQ==
-X-Google-Smtp-Source: ABdhPJwCdBdvb5yTh7D1SqaHPTDXJjMGadzUqlEpmyyfYz34QIUr5kDhWWv6sCMTO/prGFa0DpCneK2qiPBI53cOpgM=
-X-Received: by 2002:a25:6003:: with SMTP id u3mr651056ybb.96.1617750586821;
- Tue, 06 Apr 2021 16:09:46 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=An90/BURB2tY8YsEOev/snpm4gJka+Hd4KI5AsNMlV0=;
+        b=U7F6e6QVABFRnRbj8y/saavdHK9Eisvfe0uOAf15jcXn/toWZQBww3DslTKfIJsRPM
+         jwipXCsijqGUxncIj89w8Fr3ITMdlWcs1dqy7JPRQbfq7CXBI3TBxHtrNbxRy10vAnTl
+         5mDKZ1ethFKI8dgPEct3UPnkwFyDYWETRMjiWawPyFhl5W5Jd6mCnIsn/c349fGbCnDw
+         Baeols0XzMzcDK7yziabOu5bAfon2O2hSdee4rXiTfK/r7MZmMxBUti56HLMR+l/EJhY
+         8syA22fN5BTHaGPbP4UaGCxl6dFjWDHWiqhUJN5t2rWWdZH4qsMb6tazKf5fdTuFj4y/
+         SjIg==
+X-Gm-Message-State: AOAM530o0nv3Em7WhEY8U4VTS8waNaAxkW+Ry27uYaztr6/t7PXRLV1B
+        M4MmlZBSjl+5YkOOq260KIIH1Q==
+X-Google-Smtp-Source: ABdhPJxrpa6b95eqXP/iajdAAU9Z2q1f2rWLyw1HYsKGwCN6BTaPlOAPo7l5mSTld9MLM9LyemSadA==
+X-Received: by 2002:a2e:9017:: with SMTP id h23mr244674ljg.473.1617751151284;
+        Tue, 06 Apr 2021 16:19:11 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id u16sm2366565lja.48.2021.04.06.16.19.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Apr 2021 16:19:10 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH v2 0/4] clk: qcom: convert gcc-sdm845 to use platform data
+Date:   Wed,  7 Apr 2021 02:19:05 +0300
+Message-Id: <20210406231909.3035267-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20210405031436.2465475-1-ilya.lipnitskiy@gmail.com> <20210405222540.18145-1-ilya.lipnitskiy@gmail.com>
-In-Reply-To: <20210405222540.18145-1-ilya.lipnitskiy@gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 6 Apr 2021 16:09:10 -0700
-Message-ID: <CAGETcx-gF4r1TeY2AA4Vwb5e+5O+_O3E2ENo5tKhh=n_EOJnEQ@mail.gmail.com>
-Subject: Re: [PATCH v2] of: property: fw_devlink: do not link ".*,nr-gpios"
-To:     Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        stable <stable@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 5, 2021 at 3:26 PM Ilya Lipnitskiy
-<ilya.lipnitskiy@gmail.com> wrote:
->
-> [<vendor>,]nr-gpios property is used by some GPIO drivers[0] to indicate
-> the number of GPIOs present on a system, not define a GPIO. nr-gpios is
-> not configured by #gpio-cells and can't be parsed along with other
-> "*-gpios" properties.
->
-> nr-gpios without the "<vendor>," prefix is not allowed by the DT
-> spec[1], so only add exception for the ",nr-gpios" suffix and let the
-> error message continue being printed for non-compliant implementations.
->
-> [0]: nr-gpios is referenced in Documentation/devicetree/bindings/gpio:
->  - gpio-adnp.txt
->  - gpio-xgene-sb.txt
->  - gpio-xlp.txt
->  - snps,dw-apb-gpio.yaml
->
-> [1]:
-> Link: https://github.com/devicetree-org/dt-schema/blob/cb53a16a1eb3e2169ce170c071e47940845ec26e/schemas/gpio/gpio-consumer.yaml#L20
->
-> Fixes errors such as:
->   OF: /palmbus@300000/gpio@600: could not find phandle
->
-> Fixes: 7f00be96f125 ("of: property: Add device link support for interrupt-parent, dmas and -gpio(s)")
-> Signed-off-by: Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
-> Cc: Saravana Kannan <saravanak@google.com>
-> Cc: <stable@vger.kernel.org> # 5.5.x
-> ---
->  drivers/of/property.c | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 2046ae311322..1793303e84ac 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1281,7 +1281,16 @@ DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
->  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
->  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
->  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
-> -DEFINE_SUFFIX_PROP(gpios, "-gpios", "#gpio-cells")
-> +
-> +static struct device_node *parse_gpios(struct device_node *np,
-> +                                      const char *prop_name, int index)
-> +{
-> +       if (!strcmp_suffix(prop_name, ",nr-gpios"))
-> +               return NULL;
+Convert sdm845 global clock controller driver to use parent_data and
+parent_hws.
 
-Ah I somehow missed this patch. This gives a blanked exception for
-vendor,nr-gpios. I'd prefer explicit exceptions for all the instances
-of ",nr-gpios" we are grandfathering in. Any future additions should
-be rejected. Can we do that please?
+Changes since v1:
+ - Use ARRAY_SIZE() for num_parents and parent_hws instead of
+   parent_data where applicable as suggested by Marijn Suijten.
 
-Rob, you okay with making this list more explicit?
+The following changes since commit a38fd8748464831584a19438cbb3082b5a2dab15:
 
--Saravana
+  Linux 5.12-rc2 (2021-03-05 17:33:41 -0800)
+
+are available in the Git repository at:
+
+  https://git.linaro.org/people/dmitry.baryshkov/kernel.git qcom-clk-gcc-sdm845
+
+for you to fetch changes up to de97ca3ae44f478ea16a72de3c1dcec486ba2e45:
+
+  arm64: dts: qcom: sdm845: add required clocks on the gcc (2021-04-05 21:39:29 +0300)
+
+----------------------------------------------------------------
+Dmitry Baryshkov (4):
+      dt-bindings: clock: separate SDM845 GCC clock bindings
+      clk: qcom: convert SDM845 Global Clock Controller to parent_data
+      clk: qcom: gcc-sdm845: get rid of the test clock
+      arm64: dts: qcom: sdm845: add required clocks on the gcc
+
+ .../devicetree/bindings/clock/qcom,gcc-sdm845.yaml |  84 +++
+ .../devicetree/bindings/clock/qcom,gcc.yaml        |   2 -
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |  12 +
+ drivers/clk/qcom/gcc-sdm845.c                      | 650 ++++++++++-----------
+ 4 files changed, 419 insertions(+), 329 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
+
