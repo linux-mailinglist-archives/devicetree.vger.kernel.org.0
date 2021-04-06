@@ -2,146 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5B60354B5B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 05:45:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 868A7354B6D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 05:56:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243548AbhDFDpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Apr 2021 23:45:14 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:51268 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S233639AbhDFDpO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Apr 2021 23:45:14 -0400
-X-UUID: 9f73cbe6942e424c84dd6798938d30de-20210406
-X-UUID: 9f73cbe6942e424c84dd6798938d30de-20210406
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <chuanjia.liu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1502825953; Tue, 06 Apr 2021 11:45:05 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 6 Apr 2021 11:45:04 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 6 Apr 2021 11:45:03 +0800
-From:   Chuanjia Liu <chuanjia.liu@mediatek.com>
-To:     <robh+dt@kernel.org>, <bhelgaas@google.com>,
-        <matthias.bgg@gmail.com>
-CC:     <ryder.lee@mediatek.com>, <lorenzo.pieralisi@arm.com>,
-        <jianjun.wang@mediatek.com>, <chuanjia.liu@mediatek.com>,
-        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <yong.wu@mediatek.com>,
-        <frank-w@public-files.de>
-Subject: [PATCH v9 4/4] ARM: dts: mediatek: Update MT7629 PCIe node for new format
-Date:   Tue, 6 Apr 2021 11:44:10 +0800
-Message-ID: <20210406034410.24381-5-chuanjia.liu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210406034410.24381-1-chuanjia.liu@mediatek.com>
-References: <20210406034410.24381-1-chuanjia.liu@mediatek.com>
+        id S233017AbhDFD4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Apr 2021 23:56:34 -0400
+Received: from mail.ilitek.com ([60.248.80.92]:48202 "EHLO cello.ilitek.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232757AbhDFD4e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Apr 2021 23:56:34 -0400
+X-UUID: bae7c7c9b3d844c4a0ab548aa61b02ac-20210406
+X-UUID: bae7c7c9b3d844c4a0ab548aa61b02ac-20210406
+Received: from ex1.ili.com.tw [(192.168.1.131)] by cello.ilitek.com
+        (envelope-from <joe_hung@ilitek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256 128/128)
+        with ESMTP id 1621213388; Tue, 06 Apr 2021 11:56:23 +0800
+Received: from EX2.ili.com.tw (192.168.1.132) by EX1.ili.com.tw
+ (192.168.1.131) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Tue, 6 Apr 2021
+ 11:56:21 +0800
+Received: from joehung-Ilitek.mshome.net (192.168.18.73) by EX2.ili.com.tw
+ (192.168.1.133) with Microsoft SMTP Server id 15.1.2242.4 via Frontend
+ Transport; Tue, 6 Apr 2021 11:56:21 +0800
+From:   Joe Hung <joe_hung@ilitek.com>
+To:     <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <linux-input@vger.kernel.org>, <joe_hung@ilitek.com>,
+        <luca_hsu@ilitek.com>, Rob Herring <robh@kernel.org>
+Subject: [RESEND v7 1/2] dt-bindings: input: touchscreen: ilitek_ts_i2c: Add bindings
+Date:   Tue, 6 Apr 2021 11:56:19 +0800
+Message-ID: <20210406035620.61265-1-joe_hung@ilitek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To match the new dts binding. Remove "subsys",unused
-interrupt and slot node.Add "interrupt-names",
-"linux,pci-domain" and pciecfg node.
+Add binding documentation for ILITEK touch devices.
 
-Signed-off-by: Chuanjia Liu <chuanjia.liu@mediatek.com>
-Acked-by: Ryder Lee <ryder.lee@mediatek.com>
-
+Signed-off-by: Joe Hung <joe_hung@ilitek.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- arch/arm/boot/dts/mt7629-rfb.dts |  3 ++-
- arch/arm/boot/dts/mt7629.dtsi    | 45 +++++++++++++++-----------------
- 2 files changed, 23 insertions(+), 25 deletions(-)
+Changes in v7:
+  - None
 
-diff --git a/arch/arm/boot/dts/mt7629-rfb.dts b/arch/arm/boot/dts/mt7629-rfb.dts
-index 9980c10c6e29..eb536cbebd9b 100644
---- a/arch/arm/boot/dts/mt7629-rfb.dts
-+++ b/arch/arm/boot/dts/mt7629-rfb.dts
-@@ -140,9 +140,10 @@
- 	};
- };
- 
--&pcie {
-+&pcie1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie_pins>;
-+	status = "okay";
- };
- 
- &pciephy1 {
-diff --git a/arch/arm/boot/dts/mt7629.dtsi b/arch/arm/boot/dts/mt7629.dtsi
-index 5cbb3d244c75..ca6789acf057 100644
---- a/arch/arm/boot/dts/mt7629.dtsi
-+++ b/arch/arm/boot/dts/mt7629.dtsi
-@@ -360,16 +360,21 @@
- 			#reset-cells = <1>;
- 		};
- 
--		pcie: pcie@1a140000 {
-+		pciecfg: pciecfg@1a140000 {
-+			compatible = "mediatek,generic-pciecfg", "syscon";
-+			reg = <0x1a140000 0x1000>;
-+		};
+Changes in v6:
+  - Add Reviewed-by trailer
+
+Changes in v5:
+  - Remove tab in yaml
+
+Changes in v4:
+  - Change IRQ flag to level interrupt
+  - Add support for common touchscreen-related properties
+  - Modify reset gpio to active low
+  - Modify irq type to LEVEL_LOW
+  - Add compatible for Lego series ICs
+
+Changes in v3:
+  - Add include header in examples, and pass the dt binding check
+
+Changes in v2:
+  - Convert to DT schema format
+  - Using interrupts instead of irq-gpios
+
+ .../input/touchscreen/ilitek_ts_i2c.yaml      | 73 +++++++++++++++++++
+ 1 file changed, 73 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
+
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml b/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
+new file mode 100644
+index 000000000000..a190e7baac31
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
+@@ -0,0 +1,73 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/ilitek_ts_i2c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+		pcie1: pcie@1a145000 {
- 			compatible = "mediatek,mt7629-pcie";
- 			device_type = "pci";
--			reg = <0x1a140000 0x1000>,
--			      <0x1a145000 0x1000>;
--			reg-names = "subsys","port1";
-+			reg = <0x1a145000 0x1000>;
-+			reg-names = "port1";
-+			linux,pci-domain = <1>;
- 			#address-cells = <3>;
- 			#size-cells = <2>;
--			interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_LOW>,
--				     <GIC_SPI 229 IRQ_TYPE_LEVEL_LOW>;
-+			interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_LOW>;
-+			interrupt-names = "pcie_irq";
- 			clocks = <&pciesys CLK_PCIE_P1_MAC_EN>,
- 				 <&pciesys CLK_PCIE_P0_AHB_EN>,
- 				 <&pciesys CLK_PCIE_P1_AUX_EN>,
-@@ -390,26 +395,18 @@
- 			power-domains = <&scpsys MT7622_POWER_DOMAIN_HIF0>;
- 			bus-range = <0x00 0xff>;
- 			ranges = <0x82000000 0 0x20000000 0x20000000 0 0x10000000>;
-+			status = "disabled";
- 
--			pcie1: pcie@1,0 {
--				device_type = "pci";
--				reg = <0x0800 0 0 0 0>;
--				#address-cells = <3>;
--				#size-cells = <2>;
-+			#interrupt-cells = <1>;
-+			interrupt-map-mask = <0 0 0 7>;
-+			interrupt-map = <0 0 0 1 &pcie_intc1 0>,
-+					<0 0 0 2 &pcie_intc1 1>,
-+					<0 0 0 3 &pcie_intc1 2>,
-+					<0 0 0 4 &pcie_intc1 3>;
-+			pcie_intc1: interrupt-controller {
-+				interrupt-controller;
-+				#address-cells = <0>;
- 				#interrupt-cells = <1>;
--				ranges;
--				num-lanes = <1>;
--				interrupt-map-mask = <0 0 0 7>;
--				interrupt-map = <0 0 0 1 &pcie_intc1 0>,
--						<0 0 0 2 &pcie_intc1 1>,
--						<0 0 0 3 &pcie_intc1 2>,
--						<0 0 0 4 &pcie_intc1 3>;
--
--				pcie_intc1: interrupt-controller {
--					interrupt-controller;
--					#address-cells = <0>;
--					#interrupt-cells = <1>;
--				};
- 			};
- 		};
- 
--- 
-2.18.0
++title: Ilitek I2C Touchscreen Controller
++
++maintainers:
++  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
++
++allOf:
++  - $ref: touchscreen.yaml#
++
++properties:
++  compatible:
++    enum:
++      - ilitek,ili2130
++      - ilitek,ili2131
++      - ilitek,ili2132
++      - ilitek,ili2316
++      - ilitek,ili2322
++      - ilitek,ili2323
++      - ilitek,ili2326
++      - ilitek,ili2520
++      - ilitek,ili2521
++
++  reg:
++    const: 0x41
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  wakeup-source:
++    type: boolean
++    description: touchscreen can be used as a wakeup source.
++
++  touchscreen-size-x: true
++  touchscreen-size-y: true
++  touchscreen-inverted-x: true
++  touchscreen-inverted-y: true
++  touchscreen-swapped-x-y: true
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - reset-gpios
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        touchscreen@41 {
++            compatible = "ilitek,ili2520";
++            reg = <0x41>;
++
++            interrupt-parent = <&gpio1>;
++            interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
++            reset-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
++            touchscreen-inverted-y;
++            wakeup-source;
++        };
++    };
+--
+2.25.1
+
 
