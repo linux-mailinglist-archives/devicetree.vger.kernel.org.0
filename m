@@ -2,122 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74688354F6C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 11:07:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F98F354FC7
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 11:26:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244772AbhDFJHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 05:07:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57120 "EHLO
+        id S234053AbhDFJ0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 05:26:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244768AbhDFJHn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 05:07:43 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F06EAC061756
-        for <devicetree@vger.kernel.org>; Tue,  6 Apr 2021 02:07:33 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id u4so15614553ljo.6
-        for <devicetree@vger.kernel.org>; Tue, 06 Apr 2021 02:07:33 -0700 (PDT)
+        with ESMTP id S234001AbhDFJ0t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 05:26:49 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40F94C06175F
+        for <devicetree@vger.kernel.org>; Tue,  6 Apr 2021 02:26:42 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id h8so7145843plt.7
+        for <devicetree@vger.kernel.org>; Tue, 06 Apr 2021 02:26:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=waldekranz-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=55VWKKQ7vLzvbshjSiRHs3/wzxC9LdbwbFJFuPk7kA0=;
-        b=WNAYogfYN19ue2p9hae/KtPq1bz4RVDQr9lKCAQfxXUBW94p9faBWT+H/h7JLkaDNv
-         S8GdoI6NU8IKWiQYubjwvwn56Kx+DD7LHqM9/uSy7w2Or/Vrz8cm0rdUakOzMef86vbR
-         c9q4+i21klcm3NaiY9H8eKu7Sci6BNspCSlDBoJcCgqkTTDpMBJy4BL2ttgsOhMtOwWt
-         Q2sNr35aTE3JMz1wFMDBYQbx5BFXe1Rong8XL0VAzPlq7/cGr0LfaupPyC/FFN1yA8Um
-         fvHEor2kihCphnWzPCup/PlEtKPjpl+9UTfNsV9U/yo4x8GnPa/dJnv1H57jKC4O2EIz
-         hrNw==
+        d=sifive.com; s=google;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=L9aauEj0ZznO9LzKslz62xYfWSRsY7rwUuiLDdRfB74=;
+        b=fjWJDRbldFVlvO4zkZJQyJKIRAAbm80Vl9BjmTAzp94b2Gbj1V4ZMJvd+h2myJySEu
+         Bn0hrzUlDR+MSaUMVED0H1qEVOgQCB2J5ofzTRRSdAXp/Uj1qUqkWtBIqaycypvIdVoD
+         lGp4ouOgXnx9DWlnOOaMxWGjFbmQQ/J1XjPassnAs5RFWj5axewls+T+BBCl7cXIrOgy
+         jJdbwez6Q/9ZLHZFNatV+BfDJeLiAyJn3AqIJB+wx4Tefk+d/OV2JijgfHF8dDkWuPcZ
+         sfaaBvGxMDZpEWa3a59lxCPV7n/M28thc6yGsfjD/pWM04Dxeslmf7R9LJ4IwdNm+IR3
+         srOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=55VWKKQ7vLzvbshjSiRHs3/wzxC9LdbwbFJFuPk7kA0=;
-        b=D/SE5G6hMY+YsgXK6Ie6WkAVl6e1e1UC0dsdBsFxHH8A2Zyms5kiNqXN5A8frIghBE
-         EiOOLTRWcJGM3/HCa4X7MVt0ZfRKOKvpUaQQVaHorWaT7TLfVnzwuNBWK14agjRzNfAW
-         cyIlB/5+rwVFccTY2yH5njmbjze6Sw1YNyHB4fc6Mo7AvcMZ8skksfhqbzjTrF/Hbch0
-         qXzE8kCltF4NNxIYm9eOgSZ4YCw1zA9N5GxnR32s/fxtQSzcdcl6a/9Zk/tVIZM2Ack+
-         CQ4qNvUx7G22EZAK2WZ6uYH6FSwPoq8OgdH8T6GDrxJzXzZR51q865CBNaMTEgtFf7Ja
-         ExXg==
-X-Gm-Message-State: AOAM533TopBuhvS23QaNtxiqcdfGholZun95nuipSye4+CCrCL/C4PBx
-        xZ1AwLMQ0oI4ji/NEQiWtG1n3W4OGl82Xudd
-X-Google-Smtp-Source: ABdhPJxUS1FM7zf8GhXW72jNmJAjXACJuCfmN3H+BeYtdBLeUthe42Tr5QUmaIflwkKFWsVQ9GQHqA==
-X-Received: by 2002:a2e:8984:: with SMTP id c4mr17909998lji.456.1617700052191;
-        Tue, 06 Apr 2021 02:07:32 -0700 (PDT)
-Received: from wkz-x280 (static-193-12-47-89.cust.tele2.se. [193.12.47.89])
-        by smtp.gmail.com with ESMTPSA id z9sm2151199lji.139.2021.04.06.02.07.31
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=L9aauEj0ZznO9LzKslz62xYfWSRsY7rwUuiLDdRfB74=;
+        b=G197csTZAyJmSyxvS8VsJEq0nPkbhUr0acXIT7Awwstj+jleCDs7PavidHGi05Bkd7
+         huLE97TIMQiYozgt0a4t5npLhsniB8EZwcyMNSOp0c+BgfhIjEHq2OpRAMLSKzF6gBlb
+         BCAxaIVtjoKFLanz1h8ptkiCO0peKVN5aXpDbOy3BP9CGiRepC1GVJBTyjOrx8Wvh+Or
+         zhjQGdCECPVH9dO1esTsDiabJwzCEWKckZxLtl0DO/bAhLqBjTYJCKd9N0CbsOgJgyNX
+         6ScfHLQVKSIdlxVmsTMkSstlPaBcghaTU9wC1ufpPpB20ByxP7jal7eAyFhKI4uWM6OT
+         B45A==
+X-Gm-Message-State: AOAM533dPkmm6jhsZmzpAFx3fA1cN4ikfrsJZt+lmb1hzrdZ1JnarlQP
+        KWo3SjD1GMDWCMsHlY+jhEUs5Q==
+X-Google-Smtp-Source: ABdhPJwg9APLF5QDj3ZWbb0zY8K+pD55HInxwlo7zs4IjEZ+8gAm316DirXcyzUK4NPF9AlzQvnsiA==
+X-Received: by 2002:a17:90a:1d08:: with SMTP id c8mr3675584pjd.139.1617701201659;
+        Tue, 06 Apr 2021 02:26:41 -0700 (PDT)
+Received: from hsinchu02.internal.sifive.com (114-34-229-221.HINET-IP.hinet.net. [114.34.229.221])
+        by smtp.gmail.com with ESMTPSA id w7sm13685589pff.208.2021.04.06.02.26.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Apr 2021 02:07:31 -0700 (PDT)
-From:   Tobias Waldekranz <tobias@waldekranz.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     davem@davemloft.net, kuba@kernel.org, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, olteanv@gmail.com, netdev@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 1/3] net: dsa: mv88e6xxx: Allow dynamic reconfiguration of tag protocol
-In-Reply-To: <YGCfvDhRFcfESYKx@lunn.ch>
-References: <20210326105648.2492411-1-tobias@waldekranz.com> <20210326105648.2492411-2-tobias@waldekranz.com> <YGCfvDhRFcfESYKx@lunn.ch>
-Date:   Tue, 06 Apr 2021 11:07:30 +0200
-Message-ID: <87eefnlr1p.fsf@waldekranz.com>
+        Tue, 06 Apr 2021 02:26:41 -0700 (PDT)
+From:   Greentime Hu <greentime.hu@sifive.com>
+To:     greentime.hu@sifive.com, paul.walmsley@sifive.com, hes@sifive.com,
+        erik.danie@sifive.com, zong.li@sifive.com, bhelgaas@google.com,
+        robh+dt@kernel.org, aou@eecs.berkeley.edu, mturquette@baylibre.com,
+        sboyd@kernel.org, lorenzo.pieralisi@arm.com,
+        p.zabel@pengutronix.de, alex.dewar90@gmail.com,
+        khilman@baylibre.com, hayashi.kunihiko@socionext.com,
+        vidyas@nvidia.com, jh80.chung@samsung.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, helgaas@kernel.org
+Subject: [PATCH v5 0/6] Add SiFive FU740 PCIe host controller driver support
+Date:   Tue,  6 Apr 2021 17:26:28 +0800
+Message-Id: <20210406092634.50465-1-greentime.hu@sifive.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Mar 28, 2021 at 17:24, Andrew Lunn <andrew@lunn.ch> wrote:
-> On Fri, Mar 26, 2021 at 11:56:46AM +0100, Tobias Waldekranz wrote:
->> All devices are capable of using regular DSA tags. Support for
->> Ethertyped DSA tags sort into three categories:
->> 
->> 1. No support. Older chips fall into this category.
->> 
->> 2. Full support. Datasheet explicitly supports configuring the CPU
->>    port to receive FORWARDs with a DSA tag.
->> 
->> 3. Undocumented support. Datasheet lists the configuration from
->>    category 2 as "reserved for future use", but does empirically
->>    behave like a category 2 device.
->
->> +static int mv88e6xxx_change_tag_protocol(struct dsa_switch *ds, int port,
->> +					 enum dsa_tag_protocol proto)
->> +{
->> +	struct mv88e6xxx_chip *chip = ds->priv;
->> +	enum dsa_tag_protocol old_protocol;
->> +	int err;
->> +
->> +	switch (proto) {
->> +	case DSA_TAG_PROTO_EDSA:
->> +		if (chip->info->tag_protocol != DSA_TAG_PROTO_EDSA)
->> +			dev_warn(chip->dev, "Relying on undocumented EDSA tagging behavior\n");
->> +
->> +		break;
->> +	case DSA_TAG_PROTO_DSA:
->> +		break;
->> +	default:
->> +		return -EPROTONOSUPPORT;
->> +	}
->
-> You are handling cases 2 and 3 here, but not 1. Which makes it a bit
-> of a foot cannon for older devices.
->
-> Now that we have chip->tag_protocol, maybe we should change
-> chip->info->tag_protocol to mean supported protocols?
->
-> BIT(0) DSA
-> BIT(1) EDSA
-> BIT(2) Undocumented EDSA
+This patchset includes SiFive FU740 PCIe host controller driver. We also
+add pcie_aux clock and pcie_power_on_reset controller to prci driver for
+PCIe driver to use it.
 
-Since DSA is supported on all devices, perhaps we should just have:
+This is tested with e1000e: Intel(R) PRO/1000 Network Card, AMD Radeon R5
+230 graphics card and SP M.2 PCIe Gen 3 SSD in SiFive Unmatched based on
+v5.11 Linux kernel.
 
-enum mv88e6xxx_edsa_support {
-     MV88E6XXX_EDSA_UNSUPPORTED,
-     MV88E6XXX_EDSA_UNDOCUMENTED,
-     MV88E6XXX_EDSA_SUPPORTED,
-};
+Changes in v5:
+ - Fix typo in comments
+ - Keep comments style consistent
+ - Refine some error handling codes
+ - Remove unneeded header file including
+ - Merge fu740_pcie_ltssm_enable implementation to fu740_pcie_start_link
 
-?
+Changes in v4:
+ - Fix Wunused-but-set-variable warning in prci driver
 
-Do we also want to default to DSA on all devices unless there is a
-DT-property saying something else? Using EDSA does not really give you
-anything over bare tags anymore. You have fixed the tcpdump-issue, and
-the tagger drivers have been unified so there should be no risk of any
-regressions there either.
+Changes in v3:
+ - Remove items that has been defined
+ - Refine format of sifive,fu740-pcie.yaml
+ - Replace perstn-gpios with the common one
+ - Change DBI mapping space to 2GB from 4GB
+ - Refine drivers/reset/Kconfig
+
+Changes in v2:
+ - Refine codes based on reviewers' feedback
+ - Remove define and use the common one
+ - Replace __raw_writel with writel_relaxed
+ - Split fu740_phyregreadwrite to write function
+ - Use readl_poll_timeout in stead of while loop checking
+ - Use dwc common codes
+ - Use gpio descriptors and the gpiod_* api.
+ - Replace devm_ioremap_resource with devm_platform_ioremap_resource_byname
+ - Replace devm_reset_control_get with devm_reset_control_get_exclusive
+ - Add more comments for delay and sleep
+ - Remove "phy ? x : y" expressions
+ - Refine code logic to remove possible infinite loop
+ - Replace magic number with meaningful define
+ - Remove fu740_pcie_pm_ops
+ - Use builtin_platform_driver
+
+Greentime Hu (5):
+  clk: sifive: Add pcie_aux clock in prci driver for PCIe driver
+  clk: sifive: Use reset-simple in prci driver for PCIe driver
+  MAINTAINERS: Add maintainers for SiFive FU740 PCIe driver
+  dt-bindings: PCI: Add SiFive FU740 PCIe host controller
+  riscv: dts: Add PCIe support for the SiFive FU740-C000 SoC
+
+Paul Walmsley (1):
+  PCI: fu740: Add SiFive FU740 PCIe host controller driver
+
+ .../bindings/pci/sifive,fu740-pcie.yaml       | 113 +++++++
+ MAINTAINERS                                   |   8 +
+ arch/riscv/boot/dts/sifive/fu740-c000.dtsi    |  33 ++
+ drivers/clk/sifive/Kconfig                    |   2 +
+ drivers/clk/sifive/fu740-prci.c               |  11 +
+ drivers/clk/sifive/fu740-prci.h               |   2 +-
+ drivers/clk/sifive/sifive-prci.c              |  54 +++
+ drivers/clk/sifive/sifive-prci.h              |  13 +
+ drivers/pci/controller/dwc/Kconfig            |   9 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pcie-fu740.c       | 308 ++++++++++++++++++
+ drivers/reset/Kconfig                         |   1 +
+ include/dt-bindings/clock/sifive-fu740-prci.h |   1 +
+ 13 files changed, 555 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-fu740.c
+
+-- 
+2.30.2
+
