@@ -2,94 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A670B35517F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 13:04:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 022073551CA
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 13:18:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239157AbhDFLEz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 07:04:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47652 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231650AbhDFLEz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Apr 2021 07:04:55 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 150BD613C7;
-        Tue,  6 Apr 2021 11:04:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617707087;
-        bh=j0qsL8ZhRgxgUfLEkGnISsjLMn2+Fbcco5QjwWwQSXE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GqTZLOyW2VyULQBFS9BxNlyfxWpXdw88hZPxg9c3afs1QPqMNdzh+rKGKGbOl3XrZ
-         IGnpMhOUwyH69P3KyQUiFTEwzFBS+J2ar+dsE2EHZHNaTRYZFFh9JwhMzcQMLtGUoY
-         n3Fan8Qr1ny5jI9TrPTqZ8A+88ItN46XTRnYYtyG+Jiuk5tJLmyPmnzXKBn1KEVO7b
-         0ShlhvnTuJWlsDaQhC2Nvnu1FHcu17N0mpv1NB9Oj8VQsJVg2y4X4BTXrnZfv6B8V0
-         WmzZ0CD8ZwcHD+sG54Uhl17vZrYBMkQhInQIR8NDEm/7MIdHxcFdJqxtSa27n4t/4e
-         QXF/qwteOCeXg==
-Date:   Tue, 6 Apr 2021 12:04:31 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Cc:     "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>
-Subject: Re: [PATCH v5 00/19] Support ROHM BD71815 PMIC
-Message-ID: <20210406110430.GB6443@sirena.org.uk>
-References: <cover.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
- <303b164aaa3d36cf8c9d03ee9b3863635be4073d.camel@fi.rohmeurope.com>
- <20210402191950.GK5402@sirena.org.uk>
- <e0b83eee4417e4e267b15a8c22bbc7f70df919e9.camel@fi.rohmeurope.com>
+        id S241605AbhDFLSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 07:18:20 -0400
+Received: from mail-lf1-f48.google.com ([209.85.167.48]:39468 "EHLO
+        mail-lf1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233034AbhDFLSU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 07:18:20 -0400
+Received: by mail-lf1-f48.google.com with SMTP id b4so22095002lfi.6;
+        Tue, 06 Apr 2021 04:18:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=fOH0QNUd5bq+px8fnNPfuKQrdVwby3/E/YtSvSbv3R0=;
+        b=DV8iYXtdlFuYGG9KQzWUOqxdm9cMlv5f+nXRZzWK88iuH9eWoeGsaxLqotdvPpzp0O
+         7MYDnJIslExoqvGyzAbR5nmWxLaSh9N5dpeQX5VYbLA5w1UYHeuiwKjTARD63WyKJLaF
+         Sbu+0l/RjG8Gv7CwLZH/O967LnIVzoV1X61g8FBKpI85c2cJiAGV6OanrT9BuGw10r4m
+         uCgZv644BVO5f/vvuzcI7fKnLG5uaXkKkRiKoZiAjw3LhTZ93R34UeIKmc6Fw9EfDde2
+         3639iysyNB3iyhgwp/G/Ne4nZX2be5x2O9/qbLB8mvCI8V84qRANdpw0kA4Qupht4CAh
+         kebw==
+X-Gm-Message-State: AOAM531Yz87COfh+0z82iUbye7M8qynMtDDC9YssbULSFfvIa+P2zQuw
+        ujNE2I5goFq19IaiA8nHr04=
+X-Google-Smtp-Source: ABdhPJxaRMmR+59SVhi794cFaFZwCNC+6BOhXMWcjdeuPL3p/igeMdJgwFJRmfBs1GmFpqAXVIEW2g==
+X-Received: by 2002:a05:6512:31cf:: with SMTP id j15mr20981571lfe.14.1617707891040;
+        Tue, 06 Apr 2021 04:18:11 -0700 (PDT)
+Received: from localhost.localdomain (dc7vkhyyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::6])
+        by smtp.gmail.com with ESMTPSA id 3sm2123247lfq.1.2021.04.06.04.18.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Apr 2021 04:18:10 -0700 (PDT)
+Date:   Tue, 6 Apr 2021 14:18:04 +0300
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-power@fi.rohmeurope.com, linux-arm-msm@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v5 0/7] Extend regulator notification support
+Message-ID: <cover.1617707724.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="cmJC7u66zC7hs+87"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e0b83eee4417e4e267b15a8c22bbc7f70df919e9.camel@fi.rohmeurope.com>
-X-Cookie: BARBARA STANWYCK makes me nervous!!
-User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Extend regulator notification support
 
---cmJC7u66zC7hs+87
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This series extends the regulator notification and error flag support. Initial
+discussion on the topic can be found here:
+https://lore.kernel.org/lkml/6046836e22b8252983f08d5621c35ececb97820d.camel@fi.rohmeurope.com/
 
-On Mon, Apr 05, 2021 at 05:23:41AM +0000, Vaittinen, Matti wrote:
-> On Fri, 2021-04-02 at 20:19 +0100, Mark Brown wrote:
+This series is built on top of the BD9576MUF support patch series v9
+which is currently in MFD tree at immutable branch ib-mfd-watchdog-5.13
+https://lore.kernel.org/lkml/cover.1615219345.git.matti.vaittinen@fi.rohmeurope.com/
+(The series should apply without those patches but there is compile time
+dependency to definitions brought in at the last patch of the BD9576
+series. This should be Ok though as there is a Kconfig dependency in
+BD9576 regulator driver)
 
-> > Matti Vaittinen (2):
-> >       regulator: helpers: Export helper voltage listing
-> >       regulator: Add regmap helper for ramp-delay setting
+In a nutshell - the series adds:
 
-> If I understand this correctly, the idea is that Lee could pull these
-> changes to his tree? So, I will drop these two patches from the series
-> when I resend it. Helpers are needed for the regulator part of the
-> series to apply. Lee, Mark, please let me know if I misunderstood.
+1. WARNING level events/error flags. (Patch 2)
+  Current regulator 'ERROR' event notifications for over/under
+  voltage, over current and over temperature are used to indicate
+  condition where monitored entity is so badly "off" that it actually
+  indicates a hardware error which can not be recovered. The most
+  typical hanling for that is believed to be a (graceful)
+  system-shutdown. Here we add set of 'WARNING' level flags to allow
+  sending notifications to consumers before things are 'that badly off'
+  so that consumer drivers can implement recovery-actions.
+2. Device-tree properties for specifying limit values. (Patches 1, 4)
+  Add limits for above mentioned 'ERROR' and 'WARNING' levels (which
+  send notifications to consumers) and also for a 'PROTECTION' level
+  (which will be used to immediately shut-down the regulator(s) W/O
+  informing consumer drivers. Typically implemented by hardware).
+  Property parsing is implemented in regulator core which then calls
+  callback operations for limit setting from the IC drivers. A
+  warning is emitted if protection is requested by device tree but the
+  underlying IC does not support configuring requested protection.
+3. Helpers which can be registered by IC. (Patch 3)
+  Target is to avoid implementing IRQ handling and IRQ storm protection
+  in each IC driver. (Many of the ICs implementin these IRQs do not allow
+  masking or acking the IRQ but keep the IRQ asserted for the whole
+  duration of problem keeping the processor in IRQ handling loop).
 
-Yes.
+The helper was attempted to be done so it could be used to implement
+roughly same logic as is used in qcom-labibb regulator. This means
+amongst other things a safety shut-down if IC registers are not readable.
+Using these shut-down retry counters are optional. The idea is that the
+helper could be also used by simpler ICs which do not provide status
+register(s) which can be used to check if error is still active.
 
---cmJC7u66zC7hs+87
-Content-Type: application/pgp-signature; name="signature.asc"
+ICs which do not have such status register can simply omit the 'renable'
+callback (and retry-counts etc) - and helper assumes the situation is Ok
+and re-enables IRQ after given time period. If problem persists the
+handler is ran again and another notification is sent - but at least the
+delay allows processor to avoid IRQ loop.
 
------BEGIN PGP SIGNATURE-----
+Patch 6 takes this notification support in use at BD9576MUF.
+Patch 7 is related to MFD change which is not really related to the RFC
+here. It was added to this series in order to avoid potential conflicts.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBsQD4ACgkQJNaLcl1U
-h9AFswf9Hokgv/qlc9tx7qtUsLTFz/Bqr7r6bGw937a0dA9PyYBNsN1ZDH/ZaU6k
-TgoMBbFwnyVsL82XwHsLOrGih0+XaeYNkKXm5/I+qd86ryl1My8CLkAt6iXQqWY/
-3rP8/gueg4zqniWchALAYejIhz910A69Qsz7XOwVWj0XKoUpyiZpq7NUtF2ueNyH
-4I0p/K57R/NeYmfn0FFwsQgpik9stmtrqXpOEhAGay7e4TDDiDuG9qagMEMPCDDr
-r/FPpCgWodDPB/INLfYcUygjA9b/7yrgm4JaDy9d3H9UlxsNbIZIPDt5lgqcwcia
-3M1X7F8fSG//t5VsyflAsJg/ToeT0g==
-=+Bcj
------END PGP SIGNATURE-----
+Changelog v5:
+   - Fix the badly formatted pr_emerg() call.
+Changelog v4:
+   - rebased on v5.12-rc6
+   - dropped RFC
+   - fix external FET DT-binding.
+   - improve prints for cases when expecting HW failure.
+   - styling and typos
+Changelog v3:
+  Regulator core:
+   - Fix dangling pointer access at regulator_irq_helper()
+  stpmic1_regulator:
+   - fix function prototype (compile error)
+  bd9576-regulator:
+   - Update over current limits to what was given in new data-sheet
+     (REV00K)
+   - Allow over-current monitoring without external FET. Set limits to
+     values given in data-sheet (REV00K).
 
---cmJC7u66zC7hs+87--
+Changelog v2:
+  Generic:
+  - rebase on v5.12-rc2 + BD9576 series
+  - Split devm variant of delayed wq to own series
+  Regulator framework:
+  - Provide non devm variant of IRQ notification helpers
+  - shorten dt-property names as suggested by Rob
+  - unconditionally call map_event in IRQ handling and require it to be
+    populated
+  BD9576 regulators:
+  - change the FET resistance property to micro-ohms
+  - fix voltage computation in OC limit setting
+
+--
+
+Matti Vaittinen (7):
+  dt_bindings: Add protection limit properties
+  regulator: add warning flags
+  regulator: IRQ based event/error notification helpers
+  regulator: add property parsing and callbacks to set protection limits
+  dt-bindings: regulator: bd9576 add FET ON-resistance for OCW
+  regulator: bd9576: Support error reporting
+  regulator: bd9576: Fix the driver name in id table
+
+ .../bindings/regulator/regulator.yaml         |   82 ++
+ .../regulator/rohm,bd9576-regulator.yaml      |    6 +
+ drivers/regulator/Makefile                    |    2 +-
+ drivers/regulator/bd9576-regulator.c          | 1060 +++++++++++++++--
+ drivers/regulator/core.c                      |  146 ++-
+ drivers/regulator/irq_helpers.c               |  432 +++++++
+ drivers/regulator/of_regulator.c              |   58 +
+ drivers/regulator/qcom-labibb-regulator.c     |   10 +-
+ drivers/regulator/qcom_spmi-regulator.c       |    6 +-
+ drivers/regulator/stpmic1_regulator.c         |   20 +-
+ include/linux/regulator/consumer.h            |   14 +
+ include/linux/regulator/driver.h              |  176 ++-
+ include/linux/regulator/machine.h             |   26 +
+ 13 files changed, 1896 insertions(+), 142 deletions(-)
+ create mode 100644 drivers/regulator/irq_helpers.c
+
+-- 
+2.25.4
+
+
+-- 
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =] 
