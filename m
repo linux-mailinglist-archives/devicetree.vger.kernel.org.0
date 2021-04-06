@@ -2,207 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 280A7354DC5
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 09:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 302BA354DEC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 09:34:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229869AbhDFHW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 03:22:28 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:24380 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S237823AbhDFHW1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 03:22:27 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1367H9g8013057;
-        Tue, 6 Apr 2021 09:21:28 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=F5cY1wCX5QADaPc2+6E44j3IcFjspCBtThZI4DS/1F4=;
- b=CnNItbGFYxPMh33jxdzFSVtznxJm4F3ppsekjHAbIvnuUBgrtyuOsuVcpA4GnvmZYTx1
- eQ383BHzZMGRaFArKxomkbmPTlXA9BGFqwCR3I582yZejloExFTBcQgD1Amyld077h5S
- cv7CrXDnLxDtjoYrOs7JrrrwqGBswk/RprCZufHlICeuAif7XVb/OrpsTCFwVza1zOWj
- URvl8G8VxbhzlKq7VhAnXXBcZ1Ql1PYL4rzrz5WcxSrADytd8icxsO1p4uh7uv/EKp/y
- H0CVxb3Rj7LcQIMY9/t7VMZGwuvVUAig9l/kwl7MvkYffWQBAoZzefnUfnIP6NkNm8pS RA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 37ra7gacan-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 06 Apr 2021 09:21:28 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 18C12100039;
-        Tue,  6 Apr 2021 09:21:28 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0A02E21E666;
-        Tue,  6 Apr 2021 09:21:28 +0200 (CEST)
-Received: from localhost (10.75.127.48) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 6 Apr 2021 09:21:27
- +0200
-From:   Erwan Le Ray <erwan.leray@foss.st.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jslaby@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Erwan Le Ray" <erwan.leray@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Valentin Caron <valentin.caron@foss.st.com>,
-        Erwan Le Ray <erwan.leray@st.com>
-Subject: [PATCH 2/2] serial: stm32: add fifo threshold configuration
-Date:   Tue, 6 Apr 2021 09:21:22 +0200
-Message-ID: <20210406072122.27384-3-erwan.leray@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210406072122.27384-1-erwan.leray@foss.st.com>
-References: <20210406072122.27384-1-erwan.leray@foss.st.com>
+        id S234032AbhDFHei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 03:34:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36658 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229539AbhDFHei (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 03:34:38 -0400
+Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C627CC06174A
+        for <devicetree@vger.kernel.org>; Tue,  6 Apr 2021 00:34:30 -0700 (PDT)
+Received: by mail-il1-x130.google.com with SMTP id t14so12238683ilu.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Apr 2021 00:34:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=O1rz64W3qpTMmQiYeFsZQrw5A/71EhMPvbEVoO9GiM8=;
+        b=rHnELZY2vTf8uQe6TrlBh1XmoULlKNq81R3ss4YyC+X5JYsXcJwk061jBAWhzWmX80
+         TO4cJMaaifaFRL0T2FnIo43ktg9aHkNquZ3ax7LPkd/+kzMHyJ8UK+UjMXvSb5dX+92G
+         CJxhQSf4uogc2WsjKIty2WQ2Yc1InBgc9QnlHdxOkacS8720Y9H0Z0+zGSUh88stSrbs
+         LnX2gAL/nk3mE9vOaYmSFVuxGomBn8l4HvAWnq+EbY87ibaOkD/kHtweQtb6kTOy2bpI
+         kd43+V648onFnBuqXwPaBNfDaqQcoD6D4LkOtULZo3dyIt4C7B9ABPOQ2ofvna7J5CTd
+         VdHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=O1rz64W3qpTMmQiYeFsZQrw5A/71EhMPvbEVoO9GiM8=;
+        b=DvFYo9DWm13ZT818RYhlHsbTAZbncJpvplzu0niV8Ft2yujmp/7+1/OJ1Khf/2s1ng
+         B5w3kL3b8MEacnc9+I8HK+U65nXCsqy7vl72HdadrdaN/YdqjIUawqR4xZegl2U2+IWa
+         or9m0WFUvC9CLV841ytyl/Y+vl+K+3pAoYiLoKEgYzpf/hy2TVwewS5XQn2CFm/jwBrO
+         0eoXoR0YUmCDJFU9nHWgjEL86fOqEo9mAaIMKDxP1FLjje1olAfYcWaBbuCyFdIfZETS
+         YdQqUtvc5zYOQT8k+FPyyzP7omDAQ74Fjh1yw5GrTKlYaWCnAWKXEAvDCDe06buw+W5S
+         tPKA==
+X-Gm-Message-State: AOAM532LORpesztGtVEn/H1FwWvVu/9YdugVFfPdC+4+yBrj5IEb0UW4
+        2iyOPEKYOQhAoAns4mu9PliQlTGXt3cb/nJeED+5j/x6BBworWtD
+X-Google-Smtp-Source: ABdhPJxdpJWc/bqgEpDdB3OhLaSF+VgJma/urmc9afLm5l0TFhPdPsKtb0+1JsfjRBxHm3u0ejmnMoHJFQnXnkQjo74=
+X-Received: by 2002:a05:6e02:1b85:: with SMTP id h5mr22800336ili.134.1617694470261;
+ Tue, 06 Apr 2021 00:34:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG3NODE2.st.com (10.75.127.8) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-04-06_01:2021-04-01,2021-04-06 signatures=0
+References: <20210405200821.2203458-2-fparent@baylibre.com> <202104060814.berYSn6V-lkp@intel.com>
+In-Reply-To: <202104060814.berYSn6V-lkp@intel.com>
+From:   Fabien Parent <fparent@baylibre.com>
+Date:   Tue, 6 Apr 2021 09:34:19 +0200
+Message-ID: <CAOwMV_xn2pv1vVoqz5qb+jNsssCKwVtNGG=yEtcA324adau6Rg@mail.gmail.com>
+Subject: Re: [PATCH 2/5] arm64: dts: mediatek: mt8167: add smi_common node
+To:     kernel test robot <lkp@intel.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        kbuild-all@lists.01.org, clang-built-linux@googlegroups.com,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Hi,
 
-Add the support for two optional DT properties, to configure RX and TX
-FIFO thresholds::
-- st,rx-fifo-threshold-bytes
-- st,tx-fifo-threshold-bytes
-This replaces hard-coded 8 bytes threshold. Keep 8 as the default value if
-not specified, for backward compatibility.
+I forgot to mention it, but this series depends on
+https://patchwork.kernel.org/project/linux-mediatek/patch/20210405172836.2038526-1-fparent@baylibre.com/
 
-Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Signed-off-by: Erwan Le Ray <erwan.leray@st.com>
-
-diff --git a/drivers/tty/serial/stm32-usart.c b/drivers/tty/serial/stm32-usart.c
-index 4d277804c63e..1be5b69ee567 100644
---- a/drivers/tty/serial/stm32-usart.c
-+++ b/drivers/tty/serial/stm32-usart.c
-@@ -312,7 +312,7 @@ static void stm32_usart_tx_interrupt_enable(struct uart_port *port)
- 	 * Enables TX FIFO threashold irq when FIFO is enabled,
- 	 * or TX empty irq when FIFO is disabled
- 	 */
--	if (stm32_port->fifoen)
-+	if (stm32_port->fifoen && stm32_port->txftcfg >= 0)
- 		stm32_usart_set_bits(port, ofs->cr3, USART_CR3_TXFTIE);
- 	else
- 		stm32_usart_set_bits(port, ofs->cr1, USART_CR1_TXEIE);
-@@ -323,7 +323,7 @@ static void stm32_usart_tx_interrupt_disable(struct uart_port *port)
- 	struct stm32_port *stm32_port = to_stm32_port(port);
- 	const struct stm32_usart_offsets *ofs = &stm32_port->info->ofs;
- 
--	if (stm32_port->fifoen)
-+	if (stm32_port->fifoen && stm32_port->txftcfg >= 0)
- 		stm32_usart_clr_bits(port, ofs->cr3, USART_CR3_TXFTIE);
- 	else
- 		stm32_usart_clr_bits(port, ofs->cr1, USART_CR1_TXEIE);
-@@ -801,9 +801,10 @@ static void stm32_usart_set_termios(struct uart_port *port,
- 	cr3 = readl_relaxed(port->membase + ofs->cr3);
- 	cr3 &= USART_CR3_TXFTIE | USART_CR3_RXFTIE;
- 	if (stm32_port->fifoen) {
--		cr3 &= ~(USART_CR3_TXFTCFG_MASK | USART_CR3_RXFTCFG_MASK);
--		cr3 |= USART_CR3_TXFTCFG_HALF << USART_CR3_TXFTCFG_SHIFT;
--		cr3 |= USART_CR3_RXFTCFG_HALF << USART_CR3_RXFTCFG_SHIFT;
-+		if (stm32_port->txftcfg >= 0)
-+			cr3 |= stm32_port->txftcfg << USART_CR3_TXFTCFG_SHIFT;
-+		if (stm32_port->rxftcfg >= 0)
-+			cr3 |= stm32_port->rxftcfg << USART_CR3_RXFTCFG_SHIFT;
- 	}
- 
- 	if (cflag & CSTOPB)
-@@ -833,7 +834,8 @@ static void stm32_usart_set_termios(struct uart_port *port,
- 			, bits);
- 
- 	if (ofs->rtor != UNDEF_REG && (stm32_port->rx_ch ||
--				       stm32_port->fifoen)) {
-+				       (stm32_port->fifoen &&
-+					stm32_port->rxftcfg >= 0))) {
- 		if (cflag & CSTOPB)
- 			bits = bits + 3; /* 1 start bit + 2 stop bits */
- 		else
-@@ -1021,6 +1023,39 @@ static const struct uart_ops stm32_uart_ops = {
- 	.verify_port	= stm32_usart_verify_port,
- };
- 
-+/*
-+ * STM32H7 RX & TX FIFO threshold configuration (CR3 RXFTCFG / TXFTCFG)
-+ * Note: 1 isn't a valid value in RXFTCFG / TXFTCFG. In this case,
-+ * RXNEIE / TXEIE can be used instead of threshold irqs: RXFTIE / TXFTIE.
-+ * So, RXFTCFG / TXFTCFG bitfields values are encoded as array index + 1.
-+ */
-+static const u32 stm32h7_usart_fifo_thresh_cfg[] = { 1, 2, 4, 8, 12, 14, 16 };
-+
-+static void stm32_usart_get_ftcfg(struct platform_device *pdev, const char *p,
-+				  int *ftcfg)
-+{
-+	u32 bytes, i;
-+
-+	/* DT option to get RX & TX FIFO threshold (default to 8 bytes) */
-+	if (of_property_read_u32(pdev->dev.of_node, p, &bytes))
-+		bytes = 8;
-+
-+	for (i = 0; i < ARRAY_SIZE(stm32h7_usart_fifo_thresh_cfg); i++)
-+		if (stm32h7_usart_fifo_thresh_cfg[i] >= bytes)
-+			break;
-+	if (i >= ARRAY_SIZE(stm32h7_usart_fifo_thresh_cfg))
-+		i = ARRAY_SIZE(stm32h7_usart_fifo_thresh_cfg) - 1;
-+
-+	dev_dbg(&pdev->dev, "%s set to %d bytes\n", p,
-+		stm32h7_usart_fifo_thresh_cfg[i]);
-+
-+	/* Provide FIFO threshold ftcfg (1 is invalid: threshold irq unused) */
-+	if (i)
-+		*ftcfg = i - 1;
-+	else
-+		*ftcfg = -EINVAL;
-+}
-+
- static void stm32_usart_deinit_port(struct stm32_port *stm32port)
- {
- 	clk_disable_unprepare(stm32port->clk);
-@@ -1057,6 +1092,12 @@ static int stm32_usart_init_port(struct stm32_port *stm32port,
- 		of_property_read_bool(pdev->dev.of_node, "rx-tx-swap");
- 
- 	stm32port->fifoen = stm32port->info->cfg.has_fifo;
-+	if (stm32port->fifoen) {
-+		stm32_usart_get_ftcfg(pdev, "st,rx-fifo-threshold-bytes",
-+				      &stm32port->rxftcfg);
-+		stm32_usart_get_ftcfg(pdev, "st,tx-fifo-threshold-bytes",
-+				      &stm32port->txftcfg);
-+	}
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	port->membase = devm_ioremap_resource(&pdev->dev, res);
-diff --git a/drivers/tty/serial/stm32-usart.h b/drivers/tty/serial/stm32-usart.h
-index 77d1ac082e89..07ac291328cd 100644
---- a/drivers/tty/serial/stm32-usart.h
-+++ b/drivers/tty/serial/stm32-usart.h
-@@ -216,12 +216,6 @@ struct stm32_usart_info stm32h7_info = {
- #define USART_CR3_TXFTCFG_MASK	GENMASK(31, 29)	/* H7 */
- #define USART_CR3_TXFTCFG_SHIFT	29		/* H7 */
- 
--/* TX FIFO threashold set to half of its depth */
--#define USART_CR3_TXFTCFG_HALF	0x2
--
--/* RX FIFO threashold set to half of its depth */
--#define USART_CR3_RXFTCFG_HALF	0x2
--
- /* USART_GTPR */
- #define USART_GTPR_PSC_MASK	GENMASK(7, 0)
- #define USART_GTPR_GT_MASK	GENMASK(15, 8)
-@@ -273,6 +267,8 @@ struct stm32_port {
- 	bool hw_flow_control;
- 	bool swap;		 /* swap RX & TX pins */
- 	bool fifoen;
-+	int rxftcfg;		/* RX FIFO threshold CFG      */
-+	int txftcfg;		/* TX FIFO threshold CFG      */
- 	bool wakeup_src;
- 	int rdr_mask;		/* receive data register mask */
- 	struct mctrl_gpios *gpios; /* modem control gpios */
--- 
-2.17.1
-
+On Tue, Apr 6, 2021 at 2:25 AM kernel test robot <lkp@intel.com> wrote:
+>
+> Hi Fabien,
+>
+> Thank you for the patch! Yet something to improve:
+>
+> [auto build test ERROR on robh/for-next]
+> [also build test ERROR on arm/for-next keystone/next soc/for-next rockchip/for-next arm64/for-next/core shawnguo/for-next clk/clk-next v5.12-rc6 next-20210401]
+> [cannot apply to xlnx/master]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+>
+> url:    https://github.com/0day-ci/linux/commits/Fabien-Parent/arm64-dts-mediatek-mt8167-add-mmsys-node/20210406-041016
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+> config: arm64-randconfig-r011-20210406 (attached as .config)
+> compiler: clang version 13.0.0 (https://github.com/llvm/llvm-project 2760a808b9916a2839513b7fd7314a464f52481e)
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # install arm64 cross compiling tool for clang build
+>         # apt-get install binutils-aarch64-linux-gnu
+>         # https://github.com/0day-ci/linux/commit/bbbf216a8432b5af475e4e709bf481475c1af58f
+>         git remote add linux-review https://github.com/0day-ci/linux
+>         git fetch --no-tags linux-review Fabien-Parent/arm64-dts-mediatek-mt8167-add-mmsys-node/20210406-041016
+>         git checkout bbbf216a8432b5af475e4e709bf481475c1af58f
+>         # save the attached .config to linux build tree
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross ARCH=arm64
+>
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+>
+> All errors (new ones prefixed by >>):
+>
+> >> Error: arch/arm64/boot/dts/mediatek/mt8167.dtsi:73.26-27 syntax error
+>    FATAL ERROR: Unable to parse input tree
+>
+> ---
+> 0-DAY CI Kernel Test Service, Intel Corporation
+> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
