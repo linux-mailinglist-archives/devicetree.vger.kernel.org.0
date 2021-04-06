@@ -2,161 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4783355E46
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 23:59:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E137355E58
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 00:02:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235600AbhDFV7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 17:59:16 -0400
-Received: from mout.gmx.net ([212.227.15.15]:57219 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232975AbhDFV7Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Apr 2021 17:59:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1617746340;
-        bh=HTprFb9yvRvBoW3G9/dHX/fAH1KOecMkyEVg4p7DniY=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=ZJ63vrne6ocuY+SPF3t/R1FivYXLy591gJug7O57oIqsTqhLaFrghJ0BOaHU1RBYe
-         S2LvC+hFgXMYsMNQjRCi4fbYzmqK109n6Havy1k4wqsPNx7QuhfKz75uZtf6rdLD5B
-         kHutqOCrMnkXXiDppTYxXqYnd3THBTFtC5rRC/2Q=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.215.134]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MfYPi-1m58E0081w-00fy9g; Tue, 06
- Apr 2021 23:59:00 +0200
-Date:   Tue, 6 Apr 2021 23:58:57 +0200
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 00/10] Initial support for Nuvoton WPCM450 BMC SoC
-Message-ID: <YGzZofPvT80b5gS5@latitude>
-References: <20210406120921.2484986-1-j.neuschaefer@gmx.net>
- <CAK8P3a0VfnUucvZNkA9PdxrWiYUOkisV00v-375PmgQYp4aXoQ@mail.gmail.com>
+        id S238608AbhDFWCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 18:02:51 -0400
+Received: from smtp-16-i2.italiaonline.it ([213.209.12.16]:46480 "EHLO
+        libero.it" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S239139AbhDFWCt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Apr 2021 18:02:49 -0400
+Received: from oxapps-32-144.iol.local ([10.101.8.190])
+        by smtp-16.iol.local with ESMTPA
+        id TtmMlF7I2f2ANTtmMl5syE; Wed, 07 Apr 2021 00:02:34 +0200
+x-libjamoibt: 1601
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
+        t=1617746554; bh=akIOS2LFU8AbnXeSKX/lN7kLwCQ59toKE6VoSYcU7p4=;
+        h=From;
+        b=BBHr4D4cYuWFL1NfC8JTa9C2WGMjscDa/CfrMMvK7A6woSjzh84OV2DcgKLxL3sM/
+         +3YMv34N3NV6csEv/fQ7WjHjS1i/4oVxITUXoa4Ad1tzRxGZ6hu2T7X8P3Im9dYIH1
+         QQu8S0xY6y8KC38FEQU6Sq34LXDywwpVGNz217OeCUbVGGnWmvyAmEjtpT0Y5ij64j
+         wk7vz5dOvW6cMo+PFLX9Kv/nPSwX2KKbrProes+dNgnyGz70HKkA2+V18bleDPj+aI
+         uJ857pBimg5qiEAwgeoSPOX0Ewby1NcoAKWPx09h6qGO56l5xjgR+CGVRxPQpi1/SB
+         7TDT2CkOTNIoA==
+X-CNFS-Analysis: v=2.4 cv=Adt0o1bG c=1 sm=1 tr=0 ts=606cda7a cx=a_exe
+ a=+LyvvGPX93CApvOVpnXrdQ==:117 a=UPWQtH3J-JgA:10 a=IkcTkHD0fZMA:10
+ a=_gZzKa99_6AA:10 a=VwQbUJbxAAAA:8 a=voM4FWlXAAAA:8 a=pGLkceISAAAA:8
+ a=aW_EbgM9uDbL71VJ2OAA:9 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22
+ a=IC2XNlieTeVoXbcui8wp:22
+Date:   Wed, 7 Apr 2021 00:02:34 +0200 (CEST)
+From:   Dario Binacchi <dariobin@libero.it>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Bin Meng <bmeng.cn@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-omap <linux-omap@vger.kernel.org>
+Message-ID: <1727466283.11523.1617746554330@mail1.libero.it>
+In-Reply-To: <CAL_JsqKkpZw_BmcCXUzahF-FkQ=vb7mb_s95Lm2G7pWo0=dqNA@mail.gmail.com>
+References: <20210402192054.7934-1-dariobin@libero.it>
+ <CAL_JsqKkpZw_BmcCXUzahF-FkQ=vb7mb_s95Lm2G7pWo0=dqNA@mail.gmail.com>
+Subject: Re: [PATCH 0/2] fdt: translate address if #size-cells = <0>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="WN3Z533fK2dw1UDf"
-Content-Disposition: inline
-In-Reply-To: <CAK8P3a0VfnUucvZNkA9PdxrWiYUOkisV00v-375PmgQYp4aXoQ@mail.gmail.com>
-X-Provags-ID: V03:K1:5gcOpCHQmH2HH66wHlC3bdbl5uTQY68EaHslQFlMiXdwu1yPMGu
- XAZOwdk8oXIK9z0Mq3J2eD6QiO+K24Z4WIcQGjnOv7DDxr0C08MTAuPsRQe0Ztl9Fd0n1vU
- Y399EkErkUPzQwjmRICQPQQoStkG62g0HnWFpta2wwMupvF+e9YHjP4w7IgLElXNEsm3MRW
- Yx3pl3jKTNt0ELRrwtTbg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:lwS1WdEU8AI=:AgUACw6w7/JwB/hgyaWAKV
- GaNzw+AyvPWWXF4SBfzVn3otv+6VJzWvTAi+xc9QrVaXserhQxCksqGEPLj32XmzIfFoCp7G5
- rAPCkYAq3aGQ6pnlu/74O9DdMj8l0PeX/98c4Tsw2OjrX+dlgTi2/JqVwTl5oBjOD4wd0BpLD
- ZqOzPKnf7XGhP8gFZ3BL6M3Ag+HMbqJ3z8s/4O2M/Q3qjLLYymv4LPLOL0pG8V1+UtLNE/00d
- /K6Nc0BlINjOu0ue0DRsUjAlnPi54azecv9V2MIhXpGiJKVuGoa0ITJG2NTmtChUqMfM41Ot3
- bjqT5X3Z/TxjrPA+Sc9p24ifc1i3MAzzSPnMXJsH44qDgHCgc4bFfcCvwSeuVsw2t5Rm+MYlS
- lykBDpuFxVok6REdoI7JpcmYW7otQRYABFFQjK8RIsnX9hITMY6WvGkQv17AXT+cQvGR1LGpa
- fFj4WM2cbwrBUQz1YhX0GUzYjegrUGeOJISd42JjcKWbUpiSaAAeQlDWOWcr4j9dgjeucj3Vk
- IdW22rEZ0TKHlyxiJawJciAhWitHMFTsEMXFnTDbD1Mxigk2O/bVRZvh99D0ZiP270UIvelts
- LYlN7hAsiKeReyqoBbA3gK5oPt4iQjyXqJ9potZOg8B5L71gkQEbdQhpmd1ovVXW16fixMuf4
- 8wpxwXXKC8PLy0Hu6ODBHDhEBaU5XM6bkBUeJipr2SiVm5cs2lrxDL2LzWt+bB58ZFjMX3f7u
- f7lrl/qSH+EcNEHMF9gw6lD6e+ZQI0EN/0OonZQAgY3pSv2qJs2+xzlneIPLDASdEX2YtAE3w
- XT5i4w9SaPrjg3USRX2VGmrID3D4TfMO/9BXDqSD2EhFQI5+KTF7b+F6tAcjrxu99eflaZGYy
- GdTw4wCjB0Cd/wcWkYXHjtYBB4NXmBdTcPFpN8/sO9L8Bypj4fP36/TdpR5UUrQ3vYjODRqSy
- htxSX+ZQL1DAfCj+bvrn+1DHWzfnqXG166eXNoJ7diEyH9S0ASQJVp8DunuIQwtliD8wJWGLw
- oOs19Ed9DXMMpeRvgJF6J0cScoS+eYJg3fMLZDOQPdiBzz3oxBy0nzJpWjK4O4aFX1tT30IiE
- t2fckz4ADTpsP5ad6G7menqFZn+miL89AAGnXKj46lfeXPSfhkWhLZgMFqrzlWqNhni1SJN9/
- YTW6Qgf3YgjVkxURbujSe4oIywYCODJQ5b3L6rXA/x3Fo3CzgRnY3KISMqhzJLW9NQbzFNBhn
- qG1nHPjyHBbIZlr5d
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+Importance: Normal
+X-Mailer: Open-Xchange Mailer v7.10.3-Rev34
+X-Originating-IP: 87.20.116.197
+X-Originating-Client: open-xchange-appsuite
+x-libjamsun: 0kJUj9J8+FPQ/YxkwJqhiHCIFaYs727T
+x-libjamv: J5mKezAXc6M=
+X-CMAE-Envelope: MS4xfLhjxEr/Kp9gu70nyFP13JwXaIfRPj46VyjgR1MpMlp1MPqhqnicFn3XKmrgI2HHVMBkQrAnRDtuhTp+X7ZB9C+nElMvNkK/Roo+m6hQd5Q9kbYDgKvy
+ 6Ib7IWoJecJ0Ca+PzBVKZVAyAiPDq7SgF/tHh3iqZvy4VNQTsgsJeo42wLLyr64ND0bVofM9/EYEDxe+ZXPTBtmf9pzVkzOe/VrBiHPCgNCJNg64NEXzGyGG
+ YFt8rQ/8nF0d7F8kFMkPFeA8VJ2EPSKAi6Qih4/c7I8RL9Fr5YhiW0idb40hvnM1mckqpfvKyZrK78Z9MT49XWg4jbPsLO8GKSi4kU4eQ5X72Xz8DW4mDgYO
+ rULeuWi9FhAZCbSWV4XYJxEQBQcIb4KL198/rG98gpFnvERGD5PKlAuISxfSxKjUc6iIfZSOuMufo98WwNGc2GMa0DYEREP72cuDQRg2u6hjOUvstlWcRusP
+ ZUgDgjF/JUUaOsXlp7b/3WVRrVogfshs71oTrg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---WN3Z533fK2dw1UDf
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Apr 06, 2021 at 05:15:01PM +0200, Arnd Bergmann wrote:
-> On Tue, Apr 6, 2021 at 2:09 PM Jonathan Neusch=C3=A4fer
-> <j.neuschaefer@gmx.net> wrote:
+> Il 06/04/2021 16:06 Rob Herring <robh+dt@kernel.org> ha scritto:
+> 
+>  
+> On Fri, Apr 2, 2021 at 2:21 PM Dario Binacchi <dariobin@libero.it> wrote:
 > >
-> > This series adds basic support for the Nuvoton WPCM450 BMC SoC. It's an=
- older
-> > SoC but still commonly found on eBay, mostly in Supermicro X9 server bo=
-ards.
 > >
-> > Third-party documentation is available at: https://github.com/neuschaef=
-er/wpcm450/wiki
-> >
-> > Patches 1-4 add devicetree bindings for the WPCM450 SoC and its various=
- parts.
-> > Patches 5-7 add arch and driver support. Patches 8 and 9 add a devicetr=
-ee for
-> > the SoC and a board based on it. Patch 10 finally updates the MAINTAINE=
-RS file.
-> >
-> > Patch 2 requires "dt-bindings: arm: Convert nuvoton,npcm750 binding to =
-YAML"
-> > (https://lore.kernel.org/lkml/20210320164023.614059-1-j.neuschaefer@gmx=
-=2Enet/)
->=20
-> Hi Jonathan,
->=20
-> It appears these patches are doing roughly the right thing, and we may st=
-ill
-> be able to get them into v5.13, but I'm not sure what your plan for maint=
-aining
-> them is. The two options are that you either send your patches to be pick=
-ed up
-> by Joel, or you send everything directly to soc@kernel.org once it's fully
-> reviewed.
+> > The series comes from my commit in U-boot
+> > d64b9cdcd4 ("fdt: translate address if #size-cells = <0>")
+> > and from the subsequent exchange of emails at the end of which I was
+> > suggested to send the patch to the linux kernel
+> > (https://patchwork.ozlabs.org/project/uboot/patch/1614324949-61314-1-git-send-email-bmeng.cn@gmail.com/).
+> 
+> It's 'ranges' that determines translatable which is missing from the
+> DT. This should have not had a 0 size either though maybe we could
+> support that.
 
-The route via Joel sounds alright with me. I've Cc'd him on this version
-of the series.
+I have replied to the email you sent to the u-boot mailing list
 
-> I only noticed your series when patch 9/10 made it into the soc@kernel.org
-> patchwork because of the Cc, but none of the other ones did.
->=20
-> If you end up with the second option, we can go through what this involves
-> off-list.
->=20
-> Regarding the Cc:soc@kernel.org, please add that only for patches that
-> are already reviewed and ready to be picked up, ideally with a cover lett=
-er
-> that describes what the plan is for merging. If you need me to review the
-> platform code, use my arnd@arndb.de or arnd@kernel.org addresses.
+> 
+> Does the DT have to be updated anyways for your spread spectrum support?
 
-Ah sorry, soc@kernel.org slipped in automatically because of get_maintainer=
-s.pl.
+The spread spectrum support patch does not need this patch to work. They belong 
+to two different series.
 
-The platform code[1] is rather simple, essentially just hooking up the
-nuvoton,wpcm450 compatible string.
+> 
+> > The second patch of the series aims to demonstrate that the first one, which
+> > enables the translation of addresses also for crossings of DT nodes
+> > with #size-cells = <0>, it really works.
+> 
+> I don't seem to have the 2nd patch... In any case, you should handle
+> the special case for this platform in code for the platform.
+> 
 
+the 2nd patch:
+https://lore.kernel.org/patchwork/patch/1407108/
 
-Thanks,
-Jonathan
+Thanks and regards,
+Dario
 
-
-[1]: https://lore.kernel.org/lkml/20210406120921.2484986-6-j.neuschaefer@gm=
-x.net/
-
---WN3Z533fK2dw1UDf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmBs2Y0ACgkQCDBEmo7z
-X9suURAAuUHlH2kJ/uuM/4HlCCKWBuZ/sYW7xJ61HDfk1IAUiWMQiz8scjXpwJwS
-K+79pQaCaxHvjReE8KAkziPdG0pkgyCg0HNojFs5F9ihpm5BS3BPgNTnofsVUBr5
-UCSe/EKJSgOuGiPs3CXQMYnqbnIbBpLgqpce0QyOlxUjzU/5GV2QHvsksgO1z296
-vgEYRwj11fveE4mtlEjvKPZ+gKUjuwvzDOXCGtmmVPTj+ogC2IRFxDGkmky67z2g
-FSE9v6Esljj9kBCKkScpRqASIkk7EzSf06D/IR7VP39E5NjnR/JtuyLCnlRplDAl
-Pigvs6mVp+NJNqfMwmHcsUwfEg/fmLOhhSM25w10DYHrCM7Sb5zoqotdZyl5Vp9A
-f9p/sYeUrCqBrBCBud6W19pIZwIKPk5b5z22cjEayJJD0+KZ9snC8acrhTLBHvhx
-KU6Gn3K9bXiqGJKbH1SlsFcympSs9/8YjeY8RiM7xL10Rq37xH7D7+V8pLwyciNv
-6hNQotcNgV87mg71nvwdblt7dZUAyUwvIae+MU8q8TrNkvssZzYGZRR07FSDEpk6
-Hx/AiAxGK3pXpD/ycfoDUXd6Xyp8vftGISold3qGpmDp/3iky8Ot66YpXVzDZ3Hn
-oiymkHp0epFTY0p3D2bieAbruGpYzAbN2cfF7evnXiqOOOp49Uc=
-=BEFd
------END PGP SIGNATURE-----
-
---WN3Z533fK2dw1UDf--
+> Rob
