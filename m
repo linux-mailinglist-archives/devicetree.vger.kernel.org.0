@@ -2,79 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 045F035512F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 12:50:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD3FF355146
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 12:53:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245180AbhDFKu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 06:50:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51264 "EHLO
+        id S242829AbhDFKxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 06:53:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245177AbhDFKu0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 06:50:26 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9046C06174A;
-        Tue,  6 Apr 2021 03:50:18 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id x7so13693449wrw.10;
-        Tue, 06 Apr 2021 03:50:18 -0700 (PDT)
+        with ESMTP id S231339AbhDFKxV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 06:53:21 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB65C06174A;
+        Tue,  6 Apr 2021 03:53:13 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id i18so10254048wrm.5;
+        Tue, 06 Apr 2021 03:53:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=C1JdH9qMTW9Ct0cY1by9NdoLJ5D/IrcneC7TbnQot4U=;
-        b=APVJ86nA+ezkgBslLllPedosijYCehd73iMhlwkNMVDrebQAbIUO949N9bX1f16lXP
-         Puozc8Ict2gEwTlJ3JEL99ksHK17NVlb5XJBaj+l/YhmnHlGpEKvkWapOoSN5fyeaKlC
-         1ramhmb2uUbCoKIu0BTZuW5NZQvAe2XbUqAqARSTXK3vV5F2sAd/pN2EvdxHN33PuzRU
-         70NiqqGkf5f1tpXt54Hu5xerDphos5e3cPg/7yTbbfrhSoaFBfs6NUGCHW5Ar9Bf6qKa
-         du49yXti9LYC8oUsIIJLWeet8v/rtbbjgG3QDQSBTJKthGcghU1u0ljkigMnntt/DfhW
-         Vukg==
+        bh=UW4SBvk4siFv9zFuBrGL9HNGyyN/dS4WBxMX1QWTZM8=;
+        b=RqwwVIngnJInbW616xuEiRHUTETVRR42D4lHIX03HdrtnCcD1V8G5J302yq0IzkTAQ
+         aAsAeCOQ1XZNfbbtNsxHvfJ0QH1Lla/valtxl62ZjozBrnHRzC5NOyItOuyB4djHff4u
+         mfBcnWNpe97n1JBA5p1W0pSY+0To407VG5rUC5MPA3ZmLtzQ8T4+uGJWGD3nRsvxW9R2
+         vaj71h2BZZuAid7IhY00fiNk0xPhaGgC0lBHjQRFq9hG8eNU4+cPWRcQ0ThDzGIxaoeX
+         X7d1uJRz+t7Rl+L/pSamR4V7udhSn0Mgo1ZIuB/EFIvh/0qw39NRO8Qk0YujTCTvByrB
+         PMrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=C1JdH9qMTW9Ct0cY1by9NdoLJ5D/IrcneC7TbnQot4U=;
-        b=oUVB23Wh2No2UyXVuO7/NKcqrMCtA10W1mGt1/hXuVOKpJHPLRoMmbHWouZUzn/rnR
-         uvFGj7XVhSuAiqocC1wyG71xTOCgXn4POgcpTWrQBBIEyjk+znJI3F1T0dYT3AmgQx0E
-         WIrwtDP8QslQm6sQG7gS1PAhM/6STMdz8lIvqk+5PUTC3mHVsDwJ9dFuNOsAJPOTrCpY
-         k9h2iJtZQuwpru6dCQXPOWqaOHtssSK0eYDpEzxZXiS2ciuDieI3eeL9mX04iaV/fGxM
-         LJDDpe2zbUS5dpUCE+TJekhY09PgnYfuz9FLbd7q5Z0aOXeuiMsWvVwFR33sSREnH156
-         ltMw==
-X-Gm-Message-State: AOAM532VfZqO9YoYNTVZEv9kpuII5t2ES1HPWbD4Ifqrq4yfiMulW0nb
-        yVtX6dKFiiUO83hW/rI1Ecg=
-X-Google-Smtp-Source: ABdhPJy2a8YOzQ5NrFn1DlBHGsLFv04sefVLfR7KIezOh75tsd5Xy3kNyYeGS3gXeoNGZH74FSzwPg==
-X-Received: by 2002:adf:ec88:: with SMTP id z8mr16164322wrn.315.1617706217556;
-        Tue, 06 Apr 2021 03:50:17 -0700 (PDT)
+        bh=UW4SBvk4siFv9zFuBrGL9HNGyyN/dS4WBxMX1QWTZM8=;
+        b=JKmKpRFboQwCCtJ31o0ff3YyZ0pLrHOnVihc912w+2XkWkMHGuNnNx7oA9t2zPLaDk
+         SGZeXXw21JSglijiIBOG27+eD/nqZpwM+lvFUD44iyEEIsFE8+FpTk2mrCQiAp/urrNw
+         5ZXhJZ5SyMwh/cdPut/x2oVJtRnfRuZ8ZFh6xMzyQKgAAoFgAkKPC7XqtggoHHtYj89B
+         cQHkyLqY1bi25Ovlqsi746h4tFTEb8ktARcy3XqAIXRDqo0ceMlrwKhKCT2T9pkZ254W
+         siFDpNBLjW4zw7EbHEexJ4qDUCKPgWKnJS4BCH1xcn2zHELarQRBXa9ofD7YPY4O/lqD
+         R7Ig==
+X-Gm-Message-State: AOAM532P4QIugzTAAQ6TL/BBCLyvMaO/7AcL9bXkRByGknURi+OOS3fy
+        adCqhxUJeAhoqycbcISiSsk=
+X-Google-Smtp-Source: ABdhPJyEcWxQjakzL4UBY/hSPfKVA9z+I4/Fts1uNiYoCieQ/sPpv7fJrL0XRGTcNHoTn2bhWLT6MA==
+X-Received: by 2002:a5d:47c4:: with SMTP id o4mr33792030wrc.138.1617706392307;
+        Tue, 06 Apr 2021 03:53:12 -0700 (PDT)
 Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id u9sm2304351wmc.38.2021.04.06.03.50.16
+        by smtp.gmail.com with ESMTPSA id c131sm2416442wma.37.2021.04.06.03.53.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Apr 2021 03:50:17 -0700 (PDT)
-Subject: Re: [PATCH v4,2/3] arm64: dts: mt8173: Separating mtk-vcodec-enc
- device node
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tomasz Figa <tfiga@google.com>,
+        Tue, 06 Apr 2021 03:53:11 -0700 (PDT)
+Subject: Re: [PATCH v2 1/8] dt-bindings: timer: Add compatible for Mediatek
+ MT8195
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
         Hsin-Yi Wang <hsinyi@chromium.org>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>, yong.wu@mediatek.com
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org
-References: <20210325122625.15100-1-irui.wang@mediatek.com>
- <20210325122625.15100-2-irui.wang@mediatek.com>
- <245594e6-a4c9-0f53-58e3-1b32ca6dc651@xs4all.nl>
+        Fabien Parent <fparent@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-serial@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, srv_heupstream@mediatek.com
+References: <20210319023427.16711-1-seiya.wang@mediatek.com>
+ <20210319023427.16711-3-seiya.wang@mediatek.com>
+ <bf7ad31e-974a-3e0a-12bd-32973c7c3cbd@gmail.com>
+ <11bf6761-8902-bfa5-8577-d397846e7638@linaro.org>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <dd87cbf6-1c79-63e1-a92e-7831eaa63f52@gmail.com>
-Date:   Tue, 6 Apr 2021 12:50:15 +0200
+Message-ID: <251f6d99-a7f6-ddbe-096a-95998b86dbed@gmail.com>
+Date:   Tue, 6 Apr 2021 12:53:10 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <245594e6-a4c9-0f53-58e3-1b32ca6dc651@xs4all.nl>
+In-Reply-To: <11bf6761-8902-bfa5-8577-d397846e7638@linaro.org>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -82,122 +95,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Daniel,
 
-
-On 06/04/2021 12:46, Hans Verkuil wrote:
-> Hi Irui,
+On 04/04/2021 22:33, Daniel Lezcano wrote:
+> On 29/03/2021 13:52, Matthias Brugger wrote:
+>>
+>>
+>> On 19/03/2021 03:34, Seiya Wang wrote:
+>>> This commit adds dt-binding documentation of timer for Mediatek MT8195 SoC
+>>> Platform.
+>>>
+>>> Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
+>>
+>> Applied to v5.12-next/dts64
 > 
-> On 25/03/2021 13:26, Irui Wang wrote:
->> There are two separate hardware encoder blocks inside MT8173.
->> Split the current mtk-vcodec-enc node to match the hardware architecture.
+> Usually bindings go through the subsystem maintainer.
 > 
-> I've accepted patches 1 & 3, so this patch can be merged by whoever maintains these dts
-> files.
 
-Thanks for the info, patch 2 is now part of v5.12-next/dts64-2
+Yes I know, although not all maintainers are taking them. I'll coordinate with
+you the next time, sorry for any inconvenience caused by this.
 
 Regards,
 Matthias
-
-> 
-> Regards,
-> 
-> 	Hans
-> 
->>
->> Acked-by: Tiffany Lin <tiffany.lin@mediatek.com>
->> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
->> Signed-off-by: Maoguang Meng <maoguang.meng@mediatek.com>
->> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
->> ---
->>  arch/arm64/boot/dts/mediatek/mt8173.dtsi | 60 ++++++++++++------------
->>  1 file changed, 31 insertions(+), 29 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
->> index 7fa870e4386a..f5950e9fc51d 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
->> @@ -1458,14 +1458,11 @@
->>  			clock-names = "apb", "smi";
->>  		};
->>  
->> -		vcodec_enc: vcodec@18002000 {
->> +		vcodec_enc_avc: vcodec@18002000 {
->>  			compatible = "mediatek,mt8173-vcodec-enc";
->> -			reg = <0 0x18002000 0 0x1000>,	/* VENC_SYS */
->> -			      <0 0x19002000 0 0x1000>;	/* VENC_LT_SYS */
->> -			interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_LOW>,
->> -				     <GIC_SPI 202 IRQ_TYPE_LEVEL_LOW>;
->> -			mediatek,larb = <&larb3>,
->> -					<&larb5>;
->> +			reg = <0 0x18002000 0 0x1000>;	/* VENC_SYS */
->> +			interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_LOW>;
->> +			mediatek,larb = <&larb3>;
->>  			iommus = <&iommu M4U_PORT_VENC_RCPU>,
->>  				 <&iommu M4U_PORT_VENC_REC>,
->>  				 <&iommu M4U_PORT_VENC_BSDMA>,
->> @@ -1476,29 +1473,12 @@
->>  				 <&iommu M4U_PORT_VENC_REF_LUMA>,
->>  				 <&iommu M4U_PORT_VENC_REF_CHROMA>,
->>  				 <&iommu M4U_PORT_VENC_NBM_RDMA>,
->> -				 <&iommu M4U_PORT_VENC_NBM_WDMA>,
->> -				 <&iommu M4U_PORT_VENC_RCPU_SET2>,
->> -				 <&iommu M4U_PORT_VENC_REC_FRM_SET2>,
->> -				 <&iommu M4U_PORT_VENC_BSDMA_SET2>,
->> -				 <&iommu M4U_PORT_VENC_SV_COMA_SET2>,
->> -				 <&iommu M4U_PORT_VENC_RD_COMA_SET2>,
->> -				 <&iommu M4U_PORT_VENC_CUR_LUMA_SET2>,
->> -				 <&iommu M4U_PORT_VENC_CUR_CHROMA_SET2>,
->> -				 <&iommu M4U_PORT_VENC_REF_LUMA_SET2>,
->> -				 <&iommu M4U_PORT_VENC_REC_CHROMA_SET2>;
->> +				 <&iommu M4U_PORT_VENC_NBM_WDMA>;
->>  			mediatek,vpu = <&vpu>;
->> -			clocks = <&topckgen CLK_TOP_VENCPLL_D2>,
->> -				 <&topckgen CLK_TOP_VENC_SEL>,
->> -				 <&topckgen CLK_TOP_UNIVPLL1_D2>,
->> -				 <&topckgen CLK_TOP_VENC_LT_SEL>;
->> -			clock-names = "venc_sel_src",
->> -				      "venc_sel",
->> -				      "venc_lt_sel_src",
->> -				      "venc_lt_sel";
->> -			assigned-clocks = <&topckgen CLK_TOP_VENC_SEL>,
->> -					  <&topckgen CLK_TOP_VENC_LT_SEL>;
->> -			assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL>,
->> -						 <&topckgen CLK_TOP_VCODECPLL_370P5>;
->> +			clocks = <&topckgen CLK_TOP_VENC_SEL>;
->> +			clock-names = "venc_sel";
->> +			assigned-clocks = <&topckgen CLK_TOP_VENC_SEL>;
->> +			assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL>;
->>  		};
->>  
->>  		jpegdec: jpegdec@18004000 {
->> @@ -1530,5 +1510,27 @@
->>  				 <&vencltsys CLK_VENCLT_CKE0>;
->>  			clock-names = "apb", "smi";
->>  		};
->> +
->> +		vcodec_enc_vp8: vcodec@19002000 {
->> +			compatible = "mediatek,mt8173-vcodec-enc-vp8";
->> +			reg =  <0 0x19002000 0 0x1000>; /* VENC_LT_SYS */
->> +			interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_LOW>;
->> +			iommus = <&iommu M4U_PORT_VENC_RCPU_SET2>,
->> +				 <&iommu M4U_PORT_VENC_REC_FRM_SET2>,
->> +				 <&iommu M4U_PORT_VENC_BSDMA_SET2>,
->> +				 <&iommu M4U_PORT_VENC_SV_COMA_SET2>,
->> +				 <&iommu M4U_PORT_VENC_RD_COMA_SET2>,
->> +				 <&iommu M4U_PORT_VENC_CUR_LUMA_SET2>,
->> +				 <&iommu M4U_PORT_VENC_CUR_CHROMA_SET2>,
->> +				 <&iommu M4U_PORT_VENC_REF_LUMA_SET2>,
->> +				 <&iommu M4U_PORT_VENC_REC_CHROMA_SET2>;
->> +			mediatek,larb = <&larb5>;
->> +			mediatek,vpu = <&vpu>;
->> +			clocks = <&topckgen CLK_TOP_VENC_LT_SEL>;
->> +			clock-names = "venc_lt_sel";
->> +			assigned-clocks = <&topckgen CLK_TOP_VENC_LT_SEL>;
->> +			assigned-clock-parents =
->> +				 <&topckgen CLK_TOP_VCODECPLL_370P5>;
->> +		};
->>  	};
->>  };
->>
-> 
