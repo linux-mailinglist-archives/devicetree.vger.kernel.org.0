@@ -2,77 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB09A3559D7
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 18:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E1B2355A0D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 19:10:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346712AbhDFQ7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 12:59:43 -0400
-Received: from marcansoft.com ([212.63.210.85]:40464 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232131AbhDFQ7m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Apr 2021 12:59:42 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 142E3419B4;
-        Tue,  6 Apr 2021 16:59:24 +0000 (UTC)
-Subject: Re: [PATCH v4 12/18] of/address: Add infrastructure to declare MMIO
- as non-posted
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210402090542.131194-1-marcan@marcan.st>
- <20210402090542.131194-13-marcan@marcan.st>
- <20210406164748.GA1937719@robh.at.kernel.org>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <b97eff12-5ace-8f93-99f3-2e391a5492ca@marcan.st>
-Date:   Wed, 7 Apr 2021 01:59:22 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S1346779AbhDFRK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 13:10:59 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:42198 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244253AbhDFRK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 13:10:59 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 136HAXJs099221;
+        Tue, 6 Apr 2021 12:10:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1617729033;
+        bh=5cgGv2ddS7xAI9SJVy7TZDsonSl+Ly4iKerJkT8q2kM=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=yUGf6lgh+7CoxRNKDNBa83ksW+Cifbw+m1HyAhX3oy0PIGNV00OxXdkUjq74NWmv3
+         f3VKptBV2gZVSBQR+YbT9i7SGJPTeW0WD3kX8ptWmPGCKHPt1tVD6uLXRxVi/PPmxx
+         5c1RNf6CctmE+lLeGA0vfgShYqsxYu2tnRp0cNPE=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 136HAXEc036568
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 6 Apr 2021 12:10:33 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 6 Apr
+ 2021 12:10:33 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 6 Apr 2021 12:10:33 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 136HAWC0099528;
+        Tue, 6 Apr 2021 12:10:32 -0500
+Date:   Tue, 6 Apr 2021 22:40:31 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     =?iso-8859-1?Q?P=E9ter?= Ujfalusi <peter.ujfalusi@gmail.com>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Benoit Parrot <bparrot@ti.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Peter Chen <peter.chen@nxp.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <dmaengine@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: Re: [PATCH 11/16] dmaengine: ti: k3-psil-j721e: Add entry for CSI2RX
+Message-ID: <20210406171029.nku6hrmw7pohr5ri@ti.com>
+References: <20210330173348.30135-1-p.yadav@ti.com>
+ <20210330173348.30135-12-p.yadav@ti.com>
+ <78a5983c-04c8-4a4c-04fe-bb1f31e87375@gmail.com>
+ <20210406150942.4kyjh2ehsvklupjr@ti.com>
+ <54b0846e-d633-2a03-2c64-f1f0a85c2410@gmail.com>
+ <20210406165554.5mhn4u5enbf2tvaz@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20210406164748.GA1937719@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210406165554.5mhn4u5enbf2tvaz@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/04/2021 01.47, Rob Herring wrote:
->> +EXPORT_SYMBOL_GPL(of_mmio_is_nonposted);
+On 06/04/21 10:25PM, Pratyush Yadav wrote:
+> On 06/04/21 06:33PM, Péter Ujfalusi wrote:
+> > 
+> > 
+> > On 4/6/21 6:09 PM, Pratyush Yadav wrote:
+> > > On 04/04/21 04:24PM, Péter Ujfalusi wrote:
+> > >> Hi Pratyush,
+> > >>
+> > >> On 3/30/21 8:33 PM, Pratyush Yadav wrote:
+> > >>> The CSI2RX subsystem uses PSI-L DMA to transfer frames to memory. It can
+> > >>> have up to 32 threads but the current driver only supports using one. So
+> > >>> add an entry for that one thread.
+> > >>
+> > >> If you are absolutely sure that the other threads are not going to be
+> > >> used, then:
+> > > 
+> > > The opposite in fact. I do expect other threads to be used in the 
+> > > future. But the current driver can only use one so I figured it is 
+> > > better to add just the thread that is currently needed and then I can 
+> > > always add the rest later.
+> > > 
+> > > Why does this have to be a one-and-done deal? Is there anything wrong 
+> > > with adding the other threads when the driver can actually use them?
+> > 
+> > You can skip CCing DMAengine (and me ;) ). Less subsystems is the better
+> > when sending patches...
 > 
-> Is this needed outside of of/address.c? If not, please make it static
-> and don't export.
+> I'm a bit confused here. If you are no longer interested in maintaining 
+> the TI DMA drivers then that's fine, I can skip CCing you. But the patch 
+> is still relevant to the dmaengine list so why should I skip CCing it? 
+> And if I don't CC the dmaengine list then on which list would I get 
+> comments/reviews for the patch?
 
-Ah, yes, that was cargo culted from of_dma_is_coherent. Not sure how I 
-missed that it's obviously unnecessary. Thanks for pointing it out.
-
-> 
-> With that,
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-
-Thanks!
+Ignore this. Got your point. Will do it in v2.
 
 -- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
