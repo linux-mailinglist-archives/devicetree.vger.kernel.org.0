@@ -2,116 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E1B2355A0D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 19:10:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9779A355A38
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 19:24:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346779AbhDFRK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 13:10:59 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:42198 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244253AbhDFRK7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 13:10:59 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 136HAXJs099221;
-        Tue, 6 Apr 2021 12:10:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1617729033;
-        bh=5cgGv2ddS7xAI9SJVy7TZDsonSl+Ly4iKerJkT8q2kM=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=yUGf6lgh+7CoxRNKDNBa83ksW+Cifbw+m1HyAhX3oy0PIGNV00OxXdkUjq74NWmv3
-         f3VKptBV2gZVSBQR+YbT9i7SGJPTeW0WD3kX8ptWmPGCKHPt1tVD6uLXRxVi/PPmxx
-         5c1RNf6CctmE+lLeGA0vfgShYqsxYu2tnRp0cNPE=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 136HAXEc036568
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 6 Apr 2021 12:10:33 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 6 Apr
- 2021 12:10:33 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 6 Apr 2021 12:10:33 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 136HAWC0099528;
-        Tue, 6 Apr 2021 12:10:32 -0500
-Date:   Tue, 6 Apr 2021 22:40:31 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     =?iso-8859-1?Q?P=E9ter?= Ujfalusi <peter.ujfalusi@gmail.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Benoit Parrot <bparrot@ti.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Peter Chen <peter.chen@nxp.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <dmaengine@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Subject: Re: [PATCH 11/16] dmaengine: ti: k3-psil-j721e: Add entry for CSI2RX
-Message-ID: <20210406171029.nku6hrmw7pohr5ri@ti.com>
-References: <20210330173348.30135-1-p.yadav@ti.com>
- <20210330173348.30135-12-p.yadav@ti.com>
- <78a5983c-04c8-4a4c-04fe-bb1f31e87375@gmail.com>
- <20210406150942.4kyjh2ehsvklupjr@ti.com>
- <54b0846e-d633-2a03-2c64-f1f0a85c2410@gmail.com>
- <20210406165554.5mhn4u5enbf2tvaz@ti.com>
+        id S233509AbhDFRY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 13:24:28 -0400
+Received: from mail.azure.hoefle.co ([51.145.193.23]:44004 "EHLO
+        mail.azure.hoefle.co" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232593AbhDFRY2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 13:24:28 -0400
+Received: from hoefle.co (119.254.200.213.static.wline.lns.sme.cust.swisscom.ch [213.200.254.119])
+        by mail.azure.hoefle.co (Postfix) with ESMTPSA id 7CAAC13D2F0;
+        Tue,  6 Apr 2021 19:24:19 +0200 (CEST)
+Received: from [192.168.222.165] (unknown [213.200.254.119])
+        by hoefle.co (Postfix) with ESMTPSA id 29463403AD;
+        Tue,  6 Apr 2021 19:24:19 +0200 (CEST)
+Subject: Re: Documentation to the Xilinx PSGTR Phy device-tree not clear
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org
+References: <b54c4397-72a2-4b6e-e6a4-8c4dc6ef2814@hoefle.co>
+ <YGxq4QN7dN+flaDa@pendragon.ideasonboard.com>
+From:   Marco Hoefle <marco@hoefle.co>
+Message-ID: <7890af82-0aa9-298f-fef6-b1e0e4f0fea4@hoefle.co>
+Date:   Tue, 6 Apr 2021 19:24:18 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
+In-Reply-To: <YGxq4QN7dN+flaDa@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210406165554.5mhn4u5enbf2tvaz@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/21 10:25PM, Pratyush Yadav wrote:
-> On 06/04/21 06:33PM, P�ter Ujfalusi wrote:
-> > 
-> > 
-> > On 4/6/21 6:09 PM, Pratyush Yadav wrote:
-> > > On 04/04/21 04:24PM, P�ter Ujfalusi wrote:
-> > >> Hi Pratyush,
-> > >>
-> > >> On 3/30/21 8:33 PM, Pratyush Yadav wrote:
-> > >>> The CSI2RX subsystem uses PSI-L DMA to transfer frames to memory. It can
-> > >>> have up to 32 threads but the current driver only supports using one. So
-> > >>> add an entry for that one thread.
-> > >>
-> > >> If you are absolutely sure that the other threads are not going to be
-> > >> used, then:
-> > > 
-> > > The opposite in fact. I do expect other threads to be used in the 
-> > > future. But the current driver can only use one so I figured it is 
-> > > better to add just the thread that is currently needed and then I can 
-> > > always add the rest later.
-> > > 
-> > > Why does this have to be a one-and-done deal? Is there anything wrong 
-> > > with adding the other threads when the driver can actually use them?
-> > 
-> > You can skip CCing DMAengine (and me ;) ). Less subsystems is the better
-> > when sending patches...
-> 
-> I'm a bit confused here. If you are no longer interested in maintaining 
-> the TI DMA drivers then that's fine, I can skip CCing you. But the patch 
-> is still relevant to the dmaengine list so why should I skip CCing it? 
-> And if I don't CC the dmaengine list then on which list would I get 
-> comments/reviews for the patch?
+Hello Laurent,
 
-Ignore this. Got your point. Will do it in v2.
+thanks for your quick reply.
 
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+On 06.04.21 16:06, Laurent Pinchart wrote:
+> Hi Marco,
+>
+> On Tue, Apr 06, 2021 at 03:54:06PM +0200, Marco Hoefle wrote:
+>> Hi,
+>>
+>> we try to port the mainline Kernel to a Xilinx board.
+>>
+>> The default peripherals do work. The blocking point now is the zynqmp
+>> psgtr driver.
+>>
+>> The mainline documentation can be found here:
+>>
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
+>>
+>> It is lacking a complete example on how to wire up a peripheral phy with
+>> the PS GTR driver.
+>>
+>>
+>> The one in the Xilinx tree for Kernel 5.4 contains an example which is
+>> missing in the mainline documentation in my opinion:
+>>
+>> https://github.com/Xilinx/linux-xlnx/blob/4ecd768dea75a0cc0bea91069a570981aa700744/Documentation/devicetree/bindings/phy/phy-zynqmp.txt
+>>
+>>
+>> It seems the PHY handle mechanism has changed and the "old" Xilinx way
+>> doesn't work anymore.
+>>
+>> This was the previous way to "marry" the PS GTR driver with the USB 3
+>> driver:
+>>
+>>          serdes: zynqmp_phy@fd400000 {
+>>               compatible = "xlnx,zynqmp-psgtr-v1.1";
+>>               status = "disabled";
+>>               reg = <0x0 0xfd400000 0x0 0x40000>,
+>>                     <0x0 0xfd3d0000 0x0 0x1000>;
+>>               reg-names = "serdes", "siou";
+>>               nvmem-cells = <&soc_revision>;
+>>               nvmem-cell-names = "soc_revision";
+>>               resets = <&zynqmp_reset ZYNQMP_RESET_SATA>, <&zynqmp_reset ZYNQMP_RESET_USB0_CORERESET>,
+>>                    <&zynqmp_reset ZYNQMP_RESET_USB1_CORERESET>, <&zynqmp_reset ZYNQMP_RESET_USB0_HIBERRESET>,
+>>                    <&zynqmp_reset ZYNQMP_RESET_USB1_HIBERRESET>, <&zynqmp_reset ZYNQMP_RESET_USB0_APB>,
+>>                    <&zynqmp_reset ZYNQMP_RESET_USB1_APB>, <&zynqmp_reset ZYNQMP_RESET_DP>,
+>>                    <&zynqmp_reset ZYNQMP_RESET_GEM0>, <&zynqmp_reset ZYNQMP_RESET_GEM1>,
+>>                    <&zynqmp_reset ZYNQMP_RESET_GEM2>, <&zynqmp_reset ZYNQMP_RESET_GEM3>;
+>>               reset-names = "sata_rst", "usb0_crst", "usb1_crst",
+>>                         "usb0_hibrst", "usb1_hibrst", "usb0_apbrst",
+>>                         "usb1_apbrst", "dp_rst", "gem0_rst",
+>>                         "gem1_rst", "gem2_rst", "gem3_rst";
+>>               lane0: lane0 {
+>>                   #phy-cells = <4>;
+>>               };
+>>               lane1: lane1 {
+>>                   #phy-cells = <4>;
+>>               };
+>>               lane2: lane2 {
+>>                   #phy-cells = <4>;
+>>               };
+>>               lane3: lane3 {
+>>                   #phy-cells = <4>;
+>>               };
+> The nvmem and reset properties, as well as the lane sub-nodes, are not
+> needed with the mainline driver.
+Ok, thanks for the hints.
+>>           };
+>>
+>>
+>> &dwc3_0 {
+>>       status = "okay";
+>>       dr_mode = "peripheral";
+>>       phy-names = "usb3-phy";
+>>       phys = <&lane2 4 0 0 26000000>;
+>>       maximum-speed = "super-speed";
+>> };
+> A PHY consumer example is indeed missing, but doesn't this belong to the
+> consumer DT bindings instead ?
+>
+I agree. However, I think the Xilinx driver needs to be handled 
+differently. I looked for example at the Rockchip device tree using the 
+same USB 3.0 driver (dwc3-of-simple) as Xilinx:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+
+I believe that some device tree nodes need to be added when using the 
+PSGTR driver and the DWC3 driver.
+
+Looking at 
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/phy/xilinx/phy-zynqmp.c#n756 
+:
+
+Lane number, PHY type and Reference Clock needs to be supplied somehow.
+
+Previously this was done that way:
+
+phys = <&lane2 4 0 0 26000000>;
+
+Now this are not numbers anymore but references I believe.
+
+
+BR
+
+Marco
+
+
