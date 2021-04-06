@@ -2,104 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5305E354E35
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 10:02:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEF0A354EDC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 10:44:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235940AbhDFICH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 04:02:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42696 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233608AbhDFICH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 04:02:07 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BA44C06174A
-        for <devicetree@vger.kernel.org>; Tue,  6 Apr 2021 01:01:59 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id b9so5250501wrs.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Apr 2021 01:01:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=l6nxo53q82s9jFF8yCXZZrdNcQ5A9DZSWcm5GmtmFA0=;
-        b=SbBE1QB1LbEE/X6vrKzgWskUD23QC2zC7nnG0k0s03MqGXbNuFBFlqHTKpZPrf36rr
-         gdfF6F8BpEP3FHWFUC6H8VhRNbjTkQG8KgaqOSxGBx7DncuyAbBmd7AHSNrb7F1soS6U
-         EbCvV1ry8PkKV8qV4W7J1HqpnlOWwES18/B1coP8xIF7Ev0riTJzZXY/xFTB7dcfZNgR
-         /wVztKBl6Cxj6u0hzYMp0WNdgQoSe9QkMvMWgFHcbOzAekjWMtpBJ/GEJIVNLghZjd+i
-         p/qIGNCinh/zRwMR/vQF3h5vcanwPIlyQVowBJK8CcwG+4S9Y5RFSPxCftiHuxvE27DL
-         fOJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=l6nxo53q82s9jFF8yCXZZrdNcQ5A9DZSWcm5GmtmFA0=;
-        b=tHAAE1yV2OHw8nZTxk8Yhso3ObUNuQ8y0NP6DrJrtjjnL48lls3pCedSNZj77sGmSD
-         iVoRJZiu4dHj7GtkKGw7nQhYnDZVseB0kYiGPS9Tl1flrxrglw9toOMxcaZ3Ffvjgt2p
-         G5ybxnTu5uo9VoHiZWppCG+iAH0Ngl7cvqjtO8n99zXpKlYc6pK5YwUKU86YL/JmuHzd
-         b5/WaOyAOXmeXyil5LmoyW69TWtj4Lrj7OsPEG33oclBkOi1V2CuVRhKLDjPXognQjoj
-         S+LyExo3bgq3QsFFli2uGht3T1h9f0hx4zyXM+blWr9QB6gMFksy10iX8MapSwW330g2
-         9Deg==
-X-Gm-Message-State: AOAM5327T4rtCi3rKBDyALW1LTc8flYMoj0X82vYLjwaIyTHMxTzBihl
-        I3fsGNLUaG+dq21ClHLZ8iR3HQ==
-X-Google-Smtp-Source: ABdhPJzhRli50lNrS7WlnHzOkeHBK47qTBIwPKWqBK58LCMpLq00FFsdNzmzvYgkzLnXPgKx2ZkRMA==
-X-Received: by 2002:a5d:4051:: with SMTP id w17mr4755320wrp.19.1617696117707;
-        Tue, 06 Apr 2021 01:01:57 -0700 (PDT)
-Received: from myrica ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id t20sm1803704wmi.15.2021.04.06.01.01.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Apr 2021 01:01:57 -0700 (PDT)
-Date:   Tue, 6 Apr 2021 10:01:39 +0200
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     Will Deacon <will@kernel.org>
-Cc:     joro@8bytes.org, lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
-        guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
-        lenb@kernel.org, robin.murphy@arm.com, Jonathan.Cameron@huawei.com,
-        eric.auger@redhat.com, iommu@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-accelerators@lists.ozlabs.org, baolu.lu@linux.intel.com,
-        jacob.jun.pan@linux.intel.com, kevin.tian@intel.com,
-        vdumpa@nvidia.com, zhangfei.gao@linaro.org,
-        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com,
-        zhukeqian1@huawei.com, wangzhou1@hisilicon.com
-Subject: Re: [PATCH v14 00/10] iommu: I/O page faults for SMMUv3
-Message-ID: <YGwVY3W4vk6kve3G@myrica>
-References: <20210401154718.307519-1-jean-philippe@linaro.org>
- <20210401171501.GC9447@willie-the-truck>
+        id S244418AbhDFIoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 04:44:20 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:62578 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S244441AbhDFIoU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 04:44:20 -0400
+X-UUID: d3cbea260d2b4ff5aed39e03c1572021-20210406
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=jskoNae0qUUv9JNUt4/vWKhrhKvU8yBtWmyh/Q5AcmM=;
+        b=G8rFL6yhGxb8jkhu3+o8gHKE6mQjcPX5MXgR5gDWr5dgEPEJX5cCNb3eJYOrwSmS9uBohDsfDX6Bfi33cZ7wxj5PusOpLET3kDYjB2kFLr4rYSF/fIQsl7Ah8Wgnf15j0gQt7gXyXPDL/CNgc2GqD2079Cub0VXk+05sI1j21sY=;
+X-UUID: d3cbea260d2b4ff5aed39e03c1572021-20210406
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 170298927; Tue, 06 Apr 2021 16:44:09 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS33N1.mediatek.inc
+ (172.27.4.75) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 6 Apr
+ 2021 16:43:56 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 6 Apr 2021 16:43:56 +0800
+Message-ID: <1617698636.26944.8.camel@mhfsdcap03>
+Subject: Re: [PATCH 3/5] arm64: dts: mediatek: mt8167: add larb nodes
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Fabien Parent <fparent@baylibre.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <mkorpershoek@baylibre.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Date:   Tue, 6 Apr 2021 16:43:56 +0800
+In-Reply-To: <20210405200821.2203458-3-fparent@baylibre.com>
+References: <20210405200821.2203458-1-fparent@baylibre.com>
+         <20210405200821.2203458-3-fparent@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210401171501.GC9447@willie-the-truck>
+X-TM-SNTS-SMTP: 7691E83C22369EB7F43B506DD7397EE3A87FE371554C2C63EF10D93131A4815E2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 01, 2021 at 06:15:02PM +0100, Will Deacon wrote:
-> On Thu, Apr 01, 2021 at 05:47:09PM +0200, Jean-Philippe Brucker wrote:
-> > Add stall support to the SMMUv3 driver, along with a common I/O Page
-> > Fault handler.
-> > 
-> > Since [v13] I added review and ack tags (Thanks!), and a lockdep_assert.
-> > It would be good to have all of it in v5.13, since patch 10 introduces
-> > the first user for the IOPF interface from patch 6.  But if that's not
-> > possible, please pick patches 1-6 so the Vt-d driver can start using
-> > them.
-> 
-> Patches 1-7 look good to me, but I'm not convinced about the utility of
-> stalling faults so I'd prefer the later patches to come along with a
-> real user.
+T24gTW9uLCAyMDIxLTA0LTA1IGF0IDIyOjA4ICswMjAwLCBGYWJpZW4gUGFyZW50IHdyb3RlOg0K
+PiBBZGQgbGFyYiBub2RlcyBmb3IgTVQ4MTY3Og0KPiAqIGxhcmIwIGlzIHVzZWQgZm9yIGRpc3Bs
+YXkgKGRzaSBhbmQgaGRtaSkNCj4gKiBsYXJiMSBpcyB1c2VkIGZvciBjYW1lcmEgKGNzaSkNCj4g
+KiBsYXJiMiBpcyB1c2VkIGZvciB0aGUgdmlkZW8gaGFyZHdhcmUgZGVjb2Rlcg0KPiANCj4gU2ln
+bmVkLW9mZi1ieTogRmFiaWVuIFBhcmVudCA8ZnBhcmVudEBiYXlsaWJyZS5jb20+DQo+IC0tLQ0K
+PiAgYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxNjcuZHRzaSB8IDMzICsrKysrKysr
+KysrKysrKysrKysrKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQsIDMzIGluc2VydGlvbnMoKykNCj4g
+DQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE2Ny5kdHNp
+IGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxNjcuZHRzaQ0KPiBpbmRleCA0Yjk1
+MWY4MWRiOWUuLjliMzUyMDMxYzVmNiAxMDA2NDQNCj4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0
+cy9tZWRpYXRlay9tdDgxNjcuZHRzaQ0KPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlh
+dGVrL210ODE2Ny5kdHNpDQo+IEBAIC0xNDAsNSArMTQwLDM4IEBAIHNtaV9jb21tb246IHNtaUAx
+NDAxNzAwMCB7DQo+ICAJCQljbG9jay1uYW1lcyA9ICJhcGIiLCAic21pIjsNCj4gIAkJCXBvd2Vy
+LWRvbWFpbnMgPSA8JnNwbSBNVDgxNjdfUE9XRVJfRE9NQUlOX01NPjsNCj4gIAkJfTsNCj4gKw0K
+PiArCQlsYXJiMDogbGFyYkAxNDAxNjAwMCB7DQo+ICsJCQljb21wYXRpYmxlID0gIm1lZGlhdGVr
+LG10ODE2Ny1zbWktbGFyYiI7DQo+ICsJCQlyZWcgPSA8MCAweDE0MDE2MDAwIDAgMHgxMDAwPjsN
+Cj4gKwkJCW1lZGlhdGVrLHNtaSA9IDwmc21pX2NvbW1vbj47DQo+ICsJCQltZWRpYXRlayxsYXJi
+aWQgPSA8MD47DQoNCkZyb20gWzFdLCBUaGlzIHNob3VsZCBiZTogbWVkaWF0ZWssbGFyYi1pZC4N
+Cg0KQWN0dWFsbHkgdGhpcyBwcm9wZXJ0eSBpcyB1bm5lY2Vzc2FyeSBpbiB0aGlzIFNvQyBzaW5j
+ZSB0aGlzIGxhcmItaWQgaW4NCnRoZSBtNHUgbm9kZSBpcyBjb25zZWN1dGl2ZS4NCg0KWzFdDQpo
+dHRwczovL2VsaXhpci5ib290bGluLmNvbS9saW51eC92NS4xMi1yYzIvc291cmNlL0RvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZW1vcnktY29udHJvbGxlcnMvbWVkaWF0ZWssc21p
+LWxhcmIueWFtbCNMNTgNCg0KPiArCQkJY2xvY2tzID0gPCZtbXN5cyBDTEtfTU1fU01JX0xBUkIw
+PiwNCj4gKwkJCQkgPCZtbXN5cyBDTEtfTU1fU01JX0xBUkIwPjsNCj4gKwkJCWNsb2NrLW5hbWVz
+ID0gImFwYiIsICJzbWkiOw0KPiArCQkJcG93ZXItZG9tYWlucyA9IDwmc3BtIE1UODE2N19QT1dF
+Ul9ET01BSU5fTU0+Ow0KPiArCQl9Ow0KPiArDQo+ICsJCWxhcmIxOiBsYXJiQDE1MDAxMDAwIHsN
+Cj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTY3LXNtaS1sYXJiIjsNCj4gKwkJCXJl
+ZyA9IDwwIDB4MTUwMDEwMDAgMCAweDEwMDA+Ow0KPiArCQkJbWVkaWF0ZWssc21pID0gPCZzbWlf
+Y29tbW9uPjsNCj4gKwkJCW1lZGlhdGVrLGxhcmJpZCA9IDwxPjsNCj4gKwkJCWNsb2NrcyA9IDwm
+aW1nc3lzIENMS19JTUdfTEFSQjFfU01JPiwNCj4gKwkJCQkgPCZpbWdzeXMgQ0xLX0lNR19MQVJC
+MV9TTUk+Ow0KPiArCQkJY2xvY2stbmFtZXMgPSAiYXBiIiwgInNtaSI7DQo+ICsJCQlwb3dlci1k
+b21haW5zID0gPCZzcG0gTVQ4MTY3X1BPV0VSX0RPTUFJTl9JU1A+Ow0KPiArCQl9Ow0KPiArDQo+
+ICsJCWxhcmIyOiBsYXJiQDE2MDEwMDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWss
+bXQ4MTY3LXNtaS1sYXJiIjsNCj4gKwkJCXJlZyA9IDwwIDB4MTYwMTAwMDAgMCAweDEwMDA+Ow0K
+PiArCQkJbWVkaWF0ZWssc21pID0gPCZzbWlfY29tbW9uPjsNCj4gKwkJCW1lZGlhdGVrLGxhcmJp
+ZCA9IDwyPjsNCj4gKwkJCWNsb2NrcyA9IDwmdmRlY3N5cyBDTEtfVkRFQ19DS0VOPiwNCj4gKwkJ
+CQkgPCZ2ZGVjc3lzIENMS19WREVDX0xBUkIxX0NLRU4+Ow0KPiArCQkJY2xvY2stbmFtZXMgPSAi
+YXBiIiwgInNtaSI7DQo+ICsJCQlwb3dlci1kb21haW5zID0gPCZzcG0gTVQ4MTY3X1BPV0VSX0RP
+TUFJTl9WREVDPjsNCj4gKwkJfTsNCj4gIAl9Ow0KPiAgfTsNCg0K
 
-As others said, it is possible to assign queues from the compression and
-crypto accelerators on the Kunpeng920 to userspace, using the uacce char
-device (upstream since last year, but waiting for implementations of the
-SVA API in IOMMU drivers). I've been using that platform for testing my
-code for the past year, with the UADK tool as well as an openssl plugin.
-
-Securely assignig a queue to userspace requires full SVA support in
-SMMUv3, which consists of PASID, page table sharing, and I/O page faults.
-The first two were already merged, and the third one requires either Stall
-or PRI. I'm not submitting PRI support at the moment because there is no
-hardware, but the Hisilicon platform implements stall and will be able to
-use it right away.
-
-Thanks,
-Jean
