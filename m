@@ -2,172 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3994355172
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 13:00:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A670B35517F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 13:04:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245303AbhDFLAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 07:00:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53402 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245299AbhDFLAL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 07:00:11 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3F9BC06174A;
-        Tue,  6 Apr 2021 04:00:02 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id g10so7269440plt.8;
-        Tue, 06 Apr 2021 04:00:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=uAfHURTLSwkVlAhOdumUV/peFHBBPWxoa4MMAdiyslg=;
-        b=WaZTnSHwiOhUV40kXOg1zlC6O1HgGEvjnzGK6Mk3vdlneD7+ZwALwOWfVjoBZ+J/cl
-         sfAXoEcYofIJsEQAUqK66xm0qTSpBd9tjJabOhJo21NwaI8SfPvKaFDFtYblLk9r6Fmk
-         GzohY/tcvY2K6/f7/GOeKkSn/f20zYhM10/NUwO92bPhBlNDZbCsExt8HTHip/mx3KAZ
-         n6OM30M6mFH72tUcXXLHBSyF2w9jFvj3PnWr7P6AksR5tEyfErtToQWqUQGbzb81MUJw
-         mo/kSXVtdNDzHHEc/XkGkrTnOQS5dOYpDfvksOpv5vFfjcJDJ+jw0oDKpLT9W2qxaUt/
-         QtBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=uAfHURTLSwkVlAhOdumUV/peFHBBPWxoa4MMAdiyslg=;
-        b=X8ZeLDAY5N93owfeK0xqu6HdBggUYnuwlchAuLVQpD6TqHIoJ0qloK1qbJE7YJtbu7
-         YsOWYjwfXX3Ze8s4AziKSnJ6L/LGEgXZCYK5KeKvoce9b810+7XczcIDQGlOKvcVvvg/
-         /HzD/Qn5QqEmzmfNDHZiDqC6Ed5oCmRnle/WTuuATBpDViu0ERq7CFCHKLGGHdp8Z15D
-         /N1D8GIBefXAc6MjZUUEHNqdZt4rJBRgqkktU8XjB5dl6OmFu/5XczqhKiTginLXfqUd
-         TzqkrkR+PqxlBYWMUe1AD2MnxiO9+y7HTBr38HttVS5LAQo4jV6oXIOzzzZk2bkOLelr
-         5fSw==
-X-Gm-Message-State: AOAM531FNB7vNHnw9T6gx8P97IQJhlHb8BAZfj8gQwyCYPssJ+uV/nD3
-        Vvau2T2Z1Nn6t2CAi5ALmL6SCcu8DiZkmQ==
-X-Google-Smtp-Source: ABdhPJyyrYIPTkV8Iim1aaWdrWukRhx3MarZcSFNSq21hNpifBFgLBmRi/z2FOk1ZAh2qBm8JMVW+w==
-X-Received: by 2002:a17:902:aa8a:b029:e6:64bd:e29d with SMTP id d10-20020a170902aa8ab02900e664bde29dmr28523527plr.24.1617706802339;
-        Tue, 06 Apr 2021 04:00:02 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id v8sm18128204pfm.128.2021.04.06.03.59.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Apr 2021 04:00:01 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8167: add power domains
-To:     Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     mkorpershoek@baylibre.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210405172836.2038526-1-fparent@baylibre.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <7e8532e1-710c-3239-4384-cbb10348c4b4@gmail.com>
-Date:   Tue, 6 Apr 2021 12:59:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S239157AbhDFLEz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 07:04:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47652 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231650AbhDFLEz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Apr 2021 07:04:55 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 150BD613C7;
+        Tue,  6 Apr 2021 11:04:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617707087;
+        bh=j0qsL8ZhRgxgUfLEkGnISsjLMn2+Fbcco5QjwWwQSXE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GqTZLOyW2VyULQBFS9BxNlyfxWpXdw88hZPxg9c3afs1QPqMNdzh+rKGKGbOl3XrZ
+         IGnpMhOUwyH69P3KyQUiFTEwzFBS+J2ar+dsE2EHZHNaTRYZFFh9JwhMzcQMLtGUoY
+         n3Fan8Qr1ny5jI9TrPTqZ8A+88ItN46XTRnYYtyG+Jiuk5tJLmyPmnzXKBn1KEVO7b
+         0ShlhvnTuJWlsDaQhC2Nvnu1FHcu17N0mpv1NB9Oj8VQsJVg2y4X4BTXrnZfv6B8V0
+         WmzZ0CD8ZwcHD+sG54Uhl17vZrYBMkQhInQIR8NDEm/7MIdHxcFdJqxtSa27n4t/4e
+         QXF/qwteOCeXg==
+Date:   Tue, 6 Apr 2021 12:04:31 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+Cc:     "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>
+Subject: Re: [PATCH v5 00/19] Support ROHM BD71815 PMIC
+Message-ID: <20210406110430.GB6443@sirena.org.uk>
+References: <cover.1617020713.git.matti.vaittinen@fi.rohmeurope.com>
+ <303b164aaa3d36cf8c9d03ee9b3863635be4073d.camel@fi.rohmeurope.com>
+ <20210402191950.GK5402@sirena.org.uk>
+ <e0b83eee4417e4e267b15a8c22bbc7f70df919e9.camel@fi.rohmeurope.com>
 MIME-Version: 1.0
-In-Reply-To: <20210405172836.2038526-1-fparent@baylibre.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="cmJC7u66zC7hs+87"
+Content-Disposition: inline
+In-Reply-To: <e0b83eee4417e4e267b15a8c22bbc7f70df919e9.camel@fi.rohmeurope.com>
+X-Cookie: BARBARA STANWYCK makes me nervous!!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--cmJC7u66zC7hs+87
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 05/04/2021 19:28, Fabien Parent wrote:
-> Add support for the MT8167 power domains.
-> 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+On Mon, Apr 05, 2021 at 05:23:41AM +0000, Vaittinen, Matti wrote:
+> On Fri, 2021-04-02 at 20:19 +0100, Mark Brown wrote:
 
-Applied to v5.12-next/dts64-2
+> > Matti Vaittinen (2):
+> >       regulator: helpers: Export helper voltage listing
+> >       regulator: Add regmap helper for ramp-delay setting
 
-Thanks
+> If I understand this correctly, the idea is that Lee could pull these
+> changes to his tree? So, I will drop these two patches from the series
+> when I resend it. Helpers are needed for the regulator part of the
+> series to apply. Lee, Mark, please let me know if I misunderstood.
 
-> ---
->  arch/arm64/boot/dts/mediatek/mt8167.dtsi | 68 ++++++++++++++++++++++++
->  1 file changed, 68 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8167.dtsi b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> index 1c5639ead622..156fbdad01fb 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> @@ -7,6 +7,7 @@
->  
->  #include <dt-bindings/clock/mt8167-clk.h>
->  #include <dt-bindings/memory/mt8167-larb-port.h>
-> +#include <dt-bindings/power/mt8167-power.h>
->  
->  #include "mt8167-pinfunc.h"
->  
-> @@ -34,6 +35,73 @@ apmixedsys: apmixedsys@10018000 {
->  			#clock-cells = <1>;
->  		};
->  
-> +		scpsys: syscon@10006000 {
-> +			compatible = "syscon", "simple-mfd";
-> +			reg = <0 0x10006000 0 0x1000>;
-> +			#power-domain-cells = <1>;
-> +
-> +			spm: power-controller {
-> +				compatible = "mediatek,mt8167-power-controller";
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				#power-domain-cells = <1>;
-> +
-> +				/* power domains of the SoC */
-> +				power-domain@MT8167_POWER_DOMAIN_MM {
-> +					reg = <MT8167_POWER_DOMAIN_MM>;
-> +					clocks = <&topckgen CLK_TOP_SMI_MM>;
-> +					clock-names = "mm";
-> +					#power-domain-cells = <0>;
-> +					mediatek,infracfg = <&infracfg>;
-> +				};
-> +
-> +				power-domain@MT8167_POWER_DOMAIN_VDEC {
-> +					reg = <MT8167_POWER_DOMAIN_VDEC>;
-> +					clocks = <&topckgen CLK_TOP_SMI_MM>,
-> +						 <&topckgen CLK_TOP_RG_VDEC>;
-> +					clock-names = "mm", "vdec";
-> +					#power-domain-cells = <0>;
-> +				};
-> +
-> +				power-domain@MT8167_POWER_DOMAIN_ISP {
-> +					reg = <MT8167_POWER_DOMAIN_ISP>;
-> +					clocks = <&topckgen CLK_TOP_SMI_MM>;
-> +					clock-names = "mm";
-> +					#power-domain-cells = <0>;
-> +				};
-> +
-> +				power-domain@MT8167_POWER_DOMAIN_MFG_ASYNC {
-> +					reg = <MT8167_POWER_DOMAIN_MFG_ASYNC>;
-> +					clocks = <&topckgen CLK_TOP_RG_AXI_MFG>,
-> +						 <&topckgen CLK_TOP_RG_SLOW_MFG>;
-> +					clock-names = "axi_mfg", "mfg";
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +					#power-domain-cells = <1>;
-> +					mediatek,infracfg = <&infracfg>;
-> +
-> +					power-domain@MT8167_POWER_DOMAIN_MFG_2D {
-> +						reg = <MT8167_POWER_DOMAIN_MFG_2D>;
-> +						#address-cells = <1>;
-> +						#size-cells = <0>;
-> +						#power-domain-cells = <1>;
-> +
-> +						power-domain@MT8167_POWER_DOMAIN_MFG {
-> +							reg = <MT8167_POWER_DOMAIN_MFG>;
-> +							#power-domain-cells = <0>;
-> +							mediatek,infracfg = <&infracfg>;
-> +						};
-> +					};
-> +				};
-> +
-> +				power-domain@MT8167_POWER_DOMAIN_CONN {
-> +					reg = <MT8167_POWER_DOMAIN_CONN>;
-> +					#power-domain-cells = <0>;
-> +					mediatek,infracfg = <&infracfg>;
-> +				};
-> +			};
-> +		};
-> +
->  		imgsys: syscon@15000000 {
->  			compatible = "mediatek,mt8167-imgsys", "syscon";
->  			reg = <0 0x15000000 0 0x1000>;
-> 
+Yes.
+
+--cmJC7u66zC7hs+87
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBsQD4ACgkQJNaLcl1U
+h9AFswf9Hokgv/qlc9tx7qtUsLTFz/Bqr7r6bGw937a0dA9PyYBNsN1ZDH/ZaU6k
+TgoMBbFwnyVsL82XwHsLOrGih0+XaeYNkKXm5/I+qd86ryl1My8CLkAt6iXQqWY/
+3rP8/gueg4zqniWchALAYejIhz910A69Qsz7XOwVWj0XKoUpyiZpq7NUtF2ueNyH
+4I0p/K57R/NeYmfn0FFwsQgpik9stmtrqXpOEhAGay7e4TDDiDuG9qagMEMPCDDr
+r/FPpCgWodDPB/INLfYcUygjA9b/7yrgm4JaDy9d3H9UlxsNbIZIPDt5lgqcwcia
+3M1X7F8fSG//t5VsyflAsJg/ToeT0g==
+=+Bcj
+-----END PGP SIGNATURE-----
+
+--cmJC7u66zC7hs+87--
