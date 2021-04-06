@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BC2635589A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 17:57:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E76A73558AD
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 18:02:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243801AbhDFP50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 11:57:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34626 "EHLO
+        id S232147AbhDFQCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 12:02:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232363AbhDFP5Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 11:57:25 -0400
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1310EC06174A;
-        Tue,  6 Apr 2021 08:57:18 -0700 (PDT)
-Received: by mail-il1-x130.google.com with SMTP id p8so9168704ilm.13;
-        Tue, 06 Apr 2021 08:57:18 -0700 (PDT)
+        with ESMTP id S231787AbhDFQCM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 12:02:12 -0400
+Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 706D0C06174A;
+        Tue,  6 Apr 2021 09:02:04 -0700 (PDT)
+Received: by mail-io1-xd30.google.com with SMTP id v26so16075968iox.11;
+        Tue, 06 Apr 2021 09:02:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=FEHBLN0Zstx1GJN7oNvdBnFUfGg0YcWpGNgAuqNChPM=;
-        b=ewEZauKlnvV70GX0on1+GRjS9gR/bGnmqPzBG+GSpy2uOxwLfOllm9KCl5/p7dFAZz
-         nHE1PVAjQimYXKTfna3TXgFuubqMlL3UaczMGaC0r2bCDW0X7qg4nOxFzZQWrUtkB/YD
-         BzgGmPkk1FdLZw8Lm4U/X/4ppblG8V4pG8bAO8hmaMKKJrxoLBEtm9W127DFBGtAU2UE
-         t3oVu54JpKY9oq21Gcsu+T9VbuEM+KXkKbmTjDvs4o3q9lJnzsOVa9zbWtBpT67TMG3R
-         2h/Iowp2LUCrtcdi5khnKDrSoXByGh5FqI6GimUrmfcfLjd+XhdyCMM4ZLElYNd3Vb9C
-         CGIA==
+         :cc;
+        bh=y6td6U/wgXJy1PKxkTx+qADiVVwnBDVWbevDjru0nls=;
+        b=XvPpCjYxNmJmPbhWQwWWLjNrOfwWJekG5FGqReCq3HR7smTKgok8w/+146+n12sXYh
+         g1SrBLJkHm6800/a8NRq/X+CMSiz6G/JNNS8hv/BXu44w47pWOn4xjF227zQ2lkprOIh
+         eGWepOCNQdmUWzQmHnj7HDx92mhDsbhqkmNXhEA/G8FyxFn6hoH1IVrtQ7PnvK8DwgzB
+         PpYChXnoMFzZkwxfV3WUOwaNcPHs1chU+ro8WE+MMTT1XaElw/fgi6L1oS8RhBNtOjdF
+         OYxHMqvZRgAwps12+XvU/yKiF+SLtPa48N5qxjKKm0GQe2t7kykpeRwCrm/FaC3hYWj6
+         A/SA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=FEHBLN0Zstx1GJN7oNvdBnFUfGg0YcWpGNgAuqNChPM=;
-        b=DPx6sZlEJ9b46Msw3hGsH+gzNREmsZ0Mv0ilTRNBTIG0ZaESBbSy904hllG4j+CyQ/
-         1xer1EAPv/LjAJrIvObm2rrV7eQeqfB9enALA9dLKH2eipn1LVVfk9eLC0LR+BDTx/ll
-         qbDUt/KDo25aoQamAM6saee6b/V7JrbgBEfjOgPImTW44mRwp6I0KzDNIi1g003BA0T+
-         eTVc4rpvWECwn5C35eyyrZtwt1JtqwsOI5ntad7FWKrL4QVV58P6FKbexnTtQTMhznVy
-         vIeI+2S5BBDsiVBqnxh3v5Ue39qnk1nJOBJxgh4h/uFEfo9nXSODefl6zWdnRCimdQif
-         u7gA==
-X-Gm-Message-State: AOAM533z6pJD34/W5ebck+2EaMu89m1rXXr5rDd8LSQ0rYG0Z7qdZu+R
-        DvpIhuchwFXp/5rk6rKbVqUF65wn67iqbzLbNX1oZBv6SlZfXw==
-X-Google-Smtp-Source: ABdhPJwcAo2Mlxz7UGgC2fTg8jHTyNrSATURmH+oza/tZhdRnPEtDe7seeMK4cOStjDtCgSO2NPZMkI6wNVpe9+DdWk=
-X-Received: by 2002:a92:de0c:: with SMTP id x12mr2017100ilm.169.1617724637582;
- Tue, 06 Apr 2021 08:57:17 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=y6td6U/wgXJy1PKxkTx+qADiVVwnBDVWbevDjru0nls=;
+        b=SzFu7dNqvnWeg8Fhs3e+9gK+fpERM08uBEIozvp5jrcwMhhcgDLFjxhEZHz3sv3+OA
+         x3hHJ/eBjmL6M60YLr6QvQxM3GfNyHHpWUj/OzN2V4UZMKl0eFoWCVOLCLzPZXodR8bR
+         0hw2dtTJg7Po3I+vp77NHFCDKzG4kt9rulj9e/0StWbcgO4NUO5nyJbWuIDih++jx6Zz
+         wprdXd6cR9m6luynF5+McHRfSFbWBxvoBObhUb0HcYTFMBk4YAxR/EA1fVbVVmVAqKAX
+         xMeEi1sWA8VDafz5TGXTUxzvy1FszO2pyo6rUsT9IpJzhHqOpmrszn55u8FXkwhUdce8
+         33zg==
+X-Gm-Message-State: AOAM530xNQOdaY1OBLmFyjUc/GZ6rUJZLnzz/oVy3806Tev9QCPm+LsO
+        h+k/F0whamCeitgcjpwh1YMzS3CZXck/HjFR3nQ=
+X-Google-Smtp-Source: ABdhPJzrupn5Tqo/qGYiJFhgY4pom3bPfOsFnrJ4YLA/PGWrDxckk5HncixtyDHTPC1rXWyNlr2qX0SRG+OFMzNoklo=
+X-Received: by 2002:a05:6638:144e:: with SMTP id l14mr29148356jad.76.1617724924002;
+ Tue, 06 Apr 2021 09:02:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210406141819.1025864-1-dqfext@gmail.com> <20210406141819.1025864-2-dqfext@gmail.com>
- <CAAOTY_8snSTcguhyB9PJBWydqNaWZL3V4zXiYULVp5n48fN24w@mail.gmail.com>
-In-Reply-To: <CAAOTY_8snSTcguhyB9PJBWydqNaWZL3V4zXiYULVp5n48fN24w@mail.gmail.com>
+References: <20210406141819.1025864-1-dqfext@gmail.com> <20210406141819.1025864-3-dqfext@gmail.com>
+ <YGx+nyYkSY3Xu0Za@lunn.ch> <CALW65jYhBGmz8dy+9C_YCpJU5wa-KAwgrGjCSpa3nqUNT+xU+g@mail.gmail.com>
+ <YGyC9liu9v+DFSHA@lunn.ch>
+In-Reply-To: <YGyC9liu9v+DFSHA@lunn.ch>
 From:   DENG Qingfang <dqfext@gmail.com>
-Date:   Tue, 6 Apr 2021 23:57:14 +0800
-Message-ID: <CALW65jbbQSFbgjsMkKCyFWnbkLOenM_+2q6K7BQG5bc4-R0CpA@mail.gmail.com>
-Subject: Re: [RFC net-next 1/4] net: phy: add MediaTek PHY driver
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 7 Apr 2021 00:02:00 +0800
+Message-ID: <CALW65jaTfcJoMqZPfLjbYXd+JWvG8CciUiGRmQwc_bf2538kog@mail.gmail.com>
+Subject: Re: [RFC net-next 2/4] net: dsa: mt7530: add interrupt support
+To:     Andrew Lunn <andrew@lunn.ch>
 Cc:     "David S. Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>,
         Florian Fainelli <f.fainelli@gmail.com>,
         Heiner Kallweit <hkallweit1@gmail.com>,
         Jakub Kicinski <kuba@kernel.org>,
@@ -70,40 +70,27 @@ Cc:     "David S. Miller" <davem@davemloft.net>,
         linux-kernel <linux-kernel@vger.kernel.org>,
         "moderated list:ARM/Mediatek SoC support" 
         <linux-mediatek@lists.infradead.org>,
-        linux-staging@lists.linux.dev, DTML <devicetree@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
+        linux-staging@lists.linux.dev,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, netdev <netdev@vger.kernel.org>,
         Weijie Gao <weijie.gao@mediatek.com>,
         Chuanhong Guo <gch981213@gmail.com>,
         =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 6, 2021 at 11:47 PM Chun-Kuang Hu <chunkuang.hu@kernel.org> wro=
-te:
+On Tue, Apr 6, 2021 at 11:49 PM Andrew Lunn <andrew@lunn.ch> wrote:
+> O.K. So that makes it similar to the mv88e6xxx. With that driver, i
+> kept interrupt setup and mdio setup separate. I add the interrupt
+> controller first, and then do mdio setup, calling a helper to map the
+> PHY interrupts and assign them to bus->irq[].
 >
-> Hi, Qingfang:
->
-> DENG Qingfang <dqfext@gmail.com> =E6=96=BC 2021=E5=B9=B44=E6=9C=886=E6=97=
-=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=8810:19=E5=AF=AB=E9=81=93=EF=BC=9A
-> > --- a/drivers/net/phy/Kconfig
-> > +++ b/drivers/net/phy/Kconfig
-> > @@ -207,6 +207,11 @@ config MARVELL_88X2222_PHY
-> >           Support for the Marvell 88X2222 Dual-port Multi-speed Etherne=
-t
-> >           Transceiver.
-> >
-> > +config MEDIATEK_PHY
->
-> There are many Mediatek phy drivers in [1], so use a specific name.
+> That gives you a cleaner structure when you start using the other
+> interrupts.
 
-So "MEDIATEK_MT7530_PHY" should be okay?
+Okay. Will split the function in v2. Thanks.
 
 >
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr=
-ee/drivers/phy/mediatek?h=3Dv5.12-rc6
->
-> Regards,
-> Chun-Kuang.
+>         Andrew
