@@ -2,128 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66F41355550
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 15:37:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48BE735556A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 15:41:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243944AbhDFNh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 09:37:27 -0400
-Received: from mout.gmx.net ([212.227.17.20]:41181 "EHLO mout.gmx.net"
+        id S1344589AbhDFNlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 09:41:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33064 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233252AbhDFNh1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Apr 2021 09:37:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1617716231;
-        bh=W+UtVtp8aM/GVU9D1YF/wcU0c2NsWAGAV4/H08vIA+o=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=XNb813X1/hhfJXpSMO7YaLu0OTDnVf3MnbAMLI769t3J4DreI+741Sum3BIeqxqeR
-         YeHom9xa1gUcC+7jSSkcCGy7iZg8j/d7Lsx0f/o5M5IC5AcnBdQRGyvyKnfWDZxxqf
-         8gzPlwidvGwzxKC/dbwN1r5jlobXDg7s6Sods7jo=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.215.134]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1N1wpt-1lagu62wfZ-012EiF; Tue, 06
- Apr 2021 15:37:11 +0200
-Date:   Tue, 6 Apr 2021 15:37:11 +0200
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Giulio Benetti <giulio.benetti@benettiengineering.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: touchscreen: Add HY46XX bindings
-Message-ID: <YGxkB6icZSJfx/VB@latitude>
-References: <YGbc7Qbu6s659Mx4@latitude>
- <20210402161627.2546145-1-giulio.benetti@benettiengineering.com>
- <20210402161627.2546145-3-giulio.benetti@benettiengineering.com>
+        id S238827AbhDFNlH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Apr 2021 09:41:07 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6348D613CC;
+        Tue,  6 Apr 2021 13:40:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617716459;
+        bh=qDqK8wQ/7+OGAOOi2xbtIaP4WgZISHYYxdJR7Ffc8M8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=IKvTcGDzC+BV8Bn3ZgVr2JE1vpteJc7rq1gMuR8nj780i50TxUJANEw0ZH5G8+XkT
+         XK8Kpx97almclBQpSzQbI+luXqdH2FqPtZIE48qvYuiDFh0Bq62OsNt/GtM994YGus
+         oRZfWHUk7jf/F/2us8KgRPRdZe2DXfBxC6dq1YZbemKPlyCaPwycs6+WZxFTDKLdb4
+         6hFFpfRO8AoELDUyRUCN8EUotmaTvrQe4KiRE6I4J8bITjhXhMFTZ2ZsybQjXyfFo6
+         YrjEPTdHDEyC5X6pxLbyicG5ulYzKXh3tLwxfciAvAwhIpoPTA5LZpJFysCC1FbiQd
+         puWOsH3D9xclg==
+Received: by mail-ed1-f50.google.com with SMTP id o19so16640223edc.3;
+        Tue, 06 Apr 2021 06:40:59 -0700 (PDT)
+X-Gm-Message-State: AOAM532GaL8d11YEr7LabqA+jV9EDSaswilyKeF5BlCcLhNpmbMV2hLq
+        dS9U+RGfDyOdaocvtJB1uTao8OZ+i2DJq/lzOw==
+X-Google-Smtp-Source: ABdhPJwNrYLLERtt0yqnaTwUk3ZS3MELJaO4SHKDD69Ff9/SXNbj3VqJcyZgHOvauQEnaGR3492LZ0HUkaAxpGmpLX0=
+X-Received: by 2002:a05:6402:5252:: with SMTP id t18mr38710035edd.258.1617716457827;
+ Tue, 06 Apr 2021 06:40:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="9WUZB2G+sPhVyB7j"
-Content-Disposition: inline
-In-Reply-To: <20210402161627.2546145-3-giulio.benetti@benettiengineering.com>
-X-Provags-ID: V03:K1:ZwLG6T1+PLZ8a4BRXNhawlEcNxwpZ5xzDSjFTT/38p33fMLvmuU
- 1qrLhvNhxa3kpkyvF8YcUaQ3ZDB/O7cdZH3oO7+Gs6Epnoky8oo4isNCs0N7HryVOTjqeNe
- aD/JKFTSK75l982EELoloRS5+s17HGLIxh3LzHG7A4wzTHXGptqTXoiJ2Y2xE2YI0ECiTBy
- qAUF6VpqaEq8Vff7IsRIg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:OUFskwDCf28=:bxAP6ALs5g9byp5dd1+nsm
- zMRMYZRrtfe2/BZTdiKNt3DOQiNlFe75qc8AO+IR/VXihGJuYL0Tc3eNiQ+EgnXn6WS9Uu2Hk
- Koo3xi0hP6FBLMLlwpHJm+jA3t5gMna9UAoM7mD3X7W9Jrw/r9GKiXVydrEFwIl6int2+vHID
- BEKst3eEYlnKXEJZ8SDuuLPptaDMhHRK9Q08S0+lothZ3w02dMU4ENSIvb7bygw8SljwAqrXY
- KalMRwzuNn/twZLnTai4AhGQoDBn72pkVSGxNFlvEz+tjJ2i6bB9880tmSwCvUkntc2B1Y9ZG
- 9biQ1FsHip2O71hvOvPcxyFT+tT5K+c7r73lHdd7u3oSDSmz6BZA3VSP8L3QmFLWJJeYQ3JYw
- ACrKuAEN9hErC4ttiNU9dnSh1dzmprizDzBvN640DYImGHxLw72bZVdavEsVTx0+7v8IGMS15
- 9AnYgVFQ4zLX9WBAqjYNpy0DRg5YSpbHVtjr3lsir0wmDvmcc07SouTYY6EBJsHwF/W7bGuEU
- F2EA9PGjiHoCL+jxwz0cW639jfSthKHf19UcV5XGbZ0Lce630F3m97oewVRvX0ENarXPNPF/h
- 9KDK6UW1kME3R+vCGH9pNRJ0dvQ4Kb+5rZU1q1EDpIoFD9L6CySjehMC4Quli3M4mSPSrU1B0
- EE34M0EDXdaJMcdQp7OBnWanZCaAtZZ5pw1OfPI6GA4QhM975xxa0lhlakOZIY0aAlDvZhaMX
- 263piW+lOnS6AJ7/vfaeJNQzqjAv2MwekPbiICoWQBRPMy2Ufz/EhrxcmqSSWakZtaw6IrifR
- BjhjZeawRRy/J77wb7yxBftsf0UgO1PQMZt2l+3qit/zIvQwZqdWyessvMNUY3eaW9kz3G9Ze
- c2psD6MKBMZDYR0dSR1UU5vtO3pViYhpV3p3+72IYeiPJ0Jd5muSsDq3H3ZrHE9U4UmHmhAWT
- EZofinXlNHLpJY8MKXG8gAScyG4fciqdfNx5Wzv4DoqBTek0Vmvp695AxQ2b0o+Dqs4vutpE4
- ti5CzVQJ5gY+czp3e9fmiFaCwji1CL6YwAItbiRDDuBo9OJvmFF6iPaCi7IDEvvR5z2dnxSd2
- UNkIUHxn5p10rFRVYKZe5yjaLgWlYdb2q2cQuUat58ydYKu7bzq2e/KsoBTsgZwf+ZqIqXsvR
- LpLq4tWGHsRr3Bvo1W/G3Kn8GENjphhvwXe7637QrhOsEm17QyWaO1X1UCsqgsjun9eBcqtpR
- eSqu/mcDM1Z3Mrmfi
+References: <20210316193820.3137-1-alex@ghiti.fr> <ee702ff7-f43c-745c-4157-b1cba53bb0b2@ghiti.fr>
+In-Reply-To: <ee702ff7-f43c-745c-4157-b1cba53bb0b2@ghiti.fr>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 6 Apr 2021 08:40:46 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLeA2va05A78M893rAGoeMr-CztdiZouq-PSDFfsJ_-EA@mail.gmail.com>
+Message-ID: <CAL_JsqLeA2va05A78M893rAGoeMr-CztdiZouq-PSDFfsJ_-EA@mail.gmail.com>
+Subject: Re: [PATCH] driver: of: Properly truncate command line if too long
+To:     Alex Ghiti <alex@ghiti.fr>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Dmitry Vyukov <dvyukov@google.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Apr 3, 2021 at 7:09 AM Alex Ghiti <alex@ghiti.fr> wrote:
+>
+> Hi,
+>
+> Le 3/16/21 =C3=A0 3:38 PM, Alexandre Ghiti a =C3=A9crit :
+> > In case the command line given by the user is too long, warn about it
+> > and truncate it to the last full argument.
+> >
+> > This is what efi already does in commit 80b1bfe1cb2f ("efi/libstub:
+> > Don't parse overlong command lines").
+> >
+> > Reported-by: Dmitry Vyukov <dvyukov@google.com>
+> > Signed-off-by: Alexandre Ghiti <alex@ghiti.fr>
+> > ---
+> >   drivers/of/fdt.c | 21 ++++++++++++++++++++-
+> >   1 file changed, 20 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> > index dcc1dd96911a..de4c6f9bac39 100644
+> > --- a/drivers/of/fdt.c
+> > +++ b/drivers/of/fdt.c
+> > @@ -25,6 +25,7 @@
+> >   #include <linux/serial_core.h>
+> >   #include <linux/sysfs.h>
+> >   #include <linux/random.h>
+> > +#include <linux/ctype.h>
+> >
+> >   #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
+> >   #include <asm/page.h>
+> > @@ -1050,9 +1051,27 @@ int __init early_init_dt_scan_chosen(unsigned lo=
+ng node, const char *uname,
+> >
+> >       /* Retrieve command line */
+> >       p =3D of_get_flat_dt_prop(node, "bootargs", &l);
+> > -     if (p !=3D NULL && l > 0)
+> > +     if (p !=3D NULL && l > 0) {
+> >               strlcpy(data, p, min(l, COMMAND_LINE_SIZE));
+> >
+> > +             /*
+> > +              * If the given command line size is larger than
+> > +              * COMMAND_LINE_SIZE, truncate it to the last complete
+> > +              * parameter.
+> > +              */
+> > +             if (l > COMMAND_LINE_SIZE) {
+> > +                     char *cmd_p =3D (char *)data + COMMAND_LINE_SIZE =
+- 1;
+> > +
+> > +                     while (!isspace(*cmd_p))
+> > +                             cmd_p--;
+> > +
+> > +                     *cmd_p =3D '\0';
+> > +
+> > +                     pr_err("Command line is too long: truncated to %d=
+ bytes\n",
+> > +                            (int)(cmd_p - (char *)data + 1));
+> > +             }
+> > +     }
+> > +
+> >       /*
+> >        * CONFIG_CMDLINE is meant to be a default in case nothing else
+> >        * managed to set the command line, unless CONFIG_CMDLINE_FORCE
+> >
+>
+> Any thought about that ?
 
---9WUZB2G+sPhVyB7j
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It looks fine to me, but this will need to be adapted to the generic
+command line support[1][2] when that is merged. So I've been waiting
+to see if that's going to happen this cycle.
 
-In the binding:
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - hycon,hycon-hy4613
-> +      - hycon,hycon-hy4614
-> +      - hycon,hycon-hy4621
-> +      - hycon,hycon-hy4623
-> +      - hycon,hycon-hy4633
-> +      - hycon,hycon-hy4635
+Rob
 
-In the example:
-> +      hycon-hy4633@1c {
-> +        compatible =3D "hycon,hy4633";
-> +        reg =3D <0x1c>;
-> +        interrupt-parent =3D <&gpio2>;
-> +        interrupts =3D <5 IRQ_TYPE_EDGE_FALLING>;
-> +        reset-gpios =3D <&gpio2 6 GPIO_ACTIVE_LOW>;
-> +      };
-
-
-Rob's devicetree lint bot detected the mismatch in compatible string
-here.
-
-I personally think 'hycon,hy4633' looks better than 'hycon,hycon-hy4633',
-because it isn't so redundant.
-
-
-Best regards,
-Jonathan Neusch=C3=A4fer
-
---9WUZB2G+sPhVyB7j
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmBsY/8ACgkQCDBEmo7z
-X9sc1A/+JDPo7yRNDI99ucYWvxeTkPEwZTnSP9hUmPOOqOGoz5ZbXHb0IR8uUMK9
-+e8kwQu+yBCOc3I7i+908w6gvOmVjrPJoVXSH3YnTBcFvajCn+onOMK7SRkG0THb
-ISaw4jxduV+2RJ+EwFUKsdDj99zpLTl1d7SV+wB3JXTSjl+P/neEWWOeVPEFD2hH
-ZYDgBASHRO7v8lLmJ6fdI3LMtBx3YZBcIRcpHHbP9HM+XoI29gQQSNA0/FuX30hI
-kBbtYh/o0k/6Xi5jGjmzhpkLLJ5NwDdwhoGhjG9R5YkbNUp9uhuNCfhHXGm3wMvX
-oBzRHZYarUaJa34NJDiluCmrorhV6mfY1214UDiABUOxcO6f4duMXidBtMiboI2p
-WEW3O1iUufgopuiIkLcFQZNRhj3Rc6pdSE0pNPlgeDS9/FNs2hnRmbs6QAlxhr0V
-qyQAlRI9Atj9Bd4Eop/dBXKTF7oJlQc4diDzbKHv3QgM1CLSBx35vUIjKV5Imnh6
-k5wzntzPJu5h9jHmQ58CR4LlKWBq75LytQ0ea304XOA4QSwjeYY6UJXiAy5WmgAf
-kEz/WK+2z7yw+TavxUiUgXuq5J4Pl6m2BIGegsPkE+u+SeqX7OlaXbpwcXOi3NOh
-mXIgAK6tH/IkLC7hjP7LF5FszKdVGhFQh3iTv4tpjrJM4WGv17M=
-=ciuX
------END PGP SIGNATURE-----
-
---9WUZB2G+sPhVyB7j--
+[1] https://lore.kernel.org/lkml/cover.1616765869.git.christophe.leroy@csgr=
+oup.eu/
+[2] https://lore.kernel.org/lkml/41021d66db2ab427c14255d2a24bb4517c8b58fd.1=
+617126961.git.danielwa@cisco.com/
