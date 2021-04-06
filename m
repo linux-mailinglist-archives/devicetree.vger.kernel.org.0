@@ -2,129 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB1A43554FD
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 15:24:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43FF5355521
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 15:30:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344412AbhDFNYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 09:24:25 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:43566 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344402AbhDFNYX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 09:24:23 -0400
-Received: by mail-ot1-f53.google.com with SMTP id s16-20020a0568301490b02901b83efc84a0so5671946otq.10;
-        Tue, 06 Apr 2021 06:24:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=WMh9wsTtUk5bjoFe6rmnQ66dAMVkJoEObr181rNizCo=;
-        b=k2BBwCXCrqnKmf4rYaNDkoFS9rub1IHTFWArX9hVpNFaBjlgksrni7xZqtYEyQiCvi
-         NgVZZJAheUBqFkYy+9C+kf5gxZ7Evr7GTIHI+Xjxg0CzicDGNaEMiq4MryhVyjOs2xkF
-         9YmsKo1bpaiBaIcOevKwP2Yi+5rYc5JXMya5+T2G+P8T7zj1SMw8XJxUMsUODQgjTSTV
-         bPE3HotwX+N3wGCm9gjgSceF6D8asvkKaU9MIZvtouW7j5zLtq5yhrQHJiDH/m7rV83b
-         YoRTpSZtG6hHX9bUDpLJybhn8MtRrdwsSLt/A48YLcWI9FNIwj3A145bb9QUcKKigfRS
-         L1pA==
-X-Gm-Message-State: AOAM5330TbDBnt7a3Ijp4mvgxh8WZBJBwsIPvubqvPyeQTJQ2O7ay7J+
-        1RCQXVfmw0A2OBG9BUbq0Q==
-X-Google-Smtp-Source: ABdhPJw6oyIqrB/SR505G75yFdcsa0+9wxt1Z4y+VO2PXVEFRp/jBWqxZmcdvOjPgjDsqwojKjW6lw==
-X-Received: by 2002:a9d:5a97:: with SMTP id w23mr26569036oth.314.1617715455706;
-        Tue, 06 Apr 2021 06:24:15 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g2sm4623942otn.32.2021.04.06.06.24.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Apr 2021 06:24:14 -0700 (PDT)
-Received: (nullmailer pid 1674500 invoked by uid 1000);
-        Tue, 06 Apr 2021 13:24:05 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-usb@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter Chen <peter.chen@nxp.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-kernel@vger.kernel.org, Bastien Nocera <hadess@hadess.net>,
-        Michal Simek <michal.simek@xilinx.com>
-In-Reply-To: <20210405124900.v6.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
-References: <20210405201817.3977893-1-mka@chromium.org> <20210405124900.v6.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
-Subject: Re: [PATCH v6 1/5] dt-bindings: usb: Add binding for Realtek RTS5411 hub controller
-Date:   Tue, 06 Apr 2021 08:24:05 -0500
-Message-Id: <1617715445.179283.1674499.nullmailer@robh.at.kernel.org>
+        id S232537AbhDFNaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 09:30:25 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:35790 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232505AbhDFNaZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Apr 2021 09:30:25 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lTlmW-00F7eX-Cy; Tue, 06 Apr 2021 15:30:12 +0200
+Date:   Tue, 6 Apr 2021 15:30:12 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Tobias Waldekranz <tobias@waldekranz.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, vivien.didelot@gmail.com,
+        f.fainelli@gmail.com, olteanv@gmail.com, netdev@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 1/3] net: dsa: mv88e6xxx: Allow dynamic
+ reconfiguration of tag protocol
+Message-ID: <YGxiZIDgXQjaYziE@lunn.ch>
+References: <20210326105648.2492411-1-tobias@waldekranz.com>
+ <20210326105648.2492411-2-tobias@waldekranz.com>
+ <YGCfvDhRFcfESYKx@lunn.ch>
+ <87eefnlr1p.fsf@waldekranz.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87eefnlr1p.fsf@waldekranz.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 05 Apr 2021 13:18:13 -0700, Matthias Kaehlcke wrote:
-> The Realtek RTS5411 is a USB 3.0 hub controller with 4 ports.
+> Since DSA is supported on all devices, perhaps we should just have:
 > 
-> This initial version of the binding only describes USB related
-> aspects of the RTS5411, it does not cover the option of
-> connecting the controller as an i2c slave.
-> 
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
-> 
-> Changes in v7:
-> - added type ref for 'companion-hub' property
-> 
-> Changes in v6:
-> - Realtek binding instead of generic onboard_usb_hub
-> - added 'companion-hub' property
-> - added reference to 'usb-device.yaml'
-> - 'fixed' indentation of compatible entries to keep yamllint happy
-> - added 'additionalProperties' entry
-> - updated commit message
-> 
-> Changes in v5:
-> - updated 'title'
-> - only use standard USB compatible strings
-> - deleted 'usb_hub' node
-> - renamed 'usb_controller' node to 'usb-controller'
-> - removed labels from USB nodes
-> - added 'vdd-supply' to USB nodes
-> 
-> Changes in v4:
-> - none
-> 
-> Changes in v3:
-> - updated commit message
-> - removed recursive reference to $self
-> - adjusted 'compatible' definition to support multiple entries
-> - changed USB controller phandle to be a node
-> 
-> Changes in v2:
-> - removed 'wakeup-source' and 'power-off-in-suspend' properties
-> - consistently use spaces for indentation in example
-> 
->  .../bindings/usb/realtek,rts5411.yaml         | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-> 
+> enum mv88e6xxx_edsa_support {
+>      MV88E6XXX_EDSA_UNSUPPORTED,
+>      MV88E6XXX_EDSA_UNDOCUMENTED,
+>      MV88E6XXX_EDSA_SUPPORTED,
+> };
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Yes, that is O.K.
+ 
+> Do we also want to default to DSA on all devices unless there is a
+> DT-property saying something else? Using EDSA does not really give you
+> anything over bare tags anymore. You have fixed the tcpdump-issue, and
+> the tagger drivers have been unified so there should be no risk of any
+> regressions there either.
 
-yamllint warnings/errors:
+The regressions with be exactly what you are trying to fix here. A MAC
+which does not understand the DSA tag and does the wrong thing, where
+as currently it is using EDSA and working.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/realtek,rts5411.example.dt.yaml: hub@1: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/realtek,rts5411.example.dt.yaml: hub@2: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+So i would keep things as they are by default.
 
-See https://patchwork.ozlabs.org/patch/1462533
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+   Andrew
