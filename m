@@ -2,137 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11D423554BD
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 15:13:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65BB63554F8
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 15:24:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344378AbhDFNN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 09:13:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54770 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344369AbhDFNN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 09:13:27 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 190A1C061760;
-        Tue,  6 Apr 2021 06:13:18 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id e18so14186000wrt.6;
-        Tue, 06 Apr 2021 06:13:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=1reTPibzqrGVFT+HaxpJOSIl23ImGuDdQsAq06ZO/Os=;
-        b=DI2zdnbiorjV/BiuA/2TO8JnwtvPJSK9Xrnt88nEYjGhmwM6LyfHehFMO6oNLKslNm
-         qCJq/kBlKsePKFw6+8+OFE3TAmOzgXRbKDmbhcuu0JiiUB+V8wMfxwYtHQaLP/veILVv
-         3iWaBMyxxQ1TnIt+dBqfvDbul3Tmnk48yhClA9cuYXB9GEXou1uU4Uc6U8A3XP4WNsc+
-         WkYtO3s9jZ7oMSi01wV8Y/GYkDcXMJrZXDU0FHH2klFcgNXKQDECAJambHjADx+MQ1ks
-         88kbF9JWkQGHK+koms02/S+b27akuptWxivt28eRQu2NoJ9uF7D9pgxOKkDJleWbKSZ9
-         4qbA==
+        id S1344398AbhDFNYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 09:24:20 -0400
+Received: from mail-oo1-f49.google.com ([209.85.161.49]:36455 "EHLO
+        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230342AbhDFNYS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 09:24:18 -0400
+Received: by mail-oo1-f49.google.com with SMTP id w1-20020a4adec10000b02901bc77feac3eso3682898oou.3;
+        Tue, 06 Apr 2021 06:24:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1reTPibzqrGVFT+HaxpJOSIl23ImGuDdQsAq06ZO/Os=;
-        b=XYmRtQGpV7yUOSpORhe7vagkS3f07veFAhUR/s7GcT4w+Q+CtxwHtzYhES9fg4kVEG
-         m4YwIPXUAiYnP+HNUuSO4ZVMjaxMgkPRb+BZ0S0OGXUvtX06/DzJMwWjr0yJ4VLLVxOg
-         7GwjAeC8q0ACi0yzKUwYsHOuOyljdWmfLlDvTvQ+Tt783kxXEtQy99meV5U+0F62uQk5
-         Xn8BaThBM1wVvAMxPCnQydK/05FQH2rS5MWmF5bAYI5sr8SJU4qOz1dxvBOAqgqxUWko
-         kBKNunq/yICrc195mToHUVpHuujvWQ4DryFQOcPPkSXUMOcLjvwEI/+gnnaVXzQOLPRq
-         yBtg==
-X-Gm-Message-State: AOAM533rphsOuga5vQQpVYn2jnzqOhco2jzbSTEahOShFjVG141YqTM5
-        qIe7ONqSHGltcmsNXNvdI/vg+btddLJU9g==
-X-Google-Smtp-Source: ABdhPJyHZmEn6eYBVg4t6dkfp3oa8GKNP6QfNTV/r9jX0JOf60dAFWffxjiwkJV89hjkfCyiTheTqw==
-X-Received: by 2002:adf:8b4e:: with SMTP id v14mr34526578wra.103.1617714796849;
-        Tue, 06 Apr 2021 06:13:16 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id 24sm2752663wmg.19.2021.04.06.06.13.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Apr 2021 06:13:16 -0700 (PDT)
-Subject: Re: [PATCH v3 1/3] arm64: dts: mediatek: mt8167: add larb nodes
-To:     Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     mkorpershoek@baylibre.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210406113631.2675029-1-fparent@baylibre.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <d554d512-34c2-db46-990f-ac3b4fc18557@gmail.com>
-Date:   Tue, 6 Apr 2021 15:13:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
-MIME-Version: 1.0
-In-Reply-To: <20210406113631.2675029-1-fparent@baylibre.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=KqiWovFcA0VWUEW5WeOEp/JpvO8enKS6XaPrtTWARiI=;
+        b=TYONHBVMlTJ9WjxSXBfwJQDPzOWz4qvA5pfCLzj2pH9t3KFBNTDAf0kAeqoT1tLYkn
+         aoGpMS8Cc9uu6vqrQ/9s+RBGgxy+huszvv2GJknjVSCT80M65egZ39BdQjwpvfggBozB
+         DxJoi9aNIXdkaUUO+hnghV5P81AWzIaNKQDlkbsQseHQ8unV88AhtQDHARH2OfIUx7Hn
+         Yw2zmxH5gll9D9PJmqJua/s6igUHMb+ZRxThSfXWj78fmqtd46yKUw5Omip+u139jsH1
+         mGjunOwxAMWV2On2ZFhNUApaQGTBHcrGn40nfnRK/mvxhkl7hNgbJLYm/N6D5yI8K4bC
+         JRZg==
+X-Gm-Message-State: AOAM531Es661i6NB+mqUmWi6oBTtlBR0CjQYBpGU5LPW8uc0bRN+RWNm
+        Vb06f0BLQG9tSlxrdWfxpg==
+X-Google-Smtp-Source: ABdhPJxJ41PdfLWO25H89QYPRHvvbckpBygxU6F09QKrCy3911/J1yRX6LxM3v5h+JUwJEogJi7wcA==
+X-Received: by 2002:a4a:8c4f:: with SMTP id v15mr26861642ooj.25.1617715449941;
+        Tue, 06 Apr 2021 06:24:09 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id a6sm4670188otb.41.2021.04.06.06.24.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Apr 2021 06:24:08 -0700 (PDT)
+Received: (nullmailer pid 1674498 invoked by uid 1000);
+        Tue, 06 Apr 2021 13:24:05 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Krishna Manikandan <mkrishn@codeaurora.org>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        vinod.koul@linaro.org, swboyd@chromium.org, robh+dt@kernel.org,
+        tanmay@codeaurora.org, bjorn.andersson@linaro.org, sean@poorly.run,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        freedreno@lists.freedesktop.org, khsieh@codeaurora.org,
+        abhinavk@codeaurora.org, dianders@chromium.org,
+        kalyan_t@codeaurora.org
+In-Reply-To: <1617620770-26202-3-git-send-email-mkrishn@codeaurora.org>
+References: <1617620770-26202-1-git-send-email-mkrishn@codeaurora.org> <1617620770-26202-3-git-send-email-mkrishn@codeaurora.org>
+Subject: Re: [PATCH v15 3/4] dt-bindings: msm: dsi: add yaml schemas for DSI PHY bindings
+Date:   Tue, 06 Apr 2021 08:24:05 -0500
+Message-Id: <1617715445.168054.1674497.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 06/04/2021 13:36, Fabien Parent wrote:
-> Add larb nodes for MT8167:
-> * larb0 is used for display (dsi and hdmi)
-> * larb1 is used for camera (csi)
-> * larb2 is used for the video hardware decoder
+On Mon, 05 Apr 2021 16:36:09 +0530, Krishna Manikandan wrote:
+> Add YAML schema for the device tree bindings for DSI PHY.
 > 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-
-Whole series applied to v5.12-next/dts64-2
-
-Thanks!
-
+> Signed-off-by: Krishna Manikandan <mkrishn@codeaurora.org>
+> 
+> Changes in v1:
+>    - Merge dsi-phy.yaml and dsi-phy-10nm.yaml (Stephen Boyd)
+>    - Remove qcom,dsi-phy-regulator-ldo-mode (Stephen Boyd)
+>    - Add clock cells properly (Stephen Boyd)
+>    - Remove unnecessary decription from clock names (Stephen Boyd)
+>    - Add pin names for the supply entries for 10nm phy which is
+>      used in sc7180 and sdm845 (Stephen Boyd)
+>    - Remove unused header files from examples (Stephen Boyd)
+>    - Drop labels for display nodes and correct node name (Stephen Boyd)
+> 
+> Changes in v2:
+>    - Drop maxItems for clock (Stephen Boyd)
+>    - Add vdds supply pin information for sdm845 (Stephen Boyd)
+>    - Add examples for 14nm, 20nm and 28nm phy yaml files (Stephen Boyd)
+>    - Keep child nodes directly under soc node (Stephen Boyd)
+> 
+> Changes in v3:
+>    - Use a separate yaml file to describe the common properties
+>      for all the dsi phy versions (Stephen Boyd)
+>    - Remove soc from examples (Stephen Boyd)
+>    - Add description for register property
+> 
+> Changes in v4:
+>    - Modify the title for all the phy versions (Stephen Boyd)
+>    - Drop description for all the phy versions (Stephen Boyd)
+>    - Modify the description for register property (Stephen Boyd)
+> 
+> Changes in v5:
+>    - Remove unused properties from common dsi phy file
+>    - Add clock-cells and phy-cells to required property
+>      list (Stephen Boyd)
 > ---
+>  .../bindings/display/msm/dsi-phy-10nm.yaml         | 68 +++++++++++++++++++++
+>  .../bindings/display/msm/dsi-phy-14nm.yaml         | 66 ++++++++++++++++++++
+>  .../bindings/display/msm/dsi-phy-20nm.yaml         | 71 ++++++++++++++++++++++
+>  .../bindings/display/msm/dsi-phy-28nm.yaml         | 68 +++++++++++++++++++++
+>  .../bindings/display/msm/dsi-phy-common.yaml       | 40 ++++++++++++
+>  5 files changed, 313 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml
 > 
-> Note: This series is based on https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/log/?h=v5.12-next/dts64-2
-> 
-> V3:
-> 	* Removed unicode character in commit summary
-> V2:
-> 	* Removed unneeded mediatek,larb-id property
-> 
->  arch/arm64/boot/dts/mediatek/mt8167.dtsi | 30 ++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8167.dtsi b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> index 4b951f81db9e..bbddd4b22d3e 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> @@ -140,5 +140,35 @@ smi_common: smi@14017000 {
->  			clock-names = "apb", "smi";
->  			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
->  		};
-> +
-> +		larb0: larb@14016000 {
-> +			compatible = "mediatek,mt8167-smi-larb";
-> +			reg = <0 0x14016000 0 0x1000>;
-> +			mediatek,smi = <&smi_common>;
-> +			clocks = <&mmsys CLK_MM_SMI_LARB0>,
-> +				 <&mmsys CLK_MM_SMI_LARB0>;
-> +			clock-names = "apb", "smi";
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-> +		};
-> +
-> +		larb1: larb@15001000 {
-> +			compatible = "mediatek,mt8167-smi-larb";
-> +			reg = <0 0x15001000 0 0x1000>;
-> +			mediatek,smi = <&smi_common>;
-> +			clocks = <&imgsys CLK_IMG_LARB1_SMI>,
-> +				 <&imgsys CLK_IMG_LARB1_SMI>;
-> +			clock-names = "apb", "smi";
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_ISP>;
-> +		};
-> +
-> +		larb2: larb@16010000 {
-> +			compatible = "mediatek,mt8167-smi-larb";
-> +			reg = <0 0x16010000 0 0x1000>;
-> +			mediatek,smi = <&smi_common>;
-> +			clocks = <&vdecsys CLK_VDEC_CKEN>,
-> +				 <&vdecsys CLK_VDEC_LARB1_CKEN>;
-> +			clock-names = "apb", "smi";
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_VDEC>;
-> +		};
->  	};
->  };
-> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.example.dt.yaml:0:0: /example-0/dsi-phy@fd922a00: failed to match any schema with compatible: ['qcom,dsi-phy-28nm']
+
+See https://patchwork.ozlabs.org/patch/1462327
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
