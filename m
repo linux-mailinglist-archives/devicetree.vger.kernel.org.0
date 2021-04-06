@@ -2,123 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 578D8355B40
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 20:24:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6729355B47
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 20:26:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239991AbhDFSX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 14:23:57 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:40412 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233581AbhDFSXq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 14:23:46 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 136INMkm083108;
-        Tue, 6 Apr 2021 13:23:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1617733402;
-        bh=JhEkocfqBYT9SHhZ48vuKki2J0ybw2oAPtY/sW4Ok20=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=sZIzw5z3nk5rhIb60BkbP1RcNUdM4QPpeO3JKHJPlDkiXULJF/bucpR6igbyGx1Gg
-         EsZhT7HnrnQQGN+TGqeHwF+5m2kA3KlCg8nRd3w6/aDadE63DVKRN8nKO54NJ8+nug
-         6b2/KpBhj9K4vJLFCuzFfysSmHoVPSEaUwrXJIMM=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 136INMMm023167
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 6 Apr 2021 13:23:22 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 6 Apr
- 2021 13:23:22 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 6 Apr 2021 13:23:22 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 136INLp6104962;
-        Tue, 6 Apr 2021 13:23:22 -0500
-Date:   Tue, 6 Apr 2021 23:53:21 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Benoit Parrot <bparrot@ti.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Peter Chen <peter.chen@nxp.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <dmaengine@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Subject: Re: [PATCH 16/16] dt-bindings: phy: cdns,dphy: add power-domains
- property
-Message-ID: <20210406182318.7a2cf7zmc3bniucq@ti.com>
-References: <20210330173348.30135-1-p.yadav@ti.com>
- <20210330173348.30135-17-p.yadav@ti.com>
- <YGbzeFuCKnetHRXN@pendragon.ideasonboard.com>
+        id S233642AbhDFS0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 14:26:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39092 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233156AbhDFS0J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 14:26:09 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18427C06174A;
+        Tue,  6 Apr 2021 11:26:01 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id k14-20020a9d7dce0000b02901b866632f29so15591025otn.1;
+        Tue, 06 Apr 2021 11:26:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=S+YrVHF4/ePuOuqqtVeXHUraWj9qRsuousQu2nUgUwY=;
+        b=gy164X6YSgASgLtXNiV0A9vOVIBKYTyWcyLcF3DpYEZh4wirzOP2hYxdlXvyhIr5D1
+         gk3B4MjQMlQWelgHFtX7QtWkB49FyDyKpC2+SlWe1JiD8C/LIC4OpuyT6rd1qHqMuP3M
+         dLij2UUrWupRlqAYfK2YIsEh/0bli4zeR1g43BSShibYToVxHcH7uwUWzkKR3o/jydQx
+         12c6leDYY1bT2SDcjKtnRxLPobCQPX/HOsigeM6sE4TpS78NIucpDlTU7GBE74jv46Hc
+         YXjtnr/RioHrvx+nQEtKQZjKK7c9M1XPcnclswNI5X/qAwKlvU1EWDbvQ0aSfhe1Koon
+         Gk0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=S+YrVHF4/ePuOuqqtVeXHUraWj9qRsuousQu2nUgUwY=;
+        b=fDImMX6ZTAcMz1E7TNRmzfnvH5IB+6ZPqRqzCC3JZbz7qAaEFtfeBNWZ9V5qocQujM
+         FkPh8xVQiGP+sK2sJ3DtSTTMl+bkhB+xQ3RYgoZ8QaaP1NJmR9f3IxY+gg0SQaXDyHP+
+         f70Gb8sxkpF7sFxOBO9EzMjQ7lhJ0Jw1+iRT8JTdSkCK2djRpKZOcz1jeWfrCVmT2apF
+         7zFb7NgcKoc5Vc4Gx0SpMK4ffJe61NkhnqaglLVQYAlFYQxiDQQYNvV3lUKaEVqpe49C
+         60iOkozrDMYoLo5pDckDniz2+isKbb3OPMVaCoIYsn3EDOIfxRAcOQzSaLoFBuotM1na
+         s+pg==
+X-Gm-Message-State: AOAM532E7rlUVz5Lg0ADDlwJnb6KZFvctEgJSEU5LEsYPDklSuTQSXLU
+        NQ4nIx+40obRxXu9I1itLWttGaA07zMSm5wAS9o=
+X-Google-Smtp-Source: ABdhPJxwg9vd9+MahRWgSay31WWghgV7JzI7axm3jThr1fYHICcQZP169QbCdS0oklbH8a3X8ZgxFJxyij7UiRsyUzs=
+X-Received: by 2002:a05:6830:1c6e:: with SMTP id s14mr28119450otg.17.1617733560549;
+ Tue, 06 Apr 2021 11:26:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <YGbzeFuCKnetHRXN@pendragon.ideasonboard.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210401212148.47033-1-jim2101024@gmail.com> <20210401212148.47033-3-jim2101024@gmail.com>
+ <20210406164708.GM6443@sirena.org.uk> <CANCKTBsiujTkOdh60etBqF_hE8exg6m9TDxkGHVVAGVS2SFCcQ@mail.gmail.com>
+ <20210406173211.GP6443@sirena.org.uk>
+In-Reply-To: <20210406173211.GP6443@sirena.org.uk>
+From:   Jim Quinlan <jim2101024@gmail.com>
+Date:   Tue, 6 Apr 2021 14:25:49 -0400
+Message-ID: <CANCKTBv63b4bGepZbDp1wmFrOeddiDikoXbheMjHhbguAbR2sA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/6] dt-bindings: PCI: Add bindings for Brcmstb
+ endpoint device voltage regulators
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>
+Cc:     linux-pci <linux-pci@vger.kernel.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/04/21 01:35PM, Laurent Pinchart wrote:
-> Hi Pratyush,
-> 
-> Thank you for the patch.
-> 
-> On Tue, Mar 30, 2021 at 11:03:48PM +0530, Pratyush Yadav wrote:
-> > This property is needed on TI platforms to enable the PD of the DPHY
-> > before it can be used.
-> > 
-> > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> > ---
-> >  Documentation/devicetree/bindings/phy/cdns,dphy.yaml | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/phy/cdns,dphy.yaml b/Documentation/devicetree/bindings/phy/cdns,dphy.yaml
-> > index 0807ba68284d..ddcd4de0aef6 100644
-> > --- a/Documentation/devicetree/bindings/phy/cdns,dphy.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/cdns,dphy.yaml
-> > @@ -30,6 +30,9 @@ properties:
-> >    "#phy-cells":
-> >      const: 0
-> >  
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> 
-> Would it be useful to add power-domains to the example ?
+On Tue, Apr 6, 2021 at 1:32 PM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Tue, Apr 06, 2021 at 01:26:51PM -0400, Jim Quinlan wrote:
+> > On Tue, Apr 6, 2021 at 12:47 PM Mark Brown <broonie@kernel.org> wrote:
+>
+> > > No great problem with having these in the controller node (assming it
+> > > accurately describes the hardware) but I do think we ought to also be
+> > > able to describe these per slot.
+>
+> > Can you explain what you think that would look like in the DT?
+>
+> I *think* that's just some properties on the nodes for the endpoints,
+> note that the driver could just ignore them for now.  Not sure where or
+> if we document any extensions but child nodes are in section 4 of the
+> v2.1 PCI bus binding.
 
-Ok. Will add it in v2.
+Hi Mark,
 
-> 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+I'm a little confused -- here is how I remember the chronology of the
+"DT bindings" commit reviews, please correct me if I'm wrong:
 
-Thanks.
+o JimQ submitted a pullreq for using voltage regulators in the same
+style as the existing "rockport" PCIe driver.
+o After some deliberation, RobH preferred that the voltage regulators
+should go into the PCIe subnode device's DT node.
+o JimQ put the voltage regulators in the subnode device's DT node.
+o MarkB didn't like the fact that the code did a global search for the
+regulator since it could not provide the owning struct device* handle.
+o RobH relented, and said that if it is just two specific and standard
+voltage regulators, perhaps they can go in the parent DT node after
+all.
+o JimQ put the regulators back in the PCIe node.
+o MarkB now wants the regulators to go back into the child node again?
 
-> 
-> >  required:
-> >    - compatible
-> >    - reg
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
+Folks, please advise.
 
--- 
 Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+Jim Quinlan
+Broadcom STB
