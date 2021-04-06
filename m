@@ -2,103 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A968A354D9E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 09:16:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5434E354DBF
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 09:22:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239868AbhDFHQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 03:16:48 -0400
-Received: from mail-lj1-f179.google.com ([209.85.208.179]:44919 "EHLO
-        mail-lj1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232063AbhDFHQs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 03:16:48 -0400
-Received: by mail-lj1-f179.google.com with SMTP id u9so15238274ljd.11;
-        Tue, 06 Apr 2021 00:16:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=NUTRKCAJSPIjCVadXlxVAs0WfP1mvGI0BilMH14WAU8=;
-        b=WTPLuJtZ//NAj1QCvebmCgsz+67WT1xTQHiZXJr3nmw+Cx65QJxri3f0tMhhQuJnl4
-         gnhh9avEWbpaSo0dyosAEp65ltola4y5zzKM9Za1zrT/iR5SWRuBXQbW37IFYV0laRPf
-         IOX4BkVQRW+1FZOZgPRxYoOWLAnPemLMqgg+cQL9TZiQcMBocIaR+ldF565Uql1oaI0L
-         VGBFStXcQtKF2nJstIB0SRZPdipLDHV8ncdNWdvdmbDp0ptP+10ZudhAbnV1UlmXJmDn
-         mhOql48aAyPbp0nfDGXsKstJHaug53ZcVfv8y54RP8KhBDeuUQ86s/uGt4VZ3zhYj2Bj
-         f/hA==
-X-Gm-Message-State: AOAM531jT/XTOz+sjpHywQyj3vylUvSgxTIeiqOp9sqUQorPjrMrQ39F
-        Ia5cKEHnI9GE0y55t/IbijrRVmren6E/lQ==
-X-Google-Smtp-Source: ABdhPJytLtkJgHYPWNa69nW42h6+4EDqID048rwy0Fy/M6zXpGyXsUkIwWqU4hdXbeH/ZG6a9HuxAg==
-X-Received: by 2002:a2e:8009:: with SMTP id j9mr18716165ljg.364.1617693399353;
-        Tue, 06 Apr 2021 00:16:39 -0700 (PDT)
-Received: from localhost.localdomain (dc7vkhyyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::6])
-        by smtp.gmail.com with ESMTPSA id v70sm2048789lfa.106.2021.04.06.00.16.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Apr 2021 00:16:38 -0700 (PDT)
-Date:   Tue, 6 Apr 2021 10:16:33 +0300
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-power@fi.rohmeurope.com, linux-arm-msm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v4 7/7] regulator: bd9576: Fix the driver name in id table
-Message-ID: <6cf3d6462b339193a50bbc12b781010c545fd72b.1617690965.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1617690965.git.matti.vaittinen@fi.rohmeurope.com>
+        id S244265AbhDFHWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 03:22:02 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:3186 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233289AbhDFHV7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 03:21:59 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1367H7Fc007447;
+        Tue, 6 Apr 2021 09:21:28 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=98McyI4svfF5KndUNWGyXXAvHiKV60OEgW91gDPLjCE=;
+ b=RN6N+EPtFLJuKAQRtc/wR7QIUYLt8hkTSY8blMcCRjPnfkuwYnOuHuELDcpqOH1fRFWe
+ 0Qg+5vRO7LBP0pfqGn8I4G/k5xHZDDC6SVoyAQhjIE/rC6KVchnDW3TKShMNHzMTAxoH
+ LZ/ELilmRj92sdi9sehyQWxgRKYFsMbEVFMHm2Kd4Ktd1KkHWh/9PdcRuVRUuWZCehiN
+ B6JMWwK6MFDLbB84EkXKXdkKIy7Z+EYSyz5wdEBWrIdWPjmXbgdRutmX18GlGnetulLN
+ 1wswdiY+Cczjam9dk2DZYtyW8upvrCUys8viCiqa3z/S3d6VB2ABqguGBz7zXQmVj1T2 GA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 37r6u731ws-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 06 Apr 2021 09:21:28 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 845B810002A;
+        Tue,  6 Apr 2021 09:21:26 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 707C121E66A;
+        Tue,  6 Apr 2021 09:21:26 +0200 (CEST)
+Received: from localhost (10.75.127.48) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 6 Apr 2021 09:21:26
+ +0200
+From:   Erwan Le Ray <erwan.leray@foss.st.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Erwan Le Ray <erwan.leray@foss.st.com>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Valentin Caron <valentin.caron@foss.st.com>
+Subject: [PATCH 0/2] stm32 usart add fifo threshold configuration
+Date:   Tue, 6 Apr 2021 09:21:20 +0200
+Message-ID: <20210406072122.27384-1-erwan.leray@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1617690965.git.matti.vaittinen@fi.rohmeurope.com>
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.48]
+X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
+ definitions=2021-04-06_01:2021-04-01,2021-04-06 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Driver name was changed in MFD cell:
-https://lore.kernel.org/lkml/560b9748094392493ebf7af11b6cc558776c4fd5.1613031055.git.matti.vaittinen@fi.rohmeurope.com/
-Fix the ID table to match this.
+This series adds the support for two optional DT properties, to configure
+RX and TX FIFO thresholds:
+ - st,rx-fifo-threshold-bytes
+ - st,tx-fifo-threshold-bytes
+This replaces hard-coded 8 bytes threshold. No functional change expected
+if unspecified (keep 8 as default).
 
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
----
-Please note - this patch is not really related to the series. This
-change is related to separate MFD driver change and was only added
-as part of this series to avoid the conflicts.
+Erwan Le Ray (1):
+  dt-bindings: serial: stm32: add fifo threshold configuration
 
-No changes since RFC-v2
+Fabrice Gasnier (1):
+  serial: stm32: add fifo threshold configuration
 
- drivers/regulator/bd9576-regulator.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/regulator/bd9576-regulator.c b/drivers/regulator/bd9576-regulator.c
-index 0d55d383d2aa..aeb816cf9ad3 100644
---- a/drivers/regulator/bd9576-regulator.c
-+++ b/drivers/regulator/bd9576-regulator.c
-@@ -1117,8 +1117,8 @@ static int bd957x_probe(struct platform_device *pdev)
- }
- 
- static const struct platform_device_id bd957x_pmic_id[] = {
--	{ "bd9573-pmic", ROHM_CHIP_TYPE_BD9573 },
--	{ "bd9576-pmic", ROHM_CHIP_TYPE_BD9576 },
-+	{ "bd9573-regulator", ROHM_CHIP_TYPE_BD9573 },
-+	{ "bd9576-regulator", ROHM_CHIP_TYPE_BD9576 },
- 	{ },
- };
- MODULE_DEVICE_TABLE(platform, bd957x_pmic_id);
--- 
-2.25.4
-
+ .../bindings/serial/st,stm32-uart.yaml        | 31 ++++++++++-
+ drivers/tty/serial/stm32-usart.c              | 53 ++++++++++++++++---
+ drivers/tty/serial/stm32-usart.h              |  8 +--
+ 3 files changed, 79 insertions(+), 13 deletions(-)
 
 -- 
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
+2.17.1
 
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =] 
