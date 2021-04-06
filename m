@@ -2,103 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 172513551F2
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 13:22:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6D833551FD
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 13:27:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237769AbhDFLWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 07:22:36 -0400
-Received: from mail-lj1-f174.google.com ([209.85.208.174]:44750 "EHLO
-        mail-lj1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241465AbhDFLWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 07:22:33 -0400
-Received: by mail-lj1-f174.google.com with SMTP id u9so16034915ljd.11;
-        Tue, 06 Apr 2021 04:22:25 -0700 (PDT)
+        id S231818AbhDFL1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 07:27:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59428 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229612AbhDFL1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 07:27:20 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 236A3C06174A;
+        Tue,  6 Apr 2021 04:27:13 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id k23-20020a17090a5917b02901043e35ad4aso9472877pji.3;
+        Tue, 06 Apr 2021 04:27:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=0nl9ZrgfpiKLj46y+3Cq9Nc86WR3X09T55IAR3qxOrk=;
+        b=cGDnYos5h6dADjPplnotwdgqNA/r5PILJu1HlpM8gX87f4BYgPja5MLZlQvxv7LFUF
+         X9P0MHPhO1CDSTV4px2eAwE5VPTno2m8mLVwISisGJSlqmsWbBPdIXj9vSpph/fIbBmr
+         gzy7kxFtwjRFXJJdXiCHPus98QcMjBSvLnChXkNdS99ECHr4dY1q9oQuucZeFa63fynB
+         Itv+i4CLU248afuB0UomQ/YFgQNAQ9I2cTllLr0tJGpNUnfb8V//ZKqrp06nFdB75prN
+         LigKWWsRipHhNNZLbWsY7s5TnafimYPnb14M4jULw8uFTsup4K8J7BoGJOQtpENul/xm
+         aEEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=NUTRKCAJSPIjCVadXlxVAs0WfP1mvGI0BilMH14WAU8=;
-        b=hLLeBTZ8pOeIPZMttO4C3SuHIKwm7hZ82vaxvg9Lop1uoY4+cd5GaQ2GgAWe/AGCpY
-         FCcCbXwHoah2Mbp+ttc8tTNoU3MY2Sai4dprkvMtlrFNuNczE7+rmRgeEZNv6/K1Dlal
-         1HfFsxOZW3MtdMgeY2DXxt/rNSWjkBxihkV5N2WEz1mK5Z08iNBclg64EgbTgAjscfnD
-         Nar2MjvzwenZoVJTYzs+UxvBuFdy7Sb5PfDjbDlfoklB8VXTF3q+IzqMr+gd35V+rNk5
-         flg637ESvq4rJMR6QaPTKlLUBBwzr5E0XM0m826p6Mw+FmEjjO8dKqoT4rXzbyt6CMS0
-         GSyg==
-X-Gm-Message-State: AOAM532a/5Gt3A2vIJ+TWKhVfuKjmSDkqnmWC093DY9f6ZZsNkfr46zo
-        d7x2ezOcGf9S0N2f7AhLul4=
-X-Google-Smtp-Source: ABdhPJweNyZ+HsWqqvMEvfV+BksHJq1l3p6Da8bpB9jL5ZIvhHFUE6C+AJ7oyHUrEkongo7q2dOapA==
-X-Received: by 2002:a2e:b814:: with SMTP id u20mr18910317ljo.370.1617708144381;
-        Tue, 06 Apr 2021 04:22:24 -0700 (PDT)
-Received: from localhost.localdomain (dc7vkhyyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::6])
-        by smtp.gmail.com with ESMTPSA id b34sm2163537ljf.137.2021.04.06.04.22.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Apr 2021 04:22:23 -0700 (PDT)
-Date:   Tue, 6 Apr 2021 14:22:18 +0300
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-power@fi.rohmeurope.com, linux-arm-msm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v5 7/7] regulator: bd9576: Fix the driver name in id table
-Message-ID: <6d527a928279d2346d2d413b3460c87b07852d40.1617707724.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1617707724.git.matti.vaittinen@fi.rohmeurope.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=0nl9ZrgfpiKLj46y+3Cq9Nc86WR3X09T55IAR3qxOrk=;
+        b=hF3k8Sj8fQHLT4d/sXqV439xFvg7eUTeDZroI6HfsSpS285TPN+uQ2w2lEtMpizV+A
+         k49MikxAK0kctEqbTbOR5yc3ckgHQBpxw8+LVH3wr5ttzGIHP4NVD6ZePVbOgU1l9xdj
+         6Tyt2RhOo/acN2+mSk77RkoDaKTZo7ldYe+/87T1jhIO0tB16ZCPJ3nRWYFrr5+vk9iw
+         fdakMpWpa0uOcYhL68XgUAkCqE3pYLfFBtdsI0QHkghbwFDHjCb+0hhDoeqbocTIHIio
+         lVBZXWbm5XFmDcniy1AoOg8XqAI2E43Gc77A7tc8Bv5s7cpZAsAaetSO8ygCXl+rSLr/
+         dD2Q==
+X-Gm-Message-State: AOAM531Nobl3aXGCC7r+UO5J+U+xsgVFtmiET5Hs3aa4SGlgvjJTB+IA
+        Dy/Y7gCNm05REoxknBpywesDKDXx7vjphg==
+X-Google-Smtp-Source: ABdhPJyQ6B8vTSf8Z5mEQkYzxaMAT4FMUE2Ck4VgJ7zcWxG1OijT7Vv7Bx/6/xFLSYzuhFp1XdOHUQ==
+X-Received: by 2002:a17:902:6845:b029:e4:4d0f:c207 with SMTP id f5-20020a1709026845b02900e44d0fc207mr28463995pln.36.1617708432583;
+        Tue, 06 Apr 2021 04:27:12 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id q5sm1939239pfj.131.2021.04.06.04.27.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Apr 2021 04:27:11 -0700 (PDT)
+Subject: Re: [PATCH 1/5] arm64: dts: mediatek: mt8167: add mmsys node
+To:     Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     mkorpershoek@baylibre.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210405200821.2203458-1-fparent@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <0cf78980-5e3d-20f5-87cb-cc2488071211@gmail.com>
+Date:   Tue, 6 Apr 2021 13:27:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1617707724.git.matti.vaittinen@fi.rohmeurope.com>
+In-Reply-To: <20210405200821.2203458-1-fparent@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Driver name was changed in MFD cell:
-https://lore.kernel.org/lkml/560b9748094392493ebf7af11b6cc558776c4fd5.1613031055.git.matti.vaittinen@fi.rohmeurope.com/
-Fix the ID table to match this.
-
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
----
-Please note - this patch is not really related to the series. This
-change is related to separate MFD driver change and was only added
-as part of this series to avoid the conflicts.
-
-No changes since RFC-v2
-
- drivers/regulator/bd9576-regulator.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/regulator/bd9576-regulator.c b/drivers/regulator/bd9576-regulator.c
-index 0d55d383d2aa..aeb816cf9ad3 100644
---- a/drivers/regulator/bd9576-regulator.c
-+++ b/drivers/regulator/bd9576-regulator.c
-@@ -1117,8 +1117,8 @@ static int bd957x_probe(struct platform_device *pdev)
- }
- 
- static const struct platform_device_id bd957x_pmic_id[] = {
--	{ "bd9573-pmic", ROHM_CHIP_TYPE_BD9573 },
--	{ "bd9576-pmic", ROHM_CHIP_TYPE_BD9576 },
-+	{ "bd9573-regulator", ROHM_CHIP_TYPE_BD9573 },
-+	{ "bd9576-regulator", ROHM_CHIP_TYPE_BD9576 },
- 	{ },
- };
- MODULE_DEVICE_TABLE(platform, bd957x_pmic_id);
--- 
-2.25.4
 
 
--- 
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
+On 05/04/2021 22:08, Fabien Parent wrote:
+> Add node for MMSYS.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =] 
+Applied to v5.12-next/dts64-2
+
+Thanks
+
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8167.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8167.dtsi b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
+> index 156fbdad01fb..9d765034dfb0 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8167.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
+> @@ -125,5 +125,11 @@ pio: pinctrl@1000b000 {
+>  			#interrupt-cells = <2>;
+>  			interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
+>  		};
+> +
+> +		mmsys: mmsys@14000000 {
+> +			compatible = "mediatek,mt8167-mmsys", "syscon";
+> +			reg = <0 0x14000000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+>  	};
+>  };
+> 
