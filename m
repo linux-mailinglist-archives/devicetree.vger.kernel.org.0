@@ -2,68 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95BB13554CD
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 15:18:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11D423554BD
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 15:13:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243608AbhDFNSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 09:18:49 -0400
-Received: from elvis.franken.de ([193.175.24.41]:59073 "EHLO elvis.franken.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S242503AbhDFNSr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Apr 2021 09:18:47 -0400
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1lTlbK-0006qP-02; Tue, 06 Apr 2021 15:18:38 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id 3CFE1C24D9; Tue,  6 Apr 2021 15:02:45 +0200 (CEST)
-Date:   Tue, 6 Apr 2021 15:02:45 +0200
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philippe =?iso-8859-1?Q?Mathieu-Daud=E9?= <f4bug@amsat.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/6] mips: bmips: fix and improve reboot nodes
-Message-ID: <20210406130245.GD9505@alpha.franken.de>
-References: <20210314164351.24665-1-noltari@gmail.com>
+        id S1344378AbhDFNN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 09:13:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54770 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344369AbhDFNN1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 09:13:27 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 190A1C061760;
+        Tue,  6 Apr 2021 06:13:18 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id e18so14186000wrt.6;
+        Tue, 06 Apr 2021 06:13:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=1reTPibzqrGVFT+HaxpJOSIl23ImGuDdQsAq06ZO/Os=;
+        b=DI2zdnbiorjV/BiuA/2TO8JnwtvPJSK9Xrnt88nEYjGhmwM6LyfHehFMO6oNLKslNm
+         qCJq/kBlKsePKFw6+8+OFE3TAmOzgXRbKDmbhcuu0JiiUB+V8wMfxwYtHQaLP/veILVv
+         3iWaBMyxxQ1TnIt+dBqfvDbul3Tmnk48yhClA9cuYXB9GEXou1uU4Uc6U8A3XP4WNsc+
+         WkYtO3s9jZ7oMSi01wV8Y/GYkDcXMJrZXDU0FHH2klFcgNXKQDECAJambHjADx+MQ1ks
+         88kbF9JWkQGHK+koms02/S+b27akuptWxivt28eRQu2NoJ9uF7D9pgxOKkDJleWbKSZ9
+         4qbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=1reTPibzqrGVFT+HaxpJOSIl23ImGuDdQsAq06ZO/Os=;
+        b=XYmRtQGpV7yUOSpORhe7vagkS3f07veFAhUR/s7GcT4w+Q+CtxwHtzYhES9fg4kVEG
+         m4YwIPXUAiYnP+HNUuSO4ZVMjaxMgkPRb+BZ0S0OGXUvtX06/DzJMwWjr0yJ4VLLVxOg
+         7GwjAeC8q0ACi0yzKUwYsHOuOyljdWmfLlDvTvQ+Tt783kxXEtQy99meV5U+0F62uQk5
+         Xn8BaThBM1wVvAMxPCnQydK/05FQH2rS5MWmF5bAYI5sr8SJU4qOz1dxvBOAqgqxUWko
+         kBKNunq/yICrc195mToHUVpHuujvWQ4DryFQOcPPkSXUMOcLjvwEI/+gnnaVXzQOLPRq
+         yBtg==
+X-Gm-Message-State: AOAM533rphsOuga5vQQpVYn2jnzqOhco2jzbSTEahOShFjVG141YqTM5
+        qIe7ONqSHGltcmsNXNvdI/vg+btddLJU9g==
+X-Google-Smtp-Source: ABdhPJyHZmEn6eYBVg4t6dkfp3oa8GKNP6QfNTV/r9jX0JOf60dAFWffxjiwkJV89hjkfCyiTheTqw==
+X-Received: by 2002:adf:8b4e:: with SMTP id v14mr34526578wra.103.1617714796849;
+        Tue, 06 Apr 2021 06:13:16 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id 24sm2752663wmg.19.2021.04.06.06.13.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Apr 2021 06:13:16 -0700 (PDT)
+Subject: Re: [PATCH v3 1/3] arm64: dts: mediatek: mt8167: add larb nodes
+To:     Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     mkorpershoek@baylibre.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210406113631.2675029-1-fparent@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <d554d512-34c2-db46-990f-ac3b4fc18557@gmail.com>
+Date:   Tue, 6 Apr 2021 15:13:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210314164351.24665-1-noltari@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210406113631.2675029-1-fparent@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Mar 14, 2021 at 05:43:45PM +0100, Álvaro Fernández Rojas wrote:
-> These patches improve bmips bcm63xx device tree nodes.
-> 
-> v2: add missing BCM63268 patch.
-> 
-> Álvaro Fernández Rojas (6):
->   mips: bmips: fix syscon-reboot nodes
->   mips: bmips: bcm6328: populate device tree nodes
->   mips: bmips: bcm6358: populate device tree nodes
->   mips: bmips: bcm6362: populate device tree nodes
->   mips: bmips: bcm6368: populate device tree nodes
->   mips: bmips: bcm63268: populate device tree nodes
-> 
->  arch/mips/boot/dts/brcm/bcm3368.dtsi  |   2 +-
->  arch/mips/boot/dts/brcm/bcm63268.dtsi | 132 +++++++++++++++++++++++---
->  arch/mips/boot/dts/brcm/bcm6328.dtsi  | 119 ++++++++++++++++++++---
->  arch/mips/boot/dts/brcm/bcm6358.dtsi  |  85 ++++++++++++++---
->  arch/mips/boot/dts/brcm/bcm6362.dtsi  | 129 ++++++++++++++++++++++---
->  arch/mips/boot/dts/brcm/bcm6368.dtsi  | 129 ++++++++++++++++++++++---
->  6 files changed, 530 insertions(+), 66 deletions(-)
 
-series applied to mips-next.
 
-Thomas.
+On 06/04/2021 13:36, Fabien Parent wrote:
+> Add larb nodes for MT8167:
+> * larb0 is used for display (dsi and hdmi)
+> * larb1 is used for camera (csi)
+> * larb2 is used for the video hardware decoder
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+Whole series applied to v5.12-next/dts64-2
+
+Thanks!
+
+> ---
+> 
+> Note: This series is based on https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/log/?h=v5.12-next/dts64-2
+> 
+> V3:
+> 	* Removed unicode character in commit summary
+> V2:
+> 	* Removed unneeded mediatek,larb-id property
+> 
+>  arch/arm64/boot/dts/mediatek/mt8167.dtsi | 30 ++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8167.dtsi b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
+> index 4b951f81db9e..bbddd4b22d3e 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8167.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
+> @@ -140,5 +140,35 @@ smi_common: smi@14017000 {
+>  			clock-names = "apb", "smi";
+>  			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+>  		};
+> +
+> +		larb0: larb@14016000 {
+> +			compatible = "mediatek,mt8167-smi-larb";
+> +			reg = <0 0x14016000 0 0x1000>;
+> +			mediatek,smi = <&smi_common>;
+> +			clocks = <&mmsys CLK_MM_SMI_LARB0>,
+> +				 <&mmsys CLK_MM_SMI_LARB0>;
+> +			clock-names = "apb", "smi";
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+> +		};
+> +
+> +		larb1: larb@15001000 {
+> +			compatible = "mediatek,mt8167-smi-larb";
+> +			reg = <0 0x15001000 0 0x1000>;
+> +			mediatek,smi = <&smi_common>;
+> +			clocks = <&imgsys CLK_IMG_LARB1_SMI>,
+> +				 <&imgsys CLK_IMG_LARB1_SMI>;
+> +			clock-names = "apb", "smi";
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_ISP>;
+> +		};
+> +
+> +		larb2: larb@16010000 {
+> +			compatible = "mediatek,mt8167-smi-larb";
+> +			reg = <0 0x16010000 0 0x1000>;
+> +			mediatek,smi = <&smi_common>;
+> +			clocks = <&vdecsys CLK_VDEC_CKEN>,
+> +				 <&vdecsys CLK_VDEC_LARB1_CKEN>;
+> +			clock-names = "apb", "smi";
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_VDEC>;
+> +		};
+>  	};
+>  };
+> 
