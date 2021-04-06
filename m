@@ -2,52 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04690354BF1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 07:09:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BFE2354BF6
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 07:09:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243696AbhDFEyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 00:54:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56174 "EHLO mail.kernel.org"
+        id S229741AbhDFEz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 00:55:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56462 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S242529AbhDFEym (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Apr 2021 00:54:42 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1DC88613B7;
-        Tue,  6 Apr 2021 04:54:33 +0000 (UTC)
+        id S229480AbhDFEz5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Apr 2021 00:55:57 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3EAE4613B8;
+        Tue,  6 Apr 2021 04:55:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617684875;
-        bh=3oXESt8oQgiKW/qAWnzICznc5KQKnQJ+Fw+d+XpBiUE=;
+        s=k20201202; t=1617684950;
+        bh=Nzff4uwl0rkRttRQxit2T76kcWXchsz3Qc/XR4s5uDQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ISUXBIjEtAuFGdfzBV8TvLh/0Kd1Xv1bB2XY2PGlKDxOsfdHlAnpU13cJv1hBDpf2
-         6DXbaixwTlj+LaGvXqwFrmJt9fXOO/9GeZ5T8fBhYMF6jl/xeCiPvAmfsL5aLunqYW
-         PKJVZIQQWXv4t9r50kUqv1KXByTR8fdk77i1TKlP51MWi5TlYwii6DK0J/LBKT0ofO
-         G3rcF/be7Rqz8GmBkdUDKfoQ7fBGJjGXOFPxxbhSDBnYVg5eNO2muYbdIqUS9Zh0DN
-         2APB0OrjOxkHOqZjCWHemaiBgiZv/KnIXwJTXBlWWCDIjQWiYXgTu5ls3CtpZI/Z62
-         QwRWYfMPjtecg==
-Date:   Tue, 6 Apr 2021 10:24:31 +0530
+        b=danws+v0AAa1UVEGWEsIYHP3YAhivhh+N6UlcZa93XYJc+yKgb52tFb2egktQnYXK
+         v7ymCHzqU5cOr+uFHWp0Ed/kxLMWFgyvq6psQajqvisn7E/ylZ1i9cznXz3SdqzxU9
+         /b0RtKmnI4eLKmc0jLv4NF9m5cOT2/70z8m9xwP1wdR1WhVcZtrVv96+5eIK/cUWab
+         VD+YWz6vIC/W+peQS0MuDNKI7gezaP4951cNZQgwqC1pIjVE9JiYlJQn4wGELXQT4i
+         ftJ+6+Omz23ABz5b0P8HjUieqBckfoib8vV1dTwiCyeG7mM8d2+vzyYK8z4Q7sgvyy
+         o/+VUHqchUoJw==
+Date:   Tue, 6 Apr 2021 10:25:46 +0530
 From:   Vinod Koul <vkoul@kernel.org>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Cc:     yung-chuan.liao@linux.intel.com,
         pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
         alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        robh@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] soundwire: qcom: wait for fifo space to be available
- before read/write
-Message-ID: <YGvph03m7w5DbATC@vkoul-mobl.Dlink>
-References: <20210401090058.24041-1-srinivas.kandagatla@linaro.org>
+        robh@kernel.org, devicetree@vger.kernel.org,
+        coverity-bot <keescook+coverity-bot@chromium.org>
+Subject: Re: [PATCH] soundwire: qcom: handle return correctly in
+ qcom_swrm_transport_params
+Message-ID: <YGvp0lbNkaukGxmE@vkoul-mobl.Dlink>
+References: <20210401091502.15825-1-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210401090058.24041-1-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20210401091502.15825-1-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01-04-21, 10:00, Srinivas Kandagatla wrote:
-> If we write registers very fast we can endup in a situation where some
-> of the writes will be dropped without any notice.
-> 
-> So wait for the fifo space to be available before reading/writing the
-> soundwire registers.
+On 01-04-21, 10:15, Srinivas Kandagatla wrote:
+> Looks like return from reg_write is set but not checked.
+> Fix this by adding error return path.
 
 Applied, thanks
 
