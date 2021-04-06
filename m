@@ -2,120 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4EA7355610
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 16:07:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFCCE35560D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 16:06:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232453AbhDFOHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 10:07:18 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:38944 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232880AbhDFOHS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 10:07:18 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4D24F8E5;
-        Tue,  6 Apr 2021 16:07:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1617718029;
-        bh=/3GE3lzhJCBT8cc4IKQOvSkmh9aURunrxqH3q0Dl3k8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YeranOMmXb7iLi2XJ6/Sb6mq8fiT4ais2pwSXEFcdrMCO3/h8Pe9h/TxyicZQoR6n
-         5XSgr9ipiziWEFJjO0NytQ5rUoPxRgT++fyNaT3H26i4tEZHAl8AGMc3oanWK0OHL5
-         /v0XFL78Xq4+xdp2uYI9suxAeMaR40Vz4kzThVeY=
-Date:   Tue, 6 Apr 2021 17:06:25 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Marco Hoefle <marco@hoefle.co>
-Cc:     devicetree@vger.kernel.org
-Subject: Re: Documentation to the Xilinx PSGTR Phy device-tree not clear
-Message-ID: <YGxq4QN7dN+flaDa@pendragon.ideasonboard.com>
-References: <b54c4397-72a2-4b6e-e6a4-8c4dc6ef2814@hoefle.co>
+        id S238399AbhDFOGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 10:06:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39086 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233227AbhDFOGv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Apr 2021 10:06:51 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 10E3C613C4;
+        Tue,  6 Apr 2021 14:06:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617718003;
+        bh=CQkqAyjhsoQFZIyIYvLUOhXpo7lnAR7GuZPZMplquU0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=C2gAYBhAs4KkkWQaRjE9U8Y8opCsV8drwkxrNX6Aicy/E4paHRHrkgbpS7N9ad8ul
+         hVEsKdiu8n3Fef9tB3mZjp/PH7lfSi2QrwnHkek2MviUmPg0VF7QxCdPXuQkZLenM1
+         cLQyPhweEDz9EKjtKXqrSAurIsrYz8DWyri4XE62SQ1gl1ncRTL3m3hZpTspgzemiO
+         UcytOZqB7J3MVcm1Lt/0umdE86aHK0OF31Y3rs4oSbyfjUDtf4weMARGo15b8SBpww
+         TeyLqCkT09bFfe+HhNU5zYG7IkRQvjkVnawjcJdyL9rbvGOAnxzx9Q9i1cJTEMCD4D
+         nnZyIVkPaertw==
+Received: by mail-ej1-f42.google.com with SMTP id a7so22181489ejs.3;
+        Tue, 06 Apr 2021 07:06:42 -0700 (PDT)
+X-Gm-Message-State: AOAM530EleuybtP1Ik/QFHu8jvbry3NFGgOhJXcaVem1jZevaxCaXD+s
+        u2bEC5su7vM0uGMQbGRSKse0+ROkk/6MA+Tmow==
+X-Google-Smtp-Source: ABdhPJx8rAyWkSOqiax6jgSsYlFFrVm8RG6wg33J9TbZWbMXhlJ12SFzPZSuwcTnZoc2ePClOpJGjMXyyDYnvArg+3A=
+X-Received: by 2002:a17:906:813:: with SMTP id e19mr7792178ejd.359.1617718001625;
+ Tue, 06 Apr 2021 07:06:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b54c4397-72a2-4b6e-e6a4-8c4dc6ef2814@hoefle.co>
+References: <20210402192054.7934-1-dariobin@libero.it>
+In-Reply-To: <20210402192054.7934-1-dariobin@libero.it>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 6 Apr 2021 09:06:29 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKkpZw_BmcCXUzahF-FkQ=vb7mb_s95Lm2G7pWo0=dqNA@mail.gmail.com>
+Message-ID: <CAL_JsqKkpZw_BmcCXUzahF-FkQ=vb7mb_s95Lm2G7pWo0=dqNA@mail.gmail.com>
+Subject: Re: [PATCH 0/2] fdt: translate address if #size-cells = <0>
+To:     Dario Binacchi <dariobin@libero.it>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Bin Meng <bmeng.cn@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-omap <linux-omap@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+On Fri, Apr 2, 2021 at 2:21 PM Dario Binacchi <dariobin@libero.it> wrote:
+>
+>
+> The series comes from my commit in U-boot
+> d64b9cdcd4 ("fdt: translate address if #size-cells = <0>")
+> and from the subsequent exchange of emails at the end of which I was
+> suggested to send the patch to the linux kernel
+> (https://patchwork.ozlabs.org/project/uboot/patch/1614324949-61314-1-git-send-email-bmeng.cn@gmail.com/).
 
-On Tue, Apr 06, 2021 at 03:54:06PM +0200, Marco Hoefle wrote:
-> Hi,
-> 
-> we try to port the mainline Kernel to a Xilinx board.
-> 
-> The default peripherals do work. The blocking point now is the zynqmp 
-> psgtr driver.
-> 
-> The mainline documentation can be found here:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
-> 
-> It is lacking a complete example on how to wire up a peripheral phy with 
-> the PS GTR driver.
-> 
-> 
-> The one in the Xilinx tree for Kernel 5.4 contains an example which is 
-> missing in the mainline documentation in my opinion:
-> 
-> https://github.com/Xilinx/linux-xlnx/blob/4ecd768dea75a0cc0bea91069a570981aa700744/Documentation/devicetree/bindings/phy/phy-zynqmp.txt
-> 
-> 
-> It seems the PHY handle mechanism has changed and the "old" Xilinx way 
-> doesn't work anymore.
-> 
-> This was the previous way to "marry" the PS GTR driver with the USB 3 
-> driver:
-> 
->         serdes: zynqmp_phy@fd400000 {
->              compatible = "xlnx,zynqmp-psgtr-v1.1";
->              status = "disabled";
->              reg = <0x0 0xfd400000 0x0 0x40000>,
->                    <0x0 0xfd3d0000 0x0 0x1000>;
->              reg-names = "serdes", "siou";
->              nvmem-cells = <&soc_revision>;
->              nvmem-cell-names = "soc_revision";
->              resets = <&zynqmp_reset ZYNQMP_RESET_SATA>, <&zynqmp_reset ZYNQMP_RESET_USB0_CORERESET>,
->                   <&zynqmp_reset ZYNQMP_RESET_USB1_CORERESET>, <&zynqmp_reset ZYNQMP_RESET_USB0_HIBERRESET>,
->                   <&zynqmp_reset ZYNQMP_RESET_USB1_HIBERRESET>, <&zynqmp_reset ZYNQMP_RESET_USB0_APB>,
->                   <&zynqmp_reset ZYNQMP_RESET_USB1_APB>, <&zynqmp_reset ZYNQMP_RESET_DP>,
->                   <&zynqmp_reset ZYNQMP_RESET_GEM0>, <&zynqmp_reset ZYNQMP_RESET_GEM1>,
->                   <&zynqmp_reset ZYNQMP_RESET_GEM2>, <&zynqmp_reset ZYNQMP_RESET_GEM3>;
->              reset-names = "sata_rst", "usb0_crst", "usb1_crst",
->                        "usb0_hibrst", "usb1_hibrst", "usb0_apbrst",
->                        "usb1_apbrst", "dp_rst", "gem0_rst",
->                        "gem1_rst", "gem2_rst", "gem3_rst";
->              lane0: lane0 {
->                  #phy-cells = <4>;
->              };
->              lane1: lane1 {
->                  #phy-cells = <4>;
->              };
->              lane2: lane2 {
->                  #phy-cells = <4>;
->              };
->              lane3: lane3 {
->                  #phy-cells = <4>;
->              };
+It's 'ranges' that determines translatable which is missing from the
+DT. This should have not had a 0 size either though maybe we could
+support that.
 
-The nvmem and reset properties, as well as the lane sub-nodes, are not
-needed with the mainline driver.
+Does the DT have to be updated anyways for your spread spectrum support?
 
->          };
-> 
-> 
-> &dwc3_0 {
->      status = "okay";
->      dr_mode = "peripheral";
->      phy-names = "usb3-phy";
->      phys = <&lane2 4 0 0 26000000>;
->      maximum-speed = "super-speed";
-> };
+> The second patch of the series aims to demonstrate that the first one, which
+> enables the translation of addresses also for crossings of DT nodes
+> with #size-cells = <0>, it really works.
 
-A PHY consumer example is indeed missing, but doesn't this belong to the
-consumer DT bindings instead ?
+I don't seem to have the 2nd patch... In any case, you should handle
+the special case for this platform in code for the platform.
 
--- 
-Regards,
-
-Laurent Pinchart
+Rob
