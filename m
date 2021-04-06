@@ -2,93 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E53F8355940
-	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 18:34:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8574535594A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Apr 2021 18:35:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238413AbhDFQeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 12:34:19 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:58264 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346460AbhDFQeN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 12:34:13 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1617726845; h=Content-Transfer-Encoding: MIME-Version:
- Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=lCg9rvBlInHgwDdIXHhE440G3KXq+dIQNfO49TSg3Tc=; b=lPG+VvN3f8QHSdqM4pHnTEo/BJBG0as476LFnIKQOz7enjVrq9u7JxGblvW3iq6pi8nMU8q8
- p2KrQEG6419alwenwavFBeVAT+syobsE3SE2J05JdQTwXKSbPYs71jnjGA/nkuB4y61Mh6ZQ
- nDBY/pFJfKk31c36P2ybuGhsJIc=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 606c8d6b8166b7eff7210d3f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 06 Apr 2021 16:33:47
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 15A96C433CA; Tue,  6 Apr 2021 16:33:47 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B9400C433CA;
-        Tue,  6 Apr 2021 16:33:41 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B9400C433CA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH v2] arm64: dts: qcom: Update iommu property for simultaneous playback
-Date:   Tue,  6 Apr 2021 22:03:30 +0530
-Message-Id: <20210406163330.11996-1-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.29.0
+        id S1346462AbhDFQgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 12:36:01 -0400
+Received: from rcdn-iport-4.cisco.com ([173.37.86.75]:63769 "EHLO
+        rcdn-iport-4.cisco.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232063AbhDFQgB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 12:36:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=cisco.com; i=@cisco.com; l=2214; q=dns/txt; s=iport;
+  t=1617726953; x=1618936553;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=YVi6Pd95NNQkukWDzEdKyppnaWlfPPnzy+EUME4WOBg=;
+  b=YE+TJnJB+iv9Us/gqqe8m/ZYf/XQC399UOOQ+66Rb47XOHkWNJK1c12X
+   oyFh6W/Tq7HskKh4Zv2Jmv1TfqoCm0YLpdX9PVBwZadIGYI3IldBxQKgB
+   n4YN4sICTsxMYcdDYz4jg/VvpR+k5ngpSDG2BrEZJdjpjlqAAYmZP+flW
+   Q=;
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3A7NO2kKE3yH2CO2oOpLqFkpHXdLJzesId70?=
+ =?us-ascii?q?hD6mlaQ3VuHfCwvcaogfgdyFvYiCwJXmshhNCHP8C7MBbh3LRy5pQcOqrnYR?=
+ =?us-ascii?q?Lvv3GmIJonwYzpxTDhHCOWzJ846Y5Lda9iBNrsSWVrlMqS2njbL/8MyMSKmZ?=
+ =?us-ascii?q?rDuc7w1HFoJDsGV4hB6ENDBh+fAglKQmB9dP0EPb69wuYCmDa6Y3QQaa2Adx?=
+ =?us-ascii?q?o4dszOvcfCmp6jQTNuPX8awTKDhz+p97L2eiLwtnwjeghCzrs4/W/OnxaR3M?=
+ =?us-ascii?q?WemsumwRzR3XK71fprsebmo+EuOOW8zuAINzOpsQqzfYJnQbHHhiwtufqi8k?=
+ =?us-ascii?q?xCqqirnz4Qe+Ju9njWYma55Tzq1gWI6kdX11bSjXmFnHDkvcv1AAgfNvMEr4?=
+ =?us-ascii?q?dYfhzFgnBQxe1B7A=3D=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0AKAAAkjWxg/4wNJK1aGgEBAQEBAQE?=
+ =?us-ascii?q?BAQEDAQEBARIBAQEBAgIBAQEBQIE+BQEBAQELAYIqgU0BOTGMZokuA5AMFop?=
+ =?us-ascii?q?GFIFoCwEBAQ0BATQEAQGBFgGDNAMCAoF2AiU0CQ4CAwEBDAEBBQEBAQIBBgR?=
+ =?us-ascii?q?xE4VdhkUBBTIBRhALEgYuPA0OBhOFeatQdYE0gQGIHYFEFA6BFwGNTCccgUl?=
+ =?us-ascii?q?CgRODIj6EGA6GEQSCQAeBDoIVExKULIpcnCmDFYEmj1qLbTIQpGG4PgIEBgU?=
+ =?us-ascii?q?CFoFUOoFZMxoIGxWDJFAZDp0IIQMvOAIGAQkBAQMJin8BJwSCGQEB?=
+X-IronPort-AV: E=Sophos;i="5.82,310,1613433600"; 
+   d="scan'208";a="857074414"
+Received: from alln-core-7.cisco.com ([173.36.13.140])
+  by rcdn-iport-4.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 06 Apr 2021 16:35:52 +0000
+Received: from zorba ([10.24.14.212])
+        by alln-core-7.cisco.com (8.15.2/8.15.2) with ESMTPS id 136GZnnO027751
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+        Tue, 6 Apr 2021 16:35:51 GMT
+Date:   Tue, 6 Apr 2021 09:35:49 -0700
+From:   Daniel Walker <danielwa@cisco.com>
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Will Deacon <will@kernel.org>, ob Herring <robh@kernel.org>,
+        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
+        Andrew Morton <akpm@linux-foundation.org>, x86@kernel.org,
+        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        xe-linux-external@cisco.com,
+        Ruslan Ruslichenko <rruslich@cisco.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/8] CMDLINE: drivers: of: ifdef out cmdline section
+Message-ID: <20210406163549.GS2469518@zorba>
+References: <41021d66db2ab427c14255d2a24bb4517c8b58fd.1617126961.git.danielwa@cisco.com>
+ <0c4b839f023f87c451c8aa3c4f7a8d92729c2f02.1617126961.git.danielwa@cisco.com>
+ <6d50809a-eb6b-b8bb-bb8b-88f66c52c0fa@csgroup.eu>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <6d50809a-eb6b-b8bb-bb8b-88f66c52c0fa@csgroup.eu>
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-Outbound-SMTP-Client: 10.24.14.212, [10.24.14.212]
+X-Outbound-Node: alln-core-7.cisco.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+On Fri, Apr 02, 2021 at 07:32:08PM +0200, Christophe Leroy wrote:
+> 
+> 
+> Le 30/03/2021 à 19:56, Daniel Walker a écrit :
+> > It looks like there's some seepage of cmdline stuff into
+> > the generic device tree code. This conflicts with the
+> > generic cmdline implementation so I remove it in the case
+> > when that's enabled.
+> > 
+> > Cc: xe-linux-external@cisco.com
+> > Signed-off-by: Ruslan Ruslichenko <rruslich@cisco.com>
+> > Signed-off-by: Daniel Walker <danielwa@cisco.com>
+> > ---
+> >   drivers/of/fdt.c | 14 ++++++++++++++
+> >   1 file changed, 14 insertions(+)
+> > 
+> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> > index dcc1dd96911a..d8805cd9717a 100644
+> > --- a/drivers/of/fdt.c
+> > +++ b/drivers/of/fdt.c
+> > @@ -25,6 +25,7 @@
+> >   #include <linux/serial_core.h>
+> >   #include <linux/sysfs.h>
+> >   #include <linux/random.h>
+> > +#include <linux/cmdline.h>
+> >   #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
+> >   #include <asm/page.h>
+> > @@ -1050,6 +1051,18 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+> >   	/* Retrieve command line */
+> >   	p = of_get_flat_dt_prop(node, "bootargs", &l);
+> > +
+> > +#if defined(CONFIG_GENERIC_CMDLINE) && defined(CONFIG_GENERIC_CMDLINE_OF)
+> > +	/*
+> > +	 * The builtin command line will be added here, or it can override
+> > +	 * with the DT bootargs.
+> > +	 */
+> > +	cmdline_add_builtin(data,
+> > +			    (l > 0 ? p : NULL), /* This is sanity checking */
+> > +			    COMMAND_LINE_SIZE);
+> > +#elif defined(CONFIG_GENERIC_CMDLINE)
+> > +	strlcpy(data, p, COMMAND_LINE_SIZE);
+> > +#else
+> 
+> Ugly.
+> 
+> Linux codying style recommend to limit the use of #ifdefs to headers as much as possible.
+> 
+> Why do we need so many alternatives ? Allthough they are temporary, can we
+> order the changes in another way to reduce that ?
 
-Update iommu property in lpass cpu node for supporting
-simultaneous playback on headset and speaker.
+I think this whole section can be removed down even all the CMDLINE ifdef's ..
+The only architecture which needs this is powerpc because it calls this function
+three times.
 
-Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
----
-Changes since v1:
-   -- Commit messge header change
+If powerpc were made to call this only once , and then call the generic handling
+for the command line then this whole section would get removed.
 
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index a6da78d31fdd..6228ba2d8513 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -3566,7 +3566,8 @@ lpass_cpu: lpass@62f00000 {
- 			reg = <0 0x62f00000 0 0x29000>;
- 			reg-names = "lpass-lpaif";
- 
--			iommus = <&apps_smmu 0x1020 0>;
-+			iommus = <&apps_smmu 0x1020 0>,
-+				<&apps_smmu 0x1021 0>;
- 
- 			power-domains = <&lpass_hm LPASS_CORE_HM_GDSCR>;
- 
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+Daniel
