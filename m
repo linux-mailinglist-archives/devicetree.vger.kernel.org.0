@@ -2,198 +2,520 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B675D3567C1
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 11:11:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF9BE35682C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 11:40:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234474AbhDGJLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 05:11:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34110 "EHLO
+        id S1350225AbhDGJkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 05:40:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234354AbhDGJLJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 05:11:09 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDEF9C061756;
-        Wed,  7 Apr 2021 02:10:59 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id lr1-20020a17090b4b81b02900ea0a3f38c1so2739543pjb.0;
-        Wed, 07 Apr 2021 02:10:59 -0700 (PDT)
+        with ESMTP id S1345890AbhDGJjm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 05:39:42 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FF06C06175F
+        for <devicetree@vger.kernel.org>; Wed,  7 Apr 2021 02:38:44 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id qo10so16186909ejb.6
+        for <devicetree@vger.kernel.org>; Wed, 07 Apr 2021 02:38:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=K7hu9kGELgUjGIjS4qqBRxqSMaLtA2wJeoBEwdN1MX0=;
-        b=F5gvw4nUin11lqcfN6/v45ZomSGAgxK5pNw2w6iaL60+3LYOLHXqA97wE/ImXGcmMf
-         y5ewmVFDg1eoLMu40CytsFgUllYRySy9e9bcmlHiduUnnq60xZWkcbYfmGPck3uFJYLl
-         tOSlkyVk2MhS9h8CL3zVRFA2NEPVlBP9NaucyoRT/ev/zR51e1qU7eU4gHALHobnXowc
-         q2nyphTZTVQDnG8GHtdOZ8ECiqdEvIjijS2/Z9JHwl7rI+berCEfHG0F2Vaj9kJOwokL
-         mQVV8w8AAb1sWlWpLM6fjB9eTppBxY7pd8A4rOYiYEb2fjP2D3awd6F4I/6mzsbEb28p
-         leEQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=2bcZ5SRG8Kcn+cR/yk5uRPv4IWzyomsGoAUXDtBC+gI=;
+        b=I/+hvJ5+2ZdvzQVOvAwzfo52wZWdrwaMPZpwCReHxZ64d01LMaLKZiiGPpfr2jnFRr
+         6xA5PZo9Gi8tDzbFHjwRzrrYqaUHx715yE3TmnHn8OMX1yuE1hcRrq6RZB4NDqqalmn3
+         18GlLIXdndpX2e7AGXmXBMBxOYIaQzZ2N0oDVbyB9lm1rG8kCkxuLVcILnJHZmBqLu1i
+         0C3TtxQPQHwD6Ym/LEnHFn3yIRGccbFXe6I9LuWIu/kD2yNhG48Si2fJg260PpbhsuSw
+         UPp3czfkQRrsoklgVzTIsYosxOvSV6Dz/F59VERgzdnF52hjDtzWe9vUjTnLNVsShczo
+         JBdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=K7hu9kGELgUjGIjS4qqBRxqSMaLtA2wJeoBEwdN1MX0=;
-        b=Ubi9KRHfOnkeiNGQmY8gIndm7hYgwoKqkKHgG+LIqhG9e6dK3Qahv9Jn/gTfD7e4vZ
-         BEvQcfYxCZQ/gOMEWgm2UWOM0vkQ33QfjixW0uaAqqt0ot41dspLkUYBJm7S7giCJTQt
-         ia5+qv/OvwBpjx4i4yUzPDvrwxoSBO4+zLPx0bomqySZZVXuHFkoPSdqwISmireiShbe
-         2JIIvG8WdquoxQr04S+zIwHCLFe98fLgpnKm3NrW5lq40oPSjfj1yg1IYA6wjMmfpBOG
-         rWuGlNizURmyqD/JgUEKj2jk67iiEh67NArnwZUQAq6y4932Ngzkm2mrXPSV+2oV3oDj
-         bfIQ==
-X-Gm-Message-State: AOAM532aQ/txsaIX0ipzgwhChLUEfRwl4oBq8T33AGlcFd5tffK4SyCV
-        eMyBbXjxwRrMf/tKQ6oeBx9diHGUJTfOIKj82ww=
-X-Google-Smtp-Source: ABdhPJz7TkStYXyOjkc24eFSydCkbC4QU3yD2JU5yIJwmqLMJtS7V1zKdLsnuEc6bMLgLcE7XtLotI7WUCZuOu1KM1I=
-X-Received: by 2002:a17:90a:5407:: with SMTP id z7mr2397529pjh.228.1617786659334;
- Wed, 07 Apr 2021 02:10:59 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=2bcZ5SRG8Kcn+cR/yk5uRPv4IWzyomsGoAUXDtBC+gI=;
+        b=del9puQ6JNIc6+aPQQ4eyxN5C0VxCc6+++u4aUYwroC3B4Ob6BnRIn/0pstbOEtBC8
+         /OId9+nrqcufRDqdsdUKOoTY17l7uE9IZiuS0C39wnRRp9I9XM94HFSci55FAf5HxK6c
+         HEYs2QmySnzmj0WLpD3M0vkb4+jzEIyqWRAjcyv/7SInxefGFhxRV/WLjx0DtOH14MYb
+         QxoTYdUQs7a/a+H3fckUliv8NDvNXot/ylnGqTpqqKy47Dk107VsudH/K2Bnl4/OFFj5
+         m4LytGcSiHG3qTYa0GoA1tHfR46gJGBOdBe0PydSulFgVchzXbLgL7EGUMcNzrZbxBE5
+         rTBw==
+X-Gm-Message-State: AOAM531ECZIA//0PAG5XDXRh9B9d2zF65mcF/TcidABuZ17RsWjSi/Q6
+        zsRXItunNp5ZbAKtj4ZQkBIxsQ==
+X-Google-Smtp-Source: ABdhPJx+1WYiGshLbOjjzDl1lLL4Nf3y7uWgv+NriZimKs/kdPUBao8cH6wampvqgo3rB63lgj+lUg==
+X-Received: by 2002:a17:907:213a:: with SMTP id qo26mr2630506ejb.547.1617788322620;
+        Wed, 07 Apr 2021 02:38:42 -0700 (PDT)
+Received: from dell ([91.110.221.225])
+        by smtp.gmail.com with ESMTPSA id d8sm7599021edy.83.2021.04.07.02.38.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Apr 2021 02:38:42 -0700 (PDT)
+Date:   Wed, 7 Apr 2021 10:38:40 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH v5 (RESEND) 4/7] mfd: hi6421-spmi-pmic: move driver from
+ staging
+Message-ID: <20210407093840.GZ2916463@dell>
+References: <cover.1616695231.git.mchehab+huawei@kernel.org>
+ <de3603a366c172923771d3f01aa83b70cbba2199.1616695231.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-References: <cover.1617690965.git.matti.vaittinen@fi.rohmeurope.com>
- <2b87b4637fde2225006cc122bc855efca0dcd7f1.1617692184.git.matti.vaittinen@fi.rohmeurope.com>
- <CAHp75VeoTVNDemV0qRA4BTVqOVfyR9UKGWhHgfeat8zVVGcu_Q@mail.gmail.com> <55397166b1c4107efc2a013635f63af142d9b187.camel@fi.rohmeurope.com>
-In-Reply-To: <55397166b1c4107efc2a013635f63af142d9b187.camel@fi.rohmeurope.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 7 Apr 2021 12:10:43 +0300
-Message-ID: <CAHp75VeK+Oq9inOLcSSsq+FjaaPC5D=EMt4vLf97uR1BmpW2Zw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/7] regulator: IRQ based event/error notification helpers
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-power@fi.rohmeurope.com" <linux-power@fi.rohmeurope.com>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <de3603a366c172923771d3f01aa83b70cbba2199.1616695231.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 7, 2021 at 8:02 AM Matti Vaittinen
-<matti.vaittinen@fi.rohmeurope.com> wrote:
->
-> Morning Andy,
->
-> Thanks for the review! By the way, is it me or did your mail-client
-> spill this out using HTML?
+On Thu, 25 Mar 2021, Mauro Carvalho Chehab wrote:
 
-It's Gmail from my mobile phone, sorry for that. We have to blame
-Google that they don't think through.
+> This driver is ready for mainstream. So, move it out of staging.
+> 
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> ---
+>  .../mfd/hisilicon,hi6421-spmi-pmic.yaml       | 135 ++++++++
+>  MAINTAINERS                                   |   7 +
+>  drivers/mfd/Kconfig                           |  16 +
+>  drivers/mfd/Makefile                          |   1 +
+>  drivers/mfd/hi6421-spmi-pmic.c                | 297 ++++++++++++++++++
+>  drivers/staging/hikey9xx/Kconfig              |  18 --
+>  drivers/staging/hikey9xx/Makefile             |   1 -
+>  drivers/staging/hikey9xx/hi6421-spmi-pmic.c   | 297 ------------------
+>  .../hikey9xx/hisilicon,hi6421-spmi-pmic.yaml  | 135 --------
+>  9 files changed, 456 insertions(+), 451 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+>  create mode 100644 drivers/mfd/hi6421-spmi-pmic.c
+>  delete mode 100644 drivers/staging/hikey9xx/hi6421-spmi-pmic.c
+>  delete mode 100644 drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml
 
-> On Wed, 2021-04-07 at 01:44 +0300, Andy Shevchenko wrote:
-> > On Tuesday, April 6, 2021, Matti Vaittinen <
-> > matti.vaittinen@fi.rohmeurope.com> wrote:
+[...]
 
-...
+> +config MFD_HI6421_SPMI
+> +	tristate "HiSilicon Hi6421v600 SPMI PMU/Codec IC"
+> +	depends on OF
+> +	depends on SPMI
+> +	select MFD_CORE
+> +	select REGMAP_SPMI
+> +	help
+> +	  Add support for HiSilicon Hi6421v600 SPMI PMIC. Hi6421 includes
+> +	  multi-functions, such as regulators, RTC, codec, Coulomb counter,
+> +	  etc.
+> +
+> +	  This driver includes core APIs _only_. You have to select
+> +	  individual components like voltage regulators under corresponding
+> +	  menus in order to enable them.
+> +	  We communicate with the Hi6421v600 via a SPMI bus.
+> +
+>  config MFD_HI655X_PMIC
+>  	tristate "HiSilicon Hi655X series PMU/Codec IC"
+>  	depends on ARCH_HISI || COMPILE_TEST
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index 4f6d2b8a5f76..e87230fc61ac 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -232,6 +232,7 @@ obj-$(CONFIG_MFD_IPAQ_MICRO)	+= ipaq-micro.o
+>  obj-$(CONFIG_MFD_IQS62X)	+= iqs62x.o
+>  obj-$(CONFIG_MFD_MENF21BMC)	+= menf21bmc.o
+>  obj-$(CONFIG_MFD_HI6421_PMIC)	+= hi6421-pmic-core.o
+> +obj-$(CONFIG_MFD_HI6421_SPMI)	+= hi6421-spmi-pmic.o
+>  obj-$(CONFIG_MFD_HI655X_PMIC)   += hi655x-pmic.o
+>  obj-$(CONFIG_MFD_DLN2)		+= dln2.o
+>  obj-$(CONFIG_MFD_RT5033)	+= rt5033.o
+> diff --git a/drivers/mfd/hi6421-spmi-pmic.c b/drivers/mfd/hi6421-spmi-pmic.c
+> new file mode 100644
+> index 000000000000..626140cb96f2
+> --- /dev/null
+> +++ b/drivers/mfd/hi6421-spmi-pmic.c
+> @@ -0,0 +1,297 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device driver for regulators in HISI PMIC IC
+> + *
+> + * Copyright (c) 2013 Linaro Ltd.
+> + * Copyright (c) 2011 Hisilicon.
+> + * Copyright (c) 2020-2021 Huawei Technologies Co., Ltd
+> + */
+> +
+> +#include <linux/bitops.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/irq.h>
+> +#include <linux/mfd/core.h>
+> +#include <linux/mfd/hi6421-spmi-pmic.h>
+> +#include <linux/module.h>
+> +#include <linux/of_gpio.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +#include <linux/spmi.h>
+> +
+> +enum hi6421_spmi_pmic_irq_list {
+> +	OTMP = 0,
+> +	VBUS_CONNECT,
+> +	VBUS_DISCONNECT,
+> +	ALARMON_R,
+> +	HOLD_6S,
+> +	HOLD_1S,
+> +	POWERKEY_UP,
+> +	POWERKEY_DOWN,
+> +	OCP_SCP_R,
+> +	COUL_R,
+> +	SIM0_HPD_R,
+> +	SIM0_HPD_F,
+> +	SIM1_HPD_R,
+> +	SIM1_HPD_F,
+> +	PMIC_IRQ_LIST_MAX,
+> +};
+> +
+> +#define HISI_IRQ_ARRAY			2
+> +#define HISI_IRQ_NUM			(HISI_IRQ_ARRAY * 8)
 
-> > > +       pr_emerg(msg);
-> >
-> > Oh l=C3=A0 l=C3=A0, besides build bot complaints, this has serious secu=
-rity
-> > implications. Never do like this.
->
-> I'm not even trying to claim that was correct. And I did send a fixup -
-> sorry for this. I don't intend to do this again.
->
-> Now, when this is said - If you have a minute, please educate me.
-> Assuming we know all the callers and that all the callers use this as
->
-> die_loudly("foobarfoo\n");
-> - what is the exploit mechanism?
+What's 8?
 
-Not a security guy, but my understanding is that this code may be used
-as a gadget in ROP technique of attacks.
-In that case msg can be anything. On top of that, somebody may
-mistakenly (inadvertently) put the code that allows user controller
-input to go to this path.
+This is also misleading, since there are only 14 IRQs.
 
-And last but not least, that some newbies might copy'n'paste bad
-examples where they will expose security breach.
+> +#define HISI_IRQ_KEY_NUM		0
 
-With the modern world of Spectre, rowhammer, and other side channel
-attacks I may believe that one may exhaust the regulator for getting
-advantage on an attack vector.
+What's this please?
 
-But again, not a security guy here.
+> +#define HISI_BITS			8
 
-> > > +       BUG();
-> > > +}
-> > > +
+This is not great nomenclature.
 
-...
+What do the 'bits' represent?
 
-> > > errors will be
-> > > + *                     or'ed with common erros. If this is given
+> +#define HISI_IRQ_KEY_VALUE		(BIT(POWERKEY_DOWN) | BIT(POWERKEY_UP))
 
-errors ?
+This should probably be with the other HISI_IRQ_KEY* variable.
 
-...
+Along with a short comment on what an IRQ_KEY is.
 
-> > > +       if (irq <=3D 0) {
-> > > +               dev_err(dev, "No IRQ\n");
-> > > +               return ERR_PTR(-EINVAL);
-> >
-> > Why shadowing error code? Negative IRQ is anything but =E2=80=9Cno IRQ=
-=E2=80=9D.
->
-> This was a good point. The irq is passed here as parameter. From this
-> function's perspective the negative irq is invalid parameter - we don't
-> know how the caller has obtained it. Print could show the value
-> contained in irq though.
+> +#define HISI_MASK			GENMASK(HISI_BITS - 1, 0)
 
-> Now that you pointed this out I am unsure if this check is needed here.
-> If we check it, then I still think we should report -EINVAL for invalid
-> parameter. Other option is to just call the request_threaded_irq() -
-> log the IRQ request failure and return what request_threaded_irq()
-> returns. Do you think that would make sense?
+Pair this with HISI_BITS and explain what there are 8 of.
 
-Why is the parameter signed type then?
-Shouldn't the caller take care of it?
+> +/*
+> + * The IRQs are mapped as:
+> + *
+> + *	======================  =============   ============	=====
+> + *	IRQ			MASK REGISTER	IRQ REGISTER	BIT
+> + *	======================  =============   ============	=====
+> + *	OTMP			0x0202		0x212		bit 0
+> + *	VBUS_CONNECT		0x0202		0x212		bit 1
+> + *	VBUS_DISCONNECT		0x0202		0x212		bit 2
+> + *	ALARMON_R		0x0202		0x212		bit 3
+> + *	HOLD_6S			0x0202		0x212		bit 4
+> + *	HOLD_1S			0x0202		0x212		bit 5
+> + *	POWERKEY_UP		0x0202		0x212		bit 6
+> + *	POWERKEY_DOWN		0x0202		0x212		bit 7
+> + *
+> + *	OCP_SCP_R		0x0203		0x213		bit 0
+> + *	COUL_R			0x0203		0x213		bit 1
+> + *	SIM0_HPD_R		0x0203		0x213		bit 2
+> + *	SIM0_HPD_F		0x0203		0x213		bit 3
+> + *	SIM1_HPD_R		0x0203		0x213		bit 4
+> + *	SIM1_HPD_F		0x0203		0x213		bit 5
+> + *	======================  =============   ============	=====
+> + */
+> +#define SOC_PMIC_IRQ_MASK_0_ADDR	0x0202
+> +#define SOC_PMIC_IRQ0_ADDR		0x0212
 
-Otherwise, what is the difference between passing negative IRQ to
-request_irq() call?
-As you said, you shouldn't make assumptions about what caller meant by this=
-.
+Does IRQ handling not have a base?
 
-So, I would simply drop the check (from easiness of the code perspective).
+If so, would it be worth passing the base to Regmap, instead of
+mapping a large, mostly unused area?
 
-...
+> +#define IRQ_MASK_REGISTER(irq_data)	(SOC_PMIC_IRQ_MASK_0_ADDR + \
+> +					 (irqd_to_hwirq(irq_data) >> 3))
 
-> > > +void regulator_irq_helper_cancel(void **handle)
-> > > +{
-> > > +       if (handle && *handle) {
-> >
-> > Can handle ever be NULL here ? (Yes, I understand that you export
-> > this)
->
-> To tell the truth - I am not sure. I *guess* that if we allow this to
-> be NULL, then one *could* implement a driver for IC where IRQs are
-> optional, in a way that when IRQs are supported the pointer to handle
-> is valid, when IRQs aren't supported the pointer is NULL. (Why) do you
-> think we should skip the check?
+What's 3?
 
-Just my guts feeling. I don't remember that I ever saw checks like
-this for indirect pointers.
-Of course it doesn't mean there are no such checks present or may be presen=
-t.
+The naming of this macro makes it looks generic.
 
-...
+Please add some namespacing to clarify.
 
-> > Why not to use devm_add_action{_or_reset}()?
->
-> I just followed the same approach that has been used in other regulator
-> functions. (drivers/regulator/devres.c)
-> OTOH, the devm_add_action makes this little bit simpler so I'll convert
-> to use it.
->
-> Mark, do you have a reason of not using devm_add_action() in devres.c?
-> Should devm_add_action() be used in some other functions there? And
-> should this be moved to devres.c?
+> +#define IRQ_MASK_BIT(irq_data)		BIT(irqd_to_hwirq(irq_data) & 0x07)
 
-I think the reason for this is as simple as a historical one, i.e.
-there was no such API that time.
+More undocumented masks and bits.
 
---=20
-With Best Regards,
-Andy Shevchenko
+> +static const struct mfd_cell hi6421v600_devs[] = {
+> +	{ .name = "hi6421v600-regulator", },
+> +};
+
+Where are the rest of the devices?
+
+> +static irqreturn_t hi6421_spmi_irq_handler(int irq, void *priv)
+> +{
+> +	struct hi6421_spmi_pmic *ddata = (struct hi6421_spmi_pmic *)priv;
+> +	unsigned long pending;
+> +	unsigned int in;
+> +	int i, offset;
+> +
+> +	for (i = 0; i < HISI_IRQ_ARRAY; i++) {
+
+This is odd nomenclature.
+
+Do these have another name in the datasheet?  Bank maybe?
+
+> +		regmap_read(ddata->regmap, SOC_PMIC_IRQ0_ADDR + i, &in);
+> +		pending = HISI_MASK & in;
+> +		regmap_write(ddata->regmap, SOC_PMIC_IRQ0_ADDR + i, pending);
+
+Unmasking for some reason?  Comment please.
+
+> +		if (i == HISI_IRQ_KEY_NUM &&
+> +		    (pending & HISI_IRQ_KEY_VALUE) == HISI_IRQ_KEY_VALUE) {
+> +			generic_handle_irq(ddata->irqs[POWERKEY_DOWN]);
+
+Okay, so 'KEY' is actually 'POWERKEY'.
+
+This should be made clear sooner.
+
+> +			generic_handle_irq(ddata->irqs[POWERKEY_UP]);
+> +			pending &= (~HISI_IRQ_KEY_VALUE);
+> +		}
+
+Please document what's happening here.
+
+> +		if (!pending)
+> +			continue;
+> +
+> +		for_each_set_bit(offset, &pending, HISI_BITS)
+> +			generic_handle_irq(ddata->irqs[offset + i * HISI_BITS]);
+
+Bracketing?
+
+Comments throughout would make this easier to follow.
+
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static void hi6421_spmi_irq_mask(struct irq_data *d)
+> +{
+> +	struct hi6421_spmi_pmic *ddata = irq_data_get_irq_chip_data(d);
+> +	unsigned long flags;
+> +	unsigned int data;
+> +	u32 offset;
+> +
+> +	offset = IRQ_MASK_REGISTER(d);
+> +
+> +	spin_lock_irqsave(&ddata->lock, flags);
+> +
+> +	regmap_read(ddata->regmap, offset, &data);
+> +	data |= IRQ_MASK_BIT(d);
+> +	regmap_write(ddata->regmap, offset, data);
+> +
+> +	spin_unlock_irqrestore(&ddata->lock, flags);
+> +}
+> +
+> +static void hi6421_spmi_irq_unmask(struct irq_data *d)
+> +{
+> +	struct hi6421_spmi_pmic *ddata = irq_data_get_irq_chip_data(d);
+> +	u32 data, offset;
+> +	unsigned long flags;
+> +
+> +	offset = (irqd_to_hwirq(d) >> 3);
+> +	offset += SOC_PMIC_IRQ_MASK_0_ADDR;
+
+IRQ_MASK_REGISTER() ?
+
+> +	spin_lock_irqsave(&ddata->lock, flags);
+> +
+> +	regmap_read(ddata->regmap, offset, &data);
+> +	data &= ~(1 << (irqd_to_hwirq(d) & 0x07));
+
+BIT()?
+
+What does the 0x07 mask represent?
+
+> +	regmap_write(ddata->regmap, offset, data);
+> +
+> +	spin_unlock_irqrestore(&ddata->lock, flags);
+> +}
+> +
+> +static struct irq_chip hi6421_spmi_pmu_irqchip = {
+> +	.name		= "hisi-irq",
+
+<vendor>-irq is very generic.
+
+Can we be more specific?
+
+> +	.irq_mask	= hi6421_spmi_irq_mask,
+> +	.irq_unmask	= hi6421_spmi_irq_unmask,
+> +	.irq_disable	= hi6421_spmi_irq_mask,
+> +	.irq_enable	= hi6421_spmi_irq_unmask,
+> +};
+> +
+> +static int hi6421_spmi_irq_map(struct irq_domain *d, unsigned int virq,
+> +			       irq_hw_number_t hw)
+> +{
+> +	struct hi6421_spmi_pmic *ddata = d->host_data;
+> +
+> +	irq_set_chip_and_handler_name(virq, &hi6421_spmi_pmu_irqchip,
+> +				      handle_simple_irq, "hisi");
+
+<vendor> is very generic.
+
+> +	irq_set_chip_data(virq, ddata);
+> +	irq_set_irq_type(virq, IRQ_TYPE_NONE);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct irq_domain_ops hi6421_spmi_domain_ops = {
+> +	.map	= hi6421_spmi_irq_map,
+> +	.xlate	= irq_domain_xlate_twocell,
+> +};
+> +
+> +static void hi6421_spmi_pmic_irq_init(struct hi6421_spmi_pmic *ddata)
+> +{
+> +	int i;
+> +	unsigned int pending;
+> +
+> +	for (i = 0; i < HISI_IRQ_ARRAY; i++)
+> +		regmap_write(ddata->regmap, SOC_PMIC_IRQ_MASK_0_ADDR + i,
+> +			     HISI_MASK);
+> +
+> +	for (i = 0; i < HISI_IRQ_ARRAY; i++) {
+> +		regmap_read(ddata->regmap, SOC_PMIC_IRQ0_ADDR + i, &pending);
+> +		regmap_write(ddata->regmap, SOC_PMIC_IRQ0_ADDR + i,
+> +			     HISI_MASK);
+> +	}
+
+Comments please?
+
+Why do these loops need to be separate?
+
+> +}
+> +
+> +static const struct regmap_config regmap_config = {
+> +	.reg_bits		= 16,
+> +	.val_bits		= HISI_BITS,
+> +	.max_register		= 0xffff,
+
+Do you need to map from 0 to 0xffff?
+
+> +	.fast_io		= true
+> +};
+> +
+> +static int hi6421_spmi_pmic_probe(struct spmi_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *np = dev->of_node;
+> +	struct hi6421_spmi_pmic *ddata;
+> +	unsigned int virq;
+> +	int ret, i;
+> +
+> +	ddata = devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
+> +	if (!ddata)
+> +		return -ENOMEM;
+> +
+> +	ddata->regmap = devm_regmap_init_spmi_ext(pdev, &regmap_config);
+> +	if (IS_ERR(ddata->regmap))
+> +		return PTR_ERR(ddata->regmap);
+> +
+> +	spin_lock_init(&ddata->lock);
+> +
+> +	ddata->dev = dev;
+> +
+> +	ddata->gpio = of_get_gpio(np, 0);
+> +	if (ddata->gpio < 0)
+> +		return ddata->gpio;
+> +
+> +	if (!gpio_is_valid(ddata->gpio))
+> +		return -EINVAL;
+> +
+> +	ret = devm_gpio_request_one(dev, ddata->gpio, GPIOF_IN, "pmic");
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to request gpio%d\n", ddata->gpio);
+> +		return ret;
+> +	}
+> +
+> +	ddata->irq = gpio_to_irq(ddata->gpio);
+> +
+> +	hi6421_spmi_pmic_irq_init(ddata);
+> +
+> +	ddata->irqs = devm_kzalloc(dev, HISI_IRQ_NUM * sizeof(int), GFP_KERNEL);
+> +	if (!ddata->irqs)
+> +		return -ENOMEM;
+> +
+> +	ddata->domain = irq_domain_add_simple(np, HISI_IRQ_NUM, 0,
+> +					      &hi6421_spmi_domain_ops, ddata);
+> +	if (!ddata->domain) {
+> +		dev_err(dev, "Failed to create IRQ domain\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	for (i = 0; i < HISI_IRQ_NUM; i++) {
+> +		virq = irq_create_mapping(ddata->domain, i);
+
+What happens when this requests IRQ 15 and 16?
+
+> +		if (!virq) {
+> +			dev_err(dev, "Failed to map H/W IRQ\n");
+> +			return -ENOSPC;
+> +		}
+> +		ddata->irqs[i] = virq;
+> +	}
+> +
+> +	ret = request_threaded_irq(ddata->irq, hi6421_spmi_irq_handler, NULL,
+> +				   IRQF_TRIGGER_LOW | IRQF_SHARED | IRQF_NO_SUSPEND,
+> +				   "pmic", ddata);
+
+Is this the only 'pmic' on the platform?
+
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to start IRQ handling thread: error %d\n",
+> +			ret);
+
+Does checkpatch complain if this is just one long line?
+
+> +		return ret;
+> +	}
+> +
+> +	dev_set_drvdata(&pdev->dev, ddata);
+> +
+> +	ret = devm_mfd_add_devices(&pdev->dev, PLATFORM_DEVID_NONE,
+> +				   hi6421v600_devs, ARRAY_SIZE(hi6421v600_devs),
+> +				   NULL, 0, NULL);
+> +	if (ret < 0)
+> +		dev_err(dev, "Failed to add child devices: %d\n", ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static void hi6421_spmi_pmic_remove(struct spmi_device *pdev)
+> +{
+> +	struct hi6421_spmi_pmic *ddata = dev_get_drvdata(&pdev->dev);
+> +
+> +	free_irq(ddata->irq, ddata);
+> +}
+> +
+> +static const struct of_device_id pmic_spmi_id_table[] = {
+> +	{ .compatible = "hisilicon,hi6421-spmi" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, pmic_spmi_id_table);
+> +
+> +static struct spmi_driver hi6421_spmi_pmic_driver = {
+> +	.driver = {
+> +		.name	= "hi6421-spmi-pmic",
+
+Odd spacing.  Does this line up with the other '='?
+
+> +		.of_match_table = pmic_spmi_id_table,
+> +	},
+> +	.probe	= hi6421_spmi_pmic_probe,
+> +	.remove	= hi6421_spmi_pmic_remove,
+> +};
+> +module_spmi_driver(hi6421_spmi_pmic_driver);
+> +
+> +MODULE_DESCRIPTION("HiSilicon Hi6421v600 SPMI PMIC driver");
+> +MODULE_LICENSE("GPL v2");
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
