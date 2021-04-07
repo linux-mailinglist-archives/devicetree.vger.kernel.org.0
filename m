@@ -2,83 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B27E356956
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 12:21:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8CF93569D7
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 12:40:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237394AbhDGKVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 06:21:17 -0400
-Received: from frasgout.his.huawei.com ([185.176.79.56]:2783 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237262AbhDGKVO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 06:21:14 -0400
-Received: from fraeml708-chm.china.huawei.com (unknown [172.18.147.200])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4FFgGM2QzQz686lg;
-        Wed,  7 Apr 2021 18:13:47 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml708-chm.china.huawei.com (10.206.15.36) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Wed, 7 Apr 2021 12:20:47 +0200
-Received: from localhost (10.47.92.157) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Wed, 7 Apr 2021
- 11:20:46 +0100
-Date:   Wed, 7 Apr 2021 11:19:22 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+        id S1351189AbhDGKkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 06:40:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53626 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351158AbhDGKkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 06:40:00 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F489C061756;
+        Wed,  7 Apr 2021 03:39:51 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id E79D01F453CF
+Received: by earth.universe (Postfix, from userid 1000)
+        id 2F75D3C0C96; Wed,  7 Apr 2021 12:39:46 +0200 (CEST)
+Date:   Wed, 7 Apr 2021 12:39:46 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
 To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-CC:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
         Jonathan Corbet <corbet@lwn.net>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        "Lee Jones" <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 11/19] dt-bindings:iio:adc: update
- dlg,da9150-gpadc.yaml reference
-Message-ID: <20210407111922.00003831@Huawei.com>
-In-Reply-To: <79ece2a12759a375bfa0d492e2931f48acc11e39.1617783062.git.mchehab+huawei@kernel.org>
+        Artur Rojek <contact@artur-rojek.eu>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 07/19] dt-bindings: fix references for iio-bindings.txt
+Message-ID: <20210407103946.hxr3yoeasumuzsdk@earth.universe>
 References: <cover.1617783062.git.mchehab+huawei@kernel.org>
-        <79ece2a12759a375bfa0d492e2931f48acc11e39.1617783062.git.mchehab+huawei@kernel.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+ <c4e3cfcc666552084df5155c4f3957134b72ef7a.1617783062.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.92.157]
-X-ClientProxiedBy: lhreml752-chm.china.huawei.com (10.201.108.202) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2ca4km7phoijhn6n"
+Content-Disposition: inline
+In-Reply-To: <c4e3cfcc666552084df5155c4f3957134b72ef7a.1617783062.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 7 Apr 2021 10:20:50 +0200
-Mauro Carvalho Chehab <mchehab+huawei@kernel.org> wrote:
 
-> Changeset e13b686b18e3 ("dt-bindings:iio:adc:dlg,da9150-gpadc yaml conversion")
-> renamed: Documentation/devicetree/bindings/iio/adc/da9150-gpadc.txt
-> to: Documentation/devicetree/bindings/iio/adc/dlg,da9150-gpadc.yaml.
-> 
-> Update its cross-reference accordingly.
-> 
-> Fixes: e13b686b18e3 ("dt-bindings:iio:adc:dlg,da9150-gpadc yaml conversion")
+--2ca4km7phoijhn6n
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Wed, Apr 07, 2021 at 10:20:46AM +0200, Mauro Carvalho Chehab wrote:
+> The iio-bindings.txt was converted into two files and merged
+> at the dt-schema git tree at:
+>=20
+> 	https://github.com/devicetree-org/dt-schema
+>=20
+> Yet, some documents still refer to the old file. Fix their
+> references, in order to point to the right URL.
+>=20
+> Fixes: dba91f82d580 ("dt-bindings:iio:iio-binding.txt Drop file as conten=
+t now in dt-schema")
 > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-
 > ---
->  Documentation/devicetree/bindings/mfd/da9150.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/da9150.txt b/Documentation/devicetree/bindings/mfd/da9150.txt
-> index 763e0b639a82..b7afa39d6260 100644
-> --- a/Documentation/devicetree/bindings/mfd/da9150.txt
-> +++ b/Documentation/devicetree/bindings/mfd/da9150.txt
-> @@ -19,7 +19,7 @@ Required properties:
->     further information relating to interrupt properties)
->  
->  Sub-devices:
-> -- da9150-gpadc: See Documentation/devicetree/bindings/iio/adc/da9150-gpadc.txt
-> +- da9150-gpadc: See Documentation/devicetree/bindings/iio/adc/dlg,da9150-gpadc.yaml
->  - da9150-charger: See Documentation/devicetree/bindings/power/da9150-charger.txt
->  - da9150-fg: See Documentation/devicetree/bindings/power/da9150-fg.txt
->  
 
+[...]
+
+>  .../devicetree/bindings/power/supply/da9150-charger.txt      | 2 +-
+
+This file got converted to YAML in my tree and no longer exists in
+linux-next. The new YAML file no longer references iio-bindings.txt.
+
+-- Sebastian
+
+--2ca4km7phoijhn6n
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmBti+YACgkQ2O7X88g7
++ppT7Q/+MFaaDYk56GF+wi+QyV+vfgvcoBWD2eDgLGinJVCETdwJNtd7P8qw9BdT
+yHp+Mzz5Zq+fpJrZg9JvfEw/kL6eHJfoOimW/r6qQAA4tdHYD053pZXPa9lSPlSU
+NgK+TR0UlM6vDXIcl2tUSo0ps/eofdUSvjLmjfAXC+WBOvbokDtijr9FDCm5eXAE
+iEtUplHH1SLkxrIBDZhnNoIiHc4xj/D5AaZSg9LB4zHuJsF66vG763wwKyTgtE8A
+MqF8F/IR0ZFRuCAlmJDogQ3HM/1lirXhqPX3Ife1uuyzSA1Zz0vqkCRwEV/9itwT
+qH0YFWVo/GU2MZeshUOgsP/rMHPEiXIH8pG2s+FUMx3BISgk/CH7WysSei58SSJE
+tUyC+ByP3mukLaDYtVBEZVlIDDgypcdO+UH6WrMyPhMaTpVSVYWJ9p2nEgUX5qF5
+jWwi6lmeExNir9fqnCsXp4O5V2bk11w0jKr2QepOtRx4ak/7HQJkznQEj+Wmv+DW
+Zz60FghpDaMs8yG8x7v8xOcOf0PPtREEYNhCIPffQsIqPclRYS3hgEt+nuU2CxkU
+ayf7dN4DsDVG/amwymw40QvKRGjugmGjxK80kkXoPhZ/yVxH0pyjolWkaox2XjxN
+LnqE/vsJZGi1NLTbWgg7/MSRIxuGAEmJJCEJLCtPhiCyDv06aas=
+=RoNN
+-----END PGP SIGNATURE-----
+
+--2ca4km7phoijhn6n--
