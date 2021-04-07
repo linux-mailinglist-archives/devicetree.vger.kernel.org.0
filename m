@@ -2,135 +2,325 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EE3035762F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 22:37:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3737C357637
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 22:40:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231909AbhDGUhy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 16:37:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44672 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230049AbhDGUhx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 16:37:53 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB1E1C061760;
-        Wed,  7 Apr 2021 13:37:41 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id e186so20826942iof.7;
-        Wed, 07 Apr 2021 13:37:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FCpElm+uN0nKlaXcOWhtgRYdg8EWv7jaC5fSZFSUuVQ=;
-        b=eeKK+hokZ78lIxpp1CJIqB/m3pYB/VQl9FlwjgwATA2DUVH+a93H0Nh3eo7Roa7d46
-         oNwonyszu29BCWeqrzKTM46Ihh52BB/4JqlOOwzuvYvBIcVTHYatWmyKmv8IXt7MzNz8
-         NUJJQCkh4n9rwO/HDB9lBrhWN3pmrjJow3aYE00+NcNsSEpB3wlLLid/bk5aYzaBY1p8
-         mpgzTkWZQfy8f+NmJjfq1nxguLl37vdqRZuaVZYI8iT3t9d6qHsEDJ7rLZu9iMcRRw5t
-         BS0IaSi6iqb67W8ebB6vbyaeh2/gFjF5FRD/zrvR2qI0Y2+LwMqyre6ZzvZo8vAwTEYN
-         lGzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FCpElm+uN0nKlaXcOWhtgRYdg8EWv7jaC5fSZFSUuVQ=;
-        b=KzQFPhy97lg8/ckcpvE3t+6zl1+39KJ7xKHbgRZt/8yfDlDrsKA2KLRSb1MAHr4gl+
-         6yiyrqBDR8oXJvbTiIcE1NN4hmh0fKxCN4m3Vq1kg4P3Q+BDs+6DUZY6OZPXpDrAVlOy
-         aNCdMI/id4mZPAuAalEzkVXXOmzyuSuXKzJea64JeXYrk75IjmtthPZACssgYnaeCPrU
-         Tkj0Ret5A0qFxp9kHRNHSYjLWVHGO5BEy5HEs0tms4qiZdkYT6iSzCKxRdrqrxrrDJHn
-         +Glo5nhSmG5cvqlVRTxLxm/E47y24tNhI/WPkKVw1FSJnb/Iz3jCrz6orJBWAuBdXr/b
-         HhMA==
-X-Gm-Message-State: AOAM5309n5VKhTG87U9uflA4uObxvH8iOjfO+YoApU0FNWqf0s/w7W/C
-        T14aK7cw0l8VNixSE0M2gAKR7/V9HQoVlAJmeJo=
-X-Google-Smtp-Source: ABdhPJxm7xRmu9Llm1HKwK5Mfz4r5Kj77R/0UlJokS2jCKML85l6w6O1YFI2dH2GFwI2ZtvpbwbH1cZDERodEXGgrZE=
-X-Received: by 2002:a05:6638:2209:: with SMTP id l9mr5297192jas.13.1617827860500;
- Wed, 07 Apr 2021 13:37:40 -0700 (PDT)
+        id S229780AbhDGUlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 16:41:02 -0400
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:51403 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229586AbhDGUlB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 16:41:01 -0400
+X-Originating-IP: 91.175.115.186
+Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
+        (Authenticated sender: gregory.clement@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 11AF160003;
+        Wed,  7 Apr 2021 20:40:47 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Aryan Srivastava <aryan.srivastava@alliedtelesis.co.nz>,
+        robh+dt@kernel.org, andrew@lunn.ch, sebastian.hesselbarth@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        chris.packham@alliedtelesis.co.nz,
+        Aryan Srivastava <aryan.srivastava@alliedtelesis.co.nz>
+Subject: Re: [PATCH v2] ARM: dts: mvebu: Add device tree for ATL-x530 Board
+In-Reply-To: <20201130223507.23571-1-aryan.srivastava@alliedtelesis.co.nz>
+References: <20201130223507.23571-1-aryan.srivastava@alliedtelesis.co.nz>
+Date:   Wed, 07 Apr 2021 22:40:47 +0200
+Message-ID: <87sg41bzg0.fsf@BL-laptop>
 MIME-Version: 1.0
-References: <20210322185816.27582-1-nsaenz@kernel.org> <20210322185816.27582-5-nsaenz@kernel.org>
- <401100ea-90ad-57b1-50da-967118a090da@i2se.com> <78dec30c052e9bb76e52c38f3da5af371e5d65f5.camel@suse.de>
- <2d2a2638-8213-5d6e-0a3a-927ed5bb2ed7@i2se.com> <c7c8e20d3d11c7d6cd203797c5faffa8a4d202a6.camel@suse.de>
- <CAOGqxeUxOA_s6=KUh_XWFtRF_EWZgQH_y2MEdxUeDQTYMeb+3A@mail.gmail.com> <4d4e3de99dbee711cf47878bf98a7cc34c3f1e65.camel@suse.de>
-In-Reply-To: <4d4e3de99dbee711cf47878bf98a7cc34c3f1e65.camel@suse.de>
-From:   Alan Cooper <alcooperx@gmail.com>
-Date:   Wed, 7 Apr 2021 16:37:29 -0400
-Message-ID: <CAOGqxeWzjn70A_gP4Eh_ZLW0H3KkE_wA7QzeGRqU1u7xtJr-+Q@mail.gmail.com>
-Subject: Re: [PATCH 4/4] ARM: dts: Fix-up EMMC2 controller's frequency
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
-        linux-rpi-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>, phil@raspberrypi.com,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        ": Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nicolas,
+Hello Aryan,
 
-I got a better description of the failure and it looks like the bus
-clock needs to be limited to 300KHz for a 500MHz core clock.
-What's happening is that an internal reset sequence is needed after a
-command timeout and the reset signal needs to be asserted for at least
-2 ticks of the bus clock. This is done using a 12 bit counter clocked
-by the core clock. That means a 500MHz core clock produces a 122KHz
-reset signal which is too fast for 2 ticks of the 200KHz bus clock
-(100KHz) but is okay for the 300KHz (150Khz) bus clock.
+> Add device tree file for x530 board. This has an Armada 385 SoC. Has
+> NAND-flash for user storage and SPI for booting. Covers majority of x530
+> and GS980MX variants.
+>
+> Signed-off-by: Aryan Srivastava <aryan.srivastava@alliedtelesis.co.nz>
+> Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 
-Al
+I don't know why I missed this one but I've finally applied it on
+mvebu/dt and sent a pull request for 5.13.
 
-On Mon, Apr 5, 2021 at 4:45 AM Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
+Sorry for this delay.
+
+Thanks,
+
+Gregory
+
+
+> ---
+> Notes:
+> 	Changes in v2:
+> 	-Adding to Makefile
 >
-> Hi Alan,
+>  arch/arm/boot/dts/Makefile                |   1 +
+>  arch/arm/boot/dts/armada-385-atl-x530.dts | 235 ++++++++++++++++++++++
+>  2 files changed, 236 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/armada-385-atl-x530.dts
 >
-> On Thu, 2021-04-01 at 11:23 -0400, Alan Cooper wrote:
-> > Nicolas,
-> >
-> > Sorry, I just noticed this thread.
-> > This is a known bug in some newer Arasan cores.
-> > The problem happens when the difference between the core clock and the bus
-> > clock is too great.
-> > Limiting the clock to 200KHz minimum should be a good fix.
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index a60407ad7347..d65d84e9bf9c 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1320,6 +1320,7 @@ dtb-$(CONFIG_MACH_ARMADA_375) += \
+>  	armada-375-db.dtb
+>  dtb-$(CONFIG_MACH_ARMADA_38X) += \
+>  	armada-382-rd-ac3x-48g4x2xl.dtb \
+> +	armada-385-atl-x530.dtb\
+>  	armada-385-clearfog-gtr-s4.dtb \
+>  	armada-385-clearfog-gtr-l8.dtb \
+>  	armada-385-db-88f6820-amc.dtb \
+> diff --git a/arch/arm/boot/dts/armada-385-atl-x530.dts b/arch/arm/boot/dts/armada-385-atl-x530.dts
+> new file mode 100644
+> index 000000000000..2041bf09c578
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/armada-385-atl-x530.dts
+> @@ -0,0 +1,235 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Device Tree file for Armada 385 Allied Telesis x530/GS980MX Board.
+> + (x530/AT-GS980MX)
+> + *
+> + Copyright (C) 2020 Allied Telesis Labs
+> + */
+> +
+> +/dts-v1/;
+> +#include "armada-385.dtsi"
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/ {
+> +	model = "x530/AT-GS980MX";
+> +	compatible = "alliedtelesis,gs980mx", "alliedtelesis,x530", "marvell,armada385", "marvell,armada380";
+> +
+> +	chosen {
+> +		stdout-path = "serial1:115200n8";
+> +	};
+> +
+> +	memory {
+> +		device_type = "memory";
+> +		reg = <0x00000000 0x40000000>; /* 1GB */
+> +	};
+> +
+> +	soc {
+> +		ranges = <MBUS_ID(0xf0, 0x01) 0 0xf1000000 0x100000
+> +			  MBUS_ID(0x01, 0x3d) 0 0xf4800000 0x80000
+> +			  MBUS_ID(0x01, 0x1d) 0 0xfff00000 0x100000>;
+> +
+> +		internal-regs {
+> +			i2c0: i2c@11000 {
+> +				pinctrl-names = "default";
+> +				pinctrl-0 = <&i2c0_pins>;
+> +				status = "okay";
+> +			};
+> +
+> +			uart0: serial@12000 {
+> +				pinctrl-names = "default";
+> +				pinctrl-0 = <&uart0_pins>;
+> +				status = "okay";
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&pciec {
+> +	status = "okay";
+> +};
+> +
+> +&pcie1 {
+> +	status = "okay";
+> +	reset-gpios = <&gpio1 23 GPIO_ACTIVE_LOW>;
+> +	reset-delay-us = <400000>;
+> +};
+> +
+> +&pcie2 {
+> +	status = "okay";
+> +};
+> +
+> +&devbus_cs1 {
+> +	compatible = "marvell,mvebu-devbus";
+> +	status = "okay";
+> +
+> +	devbus,bus-width    = <8>;
+> +	devbus,turn-off-ps  = <60000>;
+> +	devbus,badr-skew-ps = <0>;
+> +	devbus,acc-first-ps = <124000>;
+> +	devbus,acc-next-ps  = <248000>;
+> +	devbus,rd-setup-ps  = <0>;
+> +	devbus,rd-hold-ps   = <0>;
+> +
+> +	/* Write parameters */
+> +	devbus,sync-enable = <0>;
+> +	devbus,wr-high-ps  = <60000>;
+> +	devbus,wr-low-ps   = <60000>;
+> +	devbus,ale-wr-ps   = <60000>;
+> +
+> +	nvs@0 {
+> +		status = "okay";
+> +
+> +		compatible = "mtd-ram";
+> +		reg = <0 0x00080000>;
+> +		bank-width = <1>;
+> +		label = "nvs";
+> +	};
+> +};
+> +
+> +&pinctrl {
+> +	i2c0_gpio_pins: i2c-gpio-pins-0 {
+> +		marvell,pins = "mpp2", "mpp3";
+> +		marvell,function = "gpio";
+> +	};
+> +};
+> +
+> +&i2c0 {
+> +	clock-frequency = <100000>;
+> +	status = "okay";
+> +
+> +	pinctrl-names = "default", "gpio";
+> +	pinctrl-0 = <&i2c0_pins>;
+> +	pinctrl-1 = <&i2c0_gpio_pins>;
+> +	scl-gpio = <&gpio0 2 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+> +	sda-gpio = <&gpio0 3 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+> +
+> +	i2c0mux: mux@71 {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		compatible = "nxp,pca9544";
+> +		reg = <0x71>;
+> +		i2c-mux-idle-disconnect;
+> +
+> +		i2c@0 { /* POE devices MUX */
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0>;
+> +		};
+> +
+> +		i2c@1 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <1>;
+> +
+> +			adt7476_2e: hwmon@2e {
+> +				compatible = "adi,adt7476";
+> +				reg = <0x2e>;
+> +			};
+> +
+> +			adt7476_2d: hwmon@2d {
+> +				compatible = "adi,adt7476";
+> +				reg = <0x2d>;
+> +			};
+> +		};
+> +
+> +		i2c@2 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <2>;
+> +
+> +			rtc@68 {
+> +				compatible = "dallas,ds1340";
+> +				reg = <0x68>;
+> +			};
+> +		};
+> +
+> +		i2c@3 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <3>;
+> +
+> +			gpio@20 {
+> +				compatible = "nxp,pca9554";
+> +				gpio-controller;
+> +				#gpio-cells = <2>;
+> +				reg = <0x20>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&usb0 {
+> +	status = "okay";
+> +};
+> +
+> +&spi1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&spi1_pins>;
+> +	status = "okay";
+> +
+> +	spi-flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "jedec,spi-nor";
+> +		reg = <1>; /* Chip select 1 */
+> +		spi-max-frequency = <54000000>;
+> +
+> +		partitions {
+> +			compatible = "fixed-partitions";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			partition@u-boot {
+> +				reg = <0x00000000 0x00100000>;
+> +				label = "u-boot";
+> +			};
+> +			partition@u-boot-env {
+> +				reg = <0x00100000 0x00040000>;
+> +				label = "u-boot-env";
+> +			};
+> +			partition@unused {
+> +				reg = <0x00140000 0x00e80000>;
+> +				label = "unused";
+> +			};
+> +			partition@idprom {
+> +				reg = <0x00fc0000 0x00040000>;
+> +				label = "idprom";
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&nand_controller {
+> +	status = "okay";
+> +
+> +	nand@0 {
+> +		reg = <0>;
+> +		label = "pxa3xx_nand-0";
+> +		nand-rb = <0>;
+> +		nand-on-flash-bbt;
+> +		nand-ecc-strength = <4>;
+> +		nand-ecc-step-size = <512>;
+> +
+> +		marvell,nand-enable-arbiter;
+> +
+> +		partitions {
+> +			compatible = "fixed-partitions";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			partition@user {
+> +				reg = <0x00000000 0x0f000000>;
+> +				label = "user";
+> +			};
+> +			partition@errlog {
+> +				/* Maximum mtdoops size is 8MB, so set to that. */
+> +				reg = <0x0f000000 0x00800000>;
+> +				label = "errlog";
+> +			};
+> +			partition@nand-bbt {
+> +				reg = <0x0f800000 0x00800000>;
+> +				label = "nand-bbt";
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> -- 
+> 2.29.2
 >
-> Great, that's what I was hoping to hear :). Out of curiosity, can you share
-> more details on how the failure occurs?
->
-> > In my experience, it's only eMMC that needs the clock to be retried
->
-> > below 400KHz and not SD or SDIO. That's because the CMD signal for
-> > eMMC starts out as open-drain during identification and the size of
-> > the pull-up on the CMD signal can require the <400KHz clock. Once eMMC
-> > is out of identification mode the CMD signal is switched to push-pull
-> > and can run at much higher clock rates.
->
-> Fair enough, I need to do some tests, some of the compute modules use an eMMC.
->
-> > I don't think that SD and SDIO have any open-drain signals, so they
-> > shouldn't need to retry at slower clock speeds.
->
-> Noted.
->
-> > I'm trying to get more detail on the bug, like the exact ratio of core
-> > clock to bus clock that causes the problem. When I first found this
-> > bug I was told that the failure would not happen at 200KHz, but we
-> > were using a 405MHz core clock.
->
-> That would be nice to have.
->
-> > One other question. Why are you using polling for the SD card, this
-> > newer controller supports the interrupt driven "Card Inserted" signal
-> > and avoids wasting time polling?
->
-> I believe the line isn't routed on RPi4.
->
-> > Al
->
+
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
