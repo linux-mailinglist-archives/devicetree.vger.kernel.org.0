@@ -2,116 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5390D356FC8
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 17:05:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8DB435700E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 17:21:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353303AbhDGPF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 11:05:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56030 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243817AbhDGPF0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 11:05:26 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60083C061756;
-        Wed,  7 Apr 2021 08:05:16 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 18so3773968edx.3;
-        Wed, 07 Apr 2021 08:05:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=9wCDbHG9uHSkQXLgeZOxm41BJ4Rijo35t+pPRhh+alw=;
-        b=bkBQzncieJEEkMCfw6papmxYMiln+jyQw1UyUrdu4kcFhesdnUNVBepYKnvHUaX3PU
-         DAH91HIwKnywp6t8rOYujma1/IIuNa65Aer0RKYcCPQOHKkphxJXGtuXOvO1sjjondZ1
-         lZjEQbKo5WlIKUfcHSq8ABAoBVdQUMkXq9oMua5cKIku4Fd2XNu/6nZZFvTs56N8tqqO
-         MuhjFE0cmh9YXSJrId94WBv4eq/o1O44ZwECpbp8Sb/N9S0w8AXRo+uM9tvYk8hmW2w1
-         Azc8oaVz6qMaJ+TkGhtO1X6sr3X+2aB6tmBZjUGREsQtWwY3OsT3vex+VIfONWwefxow
-         ZVpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=9wCDbHG9uHSkQXLgeZOxm41BJ4Rijo35t+pPRhh+alw=;
-        b=J3mIVzoforwmwlrHLVOXoZqlOo99J0XKApTIAX3Op4qQZQZJakvfpFg7rKEehpBjtd
-         wCEtEk1JnnS0t5iP4AfPDwhj0WmJIXypEzoYj89SFFqj4riLlRaK+ToaKvyq5IbBQc5O
-         qenUC7yre0i2fnfqUN9Hm5LG4an64t23h+aE6dYNtf+M0U6DiULTekWDJ9tutRu60I6b
-         h4Iduox7OitV/t9LxnrXYWpS9XA2LOLOuLNp16adHj7aZ6kaS3Ft7OMT/9fY9uOZvmXb
-         l3Q6W+WCWqUZuoV+ANlMpeaHyeUU8pQUI50UOO3BWCWD+nUJQVGytay3Kca/4t5af9T+
-         90iw==
-X-Gm-Message-State: AOAM531KCLmmg5BMSGDBV4nVAJx+L1jihoRHLdFIZvT7hzC3b3nndLJy
-        7SAL8GQ49PasUJ7S929N3zw=
-X-Google-Smtp-Source: ABdhPJzsyQtJWCKLEPffahHXWH+zmRZrc/D7Dnk7mdUZT6rzxyungHRqUwjWiphvBHPlTjACyHHzbA==
-X-Received: by 2002:a05:6402:518b:: with SMTP id q11mr4975719edd.151.1617807914996;
-        Wed, 07 Apr 2021 08:05:14 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id kx3sm7958626ejc.44.2021.04.07.08.05.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Apr 2021 08:05:13 -0700 (PDT)
-Date:   Wed, 7 Apr 2021 17:05:48 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     axboe@kernel.dk, jonathanh@nvidia.com, robh+dt@kernel.org,
-        pchandru@nvidia.com, devicetree@vger.kernel.org,
-        linux-ide@vger.kernel.org, linux-tegra@vger.kernel.org,
+        id S1347279AbhDGPVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 11:21:20 -0400
+Received: from lizzard.sbs.de ([194.138.37.39]:50117 "EHLO lizzard.sbs.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229812AbhDGPVT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Apr 2021 11:21:19 -0400
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+        by lizzard.sbs.de (8.15.2/8.15.2) with ESMTPS id 137FKwnl016116
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 7 Apr 2021 17:20:58 +0200
+Received: from [139.22.47.56] ([139.22.47.56])
+        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 137FDblB023332;
+        Wed, 7 Apr 2021 17:13:37 +0200
+Subject: Re: [PATCH] arm64: dts: ti: k3-am65: Add support for UHS-I modes in
+ MMCSD1 subsystem
+To:     Nishanth Menon <nm@ti.com>, Aswath Govindraju <a-govindraju@ti.com>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] ata: ahci_tegra: Add AHCI support for Tegra186
-Message-ID: <YG3KTNpsNuuxv4mZ@orome.fritz.box>
-References: <1617758731-12380-1-git-send-email-skomatineni@nvidia.com>
- <1617758731-12380-4-git-send-email-skomatineni@nvidia.com>
+References: <20210407104303.25950-1-a-govindraju@ti.com>
+ <20210407145937.prvue66guhdls2fw@immovably>
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+Message-ID: <7d089f1c-6f9e-82fe-fc8a-42c691d4ec40@siemens.com>
+Date:   Wed, 7 Apr 2021 17:13:37 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5wXc6glE45+qlMXy"
-Content-Disposition: inline
-In-Reply-To: <1617758731-12380-4-git-send-email-skomatineni@nvidia.com>
-User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
+In-Reply-To: <20210407145937.prvue66guhdls2fw@immovably>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 07.04.21 16:59, Nishanth Menon wrote:
+> On 16:13-20210407, Aswath Govindraju wrote:
+>> UHS-I speed modes are supported in AM65 S.R. 2.0 SoC[1].
+>>
+>> Add support by removing the no-1-8-v tag and including the voltage
+>> regulator device tree nodes for power cycling.
+>>
+>> [1] - https://www.ti.com/lit/ug/spruid7e/spruid7e.pdf, section 12.3.6.1.1
+>>
+>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> 
+>> ---
+>>
+>> test logs:
+>> https://pastebin.ubuntu.com/p/vpYbY9QWh8/
+>>
+> Thanks, but I dont plan on queuing this for 5.13-rc1 (my PR is already
+> out). but it does trigger an interesting discussion..
+> 
+>>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  1 -
+>>  .../arm64/boot/dts/ti/k3-am654-base-board.dts | 33 +++++++++++++++++++
+>>  2 files changed, 33 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+>> index cb340d1b401f..632f32fce4a1 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+>> @@ -301,7 +301,6 @@
+>>  		ti,otap-del-sel = <0x2>;
+>>  		ti,trm-icp = <0x8>;
+>>  		dma-coherent;
+>> -		no-1-8-v;
+>>  	};
+>>  
+> 
+> Jan - this will break your IOT SR1.0 boards, no? with all the SR1.0,
+> 2.0, 2.1 coming along, the plan for TI was to support older revs via
+> overlays hoping that older boards will eventually get replaced or die
+> out of lack of use.. but you do have production on 1.0 -> so would you
+> rather handle this in overlay OR IOT boards dts introduce no-1-8-v
+> property?
 
---5wXc6glE45+qlMXy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'm fine with pulling anything needed into our board-specific DTs. Those
+pending are for SR1.0 boards only. SR2 will come later and have their
+own DTs.
 
-On Tue, Apr 06, 2021 at 06:25:31PM -0700, Sowjanya Komatineni wrote:
-> This patch adds support for AHCI-compliant Serial ATA controller
-> on Tegra186 SoC.
->=20
-> Tegra186 does not have sata-oob reset.
-> Tegra186 SATA_NVOOB register filed COMMA_CNT position and width are
-> different compared to Tegra210 and prior.
->=20
-> So, this patch adds a flag has_sata_oob_rst and tegra_ahci_regs to
-> SoC specific strcuture tegra_ahci_soc and updated their implementation
-> accordingly.
->=20
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->  drivers/ata/ahci_tegra.c | 60 +++++++++++++++++++++++++++++++++++++-----=
-------
->  1 file changed, 47 insertions(+), 13 deletions(-)
+Didn't follow the thread: Where is this patch located wrt my IOT2050
+series? Does it come first first, and we would have to rebase? Or would
+this change rather have to move the flag to k3-am65-iot2050-common.dtsi?
 
-Acked-by: Thierry Reding <treding@nvidia.com>
+Thanks a lot for having an eye on these subtle dependencies!
 
---5wXc6glE45+qlMXy
-Content-Type: application/pgp-signature; name="signature.asc"
+Jan
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmBtykwACgkQ3SOs138+
-s6GmuQ//SBUyXnbF2lnf8ODdawHvuEG6M9dXdj+OXc5seDzMJSkk7OSb7xcgODop
-mGxWH15Zh9qA3Ut+ZnVVEXUqB3lOsWVrl/JzwdYMEgiGLzdNbiuKOnk/PM/L06/r
-b10f5WTcq4kX1CuV8ODrRQAY0H/uquDCGDry9C1B86BzkFkZmdXZB/eoWI1hFdIH
-BmkP62ZM+mDUlEs4aRGzjwKJSsbDEJ3UY24CgZH+lH2jJgF5js5fDB4JZHi4Y1t1
-0yBysy71BwyAYk2JsafrgrV200aH1EVudxbANJjD1J8LSFy46Vd9TYvy7Nz8ItZy
-1fBYnGvGEduU6z0wwHO1KgRTW127I0zD/w34tYSDYXHu5mBHIFBD1oCxaqCXEMCM
-MMV03S4JQtyFBz5HC7JIcndgMQGyqbmiJb9pShft6XTdOLus/gvnPkwM4LKWfzZw
-xjTfQN0HPZEu1b6/pdlLWzicAN3BfQbXdnH+FZb7eyd1b6q1zohwCJJmm9pH/v0/
-fofpjcblpyvx2f3w4dwlbfszq1+8XRDYr38MBGXTOZKn78iyUYUwvoCxKhyJ7t+M
-fDpi9V0TWUkxLPdr8Y2sHjB1ACdMM+gpDRdGfpXJW9zcVVWjPRRs6Ltp8ck8NGeH
-gdfyyCmb5W1W2HTmn5M7/UxBCr0k9O01asi59f5Mq0BJyLSUx0E=
-=bItX
------END PGP SIGNATURE-----
-
---5wXc6glE45+qlMXy--
+-- 
+Siemens AG, T RDA IOT
+Corporate Competence Center Embedded Linux
