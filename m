@@ -2,66 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FC18356C1B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 14:31:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06BA0356C26
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 14:32:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352186AbhDGMb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 08:31:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49636 "EHLO mail.kernel.org"
+        id S1352206AbhDGMcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 08:32:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49974 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235368AbhDGMb0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Apr 2021 08:31:26 -0400
+        id S1352203AbhDGMcW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Apr 2021 08:32:22 -0400
 Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2E378611EE;
-        Wed,  7 Apr 2021 12:31:17 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8824F60FEE;
+        Wed,  7 Apr 2021 12:32:12 +0000 (UTC)
 Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why.lan)
         by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94)
         (envelope-from <maz@kernel.org>)
-        id 1lU7L1-0064O4-3w; Wed, 07 Apr 2021 13:31:15 +0100
+        id 1lU7Lu-0064Pb-H1; Wed, 07 Apr 2021 13:32:10 +0100
 From:   Marc Zyngier <maz@kernel.org>
-To:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        openbmc@lists.ozlabs.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Tomer Maimon <tmaimon77@gmail.com>, devicetree@vger.kernel.org,
-        Joel Stanley <joel@jms.id.au>
-Subject: Re: [PATCH v2 00/10] Initial support for Nuvoton WPCM450 BMC SoC
-Date:   Wed,  7 Apr 2021 13:31:12 +0100
-Message-Id: <161779861852.1095473.15662659062108361949.b4-ty@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Erwan Le Ray <erwan.leray@foss.st.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-serial@vger.kernel.org,
+        Valentin Caron <valentin.caron@foss.st.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+Subject: Re: (subset) [PATCH 0/5] stm32 usart wakeup rework
+Date:   Wed,  7 Apr 2021 13:32:07 +0100
+Message-Id: <161779861853.1095473.5644490984272878167.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210406120921.2484986-1-j.neuschaefer@gmx.net>
-References: <20210406120921.2484986-1-j.neuschaefer@gmx.net>
+In-Reply-To: <20210319184253.5841-1-erwan.leray@foss.st.com>
+References: <20210319184253.5841-1-erwan.leray@foss.st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 62.31.163.78
-X-SA-Exim-Rcpt-To: j.neuschaefer@gmx.net, openbmc@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, tmaimon77@gmail.com, devicetree@vger.kernel.org, joel@jms.id.au
+X-SA-Exim-Rcpt-To: robh+dt@kernel.org, alexandre.torgue@foss.st.com, erwan.leray@foss.st.com, gregkh@linuxfoundation.org, mcoquelin.stm32@gmail.com, tglx@linutronix.de, linux-arm-kernel@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, linux-serial@vger.kernel.org, valentin.caron@foss.st.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, fabrice.gasnier@foss.st.com, patrice.chotard@foss.st.com
 X-SA-Exim-Mail-From: maz@kernel.org
 X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 6 Apr 2021 14:09:11 +0200, Jonathan Neuschäfer wrote:
-> This series adds basic support for the Nuvoton WPCM450 BMC SoC. It's an older
-> SoC but still commonly found on eBay, mostly in Supermicro X9 server boards.
+On Fri, 19 Mar 2021 19:42:48 +0100, Erwan Le Ray wrote:
+> This series reworks stm32 usart wakeup management.
 > 
-> Third-party documentation is available at: https://github.com/neuschaefer/wpcm450/wiki
+> Alexandre Torgue (1):
+>   serial: stm32: update wakeup IRQ management
 > 
-> Patches 1-4 add devicetree bindings for the WPCM450 SoC and its various parts.
-> Patches 5-7 add arch and driver support. Patches 8 and 9 add a devicetree for
-> the SoC and a board based on it. Patch 10 finally updates the MAINTAINERS file.
+> Erwan Le Ray (4):
+>   serial: stm32: rework wakeup management
+>   serial: stm32: clean wakeup handling in serial_suspend
+>   irqchip/stm32: add usart instances exti direct event support
+>   ARM: dts: stm32: Add wakeup management on stm32mp15x UART nodes
 > 
 > [...]
 
 Applied to irq/irqchip-next, thanks!
 
-[03/10] dt-bindings: interrupt-controller: Add nuvoton, wpcm450-aic
-        commit: 7c18715546203a09f859dac2fe3ea8aceec5f235
-[06/10] irqchip: Add driver for WPCM450 interrupt controller
-        commit: fead4dd496631707549f414b4059afb86ea8fb80
+[3/5] irqchip/stm32: add usart instances exti direct event support
+      commit: e12c455055e9abc7403ce532616c0124a9d85ee7
 
 Cheers,
 
