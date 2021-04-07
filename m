@@ -2,295 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82EA435607E
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 02:53:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D98D35608F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 03:10:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347620AbhDGAyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 20:54:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38750 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347611AbhDGAyB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 20:54:01 -0400
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6C00C061756;
-        Tue,  6 Apr 2021 17:53:52 -0700 (PDT)
-Received: by mail-qk1-x730.google.com with SMTP id v70so17067598qkb.8;
-        Tue, 06 Apr 2021 17:53:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=uqirrx4SPmJmI/2P13aaHk5XOPHnCkFm9Zu8TIQzgnA=;
-        b=dDmpGeOFyQuHHTjpOP+0Nn6fSqB1Hh2Zw64Iif+etLDWTpLZ3Zo40EeQNKCcCqhmOi
-         zZRllMrbqkjsa8dnFKErkcyZH4w63SBPLSnO1RrVmyCeyMWoAVZhwpirP0xDFJMmWjGP
-         DtdJedLbxPwMXaR0ZbZexrcgj6j9yei03bybM7TK3Au6qyefOQQpaSqwPBmQk6jIOkGh
-         P5BgSZsoUc5pdvwmoWO9SmycoZFLhaDJ4Kc2RCB1b8+jwaoEE5komAWIuftBKW/gECC1
-         FtGfTI735lPTogFwGlz4Lm4YseBOuejV60j4z2sQqEICQ7X6x0P4C7T+YUT2O+LVC5Ad
-         EX5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=uqirrx4SPmJmI/2P13aaHk5XOPHnCkFm9Zu8TIQzgnA=;
-        b=WRtEU8WGPATfcMj7ho08CvLzfmFpbq9Q3/JdtvRl742EOTRy+7cFIC6kE9YM80r1+Z
-         QKedujVeQi4/MSNfFbDC36VyLfSgmexa1EmqIBgipX6aS3EXOpKBbBW1/SG1AiETEVc6
-         mWsbAMfuHvZ7XJdE4WBuVK6ze2/CW6KI3qvsuIVd6xeZj+CkJuCHKnY3T+559aL679/T
-         z6XoU6jbUlmCHCeIgh9fLDjyKYKjWh/lDqJGLn44qRWb2+JDyd37/qDTt1aNgTqeA80T
-         kXPJ+/UThQ8TtPmqAL6fnKFB4Py32wB+iaddf+TWUGYJTUwxIfhbYvvLgvOORmYjz+yC
-         iN8g==
-X-Gm-Message-State: AOAM533zVuh/w9Rp0mgno3KGE8T5WSb3umQfjwwH2jSKBuFG5qKb6IFX
-        N3jCfZIlynYU7zdoF3ocbVUcaDjneeE3JHiX
-X-Google-Smtp-Source: ABdhPJzzGGfCp5SmXl5L4JcSIjQX1k2NWRxgxwQHC57ehhICYcRxhLTPTKhsHVjQltqTSceS7ojrjA==
-X-Received: by 2002:a37:ad0a:: with SMTP id f10mr709314qkm.384.1617756832136;
-        Tue, 06 Apr 2021 17:53:52 -0700 (PDT)
-Received: from shaak.xiphos.ca (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id l9sm15776728qtv.65.2021.04.06.17.53.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Apr 2021 17:53:51 -0700 (PDT)
-From:   Liam Beguin <liambeguin@gmail.com>
-To:     liambeguin@gmail.com, mturquette@baylibre.com, sboyd@kernel.org
-Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: [PATCH v4 3/3] dt-bindings: clock: add ti,lmk04832 bindings
-Date:   Tue,  6 Apr 2021 20:53:30 -0400
-Message-Id: <20210407005330.2890430-4-liambeguin@gmail.com>
-X-Mailer: git-send-email 2.30.1.489.g328c10930387
-In-Reply-To: <20210407005330.2890430-1-liambeguin@gmail.com>
-References: <20210407005330.2890430-1-liambeguin@gmail.com>
+        id S233073AbhDGBLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 21:11:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50998 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232109AbhDGBLE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Apr 2021 21:11:04 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 015A0613A0;
+        Wed,  7 Apr 2021 01:10:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617757855;
+        bh=ytSU4fv9jJCH9tfKggHJIkhDskeqyCMamGtUzl3Na78=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=FrtiQ5sDagQepN3AjASAwLRnw0pcyXzUfQXZTS0aAcTKjGhmpdLG1cZqCBHuILjPg
+         4VhEaV/GNvLGDYzcp696BXleG42oicYgbterMCOJ+DfbmR5ewI4kI/U/kObus86rJT
+         LtIqgXlloKkvJCPthv1+Mc9WlLWcCHKVIi0vdgowQHJnXHsKSHXPVpNrXUqPsiV/b1
+         3HNnAz2m5sEjvIzZLf3IAKV6/5Om6Y5d5Bk4T7Xptk5Gk6+EQnmiMduQxDbuvis/FW
+         8GCvzZAM/1561zx+yNNgB2FRlJN1wj63+uL21TTthcRx+/+wlXVLmO7UbV71zgXlgF
+         p8FWSMenPj7Uw==
+Received: by mail-ej1-f49.google.com with SMTP id qo10so14470910ejb.6;
+        Tue, 06 Apr 2021 18:10:54 -0700 (PDT)
+X-Gm-Message-State: AOAM532ZZPajYbjVuYLfewUlqgOPx68XjQo80MKE3EbryKJ5EBvg+CDs
+        a/gdBaVFxeADy6DiDIRs6jLhEqCV2wh9BYIUqA==
+X-Google-Smtp-Source: ABdhPJy2CKzztfCW9UH43JnzMT72WuTc1T3GhkeyYxp2nA14ydyIlrQxibg7BsgW7ZgTrXwfJM+dkpB8zI4Jf39ip5A=
+X-Received: by 2002:a17:906:4fcd:: with SMTP id i13mr866148ejw.341.1617757853442;
+ Tue, 06 Apr 2021 18:10:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210405031436.2465475-1-ilya.lipnitskiy@gmail.com>
+ <20210405222540.18145-1-ilya.lipnitskiy@gmail.com> <CAGETcx-gF4r1TeY2AA4Vwb5e+5O+_O3E2ENo5tKhh=n_EOJnEQ@mail.gmail.com>
+ <20210407003408.GA2551507@robh.at.kernel.org> <CAGETcx8=sSWj_OmM1GPXNiLcv3anEkJnb_C7NoO9mNwS-O0KhQ@mail.gmail.com>
+In-Reply-To: <CAGETcx8=sSWj_OmM1GPXNiLcv3anEkJnb_C7NoO9mNwS-O0KhQ@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 6 Apr 2021 20:10:41 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLs4c3+9WwV6Vnk9Tovb6HiyH7t+_WXYP-ZDO72mOcO+w@mail.gmail.com>
+Message-ID: <CAL_JsqLs4c3+9WwV6Vnk9Tovb6HiyH7t+_WXYP-ZDO72mOcO+w@mail.gmail.com>
+Subject: Re: [PATCH v2] of: property: fw_devlink: do not link ".*,nr-gpios"
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        stable <stable@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Liam Beguin <lvb@xiphos.com>
+On Tue, Apr 6, 2021 at 7:46 PM Saravana Kannan <saravanak@google.com> wrote:
+>
+> On Tue, Apr 6, 2021 at 5:34 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Tue, Apr 06, 2021 at 04:09:10PM -0700, Saravana Kannan wrote:
+> > > On Mon, Apr 5, 2021 at 3:26 PM Ilya Lipnitskiy
+> > > <ilya.lipnitskiy@gmail.com> wrote:
+> > > >
+> > > > [<vendor>,]nr-gpios property is used by some GPIO drivers[0] to indicate
+> > > > the number of GPIOs present on a system, not define a GPIO. nr-gpios is
+> > > > not configured by #gpio-cells and can't be parsed along with other
+> > > > "*-gpios" properties.
+> > > >
+> > > > nr-gpios without the "<vendor>," prefix is not allowed by the DT
+> > > > spec[1], so only add exception for the ",nr-gpios" suffix and let the
+> > > > error message continue being printed for non-compliant implementations.
+> > > >
+> > > > [0]: nr-gpios is referenced in Documentation/devicetree/bindings/gpio:
+> > > >  - gpio-adnp.txt
+> > > >  - gpio-xgene-sb.txt
+> > > >  - gpio-xlp.txt
+> > > >  - snps,dw-apb-gpio.yaml
+> > > >
+> > > > [1]:
+> > > > Link: https://github.com/devicetree-org/dt-schema/blob/cb53a16a1eb3e2169ce170c071e47940845ec26e/schemas/gpio/gpio-consumer.yaml#L20
+> > > >
+> > > > Fixes errors such as:
+> > > >   OF: /palmbus@300000/gpio@600: could not find phandle
+> > > >
+> > > > Fixes: 7f00be96f125 ("of: property: Add device link support for interrupt-parent, dmas and -gpio(s)")
+> > > > Signed-off-by: Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
+> > > > Cc: Saravana Kannan <saravanak@google.com>
+> > > > Cc: <stable@vger.kernel.org> # 5.5.x
+> > > > ---
+> > > >  drivers/of/property.c | 11 ++++++++++-
+> > > >  1 file changed, 10 insertions(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > > index 2046ae311322..1793303e84ac 100644
+> > > > --- a/drivers/of/property.c
+> > > > +++ b/drivers/of/property.c
+> > > > @@ -1281,7 +1281,16 @@ DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
+> > > >  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
+> > > >  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+> > > >  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+> > > > -DEFINE_SUFFIX_PROP(gpios, "-gpios", "#gpio-cells")
+> > > > +
+> > > > +static struct device_node *parse_gpios(struct device_node *np,
+> > > > +                                      const char *prop_name, int index)
+> > > > +{
+> > > > +       if (!strcmp_suffix(prop_name, ",nr-gpios"))
+> > > > +               return NULL;
+> > >
+> > > Ah I somehow missed this patch. This gives a blanked exception for
+> > > vendor,nr-gpios. I'd prefer explicit exceptions for all the instances
+> > > of ",nr-gpios" we are grandfathering in. Any future additions should
+> > > be rejected. Can we do that please?
+> > >
+> > > Rob, you okay with making this list more explicit?
+> >
+> > Not the kernel's job IMO. A schema is the right way to handle that.
+>
+> Ok, that's fine by me. Btw, let's land this in driver-core? I've made
+> changes there and this might cause conflicts. Not sure.
 
-Document devicetree bindings for Texas Instruments' LMK04832.
-The LMK04208 is a high performance clock conditioner with superior clock
-jitter cleaning, generation, and distribution with JEDEC JESD204B
-support.
+It merges with linux-next fine. You'll need to resend this to Greg if
+you want to do that.
 
-Signed-off-by: Liam Beguin <lvb@xiphos.com>
----
- .../bindings/clock/ti,lmk04832.yaml           | 209 ++++++++++++++++++
- 1 file changed, 209 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/ti,lmk04832.yaml
-
-diff --git a/Documentation/devicetree/bindings/clock/ti,lmk04832.yaml b/Documentation/devicetree/bindings/clock/ti,lmk04832.yaml
-new file mode 100644
-index 000000000000..a9f8b9b720fc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/ti,lmk04832.yaml
-@@ -0,0 +1,209 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/ti,lmk04832.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Clock bindings for the Texas Instruments LMK04832
-+
-+maintainers:
-+  - Liam Beguin <liambeguin@gmail.com>
-+
-+description: |
-+  Devicetree binding for the LMK04832, a clock conditioner with JEDEC JESD204B
-+  support. The LMK04832 is pin compatible with the LMK0482x family.
-+
-+  Link to datasheet, https://www.ti.com/lit/ds/symlink/lmk04832.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,lmk04832
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  spi-max-frequency:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Maximum SPI clocking speed of the device in Hz.
-+
-+  clocks:
-+    items:
-+      - description: PLL2 reference clock.
-+
-+  clock-names:
-+    items:
-+      - const: oscin
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  ti,spi-4wire-rdbk:
-+    description: |
-+      Select SPI 4wire readback pin configuration.
-+      Available readback pins are,
-+        CLKin_SEL0 0
-+        CLKin_SEL1 1
-+        RESET 2
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1, 2]
-+    default: 1
-+
-+  ti,vco-hz:
-+    description: Optional to set VCO frequency of the PLL in Hertz.
-+
-+  ti,sysref-ddly:
-+    description: SYSREF digital delay value.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 8
-+    maximum: 8191
-+    default: 8
-+
-+  ti,sysref-mux:
-+    description: |
-+      SYSREF Mux configuration.
-+      Available options are,
-+        Normal SYNC 0
-+        Re-clocked 1
-+        SYSREF Pulser 2
-+        SYSREF Continuous 3
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1, 2, 3]
-+    default: 3
-+
-+  ti,sync-mode:
-+    description: SYNC pin configuration.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1, 2]
-+    default: 1
-+
-+  ti,sysref-pulse-count:
-+    description:
-+      Number of SYSREF pulses to send when SYSREF is not in continuous mode.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [1, 2, 4, 8]
-+    default: 4
-+
-+patternProperties:
-+  "@[0-9a-d]+$":
-+    type: object
-+    description:
-+      Child nodes used to configure output clocks.
-+
-+    properties:
-+      reg:
-+        description:
-+          clock output identifier.
-+        minimum: 0
-+        maximum: 13
-+
-+      ti,clkout-fmt:
-+        description:
-+          Clock output format.
-+          Available options are,
-+            Powerdown 0x00
-+            LVDS 0x01
-+            HSDS 6 mA 0x02
-+            HSDS 8 mA 0x03
-+            LVPECL 1600 mV 0x04
-+            LVPECL 2000 mV 0x05
-+            LCPECL 0x06
-+            CML 16 mA 0x07
-+            CML 24 mA 0x08
-+            CML 32 mA 0x09
-+            CMOS (Off/Inverted) 0x0a
-+            CMOS (Normal/Off) 0x0b
-+            CMOS (Inverted/Inverted) 0x0c
-+            CMOS (Inverted/Normal) 0x0d
-+            CMOS (Normal/Inverted) 0x0e
-+            CMOS (Normal/Normal) 0x0f
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        minimum: 0
-+        maximum: 15
-+
-+      ti,clkout-sysref:
-+        description:
-+          Select SYSREF clock path for output clock.
-+        type: boolean
-+
-+    required:
-+      - reg
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#clock-cells'
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clocks {
-+        lmk04832_oscin: oscin {
-+            compatible = "fixed-clock";
-+
-+            #clock-cells = <0>;
-+            clock-frequency = <122880000>;
-+            clock-output-names = "lmk04832-oscin";
-+        };
-+    };
-+
-+    spi0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        lmk04832: clock-controller@0 {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            reg = <0>;
-+
-+            compatible = "ti,lmk04832";
-+            spi-max-frequency = <781250>;
-+
-+            reset-gpios = <&gpio_lmk 0 0 0>;
-+
-+            #clock-cells = <1>;
-+            clocks = <&lmk04832_oscin>;
-+            clock-names = "oscin";
-+
-+            ti,spi-4wire-rdbk = <0>;
-+            ti,vco-hz = <2457600000>;
-+
-+            assigned-clocks =
-+                <&lmk04832 0>, <&lmk04832 1>,
-+                <&lmk04832 2>, <&lmk04832 3>,
-+                <&lmk04832 4>,
-+                <&lmk04832 6>, <&lmk04832 7>,
-+                <&lmk04832 10>, <&lmk04832 11>;
-+            assigned-clock-rates =
-+                <122880000>, <384000>,
-+                <122880000>, <384000>,
-+                <122880000>,
-+                <153600000>, <384000>,
-+                <614400000>, <384000>;
-+
-+            clkout0@0 {
-+                reg = <0>;
-+                ti,clkout-fmt = <0x01>; // LVDS
-+            };
-+
-+            clkout1@1 {
-+                reg = <1>;
-+                ti,clkout-fmt = <0x01>; // LVDS
-+                ti,clkout-sysref;
-+            };
-+        };
-+    };
--- 
-2.30.1.489.g328c10930387
-
+Reviewed-by: Rob Herring <robh@kernel.org>
