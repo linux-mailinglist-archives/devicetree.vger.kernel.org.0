@@ -2,94 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9E30357045
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 17:30:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44D8B357058
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 17:31:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353572AbhDGPaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 11:30:05 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:35324 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353551AbhDGPaC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 11:30:02 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1617809392; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=JcwFyeJqWTt/6F4dr1wtb+EluQ2hrjm6hvh0P5VoiD4=;
- b=WII6M9QcYjfci/vR4ZymB/Q8oIllBpALs653Qb4vkPFQP9m/ffBeJDnVGfTsJ/1aLwV3EfsH
- 9YT44vVt7EpFscl98ZUOj47whO2LLRXcUo5ztzt5ZWrLRiaka/vFLjxgOcTAy6rIUNtxBjA+
- WzXubAEF26vMogb4rC32JW2oANA=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 606dcfe403cfff3452ce78ca (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 07 Apr 2021 15:29:40
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id CC458C43468; Wed,  7 Apr 2021 15:29:39 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 19DDEC43465;
-        Wed,  7 Apr 2021 15:29:39 +0000 (UTC)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 07 Apr 2021 20:59:39 +0530
-From:   skakit@codeaurora.org
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        id S1353563AbhDGPa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 11:30:59 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:55370 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1353613AbhDGPa5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 11:30:57 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 137FUdNp061591;
+        Wed, 7 Apr 2021 10:30:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1617809439;
+        bh=/lIZwVy1ZVnvPRHkhJ8M6h02XBSL9Vglt6RbLS8Ad1Y=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=jYFdLhL3/hsMuAuxwjTL+ktUwlW56WhbQAxr3pdamvsadO9iPDiLmMeokW9gAfX4g
+         JFwv4/yshBReE0l8owLT4hfCK2L2Ioe0rWhjlDmyqOCoTozeLLSU6WSOasG/bwSyim
+         G132xu9MleWcmB1xmG3whvDk9s3bGdp9QXwVyPcY=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 137FUcfC000528
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 7 Apr 2021 10:30:38 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 7 Apr
+ 2021 10:30:38 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 7 Apr 2021 10:30:38 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 137FUcau113588;
+        Wed, 7 Apr 2021 10:30:38 -0500
+Date:   Wed, 7 Apr 2021 10:30:38 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Jan Kiszka <jan.kiszka@siemens.com>
+CC:     Aswath Govindraju <a-govindraju@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 1/3] input: pm8941-pwrkey: add support for PMK8350
- PON_HLOS PMIC peripheral
-In-Reply-To: <1614922721-1390-2-git-send-email-skakit@codeaurora.org>
-References: <1614922721-1390-1-git-send-email-skakit@codeaurora.org>
- <1614922721-1390-2-git-send-email-skakit@codeaurora.org>
-Message-ID: <690456c09c433741900643eafad25beb@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am65: Add support for UHS-I modes in
+ MMCSD1 subsystem
+Message-ID: <20210407153038.fkwoctn4qvlplxfs@probation>
+References: <20210407104303.25950-1-a-govindraju@ti.com>
+ <20210407145937.prvue66guhdls2fw@immovably>
+ <7d089f1c-6f9e-82fe-fc8a-42c691d4ec40@siemens.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <7d089f1c-6f9e-82fe-fc8a-42c691d4ec40@siemens.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Gentle Reminder!
+On 17:13-20210407, Jan Kiszka wrote:
+> On 07.04.21 16:59, Nishanth Menon wrote:
+> > On 16:13-20210407, Aswath Govindraju wrote:
+> >> UHS-I speed modes are supported in AM65 S.R. 2.0 SoC[1].
+> >>
+> >> Add support by removing the no-1-8-v tag and including the voltage
+> >> regulator device tree nodes for power cycling.
+> >>
+> >> [1] - https://www.ti.com/lit/ug/spruid7e/spruid7e.pdf, section 12.3.6.1.1
+> >>
+> >> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> > 
+> >> ---
+> >>
+> >> test logs:
+> >> https://pastebin.ubuntu.com/p/vpYbY9QWh8/
+> >>
+> > Thanks, but I dont plan on queuing this for 5.13-rc1 (my PR is already
+> > out). but it does trigger an interesting discussion..
+> > 
+> >>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  1 -
+> >>  .../arm64/boot/dts/ti/k3-am654-base-board.dts | 33 +++++++++++++++++++
+> >>  2 files changed, 33 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> >> index cb340d1b401f..632f32fce4a1 100644
+> >> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> >> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> >> @@ -301,7 +301,6 @@
+> >>  		ti,otap-del-sel = <0x2>;
+> >>  		ti,trm-icp = <0x8>;
+> >>  		dma-coherent;
+> >> -		no-1-8-v;
+> >>  	};
+> >>  
+> > 
+> > Jan - this will break your IOT SR1.0 boards, no? with all the SR1.0,
+> > 2.0, 2.1 coming along, the plan for TI was to support older revs via
+> > overlays hoping that older boards will eventually get replaced or die
+> > out of lack of use.. but you do have production on 1.0 -> so would you
+> > rather handle this in overlay OR IOT boards dts introduce no-1-8-v
+> > property?
+> 
+> I'm fine with pulling anything needed into our board-specific DTs. Those
+> pending are for SR1.0 boards only. SR2 will come later and have their
+> own DTs.
 
-Thanks,
-Satya Priya
-On 2021-03-05 11:08, satya priya wrote:
-> From: David Collins <collinsd@codeaurora.org>
-> 
-> On Qualcomm Technologies, Inc. PMIC PMK8350, the PON peripheral
-> is split into two peripherals: PON_HLOS and PON_PBS.  The
-> application processor only has write access to PON_HLOS which
-> limits it to only receiving PON interrupts.
-> 
-> Add support for the PMK8350 PON_HLOS peripheral so that its
-> KPDPWR_N and RESIN_N interrupts can be used to detect key
-> presses.
-> 
-> Signed-off-by: David Collins <collinsd@codeaurora.org>
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> ---
->  drivers/input/misc/pm8941-pwrkey.c | 103 
-> ++++++++++++++++++++++++++-----------
->  1 file changed, 72 insertions(+), 31 deletions(-)
-> 
-> diff --git a/drivers/input/misc/pm8941-pwrkey.c
-> b/drivers/input/misc/pm8941-pwrkey.c
-> index cf81044..2044d187 100644
-> --- a/drivers/input/misc/pm8941-pwrkey.c
-> +++ b/drivers/input/misc/pm8941-pwrkey.c
+OK - I think the safe option will be for Ashwath to add no-1-8-v into
+IOT board.dts as part of this patch to maintain bisectability.
+
+> Didn't follow the thread: Where is this patch located wrt my IOT2050
+> series? Does it come first first, and we would have to rebase? Or would
+> this change rather have to move the flag to k3-am65-iot2050-common.dtsi?
+
+5.13 PR is sent https://lore.kernel.org/linux-arm-kernel/20210405155336.smohb7uzkperqwuz@reflex/
+IoT is part of that.. I am guessing Arnd / Olof will pick it up later this week
+or weekend once it goes through their checklist.
+
+we are starting to see 5.14 material now, so nothing you need to do from
+rebase perspective - testing will be appreciated to make sure that the
+new patches have'nt broken your board.
+
+> Thanks a lot for having an eye on these subtle dependencies!
+
+Sure..
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
