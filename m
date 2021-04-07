@@ -2,104 +2,300 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07F4E357208
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 18:19:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E87B5357227
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 18:30:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239015AbhDGQSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 12:18:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44186 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235674AbhDGQSv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 12:18:51 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6921C06175F
-        for <devicetree@vger.kernel.org>; Wed,  7 Apr 2021 09:18:38 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id t24so5999440pjw.4
-        for <devicetree@vger.kernel.org>; Wed, 07 Apr 2021 09:18:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=1LcGMBgZH+8RdDIvf6DPACgtlrb3AgGczSw0YtcJ21g=;
-        b=mvte4mGAyCL+6ff4Iot6AWiyVgPAJ9kDwqtuAStOV7ejnrU77CQnbR0eBHTkFt28Cr
-         L+PLJcgz7S5/m/O6U2rvCnvJ+tCTeqii5mG3pBv5eeUdjN0i4cOFcTGlcyKx5el+JeO+
-         tt5PaMGKpGYe0Vm5qaGNd8/MiR4kR2AJ114w1/crqAvDip/b2U7OhxEWxnqNV8SoonZe
-         DHch0MgxHp/c11LYKAy+wera5iTLYAdU1SFdAG+t/epyqiHG7+izI+wZKK0hJqE6fpwW
-         hxQw7HmWika5xu0El1NjyJQg1oia0RX5ayuLDGteTZx+hgVCMHba9UG8t7WH3h+oHL7b
-         sU/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1LcGMBgZH+8RdDIvf6DPACgtlrb3AgGczSw0YtcJ21g=;
-        b=KgzMdjgGHa8UpeQTDcl9+EVySAmvO3FLYR3uPR/+mq5I4NIgq6pY1gRDMwfSeSnYIp
-         u3Gm3ILoEWvwcUv7MzoqD4hHrh3e+IeEDE1aP7V/oNAuBftY2qRQTg10yGtvRleejDvD
-         SBW9nH0evXw5NLqAhV8vvROFrdIT3/o/xVil0zYMoz/Z1TVULAqTGAoHeoQT7LIrEn2N
-         KkZ1QeMPTlPOWB6aw/rYZ4bm3ARKcZoEhO1cCLn5jqRc1++NzV45N8qBwWNzswiWaRoU
-         d5PQVgu8EoejebK9oZIJ/77Mdj0PCb0DHWZC2OesMAa+qAKl1LRKyKbFc3+vX2ClWj6l
-         Us3A==
-X-Gm-Message-State: AOAM532O1q/qOqkv/kz/y6nS++3sF1dtV2VDA/klU7XkGZofFO7HDM2e
-        5tIHUhRs61z9QEzd1sqtgN1e7Q==
-X-Google-Smtp-Source: ABdhPJxks2eNl4omFJDVf4WuMF5fHnJUH9+73bwYL6UxY4qore1JMTAo5acovBACmIIERmlUU3Ah9g==
-X-Received: by 2002:a17:90b:2250:: with SMTP id hk16mr4006499pjb.110.1617812318464;
-        Wed, 07 Apr 2021 09:18:38 -0700 (PDT)
-Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id x7sm22693363pff.12.2021.04.07.09.18.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Apr 2021 09:18:37 -0700 (PDT)
-Date:   Wed, 7 Apr 2021 10:18:36 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     peng.fan@oss.nxp.com
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        o.rempel@pengutronix.de, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V2 0/8] remoteproc: imx_rproc: support i.MX7ULP/8MN/8MP
-Message-ID: <20210407161836.GB418374@xps15>
-References: <1617095574-6764-1-git-send-email-peng.fan@oss.nxp.com>
+        id S242851AbhDGQa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 12:30:28 -0400
+Received: from mail.hoefle.co ([213.200.254.119]:51188 "EHLO hoefle.co"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233184AbhDGQa1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Apr 2021 12:30:27 -0400
+X-Greylist: delayed 573 seconds by postgrey-1.27 at vger.kernel.org; Wed, 07 Apr 2021 12:30:27 EDT
+Received: from [192.168.222.165] (unknown [213.200.254.119])
+        by hoefle.co (Postfix) with ESMTPSA id 37BD39088C;
+        Wed,  7 Apr 2021 18:20:42 +0200 (CEST)
+Subject: Re: Documentation to the Xilinx PSGTR Phy device-tree not clear
+From:   Marco Hoefle <marco@hoefle.co>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org
+References: <b54c4397-72a2-4b6e-e6a4-8c4dc6ef2814@hoefle.co>
+ <YGxq4QN7dN+flaDa@pendragon.ideasonboard.com>
+ <7890af82-0aa9-298f-fef6-b1e0e4f0fea4@hoefle.co>
+Message-ID: <2538e59b-0e94-0162-77ac-63c8eb818cb1@hoefle.co>
+Date:   Wed, 7 Apr 2021 18:20:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1617095574-6764-1-git-send-email-peng.fan@oss.nxp.com>
+In-Reply-To: <7890af82-0aa9-298f-fef6-b1e0e4f0fea4@hoefle.co>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 30, 2021 at 05:12:46PM +0800, peng.fan@oss.nxp.com wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> V2:
->  Patch 1/8, use fsl as vendor, typo fix
->  Because patchset [1] has v2 version, patch 5,6,7,8 are adapted that change.
-> 
-> This patchset is to support i.MX7ULP/8MN/8MP, also includes a patch to parse
-> imx,auto-boot
-> This patchset depends on [1]
-> 
-> [1] https://patchwork.kernel.org/project/linux-remoteproc/cover/1617082235-15923-1-git-send-email-peng.fan@oss.nxp.com/
-> 
-> Peng Fan (8):
->   dt-bindings: remoteproc: imx_rproc: add fsl,auto-boot property
->   dt-bindings: remoteproc: imx_rproc: add i.MX7ULP support
->   dt-bindings: remoteproc: imx_rproc: support i.MX8MN/P
->   remoteproc: imx_rproc: make clk optional
->   remoteproc: imx_rproc: parse fsl,auto-boot
->   remoteproc: imx_rproc: initial support for mutilple start/stop method
->   remoteproc: imx_rproc: support i.MX7ULP
->   remoteproc: imx_rproc: support i.MX8MN/P
->
+Hi Laurent,
 
-There are glaring checkpatch warning on this set - the "DT compatible string"
-ones are fine but the others are not negotiable.  As such I am dropping this set
-entirely.
- 
->  .../bindings/remoteproc/fsl,imx-rproc.yaml    |  11 +-
->  drivers/remoteproc/imx_rproc.c                | 170 +++++++++++++++---
->  2 files changed, 159 insertions(+), 22 deletions(-)
-> 
-> -- 
-> 2.30.0
-> 
+was the mainline PSGTR driver tested on Hardware? The reason why I am 
+asking is that no example can be found on any of the Xilinx boards:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/xilinx
+
+By the way, the test I am doing is for the successor of the
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dts
+
+so the Ultra96 v2.
+
+The aim would be to get USB3 and Display Port as well as the free LIMA 
+driver to work using mainline sources only.
+
+Once it works I am happy to write a patch for the mainline dts examples.
+
+
+I am right now stuck at the reference clock node:
+
+#include <dt-bindings/clock/xlnx-zynqmp-clk.h>
+/ {
+     usb0_refclk: usb0_clk {
+         compatible = "fixed-clock";
+         #clock-cells = <0>;
+         clock-frequency = <26000000>;
+     };
+     usb1_refclk: usb1_clk {
+         compatible = "fixed-clock";
+         #clock-cells = <0>;
+         clock-frequency = <26000000>;
+     };
+     dp_refclk: video_clk {
+         compatible = "fixed-clock";
+         #clock-cells = <0>;
+         clock-frequency = <27000000>;
+     };
+};
+
+
+&amba {
+     /delete-node/zynqmp_phy@fd400000;
+     psgtr: phy@fd400000 {
+         compatible = "xlnx,zynqmp-psgtr-v1.1";
+         status = "okay";
+         reg = <0x0 0xfd400000 0x0 0x40000>,
+               <0x0 0xfd3d0000 0x0 0x1000>;
+         reg-names = "serdes", "siou";
+         clocks = <&usb0_refclk 0>, <&usb1_refclk 0>, <&dp_refclk 0>;
+         clock-names = "ref1", "ref2", "ref3";
+         #phy-cells = <4>;
+     };
+};
+
+
+
+&usb0 {
+     status = "okay";
+};
+
+
+&dwc3_0 {
+     status = "okay";
+     dr_mode = "peripheral";
+     phy-names = "usb3-phy";
+/*    phys = <&lane2 4 0 0 26000000>; */ /* This is how it works on the 
+Xilinx 5.4 Kernel */
+     phys = <&psgtr 2 PHY_TYPE_USB3 0 0>; /* arg0 -> lane number, arg1 
+-> PHY type (PHY_TYPE_USB3), arg2 -> Phy instance, arg3 -> refclock 
+number */
+     maximum-speed = "super-speed";
+};
+
+
+
+
+
+This results in (added some kprintfs):
+
+[    1.973314] xilinx-psgtr fd400000.phy: Here: 780, args->args[0] = 2
+[    1.979584] xilinx-psgtr fd400000.phy: Here: 780, args->args[1] = 4
+[    1.985853] xilinx-psgtr fd400000.phy: Here: 780, args->args[2] = 0
+[    1.992121] xilinx-psgtr fd400000.phy: Here: 780, args->args[3] = 0
+[    1.998382] xilinx-psgtr fd400000.phy: HERE:784, lane number 2
+[    2.004208] xilinx-psgtr fd400000.phy: HERE: 792, phy_type 4
+[    2.009859] xilinx-psgtr fd400000.phy: HERE: 802, ref clock number 0
+[    2.016203] xilinx-psgtr fd400000.phy: Invalid reference clock number 0
+[    2.022864] Unable to handle kernel NULL pointer dereference at 
+virtual address 0000000000000004
+[    2.031646] Mem abort info:
+[    2.034423]   ESR = 0x96000005
+[    2.037467]   EC = 0x25: DABT (current EL), IL = 32 bits
+[    2.042771]   SET = 0, FnV = 0
+[    2.045816]   EA = 0, S1PTW = 0
+[    2.048949] Data abort info:
+[    2.051823]   ISV = 0, ISS = 0x00000005
+[    2.055650]   CM = 0, WnR = 0
+[    2.058606] [0000000000000004] user address but active_mm is swapper
+[    2.064952] Internal error: Oops: 96000005 [#1] SMP
+[    2.069812] Modules linked in:
+[    2.072864] CPU: 1 PID: 30 Comm: kworker/1:1 Not tainted 
+5.10.26-xilinx-v2020.1-dirty #19
+[    2.081026] Hardware name: Avnet-Silica Ultra96 Rev2 Marco 2021-03-30 
+(DT)
+[    2.087899] Workqueue: events deferred_probe_work_func
+[    2.093025] pstate: 60000005 (nZCv daif -PAN -UAO -TCO BTYPE=--)
+[    2.099026] pc : xpsgtr_phy_init+0x288/0x6d0
+[    2.103283] lr : xpsgtr_phy_init+0x24/0x6d0
+[    2.107448] sp : ffffffc010f7b6b0
+[    2.110746] x29: ffffffc010f7b6b0 x28: ffffff8001586f00
+[    2.116049] x27: 0000000000000001 x26: ffffff8001697010
+[    2.121353] x25: 0000000000000000 x24: 0000000000000000
+[    2.126656] x23: ffffffc011300200 x22: ffffff8001c1e280
+[    2.131960] x21: ffffff8001c1e298 x20: ffffff8001c1e280
+[    2.137263] x19: ffffff8001c1e2f8 x18: 0000000000000000
+[    2.142567] x17: 0000000000000000 x16: 0000000000000000
+[    2.147871] x15: ffffff8001713530 x14: ffffffffffffffff
+[    2.153174] x13: ffffff80023eea1c x12: 0000000000000038
+[    2.158477] x11: 0101010101010101 x10: 0000000000002094
+[    2.163781] x9 : ff312d78676f2d2f x8 : 7f7f7f7f7f7f7f7f
+[    2.169084] x7 : 2f2f2f2f3363652c x6 : 0000000000000080
+[    2.174388] x5 : ffffff8001c1e280 x4 : 0000000000000000
+[    2.179691] x3 : 0000000000000000 x2 : 0000000000010008
+[    2.184995] x1 : ffffffc011190008 x0 : ffffff8001c1e280
+[    2.190299] Call trace:
+[    2.192731]  xpsgtr_phy_init+0x288/0x6d0
+[    2.196645]  phy_init+0x6c/0xc8
+
+Any Idea what I am doing wrong?
+
+Thanks
+
+Marco
+
+
+
+On 06.04.21 19:24, Marco Hoefle wrote:
+> Hello Laurent,
+>
+> thanks for your quick reply.
+>
+> On 06.04.21 16:06, Laurent Pinchart wrote:
+>> Hi Marco,
+>>
+>> On Tue, Apr 06, 2021 at 03:54:06PM +0200, Marco Hoefle wrote:
+>>> Hi,
+>>>
+>>> we try to port the mainline Kernel to a Xilinx board.
+>>>
+>>> The default peripherals do work. The blocking point now is the zynqmp
+>>> psgtr driver.
+>>>
+>>> The mainline documentation can be found here:
+>>>
+>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml 
+>>>
+>>>
+>>> It is lacking a complete example on how to wire up a peripheral phy 
+>>> with
+>>> the PS GTR driver.
+>>>
+>>>
+>>> The one in the Xilinx tree for Kernel 5.4 contains an example which is
+>>> missing in the mainline documentation in my opinion:
+>>>
+>>> https://github.com/Xilinx/linux-xlnx/blob/4ecd768dea75a0cc0bea91069a570981aa700744/Documentation/devicetree/bindings/phy/phy-zynqmp.txt 
+>>>
+>>>
+>>>
+>>> It seems the PHY handle mechanism has changed and the "old" Xilinx way
+>>> doesn't work anymore.
+>>>
+>>> This was the previous way to "marry" the PS GTR driver with the USB 3
+>>> driver:
+>>>
+>>>          serdes: zynqmp_phy@fd400000 {
+>>>               compatible = "xlnx,zynqmp-psgtr-v1.1";
+>>>               status = "disabled";
+>>>               reg = <0x0 0xfd400000 0x0 0x40000>,
+>>>                     <0x0 0xfd3d0000 0x0 0x1000>;
+>>>               reg-names = "serdes", "siou";
+>>>               nvmem-cells = <&soc_revision>;
+>>>               nvmem-cell-names = "soc_revision";
+>>>               resets = <&zynqmp_reset ZYNQMP_RESET_SATA>, 
+>>> <&zynqmp_reset ZYNQMP_RESET_USB0_CORERESET>,
+>>>                    <&zynqmp_reset ZYNQMP_RESET_USB1_CORERESET>, 
+>>> <&zynqmp_reset ZYNQMP_RESET_USB0_HIBERRESET>,
+>>>                    <&zynqmp_reset ZYNQMP_RESET_USB1_HIBERRESET>, 
+>>> <&zynqmp_reset ZYNQMP_RESET_USB0_APB>,
+>>>                    <&zynqmp_reset ZYNQMP_RESET_USB1_APB>, 
+>>> <&zynqmp_reset ZYNQMP_RESET_DP>,
+>>>                    <&zynqmp_reset ZYNQMP_RESET_GEM0>, <&zynqmp_reset 
+>>> ZYNQMP_RESET_GEM1>,
+>>>                    <&zynqmp_reset ZYNQMP_RESET_GEM2>, <&zynqmp_reset 
+>>> ZYNQMP_RESET_GEM3>;
+>>>               reset-names = "sata_rst", "usb0_crst", "usb1_crst",
+>>>                         "usb0_hibrst", "usb1_hibrst", "usb0_apbrst",
+>>>                         "usb1_apbrst", "dp_rst", "gem0_rst",
+>>>                         "gem1_rst", "gem2_rst", "gem3_rst";
+>>>               lane0: lane0 {
+>>>                   #phy-cells = <4>;
+>>>               };
+>>>               lane1: lane1 {
+>>>                   #phy-cells = <4>;
+>>>               };
+>>>               lane2: lane2 {
+>>>                   #phy-cells = <4>;
+>>>               };
+>>>               lane3: lane3 {
+>>>                   #phy-cells = <4>;
+>>>               };
+>> The nvmem and reset properties, as well as the lane sub-nodes, are not
+>> needed with the mainline driver.
+> Ok, thanks for the hints.
+>>>           };
+>>>
+>>>
+>>> &dwc3_0 {
+>>>       status = "okay";
+>>>       dr_mode = "peripheral";
+>>>       phy-names = "usb3-phy";
+>>>       phys = <&lane2 4 0 0 26000000>;
+>>>       maximum-speed = "super-speed";
+>>> };
+>> A PHY consumer example is indeed missing, but doesn't this belong to the
+>> consumer DT bindings instead ?
+>>
+> I agree. However, I think the Xilinx driver needs to be handled 
+> differently. I looked for example at the Rockchip device tree using 
+> the same USB 3.0 driver (dwc3-of-simple) as Xilinx:
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/rockchip/rk3399.dtsi 
+>
+>
+> I believe that some device tree nodes need to be added when using the 
+> PSGTR driver and the DWC3 driver.
+>
+> Looking at 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/phy/xilinx/phy-zynqmp.c#n756 
+> :
+>
+> Lane number, PHY type and Reference Clock needs to be supplied somehow.
+>
+> Previously this was done that way:
+>
+> phys = <&lane2 4 0 0 26000000>;
+>
+> Now this are not numbers anymore but references I believe.
+>
+>
+> BR
+>
+> Marco
+>
+>
+-- 
+______________________
+
+Marco Höfle
+Kappelen 11
+CH-⁠5706 Boniswil
+Tel.: +41 78 790 93 62
+
