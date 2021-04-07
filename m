@@ -2,159 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8DF93571CA
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 18:10:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4EFE3571E5
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 18:11:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233709AbhDGQJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 12:09:54 -0400
-Received: from mail-eopbgr20047.outbound.protection.outlook.com ([40.107.2.47]:51486
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S236439AbhDGQI4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Apr 2021 12:08:56 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n5UkW2DrdyQMfuEpP+DOlth31juhqdqM31cFXsHWJQpbzS3ch+E+RUBk5rOEVSuSRe0EdVxhxYGGYsD3E3DJYLcgRoKF2L9YmoyEcPB1E1uR0b/nxCTEp9Zaeu8alS12SSd1Ct7+bwm2lyM47f5Oh4fnaP0bdhf+PW7u0nVHneety4JD853+/KnJwCYtD5qlq1C78BbFTe/BgWuVtjLvHlSl4CojZ97mmAZUVvrUpyaTKQ9Ld/O2MAEyQU6ukqql8o/gg0RR2R0qgCqulBchdGHqNF3ZB8lbjX/MJUCz2n8mxxRbOeMQDZ1n9Gvq3sxwGJqGNc5XwsUJBoVhdhbcPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3bXXnAXOGfYO8jHtVzAsYOOifV5I7cV+pKXVb1ROw5s=;
- b=n6PEnd9BQgW37swWkK1xzsezCKKSnmg972szlwqtbPU+tsHsrPUt4BRgNu9ezHF4RRLT2SQBPuWzAvCMJ+L7SPTYIN6v6oXed+c4SMmpp4tTQpPgf03t9Th7Wz9inv7uX3NFkL+K4aZ9nqNdVMqZjN6BIqzMTxAoO+A28+qBRgYHT7oZeZVFgJuIoVAf1HqT9RT72eaZd6bNitPxli0OioYIcKoK9awSIGi2m3ht8kD3u2cZDmkD5OlLM7W21f5Ll//IzazdjpoRP9IJoYiJuGzPSy/YkkjOOflkPiG623DLRXmGfKU10kAqbYjqIEkKG0Y3xoaHZedp3PV9aDkfMw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=diasemi.com; dmarc=pass action=none header.from=diasemi.com;
- dkim=pass header.d=diasemi.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=dialogsemiconductor.onmicrosoft.com;
- s=selector1-dialogsemiconductor-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3bXXnAXOGfYO8jHtVzAsYOOifV5I7cV+pKXVb1ROw5s=;
- b=UEqYDZInEjSey7vYzE7e2K9z+4McGQ/acV9Yx0wgQRB7GsD64Goz4FcwD0UWtWbmU9Pk8Pcb77524Na42OTUE3rN2XtmYsTt9f4oSpsWFDaS7hjRPAcn/3vWbAk0ZG2nXXKDCEZksnFBtdmejXKcUouUgXDQFt6p+RKcOJgu0Dw=
-Received: from AM9PR10MB4134.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:1fe::17)
- by AM0PR10MB3028.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:15b::26) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.26; Wed, 7 Apr
- 2021 16:08:44 +0000
-Received: from AM9PR10MB4134.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a0bc:c738:6a49:c60]) by AM9PR10MB4134.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a0bc:c738:6a49:c60%4]) with mapi id 15.20.3999.032; Wed, 7 Apr 2021
- 16:08:43 +0000
-From:   Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-To:     Badhri Jagan Sridharan <badhri@google.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-CC:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Kyle Tso <kyletso@google.com>
-Subject: RE: [PATCH v1 3/6] usb: typec: tcpm: update power supply once partner
- accepts
-Thread-Topic: [PATCH v1 3/6] usb: typec: tcpm: update power supply once
- partner accepts
-Thread-Index: AQHXKoVUQFsHLYQoSUClgf4trRM3oaqpOx+A
-Date:   Wed, 7 Apr 2021 16:08:43 +0000
-Message-ID: <AM9PR10MB4134EC102F0017423E6822B480759@AM9PR10MB4134.EURPRD10.PROD.OUTLOOK.COM>
-References: <20210406013643.3280369-1-badhri@google.com>
- <20210406013643.3280369-4-badhri@google.com>
-In-Reply-To: <20210406013643.3280369-4-badhri@google.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: google.com; dkim=none (message not signed)
- header.d=none;google.com; dmarc=none action=none header.from=diasemi.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [147.161.166.124]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a8dfcb39-0e8b-4d0d-4c07-08d8f9df6aee
-x-ms-traffictypediagnostic: AM0PR10MB3028:
-x-ms-exchange-sharedmailbox-routingagent-processed: True
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM0PR10MB30287B897680179BC6D6590CA7759@AM0PR10MB3028.EURPRD10.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:551;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Tx/69RQ/m3LJ6+y9K6RbXRmuaADBHDglcCaxGV6QpQMXJzJIDkcF/9Y/AU8wWE1wWFZ1NxJL0kaBbw3BPxCUlOohGtMLKo+2hlfyc7wSNi6y/y94yvyYnOXo4zfI73SlHlu3RrBtwKos6NYygJ6vWoHkEU9PvpzM/4BQHFOE0HXj5eFGOzM4XJy2AyyYBqwbrm1xwkrkc4KrhTz82YSJBVfp7ROKj3BU1ENwFbVFuAamddu57ESnb3fVxLby9T7RYcENjId+k3F6Ov0MM6radH6a3w40hyYKBKbqopfajg9EBCputGSG4A8j+M/B/VPyHsn/K17zDLVkAXTJ88LPsCXDuJL7UolPOj/pQTrf6Ly/9ujpTOETUjptFzf9BHbsuw8LOjPqwE+oNieyTh0Srn4HnVMZjH0QW2hfsZMsd0833In+d/1y6n1thTAAocWFghECQEDVKNOtLsnlNYfriav8chjvrtL3fVPPor1k5Z1xAC3SfpGAVBkP9ia2MAE36ApR9sfbdJuGRQkddoS+1VG00ZhpQJAkyVhY/AiqcQG4T41nkONVtvhnQdNUcy70UAF2TAyrTQFN9Uw0V7TGJZjUOeL6RATCKuNOR6ivM5O6ykbetsNfNIV+rb0wpvGM3E8IL4aeINU2OQr+z2SqhXb7X5SgsBv8bZi7c7aLbd8=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR10MB4134.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(136003)(366004)(39850400004)(396003)(8936002)(83380400001)(33656002)(26005)(9686003)(478600001)(110136005)(4326008)(7696005)(66476007)(66556008)(52536014)(54906003)(76116006)(2906002)(66946007)(66446008)(64756008)(55016002)(186003)(38100700001)(6506007)(5660300002)(316002)(71200400001)(8676002)(53546011)(86362001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?SVZENFdTY1hUT2FwdGhJVXJaNzY3RWQxeERob3V2NE9Bdkx0dnJET0dDN3Bz?=
- =?utf-8?B?elZBL1MvYWdRdHRFZ1FPK05OTlRadUxlRUJTNUlsZHllUnhYbkRHK243azJE?=
- =?utf-8?B?ZkhTcWMzTjZUMkJOelk0S1V4ZitxTjVnUytTWUxjRFozSFA5eUZkdmVCWDV4?=
- =?utf-8?B?MWRKQVZoTldIbE0zb2hQdGNaRXdKRnRhM0hRcVcvcTVPV0xGaFFIS0xUQ0hO?=
- =?utf-8?B?MjNjY2VqK3NEbE0zdElNbGZ3Ujh4OC8rMnQ5RXh0S3hHTUpWSC8ybVFKTEZm?=
- =?utf-8?B?bzNZTHAzeW1nOTAvbjJ6NjRnRHkwajRsVDlSekJBQkFOYkd2NXJWZkRjRjlF?=
- =?utf-8?B?Znpjczk5NGc1U0hwZ1VweVN3RnBRR3R0UHkwK2hDdE9GTlRYMGpRcU9aK1px?=
- =?utf-8?B?ZjdtbVUzUHM2c2x0R1k4c3plTmtkcGs1WjFubFEwWE5UcnpLYlNBOXNva2xz?=
- =?utf-8?B?WjBEQStTU0V3ME4vUWdkcSs2bW1Eb2tUZjRqbUJiSzFzN2ZzN2lWQTdYS0lW?=
- =?utf-8?B?ZDBraFBtSjZ1OFRiOThmdGN3SjVoTVNEcWUydEpZUUkyb1I0Y1NZVjAwOFY1?=
- =?utf-8?B?Y2hqUmVkQWxya3NGdWRJTk10T2dFWmdyRnQwbW0rN2hmRE1ZR2pPQzlKT01U?=
- =?utf-8?B?UU51R1dKaHE0cFlZWHphU0xUYUkwR1ZySW1vVTlYaHpmNGZKZXlISWxYSXlJ?=
- =?utf-8?B?UkxUYmQ3dlkveTZ6SndQSzMvdDR1d1FLaHhRZCtYVzNBN1FIRDlTVUZGMXVE?=
- =?utf-8?B?RWlTTU5keVJJbHp2bVNUNGFjWlhuVnQreGJBdnNpWDdMZVlON0Q5SUk3aDVk?=
- =?utf-8?B?Um1VYkdMOWJMdEp4LytnUzBYNXl5TjFzUG5ocG1vWmJneEFqeXVHZGNnbEYy?=
- =?utf-8?B?V05jQ3RhRWVWNlVveTVBU09ETWJEVEF1anhUNGFXNE9ETVRXbG9DaDB1NTFn?=
- =?utf-8?B?Y2VaNFZ1OFBRNlUxOVpTM3hFdW1sTXlFcUhFYUtyUHhlQnJkM0lUOWlkczdY?=
- =?utf-8?B?c0Y4QVRpUnNMTFMyRzI3QnlPaERKSzBBcUFOWkhQeFZlUm1SQlZrV25vWjFN?=
- =?utf-8?B?Z1dIdTFKSUp2T3I0anVtSTdQZ1BNRHFaMWVxdlllbXh5WXRJNGVmSldFRWd5?=
- =?utf-8?B?dlc4RDZHbTNnREYvSVZtdERrUzRmMnhxV0pYcEJ5OVpLN0JXT0V0MVVZZndM?=
- =?utf-8?B?RzFrNFBhMDc5RkJwQUJmczRCUVVxSS9NNkhkUW95TUs1a3F4Zk41L05rT1Jy?=
- =?utf-8?B?Snk1Y2hmWlVpdSsvNUxXTEZmSXEwVTk1clZqdzdIaFVWWkxpNmVtc0RYQ2dF?=
- =?utf-8?B?eXV6R2dSdTJtUG8ydjFvRml3eHVHbHVpQURXVkZyV295RlIvbkVldWtKYXlw?=
- =?utf-8?B?d0E4ek4rQ2ZyZ2xETTF1d2loaklGV2F6aE1pZGdrclJsdUtnK2NRdTg5OEhR?=
- =?utf-8?B?dTRTYzRkUUpUa0xnLzl2ZHMvVW9qdDNOTzNZaW5BLy94SmFjaHlEUzllL2Zk?=
- =?utf-8?B?aHFnQzJ3TnZEQyszMWJ3dnRLRVlMY1dWd3Q3K2kxaE9GSEJERVE3TzM1UGFS?=
- =?utf-8?B?eCt4OHVmbEp5dXRRTEhaaFUrSFo3cDZlclU3dTFoUWx4S0dYb3ZTS2dBVVBF?=
- =?utf-8?B?dzUwQkFVUi9SRzY5Ukt5b1VjT3FVSEVjUmhkNnZOSkVRelJiM2VLUnZTcmpG?=
- =?utf-8?B?TGl4dWN4L0lrZWhpOGIyRXRvMHJuSXVXbDZYeHM3OUJoMExhY2wweFczUDZX?=
- =?utf-8?Q?NkH92cwPX9Xjfl48mcICHU/4QwmJOM11uUQQUt9?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S241538AbhDGQK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 12:10:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42402 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232069AbhDGQKy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 12:10:54 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED212C061760;
+        Wed,  7 Apr 2021 09:10:38 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 18A9F22236;
+        Wed,  7 Apr 2021 18:10:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1617811836;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=gjuAN9QqCnWD77UCettma95Ojaeyk86+8J2wmtLYYZo=;
+        b=i99BezLwmPOE6w4/hGL0FvjE3br7uwuw9VGO9aRg8uJTlzeGu8Ac4FIxGX9vOQ8oMVP/r/
+        vE3I00R508lGU6R1pfNebHfFNtH5wO92z1+kMGfRRoMcmLezfBux9iSvegup2fWrGU4qza
+        5flIWUW4ulzNHWTXNBqNWa8WPLM3Izs=
 MIME-Version: 1.0
-X-OriginatorOrg: diasemi.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR10MB4134.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8dfcb39-0e8b-4d0d-4c07-08d8f9df6aee
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2021 16:08:43.9273
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 511e3c0e-ee96-486e-a2ec-e272ffa37b7c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Z8O2Vs4fLwSLh/L9jDYQ1QPEVx/CXKHuHpShZwECKjHDWfg7R9jZL17/OgpOBvehJowV4aBcha63RYYcoFDYgi15FCD0fsNMM+n2C84cne4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3028
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 07 Apr 2021 18:10:30 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     ath9k-devel@qca.qualcomm.com, UNGLinuxDriver@microchip.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, netdev@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org, linux-oxnas@groups.io,
+        linux-omap@vger.kernel.org, linux-wireless@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-staging@lists.linux.dev
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Andreas Larsson <andreas@gaisler.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Joyce Ooi <joyce.ooi@intel.com>,
+        Chris Snook <chris.snook@gmail.com>,
+        =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Sunil Goutham <sgoutham@marvell.com>,
+        Fugang Duan <fugang.duan@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Pantelis Antoniou <pantelis.antoniou@gmail.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Yisen Zhuang <yisen.zhuang@huawei.com>,
+        Salil Mehta <salil.mehta@huawei.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Vadym Kochan <vkochan@marvell.com>,
+        Taras Chornyi <tchornyi@marvell.com>,
+        Mirko Lindner <mlindner@marvell.com>,
+        Stephen Hemminger <stephen@networkplumber.org>,
+        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Bryan Whitehead <bryan.whitehead@microchip.com>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        Byungho An <bh74.an@samsung.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Wingman Kwok <w-kwok2@ti.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Stanislaw Gruszka <stf_xl@wp.pl>,
+        Helmut Schaa <helmut.schaa@googlemail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        =?UTF-8?Q?J=C3=A9r=C3=B4me?= =?UTF-8?Q?_Pouiller?= 
+        <jerome.pouiller@silabs.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Subject: Re: [PATCH net-next v3 1/2] of: net: pass the dst buffer to
+ of_get_mac_address()
+In-Reply-To: <20210406220921.24313-2-michael@walle.cc>
+References: <20210406220921.24313-1-michael@walle.cc>
+ <20210406220921.24313-2-michael@walle.cc>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <50f474611ecf0f5e61c9a14a24b28773@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMDYgQXByaWwgMjAyMSAwMjozNywgQmFkaHJpIEphZ2FuIFNyaWRoYXJhbiB3cm90ZToNCg0K
-PiBwb3dlcl9zdXBwbHlfY2hhbmdlZCBuZWVkcyB0byBiZSBjYWxsZWQgdG8gbm90aWZ5IGNsaWVu
-dHMNCj4gYWZ0ZXIgdGhlIHBhcnRuZXIgYWNjZXB0cyB0aGUgcmVxdWVzdGVkIHZhbHVlcyBmb3Ig
-dGhlIHBwcw0KPiBjYXNlLg0KPiANCj4gRml4ZXM6IGYyYThhYTA1M2MxNzYgKCJ0eXBlYzogdGNw
-bTogUmVwcmVzZW50IHNvdXJjZSBzdXBwbHkgdGhyb3VnaA0KPiBwb3dlcl9zdXBwbHkiKQ0KPiBT
-aWduZWQtb2ZmLWJ5OiBCYWRocmkgSmFnYW4gU3JpZGhhcmFuIDxiYWRocmlAZ29vZ2xlLmNvbT4N
-Cj4gLS0tDQoNCk1pc3NpbmcgY29tbWl0IGluZm9ybWF0aW9uIGFzaWRlOg0KDQpSZXZpZXdlZC1i
-eTogQWRhbSBUaG9tc29uIDxBZGFtLlRob21zb24uT3BlbnNvdXJjZUBkaWFzZW1pLmNvbT4NCg0K
-PiAgZHJpdmVycy91c2IvdHlwZWMvdGNwbS90Y3BtLmMgfCA0ICstLS0NCj4gIDEgZmlsZSBjaGFu
-Z2VkLCAxIGluc2VydGlvbigrKSwgMyBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL3VzYi90eXBlYy90Y3BtL3RjcG0uYyBiL2RyaXZlcnMvdXNiL3R5cGVjL3RjcG0vdGNw
-bS5jDQo+IGluZGV4IGQ0Mzc3NGNjMmNjZi4uNzcwOGIwMTAwOWNiIDEwMDY0NA0KPiAtLS0gYS9k
-cml2ZXJzL3VzYi90eXBlYy90Y3BtL3RjcG0uYw0KPiArKysgYi9kcml2ZXJzL3VzYi90eXBlYy90
-Y3BtL3RjcG0uYw0KPiBAQCAtMjU2NCw2ICsyNTY0LDcgQEAgc3RhdGljIHZvaWQgdGNwbV9wZF9j
-dHJsX3JlcXVlc3Qoc3RydWN0IHRjcG1fcG9ydA0KPiAqcG9ydCwNCj4gIAkJCXBvcnQtPnBwc19k
-YXRhLm1heF9jdXJyID0gcG9ydC0NCj4gPnBwc19kYXRhLnJlcV9tYXhfY3VycjsNCj4gIAkJCXBv
-cnQtPnJlcV9zdXBwbHlfdm9sdGFnZSA9IHBvcnQtDQo+ID5wcHNfZGF0YS5yZXFfb3V0X3ZvbHQ7
-DQo+ICAJCQlwb3J0LT5yZXFfY3VycmVudF9saW1pdCA9IHBvcnQtPnBwc19kYXRhLnJlcV9vcF9j
-dXJyOw0KPiArCQkJcG93ZXJfc3VwcGx5X2NoYW5nZWQocG9ydC0+cHN5KTsNCj4gIAkJCXRjcG1f
-c2V0X3N0YXRlKHBvcnQsIFNOS19UUkFOU0lUSU9OX1NJTkssIDApOw0KPiAgCQkJYnJlYWs7DQo+
-ICAJCWNhc2UgU09GVF9SRVNFVF9TRU5EOg0KPiBAQCAtMzEzMiw3ICszMTMzLDYgQEAgc3RhdGlj
-IHVuc2lnbmVkIGludCB0Y3BtX3BkX3NlbGVjdF9wcHNfYXBkbyhzdHJ1Y3QNCj4gdGNwbV9wb3J0
-ICpwb3J0KQ0KPiAgCQkJCQkJICAgICAgcG9ydC0NCj4gPnBwc19kYXRhLnJlcV9vdXRfdm9sdCkp
-Ow0KPiAgCQlwb3J0LT5wcHNfZGF0YS5yZXFfb3BfY3VyciA9IG1pbihwb3J0LT5wcHNfZGF0YS5t
-YXhfY3VyciwNCj4gIAkJCQkJCSBwb3J0LT5wcHNfZGF0YS5yZXFfb3BfY3Vycik7DQo+IC0JCXBv
-d2VyX3N1cHBseV9jaGFuZ2VkKHBvcnQtPnBzeSk7DQo+ICAJfQ0KPiANCj4gIAlyZXR1cm4gc3Jj
-X3BkbzsNCj4gQEAgLTM1NTcsOCArMzU1Nyw2IEBAIHN0YXRpYyB2b2lkIHRjcG1fcmVzZXRfcG9y
-dChzdHJ1Y3QgdGNwbV9wb3J0ICpwb3J0KQ0KPiAgCXBvcnQtPnNpbmtfY2FwX2RvbmUgPSBmYWxz
-ZTsNCj4gIAlpZiAocG9ydC0+dGNwYy0+ZW5hYmxlX2ZycykNCj4gIAkJcG9ydC0+dGNwYy0+ZW5h
-YmxlX2Zycyhwb3J0LT50Y3BjLCBmYWxzZSk7DQo+IC0NCj4gLQlwb3dlcl9zdXBwbHlfY2hhbmdl
-ZChwb3J0LT5wc3kpOw0KPiAgfQ0KPiANCj4gIHN0YXRpYyB2b2lkIHRjcG1fZGV0YWNoKHN0cnVj
-dCB0Y3BtX3BvcnQgKnBvcnQpDQo+IC0tDQo+IDIuMzEuMC4yMDguZzQwOWY4OTlmZjAtZ29vZw0K
-DQo=
+Am 2021-04-07 00:09, schrieb Michael Walle:
+[..]
+> diff --git a/drivers/of/of_net.c b/drivers/of/of_net.c
+> index bc0a27de69d4..2d5d5e59aea5 100644
+> --- a/drivers/of/of_net.c
+> +++ b/drivers/of/of_net.c
+> @@ -45,42 +45,35 @@ int of_get_phy_mode(struct device_node *np,
+> phy_interface_t *interface)
+>  }
+>  EXPORT_SYMBOL_GPL(of_get_phy_mode);
+> 
+> -static const void *of_get_mac_addr(struct device_node *np, const char 
+> *name)
+> +static int of_get_mac_addr(struct device_node *np, const char *name, 
+> u8 *addr)
+>  {
+>  	struct property *pp = of_find_property(np, name, NULL);
+> 
+> -	if (pp && pp->length == ETH_ALEN && is_valid_ether_addr(pp->value))
+> -		return pp->value;
+> -	return NULL;
+> +	if (pp && pp->length == ETH_ALEN && is_valid_ether_addr(pp->value)) {
+> +		ether_addr_copy(addr, pp->value);
+
+Mh, I guess this should rather be memcpy(addr, pp->value, ETH_ALEN) 
+because
+ether_addr_copy() needs 2 byte aligned source and destination buffers.
+
+-michael
