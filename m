@@ -2,126 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0E273571FE
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 18:19:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07F4E357208
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 18:19:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347794AbhDGQRr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 12:17:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43926 "EHLO
+        id S239015AbhDGQSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 12:18:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354182AbhDGQRl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 12:17:41 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 327E0C06175F;
-        Wed,  7 Apr 2021 09:17:31 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id e14so28582662ejz.11;
-        Wed, 07 Apr 2021 09:17:31 -0700 (PDT)
+        with ESMTP id S235674AbhDGQSv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 12:18:51 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6921C06175F
+        for <devicetree@vger.kernel.org>; Wed,  7 Apr 2021 09:18:38 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id t24so5999440pjw.4
+        for <devicetree@vger.kernel.org>; Wed, 07 Apr 2021 09:18:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=E8zFxr7NTo5CVZvglNHBf+7krWpX2RzvWzJMpcR4yQU=;
-        b=nTdujkw1uKq0S+SGJxBR8r4B714AbaSBM0uux059cqF/rz53V7JLDV2iDWvUCb/tCQ
-         5Y1mY69mbqp9i9TJDomEL8v4pXcWgPLxaBZw0XZgvW4V5hCsk8WNAdQl1oq2BcLv4I2P
-         +sCgF7GEU+dgun4r4vaLg7LpGk4QmVZec/7un2SmsUOu+8txNhiav4ux1K7bDB6PYbBu
-         1rEInprdjhMmOcqFjfiFR0jGe8WHBfTGC7FrQvOBBvhvEAOQAvOWIQzTHRsmR156zcda
-         snPrUYPi2vlrfh86+D0fS1GRrdTzp6txhxunoeAmNOZmhmN9MxIMbb5dM42FQZiFdFjz
-         oQ5g==
+         :content-disposition:in-reply-to;
+        bh=1LcGMBgZH+8RdDIvf6DPACgtlrb3AgGczSw0YtcJ21g=;
+        b=mvte4mGAyCL+6ff4Iot6AWiyVgPAJ9kDwqtuAStOV7ejnrU77CQnbR0eBHTkFt28Cr
+         L+PLJcgz7S5/m/O6U2rvCnvJ+tCTeqii5mG3pBv5eeUdjN0i4cOFcTGlcyKx5el+JeO+
+         tt5PaMGKpGYe0Vm5qaGNd8/MiR4kR2AJ114w1/crqAvDip/b2U7OhxEWxnqNV8SoonZe
+         DHch0MgxHp/c11LYKAy+wera5iTLYAdU1SFdAG+t/epyqiHG7+izI+wZKK0hJqE6fpwW
+         hxQw7HmWika5xu0El1NjyJQg1oia0RX5ayuLDGteTZx+hgVCMHba9UG8t7WH3h+oHL7b
+         sU/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=E8zFxr7NTo5CVZvglNHBf+7krWpX2RzvWzJMpcR4yQU=;
-        b=WRUAshukbHdyJp63tqFT9kmAsr2CpwqdBBfD5XTXwyk7RCkL+/a4OSXX5d/4gSRHyP
-         Dz5wXlCFgWHXs6zjsZ7VSp3G985eYUxf18hYf6NMix/JFecR0VdneSw2IXvjmAJsVO0/
-         46UFeGZS42MgS1TWWpWuXiLuIajwISrV5bVFSWH3V4HCN4/7cIH8TO+IfxmHMosO8/ZK
-         9uGJSZF6CD3wqtr9qBUEdIUztoo4GWEbtfD5gEHZfnPSnE6nr7D67hvcEVuf+mjVYzM6
-         1gLSpEInC0JQEb7tnRROr5DbE255w16c1lejM3vsX1Z5nlY4iCWql7LFQbl77/yZXsqG
-         w6BA==
-X-Gm-Message-State: AOAM5315IxKY2Qt4eu/T0XU0u9VT3x8kmkySg2X8p70/LG0LiVXBRcBc
-        +6g5jdpW8X581bu+q1UytbQ=
-X-Google-Smtp-Source: ABdhPJzibXBuHU2/Tw83MRchlZG+MGW5RIuCWWBmiEydazdb5ErzQqiWilYI8nC8rrxaSzXhlg/ykw==
-X-Received: by 2002:a17:906:2793:: with SMTP id j19mr4733929ejc.205.1617812249930;
-        Wed, 07 Apr 2021 09:17:29 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id t14sm12841163ejc.121.2021.04.07.09.17.27
+         :mime-version:content-disposition:in-reply-to;
+        bh=1LcGMBgZH+8RdDIvf6DPACgtlrb3AgGczSw0YtcJ21g=;
+        b=KgzMdjgGHa8UpeQTDcl9+EVySAmvO3FLYR3uPR/+mq5I4NIgq6pY1gRDMwfSeSnYIp
+         u3Gm3ILoEWvwcUv7MzoqD4hHrh3e+IeEDE1aP7V/oNAuBftY2qRQTg10yGtvRleejDvD
+         SBW9nH0evXw5NLqAhV8vvROFrdIT3/o/xVil0zYMoz/Z1TVULAqTGAoHeoQT7LIrEn2N
+         KkZ1QeMPTlPOWB6aw/rYZ4bm3ARKcZoEhO1cCLn5jqRc1++NzV45N8qBwWNzswiWaRoU
+         d5PQVgu8EoejebK9oZIJ/77Mdj0PCb0DHWZC2OesMAa+qAKl1LRKyKbFc3+vX2ClWj6l
+         Us3A==
+X-Gm-Message-State: AOAM532O1q/qOqkv/kz/y6nS++3sF1dtV2VDA/klU7XkGZofFO7HDM2e
+        5tIHUhRs61z9QEzd1sqtgN1e7Q==
+X-Google-Smtp-Source: ABdhPJxks2eNl4omFJDVf4WuMF5fHnJUH9+73bwYL6UxY4qore1JMTAo5acovBACmIIERmlUU3Ah9g==
+X-Received: by 2002:a17:90b:2250:: with SMTP id hk16mr4006499pjb.110.1617812318464;
+        Wed, 07 Apr 2021 09:18:38 -0700 (PDT)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id x7sm22693363pff.12.2021.04.07.09.18.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Apr 2021 09:17:28 -0700 (PDT)
-Date:   Wed, 7 Apr 2021 18:18:02 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Jens Axboe <axboe@kernel.dk>
-Cc:     Sowjanya Komatineni <skomatineni@nvidia.com>, jonathanh@nvidia.com,
-        robh+dt@kernel.org, pchandru@nvidia.com,
-        devicetree@vger.kernel.org, linux-ide@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/3] Add AHCI support for Tegra186
-Message-ID: <YG3bOn97gryKOmec@orome.fritz.box>
-References: <1617758731-12380-1-git-send-email-skomatineni@nvidia.com>
- <2cf9a0ee-034c-7d31-1fa4-66e6ad3ceb43@kernel.dk>
+        Wed, 07 Apr 2021 09:18:37 -0700 (PDT)
+Date:   Wed, 7 Apr 2021 10:18:36 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     peng.fan@oss.nxp.com
+Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
+        o.rempel@pengutronix.de, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V2 0/8] remoteproc: imx_rproc: support i.MX7ULP/8MN/8MP
+Message-ID: <20210407161836.GB418374@xps15>
+References: <1617095574-6764-1-git-send-email-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="NR+2S+88HvHbjOWn"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2cf9a0ee-034c-7d31-1fa4-66e6ad3ceb43@kernel.dk>
-User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
+In-Reply-To: <1617095574-6764-1-git-send-email-peng.fan@oss.nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Mar 30, 2021 at 05:12:46PM +0800, peng.fan@oss.nxp.com wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> V2:
+>  Patch 1/8, use fsl as vendor, typo fix
+>  Because patchset [1] has v2 version, patch 5,6,7,8 are adapted that change.
+> 
+> This patchset is to support i.MX7ULP/8MN/8MP, also includes a patch to parse
+> imx,auto-boot
+> This patchset depends on [1]
+> 
+> [1] https://patchwork.kernel.org/project/linux-remoteproc/cover/1617082235-15923-1-git-send-email-peng.fan@oss.nxp.com/
+> 
+> Peng Fan (8):
+>   dt-bindings: remoteproc: imx_rproc: add fsl,auto-boot property
+>   dt-bindings: remoteproc: imx_rproc: add i.MX7ULP support
+>   dt-bindings: remoteproc: imx_rproc: support i.MX8MN/P
+>   remoteproc: imx_rproc: make clk optional
+>   remoteproc: imx_rproc: parse fsl,auto-boot
+>   remoteproc: imx_rproc: initial support for mutilple start/stop method
+>   remoteproc: imx_rproc: support i.MX7ULP
+>   remoteproc: imx_rproc: support i.MX8MN/P
+>
 
---NR+2S+88HvHbjOWn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Apr 07, 2021 at 09:44:58AM -0600, Jens Axboe wrote:
-> On 4/6/21 7:25 PM, Sowjanya Komatineni wrote:
-> > Re-sending dt-binding and ahci_tegra driver patches as v4 as device
-> > tree patches from v3 are merged but not the AHCI Tegra driver.
-> >=20
-> > Missed to add Jens Axboe to mailing list in v3. Adding for v4.
-> >=20
-> > This series adds support for AHCI-compliant SATA to Tegra186 SoC.
-> >=20
-> > This series includes patches for
-> > - Converting text based dt-binding document to YAML.
-> > - Adding dt-bindings for Tegra186.
-> > - Adding Tegra186 support to Tegra AHCI driver.
-> >=20
-> > Delta between patch versions:
-> > [v4]:	Same as v3 except removed device tree patches as they are
-> > 	merged.
-> > [v3]:	fixed yaml example to pass dt_binding_check
-> > [v2]:	v1 feedback related to yaml dt-binding.
-> > 	Removed conditional reset order in yaml and updated dts files
-> > 	to maintain same order for commonly available resets across
-> > 	Tegra124 thru Tegra186.
->=20
-> Assuming the libata tree is the best way for this to go in, so I applied
-> it for 5.13.
-
-Perfect! Thanks Jens.
-
-Thierry
-
---NR+2S+88HvHbjOWn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmBt2zgACgkQ3SOs138+
-s6HiwhAAib4j7/WG24WBtUVkrErzlRsDdYMKySHqLxp2k8MZZLzSlItK3rZ77zT6
-oPPPBAnxQiM2HLF4Ca+fSo13xO7qnn+5FKX8WtapcG+CUuim0z/eKif+N3SoXAx9
-VZmfQsLJeJfGcTpE5Wvi35eU8mzH1QK7q6Jfk1duD5ITTv+zA8Qx1vHNAmVC0Ali
-QGKBmOUzdGDnkOu23ZwlV+J0Z4PF1iwxQExiy2MBgjKBSpK+Ba+aZyfWdiv7hC6b
-XD8bYC+5KKKJlGfHiF8Z9CeIeiUUsH8GhHIYgcfmERJkhdbGJEGHNe7ZfJwyqC0M
-fvG4UW5gM42Cvg9kEO9DQnv9YNl76W/k8hZYACjmRFoD5s+3ZZltmYNa07evFWld
-ypcO75ZlhIK1Lzckl72pIctQyaINIeTzkvvPBZsPiqEG4f8DsSjipbtqHP2V/2Fg
-vTr0qU38hX+S0MflqlyvxsfCtJ6FqknnxxqDsA/6Sx3vC9ul7gt2nlj72MGuhqSe
-290rjC5jjI0pl76j5/P581Ci01TNHgnwTAg07h7LQkU7h1xV3Ycfaaoi+soCapLW
-Q9xAoCqrGVPZVBMHH7+eR+pkZDbSr36MAnIuZWrbpSBMlT7dx4r8WnMGaf8Zy9np
-xv9ukSGWOVCgIvY13MSsGUpzu2HDoP+zQuefe0m/FlTKMksUbuY=
-=MTYu
------END PGP SIGNATURE-----
-
---NR+2S+88HvHbjOWn--
+There are glaring checkpatch warning on this set - the "DT compatible string"
+ones are fine but the others are not negotiable.  As such I am dropping this set
+entirely.
+ 
+>  .../bindings/remoteproc/fsl,imx-rproc.yaml    |  11 +-
+>  drivers/remoteproc/imx_rproc.c                | 170 +++++++++++++++---
+>  2 files changed, 159 insertions(+), 22 deletions(-)
+> 
+> -- 
+> 2.30.0
+> 
