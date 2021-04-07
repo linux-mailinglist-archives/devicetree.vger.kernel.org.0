@@ -2,89 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CF87357555
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 21:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79C0F35756D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 22:07:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355816AbhDGT7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 15:59:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48324 "EHLO mail.kernel.org"
+        id S1349029AbhDGUHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 16:07:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49600 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1355810AbhDGT7O (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Apr 2021 15:59:14 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4DC206105A;
-        Wed,  7 Apr 2021 19:59:04 +0000 (UTC)
+        id S1345853AbhDGUHg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Apr 2021 16:07:36 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6E16061158;
+        Wed,  7 Apr 2021 20:07:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617825544;
-        bh=k6+WEJUU1OZWMiE9a2UexjzaTvG2oDVuhVsZiW3o6Io=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YR5Q8XvUn6JVjPjj1BNXaM7FVf4Br7ASmk3pta0uakqmw/dDkxpszknJ8UmJ+wudk
-         jtnQron+y3IvEv16sN69Mw5kfPI4AXsQxbLEhpVIJ6VbHzqWg73POVIX0llWl/7km5
-         C5FlmXQ8rbN0i9Vxa05RsKNzt1lJWE8dA81jJSsw16lZHdla3+ss/EqA9w0Ov7mUiT
-         SZ0MwgFHNkbJDQu8pDeuh77/V9ufcutwVYnuuQr0bHtLNkPC2i6qmFBiokoLyQfl0K
-         k42/vc95fEetqcc8H3yFXpNT13wDn+r1F/QiBRtpvqLPYIPxc013iptHec/3Sea2F4
-         6YswdagWPNA+Q==
-Received: by mail-ed1-f47.google.com with SMTP id e7so22300535edu.10;
-        Wed, 07 Apr 2021 12:59:04 -0700 (PDT)
-X-Gm-Message-State: AOAM532dzROo84Vt7QaBgXoHVphk3NhjTSjIAl7mAF9U60XWHxNSS2Y1
-        Y2KbqM6nf7dbS2FkNPYgEm1I2KyysDsNtPVQIg==
-X-Google-Smtp-Source: ABdhPJwY9GthufRHILDLTfwGTZSKr9CrrPh9cGzDOgcphaTRdGgVabGLGr25oYBpzfJepxjo3FsXe2sqmNbljCw070k=
-X-Received: by 2002:a05:6402:1b1c:: with SMTP id by28mr6528263edb.62.1617825542888;
- Wed, 07 Apr 2021 12:59:02 -0700 (PDT)
+        s=k20201202; t=1617826047;
+        bh=a6BQBkYBckWILIt+kdw/GGz0d9VSJVSXsYtBOcNTfvg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=upetZLxnv0XQGf4pDHYqYTctrM9Xl9I3ZxX+a4L/3q9zB+Bs5gKE37JiLKMvdzsxO
+         bNYCYzvb+lH6XQqK44xPxAwqJ3t0oJCBJjVQ8i+n6lKop77Ra/qnEoe44JrhZ/A2U4
+         u+Hv4xtNHEQ456WmvBYp2+MTv2KK/5Z9+AZH7r3YJ7GBIO0N0CkEOW/90sdManEu+R
+         l21XFXLYa2FrKEotLm7Bl6yKccwZrsFE3rP7x/8TVHtr5RfR9MaV1S7OkaGg7S04X8
+         GGCsk7xj8nI0Tu43OA/OVHsd2dPnldPZXCYxbfqIchUgqelXazhAuGX3O5EaTZG29a
+         NpuVEx6sRNnlA==
+Date:   Wed, 7 Apr 2021 21:07:09 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Jim Quinlan <jim2101024@gmail.com>, Rob Herring <robh@kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 2/6] dt-bindings: PCI: Add bindings for Brcmstb
+ endpoint device voltage regulators
+Message-ID: <20210407200709.GG5510@sirena.org.uk>
+References: <20210401212148.47033-1-jim2101024@gmail.com>
+ <20210401212148.47033-3-jim2101024@gmail.com>
+ <20210406164708.GM6443@sirena.org.uk>
+ <CANCKTBsiujTkOdh60etBqF_hE8exg6m9TDxkGHVVAGVS2SFCcQ@mail.gmail.com>
+ <20210406173211.GP6443@sirena.org.uk>
+ <CANCKTBv63b4bGepZbDp1wmFrOeddiDikoXbheMjHhbguAbR2sA@mail.gmail.com>
+ <20210407112713.GB5510@sirena.org.uk>
+ <03852d1a-1ee4-fd29-8523-4673c35f83cd@gmail.com>
 MIME-Version: 1.0
-References: <20210403020423.85278-1-syl.loop@gmail.com> <87y2due3mt.fsf@mpe.ellerman.id.au>
-In-Reply-To: <87y2due3mt.fsf@mpe.ellerman.id.au>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 7 Apr 2021 14:58:50 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+CKi6+FKO=-VHC538mFMsvpa785sp2Qv86iCTv=1PC1w@mail.gmail.com>
-Message-ID: <CAL_Jsq+CKi6+FKO=-VHC538mFMsvpa785sp2Qv86iCTv=1PC1w@mail.gmail.com>
-Subject: Re: [PATCH] powerpc/dts: fix not include DTC_FLAGS
-To:     Michael Ellerman <mpe@ellerman.id.au>
-Cc:     Youlin Song <syl.loop@gmail.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>, devicetree@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7lMq7vMTJT4tNk0a"
+Content-Disposition: inline
+In-Reply-To: <03852d1a-1ee4-fd29-8523-4673c35f83cd@gmail.com>
+X-Cookie: Dry clean only.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 7, 2021 at 6:27 AM Michael Ellerman <mpe@ellerman.id.au> wrote:
->
-> Youlin Song <syl.loop@gmail.com> writes:
-> > I wanted to build the fsl dts in my machine and found that
-> > the dtb have not extra space,so uboot will cause about
-> > FDT_ERR_NOSPACE issue.
 
-How do we not have issues with arm and arm64 boards which don't have
-padding? Or what took so long to notice on powerpc?
+--7lMq7vMTJT4tNk0a
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> >
-> > Signed-off-by: Youlin Song <syl.loop@gmail.com>
-> > ---
-> >  arch/powerpc/boot/dts/Makefile | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/arch/powerpc/boot/dts/Makefile b/arch/powerpc/boot/dts/Makefile
-> > index fb335d05aae8..c21165c0cd76 100644
-> > --- a/arch/powerpc/boot/dts/Makefile
-> > +++ b/arch/powerpc/boot/dts/Makefile
-> > @@ -2,5 +2,6 @@
-> >
-> >  subdir-y += fsl
-> >
-> > +DTC_FLAGS   ?= -p 1024
-> >  dtstree              := $(srctree)/$(src)
-> >  dtb-$(CONFIG_OF_ALL_DTBS) := $(patsubst $(dtstree)/%.dts,%.dtb, $(wildcard $(dtstree)/*.dts))
->
-> I guess that was missed in 1acf1cf8638a ("powerpc: build .dtb files in dts directory").
->
-> Which I think means the assignment to DTC_FLAGS in
-> arch/powerpc/boot/Makefile is not needed anymore.
->
-> Can you send a v2 removing that assignment and explaining that's what
-> happened?
+On Wed, Apr 07, 2021 at 11:35:57AM -0700, Florian Fainelli wrote:
+> On 4/7/2021 4:27 AM, Mark Brown wrote:
 
-I've wanted to make this common, but I guess that's a separate change.
+> > Frankly I'm not clear why you're trying to handle powering on PCI slots
+> > in a specific driver, surely PCI devices are PCI devices regardless of
+> > the controller?
 
-Rob
+> There is no currently a way to deal with that situation since you have a
+> chicken and egg problem to solve: there is no pci_device created until
+> you enumerate the PCI bus, and you cannot enumerate the bus and create
+> those pci_devices unless you power on the slots/PCIe end-points attached
+> to the root complex. There are precedents like the rockchip PCIe RC
+> driver, and yes, we should not be cargo culting this, which is why we
+> are trying to understand what is it that should be done here and there
+> has been conflicting advice, or rather our interpretation has led to
+> perceiving it as a conflicting.
+
+As you note below I've pointed you at Slimbus which has a similar
+problem and solves it at a bus level although it thought of this from
+day one which makes life easier; I do think it'd be good to get this
+stuff in the driver core since it's an issue that affects every
+enumerable bus in the end but nobody's summoned up the enthusiasm for
+that (including me).
+
+> If the regulator had a variation where it supported passing a
+> device_node reference to look up regulator properties, we could solve
+> this generically for all devices, that does not exist, and you stated
+> you will not accept changes like those, fair enough.
+
+I'm certainly not enthusiastic about the idea and the likely abuse isn't
+inspiring, and of course regulators aren't the only resource that might
+be needed to get something up and running and would need to be extended
+in the end.  That said I've not seen any concrete proposals either.
+
+> When you suggested to look at soundwire for an example of "software
+> devices", we did that but it was not clear where the sdw_slave would be
+> created prior to sdw_slave_add(), but this does not matter too much.
+
+Looks like sdw_acpi_find_slaves() and sdw_of_find_slaves().
+
+> Let us say we try to solve this generically using the same idea that we
+> would pre-populate pci_device prior to calling pci_scan_child_bus(). We
+> could do something along these lines:
+
+...
+
+> - from there on we try to get the regulators of those pci_device objects
+> we just allocated and we try to enable their regulators, either based on
+> a specific list of supplies or just trying to enable all supplied declared.
+
+I'd suggest specfying the supplies that PCI provides to slots in the
+spec with standard names and just using that list, at least as a start.
+That'd probably cover most cases and allow the binding to be written at
+the generic PCI level rather than having individual devices need to name
+their supplies for the binding documentation and validation stuff which
+seems easier.  Devices with extra stuff can always extend the binding.
+
+> - now pci_scan_child_bus() will attempt to scan the bus for real by
+> reading the pci_device objects ID but we already have such objects, so
+> we need to update pci_scan_device() to search bus::devices and if
+> nothing is found we allocate one
+
+> Is that roughly what you have in mind as to what should be done?
+
+Yes, pretty much.  Ideally there'd be some way for drivers to get a
+callback prior to enumeration to handle any custom stuff for embedded
+cases but unless someone actually has a use case for that you could just
+punt.
+
+--7lMq7vMTJT4tNk0a
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBuEOwACgkQJNaLcl1U
+h9AdLwf/RsAf7UG+ffz3mi2yHRfdLT+R1kAAHHjvZu3yk1w4XvfbIGwyQ0GqFjsh
+bVGHEaP41hJtr+0o8FQOk2warQy4R2aq1rFUAFUsa3j126r6CmanfM7bBTWPwhxx
+5PL2C3RC27LH4RBK851FFVDOsQ4+Wb7DjGEMxsxaEfadT+EUWGAeNauSyXXefrmZ
+Kpwkcwj2Bif3E8oGWcugThD/rcgI15cf32LKRrwMj259Ba/RiCaZBOUM3AFd72Ep
+BVqo9whlen+wRXMYEGDdC2mnW+yyGQAb36KObjAU0rcHQoHJL8HbT1l02B2oFhKN
+MoH3G5M+ZMogQd8ebBqRK4Eh0WlJIQ==
+=bCrR
+-----END PGP SIGNATURE-----
+
+--7lMq7vMTJT4tNk0a--
