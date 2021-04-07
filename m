@@ -2,51 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7804335748D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 20:50:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36F1A357491
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 20:50:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239472AbhDGSuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 14:50:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49338 "EHLO
+        id S1348563AbhDGSu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 14:50:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233559AbhDGSux (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 14:50:53 -0400
-Received: from mail-qv1-xf49.google.com (mail-qv1-xf49.google.com [IPv6:2607:f8b0:4864:20::f49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14066C061760
-        for <devicetree@vger.kernel.org>; Wed,  7 Apr 2021 11:50:44 -0700 (PDT)
-Received: by mail-qv1-xf49.google.com with SMTP id x20so13189603qvd.21
-        for <devicetree@vger.kernel.org>; Wed, 07 Apr 2021 11:50:44 -0700 (PDT)
+        with ESMTP id S1344938AbhDGSu5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 14:50:57 -0400
+Received: from mail-pl1-x64a.google.com (mail-pl1-x64a.google.com [IPv6:2607:f8b0:4864:20::64a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC6BC061761
+        for <devicetree@vger.kernel.org>; Wed,  7 Apr 2021 11:50:47 -0700 (PDT)
+Received: by mail-pl1-x64a.google.com with SMTP id u5so9546067plg.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Apr 2021 11:50:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
-        h=date:message-id:mime-version:subject:from:to:cc;
-        bh=22i+nO6AC7ddlnrwJZcEh1neFiMyTVpI8DRhK+N4aig=;
-        b=YjoYocmuh62wjvYAH1B7/gNiTuNcZfO//X787k+oP+YBAxDXHj1Aqn444IQUBJWZpI
-         r+X4oybrgrMJ+QWn8XkCuMSaOQ6ffwUWmLKz447xnkw9SVAhECClNfTYUgAF3RnyvoRT
-         U+SKenuV26gR+lNx+WVWLGzyk3yY8fNRK2krI+ZFFQfPRH5ah9l37oJYHiNhhZmayKXI
-         jKBbGPFEQHM9FLBMXxa6DB3XeErtVfWuX19h7d1nm/RtBQF565RgGYIZ2uqsIMFHs2iT
-         E92pyXKw0X16KSq2HzPMlV4tBBaupAMJrQc/pOmcatBonYDrOaM4z/FGHMlWLWe4X7o7
-         7U/Q==
+        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
+         :cc;
+        bh=dqDD41JostnIm+5y/7MqI3OZhpg7yT/Ds6kd9YTd5p8=;
+        b=V6qtOQFNTM8SvBnpDbHVJOUk9A/Y1MlH+gwu+i0fp2Uhl4xf6A8Muhkdr6DqS0gyg2
+         Lx9z/iXySzVYWIteNxCMtLcJtbJjb4VSlukj3WZr+D6vAcHAzf7FaEu/tus8JSWcI3oP
+         uchDpqksWIyKy1kWELyrl81rqPwz9kQaNqE7OCsaKKtuO9SkJ4Fj+lm5mBmPNZ06lHJa
+         Rn6Id6s3YyfPoBYU42NfiVBwoBnYLTix3SW9sRq8Uyq4W08jphMfBg0wKeDdnBJKwm1H
+         djjkVrPt+iGyExNgSQj4S99PPFRu86IvHk1ybjulSMkx3H/SIsAzupgkQqG1ThOl5cZc
+         nMmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
-        bh=22i+nO6AC7ddlnrwJZcEh1neFiMyTVpI8DRhK+N4aig=;
-        b=l1y+2Amtxiawk4H7SOr3qedwTTnDMdLj2wCijDhSGB7q2iG7RvhSC1wryRC00/4DOe
-         K6r0FuF0xyZN5lxnyY85o2vUi+LbeQpGQ8DOdNjh7aCt8JFUUpz/QWusQUdo5qvGs1VP
-         ekUzb6QTS092rMo2tvYU4pbQJ5CTjMpYdhr7Rzx83C+6+Otb+eACyKEW60TYI2bK9AV+
-         xCXtz69CHWKh/jc1oxOt6jzrMF/jz1qj07e4I5qfAntGLitGrB1p9hWNUvDYb8rY9Qc9
-         L7lkr8nRTe8aDtf4N7u76nRpqRG+GDZFWDU59B8Pt8Eawp3445nUofRkVDNmDk/J2fxx
-         FMZA==
-X-Gm-Message-State: AOAM533BHIEV+CcOIR7waOLfZu4KhbS5/jMRyvElA1cO/5pSr8Go2gZZ
-        FoavhNtn9ma5rmS+M0JFC9QGTPVTqyU=
-X-Google-Smtp-Source: ABdhPJzID1m2u/rTjHzwE9yEYUYPzAgJ8+3KfanwAk8IcrU9oGhuzvp3KRRCOueyelO1VnxkCGOIueECKrI=
+        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
+         :references:subject:from:to:cc;
+        bh=dqDD41JostnIm+5y/7MqI3OZhpg7yT/Ds6kd9YTd5p8=;
+        b=rrtWAaPnIo0a/e4gD4FG+Dd6HX8dMOV+IT3NyJCs/ajf5W/fqrmWLSqLo5b1iBqRzH
+         CGzZy2db17pAnnyWKRvByTaN8sMPKRTKrq2MOoBK2WyodLAD9MjxvAZcBjZz2ZzFhrSe
+         1PeKz8iVzC6/reb4h4Td/VK3e2kuT28OGivvtK3nZ4/6g8Dni2grd2U8hhL+j3TvoAaB
+         9LGAw0tTxkY0PNPgd0LkMedK3NWAzeYImG050Lg2JAa26gIiyU05H+gPDt+tWc3Zam+q
+         uQdeET5DYjukDUr/Jco3rtbqUb1raZ9TfnaQ0Xx5Jnu++m6bBC1gRdY9CoIuTR9zD+AW
+         uAWg==
+X-Gm-Message-State: AOAM5316MhJfnbs3nMKnOJ4eqgGhznbKpBIaMZyZoXWsPXFyIDleTwoe
+        meFCW39cOldL8qzXb/CMXWMZFUagXYE=
+X-Google-Smtp-Source: ABdhPJwcfgtPigjtbMFrXtAYH7cJZKm/YtGrt45cVvCx8ohPcxcCTAQhVTsdBUYFxOLebvyNwOkBetKj/A0=
 X-Received: from legoland2.mtv.corp.google.com ([2620:15c:211:1:c151:20a4:9e4a:b11e])
- (user=varmam job=sendgmr) by 2002:a0c:f702:: with SMTP id w2mr4912067qvn.0.1617821443301;
- Wed, 07 Apr 2021 11:50:43 -0700 (PDT)
-Date:   Wed,  7 Apr 2021 11:50:37 -0700
-Message-Id: <20210407185039.621248-1-varmam@google.com>
+ (user=varmam job=sendgmr) by 2002:a17:902:c3cb:b029:e9:706a:1a5c with SMTP id
+ j11-20020a170902c3cbb02900e9706a1a5cmr2797468plj.58.1617821446775; Wed, 07
+ Apr 2021 11:50:46 -0700 (PDT)
+Date:   Wed,  7 Apr 2021 11:50:38 -0700
+In-Reply-To: <20210407185039.621248-1-varmam@google.com>
+Message-Id: <20210407185039.621248-2-varmam@google.com>
 Mime-Version: 1.0
+References: <20210407185039.621248-1-varmam@google.com>
 X-Mailer: git-send-email 2.31.0.208.g409f899ff0-goog
-Subject: [PATCH v1 0/2] Override device name using DT "dev-name" property
+Subject: [PATCH v1 1/2] dt-bindings: i2c: add "dev-name" property to assign
+ specific device name
 From:   Manish Varma <varmam@google.com>
 To:     Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>
 Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
@@ -57,25 +63,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently I2C device names are assigned dynamically unless they are
-instantiated through ACPI, this names are based on adapter_id and
-device_address. While device_address will remain constant for a given
-device, the adapter_id may vary across different systems and hence,
-overall, the device name won't be unique for the same I2C device.
+I2C devices currently are named dynamically using
+<adapter_id>-<device_address> convention, unless they are instantiated
+through ACPI.
 
-Changes here addresses this problem by introducing an optional device
-tree property "dev-name", which will be used to set the device name,
-if present, instead of following <adapter_id>-<device_addr> convention.
+This means the device name may vary for the same device across different
+systems, infact even on the same system if the I2C bus enumeration order
+changes, i.e. because of device tree modifications.
 
-Manish Varma (2):
-  dt-bindings: i2c: add "dev-name" property to assign specific device
-    name
-  i2c: use "dev-name" device tree property to override device name
+By adding an optional "dev-name" property, it provides a mechanism to
+set consistent and easy to recognize names for I2C devices.
 
+Signed-off-by: Manish Varma <varmam@google.com>
+---
  Documentation/devicetree/bindings/i2c/i2c.txt | 5 +++++
- drivers/i2c/i2c-core-of.c                     | 2 ++
- 2 files changed, 7 insertions(+)
+ 1 file changed, 5 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
+index df41f72afc87..6fb03f464b81 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c.txt
++++ b/Documentation/devicetree/bindings/i2c/i2c.txt
+@@ -130,6 +130,11 @@ wants to support one of the below features, it should adapt these bindings.
+ - wakeup-source
+ 	device can be used as a wakeup source.
+ 
++- dev-name
++	Name of the device.
++	Overrides the default device name which is in the form of
++	<busnr>-<addr>.
++
+ Binding may contain optional "interrupts" property, describing interrupts
+ used by the device. I2C core will assign "irq" interrupt (or the very first
+ interrupt if not using interrupt names) as primary interrupt for the slave.
 -- 
 2.31.1.295.g9ea45b61b8-goog
 
