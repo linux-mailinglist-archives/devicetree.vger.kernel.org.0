@@ -2,147 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2E9135767E
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 23:09:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A57C63576A5
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 23:21:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229637AbhDGVJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 17:09:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40810 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229469AbhDGVJ6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Apr 2021 17:09:58 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 14C3E611CC;
-        Wed,  7 Apr 2021 21:09:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617829788;
-        bh=pjqv+FUnyBOEfZSsSEQmFkj/fnKdTUEo7j9HDoo+s/8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UOmINKk4fSkxAMILQn3PSsS55JbYYRTXE/hsUWCtUGH3f9Vf60kaAJJUDWkgRUc4/
-         f4i8dIsywmHSD2Uuz//BJ3qD2SJCB+HBX98kCOPgHkc0RMl+97j+L2lUoxcQ1oFvAi
-         8kcbgOuF785HDon0d2KdX56Rig5lS/zj7rm4YzOo48zmTIv+Z5tLTU2Z96jIn0aRuq
-         FD0fXNGyQOM+wXWqHzJhBhnAmjBU5WQ/Bk36O8fJzn99NmfEzP8xY+9Eha5NvN1MEJ
-         MAE0Z57wx8y/OseKbPPavOzvGwKlnPF6MUhuOZ4GjUuFzyBAfO33RHBwLavCgwBPfZ
-         wxYwRZcs1wGYg==
-Date:   Wed, 7 Apr 2021 22:09:41 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 15/18] irqchip/apple-aic: Add support for the Apple
- Interrupt Controller
-Message-ID: <20210407210940.GC16198@willie-the-truck>
-References: <20210402090542.131194-1-marcan@marcan.st>
- <20210402090542.131194-16-marcan@marcan.st>
+        id S232580AbhDGVVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 17:21:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54222 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232526AbhDGVVi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 17:21:38 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B522C061760;
+        Wed,  7 Apr 2021 14:21:28 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id a12so9668254wrq.13;
+        Wed, 07 Apr 2021 14:21:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mnRokraJNQQ3ziNTnfPQf4MZbYvKQk5ORT1VbxzhrPA=;
+        b=IiJ+43ioz64XkpThdu2m/4wB/i7lHoRJ0qPsQEwkdY/UrOUaZLRaXFETG2HoIg7+Wi
+         +565zWB4TSwpszDXc9EcKJzP4t+ysq9Vr/yNdklPamxdLjEpBeK53lRD+hxvZdbKZlck
+         MVA65GJhKucxhNO4Duso+3uUCDFApF1QCN/KEAHrI/xstBNlBmhGTeRXMBZUW15NxMn7
+         7NAoeW4b7dBhhfPsKwUHV6pn2hBRrbbjnrnnX2gjl5PjJ5HZ/vQb6HBxLtQ9MOxvDx7G
+         s1Ht3lwLWEqoO5nyZhu1CG2Qu6gE/+2bCtBqJmcLOsluUQy8u9hw9cKya/NkgsFB6nlM
+         hypg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mnRokraJNQQ3ziNTnfPQf4MZbYvKQk5ORT1VbxzhrPA=;
+        b=Mj/4hYySbBg7wrrTzXZM/4RgJI71uqTbqpXeF3Ak6b4l+xmJWGFuXwqj0XxCaJ6dHy
+         oR8KpOQN+xU6M/jxwkUxDcktVpgh1/BEDwLJtS5ALhLtk2NkzvYVlY1kUp4H3yiFiPtj
+         8KMV44fxnkAkKJLJLlN/pVYzGCB5Kj3iq6u9Cp11Zwpa2vMOmMdE3nuM79fBh9wJ4Flw
+         0pbI4mkiTLerLoxv4/28A/wZerd6zi8PDdxVwWmOWIIQ5VzK9O6ld5ihvKdmUNLR0iJC
+         Cs6sS5iddS5LNdU9CnvRrbX9aega0P7F8EMiBPbUSJDNFXZhfvpsk2J0Le0vUG/99D+V
+         BGng==
+X-Gm-Message-State: AOAM530CTNRtU9VBBNq/maL3EIg+KsktiuiFLvvX1YPrYHoJOi47Omp7
+        yXvURi8dnrOK4YBnMfSb2QO36tM6cOg=
+X-Google-Smtp-Source: ABdhPJww8ubBqw30Y4BIOy12HAszw92cjE7X8pc4aWqn6oFMmF9f8hh1VX1IkDjbhgDfiEUvsaDlKQ==
+X-Received: by 2002:a05:6000:1102:: with SMTP id z2mr2005190wrw.87.1617830487075;
+        Wed, 07 Apr 2021 14:21:27 -0700 (PDT)
+Received: from adgra-XPS-15-9570.home (2a01cb0008bd270041a0a0f4308eafc0.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:41a0:a0f4:308e:afc0])
+        by smtp.gmail.com with ESMTPSA id l14sm17173952wrm.77.2021.04.07.14.21.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Apr 2021 14:21:26 -0700 (PDT)
+From:   Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        l.stach@pengutronix.de, Anson.Huang@nxp.com, krzk@kernel.org,
+        peng.fan@nxp.com, aisheng.dong@nxp.com, qiangqing.zhang@nxp.com,
+        alice.guo@nxp.com, aford173@gmail.com, agx@sigxcpu.org,
+        andrew.smirnov@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Adrien Grassein <adrien.grassein@gmail.com>
+Subject: [PATCH v1 0/7] imx-gpcv2 improvements
+Date:   Wed,  7 Apr 2021 23:21:15 +0200
+Message-Id: <20210407212122.626137-1-adrien.grassein@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210402090542.131194-16-marcan@marcan.st>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 02, 2021 at 06:05:39PM +0900, Hector Martin wrote:
-> This is the root interrupt controller used on Apple ARM SoCs such as the
-> M1. This irqchip driver performs multiple functions:
-> 
-> * Handles both IRQs and FIQs
-> 
-> * Drives the AIC peripheral itself (which handles IRQs)
-> 
-> * Dispatches FIQs to downstream hard-wired clients (currently the ARM
->   timer).
-> 
-> * Implements a virtual IPI multiplexer to funnel multiple Linux IPIs
->   into a single hardware IPI
-> 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->  MAINTAINERS                     |   2 +
->  drivers/irqchip/Kconfig         |   8 +
->  drivers/irqchip/Makefile        |   1 +
->  drivers/irqchip/irq-apple-aic.c | 837 ++++++++++++++++++++++++++++++++
->  include/linux/cpuhotplug.h      |   1 +
->  5 files changed, 849 insertions(+)
->  create mode 100644 drivers/irqchip/irq-apple-aic.c
+Hi,
 
-Couple of stale comment nits:
+This patch set aims is to add the support of the i.MX8 MM power domains
+on the mainline kernel.
 
-> +static void aic_ipi_unmask(struct irq_data *d)
-> +{
-> +	struct aic_irq_chip *ic = irq_data_get_irq_chip_data(d);
-> +	u32 irq_bit = BIT(irqd_to_hwirq(d));
-> +
-> +	atomic_or(irq_bit, this_cpu_ptr(&aic_vipi_enable));
-> +
-> +	/*
-> +	 * The atomic_or() above must complete before the atomic_read_acquire() below to avoid
-> +	 * racing aic_ipi_send_mask().
-> +	 */
+To achieve this, I do several patches
+  - Check errors when reading or writing registers (concerns i.MX8M base
+    implementation);
+  - Fix power up/down sequence. Handshake was not checked and it was
+    not called at the appropriate time (concerns i.MX8M base
+implementaions);
+  - Allow domains without power sequence control like the HSIOMIX of the
+    i.MX8MM.
+  - Add some i.MX8MM domains (HSIO and OTGS);
+  - Introduce quirks. For example, i.MX8MM OTG domains should not be
+    powered off (seen n the source code of th i.MX ATF). Quirks are
+easily upgrable for other cases.
+  - Finally I defined power domains into the imx8mm.dtb file.
 
-(the atomic_read_acquire() is now an atomic_read())
+I know that this kind of patch is rejected by NXP ut the other way
+(callin ATF directly) was also rejected.
 
-> +	smp_mb__after_atomic();
-> +
-> +	/*
-> +	 * If a pending vIPI was unmasked, raise a HW IPI to ourselves.
-> +	 * No barriers needed here since this is a self-IPI.
-> +	 */
-> +	if (atomic_read(this_cpu_ptr(&aic_vipi_flag)) & irq_bit)
-> +		aic_ic_write(ic, AIC_IPI_SEND, AIC_IPI_SEND_CPU(smp_processor_id()));
-> +}
-> +
-> +static void aic_ipi_send_mask(struct irq_data *d, const struct cpumask *mask)
-> +{
-> +	struct aic_irq_chip *ic = irq_data_get_irq_chip_data(d);
-> +	u32 irq_bit = BIT(irqd_to_hwirq(d));
-> +	u32 send = 0;
-> +	int cpu;
-> +	unsigned long pending;
-> +
-> +	for_each_cpu(cpu, mask) {
-> +		/*
-> +		 * This sequence is the mirror of the one in aic_ipi_unmask();
-> +		 * see the comment there. Additionally, release semantics
-> +		 * ensure that the vIPI flag set is ordered after any shared
-> +		 * memory accesses that precede it. This therefore also pairs
-> +		 * with the atomic_fetch_andnot in aic_handle_ipi().
-> +		 */
-> +		pending = atomic_fetch_or_release(irq_bit, per_cpu_ptr(&aic_vipi_flag, cpu));
-> +
-> +		/*
-> +		 * The atomic_fetch_or_release() above must complete before the
-> +		 * atomic_read_acquire() below to avoid racing aic_ipi_unmask().
-> +		 */
+I also know that NXP is concerned abou adding hundred lines of codes for
+each new SOC but it' the way it works on Linux. And the "added code"
+mainly consist of adding structures, defines and generic methods for
+regmap.
 
-(same here)
+If it's a real problem, maybe we can introduc a new "gpcv3" driver for
+i.MX8MM, i.MX8MN and i.MX8MP.
 
-> +		smp_mb__after_atomic();
-> +
-> +		if (!(pending & irq_bit) &&
-> +		    (atomic_read(per_cpu_ptr(&aic_vipi_enable, cpu)) & irq_bit))
-> +			send |= AIC_IPI_SEND_CPU(cpu);
-> +	}
+Thanks,  
 
-But with that:
+Adrien Grassein (7):
+  soc: imx: gpcv2: check for errors when r/w registers
+  soc: imx: gpcv2: Fix power up/down sequence
+  soc: imx: gpcv2: allow domains without power sequence control
+  dt-bindings: power: fsl,imx-gpcv2: add definitions for i.MX8MM
+  soc: imx: gpcv2: add HSIOMIX and USB domains for i.MX8MM
+  soc: imx: gpcv2: add quirks to domains
+  arm64: dts: imx8mm: add power-domains
 
-Acked-by: Will Deacon <will@kernel.org>
+ .../bindings/power/fsl,imx-gpcv2.yaml         |   7 +-
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  35 ++
+ drivers/soc/imx/gpcv2.c                       | 336 ++++++++++++++----
+ include/dt-bindings/power/imx8mm-power.h      |  21 ++
+ 4 files changed, 333 insertions(+), 66 deletions(-)
+ create mode 100644 include/dt-bindings/power/imx8mm-power.h
 
-Will
+-- 
+2.25.1
+
