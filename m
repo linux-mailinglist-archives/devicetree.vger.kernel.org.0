@@ -2,127 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15E9335653C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 09:31:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B72C7356546
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 09:33:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235124AbhDGHbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 03:31:10 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:57295 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236731AbhDGHbI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 03:31:08 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id ACA135C0087;
-        Wed,  7 Apr 2021 03:30:58 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Wed, 07 Apr 2021 03:30:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=TX0MoO7wz20xEAsxRsbRka60YhJ
-        q/rR3YCf40hGmjFg=; b=LBIQNhSftFHNydpx/rwchDXvbE63tbz0meoXgMrQvGw
-        0dhPy82Dszu2ui2BbH2+FaCKRwohfrq62SgW0UpeDfLmulE0rSo8ceW40TqHroSK
-        PiOh5feCBZfi/4ydb9GJEgbysVzFzJrlCswkkzbQe8IEeg8rNMna62vnbj2mT/qU
-        sP/941lsHSHWCbxt5bzNwNZPNHlr0HFpStvxeBeJNvTW48lwPmKZYu2xZ1/RvAhe
-        yWMnHQ0HI8wVkWBuUgroiwOfM9p+yWsGAi1KKFwSO5wE8aZegZpoPt/gJ+fqHbt6
-        r8VG82nGydadol90t9pMbfLHwCLNEO9tTZM9Yk6y7Yw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=TX0MoO
-        7wz20xEAsxRsbRka60YhJq/rR3YCf40hGmjFg=; b=GDVAcBPXTkNP1yrAtGn2/z
-        0yRATjIk3ZCGm0yADgAF2mlCall9gL5KDKKgxc67Ok9hbER9gGdNZGSnhMJQEi8u
-        NQ6+vpWdLRe2YKqJ0zw9S08+m23ir5asUaiE4vuPaXtY7m1m3DznzX0omAiOlv8z
-        CKyzPhSR20MSwPmBKhgWni1HM6iMVNJ3KewPQflJ0MQmPXcWMMgM/V1ZbofjLjgw
-        swEJDsdvUuoqz3N73BJLIhkYpWZ+O6/XbyR0Jri96QJ3AfngFEk0ScmlSHBg4M6e
-        NsXloxr0Whv1VZizqgGUI261LgbSHPgJr64R9rvvlWshNXW8c9kgDTd2zU90LSZg
-        ==
-X-ME-Sender: <xms:sF9tYKLt22unhyGwsDUwEj2IoKgloudAsN6adPNX409y-Kb3NKftaw>
-    <xme:sF9tYCLWcVlUpMpDcFKtsKbi9hO5sujdG0P8OuUzik9rm7QGI8hDRbXXIN0BPXCSQ
-    qBWYCrksjwvWUH4PIo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudejiedguddvvdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheei
-    heegudenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
-    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:sF9tYKsQkzYvDHZcFX00dbL-jgvTIw5uRHbKgQpjJMru2alOPLQuNA>
-    <xmx:sF9tYPYmH0r1BaWVPIww4MTPVyUeAYINPMODHlUrx5hXMpNSrE4Hwg>
-    <xmx:sF9tYBZfUAf0e2EbZPlJ6NJOy_TO31mVpfhh7BOf9C3bP7NFPFnlmg>
-    <xmx:sl9tYEzGBc8k7Ym3rhdmI98f7S8cWBqq3Agq4sWwQjcCiD-q-Niy2A>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id B0440108005C;
-        Wed,  7 Apr 2021 03:30:56 -0400 (EDT)
-Date:   Wed, 7 Apr 2021 09:30:54 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Ivan Uvarov <i.uvarov@cognitivepilot.com>
-Cc:     devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Andre Przywara <andre.przywara@arm.com>,
-        Icenowy Zheng <icenowy@aosc.io>
-Subject: Re: [PATCH v3 4/4] ARM: dts: sun8i: r40: add devicetree for Forlinx
- FETA40i-C & OKA40i-C
-Message-ID: <20210407073054.wzus3zmzfksilwcf@gilmour>
-References: <20210331155616.793550-1-i.uvarov@cognitivepilot.com>
- <20210331155616.793550-5-i.uvarov@cognitivepilot.com>
- <20210401094356.zhijxfoihw73ha7k@gilmour>
- <20210401175938.1f6d065c@NervousEnergy>
+        id S1346683AbhDGHdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 03:33:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40614 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232598AbhDGHdq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 03:33:46 -0400
+Received: from mail.pqgruber.com (mail.pqgruber.com [IPv6:2a05:d014:575:f70b:4f2c:8f1d:40c4:b13e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EC52C06174A;
+        Wed,  7 Apr 2021 00:33:23 -0700 (PDT)
+Received: from workstation.tuxnet (213-47-165-233.cable.dynamic.surfer.at [213.47.165.233])
+        by mail.pqgruber.com (Postfix) with ESMTPSA id 341C5C6B24A;
+        Wed,  7 Apr 2021 09:33:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pqgruber.com;
+        s=mail; t=1617780802;
+        bh=2rrkRiew20+H4UyA8Em/KsMBwMk+jHbfTnOtvXL8CRA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ohThtx6IaMF+y5Ex5cH3Tiw03cXrhGUYWMwXdjTlQL1iG9G0RYuxQDxb0NGqsqnYR
+         TFM5KwSRUDYQpew/D0YC7cUSb/JTP7bkHpIaMbfuN+BDBBeXMjYO8vH1q2QImd0IBd
+         8V/ew39f0XKW7mm1/G7qZp/LqflsrQ4AzbbOWcs8=
+Date:   Wed, 7 Apr 2021 09:33:20 +0200
+From:   Clemens Gruber <clemens.gruber@pqgruber.com>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     linux-pwm@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sven Van Asbroeck <TheSven73@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 2/8] pwm: pca9685: Support hardware readout
+Message-ID: <YG1gQNdDYA1RwrCo@workstation.tuxnet>
+References: <20210406164140.81423-1-clemens.gruber@pqgruber.com>
+ <20210406164140.81423-2-clemens.gruber@pqgruber.com>
+ <20210407053135.tx2q4bzxf2lwtqna@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="luel4amtq5kgftxh"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20210401175938.1f6d065c@NervousEnergy>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210407053135.tx2q4bzxf2lwtqna@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Apr 07, 2021 at 07:31:35AM +0200, Uwe Kleine-König wrote:
+> On Tue, Apr 06, 2021 at 06:41:34PM +0200, Clemens Gruber wrote:
+> > Implements .get_state to read-out the current hardware state.
+> > 
+> > The hardware readout may return slightly different values than those
+> > that were set in apply due to the limited range of possible prescale and
+> > counter register values.
+> > 
+> > Also note that although the datasheet mentions 200 Hz as default
+> > frequency when using the internal 25 MHz oscillator, the calculated
+> > period from the default prescaler register setting of 30 is 5079040ns.
+> > 
+> > Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
+> > ---
+> > Changes since v6:
+> > - Added a comment regarding the division (Suggested by Uwe)
+> > - Rebased
+> > 
+> >  drivers/pwm/pwm-pca9685.c | 46 +++++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 46 insertions(+)
+> > 
+> > diff --git a/drivers/pwm/pwm-pca9685.c b/drivers/pwm/pwm-pca9685.c
+> > index 5a2ce97e71fd..d4474c5ff96f 100644
+> > --- a/drivers/pwm/pwm-pca9685.c
+> > +++ b/drivers/pwm/pwm-pca9685.c
+> > @@ -333,6 +333,51 @@ static int pca9685_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> >  	return 0;
+> >  }
+> >  
+> > +static void pca9685_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+> > +				  struct pwm_state *state)
+> > +{
+> > +	struct pca9685 *pca = to_pca(chip);
+> > +	unsigned long long duty;
+> > +	unsigned int val = 0;
+> > +
+> > +	/* Calculate (chip-wide) period from prescale value */
+> > +	regmap_read(pca->regmap, PCA9685_PRESCALE, &val);
+> > +	/*
+> > +	 * PCA9685_OSC_CLOCK_MHZ is 25, i.e. an integer divider of 1000.
+> > +	 * The following calculation is therefore only a multiplication
+> > +	 * and we are not losing precision.
+> > +	 */
+> > +	state->period = (PCA9685_COUNTER_RANGE * 1000 / PCA9685_OSC_CLOCK_MHZ) *
+> > +			(val + 1);
+> > +
+> > +	/* The (per-channel) polarity is fixed */
+> > +	state->polarity = PWM_POLARITY_NORMAL;
+> > +
+> > +	if (pwm->hwpwm >= PCA9685_MAXCHAN) {
+> > +		/*
+> > +		 * The "all LEDs" channel does not support HW readout
+> > +		 * Return 0 and disabled for backwards compatibility
+> > +		 */
+> > +		state->duty_cycle = 0;
+> > +		state->enabled = false;
+> > +		return;
+> > +	}
+> > +
+> > +	duty = pca9685_pwm_get_duty(pca, pwm->hwpwm);
+> > +
+> > +	state->enabled = !!duty;
+> > +	if (!state->enabled) {
+> > +		state->duty_cycle = 0;
+> > +		return;
+> > +	} else if (duty == PCA9685_COUNTER_RANGE) {
+> > +		state->duty_cycle = state->period;
+> > +		return;
+> > +	}
+> > +
+> > +	duty *= state->period;
+> > +	state->duty_cycle = duty / PCA9685_COUNTER_RANGE;
+> 
+> Given that with duty = 0 the chip is still "on" and changing the duty
+> will first complete the currently running period, I'd model duty=0 as
+> enabled. This also simplifies the code a bit, to something like:
+> 
+> 
+> 	state->enabled = true;
+> 	duty = pca9685_pwm_get_duty(pca, pwm->hwpwm);
+> 	state->duty_cycle = div_round_up(duty * state->period, PCA9685_COUNTER_RANGE);
+> 
+> (I'm using round-up here assuming apply uses round-down to get
+> idempotency. In the current patch set state this is wrong however.)
 
---luel4amtq5kgftxh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+So, in your opinion, every requested PWM of the pca9685 should always be
+enabled by default (from the PWM core viewpoint) ?
 
-On Thu, Apr 01, 2021 at 05:59:38PM +0300, Ivan Uvarov wrote:
-> > > +	leds {
-> > > +		compatible =3D "gpio-leds";
-> > > +
-> > > +		led-5 {
-> > > +			gpios =3D <&pio 7 26 GPIO_ACTIVE_LOW>; /*
-> > > PH26 */
-> > > +			color =3D <LED_COLOR_ID_GREEN>;
-> > > +			function =3D LED_FUNCTION_STATUS;
-> > > +		};
-> > > +
-> > > +		led-6 {
-> > > +			gpios =3D <&pio 8 15 GPIO_ACTIVE_LOW>; /*
-> > > PI15 */
-> > > +			color =3D <LED_COLOR_ID_BLUE>;
-> > > +			function =3D LED_FUNCTION_STATUS;
-> > > +		}; =20
-> >=20
-> > led-5 and led-6? You can start at 0 :)
-> >=20
-> > Looks good otherwise, thanks
->=20
-> This is how they are labeled on the board, so I kept the names. Should
-> I rename them anyway?
+And this wouldn't break the following because pwm_get_state does not
+actually read out the hw state:
+pwm_get_state -> enabled=true duty=0
+pwm_apply_state -> enabled =false duty=0
+pwm_get_state -> enabled=false duty=0
 
-No, it makes sense then, just add a comment to make it obvious :)
-
-Maxime
-
---luel4amtq5kgftxh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYG1frgAKCRDj7w1vZxhR
-xX1cAP4+/1SBN0yPrYZiZQaBi/Eh5xdCmd3SHsKT3pyc6H0qfQD/ZOB2MH4F436i
-KqyCSGRpXClRMbNd8X+47LdBcCLtAAc=
-=jSjr
------END PGP SIGNATURE-----
-
---luel4amtq5kgftxh--
+Thanks,
+Clemens
