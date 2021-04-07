@@ -2,153 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79C0F35756D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 22:07:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE3AD357571
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 22:07:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349029AbhDGUHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 16:07:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49600 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1345853AbhDGUHg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Apr 2021 16:07:36 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6E16061158;
-        Wed,  7 Apr 2021 20:07:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617826047;
-        bh=a6BQBkYBckWILIt+kdw/GGz0d9VSJVSXsYtBOcNTfvg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=upetZLxnv0XQGf4pDHYqYTctrM9Xl9I3ZxX+a4L/3q9zB+Bs5gKE37JiLKMvdzsxO
-         bNYCYzvb+lH6XQqK44xPxAwqJ3t0oJCBJjVQ8i+n6lKop77Ra/qnEoe44JrhZ/A2U4
-         u+Hv4xtNHEQ456WmvBYp2+MTv2KK/5Z9+AZH7r3YJ7GBIO0N0CkEOW/90sdManEu+R
-         l21XFXLYa2FrKEotLm7Bl6yKccwZrsFE3rP7x/8TVHtr5RfR9MaV1S7OkaGg7S04X8
-         GGCsk7xj8nI0Tu43OA/OVHsd2dPnldPZXCYxbfqIchUgqelXazhAuGX3O5EaTZG29a
-         NpuVEx6sRNnlA==
-Date:   Wed, 7 Apr 2021 21:07:09 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Jim Quinlan <jim2101024@gmail.com>, Rob Herring <robh@kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        id S1355901AbhDGUHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 16:07:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37826 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1355896AbhDGUHi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 16:07:38 -0400
+Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B6A7C061761
+        for <devicetree@vger.kernel.org>; Wed,  7 Apr 2021 13:07:28 -0700 (PDT)
+Received: by mail-yb1-xb4a.google.com with SMTP id v186so24987821ybe.5
+        for <devicetree@vger.kernel.org>; Wed, 07 Apr 2021 13:07:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=BxDC0Eh7ydMZJg1PFupA4h3+Cq4GAnRY2vElU6GR0XY=;
+        b=sfIKHfu8fB43yPliqSo5fnTfDUrby+DjTuziu1/KgUSQQ0ifHLh3cEXorN5y07O2cR
+         Jn4/t8fNJGMs5CnQYi4uLl1KVTb92oW4DYjMuS6EfJr5W+uDshrLAeXLYTn/lyTovQw9
+         rgDFFr0+j3HVCtULrdrFJIoF0gLIszMtUdmduI+Ps8DM2Td8VooWfwwGvQXvXgn9zBWs
+         Hc8/M5ed7HUlLAMh3pW5bFSJQvhrJq0cSq3aD/fEojIJ+qS5tabLvmx/MeTLOLs8WqkZ
+         GDeRPdzgWPPWKNMbnVCa8pscGLDtCd9Ji0zfnoEBrycPa5rQ4luujHHzwYqNr8/UWbet
+         ielg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=BxDC0Eh7ydMZJg1PFupA4h3+Cq4GAnRY2vElU6GR0XY=;
+        b=Snj0T6CzsOwwlp+WRZ3tB2zJ1gXZwJWukvG4whQQXUfy2PYTF2s/NtH5ZsXDnIBkKv
+         LVBikGNwN8PUOdCjVVeDa3hNRzuzNI3MLzXCckXuaxsauParG9MGMVYg4pTgU7fVoLj6
+         3ibX53IsQHr412vTM4/zWRnIa8QBBgWmovWYWI/yZzGPzOuNtBZzW0pCYFIujSl6/PDP
+         NZcS6MyXSMomrzVCxhlVgTR1c+ttpZZLDFihH4f6wcdkVy3gpdeBSAQELgZZZEu3y+UA
+         JYS4jr4NDHk0zAqSs1+Pe15fTh0Z7xSnzaWPBB0E2jp1WGc807foVhSwagfBWCi5tWJc
+         TYmw==
+X-Gm-Message-State: AOAM533yU/HpuQf1s60HcUeR9vjbjLya+Q+v8gw1Cmjdy0ZaFdonqFDD
+        REnMykmIEShWkyhEGy925NjlBkLzyrc=
+X-Google-Smtp-Source: ABdhPJyt+SZadsjmFa+1Q3dijTgZqqWRn4fhyZZKytbO/HVINExegAkdwyAPaRtYq/AsbllM+OTgdOharjs=
+X-Received: from badhri.mtv.corp.google.com ([2620:15c:211:201:991:6d08:9e6d:683d])
+ (user=badhri job=sendgmr) by 2002:a25:2b08:: with SMTP id r8mr7331360ybr.194.1617826047254;
+ Wed, 07 Apr 2021 13:07:27 -0700 (PDT)
+Date:   Wed,  7 Apr 2021 13:07:18 -0700
+Message-Id: <20210407200723.1914388-1-badhri@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.31.1.295.g9ea45b61b8-goog
+Subject: [PATCH v2 1/6] usb: typec: tcpm: Address incorrect values of tcpm psy
+ for fixed supply
+From:   Badhri Jagan Sridharan <badhri@google.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 2/6] dt-bindings: PCI: Add bindings for Brcmstb
- endpoint device voltage regulators
-Message-ID: <20210407200709.GG5510@sirena.org.uk>
-References: <20210401212148.47033-1-jim2101024@gmail.com>
- <20210401212148.47033-3-jim2101024@gmail.com>
- <20210406164708.GM6443@sirena.org.uk>
- <CANCKTBsiujTkOdh60etBqF_hE8exg6m9TDxkGHVVAGVS2SFCcQ@mail.gmail.com>
- <20210406173211.GP6443@sirena.org.uk>
- <CANCKTBv63b4bGepZbDp1wmFrOeddiDikoXbheMjHhbguAbR2sA@mail.gmail.com>
- <20210407112713.GB5510@sirena.org.uk>
- <03852d1a-1ee4-fd29-8523-4673c35f83cd@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7lMq7vMTJT4tNk0a"
-Content-Disposition: inline
-In-Reply-To: <03852d1a-1ee4-fd29-8523-4673c35f83cd@gmail.com>
-X-Cookie: Dry clean only.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Kyle Tso <kyletso@google.com>,
+        Badhri Jagan Sridharan <badhri@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+tcpm_pd_build_request overwrites current_limit and supply_voltage
+even before port partner accepts the requests. This leaves stale
+values in current_limit and supply_voltage that get exported by
+"tcpm-source-psy-". Solving this problem by caching the request
+values of current limit/supply voltage in req_current_limit
+and req_supply_voltage. current_limit/supply_voltage gets updated
+once the port partner accepts the request.
 
---7lMq7vMTJT4tNk0a
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Fixes: f2a8aa053c176 ("typec: tcpm: Represent source supply through power_supply")
+Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+Reviewed-by: Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+---
+Changes since V1:
+* Fixed typo as suggested by Guenter Roeck.
+* Added Reviewed-by tags.
+---
+ drivers/usb/typec/tcpm/tcpm.c | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
 
-On Wed, Apr 07, 2021 at 11:35:57AM -0700, Florian Fainelli wrote:
-> On 4/7/2021 4:27 AM, Mark Brown wrote:
+diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
+index ca1fc77697fc..4ea4b30ae885 100644
+--- a/drivers/usb/typec/tcpm/tcpm.c
++++ b/drivers/usb/typec/tcpm/tcpm.c
+@@ -389,7 +389,10 @@ struct tcpm_port {
+ 	unsigned int operating_snk_mw;
+ 	bool update_sink_caps;
+ 
+-	/* Requested current / voltage */
++	/* Requested current / voltage to the port partner */
++	u32 req_current_limit;
++	u32 req_supply_voltage;
++	/* Actual current / voltage limit of the local port */
+ 	u32 current_limit;
+ 	u32 supply_voltage;
+ 
+@@ -2435,8 +2438,8 @@ static void tcpm_pd_ctrl_request(struct tcpm_port *port,
+ 		case SNK_TRANSITION_SINK:
+ 			if (port->vbus_present) {
+ 				tcpm_set_current_limit(port,
+-						       port->current_limit,
+-						       port->supply_voltage);
++						       port->req_current_limit,
++						       port->req_supply_voltage);
+ 				port->explicit_contract = true;
+ 				tcpm_set_auto_vbus_discharge_threshold(port,
+ 								       TYPEC_PWR_MODE_PD,
+@@ -2545,8 +2548,8 @@ static void tcpm_pd_ctrl_request(struct tcpm_port *port,
+ 			break;
+ 		case SNK_NEGOTIATE_PPS_CAPABILITIES:
+ 			port->pps_data.active = true;
+-			port->supply_voltage = port->pps_data.out_volt;
+-			port->current_limit = port->pps_data.op_curr;
++			port->req_supply_voltage = port->pps_data.out_volt;
++			port->req_current_limit = port->pps_data.op_curr;
+ 			tcpm_set_state(port, SNK_TRANSITION_SINK, 0);
+ 			break;
+ 		case SOFT_RESET_SEND:
+@@ -3195,8 +3198,8 @@ static int tcpm_pd_build_request(struct tcpm_port *port, u32 *rdo)
+ 			 flags & RDO_CAP_MISMATCH ? " [mismatch]" : "");
+ 	}
+ 
+-	port->current_limit = ma;
+-	port->supply_voltage = mv;
++	port->req_current_limit = ma;
++	port->req_supply_voltage = mv;
+ 
+ 	return 0;
+ }
+-- 
+2.31.1.295.g9ea45b61b8-goog
 
-> > Frankly I'm not clear why you're trying to handle powering on PCI slots
-> > in a specific driver, surely PCI devices are PCI devices regardless of
-> > the controller?
-
-> There is no currently a way to deal with that situation since you have a
-> chicken and egg problem to solve: there is no pci_device created until
-> you enumerate the PCI bus, and you cannot enumerate the bus and create
-> those pci_devices unless you power on the slots/PCIe end-points attached
-> to the root complex. There are precedents like the rockchip PCIe RC
-> driver, and yes, we should not be cargo culting this, which is why we
-> are trying to understand what is it that should be done here and there
-> has been conflicting advice, or rather our interpretation has led to
-> perceiving it as a conflicting.
-
-As you note below I've pointed you at Slimbus which has a similar
-problem and solves it at a bus level although it thought of this from
-day one which makes life easier; I do think it'd be good to get this
-stuff in the driver core since it's an issue that affects every
-enumerable bus in the end but nobody's summoned up the enthusiasm for
-that (including me).
-
-> If the regulator had a variation where it supported passing a
-> device_node reference to look up regulator properties, we could solve
-> this generically for all devices, that does not exist, and you stated
-> you will not accept changes like those, fair enough.
-
-I'm certainly not enthusiastic about the idea and the likely abuse isn't
-inspiring, and of course regulators aren't the only resource that might
-be needed to get something up and running and would need to be extended
-in the end.  That said I've not seen any concrete proposals either.
-
-> When you suggested to look at soundwire for an example of "software
-> devices", we did that but it was not clear where the sdw_slave would be
-> created prior to sdw_slave_add(), but this does not matter too much.
-
-Looks like sdw_acpi_find_slaves() and sdw_of_find_slaves().
-
-> Let us say we try to solve this generically using the same idea that we
-> would pre-populate pci_device prior to calling pci_scan_child_bus(). We
-> could do something along these lines:
-
-...
-
-> - from there on we try to get the regulators of those pci_device objects
-> we just allocated and we try to enable their regulators, either based on
-> a specific list of supplies or just trying to enable all supplied declared.
-
-I'd suggest specfying the supplies that PCI provides to slots in the
-spec with standard names and just using that list, at least as a start.
-That'd probably cover most cases and allow the binding to be written at
-the generic PCI level rather than having individual devices need to name
-their supplies for the binding documentation and validation stuff which
-seems easier.  Devices with extra stuff can always extend the binding.
-
-> - now pci_scan_child_bus() will attempt to scan the bus for real by
-> reading the pci_device objects ID but we already have such objects, so
-> we need to update pci_scan_device() to search bus::devices and if
-> nothing is found we allocate one
-
-> Is that roughly what you have in mind as to what should be done?
-
-Yes, pretty much.  Ideally there'd be some way for drivers to get a
-callback prior to enumeration to handle any custom stuff for embedded
-cases but unless someone actually has a use case for that you could just
-punt.
-
---7lMq7vMTJT4tNk0a
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBuEOwACgkQJNaLcl1U
-h9AdLwf/RsAf7UG+ffz3mi2yHRfdLT+R1kAAHHjvZu3yk1w4XvfbIGwyQ0GqFjsh
-bVGHEaP41hJtr+0o8FQOk2warQy4R2aq1rFUAFUsa3j126r6CmanfM7bBTWPwhxx
-5PL2C3RC27LH4RBK851FFVDOsQ4+Wb7DjGEMxsxaEfadT+EUWGAeNauSyXXefrmZ
-Kpwkcwj2Bif3E8oGWcugThD/rcgI15cf32LKRrwMj259Ba/RiCaZBOUM3AFd72Ep
-BVqo9whlen+wRXMYEGDdC2mnW+yyGQAb36KObjAU0rcHQoHJL8HbT1l02B2oFhKN
-MoH3G5M+ZMogQd8ebBqRK4Eh0WlJIQ==
-=bCrR
------END PGP SIGNATURE-----
-
---7lMq7vMTJT4tNk0a--
