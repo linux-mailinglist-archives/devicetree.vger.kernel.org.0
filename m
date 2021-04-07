@@ -2,144 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94A1435774B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 00:01:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C6D2357771
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 00:13:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233017AbhDGWBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 18:01:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34672 "EHLO
+        id S229780AbhDGWNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 18:13:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231845AbhDGWBP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 18:01:15 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9DC1C061760;
-        Wed,  7 Apr 2021 15:01:05 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id i81so59880oif.6;
-        Wed, 07 Apr 2021 15:01:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=bpQDQVaiximSYMjzwfzRvG/Ci1pi4zfKCD6X2mMxA6Y=;
-        b=HrWzFrt2rxExckCAtAuTlWYx8EVleJuM7Q75A2dZElCz+6f8VTH1K5pEX7v8x+VJby
-         DoNUNPdlYXem8aycvdD+DV0VqUYG60/1RfsS3vFm37YKSP4Un3QI76FlkCj5fwDIe4pL
-         xYnVv5anmT+KIHTWgJZl8Hdbxx3twc/2w2bpVwclWzZzmDP2pZhrVr7+yZpbtcaU9U9q
-         wFPiT2ZxnRhX0znTtZ5XqA8+lY/JNX9lJ7QRFxkbxYIKDkn5/sI327sMgAaqJmKi48x5
-         w3wBy9sJkI7EKfNVZiQGzxBeV/JmBxa5BFNxXLkq48SXt0mtoLabPHyVqU75w9EuGCO1
-         6FtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=bpQDQVaiximSYMjzwfzRvG/Ci1pi4zfKCD6X2mMxA6Y=;
-        b=Y2QRr1YVQ4SiW91/nk4bl8b+8/jN+NcvAlbMOgSKthsq4NA5cra4/u5v6U1bWq1t3J
-         swf1V2cE5Wexugoh/3oneWzL4uI/Dg7lZjz/5Cy8nT6LTTzj6mxL7hWBe5IiZdzKb9Wn
-         88Xx/k6MpUTQO5jEOvCScV7buX9mR4Hihcw2wvIkCVms6Yn7EHoxncy0J7S0bEM6xzDx
-         C5pxqJaudqkUo+FYObJ3XYnFDOvp4NLzk5a6homVTaU5MTkuxcV+gl3qPRm2/mjuxEx1
-         NOpfqkHfIYt1QA1iV31wiJxLW/s+fnwITRvMqF+UkqFS3FGIy1OkBg5bDUUSmKb5Apvv
-         26ZA==
-X-Gm-Message-State: AOAM5328J09Z7Gpx8A1HDUIyP+BcJnM3DkgxFy0n7cD+gxGQy9Ncml6z
-        OvA7OqiiI3xXEPMrMMi6qQaxtVADgtQ=
-X-Google-Smtp-Source: ABdhPJyho8M22SWysbXckD4vM7TXNm68tAh1+xQ6okPoeEbHC9FRJ/9+CPRVu8jzJsAOgvJ5PkT5VQ==
-X-Received: by 2002:a05:6808:2d2:: with SMTP id a18mr3900168oid.152.1617832864959;
-        Wed, 07 Apr 2021 15:01:04 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 3sm5124470ood.46.2021.04.07.15.01.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Apr 2021 15:01:03 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH 1/1] of: unittest: overlay: ensure proper alignment of
- copied FDT
-To:     Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+        with ESMTP id S229752AbhDGWN3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 18:13:29 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D0F5C061760
+        for <devicetree@vger.kernel.org>; Wed,  7 Apr 2021 15:13:19 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1lUGQ8-0002Ir-PK; Thu, 08 Apr 2021 00:13:08 +0200
+Message-ID: <542d469459083fa31e37ca7feb14480831a0445f.camel@pengutronix.de>
+Subject: Re: [PATCH v1 0/7] imx-gpcv2 improvements
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Adrien Grassein <adrien.grassein@gmail.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        Anson.Huang@nxp.com, krzk@kernel.org, peng.fan@nxp.com,
+        aisheng.dong@nxp.com, qiangqing.zhang@nxp.com, alice.guo@nxp.com,
+        aford173@gmail.com, agx@sigxcpu.org, andrew.smirnov@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-References: <20210407205110.2173976-1-frowand.list@gmail.com>
- <0851cec1-99d1-7de0-81dc-2c82532dc6f7@gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-Message-ID: <09bb81a4-e9e3-8cbf-8c41-c5f0846711ba@roeck-us.net>
-Date:   Wed, 7 Apr 2021 15:01:00 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Date:   Thu, 08 Apr 2021 00:13:06 +0200
+In-Reply-To: <20210407212122.626137-1-adrien.grassein@gmail.com>
+References: <20210407212122.626137-1-adrien.grassein@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
-In-Reply-To: <0851cec1-99d1-7de0-81dc-2c82532dc6f7@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/7/21 1:59 PM, Frank Rowand wrote:
-> Hi Guenter,
+Hi Adrien,
+
+I feel like I already mentioned to you some time ago that there is
+already a much more complete patch series to add this functionality on
+the list [1].
+
+If you want this functionality to go upstream, please help test and
+extend this patch series.
+
+Regards,
+Lucas
+
+[1] https://lore.kernel.org/linux-arm-kernel/20201105174434.1817539-1-l.stach@pengutronix.de/
+
+Am Mittwoch, dem 07.04.2021 um 23:21 +0200 schrieb Adrien Grassein:
+> Hi,
 > 
-> On 4/7/21 3:51 PM, frowand.list@gmail.com wrote:
->> From: Frank Rowand <frank.rowand@sony.com>
->>
->> The Devicetree standard specifies an 8 byte alignment of the FDT.
->> Code in libfdt expects this alignment for an FDT image in memory.
->> kmemdup() returns 4 byte alignment on openrisc.  Replace kmemdup()
->> with kmalloc(), align pointer, memcpy() to get proper alignment.
->>
->> The 4 byte alignment exposed a related bug which triggered a crash
->> on openrisc with:
->> commit 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9")
->> as reported in:
->> https://lore.kernel.org/lkml/20210327224116.69309-1-linux@roeck-us.net/
+> This patch set aims is to add the support of the i.MX8 MM power domains
+> on the mainline kernel.
 > 
-> Can you please test this patch?
+> To achieve this, I do several patches
+>   - Check errors when reading or writing registers (concerns i.MX8M base
+>     implementation);
+>   - Fix power up/down sequence. Handshake was not checked and it was
+>     not called at the appropriate time (concerns i.MX8M base
+> implementaions);
+>   - Allow domains without power sequence control like the HSIOMIX of the
+>     i.MX8MM.
+>   - Add some i.MX8MM domains (HSIO and OTGS);
+>   - Introduce quirks. For example, i.MX8MM OTG domains should not be
+>     powered off (seen n the source code of th i.MX ATF). Quirks are
+> easily upgrable for other cases.
+>   - Finally I defined power domains into the imx8mm.dtb file.
+> 
+> I know that this kind of patch is rejected by NXP ut the other way
+> (callin ATF directly) was also rejected.
+> 
+> I also know that NXP is concerned abou adding hundred lines of codes for
+> each new SOC but it' the way it works on Linux. And the "added code"
+> mainly consist of adding structures, defines and generic methods for
+> regmap.
+> 
+> If it's a real problem, maybe we can introduc a new "gpcv3" driver for
+> i.MX8MM, i.MX8MN and i.MX8MP.
+> 
+> Thanks,  
+> 
+> Adrien Grassein (7):
+>   soc: imx: gpcv2: check for errors when r/w registers
+>   soc: imx: gpcv2: Fix power up/down sequence
+>   soc: imx: gpcv2: allow domains without power sequence control
+>   dt-bindings: power: fsl,imx-gpcv2: add definitions for i.MX8MM
+>   soc: imx: gpcv2: add HSIOMIX and USB domains for i.MX8MM
+>   soc: imx: gpcv2: add quirks to domains
+>   arm64: dts: imx8mm: add power-domains
+> 
+>  .../bindings/power/fsl,imx-gpcv2.yaml         |   7 +-
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  35 ++
+>  drivers/soc/imx/gpcv2.c                       | 336 ++++++++++++++----
+>  include/dt-bindings/power/imx8mm-power.h      |  21 ++
+>  4 files changed, 333 insertions(+), 66 deletions(-)
+>  create mode 100644 include/dt-bindings/power/imx8mm-power.h
 > 
 
-Sure, will do, after you fixed the problem pointed out by Rob.
 
-Sorry, I should have mentioned it - that problem was the reason
-why I didn't propose a fix myself.
-
-Guenter
