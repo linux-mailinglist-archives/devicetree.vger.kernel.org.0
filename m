@@ -2,103 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 419C8357493
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 20:50:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FF783574A7
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 20:56:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355434AbhDGSvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 14:51:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49380 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348588AbhDGSvA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 14:51:00 -0400
-Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85E83C061761
-        for <devicetree@vger.kernel.org>; Wed,  7 Apr 2021 11:50:50 -0700 (PDT)
-Received: by mail-yb1-xb4a.google.com with SMTP id i6so24937353ybk.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Apr 2021 11:50:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=Z+cU0cubea5IW7G2rrulWCH4/axSqIvQteecVrrdERs=;
-        b=datFYg43GzeOSYAuHMH4cqmENNE1YOtm17ojn/kK6cIRea+OF2hpgmVjn/o0YHNJ5k
-         Ewdy0SXBoIjyZic7xDF/r4V92e+lchqNyynmUlCFVLIkCDAeSIRWS75aMmQJadTjntUK
-         KLg/QA4uWUHOdOU0UqYooSENsQfAi7s9dwIyTZCiCAOTwYYO7cw8gD9LHD+l3JskoWMD
-         rQR9QcfITlveNjXK8hynavgw2wMFWb2Kv79R2ZTOiUdb1s0qQl9JithlJXzHsMvL4/HT
-         q/DlQ5OOnyX2HxiFIpkmdItdRHlzRs/T/xSy1HEUDRVcIVk535XJNurcXX8RoH9jfGsb
-         zhkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=Z+cU0cubea5IW7G2rrulWCH4/axSqIvQteecVrrdERs=;
-        b=UGBlJ1AJX0ZpK6PVNJsEMYaDbWq3UM0x0VFHmGNjiQuCuXU5dI2x1auieYgOOI99ml
-         DAkzv422XjoxtutZAUdWE6YOdhA+v5un0ibnuexl2uba2SB0YwHGZmmFgnbFNeSsZuDa
-         sYA+XVpZ81CcLtD2JA5JB4ELxiccpLcrQdu1Z6kWC25LUwfLC9EsITe5XoFV4sG4jV2/
-         8aUbfmeGUlSpq6Ba10vlFuXMcR0fuNxm+7ZNFX/aw9CRf0cQuztWUwPUfTWCUFpf7kV6
-         m89MbNDRGpNRdUzKCKhJx1kTqWcTAEQZ5gwBIe7fHVY6x+G0TxpFtkgFe0cXVftaF1N4
-         KlOw==
-X-Gm-Message-State: AOAM530vKqTRSMFBxPTOAWaBgmhez2XHd3Cuq2Whneg+WmOJ1Dl1+7+G
-        0trqhFSmx0UxYrAMEw03gau+taGgOyw=
-X-Google-Smtp-Source: ABdhPJzEGo2Im1fwYKE3dyy1xIw1Znu1ydIrq8lcJTb+KNSnCGfz5TR15GLDVFpKnfKOo7fjBPs3VaJsHuk=
-X-Received: from legoland2.mtv.corp.google.com ([2620:15c:211:1:c151:20a4:9e4a:b11e])
- (user=varmam job=sendgmr) by 2002:a25:3057:: with SMTP id w84mr6161945ybw.62.1617821449791;
- Wed, 07 Apr 2021 11:50:49 -0700 (PDT)
-Date:   Wed,  7 Apr 2021 11:50:39 -0700
-In-Reply-To: <20210407185039.621248-1-varmam@google.com>
-Message-Id: <20210407185039.621248-3-varmam@google.com>
-Mime-Version: 1.0
-References: <20210407185039.621248-1-varmam@google.com>
-X-Mailer: git-send-email 2.31.0.208.g409f899ff0-goog
-Subject: [PATCH v1 2/2] i2c: use "dev-name" device tree property to override
- device name
-From:   Manish Varma <varmam@google.com>
-To:     Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        Manish Varma <varmam@google.com>
+        id S1355485AbhDGS4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 14:56:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39788 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1355496AbhDGS4i (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Apr 2021 14:56:38 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 43F6A61184;
+        Wed,  7 Apr 2021 18:56:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617821788;
+        bh=s1pwxfGbr+23r/1PPqHacfYAr8Ua+AqiSW14N4NXfY0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YM0wQ9XhVFqTSHAvSiH0ARmlmWdwANJ0kzxvoIded54FP7B06CGLGj+/4xsIw+jHN
+         NZyDI/pTBdR+lNVLbuQgHwJwPu2znHsoBpIjlG3PlQcM3E/ch7wm9eyr2BoVhrqzvx
+         rp11Y+VLSHTBmmRqxbl6oCkMLNRRS4BXCERFKgykfdOBKdKr7vX/qben/uwG+c33C+
+         5tO4EKXs/BaEprPeTela9Fy3yDFbuaOaVPTAYQmy9P/jJAJ9s6X1vjBD8IosFHIqap
+         G5fQLMynQ9LpEQ0sqMTL/Vw4SrqVTr2uHd0TRBWsm1VJUZ1U/LJAewiCameoSQGtOS
+         qxnbdAS+ags1g==
+Received: by mail-ej1-f45.google.com with SMTP id hq27so29357209ejc.9;
+        Wed, 07 Apr 2021 11:56:28 -0700 (PDT)
+X-Gm-Message-State: AOAM533gglVlM0g20/oAwYlAaR5dcW0qi4Et6sNZ/Kd631eVu/EAoPX3
+        7INHgjbf/rN7yAcMrADq3OKeb9OfpCxGWfXMaA==
+X-Google-Smtp-Source: ABdhPJy6e9BslEl51dXoDuq4DtwJuUJB+jGofOJPKp1uGLl1JeOkeDwA831dcoqDoAIXXk9nclDVL7I3GZsMmJu4+Sc=
+X-Received: by 2002:a17:906:1984:: with SMTP id g4mr5389459ejd.525.1617821786686;
+ Wed, 07 Apr 2021 11:56:26 -0700 (PDT)
+MIME-Version: 1.0
+References: <YGbc7Qbu6s659Mx4@latitude> <20210402161627.2546145-1-giulio.benetti@benettiengineering.com>
+ <20210402161627.2546145-3-giulio.benetti@benettiengineering.com>
+ <1617715445.154812.1674495.nullmailer@robh.at.kernel.org> <937f75d4-6c2e-d476-f272-39f8ed2826f2@benettiengineering.com>
+In-Reply-To: <937f75d4-6c2e-d476-f272-39f8ed2826f2@benettiengineering.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 7 Apr 2021 13:56:14 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL2QdSmYbcowgsPz2XXQt1W0KfkzqkNROafAsMNXx7m4w@mail.gmail.com>
+Message-ID: <CAL_JsqL2QdSmYbcowgsPz2XXQt1W0KfkzqkNROafAsMNXx7m4w@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: touchscreen: Add HY46XX bindings
+To:     Giulio Benetti <giulio.benetti@benettiengineering.com>
+Cc:     Linux Input <linux-input@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.ne@posteo.net>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the dev_name field of i2c_board_info is not set while instantiating
-an I2C device, they are named like <adapter_id>-<device_addr>, unless
-they are instantiated through ACPI.
+On Wed, Apr 7, 2021 at 12:57 PM Giulio Benetti
+<giulio.benetti@benettiengineering.com> wrote:
+>
+> Hello Rob, All,
+>
+> On 4/6/21 3:24 PM, Rob Herring wrote:
+> > On Fri, 02 Apr 2021 18:16:26 +0200, Giulio Benetti wrote:
+> >> This adds device tree bindings for the Hycon HY46XX touchscreen series=
+.
+> >>
+> >> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+> >> ---
+> >> V1->V2:
+> >> As suggested by Rob Herring:
+> >> * fixed $id: address
+> >> * added "hycon," in front of every custom property
+> >> * changed all possible property to boolean type
+> >> * removed proximity-sensor-switch property since it's not handled in d=
+river
+> >> V2->V3:
+> >> As suggested by Jonathan Neusch=C3=A4fer:
+> >> * fixed some typo
+> >> * fixed description indentation
+> >> * improved boolean properties descriptions
+> >> * improved hycon,report-speed description
+> >> ---
+> >>   .../input/touchscreen/hycon,hy46xx.yaml       | 120 ++++++++++++++++=
+++
+> >>   MAINTAINERS                                   |   6 +
+> >>   2 files changed, 126 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/input/touchscre=
+en/hycon,hy46xx.yaml
+> >>
+> >
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.exampl=
+e.dt.yaml:0:0: /example-0/i2c/hycon-hy4633@1c: failed to match any schema w=
+ith compatible: ['hycon,hy4633']
+> >
+> > See https://patchwork.ozlabs.org/patch/1461797
+> >
+> > This check can fail if there are any dependencies. The base for a patch
+> > series is generally the most recent rc1.
+> >
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+>
+> I've just send corrected patches.
+>
+> Anyway I'd like to understand how to make dt_binding_check works correctl=
+y.
+>
+> I've installed yamllint and 'make dt_binding_check' works but it still
+> doesn't show that error up on compatible string.
+>
+> yamllint I have is version 1.20.0
+>
+> > pip3 install dtschema --upgrade
+>
+> I've already tried with that too and dtschema version is:
+> 1.3.8
 
-These coded names are less desirable in some situations as they will vary
-across systems with different hardware configurations, and even also on
-the same system as the adapter_id may change with change in the order
-of i2c bus enumeration (i.e. due to device tree modifications).
+Huh? dtschema versions are YYYY.MM.
 
-These device names are further used by other modules like "system wakeup
-events framework" to assign the name of wakeup_source. So overall this
-causes somewhat difficult to interpret device and wakeup source names,
-and hence presents difficulties debuging issues at multiple levels.
+> I've read that dtc must be compiled with YAML output enabled and it
+> seems to be so, since when I issue 'make dt_binding_check' from my file:
+> hycon,hy46xx.yaml(with compatible string wrong "hycon,hy4633")
 
-This change addresses above mentioned problem by setting dev_name field
-based on value assigned to an optional "dev-name" property of device
-tree (if present). And as a result of this, i2c_dev_set_name() should now
-use the actual device name instead of made up one.
+It's a new check queued for 5.13 in linux-next. See commit
+c59773d204cc ("kbuild: Enable DT undocumented compatible checks").
 
-Signed-off-by: Manish Varma <varmam@google.com>
----
- drivers/i2c/i2c-core-of.c | 2 ++
- 1 file changed, 2 insertions(+)
+I've updated the bot email with this, but after I sent this one.
 
-diff --git a/drivers/i2c/i2c-core-of.c b/drivers/i2c/i2c-core-of.c
-index 3ed74aa4b44b..d7a85a9cc499 100644
---- a/drivers/i2c/i2c-core-of.c
-+++ b/drivers/i2c/i2c-core-of.c
-@@ -58,6 +58,8 @@ int of_i2c_get_board_info(struct device *dev, struct device_node *node,
- 	if (of_get_property(node, "wakeup-source", NULL))
- 		info->flags |= I2C_CLIENT_WAKE;
- 
-+	of_property_read_string(node, "dev-name", &(info->dev_name));
-+
- 	return 0;
- }
- EXPORT_SYMBOL_GPL(of_i2c_get_board_info);
--- 
-2.31.1.295.g9ea45b61b8-goog
-
+Rob
