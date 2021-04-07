@@ -2,205 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B405356AF9
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 13:18:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BC5F356B2A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 13:27:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351840AbhDGLRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 07:17:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33908 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351818AbhDGLRm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 07:17:42 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61E9CC061756;
-        Wed,  7 Apr 2021 04:17:30 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id t140so12773974pgb.13;
-        Wed, 07 Apr 2021 04:17:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=to:cc:references:from:subject:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=jKz9PN0lLBTm9R3z1U/8bmvGzAhvQoiymdijIeKL3X0=;
-        b=TMXXTJHYehvDU9gPzRCJlMtz0RmliEroITHgqqxKxrh5VGmRmYC6YbISZszwEUqO3F
-         inhGipv5q1Gh0QnQH2WStCwsKzVHLEJUdanDAKFH4kK1Q3qZzxutyvTFQc4hInE3n4n4
-         vIGa2sXPvkiF4Uw5K+qlGHn0HqLW2jL3uiHaoo/K0fkTlkHvyatmKYgbp2MbWetK6B5w
-         /Vra7S2l1Xw+lqTTd71JZfzyMbMkGbIBMugg96W7GiK+0ndOGSHkH0MhsJNsQxgkEiGs
-         peLzwL4erac36UjMsDGFR4k8TYfvjuU35/St13t+daPZJlt/lq++RDoR40R8521BYjcn
-         zrzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=jKz9PN0lLBTm9R3z1U/8bmvGzAhvQoiymdijIeKL3X0=;
-        b=edMF7zA1QO7jU9pCjs6w0oHAtRXOMWxRwqpe/IByDUcGQHc+Tm/oSQCH0kFpC1MOcO
-         TyRBfxzDJWSY6fWrYnOEeZOcOomr7P0FbM5UZJheuzqO4y1ldd2AKG3OZLsUv7Q1qT7O
-         Cjx9m0m9+8HbhnnKae/EJ9vutgJtJwbyWXdAcZsIdRyP3KXnYOfygYrn6aj4ql6Q8TjK
-         Ei4xDHYS0DhLHgQ6i5jQVsZ1+J2taCkwRCyJpXKvIWOi+E38OhbF4K92DjMwdyY0K9B8
-         UDF+2uI4rI6mokY3OYgiPC8lNBww9pFrMOaF4NeN2vWuwR/1h5vlnizDu+UOGCJxaWFE
-         ZKhg==
-X-Gm-Message-State: AOAM5339KMrMNmRt3Sb8feyXm9v/iIjq422s/VOBfUFuIyZ72PdmYRY0
-        8DggeUTRegVEAFRYweepggs=
-X-Google-Smtp-Source: ABdhPJwFV2aJZrVLPlD1sAyTTCmszAc7wE5xiEsEejZJmjvLeXnrzjYDWUhKCp/Ojtcz5XyVNtqV9g==
-X-Received: by 2002:aa7:8493:0:b029:1ee:75b2:2865 with SMTP id u19-20020aa784930000b02901ee75b22865mr2304232pfn.61.1617794249919;
-        Wed, 07 Apr 2021 04:17:29 -0700 (PDT)
-Received: from ziggy.stardust ([37.223.140.37])
-        by smtp.gmail.com with ESMTPSA id s19sm21132914pfh.168.2021.04.07.04.17.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Apr 2021 04:17:29 -0700 (PDT)
-To:     Mason Zhang <Mason.Zhang@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        hanks.chen@mediateka.com, wsd_upstream@mediatek.com,
-        Leilk Liu <leilk.liu@mediatek.com>
-References: <20210226105918.3057-1-Mason.Zhang@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: mediatek: add MT6779 spi master dts node
-Message-ID: <4e39785a-06a6-4ec5-5930-8a5bf53e4f7b@gmail.com>
-Date:   Wed, 7 Apr 2021 13:17:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S234915AbhDGL1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 07:27:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38260 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234334AbhDGL1k (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Apr 2021 07:27:40 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A1D266102A;
+        Wed,  7 Apr 2021 11:27:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617794851;
+        bh=Oc+4fiOadZVriRmtYF2X6D50TYJGSbWqaPmJNsL0qLQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AcZ+rPjZz3fSPP2eQqqw4sfVrloxYvRvcvxmPhw8cGgSVABR5U0zrDA6YdQO63iaR
+         WC6RrIIcDA3iQ5ZGUO5F90z5ukGGtCUExsRfsH0Plbbe9/DUeaqV8+xope8ueDd84X
+         712Y08fenbQ7hrGjDYBPgNMYOMkKrSL/qSbWNzr63qNSOTlyYV37PQfLM3aGoIIxxn
+         t4PJA6lzDIb5zfnF63QX8J/B7ISDKgUQyTrr/70fjA+d5rVvEPYm8/E4mKDe19bbRA
+         zudGmSuAJtbi/Zso1I0own9s8EtIG02uI6E6V6xz7hqQ3S6mKkLoNt1Hd7EG3y+aL4
+         Qwr3KX6hkQYyQ==
+Date:   Wed, 7 Apr 2021 12:27:13 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Jim Quinlan <jim2101024@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 2/6] dt-bindings: PCI: Add bindings for Brcmstb
+ endpoint device voltage regulators
+Message-ID: <20210407112713.GB5510@sirena.org.uk>
+References: <20210401212148.47033-1-jim2101024@gmail.com>
+ <20210401212148.47033-3-jim2101024@gmail.com>
+ <20210406164708.GM6443@sirena.org.uk>
+ <CANCKTBsiujTkOdh60etBqF_hE8exg6m9TDxkGHVVAGVS2SFCcQ@mail.gmail.com>
+ <20210406173211.GP6443@sirena.org.uk>
+ <CANCKTBv63b4bGepZbDp1wmFrOeddiDikoXbheMjHhbguAbR2sA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210226105918.3057-1-Mason.Zhang@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="xXmbgvnjoT4axfJE"
+Content-Disposition: inline
+In-Reply-To: <CANCKTBv63b4bGepZbDp1wmFrOeddiDikoXbheMjHhbguAbR2sA@mail.gmail.com>
+X-Cookie: Dry clean only.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--xXmbgvnjoT4axfJE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 26/02/2021 11:59, Mason Zhang wrote:
-> this patch add spi master dts node for mt6779 SOC.
-> 
-> Signed-off-by: Mason Zhang <Mason.Zhang@mediatek.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt6779.dtsi | 96 ++++++++++++++++++++++++
->  1 file changed, 96 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6779.dtsi b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-> index 370f309d32de..ca72eb09cff9 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-> @@ -219,6 +219,102 @@
->  			status = "disabled";
->  		};
->  
-> +		spi0: spi0@1100a000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x1100a000 0 0x1000>;
-> +			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				<&topckgen CLK_TOP_SPI>,
-> +				<&infracfg_ao CLK_INFRA_SPI0>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+On Tue, Apr 06, 2021 at 02:25:49PM -0400, Jim Quinlan wrote:
 
-From the binding description:
-- #address-cells: should be 1.
+> I'm a little confused -- here is how I remember the chronology of the
+> "DT bindings" commit reviews, please correct me if I'm wrong:
 
-- #size-cells: should be 0.
+> o JimQ submitted a pullreq for using voltage regulators in the same
+> style as the existing "rockport" PCIe driver.
+> o After some deliberation, RobH preferred that the voltage regulators
+> should go into the PCIe subnode device's DT node.
+> o JimQ put the voltage regulators in the subnode device's DT node.
+> o MarkB didn't like the fact that the code did a global search for the
+> regulator since it could not provide the owning struct device* handle.
+> o RobH relented, and said that if it is just two specific and standard
+> voltage regulators, perhaps they can go in the parent DT node after
+> all.
+> o JimQ put the regulators back in the PCIe node.
+> o MarkB now wants the regulators to go back into the child node again?
 
-We are missing both here. Please fix that.
+...having pointed out a couple of times now that there's no physical
+requirement that the supplies be shared between slots never mind with
+the controller.  Also note that as I've said depending on what the
+actual requirements of the controller node are you might want to have
+the regulators in both places, and further note that the driver does not
+have to actively use everything in the binding document (although if
+it's not using something that turns out to be a requirement it's likely
+to run into hardware where that causes bugs at some point).
 
-Apart the binding description is naming PLL, clock mux and clock gate IDs which
-do not correspond to the ones used here. It seems that this binding was tailored
-for a specific SoC family but never made generic. If you want, please do so and
-convert it to yaml.
+Frankly I'm not clear why you're trying to handle powering on PCI slots
+in a specific driver, surely PCI devices are PCI devices regardless of
+the controller?
 
-Regards,
-Matthias
+--xXmbgvnjoT4axfJE
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +		};
-> +
-> +		spi1: spi1@11010000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x11010000 0 0x1000>;
-> +			interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				<&topckgen CLK_TOP_SPI>,
-> +				<&infracfg_ao CLK_INFRA_SPI1>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +		};
-> +
-> +		spi2: spi2@11012000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x11012000 0 0x1000>;
-> +			interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				 <&topckgen CLK_TOP_SPI>,
-> +				<&infracfg_ao CLK_INFRA_SPI2>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +		};
-> +
-> +		spi3: spi3@11013000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x11013000 0 0x1000>;
-> +			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				 <&topckgen CLK_TOP_SPI>,
-> +				 <&infracfg_ao CLK_INFRA_SPI3>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +		};
-> +
-> +		spi4: spi4@11018000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x11018000 0 0x1000>;
-> +			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				 <&topckgen CLK_TOP_SPI>,
-> +				 <&infracfg_ao CLK_INFRA_SPI4>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +		};
-> +
-> +		spi5: spi5@11019000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x11019000 0 0x1000>;
-> +			interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				<&topckgen CLK_TOP_SPI>,
-> +				<&infracfg_ao CLK_INFRA_SPI5>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +		};
-> +
-> +		spi6: spi6@1101d000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x1101d000 0 0x1000>;
-> +			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				 <&topckgen CLK_TOP_SPI>,
-> +				 <&infracfg_ao CLK_INFRA_SPI6>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +		};
-> +
-> +		spi7: spi7@1101e000 {
-> +			compatible = "mediatek,mt6779-spi",
-> +				     "mediatek,mt6765-spi";
-> +			mediatek,pad-select = <0>;
-> +			reg = <0 0x1101e000 0 0x1000>;
-> +			interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_LOW 0>;
-> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-> +				 <&topckgen CLK_TOP_SPI>,
-> +				 <&infracfg_ao CLK_INFRA_SPI7>;
-> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
-> +		};
-> +
->  		audio: clock-controller@11210000 {
->  			compatible = "mediatek,mt6779-audio", "syscon";
->  			reg = <0 0x11210000 0 0x1000>;
-> 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBtlxAACgkQJNaLcl1U
+h9AVggf+KlMNZIoTcOq/oLb3wKm6+ONJs3mMv2sDmONFmlTeFHAMuy2gNTI9//f7
+J7oWgDx/7VcL3Fn3ODnM+rBsCYXxWIi8oeryGPmn4Z7eF2RkPR3gfNYz5sCopQD8
+jXlpB0wv+wwEuj2jmiFNnLUWDDA4U4mK4oo4Genm/9a9Rm0QN3e1lX0c8ku/Fg5Z
+sc+2kh5IZr8da5JrJPoMTIKx2DgsESM/vOC0ZtnVsPDqTGLTa/NtPSp+gX9l2jif
+4ff65/knyAyc4mhni/5vFBNkhmNpE7qpiOFZkelDDNRQIUp2vEtsezt1mrUsIFli
+shZcnBD1K3uwGQhIrLwsSnesnX7SVQ==
+=SqjM
+-----END PGP SIGNATURE-----
+
+--xXmbgvnjoT4axfJE--
