@@ -2,128 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A6F835606F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 02:46:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54275356077
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 02:53:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238089AbhDGAq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 20:46:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37120 "EHLO
+        id S233804AbhDGAx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Apr 2021 20:53:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232985AbhDGAq3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 20:46:29 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC626C061756
-        for <devicetree@vger.kernel.org>; Tue,  6 Apr 2021 17:46:20 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id l187so12063684ybl.4
-        for <devicetree@vger.kernel.org>; Tue, 06 Apr 2021 17:46:20 -0700 (PDT)
+        with ESMTP id S233710AbhDGAx7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 20:53:59 -0400
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 653DBC06174A;
+        Tue,  6 Apr 2021 17:53:50 -0700 (PDT)
+Received: by mail-qv1-xf33.google.com with SMTP id j1so4807681qvp.6;
+        Tue, 06 Apr 2021 17:53:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yzE3zFamcB5Vea5iRk340rFBBLcaLHSo0Qjk+jIwcaY=;
-        b=IVFTBdU8wEyJMoUOfBeYw5+mDRNg/H/qAuZ6J+HGgy4SI3mufq5Ce2mvpnlxX1fmh6
-         Jvy57xrcxAAJ154Z6J77rxmoi5NtzgNinXrbzH68a+vaC5Og9hxRcdVk73nrkCuvZpVG
-         sN/RrSXN+UW7ptxNV5DHrNp8JRp74e7DK4Cv0Rjl/ho1mJT2nBsMHzte8ZaQT6yAYLuR
-         Z36n4E2g1lvfuZWXn5FG234L53Y9OgIs49ZH3stjIhpx3/V2oj59zNzEV2SI1kQAbLY9
-         5odNPnAg5EEuvTEzyL46UT9JKg/y6aQg6rk2oH5A9pHWawTTXx/wUe8yqzLznUAm6KSb
-         IaBg==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ptyh8gw1w6IyWNTHb0zoce3G579rmfx+lHr+X9LynKU=;
+        b=dxeLbpQY8xWtuTVjUHbi9KZZ2EjeEMvn4N9JABpTB6ITX20+F58k0+V1sSBnxxm2e9
+         nzV/H6/BsZ3VSzFuojmSqBiy4s13fcNPQN3NCCDmhYpFkHISGCGwHyAqhgMOW4He/qop
+         FkfUqF57n/e75lsxeA82pZKC6mGM3zU86GJhJ1BID6K9KiGv7pKbHSu16dRJBHWKMLoy
+         kMpaF2C40Eq9u3t9ToWPttJKM+a8Tc0Y++5A+nsZmLJEClzTK1g6KgE9GSQbzYb3ODhA
+         w4M21mwRB0xvE2hOFEMw4J/nJHnihaP5cm8hp2xfFe6Eq/FsAIXK9G2X00RPVhuDosK4
+         CelA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yzE3zFamcB5Vea5iRk340rFBBLcaLHSo0Qjk+jIwcaY=;
-        b=alq8uxMEGneRIEl02qpyNHGkZll05GNKnxhJLoxUtjgG4QHROyVqSS0aN+41hmoCBi
-         2Q8umQSzHSW+avExoNvg9NEOxeF+dSDmeu4bygEnmu+nKeytz1INsXhE0/FyQYUzNVbp
-         R3CMlk9YKxG862K3SX0U2SW8MpyHdkdItHCdrbb0tIRiSPjCMuqCzTn4e5hH4ymz1Hfp
-         4m0WBLjyHFtSBykg+5Y5lkDG4YTQbLQ8fhomg7sEwec97dLWqhznWUmoYO06v+hFy5b9
-         ZrpNOVgPszQMueBXyEABundLsrups50NyHWwrrheVTz13TDWN7qdSJ+miWFlhH4i+0Ok
-         VrTQ==
-X-Gm-Message-State: AOAM531EENXvQV/ZXMitA252GODlDZX+1HWlMEo+405N3w7JYDltjyz/
-        uEXygHSE0wCyFTCzVY6KETdNMPDoAmy97SaRHrdbbA==
-X-Google-Smtp-Source: ABdhPJwFWGqErirKSpNke7Mjm25xK0JWqXYgdx87+sYF8CgL/Nl1kTt4k2ohsbMR53V5iVTr7+sbuDnS92Z3v+qDXwc=
-X-Received: by 2002:a25:3854:: with SMTP id f81mr1063840yba.466.1617756379625;
- Tue, 06 Apr 2021 17:46:19 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ptyh8gw1w6IyWNTHb0zoce3G579rmfx+lHr+X9LynKU=;
+        b=PE8gZ8Li7CZX0J80Gjdi6AGzADeEVwt7MmtSuaJzWf9zhEfMQRoA/QxirNrM9hIgNV
+         Ki5o1azqWYx/OnCiXZSpGd+eGiMmlQQgwyMbVXcmm3JP5ROfjXZVdTt3/54S4HVnVCgu
+         ojDcMZ6/AJ4tmDsHPF9VvydR6OBvUdiywbNALMU1KpGONpCDeqAbqjD4nIlXVgZz8IDB
+         Z+y5mecjECUfihKCPKit0AK1xgH9mBP2bg34AHZstv45T5D3UsbLstVKPtvE9Icb/1HD
+         gw5oWIqHNyVDpjvbZZO5gQndBpwpNQlwg9gpl4z/lGwzyrVmnYh/UijDJxhUj4Nuqa2R
+         Eerw==
+X-Gm-Message-State: AOAM530UrI23nSLP+1gSAAxCqSvB4uG2YoOvPumU0TWuBzODFyyKukPy
+        kxd/aMVXpp6zsWlSN/wjE1GX1Rv0HiLvd6LX
+X-Google-Smtp-Source: ABdhPJwUwUXhxpD8fvgfn6wtoT4cX6GsKssjRqgTbDzrekmOn4/GLVvfB4kxHg5U432Be8ed6s4ywA==
+X-Received: by 2002:a0c:f604:: with SMTP id r4mr951247qvm.3.1617756828588;
+        Tue, 06 Apr 2021 17:53:48 -0700 (PDT)
+Received: from shaak.xiphos.ca (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id l9sm15776728qtv.65.2021.04.06.17.53.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Apr 2021 17:53:48 -0700 (PDT)
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     liambeguin@gmail.com, mturquette@baylibre.com, sboyd@kernel.org
+Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: [PATCH v4 0/3] add support for the lmk04832
+Date:   Tue,  6 Apr 2021 20:53:27 -0400
+Message-Id: <20210407005330.2890430-1-liambeguin@gmail.com>
+X-Mailer: git-send-email 2.30.1.489.g328c10930387
 MIME-Version: 1.0
-References: <20210405031436.2465475-1-ilya.lipnitskiy@gmail.com>
- <20210405222540.18145-1-ilya.lipnitskiy@gmail.com> <CAGETcx-gF4r1TeY2AA4Vwb5e+5O+_O3E2ENo5tKhh=n_EOJnEQ@mail.gmail.com>
- <20210407003408.GA2551507@robh.at.kernel.org>
-In-Reply-To: <20210407003408.GA2551507@robh.at.kernel.org>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 6 Apr 2021 17:45:43 -0700
-Message-ID: <CAGETcx8=sSWj_OmM1GPXNiLcv3anEkJnb_C7NoO9mNwS-O0KhQ@mail.gmail.com>
-Subject: Re: [PATCH v2] of: property: fw_devlink: do not link ".*,nr-gpios"
-To:     Rob Herring <robh@kernel.org>
-Cc:     Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        stable <stable@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 6, 2021 at 5:34 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, Apr 06, 2021 at 04:09:10PM -0700, Saravana Kannan wrote:
-> > On Mon, Apr 5, 2021 at 3:26 PM Ilya Lipnitskiy
-> > <ilya.lipnitskiy@gmail.com> wrote:
-> > >
-> > > [<vendor>,]nr-gpios property is used by some GPIO drivers[0] to indicate
-> > > the number of GPIOs present on a system, not define a GPIO. nr-gpios is
-> > > not configured by #gpio-cells and can't be parsed along with other
-> > > "*-gpios" properties.
-> > >
-> > > nr-gpios without the "<vendor>," prefix is not allowed by the DT
-> > > spec[1], so only add exception for the ",nr-gpios" suffix and let the
-> > > error message continue being printed for non-compliant implementations.
-> > >
-> > > [0]: nr-gpios is referenced in Documentation/devicetree/bindings/gpio:
-> > >  - gpio-adnp.txt
-> > >  - gpio-xgene-sb.txt
-> > >  - gpio-xlp.txt
-> > >  - snps,dw-apb-gpio.yaml
-> > >
-> > > [1]:
-> > > Link: https://github.com/devicetree-org/dt-schema/blob/cb53a16a1eb3e2169ce170c071e47940845ec26e/schemas/gpio/gpio-consumer.yaml#L20
-> > >
-> > > Fixes errors such as:
-> > >   OF: /palmbus@300000/gpio@600: could not find phandle
-> > >
-> > > Fixes: 7f00be96f125 ("of: property: Add device link support for interrupt-parent, dmas and -gpio(s)")
-> > > Signed-off-by: Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
-> > > Cc: Saravana Kannan <saravanak@google.com>
-> > > Cc: <stable@vger.kernel.org> # 5.5.x
-> > > ---
-> > >  drivers/of/property.c | 11 ++++++++++-
-> > >  1 file changed, 10 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > index 2046ae311322..1793303e84ac 100644
-> > > --- a/drivers/of/property.c
-> > > +++ b/drivers/of/property.c
-> > > @@ -1281,7 +1281,16 @@ DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
-> > >  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
-> > >  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
-> > >  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
-> > > -DEFINE_SUFFIX_PROP(gpios, "-gpios", "#gpio-cells")
-> > > +
-> > > +static struct device_node *parse_gpios(struct device_node *np,
-> > > +                                      const char *prop_name, int index)
-> > > +{
-> > > +       if (!strcmp_suffix(prop_name, ",nr-gpios"))
-> > > +               return NULL;
-> >
-> > Ah I somehow missed this patch. This gives a blanked exception for
-> > vendor,nr-gpios. I'd prefer explicit exceptions for all the instances
-> > of ",nr-gpios" we are grandfathering in. Any future additions should
-> > be rejected. Can we do that please?
-> >
-> > Rob, you okay with making this list more explicit?
->
-> Not the kernel's job IMO. A schema is the right way to handle that.
+From: Liam Beguin <lvb@xiphos.com>
 
-Ok, that's fine by me. Btw, let's land this in driver-core? I've made
-changes there and this might cause conflicts. Not sure.
+Hi,
 
--Saravana
+The LMK04832 is an ultra-high performance clock conditioner with JEDEC
+JESD204B support and is also pin compatible with the LMK0482x family of
+devices.
+
+This driver adds initial support to configure the LMK04832 clocks using
+the clock framework.
+
+This has been tested on a system using JESD204B subclass 1.
+
+At the moment, the VCO rate has to be set manually from the devicetree
+and a dclk (or sclk) rate change isn't propagated to the VCO
+automatically.
+
+Changes since v1:
+- add yaml devicetree documentation,
+- add links to datasheet,
+- use {u8,u16,u32} instead of Uint_ variants,
+- drop redundant debugfs code,
+- use a pointer to device_info instead of struct copy,
+- add of_device_id table,
+- add support for SYSREF digital delay and JESD204B subclass 1
+
+Changes since v2:
+- fix dt-bindings documentation, apologies for the broken build
+- fix property vendor prefixes
+- split dt-bindings into a separate patch
+
+Changes since v3:
+- add missing properties in dt-bindings
+
+Thanks for your time,
+Liam
+
+Liam Beguin (3):
+  clk: add support for the lmk04832
+  clk: lmk04832: add support for digital delay
+  dt-bindings: clock: add ti,lmk04832 bindings
+
+ .../bindings/clock/ti,lmk04832.yaml           |  209 +++
+ drivers/clk/Kconfig                           |    7 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/clk-lmk04832.c                    | 1595 +++++++++++++++++
+ 4 files changed, 1812 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/ti,lmk04832.yaml
+ create mode 100644 drivers/clk/clk-lmk04832.c
+
+Interdiff against v3:
+diff --git a/Documentation/devicetree/bindings/clock/ti,lmk04832.yaml b/Documentation/devicetree/bindings/clock/ti,lmk04832.yaml
+index c0d9ab650e80..a9f8b9b720fc 100644
+--- a/Documentation/devicetree/bindings/clock/ti,lmk04832.yaml
++++ b/Documentation/devicetree/bindings/clock/ti,lmk04832.yaml
+@@ -23,9 +23,20 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
+   '#clock-cells':
+     const: 1
+ 
++  spi-max-frequency:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Maximum SPI clocking speed of the device in Hz.
++
+   clocks:
+     items:
+       - description: PLL2 reference clock.
+
+base-commit: f40ddce88593482919761f74910f42f4b84c004b
+-- 
+2.30.1.489.g328c10930387
+
