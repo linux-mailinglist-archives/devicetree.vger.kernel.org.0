@@ -2,75 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 699CF356B2E
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 13:28:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A677A356B49
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 13:34:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243361AbhDGL1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 07:27:55 -0400
-Received: from bilbo.ozlabs.org ([203.11.71.1]:36649 "EHLO ozlabs.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234334AbhDGL1z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Apr 2021 07:27:55 -0400
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4FFhvf0Fmvz9sWY;
-        Wed,  7 Apr 2021 21:27:41 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ellerman.id.au;
-        s=201909; t=1617794864;
-        bh=Cj3f8ngloiA9HcJv0SBAooX4hLm02FHFDJHGT11hot4=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=ODAla7ndUsbsO31oqNPjrBU8zkC7Fp+vECJBoGGzU4J2dhiOl2L8LmJfhtgbZWVzt
-         Y3mI9rf0jAiGHgr7KCr0OLNDnDSTl30UsMWXxcjChJT8goqJgYeInQdX3DlhWqMhvw
-         MRxLqA34JMfG+VoniqJjTnhuOGueMiyk/BQWhKbmZadcseizWT316Fk6BEZf0yjffQ
-         5MbKTdD9VaJ1B6XsrxNJ0xPIfwW/TenRQpQ9eOKUF78y+AuJ3+UxI69Ufz46OX/k3/
-         dUpboJ8nF3C/9dcFuyW6j+19SI4BsnlQ65lBGF/dDbVuBIj+m4J1sNNMLxxokK214e
-         e/SIus9w4F7Yg==
-From:   Michael Ellerman <mpe@ellerman.id.au>
-To:     Youlin Song <syl.loop@gmail.com>, robh+dt@kernel.org,
-        benh@kernel.crashing.org, paulus@samba.org
-Cc:     devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, Youlin Song <syl.loop@gmail.com>
-Subject: Re: [PATCH] powerpc/dts: fix not include DTC_FLAGS
-In-Reply-To: <20210403020423.85278-1-syl.loop@gmail.com>
-References: <20210403020423.85278-1-syl.loop@gmail.com>
-Date:   Wed, 07 Apr 2021 21:27:22 +1000
-Message-ID: <87y2due3mt.fsf@mpe.ellerman.id.au>
+        id S1343875AbhDGLej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 07:34:39 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:37397 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343726AbhDGLec (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 07:34:32 -0400
+X-Originating-IP: 90.65.108.55
+Received: from localhost (lfbn-lyo-1-1676-55.w90-65.abo.wanadoo.fr [90.65.108.55])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id F204D2000A;
+        Wed,  7 Apr 2021 11:34:20 +0000 (UTC)
+Date:   Wed, 7 Apr 2021 13:34:20 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        =?utf-8?Q?Przemys=C5=82aw?= Gaj <pgaj@cadence.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vitor Soares <vitor.soares@synopsys.com>,
+        devicetree@vger.kernel.org, linux-i3c@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 09/19] dt-bindings: i3c: update i3c.yaml references
+Message-ID: <YG2YvD2WABchrVAA@piout.net>
+References: <cover.1617783062.git.mchehab+huawei@kernel.org>
+ <8bb8923b4d98b4e8a6336a4c0b548c714e01aef5.1617783062.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8bb8923b4d98b4e8a6336a4c0b548c714e01aef5.1617783062.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Youlin Song <syl.loop@gmail.com> writes:
-> I wanted to build the fsl dts in my machine and found that
-> the dtb have not extra space,so uboot will cause about
-> FDT_ERR_NOSPACE issue.
->
-> Signed-off-by: Youlin Song <syl.loop@gmail.com>
+On 07/04/2021 10:20:48+0200, Mauro Carvalho Chehab wrote:
+> Changeset 5e4cdca887fd ("dt-bindings: i3c: Convert the bus description to yaml")
+> renamed: Documentation/devicetree/bindings/i3c/i3c.txt
+> to: Documentation/devicetree/bindings/i3c/i3c.yaml.
+> 
+> Update the cross-references accordingly.
+> 
+> Fixes: 5e4cdca887fd ("dt-bindings: i3c: Convert the bus description to yaml")
+> Acked-by: Rob Herring <robh@kernel.org>
+Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 > ---
->  arch/powerpc/boot/dts/Makefile | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/arch/powerpc/boot/dts/Makefile b/arch/powerpc/boot/dts/Makefile
-> index fb335d05aae8..c21165c0cd76 100644
-> --- a/arch/powerpc/boot/dts/Makefile
-> +++ b/arch/powerpc/boot/dts/Makefile
-> @@ -2,5 +2,6 @@
+>  Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt   | 6 +++---
+>  .../devicetree/bindings/i3c/snps,dw-i3c-master.txt          | 6 +++---
+>  2 files changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt b/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt
+> index 1cf6182f888c..3716589d6999 100644
+> --- a/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt
+> +++ b/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt
+> @@ -10,19 +10,19 @@ Required properties:
+>  - reg: I3C master registers
 >  
->  subdir-y += fsl
+>  Mandatory properties defined by the generic binding (see
+> -Documentation/devicetree/bindings/i3c/i3c.txt for more details):
+> +Documentation/devicetree/bindings/i3c/i3c.yaml for more details):
 >  
-> +DTC_FLAGS   ?= -p 1024
->  dtstree		:= $(srctree)/$(src)
->  dtb-$(CONFIG_OF_ALL_DTBS) := $(patsubst $(dtstree)/%.dts,%.dtb, $(wildcard $(dtstree)/*.dts))
+>  - #address-cells: shall be set to 1
+>  - #size-cells: shall be set to 0
+>  
+>  Optional properties defined by the generic binding (see
+> -Documentation/devicetree/bindings/i3c/i3c.txt for more details):
+> +Documentation/devicetree/bindings/i3c/i3c.yaml for more details):
+>  
+>  - i2c-scl-hz
+>  - i3c-scl-hz
+>  
+>  I3C device connected on the bus follow the generic description (see
+> -Documentation/devicetree/bindings/i3c/i3c.txt for more details).
+> +Documentation/devicetree/bindings/i3c/i3c.yaml for more details).
+>  
+>  Example:
+>  
+> diff --git a/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt b/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt
+> index 5020eb71eb8d..07f35f36085d 100644
+> --- a/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt
+> +++ b/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt
+> @@ -9,19 +9,19 @@ Required properties:
+>  - reg: Offset and length of I3C master registers
+>  
+>  Mandatory properties defined by the generic binding (see
+> -Documentation/devicetree/bindings/i3c/i3c.txt for more details):
+> +Documentation/devicetree/bindings/i3c/i3c.yaml for more details):
+>  
+>  - #address-cells: shall be set to 3
+>  - #size-cells: shall be set to 0
+>  
+>  Optional properties defined by the generic binding (see
+> -Documentation/devicetree/bindings/i3c/i3c.txt for more details):
+> +Documentation/devicetree/bindings/i3c/i3c.yaml for more details):
+>  
+>  - i2c-scl-hz
+>  - i3c-scl-hz
+>  
+>  I3C device connected on the bus follow the generic description (see
+> -Documentation/devicetree/bindings/i3c/i3c.txt for more details).
+> +Documentation/devicetree/bindings/i3c/i3c.yaml for more details).
+>  
+>  Example:
+>  
+> -- 
+> 2.30.2
+> 
 
-I guess that was missed in 1acf1cf8638a ("powerpc: build .dtb files in dts directory").
-
-Which I think means the assignment to DTC_FLAGS in
-arch/powerpc/boot/Makefile is not needed anymore.
-
-Can you send a v2 removing that assignment and explaining that's what
-happened?
-
-cheers
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
