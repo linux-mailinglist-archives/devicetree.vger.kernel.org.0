@@ -2,74 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EB07356F18
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 16:45:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05BEC356F93
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 17:00:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243293AbhDGOp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 10:45:29 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:44689 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244998AbhDGOp0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 10:45:26 -0400
-Received: by mail-ot1-f42.google.com with SMTP id y19-20020a0568301d93b02901b9f88a238eso18269100oti.11;
-        Wed, 07 Apr 2021 07:45:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Y7LejqSjmP72JykNbNh8s7/3JV7drAODmjJ4r8ppAGA=;
-        b=dcfrVT7PsjcaTfAF+EvOWwt5jVOMmIf4ibPfWP3iONTXgmGLZ8fdtADYGGuqApX4s1
-         yz0g3P92l10aeix0T8qHkhhlbDTnKTT6axpj1zLxY2BwvNNG/1vgc2TlX5rIbeQ6FUJo
-         +6F2UtbB+WiBt1RHvQdv7a0I7pQdq/9KaE5t4g6/4OJoK3rty0ecp7dkZcI40mDXitus
-         EXNK6U8teAlr+XM9TvtnoD+dA0Yr5HJ0N5QuMgYXLfnl3RFpLzuOQQgz8Q20ULIcEVdw
-         klxvIo2f2ehN0wEaXr2YQMAQ1g4i8stnVFmbseyNMQCiB6eQfu8JjrvVbKweG7L/aMNo
-         YeVQ==
-X-Gm-Message-State: AOAM530Sm1wq+23CqRNNyUCF+NBe8bJy/+8EYYtCnelktWChm/7whbk1
-        U0KoqN+GSd63l2QH3GNkqg==
-X-Google-Smtp-Source: ABdhPJw5blCCz/SmqrvGWwD6HM+mFvtA4XUo4j5GQ0AEiXN+1TepkMRXXAVob8fvIbUbv7Tdp6I5YA==
-X-Received: by 2002:a05:6830:15d2:: with SMTP id j18mr3327684otr.75.1617806716946;
-        Wed, 07 Apr 2021 07:45:16 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c2sm5317311otf.66.2021.04.07.07.45.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Apr 2021 07:45:16 -0700 (PDT)
-Received: (nullmailer pid 3719382 invoked by uid 1000);
-        Wed, 07 Apr 2021 14:45:15 -0000
-Date:   Wed, 7 Apr 2021 09:45:15 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Jonathan Corbet <corbet@lwn.net>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Andy Whitcroft <apw@canonical.com>, devicetree@vger.kernel.org,
-        Dwaipayan Ray <dwaipayanray1@gmail.com>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Joe Perches <joe@perches.com>
-Subject: Re: [PATCH 29/32] docs: dt: update writing-schema.rst references
-Message-ID: <20210407144515.GA3719288@robh.at.kernel.org>
-References: <cover.1617279355.git.mchehab+huawei@kernel.org>
- <7cfddf303f1508d26f90d87546d3812faebfc5ba.1617279356.git.mchehab+huawei@kernel.org>
+        id S1349059AbhDGPAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 11:00:52 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:47890 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349032AbhDGPAu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 11:00:50 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 137Exbmk048300;
+        Wed, 7 Apr 2021 09:59:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1617807577;
+        bh=/LiwkSl+d9oB8w2mVfuYxk28m0/JH5VX5KYZXVM3SSs=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=VeiVCP8CQZAD5vvSKMA3S4CU6X4nPVqRS5NymJ2GSIJu5LbpFsybPW/SVNphxrJXv
+         7l4lZsRLRIqW3s+2km5g/ZkjAcAAiPdqyWQ23nY5+erAh452T45DJkICKlr2J2XtT6
+         qKDYY8HE06nFWAz63Xh0dgwmNXEBND4B+tpEtk6o=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 137Exbqe070213
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 7 Apr 2021 09:59:37 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 7 Apr
+ 2021 09:59:37 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 7 Apr 2021 09:59:37 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 137Exbp6056069;
+        Wed, 7 Apr 2021 09:59:37 -0500
+Date:   Wed, 7 Apr 2021 09:59:37 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Aswath Govindraju <a-govindraju@ti.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am65: Add support for UHS-I modes in
+ MMCSD1 subsystem
+Message-ID: <20210407145937.prvue66guhdls2fw@immovably>
+References: <20210407104303.25950-1-a-govindraju@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <7cfddf303f1508d26f90d87546d3812faebfc5ba.1617279356.git.mchehab+huawei@kernel.org>
+In-Reply-To: <20210407104303.25950-1-a-govindraju@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 01 Apr 2021 14:17:49 +0200, Mauro Carvalho Chehab wrote:
-> Changeset b83db5b84900 ("docs: dt: Group DT docs into relevant sub-sections")
-> renamed: Documentation/devicetree/writing-schema.rst
-> to: Documentation/devicetree/bindings/writing-schema.rst.
+On 16:13-20210407, Aswath Govindraju wrote:
+> UHS-I speed modes are supported in AM65 S.R. 2.0 SoC[1].
 > 
-> Update the cross-references accordingly.
+> Add support by removing the no-1-8-v tag and including the voltage
+> regulator device tree nodes for power cycling.
 > 
-> Fixes: b83db5b84900 ("docs: dt: Group DT docs into relevant sub-sections")
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  Documentation/devicetree/bindings/submitting-patches.rst | 2 +-
->  scripts/checkpatch.pl                                    | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+> [1] - https://www.ti.com/lit/ug/spruid7e/spruid7e.pdf, section 12.3.6.1.1
 > 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
 
-Applied, thanks!
+> ---
+> 
+> test logs:
+> https://pastebin.ubuntu.com/p/vpYbY9QWh8/
+> 
+Thanks, but I dont plan on queuing this for 5.13-rc1 (my PR is already
+out). but it does trigger an interesting discussion..
+
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  1 -
+>  .../arm64/boot/dts/ti/k3-am654-base-board.dts | 33 +++++++++++++++++++
+>  2 files changed, 33 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index cb340d1b401f..632f32fce4a1 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -301,7 +301,6 @@
+>  		ti,otap-del-sel = <0x2>;
+>  		ti,trm-icp = <0x8>;
+>  		dma-coherent;
+> -		no-1-8-v;
+>  	};
+>  
+
+Jan - this will break your IOT SR1.0 boards, no? with all the SR1.0,
+2.0, 2.1 coming along, the plan for TI was to support older revs via
+overlays hoping that older boards will eventually get replaced or die
+out of lack of use.. but you do have production on 1.0 -> so would you
+rather handle this in overlay OR IOT boards dts introduce no-1-8-v
+property?
+
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
