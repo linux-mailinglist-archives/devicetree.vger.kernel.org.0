@@ -2,230 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DB143574CC
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 21:08:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EEA43574D4
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 21:14:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355552AbhDGTIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 15:08:21 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:38511 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbhDGTIU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 15:08:20 -0400
-Received: by mail-ot1-f48.google.com with SMTP id w21-20020a9d63950000b02901ce7b8c45b4so19120620otk.5;
-        Wed, 07 Apr 2021 12:08:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=S68NotWKb2lyzTl0j+peAEwPYTHC/ZyjaiZ9vEXerEM=;
-        b=pYp/aJ1YMMqD/TlTZIo/NjvHFGYUF3dF/6ruTvQjfPMsaPQF87Wgb4z31KZisqdEph
-         WKIybhl2/+JErZjQ+4rewX6QaplvW0iQo9n8na5dvVOrm7rYvrPozyeY7QR95VX2VLns
-         uoNpyZZpWE3CrMf9EtqTimWCL/v/Jh+2CRu0C3Znjhuk+kzmd+BBMqe1F9pD/rLm56W/
-         us1j0pnS9TGHfUYqIC/j/q4mMv4pU2sRf7EfNJTvZATDXndWkAQSRIniQPI7lNykSwbx
-         ZVmV0r493/5khF+loAbluiCVjbuTmsteM8dg5/SGamDia2czPBjfhYEZz+74ewI++aoV
-         I7fw==
-X-Gm-Message-State: AOAM530WWytpdpW0xxXY/rkVsAR6tjzRvbf0r01442megZhZXhZbsKaW
-        nNpIcw+vFDTsKi1xRYNtvw==
-X-Google-Smtp-Source: ABdhPJzS71L7Yzhk1J5gel0DrGglgjRJxmM9zG5q7ZDde/G63WHvQLB2OdxwNidBYgt7w0ZlLgx9sw==
-X-Received: by 2002:a9d:6f04:: with SMTP id n4mr4145323otq.33.1617822490404;
-        Wed, 07 Apr 2021 12:08:10 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id p3sm5659472otk.9.2021.04.07.12.08.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Apr 2021 12:08:09 -0700 (PDT)
-Received: (nullmailer pid 4062674 invoked by uid 1000);
-        Wed, 07 Apr 2021 19:08:08 -0000
-Date:   Wed, 7 Apr 2021 14:08:08 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Hector Yuan <hector.yuan@mediatek.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Subject: Re: [PATCH v3] dt-bindings: dvfs: Add support for generic
- performance domains
-Message-ID: <20210407190808.GA4053148@robh.at.kernel.org>
-References: <20210407135913.2067694-1-sudeep.holla@arm.com>
+        id S242305AbhDGTOW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 15:14:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54506 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229512AbhDGTOW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 15:14:22 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CFDBC06175F;
+        Wed,  7 Apr 2021 12:14:12 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id B97081F45811
+Received: by earth.universe (Postfix, from userid 1000)
+        id 1025B3C0C96; Wed,  7 Apr 2021 21:14:09 +0200 (CEST)
+Date:   Wed, 7 Apr 2021 21:14:08 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 12/19] dt-bindings: power: supply: da9150: update
+ da9150-charger.txt reference
+Message-ID: <20210407191408.nugrjqrmz5vby44k@earth.universe>
+References: <cover.1617783062.git.mchehab+huawei@kernel.org>
+ <77aa40c58600dfc1f047ce2d86ad1d1cd67d67e4.1617783062.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="eqhquad7psvwpyfu"
 Content-Disposition: inline
-In-Reply-To: <20210407135913.2067694-1-sudeep.holla@arm.com>
+In-Reply-To: <77aa40c58600dfc1f047ce2d86ad1d1cd67d67e4.1617783062.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 07, 2021 at 02:59:13PM +0100, Sudeep Holla wrote:
-> The CLKSCREW attack [0] exposed security vulnerabilities in energy management
-> implementations where untrusted software had direct access to clock and
-> voltage hardware controls. In this attack, the malicious software was able to
-> place the platform into unsafe overclocked or undervolted configurations. Such
-> configurations then enabled the injection of predictable faults to reveal
-> secrets.
-> 
-> Many Arm-based systems used to or still use voltage regulator and clock
-> frameworks in the kernel. These frameworks allow callers to independently
-> manipulate frequency and voltage settings. Such implementations can render
-> systems susceptible to this form of attack.
-> 
-> Attacks such as CLKSCREW are now being mitigated by not having direct and
-> independent control of clock and voltage in the kernel and moving that
-> control to a trusted entity, such as the SCP firmware or secure world
-> firmware/software which are to perform sanity checking on the requested
-> performance levels, thereby preventing any attempted malicious programming.
-> 
-> With the advent of such an abstraction, there is a need to replace the
-> generic clock and regulator bindings used by such devices with a generic
-> performance domains bindings.
-> 
-> [0] https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/tang
-> 
-> Link: https://lore.kernel.org/r/20201116181356.804590-1-sudeep.holla@arm.com
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+
+--eqhquad7psvwpyfu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Wed, Apr 07, 2021 at 10:20:51AM +0200, Mauro Carvalho Chehab wrote:
+> Changeset f3332532463f ("power/supply: unify DT documentation")
+> renamed: Documentation/devicetree/bindings/power/da9150-charger.txt
+> to: Documentation/devicetree/bindings/power/supply/da9150-charger.txt.
+>=20
+> Update its cross-reference accordingly.
+>=20
+> Fixes: f3332532463f ("power/supply: unify DT documentation")
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 > ---
-> 
-> Hi All,
-> 
-> Sorry for the delay, I thought I had sent this out last week and it turns
-> out that I had dry-run in my git email command and never removed it. Just
-> noticed now looking for response for this patch on the list to find out
-> that I never sent it out :(.
-> 
-> v2[2]->v3:
-> 	- Dropped required properties
-> 	- Added non cpu device example
-> 	- Updated cpu bindings too
-> 
-> v1[1]->v2[2]:
-> 	- Changed to Dual License
-> 	- Added select: true, enum for #performance-domain-cells and
-> 	  $ref for performance-domain
-> 	- Changed the example to use real existing compatibles instead
-> 	  of made-up ones
-> 
-> [1] https://lore.kernel.org/lkml/20201105173539.1426301-1-sudeep.holla@arm.com
-> [2] https://lore.kernel.org/lkml/20201116181356.804590-1-sudeep.holla@arm.com
-> 
->  .../devicetree/bindings/arm/cpus.yaml         |  7 ++
->  .../bindings/dvfs/performance-domain.yaml     | 80 +++++++++++++++++++
->  2 files changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dvfs/performance-domain.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
-> index 26b886b20b27..98590a2982d0 100644
-> --- a/Documentation/devicetree/bindings/arm/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
-> @@ -255,6 +255,13 @@ description: |+
->  
->        where voltage is in V, frequency is in MHz.
->  
-> +  performance-domains:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+>  Documentation/devicetree/bindings/mfd/da9150.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mfd/da9150.txt b/Documenta=
+tion/devicetree/bindings/mfd/da9150.txt
+> index b7afa39d6260..f4db2b520327 100644
+> --- a/Documentation/devicetree/bindings/mfd/da9150.txt
+> +++ b/Documentation/devicetree/bindings/mfd/da9150.txt
+> @@ -20,7 +20,7 @@ Required properties:
+> =20
+>  Sub-devices:
+>  - da9150-gpadc: See Documentation/devicetree/bindings/iio/adc/dlg,da9150=
+-gpadc.yaml
+> -- da9150-charger: See Documentation/devicetree/bindings/power/da9150-cha=
+rger.txt
+> +- da9150-charger: See Documentation/devicetree/bindings/power/supply/da9=
+150-charger.txt
+>  - da9150-fg: See Documentation/devicetree/bindings/power/da9150-fg.txt
 
-Can drop as it already has a type def.
+This got "renamed" again in -next. Also I do not see the point to
+update the next line in its own patch.
 
-Does more than 1 entry make sense for a CPU? If not, 'maxItems: 1'. It 
-can always be extended later if the need arises.
+git show --stat 59604ba75633
+commit 59604ba756334377deca54bc0526da739bfc0c51
+Author: Sebastian Reichel <sebastian.reichel@collabora.com>
+Date:   Wed Mar 17 14:48:55 2021 +0100
 
-> +    description:
-> +      List of phandles and performance domain specifiers, as defined by
-> +      bindings of the performance domain provider. See also
-> +      dvfs/performance-domain.yaml.
-> +
->    power-domains:
->      $ref: '/schemas/types.yaml#/definitions/phandle-array'
->      description:
-> diff --git a/Documentation/devicetree/bindings/dvfs/performance-domain.yaml b/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
-> new file mode 100644
-> index 000000000000..640e676ed228
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dvfs/performance-domain.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic performance domains
-> +
-> +maintainers:
-> +  - Sudeep Holla <sudeep.holla@arm.com>
-> +
-> +description: |+
-> +  This binding is intended for performance management of groups of devices or
-> +  CPUs that run in the same performance domain. Performance domains must not
-> +  be confused with power domains. A performance domain is defined by a set
-> +  of devices that always have to run at the same performance level. For a given
-> +  performance domain, there is a single point of control that affects all the
-> +  devices in the domain, making it impossible to set the performance level of
-> +  an individual device in the domain independently from other devices in
-> +  that domain. For example, a set of CPUs that share a voltage domain, and
-> +  have a common frequency control, is said to be in the same performance
-> +  domain.
-> +
-> +  This device tree binding can be used to bind performance domain consumer
-> +  devices with their performance domains provided by performance domain
-> +  providers. A performance domain provider can be represented by any node in
-> +  the device tree and can provide one or more performance domains. A consumer
-> +  node can refer to the provider by a phandle and a set of phandle arguments
-> +  (so called performance domain specifiers) of length specified by the
-> +  \#performance-domain-cells property in the performance domain provider node.
-> +
-> +select: true
-> +
-> +properties:
-> +  "#performance-domain-cells":
-> +    description:
-> +      Number of cells in a performance domain specifier. Typically 0 for nodes
-> +      representing a single performance domain and 1 for nodes providing
-> +      multiple performance domains (e.g. performance controllers), but can be
-> +      any value as specified by device tree binding documentation of particular
-> +      provider.
-> +    enum: [ 0, 1 ]
-> +
-> +  performance-domains:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> +    description:
-> +      A phandle and performance domain specifier as defined by bindings of the
-> +      performance controller/provider specified by phandle.
+    dt-bindings: power: supply: da9150: Convert to DT schema format
+   =20
+    Convert the binding to DT schema format.
+   =20
+    Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+    Reviewed-by: Rob Herring <robh@kernel.org>
 
-This implies there is only 1.
+ Documentation/devicetree/bindings/power/supply/da9150-charger.txt         =
+| 26 --------------------------
+ Documentation/devicetree/bindings/power/supply/da9150-fg.txt              =
+| 23 -----------------------
+ Documentation/devicetree/bindings/power/supply/dlg,da9150-charger.yaml    =
+| 52 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Documentation/devicetree/bindings/power/supply/dlg,da9150-fuel-gauge.yaml =
+| 51 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 103 insertions(+), 49 deletions(-)
 
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    performance: performance-controller@12340000 {
-> +        compatible = "qcom,cpufreq-hw";
-> +        reg = <0x12340000 0x1000>;
-> +        #performance-domain-cells = <1>;
-> +    };
-> +
-> +    // The node above defines a performance controller that is a performance
-> +    // domain provider and expects one cell as its phandle argument.
-> +    gpu@2d000000 {
-> +        compatible = "arm,mali-t624";
-> +        reg = <0x2d000000 0x10000>;
-> +        power-domains = <&power_devpd 2>;
-> +        performance-domains = <&performance 4>;
-> +    };
-> +
-> +    cpus {
-> +        #address-cells = <2>;
-> +        #size-cells = <0>;
-> +
-> +        cpu@0 {
-> +            device_type = "cpu";
-> +            compatible = "arm,cortex-a57";
-> +            reg = <0x0 0x0>;
-> +            performance-domains = <&performance 1>;
-> +        };
-> +    };
-> +
-> -- 
-> 2.25.1
-> 
+Thanks,
+
+-- Sebastian
+
+--eqhquad7psvwpyfu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmBuBHgACgkQ2O7X88g7
++prPfQ/8CnvlgjbLH5VDSNzgIbCevKqe31jK7FvR4kW5YjijJHfPAHGqB0n1yNOG
+kp+p7K4DSipqTAyAraixrRZE/7oNgUXLDug5bbWmqlNZ5Y/elf6wzf2wq4LEyzZX
+X5gR6StvSTKXW/pvkAfcjY8Z1UMs94XkmX9gby/lQhC09KDda38RZlfeFvxNVH4M
+OjRCkiQtpmN9H73j03obNZ3oI+Maf/Wu9fpI88Z9KFbT+55t9gPP3loQt9p1fdFg
+R3HmydW8/EWiD44YOXJBpxt5t6Em70n1ukjT/LlWikaqN780alhjBQwxdM9G2ju8
+NURmF9DE3Wo+2unmuCxlIH/WYtRpsxuHyTKjZxzjvs2Xx/V1ky7fw4Z4yCxEYN/V
+ttoc/UcbG6o3gQAB25O3YP1tJR1Dm2tV2s/r7JpG5yppUlOOO6XWL8HKFigvtk0O
+dgX1CAOS4yfEN12SHoM0N0Kw91mSHXXilsXe1GLb/tf/szsKY8xK+eBjwjaLfd+p
+kc9wB/p3VTqLtWICwRbNokNTQmLuueK0Qx9SysC6CyvqZIl/tVI2b4FMC9j1Pol8
+K6tcyM6w4imuuqSaAfgFuFy/aPzgKZCjbkY1cRV1HoSBtlyS7lQtwQM3pJ3q+6wE
+zBfuJ6luf+iEc9ISY1omJiDkne8HrUAb/G14tL9GnFnb/erk9yg=
+=z4D9
+-----END PGP SIGNATURE-----
+
+--eqhquad7psvwpyfu--
