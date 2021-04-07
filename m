@@ -2,119 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A677A356B49
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 13:34:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1361356BAC
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 14:00:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343875AbhDGLej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 07:34:39 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:37397 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343726AbhDGLec (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 07:34:32 -0400
-X-Originating-IP: 90.65.108.55
-Received: from localhost (lfbn-lyo-1-1676-55.w90-65.abo.wanadoo.fr [90.65.108.55])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id F204D2000A;
-        Wed,  7 Apr 2021 11:34:20 +0000 (UTC)
-Date:   Wed, 7 Apr 2021 13:34:20 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        =?utf-8?Q?Przemys=C5=82aw?= Gaj <pgaj@cadence.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
+        id S1351965AbhDGMA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 08:00:58 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:36342 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351957AbhDGMAz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 08:00:55 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1617796846; h=Content-Type: MIME-Version: Message-ID:
+ In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
+ bh=dRkaKojvnawlYO3e1C9wxx79COw07pLsiCqaSEnReIk=; b=n2BNaUrL+vuJ4VVIxwOKFsl+kl8GDa5YFGM3zQuExA9DE4RK0brxfG/cUrMP1gulmZaLxH//
+ PFsvRyM3V93HwqbYj1LtOY2pxaRHCkeNV328tK+xswxc/AFr4+sTL/vhZgH2aPJOmjWuglpd
+ BdypL/XBSnxiISQ+QBxCBxxD6eo=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 606d9ed78166b7eff70a4f4a (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 07 Apr 2021 12:00:23
+ GMT
+Sender: kvalo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 0381BC43464; Wed,  7 Apr 2021 12:00:22 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 53876C433CA;
+        Wed,  7 Apr 2021 12:00:19 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 53876C433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Vitor Soares <vitor.soares@synopsys.com>,
-        devicetree@vger.kernel.org, linux-i3c@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 09/19] dt-bindings: i3c: update i3c.yaml references
-Message-ID: <YG2YvD2WABchrVAA@piout.net>
-References: <cover.1617783062.git.mchehab+huawei@kernel.org>
- <8bb8923b4d98b4e8a6336a4c0b548c714e01aef5.1617783062.git.mchehab+huawei@kernel.org>
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>
+Subject: Re: [PATCH v5 08/24] wfx: add bus_sdio.c
+References: <20210315132501.441681-1-Jerome.Pouiller@silabs.com>
+        <4503971.bAhddQ8uqO@pc-42>
+        <CAPDyKFoXgV3m-rMKfjqRj91PNjOGaWg6odWG-EGdFKkL+dGWoA@mail.gmail.com>
+        <5713463.b6Cmjs1FeV@pc-42>
+        <CAPDyKFrONrUvbVVVF9iy4P17jZ_Fq+1pGMmsqM6C1hOXOWQnBw@mail.gmail.com>
+Date:   Wed, 07 Apr 2021 15:00:17 +0300
+In-Reply-To: <CAPDyKFrONrUvbVVVF9iy4P17jZ_Fq+1pGMmsqM6C1hOXOWQnBw@mail.gmail.com>
+        (Ulf Hansson's message of "Tue, 23 Mar 2021 20:12:06 +0100")
+Message-ID: <87pmz6mhim.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8bb8923b4d98b4e8a6336a4c0b548c714e01aef5.1617783062.git.mchehab+huawei@kernel.org>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/04/2021 10:20:48+0200, Mauro Carvalho Chehab wrote:
-> Changeset 5e4cdca887fd ("dt-bindings: i3c: Convert the bus description to yaml")
-> renamed: Documentation/devicetree/bindings/i3c/i3c.txt
-> to: Documentation/devicetree/bindings/i3c/i3c.yaml.
-> 
-> Update the cross-references accordingly.
-> 
-> Fixes: 5e4cdca887fd ("dt-bindings: i3c: Convert the bus description to yaml")
-> Acked-by: Rob Herring <robh@kernel.org>
-Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Ulf Hansson <ulf.hansson@linaro.org> writes:
 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt   | 6 +++---
->  .../devicetree/bindings/i3c/snps,dw-i3c-master.txt          | 6 +++---
->  2 files changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt b/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt
-> index 1cf6182f888c..3716589d6999 100644
-> --- a/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt
-> +++ b/Documentation/devicetree/bindings/i3c/cdns,i3c-master.txt
-> @@ -10,19 +10,19 @@ Required properties:
->  - reg: I3C master registers
->  
->  Mandatory properties defined by the generic binding (see
-> -Documentation/devicetree/bindings/i3c/i3c.txt for more details):
-> +Documentation/devicetree/bindings/i3c/i3c.yaml for more details):
->  
->  - #address-cells: shall be set to 1
->  - #size-cells: shall be set to 0
->  
->  Optional properties defined by the generic binding (see
-> -Documentation/devicetree/bindings/i3c/i3c.txt for more details):
-> +Documentation/devicetree/bindings/i3c/i3c.yaml for more details):
->  
->  - i2c-scl-hz
->  - i3c-scl-hz
->  
->  I3C device connected on the bus follow the generic description (see
-> -Documentation/devicetree/bindings/i3c/i3c.txt for more details).
-> +Documentation/devicetree/bindings/i3c/i3c.yaml for more details).
->  
->  Example:
->  
-> diff --git a/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt b/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt
-> index 5020eb71eb8d..07f35f36085d 100644
-> --- a/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt
-> +++ b/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.txt
-> @@ -9,19 +9,19 @@ Required properties:
->  - reg: Offset and length of I3C master registers
->  
->  Mandatory properties defined by the generic binding (see
-> -Documentation/devicetree/bindings/i3c/i3c.txt for more details):
-> +Documentation/devicetree/bindings/i3c/i3c.yaml for more details):
->  
->  - #address-cells: shall be set to 3
->  - #size-cells: shall be set to 0
->  
->  Optional properties defined by the generic binding (see
-> -Documentation/devicetree/bindings/i3c/i3c.txt for more details):
-> +Documentation/devicetree/bindings/i3c/i3c.yaml for more details):
->  
->  - i2c-scl-hz
->  - i3c-scl-hz
->  
->  I3C device connected on the bus follow the generic description (see
-> -Documentation/devicetree/bindings/i3c/i3c.txt for more details).
-> +Documentation/devicetree/bindings/i3c/i3c.yaml for more details).
->  
->  Example:
->  
-> -- 
-> 2.30.2
-> 
+>> If I follow what has been done in other drivers I would write something
+>> like:
+>>
+>>   static int wfx_sdio_suspend(struct device *dev)
+>>   {
+>>           struct sdio_func *func = dev_to_sdio_func(dev);
+>>           struct wfx_sdio_priv *bus = sdio_get_drvdata(func);
+>>
+>>           config_reg_write_bits(bus->core, CFG_IRQ_ENABLE_DATA, 0);
+>>           // Necessary to keep device firmware in RAM
+>>           return sdio_set_host_pm_flags(func, MMC_PM_KEEP_POWER);
+>
+> This will tell the mmc/sdio core to keep the SDIO card powered on
+> during system suspend. Thus, it doesn't need to re-initialize it at
+> system resume - and the firmware should not need to be re-programmed.
+>
+> On the other hand, if you don't plan to support system wakeups, it
+> would probably be better to power off the card, to avoid wasting
+> energy while the system is suspended. I assume that means you need to
+> re-program the firmware as well. Normally, it's these kinds of things
+> that need to be managed from a ->resume() callback.
+
+Many mac80211 drivers do so that the device is powered off during
+interface down (ifconfig wlan0 down), and as mac80211 does interface
+down automatically during suspend, suspend then works without extra
+handlers.
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
