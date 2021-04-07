@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BBC2356AE3
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 13:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4185B356AE4
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 13:15:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243185AbhDGLPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 07:15:48 -0400
-Received: from mail.cognitivepilot.com ([91.218.251.140]:55461 "EHLO
+        id S1351781AbhDGLPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 07:15:52 -0400
+Received: from mail.cognitivepilot.com ([91.218.251.140]:60893 "EHLO
         mail.cognitivepilot.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242158AbhDGLPr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 07:15:47 -0400
+        with ESMTP id S242158AbhDGLPu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 07:15:50 -0400
 Received: from mail.cognitivepilot.com (localhost [127.0.0.1])
-        by mail.cognitivepilot.com (Postfix) with ESMTP id 4FFhdh2k7qzmSqbq
-        for <devicetree@vger.kernel.org>; Wed,  7 Apr 2021 14:15:36 +0300 (MSK)
+        by mail.cognitivepilot.com (Postfix) with ESMTP id 4FFhdm1nb8zmSqbx
+        for <devicetree@vger.kernel.org>; Wed,  7 Apr 2021 14:15:40 +0300 (MSK)
 X-Virus-Scanned: amavisd-new at cognitivepilot.com
 X-Spam-Flag: NO
 X-Spam-Score: 2.247
@@ -23,11 +23,11 @@ X-Spam-Status: No, score=2.247 tagged_above=2 required=6.2
         autolearn=no autolearn_force=no
 Received: from mail.cognitivepilot.com ([127.0.0.1])
         by mail.cognitivepilot.com (mail.cognitivepilot.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id JHKqhDd2frFm for <devicetree@vger.kernel.org>;
-        Wed,  7 Apr 2021 14:15:35 +0300 (MSK)
+        with ESMTP id GHiv5pNphJcP for <devicetree@vger.kernel.org>;
+        Wed,  7 Apr 2021 14:15:39 +0300 (MSK)
 Received: from localhost.localdomain (unknown [185.68.147.27])
-        by mail.cognitivepilot.com (Postfix) with ESMTP id 4FFhdg38YFzm8NYx;
-        Wed,  7 Apr 2021 14:15:35 +0300 (MSK)
+        by mail.cognitivepilot.com (Postfix) with ESMTP id 4FFhdl42pJzm8NYx;
+        Wed,  7 Apr 2021 14:15:39 +0300 (MSK)
 From:   Ivan Uvarov <i.uvarov@cognitivepilot.com>
 To:     devicetree@vger.kernel.org
 Cc:     Chen-Yu Tsai <wens@csie.org>,
@@ -38,116 +38,50 @@ Cc:     Chen-Yu Tsai <wens@csie.org>,
         Andre Przywara <andre.przywara@arm.com>,
         Icenowy Zheng <icenowy@aosc.io>,
         Ivan Uvarov <i.uvarov@cognitivepilot.com>
-Subject: [PATCH v4 0/5] add devicetree for Forlinx FETA40i-C & OKA40i-C
-Date:   Wed,  7 Apr 2021 14:14:23 +0300
-Message-Id: <20210407111428.3755684-1-i.uvarov@cognitivepilot.com>
+Subject: [PATCH v4 1/5] ARM: dts: sun8i: r40: add /omit-if-no-ref/ to pinmux nodes for UARTs 0&3
+Date:   Wed,  7 Apr 2021 14:14:24 +0300
+Message-Id: <20210407111428.3755684-2-i.uvarov@cognitivepilot.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210407111428.3755684-1-i.uvarov@cognitivepilot.com>
+References: <20210407111428.3755684-1-i.uvarov@cognitivepilot.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series adds devicetree support for the Forlinx FETA40i-C SoM
-and OKA40i-C carrier board/devboard.
-
-The FETA40i-C is an "industrial/automotive" SoM by Forlinx.
-
-SoM specs:
-- SoC: R40 or A40i
-- PMIC: AXP221S
-- RAM: 1GiB/2GiB DDR3 (dual-rank)
-- eMMC: 8GB,
-- Mates with carrier board via four 80-pin connectors (AXK6F80337YG).
-
-OKA40i-C is a carrier board by the same manufacturer for this SoM,
-whose main purpose is as a development board with a variety of
-peripherals:
-
-- Power: DC5V barrel or USB OTG or 4.2V Lipo battery
-- Video out: HDMI, TV out, LVDS
-- WiFi+Bluetooth: RL-UM02WBS-8723BU-V1.2 (802.11 b/g/n, BT V2.1/3.0/4.0)
-- Ethernet: 10/100Mbps
-- Storage: µSD, fullsize SD, eMMC (on SoM), SATA
-- USB: 3 x USB2.0 Host (2 via hub, 1 native), 1 x USB2.0 OTG (micro-B)
-- UART: RS232, RS485, 4 3.3v uarts (of which 2 have RTS/CTS)
-- Other I/O: SPI x2, TWI, SDIO header, GPIO header, JTAG header
-- Mini PCIe slot with sim holder for WLAN modem
-- Smart card holder
-- RTC (RX8010SJ)
-- Two user LEDs
-- Three user buttons (via KeyADC).
-
-Of the board features listed above, support for the following has *NOT*
-been tested:
-- TV out & LVDS
-- SATA
-- Smart cards
-- KeyADC buttons (no support)
-
-The series consists of five patches, with dependencies as follows:
-
-* Patch 4 depends on patch 3;
-* Patch 5 depends on patches 2&4.
-
-The rest are independent, however patch 2 may refuse to apply
-without patch 1.
+This patch adds the /omit-if-no-ref/ keyword to the pio nodes for
+UART0 and UART3 pins of the R40 SoC, which would reduce the fdt size on
+boards which do not use these UARTs.
 
 Signed-off-by: Ivan Uvarov <i.uvarov@cognitivepilot.com>
----
 
-Changelog:
+ 1 file changed, 3 insertions(+)
 
-v4:
-* split dt-bindings patch into separate parts for vendor and device
-* add /omit-if-no-ref/ to the mmc3 pins node as well
-* add clarifying comment on the naming of user led nodes
-
-v3:
-* add compatible string for the SoM
-* move regulators aldo3, dcdc{2,3,5}, eldo{2,3} to the SoM .dtsi
-
-v2:
-* split patch into series
-  * edits to sun8i-r40.dtsi are now in separate patch
-* add dt bindings for compatible strings (in separate patch)
-* add /omit-if-no-ref/ to the new uart pin nodes
-  * preliminary patch adds the keyword to existing nodes for UART0 & UART3
-* whitespace fixes as suggested by checkpatch.pl
-
-(draft2 ->) v1: 
-* fix indentation from spaces to tabs
-* remove commented properties and other extraneous comments
-* enable uarts 2,4,5&7 and alias uart3
-* update the user-LED bindings
-* remove mmc1 & add mmc3 binding
-* bring together the max/min microvolts on three regulators
-    * The reported 2.5v value in ALDO2 comes from U-Boot, where apparently
-      this is the KConfig default for this regulator. The correct voltage
-      is 1.8v.
-* remove extraneous `always-on`s from regulators dldo1 and eldo2/3
-* remove reg_dldo3 node entirely
-
----
-
-Ivan Uvarov (5):
-  ARM: dts: sun8i: r40: add /omit-if-no-ref/ to pinmux nodes for UARTs 0&3
-  ARM: dts: sun8i: r40: add pinmux settings for MMC3 and UARTs 2,4,5&7
-  dt-bindings: add compatible vendor prefix for Forlinx
-  dt-bindings: arm: add compatible for Forlinx OKA40i-C and FETA40i-C
-  ARM: dts: sun8i: r40: add devicetree for Forlinx FETA40i-C & OKA40i-C
-
- .../devicetree/bindings/arm/sunxi.yaml        |   6 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm/boot/dts/Makefile                    |   1 +
- arch/arm/boot/dts/sun8i-r40-feta40i.dtsi      | 106 +++++++++
- arch/arm/boot/dts/sun8i-r40-oka40i-c.dts      | 203 ++++++++++++++++++
- arch/arm/boot/dts/sun8i-r40.dtsi              |  44 ++++
- 6 files changed, 362 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun8i-r40-feta40i.dtsi
- create mode 100644 arch/arm/boot/dts/sun8i-r40-oka40i-c.dts
-
---
+diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
+index d5ad3b9efd..0b257a0779 100644
+--- a/arch/arm/boot/dts/sun8i-r40.dtsi
++++ b/arch/arm/boot/dts/sun8i-r40.dtsi
+@@ -631,16 +631,19 @@ spi1_cs1_pi_pin: spi1-cs1-pi-pin {
+ 				function = "spi1";
+ 			};
+ 
++			/omit-if-no-ref/
+ 			uart0_pb_pins: uart0-pb-pins {
+ 				pins = "PB22", "PB23";
+ 				function = "uart0";
+ 			};
+ 
++			/omit-if-no-ref/
+ 			uart3_pg_pins: uart3-pg-pins {
+ 				pins = "PG6", "PG7";
+ 				function = "uart3";
+ 			};
+ 
++			/omit-if-no-ref/
+ 			uart3_rts_cts_pg_pins: uart3-rts-cts-pg-pins {
+ 				pins = "PG8", "PG9";
+ 				function = "uart3";
+-- 
 2.25.1
 
