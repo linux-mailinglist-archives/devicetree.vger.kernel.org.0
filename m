@@ -2,66 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB91B357004
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 17:18:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33AAB357026
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 17:24:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353441AbhDGPSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 11:18:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36244 "EHLO mail.kernel.org"
+        id S235310AbhDGPYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 11:24:55 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:19231 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1353444AbhDGPSr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Apr 2021 11:18:47 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4622A61262;
-        Wed,  7 Apr 2021 15:18:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1617808713;
-        bh=wp5Kiq2yK8eQG66G8fRxjJMmHVWTNazhDUY7L57YSKU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JJQrTBpeIoQ+YMwpTJ0wlDmiS01GPvlhMqYQsItY2fu/k6P0Mmi/0vSVj1mOTn5vh
-         xS3mcFK31oRIiMuInhHLr5f3v5VPRLvsqGXZ5onoTjO15t8qeYGGxeKYpdt//CEwWU
-         1W0pUxbn5n19WVAV+FBXY4UAhhVXNc8h944gC1XY=
-Date:   Wed, 7 Apr 2021 17:18:31 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     Joel Stanley <joel@jms.id.au>, openbmc@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        - <devicetree@vger.kernel.org>, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: serial: 8250: deprecate
- aspeed,sirq-polarity-sense
-Message-ID: <YG3NR4bGRjIGZhgx@kroah.com>
-References: <20210402182724.20848-1-zev@bewilderbeest.net>
- <20210402182724.20848-2-zev@bewilderbeest.net>
+        id S234867AbhDGPYw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Apr 2021 11:24:52 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1617809082; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=psl1A1ZEsRP4pkzzImQ/0PBt/vIS3ULOg0voZ57vuNE=;
+ b=nvc74S0geifNRPvTom5BGafed6qktDAXmM77kTZuZqXre+WHitBemsZfBDHKwNdL8o9NNUCI
+ 8yJksgay3p6hUKGV0WfAVUqZAa2E8B3+7L3+lTS9h8moPbzpRiTV2x80suwM9x6Mi5etiGOs
+ GVZSelqL4sx1U1CcBo3tgYQGlRQ=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 606dceb78807bcde1df9c2e3 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 07 Apr 2021 15:24:39
+ GMT
+Sender: skakit=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id C8793C43463; Wed,  7 Apr 2021 15:24:38 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: skakit)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D307CC433ED;
+        Wed,  7 Apr 2021 15:24:37 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210402182724.20848-2-zev@bewilderbeest.net>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 07 Apr 2021 20:54:37 +0530
+From:   skakit@codeaurora.org
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org
+Subject: Re: [PATCH V2 1/5] arm64: dts: qcom: pm7325: Add PMIC peripherals for
+ pm7325
+In-Reply-To: <YGdV+un4bGcF6jJH@google.com>
+References: <1617268396-1837-1-git-send-email-skakit@codeaurora.org>
+ <1617268396-1837-2-git-send-email-skakit@codeaurora.org>
+ <YGdV+un4bGcF6jJH@google.com>
+Message-ID: <10d26e4cc8888833298b0ebe7756e032@codeaurora.org>
+X-Sender: skakit@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 02, 2021 at 01:27:21PM -0500, Zev Weiss wrote:
-> This property ties SIRQ polarity to SCU register bits that don't
-> necessarily have any direct relationship to it; the only use of it
-> was removed in commit c82bf6e133d30e0f9172a20807814fa28aef0f67.
+Hi Matthias,
 
-Please write that as:
-	c82bf6e133d3 ("ARM: aspeed: g5: Do not set sirq polarity")
+On 2021-04-02 23:05, Matthias Kaehlcke wrote:
+> On Thu, Apr 01, 2021 at 02:43:12PM +0530, satya priya wrote:
+> 
+>> subject: arm64: dts: qcom: pm7325: Add PMIC peripherals for pm7325
+> 
+> nit: maybe just 'arm64: dts: qcom: Add pm7325 support/.dtsi' or 
+> similar?
+> 
+>> Add temp-alarm and GPIO support for pm7325.
+> 
+> nit: it's more than that, you are adding the .dtsi for the PMIC itself.
+> 
 
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
-> Reviewed-by: Joel Stanley <joel@jms.id.au>
-> ---
->  Documentation/devicetree/bindings/serial/8250.yaml | 1 +
->  1 file changed, 1 insertion(+)
+Okay, will change the commit text.
 
-What changed from previous versions?  That always goes below the ---
-line.
+>> Signed-off-by: satya priya <skakit@codeaurora.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/pm7325.dtsi | 53 
+>> ++++++++++++++++++++++++++++++++++++
+>>  1 file changed, 53 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
+>> 
+>> diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi 
+>> b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+>> new file mode 100644
+>> index 0000000..1e0848a
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
+>> @@ -0,0 +1,53 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +// Copyright (c) 2021, The Linux Foundation. All rights reserved.
+>> +
+>> +#include <dt-bindings/interrupt-controller/irq.h>
+>> +#include <dt-bindings/spmi/spmi.h>
+>> +
+>> +&spmi_bus {
+>> +	pm7325: pmic@1 {
+>> +		compatible = "qcom,pm7325", "qcom,spmi-pmic";
+> 
+> I saw the patches that add the compatible strings for the GPIOs, but
+> can't find those that add the strings for the PMICs themselves. Could
+> you provide a link if they have been sent already?
+> 
 
-Please fix up and send a v5.
+They are not sent yet, qcom,spmi-pmic.txt file conversion to yaml [1] is 
+currently on hold as all the child node bindings needs to be converted 
+to yaml first. Once that is done we can add these strings.
 
-thanks,
+[1] https://lore.kernel.org/patchwork/patch/1359552/
 
-greg k-h
+>> +		reg = <0x1 SPMI_USID>;
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +
+>> +		pm7325_temp_alarm: temp-alarm@a00 {
+>> +			compatible = "qcom,spmi-temp-alarm";
+>> +			reg = <0xa00>;
+>> +			interrupts = <0x1 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+>> +			#thermal-sensor-cells = <0>;
+>> +		};
+>> +
+>> +		pm7325_gpios: gpios@8800 {
+>> +			compatible = "qcom,pm7325-gpio", "qcom,spmi-gpio";
+>> +			reg = <0x8800>;
+>> +			gpio-controller;
+>> +			gpio-ranges = <&pm7325_gpios 0 0 10>;
+>> +			#gpio-cells = <2>;
+>> +			interrupt-controller;
+>> +			#interrupt-cells = <2>;
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&thermal_zones {
+>> +	pm7325_thermal: pm7325-thermal {
+>> +		polling-delay-passive = <100>;
+>> +		polling-delay = <0>;
+>> +		thermal-sensors = <&pm7325_temp_alarm>;
+>> +
+>> +		trips {
+>> +			pm7325_trip0: trip0 {
+>> +				temperature = <95000>;
+>> +				hysteresis = <0>;
+>> +				type = "passive";
+>> +			};
+>> +
+>> +			pm7325_trip1: trip1 {
+> 
+> nit: the critical trip point is often named <name>-crit. One reason for
+> this could be that it allows to add other non-critical trip points (in
+> the .dtsi itself or the <board>.dts), without messing up the
+> enumeration scheme.
+> 
+
+ok.
+
+>> +				temperature = <115000>;
+>> +				hysteresis = <0>;
+>> +				type = "critical";
+>> +			};
+>> +		};
+>> +	};
+>> +};
