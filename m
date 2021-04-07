@@ -2,174 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90B723563AE
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 08:05:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF81C3563C6
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 08:12:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240464AbhDGGFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 02:05:10 -0400
-Received: from mx0a-0014ca01.pphosted.com ([208.84.65.235]:54742 "EHLO
-        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237120AbhDGGFJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 02:05:09 -0400
-Received: from pps.filterd (m0042385.ppops.net [127.0.0.1])
-        by mx0a-0014ca01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13763QMX013438;
-        Tue, 6 Apr 2021 23:04:49 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=proofpoint;
- bh=wBtqvZTKMZ5Cxss4E0dl2HqbgQaq206t+mXQf49tdmU=;
- b=BoccT2WgUbCp0wwW3+523Ceg55SQLRn8LGvLRKDMaAp9bmKgQrpTRVdAh4poQR+ZCI4Z
- ufzIj7/paimd0L8R1jNm8EyOg5Q7cLfj57/d3HfSZ13ThOz15zZpkB493PdbkSAEU+TG
- 8Dk6XXSiILSDAvPeLVWZS6quegX9PXBMBh6bKjHsJtVbXxt8Lo4VAA32+cIbjuJvEMMJ
- NuhbL3OJyzl3G3f1PlAz2AgvqDIx+u20goMj4OrsMr5fg9oRwaMereDE7raCnX7GH9Lr
- KTWJh+c00au/tOKAtYedR32L5eq5MoShqwPsX5bRr0BnB5DkoYfL9zcoj/7nSi/dRgvg Wg== 
-Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2101.outbound.protection.outlook.com [104.47.58.101])
-        by mx0a-0014ca01.pphosted.com with ESMTP id 37rva6a4gf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 06 Apr 2021 23:04:47 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cMURmVMp8M5dcK/I8oM0cbd1Xv5dbB95HzbBiBUnaqJMDdCnGLx+kORGZFhhtbNh7ROBTmp2dTMDMGbyYCFZ+IGfAUHCxX7Qd9tphzbmvCWkPv0Gco/dfmhCnnjf+zrGZbNrodUomotAGMlBpkn6YDIV8feTLn7N9rgSi7UcuyGxPW13cJshHLHP3J93YeCohUxCc5Xw1NqXjzisIgvff+aSXlnX404xNjeH+m6TkOaJuNSbSh/df+/09JTNff0DRh5Z/FN/fRGuFBlMfX3sVwXTzHYIOB6HbgY37E0YTr6cY9DPZLx3mTdR9ru7tSnGfDS3tKMAsa+a++VHZ4ECAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wBtqvZTKMZ5Cxss4E0dl2HqbgQaq206t+mXQf49tdmU=;
- b=UJvwR0AuRiru6u2poKBMMDyzCepata49zkz4eTDhS5vO3h3tk8fgUQGcPhvx8IDjIefCrBIGI2e5XujgZ9wt09ZPjLjkLjgu78vgfb3PqJxRYHecGKgRDym7t/bSNovytPRx39BhBH7n2A8wjbkyAP/CpwYk8pB4cKnDatqm7C+d0RXImGN8JTSeA7mvyiOO2Kd1lyAeRmRDD46uKf88LvsYt5oY4AyFkHqh1kqUSpVll1dwB114iH7xb908E9poRdHMNKALkX7EO8t3uzPQb0fEpRT5OizP/mVU9K938WijzgVnTmSTS1Mbm5Uf1A1zaYFm47E/IHFBzzwwzlXAgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cadence.com; dmarc=pass action=none header.from=cadence.com;
- dkim=pass header.d=cadence.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wBtqvZTKMZ5Cxss4E0dl2HqbgQaq206t+mXQf49tdmU=;
- b=rE9hsd1+PPmqfjAW1vPyTY2Lne04Hm9iXJQyjR62EyjO4OjF5aCF1/rADz/ZlqYtuwHBs60340MznBiZKeFqFYN28Hk/2+ZeDJw7ynT1g45KFNqP2Q7BurRlLKgLCZT9qWy/C2UdFCizF3QiHgjXjq3O1qSSIG7B7+Km7vUnh6Q=
-Received: from MWHPR07MB2768.namprd07.prod.outlook.com (2603:10b6:300:28::18)
- by MW2PR07MB4012.namprd07.prod.outlook.com (2603:10b6:907:3::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.32; Wed, 7 Apr
- 2021 06:03:30 +0000
-Received: from MWHPR07MB2768.namprd07.prod.outlook.com
- ([fe80::1a8:764e:ab3d:73c7]) by MWHPR07MB2768.namprd07.prod.outlook.com
- ([fe80::1a8:764e:ab3d:73c7%7]) with mapi id 15.20.4020.016; Wed, 7 Apr 2021
- 06:03:30 +0000
-From:   Parshuram Raju Thombare <pthombar@cadence.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "robert.foss@linaro.org" <robert.foss@linaro.org>,
-        "laurent.pinchart@ideasonboard.com" 
-        <laurent.pinchart@ideasonboard.com>,
-        "airlied@linux.ie" <airlied@linux.ie>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "a.hajda@samsung.com" <a.hajda@samsung.com>,
-        "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
-        "nikhil.nd@ti.com" <nikhil.nd@ti.com>,
-        "kishon@ti.com" <kishon@ti.com>,
-        Swapnil Kashinath Jakhade <sjakhade@cadence.com>,
-        Milind Parab <mparab@cadence.com>
-Subject: RE: [PATCH v5 1/2] dt-bindings: drm/bridge: MHDP8546 bridge binding
- changes for HDCP
-Thread-Topic: [PATCH v5 1/2] dt-bindings: drm/bridge: MHDP8546 bridge binding
- changes for HDCP
-Thread-Index: AQHXHKOi/86dAQ9N3U2czyHmDrT9E6qSMz8AgBZ3t0A=
-Date:   Wed, 7 Apr 2021 06:03:29 +0000
-Message-ID: <MWHPR07MB276881500489CBFE1F297C1FC1759@MWHPR07MB2768.namprd07.prod.outlook.com>
-References: <1616146664-6941-1-git-send-email-pthombar@cadence.com>
- <1616146709-7227-1-git-send-email-pthombar@cadence.com>
- <20210323224546.GA1485576@robh.at.kernel.org>
-In-Reply-To: <20210323224546.GA1485576@robh.at.kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-dg-ref: PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNccHRob21iYXJcYXBwZGF0YVxyb2FtaW5nXDA5ZDg0OWI2LTMyZDMtNGE0MC04NWVlLTZiODRiYTI5ZTM1Ylxtc2dzXG1zZy1mNmRkMzhjNC05NzY2LTExZWItODYzMC0xMDY1MzBlZjIyZjVcYW1lLXRlc3RcZjZkZDM4YzUtOTc2Ni0xMWViLTg2MzAtMTA2NTMwZWYyMmY1Ym9keS50eHQiIHN6PSI4MDYiIHQ9IjEzMjYyMjQ5MDA2MDA3MjA3NyIgaD0iUEt5YlNOU1ZtVTlWbjRHdWZQUmZhVGQySlVBPSIgaWQ9IiIgYmw9IjAiIGJvPSIxIi8+PC9tZXRhPg==
-x-dg-rorf: true
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=cadence.com;
-x-originating-ip: [59.145.174.78]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9bda3544-3356-4aa5-93ac-08d8f98ade24
-x-ms-traffictypediagnostic: MW2PR07MB4012:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MW2PR07MB4012F1B415BE78EF83DAF3ECC1759@MW2PR07MB4012.namprd07.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: h1T14R3rPHFqtHiMVtXrP3/olImUOx/p6bxB4ojR6hOo8D/CXSzVroqDsUodY3OgidNGcSMQ9eLDcRpFYGhQMaUF2E7u5AMP9TNWK8mKnINu+vxGXTtJxs38zOMUY80JYODx7JhRky9vUlnO9cOvj16S1NJMvCDoaWgMdSwh5Z0cuIyg+xNV2w3XudNjJdef/Mxrw0krCpm0vi84vgfksWt89PxRdwJVTUTimxOxMxTuTDcizUj0uR/qUFnoOCpP0W/Z3RvmIdyZc1RzQ8ydvl+DusvVxDanvuXqwHJiGZfRRTlDMF1t0taf5XdVKal/jBpID7kmN4ep1ZnqW5E3hryVKQ5uOWcBd598kj9o07fad0Ufr/Yli2bc8uWjn65H6ut18ccs1nygbjn3//osHzRWagQypGdpWsqy/RLAfpoan5VJE7MmBjCwA9CiSg3UYkFUZgiEXrxRrRUt8nOWEjGognv0pK6ZlquWraeFwyP2fdw/5eY1B6ocj8jdVwMT00/Ia1jzRQoGVl8ML+cICEQGG0eEN7efGgVM29WHrTxpmR3g4TCQ2rfcFHn04mE4K+nE57O2YPAKvP+OIvA2BW2SNbW/unssaGeNL/hc89OW2VXRI7bBl5FPMMyr/FmlBMqGpMzQoQS9tp1HyfPuFC7RoKngEK4/YrPaYnBf1vEoJC8dHRDN51PMa9/L2+YV
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR07MB2768.namprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(366004)(39860400002)(396003)(136003)(36092001)(38100700001)(4326008)(71200400001)(6506007)(7416002)(8936002)(6916009)(316002)(26005)(55016002)(9686003)(186003)(4744005)(107886003)(5660300002)(64756008)(66476007)(66556008)(478600001)(86362001)(54906003)(8676002)(33656002)(2906002)(66946007)(66446008)(52536014)(76116006)(7696005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?SFg/q0bI8RtaNmwcbY2IpVeNC2PRsF/yNO5POiY/H/5Rrd94r8Jc3Eaz2GJt?=
- =?us-ascii?Q?yPn7jONQ/r1UgKpMv6zAVBiQj5X0+fXeNCupdHECsA61p220LvI33siFAwx5?=
- =?us-ascii?Q?DOLzWed72oCbKbugAZ/DD2/MkhZUS+7oZFIIO3MK2qUIuuPO+HLb6QCY2q0U?=
- =?us-ascii?Q?jztPXQfqWKfgoL5V12hHTMqYNImn/AoeYEM/j32XgU3P+sez+vasbxQ8AtJO?=
- =?us-ascii?Q?D4soB3vXnaTsRENwpZQLoxNVuiBwcCJA4BAWBwDQHZyMYZ1h+bDAXxniSxJY?=
- =?us-ascii?Q?EMAj4sSK1Cm6VxRYIat9uEri73XM20MqG7Dnp5IDQeZpJQhWc7EjQgtkLFjL?=
- =?us-ascii?Q?+/w8dEDCkQiK8wDKP3wEdvAt63OLNIVwPIC2jexTCSxJgX9X8jFlDBQ0wdlS?=
- =?us-ascii?Q?HyZfD2yqHTKsKz7eREA2NUsAsxeK2sgWRqlOtQk0yYi3h1hfEO3CIC82kFPk?=
- =?us-ascii?Q?TDmzxze856qqEUJCXTI+KCSAPlOtKqw9IDDHWKJU82pAC6Ks6k0khiDNDGNc?=
- =?us-ascii?Q?te9wFavyc6PSkDl+Bl9/FED1DZjiKPVqrloeADw+h66x8d/uOZDEfX0GbPy+?=
- =?us-ascii?Q?eLn7/QkuJ+8d5JFuFhM9Y9AHwyMXxr/siulwRsebU79ks95hCcnYIOC99BXa?=
- =?us-ascii?Q?7lv8hDzvE+GDAj8bBiS9qlcroWsmijf+0azz5I1ucuMpFKx/CYe9fVTQitXl?=
- =?us-ascii?Q?pMLmqu4HSV41dCh4Ymd6Ed3BjM7Ocs+zqdFxSjAsB630Y4O2fqDVMvu6Wk1q?=
- =?us-ascii?Q?XXPeQHDpcMK+4tOSTYA1yEStvP7EsPO7VGJoqs9reWIu9CnHD03p+diJjrOT?=
- =?us-ascii?Q?rOQdCC49r8kuPqybUrwTEHxqHoJvidGv4/530y4w43MrFPZ/GP5PlLuQdHz/?=
- =?us-ascii?Q?UEmYiGS4FW4wQq3iLXhEzm1WsMD8Yu3HSjbelFJfXYLxCYF9mvKwu3J2qnMp?=
- =?us-ascii?Q?xTOQDLkJhhm2U9D+zrqilE63eteE/DthDAdOY+4m3/Dt7ph0kzuISIAGC0yT?=
- =?us-ascii?Q?N755YyBao2nH7WRaY06rAIp4nFaGTJgbktq+LabtyUBrsd1X9ZOQdr0VLdaj?=
- =?us-ascii?Q?Xr5S9SbVED3T6Jwrxau4hg573Kn6fObbdHsf8HwQWchOGNA4agiroHnilV4S?=
- =?us-ascii?Q?9nvxyPICeR15dckoWxx/9sI3BesJxCKCai7LsThC9GcpHGS/K53K/G6/U8BM?=
- =?us-ascii?Q?fmaSpcwk4H17tl4a80R2xQYD0GcqSmq9yVtX9dhqMdbuoWRP3Udce/LBnXBW?=
- =?us-ascii?Q?9QfivA6fAnzr5EV61Aa2jsL9UkxrSOOTOTEVMvBK2jBcC0atDpNdCDuoNVe0?=
- =?us-ascii?Q?L4y7MWBngHIbBKgOSpz5YAeW?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S230075AbhDGGMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 02:12:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50964 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239520AbhDGGMn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 02:12:43 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B28CCC061756
+        for <devicetree@vger.kernel.org>; Tue,  6 Apr 2021 23:12:33 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lU1QU-00053N-3v; Wed, 07 Apr 2021 08:12:30 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lU1QT-0004F8-QF; Wed, 07 Apr 2021 08:12:29 +0200
+Date:   Wed, 7 Apr 2021 08:12:29 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Clemens Gruber <clemens.gruber@pqgruber.com>
+Cc:     linux-pwm@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sven Van Asbroeck <TheSven73@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 7/8] pwm: pca9685: Restrict period change for enabled
+ PWMs
+Message-ID: <20210407061229.lsyg7blh3ebxtvx6@pengutronix.de>
+References: <20210406164140.81423-1-clemens.gruber@pqgruber.com>
+ <20210406164140.81423-7-clemens.gruber@pqgruber.com>
 MIME-Version: 1.0
-X-OriginatorOrg: cadence.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR07MB2768.namprd07.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9bda3544-3356-4aa5-93ac-08d8f98ade24
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2021 06:03:29.5139
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lQT87Av9a6LonauQ5xVEZckuNUtcx0/9oT0KMzvVe6LudHMR9lLerjRyYeWXbcCY0ZQ2TchVPb+mMrN+2diEEBQQ6399TnP56Qah7udBXH4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR07MB4012
-X-Proofpoint-GUID: mRQJscMliHonHEV1FSiNHdahvzoLtwsw
-X-Proofpoint-ORIG-GUID: mRQJscMliHonHEV1FSiNHdahvzoLtwsw
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369,18.0.761
- definitions=2021-04-07_03:2021-04-06,2021-04-07 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 phishscore=0
- clxscore=1015 adultscore=0 impostorscore=0 spamscore=0 suspectscore=0
- priorityscore=1501 bulkscore=0 malwarescore=0 lowpriorityscore=0
- mlxscore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104060000 definitions=main-2104070044
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="tn42657ndmzwffdw"
+Content-Disposition: inline
+In-Reply-To: <20210406164140.81423-7-clemens.gruber@pqgruber.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-Thanks for your comment and sorry for late response.
+--tn42657ndmzwffdw
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->> -    minItems: 1
->> -    maxItems: 2
->> +    minItems: 2
->> +    maxItems: 3
->
->1 entry was valid and now it is not? That's not a compatible change and
->needs an explanation at a minimum.
+On Tue, Apr 06, 2021 at 06:41:39PM +0200, Clemens Gruber wrote:
+> Previously, the last used PWM channel could change the global prescale
+> setting, even if other channels are already in use.
+>=20
+> Fix it by only allowing the first enabled PWM to change the global
+> chip-wide prescale setting. If there is more than one channel in use,
+> the prescale settings resulting from the chosen periods must match.
+>=20
+> GPIOs do not count as enabled PWMs as they are not using the prescaler
+> and can't change it.
+>=20
+> Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
+> ---
+> Changes since v6:
+> - Only allow the first PWM that is enabled to change the prescaler, not
+>   the first one that uses the prescaler
+>=20
+>  drivers/pwm/pwm-pca9685.c | 66 +++++++++++++++++++++++++++++++++------
+>  1 file changed, 56 insertions(+), 10 deletions(-)
+>=20
+> diff --git a/drivers/pwm/pwm-pca9685.c b/drivers/pwm/pwm-pca9685.c
+> index 24221ee7a77a..cf0c98e4ef44 100644
+> --- a/drivers/pwm/pwm-pca9685.c
+> +++ b/drivers/pwm/pwm-pca9685.c
+> @@ -23,11 +23,11 @@
+>  #include <linux/bitmap.h>
+> =20
+>  /*
+> - * Because the PCA9685 has only one prescaler per chip, changing the per=
+iod of
+> - * one channel affects the period of all 16 PWM outputs!
+> - * However, the ratio between each configured duty cycle and the chip-wi=
+de
+> - * period remains constant, because the OFF time is set in proportion to=
+ the
+> - * counter range.
+> + * Because the PCA9685 has only one prescaler per chip, only the first c=
+hannel
+> + * that is enabled is allowed to change the prescale register.
+> + * PWM channels requested afterwards must use a period that results in t=
+he same
+> + * prescale setting as the one set by the first requested channel.
+> + * GPIOs do not count as enabled PWMs as they are not using the prescale=
+r.
+>   */
+> =20
+>  #define PCA9685_MODE1		0x00
+> @@ -78,8 +78,9 @@
+>  struct pca9685 {
+>  	struct pwm_chip chip;
+>  	struct regmap *regmap;
+> -#if IS_ENABLED(CONFIG_GPIOLIB)
+>  	struct mutex lock;
+> +	DECLARE_BITMAP(pwms_enabled, PCA9685_MAXCHAN + 1);
+> +#if IS_ENABLED(CONFIG_GPIOLIB)
+>  	struct gpio_chip gpio;
+>  	DECLARE_BITMAP(pwms_inuse, PCA9685_MAXCHAN + 1);
+>  #endif
+> @@ -90,6 +91,22 @@ static inline struct pca9685 *to_pca(struct pwm_chip *=
+chip)
+>  	return container_of(chip, struct pca9685, chip);
+>  }
+> =20
+> +/* This function is supposed to be called with the lock mutex held */
+> +static bool pca9685_prescaler_can_change(struct pca9685 *pca, int channe=
+l)
+> +{
+> +	/* No PWM enabled: Change allowed */
+> +	if (bitmap_empty(pca->pwms_enabled, PCA9685_MAXCHAN + 1))
+> +		return true;
+> +	/* More than one PWM enabled: Change not allowed */
+> +	if (bitmap_weight(pca->pwms_enabled, PCA9685_MAXCHAN + 1) > 1)
+> +		return false;
+> +	/*
+> +	 * Only one PWM enabled: Change allowed if the PWM about to
+> +	 * be changed is the one that is already enabled
+> +	 */
+> +	return test_bit(channel, pca->pwms_enabled);
 
-Yes, as the driver returns error in the absence of SAPB port address range,=
- this
-may break the driver on platform without SAPB port. This IP needs SAPB port
-to support HDCP feature using embedded HDCP crypto module.
+Maybe this is a bit more effective?:
 
-So, to maintain backward compatibility I will modify the driver and allow i=
-t
-to proceed without HDCP feature, instead of returning an error, in case of =
-no SAPB port.
+	DECLARE_BITMAP(blablub, PCA9685_MAXCHAN + 1);=09
+	bitmap_zero(blablub, PCA9685_MAXCHAN + 1);
+	bitmap_set(blablub, channel);
+	return bitmap_subset(pca->pwms_enabled, blablub);
 
-Regards,
-Parshuram Thombare
+(but that's a minor issue, the suggested algorithm is correct.)
 
+So:
 
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+
+(side-note: I wonder if the handling of the set-all channel is correct
+here. But given that it is messy anyhow, (e.g. because setting some
+state to this set-all channel doesn't influence pwm_get_state for the
+individual channels) I don't object if there is another problem in this
+corner case. IMHO just dropping this virtual channel would be nice.)
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--tn42657ndmzwffdw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmBtTUoACgkQwfwUeK3K
+7AkvNAf/UX3hYfAGdc4ZSGn8iEUYrkPpj8inn5BAMcrpoJ6rW/6mR1kS1L+YqVxI
++hDPOX8DZiotLKIQEBh+zKvYkyvohTKQ2vcn40qRUDfBikSYuoeP6NMfvmFXkI6F
+hsSknJ5ojwHw9WX/tNVm3aCM6Th1fz0iVr7z1v+91DNHlm9UmOTM4eDYoQvchGPd
+dcMJEeT5lkBLZ9OPmrVh9BKbZQLepNyZJHSRjNZucoubvzT7TgNZwyyZ/45VGfJt
+hP6LpuontscPWq906LOKaKJJUHsqj0Y5CHAtD0aAMiV/Zj8QfHBd80eAnLSIQwla
++zqivQWfITI9x/lgnl3CFXpy/6K96Q==
+=rzIS
+-----END PGP SIGNATURE-----
+
+--tn42657ndmzwffdw--
