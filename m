@@ -2,427 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7C72356AE8
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 13:15:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B405356AF9
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 13:18:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351779AbhDGLPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 07:15:55 -0400
-Received: from mail.cognitivepilot.com ([91.218.251.140]:7561 "EHLO
-        mail.cognitivepilot.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351782AbhDGLPy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 07:15:54 -0400
-Received: from mail.cognitivepilot.com (localhost [127.0.0.1])
-        by mail.cognitivepilot.com (Postfix) with ESMTP id 4FFhdp6f2rzmSqcc
-        for <devicetree@vger.kernel.org>; Wed,  7 Apr 2021 14:15:42 +0300 (MSK)
-X-Virus-Scanned: amavisd-new at cognitivepilot.com
-X-Spam-Flag: NO
-X-Spam-Score: 2.247
-X-Spam-Level: **
-X-Spam-Status: No, score=2.247 tagged_above=2 required=6.2
-        tests=[RDNS_NONE=1.274, SPF_HELO_NONE=0.001, SPF_SOFTFAIL=0.972]
-        autolearn=no autolearn_force=no
-Received: from mail.cognitivepilot.com ([127.0.0.1])
-        by mail.cognitivepilot.com (mail.cognitivepilot.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id xoVWYHP-Qp7F for <devicetree@vger.kernel.org>;
-        Wed,  7 Apr 2021 14:15:41 +0300 (MSK)
-Received: from localhost.localdomain (unknown [185.68.147.27])
-        by mail.cognitivepilot.com (Postfix) with ESMTP id 4FFhdm4St9zmSqcd;
-        Wed,  7 Apr 2021 14:15:40 +0300 (MSK)
-From:   Ivan Uvarov <i.uvarov@cognitivepilot.com>
-To:     devicetree@vger.kernel.org
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Andre Przywara <andre.przywara@arm.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Ivan Uvarov <i.uvarov@cognitivepilot.com>
-Subject: [PATCH v4 5/5] ARM: dts: sun8i: r40: add devicetree for Forlinx FETA40i-C & OKA40i-C
-Date:   Wed,  7 Apr 2021 14:14:28 +0300
-Message-Id: <20210407111428.3755684-6-i.uvarov@cognitivepilot.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210407111428.3755684-1-i.uvarov@cognitivepilot.com>
-References: <20210407111428.3755684-1-i.uvarov@cognitivepilot.com>
+        id S1351840AbhDGLRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 07:17:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33908 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351818AbhDGLRm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 07:17:42 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61E9CC061756;
+        Wed,  7 Apr 2021 04:17:30 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id t140so12773974pgb.13;
+        Wed, 07 Apr 2021 04:17:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=to:cc:references:from:subject:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=jKz9PN0lLBTm9R3z1U/8bmvGzAhvQoiymdijIeKL3X0=;
+        b=TMXXTJHYehvDU9gPzRCJlMtz0RmliEroITHgqqxKxrh5VGmRmYC6YbISZszwEUqO3F
+         inhGipv5q1Gh0QnQH2WStCwsKzVHLEJUdanDAKFH4kK1Q3qZzxutyvTFQc4hInE3n4n4
+         vIGa2sXPvkiF4Uw5K+qlGHn0HqLW2jL3uiHaoo/K0fkTlkHvyatmKYgbp2MbWetK6B5w
+         /Vra7S2l1Xw+lqTTd71JZfzyMbMkGbIBMugg96W7GiK+0ndOGSHkH0MhsJNsQxgkEiGs
+         peLzwL4erac36UjMsDGFR4k8TYfvjuU35/St13t+daPZJlt/lq++RDoR40R8521BYjcn
+         zrzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jKz9PN0lLBTm9R3z1U/8bmvGzAhvQoiymdijIeKL3X0=;
+        b=edMF7zA1QO7jU9pCjs6w0oHAtRXOMWxRwqpe/IByDUcGQHc+Tm/oSQCH0kFpC1MOcO
+         TyRBfxzDJWSY6fWrYnOEeZOcOomr7P0FbM5UZJheuzqO4y1ldd2AKG3OZLsUv7Q1qT7O
+         Cjx9m0m9+8HbhnnKae/EJ9vutgJtJwbyWXdAcZsIdRyP3KXnYOfygYrn6aj4ql6Q8TjK
+         Ei4xDHYS0DhLHgQ6i5jQVsZ1+J2taCkwRCyJpXKvIWOi+E38OhbF4K92DjMwdyY0K9B8
+         UDF+2uI4rI6mokY3OYgiPC8lNBww9pFrMOaF4NeN2vWuwR/1h5vlnizDu+UOGCJxaWFE
+         ZKhg==
+X-Gm-Message-State: AOAM5339KMrMNmRt3Sb8feyXm9v/iIjq422s/VOBfUFuIyZ72PdmYRY0
+        8DggeUTRegVEAFRYweepggs=
+X-Google-Smtp-Source: ABdhPJwFV2aJZrVLPlD1sAyTTCmszAc7wE5xiEsEejZJmjvLeXnrzjYDWUhKCp/Ojtcz5XyVNtqV9g==
+X-Received: by 2002:aa7:8493:0:b029:1ee:75b2:2865 with SMTP id u19-20020aa784930000b02901ee75b22865mr2304232pfn.61.1617794249919;
+        Wed, 07 Apr 2021 04:17:29 -0700 (PDT)
+Received: from ziggy.stardust ([37.223.140.37])
+        by smtp.gmail.com with ESMTPSA id s19sm21132914pfh.168.2021.04.07.04.17.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Apr 2021 04:17:29 -0700 (PDT)
+To:     Mason Zhang <Mason.Zhang@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        hanks.chen@mediateka.com, wsd_upstream@mediatek.com,
+        Leilk Liu <leilk.liu@mediatek.com>
+References: <20210226105918.3057-1-Mason.Zhang@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: mediatek: add MT6779 spi master dts node
+Message-ID: <4e39785a-06a6-4ec5-5930-8a5bf53e4f7b@gmail.com>
+Date:   Wed, 7 Apr 2021 13:17:22 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20210226105918.3057-1-Mason.Zhang@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The FETA40i-C is a SoM by Forlinx based on the Allwinner R40/A40i.
 
-SoM specifications:
 
-- SoC: R40 or A40i
-- PMIC: AXP221S
-- RAM: 1GiB/2GiB DDR3 (dual-rank)
-- eMMC: 8GB,
-- Mates with carrier board via four 80-pin connectors (AXK6F80337YG).
+On 26/02/2021 11:59, Mason Zhang wrote:
+> this patch add spi master dts node for mt6779 SOC.
+> 
+> Signed-off-by: Mason Zhang <Mason.Zhang@mediatek.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt6779.dtsi | 96 ++++++++++++++++++++++++
+>  1 file changed, 96 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt6779.dtsi b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
+> index 370f309d32de..ca72eb09cff9 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt6779.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
+> @@ -219,6 +219,102 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		spi0: spi0@1100a000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x1100a000 0 0x1000>;
+> +			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				<&topckgen CLK_TOP_SPI>,
+> +				<&infracfg_ao CLK_INFRA_SPI0>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
 
-OKA40i-C is a carrier board by the same manufacturer for this SoM,
-whose main purpose is as a development board with a wide variety of
-peripherals:
+From the binding description:
+- #address-cells: should be 1.
 
-- Power: DC5V barrel or USB OTG or 4.2V Lipo battery
-- Video out: HDMI, TV out, LVDS
-- WiFi+Bluetooth: RL-UM02WBS-8723BU-V1.2 (802.11 b/g/n, BT V2.1/3.0/4.0)
-- Ethernet: 10/100Mbps
-- Storage: µSD, fullsize SD, eMMC (on SoM), SATA
-- USB: 3 x USB2.0 Host (2 via hub, 1 native), 1 x USB2.0 OTG (micro-B)
-- UART: RS232, RS485, 4 3.3v uarts (of which 2 have RTS/CTS)
-- Other I/O: SPI x2, TWI, SDIO header, GPIO header, JTAG header
-- Mini PCIe slot with sim holder for WLAN modem
-- Smart card holder
-- RTC (RX8010SJ)
-- Two user LEDs
-- Three user buttons (via KeyADC).
+- #size-cells: should be 0.
 
-This patch adds a devicetree for the aforementioned SoM and devboard.
-In order to reflect the modularity of this devboard and simplify adding
-support for future hardware based on the same SoM, the devicetree is split:
-Everything pertaining to the SoM itself is described in a separate .dtsi
-file, which is included by the devboard's .dts.
+We are missing both here. Please fix that.
 
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-Signed-off-by: Ivan Uvarov <i.uvarov@cognitivepilot.com>
+Apart the binding description is naming PLL, clock mux and clock gate IDs which
+do not correspond to the ones used here. It seems that this binding was tailored
+for a specific SoC family but never made generic. If you want, please do so and
+convert it to yaml.
 
- 3 files changed, 310 insertions(+)
+Regards,
+Matthias
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 8e5d4ab4e7..88aae9de95 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1222,6 +1222,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-r16-nintendo-super-nes-classic.dtb \
- 	sun8i-r16-parrot.dtb \
- 	sun8i-r40-bananapi-m2-ultra.dtb \
-+	sun8i-r40-oka40i-c.dtb \
- 	sun8i-s3-elimo-initium.dtb \
- 	sun8i-s3-lichee-zero-plus.dtb \
- 	sun8i-s3-pinecube.dtb \
-diff --git a/arch/arm/boot/dts/sun8i-r40-feta40i.dtsi b/arch/arm/boot/dts/sun8i-r40-feta40i.dtsi
-new file mode 100644
-index 0000000000..265e0fa57a
---- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-r40-feta40i.dtsi
-@@ -0,0 +1,106 @@
-+// SPDX-License-Identifier: GPL-2.0+ OR MIT
-+// Copyright (C) 2021 Ivan Uvarov <i.uvarov@cognitivepilot.com>
-+// Based on the sun8i-r40-bananapi-m2-ultra.dts, which is:
-+//  Copyright (C) 2017 Chen-Yu Tsai <wens@csie.org>
-+//  Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
-+
-+#include "sun8i-r40.dtsi"
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	axp22x: pmic@34 {
-+		compatible = "x-powers,axp221";
-+		reg = <0x34>;
-+		interrupt-parent = <&nmi_intc>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+#include "axp22x.dtsi"
-+
-+&mmc2 {
-+	vmmc-supply = <&reg_dcdc1>;
-+	vqmmc-supply = <&reg_aldo2>;
-+	bus-width = <8>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&pio {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&clk_out_a_pin>;
-+	vcc-pa-supply = <&reg_dcdc1>;
-+	vcc-pc-supply = <&reg_aldo2>;
-+	vcc-pd-supply = <&reg_dcdc1>;
-+	vcc-pf-supply = <&reg_dldo4>;
-+	vcc-pg-supply = <&reg_dldo1>;
-+};
-+
-+&reg_aldo2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <1800000>;
-+	regulator-name = "vcc-pa";
-+};
-+
-+&reg_aldo3 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3000000>;
-+	regulator-max-microvolt = <3000000>;
-+	regulator-name = "avcc";
-+};
-+
-+&reg_dcdc1 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-3v3";
-+};
-+
-+&reg_dcdc2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1100000>;
-+	regulator-max-microvolt = <1100000>;
-+	regulator-name = "vdd-cpu";
-+};
-+
-+&reg_dcdc3 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1100000>;
-+	regulator-max-microvolt = <1100000>;
-+	regulator-name = "vdd-sys";
-+};
-+
-+&reg_dcdc5 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1500000>;
-+	regulator-max-microvolt = <1500000>;
-+	regulator-name = "vcc-dram";
-+};
-+
-+&reg_dldo1 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-wifi-io";
-+};
-+
-+&reg_dldo4 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <2500000>;
-+	regulator-max-microvolt = <2500000>;
-+	regulator-name = "vdd2v5-sata";
-+};
-+
-+&reg_eldo2 {
-+	regulator-min-microvolt = <1200000>;
-+	regulator-max-microvolt = <1200000>;
-+	regulator-name = "vdd1v2-sata";
-+};
-+
-+&reg_eldo3 {
-+	regulator-min-microvolt = <2800000>;
-+	regulator-max-microvolt = <2800000>;
-+	regulator-name = "vcc-pe";
-+};
-diff --git a/arch/arm/boot/dts/sun8i-r40-oka40i-c.dts b/arch/arm/boot/dts/sun8i-r40-oka40i-c.dts
-new file mode 100644
-index 0000000000..0bd1336206
---- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-r40-oka40i-c.dts
-@@ -0,0 +1,203 @@
-+// SPDX-License-Identifier: GPL-2.0+ OR MIT
-+// Copyright (C) 2021 Ivan Uvarov <i.uvarov@cognitivepilot.com>
-+// Based on the sun8i-r40-bananapi-m2-ultra.dts, which is:
-+//	Copyright (C) 2017 Chen-Yu Tsai <wens@csie.org>
-+//	Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
-+
-+/dts-v1/;
-+#include "sun8i-r40-feta40i.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "Forlinx OKA40i-C";
-+	compatible = "forlinx,oka40i-c", "forlinx,feta40i-c", "allwinner,sun8i-r40";
-+
-+	aliases {
-+		ethernet0 = &gmac;
-+		serial0 = &uart0;
-+		serial2 = &uart2;
-+		serial3 = &uart3;
-+		serial4 = &uart4;
-+		serial5 = &uart5; /* RS485 */
-+		serial7 = &uart7;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-5 { /* this is how the leds are labeled on the board */
-+			gpios = <&pio 7 26 GPIO_ACTIVE_LOW>; /* PH26 */
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_STATUS;
-+		};
-+
-+		led-6 {
-+			gpios = <&pio 8 15 GPIO_ACTIVE_LOW>; /* PI15 */
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_STATUS;
-+		};
-+	};
-+
-+	reg_vcc5v0: vcc5v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	wifi_pwrseq: wifi_pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&pio 1 10 GPIO_ACTIVE_LOW>; // PB10 WIFI_EN
-+		clocks = <&ccu CLK_OUTA>;
-+		clock-names = "ext_clock";
-+	};
-+};
-+
-+&ahci {
-+	ahci-supply = <&reg_dldo4>;
-+	phy-supply = <&reg_eldo2>;
-+	status = "okay";
-+};
-+
-+&de {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&ehci2 {
-+	status = "okay";
-+};
-+
-+&gmac {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac_rgmii_pins>;
-+	phy-handle = <&phy1>;
-+	phy-mode = "rgmii-id";
-+	phy-supply = <&reg_dcdc1>;
-+	status = "okay";
-+};
-+
-+&gmac_mdio {
-+	phy1: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <1>;
-+	};
-+};
-+
-+&hdmi {
-+	status = "okay";
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+};
-+
-+&mmc0 {
-+	vmmc-supply = <&reg_dcdc1>;
-+	vqmmc-supply = <&reg_dcdc1>;
-+	bus-width = <4>;
-+	cd-gpios = <&pio 8 11 GPIO_ACTIVE_LOW>; // PI11
-+	status = "okay";
-+};
-+
-+&mmc3 {
-+	vmmc-supply = <&reg_dcdc1>;
-+	vqmmc-supply = <&reg_dcdc1>;
-+	bus-width = <4>;
-+	cd-gpios = <&pio 8 10 GPIO_ACTIVE_LOW>; // PI10
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&ohci2 {
-+	status = "okay";
-+};
-+
-+&reg_dc1sw {
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-lcd";
-+};
-+
-+&reg_dldo2 {
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-wifi";
-+};
-+
-+&tcon_tv0 {
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pb_pins>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart2_pi_pins>, <&uart2_rts_cts_pi_pins>;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart3_pg_pins>, <&uart3_rts_cts_pg_pins>;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart4_pg_pins>;
-+	status = "okay";
-+};
-+
-+&uart5 { /* RS485 */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart5_ph_pins>;
-+	status = "okay";
-+};
-+
-+&uart7 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart7_pi_pins>;
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb1_vbus-supply = <&reg_vcc5v0>;
-+	usb2_vbus-supply = <&reg_vcc5v0>;
-+	status = "okay";
-+};
--- 
-2.25.1
-
+> +		};
+> +
+> +		spi1: spi1@11010000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x11010000 0 0x1000>;
+> +			interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				<&topckgen CLK_TOP_SPI>,
+> +				<&infracfg_ao CLK_INFRA_SPI1>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +		};
+> +
+> +		spi2: spi2@11012000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x11012000 0 0x1000>;
+> +			interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				<&infracfg_ao CLK_INFRA_SPI2>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +		};
+> +
+> +		spi3: spi3@11013000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x11013000 0 0x1000>;
+> +			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				 <&infracfg_ao CLK_INFRA_SPI3>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +		};
+> +
+> +		spi4: spi4@11018000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x11018000 0 0x1000>;
+> +			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				 <&infracfg_ao CLK_INFRA_SPI4>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +		};
+> +
+> +		spi5: spi5@11019000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x11019000 0 0x1000>;
+> +			interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				<&topckgen CLK_TOP_SPI>,
+> +				<&infracfg_ao CLK_INFRA_SPI5>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +		};
+> +
+> +		spi6: spi6@1101d000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x1101d000 0 0x1000>;
+> +			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				 <&infracfg_ao CLK_INFRA_SPI6>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +		};
+> +
+> +		spi7: spi7@1101e000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x1101e000 0 0x1000>;
+> +			interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				 <&infracfg_ao CLK_INFRA_SPI7>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +		};
+> +
+>  		audio: clock-controller@11210000 {
+>  			compatible = "mediatek,mt6779-audio", "syscon";
+>  			reg = <0 0x11210000 0 0x1000>;
+> 
