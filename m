@@ -2,124 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5BE23561F1
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 05:29:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F188735627C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 06:26:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348373AbhDGD32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Apr 2021 23:29:28 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:38989 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1348370AbhDGD3N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Apr 2021 23:29:13 -0400
-X-UUID: 4a6fb3b086a5419c9a48f0741c839147-20210407
-X-UUID: 4a6fb3b086a5419c9a48f0741c839147-20210407
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <flora.fu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 415551506; Wed, 07 Apr 2021 11:29:00 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 7 Apr 2021 11:28:58 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 7 Apr 2021 11:28:58 +0800
-From:   Flora Fu <flora.fu@mediatek.com>
+        id S229523AbhDGE01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 00:26:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56196 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229520AbhDGE01 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 00:26:27 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7885AC06174A;
+        Tue,  6 Apr 2021 21:26:16 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id e12so3316833wro.11;
+        Tue, 06 Apr 2021 21:26:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=/uxm+ddpxxmXnSDmYZVbCjsl1x5gAL/tQbugquJp2r8=;
+        b=r4cKC4I/BAIowW7LmjU17k7Swy6+R3wroLgZK/Az1SSdVSjOB0NNm1UNey/goh3ia9
+         WUHXq/qqKP/75X2+jpeVeZG0Or/XGCHy1SYyCtztn1F+ABdBhv743hGlYvhJoypNogGB
+         Fy63zAyqK4fOZhcotcV1e4Ha9QVjeMJFv6ZCyufaZ2PLADbba7Tcc3YV+y280JMKIbuj
+         V89cQMZhcMaGJVjdAguOpnhIQ9kRtfs6Whelg7zNy8nxMxHN7HLlgSeFcX5Qy7MOVwG1
+         YrRUuWb9yTM11+upV4GMga89yxEuas1FWsS1UL7K+B43Dy0PgQ4AMYOIwQNy3UuR/IjV
+         gbkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=/uxm+ddpxxmXnSDmYZVbCjsl1x5gAL/tQbugquJp2r8=;
+        b=Ro1ciMFUFg9PlMdLx4LnQzt0mItvHG/ZrN55mccWV/fzR9SBTCHy7szRCpSqd6e+Se
+         u9tu66KMXINTc+FeP20/vRt/xpBwLDTouFOb7YzDHPulAE4bqS+7wRRleXKVJBMLaiW8
+         ColOdH+1UHVBSoxy4+SVKeL6sEIEXwbLKWloRtK6qPS25d7u8f5uBk6020+Sx/yQ6IIZ
+         1aWPwMJVXNZQu3rXDwvnc7OlCEh9OiF7jtGM37B+gMgknnlycNSUSr2d3lR8BbFOjMTE
+         CZUkbvDHsFzxRD3jcyZrGzidanPqiuYexCPs/mj29QZNHLcurlFHofyynXmJPaw+lEYu
+         +9Zw==
+X-Gm-Message-State: AOAM533qWHBZTUwMCNahHfmSnxl4Qv1pgZoPOSlwiNwIF1hevjE37hc6
+        mOtyoua3I0cuDvqwl7PHv0SJXt/1vhY=
+X-Google-Smtp-Source: ABdhPJyROB8SHgsGrI+AyRhKK5dX/qKgDBb8UBGM45a5NvzXKqtanaRc3iLb/RFry6gbomXPk/ApDw==
+X-Received: by 2002:adf:c10a:: with SMTP id r10mr1895742wre.40.1617769573901;
+        Tue, 06 Apr 2021 21:26:13 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id k3sm16487112wrc.67.2021.04.06.21.26.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Apr 2021 21:26:13 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-CC:     Flora Fu <flora.fu@mediatek.com>,
-        Pi-Cheng Chen <pi-cheng.chen@mediatek.com>,
-        Chiawen Lee <chiawen.lee@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>
-Subject: [PATCH 8/8] arm64: dts: mt8192: Add APU power domain node
-Date:   Wed, 7 Apr 2021 11:28:06 +0800
-Message-ID: <1617766086-5502-9-git-send-email-flora.fu@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1617766086-5502-1-git-send-email-flora.fu@mediatek.com>
-References: <1617766086-5502-1-git-send-email-flora.fu@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH v2 0/3] arm64: dts: meson: misc ODROID-N2/N2+ changes
+Date:   Wed,  7 Apr 2021 04:26:06 +0000
+Message-Id: <20210407042609.9736-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add APU power domain node to MT8192.
+This series cleans-up and submits some minor patches used in HardKernel
+Linux 5.10 and 5.11 images for the ODROID N2/N2+, and fixes a stray tab.
 
-Signed-off-by: Flora Fu <flora.fu@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8192-evb.dts |  7 +++++
- arch/arm64/boot/dts/mediatek/mt8192.dtsi    | 29 +++++++++++++++++++++
- 2 files changed, 36 insertions(+)
+Changes since v1:
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-index 1769f3a9b510..9e89efb3dc8a 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-@@ -65,3 +65,10 @@
- &mt6359_vrf12_ldo_reg {
- 	regulator-always-on;
- };
-+
-+&apuspm {
-+	vsram-supply = <&mt6359_vsram_md_ldo_reg>;
-+	power-domain@MT8192_POWER_DOMAIN_APUSYS_TOP {
-+		domain-supply = <&mt6359_vproc1_buck_reg>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index b1467ccbe5aa..546c058ef560 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/memory/mt8192-larb-port.h>
- #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
- #include <dt-bindings/power/mt8192-power.h>
-+#include <dt-bindings/power/mt8192-apu-power.h>
- 
- / {
- 	compatible = "mediatek,mt8192";
-@@ -1033,6 +1034,34 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		apuspm: power-domain@190f0000 {
-+			compatible = "mediatek,mt8192-apu-pm", "syscon";
-+			reg = <0 0x190f0000 0 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			#power-domain-cells = <1>;
-+			mediatek,scpsys = <&scpsys>;
-+			mediatek,apu_conn = <&apu_conn>;
-+			mediatek,apu_vcore = <&apu_vcore>;
-+
-+			power-domain@MT8192_POWER_DOMAIN_APUSYS_TOP {
-+				reg = <MT8192_POWER_DOMAIN_APUSYS_TOP>;
-+				#power-domain-cells = <0>;
-+				clocks = <&topckgen CLK_TOP_DSP_SEL>,
-+					 <&topckgen CLK_TOP_IPU_IF_SEL>,
-+					 <&clk26m>,
-+					 <&topckgen CLK_TOP_UNIVPLL_D6_D2>;
-+				clock-names = "clk_top_conn",
-+					      "clk_top_ipu_if",
-+					      "clk_off",
-+					      "clk_on_default";
-+				assigned-clocks = <&topckgen CLK_TOP_DSP_SEL>,
-+						  <&topckgen CLK_TOP_IPU_IF_SEL>;
-+				assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D6_D2>,
-+							 <&topckgen CLK_TOP_UNIVPLL_D6_D2>;
-+			};
-+		};
-+
- 		larb13: larb@1a001000 {
- 			compatible = "mediatek,mt8192-smi-larb";
- 			reg = <0 0x1a001000 0 0x1000>;
+- Added reviewed-by's on patches 1/3
+- Added my Signed-off-by to patches 2/3
+- Added missing vref to patch 2
+- Rebased on khilman/v5.13/dt64
+
+Christian Hewitt (1):
+  arm64: dts: meson: remove extra tab from ODROID N2/N2+ ext_mdio node
+
+Hyeonki Hong (2):
+  arm64: dts: meson: add saradc node to ODROID N2/N2+
+  arm64: dts: meson: add GPIO line names to ODROID N2/N2+
+
+ .../dts/amlogic/meson-g12b-odroid-n2.dtsi     | 52 ++++++++++++++++++-
+ 1 file changed, 51 insertions(+), 1 deletion(-)
+
 -- 
-2.18.0
+2.17.1
 
