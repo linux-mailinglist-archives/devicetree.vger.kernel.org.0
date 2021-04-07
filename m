@@ -2,147 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D2B83576B0
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 23:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 657AD3576E3
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 23:34:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232781AbhDGVWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 17:22:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54296 "EHLO
+        id S233462AbhDGVeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 17:34:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232649AbhDGVVy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 17:21:54 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D96DCC0613D9;
-        Wed,  7 Apr 2021 14:21:34 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id a12so9668496wrq.13;
-        Wed, 07 Apr 2021 14:21:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=NtFOY3jGwpepTPbYEqh8kZlA1Mb2wn1W95xoHay4I/4=;
-        b=OgamkSyW+w07gNRyBMzhT94ZSxA0yKZVKdEjFwHwUpzS6iGTdn34mjv7A+ziE/ulq5
-         HOGoiJ2aFpqW1xD/Y8ht2WVO9TwARKC5NviF+0i+gwf0MM4iyh9abIFDk283mRNT1LEc
-         k+P2DmtY8FxPLMMX3nwrJz6D7jerBZZel0Clx9id1q1x34h7V5Fgxx1T8iTkNS2JcmvV
-         y1G2BFSy8DWzo0RPfzjlVkgEk/hYm+z7Nzo6ltDZ/koNoiOgz+nZP7gSFuZ/Snz9ADg6
-         0yvJs2cTNeOq2Dbb+0ZcY5i/ft7P1xANBQHfrEi9jWzBpKBJ3GLc0a0sDPSb8Vv6n8Np
-         i5Ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=NtFOY3jGwpepTPbYEqh8kZlA1Mb2wn1W95xoHay4I/4=;
-        b=PN9nzzSqt6Cferd1wWc45cw/y/JcOYx7ftRUk3mVdzRf5ugpfBKRl46XBJ/pv2vmU9
-         XOd2ZEQKiZwgXl/mOSNb3ddev0zRbxOfPFRQOuGTwAcjWF5jpmAzAO9DA2QTBELXAP+B
-         CA/VuX6OBUwtrbbHsKDGNiDeaLEix79hioKHif0DsRRkK775XZrY7FkT3SI4L5UaFnfM
-         OWbTK+QTHUScscyzZnNz3cqJtwC01dRG1EhoVVwXa8tfQ7M4rChk4wzgexflJ1tk43hs
-         DELfHWXShOc+ZwyCYPJq8srdpM0a/rKBimZSErZVfIRsbMb/uHn4wtA8qX/pCAoj+uaE
-         NXGA==
-X-Gm-Message-State: AOAM530er/Mn3xDYHYgRzW70oo6B9MGojnowQVCva5tfhui5dUg/ccae
-        b+lT2yJq0hwI/jCua0Yop8M=
-X-Google-Smtp-Source: ABdhPJwWolRKrmT5Do1plHObMIKs81M84YmjT2qaELjqxjXDo7Tr3gWVDmkiHXMDIA+/aVCR8YuFYw==
-X-Received: by 2002:a5d:6152:: with SMTP id y18mr6699744wrt.255.1617830493687;
-        Wed, 07 Apr 2021 14:21:33 -0700 (PDT)
-Received: from adgra-XPS-15-9570.home (2a01cb0008bd270041a0a0f4308eafc0.ipv6.abo.wanadoo.fr. [2a01:cb00:8bd:2700:41a0:a0f4:308e:afc0])
-        by smtp.gmail.com with ESMTPSA id l14sm17173952wrm.77.2021.04.07.14.21.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Apr 2021 14:21:33 -0700 (PDT)
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        l.stach@pengutronix.de, Anson.Huang@nxp.com, krzk@kernel.org,
-        peng.fan@nxp.com, aisheng.dong@nxp.com, qiangqing.zhang@nxp.com,
-        alice.guo@nxp.com, aford173@gmail.com, agx@sigxcpu.org,
-        andrew.smirnov@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Adrien Grassein <adrien.grassein@gmail.com>
-Subject: [PATCH v1 7/7] arm64: dts: imx8mm: add power-domains
-Date:   Wed,  7 Apr 2021 23:21:22 +0200
-Message-Id: <20210407212122.626137-8-adrien.grassein@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210407212122.626137-1-adrien.grassein@gmail.com>
-References: <20210407212122.626137-1-adrien.grassein@gmail.com>
+        with ESMTP id S229734AbhDGVeU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 17:34:20 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B43F8C061760
+        for <devicetree@vger.kernel.org>; Wed,  7 Apr 2021 14:34:10 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lUFoK-0006ld-IO; Wed, 07 Apr 2021 23:34:04 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lUFoJ-0001pJ-Tp; Wed, 07 Apr 2021 23:34:03 +0200
+Date:   Wed, 7 Apr 2021 23:34:03 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Clemens Gruber <clemens.gruber@pqgruber.com>
+Cc:     linux-pwm@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sven Van Asbroeck <TheSven73@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 5/8] pwm: core: Support new PWM_STAGGERING_ALLOWED flag
+Message-ID: <20210407213403.h6n6l2t7vqoalceu@pengutronix.de>
+References: <20210406164140.81423-1-clemens.gruber@pqgruber.com>
+ <20210406164140.81423-5-clemens.gruber@pqgruber.com>
+ <20210407054658.qdsjkstqwynxeuxj@pengutronix.de>
+ <YG4UNoBCQJkEEfwi@workstation.tuxnet>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="3rqqlwp4d36foled"
+Content-Disposition: inline
+In-Reply-To: <YG4UNoBCQJkEEfwi@workstation.tuxnet>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add description for HSIO and USB power-domains.
 
-Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 35 +++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+--3rqqlwp4d36foled
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index a27e02bee6b4..028b8930db5a 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include <dt-bindings/clock/imx8mm-clock.h>
-+#include <dt-bindings/power/imx8mm-power.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -600,6 +601,38 @@ src: reset-controller@30390000 {
- 				interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
- 				#reset-cells = <1>;
- 			};
-+
-+			gpc: gpc@303a0000 {
-+				compatible = "fsl,imx8mm-gpc";
-+				reg = <0x303a0000 0x10000>;
-+				interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-parent = <&gic>;
-+				interrupt-controller;
-+				#interrupt-cells = <3>;
-+
-+				pgc {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					pgc_hsiomix: power-domain@IMX8MM_POWER_DOMAIN_HSIOMIX {
-+						#power-domain-cells = <0>;
-+						reg = <IMX8MM_POWER_DOMAIN_HSIOMIX>;
-+						clocks = <&clk IMX8MM_CLK_USB_BUS>;
-+					};
-+
-+					pgc_usb_otg1: power-domain@IMX8MM_POWER_DOMAIN_USB_OTG1 {
-+						#power-domain-cells = <0>;
-+						reg = <IMX8MM_POWER_DOMAIN_USB_OTG1>;
-+						power-domains = <&pgc_hsiomix>;
-+					};
-+
-+					pgc_usb_otg2: power-domain@IMX8MM_POWER_DOMAIN_USB_OTG2 {
-+						#power-domain-cells = <0>;
-+						reg = <IMX8MM_POWER_DOMAIN_USB_OTG2>;
-+						power-domains = <&pgc_hsiomix>;
-+					};
-+				};
-+			};
- 		};
- 
- 		aips2: bus@30400000 {
-@@ -953,6 +986,7 @@ usbotg1: usb@32e40000 {
- 				assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_500M>;
- 				fsl,usbphy = <&usbphynop1>;
- 				fsl,usbmisc = <&usbmisc1 0>;
-+				power-domains = <&pgc_usb_otg1>;
- 				status = "disabled";
- 			};
- 
-@@ -972,6 +1006,7 @@ usbotg2: usb@32e50000 {
- 				assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_500M>;
- 				fsl,usbphy = <&usbphynop2>;
- 				fsl,usbmisc = <&usbmisc2 0>;
-+				power-domains = <&pgc_usb_otg2>;
- 				status = "disabled";
- 			};
- 
--- 
-2.25.1
+On Wed, Apr 07, 2021 at 10:21:10PM +0200, Clemens Gruber wrote:
+> On Wed, Apr 07, 2021 at 07:46:58AM +0200, Uwe Kleine-K=F6nig wrote:
+> > On Tue, Apr 06, 2021 at 06:41:37PM +0200, Clemens Gruber wrote:
+> > > If the flag PWM_STAGGERING_ALLOWED is set on a channel, the PWM driver
+> > > may (if supported by the HW) delay the ON time of the channel relative
+> > > to the channel number.
+> > > This does not alter the duty cycle ratio and is only relevant for PWM
+> > > chips with less prescalers than channels, which would otherwise assert
+> > > multiple or even all enabled channels at the same time.
+> > >=20
+> > > If this feature is supported by the driver and the flag is set on
+> > > multiple channels, their ON times are spread out to improve EMI and
+> > > reduce current spikes.
+> >=20
+> > As said in reply to patch 4/8 already: I don't like this idea and
+> > think this should be made explicit using a new offset member in struct
+> > pwm_state instead. That's because I think that the wave form a PWM
+> > generates should be (completely) defined by the consumer and not by a
+> > mix between consumer and device tree. Also the consumer has no (sane)
+> > way to determine if staggering is in use or not.
+>=20
+> I don't think offsets are ideal for this feature: It makes it more
+> cumbersome for the user, because he has to allocate the offsets
+> himself instead of a simple on/off switch.
+> The envisioned usecase is: "I want better EMI behavior and don't care
+> about the individual channels no longer being asserted at the exact same
+> time".
 
+The formal thing is: "I want better EMI behavior and don't care if
+periods start with the active phase, it might be anywhere, even over a
+period boundary." Being asserted at the exact same time is just a detail
+for the pca9685.
+=20
+> > One side effect (at least for the pca9685) is that when programming a
+> > new duty cycle it takes a bit longer than without staggering until the
+> > new setting is active.=20
+>=20
+> Yes, but it can be turned off if this is a problem, now even per-PWM.
+
+Yes and that is a good thing. (BTW: I'd call it per-PWM-consumer, but
+details.)
+
+> > Another objection I have is that we already have some technical debt
+> > because there are already two different types of drivers (.apply vs
+> > .config+.set_polarity+.enable+.disable) and I would like to unify this
+> > first before introducing new stuff.
+>=20
+> But there is already PWM_POLARITY_INVERTED, which can be set in the DT.
+> I am only adding another flag.
+
+I understand your reasoning, and similar to "This diplay backlight needs
+an inverted PWM (as a low duty-cycle results in a high brightness" this
+semantic "This consumer doesn't care if the active cycle is anywhere in
+the period". Hmm, maybe I just have to think about it a bit more to
+become friends with that thought.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--3rqqlwp4d36foled
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmBuJUgACgkQwfwUeK3K
+7AkeZQgAkT07fezSSY0Ww/dh+XugS9Qc2nJ2nzT4ZE/mZ/2XANqgdpXCgWpJTYsT
+3JjMiC/3mn8CJBcBHPmVTAjb9sipkJoL6BFPYtcpAZ9JcWiYZPm7FmbViQERfp8a
+3uMlxYmTL8h2mIiaPs9Z8U88D15FPXNMExCsMV7kXrtAg8HFOaSO9n8ecXjwi3NO
+54bl9AGg2sVbpNqA9msLRQlmbKujHdJHNlm6n+tKX0vBWvI66mVtnuh72Ymxempp
+qYjkm9ulM9tNXVsaSj++oV7Li0/NJFsi8kv89Ap1Fb5fuYJSs4R0RoSQFOr9rE3K
+cshuyjCapTUubrSwAXiTDVEG27/XZw==
+=5yuQ
+-----END PGP SIGNATURE-----
+
+--3rqqlwp4d36foled--
