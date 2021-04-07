@@ -2,102 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8DB435700E
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 17:21:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB91B357004
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 17:18:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347279AbhDGPVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 11:21:20 -0400
-Received: from lizzard.sbs.de ([194.138.37.39]:50117 "EHLO lizzard.sbs.de"
+        id S1353441AbhDGPSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 11:18:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36244 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229812AbhDGPVT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Apr 2021 11:21:19 -0400
-Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
-        by lizzard.sbs.de (8.15.2/8.15.2) with ESMTPS id 137FKwnl016116
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 7 Apr 2021 17:20:58 +0200
-Received: from [139.22.47.56] ([139.22.47.56])
-        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 137FDblB023332;
-        Wed, 7 Apr 2021 17:13:37 +0200
-Subject: Re: [PATCH] arm64: dts: ti: k3-am65: Add support for UHS-I modes in
- MMCSD1 subsystem
-To:     Nishanth Menon <nm@ti.com>, Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        id S1353444AbhDGPSr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Apr 2021 11:18:47 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4622A61262;
+        Wed,  7 Apr 2021 15:18:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1617808713;
+        bh=wp5Kiq2yK8eQG66G8fRxjJMmHVWTNazhDUY7L57YSKU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JJQrTBpeIoQ+YMwpTJ0wlDmiS01GPvlhMqYQsItY2fu/k6P0Mmi/0vSVj1mOTn5vh
+         xS3mcFK31oRIiMuInhHLr5f3v5VPRLvsqGXZ5onoTjO15t8qeYGGxeKYpdt//CEwWU
+         1W0pUxbn5n19WVAV+FBXY4UAhhVXNc8h944gC1XY=
+Date:   Wed, 7 Apr 2021 17:18:31 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Joel Stanley <joel@jms.id.au>, openbmc@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Andrew Jeffery <andrew@aj.id.au>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210407104303.25950-1-a-govindraju@ti.com>
- <20210407145937.prvue66guhdls2fw@immovably>
-From:   Jan Kiszka <jan.kiszka@siemens.com>
-Message-ID: <7d089f1c-6f9e-82fe-fc8a-42c691d4ec40@siemens.com>
-Date:   Wed, 7 Apr 2021 17:13:37 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        Lubomir Rintel <lkundrak@v3.sk>,
+        - <devicetree@vger.kernel.org>, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: serial: 8250: deprecate
+ aspeed,sirq-polarity-sense
+Message-ID: <YG3NR4bGRjIGZhgx@kroah.com>
+References: <20210402182724.20848-1-zev@bewilderbeest.net>
+ <20210402182724.20848-2-zev@bewilderbeest.net>
 MIME-Version: 1.0
-In-Reply-To: <20210407145937.prvue66guhdls2fw@immovably>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210402182724.20848-2-zev@bewilderbeest.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07.04.21 16:59, Nishanth Menon wrote:
-> On 16:13-20210407, Aswath Govindraju wrote:
->> UHS-I speed modes are supported in AM65 S.R. 2.0 SoC[1].
->>
->> Add support by removing the no-1-8-v tag and including the voltage
->> regulator device tree nodes for power cycling.
->>
->> [1] - https://www.ti.com/lit/ug/spruid7e/spruid7e.pdf, section 12.3.6.1.1
->>
->> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> 
->> ---
->>
->> test logs:
->> https://pastebin.ubuntu.com/p/vpYbY9QWh8/
->>
-> Thanks, but I dont plan on queuing this for 5.13-rc1 (my PR is already
-> out). but it does trigger an interesting discussion..
-> 
->>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  1 -
->>  .../arm64/boot/dts/ti/k3-am654-base-board.dts | 33 +++++++++++++++++++
->>  2 files changed, 33 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->> index cb340d1b401f..632f32fce4a1 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->> @@ -301,7 +301,6 @@
->>  		ti,otap-del-sel = <0x2>;
->>  		ti,trm-icp = <0x8>;
->>  		dma-coherent;
->> -		no-1-8-v;
->>  	};
->>  
-> 
-> Jan - this will break your IOT SR1.0 boards, no? with all the SR1.0,
-> 2.0, 2.1 coming along, the plan for TI was to support older revs via
-> overlays hoping that older boards will eventually get replaced or die
-> out of lack of use.. but you do have production on 1.0 -> so would you
-> rather handle this in overlay OR IOT boards dts introduce no-1-8-v
-> property?
+On Fri, Apr 02, 2021 at 01:27:21PM -0500, Zev Weiss wrote:
+> This property ties SIRQ polarity to SCU register bits that don't
+> necessarily have any direct relationship to it; the only use of it
+> was removed in commit c82bf6e133d30e0f9172a20807814fa28aef0f67.
 
-I'm fine with pulling anything needed into our board-specific DTs. Those
-pending are for SR1.0 boards only. SR2 will come later and have their
-own DTs.
+Please write that as:
+	c82bf6e133d3 ("ARM: aspeed: g5: Do not set sirq polarity")
 
-Didn't follow the thread: Where is this patch located wrt my IOT2050
-series? Does it come first first, and we would have to rebase? Or would
-this change rather have to move the flag to k3-am65-iot2050-common.dtsi?
+> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
+> ---
+>  Documentation/devicetree/bindings/serial/8250.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Thanks a lot for having an eye on these subtle dependencies!
+What changed from previous versions?  That always goes below the ---
+line.
 
-Jan
+Please fix up and send a v5.
 
--- 
-Siemens AG, T RDA IOT
-Corporate Competence Center Embedded Linux
+thanks,
+
+greg k-h
