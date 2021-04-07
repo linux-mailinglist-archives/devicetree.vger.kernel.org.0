@@ -2,135 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC771356282
-	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 06:26:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF3E63562A8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Apr 2021 06:50:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344532AbhDGE0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 00:26:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56214 "EHLO
+        id S233032AbhDGEu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 00:50:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344515AbhDGE0b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 00:26:31 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 242D8C06174A;
-        Tue,  6 Apr 2021 21:26:21 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id x7so16372421wrw.10;
-        Tue, 06 Apr 2021 21:26:21 -0700 (PDT)
+        with ESMTP id S229825AbhDGEu6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 00:50:58 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C95F9C06174A;
+        Tue,  6 Apr 2021 21:50:49 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id g10so8703014plt.8;
+        Tue, 06 Apr 2021 21:50:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=0o51oKuyha39MJhgnZxMd0OeTompQ+WxXOsAhpP5pys=;
-        b=IbPPd48qDCfZS45non9+lat2dwNvXl6fJp5nD0kkUlGT6m8wXcTCbu3qwYB07PzGYt
-         twyQp9P46r8yhS+BiJy9za7WYL9oTeolDOSv5LKdBeajdPfawHPDDbKbGrW4bwI0lmne
-         LcvS+SApTGwSVkA+Ovq5JeNyLwW/9VWSx76YiDIStlWe3d2/FgLZCm3rr+2z/AZ87FCf
-         a1AnufSeTDh1KRgttFCNGbqekvtJcmTNh9q19JEf8bQ4N/Aoz8YGtKND+zJgeHh1DNLt
-         fZNRQa6K8SAFGzewWCBvZwrnOvspZHQr4ybYox0rHTqRDZJmibzK0ewsmq7d+LhBnHrv
-         KUdg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=oHeyYOhTyr/Pj14dswoKpegMv2vJUh025+BN2sVtXu8=;
+        b=roY/yLJtJzRhg3AFY5kSDhSdJzO7TXsC74zJKVKeUspDEKjofDINCo3OIsNJ8aAIhy
+         ZqlAc69WUGI4DTk2wDz61IpEh/q8U+hB1v37/3I+9CeVRXzgQz/7liKOINnPfwD/iadg
+         ZoU6lGUBUkI3lTT2pqoD7bTUL487cp5i7vzh0WvtoFZtzOMMQgubNQF9T+ot35w6SQmf
+         CfS3Jo6JPrSprlsL6QkVpJ51y4oZDLoRcjSnSG+XUa9Etafe645llvI9mbDvAQcB0mRb
+         EF5NVOr2vF50EhBbR0AcriXLgHvMXYxgvGz7qs58yWr5HHzhtCgH+PNEjzanK223MHpt
+         0qdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=0o51oKuyha39MJhgnZxMd0OeTompQ+WxXOsAhpP5pys=;
-        b=VCAMsuscor6zJ6hjmKnX2jUoTLfffi0jVVNFrM2HKUgxoARC2jOeK9tMpWqDGENzu5
-         7zwk50NwBsVmw+x4HE099kHrD6w5LS/TAEQbQyjumlyS1wukaFzHKnnqBrsYyOfeDaGh
-         Ivom2jLt4rOwRJhmJSXd4Sett352zeOVXj8NALvcs5ILyjk0MA8dyYem9AnfFU7WS6jD
-         VsRAxSypQ/8LEJBpGO/SmvljouVtKAcI8oz22pJAeJPGDDRiC0Tbfn1e/HXkKU1hxeP0
-         /lpUvfF72WnndcAVu4AOz52K22jikU+wHKWFO45fLQTQtULvVsqYKBqoMz32HGOeUTHS
-         DHSA==
-X-Gm-Message-State: AOAM530O+xMljE9EGivZrXNqGufLXUng45dSHYFMFta8SspTzpEtT5Fy
-        qlI6o2aWCL4o7EZrTWG56O/nm/r6u4M=
-X-Google-Smtp-Source: ABdhPJzXS9p7nYZ1ia1ZqV4CKAJVhecTAVzEWbh4qtHNl1dKWiE9XW4ULLJge5LZa4M2w/BXPfTkqQ==
-X-Received: by 2002:a5d:6c6f:: with SMTP id r15mr1807871wrz.77.1617769579958;
-        Tue, 06 Apr 2021 21:26:19 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id k3sm16487112wrc.67.2021.04.06.21.26.18
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=oHeyYOhTyr/Pj14dswoKpegMv2vJUh025+BN2sVtXu8=;
+        b=BUl0ONUXlK4jtFqrqno6BzU90xJjXVqrQdRHUTMACog/W1KDqEsGBPR+r9+GhV3sba
+         7cwVsFfx7jgt+RuRIRKYEtHLi/UXFM0+/nPq0RRu+IcTwiIWno/1FxfgnFJQb0vY0gWt
+         znfPfBLxhS8b8GOdQfb5qdht3Cv+rrOMoAWBZu/UsPvi29oXtkONvaNeTTdueo4b4JXl
+         JIIGtQUG2KvoGHnctpL6WTWhfqLxJaN+2QmKpVjQTTfAMUETOfRyTqcs5MywQsFlkRW1
+         qJEcvEqLQaGMSzKoRR9jkodaFvOde5rc7X/H1pMxlbm0Z+Z6MXWQWRCpjJfHPuwGyNBP
+         N6tQ==
+X-Gm-Message-State: AOAM531vfwVLI3xpFp7/Hcrp2lHY2vilrVVNb4zwlgC6UkgWIaFDOK5X
+        z1RejmHLSrQv2CrwWqBnIIY=
+X-Google-Smtp-Source: ABdhPJypi5n57JibwUe2l03PZQJOpv/eeU/jgVCqqreTiZ/weG7cr23O4MMOTkU2gI8gQYx8/djOSw==
+X-Received: by 2002:a17:902:bd8f:b029:e6:ec5a:3a6 with SMTP id q15-20020a170902bd8fb02900e6ec5a03a6mr1526114pls.31.1617771049034;
+        Tue, 06 Apr 2021 21:50:49 -0700 (PDT)
+Received: from localhost.localdomain ([138.197.212.246])
+        by smtp.gmail.com with ESMTPSA id n52sm882679pfv.13.2021.04.06.21.50.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Apr 2021 21:26:19 -0700 (PDT)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>,
-        Hyeonki Hong <hhk7734@gmail.com>
-Subject: [PATCH v2 3/3] arm64: dts: meson: add GPIO line names to ODROID N2/N2+
-Date:   Wed,  7 Apr 2021 04:26:09 +0000
-Message-Id: <20210407042609.9736-4-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210407042609.9736-1-christianshewitt@gmail.com>
-References: <20210407042609.9736-1-christianshewitt@gmail.com>
+        Tue, 06 Apr 2021 21:50:47 -0700 (PDT)
+From:   DENG Qingfang <dqfext@gmail.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-staging@lists.linux.dev, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+Cc:     Weijie Gao <weijie.gao@mediatek.com>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>
+Subject: [RFC v2 net-next 0/4] MT7530 interrupt support
+Date:   Wed,  7 Apr 2021 12:50:34 +0800
+Message-Id: <20210407045038.1436843-1-dqfext@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hyeonki Hong <hhk7734@gmail.com>
+Add support for MT7530 interrupt controller.
 
-Add GPIO line-name identifiers to the ODROID N2/N2+ common dtsi.
+DENG Qingfang (4):
+  net: phy: add MediaTek PHY driver
+  net: dsa: mt7530: add interrupt support
+  dt-bindings: net: dsa: add MT7530 interrupt controller binding
+  staging: mt7621-dts: enable MT7530 interrupt controller
 
-Signed-off-by: Hyeonki Hong <hhk7734@gmail.com>
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../dts/amlogic/meson-g12b-odroid-n2.dtsi     | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
+ .../devicetree/bindings/net/dsa/mt7530.txt    |   5 +
+ drivers/net/dsa/mt7530.c                      | 203 ++++++++++++++++--
+ drivers/net/dsa/mt7530.h                      |  18 +-
+ drivers/net/phy/Kconfig                       |   5 +
+ drivers/net/phy/Makefile                      |   1 +
+ drivers/net/phy/mediatek.c                    | 109 ++++++++++
+ drivers/staging/mt7621-dts/mt7621.dtsi        |   3 +
+ 7 files changed, 323 insertions(+), 21 deletions(-)
+ create mode 100644 drivers/net/phy/mediatek.c
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-index 0a994668e707..473b81c652cf 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-@@ -446,6 +446,51 @@
- };
- 
- &gpio {
-+	gpio-line-names =
-+		/* GPIOZ */
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		/* GPIOH */
-+		"", "", "", "", "", "", "", "",
-+		"",
-+		/* BOOT */
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		/* GPIOC */
-+		"", "", "", "", "", "", "", "",
-+		/* GPIOA */
-+		"PIN_44", /* GPIOA_0 */
-+		"PIN_46", /* GPIOA_1 */
-+		"PIN_45", /* GPIOA_2 */
-+		"PIN_47", /* GPIOA_3 */
-+		"PIN_26", /* GPIOA_4 */
-+		"", "", "", "", "", "",
-+		"PIN_42", /* GPIOA_11 */
-+		"PIN_32", /* GPIOA_12 */
-+		"PIN_7",  /* GPIOA_13 */
-+		"PIN_27", /* GPIOA_14 */
-+		"PIN_28", /* GPIOA_15 */
-+		/* GPIOX */
-+		"PIN_16", /* GPIOX_0 */
-+		"PIN_18", /* GPIOX_1 */
-+		"PIN_22", /* GPIOX_2 */
-+		"PIN_11", /* GPIOX_3 */
-+		"PIN_13", /* GPIOX_4 */
-+		"PIN_33", /* GPIOX_5 */
-+		"PIN_35", /* GPIOX_6 */
-+		"PIN_15", /* GPIOX_7 */
-+		"PIN_19", /* GPIOX_8 */
-+		"PIN_21", /* GPIOX_9 */
-+		"PIN_24", /* GPIOX_10 */
-+		"PIN_23", /* GPIOX_11 */
-+		"PIN_8",  /* GPIOX_12 */
-+		"PIN_10", /* GPIOX_13 */
-+		"PIN_29", /* GPIOX_14 */
-+		"PIN_31", /* GPIOX_15 */
-+		"PIN_12", /* GPIOX_16 */
-+		"PIN_3",  /* GPIOX_17 */
-+		"PIN_5",  /* GPIOX_18 */
-+		"PIN_36"; /* GPIOX_19 */
- 	/*
- 	 * WARNING: The USB Hub on the Odroid-N2 needs a reset signal
- 	 * to be turned high in order to be detected by the USB Controller
 -- 
-2.17.1
+2.25.1
 
