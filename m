@@ -2,104 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87425357ACF
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 05:37:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65D44357ADF
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 05:45:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230093AbhDHDhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 23:37:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50660 "EHLO
+        id S229514AbhDHDpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 23:45:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229958AbhDHDhk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 23:37:40 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC5AC061760
-        for <devicetree@vger.kernel.org>; Wed,  7 Apr 2021 20:37:28 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id w70so810215oie.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Apr 2021 20:37:28 -0700 (PDT)
+        with ESMTP id S229469AbhDHDpv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 23:45:51 -0400
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 932C8C061760;
+        Wed,  7 Apr 2021 20:45:39 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id 82so1090067yby.7;
+        Wed, 07 Apr 2021 20:45:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=pPJoEjIADtMSYqf0Oa1ErjETc00pLfQ3w68UDMPlgnc=;
-        b=jNBkokWuNT8XwU++AtI4hD+oU41vAVGNABOg1x0mNuddD0q0Sed0heV56LVmZ2Yqby
-         l+na0YCJi3nkmfdyvRH+7pQYRinv0mrfogiW6qfBENuZ1WkZyHR2N/ulWzgYf+KM96ae
-         edk+/S0lP8DEpTrURrSMWeIYjdH4uHSB+Qxy66R4sQPWG+2UOh7oqvK22ARpJCbb8RJS
-         20oYHGLceLJxmKakRpAjMP0aeQTFtinXyeOUO5FB2BZzaDh9QLv4/sE4zF49B2dOfJ+d
-         95TNDIeVhTJASmD0DXrDceiYHNmaJbIKdYgSc8gTdU6NTt3XcBguIPmn0+hkBm6rJZ6A
-         fsCw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YpXyY82hIb+Th5j4vFZ0f7bQvdjavP/oC7bA+N+HLRo=;
+        b=ntVXVu5L0RneQrc8Q9HMMHsvxVKwZByhF8LxTqOp1KeHAgcVvIydsECmWIZGlPMWyW
+         ms1UmlAXKu0cXHftCqFuQDWgIUMOwpPAh1VRp57wK7mpx60sSJxlQrfvy/NbBfXM0AWG
+         iKE5yAMn56HRQ9ri9gTU0oqqeYgZoHvrLGuFCnYBLuG/vQHw+DvKpG1GPPndh/bHMDRm
+         PzzunMdViWXxI2zTJ5iJeLtJloIzteDo05cRuleVowX84okO4xLlKW9mzIsCWrB7/h7A
+         JTwX+CSuNOv4iLDX+w7vzJG+ZjtfD2NzHTQzOintSNy3JuCqxGACjVR+yJ5FDtldA+c2
+         h7Og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=pPJoEjIADtMSYqf0Oa1ErjETc00pLfQ3w68UDMPlgnc=;
-        b=HXdvsyhm1UrjZv33z8qjCyzuwSnyOfg4hE4Iyq6K48AIDHXaGbTu0re+HgyTyGKk9L
-         A4N5Vpo7D1ha7MNv7VwoSxWrPQ612/XseM9SPAAIOwqtLJhLpl0u57VZjUteXWwhqnaW
-         cS5IXckmiFsJWjgFmDm4uxwgqFvYtgcsT9815dR0hVd+HYRMTsjJoto1jh4NZalSl0Co
-         HNjOiJRCGrD72mHv6dsgndgoBrEf8tTEOyEDaJ0DY/6ThDttfoBHIY6MjyiBfEMTDvmE
-         mlvRyGe0tX/EocLnGYx+0mC3nOiCPcXnYERj30C47+5sGb7nt2yDqunCeCm12rJopfMK
-         i8IQ==
-X-Gm-Message-State: AOAM533nvvnXHAWsFXwwhAI+DV62WwPgZTdT6NZ6Y1lF4NW6y86sU1YX
-        V+UJJtt1BbU/hnNYxb0tlRXPKg==
-X-Google-Smtp-Source: ABdhPJz22Iy8T7rCPwrSX0DCE93mSQjgqA9px+yfiTf+T3vrLBTSFY67OiStjJzUwd4tZMqTDqBgGw==
-X-Received: by 2002:aca:f597:: with SMTP id t145mr4683354oih.121.1617853047958;
-        Wed, 07 Apr 2021 20:37:27 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id c12sm5109319oou.26.2021.04.07.20.37.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Apr 2021 20:37:27 -0700 (PDT)
-Date:   Wed, 7 Apr 2021 22:37:25 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Guru Das Srinagesh <gurus@codeaurora.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH 2/2] pinctrl: qcom-pmic-gpio: Add support for pm8008
-Message-ID: <20210408033725.GO904837@yoga>
-References: <1568107824b071265b5fc3a195a1d91089ad617a.1617834404.git.gurus@codeaurora.org>
- <67ce531c58ba5663ec74021b01617e3d5cd106c7.1617834404.git.gurus@codeaurora.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YpXyY82hIb+Th5j4vFZ0f7bQvdjavP/oC7bA+N+HLRo=;
+        b=HfcQ/Nszve4ZccVD/RFRTBDaZxCc3a/Yt4nsadZcmQu1ewwBxlgpbWs+FHVYQwZR6d
+         IHHAfs4/r6z9SPWNr/igqx4siXl++jtABtSSoy4cD9WEsb901laeiRIqon5yLKi1ssb9
+         WJaA4YRi+9lsd5J5e9Y5AYmrnqTC9H1odE15rxvmVarCdrY72HncjTsstAAkFwLB164d
+         8n6ZAs1e4GaJG+qIvJAsgFJyCrR529mcidBlFfRz3f0rhN+9CQdu7/6Rx1nGVBQKIF55
+         LeV7QC7//JaH6bzCQM9+AGKqpMNja0PkcXLkzkdmXmYgCrBuXk/C3pV7ZXspfUsYJDsC
+         Sb8Q==
+X-Gm-Message-State: AOAM531q2verIfZvXzEIDYVefUPotgFBvuStxGXb8zaiZ0dYid8V2FHC
+        rvbw1cn1bY2L6IGa8BZPlw/Hg5nDAzcuap/fKZo=
+X-Google-Smtp-Source: ABdhPJxrDGN21/BbNTfevzT0w6+H9gdFlLh3L/VOrZ8aqLPhftv9Ya6tsKrE4JScC+D0oB4InTW/a6BztUY6iXpk1WE=
+X-Received: by 2002:a25:f304:: with SMTP id c4mr8455726ybs.236.1617853538936;
+ Wed, 07 Apr 2021 20:45:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <67ce531c58ba5663ec74021b01617e3d5cd106c7.1617834404.git.gurus@codeaurora.org>
+References: <20201105212116.411422-1-peter.hilber@opensynergy.com> <20201105212116.411422-11-peter.hilber@opensynergy.com>
+In-Reply-To: <20201105212116.411422-11-peter.hilber@opensynergy.com>
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+Date:   Thu, 8 Apr 2021 09:15:28 +0530
+Message-ID: <CAOh2x==6TH-A8076weSLy7kLqrNZgRgp2GFyAEGGPyikw1rgGg@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 10/10] firmware: arm_scmi: Add virtio transport
+To:     Peter Hilber <peter.hilber@opensynergy.com>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        virtualization@lists.linux-foundation.org,
+        virtio-dev@lists.oasis-open.org,
+        Igor Skalkin <igor.skalkin@opensynergy.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        souvik.chakravarty@arm.com, alex.bennee@linaro.org,
+        jean-philippe@linaro.org, mikhail.golubev@opensynergy.com,
+        anton.yakovlev@opensynergy.com,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Jason Wang <jasowang@redhat.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 07 Apr 17:35 CDT 2021, Guru Das Srinagesh wrote:
+On Fri, Nov 6, 2020 at 2:59 AM Peter Hilber
+<peter.hilber@opensynergy.com> wrote:
 
-> Add support for the two GPIOs present on PM8008.
-> 
-> Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
-> ---
->  drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> index c2b9f2e..76e997a 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> @@ -1137,6 +1137,7 @@ static const struct of_device_id pmic_gpio_of_match[] = {
->  	{ .compatible = "qcom,pm6150l-gpio", .data = (void *) 12 },
->  	/* pmx55 has 11 GPIOs with holes on 3, 7, 10, 11 */
->  	{ .compatible = "qcom,pmx55-gpio", .data = (void *) 11 },
-> +	{ .compatible = "qcom,pm8008-gpio", .data = (void *) 2 },
+> +static int scmi_vio_probe(struct virtio_device *vdev)
+> +{
+> +       struct device *dev = &vdev->dev;
+> +       struct scmi_vio_channel **vioch;
+> +       bool have_vq_rx;
+> +       int vq_cnt;
+> +       int i;
+> +       struct virtqueue *vqs[VIRTIO_SCMI_VQ_MAX_CNT];
+> +
+> +       vioch = devm_kcalloc(dev, VIRTIO_SCMI_VQ_MAX_CNT, sizeof(*vioch),
+> +                            GFP_KERNEL);
+> +       if (!vioch)
+> +               return -ENOMEM;
+> +
+> +       have_vq_rx = virtio_has_feature(vdev, VIRTIO_SCMI_F_P2A_CHANNELS);
+> +       vq_cnt = have_vq_rx ? VIRTIO_SCMI_VQ_MAX_CNT : 1;
+> +
+> +       for (i = 0; i < vq_cnt; i++) {
+> +               vioch[i] = devm_kzalloc(dev, sizeof(**vioch), GFP_KERNEL);
+> +               if (!vioch[i])
+> +                       return -ENOMEM;
+> +       }
+> +
+> +       if (have_vq_rx)
+> +               vioch[VIRTIO_SCMI_VQ_RX]->is_rx = true;
+> +
+> +       if (virtio_find_vqs(vdev, vq_cnt, vqs, scmi_vio_complete_callbacks,
+> +                           scmi_vio_vqueue_names, NULL)) {
+> +               dev_err(dev, "Failed to get %d virtqueue(s)\n", vq_cnt);
+> +               return -1;
+> +       }
+> +       dev_info(dev, "Found %d virtqueue(s)\n", vq_cnt);
+> +
+> +       for (i = 0; i < vq_cnt; i++) {
+> +               spin_lock_init(&vioch[i]->lock);
+> +               vioch[i]->vqueue = vqs[i];
+> +               vioch[i]->vqueue->priv = vioch[i];
 
-As with the binding, please keep these sorted alphabetically.
+The vqueue->priv field is used by core, you can't update it else
+notifications won't work.
 
-With that:
+> +       }
+> +
+> +       vdev->priv = vioch;
+> +
+> +       virtio_device_ready(vdev);
+> +
+> +       return 0;
+> +}
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+diff --git a/drivers/firmware/arm_scmi/virtio.c
+b/drivers/firmware/arm_scmi/virtio.c
+index f70aa72f34f1..b1af77341b30 100644
+--- a/drivers/firmware/arm_scmi/virtio.c
++++ b/drivers/firmware/arm_scmi/virtio.c
+@@ -80,7 +80,8 @@ static int scmi_vio_populate_vq_rx(struct
+scmi_vio_channel *vioch,
 
-Regards,
-Bjorn
+ static void scmi_vio_complete_cb(struct virtqueue *vqueue)
+ {
+-       struct scmi_vio_channel *vioch = vqueue->priv;
++       struct scmi_vio_channel **_vioch = vqueue->vdev->priv;
++       struct scmi_vio_channel *vioch = _vioch[vqueue->index];
+        unsigned long iflags;
+        unsigned int length;
 
->  	{ },
->  };
->  
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
-> 
+@@ -454,7 +455,6 @@ static int scmi_vio_probe(struct virtio_device *vdev)
+        for (i = 0; i < vq_cnt; i++) {
+                spin_lock_init(&vioch[i]->lock);
+                vioch[i]->vqueue = vqs[i];
+-               vioch[i]->vqueue->priv = vioch[i];
+        }
+
+        vdev->priv = vioch;
