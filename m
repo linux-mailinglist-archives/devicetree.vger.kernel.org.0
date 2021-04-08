@@ -2,195 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 759EF358FFE
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 00:49:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4060359004
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 00:53:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232800AbhDHWti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 18:49:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48850 "EHLO
+        id S232854AbhDHWxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 18:53:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232684AbhDHWth (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 18:49:37 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5499C061761
-        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 15:49:23 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id g15so2942898pfq.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021 15:49:23 -0700 (PDT)
+        with ESMTP id S232643AbhDHWxY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 18:53:24 -0400
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9C6BC061760;
+        Thu,  8 Apr 2021 15:53:12 -0700 (PDT)
+Received: by mail-qk1-x72b.google.com with SMTP id z10so4033918qkz.13;
+        Thu, 08 Apr 2021 15:53:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=OA781OccRNwXE7rt2K4lFZ5YBX2tVVTL8OP2VVE7W5k=;
-        b=WV51htl117L8zuAaqHXXoY7ed5xTWBqk5ntWuoyogOc/YvHhI2fi3POHYHV+gyiI+h
-         7jwQJ5n3UeNi0UQ+xcGrHwjZQTU4J95PvkA1frsL8un4AnJ2cNbmyci9oGBSQX11Nx04
-         lLiHi1bh92wdh08yNIMHySzMNYC96WXXNunv8=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=/Q6ViLCHPm36Ds023XtZI8X+biRfAfx253hJcmCLWz0=;
+        b=U9+zy44FLk8TENK38IgPCc2RK3Di7tBkNjAD3qTNYnIL8DR0EFnfbMuLLZQTq/6Gk8
+         MYY3il8gKOGIJ6tB9hbcZv+ixeVCP9QF71gWLbJMwHHGwOD2qnkPpzQdO1D3vwac4q6+
+         LhpIxtppOSWcIY/81scF9aCuOTcoOBTHeePYBAE8809+2itKHqzf+nKk2Bj2e2wriqfl
+         utGAw8pSXXnpkjxL/IoDeKcUreedg6fcJnHGBUTwjx4NzPAOlsKdWP8Yao4LaZLl2Jwo
+         cT+KyMj/YDCJtE4ItSAcUBxZgZ8DfD13SHM/JwtyUj+2t62/5cCoJmZQwJ0IjGXzaxii
+         BvpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=OA781OccRNwXE7rt2K4lFZ5YBX2tVVTL8OP2VVE7W5k=;
-        b=sfSY/m38XG+i5O/Rf8UzreWir3qxQTy0x+MPRjVJ5cSMkgHrWZ7LZyBg1XoCoNUQj6
-         ArMbyGJPaZjiqGy5r+2wGYGS4jrJIlCR9xg7fTEJx1Qb3VjaNRWB7ZhCW+8MGDpMvO1g
-         3+EwA4FhkGhiLnsQnyARxlA9dhzRbZc2YYYDshmlxd3zaqnYgCopkaeRsqQw7XXMWbMb
-         QLvJ++P9MLrRuB/jjYr79YKyQA+nQWIoPJZbO4UhoIhbqwT/4YGBf+YR/yhkl6lmULH2
-         4iajrEAWNUOCfaTEk5JpveoiWvA+YJxZ9tPvZF2PymwtQPdBeCoKNG7TzbpqGc0X/lcJ
-         gUeA==
-X-Gm-Message-State: AOAM533l1y9TmCmfgXqOsTnbS52q9lOH0L+xbhRj18dLSMuw2PlVGrdT
-        irFAsgS+igH/a/X6hXp/HCf/EQ==
-X-Google-Smtp-Source: ABdhPJzBrRR/poki5sG+OHaXYR11z6gwhKEfjfuEHH4IEwICWTvaml5hGOyodyjI9brEWQS0oONOvQ==
-X-Received: by 2002:a05:6a00:2389:b029:21a:d3b4:e5 with SMTP id f9-20020a056a002389b029021ad3b400e5mr9858217pfc.39.1617922163264;
-        Thu, 08 Apr 2021 15:49:23 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:d013:d350:4066:89b8])
-        by smtp.gmail.com with UTF8SMTPSA id d26sm417094pfo.162.2021.04.08.15.49.22
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=/Q6ViLCHPm36Ds023XtZI8X+biRfAfx253hJcmCLWz0=;
+        b=b0svh+RdqAQj7elTN8PchpuEGsAc25nQ9P+wGOiZsNF4RDw0LcjXi8CTDwwPVTC22o
+         NYSc+Yk/mr87r8IUGBvXhVb3ZM5IpCEodprwNRdJEth5M8BWhNrhOirzXoS3J/3O+RZB
+         7tcojGfvSrETL/6PLwJxRQKuOA2eWM3GNL9h/zBQ46NfUZ3NeR/VC4Qw8U+HthXHhWPv
+         1OaFP3oATkjvSzJeQKHPp8G5ogeNs+QTHfK+82yu8PnuKMBksNypFBJuXpTB3N+pcC6H
+         exAVR9n92nR5paURFr3wmqBxQA/Qg+44JQtDNs1IVzPCF8vaqD8QH4C0hIOu3iRD4+ZB
+         ZuwA==
+X-Gm-Message-State: AOAM531Lan8z4kysWwJ0qMmS6yvecB829NfMx+XTfiw4/Damh6Mc/Led
+        kyq0tUR1beUgnq4qlTQY6cA=
+X-Google-Smtp-Source: ABdhPJySPompxVrcysWJRaIa7S5JTwdagzcLG4VVIhmGjp9CiFS5EqY03e5TVi9GeqNKC7B/INPcuw==
+X-Received: by 2002:a37:44e:: with SMTP id 75mr10866732qke.150.1617922391980;
+        Thu, 08 Apr 2021 15:53:11 -0700 (PDT)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id n1sm643776qtp.76.2021.04.08.15.53.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Apr 2021 15:49:22 -0700 (PDT)
-Date:   Thu, 8 Apr 2021 15:49:21 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Peter Chen <peter.chen@nxp.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-usb@vger.kernel.org,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Bastien Nocera <hadess@hadess.net>, devicetree@vger.kernel.org,
-        Stephen Boyd <swboyd@chromium.org>
-Subject: Re: [PATCH v6 1/5] dt-bindings: usb: Add binding for Realtek RTS5411
- hub controller
-Message-ID: <YG+IcUvJPAa3NieK@google.com>
-References: <20210405201817.3977893-1-mka@chromium.org>
- <20210405124900.v6.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
- <20210406163001.GA1910748@robh.at.kernel.org>
+        Thu, 08 Apr 2021 15:53:11 -0700 (PDT)
+Subject: Re: [PATCH v4 1/1] of: unittest: overlay: ensure proper alignment of
+ copied FDT
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20210408204508.2276230-1-frowand.list@gmail.com>
+ <CAL_Jsq+Os6O6CpRYurmf_4-Xnzgpkd1jbDbnp0en1TPbZXTf7w@mail.gmail.com>
+ <b73965c7-e975-6c48-3367-411f6c754181@roeck-us.net>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <c625202a-0530-adbd-d4f8-0935d3ed37e2@gmail.com>
+Date:   Thu, 8 Apr 2021 17:53:10 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <b73965c7-e975-6c48-3367-411f6c754181@roeck-us.net>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210406163001.GA1910748@robh.at.kernel.org>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 06, 2021 at 11:30:01AM -0500, Rob Herring wrote:
-> On Mon, Apr 05, 2021 at 01:18:13PM -0700, Matthias Kaehlcke wrote:
-> > The Realtek RTS5411 is a USB 3.0 hub controller with 4 ports.
-> > 
-> > This initial version of the binding only describes USB related
-> > aspects of the RTS5411, it does not cover the option of
-> > connecting the controller as an i2c slave.
-> > 
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
-> > 
-> > Changes in v7:
-> > - added type ref for 'companion-hub' property
-> > 
-> > Changes in v6:
-> > - Realtek binding instead of generic onboard_usb_hub
-> > - added 'companion-hub' property
-> > - added reference to 'usb-device.yaml'
-> > - 'fixed' indentation of compatible entries to keep yamllint happy
-> > - added 'additionalProperties' entry
-> > - updated commit message
-> > 
-> > Changes in v5:
-> > - updated 'title'
-> > - only use standard USB compatible strings
-> > - deleted 'usb_hub' node
-> > - renamed 'usb_controller' node to 'usb-controller'
-> > - removed labels from USB nodes
-> > - added 'vdd-supply' to USB nodes
-> > 
-> > Changes in v4:
-> > - none
-> > 
-> > Changes in v3:
-> > - updated commit message
-> > - removed recursive reference to $self
-> > - adjusted 'compatible' definition to support multiple entries
-> > - changed USB controller phandle to be a node
-> > 
-> > Changes in v2:
-> > - removed 'wakeup-source' and 'power-off-in-suspend' properties
-> > - consistently use spaces for indentation in example
-> > 
-> >  .../bindings/usb/realtek,rts5411.yaml         | 59 +++++++++++++++++++
-> >  1 file changed, 59 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-> > new file mode 100644
-> > index 000000000000..b59001972749
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-> > @@ -0,0 +1,59 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/usb/realtek,rts5411.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Binding for the Realtek RTS5411 USB 3.0 hub controller
-> > +
-> > +maintainers:
-> > +  - Matthias Kaehlcke <mka@chromium.org>
-> > +
-> > +allOf:
-> > +  - $ref: usb-device.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - usbbda,5411
-> > +          - usbbda,411
-> > +
+On 4/8/21 4:54 PM, Guenter Roeck wrote:
+> On 4/8/21 2:28 PM, Rob Herring wrote:
+>>
+>> Applying now so this gets into linux-next this week.
+>>
+> The patch doesn't apply on top of today's -next; it conflicts
+> with "of: properly check for error returned by fdt_get_name()".
 > 
-> reg: true
+> I reverted that patch and applied this one, and the DT unittests
+> run with it on openrisc. I do get a single test failure, but I that
+> is a different problem (possibly with the test case itself).
 > 
-> to fix the error.
+> ### dt-test ### FAIL of_unittest_dma_ranges_one():923 of_dma_get_range: wrong DMA addr 0x00000000
+> 	(expecting 100000000) on node /testcase-data/address-tests/bus@80000000/device@1000
 
-Will fix in v8 (this is v7, even though the subject says otherwise,
-I forgot to increment the version number when sending).
+That is a known regression on the target that I use for testing (and
+has been since 5.10-rc1) - the 8074 dragonboard, arm 32.  No
+one else has reported it on the list, so even though I want to debug
+and fix it "promptly", other tasks have had higher priority.  In my
+notes I list two suspect commits:
 
-> > +  vdd-supply:
-> > +    description:
-> > +      phandle to the regulator that provides power to the hub.
-> > +
-> > +  companion-hub:
-> > +    $ref: '/schemas/types.yaml#/definitions/phandle'
-> > +    description:
-> > +      phandle to the companion hub on the controller.
+  e0d072782c73 dma-mapping: introduce DMA range map, supplanting dma_pfn_offset
+  0a0f0d8be76d dma-mapping: split <linux/dma-mapping.h>
+
+I think that was purely based on looking at the list of commits that
+may have touched OF dma.  I have not done a bisect.
+
+One specific report of not seeing the FAIL was Vireshk on 5.11-rc6 with
+a Hikey board.
+
 > 
-> This should be required I think. I suppose you could only hook up 2.0
-> ports, but why. And 3.0 only wouldn't be USB compliant, would it?
+> Tested-by: Guenter Roeck <linux@roeck-us.net>
 
-Agreed, that makes sense now that this is a specific binding for the
-RTS5411. It seems unlikely that a system would use a USB 3.0 capable
-hub on a USB 2.0 controller, and as you said 3.0 only wouldn't be USB
-compliant.
+Thanks for testing!
 
-I made the attribute initially optional because the binding was
-intended to be generic (bad idea), and for certain hubs a required
-'companion-hub' wouldn't make sense (e.g. USB 2.0 only).
-
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    usb-controller {
 > 
-> 'usb' is the standard name.
+> Guenter
+> 
 
-ack
-
-Thanks for your comments!
-
-m.
