@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3F53358913
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 17:58:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5923435891A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 17:59:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231843AbhDHP6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 11:58:40 -0400
-Received: from mail-oo1-f43.google.com ([209.85.161.43]:47025 "EHLO
-        mail-oo1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231791AbhDHP6h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 11:58:37 -0400
-Received: by mail-oo1-f43.google.com with SMTP id 125-20020a4a1a830000b02901b6a144a417so609941oof.13;
-        Thu, 08 Apr 2021 08:58:26 -0700 (PDT)
+        id S232196AbhDHP7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 11:59:20 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:45984 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231791AbhDHP7T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 11:59:19 -0400
+Received: by mail-oi1-f171.google.com with SMTP id d12so2629699oiw.12;
+        Thu, 08 Apr 2021 08:59:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=6J4L/TsHJ2gKS1KfT1jfs3S232wn3ZqOeaVbpNbMR50=;
-        b=id9jjnFVw46xw1IVJ/y2KAuq04WVqFVHzq/7zXR+wA4/d9W2YmVKBs5s0k0zuZnaP5
-         4vq0Eq3skVZsoOmPiP2cZJ9+qZp8YtuforU4e0yYLaw/8x4QcNWOyeFvoIkAQgRBVNxy
-         Nn8RzHg+cJMfEfeofahCJvLMFCyEdoQ5t3v7POqbqe3PaPQfBHGeRymWjOtaRtLlp6U4
-         3GNxX5ia9OyaBLdZ7k/WGA6f1o5vm0H3+yW4/aGgkZxVIwP1un3mtgERDnjgI4CwO3xl
-         Zqmc2PIuN9iT+QuqOhM0ZrqiiAtYBZUROx+Z6jW0eCBoEbvhuKDznOpPVdiSNoZAxolU
-         YxiA==
-X-Gm-Message-State: AOAM530UYkbthlNL3ewOxOGDAw2y3gWNAA1gAnP0qoIqF+HfkH3tREz+
-        IuEZLn+arzuIV/5uMVns+Q==
-X-Google-Smtp-Source: ABdhPJwe1NgTXpk1jXSjJcDpXkDclx6OHy852pAAAlbNj1hDALIwQ1pjKNO6ghh860jhdWIrEsJCQQ==
-X-Received: by 2002:a4a:bd1a:: with SMTP id n26mr7989991oop.45.1617897505861;
-        Thu, 08 Apr 2021 08:58:25 -0700 (PDT)
+        bh=jtoAw95rvXg1r6cke0J3PIsrEjdw50dBNfyvcmHc460=;
+        b=gfI0dWJQtmxZKwtgNOjeldEa2c9HcImo8QYgIT+duU4W6cw4hIcV/Ng7520TNap6y0
+         E66nJPEcXyDpC+7wzz0RiWcGvR8T77HVVaN2BHTGE0cOx5oR6wZIookOU3dysuclRKh/
+         fnF9EJkUeg7O1YsS6kRwzLKbvB2/HN/KnujaDWyI2ts+MlfDBdi0Hidd6wCK8ZrQJe5/
+         xLPJ/30heHE/ndb9h+l6gL/fwpozuZiWGRRXKmBzz49yWYKY/fSP7iq6FpTHPfsmvThO
+         3HaL8G2GKYPGj2Vwrf1v66oVqpLahia9QRLZYxa7FMMCPEyArH170jcZ5ZVO1tp/a73q
+         z/ZA==
+X-Gm-Message-State: AOAM532BBnUEFRomen3l61wXOhCyOb3Bg9VS75i4zjHL4pHvUIfD/z6o
+        JzTJFxc3yiRsLxSVT1IT9A==
+X-Google-Smtp-Source: ABdhPJx+JWT72oKSZA+LWx7PNFVqKo3fxY81eBJG9HzWXkLOF9mbK8ZbLh65asfWyyJWKv4Ts+ehVQ==
+X-Received: by 2002:aca:da04:: with SMTP id r4mr6652760oig.123.1617897548115;
+        Thu, 08 Apr 2021 08:59:08 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 10sm6179615otq.10.2021.04.08.08.58.24
+        by smtp.gmail.com with ESMTPSA id f12sm282199otf.65.2021.04.08.08.59.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Apr 2021 08:58:25 -0700 (PDT)
-Received: (nullmailer pid 1552624 invoked by uid 1000);
-        Thu, 08 Apr 2021 15:58:23 -0000
-Date:   Thu, 8 Apr 2021 10:58:23 -0500
+        Thu, 08 Apr 2021 08:59:07 -0700 (PDT)
+Received: (nullmailer pid 1553733 invoked by uid 1000);
+        Thu, 08 Apr 2021 15:59:06 -0000
+Date:   Thu, 8 Apr 2021 10:59:06 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Greentime Hu <greentime.hu@sifive.com>
-Cc:     lorenzo.pieralisi@arm.com, hes@sifive.com, zong.li@sifive.com,
-        jh80.chung@samsung.com, aou@eecs.berkeley.edu, robh+dt@kernel.org,
-        linux-pci@vger.kernel.org, helgaas@kernel.org,
-        khilman@baylibre.com, hayashi.kunihiko@socionext.com,
-        paul.walmsley@sifive.com, linux-clk@vger.kernel.org,
-        alex.dewar90@gmail.com, p.zabel@pengutronix.de,
-        erik.danie@sifive.com, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, mturquette@baylibre.com,
-        vidyas@nvidia.com, sboyd@kernel.org, bhelgaas@google.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 4/6] dt-bindings: PCI: Add SiFive FU740 PCIe host
- controller
-Message-ID: <20210408155823.GA1520096@robh.at.kernel.org>
-References: <20210406092634.50465-1-greentime.hu@sifive.com>
- <20210406092634.50465-5-greentime.hu@sifive.com>
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Lubomir Rintel <lkundrak@v3.sk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>, openbmc@lists.ozlabs.org,
+        linux-aspeed@lists.ozlabs.org, - <devicetree@vger.kernel.org>,
+        Joel Stanley <joel@jms.id.au>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: serial: 8250: deprecate aspeed,
+ sirq-polarity-sense
+Message-ID: <20210408155906.GA1553685@robh.at.kernel.org>
+References: <20210408011637.5361-1-zev@bewilderbeest.net>
+ <20210408011637.5361-2-zev@bewilderbeest.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210406092634.50465-5-greentime.hu@sifive.com>
+In-Reply-To: <20210408011637.5361-2-zev@bewilderbeest.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 06 Apr 2021 17:26:32 +0800, Greentime Hu wrote:
-> Add PCIe host controller DT bindings of SiFive FU740.
+On Wed, 07 Apr 2021 20:16:34 -0500, Zev Weiss wrote:
+> This property ties SIRQ polarity to SCU register bits that don't
+> necessarily have any direct relationship to it; the only use of it was
+> removed in commit c82bf6e133d3 ("ARM: aspeed: g5: Do not set sirq
+> polarity").
 > 
-> Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
+> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
 > ---
->  .../bindings/pci/sifive,fu740-pcie.yaml       | 113 ++++++++++++++++++
->  1 file changed, 113 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
+>  Documentation/devicetree/bindings/serial/8250.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
