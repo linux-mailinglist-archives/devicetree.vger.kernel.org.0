@@ -2,93 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E0FE358FB3
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 00:14:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 617A7358FB8
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 00:18:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232404AbhDHWOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 18:14:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41366 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232488AbhDHWOv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 18:14:51 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDA5BC061763
-        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 15:14:38 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id u4so4116746ljo.6
-        for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021 15:14:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UZYFt0LVceFfcAprXRqy7FjMz5TZMkhneNJXsWawHjA=;
-        b=jh/m8+mpPAxdKJ0faiWMDsB8ThJ/bVJJ9pnV2DdOmRS9/0Oups3cMyWdWzW18R9i8j
-         gbunTrdTzXj61KzAnIHGuLvJ9nkft7x+MraDzr7gFF1yaBGUjtjTTdMiYQ+PunQrg6Mq
-         AHGDRg72C/ydMvv4dEfdxZRPqzyRfYLL/pSvqU735sU8zij4s5RgqNN1PZ4wS+Wdi6Ka
-         AZRfpoyBNCCwQ3y+fFkFyztWzGjIj4Wpf0KA1axvxXHsmaTEVk+z8NE0++4kRHkHMHFm
-         aPIVCbs0pKTV4iffO/p2kmB53EhxBPUETOwOLcv2vlxxWltOmJLjG8b2F2EkOAbgrmI2
-         7blw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UZYFt0LVceFfcAprXRqy7FjMz5TZMkhneNJXsWawHjA=;
-        b=uoWEZrtMLl8NUqqHlczkJXPukYV+qUkTAzj5l+4LXupuukAuj4niXegn65NksgL6Z6
-         0QbqBL0ZbSutxuhYeQKdKQmSWHhxI/qBrXIWPy/8mbqF7pgPG1x8cuu7/TOYIAC1YB8A
-         hW4yp56dboiBVL5vACxhCrA/baaGoM8HfX+yDg+2d3WtZSYhGHsVQKAF1OOxEJxrD2hI
-         2rjwEQN2tGRbHEB4YTrTESDKdfL3wFzc+Wy7oxU7NNSgElUYHri2Nu3suRe4xKB0IHq5
-         Cm2Epbz2gNKNPHndGh5wp2hRQ2C7Z1v8yJoOkoaLS/tcC7KyoAlIDCdSVfJtm4uj9Wgs
-         ASSw==
-X-Gm-Message-State: AOAM533VzGWZNw9ZS3GR3mQmw/akyR0/7bjk2LSmttwCnsYshCHe2suZ
-        QRYbsZg86XTR8d6OF1w5830lofJIfyci6NM05G/gMw==
-X-Google-Smtp-Source: ABdhPJzWty7OkE/zjpcMz5z53ansy9SUNQ01JxDM7F1AxOx5za4NUdfe6x0onlsn7zmcaLaN2CQvWeG2UAY2qDU8U9A=
-X-Received: by 2002:a2e:864a:: with SMTP id i10mr7305898ljj.467.1617920077290;
- Thu, 08 Apr 2021 15:14:37 -0700 (PDT)
+        id S232632AbhDHWSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 18:18:48 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:41416 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232265AbhDHWSr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Apr 2021 18:18:47 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lUcyv-00Fc6F-3w; Fri, 09 Apr 2021 00:18:33 +0200
+Date:   Fri, 9 Apr 2021 00:18:33 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>, bert@biot.com
+Subject: Re: [RFC PATCH 0/2] MIIM regmap and RTL8231 GPIO expander support
+Message-ID: <YG+BObnBEOZnoJ1K@lunn.ch>
+References: <cover.1617914861.git.sander@svanheule.net>
 MIME-Version: 1.0
-References: <bdb18e9f-fcd7-1e31-2224-19c0e5090706@marcan.st>
-In-Reply-To: <bdb18e9f-fcd7-1e31-2224-19c0e5090706@marcan.st>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 9 Apr 2021 00:14:26 +0200
-Message-ID: <CACRpkdaijbDoV2rSQsgO3XKnj_Hde8CU9JQ+V9gGePYjvCWJhA@mail.gmail.com>
-Subject: Re: [GIT PULL] Apple M1 SoC platform bring-up for 5.13
-To:     Hector Martin <marcan@marcan.st>
-Cc:     SoC Team <soc@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Tony Lindgren <tony@atomide.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Alexander Graf <graf@amazon.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Linux-Arch <linux-arch@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1617914861.git.sander@svanheule.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 8, 2021 at 5:55 PM Hector Martin <marcan@marcan.st> wrote:
+> - Providing no compatible for an MDIO child node is considered to be equivalent
+>   to a c22 ethernet phy, so one must be provided. However, this node is then
+>   not automatically probed.
 
-> Hi Arnd and all,
->
-> Here's the final version of the M1 SoC bring-up series, based on
-> v4 which was reviewed here:
->
-> https://lore.kernel.org/linux-arm-kernel/20210402090542.131194-1-marcan@marcan.st/T/#u
+It cannot be automatically probed, since register 2 and 3 do not
+contain an ID, which PHYs do. So you need to explicitly list in on the
+MDIO bus, and when the of_mdiobus_register() is called, the device
+will be instantiated.
 
-Excellent work on this series Hector, thanks for working so hard on this!
+Is it okay to provide a binding without a driver?
+>   If some code is required, where should this be put?
+>   Current devicetree structure:
+>     mdio-bus {
+>         compatible = "vendor,mdio";
+>         ...
+> 
+>         expander0: expander@0 {
+>             /*
+>              * Provide compatible for working registration of mdio device.
+>              * Device probing happens in gpio1 node.
+>              */
+>             compatible = "realtek,rtl8231-expander";
+>             reg = <0>;
+>         };
+> 
+>     };
+>     gpio1 : ext_gpio {
+>         compatible = "realtek,rtl8231-mdio";
+>         gpio-controller;
+>         ...
+>     };
 
-Yours,
-Linus Walleij
+I don't understand this split. Why not
+
+     mdio-bus {
+         compatible = "vendor,mdio";
+         ...
+ 
+         expander0: expander@0 {
+             /*
+              * Provide compatible for working registration of mdio device.
+              * Device probing happens in gpio1 node.
+              */
+             compatible = "realtek,rtl8231-expander";
+             reg = <0>;
+	     gpio-controller;
+         };
+     };
+
+You can list whatever properties you need in the node. Ethernet
+switches have interrupt-controller, embedded MDIO busses with PHYs on
+them etc.
+
+> - MFD driver:
+>   The RTL8231 is not just a GPIO expander, but also a pin controller and LED
+>   matrix controller. Regmap initialisation could probably be moved to a parent
+>   MFD, with gpio, led, and pinctrl cells. Is this a hard requirement if only a
+>   GPIO controller is provided?
+
+You need to think about forward/backwards compatibility. You are
+defining a binding now, which you need to keep. Do you see how an MFD
+could be added without breaking backwards compatibility?
+
+      Andrew
