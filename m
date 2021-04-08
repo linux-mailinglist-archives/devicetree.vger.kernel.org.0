@@ -2,61 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17508358BE4
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 20:02:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C4A3358BF9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 20:14:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232267AbhDHSDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 14:03:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33838 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232202AbhDHSC7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Apr 2021 14:02:59 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9A3BD61130;
-        Thu,  8 Apr 2021 18:02:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617904967;
-        bh=e2oaFMX2BkMDf/qaiy9ZH1hE8M7tU7AqcU5mNRXW05c=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=kh2NSMDRY2CiRftM7jKOFUirTJzcxmpacTVogxdZKXtSVwGWHHTYowvf2SFNzXU/s
-         KIP8eDjtGA1LLgTGiRoqQ+G4A9TMN9ivCd6SlehCNHz19PGwPJRn1NWdKo7iU71Ehp
-         tMI4IvDd1LyomN50WOTc12utKhuUDle7F0+/aXpssP/nz7jthiW75KmCxTS0/dCc/5
-         qfmsAmbvWQSmLkSWHTsBSvsNBzchqmqPqlttrFFzJHXVlUChYkttUIew4G0bGGSMri
-         b2uI7yLmnugge075kbbBlysNQUNiAjEGykOUcIhzVwx9NA2fIOLieGJPxYqFAUX+75
-         WAecxsY3ApF8g==
-Received: by mail-ed1-f47.google.com with SMTP id z1so3493051edb.8;
-        Thu, 08 Apr 2021 11:02:47 -0700 (PDT)
-X-Gm-Message-State: AOAM533QkkZlNNZDoK+ChoGXDUfFzNPXOe59d8aJtCUfAZjMfpVqpgZj
-        jYWOZoyxClCDWVKcsI/omcOGhY+rwov0IklC2A==
-X-Google-Smtp-Source: ABdhPJwGqYbC/rreiPsuB+s+xhMWCGvVXevrwFIxBspCgbBc7v93pX3PXpcKJyDX3opJzJuk4FpkGVi2o0oLsz0rQNI=
-X-Received: by 2002:a05:6402:1b1c:: with SMTP id by28mr13053524edb.62.1617904966139;
- Thu, 08 Apr 2021 11:02:46 -0700 (PDT)
+        id S232281AbhDHSOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 14:14:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45398 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231716AbhDHSOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 14:14:23 -0400
+Received: from mail.pqgruber.com (mail.pqgruber.com [IPv6:2a05:d014:575:f70b:4f2c:8f1d:40c4:b13e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE6EEC061760;
+        Thu,  8 Apr 2021 11:14:11 -0700 (PDT)
+Received: from workstation.tuxnet (213-47-165-233.cable.dynamic.surfer.at [213.47.165.233])
+        by mail.pqgruber.com (Postfix) with ESMTPSA id A092AC725C7;
+        Thu,  8 Apr 2021 20:14:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pqgruber.com;
+        s=mail; t=1617905649;
+        bh=bqq+6Ua6gjCE1d4qctGpoLs9LGXr1awDHysmE+XtkwE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=1G+vlnAkRYmKGPKs3Spm9nAkUs7fBssKaYLh8Lr2hfgtHkh0iz9LB3aKBtsWtkbMO
+         IKbZg4JguOYSnDK0xR8FDTqEBfA25zTaghX0Sr9AVqtJ3ao5bolI905JBKp9IxNXQx
+         XCClDPIAgXdKSoZ1qbB4Y8aZ1dV56c4Bm4j/it80=
+Date:   Thu, 8 Apr 2021 20:14:08 +0200
+From:   Clemens Gruber <clemens.gruber@pqgruber.com>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        linux-pwm@vger.kernel.org, Sven Van Asbroeck <TheSven73@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 5/8] pwm: core: Support new PWM_STAGGERING_ALLOWED flag
+Message-ID: <YG9H8D5YW0KEtaoG@workstation.tuxnet>
+References: <20210406164140.81423-1-clemens.gruber@pqgruber.com>
+ <20210406164140.81423-5-clemens.gruber@pqgruber.com>
+ <20210407054658.qdsjkstqwynxeuxj@pengutronix.de>
+ <YG4UNoBCQJkEEfwi@workstation.tuxnet>
+ <20210407213403.h6n6l2t7vqoalceu@pengutronix.de>
+ <YG78IHIMGtl8Pokp@orome.fritz.box>
+ <YG8miEOZXsH0NTcA@workstation.tuxnet>
+ <20210408173637.w26njwystfuyrgan@pengutronix.de>
 MIME-Version: 1.0
-References: <20210407183532.2682-1-wsa@kernel.org>
-In-Reply-To: <20210407183532.2682-1-wsa@kernel.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 8 Apr 2021 13:02:35 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLJiXg4V7LpiOM9r0Fso8rfGciVQeT_mgt4=GBWfLE4WA@mail.gmail.com>
-Message-ID: <CAL_JsqLJiXg4V7LpiOM9r0Fso8rfGciVQeT_mgt4=GBWfLE4WA@mail.gmail.com>
-Subject: Re: [PATCH] i2c: imx: mention Oleksij as maintainer of the binding docs
-To:     Wolfram Sang <wsa@kernel.org>
-Cc:     Linux I2C <linux-i2c@vger.kernel.org>, devicetree@vger.kernel.org,
-        Oleksij Rempel <o.rempel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210408173637.w26njwystfuyrgan@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 7, 2021 at 1:35 PM Wolfram Sang <wsa@kernel.org> wrote:
->
-> When I removed myself as a maintainer of the yaml file, I missed that
-> some maintainer is required. Oleksij is already listed in MAINTAINERS
-> for this file, so add him here as well.
->
-> Fixes: 1ae6b3780848 ("i2c: imx: drop me as maintainer of binding docs")
-> Signed-off-by: Wolfram Sang <wsa@kernel.org>
-> Cc: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/i2c/i2c-imx.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+On Thu, Apr 08, 2021 at 07:36:37PM +0200, Uwe Kleine-König wrote:
+> On Thu, Apr 08, 2021 at 05:51:36PM +0200, Clemens Gruber wrote:
+> > On Thu, Apr 08, 2021 at 02:50:40PM +0200, Thierry Reding wrote:
+> > > Yes, I think that's basically what this is saying. I think we're perhaps
+> > > getting hung up on the terminology here. PWM_STAGGERING_ALLOWED gives
+> > > the impression that we're dealing with some provider-specific feature,
+> > > whereas what we really want to express is that the PWM doesn't care
+> > > exactly when the active cycle starts and based on that a provider that
+> > > can support it may optimize the EMI behavior.
+> > > 
+> > > Maybe we can find a better name for this? Ultimately what this means is
+> > > that the consumer is primarily interested in the power output of the PWM
+> > > rather than the exact shape of the signal. So perhaps something like
+> > > PWM_USAGE_POWER would be more appropriate.
+> > 
+> > Yes, although it would then no longer be obvious that this feature leads
+> > to improved EMI behavior, as long as we mention that in the docs, I
+> > think it's a good idea
+> > 
+> > Maybe document it as follows?
+> > PWM_USAGE_POWER - Allow the driver to delay the start of the cycle
+> > for EMI improvements, as long as the power output stays the same
+> 
+> I don't like both names, because for someone who is only halfway into
+> PWM stuff it is not understandable. Maybe ALLOW_PHASE_SHIFT?
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Sounds good to me.
+
+> When a consumer is only interested in the power output than
+> 
+> 	.period = 20
+> 	.duty_cycle = 5
+> 
+> would also be an allowed response for the request
+> 
+> 	.period = 200
+> 	.duty_cycle = 50
+> 
+> and this is not what is in the focus here.
+
+Right.
+
+If Thierry agrees, I can spin up a new revision.
+
+Maybe we can get it into 5.13 after all.
+
+Thanks,
+Clemens
