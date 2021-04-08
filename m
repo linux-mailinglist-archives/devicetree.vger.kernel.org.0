@@ -2,68 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0786B358B4B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 19:25:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70532358B7A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 19:36:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231954AbhDHRZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 13:25:40 -0400
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:9909 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232697AbhDHRZe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 13:25:34 -0400
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 08 Apr 2021 10:25:22 -0700
-X-QCInternal: smtphost
-Received: from gurus-linux.qualcomm.com (HELO gurus-linux.localdomain) ([10.46.162.81])
-  by ironmsg03-sd.qualcomm.com with ESMTP; 08 Apr 2021 10:25:09 -0700
-Received: by gurus-linux.localdomain (Postfix, from userid 383780)
-        id 86DD21910; Thu,  8 Apr 2021 10:25:08 -0700 (PDT)
-From:   Guru Das Srinagesh <gurus@codeaurora.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Guru Das Srinagesh <gurus@codeaurora.org>
-Subject: [PATCH v2 2/2] pinctrl: qcom-pmic-gpio: Add support for pm8008
-Date:   Thu,  8 Apr 2021 10:25:07 -0700
-Message-Id: <129d241ee510e28536d35dbfeee75474e12d8d22.1617901945.git.gurus@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <2be34cc205ae96d40b04a9efdcf9287d5da9d1c0.1617901945.git.gurus@codeaurora.org>
-References: <2be34cc205ae96d40b04a9efdcf9287d5da9d1c0.1617901945.git.gurus@codeaurora.org>
-In-Reply-To: <2be34cc205ae96d40b04a9efdcf9287d5da9d1c0.1617901945.git.gurus@codeaurora.org>
-References: <2be34cc205ae96d40b04a9efdcf9287d5da9d1c0.1617901945.git.gurus@codeaurora.org>
+        id S232387AbhDHRg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 13:36:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37236 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232240AbhDHRgz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 13:36:55 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 625F0C061760
+        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 10:36:44 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lUYa7-0005zi-0m; Thu, 08 Apr 2021 19:36:39 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lUYa6-0001dJ-5j; Thu, 08 Apr 2021 19:36:38 +0200
+Date:   Thu, 8 Apr 2021 19:36:37 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Clemens Gruber <clemens.gruber@pqgruber.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        linux-pwm@vger.kernel.org, Sven Van Asbroeck <TheSven73@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 5/8] pwm: core: Support new PWM_STAGGERING_ALLOWED flag
+Message-ID: <20210408173637.w26njwystfuyrgan@pengutronix.de>
+References: <20210406164140.81423-1-clemens.gruber@pqgruber.com>
+ <20210406164140.81423-5-clemens.gruber@pqgruber.com>
+ <20210407054658.qdsjkstqwynxeuxj@pengutronix.de>
+ <YG4UNoBCQJkEEfwi@workstation.tuxnet>
+ <20210407213403.h6n6l2t7vqoalceu@pengutronix.de>
+ <YG78IHIMGtl8Pokp@orome.fritz.box>
+ <YG8miEOZXsH0NTcA@workstation.tuxnet>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="lp7gtrg7jitfyjpi"
+Content-Disposition: inline
+In-Reply-To: <YG8miEOZXsH0NTcA@workstation.tuxnet>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the two GPIOs present on Qualcomm Technologies, Inc.
-PM8008.
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
----
-Changes from last patchset:
-- Moved "pm8008" up a line to keep things sorted alphabetically
+--lp7gtrg7jitfyjpi
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 1 +
- 1 file changed, 1 insertion(+)
+On Thu, Apr 08, 2021 at 05:51:36PM +0200, Clemens Gruber wrote:
+> On Thu, Apr 08, 2021 at 02:50:40PM +0200, Thierry Reding wrote:
+> > Yes, I think that's basically what this is saying. I think we're perhaps
+> > getting hung up on the terminology here. PWM_STAGGERING_ALLOWED gives
+> > the impression that we're dealing with some provider-specific feature,
+> > whereas what we really want to express is that the PWM doesn't care
+> > exactly when the active cycle starts and based on that a provider that
+> > can support it may optimize the EMI behavior.
+> >=20
+> > Maybe we can find a better name for this? Ultimately what this means is
+> > that the consumer is primarily interested in the power output of the PWM
+> > rather than the exact shape of the signal. So perhaps something like
+> > PWM_USAGE_POWER would be more appropriate.
+>=20
+> Yes, although it would then no longer be obvious that this feature leads
+> to improved EMI behavior, as long as we mention that in the docs, I
+> think it's a good idea
+>=20
+> Maybe document it as follows?
+> PWM_USAGE_POWER - Allow the driver to delay the start of the cycle
+> for EMI improvements, as long as the power output stays the same
 
-diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-index c2b9f2e..00870da 100644
---- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-+++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-@@ -1135,6 +1135,7 @@ static const struct of_device_id pmic_gpio_of_match[] = {
- 	{ .compatible = "qcom,pmr735b-gpio", .data = (void *) 4 },
- 	{ .compatible = "qcom,pm6150-gpio", .data = (void *) 10 },
- 	{ .compatible = "qcom,pm6150l-gpio", .data = (void *) 12 },
-+	{ .compatible = "qcom,pm8008-gpio", .data = (void *) 2 },
- 	/* pmx55 has 11 GPIOs with holes on 3, 7, 10, 11 */
- 	{ .compatible = "qcom,pmx55-gpio", .data = (void *) 11 },
- 	{ },
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+I don't like both names, because for someone who is only halfway into
+PWM stuff it is not understandable. Maybe ALLOW_PHASE_SHIFT?
+When a consumer is only interested in the power output than
 
+	.period =3D 20
+	.duty_cycle =3D 5
+
+would also be an allowed response for the request
+
+	.period =3D 200
+	.duty_cycle =3D 50
+
+and this is not what is in the focus here.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--lp7gtrg7jitfyjpi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmBvPyEACgkQwfwUeK3K
+7Amyxwf/eaL3FxWvGWQHZWUSKXVy2VMYq4wDy9TcDkiWclNcfgI5tEmYe9ERzL7K
+1EpCi8RMTK1g9fZBOy47fH7s3apm+fs3WaawiuMcQn1KXvD/Amq/zBh5K9IKpev2
+EGlef+Msxzx8OZjaAjU+Ywxmd/9aGwOdvbFcvLxGPV4/y8/w16XQcuRVRbEeNQrM
+ZLVaBpVHfaOs8UcWllrNZjIv3PBhx3yF6x04XzoG+wk8y+mH8L6f4AsvMMyg+nkH
+8ysXMNazz5+OufTTTnq9Zf9Dka6r+4G1CsXXJzJdEfv9GNgTy9SOpBpwfCSlgLpR
+AqyuPekXjdjSY6UrHkJER7tqGY+Czw==
+=AqmW
+-----END PGP SIGNATURE-----
+
+--lp7gtrg7jitfyjpi--
