@@ -2,79 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB5A5357894
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 01:34:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D45A73578FF
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 02:20:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229497AbhDGXeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 19:34:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54962 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbhDGXeP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 19:34:15 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B710C061760;
-        Wed,  7 Apr 2021 16:34:05 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id e14so30387421ejz.11;
-        Wed, 07 Apr 2021 16:34:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=j8y9JU+OMWYalGasFf8vmWs+F/CG7kz1ojiAfXE2LEE=;
-        b=YEIii84ZgqFaDJ6O6avTbFwY0FPK4iqqUdqRTWZMPltwz9agyCh4XrUUXT9pCnn/PN
-         zwm4hT3Oi+kWTaERPFMHpOw9Cn2ktfC0dCL3jHfU1GTfb/Bckg2Ho6Y5qNBvMUgVHRre
-         Ea2EFojrNzQAZGMRWaWlu+uT83tfbPKqjr7+alnmPAXn15Tg1XT4I66cBWBA3Q7B00TW
-         +ix+qJGw5GnrjSLSlBONqHpKr3e9/zW3BZ7t7WhKOAyVf+tYvcaIjuGTT508/MDzdNqm
-         BuogKu4k6ImcZGLHn7jjWS+bTbDWpMrywH2SeychA3WkupEa1/Wgnfy2Oe6DzHcsGfwC
-         ofxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=j8y9JU+OMWYalGasFf8vmWs+F/CG7kz1ojiAfXE2LEE=;
-        b=ba6Y/vHzsS5jzfI7wDHsN2ayHA0MWL4hoe5hes0ZyYPG+pcSHXUHFOYB/dGDTJLRXp
-         TcT11+xwoIthDbDlsap0GNMVCfqL7Io1NSmkYgdJT3mrdkHvQ7FW7DjLXoKWybiWDwQc
-         2ZzehyzH/UObxN/qv7edDRrHUwLn+VB1/CicYK5Jd8Uz9U9qqCqRJNVe9dSSEu59jo0W
-         I0vfeGNyZKbBbCJH7ZZI2CP2E/nM2HTsgsi2yX0YPNd7N6PGb+yy+1Fc56xNZvs/J1kY
-         Dd3XmQMlz2ibMzPyOKXHLcJ+fJyyJCD47P+n2wz+1vQvZt/EWf07gyNkblHfujb3KCnE
-         a5YA==
-X-Gm-Message-State: AOAM531jfIOAgXo7iR5df68+yblwGQCzbaE2VnBHp6nZvCT+sTTf9OAf
-        X9IGZRwmyRczLRedbJcrjaw=
-X-Google-Smtp-Source: ABdhPJxBhOd3cU5LLcbUanZLye0PrFiEha8pADAf8CQgjK7iyTZbK5/UEdjU28vzw0bB51ldt9/v/g==
-X-Received: by 2002:a17:906:9882:: with SMTP id zc2mr6624415ejb.441.1617838443575;
-        Wed, 07 Apr 2021 16:34:03 -0700 (PDT)
-Received: from skbuf (5-12-16-165.residential.rdsnet.ro. [5.12.16.165])
-        by smtp.gmail.com with ESMTPSA id y21sm8396059edv.31.2021.04.07.16.34.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Apr 2021 16:34:03 -0700 (PDT)
-Date:   Thu, 8 Apr 2021 02:34:02 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Tobias Waldekranz <tobias@waldekranz.com>,
-        Rob Herring <robh@kernel.org>, davem@davemloft.net,
-        kuba@kernel.org, vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 3/3] dt-bindings: net: dsa: Document
- dsa,tag-protocol property
-Message-ID: <20210407233402.sjuygy35imokeslz@skbuf>
-References: <20210326105648.2492411-1-tobias@waldekranz.com>
- <20210326105648.2492411-4-tobias@waldekranz.com>
- <20210327181343.GA339863@robh.at.kernel.org>
- <87blarloyi.fsf@waldekranz.com>
- <YGxihuL2T12HKso1@lunn.ch>
+        id S229488AbhDHAUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 20:20:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43148 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229480AbhDHAUK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Apr 2021 20:20:10 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D916D61159;
+        Thu,  8 Apr 2021 00:19:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617841200;
+        bh=DSGhC5SaLK4W1fvVjx832a5NLDBEVNuhBUSpb2HfKzQ=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=jLsowCmOWhN3irBK9wD7NeVFs4qhDumgCz9j5/BKmnQVK3uwUg3GCwP5aVxUa5YP2
+         /MVPCk4wnC31w1ySg254sW5XeQE+l6cjDlHZNHR6Mc9xZzgIR32C9IYhBc+5/nw2sW
+         CsEOb0RiAXFLxg9TNNDtLCJMyDRSS0IE31OfnMT7ZRpUX091jyDZo6T9drLGeUSNgU
+         nksgS5yMbPzUC2Zx9pV7ZWDOJfSjF91mpuf44QjLbdHXMhAtTi2BNDCrxjGLxaiBhN
+         VIR1upqdTfueEULRFKyx8GNdXb+KbOKfAHfY/4fgI+TS4n4nh3wsYoRzpc/LcKwHU5
+         60kyr4BPBxwYg==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YGxihuL2T12HKso1@lunn.ch>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210406231909.3035267-2-dmitry.baryshkov@linaro.org>
+References: <20210406231909.3035267-1-dmitry.baryshkov@linaro.org> <20210406231909.3035267-2-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: separate SDM845 GCC clock bindings
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 07 Apr 2021 17:19:58 -0700
+Message-ID: <161784119850.3790633.17698180700358661431@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 06, 2021 at 03:30:46PM +0200, Andrew Lunn wrote:
-> > Andrew, Vladimir: I will just list dsa and edsa for now. If it is needed
-> > on other devices, people can add them to the list after they have tested
-> > their drivers. Fair?
-> 
-> O.K.
+Quoting Dmitry Baryshkov (2021-04-06 16:19:06)
+> Separate qcom,gcc-sdm845 clock bindings, adding required clocks and
+> clock-names properties.
 
-Same here.
+Yes, but why?
+
+>=20
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../bindings/clock/qcom,gcc-sdm845.yaml       | 84 +++++++++++++++++++
+>  .../devicetree/bindings/clock/qcom,gcc.yaml   |  2 -
+>  2 files changed, 84 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdm8=
+45.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml=
+ b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
+> new file mode 100644
+> index 000000000000..4808fa7a6b8c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
+> @@ -0,0 +1,84 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,gcc-sdm845.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Global Clock & Reset Controller Binding
+> +
+> +maintainers:
+> +  - Stephen Boyd <sboyd@kernel.org>
+> +  - Taniya Das <tdas@codeaurora.org>
+> +
+> +description: |
+> +  Qualcomm global clock control module which supports the clocks, resets=
+ and
+> +  power domains on SDM845
+> +
+> +  See also:
+> +  - dt-bindings/clock/qcom,gcc-sdm845.h
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,gcc-sdm845
+> +
+> +  clocks:
+> +    items:
+> +      - description: Board XO source
+> +      - description: Board active XO source
+> +      - description: Sleep clock source
+> +      - description: PCIE 0 Pipe clock source (Optional clock)
+> +      - description: PCIE 1 Pipe clock source (Optional clock)
+
+Can we make them not optional?
+
+> +    minItems: 3
+> +    maxItems: 5
+
+And remove this? Because in reality the clks are always going there so
+we can put a <0> element in the clocks array if we don't care to
+actually specify it.
+
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bi_tcxo
+> +      - const: bi_tcxo_ao
+> +      - const: sleep_clk
+> +      - const: pcie_0_pipe_clk # Optional clock
+> +      - const: pcie_1_pipe_clk # Optional clock
+> +    minItems: 3
+> +    maxItems: 5
+> +
