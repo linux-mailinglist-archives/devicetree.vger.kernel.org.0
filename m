@@ -2,125 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE5EA358B8E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 19:41:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A222E358B93
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 19:41:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232406AbhDHRle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 13:41:34 -0400
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:38693 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232267AbhDHRld (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 13:41:33 -0400
-Received: by mail-oi1-f181.google.com with SMTP id 25so1533671oiy.5;
-        Thu, 08 Apr 2021 10:41:21 -0700 (PDT)
+        id S232202AbhDHRl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 13:41:58 -0400
+Received: from mail-oo1-f49.google.com ([209.85.161.49]:46877 "EHLO
+        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232604AbhDHRl5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 13:41:57 -0400
+Received: by mail-oo1-f49.google.com with SMTP id 125-20020a4a1a830000b02901b6a144a417so687463oof.13;
+        Thu, 08 Apr 2021 10:41:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MxPv9rGDLS4kNaUwF1zjTD50xd/6Z8XGBbW4dmhPKD8=;
-        b=A2lp3oM0ItWq0xqfVnnJ3qVaiuOO3KsJ94X+E1AqzUrxBH2KeRrfGIxLILWRiuXIJv
-         ZjNkaAtXAnZ31OcKco2QcSOMQ57i87H0SlKSeVPyMRKdvkGfyQ9Av/vc57KHDHfIUvaZ
-         sKh0tG7XXhSdtAe5CEl3fj/jkgyOTz5XaX1QuOaWljBtXt/TDCH8gSDW6zVkiNOHY52a
-         cvW/Jg4xTcREQcda3OuZlTzOekZTMk3n7LLJnVEzIlJNSRE1dAdMYPn/w4syyK3DrtZ/
-         t+M218Ihp4d6s/pnuU/UuXJLtUhsK2dpD3Smv65BYbTmSXTUk4Pf6p+SW6CtZcmqkML+
-         qU6g==
-X-Gm-Message-State: AOAM5313SyItVaHcVZmvPqqnJoNik09lQ95dqpaVLoTurNQCm0Drw/Pg
-        pU6RHC/mwiNFTdFYm1FrfhEaDQYjpWt3wRdbvhs=
-X-Google-Smtp-Source: ABdhPJzwd+elJ0tSpUAZ/bAgTRpxq7RiABgs8Q08DleA2nKQdp22al42iOL7Z8aA5oAFMXMC6gZjSOTm29nDYVKPpLc=
-X-Received: by 2002:aca:5fc3:: with SMTP id t186mr6817482oib.69.1617903681158;
- Thu, 08 Apr 2021 10:41:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <1617874514-12282-1-git-send-email-chunfeng.yun@mediatek.com>
-In-Reply-To: <1617874514-12282-1-git-send-email-chunfeng.yun@mediatek.com>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Thu, 8 Apr 2021 19:41:10 +0200
-Message-ID: <CAJZ5v0gGntbfnvAP5A491_hUh-JUuqZjZRdPPLwWJjnZRtemcQ@mail.gmail.com>
-Subject: Re: [PATCH 1/6] PM: runtime: enable wake irq after runtime_suspend
- hook called
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Len Brown <len.brown@intel.com>, Pavel Machek <pavel@ucw.cz>,
-        "open list:ULTRA-WIDEBAND (UWB) SUBSYSTEM:" 
-        <linux-usb@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC..." 
-        <linux-mediatek@lists.infradead.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=TVCJiS1z+MY0UDiNoK/GhDDEmrRItUOoR1juoSlc43w=;
+        b=sOSGeSrSRFIUfye5ALb6yaXHi+9AP8+D/85eSZTNlxvSeka3TTKlN6IsJj+ECzyT9l
+         tKiNmRugKNQndHVAnL01I3ifIUSWn9JbbYI8r21JboAb2vbGXnS4FKvFjGbLLgXSwKSQ
+         +FuaKAlXBkXyykt2V5Cy1vqaT6oeoVi3R4v+9gK8wnq44o3Zd83mDpEzq9lwPqdLRHdh
+         0nOYqWRalef1mKtBeuQc/qewxsYLLvvffhY2AnAhNcx+r9rFOBOgoMxocxe5YMUQNMRE
+         hukA7yyN+lnfmfULkXZsJ1PWyKxL36F8z0YBBW+YPS8GYrXQUHM4OB3RDtyIufkx3mdy
+         WvpA==
+X-Gm-Message-State: AOAM530ibY9pMW/6JHolBTTq4kpzqDfg7IZPrmk7HKKhvNJW9zSEWSGb
+        KvUV5Rk11Ox/Jvbz2HQMSXiIZfQrHg==
+X-Google-Smtp-Source: ABdhPJzdDpTqXgekllydAa3XosvM1EQ/Ki+dnUmydnVP+MBSIiHAKrmWN6QqPU8+GdXPyucFIQ/gcQ==
+X-Received: by 2002:a4a:1ac3:: with SMTP id 186mr8444242oof.8.1617903704309;
+        Thu, 08 Apr 2021 10:41:44 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id s21sm27856oos.5.2021.04.08.10.41.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Apr 2021 10:41:43 -0700 (PDT)
+Received: (nullmailer pid 1688167 invoked by uid 1000);
+        Thu, 08 Apr 2021 17:41:42 -0000
+Date:   Thu, 8 Apr 2021 12:41:42 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Jim Quinlan <jim2101024@gmail.com>, linux-pci@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Tianping Fang <tianping.fang@mediatek.com>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Ikjoon Jang <ikjn@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 2/6] dt-bindings: PCI: Add bindings for Brcmstb
+ endpoint device voltage regulators
+Message-ID: <20210408174142.GB1556444@robh.at.kernel.org>
+References: <20210401212148.47033-1-jim2101024@gmail.com>
+ <20210401212148.47033-3-jim2101024@gmail.com>
+ <20210406164708.GM6443@sirena.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210406164708.GM6443@sirena.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 8, 2021 at 11:35 AM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
->
-> When the dedicated wake irq is level trigger, enable it before
-> calling runtime_suspend, will trigger an interrupt.
->
-> e.g.
-> for a low level trigger type, it's low level at running time (0),
-> and becomes high level when enters suspend (runtime_suspend (1) is
-> called), a wakeup signal at (2) make it become low level, wake irq
-> will be triggered.
->
->                 ------------------
->                |           ^     ^|
-> ----------------           |     | --------------
->  |<---(0)--->|<--(1)--|   (3)   (2)    (4)
->
-> if we enable the wake irq before calling runtime_suspend during (0),
-> an interrupt will arise, it causes resume immediately;
+On Tue, Apr 06, 2021 at 05:47:08PM +0100, Mark Brown wrote:
+> On Thu, Apr 01, 2021 at 05:21:42PM -0400, Jim Quinlan wrote:
+> > Similar to the regulator bindings found in "rockchip-pcie-host.txt", this
+> > allows optional regulators to be attached and controlled by the PCIe RC
+> > driver.  That being said, this driver searches in the DT subnode (the EP
+> > node, eg pci@0,0) for the regulator property.
+> 
+> > The use of a regulator property in the pcie EP subnode such as
+> > "vpcie12v-supply" depends on a pending pullreq to the pci-bus.yaml
+> > file at
+> > 
+> > https://github.com/devicetree-org/dt-schema/pull/54
+> > 
+> > Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > index f90557f6deb8..f2caa5b3b281 100644
+> > --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > @@ -64,6 +64,9 @@ properties:
+> >  
+> >    aspm-no-l0s: true
+> >  
+> > +  vpcie12v-supply: true
+> > +  vpcie3v3-supply: true
+> > +
+> 
+> No great problem with having these in the controller node (assming it
+> accurately describes the hardware) but I do think we ought to also be
+> able to describe these per slot.
 
-But that's necessary to avoid missing a wakeup interrupt, isn't it?
+My hesistancy here is child nodes are already defined to be devices, not 
+slots. That's generally the same thing though. However, 'reg' is a bit 
+problematic as it includes the bus number which is dynamically 
+assigned. (This is a mismatch between true OpenFirmware and FDT as OF 
+was designed to populate the DT with what was discovered and that 
+includes some runtime config such as bus number assignments.) Maybe we 
+just say for FDT, the bus number is always 0 and ignored. In any case, 
+there needs to be some thought on this as well as the more complicated 
+case of devices needing device specific setup to be enumerated.
 
-> enable wake irq after calling runtime_suspend, e.g. at (3) or (4),
-> will works.
->
-> This patch seems no side effect on edge trigger wake irq.
->
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
->  drivers/base/power/runtime.c | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/base/power/runtime.c b/drivers/base/power/runtime.c
-> index a46a7e30881b..796739a015a5 100644
-> --- a/drivers/base/power/runtime.c
-> +++ b/drivers/base/power/runtime.c
-> @@ -619,12 +619,12 @@ static int rpm_suspend(struct device *dev, int rpmflags)
->         __update_runtime_status(dev, RPM_SUSPENDING);
->
->         callback = RPM_GET_CALLBACK(dev, runtime_suspend);
-> -
-> -       dev_pm_enable_wake_irq_check(dev, true);
->         retval = rpm_callback(callback, dev);
->         if (retval)
->                 goto fail;
->
-> +       dev_pm_enable_wake_irq_check(dev, true);
-> +
->   no_callback:
->         __update_runtime_status(dev, RPM_SUSPENDED);
->         pm_runtime_deactivate_timer(dev);
-> @@ -659,7 +659,6 @@ static int rpm_suspend(struct device *dev, int rpmflags)
->         return retval;
->
->   fail:
-> -       dev_pm_disable_wake_irq_check(dev);
->         __update_runtime_status(dev, RPM_ACTIVE);
->         dev->power.deferred_resume = false;
->         wake_up_all(&dev->power.wait_queue);
-> --
-> 2.18.0
->
+Rob
