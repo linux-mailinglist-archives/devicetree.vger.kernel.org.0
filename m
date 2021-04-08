@@ -2,86 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEB57357914
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 02:34:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5AD735791C
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 02:38:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229488AbhDHAeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 20:34:36 -0400
-Received: from out1-smtp.messagingengine.com ([66.111.4.25]:49911 "EHLO
-        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229484AbhDHAeg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 20:34:36 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 68AEB5C011D;
-        Wed,  7 Apr 2021 20:34:25 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute3.internal (MEProxy); Wed, 07 Apr 2021 20:34:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm2; bh=A6y1xhjxB+rYO016EU+ElgKOQtyeyVG
-        GpE9ZLWZByAU=; b=MM9XsgZA06Lv6b7FcLpi25PtwPNOLTLOEGZS/xqAzU8CCQ8
-        xIVmlYvD4HgVEsdvIgO/tS3HeGPxlrHI9tQLhUnbEFoSVNJSYd1nPAFDcHpGe5V8
-        t+pYm4DKrBnO4wNb4KDeq+MqUXpsB/vHGXqAB2KbR4QBATUUbs87tDrZR/7zjsW6
-        kAwYaViXr8RZll8x6Y5MJqI4I5u8FyE9QwaaBOS2tvt2skdmECRz0CdSB+4CzUW5
-        nyDUnsX/bNXsThWus3TU0E5Xq50lV0dsUphhjyEViNsk4g4NjMUuyq0FXWMoG9mz
-        y9iBIxyJBdD4G2E9ZoBgJWcSgLHSNDdWMXI2/sw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=A6y1xh
-        jxB+rYO016EU+ElgKOQtyeyVGGpE9ZLWZByAU=; b=YNL4vDQroo3M0wjmEHQfnf
-        PO4yvEKjC1+dfFH8BOoIr9EwPf4GavKIkhPU6qYllfSnl80PkoAp8hu8A2PcqFlF
-        tayxhpl0sEi07gqurjNd2U+4VhuyKFVMEb9WX6u1Fd5JBPX47YlWT8br7jTAH/td
-        kI4Nn/IosWYi2nrFTpyr2WuaYisfXlwQyKS4qDQUYV4MQSN1p1VWxi0b3+UqpK94
-        BI5tD/Y/gF3X9xG9ni3jYz0OtiP1iJ1rdGQXf2kQyrJMYE0DYakyZOkHwU6mJU6k
-        XiQLKfGhX6wKMdE89N54SjwK9Qb8SneLWd7B5Oh+aZi+Ev+0yERTnU7oSFg2c2og
-        ==
-X-ME-Sender: <xms:kE9uYMp8BEY32VLg7Qz0qAT7IJ82-tBtQvVNDnBZa7dUxh5nPVP9zw>
-    <xme:kE9uYCq6NFa6zTxFIBr0o0dtHT6eo_jDkCV4udIWxcQv9-l4bkSVCYu5zvUDyi2X6
-    p80rPa1qyMb3HE8JA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudejkedgfeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhephefhfeekgfekudevheffheeihedujeefjeevjeefudfgfeeutdeuvdeh
-    hfevueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    eprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:kE9uYBNYzRU148cbJGs9Ll1TWfwG33zNYh2sWPaVFP1aIQpeBIp7JA>
-    <xmx:kE9uYD7-9rXNHDFLZgxPmG3cNukQuoYZeD0BgRFaPcP1cq1jW3m8Jw>
-    <xmx:kE9uYL64AcSmbQ9hqIx9a2GHimAjuTR3oMv5x8KwjCWKe6KXEuUfAw>
-    <xmx:kU9uYNlN7jauyB3FeKCcj1mEbVUbFCjuJFGMZjIMInEza1jd7Bu-JA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 0D824A0007A; Wed,  7 Apr 2021 20:34:24 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-273-g8500d2492d-fm-20210323.002-g8500d249
-Mime-Version: 1.0
-Message-Id: <dbe4fa5f-370a-41fd-a1ab-7b065b5cb8d1@www.fastmail.com>
-In-Reply-To: <20210329150020.13632-21-eajames@linux.ibm.com>
-References: <20210329150020.13632-1-eajames@linux.ibm.com>
- <20210329150020.13632-21-eajames@linux.ibm.com>
-Date:   Thu, 08 Apr 2021 10:04:03 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Eddie James" <eajames@linux.ibm.com>,
-        "Joel Stanley" <joel@jms.id.au>
-Cc:     "Rob Herring" <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org,
-        "Matthew Barth" <msbarth@linux.ibm.com>
-Subject: Re: [PATCH 20/22] ARM: dts: aspeed: everest: Enable fan watchdog
-Content-Type: text/plain
+        id S229832AbhDHAib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 20:38:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40414 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229845AbhDHAia (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 20:38:30 -0400
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7087CC061761
+        for <devicetree@vger.kernel.org>; Wed,  7 Apr 2021 17:38:18 -0700 (PDT)
+Received: by mail-qv1-xf33.google.com with SMTP id j3so88683qvs.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Apr 2021 17:38:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1nGUzu4qNZTPndpk9QEmw4K0zNMWrS/U4pG62W10g1I=;
+        b=nkZSHP4l9vkbT6OFbkhcUSkSi3iE0RJe0wUnONM4I7k6c8hnwA/snwYo769mjjyZ6m
+         qOb+d/ay4X1DMvBgEgdFElXPIzf5+BeNSLpNLdcRmR9E2uve9LNDDaO4G+kCdcNHPad5
+         cV9WzJFmz5KWtl6GEjxxyhzLH/dkM8uRxDnl714+AKgYige+qrSxmwYBM0m/KGvqWoEG
+         mJavs1Qhh6VNgjgkipSpY+2zuCmi/lQ/t98k/vyMK8SAyy/VZo3HrGjjGkKDGnxElvbx
+         A3+LafR71R1l937Fw8sBdeTI10vQnshSWSaIdX0Fx0lPYa7ntmLOPBkssDcJTykqi4EN
+         kV4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1nGUzu4qNZTPndpk9QEmw4K0zNMWrS/U4pG62W10g1I=;
+        b=LLPbL8seQHxVwgQVqLdFdbsDCV5w9MPILmo6/WkqxVM8zqAESdf7jGhq/UzNQfocvf
+         oxzskOHBCWbLqbg3/CQTxhMWHDG98RBqN+KGLhIQyeETvjiC0yxyPn3BqFAiIR8mdSMK
+         kVGmm0a82wnXqG9RicDLpXoJJ3kPCTpbtUvROKNoWdMtDc7GaJtrESuT2+CXp2mqI6JR
+         Pm0rTnrqQJpftSblvPS4Fe4sUSlbmSaxGcPrmTElBDYdslVtdYH5swyPmb28DJH/Dr0T
+         fGCyMQRVl2hpXaxyWUmYnezBcT/Ic/VRBSff/U6Ef052JOIJIKmrEpimOo47RLVfyN61
+         a0SQ==
+X-Gm-Message-State: AOAM530laBu5oQFwVnJuuH41wksyeXEihYlzAxhDB8EYeTIr581ssfAL
+        loqbJvEZ+5UDCE9mkGMkOkdqjn4W2Jw7hTJL0XBfmA==
+X-Google-Smtp-Source: ABdhPJydECt459zvSvLS5niFVsoae50GE1E1nTcJk7wCRDz5EeTeguSHV3SqZ83xSq1VRanzQmjWYibeJWA9pxkZ/8o=
+X-Received: by 2002:a05:6214:1870:: with SMTP id eh16mr6073598qvb.23.1617842297591;
+ Wed, 07 Apr 2021 17:38:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210406231909.3035267-1-dmitry.baryshkov@linaro.org>
+ <20210406231909.3035267-2-dmitry.baryshkov@linaro.org> <161784119850.3790633.17698180700358661431@swboyd.mtv.corp.google.com>
+In-Reply-To: <161784119850.3790633.17698180700358661431@swboyd.mtv.corp.google.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 8 Apr 2021 03:38:06 +0300
+Message-ID: <CAA8EJpqVJgj0eBm5m91MNqiBZg0y1v=iMAuLpW8H-i3ut8-q0A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: separate SDM845 GCC clock bindings
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
+
+On Thu, 8 Apr 2021 at 03:20, Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Dmitry Baryshkov (2021-04-06 16:19:06)
+> > Separate qcom,gcc-sdm845 clock bindings, adding required clocks and
+> > clock-names properties.
+>
+> Yes, but why?
+
+Why separate or why add required clocks? Consider the rest of
+bindings, where qcom,gcc.yaml defines older bindings, which do not use
+clocks/clock-names and for newer bindings we have one file per binding
+(qcom,gcc-apq8064.yaml, qcom,gcc-qcs404.yaml, qcom,gcc-sdx55.yaml,
+qcom,gcc-sm8150.yaml, etc).
+
+Do you suggest merging all of them back into a single yaml file?
+
+>
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  .../bindings/clock/qcom,gcc-sdm845.yaml       | 84 +++++++++++++++++++
+> >  .../devicetree/bindings/clock/qcom,gcc.yaml   |  2 -
+> >  2 files changed, 84 insertions(+), 2 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
+> > new file mode 100644
+> > index 000000000000..4808fa7a6b8c
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
+> > @@ -0,0 +1,84 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/qcom,gcc-sdm845.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm Global Clock & Reset Controller Binding
+> > +
+> > +maintainers:
+> > +  - Stephen Boyd <sboyd@kernel.org>
+> > +  - Taniya Das <tdas@codeaurora.org>
+> > +
+> > +description: |
+> > +  Qualcomm global clock control module which supports the clocks, resets and
+> > +  power domains on SDM845
+> > +
+> > +  See also:
+> > +  - dt-bindings/clock/qcom,gcc-sdm845.h
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: qcom,gcc-sdm845
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Board XO source
+> > +      - description: Board active XO source
+> > +      - description: Sleep clock source
+> > +      - description: PCIE 0 Pipe clock source (Optional clock)
+> > +      - description: PCIE 1 Pipe clock source (Optional clock)
+>
+> Can we make them not optional?
+
+Sure,
+
+>
+> > +    minItems: 3
+> > +    maxItems: 5
+>
+> And remove this? Because in reality the clks are always going there so
+> we can put a <0> element in the clocks array if we don't care to
+> actually specify it.
+
+Fine with me.
+
+>
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: bi_tcxo
+> > +      - const: bi_tcxo_ao
+> > +      - const: sleep_clk
+> > +      - const: pcie_0_pipe_clk # Optional clock
+> > +      - const: pcie_1_pipe_clk # Optional clock
+> > +    minItems: 3
+> > +    maxItems: 5
+> > +
 
 
-On Tue, 30 Mar 2021, at 01:30, Eddie James wrote:
-> Set watchdog 1 to pulse the fan watchdog circuit that drives the FAULT
-> pin of the MAX31785, resulting in fans running at full speed, if at
-> any point the BMC stops pulsing it, such as a BMC reboot at runtime.
-> Enable watchdog 2 for BMC reboots.
-> 
-> Signed-off-by: Matthew Barth <msbarth@linux.ibm.com>
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
 
-Acked-by: Andrew Jeffery <andrew@aj.id.au>
+-- 
+With best wishes
+Dmitry
