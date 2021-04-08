@@ -2,365 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C3E9358442
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 15:12:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAC7F358521
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 15:49:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231371AbhDHNMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 09:12:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34904 "EHLO
+        id S231718AbhDHNtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 09:49:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231308AbhDHNMb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 09:12:31 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC36BC061760
-        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 06:12:18 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id n138so3957230lfa.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021 06:12:18 -0700 (PDT)
+        with ESMTP id S231663AbhDHNtS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 09:49:18 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75E01C061763
+        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 06:49:05 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id n138so4166951lfa.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021 06:49:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Mg1rnmzYlGS0W73zSpiFdEvCZx/ufEx400E1vd3zKK4=;
-        b=oTCHNhCRwwzS55aMYQxja6D+CShYifEG+L+pSHzGe3fyVw8Pk/iifaUNfwcG6Sk2ds
-         3cQSKIFIqFM2Afua8eJWBGqOUCx4XO9ouF1M64XFDjBt6jPq+iLu3SgtGV5SiYRLPjTL
-         0PqoeBO9GsBUxl9vj1b+/KhzWwahcgfu82XXxV5Pz7FaDTTYwSH59LUiR9DswiTUfPoL
-         /HM9tJskbLHyD4VVFxkKA/ZPN0Ho/k+hwbaUEgvOiuBm3M3MWFHBgWtMJnR0PPaeOIpj
-         wca/TkmpCDIeevD95XTWr/cFPVWs1+bhthDfYseK2T2f3pePoJllpI6TJgFpFY5ACG2X
-         8nVg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=UTgjJ3FHb3vPYX9JqUC+Xv2zcOSZzBL4YmbnqLtgQjA=;
+        b=o4TSUSwHiiAAjF3VFtEcrQ4tpvWBkGs9ERxSNW5uZzLtvNG9jhjcMRPamT/5o9/e0W
+         BUsZ3k5gpkaZogfOl7aOj5p62Oese6YpCGS1rgrCXQfWePMOeL+xw7j2qYtwC3oGjanw
+         U84H3swzdTy5ppJvjX24OvmqblWycknA1u1OC2ULZTxrvia7LAa04EAJKyrkIYN3XSDk
+         jveX6QjfyaoRGwlXxWhn3whB5h8igUqUcgNjB3dLBmsU3D54LKOv4tZeNzCRB+YyTfnr
+         /kKlug35HLva8AbJEfxcKjzSsIIm3XucQlzZm3btrgmKxZs9G9ycKYJCdpfwr22w4m+f
+         LPeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Mg1rnmzYlGS0W73zSpiFdEvCZx/ufEx400E1vd3zKK4=;
-        b=nXcD+aDAQ5WmE2G4MVr7xuLlim3GrfgAKoIFz/YVQdrWtq9o0aMWPysWDxDu8B+d/i
-         R86AJYgUEdSeVsLN7oy+kT3i7Y1Z34jJ4yGY3sq5MmJlhhfPgjHg7G/H5aoXaRJMYBHX
-         kD2A3RDzZ52MCQx6T/FArnDO15J09eNbjHxe/dBU8I231LE+G+xWYDMAcPiP4mCQotPo
-         31X9pHDrwHoGPAF8Wrh3FffKFWfUT4C9XGw5LJeumuNzKNfRS6Za+kG36dq8BqNo2U9o
-         x+FIdUqPh6LlWQlfEocV3qx145lyVJyXUT+fdrtDmU746pA6UNPoxjCPj468yrsprF20
-         2xNA==
-X-Gm-Message-State: AOAM532fz23vcTg21H2wZobjjpNpNtyorxv9I/SkdMU4OCqXRvsK1LOn
-        RGWPQfSYpnBjKtvJPuVbOSO3Nw==
-X-Google-Smtp-Source: ABdhPJzG3mcaE/NMLOaw3b0Bdglvyn2CIV/h0P/DAgPlUjfUXQqKlhqnLaTGC52y0GGeay8yC3gb7A==
-X-Received: by 2002:a19:700d:: with SMTP id h13mr6278116lfc.17.1617887537081;
-        Thu, 08 Apr 2021 06:12:17 -0700 (PDT)
-Received: from localhost.localdomain (c-14cb225c.014-348-6c756e10.bbcust.telenor.se. [92.34.203.20])
-        by smtp.gmail.com with ESMTPSA id z7sm126936ljm.102.2021.04.08.06.12.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Apr 2021 06:12:11 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Ferruh Yigit <fery@cypress.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Javier Martinez Canillas <javier@dowhile0.org>
-Cc:     Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH 1/8 v3] Input: cyttsp - Convert bindings to YAML and extend
-Date:   Thu,  8 Apr 2021 15:11:46 +0200
-Message-Id: <20210408131153.3446138-2-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210408131153.3446138-1-linus.walleij@linaro.org>
-References: <20210408131153.3446138-1-linus.walleij@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=UTgjJ3FHb3vPYX9JqUC+Xv2zcOSZzBL4YmbnqLtgQjA=;
+        b=jjSS6MKggpe1ccx4g12KnUFLHBYV0agXlu7OY7F5Lv1UrNCLShRBXrGtuGWFrprcYW
+         6xBEAjsgZwqTUvq38n2F1SfNIg1EiFT3Y+OKxor2dR8CIKqy7sPMvRaKhYv/qNuOV9aJ
+         6e1PkpTW90HuM32q9H+5tv3mevQzlh+1l+K7EZ3TW/TkdF546Gdv03xcrqpbXrPK256C
+         X7PnXuFXElZ3N1MHDi/kcnX9gHBx1/jYlRdseU0txXQjgai7x5/op/Wo6jyiM+4fonyH
+         iThN08Hijy2Eby0bgN4TRd9SdVWvQzpwK0TGodzpU9/ptpJjQfGMcMdZoI3lU0bOSohp
+         zEZA==
+X-Gm-Message-State: AOAM533D9QObHlvfxfGZVIdgNX9IlygJArgGie0B1ttjz6XA+9kHnG9m
+        OmbmvThLEFiNhO5maULUsIXZdfY2bi4fdoPdh7gXvHlud5gQzg==
+X-Google-Smtp-Source: ABdhPJydpnKNmcXAhArU85kHqM2ACtHCS13HM3NEI5XCdxT+1HfyDzLnwnpcyag83BGtGZUhP8Z6T0MKRnvupiqYS78=
+X-Received: by 2002:a19:ef18:: with SMTP id n24mr6305733lfh.291.1617889743784;
+ Thu, 08 Apr 2021 06:49:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1617280546-9583-1-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <1617280546-9583-1-git-send-email-skakit@codeaurora.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 8 Apr 2021 15:48:52 +0200
+Message-ID: <CACRpkdbD6E3PY_JCEbwNiVfb8LoT6F5DzV7x71Us3Z7U3BaX=Q@mail.gmail.com>
+Subject: Re: [PATCH V2 0/3] Add GPIO support for PM7325, PM8350c, PMK8350 and PMR735A
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This converts the CYTTSP "Cypress TrueTouch Standard Product"
-to YAML bindings and fixes and adds some things in the process:
+On Thu, Apr 1, 2021 at 2:36 PM satya priya <skakit@codeaurora.org> wrote:
 
-- Rename the bindings file to cypress,cy8ctma340 after the main
-  product in the series.
-- Add proper compatibles for the two known products:
-  CY8CTMA340 and CY8CTST341.
-- Deprecate "cypress,cyttsp-spi" and "cypress,cyttsp-i2c"
-  because device compatibles should be named after the
-  hardware and not after which bus they are connected to.
-  The topology implicitly tells us which bus it is and what
-  interface to used.
-- Add VCPIN and VDD supplies, these are present just like
-  on the CY8CTMA140.
+> satya priya (3):
+>   pinctrl: qcom: spmi-gpio: Add support for four variants
+>   dt-bindings: pinctrl: qcom-pmic-gpio: Update the binding to add four
+>     new variants
+>   dt-bindings: pinctrl: qcom-pmic-gpio: Convert qcom pmic gpio bindings
+>     to YAML
 
-Cc: devicetree@vger.kernel.org
-Cc: Ferruh Yigit <fery@cypress.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Javier Martinez Canillas <javier@dowhile0.org>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v2->v3:
-- Collect Robs and Javiers Review tags.
-- Use the right mail address for Javier.
-- Include in the patch series with the rest of the CYTTSP
-  fixes.
-ChangeLog v1->v2:
-- Use minItems and maxItems directly without -items
-- Drop u32 type from all properties ending with "-ms"
-  that thus have implicit types.
-- Add maintiner to Cc.
+Please collect the ACKs and rebase like Bj=C3=B6rn says, sort stuff alphabe=
+tically
+and resend so I can try to apply it! The YAML conversion may need a nod fro=
+m
+the DT people as well.
 
-Patch to add the new compatibles to the Linux driver is sent
-separately.
----
- .../input/touchscreen/cypress,cy8ctma340.yaml | 149 ++++++++++++++++++
- .../bindings/input/touchscreen/cyttsp.txt     |  93 -----------
- 2 files changed, 149 insertions(+), 93 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma340.yaml
- delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/cyttsp.txt
-
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma340.yaml b/Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma340.yaml
-new file mode 100644
-index 000000000000..29eb0b7ebe6a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma340.yaml
-@@ -0,0 +1,149 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/touchscreen/cypress,cy8ctma340.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cypress CY8CTMA340 series touchscreen controller bindings
-+
-+description: The Cypress CY8CTMA340 series (also known as "CYTTSP" after
-+  the marketing name Cypress TrueTouch Standard Product) touchscreens can
-+  be connected to either I2C or SPI buses.
-+
-+maintainers:
-+  - Javier Martinez Canillas <javier@dowhile0.org>
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+allOf:
-+  - $ref: touchscreen.yaml#
-+
-+properties:
-+  $nodename:
-+    pattern: "^touchscreen(@.*)?$"
-+
-+  compatible:
-+    oneOf:
-+      - const: cypress,cy8ctma340
-+      - const: cypress,cy8ctst341
-+      - const: cypress,cyttsp-spi
-+        description: Legacy compatible for SPI connected CY8CTMA340
-+        deprecated: true
-+      - const: cypress,cyttsp-i2c
-+        description: Legacy compatible for I2C connected CY8CTMA340
-+        deprecated: true
-+
-+  reg:
-+    description: I2C address when used on the I2C bus, or the SPI chip
-+      select index when used on the SPI bus
-+
-+  clock-frequency:
-+    description: I2C client clock frequency, defined for host when using
-+      the device on the I2C bus
-+    minimum: 0
-+    maximum: 400000
-+
-+  spi-max-frequency:
-+    description: SPI clock frequency, defined for host, defined when using
-+      the device on the SPI bus. The throughput is maximum 2 Mbps so the
-+      typical value is 2000000, if higher rates are used the total throughput
-+      needs to be restricted to 2 Mbps.
-+    minimum: 0
-+    maximum: 6000000
-+
-+  interrupts:
-+    description: Interrupt to host, must be flagged as
-+      IRQ_TYPE_EDGE_FALLING.
-+    maxItems: 1
-+
-+  vcpin-supply:
-+    description: Analog power supply regulator on VCPIN pin
-+
-+  vdd-supply:
-+    description: Digital power supply regulator on VDD pin
-+
-+  reset-gpios:
-+    description: Reset line for the touchscreen, should be tagged
-+      as GPIO_ACTIVE_LOW
-+
-+  bootloader-key:
-+    description: the 8-byte bootloader key that is required to switch
-+      the chip from bootloader mode (default mode) to application mode
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    minItems: 8
-+    maxItems: 8
-+
-+  touchscreen-size-x: true
-+  touchscreen-size-y: true
-+  touchscreen-fuzz-x: true
-+  touchscreen-fuzz-y: true
-+
-+  active-distance:
-+    description: the distance in pixels beyond which a touch must move
-+      before movement is detected and reported by the device
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 15
-+
-+  active-interval-ms:
-+    description: the minimum period in ms between consecutive
-+      scanning/processing cycles when the chip is in active mode
-+    minimum: 0
-+    maximum: 255
-+
-+  lowpower-interval-ms:
-+    description: the minimum period in ms between consecutive
-+      scanning/processing cycles when the chip is in low-power mode
-+    minimum: 0
-+    maximum: 2550
-+
-+  touch-timeout-ms:
-+    description: minimum time in ms spent in the active power state while no
-+      touches are detected before entering low-power mode
-+    minimum: 0
-+    maximum: 2550
-+
-+  use-handshake:
-+    description: enable register-based handshake (boolean). This should only
-+      be used if the chip is configured to use 'blocking communication with
-+      timeout' (in this case the device generates an interrupt at the end of
-+      every scanning/processing cycle)
-+    $ref: /schemas/types.yaml#/definitions/flag
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - bootloader-key
-+  - touchscreen-size-x
-+  - touchscreen-size-y
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      num-cs = <1>;
-+      cs-gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
-+
-+      touchscreen@0 {
-+        compatible = "cypress,cy8ctma340";
-+        reg = <0>;
-+        interrupt-parent = <&gpio>;
-+        interrupts = <20 IRQ_TYPE_EDGE_FALLING>;
-+        reset-gpios = <&gpio 21 GPIO_ACTIVE_LOW>;
-+        vdd-supply = <&ldo_aux1_reg>;
-+        vcpin-supply = <&ldo_aux2_reg>;
-+        bootloader-key = /bits/ 8 <0x00 0x01 0x02 0x03 0x04 0x05 0x06 0x07>;
-+        touchscreen-size-x = <480>;
-+        touchscreen-size-y = <800>;
-+        active-interval-ms = <0>;
-+        touch-timeout-ms = <255>;
-+        lowpower-interval-ms = <10>;
-+      };
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/cyttsp.txt b/Documentation/devicetree/bindings/input/touchscreen/cyttsp.txt
-deleted file mode 100644
-index 6ee274aa8b03..000000000000
---- a/Documentation/devicetree/bindings/input/touchscreen/cyttsp.txt
-+++ /dev/null
-@@ -1,93 +0,0 @@
--* Cypress cyttsp touchscreen controller
--
--Required properties:
-- - compatible		: must be "cypress,cyttsp-i2c" or "cypress,cyttsp-spi"
-- - reg			: Device I2C address or SPI chip select number
-- - spi-max-frequency	: Maximum SPI clocking speed of the device (for cyttsp-spi)
-- - interrupts		: (gpio) interrupt to which the chip is connected
--			  (see interrupt binding[0]).
-- - bootloader-key	: the 8-byte bootloader key that is required to switch
--			  the chip from bootloader mode (default mode) to
--			  application mode.
--			  This property has to be specified as an array of 8
--			  '/bits/ 8' values.
--
--Optional properties:
-- - reset-gpios		: the reset gpio the chip is connected to
--			  (see GPIO binding[1] for more details).
-- - touchscreen-size-x	: horizontal resolution of touchscreen (in pixels)
-- - touchscreen-size-y	: vertical resolution of touchscreen (in pixels)
-- - touchscreen-fuzz-x	: horizontal noise value of the absolute input device
--			  (in pixels)
-- - touchscreen-fuzz-y	: vertical noise value of the absolute input device
--			  (in pixels)
-- - active-distance	: the distance in pixels beyond which a touch must move
--			  before movement is detected and reported by the device.
--			  Valid values: 0-15.
-- - active-interval-ms	: the minimum period in ms between consecutive
--			  scanning/processing cycles when the chip is in active mode.
--			  Valid values: 0-255.
-- - lowpower-interval-ms	: the minimum period in ms between consecutive
--			  scanning/processing cycles when the chip is in low-power mode.
--			  Valid values: 0-2550
-- - touch-timeout-ms	: minimum time in ms spent in the active power state while no
--			  touches are detected before entering low-power mode.
--			  Valid values: 0-2550
-- - use-handshake	: enable register-based handshake (boolean). This should
--			  only be used if the chip is configured to use 'blocking
--			  communication with timeout' (in this case the device
--			  generates an interrupt at the end of every
--			  scanning/processing cycle).
--
--[0]: Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
--[1]: Documentation/devicetree/bindings/gpio/gpio.txt
--
--Example:
--	&i2c1 {
--		/* ... */
--		cyttsp@a {
--			compatible = "cypress,cyttsp-i2c";
--			reg = <0xa>;
--			interrupt-parent = <&gpio0>;
--			interrupts = <28 0>;
--			reset-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
--
--			touchscreen-size-x = <800>;
--			touchscreen-size-y = <480>;
--			touchscreen-fuzz-x = <4>;
--			touchscreen-fuzz-y = <7>;
--
--			bootloader-key = /bits/ 8 <0x01 0x02 0x03 0x04 0x05 0x06 0x07 0x08>;
--			active-distance = <8>;
--			active-interval-ms = <0>;
--			lowpower-interval-ms = <200>;
--			touch-timeout-ms = <100>;
--		};
--
--		/* ... */
--	};
--
--	&mcspi1 {
--		/* ... */
--		cyttsp@0 {
--			compatible = "cypress,cyttsp-spi";
--			spi-max-frequency = <6000000>;
--			reg = <0>;
--			interrupt-parent = <&gpio0>;
--			interrupts = <28 0>;
--			reset-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
--
--			touchscreen-size-x = <800>;
--			touchscreen-size-y = <480>;
--			touchscreen-fuzz-x = <4>;
--			touchscreen-fuzz-y = <7>;
--
--			bootloader-key = /bits/ 8 <0x01 0x02 0x03 0x04 0x05 0x06 0x07 0x08>;
--			active-distance = <8>;
--			active-interval-ms = <0>;
--			lowpower-interval-ms = <200>;
--			touch-timeout-ms = <100>;
--		};
--
--		/* ... */
--	};
--- 
-2.29.2
-
+Yours,
+Linus Walleij
