@@ -2,79 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BA62357912
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 02:31:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEB57357914
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 02:34:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbhDHAb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 20:31:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44070 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229484AbhDHAbZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Apr 2021 20:31:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4875D61181;
-        Thu,  8 Apr 2021 00:31:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617841875;
-        bh=5YsPqezv793TcVBfx0Cfk1xGz66mtLLY0VP7pyv6NKw=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=s9zrAn3EZME/CD+fBbOlgTZzD10vZs4NmNekX35wp0zGTrEu3wiNBQ1KvD//G8S8v
-         zXbwz7/HSz9s+gw19p6/PjDw4HyCRBc3JnqLwImO2qHxr2BOds0V712iWEZL85CiBY
-         96ZmdfaG/LYe9RJqVi0MQySKGdOx0tSHnKb6Jb1gz9H8Ergdhg39Ajd720Z5p8RdLl
-         zbGJeJ1meBqmSR7q0vB7cQ3A/tE+WNw1oqcxFgAd0vfFKgChrIjGtPqBdNvJqvI7Ou
-         fUnCjrYqOiRvf0ebHaHqNCCHeDmzA1RYBck8UM5tuY4A5L4Dl9QLoCb6mCVUhZTbLE
-         LG8MpS28IUnAQ==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <alpine.DEB.2.22.394.2104072100410.11549@hadrien>
-References: <alpine.DEB.2.22.394.2104072100410.11549@hadrien>
-Subject: Re: [PATCH] clk: fix for_each_child.cocci warnings
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        kbuild-all@lists.01.org
-To:     Julia Lawall <julia.lawall@inria.fr>,
-        Liam Beguin <liambeguin@gmail.com>, mturquette@baylibre.com
-Date:   Wed, 07 Apr 2021 17:31:13 -0700
-Message-ID: <161784187378.3790633.2593540922159647609@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+        id S229488AbhDHAeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 20:34:36 -0400
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:49911 "EHLO
+        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229484AbhDHAeg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 20:34:36 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 68AEB5C011D;
+        Wed,  7 Apr 2021 20:34:25 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Wed, 07 Apr 2021 20:34:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=A6y1xhjxB+rYO016EU+ElgKOQtyeyVG
+        GpE9ZLWZByAU=; b=MM9XsgZA06Lv6b7FcLpi25PtwPNOLTLOEGZS/xqAzU8CCQ8
+        xIVmlYvD4HgVEsdvIgO/tS3HeGPxlrHI9tQLhUnbEFoSVNJSYd1nPAFDcHpGe5V8
+        t+pYm4DKrBnO4wNb4KDeq+MqUXpsB/vHGXqAB2KbR4QBATUUbs87tDrZR/7zjsW6
+        kAwYaViXr8RZll8x6Y5MJqI4I5u8FyE9QwaaBOS2tvt2skdmECRz0CdSB+4CzUW5
+        nyDUnsX/bNXsThWus3TU0E5Xq50lV0dsUphhjyEViNsk4g4NjMUuyq0FXWMoG9mz
+        y9iBIxyJBdD4G2E9ZoBgJWcSgLHSNDdWMXI2/sw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=A6y1xh
+        jxB+rYO016EU+ElgKOQtyeyVGGpE9ZLWZByAU=; b=YNL4vDQroo3M0wjmEHQfnf
+        PO4yvEKjC1+dfFH8BOoIr9EwPf4GavKIkhPU6qYllfSnl80PkoAp8hu8A2PcqFlF
+        tayxhpl0sEi07gqurjNd2U+4VhuyKFVMEb9WX6u1Fd5JBPX47YlWT8br7jTAH/td
+        kI4Nn/IosWYi2nrFTpyr2WuaYisfXlwQyKS4qDQUYV4MQSN1p1VWxi0b3+UqpK94
+        BI5tD/Y/gF3X9xG9ni3jYz0OtiP1iJ1rdGQXf2kQyrJMYE0DYakyZOkHwU6mJU6k
+        XiQLKfGhX6wKMdE89N54SjwK9Qb8SneLWd7B5Oh+aZi+Ev+0yERTnU7oSFg2c2og
+        ==
+X-ME-Sender: <xms:kE9uYMp8BEY32VLg7Qz0qAT7IJ82-tBtQvVNDnBZa7dUxh5nPVP9zw>
+    <xme:kE9uYCq6NFa6zTxFIBr0o0dtHT6eo_jDkCV4udIWxcQv9-l4bkSVCYu5zvUDyi2X6
+    p80rPa1qyMb3HE8JA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudejkedgfeeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhephefhfeekgfekudevheffheeihedujeefjeevjeefudfgfeeutdeuvdeh
+    hfevueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:kE9uYBNYzRU148cbJGs9Ll1TWfwG33zNYh2sWPaVFP1aIQpeBIp7JA>
+    <xmx:kE9uYD7-9rXNHDFLZgxPmG3cNukQuoYZeD0BgRFaPcP1cq1jW3m8Jw>
+    <xmx:kE9uYL64AcSmbQ9hqIx9a2GHimAjuTR3oMv5x8KwjCWKe6KXEuUfAw>
+    <xmx:kU9uYNlN7jauyB3FeKCcj1mEbVUbFCjuJFGMZjIMInEza1jd7Bu-JA>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 0D824A0007A; Wed,  7 Apr 2021 20:34:24 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-273-g8500d2492d-fm-20210323.002-g8500d249
+Mime-Version: 1.0
+Message-Id: <dbe4fa5f-370a-41fd-a1ab-7b065b5cb8d1@www.fastmail.com>
+In-Reply-To: <20210329150020.13632-21-eajames@linux.ibm.com>
+References: <20210329150020.13632-1-eajames@linux.ibm.com>
+ <20210329150020.13632-21-eajames@linux.ibm.com>
+Date:   Thu, 08 Apr 2021 10:04:03 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Eddie James" <eajames@linux.ibm.com>,
+        "Joel Stanley" <joel@jms.id.au>
+Cc:     "Rob Herring" <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org,
+        "Matthew Barth" <msbarth@linux.ibm.com>
+Subject: Re: [PATCH 20/22] ARM: dts: aspeed: everest: Enable fan watchdog
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Julia Lawall (2021-04-07 12:02:32)
-> From: kernel test robot <lkp@intel.com>
->=20
-> For_each_child_of_node should have of_node_put() before goto.
->=20
-> Generated by: scripts/coccinelle/iterators/for_each_child.cocci
->=20
-> CC: Liam Beguin <lvb@xiphos.com>
-> Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Julia Lawall <julia.lawall@inria.fr>
-> ---
 
-Is this a fix for a patch on the list?
 
->=20
-> url:    https://github.com/0day-ci/linux/commits/Liam-Beguin/add-support-=
-for-the-lmk04832/20210407-085408
-> base:   f40ddce88593482919761f74910f42f4b84c004b
-> :::::: branch date: 9 hours ago
-> :::::: commit date: 9 hours ago
->=20
->  clk-lmk04832.c |    1 +
->  1 file changed, 1 insertion(+)
->=20
-> --- a/drivers/clk/clk-lmk04832.c
-> +++ b/drivers/clk/clk-lmk04832.c
-> @@ -1159,6 +1159,7 @@ static int lmk04832_probe(struct spi_dev
->                 if (ret) {
->                         dev_err(lmk->dev, "missing reg property in child:=
- %s\n",
->                                 child->full_name);
-> +                       of_node_put(child);
->                         goto err_disable_oscin;
->                 }
->
+On Tue, 30 Mar 2021, at 01:30, Eddie James wrote:
+> Set watchdog 1 to pulse the fan watchdog circuit that drives the FAULT
+> pin of the MAX31785, resulting in fans running at full speed, if at
+> any point the BMC stops pulsing it, such as a BMC reboot at runtime.
+> Enable watchdog 2 for BMC reboots.
+> 
+> Signed-off-by: Matthew Barth <msbarth@linux.ibm.com>
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+
+Acked-by: Andrew Jeffery <andrew@aj.id.au>
