@@ -2,91 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D606357B2A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 06:21:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDE31357BBB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 07:17:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbhDHEVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 00:21:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60262 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbhDHEVd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 00:21:33 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A19DC061760
-        for <devicetree@vger.kernel.org>; Wed,  7 Apr 2021 21:21:22 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1lUMAT-00072i-9w; Thu, 08 Apr 2021 06:21:21 +0200
-Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ore@pengutronix.de>)
-        id 1lUMAS-0006iR-VQ; Thu, 08 Apr 2021 06:21:20 +0200
-Date:   Thu, 8 Apr 2021 06:21:20 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Wolfram Sang <wsa@kernel.org>
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] i2c: imx: mention Oleksij as maintainer of the binding
- docs
-Message-ID: <20210408042120.szqkl7jg3yymrg3k@pengutronix.de>
-References: <20210407183532.2682-1-wsa@kernel.org>
+        id S229506AbhDHFRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 01:17:50 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:51442 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229534AbhDHFRu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Apr 2021 01:17:50 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1617859060; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=rNM54h1kFxbzKZTRSekPMOTljmJgxx9lrWlM3GtgRsg=;
+ b=QG3YrCL7MrFT109oSackFPFkySx0O0Iw3Sqv9WY2FS2CRoKO8KPLWyfmZjrMoSbk9nLIdiMl
+ PCIXuFT31vV85Djorg2hsFTsWtLxBbYU4o3jOlxuTWSbjMG3iNOzhKphsrd0378WQ56LT2QA
+ S8jKUHsMHP5zAqbf00EZMFCHjFk=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 606e91e4febcffa80f8cc6d7 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 08 Apr 2021 05:17:24
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 6C146C433C6; Thu,  8 Apr 2021 05:17:24 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B18F9C433CA;
+        Thu,  8 Apr 2021 05:17:23 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210407183532.2682-1-wsa@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 06:20:41 up 126 days, 18:27, 38 users,  load average: 0.15, 0.10,
- 0.02
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 08 Apr 2021 10:47:23 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Sujit Kautkar <sujitka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>
+Subject: Re: [PATCH] arm64: dts: qcom: Move rmtfs memory region
+In-Reply-To: <20210330014610.1451198-1-sujitka@chromium.org>
+References: <20210330014610.1451198-1-sujitka@chromium.org>
+Message-ID: <d38851ce189cd8555f719e5e38053b82@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 07, 2021 at 08:35:32PM +0200, Wolfram Sang wrote:
-> When I removed myself as a maintainer of the yaml file, I missed that
-> some maintainer is required. Oleksij is already listed in MAINTAINERS
-> for this file, so add him here as well.
+Hey Sujit,
+Thanks for the patch.
+
+On 2021-03-30 07:16, Sujit Kautkar wrote:
+> Move rmtfs memory region so that it does not overlap with system
+> RAM (kernel data) when KAsan is enabled. This puts rmtfs right
+> after mba_mem which is not supposed to increase beyond 0x94600000
 > 
-> Fixes: 1ae6b3780848 ("i2c: imx: drop me as maintainer of binding docs")
-> Signed-off-by: Wolfram Sang <wsa@kernel.org>
-> Cc: Oleksij Rempel <o.rempel@pengutronix.de>
-
-Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de>
-
+> Signed-off-by: Sujit Kautkar <sujitka@chromium.org>
 > ---
->  Documentation/devicetree/bindings/i2c/i2c-imx.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 2 +-
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi         | 4 ++--
+>  2 files changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx.yaml b/Documentation/devicetree/bindings/i2c/i2c-imx.yaml
-> index f33c6b29966b..3592d49235e0 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-imx.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-imx.yaml
-> @@ -6,6 +6,9 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: Freescale Inter IC (I2C) and High Speed Inter IC (HS-I2C) for i.MX
->  
-> +maintainers:
-> +  - Oleksij Rempel <o.rempel@pengutronix.de>
-> +
->  allOf:
->    - $ref: /schemas/i2c/i2c-controller.yaml#
->  
-> -- 
-> 2.29.2
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index 07c8b2c926c0..fe052b477b72 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -45,7 +45,7 @@ trips {
 > 
+>  /* Increase the size from 2MB to 8MB */
+>  &rmtfs_mem {
+> -	reg = <0x0 0x84400000 0x0 0x800000>;
+> +	reg = <0x0 0x94600000 0x0 0x800000>;
+
+Sorry for the late comments. Can you
+please do the same for sc7180-idp
+as well?
+
+Reviewed-by: Sibi Sankar <sibis@codeaurora.org>
+
+>  };
 > 
+>  / {
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index 1ea3344ab62c..ac956488908f 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -110,9 +110,9 @@ tz_mem: memory@80b00000 {
+>  			no-map;
+>  		};
+> 
+> -		rmtfs_mem: memory@84400000 {
+> +		rmtfs_mem: memory@94600000 {
+>  			compatible = "qcom,rmtfs-mem";
+> -			reg = <0x0 0x84400000 0x0 0x200000>;
+> +			reg = <0x0 0x94600000 0x0 0x200000>;
+>  			no-map;
+> 
+>  			qcom,client-id = <1>;
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
