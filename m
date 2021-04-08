@@ -2,213 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D08B3357C20
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 08:08:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DF4A357C25
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 08:09:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbhDHGIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 02:08:44 -0400
-Received: from mail-dm6nam11on2059.outbound.protection.outlook.com ([40.107.223.59]:55519
-        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229506AbhDHGIo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Apr 2021 02:08:44 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L+JzHEoS4J0nr+4LzB21Hxza/Nclme5xmwr0fn80Q+Bc26FqLWHzbsYCxvUScuPKg4vDvRIu96rHzw+gXcMCHa1AGfntwXSLVnG3BXo+rv78vBv3UhzrhY8kp7h3o2v7OSBi0/TPGRsS1B5JIo3na1D8DghWYbOdomII0vh5TnHKIJcyscspSpOjLJ32elG/mDbz2gCg1LRDYWOS75jWMLJiIF5bm6y+uvUGu0F7RbuZuOupTsJxGQh2mv1rf5JtMO0EbRBDSFCOzmPSeehKV4ce6UoOiGdil/BBDTdesLnJn9Eilg8vH9FCo1cMlSmw9SSeNxWoY8hiuNnM5yK44Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A9POfFMd6vxs2KTMkla8WcMd2K6qRwdLDvsoaSWEna4=;
- b=ZGRxcZ7BID2gA5FIahIwBTQZXSUQOwFlt80vceAw9jvRGaaGNnsZRl1gPVwot5GdUUFfnylBkjD/OQgxP8yTOx8/VqfyOAKk8HMP0mrHQzXfbkn+DqkoigxULOaeH79ZLoXUUTJFaALXsBFdFkBmYi+PdbOTeWOnHb6D9aWFOD8Prkm6UV52Brtbc9RaT6LJuOfwLSMWJ3kA24Bno82I6CEN0iEPrAPz392scu9RG/p9bIZX8EJiIgYFVrCwLP4HjKlwKfb3pYfY2Klp8JxY3ggurq2VSBKJzmdpJdmO+7DTERkfleER3iJ6YdZwjyGL8psaj9oOwXVfv4/6Wc2gEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A9POfFMd6vxs2KTMkla8WcMd2K6qRwdLDvsoaSWEna4=;
- b=GIC+rdTDqhNUCVduGdHJY2EFGFXDb0FOg6vDFAtoyofQD2pipu9OK9w+LS8TfmsykWbM2KE1pb1Kki9LAHTIOCjbyJ+L/ek45Cz0zZayW5209IrvtEo3/JN/tNV9ybS02reoSWI5nnDooZB8NruMHzDz3ny0nX4fjqkkZS12GkA=
-Received: from SN4PR0201CA0070.namprd02.prod.outlook.com
- (2603:10b6:803:20::32) by BN7PR02MB5170.namprd02.prod.outlook.com
- (2603:10b6:408:23::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.28; Thu, 8 Apr
- 2021 06:08:31 +0000
-Received: from SN1NAM02FT004.eop-nam02.prod.protection.outlook.com
- (2603:10b6:803:20:cafe::69) by SN4PR0201CA0070.outlook.office365.com
- (2603:10b6:803:20::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.17 via Frontend
- Transport; Thu, 8 Apr 2021 06:08:31 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT004.mail.protection.outlook.com (10.152.72.175) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4020.17 via Frontend Transport; Thu, 8 Apr 2021 06:08:31 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Wed, 7 Apr 2021 23:08:15 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2106.2 via Frontend Transport; Wed, 7 Apr 2021 23:08:15 -0700
-Envelope-to: git@xilinx.com,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org,
- linux-usb@vger.kernel.org,
- p.zabel@pengutronix.de,
- balbi@kernel.org,
- robh+dt@kernel.org,
- gregkh@linuxfoundation.org,
- linux@roeck-us.net
-Received: from [172.30.17.109] (port=40116)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1lUNpu-0007ab-9U; Wed, 07 Apr 2021 23:08:14 -0700
-Subject: Re: [PATCH v4 2/2] usb: dwc3: Add driver for Xilinx platforms
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Manish Narani <manish.narani@xilinx.com>
-CC:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <michal.simek@xilinx.com>, <balbi@kernel.org>,
-        <p.zabel@pengutronix.de>, <git@xilinx.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        id S229552AbhDHGJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 02:09:50 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:45282 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229534AbhDHGJu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 02:09:50 -0400
+X-UUID: 8d8b8fd3c0cf4307ba5ed5db2872e22e-20210408
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=EJEGrtJeH59qQNQHwYtSxuFXpFKOfiBvVZE4IMKw+UI=;
+        b=UsTCpPMvfYiOkL2VHzgv6WKbUAMQH6RFhyRvvqDhgiIv6Bi/AAMMH4w3EqIS6isiMjpthY8Ed+UtZ4MxUoiOsqDQBMq5m5P+KCfHesA8/ndodQtV4/QUBrVyxm1TD1FT1A6TVbnxWEgRHG8rZMeQ+0uyq+lVubnCnF50C22Ki5Q=;
+X-UUID: 8d8b8fd3c0cf4307ba5ed5db2872e22e-20210408
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <nina-cm.wu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1071343655; Thu, 08 Apr 2021 14:09:36 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 8 Apr 2021 14:09:28 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 8 Apr 2021 14:09:28 +0800
+Message-ID: <1617862168.8874.13.camel@mtksdccf07>
+Subject: Re: [PATCH v2 5/6] soc: mediatek: devapc: add debug register for
+ new IC support
+From:   Nina Wu <nina-cm.wu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Zhen Lei <thunder.leizhen@huawei.com>,
+        Neal Liu <neal.liu@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1615963949-75320-1-git-send-email-manish.narani@xilinx.com>
- <1615963949-75320-3-git-send-email-manish.narani@xilinx.com>
- <20210407214811.GA260719@roeck-us.net>
-From:   Michal Simek <michal.simek@xilinx.com>
-Message-ID: <ee280235-736d-1689-d324-b090c21106c9@xilinx.com>
-Date:   Thu, 8 Apr 2021 08:08:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <Jackson-kt.Chang@mediatek.com>
+Date:   Thu, 8 Apr 2021 14:09:28 +0800
+In-Reply-To: <23c0d15c-6cc2-dc40-e45a-c2fb749cec1f@gmail.com>
+References: <1617259087-5502-1-git-send-email-nina-cm.wu@mediatek.com>
+         <1617259087-5502-5-git-send-email-nina-cm.wu@mediatek.com>
+         <23c0d15c-6cc2-dc40-e45a-c2fb749cec1f@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 MIME-Version: 1.0
-In-Reply-To: <20210407214811.GA260719@roeck-us.net>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 38f260fc-4475-494f-a904-08d8fa54bc33
-X-MS-TrafficTypeDiagnostic: BN7PR02MB5170:
-X-Microsoft-Antispam-PRVS: <BN7PR02MB5170A307615AEEE2442650BCC6749@BN7PR02MB5170.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: r5Wexh7UqNAbVei3RKABhcvLbJx4ThMA40sF3iNR7MtfYvKnKjtr+aGB0yEzjpctaAgCpPx2CXasN+AeCFpN3dmgvzhzE2kQaoHNRbjDJIJIOhX2ksgNDzuhcBHPEqokJjOYHbmTgisvStFa8N81gLpLHemDmiycW28TmPLWsQNs76sTwXH8j275Vc7BL8oYJlWbvuJXJWE9mXumVRXNhxuwVPY9UOGxoLMzft+K+NrKrIQqe4jNaqoxtsi0BZLOKnzLW502XIQMkf5dZG119fgdciwO4H3bPavhdpaOhNv0sYG9InKI47NI9Bn+60xY7aOJ1qU86mZtKfq6v9cI9ZNGoBTBoeVdrQhI3mOZ3q7rDapbNt6k139FDko6vfVoVywI7/4pGyqXxq+xe4svHALZngD/3IEUEYgHkDhxv2hDTwP3UOPDTups7sQZ+eeCqstXZ9wrWUp9leBQQ92755o3NIecYVNZPSnxd5yzrNCxE+tzLhTRgHNak0yrVcmydGP3ySV6lrRnx87aJsXemDCfrb1QcArObeZ8qXHrkzpt1XNfJ5NABvIhVhdYAhPiKZ5ku3lc1a++Sco4qbnHTc4EIAjfO0mdpjnBjRC42pWWTebwI4NrBSeI+fwvlUXomCsSWKDxBmPWksAY7JL9rSQu+iU/iqYAZDkCbGhyGDcT7GWWNBrtFX2V+EPvOT0nAlrYHFDGmfmMUz4ZqhOXUA==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(136003)(39860400002)(376002)(396003)(346002)(46966006)(36840700001)(2906002)(356005)(82740400003)(70586007)(53546011)(83380400001)(26005)(5660300002)(8676002)(8936002)(7636003)(70206006)(478600001)(426003)(6666004)(336012)(31686004)(45080400002)(2616005)(36756003)(316002)(110136005)(36860700001)(31696002)(82310400003)(9786002)(47076005)(4326008)(36906005)(186003)(54906003)(44832011)(6636002)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2021 06:08:31.3814
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38f260fc-4475-494f-a904-08d8fa54bc33
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT004.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR02MB5170
+X-TM-SNTS-SMTP: 7CAFF274F06E74740FF1A0901266ECC9C36F1710CE7BB4806B874DD48507ED1D2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guenter,
+SGksIE1hdHRoaWFzDQoNCk9uIFR1ZSwgMjAyMS0wNC0wNiBhdCAxNTo1MyArMDIwMCwgTWF0dGhp
+YXMgQnJ1Z2dlciB3cm90ZToNCj4gDQo+IE9uIDAxLzA0LzIwMjEgMDg6MzgsIE5pbmEgV3Ugd3Jv
+dGU6DQo+ID4gRnJvbTogTmluYSBXdSA8TmluYS1DTS5XdUBtZWRpYXRlay5jb20+DQo+ID4gDQo+
+ID4gVGhlcmUgYXJlIDMgZGVidWcgaW5mbyByZWdpc3RlcnMgaW4gbmV3IElDcyB3aGlsZSBpbiBs
+ZWdhY3kgb25lcywNCj4gPiB3ZSBoYXZlIG9ubHkgMi4gV2hlbiBkdW1waW5nIHRoZSBkZWJ1ZyBp
+bmZvLCB3ZSBuZWVkIHRvIGNoZWNrIGZpcnN0DQo+ID4gaWYgdGhlIDNyZCBkZWJ1ZyByZWdpc3Rl
+ciBleGlzdHMgYW5kIHRoZW4gd2UgY2FuIGtvbncgaG93IHRvIGRlY2lwaGVyDQo+ID4gdGhlIGRl
+YnVnIGluZm8uDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogTmluYSBXdSA8TmluYS1DTS5XdUBt
+ZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvc29jL21lZGlhdGVrL210ay1kZXZh
+cGMuYyB8IDMxICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrLS0NCj4gPiAgMSBmaWxlIGNo
+YW5nZWQsIDI5IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQo+ID4gDQo+ID4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvc29jL21lZGlhdGVrL210ay1kZXZhcGMuYyBiL2RyaXZlcnMvc29jL21l
+ZGlhdGVrL210ay1kZXZhcGMuYw0KPiA+IGluZGV4IGJjZjZlM2MuLmFmNTVjMDEgMTAwNjQ0DQo+
+ID4gLS0tIGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLWRldmFwYy5jDQo+ID4gKysrIGIvZHJp
+dmVycy9zb2MvbWVkaWF0ZWsvbXRrLWRldmFwYy5jDQo+ID4gQEAgLTI2LDkgKzI2LDE5IEBAIHN0
+cnVjdCBtdGtfZGV2YXBjX3Zpb19kYmdzIHsNCj4gPiAgCQkJdTMyIGFkZHJfaDo0Ow0KPiA+ICAJ
+CQl1MzIgcmVzdjo0Ow0KPiA+ICAJCX0gZGJnMF9iaXRzOw0KPiA+ICsNCj4gPiArCQkvKiBOb3Qg
+dXNlZCwgcmVmZXJlbmNlIG9ubHkgKi8NCj4gPiArCQlzdHJ1Y3Qgew0KPiA+ICsJCQl1MzIgZG1u
+aWQ6NjsNCj4gPiArCQkJdTMyIHZpb193OjE7DQo+ID4gKwkJCXUzMiB2aW9fcjoxOw0KPiA+ICsJ
+CQl1MzIgYWRkcl9oOjQ7DQo+ID4gKwkJCXUzMiByZXN2OjIwOw0KPiA+ICsJCX0gZGJnMF9iaXRz
+X3ZlcjI7DQo+ID4gIAl9Ow0KPiA+ICANCj4gPiAgCXUzMiB2aW9fZGJnMTsNCj4gPiArCXUzMiB2
+aW9fZGJnMjsNCj4gPiAgfTsNCj4gPiAgDQo+ID4gIHN0cnVjdCBtdGtfZGV2YXBjX2RhdGEgew0K
+PiA+IEBAIC0zNyw2ICs0Nyw3IEBAIHN0cnVjdCBtdGtfZGV2YXBjX2RhdGEgew0KPiA+ICAJdTMy
+IHZpb19zdGFfb2Zmc2V0Ow0KPiA+ICAJdTMyIHZpb19kYmcwX29mZnNldDsNCj4gPiAgCXUzMiB2
+aW9fZGJnMV9vZmZzZXQ7DQo+ID4gKwl1MzIgdmlvX2RiZzJfb2Zmc2V0Ow0KPiA+ICAJdTMyIGFw
+Y19jb25fb2Zmc2V0Ow0KPiA+ICAJdTMyIHZpb19zaGlmdF9zdGFfb2Zmc2V0Ow0KPiA+ICAJdTMy
+IHZpb19zaGlmdF9zZWxfb2Zmc2V0Ow0KPiA+IEBAIC0xNTgsMTIgKzE2OSwyOSBAQCBzdGF0aWMg
+dm9pZCBkZXZhcGNfZXh0cmFjdF92aW9fZGJnKHN0cnVjdCBtdGtfZGV2YXBjX2NvbnRleHQgKmN0
+eCkNCj4gPiAgCXN0cnVjdCBtdGtfZGV2YXBjX3Zpb19kYmdzIHZpb19kYmdzOw0KPiA+ICAJdm9p
+ZCBfX2lvbWVtICp2aW9fZGJnMF9yZWc7DQo+ID4gIAl2b2lkIF9faW9tZW0gKnZpb19kYmcxX3Jl
+ZzsNCj4gPiArCXZvaWQgX19pb21lbSAqdmlvX2RiZzJfcmVnOw0KPiA+ICsJdTMyIHZpb19hZGRy
+LCBidXNfaWQ7DQo+ID4gIA0KPiA+ICAJdmlvX2RiZzBfcmVnID0gY3R4LT5iYXNlICsgY3R4LT5k
+YXRhLT52aW9fZGJnMF9vZmZzZXQ7DQo+ID4gIAl2aW9fZGJnMV9yZWcgPSBjdHgtPmJhc2UgKyBj
+dHgtPmRhdGEtPnZpb19kYmcxX29mZnNldDsNCj4gPiArCXZpb19kYmcyX3JlZyA9IGN0eC0+YmFz
+ZSArIGN0eC0+ZGF0YS0+dmlvX2RiZzJfb2Zmc2V0Ow0KPiANCj4gV2Ugc2hvdWxkIHJlYWQgdGhp
+cyBvbmx5IGlmIHdlIGhhdmUgdmVyc2lvbjIgb2YgdGhlIGRldmFwYy4NCj4gDQoNCllvdSdyZSBy
+aWdodC4NCkl0IGlzIG5vdCBnb29kIHRvIHJlYWQgdmlvX2RiZzJfcmVnIGluIHZlcnNpb24gb25l
+LiBFdmVuIHRob3VnaCB3ZSB3aWxsDQpvbmx5IGdldCB0aGUgdmFsdWUgZnJvbSBvZmZzZXQgMCAo
+d2hpY2ggaXMgbm90IGV4cGVjdGVkKSBpbnN0ZWFkIG9mDQpkb2luZyBhbnkgcmVhbCBoYXJtLiAo
+bGlrZSBjYXVzaW5nIGJ1cyBoYW5nKQ0KDQoNCj4gPiAgDQo+ID4gIAl2aW9fZGJncy52aW9fZGJn
+MCA9IHJlYWRsKHZpb19kYmcwX3JlZyk7DQo+ID4gIAl2aW9fZGJncy52aW9fZGJnMSA9IHJlYWRs
+KHZpb19kYmcxX3JlZyk7DQo+ID4gKwl2aW9fZGJncy52aW9fZGJnMiA9IHJlYWRsKHZpb19kYmcy
+X3JlZyk7DQo+ID4gKw0KPiA+ICsJaWYgKCFjdHgtPmRhdGEtPnZpb19kYmcyX29mZnNldCkgew0K
+PiANCj4gSSB0aGluayB3ZSBzaG91bGQgYWRkIGEgdmVyc2lvbiBmaWVsZCB0byBtdGtfZGV2YXBj
+X2RhdGEgdG8gZGlzdGluZ3Vpc2ggdGhlIHR3bw0KPiBvZiB0aGVtLg0KDQpPSy4NCkkgd2lsbCB0
+cnkgdG8gYWRkIHRoaXMgZmllbGQgaW4gdGhlIG5leHQgdmVyc2lvbg0KDQo+IA0KPiA+ICsJCS8q
+IGFyY2ggdmVyc2lvbiAxICovDQo+ID4gKwkJYnVzX2lkID0gdmlvX2RiZ3MuZGJnMF9iaXRzLm1z
+dGlkOw0KPiA+ICsJCXZpb19hZGRyID0gdmlvX2RiZ3MudmlvX2RiZzE7DQo+ID4gKwl9IGVsc2Ug
+ew0KPiA+ICsJCS8qIGFyY2ggdmVyc2lvbiAyICovDQo+ID4gKwkJYnVzX2lkID0gdmlvX2RiZ3Mu
+dmlvX2RiZzE7DQo+ID4gKwkJdmlvX2FkZHIgPSB2aW9fZGJncy52aW9fZGJnMjsNCj4gPiArDQo+
+ID4gKwkJLyogVG8gYWxpZ24gd2l0aCB0aGUgYml0IGRlZmluaXRpb24gb2YgYXJjaF92ZXIgMSAq
+Lw0KPiA+ICsJCXZpb19kYmdzLnZpb19kYmcwID0gKHZpb19kYmdzLnZpb19kYmcwIDw8IDE2KTsN
+Cj4gDQo+IFRoYXQncyBtYWdpYywgYmV0dGVyIGFkZCBhbm90aGVyIHZhcmlhYmxlIGRvbWFpbl9p
+ZCBhbmQgZG8gaGVyZToNCj4gZG9tYWluX2lkID0gdmlvX2RnYnMuZGJnMF9iaXRzX3ZlcjIuZG1u
+aWQ7DQo+IA0KDQpPSy4NCkkgd2lsbCBmaXggaXQgdXAgaW4gdGhlIG5leHQgdmVyc2lvbi4NCg0K
+VGhhbmtzDQoNCj4gPiArCX0NCj4gPiAgDQo+ID4gIAkvKiBQcmludCB2aW9sYXRpb24gaW5mb3Jt
+YXRpb24gKi8NCj4gPiAgCWlmICh2aW9fZGJncy5kYmcwX2JpdHMudmlvX3cpDQo+ID4gQEAgLTE3
+Miw4ICsyMDAsNyBAQCBzdGF0aWMgdm9pZCBkZXZhcGNfZXh0cmFjdF92aW9fZGJnKHN0cnVjdCBt
+dGtfZGV2YXBjX2NvbnRleHQgKmN0eCkNCj4gPiAgCQlkZXZfaW5mbyhjdHgtPmRldiwgIlJlYWQg
+VmlvbGF0aW9uXG4iKTsNCj4gPiAgDQo+ID4gIAlkZXZfaW5mbyhjdHgtPmRldiwgIkJ1cyBJRDow
+eCV4LCBEb20gSUQ6MHgleCwgVmlvIEFkZHI6MHgleFxuIiwNCj4gPiAtCQkgdmlvX2RiZ3MuZGJn
+MF9iaXRzLm1zdGlkLCB2aW9fZGJncy5kYmcwX2JpdHMuZG1uaWQsDQo+ID4gLQkJIHZpb19kYmdz
+LnZpb19kYmcxKTsNCj4gPiArCQkgYnVzX2lkLCB2aW9fZGJncy5kYmcwX2JpdHMuZG1uaWQsIHZp
+b19hZGRyKTsNCj4gPiAgfQ0KPiA+ICANCj4gPiAgLyoNCj4gPiANCg0K
 
-On 4/7/21 11:48 PM, Guenter Roeck wrote:
-> On Wed, Mar 17, 2021 at 12:22:29PM +0530, Manish Narani wrote:
->> Add a new driver for supporting Xilinx platforms. This driver is used
->> for some sequence of operations required for Xilinx USB controllers.
->> This driver is also used to choose between PIPE clock coming from SerDes
->> and the Suspend Clock. Before the controller is out of reset, the clock
->> selection should be changed to PIPE clock in order to make the USB
->> controller work. There is a register added in Xilinx USB controller
->> register space for the same.
->>
->> Signed-off-by: Manish Narani <manish.narani@xilinx.com>
-> 
-> Trying this driver with qemu (v6.0.0-rc2) results in:
-> 
-> [   15.184242] dwc3-xilinx ff9d0000.usb: error -ENODEV: failed to assert Reset
-> [   15.185754] Unable to handle kernel paging request at virtual address 006b6b6b6b6b6b9b
-> [   15.185994] Mem abort info:
-> [   15.186065]   ESR = 0x96000004
-> [   15.186317]   EC = 0x25: DABT (current EL), IL = 32 bits
-> [   15.186414]   SET = 0, FnV = 0
-> [   15.186498]   EA = 0, S1PTW = 0
-> [   15.186579] Data abort info:
-> [   15.186666]   ISV = 0, ISS = 0x00000004
-> [   15.186756]   CM = 0, WnR = 0
-> [   15.186887] [006b6b6b6b6b6b9b] address between user and kernel address ranges
-> [   15.187436] Internal error: Oops: 96000004 [#1] PREEMPT SMP
-> [   15.187777] Modules linked in:
-> [   15.188060] CPU: 0 PID: 1 Comm: swapper/0 Not tainted 5.12.0-rc6-next-20210406-00006-g05407f068fc9-dirty #1
-> [   15.188265] Hardware name: Xilinx Versal Virtual development board (DT)
-> [   15.188495] pstate: 80000005 (Nzcv daif -PAN -UAO -TCO BTYPE=--)
-> [   15.188614] pc : __clk_put+0x24/0x138
-> [   15.188716] lr : __clk_put+0x24/0x138
-> [   15.188791] sp : ffff80001326bac0
-> [   15.188853] x29: ffff80001326bac0 x28: ffff00000644ed00
-> [   15.188982] x27: ffff00000421ecd0 x26: ffff00000421e810
-> [   15.189076] x25: ffff00000644f100 x24: 0000000000000000
-> [   15.189170] x23: ffff8000126a2570 x22: 0000000000000005
-> [   15.189271] x21: ffff00000644ed00 x20: ffff000006449970
-> [   15.189367] x19: 6b6b6b6b6b6b6b6b x18: 0000000000000010
-> [   15.189456] x17: 0000000000000001 x16: 0000000000000000
-> [   15.189546] x15: ffff000003af0490 x14: 00000000000001b7
-> [   15.189642] x13: ffff000003af0490 x12: 00000000ffffffea
-> [   15.189729] x11: ffff8000123b6460 x10: 0000000000000080
-> [   15.189815] x9 : 00000000676993c6 x8 : 00000000676993c6
-> [   15.189941] x7 : 000000007d152ab3 x6 : ffff800012768480
-> [   15.190047] x5 : 0000000000000000 x4 : 000000007f97631e
-> [   15.190139] x3 : 00000000d5bdf2c2 x2 : 000000000000000b
-> [   15.190233] x1 : ffff000003af0040 x0 : 0000000000000001
-> [   15.190432] Call trace:
-> [   15.190506]  __clk_put+0x24/0x138
-> [   15.190588]  clk_put+0x10/0x20
-> [   15.190653]  clk_bulk_put+0x3c/0x60
-> [   15.190724]  devm_clk_bulk_release+0x1c/0x28
-> [   15.190806]  release_nodes+0x1c0/0x2b0
-> [   15.190887]  devres_release_all+0x38/0x60
-> [   15.190963]  really_probe+0x1e4/0x3a8
-> [   15.191042]  driver_probe_device+0x64/0xc8
-> ...
-> 
-> because of ...
-> 
->> +
->> +	ret = devm_clk_bulk_get_all(priv_data->dev, &priv_data->clks);
->> +	if (ret < 0)
->> +		return ret;
->> +
-> ...
->> +
->> +err_clk_put:
->> +	clk_bulk_disable_unprepare(priv_data->num_clocks, priv_data->clks);
->> +	clk_bulk_put_all(priv_data->num_clocks, priv_data->clks);
-> 
-> clk_bulk_put_all() is not necessary because of devm_clk_bulk_get_all(),
-> and results in a double free.
-> 
->> +static int dwc3_xlnx_remove(struct platform_device *pdev)
->> +{
->> +	struct dwc3_xlnx	*priv_data = platform_get_drvdata(pdev);
->> +	struct device		*dev = &pdev->dev;
->> +
->> +	of_platform_depopulate(dev);
->> +
->> +	clk_bulk_disable_unprepare(priv_data->num_clocks, priv_data->clks);
->> +	clk_bulk_put_all(priv_data->num_clocks, priv_data->clks);
-> 
-> Same here. This will likely crash the driver on unload.
-It looks like that you directly created the patch. Isn't it better to
-send it yourself? Or do you want Manish to create it based on guidance
-above?
-
-Manish: Can you please take a look at this?
-
-Thanks,
-Michal
