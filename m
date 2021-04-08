@@ -2,106 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28D4E357D03
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 09:10:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2774A357D1E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 09:17:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229834AbhDHHKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 03:10:12 -0400
-Received: from mga11.intel.com ([192.55.52.93]:53177 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229819AbhDHHKK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Apr 2021 03:10:10 -0400
-IronPort-SDR: /TuYMs7M8N6vpQOPqY4fuFWWEDLLexc19rC1JaD5paiYA69P6/TRe2Nr1U8McPvGmZqHWTQBp7
- D1ECadlVS6EA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9947"; a="190271869"
-X-IronPort-AV: E=Sophos;i="5.82,205,1613462400"; 
-   d="scan'208";a="190271869"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2021 00:10:00 -0700
-IronPort-SDR: tOzBnoNL/0LBoJOg9L8l6xsFJKJqpnYabAsM///bAwpBQJ1gsLBVeT6wVPNgstK84sSswIJaIr
- WxJFFSnEVT5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,205,1613462400"; 
-   d="scan'208";a="519741633"
-Received: from kuha.fi.intel.com ([10.237.72.162])
-  by fmsmga001.fm.intel.com with SMTP; 08 Apr 2021 00:09:57 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Thu, 08 Apr 2021 10:09:56 +0300
-Date:   Thu, 8 Apr 2021 10:09:56 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Badhri Jagan Sridharan <badhri@google.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Kyle Tso <kyletso@google.com>
-Subject: Re: [PATCH v2 3/6] usb: typec: tcpm: update power supply once
- partner accepts
-Message-ID: <YG6sRLrseX7r930k@kuha.fi.intel.com>
-References: <20210407200723.1914388-1-badhri@google.com>
- <20210407200723.1914388-3-badhri@google.com>
+        id S229770AbhDHHRv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 03:17:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41694 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229510AbhDHHRu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 03:17:50 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B01EC061761
+        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 00:17:40 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id n8so2293500lfh.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021 00:17:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=sHOGEjU+QLVjkfYh4MtLWCK0GiBMyL2W88ovw24/jfA=;
+        b=gXuFmlNM9xl944esT8i2XnfB9JiY8FYyB6YskSzLyJ6lyGvcA3bPhFcrkzTmoGe7po
+         waUk8v1uNDTV5G5eoM08eLO7/e1QfiqJO8tw844UnaYB2V+AUPjLNXkC1uCsXK1vMhQ1
+         e6pe+b5NY2jgcavGb0lw+T1XVbICvPWRkhQUt6ZkCTGJpYYoOeG6lYmvilZD6itU3neF
+         E9wqPUspyFRujMIMDB/Xa/01HZptZFGt/6rz0UYvLT7ExkRLQGPZg7CwJrezsZlOmMvG
+         v9NlkVuuv21IeZxeXj3a6+MA/cRdG4rNQxqy3rXg93slB/0ezzEwmdlnC/wFf/sV3TzD
+         S+FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sHOGEjU+QLVjkfYh4MtLWCK0GiBMyL2W88ovw24/jfA=;
+        b=PlobU+CHtNzRlmHcnd/G/iTuPfIhylRvCU0mq7PwEhjMWTyBRnQznEnUCe8SJwYQG8
+         O0tynRVwkCMM2+n56VXcgYLg/1NRCE+JwT+DL5Jut0EKOVPEuzz2DfTfuevNKDnwRG0z
+         FXfpZkCTlPay3dyI217nqIG1+MOdd37LXo/3tYrDQNkmnUc9t4E2YkQSEJ86U9tHUy5h
+         teN3ZqklBBl/RbcMb0lEvKcScqdKhDyjTvCe3Grf2tkVmBseSf0CKOj8I8wrVdqVZkTV
+         BV59dNdCuWBG7hk+FKW1Tp5JBZmlWrvQlCTMLbB1WeeL+s7lyA954pOjElDovNr+ZK5W
+         Q1ng==
+X-Gm-Message-State: AOAM531OHPdbL6J7Ls1os9PPGJTu3J9iS+u/DxoulWGgKtVNNI0j2bMS
+        qN1PdVxOBs7MIjdS1ZC/Xyx3RUSZ2M5rJEVJ91SM9A==
+X-Google-Smtp-Source: ABdhPJzdi9hUTmmsqrF4d30Yw3Gyu85aIWTE4jgQW4GSlImk4y1s49OjI4+qHSlzhnvFuEHutjj5IlrSxC7oMLPG3cc=
+X-Received: by 2002:a05:6512:c0b:: with SMTP id z11mr5351095lfu.586.1617866258558;
+ Thu, 08 Apr 2021 00:17:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210407200723.1914388-3-badhri@google.com>
+References: <20210405200259.23525-1-petr.vorel@gmail.com> <20210405225222.GD904837@yoga>
+In-Reply-To: <20210405225222.GD904837@yoga>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 8 Apr 2021 09:17:27 +0200
+Message-ID: <CACRpkdZQ8qiqFPa0X8deVjZ7nLn_E6s8fmJdr5Ji8AuyJms1ug@mail.gmail.com>
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8994: Reserve gpio ranges
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Petr Vorel <petr.vorel@gmail.com>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ricardo Ribalda <ribalda@kernel.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 07, 2021 at 01:07:20PM -0700, Badhri Jagan Sridharan wrote:
-> power_supply_changed needs to be called to notify clients
-> after the partner accepts the requested values for the pps
-> case.
-> 
-> Also, remove the redundant power_supply_changed at the end
-> of the tcpm_reset_port as power_supply_changed is already
-> called right after usb_type is changed.
-> 
-> Fixes: f2a8aa053c176 ("typec: tcpm: Represent source supply through power_supply")
-> Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
-> Reviewed-by: Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+On Tue, Apr 6, 2021 at 12:52 AM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+> On Mon 05 Apr 15:02 CDT 2021, Petr Vorel wrote:
 
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> > Simple testing with /sys/class/gpio/export showed that 85-88.
+> > 3 disables UART. I expect 0-2 are also reserved as on other msm8998.
+> >
+>
+> Are you saying that once you export these gpios the uart stops working?
 
-> ---
-> Changes since V1:
-> * Updated commit description to clarify Guenter Roeck's concern.
-> * Added Reviewed-by tags
-> ---
->  drivers/usb/typec/tcpm/tcpm.c | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
-> 
-> diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-> index b4a40099d7e9..d1d03ee90d8f 100644
-> --- a/drivers/usb/typec/tcpm/tcpm.c
-> +++ b/drivers/usb/typec/tcpm/tcpm.c
-> @@ -2568,6 +2568,7 @@ static void tcpm_pd_ctrl_request(struct tcpm_port *port,
->  			port->pps_data.max_curr = port->pps_data.req_max_curr;
->  			port->req_supply_voltage = port->pps_data.req_out_volt;
->  			port->req_current_limit = port->pps_data.req_op_curr;
-> +			power_supply_changed(port->psy);
->  			tcpm_set_state(port, SNK_TRANSITION_SINK, 0);
->  			break;
->  		case SOFT_RESET_SEND:
-> @@ -3136,7 +3137,6 @@ static unsigned int tcpm_pd_select_pps_apdo(struct tcpm_port *port)
->  						      port->pps_data.req_out_volt));
->  		port->pps_data.req_op_curr = min(port->pps_data.max_curr,
->  						 port->pps_data.req_op_curr);
-> -		power_supply_changed(port->psy);
->  	}
->  
->  	return src_pdo;
-> @@ -3561,8 +3561,6 @@ static void tcpm_reset_port(struct tcpm_port *port)
->  	port->sink_cap_done = false;
->  	if (port->tcpc->enable_frs)
->  		port->tcpc->enable_frs(port->tcpc, false);
-> -
-> -	power_supply_changed(port->psy);
->  }
->  
->  static void tcpm_detach(struct tcpm_port *port)
-> -- 
-> 2.31.1.295.g9ea45b61b8-goog
+That might be a Fixes: but certainly not a regression.
 
--- 
-heikki
+Using GPIO sysfs access is dangerous and if someone enables it into
+their kernel (which requires setting CONFIG_EXPERT) they are
+certainly aware that they are taking a risk. (Same goes for using
+the character device from userspace.)
+
+Yours,
+Linus Walleij
