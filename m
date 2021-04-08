@@ -2,188 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5162358F1F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 23:28:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52E80358F47
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 23:36:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232158AbhDHV2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 17:28:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60406 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231862AbhDHV2d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Apr 2021 17:28:33 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id AFAFC61132;
-        Thu,  8 Apr 2021 21:28:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617917302;
-        bh=Ew2zj7eRBGY2Lej7FI5XIbRd04PJBDS6j8lbWk3WwNI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=EbPkgCu/HjlmZpth4zJhwhO6bQF1WzewjFb5+DEu/bqwNWpvfjZQAgpI0TDEkPet2
-         9EqpWAo6op8lXtyy9p7+fHf24pzUDgJbx17uWhHVdVwOoMLb49/qDdNv454LBUTWq/
-         4pIOwLWufoM2Sr1oi3jCWyQHlNzKMKcXxwqe9vVFkXR3btdrm2li9NK7NUm0z//Sgd
-         kDczAF4zFn6O87i8bprIRJj/EBvCGm8bzhLXBNmouOVKCkr/TMwKxfsUuk9dCX0p0E
-         naoDU2aVRnquRnU+OVBXUhhckL1ZZTzSEFLYBz584h0ThfyQqgdhsR957GoLinG7mq
-         8uZKqbcTokArg==
-Received: by mail-ej1-f45.google.com with SMTP id a7so5425330eju.1;
-        Thu, 08 Apr 2021 14:28:21 -0700 (PDT)
-X-Gm-Message-State: AOAM53169tkZbpDm+nbAj5jTKONssEePngtB21r/9Z0cEs3PknobsgmL
-        KX+HKYXya1QehGSSwIbcJ4g7/LcFiWPLV0gRzw==
-X-Google-Smtp-Source: ABdhPJxyiqn+sE/Q4RYaMmVDQUbDupiktkeBup4XfGVD4uMiXg1e47FKOnu4XeJNewazFmFosxK1LeFzq8Fja5Eurig=
-X-Received: by 2002:a17:906:4fcd:: with SMTP id i13mr13160768ejw.341.1617917300338;
- Thu, 08 Apr 2021 14:28:20 -0700 (PDT)
+        id S232265AbhDHVgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 17:36:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32964 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232236AbhDHVgM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 17:36:12 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 290DEC061760
+        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 14:35:59 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id b14so6368057lfv.8
+        for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021 14:35:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Z8TlNQzjwY+e3eQo49/nxDRl9kQ4I8qHfrJKe3hE6K0=;
+        b=qn6O/pRGzJYGjjvYJ5RkpwSzjkRSkHF2R+9hnx435hNzJjX2gPJa77KXbYH6VcQK3S
+         1DhUMd1Flne8NOb6h2RA8ICY0P8UR9DlqLt3vqFgs4GxFyQ5TvTPV8yCPFN3OnWiPCPz
+         k4p2QTcNbV+58EnOk8dtXyAJ7nQ5qUJUVHXCy1YJbGtardZ5toaX4tfyRza9xJeam1lv
+         TOD9kkb8VNf5zDuryw/7SSGcyyBuYAUGXhGCxB7pOUIsPa7ux7m+rcccMPuAqdFLr+to
+         tbpC03huGuwX1zBOt+sz3UGvDU7WBQ3mfmKd1WJHP5hUaiD4ZTpd3ENE5rrhyww0ruDD
+         pe3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Z8TlNQzjwY+e3eQo49/nxDRl9kQ4I8qHfrJKe3hE6K0=;
+        b=JImWyeSMa9jhm3u6nzMQkj2O4q+CHiDslTwbSla6VBEjRKGe/IkxzxYmWYvVgRC8NK
+         EuHNn3x307ZXGysAV1pLpCeY6a7p1iVw2Uh11Vsc5uKr3rITGN5+D0A4aRx8/zshgKCl
+         IyhGrOfBjHhz2ndRGSoCCxJyE/H6bVCgLyBAU5ImqrSoNEcvdwu7slTEDteMXf9m2XvR
+         oCxWi9sEmGAjLhvbEWJYI0CHrPs/liNCuutlAxyQwZLp05WX1bAq6v4PNWG7mwWZ+mSK
+         UTPeEZkdbdixXXx3JW6CFpSwSRMgeKrFlVkGgS8J1LysexvGCMwTd41a7VKcL/iWBfrq
+         2OLg==
+X-Gm-Message-State: AOAM530yOc+4zrGUYGZk6xw67GHl4xNQOiLqJceBBQ5zUaKGirbt+jxX
+        3Ni8exnos5uND/GxtNQ87aJZUtazXLAw4rm7VKrbhA==
+X-Google-Smtp-Source: ABdhPJzDMfqSKWlR/YXeaNn0JCru/668Jjn8/WGD12+iy0vSDZTGd2bhvSRxks9c8e+vra+bmO29y6HnwSUOEd5MK+4=
+X-Received: by 2002:a19:ef18:: with SMTP id n24mr8043129lfh.291.1617917757674;
+ Thu, 08 Apr 2021 14:35:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210408204508.2276230-1-frowand.list@gmail.com>
-In-Reply-To: <20210408204508.2276230-1-frowand.list@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 8 Apr 2021 16:28:09 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+Os6O6CpRYurmf_4-Xnzgpkd1jbDbnp0en1TPbZXTf7w@mail.gmail.com>
-Message-ID: <CAL_Jsq+Os6O6CpRYurmf_4-Xnzgpkd1jbDbnp0en1TPbZXTf7w@mail.gmail.com>
-Subject: Re: [PATCH v4 1/1] of: unittest: overlay: ensure proper alignment of
- copied FDT
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20210405200259.23525-1-petr.vorel@gmail.com> <20210405225222.GD904837@yoga>
+ <CACRpkdZQ8qiqFPa0X8deVjZ7nLn_E6s8fmJdr5Ji8AuyJms1ug@mail.gmail.com> <YG9TWEJlpDmNeeit@pevik>
+In-Reply-To: <YG9TWEJlpDmNeeit@pevik>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 8 Apr 2021 23:35:46 +0200
+Message-ID: <CACRpkdaP-yr6oAEpmDDqZUYcAd+-3vJRORepOtsRR4d2GsuqmA@mail.gmail.com>
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8994: Reserve gpio ranges
+To:     Petr Vorel <petr.vorel@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ricardo Ribalda <ribalda@kernel.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 8, 2021 at 3:45 PM <frowand.list@gmail.com> wrote:
->
-> From: Frank Rowand <frank.rowand@sony.com>
->
-> The Devicetree standard specifies an 8 byte alignment of the FDT.
-> Code in libfdt expects this alignment for an FDT image in memory.
-> kmemdup() returns 4 byte alignment on openrisc.  Replace kmemdup()
-> with kmalloc(), align pointer, memcpy() to get proper alignment.
->
-> The 4 byte alignment exposed a related bug which triggered a crash
-> on openrisc with:
-> commit 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9")
-> as reported in:
-> https://lore.kernel.org/lkml/20210327224116.69309-1-linux@roeck-us.net/
->
-> Reported-by: Guenter Roeck <linux@roeck-us.net>
-> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
->
-> ---
->
-> changes since version 1:
->   - use pointer from kmalloc() for kfree() instead of using pointer that
->     has been modified for FDT alignment
->
-> changes since version 2:
->   - version 1 was a work in progress version, I failed to commit the following
->     final changes
->   - reorder first two arguments of of_overlay_apply()
->
-> changes since version 3:
->   - size of memory allocation and size of copy after pointer alignment
->     differ, use separate variables with correct values for each case
->   - edit comment to more clearly describe that ovcs->fdt is the allocated
->     memory region, which may be different than where the aligned pointer points
->   - remove unused parameter from of_overlay_apply()
->
->  drivers/of/of_private.h |  2 ++
->  drivers/of/overlay.c    | 27 +++++++++++++++++----------
->  drivers/of/unittest.c   | 13 ++++++++++---
->  3 files changed, 29 insertions(+), 13 deletions(-)
->
-> diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-> index d9e6a324de0a..d717efbd637d 100644
-> --- a/drivers/of/of_private.h
-> +++ b/drivers/of/of_private.h
-> @@ -8,6 +8,8 @@
->   * Copyright (C) 1996-2005 Paul Mackerras.
->   */
->
-> +#define FDT_ALIGN_SIZE 8
-> +
->  /**
->   * struct alias_prop - Alias property in 'aliases' node
->   * @link:      List node to link the structure in aliases_lookup list
-> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-> index 50bbe0edf538..ecf967c57900 100644
-> --- a/drivers/of/overlay.c
-> +++ b/drivers/of/overlay.c
-> @@ -57,7 +57,7 @@ struct fragment {
->   * struct overlay_changeset
->   * @id:                        changeset identifier
->   * @ovcs_list:         list on which we are located
-> - * @fdt:               FDT that was unflattened to create @overlay_tree
-> + * @fdt:               base of memory allocated to hold aligned FDT that was unflattened to create @overlay_tree
->   * @overlay_tree:      expanded device tree that contains the fragment nodes
->   * @count:             count of fragment structures
->   * @fragments:         fragment nodes in the overlay expanded device tree
-> @@ -719,8 +719,8 @@ static struct device_node *find_target(struct device_node *info_node)
->  /**
->   * init_overlay_changeset() - initialize overlay changeset from overlay tree
->   * @ovcs:      Overlay changeset to build
-> - * @fdt:       the FDT that was unflattened to create @tree
-> - * @tree:      Contains all the overlay fragments and overlay fixup nodes
-> + * @fdt:       base of memory allocated to hold aligned FDT that was unflattened to create @tree
-> + * @tree:      Contains the overlay fragments and overlay fixup nodes
->   *
->   * Initialize @ovcs.  Populate @ovcs->fragments with node information from
->   * the top level of @tree.  The relevant top level nodes are the fragment
-> @@ -873,7 +873,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
->   * internal documentation
->   *
->   * of_overlay_apply() - Create and apply an overlay changeset
-> - * @fdt:       the FDT that was unflattened to create @tree
-> + * @fdt:       base of memory allocated to hold the aligned FDT
->   * @tree:      Expanded overlay device tree
->   * @ovcs_id:   Pointer to overlay changeset id
->   *
-> @@ -913,7 +913,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
->   */
->
->  static int of_overlay_apply(const void *fdt, struct device_node *tree,
-> -               int *ovcs_id)
-> +                           int *ovcs_id)
->  {
->         struct overlay_changeset *ovcs;
->         int ret = 0, ret_revert, ret_tmp;
-> @@ -953,7 +953,9 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
->         /*
->          * after overlay_notify(), ovcs->overlay_tree related pointers may have
->          * leaked to drivers, so can not kfree() tree, aka ovcs->overlay_tree;
-> -        * and can not free fdt, aka ovcs->fdt
-> +        * and can not free memory containing aligned fdt.  The aligned fdt
-> +        * is contained within the memory at ovcs->fdt, possibly at an offset
-> +        * from ovcs->fdt.
->          */
->         ret = overlay_notify(ovcs, OF_OVERLAY_PRE_APPLY);
->         if (ret) {
-> @@ -1014,9 +1016,10 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
->  int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
->                          int *ovcs_id)
->  {
-> -       const void *new_fdt;
-> +       void *new_fdt;
-> +       void *new_fdt_align;
->         int ret;
-> -       u32 size;
-> +       u32 size, size_alloc;
->         struct device_node *overlay_root;
->
->         *ovcs_id = 0;
-> @@ -1036,11 +1039,15 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
->          * Must create permanent copy of FDT because of_fdt_unflatten_tree()
->          * will create pointers to the passed in FDT in the unflattened tree.
->          */
-> -       new_fdt = kmemdup(overlay_fdt, size, GFP_KERNEL);
-> +       size_alloc = size + FDT_ALIGN_SIZE;
-> +       new_fdt = kmalloc(size_alloc, GFP_KERNEL);
+On Thu, Apr 8, 2021 at 9:02 PM Petr Vorel <petr.vorel@gmail.com> wrote:
 
-As size_alloc is only used once, you can just do:
+> The real problem is that mainline kernel compiled with defconfig resets really
+> early, thus v2 of this patch [2] is needed.
 
-new_fdt = kmalloc(size + FDT_ALIGN_SIZE, GFP_KERNEL);
+Ugh OK I get it. That's a firm regression.
 
-Same for the unittest. I can fix up.
-
-Applying now so this gets into linux-next this week.
-
-Rob
+Yours,
+Linus Walleij
