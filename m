@@ -2,82 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAC7F358521
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 15:49:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EA5835855C
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 15:56:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231718AbhDHNtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 09:49:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43202 "EHLO
+        id S231769AbhDHN4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 09:56:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231663AbhDHNtS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 09:49:18 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75E01C061763
-        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 06:49:05 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id n138so4166951lfa.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021 06:49:05 -0700 (PDT)
+        with ESMTP id S230322AbhDHN4X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 09:56:23 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8748EC061761
+        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 06:56:10 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id w28so4197451lfn.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021 06:56:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=UTgjJ3FHb3vPYX9JqUC+Xv2zcOSZzBL4YmbnqLtgQjA=;
-        b=o4TSUSwHiiAAjF3VFtEcrQ4tpvWBkGs9ERxSNW5uZzLtvNG9jhjcMRPamT/5o9/e0W
-         BUsZ3k5gpkaZogfOl7aOj5p62Oese6YpCGS1rgrCXQfWePMOeL+xw7j2qYtwC3oGjanw
-         U84H3swzdTy5ppJvjX24OvmqblWycknA1u1OC2ULZTxrvia7LAa04EAJKyrkIYN3XSDk
-         jveX6QjfyaoRGwlXxWhn3whB5h8igUqUcgNjB3dLBmsU3D54LKOv4tZeNzCRB+YyTfnr
-         /kKlug35HLva8AbJEfxcKjzSsIIm3XucQlzZm3btrgmKxZs9G9ycKYJCdpfwr22w4m+f
-         LPeQ==
+        bh=DdaKYAD+3uox0bnZyMc0CsziZH9vJmOYjQVhGpA3+bo=;
+        b=YVghXLhw3Z1qU+4wuVKseRBYeubkYqgAsKCgA0PxXp6D+PFpFAqS9YyfftG/bJcAOe
+         tfR/28lkz8QJ0zOYBx6bCWSNSAHVV2Hc3wLV94wD7EDkgsUtqfGRN2GENGFACqN9QhE3
+         eDKrudUengMXc/PEE+vIrkJlxaeoTr8L4SCvioqPpdZOegqqMS7A2X5dc3yrhYXqVykb
+         8ybpP5k4ITTpptf/kANs7HKh5UAmHvtoO9AiO0rwpcDDJNeR5FrjBKah8bsKRaKNZ31Y
+         ZQ186ms7DHjsoxRYYyOc5bsDEf7mdZvubUrwnHJ6D5bCDWwvz38CmH0WUGx0KX/gp5j3
+         68gQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=UTgjJ3FHb3vPYX9JqUC+Xv2zcOSZzBL4YmbnqLtgQjA=;
-        b=jjSS6MKggpe1ccx4g12KnUFLHBYV0agXlu7OY7F5Lv1UrNCLShRBXrGtuGWFrprcYW
-         6xBEAjsgZwqTUvq38n2F1SfNIg1EiFT3Y+OKxor2dR8CIKqy7sPMvRaKhYv/qNuOV9aJ
-         6e1PkpTW90HuM32q9H+5tv3mevQzlh+1l+K7EZ3TW/TkdF546Gdv03xcrqpbXrPK256C
-         X7PnXuFXElZ3N1MHDi/kcnX9gHBx1/jYlRdseU0txXQjgai7x5/op/Wo6jyiM+4fonyH
-         iThN08Hijy2Eby0bgN4TRd9SdVWvQzpwK0TGodzpU9/ptpJjQfGMcMdZoI3lU0bOSohp
-         zEZA==
-X-Gm-Message-State: AOAM533D9QObHlvfxfGZVIdgNX9IlygJArgGie0B1ttjz6XA+9kHnG9m
-        OmbmvThLEFiNhO5maULUsIXZdfY2bi4fdoPdh7gXvHlud5gQzg==
-X-Google-Smtp-Source: ABdhPJydpnKNmcXAhArU85kHqM2ACtHCS13HM3NEI5XCdxT+1HfyDzLnwnpcyag83BGtGZUhP8Z6T0MKRnvupiqYS78=
-X-Received: by 2002:a19:ef18:: with SMTP id n24mr6305733lfh.291.1617889743784;
- Thu, 08 Apr 2021 06:49:03 -0700 (PDT)
+        bh=DdaKYAD+3uox0bnZyMc0CsziZH9vJmOYjQVhGpA3+bo=;
+        b=c77kJLGP3fZBhLzxsPLhORk4IsUcsykT+Dw0H0yLpAgLcwKxWILkP1ShMYqzYzmK45
+         RuRAiNk2fq0uZJW3lcFUYZvm3CAH51TQtjpDThIeTuCLT5hB1dguf8GrKjB1xBa1dxsl
+         cV/qzvRG7YpkWudiXzSkczOB7/LoxzA0iMD2p8s0J9L0TVbBFuQlN1aqQddKT9eCvV7Y
+         0YgMcQbqZ0juQWgbkWqD6BB0Z6vpcZCifyxCncY+8rqbXdwLh83Dvx+nDJzQctVjTygu
+         1kkwQDRfqWFCPGCY4ACK2vO1oVhd15keSLw6ktNwOJQuugMy6EKyDTcWpsqVCgrb4/G6
+         mj0g==
+X-Gm-Message-State: AOAM531UzBKgds1QNU8D1hikLipwgB2WOh3Y3hDyGaHQvycWldKhC/IY
+        2rDIfLXX6b2HHP6RUxbnBsGlyLYhC2MpNJ9n8y/oNQ==
+X-Google-Smtp-Source: ABdhPJycTGo9B/FZL0du4dld8W6D9Zxj3z3lWKgajccSdIPeTFaPJjD+54DfV1FLl972qg+8JKE5ENgx5iKvvmlQYgc=
+X-Received: by 2002:a05:6512:3a85:: with SMTP id q5mr6435636lfu.465.1617890168968;
+ Thu, 08 Apr 2021 06:56:08 -0700 (PDT)
 MIME-Version: 1.0
-References: <1617280546-9583-1-git-send-email-skakit@codeaurora.org>
-In-Reply-To: <1617280546-9583-1-git-send-email-skakit@codeaurora.org>
+References: <20210324081923.20379-1-noltari@gmail.com> <CACRpkdZE55ixxSp6H1SKx19trGE_uVGgkLttzAVQuLzw4=Jutw@mail.gmail.com>
+ <609f038d-3037-5cda-b489-f0816eb95658@gmail.com>
+In-Reply-To: <609f038d-3037-5cda-b489-f0816eb95658@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 8 Apr 2021 15:48:52 +0200
-Message-ID: <CACRpkdbD6E3PY_JCEbwNiVfb8LoT6F5DzV7x71Us3Z7U3BaX=Q@mail.gmail.com>
-Subject: Re: [PATCH V2 0/3] Add GPIO support for PM7325, PM8350c, PMK8350 and PMR735A
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
+Date:   Thu, 8 Apr 2021 15:55:58 +0200
+Message-ID: <CACRpkdZubgHyBqPnZxOw7QXgf=AHMcb1E0Y7bj5v3v_Am+3Ttw@mail.gmail.com>
+Subject: Re: [PATCH v9 00/22] pinctrl: add BCM63XX pincontrol support
+To:     =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Michael Walle <michael@walle.cc>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 1, 2021 at 2:36 PM satya priya <skakit@codeaurora.org> wrote:
+On Tue, Mar 30, 2021 at 10:57 AM =C3=81lvaro Fern=C3=A1ndez Rojas
+<noltari@gmail.com> wrote:
 
-> satya priya (3):
->   pinctrl: qcom: spmi-gpio: Add support for four variants
->   dt-bindings: pinctrl: qcom-pmic-gpio: Update the binding to add four
->     new variants
->   dt-bindings: pinctrl: qcom-pmic-gpio: Convert qcom pmic gpio bindings
->     to YAML
+> > Now, what about a patch set for the IRQ support? :)
+>
+> If you could give me some guidance on that matter it would be much
+> appreciated, because your comments [1] are now outdated since I switched
+> to GPIO_REGMAP
+> [1]
+> http://patchwork.ozlabs.org/project/linux-gpio/patch/20210225164216.21124=
+-3-noltari@gmail.com/
 
-Please collect the ACKs and rebase like Bj=C3=B6rn says, sort stuff alphabe=
-tically
-and resend so I can try to apply it! The YAML conversion may need a nod fro=
-m
-the DT people as well.
+I think it mostly holds: GPIOLIB_IRQCHIP should always be used if there
+is a reasonably straight-forward interrupts whether cascaded or hierarchica=
+l.
+Very few exceptions there. If there is one IRQ line per GPIO
+line, the hierarchical support should be used as outlined. GPIO_REGMAP
+should be mostly (famous last words) orthogonal.
 
 Yours,
 Linus Walleij
