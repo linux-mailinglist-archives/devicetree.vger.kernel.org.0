@@ -2,201 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8276358E37
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 22:20:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 419B8358E3D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 22:21:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231699AbhDHUUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 16:20:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44692 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231676AbhDHUUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 16:20:22 -0400
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA555C061760;
-        Thu,  8 Apr 2021 13:20:10 -0700 (PDT)
-Received: by mail-qv1-xf36.google.com with SMTP id t13so1573050qvs.7;
-        Thu, 08 Apr 2021 13:20:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=nznclVC3IBg9dVDWPKHe3VIDxWvi1+V9KduB+Ebr+qQ=;
-        b=WjHUJYbdsQS7tHuQ+j/2GhE1SiwPcRtbiy7lKUzeoivPcGRuvRZJKuJp7n7H0fDOmh
-         uLH3NyAfdBJMNO969azXaVBgdDB63hbGEC8kt8V3yRJ1TOmOR6pnJwDQOjo27XaqUqw+
-         CKt9ppE4h/R5DQk9LDkF6lpzyps/6bpzJjV+Qf85fMxaUlUUQRdQPSl7owu8UleuuJag
-         BAN+erjATpByyTyRggq0kX32uCaq6WMUA9SrKct4F6HEzxkZA6YBGnZyjewnybt7t4Gg
-         mVC+OpagfGFpLTfpFn56MTLqDWY1st0tVm6lEHrlaRIbqxUTyfauLKB/8r0YWrvRb66A
-         xZUw==
+        id S231732AbhDHUVv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 16:21:51 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:36814 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231451AbhDHUVv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 16:21:51 -0400
+Received: by mail-ot1-f46.google.com with SMTP id g8-20020a9d6c480000b02901b65ca2432cso3586851otq.3;
+        Thu, 08 Apr 2021 13:21:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=nznclVC3IBg9dVDWPKHe3VIDxWvi1+V9KduB+Ebr+qQ=;
-        b=sH4vxsXRImZeS/jxsEvf+76EoE4UGF/p6VuwBPaKO0+1SJhn7vaX0m2TcWX96pNB+I
-         Sjjw7J6xYkaISkkEV1xgTC2wMZ27RNbL+9X67Ri0/oxQUJ39uhL+rXDzyBSVZshla0LP
-         bQhIssIh6rDCZI24E/91TuiMqJla0e13zfHjYEz2YhAVkkXbJ7sE/QXnIVbMuRhkvVOg
-         42ZSRN6bnkX2C4l0XcLPu7KmRwYUelzgu2TJLZSEriV44/5OOVI5kgfqHeE9LITY6LAK
-         QKlrAwHfX5TQihzFCnzKmb2xQgF1E/aLoNni1thRZZbkqgnh+8Z4/I9ibROI8yyW1KoE
-         n+4A==
-X-Gm-Message-State: AOAM532Lr5hEczn/6N+OBgWKomtWv8DrPIKwCael28+82qtA3dTgfPLI
-        w6DMXGRwVMXTTvjXwFSXDnU=
-X-Google-Smtp-Source: ABdhPJyDl5TxD4+5hmKx5VhOWpdToYU/FFAdJPH9HAVjsL0Rpku7E7TSmp67XVl8NUIntxRzEfLzuA==
-X-Received: by 2002:a05:6214:180d:: with SMTP id o13mr10923159qvw.10.1617913210127;
-        Thu, 08 Apr 2021 13:20:10 -0700 (PDT)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id p186sm306394qka.66.2021.04.08.13.20.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Apr 2021 13:20:09 -0700 (PDT)
-Subject: Re: [PATCH v3 1/1] of: unittest: overlay: ensure proper alignment of
- copied FDT
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20210408151736.2216238-1-frowand.list@gmail.com>
- <CAL_JsqLJP5Q8R+4yQOhiG_xTA6CHLSWfu-0hFzmZtiv96Do_eA@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <1b957025-316b-b5a4-b923-866d7ddeab7c@gmail.com>
-Date:   Thu, 8 Apr 2021 15:20:08 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=NZK03VGL3VDmR5gE9NkY9ogiVrwv9YJIwF5/GzsBsPo=;
+        b=iUzlsAYb/3XTZ/6cYljqPwq3VkDm3X6LSSfCcJSTpmIA7XTJTa8X4HGa60ndv5f5Yp
+         6aVeVy7K7Xii6k4SxMazIyPK+p71UYtP2TjM3SzT76PrnpWAvpdc7FQT9ro1/ZNGxHJh
+         Int9Sf/swV/L3ofO72StUOHXMMdr84TP1W/QxNj8vKtUbQLewKndAI+TdnrqIRBC6KoG
+         fyduvI/MfnsHtZBdJuke1wJ2GYuM6T+HzSo2ktNTo/VaFxaGqrPWl6x0Li3TMwDcCcAG
+         P/bExWhFrpsCXl6bBJ1mZ5uUMrJVNJJBrj2BWBhdAc8Pzvs8T6uzurmJs26nxIlgbONp
+         KKvA==
+X-Gm-Message-State: AOAM531z3sZF3lDUxtILpO9W/br6WWSF/PfDWJJqu1H7dxfuhAqyaNyJ
+        LvP07WuWkp3JrcbKrbr2KQ==
+X-Google-Smtp-Source: ABdhPJx1Ce8UviwE+BYESAWpewySwAqhw1vUls2A7geYvtKK44fsPnS0fzSbyjCwNCgQJdj7By+cjA==
+X-Received: by 2002:a05:6830:908:: with SMTP id v8mr9621186ott.217.1617913299103;
+        Thu, 08 Apr 2021 13:21:39 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id y11sm99647ots.80.2021.04.08.13.21.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Apr 2021 13:21:38 -0700 (PDT)
+Received: (nullmailer pid 1897309 invoked by uid 1000);
+        Thu, 08 Apr 2021 20:21:37 -0000
+Date:   Thu, 8 Apr 2021 15:21:37 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Giulio Benetti <giulio.benetti@benettiengineering.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] dt-bindings: touchscreen: Add HY46XX bindings
+Message-ID: <20210408202137.GA1890401@robh.at.kernel.org>
+References: <YGxkB6icZSJfx/VB@latitude>
+ <20210407174909.1475150-1-giulio.benetti@benettiengineering.com>
+ <20210407174909.1475150-3-giulio.benetti@benettiengineering.com>
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqLJP5Q8R+4yQOhiG_xTA6CHLSWfu-0hFzmZtiv96Do_eA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210407174909.1475150-3-giulio.benetti@benettiengineering.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/8/21 1:27 PM, Rob Herring wrote:
-> On Thu, Apr 8, 2021 at 10:17 AM <frowand.list@gmail.com> wrote:
->>
->> From: Frank Rowand <frank.rowand@sony.com>
->>
->> The Devicetree standard specifies an 8 byte alignment of the FDT.
->> Code in libfdt expects this alignment for an FDT image in memory.
->> kmemdup() returns 4 byte alignment on openrisc.  Replace kmemdup()
->> with kmalloc(), align pointer, memcpy() to get proper alignment.
->>
->> The 4 byte alignment exposed a related bug which triggered a crash
->> on openrisc with:
->> commit 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9")
->> as reported in:
->> https://lore.kernel.org/lkml/20210327224116.69309-1-linux@roeck-us.net/
->>
->> Reported-by: Guenter Roeck <linux@roeck-us.net>
->> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
->> ---
->>
->> changes since version 1:
->>   - use pointer from kmalloc() for kfree() instead of using pointer that
->>     has been modified for FDT alignment
->>
->> changes since version 2:
->>   - version 1 was a work in progress version, I failed to commit the following
->>     final changes
->>   - reorder first two arguments of of_overlay_apply()
->>
->>  drivers/of/of_private.h |  2 ++
->>  drivers/of/overlay.c    | 28 +++++++++++++++++-----------
->>  drivers/of/unittest.c   | 12 +++++++++---
->>  3 files changed, 28 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
->> index d9e6a324de0a..d717efbd637d 100644
->> --- a/drivers/of/of_private.h
->> +++ b/drivers/of/of_private.h
->> @@ -8,6 +8,8 @@
->>   * Copyright (C) 1996-2005 Paul Mackerras.
->>   */
->>
->> +#define FDT_ALIGN_SIZE 8
->> +
->>  /**
->>   * struct alias_prop - Alias property in 'aliases' node
->>   * @link:      List node to link the structure in aliases_lookup list
->> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
->> index 50bbe0edf538..cf770452e1e5 100644
->> --- a/drivers/of/overlay.c
->> +++ b/drivers/of/overlay.c
->> @@ -57,7 +57,7 @@ struct fragment {
->>   * struct overlay_changeset
->>   * @id:                        changeset identifier
->>   * @ovcs_list:         list on which we are located
->> - * @fdt:               FDT that was unflattened to create @overlay_tree
->> + * @fdt:               base of memory allocated to hold aligned FDT that was unflattened to create @overlay_tree
->>   * @overlay_tree:      expanded device tree that contains the fragment nodes
->>   * @count:             count of fragment structures
->>   * @fragments:         fragment nodes in the overlay expanded device tree
->> @@ -719,8 +719,8 @@ static struct device_node *find_target(struct device_node *info_node)
->>  /**
->>   * init_overlay_changeset() - initialize overlay changeset from overlay tree
->>   * @ovcs:      Overlay changeset to build
->> - * @fdt:       the FDT that was unflattened to create @tree
->> - * @tree:      Contains all the overlay fragments and overlay fixup nodes
->> + * @fdt:       base of memory allocated to hold aligned FDT that was unflattened to create @tree
->> + * @tree:      Contains the overlay fragments and overlay fixup nodes
->>   *
->>   * Initialize @ovcs.  Populate @ovcs->fragments with node information from
->>   * the top level of @tree.  The relevant top level nodes are the fragment
->> @@ -873,7 +873,8 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
->>   * internal documentation
->>   *
->>   * of_overlay_apply() - Create and apply an overlay changeset
->> - * @fdt:       the FDT that was unflattened to create @tree
->> + * @fdt:       base of memory allocated to hold *@fdt_align
->> + * @fdt_align: the FDT that was unflattened to create @tree, aligned
->>   * @tree:      Expanded overlay device tree
->>   * @ovcs_id:   Pointer to overlay changeset id
->>   *
->> @@ -912,8 +913,8 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
->>   * id is returned to *ovcs_id.
->>   */
->>
->> -static int of_overlay_apply(const void *fdt, struct device_node *tree,
->> -               int *ovcs_id)
->> +static int of_overlay_apply(const void *fdt, const void *fdt_align,
->> +               struct device_node *tree, int *ovcs_id)
+On Wed, Apr 07, 2021 at 07:49:08PM +0200, Giulio Benetti wrote:
+> This adds device tree bindings for the Hycon HY46XX touchscreen series.
 > 
-> I think it's better if you move the kfree's out of this function. It
-> would be a broken design if this function was public because you'd
-> have no idea if 'fdt' could be freed or not. No reason to have that
-> bad design just because it's static. If a function returns an error,
-> then it should undo everything it did, but nothing more.
+> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+> ---
+> V1->V2:
+> As suggested by Rob Herring:
+> * fixed $id: address
+> * added "hycon," in front of every custom property
+> * changed all possible property to boolean type
+> * removed proximity-sensor-switch property since it's not handled in driver
+> V2->V3:
+> As suggested by Jonathan Neuschäfer:
+> * fixed some typo
+> * fixed description indentation
+> * improved boolean properties descriptions
+> * improved hycon,report-speed description
+> V3->V4:
+> * fixed binding compatible string in example as suggested by Jonathan Neuschäfer
+> ---
+>  .../input/touchscreen/hycon,hy46xx.yaml       | 120 ++++++++++++++++++
+>  MAINTAINERS                                   |   6 +
+>  2 files changed, 126 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
 > 
-> Rob
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml b/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
+> new file mode 100644
+> index 000000000000..8860613a12ad
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
+> @@ -0,0 +1,120 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/hycon,hy46xx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Hycon HY46XX series touchscreen controller bindings
+> +
+> +description: |
+> +  There are 6 variants of the chip for various touch panel sizes and cover lens material
+> +   Glass: 0.3mm--4.0mm
+> +    PET/PMMA: 0.2mm--2.0mm
+> +    HY4613(B)-N048  < 6"
+> +    HY4614(B)-N068  7" .. 10.1"
+> +    HY4621-NS32  < 5"
+> +    HY4623-NS48  5.1" .. 7"
+> +   Glass: 0.3mm--8.0mm
+> +    PET/PMMA: 0.2mm--4.0mm
+> +    HY4633(B)-N048  < 6"
+> +    HY4635(B)-N048  < 7" .. 10.1"
+> +
+> +maintainers:
+> +  - Giulio Benetti <giulio.benetti@benettiengineering.com>
+> +
+> +allOf:
+> +  - $ref: touchscreen.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - hycon,hycon-hy4613
+> +      - hycon,hycon-hy4614
+> +      - hycon,hycon-hy4621
+> +      - hycon,hycon-hy4623
+> +      - hycon,hycon-hy4633
+> +      - hycon,hycon-hy4635
+
+As suggested earlier, drop the 2nd 'hycon'.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  vcc-supply: true
+> +
+> +  hycon,threshold:
+> +    description: Allows setting the sensitivity in the range from 0 to 255.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 255
+> +
+> +  hycon,glove-enable:
+> +    type: boolean
+> +    description: Allows enabling glove setting.
+> +
+> +  hycon,report-speed:
+> +    description: Allows setting the report speed in Hertz.
+
+If in Hertz, use standard unit suffix.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+And then you can drop this.
+
+> +    minimum: 0
+
+0Hz doesn't seem to useful?
+
+> +    maximum: 255
+> +
+> +  hycon,power-noise-enable:
+
+hycon,noise-filter-enable
+
+No one wants to enable power noise. :)
+
+> +    type: boolean
+> +    description: Allows enabling power noise filter.
+> +
+> +  hycon,filter-data:
+> +    description: Allows setting the filtering data before reporting touch
+> +                 in the range from 0 to 5.
+
+This is averaging samples? Sounds like something common perhaps.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 5
+> +
+> +  hycon,gain:
+> +    description: Allows setting the sensitivity distance in the range from 0 to 5.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 5
+> +
+> +  hycon,edge-offset:
+> +    description: Allows setting the edge compensation in the range from 0 to 16.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 16
+> +
+> +  touchscreen-size-x: true
+> +  touchscreen-size-y: true
+> +  touchscreen-fuzz-x: true
+> +  touchscreen-fuzz-y: true
+> +  touchscreen-inverted-x: true
+> +  touchscreen-inverted-y: true
+> +  touchscreen-swapped-x-y: true
+> +  interrupt-controller: true
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      hycon-hy4633@1c {
+
+touchscreen@1c
+
+> +        compatible = "hycon,hycon-hy4633";
+> +        reg = <0x1c>;
+> +        interrupt-parent = <&gpio2>;
+> +        interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
+> +        reset-gpios = <&gpio2 6 GPIO_ACTIVE_LOW>;
+> +      };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index c80ad735b384..d022ff09e609 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8243,6 +8243,12 @@ S:	Maintained
+>  F:	mm/hwpoison-inject.c
+>  F:	mm/memory-failure.c
+>  
+> +HYCON HY46XX TOUCHSCREEN SUPPORT
+> +M:	Giulio Benetti <giulio.benetti@benettiengineering.com>
+> +L:	linux-input@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
+> +
+>  HYGON PROCESSOR SUPPORT
+>  M:	Pu Wen <puwen@hygon.cn>
+>  L:	linux-kernel@vger.kernel.org
+> -- 
+> 2.25.1
 > 
-
-The pattern of "If a function returns an error, then it should undo
-everything it did, but nothing more" is usually what I would expect,
-but overlays have more than a bit of bizarro land in their genes.
-
-Once an overlay has been applied, the devicetree subsystem owns and
-is responsible for the freeing of the related FDT.
-
-This is noted just after calling of_overlay_apply():
-
-        ret = of_overlay_apply(new_fdt, overlay_root, ovcs_id);
-        if (ret < 0) {
-                /*
-                 * new_fdt and overlay_root now belong to the overlay
-                 * changeset.
-                 * overlay changeset code is responsible for freeing them.
-                 */
-
-and is also noted inside of_overlay_apply():
-
-        /*
-         * As of this point, fdt and tree belong to the overlay changeset.
-         * overlay changeset code is responsible for freeing them.
-         */
-
-of_overlay_apply() is not public on purpose.  of_overlay_fdt_apply() was
-created to be the public function and to provide the encapsulation of
-the copy of the FDT for which memory is allocated in of_overlay_fdt_apply().
-
--Frank
