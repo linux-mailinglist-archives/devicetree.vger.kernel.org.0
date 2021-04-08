@@ -2,167 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 161E6357A3C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 04:18:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A471357A5F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 04:29:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229585AbhDHCS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 22:18:56 -0400
-Received: from mail-eopbgr60079.outbound.protection.outlook.com ([40.107.6.79]:20354
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229544AbhDHCS4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Apr 2021 22:18:56 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UtNB+S/KErgm0PsAyQmWqow+1QtP/lApuOuALC6frTwlqCc5UvYBvSS5oP03AXKBnEbK4DdElvVAGp0wPqQHekk8mU5VhVmTPW7ABu/HqHoXQ5ym1uqVNpWOR6B5IaxLlfIBcwgbZ4S+YPnUt4tLtI/ssNsm1M5jgY+yxGjCZ5BqNMYYS1QuXrHUNm83tdWSmy5c7RQQ11opef5gedj5MdQYOeiE9sdzGqORybKs1x+CB/RoOGpf0bRsu+aJmveBHVMQsTNXtbAWez9bMu/pKq6axJ9Ijo6Ez1ZeI0xDJM7qzlmcvnSU6NAvfWQhtGOG0V9bcfpIp2WPHkVxYJCfLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aH/O9uLKi5vvIyNm4YFOlVWwLx/mlUThP66SCpnT2nc=;
- b=lVpIvLHX9aabPnCPKDuMj/rfXRHIkSjGk3OMiKj/aVIRx9PZdKgvcXdc0j4aaeoCsIPvuyGzGPFQe4bqghyYsbURnCn3TWo9NDfOcCK6ZYX0DAM5vySEIvBDTSx+5kTF5Ls3dTYw3kGhFgxrn+xxC76c1sEZXUlOo8SYgfzEhN7zcGqhBzV123VBAYk0OEAtDbvxj1RAUp6hNBDrQ9ZN8RSB3znov08/im8f0kn0qf62JXfGBFXYuXsDVWVtcjGE0R3TWFXEcZlwjaV4RopJC65/PA4ZGWaOouKN97oXZgZqQmtsWshL+ILnWn825IXiX/aMF8dwmwYPTAkAUqO0jw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aH/O9uLKi5vvIyNm4YFOlVWwLx/mlUThP66SCpnT2nc=;
- b=By88y+8x9gykPz6RoMmB/Ph5aTYfuVcMNLGFE6SHIKA8Hw6lDeg88S7Yrx4LA/0RaZXhf70eFae4PTiPRn0Ke1k6r9g0/fx/J3tG/qEU5ZRGbSW2h+to67RVJrfU19Mx8ribhGahRBBAKVS03MnyDAM8BoUYvc3WyQ9Y2n5njzM=
-Authentication-Results: nxp.com; dkim=none (message not signed)
- header.d=none;nxp.com; dmarc=none action=none header.from=oss.nxp.com;
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
- by DB8PR04MB6857.eurprd04.prod.outlook.com (2603:10a6:10:114::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.32; Thu, 8 Apr
- 2021 02:18:40 +0000
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::c57a:6964:f72c:21cf]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::c57a:6964:f72c:21cf%11]) with mapi id 15.20.3999.032; Thu, 8 Apr 2021
- 02:18:40 +0000
-Subject: Re: [PATCH V2 0/8] remoteproc: imx_rproc: support i.MX7ULP/8MN/8MP
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        o.rempel@pengutronix.de, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-References: <1617095574-6764-1-git-send-email-peng.fan@oss.nxp.com>
- <20210407161836.GB418374@xps15>
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Message-ID: <f957373f-d078-8591-6c78-d0027f590360@oss.nxp.com>
-Date:   Thu, 8 Apr 2021 10:18:28 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
-In-Reply-To: <20210407161836.GB418374@xps15>
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S229774AbhDHC3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 22:29:48 -0400
+Received: from mailout1.samsung.com ([203.254.224.24]:16714 "EHLO
+        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229736AbhDHC3r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 22:29:47 -0400
+Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20210408022935epoutp01ba9f3e867b4cdcdfde4629b27afd92de~zwRJQDbs22626726267epoutp01h
+        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 02:29:35 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20210408022935epoutp01ba9f3e867b4cdcdfde4629b27afd92de~zwRJQDbs22626726267epoutp01h
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1617848975;
+        bh=GHCiJRRXgyYY/VI/udSRwsYVBhPBw2Y9FbSwPwzxm+A=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=EcpgnmD/7JaeeraPVAKQwUH+GyE3+tYnWLa3xzMBT8xKrskcIC+K8EnB/AZnOIdbn
+         iqlNy4WkrJjp7Qa7a9OFyv8wtGhINRiQIQn5R/bStKVHG9evXIxgbBRNbWLbeaCNid
+         hVuLuu3mNCVa6jzewjDs87jAQ8tYHGSANF2RdMfs=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas1p4.samsung.com (KnoxPortal) with ESMTP id
+        20210408022934epcas1p4d6b9d4304851275e9306497ca17ac497~zwRIWcpH52026120261epcas1p4K;
+        Thu,  8 Apr 2021 02:29:34 +0000 (GMT)
+Received: from epsmges1p2.samsung.com (unknown [182.195.40.153]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4FG4wD3SV6z4x9Pp; Thu,  8 Apr
+        2021 02:29:32 +0000 (GMT)
+Received: from epcas1p3.samsung.com ( [182.195.41.47]) by
+        epsmges1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        8B.8B.02277.C8A6E606; Thu,  8 Apr 2021 11:29:32 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20210408022931epcas1p2538b7fe14b348daa7a0cadce2df09bff~zwRFRTwwV1887818878epcas1p2C;
+        Thu,  8 Apr 2021 02:29:31 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20210408022931epsmtrp1ea2aa8050e2d88697ac7191ba591cf5b~zwRFQGHKZ0798907989epsmtrp1F;
+        Thu,  8 Apr 2021 02:29:31 +0000 (GMT)
+X-AuditID: b6c32a36-4edff700000108e5-9f-606e6a8cb42a
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        AE.D6.08745.A8A6E606; Thu,  8 Apr 2021 11:29:31 +0900 (KST)
+Received: from [10.113.221.102] (unknown [10.113.221.102]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20210408022930epsmtip2b035be9198e08bd52f262dc01076746e~zwRE3CVmx0676906769epsmtip2a;
+        Thu,  8 Apr 2021 02:29:30 +0000 (GMT)
+Subject: Re: [PATCH V8 1/8] PM / devfreq: Add cpu based scaling support to
+ passive_governor
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+To:     "andrew-sh.cheng" <andrew-sh.cheng@mediatek.com>
+Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        srv_heupstream@mediatek.com, Sibi Sankar <sibis@codeaurora.org>
+Organization: Samsung Electronics
+Message-ID: <cfdd3973-e4a7-8c09-8a7e-57118a7a3b9b@samsung.com>
+Date:   Thu, 8 Apr 2021 11:47:02 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
+        Thunderbird/59.0
+MIME-Version: 1.0
+In-Reply-To: <fbb6c44b-eb77-14ce-9175-3f06030e6e0c@samsung.com>
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [119.31.174.71]
-X-ClientProxiedBy: HK2PR0302CA0021.apcprd03.prod.outlook.com
- (2603:1096:202::31) To DB6PR0402MB2760.eurprd04.prod.outlook.com
- (2603:10a6:4:a1::14)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [10.193.102.190] (119.31.174.71) by HK2PR0302CA0021.apcprd03.prod.outlook.com (2603:1096:202::31) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.6 via Frontend Transport; Thu, 8 Apr 2021 02:18:35 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a3960e9c-8969-4059-c457-08d8fa349fc3
-X-MS-TrafficTypeDiagnostic: DB8PR04MB6857:
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB8PR04MB68570291DCAD0EDB7F95C328C9749@DB8PR04MB6857.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qqdgLCdRttLa1BkxjQXscj0L4KqZHQaY6oe5U0xTMzINkjc/iPoeKWCrWltCFvMgYisze9EDhZxbirAQjnYnHHgTaamTIBptxyMe7N6tKaAXQ56Ogjvqe9mslM/yFRzfY5Y7Hf6Ah2PyTm4ertyTPPAXW/GVphFbh/uKzNdVId232z824L0V9ZzTd3p4PmOHxXGGrWFDLL5CGPZN+/siAFu417QRLnoPqs7rAK6qR2mx8tqT5AemHFMmTRl19zIS3Nr2HWh+0HLwYxxrIRknzIoawWv0fI9OZFoT6k5TokOjZTglBCv0TElCWnolpRGALJ1m/GwW4w1LRpyd+5RvBSP0z9g5skxEQxTtYEWGNAKs1U3t3NVoe9f4qkxg2X+PYl6/jZ2umAKKPcVzBSEYrN0nSu0kowMb5Gg7Y1S+pb7YgspEOt4zCDeeQ0ZZT1qlo2dLXprCNUpCIR9iUtyw1ZiBIneLr4Ol3GA1plmh31Rs/Jl9kDtLw3QViz8vmI8wH1jlU8vcyB8VOVBmHk9P9JWjCMw1TxUmS6nLPxyPzx2806TVRAH1dohBfePLMXa6Xg3Jnf2aJ3nJ6xHd81QFPqTJUWiqOICMSdwFhoBgvQJnL3bxdSVUAYbU7r1ciWT0whUnJ21JLNW0VZ8emBPuX2sFOp4x+ojHMqpXHM6iVTBeanrQgqj7mQ/koAwcA/ghoz4fkdoyzjdqpGgiSundxwIGqrEOZAYIjG+OedEvcL26K2/rpqfoYZfZnpcJHoOgRGeUwxGOCHDDCJgliu4x8WMHIM+rLtZejM2eXSGKo1p6+3H/4nY7uzW1k5UGivNO+4KVksTE3nBIUhPWQIrr9A==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(366004)(346002)(39860400002)(136003)(376002)(956004)(16526019)(26005)(186003)(2616005)(16576012)(7416002)(83380400001)(38100700001)(6916009)(5660300002)(6666004)(66476007)(31696002)(66556008)(66946007)(4326008)(53546011)(52116002)(38350700001)(8936002)(6486002)(31686004)(966005)(86362001)(478600001)(316002)(2906002)(8676002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?ZzkyM3RpMytrUGhSOENlWmMrOE43a09BdnNnOUUzS1M2ZlRKV2tCRW9Fc05Y?=
- =?utf-8?B?MldYdm9jNEpsMzk4TDJQSjRmQ3dBV21TK01NVmdlUld4d0NNYURScTduUC9r?=
- =?utf-8?B?OXcrbFdkU2k5MXk2cmozc0UxMTJkeGFGNVNoN3l6YlRQUEFQdnlhTlpFNVY2?=
- =?utf-8?B?bmZHM0FMdUY3VTEyQ3duenhDdk15eGlKRnpxanp2RkRLWk1RcmNNTi8xQ3dW?=
- =?utf-8?B?MVpZd2NMMzlIWE5BMG5jS09tWlZhNDI2bUwrdXQxNnN4Nm44MmxyYUJqQjV0?=
- =?utf-8?B?dFVCV2RVa00xWmZ1NTRQWnBkMUlMc2FZTGZnY1pvSXdJVVVNNEh1ZTgxNDdE?=
- =?utf-8?B?Q25aODN1eGdMbGlUVnR2eEFUcWFReGhNWG1sOFZad1I0NWsya050SzM3dndK?=
- =?utf-8?B?RithakZ2dGM3WkRXVGtVbU5KTUt0bjlCVGl4b0IzYmpmUWFxdkxRWlZDdXFR?=
- =?utf-8?B?NUhlaWkwN1JLSVFGUWNFTjdWV2ZzekQ4bVZUWWlDR29DRFB3OGJKeUE1NFZN?=
- =?utf-8?B?VDZaTWh3SGZTYmFRWnA5Q0Jyd0FnS29zdjRjVHFZRlJlT1pOQ09GMDcxY21R?=
- =?utf-8?B?dlhrcmlUTEFNYnZkUXRsaHdiaU1NbzNpK1lJOVY1aUFXR1lsbUtQeUdRbHhU?=
- =?utf-8?B?V3ZYMTJKOXVKR1VocUlsa01CbHE1bnIvZWVvYUw2V3FxZERGbldBa2NpWDRm?=
- =?utf-8?B?SURTb1RBcHJUVWx4STZSRHdpNElsVjFXSVNUaGhCb1hTZHBjYXBCR0NQcyts?=
- =?utf-8?B?N3VsRGVmbWxYYlpoZEgxT1Y0ci9mSWx6OU5nTTVzZGhCR1pCU3UydzJVU2Jp?=
- =?utf-8?B?Qlc3VzNpVm9qUkN4ZVNsSzE0OEM1STZTVTh3NklMcnpxeHhwUHJKSlYxNmVr?=
- =?utf-8?B?VFVVTkMwOEZ2WmxjVFNvcmxhZjY5aENMSDFCd25PL0hmYXRvU2ZxNWVKbGVD?=
- =?utf-8?B?N1gwUCs1MFE0Ry9jM0FjU0h1SVJWZE5XVm8xSW1VT1FhK2JpRkxQdHpTTUdK?=
- =?utf-8?B?OFAwditlMTAwRCtxc0xPZmRWcGhFaUQwWi9lWXAxcTI0V05nbDVrMFNBUDdO?=
- =?utf-8?B?eWdkWkI2bkVoclozMThyZ3VqanVRS242Wmh5WDRSaTVKcnZKL0o0WnEzb0pZ?=
- =?utf-8?B?aG9OcEZXNnFaVnFldnNtS2tZeUJKSTJnRkFVVGk3S0twU1VpK0tUYkpyV3VX?=
- =?utf-8?B?d2hIUWZSV1NJeVNWU21XRVdJaXlxWUhOTk1lVEFnWlZPa3dxSEFIamJET2xx?=
- =?utf-8?B?Tzl5bkU0MEg1eHkxUEsrWk43aFBPd2E3MnU2SEYrazRsK0ZFeDF3c3lTZDh1?=
- =?utf-8?B?QUhQbEdMWllQeUYvN3NmbTZtVXJ3ZEhsbGhUOVhncU1GMjduaGw5WU4yVkN4?=
- =?utf-8?B?WVl2ckU0dE5sTWNSYWp4bGxNV1QxWjZKY29FOWxOODBuTXZVRzVyZjErQlFZ?=
- =?utf-8?B?aldBeDkrbVhDR2pDZWNsNzFoMkRvUU9LUzRxWlVTVHZrY2pGTG1sRVQ5Zkt4?=
- =?utf-8?B?TnpXNllsTWk4K1cvZEF4bDJpZnplMTF0azlKblhZWTgyZVZSSXhZQXpYTXdQ?=
- =?utf-8?B?Q1dSYVlmTDhpZTJoUjE2Z1YvWW1uYzRLY3NzTDNYRVhtc2R0K1FyRDdNQ2E3?=
- =?utf-8?B?SDNLaVE2RnVIT3lSVUZyKzhDTm5Qam1jd08rVllUUzI3VjNodnNCUUtHV2Qz?=
- =?utf-8?B?TFcxNjIwaWhIZXdpRVNYbHowbnEyNWM0KzlIYk9BcytVbFR3SjZIQ2tnWUMy?=
- =?utf-8?Q?z9AFBmxhqQg0gB4+/IkcqL/s39L93k8QKSqn+tP?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3960e9c-8969-4059-c457-08d8fa349fc3
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2021 02:18:40.3343
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gpRZU14XKKpRjJKJq5TbTtHmVfFcLNGel8G8gsGuXSXzkQe3AyXE19rn0uv7KezdcsZFWFHFRw0nLCClJL99Cg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6857
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrFJsWRmVeSWpSXmKPExsWy7bCmvm5PVl6Cwenpwhbb179gtZj68Amb
+        xfwj51gtzja9Ybf4dqWDyWLT42usFpd3zWGzuNx8kdHic+8RRoul1y8yWTS1GFvcblzBZvHm
+        x1kmizOnL7FatO49wm7x79pGFotrC9+zWky/K2Sx8auHg7DHmnlrGD0u9/UyeeycdZfdY9Oq
+        TjaPO9f2sHlsXlLv0XJyP4vHlqvtLB59W1Yxehy/sZ3J4/MmuQDuqGybjNTElNQihdS85PyU
+        zLx0WyXv4HjneFMzA0NdQ0sLcyWFvMTcVFslF58AXbfMHKDnlBTKEnNKgUIBicXFSvp2NkX5
+        pSWpChn5xSW2SqkFKTkFlgV6xYm5xaV56XrJ+blWhgYGRqZAhQnZGYfbX7MXdElVLGipb2Cc
+        JdbFyMkhIWAiMe39QRYQW0hgB6PEoVXqEPYnRoknbwS7GLmA7M+MEn9u7GPsYuQAa7izXhoi
+        votR4mfHJnYI5z2jxNa+ncwg3cICsRK/zt8Dm8omoCWx/8UNNhBbBKh5x8zZjCA2s0Avq8TM
+        Q4ogNr+AosTVH4/B4rwCdhKX39xgBbFZBFQklr49A9YrKhAmcXJbC1SNoMTJmU9YQA7iFLCX
+        aDkUDTFSXOLWk/lMELa8xPa3c5hBbpMQmM8pcbnnEAvExy4SS++/ZYKwhSVeHd/CDmFLSbzs
+        b4OyqyVWnjzCBtHcwSixZf8FVoiEscT+pZOZQBYzC2hKrN+lDxFWlNj5ey7UX3wS7772sEIC
+        i1eio00IokRZ4vKDu1BrJSUWt3eyTWBUmoXkm1lIXpiF5IVZCMsWMLKsYhRLLSjOTU8tNiww
+        Qo7pTYzgRK9ltoNx0tsPeocYmTgYDzFKcDArifDu6M1OEOJNSaysSi3Kjy8qzUktPsRoCgzf
+        icxSosn5wFyTVxJvaGpkbGxsYWJoZmpoqCTOm2jwIF5IID2xJDU7NbUgtQimj4mDU6qBye9y
+        ac1zlf5rpX4vK39FnQxyslJ4MO3a8dSdPN2vCyLmGFlNbGc+ItriIP0pvLcsU2XSZEsPjjV/
+        7me8DEnRdH7dUrT6/wy+Z/ukVyydafvm0MHCQ3V3jsdeqFAy7/zVtyl651mF5XMb95X2GZ49
+        2yNffrOZg0GzL+/0o83McTw5EwRzdM/9fs1i0sVi/tDXp+2I39J1y2uuv/KREq1M/nCFTf96
+        +ryj05YWbK7N2Vy9Qz1CXNJtneND88mGa9skmGM4M0oCTFb9zX7r6/peadEVFuurG1Zf+71u
+        7an6RWoKcaqWS1K+i7tEcy35WOjUyLHYdeq0tCPps5dpX+Bh01Bj7P7iL7+lYknzqcOlSizF
+        GYmGWsxFxYkAtQvSaX0EAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrGIsWRmVeSWpSXmKPExsWy7bCSvG53Vl6CwYJPzBbb179gtZj68Amb
+        xfwj51gtzja9Ybf4dqWDyWLT42usFpd3zWGzuNx8kdHic+8RRoul1y8yWTS1GFvcblzBZvHm
+        x1kmizOnL7FatO49wm7x79pGFotrC9+zWky/K2Sx8auHg7DHmnlrGD0u9/UyeeycdZfdY9Oq
+        TjaPO9f2sHlsXlLv0XJyP4vHlqvtLB59W1Yxehy/sZ3J4/MmuQDuKC6blNSczLLUIn27BK6M
+        w+2v2Qu6pCoWtNQ3MM4S62Lk4JAQMJG4s166i5GLQ0hgB6PE2fVHWLoYOYHikhLTLh5lhqgR
+        ljh8uBii5i2jxMH3q9lBaoQFYiV+nb8HVs8moCWx/8UNNhBbBGjmjpmzGUEamAX6WSVe/uhi
+        AkkICbSySNz/mAJi8wsoSlz98ZgRxOYVsJO4/OYGK4jNIqAisfTtGbBBogJhEjuXPGaCqBGU
+        ODnzCQvIQZwC9hIth6JBwswC6hJ/5l1ihrDFJW49mc8EYctLbH87h3kCo/AsJN2zkLTMQtIy
+        C0nLAkaWVYySqQXFuem5xYYFRnmp5XrFibnFpXnpesn5uZsYwVGvpbWDcc+qD3qHGJk4GA8x
+        SnAwK4nw7ujNThDiTUmsrEotyo8vKs1JLT7EKM3BoiTOe6HrZLyQQHpiSWp2ampBahFMlomD
+        U6qBSfrGmi13f98xf3fJULTVKCa+tHmi9p6iHmPnT7oJK9MCz+nL6E192TLNbdLFVN4b4t9f
+        7ri/6VzLuk3Vv/LnOtn0FHRUVkxsnTDB9r7e76m6GR9m7NTlXledymvicHP5lL9Hvp2b8ud1
+        xZ6o6qqTi8rE7707eS1TOTR/pcG7sN3hG/7YTXl8ZZagzspAHjlW3c8/wkv/x/6qTOV99ucW
+        8+Ub7hF1p7exNW1/Ijev7dLOUK36krce5qvepAiWm0esThasubFBQuas6dOLggFLz/9L3s17
+        VK6MpWdZ0NILPCHTjE4ekfn1kr1w+x71A3az2zdkzZ58pH0lX+uTt9v97sYUbdJdzn25tXGt
+        aWvwikQlluKMREMt5qLiRAAY7M4yaQMAAA==
+X-CMS-MailID: 20210408022931epcas1p2538b7fe14b348daa7a0cadce2df09bff
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20210323113411epcas1p3b4367563007ca91c30201d7fc225bb67
+References: <1616499241-4906-1-git-send-email-andrew-sh.cheng@mediatek.com>
+        <CGME20210323113411epcas1p3b4367563007ca91c30201d7fc225bb67@epcas1p3.samsung.com>
+        <1616499241-4906-2-git-send-email-andrew-sh.cheng@mediatek.com>
+        <233a3bd6-7ab1-5da2-9184-a745eb253d86@samsung.com>
+        <1617177820.15067.1.camel@mtksdaap41>
+        <2ae8604d-0da6-4243-1b92-81b3917d7d48@samsung.com>
+        <cad52436-b291-05bf-236f-7b7cb1fdbbff@samsung.com>
+        <1617195800.18432.3.camel@mtksdaap41>
+        <fbb6c44b-eb77-14ce-9175-3f06030e6e0c@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2021/4/8 0:18, Mathieu Poirier wrote:
-> On Tue, Mar 30, 2021 at 05:12:46PM +0800, peng.fan@oss.nxp.com wrote:
->> From: Peng Fan <peng.fan@nxp.com>
+On 4/1/21 9:16 AM, Chanwoo Choi wrote:
+> On 3/31/21 10:03 PM, andrew-sh.cheng wrote:
+>> On Wed, 2021-03-31 at 17:35 +0900, Chanwoo Choi wrote:
+>>> On 3/31/21 5:27 PM, Chanwoo Choi wrote:
+>>>> Hi,
+>>>>
+>>>> On 3/31/21 5:03 PM, andrew-sh.cheng wrote:
+>>>>> On Thu, 2021-03-25 at 17:14 +0900, Chanwoo Choi wrote:
+>>>>>> Hi,
+>>>>>>
+>>>>>> You are missing to add these patches to linux-pm mailing list.
+>>>>>> Need to send them to linu-pm ML.
+>>>>>>
+>>>>>> Also, before received this series, I tried to clean-up these patches
+>>>>>> on testing branch[1]. So that I add my comment with my clean-up case.
+>>>>>> [1] https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/log/?h=devfreq-testing-passive-gov__;!!CTRNKA9wMg0ARbw!zIrzeDp9vPnm1_SDzVPuzqdHn3zWie9DnfBXaA-j9-CSrVc6aR9_rJQQiw81_CgAPh9XRRs$ 
+>>>>>>
+>>>>>> And 'Saravana Kannan <skannan@codeaurora.org>' is wrong email address.
+>>>>>> Please update the email or drop this email.
+>>>>>
+>>>>> Hi Chanwoo,
+>>>>>
+>>>>> Thank you for the advices.
+>>>>> I will resend patch v9 (add to linux-pm ML), remove this patch, and note
+>>>>> that my patch set base on
+>>>>> https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/log/?h=devfreq-testing-passive-gov__;!!CTRNKA9wMg0ARbw!yUlsuxrL5PcbF7o6A9DlCfvoA6w8V8VXKjYIybYyiJg3D0HM-lI2xRuxLUV6b3UJ8WFhg_g$ 
+>>>>
+>>>> I has not yet test this patch[1] on devfreq-testing-passive-gov branch.
+>>>> So that if possible, I'd like you to test your patches with this patch[1] 
+>>>> and then if there is no problem, could you send the next patches with patch[1]?
+>>>>
+>>>> [1]https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/commit/?h=devfreq-testing-passive-gov&id=39c80d11a8f42dd63ecea1e0df595a0ceb83b454__;!!CTRNKA9wMg0ARbw!yUlsuxrL5PcbF7o6A9DlCfvoA6w8V8VXKjYIybYyiJg3D0HM-lI2xRuxLUV6b3UJR2cQqZs$ 
+>>>
+>>>
+>>> Sorry for the confusion. I make the devfreq-testing-passive-gov[1]
+>>> branch based on latest devfreq-next branch.
+>>> [1] https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/log/?h=devfreq-testing-passive-gov__;!!CTRNKA9wMg0ARbw!yUlsuxrL5PcbF7o6A9DlCfvoA6w8V8VXKjYIybYyiJg3D0HM-lI2xRuxLUV6b3UJ8WFhg_g$ 
+>>>
+>>> First of all, if possible, I want to test them[1] with your patches in this series.
+>>> And then if there are no any problem, please let me know. After confirmed from you,
+>>> I'll send the patches of devfreq-testing-passive-gov[1] branch.
+>>> How about that?
+>>>
+>> Hi Chanwoo~
 >>
->> V2:
->>   Patch 1/8, use fsl as vendor, typo fix
->>   Because patchset [1] has v2 version, patch 5,6,7,8 are adapted that change.
+>> We will use this on Google Chrome project.
+>> Google Hsin-Yi has test your patch + my patch set v8 [2~8]
 >>
->> This patchset is to support i.MX7ULP/8MN/8MP, also includes a patch to parse
->> imx,auto-boot
->> This patchset depends on [1]
+>>     make sure cci devfreqs runs with cpufreq.
+>>     suspend resume
+>>     speedometer2 benchmark
+>> It is okay.
 >>
->> [1] https://patchwork.kernel.org/project/linux-remoteproc/cover/1617082235-15923-1-git-send-email-peng.fan@oss.nxp.com/
+>> Please send the patches of devfreq-testing-passive-gov[1] branch.
 >>
->> Peng Fan (8):
->>    dt-bindings: remoteproc: imx_rproc: add fsl,auto-boot property
->>    dt-bindings: remoteproc: imx_rproc: add i.MX7ULP support
->>    dt-bindings: remoteproc: imx_rproc: support i.MX8MN/P
->>    remoteproc: imx_rproc: make clk optional
->>    remoteproc: imx_rproc: parse fsl,auto-boot
->>    remoteproc: imx_rproc: initial support for mutilple start/stop method
->>    remoteproc: imx_rproc: support i.MX7ULP
->>    remoteproc: imx_rproc: support i.MX8MN/P
->>
+>> I will send patch v9 base on yours latter.
 > 
-> There are glaring checkpatch warning on this set - the "DT compatible string"
-> ones are fine but the others are not negotiable.  As such I am dropping this set
-> entirely.
+> Thanks for your test. I'll send the patches today.
 
-Ah, sorry for this. I just sent out V3 to address all the checkpatch 
-warnings.
+I'm sorry for delay because when I tested the patches
+for devfreq parent type on Odroid-xu3, there are some problem
+related to lazy linking of OPP. So I'm trying to analyze them.
+Unfortunately, we need to postpone these patches to next linux
+version.
 
-Thanks,
-Peng.
 
->   
->>   .../bindings/remoteproc/fsl,imx-rproc.yaml    |  11 +-
->>   drivers/remoteproc/imx_rproc.c                | 170 +++++++++++++++---
->>   2 files changed, 159 insertions(+), 22 deletions(-)
->>
->> -- 
->> 2.30.0
->>
+[snip]
+
+-- 
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
