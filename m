@@ -2,396 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AA62358EC3
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 22:53:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5162358F1F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 23:28:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232156AbhDHUxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 16:53:18 -0400
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:42735 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232327AbhDHUxS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 16:53:18 -0400
-Received: by mail-oi1-f174.google.com with SMTP id n140so3569290oig.9;
-        Thu, 08 Apr 2021 13:53:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=46Uzc8wMeij8opq/aUJAyokWFKKz/7neG5XHu3unxu0=;
-        b=OkABf1+XbWdIeQxiBdv4TAHxatiCvhmftbmC0y+lvpXxyvV9/fDBATHhVheUExRAPD
-         I/WZxjjJa1nDGL920ynbM/kC7zcXZgw/NapAJGhPtRmQ7wAGThDxI+b8JoakI2kvci6q
-         JHgWYHRc1OtMnfRFG8P8jc3SyZj1KMTOCPN61DOmSDSAf7lspsM3MrmNlHWu5wu4j3T9
-         RWLbN0Kmf236wq0iO7oJGm9eayGpT6al/D9jJTQaCo8A8c/DbYGdPnAW4d/w/E8njFeO
-         vx9AHDRWvvkkTb812gZAgszbO0g7M2RgExxhZ3Hc7CL4PEpCrbQ1/NLFP8qMe7i01QLF
-         tEzA==
-X-Gm-Message-State: AOAM532gUBCLAFqWqjPzDqMTvDFODuoEVQ7ae/nNu/hCecPNrxr1xppo
-        Z7dLY9K6p0xHiGELoOGu98Yl3tQhfg==
-X-Google-Smtp-Source: ABdhPJxFrflQnRzo0BZjpJR0OEzuPqx/VjSm+Shm8/YIdpNiM0ZUQOjZ7tBjP4gmguX4T2sh1aOjGQ==
-X-Received: by 2002:a05:6808:1413:: with SMTP id w19mr7790722oiv.20.1617915185992;
-        Thu, 08 Apr 2021 13:53:05 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a13sm117398ooj.14.2021.04.08.13.53.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Apr 2021 13:53:05 -0700 (PDT)
-Received: (nullmailer pid 1940093 invoked by uid 1000);
-        Thu, 08 Apr 2021 20:53:04 -0000
-Date:   Thu, 8 Apr 2021 15:53:04 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        kgunda@codeaurora.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH V2 3/3] dt-bindings: pinctrl: qcom-pmic-gpio: Convert
- qcom pmic gpio bindings to YAML
-Message-ID: <20210408205304.GA1929460@robh.at.kernel.org>
-References: <1617280546-9583-1-git-send-email-skakit@codeaurora.org>
- <1617280546-9583-4-git-send-email-skakit@codeaurora.org>
+        id S232158AbhDHV2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 17:28:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60406 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231862AbhDHV2d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Apr 2021 17:28:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AFAFC61132;
+        Thu,  8 Apr 2021 21:28:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617917302;
+        bh=Ew2zj7eRBGY2Lej7FI5XIbRd04PJBDS6j8lbWk3WwNI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=EbPkgCu/HjlmZpth4zJhwhO6bQF1WzewjFb5+DEu/bqwNWpvfjZQAgpI0TDEkPet2
+         9EqpWAo6op8lXtyy9p7+fHf24pzUDgJbx17uWhHVdVwOoMLb49/qDdNv454LBUTWq/
+         4pIOwLWufoM2Sr1oi3jCWyQHlNzKMKcXxwqe9vVFkXR3btdrm2li9NK7NUm0z//Sgd
+         kDczAF4zFn6O87i8bprIRJj/EBvCGm8bzhLXBNmouOVKCkr/TMwKxfsUuk9dCX0p0E
+         naoDU2aVRnquRnU+OVBXUhhckL1ZZTzSEFLYBz584h0ThfyQqgdhsR957GoLinG7mq
+         8uZKqbcTokArg==
+Received: by mail-ej1-f45.google.com with SMTP id a7so5425330eju.1;
+        Thu, 08 Apr 2021 14:28:21 -0700 (PDT)
+X-Gm-Message-State: AOAM53169tkZbpDm+nbAj5jTKONssEePngtB21r/9Z0cEs3PknobsgmL
+        KX+HKYXya1QehGSSwIbcJ4g7/LcFiWPLV0gRzw==
+X-Google-Smtp-Source: ABdhPJxyiqn+sE/Q4RYaMmVDQUbDupiktkeBup4XfGVD4uMiXg1e47FKOnu4XeJNewazFmFosxK1LeFzq8Fja5Eurig=
+X-Received: by 2002:a17:906:4fcd:: with SMTP id i13mr13160768ejw.341.1617917300338;
+ Thu, 08 Apr 2021 14:28:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1617280546-9583-4-git-send-email-skakit@codeaurora.org>
+References: <20210408204508.2276230-1-frowand.list@gmail.com>
+In-Reply-To: <20210408204508.2276230-1-frowand.list@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 8 Apr 2021 16:28:09 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+Os6O6CpRYurmf_4-Xnzgpkd1jbDbnp0en1TPbZXTf7w@mail.gmail.com>
+Message-ID: <CAL_Jsq+Os6O6CpRYurmf_4-Xnzgpkd1jbDbnp0en1TPbZXTf7w@mail.gmail.com>
+Subject: Re: [PATCH v4 1/1] of: unittest: overlay: ensure proper alignment of
+ copied FDT
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 01, 2021 at 06:05:45PM +0530, satya priya wrote:
-> Convert Qualcomm PMIC GPIO bindings from .txt to .yaml format.
-> 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
+On Thu, Apr 8, 2021 at 3:45 PM <frowand.list@gmail.com> wrote:
+>
+> From: Frank Rowand <frank.rowand@sony.com>
+>
+> The Devicetree standard specifies an 8 byte alignment of the FDT.
+> Code in libfdt expects this alignment for an FDT image in memory.
+> kmemdup() returns 4 byte alignment on openrisc.  Replace kmemdup()
+> with kmalloc(), align pointer, memcpy() to get proper alignment.
+>
+> The 4 byte alignment exposed a related bug which triggered a crash
+> on openrisc with:
+> commit 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9")
+> as reported in:
+> https://lore.kernel.org/lkml/20210327224116.69309-1-linux@roeck-us.net/
+>
+> Reported-by: Guenter Roeck <linux@roeck-us.net>
+> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+>
 > ---
-> Changes in V3:
->  - As per Rob's comments fixed bot erros.
->  - Moved this patch to end of the series so that other patches are not
->    blocked on this.
-> 
->  .../devicetree/bindings/pinctrl/qcom,pmic-gpio.txt | 280 --------------------
->  .../bindings/pinctrl/qcom,pmic-gpio.yaml           | 281 +++++++++++++++++++++
->  2 files changed, 281 insertions(+), 280 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
+>
+> changes since version 1:
+>   - use pointer from kmalloc() for kfree() instead of using pointer that
+>     has been modified for FDT alignment
+>
+> changes since version 2:
+>   - version 1 was a work in progress version, I failed to commit the following
+>     final changes
+>   - reorder first two arguments of of_overlay_apply()
+>
+> changes since version 3:
+>   - size of memory allocation and size of copy after pointer alignment
+>     differ, use separate variables with correct values for each case
+>   - edit comment to more clearly describe that ovcs->fdt is the allocated
+>     memory region, which may be different than where the aligned pointer points
+>   - remove unused parameter from of_overlay_apply()
+>
+>  drivers/of/of_private.h |  2 ++
+>  drivers/of/overlay.c    | 27 +++++++++++++++++----------
+>  drivers/of/unittest.c   | 13 ++++++++++---
+>  3 files changed, 29 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
+> index d9e6a324de0a..d717efbd637d 100644
+> --- a/drivers/of/of_private.h
+> +++ b/drivers/of/of_private.h
+> @@ -8,6 +8,8 @@
+>   * Copyright (C) 1996-2005 Paul Mackerras.
+>   */
+>
+> +#define FDT_ALIGN_SIZE 8
+> +
+>  /**
+>   * struct alias_prop - Alias property in 'aliases' node
+>   * @link:      List node to link the structure in aliases_lookup list
+> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+> index 50bbe0edf538..ecf967c57900 100644
+> --- a/drivers/of/overlay.c
+> +++ b/drivers/of/overlay.c
+> @@ -57,7 +57,7 @@ struct fragment {
+>   * struct overlay_changeset
+>   * @id:                        changeset identifier
+>   * @ovcs_list:         list on which we are located
+> - * @fdt:               FDT that was unflattened to create @overlay_tree
+> + * @fdt:               base of memory allocated to hold aligned FDT that was unflattened to create @overlay_tree
+>   * @overlay_tree:      expanded device tree that contains the fragment nodes
+>   * @count:             count of fragment structures
+>   * @fragments:         fragment nodes in the overlay expanded device tree
+> @@ -719,8 +719,8 @@ static struct device_node *find_target(struct device_node *info_node)
+>  /**
+>   * init_overlay_changeset() - initialize overlay changeset from overlay tree
+>   * @ovcs:      Overlay changeset to build
+> - * @fdt:       the FDT that was unflattened to create @tree
+> - * @tree:      Contains all the overlay fragments and overlay fixup nodes
+> + * @fdt:       base of memory allocated to hold aligned FDT that was unflattened to create @tree
+> + * @tree:      Contains the overlay fragments and overlay fixup nodes
+>   *
+>   * Initialize @ovcs.  Populate @ovcs->fragments with node information from
+>   * the top level of @tree.  The relevant top level nodes are the fragment
+> @@ -873,7 +873,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
+>   * internal documentation
+>   *
+>   * of_overlay_apply() - Create and apply an overlay changeset
+> - * @fdt:       the FDT that was unflattened to create @tree
+> + * @fdt:       base of memory allocated to hold the aligned FDT
+>   * @tree:      Expanded overlay device tree
+>   * @ovcs_id:   Pointer to overlay changeset id
+>   *
+> @@ -913,7 +913,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
+>   */
+>
+>  static int of_overlay_apply(const void *fdt, struct device_node *tree,
+> -               int *ovcs_id)
+> +                           int *ovcs_id)
+>  {
+>         struct overlay_changeset *ovcs;
+>         int ret = 0, ret_revert, ret_tmp;
+> @@ -953,7 +953,9 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
+>         /*
+>          * after overlay_notify(), ovcs->overlay_tree related pointers may have
+>          * leaked to drivers, so can not kfree() tree, aka ovcs->overlay_tree;
+> -        * and can not free fdt, aka ovcs->fdt
+> +        * and can not free memory containing aligned fdt.  The aligned fdt
+> +        * is contained within the memory at ovcs->fdt, possibly at an offset
+> +        * from ovcs->fdt.
+>          */
+>         ret = overlay_notify(ovcs, OF_OVERLAY_PRE_APPLY);
+>         if (ret) {
+> @@ -1014,9 +1016,10 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
+>  int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
+>                          int *ovcs_id)
+>  {
+> -       const void *new_fdt;
+> +       void *new_fdt;
+> +       void *new_fdt_align;
+>         int ret;
+> -       u32 size;
+> +       u32 size, size_alloc;
+>         struct device_node *overlay_root;
+>
+>         *ovcs_id = 0;
+> @@ -1036,11 +1039,15 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
+>          * Must create permanent copy of FDT because of_fdt_unflatten_tree()
+>          * will create pointers to the passed in FDT in the unflattened tree.
+>          */
+> -       new_fdt = kmemdup(overlay_fdt, size, GFP_KERNEL);
+> +       size_alloc = size + FDT_ALIGN_SIZE;
+> +       new_fdt = kmalloc(size_alloc, GFP_KERNEL);
 
+As size_alloc is only used once, you can just do:
 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> new file mode 100644
-> index 0000000..e7e7027
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> @@ -0,0 +1,281 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,pmic-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm PMIC GPIO block
-> +
-> +maintainers:
-> +  - Bjorn Andersson <bjorn.andersson@sonymobile.com>
-> +
-> +description: |
-> +  This binding describes the GPIO block(s) found in the 8xxx series of
-> +  PMIC's from Qualcomm.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - qcom,pm8005-gpio
-> +          - qcom,pm8018-gpio
-> +          - qcom,pm8038-gpio
-> +          - qcom,pm8058-gpio
-> +          - qcom,pm8916-gpio
-> +          - qcom,pm8917-gpio
-> +          - qcom,pm8921-gpio
-> +          - qcom,pm8941-gpio
-> +          - qcom,pm8950-gpio
-> +          - qcom,pm8994-gpio
-> +          - qcom,pm8998-gpio
-> +          - qcom,pma8084-gpio
-> +          - qcom,pmi8950-gpio
-> +          - qcom,pmi8994-gpio
-> +          - qcom,pmi8998-gpio
-> +          - qcom,pms405-gpio
-> +          - qcom,pm660-gpio
-> +          - qcom,pm660l-gpio
-> +          - qcom,pm8150-gpio
-> +          - qcom,pm8150b-gpio
-> +          - qcom,pm6150-gpio
-> +          - qcom,pm6150l-gpio
-> +          - qcom,pmx55-gpio
-> +          - qcom,pm7325-gpio
-> +          - qcom,pm8350c-gpio
-> +          - qcom,pmk8350-gpio
-> +          - qcom,pmr735a-gpio
-> +
-> +      - enum:
-> +          - qcom,spmi-gpio
-> +          - qcom,ssbi-gpio
+new_fdt = kmalloc(size + FDT_ALIGN_SIZE, GFP_KERNEL);
 
-Any combination of the 1st and 2nd entry is valid?
+Same for the unittest. I can fix up.
 
-> +
-> +  reg:
-> +    description: Register base of the GPIO block and length.
+Applying now so this gets into linux-next this week.
 
-Just: 
-
-maxItems: 1
-
-> +
-> +  interrupts:
-> +    description: |
-> +        Must contain an array of encoded interrupt specifiers for
-> +        each available GPIO
-
-Need to define how many interrupts. I assume there's some max.
-
-> +
-> +  '#interrupt-cells':
-> +    const: 2
-> +
-> +  interrupt-controller: true
-> +
-> +  gpio-controller: true
-> +
-> +  gpio-ranges:
-> +    maxItems: 1
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +    description: |
-> +        The first cell will be used to define gpio number and the
-> +        second denotes the flags for this gpio
-> +
-> +  gpio-keys:
-> +    type: object
-> +    properties:
-> +      volume-keys:
-> +        type: object
-
-Needs a $ref to pinmux-node.yaml and pincfg-node.yaml.
-
-> +        properties:
-> +          pins:
-> +            description: |
-> +                List of gpio pins affected by the properties specified in
-> +                this subnode.  Valid pins are
-> +                     - gpio1-gpio4 for pm8005
-> +                     - gpio1-gpio6 for pm8018
-> +                     - gpio1-gpio12 for pm8038
-> +                     - gpio1-gpio40 for pm8058
-> +                     - gpio1-gpio4 for pm8916
-> +                     - gpio1-gpio38 for pm8917
-> +                     - gpio1-gpio44 for pm8921
-> +                     - gpio1-gpio36 for pm8941
-> +                     - gpio1-gpio8 for pm8950 (hole on gpio3)
-> +                     - gpio1-gpio22 for pm8994
-> +                     - gpio1-gpio26 for pm8998
-> +                     - gpio1-gpio22 for pma8084
-> +                     - gpio1-gpio2 for pmi8950
-> +                     - gpio1-gpio10 for pmi8994
-> +                     - gpio1-gpio12 for pms405 (holes on gpio1, gpio9
-> +                                                and gpio10)
-> +                     - gpio1-gpio10 for pm8150 (holes on gpio2, gpio5,
-> +                                                gpio7 and gpio8)
-> +                     - gpio1-gpio12 for pm8150b (holes on gpio3, gpio4
-> +                                                 and gpio7)
-> +                     - gpio1-gpio12 for pm8150l (hole on gpio7)
-> +                     - gpio1-gpio10 for pm6150
-> +                     - gpio1-gpio12 for pm6150l
-> +                     - gpio1-gpio10 for pm7325
-> +                     - gpio1-gpio9 for pm8350c
-> +                     - gpio1-gpio4 for pmk8350
-> +                     - gpio1-gpio4 for pmr735a
-> +
-> +            $ref: /schemas/types.yaml#/definitions/string-array
-
-Already has a type in pinmux-node.yaml.
-
-> +            items:
-> +              pattern: "^gpio([0-9]+)$"
-> +
-> +          function:
-> +            $ref: /schemas/types.yaml#/definitions/string
-
-ditto
-
-> +            description: |
-> +                Specify the alternative function to be configured for the
-> +                specified pins.
-> +            items:
-> +              - enum:
-> +                  - normal
-> +                  - paired
-> +                  - func1
-> +                  - func2
-> +                  - dtest1
-> +                  - dtest2
-> +                  - dtest3
-> +                  - dtest4
-> +                  - func3  # supported by LV/MV GPIO subtypes
-> +                  - func4  # supported by LV/MV GPIO subtypes
-> +
-> +          bias-disable:
-> +            $ref: /schemas/types.yaml#/definitions/flag
-
-And all these have a type and description. Just:
-
-bias-disable: true
-
-If no further constraints.
-
-> +            description:
-> +              The specified pins should be configured as no pull.
-> +
-> +          bias-pull-down:
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +            description:
-> +              The specified pins should be configured as pull down.
-> +
-> +          bias-pull-up:
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +            description:
-> +              The specified pins should be configured as pull up.
-> +
-> +          qcom,pull-up-strength:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description: |
-> +                Specifies the strength to use for pull up, if selected.
-> +                Valid values are defined in
-> +                <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> +                If this property is omitted 30uA strength will be used
-> +                if pull up is selected
-> +
-> +          bias-high-impedance:
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +            description:
-> +              The specified pins will put in high-Z mode and disabled.
-> +
-> +          input-enable:
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +            description: The specified pins are put in input mode.
-> +
-> +          output-high:
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +            description: |
-> +                The specified pins are configured in output mode,
-> +                driven high.
-> +
-> +          output-low:
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +            description: |
-> +                The specified pins are configured in output mode,
-> +                driven low.
-> +
-> +          power-source:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description: |
-> +                Selects the power source for the specified pins.
-> +                Valid power sources are defined per chip in
-> +                <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> +
-> +          qcom,drive-strength:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description: |
-> +                Selects the drive strength for the specified pins
-> +                Valid drive strength values are defined in
-> +                <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> +
-> +          drive-push-pull:
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +            description:
-> +              The specified pins are configured in push-pull mode.
-> +
-> +          drive-open-drain:
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +            description:
-> +              The specified pins are configured in open-drain mode.
-> +
-> +          drive-open-source:
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +            description:
-> +              The specified pins are configured in open-source mode.
-> +
-> +          qcom,analog-pass:
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +            description: |
-> +                The specified pins are configured in
-> +                analog-pass-through mode.
-> +
-> +          qcom,atest:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description: |
-> +                Selects ATEST rail to route to GPIO when it's
-> +                configured in analog-pass-through mode.
-> +            enum: [1 2 3 4]
-> +
-> +          qcom,dtest-buffer:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description: |
-> +                Selects DTEST rail to route to GPIO when it's
-> +                configured as digital input.
-> +            enum: [1 2 3 4]
-> +
-> +        required:
-> +          - pins
-> +          - function
-> +
-> +        additionalProperties: true
-> +
-> +additionalProperties: true
-
-Should be 'false'.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> +
-> +    pm8921_gpio: gpio@150 {
-> +      compatible = "qcom,pm8921-gpio", "qcom,ssbi-gpio";
-> +      reg = <0x150 0x160>;
-> +      interrupts = <192 1>, <193 1>, <194 1>,
-> +                   <195 1>, <196 1>, <197 1>,
-> +                   <198 1>, <199 1>, <200 1>,
-> +                   <201 1>, <202 1>, <203 1>,
-> +                   <204 1>, <205 1>, <206 1>,
-> +                   <207 1>, <208 1>, <209 1>,
-> +                   <210 1>, <211 1>, <212 1>,
-> +                   <213 1>, <214 1>, <215 1>,
-> +                   <216 1>, <217 1>, <218 1>,
-> +                   <219 1>, <220 1>, <221 1>,
-> +                   <222 1>, <223 1>, <224 1>,
-> +                   <225 1>, <226 1>, <227 1>,
-> +                   <228 1>, <229 1>, <230 1>,
-> +                   <231 1>, <232 1>, <233 1>,
-> +                   <234 1>, <235 1>;
-> +
-> +      gpio-controller;
-> +      #gpio-cells = <2>;
-> +
-> +      pm8921_gpio_keys: gpio-keys {
-> +        volume-keys {
-> +          pins = "gpio20", "gpio21";
-> +          function = "normal";
-> +
-> +          input-enable;
-> +          bias-pull-up;
-> +          drive-push-pull;
-> +          qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
-> +          power-source = <PM8921_GPIO_S4>;
-> +        };
-> +      };
-> +    };
-> +...
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
+Rob
