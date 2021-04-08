@@ -2,174 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0A1E358D49
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 21:11:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B432358D74
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 21:25:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232969AbhDHTLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 15:11:22 -0400
-Received: from mail.hoefle.co ([213.200.254.119]:51720 "EHLO hoefle.co"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232958AbhDHTLW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Apr 2021 15:11:22 -0400
-Received: from [192.168.222.165] (unknown [213.200.254.119])
-        by hoefle.co (Postfix) with ESMTPSA id 5956C91213;
-        Thu,  8 Apr 2021 21:11:09 +0200 (CEST)
-Subject: Re: [PATCH v4 2/2] usb: dwc3: Add driver for Xilinx platforms
-From:   Marco Hoefle <marco@hoefle.co>
-To:     Michal Simek <michal.simek@xilinx.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Manish Narani <manish.narani@xilinx.com>
-Cc:     devicetree@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <1615963949-75320-1-git-send-email-manish.narani@xilinx.com>
- <1615963949-75320-3-git-send-email-manish.narani@xilinx.com>
- <20210407214811.GA260719@roeck-us.net>
- <ee280235-736d-1689-d324-b090c21106c9@xilinx.com>
- <a7bbf265-a771-2c2e-b5e7-a189692ca280@hoefle.co>
-Message-ID: <e906199b-3810-c5bc-1f08-03da2133d63d@hoefle.co>
-Date:   Thu, 8 Apr 2021 21:11:09 +0200
+        id S231420AbhDHTZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 15:25:46 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:41054 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231918AbhDHTZn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 15:25:43 -0400
+Received: from mail-wr1-f72.google.com ([209.85.221.72])
+        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.86_2)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1lUaHS-0002d2-3b
+        for devicetree@vger.kernel.org; Thu, 08 Apr 2021 19:25:30 +0000
+Received: by mail-wr1-f72.google.com with SMTP id o11so1399018wrc.4
+        for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021 12:25:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=EW7d+9G4/kjjtpomgAZZU/CRnYFDop2X3n6Zj7v339I=;
+        b=TfpqzC1qdT0qW23nftFB0BXAv99UToxiGEySd/nNVABOfEKIhgdmm9tTtLs5sJzQQb
+         MteK46fX3AgrW71LbZplDlZAVGjUsq27jt/eTnhCY5gmYX/bhavp9MRVujHDs6zKpLBy
+         rAw/RYCIvvkwwMKs3m6XtYdrUZl4fzkNmOoQnKSTMFqCZWpW5KB/azrAopSEMhLsqGJr
+         7SXmwjYzrccs34iUalXCHs70+XJVPqeCRRzDNqvGq1uwRENXBYdKSOeK724ABYPyKLaA
+         oCdlWRW++rjzjQVkyJ2nhWdpR6wZXJe19A7bH0JC/OhNCZKOO7iI3qz0a1dddfX0MfUk
+         d8GA==
+X-Gm-Message-State: AOAM532Li8f83KahAdh69iDe4f0ZswBGetk8it53rD0wiUBIqD0iHNZf
+        Wu7rXNyywwSpIFkOB+qJt5SFFR4rt15Ec8WY6cds/Cvv7+vf20VlqROlwwDpA+XMItfcciZ0sns
+        Eb09PtaKRwyk3s9tXuUYbcyLPBgAMK5yVYBw2wwc=
+X-Received: by 2002:a5d:4f0e:: with SMTP id c14mr14193196wru.0.1617909929799;
+        Thu, 08 Apr 2021 12:25:29 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJw3uC3t9Rn/hZil2QBwcuqL7F591JGwIex59HP2iZb5W4DsmO5gVtcusB8GA9Rzz/D/7bvgcg==
+X-Received: by 2002:a5d:4f0e:: with SMTP id c14mr14193176wru.0.1617909929665;
+        Thu, 08 Apr 2021 12:25:29 -0700 (PDT)
+Received: from [192.168.1.115] (xdsl-188-155-192-147.adslplus.ch. [188.155.192.147])
+        by smtp.gmail.com with ESMTPSA id u17sm261604wmq.3.2021.04.08.12.25.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Apr 2021 12:25:29 -0700 (PDT)
+Subject: Re: New 'make dtbs_check W=1' warnings
+To:     Arnd Bergmann <arnd@kernel.org>, DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Linus Walleij <linusw@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        SoC Team <soc@kernel.org>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+References: <CAK8P3a1L8rWpR5b66v6Su8-m7-scA0wZQr_g_4KnV4dnrky6ZA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <70873555-ab01-feb0-536b-d4b60ac89768@canonical.com>
+Date:   Thu, 8 Apr 2021 21:25:28 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <a7bbf265-a771-2c2e-b5e7-a189692ca280@hoefle.co>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAK8P3a1L8rWpR5b66v6Su8-m7-scA0wZQr_g_4KnV4dnrky6ZA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Michal, Manish and Guenter,
+On 08/04/2021 17:08, Arnd Bergmann wrote:
+> Greetings to all Arm platform maintainers,
+> 
+> I've just gone through the DT merges I've received so far and, with a
+> little help from Rob,
+> managed to run 'make dtbs_check W=1' before and after, to see what
+> warnings we get.
+> The good news is that the number of warnings is going down, but
+> unfortunately there
+> is still an unmanageable amount of remaining warnings, and some new
+> ones crept in.
+> 
+> I'm still working on my tooling for this, to catch these better, but
+> ideally I think we should
+> try to not introduce new warnings. I think some platforms are already
+> clean, and I did
+> not see any new warnings for mvebu, samsung and broadcom. There were a lot of
+> warnings from .dtsi files, and I probably did an incomplete job at
+> deduplicating those.
+> 
+> See below for the other platforms, and the new warnings that I found.
+> If these are
+> valid, please send a fixup before the merge window, and let me know if
+> you have ideas
+> for how we should handle these in the future.
+> 
+> For this merge window, I don't think any of them are show-stoppers (Rob, let me
+> know if you disagree), but in the long run we may want to gradually enforce
+> a rule about not merging changes that introduce any new warnings, in order to
+> have a chance of cleaning up the existing ones.
 
-I recently opened a thread regarding of the PSGTR driver documentation ( 
-https://www.spinics.net/lists/devicetree/msg416470.html 
-<https://www.spinics.net/lists/devicetree/msg416470.html> )
++1 for such rule, although the best would be to get a report about new
+warnings on posted patches or shortly after applying, e.g. via 0-day
+kbuild robot.
 
-It is not clear to me how to "marry" DWC3 and PSGTR in the device tree.
-
-There were some significant changes compared to the Xlnx 5.4 Kernel.
-
-You have dwc3 (USB3) working using the mainline Kernel?
-
-Could you please share your device tree?
-
-That would be really helpful to get the mainline kernel running on the 
-Ultra96v2.
-
-Thanks
-
-Marco
-
->
->
->
-> On 08.04.21 08:08, Michal Simek wrote:
->> Hi Guenter,
->>
->> On 4/7/21 11:48 PM, Guenter Roeck wrote:
->>> On Wed, Mar 17, 2021 at 12:22:29PM +0530, Manish Narani wrote:
->>>> Add a new driver for supporting Xilinx platforms. This driver is used
->>>> for some sequence of operations required for Xilinx USB controllers.
->>>> This driver is also used to choose between PIPE clock coming from SerDes
->>>> and the Suspend Clock. Before the controller is out of reset, the clock
->>>> selection should be changed to PIPE clock in order to make the USB
->>>> controller work. There is a register added in Xilinx USB controller
->>>> register space for the same.
->>>>
->>>> Signed-off-by: Manish Narani<manish.narani@xilinx.com>
->>> Trying this driver with qemu (v6.0.0-rc2) results in:
->>>
->>> [   15.184242] dwc3-xilinx ff9d0000.usb: error -ENODEV: failed to assert Reset
->>> [   15.185754] Unable to handle kernel paging request at virtual address 006b6b6b6b6b6b9b
->>> [   15.185994] Mem abort info:
->>> [   15.186065]   ESR = 0x96000004
->>> [   15.186317]   EC = 0x25: DABT (current EL), IL = 32 bits
->>> [   15.186414]   SET = 0, FnV = 0
->>> [   15.186498]   EA = 0, S1PTW = 0
->>> [   15.186579] Data abort info:
->>> [   15.186666]   ISV = 0, ISS = 0x00000004
->>> [   15.186756]   CM = 0, WnR = 0
->>> [   15.186887] [006b6b6b6b6b6b9b] address between user and kernel address ranges
->>> [   15.187436] Internal error: Oops: 96000004 [#1] PREEMPT SMP
->>> [   15.187777] Modules linked in:
->>> [   15.188060] CPU: 0 PID: 1 Comm: swapper/0 Not tainted 5.12.0-rc6-next-20210406-00006-g05407f068fc9-dirty #1
->>> [   15.188265] Hardware name: Xilinx Versal Virtual development board (DT)
->>> [   15.188495] pstate: 80000005 (Nzcv daif -PAN -UAO -TCO BTYPE=--)
->>> [   15.188614] pc : __clk_put+0x24/0x138
->>> [   15.188716] lr : __clk_put+0x24/0x138
->>> [   15.188791] sp : ffff80001326bac0
->>> [   15.188853] x29: ffff80001326bac0 x28: ffff00000644ed00
->>> [   15.188982] x27: ffff00000421ecd0 x26: ffff00000421e810
->>> [   15.189076] x25: ffff00000644f100 x24: 0000000000000000
->>> [   15.189170] x23: ffff8000126a2570 x22: 0000000000000005
->>> [   15.189271] x21: ffff00000644ed00 x20: ffff000006449970
->>> [   15.189367] x19: 6b6b6b6b6b6b6b6b x18: 0000000000000010
->>> [   15.189456] x17: 0000000000000001 x16: 0000000000000000
->>> [   15.189546] x15: ffff000003af0490 x14: 00000000000001b7
->>> [   15.189642] x13: ffff000003af0490 x12: 00000000ffffffea
->>> [   15.189729] x11: ffff8000123b6460 x10: 0000000000000080
->>> [   15.189815] x9 : 00000000676993c6 x8 : 00000000676993c6
->>> [   15.189941] x7 : 000000007d152ab3 x6 : ffff800012768480
->>> [   15.190047] x5 : 0000000000000000 x4 : 000000007f97631e
->>> [   15.190139] x3 : 00000000d5bdf2c2 x2 : 000000000000000b
->>> [   15.190233] x1 : ffff000003af0040 x0 : 0000000000000001
->>> [   15.190432] Call trace:
->>> [   15.190506]  __clk_put+0x24/0x138
->>> [   15.190588]  clk_put+0x10/0x20
->>> [   15.190653]  clk_bulk_put+0x3c/0x60
->>> [   15.190724]  devm_clk_bulk_release+0x1c/0x28
->>> [   15.190806]  release_nodes+0x1c0/0x2b0
->>> [   15.190887]  devres_release_all+0x38/0x60
->>> [   15.190963]  really_probe+0x1e4/0x3a8
->>> [   15.191042]  driver_probe_device+0x64/0xc8
->>> ...
->>>
->>> because of ...
->>>
->>>> +
->>>> +	ret = devm_clk_bulk_get_all(priv_data->dev, &priv_data->clks);
->>>> +	if (ret < 0)
->>>> +		return ret;
->>>> +
->>> ...
->>>> +
->>>> +err_clk_put:
->>>> +	clk_bulk_disable_unprepare(priv_data->num_clocks, priv_data->clks);
->>>> +	clk_bulk_put_all(priv_data->num_clocks, priv_data->clks);
->>> clk_bulk_put_all() is not necessary because of devm_clk_bulk_get_all(),
->>> and results in a double free.
->>>
->>>> +static int dwc3_xlnx_remove(struct platform_device *pdev)
->>>> +{
->>>> +	struct dwc3_xlnx	*priv_data = platform_get_drvdata(pdev);
->>>> +	struct device		*dev = &pdev->dev;
->>>> +
->>>> +	of_platform_depopulate(dev);
->>>> +
->>>> +	clk_bulk_disable_unprepare(priv_data->num_clocks, priv_data->clks);
->>>> +	clk_bulk_put_all(priv_data->num_clocks, priv_data->clks);
->>> Same here. This will likely crash the driver on unload.
->> It looks like that you directly created the patch. Isn't it better to
->> send it yourself? Or do you want Manish to create it based on guidance
->> above?
->>
->> Manish: Can you please take a look at this?
->>
->> Thanks,
->> Michal
-> -- 
-> ______________________
->
-> Marco Höfle
-> Kappelen 11
-> CH-⁠5706 Boniswil
-> Tel.: +41 78 790 93 62
-
--- 
-______________________
-
-Marco Höfle
-Kappelen 11
-CH-⁠5706 Boniswil
-Tel.: +41 78 790 93 62
-
+Best regards,
+Krzysztof
