@@ -2,72 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02AF9358E2D
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 22:16:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8276358E37
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 22:20:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231699AbhDHUQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 16:16:35 -0400
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:38409 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231451AbhDHUQe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 16:16:34 -0400
-Received: by mail-ot1-f50.google.com with SMTP id w21-20020a9d63950000b02901ce7b8c45b4so3564689otk.5;
-        Thu, 08 Apr 2021 13:16:21 -0700 (PDT)
+        id S231699AbhDHUUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 16:20:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44692 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231676AbhDHUUW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 16:20:22 -0400
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA555C061760;
+        Thu,  8 Apr 2021 13:20:10 -0700 (PDT)
+Received: by mail-qv1-xf36.google.com with SMTP id t13so1573050qvs.7;
+        Thu, 08 Apr 2021 13:20:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=nznclVC3IBg9dVDWPKHe3VIDxWvi1+V9KduB+Ebr+qQ=;
+        b=WjHUJYbdsQS7tHuQ+j/2GhE1SiwPcRtbiy7lKUzeoivPcGRuvRZJKuJp7n7H0fDOmh
+         uLH3NyAfdBJMNO969azXaVBgdDB63hbGEC8kt8V3yRJ1TOmOR6pnJwDQOjo27XaqUqw+
+         CKt9ppE4h/R5DQk9LDkF6lpzyps/6bpzJjV+Qf85fMxaUlUUQRdQPSl7owu8UleuuJag
+         BAN+erjATpByyTyRggq0kX32uCaq6WMUA9SrKct4F6HEzxkZA6YBGnZyjewnybt7t4Gg
+         mVC+OpagfGFpLTfpFn56MTLqDWY1st0tVm6lEHrlaRIbqxUTyfauLKB/8r0YWrvRb66A
+         xZUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=CLvREP8cSkaXDbZqsQ3pwOZ5gunBfoSYtS8rLqMUnRE=;
-        b=d8uTKvacWqmKDnSOw8ohZmzXnY1wIPlwr1dWDzmsdcehMa4T/mpMVWTWgbQWz1kihb
-         yCsG31+vA4He4WNAYSxc8vobUbdsza8RpVLxldNRL39xKtsiYSUC4LIizlfKw7ffXQIP
-         vCk2hYj1oq2jxoEwpH3is4+zgy3sw8JGBiB09rG5lfm7FWrO76JW0LMWmR5qQO95NPbr
-         enU8ITG9lBDDdmLm+3jMpqeHIyl2DSPW447qt1chgTRpe4NKJhCpNq/h4sExFSMcW1c7
-         mCHRYDkNYdjHOnLQiKGlOXtD72HowukJV17w+FPlm107s5uaeLUy241PMcBxz2+iToPq
-         LBsQ==
-X-Gm-Message-State: AOAM531jiv3EaVKQX6h4GmoflmSoSOCtS8ZtNDuMeZRyEoAxftLMLbOW
-        8FSk/A79dpBt3Mu09aeehw==
-X-Google-Smtp-Source: ABdhPJwHE1KAxgeUupVEo1jaKtlfkwHjdF92MHNCbyWYv6lX+CBk8bl+YGNNxTyOTZZ8wNLtYHQrJg==
-X-Received: by 2002:a9d:928:: with SMTP id 37mr2802691otp.98.1617912981480;
-        Thu, 08 Apr 2021 13:16:21 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l71sm96104oib.30.2021.04.08.13.16.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Apr 2021 13:16:20 -0700 (PDT)
-Received: (nullmailer pid 1890250 invoked by uid 1000);
-        Thu, 08 Apr 2021 20:16:19 -0000
-Date:   Thu, 8 Apr 2021 15:16:19 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Giulio Benetti <giulio.benetti@benettiengineering.com>
-Cc:     Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: Add Hycon Technology vendor prefix
-Message-ID: <20210408201619.GA1890216@robh.at.kernel.org>
-References: <YGxkB6icZSJfx/VB@latitude>
- <20210407174909.1475150-1-giulio.benetti@benettiengineering.com>
- <20210407174909.1475150-2-giulio.benetti@benettiengineering.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=nznclVC3IBg9dVDWPKHe3VIDxWvi1+V9KduB+Ebr+qQ=;
+        b=sH4vxsXRImZeS/jxsEvf+76EoE4UGF/p6VuwBPaKO0+1SJhn7vaX0m2TcWX96pNB+I
+         Sjjw7J6xYkaISkkEV1xgTC2wMZ27RNbL+9X67Ri0/oxQUJ39uhL+rXDzyBSVZshla0LP
+         bQhIssIh6rDCZI24E/91TuiMqJla0e13zfHjYEz2YhAVkkXbJ7sE/QXnIVbMuRhkvVOg
+         42ZSRN6bnkX2C4l0XcLPu7KmRwYUelzgu2TJLZSEriV44/5OOVI5kgfqHeE9LITY6LAK
+         QKlrAwHfX5TQihzFCnzKmb2xQgF1E/aLoNni1thRZZbkqgnh+8Z4/I9ibROI8yyW1KoE
+         n+4A==
+X-Gm-Message-State: AOAM532Lr5hEczn/6N+OBgWKomtWv8DrPIKwCael28+82qtA3dTgfPLI
+        w6DMXGRwVMXTTvjXwFSXDnU=
+X-Google-Smtp-Source: ABdhPJyDl5TxD4+5hmKx5VhOWpdToYU/FFAdJPH9HAVjsL0Rpku7E7TSmp67XVl8NUIntxRzEfLzuA==
+X-Received: by 2002:a05:6214:180d:: with SMTP id o13mr10923159qvw.10.1617913210127;
+        Thu, 08 Apr 2021 13:20:10 -0700 (PDT)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id p186sm306394qka.66.2021.04.08.13.20.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Apr 2021 13:20:09 -0700 (PDT)
+Subject: Re: [PATCH v3 1/1] of: unittest: overlay: ensure proper alignment of
+ copied FDT
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20210408151736.2216238-1-frowand.list@gmail.com>
+ <CAL_JsqLJP5Q8R+4yQOhiG_xTA6CHLSWfu-0hFzmZtiv96Do_eA@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <1b957025-316b-b5a4-b923-866d7ddeab7c@gmail.com>
+Date:   Thu, 8 Apr 2021 15:20:08 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210407174909.1475150-2-giulio.benetti@benettiengineering.com>
+In-Reply-To: <CAL_JsqLJP5Q8R+4yQOhiG_xTA6CHLSWfu-0hFzmZtiv96Do_eA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 07 Apr 2021 19:49:07 +0200, Giulio Benetti wrote:
-> Update Documentation/devicetree/bindings/vendor-prefixes.yaml to
-> include "hycon" as a vendor prefix for "Hycon Technology".
-> Company website: https://www.hycontek.com/
+On 4/8/21 1:27 PM, Rob Herring wrote:
+> On Thu, Apr 8, 2021 at 10:17 AM <frowand.list@gmail.com> wrote:
+>>
+>> From: Frank Rowand <frank.rowand@sony.com>
+>>
+>> The Devicetree standard specifies an 8 byte alignment of the FDT.
+>> Code in libfdt expects this alignment for an FDT image in memory.
+>> kmemdup() returns 4 byte alignment on openrisc.  Replace kmemdup()
+>> with kmalloc(), align pointer, memcpy() to get proper alignment.
+>>
+>> The 4 byte alignment exposed a related bug which triggered a crash
+>> on openrisc with:
+>> commit 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9")
+>> as reported in:
+>> https://lore.kernel.org/lkml/20210327224116.69309-1-linux@roeck-us.net/
+>>
+>> Reported-by: Guenter Roeck <linux@roeck-us.net>
+>> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+>> ---
+>>
+>> changes since version 1:
+>>   - use pointer from kmalloc() for kfree() instead of using pointer that
+>>     has been modified for FDT alignment
+>>
+>> changes since version 2:
+>>   - version 1 was a work in progress version, I failed to commit the following
+>>     final changes
+>>   - reorder first two arguments of of_overlay_apply()
+>>
+>>  drivers/of/of_private.h |  2 ++
+>>  drivers/of/overlay.c    | 28 +++++++++++++++++-----------
+>>  drivers/of/unittest.c   | 12 +++++++++---
+>>  3 files changed, 28 insertions(+), 14 deletions(-)
+>>
+>> diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
+>> index d9e6a324de0a..d717efbd637d 100644
+>> --- a/drivers/of/of_private.h
+>> +++ b/drivers/of/of_private.h
+>> @@ -8,6 +8,8 @@
+>>   * Copyright (C) 1996-2005 Paul Mackerras.
+>>   */
+>>
+>> +#define FDT_ALIGN_SIZE 8
+>> +
+>>  /**
+>>   * struct alias_prop - Alias property in 'aliases' node
+>>   * @link:      List node to link the structure in aliases_lookup list
+>> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+>> index 50bbe0edf538..cf770452e1e5 100644
+>> --- a/drivers/of/overlay.c
+>> +++ b/drivers/of/overlay.c
+>> @@ -57,7 +57,7 @@ struct fragment {
+>>   * struct overlay_changeset
+>>   * @id:                        changeset identifier
+>>   * @ovcs_list:         list on which we are located
+>> - * @fdt:               FDT that was unflattened to create @overlay_tree
+>> + * @fdt:               base of memory allocated to hold aligned FDT that was unflattened to create @overlay_tree
+>>   * @overlay_tree:      expanded device tree that contains the fragment nodes
+>>   * @count:             count of fragment structures
+>>   * @fragments:         fragment nodes in the overlay expanded device tree
+>> @@ -719,8 +719,8 @@ static struct device_node *find_target(struct device_node *info_node)
+>>  /**
+>>   * init_overlay_changeset() - initialize overlay changeset from overlay tree
+>>   * @ovcs:      Overlay changeset to build
+>> - * @fdt:       the FDT that was unflattened to create @tree
+>> - * @tree:      Contains all the overlay fragments and overlay fixup nodes
+>> + * @fdt:       base of memory allocated to hold aligned FDT that was unflattened to create @tree
+>> + * @tree:      Contains the overlay fragments and overlay fixup nodes
+>>   *
+>>   * Initialize @ovcs.  Populate @ovcs->fragments with node information from
+>>   * the top level of @tree.  The relevant top level nodes are the fragment
+>> @@ -873,7 +873,8 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
+>>   * internal documentation
+>>   *
+>>   * of_overlay_apply() - Create and apply an overlay changeset
+>> - * @fdt:       the FDT that was unflattened to create @tree
+>> + * @fdt:       base of memory allocated to hold *@fdt_align
+>> + * @fdt_align: the FDT that was unflattened to create @tree, aligned
+>>   * @tree:      Expanded overlay device tree
+>>   * @ovcs_id:   Pointer to overlay changeset id
+>>   *
+>> @@ -912,8 +913,8 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
+>>   * id is returned to *ovcs_id.
+>>   */
+>>
+>> -static int of_overlay_apply(const void *fdt, struct device_node *tree,
+>> -               int *ovcs_id)
+>> +static int of_overlay_apply(const void *fdt, const void *fdt_align,
+>> +               struct device_node *tree, int *ovcs_id)
 > 
-> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
-> Reviewed-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> I think it's better if you move the kfree's out of this function. It
+> would be a broken design if this function was public because you'd
+> have no idea if 'fdt' could be freed or not. No reason to have that
+> bad design just because it's static. If a function returns an error,
+> then it should undo everything it did, but nothing more.
+> 
+> Rob
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+The pattern of "If a function returns an error, then it should undo
+everything it did, but nothing more" is usually what I would expect,
+but overlays have more than a bit of bizarro land in their genes.
+
+Once an overlay has been applied, the devicetree subsystem owns and
+is responsible for the freeing of the related FDT.
+
+This is noted just after calling of_overlay_apply():
+
+        ret = of_overlay_apply(new_fdt, overlay_root, ovcs_id);
+        if (ret < 0) {
+                /*
+                 * new_fdt and overlay_root now belong to the overlay
+                 * changeset.
+                 * overlay changeset code is responsible for freeing them.
+                 */
+
+and is also noted inside of_overlay_apply():
+
+        /*
+         * As of this point, fdt and tree belong to the overlay changeset.
+         * overlay changeset code is responsible for freeing them.
+         */
+
+of_overlay_apply() is not public on purpose.  of_overlay_fdt_apply() was
+created to be the public function and to provide the encapsulation of
+the copy of the FDT for which memory is allocated in of_overlay_fdt_apply().
+
+-Frank
