@@ -2,69 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C012C358845
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 17:25:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA75D35885B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 17:27:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231878AbhDHPZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 11:25:44 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:33467 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231803AbhDHPZn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 11:25:43 -0400
-X-Originating-IP: 90.65.108.55
-Received: from localhost (lfbn-lyo-1-1676-55.w90-65.abo.wanadoo.fr [90.65.108.55])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 164BD2000F;
-        Thu,  8 Apr 2021 15:25:28 +0000 (UTC)
-Date:   Thu, 8 Apr 2021 17:25:28 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linusw@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        SoC Team <soc@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: New 'make dtbs_check W=1' warnings
-Message-ID: <YG8gaHqlJ+oCfkTt@piout.net>
-References: <CAK8P3a1L8rWpR5b66v6Su8-m7-scA0wZQr_g_4KnV4dnrky6ZA@mail.gmail.com>
+        id S231772AbhDHP15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 11:27:57 -0400
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:35435 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231659AbhDHP14 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 11:27:56 -0400
+Received: by mail-ot1-f44.google.com with SMTP id v24-20020a9d69d80000b02901b9aec33371so2685155oto.2;
+        Thu, 08 Apr 2021 08:27:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=rdZfDLUXaMwgcMUkGetCIhlvH4deTfYYyOQSzUBFId8=;
+        b=PAMTCbw7HkURnCdl0LKlcpuI375UwnRjIvZZfVEegpOI687CdBF2CGfK2MfFtHia7f
+         5y+jDWSHbk1oJKudcOhi+KLS+O2FrWTl0i089PLKFzaoii9RS8m+DtzS7v0tIpP9I9eu
+         V8y6bVGCYEg3SFkvzblxhohPKwjlyE7fDJmkcwaN3GJP+OrYWzTOz6asetwmU0gb+6vu
+         jET/7LVAvnXXRPhFKIL/7mZ7kh5cog6MhI40gjxGdvjG0wdmx8cZSqMjjeJxiLoWjDBX
+         8xhXz8uyKgA8IYDeZigWsaa4Gtc6ch9mV9CxDqPgq1Rh2I4jQy40dVAtCNa2d/WByW1v
+         LXYw==
+X-Gm-Message-State: AOAM531kosk5QrhsQG2LHp4IWZycczlKEwkN75oVd/S9A3B8PQ560y3Q
+        LfSyH6P/7Klg/ZprcJydeg==
+X-Google-Smtp-Source: ABdhPJx+CB57VJt5MT3qSNg+O2bSCTTG4lZKqRMJVQNbU1/SJ53npzyNH/Jh8yb4te5/vIqEC6CGww==
+X-Received: by 2002:a9d:70cf:: with SMTP id w15mr8438401otj.283.1617895664765;
+        Thu, 08 Apr 2021 08:27:44 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id n12sm6389560otq.42.2021.04.08.08.27.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Apr 2021 08:27:44 -0700 (PDT)
+Received: (nullmailer pid 1515862 invoked by uid 1000);
+        Thu, 08 Apr 2021 15:27:42 -0000
+Date:   Thu, 8 Apr 2021 10:27:42 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Greentime Hu <greentime.hu@sifive.com>
+Cc:     paul.walmsley@sifive.com, hes@sifive.com, erik.danie@sifive.com,
+        zong.li@sifive.com, bhelgaas@google.com, aou@eecs.berkeley.edu,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        lorenzo.pieralisi@arm.com, p.zabel@pengutronix.de,
+        alex.dewar90@gmail.com, khilman@baylibre.com,
+        hayashi.kunihiko@socionext.com, vidyas@nvidia.com,
+        jh80.chung@samsung.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        helgaas@kernel.org
+Subject: Re: [PATCH v5 5/6] PCI: fu740: Add SiFive FU740 PCIe host controller
+ driver
+Message-ID: <20210408152742.GA1510069@robh.at.kernel.org>
+References: <20210406092634.50465-1-greentime.hu@sifive.com>
+ <20210406092634.50465-6-greentime.hu@sifive.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAK8P3a1L8rWpR5b66v6Su8-m7-scA0wZQr_g_4KnV4dnrky6ZA@mail.gmail.com>
+In-Reply-To: <20210406092634.50465-6-greentime.hu@sifive.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 08/04/2021 17:08:26+0200, Arnd Bergmann wrote:
-> arch/arm/boot/dts/at91-sama5d2_ptc_ek.dt.yaml: /: 'etm@73C000' does
-> not match any of the regexes: '@(0|[1-9a-f][0-9a-f]*)$', '^[^@]+$',
-> 'pinctrl-[0-9]+'
-> arch/arm/boot/dts/at91-kizbox3-hs.dt.yaml: /: 'etm@73C000' does not
-> match any of the regexes: '@(0|[1-9a-f][0-9a-f]*)$', '^[^@]+$',
-> 'pinctrl-[0-9]+'
+On Tue, Apr 06, 2021 at 05:26:33PM +0800, Greentime Hu wrote:
+> From: Paul Walmsley <paul.walmsley@sifive.com>
 > 
+> Add driver for the SiFive FU740 PCIe host controller.
+> This controller is based on the DesignWare PCIe core.
+> 
+> Signed-off-by: Paul Walmsley <paul.walmsley@sifive.com>
+> Co-developed-by: Henry Styles <hes@sifive.com>
+> Signed-off-by: Henry Styles <hes@sifive.com>
+> Co-developed-by: Erik Danie <erik.danie@sifive.com>
+> Signed-off-by: Erik Danie <erik.danie@sifive.com>
+> Co-developed-by: Greentime Hu <greentime.hu@sifive.com>
+> Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
+> ---
+>  drivers/pci/controller/dwc/Kconfig      |   9 +
+>  drivers/pci/controller/dwc/Makefile     |   1 +
+>  drivers/pci/controller/dwc/pcie-fu740.c | 308 ++++++++++++++++++++++++
+>  3 files changed, 318 insertions(+)
+>  create mode 100644 drivers/pci/controller/dwc/pcie-fu740.c
 
-This was introduced by 4d930c421e3b ("ARM: dts: at91: sama5d2: add ETB
-and ETM unit name"), trying to fix another warning.
-
-I guess this is because
-Documentation/devicetree/bindings/arm/coresight.txt is not yaml yet.
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Reviewed-by: Rob Herring <robh@kernel.org>
