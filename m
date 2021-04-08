@@ -2,117 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02AA2358987
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 18:20:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA82535898D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 18:21:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231843AbhDHQUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 12:20:31 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:41580 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231655AbhDHQUa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 12:20:30 -0400
-Received: by mail-ot1-f49.google.com with SMTP id l12-20020a9d6a8c0000b0290238e0f9f0d8so2824302otq.8;
-        Thu, 08 Apr 2021 09:20:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FKQCy9mHVcIx4jvHTvGbM4mIzIxWpaBAJhioAHr5gKo=;
-        b=jbBJxxchdkUWHboWgSu7qRPh9GhYxz405cFyejIzLjI7HoVekrRUwwheMwaKqFUyrQ
-         mYeEDcDyLbMYM9ams1fV7mg0gtCkkHIZBFnvfL7sDOEGgzikQmNG1BGDolwc5KomSagS
-         a2NMWm+4TIRJcQ0fFb/gkMfyZ1Um9hi05NFAVIFeO/cRwRmpzmjb8Id6CdveuyqW9A13
-         Fz3rzJFxcuViFjBULhR8aXZNwUJ7c5Lr217Z7isMaeZEaz2GKlXyjtZPZHJGye0/D2Gi
-         uz6QsNvLAFT0mVTF4tz1WyZHEGd/ILSlfq1W8/WU6fLdaBA6OKApuFXy1msC4FCY9Sls
-         uQ/A==
-X-Gm-Message-State: AOAM531PMqkb8iPwNINwPeoEJBGSQE3yGRyZ+xqomoB13sigAvgFXJUU
-        mBIiYBRDRmUhp8FWlW7p3Q==
-X-Google-Smtp-Source: ABdhPJyazfhgeCNMMJuWdCCjpOP9wOvUKcWMvObpNRssw198EqpTMe/uJHgbk73ctYTJ50zqvVR1gQ==
-X-Received: by 2002:a9d:6f02:: with SMTP id n2mr1215732otq.268.1617898818735;
-        Thu, 08 Apr 2021 09:20:18 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m19sm5444036oop.6.2021.04.08.09.20.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Apr 2021 09:20:17 -0700 (PDT)
-Received: (nullmailer pid 1581488 invoked by uid 1000);
-        Thu, 08 Apr 2021 16:20:16 -0000
-Date:   Thu, 8 Apr 2021 11:20:16 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jim Quinlan <jim2101024@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 2/6] dt-bindings: PCI: Add bindings for Brcmstb
- endpoint device voltage regulators
-Message-ID: <20210408162016.GA1556444@robh.at.kernel.org>
-References: <20210401212148.47033-1-jim2101024@gmail.com>
- <20210401212148.47033-3-jim2101024@gmail.com>
- <20210406164708.GM6443@sirena.org.uk>
- <CANCKTBsiujTkOdh60etBqF_hE8exg6m9TDxkGHVVAGVS2SFCcQ@mail.gmail.com>
- <20210406173211.GP6443@sirena.org.uk>
- <CANCKTBv63b4bGepZbDp1wmFrOeddiDikoXbheMjHhbguAbR2sA@mail.gmail.com>
+        id S232230AbhDHQVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 12:21:20 -0400
+Received: from mail1.protonmail.ch ([185.70.40.18]:22029 "EHLO
+        mail1.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232208AbhDHQVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 12:21:19 -0400
+Date:   Thu, 08 Apr 2021 16:21:01 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1617898865;
+        bh=gmq6lQd1NWtTBrDin6uNBMByAAtGgaIcn+myFTSLQ/s=;
+        h=Date:To:From:Cc:Reply-To:Subject:From;
+        b=OzsyUehO7T00DunatQBQ4rsCMr+sej+mRiMP0VPZVxZr4wNcMilHRWW/se56kkLSE
+         BvIjym1RmGVMUKS6b1SxnDecpHiMABKgCBXViYpRR1iiMhgJxMDdwylME3d2tvtFZw
+         9VNBfkUC3HkamN2NxO8D7QH/n0S2zwJ+EIvq3Pzs=
+To:     caleb@connolly.tech, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Reply-To: Caleb Connolly <caleb@connolly.tech>
+Subject: [PATCH v2 1/3] arm64: dts: qcom: sm8150: add other QUP nodes and iommus
+Message-ID: <20210408161953.26298-2-caleb@connolly.tech>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CANCKTBv63b4bGepZbDp1wmFrOeddiDikoXbheMjHhbguAbR2sA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 06, 2021 at 02:25:49PM -0400, Jim Quinlan wrote:
-> On Tue, Apr 6, 2021 at 1:32 PM Mark Brown <broonie@kernel.org> wrote:
-> >
-> > On Tue, Apr 06, 2021 at 01:26:51PM -0400, Jim Quinlan wrote:
-> > > On Tue, Apr 6, 2021 at 12:47 PM Mark Brown <broonie@kernel.org> wrote:
-> >
-> > > > No great problem with having these in the controller node (assming it
-> > > > accurately describes the hardware) but I do think we ought to also be
-> > > > able to describe these per slot.
+Add the first and third qupv3 nodes used to hook
+up peripherals on some devices, as well as the iommus properties for all
+of them.
 
-PCIe is effectively point to point, so there's only 1 slot unless 
-there's a PCIe switch in the middle. If that's the case, then it's all 
-more complicated.
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+---
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-> > > Can you explain what you think that would look like in the DT?
-> >
-> > I *think* that's just some properties on the nodes for the endpoints,
-> > note that the driver could just ignore them for now.  Not sure where or
-> > if we document any extensions but child nodes are in section 4 of the
-> > v2.1 PCI bus binding.
-> 
-> Hi Mark,
-> 
-> I'm a little confused -- here is how I remember the chronology of the
-> "DT bindings" commit reviews, please correct me if I'm wrong:
-> 
-> o JimQ submitted a pullreq for using voltage regulators in the same
-> style as the existing "rockport" PCIe driver.
-> o After some deliberation, RobH preferred that the voltage regulators
-> should go into the PCIe subnode device's DT node.
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qco=
+m/sm8150.dtsi
+index e5bb17bc2f46..543417d74216 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -577,12 +577,26 @@ gcc: clock-controller@100000 {
+ =09=09=09=09 <&sleep_clk>;
+ =09=09};
+=20
++=09=09qupv3_id_0: geniqup@8c0000 {
++=09=09=09compatible =3D "qcom,geni-se-qup";
++=09=09=09reg =3D <0x0 0x008c0000 0x0 0x6000>;
++=09=09=09clock-names =3D "m-ahb", "s-ahb";
++=09=09=09clocks =3D <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
++=09=09=09=09 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
++=09=09=09iommus =3D <&apps_smmu 0xc3 0x0>;
++=09=09=09#address-cells =3D <2>;
++=09=09=09#size-cells =3D <2>;
++=09=09=09ranges;
++=09=09=09status =3D "disabled";
++=09=09};
++
+ =09=09qupv3_id_1: geniqup@ac0000 {
+ =09=09=09compatible =3D "qcom,geni-se-qup";
+ =09=09=09reg =3D <0x0 0x00ac0000 0x0 0x6000>;
+ =09=09=09clock-names =3D "m-ahb", "s-ahb";
+ =09=09=09clocks =3D <&gcc GCC_QUPV3_WRAP_1_M_AHB_CLK>,
+ =09=09=09=09 <&gcc GCC_QUPV3_WRAP_1_S_AHB_CLK>;
++=09=09=09iommus =3D <&apps_smmu 0x603 0x0>;
+ =09=09=09#address-cells =3D <2>;
+ =09=09=09#size-cells =3D <2>;
+ =09=09=09ranges;
+@@ -598,6 +612,20 @@ uart2: serial@a90000 {
+ =09=09=09};
+ =09=09};
+=20
++=09=09qupv3_id_2: geniqup@cc0000 {
++=09=09=09compatible =3D "qcom,geni-se-qup";
++=09=09=09reg =3D <0x0 0x00cc0000 0x0 0x6000>;
++
++=09=09=09clock-names =3D "m-ahb", "s-ahb";
++=09=09=09clocks =3D <&gcc GCC_QUPV3_WRAP_2_M_AHB_CLK>,
++=09=09=09=09 <&gcc GCC_QUPV3_WRAP_2_S_AHB_CLK>;
++=09=09=09iommus =3D <&apps_smmu 0x7a3 0x0>;
++=09=09=09#address-cells =3D <2>;
++=09=09=09#size-cells =3D <2>;
++=09=09=09ranges;
++=09=09=09status =3D "disabled";
++=09=09};
++
+ =09=09config_noc: interconnect@1500000 {
+ =09=09=09compatible =3D "qcom,sm8150-config-noc";
+ =09=09=09reg =3D <0 0x01500000 0 0x7400>;
+--=20
+2.30.2
 
-IIRC, that's because you said there isn't a standard slot.
 
-> o JimQ put the voltage regulators in the subnode device's DT node.
-> o MarkB didn't like the fact that the code did a global search for the
-> regulator since it could not provide the owning struct device* handle.
-> o RobH relented, and said that if it is just two specific and standard
-> voltage regulators, perhaps they can go in the parent DT node after
-> all.
-> o JimQ put the regulators back in the PCIe node.
-> o MarkB now wants the regulators to go back into the child node again?
-> 
-> Folks, please advise.
-> 
-> Regards,
-> Jim Quinlan
-> Broadcom STB
