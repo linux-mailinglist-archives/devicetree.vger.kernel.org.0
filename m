@@ -2,99 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C4A3358BF9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 20:14:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A7C3358C26
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 20:27:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232281AbhDHSOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 14:14:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45398 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231716AbhDHSOX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 14:14:23 -0400
-Received: from mail.pqgruber.com (mail.pqgruber.com [IPv6:2a05:d014:575:f70b:4f2c:8f1d:40c4:b13e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE6EEC061760;
-        Thu,  8 Apr 2021 11:14:11 -0700 (PDT)
-Received: from workstation.tuxnet (213-47-165-233.cable.dynamic.surfer.at [213.47.165.233])
-        by mail.pqgruber.com (Postfix) with ESMTPSA id A092AC725C7;
-        Thu,  8 Apr 2021 20:14:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pqgruber.com;
-        s=mail; t=1617905649;
-        bh=bqq+6Ua6gjCE1d4qctGpoLs9LGXr1awDHysmE+XtkwE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=1G+vlnAkRYmKGPKs3Spm9nAkUs7fBssKaYLh8Lr2hfgtHkh0iz9LB3aKBtsWtkbMO
-         IKbZg4JguOYSnDK0xR8FDTqEBfA25zTaghX0Sr9AVqtJ3ao5bolI905JBKp9IxNXQx
-         XCClDPIAgXdKSoZ1qbB4Y8aZ1dV56c4Bm4j/it80=
-Date:   Thu, 8 Apr 2021 20:14:08 +0200
-From:   Clemens Gruber <clemens.gruber@pqgruber.com>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        linux-pwm@vger.kernel.org, Sven Van Asbroeck <TheSven73@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 5/8] pwm: core: Support new PWM_STAGGERING_ALLOWED flag
-Message-ID: <YG9H8D5YW0KEtaoG@workstation.tuxnet>
-References: <20210406164140.81423-1-clemens.gruber@pqgruber.com>
- <20210406164140.81423-5-clemens.gruber@pqgruber.com>
- <20210407054658.qdsjkstqwynxeuxj@pengutronix.de>
- <YG4UNoBCQJkEEfwi@workstation.tuxnet>
- <20210407213403.h6n6l2t7vqoalceu@pengutronix.de>
- <YG78IHIMGtl8Pokp@orome.fritz.box>
- <YG8miEOZXsH0NTcA@workstation.tuxnet>
- <20210408173637.w26njwystfuyrgan@pengutronix.de>
+        id S232281AbhDHS1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 14:27:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40624 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231676AbhDHS1s (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Apr 2021 14:27:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E424261130;
+        Thu,  8 Apr 2021 18:27:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617906457;
+        bh=u8aql/sJzoLOiadLfYe0IE5RE4mz3KvJIunknyJ2vXQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=rirmF7A4kq97KuycIEArW8nCNyef2WaeHcH82KS8mGyjchofh5gRZwl0SQQXN5lJu
+         5yUP8FmCCuyIuOIuHvAG6o3bvqizQtsKFtC9G8dgE/9hy1l9qtOtwodeEPQi1tkYga
+         3TXgblU/eJNqnqNNCs1e7egLHWt8ttN1hlkbzA8RZluvLezYnBTZhLJEfLuveANxPx
+         XLLA3UAAHCUhV1khTDZoCU4KsQ4Ur5MYNAGaApf3hh6sUCyFxjZUwSVITJ/l9IlVTK
+         8dXAu7LI+sbh8PzXht7tVEN9FcZpZS2uHqaFXISfukpNKqxm9DlOrRr1mhov996zg7
+         mWTz/vpe3Q6Wg==
+Received: by mail-ej1-f43.google.com with SMTP id r9so4678965ejj.3;
+        Thu, 08 Apr 2021 11:27:36 -0700 (PDT)
+X-Gm-Message-State: AOAM531gSaLyHuaWI8oO2rv5lsd3srVJ7GFlf6nuGX7gCD6bRCvlhUI4
+        vGs160gJNB4ThHzPeebsAgesyGP5yPE0bdxc/w==
+X-Google-Smtp-Source: ABdhPJwbG4SEgxtUpPqKxwXQ9zqQvFLGpcoqxPDH/bxPctLsc0W5fglH5PbF8lajcF80i0u44qPYSf4Sgiwj2zRl5io=
+X-Received: by 2002:a17:906:4fcd:: with SMTP id i13mr12287934ejw.341.1617906454992;
+ Thu, 08 Apr 2021 11:27:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210408173637.w26njwystfuyrgan@pengutronix.de>
+References: <20210408151736.2216238-1-frowand.list@gmail.com>
+In-Reply-To: <20210408151736.2216238-1-frowand.list@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 8 Apr 2021 13:27:22 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLJP5Q8R+4yQOhiG_xTA6CHLSWfu-0hFzmZtiv96Do_eA@mail.gmail.com>
+Message-ID: <CAL_JsqLJP5Q8R+4yQOhiG_xTA6CHLSWfu-0hFzmZtiv96Do_eA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/1] of: unittest: overlay: ensure proper alignment of
+ copied FDT
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 08, 2021 at 07:36:37PM +0200, Uwe Kleine-König wrote:
-> On Thu, Apr 08, 2021 at 05:51:36PM +0200, Clemens Gruber wrote:
-> > On Thu, Apr 08, 2021 at 02:50:40PM +0200, Thierry Reding wrote:
-> > > Yes, I think that's basically what this is saying. I think we're perhaps
-> > > getting hung up on the terminology here. PWM_STAGGERING_ALLOWED gives
-> > > the impression that we're dealing with some provider-specific feature,
-> > > whereas what we really want to express is that the PWM doesn't care
-> > > exactly when the active cycle starts and based on that a provider that
-> > > can support it may optimize the EMI behavior.
-> > > 
-> > > Maybe we can find a better name for this? Ultimately what this means is
-> > > that the consumer is primarily interested in the power output of the PWM
-> > > rather than the exact shape of the signal. So perhaps something like
-> > > PWM_USAGE_POWER would be more appropriate.
-> > 
-> > Yes, although it would then no longer be obvious that this feature leads
-> > to improved EMI behavior, as long as we mention that in the docs, I
-> > think it's a good idea
-> > 
-> > Maybe document it as follows?
-> > PWM_USAGE_POWER - Allow the driver to delay the start of the cycle
-> > for EMI improvements, as long as the power output stays the same
-> 
-> I don't like both names, because for someone who is only halfway into
-> PWM stuff it is not understandable. Maybe ALLOW_PHASE_SHIFT?
+On Thu, Apr 8, 2021 at 10:17 AM <frowand.list@gmail.com> wrote:
+>
+> From: Frank Rowand <frank.rowand@sony.com>
+>
+> The Devicetree standard specifies an 8 byte alignment of the FDT.
+> Code in libfdt expects this alignment for an FDT image in memory.
+> kmemdup() returns 4 byte alignment on openrisc.  Replace kmemdup()
+> with kmalloc(), align pointer, memcpy() to get proper alignment.
+>
+> The 4 byte alignment exposed a related bug which triggered a crash
+> on openrisc with:
+> commit 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9")
+> as reported in:
+> https://lore.kernel.org/lkml/20210327224116.69309-1-linux@roeck-us.net/
+>
+> Reported-by: Guenter Roeck <linux@roeck-us.net>
+> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+> ---
+>
+> changes since version 1:
+>   - use pointer from kmalloc() for kfree() instead of using pointer that
+>     has been modified for FDT alignment
+>
+> changes since version 2:
+>   - version 1 was a work in progress version, I failed to commit the following
+>     final changes
+>   - reorder first two arguments of of_overlay_apply()
+>
+>  drivers/of/of_private.h |  2 ++
+>  drivers/of/overlay.c    | 28 +++++++++++++++++-----------
+>  drivers/of/unittest.c   | 12 +++++++++---
+>  3 files changed, 28 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
+> index d9e6a324de0a..d717efbd637d 100644
+> --- a/drivers/of/of_private.h
+> +++ b/drivers/of/of_private.h
+> @@ -8,6 +8,8 @@
+>   * Copyright (C) 1996-2005 Paul Mackerras.
+>   */
+>
+> +#define FDT_ALIGN_SIZE 8
+> +
+>  /**
+>   * struct alias_prop - Alias property in 'aliases' node
+>   * @link:      List node to link the structure in aliases_lookup list
+> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+> index 50bbe0edf538..cf770452e1e5 100644
+> --- a/drivers/of/overlay.c
+> +++ b/drivers/of/overlay.c
+> @@ -57,7 +57,7 @@ struct fragment {
+>   * struct overlay_changeset
+>   * @id:                        changeset identifier
+>   * @ovcs_list:         list on which we are located
+> - * @fdt:               FDT that was unflattened to create @overlay_tree
+> + * @fdt:               base of memory allocated to hold aligned FDT that was unflattened to create @overlay_tree
+>   * @overlay_tree:      expanded device tree that contains the fragment nodes
+>   * @count:             count of fragment structures
+>   * @fragments:         fragment nodes in the overlay expanded device tree
+> @@ -719,8 +719,8 @@ static struct device_node *find_target(struct device_node *info_node)
+>  /**
+>   * init_overlay_changeset() - initialize overlay changeset from overlay tree
+>   * @ovcs:      Overlay changeset to build
+> - * @fdt:       the FDT that was unflattened to create @tree
+> - * @tree:      Contains all the overlay fragments and overlay fixup nodes
+> + * @fdt:       base of memory allocated to hold aligned FDT that was unflattened to create @tree
+> + * @tree:      Contains the overlay fragments and overlay fixup nodes
+>   *
+>   * Initialize @ovcs.  Populate @ovcs->fragments with node information from
+>   * the top level of @tree.  The relevant top level nodes are the fragment
+> @@ -873,7 +873,8 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
+>   * internal documentation
+>   *
+>   * of_overlay_apply() - Create and apply an overlay changeset
+> - * @fdt:       the FDT that was unflattened to create @tree
+> + * @fdt:       base of memory allocated to hold *@fdt_align
+> + * @fdt_align: the FDT that was unflattened to create @tree, aligned
+>   * @tree:      Expanded overlay device tree
+>   * @ovcs_id:   Pointer to overlay changeset id
+>   *
+> @@ -912,8 +913,8 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
+>   * id is returned to *ovcs_id.
+>   */
+>
+> -static int of_overlay_apply(const void *fdt, struct device_node *tree,
+> -               int *ovcs_id)
+> +static int of_overlay_apply(const void *fdt, const void *fdt_align,
+> +               struct device_node *tree, int *ovcs_id)
 
-Sounds good to me.
+I think it's better if you move the kfree's out of this function. It
+would be a broken design if this function was public because you'd
+have no idea if 'fdt' could be freed or not. No reason to have that
+bad design just because it's static. If a function returns an error,
+then it should undo everything it did, but nothing more.
 
-> When a consumer is only interested in the power output than
-> 
-> 	.period = 20
-> 	.duty_cycle = 5
-> 
-> would also be an allowed response for the request
-> 
-> 	.period = 200
-> 	.duty_cycle = 50
-> 
-> and this is not what is in the focus here.
-
-Right.
-
-If Thierry agrees, I can spin up a new revision.
-
-Maybe we can get it into 5.13 after all.
-
-Thanks,
-Clemens
+Rob
