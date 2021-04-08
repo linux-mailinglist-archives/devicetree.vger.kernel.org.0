@@ -2,252 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D07DA358EAB
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 22:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A2D2358EBC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 22:53:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232421AbhDHUpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 16:45:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50260 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232218AbhDHUpb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 16:45:31 -0400
-Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2388CC061760;
-        Thu,  8 Apr 2021 13:45:18 -0700 (PDT)
-Received: by mail-qt1-x82d.google.com with SMTP id x9so2537409qto.8;
-        Thu, 08 Apr 2021 13:45:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=U95oVFeAb6Z+9NxJb1H5egs5hOsSECLN/kMVgmi9JOc=;
-        b=huFby21ms17Ix5Si/C/jQCpbXW+zq+9B9dNfBmVO7xGIinnb/QyMwKOd8pg6UiGntB
-         PtjJHAW7VermjmlZtfOsaFvRm7rTdHuLzuUMrzDilyqqimLKLFXllNu7sxyYhrl8neOY
-         1jH8IZf3/qCe2t+wTkuJ/SA94OozCEDlcWUR/UcEy8WOOJA+YQxXuzCHyZW5VkfiUI/B
-         nzMwHf916DWedGRfwKlHGp/7/S5sBUXM6+P9XcjOuqRtVdS85FQD+wHHa1kqZxrt9EZy
-         FCXrZ5kapHYkIxFnFCM+6V4lXaHiZ6gK/BTO0sTOE+ZlVNVWzgDy9Vvg72BGMCyZT7BQ
-         2vPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=U95oVFeAb6Z+9NxJb1H5egs5hOsSECLN/kMVgmi9JOc=;
-        b=HBxB66vE7EkLNfU2kBf8tXYBo/j94aYx3f2AnRL3B/5fPp+24rNHOCeEROfRZW9WKy
-         gzQoNyxRIO77gR0vZAxA9TkVlxLQLjzZuMowWrlWbs34DT0CrVcDuVvpq5qF1bx9Y2cs
-         deWTZMY12/8hF3bEM0DKJzXDFPsQXy/kty84qm9jkq4S2kLz5ETA1QvUheLzn3XktvBK
-         o3gpfq9IpwRFW+71nDXqqC3hAiwQ7Hr5WlD30I3bxaV8SQVu+WtLn222t7iUeuA0E4w3
-         hDPsrkaa2rl4M8P/GGK9l1E0eKpwMnjEhEkkQ4xAO+0+Z4h3BxX7wmOcaIqHa2DPA0Ez
-         izPA==
-X-Gm-Message-State: AOAM531VUcyY4bTcqdyu0dwTsDBMhyLvtmUTL8+2zNp6CNnRj4tKkmDk
-        v4LdXV9caxJHmn50f1FUQXQ=
-X-Google-Smtp-Source: ABdhPJwWbwhRzk+mxAoy1ms4KMi+DBrV4iCK+WqKhB6zEWmC5C0PEtu8Ls6x5rfxZHJhLDf2dxE1mQ==
-X-Received: by 2002:a05:622a:28c:: with SMTP id z12mr3880465qtw.57.1617914717344;
-        Thu, 08 Apr 2021 13:45:17 -0700 (PDT)
-Received: from localhost.localdomain (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id i78sm355544qke.46.2021.04.08.13.45.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Apr 2021 13:45:17 -0700 (PDT)
-From:   frowand.list@gmail.com
-To:     Rob Herring <robh+dt@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 1/1] of: unittest: overlay: ensure proper alignment of copied FDT
-Date:   Thu,  8 Apr 2021 15:45:08 -0500
-Message-Id: <20210408204508.2276230-1-frowand.list@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        id S231897AbhDHUw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 16:52:58 -0400
+Received: from polaris.svanheule.net ([84.16.241.116]:59792 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232005AbhDHUw6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 16:52:58 -0400
+Received: from terra.local.svanheule.net (unknown [IPv6:2a02:a03f:eaff:9f01:6fea:16c6:2e86:c69])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id D173F1ECD38;
+        Thu,  8 Apr 2021 22:52:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1617915165;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=sG03pRQrsSv16JasG5fXBdpoORWxuYvG5/eb22d+2KY=;
+        b=p66tD7p82IwvsJh81iGfIwzdgVgsz0HbrvfkXoojdsFWA/nxpYSTSsOaJ6xs1iRQt8z52v
+        00AKQFOkaOwxZNKgMon+nxrCvpcIpERTUG1N/OhGpcc3yY7DdcOJjghOmMQe+cTzBfCe5L
+        N/CNnVHwpl1wWpzeXFZxOD4masedh5KryAqXO6h1KhbSpHPFjVSCHGzzAPBoWjssjBNHoO
+        CwjeZ1JgEBC5G9/Yxq7xPHgsyljVPirjKyDFNINsaRPKblN8J9oSPWKzF3FhiTtIj1+NGG
+        /N61FFXRbyvCXjg9i7U7JziZEWib7HYxPvuGLDnKLsI8qfaNKhhLrKufhFxCeA==
+From:   Sander Vanheule <sander@svanheule.net>
+To:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>
+Cc:     bert@biot.com, Sander Vanheule <sander@svanheule.net>
+Subject: [RFC PATCH 0/2] MIIM regmap and RTL8231 GPIO expander support
+Date:   Thu,  8 Apr 2021 22:52:33 +0200
+Message-Id: <cover.1617914861.git.sander@svanheule.net>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Rowand <frank.rowand@sony.com>
+The RTL8231 GPIO and LED expander can be configured for use as an MIIM or I2C
+bus device. To provide uniform data access between these two modes, the regmap
+interface is used. Since no regmap interface exists for MIIM busses, a basic
+implementation is provided.
 
-The Devicetree standard specifies an 8 byte alignment of the FDT.
-Code in libfdt expects this alignment for an FDT image in memory.
-kmemdup() returns 4 byte alignment on openrisc.  Replace kmemdup()
-with kmalloc(), align pointer, memcpy() to get proper alignment.
+Currently outstanding questions:
+- The REGMAP_MIIM symbol should depend on MDIO_DEVICE (or a better suited,
+  related symbol), but this results in circular Kconfig dependencies:
+    drivers/of/Kconfig:69:error: recursive dependency detected!
+    drivers/of/Kconfig:69:	symbol OF_IRQ depends on IRQ_DOMAIN
+    kernel/irq/Kconfig:59:	symbol IRQ_DOMAIN is selected by REGMAP
+    drivers/base/regmap/Kconfig:7:	symbol REGMAP default is visible depending on REGMAP_MIIM
+    drivers/base/regmap/Kconfig:39:	symbol REGMAP_MIIM depends on MDIO_DEVICE
+    drivers/net/mdio/Kconfig:6:	symbol MDIO_DEVICE is selected by PHYLIB
+    drivers/net/phy/Kconfig:16:	symbol PHYLIB is selected by ARC_EMAC_CORE
+    drivers/net/ethernet/arc/Kconfig:19:	symbol ARC_EMAC_CORE is selected by ARC_EMAC
+    drivers/net/ethernet/arc/Kconfig:25:	symbol ARC_EMAC depends on OF_IRQ
+  Suggestions on how to resolve this are welcome.
 
-The 4 byte alignment exposed a related bug which triggered a crash
-on openrisc with:
-commit 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9")
-as reported in:
-https://lore.kernel.org/lkml/20210327224116.69309-1-linux@roeck-us.net/
+- Providing no compatible for an MDIO child node is considered to be equivalent
+  to a c22 ethernet phy, so one must be provided. However, this node is then
+  not automatically probed. Is it okay to provide a binding without a driver?
+  If some code is required, where should this be put?
+  Current devicetree structure:
+    mdio-bus {
+        compatible = "vendor,mdio";
+        ...
 
-Reported-by: Guenter Roeck <linux@roeck-us.net>
-Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+        expander0: expander@0 {
+            /*
+             * Provide compatible for working registration of mdio device.
+             * Device probing happens in gpio1 node.
+             */
+            compatible = "realtek,rtl8231-expander";
+            reg = <0>;
+        };
 
----
+    };
+    gpio1 : ext_gpio {
+        compatible = "realtek,rtl8231-mdio";
+        gpio-controller;
+        ...
+    };
 
-changes since version 1:
-  - use pointer from kmalloc() for kfree() instead of using pointer that
-    has been modified for FDT alignment
+- MFD driver:
+  The RTL8231 is not just a GPIO expander, but also a pin controller and LED
+  matrix controller. Regmap initialisation could probably be moved to a parent
+  MFD, with gpio, led, and pinctrl cells. Is this a hard requirement if only a
+  GPIO controller is provided?
 
-changes since version 2:
-  - version 1 was a work in progress version, I failed to commit the following
-    final changes
-  - reorder first two arguments of of_overlay_apply()
+Sander Vanheule (2):
+  regmap: add miim bus support
+  gpio: Add Realtek RTL8231 support
 
-changes since version 3:
-  - size of memory allocation and size of copy after pointer alignment
-    differ, use separate variables with correct values for each case
-  - edit comment to more clearly describe that ovcs->fdt is the allocated
-    memory region, which may be different than where the aligned pointer points
-  - remove unused parameter from of_overlay_apply()
+ drivers/base/regmap/Kconfig       |   6 +-
+ drivers/base/regmap/Makefile      |   1 +
+ drivers/base/regmap/regmap-miim.c |  58 +++++
+ drivers/gpio/Kconfig              |   9 +
+ drivers/gpio/Makefile             |   1 +
+ drivers/gpio/gpio-rtl8231.c       | 404 ++++++++++++++++++++++++++++++
+ include/linux/regmap.h            |  36 +++
+ 7 files changed, 514 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/base/regmap/regmap-miim.c
+ create mode 100644 drivers/gpio/gpio-rtl8231.c
 
- drivers/of/of_private.h |  2 ++
- drivers/of/overlay.c    | 27 +++++++++++++++++----------
- drivers/of/unittest.c   | 13 ++++++++++---
- 3 files changed, 29 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-index d9e6a324de0a..d717efbd637d 100644
---- a/drivers/of/of_private.h
-+++ b/drivers/of/of_private.h
-@@ -8,6 +8,8 @@
-  * Copyright (C) 1996-2005 Paul Mackerras.
-  */
- 
-+#define FDT_ALIGN_SIZE 8
-+
- /**
-  * struct alias_prop - Alias property in 'aliases' node
-  * @link:	List node to link the structure in aliases_lookup list
-diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-index 50bbe0edf538..ecf967c57900 100644
---- a/drivers/of/overlay.c
-+++ b/drivers/of/overlay.c
-@@ -57,7 +57,7 @@ struct fragment {
-  * struct overlay_changeset
-  * @id:			changeset identifier
-  * @ovcs_list:		list on which we are located
-- * @fdt:		FDT that was unflattened to create @overlay_tree
-+ * @fdt:		base of memory allocated to hold aligned FDT that was unflattened to create @overlay_tree
-  * @overlay_tree:	expanded device tree that contains the fragment nodes
-  * @count:		count of fragment structures
-  * @fragments:		fragment nodes in the overlay expanded device tree
-@@ -719,8 +719,8 @@ static struct device_node *find_target(struct device_node *info_node)
- /**
-  * init_overlay_changeset() - initialize overlay changeset from overlay tree
-  * @ovcs:	Overlay changeset to build
-- * @fdt:	the FDT that was unflattened to create @tree
-- * @tree:	Contains all the overlay fragments and overlay fixup nodes
-+ * @fdt:	base of memory allocated to hold aligned FDT that was unflattened to create @tree
-+ * @tree:	Contains the overlay fragments and overlay fixup nodes
-  *
-  * Initialize @ovcs.  Populate @ovcs->fragments with node information from
-  * the top level of @tree.  The relevant top level nodes are the fragment
-@@ -873,7 +873,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
-  * internal documentation
-  *
-  * of_overlay_apply() - Create and apply an overlay changeset
-- * @fdt:	the FDT that was unflattened to create @tree
-+ * @fdt:	base of memory allocated to hold the aligned FDT
-  * @tree:	Expanded overlay device tree
-  * @ovcs_id:	Pointer to overlay changeset id
-  *
-@@ -913,7 +913,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
-  */
- 
- static int of_overlay_apply(const void *fdt, struct device_node *tree,
--		int *ovcs_id)
-+			    int *ovcs_id)
- {
- 	struct overlay_changeset *ovcs;
- 	int ret = 0, ret_revert, ret_tmp;
-@@ -953,7 +953,9 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
- 	/*
- 	 * after overlay_notify(), ovcs->overlay_tree related pointers may have
- 	 * leaked to drivers, so can not kfree() tree, aka ovcs->overlay_tree;
--	 * and can not free fdt, aka ovcs->fdt
-+	 * and can not free memory containing aligned fdt.  The aligned fdt
-+	 * is contained within the memory at ovcs->fdt, possibly at an offset
-+	 * from ovcs->fdt.
- 	 */
- 	ret = overlay_notify(ovcs, OF_OVERLAY_PRE_APPLY);
- 	if (ret) {
-@@ -1014,9 +1016,10 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
- int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
- 			 int *ovcs_id)
- {
--	const void *new_fdt;
-+	void *new_fdt;
-+	void *new_fdt_align;
- 	int ret;
--	u32 size;
-+	u32 size, size_alloc;
- 	struct device_node *overlay_root;
- 
- 	*ovcs_id = 0;
-@@ -1036,11 +1039,15 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
- 	 * Must create permanent copy of FDT because of_fdt_unflatten_tree()
- 	 * will create pointers to the passed in FDT in the unflattened tree.
- 	 */
--	new_fdt = kmemdup(overlay_fdt, size, GFP_KERNEL);
-+	size_alloc = size + FDT_ALIGN_SIZE;
-+	new_fdt = kmalloc(size_alloc, GFP_KERNEL);
- 	if (!new_fdt)
- 		return -ENOMEM;
- 
--	of_fdt_unflatten_tree(new_fdt, NULL, &overlay_root);
-+	new_fdt_align = PTR_ALIGN(new_fdt, FDT_ALIGN_SIZE);
-+	memcpy(new_fdt_align, overlay_fdt, size);
-+
-+	of_fdt_unflatten_tree(new_fdt_align, NULL, &overlay_root);
- 	if (!overlay_root) {
- 		pr_err("unable to unflatten overlay_fdt\n");
- 		ret = -EINVAL;
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index eb100627c186..b43a86cc2068 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -22,6 +22,7 @@
- #include <linux/slab.h>
- #include <linux/device.h>
- #include <linux/platform_device.h>
-+#include <linux/kernel.h>
- 
- #include <linux/i2c.h>
- #include <linux/i2c-mux.h>
-@@ -1408,6 +1409,7 @@ static void attach_node_and_children(struct device_node *np)
- static int __init unittest_data_add(void)
- {
- 	void *unittest_data;
-+	void *unittest_data_align;
- 	struct device_node *unittest_data_node, *np;
- 	/*
- 	 * __dtb_testcases_begin[] and __dtb_testcases_end[] are magically
-@@ -1415,7 +1417,8 @@ static int __init unittest_data_add(void)
- 	 */
- 	extern uint8_t __dtb_testcases_begin[];
- 	extern uint8_t __dtb_testcases_end[];
--	const int size = __dtb_testcases_end - __dtb_testcases_begin;
-+	u32 size = __dtb_testcases_end - __dtb_testcases_begin;
-+	u32 size_alloc;
- 	int rc;
- 
- 	if (!size) {
-@@ -1425,11 +1428,15 @@ static int __init unittest_data_add(void)
- 	}
- 
- 	/* creating copy */
--	unittest_data = kmemdup(__dtb_testcases_begin, size, GFP_KERNEL);
-+	size_alloc = size + FDT_ALIGN_SIZE;
-+	unittest_data = kmalloc(size_alloc, GFP_KERNEL);
- 	if (!unittest_data)
- 		return -ENOMEM;
- 
--	of_fdt_unflatten_tree(unittest_data, NULL, &unittest_data_node);
-+	unittest_data_align = PTR_ALIGN(unittest_data, FDT_ALIGN_SIZE);
-+	memcpy(unittest_data_align, __dtb_testcases_begin, size);
-+
-+	of_fdt_unflatten_tree(unittest_data_align, NULL, &unittest_data_node);
- 	if (!unittest_data_node) {
- 		pr_warn("%s: No tree to attach; not running tests\n", __func__);
- 		kfree(unittest_data);
 -- 
-Frank Rowand <frank.rowand@sony.com>
+2.30.2
 
