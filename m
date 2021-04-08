@@ -2,116 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70532358B7A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 19:36:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE5EA358B8E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 19:41:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232387AbhDHRg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 13:36:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37236 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232240AbhDHRgz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 13:36:55 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 625F0C061760
-        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 10:36:44 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lUYa7-0005zi-0m; Thu, 08 Apr 2021 19:36:39 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lUYa6-0001dJ-5j; Thu, 08 Apr 2021 19:36:38 +0200
-Date:   Thu, 8 Apr 2021 19:36:37 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Clemens Gruber <clemens.gruber@pqgruber.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        linux-pwm@vger.kernel.org, Sven Van Asbroeck <TheSven73@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 5/8] pwm: core: Support new PWM_STAGGERING_ALLOWED flag
-Message-ID: <20210408173637.w26njwystfuyrgan@pengutronix.de>
-References: <20210406164140.81423-1-clemens.gruber@pqgruber.com>
- <20210406164140.81423-5-clemens.gruber@pqgruber.com>
- <20210407054658.qdsjkstqwynxeuxj@pengutronix.de>
- <YG4UNoBCQJkEEfwi@workstation.tuxnet>
- <20210407213403.h6n6l2t7vqoalceu@pengutronix.de>
- <YG78IHIMGtl8Pokp@orome.fritz.box>
- <YG8miEOZXsH0NTcA@workstation.tuxnet>
+        id S232406AbhDHRle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 13:41:34 -0400
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:38693 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232267AbhDHRld (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 13:41:33 -0400
+Received: by mail-oi1-f181.google.com with SMTP id 25so1533671oiy.5;
+        Thu, 08 Apr 2021 10:41:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MxPv9rGDLS4kNaUwF1zjTD50xd/6Z8XGBbW4dmhPKD8=;
+        b=A2lp3oM0ItWq0xqfVnnJ3qVaiuOO3KsJ94X+E1AqzUrxBH2KeRrfGIxLILWRiuXIJv
+         ZjNkaAtXAnZ31OcKco2QcSOMQ57i87H0SlKSeVPyMRKdvkGfyQ9Av/vc57KHDHfIUvaZ
+         sKh0tG7XXhSdtAe5CEl3fj/jkgyOTz5XaX1QuOaWljBtXt/TDCH8gSDW6zVkiNOHY52a
+         cvW/Jg4xTcREQcda3OuZlTzOekZTMk3n7LLJnVEzIlJNSRE1dAdMYPn/w4syyK3DrtZ/
+         t+M218Ihp4d6s/pnuU/UuXJLtUhsK2dpD3Smv65BYbTmSXTUk4Pf6p+SW6CtZcmqkML+
+         qU6g==
+X-Gm-Message-State: AOAM5313SyItVaHcVZmvPqqnJoNik09lQ95dqpaVLoTurNQCm0Drw/Pg
+        pU6RHC/mwiNFTdFYm1FrfhEaDQYjpWt3wRdbvhs=
+X-Google-Smtp-Source: ABdhPJzwd+elJ0tSpUAZ/bAgTRpxq7RiABgs8Q08DleA2nKQdp22al42iOL7Z8aA5oAFMXMC6gZjSOTm29nDYVKPpLc=
+X-Received: by 2002:aca:5fc3:: with SMTP id t186mr6817482oib.69.1617903681158;
+ Thu, 08 Apr 2021 10:41:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lp7gtrg7jitfyjpi"
-Content-Disposition: inline
-In-Reply-To: <YG8miEOZXsH0NTcA@workstation.tuxnet>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <1617874514-12282-1-git-send-email-chunfeng.yun@mediatek.com>
+In-Reply-To: <1617874514-12282-1-git-send-email-chunfeng.yun@mediatek.com>
+From:   "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Thu, 8 Apr 2021 19:41:10 +0200
+Message-ID: <CAJZ5v0gGntbfnvAP5A491_hUh-JUuqZjZRdPPLwWJjnZRtemcQ@mail.gmail.com>
+Subject: Re: [PATCH 1/6] PM: runtime: enable wake irq after runtime_suspend
+ hook called
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Len Brown <len.brown@intel.com>, Pavel Machek <pavel@ucw.cz>,
+        "open list:ULTRA-WIDEBAND (UWB) SUBSYSTEM:" 
+        <linux-usb@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC..." 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Tianping Fang <tianping.fang@mediatek.com>,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Ikjoon Jang <ikjn@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Apr 8, 2021 at 11:35 AM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
+>
+> When the dedicated wake irq is level trigger, enable it before
+> calling runtime_suspend, will trigger an interrupt.
+>
+> e.g.
+> for a low level trigger type, it's low level at running time (0),
+> and becomes high level when enters suspend (runtime_suspend (1) is
+> called), a wakeup signal at (2) make it become low level, wake irq
+> will be triggered.
+>
+>                 ------------------
+>                |           ^     ^|
+> ----------------           |     | --------------
+>  |<---(0)--->|<--(1)--|   (3)   (2)    (4)
+>
+> if we enable the wake irq before calling runtime_suspend during (0),
+> an interrupt will arise, it causes resume immediately;
 
---lp7gtrg7jitfyjpi
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+But that's necessary to avoid missing a wakeup interrupt, isn't it?
 
-On Thu, Apr 08, 2021 at 05:51:36PM +0200, Clemens Gruber wrote:
-> On Thu, Apr 08, 2021 at 02:50:40PM +0200, Thierry Reding wrote:
-> > Yes, I think that's basically what this is saying. I think we're perhaps
-> > getting hung up on the terminology here. PWM_STAGGERING_ALLOWED gives
-> > the impression that we're dealing with some provider-specific feature,
-> > whereas what we really want to express is that the PWM doesn't care
-> > exactly when the active cycle starts and based on that a provider that
-> > can support it may optimize the EMI behavior.
-> >=20
-> > Maybe we can find a better name for this? Ultimately what this means is
-> > that the consumer is primarily interested in the power output of the PWM
-> > rather than the exact shape of the signal. So perhaps something like
-> > PWM_USAGE_POWER would be more appropriate.
->=20
-> Yes, although it would then no longer be obvious that this feature leads
-> to improved EMI behavior, as long as we mention that in the docs, I
-> think it's a good idea
->=20
-> Maybe document it as follows?
-> PWM_USAGE_POWER - Allow the driver to delay the start of the cycle
-> for EMI improvements, as long as the power output stays the same
-
-I don't like both names, because for someone who is only halfway into
-PWM stuff it is not understandable. Maybe ALLOW_PHASE_SHIFT?
-When a consumer is only interested in the power output than
-
-	.period =3D 20
-	.duty_cycle =3D 5
-
-would also be an allowed response for the request
-
-	.period =3D 200
-	.duty_cycle =3D 50
-
-and this is not what is in the focus here.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---lp7gtrg7jitfyjpi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmBvPyEACgkQwfwUeK3K
-7Amyxwf/eaL3FxWvGWQHZWUSKXVy2VMYq4wDy9TcDkiWclNcfgI5tEmYe9ERzL7K
-1EpCi8RMTK1g9fZBOy47fH7s3apm+fs3WaawiuMcQn1KXvD/Amq/zBh5K9IKpev2
-EGlef+Msxzx8OZjaAjU+Ywxmd/9aGwOdvbFcvLxGPV4/y8/w16XQcuRVRbEeNQrM
-ZLVaBpVHfaOs8UcWllrNZjIv3PBhx3yF6x04XzoG+wk8y+mH8L6f4AsvMMyg+nkH
-8ysXMNazz5+OufTTTnq9Zf9Dka6r+4G1CsXXJzJdEfv9GNgTy9SOpBpwfCSlgLpR
-AqyuPekXjdjSY6UrHkJER7tqGY+Czw==
-=AqmW
------END PGP SIGNATURE-----
-
---lp7gtrg7jitfyjpi--
+> enable wake irq after calling runtime_suspend, e.g. at (3) or (4),
+> will works.
+>
+> This patch seems no side effect on edge trigger wake irq.
+>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+>  drivers/base/power/runtime.c | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/base/power/runtime.c b/drivers/base/power/runtime.c
+> index a46a7e30881b..796739a015a5 100644
+> --- a/drivers/base/power/runtime.c
+> +++ b/drivers/base/power/runtime.c
+> @@ -619,12 +619,12 @@ static int rpm_suspend(struct device *dev, int rpmflags)
+>         __update_runtime_status(dev, RPM_SUSPENDING);
+>
+>         callback = RPM_GET_CALLBACK(dev, runtime_suspend);
+> -
+> -       dev_pm_enable_wake_irq_check(dev, true);
+>         retval = rpm_callback(callback, dev);
+>         if (retval)
+>                 goto fail;
+>
+> +       dev_pm_enable_wake_irq_check(dev, true);
+> +
+>   no_callback:
+>         __update_runtime_status(dev, RPM_SUSPENDED);
+>         pm_runtime_deactivate_timer(dev);
+> @@ -659,7 +659,6 @@ static int rpm_suspend(struct device *dev, int rpmflags)
+>         return retval;
+>
+>   fail:
+> -       dev_pm_disable_wake_irq_check(dev);
+>         __update_runtime_status(dev, RPM_ACTIVE);
+>         dev->power.deferred_resume = false;
+>         wake_up_all(&dev->power.wait_queue);
+> --
+> 2.18.0
+>
