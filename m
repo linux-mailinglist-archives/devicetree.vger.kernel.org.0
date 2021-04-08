@@ -2,117 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A4193579E0
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 03:50:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF29C357A53
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 04:24:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229544AbhDHBu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 21:50:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55844 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbhDHBu1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 21:50:27 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C921C061760;
-        Wed,  7 Apr 2021 18:50:17 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id y5so683447qkl.9;
-        Wed, 07 Apr 2021 18:50:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
-         :from:to:references:in-reply-to;
-        bh=mMhxbB0zqHG5YU1pZTAAX3hVmpGb5cQ4fHjP3KzZthQ=;
-        b=QPrEzU8sAygM5cwmENm34A2L3XVE53Ze6nVd2eYnd6KIGKg8AWz3k5PNnFtrilVEXX
-         wgaqkxVTcH9p93o8O3lgyeOHeXQB8XPorZExdV9H4PzqjLEO/ysOcYmu7n2xtyoiZ7Hn
-         lP0E80tx91xON/MH9M+z1km/Sbd722K9SGERcL2hlznvp3GmUYLdKZUWUwTLISZukgFQ
-         VwhtYf9v+BzW0dBQyQ0BtEP9MXIHFS+PWflFbyZDM5KuiJZcnsCllHuQ48o/sTA4UnOu
-         WcuwWi9VQJafhdaRjujIFxA38cvqA+RKvzBBuYpaSUrHcG+cBbD9GeA0kOUE+GwhMB+t
-         bMWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:cc:subject:from:to:references:in-reply-to;
-        bh=mMhxbB0zqHG5YU1pZTAAX3hVmpGb5cQ4fHjP3KzZthQ=;
-        b=evUx6xecgoStHU0vMMBUkbLqNBQzmF3//c0Y2vY0jU7IUZxMKLCAVY+VQxf3R6coAR
-         s+eZA5TMilekz/At4Vt8sqJ1nM7hcPLYalVgMkd/duDbDLgS4F0BlhL5AMlH3FDkRcN0
-         sy7BOZRP3MU7++00apykB3QH+zgIhj09O2A16MJ7QXPeg7wS9A1bGoneRzIaaiGrWUT2
-         xWB5T61vgqYY/8VNnY6v6H+ofSCLurpfSYasRbvp+FwK06TRTpxri74VckoH+6DIR2kT
-         6itqfKjR5ilDf/GjogvjEda3szJJ3HWw9wAS0y1iawzdf7Uz4mAmKx8frSXmNcQUrUGN
-         sOTQ==
-X-Gm-Message-State: AOAM533QG9adUMWNlzGoOQND5uRnFPrBDmfb1uq1v/n3BZfpOQq7K1bs
-        hUR8Q7SVhh9ieSPvKro6ZSm1/ktADHZyPBMh
-X-Google-Smtp-Source: ABdhPJwTVQg1PoTmTSngwfPxVba1R0vKewmtNNIIFfa3tXDiD7qXpPv49hyGOpBl7FLd8+UfUW4YXg==
-X-Received: by 2002:a37:d82:: with SMTP id 124mr6094473qkn.311.1617846616630;
-        Wed, 07 Apr 2021 18:50:16 -0700 (PDT)
-Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id m16sm19473506qkm.100.2021.04.07.18.50.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Apr 2021 18:50:16 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 07 Apr 2021 21:50:15 -0400
-Message-Id: <CAHYREM5SP01.DM67S1LUC3NY@shaak>
-Cc:     <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
-        <kbuild-all@lists.01.org>
-Subject: Re: [PATCH] clk: fix for_each_child.cocci warnings
-From:   "Liam Beguin" <liambeguin@gmail.com>
-To:     "Stephen Boyd" <sboyd@kernel.org>,
-        "Julia Lawall" <julia.lawall@inria.fr>, <mturquette@baylibre.com>
-References: <alpine.DEB.2.22.394.2104072100410.11549@hadrien>
- <161784187378.3790633.2593540922159647609@swboyd.mtv.corp.google.com>
-In-Reply-To: <161784187378.3790633.2593540922159647609@swboyd.mtv.corp.google.com>
+        id S230443AbhDHCYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Apr 2021 22:24:13 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:21368 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230020AbhDHCYN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 22:24:13 -0400
+Received: from twspam01.aspeedtech.com (localhost [127.0.0.2] (may be forged))
+        by twspam01.aspeedtech.com with ESMTP id 1381hd4D042165;
+        Thu, 8 Apr 2021 09:43:39 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 1381gIZX042076;
+        Thu, 8 Apr 2021 09:42:18 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from localhost.localdomain (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 8 Apr
+ 2021 09:52:22 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Andrew Jeffery <andrew@aj.id.au>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        "Adrian Hunter" <adrian.hunter@intel.com>,
+        Ryan Chen <ryanchen.aspeed@gmail.com>,
+        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
+        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
+        "open list:ASPEED SD/MMC DRIVER" <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+CC:     <ryan_chen@aspeedtech.com>, <chin-ting_kuo@aspeedtech.com>
+Subject: [PATCH v1 0/2] mmc: sdhci-of-aspeed: Support toggling SD bus signal
+Date:   Thu, 8 Apr 2021 09:52:16 +0800
+Message-ID: <20210408015218.20560-1-steven_lee@aspeedtech.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 1381gIZX042076
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+Hello,
 
-On Wed Apr 7, 2021 at 8:31 PM EDT, Stephen Boyd wrote:
-> Quoting Julia Lawall (2021-04-07 12:02:32)
-> > From: kernel test robot <lkp@intel.com>
-> >=20
-> > For_each_child_of_node should have of_node_put() before goto.
-> >=20
-> > Generated by: scripts/coccinelle/iterators/for_each_child.cocci
-> >=20
-> > CC: Liam Beguin <lvb@xiphos.com>
-> > Reported-by: kernel test robot <lkp@intel.com>
-> > Signed-off-by: kernel test robot <lkp@intel.com>
-> > Signed-off-by: Julia Lawall <julia.lawall@inria.fr>
-> > ---
->
-> Is this a fix for a patch on the list?
->
+This series implements support for toggling SD bus signal voltage by
+GPIO pin.
 
-This is a fix for a patch[1] I sent yesterday.
-I'll apply and resend.
+This series has been tested on AST2600-A2 EVB with APLL and 200MHz HCLK
+clock source with sdr104, sdr50, sdr25, sdr12 and high speed mode. 
+This series were also be tested on AST2600-A1 EVB and AST2500 EVB that
+don't have the design of signal voltage toggling by GPIO.
 
-Thanks,
-Liam
+Please help to review.
 
-[1] https://patchwork.kernel.org/project/linux-clk/patch/20210407005330.289=
-0430-2-liambeguin@gmail.com/
+Regards,
+Steven
 
-> >=20
-> > url:    https://github.com/0day-ci/linux/commits/Liam-Beguin/add-suppor=
-t-for-the-lmk04832/20210407-085408
-> > base:   f40ddce88593482919761f74910f42f4b84c004b
-> > :::::: branch date: 9 hours ago
-> > :::::: commit date: 9 hours ago
-> >=20
-> >  clk-lmk04832.c |    1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
-> > --- a/drivers/clk/clk-lmk04832.c
-> > +++ b/drivers/clk/clk-lmk04832.c
-> > @@ -1159,6 +1159,7 @@ static int lmk04832_probe(struct spi_dev
-> >                 if (ret) {
-> >                         dev_err(lmk->dev, "missing reg property in chil=
-d: %s\n",
-> >                                 child->full_name);
-> > +                       of_node_put(child);
-> >                         goto err_disable_oscin;
-> >                 }
-> >
+Steven Lee (2):
+  dt-bindings: mmc: sdhci-of-aspeed: Add power-gpio and
+    power-switch-gpio
+  mmc: sdhci-of-aspeed: Support toggling SD bus signal voltage by GPIO
+
+ .../devicetree/bindings/mmc/aspeed,sdhci.yaml |  25 +++
+ drivers/mmc/host/sdhci-of-aspeed.c            | 155 ++++++++++++++++--
+ 2 files changed, 162 insertions(+), 18 deletions(-)
+
+-- 
+2.17.1
 
