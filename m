@@ -2,120 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FF99358340
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 14:28:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FD7035836C
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 14:39:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229837AbhDHM20 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 08:28:26 -0400
-Received: from szxga07-in.huawei.com ([45.249.212.35]:16842 "EHLO
-        szxga07-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229741AbhDHM2Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 08:28:25 -0400
-Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.60])
-        by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4FGL8S4DC9z7tyl;
-        Thu,  8 Apr 2021 20:26:00 +0800 (CST)
-Received: from [127.0.0.1] (10.174.179.202) by DGGEMS410-HUB.china.huawei.com
- (10.3.19.210) with Microsoft SMTP Server id 14.3.498.0; Thu, 8 Apr 2021
- 20:28:09 +0800
-Subject: Re: [PATCH v2 2/2] ASoC: dt-bindings: renesas, rsnd: Clear warning
- 'ports' does not match any of the regexes
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        alsa-devel <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-References: <20210331091616.2306-1-thunder.leizhen@huawei.com>
- <20210331091616.2306-3-thunder.leizhen@huawei.com>
- <20210401202056.GA947212@robh.at.kernel.org>
- <a1aed23d-a9d2-5e05-b1f5-3b48ac8d17f1@huawei.com>
-Message-ID: <15a406ba-b288-c98c-46f1-36933c11fb11@huawei.com>
-Date:   Thu, 8 Apr 2021 20:28:08 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S229964AbhDHMjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 08:39:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55820 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229751AbhDHMjl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 08:39:41 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBCAAC061760;
+        Thu,  8 Apr 2021 05:39:30 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id y16so1712799pfc.5;
+        Thu, 08 Apr 2021 05:39:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+QmHxLtSKiy/M0k5RFjpXgoAxgaENLbGHZnwkZzXYD4=;
+        b=eVFhWLUE7G9oQNgyvcq6kKZy8Vl0StafOcaJBTHm6NaU/B30SGmjqkSHvRpMnEu3yZ
+         UFHsRB3n8VQGSK/aa3BhgFfHtwF7f6hP26FYUMstC5KPoD2P+kCxmkJTcKo7WGmNl6Zt
+         j/X9WOK1TqTiiBXkcw77pZy1OmzhtK63xj06TQt5iG8jfk3cTiyy0ZCDWVkoFdSSdXDG
+         uUJLVtsVKwiG9vZMhh0TNL3VmyamyrNivv/crV/eLcNX4zVeIBulNP9q5N4aBCzTGH9z
+         OhCLm4GCv9pNLqNkLY9CjiyiYioQdOEoT7pIJM/iUCWYqagTEUnNE+KQ5ByHdWP9BLaU
+         EhCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+QmHxLtSKiy/M0k5RFjpXgoAxgaENLbGHZnwkZzXYD4=;
+        b=sUApcw8LjfbiJJvE9Cu1uCvpDSkVXU2CQLZzgt66H3GZU2709yPZJnSS/Ns5GhnMEK
+         ObbUKYjdkVuqiQuQhYo2KCi1ddvCCAKyIOAfBcGay4WuoLNhGOWGlw3z+QycAP6WTSQv
+         BWPCjOK0jgoDl9Ka0ItSTBmDNFsIFUe8PAUoyyiDODJGut1oC7Es57WmkO0PuSU+KLTZ
+         eDAI8vx1tE+OYD7F5AeUmulSLZIjuC1j0eE2KDGx5TZIf5hwjeO6QcmYFzX9A8SxD+Gy
+         JWnzdfi54jsPVLo29ZhrQhpKh4NqqauQAyd+Z2LgV68DGI4QDvKleql+Za3OdpDdABgL
+         9tQg==
+X-Gm-Message-State: AOAM5315P8j843BRHaZeVcdC/WHhXb9VwjqMjdK1KSs6WSCj8MZlbRXz
+        uEkViywAkpzFLr2i6/S3KYE=
+X-Google-Smtp-Source: ABdhPJw7NzYVa2g9FhYvGUl4llk+/2n6jSAK9mJ0yj0DoybhePdFaNz3OQqsQtplw3NZrugrjc2Azw==
+X-Received: by 2002:a63:d945:: with SMTP id e5mr7632086pgj.449.1617885570300;
+        Thu, 08 Apr 2021 05:39:30 -0700 (PDT)
+Received: from localhost.localdomain ([138.197.212.246])
+        by smtp.gmail.com with ESMTPSA id e65sm25831311pfe.9.2021.04.08.05.39.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Apr 2021 05:39:29 -0700 (PDT)
+From:   DENG Qingfang <dqfext@gmail.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-staging@lists.linux.dev, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+Cc:     Weijie Gao <weijie.gao@mediatek.com>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Subject: [RFC v3 net-next 0/4] MT7530 interrupt support
+Date:   Thu,  8 Apr 2021 20:39:15 +0800
+Message-Id: <20210408123919.2528516-1-dqfext@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <a1aed23d-a9d2-5e05-b1f5-3b48ac8d17f1@huawei.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.179.202]
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support for MT7530 interrupt controller.
 
+DENG Qingfang (4):
+  net: phy: add MediaTek PHY driver
+  net: dsa: mt7530: add interrupt support
+  dt-bindings: net: dsa: add MT7530 interrupt controller binding
+  staging: mt7621-dts: enable MT7530 interrupt controller
 
-On 2021/4/7 10:04, Leizhen (ThunderTown) wrote:
-> 
-> 
-> On 2021/4/2 4:20, Rob Herring wrote:
->> On Wed, Mar 31, 2021 at 05:16:16PM +0800, Zhen Lei wrote:
->>> Currently, if there are more than two ports, or if there is only one port
->>> but other properties(such as "#address-cells") is required, these ports
->>> are placed under the "ports" node. So add the schema of property "ports".
->>
->> A given binding should just use 'ports' or 'port' depending on it's 
->> need. Supporting both forms is needless complexity.
+ .../devicetree/bindings/net/dsa/mt7530.txt    |   5 +
+ drivers/net/dsa/Kconfig                       |   1 +
+ drivers/net/dsa/mt7530.c                      | 266 ++++++++++++++++--
+ drivers/net/dsa/mt7530.h                      |  20 +-
+ drivers/net/phy/Kconfig                       |   5 +
+ drivers/net/phy/Makefile                      |   1 +
+ drivers/net/phy/mediatek.c                    | 112 ++++++++
+ drivers/staging/mt7621-dts/mt7621.dtsi        |   3 +
+ 8 files changed, 384 insertions(+), 29 deletions(-)
+ create mode 100644 drivers/net/phy/mediatek.c
 
-Hi Rob:
-I don't think of a good way to avoid "port" and "ports" to be used at the same time.
-Should I disable the use of "port"? Convert the two usages of "port" into "ports".
-But usually no one will use both of them in one dts file. And even if it's used at
-the same time, it's not a big mistake. So I decided not to test it.
-
-> 
-> Right, I'll adjust this patch again.
-> 
->>
->>> Otherwise, warnings similar to the following will be reported:
->>> arch/arm64/boot/dts/renesas/r8a774a1-beacon-rzg2m-kit.dt.yaml: \
->>> sound@ec500000: 'ports' does not match any of the regexes: \
->>> '^rcar_sound,ctu$', '^rcar_sound,dai$', '^rcar_sound,dvc$', ...
->>>
->>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->>> ---
->>>  Documentation/devicetree/bindings/sound/renesas,rsnd.yaml | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
->>> index 384191ee497f534..a42992fa687d3f3 100644
->>> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
->>> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
->>> @@ -115,6 +115,11 @@ properties:
->>>      $ref: audio-graph-port.yaml#
->>>      unevaluatedProperties: false
->>>  
->>> +  ports:
->>
->>        $ref: /schemas/graph.yaml#/properties/ports
-> 
-> OK, thanks
-> 
->>
->>> +    patternProperties:
->>> +      '^port@[0-9]':
->>> +        $ref: "#/properties/port"
->>
->> Then this should be: $ref: audio-graph-port.yaml#
-> 
-> OK, thanks
-> 
->>
->> Also, what each port is should be defined, but that's a separate 
->> problem.
->>
->>> +
->>>  # use patternProperties to avoid naming "xxx,yyy" issue
->>>  patternProperties:
->>>    "^rcar_sound,dvc$":
->>> -- 
->>> 1.8.3
->>>
->>>
->>
->> .
->>
+-- 
+2.25.1
 
