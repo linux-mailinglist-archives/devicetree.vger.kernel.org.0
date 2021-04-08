@@ -2,204 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0801358F75
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 23:51:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AD0E358F87
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 23:55:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232488AbhDHVvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 17:51:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36262 "EHLO
+        id S232376AbhDHVyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 17:54:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232265AbhDHVvP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 17:51:15 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D3F7C061762
-        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 14:51:03 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id g15so3912342qkl.4
-        for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021 14:51:03 -0700 (PDT)
+        with ESMTP id S232265AbhDHVyw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 17:54:52 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E6D4C061760;
+        Thu,  8 Apr 2021 14:54:41 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id d12so3713588oiw.12;
+        Thu, 08 Apr 2021 14:54:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=k+Wsi7GpVsKLxsjf0wCLA/6InU/eraQK7xtB6V/7xvY=;
-        b=CcQkrP2akWpeGDSQyWsuIPtwDYQcrQF63dtU/b0poCiGi7XRucr8zY88+RpSbCHlBH
-         tQ35FRtxexNToj6wr63DmmWwwZeFwluDGgG82QJWINri2GPkZNvT6XvrApSDUNMDnKb3
-         0ikCWxFLjsX066d4aXdu2uGn4Ej2V8XlNeBYfG/Hsm6iRKMPUjZxctMq62SERwqPqbRD
-         3ZEwqh2lI30D6Bs27ePDEQK/UatuF3Wnh/NoBEaiTJF8YJYnWjKJ65Y0XQv2OcURyb+T
-         H9rCpPu1Fdj3ROTwgW+qom/BNy/ugvlLyYl13w4oxpyATaR8Ow5O673ZFbYJIl6LL5Bc
-         +uuw==
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=UAIwjq5t4zATlM8rsD71WD2WvwLnlsvP0NW7eagpw6I=;
+        b=hG4sR1GPcpcR6tvLiezJ6eoBBwueSEQmX+MGXB2FCJZEkR9D45eLvIwY5oB6lUDac/
+         AN4v+UQwCUL2ByKfElW7HbPRYalqkN+HS3KPblYtVJuYvUUor8A21RKxdtz4Adquyu7c
+         rFNHRx43xjblZbGdHamyelMADPrtQTllf9++fTEDvt1Qp0Npv2e8lqT/5A04APcekJxO
+         25IzyWou/ms4/FVPAoJ/kl8XfZQiA57iTHOj6fyKA0UFXZjEnhzBfD6VU4sFaTl6Tm9s
+         3dJF5hU0FKTf7XcmCDswxrzpZ1FQyZS9iAatTyxH73Se/UXbrxUnrhV3jC17VrBVJ5Pe
+         JJUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=k+Wsi7GpVsKLxsjf0wCLA/6InU/eraQK7xtB6V/7xvY=;
-        b=KlSpgfvkApc7C21m/QQkf1MZJmfN98BWS9d8HNS9zx5hxtXrnDkQ1XQor3GOJkkDgy
-         rOMIYNaI/FM7norDeNfNqznBWc74Ym+r5EnflXtoZpAfzK6YU6uZ21ZVjBB+CCwt6ng0
-         56AL2usV1GkudLnhogB4uPG7TF5zgbdgYgUTT5jpnqD1fdxgtTAkJaRqyamAhu01Khe9
-         kgcmOy+Y3HVoiFOcF54ngvdakOpriAci67KAHu+V/HP+tDdiw7CnsEskN6iRBASQvaDx
-         lt7KtEkRdehpz28dyiF5o136LU9MB/lM/Q+8k/bWReRn68ZIuSdMiMC75u66q1FbFk0V
-         VVGQ==
-X-Gm-Message-State: AOAM533md9qucfeo3WS3mzibycQ0uYkjuieJL09HRfRKMUWsyWoe/5e8
-        FNtVrWx/xAK5ozdn4V6nJ5tI7QWLmOxf93/8i/bZbw==
-X-Google-Smtp-Source: ABdhPJzM6WjaXDGzKu6COp/Zmi6FsjBlV/XmafidXKsKV8aq9TGMthF7mwVb1oJQGTk0WyLdkFGJ9vo2wfY79YeZ/7g=
-X-Received: by 2002:a37:9e50:: with SMTP id h77mr10773244qke.138.1617918662408;
- Thu, 08 Apr 2021 14:51:02 -0700 (PDT)
+        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=UAIwjq5t4zATlM8rsD71WD2WvwLnlsvP0NW7eagpw6I=;
+        b=LjNZx9GTMquWmWKdj88M0fJmWot6qbU4V26rs/U1P6fp4W187pgBHiw0b5D6Qu87DQ
+         PKFgUuaBpSAO+gvnHKbYd4O1NQqX281BASub/yFx1QDsCQBjiwQ1aKmo3fnDbdFNPnTR
+         s/OA2Or9vHPjDJqdFuvxLrbXS7zanDjKAnrGcDUTvbnW6QD7e9jnraX6C4EL7U0EK70L
+         bLlftocxC4Or1yKUjFy0sGYl0k8Pjiz52hr+/mhZcre18t0T+si9vtky4FN8W+ZTPW/R
+         rd5rP8cK3fDXEnbhya9VZv0aayoScUiRJSFmqaKu+Z7VOo7crOVNIq15ENmXgFdrbBXl
+         kQxw==
+X-Gm-Message-State: AOAM5313YfFcUT8RlvZRX2AnoQ7SOpr0mZOk9duAua8gKSoihCynqTPk
+        RSloKNav2YwHCdSF2PSAT+PTvYxqGUY=
+X-Google-Smtp-Source: ABdhPJzL8UkSGx3tKfHRyDkq+gJfbziu7BL/OQ37YRk6/CFZgiHikux465wpEe1R+DHtFrx19diLDA==
+X-Received: by 2002:aca:4e55:: with SMTP id c82mr7724019oib.43.1617918880238;
+        Thu, 08 Apr 2021 14:54:40 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id a128sm150225oib.7.2021.04.08.14.54.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Apr 2021 14:54:39 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH v4 1/1] of: unittest: overlay: ensure proper alignment of
+ copied FDT
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20210408204508.2276230-1-frowand.list@gmail.com>
+ <CAL_Jsq+Os6O6CpRYurmf_4-Xnzgpkd1jbDbnp0en1TPbZXTf7w@mail.gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+Message-ID: <b73965c7-e975-6c48-3367-411f6c754181@roeck-us.net>
+Date:   Thu, 8 Apr 2021 14:54:37 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210408014737.955979-1-dmitry.baryshkov@linaro.org>
- <20210408014737.955979-2-dmitry.baryshkov@linaro.org> <20210408203849.GA1914405@robh.at.kernel.org>
-In-Reply-To: <20210408203849.GA1914405@robh.at.kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 9 Apr 2021 00:50:51 +0300
-Message-ID: <CAA8EJpq5tLxXPNH=tkLu9FPr0AGcp3W9aphSkQTO-685Wxsrsw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: clock: separate SDM845 GCC clock bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAL_Jsq+Os6O6CpRYurmf_4-Xnzgpkd1jbDbnp0en1TPbZXTf7w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 8 Apr 2021 at 23:38, Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Apr 08, 2021 at 04:47:35AM +0300, Dmitry Baryshkov wrote:
-> > Separate qcom,gcc-sdm845 clock bindings from the clock-less
-> > qcom,gcc.yaml, so that we can add required clocks and clock-names
-> > properties.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  .../bindings/clock/qcom,gcc-sdm845.yaml       | 82 +++++++++++++++++++
-> >  .../devicetree/bindings/clock/qcom,gcc.yaml   |  2 -
-> >  2 files changed, 82 insertions(+), 2 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
-> > new file mode 100644
-> > index 000000000000..4099b09ee9dd
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sdm845.yaml
-> > @@ -0,0 +1,82 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/qcom,gcc-sdm845.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm Global Clock & Reset Controller Binding
-> > +
-> > +maintainers:
-> > +  - Stephen Boyd <sboyd@kernel.org>
-> > +  - Taniya Das <tdas@codeaurora.org>
-> > +
-> > +description: |
-> > +  Qualcomm global clock control module which supports the clocks, resets and
-> > +  power domains on SDM845
-> > +
-> > +  See also:
-> > +  - dt-bindings/clock/qcom,gcc-sdm845.h
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: qcom,gcc-sdm845
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Board XO source
-> > +      - description: Board active XO source
-> > +      - description: Sleep clock source
-> > +      - description: PCIE 0 Pipe clock source
-> > +      - description: PCIE 1 Pipe clock source
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: bi_tcxo
-> > +      - const: bi_tcxo_ao
-> > +      - const: sleep_clk
-> > +      - const: pcie_0_pipe_clk
-> > +      - const: pcie_1_pipe_clk
-> > +
-> > +  '#clock-cells':
-> > +    const: 1
-> > +
-> > +  '#reset-cells':
-> > +    const: 1
-> > +
-> > +  '#power-domain-cells':
-> > +    const: 1
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  protected-clocks:
-> > +    description:
-> > +      Protected clock specifier list as per common clock binding.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - '#clock-cells'
-> > +  - '#reset-cells'
-> > +  - '#power-domain-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  # Example for GCC for MSM8960:
->
-> I've lost my QCom decoder ring. Is 8960 and 845 the same thing?
+On 4/8/21 2:28 PM, Rob Herring wrote:
+> 
+> Applying now so this gets into linux-next this week.
+> 
+The patch doesn't apply on top of today's -next; it conflicts
+with "of: properly check for error returned by fdt_get_name()".
 
-No. Mea culpa.
+I reverted that patch and applied this one, and the DT unittests
+run with it on openrisc. I do get a single test failure, but I that
+is a different problem (possibly with the test case itself).
 
->
-> > +  - |
-> > +    #include <dt-bindings/clock/qcom,rpmh.h>
-> > +    clock-controller@100000 {
-> > +      compatible = "qcom,gcc-sdm845";
-> > +      reg = <0x100000 0x1f0000>;
-> > +      clocks = <&rpmhcc RPMH_CXO_CLK>,
-> > +               <&rpmhcc RPMH_CXO_CLK_A>,
-> > +               <&sleep_clk>,
-> > +               <&pcie0_lane>,
-> > +               <&pcie1_lane>;
-> > +      clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk", "pcie_0_pipe_clk", "pcie_1_pipe_clk";
-> > +      #clock-cells = <1>;
-> > +      #reset-cells = <1>;
-> > +      #power-domain-cells = <1>;
-> > +    };
-> > +...
-> > diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
-> > index ee0467fb5e31..490edad25830 100644
-> > --- a/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
-> > @@ -32,7 +32,6 @@ description: |
-> >    - dt-bindings/clock/qcom,gcc-mdm9615.h
-> >    - dt-bindings/reset/qcom,gcc-mdm9615.h
-> >    - dt-bindings/clock/qcom,gcc-sdm660.h  (qcom,gcc-sdm630 and qcom,gcc-sdm660)
-> > -  - dt-bindings/clock/qcom,gcc-sdm845.h
-> >
-> >  properties:
-> >    compatible:
-> > @@ -52,7 +51,6 @@ properties:
-> >        - qcom,gcc-mdm9615
-> >        - qcom,gcc-sdm630
-> >        - qcom,gcc-sdm660
-> > -      - qcom,gcc-sdm845
-> >
-> >    '#clock-cells':
-> >      const: 1
-> > --
-> > 2.30.2
-> >
+### dt-test ### FAIL of_unittest_dma_ranges_one():923 of_dma_get_range: wrong DMA addr 0x00000000
+	(expecting 100000000) on node /testcase-data/address-tests/bus@80000000/device@1000
 
+Tested-by: Guenter Roeck <linux@roeck-us.net>
 
-
--- 
-With best wishes
-Dmitry
+Guenter
