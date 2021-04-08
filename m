@@ -2,114 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3325358EA4
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 22:44:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D07DA358EAB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 22:46:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231732AbhDHUoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 16:44:11 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:45922 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231676AbhDHUoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 16:44:09 -0400
-Received: by mail-ot1-f44.google.com with SMTP id 91-20020a9d08640000b0290237d9c40382so3592985oty.12;
-        Thu, 08 Apr 2021 13:43:56 -0700 (PDT)
+        id S232421AbhDHUpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 16:45:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50260 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232218AbhDHUpb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 16:45:31 -0400
+Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2388CC061760;
+        Thu,  8 Apr 2021 13:45:18 -0700 (PDT)
+Received: by mail-qt1-x82d.google.com with SMTP id x9so2537409qto.8;
+        Thu, 08 Apr 2021 13:45:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=U95oVFeAb6Z+9NxJb1H5egs5hOsSECLN/kMVgmi9JOc=;
+        b=huFby21ms17Ix5Si/C/jQCpbXW+zq+9B9dNfBmVO7xGIinnb/QyMwKOd8pg6UiGntB
+         PtjJHAW7VermjmlZtfOsaFvRm7rTdHuLzuUMrzDilyqqimLKLFXllNu7sxyYhrl8neOY
+         1jH8IZf3/qCe2t+wTkuJ/SA94OozCEDlcWUR/UcEy8WOOJA+YQxXuzCHyZW5VkfiUI/B
+         nzMwHf916DWedGRfwKlHGp/7/S5sBUXM6+P9XcjOuqRtVdS85FQD+wHHa1kqZxrt9EZy
+         FCXrZ5kapHYkIxFnFCM+6V4lXaHiZ6gK/BTO0sTOE+ZlVNVWzgDy9Vvg72BGMCyZT7BQ
+         2vPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=XBBWatDedME9VyLo4T5IHFnIvoyrnrBYPGAfSuhqOXk=;
-        b=AvuLvZDdTpRgZxj0Y+NWGBunISj+nuhBQrFbbe+oCLP51mCAFPJM5I9aln7vjTQFAJ
-         08j0RaooP0PGw5jMNwQ+UDhCqLDHaWgt4Zh8xJqCQNm2LuE0p/oSJSOc2e/tlDiF0LGE
-         pahU1Q8lAAnDlIGGETvX8jRs4QYw+iCUV/vuWdQsNTlaDiq205eHxP8gdMl/V9rBZEZv
-         Vr1Kf9IuzRsxuYWh2/caibAecd1ZOMGTf8sRy+wv0k9Mnde7faPVaah6yLzy2VNlgIBK
-         1Mo0FFvWU/GMfcb4Z7ohqjW94ugClRaqY6RSU9z71LIM51uDGIzqKp8ZmoftNbbqFaD9
-         3QWA==
-X-Gm-Message-State: AOAM531sm22DgLnUSfpOkkSWZ1ibdVhxb6q1rfwhdujV0qLH3Bly0UG6
-        V28B0oQaOoDI3YWwPG9s3w==
-X-Google-Smtp-Source: ABdhPJxwQ73CtdR2JuZH2FV4YaDwVXoMQhPH7akp4CbOyMrNAslj3Uw/VM1upErlyrG9GQqMt6FHww==
-X-Received: by 2002:a05:6830:144e:: with SMTP id w14mr9442181otp.0.1617914635873;
-        Thu, 08 Apr 2021 13:43:55 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e20sm104197otl.15.2021.04.08.13.43.54
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=U95oVFeAb6Z+9NxJb1H5egs5hOsSECLN/kMVgmi9JOc=;
+        b=HBxB66vE7EkLNfU2kBf8tXYBo/j94aYx3f2AnRL3B/5fPp+24rNHOCeEROfRZW9WKy
+         gzQoNyxRIO77gR0vZAxA9TkVlxLQLjzZuMowWrlWbs34DT0CrVcDuVvpq5qF1bx9Y2cs
+         deWTZMY12/8hF3bEM0DKJzXDFPsQXy/kty84qm9jkq4S2kLz5ETA1QvUheLzn3XktvBK
+         o3gpfq9IpwRFW+71nDXqqC3hAiwQ7Hr5WlD30I3bxaV8SQVu+WtLn222t7iUeuA0E4w3
+         hDPsrkaa2rl4M8P/GGK9l1E0eKpwMnjEhEkkQ4xAO+0+Z4h3BxX7wmOcaIqHa2DPA0Ez
+         izPA==
+X-Gm-Message-State: AOAM531VUcyY4bTcqdyu0dwTsDBMhyLvtmUTL8+2zNp6CNnRj4tKkmDk
+        v4LdXV9caxJHmn50f1FUQXQ=
+X-Google-Smtp-Source: ABdhPJwWbwhRzk+mxAoy1ms4KMi+DBrV4iCK+WqKhB6zEWmC5C0PEtu8Ls6x5rfxZHJhLDf2dxE1mQ==
+X-Received: by 2002:a05:622a:28c:: with SMTP id z12mr3880465qtw.57.1617914717344;
+        Thu, 08 Apr 2021 13:45:17 -0700 (PDT)
+Received: from localhost.localdomain (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id i78sm355544qke.46.2021.04.08.13.45.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Apr 2021 13:43:55 -0700 (PDT)
-Received: (nullmailer pid 1927882 invoked by uid 1000);
-        Thu, 08 Apr 2021 20:43:54 -0000
-Date:   Thu, 8 Apr 2021 15:43:54 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Nina Wu <nina-cm.wu@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Zhen Lei <thunder.leizhen@huawei.com>,
-        Neal Liu <neal.liu@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        Jackson-kt.Chang@mediatek.com
-Subject: Re: [PATCH v2 1/6] dt-bindings: devapc: Update bindings
-Message-ID: <20210408204354.GA1926089@robh.at.kernel.org>
-References: <1617259087-5502-1-git-send-email-nina-cm.wu@mediatek.com>
+        Thu, 08 Apr 2021 13:45:17 -0700 (PDT)
+From:   frowand.list@gmail.com
+To:     Rob Herring <robh+dt@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/1] of: unittest: overlay: ensure proper alignment of copied FDT
+Date:   Thu,  8 Apr 2021 15:45:08 -0500
+Message-Id: <20210408204508.2276230-1-frowand.list@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1617259087-5502-1-git-send-email-nina-cm.wu@mediatek.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 01, 2021 at 02:38:02PM +0800, Nina Wu wrote:
-> From: Nina Wu <Nina-CM.Wu@mediatek.com>
+From: Frank Rowand <frank.rowand@sony.com>
 
-Every change is an 'update'. Perhaps mention mt8192 in the subject.
+The Devicetree standard specifies an 8 byte alignment of the FDT.
+Code in libfdt expects this alignment for an FDT image in memory.
+kmemdup() returns 4 byte alignment on openrisc.  Replace kmemdup()
+with kmalloc(), align pointer, memcpy() to get proper alignment.
 
-> 
-> To support newer hardware architecture of devapc,
-> update device tree bindings.
-> 
-> Signed-off-by: Nina Wu <Nina-CM.Wu@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/soc/mediatek/devapc.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml b/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml
-> index 31e4d3c..42b284e 100644
-> --- a/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml
-> +++ b/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml
-> @@ -20,11 +20,17 @@ properties:
->    compatible:
->      enum:
->        - mediatek,mt6779-devapc
-> +      - mediatek,mt8192-devapc
->  
->    reg:
->      description: The base address of devapc register bank
->      maxItems: 1
->  
-> +  vio-idx-num:
+The 4 byte alignment exposed a related bug which triggered a crash
+on openrisc with:
+commit 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9")
+as reported in:
+https://lore.kernel.org/lkml/20210327224116.69309-1-linux@roeck-us.net/
 
-Needs a vendor prefix.
+Reported-by: Guenter Roeck <linux@roeck-us.net>
+Signed-off-by: Frank Rowand <frank.rowand@sony.com>
 
-> +    description: The number of the devices controlled by devapc
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
-> +
->    interrupts:
->      description: A single interrupt specifier
->      maxItems: 1
-> @@ -40,6 +46,7 @@ properties:
->  required:
->    - compatible
->    - reg
-> +  - vio-idx-num
->    - interrupts
->    - clocks
->    - clock-names
-> @@ -54,6 +61,7 @@ examples:
->      devapc: devapc@10207000 {
->        compatible = "mediatek,mt6779-devapc";
->        reg = <0x10207000 0x1000>;
-> +      vio-idx-num = <511>;
->        interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_LOW>;
->        clocks = <&infracfg_ao CLK_INFRA_DEVICE_APC>;
->        clock-names = "devapc-infra-clock";
-> -- 
-> 2.6.4
-> 
+---
+
+changes since version 1:
+  - use pointer from kmalloc() for kfree() instead of using pointer that
+    has been modified for FDT alignment
+
+changes since version 2:
+  - version 1 was a work in progress version, I failed to commit the following
+    final changes
+  - reorder first two arguments of of_overlay_apply()
+
+changes since version 3:
+  - size of memory allocation and size of copy after pointer alignment
+    differ, use separate variables with correct values for each case
+  - edit comment to more clearly describe that ovcs->fdt is the allocated
+    memory region, which may be different than where the aligned pointer points
+  - remove unused parameter from of_overlay_apply()
+
+ drivers/of/of_private.h |  2 ++
+ drivers/of/overlay.c    | 27 +++++++++++++++++----------
+ drivers/of/unittest.c   | 13 ++++++++++---
+ 3 files changed, 29 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
+index d9e6a324de0a..d717efbd637d 100644
+--- a/drivers/of/of_private.h
++++ b/drivers/of/of_private.h
+@@ -8,6 +8,8 @@
+  * Copyright (C) 1996-2005 Paul Mackerras.
+  */
+ 
++#define FDT_ALIGN_SIZE 8
++
+ /**
+  * struct alias_prop - Alias property in 'aliases' node
+  * @link:	List node to link the structure in aliases_lookup list
+diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+index 50bbe0edf538..ecf967c57900 100644
+--- a/drivers/of/overlay.c
++++ b/drivers/of/overlay.c
+@@ -57,7 +57,7 @@ struct fragment {
+  * struct overlay_changeset
+  * @id:			changeset identifier
+  * @ovcs_list:		list on which we are located
+- * @fdt:		FDT that was unflattened to create @overlay_tree
++ * @fdt:		base of memory allocated to hold aligned FDT that was unflattened to create @overlay_tree
+  * @overlay_tree:	expanded device tree that contains the fragment nodes
+  * @count:		count of fragment structures
+  * @fragments:		fragment nodes in the overlay expanded device tree
+@@ -719,8 +719,8 @@ static struct device_node *find_target(struct device_node *info_node)
+ /**
+  * init_overlay_changeset() - initialize overlay changeset from overlay tree
+  * @ovcs:	Overlay changeset to build
+- * @fdt:	the FDT that was unflattened to create @tree
+- * @tree:	Contains all the overlay fragments and overlay fixup nodes
++ * @fdt:	base of memory allocated to hold aligned FDT that was unflattened to create @tree
++ * @tree:	Contains the overlay fragments and overlay fixup nodes
+  *
+  * Initialize @ovcs.  Populate @ovcs->fragments with node information from
+  * the top level of @tree.  The relevant top level nodes are the fragment
+@@ -873,7 +873,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
+  * internal documentation
+  *
+  * of_overlay_apply() - Create and apply an overlay changeset
+- * @fdt:	the FDT that was unflattened to create @tree
++ * @fdt:	base of memory allocated to hold the aligned FDT
+  * @tree:	Expanded overlay device tree
+  * @ovcs_id:	Pointer to overlay changeset id
+  *
+@@ -913,7 +913,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
+  */
+ 
+ static int of_overlay_apply(const void *fdt, struct device_node *tree,
+-		int *ovcs_id)
++			    int *ovcs_id)
+ {
+ 	struct overlay_changeset *ovcs;
+ 	int ret = 0, ret_revert, ret_tmp;
+@@ -953,7 +953,9 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
+ 	/*
+ 	 * after overlay_notify(), ovcs->overlay_tree related pointers may have
+ 	 * leaked to drivers, so can not kfree() tree, aka ovcs->overlay_tree;
+-	 * and can not free fdt, aka ovcs->fdt
++	 * and can not free memory containing aligned fdt.  The aligned fdt
++	 * is contained within the memory at ovcs->fdt, possibly at an offset
++	 * from ovcs->fdt.
+ 	 */
+ 	ret = overlay_notify(ovcs, OF_OVERLAY_PRE_APPLY);
+ 	if (ret) {
+@@ -1014,9 +1016,10 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
+ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
+ 			 int *ovcs_id)
+ {
+-	const void *new_fdt;
++	void *new_fdt;
++	void *new_fdt_align;
+ 	int ret;
+-	u32 size;
++	u32 size, size_alloc;
+ 	struct device_node *overlay_root;
+ 
+ 	*ovcs_id = 0;
+@@ -1036,11 +1039,15 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
+ 	 * Must create permanent copy of FDT because of_fdt_unflatten_tree()
+ 	 * will create pointers to the passed in FDT in the unflattened tree.
+ 	 */
+-	new_fdt = kmemdup(overlay_fdt, size, GFP_KERNEL);
++	size_alloc = size + FDT_ALIGN_SIZE;
++	new_fdt = kmalloc(size_alloc, GFP_KERNEL);
+ 	if (!new_fdt)
+ 		return -ENOMEM;
+ 
+-	of_fdt_unflatten_tree(new_fdt, NULL, &overlay_root);
++	new_fdt_align = PTR_ALIGN(new_fdt, FDT_ALIGN_SIZE);
++	memcpy(new_fdt_align, overlay_fdt, size);
++
++	of_fdt_unflatten_tree(new_fdt_align, NULL, &overlay_root);
+ 	if (!overlay_root) {
+ 		pr_err("unable to unflatten overlay_fdt\n");
+ 		ret = -EINVAL;
+diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+index eb100627c186..b43a86cc2068 100644
+--- a/drivers/of/unittest.c
++++ b/drivers/of/unittest.c
+@@ -22,6 +22,7 @@
+ #include <linux/slab.h>
+ #include <linux/device.h>
+ #include <linux/platform_device.h>
++#include <linux/kernel.h>
+ 
+ #include <linux/i2c.h>
+ #include <linux/i2c-mux.h>
+@@ -1408,6 +1409,7 @@ static void attach_node_and_children(struct device_node *np)
+ static int __init unittest_data_add(void)
+ {
+ 	void *unittest_data;
++	void *unittest_data_align;
+ 	struct device_node *unittest_data_node, *np;
+ 	/*
+ 	 * __dtb_testcases_begin[] and __dtb_testcases_end[] are magically
+@@ -1415,7 +1417,8 @@ static int __init unittest_data_add(void)
+ 	 */
+ 	extern uint8_t __dtb_testcases_begin[];
+ 	extern uint8_t __dtb_testcases_end[];
+-	const int size = __dtb_testcases_end - __dtb_testcases_begin;
++	u32 size = __dtb_testcases_end - __dtb_testcases_begin;
++	u32 size_alloc;
+ 	int rc;
+ 
+ 	if (!size) {
+@@ -1425,11 +1428,15 @@ static int __init unittest_data_add(void)
+ 	}
+ 
+ 	/* creating copy */
+-	unittest_data = kmemdup(__dtb_testcases_begin, size, GFP_KERNEL);
++	size_alloc = size + FDT_ALIGN_SIZE;
++	unittest_data = kmalloc(size_alloc, GFP_KERNEL);
+ 	if (!unittest_data)
+ 		return -ENOMEM;
+ 
+-	of_fdt_unflatten_tree(unittest_data, NULL, &unittest_data_node);
++	unittest_data_align = PTR_ALIGN(unittest_data, FDT_ALIGN_SIZE);
++	memcpy(unittest_data_align, __dtb_testcases_begin, size);
++
++	of_fdt_unflatten_tree(unittest_data_align, NULL, &unittest_data_node);
+ 	if (!unittest_data_node) {
+ 		pr_warn("%s: No tree to attach; not running tests\n", __func__);
+ 		kfree(unittest_data);
+-- 
+Frank Rowand <frank.rowand@sony.com>
+
