@@ -2,191 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72974358D90
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 21:41:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 832B1358E02
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 22:05:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232252AbhDHTmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 15:42:03 -0400
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:42892 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231451AbhDHTmC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 15:42:02 -0400
-Received: by mail-oi1-f172.google.com with SMTP id n140so3366773oig.9;
-        Thu, 08 Apr 2021 12:41:50 -0700 (PDT)
+        id S231918AbhDHUFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 16:05:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41486 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231451AbhDHUFb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 16:05:31 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7543FC061760;
+        Thu,  8 Apr 2021 13:05:19 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id g18-20020a7bc4d20000b0290116042cfdd8so3555371wmk.4;
+        Thu, 08 Apr 2021 13:05:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=tX16rYfnc+gH4Tt0HpCPrhcqr2Z+F5SWlJqMaI9bYv4=;
+        b=KdvlR16PUlG7CDNXDX8iz3+AH3FuFNm5TuZsPPn/OQsiFVat03p+jLLcFP0zLrBVdT
+         Goo0sKMTXxwq7iID+sl+k0upsYqVPaYqi+o0rpL88AYiRxWY+hp0pSlPiovokukkrM+0
+         v3+yy8xrCGhAHT415KK5Bhs4v1Rqbw8a9oUkzR+mlpvsga4r2G+AGPT9jn7q9sVj7w7r
+         cCAegaMPr1H33rI57orHmj2dtZ/hvzAka51I2iq3DZLHKA/KET9adScHtfl42CTLlq76
+         h4iZC61bghITH1oigrTMWc8fQDW1xO3fB0kqFRkI3ka2KlQWo3UUmgjE1qXO8hLeZAG5
+         zesQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FITwZl80gS3YR2FZtlgpQ5oYWS85Ct2sijj6jggUvFY=;
-        b=TiVW/LZRUP8Pz3lJsyNkxOMK6j17tBOkoiqk/g5lAcJVW9Ha+tJixUKYHLe2e+NZtB
-         /4LB+y5lgwsq2yi53ADp5IEM+vERYOKY0GK30waHjm5e1fx7yXbkb2Sg5XyR/xsM1b7g
-         DyKU3w4TFRvv0FEiKQoIr5zEFz6MbM5TKQvvFLUeTUaZ+PS5+G4O0zxEGc0NCV2U+9oq
-         MSeNdgVb2Y38rDXNj/gDNiIwFj166mfzUP7VA8yYK3b53kVL/rpakUi2Ced87L8wigg0
-         dqACwZYSgYI0qzFjIkJ9I9ZgYi/q0QS1wZwlSJSWE1IgSqSdwHY7Q3TXBiHwlDgF5KdW
-         nVTA==
-X-Gm-Message-State: AOAM531MF01zD9dW9EQ0xBS4ShiIiQ5gt5AjbAHvYgsXjbJOGl2lOuF0
-        cFFTCXt+0CDj5VtFvo8sBA==
-X-Google-Smtp-Source: ABdhPJws8AH5mE+MDBnJXs7fKUy6WuwH3lOBsNvmWgFCUyZHpaJjOknPdkw2lABZOuOUgpOplmGZIg==
-X-Received: by 2002:aca:4ad2:: with SMTP id x201mr7515600oia.46.1617910910592;
-        Thu, 08 Apr 2021 12:41:50 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y10sm72595oto.18.2021.04.08.12.41.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Apr 2021 12:41:49 -0700 (PDT)
-Received: (nullmailer pid 1844346 invoked by uid 1000);
-        Thu, 08 Apr 2021 19:41:48 -0000
-Date:   Thu, 8 Apr 2021 14:41:48 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     will@kernel.org, danielwa@cisco.com,
-        daniel@gimpelevich.san-francisco.ca.us, arnd@kernel.org,
-        akpm@linux-foundation.org, linux-arch@vger.kernel.org,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        microblaze <monstr@monstr.eu>, linux-mips@vger.kernel.org,
-        nios2 <ley.foon.tan@intel.com>, openrisc@lists.librecores.org,
-        linux-hexagon@vger.kernel.org, linux-riscv@lists.infradead.org,
-        x86@kernel.org, linux-xtensa@linux-xtensa.org,
-        linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
-        linux-mm@kvack.org
-Subject: Re: [PATCH v4 18/20] x86: Convert to GENERIC_CMDLINE
-Message-ID: <20210408194148.GB1724284@robh.at.kernel.org>
-References: <cover.1617375802.git.christophe.leroy@csgroup.eu>
- <ab0fd4477964cdbf99e3dd2965a455aa3e738e4b.1617375802.git.christophe.leroy@csgroup.eu>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=tX16rYfnc+gH4Tt0HpCPrhcqr2Z+F5SWlJqMaI9bYv4=;
+        b=VbvGfNsz53WNgCgFb/9DYgRWnFlMiWI4SL9QaHjTSqH2fKrZ92UL3qjDu5u2pKE+59
+         S5jJhk/csRK7j0UjX0tW0Vn/C20TAt4IAOlzVpft1pPgtLH0CGZcNzTdrz5O+kX05uT3
+         pyQ5tj3JN6dDVuySuQ4yqbY3oOpBT83J1BMpDJf14OLS3umrS7VmS7WpyLQJO4RBJw84
+         XjViOmAwx+GrilPKRQqACHFueUiLkl82FwrZuc4tjprirt5CX2zA9qwce2N+kgzzJj6H
+         cCRTGxex955LBSFdg9XP+OfalPG3qVTRCtXss4KJqVKjRiqNQ7GzCgbtIV5wDRH1PsYR
+         rfng==
+X-Gm-Message-State: AOAM531qcFXshrFcgIPe5tWfVsneQbRFai8vMlP0Ueh65xPt3EbkUW6C
+        E/8TGRQqpyqt3uGsylBmf80frRLq+ZL1mg==
+X-Google-Smtp-Source: ABdhPJyV2ZTS1pmrbKMsk/v+cY3LiErgpSvRS4s1j8TtHC8CT7uz4wkWeq3jZnfkDExxXFGK/G9Idw==
+X-Received: by 2002:a1c:49c2:: with SMTP id w185mr10659600wma.163.1617912318165;
+        Thu, 08 Apr 2021 13:05:18 -0700 (PDT)
+Received: from [192.168.1.101] (abac128.neoplus.adsl.tpnet.pl. [83.6.166.128])
+        by smtp.gmail.com with ESMTPSA id h14sm592618wrq.45.2021.04.08.13.05.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Apr 2021 13:05:17 -0700 (PDT)
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8994: Reserve gpio ranges
+To:     Petr Vorel <petr.vorel@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ricardo Ribalda <ribalda@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <20210405200259.23525-1-petr.vorel@gmail.com>
+ <20210405225222.GD904837@yoga>
+ <CACRpkdZQ8qiqFPa0X8deVjZ7nLn_E6s8fmJdr5Ji8AuyJms1ug@mail.gmail.com>
+ <YG9TWEJlpDmNeeit@pevik>
+From:   Konrad Dybcio <konradybcio@gmail.com>
+Message-ID: <ea376d51-cd6c-0028-9602-d007c2bba71e@gmail.com>
+Date:   Thu, 8 Apr 2021 22:05:14 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ab0fd4477964cdbf99e3dd2965a455aa3e738e4b.1617375802.git.christophe.leroy@csgroup.eu>
+In-Reply-To: <YG9TWEJlpDmNeeit@pevik>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 02, 2021 at 03:18:20PM +0000, Christophe Leroy wrote:
-> This converts the architecture to GENERIC_CMDLINE.
-> 
-> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
-> ---
->  arch/x86/Kconfig        | 45 ++---------------------------------------
->  arch/x86/kernel/setup.c | 17 ++--------------
->  2 files changed, 4 insertions(+), 58 deletions(-)
-> 
-> diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
-> index a20684d56b4b..66b384228ca3 100644
-> --- a/arch/x86/Kconfig
-> +++ b/arch/x86/Kconfig
-> @@ -104,6 +104,7 @@ config X86
->  	select ARCH_USE_QUEUED_SPINLOCKS
->  	select ARCH_USE_SYM_ANNOTATIONS
->  	select ARCH_WANT_BATCHED_UNMAP_TLB_FLUSH
-> +	select ARCH_WANT_CMDLINE_PREPEND_BY_DEFAULT
+Hi,
 
-Seems to be non-existent kconfig option.
+to clear up some confusion:
 
->  	select ARCH_WANT_DEFAULT_BPF_JIT	if X86_64
->  	select ARCH_WANTS_DYNAMIC_TASK_STRUCT
->  	select ARCH_WANT_HUGE_PMD_SHARE
-> @@ -118,6 +119,7 @@ config X86
->  	select EDAC_SUPPORT
->  	select GENERIC_CLOCKEVENTS_BROADCAST	if X86_64 || (X86_32 && X86_LOCAL_APIC)
->  	select GENERIC_CLOCKEVENTS_MIN_ADJUST
-> +	select GENERIC_CMDLINE
->  	select GENERIC_CMOS_UPDATE
->  	select GENERIC_CPU_AUTOPROBE
->  	select GENERIC_CPU_VULNERABILITIES
-> @@ -2358,49 +2360,6 @@ choice
->  
->  endchoice
->  
-> -config CMDLINE_BOOL
-> -	bool "Built-in kernel command line"
-> -	help
-> -	  Allow for specifying boot arguments to the kernel at
-> -	  build time.  On some systems (e.g. embedded ones), it is
-> -	  necessary or convenient to provide some or all of the
-> -	  kernel boot arguments with the kernel itself (that is,
-> -	  to not rely on the boot loader to provide them.)
-> -
-> -	  To compile command line arguments into the kernel,
-> -	  set this option to 'Y', then fill in the
-> -	  boot arguments in CONFIG_CMDLINE.
-> -
-> -	  Systems with fully functional boot loaders (i.e. non-embedded)
-> -	  should leave this option set to 'N'.
-> -
-> -config CMDLINE
-> -	string "Built-in kernel command string"
-> -	depends on CMDLINE_BOOL
-> -	default ""
-> -	help
-> -	  Enter arguments here that should be compiled into the kernel
-> -	  image and used at boot time.  If the boot loader provides a
-> -	  command line at boot time, it is appended to this string to
-> -	  form the full kernel command line, when the system boots.
-> -
-> -	  However, you can use the CONFIG_CMDLINE_FORCE option to
-> -	  change this behavior.
-> -
-> -	  In most cases, the command line (whether built-in or provided
-> -	  by the boot loader) should specify the device for the root
-> -	  file system.
-> -
-> -config CMDLINE_FORCE
-> -	bool "Built-in command line overrides boot loader arguments"
-> -	depends on CMDLINE_BOOL && CMDLINE != ""
-> -	help
-> -	  Set this option to 'Y' to have the kernel ignore the boot loader
-> -	  command line, and use ONLY the built-in command line.
-> -
-> -	  This is used to work around broken boot loaders.  This should
-> -	  be set to 'N' under normal conditions.
-> -
->  config MODIFY_LDT_SYSCALL
->  	bool "Enable the LDT (local descriptor table)" if EXPERT
->  	default y
-> diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
-> index 6f2de58eeb54..3f274b02e51c 100644
-> --- a/arch/x86/kernel/setup.c
-> +++ b/arch/x86/kernel/setup.c
-> @@ -5,6 +5,7 @@
->   * This file contains the setup_arch() code, which handles the architecture-dependent
->   * parts of early kernel initialization.
->   */
-> +#include <linux/cmdline.h>
->  #include <linux/console.h>
->  #include <linux/crash_dump.h>
->  #include <linux/dma-map-ops.h>
-> @@ -161,9 +162,6 @@ unsigned long saved_video_mode;
->  #define RAMDISK_LOAD_FLAG		0x4000
->  
->  static char __initdata command_line[COMMAND_LINE_SIZE];
-> -#ifdef CONFIG_CMDLINE_BOOL
-> -static char __initdata builtin_cmdline[COMMAND_LINE_SIZE] = CONFIG_CMDLINE;
-> -#endif
->  
->  #if defined(CONFIG_EDD) || defined(CONFIG_EDD_MODULE)
->  struct edd edd;
-> @@ -883,18 +881,7 @@ void __init setup_arch(char **cmdline_p)
->  	bss_resource.start = __pa_symbol(__bss_start);
->  	bss_resource.end = __pa_symbol(__bss_stop)-1;
->  
-> -#ifdef CONFIG_CMDLINE_BOOL
-> -#ifdef CONFIG_CMDLINE_FORCE
-> -	strlcpy(boot_command_line, builtin_cmdline, COMMAND_LINE_SIZE);
-> -#else
-> -	if (builtin_cmdline[0]) {
-> -		/* append boot loader cmdline to builtin */
-> -		strlcat(builtin_cmdline, " ", COMMAND_LINE_SIZE);
-> -		strlcat(builtin_cmdline, boot_command_line, COMMAND_LINE_SIZE);
-> -		strlcpy(boot_command_line, builtin_cmdline, COMMAND_LINE_SIZE);
-> -	}
-> -#endif
-> -#endif
-> +	cmdline_build(boot_command_line, boot_command_line);
->  
->  	strlcpy(command_line, boot_command_line, COMMAND_LINE_SIZE);
->  	*cmdline_p = command_line;
 
-Once this is all done, I wonder if we can get rid of the strlcpy and 
-perhaps also cmdline_p.
+On Qualcomm boards GPIOs that are used for "secure" (duh) peripherals,
+like a fingerprint scanner, are not allowed to be controlled from Linux (the "non-secure world").
+Trying to do so causes an immediate reboot due to "attempting to violate the security".
 
-Rob
+
+The GPIOs seem to all be iterated over on boot, except for the ones specified in "gpio-reserved-ranges".
+As a result, if such "secure" GPIOs are not declared in the DT, the board essentially dies on TLMM (pinctrl) probe
+(which happens veeeery early - so that all other peripherals can set the pins as they see fit)
+and that's very unpleasant to debug. Without this patch, Petr's device will simply not boot.
+
+
+So, why did it work before!?
+
+
+Well, either the GPIOs weren't iterated over, or the TLMM (pinctrl) driver wasn't in place back then.
+
+
+As for the initrd crash.. perhaps you have an Android initrd which dies as soon as it doesn't detect SELINUX and a couple of other options.. You might want to try postmarketOS's one, or any other Linux distro's armv7/aarch64 initrd. To replace it, simply use abootimg like so:
+
+
+abootimg -u boot.img -r ramdisk.img
+
+
+
+If it says something something "too small", add
+
+
+-c "bootsize=30000000"
+
+
+to make the boot.img exactly 30 million bytes (or change it as you see fit).
+
+
+Konrad
