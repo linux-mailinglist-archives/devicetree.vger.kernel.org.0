@@ -2,98 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A79D358D32
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 21:04:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0A1E358D49
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 21:11:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232941AbhDHTEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 15:04:24 -0400
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:44555 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232885AbhDHTEX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 15:04:23 -0400
-Received: by mail-oi1-f171.google.com with SMTP id a8so3252017oic.11;
-        Thu, 08 Apr 2021 12:04:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=DUrGxOBRGKnSQEqHR05dYQldYxqAXJweo2+bFsG+WpA=;
-        b=X56XCd+UzmF2lh1xts3CLdO7hFz8v7Vy+NegtIsYO2MAsmhIMSnZ0J/AaBxxRdap++
-         0aSoQkTg3F70U/hY+/1DLD06fqvuYnOzG0yC2JOCDInKeWFeU1O2GaGpZXva5ihVImmo
-         w79fe5bVC5ExbteJ2R+JapSNHeY2+j8hPwq1PhN8Zn0nlev66Z9exVRdroPFfqdQ/xOb
-         +Lm2PWjkngRiwLJjeWrUcU7Lm7SVVw1yZ7Jbkfg9INQnyqth6qMyTbNgmBVbn+7ustYN
-         MSJg2WFQiSC/jt6dv7tYqcuFwsyaXbdC8niofYhCWy+tGh849p7qXwA/dsokXpaGksUz
-         jedQ==
-X-Gm-Message-State: AOAM531ZBsTOdcM73WxLRaevEggHNKsXQt7kngpFIjKN2cyRhMdniiqf
-        HrU8D6bhFZ6nS1rIX1BCBA==
-X-Google-Smtp-Source: ABdhPJzc/ezUgVYn/c2gVo9JEsyTGvBA4ZkkApktnBVPpB6CFT0oT9dS88OzEW8tCbInDt8Gjv+2IA==
-X-Received: by 2002:a05:6808:138a:: with SMTP id c10mr7276133oiw.117.1617908650345;
-        Thu, 08 Apr 2021 12:04:10 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g9sm56746otk.6.2021.04.08.12.04.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Apr 2021 12:04:09 -0700 (PDT)
-Received: (nullmailer pid 1795497 invoked by uid 1000);
-        Thu, 08 Apr 2021 19:04:08 -0000
-Date:   Thu, 8 Apr 2021 14:04:08 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Daniel Walker <danielwa@cisco.com>
-Cc:     Christophe Leroy <christophe.leroy@csgroup.eu>, will@kernel.org,
-        daniel@gimpelevich.san-francisco.ca.us, arnd@kernel.org,
-        akpm@linux-foundation.org, linux-arch@vger.kernel.org,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        microblaze <monstr@monstr.eu>, linux-mips@vger.kernel.org,
-        nios2 <ley.foon.tan@intel.com>, openrisc@lists.librecores.org,
-        linux-hexagon@vger.kernel.org, linux-riscv@lists.infradead.org,
-        x86@kernel.org, linux-xtensa@linux-xtensa.org,
-        linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
-        linux-mm@kvack.org
-Subject: Re: [PATCH v4 19/20] mips: Convert to GENERIC_CMDLINE
-Message-ID: <20210408190408.GA1724284@robh.at.kernel.org>
-References: <cover.1617375802.git.christophe.leroy@csgroup.eu>
- <a01b6cdbae01fff77e26f7a5c40ee5260e1952b5.1617375802.git.christophe.leroy@csgroup.eu>
- <20210406173836.GW2469518@zorba>
+        id S232969AbhDHTLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 15:11:22 -0400
+Received: from mail.hoefle.co ([213.200.254.119]:51720 "EHLO hoefle.co"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232958AbhDHTLW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Apr 2021 15:11:22 -0400
+Received: from [192.168.222.165] (unknown [213.200.254.119])
+        by hoefle.co (Postfix) with ESMTPSA id 5956C91213;
+        Thu,  8 Apr 2021 21:11:09 +0200 (CEST)
+Subject: Re: [PATCH v4 2/2] usb: dwc3: Add driver for Xilinx platforms
+From:   Marco Hoefle <marco@hoefle.co>
+To:     Michal Simek <michal.simek@xilinx.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Manish Narani <manish.narani@xilinx.com>
+Cc:     devicetree@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <1615963949-75320-1-git-send-email-manish.narani@xilinx.com>
+ <1615963949-75320-3-git-send-email-manish.narani@xilinx.com>
+ <20210407214811.GA260719@roeck-us.net>
+ <ee280235-736d-1689-d324-b090c21106c9@xilinx.com>
+ <a7bbf265-a771-2c2e-b5e7-a189692ca280@hoefle.co>
+Message-ID: <e906199b-3810-c5bc-1f08-03da2133d63d@hoefle.co>
+Date:   Thu, 8 Apr 2021 21:11:09 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210406173836.GW2469518@zorba>
+In-Reply-To: <a7bbf265-a771-2c2e-b5e7-a189692ca280@hoefle.co>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 06, 2021 at 10:38:36AM -0700, Daniel Walker wrote:
-> On Fri, Apr 02, 2021 at 03:18:21PM +0000, Christophe Leroy wrote:
-> > -config CMDLINE_BOOL
-> > -	bool "Built-in kernel command line"
-> > -	help
-> > -	  For most systems, it is firmware or second stage bootloader that
-> > -	  by default specifies the kernel command line options.  However,
-> > -	  it might be necessary or advantageous to either override the
-> > -	  default kernel command line or add a few extra options to it.
-> > -	  For such cases, this option allows you to hardcode your own
-> > -	  command line options directly into the kernel.  For that, you
-> > -	  should choose 'Y' here, and fill in the extra boot arguments
-> > -	  in CONFIG_CMDLINE.
-> > -
-> > -	  The built-in options will be concatenated to the default command
-> > -	  line if CMDLINE_OVERRIDE is set to 'N'. Otherwise, the default
-> > -	  command line will be ignored and replaced by the built-in string.
-> > -
-> > -	  Most MIPS systems will normally expect 'N' here and rely upon
-> > -	  the command line from the firmware or the second-stage bootloader.
-> > -
-> 
-> 
-> See how you complained that I have CMDLINE_BOOL in my changed, and you think it
-> shouldn't exist.
-> 
-> Yet here mips has it, and you just deleted it with no feature parity in your
-> changes for this.
+Hello Michal, Manish and Guenter,
 
-AFAICT, CMDLINE_BOOL equates to a non-empty or empty CONFIG_CMDLINE. You 
-seem to need it just because you have CMDLINE_PREPEND and 
-CMDLINE_APPEND. If that's not it, what feature is missing? CMDLINE_BOOL 
-is not a feature, but an implementation detail.
+I recently opened a thread regarding of the PSGTR driver documentation ( 
+https://www.spinics.net/lists/devicetree/msg416470.html 
+<https://www.spinics.net/lists/devicetree/msg416470.html> )
 
-Rob
+It is not clear to me how to "marry" DWC3 and PSGTR in the device tree.
+
+There were some significant changes compared to the Xlnx 5.4 Kernel.
+
+You have dwc3 (USB3) working using the mainline Kernel?
+
+Could you please share your device tree?
+
+That would be really helpful to get the mainline kernel running on the 
+Ultra96v2.
+
+Thanks
+
+Marco
+
+>
+>
+>
+> On 08.04.21 08:08, Michal Simek wrote:
+>> Hi Guenter,
+>>
+>> On 4/7/21 11:48 PM, Guenter Roeck wrote:
+>>> On Wed, Mar 17, 2021 at 12:22:29PM +0530, Manish Narani wrote:
+>>>> Add a new driver for supporting Xilinx platforms. This driver is used
+>>>> for some sequence of operations required for Xilinx USB controllers.
+>>>> This driver is also used to choose between PIPE clock coming from SerDes
+>>>> and the Suspend Clock. Before the controller is out of reset, the clock
+>>>> selection should be changed to PIPE clock in order to make the USB
+>>>> controller work. There is a register added in Xilinx USB controller
+>>>> register space for the same.
+>>>>
+>>>> Signed-off-by: Manish Narani<manish.narani@xilinx.com>
+>>> Trying this driver with qemu (v6.0.0-rc2) results in:
+>>>
+>>> [   15.184242] dwc3-xilinx ff9d0000.usb: error -ENODEV: failed to assert Reset
+>>> [   15.185754] Unable to handle kernel paging request at virtual address 006b6b6b6b6b6b9b
+>>> [   15.185994] Mem abort info:
+>>> [   15.186065]   ESR = 0x96000004
+>>> [   15.186317]   EC = 0x25: DABT (current EL), IL = 32 bits
+>>> [   15.186414]   SET = 0, FnV = 0
+>>> [   15.186498]   EA = 0, S1PTW = 0
+>>> [   15.186579] Data abort info:
+>>> [   15.186666]   ISV = 0, ISS = 0x00000004
+>>> [   15.186756]   CM = 0, WnR = 0
+>>> [   15.186887] [006b6b6b6b6b6b9b] address between user and kernel address ranges
+>>> [   15.187436] Internal error: Oops: 96000004 [#1] PREEMPT SMP
+>>> [   15.187777] Modules linked in:
+>>> [   15.188060] CPU: 0 PID: 1 Comm: swapper/0 Not tainted 5.12.0-rc6-next-20210406-00006-g05407f068fc9-dirty #1
+>>> [   15.188265] Hardware name: Xilinx Versal Virtual development board (DT)
+>>> [   15.188495] pstate: 80000005 (Nzcv daif -PAN -UAO -TCO BTYPE=--)
+>>> [   15.188614] pc : __clk_put+0x24/0x138
+>>> [   15.188716] lr : __clk_put+0x24/0x138
+>>> [   15.188791] sp : ffff80001326bac0
+>>> [   15.188853] x29: ffff80001326bac0 x28: ffff00000644ed00
+>>> [   15.188982] x27: ffff00000421ecd0 x26: ffff00000421e810
+>>> [   15.189076] x25: ffff00000644f100 x24: 0000000000000000
+>>> [   15.189170] x23: ffff8000126a2570 x22: 0000000000000005
+>>> [   15.189271] x21: ffff00000644ed00 x20: ffff000006449970
+>>> [   15.189367] x19: 6b6b6b6b6b6b6b6b x18: 0000000000000010
+>>> [   15.189456] x17: 0000000000000001 x16: 0000000000000000
+>>> [   15.189546] x15: ffff000003af0490 x14: 00000000000001b7
+>>> [   15.189642] x13: ffff000003af0490 x12: 00000000ffffffea
+>>> [   15.189729] x11: ffff8000123b6460 x10: 0000000000000080
+>>> [   15.189815] x9 : 00000000676993c6 x8 : 00000000676993c6
+>>> [   15.189941] x7 : 000000007d152ab3 x6 : ffff800012768480
+>>> [   15.190047] x5 : 0000000000000000 x4 : 000000007f97631e
+>>> [   15.190139] x3 : 00000000d5bdf2c2 x2 : 000000000000000b
+>>> [   15.190233] x1 : ffff000003af0040 x0 : 0000000000000001
+>>> [   15.190432] Call trace:
+>>> [   15.190506]  __clk_put+0x24/0x138
+>>> [   15.190588]  clk_put+0x10/0x20
+>>> [   15.190653]  clk_bulk_put+0x3c/0x60
+>>> [   15.190724]  devm_clk_bulk_release+0x1c/0x28
+>>> [   15.190806]  release_nodes+0x1c0/0x2b0
+>>> [   15.190887]  devres_release_all+0x38/0x60
+>>> [   15.190963]  really_probe+0x1e4/0x3a8
+>>> [   15.191042]  driver_probe_device+0x64/0xc8
+>>> ...
+>>>
+>>> because of ...
+>>>
+>>>> +
+>>>> +	ret = devm_clk_bulk_get_all(priv_data->dev, &priv_data->clks);
+>>>> +	if (ret < 0)
+>>>> +		return ret;
+>>>> +
+>>> ...
+>>>> +
+>>>> +err_clk_put:
+>>>> +	clk_bulk_disable_unprepare(priv_data->num_clocks, priv_data->clks);
+>>>> +	clk_bulk_put_all(priv_data->num_clocks, priv_data->clks);
+>>> clk_bulk_put_all() is not necessary because of devm_clk_bulk_get_all(),
+>>> and results in a double free.
+>>>
+>>>> +static int dwc3_xlnx_remove(struct platform_device *pdev)
+>>>> +{
+>>>> +	struct dwc3_xlnx	*priv_data = platform_get_drvdata(pdev);
+>>>> +	struct device		*dev = &pdev->dev;
+>>>> +
+>>>> +	of_platform_depopulate(dev);
+>>>> +
+>>>> +	clk_bulk_disable_unprepare(priv_data->num_clocks, priv_data->clks);
+>>>> +	clk_bulk_put_all(priv_data->num_clocks, priv_data->clks);
+>>> Same here. This will likely crash the driver on unload.
+>> It looks like that you directly created the patch. Isn't it better to
+>> send it yourself? Or do you want Manish to create it based on guidance
+>> above?
+>>
+>> Manish: Can you please take a look at this?
+>>
+>> Thanks,
+>> Michal
+> -- 
+> ______________________
+>
+> Marco Höfle
+> Kappelen 11
+> CH-⁠5706 Boniswil
+> Tel.: +41 78 790 93 62
+
+-- 
+______________________
+
+Marco Höfle
+Kappelen 11
+CH-⁠5706 Boniswil
+Tel.: +41 78 790 93 62
+
