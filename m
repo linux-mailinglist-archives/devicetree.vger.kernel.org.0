@@ -2,100 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BBDA357D4A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 09:26:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A692357D8B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 09:48:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229566AbhDHH1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 03:27:00 -0400
-Received: from mout.kundenserver.de ([212.227.126.130]:49757 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229623AbhDHH07 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 03:26:59 -0400
-Received: from mail-oo1-f51.google.com ([209.85.161.51]) by
- mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MqsL3-1lzHxG2c8v-00mrKD for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021
- 09:26:47 +0200
-Received: by mail-oo1-f51.google.com with SMTP id p2-20020a4aa8420000b02901bc7a7148c4so277980oom.11
-        for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021 00:26:47 -0700 (PDT)
-X-Gm-Message-State: AOAM530/pJOoK0WdWE9OnO6D1HOQQ8cenUs5VKALd1eNsoPk/yleEuKr
-        2LFE+ItBKYD5uZnFWTetEb5dUtuwn3062S4+/No=
-X-Google-Smtp-Source: ABdhPJzKJmULiKJZbqIfF2zDxr9Dn4RUKtO26qlLbMKJT/5DsJBNPIXmgMgdVr4n60mmoqzCYdBdCT5pE1al5gbKDF0=
-X-Received: by 2002:a4a:244d:: with SMTP id v13mr6446430oov.66.1617866806386;
- Thu, 08 Apr 2021 00:26:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <22814673-e9fe-f65b-cc0f-b02be4f90d1a@gmail.com>
- <CAK8P3a0bp3CUzOQHSX5KYt44j-Njk_u2P=0q-ZQ0HcTBiVVVSA@mail.gmail.com>
- <01c82108-64a8-33ee-3984-5bd7056a0002@gmail.com> <CAK8P3a37BUdHneO+9+t0Pan3UWZHub-ishcKLNxCbqO0kk0CNw@mail.gmail.com>
- <CAOwMV_yQLWwMEQ_f_wHOAipgD1qZgNz2SA2RJDZpNozCKv4vWQ@mail.gmail.com>
-In-Reply-To: <CAOwMV_yQLWwMEQ_f_wHOAipgD1qZgNz2SA2RJDZpNozCKv4vWQ@mail.gmail.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Thu, 8 Apr 2021 09:26:30 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a2Qg-uz0kMXFMrvRjUv3NRvZXjTwS1P5MDvFk3feYaBzg@mail.gmail.com>
-Message-ID: <CAK8P3a2Qg-uz0kMXFMrvRjUv3NRvZXjTwS1P5MDvFk3feYaBzg@mail.gmail.com>
-Subject: Re: [GIT PULL] arm64: dts: mediatek: changes for v5.13 (second round)
-To:     Fabien Parent <fparent@baylibre.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        SoC Team <soc@kernel.org>, arm-soc <arm@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Irui Wang <irui.wang@mediatek.com>,
+        id S229885AbhDHHsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 03:48:13 -0400
+Received: from mga18.intel.com ([134.134.136.126]:58374 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229877AbhDHHsN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Apr 2021 03:48:13 -0400
+IronPort-SDR: w0y3ZGF7ReJxreheXv5kpoGQxW/98lpFvhCSyVf4SGm1zOPFdZlDUvFd+OJ6y4vyBtQ8z1Ycjm
+ UVVHk3WfM9ZQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9947"; a="181022681"
+X-IronPort-AV: E=Sophos;i="5.82,205,1613462400"; 
+   d="scan'208";a="181022681"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2021 00:48:01 -0700
+IronPort-SDR: ngAq7GwVlfR1eDxlNW4Yf+7JCpl/7XeCeQAPKAoRtKpdwofPtelinvWnll+1DMH0edoX16DpVS
+ hLhC48Yzpfbw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,205,1613462400"; 
+   d="scan'208";a="519752773"
+Received: from kuha.fi.intel.com ([10.237.72.162])
+  by fmsmga001.fm.intel.com with SMTP; 08 Apr 2021 00:47:56 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Thu, 08 Apr 2021 10:47:55 +0300
+Date:   Thu, 8 Apr 2021 10:47:55 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Badhri Jagan Sridharan <badhri@google.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:j1AY6EJODYVytiIWB+Wooc0C26ZDQp1gjNo+f7t5FKwICN5kbn1
- k5mUBpepRh13Le4Xl/BVBIPCoYMk0aqtzO8ZsKJVXifZ5TP4y65PufxRHlWwOHnG6Vl5V7A
- gGydAy8Hgme1iOhBLlRcxxfVXoaKCqYbvU/m6SxODzsYtN+G1oMTO8lJuF8gwJ20SWd6K2h
- VK1GtOUR/liUdNqGfzfSw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:hPjVjcVz+go=:PFID7DMQHfXRZqqH4JwxX1
- xgEkc8vfh1sFi+o0tzLf3KGqR+MiBxukPKdqMH0lw/3YrgR21BLEocqBK8YRxZDAezCKwzM/C
- ImGH8P2D3zMGWqHVGUaqmMNbvV5vav0njBCCLU7BxQgkLywHD9vok/duFMpA2PsGx6t3tQeoB
- Z54Q4lerXqawEdjDf/PDr39Y2/bqanCnCCgPehGvlhWDNzb78Uti2yBXXVBTg8BxG7FSBX8mZ
- eEZeBeuypfvNzwMxG16QnjWTIMAjLTLF4wnXDZ6vrp7lhMYUsKXs37twbvyWvHfG39MXqKTWA
- z2T+JnKOamxHu928mutOEzCfr4Lwu29mOUPvFFSRbNEoTq0jjUTDZcplgzVgPW+zR7FGQMDX5
- phyWepSMTPWdNmoO1k0q4OgaqZfJBmMNNc6hmZ3QqZnSkEnDGxBXFLIs6+jwLXpahmgMMoJqj
- Ncckw0N4dcGKLhknmU54iCtRtD75XTA=
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Kyle Tso <kyletso@google.com>
+Subject: Re: [PATCH v2 4/6] usb: typec: tcpm: Honour pSnkStdby requirement
+ during negotiation
+Message-ID: <YG61KxWrwaOe0ddL@kuha.fi.intel.com>
+References: <20210407200723.1914388-1-badhri@google.com>
+ <20210407200723.1914388-4-badhri@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210407200723.1914388-4-badhri@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 8, 2021 at 12:14 AM Fabien Parent <fparent@baylibre.com> wrote:
-> On Wed, Apr 7, 2021 at 7:55 PM Arnd Bergmann <arnd@arndb.de> wrote:
-> > On Wed, Apr 7, 2021 at 6:34 PM Matthias Brugger <matthias.bgg@gmail.com> wrote:
-> > > On 07/04/2021 18:06, Arnd Bergmann wrote:
-> >
-> > So five of the strings are documented, the others are missing. I did not check
-> > the other patches in your branch.
->
-> The binding documentation for these drivers are here [0]. The display
-> bindings are documented as:
-> - compatible: "mediatek,<chip>-disp-<function>", one of
->
-> The <chip> placeholder is never expanded for all the supported chips.
-> The 5 existings matches from your grep command comes from the example.
-> I guess these will be fixed whenever someone converts [0] to yaml.
+On Wed, Apr 07, 2021 at 01:07:21PM -0700, Badhri Jagan Sridharan wrote:
+> >From PD Spec:
+> The Sink Shall transition to Sink Standby before a positive or
+> negative voltage transition of VBUS. During Sink Standby
+> the Sink Shall reduce its power draw to pSnkStdby. This allows
+> the Source to manage the voltage transition as well as
+> supply sufficient operating current to the Sink to maintain PD
+> operation during the transition. The Sink Shall
+> complete this transition to Sink Standby within tSnkStdby
+> after evaluating the Accept Message from the Source. The
+> transition when returning to Sink operation from Sink Standby
+> Shall be completed within tSnkNewPower. The
+> pSnkStdby requirement Shall only apply if the Sink power draw
+> is higher than this level.
+> 
+> The above requirement needs to be met to prevent hard resets
+> from port partner.
+> 
+> Without the patch: (5V/3A during SNK_DISCOVERY all the way through
+> explicit contract)
+> [   95.711984] CC1: 0 -> 0, CC2: 0 -> 5 [state TOGGLING, polarity 0, connected]
+> [   95.712007] state change TOGGLING -> SNK_ATTACH_WAIT [rev3 NONE_AMS]
+> [   95.712017] pending state change SNK_ATTACH_WAIT -> SNK_DEBOUNCED @ 170 ms [rev3 NONE_AMS]
+> [   95.837190] VBUS on
+> [   95.882075] state change SNK_ATTACH_WAIT -> SNK_DEBOUNCED [delayed 170 ms]
+> [   95.882082] state change SNK_DEBOUNCED -> SNK_ATTACHED [rev3 NONE_AMS]
+> [   95.882086] polarity 1
+> [   95.883151] set_auto_vbus_discharge_threshold mode:0 pps_active:n vbus:5000 ret:0
+> [   95.883441] enable vbus discharge ret:0
+> [   95.883445] Requesting mux state 1, usb-role 2, orientation 2
+> [   95.883776] state change SNK_ATTACHED -> SNK_STARTUP [rev3 NONE_AMS]
+> [   95.883879] pending state change SNK_STARTUP -> SNK_DISCOVERY @ 500 ms [rev3 NONE_AMS]
+> [   96.038960] VBUS on
+> [   96.383939] state change SNK_STARTUP -> SNK_DISCOVERY [delayed 500 ms]
+> [   96.383946] Setting voltage/current limit 5000 mV 3000 mA
+> [   96.383961] vbus=0 charge:=1
+> [   96.386044] state change SNK_DISCOVERY -> SNK_WAIT_CAPABILITIES [rev3 NONE_AMS]
+> [   96.386309] pending state change SNK_WAIT_CAPABILITIES -> HARD_RESET_SEND @ 450 ms [rev3 NONE_AMS]
+> [   96.394404] PD RX, header: 0x2161 [1]
+> [   96.394408]  PDO 0: type 0, 5000 mV, 3000 mA [E]
+> [   96.394410]  PDO 1: type 0, 9000 mV, 2000 mA []
+> [   96.394412] state change SNK_WAIT_CAPABILITIES -> SNK_NEGOTIATE_CAPABILITIES [rev2 POWER_NEGOTIATION]
+> [   96.394416] Setting usb_comm capable false
+> [   96.395083] cc=0 cc1=0 cc2=5 vbus=0 vconn=sink polarity=1
+> [   96.395089] Requesting PDO 1: 9000 mV, 2000 mA
+> [   96.395093] PD TX, header: 0x1042
+> [   96.397404] PD TX complete, status: 0
+> [   96.397424] pending state change SNK_NEGOTIATE_CAPABILITIES -> HARD_RESET_SEND @ 60 ms [rev2 POWER_NEGOTIATION]
+> [   96.400826] PD RX, header: 0x363 [1]
+> [   96.400829] state change SNK_NEGOTIATE_CAPABILITIES -> SNK_TRANSITION_SINK [rev2 POWER_NEGOTIATION]
+> [   96.400832] pending state change SNK_TRANSITION_SINK -> HARD_RESET_SEND @ 500 ms [rev2 POWER_NEGOTIATION]
+> [   96.577315] PD RX, header: 0x566 [1]
+> [   96.577321] Setting voltage/current limit 9000 mV 2000 mA
+> [   96.578363] set_auto_vbus_discharge_threshold mode:3 pps_active:n vbus:9000 ret:0
+> [   96.578370] state change SNK_TRANSITION_SINK -> SNK_READY [rev2 POWER_NEGOTIATION]
+> 
+> With the patch:
+> [  168.398573] CC1: 0 -> 0, CC2: 0 -> 5 [state TOGGLING, polarity 0, connected]
+> [  168.398605] state change TOGGLING -> SNK_ATTACH_WAIT [rev3 NONE_AMS]
+> [  168.398619] pending state change SNK_ATTACH_WAIT -> SNK_DEBOUNCED @ 170 ms [rev3 NONE_AMS]
+> [  168.522348] VBUS on
+> [  168.568676] state change SNK_ATTACH_WAIT -> SNK_DEBOUNCED [delayed 170 ms]
+> [  168.568684] state change SNK_DEBOUNCED -> SNK_ATTACHED [rev3 NONE_AMS]
+> [  168.568688] polarity 1
+> [  168.569867] set_auto_vbus_discharge_threshold mode:0 pps_active:n vbus:5000 ret:0
+> [  168.570158] enable vbus discharge ret:0
+> [  168.570161] Requesting mux state 1, usb-role 2, orientation 2
+> [  168.570504] state change SNK_ATTACHED -> SNK_STARTUP [rev3 NONE_AMS]
+> [  168.570634] pending state change SNK_STARTUP -> SNK_DISCOVERY @ 500 ms [rev3 NONE_AMS]
+> [  169.070689] state change SNK_STARTUP -> SNK_DISCOVERY [delayed 500 ms]
+> [  169.070695] Setting voltage/current limit 5000 mV 3000 mA
+> [  169.070702] vbus=0 charge:=1
+> [  169.072719] state change SNK_DISCOVERY -> SNK_WAIT_CAPABILITIES [rev3 NONE_AMS]
+> [  169.073145] pending state change SNK_WAIT_CAPABILITIES -> HARD_RESET_SEND @ 450 ms [rev3 NONE_AMS]
+> [  169.077162] PD RX, header: 0x2161 [1]
+> [  169.077172]  PDO 0: type 0, 5000 mV, 3000 mA [E]
+> [  169.077178]  PDO 1: type 0, 9000 mV, 2000 mA []
+> [  169.077183] state change SNK_WAIT_CAPABILITIES -> SNK_NEGOTIATE_CAPABILITIES [rev2 POWER_NEGOTIATION]
+> [  169.077191] Setting usb_comm capable false
+> [  169.077753] cc=0 cc1=0 cc2=5 vbus=0 vconn=sink polarity=1
+> [  169.077759] Requesting PDO 1: 9000 mV, 2000 mA
+> [  169.077762] PD TX, header: 0x1042
+> [  169.079990] PD TX complete, status: 0
+> [  169.080013] pending state change SNK_NEGOTIATE_CAPABILITIES -> HARD_RESET_SEND @ 60 ms [rev2 POWER_NEGOTIATION]
+> [  169.083183] VBUS on
+> [  169.084195] PD RX, header: 0x363 [1]
+> [  169.084200] state change SNK_NEGOTIATE_CAPABILITIES -> SNK_TRANSITION_SINK [rev2 POWER_NEGOTIATION]
+> [  169.084206] Setting standby current 5000 mV @ 500 mA
+> [  169.084209] Setting voltage/current limit 5000 mV 500 mA
+> [  169.084220] pending state change SNK_TRANSITION_SINK -> HARD_RESET_SEND @ 500 ms [rev2 POWER_NEGOTIATION]
+> [  169.260222] PD RX, header: 0x566 [1]
+> [  169.260227] Setting voltage/current limit 9000 mV 2000 mA
+> [  169.261315] set_auto_vbus_discharge_threshold mode:3 pps_active:n vbus:9000 ret:0
+> [  169.261321] state change SNK_TRANSITION_SINK -> SNK_READY [rev2 POWER_NEGOTIATION]
+> [  169.261570] AMS POWER_NEGOTIATION finished
+> 
+> Fixes: f0690a25a140b ("staging: typec: USB Type-C Port Manager (tcpm)")
+> Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
+> ---
+>  drivers/usb/typec/tcpm/tcpm.c | 17 +++++++++++++++++
+>  include/linux/usb/pd.h        |  2 ++
+>  2 files changed, 19 insertions(+)
+> 
+> diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
+> index d1d03ee90d8f..770b2edd9a04 100644
+> --- a/drivers/usb/typec/tcpm/tcpm.c
+> +++ b/drivers/usb/typec/tcpm/tcpm.c
+> @@ -4131,6 +4131,23 @@ static void run_state_machine(struct tcpm_port *port)
+>  		}
+>  		break;
+>  	case SNK_TRANSITION_SINK:
+> +		/* From the USB PD spec:
+> +		 * "The Sink Shall transition to Sink Standby before a positive or
+> +		 * negative voltage transition of VBUS. During Sink Standby
+> +		 * the Sink Shall reduce its power draw to pSnkStdby."
+> +		 *
+> +		 * This is not applicable to PPS though as the port can continue
+> +		 * to draw negotiated power without switching to standby.
+> +		 */
+> +		if (port->supply_voltage != port->req_supply_voltage && !port->pps_data.active &&
+> +		    port->current_limit * port->supply_voltage / 1000 > PD_P_SNK_STDBY_MW) {
+> +			u32 stdby_ma = port->supply_voltage ? PD_P_SNK_STDBY_MW * 1000 /
+> +				port->supply_voltage : 0;
 
-Ok. I suppose the wildcards just didn't get caught in the initial review of the
-binding. The way the binding is defined is not all that helpful since the entire
-point of having chip specific strings is to allow having different bindings for
-future chips that have different requirements.
+Looks like unnecessary condition to me. The first condition can not be
+true if port->supply_voltage == 0. So I think that should be just:
 
-There is still an open question on what to do to replace the aliases. At least
-since they are not part of the documented binding, it is fairly easy to argue
-that the drivers should not rely on them, and we can still change them.
-I also see that as late as last november, there were still incompatible
-code changes to the ad-hoc binding in
-drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c, so I'm not too worried
-about breaking existing dts files that relied on it.
+                        u32 stdby_ma = PD_P_SNK_STDBY_MW * 1000 / port->supply_voltage;
 
-I don't claim to understand how the various blocks all fit together here,
-but I would expect that this can all be replaced with just having
-references to phandles for the other nodes in one place.
+Or did I miss something?
 
-Are the aliases in this case actually board specific, or do they just
-document how the SoC is wired up?
+> +			tcpm_log(port, "Setting standby current %u mV @ %u mA",
+> +				 port->supply_voltage, stdby_ma);
+> +			tcpm_set_current_limit(port, stdby_ma, port->supply_voltage);
+> +		}
+> +		fallthrough;
+>  	case SNK_TRANSITION_SINK_VBUS:
+>  		tcpm_set_state(port, hard_reset_state(port),
+>  			       PD_T_PS_TRANSITION);
+> diff --git a/include/linux/usb/pd.h b/include/linux/usb/pd.h
+> index 70d681918d01..bf00259493e0 100644
+> --- a/include/linux/usb/pd.h
+> +++ b/include/linux/usb/pd.h
+> @@ -493,4 +493,6 @@ static inline unsigned int rdo_max_power(u32 rdo)
+>  #define PD_N_CAPS_COUNT		(PD_T_NO_RESPONSE / PD_T_SEND_SOURCE_CAP)
+>  #define PD_N_HARD_RESET_COUNT	2
+>  
+> +#define PD_P_SNK_STDBY_MW	2500	/* 2500 mW */
+> +
+>  #endif /* __LINUX_USB_PD_H */
+> -- 
+> 2.31.1.295.g9ea45b61b8-goog
 
-       Arnd
+thanks,
+
+-- 
+heikki
