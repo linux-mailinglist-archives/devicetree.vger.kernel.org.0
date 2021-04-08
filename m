@@ -2,86 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99005358710
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 16:21:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E857A358724
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 16:28:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231887AbhDHOVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 10:21:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33704 "EHLO mail.kernel.org"
+        id S231720AbhDHO3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 10:29:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35718 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231929AbhDHOVo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Apr 2021 10:21:44 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C60456101B;
-        Thu,  8 Apr 2021 14:21:32 +0000 (UTC)
+        id S231659AbhDHO3B (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Apr 2021 10:29:01 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D91EE6113D;
+        Thu,  8 Apr 2021 14:28:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617891693;
-        bh=fO/H2TWR8q1dXhDd78bSkARRpIe7+jARxJXpnGj7gmY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UYoPwgzr8p5ril74OUyrPDKrtSa/ukXP+Aq6KTtHTJ8kdj66VYkTCg+YFsJK6jdzy
-         OxCk/pD6x/3iwYyJUeVtlfRzH9OIaYibBGugybBemxT6VGRQRCsbMPLB/pMN/FFxfC
-         YcnWsDCC+34JouVuhJufG9edV0V0dn2ORq9y18xf2ORRfp8RrITdK9XBYPgN50lR7p
-         DP1EnXQgA2O3ybmW+Jch3+5oKyqCmZ0rwosVDo91JLZj8ZWd99eyWtJiU8rbmwLY91
-         ATNwmt+KV0shHdZOpr1ngLO6Ik5fgXjmC3SXyGdFjqn45hOFjT3YV4ku7sE5PvD2rq
-         WsL4nBlUe2YIw==
-Date:   Thu, 8 Apr 2021 16:21:30 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org,
-        linux-renesas-soc@vger.kernel.org, yusuke.goda.sx@renesas.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: can: rcar_can: Document
- r8a77961 support
-Message-ID: <20210408142130.GB1034@ninjato>
-References: <20210312095030.534957-1-yoshihiro.shimoda.uh@renesas.com>
- <20210312095030.534957-2-yoshihiro.shimoda.uh@renesas.com>
+        s=k20201202; t=1617892130;
+        bh=2FuIUpNq5FIFplx4EeFCO4ieAf4OaROCW1udvxA38HM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=q4+2HCpcV+rS5tQbc0ehHIFcU43mYM92ygvDGNdO61ec7U7uxl6z/g5VUuCahu1d7
+         tclDT/WHqPdalS2H/kvCw59rIEj1o0/NyKCgLxrewa2mIEtUgBjdtsKK2x81FzjliN
+         uw+jo1d/K4o/DLj5Xy+jU/mH+yercmiEO/1QVp6bBQaQnRHe+J7+YaOT0+95DCEF+J
+         cASgDaHb2prTzoCruYIXU+2JIyHemzG79APBJ3AyPtiBdDo1GAWEuaaV3V/Ci1JOum
+         qSBa6ANdwyb4B26pLZ/tFa1b2RZBtpfnmixCCsdP9XolNJxUCMuBNpZeja4RZb/2Cn
+         Zh+P3eorDIV0Q==
+Received: by mail-ed1-f53.google.com with SMTP id f8so2657838edd.11;
+        Thu, 08 Apr 2021 07:28:49 -0700 (PDT)
+X-Gm-Message-State: AOAM532z3GWc8H9CFlDJGH3d7jyujc0DqC59rp/ImRAtx8Cvm6NAG0jB
+        ooKDuKv1w3VGCXYww3Xikj0LyN33OXpSa/Dwyw==
+X-Google-Smtp-Source: ABdhPJz4i8EdGJ6gG+z3e0xfEVwHZQEAJpCAY2QsFcp9e1muisyWgXQMDwqQbL0LT7UVpYYGYEQjULRMZIZcSo7sitA=
+X-Received: by 2002:a50:fd12:: with SMTP id i18mr6127269eds.137.1617892128439;
+ Thu, 08 Apr 2021 07:28:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="tsOsTdHNUZQcU9Ye"
-Content-Disposition: inline
-In-Reply-To: <20210312095030.534957-2-yoshihiro.shimoda.uh@renesas.com>
+References: <1615447798-6959-1-git-send-email-skakit@codeaurora.org>
+ <1615447798-6959-3-git-send-email-skakit@codeaurora.org> <YEpNV55KR2nlAXMP@builder.lan>
+ <86f8d5dbdb8d5d6627b9deece1978d07@codeaurora.org> <20210408023656.GM904837@yoga>
+In-Reply-To: <20210408023656.GM904837@yoga>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 8 Apr 2021 09:28:36 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJXaeuWPDAH30p_DKqkLm+tru8N8kqsgLaT1Y6pr6k-Lw@mail.gmail.com>
+Message-ID: <CAL_JsqJXaeuWPDAH30p_DKqkLm+tru8N8kqsgLaT1Y6pr6k-Lw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: mfd: Convert pm8xxx bindings to yaml
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     satya priya <skakit@codeaurora.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andy Gross <agross@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
+        <linux-rtc@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Kiran Gunda <kgunda@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Apr 7, 2021 at 9:37 PM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> On Wed 07 Apr 10:37 CDT 2021, skakit@codeaurora.org wrote:
+>
+> > Hi Bjorn,
+> >
+> > On 2021-03-11 22:33, Bjorn Andersson wrote:
+> > > On Thu 11 Mar 01:29 CST 2021, satya priya wrote:
+> [..]
+> > > > +patternProperties:
+> > > > +  "rtc@[0-9a-f]+$":
+> > >
+> > > Can we somehow link this to individual binding docs instead of listing
+> > > all the possible functions here?
+> > >
+> >
+> > you mean we should split this into two:
+> > qcom-pm8xxx.yaml and qcom-pm8xxx-rtc.yaml
+> > Please correct me if wrong.
+> >
+>
+> Right, I'm worried that it will be quite hard to maintain this document
+> once we start adding all the various pmic blocks to it. So if we somehow
+> can maintain a series of qcom-pm8xxx-<func>.yaml and just ref them into
+> the main PMIC definition.
+>
+> @Rob, can you give us some guidance on how to structure this binding,
+> with the various PMICs described will have some defined subset of a
+> larger set of hardware blocks that's often shared between versions?
 
---tsOsTdHNUZQcU9Ye
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+How you suggest is good. The only other thing is just 1 complete
+example rather than a bunch of <func> fragments.
 
-On Fri, Mar 12, 2021 at 06:50:29PM +0900, Yoshihiro Shimoda wrote:
-> Document SoC specific bindings for R-Car M3-W+ (r8a77961) SoC.
->=20
-> Also as R8A7796 is now called R8A77960 so that update those
-> references.
->=20
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Acked-by: Rob Herring <robh@kernel.org>
-
-Shimoda-san, I think you should resend this and add netdev and
-linux-can@vger.kernel.org to Cc. I'd think the CAN maintainers will pick
-this up.
-
-
---tsOsTdHNUZQcU9Ye
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmBvEWYACgkQFA3kzBSg
-Kbba4Q//Tke0uE8a5ETpCuleBtm2tbCYuRGp0/e1ZIMDmRdsCayb4E2M5IGVrRHa
-ljpLw2+AzKXXCv3aHP9ltw6q+W8vjX+JIEsP0guxyVcTZyeh3pvfGCW7ie2p35nH
-KcANw4pu/Eki24AUV2qojs0qjwivpRlZ04a+3G34JpUG9gwsvKwsY4dDyhdN4uw+
-bheOdlGGFL8mw6iwkF0lvINTog0puyZ+p7KL0Fx1tOA5yioZgrocwxMbrgfx0x4O
-jWjDbdYVCCabEBsguckIPTHLhSZEMnYOp7ZCNZQ1LN/65Gv/SgWyBPQx+r+CSBBk
-UvwnJGmqA8GP3t1iPlql1IsfwK+S7zTJEplrALI/LgT8cjJ9Yz79hZn+uMO5c8N5
-HyJjZCmpTUDlepfL+G/KPADhNbd7dT+sB5HML8Ay23d9tK542X3Y9SS1k4bUNYUT
-JIyowNIMZKxoJA1gEDvO+pa11Z5Tixs6F4XF+Kp3UN0woeVda49gd40BAIxCAG5V
-Ek7pmQhcio+QRFXfGb6f5OzW6Ei6/VUmwmi7mIuIRNIKA2guOS4JoYYliWtEk9Kt
-YgLkRN6/sS5CPfbHLowL+ZuYsVH4bxCvDnmtsH4g+I42+RybVLqrRbgi8ru9HLGX
-pN9cuC9W/i/fTLtF3Wirkps8eSIcXs1e5DGNbhYyVKu1hDurChQ=
-=2/yI
------END PGP SIGNATURE-----
-
---tsOsTdHNUZQcU9Ye--
+Rob
