@@ -2,148 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65D44357ADF
-	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 05:45:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 007F0357B06
+	for <lists+devicetree@lfdr.de>; Thu,  8 Apr 2021 06:04:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229514AbhDHDpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Apr 2021 23:45:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52426 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbhDHDpv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Apr 2021 23:45:51 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 932C8C061760;
-        Wed,  7 Apr 2021 20:45:39 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id 82so1090067yby.7;
-        Wed, 07 Apr 2021 20:45:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YpXyY82hIb+Th5j4vFZ0f7bQvdjavP/oC7bA+N+HLRo=;
-        b=ntVXVu5L0RneQrc8Q9HMMHsvxVKwZByhF8LxTqOp1KeHAgcVvIydsECmWIZGlPMWyW
-         ms1UmlAXKu0cXHftCqFuQDWgIUMOwpPAh1VRp57wK7mpx60sSJxlQrfvy/NbBfXM0AWG
-         iKE5yAMn56HRQ9ri9gTU0oqqeYgZoHvrLGuFCnYBLuG/vQHw+DvKpG1GPPndh/bHMDRm
-         PzzunMdViWXxI2zTJ5iJeLtJloIzteDo05cRuleVowX84okO4xLlKW9mzIsCWrB7/h7A
-         JTwX+CSuNOv4iLDX+w7vzJG+ZjtfD2NzHTQzOintSNy3JuCqxGACjVR+yJ5FDtldA+c2
-         h7Og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YpXyY82hIb+Th5j4vFZ0f7bQvdjavP/oC7bA+N+HLRo=;
-        b=HfcQ/Nszve4ZccVD/RFRTBDaZxCc3a/Yt4nsadZcmQu1ewwBxlgpbWs+FHVYQwZR6d
-         IHHAfs4/r6z9SPWNr/igqx4siXl++jtABtSSoy4cD9WEsb901laeiRIqon5yLKi1ssb9
-         WJaA4YRi+9lsd5J5e9Y5AYmrnqTC9H1odE15rxvmVarCdrY72HncjTsstAAkFwLB164d
-         8n6ZAs1e4GaJG+qIvJAsgFJyCrR529mcidBlFfRz3f0rhN+9CQdu7/6Rx1nGVBQKIF55
-         LeV7QC7//JaH6bzCQM9+AGKqpMNja0PkcXLkzkdmXmYgCrBuXk/C3pV7ZXspfUsYJDsC
-         Sb8Q==
-X-Gm-Message-State: AOAM531q2verIfZvXzEIDYVefUPotgFBvuStxGXb8zaiZ0dYid8V2FHC
-        rvbw1cn1bY2L6IGa8BZPlw/Hg5nDAzcuap/fKZo=
-X-Google-Smtp-Source: ABdhPJxrDGN21/BbNTfevzT0w6+H9gdFlLh3L/VOrZ8aqLPhftv9Ya6tsKrE4JScC+D0oB4InTW/a6BztUY6iXpk1WE=
-X-Received: by 2002:a25:f304:: with SMTP id c4mr8455726ybs.236.1617853538936;
- Wed, 07 Apr 2021 20:45:38 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201105212116.411422-1-peter.hilber@opensynergy.com> <20201105212116.411422-11-peter.hilber@opensynergy.com>
-In-Reply-To: <20201105212116.411422-11-peter.hilber@opensynergy.com>
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-Date:   Thu, 8 Apr 2021 09:15:28 +0530
-Message-ID: <CAOh2x==6TH-A8076weSLy7kLqrNZgRgp2GFyAEGGPyikw1rgGg@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 10/10] firmware: arm_scmi: Add virtio transport
-To:     Peter Hilber <peter.hilber@opensynergy.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        virtualization@lists.linux-foundation.org,
-        virtio-dev@lists.oasis-open.org,
-        Igor Skalkin <igor.skalkin@opensynergy.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        souvik.chakravarty@arm.com, alex.bennee@linaro.org,
-        jean-philippe@linaro.org, mikhail.golubev@opensynergy.com,
-        anton.yakovlev@opensynergy.com,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Jason Wang <jasowang@redhat.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>
+        id S229742AbhDHEEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 00:04:12 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:40917 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229735AbhDHEEG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 00:04:06 -0400
+X-UUID: ba972cc9a02c45799f041d257df7ca94-20210408
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=DVHlk3aQBzPohEdHzeEyWWrR5lnDnpX1qWaGhOvJPGs=;
+        b=QTiBGQJr1GMEiINEgdZv3lwl5O7N5sa5wJkXgBr2F6FVl9BNtt8ax64gkAQFP6Hz9cQF6O79MZhWXxjUvPqWDCoKhQlu/pvNUyurThXfbMVP3tWfSIaSnHhJ88QhWMMzBFsTIHZkPHErxfjyM7jyvzPQ3/yTYNGoC6ktGs7d5lQ=;
+X-UUID: ba972cc9a02c45799f041d257df7ca94-20210408
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <flora.fu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 422226286; Thu, 08 Apr 2021 12:03:52 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 8 Apr 2021 12:03:51 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 8 Apr 2021 12:03:51 +0800
+Message-ID: <1617854631.5654.9.camel@mtksdccf07>
+Subject: Re: [PATCH 5/8] dt-bindings: soc: mediatek: apusys: Add new
+ document for APU power domain
+From:   Flora Fu <flora.fu@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Stephen Boyd <sboyd@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Chiawen Lee <chiawen.lee@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        <linux-mediatek@lists.infradead.org>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        <linux-clk@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Pi-Cheng Chen <pi-cheng.chen@mediatek.com>
+Date:   Thu, 8 Apr 2021 12:03:51 +0800
+In-Reply-To: <1617805692.253379.3696993.nullmailer@robh.at.kernel.org>
+References: <1617766086-5502-1-git-send-email-flora.fu@mediatek.com>
+         <1617766086-5502-6-git-send-email-flora.fu@mediatek.com>
+         <1617805692.253379.3696993.nullmailer@robh.at.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 6, 2020 at 2:59 AM Peter Hilber
-<peter.hilber@opensynergy.com> wrote:
+SGksIFJvYiwgDQoNClRoZSBlcnJvciBpcyByZXN1bHRlZCBmcm9tIHNvbWUgdW4tbWVyZ2VkIHBh
+dGNoLg0KDQpQbGVhc2Ugbm90ZSB0aGF0IHRoZSBwYXRjaCBkZXBlbmRzIE1UODE5MiBjbG9jayBw
+YXRjaGVzIHdoaWNoIGhhdmVuJ3QgeWV0IGJlZW4gYWNjZXB0ZWQuDQpodHRwczovL3BhdGNod29y
+ay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtbWVkaWF0ZWsvcGF0Y2gvMjAyMTAzMjQxMDQxMTAu
+MTMzODMtNy1jaHVuLWppZS5jaGVuQG1lZGlhdGVrLmNvbS8NCg0KVGhhbmtzIGZvciB5b3VyIHJl
+dmlldy4NCg0KT24gV2VkLCAyMDIxLTA0LTA3IGF0IDA5OjI4IC0wNTAwLCBSb2IgSGVycmluZyB3
+cm90ZToNCj4gT24gV2VkLCAwNyBBcHIgMjAyMSAxMToyODowMyArMDgwMCwgRmxvcmEgRnUgd3Jv
+dGU6DQo+ID4gRG9jdW1lbnQgdGhlIGJpbmRpbmdzIGZvciBBUFUgcG93ZXIgZG9tYWluIG9uIE1l
+ZGlhVGVrIFNvQy4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBGbG9yYSBGdSA8ZmxvcmEuZnVA
+bWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICAuLi4vc29jL21lZGlhdGVrL21lZGlhdGVrLGFw
+dS1wbS55YW1sICAgICAgICAgfCAxNDYgKysrKysrKysrKysrKysrKysrDQo+ID4gIDEgZmlsZSBj
+aGFuZ2VkLCAxNDYgaW5zZXJ0aW9ucygrKQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NvYy9tZWRpYXRlay9tZWRpYXRlayxhcHUtcG0u
+eWFtbA0KPiA+IA0KPiANCj4gTXkgYm90IGZvdW5kIGVycm9ycyBydW5uaW5nICdtYWtlIERUX0NI
+RUNLRVJfRkxBR1M9LW0gZHRfYmluZGluZ19jaGVjaycNCj4gb24geW91ciBwYXRjaCAoRFRfQ0hF
+Q0tFUl9GTEFHUyBpcyBuZXcgaW4gdjUuMTMpOg0KPiANCj4geWFtbGxpbnQgd2FybmluZ3MvZXJy
+b3JzOg0KPiANCj4gZHRzY2hlbWEvZHRjIHdhcm5pbmdzL2Vycm9yczoNCj4gRG9jdW1lbnRhdGlv
+bi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NvYy9tZWRpYXRlay9tZWRpYXRlayxhcHUtcG0uZXhhbXBs
+ZS5kdHM6MTk6MTg6IGZhdGFsIGVycm9yOiBkdC1iaW5kaW5ncy9jbG9jay9tdDgxOTItY2xrLmg6
+IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkNCj4gICAgMTkgfCAgICAgICAgICNpbmNsdWRlIDxk
+dC1iaW5kaW5ncy9jbG9jay9tdDgxOTItY2xrLmg+DQo+ICAgICAgIHwgICAgICAgICAgICAgICAg
+ICBefn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fg0KPiBjb21waWxhdGlvbiB0ZXJtaW5h
+dGVkLg0KPiBtYWtlWzFdOiAqKiogW3NjcmlwdHMvTWFrZWZpbGUubGliOjM3NzogRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NvYy9tZWRpYXRlay9tZWRpYXRlayxhcHUtcG0uZXhh
+bXBsZS5kdC55YW1sXSBFcnJvciAxDQo+IG1ha2VbMV06ICoqKiBXYWl0aW5nIGZvciB1bmZpbmlz
+aGVkIGpvYnMuLi4uDQo+IG1ha2U6ICoqKiBbTWFrZWZpbGU6MTQxNDogZHRfYmluZGluZ19jaGVj
+a10gRXJyb3IgMg0KPiANCj4gU2VlIGh0dHBzOi8vdXJsZGVmZW5zZS5jb20vdjMvX19odHRwczov
+L3BhdGNod29yay5vemxhYnMub3JnL3BhdGNoLzE0NjMxMTVfXzshIUNUUk5LQTl3TWcwQVJidyEw
+WFVuMUxjTkhmdlVTaE5DbHBNX3lINzNUQVI5cWRtMjlTWk1ja2Fzb0NROFV6ZUtTLXZaVzBRVXUz
+U3NuLXM2JCANCj4gDQo+IFRoaXMgY2hlY2sgY2FuIGZhaWwgaWYgdGhlcmUgYXJlIGFueSBkZXBl
+bmRlbmNpZXMuIFRoZSBiYXNlIGZvciBhIHBhdGNoDQo+IHNlcmllcyBpcyBnZW5lcmFsbHkgdGhl
+IG1vc3QgcmVjZW50IHJjMS4NCj4gDQo+IElmIHlvdSBhbHJlYWR5IHJhbiAnbWFrZSBkdF9iaW5k
+aW5nX2NoZWNrJyBhbmQgZGlkbid0IHNlZSB0aGUgYWJvdmUNCj4gZXJyb3IocyksIHRoZW4gbWFr
+ZSBzdXJlICd5YW1sbGludCcgaXMgaW5zdGFsbGVkIGFuZCBkdC1zY2hlbWEgaXMgdXAgdG8NCj4g
+ZGF0ZToNCj4gDQo+IHBpcDMgaW5zdGFsbCBkdHNjaGVtYSAtLXVwZ3JhZGUNCj4gDQo+IFBsZWFz
+ZSBjaGVjayBhbmQgcmUtc3VibWl0Lg0KPiANCg0KDQo=
 
-> +static int scmi_vio_probe(struct virtio_device *vdev)
-> +{
-> +       struct device *dev = &vdev->dev;
-> +       struct scmi_vio_channel **vioch;
-> +       bool have_vq_rx;
-> +       int vq_cnt;
-> +       int i;
-> +       struct virtqueue *vqs[VIRTIO_SCMI_VQ_MAX_CNT];
-> +
-> +       vioch = devm_kcalloc(dev, VIRTIO_SCMI_VQ_MAX_CNT, sizeof(*vioch),
-> +                            GFP_KERNEL);
-> +       if (!vioch)
-> +               return -ENOMEM;
-> +
-> +       have_vq_rx = virtio_has_feature(vdev, VIRTIO_SCMI_F_P2A_CHANNELS);
-> +       vq_cnt = have_vq_rx ? VIRTIO_SCMI_VQ_MAX_CNT : 1;
-> +
-> +       for (i = 0; i < vq_cnt; i++) {
-> +               vioch[i] = devm_kzalloc(dev, sizeof(**vioch), GFP_KERNEL);
-> +               if (!vioch[i])
-> +                       return -ENOMEM;
-> +       }
-> +
-> +       if (have_vq_rx)
-> +               vioch[VIRTIO_SCMI_VQ_RX]->is_rx = true;
-> +
-> +       if (virtio_find_vqs(vdev, vq_cnt, vqs, scmi_vio_complete_callbacks,
-> +                           scmi_vio_vqueue_names, NULL)) {
-> +               dev_err(dev, "Failed to get %d virtqueue(s)\n", vq_cnt);
-> +               return -1;
-> +       }
-> +       dev_info(dev, "Found %d virtqueue(s)\n", vq_cnt);
-> +
-> +       for (i = 0; i < vq_cnt; i++) {
-> +               spin_lock_init(&vioch[i]->lock);
-> +               vioch[i]->vqueue = vqs[i];
-> +               vioch[i]->vqueue->priv = vioch[i];
-
-The vqueue->priv field is used by core, you can't update it else
-notifications won't work.
-
-> +       }
-> +
-> +       vdev->priv = vioch;
-> +
-> +       virtio_device_ready(vdev);
-> +
-> +       return 0;
-> +}
-
-diff --git a/drivers/firmware/arm_scmi/virtio.c
-b/drivers/firmware/arm_scmi/virtio.c
-index f70aa72f34f1..b1af77341b30 100644
---- a/drivers/firmware/arm_scmi/virtio.c
-+++ b/drivers/firmware/arm_scmi/virtio.c
-@@ -80,7 +80,8 @@ static int scmi_vio_populate_vq_rx(struct
-scmi_vio_channel *vioch,
-
- static void scmi_vio_complete_cb(struct virtqueue *vqueue)
- {
--       struct scmi_vio_channel *vioch = vqueue->priv;
-+       struct scmi_vio_channel **_vioch = vqueue->vdev->priv;
-+       struct scmi_vio_channel *vioch = _vioch[vqueue->index];
-        unsigned long iflags;
-        unsigned int length;
-
-@@ -454,7 +455,6 @@ static int scmi_vio_probe(struct virtio_device *vdev)
-        for (i = 0; i < vq_cnt; i++) {
-                spin_lock_init(&vioch[i]->lock);
-                vioch[i]->vqueue = vqs[i];
--               vioch[i]->vqueue->priv = vioch[i];
-        }
-
-        vdev->priv = vioch;
