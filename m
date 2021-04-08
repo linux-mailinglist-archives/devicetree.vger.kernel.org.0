@@ -2,216 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A73A358FEA
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 00:40:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 759EF358FFE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 00:49:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232882AbhDHWk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 18:40:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46850 "EHLO
+        id S232800AbhDHWti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 18:49:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232951AbhDHWkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 18:40:25 -0400
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA40C061760;
-        Thu,  8 Apr 2021 15:40:14 -0700 (PDT)
-Received: by mail-qk1-x735.google.com with SMTP id y5so4016582qkl.9;
-        Thu, 08 Apr 2021 15:40:14 -0700 (PDT)
+        with ESMTP id S232684AbhDHWth (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 18:49:37 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5499C061761
+        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 15:49:23 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id g15so2942898pfq.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021 15:49:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=zqNhDpCeYS6QSJxT3ix+09XaNUJtxgOgbVp2qXDUwE0=;
-        b=Kx8tLTz5k1pUsYsYbQ9rbZxWBPx/5tEGEUzUJZUtg5+bYQkCL66Fhc9HjxRcOtGhav
-         0XrHjEVZPxED1Ea/354dZwNAS0IqfHn+HKH6IHIh1IXDo9nJv++aSOyl+SOWFHkv+rfJ
-         81YbiGSwAlDFmGNXKsMXm38+D+z3GJCV4h4c2z68gm5PwsiXgGNzoPnJt1WTk+86Cvef
-         uj58fX+Z+9Li01p4AvBbELqsetCg4geG9ncJdKS/C8Kr1LSGRHCGH9fITBIHhjo0JzBK
-         elInXbQ30gZzm/Uhuy5Ik3M9VYSSnuFs1SfoQ9gKqDUOlLM8DyX5AHwzCGutSMHlqpj0
-         TWbA==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=OA781OccRNwXE7rt2K4lFZ5YBX2tVVTL8OP2VVE7W5k=;
+        b=WV51htl117L8zuAaqHXXoY7ed5xTWBqk5ntWuoyogOc/YvHhI2fi3POHYHV+gyiI+h
+         7jwQJ5n3UeNi0UQ+xcGrHwjZQTU4J95PvkA1frsL8un4AnJ2cNbmyci9oGBSQX11Nx04
+         lLiHi1bh92wdh08yNIMHySzMNYC96WXXNunv8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=zqNhDpCeYS6QSJxT3ix+09XaNUJtxgOgbVp2qXDUwE0=;
-        b=bhnnQo+Pqu67ajmOLiu4FKdrXtzWRifIE4z9w7A62R2Hi6We7kh2G4xZEW0r4I1chT
-         56gwLz+XKQ9Pgn0QxsZ27lN6NMNhk1VRbYToNxK3gUxGR1TENYgJIu4JE52RBBTPrMsC
-         T/ILafzFwrovi04V0MaOzeuEuux2v9SBKggB2ZmXHD0f372N9J5h8OEyJNhM7676vpbj
-         Pjob90AbjEpPfPEeoYOfMnSZJGXJ/40S3Z5rgoUgEaspInfuVU8wXN2AIEZGOOL0f/A0
-         /AQNQrLmKfPG0ZdeKUVXjh6LL1dYpuAtUjux/9NmCeM157CZU/m+oi6hM5VDYp1gw5si
-         4DcA==
-X-Gm-Message-State: AOAM53179banCpCEcXaQv35IM7NDn8AW2jkMp67K6mW3QSpHywfVYnEB
-        1bQLcXi9zoFL4636qMUDcrE=
-X-Google-Smtp-Source: ABdhPJwt6Bakcht1PibcyW2KY9OwBJDjMvdCl5uSNNXvVD9ncA79xivfDYYoE1rhP//W/DSl5xJKXA==
-X-Received: by 2002:a05:620a:1585:: with SMTP id d5mr11231214qkk.325.1617921613371;
-        Thu, 08 Apr 2021 15:40:13 -0700 (PDT)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id c5sm551610qkl.21.2021.04.08.15.40.12
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=OA781OccRNwXE7rt2K4lFZ5YBX2tVVTL8OP2VVE7W5k=;
+        b=sfSY/m38XG+i5O/Rf8UzreWir3qxQTy0x+MPRjVJ5cSMkgHrWZ7LZyBg1XoCoNUQj6
+         ArMbyGJPaZjiqGy5r+2wGYGS4jrJIlCR9xg7fTEJx1Qb3VjaNRWB7ZhCW+8MGDpMvO1g
+         3+EwA4FhkGhiLnsQnyARxlA9dhzRbZc2YYYDshmlxd3zaqnYgCopkaeRsqQw7XXMWbMb
+         QLvJ++P9MLrRuB/jjYr79YKyQA+nQWIoPJZbO4UhoIhbqwT/4YGBf+YR/yhkl6lmULH2
+         4iajrEAWNUOCfaTEk5JpveoiWvA+YJxZ9tPvZF2PymwtQPdBeCoKNG7TzbpqGc0X/lcJ
+         gUeA==
+X-Gm-Message-State: AOAM533l1y9TmCmfgXqOsTnbS52q9lOH0L+xbhRj18dLSMuw2PlVGrdT
+        irFAsgS+igH/a/X6hXp/HCf/EQ==
+X-Google-Smtp-Source: ABdhPJzBrRR/poki5sG+OHaXYR11z6gwhKEfjfuEHH4IEwICWTvaml5hGOyodyjI9brEWQS0oONOvQ==
+X-Received: by 2002:a05:6a00:2389:b029:21a:d3b4:e5 with SMTP id f9-20020a056a002389b029021ad3b400e5mr9858217pfc.39.1617922163264;
+        Thu, 08 Apr 2021 15:49:23 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:d013:d350:4066:89b8])
+        by smtp.gmail.com with UTF8SMTPSA id d26sm417094pfo.162.2021.04.08.15.49.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Apr 2021 15:40:13 -0700 (PDT)
-Subject: Re: [PATCH v4 1/1] of: unittest: overlay: ensure proper alignment of
- copied FDT
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20210408204508.2276230-1-frowand.list@gmail.com>
- <CAL_Jsq+Os6O6CpRYurmf_4-Xnzgpkd1jbDbnp0en1TPbZXTf7w@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <ad805b26-4bf4-bfbc-d3b6-522295302791@gmail.com>
-Date:   Thu, 8 Apr 2021 17:40:11 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Thu, 08 Apr 2021 15:49:22 -0700 (PDT)
+Date:   Thu, 8 Apr 2021 15:49:21 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Peter Chen <peter.chen@nxp.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        linux-usb@vger.kernel.org,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Bastien Nocera <hadess@hadess.net>, devicetree@vger.kernel.org,
+        Stephen Boyd <swboyd@chromium.org>
+Subject: Re: [PATCH v6 1/5] dt-bindings: usb: Add binding for Realtek RTS5411
+ hub controller
+Message-ID: <YG+IcUvJPAa3NieK@google.com>
+References: <20210405201817.3977893-1-mka@chromium.org>
+ <20210405124900.v6.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20210406163001.GA1910748@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+Os6O6CpRYurmf_4-Xnzgpkd1jbDbnp0en1TPbZXTf7w@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+In-Reply-To: <20210406163001.GA1910748@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/8/21 4:28 PM, Rob Herring wrote:
-> On Thu, Apr 8, 2021 at 3:45 PM <frowand.list@gmail.com> wrote:
->>
->> From: Frank Rowand <frank.rowand@sony.com>
->>
->> The Devicetree standard specifies an 8 byte alignment of the FDT.
->> Code in libfdt expects this alignment for an FDT image in memory.
->> kmemdup() returns 4 byte alignment on openrisc.  Replace kmemdup()
->> with kmalloc(), align pointer, memcpy() to get proper alignment.
->>
->> The 4 byte alignment exposed a related bug which triggered a crash
->> on openrisc with:
->> commit 79edff12060f ("scripts/dtc: Update to upstream version v1.6.0-51-g183df9e9c2b9")
->> as reported in:
->> https://lore.kernel.org/lkml/20210327224116.69309-1-linux@roeck-us.net/
->>
->> Reported-by: Guenter Roeck <linux@roeck-us.net>
->> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
->>
->> ---
->>
->> changes since version 1:
->>   - use pointer from kmalloc() for kfree() instead of using pointer that
->>     has been modified for FDT alignment
->>
->> changes since version 2:
->>   - version 1 was a work in progress version, I failed to commit the following
->>     final changes
->>   - reorder first two arguments of of_overlay_apply()
->>
->> changes since version 3:
->>   - size of memory allocation and size of copy after pointer alignment
->>     differ, use separate variables with correct values for each case
->>   - edit comment to more clearly describe that ovcs->fdt is the allocated
->>     memory region, which may be different than where the aligned pointer points
->>   - remove unused parameter from of_overlay_apply()
->>
->>  drivers/of/of_private.h |  2 ++
->>  drivers/of/overlay.c    | 27 +++++++++++++++++----------
->>  drivers/of/unittest.c   | 13 ++++++++++---
->>  3 files changed, 29 insertions(+), 13 deletions(-)
->>
->> diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
->> index d9e6a324de0a..d717efbd637d 100644
->> --- a/drivers/of/of_private.h
->> +++ b/drivers/of/of_private.h
->> @@ -8,6 +8,8 @@
->>   * Copyright (C) 1996-2005 Paul Mackerras.
->>   */
->>
->> +#define FDT_ALIGN_SIZE 8
->> +
->>  /**
->>   * struct alias_prop - Alias property in 'aliases' node
->>   * @link:      List node to link the structure in aliases_lookup list
->> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
->> index 50bbe0edf538..ecf967c57900 100644
->> --- a/drivers/of/overlay.c
->> +++ b/drivers/of/overlay.c
->> @@ -57,7 +57,7 @@ struct fragment {
->>   * struct overlay_changeset
->>   * @id:                        changeset identifier
->>   * @ovcs_list:         list on which we are located
->> - * @fdt:               FDT that was unflattened to create @overlay_tree
->> + * @fdt:               base of memory allocated to hold aligned FDT that was unflattened to create @overlay_tree
->>   * @overlay_tree:      expanded device tree that contains the fragment nodes
->>   * @count:             count of fragment structures
->>   * @fragments:         fragment nodes in the overlay expanded device tree
->> @@ -719,8 +719,8 @@ static struct device_node *find_target(struct device_node *info_node)
->>  /**
->>   * init_overlay_changeset() - initialize overlay changeset from overlay tree
->>   * @ovcs:      Overlay changeset to build
->> - * @fdt:       the FDT that was unflattened to create @tree
->> - * @tree:      Contains all the overlay fragments and overlay fixup nodes
->> + * @fdt:       base of memory allocated to hold aligned FDT that was unflattened to create @tree
->> + * @tree:      Contains the overlay fragments and overlay fixup nodes
->>   *
->>   * Initialize @ovcs.  Populate @ovcs->fragments with node information from
->>   * the top level of @tree.  The relevant top level nodes are the fragment
->> @@ -873,7 +873,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
->>   * internal documentation
->>   *
->>   * of_overlay_apply() - Create and apply an overlay changeset
->> - * @fdt:       the FDT that was unflattened to create @tree
->> + * @fdt:       base of memory allocated to hold the aligned FDT
->>   * @tree:      Expanded overlay device tree
->>   * @ovcs_id:   Pointer to overlay changeset id
->>   *
->> @@ -913,7 +913,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
->>   */
->>
->>  static int of_overlay_apply(const void *fdt, struct device_node *tree,
->> -               int *ovcs_id)
->> +                           int *ovcs_id)
->>  {
->>         struct overlay_changeset *ovcs;
->>         int ret = 0, ret_revert, ret_tmp;
->> @@ -953,7 +953,9 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
->>         /*
->>          * after overlay_notify(), ovcs->overlay_tree related pointers may have
->>          * leaked to drivers, so can not kfree() tree, aka ovcs->overlay_tree;
->> -        * and can not free fdt, aka ovcs->fdt
->> +        * and can not free memory containing aligned fdt.  The aligned fdt
->> +        * is contained within the memory at ovcs->fdt, possibly at an offset
->> +        * from ovcs->fdt.
->>          */
->>         ret = overlay_notify(ovcs, OF_OVERLAY_PRE_APPLY);
->>         if (ret) {
->> @@ -1014,9 +1016,10 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
->>  int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
->>                          int *ovcs_id)
->>  {
->> -       const void *new_fdt;
->> +       void *new_fdt;
->> +       void *new_fdt_align;
->>         int ret;
->> -       u32 size;
->> +       u32 size, size_alloc;
->>         struct device_node *overlay_root;
->>
->>         *ovcs_id = 0;
->> @@ -1036,11 +1039,15 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
->>          * Must create permanent copy of FDT because of_fdt_unflatten_tree()
->>          * will create pointers to the passed in FDT in the unflattened tree.
->>          */
->> -       new_fdt = kmemdup(overlay_fdt, size, GFP_KERNEL);
->> +       size_alloc = size + FDT_ALIGN_SIZE;
->> +       new_fdt = kmalloc(size_alloc, GFP_KERNEL);
+On Tue, Apr 06, 2021 at 11:30:01AM -0500, Rob Herring wrote:
+> On Mon, Apr 05, 2021 at 01:18:13PM -0700, Matthias Kaehlcke wrote:
+> > The Realtek RTS5411 is a USB 3.0 hub controller with 4 ports.
+> > 
+> > This initial version of the binding only describes USB related
+> > aspects of the RTS5411, it does not cover the option of
+> > connecting the controller as an i2c slave.
+> > 
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > ---
+> > 
+> > Changes in v7:
+> > - added type ref for 'companion-hub' property
+> > 
+> > Changes in v6:
+> > - Realtek binding instead of generic onboard_usb_hub
+> > - added 'companion-hub' property
+> > - added reference to 'usb-device.yaml'
+> > - 'fixed' indentation of compatible entries to keep yamllint happy
+> > - added 'additionalProperties' entry
+> > - updated commit message
+> > 
+> > Changes in v5:
+> > - updated 'title'
+> > - only use standard USB compatible strings
+> > - deleted 'usb_hub' node
+> > - renamed 'usb_controller' node to 'usb-controller'
+> > - removed labels from USB nodes
+> > - added 'vdd-supply' to USB nodes
+> > 
+> > Changes in v4:
+> > - none
+> > 
+> > Changes in v3:
+> > - updated commit message
+> > - removed recursive reference to $self
+> > - adjusted 'compatible' definition to support multiple entries
+> > - changed USB controller phandle to be a node
+> > 
+> > Changes in v2:
+> > - removed 'wakeup-source' and 'power-off-in-suspend' properties
+> > - consistently use spaces for indentation in example
+> > 
+> >  .../bindings/usb/realtek,rts5411.yaml         | 59 +++++++++++++++++++
+> >  1 file changed, 59 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+> > new file mode 100644
+> > index 000000000000..b59001972749
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+> > @@ -0,0 +1,59 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/usb/realtek,rts5411.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Binding for the Realtek RTS5411 USB 3.0 hub controller
+> > +
+> > +maintainers:
+> > +  - Matthias Kaehlcke <mka@chromium.org>
+> > +
+> > +allOf:
+> > +  - $ref: usb-device.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - usbbda,5411
+> > +          - usbbda,411
+> > +
 > 
-> As size_alloc is only used once, you can just do:
+> reg: true
 > 
-> new_fdt = kmalloc(size + FDT_ALIGN_SIZE, GFP_KERNEL);
-> 
-> Same for the unittest. I can fix up.
-> 
-> Applying now so this gets into linux-next this week.
+> to fix the error.
 
-Thanks, that change looks like an improvement to me.
+Will fix in v8 (this is v7, even though the subject says otherwise,
+I forgot to increment the version number when sending).
 
+> > +  vdd-supply:
+> > +    description:
+> > +      phandle to the regulator that provides power to the hub.
+> > +
+> > +  companion-hub:
+> > +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> > +    description:
+> > +      phandle to the companion hub on the controller.
 > 
-> Rob
-> 
+> This should be required I think. I suppose you could only hook up 2.0
+> ports, but why. And 3.0 only wouldn't be USB compliant, would it?
 
+Agreed, that makes sense now that this is a specific binding for the
+RTS5411. It seems unlikely that a system would use a USB 3.0 capable
+hub on a USB 2.0 controller, and as you said 3.0 only wouldn't be USB
+compliant.
+
+I made the attribute initially optional because the binding was
+intended to be generic (bad idea), and for certain hubs a required
+'companion-hub' wouldn't make sense (e.g. USB 2.0 only).
+
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    usb-controller {
+> 
+> 'usb' is the standard name.
+
+ack
+
+Thanks for your comments!
+
+m.
