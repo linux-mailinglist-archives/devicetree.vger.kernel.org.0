@@ -2,77 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E37735A187
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 16:53:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40F3935A1CA
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 17:13:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233709AbhDIOxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 10:53:32 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:46003 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233019AbhDIOxa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 10:53:30 -0400
-Received: by mail-ot1-f43.google.com with SMTP id f75-20020a9d03d10000b0290280def9ab76so822163otf.12;
-        Fri, 09 Apr 2021 07:53:17 -0700 (PDT)
+        id S234133AbhDIPNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 11:13:41 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:38736 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234132AbhDIPNk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 11:13:40 -0400
+Received: by mail-ot1-f46.google.com with SMTP id w21-20020a9d63950000b02901ce7b8c45b4so5990496otk.5;
+        Fri, 09 Apr 2021 08:13:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wEUFq75l0cPqrW8PpOEi09xtkWWpE4+uw14yF7Xi3VI=;
-        b=TuL4x5lSETn/wcnrLuH3u/uH4eCIT61fY3M9bRH22HbJd9jb2N7EC3deIBFXMhviV+
-         SBdRo4xtNV5f7IpU2vlFVAa/zBPiwezcpSqqPE4XZZtt2gx1nAi4TUVok4GF3QFMeTq1
-         cHc0XtXMJ1o6K2y56QCZDkIlN9BD3BjFkq2Gcb5BfXQNNTHMlyf1aTCeckV8kcl65Q1J
-         Llypivl4f0G8sk+dz0BxisyyJV9pKjRLZuZkqXToeiibsZ0HjKt8xOfOpspNPUdWm2bn
-         VSW5byC6d/TK53XDYppcwttUTVV8tfyp0oKJRsbv3pSSEn+S070GRFJhmgI4KjFjDNZ9
-         HbMw==
-X-Gm-Message-State: AOAM5339zkMYGfz/V2FdkD/S/wn/fGjX428PSGBoNKBxnESwMYR/hRZZ
-        PE5eSlLcazdKsKURJYgE6A==
-X-Google-Smtp-Source: ABdhPJwYlry7cBcHl3An98IkFAakpdZGXr7d89QYyHIEr/PdgViXwKc3NwNCFvhCD4zPLEKK4EAqIA==
-X-Received: by 2002:a9d:d0d:: with SMTP id 13mr12066019oti.134.1617979997370;
-        Fri, 09 Apr 2021 07:53:17 -0700 (PDT)
+        bh=mqW1a5d7rFu6UosMT0283wsYzx5UvTYigPBJh3XYCyc=;
+        b=QEdMWu7we174+Fz5MrLJbhrQTog6ztG6nmGrxSSTEgu2H73N0wr4rIibUg0ZfXJgnA
+         ELOV6FKIVbTsqjE9ArukIaatmqTyjngAwPsAObi1ntF9gVfilViVqjuSH+Ge2nWqEIpo
+         O5lFvMCNwk53BqcOztD1jMyTkyIppxivOx5yjoNZ5fW9qZ5nOk7rJxxIRWQXU1gGCY+3
+         MvoPj2vDQ+r0SEe8STsN48UFCRVsBu7BH6VJlJev/4vhdPgDfWzgdtwj7F/fFxsHNfvI
+         4WYSF7rYjjoM2vG9rISJV6i5ZnLSuS07tGjxJWqTYOpToFaqk4K2S0Jjfsaj4+1td/ve
+         7pMQ==
+X-Gm-Message-State: AOAM530Plc1A850vlgQHzfBzZ5Wyj17z6V3fERFKZB9jUxtVajJg6An/
+        LZ1YwtibgmnWe8XM99AEOw==
+X-Google-Smtp-Source: ABdhPJzK/s2s6omuVhlWR+swr/+lGq8vgQ3CRIdBD9rkXjpyR9G/oz56dzNtu+RIiUSgsBEGGqvBcA==
+X-Received: by 2002:a05:6830:18db:: with SMTP id v27mr12640961ote.253.1617981206188;
+        Fri, 09 Apr 2021 08:13:26 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m14sm658418otn.69.2021.04.09.07.53.15
+        by smtp.gmail.com with ESMTPSA id j11sm574756ooo.45.2021.04.09.08.13.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Apr 2021 07:53:16 -0700 (PDT)
-Received: (nullmailer pid 3635689 invoked by uid 1000);
-        Fri, 09 Apr 2021 14:53:15 -0000
-Date:   Fri, 9 Apr 2021 09:53:15 -0500
+        Fri, 09 Apr 2021 08:13:25 -0700 (PDT)
+Received: (nullmailer pid 3664310 invoked by uid 1000);
+        Fri, 09 Apr 2021 15:13:24 -0000
+Date:   Fri, 9 Apr 2021 10:13:24 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: Re: [PATCH] dt-bindings: gpio: fairchild,74hc595: Convert to
- json-schema
-Message-ID: <20210409145315.GA3635654@robh.at.kernel.org>
-References: <df145e77bd124721f28cbc58fb3c58c138f13d86.1617365710.git.geert+renesas@glider.be>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>
+Cc:     nbd@nbd.name, linux-wireless@vger.kernel.org,
+        lorenzo.bianconi@redhat.com, sean.wang@mediatek.com,
+        ryder.lee@mediatek.com, shayne.chen@mediatek.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/8] dt-bindings:net:wireless:ieee80211: introduce
+ regdomain property
+Message-ID: <20210409151324.GA3662358@robh.at.kernel.org>
+References: <cover.1617625912.git.lorenzo@kernel.org>
+ <1ff764d84e1fb83768c2e9d233c27b0ed1ef4294.1617625912.git.lorenzo@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <df145e77bd124721f28cbc58fb3c58c138f13d86.1617365710.git.geert+renesas@glider.be>
+In-Reply-To: <1ff764d84e1fb83768c2e9d233c27b0ed1ef4294.1617625912.git.lorenzo@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 02 Apr 2021 14:19:58 +0200, Geert Uytterhoeven wrote:
-> Convert the Generic 8-bit shift register Device Tree binding
-> documentation to json-schema.
+On Mon, Apr 05, 2021 at 02:40:25PM +0200, Lorenzo Bianconi wrote:
+> Add regdomain property to ieee80211 binding
 > 
-> Rename from gpio-74x164 to fairchild,74hc595, as the former refers to
-> the Linux driver, and not to a hardware name.
-> Add the missing hog description.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
-> The original file did not contain license information, so I used the
-> most popular/recommended one for DT bindings.
-> I listed the original author of the bindings as maintainer.
-> ---
->  .../bindings/gpio/fairchild,74hc595.yaml      | 77 +++++++++++++++++++
->  .../devicetree/bindings/gpio/gpio-74x164.txt  | 27 -------
->  2 files changed, 77 insertions(+), 27 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
->  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-74x164.txt
+>  .../devicetree/bindings/net/wireless/ieee80211.yaml      | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+> index d58e1571df9b..6557c6348cac 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+> @@ -30,6 +30,15 @@ properties:
+>        different 5 GHz subbands. Using them incorrectly could not work or
+>        decrease performance noticeably
+>  
+> +  regdomain:
+> +    minItems: 1
+> +    maxItems: 1
+> +    contains:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+If only 1 entry, then 'contains' is pointless. Just 'enum' is enough. 
+You also need a 'description'.
+
+> +      enum:
+> +        - FCC
+> +        - ETSI
+> +        - JP
+> +
+>  additionalProperties: true
+>  
+>  examples:
+> -- 
+> 2.30.2
+> 
