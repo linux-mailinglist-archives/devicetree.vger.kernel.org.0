@@ -2,286 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D86335A914
-	for <lists+devicetree@lfdr.de>; Sat, 10 Apr 2021 01:09:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 469D735A944
+	for <lists+devicetree@lfdr.de>; Sat, 10 Apr 2021 01:32:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235120AbhDIXJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 19:09:28 -0400
-Received: from mo-csw1515.securemx.jp ([210.130.202.154]:54804 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235075AbhDIXJ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 19:09:27 -0400
-Received: by mo-csw.securemx.jp (mx-mo-csw1515) id 139N8mD8025398; Sat, 10 Apr 2021 08:08:48 +0900
-X-Iguazu-Qid: 34trMInxztO8FwPLNY
-X-Iguazu-QSIG: v=2; s=0; t=1618009728; q=34trMInxztO8FwPLNY; m=xLyc9zJ3M5Z3X3hmJZssjOQ5NC1fCBhJ4zr6bRxGLTE=
-Received: from imx2-a.toshiba.co.jp (imx2-a.toshiba.co.jp [106.186.93.35])
-        by relay.securemx.jp (mx-mr1510) id 139N8l2s003777
-        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-        Sat, 10 Apr 2021 08:08:47 +0900
-Received: from enc01.toshiba.co.jp (enc01.toshiba.co.jp [106.186.93.100])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by imx2-a.toshiba.co.jp (Postfix) with ESMTPS id 3689B1000D7;
-        Sat, 10 Apr 2021 08:08:47 +0900 (JST)
-Received: from hop001.toshiba.co.jp ([133.199.164.63])
-        by enc01.toshiba.co.jp  with ESMTP id 139N8kob024950;
-        Sat, 10 Apr 2021 08:08:46 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Subject: [PATCH v4 2/2] pwm: visconti: Add Toshiba Visconti SoC PWM support
-Date:   Sat, 10 Apr 2021 08:08:37 +0900
-X-TSB-HOP: ON
-Message-Id: <20210409230837.1919744-3-nobuhiro1.iwamatsu@toshiba.co.jp>
-X-Mailer: git-send-email 2.30.0.rc2
-In-Reply-To: <20210409230837.1919744-1-nobuhiro1.iwamatsu@toshiba.co.jp>
-References: <20210409230837.1919744-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+        id S235167AbhDIXdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 19:33:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35900 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235166AbhDIXdG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Apr 2021 19:33:06 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7878F610CA;
+        Fri,  9 Apr 2021 23:32:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618011172;
+        bh=LQjptmF8MepF3tK2x8z7XTkgYtDleL+Umaaih2EhyMU=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=nusmPdWC0Qgno/sk5Iq2l4+hf0Z5KYW57Uo7SXiMwPIVtfdINqwVGAk0ChUsfQL6+
+         4ii57ytVenu4SOi5lHBeP/h3kfs02/h5hbcXBRR0kpxMy/01c9GBr5soCvTxec5oE8
+         t29oAherStTNOlMBJLZfMGAyGuzM4ZyeHqontE3SKYAsadLuZ8CW2Q3LWYG2PGWagZ
+         i6AJLW+LXiaxE8gUMtzYRmuda4/O7mBLRXP2LMaW6wYTzp6QA8NOrMkbvB3Z8Y7nbf
+         E93szktYHU8k1u/WgJ0KQCFCdUrYgU48yFOzGd25qopy3KGYJmBeEr1fjNGHNeuFOB
+         qJF9pmddGc5xw==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <14254feb-ddbd-068d-74a4-61407177336d@xilinx.com>
+References: <1614172241-17326-1-git-send-email-shubhrajyoti.datta@xilinx.com> <1614172241-17326-9-git-send-email-shubhrajyoti.datta@xilinx.com> <20210306202022.GA1146983@robh.at.kernel.org> <CAKfKVtF8FAAt-Rszq62hBtJWokYXrKH_DwU1cGvXzBni99VM+A@mail.gmail.com> <14254feb-ddbd-068d-74a4-61407177336d@xilinx.com>
+Subject: Re: [PATCH v10 8/9] dt-bindings: add documentation of xilinx clocking wizard
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>, open list:
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>, linux-clk@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mike Turquette <mturquette@baylibre.com>, git@xilinx.com,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        devel@driverdev.osuosl.org, ;
+Illegal-Object: Syntax error in Cc: address found on vger.kernel.org:
+        Cc:     ;
+                        ^-missing semicolon to end mail group, extraneous tokens in mailbox, missing end of mailbox
+To:     Michal Simek <michal.simek@xilinx.com>,
+        Rob Herring <robh@kernel.org>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>
+Date:   Fri, 09 Apr 2021 16:32:51 -0700
+Message-ID: <161801117111.2941957.3980674660268189208@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add driver for the PWM controller on Toshiba Visconti ARM SoC.
+Quoting Michal Simek (2021-04-08 03:40:29)
+>=20
+>=20
+> On 4/8/21 12:26 PM, Shubhrajyoti Datta wrote:
+> > On Sun, Mar 7, 2021 at 1:50 AM Rob Herring <robh@kernel.org> wrote:
+> >>
+> >> On Wed, Feb 24, 2021 at 06:40:40PM +0530, Shubhrajyoti Datta wrote:
+> >>> Add the devicetree binding for the xilinx clocking wizard.
+> >>>
+> >>> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> >>> ---
+> >>>  v6:
+> >>>  Fix a yaml warning
+> >>>  v7:
+> >>>  Add vendor prefix speed-grade
+> >>>  v8:
+> >>>  Fix the warnings
+> >>>  v10:
+> >>>  Add nr-outputs
+> >>>
+> >>>  .../bindings/clock/xlnx,clocking-wizard.yaml       | 72 ++++++++++++=
+++++++++++
+> >>>  1 file changed, 72 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/clock/xlnx,cloc=
+king-wizard.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/clock/xlnx,clocking-wi=
+zard.yaml b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.ya=
+ml
+> >>> new file mode 100644
+> >>> index 0000000..280eb09
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.ya=
+ml
+> >>> @@ -0,0 +1,72 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: "http://devicetree.org/schemas/clock/xlnx,clocking-wizard.yaml#"
+> >>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> >>> +
+> >>> +title: Xilinx clocking wizard
+> >>> +
+> >>> +maintainers:
+> >>> +  - Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> >>> +
+> >>> +description:
+> >>> +  The clocking wizard is a soft ip clocking block of Xilinx versal. =
+It
+> >>> +  reads required input clock frequencies from the devicetree and act=
+s as clock
+> >>> +  clock output.
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: xlnx,clocking-wizard
+> >>
+> >> Not very specific. Only 1 version of this h/w?
+> >=20
+> > Will fix in next version
+> >>
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  "#clock-cells":
+> >>> +    const: 1
+> >>> +
+> >>> +  clocks:
+> >>> +    items:
+> >>> +      - description: clock input
+> >>> +      - description: axi clock
+> >>> +
+> >>> +  clock-names:
+> >>> +    items:
+> >>> +      - const: clk_in1
+> >>> +      - const: s_axi_aclk
+> >>> +
+> >>> +
+> >>> +  xlnx,speed-grade:
+> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >>> +    enum: [1, 2, 3]
+> >>> +    description:
+> >>> +      Speed grade of the device. Higher the speed grade faster is th=
+e FPGA device.
+> >>
+> >> How does one decide what value?
+> > This is a property of the FPGA fabric.
+> > So  hdf/xsa  should tell that
+>=20
+> Shubhrajyoti: Rob likely doesn't know what hdf/xsa is that's why it is
+> better to avoid it.
+>=20
+> fpgas/pl part of SoC are tested for performance and different chips have
+> different speed grades. This is done for every chip and some chips are
+> faster/slower. Based on this speed grade is labeled. And there is no way
+> how to find at run time which speed grade your device has. That's why
+> there is a need to have property to identify this.
+>=20
+> In designed tools it is your responsibility to select proper chip based
+> on your order and then this value is propagated in Xilinx standard way
+> via device tree generator to fill the right value for this property.
 
-Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
----
- drivers/pwm/Kconfig        |   9 ++
- drivers/pwm/Makefile       |   1 +
- drivers/pwm/pwm-visconti.c | 188 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 198 insertions(+)
- create mode 100644 drivers/pwm/pwm-visconti.c
-
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 9a4f66ae8070..8ae68d6203fb 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -601,6 +601,15 @@ config PWM_TWL_LED
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-twl-led.
- 
-+config PWM_VISCONTI
-+	tristate "Toshiba Visconti PWM support"
-+	depends on ARCH_VISCONTI || COMPILE_TEST
-+	help
-+	  PWM Subsystem driver support for Toshiba Visconti SoCs.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-visconti.
-+
- config PWM_VT8500
- 	tristate "vt8500 PWM support"
- 	depends on ARCH_VT8500 || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 6374d3b1d6f3..d43b1e17e8e1 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -56,4 +56,5 @@ obj-$(CONFIG_PWM_TIECAP)	+= pwm-tiecap.o
- obj-$(CONFIG_PWM_TIEHRPWM)	+= pwm-tiehrpwm.o
- obj-$(CONFIG_PWM_TWL)		+= pwm-twl.o
- obj-$(CONFIG_PWM_TWL_LED)	+= pwm-twl-led.o
-+obj-$(CONFIG_PWM_VISCONTI)	+= pwm-visconti.o
- obj-$(CONFIG_PWM_VT8500)	+= pwm-vt8500.o
-diff --git a/drivers/pwm/pwm-visconti.c b/drivers/pwm/pwm-visconti.c
-new file mode 100644
-index 000000000000..99d83f94ed86
---- /dev/null
-+++ b/drivers/pwm/pwm-visconti.c
-@@ -0,0 +1,188 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Toshiba Visconti pulse-width-modulation controller driver
-+ *
-+ * Copyright (c) 2020 TOSHIBA CORPORATION
-+ * Copyright (c) 2020 Toshiba Electronic Devices & Storage Corporation
-+ *
-+ * Authors: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-+ *
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+
-+#define PIPGM_PCSR(ch) (0x400 + 4 * (ch))
-+#define PIPGM_PDUT(ch) (0x420 + 4 * (ch))
-+#define PIPGM_PWMC(ch) (0x440 + 4 * (ch))
-+
-+#define PIPGM_PWMC_PWMACT		BIT(5)
-+#define PIPGM_PWMC_CLK_MASK		GENMASK(1, 0)
-+#define PIPGM_PWMC_POLARITY_MASK	GENMASK(5, 5)
-+
-+struct visconti_pwm_chip {
-+	struct pwm_chip chip;
-+	void __iomem *base;
-+};
-+
-+static inline struct visconti_pwm_chip *to_visconti_chip(struct pwm_chip *chip)
-+{
-+	return container_of(chip, struct visconti_pwm_chip, chip);
-+}
-+
-+static int visconti_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			      const struct pwm_state *state)
-+{
-+	struct visconti_pwm_chip *priv = to_visconti_chip(chip);
-+	u32 period, duty_cycle, pwmc0;
-+
-+	/*
-+	 * pwmc is a 2-bit divider for the input clock running at 1 MHz.
-+	 * When the settings of the PWM are modified, the new values are shadowed in hardware until
-+	 * the period register (PCSR) is written and the currently running period is completed. This
-+	 * way the hardware switches atomically from the old setting to the new.
-+	 * Also, disabling the hardware completes the currently running period and keeps the output
-+	 * at low level at all times.
-+	 */
-+	if (!state->enabled) {
-+		writel(0, priv->base + PIPGM_PCSR(pwm->hwpwm));
-+		return 0;
-+	}
-+
-+	/*
-+	 * The biggest period the hardware can provide is
-+	 *	(0xffff << 3) * 1000 ns
-+	 * This value fits easily in an u32, so simplify the maths by
-+	 * capping the values to 32 bit integers.
-+	 */
-+	if (state->period > (0xffff << 3) * 1000)
-+		period = (0xffff << 3) * 1000;
-+	else
-+		period = state->period;
-+
-+	if (state->duty_cycle > period)
-+		duty_cycle = period;
-+	else
-+		duty_cycle = state->duty_cycle;
-+
-+	/*
-+	 * The input clock runs fixed at 1 MHz, so we have only
-+	 * microsecond resolution and so can divide by
-+	 * NSEC_PER_SEC / CLKFREQ = 1000 without loosing precision.
-+	 */
-+	period /= 1000;
-+	duty_cycle /= 1000;
-+
-+	if (!period)
-+		return -ERANGE;
-+
-+	/*
-+	 * PWMC controls a divider that divides the input clk by a
-+	 * power of two between 1 and 8. As a smaller divider yields
-+	 * higher precision, pick the smallest possible one.
-+	 */
-+	if (period > 0xffff) {
-+		pwmc0 = ilog2(period >> 16);
-+		BUG_ON(pwmc0 > 3);
-+	} else
-+		pwmc0 = 0;
-+
-+	period >>= pwmc0;
-+	duty_cycle >>= pwmc0;
-+
-+	if (state->polarity == PWM_POLARITY_INVERSED)
-+		pwmc0 |= PIPGM_PWMC_PWMACT;
-+	writel(pwmc0, priv->base + PIPGM_PWMC(pwm->hwpwm));
-+	writel(duty_cycle, priv->base + PIPGM_PDUT(pwm->hwpwm));
-+	writel(period, priv->base + PIPGM_PCSR(pwm->hwpwm));
-+
-+	return 0;
-+}
-+
-+static void visconti_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-+				   struct pwm_state *state)
-+{
-+	struct visconti_pwm_chip *priv = chip_to_priv(chip);
-+	u32 period, duty, pwmc0, pwmc0_clk;
-+
-+	period = readl(priv->base + PIPGM_PCSR(pwm->hwpwm));
-+	if (period)
-+		state->enabled = true;
-+	else
-+		state->enabled = false;
-+
-+	duty = readl(priv->base + PIPGM_PDUT(pwm->hwpwm));
-+	pwmc0 = readl(priv->base + PIPGM_PWMC(pwm->hwpwm));
-+	pwmc0_clk = pwmc0 & PIPGM_PWMC_CLK_MASK;
-+
-+	state->period = (period << pwmc0_clk) * NSEC_PER_USEC;
-+	state->duty_cycle = (duty << pwmc0_clk) * NSEC_PER_USEC;
-+	if (pwmc0 & PIPGM_PWMC_POLARITY_MASK)
-+		state->polarity = PWM_POLARITY_INVERSED;
-+	else
-+		state->polarity = PWM_POLARITY_NORMAL;
-+}
-+
-+static const struct pwm_ops visconti_pwm_ops = {
-+	.apply = visconti_pwm_apply,
-+	.get_state = visconti_pwm_get_state,
-+	.owner = THIS_MODULE,
-+};
-+
-+static int visconti_pwm_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct visconti_pwm_chip *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(priv->base))
-+		return PTR_ERR(priv->base);
-+
-+	platform_set_drvdata(pdev, priv);
-+
-+	priv->chip.dev = dev;
-+	priv->chip.ops = &visconti_pwm_ops;
-+	priv->chip.npwm = 4;
-+
-+	ret = pwmchip_add(&priv->chip);
-+	if (ret < 0)
-+		return dev_err_probe(&pdev->dev, ret, "Cannot register visconti PWM\n");
-+
-+	return 0;
-+}
-+
-+static int visconti_pwm_remove(struct platform_device *pdev)
-+{
-+	struct visconti_pwm_chip *priv = platform_get_drvdata(pdev);
-+
-+	return pwmchip_remove(&priv->chip);
-+}
-+
-+static const struct of_device_id visconti_pwm_of_match[] = {
-+	{ .compatible = "toshiba,visconti-pwm", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, visconti_pwm_of_match);
-+
-+static struct platform_driver visconti_pwm_driver = {
-+	.driver = {
-+		.name = "pwm-visconti",
-+		.of_match_table = visconti_pwm_of_match,
-+	},
-+	.probe = visconti_pwm_probe,
-+	.remove = visconti_pwm_remove,
-+};
-+module_platform_driver(visconti_pwm_driver);
-+
-+MODULE_LICENSE("GPL v2");
-+MODULE_AUTHOR("Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>");
-+MODULE_ALIAS("platform:pwm-visconti");
--- 
-2.30.0.rc2
-
+The OPP framework and binding has support for speed grades via the
+'supported-hw' property. I expect this speed-grade property could be
+dropped and an opp table could be assigned to the clk controller node
+for this speed grade by the DT author. Unfortunate that it isn't burned
+somewhere into the device so that software can pick the right frequency
+limits that way.
