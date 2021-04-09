@@ -2,106 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C64C35A034
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 15:43:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63BF335A04A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 15:49:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233395AbhDINnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 09:43:32 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:37086 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233051AbhDINnb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 09:43:31 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 86B221F467A1
-Received: by earth.universe (Postfix, from userid 1000)
-        id 613083C0C96; Fri,  9 Apr 2021 15:43:15 +0200 (CEST)
-Date:   Fri, 9 Apr 2021 15:43:15 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>
-Subject: Re: [PATCHv2 35/38] dt-bindings: power: supply: ab8500: Convert to
- DT schema format
-Message-ID: <20210409134315.tjgd7nvpo4tru2oo@earth.universe>
-References: <20210317134904.80737-1-sebastian.reichel@collabora.com>
- <20210317134904.80737-36-sebastian.reichel@collabora.com>
- <CACRpkdZerDHY0EsZxqadbbWaCCjw7nkOE8VOGPhoL-Rjwp4Bhg@mail.gmail.com>
+        id S231756AbhDINuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 09:50:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43968 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231402AbhDINuI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Apr 2021 09:50:08 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4F1C661184;
+        Fri,  9 Apr 2021 13:49:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617976195;
+        bh=8o2Bt/OdnkU0Any2YvbvhN5VXSpCLXNCewVgojWDjB0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=tEhODWo5B3CGcUg0QIjayzKtSQREfa2xGdHS4iMXAHob2c1gH17v5ruox66r4O1iS
+         wcD41YpL/LMqyK+Y9KAVleDL5uaKrehIcTgmwNI6I4pG/TxEQFx1IXRkOh6r27+iwG
+         ZS0XaosHAST5RM8SDNieRj7GK1SrdsJ4RpRqakdBaDgTtYNWDTjl6VQ3VF8DSH67Co
+         MMHx79b/hRwKimp2dNK5fGjEr+os/T4yLXWexgpKh5Q47flOP1xh44gkdoDWrJ9nKT
+         f06GpTtYTduaLCIUK4T+3IjQwqk+HUIZbdZG1Q/wAZ1stMEbMuXSWn4KFpRzG8/AGq
+         eCM7dqez4nDpg==
+Received: by mail-ed1-f46.google.com with SMTP id h10so6617970edt.13;
+        Fri, 09 Apr 2021 06:49:55 -0700 (PDT)
+X-Gm-Message-State: AOAM532myNxwm8aqVl5Q+zsNZVr+5roE3AHck8QIU6H/NeuBRu3HtdP8
+        4o9gUD5lcCJnHI11EDa9NFb8bRRJULECHlYsjQ==
+X-Google-Smtp-Source: ABdhPJyHT7LV1ywH5OhBmdDt4Q7HUdl8a/WQ0SSEN0vMmJjh0KUPwTzoqGyithVEJWynOiqzEjUQjbWRG0QBHP2Ka2w=
+X-Received: by 2002:a05:6402:84e:: with SMTP id b14mr17935095edz.194.1617976193885;
+ Fri, 09 Apr 2021 06:49:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="6ohqhuaygyq2szeg"
-Content-Disposition: inline
-In-Reply-To: <CACRpkdZerDHY0EsZxqadbbWaCCjw7nkOE8VOGPhoL-Rjwp4Bhg@mail.gmail.com>
+References: <20210409090711.27358-1-qiangqing.zhang@nxp.com> <20210409090711.27358-2-qiangqing.zhang@nxp.com>
+In-Reply-To: <20210409090711.27358-2-qiangqing.zhang@nxp.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 9 Apr 2021 08:49:41 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKeqvC=vP+SA3i76W5jsCWxzdiNkrmHS0uU=qXUAoVq8Q@mail.gmail.com>
+Message-ID: <CAL_JsqKeqvC=vP+SA3i76W5jsCWxzdiNkrmHS0uU=qXUAoVq8Q@mail.gmail.com>
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: add new properties for
+ of_get_mac_address from nvmem
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>
+Cc:     David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Frank Rowand <frowand.list@gmail.com>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Apr 9, 2021 at 4:07 AM Joakim Zhang <qiangqing.zhang@nxp.com> wrote:
+>
+> From: Fugang Duan <fugang.duan@nxp.com>
+>
+> Currently, of_get_mac_address supports NVMEM, some platforms
 
---6ohqhuaygyq2szeg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+What's of_get_mac_address? This is a binding patch. Don't mix Linux
+things in it.
 
-Hi Linus,
+> MAC address that read from NVMEM efuse requires to swap bytes
+> order, so add new property "nvmem_macaddr_swap" to specify the
+> behavior. If the MAC address is valid from NVMEM, add new property
+> "nvmem-mac-address" in ethernet node.
+>
+> Update these two properties in the binding documentation.
+>
+> Signed-off-by: Fugang Duan <fugang.duan@nxp.com>
+> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
+> ---
+>  .../bindings/net/ethernet-controller.yaml          | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> index e8f04687a3e0..c868c295aabf 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> @@ -32,6 +32,15 @@ properties:
+>        - minItems: 6
+>          maxItems: 6
+>
+> +  nvmem-mac-address:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#definitions/uint8-array
+> +      - minItems: 6
+> +        maxItems: 6
+> +    description:
+> +      Specifies the MAC address that was read from nvmem-cells and dynamically
+> +      add the property in device node;
 
-On Fri, Apr 09, 2021 at 01:28:05AM +0200, Linus Walleij wrote:
-> On Wed, Mar 17, 2021 at 2:51 PM Sebastian Reichel
-> <sebastian.reichel@collabora.com> wrote:
->=20
-> > Convert the binding to DT schema format.
-> >
-> > Note: The battery node does not have a compatible value and needs
-> > to be described from the binding file for the PMIC. That has not
-> > yet been converted, so I kept the information in plaintext for now.
-> >
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
->=20
-> Thanks for doing this Sebastian:
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Why can't you use local-mac-address or mac-address? Those too can come
+from some other source.
 
-Thanks (I already merged this, though).
+> +
+>    max-frame-size:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description:
+> @@ -52,6 +61,11 @@ properties:
+>    nvmem-cell-names:
+>      const: mac-address
+>
+> +  nvmem_macaddr_swap:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      swap bytes order for the 6 bytes of MAC address
 
-> Long term I want to get rid of the "charging algorithm" device node,
-> as can be easily seen that is not a real hardware device but just
-> some mockery to get a platform device up and probed. It is actually
-> a library. But for now we need to keep it around.
+So 'nvmem-mac-address' needs to be swapped or it's swapped before
+writing? In any case, this belongs in the nvmem provider.
 
-Yes, the ab8500 charging algorithm obviously does not describe
-hardware and should go away, just as charger-manager driver.
-Optimally power-supply would provide a framework for this.
-
-The battery node on the other hand does describe hardware (the raw
-battery cells) and we have a common binding for this nowadays:
-
-Documentation/devicetree/bindings/power/supply/battery.yaml
-
-(At the moment it has neither properties for the chemistry nor
-for temperature sensor position)
-
--- Sebastian
-
---6ohqhuaygyq2szeg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmBwWeoACgkQ2O7X88g7
-+pryfBAAlLZTxzPZTIprclehAIr7GtqVvIw4jYjbGiwvJHAUaNLHhI47YFtEajlh
-7ArUmph2VE3VtQcCUgDti/xcJLKWQQX8WsB11K4DjnAFgX5uZwcXmTmHxUhB2WS0
-4Eloa35jMNdQZEsMM8vNroVTy71XQtxmPJZqBTjSsfpP6SPNoEZwhusF7j9E+Y51
-eYLnDnXrs9Pof+WW9bkVR0Ub5WB9CU6rDYq1DzfZ46rtZu29Fj63bhj+A1OXJonO
-fNtuSMMzM/aBkZeXA1n5Gp4B4c61IHNfjSiJYJD/QdQK0CaaGQOyLMb1bn6BfYG/
-HZJx8/n7VbnrIa+W8Meb1lgXqVZ1p3cLcHn2apWTdo5XfzVrJEKHogBFINFRZhFu
-UIsNHMUP4mLJUj8R0SM5SBCKKjV/+hvyO9tMQ1cpktJkdBD4vIohcEh8B9JWtVqv
-hK4iVugySBaaNENIu9KQMMK4Y+2tTBUsO2qrkenq8CvzLbARWKTJJ/bj8WFZys+K
-KNmaQIPIEnC16QIQukTY0RtwWFtZf9s2C5ukAskm0t91AAwlqNfeF6i5YM+RrIEg
-3gBiJHK87nwRXu5JvxFAiVKu39+etfahVxLP30xzcazxtweB/5c4vxjwo8xyacgN
-iVeM+YEseTkGipuiLGVBRQmA7jyuCng0zltG/C2eIgGs1cxNCKo=
-=6v6Y
------END PGP SIGNATURE-----
-
---6ohqhuaygyq2szeg--
+Rob
