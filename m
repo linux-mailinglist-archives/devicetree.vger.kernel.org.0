@@ -2,66 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB30135A2C8
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 18:15:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17ADF35A2D3
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 18:18:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233577AbhDIQPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 12:15:24 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:44737 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233527AbhDIQPY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 12:15:24 -0400
-Received: by mail-ot1-f43.google.com with SMTP id y19-20020a0568301d93b02901b9f88a238eso6163887oti.11
-        for <devicetree@vger.kernel.org>; Fri, 09 Apr 2021 09:15:11 -0700 (PDT)
+        id S231946AbhDIQSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 12:18:13 -0400
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:45752 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229665AbhDIQSM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 12:18:12 -0400
+Received: by mail-ot1-f42.google.com with SMTP id f75-20020a9d03d10000b0290280def9ab76so1093820otf.12;
+        Fri, 09 Apr 2021 09:17:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=P0YqXjiG5XlL0d3JhTX/lPRzYOHWj0/xwr5QmzvfrXk=;
-        b=FpiNYotfGaSK3ZT64OdJyGK0RU70ey6qaTAxMPDDnXundb24p2BEc9NvU5C/UpCYVq
-         T5r9aCDQe7uBggrYdBd7F/9dlXSnwZGl1+FaGibmW/donJJ+TIijm5FAMRubq8FYKQkW
-         UOhvNRZ7ce2PtuNsKlj84mL2g0s+VUrMg4QDO7IUS5X7J+9GS6Fj2TZNy8KZ8T7Ay+gq
-         dhYT+NChX7iLNdZexo5s37dnZGV0jxvuiOeDChbufMzYGveJyJMYj03lU4rZfDVaNWbe
-         jCDiSd0uUMyMZjAIKRaZJFS2wybg0PCx4uUlQkpXWiKouebRgyzM2DKX3HJJIZYZ61hc
-         U0YA==
-X-Gm-Message-State: AOAM5305Gd0p31PLpGVYVfm0jNtvbjZI/ftxZ6hGXldzZptH+0V1mSGw
-        QULMKIa2sVcXBOoaLt/MOg==
-X-Google-Smtp-Source: ABdhPJxQAUJozP7dkE3TP4Ru1Wndxn5VXn5j0lIv7IW6cHFLR+sFshV5R3A5dQLyD6v3Ti1cKH5O+w==
-X-Received: by 2002:a9d:68ce:: with SMTP id i14mr12368642oto.151.1617984911083;
-        Fri, 09 Apr 2021 09:15:11 -0700 (PDT)
+        bh=nPXWno11S4Od5PcOam+OVspUYzqe84Gw2wWYNw5BBRg=;
+        b=UX84FOU8c8GPBpj8I1bQuuRNXDke0/2CP6WPDghc9G4JbdPkCxj4qy8w7q/a1U+zAL
+         qTNaKTLBO9JSx7Wb5tHUSVbfn358CNCNsFJgcv+VssYUVx+i/UJxWLy93uOWpOFEajx2
+         hkAzU+ZHRKrrS4GT8UXWcFscjP1tTBvZJV0e8150qG0QW1BeF4nJ84EoI9qEbq7fOpXD
+         qLqHZNRPCkYU7UKA4W6qYBSmRoPQgpHkPbNPwBnX1fVwdRPMQV/vR71YGnsMmI5QKIOr
+         Q0o+IIhbdQKus1nlnoLvrdkfOG4t5aQAb45+hQK3PHNfhhB+/lYIwyy03H6TsNnoCAcN
+         vFtQ==
+X-Gm-Message-State: AOAM5338abtcZcEH4ITVhbZxfdiMEjU5YtdA4mnX4lfqcWYv4uOTp7F4
+        uB7BvC5skPDR7Prs90uai/iG6H32iQ==
+X-Google-Smtp-Source: ABdhPJwf5uML2LSRjZqxpDpvqc9tar6P33ne+FS3tnIzgi6Q+uhrWPe9XI2nGzLTXRfg7kzTMa0uyg==
+X-Received: by 2002:a9d:7342:: with SMTP id l2mr5141154otk.175.1617985077974;
+        Fri, 09 Apr 2021 09:17:57 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j11sm601021ooo.45.2021.04.09.09.15.10
+        by smtp.gmail.com with ESMTPSA id w1sm37517otq.75.2021.04.09.09.17.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Apr 2021 09:15:10 -0700 (PDT)
-Received: (nullmailer pid 3745702 invoked by uid 1000);
-        Fri, 09 Apr 2021 16:15:09 -0000
-Date:   Fri, 9 Apr 2021 11:15:09 -0500
+        Fri, 09 Apr 2021 09:17:57 -0700 (PDT)
+Received: (nullmailer pid 3749394 invoked by uid 1000);
+        Fri, 09 Apr 2021 16:17:55 -0000
+Date:   Fri, 9 Apr 2021 11:17:55 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        dri-devel@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH 1/2] drm/panel: Add DT bindings for Samsung LMS397KF04
-Message-ID: <20210409161509.GA3745656@robh.at.kernel.org>
-References: <20210405234713.3190693-1-linus.walleij@linaro.org>
+To:     Erwan Le Ray <erwan.leray@foss.st.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Valentin Caron <valentin.caron@foss.st.com>
+Subject: Re: [PATCH 1/2] dt-bindings: serial: stm32: add fifo threshold
+ configuration
+Message-ID: <20210409161755.GA3745930@robh.at.kernel.org>
+References: <20210406072122.27384-1-erwan.leray@foss.st.com>
+ <20210406072122.27384-2-erwan.leray@foss.st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210405234713.3190693-1-linus.walleij@linaro.org>
+In-Reply-To: <20210406072122.27384-2-erwan.leray@foss.st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 06 Apr 2021 01:47:12 +0200, Linus Walleij wrote:
-> This adds device tree bindings for the Samsung LMS397KF04
-> RGB DPI display panel.
+On Tue, Apr 06, 2021 at 09:21:21AM +0200, Erwan Le Ray wrote:
+> Add two optional DT properties, to configure RX and TX fifo threshold:
+> - st,rx-fifo-threshold-bytes
+> - st,tx-fifo-threshold-bytes
 > 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  .../display/panel/samsung,lms397kf04.yaml     | 74 +++++++++++++++++++
->  1 file changed, 74 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,lms397kf04.yaml
+> This patch depends on patch ("dt-bindings: serial: Add rx-tx-swap to stm32-usart").
 > 
+> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> Signed-off-by: Erwan Le Ray <erwan.leray@foss.st.com>
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
+> index c69f8464cdf3..e163449bf39e 100644
+> --- a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
+> @@ -65,6 +65,22 @@ properties:
+>    linux,rs485-enabled-at-boot-time: true
+>    rs485-rx-during-tx: true
+>  
+> +  st,rx-fifo-threshold-bytes:
+> +    description:
+> +      RX FIFO threshold configuration in bytes.
+> +      If value is set to 1, RX FIFO threshold is disabled.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 4, 8, 12, 14, 16]
+> +    default: 8
+> +
+> +  st,tx-fifo-threshold-bytes:
+> +    description:
+> +      TX FIFO threshold configuration in bytes.
+> +      If value is set to 1, TX FIFO threshold is disabled.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 4, 8, 12, 14, 16]
+> +    default: 8
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+We already have 'tx-threshold' for 8250, so reuse that and add 
+'rx-threshold'.
+
+Rob
