@@ -2,120 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2315A3598B2
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 11:07:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8023D3598B1
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 11:07:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232892AbhDIJIB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 05:08:01 -0400
-Received: from mail-eopbgr40081.outbound.protection.outlook.com ([40.107.4.81]:40854
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232878AbhDIJHz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Apr 2021 05:07:55 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mpOcoXHUT+FdfaxSLy7PoQWV6iw54y757LTawFAC+H96Y2h1GAhSvuUmN6NAVB808tbUO/Pq2SlU/WGivz+RIcOUQZkUP4KRL+U+A2gyb7MHRRezKfM0rJBQ8xUjduci6aq7DFQ4W9MaixJ2aqZc5iWOdabwTt5TvaGfK9neod6UcjUSYIwcpRZ3qZi9K47t20JM0FHnx5EPtG6lZCfy8zxFXWLq68POI5xi5RLSFmzjzBLzwMLGcf/tDQf9ctZJIxEm7Qpsm7lJ9DZOtO5vnSwDBJsA2anQ2wxZTkT94LsVtgXfWfVOg6RpZEyARTp6NN2sBfDZnWv2ZmY0Cu0Dhg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dHY6EzVVQcKbIMNK7n29d9hc4VnG0DLip7bPBB4Np/A=;
- b=XqdPGNbiAZ34Uma/I7+tk1i8fPLuPoMYAGFjMW/4mVpUESxG0SE5I7+irOD09uEm2CelMtriGNQIFJUE+EB84nd3GPeDL5tdFsK5uZHOuoevGMpNGrmlmU3RHD9k1svjAG6jHy6hbcyFaUS5CkNYcAy6UmLisETLG3aMILdDEboC9/KiPvJZ2clU6x1EpkgDyh3kSWTjXwbHHwTuNr32zEBamFMZSqzoqug26a7BEwrZuP6VsFy4MBrntoIdv87nPSYRo1NnpPQ3lL8UH6gu9s4hhyXr+Sb1+S6cVkXx4juxOb1qDc1jPu/au13g4fbdFzWylDIhHn6hL/Pxm69QFw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dHY6EzVVQcKbIMNK7n29d9hc4VnG0DLip7bPBB4Np/A=;
- b=NLcUZy9SI2ODu7NmKVUd8iPAzx5gIwAoS5uocOKC/X9VVJAY2AxOvoCcHpJhUYCIhyW/ufS6NrG5YIntUWxch+0ce7mQujL7LoQnTBwozrd+t0+5inEF8LqRRSUYBhWQ02jv8rdqDSxP9e9vDXVQG6dMr4dpdAHMZYdWHSZPtxU=
-Authentication-Results: davemloft.net; dkim=none (message not signed)
- header.d=none;davemloft.net; dmarc=none action=none header.from=nxp.com;
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
- by DBAPR04MB7336.eurprd04.prod.outlook.com (2603:10a6:10:1a9::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.20; Fri, 9 Apr
- 2021 09:07:41 +0000
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::9598:ace0:4417:d1d5]) by DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::9598:ace0:4417:d1d5%6]) with mapi id 15.20.4020.017; Fri, 9 Apr 2021
- 09:07:41 +0000
-From:   Joakim Zhang <qiangqing.zhang@nxp.com>
-To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        frowand.list@gmail.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com
-Subject: [PATCH net-next 0/3] net: add new properties for of_get_mac_address from nvmem
-Date:   Fri,  9 Apr 2021 17:07:08 +0800
-Message-Id: <20210409090711.27358-1-qiangqing.zhang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.71]
-X-ClientProxiedBy: HK2PR02CA0184.apcprd02.prod.outlook.com
- (2603:1096:201:21::20) To DB8PR04MB6795.eurprd04.prod.outlook.com
- (2603:10a6:10:fa::15)
+        id S232865AbhDIJIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 05:08:00 -0400
+Received: from mo-csw1115.securemx.jp ([210.130.202.157]:52938 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232911AbhDIJHy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 05:07:54 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1115) id 13997FLj009886; Fri, 9 Apr 2021 18:07:15 +0900
+X-Iguazu-Qid: 2wHHQAoCJpBnoHL9nN
+X-Iguazu-QSIG: v=2; s=0; t=1617959235; q=2wHHQAoCJpBnoHL9nN; m=5uiJLV5o/+PKDCDn+xJ53joDVx82iVTYThx2yWXsBYc=
+Received: from imx2-a.toshiba.co.jp (imx2-a.toshiba.co.jp [106.186.93.35])
+        by relay.securemx.jp (mx-mr1112) id 13997EU8033245
+        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+        Fri, 9 Apr 2021 18:07:14 +0900
+Received: from enc01.toshiba.co.jp (enc01.toshiba.co.jp [106.186.93.100])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by imx2-a.toshiba.co.jp (Postfix) with ESMTPS id 2186C1000B4;
+        Fri,  9 Apr 2021 18:07:14 +0900 (JST)
+Received: from hop001.toshiba.co.jp ([133.199.164.63])
+        by enc01.toshiba.co.jp  with ESMTP id 13997Dx8025027;
+        Fri, 9 Apr 2021 18:07:13 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Subject: [PATCH v3 2/2] pwm: visconti: Add Toshiba Visconti SoC PWM support
+Date:   Fri,  9 Apr 2021 18:07:09 +0900
+X-TSB-HOP: ON
+Message-Id: <20210409090709.1918021-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+X-Mailer: git-send-email 2.30.0.rc2
+In-Reply-To: <20210409090709.1918021-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+References: <20210409090709.1918021-1-nobuhiro1.iwamatsu@toshiba.co.jp>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.71) by HK2PR02CA0184.apcprd02.prod.outlook.com (2603:1096:201:21::20) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.16 via Frontend Transport; Fri, 9 Apr 2021 09:07:37 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b43865ea-4f8a-4b46-69dd-08d8fb36edb8
-X-MS-TrafficTypeDiagnostic: DBAPR04MB7336:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DBAPR04MB73365140EB2E7C854066BA41E6739@DBAPR04MB7336.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QiL2m91xJdveNkDPKbpq39wXRkYYVyUo2/9uDHS/eR+4ZsSaJ29fDQaJjf4iEZs4TZcJwMwHXn31qrrlaEj0ekx6H/TefHMHkQWKa6Dri4qxA5wWYmnlcSRVqQApTEVHmH4vlCNmJO1pV/S4HEpquD32pypnGCm4wdAbJfhrJ6C0hqtUFX6W9HTcA3bhjZo9o+fWYih7cPWK9pIylOihtHhCz9w6PWgK+uf6JZS1AZO0LQOPK4mzjMnW7J5PCrcXT04bvACD8n4PuFstXpUA7s+Eo74qWZOFY8AgqWAzF9MDiU78RAzEg2KA87bKVv1u3ubSMqXC5LWRIKnXMSQZrun0ptEySHchwFrEyBDVE60wVu6cbzt3nw8mO30sMzv8DnyiAgzc1oRYQE8aaOp+++UpNOy4/DKPuTMNnYYhU5Za/+d4fYYSawy8qSyLTszxH/oeuN7XPm/tKAzXFOnoWuRPMQvArWvyZDnZPHPRTS9B31TyVm4phIJNxPaLmwZn7P1DmVoFGSgMcqBE5vtiebYj4eikUiC/24LfG0oCzbNnFe9o5FpkjynigSC1SNJ1ayPHfYrSYsHjM9PHLQbiWwimYtBzJ77AD5FP06TBEdmVNLYUM0ds5MX+haAn60Qasd/fUhutGb9hfACdQhqRx7FavGJfrMvPqo8RPYwzczmj7G4ibFN7PG22oCFxWgOtx45AN/Z85jBIViagHGQtaFvLXsT36XlJpG8v7/QLs9s=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(396003)(136003)(366004)(346002)(39860400002)(316002)(36756003)(6506007)(8936002)(8676002)(6486002)(52116002)(6666004)(6512007)(4326008)(956004)(66476007)(38350700001)(66556008)(5660300002)(69590400012)(2616005)(38100700001)(83380400001)(478600001)(7416002)(16526019)(26005)(186003)(2906002)(4744005)(1076003)(66946007)(86362001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?lSdOzOuXz2LJULomDdLoQrkdG2v8EWfC8vwO1hRyC0lWZeqfPFZwxja+iJdJ?=
- =?us-ascii?Q?w8tFaHRYm3dOSDuYUkxS8GhJOZk/+0oC6ADd64QbsLc3JS4dOtCNz6qg29pW?=
- =?us-ascii?Q?f4Q2TBwGW+xgbVnGgYytR1rIb9dhLBkWvb7uwuKwUXOP2dlStrEJZ6ChhDIT?=
- =?us-ascii?Q?Z3xkt+S1yKe69Ij9jw4Y6aBb5kF/Q19uMQ+6TaftrmGOnVR4kIKsLNgyxwoN?=
- =?us-ascii?Q?ow8mc8pASNXH72O+mMEGRIiw/XqX7CLNIibEmbTspAFzZjpig4/kBgeiAdf0?=
- =?us-ascii?Q?ZmWypOUppLazctm0zctcLiU+M3yEh9uW8DLEgo4t1WGw1hh/N4P+2Vn2qzaD?=
- =?us-ascii?Q?rDNZTZbnm2yFN57lx4xI64CCBgn6CoDLq3zeKi/0Aif9bMe9D/IodP/U4zxq?=
- =?us-ascii?Q?LbDc3IOb5F5djF9QXT04bY9TT4RtpaDgfG7b3S40vckxaqohub9S69iTaIRi?=
- =?us-ascii?Q?ZhcCTbT7Iiv7rM9ohHXwYFIA9nI8FIsrHZ8E91EYllRmqY95QqN1D4bWVoeC?=
- =?us-ascii?Q?kA8X5RxaVWpN937RDo19Ps9VDRYmlrDUoXLIog4tWOui3Zo+tA0hvc1N04pd?=
- =?us-ascii?Q?zn32cAzbE4vfwFyvwwAZBCeaphViPwpEd+cYV/06K7vdLQAT1Od/oQRoMNkE?=
- =?us-ascii?Q?X9QZnCCqrJrnR2u95wBKmkAaQqIqHweN667jugCNA/ImCfUObqe+x3RaN7Up?=
- =?us-ascii?Q?31vFV7TLo0gFxcsQsKxcgj9YrqIpu+kB5lKhmegeUSRbK/rK60kapJ01tvGm?=
- =?us-ascii?Q?ZSGnvp919PGHswyXzUkhHPICotkKpBF304o1OfosXilALcNyxHXJYW2x2s9s?=
- =?us-ascii?Q?TsPSHLVAK3XQDBlPMJmBKc912yFCKgQ1HCWzveJEmES0IsGf9evarNg4fLMT?=
- =?us-ascii?Q?/jVomLsI60M/PtSqwbQgS9byuXbZnv8Ji5dMjUkcEssUIEFock+fGJ/KKHuT?=
- =?us-ascii?Q?xvwvJnxQzE125UZwvLP77ZzJnZEIQ5AxuEuQOypMYezKdxg/fxsY0Rlg2fhx?=
- =?us-ascii?Q?PV1C7tw56OTy4IiArNJIZLEk5eM9OdhYhHS07VWT5ndNwoc3G5N3dVGvgGbb?=
- =?us-ascii?Q?ZjczAmw+NgPXsPy82HsbQboTG9W4dlNfZRtswLL1PA6T5Y8II3VM7AAILnYx?=
- =?us-ascii?Q?SAnUMDJWMCoxwcWG8eQLN3Ex2XBlnWrY24aaHVUgP5IPHHGWjuTcVUtxxCoN?=
- =?us-ascii?Q?HyZJ5yrWHHu38YAlognT4RcUaoDwi4y/0L9Nn824AVwRciAx8d7EAH2oKYCF?=
- =?us-ascii?Q?ibA4KoePeEUZLGJidVnQi0pQa3yTr575G2IXpxUoX2zFxNOMFh7s5ZTapaCF?=
- =?us-ascii?Q?VnWdKFb1hDtiNMW+7ENVtJUF?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b43865ea-4f8a-4b46-69dd-08d8fb36edb8
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2021 09:07:41.1252
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UZe6bnvNYLfVciHCIqKXuO7E9fTvH7wtx52tr3dFfw/ku3W+PoX2z9OEn9v/Orb49ykUVq+/+q64MYV4sD29ag==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7336
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch set adds new properties for of_get_mac_address from nvmem.
+Add driver for the PWM controller on Toshiba Visconti ARM SoC.
 
-Fugang Duan (3):
-  dt-bindings: net: add new properties for of_get_mac_address from nvmem
-  net: ethernet: add property "nvmem_macaddr_swap" to swap macaddr bytes
-    order
-  of_net: add property "nvmem-mac-address" for of_get_mac_addr()
+Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+---
+ drivers/pwm/Kconfig        |   9 ++
+ drivers/pwm/Makefile       |   1 +
+ drivers/pwm/pwm-visconti.c | 193 +++++++++++++++++++++++++++++++++++++
+ 3 files changed, 203 insertions(+)
+ create mode 100644 drivers/pwm/pwm-visconti.c
 
- .../bindings/net/ethernet-controller.yaml     | 14 +++++++++++
- drivers/of/of_net.c                           |  4 +++
- net/ethernet/eth.c                            | 25 +++++++++++++++----
- 3 files changed, 38 insertions(+), 5 deletions(-)
-
+diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+index 9a4f66ae8070..8ae68d6203fb 100644
+--- a/drivers/pwm/Kconfig
++++ b/drivers/pwm/Kconfig
+@@ -601,6 +601,15 @@ config PWM_TWL_LED
+ 	  To compile this driver as a module, choose M here: the module
+ 	  will be called pwm-twl-led.
+ 
++config PWM_VISCONTI
++	tristate "Toshiba Visconti PWM support"
++	depends on ARCH_VISCONTI || COMPILE_TEST
++	help
++	  PWM Subsystem driver support for Toshiba Visconti SoCs.
++
++	  To compile this driver as a module, choose M here: the module
++	  will be called pwm-visconti.
++
+ config PWM_VT8500
+ 	tristate "vt8500 PWM support"
+ 	depends on ARCH_VT8500 || COMPILE_TEST
+diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+index 6374d3b1d6f3..d43b1e17e8e1 100644
+--- a/drivers/pwm/Makefile
++++ b/drivers/pwm/Makefile
+@@ -56,4 +56,5 @@ obj-$(CONFIG_PWM_TIECAP)	+= pwm-tiecap.o
+ obj-$(CONFIG_PWM_TIEHRPWM)	+= pwm-tiehrpwm.o
+ obj-$(CONFIG_PWM_TWL)		+= pwm-twl.o
+ obj-$(CONFIG_PWM_TWL_LED)	+= pwm-twl-led.o
++obj-$(CONFIG_PWM_VISCONTI)	+= pwm-visconti.o
+ obj-$(CONFIG_PWM_VT8500)	+= pwm-vt8500.o
+diff --git a/drivers/pwm/pwm-visconti.c b/drivers/pwm/pwm-visconti.c
+new file mode 100644
+index 000000000000..ff4a5f5b0009
+--- /dev/null
++++ b/drivers/pwm/pwm-visconti.c
+@@ -0,0 +1,193 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Toshiba Visconti pulse-width-modulation controller driver
++ *
++ * Copyright (c) 2020 TOSHIBA CORPORATION
++ * Copyright (c) 2020 Toshiba Electronic Devices & Storage Corporation
++ *
++ * Authors: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
++ *
++ */
++
++#include <linux/err.h>
++#include <linux/io.h>
++#include <linux/module.h>
++#include <linux/of_device.h>
++#include <linux/pwm.h>
++#include <linux/platform_device.h>
++
++#define PIPGM_PCSR(ch) (0x400 + 4 * (ch))
++#define PIPGM_PDUT(ch) (0x420 + 4 * (ch))
++#define PIPGM_PWMC(ch) (0x440 + 4 * (ch))
++
++#define PIPGM_PWMC_PWMACT		BIT(5)
++#define PIPGM_PWMC_CLK_MASK		GENMASK(1, 0)
++#define PIPGM_PWMC_POLARITY_MASK	GENMASK(5, 5)
++
++struct visconti_pwm_chip {
++	struct pwm_chip chip;
++	void __iomem *base;
++};
++
++#define to_visconti_chip(chip) \
++	container_of(chip, struct visconti_pwm_chip, chip)
++
++static int visconti_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
++			      const struct pwm_state *state)
++{
++	struct visconti_pwm_chip *priv = to_visconti_chip(chip);
++	u32 period, duty_cycle, pwmc0;
++
++	dev_dbg(chip->dev, "%s: ch = %d en = %d p = 0x%llx d = 0x%llx\n", __func__,
++		pwm->hwpwm, state->enabled, state->period, state->duty_cycle);
++
++	/*
++	 * pwmc is a 2-bit divider for the input clock running at 1 MHz.
++	 * When the settings of the PWM are modified, the new values are shadowed in hardware until
++	 * the period register (PCSR) is written and the currently running period is completed. This
++	 * way the hardware switches atomically from the old setting to the new.
++	 * Also, disabling the hardware completes the currently running period and keeps the output
++	 * at low level at all times.
++	 */
++	if (!state->enabled) {
++		writel(0, priv->base + PIPGM_PCSR(pwm->hwpwm));
++		return 0;
++	}
++
++	/*
++	 * The biggest period the hardware can provide is
++	 *	(0xffff << 3) * 1000 ns
++	 * This value fits easily in an u32, so simplify the maths by
++	 * capping the values to 32 bit integers.
++	 */
++	if (state->period > (0xffff << 3) * 1000)
++		period = (0xffff << 3) * 1000;
++	else
++		period = state->period;
++
++	if (state->duty_cycle > period)
++		duty_cycle = period;
++	else
++		duty_cycle = state->duty_cycle;
++
++	/*
++	 * The input clock runs fixed at 1 MHz, so we have only
++	 * microsecond resolution and so can divide by
++	 * NSEC_PER_SEC / CLKFREQ = 1000 without loosing precision.
++	 */
++	period /= 1000;
++	duty_cycle /= 1000;
++
++	if (!period)
++		/* period too small */
++		return -ERANGE;
++
++	/*
++	 * PWMC controls a divider that divides the input clk by a
++	 * power of two between 1 and 8. As a smaller divider yields
++	 * higher precision, pick the smallest possible one.
++	 */
++	if (period > 0xffff) {
++		pwmc0 = ilog2(period >> 16);
++		BUG_ON(pwmc0 > 3);
++	} else
++		pwmc0 = 0;
++
++	period >>= pwmc0;
++	duty_cycle >>= pwmc0;
++
++	if (state->polarity == PWM_POLARITY_INVERSED)
++		pwmc0 |= PIPGM_PWMC_PWMACT;
++	writel(pwmc0, priv->base + PIPGM_PWMC(pwm->hwpwm));
++	writel(duty_cycle, priv->base + PIPGM_PDUT(pwm->hwpwm));
++	writel(period, priv->base + PIPGM_PCSR(pwm->hwpwm));
++
++	return 0;
++}
++
++static void visconti_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
++				   struct pwm_state *state)
++{
++	struct visconti_pwm_chip *priv = to_visconti_chip(chip);
++	u32 period, duty, pwmc0, pwmc0_clk;
++
++	period = readl(priv->base + PIPGM_PCSR(pwm->hwpwm));
++	if (period)
++		state->enabled = true;
++	else
++		state->enabled = false;
++
++	duty = readl(priv->base + PIPGM_PDUT(pwm->hwpwm));
++	pwmc0 = readl(priv->base + PIPGM_PWMC(pwm->hwpwm));
++	pwmc0_clk = pwmc0 & PIPGM_PWMC_CLK_MASK;
++
++	state->period = (period << pwmc0_clk) * NSEC_PER_USEC;
++	state->duty_cycle = (duty << pwmc0_clk) * NSEC_PER_USEC;
++	if (pwmc0 & PIPGM_PWMC_POLARITY_MASK)
++		state->polarity = PWM_POLARITY_INVERSED;
++	else
++		state->polarity = PWM_POLARITY_NORMAL;
++}
++
++static const struct pwm_ops visconti_pwm_ops = {
++	.apply = visconti_pwm_apply,
++	.get_state = visconti_pwm_get_state,
++	.owner = THIS_MODULE,
++};
++
++static int visconti_pwm_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct visconti_pwm_chip *priv;
++	int ret;
++
++	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	priv->base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(priv->base))
++		return PTR_ERR(priv->base);
++
++	platform_set_drvdata(pdev, priv);
++
++	priv->chip.dev = dev;
++	priv->chip.ops = &visconti_pwm_ops;
++	priv->chip.base = -1;
++	priv->chip.npwm = 4;
++
++	ret = pwmchip_add(&priv->chip);
++	if (ret < 0)
++		return dev_err_probe(&pdev->dev, ret, "Cannot register visconti PWM\n");
++
++	dev_dbg(&pdev->dev, "visconti PWM registered\n");
++
++	return 0;
++}
++
++static int visconti_pwm_remove(struct platform_device *pdev)
++{
++	struct visconti_pwm_chip *priv = platform_get_drvdata(pdev);
++
++	return pwmchip_remove(&priv->chip);
++}
++
++static const struct of_device_id visconti_pwm_of_match[] = {
++	{ .compatible = "toshiba,visconti-pwm", },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, visconti_pwm_of_match);
++
++static struct platform_driver visconti_pwm_driver = {
++	.driver = {
++		.name = "pwm-visconti",
++		.of_match_table = visconti_pwm_of_match,
++	},
++	.probe = visconti_pwm_probe,
++	.remove = visconti_pwm_remove,
++};
++module_platform_driver(visconti_pwm_driver);
++
++MODULE_LICENSE("GPL v2");
++MODULE_AUTHOR("Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>");
++MODULE_ALIAS("platform:pwm-visconti");
 -- 
-2.17.1
+2.30.0.rc2
 
