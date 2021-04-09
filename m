@@ -2,98 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDDBB359717
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 10:04:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EA56359734
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 10:10:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229545AbhDIIFH convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 9 Apr 2021 04:05:07 -0400
-Received: from mout.kundenserver.de ([212.227.126.133]:58123 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbhDIIFG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 04:05:06 -0400
-Received: from mail-oi1-f181.google.com ([209.85.167.181]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MHVWT-1lHu5t1DX7-00DYvM; Fri, 09 Apr 2021 10:04:52 +0200
-Received: by mail-oi1-f181.google.com with SMTP id m13so4919559oiw.13;
-        Fri, 09 Apr 2021 01:04:51 -0700 (PDT)
-X-Gm-Message-State: AOAM531lnVZYH10VAY8dn1wt3M7YLuSxmmgDV9NyqIX/wbJcpNRZTh2P
-        ufqP1Pxh4KyeWolFAKAxjz67kDztau7vaSLOotE=
-X-Google-Smtp-Source: ABdhPJw1wO5JX6zgBX4BsEiKPFIsDx6YR60lpWDniVPRNgV9yzXLXThF/0H0/g/gIDeI3dzcgbPsffottKejMu0nxec=
-X-Received: by 2002:aca:5945:: with SMTP id n66mr8928933oib.11.1617955490914;
- Fri, 09 Apr 2021 01:04:50 -0700 (PDT)
+        id S232440AbhDIIKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 04:10:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57536 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232372AbhDIIKP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 04:10:15 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1049FC061762
+        for <devicetree@vger.kernel.org>; Fri,  9 Apr 2021 01:10:03 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id a4so4708126wrr.2
+        for <devicetree@vger.kernel.org>; Fri, 09 Apr 2021 01:10:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=KwLBWMBZRdz46SUCvmDH9Z5zZXCHk+G/HINFfQ17P4M=;
+        b=hNhtj/aNpiqdIzZxP30CSRrlHSEJ+O8XRNC6jWPo79WZV4eucvGfZoZkKIdlEF6Khu
+         N+SQeipigjG2DjlfUvoxpdaaHARK2jibT3Ojl+9fBLq90YpUiKiJZAFS1RkH4ZC07h/u
+         p+WxjHZXM1FPv+9AWnAjECvuHh4dW66akPp3V7i2jJAzYNGjBOq8m91JKig8nHsDClHA
+         wDszXITwkUa3he/ggRpNIGHI0P/qgrs0BYF4MpTe3Zf3zHBbK0XaSzRZw0rM1XdDtJmW
+         MPsTCb833ukTW1aPV15PJuTaQOEw00OlZeSqY3JBQ3ltR1bsHn5hpL+mZzdfzF3fyw65
+         Ebfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=KwLBWMBZRdz46SUCvmDH9Z5zZXCHk+G/HINFfQ17P4M=;
+        b=CpHA0wkY+xEtRBFoDA+E/JuFO51IAMHGc9HPrUZN1Az8s18bp3PaFwbgSDJzlz6BqZ
+         5EPvyYt8KXTu6Jycz66f73kIBYvIj6TZKzoXTdoRRawkBc2kExhyJ/3Hup9zuRqKjh6r
+         0hnQw/PKlq/k7+Nde9U6XHN0nwW0MBtTOpzb95o7I5BAYEQMrWMGLu+vDSPJbXQhxhYF
+         SbgzHLDCYRY0UerR6UevO0eobMQj8qjdSNw6+AaORz5N+NpcoXRW3kET1go+9suvxcVP
+         LjPY4r9AX9jUBn6+FPww8+mPkhOQSuNjI1yYREQvelZ/yAVOKr0M45WdcrsT8pHPiXnG
+         syiQ==
+X-Gm-Message-State: AOAM532DFn7HBlWmF0MFHmvdV2PmFx1I4MM1UbPGLvrIU95HLoypbtYF
+        lnfNNOTBUIS+0d43a/PC+VLM4A==
+X-Google-Smtp-Source: ABdhPJy4XQCBVWHdPm5wWRMqkGkFiEZh0CiXWdXcPLlAZvt02L7wI+v/m2X3FQwQNaQuzsiZpcriMA==
+X-Received: by 2002:adf:dc4f:: with SMTP id m15mr16484222wrj.420.1617955801641;
+        Fri, 09 Apr 2021 01:10:01 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:5d29:55c:ba8e:9bff? ([2a01:e34:ed2f:f020:5d29:55c:ba8e:9bff])
+        by smtp.googlemail.com with ESMTPSA id u9sm2677419wmc.38.2021.04.09.01.09.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Apr 2021 01:10:00 -0700 (PDT)
+Subject: Re: [v7,1/3] arm64: dts: mt8183: add thermal zone node
+To:     Michael Kao <michael.kao@mediatek.com>, fan.chen@mediatek.com,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        srv_heupstream@mediatek.com
+Cc:     Eduardo Valentin <edubezval@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>, hsinyi@chromium.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20210316070144.28440-1-michael.kao@mediatek.com>
+ <20210316070144.28440-2-michael.kao@mediatek.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <f7003979-0210-882e-bb28-f24047e18061@linaro.org>
+Date:   Fri, 9 Apr 2021 10:09:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210406120921.2484986-1-j.neuschaefer@gmx.net>
- <CAK8P3a0VfnUucvZNkA9PdxrWiYUOkisV00v-375PmgQYp4aXoQ@mail.gmail.com>
- <YGzZofPvT80b5gS5@latitude> <CACPK8XdbwbsbJuZmvsFqJ+x5viu652vpfR1kwB4Gu+khRHNt_g@mail.gmail.com>
- <YHAI+x4OXBKvJkUH@latitude>
-In-Reply-To: <YHAI+x4OXBKvJkUH@latitude>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Fri, 9 Apr 2021 10:04:34 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a18ySEmCzkdD-GmQSPFUza_TK3OBPk0Grbz_aFW72+g7g@mail.gmail.com>
-Message-ID: <CAK8P3a18ySEmCzkdD-GmQSPFUza_TK3OBPk0Grbz_aFW72+g7g@mail.gmail.com>
-Subject: Re: [PATCH v2 00/10] Initial support for Nuvoton WPCM450 BMC SoC
-To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-Cc:     Joel Stanley <joel@jms.id.au>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Provags-ID: V03:K1:u6MzJMYFGUzBmtK7rb0ux5/iD8kF1aMQxfHYwFOpbxjC6RtGWTC
- E2NsGl1+nHGGa+ezOL+J7hSxOwHk1UQMixR6BSkgqquhQk086V4YnEJcVVFGbC4HTIW4K3Q
- 6RXi6U1VAI8vq6xrnzcjjrlJZ+Hwzbxyd98Lfiis16h1G7PUdABiW8HxWAJEBER1FmRA4fs
- /+Vx4q4FotZZr/c8FFmCw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:PHTjioA4VsQ=:qKDLfvU14EljUSBcQLWSOT
- 4Qkm2uLnK3mf2Q/F0H9T9AvVtjGwzUgLsZy2KsBFDYUpMUomWnA5gBHGXeIsOFNkZztIictmt
- rnk/xaMotxwue4V0HKHWVlSwBlNhsoVv5TIgg42DxNf8ZUEYCITdsDxHR85sSWedZCT3i/hFu
- qcBHSQAATug3xLUxZkzT/s6jIsmGfE+XcyrYPAg/BcKwQSlh33ZpQyWj0gF5YawK/Sevk9I6W
- AYPSv8rT7NELu8lnF8Q/swC0ZVouX9pIKagDtobXUhakxLlE0sShBVbGBkmdnY7nrxNNC8Bxj
- 2fXQAQZ7GGCvMopPD+nBjVI/QIPe02Vf7xubg0DbYxs9KDrdmNlBAeiQxA94itAJUjUy3jc1e
- GahQjDMGU0qO49rZNFn7bIEfAbomDp/xL99e8nHoF6YEwY9FUVcwr+V8J2UQlo/GAiI4zDXvx
- llyn0qI2h70BpcgOtwfV3RCnMTMmWW8iehfknsGgPCBXSrcrQv6BAvq2y4ysli0cCYKF1GbJX
- eQtkkxrdyD/xBT3dkIv0BhTtR349gTjTj/DS/jYftMb7h6a9sRJxn+AyRN1IGNDFlgm/83S2H
- iTzIGkiNbne2CYZiQMEYJj991FBSjX0ccN
+In-Reply-To: <20210316070144.28440-2-michael.kao@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 9, 2021 at 9:58 AM Jonathan Neuschäfer
-<j.neuschaefer@gmx.net> wrote:
-> On Fri, Apr 09, 2021 at 04:37:34AM +0000, Joel Stanley wrote:
-> > On Tue, 6 Apr 2021 at 21:59, Jonathan Neuschäfer <j.neuschaefer@gmx.net> wrote:
-> > I've had a look at the series and it looks good to me:
-> >
-> > Reviewed-by: Joel Stanley <joel@jms.id.au>
-> >
-> > Nice work Jonathan.
-> >
-> > I'll put this in it's own branch along with the bindings change it
-> > depends on and send a pull request to Arnd for v5.13.
->
-> Thanks a bunch!
->
-> A few patches are going through other branches (IRQ bindings+driver;
-> watchdog bindings+driver probably, I guess). That leaves the following
-> patches to go into your branch, AFAIUI:
->
-> [PATCH v2 01/10] dt-bindings: vendor-prefixes: Add Supermicro
-> [PATCH v2 02/10] dt-bindings: arm: npcm: Add nuvoton,wpcm450 compatible string
-> [PATCH v2 05/10] ARM: npcm: Introduce Nuvoton WPCM450 SoC
-> [PATCH v2 08/10] ARM: dts: Add devicetree for Nuvoton WPCM450 BMC chip
-> [PATCH v2 09/10] ARM: dts: Add devicetree for Supermicro X9SCi-LN4F based on WPCM450
-> [PATCH v2 10/10] MAINTAINERS: Add entry for Nuvoton WPCM450
+On 16/03/2021 08:01, Michael Kao wrote:
+> From: "michael.kao" <michael.kao@mediatek.com>
+> 
+> Add thermal zone node to Mediatek MT8183 dts file.
+> 
+> Evaluate the thermal zone every 500ms while not cooling
+> and every 100ms when passive cooling is performed.
+> 
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 85 ++++++++++++++++++++++++
+>  1 file changed, 85 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index 5b782a4769e7..d3550af06408 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -657,6 +657,87 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		thermal: thermal@1100b000 {
+> +			#thermal-sensor-cells = <1>;
+> +			compatible = "mediatek,mt8183-thermal";
+> +			reg = <0 0x1100b000 0 0x1000>;
+> +			clocks = <&infracfg CLK_INFRA_THERM>,
+> +				 <&infracfg CLK_INFRA_AUXADC>;
+> +			clock-names = "therm", "auxadc";
+> +			resets = <&infracfg  MT8183_INFRACFG_AO_THERM_SW_RST>;
+> +			interrupts = <0 76 IRQ_TYPE_LEVEL_LOW>;
+> +			mediatek,auxadc = <&auxadc>;
+> +			mediatek,apmixedsys = <&apmixedsys>;
+> +			nvmem-cells = <&thermal_calibration>;
+> +			nvmem-cell-names = "calibration-data";
+> +		};
+> +
+> +		thermal-zones {
+> +			cpu_thermal: cpu_thermal {
+> +				polling-delay-passive = <100>;
+> +				polling-delay = <500>;
+> +				thermal-sensors = <&thermal 0>;
+> +				sustainable-power = <5000>;
+> +			};
+> +
+> +			/* The tzts1 ~ tzts6 don't need to polling */
+> +			/* The tzts1 ~ tzts6 don't need to thermal throttle */
+> +
+> +			tzts1: tzts1 {
+> +				polling-delay-passive = <0>;
+> +				polling-delay = <0>;
+> +				thermal-sensors = <&thermal 1>;
+> +				sustainable-power = <5000>;
+> +				trips {};
+> +				cooling-maps {};
+> +			};
 
-Actually for an initial merge, we sometimes just put all the patches into one
-branch in the soc tree to avoid conflicts. Unfortunately we already have a
-(trivial) conflict now anyway since I merged the irqchip driver for the Apple
-M1 SoC through the soc tree but the wpcm irqchip through the irqchip tree.
+What is the point of defining the sustainable power with no cooling
+device associated ?
 
-You did nothing wrong here, this would have just been a way to make the
-initial merge a bit easier, and have a tree that is more easily bisectible
-when one branch in the merge window contains all the code that is
-needed for booting.
 
-        Arnd
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
