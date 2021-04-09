@@ -2,223 +2,539 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BD8735A864
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 23:35:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43CEB35A8B1
+	for <lists+devicetree@lfdr.de>; Sat, 10 Apr 2021 00:17:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234579AbhDIVfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 17:35:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37364 "EHLO
+        id S234654AbhDIWSC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 18:18:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234529AbhDIVfk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 17:35:40 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC798C061763
-        for <devicetree@vger.kernel.org>; Fri,  9 Apr 2021 14:35:26 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lUymg-00030P-3i; Fri, 09 Apr 2021 23:35:22 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lUymf-0002XY-F3; Fri, 09 Apr 2021 23:35:21 +0200
-Date:   Fri, 9 Apr 2021 23:35:21 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Clemens Gruber <clemens.gruber@pqgruber.com>,
-        linux-pwm@vger.kernel.org, Sven Van Asbroeck <TheSven73@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 5/8] pwm: core: Support new PWM_STAGGERING_ALLOWED flag
-Message-ID: <20210409213521.mni4jygws4ml53dk@pengutronix.de>
-References: <20210406164140.81423-1-clemens.gruber@pqgruber.com>
- <20210406164140.81423-5-clemens.gruber@pqgruber.com>
- <20210407054658.qdsjkstqwynxeuxj@pengutronix.de>
- <YG4UNoBCQJkEEfwi@workstation.tuxnet>
- <20210407213403.h6n6l2t7vqoalceu@pengutronix.de>
- <YG78IHIMGtl8Pokp@orome.fritz.box>
- <YG8miEOZXsH0NTcA@workstation.tuxnet>
- <20210408173637.w26njwystfuyrgan@pengutronix.de>
- <YHA5sPuZmbSLU3aM@orome.fritz.box>
+        with ESMTP id S234517AbhDIWSC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 18:18:02 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F978C061762;
+        Fri,  9 Apr 2021 15:17:48 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id t140so4924588pgb.13;
+        Fri, 09 Apr 2021 15:17:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=wWgGJxJub0BSW5/LLaSUOZ58IgQbmAtgv79KckGqnb8=;
+        b=e6XQlAuQ7zoO7rucOworq6lbWLzCXUhJKPSKFK5l6lByDNbuoeewPHjUCt+6ITjNKH
+         0SiksuGel7GrU15121yXBlAwvXD8Pfv9lrBG8g2eM7u850yWotLPllLmiax3ZhXLSUHt
+         i9eNC+4U06oKr2Q/4VWX4+vWUstxiN4w6OOCT8yNqaHAdWGuzKI9gL37aCcLvWJVkbHN
+         VGkEqF5cnIwvUEk/Dde2WybKl719u05S66uYIYngMTerP0Hvnv4xR70vkoZYiUYzzPbl
+         uJOde8rqUSzmnTab4r+2UiQ6BmM4Gb+MdvJWjloGVX/cNByUBiJ9rDutSCXxdZrYO/xa
+         0yCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wWgGJxJub0BSW5/LLaSUOZ58IgQbmAtgv79KckGqnb8=;
+        b=nx4ZdAT9ebNjyWBHeE2XnasKmDZXuvEkMw1BHvgIiyMT8uyTpxFLjTfRjw0NCI5XfP
+         38lN+UsVJfD4AUYOJWL19WxsGU3j9VGVydN7pHhyWxJcbP3jFWkzzRvmj2DS8Y6ZbKvN
+         qyJgDpjFBBkMIyfNM6zj9WGvNmNU8uZqWxXPEuTqiT632H+Rx0rznJ/c3YXbHrgSgWJA
+         VllAk0u6KJtbUXPeajpZsQ1BLv/2bWE2EMZp6OqLCwg+b9Ad29/YZz7ZqrwljAFl43Gh
+         JmBOaG05XMQVmgzU3v8NES3fJv8VpDwRunA768G6AaNmRs5lvQwOQVxTr28ckdsqfHvR
+         KLww==
+X-Gm-Message-State: AOAM532gPWLVITsQM8YcJF95ljrCb0RjpA67DdIM2A4UAZrm6MLLOP2h
+        Y6lkapEsl8c5DbQrx9moX84=
+X-Google-Smtp-Source: ABdhPJzvodQuSjfql3Am0FB2Y39dtlio0qLQme9rr1mXNHkhHa+JVAFxF/W+riDVlSrJ16qAcNVv8g==
+X-Received: by 2002:a63:5c25:: with SMTP id q37mr15269242pgb.218.1618006667934;
+        Fri, 09 Apr 2021 15:17:47 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:c9de:23b9:54df:4a55])
+        by smtp.gmail.com with ESMTPSA id v11sm3632342pgg.68.2021.04.09.15.17.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Apr 2021 15:17:46 -0700 (PDT)
+Date:   Fri, 9 Apr 2021 15:17:44 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Vincent Knecht <vincent.knecht@mailoo.org>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] Input: add MStar MSG2638 touchscreen driver
+Message-ID: <YHDSiM1QQuA+WoQN@google.com>
+References: <20210305153815.126937-1-vincent.knecht@mailoo.org>
+ <20210305153815.126937-2-vincent.knecht@mailoo.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="s3vmzldvkbc4c6zk"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YHA5sPuZmbSLU3aM@orome.fritz.box>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20210305153815.126937-2-vincent.knecht@mailoo.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Vincent,
 
---s3vmzldvkbc4c6zk
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, Mar 05, 2021 at 04:38:05PM +0100, Vincent Knecht wrote:
+> Add support for the msg2638 touchscreen IC from MStar.
+> Firmware handling, wakeup gestures and other specialties are not supported.
+> This driver reuses zinitix.c structure, while the checksum and irq handler
+> functions are based on out-of-tree driver for Alcatel Idol 3 (4.7").
+> 
+> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> ---
+> Changed in v6:
+> - minor formatting changes
+> - mention wakeup gestures not being supported (yet?) in commit message
+> - do not scale coordinates in the driver (Dmitry)
+> - multiple suggestions from Linus W.
+>   - include linux/gpio/consumer.h instead of linux/gpio.h
+>   - rename delay defines to include time unit like _MS and _US
+>   - rename `error` variable to `ret`
+>   - move enable_irq() call from msg2638_power_on() to msg2638_start()
+>   - remove CONFIG_OF #ifdef around of_device_id struct
+> Changed in v5:
+> - use gpiod_set_value_cansleep() (Stephan G)
+> - use msleep/usleep_range() rathen than mdelay() (Stephan G)
+> Changed in v4:
+> - rename from msg26xx to msg2638, following compatible string change
+> - rename mstar_* functions to msg2638_* for consistency
+> - add RESET_DELAY define and use it in msg2638_power_on()
+> - change a few dev_err() calls to be on one line only
+> - add missing \n in a few dev_err() strings
+> Changed in v3:
+> - no change
+> Changed in v2:
+> - don't use bitfields in packet struct, to prevent endian-ness related problems (Dmitry)
+> - fix reset gpiod calls order in mstar_power_on() (Dmitry)
+> ---
+>  drivers/input/touchscreen/Kconfig   |  12 +
+>  drivers/input/touchscreen/Makefile  |   1 +
+>  drivers/input/touchscreen/msg2638.c | 354 ++++++++++++++++++++++++++++
+>  3 files changed, 367 insertions(+)
+>  create mode 100644 drivers/input/touchscreen/msg2638.c
+> 
+> diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
+> index f012fe746df0..fefbe1c1bb10 100644
+> --- a/drivers/input/touchscreen/Kconfig
+> +++ b/drivers/input/touchscreen/Kconfig
+> @@ -1334,4 +1334,16 @@ config TOUCHSCREEN_ZINITIX
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called zinitix.
+>  
+> +config TOUCHSCREEN_MSG2638
+> +	tristate "MStar msg2638 touchscreen support"
+> +	depends on I2C
+> +	depends on GPIOLIB || COMPILE_TEST
+> +	help
+> +	  Say Y here if you have an I2C touchscreen using MStar msg2638.
+> +
+> +	  If unsure, say N.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called msg2638.
+> +
+>  endif
+> diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
+> index 6233541e9173..83e516cb3d33 100644
+> --- a/drivers/input/touchscreen/Makefile
+> +++ b/drivers/input/touchscreen/Makefile
+> @@ -112,3 +112,4 @@ obj-$(CONFIG_TOUCHSCREEN_ROHM_BU21023)	+= rohm_bu21023.o
+>  obj-$(CONFIG_TOUCHSCREEN_RASPBERRYPI_FW)	+= raspberrypi-ts.o
+>  obj-$(CONFIG_TOUCHSCREEN_IQS5XX)	+= iqs5xx.o
+>  obj-$(CONFIG_TOUCHSCREEN_ZINITIX)	+= zinitix.o
+> +obj-$(CONFIG_TOUCHSCREEN_MSG2638)	+= msg2638.o
+> diff --git a/drivers/input/touchscreen/msg2638.c b/drivers/input/touchscreen/msg2638.c
+> new file mode 100644
+> index 000000000000..8eb3f195d743
+> --- /dev/null
+> +++ b/drivers/input/touchscreen/msg2638.c
+> @@ -0,0 +1,354 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Driver for MStar msg2638 touchscreens
+> + *
+> + * Copyright (c) 2021 Vincent Knecht <vincent.knecht@mailoo.org>
+> + *
+> + * Checksum and IRQ handler based on mstar_drv_common.c and mstar_drv_mutual_fw_control.c
+> + * Copyright (c) 2006-2012 MStar Semiconductor, Inc.
+> + *
+> + * Driver structure based on zinitix.c by Michael Srba <Michael.Srba@seznam.cz>
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/i2c.h>
+> +#include <linux/input.h>
+> +#include <linux/input/mt.h>
+> +#include <linux/input/touchscreen.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/irq.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/slab.h>
+> +
+> +#define MODE_DATA_RAW			0x5A
+> +
+> +#define MAX_SUPPORTED_FINGER_NUM	5
+> +
+> +#define CHIP_ON_DELAY_MS		15
+> +#define FIRMWARE_ON_DELAY_MS		50
+> +#define RESET_DELAY_MIN_US		10000
+> +#define RESET_DELAY_MAX_US		11000
+> +
+> +struct point_coord {
+> +	u16	x;
+> +	u16	y;
+> +};
+> +
+> +struct packet {
+> +	u8	xy_hi; /* higher bits of x and y coordinates */
+> +	u8	x_low;
+> +	u8	y_low;
+> +	u8	pressure;
+> +};
+> +
+> +struct touch_event {
+> +	u8	mode;
+> +	struct	packet pkt[MAX_SUPPORTED_FINGER_NUM];
+> +	u8	proximity;
+> +	u8	checksum;
+> +};
+> +
+> +struct msg2638_ts_data {
+> +	struct i2c_client *client;
+> +	struct input_dev *input_dev;
+> +	struct touchscreen_properties prop;
+> +	struct regulator_bulk_data supplies[2];
+> +	struct gpio_desc *reset_gpiod;
+> +};
+> +
+> +static int msg2638_init_regulators(struct msg2638_ts_data *msg2638)
+> +{
+> +	struct i2c_client *client = msg2638->client;
+> +	int ret;
+> +
+> +	msg2638->supplies[0].supply = "vdd";
+> +	msg2638->supplies[1].supply = "vddio";
+> +	ret = devm_regulator_bulk_get(&client->dev,
+> +				      ARRAY_SIZE(msg2638->supplies),
+> +				      msg2638->supplies);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "Failed to get regulators: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
 
-Hello Thierry,
+I do not see benefit of factoring out into separate function so I moved
+it directly into probe(), similarly how we acquire reset GPIO.
 
-On Fri, Apr 09, 2021 at 01:25:36PM +0200, Thierry Reding wrote:
-> On Thu, Apr 08, 2021 at 07:36:37PM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Thu, Apr 08, 2021 at 05:51:36PM +0200, Clemens Gruber wrote:
-> > > On Thu, Apr 08, 2021 at 02:50:40PM +0200, Thierry Reding wrote:
-> > > > Yes, I think that's basically what this is saying. I think we're pe=
-rhaps
-> > > > getting hung up on the terminology here. PWM_STAGGERING_ALLOWED giv=
-es
-> > > > the impression that we're dealing with some provider-specific featu=
-re,
-> > > > whereas what we really want to express is that the PWM doesn't care
-> > > > exactly when the active cycle starts and based on that a provider t=
-hat
-> > > > can support it may optimize the EMI behavior.
-> > > >=20
-> > > > Maybe we can find a better name for this? Ultimately what this mean=
-s is
-> > > > that the consumer is primarily interested in the power output of th=
-e PWM
-> > > > rather than the exact shape of the signal. So perhaps something like
-> > > > PWM_USAGE_POWER would be more appropriate.
-> > >=20
-> > > Yes, although it would then no longer be obvious that this feature le=
-ads
-> > > to improved EMI behavior, as long as we mention that in the docs, I
-> > > think it's a good idea
-> > >=20
-> > > Maybe document it as follows?
-> > > PWM_USAGE_POWER - Allow the driver to delay the start of the cycle
-> > > for EMI improvements, as long as the power output stays the same
-> >=20
-> > I don't like both names, because for someone who is only halfway into
-> > PWM stuff it is not understandable. Maybe ALLOW_PHASE_SHIFT?
->=20
-> Heh... how's that any more understandable?
+> +}
+> +
+> +static void msg2638_power_on(struct msg2638_ts_data *msg2638)
 
-The questions that come to (my) mind when reading PWM_USAGE_POWER are:
-So the PWM is allowed to use some power? The PWM is used to provide a
-power source (like a regulator)? Has this something to do with a
-permission to use the PWM (the power to use it)?
+Renamed to msg2638_reset().
 
-Please try googling for "usage power", and compare it with the results
-you get for "phase shift".
+> +{
+> +	gpiod_set_value_cansleep(msg2638->reset_gpiod, 1);
+> +	usleep_range(RESET_DELAY_MIN_US, RESET_DELAY_MAX_US);
+> +	gpiod_set_value_cansleep(msg2638->reset_gpiod, 0);
+> +	msleep(FIRMWARE_ON_DELAY_MS);
+> +}
+> +
+> +static void msg2638_report_finger(struct msg2638_ts_data *msg2638, int slot,
+> +				const struct point_coord *pc)
+> +{
+> +	input_mt_slot(msg2638->input_dev, slot);
+> +	input_mt_report_slot_state(msg2638->input_dev, MT_TOOL_FINGER, true);
+> +	touchscreen_report_pos(msg2638->input_dev, &msg2638->prop, pc->x, pc->y, true);
+> +	input_report_abs(msg2638->input_dev, ABS_MT_TOUCH_MAJOR, 1);
 
-> > When a consumer is only interested in the power output than
-> >=20
-> > 	.period =3D 20
-> > 	.duty_cycle =3D 5
-> >=20
-> > would also be an allowed response for the request
-> >=20
-> > 	.period =3D 200
-> > 	.duty_cycle =3D 50
-> >=20
-> > and this is not what is in the focus here.
->=20
-> Actually, that's *exactly* what's important here. From a consumer point
-> of view the output power is the key in this case.
+The device does not really report "touch major", this is synthetic data,
+and therefore I removed it.
 
-OK, so if I understand you correctly, you want indeed allow
+All in all this is quite simple function, I pushed it down into
+msg2638_ts_irq_handler().
 
- 	.period =3D 200
- 	.duty_cycle =3D 50
+> +}
+> +
+> +static u8 msg2638_checksum(u8 *data, u32 length)
+> +{
+> +	s32 sum = 0;
+> +	u32 i;
+> +
+> +	for (i = 0; i < length; i++)
+> +		sum += data[i];
+> +
+> +	return (u8)((-sum) & 0xFF);
+> +}
+> +
+> +static irqreturn_t msg2638_ts_irq_handler(int irq, void *msg2638_handler)
+> +{
+> +	struct msg2638_ts_data *msg2638 = msg2638_handler;
+> +	struct i2c_client *client = msg2638->client;
+> +	struct touch_event touch_event;
+> +	struct point_coord coord;
+> +	struct i2c_msg msg[1];
+> +	struct packet *p;
+> +	u32 len;
+> +	int ret;
+> +	int i;
+> +
+> +	len = sizeof(struct touch_event);
+> +	memset(&touch_event, 0, len);
+> +
+> +	msg[0].addr = client->addr;
+> +	msg[0].flags = I2C_M_RD;
+> +	msg[0].len = len;
+> +	msg[0].buf = (u8 *)&touch_event;
+> +
+> +	ret = i2c_transfer(client->adapter, msg, 1);
+> +	if (ret != 1) {
+> +		dev_err(&client->dev, "Failed I2C transfer in irq handler!\n");
+> +		goto out;
+> +	}
+> +
+> +	if (touch_event.mode != MODE_DATA_RAW)
+> +		goto out;
+> +
+> +	if (msg2638_checksum((u8 *)&touch_event, len - 1) != touch_event.checksum) {
+> +		dev_err(&client->dev, "Failed checksum!\n");
+> +		goto out;
+> +	}
+> +
+> +	for (i = 0; i < MAX_SUPPORTED_FINGER_NUM; i++) {
+> +		p = &touch_event.pkt[i];
+> +		/* Ignore non-pressed finger data */
+> +		if (p->xy_hi == 0xFF && p->x_low == 0xFF && p->y_low == 0xFF)
+> +			continue;
+> +
+> +		coord.x = (((p->xy_hi & 0xF0) << 4) | p->x_low);
+> +		coord.y = (((p->xy_hi & 0x0F) << 8) | p->y_low);
+> +		msg2638_report_finger(msg2638, i, &coord);
+> +	}
+> +
+> +	input_mt_sync_frame(msg2638->input_dev);
+> +	input_sync(msg2638->input_dev);
+> +
+> +out:
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int msg2638_start(struct msg2638_ts_data *msg2638)
+> +{
+> +	int ret;
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(msg2638->supplies), msg2638->supplies);
+> +	if (ret) {
+> +		dev_err(&msg2638->client->dev, "Failed to enable regulators: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	msleep(CHIP_ON_DELAY_MS);
+> +	msg2638_power_on(msg2638);
+> +	enable_irq(msg2638->client->irq);
+> +
+> +	return 0;
+> +}
+> +
+> +static int msg2638_stop(struct msg2638_ts_data *msg2638)
+> +{
+> +	int ret;
+> +
+> +	disable_irq(msg2638->client->irq);
+> +
+> +	ret = regulator_bulk_disable(ARRAY_SIZE(msg2638->supplies), msg2638->supplies);
+> +	if (ret) {
+> +		dev_err(&msg2638->client->dev, "Failed to disable regulators: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int msg2638_input_open(struct input_dev *dev)
+> +{
+> +	struct msg2638_ts_data *msg2638 = input_get_drvdata(dev);
+> +
+> +	return msg2638_start(msg2638);
+> +}
+> +
+> +static void msg2638_input_close(struct input_dev *dev)
+> +{
+> +	struct msg2638_ts_data *msg2638 = input_get_drvdata(dev);
+> +
+> +	msg2638_stop(msg2638);
+> +}
+> +
+> +static int msg2638_init_input_dev(struct msg2638_ts_data *msg2638)
+> +{
+> +	struct input_dev *input_dev;
+> +	int ret;
+> +
+> +	input_dev = devm_input_allocate_device(&msg2638->client->dev);
+> +	if (!input_dev) {
+> +		dev_err(&msg2638->client->dev, "Failed to allocate input device.\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	input_set_drvdata(input_dev, msg2638);
+> +	msg2638->input_dev = input_dev;
+> +
+> +	input_dev->name = "MStar TouchScreen";
+> +	input_dev->phys = "input/ts";
+> +	input_dev->id.bustype = BUS_I2C;
+> +	input_dev->open = msg2638_input_open;
+> +	input_dev->close = msg2638_input_close;
+> +
+> +	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_X);
+> +	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_Y);
+> +	input_set_abs_params(input_dev, ABS_MT_WIDTH_MAJOR, 0, 15, 0, 0);
+> +	input_set_abs_params(input_dev, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
 
-when
+The last 2 events are not reported and should not be advertised in the
+capabilities.
 
-	.period =3D 20
-	.duty_cycle =3D 5
+> +
+> +	touchscreen_parse_properties(input_dev, true, &msg2638->prop);
+> +	if (!msg2638->prop.max_x || !msg2638->prop.max_y) {
+> +		dev_err(&msg2638->client->dev,
+> +			"touchscreen-size-x and/or touchscreen-size-y not set in dts\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = input_mt_init_slots(input_dev, MAX_SUPPORTED_FINGER_NUM,
+> +				  INPUT_MT_DIRECT | INPUT_MT_DROP_UNUSED);
+> +	if (ret) {
+> +		dev_err(&msg2638->client->dev, "Failed to initialize MT slots: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = input_register_device(input_dev);
+> +	if (ret) {
+> +		dev_err(&msg2638->client->dev, "Failed to register input device: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int msg2638_ts_probe(struct i2c_client *client)
+> +{
+> +	struct msg2638_ts_data *msg2638;
+> +	int ret;
+> +
+> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
+> +		dev_err(&client->dev, "Failed to assert adapter's support for plain I2C.\n");
+> +		return -ENXIO;
+> +	}
+> +
+> +	msg2638 = devm_kzalloc(&client->dev, sizeof(*msg2638), GFP_KERNEL);
+> +	if (!msg2638)
+> +		return -ENOMEM;
+> +
+> +	msg2638->client = client;
+> +	i2c_set_clientdata(client, msg2638);
+> +
+> +	ret = msg2638_init_regulators(msg2638);
+> +	if (ret) {
+> +		dev_err(&client->dev, "Failed to initialize regulators: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	msg2638->reset_gpiod = devm_gpiod_get(&client->dev, "reset", GPIOD_OUT_LOW);
+> +	if (IS_ERR(msg2638->reset_gpiod)) {
+> +		ret = PTR_ERR(msg2638->reset_gpiod);
+> +		dev_err(&client->dev, "Failed to request reset GPIO: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = msg2638_init_input_dev(msg2638);
+> +	if (ret) {
+> +		dev_err(&client->dev, "Failed to initialize input device: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	irq_set_status_flags(client->irq, IRQ_NOAUTOEN);
 
-was requested? Do you want also allow .period =3D 20000 + .duty_cycle =3D
-5000? How would you limit what is allowed? I'd expect we don't want to
-allow .period =3D 20000000000 + .duty_cycle =3D 5000000000? What should a
-driver for a PWM backlight pass to pwm_apply_state if the PWM period
-should be between 4000000 ns and 16666666 ns? (This comes from the first
-backlight datasheet I found where the valid range for the brightness
-input is 60 to 250Hz.) Maybe saying that only making the period smaller
-would be an idea; but the motor bridge I recently worked with[1] limits
-the PWM frequency to "up to 20 kHz", so this isn't an universally good
-idea either.
+We now have IRQF_NO_AUTOEN as a flag for request_irq() and friends so I
+used it instead of irq_set_status_flags().
 
-[1] https://www.st.com/resource/en/datasheet/vnh5019a-e.pdf
+> +	ret = devm_request_threaded_irq(&client->dev, client->irq,
+> +					NULL, msg2638_ts_irq_handler,
+> +					IRQF_ONESHOT, client->name, msg2638);
+> +	if (ret) {
+> +		dev_err(&client->dev, "Failed to request IRQ: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused msg2638_suspend(struct device *dev)
+> +{
+> +	struct i2c_client *client = to_i2c_client(dev);
+> +	struct msg2638_ts_data *msg2638 = i2c_get_clientdata(client);
+> +
+> +	mutex_lock(&msg2638->input_dev->mutex);
+> +
+> +	if (input_device_enabled(msg2638->input_dev))
+> +		msg2638_stop(msg2638);
+> +
+> +	mutex_unlock(&msg2638->input_dev->mutex);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused msg2638_resume(struct device *dev)
+> +{
+> +	struct i2c_client *client = to_i2c_client(dev);
+> +	struct msg2638_ts_data *msg2638 = i2c_get_clientdata(client);
+> +	int ret = 0;
+> +
+> +	mutex_lock(&msg2638->input_dev->mutex);
+> +
+> +	if (input_device_enabled(msg2638->input_dev))
+> +		ret = msg2638_start(msg2638);
+> +
+> +	mutex_unlock(&msg2638->input_dev->mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +static SIMPLE_DEV_PM_OPS(msg2638_pm_ops, msg2638_suspend, msg2638_resume);
+> +
+> +static const struct of_device_id msg2638_of_match[] = {
+> +	{ .compatible = "mstar,msg2638" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, msg2638_of_match);
+> +
+> +static struct i2c_driver msg2638_ts_driver = {
+> +	.probe_new = msg2638_ts_probe,
+> +	.driver = {
+> +		.name = "MStar-TS",
+> +		.pm = &msg2638_pm_ops,
+> +		.of_match_table = of_match_ptr(msg2638_of_match),
 
-> The specifier is a description of a particular PWM in the consumer
-> context. And the consumer not going to care what exactly the PWM
-> controller might end up configuring to achieve best results. If the
-> controller allows the phase shift to be changed and the constraints
-> allow it, then that's great, but it isn't something that the consumer
-> has to know if all it wants is that the power output is as requested.
+Given that the driver is not depending on OF, when !CONFIG_OF this will
+cause unused variable msg2638_of_match. Given that we can use OF
+matchinv with ACPI I dropped of_match_ptr().
 
-Yes, if ALLOW_PHASE_SHIFT isn't what the consumer actually wants, they
-shouldn't use it. Agreed.
+> +	},
+> +};
+> +module_i2c_driver(msg2638_ts_driver);
+> +
+> +MODULE_AUTHOR("Vincent Knecht <vincent.knecht@mailoo.org>");
+> +MODULE_DESCRIPTION("MStar MSG2638 touchscreen driver");
+> +MODULE_LICENSE("GPL v2");
+> -- 
+> 2.29.2
+> 
+> 
+> 
 
-> Put another way, the more generically we can describe the constraints
-> or use cases, the more flexibility we get for drivers to fulfill those
-> constraints.
+Thanks.
 
-Yes, from the POV of a lowlevel driver the more general the better. From
-the POV of a consumer this isn't universally true, because the consumer
-might only accept a subset of the freedom this general flag gives to the
-lowlevel driver.
-
-> For example one controller might support phase shifting
-> and use that for PWM_USAGE_POWER for better EMI behaviour. But another
-> PWM controller may not support it. But it could perhaps want to
-> optimize the PWM signal by reversing the polarity of one channel or
-> whatever other mechanism there may be.
->=20
-> If we add a flag such as ALLOW_PHASE_SHIFT, then only controllers that
-> support programmable phase shift will be able to support this.
-
-That's wrong, drivers that support the polarity that was not requested
-can make use of it, too. That's something you already pointed out
-yourself (or I misunderstood you). (Then
-
-	.period =3D X
-	.duty_cycle =3D Y
-	.polarity =3D PWM_POLARITY_NORMAL
-
-is "equivalent" to
-
-	.period =3D X
-	.duty_cycle =3D X - Y
-	.polarity =3D PWM_POLARITY_INVERSED
-
-as the signals only differ by a phase shift.)
-
-> If some other mechanism can also be used to support "equivalent power"
-> use cases, that would have to be described as some other flag, which
-> has essentially the same meaning. So you can get into a situation
-> where you have multiple flags used for the same thing.
-
-If they are for the same thing, you don't need another flag. Your
-concern is only valid if all consumers that are ok to accept a phase
-shifted PWM signal really only care about the relative duty cycle. I
-think that's wrong. (All consumers that use the PWM as something like a
-clock signal where something happens on the rising and/or falling edge
-and want this something happen with a certain frequency care about the
-period, but not the phase shift.)
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---s3vmzldvkbc4c6zk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmBwyJUACgkQwfwUeK3K
-7Akdmgf/RRrVk0JmdkZzOTJLd04K3pmZal+637F+mDs0Lm4HKt83fvdzEQLinWSe
-HLag4DAxHOGChJrboJyYhF1xBLSj8pp6M6RLi2W7CJVfhjYFFeYKLAah7IzNeCFe
-D14/UKiRI3V+KfwLqAhd5Bg/xDJBAgCzJRaCzXJ1PUjoYx4Ezn9g5WPmTCT0RVoh
-+j7CjTcRw3AvBLFeFSWGFvsb5KIYnpCS24pGr/2FIyIBoVMUBqqSSS2P2asvWT/P
-0vaODlDO24qAHvbUeq1+dRKvStxj9P1fhbGeMt0rR+IOfZZH3LPlRf5OBp6mc1wM
-KtW8WpbLbxjT8OP8IJYfWtR9QUDOdA==
-=npIW
------END PGP SIGNATURE-----
-
---s3vmzldvkbc4c6zk--
+-- 
+Dmitry
