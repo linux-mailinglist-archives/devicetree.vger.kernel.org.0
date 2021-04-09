@@ -2,109 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E65CB35982A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 10:43:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1F7F35983B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 10:47:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232099AbhDIIni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 04:43:38 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:14290 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232026AbhDIInh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 04:43:37 -0400
-X-UUID: faead521e2584fada37d7afbfb6406cf-20210409
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=LWR0YYJF62R73X/2PazKkQVUbwMvHOS/MQ9V7awNAws=;
-        b=B/IYe5BxeZB+RaN6vk7LP2paPDef9IxtAnnv/pGluFjyxDFjXjhwTu6ffQkZQ7k8XlcJYRQpTaoxn0OgmYYKiubmVARzjz70nq1FNxTl7Feww7ZmK1MyZyQ1q3J5aZ4AI8jR1p8xLG/OPSGSA5dBDF5E8ic4D9dJvuepBZbyd/M=;
-X-UUID: faead521e2584fada37d7afbfb6406cf-20210409
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 328637584; Fri, 09 Apr 2021 16:43:21 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 9 Apr
- 2021 16:43:19 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 9 Apr 2021 16:43:19 +0800
-Message-ID: <1617957799.12105.31.camel@mhfsdcap03>
-Subject: Re: [PATCH 1/6] PM: runtime: enable wake irq after runtime_suspend
- hook called
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Ikjoon Jang <ikjn@chromium.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Len Brown <len.brown@intel.com>, Pavel Machek <pavel@ucw.cz>,
-        <linux-usb@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
+        id S231127AbhDIIrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 04:47:42 -0400
+Received: from mx0a-00268f01.pphosted.com ([148.163.148.236]:62590 "EHLO
+        mx0a-00268f01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229846AbhDIIrm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 04:47:42 -0400
+Received: from pps.filterd (m0165118.ppops.net [127.0.0.1])
+        by mx0a-00268f01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1398bOPt032448;
+        Fri, 9 Apr 2021 08:46:40 GMT
+Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2107.outbound.protection.outlook.com [104.47.58.107])
+        by mx0a-00268f01.pphosted.com with ESMTP id 37t1u23er9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 09 Apr 2021 08:46:40 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=W6M/8ryatV8iao+90s3IPjXi+wVzaskuD8rIOjrPilsnkfqCLJFfvHzAj862kbqYYmLoKxc0ZcZeOltHv72WoZ5Gx2+8UvlpNBHTIye+UqHG+o3tzC9fXO2HcKf5WV23l/UTqsEzOhLXifKPKG+UJwJswjfmPpqXqEU3cHga3FQAtzKrHi2kwNHB/W1RaJLKjRXp6zaAvs7IUgwI+iTewFRbst5GkJk5KFmKV2zXzA2TeaXl/e2H+OkIHc28ZnWqGLC9MXSUKnECN4C/C4w7rtixTBYHcq5OL6CC4MS9JL5cbDHw62abEVbu5ma/yKwRYd5h/2kYxsnirHDCZZtffg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ECL1mqiAm4FqsMWIHs2/+MCggk6RqmCsH0IKPsEzANw=;
+ b=MGVE6bR8RyPGYpMY4tmG6DlMf52JutjrjtTeX1GeBnrbDurfHHo19qar/AZJpkHyKIt9VDHXJJNIGNIuuwh4GUxu8Y1X33WCD4xrvCl9wjrP8K2Ql3Et7GFkme+NV+BcP3tsnh7hyHI2qeaNSIHBi4V3cmXlT94wwetWyraT+TxotJDiqgFwmZuJFrZVzcF4BPjX1br82S53jNjZA8tso4VC4CHDC3kukwRxKM1avubz5napNip1xQLsYu7MbdumuvoC4Z0VCUNKrvxB2W6vNyS0HERr7UfeJ61QlAg/eC5xwpQ46jEA4A5omTmWdhR/3y2haLs01DcIr6ynckeTaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=equinix.com; dmarc=pass action=none header.from=equinix.com;
+ dkim=pass header.d=equinix.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=equinixinc.onmicrosoft.com; s=selector2-equinixinc-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ECL1mqiAm4FqsMWIHs2/+MCggk6RqmCsH0IKPsEzANw=;
+ b=ZE3D+P4JnoB5E2bbQiq0jyJ6L2wWCZzmhLB16hFhKRKr/MXxqdnGFjnXwRISaVBQXmrLIHROfjw9mOQpnhW8+Y82jTMDECx2/7JIWyLujXmmcaBvi3CytiyZ5cznrYbYMFlnhZ1OjKNVP3o72MrMTOG6n8CD/Dv0YIdUf92jZ8U=
+Received: from DM5PR04MB0762.namprd04.prod.outlook.com (2603:10b6:3:f3::13) by
+ DM5PR04MB0765.namprd04.prod.outlook.com (2603:10b6:3:f8::15) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4020.17; Fri, 9 Apr 2021 08:46:38 +0000
+Received: from DM5PR04MB0762.namprd04.prod.outlook.com
+ ([fe80::4c98:aeb:87a8:13ad]) by DM5PR04MB0762.namprd04.prod.outlook.com
+ ([fe80::4c98:aeb:87a8:13ad%5]) with mapi id 15.20.4020.017; Fri, 9 Apr 2021
+ 08:46:38 +0000
+From:   Zev Weiss <zweiss@equinix.com>
+To:     Andrew Jeffery <andrew@aj.id.au>, "g@packtop" <g@packtop>
+CC:     "openipmi-developer@lists.sourceforge.net" 
+        <openipmi-developer@lists.sourceforge.net>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        Corey Minyard <minyard@acm.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Tali Perry <tali.perry1@gmail.com>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, Tony Lindgren <tony@atomide.com>,
-        Tianping Fang <tianping.fang@mediatek.com>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Nicolas Boichat <drinkcat@chromium.org>
-Date:   Fri, 9 Apr 2021 16:43:19 +0800
-In-Reply-To: <CAATdQgCQ5Gm1CNEbVgLFiFcgDX0yP5G=48Fa29WYbpSuz25WXg@mail.gmail.com>
-References: <1617874514-12282-1-git-send-email-chunfeng.yun@mediatek.com>
-         <CAATdQgCQ5Gm1CNEbVgLFiFcgDX0yP5G=48Fa29WYbpSuz25WXg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        Benjamin Fair <benjaminfair@google.com>
+Subject: Re: [PATCH v2 17/21] dt-bindings: ipmi: Convert ASPEED KCS binding to
+ schema
+Thread-Topic: [PATCH v2 17/21] dt-bindings: ipmi: Convert ASPEED KCS binding
+ to schema
+Thread-Index: AQHXLQNa/Br1rKNdC02YFyK1SqJv1Kqr362A
+Date:   Fri, 9 Apr 2021 08:46:38 +0000
+Message-ID: <YHAUbTeoxRFBUjMi@packtop>
+References: <20210319062752.145730-1-andrew@aj.id.au>
+ <20210319062752.145730-17-andrew@aj.id.au> <YG/i9lSxxCMIzkRs@packtop>
+ <29937129-3a17-4a32-a723-191b693a1e0c@www.fastmail.com>
+ <YG/ppKEAs5EBUao3@packtop>
+In-Reply-To: <YG/ppKEAs5EBUao3@packtop>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: aj.id.au; dkim=none (message not signed)
+ header.d=none;aj.id.au; dmarc=none action=none header.from=equinix.com;
+x-originating-ip: [24.181.166.149]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c3d99d31-110f-46e2-349d-08d8fb33fd35
+x-ms-traffictypediagnostic: DM5PR04MB0765:
+x-microsoft-antispam-prvs: <DM5PR04MB07658C21D9D86AEA1B2887A9C3739@DM5PR04MB0765.namprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 7idMIY3i2UCSDF2JptTW5xoEbk1smmMf8B5f6ai6agQpdB2zLrqESAK+iD17uTLCx/F53EFfPeDm5fEGgOyFMS3wf4cHcEpm/0VCMqOC+8BsCt8qrQk2kcA5UIzMLjr5RTSYNVYaas22zOfqUGUt7BW4zZInnRBQOER0zKxbXVAIebpekFVbg3slvKos6gtBQ2UxOwccvgdVQqD7jzvy4eIzqS1bblrRdI21F3K6YgwndDZpWcUMukgDo1OWpd+2IRDBrziP1vKAv6NdcqaPBl9aj5f8uVp/E5kc3jW8ZLmbF6V8NdlSJaWMYGGI3Cj8mBZz0RooHAarGiclrl/Xh9WBW0xIUbHb4yc/33DXKGgfKKHseAO4VxG6vjW9rAsg9WgbGUyGMHKqEZJzI4xsF12uI1vtmQGKm1yPvZtcCKv/7S3tZBZUi/bOAlwtBBuvtmxY/cbWbSdxbJstgc371hZEU2aG1P4lJhHiognATZeCX0v0Ql81JWYl3PaKO91yrGJUC/d7NY6NIoX8222WjXliBdNdIHpRiG0hrnZv/qjbGq/7OL4s0DOKVhs+t499X2JQx6TRDEs28YZWi4hJFuqFhVUoEk+LQXYAU0UwpiQ//svvQ6FIR/Q1o8F0tPal5u3IgeAxQG/P1Fao+r5Vlxs/sFxWc8ZsM4dpwZsZfhWqRn9WTwQ+WvSp6Yy0ExpxCkoNRoW2TwAyQY8SRmrVNQmahyFfQJhy6gq6GxqO1t7grL2Sbtm+GAZ1IgoDC32o
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR04MB0762.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(376002)(39860400002)(346002)(136003)(366004)(396003)(54906003)(6506007)(66946007)(186003)(2906002)(5660300002)(316002)(76116006)(66446008)(66476007)(64756008)(86362001)(33716001)(8676002)(66556008)(8936002)(6486002)(7416002)(478600001)(966005)(6512007)(9686003)(4326008)(71200400001)(83380400001)(26005)(38100700001)(781001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?7ZxoGTa/NLqZt9FG1q+7o1CcYfWYWCdDucXj+Npl2ttO9roUQoobEpTNmAaD?=
+ =?us-ascii?Q?yDOAxguZuhJlyvCY9yfSD5ne36wl2YiQK2bSIjSZkTAW0vjsmKsf2GvIFdHY?=
+ =?us-ascii?Q?CX4OGrHK4zZeWv4g89XIb+5xGvz0eD7fvqWp+X7EZgVEn7EZ6myLwLyB/nEg?=
+ =?us-ascii?Q?vAEx0eNDq5c29tko487MfdJjzES08TxM+zRaW06C4BbP/ejXNiE4K6Xu9axC?=
+ =?us-ascii?Q?8TT54U61Zo//PysWIEJdDimph7eLofKrjN+5XH7QitMufbcp+14AvIujpbtz?=
+ =?us-ascii?Q?QaNHu1i51HdCufLgdYJBPzaFn/Qx/j4RH6JRdJ7mEmnSNxYVWvJU36r0e4fV?=
+ =?us-ascii?Q?ToJUruIWNwtzuCzX0s0agbYXc10ZBglz7z6mSLiyqNkyEXE1Hu1Ly8h/0O6p?=
+ =?us-ascii?Q?4YTp1XjKQ1/glOVnWts41oV6oXi92wFx6T74AL/aFNWpqMvIDU30Et5EBpav?=
+ =?us-ascii?Q?hqDOf8bnaQ0ee841Lxcl53YngSE2cs0CD303GvpJfjOoVwnFRX+cSCja3DLJ?=
+ =?us-ascii?Q?jDNbF49jqW9QwTFTroHRiq4ajgOkei8Uc7p2MGyDx1LG2kWrrzlwSrMJl7g4?=
+ =?us-ascii?Q?pyrRaL5CsDMDpILdphZz0nXGNkpua5EQlNc79r9XXVk4R0xxXY8SU2d85EUH?=
+ =?us-ascii?Q?lK0Jkwq8FAiVJEuwGGapU1ZALDRlOH/jtyG+3QzvD47uqYajQOcF7fTOu5pL?=
+ =?us-ascii?Q?ZiMDI1oTbQ+mSUt4n0TuFBflJftR3FfCS5zWpBl3Bm0vK5a6Ro1JGTLfupho?=
+ =?us-ascii?Q?IU2gcsUXR6/wuSKtu5RcHpCI+VQyRs6yHzPzLK/aHmCIjT7qnPBGy6ntSlkS?=
+ =?us-ascii?Q?JCd7pWo1eHXXhbjqEqxJbqUzEM4SPLoNUYP3T345zw7fpHsDxEsIMvplR2SP?=
+ =?us-ascii?Q?qAchB6EnuIR0Dd5xIh0QaHelPjdFFd44gzV1L/SH8FnOVriV4U2GwCVze8pD?=
+ =?us-ascii?Q?VO7H30JkcDp2ZVrkvgSFORBkghwRORGfscfsBeduWTbiG/DEh0PmNt/Z2NFK?=
+ =?us-ascii?Q?gMa6Ww96UyEmZp2oFEYjWKG3lwAyItqYJcjfQuyn7QjXwZQmsiYlFthyRJhk?=
+ =?us-ascii?Q?vJ1c4DQUqMaYHT9873VOc4KDITybKJ1y65bv8ATzCKKKR4Mul3dia0kfIvDA?=
+ =?us-ascii?Q?9XWHaF0gJUGg5pylTph7vvpICNxY8RuivWc5musSYdiFlySlkuEY9p57G/pT?=
+ =?us-ascii?Q?4w1kxYOlyxXcUbexh7uRmrIBfmIlROPzZMOhbQMPZB5lIzriioLG5F9cW2mE?=
+ =?us-ascii?Q?3v7NE3MyF8jNu6DX6oJNtwE0IJtas377BkQSw026hVuHRinKRNWG/3xXRbVA?=
+ =?us-ascii?Q?a+My1YYs4sN1Jx+YPcSWgAaO93a0myhfrWkqRSQPxIcGww=3D=3D?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <2CE63F17A1E32544907C8F607C4FC4BE@namprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 7CFDA8CB831F2DE86455E79C381B3FB824379DAED8D4FA5615EB49D1A8F27F8D2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+X-OriginatorOrg: equinix.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR04MB0762.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c3d99d31-110f-46e2-349d-08d8fb33fd35
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Apr 2021 08:46:38.1292
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 72adb271-2fc7-4afe-a5ee-9de6a59f6bfb
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FOW1l4yBsp0C2oqWWAKI2bQ1zzQJPmwvUzrno07oP+0X/08IeplRQuV3XxRqu24oM7Sxaf/R91+xPYAadRC15A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR04MB0765
+X-Proofpoint-ORIG-GUID: s46Yv14xlTe9gbJ8Og13FLJupGY7__pt
+X-Proofpoint-GUID: s46Yv14xlTe9gbJ8Og13FLJupGY7__pt
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-04-09_04:2021-04-09,2021-04-09 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
+ lowpriorityscore=0 adultscore=0 suspectscore=0 clxscore=1015 phishscore=0
+ bulkscore=0 spamscore=0 priorityscore=1501 mlxlogscore=999 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104060000
+ definitions=main-2104090064
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIxLTA0LTA5IGF0IDEzOjMyICswODAwLCBJa2pvb24gSmFuZyB3cm90ZToNCj4g
-SGkgQ2h1bmZlbmcsDQo+IA0KPiBPbiBUaHUsIEFwciA4LCAyMDIxIGF0IDU6MzUgUE0gQ2h1bmZl
-bmcgWXVuIDxjaHVuZmVuZy55dW5AbWVkaWF0ZWsuY29tPiB3cm90ZToNCj4gPg0KPiA+IFdoZW4g
-dGhlIGRlZGljYXRlZCB3YWtlIGlycSBpcyBsZXZlbCB0cmlnZ2VyLCBlbmFibGUgaXQgYmVmb3Jl
-DQo+ID4gY2FsbGluZyBydW50aW1lX3N1c3BlbmQsIHdpbGwgdHJpZ2dlciBhbiBpbnRlcnJ1cHQu
-DQo+ID4NCj4gPiBlLmcuDQo+ID4gZm9yIGEgbG93IGxldmVsIHRyaWdnZXIgdHlwZSwgaXQncyBs
-b3cgbGV2ZWwgYXQgcnVubmluZyB0aW1lICgwKSwNCj4gPiBhbmQgYmVjb21lcyBoaWdoIGxldmVs
-IHdoZW4gZW50ZXJzIHN1c3BlbmQgKHJ1bnRpbWVfc3VzcGVuZCAoMSkgaXMNCj4gPiBjYWxsZWQp
-LCBhIHdha2V1cCBzaWduYWwgYXQgKDIpIG1ha2UgaXQgYmVjb21lIGxvdyBsZXZlbCwgd2FrZSBp
-cnENCj4gPiB3aWxsIGJlIHRyaWdnZXJlZC4NCj4gPg0KPiA+ICAgICAgICAgICAgICAgICAtLS0t
-LS0tLS0tLS0tLS0tLS0NCj4gPiAgICAgICAgICAgICAgICB8ICAgICAgICAgICBeICAgICBefA0K
-PiA+IC0tLS0tLS0tLS0tLS0tLS0gICAgICAgICAgIHwgICAgIHwgLS0tLS0tLS0tLS0tLS0NCj4g
-PiAgfDwtLS0oMCktLS0+fDwtLSgxKS0tfCAgICgzKSAgICgyKSAgICAoNCkNCj4gPg0KPiANCj4g
-Q2FuJ3Qgd2UganVzdCB1c2UgYSBmYWxsaW5nIGVkZ2UgdHlwZSBmb3IgdGhpcyBpcnEgbGluZT8N
-CkknbGwgdHJ5IGl0LCBidXQgdGhlIG9yaWdpbmFsIGNvZGUgc3RpbGwgZG9lc24ndCBwcm9jZXNz
-IGFib3ZlIG1lbnRpb25lZA0KY2FzZS4NCg0KPiANCj4gPiBpZiB3ZSBlbmFibGUgdGhlIHdha2Ug
-aXJxIGJlZm9yZSBjYWxsaW5nIHJ1bnRpbWVfc3VzcGVuZCBkdXJpbmcgKDApLA0KPiA+IGFuIGlu
-dGVycnVwdCB3aWxsIGFyaXNlLCBpdCBjYXVzZXMgcmVzdW1lIGltbWVkaWF0ZWx5Ow0KPiA+IGVu
-YWJsZSB3YWtlIGlycSBhZnRlciBjYWxsaW5nIHJ1bnRpbWVfc3VzcGVuZCwgZS5nLiBhdCAoMykg
-b3IgKDQpLA0KPiA+IHdpbGwgd29ya3MuDQo+ID4NCj4gPiBUaGlzIHBhdGNoIHNlZW1zIG5vIHNp
-ZGUgZWZmZWN0IG9uIGVkZ2UgdHJpZ2dlciB3YWtlIGlycS4NCj4gPg0KPiA+IFNpZ25lZC1vZmYt
-Ynk6IENodW5mZW5nIFl1biA8Y2h1bmZlbmcueXVuQG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4g
-PiAgZHJpdmVycy9iYXNlL3Bvd2VyL3J1bnRpbWUuYyB8IDUgKystLS0NCj4gPiAgMSBmaWxlIGNo
-YW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkNCj4gPg0KPiA+IGRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2Jhc2UvcG93ZXIvcnVudGltZS5jIGIvZHJpdmVycy9iYXNlL3Bvd2VyL3J1
-bnRpbWUuYw0KPiA+IGluZGV4IGE0NmE3ZTMwODgxYi4uNzk2NzM5YTAxNWE1IDEwMDY0NA0KPiA+
-IC0tLSBhL2RyaXZlcnMvYmFzZS9wb3dlci9ydW50aW1lLmMNCj4gPiArKysgYi9kcml2ZXJzL2Jh
-c2UvcG93ZXIvcnVudGltZS5jDQo+ID4gQEAgLTYxOSwxMiArNjE5LDEyIEBAIHN0YXRpYyBpbnQg
-cnBtX3N1c3BlbmQoc3RydWN0IGRldmljZSAqZGV2LCBpbnQgcnBtZmxhZ3MpDQo+ID4gICAgICAg
-ICBfX3VwZGF0ZV9ydW50aW1lX3N0YXR1cyhkZXYsIFJQTV9TVVNQRU5ESU5HKTsNCj4gPg0KPiA+
-ICAgICAgICAgY2FsbGJhY2sgPSBSUE1fR0VUX0NBTExCQUNLKGRldiwgcnVudGltZV9zdXNwZW5k
-KTsNCj4gPiAtDQo+ID4gLSAgICAgICBkZXZfcG1fZW5hYmxlX3dha2VfaXJxX2NoZWNrKGRldiwg
-dHJ1ZSk7DQo+ID4gICAgICAgICByZXR2YWwgPSBycG1fY2FsbGJhY2soY2FsbGJhY2ssIGRldik7
-DQo+ID4gICAgICAgICBpZiAocmV0dmFsKQ0KPiA+ICAgICAgICAgICAgICAgICBnb3RvIGZhaWw7
-DQo+ID4NCj4gPiArICAgICAgIGRldl9wbV9lbmFibGVfd2FrZV9pcnFfY2hlY2soZGV2LCB0cnVl
-KTsNCj4gPiArDQo+ID4gICBub19jYWxsYmFjazoNCj4gPiAgICAgICAgIF9fdXBkYXRlX3J1bnRp
-bWVfc3RhdHVzKGRldiwgUlBNX1NVU1BFTkRFRCk7DQo+ID4gICAgICAgICBwbV9ydW50aW1lX2Rl
-YWN0aXZhdGVfdGltZXIoZGV2KTsNCj4gPiBAQCAtNjU5LDcgKzY1OSw2IEBAIHN0YXRpYyBpbnQg
-cnBtX3N1c3BlbmQoc3RydWN0IGRldmljZSAqZGV2LCBpbnQgcnBtZmxhZ3MpDQo+ID4gICAgICAg
-ICByZXR1cm4gcmV0dmFsOw0KPiA+DQo+ID4gICBmYWlsOg0KPiA+IC0gICAgICAgZGV2X3BtX2Rp
-c2FibGVfd2FrZV9pcnFfY2hlY2soZGV2KTsNCj4gPiAgICAgICAgIF9fdXBkYXRlX3J1bnRpbWVf
-c3RhdHVzKGRldiwgUlBNX0FDVElWRSk7DQo+ID4gICAgICAgICBkZXYtPnBvd2VyLmRlZmVycmVk
-X3Jlc3VtZSA9IGZhbHNlOw0KPiA+ICAgICAgICAgd2FrZV91cF9hbGwoJmRldi0+cG93ZXIud2Fp
-dF9xdWV1ZSk7DQo+ID4gLS0NCj4gPiAyLjE4LjANCj4gPg0KDQo=
+On Fri, Apr 09, 2021 at 12:44:04AM CDT, Zev Weiss wrote:
+>On Fri, Apr 09, 2021 at 12:33:10AM CDT, Andrew Jeffery wrote:
+>>
+>>
+>>On Fri, 9 Apr 2021, at 14:45, Zev Weiss wrote:
+>>>On Fri, Mar 19, 2021 at 01:27:48AM CDT, Andrew Jeffery wrote:
+>>>>Given the deprecated binding, improve the ability to detect issues in
+>>>>the platform devicetrees. Further, a subsequent patch will introduce a
+>>>>new interrupts property for specifying SerIRQ behaviour, so convert
+>>>>before we do any further additions.
+>>>>
+>>>>Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+>>>>---
+>>>> .../bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml | 92 +++++++++++++++++++
+>>>> .../bindings/ipmi/aspeed-kcs-bmc.txt          | 33 -------
+>>>> 2 files changed, 92 insertions(+), 33 deletions(-)
+>>>> create mode 100644 Documentation/devicetree/bindings/ipmi/aspeed,ast24=
+00-kcs-bmc.yaml
+>>>> delete mode 100644 Documentation/devicetree/bindings/ipmi/aspeed-kcs-b=
+mc.txt
+>>>>
+>>>>diff --git a/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-kcs-=
+bmc.yaml b/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.ya=
+ml
+>>>>new file mode 100644
+>>>>index 000000000000..697ca575454f
+>>>>--- /dev/null
+>>>>+++ b/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.yam=
+l
+>>>>@@ -0,0 +1,92 @@
+>>>>+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>+%YAML 1.2
+>>>>+---
+>>>>+$id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml
+>>>>+$schema: http://devicetree.org/meta-schemas/core.yaml
+>>>>+
+>>>>+title: ASPEED BMC KCS Devices
+>>>>+
+>>>>+maintainers:
+>>>>+  - Andrew Jeffery <andrew@aj.id.au>
+>>>>+
+>>>>+description: |
+>>>>+  The Aspeed BMC SoCs typically use the Keyboard-Controller-Style (KCS=
+)
+>>>>+  interfaces on the LPC bus for in-band IPMI communication with their =
+host.
+>>>>+
+>>>>+properties:
+>>>>+  compatible:
+>>>>+    oneOf:
+>>>>+      - description: Channel ID derived from reg
+>>>>+        items:
+>>>>+          enum:
+>>>>+            - aspeed,ast2400-kcs-bmc-v2
+>>>>+            - aspeed,ast2500-kcs-bmc-v2
+>>>>+            - aspeed,ast2600-kcs-bmc
+>>>
+>>>Should this have a "-v2" suffix?
+>>
+>>Well, that was kind of a matter of perspective. The 2600 compatible was
+>>added after we'd done the v2 of the binding for the 2400 and 2500 so it
+>>never needed correcting. But it is a case of "don't use the deprecated
+>>properties with the 2600 compatible".
+>>
+>>I don't think a change is necessary?
+>>
+>
+>It just looked inconsistent with the corresponding string in the
+>ast_kcs_bmc_match[] table; perhaps that should be changed instead then?
+>
 
+...except I realize now I only saw the 2600 v2 string in the match table
+because I put it there myself in the process of resolving a conflict
+when applying your series to the openbmc dev-5.10 branch for testing
+purposes.  So nevermind on this.
+
+Reviewed-by: Zev Weiss <zweiss@equinix.com>
