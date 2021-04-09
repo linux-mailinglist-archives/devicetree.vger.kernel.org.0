@@ -2,75 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EA4D3594D5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 07:42:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D2D33594DE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 07:42:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233049AbhDIFm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 01:42:26 -0400
-Received: from muru.com ([72.249.23.125]:52520 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233308AbhDIFky (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Apr 2021 01:40:54 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 1890D818C;
-        Fri,  9 Apr 2021 05:41:50 +0000 (UTC)
-Date:   Fri, 9 Apr 2021 08:40:36 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Ikjoon Jang <ikjn@chromium.org>
-Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
+        id S233285AbhDIFms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 01:42:48 -0400
+Received: from polaris.svanheule.net ([84.16.241.116]:41252 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233317AbhDIFmr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 01:42:47 -0400
+Received: from [IPv6:2a02:a03f:eaff:9f01:d655:559e:db93:11ac] (unknown [IPv6:2a02:a03f:eaff:9f01:d655:559e:db93:11ac])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id D7DA51ED083;
+        Fri,  9 Apr 2021 07:42:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1617946954;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=6H1fBx+Q041v69ku9nTDNJB1L4reFirfk9JrDv8gQ5U=;
+        b=O5I0n81KleKChxtNGM8oIzXHHxlZMsMB+cvt+zkmMfyFTdwK5ILkGtbozctyXLpD5AgwXw
+        JiVUqqKh4++HY6Ms/PftF9hy8GyqzdVRWkCWTXR0Qj5UUkutBDOc4qeL4P0CDgrTrg2dai
+        lSrLsbIeAsZz2e/ylL5i1YtzOb0iksQoyDspp9j13Q3mgBvl4b9T16VRiTKWn9lU519ZIT
+        L9Zr8Kz3lBEukjj0ArhXDKwAdQdHUbZWCeRirlUnEoYE4lkB77nDrQX0Lh06wCH/FePJsY
+        jJjrPC1K9XSNn9RbMvY0TMyYEGbqxtH0Q0/RAUsLHlMlWeQHbq4YFPmszJlakQ==
+Message-ID: <d73a44809c96abd0397474c63219a41e28f78235.camel@svanheule.net>
+Subject: Re: [RFC PATCH 0/2] MIIM regmap and RTL8231 GPIO expander support
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Mark Brown <broonie@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Len Brown <len.brown@intel.com>, Pavel Machek <pavel@ucw.cz>,
-        linux-usb@vger.kernel.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        linux-pm@vger.kernel.org,
-        Tianping Fang <tianping.fang@mediatek.com>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Nicolas Boichat <drinkcat@chromium.org>
-Subject: Re: [PATCH 1/6] PM: runtime: enable wake irq after runtime_suspend
- hook called
-Message-ID: <YG/o1ERNkcaYAV9y@atomide.com>
-References: <1617874514-12282-1-git-send-email-chunfeng.yun@mediatek.com>
- <CAATdQgCQ5Gm1CNEbVgLFiFcgDX0yP5G=48Fa29WYbpSuz25WXg@mail.gmail.com>
+        "Rafael J . Wysocki" <rafael@kernel.org>, bert@biot.com
+Date:   Fri, 09 Apr 2021 07:42:32 +0200
+In-Reply-To: <YG+BObnBEOZnoJ1K@lunn.ch>
+References: <cover.1617914861.git.sander@svanheule.net>
+         <YG+BObnBEOZnoJ1K@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAATdQgCQ5Gm1CNEbVgLFiFcgDX0yP5G=48Fa29WYbpSuz25WXg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Ikjoon Jang <ikjn@chromium.org> [210409 05:33]:
-> Hi Chunfeng,
-> 
-> On Thu, Apr 8, 2021 at 5:35 PM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
-> >
-> > When the dedicated wake irq is level trigger, enable it before
-> > calling runtime_suspend, will trigger an interrupt.
-> >
-> > e.g.
-> > for a low level trigger type, it's low level at running time (0),
-> > and becomes high level when enters suspend (runtime_suspend (1) is
-> > called), a wakeup signal at (2) make it become low level, wake irq
-> > will be triggered.
-> >
-> >                 ------------------
-> >                |           ^     ^|
-> > ----------------           |     | --------------
-> >  |<---(0)--->|<--(1)--|   (3)   (2)    (4)
-> >
-> 
-> Can't we just use a falling edge type for this irq line?
+Hi Andrew,
 
-Sounds reasonable to me :)
+Thank you for the feedback. You can find a (leaked) datasheet at:
+https://github.com/libc0607/Realtek_switch_hacking/blob/files/RTL8231_Datasheet_1.2.pdf
 
-Tony
+On Fri, 2021-04-09 at 00:18 +0200, Andrew Lunn wrote:
+> > - Providing no compatible for an MDIO child node is considered to
+> > be equivalent
+> >   to a c22 ethernet phy, so one must be provided. However, this
+> > node is then
+> >   not automatically probed.
+> 
+> It cannot be automatically probed, since register 2 and 3 do not
+> contain an ID, which PHYs do. So you need to explicitly list in on
+> the
+> MDIO bus, and when the of_mdiobus_register() is called, the device
+> will be instantiated.
+> 
+> Is it okay to provide a binding without a driver?
+> >   If some code is required, where should this be put?
+> >   Current devicetree structure:
+> >     mdio-bus {
+> >         compatible = "vendor,mdio";
+> >         ...
+> > 
+> >         expander0: expander@0 {
+> >             /*
+> >              * Provide compatible for working registration of mdio
+> > device.
+> >              * Device probing happens in gpio1 node.
+> >              */
+> >             compatible = "realtek,rtl8231-expander";
+> >             reg = <0>;
+> >         };
+> > 
+> >     };
+> >     gpio1 : ext_gpio {
+> >         compatible = "realtek,rtl8231-mdio";
+> >         gpio-controller;
+> >         ...
+> >     };
+> 
+> I don't understand this split. Why not
+> 
+>      mdio-bus {
+>          compatible = "vendor,mdio";
+>          ...
+>  
+>          expander0: expander@0 {
+>              /*
+>               * Provide compatible for working registration of mdio
+> device.
+>               * Device probing happens in gpio1 node.
+>               */
+>              compatible = "realtek,rtl8231-expander";
+>              reg = <0>;
+>              gpio-controller;
+>          };
+>      };
+> 
+> You can list whatever properties you need in the node. Ethernet
+> switches have interrupt-controller, embedded MDIO busses with PHYs on
+> them etc.
+
+This is what I tried initially, but it doesn't seem to work. The node
+is probably still added as an MDIO device, but rtl8231_gpio_probe()
+doesn't appear to get called at all. I do agree it would be preferable
+over the split specification.
+
+Having another look, I see mdio_device_id is used for ethernet phys,
+but like you said this requires and ID in registers 2 & 3. These
+registers contain pin configuration on the RTL8231, so this can't be
+used.
+Registering as a phy_driver appears to have the same issue, although it
+looks like I could use a custom match_phy_device(). I do feel like this
+would be stretching the meaning of what a PHY is.
+
+
+> > - MFD driver:
+> >   The RTL8231 is not just a GPIO expander, but also a pin
+> > controller and LED
+> >   matrix controller. Regmap initialisation could probably be moved
+> > to a parent
+> >   MFD, with gpio, led, and pinctrl cells. Is this a hard
+> > requirement if only a
+> >   GPIO controller is provided?
+> 
+> You need to think about forward/backwards compatibility. You are
+> defining a binding now, which you need to keep. Do you see how an MFD
+> could be added without breaking backwards compatibility?
+
+There are pin-/gpio-controllers that have the gpio and pinctrl nodes in
+the device's root node. So I think adding pinctrl later shouldn't be an
+issue. The LED matrix description would probably need a dedicated sub-
+node. I'll see if I can write some preliminary bindings later today or
+this weekend.
+
+Best,
+Sander
+
+
