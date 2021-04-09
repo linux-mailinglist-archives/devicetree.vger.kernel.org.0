@@ -2,79 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E564B35A7A3
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 22:10:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5417B35A7FE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 22:40:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232796AbhDIUKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 16:10:53 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:43232 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229665AbhDIUKx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Apr 2021 16:10:53 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1lUxSg-00FrJK-EK; Fri, 09 Apr 2021 22:10:38 +0200
-Date:   Fri, 9 Apr 2021 22:10:38 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>, bert@biot.com
-Subject: Re: [RFC PATCH 0/2] MIIM regmap and RTL8231 GPIO expander support
-Message-ID: <YHC0vh/4O5Zm9+vO@lunn.ch>
-References: <cover.1617914861.git.sander@svanheule.net>
- <YG+BObnBEOZnoJ1K@lunn.ch>
- <d73a44809c96abd0397474c63219a41e28f78235.camel@svanheule.net>
+        id S234187AbhDIUku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 16:40:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53730 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234392AbhDIUkm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 16:40:42 -0400
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83FBCC061765
+        for <devicetree@vger.kernel.org>; Fri,  9 Apr 2021 13:40:28 -0700 (PDT)
+Received: by mail-io1-xd31.google.com with SMTP id e8so7246246iok.5
+        for <devicetree@vger.kernel.org>; Fri, 09 Apr 2021 13:40:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kyEt1ksQ+JQPinifGRtvPHx9UK2YlW1JCIGqjukG2tI=;
+        b=sHcIVLC1w2ibtu6NZ4brRofUXy78o2puktCiOlwg1UnwtL+5Tm1Rs7FG437vw3GC7I
+         EUW/0JhXaoJ0TRTKWtR755vpYm0R4X2pOY3m0BRusCprKfIT/11h2wV7dft86cobpKWx
+         V49I6nK189ua/IfhV4svmkVq7OvVAoDF0jWXY5focgnugz4Al8e3tCDwxwGF0NPt8zND
+         p6WVsIFUWN2uu+HlSeM8xPuQXCnu64d8yxoMx4JRDs+CzrBSGF3TqAB1cLonPUtNCBfN
+         Z7Fsg5AHMaS7V0bZyer7Dh1jwrlHX0jRtUuK1Fv+0Xww2uEv6+lqqLOBKHOBAzjdl3SA
+         AJ5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kyEt1ksQ+JQPinifGRtvPHx9UK2YlW1JCIGqjukG2tI=;
+        b=Q8oiJMV2C4w6oGPXz5Xrdes/T/Ad1bpze3O1zeOPwM4xfKhc5NjV2MG7Hl9gd+ljmd
+         I2qc3h6imW+ZIy89JxYSGd2oEfCVfZl3Pljy3THx2WPqbRx9esGoR3A1f/y98UVXwloI
+         gxSrGrOp3N65xvOiPyCrGpYM/t5FTv+P6V/pHtkGlhHubuGX3XURf3uUAJMUe+kQ5g4p
+         +mBTXwYzv1GW82DC9Z3OQoZgAQhngs6X6gLKtesvGBf5dxnDHQKE10XwpR0nY9jrO+xO
+         Pyjf/BLGL/d6Hvqu5s3XS+i0ieoNRxHQtLNGTuoEo2aMAdin5YH9wRyb1v+D9VHcvxK9
+         xZqQ==
+X-Gm-Message-State: AOAM530fIJsVcYF3oQDx6YyYXQb6LBSeeE6pOmMwIwUGjsb9NSiBlnF+
+        pyD+bXsV5oaGr4xrl9RPb5P0/g==
+X-Google-Smtp-Source: ABdhPJxJv6/aw1y/Gn66AfvT3KOZbNbU1Cs4ktQd8VlYobTFNdQkkc1IUELXGGpZDNKaAS3rUtTwlw==
+X-Received: by 2002:a6b:500c:: with SMTP id e12mr12277326iob.190.1618000827805;
+        Fri, 09 Apr 2021 13:40:27 -0700 (PDT)
+Received: from presto.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
+        by smtp.gmail.com with ESMTPSA id b9sm1667212ilc.28.2021.04.09.13.40.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Apr 2021 13:40:27 -0700 (PDT)
+From:   Alex Elder <elder@linaro.org>
+To:     davem@davemloft.net, kuba@kernel.org
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        elder@kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH net-next 0/4] net: ipa: support two more platforms
+Date:   Fri,  9 Apr 2021 15:40:20 -0500
+Message-Id: <20210409204024.1255938-1-elder@linaro.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <d73a44809c96abd0397474c63219a41e28f78235.camel@svanheule.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 09, 2021 at 07:42:32AM +0200, Sander Vanheule wrote:
-> Hi Andrew,
-> 
-> Thank you for the feedback. You can find a (leaked) datasheet at:
-> https://github.com/libc0607/Realtek_switch_hacking/blob/files/RTL8231_Datasheet_1.2.pdf
+This series adds IPA support for two more Qualcomm SoCs.
 
-So this is not really an MFD. It has different ways of making use of
-pins, which could be used for GPIO, but can also be used for LEDs. You
-could look if it better fits in drivers/leds. But you can also use
-GPIO drivers for LEDs via led-gpio.
+The first patch updates the DT binding to add compatible strings.
 
-> > I don't understand this split. Why not
-> > 
-> >      mdio-bus {
-> >          compatible = "vendor,mdio";
-> >          ...
-> >  
-> >          expander0: expander@0 {
-> >              /*
-> >               * Provide compatible for working registration of mdio
-> > device.
-> >               * Device probing happens in gpio1 node.
-> >               */
-> >              compatible = "realtek,rtl8231-expander";
-> >              reg = <0>;
-> >              gpio-controller;
-> >          };
-> >      };
-> > 
-> > You can list whatever properties you need in the node. Ethernet
-> > switches have interrupt-controller, embedded MDIO busses with PHYs on
-> > them etc.
-> 
-> This is what I tried initially, but it doesn't seem to work. The node
-> is probably still added as an MDIO device, but rtl8231_gpio_probe()
-> doesn't appear to get called at all. I do agree it would be preferable
-> over the split specification.
+The second temporarily disables checksum offload support for IPA
+version 4.5 and above.  Changes are required to the RMNet driver
+to support the "inline" checksum offload used for IPA v4.5+, and
+once those are present this capability will be enabled for IPA.
 
-Look at drivers/net/dsa/mv88e6xxx/chip.c for how to register an mdio
-driver. If you still cannot get it to work, post your code and i will
-take a look.
+The third and fourth patches add configuration data for IPA versions
+4.5 (used for the SDX55 SoC) and 4.11 (used for the SD7280 SoC).
 
-     Andrew
+					-Alex
+
+Alex Elder (4):
+  dt-bindings: net: qcom,ipa: add some compatible strings
+  net: ipa: disable checksum offload for IPA v4.5+
+  net: ipa: add IPA v4.5 configuration data
+  net: ipa: add IPA v4.11 configuration data
+
+ .../devicetree/bindings/net/qcom,ipa.yaml     |   6 +-
+ drivers/net/ipa/Makefile                      |   3 +-
+ drivers/net/ipa/ipa_data-v4.11.c              | 382 +++++++++++++++
+ drivers/net/ipa/ipa_data-v4.5.c               | 437 ++++++++++++++++++
+ drivers/net/ipa/ipa_data.h                    |   2 +
+ drivers/net/ipa/ipa_endpoint.c                |  16 +
+ drivers/net/ipa/ipa_main.c                    |   8 +
+ drivers/net/ipa/ipa_mem.h                     |   6 +-
+ 8 files changed, 855 insertions(+), 5 deletions(-)
+ create mode 100644 drivers/net/ipa/ipa_data-v4.11.c
+ create mode 100644 drivers/net/ipa/ipa_data-v4.5.c
+
+-- 
+2.27.0
+
