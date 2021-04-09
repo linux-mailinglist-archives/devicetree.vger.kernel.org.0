@@ -2,92 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92B5235A13A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 16:36:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99B2235A13E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 16:37:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233856AbhDIOgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 10:36:42 -0400
-Received: from mga09.intel.com ([134.134.136.24]:14483 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233527AbhDIOgl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Apr 2021 10:36:41 -0400
-IronPort-SDR: EXrV0pK9nsxJiYlkj5GkA48kHP/t0eezsA4omouLFxqE3UcVoBYA9+e4MX857GyHwaq4oEC3lQ
- zaVFolzhtuDA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9949"; a="193887475"
-X-IronPort-AV: E=Sophos;i="5.82,209,1613462400"; 
-   d="scan'208";a="193887475"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2021 07:36:18 -0700
-IronPort-SDR: 9KSI6oUfGduERwdNAjng/1qVCSt0hRsyUm2GuJ43iKiPRFfv0f3nL3gd7xmOZWeZS+RlVamc7Q
- p/LivYNLvPnQ==
-X-IronPort-AV: E=Sophos;i="5.82,209,1613462400"; 
-   d="scan'208";a="531015344"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2021 07:36:16 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id BA756201C0;
-        Fri,  9 Apr 2021 17:36:13 +0300 (EEST)
-Date:   Fri, 9 Apr 2021 17:36:13 +0300
-From:   'Sakari Ailus' <sakari.ailus@linux.intel.com>
-To:     Martina Krasteva <martinax.krasteva@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        daniele.alessandrelli@linux.intel.com,
-        paul.j.murphy@linux.intel.com, gjorgjix.rosikopulos@linux.intel.com
-Subject: Re: [PATCH 09/10] media: Keem Bay Camera: Add metadata video node
-Message-ID: <20210409143613.GD3@paasikivi.fi.intel.com>
-References: <20210319180632.585-1-martinax.krasteva@linux.intel.com>
- <20210319180632.585-10-martinax.krasteva@linux.intel.com>
- <20210409102415.GA3@paasikivi.fi.intel.com>
- <000501d72d4b$57b9caf0$072d60d0$@linux.intel.com>
+        id S233908AbhDIOh3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 10:37:29 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:34566 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231946AbhDIOh3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 10:37:29 -0400
+Received: by mail-oi1-f179.google.com with SMTP id k18so1065695oik.1;
+        Fri, 09 Apr 2021 07:37:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Ks4Ks6gtPzqkxui8NxmdiZQeRSOGRF5OfHX/GCB9fAo=;
+        b=Yi6QGx6JnqHZbpbiHfogtKwRny/taIUkEz1zhzsNOdzs6GC8mFj4ggVn9uxhzNLB0Y
+         iW8gDql/1r5bDTK9pDXtcuTZgnVqEux5Bb5by+Bm90GfZzq7crKk84RWMWtqHW/XE2t4
+         g8hZmslkiZVEAHQI2pD8TN3422X0iTkh9sIWMurhyV2y/BfvUJkSAg4bo4BeJHxrfsD9
+         2yiYOwEWGrdLSDogopQcu4dnMdV7R4CjVLhISv9Zc9MSZXPxsK7oP52Ba/tejuGKAaJl
+         /p/R1KgdfFxWLR0hzaJjdSCF80nMKyN6TwdC9iTCgM24zvOWAAWeCdH0KZ/Baet7y+ho
+         3J/A==
+X-Gm-Message-State: AOAM531kKgy2hepVqoyjaEHqeB924bOrBUiS1bLiF6S06jSxUxxmboAY
+        iUVTjRIjODSaLAEx2/OTFA==
+X-Google-Smtp-Source: ABdhPJwFW47ONTuUTpNDcOSa6Udlx0pmTKeQuowG8cK24l2GxrSGa4hbMUYZugi0/HtuFKQOEa/CHw==
+X-Received: by 2002:aca:1218:: with SMTP id 24mr10472146ois.75.1617979034507;
+        Fri, 09 Apr 2021 07:37:14 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t203sm553174oig.2.2021.04.09.07.37.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Apr 2021 07:37:13 -0700 (PDT)
+Received: (nullmailer pid 3614445 invoked by uid 1000);
+        Fri, 09 Apr 2021 14:37:12 -0000
+Date:   Fri, 9 Apr 2021 09:37:12 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org,
+        Michael Hennerich <michael.hennerich@analog.com>,
+        devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 6/6] dt-bindings:iio:adc:adi,ad7298 document bindings
+Message-ID: <20210409143712.GA3614371@robh.at.kernel.org>
+References: <20210401174112.320497-1-jic23@kernel.org>
+ <20210401174112.320497-7-jic23@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <000501d72d4b$57b9caf0$072d60d0$@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210401174112.320497-7-jic23@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martina,
-
-On Fri, Apr 09, 2021 at 03:19:20PM +0100, Martina Krasteva wrote:
-> Hi Sakari,
+On Thu, 01 Apr 2021 18:41:12 +0100, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 > 
-> Thank you for the review :)
+> The device has a tsens-busy pin, but it's both fiddly and currently
+> ignored by the Linux driver.  Given it's not clear whether the binding
+> should be an interrupt, or a GPIO I have left that out for now.
+> 
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Michael Hennerich <michael.hennerich@analog.com>
+> ---
+>  .../bindings/iio/adc/adi,ad7298.yaml          | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+> 
 
-You're welcome!
-
-...
-
-> > > +static const struct kmb_vpu_warp_params warp_default = {
-> > > +	.type = 0,
-> > > +	.relative = 0,
-> > > +	.format = 0,
-> > > +	.position = 0,
-> > > +	.reserved = { 0 },
-> > > +	.width = 8,
-> > > +	.height = 4,
-> > > +	.stride = 128,
-> > > +	.enable = 0,
-> > > +	.matrix = {1, 0, 0, 0, 1, 0, 0, 0, 1},
-> > > +	.mode = 1,
-> > > +	.values = {0, 128, 128},
-> > 
-> > These seem to be default values for the parameters.
-> > 
-> > Are any of the values above dependent on the image sizes, for instance?
-> > 
-
-> Some of them might be resolution dependent, I need to double check. How
-> should we handle the defaults that are dependent? Should we disable them
-> or initialize with 0
-
-Good question. I hope there aren't any, but if there are, the values could
-be need to be either derived from the V4L2 mbus or pixel format
-configuration somehow, i.e. they'd be zeros here.
-
--- 
-Kind regards,
-
-Sakari Ailus
+Reviewed-by: Rob Herring <robh@kernel.org>
