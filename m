@@ -2,77 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1670A35A0F5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 16:24:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23CFE35A0F7
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 16:26:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232884AbhDIOYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 10:24:55 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:39699 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231756AbhDIOYz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 10:24:55 -0400
-Received: by mail-ot1-f47.google.com with SMTP id 65-20020a9d03470000b02902808b4aec6dso1110585otv.6;
-        Fri, 09 Apr 2021 07:24:42 -0700 (PDT)
+        id S232884AbhDIO0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 10:26:43 -0400
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:39518 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231756AbhDIO0n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 10:26:43 -0400
+Received: by mail-oi1-f180.google.com with SMTP id i81so5931321oif.6
+        for <devicetree@vger.kernel.org>; Fri, 09 Apr 2021 07:26:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Cx9lVJUJHHOakCvhduGO1GJ0gNRIq4nn2gbW6pt+5ws=;
-        b=Dqsnh6AD9MJU1hhNdnL2BXFxfipnYxaV+hinowWDurUfcqH+LA5T2Ibh5bLqgJPFeB
-         j3C3O9vmmFkiM9JkffezWYGcw928R73hImd11T4pKJYdnTRAsJSYuiZ6M12z6r90u08b
-         Pksw1iMYTi6N7fr7OjgxJeTM/2EH5sSduRzTkKjEQvFfWgvCa3+c8wUyd1oRUERz6a/6
-         9EtMODiyUaZnYiwnmk5q8WHfDEa5pUJhY0ZfWrga7skDmqvPYz4AXp6elDLxag2HOm1s
-         RtgjwffhkJq6R/JRy8fIEepb1QBiylp4yDMmcOmRvgLkIsB6K/caceexrsrSUkYCnvQZ
-         iRig==
-X-Gm-Message-State: AOAM533BE3yzFEbz9ZhzSy89/8nvniYZq+uwEYDgdwWPW8Ch6zOK0FaU
-        lD8M6d5wjNFGk1GOb9LkrQ==
-X-Google-Smtp-Source: ABdhPJw2aCgUF42Z104E9zAQvM03OvbJ37wGORrcj0aSpSnFTYL5HeSm+ZIzGE1cj5wFSaTEJ6OhiQ==
-X-Received: by 2002:a05:6830:12d5:: with SMTP id a21mr12382802otq.34.1617978282236;
-        Fri, 09 Apr 2021 07:24:42 -0700 (PDT)
+        bh=/V0AD0mPht0OQgtu30DwdKwdwaqGe9FlFaxJOL8CjYw=;
+        b=LEZisN22hiKw+7kMyVEJNxGkm7S4Dohx3wU2bhb1oUP0TWp5Gl9hwoZ5Nk2P0gRE4l
+         VoGDEj+5XfwkS7Fh6RHrYsRANOLVHDBpJBmsdTOG7mAQnPmM8T5EWLSkSPJ2kPvw+0ni
+         PXLTgFb11PcezEHO29ZKs0chmYUOp0jtDEWAWHk74CjFhClSHwwf61pgj/NrHS/puoE6
+         zTqGEy9hau5CYrzMKnrQkgH6wxb8eAZrxMkx7ZraHjRhKGiBWa7tLwuC8RY8A/V0vcbK
+         VXjz5hKwG+6ncyEVD9c9MjjpWj44+UJy4dcAyqSK2uGNb7gz8AjML8IyuSdUIwwGquG2
+         W1BA==
+X-Gm-Message-State: AOAM532tPvXdGW/HzIq0SLNmF764OYt04RrvtNQzOMyg82FICxOvBecn
+        9yhExrrCILr+x5aws+b6xM3Huk4T9w==
+X-Google-Smtp-Source: ABdhPJx1klcJKlCMw5mfZ1cYy4R2fXfN8qB/7SCRUjzSURywC9WeTw9sZY/O2uoXDRoNAVkcxl3HKg==
+X-Received: by 2002:aca:db05:: with SMTP id s5mr9894762oig.134.1617978388992;
+        Fri, 09 Apr 2021 07:26:28 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x20sm525624oiv.35.2021.04.09.07.24.41
+        by smtp.gmail.com with ESMTPSA id i3sm550160oov.2.2021.04.09.07.26.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Apr 2021 07:24:41 -0700 (PDT)
-Received: (nullmailer pid 3596980 invoked by uid 1000);
-        Fri, 09 Apr 2021 14:24:40 -0000
-Date:   Fri, 9 Apr 2021 09:24:40 -0500
+        Fri, 09 Apr 2021 07:26:27 -0700 (PDT)
+Received: (nullmailer pid 3599373 invoked by uid 1000);
+        Fri, 09 Apr 2021 14:26:26 -0000
+Date:   Fri, 9 Apr 2021 09:26:26 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Simon Shields <simon@lineageos.org>, linux-input@vger.kernel.org,
-        Tomasz Figa <tfiga@chromium.org>, devicetree@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Subject: Re: [PATCH] Input: mms114 - Convert bindings to YAML and extend
-Message-ID: <20210409142440.GA3596911@robh.at.kernel.org>
-References: <20210330201233.2360006-1-linus.walleij@linaro.org>
+To:     Yunus Bas <y.bas@phytec.de>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org, daniel@ffwll.ch,
+        airlied@linux.ie, thierry.reding@gmail.com, sam@ravnborg.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add EDT ETMV570G2DHU
+Message-ID: <20210409142626.GA3599344@robh.at.kernel.org>
+References: <20210331181317.464926-1-y.bas@phytec.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210330201233.2360006-1-linus.walleij@linaro.org>
+In-Reply-To: <20210331181317.464926-1-y.bas@phytec.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Mar 2021 22:12:33 +0200, Linus Walleij wrote:
-> This converts the Melfas MMS114 bindings and extend like this:
+On Wed, 31 Mar 2021 20:13:16 +0200, Yunus Bas wrote:
+> The Emerging Display Technology ETMV570G2DHU is a 5.7" VGA TFT panel.
+> Add it to the list of compatibles.
 > 
-> - Require nodename touchscreen@ (this seems to be the case for
->   all in-tree DTS files)
-> - Add the mms134s and mms136 compatibles
-> - Add the avdd and vdd power supplies
-> - Define the I2C clock frequency property
-> 
-> Cc: devicetree@vger.kernel.org
-> Cc: Stephan Gerhold <stephan@gerhold.net>
-> Cc: Simon Shields <simon@lineageos.org>
-> Cc: Tomasz Figa <tfiga@chromium.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Yunus Bas <y.bas@phytec.de>
 > ---
->  .../input/touchscreen/melfas,mms114.yaml      | 87 +++++++++++++++++++
->  .../bindings/input/touchscreen/mms114.txt     | 42 ---------
->  2 files changed, 87 insertions(+), 42 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/melfas,mms114.yaml
->  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/mms114.txt
+>  .../devicetree/bindings/display/panel/panel-simple.yaml        | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
