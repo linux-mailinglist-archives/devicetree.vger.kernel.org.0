@@ -2,79 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A312C35A2DC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 18:19:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9CA735A2E5
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 18:20:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233395AbhDIQTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 12:19:12 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:39804 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229665AbhDIQTL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 12:19:11 -0400
-Received: by mail-ot1-f46.google.com with SMTP id 65-20020a9d03470000b02902808b4aec6dso1471108otv.6;
-        Fri, 09 Apr 2021 09:18:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=V6+t5pl9yiZgeYjahPqpAZZKi8bWzrvkcd68BkJAc7U=;
-        b=QOSMadggEbwUvDatFQVMgcfCeqHuEUdzAoLbk4d+UGmNhV9sgbANb93n3S0l1rjU4P
-         6vtEZn9kOmBbo+s/q8kf7amgxVi2FBRumaoXk9LWAPzMySrf6GQeGUFlwkJDMYm8Q7QN
-         nFiNDZg1wXZSH1Td8Hr+KKhZqSmfhrJgcbtAWgbJloXxKpNucUwayGnst8ARTxxwBzvv
-         AT6UCGkvHez8vxZUOgCjRlGBA0MAF/UF2gASn80daYMmV1Z5TLrG9c3s1Gd56ALs8cpB
-         KZqzqjhxC9P4MyXnDNtnUp1bngbHS5B8QDvIhj9jdZBPhu0p4VIokHFXeDfOYPZwejAF
-         fk5A==
-X-Gm-Message-State: AOAM531AgYLA7b8N1q9iPCZs86WWj9ahDIR9dnrHy54Eo629n7hkvEYB
-        Pwlg7uW8ZfQRmK/D54Pgmw==
-X-Google-Smtp-Source: ABdhPJyrAOG2bnJLeYmCGUVGO7oqCy02r/oDqFq2pcAf7aThY3BxjjJpxNkuNlfg2ZoZct6bMj2b6w==
-X-Received: by 2002:a9d:591:: with SMTP id 17mr12521855otd.115.1617985137160;
-        Fri, 09 Apr 2021 09:18:57 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n13sm676778otk.61.2021.04.09.09.18.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Apr 2021 09:18:56 -0700 (PDT)
-Received: (nullmailer pid 3750799 invoked by uid 1000);
-        Fri, 09 Apr 2021 16:18:55 -0000
-Date:   Fri, 9 Apr 2021 11:18:55 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Nicolas Saenz Julienne <nsaenz@kernel.org>
-Cc:     Scott Branden <scott.branden@broadcom.com>, stefan.wahren@i2se.com,
-        Matthias Brugger <mbrugger@suse.com>,
-        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
-        Scott Branden <sbranden@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>, phil@raspberrypi.com,
-        adrian.hunter@intel.com, linux-rpi-kernel@lists.infradead.org,
-        Stefan Wahren <wahrenst@gmx.net>, nsaenzjulienne@suse.de,
-        tim.gover@raspberrypi.com, f.fainelli@gmail.com,
-        bcm-kernel-feedback-list@broadcom.com,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, alcooperx@gmail.com,
-        Ray Jui <ray.jui@broadcom.com>, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: mmc: iproc-sdhci: Convert to json-schema
-Message-ID: <20210409161855.GA3750765@robh.at.kernel.org>
-References: <20210406104802.20898-1-nsaenz@kernel.org>
- <20210406104802.20898-2-nsaenz@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210406104802.20898-2-nsaenz@kernel.org>
+        id S233961AbhDIQUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 12:20:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52690 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233527AbhDIQUR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 12:20:17 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A522C061761;
+        Fri,  9 Apr 2021 09:20:03 -0700 (PDT)
+Received: from guri.fritz.box (unknown [IPv6:2a02:810a:880:f54:19b8:b5db:beab:c68c])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: dafna)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id B13BC1F46987;
+        Fri,  9 Apr 2021 17:19:59 +0100 (BST)
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+To:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc:     megous@megous.com, linux-usb@vger.kernel.org, a.hajda@samsung.com,
+        narmstrong@baylibre.com, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@siol.net, airlied@linux.ie,
+        daniel@ffwll.ch, chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
+        enric.balletbo@collabora.com, drinkcat@chromium.org,
+        hsinyi@chromium.org, kernel@collabora.com, dafna3@gmail.com,
+        dafna.hirschfeld@collabora.com, robh+dt@kernel.org
+Subject: [PATCH v6 0/2] Add support for ANX7688
+Date:   Fri,  9 Apr 2021 18:19:49 +0200
+Message-Id: <20210409161951.12365-1-dafna.hirschfeld@collabora.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 06 Apr 2021 12:48:01 +0200, Nicolas Saenz Julienne wrote:
-> Convert the brcm,iproc-sdhci binding to DT schema format using json-schema
-> 
-> Signed-off-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
-> 
-> ---
-> 
->  .../bindings/mmc/brcm,iproc-sdhci.yaml        | 63 +++++++++++++++++++
->  .../bindings/mmc/brcm,sdhci-iproc.txt         | 37 -----------
->  2 files changed, 63 insertions(+), 37 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mmc/brcm,sdhci-iproc.txt
-> 
+ANX7688 is a typec port controller that also converts HDMI to DP.
+ANX7688 is found on Acer Chromebook R13 (elm) and on Pine64 PinePhone.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Acer Chromebook R13 (elm), the device is powered-up and controller by the
+Embedded Controller. Therefore its operation is transparent
+to the SoC. It is used in elm only as a display bridge driver.
+The bridge driver only reads some values using i2c and use them to
+implement the mode_fixup cb.
+
+On v5 we added the full dt-binding of the generic Analogix anx7688 device.
+The problem is that for elm, most of the fields are not needed since
+the anx7688 sits behind the EC. After a discussion on v5 (see [1])
+we decided to go back to the original approach and send the dt binding
+as specific to the elm. So in this version we rename the device to cros_ec_anx7688
+and use the compatible 'google,cros-ec-anx7688'.
+
+[1] https://patchwork.kernel.org/project/dri-devel/patch/20210305124351.15079-3-dafna.hirschfeld@collabora.com/
+
+Changes since v5:
+* treat the device as a specific combination of an ANX7688 behind the EC and
+call it 'cros-ec-anx7688'
+
+Changes since v4:
+In v4 of this set, the device was added as an 'mfd' device
+and an additional 'bridge' device for the HDMI-DP conversion, see [2].
+
+[2] https://lkml.org/lkml/2020/3/18/64
+
+Dafna Hirschfeld (1):
+  dt-bindings: display: add google,cros-ec-anx7688.yaml
+
+Enric Balletbo i Serra (1):
+  drm/bridge: Add ChromeOS EC ANX7688 bridge driver support
+
+ .../bridge/google,cros-ec-anx7688.yaml        |  82 ++++++++
+ drivers/gpu/drm/bridge/Kconfig                |  12 ++
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/cros-ec-anx7688.c      | 191 ++++++++++++++++++
+ 4 files changed, 286 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml
+ create mode 100644 drivers/gpu/drm/bridge/cros-ec-anx7688.c
+
+-- 
+2.17.1
+
