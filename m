@@ -2,111 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4DE435931A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 05:38:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0431035931F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 05:38:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233214AbhDIDiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 23:38:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54878 "EHLO
+        id S233189AbhDIDiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 23:38:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233192AbhDIDiL (ORCPT
+        with ESMTP id S232941AbhDIDiL (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 23:38:11 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AE63C061761;
-        Thu,  8 Apr 2021 20:37:25 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id nh5so2204920pjb.5;
-        Thu, 08 Apr 2021 20:37:25 -0700 (PDT)
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AF18C061762
+        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 20:37:29 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id n140so4415386oig.9
+        for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021 20:37:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=AjoDWdy7uigSAOeBTzYfInfamNFP4DVUXaPENdJokEw=;
-        b=rD4fSwMmMCEX0HS4ejc3Hb6gpSc2m4ArhR6ghHvQgmR1y8U0MmfK8RZt3uZHt+Sz9u
-         xBUGni9BVfero8kyHmkusbHh0b9QdGhDYAkmO6TSq9uQTe2afYbEecnlOtUBpbBzgOWp
-         CLwdNmFQoATJ5HmsU5Zh+8f2KkEvNJyLNL0RErVrwHDGYCrcnI4V4Fy2IN+WuAUbrALN
-         oPClTLBaOY7HLrZNvHdOfMLKxVLwqqDTzTaFoD8gixhoa2NGBpVRWucKJX+RloxXqMKK
-         v6PBS6sv1ZDIlLMMva3oNTf6BM7BUn/WgRZaYvsAACq5F02VPDSd/n30FEO045W/x4qF
-         PpJA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=kpO9+Srd4oIvzWVPdKNdhhDxU1fj2TEEXiSYekg3+O4=;
+        b=AajZh8YY55sqks6QlcXguHQ/+brpwyvUTeoJebt7DSnbLvFJLMf2d1WDS6sHYmKrMW
+         /JpVTniCTchZEv6K33jNa5DHdhmFsKozdeGkprinsXo7r5heNHiDeHEDES0htkv+2dBr
+         iD7HIujRElbo6/rKB4EwOJ0XwxNS2lJnG0RSgNPWNbiKBA7vbhrWMlJ5hilCDHdAeMvZ
+         fMz7qlJ+0podVxWdTe/sM4/YHNudBoh94zszKUFnH15H1Hf34eZ6ftgXFabYjvrMyV0r
+         yYv0fpUUmqiN9yOJmajTr/HRsTiH1g+xjSxZ2fWWZno9Kbn+0tkh/dk2RygfB+z4A5Qb
+         3YBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=AjoDWdy7uigSAOeBTzYfInfamNFP4DVUXaPENdJokEw=;
-        b=d+T7ufFh2dHRc/0CLGjuy8tTbnjsiLbSvwLzOx8BTLEy1Ox4ug4M62WeKy/nn5dZUb
-         K4rB4TMuc9Te0Z/du7m6FH63dMaDVCr9nlmLF6edAmDB2JBfGut+1mvmOQo1tKUfH0mR
-         0LmPnMm/F9+kZuiSt9XYx1MPsSNslbF99Wp5nYwaQO/Hd3RL0J6eqojwXCeA6G+4MFnn
-         afa1zt/r+wbfpM9vaMUZP4zABlJv6mFtJf/ZzZ43YMY/FKrtXVzMVGEpSxquMzCrZYs8
-         0i8z9DXQlXCoVVDTl4T0VF0wHpIOw0GYJJ4XUw3byvsLYzPm61v0jz1fYH2KuE4pvkpv
-         wGSg==
-X-Gm-Message-State: AOAM531VuPHl082HfKYrUHTshaXCghr0HJ/H93wA4KO4GShphBOgdqvO
-        Si975gPiBAxoIgAgbN68yyM=
-X-Google-Smtp-Source: ABdhPJy0STsNx2IrHuB6ju6EIrKalhe8t5PRpma4+erIvzt8MdGCtvZkjE7bziGAHp+e6K3DmVaSkQ==
-X-Received: by 2002:a17:902:a716:b029:e8:ba45:ea0f with SMTP id w22-20020a170902a716b02900e8ba45ea0fmr11062085plq.63.1617939444981;
-        Thu, 08 Apr 2021 20:37:24 -0700 (PDT)
-Received: from [10.230.29.202] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id v126sm711637pfv.138.2021.04.08.20.37.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Apr 2021 20:37:24 -0700 (PDT)
-Subject: Re: New 'make dtbs_check W=1' warnings
-To:     Arnd Bergmann <arnd@kernel.org>, DTML <devicetree@vger.kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kpO9+Srd4oIvzWVPdKNdhhDxU1fj2TEEXiSYekg3+O4=;
+        b=awJr1tFjBMhvPQJZhL8fNm/dubXo8+H085SdkJnrU541KYkU9ZY8amHHvQiWStdqWz
+         L075sJBm+CoN5OCl35gzH8WYTBHh5GGgk6Yx5aJJkXcyvl6Gc4bdE5DadUp97UQdRRN6
+         2+TFLLVFVOoNRzA2ZzdLPt4ivx2Zy0HZjeB5VE5w51UdGsO2O/3rAB9N84DtZPSacgnk
+         OgQOosSr9CWcGakYzbtoE5t49QtOaxBDzc1OtnBxYRfXEaW+sBtj0kjAhkF4M4ZrjYUF
+         vN6JBlU3TFpVYuZ9fehaG3idkUkcEm8tg4g3NmKesX6hc3fAtBKiJj3M3aPjajBpb1mX
+         16mw==
+X-Gm-Message-State: AOAM5317oUB7Eh5SiLORH49E6ByomaNDGbYl1gyITm+FrPDDxNvFlzEj
+        6NJtbzU+OapohqEU+V8Nqjy45VEyDP1/8A==
+X-Google-Smtp-Source: ABdhPJxyg5jFsWAKl52joGC4rhFbwO523ZKf7Sk0WGwP6QuzZcGFDCCy9TNVl2ntIn6hUArIIl/ToQ==
+X-Received: by 2002:aca:2b07:: with SMTP id i7mr8785439oik.66.1617939449149;
+        Thu, 08 Apr 2021 20:37:29 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id y10sm333546oto.18.2021.04.08.20.37.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Apr 2021 20:37:28 -0700 (PDT)
+Date:   Thu, 8 Apr 2021 22:37:26 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Petr Vorel <petr.vorel@gmail.com>
+Cc:     Konrad Dybcio <konradybcio@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Cc:     Linus Walleij <linusw@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        SoC Team <soc@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Gregory Clement <gregory.clement@bootlin.com>
-References: <CAK8P3a1L8rWpR5b66v6Su8-m7-scA0wZQr_g_4KnV4dnrky6ZA@mail.gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <632cbdec-e477-212c-f5a8-81151915fdeb@gmail.com>
-Date:   Thu, 8 Apr 2021 20:37:21 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.9.0
+        Ricardo Ribalda <ribalda@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8994: Reserve gpio ranges
+Message-ID: <20210409033726.GT904837@yoga>
+References: <20210405200259.23525-1-petr.vorel@gmail.com>
+ <20210405225222.GD904837@yoga>
+ <CACRpkdZQ8qiqFPa0X8deVjZ7nLn_E6s8fmJdr5Ji8AuyJms1ug@mail.gmail.com>
+ <YG9TWEJlpDmNeeit@pevik>
+ <ea376d51-cd6c-0028-9602-d007c2bba71e@gmail.com>
+ <YG/HwrzRcm7bwgFe@pevik>
 MIME-Version: 1.0
-In-Reply-To: <CAK8P3a1L8rWpR5b66v6Su8-m7-scA0wZQr_g_4KnV4dnrky6ZA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YG/HwrzRcm7bwgFe@pevik>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu 08 Apr 22:19 CDT 2021, Petr Vorel wrote:
 
-
-On 4/8/2021 8:08 AM, Arnd Bergmann wrote:
-> Greetings to all Arm platform maintainers,
+> Hi Konrad,
+> > Hi,
 > 
-> I've just gone through the DT merges I've received so far and, with a
-> little help from Rob,
-> managed to run 'make dtbs_check W=1' before and after, to see what
-> warnings we get.
-> The good news is that the number of warnings is going down, but
-> unfortunately there
-> is still an unmanageable amount of remaining warnings, and some new
-> ones crept in.
+> > to clear up some confusion:
 > 
-> I'm still working on my tooling for this, to catch these better, but
-> ideally I think we should
-> try to not introduce new warnings. I think some platforms are already
-> clean, and I did
-> not see any new warnings for mvebu, samsung and broadcom. There were a lot of
-> warnings from .dtsi files, and I probably did an incomplete job at
-> deduplicating those.
+> 
+> > On Qualcomm boards GPIOs that are used for "secure" (duh) peripherals,
+> > like a fingerprint scanner, are not allowed to be controlled from Linux (the "non-secure world").
+> > Trying to do so causes an immediate reboot due to "attempting to violate the security".
+> Thanks for an explanation.
+> 
+> > The GPIOs seem to all be iterated over on boot, except for the ones specified in "gpio-reserved-ranges".
+> > As a result, if such "secure" GPIOs are not declared in the DT, the board essentially dies on TLMM (pinctrl) probe
+> > (which happens veeeery early - so that all other peripherals can set the pins as they see fit)
+> > and that's very unpleasant to debug. Without this patch, Petr's device will simply not boot.
+> Exactly.
+> 
+> > So, why did it work before!?
+> 
+> 
+> > Well, either the GPIOs weren't iterated over, or the TLMM (pinctrl) driver wasn't in place back then.
+> I suppose GPIOs not being iterated over is the case for first fix (i.e. fixing
+> 3edfb7bd76bd "gpiolib: Show correct direction from the beginning").
+> 
 
-There are definitively a ton of warnings for Broacom DTS files, a number
-of those warnings exist because the bindings were not converted to YAML.
-Rafal, do you think you could help me with taking care of the
-BCM5301X/4908 warnings?
--- 
-Florian
+We had a long discussion about this in the past, and this resulted in
+gpio-reserved-ranges and flagging off GPIOs that shouldn't be touched.
+
+It seems we introduced the angler dts prior to said changes in the
+gpiolib, so it's probably right to say that it's a regression. However,
+the introduction of this was done 3 years ago and we're happy with it on
+all other devices.
+
+There's no harm in introducing this property prior to the introduction
+of the related gpiolib patches, so if you really care about it being backported
+I would suggest you say:
+
+Fixes: feeaf56ac78d ("arm64: dts: msm8994 SoC and Huawei Angler (Nexus 6P) support")
+
+But I presume based on the awesome work you guys are putting into the
+8994 platform people shouldn't run "old" kernels anyways, so I think it
+would be fine with us just ignoring the Fixes as well...
+
+Regards,
+Bjorn
