@@ -2,61 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 407F435A79C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 22:09:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E564B35A7A3
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 22:10:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232855AbhDIUJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 16:09:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42990 "EHLO mail.kernel.org"
+        id S232796AbhDIUKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 16:10:53 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:43232 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232796AbhDIUJh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Apr 2021 16:09:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id 7069961074;
-        Fri,  9 Apr 2021 20:09:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617998964;
-        bh=8gFshgeHPGAlwmZy0/IGPaf17g0L+Ns1ANN5OOBfOCE=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=D85iFi4GQZ6DPvOmoesKd1np57kSn1NgPm+B5QcVFtoCpqeCiogyyRpoia00l5LRm
-         K3KoFZp4BADq8fCWcLwVDlqRh6HnA32gRIRKhGJPJllqwiJdQpbXe1G/WSN/4jjQw7
-         4swabbVS+FAbbq0no4+v8TCG/i6AVKxvCr4oq+Dvn5op4wwfmWC9I4tZxKZFjVPY29
-         1HqvY6QZ2JaU+igorCkMVz1ZS73w78io50t3IHLSzxKWcLSdiinS1qyjfUmYjJFK2n
-         xhNusiIunrnADYQu/pMPa4L7ooFtxBshiTIMXhkyDB2vCBCdACxGNtmLVMUAJf/o5m
-         gMrTocCULsrVg==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 61FD260A71;
-        Fri,  9 Apr 2021 20:09:24 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for v5.12-rc, take 2
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <20210409200009.GA4050302@robh.at.kernel.org>
-References: <20210409200009.GA4050302@robh.at.kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20210409200009.GA4050302@robh.at.kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.12-2
-X-PR-Tracked-Commit-Id: d473d32c2fbac2d1d7082c61899cfebd34eb267a
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: a2521822bdfd73bd40d7cd81dfa89cc922b1cff4
-Message-Id: <161799896434.13555.16647799407076305143.pr-tracker-bot@kernel.org>
-Date:   Fri, 09 Apr 2021 20:09:24 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        Guenter Roeck <linux@roeck-us.net>
+        id S229665AbhDIUKx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Apr 2021 16:10:53 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lUxSg-00FrJK-EK; Fri, 09 Apr 2021 22:10:38 +0200
+Date:   Fri, 9 Apr 2021 22:10:38 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>, bert@biot.com
+Subject: Re: [RFC PATCH 0/2] MIIM regmap and RTL8231 GPIO expander support
+Message-ID: <YHC0vh/4O5Zm9+vO@lunn.ch>
+References: <cover.1617914861.git.sander@svanheule.net>
+ <YG+BObnBEOZnoJ1K@lunn.ch>
+ <d73a44809c96abd0397474c63219a41e28f78235.camel@svanheule.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d73a44809c96abd0397474c63219a41e28f78235.camel@svanheule.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Fri, 9 Apr 2021 15:00:09 -0500:
+On Fri, Apr 09, 2021 at 07:42:32AM +0200, Sander Vanheule wrote:
+> Hi Andrew,
+> 
+> Thank you for the feedback. You can find a (leaked) datasheet at:
+> https://github.com/libc0607/Realtek_switch_hacking/blob/files/RTL8231_Datasheet_1.2.pdf
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.12-2
+So this is not really an MFD. It has different ways of making use of
+pins, which could be used for GPIO, but can also be used for LEDs. You
+could look if it better fits in drivers/leds. But you can also use
+GPIO drivers for LEDs via led-gpio.
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/a2521822bdfd73bd40d7cd81dfa89cc922b1cff4
+> > I don't understand this split. Why not
+> > 
+> >      mdio-bus {
+> >          compatible = "vendor,mdio";
+> >          ...
+> >  
+> >          expander0: expander@0 {
+> >              /*
+> >               * Provide compatible for working registration of mdio
+> > device.
+> >               * Device probing happens in gpio1 node.
+> >               */
+> >              compatible = "realtek,rtl8231-expander";
+> >              reg = <0>;
+> >              gpio-controller;
+> >          };
+> >      };
+> > 
+> > You can list whatever properties you need in the node. Ethernet
+> > switches have interrupt-controller, embedded MDIO busses with PHYs on
+> > them etc.
+> 
+> This is what I tried initially, but it doesn't seem to work. The node
+> is probably still added as an MDIO device, but rtl8231_gpio_probe()
+> doesn't appear to get called at all. I do agree it would be preferable
+> over the split specification.
 
-Thank you!
+Look at drivers/net/dsa/mv88e6xxx/chip.c for how to register an mdio
+driver. If you still cannot get it to work, post your code and i will
+take a look.
 
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+     Andrew
