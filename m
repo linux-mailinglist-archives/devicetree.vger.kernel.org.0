@@ -2,102 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B19EF35A444
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 19:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17A4535A487
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 19:19:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234193AbhDIRBV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 13:01:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33590 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234177AbhDIRBT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 13:01:19 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A43AAC061761
-        for <devicetree@vger.kernel.org>; Fri,  9 Apr 2021 10:01:06 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id w8so1157821pfn.9
-        for <devicetree@vger.kernel.org>; Fri, 09 Apr 2021 10:01:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=Y+dtVUQQoKBT4QD8w22iCkdT2lXFXX96rY1QL4XBEhk=;
-        b=Bj10EXFFti3jwrOObuKak/5UWWbOw1R+c5AYo7DIKOeibu1rV7jHUpBVMj6qft2LFm
-         AQfJE0xX0wLjCk404YBcawfGv81kIVqoZpvKGAcxmtSXjLPFadyG3/mqTU8/+vZ7IDw5
-         sTK4q33hDtHXEG6Mhw2K9NNml0ztOnLSvUhLE=
+        id S234071AbhDIRTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 13:19:40 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:53840 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232855AbhDIRTk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 13:19:40 -0400
+Received: from mail-wr1-f72.google.com ([209.85.221.72])
+        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.86_2)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1lUun0-000889-Dm
+        for devicetree@vger.kernel.org; Fri, 09 Apr 2021 17:19:26 +0000
+Received: by mail-wr1-f72.google.com with SMTP id j4so2579504wru.20
+        for <devicetree@vger.kernel.org>; Fri, 09 Apr 2021 10:19:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=Y+dtVUQQoKBT4QD8w22iCkdT2lXFXX96rY1QL4XBEhk=;
-        b=sOOqewHZ8+wXJfSFn7gy7QFMjCS2uFNGcKatHgBck6ATLEyycEcXaV7+BpQQBpEyCR
-         rs0qmNAOZWuhj+lzkmo001GjefbJGAEwhwo5m7D+Ez1hjXbuFAC24AJ4yw5sYa0GMJuQ
-         1tsIBKPrx3S1lVfRxaUQIuaUfjZF9NjwA+c81q4qI6IxzRBHdXyyvfUZ+kzveLy/NppQ
-         fTyBSzLAQDrHIWujww9K6W5VsPlMwTc+2xKTGzH6lPO/3z3V1l79v/GtVfRXn+xe7BGK
-         vjN5qNbYkAuZ+2YiyPVByAlclp5Oij4aYDC7X0b4Qog8kNzAmUfcTcUMDpojHyqO0bMI
-         9pjA==
-X-Gm-Message-State: AOAM531SP4F4yn2RevO8P0XVGIddOvJl3QsBhWQWTonnYHodkSggtLX9
-        HGtGU27JD8CqLDcHtqx50gpUYA==
-X-Google-Smtp-Source: ABdhPJyomjBj+/2DEtc/Q+SEr95sFJMVE8yo0USbDJj9yVPAfCRpXjjlOM0LFvT1nBq2QPjp6a/5Eg==
-X-Received: by 2002:a63:fc07:: with SMTP id j7mr14383423pgi.401.1617987666112;
-        Fri, 09 Apr 2021 10:01:06 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:201:44c3:3248:e7f5:1bbd])
-        by smtp.gmail.com with ESMTPSA id q5sm2621786pfj.131.2021.04.09.10.01.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Apr 2021 10:01:05 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=MF7ir3WvrSx3fVs+kwq9HlQIkfNHtZbHStyjJVEI674=;
+        b=XwXon+tqPHIicvqCIiQxSZZ8ddL+gSqjnX7UHVDUsEm8iItN9eKHdFpZb/6kZ225a2
+         34wCyBpgur2xnE0foTeHcXrLK+eowW3p5ywKnZhmgrFi9GKHe7EdiYb/W4FvmacCEjWy
+         AQk94Dc9u0HodPAs3N/DtAs/vLYbFVxEhGRqbZ2Nn3Qa9s3zoLif14sq4k3w/OWbsjLe
+         gDsi1tAl80TNbtCL16WVxhxPE8KhFvb+M3UGpOnLNwtlnfJ+v2/bEHMCOIGv4HSKeHVo
+         l1dCc7Nyv5OChp6m4n6gY58JAoBmJmFnlr9btMwierPFm2yazL2T4F7+IIyprBASb1xv
+         KDwg==
+X-Gm-Message-State: AOAM533h1tqqpuQ6DZkIXl2IProV0af9x/sTfwWZnRn196OvZUrwsaWV
+        ADGg2MGTOeSkF9LPXgUlgRtRgNinor4S3OGgM0D8b7/ItKpweLlrIB6U4e5QI50+btMn/IX+0pp
+        qX7SKKjAOHvhLiw1EvpI7bRiqqRC8xa/J9x1+iVo=
+X-Received: by 2002:a5d:6ad1:: with SMTP id u17mr18632735wrw.214.1617988766176;
+        Fri, 09 Apr 2021 10:19:26 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyoHmJCq+boBnAlfaIBVP5XJAn1stsfy3E4Yg3rVDRyUJcFf9LW6ZyaB9V9QoKKEjW3PrCWwQ==
+X-Received: by 2002:a5d:6ad1:: with SMTP id u17mr18632724wrw.214.1617988766071;
+        Fri, 09 Apr 2021 10:19:26 -0700 (PDT)
+Received: from [192.168.1.115] (xdsl-188-155-192-147.adslplus.ch. [188.155.192.147])
+        by smtp.gmail.com with ESMTPSA id s83sm4841985wms.16.2021.04.09.10.19.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Apr 2021 10:19:25 -0700 (PDT)
+Subject: Re: [PATCH v2] dt-bindings: serial: samsung: include generic dtschema
+ to match bluetooth child
+To:     Rob Herring <robh@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210405172119.7484-1-krzysztof.kozlowski@canonical.com>
+ <20210409160952.GA3737690@robh.at.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <d4d90a42-8c18-2f5e-d77d-da006f9b108f@canonical.com>
+Date:   Fri, 9 Apr 2021 19:19:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210406163330.11996-1-srivasam@codeaurora.org>
-References: <20210406163330.11996-1-srivasam@codeaurora.org>
-Subject: Re: [PATCH v2] arm64: dts: qcom: Update iommu property for simultaneous playback
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, dianders@chromium.org,
-        judyhsiao@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org
-Date:   Fri, 09 Apr 2021 10:01:04 -0700
-Message-ID: <161798766423.3790633.3895809656191757415@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+In-Reply-To: <20210409160952.GA3737690@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2021-04-06 09:33:30)
-> From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
->=20
-> Update iommu property in lpass cpu node for supporting
-> simultaneous playback on headset and speaker.
->=20
-> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> ---
-> Changes since v1:
->    -- Commit messge header change
->=20
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/q=
-com/sc7180.dtsi
-> index a6da78d31fdd..6228ba2d8513 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -3566,7 +3566,8 @@ lpass_cpu: lpass@62f00000 {
->                         reg =3D <0 0x62f00000 0 0x29000>;
->                         reg-names =3D "lpass-lpaif";
-> =20
-> -                       iommus =3D <&apps_smmu 0x1020 0>;
-> +                       iommus =3D <&apps_smmu 0x1020 0>,
-> +                               <&apps_smmu 0x1021 0>;
+On 09/04/2021 18:09, Rob Herring wrote:
+> On Mon, Apr 05, 2021 at 07:21:19PM +0200, Krzysztof Kozlowski wrote:
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>>
+>> Include the generic serial.yaml dtschema so the child node like
+>> "bluetooh" will be properly matched:
+> 
+> typo
+> 
+>>
+>>   arch/arm/boot/dts/exynos4210-universal_c210.dt.yaml:
+>>     serial@13800000: 'bluetooth' does not match any of the regexes: 'pinctrl-[0-9]+'
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+>>
+>> ---
+>>
+>> Changes since v1:
+>> 1. Drop the new example, as Rob suggested.
+>> ---
+>>  Documentation/devicetree/bindings/serial/samsung_uart.yaml | 4 +++-
+>>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> Otherwise,
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-The stream ID 0x1032 was also dropped in this version but there's no
-mention of that in the changelog. Why?
+Thanks, I'll send with fixed typo.
 
-> =20
->                         power-domains =3D <&lpass_hm LPASS_CORE_HM_GDSCR>;
->
+Best regards,
+Krzysztof
