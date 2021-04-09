@@ -2,185 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3E9135A0EC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 16:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1670A35A0F5
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 16:24:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232855AbhDIOUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 10:20:31 -0400
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:44706 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233713AbhDIOU2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 10:20:28 -0400
-Received: by mail-oi1-f182.google.com with SMTP id a8so5904108oic.11;
-        Fri, 09 Apr 2021 07:20:15 -0700 (PDT)
+        id S232884AbhDIOYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 10:24:55 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:39699 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231756AbhDIOYz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 10:24:55 -0400
+Received: by mail-ot1-f47.google.com with SMTP id 65-20020a9d03470000b02902808b4aec6dso1110585otv.6;
+        Fri, 09 Apr 2021 07:24:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=vBWlNi0PvIQrSGwmJ2LxQzFz9VsTZMAhaQdE57hPg5I=;
-        b=j0ssTQFHXS5AjhxUzF1w5ObsHqQZwJsZgkHXoHwVOMWsfnoq288DgLpq68/r+rtYAR
-         wCWbwp4X347IGwqo6W0AgynABYHpH7aP0EoS54tR5w15zZf3gngtcD3Rr+PVdGKdlkYW
-         dVqkChNQ8XdNA4Jhcp/gkAbO+AKbwkyERgm3vKLKG/6qkvB+ag5yhM4DNCHbdju0sfgf
-         JsA0JMpAdLlSVp7kV2V96fhin15fyrtOkz+Uh4B9k/KmqMq1MX+7Lj/7wTcVA3FDbNZm
-         iHB5zPLXv3VBJ1a+T5nF1sDGSWxK18lWTs3SF8ybyr/ixwbEnAx0mhKbeB4Aoz5/GHFn
-         FGeg==
-X-Gm-Message-State: AOAM532rpZwa1c1j2CwfqfF4asbhjjwLSXHl9o/yNAESrGDY0+hG8lYE
-        R6DqNtUTCgGqvcVaqCSOfQ==
-X-Google-Smtp-Source: ABdhPJxLZlGUhQDvc4og9aMmUzTGu+P1r2/GtkwbBMpKcrMdbstEQbGd2foTOX0JYFnQJU2nrmMg/w==
-X-Received: by 2002:a54:4f8f:: with SMTP id g15mr9692899oiy.12.1617978013889;
-        Fri, 09 Apr 2021 07:20:13 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Cx9lVJUJHHOakCvhduGO1GJ0gNRIq4nn2gbW6pt+5ws=;
+        b=Dqsnh6AD9MJU1hhNdnL2BXFxfipnYxaV+hinowWDurUfcqH+LA5T2Ibh5bLqgJPFeB
+         j3C3O9vmmFkiM9JkffezWYGcw928R73hImd11T4pKJYdnTRAsJSYuiZ6M12z6r90u08b
+         Pksw1iMYTi6N7fr7OjgxJeTM/2EH5sSduRzTkKjEQvFfWgvCa3+c8wUyd1oRUERz6a/6
+         9EtMODiyUaZnYiwnmk5q8WHfDEa5pUJhY0ZfWrga7skDmqvPYz4AXp6elDLxag2HOm1s
+         RtgjwffhkJq6R/JRy8fIEepb1QBiylp4yDMmcOmRvgLkIsB6K/caceexrsrSUkYCnvQZ
+         iRig==
+X-Gm-Message-State: AOAM533BE3yzFEbz9ZhzSy89/8nvniYZq+uwEYDgdwWPW8Ch6zOK0FaU
+        lD8M6d5wjNFGk1GOb9LkrQ==
+X-Google-Smtp-Source: ABdhPJw2aCgUF42Z104E9zAQvM03OvbJ37wGORrcj0aSpSnFTYL5HeSm+ZIzGE1cj5wFSaTEJ6OhiQ==
+X-Received: by 2002:a05:6830:12d5:: with SMTP id a21mr12382802otq.34.1617978282236;
+        Fri, 09 Apr 2021 07:24:42 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h23sm606907ots.0.2021.04.09.07.20.12
+        by smtp.gmail.com with ESMTPSA id x20sm525624oiv.35.2021.04.09.07.24.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Apr 2021 07:20:13 -0700 (PDT)
-Received: (nullmailer pid 3587665 invoked by uid 1000);
-        Fri, 09 Apr 2021 14:20:12 -0000
+        Fri, 09 Apr 2021 07:24:41 -0700 (PDT)
+Received: (nullmailer pid 3596980 invoked by uid 1000);
+        Fri, 09 Apr 2021 14:24:40 -0000
+Date:   Fri, 9 Apr 2021 09:24:40 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Guru Das Srinagesh <gurus@codeaurora.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>
-In-Reply-To: <b14c06502399b4abd700e62c9446d46b51dde719.1617927259.git.gurus@codeaurora.org>
-References: <cover.1617927259.git.gurus@codeaurora.org> <b14c06502399b4abd700e62c9446d46b51dde719.1617927259.git.gurus@codeaurora.org>
-Subject: Re: [PATCH 2/3] dt-bindings: mfd: pm8008: Add bindings
-Date:   Fri, 09 Apr 2021 09:20:12 -0500
-Message-Id: <1617978012.384341.3587664.nullmailer@robh.at.kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Simon Shields <simon@lineageos.org>, linux-input@vger.kernel.org,
+        Tomasz Figa <tfiga@chromium.org>, devicetree@vger.kernel.org,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: Re: [PATCH] Input: mms114 - Convert bindings to YAML and extend
+Message-ID: <20210409142440.GA3596911@robh.at.kernel.org>
+References: <20210330201233.2360006-1-linus.walleij@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210330201233.2360006-1-linus.walleij@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 08 Apr 2021 17:38:30 -0700, Guru Das Srinagesh wrote:
-> Add bindings for the Qualcomm Technologies, Inc. PM8008 MFD driver.
+On Tue, 30 Mar 2021 22:12:33 +0200, Linus Walleij wrote:
+> This converts the Melfas MMS114 bindings and extend like this:
 > 
-> Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
+> - Require nodename touchscreen@ (this seems to be the case for
+>   all in-tree DTS files)
+> - Add the mms134s and mms136 compatibles
+> - Add the avdd and vdd power supplies
+> - Define the I2C clock frequency property
+> 
+> Cc: devicetree@vger.kernel.org
+> Cc: Stephan Gerhold <stephan@gerhold.net>
+> Cc: Simon Shields <simon@lineageos.org>
+> Cc: Tomasz Figa <tfiga@chromium.org>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  .../devicetree/bindings/mfd/qcom,pm8008.yaml       | 120 +++++++++++++++++++++
->  1 file changed, 120 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+>  .../input/touchscreen/melfas,mms114.yaml      | 87 +++++++++++++++++++
+>  .../bindings/input/touchscreen/mms114.txt     | 42 ---------
+>  2 files changed, 87 insertions(+), 42 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/melfas,mms114.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/mms114.txt
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml:88:1: [error] duplication of key "additionalProperties" in mapping (key-duplicates)
-
-dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/mfd/qcom,pm8008.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 421, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 121, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 714, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 435, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 253, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 284, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 4, column 1
-found duplicate key "additionalProperties" with value "False" (original value: "False")
-  in "<unicode string>", line 88, column 1
-
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
-
-Duplicate keys will become an error in future releases, and are errors
-by default when using the new API.
-
-make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/mfd/qcom,pm8008.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-doc-validate", line 67, in <module>
-    ret = check_doc(f)
-  File "/usr/local/bin/dt-doc-validate", line 25, in check_doc
-    testtree = dtschema.load(filename, line_number=line_number)
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 625, in load
-    return yaml.load(f.read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 421, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 121, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 714, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 435, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 253, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 284, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 4, column 1
-found duplicate key "additionalProperties" with value "False" (original value: "False")
-  in "<unicode string>", line 88, column 1
-
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
-
-Duplicate keys will become an error in future releases, and are errors
-by default when using the new API.
-
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/processed-schema-examples.json'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-mk-schema", line 38, in <module>
-    schemas = dtschema.process_schemas(args.schemas, core_schema=(not args.useronly))
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 587, in process_schemas
-    sch = process_schema(os.path.abspath(filename))
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 561, in process_schema
-    schema = load_schema(filename)
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 126, in load_schema
-    return do_load(os.path.join(schema_basedir, schema))
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 112, in do_load
-    return yaml.load(tmp)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 421, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 121, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 714, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 435, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 253, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 284, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 4, column 1
-found duplicate key "additionalProperties" with value "False" (original value: "False")
-  in "<unicode string>", line 88, column 1
-
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
-
-Duplicate keys will become an error in future releases, and are errors
-by default when using the new API.
-
-make[1]: *** [Documentation/devicetree/bindings/Makefile:62: Documentation/devicetree/bindings/processed-schema-examples.json] Error 1
-make: *** [Makefile:1414: dt_binding_check] Error 2
-
-See https://patchwork.ozlabs.org/patch/1464089
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Reviewed-by: Rob Herring <robh@kernel.org>
