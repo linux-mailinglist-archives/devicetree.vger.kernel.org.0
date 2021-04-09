@@ -2,90 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D760359305
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 05:30:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A51D635930C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 05:35:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232941AbhDIDbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 23:31:00 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:35415 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232918AbhDIDa7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 23:30:59 -0400
-X-UUID: a238bdf067184d069822ea732deda991-20210409
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=arJG16CDzyUkGqPEnWMf6l856hAp9u/dcfwy2lSC6GM=;
-        b=SMUC/7J8aha+qWUl9RrZg5RUZCEJYW+XYezJcjLY4J6bFmbwEHDwqzdPjZYRXDy163q1LAIuMuvRpaVtsb3WFAo0eFc7+BC4wcNrHSWsZrhWyZhkHEuwKOT7qLXjQaVQjt5rlq4JSNCItsO6XfBzsg2dGxN4CZtECA5p2GTu0bA=;
-X-UUID: a238bdf067184d069822ea732deda991-20210409
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
-        (envelope-from <nina-cm.wu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 820148550; Fri, 09 Apr 2021 11:30:32 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 9 Apr 2021 11:30:30 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 9 Apr 2021 11:30:29 +0800
-Message-ID: <1617939030.29552.2.camel@mtksdccf07>
-Subject: Re: [PATCH v2 1/6] dt-bindings: devapc: Update bindings
-From:   Nina Wu <nina-cm.wu@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Zhen Lei <thunder.leizhen@huawei.com>,
-        Neal Liu <neal.liu@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <Jackson-kt.Chang@mediatek.com>
-Date:   Fri, 9 Apr 2021 11:30:30 +0800
-In-Reply-To: <20210408204354.GA1926089@robh.at.kernel.org>
-References: <1617259087-5502-1-git-send-email-nina-cm.wu@mediatek.com>
-         <20210408204354.GA1926089@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
+        id S232990AbhDIDgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 23:36:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54404 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232941AbhDIDgA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 23:36:00 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 061EAC061760;
+        Thu,  8 Apr 2021 20:35:48 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id i9so4603058qka.2;
+        Thu, 08 Apr 2021 20:35:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VW/C+2LLet/ldR+i+V3eCTvpTJBdjFtGmR5udw1qeLQ=;
+        b=kf/yhUgzKhxJK2p+6wg/izoDDT8TFZB4rkZhdAkJoNXFkTR7yODnvd33p9egVGYtph
+         gbjuS+5GR0hjMGkDh2zU1fwjhgdqLPt/a/aFHME6YguBsLD7EVdtdN+p5QMtBp8FPzS0
+         KrAOJQ7t3AKlSkWQfGGwRPGIXSlG6ftCpd/p4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VW/C+2LLet/ldR+i+V3eCTvpTJBdjFtGmR5udw1qeLQ=;
+        b=Ul9Ncs0V+01fJgvRNVAcARlWEe1mqtl4v4kG0QQPstncixw2rZJvRffDgFgPDJdyKP
+         C/jP7TfYKGr6DVNpkQBi7vYaCJrn4qcmgplshbVkjI8fxjPxnJ6s3fzUtjrBG4j5UaK6
+         O62fO0fsweF3q+Jn8NvV5Mmwce7ASlg00PAn1WXJzjFsfsE/9j1waMLkedx48vhw2fxK
+         vJ35aC7uDeKnMpiG/SEO3duvAMjDRijzeI1K4LlnvEIfDorcNLL1tjTBO7kg5QYSYfvx
+         1vnIjxa6JBqd03VsND0FxrwUK2fKcWBYb9UA5QzRO/G6ur0Qxb4dxA+XGMBipcwQh9P/
+         J2eQ==
+X-Gm-Message-State: AOAM53367fuPZrQgDA5svigGiUZfQkpzV2goEbj6iQWvfqTH8AMriSbP
+        v/KNXFh5u9qQXl1UkfEsW5FAm+3/AdvQjFz3ZrppOEm1hVA=
+X-Google-Smtp-Source: ABdhPJxle9zTiCZMcHgQmCbwnJmAkb+TEoOlJ7KMtbFw35LN/7onMEAKpvQn37Vrs7E0ALx7tpeNrdmUUNmbjGlTwlo=
+X-Received: by 2002:a05:620a:28c9:: with SMTP id l9mr11766768qkp.55.1617939347264;
+ Thu, 08 Apr 2021 20:35:47 -0700 (PDT)
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 38F287E4ECC4047A38808EFB92A57C55DE4F89C14B2D8C99AB07417FB55904862000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <20210319062752.145730-1-andrew@aj.id.au> <20210319062752.145730-3-andrew@aj.id.au>
+In-Reply-To: <20210319062752.145730-3-andrew@aj.id.au>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Fri, 9 Apr 2021 03:35:34 +0000
+Message-ID: <CACPK8XfkvBA+9_WFb96oEa4F1vDPd90hG+M2Y-Ek=Xt5FUFqmQ@mail.gmail.com>
+Subject: Re: [PATCH v2 03/21] ipmi: kcs: aspeed: Adapt to new LPC DTS layout
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     openipmi-developer@lists.sourceforge.net,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Corey Minyard <minyard@acm.org>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Haiyue Wang <haiyue.wang@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIFJvYg0KDQpPbiBUaHUsIDIwMjEtMDQtMDggYXQgMTU6NDMgLTA1MDAsIFJvYiBIZXJyaW5n
-IHdyb3RlOg0KPiBPbiBUaHUsIEFwciAwMSwgMjAyMSBhdCAwMjozODowMlBNICswODAwLCBOaW5h
-IFd1IHdyb3RlOg0KPiA+IEZyb206IE5pbmEgV3UgPE5pbmEtQ00uV3VAbWVkaWF0ZWsuY29tPg0K
-PiANCj4gRXZlcnkgY2hhbmdlIGlzIGFuICd1cGRhdGUnLiBQZXJoYXBzIG1lbnRpb24gbXQ4MTky
-IGluIHRoZSBzdWJqZWN0Lg0KPiANCg0KT0suDQpJIHdpbGwgdHJ5IHRvIG1ha2UgaXQgY2xlYXIg
-aW4gdGhlIG5leHQgdmVyc2lvbi4NCg0KPiA+IA0KPiA+IFRvIHN1cHBvcnQgbmV3ZXIgaGFyZHdh
-cmUgYXJjaGl0ZWN0dXJlIG9mIGRldmFwYywNCj4gPiB1cGRhdGUgZGV2aWNlIHRyZWUgYmluZGlu
-Z3MuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogTmluYSBXdSA8TmluYS1DTS5XdUBtZWRpYXRl
-ay5jb20+DQo+ID4gLS0tDQo+ID4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9z
-b2MvbWVkaWF0ZWsvZGV2YXBjLnlhbWwgfCA4ICsrKysrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2Vk
-LCA4IGluc2VydGlvbnMoKykNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL3NvYy9tZWRpYXRlay9kZXZhcGMueWFtbCBiL0RvY3VtZW50YXRp
-b24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb2MvbWVkaWF0ZWsvZGV2YXBjLnlhbWwNCj4gPiBpbmRl
-eCAzMWU0ZDNjLi40MmIyODRlIDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9zb2MvbWVkaWF0ZWsvZGV2YXBjLnlhbWwNCj4gPiArKysgYi9Eb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc29jL21lZGlhdGVrL2RldmFwYy55YW1sDQo+ID4g
-QEAgLTIwLDExICsyMCwxNyBAQCBwcm9wZXJ0aWVzOg0KPiA+ICAgIGNvbXBhdGlibGU6DQo+ID4g
-ICAgICBlbnVtOg0KPiA+ICAgICAgICAtIG1lZGlhdGVrLG10Njc3OS1kZXZhcGMNCj4gPiArICAg
-ICAgLSBtZWRpYXRlayxtdDgxOTItZGV2YXBjDQo+ID4gIA0KPiA+ICAgIHJlZzoNCj4gPiAgICAg
-IGRlc2NyaXB0aW9uOiBUaGUgYmFzZSBhZGRyZXNzIG9mIGRldmFwYyByZWdpc3RlciBiYW5rDQo+
-ID4gICAgICBtYXhJdGVtczogMQ0KPiA+ICANCj4gPiArICB2aW8taWR4LW51bToNCj4gDQo+IE5l
-ZWRzIGEgdmVuZG9yIHByZWZpeC4NCg0KT0suDQpJIHdpbGwgZml4IGl0IGluIHRoZSBuZXh0IHZl
-cnNpb24uDQoNClRoYW5rcy4NCg0KPiANCj4gPiArICAgIGRlc2NyaXB0aW9uOiBUaGUgbnVtYmVy
-IG9mIHRoZSBkZXZpY2VzIGNvbnRyb2xsZWQgYnkgZGV2YXBjDQo+ID4gKyAgICAkcmVmOiAvc2No
-ZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy91aW50MzINCj4gPiArICAgIG1heEl0ZW1zOiAx
-DQo+ID4gKw0KPiA+ICAgIGludGVycnVwdHM6DQo+ID4gICAgICBkZXNjcmlwdGlvbjogQSBzaW5n
-bGUgaW50ZXJydXB0IHNwZWNpZmllcg0KPiA+ICAgICAgbWF4SXRlbXM6IDENCj4gPiBAQCAtNDAs
-NiArNDYsNyBAQCBwcm9wZXJ0aWVzOg0KPiA+ICByZXF1aXJlZDoNCj4gPiAgICAtIGNvbXBhdGli
-bGUNCj4gPiAgICAtIHJlZw0KPiA+ICsgIC0gdmlvLWlkeC1udW0NCj4gPiAgICAtIGludGVycnVw
-dHMNCj4gPiAgICAtIGNsb2Nrcw0KPiA+ICAgIC0gY2xvY2stbmFtZXMNCj4gPiBAQCAtNTQsNiAr
-NjEsNyBAQCBleGFtcGxlczoNCj4gPiAgICAgIGRldmFwYzogZGV2YXBjQDEwMjA3MDAwIHsNCj4g
-PiAgICAgICAgY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3NzktZGV2YXBjIjsNCj4gPiAgICAg
-ICAgcmVnID0gPDB4MTAyMDcwMDAgMHgxMDAwPjsNCj4gPiArICAgICAgdmlvLWlkeC1udW0gPSA8
-NTExPjsNCj4gPiAgICAgICAgaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE2OCBJUlFfVFlQRV9MRVZF
-TF9MT1c+Ow0KPiA+ICAgICAgICBjbG9ja3MgPSA8JmluZnJhY2ZnX2FvIENMS19JTkZSQV9ERVZJ
-Q0VfQVBDPjsNCj4gPiAgICAgICAgY2xvY2stbmFtZXMgPSAiZGV2YXBjLWluZnJhLWNsb2NrIjsN
-Cj4gPiAtLSANCj4gPiAyLjYuNA0KPiA+IA0KDQo=
+On Fri, 19 Mar 2021 at 06:28, Andrew Jeffery <andrew@aj.id.au> wrote:
+>
+> From: "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>
+>
+> Add check against LPC device v2 compatible string to
+> ensure that the fixed device tree layout is adopted.
+> The LPC register offsets are also fixed accordingly.
+>
+> Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+> Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
+> Acked-by: Haiyue Wang <haiyue.wang@linux.intel.com>
 
+Reviewed-by: Joel Stanley <joel@jms.id.au>
