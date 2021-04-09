@@ -2,181 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA4B635A1E6
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 17:22:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3A2435A226
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 17:39:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234133AbhDIPWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 11:22:51 -0400
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:34352 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234065AbhDIPWv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 11:22:51 -0400
-Received: by mail-oi1-f170.google.com with SMTP id k18so1212776oik.1;
-        Fri, 09 Apr 2021 08:22:38 -0700 (PDT)
+        id S232855AbhDIPkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 11:40:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43884 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231946AbhDIPkH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 11:40:07 -0400
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CBD7C061760
+        for <devicetree@vger.kernel.org>; Fri,  9 Apr 2021 08:39:54 -0700 (PDT)
+Received: by mail-ot1-x329.google.com with SMTP id y19-20020a0568301d93b02901b9f88a238eso6050791oti.11
+        for <devicetree@vger.kernel.org>; Fri, 09 Apr 2021 08:39:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=wBXCbSaC1Hxateqn/Ch5WAilYWAoC2JMMq7UEAHR1do=;
+        b=y/XdHrgvkAtzZG4AEcQgWJ2CwiXYpD1fnlwtOQEyXqzYlSYIKrCJIeG80oC52ceTuo
+         GpKSfBehqO9Ca7EDiS0O8CtX8s7xVc8OFZ03vEPINOBcZXGnsMAjuXg5i3EUfpbcHTh8
+         WjEUBL/LpwQpBEPtUHss4TwrxwLjzYqEUn5MNg4p7+l3zGmSiFLHDHcO99yZofocZy3k
+         0K1i8EQ29byWJ885cgVddwi5H/epqwQLwISzLoft7HYuMzTVBZSrM+K6UPKnKWgOsi5e
+         1z4NW9Ly2Lfm9xmlqAEgjtHvhSqTUiUZZM+ndDY1j7/88xQf5FiVBTOi6blV4wDzxLch
+         /nIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=vCodsZZIoTvQzkpJnTU8BlxA64HJCCTzMZq32HqgNnM=;
-        b=V/ArUs1E2gYegL8gdxJMgQt+HGYX5+Z1vRPwKo6TXTzFZj9kUgsI0g2yMtvJCb1HGH
-         wJk/Dq3bvPaCFqrIZ0Ei69cuGTECSmpVM0srQGCz02rZDRDDk7M4kZDBt3KIlFJplPMp
-         q84H9PFgImkxAVHwDDpyCtI81MOCOBy+w0BP2LeXzOYK2OgWHcUoOEWmXzxHJY0DOZhH
-         4RFcBVXr4CfAL5dciPbb9MIsw0DGV0AY7CBPvokjd1LKG1l/VLoV2m39k///j4bVhqSW
-         9Ea+/8eV3+F4Y0kz/py6Dsm81MC0z/FWZhpN083ncjBoo0q1yfGnzJ5BIbb/2gSeQF1k
-         KPnw==
-X-Gm-Message-State: AOAM530/+UyF4W07KIZv4dEds2MGYdLg3U0anHkzS0YALXvF/KsqSYdJ
-        jYRSrLuueEAJavJtNe83EA==
-X-Google-Smtp-Source: ABdhPJwAdAuiAVjQviaVDOPFU6EiLZKnX28uUKM5/wWTRkOUDlDIYcj9X/fksUxBrOZPWmKqf/RjTA==
-X-Received: by 2002:a05:6808:14c8:: with SMTP id f8mr10681880oiw.55.1617981758249;
-        Fri, 09 Apr 2021 08:22:38 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g84sm574029oia.45.2021.04.09.08.22.37
+        bh=wBXCbSaC1Hxateqn/Ch5WAilYWAoC2JMMq7UEAHR1do=;
+        b=HDGRtpKcwKFcF11jrUhIT3RwznEKWrbcFfzACZDpY2reZhXMkOo/fIG00i6wH4CoLy
+         A3KTwqJ0hRCzxsbejAvpmp9cdmPyncsCCXZLweQqw8Xqr63MhG7kltIIPO00JUVAXKlW
+         7BDbU6cXyKtfQU78qENiw52fWKv+AqSsY3D8oI5y10/IpFNIH3ur6bOqn0zHT86HK6Hw
+         N3XO26sqrtHStHDruKQ0Hio5XMEn2Q/ry4I2T6ywiWza3RaqDxwUxv46pE3IgSi2uGPj
+         aAZ9N42Z4pH+M0Se6YNN4SxESzUFBlKy+fbbkiPrxeFdQra6P3P3q0A/03btUhQfzXUN
+         HayA==
+X-Gm-Message-State: AOAM533Ivs/FlrdtNqfoffLbSeblVK0Bne21aAI76pvxQbqvc5wsxnbm
+        Guag5VqiujNNq7lcx5U0LaKzhQ==
+X-Google-Smtp-Source: ABdhPJxW16/9QODLB8PSfvdHzKuZFOygXqK3suhuuOHQu2vj0b4/CucGEoBVjs8lW6qQh/bZy+rYEQ==
+X-Received: by 2002:a9d:4808:: with SMTP id c8mr12915189otf.181.1617982793540;
+        Fri, 09 Apr 2021 08:39:53 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id v1sm653560otk.67.2021.04.09.08.39.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Apr 2021 08:22:37 -0700 (PDT)
-Received: (nullmailer pid 3676380 invoked by uid 1000);
-        Fri, 09 Apr 2021 15:22:36 -0000
-Date:   Fri, 9 Apr 2021 10:22:36 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     nbd@nbd.name, linux-wireless@vger.kernel.org,
-        lorenzo.bianconi@redhat.com, sean.wang@mediatek.com,
-        ryder.lee@mediatek.com, shayne.chen@mediatek.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/8] dt-bindings:net:wireless:mediatek,mt76: introduce
- power-limits node
-Message-ID: <20210409152236.GB3662358@robh.at.kernel.org>
-References: <cover.1617625912.git.lorenzo@kernel.org>
- <eb6998d12c7f60a28c7f3eab455d4339656f76e2.1617625912.git.lorenzo@kernel.org>
+        Fri, 09 Apr 2021 08:39:53 -0700 (PDT)
+Date:   Fri, 9 Apr 2021 10:39:51 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Andy Gross <agross@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Alexey Brodkin <abrodkin@synopsys.com>,
+        Vineet Gupta <vgupta@synopsys.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-usb@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND v8 7/7] arm64: dts: qcom: Harmonize DWC USB3 DT
+ nodes name
+Message-ID: <YHB1RxbkXYeLDiz5@builder.lan>
+References: <20210409113029.7144-1-Sergey.Semin@baikalelectronics.ru>
+ <20210409113029.7144-8-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <eb6998d12c7f60a28c7f3eab455d4339656f76e2.1617625912.git.lorenzo@kernel.org>
+In-Reply-To: <20210409113029.7144-8-Sergey.Semin@baikalelectronics.ru>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 05, 2021 at 02:40:26PM +0200, Lorenzo Bianconi wrote:
-> Introduce power-limits node in mt76 binding in order to specify
-> per-rate power limit values for each 802.11n/802.11ac rate
+On Fri 09 Apr 06:30 CDT 2021, Serge Semin wrote:
+
+> In accordance with the DWC USB3 bindings the corresponding node
+> name is suppose to comply with the Generic USB HCD DT schema, which
+> requires the USB nodes to have the name acceptable by the regexp:
+> "^usb(@.*)?" . Make sure the "snps,dwc3"-compatible nodes are correctly
+> named.
 > 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+As mentioned previously, I would like to merge this through the qcom soc
+tree to avoid conflicts with other activities, but need the driver code
+(patch 6) to land first.
+
+Regards,
+Bjorn
+
 > ---
->  .../bindings/net/wireless/mediatek,mt76.yaml  | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
+>  arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi | 4 ++--
+>  arch/arm64/boot/dts/qcom/ipq8074.dtsi        | 4 ++--
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi        | 4 ++--
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi        | 2 +-
+>  arch/arm64/boot/dts/qcom/qcs404-evb.dtsi     | 2 +-
+>  arch/arm64/boot/dts/qcom/qcs404.dtsi         | 4 ++--
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi         | 2 +-
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi         | 4 ++--
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi         | 2 +-
+>  9 files changed, 14 insertions(+), 14 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-> index d6f835d17d66..6ede331e3e52 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-> @@ -72,6 +72,62 @@ properties:
->        led-sources:
->          maxItems: 1
+> diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+> index defcbd15edf9..34e97da98270 100644
+> --- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+> @@ -1064,7 +1064,7 @@ &usb2 {
+>  	status = "okay";
+>  	extcon = <&usb2_id>;
 >  
-> +  power-limits:
-> +    type: object
-> +    properties:
-> +      regdomain: true
-
-This shouldn't really be in ieee80211.yaml if it belongs under 
-'power-limits' node. You may need a 2nd power limits schema if this 
-something that should/can be common.
-
-> +
-> +    patternProperties:
-> +      "^r[0-9]+":
-> +        type: object
-> +        patternProperties:
-> +          "^txpower-[256]g$":
-> +            type: object
-> +            patternProperties:
-> +              "^b[0-9]+$":
-> +                type: object
-> +                properties:
-> +                  channels:
-> +                    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +                    minItems: 2
-> +                    maxItems: 2
-> +                    description:
-> +                      Pairs of first and last channel number of the selected
-> +                      band
-> +
-> +                  cck:
-> +                    $ref: /schemas/types.yaml#/definitions/uint32-array
-
-What's the range of values? Could be 8-bit?
-
-> +                    minItems: 4
-> +                    maxItems: 4
-> +                    description:
-> +                      4 half-dBm per-rate power limit values
-> +
-> +                  mcs:
-> +                    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +                    description:
-> +                      Sets of per-rate power limit values for 802.11n/802.11ac
-> +                      rates for multiple channel bandwidth settings.
-> +                      Each set starts with the number of channel bandwidth
-> +                      settings for which the rate set applies, followed by
-> +                      either 8 or 10 power limit values. The order of the
-> +                      channel bandwidth settings is 20, 40, 80 and 160 MHz.
-> +
-> +                  ru:
-> +                    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +                    description:
-> +                      Sets of per-rate power limit values for 802.11ax rates
-> +                      for multiple channel bandwidth or resource unit settings.
-> +                      Each set starts with the number of channel bandwidth or
-> +                      resource unit settings for which the rate set applies,
-> +                      followed by 12 power limit values. The order of the
-> +                      channel resource unit settings is RU26, RU52, RU106,
-> +                      RU242/SU20, RU484/SU40, RU996/SU80 and RU2x996/SU160.
-
-These short property names bother me because we don't want 2 property 
-names with different meanings. A 2-3 letter name seems more likely to 
-collide. Also, the names aren't really self describing either.
-
-> +
-> +                  txs-delta:
-> +                    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +                    description:
-> +                      Half-dBm power delta for different numbers of antennas
-> +
->  required:
->    - compatible
->    - reg
-> @@ -93,6 +149,29 @@ examples:
->          led {
->            led-sources = <2>;
->          };
-> +
-> +        power-limits {
-> +          r0 {
-> +            txpower-5g {
-> +               regdomain = "FCC";
-
-Not the right location for what you've defined.
-
-> +               b0 {
-> +                   channels = <36 48>;
-> +                   ofdm = <23 23 23 23 23 23 23 23>;
-> +                   mcs = <1 23 23 23 23 23 23 23 23 23 23>,
-> +                         <3 22 22 22 22 22 22 22 22 22 22>;
-> +                   ru = <3 22 22 22 22 22 22 22 22 22 22 22 22>,
-> +                        <4 20 20 20 20 20 20 20 20 20 20 20 20>;
-> +               };
-> +               b1 {
-> +                   channels = <100 181>;
-> +                   ofdm = <14 14 14 14 14 14 14 14>;
-> +                   mcs = <4 14 14 14 14 14 14 14 14 14 14>;
-> +                   txs-delta = <12 9 6>;
-> +                   ru = <7 14 14 14 14 14 14 14 14 14 14 14 14>;
-> +               };
-> +             };
-> +          };
-> +        };
->        };
->      };
+> -	dwc3@7600000 {
+> +	usb@7600000 {
+>  		extcon = <&usb2_id>;
+>  		dr_mode = "otg";
+>  		maximum-speed = "high-speed";
+> @@ -1075,7 +1075,7 @@ &usb3 {
+>  	status = "okay";
+>  	extcon = <&usb3_id>;
 >  
+> -	dwc3@6a00000 {
+> +	usb@6a00000 {
+>  		extcon = <&usb3_id>;
+>  		dr_mode = "otg";
+>  	};
+> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> index a32e5e79ab0b..7df4eb710aae 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> @@ -427,7 +427,7 @@ usb_0: usb@8af8800 {
+>  			resets = <&gcc GCC_USB0_BCR>;
+>  			status = "disabled";
+>  
+> -			dwc_0: dwc3@8a00000 {
+> +			dwc_0: usb@8a00000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x8a00000 0xcd00>;
+>  				interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -468,7 +468,7 @@ usb_1: usb@8cf8800 {
+>  			resets = <&gcc GCC_USB1_BCR>;
+>  			status = "disabled";
+>  
+> -			dwc_1: dwc3@8c00000 {
+> +			dwc_1: usb@8c00000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x8c00000 0xcd00>;
+>  				interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index ce430ba9c118..9eb31b3e6ee7 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -1772,7 +1772,7 @@ usb3: usb@6af8800 {
+>  			power-domains = <&gcc USB30_GDSC>;
+>  			status = "disabled";
+>  
+> -			dwc3@6a00000 {
+> +			usb@6a00000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x06a00000 0xcc00>;
+>  				interrupts = <0 131 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -1983,7 +1983,7 @@ usb2: usb@76f8800 {
+>  			power-domains = <&gcc USB30_GDSC>;
+>  			status = "disabled";
+>  
+> -			dwc3@7600000 {
+> +			usb@7600000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x07600000 0xcc00>;
+>  				interrupts = <0 138 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> index 1f2e93aa6553..9141c5d09b59 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> @@ -1962,7 +1962,7 @@ usb3: usb@a8f8800 {
+>  
+>  			resets = <&gcc GCC_USB_30_BCR>;
+>  
+> -			usb3_dwc3: dwc3@a800000 {
+> +			usb3_dwc3: usb@a800000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x0a800000 0xcd00>;
+>  				interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> index a80c578484ba..f8a55307b855 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> @@ -337,7 +337,7 @@ &usb2_phy_sec {
+>  &usb3 {
+>  	status = "okay";
+>  
+> -	dwc3@7580000 {
+> +	usb@7580000 {
+>  		dr_mode = "host";
+>  	};
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> index 339790ba585d..9c4be020d568 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> @@ -544,7 +544,7 @@ usb3: usb@7678800 {
+>  			assigned-clock-rates = <19200000>, <200000000>;
+>  			status = "disabled";
+>  
+> -			dwc3@7580000 {
+> +			usb@7580000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x07580000 0xcd00>;
+>  				interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -573,7 +573,7 @@ usb2: usb@79b8800 {
+>  			assigned-clock-rates = <19200000>, <133333333>;
+>  			status = "disabled";
+>  
+> -			dwc3@78c0000 {
+> +			usb@78c0000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x078c0000 0xcc00>;
+>  				interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index 1ea3344ab62c..8b83ffbb5b2a 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -2869,7 +2869,7 @@ usb_1: usb@a6f8800 {
+>  					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3 0>;
+>  			interconnect-names = "usb-ddr", "apps-usb";
+>  
+> -			usb_1_dwc3: dwc3@a600000 {
+> +			usb_1_dwc3: usb@a600000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0 0x0a600000 0 0xe000>;
+>  				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 454f794af547..809be2c67d7a 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -3769,7 +3769,7 @@ usb_1: usb@a6f8800 {
+>  					<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
+>  			interconnect-names = "usb-ddr", "apps-usb";
+>  
+> -			usb_1_dwc3: dwc3@a600000 {
+> +			usb_1_dwc3: usb@a600000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0 0x0a600000 0 0xcd00>;
+>  				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -3817,7 +3817,7 @@ usb_2: usb@a8f8800 {
+>  					<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_1 0>;
+>  			interconnect-names = "usb-ddr", "apps-usb";
+>  
+> -			usb_2_dwc3: dwc3@a800000 {
+> +			usb_2_dwc3: usb@a800000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0 0x0a800000 0 0xcd00>;
+>  				interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> index e5bb17bc2f46..e4c3edc13676 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> @@ -1719,7 +1719,7 @@ usb_1: usb@a6f8800 {
+>  
+>  			resets = <&gcc GCC_USB30_PRIM_BCR>;
+>  
+> -			usb_1_dwc3: dwc3@a600000 {
+> +			usb_1_dwc3: usb@a600000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0 0x0a600000 0 0xcd00>;
+>  				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
 > -- 
-> 2.30.2
+> 2.30.1
 > 
