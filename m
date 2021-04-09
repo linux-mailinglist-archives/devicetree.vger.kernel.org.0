@@ -2,161 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78532359E97
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 14:25:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F18A9359E9F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 14:27:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232855AbhDIMZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 08:25:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57610 "EHLO
+        id S231621AbhDIM1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 08:27:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232087AbhDIMZo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 08:25:44 -0400
-X-Greylist: delayed 80551 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 09 Apr 2021 05:25:31 PDT
-Received: from mx.i2x.nl (mx.i2x.nl [IPv6:2a04:52c0:101:921::25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9A0C3C061760
-        for <devicetree@vger.kernel.org>; Fri,  9 Apr 2021 05:25:31 -0700 (PDT)
-Received: from mail.vdorst.com (mail.vdorst.com [IPv6:fd00::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mx.i2x.nl (Postfix) with ESMTPS id BC5575FBA8;
-        Fri,  9 Apr 2021 14:25:29 +0200 (CEST)
-Authentication-Results: mx.i2x.nl;
-        dkim=pass (2048-bit key; secure) header.d=vdorst.com header.i=@vdorst.com header.b="Tcw1qj2W";
-        dkim-atps=neutral
-Received: from www (unknown [192.168.2.222])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.vdorst.com (Postfix) with ESMTPSA id 7F273BC6013;
-        Fri,  9 Apr 2021 14:25:29 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.vdorst.com 7F273BC6013
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vdorst.com;
-        s=default; t=1617971129;
-        bh=8+E8zX/etY3i4LNvV1TwVYoMvMWtXNcy6wJF6uT5dRI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Tcw1qj2Wfgvbthhz2/picZXahWlFzpEgfAPbgjUST7I4lhUBZYACWjtYtc9Yb+osb
-         tp7b/aLxZ6HeRn9PFIz6MgGmZiSRINCL9O3NEeb6Ne9p15n9mqctyN/Lc3W7B9zpdL
-         +s5pDcWEID9av23lIspKxpt0d7CRyIzsF77uAxXmFGSmIp9qQ/Tul/N2bSqEEEFkRL
-         GfoXTg6TDxCTyq4F+8ARBgGkOIRLJWFiGQ1oNtTmWy/Hb2lwgwqU+mhF1HJE81p6L8
-         7Jt2oyMyFQTVHzCBtkGLSDzejUbp2AKemy9j0vclRtwKiWWyZj16cn0kriDnkrqEG2
-         xTqkT1/o+fZcg==
-Received: from 48.79.2.5.in-addr.arpa (48.79.2.5.in-addr.arpa [5.2.79.48])
- by www.vdorst.com (Horde Framework) with HTTPS; Fri, 09 Apr 2021 12:25:29
- +0000
-Date:   Fri, 09 Apr 2021 12:25:29 +0000
-Message-ID: <20210409122529.Horde.fb4QbDNxhPNA6ZyDBOjGTct@www.vdorst.com>
-From:   =?utf-8?b?UmVuw6k=?= van Dorst <opensource@vdorst.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     DENG Qingfang <dqfext@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-staging@lists.linux.dev,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, netdev <netdev@vger.kernel.org>,
-        Weijie Gao <weijie.gao@mediatek.com>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-Subject: Re: [RFC v3 net-next 0/4] MT7530 interrupt support
-References: <20210408123919.2528516-1-dqfext@gmail.com>
- <20210408140255.Horde.Pl-DXtrqmiH9imsWjDqblfM@www.vdorst.com>
- <CALW65jZujSCk16RX_xgcg+NGrc9yyFQOQ9Y-z3qz-Qv1TvUQLg@mail.gmail.com>
- <YG8zvFKOdnzaJqLa@lunn.ch>
-In-Reply-To: <YG8zvFKOdnzaJqLa@lunn.ch>
-User-Agent: Horde Application Framework 5
-Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
+        with ESMTP id S231127AbhDIM1O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 08:27:14 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2CBDC061760;
+        Fri,  9 Apr 2021 05:27:01 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id e7so6313891edu.10;
+        Fri, 09 Apr 2021 05:27:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=+NoIuLmraW7WrDEIWjYM9bekRcvNvAvsNvzQ1CZ92l4=;
+        b=ucH6bHS+8d0oGOyOMjbzJVnM9UgTV5uR6XE0aARQIzTZxOkdVmA/eC6Klo/2BPvJyn
+         nEyi82Z+y+0HU5r2HhJEj83PfoceOWXSKzFNHVDrXfB8+wUq4kJCAZTHALij/JUB1yxV
+         5Yc+TssTeFY8O/nXnDaYOxx2PaiVWiE+dF//50j6guuzcp1hI4OeamBiHdBdYVhh/Msb
+         FpFJrTVmHr2N6867pd+Z5ONw9Ph8V+dFLJeHqamb4hcUm+SadOkRAV8qGXgtI49gVyhP
+         OLu6uZAnGvHAuQJVubXpmGsFpywcqYKz8QWyTGnJb+RpkW+4M1XByumO1dzoUgPYqCaE
+         nSWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=+NoIuLmraW7WrDEIWjYM9bekRcvNvAvsNvzQ1CZ92l4=;
+        b=aY4B6aVfO9ZjX35TE4hCJYGdnGS7S2xGz4aDyUHRIVPZGRky7CjR4lC0KraQu38iY7
+         LyTamzKywTLZr9iTKddDcWjwScb8OxHltdK/nFcTffp9jhuamYjbnHjQksEDr2v4LGra
+         Rm4z5fATo9aRkGkWptu4ss8hq8IKxgs4I+0UutUR7HbCZQnYGtzyWDl7JeL0q0vH2Je2
+         osmAtrF/xl2zrJ0Arlfarfx0F5sazS+gm3QnWt9YC8vTGT58DIIsszLC9jw1xF6ETqds
+         E9O6RBP56S9qGYtOGa/Q06UvUM8trU+t8d1dxnDIrKXlpcE2PeAzauM5Q/kQpSTWp6lH
+         wQ0A==
+X-Gm-Message-State: AOAM533TTfeweUnQ+z6CJJZzPscpd2zx2X00+wqy4as9EM59on2V/3vX
+        qm+iPiA6v6FzciA1IgklApI=
+X-Google-Smtp-Source: ABdhPJyxjfvzdOcSd857ibe5u5kjyCcl896iR5wPhcUb2EniGednDQT1JC0Ox0HrXjM0vCNgUuZM4g==
+X-Received: by 2002:a05:6402:1b1c:: with SMTP id by28mr17221009edb.62.1617971220527;
+        Fri, 09 Apr 2021 05:27:00 -0700 (PDT)
+Received: from localhost (pd9e51abe.dip0.t-ipconnect.de. [217.229.26.190])
+        by smtp.gmail.com with ESMTPSA id b13sm1350588edw.45.2021.04.09.05.26.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Apr 2021 05:26:59 -0700 (PDT)
+Date:   Fri, 9 Apr 2021 14:27:34 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Clemens Gruber <clemens.gruber@pqgruber.com>,
+        linux-pwm@vger.kernel.org, Sven Van Asbroeck <TheSven73@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v7 4/8] dt-bindings: pwm: Support new
+ PWM_STAGGERING_ALLOWED flag
+Message-ID: <YHBINhLa3pCZjoxO@orome.fritz.box>
+References: <20210406164140.81423-1-clemens.gruber@pqgruber.com>
+ <20210406164140.81423-4-clemens.gruber@pqgruber.com>
+ <20210407053357.ok62rqpgyqou53m3@pengutronix.de>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="bALA5fzjI4YAv2cb"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210407053357.ok62rqpgyqou53m3@pengutronix.de>
+User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Andrew Lunn <andrew@lunn.ch>:
 
-> On Thu, Apr 08, 2021 at 11:00:08PM +0800, DENG Qingfang wrote:
->> Hi René,
->>
->> On Thu, Apr 8, 2021 at 10:02 PM René van Dorst  
->> <opensource@vdorst.com> wrote:
->> >
->> > Tested on Ubiquiti ER-X-SFP (MT7621) with 1 external phy which  
->> uses irq=POLL.
->> >
->>
->> I wonder if the external PHY's IRQ can be registered in the devicetree.
->> Change MT7530_NUM_PHYS to 6, and add the following to ER-X-SFP dts PHY node:
->
-> I don't know this platform. What is the PHYs interrupt pin connected
-> to? A SoC GPIO? There is a generic mechanism to describe PHY
-> interrupts in DT. That should be used, if it is a GPIO.
->
-> 	   Andrew
+--bALA5fzjI4YAv2cb
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Quoting Andrew Lunn <andrew@lunn.ch>:
+On Wed, Apr 07, 2021 at 07:33:57AM +0200, Uwe Kleine-K=C3=B6nig wrote:
+> On Tue, Apr 06, 2021 at 06:41:36PM +0200, Clemens Gruber wrote:
+> > Add the flag and corresponding documentation for the new PWM staggering
+> > mode feature.
+> >=20
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
+>=20
+> For the record, I don't like this and still prefer to make this
+> staggering explicit for the consumer by expanding struct pwm_state with
+> an .offset member to shift the active phase in the period.
 
-> On Thu, Apr 08, 2021 at 11:00:08PM +0800, DENG Qingfang wrote:
->> Hi René,
->>
->> On Thu, Apr 8, 2021 at 10:02 PM René van Dorst  
->> <opensource@vdorst.com> wrote:
->> >
->> > Tested on Ubiquiti ER-X-SFP (MT7621) with 1 external phy which  
->> uses irq=POLL.
->> >
->>
->> I wonder if the external PHY's IRQ can be registered in the devicetree.
->> Change MT7530_NUM_PHYS to 6, and add the following to ER-X-SFP dts PHY node:
->
-> I don't know this platform. What is the PHYs interrupt pin connected
-> to? A SoC GPIO? There is a generic mechanism to describe PHY
-> interrupts in DT. That should be used, if it is a GPIO.
->
-> 	   Andrew
+How are consumers supposed to know which offset to choose? And worse:
+how should consumers even know that the driver supports phase shifts?
 
+Thierry
 
-Hi Andrew,
+--bALA5fzjI4YAv2cb
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I couldn't find if the external phy IRQ is connected to any gpio of the SOC.
-So External PHY IRQ can't be sensed via a gpio.
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmBwSDYACgkQ3SOs138+
+s6HaHBAAqqXtYcIg6E5ADZv6/LDzrzvykS0Z6SBNDrh6QKpwkfHyhejv06aRtDm9
+NZ49Flpuj5+hxTH15SKV9A0NRjpIs6e9L/8mq5pS6HhusKyKZelVUuTKEtH/aDI1
+b53zcan3ooRkNfmKwJQnWvfoUIG/pXUXrXMYCkf2TYnQxafBLr6EeSqk3YGoU/GN
+uLrYY6HOVe9zmz4pFfHSSAX8hHYW4FUsuqTeO2AOOH3eygICzNFhT/T0Wd9f6txY
+QXWU9Wjw3GjEAxf/ispALrQuYacnjXtfKaQdN32RM0W1Z2sYf78A3tjqa9vaYXX1
+RJasmE9z1gVLwN5eIk53xRBvMdUvtuEHwBHZK8mKtrSZ8zJ2GkGKLdZPtvHzcFPN
+c4QmTZzKYhZ6VN91pWXI7wpKmC1lWF1uW7JVepYl5iw90U9E3bOhJPzQi77+ZGux
+SJacNNwzRTfLx6KERgTGB1adIhEAxbUA3yiSN8ktVNrlx8ZN5EuLEhlU42Z2VoHc
+5GGfCysKDah+mnnQElekv57+z2E2lyJZhqwbvliXlV0jYQmoddP1f7yt7vzBeymD
+E1Tu2hFl/fz7ypF2+rxgm4aoMYm6a4y6Zli2FelvCE0J/UXY/FS3fxnHMLL3W8Po
+buGPvntKEz7S5SrpHq1Pw2p5C16JRcgQYC1tAj162RjSVnhgFOY=
+=ia/o
+-----END PGP SIGNATURE-----
 
-The patch used the MT7530 link change interrupt and flags.
-Maybe the patch is misusing the these flags as an interrupt?
-The same MT7530 register also has the interrupt flags for the internal phys.
-But in the MT7531 datasheet they don't describe them.
-
-On the other hand I don't have any information about the internal PHY  
-or register settings.
-So enabling the interrupt on the PHY is currently not possible.
-
-I also forced enabled all the MT7530 PHY interrupts and PHY link  
-change interrupts.
-I print the interrupt status mt7530.
-I don't see any MT7530 interrupt fired when link changing the port  
-5/external phy.
-Which was of course as expected. We only have 5 internal phy's for the  
-port 0 to 4.
-Port 5 and 6 is only have a MAC that is connected to the SOC of an  
-external PHY.
-
-Greats,
-
-René
-
+--bALA5fzjI4YAv2cb--
