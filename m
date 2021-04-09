@@ -2,144 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EA56359734
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 10:10:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEDFC359758
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 10:13:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232440AbhDIIKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 04:10:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57536 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232372AbhDIIKP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 04:10:15 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1049FC061762
-        for <devicetree@vger.kernel.org>; Fri,  9 Apr 2021 01:10:03 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id a4so4708126wrr.2
-        for <devicetree@vger.kernel.org>; Fri, 09 Apr 2021 01:10:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=KwLBWMBZRdz46SUCvmDH9Z5zZXCHk+G/HINFfQ17P4M=;
-        b=hNhtj/aNpiqdIzZxP30CSRrlHSEJ+O8XRNC6jWPo79WZV4eucvGfZoZkKIdlEF6Khu
-         N+SQeipigjG2DjlfUvoxpdaaHARK2jibT3Ojl+9fBLq90YpUiKiJZAFS1RkH4ZC07h/u
-         p+WxjHZXM1FPv+9AWnAjECvuHh4dW66akPp3V7i2jJAzYNGjBOq8m91JKig8nHsDClHA
-         wDszXITwkUa3he/ggRpNIGHI0P/qgrs0BYF4MpTe3Zf3zHBbK0XaSzRZw0rM1XdDtJmW
-         MPsTCb833ukTW1aPV15PJuTaQOEw00OlZeSqY3JBQ3ltR1bsHn5hpL+mZzdfzF3fyw65
-         Ebfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=KwLBWMBZRdz46SUCvmDH9Z5zZXCHk+G/HINFfQ17P4M=;
-        b=CpHA0wkY+xEtRBFoDA+E/JuFO51IAMHGc9HPrUZN1Az8s18bp3PaFwbgSDJzlz6BqZ
-         5EPvyYt8KXTu6Jycz66f73kIBYvIj6TZKzoXTdoRRawkBc2kExhyJ/3Hup9zuRqKjh6r
-         0hnQw/PKlq/k7+Nde9U6XHN0nwW0MBtTOpzb95o7I5BAYEQMrWMGLu+vDSPJbXQhxhYF
-         SbgzHLDCYRY0UerR6UevO0eobMQj8qjdSNw6+AaORz5N+NpcoXRW3kET1go+9suvxcVP
-         LjPY4r9AX9jUBn6+FPww8+mPkhOQSuNjI1yYREQvelZ/yAVOKr0M45WdcrsT8pHPiXnG
-         syiQ==
-X-Gm-Message-State: AOAM532DFn7HBlWmF0MFHmvdV2PmFx1I4MM1UbPGLvrIU95HLoypbtYF
-        lnfNNOTBUIS+0d43a/PC+VLM4A==
-X-Google-Smtp-Source: ABdhPJy4XQCBVWHdPm5wWRMqkGkFiEZh0CiXWdXcPLlAZvt02L7wI+v/m2X3FQwQNaQuzsiZpcriMA==
-X-Received: by 2002:adf:dc4f:: with SMTP id m15mr16484222wrj.420.1617955801641;
-        Fri, 09 Apr 2021 01:10:01 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:5d29:55c:ba8e:9bff? ([2a01:e34:ed2f:f020:5d29:55c:ba8e:9bff])
-        by smtp.googlemail.com with ESMTPSA id u9sm2677419wmc.38.2021.04.09.01.09.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Apr 2021 01:10:00 -0700 (PDT)
-Subject: Re: [v7,1/3] arm64: dts: mt8183: add thermal zone node
-To:     Michael Kao <michael.kao@mediatek.com>, fan.chen@mediatek.com,
-        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
-        srv_heupstream@mediatek.com
-Cc:     Eduardo Valentin <edubezval@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>, hsinyi@chromium.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20210316070144.28440-1-michael.kao@mediatek.com>
- <20210316070144.28440-2-michael.kao@mediatek.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <f7003979-0210-882e-bb28-f24047e18061@linaro.org>
-Date:   Fri, 9 Apr 2021 10:09:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S232042AbhDIIOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 04:14:09 -0400
+Received: from mout.kundenserver.de ([217.72.192.75]:44861 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231611AbhDIIOI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 04:14:08 -0400
+Received: from mail-oi1-f181.google.com ([209.85.167.181]) by
+ mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1Md6AP-1m4wN83xZr-00aHea; Fri, 09 Apr 2021 10:13:54 +0200
+Received: by mail-oi1-f181.google.com with SMTP id a8so4968109oic.11;
+        Fri, 09 Apr 2021 01:13:53 -0700 (PDT)
+X-Gm-Message-State: AOAM532Sdy+ZNBgdv6wrkbDzI2fZ15v/hCuQwkAN3jHkPWsy8ll0lISq
+        lTjBAciO6uy0n93ESmRa2Qh1ykjpqfUQrGDoZo0=
+X-Google-Smtp-Source: ABdhPJzFdzRK0Fr9sttYZU00DkmHPob2Ue763VfCmKuqxE8AuUxCM9nJfgP3QwCQkKhUcqhD2rg86m1268AEXjhhEyo=
+X-Received: by 2002:aca:5945:: with SMTP id n66mr8949399oib.11.1617956032510;
+ Fri, 09 Apr 2021 01:13:52 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210316070144.28440-2-michael.kao@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210319061952.145040-1-andrew@aj.id.au> <2db77e16-3f44-4c02-a7ba-a4fac8141ae3@www.fastmail.com>
+ <20210408121441.GG7166@minyard.net> <6ff29d26-543a-4790-abb4-ebaa3f8d0265@www.fastmail.com>
+ <CACPK8Xc5HC7TZ6cUDH6+uHQO1LQCZE0YeENua1sE8nDXs0R2mg@mail.gmail.com>
+In-Reply-To: <CACPK8Xc5HC7TZ6cUDH6+uHQO1LQCZE0YeENua1sE8nDXs0R2mg@mail.gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Fri, 9 Apr 2021 10:13:36 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a2ch82=QccNZboa-e1tVaotyJfGFTfqDuQCO0xPVitXgA@mail.gmail.com>
+Message-ID: <CAK8P3a2ch82=QccNZboa-e1tVaotyJfGFTfqDuQCO0xPVitXgA@mail.gmail.com>
+Subject: Re: [PATCH v2 00/21] ipmi: Allow raw access to KCS devices
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Andrew Jeffery <andrew@aj.id.au>, Corey Minyard <minyard@acm.org>,
+        openipmi-developer@lists.sourceforge.net,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Benjamin Fair <benjaminfair@google.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:obuQBkum3EouSx9gNWnc6EUZJhkkzkYTe8fASl4y2ztTxESDC8h
+ RDjTogYZcoHKrQqo36EGcSeTcMBRopdtlVaFyluu6ZpVW7x1MOj5XeHw2YL7xCOnZZS+D+a
+ nTFbVa4aIG/eBZRAFlAR9bXBcEKyo6i9pSkRRyD7DJN1+RluCza7xnxouY6hO+TNLau1vpX
+ C2pIu7LmK3rFgsJX4u0ww==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:LcPuQrOkFEI=:EqPZz1a+cgsfMSxbv6lCji
+ YTTWcwkPGWTUJWAJEwgY0JoNcChVDmWNtJkodIRrt1KMfRThIyRh5AwEsrzviwd3fd3evU4/+
+ 23QoHHQDhAR6ikY33dPeBGLloeWXTiaCOYvDKqPhig1QNJ4VcGGm/peDi35KLIDjaJYfQktu3
+ pY6YjLB7n9eaj6f5OqDTm3NCEx1wF2QbIyPXh8Kxilj5lDmOARij6f+dHY3TlRd9gtfAa0GDS
+ Ug3z6on/X+V1cpkQkVoaGSuh+GVKGetHQZc1Z6a++SZiORbRiKeaxAZkdFaWbQNDIEFm/FIDp
+ YhUUaMUQjljGuKeY/B6Cfm96dittrc/nD7gQjL2p7jRA47B4gX203wHqip1lJj2m8uEFH1YzG
+ kXpm5bRYvQCnWMNEqxBf/9wtfxzuxgkoVC0IP/5fAuas4/b49Kg5T17vHb1rPYHmgWA68pJqa
+ bwpAjUrDNF5scEEr+WPSQp/yQSd2HnMYoiEkp12L/WS8JBnoahJ12Fz4n4DbU0jyIR6tMWczq
+ ql0TtEgTuOVT9ISzW2ABexoRei2dKTWljhIp9YspLewuZjNGFrqC1YGYZ1PXHSUcXcQO8JPi5
+ /SvgvgnhfT91IbFRwOYYz2cwbM62fGSSS0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2021 08:01, Michael Kao wrote:
-> From: "michael.kao" <michael.kao@mediatek.com>
-> 
-> Add thermal zone node to Mediatek MT8183 dts file.
-> 
-> Evaluate the thermal zone every 500ms while not cooling
-> and every 100ms when passive cooling is performed.
-> 
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 85 ++++++++++++++++++++++++
->  1 file changed, 85 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index 5b782a4769e7..d3550af06408 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -657,6 +657,87 @@
->  			status = "disabled";
->  		};
->  
-> +		thermal: thermal@1100b000 {
-> +			#thermal-sensor-cells = <1>;
-> +			compatible = "mediatek,mt8183-thermal";
-> +			reg = <0 0x1100b000 0 0x1000>;
-> +			clocks = <&infracfg CLK_INFRA_THERM>,
-> +				 <&infracfg CLK_INFRA_AUXADC>;
-> +			clock-names = "therm", "auxadc";
-> +			resets = <&infracfg  MT8183_INFRACFG_AO_THERM_SW_RST>;
-> +			interrupts = <0 76 IRQ_TYPE_LEVEL_LOW>;
-> +			mediatek,auxadc = <&auxadc>;
-> +			mediatek,apmixedsys = <&apmixedsys>;
-> +			nvmem-cells = <&thermal_calibration>;
-> +			nvmem-cell-names = "calibration-data";
-> +		};
-> +
-> +		thermal-zones {
-> +			cpu_thermal: cpu_thermal {
-> +				polling-delay-passive = <100>;
-> +				polling-delay = <500>;
-> +				thermal-sensors = <&thermal 0>;
-> +				sustainable-power = <5000>;
-> +			};
-> +
-> +			/* The tzts1 ~ tzts6 don't need to polling */
-> +			/* The tzts1 ~ tzts6 don't need to thermal throttle */
-> +
-> +			tzts1: tzts1 {
-> +				polling-delay-passive = <0>;
-> +				polling-delay = <0>;
-> +				thermal-sensors = <&thermal 1>;
-> +				sustainable-power = <5000>;
-> +				trips {};
-> +				cooling-maps {};
-> +			};
+On Fri, Apr 9, 2021 at 6:09 AM Joel Stanley <joel@jms.id.au> wrote:
+> On Thu, 8 Apr 2021 at 23:47, Andrew Jeffery <andrew@aj.id.au> wrote:
+> > On Thu, 8 Apr 2021, at 21:44, Corey Minyard wrote:
+> > > On Thu, Apr 08, 2021 at 10:27:46AM +0930, Andrew Jeffery wrote:
+> > > There were some minor concerns that were unanswered, and there really
+> > > was no review by others for many of the patches.
+> >
+> > Right; I was planning to clean up the minor concerns once I'd received
+> > some more feedback. I could have done a better job of communicating
+> > that :)
+>
+> I'll merge the first five through the aspeed tree this coming merge
+> window. We have acks from the relevant maintainers.
+>
+> Arnd: would you prefer that this come as it's own pull request, or as
+> part of the device tree branch?
 
-What is the point of defining the sustainable power with no cooling
-device associated ?
+When you are unsure, it's almost never wrong to go for a separate
+branch, which gives you a chance to have a concise description
+of the contents in the tag. This would be particularly helpful if there
+are incompatible changes to the DT binding that require a justification.
 
+If you are only adding a few DT nodes to existing files, then merging
+these through the regular branch is probably easier.
 
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+       Arnd
