@@ -2,122 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0431035931F
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 05:38:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBAD5359328
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 05:38:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233189AbhDIDiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 23:38:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54880 "EHLO
+        id S233121AbhDIDjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 23:39:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232941AbhDIDiL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 23:38:11 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AF18C061762
-        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 20:37:29 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id n140so4415386oig.9
-        for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021 20:37:29 -0700 (PDT)
+        with ESMTP id S233070AbhDIDjB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 23:39:01 -0400
+Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E8AC061760;
+        Thu,  8 Apr 2021 20:38:49 -0700 (PDT)
+Received: by mail-qt1-x82d.google.com with SMTP id y2so3218622qtw.13;
+        Thu, 08 Apr 2021 20:38:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=kpO9+Srd4oIvzWVPdKNdhhDxU1fj2TEEXiSYekg3+O4=;
-        b=AajZh8YY55sqks6QlcXguHQ/+brpwyvUTeoJebt7DSnbLvFJLMf2d1WDS6sHYmKrMW
-         /JpVTniCTchZEv6K33jNa5DHdhmFsKozdeGkprinsXo7r5heNHiDeHEDES0htkv+2dBr
-         iD7HIujRElbo6/rKB4EwOJ0XwxNS2lJnG0RSgNPWNbiKBA7vbhrWMlJ5hilCDHdAeMvZ
-         fMz7qlJ+0podVxWdTe/sM4/YHNudBoh94zszKUFnH15H1Hf34eZ6ftgXFabYjvrMyV0r
-         yYv0fpUUmqiN9yOJmajTr/HRsTiH1g+xjSxZ2fWWZno9Kbn+0tkh/dk2RygfB+z4A5Qb
-         3YBA==
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zWYrgmgXBOXRjVrzdgXfjhYpQ0FoUCzYmeLXCLSnYFE=;
+        b=jcSmnDiUo1MMc6Q3MSiXiyB7AXqJBpPE3e98RkysCl8SPty3nDcOvOcRler+dmur5d
+         aMg54JUXZxIhZg03ZAR8c4WicszsfYamOPqGCL3/D+KRBdvKzAB4CjehLG05aGaqWbqE
+         rpwrfWYwUuXjd2oNzh9mCifoRsFoJ+gnmN5pc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=kpO9+Srd4oIvzWVPdKNdhhDxU1fj2TEEXiSYekg3+O4=;
-        b=awJr1tFjBMhvPQJZhL8fNm/dubXo8+H085SdkJnrU541KYkU9ZY8amHHvQiWStdqWz
-         L075sJBm+CoN5OCl35gzH8WYTBHh5GGgk6Yx5aJJkXcyvl6Gc4bdE5DadUp97UQdRRN6
-         2+TFLLVFVOoNRzA2ZzdLPt4ivx2Zy0HZjeB5VE5w51UdGsO2O/3rAB9N84DtZPSacgnk
-         OgQOosSr9CWcGakYzbtoE5t49QtOaxBDzc1OtnBxYRfXEaW+sBtj0kjAhkF4M4ZrjYUF
-         vN6JBlU3TFpVYuZ9fehaG3idkUkcEm8tg4g3NmKesX6hc3fAtBKiJj3M3aPjajBpb1mX
-         16mw==
-X-Gm-Message-State: AOAM5317oUB7Eh5SiLORH49E6ByomaNDGbYl1gyITm+FrPDDxNvFlzEj
-        6NJtbzU+OapohqEU+V8Nqjy45VEyDP1/8A==
-X-Google-Smtp-Source: ABdhPJxyg5jFsWAKl52joGC4rhFbwO523ZKf7Sk0WGwP6QuzZcGFDCCy9TNVl2ntIn6hUArIIl/ToQ==
-X-Received: by 2002:aca:2b07:: with SMTP id i7mr8785439oik.66.1617939449149;
-        Thu, 08 Apr 2021 20:37:29 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id y10sm333546oto.18.2021.04.08.20.37.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Apr 2021 20:37:28 -0700 (PDT)
-Date:   Thu, 8 Apr 2021 22:37:26 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Petr Vorel <petr.vorel@gmail.com>
-Cc:     Konrad Dybcio <konradybcio@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ricardo Ribalda <ribalda@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8994: Reserve gpio ranges
-Message-ID: <20210409033726.GT904837@yoga>
-References: <20210405200259.23525-1-petr.vorel@gmail.com>
- <20210405225222.GD904837@yoga>
- <CACRpkdZQ8qiqFPa0X8deVjZ7nLn_E6s8fmJdr5Ji8AuyJms1ug@mail.gmail.com>
- <YG9TWEJlpDmNeeit@pevik>
- <ea376d51-cd6c-0028-9602-d007c2bba71e@gmail.com>
- <YG/HwrzRcm7bwgFe@pevik>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zWYrgmgXBOXRjVrzdgXfjhYpQ0FoUCzYmeLXCLSnYFE=;
+        b=HN+LJqdNVvn/hi1ZUhgkWd/3pef68l833nkO/AdW9Vc5mXv+jafLT40GCm0NZwiSFq
+         vNySFZ0jss9vLCsDfwcNFXcgoI/TAG7B5GO7PF9nHCz0UA4n3eKSOwrlUNxBRd1oyb+0
+         8AExkBxwGhsA+lhUJKc41lEzYPh1JkU/6QY49aFFTmcFKGw196Hg7Cy5ltqh2KYHZceF
+         43seJy+vhlt3sQzX4TWKa0h2jyK7j9/67dQlz/eHwENtxpIcZX5jyaMmSdtnE3N9lZvu
+         yV+OE+Pik194ISQwP3DJ8aytiLKMFLBAF3OTH9eNv/NNc89eyulHnwWxyGYRqXBkrkl/
+         qBvg==
+X-Gm-Message-State: AOAM530hV4Vxgq9k5Esb1bi9Ui1Vt7W6Sha5EnmDgil6fFiTc8R1Y4JU
+        j5iBAN9ySdw7v3xjUUm37pNcugbgmsM2F5tF7O4=
+X-Google-Smtp-Source: ABdhPJy3ab4kwwpcl+l+Ds70eJmyq2Cr6Wy6ME4tEKA06FjzEJMtXRy47zcwt64rNz+2wEnTaXI69wecrdATFzf/+XE=
+X-Received: by 2002:ac8:7547:: with SMTP id b7mr11274286qtr.176.1617939528484;
+ Thu, 08 Apr 2021 20:38:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YG/HwrzRcm7bwgFe@pevik>
+References: <20210319062752.145730-1-andrew@aj.id.au> <20210319062752.145730-5-andrew@aj.id.au>
+In-Reply-To: <20210319062752.145730-5-andrew@aj.id.au>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Fri, 9 Apr 2021 03:38:36 +0000
+Message-ID: <CACPK8XcFX9Ljo8K9XzhtCnTXKS0muknzrV6=SU6Wh5jJSPdNAg@mail.gmail.com>
+Subject: Re: [PATCH v2 05/21] soc: aspeed: Adapt to new LPC device tree layout
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     openipmi-developer@lists.sourceforge.net,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Corey Minyard <minyard@acm.org>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Benjamin Fair <benjaminfair@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 08 Apr 22:19 CDT 2021, Petr Vorel wrote:
+On Fri, 19 Mar 2021 at 06:28, Andrew Jeffery <andrew@aj.id.au> wrote:
+>
+> From: "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>
+>
+> Add check against LPC device v2 compatible string to
+> ensure that the fixed device tree layout is adopted.
+> The LPC register offsets are also fixed accordingly.
+>
+> Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+> Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
 
-> Hi Konrad,
-> > Hi,
-> 
-> > to clear up some confusion:
-> 
-> 
-> > On Qualcomm boards GPIOs that are used for "secure" (duh) peripherals,
-> > like a fingerprint scanner, are not allowed to be controlled from Linux (the "non-secure world").
-> > Trying to do so causes an immediate reboot due to "attempting to violate the security".
-> Thanks for an explanation.
-> 
-> > The GPIOs seem to all be iterated over on boot, except for the ones specified in "gpio-reserved-ranges".
-> > As a result, if such "secure" GPIOs are not declared in the DT, the board essentially dies on TLMM (pinctrl) probe
-> > (which happens veeeery early - so that all other peripherals can set the pins as they see fit)
-> > and that's very unpleasant to debug. Without this patch, Petr's device will simply not boot.
-> Exactly.
-> 
-> > So, why did it work before!?
-> 
-> 
-> > Well, either the GPIOs weren't iterated over, or the TLMM (pinctrl) driver wasn't in place back then.
-> I suppose GPIOs not being iterated over is the case for first fix (i.e. fixing
-> 3edfb7bd76bd "gpiolib: Show correct direction from the beginning").
-> 
-
-We had a long discussion about this in the past, and this resulted in
-gpio-reserved-ranges and flagging off GPIOs that shouldn't be touched.
-
-It seems we introduced the angler dts prior to said changes in the
-gpiolib, so it's probably right to say that it's a regression. However,
-the introduction of this was done 3 years ago and we're happy with it on
-all other devices.
-
-There's no harm in introducing this property prior to the introduction
-of the related gpiolib patches, so if you really care about it being backported
-I would suggest you say:
-
-Fixes: feeaf56ac78d ("arm64: dts: msm8994 SoC and Huawei Angler (Nexus 6P) support")
-
-But I presume based on the awesome work you guys are putting into the
-8994 platform people shouldn't run "old" kernels anyways, so I think it
-would be fine with us just ignoring the Fixes as well...
-
-Regards,
-Bjorn
+Reviewed-by: Joel Stanley <joel@jms.id.au>
