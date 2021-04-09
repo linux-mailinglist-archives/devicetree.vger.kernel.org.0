@@ -2,71 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87C5A35A135
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 16:35:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92B5235A13A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 16:36:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233977AbhDIOfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 10:35:53 -0400
-Received: from mail-oo1-f43.google.com ([209.85.161.43]:43740 "EHLO
-        mail-oo1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233980AbhDIOfv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 10:35:51 -0400
-Received: by mail-oo1-f43.google.com with SMTP id x187-20020a4a41c40000b02901b664cf3220so1380931ooa.10;
-        Fri, 09 Apr 2021 07:35:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZBBOiFRpBx4bA8E/XQtp4Rp9qQp2tH4w680gLDV9MSQ=;
-        b=VtrK5L1unl1CbOTPGmq2+MXqLgS9KwzU/eVDJAehA6Z8ctd0uT24VWE2ufQ2vWK755
-         HNVortIuvk90ZW6i/JWhOn4rlBSuMAujWG3KYY4KfvZ+em/0JupzwrNcL3LuHVlmAcPD
-         5vMhj85ZImzP26KjwXshkb6bSMcxc35eF9+M9+YBHt1kTrmVsdVh7c6vR0YVllG439N0
-         QabN3W16IJJ5EvyOXPbF6UU1dRq4Sp/fizwTnkpTGPY3GfInGefiVTiA6QSctZ+qZPor
-         qy6LNuxheLnqLrVaYkQjfEzut3d79budSaBT5FonK+6vN3lyLWf75kbj2IiDEAtgA8LS
-         VgHw==
-X-Gm-Message-State: AOAM532gX2Y+lz0xvujX0pI0ei0n7vouG7QLyJVWbFefl7zFw2HUrC0E
-        fPx4Zvxdh/IY2bOi/Y627A==
-X-Google-Smtp-Source: ABdhPJxozl9LMxtRqtih2nFFEiAm+HcRQ+a/UKgbt0l7xZOvpCJwyyc0PDYxzmPx/481UsLpBARMjg==
-X-Received: by 2002:a4a:d24c:: with SMTP id e12mr12265114oos.73.1617978937516;
-        Fri, 09 Apr 2021 07:35:37 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y10sm515544oih.37.2021.04.09.07.35.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Apr 2021 07:35:36 -0700 (PDT)
-Received: (nullmailer pid 3612243 invoked by uid 1000);
-        Fri, 09 Apr 2021 14:35:36 -0000
-Date:   Fri, 9 Apr 2021 09:35:36 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH 5/6] dt-bindings:trivial-devices: Add sensortek,stk8312
- and sensortek,s8ba50
-Message-ID: <20210409143536.GA3612151@robh.at.kernel.org>
-References: <20210401174112.320497-1-jic23@kernel.org>
- <20210401174112.320497-6-jic23@kernel.org>
+        id S233856AbhDIOgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 10:36:42 -0400
+Received: from mga09.intel.com ([134.134.136.24]:14483 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233527AbhDIOgl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Apr 2021 10:36:41 -0400
+IronPort-SDR: EXrV0pK9nsxJiYlkj5GkA48kHP/t0eezsA4omouLFxqE3UcVoBYA9+e4MX857GyHwaq4oEC3lQ
+ zaVFolzhtuDA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9949"; a="193887475"
+X-IronPort-AV: E=Sophos;i="5.82,209,1613462400"; 
+   d="scan'208";a="193887475"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2021 07:36:18 -0700
+IronPort-SDR: 9KSI6oUfGduERwdNAjng/1qVCSt0hRsyUm2GuJ43iKiPRFfv0f3nL3gd7xmOZWeZS+RlVamc7Q
+ p/LivYNLvPnQ==
+X-IronPort-AV: E=Sophos;i="5.82,209,1613462400"; 
+   d="scan'208";a="531015344"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2021 07:36:16 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id BA756201C0;
+        Fri,  9 Apr 2021 17:36:13 +0300 (EEST)
+Date:   Fri, 9 Apr 2021 17:36:13 +0300
+From:   'Sakari Ailus' <sakari.ailus@linux.intel.com>
+To:     Martina Krasteva <martinax.krasteva@linux.intel.com>
+Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        daniele.alessandrelli@linux.intel.com,
+        paul.j.murphy@linux.intel.com, gjorgjix.rosikopulos@linux.intel.com
+Subject: Re: [PATCH 09/10] media: Keem Bay Camera: Add metadata video node
+Message-ID: <20210409143613.GD3@paasikivi.fi.intel.com>
+References: <20210319180632.585-1-martinax.krasteva@linux.intel.com>
+ <20210319180632.585-10-martinax.krasteva@linux.intel.com>
+ <20210409102415.GA3@paasikivi.fi.intel.com>
+ <000501d72d4b$57b9caf0$072d60d0$@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210401174112.320497-6-jic23@kernel.org>
+In-Reply-To: <000501d72d4b$57b9caf0$072d60d0$@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 01 Apr 2021 18:41:11 +0100, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> 
-> Two simple devices. The stk8ba50 datasheet could be found via
-> google, but I only have the driver for the 8312.
-> 
-> Given they both seem to be 3 axis devices with a single interrupt
-> line, add them to trivial-devices.yaml
-> 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+Hi Martina,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Fri, Apr 09, 2021 at 03:19:20PM +0100, Martina Krasteva wrote:
+> Hi Sakari,
+> 
+> Thank you for the review :)
+
+You're welcome!
+
+...
+
+> > > +static const struct kmb_vpu_warp_params warp_default = {
+> > > +	.type = 0,
+> > > +	.relative = 0,
+> > > +	.format = 0,
+> > > +	.position = 0,
+> > > +	.reserved = { 0 },
+> > > +	.width = 8,
+> > > +	.height = 4,
+> > > +	.stride = 128,
+> > > +	.enable = 0,
+> > > +	.matrix = {1, 0, 0, 0, 1, 0, 0, 0, 1},
+> > > +	.mode = 1,
+> > > +	.values = {0, 128, 128},
+> > 
+> > These seem to be default values for the parameters.
+> > 
+> > Are any of the values above dependent on the image sizes, for instance?
+> > 
+
+> Some of them might be resolution dependent, I need to double check. How
+> should we handle the defaults that are dependent? Should we disable them
+> or initialize with 0
+
+Good question. I hope there aren't any, but if there are, the values could
+be need to be either derived from the V4L2 mbus or pixel format
+configuration somehow, i.e. they'd be zeros here.
+
+-- 
+Kind regards,
+
+Sakari Ailus
