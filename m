@@ -2,113 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63BF335A04A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 15:49:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2612D35A06B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 15:57:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231756AbhDINuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 09:50:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43968 "EHLO mail.kernel.org"
+        id S232615AbhDIN5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 09:57:32 -0400
+Received: from mx2.suse.de ([195.135.220.15]:52384 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231402AbhDINuI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Apr 2021 09:50:08 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4F1C661184;
-        Fri,  9 Apr 2021 13:49:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1617976195;
-        bh=8o2Bt/OdnkU0Any2YvbvhN5VXSpCLXNCewVgojWDjB0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=tEhODWo5B3CGcUg0QIjayzKtSQREfa2xGdHS4iMXAHob2c1gH17v5ruox66r4O1iS
-         wcD41YpL/LMqyK+Y9KAVleDL5uaKrehIcTgmwNI6I4pG/TxEQFx1IXRkOh6r27+iwG
-         ZS0XaosHAST5RM8SDNieRj7GK1SrdsJ4RpRqakdBaDgTtYNWDTjl6VQ3VF8DSH67Co
-         MMHx79b/hRwKimp2dNK5fGjEr+os/T4yLXWexgpKh5Q47flOP1xh44gkdoDWrJ9nKT
-         f06GpTtYTduaLCIUK4T+3IjQwqk+HUIZbdZG1Q/wAZ1stMEbMuXSWn4KFpRzG8/AGq
-         eCM7dqez4nDpg==
-Received: by mail-ed1-f46.google.com with SMTP id h10so6617970edt.13;
-        Fri, 09 Apr 2021 06:49:55 -0700 (PDT)
-X-Gm-Message-State: AOAM532myNxwm8aqVl5Q+zsNZVr+5roE3AHck8QIU6H/NeuBRu3HtdP8
-        4o9gUD5lcCJnHI11EDa9NFb8bRRJULECHlYsjQ==
-X-Google-Smtp-Source: ABdhPJyHT7LV1ywH5OhBmdDt4Q7HUdl8a/WQ0SSEN0vMmJjh0KUPwTzoqGyithVEJWynOiqzEjUQjbWRG0QBHP2Ka2w=
-X-Received: by 2002:a05:6402:84e:: with SMTP id b14mr17935095edz.194.1617976193885;
- Fri, 09 Apr 2021 06:49:53 -0700 (PDT)
+        id S231946AbhDIN5b (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Apr 2021 09:57:31 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 3E128AD2D;
+        Fri,  9 Apr 2021 13:57:16 +0000 (UTC)
+Subject: Re: [PATCH v4 2/6] drm/sprd: add Unisoc's drm kms master
+To:     Kevin Tang <kevin3.tang@gmail.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        David Airlie <airlied@linux.ie>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        ML dri-devel <dri-devel@lists.freedesktop.org>,
+        Orson Zhai <orsonzhai@gmail.com>, Sean Paul <sean@poorly.run>
+References: <20210222132822.7830-1-kevin3.tang@gmail.com>
+ <20210222132822.7830-3-kevin3.tang@gmail.com>
+ <b1c03605-1304-003c-beb2-ca096a549fb4@suse.de>
+ <CAFPSGXZ2o9YRAMax3ZeiyQ5bMtqOsSODMW8V7dXHZSD3gyzbQw@mail.gmail.com>
+From:   Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <449a323c-0bb3-a4aa-5a3f-1325fd4b802c@suse.de>
+Date:   Fri, 9 Apr 2021 15:57:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210409090711.27358-1-qiangqing.zhang@nxp.com> <20210409090711.27358-2-qiangqing.zhang@nxp.com>
-In-Reply-To: <20210409090711.27358-2-qiangqing.zhang@nxp.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 9 Apr 2021 08:49:41 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKeqvC=vP+SA3i76W5jsCWxzdiNkrmHS0uU=qXUAoVq8Q@mail.gmail.com>
-Message-ID: <CAL_JsqKeqvC=vP+SA3i76W5jsCWxzdiNkrmHS0uU=qXUAoVq8Q@mail.gmail.com>
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: add new properties for
- of_get_mac_address from nvmem
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     David Miller <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Frank Rowand <frowand.list@gmail.com>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAFPSGXZ2o9YRAMax3ZeiyQ5bMtqOsSODMW8V7dXHZSD3gyzbQw@mail.gmail.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="S4XoDZIR9mto1SEn5emJBWKE0vfzu4oDm"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 9, 2021 at 4:07 AM Joakim Zhang <qiangqing.zhang@nxp.com> wrote:
->
-> From: Fugang Duan <fugang.duan@nxp.com>
->
-> Currently, of_get_mac_address supports NVMEM, some platforms
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--S4XoDZIR9mto1SEn5emJBWKE0vfzu4oDm
+Content-Type: multipart/mixed; boundary="NALOUUC0u41Jy3oDgBSIgoxBcf1Yo86DK";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Kevin Tang <kevin3.tang@gmail.com>
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ David Airlie <airlied@linux.ie>, Chunyan Zhang <zhang.lyra@gmail.com>,
+ "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Orson Zhai <orsonzhai@gmail.com>, Sean Paul <sean@poorly.run>
+Message-ID: <449a323c-0bb3-a4aa-5a3f-1325fd4b802c@suse.de>
+Subject: Re: [PATCH v4 2/6] drm/sprd: add Unisoc's drm kms master
+References: <20210222132822.7830-1-kevin3.tang@gmail.com>
+ <20210222132822.7830-3-kevin3.tang@gmail.com>
+ <b1c03605-1304-003c-beb2-ca096a549fb4@suse.de>
+ <CAFPSGXZ2o9YRAMax3ZeiyQ5bMtqOsSODMW8V7dXHZSD3gyzbQw@mail.gmail.com>
+In-Reply-To: <CAFPSGXZ2o9YRAMax3ZeiyQ5bMtqOsSODMW8V7dXHZSD3gyzbQw@mail.gmail.com>
 
-What's of_get_mac_address? This is a binding patch. Don't mix Linux
-things in it.
+--NALOUUC0u41Jy3oDgBSIgoxBcf1Yo86DK
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-> MAC address that read from NVMEM efuse requires to swap bytes
-> order, so add new property "nvmem_macaddr_swap" to specify the
-> behavior. If the MAC address is valid from NVMEM, add new property
-> "nvmem-mac-address" in ethernet node.
->
-> Update these two properties in the binding documentation.
->
-> Signed-off-by: Fugang Duan <fugang.duan@nxp.com>
-> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
-> ---
->  .../bindings/net/ethernet-controller.yaml          | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> index e8f04687a3e0..c868c295aabf 100644
-> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> @@ -32,6 +32,15 @@ properties:
->        - minItems: 6
->          maxItems: 6
->
-> +  nvmem-mac-address:
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#definitions/uint8-array
-> +      - minItems: 6
-> +        maxItems: 6
-> +    description:
-> +      Specifies the MAC address that was read from nvmem-cells and dynamically
-> +      add the property in device node;
+Hi
 
-Why can't you use local-mac-address or mac-address? Those too can come
-from some other source.
+Am 09.04.21 um 15:50 schrieb Kevin Tang:
+>      > +static int __init sprd_drm_init(void)
+>      > +{
+>      > +=C2=A0 =C2=A0 =C2=A0int ret;
+>=20
+>     I think ret should just go away.
+>=20
+> Like this?
+> "return platform_register_drivers(sprd_drm_drivers,=20
+> ARRAY_SIZE(sprd_drm_drivers));"
 
-> +
->    max-frame-size:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description:
-> @@ -52,6 +61,11 @@ properties:
->    nvmem-cell-names:
->      const: mac-address
->
-> +  nvmem_macaddr_swap:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      swap bytes order for the 6 bytes of MAC address
+Sure.
 
-So 'nvmem-mac-address' needs to be swapped or it's swapped before
-writing? In any case, this belongs in the nvmem provider.
+Best regards
+Thomas
 
-Rob
+> if so, i will fix it, thks.
+>=20
+>=20
+>     Acked-by: Thomas Zimmermann <tzimmermann@suse.de
+>     <mailto:tzimmermann@suse.de>>
+>=20
+>      > +
+>      > +=C2=A0 =C2=A0 =C2=A0ret =3D platform_register_drivers(sprd_drm_=
+drivers,
+>      > +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ARRA=
+Y_SIZE(sprd_drm_drivers));
+>      > +=C2=A0 =C2=A0 =C2=A0return ret;
+>      > +}
+>      > +
+>      > +static void __exit sprd_drm_exit(void)
+>      > +{
+>      > +=C2=A0 =C2=A0 =C2=A0platform_unregister_drivers(sprd_drm_driver=
+s,
+>      > +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ARRAY_SIZE(sprd_dr=
+m_drivers));
+>      > +}
+>      > +
+>      > +module_init(sprd_drm_init);
+>      > +module_exit(sprd_drm_exit);
+>      > +
+>      > +MODULE_AUTHOR("Leon He <leon.he@unisoc.com
+>     <mailto:leon.he@unisoc.com>>");
+>      > +MODULE_AUTHOR("Kevin Tang <kevin.tang@unisoc.com
+>     <mailto:kevin.tang@unisoc.com>>");
+>      > +MODULE_DESCRIPTION("Unisoc DRM KMS Master Driver");
+>      > +MODULE_LICENSE("GPL v2");
+>      > diff --git a/drivers/gpu/drm/sprd/sprd_drm.h
+>     b/drivers/gpu/drm/sprd/sprd_drm.h
+>      > new file mode 100644
+>      > index 000000000..9781fd591
+>      > --- /dev/null
+>      > +++ b/drivers/gpu/drm/sprd/sprd_drm.h
+>      > @@ -0,0 +1,16 @@
+>      > +/* SPDX-License-Identifier: GPL-2.0 */
+>      > +/*
+>      > + * Copyright (C) 2020 Unisoc Inc.
+>      > + */
+>      > +
+>      > +#ifndef _SPRD_DRM_H_
+>      > +#define _SPRD_DRM_H_
+>      > +
+>      > +#include <drm/drm_atomic.h>
+>      > +#include <drm/drm_print.h>
+>      > +
+>      > +struct sprd_drm {
+>      > +=C2=A0 =C2=A0 =C2=A0struct drm_device drm;
+>      > +};
+>      > +
+>      > +#endif /* _SPRD_DRM_H_ */
+>      >
+>=20
+>     --=20
+>     Thomas Zimmermann
+>     Graphics Driver Developer
+>     SUSE Software Solutions Germany GmbH
+>     Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+>     (HRB 36809, AG N=C3=BCrnberg)
+>     Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+>=20
+>=20
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--NALOUUC0u41Jy3oDgBSIgoxBcf1Yo86DK--
+
+--S4XoDZIR9mto1SEn5emJBWKE0vfzu4oDm
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmBwXTsFAwAAAAAACgkQlh/E3EQov+D7
+MA/+IAHWrnPg7/5qfYPk4UleTosgnVBGNe/Z2fqhtkh4x9NmLTswgvW0hASHzsvGVVjxJGfUOivY
+2/nOETjZEQgBU9VXxVYT+bYlTzmfH5+k7L3cMex/h3XXv1dHKPh5B0aY+IjhBzRSWC1bc7ezIyK3
+tTIGoKdXDMWm4JWFtwrGu1/q2jMUu36E9SNzY4Qtx7MpzaDJgjvfs51sOaTiPTcwmh8loBEInNXw
+8zpzM5EVOTZaSto1vWcw2ItE7yxCC5B/H13TveYVP6Z3DzoaXXFHqAHCvDHAohZw9CdyNFdF/hUB
+5/hHYEJpPEQ9cYqG4FSKDEeSQX1i/uLiWWD2FsUCqIAadJ2e8Bid/7C02oOoaJXNvwn93QnL9I3L
+XzgeNafPpcHo9RJ1k12txhWLu5ptnnPuaalZzliC7eW0dQmyTDUzczOb5N4wDxa9V909Uj4D3biE
+Y866PPJ8iTSoeRM2P3mPBYZ3SSjqVuFh1Oz6IIWTgsDRQtn5Hv5xgJQ+ApH3g6p9D3/W9YjZGyar
+io+SXii5nWsd8V+AIuv6BEYUDihn1Eq6w/sSc7ElZlxoHMZQcHS50NTvAHIybpLt2WkIZyxtcTKQ
+Ss94oiUfdV9ctDVTjNnqoAWjyXOPX9JMRqPux+hxZwqxAhbv0E4WUIvg3sE+lPuKpSrK7d/3f6VN
+NaA=
+=CXJ5
+-----END PGP SIGNATURE-----
+
+--S4XoDZIR9mto1SEn5emJBWKE0vfzu4oDm--
