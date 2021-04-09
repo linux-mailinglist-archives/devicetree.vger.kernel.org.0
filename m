@@ -2,116 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64C95359407
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 06:37:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F418635942C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 06:53:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229613AbhDIEiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 00:38:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39640 "EHLO
+        id S229613AbhDIExb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 00:53:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229526AbhDIEiA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 00:38:00 -0400
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54879C061760;
-        Thu,  8 Apr 2021 21:37:48 -0700 (PDT)
-Received: by mail-qk1-x731.google.com with SMTP id v70so4665888qkb.8;
-        Thu, 08 Apr 2021 21:37:48 -0700 (PDT)
+        with ESMTP id S229526AbhDIExb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 00:53:31 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5906BC061761
+        for <devicetree@vger.kernel.org>; Thu,  8 Apr 2021 21:53:19 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id t23so2278952pjy.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Apr 2021 21:53:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=HGWn++Wqm+IbcEB8+bOET7BZgu8FprdT5nb/lQPUSxE=;
-        b=YjyyoqLaTXyj1y6oqpotLYvBmx2AxeJYhiskbd0RBUgzZwuFLGVvmYZim48ovbIoFy
-         JTJDSrrIcBfdcXnC5sjo4s8HmwxNvkwtdmiWgnPmsnvTGDqeMRBsv5faVl7GMM1PeyYA
-         lcKFlvxaiBiCphrnZwlxsPFH0pahFa0MkKjzU=
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=U8tMg25UODn9zLUOH4J81Emc3aCsG/EQSjte3RxVFwU=;
+        b=VOyYiA7av5Bi6O4IQeERXt8QsT+l7zDqkusCiXRR6I6d6aEWWRveSCJzo+jMpzWMYX
+         995UQaizcAn0Gn1/TUm1Zbpoun/QWNaS3N/MUEX8ihV9QpVgJ4tWnFL/PkYWQMetjf9y
+         H8qMY2CgRr0JwIhO6HKkNQFHQWMMulSZkXb4M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=HGWn++Wqm+IbcEB8+bOET7BZgu8FprdT5nb/lQPUSxE=;
-        b=XkJqq4OWeJwByAyRD33hlTZyYhroPc9aMkWguaFFCrVP3haR4QjTZJgAGttpFr2VuL
-         Z0jU0j0wpS4iVkjgyV+UZQSosbbnQIqy0PW5gDMXL+l1h4q51sHXxOYpeaKGkIIkFdzk
-         7Ba0FdH3DTxLlncA84yMTq8u+H6dvIF30DbvIs1nN9MhZHequm1n4GmScdmrHJ6dZGvW
-         NoUe3IPYUnBXuFnP9f1j4RVAxXcjpzVw76NWt2IoAunu1l8QmWQtqEOJ3Rv3SJook0+/
-         xN9pklFPdCUQKBb9IG7ROppFQaDE0+iWzMSGvU8uEBoIcpWDGpfz4eF6/PmiyUdmmXsr
-         Dk3Q==
-X-Gm-Message-State: AOAM5337IWzWlN3kKApXXJTCZQTQ32HahVdiJwA3VtjNGCAhLqulAhUz
-        HDZ0k5M+oZrwF3EuOtsCPKoEnbbRErp73dqJyAM=
-X-Google-Smtp-Source: ABdhPJwH0HNJo1gVVxx5R8dLODfUf7/t7vsJbCGCK7+GhFbFudJi/yprSO2/SZQI2lgV5ITrwiHORHI3seB00X76ZBw=
-X-Received: by 2002:a05:620a:c11:: with SMTP id l17mr12159214qki.487.1617943067553;
- Thu, 08 Apr 2021 21:37:47 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=U8tMg25UODn9zLUOH4J81Emc3aCsG/EQSjte3RxVFwU=;
+        b=Tm6U/XxLyS4gNRlRVex51KIp4W9T/VJSa55uPdee6iV3NHXOc+P+EA/al1NNey1ykL
+         nyU/QVqVXQoMHL15GZMG+Y5pShJcgYknb4TChSGP634gHqts71AXZ5kYieSQKSXUzBK4
+         zkykOg0jcHOmXQ39VLTF3p7Y6Rolrmr2/ATDtGpUQsbCtyal2ph6sHrhuRG6j0E7nBZI
+         StTGpBYEWhzqSmvAgfkbN4WeSgz3lanNHJ2nPSB0/nuVGNMD8q/n9wxM1QQRFuLZYW6M
+         p7I64XfAeB5R9WP/301RkZyapGwjwRGtdm9s8lRgv5BDEnK9QRv7+MiWH/0nGppH449u
+         rpaw==
+X-Gm-Message-State: AOAM532eOv64tu3yFi1yQ7wrzmm0lSJ0a1Cq3srsMEUdeGu496BDgaIJ
+        Xox6XD3w4Wpf7rm62BTk40AyEw==
+X-Google-Smtp-Source: ABdhPJyiCXafNiJ32rllXnQwLlA8TSdl0M9YXElPFDmX+now4Elzlf3lVZHWQ6cxIai9C+eZPZH4fA==
+X-Received: by 2002:a17:902:6f10:b029:e9:7fdf:4902 with SMTP id w16-20020a1709026f10b02900e97fdf4902mr8114984plk.41.1617943998661;
+        Thu, 08 Apr 2021 21:53:18 -0700 (PDT)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:f9f6:696:a955:72e9])
+        by smtp.gmail.com with ESMTPSA id p2sm900696pgm.24.2021.04.08.21.53.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Apr 2021 21:53:18 -0700 (PDT)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] drm/mediatek: set panel orientation before drm_dev_register().
+Date:   Fri,  9 Apr 2021 12:53:13 +0800
+Message-Id: <20210409045314.3420733-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.31.1.295.g9ea45b61b8-goog
 MIME-Version: 1.0
-References: <20210406120921.2484986-1-j.neuschaefer@gmx.net>
- <CAK8P3a0VfnUucvZNkA9PdxrWiYUOkisV00v-375PmgQYp4aXoQ@mail.gmail.com> <YGzZofPvT80b5gS5@latitude>
-In-Reply-To: <YGzZofPvT80b5gS5@latitude>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Fri, 9 Apr 2021 04:37:34 +0000
-Message-ID: <CACPK8XdbwbsbJuZmvsFqJ+x5viu652vpfR1kwB4Gu+khRHNt_g@mail.gmail.com>
-Subject: Re: [PATCH v2 00/10] Initial support for Nuvoton WPCM450 BMC SoC
-To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 6 Apr 2021 at 21:59, Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.ne=
-t> wrote:
->
-> On Tue, Apr 06, 2021 at 05:15:01PM +0200, Arnd Bergmann wrote:
-> > On Tue, Apr 6, 2021 at 2:09 PM Jonathan Neusch=C3=A4fer
-> > <j.neuschaefer@gmx.net> wrote:
-> > >
-> > > This series adds basic support for the Nuvoton WPCM450 BMC SoC. It's =
-an older
-> > > SoC but still commonly found on eBay, mostly in Supermicro X9 server =
-boards.
-> > >
-> > > Third-party documentation is available at: https://github.com/neuscha=
-efer/wpcm450/wiki
-> > >
-> > > Patches 1-4 add devicetree bindings for the WPCM450 SoC and its vario=
-us parts.
-> > > Patches 5-7 add arch and driver support. Patches 8 and 9 add a device=
-tree for
-> > > the SoC and a board based on it. Patch 10 finally updates the MAINTAI=
-NERS file.
-> > >
-> > > Patch 2 requires "dt-bindings: arm: Convert nuvoton,npcm750 binding t=
-o YAML"
-> > > (https://lore.kernel.org/lkml/20210320164023.614059-1-j.neuschaefer@g=
-mx.net/)
-> >
-> > Hi Jonathan,
-> >
-> > It appears these patches are doing roughly the right thing, and we may =
-still
-> > be able to get them into v5.13, but I'm not sure what your plan for mai=
-ntaining
-> > them is. The two options are that you either send your patches to be pi=
-cked up
-> > by Joel, or you send everything directly to soc@kernel.org once it's fu=
-lly
-> > reviewed.
->
-> The route via Joel sounds alright with me. I've Cc'd him on this version
-> of the series.
+drm_dev_register() sets connector->registration_state to
+DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+drm_connector_set_panel_orientation() is first called after
+drm_dev_register(), it will fail several checks and results in following
+warning. So set panel orientation in dsi before drm_dev_register() is
+called.
 
-I've had a look at the series and it looks good to me:
+[    4.480976] ------------[ cut here ]------------
+[    4.485603] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:45 __drm_mode_object_add+0xb4/0xbc
+<snip>
+[    4.609772] Call trace:
+[    4.612208]  __drm_mode_object_add+0xb4/0xbc
+[    4.616466]  drm_mode_object_add+0x20/0x2c
+[    4.620552]  drm_property_create+0xdc/0x174
+[    4.624723]  drm_property_create_enum+0x34/0x98
+[    4.629241]  drm_connector_set_panel_orientation+0x64/0xa0
+[    4.634716]  boe_panel_get_modes+0x88/0xd8
+[    4.638802]  drm_panel_get_modes+0x2c/0x48
+[    4.642887]  panel_bridge_get_modes+0x1c/0x28
+[    4.647233]  drm_bridge_connector_get_modes+0xa0/0xd4
+[    4.652273]  drm_helper_probe_single_connector_modes+0x218/0x700
+[    4.658266]  drm_mode_getconnector+0x1b4/0x45c
+[    4.662699]  drm_ioctl_kernel+0xac/0x128
+[    4.666611]  drm_ioctl+0x268/0x410
+[    4.670002]  drm_compat_ioctl+0xdc/0xf0
+[    4.673829]  __arm64_compat_sys_ioctl+0xc8/0x100
+[    4.678436]  el0_svc_common+0xf4/0x1c0
+[    4.682174]  do_el0_svc_compat+0x28/0x3c
+[    4.686088]  el0_svc_compat+0x10/0x1c
+[    4.689738]  el0_sync_compat_handler+0xa8/0xcc
+[    4.694171]  el0_sync_compat+0x178/0x180
+[    4.698082] ---[ end trace b4f2db9d9c88610b ]---
+[    4.702721] ------------[ cut here ]------------
+[    4.707329] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:243 drm_object_attach_property+0x48/0xb8
+<snip>
+[    4.833830] Call trace:
+[    4.836266]  drm_object_attach_property+0x48/0xb8
+[    4.840958]  drm_connector_set_panel_orientation+0x84/0xa0
+[    4.846432]  boe_panel_get_modes+0x88/0xd8
+[    4.850516]  drm_panel_get_modes+0x2c/0x48
+[    4.854600]  panel_bridge_get_modes+0x1c/0x28
+[    4.858946]  drm_bridge_connector_get_modes+0xa0/0xd4
+[    4.863984]  drm_helper_probe_single_connector_modes+0x218/0x700
+[    4.869978]  drm_mode_getconnector+0x1b4/0x45c
+[    4.874410]  drm_ioctl_kernel+0xac/0x128
+[    4.878320]  drm_ioctl+0x268/0x410
+[    4.881711]  drm_compat_ioctl+0xdc/0xf0
+[    4.885536]  __arm64_compat_sys_ioctl+0xc8/0x100
+[    4.890142]  el0_svc_common+0xf4/0x1c0
+[    4.893879]  do_el0_svc_compat+0x28/0x3c
+[    4.897791]  el0_svc_compat+0x10/0x1c
+[    4.901441]  el0_sync_compat_handler+0xa8/0xcc
+[    4.905873]  el0_sync_compat+0x178/0x180
+[    4.909783] ---[ end trace b4f2db9d9c88610c ]---
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+---
+ drivers/gpu/drm/mediatek/mtk_dsi.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Nice work Jonathan.
+diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
+index ae403c67cbd9..45a702ee09f3 100644
+--- a/drivers/gpu/drm/mediatek/mtk_dsi.c
++++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+@@ -205,6 +205,7 @@ struct mtk_dsi {
+ 	u32 irq_data;
+ 	wait_queue_head_t irq_wait_queue;
+ 	const struct mtk_dsi_driver_data *driver_data;
++	enum drm_panel_orientation orientation;
+ };
+ 
+ static inline struct mtk_dsi *bridge_to_dsi(struct drm_bridge *b)
+@@ -966,6 +967,8 @@ static int mtk_dsi_encoder_init(struct drm_device *drm, struct mtk_dsi *dsi)
+ 	}
+ 	drm_connector_attach_encoder(dsi->connector, &dsi->encoder);
+ 
++	drm_connector_set_panel_orientation(dsi->connector, dsi->orientation);
++
+ 	return 0;
+ 
+ err_cleanup_encoder:
+@@ -1029,6 +1032,12 @@ static int mtk_dsi_probe(struct platform_device *pdev)
+ 			ret = PTR_ERR(dsi->next_bridge);
+ 			goto err_unregister_host;
+ 		}
++
++		ret = of_drm_get_panel_orientation(panel->dev->of_node, &dsi->orientation);
++		if (ret) {
++			dev_err(dev, "failed to get panel orientation %d\n", ret);
++			return ret;
++		}
+ 	}
+ 
+ 	dsi->driver_data = of_device_get_match_data(dev);
+-- 
+2.31.1.295.g9ea45b61b8-goog
 
-I'll put this in it's own branch along with the bindings change it
-depends on and send a pull request to Arnd for v5.13.
-
-Cheers,
-
-Joel
