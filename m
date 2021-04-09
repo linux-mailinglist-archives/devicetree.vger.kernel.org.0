@@ -2,160 +2,326 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BFB6D35916C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 03:27:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF15C359172
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 03:28:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232967AbhDIB1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 21:27:13 -0400
-Received: from rcdn-iport-9.cisco.com ([173.37.86.80]:54712 "EHLO
-        rcdn-iport-9.cisco.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232918AbhDIB1N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 21:27:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=3696; q=dns/txt; s=iport;
-  t=1617931621; x=1619141221;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zMAEQSGGxAXPhVbwdo8g6BKr75SG96pClPfZ618q3KM=;
-  b=OhYeNgwA2D/QNT+h3lb6GZcK9hczjzaxh5DW3XEzHBgnJPgmyD3oV2cz
-   LQg35XX8/aVYWGWoVQ8MfTIKLAvX8h4ZadFVmSY69wzrw4gbHRUvLP6SV
-   Kh28ZAutnNkGt4SzLUz6FP82n26X9TJX60MiQ2JmE1KnAZGPkBwxmWiDI
-   0=;
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AzTkORKl6L0U17Sf68XftOckLpnPpDfN3im?=
- =?us-ascii?q?dD5ilNYBxZY6Wkvuql9c516TbfjjENVHY83f2BIrCHW3PA9ZhziLNhWIuKdg?=
- =?us-ascii?q?/gpWeuMcVe/ZLvqgeQeRHW2+ZB2c5bGZRWJ8b3CTFB4PrSwA79KNo4xcnCza?=
- =?us-ascii?q?bAv5a7815IbSVHL55t9B14DAHzKDwUeCBjCYAiHJSRouprzgDARV0tYs62Bm?=
- =?us-ascii?q?YIUoH4zrWhqLvcbRELHBIh4gWV5AnJ1JfBDxOa0h0COgkg/Z4e9wH+/zDR1+?=
- =?us-ascii?q?GKr+y8jiTRzXbU6I5b3OH808JZCNaX4/JlTQnEu0KPeJlrXaGEsXQTpuyigW?=
- =?us-ascii?q?xa6eXkklMHI9l57W/XcyWOhSbVnyPk0Doo9hbZuDmlvUc=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0AEAABOrG9g/4ENJK1aGQEBAQEBAQE?=
- =?us-ascii?q?BAQEBAQEBAQEBARIBAQEBAQEBAQEBAQFAgT4EAQEBAQELAYIqgU0BOTGMZok?=
- =?us-ascii?q?xA5ANilyBfAsBAQENAQE0BAEBhFACgXcCJTQJDgIDAQEMAQEFAQEBAgEGBHE?=
- =?us-ascii?q?ThV2GRQEFHhw/EAsSBi48DQ4GE4V5qjx1gTSBAYgUgUQUDoEXAY1MJxyBSUK?=
- =?us-ascii?q?ENT6KOQSCQAeBDoIoEjcCk3MBilucKYMVgSaVJYYiMhCDeqBnuD4CBAYFAha?=
- =?us-ascii?q?BVDqBWTMaCBsVgyRQGQ6OKxaORyEDLzgCBgoBAQMJikwsghkBAQ?=
-X-IronPort-AV: E=Sophos;i="5.82,208,1613433600"; 
-   d="scan'208";a="789889986"
-Received: from alln-core-9.cisco.com ([173.36.13.129])
-  by rcdn-iport-9.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 09 Apr 2021 01:26:59 +0000
-Received: from zorba ([10.24.9.242])
-        by alln-core-9.cisco.com (8.15.2/8.15.2) with ESMTPS id 1391Qv7b032706
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Fri, 9 Apr 2021 01:26:58 GMT
-Date:   Thu, 8 Apr 2021 18:26:57 -0700
-From:   Daniel Walker <danielwa@cisco.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Will Deacon <will@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        X86 ML <x86@kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        xe-linux-external@cisco.com,
-        Ruslan Ruslichenko <rruslich@cisco.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/8] CMDLINE: drivers: of: ifdef out cmdline section
-Message-ID: <20210409012657.GH3981976@zorba>
-References: <41021d66db2ab427c14255d2a24bb4517c8b58fd.1617126961.git.danielwa@cisco.com>
- <0c4b839f023f87c451c8aa3c4f7a8d92729c2f02.1617126961.git.danielwa@cisco.com>
- <CAL_Jsq+_gF9Cy7H6ic2q8dxnPf4+FsBa5pFYYRydJsEmDhnNhA@mail.gmail.com>
- <20210330231717.GA2469518@zorba>
- <20210407225915.GA147338@robh.at.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210407225915.GA147338@robh.at.kernel.org>
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-Outbound-SMTP-Client: 10.24.9.242, [10.24.9.242]
-X-Outbound-Node: alln-core-9.cisco.com
+        id S232918AbhDIB25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 21:28:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55050 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232426AbhDIB25 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 21:28:57 -0400
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37B76C061760;
+        Thu,  8 Apr 2021 18:28:45 -0700 (PDT)
+Received: by mail-qv1-xf33.google.com with SMTP id u3so1902820qvj.8;
+        Thu, 08 Apr 2021 18:28:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=1nd1zrOJxkb2H8zst/bpfvU3v6ARcnkntcly2FZiX3w=;
+        b=oYuQd05kigAV2xeiUc1nOCPZT8kxpBmstPuIcn7BRRfN34VIs5CYfzxS1QJ7lFc8oO
+         6eieSZYKRV5p5sQ+kDIKkE8cYVD4+z+DgPqsbzrebTxCeW0GOpUGyIoClUv8lGBhxf4q
+         FIbd+Z680QfTO+03Lz0RsTowUcJ4EwkctLfcvhNfWlClzwkDm4cLK/ueu/xl0Hfji9N6
+         tVwTPe9nGIVaCChp451vbYPVuNBDJTId4Q6qPkqyArwrvVaLjvQyukN7ve1oO24bnYjO
+         aQ5XRjBJjneQ6S6nISqFBMawVTccnpFk02GaH7Kw+GTtFflXldiGkvQGi83OCRKvPYPV
+         FEmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=1nd1zrOJxkb2H8zst/bpfvU3v6ARcnkntcly2FZiX3w=;
+        b=H4ayfPwjfWWqF1aJhY2KszVqporDo5wUBF7uS9k+0VN60msP0i5q/YtF4ZApkq27+Y
+         adejHu/f0sX/vykrb9JWZQfxHUH+d6EfvhZPE2uCJxb56kFDcJ2WQM4WUMgtLIxguSk4
+         1KEZJN2FtU5nNuOiQxR46XFCSQ8uLjrih9oF+B54JrnIsCni6acfOmD2coeVum+JFY9L
+         OU/G9ZsqYgMjxFUSlCicCCgE8X7keArdhZNiirgaiegcb94C/JFCUHYU9fU48MfKO3va
+         TVcBbLu34FOHXBhhdlOmGWLFKOVujjgbYEf9VGQURbx3VN6MeCIuzzvosACQsaVl/qMj
+         tdGg==
+X-Gm-Message-State: AOAM533EZWJGkstjWWfGGW1ao2Cb4HpaC6k2BflNz2U516/d3Ofs7oQ8
+        PnSpaR8we00WFTNsrczBnXyg1scw8KkDv+EH
+X-Google-Smtp-Source: ABdhPJyadvptk+KR6Zzuwdmo6DsGctjbQF28VqYLJejNf+xZnjju2XXBPDQlRRMnJz71+RkjFcWhmA==
+X-Received: by 2002:a05:6214:204:: with SMTP id i4mr11888545qvt.47.1617931724379;
+        Thu, 08 Apr 2021 18:28:44 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id c19sm846743qte.75.2021.04.08.18.28.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Apr 2021 18:28:43 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Thu, 08 Apr 2021 21:28:42 -0400
+Message-Id: <CAISXGCUW7ZQ.3N1ABIICBHUHE@shaak>
+Cc:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 3/3] dt-bindings: clock: add ti,lmk04832 bindings
+From:   "Liam Beguin" <liambeguin@gmail.com>
+To:     "Rob Herring" <robh@kernel.org>
+References: <20210407005330.2890430-1-liambeguin@gmail.com>
+ <20210407005330.2890430-4-liambeguin@gmail.com>
+ <20210408201333.GA1882021@robh.at.kernel.org>
+In-Reply-To: <20210408201333.GA1882021@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 07, 2021 at 05:59:15PM -0500, Rob Herring wrote:
-> On Tue, Mar 30, 2021 at 04:17:53PM -0700, Daniel Walker wrote:
-> > On Tue, Mar 30, 2021 at 02:49:13PM -0500, Rob Herring wrote:
-> > > On Tue, Mar 30, 2021 at 12:57 PM Daniel Walker <danielwa@cisco.com> wrote:
-> > > >
-> > > > It looks like there's some seepage of cmdline stuff into
-> > > > the generic device tree code. This conflicts with the
-> > > > generic cmdline implementation so I remove it in the case
-> > > > when that's enabled.
-> > > >
-> > > > Cc: xe-linux-external@cisco.com
-> > > > Signed-off-by: Ruslan Ruslichenko <rruslich@cisco.com>
-> > > > Signed-off-by: Daniel Walker <danielwa@cisco.com>
-> > > > ---
-> > > >  drivers/of/fdt.c | 14 ++++++++++++++
-> > > >  1 file changed, 14 insertions(+)
-> > > >
-> > > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > > > index dcc1dd96911a..d8805cd9717a 100644
-> > > > --- a/drivers/of/fdt.c
-> > > > +++ b/drivers/of/fdt.c
-> > > > @@ -25,6 +25,7 @@
-> > > >  #include <linux/serial_core.h>
-> > > >  #include <linux/sysfs.h>
-> > > >  #include <linux/random.h>
-> > > > +#include <linux/cmdline.h>
-> > > >
-> > > >  #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
-> > > >  #include <asm/page.h>
-> > > > @@ -1050,6 +1051,18 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
-> > > >
-> > > >         /* Retrieve command line */
-> > > >         p = of_get_flat_dt_prop(node, "bootargs", &l);
-> > > > +
-> > > > +#if defined(CONFIG_GENERIC_CMDLINE) && defined(CONFIG_GENERIC_CMDLINE_OF)
-> > > 
-> > > Moving in the wrong direction... This code already has too many
-> > > #ifdef's. I like Christophe's version as it gets rid of all the code
-> > > here.
-> >  
-> > It's temporary .. Notice CONFIG_GENERIC_CMDLINE_OF is only used on PowerPC. I
-> > experienced doubling on arm64 when this was used (i.e. the append and prepend
-> > was added twice).
-> > 
-> > I don't think there are any other users which can't be moved outside the device
-> > tree code, but powerpc uses this function three times during boot up plus the
-> > prom_init user. It's possible to use the generic command line in all four places,
-> > but it become space inefficient.
-> 
-> What's the 3rd use? I count kaslr code and in 
-> early_init_dt_scan_chosen_ppc. Do we need to build the command line for 
-> kaslr seed? Getting any build time value from the kernel is pointless.
+On Thu Apr 8, 2021 at 4:13 PM EDT, Rob Herring wrote:
+> On Tue, Apr 06, 2021 at 08:53:30PM -0400, Liam Beguin wrote:
+> > From: Liam Beguin <lvb@xiphos.com>
+> >=20
+> > Document devicetree bindings for Texas Instruments' LMK04832.
+> > The LMK04208 is a high performance clock conditioner with superior cloc=
+k
+> > jitter cleaning, generation, and distribution with JEDEC JESD204B
+> > support.
+> >=20
+> > Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> > ---
+> >  .../bindings/clock/ti,lmk04832.yaml           | 209 ++++++++++++++++++
+> >  1 file changed, 209 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/ti,lmk04832=
+.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/clock/ti,lmk04832.yaml b=
+/Documentation/devicetree/bindings/clock/ti,lmk04832.yaml
+> > new file mode 100644
+> > index 000000000000..a9f8b9b720fc
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/ti,lmk04832.yaml
+> > @@ -0,0 +1,209 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/ti,lmk04832.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Clock bindings for the Texas Instruments LMK04832
+> > +
+> > +maintainers:
+> > +  - Liam Beguin <liambeguin@gmail.com>
+> > +
+> > +description: |
+> > +  Devicetree binding for the LMK04832, a clock conditioner with JEDEC =
+JESD204B
+> > +  support. The LMK04832 is pin compatible with the LMK0482x family.
+> > +
+> > +  Link to datasheet, https://www.ti.com/lit/ds/symlink/lmk04832.pdf
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - ti,lmk04832
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +  '#clock-cells':
+> > +    const: 1
+> > +
+> > +  spi-max-frequency:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Maximum SPI clocking speed of the device in Hz.
+>
+> Already has a type and description, just need:
+>
+> spi-max-frequency: true
+>
+> (Or a range of values if you know the maximum).
+>
 
-I think I may have been mistaken. I added a dump_stack() , but there may have
-been other stack traces during bootup on prior -rcX's I was testing.
+I have the max, will use that instead.
 
-I re-ran the test and I only see one user on powerpc and powerpc64,
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: PLL2 reference clock.
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: oscin
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +
+> > +  ti,spi-4wire-rdbk:
+> > +    description: |
+> > +      Select SPI 4wire readback pin configuration.
+> > +      Available readback pins are,
+> > +        CLKin_SEL0 0
+> > +        CLKin_SEL1 1
+> > +        RESET 2
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [0, 1, 2]
+> > +    default: 1
+> > +
+> > +  ti,vco-hz:
+> > +    description: Optional to set VCO frequency of the PLL in Hertz.
+> > +
+> > +  ti,sysref-ddly:
+> > +    description: SYSREF digital delay value.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 8
+> > +    maximum: 8191
+> > +    default: 8
+> > +
+> > +  ti,sysref-mux:
+> > +    description: |
+> > +      SYSREF Mux configuration.
+> > +      Available options are,
+> > +        Normal SYNC 0
+> > +        Re-clocked 1
+> > +        SYSREF Pulser 2
+> > +        SYSREF Continuous 3
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [0, 1, 2, 3]
+> > +    default: 3
+> > +
+> > +  ti,sync-mode:
+> > +    description: SYNC pin configuration.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [0, 1, 2]
+> > +    default: 1
+> > +
+> > +  ti,sysref-pulse-count:
+> > +    description:
+> > +      Number of SYSREF pulses to send when SYSREF is not in continuous=
+ mode.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [1, 2, 4, 8]
+> > +    default: 4
+> > +
+> > +patternProperties:
+> > +  "@[0-9a-d]+$":
+> > +    type: object
+> > +    description:
+> > +      Child nodes used to configure output clocks.
+> > +
+> > +    properties:
+> > +      reg:
+> > +        description:
+> > +          clock output identifier.
+> > +        minimum: 0
+> > +        maximum: 13
+> > +
+> > +      ti,clkout-fmt:
+> > +        description:
+> > +          Clock output format.
+> > +          Available options are,
+> > +            Powerdown 0x00
+> > +            LVDS 0x01
+> > +            HSDS 6 mA 0x02
+> > +            HSDS 8 mA 0x03
+> > +            LVPECL 1600 mV 0x04
+> > +            LVPECL 2000 mV 0x05
+> > +            LCPECL 0x06
+> > +            CML 16 mA 0x07
+> > +            CML 24 mA 0x08
+> > +            CML 32 mA 0x09
+> > +            CMOS (Off/Inverted) 0x0a
+> > +            CMOS (Normal/Off) 0x0b
+> > +            CMOS (Inverted/Inverted) 0x0c
+> > +            CMOS (Inverted/Normal) 0x0d
+> > +            CMOS (Normal/Inverted) 0x0e
+> > +            CMOS (Normal/Normal) 0x0f
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        minimum: 0
+> > +        maximum: 15
+> > +
+> > +      ti,clkout-sysref:
+> > +        description:
+> > +          Select SYSREF clock path for output clock.
+> > +        type: boolean
+> > +
+> > +    required:
+> > +      - reg
+>
+> additionalProperties: false
+>
 
-powerpc64,
+additionalProperties is defined just below required.
+Should I move it here?
 
-[    T0] Call Trace:
-[    T0] [c000000001517d00] [c00000000077e910] dump_stack+0xc4/0x114 (unreliable)
-[    T0] [c000000001517d50] [c000000001186fb4] early_init_dt_scan_chosen+0x238/0x324
-[    T0] [c000000001517de0] [c000000001138b00] early_init_dt_scan_chosen_ppc+0x20/0x194
-[    T0] [c000000001517e10] [c000000001186ae0] of_scan_flat_dt+0xc8/0x130
-[    T0] [c000000001517e70] [c000000001139404] early_init_devtree+0xa4/0x48c
-[    T0] [c000000001517f10] [c00000000113ac90] early_setup+0xc8/0x254
-[    T0] [c000000001517f90] [000000000000c754] 0xc754
+Thanks,
+Liam
 
-powerpc32,
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - '#clock-cells'
+> > +  - clocks
+> > +  - clock-names
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    clocks {
+> > +        lmk04832_oscin: oscin {
+> > +            compatible =3D "fixed-clock";
+> > +
+> > +            #clock-cells =3D <0>;
+> > +            clock-frequency =3D <122880000>;
+> > +            clock-output-names =3D "lmk04832-oscin";
+> > +        };
+> > +    };
+> > +
+> > +    spi0 {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        lmk04832: clock-controller@0 {
+> > +            #address-cells =3D <1>;
+> > +            #size-cells =3D <0>;
+> > +
+> > +            reg =3D <0>;
+> > +
+> > +            compatible =3D "ti,lmk04832";
+> > +            spi-max-frequency =3D <781250>;
+> > +
+> > +            reset-gpios =3D <&gpio_lmk 0 0 0>;
+> > +
+> > +            #clock-cells =3D <1>;
+> > +            clocks =3D <&lmk04832_oscin>;
+> > +            clock-names =3D "oscin";
+> > +
+> > +            ti,spi-4wire-rdbk =3D <0>;
+> > +            ti,vco-hz =3D <2457600000>;
+> > +
+> > +            assigned-clocks =3D
+> > +                <&lmk04832 0>, <&lmk04832 1>,
+> > +                <&lmk04832 2>, <&lmk04832 3>,
+> > +                <&lmk04832 4>,
+> > +                <&lmk04832 6>, <&lmk04832 7>,
+> > +                <&lmk04832 10>, <&lmk04832 11>;
+> > +            assigned-clock-rates =3D
+> > +                <122880000>, <384000>,
+> > +                <122880000>, <384000>,
+> > +                <122880000>,
+> > +                <153600000>, <384000>,
+> > +                <614400000>, <384000>;
+> > +
+> > +            clkout0@0 {
+> > +                reg =3D <0>;
+> > +                ti,clkout-fmt =3D <0x01>; // LVDS
+> > +            };
+> > +
+> > +            clkout1@1 {
+> > +                reg =3D <1>;
+> > +                ti,clkout-fmt =3D <0x01>; // LVDS
+> > +                ti,clkout-sysref;
+> > +            };
+> > +        };
+> > +    };
+> > --=20
+> > 2.30.1.489.g328c10930387
+> >=20
 
-Call Trace:
-[c06bbee0] [c067e334] early_init_dt_scan_chosen+0xf8/0x1dc (unreliable)
-[c06bbf10] [c0666ec4] early_init_dt_scan_chosen_ppc+0x18/0x6c
-[c06bbf30] [c067e048] of_scan_flat_dt+0x98/0xf4
-[c06bbf70] [c0667234] early_init_devtree+0x48/0x2d0
-[c06bbfb0] [c06679cc] machine_init+0x98/0xcc
-[c06bbff0] [c0000398] set_ivor+0x114/0x154
-
-I think it would be possible to just move the generic handling entire into
-architecture code.
-
-Daniel
