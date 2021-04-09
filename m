@@ -2,192 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2612D35A06B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 15:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8775035A082
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 16:00:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232615AbhDIN5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 09:57:32 -0400
-Received: from mx2.suse.de ([195.135.220.15]:52384 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231946AbhDIN5b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Apr 2021 09:57:31 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 3E128AD2D;
-        Fri,  9 Apr 2021 13:57:16 +0000 (UTC)
-Subject: Re: [PATCH v4 2/6] drm/sprd: add Unisoc's drm kms master
-To:     Kevin Tang <kevin3.tang@gmail.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        David Airlie <airlied@linux.ie>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+        id S233768AbhDIOAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 10:00:30 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:55191 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233672AbhDIOA3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 10:00:29 -0400
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 09 Apr 2021 07:00:14 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 09 Apr 2021 07:00:12 -0700
+X-QCInternal: smtphost
+Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 09 Apr 2021 19:29:40 +0530
+Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
+        id 802B53AE0; Fri,  9 Apr 2021 19:29:39 +0530 (IST)
+From:   satya priya <skakit@codeaurora.org>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        ML dri-devel <dri-devel@lists.freedesktop.org>,
-        Orson Zhai <orsonzhai@gmail.com>, Sean Paul <sean@poorly.run>
-References: <20210222132822.7830-1-kevin3.tang@gmail.com>
- <20210222132822.7830-3-kevin3.tang@gmail.com>
- <b1c03605-1304-003c-beb2-ca096a549fb4@suse.de>
- <CAFPSGXZ2o9YRAMax3ZeiyQ5bMtqOsSODMW8V7dXHZSD3gyzbQw@mail.gmail.com>
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <449a323c-0bb3-a4aa-5a3f-1325fd4b802c@suse.de>
-Date:   Fri, 9 Apr 2021 15:57:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
-MIME-Version: 1.0
-In-Reply-To: <CAFPSGXZ2o9YRAMax3ZeiyQ5bMtqOsSODMW8V7dXHZSD3gyzbQw@mail.gmail.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="S4XoDZIR9mto1SEn5emJBWKE0vfzu4oDm"
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Lee Jones <lee.jones@linaro.org>, linux-rtc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kgunda@codeaurora.org,
+        satya priya <skakit@codeaurora.org>
+Subject: [PATCH V2 0/4] Add RTC support for PMIC PMK8350
+Date:   Fri,  9 Apr 2021 19:29:22 +0530
+Message-Id: <1617976766-7852-1-git-send-email-skakit@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---S4XoDZIR9mto1SEn5emJBWKE0vfzu4oDm
-Content-Type: multipart/mixed; boundary="NALOUUC0u41Jy3oDgBSIgoxBcf1Yo86DK";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Kevin Tang <kevin3.tang@gmail.com>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Chunyan Zhang <zhang.lyra@gmail.com>,
- "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Orson Zhai <orsonzhai@gmail.com>, Sean Paul <sean@poorly.run>
-Message-ID: <449a323c-0bb3-a4aa-5a3f-1325fd4b802c@suse.de>
-Subject: Re: [PATCH v4 2/6] drm/sprd: add Unisoc's drm kms master
-References: <20210222132822.7830-1-kevin3.tang@gmail.com>
- <20210222132822.7830-3-kevin3.tang@gmail.com>
- <b1c03605-1304-003c-beb2-ca096a549fb4@suse.de>
- <CAFPSGXZ2o9YRAMax3ZeiyQ5bMtqOsSODMW8V7dXHZSD3gyzbQw@mail.gmail.com>
-In-Reply-To: <CAFPSGXZ2o9YRAMax3ZeiyQ5bMtqOsSODMW8V7dXHZSD3gyzbQw@mail.gmail.com>
+satya priya (4):
+  rtc: pm8xxx: Add RTC support for PMIC PMK8350
+  dt-bindings: mfd: Add compatible for pmk8350 rtc
+  dt-bindings: mfd: Convert pm8xxx bindings to yaml
+  dt-bindings: rtc: qcom-pm8xxx-rtc: Add qcom pm8xxx rtc bindings
 
---NALOUUC0u41Jy3oDgBSIgoxBcf1Yo86DK
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+ .../devicetree/bindings/mfd/qcom-pm8xxx.txt        | 99 ----------------------
+ .../devicetree/bindings/mfd/qcom-pm8xxx.yaml       | 54 ++++++++++++
+ .../devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml   | 62 ++++++++++++++
+ drivers/rtc/rtc-pm8xxx.c                           | 11 +++
+ 4 files changed, 127 insertions(+), 99 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/qcom-pm8xxx.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
+ create mode 100644 Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
 
-Hi
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
 
-Am 09.04.21 um 15:50 schrieb Kevin Tang:
->      > +static int __init sprd_drm_init(void)
->      > +{
->      > +=C2=A0 =C2=A0 =C2=A0int ret;
->=20
->     I think ret should just go away.
->=20
-> Like this?
-> "return platform_register_drivers(sprd_drm_drivers,=20
-> ARRAY_SIZE(sprd_drm_drivers));"
-
-Sure.
-
-Best regards
-Thomas
-
-> if so, i will fix it, thks.
->=20
->=20
->     Acked-by: Thomas Zimmermann <tzimmermann@suse.de
->     <mailto:tzimmermann@suse.de>>
->=20
->      > +
->      > +=C2=A0 =C2=A0 =C2=A0ret =3D platform_register_drivers(sprd_drm_=
-drivers,
->      > +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ARRA=
-Y_SIZE(sprd_drm_drivers));
->      > +=C2=A0 =C2=A0 =C2=A0return ret;
->      > +}
->      > +
->      > +static void __exit sprd_drm_exit(void)
->      > +{
->      > +=C2=A0 =C2=A0 =C2=A0platform_unregister_drivers(sprd_drm_driver=
-s,
->      > +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ARRAY_SIZE(sprd_dr=
-m_drivers));
->      > +}
->      > +
->      > +module_init(sprd_drm_init);
->      > +module_exit(sprd_drm_exit);
->      > +
->      > +MODULE_AUTHOR("Leon He <leon.he@unisoc.com
->     <mailto:leon.he@unisoc.com>>");
->      > +MODULE_AUTHOR("Kevin Tang <kevin.tang@unisoc.com
->     <mailto:kevin.tang@unisoc.com>>");
->      > +MODULE_DESCRIPTION("Unisoc DRM KMS Master Driver");
->      > +MODULE_LICENSE("GPL v2");
->      > diff --git a/drivers/gpu/drm/sprd/sprd_drm.h
->     b/drivers/gpu/drm/sprd/sprd_drm.h
->      > new file mode 100644
->      > index 000000000..9781fd591
->      > --- /dev/null
->      > +++ b/drivers/gpu/drm/sprd/sprd_drm.h
->      > @@ -0,0 +1,16 @@
->      > +/* SPDX-License-Identifier: GPL-2.0 */
->      > +/*
->      > + * Copyright (C) 2020 Unisoc Inc.
->      > + */
->      > +
->      > +#ifndef _SPRD_DRM_H_
->      > +#define _SPRD_DRM_H_
->      > +
->      > +#include <drm/drm_atomic.h>
->      > +#include <drm/drm_print.h>
->      > +
->      > +struct sprd_drm {
->      > +=C2=A0 =C2=A0 =C2=A0struct drm_device drm;
->      > +};
->      > +
->      > +#endif /* _SPRD_DRM_H_ */
->      >
->=20
->     --=20
->     Thomas Zimmermann
->     Graphics Driver Developer
->     SUSE Software Solutions Germany GmbH
->     Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
->     (HRB 36809, AG N=C3=BCrnberg)
->     Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
->=20
->=20
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---NALOUUC0u41Jy3oDgBSIgoxBcf1Yo86DK--
-
---S4XoDZIR9mto1SEn5emJBWKE0vfzu4oDm
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmBwXTsFAwAAAAAACgkQlh/E3EQov+D7
-MA/+IAHWrnPg7/5qfYPk4UleTosgnVBGNe/Z2fqhtkh4x9NmLTswgvW0hASHzsvGVVjxJGfUOivY
-2/nOETjZEQgBU9VXxVYT+bYlTzmfH5+k7L3cMex/h3XXv1dHKPh5B0aY+IjhBzRSWC1bc7ezIyK3
-tTIGoKdXDMWm4JWFtwrGu1/q2jMUu36E9SNzY4Qtx7MpzaDJgjvfs51sOaTiPTcwmh8loBEInNXw
-8zpzM5EVOTZaSto1vWcw2ItE7yxCC5B/H13TveYVP6Z3DzoaXXFHqAHCvDHAohZw9CdyNFdF/hUB
-5/hHYEJpPEQ9cYqG4FSKDEeSQX1i/uLiWWD2FsUCqIAadJ2e8Bid/7C02oOoaJXNvwn93QnL9I3L
-XzgeNafPpcHo9RJ1k12txhWLu5ptnnPuaalZzliC7eW0dQmyTDUzczOb5N4wDxa9V909Uj4D3biE
-Y866PPJ8iTSoeRM2P3mPBYZ3SSjqVuFh1Oz6IIWTgsDRQtn5Hv5xgJQ+ApH3g6p9D3/W9YjZGyar
-io+SXii5nWsd8V+AIuv6BEYUDihn1Eq6w/sSc7ElZlxoHMZQcHS50NTvAHIybpLt2WkIZyxtcTKQ
-Ss94oiUfdV9ctDVTjNnqoAWjyXOPX9JMRqPux+hxZwqxAhbv0E4WUIvg3sE+lPuKpSrK7d/3f6VN
-NaA=
-=CXJ5
------END PGP SIGNATURE-----
-
---S4XoDZIR9mto1SEn5emJBWKE0vfzu4oDm--
