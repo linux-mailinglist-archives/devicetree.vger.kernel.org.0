@@ -2,267 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C0B53592F5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 05:20:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0837F3592F7
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 05:20:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233070AbhDIDTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Apr 2021 23:19:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50840 "EHLO
+        id S233025AbhDIDTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Apr 2021 23:19:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233049AbhDIDTV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 23:19:21 -0400
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 113AAC061760;
-        Thu,  8 Apr 2021 20:19:09 -0700 (PDT)
-Received: by mail-qt1-x829.google.com with SMTP id m16so2587468qtx.9;
-        Thu, 08 Apr 2021 20:19:09 -0700 (PDT)
+        with ESMTP id S232918AbhDIDTq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Apr 2021 23:19:46 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8B79C061760;
+        Thu,  8 Apr 2021 20:19:33 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 18so4832990edx.3;
+        Thu, 08 Apr 2021 20:19:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4tlsotF4H+AmLvxNjD/snhIqz+CJm5ffNylMiriBTrI=;
-        b=JtXchGW/69XHEdWjps7WnhWcSL4QJKiCa+XoD9A9oJ5iGzSPpM8sJ9LgZt8xOTiyxq
-         p/as1e9vX72qXH3SNByu502tI5MFomxlGMI3KtPNyxcZrVcDVjqt+pqwNAZJyMsok57/
-         wu0/XWL/CNfYhAPGDbWWrgs7ZxvAeX2WAZmJA=
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:reply-to:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=imT+PhNFQPkgZJ6XFq69pmBRhnDsKNZq5XiDQndTV+E=;
+        b=DECpiy3i0/XFLfIY5Am0Hj9hHoG3DAZvnIDCAzgS1PJ1GqgMmB4FTWZ6VLt4yavQdk
+         oNW+79W45GRHhoRhEgPniFlLtQwtDaNtH9/+lDkrC5VhzQJGZPFmz4d808RXOb+f2ZhJ
+         3GZJ7lJBWJ9jSwX3/EVRI56le0VTBY/OCE3S1sTdov2F7fB6nams44iLz8FcseZjJ0+A
+         v/BkdgSy8nKAV3obXCZbXYQYHwVuU5NfTC68U0g6Oh9k80dt0zxhwiCi0WSGveypUqnQ
+         6hm8doaBBk7atfMsOnM6QN+mjw74jfgnfbmEw7sXP/s5KDruUz29lWluy90YIaB/RNLV
+         oc5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4tlsotF4H+AmLvxNjD/snhIqz+CJm5ffNylMiriBTrI=;
-        b=UIoJ92SMSsSeKC8RUYAc/fWEfV4v0NIp9db74mrzLpYCwRDgMfgYpOCrfA2ebGyvnE
-         PAsxQ7bY4msMDwsmDSO37cGKA+sV2EWBTvHUZisjaM+EmIOd+0noLvppF6+yKbTYQOcK
-         bGZ7QWpnYqOmXx2VyQ49HGUkACHmmsp9IRdk1ro/X6rHeSHtfIUCtukBSbc4qzhxK1xR
-         JTAksvqn0rlN1H5fzZiBitRKkqnwwWOvlSy1bs6AW9sbBvdAW1dDKNj2Z3gfMHY2HcnP
-         QxHnsWkdBDztQKhh4V0ql3aunHawEVuVmub8BCYEV4vJbgvb2QUmOUBV/V6ruEFemIDQ
-         skwA==
-X-Gm-Message-State: AOAM530W4xUSOcwUUllo5sBEH3WElYnn+jNRucvNRJefkizmnGlTt+Ko
-        G8c7LY2VM31UAiWDQNsOzoh8BbFo/VBSNmxpmrQ/bL9b
-X-Google-Smtp-Source: ABdhPJz4xEUAC6m97NKz1UjwDx/kiYVvZRBIBprh3OJLwWO9Waj9drc7EI7fMCOOoJmw7S4anNcOgjtvJOf2NrXgzpA=
-X-Received: by 2002:ac8:5f87:: with SMTP id j7mr10453274qta.135.1617938348141;
- Thu, 08 Apr 2021 20:19:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210319062752.145730-1-andrew@aj.id.au>
-In-Reply-To: <20210319062752.145730-1-andrew@aj.id.au>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Fri, 9 Apr 2021 03:18:55 +0000
-Message-ID: <CACPK8Xdw3+2Rt=tQ-ciusyK=W6BaP_DR4FSFp0qDuPq5z8MPBQ@mail.gmail.com>
-Subject: Re: [PATCH v2 01/21] dt-bindings: aspeed-lpc: Remove LPC partitioning
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     openipmi-developer@lists.sourceforge.net,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Corey Minyard <minyard@acm.org>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Tali Perry <tali.perry1@gmail.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:reply-to
+         :references:mime-version:content-disposition
+         :content-transfer-encoding:in-reply-to;
+        bh=imT+PhNFQPkgZJ6XFq69pmBRhnDsKNZq5XiDQndTV+E=;
+        b=r8niGl2T/1XS+LG933fBlZu5Nc3Zh/6eMVrU6UAy4hUIAWOLog7Mx063Mv9aZb0dBi
+         CDr2/4HawopMiUT+raVTGOLWGZpn+5/0MgJZ3vvXp6s6Jo3+2PiRNXA/wWkW3duM39+6
+         6GpY27XeF3ISqTW8hjoMKASYXTvszkZ0ihoCJ7n/C1BkrvC30VLprt3ApAjffTORWbB/
+         4D/kqpg+4yNSq9ZTHzpCTR4HsiMzN3nFuBb74W0U8+9vJZn/00lMGZlMe55oGwq0bLK0
+         6Av+EjrBz2fqIUTerJ43oXJfQglqYkgVPu6Qs6SMK/M+up5YFvPp+ZADN1GqFfE6QP88
+         wEEw==
+X-Gm-Message-State: AOAM530ZeeKkCTJLMjtEXnWGWS4MMHEZPKs49qW6msZSmQHeSXvH36f8
+        wWFZ4hsSvpaQtHyIfa7fjZ0esuj4O67V5Q==
+X-Google-Smtp-Source: ABdhPJyaUhrr5lnZNOIgbs3xY3qx5NP4+YmmWZsqaHGOn++wYr2XUviQPGw6TYu7aQceaV3Yp797aw==
+X-Received: by 2002:a05:6402:397:: with SMTP id o23mr1413243edv.337.1617938372647;
+        Thu, 08 Apr 2021 20:19:32 -0700 (PDT)
+Received: from pevik ([62.201.25.198])
+        by smtp.gmail.com with ESMTPSA id jt18sm552773ejc.96.2021.04.08.20.19.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Apr 2021 20:19:31 -0700 (PDT)
+Date:   Fri, 9 Apr 2021 05:19:30 +0200
+From:   Petr Vorel <petr.vorel@gmail.com>
+To:     Konrad Dybcio <konradybcio@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Ricardo Ribalda <ribalda@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8994: Reserve gpio ranges
+Message-ID: <YG/HwrzRcm7bwgFe@pevik>
+Reply-To: Petr Vorel <petr.vorel@gmail.com>
+References: <20210405200259.23525-1-petr.vorel@gmail.com>
+ <20210405225222.GD904837@yoga>
+ <CACRpkdZQ8qiqFPa0X8deVjZ7nLn_E6s8fmJdr5Ji8AuyJms1ug@mail.gmail.com>
+ <YG9TWEJlpDmNeeit@pevik>
+ <ea376d51-cd6c-0028-9602-d007c2bba71e@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-2
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ea376d51-cd6c-0028-9602-d007c2bba71e@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Mar 2021 at 06:28, Andrew Jeffery <andrew@aj.id.au> wrote:
->
-> From: "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>
->
-> The LPC controller has no concept of the BMC and the Host partitions.
-> This patch fixes the documentation by removing the description on LPC
-> partitions. The register offsets illustrated in the DTS node examples
-> are also fixed to adapt to the LPC DTS change.
+Hi Konrad,
+> Hi,
 
-Is this accurate:
+> to clear up some confusion:
 
- The node examples change their reg address to be an offset from the
-LPC HC to be an offset from the base of the LPC region.
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+> On Qualcomm boards GPIOs that are used for "secure" (duh) peripherals,
+> like a fingerprint scanner, are not allowed to be controlled from Linux (the "non-secure world").
+> Trying to do so causes an immediate reboot due to "attempting to violate the security".
+Thanks for an explanation.
 
->
-> Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-> Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Acked-by: Lee Jones <lee.jones@linaro.org>
-> ---
->  .../devicetree/bindings/mfd/aspeed-lpc.txt    | 100 +++++-------------
->  1 file changed, 25 insertions(+), 75 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt b/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
-> index d0a38ba8b9ce..936aa108eab4 100644
-> --- a/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
-> +++ b/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
-> @@ -9,13 +9,7 @@ primary use case of the Aspeed LPC controller is as a slave on the bus
->  conditions it can also take the role of bus master.
->
->  The LPC controller is represented as a multi-function device to account for the
-> -mix of functionality it provides. The principle split is between the register
-> -layout at the start of the I/O space which is, to quote the Aspeed datasheet,
-> -"basically compatible with the [LPC registers from the] popular BMC controller
-> -H8S/2168[1]", and everything else, where everything else is an eclectic
-> -collection of functions with a esoteric register layout. "Everything else",
-> -here labeled the "host" portion of the controller, includes, but is not limited
-> -to:
-> +mix of functionality, which includes, but is not limited to:
->
->  * An IPMI Block Transfer[2] Controller
->
-> @@ -44,80 +38,36 @@ Required properties
->  ===================
->
->  - compatible:  One of:
-> -               "aspeed,ast2400-lpc", "simple-mfd"
-> -               "aspeed,ast2500-lpc", "simple-mfd"
-> -               "aspeed,ast2600-lpc", "simple-mfd"
-> +               "aspeed,ast2400-lpc-v2", "simple-mfd", "syscon"
-> +               "aspeed,ast2500-lpc-v2", "simple-mfd", "syscon"
-> +               "aspeed,ast2600-lpc-v2", "simple-mfd", "syscon"
->
->  - reg:         contains the physical address and length values of the Aspeed
->                  LPC memory region.
->
->  - #address-cells: <1>
->  - #size-cells: <1>
-> -- ranges:      Maps 0 to the physical address and length of the LPC memory
-> -                region
-> -
-> -Required LPC Child nodes
-> -========================
-> -
-> -BMC Node
-> ---------
-> -
-> -- compatible:  One of:
-> -               "aspeed,ast2400-lpc-bmc"
-> -               "aspeed,ast2500-lpc-bmc"
-> -               "aspeed,ast2600-lpc-bmc"
-> -
-> -- reg:         contains the physical address and length values of the
-> -                H8S/2168-compatible LPC controller memory region
-> -
-> -Host Node
-> ----------
-> -
-> -- compatible:   One of:
-> -               "aspeed,ast2400-lpc-host", "simple-mfd", "syscon"
-> -               "aspeed,ast2500-lpc-host", "simple-mfd", "syscon"
-> -               "aspeed,ast2600-lpc-host", "simple-mfd", "syscon"
-> -
-> -- reg:         contains the address and length values of the host-related
-> -                register space for the Aspeed LPC controller
-> -
-> -- #address-cells: <1>
-> -- #size-cells: <1>
-> -- ranges:      Maps 0 to the address and length of the host-related LPC memory
-> +- ranges:      Maps 0 to the physical address and length of the LPC memory
->                  region
->
->  Example:
->
->  lpc: lpc@1e789000 {
-> -       compatible = "aspeed,ast2500-lpc", "simple-mfd";
-> +       compatible = "aspeed,ast2500-lpc-v2", "simple-mfd", "syscon";
->         reg = <0x1e789000 0x1000>;
->
->         #address-cells = <1>;
->         #size-cells = <1>;
->         ranges = <0x0 0x1e789000 0x1000>;
->
-> -       lpc_bmc: lpc-bmc@0 {
-> -               compatible = "aspeed,ast2500-lpc-bmc";
-> +       lpc_snoop: lpc-snoop@0 {
-> +               compatible = "aspeed,ast2600-lpc-snoop";
->                 reg = <0x0 0x80>;
-> -       };
-> -
-> -       lpc_host: lpc-host@80 {
-> -               compatible = "aspeed,ast2500-lpc-host", "simple-mfd", "syscon";
-> -               reg = <0x80 0x1e0>;
-> -               reg-io-width = <4>;
-> -
-> -               #address-cells = <1>;
-> -               #size-cells = <1>;
-> -               ranges = <0x0 0x80 0x1e0>;
-> +               interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
-> +               snoop-ports = <0x80>;
->         };
->  };
->
-> -BMC Node Children
-> -==================
-> -
-> -
-> -Host Node Children
-> -==================
->
->  LPC Host Interface Controller
->  -------------------
-> @@ -149,14 +99,12 @@ Optional properties:
->
->  Example:
->
-> -lpc-host@80 {
-> -       lpc_ctrl: lpc-ctrl@0 {
-> -               compatible = "aspeed,ast2500-lpc-ctrl";
-> -               reg = <0x0 0x80>;
-> -               clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
-> -               memory-region = <&flash_memory>;
-> -               flash = <&spi>;
-> -       };
-> +lpc_ctrl: lpc-ctrl@80 {
-> +       compatible = "aspeed,ast2500-lpc-ctrl";
-> +       reg = <0x80 0x80>;
-> +       clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
-> +       memory-region = <&flash_memory>;
-> +       flash = <&spi>;
->  };
->
->  LPC Host Controller
-> @@ -179,9 +127,9 @@ Required properties:
->
->  Example:
->
-> -lhc: lhc@20 {
-> +lhc: lhc@a0 {
->         compatible = "aspeed,ast2500-lhc";
-> -       reg = <0x20 0x24 0x48 0x8>;
-> +       reg = <0xa0 0x24 0xc8 0x8>;
->  };
->
->  LPC reset control
-> @@ -192,16 +140,18 @@ state of the LPC bus. Some systems may chose to modify this configuration.
->
->  Required properties:
->
-> - - compatible:         "aspeed,ast2600-lpc-reset" or
-> -                       "aspeed,ast2500-lpc-reset"
-> -                       "aspeed,ast2400-lpc-reset"
-> + - compatible:         One of:
-> +                       "aspeed,ast2600-lpc-reset";
-> +                       "aspeed,ast2500-lpc-reset";
-> +                       "aspeed,ast2400-lpc-reset";
-> +
->   - reg:                        offset and length of the IP in the LHC memory region
->   - #reset-controller   indicates the number of reset cells expected
->
->  Example:
->
-> -lpc_reset: reset-controller@18 {
-> +lpc_reset: reset-controller@98 {
->          compatible = "aspeed,ast2500-lpc-reset";
-> -        reg = <0x18 0x4>;
-> +        reg = <0x98 0x4>;
->          #reset-cells = <1>;
->  };
-> --
-> 2.27.0
->
+> The GPIOs seem to all be iterated over on boot, except for the ones specified in "gpio-reserved-ranges".
+> As a result, if such "secure" GPIOs are not declared in the DT, the board essentially dies on TLMM (pinctrl) probe
+> (which happens veeeery early - so that all other peripherals can set the pins as they see fit)
+> and that's very unpleasant to debug. Without this patch, Petr's device will simply not boot.
+Exactly.
+
+> So, why did it work before!?
+
+
+> Well, either the GPIOs weren't iterated over, or the TLMM (pinctrl) driver wasn't in place back then.
+I suppose GPIOs not being iterated over is the case for first fix (i.e. fixing
+3edfb7bd76bd "gpiolib: Show correct direction from the beginning").
+
+> As for the initrd crash.. perhaps you have an Android initrd which dies as soon as it doesn't detect SELINUX and a couple of other options.. You might want to try postmarketOS's one, or any other Linux distro's armv7/aarch64 initrd. To replace it, simply use abootimg like so:
+No, that's postmarketOS initrd which dies
+
+before a99163e9e708d5d773b7de6da952fcddc341f977:
+[   17.421112] ALSA device list:
+[   17.426233]   No soundcard?[   17.436163] Freeing unused kernel memory: 5760K
+[   17.436462] Run /init as init process
+[   17.439499]   with arguments:
+[   17.443330]     /init
+[   17.446277]     PMOS_NO_OUTPUT_REDIRECT
+[   17.448535]   with environment:
+[   17.452172]     HOME=/
+[   17.455303]     TERM=linux
+### postmarketOS initramfs ###
+Configuring kernel firmware image search path
+/init: line 56: can't create /proc/sys/kernel/hotplug: nonexistent directory
+Trying to mount subpartitions for 10 seconds...
+
+after a99163e9e708d5d773b7de6da952fcddc341f977:
+[   17.383267] calling  regulator_init_complete+0x0/0x4c @ 1
+[   17.390129] initcall regulator_init_complete+0x0/0x4c returned 0 after 6 usecs
+[   17.395682] calling  of_platform_sync_state_init+0x0/0x18 @ 1
+[   17.402800] initcall of_platform_sync_state_init+0x0/0x18 returned 0 after 3 usecs
+[   17.408616] calling  alsa_sound_last_init+0x0/0x88 @ 1
+[   17.416077] ALSA device list:
+[   17.421198]   No soundcardû[   17.431360] Freeing unused kernel memory: 5824K
+[   17.431633] Run /init as init process
+[   17.434700]   with arguments:
+[   17.438535]     /init
+[   17.441477]     PMOS_NO_OUTPUT_REDIRECT
+[   17.443737]   with environment:
+[   17.447381]     HOME=/
+[   17.450496]     TERM=linux
+D -     15494 - pm_driver_init, Delta
+
+> abootimg -u boot.img -r ramdisk.img
+
+
+
+> If it says something something "too small", add
+
+
+> -c "bootsize=30000000"
+
+
+> to make the boot.img exactly 30 million bytes (or change it as you see fit).
+abootimg is really ok, this is not the issue.
+
+> Konrad
+
+Kind regards,
+Petr
