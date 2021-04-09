@@ -2,137 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06C5B359814
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 10:38:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E65CB35982A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 10:43:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232021AbhDIIin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 04:38:43 -0400
-Received: from mail-eopbgr80057.outbound.protection.outlook.com ([40.107.8.57]:60167
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232358AbhDIIii (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Apr 2021 04:38:38 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EeGgbzNx2cIyVIhPMetVsvHc2wnto8aOspOO1WBLveckg6CYOqmEXmdw1X2NUM8ARDJTeFl8Em91m2qSZsZBrJane4xpjo2A0IVnSu3vl4ga8TIJIR9rZBxahc9b89b8O/wI6GB97bzIrkCgw6OHgfDqbn0EHN09dpS8T2WU0mfEryoUasrmIbH4fyKk6S0kquKucxp8D8O1jje+w7T9JOrkvfEuhqrM/qyU9/97SaRljT+vQSog70hd+oGx1br+Ebz/PJj0vhlpbr3po0J+bSD6WWLNA5Ll6lvjlCPWllvbzOppT4teldZwhHM3AnexzAyLdLWvYq7w5PW+6eN6QQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OMlg2fxi4P7R0H3wJXlXTRCG+pYcSmWvSfNx9ui2a+Y=;
- b=Ii878GK+RWlD1U2bt7CmTa5HqT/ICieSfHwxTpk+8VrCef0gJ0qDw6iyesUX7a7AvJwydYtrwyG8EIscUrbxXNwJWVyraOuvFsHVMZf/GemYH9aZEdh3xpCU+RDbVfpAB8q7Nt2PpVjOTOPL5+U1EmuQu7SLx2I625fdBzNBeihDer3d4cw8Sb8hRHHa3xVQgTcfl5T8Q8+copaGwGyvUsipiGRWVqdx9+QYyytbXShKfTGyWUOq5Gz842uDI9erqavDOUbKgJGwUGDr7tai3cFeR+YKSCURReTktOzmO32C7gur5oQVuhUuzaKc2aLOEBQtMX22fkSPeLer3Ae0cQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OMlg2fxi4P7R0H3wJXlXTRCG+pYcSmWvSfNx9ui2a+Y=;
- b=nqLp2zi2Q6aR5aJJthgii3op+LqdYtGwVSuHElOIZAnHaEoW84JDq5WaaDqgbOZBMJzgvN8y88089OOJ9b1rwBX1n/cO1wtehtAzmfERFatXBKACopjOPsBxM5q8awqIZ9P+jiH8kudZU0YOi6LBXQ3Mc4rpEz7U7VdLa+aBPcA=
-Authentication-Results: davemloft.net; dkim=none (message not signed)
- header.d=none;davemloft.net; dmarc=none action=none header.from=nxp.com;
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
- by DBAPR04MB7400.eurprd04.prod.outlook.com (2603:10a6:10:1b3::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.17; Fri, 9 Apr
- 2021 08:38:23 +0000
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::9598:ace0:4417:d1d5]) by DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::9598:ace0:4417:d1d5%6]) with mapi id 15.20.4020.017; Fri, 9 Apr 2021
- 08:38:23 +0000
-From:   Joakim Zhang <qiangqing.zhang@nxp.com>
-To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        frowand.list@gmail.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH net-next 3/3] of_net: add property "nvmem-mac-address" for of_get_mac_addr()
-Date:   Fri,  9 Apr 2021 16:37:51 +0800
-Message-Id: <20210409083751.27750-4-qiangqing.zhang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210409083751.27750-1-qiangqing.zhang@nxp.com>
-References: <20210409083751.27750-1-qiangqing.zhang@nxp.com>
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.71]
-X-ClientProxiedBy: HK2PR0401CA0014.apcprd04.prod.outlook.com
- (2603:1096:202:2::24) To DB8PR04MB6795.eurprd04.prod.outlook.com
- (2603:10a6:10:fa::15)
+        id S232099AbhDIIni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 04:43:38 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:14290 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232026AbhDIInh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 04:43:37 -0400
+X-UUID: faead521e2584fada37d7afbfb6406cf-20210409
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=LWR0YYJF62R73X/2PazKkQVUbwMvHOS/MQ9V7awNAws=;
+        b=B/IYe5BxeZB+RaN6vk7LP2paPDef9IxtAnnv/pGluFjyxDFjXjhwTu6ffQkZQ7k8XlcJYRQpTaoxn0OgmYYKiubmVARzjz70nq1FNxTl7Feww7ZmK1MyZyQ1q3J5aZ4AI8jR1p8xLG/OPSGSA5dBDF5E8ic4D9dJvuepBZbyd/M=;
+X-UUID: faead521e2584fada37d7afbfb6406cf-20210409
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 328637584; Fri, 09 Apr 2021 16:43:21 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 9 Apr
+ 2021 16:43:19 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 9 Apr 2021 16:43:19 +0800
+Message-ID: <1617957799.12105.31.camel@mhfsdcap03>
+Subject: Re: [PATCH 1/6] PM: runtime: enable wake irq after runtime_suspend
+ hook called
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Ikjoon Jang <ikjn@chromium.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Len Brown <len.brown@intel.com>, Pavel Machek <pavel@ucw.cz>,
+        <linux-usb@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, Tony Lindgren <tony@atomide.com>,
+        Tianping Fang <tianping.fang@mediatek.com>,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>
+Date:   Fri, 9 Apr 2021 16:43:19 +0800
+In-Reply-To: <CAATdQgCQ5Gm1CNEbVgLFiFcgDX0yP5G=48Fa29WYbpSuz25WXg@mail.gmail.com>
+References: <1617874514-12282-1-git-send-email-chunfeng.yun@mediatek.com>
+         <CAATdQgCQ5Gm1CNEbVgLFiFcgDX0yP5G=48Fa29WYbpSuz25WXg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.71) by HK2PR0401CA0014.apcprd04.prod.outlook.com (2603:1096:202:2::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.16 via Frontend Transport; Fri, 9 Apr 2021 08:38:19 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7369d7f5-bfca-4e5d-ecc8-08d8fb32d5be
-X-MS-TrafficTypeDiagnostic: DBAPR04MB7400:
-X-Microsoft-Antispam-PRVS: <DBAPR04MB7400412548B59D02684A7383E6739@DBAPR04MB7400.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hOd+7uLQY+y1r0UllORq1FZHWca/zhjsdUHMXE7EZnJIh3/foEc4KQEaXxuEQ1fXG5lHvEAWTnPHTA9Ft+MF/0QdupAGy30ZXMPdEBWB/mqS7swlw3koR2bhR5ny+Wpz+v0nLmPUMd6Sp/PEoN8ObtF/i+78ettuMZVAoN64KVsJCPL/0vyPblrT20MVKcz7ujAwnojCWttitg2wd83aUngo2OWd574q57TSEEZhkr3E0c40UnKz3wMBrjuWn7VrFMXEp21Bf1xZSyc88o4ajc8ALuD5Er/EwAvom2vv8NglCA0QxxnXIqnGJzcnMhs6tgUv3AKRiCnZgwql4fu0wORq4vn2RyRy2xbJV7VxfNS3DxbAMcst3pVMPM+g/otCHu0cYKkOeCeXEP/U4uNccTiIVH0rwsThwMnSyPRWxTl4MTB9Y+rowdtxbXQAxfyWIu45AU8bgrGRorXYaIPY5WGTzYZHQH2feAJgNabm65isFB7M/bxnkAn7E4+F8Pv7zC2hAkrX9jbWcCXu032NYjgwQAoJKWSJi+VsX9BZjbBw/gHe3Usb6hvyfVu9qQszPPFS2wHQN7NiRaTv+caFb7OUlHLqRX6fIUqCQy+dQa/uD5HSQxJpRkDJSLZctQp2Gj78mKHLDEu7QNNgiw7pey+S5dWAo/wZXSsv8HqsrwT5Ue3IbwOoLlEcusyQVXa03g8xfx1Y8TZ5odG6f9lU8EFjlGqzAN1/2bONdsxJbGU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(366004)(39860400002)(376002)(396003)(346002)(38100700001)(7416002)(38350700001)(6486002)(6506007)(956004)(186003)(6512007)(2616005)(478600001)(36756003)(4326008)(5660300002)(6666004)(4744005)(2906002)(16526019)(316002)(8676002)(8936002)(66476007)(52116002)(66556008)(69590400012)(86362001)(1076003)(66946007)(26005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?mWlQT1Hvc0GxtXfb81wMkUO4R8iK9qGaUZTYrYTPLn+d2NvdTdGsMdyP+HXt?=
- =?us-ascii?Q?rubWh0rJXJWl7XouZptYyw0r+Vjk80yk/QS5b1xd0qtlDD+tks0VoOF9Bb9z?=
- =?us-ascii?Q?jLDd/iBSHZ7NRAtdx6J/jI2mqmQkpRZRA9oVzBMxvzgpOK8gImZIRCa4kbef?=
- =?us-ascii?Q?T5bKYxDIRBGp0yEVysP6tgcx8P1rQiuIkoZVsQ5PpnuVW7bstcfx09AmsSo7?=
- =?us-ascii?Q?2ybCyEUHCvRibBW5jfPlhZ9c5duFiMqeFqjF1EwlplZsTJc4ItIvfOTVOH8H?=
- =?us-ascii?Q?Nsgd0dJvPq7wCgoTfxYZCliG+lY4Q7q5FHKWnHN22uMMpOGALRVzfnO2h+1W?=
- =?us-ascii?Q?nOkpdGBpIQHdNuOFTjHrjKTrVkISDIkx+XkY9TvIakhptfzkFU30ear6KXqS?=
- =?us-ascii?Q?0/xIJziO9DB9b9F5rRX/EmXfHXJ1QiQv94v3PqSZjLnkbFlGwSycQs3tMsb4?=
- =?us-ascii?Q?lAcoinAL2McpwFu/4g2iRjSX/wdQcrMGk7IXKEbZBfBrkMA05HQH0UQA0vt2?=
- =?us-ascii?Q?HMSgbWTpwB4P3hfpaTOtni80RHEZx4sld/5AnOJB5cnszvbLQ3ihltUxkFJR?=
- =?us-ascii?Q?guVg/mU1SEMdOz+kPEcTlcjCRL7wlxcjotccsOU0PNJuffD6VdHQ8FqrEcEY?=
- =?us-ascii?Q?unL3ryZW7rCPJd0LmbkrJa+GsTFgSBfMb38JuuQkDoz5/kbCpUdVC+j/Nlqn?=
- =?us-ascii?Q?HiYgQNAFYz1qt6URoVpiifx6sXf+dDbcccZDYH75HKESxQbum9hEQ4h5To/7?=
- =?us-ascii?Q?6+YQRVybpqT9yMgoHx56TdJ4VGvmJyTL4UM26nXLMM04NEcnK1Ak1znPHeR9?=
- =?us-ascii?Q?Y/koELERRVamtezuZUQbvhvUX8fjwwNsTa4W59In65XkZQVGwB61jRngXfeX?=
- =?us-ascii?Q?1IypIkXsuuv7+LBclUBRZmjQCRIhHGB+qGSCEykBCLZK8YnPxL0Tq7rfFfA/?=
- =?us-ascii?Q?EPDO1krvjEBGoryIiGtvaTeP30KQB8qy+iY45E6LI7DByolEvkfY0cGe5Xc+?=
- =?us-ascii?Q?ioCSHrKfZxRtdx6AsqdhyRhKAcE1Iu6Idzt0oc9gCSycnfrAr4YP4f5IcxGO?=
- =?us-ascii?Q?0RgtKyD/6eLndvKW8n/LDiH2flL/BBJjK5217DfRtGUrqbf2Wki3aSCrbOhS?=
- =?us-ascii?Q?6rU70xcEDEeHG0AqtJZ1J/PXhyq22gcUpjqxiSl48pe7YzYKPvoEy8tIDXwr?=
- =?us-ascii?Q?J8hYROCW0fB1R2hPnP7mX8rA99UCmSNctClxMmDDkBm3WB+Ty6Pbg8lgnZXV?=
- =?us-ascii?Q?4sp1uzBJ5YXNULd+k/+9z88EXF+RwPstEu+DJ9P63bHpPwACH6cI/8PqwNm0?=
- =?us-ascii?Q?vRKwEsKZwgwGbkm1pN9O8ypA?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7369d7f5-bfca-4e5d-ecc8-08d8fb32d5be
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2021 08:38:22.9415
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UbnGTN/+Ob8ikH1G27e9lDLAfnCQFYGkXtu4L+SnZtoDdE16MNBlWA1QhXc1Az5ZmssmEPlGZJq1q+977JZnuA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7400
+X-TM-SNTS-SMTP: 7CFDA8CB831F2DE86455E79C381B3FB824379DAED8D4FA5615EB49D1A8F27F8D2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fugang Duan <fugang.duan@nxp.com>
-
-If MAC address read from nvmem cell and it is valid mac address,
-.of_get_mac_addr_nvmem() add new property "nvmem-mac-address" in
-ethernet node. Once user call .of_get_mac_address() to get MAC
-address again, it can read valid MAC address from device tree in
-directly.
-
-Signed-off-by: Fugang Duan <fugang.duan@nxp.com>
-Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
----
- drivers/of/of_net.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/of/of_net.c b/drivers/of/of_net.c
-index 6e411821583e..20c3ae17f95f 100644
---- a/drivers/of/of_net.c
-+++ b/drivers/of/of_net.c
-@@ -116,6 +116,10 @@ const void *of_get_mac_address(struct device_node *np)
- 	if (addr)
- 		return addr;
- 
-+	addr = of_get_mac_addr(np, "nvmem-mac-address");
-+	if (addr)
-+		return addr;
-+
- 	return of_get_mac_addr_nvmem(np);
- }
- EXPORT_SYMBOL(of_get_mac_address);
--- 
-2.17.1
+T24gRnJpLCAyMDIxLTA0LTA5IGF0IDEzOjMyICswODAwLCBJa2pvb24gSmFuZyB3cm90ZToNCj4g
+SGkgQ2h1bmZlbmcsDQo+IA0KPiBPbiBUaHUsIEFwciA4LCAyMDIxIGF0IDU6MzUgUE0gQ2h1bmZl
+bmcgWXVuIDxjaHVuZmVuZy55dW5AbWVkaWF0ZWsuY29tPiB3cm90ZToNCj4gPg0KPiA+IFdoZW4g
+dGhlIGRlZGljYXRlZCB3YWtlIGlycSBpcyBsZXZlbCB0cmlnZ2VyLCBlbmFibGUgaXQgYmVmb3Jl
+DQo+ID4gY2FsbGluZyBydW50aW1lX3N1c3BlbmQsIHdpbGwgdHJpZ2dlciBhbiBpbnRlcnJ1cHQu
+DQo+ID4NCj4gPiBlLmcuDQo+ID4gZm9yIGEgbG93IGxldmVsIHRyaWdnZXIgdHlwZSwgaXQncyBs
+b3cgbGV2ZWwgYXQgcnVubmluZyB0aW1lICgwKSwNCj4gPiBhbmQgYmVjb21lcyBoaWdoIGxldmVs
+IHdoZW4gZW50ZXJzIHN1c3BlbmQgKHJ1bnRpbWVfc3VzcGVuZCAoMSkgaXMNCj4gPiBjYWxsZWQp
+LCBhIHdha2V1cCBzaWduYWwgYXQgKDIpIG1ha2UgaXQgYmVjb21lIGxvdyBsZXZlbCwgd2FrZSBp
+cnENCj4gPiB3aWxsIGJlIHRyaWdnZXJlZC4NCj4gPg0KPiA+ICAgICAgICAgICAgICAgICAtLS0t
+LS0tLS0tLS0tLS0tLS0NCj4gPiAgICAgICAgICAgICAgICB8ICAgICAgICAgICBeICAgICBefA0K
+PiA+IC0tLS0tLS0tLS0tLS0tLS0gICAgICAgICAgIHwgICAgIHwgLS0tLS0tLS0tLS0tLS0NCj4g
+PiAgfDwtLS0oMCktLS0+fDwtLSgxKS0tfCAgICgzKSAgICgyKSAgICAoNCkNCj4gPg0KPiANCj4g
+Q2FuJ3Qgd2UganVzdCB1c2UgYSBmYWxsaW5nIGVkZ2UgdHlwZSBmb3IgdGhpcyBpcnEgbGluZT8N
+CkknbGwgdHJ5IGl0LCBidXQgdGhlIG9yaWdpbmFsIGNvZGUgc3RpbGwgZG9lc24ndCBwcm9jZXNz
+IGFib3ZlIG1lbnRpb25lZA0KY2FzZS4NCg0KPiANCj4gPiBpZiB3ZSBlbmFibGUgdGhlIHdha2Ug
+aXJxIGJlZm9yZSBjYWxsaW5nIHJ1bnRpbWVfc3VzcGVuZCBkdXJpbmcgKDApLA0KPiA+IGFuIGlu
+dGVycnVwdCB3aWxsIGFyaXNlLCBpdCBjYXVzZXMgcmVzdW1lIGltbWVkaWF0ZWx5Ow0KPiA+IGVu
+YWJsZSB3YWtlIGlycSBhZnRlciBjYWxsaW5nIHJ1bnRpbWVfc3VzcGVuZCwgZS5nLiBhdCAoMykg
+b3IgKDQpLA0KPiA+IHdpbGwgd29ya3MuDQo+ID4NCj4gPiBUaGlzIHBhdGNoIHNlZW1zIG5vIHNp
+ZGUgZWZmZWN0IG9uIGVkZ2UgdHJpZ2dlciB3YWtlIGlycS4NCj4gPg0KPiA+IFNpZ25lZC1vZmYt
+Ynk6IENodW5mZW5nIFl1biA8Y2h1bmZlbmcueXVuQG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4g
+PiAgZHJpdmVycy9iYXNlL3Bvd2VyL3J1bnRpbWUuYyB8IDUgKystLS0NCj4gPiAgMSBmaWxlIGNo
+YW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkNCj4gPg0KPiA+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2Jhc2UvcG93ZXIvcnVudGltZS5jIGIvZHJpdmVycy9iYXNlL3Bvd2VyL3J1
+bnRpbWUuYw0KPiA+IGluZGV4IGE0NmE3ZTMwODgxYi4uNzk2NzM5YTAxNWE1IDEwMDY0NA0KPiA+
+IC0tLSBhL2RyaXZlcnMvYmFzZS9wb3dlci9ydW50aW1lLmMNCj4gPiArKysgYi9kcml2ZXJzL2Jh
+c2UvcG93ZXIvcnVudGltZS5jDQo+ID4gQEAgLTYxOSwxMiArNjE5LDEyIEBAIHN0YXRpYyBpbnQg
+cnBtX3N1c3BlbmQoc3RydWN0IGRldmljZSAqZGV2LCBpbnQgcnBtZmxhZ3MpDQo+ID4gICAgICAg
+ICBfX3VwZGF0ZV9ydW50aW1lX3N0YXR1cyhkZXYsIFJQTV9TVVNQRU5ESU5HKTsNCj4gPg0KPiA+
+ICAgICAgICAgY2FsbGJhY2sgPSBSUE1fR0VUX0NBTExCQUNLKGRldiwgcnVudGltZV9zdXNwZW5k
+KTsNCj4gPiAtDQo+ID4gLSAgICAgICBkZXZfcG1fZW5hYmxlX3dha2VfaXJxX2NoZWNrKGRldiwg
+dHJ1ZSk7DQo+ID4gICAgICAgICByZXR2YWwgPSBycG1fY2FsbGJhY2soY2FsbGJhY2ssIGRldik7
+DQo+ID4gICAgICAgICBpZiAocmV0dmFsKQ0KPiA+ICAgICAgICAgICAgICAgICBnb3RvIGZhaWw7
+DQo+ID4NCj4gPiArICAgICAgIGRldl9wbV9lbmFibGVfd2FrZV9pcnFfY2hlY2soZGV2LCB0cnVl
+KTsNCj4gPiArDQo+ID4gICBub19jYWxsYmFjazoNCj4gPiAgICAgICAgIF9fdXBkYXRlX3J1bnRp
+bWVfc3RhdHVzKGRldiwgUlBNX1NVU1BFTkRFRCk7DQo+ID4gICAgICAgICBwbV9ydW50aW1lX2Rl
+YWN0aXZhdGVfdGltZXIoZGV2KTsNCj4gPiBAQCAtNjU5LDcgKzY1OSw2IEBAIHN0YXRpYyBpbnQg
+cnBtX3N1c3BlbmQoc3RydWN0IGRldmljZSAqZGV2LCBpbnQgcnBtZmxhZ3MpDQo+ID4gICAgICAg
+ICByZXR1cm4gcmV0dmFsOw0KPiA+DQo+ID4gICBmYWlsOg0KPiA+IC0gICAgICAgZGV2X3BtX2Rp
+c2FibGVfd2FrZV9pcnFfY2hlY2soZGV2KTsNCj4gPiAgICAgICAgIF9fdXBkYXRlX3J1bnRpbWVf
+c3RhdHVzKGRldiwgUlBNX0FDVElWRSk7DQo+ID4gICAgICAgICBkZXYtPnBvd2VyLmRlZmVycmVk
+X3Jlc3VtZSA9IGZhbHNlOw0KPiA+ICAgICAgICAgd2FrZV91cF9hbGwoJmRldi0+cG93ZXIud2Fp
+dF9xdWV1ZSk7DQo+ID4gLS0NCj4gPiAyLjE4LjANCj4gPg0KDQo=
 
