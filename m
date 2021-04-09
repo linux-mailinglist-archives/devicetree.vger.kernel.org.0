@@ -2,99 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9A1535A66A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 20:58:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E10A35A6D4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 21:18:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234666AbhDIS6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 14:58:12 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:43964 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234705AbhDIS6I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 14:58:08 -0400
-Received: by mail-ot1-f44.google.com with SMTP id s16-20020a0568301490b02901b83efc84a0so6618859otq.10;
-        Fri, 09 Apr 2021 11:57:55 -0700 (PDT)
+        id S234864AbhDITSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 15:18:32 -0400
+Received: from mail-oo1-f54.google.com ([209.85.161.54]:37402 "EHLO
+        mail-oo1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234692AbhDITSc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 15:18:32 -0400
+Received: by mail-oo1-f54.google.com with SMTP id c12-20020a4ae24c0000b02901bad05f40e4so1576311oot.4;
+        Fri, 09 Apr 2021 12:18:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=LG+U1xS2DK6TLT5pHY8ouyd0GBNLDbIxMC+TQlO4DLE=;
-        b=V/yUE4p5zFeyaN6q+eHISnrCD3iuqL8JK6fDUwJ4qpagiM2u2hjroHhBv3G48AOrF5
-         j4vfZUoKXYt+1yyH+lmP413kXIFyvJsrtBpp3YESWCzntK7c4UaboZFCLA3TuPa2oWFe
-         +5km9fjIXgUNXuHchHQPVxebifxfTcXvMptnTvRsdlkMnS0BePr/GQpXvv4L4QigWabd
-         WurZj60eHyyfWVUqxVhX5Cl4lGFGLVqhAUhCFWH3D+6qmGHsO62cIBcN1nhyBwTb+k8z
-         4YUDImgBlUJPuJIN0uscAwxDDZLzRizrPuipKiRXVCKydqIU8Rfg+rKNDfklG242wCtM
-         aGLw==
-X-Gm-Message-State: AOAM532bZbvnxvK77tweJVMZR4iCzJXV1R4E9dzHpXgooMi2glfs1iib
-        SNDX59JnQ/Q5AfqU0pfUxSVpP2/g+g==
-X-Google-Smtp-Source: ABdhPJwswKFCjImvzKBtfsPVs7k59+eVKtB46FhXaglSRAoS5pX1ifMFoq4LfXdYkMaRUNkNfrjICw==
-X-Received: by 2002:a9d:2ae1:: with SMTP id e88mr12943053otb.265.1617994674722;
-        Fri, 09 Apr 2021 11:57:54 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VjMcThsD8Y4lucSqD8pVZ5HlluzdLfGLCK2uslM1Uco=;
+        b=mVfY1smdHvuV5Fq02prK3t5fRwPz8jsHtNgguhyMJiTqBciW3N7sqqXyeDMT0SFqlt
+         ibffR6tIphboh0fiG1sG61o6bFsWOIvu8Q2tVBkUM2UZuVIyfFLvFpXewqIHgK2Hn2ED
+         1FsI55ugHlkix4MMgRfyt+CxiKU8yMH5rNvVn2kw2LHmQVgwas9H0CKQ/c+4qrCQzPB7
+         HcHpwL2vnIzRuQ8cxsvespEP/8Lazm6RHiiVjQ4YrjD0ZtmVFRMfth3MatHJweZyeKuM
+         cV2hFH7RKkJXl/dyXRul25Z8VOmzkBYpQEH87DwYXcnn8R2/NPj363ReZ4/LXOikhFwR
+         Qvaw==
+X-Gm-Message-State: AOAM530RiAlZRY6eBk1KDMMEZfj2s1GO3mS8uxUc8t0h1B7rqcNTrcID
+        bZPOtjHOd4zcGVhJMSckaLyAJFc0iQ==
+X-Google-Smtp-Source: ABdhPJyr3K8jftBnvEpBuHbO10uNCWCEykVlTa/XhVzh+PqdZMxycKX3mVBP0ZCy82ldIx6lZZ0+Cg==
+X-Received: by 2002:a05:6820:3c8:: with SMTP id s8mr13058135ooj.49.1617995898450;
+        Fri, 09 Apr 2021 12:18:18 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t2sm659928ool.18.2021.04.09.11.57.53
+        by smtp.gmail.com with ESMTPSA id m10sm196488oig.7.2021.04.09.12.18.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Apr 2021 11:57:54 -0700 (PDT)
-Received: (nullmailer pid 3960531 invoked by uid 1000);
-        Fri, 09 Apr 2021 18:57:53 -0000
+        Fri, 09 Apr 2021 12:18:17 -0700 (PDT)
+Received: (nullmailer pid 3988178 invoked by uid 1000);
+        Fri, 09 Apr 2021 19:18:15 -0000
+Date:   Fri, 9 Apr 2021 14:18:15 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Jiri Prchal <jiri.prchal@aksignal.cz>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Christian Eggers <ceggers@arri.de>,
-        Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20210409154720.130902-4-jiri.prchal@aksignal.cz>
-References: <20210409154720.130902-1-jiri.prchal@aksignal.cz> <20210409154720.130902-4-jiri.prchal@aksignal.cz>
-Subject: Re: [PATCH 3/3] nvmem: eeprom: add documentation for FRAM
-Date:   Fri, 09 Apr 2021 13:57:53 -0500
-Message-Id: <1617994673.262904.3960530.nullmailer@robh.at.kernel.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v3 1/8] dt-bindings: don't use ../dir for doc references
+Message-ID: <20210409191815.GA3987907@robh.at.kernel.org>
+References: <cover.1617972339.git.mchehab+huawei@kernel.org>
+ <68d3a1244119d1f2829c375b0ef554cf348bc89f.1617972339.git.mchehab+huawei@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <68d3a1244119d1f2829c375b0ef554cf348bc89f.1617972339.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 09 Apr 2021 17:47:20 +0200, Jiri Prchal wrote:
-> Added dt binding documentation.
+On Fri, 09 Apr 2021 14:47:45 +0200, Mauro Carvalho Chehab wrote:
+> As documents have been renamed and moved around, their
+> references will break, but this will be unnoticed, as the
+> script which checks for it won't handle "../" references.
 > 
-> Signed-off-by: Jiri Prchal <jiri.prchal@aksignal.cz>
+> So, replace them by the full patch.
+> 
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 > ---
->  Documentation/devicetree/bindings/eeprom/at25.yaml | 12 ++++++++++--
->  1 file changed, 10 insertions(+), 2 deletions(-)
+>  .../input/touchscreen/resistive-adc-touch.txt    |  2 +-
+>  .../devicetree/bindings/mfd/motorola-cpcap.txt   | 16 ++++++++--------
+>  2 files changed, 9 insertions(+), 9 deletions(-)
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/eeprom/at25.example.dts:40.17-27: Warning (reg_format): /example-0/fram@1:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/eeprom/at25.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/eeprom/at25.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/eeprom/at25.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/eeprom/at25.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/eeprom/at25.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/eeprom/at25.example.dt.yaml: example-0: fram@1:reg:0: [1] is too short
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/eeprom/at25.example.dt.yaml: fram@1: $nodename:0: 'fram@1' does not match '^eeprom@[0-9a-f]{1,2}$'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/eeprom/at25.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/eeprom/at25.example.dt.yaml: fram@1: compatible: 'oneOf' conditional failed, one must be fixed:
-	['cypress,fm25'] is too short
-	'atmel,at25' was expected
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/eeprom/at25.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/eeprom/at25.example.dt.yaml: fram@1: 'pagesize' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/eeprom/at25.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/eeprom/at25.example.dt.yaml: fram@1: 'size' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/eeprom/at25.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/eeprom/at25.example.dt.yaml: fram@1: 'address-width' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/eeprom/at25.yaml
-
-See https://patchwork.ozlabs.org/patch/1464448
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Applied, thanks!
