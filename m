@@ -2,78 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3847535A2A6
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 18:07:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B13DB35A2AA
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 18:08:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233332AbhDIQHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 12:07:37 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:41488 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229665AbhDIQHh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 12:07:37 -0400
-Received: by mail-ot1-f43.google.com with SMTP id l12-20020a9d6a8c0000b0290238e0f9f0d8so6148224otq.8;
-        Fri, 09 Apr 2021 09:07:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=OCJr7Vk+1FJPSb9Nhdjq3OzP+a2tNeZU1Kg0OHLMxSE=;
-        b=pPpdx7z5BDIZDegh3uJXHHm0MwSDc2qtfgTlZ94DiHNhc05w8qDqdcRygrvS5Gd3Mx
-         /ZQuyz+h3PmkSSsumqNqxwwCcFM1Sb95A+D/hIsqpEuzIQERvUxpDnaYuW7QzPx10TNA
-         YxKwN9UbhhnnevCJaQq9cDwYKyEJlrDCw3FJB1nQ+0X3goylTV0ElO2xABmVLJipsV+j
-         VjU1AWRTrDm7pJZEXBzh7nebPw3innanf/dFce+QEJaIB/z6YddHtffVzH3GhrN2mILB
-         lpPrbLr/CyIAimDgikmed+JavLRGoMLZnWMUpn/WKHc15AryN76wSFjl+eL8n0PuYbee
-         aOyw==
-X-Gm-Message-State: AOAM530pXodyWUV0S7cEWbUENvAz5btFgB47OduCUyusksy0JEQ0rYHa
-        Vb3gWa7upYnnnew1u88hM22usLllFw==
-X-Google-Smtp-Source: ABdhPJwfqJ/8w13GYqG7DeY3Ek9KCysjpMwYFpXqJFVhsBOItZGKZBDlG29F90Y9Brx/5lnXI8k28Q==
-X-Received: by 2002:a9d:550b:: with SMTP id l11mr12532876oth.218.1617984443767;
-        Fri, 09 Apr 2021 09:07:23 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d21sm554705oic.54.2021.04.09.09.07.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Apr 2021 09:07:22 -0700 (PDT)
-Received: (nullmailer pid 3735531 invoked by uid 1000);
-        Fri, 09 Apr 2021 16:07:22 -0000
-Date:   Fri, 9 Apr 2021 11:07:22 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Eugen Hristev <eugen.hristev@microchip.com>
-Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 28/30] dt-bindings: media: atmel: add microchip-xisc
- binding
-Message-ID: <20210409160722.GA3733611@robh.at.kernel.org>
-References: <20210405155105.162529-1-eugen.hristev@microchip.com>
- <20210405155105.162529-29-eugen.hristev@microchip.com>
+        id S233527AbhDIQIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 12:08:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52554 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233657AbhDIQIW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Apr 2021 12:08:22 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A98A3601FC;
+        Fri,  9 Apr 2021 16:08:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1617984489;
+        bh=PULqMndYVkQ6GkmnOOQSw0zg0mec7exTRm08KyyKi4w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=apeJtpAtgHUq3Iz7+rcv9WzLS5HqcM+CLDyueF+iqCIO/U+onpxBuCFF9dpQo1m5J
+         XYwqmSBcQYe9sQCNIhTwYsi6LK0rzcbk5oq+fI5/y0RDFOv6auKw4OBdqE3NrsNOJO
+         KcE4SEi3gTx2qIxMMWaohFTOpFy4BNC/wZnG2Ct+1CQlooArpVzksr59kyI4H2c0rj
+         1g3PM809poFJpdETY4f6xIdDi1jEgaLd9n+mE935huH2qAhhqJsD4iAYYp/Q9S5iJt
+         zuf1CAeP41iC3xAtducX6yX44H0NDNFkhNW6rwabeaT7HnM4r9+RJPqKCVB5u6WaQo
+         Zq05PwKFI7iDQ==
+Date:   Fri, 9 Apr 2021 17:07:50 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>, bert@biot.com
+Subject: Re: [RFC PATCH 1/2] regmap: add miim bus support
+Message-ID: <20210409160750.GD4436@sirena.org.uk>
+References: <cover.1617914861.git.sander@svanheule.net>
+ <489e8a2d22dc8a5aaa3600289669c3bf0a15ba19.1617914861.git.sander@svanheule.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="J5MfuwkIyy7RmF4Q"
 Content-Disposition: inline
-In-Reply-To: <20210405155105.162529-29-eugen.hristev@microchip.com>
+In-Reply-To: <489e8a2d22dc8a5aaa3600289669c3bf0a15ba19.1617914861.git.sander@svanheule.net>
+X-Cookie: I'm shaving!!  I'M SHAVING!!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 05, 2021 at 06:51:03PM +0300, Eugen Hristev wrote:
-> Add bindings for the microchip xisc, a driver based on atmel-isc.
-> It shares common code with atmel-isc, but the xisc is the next generation
-> ISC which is present on sama7g5 product.
-> It has an enhanced pipeline, additional modules, formats, and it supports
-> not only parallel sensors, but also serial sensors, by connecting to a demux
-> endpoint present on sama7g5.
-> One of the key points for creating a new binding is the clocking scheme, as
-> atmel-isc requires 3 mandatory clocks, the microchip-xisc requires a single
-> input clock.
-> 
-> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-> ---
-> 
-> Hello Rob, all,
-> 
-> I did not convert this yet to yaml because I would like first your feedback
-> if the binding is good.
-> If it's fine I will convert both this new binding and the old atmel-isc
-> to yaml.
 
-Looks pretty straight forward.
+--J5MfuwkIyy7RmF4Q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Rob
+On Thu, Apr 08, 2021 at 10:52:34PM +0200, Sander Vanheule wrote:
+> Basic support for MIIM bus access. Support only includes clause-22
+> register access, with 5-bit addresses, and 16-bit wide registers.
+
+What is "MIIM"?  A quick search isn't showing up useful hits for that.
+Why not just call this MDIO like the rest of the kernel is doing, it
+seems like using something else is at best going to make it harder to
+discover this code?  If MIIM is some subset or something it's not
+obvious how we're limited to that.
+
+--J5MfuwkIyy7RmF4Q
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmBwe9YACgkQJNaLcl1U
+h9CGLQf9EBRj6sYahOtMiNq61Anrqx80NYXUbskhcEDD83AyuDH7fClBSFu5a/Rj
+RorpF69jhF+/VIj9ZdoG2+BKlGWCmOetkaAzbTsLOdAHh+2mpyQuy5TKBticSbRA
+EzPQQwuJUCFtdKLrV++r2LGG91Kdlext30VgVpljY62jw7dOvTUAdt2g9vydgnTy
+wQDGmg6tSBLiH3IiJwT4jyx/xMXEwsfAXBgitFDcW3Ft15xVkqWidI4FV8QWQSlX
+xmxyMf1tGGygOGJSbFhLfkBNdWlT2u49dHaVSqq48nN6qCoxqfpRue5W0c6KmqGR
+77t5cLgRnvKqqPSbrElY73I7WkjASw==
+=6qSC
+-----END PGP SIGNATURE-----
+
+--J5MfuwkIyy7RmF4Q--
