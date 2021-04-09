@@ -2,134 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14FAE35A02A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 15:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C64C35A034
+	for <lists+devicetree@lfdr.de>; Fri,  9 Apr 2021 15:43:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233725AbhDINmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Apr 2021 09:42:10 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:52444 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233856AbhDINmD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 09:42:03 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 139Dfbol029329;
-        Fri, 9 Apr 2021 08:41:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1617975697;
-        bh=yzQFMlEvLc1NJ8+6qQzAMS/IJa1/2LrIrpQLN6vAeQU=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=UNQR6TKCVjkHc2LapYnv+gSYZDa9D7jgM4msj9gaN4CbCbyhk70VjclQuaPZ27NTK
-         dO4M2i4au2NgZaIC+aksBNFvCZq2NCDdC13YvOL8Lh0I5CSU8dyfplbQVb11I3YiKZ
-         ZVVVF9vzfQ55HLYEixq0dNtSgTG3w9PjhNOwd+Ho=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 139DfbJF116872
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 9 Apr 2021 08:41:37 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 9 Apr
- 2021 08:41:37 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Fri, 9 Apr 2021 08:41:36 -0500
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 139Dewmd029277;
-        Fri, 9 Apr 2021 08:41:31 -0500
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Sriram Dash <sriram.dash@samsung.com>,
-        <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-Subject: [PATCH 4/4] can: m_can_platform: Add support for transceiver as phy
-Date:   Fri, 9 Apr 2021 19:10:54 +0530
-Message-ID: <20210409134056.18740-5-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210409134056.18740-1-a-govindraju@ti.com>
-References: <20210409134056.18740-1-a-govindraju@ti.com>
+        id S233395AbhDINnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Apr 2021 09:43:32 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:37086 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233051AbhDINnb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Apr 2021 09:43:31 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 86B221F467A1
+Received: by earth.universe (Postfix, from userid 1000)
+        id 613083C0C96; Fri,  9 Apr 2021 15:43:15 +0200 (CEST)
+Date:   Fri, 9 Apr 2021 15:43:15 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Collabora Kernel ML <kernel@collabora.com>
+Subject: Re: [PATCHv2 35/38] dt-bindings: power: supply: ab8500: Convert to
+ DT schema format
+Message-ID: <20210409134315.tjgd7nvpo4tru2oo@earth.universe>
+References: <20210317134904.80737-1-sebastian.reichel@collabora.com>
+ <20210317134904.80737-36-sebastian.reichel@collabora.com>
+ <CACRpkdZerDHY0EsZxqadbbWaCCjw7nkOE8VOGPhoL-Rjwp4Bhg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="6ohqhuaygyq2szeg"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdZerDHY0EsZxqadbbWaCCjw7nkOE8VOGPhoL-Rjwp4Bhg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Faiz Abbas <faiz_abbas@ti.com>
 
-Add support for implementing transceiver node as phy. The max_bitrate is
-obtained by getting a phy attribute.
+--6ohqhuaygyq2szeg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
- drivers/net/can/m_can/m_can_platform.c | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+Hi Linus,
 
-diff --git a/drivers/net/can/m_can/m_can_platform.c b/drivers/net/can/m_can/m_can_platform.c
-index 599de0e08cd7..4a762b5a21d8 100644
---- a/drivers/net/can/m_can/m_can_platform.c
-+++ b/drivers/net/can/m_can/m_can_platform.c
-@@ -6,6 +6,7 @@
- // Copyright (C) 2018-19 Texas Instruments Incorporated - http://www.ti.com/
- 
- #include <linux/platform_device.h>
-+#include <linux/phy/phy.h>
- 
- #include "m_can.h"
- 
-@@ -67,7 +68,9 @@ static int m_can_plat_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	void __iomem *addr;
- 	void __iomem *mram_addr;
-+	struct phy *transceiver;
- 	int irq, ret = 0;
-+	u32 bitrate_max;
- 
- 	mcan_class = m_can_class_allocate_dev(&pdev->dev,
- 					      sizeof(struct m_can_plat_priv));
-@@ -101,6 +104,28 @@ static int m_can_plat_probe(struct platform_device *pdev)
- 		goto probe_fail;
- 	}
- 
-+	transceiver = devm_phy_optional_get(&pdev->dev, "can_transceiver");
-+	if (IS_ERR(transceiver)) {
-+		ret = PTR_ERR(transceiver);
-+		dev_err(&pdev->dev, "error while getting phy, err=%d\n", ret);
-+		return ret;
-+	}
-+
-+	if (!transceiver) {
-+		dev_warn(&pdev->dev, "No transceiver phy found\n");
-+	} else {
-+		ret = phy_power_on(transceiver);
-+		if (ret) {
-+			dev_err(&pdev->dev, "error powering on phy, err=%d\n", ret);
-+			return ret;
-+		}
-+		/* converting from Mbps to bps */
-+		bitrate_max = (transceiver->attrs.max_link_rate) * 1000000;
-+		if (!bitrate_max)
-+			dev_warn(&pdev->dev, "Invalid value for transceiver max bitrate. Ignoring bitrate limit\n");
-+		priv->cdev.can.bitrate_max = bitrate_max;
-+	}
-+
- 	priv->base = addr;
- 	priv->mram_base = mram_addr;
- 
--- 
-2.17.1
+On Fri, Apr 09, 2021 at 01:28:05AM +0200, Linus Walleij wrote:
+> On Wed, Mar 17, 2021 at 2:51 PM Sebastian Reichel
+> <sebastian.reichel@collabora.com> wrote:
+>=20
+> > Convert the binding to DT schema format.
+> >
+> > Note: The battery node does not have a compatible value and needs
+> > to be described from the binding file for the PMIC. That has not
+> > yet been converted, so I kept the information in plaintext for now.
+> >
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+>=20
+> Thanks for doing this Sebastian:
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
+Thanks (I already merged this, though).
+
+> Long term I want to get rid of the "charging algorithm" device node,
+> as can be easily seen that is not a real hardware device but just
+> some mockery to get a platform device up and probed. It is actually
+> a library. But for now we need to keep it around.
+
+Yes, the ab8500 charging algorithm obviously does not describe
+hardware and should go away, just as charger-manager driver.
+Optimally power-supply would provide a framework for this.
+
+The battery node on the other hand does describe hardware (the raw
+battery cells) and we have a common binding for this nowadays:
+
+Documentation/devicetree/bindings/power/supply/battery.yaml
+
+(At the moment it has neither properties for the chemistry nor
+for temperature sensor position)
+
+-- Sebastian
+
+--6ohqhuaygyq2szeg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmBwWeoACgkQ2O7X88g7
++pryfBAAlLZTxzPZTIprclehAIr7GtqVvIw4jYjbGiwvJHAUaNLHhI47YFtEajlh
+7ArUmph2VE3VtQcCUgDti/xcJLKWQQX8WsB11K4DjnAFgX5uZwcXmTmHxUhB2WS0
+4Eloa35jMNdQZEsMM8vNroVTy71XQtxmPJZqBTjSsfpP6SPNoEZwhusF7j9E+Y51
+eYLnDnXrs9Pof+WW9bkVR0Ub5WB9CU6rDYq1DzfZ46rtZu29Fj63bhj+A1OXJonO
+fNtuSMMzM/aBkZeXA1n5Gp4B4c61IHNfjSiJYJD/QdQK0CaaGQOyLMb1bn6BfYG/
+HZJx8/n7VbnrIa+W8Meb1lgXqVZ1p3cLcHn2apWTdo5XfzVrJEKHogBFINFRZhFu
+UIsNHMUP4mLJUj8R0SM5SBCKKjV/+hvyO9tMQ1cpktJkdBD4vIohcEh8B9JWtVqv
+hK4iVugySBaaNENIu9KQMMK4Y+2tTBUsO2qrkenq8CvzLbARWKTJJ/bj8WFZys+K
+KNmaQIPIEnC16QIQukTY0RtwWFtZf9s2C5ukAskm0t91AAwlqNfeF6i5YM+RrIEg
+3gBiJHK87nwRXu5JvxFAiVKu39+etfahVxLP30xzcazxtweB/5c4vxjwo8xyacgN
+iVeM+YEseTkGipuiLGVBRQmA7jyuCng0zltG/C2eIgGs1cxNCKo=
+=6v6Y
+-----END PGP SIGNATURE-----
+
+--6ohqhuaygyq2szeg--
