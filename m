@@ -2,148 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0870935AD2F
-	for <lists+devicetree@lfdr.de>; Sat, 10 Apr 2021 14:08:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A69735AD56
+	for <lists+devicetree@lfdr.de>; Sat, 10 Apr 2021 14:40:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234376AbhDJMIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Apr 2021 08:08:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57266 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231279AbhDJMIn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 10 Apr 2021 08:08:43 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9653C611AF;
-        Sat, 10 Apr 2021 12:08:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1618056507;
-        bh=/WH6SBPC+bQg04mE0kmlbX3u2IbS/MY+cappevAC1Zw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cjh7YLusfa6RqhdKrp9QIdy45lk9Rh8Dc3ufuRkcwwcmO1/sWDMIx8AQuX0AHWT02
-         WN1JwnTUHIytWZIQhSr9PanW9tLX7DESPOxTysGXvorLzJnE2Vbud8ppX/bqZ09H6Q
-         76gUEy7uT9vkTpxg5nAMisacuL3TQ4o0JwnF/Gv4=
-Date:   Sat, 10 Apr 2021 14:08:24 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        stable <stable@vger.kernel.org>
-Subject: Re: [PATCH v2] of: property: fw_devlink: do not link ".*,nr-gpios"
-Message-ID: <YHGVOO0j2VpzounG@kroah.com>
-References: <20210405031436.2465475-1-ilya.lipnitskiy@gmail.com>
- <20210405222540.18145-1-ilya.lipnitskiy@gmail.com>
- <CAGETcx-gF4r1TeY2AA4Vwb5e+5O+_O3E2ENo5tKhh=n_EOJnEQ@mail.gmail.com>
- <20210407003408.GA2551507@robh.at.kernel.org>
- <CAGETcx8=sSWj_OmM1GPXNiLcv3anEkJnb_C7NoO9mNwS-O0KhQ@mail.gmail.com>
- <CAL_JsqLs4c3+9WwV6Vnk9Tovb6HiyH7t+_WXYP-ZDO72mOcO+w@mail.gmail.com>
- <CAGETcx-W_K9NFV51iBvyZ-Q+1LCUM3qipMmap9yEW_eu9B7CCg@mail.gmail.com>
- <CALCv0x1qOKkMmwJu82sXEJ3L5Y2n4eQp8n+SN1HYwcgpYm6CAw@mail.gmail.com>
- <CAL_JsqJN5W60Cy6ec5HJxKMRag-MYO3yqkbBnWp6k_u6h85T=A@mail.gmail.com>
- <CAGETcx_3CYxrSBtTgRkyRJUS0kdtn3ukLYpSznY-e9O6eOe+xA@mail.gmail.com>
+        id S234334AbhDJMkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Apr 2021 08:40:32 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:45749 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234262AbhDJMka (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Apr 2021 08:40:30 -0400
+Received: from mail-ed1-f71.google.com ([209.85.208.71])
+        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.86_2)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1lVCuL-0002YR-As
+        for devicetree@vger.kernel.org; Sat, 10 Apr 2021 12:40:13 +0000
+Received: by mail-ed1-f71.google.com with SMTP id j18so584296edv.6
+        for <devicetree@vger.kernel.org>; Sat, 10 Apr 2021 05:40:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=k8kbv7tLUPin7vEZz6Y8S8Ho2i9EHLVgMoQhgUpPZTc=;
+        b=azRiUEYS9qXWjzZnxGnZ5Ji7hUeA4jLzOlPkPAmk1MjXs/bgc/UbZWAyt1pzXrQ0bz
+         m9tqNL/l1iETsOmFemwD78KmVGRbFKa07nrMzS/BcVCbNwTAUws07SkzlI533gMDjC0l
+         86aRKLw2pNjJiiRUprdwRVzAl6ki6wywQXaH9JCyWD6BsXGSYc6NUQpCMkqQUBw4/BS/
+         0QQPro4e1KOtFPryo46K4T5cC8ef/+iNrcEmgW5iFlyFaHq/a+oclKmCiHqjCJm7iI7R
+         C6WgRcfDac3555dzll0M+GTQ0efapLFKdvviFzrPmoRgo9TmeQj964brPVzU9ZL4Qw8M
+         36PQ==
+X-Gm-Message-State: AOAM5335Q4DgyEZu4xq2yNE2KS1Nm6I6hDTUq0O7PjUuylCQYraVlTB1
+        +MxCIyUgg0tXDpNho6Awh/MM2c6nR9bOOXdI5evChmciiZREUJuskCwhOIsx1huyynKTN0FjY5F
+        8f63D8uHTy6Q1YSqRhBtg8GRuvwpIpYn0CYUh1Bw=
+X-Received: by 2002:a05:6402:148a:: with SMTP id e10mr21482440edv.377.1618058413095;
+        Sat, 10 Apr 2021 05:40:13 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwnEqzqI9N9YfHRefBuhHMer8IAZFUeA1p/w31AAx1VON2hHKiqTW68RFjQfE3PCZ9Bpj9RyA==
+X-Received: by 2002:a05:6402:148a:: with SMTP id e10mr21482422edv.377.1618058412954;
+        Sat, 10 Apr 2021 05:40:12 -0700 (PDT)
+Received: from [192.168.1.115] (xdsl-188-155-192-147.adslplus.ch. [188.155.192.147])
+        by smtp.gmail.com with ESMTPSA id d6sm3149960edr.21.2021.04.10.05.40.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 10 Apr 2021 05:40:12 -0700 (PDT)
+Subject: Re: [PATCH v5 04/16] memory: mtk-smi: Add device-link between
+ smi-larb and smi-common
+To:     Yong Wu <yong.wu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Will Deacon <will.deacon@arm.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
+        chao.hao@mediatek.com, ming-fan.chen@mediatek.com,
+        yi.kuo@mediatek.com, eizan@chromium.org, acourbot@chromium.org
+References: <20210410091128.31823-1-yong.wu@mediatek.com>
+ <20210410091128.31823-5-yong.wu@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <ea7ed30f-050d-2d38-7c61-1e0c192f6ded@canonical.com>
+Date:   Sat, 10 Apr 2021 14:40:11 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGETcx_3CYxrSBtTgRkyRJUS0kdtn3ukLYpSznY-e9O6eOe+xA@mail.gmail.com>
+In-Reply-To: <20210410091128.31823-5-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 09, 2021 at 12:36:36PM -0700, Saravana Kannan wrote:
-> On Fri, Apr 9, 2021 at 12:26 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Wed, Apr 7, 2021 at 3:45 PM Ilya Lipnitskiy
-> > <ilya.lipnitskiy@gmail.com> wrote:
-> > >
-> > > On Tue, Apr 6, 2021 at 6:24 PM Saravana Kannan <saravanak@google.com> wrote:
-> > > >
-> > > > On Tue, Apr 6, 2021 at 6:10 PM Rob Herring <robh@kernel.org> wrote:
-> > > > >
-> > > > > On Tue, Apr 6, 2021 at 7:46 PM Saravana Kannan <saravanak@google.com> wrote:
-> > > > > >
-> > > > > > On Tue, Apr 6, 2021 at 5:34 PM Rob Herring <robh@kernel.org> wrote:
-> > > > > > >
-> > > > > > > On Tue, Apr 06, 2021 at 04:09:10PM -0700, Saravana Kannan wrote:
-> > > > > > > > On Mon, Apr 5, 2021 at 3:26 PM Ilya Lipnitskiy
-> > > > > > > > <ilya.lipnitskiy@gmail.com> wrote:
-> > > > > > > > >
-> > > > > > > > > [<vendor>,]nr-gpios property is used by some GPIO drivers[0] to indicate
-> > > > > > > > > the number of GPIOs present on a system, not define a GPIO. nr-gpios is
-> > > > > > > > > not configured by #gpio-cells and can't be parsed along with other
-> > > > > > > > > "*-gpios" properties.
-> > > > > > > > >
-> > > > > > > > > nr-gpios without the "<vendor>," prefix is not allowed by the DT
-> > > > > > > > > spec[1], so only add exception for the ",nr-gpios" suffix and let the
-> > > > > > > > > error message continue being printed for non-compliant implementations.
-> > > > > > > > >
-> > > > > > > > > [0]: nr-gpios is referenced in Documentation/devicetree/bindings/gpio:
-> > > > > > > > >  - gpio-adnp.txt
-> > > > > > > > >  - gpio-xgene-sb.txt
-> > > > > > > > >  - gpio-xlp.txt
-> > > > > > > > >  - snps,dw-apb-gpio.yaml
-> > > > > > > > >
-> > > > > > > > > [1]:
-> > > > > > > > > Link: https://github.com/devicetree-org/dt-schema/blob/cb53a16a1eb3e2169ce170c071e47940845ec26e/schemas/gpio/gpio-consumer.yaml#L20
-> > > > > > > > >
-> > > > > > > > > Fixes errors such as:
-> > > > > > > > >   OF: /palmbus@300000/gpio@600: could not find phandle
-> > > > > > > > >
-> > > > > > > > > Fixes: 7f00be96f125 ("of: property: Add device link support for interrupt-parent, dmas and -gpio(s)")
-> > > > > > > > > Signed-off-by: Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
-> > > > > > > > > Cc: Saravana Kannan <saravanak@google.com>
-> > > > > > > > > Cc: <stable@vger.kernel.org> # 5.5.x
-> > > > > > > > > ---
-> > > > > > > > >  drivers/of/property.c | 11 ++++++++++-
-> > > > > > > > >  1 file changed, 10 insertions(+), 1 deletion(-)
-> > > > > > > > >
-> > > > > > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > > > > > > > index 2046ae311322..1793303e84ac 100644
-> > > > > > > > > --- a/drivers/of/property.c
-> > > > > > > > > +++ b/drivers/of/property.c
-> > > > > > > > > @@ -1281,7 +1281,16 @@ DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
-> > > > > > > > >  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
-> > > > > > > > >  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
-> > > > > > > > >  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
-> > > > > > > > > -DEFINE_SUFFIX_PROP(gpios, "-gpios", "#gpio-cells")
-> > > > > > > > > +
-> > > > > > > > > +static struct device_node *parse_gpios(struct device_node *np,
-> > > > > > > > > +                                      const char *prop_name, int index)
-> > > > > > > > > +{
-> > > > > > > > > +       if (!strcmp_suffix(prop_name, ",nr-gpios"))
-> > > > > > > > > +               return NULL;
-> > > > > > > >
-> > > > > > > > Ah I somehow missed this patch. This gives a blanked exception for
-> > > > > > > > vendor,nr-gpios. I'd prefer explicit exceptions for all the instances
-> > > > > > > > of ",nr-gpios" we are grandfathering in. Any future additions should
-> > > > > > > > be rejected. Can we do that please?
-> > > > > > > >
-> > > > > > > > Rob, you okay with making this list more explicit?
-> > > > > > >
-> > > > > > > Not the kernel's job IMO. A schema is the right way to handle that.
-> > > > > >
-> > > > > > Ok, that's fine by me. Btw, let's land this in driver-core? I've made
-> > > > > > changes there and this might cause conflicts. Not sure.
-> > > > >
-> > > > > It merges with linux-next fine. You'll need to resend this to Greg if
-> > > > > you want to do that.
-> > > > >
-> > > > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > >
-> > > > Hi Greg,
-> > > >
-> > > > Can you pull this into driver-core please?
-> > > Do you want me to re-spin on top of driver-core? The patch is
-> > > currently based on dt/next in robh/linux.git
-> >
-> > I did say you need to resend the patch to Greg, but since there's no
-> > movement on this and I have other things to send upstream, I've
-> > applied it.
+On 10/04/2021 11:11, Yong Wu wrote:
+> Normally, If the smi-larb HW need work, we should enable the smi-common
+> HW power and clock firstly.
+> This patch adds device-link between the smi-larb dev and the smi-common
+> dev. then If pm_runtime_get_sync(smi-larb-dev), the pm_runtime_get_sync
+> (smi-common-dev) will be called automatically.
 > 
-> :'(
+> Also, Add DL_FLAG_STATELESS to avoid the smi-common clocks be gated when
+> probe.
 > 
-> If it's not too late, can we please drop it? I'm sure Greg would be
-> okay with picking this up.
+> CC: Matthias Brugger <matthias.bgg@gmail.com>
+> Suggested-by: Tomasz Figa <tfiga@chromium.org>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>  drivers/memory/mtk-smi.c | 19 ++++++++++---------
+>  1 file changed, 10 insertions(+), 9 deletions(-)
 
-It's in Linus's tree, why does it matter who sends it in?
+I understood this is a dependency for other patches, so:
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-{sigh}
+If I am wrong and I can take it via memory tree, let me know.
+
+Best regards,
+Krzysztof
