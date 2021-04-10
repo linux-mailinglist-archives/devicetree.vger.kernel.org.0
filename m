@@ -2,93 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3017C35AC52
-	for <lists+devicetree@lfdr.de>; Sat, 10 Apr 2021 11:16:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0870935AD2F
+	for <lists+devicetree@lfdr.de>; Sat, 10 Apr 2021 14:08:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbhDJJQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Apr 2021 05:16:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46050 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229537AbhDJJQ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Apr 2021 05:16:58 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8CC4C061762;
-        Sat, 10 Apr 2021 02:16:43 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id y124-20020a1c32820000b029010c93864955so5931996wmy.5;
-        Sat, 10 Apr 2021 02:16:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=43mUlGvVYGuNLrekJwI4Gc0DXIkRXywrJQsY4UWWlS8=;
-        b=rh+ruAb9P4RvSytrbNKf13EhS0YyK9i5aaO2cM5ZpyG5SjjKCO/7Vo+k9WO5ILnFdX
-         lbgOrqQugR4jz2glMbwgQcPAx8Rua357UkROWkfqYDyH3eXUeZo9fRNtfK3UIAm/Wr+a
-         RKTVcAuV0UdfOLp3gX3/MHbVqdE6kTyhfc1gbk0JZfnYQSNlAmdtN2Piho2Bu5k+E9cQ
-         R3h455RXuQKfMIvBsTVGa3ZMgie/Ei1SdfI5kMhoESRGqURgEkkDj5saUPfv0LKFsbvI
-         7aOY5Yc1EBju+lDulHGeQ8xMF4Ow20FQE8S2y6Ny0Xudj3rj6xTOf0gkDfS+Gb4XiW4G
-         OJsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=43mUlGvVYGuNLrekJwI4Gc0DXIkRXywrJQsY4UWWlS8=;
-        b=AAm6Oi9WRFKSZ0B88jj9C10H7QJoVcjHWkB1/Ue4fQRNN8R0fBKjYMBJ73q4bsc/WF
-         Qk4rws3gRZJd+PrS4FnisHvDmlLdTcYxWZLrKuz2MW82+Cz8lfWzAzD43AdIMaD55GVo
-         V05Q2VZWD0oKwvbk4mO3MKv0a3ZyZfwm13Vj7CPX6Ww0oOhRdRjBfUtVKIdGRev3TlR5
-         2Rp7B4aziH5pDbPXzBTj6Nizy2aDWkqINRXFZG8VqOQhZlEQo5gQYLEa7lmeO/RA8Iz8
-         JZYsGu45FYYp0Df9dm/XRMzg8MQFesEy2eHyxTNX4ahUujGQ4sYDiy4HFWdyB9a6UeZJ
-         f4Ig==
-X-Gm-Message-State: AOAM533OxiMjgscDgZ5hZw6SE/BdzhvC8aBkxEhz9gwyh/b/iyc/w5SV
-        K3pGydfES4R+R+Y/rM3ss5yaLY85xShjRg==
-X-Google-Smtp-Source: ABdhPJzkioRmTpd4/s3QPcvqK9am0YdoTNAZDabTAybYSdHej2HBT4PyTOS05otDqq9AF0noYu18Qg==
-X-Received: by 2002:a05:600c:3590:: with SMTP id p16mr17388059wmq.140.1618046202526;
-        Sat, 10 Apr 2021 02:16:42 -0700 (PDT)
-Received: from [192.168.1.101] (abac128.neoplus.adsl.tpnet.pl. [83.6.166.128])
-        by smtp.gmail.com with ESMTPSA id c18sm8287384wrp.33.2021.04.10.02.16.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Apr 2021 02:16:42 -0700 (PDT)
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8994: Reserve gpio ranges
-To:     Petr Vorel <petr.vorel@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ricardo Ribalda <ribalda@kernel.org>,
+        id S234376AbhDJMIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Apr 2021 08:08:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57266 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231279AbhDJMIn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 10 Apr 2021 08:08:43 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9653C611AF;
+        Sat, 10 Apr 2021 12:08:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1618056507;
+        bh=/WH6SBPC+bQg04mE0kmlbX3u2IbS/MY+cappevAC1Zw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cjh7YLusfa6RqhdKrp9QIdy45lk9Rh8Dc3ufuRkcwwcmO1/sWDMIx8AQuX0AHWT02
+         WN1JwnTUHIytWZIQhSr9PanW9tLX7DESPOxTysGXvorLzJnE2Vbud8ppX/bqZ09H6Q
+         76gUEy7uT9vkTpxg5nAMisacuL3TQ4o0JwnF/Gv4=
+Date:   Sat, 10 Apr 2021 14:08:24 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20210405200259.23525-1-petr.vorel@gmail.com>
- <20210405225222.GD904837@yoga>
- <CACRpkdZQ8qiqFPa0X8deVjZ7nLn_E6s8fmJdr5Ji8AuyJms1ug@mail.gmail.com>
- <YG9TWEJlpDmNeeit@pevik> <ea376d51-cd6c-0028-9602-d007c2bba71e@gmail.com>
- <YG/HwrzRcm7bwgFe@pevik> <20210409033726.GT904837@yoga>
- <YHE9Df/Ztq7VaoK2@pevik>
-From:   Konrad Dybcio <konradybcio@gmail.com>
-Message-ID: <10d2cd96-3c35-2b06-82f7-98800888e244@gmail.com>
-Date:   Sat, 10 Apr 2021 11:16:35 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        stable <stable@vger.kernel.org>
+Subject: Re: [PATCH v2] of: property: fw_devlink: do not link ".*,nr-gpios"
+Message-ID: <YHGVOO0j2VpzounG@kroah.com>
+References: <20210405031436.2465475-1-ilya.lipnitskiy@gmail.com>
+ <20210405222540.18145-1-ilya.lipnitskiy@gmail.com>
+ <CAGETcx-gF4r1TeY2AA4Vwb5e+5O+_O3E2ENo5tKhh=n_EOJnEQ@mail.gmail.com>
+ <20210407003408.GA2551507@robh.at.kernel.org>
+ <CAGETcx8=sSWj_OmM1GPXNiLcv3anEkJnb_C7NoO9mNwS-O0KhQ@mail.gmail.com>
+ <CAL_JsqLs4c3+9WwV6Vnk9Tovb6HiyH7t+_WXYP-ZDO72mOcO+w@mail.gmail.com>
+ <CAGETcx-W_K9NFV51iBvyZ-Q+1LCUM3qipMmap9yEW_eu9B7CCg@mail.gmail.com>
+ <CALCv0x1qOKkMmwJu82sXEJ3L5Y2n4eQp8n+SN1HYwcgpYm6CAw@mail.gmail.com>
+ <CAL_JsqJN5W60Cy6ec5HJxKMRag-MYO3yqkbBnWp6k_u6h85T=A@mail.gmail.com>
+ <CAGETcx_3CYxrSBtTgRkyRJUS0kdtn3ukLYpSznY-e9O6eOe+xA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <YHE9Df/Ztq7VaoK2@pevik>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAGETcx_3CYxrSBtTgRkyRJUS0kdtn3ukLYpSznY-e9O6eOe+xA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Apr 09, 2021 at 12:36:36PM -0700, Saravana Kannan wrote:
+> On Fri, Apr 9, 2021 at 12:26 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Wed, Apr 7, 2021 at 3:45 PM Ilya Lipnitskiy
+> > <ilya.lipnitskiy@gmail.com> wrote:
+> > >
+> > > On Tue, Apr 6, 2021 at 6:24 PM Saravana Kannan <saravanak@google.com> wrote:
+> > > >
+> > > > On Tue, Apr 6, 2021 at 6:10 PM Rob Herring <robh@kernel.org> wrote:
+> > > > >
+> > > > > On Tue, Apr 6, 2021 at 7:46 PM Saravana Kannan <saravanak@google.com> wrote:
+> > > > > >
+> > > > > > On Tue, Apr 6, 2021 at 5:34 PM Rob Herring <robh@kernel.org> wrote:
+> > > > > > >
+> > > > > > > On Tue, Apr 06, 2021 at 04:09:10PM -0700, Saravana Kannan wrote:
+> > > > > > > > On Mon, Apr 5, 2021 at 3:26 PM Ilya Lipnitskiy
+> > > > > > > > <ilya.lipnitskiy@gmail.com> wrote:
+> > > > > > > > >
+> > > > > > > > > [<vendor>,]nr-gpios property is used by some GPIO drivers[0] to indicate
+> > > > > > > > > the number of GPIOs present on a system, not define a GPIO. nr-gpios is
+> > > > > > > > > not configured by #gpio-cells and can't be parsed along with other
+> > > > > > > > > "*-gpios" properties.
+> > > > > > > > >
+> > > > > > > > > nr-gpios without the "<vendor>," prefix is not allowed by the DT
+> > > > > > > > > spec[1], so only add exception for the ",nr-gpios" suffix and let the
+> > > > > > > > > error message continue being printed for non-compliant implementations.
+> > > > > > > > >
+> > > > > > > > > [0]: nr-gpios is referenced in Documentation/devicetree/bindings/gpio:
+> > > > > > > > >  - gpio-adnp.txt
+> > > > > > > > >  - gpio-xgene-sb.txt
+> > > > > > > > >  - gpio-xlp.txt
+> > > > > > > > >  - snps,dw-apb-gpio.yaml
+> > > > > > > > >
+> > > > > > > > > [1]:
+> > > > > > > > > Link: https://github.com/devicetree-org/dt-schema/blob/cb53a16a1eb3e2169ce170c071e47940845ec26e/schemas/gpio/gpio-consumer.yaml#L20
+> > > > > > > > >
+> > > > > > > > > Fixes errors such as:
+> > > > > > > > >   OF: /palmbus@300000/gpio@600: could not find phandle
+> > > > > > > > >
+> > > > > > > > > Fixes: 7f00be96f125 ("of: property: Add device link support for interrupt-parent, dmas and -gpio(s)")
+> > > > > > > > > Signed-off-by: Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
+> > > > > > > > > Cc: Saravana Kannan <saravanak@google.com>
+> > > > > > > > > Cc: <stable@vger.kernel.org> # 5.5.x
+> > > > > > > > > ---
+> > > > > > > > >  drivers/of/property.c | 11 ++++++++++-
+> > > > > > > > >  1 file changed, 10 insertions(+), 1 deletion(-)
+> > > > > > > > >
+> > > > > > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > > > > > > > index 2046ae311322..1793303e84ac 100644
+> > > > > > > > > --- a/drivers/of/property.c
+> > > > > > > > > +++ b/drivers/of/property.c
+> > > > > > > > > @@ -1281,7 +1281,16 @@ DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
+> > > > > > > > >  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
+> > > > > > > > >  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+> > > > > > > > >  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+> > > > > > > > > -DEFINE_SUFFIX_PROP(gpios, "-gpios", "#gpio-cells")
+> > > > > > > > > +
+> > > > > > > > > +static struct device_node *parse_gpios(struct device_node *np,
+> > > > > > > > > +                                      const char *prop_name, int index)
+> > > > > > > > > +{
+> > > > > > > > > +       if (!strcmp_suffix(prop_name, ",nr-gpios"))
+> > > > > > > > > +               return NULL;
+> > > > > > > >
+> > > > > > > > Ah I somehow missed this patch. This gives a blanked exception for
+> > > > > > > > vendor,nr-gpios. I'd prefer explicit exceptions for all the instances
+> > > > > > > > of ",nr-gpios" we are grandfathering in. Any future additions should
+> > > > > > > > be rejected. Can we do that please?
+> > > > > > > >
+> > > > > > > > Rob, you okay with making this list more explicit?
+> > > > > > >
+> > > > > > > Not the kernel's job IMO. A schema is the right way to handle that.
+> > > > > >
+> > > > > > Ok, that's fine by me. Btw, let's land this in driver-core? I've made
+> > > > > > changes there and this might cause conflicts. Not sure.
+> > > > >
+> > > > > It merges with linux-next fine. You'll need to resend this to Greg if
+> > > > > you want to do that.
+> > > > >
+> > > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > >
+> > > > Hi Greg,
+> > > >
+> > > > Can you pull this into driver-core please?
+> > > Do you want me to re-spin on top of driver-core? The patch is
+> > > currently based on dt/next in robh/linux.git
+> >
+> > I did say you need to resend the patch to Greg, but since there's no
+> > movement on this and I have other things to send upstream, I've
+> > applied it.
+> 
+> :'(
+> 
+> If it's not too late, can we please drop it? I'm sure Greg would be
+> okay with picking this up.
 
-> Konrad, is there any public docs about GPIOs on this secure peripherals?
-> It it somehow related to Chain of Trust? [1].  I guess it's not, because once we
-> boot Linux all bootloader stuff is over.
+It's in Linus's tree, why does it matter who sends it in?
 
-No, Qualcomm pretty much does security through obscurity. It's *probably* not even that very secure considering how big in size their TZ+HYP stack is - number of bugs rises exponentially with code size. But not many people tried breaking into it considering the complexity and QCOM's legal team size.
-
-There is no public documentation on that, and even if there were - you are not allowed to flash the "secure" partitions on *your device that you unlocked the bootloader of by choice* (which is absurd).
-
-Also, while "all bootloader stuff is over", the platform is still under control of the proprietary hypervisor and the "Trust Zone". For example if you try to write to some IOMMU registers on certain platforms, the hypervisor will treat that as a security violation and shut down the entire device. 
-
-This is essentially the same as your issue. You're trying to poke a thing that Qualcomm *really* doesn't want you to (the fingerprint SPI pins) and since *they* are in control, they say "nonono" and your device dies. All you can do is comply with that (or find a way to replace the blobs or politely ask Google to release a set of unsecure binaries for your Nexus - which they won't do).
-
-Konrad
+{sigh}
