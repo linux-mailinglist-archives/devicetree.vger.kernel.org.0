@@ -2,95 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F22935B04A
-	for <lists+devicetree@lfdr.de>; Sat, 10 Apr 2021 22:13:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A031335B057
+	for <lists+devicetree@lfdr.de>; Sat, 10 Apr 2021 22:17:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234548AbhDJUNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Apr 2021 16:13:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52736 "EHLO mail.kernel.org"
+        id S235038AbhDJURE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Apr 2021 16:17:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53410 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234439AbhDJUNV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 10 Apr 2021 16:13:21 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7A39C610A6;
-        Sat, 10 Apr 2021 20:13:05 +0000 (UTC)
+        id S234708AbhDJURE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 10 Apr 2021 16:17:04 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B4265610E5;
+        Sat, 10 Apr 2021 20:16:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618085586;
-        bh=Guk9ZX60Q80653TRrPCy85Qd3vZd+SQXZ1x/M/c0tB0=;
+        s=k20201202; t=1618085809;
+        bh=THmUQfRMXLhShuTI+Hjasf5j34UjJD6Ys3G2mYZWHuY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tZhIw33UqppP/xKmC0bV9lkTeRGxlu1r8ekkqxmf1Ddv/+cWYaDgTYpyuhfa/63C4
-         hqpMDlEhW460JTivK3JyVU7Qu2HDc2rFGPCP4oxOpYGmxG3PwvZNk8+XiEFPrYFUuH
-         AAFor6RBS8/ZKY0bI0JF7WosuaC0eBobPpKHKJmySUGtcOSHc55dCGvbCvIJla/O2j
-         1AcStvbNkOVZaT4HwgeDqDs5FT3ulAyAhD5/UBpdlXOqg7DfnugkF4n21Pawh5K2rj
-         T30AmXeP+b87vs12pf/CHC9AdGYOU+5goCGMs61Rdb9T0md0kHuy4vmbJHRZCOW2C7
-         wkP3S9tgh88oA==
-Date:   Sat, 10 Apr 2021 22:13:02 +0200
+        b=aLh9NAEV+Q+F9J1RFtYk2hOPHzETL8ljRfA13eBZ65qZQ5MqNBNKAe9E0JAPuEwOr
+         XUV1EiWANhTRINO+jf5gpAkf3Cne2xJrZdL6Y2FyvP/84Lj3iGid/MqUp6KxDq3yqy
+         pL/kNFH8mbj4xXJbNTCH70fBojKkAou+mhMiNTRCB7oGR9WPsLO7WjW0NjNc0pgTgc
+         eXCgoJWTlH72NkESgJ7OEPliunr/JhjcJgw2babOmd8333S7qwQQR+EcsxPk81WtWP
+         BJbV0DMnAxVxioQamhLmCyrc2AEVgRepZff0xKIryAV5icoG6vFgSk0s80IDOSZVIj
+         rbc6wOVvnyuNQ==
+Date:   Sat, 10 Apr 2021 22:16:46 +0200
 From:   Wolfram Sang <wsa@kernel.org>
 To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
 Cc:     robh+dt@kernel.org, linux@roeck-us.net, jdelvare@suse.com,
         linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/6] i2c: mpc: Interrupt driven transfer
-Message-ID: <20210410201302.GC2471@kunai>
+Subject: Re: [PATCH v2 4/6] i2c: mpc: make interrupt mandatory and remove
+ polling code
+Message-ID: <20210410201646.GD2471@kunai>
 Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
         Chris Packham <chris.packham@alliedtelesis.co.nz>,
         robh+dt@kernel.org, linux@roeck-us.net, jdelvare@suse.com,
         linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20210329015206.17437-1-chris.packham@alliedtelesis.co.nz>
- <20210329015206.17437-7-chris.packham@alliedtelesis.co.nz>
+ <20210329015206.17437-5-chris.packham@alliedtelesis.co.nz>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7qSK/uQB79J36Y4o"
+        protocol="application/pgp-signature"; boundary="6Nae48J/T25AfBN4"
 Content-Disposition: inline
-In-Reply-To: <20210329015206.17437-7-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20210329015206.17437-5-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---7qSK/uQB79J36Y4o
+--6Nae48J/T25AfBN4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 29, 2021 at 02:52:06PM +1300, Chris Packham wrote:
-> The fsl-i2c controller will generate an interrupt after every byte
-> transferred. Make use of this interrupt to drive a state machine which
-> allows the next part of a transfer to happen as soon as the interrupt is
-> received. This is particularly helpful with SMBUS devices like the LM81
-> which will timeout if we take too long between bytes in a transfer.
+On Mon, Mar 29, 2021 at 02:52:04PM +1300, Chris Packham wrote:
+> All the in-tree dts files that use one of the compatible strings from
+> i2c-mpc.c provide an interrupt property. By making this mandatory we
+> can simplify the code.
 >=20
 > Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 
-Okay, this change is too large and HW specific for a detailed review.
-But I trust you and hope you will be around to fix regressions if I
-apply it for 5.13? That kind of leads to the question if you want to
-step up as the maintainer for this driver?
+After I applied this patch, cppcheck reports:
 
-Only thing I noticed was a "BUG" and "BUG_ON" and wonder if we really
-need to halt the kernel in that case. Maybe WARN is enough?
+    CPPCHECK
+drivers/i2c/busses/i2c-mpc.c:401:47: warning: Either the condition 'div?(in=
+t)div->fdr:-EINVAL' is redundant or there is possible null pointer derefere=
+nce: div. [nullPointerRedundantCheck]
+ *real_clk =3D fsl_get_sys_freq() / prescaler / div->divider;
+                                              ^
+drivers/i2c/busses/i2c-mpc.c:402:13: note: Assuming that condition 'div?(in=
+t)div->fdr:-EINVAL' is not redundant
+ return div ? (int)div->fdr : -EINVAL;
+            ^
+drivers/i2c/busses/i2c-mpc.c:401:47: note: Null pointer dereference
+ *real_clk =3D fsl_get_sys_freq() / prescaler / div->divider;
+                                              ^
+Can you check this? I'd think we can fix it incrementally...
 
-I'll apply the first five patches now, they look good to me.
 
-
---7qSK/uQB79J36Y4o
+--6Nae48J/T25AfBN4
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmByBs4ACgkQFA3kzBSg
-KbbBJxAAsW07ykMExY2JTtBGweEr2vjNc1a5TEE9gw1Id8wLV6lRCcs9Cpdrs+8x
-T5udKmoXq0DtOB3OUfgP8/rB1xnHDX7SeONw1RAmCGECLZmYMR+J6pTjb34uzfw0
-+e3TnR6J3J9B6c+p6Hv5VHKTW226AQ1Ay81n9YFls1m6yqk0PVsaKUcaWbGflqZy
-KC0rOEHGxxpLUqW0kj7gt8mEP2hQURf2vmpy3CdRmvHnEuoiN5MASBWH7zAUn3bH
-RF+WyRzMyIcH6cOW0ysiy9xlcikfMmVPkUeM6/pZnL3VI/lNw873n0XoSqG3CSSY
-Z2E4vg7CzPWqjWsfYlBNJtO6wIsCkwdBx++g0NB30f+tzxeicFNwyk9nznIpNMq7
-7NoqLURtP0amLEJh6/7mIdH0xK4CjgBbNP3t4xCljRfLnpy8S88ENosdUgnr92eY
-Hv07MIMOc0qpQFjk9WdFFoBM57nXigJtA3ZCE3RuWWIEsJm0DP9vVeDLGXGeECzh
-n5MfyQvyttA86K1/IqF76HnEl6nBZzCenmxEtSUI09vpnj73gg4pCObyj4K9s772
-LlNV3OFONtJwsSo1cFy3ciCj7di7uOybWMF4d33hUxhfiKoqTYFNj273THmRDtA3
-3sSWSTGQMu+bWiKr2L0ixDAZMFMltiPtmxcG9yu/B7YykqAI/9g=
-=Dg/c
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmByB64ACgkQFA3kzBSg
+KbZ/uhAAn8GSLmd5BCWI2zKQZc8j26M4q/byWsMRIZgxbTXpT+IhSOn9b7rr6hTD
+SLJI3SUrF/lVd4BuoH6T3+Ose0MdaJMhHCyRF4nO6aLdRfuMCVYxy7Ei837L8fJ9
+DoTDA9odEcYDQRpdhxPiebHUCLA6eGZGlHIHAzVEpj1T7hwDYxBhO4dRagJmj0/g
+RdE8QT5+Y/KIP9b5hC4CjNlsJ78bVBiVnE+hiQeEo3o8hLmfWaVfnI0ERyYBHYIF
+OfkmG07x51JyJYIFM8m7X80G8/V1SAV4m3Eh4B/nnJ2ZzK2DOWv1VcuE0+e/13K4
+BPtRlmLen89NGSUptMs+pfjjZWP1qhE8S+lSuyXj7vvlP7B753bgunUyv5ePaD/4
+IQJfhq7A3vhtRm19vvaQ7IMzPSiYP/nZydSaPuhqFvjyau5x/b1r3HeK49ayU3cy
+YLHGRIPEjSuXo9OtOgi6Nbgbv6toaGnfiJshBzhVhplzmLawUgvc8gzfhldutR64
+A6p8LcXJGlvg6z7UfPKW9mvCQ+3cIBOpcKORPK8XYcVdGsHaXRCKUjjJyVQxGrZP
+DxspnN/6I87JolS8W2S8LsW1MHUMsJoCo9VpWgEcEDN4fDRTIDKoPPjt9tDnTn8S
+fTZu3CKNFBBfGMtWhCiZ6lwnJaHg2UsxrWWU4KXukHSazNKxqZ8=
+=ONjN
 -----END PGP SIGNATURE-----
 
---7qSK/uQB79J36Y4o--
+--6Nae48J/T25AfBN4--
