@@ -2,90 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6BC935ADEF
-	for <lists+devicetree@lfdr.de>; Sat, 10 Apr 2021 16:03:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C21B35AE7D
+	for <lists+devicetree@lfdr.de>; Sat, 10 Apr 2021 16:48:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234848AbhDJODQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Apr 2021 10:03:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50834 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234841AbhDJODQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Apr 2021 10:03:16 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56E7CC06138C
-        for <devicetree@vger.kernel.org>; Sat, 10 Apr 2021 07:03:01 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lVECR-0000IE-DQ; Sat, 10 Apr 2021 16:02:59 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lVECQ-0008ND-RT; Sat, 10 Apr 2021 16:02:58 +0200
-Date:   Sat, 10 Apr 2021 16:02:58 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Clemens Gruber <clemens.gruber@pqgruber.com>,
-        linux-pwm@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sven Van Asbroeck <TheSven73@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v7 4/8] dt-bindings: pwm: Support new
- PWM_STAGGERING_ALLOWED flag
-Message-ID: <20210410140258.aabqgpieooocznov@pengutronix.de>
-References: <20210406164140.81423-1-clemens.gruber@pqgruber.com>
- <20210406164140.81423-4-clemens.gruber@pqgruber.com>
+        id S234519AbhDJOsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Apr 2021 10:48:55 -0400
+Received: from mga17.intel.com ([192.55.52.151]:65199 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234392AbhDJOsy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 10 Apr 2021 10:48:54 -0400
+IronPort-SDR: CBeyzvuF8RjPoDaVEhu1HAiXO7sw11Z/0FaRJ9L2VpISwq6sCOHq+GSQCY9SKzR3ZFT6RrJgg8
+ ez18fnmljSww==
+X-IronPort-AV: E=McAfee;i="6000,8403,9950"; a="174023925"
+X-IronPort-AV: E=Sophos;i="5.82,212,1613462400"; 
+   d="scan'208";a="174023925"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Apr 2021 07:48:32 -0700
+IronPort-SDR: /K0zYiG79dyb0W27hbgX9JJzhV7Dme9RiX8eF9yEmMPh2qk40XaXvo+imdoPtdSDpTqTjqXG/+
+ lcyFGsAMNxhQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,212,1613462400"; 
+   d="scan'208";a="520621770"
+Received: from lkp-server01.sh.intel.com (HELO 69d8fcc516b7) ([10.239.97.150])
+  by fmsmga001.fm.intel.com with ESMTP; 10 Apr 2021 07:48:29 -0700
+Received: from kbuild by 69d8fcc516b7 with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1lVEuS-000ITS-S4; Sat, 10 Apr 2021 14:48:28 +0000
+Date:   Sat, 10 Apr 2021 22:47:56 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     satya priya <skakit@codeaurora.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     kbuild-all@lists.01.org, Lee Jones <lee.jones@linaro.org>,
+        linux-rtc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V2 3/4] dt-bindings: mfd: Convert pm8xxx bindings to yaml
+Message-ID: <202104102224.0snQfjaj-lkp@intel.com>
+References: <1617976766-7852-4-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="et57x42kd5xy4kgt"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210406164140.81423-4-clemens.gruber@pqgruber.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <1617976766-7852-4-git-send-email-skakit@codeaurora.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi satya,
 
---et57x42kd5xy4kgt
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for the patch! Perhaps something to improve:
 
-Hello Rob,
+[auto build test WARNING on abelloni/rtc-next]
+[also build test WARNING on lee-mfd/for-mfd-next robh/for-next v5.12-rc6 next-20210409]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-On Tue, Apr 06, 2021 at 06:41:36PM +0200, Clemens Gruber wrote:
-> Add the flag and corresponding documentation for the new PWM staggering
-> mode feature.
->=20
-> Cc: Rob Herring <robh+dt@kernel.org>
+url:    https://github.com/0day-ci/linux/commits/satya-priya/Add-RTC-support-for-PMIC-PMK8350/20210409-220149
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
+compiler: arm-linux-gnueabi-gcc (GCC) 9.3.0
+reproduce: make ARCH=arm dtbs_check
 
-For now reviewing this patch is not necessary, we're discussing a better
-name for this flag.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Best regards
-Uwe
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+dtcheck warnings: (new ones prefixed by >>)
+   arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml: power-controller@2099000: '#power-domain-cells' is a required property
+   	From schema: Documentation/devicetree/bindings/power/power-domain.yaml
+   arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml: power-controller@20a9000: '#power-domain-cells' is a required property
+   	From schema: Documentation/devicetree/bindings/power/power-domain.yaml
+   arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml: power-controller@20b9000: '#power-domain-cells' is a required property
+   	From schema: Documentation/devicetree/bindings/power/power-domain.yaml
+   arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml: sps-sic-non-secure@12100000: compatible: 'anyOf' conditional failed, one must be fixed:
+   	['syscon'] is too short
+   	'syscon' is not one of ['allwinner,sun8i-a83t-system-controller', 'allwinner,sun8i-h3-system-controller', 'allwinner,sun8i-v3s-system-controller', 'allwinner,sun50i-a64-system-controller', 'hisilicon,dsa-subctrl', 'hisilicon,hi6220-sramctrl', 'hisilicon,pcie-sas-subctrl', 'hisilicon,peri-subctrl', 'microchip,sparx5-cpu-syscon', 'mstar,msc313-pmsleep', 'rockchip,px30-qos', 'rockchip,rk3066-qos', 'rockchip,rk3288-qos', 'rockchip,rk3399-qos', 'samsung,exynos3-sysreg', 'samsung,exynos4-sysreg', 'samsung,exynos5-sysreg', 'samsung,exynos5433-sysreg']
+   	From schema: Documentation/devicetree/bindings/mfd/syscon.yaml
+>> arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml: pmic@1: 'mpps@50' does not match any of the regexes: 'pinctrl-[0-9]+', 'rtc@[0-9a-f]+$'
+   	From schema: Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
+   Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.9/dist-packages/dtschema/schemas/rtc/qcom-pm8xxx-rtc.yaml'
+--
+   arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml: power-controller@2099000: '#power-domain-cells' is a required property
+   	From schema: Documentation/devicetree/bindings/power/power-domain.yaml
+   arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml: power-controller@20a9000: '#power-domain-cells' is a required property
+   	From schema: Documentation/devicetree/bindings/power/power-domain.yaml
+   arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml: power-controller@20b9000: '#power-domain-cells' is a required property
+   	From schema: Documentation/devicetree/bindings/power/power-domain.yaml
+   arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml: sps-sic-non-secure@12100000: compatible: 'anyOf' conditional failed, one must be fixed:
+   	['syscon'] is too short
+   	'syscon' is not one of ['allwinner,sun8i-a83t-system-controller', 'allwinner,sun8i-h3-system-controller', 'allwinner,sun8i-v3s-system-controller', 'allwinner,sun50i-a64-system-controller', 'hisilicon,dsa-subctrl', 'hisilicon,hi6220-sramctrl', 'hisilicon,pcie-sas-subctrl', 'hisilicon,peri-subctrl', 'microchip,sparx5-cpu-syscon', 'mstar,msc313-pmsleep', 'rockchip,px30-qos', 'rockchip,rk3066-qos', 'rockchip,rk3288-qos', 'rockchip,rk3399-qos', 'samsung,exynos3-sysreg', 'samsung,exynos4-sysreg', 'samsung,exynos5-sysreg', 'samsung,exynos5433-sysreg']
+   	From schema: Documentation/devicetree/bindings/mfd/syscon.yaml
+>> arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml: pmic@1: 'mpps@50' does not match any of the regexes: 'pinctrl-[0-9]+', 'rtc@[0-9a-f]+$'
+   	From schema: Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
+   Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.9/dist-packages/dtschema/schemas/rtc/qcom-pm8xxx-rtc.yaml'
+--
+   arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml: power-controller@2099000: '#power-domain-cells' is a required property
+   	From schema: Documentation/devicetree/bindings/power/power-domain.yaml
+   arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml: power-controller@20a9000: '#power-domain-cells' is a required property
+   	From schema: Documentation/devicetree/bindings/power/power-domain.yaml
+   arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml: power-controller@20b9000: '#power-domain-cells' is a required property
+   	From schema: Documentation/devicetree/bindings/power/power-domain.yaml
+   arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml: sps-sic-non-secure@12100000: compatible: 'anyOf' conditional failed, one must be fixed:
+   	['syscon'] is too short
+   	'syscon' is not one of ['allwinner,sun8i-a83t-system-controller', 'allwinner,sun8i-h3-system-controller', 'allwinner,sun8i-v3s-system-controller', 'allwinner,sun50i-a64-system-controller', 'hisilicon,dsa-subctrl', 'hisilicon,hi6220-sramctrl', 'hisilicon,pcie-sas-subctrl', 'hisilicon,peri-subctrl', 'microchip,sparx5-cpu-syscon', 'mstar,msc313-pmsleep', 'rockchip,px30-qos', 'rockchip,rk3066-qos', 'rockchip,rk3288-qos', 'rockchip,rk3399-qos', 'samsung,exynos3-sysreg', 'samsung,exynos4-sysreg', 'samsung,exynos5-sysreg', 'samsung,exynos5433-sysreg']
+   	From schema: Documentation/devicetree/bindings/mfd/syscon.yaml
+>> arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml: pmic@1: 'mpps@50' does not match any of the regexes: 'pinctrl-[0-9]+', 'rtc@[0-9a-f]+$'
+   	From schema: Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
+   Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.9/dist-packages/dtschema/schemas/rtc/qcom-pm8xxx-rtc.yaml'
+--
+   arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml: power-controller@2099000: '#power-domain-cells' is a required property
+   	From schema: Documentation/devicetree/bindings/power/power-domain.yaml
+   arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml: power-controller@20a9000: '#power-domain-cells' is a required property
+   	From schema: Documentation/devicetree/bindings/power/power-domain.yaml
+   arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml: power-controller@20b9000: '#power-domain-cells' is a required property
+   	From schema: Documentation/devicetree/bindings/power/power-domain.yaml
+   arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml: sps-sic-non-secure@12100000: compatible: 'anyOf' conditional failed, one must be fixed:
+   	['syscon'] is too short
+   	'syscon' is not one of ['allwinner,sun8i-a83t-system-controller', 'allwinner,sun8i-h3-system-controller', 'allwinner,sun8i-v3s-system-controller', 'allwinner,sun50i-a64-system-controller', 'hisilicon,dsa-subctrl', 'hisilicon,hi6220-sramctrl', 'hisilicon,pcie-sas-subctrl', 'hisilicon,peri-subctrl', 'microchip,sparx5-cpu-syscon', 'mstar,msc313-pmsleep', 'rockchip,px30-qos', 'rockchip,rk3066-qos', 'rockchip,rk3288-qos', 'rockchip,rk3399-qos', 'samsung,exynos3-sysreg', 'samsung,exynos4-sysreg', 'samsung,exynos5-sysreg', 'samsung,exynos5433-sysreg']
+   	From schema: Documentation/devicetree/bindings/mfd/syscon.yaml
+>> arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml: pmic@1: 'mpps@50' does not match any of the regexes: 'pinctrl-[0-9]+', 'rtc@[0-9a-f]+$'
+   	From schema: Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
+   Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.9/dist-packages/dtschema/schemas/rtc/qcom-pm8xxx-rtc.yaml'
 
---et57x42kd5xy4kgt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmBxsA8ACgkQwfwUeK3K
-7AnAIQgAiT7KRuBByp/Ex26JJTcMRAYOhSYXy4GO9MLFfhM0GZu6Cbq9RmTKpxIA
-Bd2qVI3u8cemWP6i76JCtDPU9tv3FVgjDYRb+X34eoPIzyej/Ix/D1lijFK62cUS
-PgmgtsSnyQIqNDmL3PsrxAr51N9hAZ3v/f62hkHyuIgFppnqM/PKH6YF/Oia6YbL
-FY3NIirZdgcO7/BFqnZO/xL2nZxlyWwokzbJCCBIB29iWFwnwhRKC0Od82SLsAvw
-rkVngz1PhBTp3c9v4fTDMSiePgXkgn+YaX8yWkSuZVyGg064718wvhGzkIazN9tf
-QW8bDTyicCZdyXeJbtx1gL6+dYoFQQ==
-=CF1D
------END PGP SIGNATURE-----
-
---et57x42kd5xy4kgt--
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
