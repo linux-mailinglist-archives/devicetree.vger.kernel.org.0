@@ -2,177 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B337935B57C
-	for <lists+devicetree@lfdr.de>; Sun, 11 Apr 2021 15:56:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95FF435B58C
+	for <lists+devicetree@lfdr.de>; Sun, 11 Apr 2021 16:02:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235845AbhDKNwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Apr 2021 09:52:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38122 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235558AbhDKNwo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 11 Apr 2021 09:52:44 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 02EF4610A6;
-        Sun, 11 Apr 2021 13:52:24 +0000 (UTC)
-Date:   Sun, 11 Apr 2021 14:52:45 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Alexandru Ardelean <ardeleanalex@gmail.com>
-Cc:     Lucas Stankus <lucas.p.stankus@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        linux-staging@lists.linux.dev, LKML <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/3] staging: iio: cdc: ad7746: use dt bindings to set
- the EXCx pins output
-Message-ID: <20210411145245.18698d61@jic23-huawei>
-In-Reply-To: <CA+U=DsqGG=NA9yHimRYuoSuBxupiqZ8JH-7FKThXj9J7D__U=A@mail.gmail.com>
-References: <cover.1617993776.git.lucas.p.stankus@gmail.com>
-        <39486895e4e985d0220342f3accfd98a1e149ea7.1617993776.git.lucas.p.stankus@gmail.com>
-        <CA+U=Dsot+p76kaCAecN+ORdhZ_u+Bw1J8oVKZYAjoexHgiazVg@mail.gmail.com>
-        <CA+U=DsqGG=NA9yHimRYuoSuBxupiqZ8JH-7FKThXj9J7D__U=A@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S235543AbhDKOCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Apr 2021 10:02:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47976 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233514AbhDKOCd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Apr 2021 10:02:33 -0400
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A946BC061574;
+        Sun, 11 Apr 2021 07:02:16 -0700 (PDT)
+Received: by mail-ot1-x331.google.com with SMTP id v24-20020a9d69d80000b02901b9aec33371so10326135oto.2;
+        Sun, 11 Apr 2021 07:02:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=k+tTGaoxKSS3a4r6l11C6+KiLZ7HOmHjmS2I7vuBwHI=;
+        b=N9n/CchMP/WD/597Qw+60WMGJRF6pNysJWg7wrQSkYja/iXxfCWlV5obC/morqNVvq
+         PJe2Q3I/BctetJOtA9KsxfMgCCkvkbhzRuziTwTyKWkvCVsWhIgrWsaKiDgJz/w4bsL9
+         /GRKusd+PLXFJ6E1pmpYYWXAWgjsceJ/3BUNuf8g95GqcJFZKsnwvWKdznsU4EkpWucA
+         /15El4Y9z5PPANC4FwQtNkWHeLL5G5t5naLan4fUsDfiQTZqyg67eXqvIX3rQgV/krYu
+         iQGkTNaT/fFv1b/hdcbuQpySmOkIcm51abHKAU6dlFh8gKLAnix5PlnFy0ArDCmyy3IO
+         FjQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=k+tTGaoxKSS3a4r6l11C6+KiLZ7HOmHjmS2I7vuBwHI=;
+        b=KcCUBt8hHqf3pkCh4NiXzIHcD1NpLQHrkKfdFOfzoSQ23lTryC5jDv+2ZLzWymQ3An
+         /xDED9wgyf19XtU0qS2ouvWba0gibxB2KY2XnKTvTsSft1mvWyM9dN+HeV19QgVyUK07
+         TP4z0RJA7m12LRe47OzMt4nS69wBFtV8j+YrtZK4JZhqTtmJm1iBWB5vKSZ7oniBuG5N
+         CqROLikWf2E/Fg2sngYirPuu6pjGBEdIStVAYhQzdU+FxQmH2EZYMuiovdjRBCa0Ur/b
+         4PQCi8AK737zeMG8Bc9/brP4X38wytYypyVvb0VfF6fj18YmaUmKX1UYQ+R3kJt7vITu
+         Xm0Q==
+X-Gm-Message-State: AOAM531BC8YwMtLARf08nIQzOtg+aScpOlaSN7SIx2VxB1Aj2BL6gPf2
+        79mNG2pnQ2uHz1kVWeo8Mk8fjWCPlDU=
+X-Google-Smtp-Source: ABdhPJxGLYnzMWFbI1KgKdJzpg9QsMr7CWEbwyQ0U8Fn2oIudt880Hi2UjkuVPKgqUO3GH3uIGqJeQ==
+X-Received: by 2002:a05:6830:111a:: with SMTP id w26mr19555307otq.329.1618149735728;
+        Sun, 11 Apr 2021 07:02:15 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id t22sm2050506otl.49.2021.04.11.07.02.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 11 Apr 2021 07:02:15 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH v4 2/2] usb: dwc3: Add driver for Xilinx platforms
+To:     Michal Simek <michal.simek@xilinx.com>,
+        Manish Narani <manish.narani@xilinx.com>
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org, balbi@kernel.org,
+        p.zabel@pengutronix.de, git@xilinx.com, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <1615963949-75320-1-git-send-email-manish.narani@xilinx.com>
+ <1615963949-75320-3-git-send-email-manish.narani@xilinx.com>
+ <20210407214811.GA260719@roeck-us.net>
+ <ee280235-736d-1689-d324-b090c21106c9@xilinx.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+Message-ID: <82dc676c-10c7-2a45-7ab3-ecad46eab0a3@roeck-us.net>
+Date:   Sun, 11 Apr 2021 07:02:12 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <ee280235-736d-1689-d324-b090c21106c9@xilinx.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 10 Apr 2021 19:15:39 +0300
-Alexandru Ardelean <ardeleanalex@gmail.com> wrote:
+Michal,
 
-> On Sat, Apr 10, 2021 at 7:12 PM Alexandru Ardelean
-> <ardeleanalex@gmail.com> wrote:
-> >
-> > On Fri, Apr 9, 2021 at 9:51 PM Lucas Stankus <lucas.p.stankus@gmail.com> wrote:  
-> > >
-> > > Ditch platform_data fields in favor of device tree properties for
-> > > configuring EXCA and EXCB output.
-> > > This also removes the fields from the platform_data struct, since they're
-> > > not used anymore.
-> > >
-> > > Signed-off-by: Lucas Stankus <lucas.p.stankus@gmail.com>
-> > > ---
-> > >  drivers/staging/iio/cdc/ad7746.c | 33 +++++++++++++++++---------------
-> > >  drivers/staging/iio/cdc/ad7746.h |  4 ----
-> > >  2 files changed, 18 insertions(+), 19 deletions(-)
-> > >
-> > > diff --git a/drivers/staging/iio/cdc/ad7746.c b/drivers/staging/iio/cdc/ad7746.c
-> > > index dfd71e99e872..63041b164dbe 100644
-> > > --- a/drivers/staging/iio/cdc/ad7746.c
-> > > +++ b/drivers/staging/iio/cdc/ad7746.c
-> > > @@ -677,8 +677,10 @@ static int ad7746_probe(struct i2c_client *client,
-> > >                         const struct i2c_device_id *id)
-> > >  {
-> > >         struct ad7746_platform_data *pdata = client->dev.platform_data;
-> > > +       struct device_node *np = client->dev.of_node;
-> > >         struct ad7746_chip_info *chip;
-> > >         struct iio_dev *indio_dev;
-> > > +       unsigned int exca_en, excb_en;
-> > >         unsigned char regval = 0;
-> > >         int ret = 0;
-> > >
-> > > @@ -703,26 +705,27 @@ static int ad7746_probe(struct i2c_client *client,
-> > >         indio_dev->num_channels = ARRAY_SIZE(ad7746_channels);
-> > >         indio_dev->modes = INDIO_DIRECT_MODE;
-> > >  
-> >
-> > [1]
-> >  
-> > > -       if (pdata) {
-> > > -               if (pdata->exca_en) {
-> > > -                       if (pdata->exca_inv_en)
-> > > -                               regval |= AD7746_EXCSETUP_NEXCA;
-> > > -                       else
-> > > -                               regval |= AD7746_EXCSETUP_EXCA;
-> > > -               }
-> > > +       ret = of_property_read_u32(np, "adi,exca-output", &exca_en);  
-> >
-> > maybe a better idea would be to use:
-> >
-> > device_property_read_u32(dev, .... )
-> > where:
-> > dev = client->dev.;
-> >
-> > this would make the driver a bit more friendly with both OF and ACPI
-> >  
-> > > +       if (!ret && exca_en) {
-> > > +               if (exca_en == 1)
-> > > +                       regval |= AD7746_EXCSETUP_EXCA;
-> > > +               else
-> > > +                       regval |= AD7746_EXCSETUP_NEXCA;
-> > > +       }
-> > >
-> > > -               if (pdata->excb_en) {
-> > > -                       if (pdata->excb_inv_en)
-> > > -                               regval |= AD7746_EXCSETUP_NEXCB;
-> > > -                       else
-> > > -                               regval |= AD7746_EXCSETUP_EXCB;
-> > > -               }
-> > > +       ret = of_property_read_u32(np, "adi,excb-output", &excb_en);
-> > > +       if (!ret && excb_en) {
-> > > +               if (excb_en == 1)
-> > > +                       regval |= AD7746_EXCSETUP_EXCB;
-> > > +               else
-> > > +                       regval |= AD7746_EXCSETUP_NEXCB;
-> > > +       }
-> > >
-> > > +       if (pdata) {
-> > >                 regval |= AD7746_EXCSETUP_EXCLVL(pdata->exclvl);
-> > >         } else {
-> > >                 dev_warn(&client->dev, "No platform data? using default\n");
-> > > -               regval = AD7746_EXCSETUP_EXCA | AD7746_EXCSETUP_EXCB |
-> > > -                       AD7746_EXCSETUP_EXCLVL(3);  
-> >
-> > This logic is problematic now.
-> > Because no matter what you're setting in the DT, it always gets
-> > overridden here because there is no platform data.
-> >
-> > Maybe a better idea is to do something like:
-> > if (!pdata)
-> >      regval = AD7746_EXCSETUP_EXCLVL(3);
-> >
-> > but this should be placed somewhere around [1]  
+On 4/7/21 11:08 PM, Michal Simek wrote:
+...
+> It looks like that you directly created the patch. Isn't it better to
+> send it yourself? Or do you want Manish to create it based on guidance
+> above?
 > 
-> [ i can see that this logic will get corrected in the next patch]
-> to add here a bit: the idea of a patch is that it should try to not
-> introduce any [even temporary] breakage, even when it's in a series;
-> if a driver was already broken, then it should get fixed via it's own patch;
-> but no patch should introduce any breakages [if possible]
+-next is substantially broken all over the place. I already spend way too much
+time bisecting and analyzing the failures, and making sure that the problems
+are not caused by qemu (which is why I tracked down this problem in such detail).
+I don't really have time to write patches and guide them through the process,
+sorry.
 
-The two patches are small enough I'd be fine with them being merged into one
-that avoiding any special handling.  Just add a note to the patch description
-to say that it was done in one patch for this reason.
-
-Jonathan
-
-> 
-> >
-> >  
-> > > +               regval = AD7746_EXCSETUP_EXCLVL(3);
-> > >         }
-> > >
-> > >         ret = i2c_smbus_write_byte_data(chip->client,
-> > > diff --git a/drivers/staging/iio/cdc/ad7746.h b/drivers/staging/iio/cdc/ad7746.h
-> > > index 8bdbd732dbbd..6cae4ecf779e 100644
-> > > --- a/drivers/staging/iio/cdc/ad7746.h
-> > > +++ b/drivers/staging/iio/cdc/ad7746.h
-> > > @@ -19,10 +19,6 @@
-> > >
-> > >  struct ad7746_platform_data {
-> > >         unsigned char exclvl;   /*Excitation Voltage Level */
-> > > -       bool exca_en;           /* enables EXCA pin as the excitation output */
-> > > -       bool exca_inv_en;       /* enables /EXCA pin as the excitation output */
-> > > -       bool excb_en;           /* enables EXCB pin as the excitation output */
-> > > -       bool excb_inv_en;       /* enables /EXCB pin as the excitation output */
-> > >  };
-> > >
-> > >  #endif /* IIO_CDC_AD7746_H_ */
-> > > --
-> > > 2.31.1
-> > >  
-
+Guenter
