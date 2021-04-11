@@ -2,105 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81CCD35B706
-	for <lists+devicetree@lfdr.de>; Sun, 11 Apr 2021 23:31:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC14135B750
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 01:00:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235702AbhDKVcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Apr 2021 17:32:09 -0400
-Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:36036 "EHLO
-        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235338AbhDKVcJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Apr 2021 17:32:09 -0400
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 6343E891AE;
-        Mon, 12 Apr 2021 09:31:50 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1618176710;
-        bh=PUZJgCpIeLjaxEA7D8FKzsJPq6g/TVqwZbbkPwYza44=;
-        h=From:To:Subject:Date:References:In-Reply-To;
-        b=q2YDUTD1uUF43dGwIeXjrYmeDXJ6ekfFmNZRhVHTHKImTGUI8KPDLcwVUQEb1DNbL
-         OKudOn/2W7k8pTd3u7McVcbiv+Cin4m0jDkpNXXmu9FQqBUkwoYKwuRG032CQv8gcS
-         ycgUEv1/7VgVf4NwI/O2RmUbpG1pOKdeBbV2q/1SO7u97FI6g7KdRkBtQXizZQluuG
-         lYhEvk+awX4eRKeGYOLlyTng6V/QNMej8Y1VqbRxxvDDCmfXij9H6z84seYEZohu1D
-         5LNvYw712nIe3cjozeAH4om7EYT5UrVWoCd6voIzFDNYlFVWMuVXDGDFjVlIxoQpb8
-         Zq4vbJ0RppKsw==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B60736ac60001>; Mon, 12 Apr 2021 09:31:50 +1200
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
- by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
- Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 12 Apr 2021 09:31:48 +1200
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.012; Mon, 12 Apr 2021 09:31:48 +1200
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Wolfram Sang <wsa@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        id S235900AbhDKXBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Apr 2021 19:01:06 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:57591 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235005AbhDKXBG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 11 Apr 2021 19:01:06 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id DA4BF5805EB;
+        Sun, 11 Apr 2021 19:00:48 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Sun, 11 Apr 2021 19:00:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=Cl5NDlR0eeNq1SIA3lbTrquui0su7ag
+        E6SsdembMtS4=; b=TKxu0qg/SVMSv+IYdXTiOo+qpAMUYm+Dm4UiikfWnljE/mq
+        NQirbvtS1O/rdZu1HTq9VlDnwFhWVmH8mJZsAnf8+7A+67wN7/8raDjnazjlSU3C
+        j4b1amfhJI+u1R35/pvrfy6h26bkdO52WzVmaEBWMcSGL1vyYhtCRdV275NJ/mk8
+        0WyQjt3K5HREsoQVAmMPzbNGiNs5TABejz5zQ+oGL7TR+ZwdWiU/8jYv89BvCDcB
+        XY6P6EAveASQjePYByqH5XtPnR4RBbDgWyDiMEeglFzrnmNrkzPPniXIVvFYQYOq
+        J5KfV3CkCRN6HSrPtfHMUMoJPd0ZDjrOpE+wLug==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=Cl5NDl
+        R0eeNq1SIA3lbTrquui0su7agE6SsdembMtS4=; b=UqqsQIcvyOSld3IRE4fX8+
+        QWA8hvNqU/+sYi0hAJX/R48JJTN42fcVSMRRNfpCWZo4zXLvXEaEA9iGbEFfJPlD
+        SHjWNay/Regm5lXulwsDlGJZZhV6raX7LMZVN/+VuIHYltBNvCQfWDvYzsAKNB/C
+        yV+Ne+yLR1HNSIm1/RzmjjrCZ6knDTmLut25+StM6U59PlRlVLVN9/odRV1FOeDy
+        n/WLZSydttQ8HYHCHA8GxPChQ8sIpOc4rYxbwM4CxaF4/CeT706eKxsjhSXLpDsY
+        I8aXHE7v6suL7n+p1EKicsSZvK6YGhFkxHlY0Z8/1u1mLV5S0my4lKueLqm5Gvzg
+        ==
+X-ME-Sender: <xms:n39zYKrfPbMkBxTjpuO2jpdk5dXjY4Ezrgq8rz4b6Ru9ZzcyR2HISg>
+    <xme:n39zYIoT-cxhvHeWZVu4b2PG9jwnSSG1AtumJ7Rxp3RDPm8txyTBjQDZBtRiGNaKN
+    KkOv1UhsrWeNHDxcw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudekiedguddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhepuddttdekueeggedvtddtueekiedutdfguedutdefieeuteefieelteet
+    vddthfeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:n39zYPOlM7TtBe1B1ORtRfcGQx4bmkllO969YWoFj3qlkYuDXxOuAA>
+    <xmx:n39zYJ5m_Ruvqiyvw7wbUqUA2X1w8T1r55AfzmNule8F21VrYtWDCA>
+    <xmx:n39zYJ5pAm9b8Kx6n_rgCcjlcDFVgIW0SiAwBwmOqsE9hOUUogqlqw>
+    <xmx:oH9zYNonsx8RlM1NjKCPvWf_GJSTVUshI0Ut5ZWY4KyoBMlEUXX0Sw>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id A49C1A00079; Sun, 11 Apr 2021 19:00:47 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-273-g8500d2492d-fm-20210323.002-g8500d249
+Mime-Version: 1.0
+Message-Id: <e99e2e45-7810-4a24-a519-5204acee04ea@www.fastmail.com>
+In-Reply-To: <YHCqR8/nZFB1HRgX@packtop>
+References: <20210319062752.145730-1-andrew@aj.id.au>
+ <20210319062752.145730-10-andrew@aj.id.au> <YG/Ql9z9X/mtOSvl@packtop>
+ <ea34ee69-a266-4737-8450-4695d2d0fbd4@www.fastmail.com>
+ <YG/zVv4XOo1HoLd1@packtop> <YHCqR8/nZFB1HRgX@packtop>
+Date:   Mon, 12 Apr 2021 08:30:26 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Zev Weiss" <zweiss@equinix.com>
+Cc:     "openipmi-developer@lists.sourceforge.net" 
+        <openipmi-developer@lists.sourceforge.net>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "Corey Minyard" <minyard@acm.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 6/6] i2c: mpc: Interrupt driven transfer
-Thread-Topic: [PATCH v2 6/6] i2c: mpc: Interrupt driven transfer
-Thread-Index: AQHXJD4hvLW0meFt6ESzTxJvvSZbG6qteioAgAGoVwA=
-Date:   Sun, 11 Apr 2021 21:31:47 +0000
-Message-ID: <723acaa7-ff57-40c2-a733-a520c5899800@alliedtelesis.co.nz>
-References: <20210329015206.17437-1-chris.packham@alliedtelesis.co.nz>
- <20210329015206.17437-7-chris.packham@alliedtelesis.co.nz>
- <20210410201302.GC2471@kunai>
-In-Reply-To: <20210410201302.GC2471@kunai>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <239DB9A834929549B0CEFF09DCFB9CB2@atlnz.lc>
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=GfppYjfL c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=N659UExz7-8A:10 a=3YhXtTcJ-WEA:10 a=dD2wLIcgPC3ieJof06wA:9 a=pILNOxqGKmIA:10
-X-SEG-SpamProfiler-Score: 0
+        "Ryan Chen" <ryan_chen@aspeedtech.com>,
+        "Tomer Maimon" <tmaimon77@gmail.com>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "Avi Fishman" <avifishman70@gmail.com>,
+        "Patrick Venture" <venture@google.com>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Tali Perry" <tali.perry1@gmail.com>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Lee Jones" <lee.jones@linaro.org>,
+        "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "Benjamin Fair" <benjaminfair@google.com>
+Subject: =?UTF-8?Q?Re:_[PATCH_v2_10/21]_ipmi:_kcs=5Fbmc:_Turn_the_driver_data-str?=
+ =?UTF-8?Q?uctures_inside-out?=
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 11/04/21 8:13 am, Wolfram Sang wrote:
-> On Mon, Mar 29, 2021 at 02:52:06PM +1300, Chris Packham wrote:
->> The fsl-i2c controller will generate an interrupt after every byte
->> transferred. Make use of this interrupt to drive a state machine which
->> allows the next part of a transfer to happen as soon as the interrupt is
->> received. This is particularly helpful with SMBUS devices like the LM81
->> which will timeout if we take too long between bytes in a transfer.
->>
->> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> Okay, this change is too large and HW specific for a detailed review.
-> But I trust you and hope you will be around to fix regressions if I
-> apply it for 5.13?
-Yep I plan on being around. I've got access to a couple of designs with=20
-P2040 and T2081 so hopefully that's sufficient to deal with any=20
-regressions. One issue is a lack of different i2c devices (the systems=20
-we have tend to use the same devices) but hopefully any reports of=20
-regression will be from people with access to such devices.
-> That kind of leads to the question if you want to
-> step up as the maintainer for this driver?
-Sure can do. It'd be nice if it was someone from NXP but I think they've=20
-lost interest in the PowerPC based SoCs. Should I send a patch for=20
-MAINTAINERS? If so does that go through the i2c tree?
-> Only thing I noticed was a "BUG" and "BUG_ON" and wonder if we really
-> need to halt the kernel in that case. Maybe WARN is enough?
 
-Yeah I think they can both be WARN variants. The one in mpc_xfer() can=20
-happily continue. It's a little less clear what I should do in=20
-mpc_i2c_do_action() if the WARN is ever hit but in theory it should be=20
-an unreachable case anyway so the only thing that could get there is=20
-some kind of memory corruption which would likely cause a crash elsewhere.
+On Sat, 10 Apr 2021, at 04:56, Zev Weiss wrote:
+> On Fri, Apr 09, 2021 at 01:25:26AM CDT, Zev Weiss wrote:
+> >On Fri, Apr 09, 2021 at 12:59:09AM CDT, Andrew Jeffery wrote:
+> >>On Fri, 9 Apr 2021, at 13:27, Zev Weiss wrote:
+> >>>On Fri, Mar 19, 2021 at 01:27:41AM CDT, Andrew Jeffery wrote:
+> >>>>-struct kcs_bmc *kcs_bmc_ipmi_alloc(struct device *dev, int sizeof_priv, u32 channel);
+> >>>>-struct kcs_bmc *kcs_bmc_ipmi_alloc(struct device *dev, int sizeof_priv, u32 channel)
+> >>>>+int kcs_bmc_ipmi_attach_cdev(struct kcs_bmc *kcs_bmc);
+> >>>
+> >>>Errant declaration again?
+> >>
+> >>As previously explained.
+> >>
+> >
+> >This one seems like a slightly different category, because...
+> >
+> >>>
+> >>>>+int kcs_bmc_ipmi_attach_cdev(struct kcs_bmc *kcs_bmc)
+> >
+> >...it's immediately followed by the definition of the very same function
+> >that it just declared, so I can't see how its presence or absence could
+> >make any functional difference to anything.  (So perhaps I should have
+> >said "redundant" instead of "errant...again".)
 
-Do you want me to send a V3 of just that patch?
+This is is a small hack to fend off warnings from -Wmissing-declarations.
 
-> I'll apply the first five patches now, they look good to me.
->=
+> >
+> >It's fairly trivial of course given that it's gone by the end of the
+> >series, but as long as there's going to be another iteration anyway it
+> >seems like we might as well tidy it up?
+> >
+> 
+> Oh, and otherwise:
+> 
+> Reviewed-by: Zev Weiss <zweiss@equinix.com>
+
+Thanks.
+
+Andrew
