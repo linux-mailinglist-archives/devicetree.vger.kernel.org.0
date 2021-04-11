@@ -2,158 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06F8B35B48F
-	for <lists+devicetree@lfdr.de>; Sun, 11 Apr 2021 15:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F165235B548
+	for <lists+devicetree@lfdr.de>; Sun, 11 Apr 2021 15:49:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229804AbhDKNKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Apr 2021 09:10:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36730 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235659AbhDKNKg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Apr 2021 09:10:36 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25FB6C06138B;
-        Sun, 11 Apr 2021 06:10:20 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id g17so13025257ejp.8;
-        Sun, 11 Apr 2021 06:10:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=dP6M+sgZMuzTEGYj0l4EYUpeVr19klo1MRRCTxVz25w=;
-        b=Rg+cSuaVmSjmTDibRXA8sdjDBMrmUwzphxaFPKrw1KrQju6roHl6S0t7yrl1ggfoim
-         pk9SaOEmOJFDha66VLsFbuSLCehvUNxNnL9K1c5zu58KcNDHwLwpkkm7V2b4MUc0punt
-         ME5rm32kVABTRbJ9wP/07zWYQhbe/G/ctzn+E8ZdDJhXnly5j1dvxgY2aVaAP6ZM2yq7
-         so/h8ZGUhOEPL5Ov8NznDUVaWa7EV7qeR+wYrVPazpvpEBBWEWoCXaZNK84zoJ6QM3Gs
-         GlBwoP5grqECVRTUTygT3Dq3OBIwYBaFDCztrJZocFQNygNDCuQMaRsuDOsZkFA8/zTQ
-         +cbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=dP6M+sgZMuzTEGYj0l4EYUpeVr19klo1MRRCTxVz25w=;
-        b=Ayw00pZZ/5zj+TLZwowJwQxNcX30Aybkl2SHJYfM9vULU37xMBM2lxbv08slYe0X4G
-         Pft7xngTiNYnMgvUZThSYfbow7O0vl1eAvalpyP1Wj9l7nXLdaFCZUPrzUcMzVzbD5nx
-         7YuAk8+BZq+jckMch/16yXfctifJYd4WnIEBjaEHvmJ8qfV5oCOi26kqqVYiIwm6HO/z
-         URgibcqyNjMQxDw8lU8VHVo+yAwjqBts7NQr9905mONIzT+j3jC/145NjdgegcgvQv9+
-         wSXbD3c9rPHq2iHGGZ9ZL91PCyh7cdjeS8EWaidWNDeEyBEOzjqlieqiea9Ddkm+KJjg
-         yddA==
-X-Gm-Message-State: AOAM532wvIU2Yw+tP8SsqhKw0oSlHaukN66bsuqBY0W4OJp18yr4w29V
-        OkerHFWqrGAE99ZX95d7WkI=
-X-Google-Smtp-Source: ABdhPJzMrep/dqtmFqleBVmWlFLT358vORL48eeH9EjXxNOm5BPPYolk9ikhMRMe573T7MhPljHSFw==
-X-Received: by 2002:a17:906:b7ce:: with SMTP id fy14mr4002248ejb.261.1618146618908;
-        Sun, 11 Apr 2021 06:10:18 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id w2sm3983520eju.71.2021.04.11.06.10.17
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 11 Apr 2021 06:10:18 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 6/6] arm64: dts: rockchip: remove clock-names from pwm nodes
-Date:   Sun, 11 Apr 2021 15:10:07 +0200
-Message-Id: <20210411131007.21757-6-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210411131007.21757-1-jbx6244@gmail.com>
-References: <20210411131007.21757-1-jbx6244@gmail.com>
+        id S236062AbhDKNrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Apr 2021 09:47:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35780 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236245AbhDKNqK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 11 Apr 2021 09:46:10 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C655061027;
+        Sun, 11 Apr 2021 13:45:52 +0000 (UTC)
+Date:   Sun, 11 Apr 2021 14:46:13 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Lucas Stankus <lucas.p.stankus@gmail.com>
+Cc:     lars@metafoo.de, Michael.Hennerich@analog.com,
+        gregkh@linuxfoundation.org, linux-iio@vger.kernel.org,
+        linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: staging: iio: cdc: ad7746: add binding
+ documentation for AD7746
+Message-ID: <20210411144613.249c4d2f@jic23-huawei>
+In-Reply-To: <4be8e3e40794474d8622192c6a5ea0fb4af527e1.1617993776.git.lucas.p.stankus@gmail.com>
+References: <cover.1617993776.git.lucas.p.stankus@gmail.com>
+        <4be8e3e40794474d8622192c6a5ea0fb4af527e1.1617993776.git.lucas.p.stankus@gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A test with the command below gives this error:
+On Fri, 9 Apr 2021 15:50:10 -0300
+Lucas Stankus <lucas.p.stankus@gmail.com> wrote:
 
-/arch/arm64/boot/dts/rockchip/rk3368-evb-act8846.dt.yaml:
-pwm@ff680030: clock-names: ['pwm'] is too short
+> Add device tree binding documentation for AD7746 cdc in YAML format.
+> 
+> Signed-off-by: Lucas Stankus <lucas.p.stankus@gmail.com>
 
-Devices with only one pwm clock use it to both
-to derive the functional clock for the device
-and as the bus clock. The driver does not need
-"clock-names" to get a handle, so remove them all.
+Hi Lucas,
 
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+Good to see progress on this one after all these years :)
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3368.dtsi | 4 ----
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 4 ----
- 2 files changed, 8 deletions(-)
+I think we can do a bit better though by making the attributes
+easy to comprehend without needing to refer to the documentation.
+Always good to avoid magic numbers if we can.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3368.dtsi b/arch/arm64/boot/dts/rockchip/rk3368.dtsi
-index 61b0a2a90..7832e26a3 100644
---- a/arch/arm64/boot/dts/rockchip/rk3368.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3368.dtsi
-@@ -561,7 +561,6 @@
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pwm0_pin>;
- 		clocks = <&cru PCLK_PWM1>;
--		clock-names = "pwm";
- 		status = "disabled";
- 	};
- 
-@@ -572,7 +571,6 @@
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pwm1_pin>;
- 		clocks = <&cru PCLK_PWM1>;
--		clock-names = "pwm";
- 		status = "disabled";
- 	};
- 
-@@ -581,7 +579,6 @@
- 		reg = <0x0 0xff680020 0x0 0x10>;
- 		#pwm-cells = <3>;
- 		clocks = <&cru PCLK_PWM1>;
--		clock-names = "pwm";
- 		status = "disabled";
- 	};
- 
-@@ -592,7 +589,6 @@
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pwm3_pin>;
- 		clocks = <&cru PCLK_PWM1>;
--		clock-names = "pwm";
- 		status = "disabled";
- 	};
- 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index e93a5f320..6221b027e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -1185,7 +1185,6 @@
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pwm0_pin>;
- 		clocks = <&pmucru PCLK_RKPWM_PMU>;
--		clock-names = "pwm";
- 		status = "disabled";
- 	};
- 
-@@ -1196,7 +1195,6 @@
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pwm1_pin>;
- 		clocks = <&pmucru PCLK_RKPWM_PMU>;
--		clock-names = "pwm";
- 		status = "disabled";
- 	};
- 
-@@ -1207,7 +1205,6 @@
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pwm2_pin>;
- 		clocks = <&pmucru PCLK_RKPWM_PMU>;
--		clock-names = "pwm";
- 		status = "disabled";
- 	};
- 
-@@ -1218,7 +1215,6 @@
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pwm3a_pin>;
- 		clocks = <&pmucru PCLK_RKPWM_PMU>;
--		clock-names = "pwm";
- 		status = "disabled";
- 	};
- 
--- 
-2.11.0
+Suggestions inline.
+
+Jonathan
+
+> ---
+>  .../bindings/iio/cdc/adi,ad7746.yaml          | 79 +++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/cdc/adi,ad7746.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/cdc/adi,ad7746.yaml b/Documentation/devicetree/bindings/iio/cdc/adi,ad7746.yaml
+> new file mode 100644
+> index 000000000000..5de86f4374e1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/cdc/adi,ad7746.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/cdc/adi,ad7746.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: AD7746 24-Bit Capacitance-to-Digital Converter with Temperature Sensor
+> +
+> +maintainers:
+> +  - Michael Hennerich <michael.hennerich@analog.com>
+> +
+> +description: |
+> +  AD7746 24-Bit Capacitance-to-Digital Converter with Temperature Sensor
+> +
+> +  Specifications about the part can be found at:
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7291.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad7745
+> +      - adi,ad7746
+> +      - adi,ad7747
+> +
+> +  reg:
+> +    description: |
+> +      Physiscal address of the EXC set-up register.
+
+reg in this case would be the i2c address.
+
+> +    maxItems: 1
+> +
+> +  adi,excitation-voltage-level:
+
+This isn't a level as such, it's a scale factor, or something like
+that and the naming should reflect that + the values
+should be real in some sense (multipliers so
+perhaps something like adi,excitation-vdd-milicent ?
+schema/property-units.yaml includes -percent but that doesn't
+have enough precision.
+
+enum [125, 250, 375, 500] 
+
+> +    description: |
+> +      Select the reference excitation voltage level used by the device.
+> +      With VDD being the power supply voltage, valid values are:
+> +      0: +-VDD / 8
+> +      1: +-VDD / 4
+> +      2: +-VDD * 3 / 8
+> +      3: +-VDD / 2
+> +      If left empty option 3 is selected.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3]
+> +
+> +  adi,exca-output:
+> +    description: |
+> +      Sets the excitation output in the exca pin.
+> +      Valid values are:
+> +      0: Disables output in the EXCA pin.
+> +      1: Enables EXCA pin as the excitation output.
+> +      2: Enables EXCA pin as the inverted excitation output.
+
+Hmm. Various ways we could do this and avoid the need for
+a enum representing several different things.  Perhaps
+
+adi,exa-output-en
+adi,exa-output-invert
+
+(appropriate checks so we can only have invert of the channel
+is enabled as otherwise it is less than meaningful)
+
+> +      If left empty the output is disabled.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2]
+> +
+> +  adi,excb-output:
+> +    description: |
+> +      Analoguos to the adi,exca-output for the EXCB pin.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      ad7746: cdc@0 {
+> +        compatible = "adi,ad7746";
+> +        reg = <0>;
+
+That's very unlikely as an i2c address.
+
+> +        adi,excitation-voltage-level = <3>;
+> +        adi,exca-output = <0>;
+> +        adi,excb-output = <0>;
+> +      };
+> +    };
+> +...
 
