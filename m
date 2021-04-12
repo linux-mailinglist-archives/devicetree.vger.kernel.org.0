@@ -2,128 +2,386 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F12535C5BD
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 13:55:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1295835C621
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 14:23:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240499AbhDLLzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 07:55:17 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:23890 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237792AbhDLLzQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Apr 2021 07:55:16 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1618228498; h=Content-Type: MIME-Version: Message-ID:
- In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
- bh=vdPB/4mlyh2rNRzqrJP2XjppQ3JehxA6cUhYVRcwhQc=; b=mYIIwZKGd0KT+RcFf+dOZVdMiWTUwNj2Ku0xa77NSD+ViYqLP4inJo1VBiQ/pW9XKZyn7v4G
- mhSwRPg94OeC3OFdKJxKfVbV2JaR72lw5cIV9ryn9t9585ve3Xge6lIxY7v3l70rZDAHyCvC
- cJLJ277oT6t2o+n/sOb4SURtfw0=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 6074350d03cfff34528bdc3d (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 12 Apr 2021 11:54:53
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 29BEEC43463; Mon, 12 Apr 2021 11:54:53 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id D3890C433C6;
-        Mon, 12 Apr 2021 11:54:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D3890C433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        =?utf-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-Subject: Re: [PATCH 1/2] dt-binding: bcm43xx-fmac: add optional brcm,ccode-map
-References: <20210408113022.18180-1-shawn.guo@linaro.org>
-        <20210408113022.18180-2-shawn.guo@linaro.org>
-        <87k0p9mewt.fsf@codeaurora.org> <20210412012528.GB15093@dragon>
-Date:   Mon, 12 Apr 2021 14:54:46 +0300
-In-Reply-To: <20210412012528.GB15093@dragon> (Shawn Guo's message of "Mon, 12
-        Apr 2021 09:25:29 +0800")
-Message-ID: <87im4rlnuh.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
+        id S239439AbhDLMXz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 08:23:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55296 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238378AbhDLMXy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 08:23:54 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3694EC06174A
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 05:23:35 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id b14so21045864lfv.8
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 05:23:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GgNPdquwiiY3H+qGfGL7JXg3yCu/aryRNaErPvGJaSU=;
+        b=VVDIY5BZmCz7d7dvRm5jwlinqvoDsO5mLSnyST90QfD4/Og9lgtMoy7t+YO7xRzfUV
+         HtGSRGS9nPwKRiiGcK8n9o4UVpD3CEtXWQRkdX4P5cEYZGktywWmuYYL2Nav4j4qPPCX
+         aiJ6rxHgNx68hSnhInFJTWBxkKyBdr1kTGck/GOJb3G55TJqyQcmczIRdbw/fMsn2vrk
+         25CWUgH2/h1toE/P2Txk/gvcMqoYUZGqfflNxfbLYjBFUedWekHMNgQ055q393W0YtVP
+         7/e/AV9Tlks+PjnmWQ9RzC+JeWef+9/1GAd37na2Erk+Jx+QCg+K4DlZlTC+tmr5b1z0
+         TvFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GgNPdquwiiY3H+qGfGL7JXg3yCu/aryRNaErPvGJaSU=;
+        b=un4q3rCAIM+hmMg6LqqAOhpRiavoe2KzhQVXgUVH9VUYzcC6WkvudstEBgRtaE/vdZ
+         95X3fBNbhsreHrTuAHSjCvZTnIUTFz21E3XVwPNFuPNn5ZNDouE0TXtmeFs9RuaAdmiu
+         JOwK4how2ltoYA06evZ4oWc48W+OIYqvsYn4s0TQbvZghErb5UTfBtMJ5zVdJgFZBoMO
+         +zIuqEF1Uf6gNXT9hcMP1wVxp3Uw/0wCZjo5SwAVsrvz4HB8iJzDErK6uiiWYn3X6rRa
+         X0HRAZisJNWXISDUUZoXBYeZl1yBl+uVZndbFWD2mOg17n0K5Eu8LRYM6Q4dhyhdSdtY
+         w/yQ==
+X-Gm-Message-State: AOAM530GitHPok1CRGbmkzEHAsDNN2b8+RWSqSzwXJVy+zRO3Ji/srz9
+        6HgMMHTK/csKDdz2547EGuM+Jw==
+X-Google-Smtp-Source: ABdhPJwm1GgKipGn2TfPp7jsVuKHUaZU3Sf3Utg1oBdYDs2i98ama6BJLtJRYoo5hCnk1cfUat6gGw==
+X-Received: by 2002:a05:6512:238d:: with SMTP id c13mr18452988lfv.576.1618230213579;
+        Mon, 12 Apr 2021 05:23:33 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id t15sm516664lfb.152.2021.04.12.05.23.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Apr 2021 05:23:33 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
+Cc:     Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH] iio: st-sensors: Update ST Sensor bindings
+Date:   Mon, 12 Apr 2021 14:23:31 +0200
+Message-Id: <20210412122331.1631643-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Shawn Guo <shawn.guo@linaro.org> writes:
+This adjusts the ST Sensor bindings with the more fine-grained
+syntax checks that were proposed late in the last kernel cycle
+and colliding with parallel work.
 
-> On Sun, Apr 11, 2021 at 10:57:54AM +0300, Kalle Valo wrote:
->> Shawn Guo <shawn.guo@linaro.org> writes:
->> 
->> > Add optional brcm,ccode-map property to support translation from ISO3166
->> > country code to brcmfmac firmware country code and revision.
->> >
->> > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
->> > ---
->> >  .../devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt | 7 +++++++
->> >  1 file changed, 7 insertions(+)
->> >
->> > diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt b/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt
->> > index cffb2d6876e3..a65ac4384c04 100644
->> > --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt
->> > +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt
->> > @@ -15,6 +15,12 @@ Optional properties:
->> >  	When not specified the device will use in-band SDIO interrupts.
->> >   - interrupt-names : name of the out-of-band interrupt, which must be set
->> >  	to "host-wake".
->> > + - brcm,ccode-map : multiple strings for translating ISO3166 country code to
->> > +	brcmfmac firmware country code and revision.  Each string must be in
->> > +	format "AA-BB-num" where:
->> > +	  AA is the ISO3166 country code which must be 2 characters.
->> > +	  BB is the firmware country code which must be 2 characters.
->> > +	  num is the revision number which must fit into signed integer.
->> >  
->> >  Example:
->> >  
->> > @@ -34,5 +40,6 @@ mmc3: mmc@1c12000 {
->> >  		interrupt-parent = <&pio>;
->> >  		interrupts = <10 8>; /* PH10 / EINT10 */
->> >  		interrupt-names = "host-wake";
->> > +		brcm,ccode-map = "JP-JP-78", "US-Q2-86";
->> 
->> The commit log does not answer "Why?". Why this needs to be in device
->> tree and, for example, not hard coded in the driver?
->
-> Thanks for the comment, Kalle.  Actually, this is something I need some
-> input from driver maintainers.  I can see this country code mapping
-> table is chipset specific, and can be hard coded in driver per chip id
-> and revision.  But on the other hand, it makes some sense to have this
-> table in device tree, as the country code that need to be supported
-> could be a device specific configuration.
+Cc: devicetree@vger.kernel.org
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v1->v2:
+- Use enum for the st,drdy-int-pin property.
+- Drop GPIO DT include.
+- Add an SPI example.
+---
+ .../bindings/iio/st,st-sensors.yaml           | 261 ++++++++++++------
+ 1 file changed, 183 insertions(+), 78 deletions(-)
 
-Could be? Does such a use case exist at the moment or are just guessing
-future needs?
-
-From what I have learned so far I think this kind of data should be in
-the driver, but of course I might be missing something.
-
+diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+index 7e98f47987dc..497cb97042e0 100644
+--- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
++++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+@@ -6,7 +6,9 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: STMicroelectronics MEMS sensors
+ 
+-description: |
++description: The STMicroelectronics sensor devices are pretty straight-forward
++  I2C or SPI devices, all sharing the same device tree descriptions no matter
++  what type of sensor it is.
+   Note that whilst this covers many STMicro MEMs sensors, some more complex
+   IMUs need their own bindings.
+   The STMicroelectronics sensor devices are pretty straight-forward I2C or
+@@ -15,90 +17,178 @@ description: |
+ 
+ maintainers:
+   - Denis Ciocca <denis.ciocca@st.com>
++  - Linus Walleij <linus.walleij@linaro.org>
+ 
+ properties:
+   compatible:
+-    description: |
+-      Some values are deprecated.
+-      st,lis3lv02d (deprecated, use st,lis3lv02dl-accel)
+-      st,lis302dl-spi (deprecated, use st,lis3lv02dl-accel)
+-    enum:
+-        # Accelerometers
+-      - st,lis3lv02d
+-      - st,lis302dl-spi
+-      - st,lis3lv02dl-accel
+-      - st,lsm303dlh-accel
+-      - st,lsm303dlhc-accel
+-      - st,lis3dh-accel
+-      - st,lsm330d-accel
+-      - st,lsm330dl-accel
+-      - st,lsm330dlc-accel
+-      - st,lis331dl-accel
+-      - st,lis331dlh-accel
+-      - st,lsm303dl-accel
+-      - st,lsm303dlm-accel
+-      - st,lsm330-accel
+-      - st,lsm303agr-accel
+-      - st,lis2dh12-accel
+-      - st,h3lis331dl-accel
+-      - st,lng2dm-accel
+-      - st,lis3l02dq
+-      - st,lis2dw12
+-      - st,lis3dhh
+-      - st,lis3de
+-      - st,lis2de12
+-      - st,lis2hh12
+-        # Gyroscopes
+-      - st,l3g4200d-gyro
+-      - st,lsm330d-gyro
+-      - st,lsm330dl-gyro
+-      - st,lsm330dlc-gyro
+-      - st,l3gd20-gyro
+-      - st,l3gd20h-gyro
+-      - st,l3g4is-gyro
+-      - st,lsm330-gyro
+-      - st,lsm9ds0-gyro
+-        # Magnetometers
+-      - st,lsm303agr-magn
+-      - st,lsm303dlh-magn
+-      - st,lsm303dlhc-magn
+-      - st,lsm303dlm-magn
+-      - st,lis3mdl-magn
+-      - st,lis2mdl
+-      - st,lsm9ds1-magn
+-      - st,iis2mdc
+-        # Pressure sensors
+-      - st,lps001wp-press
+-      - st,lps25h-press
+-      - st,lps331ap-press
+-      - st,lps22hb-press
+-      - st,lps33hw
+-      - st,lps35hw
+-      - st,lps22hh
++    oneOf:
++      - description: STMicroelectronics Accelerometers
++        enum:
++          - st,h3lis331dl-accel
++          - st,lis2de12
++          - st,lis2dw12
++          - st,lis2hh12
++          - st,lis2dh12-accel
++          - st,lis331dl-accel
++          - st,lis331dlh-accel
++          - st,lis3de
++          - st,lis3dh-accel
++          - st,lis3dhh
++          - st,lis3l02dq
++          - st,lis3lv02dl-accel
++          - st,lng2dm-accel
++          - st,lsm303agr-accel
++          - st,lsm303dl-accel
++          - st,lsm303dlh-accel
++          - st,lsm303dlhc-accel
++          - st,lsm303dlm-accel
++          - st,lsm330-accel
++          - st,lsm330d-accel
++          - st,lsm330dl-accel
++          - st,lsm330dlc-accel
++      - description: STMicroelectronics Gyroscopes
++        enum:
++          - st,l3g4200d-gyro
++          - st,l3g4is-gyro
++          - st,l3gd20-gyro
++          - st,l3gd20h-gyro
++          - st,lsm330-gyro
++          - st,lsm330d-gyro
++          - st,lsm330dl-gyro
++          - st,lsm330dlc-gyro
++          - st,lsm9ds0-gyro
++      - description: STMicroelectronics Magnetometers
++        enum:
++          - st,lis2mdl
++          - st,lis3mdl-magn
++          - st,lsm303agr-magn
++          - st,lsm303dlh-magn
++          - st,lsm303dlhc-magn
++          - st,lsm303dlm-magn
++          - st,lsm9ds1-magn
++      - description: STMicroelectronics Pressure Sensors
++        enum:
++          - st,lps001wp-press
++          - st,lps22hb-press
++          - st,lps22hh
++          - st,lps25h-press
++          - st,lps331ap-press
++          - st,lps33hw
++          - st,lps35hw
++      - description: Deprecated bindings
++        enum:
++          - st,lis302dl-spi
++          - st,lis3lv02d
++        deprecated: true
+ 
+   reg:
+     maxItems: 1
+ 
+   interrupts:
++    description: interrupt line(s) connected to the DRDY line(s) and/or the
++      Intertial interrupt lines INT1 and INT2 if these exist. This means up to
++      three interrupts, and the DRDY must be the first one if it exists on
++      the package. The trigger edge of the interrupts is sometimes software
++      configurable in the hardware so the operating system should parse this
++      flag and set up the trigger edge as indicated in the device tree.
+     minItems: 1
++    maxItems: 2
+ 
+   vdd-supply: true
+   vddio-supply: true
+ 
+   st,drdy-int-pin:
++    description: the pin on the package that will be used to signal
++      "data ready" (valid values 1 or 2). This property is not configurable
++      on all sensors.
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    description:
+-      Some sensors have multiple possible pins via which they can provide
+-      a data ready interrupt.  This selects which one.
+-    enum:
+-      - 1
+-      - 2
++    enum: [1, 2]
+ 
+   drive-open-drain:
+     $ref: /schemas/types.yaml#/definitions/flag
+-    description: |
+-      The interrupt/data ready line will be configured as open drain, which
+-      is useful if several sensors share the same interrupt line.
++    description: the interrupt/data ready line will be configured
++      as open drain, which is useful if several sensors share the same
++      interrupt line. (This binding is taken from pinctrl.)
++
++  mount-matrix:
++    description: an optional 3x3 mounting rotation matrix.
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          enum:
++            # These have no interrupts
++            - st,lps001wp
++    then:
++      properties:
++        interrupts: false
++        st,drdy-int-pin: false
++        drive-open-drain: false
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            # These have only DRDY
++            - st,lis2mdl
++            - st,lis3l02dq
++            - st,lis3lv02dl-accel
++            - st,lps22hb-press
++            - st,lps22hh
++            - st,lps25h-press
++            - st,lps33hw
++            - st,lps35hw
++            - st,lsm303agr-magn
++            - st,lsm303dlh-magn
++            - st,lsm303dlhc-magn
++            - st,lsm303dlm-magn
++    then:
++      properties:
++        interrupts:
++          maxItems: 1
++        st,drdy-int-pin: false
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            # Two intertial interrupts i.e. accelerometer/gyro interrupts
++            - st,h3lis331dl-accel
++            - st,l3g4200d-gyro
++            - st,l3g4is-gyro
++            - st,l3gd20-gyro
++            - st,l3gd20h-gyro
++            - st,lis2de12
++            - st,lis2dw12
++            - st,lis2hh12
++            - st,lis2dh12-accel
++            - st,lis331dl-accel
++            - st,lis331dlh-accel
++            - st,lis3de
++            - st,lis3dh-accel
++            - st,lis3dhh
++            - st,lis3mdl-magn
++            - st,lng2dm-accel
++            - st,lps331ap-press
++            - st,lsm303agr-accel
++            - st,lsm303dlh-accel
++            - st,lsm303dlhc-accel
++            - st,lsm303dlm-accel
++            - st,lsm330-accel
++            - st,lsm330-gyro
++            - st,lsm330d-accel
++            - st,lsm330d-gyro
++            - st,lsm330dl-accel
++            - st,lsm330dl-gyro
++            - st,lsm330dlc-accel
++            - st,lsm330dlc-gyro
++            - st,lsm9ds0-gyro
++            - st,lsm9ds1-magn
++    then:
++      properties:
++        interrupts:
++          maxItems: 2
+ 
+ required:
+   - compatible
+@@ -110,15 +200,30 @@ examples:
+   - |
+     #include <dt-bindings/interrupt-controller/irq.h>
+     i2c {
+-        #address-cells = <1>;
+-        #size-cells = <0>;
+-        accelerometer@1d {
+-            compatible = "st,lis3lv02dl-accel";
+-            reg = <0x1d>;
+-            interrupt-parent = <&gpio2>;
+-            interrupts = <18 IRQ_TYPE_EDGE_RISING>;
+-            pinctrl-0 = <&lis3lv02dl_nhk_mode>;
+-            pinctrl-names = "default";
+-        };
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      accelerometer@1c {
++        compatible = "st,lis331dl-accel";
++        reg = <0x1c>;
++        st,drdy-int-pin = <1>;
++        vdd-supply = <&ldo1>;
++        vddio-supply = <&ldo2>;
++        interrupt-parent = <&gpio>;
++        interrupts = <18 IRQ_TYPE_EDGE_RISING>, <19 IRQ_TYPE_EDGE_RISING>;
++      };
++    };
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      num-cs = <1>;
++
++      l3g4200d: gyroscope@0 {
++        compatible = "st,l3g4200d-gyro";
++        st,drdy-int-pin = <2>;
++        reg = <0>;
++        vdd-supply = <&vcc_io>;
++        vddio-supply = <&vcc_io>;
++      };
+     };
+-...
++
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.29.2
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
