@@ -2,82 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9880E35BD1E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 10:48:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AF5235BD5D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 10:51:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237953AbhDLIrh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 04:47:37 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:58931 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S237831AbhDLIqt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 04:46:49 -0400
-X-UUID: 2ae803f1d74144b48a69dd20ece44968-20210412
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=RweJgmRF+LDjf8Ds2biby3dH1UAHrROV6leebHr8sAA=;
-        b=p479TbB3I8hc2HqD2k+sf8GTw9RuJdpQFbcHLXQIExKdJCJf+UDV+bRvMU1NbnSysQ3EM7+Cf7dkTrr1UFsm3stje5TqbROEkB3biIKhmc8tAzievCr+vrVO9fhKuzo2UDCwZ5bTPEKQsZArZAyPBD+A9pF38J+kYTqgS6Aybz0=;
-X-UUID: 2ae803f1d74144b48a69dd20ece44968-20210412
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 846852216; Mon, 12 Apr 2021 16:46:25 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 12 Apr 2021 16:46:23 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 12 Apr 2021 16:46:23 +0800
-Message-ID: <1618217183.16010.4.camel@mtksdaap41>
-Subject: Re: [PATCH v1] drm/mediatek: adjust rdma fifo threshold calculate
- formula
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, David Airlie <airlied@linux.ie>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Mon, 12 Apr 2021 16:46:23 +0800
-In-Reply-To: <1618212332-3547-2-git-send-email-yongqiang.niu@mediatek.com>
-References: <1618212332-3547-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1618212332-3547-2-git-send-email-yongqiang.niu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S237935AbhDLIvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 04:51:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36784 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238328AbhDLItb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Apr 2021 04:49:31 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D155F61379;
+        Mon, 12 Apr 2021 08:48:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618217313;
+        bh=eLznHwvEfmec088sW414tCcwJZyAy1dqSqy3r+pI7zc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=uey+W82dISxV0CSUCEiP+7gx9QuEZBJfcRoFlSMpkmrDlRAJJ0xVAOCsY94BkROLO
+         zR/I466PgDid3faek70DuVNVg7noHojv66W6cwsIyY2yvu9Lt2qRuc9nGzCIxgZBXn
+         b+pFwRet18DXS13aa8a0O4MFYM9FTwIPGTmzP+TKLFSBeZqwLd+xPrXiLpfNkZam//
+         nTLqalOsrHTkSgYJ0euxXxHf96MAHZTKfV0Uyr+Q3gmjq/OvXQUq6zhW/U9m2u5Nji
+         FvCPzYE1fW7fbdBhJcyx8lAQrFqUby6/4TW+Qu7SCI6vP9Tw1jB9lcRoTkvaxiDZxi
+         iOtWMOODr0mgA==
+Received: by mail-wr1-f48.google.com with SMTP id a6so12023710wrw.8;
+        Mon, 12 Apr 2021 01:48:32 -0700 (PDT)
+X-Gm-Message-State: AOAM532eWGV1hrPeuH8JRUJZ3NwfO5LXvWL3KOuKwK1eC7rK6S6szAGj
+        ExltV7g47vRwzoDHS11IYRaUMbgTSbFR/zbyazI=
+X-Google-Smtp-Source: ABdhPJwdOphNG/NExZknsy5yMxBCnGZA+q7EKNOchQAgxbs01jSI9QEePmT+lsicnZYJB8nH9FG1BOhyUFdSoL2u8ew=
+X-Received: by 2002:adf:c70b:: with SMTP id k11mr30918454wrg.165.1618217311367;
+ Mon, 12 Apr 2021 01:48:31 -0700 (PDT)
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: B93D2EA023810F2AB99CA9F7808B7137FCA922C9F707457EE34B03921C380BE52000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <20210319062752.145730-1-andrew@aj.id.au> <20210319062752.145730-16-andrew@aj.id.au>
+ <CAK8P3a1HDQdbTAT4aRMLu-VFz720ynPqPHG5b22NZ5p5QfUqOw@mail.gmail.com> <ba63f830-4758-49aa-a63e-f204a8eec1b4@www.fastmail.com>
+In-Reply-To: <ba63f830-4758-49aa-a63e-f204a8eec1b4@www.fastmail.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Mon, 12 Apr 2021 10:48:14 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3RXr5CR7DJgD9rEkN8owpPxXRgzRnPB_5LuQcHkzc4LA@mail.gmail.com>
+Message-ID: <CAK8P3a3RXr5CR7DJgD9rEkN8owpPxXRgzRnPB_5LuQcHkzc4LA@mail.gmail.com>
+Subject: Re: [PATCH v2 16/21] ipmi: kcs_bmc: Add a "raw" character device interface
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        openipmi-developer@lists.sourceforge.net,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Corey Minyard <minyard@acm.org>, Joel Stanley <joel@jms.id.au>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Benjamin Fair <benjaminfair@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIFlvbmdxaWFuZzoNCg0KT24gTW9uLCAyMDIxLTA0LTEyIGF0IDE1OjI1ICswODAwLCBZb25n
-cWlhbmcgTml1IHdyb3RlOg0KPiB0aGUgb3JnaW5hbCBmb3JtdWxhIHdpbGwgY2F1c2VkIHJkbWEg
-ZmlmbyB0aHJlc2hvbGQgY29uZmlnIG92ZXJmbG93DQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBZb25n
-cWlhbmcgTml1IDx5b25ncWlhbmcubml1QG1lZGlhdGVrLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJz
-L2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3BfcmRtYS5jIHwgMiArLQ0KPiAgMSBmaWxlIGNoYW5n
-ZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX3JkbWEuYyBiL2RyaXZlcnMvZ3B1L2RybS9t
-ZWRpYXRlay9tdGtfZGlzcF9yZG1hLmMNCj4gaW5kZXggNzI4YWFhZC4uOGM5MzcxYiAxMDA2NDQN
-Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX3JkbWEuYw0KPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3BfcmRtYS5jDQo+IEBAIC0xNjcsNyAr
-MTY3LDcgQEAgdm9pZCBtdGtfcmRtYV9jb25maWcoc3RydWN0IGRldmljZSAqZGV2LCB1bnNpZ25l
-ZCBpbnQgd2lkdGgsDQo+ICAJICogb3V0cHV0IHRocmVzaG9sZCB0byA2IG1pY3Jvc2Vjb25kcyB3
-aXRoIDcvNiBvdmVyaGVhZCB0bw0KPiAgCSAqIGFjY291bnQgZm9yIGJsYW5raW5nLCBhbmQgd2l0
-aCBhIHBpeGVsIGRlcHRoIG9mIDQgYnl0ZXM6DQo+ICAJICovDQo+IC0JdGhyZXNob2xkID0gd2lk
-dGggKiBoZWlnaHQgKiB2cmVmcmVzaCAqIDQgKiA3IC8gMTAwMDAwMDsNCj4gKwl0aHJlc2hvbGQg
-PSByZG1hX2ZpZm9fc2l6ZSAqIDcgLyAxMDsNCg0KSXQncyBiZXR0ZXIgdG8gc2V0IHRocmVzaG9s
-ZCBieSB3aWR0aCBhbmQgaGVpZ2h0LCBidXQgaXQgc2VlbXMgdGhhdCBubw0Kb25lIGNvdWxkIGNv
-bWUgb3V0IGEgc29sdXRpb24gZm9yIGFsbCBTb0MuIEkgY291bGQganVzdCBhY2NlcHQgdGhpcw0K
-c29sdXRpb24sIGJ1dCBJIG5lZWQgc29tZSBhZGRpdGlvbiBjb21tZW50IGZvciB0aGlzIHNvbHV0
-aW9uLiBIb3cgZG8geW91DQpkZWNpZGUgNy8xMD8gSW4gdGhlIGZ1dHVyZSwgYW5vdGhlciBtYXkg
-bmVlZCB0byBtb2RpZnkgdGhpcyB2YWx1ZSBhbmQgaGUNCm5lZWQgdG8ga25vdyB3aHkgeW91IHVz
-ZSA3LzEwLiBJZiB5b3UganVzdCBjaG9vc2UgaXQgYXQgcmFuZG9tLCBqdXN0DQp0ZWxsIHVzIHRo
-YXQgeW91IGp1c3QgcmFuZG9tbHkgY2hvb3NlIGl0Lg0KDQpSZWdhcmRzLA0KQ0sNCg0KPiAgCXJl
-ZyA9IFJETUFfRklGT19VTkRFUkZMT1dfRU4gfA0KPiAgCSAgICAgIFJETUFfRklGT19QU0VVRE9f
-U0laRShyZG1hX2ZpZm9fc2l6ZSkgfA0KPiAgCSAgICAgIFJETUFfT1VUUFVUX1ZBTElEX0ZJRk9f
-VEhSRVNIT0xEKHRocmVzaG9sZCk7DQoNCg==
+On Mon, Apr 12, 2021 at 3:33 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+> On Fri, 9 Apr 2021, at 17:25, Arnd Bergmann wrote:
+> > On Fri, Mar 19, 2021 at 7:31 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+> > >
+> > > The existing IPMI chardev encodes IPMI behaviours as the name suggests.
+> > > However, KCS devices are useful beyond IPMI (or keyboards), as they
+> > > provide a means to generate IRQs and exchange arbitrary data between a
+> > > BMC and its host system.
+> >
+> > I only noticed the series after Joel asked about the DT changes on the arm
+> > side. One question though:
+> >
+> > How does this related to the drivers/input/serio/ framework that also talks
+> > to the keyboard controller for things that are not keyboards?
+>
+> I've taken a brief look and I feel they're somewhat closely related.
+>
+> It's plausible that we could wrangle the code so the Aspeed and Nuvoton
+> KCS drivers move under drivers/input/serio. If you squint, the i8042
+> serio device driver has similarities with what the Aspeed and Nuvoton
+> device drivers are providing to the KCS IPMI stack.
 
+After looking some more into it, I finally understood that the two are
+rather complementary. While the  drivers/char/ipmi/kcs_bmc.c
+is the other (bmc) end of drivers/char/ipmi/ipmi_kcs_sm.c, it seems
+that the proposed kcs_bmc_cdev_raw.c interface would be
+what corresponds to the other side of
+drivers/input/serio/i8042.c+userio.c. Then again, these are also on
+separate ports (0x60 for the keyboard controller, 0xca2 for the BMC
+KCS), so they would never actually talk to one another.
+
+> Both the KCS IPMI and raw chardev I've implemented in this patch need
+> both read and write access to the status register (STR). serio could
+> potentially expose its value through serio_interrupt() using the
+> SERIO_OOB_DATA flag, but I haven't put any thought into it beyond this
+> sentence. We'd need some extra support for writing STR via the serio
+> API. I'm not sure that fits into the abstraction (unless we make
+> serio_write() take a flags argument?).
+>
+> In that vein, the serio_raw interface is close to the functionality
+> that the raw chardev provides in this patch, though again serio_raw
+> lacks userspace access to STR. Flags are ignored in the ->interrupt()
+> callback so all values received via ->interrupt() are exposed as data.
+> The result is there's no way to take care of SERIO_OOB_DATA in the
+> read() path. Given that, I think we'd have to expose an ioctl() to
+> access the STR value after taking care of SERIO_OOB_DATA in
+> ->interrupt().
+>
+> I'm not sure where that lands us.
+
+Based on what I looked up, I think you can just forget about my original
+question. We have two separate interfaces that use an Intel 8042-style
+protocol, but they don't really interact.
+
+      Arnd
