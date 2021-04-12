@@ -2,105 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9649735C9F1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 17:32:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABB5F35CA54
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 17:46:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242948AbhDLPcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 11:32:15 -0400
-Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:51308 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S242922AbhDLPcG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Apr 2021 11:32:06 -0400
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-        by mx0a-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13CFVLuf004634;
-        Mon, 12 Apr 2021 08:31:28 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type : content-transfer-encoding; s=pfpt0220;
- bh=+PPQ0jPh/9sOaCsxsOMINjzr4p98Q80wtAyKsrfihdg=;
- b=QT0Rq0AfzzjdHzptiCyVprRbVLpd0ykuA5BX3hxmLcRHLkJ1VumAvz/8d0nW8p4PQ2gN
- D8Nwiybkfa5PiU3A8j8wz0IyHXlyDcnNkWhBzVmS5c5Exev90o/Zq0HhtsyOHIC9nDRt
- TEiPfNb8uawLYZUod1f8RMA68GZNya4hWvuGfDcxkyCLrKdKSVSqYhHZjV8IvqzdGR1/
- 1sjiv0lJB05pZZGfasMU6LUzurp0wWi7LTt2hSmg1ii+K5iyMQVn+FG7+obCQE04FOPY
- PA3qSZg5UxUnjBL/fwweJZhIJZfuw6uuNi4hn6nOZ6tzCeVUwnVZ3xrXroygmNpTqPR5 PQ== 
-Received: from dc5-exch02.marvell.com ([199.233.59.182])
-        by mx0a-0016f401.pphosted.com with ESMTP id 37vcu99xrb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Mon, 12 Apr 2021 08:31:28 -0700
-Received: from SC-EXCH04.marvell.com (10.93.176.84) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 12 Apr
- 2021 08:31:27 -0700
-Received: from DC5-EXCH01.marvell.com (10.69.176.38) by SC-EXCH04.marvell.com
- (10.93.176.84) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 12 Apr
- 2021 08:31:27 -0700
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 12 Apr 2021 08:31:27 -0700
-Received: from nw-bp.marvell.com (nw-bp.marvell.com [10.5.24.22])
-        by maili.marvell.com (Postfix) with ESMTP id F3DE73F7043;
-        Mon, 12 Apr 2021 08:31:22 -0700 (PDT)
-From:   <bpeled@marvell.com>
-To:     <thomas.petazzoni@bootlin.com>, <lorenzo.pieralisi@arm.com>,
-        <bhelgaas@google.com>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <sebastian.hesselbarth@gmail.com>, <gregory.clement@bootlin.com>,
-        <andrew@lunn.ch>, <robh+dt@kernel.org>, <mw@semihalf.com>,
-        <jaz@semihalf.com>, <kostap@marvell.com>, <nadavh@marvell.com>,
-        <stefanc@marvell.com>, <oferh@marvell.com>, <bpeled@marvell.com>
-Subject: =?UTF-8?q?=5B=E2=80=9DPATCH=E2=80=9D=205/5=5D=20PCI=3A=20armada8k=3A=20add=20device=20reset=20to=20link-down=20handle?=
-Date:   Mon, 12 Apr 2021 18:30:56 +0300
-Message-ID: <1618241456-27200-6-git-send-email-bpeled@marvell.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1618241456-27200-1-git-send-email-bpeled@marvell.com>
-References: <1618241456-27200-1-git-send-email-bpeled@marvell.com>
+        id S239633AbhDLPrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 11:47:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43750 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243029AbhDLPrO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 11:47:14 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E91F7C06174A
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 08:46:55 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 12so7102358wmf.5
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 08:46:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=409QTL0hdWWRMQj+5oULQZC2JwXWrdGHiQRBuE3m5qs=;
+        b=nAc7PNeKZKqHAXmi3LGWyOFnnNBrBYXpokEAYTbOnLAdVfcV1kwh6MyRhBsqfibSL6
+         LfrmqDpGBiNzqnNHeTKn6Ivil6WHKCALe6CR4t3Yqa4f/TahR6oSt4Ur9Utgnvlnoi93
+         R3WN2Ojp2XmtR8YZea/nJ/BfpcOakszj9iBC+5LNJzPHo/WakSDw+teVeyLs0huwEdQW
+         Ffm0IuFnQBmMbEkMPsQ8H4kvpY5sRnrEWV578Haz8bfCxbRbdPAsWuv/6fTLSArOfZbF
+         Yy3kTyplYAf3gU9baaz0Okm2bjOLz8kQFfi0tJcohJXprMUfUTDcIAog/5I9mReOfZE6
+         nqrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=409QTL0hdWWRMQj+5oULQZC2JwXWrdGHiQRBuE3m5qs=;
+        b=byjehmZx+kqZN2uozt/BRZwLy82/QKnspCXbfle9QvSmCVEoJ+hB5ypTY/t2K+u8WS
+         X3R+ZCs1JSnGnCab61Eaqwy79/D1B/iy9VgtpoYDjoqRHCSD3qa8+3Hu3BVDq4GXzr09
+         fDdUBJTbx7/jhhoEbikW4JvjSHIB4vJssxim+ovE5CEnHWzVynuXIdVZ24pez8LXNX56
+         cIhtb/bVGRPo8AmEDEtiZjVgI1FRxHtN8q8cOAUvGc+8LskSJX9dkdZFOSKYdJ93bJxB
+         yKhk3BH9nRvVwZhCrPSYxzMn/F5oVeCCdPjKG+XZd1AuhZTVELlKERJ/6KD7ytn3msdm
+         DuNQ==
+X-Gm-Message-State: AOAM531YNPRsGXQW+K++Zrsn1l6vDrz5eqNiBSLKvM5o5gyhEGEpo8So
+        Lm4MhmLX7n55m9w3yaso78hYxA==
+X-Google-Smtp-Source: ABdhPJyEI0xHO5CJxCBwlBCwlz9e2995zsMDWinK81u+lnXoNI6gulBFX/BaPKvpFJ2+9fLRYdJgWQ==
+X-Received: by 2002:a1c:7ec4:: with SMTP id z187mr27294205wmc.3.1618242414584;
+        Mon, 12 Apr 2021 08:46:54 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:90c:e290:4c21:b00e:ff79:bf20])
+        by smtp.gmail.com with ESMTPSA id u3sm12647332wmg.48.2021.04.12.08.46.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Apr 2021 08:46:54 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     a.hajda@samsung.com, Laurent.pinchart@ideasonboard.com,
+        paul@crapouillou.net, robert.foss@linaro.org,
+        devicetree@vger.kernel.org
+Cc:     jonas@kwiboo.se, jernej.skrabec@siol.net,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        Phong LE <ple@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH v3 1/3] dt-bindings: display: bridge: add it66121 bindings
+Date:   Mon, 12 Apr 2021 17:46:46 +0200
+Message-Id: <20210412154648.3719153-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210412154648.3719153-1-narmstrong@baylibre.com>
+References: <20210412154648.3719153-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+X-Patch-Hashes: v=1; h=sha256; i=A37XVUhvAjeOHadMAQvzsTXvq4/Mx+3fpb+QMgZO0wk=; m=4pbLDTHmUx/bdOuUE4bnndkED+bQKYHuWP7IpaPzTyo=; p=NMnvxRQNO0UfPjnn5oPHclBIYEUF7AEtJYQxnlns38g=; g=7885d5dafd4182d3fd1e195e1b4fc94b84582e40
+X-Patch-Sig: m=pgp; i=narmstrong@baylibre.com; s=0xA4CFF8AE; b=iQIzBAABCgAdFiEEPVPGJshWBf4d9CyLd9zb2sjISdEFAmB0a0kACgkQd9zb2sjISdFhZQ//WjD XF7VLF9hVcJzoOou9W5jDshNKpCH3+bOWnAe9BwzNjMAmUzV1ryLlgg/TlNWoxV0usgM65SF1BPEf MTWDid2YBLW4sheOhQhGD/EyFf0mtikyYjpHf2SbidFERb6qC3c6OjFsyGOflfbN+gjHn+u9PjYGE 7meaSxx/ftgijcGDJyI2BuCJkrRNPfnPk2DQBTYoBZF5rud3S1jGmS1N7GYEBwwVzCZqH0fMTR8H+ EhbuLIhMVI5xiZPu4sUM+swcrAJPrPB1oljkPpbQd2EK7cQh2m+DQhg/RdwkCKXrmEOOV6z65WEc5 7+1MlYujrMdAsc1gAieFZ+7RMTR1pD7z1z27AlqTVVTV3wd+7a36rjgqT18iDiCRt7R1cPKCbkAXD x29Kxkkvf1t/FF9QEhTzXbgxOY5RDIH9H1awza2Yg8HqpKbUDLj4hioSn/V7804ognNFIImOoUU0a zVFNGNuT3h47VSrKLOJUBGRV3qKxnP7UHlcPJYsehwtWD75xunr6JLM34QZ98NFb7DGys4XM35aCI 1jnr+ZFKajIuUYCqtRvZhPkhAh7Y9hjpZynj/MIX6DxRfgt3NY4EiUENSTLCKtEnglrtuDO0a0vGx mnEwF0IKUYiqrS1DcQD2hKl7C1jUJBIk150g9dTGHDa7z+wrpQcl257uYjrJCxUs=
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: YDRy_dGnY5Gad4s8J5DMr13f1F-C1kzp
-X-Proofpoint-ORIG-GUID: YDRy_dGnY5Gad4s8J5DMr13f1F-C1kzp
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
- definitions=2021-04-12_11:2021-04-12,2021-04-12 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ben Peled <bpeled@marvell.com>
+From: Phong LE <ple@baylibre.com>
 
-Added pcie reset via gpio support as described in the
-designware-pcie.txt DT binding document.
-In cases link down cause still exist in device.
-The device need to be reset to reestablish the link.
-If reset-gpio pin provided in the device tree, then the linkdown
-handle resets the device before reestablishing link.
+Add the ITE bridge HDMI it66121 bindings.
 
-Signed-off-by: Ben Peled <bpeled@marvell.com>
+Signed-off-by: Phong LE <ple@baylibre.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/pci/controller/dwc/pcie-armada8k.c | 2 ++
- 1 file changed, 2 insertions(+)
+ .../bindings/display/bridge/ite,it66121.yaml  | 123 ++++++++++++++++++
+ 1 file changed, 123 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
 
-diff --git a/drivers/pci/controller/dwc/pcie-armada8k.c b/drivers/pci/controller/dwc/pcie-armada8k.c
-index 4eb8607..83ac91e 100644
---- a/drivers/pci/controller/dwc/pcie-armada8k.c
-+++ b/drivers/pci/controller/dwc/pcie-armada8k.c
-@@ -24,6 +24,7 @@
- #include <linux/of_irq.h>
- #include <linux/mfd/syscon.h>
- #include <linux/regmap.h>
-+#include <linux/of_gpio.h>
- 
- #include "pcie-designware.h"
- 
-@@ -38,6 +39,7 @@ struct armada8k_pcie {
- 	struct regmap *sysctrl_base;
- 	u32 mac_rest_bitmask;
- 	struct work_struct recover_link_work;
-+	enum of_gpio_flags flags;
- };
- 
- #define PCIE_VENDOR_REGS_OFFSET		0x8000
+diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+new file mode 100644
+index 000000000000..61ed6dc7740b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+@@ -0,0 +1,123 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/ite,it66121.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ITE it66121 HDMI bridge Device Tree Bindings
++
++maintainers:
++  - Phong LE <ple@baylibre.com>
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++description: |
++  The IT66121 is a high-performance and low-power single channel HDMI
++  transmitter, fully compliant with HDMI 1.3a, HDCP 1.2 and backward compatible
++  to DVI 1.0 specifications.
++
++properties:
++  compatible:
++    const: ite,it66121
++
++  reg:
++    maxItems: 1
++    description: base I2C address of the device
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO connected to active low reset
++
++  vrf12-supply:
++    description: Regulator for 1.2V analog core power.
++
++  vcn33-supply:
++    description: Regulator for 3.3V digital core power.
++
++  vcn18-supply:
++    description: Regulator for 1.8V IO core power.
++
++  interrupts:
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: DPI input port.
++
++        properties:
++          endpoint:
++            $ref: /schemas/graph.yaml#/$defs/endpoint-base
++            unevaluatedProperties: false
++
++            properties:
++              bus-width:
++                description:
++                  Endpoint bus width.
++                enum:
++                  - 12  # 12 data lines connected and dual-edge mode
++                  - 24  # 24 data lines connected and single-edge mode
++                default: 24
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: HDMI Connector port.
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - reg
++  - reset-gpios
++  - vrf12-supply
++  - vcn33-supply
++  - vcn18-supply
++  - interrupts
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      it66121hdmitx: it66121hdmitx@4c {
++        compatible = "ite,it66121";
++        pinctrl-names = "default";
++        pinctrl-0 = <&ite_pins_default>;
++        vcn33-supply = <&mt6358_vcn33_wifi_reg>;
++        vcn18-supply = <&mt6358_vcn18_reg>;
++        vrf12-supply = <&mt6358_vrf12_reg>;
++        reset-gpios = <&pio 160 1 /* GPIO_ACTIVE_LOW */>;
++        interrupt-parent = <&pio>;
++        interrupts = <4 8 /* IRQ_TYPE_LEVEL_LOW */>;
++        reg = <0x4c>;
++
++        ports {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          port@0 {
++            reg = <0>;
++            it66121_in: endpoint {
++              bus-width = <12>;
++              remote-endpoint = <&display_out>;
++            };
++          };
++
++          port@1 {
++            reg = <1>;
++            hdmi_conn_out: endpoint {
++              remote-endpoint = <&hdmi_conn_in>;
++            };
++          };
++        };
++      };
++    };
 -- 
-2.7.4
+2.25.1
 
