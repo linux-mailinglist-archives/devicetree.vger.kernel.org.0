@@ -2,74 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17DE735D033
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 20:22:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B1FF35D03B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 20:24:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230336AbhDLSWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 14:22:18 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:46726 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbhDLSWS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 14:22:18 -0400
-Received: by mail-ot1-f42.google.com with SMTP id d3-20020a9d29030000b029027e8019067fso11778977otb.13;
-        Mon, 12 Apr 2021 11:22:00 -0700 (PDT)
+        id S236700AbhDLSYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 14:24:24 -0400
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:44872 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229666AbhDLSYY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 14:24:24 -0400
+Received: by mail-oi1-f169.google.com with SMTP id j24so3510722oii.11;
+        Mon, 12 Apr 2021 11:24:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=y2ojIFbCzB5w4sgAru3oz+TxIuNqHhhz5Z30iFEHzrM=;
-        b=Pa49FBawJDhpC7PlFJLT2xFyEJtFZ3BLiYedQr/ApIyoIV1+tIaVuz14ej5Vfm7q21
-         ByHQ24WHXkWrd04CtJBg6IniltHgRv9y455jTMI8pi6/Srk+0wM2IEjszm0k8Q5Cz1r5
-         VBrxi/t0xZr/yqIzkIgXfePkiSgeEwQDQSFY02H4jTFEcEo4NNnZ8AqusE2XdCrPO5oE
-         575PMQAOoQKVEfQA/J3F2pbOIifSlnqDNx/MS2orPjYL9ag8pjEYWrW9AqTqpEoGBlLN
-         bjDAMqlXVxWDPvVmXcCBxHDI2dnwKpxplN+KT3RRgeuu5baB6UW1wSDS/FTPa0LAyHzr
-         +Emg==
-X-Gm-Message-State: AOAM533/2HSx7O8miAOI95h3WMPRqh5+zCBJfdT9bVvFMrjrBQFNrAut
-        hTqvnqP/8gBuLwJu6NTZrA==
-X-Google-Smtp-Source: ABdhPJwzUuO/lylfXd1BNgdtGmIBXGSAZIaBPE79+guBs7ZCyiyjQao0qvu8qlC5tpNqZzZ6rHCpwg==
-X-Received: by 2002:a05:6830:3114:: with SMTP id b20mr5948053ots.327.1618251719886;
-        Mon, 12 Apr 2021 11:21:59 -0700 (PDT)
+        bh=I5HbeKDhcmeEzkTpL+s857z6JwOx8CcHKVixcQWeMqg=;
+        b=qVGzCNOkMvM5kU6p5P8u+A85JnN+fSrvNmKu3K0GmNj1gW34KZEs05r/hXtsd9/+lj
+         pNR+pPdLGZDN6YRKvz/Gv1kapGWpcl+gkK1899qwgfulG4QGvrGOo/VSQh0iKi4x0aj2
+         DG96PAsx+X3sk08ql7op1kTM3pZ8XSNuzPv4/g/N3VWg5z4UcaIHAWClRPvtikcloiOp
+         ONVsRNZ6ig3jtbmR5OCy41Kd9yoi6OAVUHdVvrapqVX27JKydsDDG1WziHzAI5fhLd9B
+         u6N5P0HnQVwv9V/DXdGYHmYZ57Sr4SIKE9TrrYBX1QkOnQrIkPfkw4KMfjLGTRfvUOZm
+         +PcA==
+X-Gm-Message-State: AOAM531Pyku6u/89HvRzupwVb59yltja/lVP2at/oRQ8no0gaQgzx1QA
+        QdlZBeQ8prpUHZ9/Wm9rOA==
+X-Google-Smtp-Source: ABdhPJzVKlY/PDIKP5bFbIi5/h2pnazHJhpoBIZhzlLLlOribqb0QB7d3q70bueIT0GW3jShnMgK7g==
+X-Received: by 2002:a05:6808:b3b:: with SMTP id t27mr337538oij.131.1618251845638;
+        Mon, 12 Apr 2021 11:24:05 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 77sm2781748otg.55.2021.04.12.11.21.58
+        by smtp.gmail.com with ESMTPSA id x2sm2886622ote.47.2021.04.12.11.24.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Apr 2021 11:21:59 -0700 (PDT)
-Received: (nullmailer pid 4151017 invoked by uid 1000);
-        Mon, 12 Apr 2021 18:21:58 -0000
-Date:   Mon, 12 Apr 2021 13:21:58 -0500
+        Mon, 12 Apr 2021 11:24:04 -0700 (PDT)
+Received: (nullmailer pid 4153852 invoked by uid 1000);
+        Mon, 12 Apr 2021 18:24:03 -0000
+Date:   Mon, 12 Apr 2021 13:24:03 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        kgunda@codeaurora.org, linux-rtc@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Andy Gross <agross@kernel.org>
-Subject: Re: [PATCH V2 4/4] dt-bindings: rtc: qcom-pm8xxx-rtc: Add qcom
- pm8xxx rtc bindings
-Message-ID: <20210412182158.GA4150970@robh.at.kernel.org>
-References: <1617976766-7852-1-git-send-email-skakit@codeaurora.org>
- <1617976766-7852-5-git-send-email-skakit@codeaurora.org>
+To:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Cc:     narmstrong@baylibre.com, Laurent.pinchart@ideasonboard.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        hsinyi@chromium.org, robh+dt@kernel.org, dafna3@gmail.com,
+        megous@megous.com, a.hajda@samsung.com, jernej.skrabec@siol.net,
+        airlied@linux.ie, enric.balletbo@collabora.com,
+        dri-devel@lists.freedesktop.org, drinkcat@chromium.org,
+        chunkuang.hu@kernel.org, jonas@kwiboo.se, kernel@collabora.com
+Subject: Re: [PATCH v6 1/2] dt-bindings: display: add
+ google,cros-ec-anx7688.yaml
+Message-ID: <20210412182403.GA4153823@robh.at.kernel.org>
+References: <20210409161951.12365-1-dafna.hirschfeld@collabora.com>
+ <20210409161951.12365-2-dafna.hirschfeld@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1617976766-7852-5-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <20210409161951.12365-2-dafna.hirschfeld@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 09 Apr 2021 19:29:26 +0530, satya priya wrote:
-> Add binding doc for qcom pm8xxx rtc device.
+On Fri, 09 Apr 2021 18:19:50 +0200, Dafna Hirschfeld wrote:
+> ChromeOS EC ANX7688 is a display bridge that converts HDMI 2.0 to
+> DisplayPort 1.3 Ultra-HDi (4096x2160p60). It is an Analogix ANX7688 chip
+> which is connected to and operated by the ChromeOS Embedded Controller
+> (See google,cros-ec.yaml). It is accessed using I2C tunneling through
+> the EC and therefore its node should be a child of an EC I2C tunnel node
+> (See google,cros-ec-i2c-tunnel.yaml).
 > 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
+> ChromOS EC ANX7688 is found on Acer Chromebook R13 (elm)
+> 
+> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
 > ---
-> Changes in V2:
->  - Added this in V2 to have separate binding for rtc node.
-> 
->  .../devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml   | 62 ++++++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
+>  .../bridge/google,cros-ec-anx7688.yaml        | 82 +++++++++++++++++++
+>  1 file changed, 82 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
