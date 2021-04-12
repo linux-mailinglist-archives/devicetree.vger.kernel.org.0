@@ -2,110 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C04F235D2A0
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 23:32:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F2A335D2AB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 23:46:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239392AbhDLVcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 17:32:51 -0400
-Received: from mga11.intel.com ([192.55.52.93]:33899 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239140AbhDLVcv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Apr 2021 17:32:51 -0400
-IronPort-SDR: fBqXLX7oAk1Stt/BYI2VLwlUh6lpWsvEgmRZ7Zwtz/v0BZqb/F054pawvuLU1k83EEHbmSqzoO
- wUdFJfNtLwig==
-X-IronPort-AV: E=McAfee;i="6200,9189,9952"; a="191094315"
-X-IronPort-AV: E=Sophos;i="5.82,216,1613462400"; 
-   d="scan'208";a="191094315"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2021 14:32:32 -0700
-IronPort-SDR: C/aTwOTg0fpdmkFagVKQsTEjq34Jq7uz6yLBxC0O2IdeZlZsbpQ5/nziIwxoIoKRVxj3AFbpQf
- dZ1azSFS+O5w==
-X-IronPort-AV: E=Sophos;i="5.82,216,1613462400"; 
-   d="scan'208";a="521339103"
-Received: from nmafzal-mobl.amr.corp.intel.com (HELO [10.209.42.102]) ([10.209.42.102])
-  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2021 14:32:31 -0700
-Subject: Re: [PATCH v6 19/34] xlink-core: Add xlink core device tree bindings
-To:     mgross@linux.intel.com, markgross@kernel.org, arnd@arndb.de,
-        bp@suse.de, damien.lemoal@wdc.com, dragan.cvetic@xilinx.com,
-        gregkh@linuxfoundation.org, corbet@lwn.net,
-        palmerdabbelt@google.com, paul.walmsley@sifive.com,
-        peng.fan@nxp.com, robh+dt@kernel.org, shawnguo@kernel.org,
-        jassisinghbrar@gmail.com
-Cc:     linux-kernel@vger.kernel.org,
-        Seamus Kelly <seamus.kelly@intel.com>,
-        devicetree@vger.kernel.org
-References: <20210212222304.110194-1-mgross@linux.intel.com>
- <20210212222304.110194-20-mgross@linux.intel.com>
-From:   Dave Hansen <dave.hansen@intel.com>
-Autocrypt: addr=dave.hansen@intel.com; keydata=
- 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
- z5cecg==
-Message-ID: <9fb59639-3745-33e7-e89c-c9fb75e9c7c4@intel.com>
-Date:   Mon, 12 Apr 2021 14:32:31 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S240671AbhDLVqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 17:46:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38148 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238172AbhDLVqv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 17:46:51 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29134C061574;
+        Mon, 12 Apr 2021 14:46:29 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id sd23so14036495ejb.12;
+        Mon, 12 Apr 2021 14:46:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=uFUrnfIf09ezybuVkP04vDSdaVZKjH/YcufmPLg/EJA=;
+        b=SR9/ZPn34QjAzkHsEkByTJNEzre4oYG+GlELLhGkzdPICK2PzHnAXXdR2kuXrH+JBV
+         3CKshQfZrIH1zhl0sLSqUr+P3VV0MLnge6GRs/X7RQZosh7DpOd69z7rfaU4e7xlM7a4
+         nK+TlRUWEScPLSU81NiDnDPKd5sFB84OxNqnYwdL0QFMQXrvFEE3/sP1z8mu5mc86h+l
+         QmvlwgwJlwiBHWyBHIl1JnnBfffDXI4QEZDTs1fM8XNFbI0e7kSUlf8sWhXASFkqHPxl
+         sWCLRhK0IdebQcZRq78nfb4HRO6gO9aIk3+MdL2X/qbRVOMtraGSvKcqjc8E0f4rOYdg
+         dSog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=uFUrnfIf09ezybuVkP04vDSdaVZKjH/YcufmPLg/EJA=;
+        b=Rg/ifEv5zp6xbGEm3lmCaBXbUAOkQOfDL9SCqnpQWvWYV4/trMMkRKp36am7oMCkDX
+         nZ+1j2VSa4Y6NiU8MKXGw0W1La9F0tyxxKlNfYZHovwft4oi7BancxaYlKkpPZ99j/XV
+         A2mChI9kGDYqyPs2xQNYO6L53B+oS7Vd9eivKKgT2cgET9fhhu5y5tlu3HRzRkVyCfiK
+         ISx7qEzGFiDD88Xohdw0GGhxdD8cJ1lAfrQXum8uD5syErEwKiKshbgnaILNTrAi9JbL
+         aTeeTv2YaY07Fjf8Av9LyMz8E+EmolmCHInxSkNqgaHqQspaKXQEo61tx5sZ37WssDxa
+         XSyA==
+X-Gm-Message-State: AOAM532vArwjLEB/LA8LSyF67P7bTCtk3B8msvRUJadT+NFE/ClEa4Uk
+        cxadQGdip6H1bSdmHATQPUc=
+X-Google-Smtp-Source: ABdhPJzbzVMu26M4OrHzDAxRyzivV5rBNL9tM9AJWb1TsGiwOAomqyu6SFHVzQYgqpT8dKZrtMd0/Q==
+X-Received: by 2002:a17:906:5855:: with SMTP id h21mr29208531ejs.522.1618263987967;
+        Mon, 12 Apr 2021 14:46:27 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id ke14sm1698718ejc.1.2021.04.12.14.46.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Apr 2021 14:46:27 -0700 (PDT)
+Subject: Re: [PATCH v2 1/6] dt-bindings: pwm: convert pwm-rockchip.txt to YAML
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, u.kleine-koenig@pengutronix.de,
+        robh+dt@kernel.org, linux-pwm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, lee.jones@linaro.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        thierry.reding@gmail.com, heiko@sntech.de
+References: <20210411131007.21757-1-jbx6244@gmail.com>
+ <20210412205753.GA158321@robh.at.kernel.org>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <5705f804-5db0-1d14-f853-02be72fe4d2c@gmail.com>
+Date:   Mon, 12 Apr 2021 23:46:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210212222304.110194-20-mgross@linux.intel.com>
+In-Reply-To: <20210412205753.GA158321@robh.at.kernel.org>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/12/21 2:22 PM, mgross@linux.intel.com wrote:
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (c) Intel Corporation. All rights reserved.
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/misc/intel,keembay-xlink.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Intel Keem Bay xlink
+On 4/12/21 10:57 PM, Rob Herring wrote:
+> On Sun, 11 Apr 2021 15:10:02 +0200, Johan Jonker wrote:
+>> Current dts files with 'pwm' nodes are manually verified.
+>> In order to automate this process pwm-rockchip.txt
+>> has to be converted to yaml.
+>>
+>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>> ---
+>> Changed V2:
+>>   changed schema for clocks and clock-names
+>> ---
+>>  .../devicetree/bindings/pwm/pwm-rockchip.txt       | 27 -------
+>>  .../devicetree/bindings/pwm/pwm-rockchip.yaml      | 91 ++++++++++++++++++++++
+>>  2 files changed, 91 insertions(+), 27 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-rockchip.txt
+>>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+>>
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+Hi
 
-Is there a specific reason this is dual licensed?  If so, can you please
-include information about the license choice in the next post's cover
-letter?
+This tags version 2 with a little mistake instead of version 3?
+Is that correct?
 
-If there is no specific reason for this contribution to be dual
-licensed, please make it GPL-2.0 only.
+Johan
