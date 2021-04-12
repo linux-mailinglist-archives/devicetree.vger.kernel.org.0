@@ -2,198 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7855135BC2C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 10:29:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 991FC35BC49
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 10:36:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237365AbhDLI3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 04:29:14 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:3361 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S237354AbhDLI3N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 04:29:13 -0400
-X-UUID: 963f887fcc75412b9d93f5d8bf6b4f6e-20210412
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=IAE8kBPmwPmU6SrWCm+4A7AvoMIsBATD5iU7GTl0jmg=;
-        b=eY2d2wz8LRV6G+pLYuB5micyX07Y6XEQ5DQcf5XxceEVf1ydLgcfyPtDqskqWjrFJP+kTg22X+NbLER7dyAOYv5y/iRmWkmlch6tcif76QWFctXsVMxcnLZxYYMNFtEFKk2ip5N7GoBFXP/4kiSDZ7e6WTjV6IG6HvqSX06ahWc=;
-X-UUID: 963f887fcc75412b9d93f5d8bf6b4f6e-20210412
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 991165041; Mon, 12 Apr 2021 16:28:52 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 12 Apr 2021 16:28:47 +0800
-Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 12 Apr 2021 16:28:47 +0800
-Message-ID: <1618216127.12699.4.camel@mtksdaap41>
-Subject: Re: [PATCH v1, 3/3] drm/mediatek: gamma set with cmdq
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        id S237335AbhDLIgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 04:36:38 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:47606 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237322AbhDLIgh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 04:36:37 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13C8a95Y076261;
+        Mon, 12 Apr 2021 03:36:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1618216569;
+        bh=HRhjYluxZformnP5jjzi3Llar19URgX6oT6zKlL2H8w=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=mKC01w7NmPQWUEyG++WeWiaipp4mQsa/faIlB4l/+3jZ7j2ie+/wiWyXQeNMJlVcT
+         dfD+k/zIWGzHSHDZ/z7n6lW2C6zx9j+a4WCYq82hogFXojaxUW0JvQSb/IiIe6uM43
+         /JLbCbvPZMYzbWWMPOKLtpOm6XAM/2sVpEbSJoPc=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13C8a97j105316
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 12 Apr 2021 03:36:09 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 12
+ Apr 2021 03:36:09 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 12 Apr 2021 03:36:09 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13C8a8BO032018;
+        Mon, 12 Apr 2021 03:36:09 -0500
+Date:   Mon, 12 Apr 2021 14:06:07 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Nishanth Menon <nm@ti.com>, Benoit Parrot <bparrot@ti.com>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 12 Apr 2021 16:28:47 +0800
-In-Reply-To: <1618209347-10816-4-git-send-email-yongqiang.niu@mediatek.com>
-References: <1618209347-10816-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1618209347-10816-4-git-send-email-yongqiang.niu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am654-base-board: remove ov5640
+Message-ID: <20210412083605.qnpf2mxy3rcaj7dv@ti.com>
+References: <20210412075306.102884-1-tomi.valkeinen@ideasonboard.com>
+ <20210412075306.102884-2-tomi.valkeinen@ideasonboard.com>
+ <YHP+O3HPCCWOQRb0@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 4536C586B065589DC0415468B78860F7F007441DCB5F54E53145DD435DD0CDF62000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <YHP+O3HPCCWOQRb0@pendragon.ideasonboard.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIFlvbmdxaWFuZzoNCg0KT24gTW9uLCAyMDIxLTA0LTEyIGF0IDE0OjM1ICswODAwLCBZb25n
-cWlhbmcgTml1IHdyb3RlOg0KPiBnYW1tYSBsdXQgc2V0IGluIHZzeW5jIGFjdGl2ZSB3aWxsIGNh
-dXNlZCBkaXNwbGF5IGZsYXNoIGlzc3VlDQo+IHNldCBnYW1tYSBsdXQgd2l0aCBjbWRxIA0KDQpJ
-biBNVDgxNzMsIGl0J3Mgb2sgdG8gc2V0IGdhbW1tYSBvdXQgb2YgdmJsYW5rIHBlcmlvZC4gV2h5
-IGRvIHlvdQ0Kc2V0dGluZyBnYW1tYSBpbiB2YmxhbmsgaW4gdGhpcyBwYXRjaD8NCg0KUmVnYXJk
-cywNCkNLDQoNCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFlvbmdxaWFuZyBOaXUgPHlvbmdxaWFuZy5u
-aXVAbWVkaWF0ZWsuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtf
-ZGlzcF9hYWwuYyAgICAgfCAgNCArKy0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRr
-X2Rpc3BfZHJ2LmggICAgIHwgIDcgKysrKy0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL21lZGlhdGVr
-L210a19kaXNwX2dhbW1hLmMgICB8IDExICsrKysrKy0tLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0v
-bWVkaWF0ZWsvbXRrX2RybV9jcnRjLmMgICAgIHwgMTggKysrKysrKysrKystLS0tLS0tDQo+ICBk
-cml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kZHBfY29tcC5oIHwgIDggKysrKystLS0N
-Cj4gIDUgZmlsZXMgY2hhbmdlZCwgMjggaW5zZXJ0aW9ucygrKSwgMjAgZGVsZXRpb25zKC0pDQo+
-IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX2FhbC5j
-IGIvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX2FhbC5jDQo+IGluZGV4IDY0YjQ1
-MjguLmM4ZTE3OGUgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtf
-ZGlzcF9hYWwuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3BfYWFs
-LmMNCj4gQEAgLTU5LDEyICs1OSwxMiBAQCB2b2lkIG10a19hYWxfY29uZmlnKHN0cnVjdCBkZXZp
-Y2UgKmRldiwgdW5zaWduZWQgaW50IHcsDQo+ICAJbXRrX2RkcF93cml0ZShjbWRxX3BrdCwgdyA8
-PCAxNiB8IGgsICZhYWwtPmNtZHFfcmVnLCBhYWwtPnJlZ3MsIERJU1BfQUFMX1NJWkUpOw0KPiAg
-fQ0KPiAgDQo+IC12b2lkIG10a19hYWxfZ2FtbWFfc2V0KHN0cnVjdCBkZXZpY2UgKmRldiwgc3Ry
-dWN0IGRybV9jcnRjX3N0YXRlICpzdGF0ZSkNCj4gK3ZvaWQgbXRrX2FhbF9nYW1tYV9zZXQoc3Ry
-dWN0IGRldmljZSAqZGV2LCBzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKnN0YXRlLCBzdHJ1Y3QgY21k
-cV9wa3QgKmNtZHFfcGt0KQ0KPiAgew0KPiAgCXN0cnVjdCBtdGtfZGlzcF9hYWwgKmFhbCA9IGRl
-dl9nZXRfZHJ2ZGF0YShkZXYpOw0KPiAgDQo+ICAJaWYgKGFhbC0+ZGF0YSAmJiBhYWwtPmRhdGEt
-Pmhhc19nYW1tYSkNCj4gLQkJbXRrX2dhbW1hX3NldF9jb21tb24oYWFsLT5yZWdzLCBzdGF0ZSk7
-DQo+ICsJCW10a19nYW1tYV9zZXRfY29tbW9uKGFhbC0+cmVncywgJmFhbC0+Y21kcV9yZWcsIHN0
-YXRlLCBjbWRxX3BrdCk7DQo+ICB9DQo+ICANCj4gIHZvaWQgbXRrX2FhbF9zdGFydChzdHJ1Y3Qg
-ZGV2aWNlICpkZXYpDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRr
-X2Rpc3BfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3BfZHJ2LmgNCj4g
-aW5kZXggODZjMzA2OC4uYzJlN2RjYiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21l
-ZGlhdGVrL210a19kaXNwX2Rydi5oDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9t
-dGtfZGlzcF9kcnYuaA0KPiBAQCAtMTQsNyArMTQsNyBAQA0KPiAgdm9pZCBtdGtfYWFsX2NvbmZp
-ZyhzdHJ1Y3QgZGV2aWNlICpkZXYsIHVuc2lnbmVkIGludCB3LA0KPiAgCQkgICAgdW5zaWduZWQg
-aW50IGgsIHVuc2lnbmVkIGludCB2cmVmcmVzaCwNCj4gIAkJICAgIHVuc2lnbmVkIGludCBicGMs
-IHN0cnVjdCBjbWRxX3BrdCAqY21kcV9wa3QpOw0KPiAtdm9pZCBtdGtfYWFsX2dhbW1hX3NldChz
-dHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqc3RhdGUpOw0KPiArdm9p
-ZCBtdGtfYWFsX2dhbW1hX3NldChzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdCBkcm1fY3J0Y19z
-dGF0ZSAqc3RhdGUsIHN0cnVjdCBjbWRxX3BrdCAqY21kcV9wa3QpOw0KPiAgdm9pZCBtdGtfYWFs
-X3N0YXJ0KHN0cnVjdCBkZXZpY2UgKmRldik7DQo+ICB2b2lkIG10a19hYWxfc3RvcChzdHJ1Y3Qg
-ZGV2aWNlICpkZXYpOw0KPiAgDQo+IEBAIC01MCw4ICs1MCw5IEBAIHZvaWQgbXRrX2RpdGhlcl9z
-ZXRfY29tbW9uKHZvaWQgX19pb21lbSAqcmVncywgc3RydWN0IGNtZHFfY2xpZW50X3JlZyAqY21k
-cV9yZWcsDQo+ICB2b2lkIG10a19nYW1tYV9jb25maWcoc3RydWN0IGRldmljZSAqZGV2LCB1bnNp
-Z25lZCBpbnQgdywNCj4gIAkJICAgICAgdW5zaWduZWQgaW50IGgsIHVuc2lnbmVkIGludCB2cmVm
-cmVzaCwNCj4gIAkJICAgICAgdW5zaWduZWQgaW50IGJwYywgc3RydWN0IGNtZHFfcGt0ICpjbWRx
-X3BrdCk7DQo+IC12b2lkIG10a19nYW1tYV9zZXQoc3RydWN0IGRldmljZSAqZGV2LCBzdHJ1Y3Qg
-ZHJtX2NydGNfc3RhdGUgKnN0YXRlKTsNCj4gLXZvaWQgbXRrX2dhbW1hX3NldF9jb21tb24odm9p
-ZCBfX2lvbWVtICpyZWdzLCBzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKnN0YXRlKTsNCj4gK3ZvaWQg
-bXRrX2dhbW1hX3NldChzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAq
-c3RhdGUsIHN0cnVjdCBjbWRxX3BrdCAqY21kcV9wa3QpOw0KPiArdm9pZCBtdGtfZ2FtbWFfc2V0
-X2NvbW1vbih2b2lkIF9faW9tZW0gKnJlZ3MsIHN0cnVjdCBjbWRxX2NsaWVudF9yZWcgKmNtZHFf
-cmVnLA0KPiArCQkJICBzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKnN0YXRlLCBzdHJ1Y3QgY21kcV9w
-a3QgKmNtZHFfcGt0KTsNCj4gIHZvaWQgbXRrX2dhbW1hX3N0YXJ0KHN0cnVjdCBkZXZpY2UgKmRl
-dik7DQo+ICB2b2lkIG10a19nYW1tYV9zdG9wKHN0cnVjdCBkZXZpY2UgKmRldik7DQo+ICANCj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9nYW1tYS5jIGIv
-ZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX2dhbW1hLmMNCj4gaW5kZXggM2ViZjkx
-ZS4uOTlhNGZmMyAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19k
-aXNwX2dhbW1hLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX2dh
-bW1hLmMNCj4gQEAgLTU1LDcgKzU1LDggQEAgdm9pZCBtdGtfZ2FtbWFfY2xrX2Rpc2FibGUoc3Ry
-dWN0IGRldmljZSAqZGV2KQ0KPiAgCWNsa19kaXNhYmxlX3VucHJlcGFyZShnYW1tYS0+Y2xrKTsN
-Cj4gIH0NCj4gIA0KPiAtdm9pZCBtdGtfZ2FtbWFfc2V0X2NvbW1vbih2b2lkIF9faW9tZW0gKnJl
-Z3MsIHN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqc3RhdGUpDQo+ICt2b2lkIG10a19nYW1tYV9zZXRf
-Y29tbW9uKHZvaWQgX19pb21lbSAqcmVncywgc3RydWN0IGNtZHFfY2xpZW50X3JlZyAqY21kcV9y
-ZWcsDQo+ICsJCQkgIHN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqc3RhdGUsIHN0cnVjdCBjbWRxX3Br
-dCAqY21kcV9wa3QpDQo+ICB7DQo+ICAJdW5zaWduZWQgaW50IGksIHJlZzsNCj4gIAlzdHJ1Y3Qg
-ZHJtX2NvbG9yX2x1dCAqbHV0Ow0KPiBAQCAtNjUsMjMgKzY2LDIzIEBAIHZvaWQgbXRrX2dhbW1h
-X3NldF9jb21tb24odm9pZCBfX2lvbWVtICpyZWdzLCBzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKnN0
-YXRlKQ0KPiAgCWlmIChzdGF0ZS0+Z2FtbWFfbHV0KSB7DQo+ICAJCXJlZyA9IHJlYWRsKHJlZ3Mg
-KyBESVNQX0dBTU1BX0NGRyk7DQo+ICAJCXJlZyA9IHJlZyB8IEdBTU1BX0xVVF9FTjsNCj4gLQkJ
-d3JpdGVsKHJlZywgcmVncyArIERJU1BfR0FNTUFfQ0ZHKTsNCj4gKwkJbXRrX2RkcF93cml0ZShj
-bWRxX3BrdCwgcmVnLCBjbWRxX3JlZywgcmVncywgRElTUF9HQU1NQV9DRkcpOw0KPiAgCQlsdXRf
-YmFzZSA9IHJlZ3MgKyBESVNQX0dBTU1BX0xVVDsNCj4gIAkJbHV0ID0gKHN0cnVjdCBkcm1fY29s
-b3JfbHV0ICopc3RhdGUtPmdhbW1hX2x1dC0+ZGF0YTsNCj4gIAkJZm9yIChpID0gMDsgaSA8IE1U
-S19MVVRfU0laRTsgaSsrKSB7DQo+ICAJCQl3b3JkID0gKCgobHV0W2ldLnJlZCA+PiA2KSAmIExV
-VF8xMEJJVF9NQVNLKSA8PCAyMCkgKw0KPiAgCQkJCSgoKGx1dFtpXS5ncmVlbiA+PiA2KSAmIExV
-VF8xMEJJVF9NQVNLKSA8PCAxMCkgKw0KPiAgCQkJCSgobHV0W2ldLmJsdWUgPj4gNikgJiBMVVRf
-MTBCSVRfTUFTSyk7DQo+IC0JCQl3cml0ZWwod29yZCwgKGx1dF9iYXNlICsgaSAqIDQpKTsNCj4g
-KwkJCW10a19kZHBfd3JpdGUoY21kcV9wa3QsIHdvcmQsIGNtZHFfcmVnLCByZWdzLCAobHV0X2Jh
-c2UgKyBpICogNCkpOw0KPiAgCQl9DQo+ICAJfQ0KPiAgfQ0KPiAgDQo+IC12b2lkIG10a19nYW1t
-YV9zZXQoc3RydWN0IGRldmljZSAqZGV2LCBzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKnN0YXRlKQ0K
-PiArdm9pZCBtdGtfZ2FtbWFfc2V0KHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IGRybV9jcnRj
-X3N0YXRlICpzdGF0ZSwgc3RydWN0IGNtZHFfcGt0ICpjbWRxX3BrdCkNCj4gIHsNCj4gIAlzdHJ1
-Y3QgbXRrX2Rpc3BfZ2FtbWEgKmdhbW1hID0gZGV2X2dldF9kcnZkYXRhKGRldik7DQo+ICANCj4g
-LQltdGtfZ2FtbWFfc2V0X2NvbW1vbihnYW1tYS0+cmVncywgc3RhdGUpOw0KPiArCW10a19nYW1t
-YV9zZXRfY29tbW9uKGdhbW1hLT5yZWdzLCAmZ2FtbWEtPmNtZHFfcmVnLCBzdGF0ZSwgY21kcV9w
-a3QpOw0KPiAgfQ0KPiAgDQo+ICB2b2lkIG10a19nYW1tYV9jb25maWcoc3RydWN0IGRldmljZSAq
-ZGV2LCB1bnNpZ25lZCBpbnQgdywNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZWRp
-YXRlay9tdGtfZHJtX2NydGMuYyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2Ny
-dGMuYw0KPiBpbmRleCA4YjBkZTkwLi43MzQyOGYwIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9jcnRjLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL21l
-ZGlhdGVrL210a19kcm1fY3J0Yy5jDQo+IEBAIC00MjMsNiArNDIzLDE1IEBAIHN0YXRpYyB2b2lk
-IG10a19jcnRjX2RkcF9jb25maWcoc3RydWN0IGRybV9jcnRjICpjcnRjLA0KPiAgCQl9DQo+ICAJ
-CW10a19jcnRjLT5wZW5kaW5nX2FzeW5jX3BsYW5lcyA9IGZhbHNlOw0KPiAgCX0NCj4gKw0KPiAr
-CWlmIChjcnRjLT5zdGF0ZS0+Y29sb3JfbWdtdF9jaGFuZ2VkKSB7DQo+ICsJCWludCBpOw0KPiAr
-DQo+ICsJCWZvciAoaSA9IDA7IGkgPCBtdGtfY3J0Yy0+ZGRwX2NvbXBfbnI7IGkrKykgew0KPiAr
-CQkJbXRrX2RkcF9nYW1tYV9zZXQobXRrX2NydGMtPmRkcF9jb21wW2ldLCBjcnRjLT5zdGF0ZSwg
-Y21kcV9oYW5kbGUpOw0KPiArCQkJbXRrX2RkcF9jdG1fc2V0KG10a19jcnRjLT5kZHBfY29tcFtp
-XSwgY3J0Yy0+c3RhdGUpOw0KPiArCQl9DQo+ICsJfQ0KPiAgfQ0KPiAgDQo+ICBzdGF0aWMgdm9p
-ZCBtdGtfZHJtX2NydGNfaHdfY29uZmlnKHN0cnVjdCBtdGtfZHJtX2NydGMgKm10a19jcnRjKQ0K
-PiBAQCAtNDY0LDcgKzQ3Myw3IEBAIHN0YXRpYyB2b2lkIG10a19kcm1fY3J0Y19od19jb25maWco
-c3RydWN0IG10a19kcm1fY3J0YyAqbXRrX2NydGMpDQo+ICAjaWYgSVNfUkVBQ0hBQkxFKENPTkZJ
-R19NVEtfQ01EUSkNCj4gIAlpZiAobXRrX2NydGMtPmNtZHFfY2xpZW50KSB7DQo+ICAJCW1ib3hf
-Zmx1c2gobXRrX2NydGMtPmNtZHFfY2xpZW50LT5jaGFuLCAyMDAwKTsNCj4gLQkJY21kcV9oYW5k
-bGUgPSBjbWRxX3BrdF9jcmVhdGUobXRrX2NydGMtPmNtZHFfY2xpZW50LCBQQUdFX1NJWkUpOw0K
-PiArCQljbWRxX2hhbmRsZSA9IGNtZHFfcGt0X2NyZWF0ZShtdGtfY3J0Yy0+Y21kcV9jbGllbnQs
-IDIgKiBQQUdFX1NJWkUpOw0KPiAgCQljbWRxX3BrdF9jbGVhcl9ldmVudChjbWRxX2hhbmRsZSwg
-bXRrX2NydGMtPmNtZHFfZXZlbnQpOw0KPiAgCQljbWRxX3BrdF93ZmUoY21kcV9oYW5kbGUsIG10
-a19jcnRjLT5jbWRxX2V2ZW50LCBmYWxzZSk7DQo+ICAJCW10a19jcnRjX2RkcF9jb25maWcoY3J0
-YywgY21kcV9oYW5kbGUpOw0KPiBAQCAtNjE2LDE1ICs2MjUsMTAgQEAgc3RhdGljIHZvaWQgbXRr
-X2RybV9jcnRjX2F0b21pY19mbHVzaChzdHJ1Y3QgZHJtX2NydGMgKmNydGMsDQo+ICAJCQkJICAg
-ICAgc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlKQ0KPiAgew0KPiAgCXN0cnVjdCBtdGtf
-ZHJtX2NydGMgKm10a19jcnRjID0gdG9fbXRrX2NydGMoY3J0Yyk7DQo+IC0JaW50IGk7DQo+ICAN
-Cj4gIAlpZiAobXRrX2NydGMtPmV2ZW50KQ0KPiAgCQltdGtfY3J0Yy0+cGVuZGluZ19uZWVkc192
-YmxhbmsgPSB0cnVlOw0KPiAtCWlmIChjcnRjLT5zdGF0ZS0+Y29sb3JfbWdtdF9jaGFuZ2VkKQ0K
-PiAtCQlmb3IgKGkgPSAwOyBpIDwgbXRrX2NydGMtPmRkcF9jb21wX25yOyBpKyspIHsNCj4gLQkJ
-CW10a19kZHBfZ2FtbWFfc2V0KG10a19jcnRjLT5kZHBfY29tcFtpXSwgY3J0Yy0+c3RhdGUpOw0K
-PiAtCQkJbXRrX2RkcF9jdG1fc2V0KG10a19jcnRjLT5kZHBfY29tcFtpXSwgY3J0Yy0+c3RhdGUp
-Ow0KPiAtCQl9DQo+ICsNCj4gIAltdGtfZHJtX2NydGNfaHdfY29uZmlnKG10a19jcnRjKTsNCj4g
-IH0NCj4gIA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1f
-ZGRwX2NvbXAuaCBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2RkcF9jb21wLmgN
-Cj4gaW5kZXggYmI5MTRkOS4uYmZmYTU4ZCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L21lZGlhdGVrL210a19kcm1fZGRwX2NvbXAuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVk
-aWF0ZWsvbXRrX2RybV9kZHBfY29tcC5oDQo+IEBAIC02MCw3ICs2MCw4IEBAIHN0cnVjdCBtdGtf
-ZGRwX2NvbXBfZnVuY3Mgew0KPiAgCQkJICAgICBzdHJ1Y3QgbXRrX3BsYW5lX3N0YXRlICpzdGF0
-ZSwNCj4gIAkJCSAgICAgc3RydWN0IGNtZHFfcGt0ICpjbWRxX3BrdCk7DQo+ICAJdm9pZCAoKmdh
-bW1hX3NldCkoc3RydWN0IGRldmljZSAqZGV2LA0KPiAtCQkJICBzdHJ1Y3QgZHJtX2NydGNfc3Rh
-dGUgKnN0YXRlKTsNCj4gKwkJCSAgc3RydWN0IGRybV9jcnRjX3N0YXRlICpzdGF0ZSwNCj4gKwkJ
-CSAgc3RydWN0IGNtZHFfcGt0ICpjbWRxX3BrdCk7DQo+ICAJdm9pZCAoKmJnY2xyX2luX29uKShz
-dHJ1Y3QgZGV2aWNlICpkZXYpOw0KPiAgCXZvaWQgKCpiZ2Nscl9pbl9vZmYpKHN0cnVjdCBkZXZp
-Y2UgKmRldik7DQo+ICAJdm9pZCAoKmN0bV9zZXQpKHN0cnVjdCBkZXZpY2UgKmRldiwNCj4gQEAg
-LTE2MCwxMCArMTYxLDExIEBAIHN0YXRpYyBpbmxpbmUgdm9pZCBtdGtfZGRwX2NvbXBfbGF5ZXJf
-Y29uZmlnKHN0cnVjdCBtdGtfZGRwX2NvbXAgKmNvbXAsDQo+ICB9DQo+ICANCj4gIHN0YXRpYyBp
-bmxpbmUgdm9pZCBtdGtfZGRwX2dhbW1hX3NldChzdHJ1Y3QgbXRrX2RkcF9jb21wICpjb21wLA0K
-PiAtCQkJCSAgICAgc3RydWN0IGRybV9jcnRjX3N0YXRlICpzdGF0ZSkNCj4gKwkJCQkgICAgIHN0
-cnVjdCBkcm1fY3J0Y19zdGF0ZSAqc3RhdGUsDQo+ICsJCQkJICAgICBzdHJ1Y3QgY21kcV9wa3Qg
-KmNtZHFfcGt0KQ0KPiAgew0KPiAgCWlmIChjb21wLT5mdW5jcyAmJiBjb21wLT5mdW5jcy0+Z2Ft
-bWFfc2V0KQ0KPiAtCQljb21wLT5mdW5jcy0+Z2FtbWFfc2V0KGNvbXAtPmRldiwgc3RhdGUpOw0K
-PiArCQljb21wLT5mdW5jcy0+Z2FtbWFfc2V0KGNvbXAtPmRldiwgc3RhdGUsIGNtZHFfcGt0KTsN
-Cj4gIH0NCj4gIA0KPiAgc3RhdGljIGlubGluZSB2b2lkIG10a19kZHBfY29tcF9iZ2Nscl9pbl9v
-bihzdHJ1Y3QgbXRrX2RkcF9jb21wICpjb21wKQ0KDQo=
++ Vignesh
 
+On 12/04/21 11:00AM, Laurent Pinchart wrote:
+> Hi Tomi,
+> 
+> Thank you for the patch.
+> 
+> On Mon, Apr 12, 2021 at 10:53:06AM +0300, Tomi Valkeinen wrote:
+> > AM654 EVM boards are not shipped with OV5640 sensor module, it is a
+> > separate purchase. OV5640 module is also just one of the possible
+> > sensors or capture boards you can connect.
+> > 
+> > However, for some reason, OV5640 has been added to the board dts file,
+> > making it cumbersome to use other sensors.
+> > 
+> > Remove the OV5640 from the dts file so that it is easy to use other
+> > sensors via DT overlays.
+> > 
+> > Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> > ---
+> >  .../arm64/boot/dts/ti/k3-am654-base-board.dts | 27 -------------------
+> >  1 file changed, 27 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> > index fe3043943906..76358b4944e1 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> > +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> > @@ -85,12 +85,6 @@ sw6 {
+> >  			gpios = <&wkup_gpio0 27 GPIO_ACTIVE_LOW>;
+> >  		};
+> >  	};
+> > -
+> > -	clk_ov5640_fixed: clock {
+> > -		compatible = "fixed-clock";
+> > -		#clock-cells = <0>;
+> > -		clock-frequency = <24000000>;
+> > -	};
+> >  };
+> >  
+> >  &wkup_pmx0 {
+> > @@ -288,22 +282,6 @@ &main_i2c1 {
+> >  	pinctrl-0 = <&main_i2c1_pins_default>;
+> >  	clock-frequency = <400000>;
+> >  
+> > -	ov5640: camera@3c {
+> > -		compatible = "ovti,ov5640";
+> > -		reg = <0x3c>;
+> > -
+> > -		clocks = <&clk_ov5640_fixed>;
+> > -		clock-names = "xclk";
+> > -
+> > -		port {
+> > -			csi2_cam0: endpoint {
+> > -				remote-endpoint = <&csi2_phy0>;
+> > -				clock-lanes = <0>;
+> > -				data-lanes = <1 2>;
+> > -			};
+> > -		};
+> > -	};
+> > -
+> >  };
+> 
+> As for patch 1/2, you could drop the two nodes completely. Same question
+> about overlay availability.
+
+The &main_i2c1 node was added much before the OV5640 node in 
+19a1768fc34a (arm64: dts: ti: k3-am654-base-board: Add I2C nodes, 
+2018-11-13). I wonder if there is any reason for having it present even 
+if there are no subnodes. One reason that I can think of is that this 
+node defines the pinmux configuration and clock frequency which makes 
+more sense here than in an overlay.
+
+> 
+> >  
+> >  &main_i2c2 {
+> > @@ -497,11 +475,6 @@ flash@0{
+> >  };
+> >  
+> >  &csi2_0 {
+> > -	csi2_phy0: endpoint {
+> > -		remote-endpoint = <&csi2_cam0>;
+> > -		clock-lanes = <0>;
+> > -		data-lanes = <1 2>;
+> > -	};
+> >  };
+
+I agree with Laurent that the entire &csi2_0 node can be dropped.
+
+Have you tested the CAL driver with this node removed and no overlay to 
+add it back? Can it handle the error gracefully or does it crash and 
+burn?
+
+> >  
+> >  &mcu_cpsw {
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
