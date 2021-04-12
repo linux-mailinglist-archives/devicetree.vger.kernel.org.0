@@ -2,122 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A303035B812
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 03:25:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C44C35B82F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 03:34:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236540AbhDLBZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Apr 2021 21:25:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52812 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236539AbhDLBZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Apr 2021 21:25:54 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C99C06138D
-        for <devicetree@vger.kernel.org>; Sun, 11 Apr 2021 18:25:36 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id w10so8144335pgh.5
-        for <devicetree@vger.kernel.org>; Sun, 11 Apr 2021 18:25:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=6UWOIGtqeOeXuUvHOjCb1jTlJLlUgyBDQUb3NqK9hjs=;
-        b=SzSdZEYQrxdEvWA2xFeyuX4kQNz4i53+4NSl/wYOSiZbjIXKqWbUS8Xa1zenkUCxsf
-         h5tNXMbgXWvIvWD5/jGXoRJCDJqqBoKlsNftMJdWNeL8inpJIKBBKuIeTJOXzdfOHsRW
-         a8LxX1o3yiNFyV0r7++xO3pSrtcQd9GBOA7iThaiPngO5gDi94SGiVnj5Cfu72xEdonk
-         t+BL5+EwUt3MFZtFbpNPD5Bw44ThjDg4gKNMBznERTvYX0tqyX76rBv7suQ9Ai3Gaw7D
-         uqeFM/WjhHUZAZ0esBNsNwuJgoRjzZCUhEmjCFEi0XACSEaVrxq1dyC6m1Z0u2SgKVB4
-         /3dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=6UWOIGtqeOeXuUvHOjCb1jTlJLlUgyBDQUb3NqK9hjs=;
-        b=re+X4h6CHAeHfvmERX9jwWCIWqT3wQ1vec0dXJnxnnJ+iToES3xTYBEmpfUen6Ndju
-         E23hkeB4KKPflRO4HlQXpJGjDEYND+LuV05tMWy3AGdpkKUy+Fz1UfuYxD7E3bZ1tuH0
-         0b5zClg0cwZb75vgPf+l9dT40l7faxGItS976NYFEtZpKBJl2lp+gJIvzxqoZibHoCUJ
-         r69fty+9R+Lo8zG8AZ8hDfXmg2y2oSjKIDdj74nduAsYv3TCiOpIONOFtJoKQDCDRxj2
-         O8/OK1sESrtvIX7nv5q9X1B2B2VWW63Akzpe+wtm4gAT4KCAEJSRq5H9xRCOi8NUOu8h
-         /fHw==
-X-Gm-Message-State: AOAM532m3jPuRiTiLH78Lslnevc+4ET4n7SUbMglTZBCKkNYb5HJgUbN
-        fMOlCzZzJvkkpwX9IMCCLzJUCg==
-X-Google-Smtp-Source: ABdhPJwVFHx91KywmuwrpjzYzCKCdiKF1p0NVsF6qcvxMQKRlCa6GXmZyyt9m1W2cMVjEagDhzweVA==
-X-Received: by 2002:a05:6a00:1c67:b029:215:6f93:d220 with SMTP id s39-20020a056a001c67b02902156f93d220mr21655362pfw.36.1618190736003;
-        Sun, 11 Apr 2021 18:25:36 -0700 (PDT)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id g21sm9050908pjl.28.2021.04.11.18.25.32
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 11 Apr 2021 18:25:35 -0700 (PDT)
-Date:   Mon, 12 Apr 2021 09:25:29 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Kalle Valo <kvalo@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-Subject: Re: [PATCH 1/2] dt-binding: bcm43xx-fmac: add optional brcm,ccode-map
-Message-ID: <20210412012528.GB15093@dragon>
-References: <20210408113022.18180-1-shawn.guo@linaro.org>
- <20210408113022.18180-2-shawn.guo@linaro.org>
- <87k0p9mewt.fsf@codeaurora.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87k0p9mewt.fsf@codeaurora.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S235718AbhDLBec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Apr 2021 21:34:32 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:51123 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235543AbhDLBec (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 11 Apr 2021 21:34:32 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id C0D4A580424;
+        Sun, 11 Apr 2021 21:34:14 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Sun, 11 Apr 2021 21:34:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=BG5hllZBbXO/uaUx2ho6c9NeeDH0XaQ
+        6oWYDpW//0Ds=; b=kF6J7vJlfzPeJki4UBh4ni0qEwV1lpJbHHcYZAPVECpYBIS
+        UG38LvqvRbNJVHEyps6jp558YoerrJPco4D31+TIbffAZtuRSGALC3cQrlEkIV7F
+        W7Zeyl8OdGAeaqFlLbIO/JltoJHi+OClhehnx/yMxPy8HuIuRdX2T/eyUXIwAnZb
+        GZg3CUTTJE7QWJsA4sAmiRV+Hm6xiAzZzlvF0L525y4PDr02c2Yi9mrqxjPORsQa
+        J32GG3K1vzWi/ASdHFyZPm4mcRS6CBlDv7zPWsW2tG4PXG0ym3QwUTBHtk+GQJJn
+        7nLwKiOZj7Z8K33ApJoPxgDEoRUMq0kEdv0UGzQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=BG5hll
+        ZBbXO/uaUx2ho6c9NeeDH0XaQ6oWYDpW//0Ds=; b=G8BNco2N6IZ9Vm5RUcE29x
+        aMCp6xE7gGZxnkE72tX5/VULywfeW2gcpuYWWFrhCeV8ha5kwk9s7G9t/aD9bhXH
+        LBfkSDUne1tF/ygIT1Pq+aXZ1U0Lr2iIMNX/Yr8ock/cgVbJRcUCRh+fGvCCzQFc
+        nOnHCob/E4U13OKAoH1hufv8mXVxmPWRBHi4SMFiYrh37hWg8vZBAkFeIoFpbbM1
+        TzrXtyWy64AkaS8q5TDO5EVzL9iZ1OGO/jcCwed2PUcZ0bGHQ+//DmpNxggGeRz6
+        /vkOBDjFzA+BoNayVE1p04OoCeZU11uIYL5gXk8oBsPwhuCij4AJwmxQIrkEDMqw
+        ==
+X-ME-Sender: <xms:laNzYHYfkdm4xZkWh1ohaN-VgrO6EdUs-eRDUnzgjNu15oZHVLOZ-g>
+    <xme:laNzYGaFzKEe-bULTyvDc_hI3qKnFWN9sY8X_FtEoPwq3wmlgK67BUzdJ4y78RC3A
+    stri1S7EQBO5AJccA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudekiedggeegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhepuddttdekueeggedvtddtueekiedutdfguedutdefieeuteefieelteet
+    vddthfeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:laNzYJ_IVgmsW7oVD2L_M2G9J-OlwJeiVWNlgNpYIMG4LBfUEFIOcQ>
+    <xmx:laNzYNqxqQvtE5pqmfQg71mk3Yq1ub6OTBQfDiOPAzmER8i7sSBubw>
+    <xmx:laNzYCpaRqoJazz3ANLOaVNL-Nfuu_Qp-0kAJcg8ZwT49Fy1VTWF2g>
+    <xmx:lqNzYHgjphF3n8_6Gp-wHXjnm_KPTVYBgNmZa_af57Vbu39evGVMmg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 3B785A00079; Sun, 11 Apr 2021 21:34:13 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-273-g8500d2492d-fm-20210323.002-g8500d249
+Mime-Version: 1.0
+Message-Id: <ba63f830-4758-49aa-a63e-f204a8eec1b4@www.fastmail.com>
+In-Reply-To: <CAK8P3a1HDQdbTAT4aRMLu-VFz720ynPqPHG5b22NZ5p5QfUqOw@mail.gmail.com>
+References: <20210319062752.145730-1-andrew@aj.id.au>
+ <20210319062752.145730-16-andrew@aj.id.au>
+ <CAK8P3a1HDQdbTAT4aRMLu-VFz720ynPqPHG5b22NZ5p5QfUqOw@mail.gmail.com>
+Date:   Mon, 12 Apr 2021 11:03:52 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Arnd Bergmann" <arnd@kernel.org>,
+        "Dmitry Torokhov" <dmitry.torokhov@gmail.com>
+Cc:     openipmi-developer@lists.sourceforge.net,
+        "OpenBMC Maillist" <openbmc@lists.ozlabs.org>,
+        "Corey Minyard" <minyard@acm.org>, "Joel Stanley" <joel@jms.id.au>,
+        "Ryan Chen" <ryan_chen@aspeedtech.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "Tomer Maimon" <tmaimon77@gmail.com>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "Avi Fishman" <avifishman70@gmail.com>,
+        "Patrick Venture" <venture@google.com>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        "Tali Perry" <tali.perry1@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Lee Jones" <lee.jones@linaro.org>,
+        "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        "Benjamin Fair" <benjaminfair@google.com>
+Subject: =?UTF-8?Q?Re:_[PATCH_v2_16/21]_ipmi:_kcs=5Fbmc:_Add_a_"raw"_character_de?=
+ =?UTF-8?Q?vice_interface?=
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 11, 2021 at 10:57:54AM +0300, Kalle Valo wrote:
-> Shawn Guo <shawn.guo@linaro.org> writes:
-> 
-> > Add optional brcm,ccode-map property to support translation from ISO3166
-> > country code to brcmfmac firmware country code and revision.
+On Fri, 9 Apr 2021, at 17:25, Arnd Bergmann wrote:
+> On Fri, Mar 19, 2021 at 7:31 AM Andrew Jeffery <andrew@aj.id.au> wrote:
 > >
-> > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> > ---
-> >  .../devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt b/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt
-> > index cffb2d6876e3..a65ac4384c04 100644
-> > --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt
-> > +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt
-> > @@ -15,6 +15,12 @@ Optional properties:
-> >  	When not specified the device will use in-band SDIO interrupts.
-> >   - interrupt-names : name of the out-of-band interrupt, which must be set
-> >  	to "host-wake".
-> > + - brcm,ccode-map : multiple strings for translating ISO3166 country code to
-> > +	brcmfmac firmware country code and revision.  Each string must be in
-> > +	format "AA-BB-num" where:
-> > +	  AA is the ISO3166 country code which must be 2 characters.
-> > +	  BB is the firmware country code which must be 2 characters.
-> > +	  num is the revision number which must fit into signed integer.
-> >  
-> >  Example:
-> >  
-> > @@ -34,5 +40,6 @@ mmc3: mmc@1c12000 {
-> >  		interrupt-parent = <&pio>;
-> >  		interrupts = <10 8>; /* PH10 / EINT10 */
-> >  		interrupt-names = "host-wake";
-> > +		brcm,ccode-map = "JP-JP-78", "US-Q2-86";
+> > The existing IPMI chardev encodes IPMI behaviours as the name suggests.
+> > However, KCS devices are useful beyond IPMI (or keyboards), as they
+> > provide a means to generate IRQs and exchange arbitrary data between a
+> > BMC and its host system.
 > 
-> The commit log does not answer "Why?". Why this needs to be in device
-> tree and, for example, not hard coded in the driver?
+> I only noticed the series after Joel asked about the DT changes on the arm
+> side. One question though:
+> 
+> How does this related to the drivers/input/serio/ framework that also talks
+> to the keyboard controller for things that are not keyboards?
 
-Thanks for the comment, Kalle.  Actually, this is something I need some
-input from driver maintainers.  I can see this country code mapping
-table is chipset specific, and can be hard coded in driver per chip id
-and revision.  But on the other hand, it makes some sense to have this
-table in device tree, as the country code that need to be supported
-could be a device specific configuration.
+I've taken a brief look and I feel they're somewhat closely related.
 
-Shawn
+It's plausible that we could wrangle the code so the Aspeed and Nuvoton 
+KCS drivers move under drivers/input/serio. If you squint, the i8042 
+serio device driver has similarities with what the Aspeed and Nuvoton 
+device drivers are providing to the KCS IPMI stack.
+
+Both the KCS IPMI and raw chardev I've implemented in this patch need 
+both read and write access to the status register (STR). serio could 
+potentially expose its value through serio_interrupt() using the 
+SERIO_OOB_DATA flag, but I haven't put any thought into it beyond this 
+sentence. We'd need some extra support for writing STR via the serio 
+API. I'm not sure that fits into the abstraction (unless we make 
+serio_write() take a flags argument?).
+
+In that vein, the serio_raw interface is close to the functionality 
+that the raw chardev provides in this patch, though again serio_raw 
+lacks userspace access to STR. Flags are ignored in the ->interrupt() 
+callback so all values received via ->interrupt() are exposed as data. 
+The result is there's no way to take care of SERIO_OOB_DATA in the 
+read() path. Given that, I think we'd have to expose an ioctl() to 
+access the STR value after taking care of SERIO_OOB_DATA in 
+->interrupt().
+
+I'm not sure where that lands us.
+
+Dmitry, any thoughts here?
+
+> Are these
+> separate communication channels on adjacent I/O ports, or does there
+> need to be some arbitration?
+
+As it stands there's no arbitration.
+
+Cheers,
+
+Andrew
