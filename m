@@ -2,121 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E2C435C52E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 13:31:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E19635C537
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 13:33:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240111AbhDLLbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 07:31:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43674 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240440AbhDLLbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 07:31:13 -0400
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14AD2C061574
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 04:30:56 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id p12so9120682pgj.10
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 04:30:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=L/J0PuGsoQ9jKaU7QDPzGYAqcrZkxGOtbfN36+E+p8I=;
-        b=jxUM1Vlcs9HJZ+XkiurdTz3RLTTchqy8JW4keBeGimx/NgdkjzIga2gTMja8jtvpFl
-         IOKgDwG9Y+ek4G6T7/+j8mL7dekkWw2fjK6HFnrzMnznTrQM0TDK6YVlOA1Q179cYHCU
-         t7JDL2nkctQpW0yNdQ200MfR/ugZQmOgXdMkQ=
+        id S239318AbhDLLd2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 07:33:28 -0400
+Received: from mail-ua1-f49.google.com ([209.85.222.49]:34709 "EHLO
+        mail-ua1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237792AbhDLLd2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 07:33:28 -0400
+Received: by mail-ua1-f49.google.com with SMTP id s2so4109413uap.1;
+        Mon, 12 Apr 2021 04:33:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=L/J0PuGsoQ9jKaU7QDPzGYAqcrZkxGOtbfN36+E+p8I=;
-        b=E3XXNcDy+tybNa6YwzWxwFsWQec1IvhX/h5lmGD/7DJD7iEQRBLIM92LdHm7RehW/h
-         QMk5jZOhFwnKhhiCEUhI52ru12kaGJZq7yjH88AJrAwHFZOCqok1zhO/EMHcjSUqLrsm
-         horvRtXAUvUu3wPxWI4o6faM3H6q/oBWLmU8G7Kefx0WNrgot18iM3oddrgv4oVC07yO
-         49ER0ZEwNMYviXGaHBcX7qanNE1aEbs8BzyfKtIkL1gLm95dRj6Mi5DRe/v1KizKjAPf
-         9zYh11lUcZ95Iw+QSD3iyaK+JGCitn39wnOFVPy+KzpKEH9iA8GfE/hf3xvisVLBoocv
-         C4Yg==
-X-Gm-Message-State: AOAM533RPEkDINpIM76pk683SyBNKqceu7twxQsT8tkQkb47YVjECFBC
-        i0rwcknLUfd0wSAotoHXR239E9GVCscQzw==
-X-Google-Smtp-Source: ABdhPJxQcccsa6WuSwNP51GClJBEn2bgeJsPTj66sKqeSR86avKgeV0NuXCxoRd16rao6y8rnjK0jw==
-X-Received: by 2002:a62:754c:0:b029:242:22d1:58af with SMTP id q73-20020a62754c0000b029024222d158afmr23588812pfc.11.1618227055652;
-        Mon, 12 Apr 2021 04:30:55 -0700 (PDT)
-Received: from ikjn-p920.tpe.corp.google.com ([2401:fa00:1:b:32f1:1e05:984e:e039])
-        by smtp.gmail.com with ESMTPSA id 129sm1572413pfv.159.2021.04.12.04.30.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Apr 2021 04:30:55 -0700 (PDT)
-From:   Ikjoon Jang <ikjn@chromium.org>
-To:     linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Dmitry Torokhov <dtor@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Ikjoon Jang <ikjn@chromium.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jiri Kosina <jkosina@suse.cz>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Jiri Kosina <jikos@kernel.org>, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] HID: google: Add of_match table to Whiskers switch device.
-Date:   Mon, 12 Apr 2021 19:30:20 +0800
-Message-Id: <20210412113020.2724134-3-ikjn@chromium.org>
-X-Mailer: git-send-email 2.31.1.295.g9ea45b61b8-goog
-In-Reply-To: <20210412113020.2724134-1-ikjn@chromium.org>
-References: <20210412113020.2724134-1-ikjn@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/BtLuken7/ATnnaUkY5iHVkSwH8IiGzx/qlI7A0N+vg=;
+        b=WUw34Xz6aZWhQ8YYTeVTVjkvo+O8RkO+g5ebYgeOhc4nnQW5PRl3yoXIPo1+oKs3yC
+         VrHhNUAf5fZTjusEksj85l62fpKpYrvd0Zdf3b4Wbc1p31fl5166ECJ4OoJYof1yFfPE
+         zU1isrPjRDBpxhrdAO8AFXvJgpVas8G8/6BhYySloEGAv89BvlStp1X2Rzc49fB7qkNT
+         8c59zrAZPVRtdIyIgszNBxgGuy0EjUKtPR45wiFu3+H96CSN+bp8R/K3uPmrdnljxe8F
+         nefFB2iDZW2ViDs5XMA3wylyNAm30/L7THmLUAztbYXUBwaIknozqtdTXhsv337C/nh0
+         h1rw==
+X-Gm-Message-State: AOAM531jHIJNtnaTHUwX57iHIPVJxy4M6nGR49G/FxZjLP4krqagzhkd
+        w9e875PTonNGGmq2Nn0ePnQPg5jqi1tO/S/qFDk=
+X-Google-Smtp-Source: ABdhPJwc7H2iNse606hnm01z3wmnOaEjTehppMFD2rGS5SzORSJzulLQ3INeDmOJwFpkG1K0oL1+YL7jRWDlysWfhK4=
+X-Received: by 2002:ab0:3157:: with SMTP id e23mr17802147uam.106.1618227189854;
+ Mon, 12 Apr 2021 04:33:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CAK8P3a1L8rWpR5b66v6Su8-m7-scA0wZQr_g_4KnV4dnrky6ZA@mail.gmail.com>
+In-Reply-To: <CAK8P3a1L8rWpR5b66v6Su8-m7-scA0wZQr_g_4KnV4dnrky6ZA@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 12 Apr 2021 13:32:58 +0200
+Message-ID: <CAMuHMdWY0aGoAw6QfF5PQRFNFwAzNP9cmFCjbKnsSbHsMz45fQ@mail.gmail.com>
+Subject: Re: New 'make dtbs_check W=1' warnings
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linusw@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        SoC Team <soc@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a device tree match table for "cros-cbas" switch device.
+Hi Arnd,
 
-Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
-Reviewed-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Acked-by: Jiri Kosina <jkosina@suse.cz>
+On Thu, Apr 8, 2021 at 5:08 PM Arnd Bergmann <arnd@kernel.org> wrote:
+> I've just gone through the DT merges I've received so far and, with a
+> little help from Rob,
+> managed to run 'make dtbs_check W=1' before and after, to see what
+> warnings we get.
+> The good news is that the number of warnings is going down, but
+> unfortunately there
+> is still an unmanageable amount of remaining warnings, and some new
+> ones crept in.
+>
+> I'm still working on my tooling for this, to catch these better, but
+> ideally I think we should
+> try to not introduce new warnings. I think some platforms are already
+> clean, and I did
+> not see any new warnings for mvebu, samsung and broadcom. There were a lot of
+> warnings from .dtsi files, and I probably did an incomplete job at
+> deduplicating those.
 
----
+Thanks for running these checks!
 
-(no changes since v1)
+> See below for the other platforms, and the new warnings that I found.
+> If these are
+> valid, please send a fixup before the merge window, and let me know if
+> you have ideas
+> for how we should handle these in the future.
+>
+> For this merge window, I don't think any of them are show-stoppers (Rob, let me
+> know if you disagree), but in the long run we may want to gradually enforce
+> a rule about not merging changes that introduce any new warnings, in order to
+> have a chance of cleaning up the existing ones.
 
-Please note that v3 was submitted in 28 Oct 2019, 1.5yrs ago.
-Link(v2): https://patchwork.kernel.org/project/linux-input/patch/20191021030158.32464-1-ikjn@chromium.org/
+This may not be as simple as it sounds, as DT binding updates typically
+follow a different path than DTS(i) updates.  DT bindings updates may be
+picked up by a subsystem maintainer, by Rob, or by the platform
+maintainer.
+For trivial updates (e.g. adding a compatible value, and sometimes
+extending a limit), a DTS(i) update may be accepted by the platform
+maintainer before the corresponding DT binding update.  The latter may
+even be merged one or more kernel revisions later, especially when
+involving subsystems that are not traditionally rooted into platforms
+using DT.
 
----
- drivers/hid/hid-google-hammer.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Of course we could mention any expected warning regressions in our pull
+requests for soc.
 
-diff --git a/drivers/hid/hid-google-hammer.c b/drivers/hid/hid-google-hammer.c
-index d9319622da44..be4f9f3dbbba 100644
---- a/drivers/hid/hid-google-hammer.c
-+++ b/drivers/hid/hid-google-hammer.c
-@@ -17,6 +17,7 @@
- #include <linux/hid.h>
- #include <linux/leds.h>
- #include <linux/module.h>
-+#include <linux/of.h>
- #include <linux/platform_data/cros_ec_commands.h>
- #include <linux/platform_data/cros_ec_proto.h>
- #include <linux/platform_device.h>
-@@ -272,12 +273,21 @@ static const struct acpi_device_id cbas_ec_acpi_ids[] = {
- };
- MODULE_DEVICE_TABLE(acpi, cbas_ec_acpi_ids);
- 
-+#ifdef CONFIG_OF
-+static const struct of_device_id cbas_ec_of_match[] = {
-+	{ .compatible = "google,cros-cbas" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, cbas_ec_of_match);
-+#endif
-+
- static struct platform_driver cbas_ec_driver = {
- 	.probe = cbas_ec_probe,
- 	.remove = cbas_ec_remove,
- 	.driver = {
- 		.name = "cbas_ec",
- 		.acpi_match_table = ACPI_PTR(cbas_ec_acpi_ids),
-+		.of_match_table = of_match_ptr(cbas_ec_of_match),
- 		.pm = &cbas_ec_pm_ops,
- 	},
- };
--- 
-2.31.1.295.g9ea45b61b8-goog
+> renesas/r8a774a1-beacon-rzg2m-kit.dt.yaml: csi2@feaa0000: ports:
+> 'port@0' is a required property
 
+[...]
+
+I've replied to these as a response to your PR reply, see
+https://lore.kernel.org/linux-renesas-soc/CAMuHMdWHLnXgBSjP7VKUdx-YNr9rSKFkE5Ge5q_tarU6HP9Lhw@mail.gmail.com/
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
