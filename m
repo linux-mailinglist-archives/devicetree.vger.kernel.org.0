@@ -2,107 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58A4135D0CF
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 21:08:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74D5F35D125
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 21:37:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245160AbhDLTIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 15:08:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59652 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237118AbhDLTIQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 15:08:16 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B31FC06174A
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 12:07:58 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id r13so3379800pjf.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 12:07:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=CebE5qyQpll4V79rPwWriZ7YR0CHEOZQO7SaD3bm2sE=;
-        b=Arpet9dZM9/Q0PmiTS8YtsDgk/dCwiFFl6zlJQobHz8P0+4tgNY7Dp/6AHSo18wXfd
-         +mCZzdnAMkpfcRLgMJ7gWNsqlvFgqrUCDdNUOOqr1f/g7x74KsOcl6X+egMniSd+qVHB
-         F6kt1/A3UCxSeMVx3raNkY2PixEtK0qO/vk/E=
+        id S242126AbhDLTgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 15:36:44 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:41737 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237770AbhDLTgn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 15:36:43 -0400
+Received: by mail-oi1-f179.google.com with SMTP id x77so5207895oix.8;
+        Mon, 12 Apr 2021 12:36:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=CebE5qyQpll4V79rPwWriZ7YR0CHEOZQO7SaD3bm2sE=;
-        b=HqllOxdILTmQYhSJ1QGCTUzcD3FbBByirBiVdjM0quTt0Ej9pTfDd7rXcKV+uvZHfj
-         xq7JE3ZiHpZb69HzPX50iM6OlBYa3emJzkstI7fLEGISXG7wh59I9RYs1UJPPUJm7/gg
-         8QmdsYbj7NxEfN5PavL5vLtIzMOpMGMAarITBR03AH2Lt7h1VoydUNCUuqtsVe9+xLYH
-         R/eCIvgsKhAomjrhUoB7N2oSgqN9wesOuJJpLX23thnVSA1rTvO6QPWk+z04KApkjLwB
-         q+sjpwqrAuQA9JNL97DtkW8sCKE+oPoZYQzq0Q7s+RYLv15/oRdnaoRkQRLZnVffV2+C
-         pTvQ==
-X-Gm-Message-State: AOAM530duallNqzGrexrzU0EdcuRTdW57vVHjtUxCBSX7j5ZxFQ4mt6z
-        TOqPeYOZBM6Zcs9PERcAOIIc9Q==
-X-Google-Smtp-Source: ABdhPJziE71JAVTa1fIPDlkylfiLGrPI5e3Gar3JlZm6Rfwqz8Rg4/xf8FER0LY/+EHp2/qDeILfQQ==
-X-Received: by 2002:a17:90b:3613:: with SMTP id ml19mr716305pjb.38.1618254478085;
-        Mon, 12 Apr 2021 12:07:58 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:201:1d18:a339:7993:e548])
-        by smtp.gmail.com with ESMTPSA id f187sm10437595pfa.104.2021.04.12.12.07.57
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mvZBgfD16wXr6/2myqQH4t74jres/dZXoAcUjt/m7A8=;
+        b=ETnCcJyl7DH3i5M4bq0wKquouVE7n1PacBLNoWWXx21ncEgfnsCST8D510pf+l2mqr
+         X2jsS28r5lsJtdofrVsM6aBvLBO49OqS/7UuoCqrV70QQYRzZqadmtp6mN06W1o2buNK
+         h75t3x4yZXIB6zsM3dW9XCtOF63PJscY3ADGS/1aM+9wTykaPiiKCH2BlzOcVQSbwWjQ
+         9xTerjK2TnZMZTIoL+4cgjf2s+ogZORiiag+9eLhEj39c4oA4lr6605FPUJzFYP1bLH0
+         kLdAl78sdShRwcPOgpWM7jrpzke61v1OleYF5LupCfzgGcYYvwtVfU3nZJk9hWMn1l4b
+         tkWg==
+X-Gm-Message-State: AOAM5329XctTOfVyo4VWY3LAeYacW9BMim+bi4JZ8+zo09HRcXKDKnIu
+        ul53AKmEAAMM7cN4jYElhA==
+X-Google-Smtp-Source: ABdhPJxKWddlgQ6qEl4npwvwhGxkKQ1LDHDx2zNYxknUhI2wZoE80IJk9tVtedzXAHOgrVls0q1a0A==
+X-Received: by 2002:aca:ebd7:: with SMTP id j206mr604893oih.60.1618256184308;
+        Mon, 12 Apr 2021 12:36:24 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id x127sm2370110oix.36.2021.04.12.12.36.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Apr 2021 12:07:57 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        Mon, 12 Apr 2021 12:36:23 -0700 (PDT)
+Received: (nullmailer pid 52928 invoked by uid 1000);
+        Mon, 12 Apr 2021 19:36:17 -0000
+Date:   Mon, 12 Apr 2021 14:36:17 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Guru Das Srinagesh <gurus@codeaurora.org>
+Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: mfd: pm8008: Add IRQ listing
+Message-ID: <20210412193617.GA52875@robh.at.kernel.org>
+References: <cover.1618015804.git.gurus@codeaurora.org>
+ <d384009747961c04643a72ce3fc1b1aeca20d226.1618015804.git.gurus@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <b955dcbb-48b6-f236-ccbd-bc7d0de1df60@codeaurora.org>
-References: <20210406163330.11996-1-srivasam@codeaurora.org> <161798766423.3790633.3895809656191757415@swboyd.mtv.corp.google.com> <b955dcbb-48b6-f236-ccbd-bc7d0de1df60@codeaurora.org>
-Subject: Re: [PATCH v2] arm64: dts: qcom: Update iommu property for simultaneous playback
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, dianders@chromium.org,
-        judyhsiao@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org
-Date:   Mon, 12 Apr 2021 12:07:56 -0700
-Message-ID: <161825447608.3764895.10280020916196054814@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d384009747961c04643a72ce3fc1b1aeca20d226.1618015804.git.gurus@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2021-04-09 22:17:07)
-> Hi Stephen.
->=20
-> Thanks for your time!!!
->=20
->=20
-> On 4/9/2021 10:31 PM, Stephen Boyd wrote:
-> > Quoting Srinivasa Rao Mandadapu (2021-04-06 09:33:30)
-> >> From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-> >>
-> >> Update iommu property in lpass cpu node for supporting
-> >> simultaneous playback on headset and speaker.
-> >>
-> >> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-> >> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> >> ---
-> >> Changes since v1:
-> >>     -- Commit messge header change
-> >>
-> >>   arch/arm64/boot/dts/qcom/sc7180.dtsi | 3 ++-
-> >>   1 file changed, 2 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dt=
-s/qcom/sc7180.dtsi
-> >> index a6da78d31fdd..6228ba2d8513 100644
-> >> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> >> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> >> @@ -3566,7 +3566,8 @@ lpass_cpu: lpass@62f00000 {
-> >>                          reg =3D <0 0x62f00000 0 0x29000>;
-> >>                          reg-names =3D "lpass-lpaif";
-> >>  =20
-> >> -                       iommus =3D <&apps_smmu 0x1020 0>;
-> >> +                       iommus =3D <&apps_smmu 0x1020 0>,
-> >> +                               <&apps_smmu 0x1021 0>;
-> > The stream ID 0x1032 was also dropped in this version but there's no
-> > mention of that in the changelog. Why?
-> That is ID is for HDMI Stream, so as part of DP patches that will be adde=
-d.
+On Fri, 09 Apr 2021 17:55:00 -0700, Guru Das Srinagesh wrote:
+> Add a header file listing all of the IRQs that Qualcomm Technologies,
+> Inc. PM8008 supports. The constants defined in this file may be used in
+> the client device tree node to specify interrupts.
+> 
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
+> ---
+>  include/dt-bindings/mfd/qcom-pm8008.h | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+>  create mode 100644 include/dt-bindings/mfd/qcom-pm8008.h
+> 
 
-Ok, got it.
+Acked-by: Rob Herring <robh@kernel.org>
