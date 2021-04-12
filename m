@@ -2,130 +2,483 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79FB935C29C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 12:03:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DED6A35C2A0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 12:03:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237290AbhDLJq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 05:46:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56020 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241785AbhDLJjc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Apr 2021 05:39:32 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BDEB26120B;
-        Mon, 12 Apr 2021 09:39:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618220354;
-        bh=aPImZCrgJujvvKf1wVXHwFUAAvYaRgDhpRe+X56AdfI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=INfHcv6K4T5EPreapejD3JkX/41eszO4nsjC/osCjhYV8BjhUV3lHEcemYgEXx7OF
-         n7xE7VI+TcsLQDkoN6qJzluyveUoI0/xxQ38xXcBRWQhY4sstGGwVzJLlnkHUg4v6J
-         AQqqGaVC4ZB0H9Mvr1uTHgGERU2aQK9Idm/mqgiP0OpBNc58LQ34vXTsbbLeexjU+O
-         OiVVKVY/0sjcQ4qQabSh/YYB57GFJRn+sT6++bYN0Z8ZxPY4+zyabRpt0tF+ouPnjf
-         eMg+St1PeMyZy4+YagkdsTPL5ss6PjPdX1EpV91wOi/pEuWpNQfbKP9oy4S6BDr6+6
-         sEnQ5QHwoLdJQ==
-Date:   Mon, 12 Apr 2021 15:09:10 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Robin Gong <yibin.gong@nxp.com>
-Cc:     mark.rutland@arm.com, broonie@kernel.org, robh+dt@kernel.org,
-        catalin.marinas@arm.com, will.deacon@arm.com, shawnguo@kernel.org,
-        festevam@gmail.com, s.hauer@pengutronix.de,
-        martin.fuzzey@flowbird.group, u.kleine-koenig@pengutronix.de,
-        dan.j.williams@intel.com, matthias.schiffer@ew.tq-group.com,
-        frieder.schrempf@kontron.de, m.felsch@pengutronix.de,
-        xiaoning.wang@nxp.com, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
-        dmaengine@vger.kernel.org, linux-imx@nxp.com
-Subject: Re: [PATCH v14 12/12] dmaengine: imx-sdma: add terminated list for
- freed descriptor in worker
-Message-ID: <YHQVPoQAYVuHL3/S@vkoul-mobl.Dlink>
-References: <1617809456-17693-1-git-send-email-yibin.gong@nxp.com>
- <1617809456-17693-13-git-send-email-yibin.gong@nxp.com>
+        id S240875AbhDLJqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 05:46:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47762 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243589AbhDLJm2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 05:42:28 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19DB2C061376
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 02:39:36 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id f12so12231102wro.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 02:39:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=+eQLUSDxC/KAAM8PQeZDYoC/OzSAmtGzEqBzK7vKIGE=;
+        b=S6fzpl/s75vVv8GaAqf5ZTN4LDh0y9MH26OLlgagJ+bvjjFRGI6Itb0hTRBU7SsSZu
+         w6MqOhpJgnLiJ+nJm5qcsEhdx0rRVDTaA9ojT6RbFPQC3AzCZegNQKaFNYTQ3GUfuRCk
+         F/dk7wbDIL/zk0f9Ny1L5+kFc7E1cfrPgThGJUTIyg8mVI7WWSASDsB5bz7TyLBcOhX4
+         aksWcwICfKfZFm69wh2qpyqlow7djgoVE/FGdbtP+WEERJO6aulOTlfuxgnoA/N8FtEJ
+         5M7XJAEHG7bBcP87chiEiY2nvgDTOJ38Ulxz5y9L5NyvOWvlIKRjkZaztfy3xiUQg0zl
+         hz7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=+eQLUSDxC/KAAM8PQeZDYoC/OzSAmtGzEqBzK7vKIGE=;
+        b=rjnPxxq3sumtsrS64UDGjDqhutaH3VT0LE8aOWRIyB+YjmSFfXNC9FafgpSPykJG9r
+         8os75nrLT7UgQ7m3W9gE7UNrz721P/eTg0dUz7mG8wqLkEmvrqxBjmzI0+yMWASesNvI
+         8ZI3WLSPezxOgQPqRdZjD7odPphT/CYWF6L9KZzOrmEA3RF2IStMhoKJT+dmlaoGZvWi
+         TwKQVyLwmDBAPiWVnH8PdYJcfR1IAuAMG/9zW0djzkBvlYHHVKXUQlcyyEr6OK2yToeg
+         gmFlO3k/ZxOa3aLZrco7gKTeVjN/b9TCoMlMaJjXUdv4e6OPtGTYc9BXI0lhNvc8YdoJ
+         1tGg==
+X-Gm-Message-State: AOAM532qrvlSFVaLZsrI7HwbLAZo9iGL8rVD3GQBUwiQ4WjG7YcdrIb6
+        x/DeVMr4whH+3Njf3SZLgtDKnQ==
+X-Google-Smtp-Source: ABdhPJwGo6b1fl6GiM30UBzNo5HI0PPshN6/qFRKQ5/fXShS8QTcPCs67HSa/l6X+PPuI/HtUH4a8Q==
+X-Received: by 2002:adf:f990:: with SMTP id f16mr1883862wrr.312.1618220374703;
+        Mon, 12 Apr 2021 02:39:34 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:90c:e290:4c21:b00e:ff79:bf20])
+        by smtp.gmail.com with ESMTPSA id r22sm14405902wmh.11.2021.04.12.02.39.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Apr 2021 02:39:34 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
+        matthias.bgg@gmail.com, devicetree@vger.kernel.org
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH v2 1/5] dt-bindings: display: mediatek,hdmi: Convert to use graph schema
+Date:   Mon, 12 Apr 2021 11:39:24 +0200
+Message-Id: <20210412093928.3321194-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210412093928.3321194-1-narmstrong@baylibre.com>
+References: <20210412093928.3321194-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1617809456-17693-13-git-send-email-yibin.gong@nxp.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07-04-21, 23:30, Robin Gong wrote:
-> Add terminated list for keeping descriptor so that it could be freed in
-> worker without any potential involving next descriptor raised up before
-> this descriptor freed, because vchan_get_all_descriptors get all
-> descriptors including the last terminated descriptor and the next
-> descriptor, hence, the next descriptor maybe freed unexpectly when it's
-> done in worker without this patch.
-> https://www.spinics.net/lists/dmaengine/msg23367.html
+Update the mediatek,dpi binding to use the graph schema.
 
-Sound like you should implement .device_synchronize() and do the actual
-work there..?
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../display/mediatek/mediatek,cec.yaml        |  51 +++++++
+ .../display/mediatek/mediatek,hdmi-ddc.yaml   |  57 ++++++++
+ .../display/mediatek/mediatek,hdmi.txt        | 136 ------------------
+ .../display/mediatek/mediatek,hdmi.yaml       | 131 +++++++++++++++++
+ 4 files changed, 239 insertions(+), 136 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.txt
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
 
-> 
-> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
-> Reported-by: Richard Leitner <richard.leitner@skidata.com>
-> ---
->  drivers/dma/imx-sdma.c | 17 ++++++++++-------
->  1 file changed, 10 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/dma/imx-sdma.c b/drivers/dma/imx-sdma.c
-> index 9519b41..4174580 100644
-> --- a/drivers/dma/imx-sdma.c
-> +++ b/drivers/dma/imx-sdma.c
-> @@ -381,6 +381,7 @@ struct sdma_channel {
->  	enum dma_status			status;
->  	struct imx_dma_data		data;
->  	struct work_struct		terminate_worker;
-> +	struct list_head                terminated;
->  	bool				is_ram_script;
->  };
->  
-> @@ -1041,9 +1042,6 @@ static void sdma_channel_terminate_work(struct work_struct *work)
->  {
->  	struct sdma_channel *sdmac = container_of(work, struct sdma_channel,
->  						  terminate_worker);
-> -	unsigned long flags;
-> -	LIST_HEAD(head);
-> -
->  	/*
->  	 * According to NXP R&D team a delay of one BD SDMA cost time
->  	 * (maximum is 1ms) should be added after disable of the channel
-> @@ -1052,10 +1050,7 @@ static void sdma_channel_terminate_work(struct work_struct *work)
->  	 */
->  	usleep_range(1000, 2000);
->  
-> -	spin_lock_irqsave(&sdmac->vc.lock, flags);
-> -	vchan_get_all_descriptors(&sdmac->vc, &head);
-> -	spin_unlock_irqrestore(&sdmac->vc.lock, flags);
-> -	vchan_dma_desc_free_list(&sdmac->vc, &head);
-> +	vchan_dma_desc_free_list(&sdmac->vc, &sdmac->terminated);
->  }
->  
->  static int sdma_terminate_all(struct dma_chan *chan)
-> @@ -1069,6 +1064,13 @@ static int sdma_terminate_all(struct dma_chan *chan)
->  
->  	if (sdmac->desc) {
->  		vchan_terminate_vdesc(&sdmac->desc->vd);
-> +		/*
-> +		 * move out current descriptor into terminated list so that
-> +		 * it could be free in sdma_channel_terminate_work alone
-> +		 * later without potential involving next descriptor raised
-> +		 * up before the last descriptor terminated.
-> +		 */
-> +		vchan_get_all_descriptors(&sdmac->vc, &sdmac->terminated);
->  		sdmac->desc = NULL;
->  		schedule_work(&sdmac->terminate_worker);
->  	}
-> @@ -2075,6 +2077,7 @@ static int sdma_probe(struct platform_device *pdev)
->  
->  		sdmac->channel = i;
->  		sdmac->vc.desc_free = sdma_desc_free;
-> +		INIT_LIST_HEAD(&sdmac->terminated);
->  		INIT_WORK(&sdmac->terminate_worker,
->  				sdma_channel_terminate_work);
->  		/*
-> -- 
-> 2.7.4
-
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
+new file mode 100644
+index 000000000000..408e7dfce409
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/mediatek/mediatek,cec.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Mediatek HDMI CEC Controller Device Tree Bindings
++
++maintainers:
++  - CK Hu <ck.hu@mediatek.com>
++  - Jitao shi <jitao.shi@mediatek.com>
++
++description: |
++  The HDMI CEC controller handles hotplug detection and CEC communication.
++
++properties:
++  compatible:
++    enum:
++      - mediatek,mt7623-hdmi
++      - mediatek,mt8173-hdmi
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/mt8173-clk.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    cec: cec@10013000 {
++        compatible = "mediatek,mt8173-cec";
++        reg = <0x10013000 0xbc>;
++        interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_LOW>;
++        clocks = <&infracfg CLK_INFRA_CEC>;
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
+new file mode 100644
+index 000000000000..c15b3470d652
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/mediatek/mediatek,hdmi-ddc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Mediatek HDMI DDC Device Tree Bindings
++
++maintainers:
++  - CK Hu <ck.hu@mediatek.com>
++  - Jitao shi <jitao.shi@mediatek.com>
++
++description: |
++  The HDMI DDC i2c controller is used to interface with the HDMI DDC pins.
++
++properties:
++  compatible:
++    enum:
++      - mediatek,mt7623-hdmi
++      - mediatek,mt8173-hdmi
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: ddc-i2c
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/mt8173-clk.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    hdmi_ddc0: i2c@11012000 {
++        compatible = "mediatek,mt8173-hdmi-ddc";
++        reg = <0x11012000 0x1c>;
++        interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_LOW>;
++        clocks = <&pericfg CLK_PERI_I2C5>;
++        clock-names = "ddc-i2c";
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.txt
+deleted file mode 100644
+index b284ca51b913..000000000000
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.txt
++++ /dev/null
+@@ -1,136 +0,0 @@
+-Mediatek HDMI Encoder
+-=====================
+-
+-The Mediatek HDMI encoder can generate HDMI 1.4a or MHL 2.0 signals from
+-its parallel input.
+-
+-Required properties:
+-- compatible: Should be "mediatek,<chip>-hdmi".
+-- the supported chips are mt2701, mt7623 and mt8173
+-- reg: Physical base address and length of the controller's registers
+-- interrupts: The interrupt signal from the function block.
+-- clocks: device clocks
+-  See Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
+-- clock-names: must contain "pixel", "pll", "bclk", and "spdif".
+-- phys: phandle link to the HDMI PHY node.
+-  See Documentation/devicetree/bindings/phy/phy-bindings.txt for details.
+-- phy-names: must contain "hdmi"
+-- mediatek,syscon-hdmi: phandle link and register offset to the system
+-  configuration registers. For mt8173 this must be offset 0x900 into the
+-  MMSYS_CONFIG region: <&mmsys 0x900>.
+-- ports: A node containing input and output port nodes with endpoint
+-  definitions as documented in Documentation/devicetree/bindings/graph.txt.
+-- port@0: The input port in the ports node should be connected to a DPI output
+-  port.
+-- port@1: The output port in the ports node should be connected to the input
+-  port of a connector node that contains a ddc-i2c-bus property, or to the
+-  input port of an attached bridge chip, such as a SlimPort transmitter.
+-
+-HDMI CEC
+-========
+-
+-The HDMI CEC controller handles hotplug detection and CEC communication.
+-
+-Required properties:
+-- compatible: Should be "mediatek,<chip>-cec"
+-- the supported chips are mt7623 and mt8173
+-- reg: Physical base address and length of the controller's registers
+-- interrupts: The interrupt signal from the function block.
+-- clocks: device clock
+-
+-HDMI DDC
+-========
+-
+-The HDMI DDC i2c controller is used to interface with the HDMI DDC pins.
+-The Mediatek's I2C controller is used to interface with I2C devices.
+-
+-Required properties:
+-- compatible: Should be "mediatek,<chip>-hdmi-ddc"
+-- the supported chips are mt7623 and mt8173
+-- reg: Physical base address and length of the controller's registers
+-- clocks: device clock
+-- clock-names: Should be "ddc-i2c".
+-
+-HDMI PHY
+-========
+-See phy/mediatek,hdmi-phy.yaml
+-
+-Example:
+-
+-cec: cec@10013000 {
+-	compatible = "mediatek,mt8173-cec";
+-	reg = <0 0x10013000 0 0xbc>;
+-	interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_LOW>;
+-	clocks = <&infracfg CLK_INFRA_CEC>;
+-};
+-
+-hdmi_phy: hdmi-phy@10209100 {
+-	compatible = "mediatek,mt8173-hdmi-phy";
+-	reg = <0 0x10209100 0 0x24>;
+-	clocks = <&apmixedsys CLK_APMIXED_HDMI_REF>;
+-	clock-names = "pll_ref";
+-	clock-output-names = "hdmitx_dig_cts";
+-	mediatek,ibias = <0xa>;
+-	mediatek,ibias_up = <0x1c>;
+-	#clock-cells = <0>;
+-	#phy-cells = <0>;
+-};
+-
+-hdmi_ddc0: i2c@11012000 {
+-	compatible = "mediatek,mt8173-hdmi-ddc";
+-	reg = <0 0x11012000 0 0x1c>;
+-	interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_LOW>;
+-	clocks = <&pericfg CLK_PERI_I2C5>;
+-	clock-names = "ddc-i2c";
+-};
+-
+-hdmi0: hdmi@14025000 {
+-	compatible = "mediatek,mt8173-hdmi";
+-	reg = <0 0x14025000 0 0x400>;
+-	interrupts = <GIC_SPI 206 IRQ_TYPE_LEVEL_LOW>;
+-	clocks = <&mmsys CLK_MM_HDMI_PIXEL>,
+-		 <&mmsys CLK_MM_HDMI_PLLCK>,
+-		 <&mmsys CLK_MM_HDMI_AUDIO>,
+-		 <&mmsys CLK_MM_HDMI_SPDIF>;
+-	clock-names = "pixel", "pll", "bclk", "spdif";
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&hdmi_pin>;
+-	phys = <&hdmi_phy>;
+-	phy-names = "hdmi";
+-	mediatek,syscon-hdmi = <&mmsys 0x900>;
+-	assigned-clocks = <&topckgen CLK_TOP_HDMI_SEL>;
+-	assigned-clock-parents = <&hdmi_phy>;
+-
+-	ports {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		port@0 {
+-			reg = <0>;
+-
+-			hdmi0_in: endpoint {
+-				remote-endpoint = <&dpi0_out>;
+-			};
+-		};
+-
+-		port@1 {
+-			reg = <1>;
+-
+-			hdmi0_out: endpoint {
+-				remote-endpoint = <&hdmi_con_in>;
+-			};
+-		};
+-	};
+-};
+-
+-connector {
+-	compatible = "hdmi-connector";
+-	type = "a";
+-	ddc-i2c-bus = <&hdmiddc0>;
+-
+-	port {
+-		hdmi_con_in: endpoint {
+-			remote-endpoint = <&hdmi0_out>;
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
+new file mode 100644
+index 000000000000..9c125d7c8934
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
+@@ -0,0 +1,131 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/mediatek/mediatek,hdmi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Mediatek HDMI Encoder Device Tree Bindings
++
++maintainers:
++  - CK Hu <ck.hu@mediatek.com>
++  - Jitao shi <jitao.shi@mediatek.com>
++
++description: |
++  The Mediatek HDMI encoder can generate HDMI 1.4a or MHL 2.0 signals from
++  its parallel input.
++
++properties:
++  compatible:
++    enum:
++      - mediatek,mt2701-hdmi
++      - mediatek,mt7623-hdmi
++      - mediatek,mt8173-hdmi
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Pixel Clock
++      - description: HDMI PLL
++      - description: Bit Clock
++      - description: S/PDIF Clock
++
++  clock-names:
++    items:
++      - const: pixel
++      - const: pll
++      - const: bclk
++      - const: spdif
++
++  phys:
++    maxItems: 1
++
++  phy-names:
++    items:
++      - const: hdmi
++
++  mediatek,syscon-hdmi:
++    $ref: '/schemas/types.yaml#/definitions/phandle'
++    minItems: 2
++    description: |
++      phandle link and register offset to the system configuration registers.
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: |
++          Input port node. This port should be connected to a DPI output port.
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: |
++          Output port node. This port should be connected to the input port of a connector
++          node that contains a ddc-i2c-bus property, or to the  input port of an attached
++          bridge chip, such as a SlimPort transmitter.
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - phys
++  - phy-names
++  - mediatek,syscon-hdmi
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/mt8173-clk.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    hdmi0: hdmi@14025000 {
++        reg = <0x14025000 0x400>;
++        interrupts = <GIC_SPI 206 IRQ_TYPE_LEVEL_LOW>;
++        clocks = <&mmsys CLK_MM_HDMI_PIXEL>,
++             <&mmsys CLK_MM_HDMI_PLLCK>,
++             <&mmsys CLK_MM_HDMI_AUDIO>,
++             <&mmsys CLK_MM_HDMI_SPDIF>;
++        clock-names = "pixel", "pll", "bclk", "spdif";
++        pinctrl-names = "default";
++        pinctrl-0 = <&hdmi_pin>;
++        phys = <&hdmi_phy>;
++        phy-names = "hdmi";
++        mediatek,syscon-hdmi = <&mmsys 0x900>;
++
++        ports {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          port@0 {
++            reg = <0>;
++
++            hdmi0_in: endpoint {
++              remote-endpoint = <&dpi0_out>;
++            };
++          };
++
++          port@1 {
++            reg = <1>;
++
++            hdmi0_out: endpoint {
++              remote-endpoint = <&hdmi_con_in>;
++            };
++          };
++        };
++    };
++
++...
 -- 
-~Vinod
+2.25.1
+
