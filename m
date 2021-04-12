@@ -2,106 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67CC535C4C4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 13:14:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 190F435C4D0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 13:18:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238383AbhDLLOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 07:14:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39938 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237520AbhDLLOc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 07:14:32 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D59CC061574
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 04:14:14 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lVuW5-0004Sw-Oz; Mon, 12 Apr 2021 13:14:05 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lVuW0-0005mo-SS; Mon, 12 Apr 2021 13:14:00 +0200
-Date:   Mon, 12 Apr 2021 13:14:00 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-Cc:     lee.jones@linaro.org, robh+dt@kernel.org, joel@jms.id.au,
-        andrew@aj.id.au, thierry.reding@gmail.com, p.zabel@pengutronix.de,
-        billy_tasi@aspeedtech.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, BMC-SW@aspeedtech.com
-Subject: Re: [PATCH 4/4] pwm: Add support for aspeed pwm controller
-Message-ID: <20210412111400.w4yafy2r2lcy3qqv@pengutronix.de>
-References: <20210412095457.15095-1-billy_tsai@aspeedtech.com>
- <20210412095457.15095-5-billy_tsai@aspeedtech.com>
+        id S238383AbhDLLTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 07:19:14 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:36368 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S237720AbhDLLTN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 07:19:13 -0400
+X-UUID: 6daa5e11bce24eecac98f2b0f015ac4f-20210412
+X-UUID: 6daa5e11bce24eecac98f2b0f015ac4f-20210412
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw01.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1894990616; Mon, 12 Apr 2021 19:18:51 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 12 Apr 2021 19:18:47 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 12 Apr 2021 19:18:46 +0800
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v2, 0/5] Revert "mailbox: mediatek: remove implementation related to atomic_exec"
+Date:   Mon, 12 Apr 2021 19:18:40 +0800
+Message-ID: <1618226325-31927-1-git-send-email-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="pd5zmkimjbjbd2ka"
-Content-Disposition: inline
-In-Reply-To: <20210412095457.15095-5-billy_tsai@aspeedtech.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 389E8F4DE8E8662A451C1C9F583FBEB83B881827185D9C0ABC3A443A8DB4570F2000:8
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series base linux 5.12-rc2
+these patches will cause home ui flick when cursor moved,
+there is no fix solution yet, revert these patches first.
 
---pd5zmkimjbjbd2ka
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+change since v1:
+add mtk-gce.txt and dts modification
 
-Hello,
+Yongqiang Niu (5):
+  Revert "drm/mediatek: Make sure previous message done or be aborted
+    before send"
+  Revert "mailbox: mediatek: remove implementation related to
+    atomic_exec"
+  Revert "dt-bindings: mailbox: mtk-gce: fix incorrect mbox-cells value"
+  Revert "arm64: dts: mediatek: mt8183: fix gce incorrect mbox-cells
+    value"
+  arm64: dts: mediatek: mt8183: add gce information for mmsys
 
-On Mon, Apr 12, 2021 at 05:54:57PM +0800, Billy Tsai wrote:
-> Add support for the pwm controller which can be found at aspeed ast2600
-> soc. This driver is part function of multi-funciton of device "pwm-tach
-> controller".
+ .../devicetree/bindings/mailbox/mtk-gce.txt        |  2 +-
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi           |  5 +-
+ drivers/gpu/drm/mediatek/mtk_drm_crtc.c            |  1 -
+ drivers/mailbox/mtk-cmdq-mailbox.c                 | 80 +++++++++++++++++++---
+ 4 files changed, 76 insertions(+), 12 deletions(-)
 
-please squash this into patch 3.
+-- 
+1.8.1.1.dirty
 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> ---
->  drivers/pwm/Kconfig  | 6 ++++++
->  drivers/pwm/Makefile | 1 +
->  2 files changed, 7 insertions(+)
->=20
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 63be5362fd3a..947ed642debe 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -42,6 +42,12 @@ config PWM_DEBUG
->  	  It is expected to introduce some runtime overhead and diagnostic
->  	  output to the kernel log, so only enable while working on a driver.
-> =20
-> +config PWM_ASPEED_G6
-> +	tristate "ASPEEDG6 PWM support"
-
-No depends?
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---pd5zmkimjbjbd2ka
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmB0K3UACgkQwfwUeK3K
-7Alyiwf+N6SdROgVHun0SCHrHCq38m5hqQn38hc8QCylRi+5HR5BhxtwzPttnTSy
-J1GYamjnQlXcnQZ6HBNBxliPG/GC3BAaH1CuD3Vk2SNLR1tGfwe6YJER26VbUCjA
-1FsFgp2d9Cd4xp81NXN/XLpcqKP49hYrkrKRRC6Q+xG8XK6ZgtaY5Bj+RBh1LM9A
-WuEbfXBKgMfEonEc5frH2YEi/DFsevUjX2OKxjmT00vFjdozHYfin+hLJkjxc+f5
-GFNaDYXFiaAZ5b1neOfzpalFrYUCcFQisH49bpSXQf73VBfYdHUWFBPgvpNydnw2
-oZi9GeO285lWrTQ9Fd1kAPmFCkOmbA==
-=SB2c
------END PGP SIGNATURE-----
-
---pd5zmkimjbjbd2ka--
