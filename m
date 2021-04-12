@@ -2,55 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B4C435C0FA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 11:23:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61E5C35C19A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 11:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239966AbhDLJSk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 05:18:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41858 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241786AbhDLJRR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 05:17:17 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE4B5C061574
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 02:15:07 -0700 (PDT)
-Received: from [192.168.1.111] (91-157-208-71.elisa-laajakaista.fi [91.157.208.71])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 28A9B3F0;
-        Mon, 12 Apr 2021 11:15:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1618218905;
-        bh=R/sQjgekGKi0dQEpB6c2WYBsNlUIehkjxHLKQk/kObI=;
-        h=To:Cc:References:From:Subject:Date:In-Reply-To:From;
-        b=EyY4d+W/R2UpBeyK3nozWrFZub7FvGa1VOVvlDVuBzh/fhATTYr2s4tx/dv2NMdir
-         ih70Z47kxd2EJkhrKuy+EAgEPBZMrYjafnd4Xz98Yj9LAmfDAWb9o37dq4lsTTCFjw
-         pmMzgHD9/dQr5HmFp9jC0A/of0XTJ+jccc6byTvw=
-To:     Pratyush Yadav <p.yadav@ti.com>,
+        id S239866AbhDLJbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 05:31:42 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:34130 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241815AbhDLJ0w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 05:26:52 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13C9QPwu098727;
+        Mon, 12 Apr 2021 04:26:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1618219585;
+        bh=7X5hJ0swIgdwTrO9RnjbXMZ+r1QGTKr3SWpWoc5weRA=;
+        h=From:Subject:To:CC:References:Date:In-Reply-To;
+        b=G5sjyoRny2Ya7nvLiRL4e+y2I9NplGItxcuVejNM+V+MFsL51bH76r14PhSTjygjc
+         k0PsufqcTHkxSpbuzh4CkMo2bT97JeO5hgv0HsemdVROd5NW839AxX2aLLETnfSsvx
+         GbCbggA6D9eZUE0z1TDPnaI5V3WMf7qBqT3QML4w=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13C9QPfE053667
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 12 Apr 2021 04:26:25 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 12
+ Apr 2021 04:26:25 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 12 Apr 2021 04:26:25 -0500
+Received: from [172.24.145.136] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13C9QLZL130088;
+        Mon, 12 Apr 2021 04:26:22 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am654-base-board: remove ov5640
+To:     "Yadav, Pratyush" <p.yadav@ti.com>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Nishanth Menon <nm@ti.com>, Benoit Parrot <bparrot@ti.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Tony Lindgren <tony@atomide.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        "Menon, Nishanth" <nm@ti.com>, "Parrot, Benoit" <bparrot@ti.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Tony Lindgren <tony@atomide.com>
 References: <20210412075306.102884-1-tomi.valkeinen@ideasonboard.com>
  <20210412075306.102884-2-tomi.valkeinen@ideasonboard.com>
  <YHP+O3HPCCWOQRb0@pendragon.ideasonboard.com>
  <20210412083605.qnpf2mxy3rcaj7dv@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am654-base-board: remove ov5640
-Message-ID: <04b96345-f1a9-71bc-ce76-07215648e810@ideasonboard.com>
-Date:   Mon, 12 Apr 2021 12:15:02 +0300
+Message-ID: <61ca0a2b-900e-daca-3d51-e8fd2c2b8073@ti.com>
+Date:   Mon, 12 Apr 2021 14:56:21 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+ Thunderbird/78.8.0
 MIME-Version: 1.0
 In-Reply-To: <20210412083605.qnpf2mxy3rcaj7dv@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset="windows-1252"
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2021 11:36, Pratyush Yadav wrote:
+
+
+On 12/04/21 2:06 pm, Pratyush Yadav wrote:
 > + Vignesh
 > 
 > On 12/04/21 11:00AM, Laurent Pinchart wrote:
@@ -71,84 +88,63 @@ On 12/04/2021 11:36, Pratyush Yadav wrote:
 >>>
 >>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 >>> ---
->>>   .../arm64/boot/dts/ti/k3-am654-base-board.dts | 27 -------------------
->>>   1 file changed, 27 deletions(-)
+>>>  .../arm64/boot/dts/ti/k3-am654-base-board.dts | 27 -------------------
+>>>  1 file changed, 27 deletions(-)
 >>>
 >>> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
 >>> index fe3043943906..76358b4944e1 100644
 >>> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
 >>> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
 >>> @@ -85,12 +85,6 @@ sw6 {
->>>   			gpios = <&wkup_gpio0 27 GPIO_ACTIVE_LOW>;
->>>   		};
->>>   	};
+>>>                      gpios = <&wkup_gpio0 27 GPIO_ACTIVE_LOW>;
+>>>              };
+>>>      };
 >>> -
->>> -	clk_ov5640_fixed: clock {
->>> -		compatible = "fixed-clock";
->>> -		#clock-cells = <0>;
->>> -		clock-frequency = <24000000>;
->>> -	};
->>>   };
->>>   
->>>   &wkup_pmx0 {
+>>> -   clk_ov5640_fixed: clock {
+>>> -           compatible = "fixed-clock";
+>>> -           #clock-cells = <0>;
+>>> -           clock-frequency = <24000000>;
+>>> -   };
+>>>  };
+>>>  
+>>>  &wkup_pmx0 {
 >>> @@ -288,22 +282,6 @@ &main_i2c1 {
->>>   	pinctrl-0 = <&main_i2c1_pins_default>;
->>>   	clock-frequency = <400000>;
->>>   
->>> -	ov5640: camera@3c {
->>> -		compatible = "ovti,ov5640";
->>> -		reg = <0x3c>;
+>>>      pinctrl-0 = <&main_i2c1_pins_default>;
+>>>      clock-frequency = <400000>;
+>>>  
+>>> -   ov5640: camera@3c {
+>>> -           compatible = "ovti,ov5640";
+>>> -           reg = <0x3c>;
 >>> -
->>> -		clocks = <&clk_ov5640_fixed>;
->>> -		clock-names = "xclk";
+>>> -           clocks = <&clk_ov5640_fixed>;
+>>> -           clock-names = "xclk";
 >>> -
->>> -		port {
->>> -			csi2_cam0: endpoint {
->>> -				remote-endpoint = <&csi2_phy0>;
->>> -				clock-lanes = <0>;
->>> -				data-lanes = <1 2>;
->>> -			};
->>> -		};
->>> -	};
+>>> -           port {
+>>> -                   csi2_cam0: endpoint {
+>>> -                           remote-endpoint = <&csi2_phy0>;
+>>> -                           clock-lanes = <0>;
+>>> -                           data-lanes = <1 2>;
+>>> -                   };
+>>> -           };
+>>> -   };
 >>> -
->>>   };
+>>>  };
 >>
 >> As for patch 1/2, you could drop the two nodes completely. Same question
 >> about overlay availability.
 > 
-> The &main_i2c1 node was added much before the OV5640 node in
-> 19a1768fc34a (arm64: dts: ti: k3-am654-base-board: Add I2C nodes,
-> 2018-11-13). I wonder if there is any reason for having it present even
-> if there are no subnodes. One reason that I can think of is that this
-> node defines the pinmux configuration and clock frequency which makes
+> The &main_i2c1 node was added much before the OV5640 node in 
+> 19a1768fc34a (arm64: dts: ti: k3-am654-base-board: Add I2C nodes, 
+> 2018-11-13). I wonder if there is any reason for having it present even 
+> if there are no subnodes. One reason that I can think of is that this 
+> node defines the pinmux configuration and clock frequency which makes 
 > more sense here than in an overlay.
-
-Right, and we also have an empty main_i2c2 there. I'd rather keep empty 
-main_i2c1 to be in line with main_i2c2, and to have the pinmux in the 
-main dts file. Unless someone can say we can remove both main_i2c1 and 
-main_i2c2.
-
 > 
->>
->>>   
->>>   &main_i2c2 {
->>> @@ -497,11 +475,6 @@ flash@0{
->>>   };
->>>   
->>>   &csi2_0 {
->>> -	csi2_phy0: endpoint {
->>> -		remote-endpoint = <&csi2_cam0>;
->>> -		clock-lanes = <0>;
->>> -		data-lanes = <1 2>;
->>> -	};
->>>   };
-> 
-> I agree with Laurent that the entire &csi2_0 node can be dropped.
-> 
-> Have you tested the CAL driver with this node removed and no overlay to
-> add it back? Can it handle the error gracefully or does it crash and
-> burn?
 
-No, I haven't tested that for a while.
+No, please don't drop main_i2c1 node. As long as pinmux is setup, its
+possible to communicate with I2C devices from user space too even when
+there are no subnodes.
 
-  Tomi
+-- 
+Regards
+Vignesh
