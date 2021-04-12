@@ -2,155 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C967435CFC5
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 19:48:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B72735CFCA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 19:50:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244708AbhDLRsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 13:48:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42160 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244739AbhDLRsZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 13:48:25 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B48CC061574;
-        Mon, 12 Apr 2021 10:48:06 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id p6so7109155wrn.9;
-        Mon, 12 Apr 2021 10:48:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:reply-to:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=7aCHD5WDPm5c82C8ZlURJklHVLxiB31MS7u9uRdey/A=;
-        b=q8AzcbnjP6y+/B3dqxMSnrIqZKukfZsMpBWmRViFvjNkSCP7JJ6HvnppUzwgMBdcWL
-         KnvXfpaNodpBD8Qqj4BDgX84+xvVqZC/PH7nwPiig+vBI+EiTeoc9yfUd5JO+Af5NJS2
-         PtpJHRWgjot6n8Nju1/rnpFzc0D2n7H/SzgH5EpEp4XD1QCiNrkCos/LFL7SuleCZHcg
-         l/5FD2oqftZ0a2jgKF95y4KtehGyuN9I/vubqa01hDMPtudJbFincZ76BOKibzaZs4mT
-         Q86L4vz0y2ZS6rxietVxlvPYrXSK3d59T6VEhU2JPjMJKIbLSnRCHw0KibV27SDiSQSI
-         5S0w==
+        id S240709AbhDLRuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 13:50:17 -0400
+Received: from mail-oo1-f54.google.com ([209.85.161.54]:44613 "EHLO
+        mail-oo1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238145AbhDLRuR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 13:50:17 -0400
+Received: by mail-oo1-f54.google.com with SMTP id p2-20020a4aa8420000b02901bc7a7148c4so3219220oom.11;
+        Mon, 12 Apr 2021 10:49:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:reply-to
-         :references:mime-version:content-disposition
-         :content-transfer-encoding:in-reply-to;
-        bh=7aCHD5WDPm5c82C8ZlURJklHVLxiB31MS7u9uRdey/A=;
-        b=OTJIp/RFgBk2FlNifT9bugR2HZGYBY/1aDirUoF4e2pe8PK+nqzNNHyOrs+eCMt6mQ
-         5jwO2HWsJW8Na/+39isRBOmUVwoZePG26MERRddt4UsdIjbGndKv5+G/Ck4NfGHZynQJ
-         e9pVTPNJhY1wnJpQLke8BVepG6xrSIu8Yo8VfiCZPPXIQf8E09nfyTJJoWDA2cZbFWqi
-         QMFK4YoqpYHRmXqUj4gb9tHv6FQst5NjVh0dbhnyTNAeTov7MN9D+3J3+yl83Xse3KY7
-         KhS7pH84Apd6OrMwQ+shXeQKptzt9Irl5JGtmIuBNwZuCCytHU+2eA+klftsEELwWy1x
-         9C1Q==
-X-Gm-Message-State: AOAM533aYpkmB2tS7YPNZOMvlCIXTxqhtYJh5k7PB0oQYJELI27a6zZf
-        1pwLNACc2DLODovXHvnepmM=
-X-Google-Smtp-Source: ABdhPJwur3aGWPQUt6Y/wj75hygTF4BHTQTNWucvxrpJantiBrpBK6J4+OmvMSCNbebmjE8fTnq5Ug==
-X-Received: by 2002:a5d:5642:: with SMTP id j2mr32398121wrw.172.1618249685081;
-        Mon, 12 Apr 2021 10:48:05 -0700 (PDT)
-Received: from pevik ([62.201.25.198])
-        by smtp.gmail.com with ESMTPSA id w7sm18882289wru.74.2021.04.12.10.48.04
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bFCs+VpPyphB2HOiiJJru9pRy8xratHPzgF28m8aMpo=;
+        b=eWmdhNexzswXIYBAGvB7gNcD8tkf1THk3qltjNB9vBeCQVNGm5CMEW7mZ6hwiHah1O
+         CxSPM/TzfHBk5bN/HcVl2eGjYNJWn6Mv8Uy8bf9ZBGIw7izF/OM/hp85l1Bghicfe2nz
+         fgVWrHbBcrBbWG0KdG0pNx4RHfmWsTjDFsgY5UdlDT35o7rcBSVqIXt9iaP4Nug7AirF
+         lqpleG9Y2c4gchiViIF4bZlv4HosagYGtKxgVA8/Os+6/0F2scP4TtXHjisvTzLgP+xj
+         4K/3zu0EZ6PZWUmFZKwcwr9hgBEqhyNIwVzRNtSZEv5wLEXgLkpuH6TIbmONxKB0OyQ6
+         TAIA==
+X-Gm-Message-State: AOAM532MK6uSrF9T3pUUngqflvHMANGjFT6voMIAleMJrCn8Dlgsdju5
+        0z+f0q8NFJoi4OC81Ul0ZQ==
+X-Google-Smtp-Source: ABdhPJzYjjV91KasGRlpdX2d8GjTfvG8l5nL7+XHdF2vj7lCJ8IP3juCXaE7zPb2z5C2tsbupG+PCw==
+X-Received: by 2002:a4a:6b04:: with SMTP id g4mr23753024ooc.78.1618249798739;
+        Mon, 12 Apr 2021 10:49:58 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 3sm2791398otw.58.2021.04.12.10.49.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Apr 2021 10:48:04 -0700 (PDT)
-Date:   Mon, 12 Apr 2021 19:48:02 +0200
-From:   Petr Vorel <petr.vorel@gmail.com>
-To:     Konrad Dybcio <konradybcio@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ricardo Ribalda <ribalda@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Cc:     KarimAllah Ahmed <karahmed@amazon.de>
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8994: Reserve gpio ranges
-Message-ID: <YHSH0gLow2g3AQNu@pevik>
-Reply-To: Petr Vorel <petr.vorel@gmail.com>
-References: <20210405200259.23525-1-petr.vorel@gmail.com>
- <20210405225222.GD904837@yoga>
- <CACRpkdZQ8qiqFPa0X8deVjZ7nLn_E6s8fmJdr5Ji8AuyJms1ug@mail.gmail.com>
- <YG9TWEJlpDmNeeit@pevik>
- <ea376d51-cd6c-0028-9602-d007c2bba71e@gmail.com>
- <YG/HwrzRcm7bwgFe@pevik>
- <20210409033726.GT904837@yoga>
- <YHE9Df/Ztq7VaoK2@pevik>
- <10d2cd96-3c35-2b06-82f7-98800888e244@gmail.com>
- <YHHeRfAWrrusE/gB@pevik>
+        Mon, 12 Apr 2021 10:49:57 -0700 (PDT)
+Received: (nullmailer pid 4108783 invoked by uid 1000);
+        Mon, 12 Apr 2021 17:49:56 -0000
+Date:   Mon, 12 Apr 2021 12:49:56 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     Aswath Govindraju <a-govindraju@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Sriram Dash <sriram.dash@samsung.com>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH 1/4] dt-bindings: phy: Add binding for TI TCAN104x CAN
+ transceivers
+Message-ID: <20210412174956.GA4049952@robh.at.kernel.org>
+References: <20210409134056.18740-1-a-govindraju@ti.com>
+ <20210409134056.18740-2-a-govindraju@ti.com>
+ <f9b04d93-c249-970e-3721-50eb268a948f@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-2
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YHHeRfAWrrusE/gB@pevik>
+In-Reply-To: <f9b04d93-c249-970e-3721-50eb268a948f@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, Apr 12, 2021 at 12:19:30PM +0200, Marc Kleine-Budde wrote:
+> On 4/9/21 3:40 PM, Aswath Govindraju wrote:
+> > Add binding documentation for TI TCAN104x CAN transceivers.
+> > 
+> > Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> > ---
+> >  .../bindings/phy/ti,tcan104x-can.yaml         | 56 +++++++++++++++++++
+> >  1 file changed, 56 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> > new file mode 100644
+> > index 000000000000..4abfc30a97d0
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> > @@ -0,0 +1,56 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/phy/ti,tcan104x-can.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: TCAN104x CAN TRANSCEIVER PHY
+> > +
+> > +maintainers:
+> > +  - Aswath Govindraju <a-govindraju@ti.com>
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^tcan104x-phy"
+> > +
+> > +  compatible:
+> > +    enum:
+> > +      - ti,tcan1042
+> > +      - ti,tcan1043
+> 
+> Can you create a generic standby only and a generic standby and enable transceiver?
 
-[ Cc KarimAllah Ahmed, as the author of 86588296acbf; Rob merged it ]
+As a fallback compatible fine, but no generic binding please. A generic 
+binding can't describe any timing requirements between the 2 GPIO as 
+well as supplies when someone wants to add those (and they will).
 
-> > > Konrad, is there any public docs about GPIOs on this secure peripherals?
-> > > It it somehow related to Chain of Trust? [1].  I guess it's not, because once we
-> > > boot Linux all bootloader stuff is over.
+> 
+> > +
+> > +  '#phy-cells':
+> > +    const: 0
+> > +
+> > +  standby-gpios:
+> > +    description:
+> > +      gpio node to toggle standby signal on transceiver
+> > +    maxItems: 1
+> > +
+> > +  enable-gpios:
+> > +    description:
+> > +      gpio node to toggle enable signal on transceiver
+> > +    maxItems: 1
+> > +
+> > +  max-bitrate:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      max bit rate supported in bps
 
-> > No, Qualcomm pretty much does security through obscurity. It's *probably* not even that very secure considering how big in size their TZ+HYP stack is - number of bugs rises exponentially with code size. But not many people tried breaking into it considering the complexity and QCOM's legal team size.
+We already have 'max-speed' for serial devices, use that.
 
-> > There is no public documentation on that, and even if there were - you are not allowed to flash the "secure" partitions on *your device that you unlocked the bootloader of by choice* (which is absurd).
+> > +    minimum: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - '#phy-cells'
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    transceiver1: tcan104x-phy {
+> > +      compatible = "ti,tcan1043";
+> > +      #phy-cells = <0>;
+> > +      max-bitrate = <5000000>;
+> > +      standby-gpios = <&wakeup_gpio1 16 GPIO_ACTIVE_LOW>;
+> > +      enable-gpios = <&main_gpio1 67 GPIO_ACTIVE_LOW>;
+> > +    };
+> > 
+> 
+> 
+> -- 
+> Pengutronix e.K.                 | Marc Kleine-Budde           |
+> Embedded Linux                   | https://www.pengutronix.de  |
+> Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+> Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+> 
 
-> > Also, while "all bootloader stuff is over", the platform is still under control of the proprietary hypervisor and the "Trust Zone". For example if you try to write to some IOMMU registers on certain platforms, the hypervisor will treat that as a security violation and shut down the entire device. 
 
-> > This is essentially the same as your issue. You're trying to poke a thing that Qualcomm *really* doesn't want you to (the fingerprint SPI pins) and since *they* are in control, they say "nonono" and your device dies. All you can do is comply with that (or find a way to replace the blobs or politely ask Google to release a set of unsecure binaries for your Nexus - which they won't do).
 
-> Again, thanks a lot for info. I looked into downstream sources to see that
-> really pins 85-88 (which I've sent a patch to add into gpio-reserved-ranges) are
-> used for fingerprint. I also wonder if downstream commit d45c35c7b586 ("angler:
-> fingerprint: remove all the code about spi") [1] confirms that also downstream
-> kernel would reset or it's a security (it would not reset, thus they removed
-> the access). It's probably aosp issue tracker [2], but "Access denied" for me.
-
-> I also did some testing and this is maximum range which can be disabled:
-> gpio-reserved-ranges = <0 4>, <6 139> and it does not help to solve second
-> reset (in loop_init() or later when starting initramfs).
-> Removing access to GPIO 4 or 5 causes reset right immediately (no message from
-> kernel).
-
-> I still don't understand what changed in a99163e9e708 ("Merge tag
-> 'devicetree-for-5.12' of git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux")
-> I checked both 882d6edfc45c cb8be8b4b27f, which it merges and they're ok.
-
-I've found the other problem preventing booting. Appart from v2 [3] is also needed
-to revert 86588296acbf ("fdt: Properly handle "no-map" field in the memory region").
-
-I'm pretty sure, that this commit is needed, but what should I change in
-arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts in order to get my angler
-booting again? With it it reset again after loop_init:
-
-[   12.077756] initcall devcoredump_init+0x0/0x30 returned 0 after 22 usecs
-[   12.082425] calling  loop_init+0x0/0x158 @ 1
-
-And with disabled CONFIG_BLK_DEV_LOOP it get's reset before reaching initramfs:
-~/tmp/hackweek/loop_init.debug.a99163e9e708.disabled-CONFIG_BLK_DEV_LOOP/2021-04-07_21-01-34.log
-[   17.383267] calling  regulator_init_complete+0x0/0x4c @ 1
-[   17.390129] initcall regulator_init_complete+0x0/0x4c returned 0 after 6 usecs
-[   17.395682] calling  of_platform_sync_state_init+0x0/0x18 @ 1
-[   17.402800] initcall of_platform_sync_state_init+0x0/0x18 returned 0 after 3 usecs
-[   17.408616] calling  alsa_sound_last_init+0x0/0x88 @ 1
-[   17.416077] ALSA device list:
-[   17.421198]   No soundcardû[   17.431360] Freeing unused kernel memory: 5824K
-[   17.431633] Run /init as init process
-[   17.434700]   with arguments:
-[   17.438535]     /init
-[   17.441477]     PMOS_NO_OUTPUT_REDIRECT
-[   17.443737]   with environment:
-[   17.447381]     HOME=/
-[   17.450496]     TERM=linux
-D -     15494 - pm_driver_init, Delta
-
-Kind regards,
-Petr
-
-> Kind regards,
-> Petr
-
-> [1] https://android.googlesource.com/kernel/msm/+/d45c35c7b586711e757eb7e3239db5c88d114e0e
-> [2] https://issuetracker.google.com/issues/23756466
-[3] https://lore.kernel.org/linux-arm-msm/20210406202936.22500-1-petr.vorel@gmail.com/T/#u
-
-> > Konrad
