@@ -2,259 +2,413 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BD5135C377
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 12:13:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F0B735C392
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 12:18:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238975AbhDLKNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 06:13:32 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:15191 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238870AbhDLKMn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 06:12:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1618222346; x=1649758346;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=mcfUdaaCrT5rTWGKHOAu4K+X5wHqkaWOK4j03mP8aBg=;
-  b=Ce/aTXTaWd2h64teRADp+X1vHx/SXahOWzMh7D4uDRYRrGEmuWE0/A0E
-   AtG2Zp13CftWE872Z832rrmXgQIWqpGBIT5Ld3wQn80XSC/tw9m9N/Zbb
-   r8q8W7UBBWHzrn8QSfNvifSXG/7WVkS+RC7hEmOnDXWCPaUaBzswXQBtS
-   GUhwesHoR9LfuA388OLbOenjy/cdINHz9AK2R/yYOC33EohiHFICRa40W
-   bxmrpRO2KNl22rTyQ8ArsJkC8Pq9+ZCE9SwKok276tXD0ge+XebSFN4yA
-   KjjvbInlsgkbqDVAFA9RPGWRZXJNqk/t2J1SA9zdOiajEra/onI7BC3+r
-   w==;
-IronPort-SDR: dWnuQE9h3t8ZMsDdvsrGvElUbL/gO5mSzX4Sfv9rBvNXqNT0MODx9CCYg+/exdVD8Fnj/PKMC4
- XjcrYywmew2wVp4Q07KFFncbeFlR4iHTXGwaogMqHrD1eXbZX6QdmZa6tRoUfesDnsHPeZ+dF2
- AQ/G654Ac+i7pEMcxsF74rbHIeI59inzzlmJ2nC0mLwAexb7r+EuslissIc8tVPANL5a4zdeiU
- Fi9HwI1WfDF8N9tUGzvFYce0tOp4w8QwKR8KFvENWXnnmQtwMWCAC8TqOvlOhYpeLlZUURiPXK
- EPo=
-X-IronPort-AV: E=Sophos;i="5.82,216,1613458800"; 
-   d="scan'208";a="50798565"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Apr 2021 03:12:25 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Mon, 12 Apr 2021 03:12:25 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2
- via Frontend Transport; Mon, 12 Apr 2021 03:12:25 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QSewAYi+eBcNCAYcKWL2AaU+BPGbOID66z1IHZs9HHySolNFJWnhkHgOMtrWFamrmkYu7vysPAlW2+xXG5EK41sapE9VelJHU77A8LaWNRwJt3N6Hk9AXOuIzFgHaea3Zk3xuEVC0cXyznQv6mSzcSNbD2eZ3TaNTw7+X0bm0ivHCMxseVw5if12j6PmA9v1nUYz1PHnWlDN7isd9C5CoDf8OhmDfzJJODdHZ2H0CFWAfTg+ihYbA7KACGpddwQaJzE/toj8KIz5Gevip5LNivTfzRJdn4ZMZPhuBOeVrJvOKk29P1cuikz8U+XdRBzLIOnEPNUQ2O3ViPp7H+HorQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mcfUdaaCrT5rTWGKHOAu4K+X5wHqkaWOK4j03mP8aBg=;
- b=ZA/HtHkmLdcWpDjpsI+EXb/mxj3X1dmJzJIlyKk+7NODb2nzaYpP4gaDuf5OKIV5+Su+iQVXaNbfRgYQF2J/WwmP9agTX+8Vtbt6Kkvu4GbgJdnRf8PyuRGwZskepejcJu2VNILwaxc3/PsehO1UQU8DnRvSivFww3EZ1+WuU1TmVcz8EUD3FS6n75jh1xTgZee3JwjMoYjwb13nfvpID/i5eo+CJp4p2V19S0fAJm4avxiOhfNCDZJVp3o4+0qGuyNYjWYC8eIuT+L3BHMkIkVSqy2CAQ9bdXxwFZAe/9xv3M65c1mDtolvN8a9x8MaN98ysmRn7nTJXPiMRyZDvg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mcfUdaaCrT5rTWGKHOAu4K+X5wHqkaWOK4j03mP8aBg=;
- b=X5dWphVPTO+yvvnaxqG/xPoTWmTxyOWaQXAUTu3Yj/sCPe8Plw9oalIzYzOserAahim57u3rMVixGvW5Fq1AqQcISzwf/zvvUD9uopk7QI639ICowbXiNIVDgXhaRsuJ3BmaBoLhVodt+m83j8/kzpvDpaWl2flPmC2o7t78b5o=
-Received: from SJ0PR11MB4896.namprd11.prod.outlook.com (2603:10b6:a03:2dd::20)
- by BYAPR11MB3029.namprd11.prod.outlook.com (2603:10b6:a03:8e::26) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.18; Mon, 12 Apr
- 2021 10:12:22 +0000
-Received: from SJ0PR11MB4896.namprd11.prod.outlook.com
- ([fe80::743e:9115:21df:d5a]) by SJ0PR11MB4896.namprd11.prod.outlook.com
- ([fe80::743e:9115:21df:d5a%5]) with mapi id 15.20.4020.022; Mon, 12 Apr 2021
- 10:12:22 +0000
-From:   <Eugen.Hristev@microchip.com>
-To:     <jacopo@jmondi.org>
-CC:     <devicetree@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 28/30] dt-bindings: media: atmel: add microchip-xisc
- binding
-Thread-Topic: [PATCH v2 28/30] dt-bindings: media: atmel: add microchip-xisc
- binding
-Thread-Index: AQHXKjSqXVo9iDXeREu/i677rFa/aKqwsAMAgAAEM4A=
-Date:   Mon, 12 Apr 2021 10:12:22 +0000
-Message-ID: <7269db4c-bc76-58e4-4423-7be9f0369d5c@microchip.com>
-References: <20210405155105.162529-1-eugen.hristev@microchip.com>
- <20210405155105.162529-29-eugen.hristev@microchip.com>
- <20210412095714.uivebcatgazzq5ae@uno.localdomain>
-In-Reply-To: <20210412095714.uivebcatgazzq5ae@uno.localdomain>
-Accept-Language: en-US, ro-RO
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
-authentication-results: jmondi.org; dkim=none (message not signed)
- header.d=none;jmondi.org; dmarc=none action=none header.from=microchip.com;
-x-originating-ip: [86.121.125.229]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 345d1d81-4f1e-45f2-f950-08d8fd9b767e
-x-ms-traffictypediagnostic: BYAPR11MB3029:
-x-microsoft-antispam-prvs: <BYAPR11MB30297556EF4DC2A4DB16D917E8709@BYAPR11MB3029.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 3rCzc45FgESQaeTxvSJmOB31o84n46Jbdd8iJEKnoLP6cI50QUQEwdJ1xkuwDqCLbv89bLN/JpQTyEeM7j14sOFHgH7PiLpmkLK+EHldpPCmGQmPFQRVeF1trGGB7iqvQ/TW3P+Bq4clrXaUVsaCjw5+17D9kbpxmz+9ngIh7b5MzzGHSkYoTniFpRXwSzjTOXYUo8MUNVdvrd2xFhLfLPj30CRV/RNe5ORch25wWoe9JQUyIEQ82XqmQDCOca91Y3bUMr62h8BP6HnXXFX+uZuAzWgWXv+N7ZjlGZ/aGoTeY0cm/QoPg9/rqXJ4vasvnnY4aCTavL7u5jdO6GmemJkJrWWIDzBkBxfX7CtfVxin3dU5NEV5qnJHqoTyw2tttEAOYDPPOaFP3nciGmRH5ZqPGH6ShBqALylh8vHLTypImWvT5PmqCfupc384U7MaQjc9IPlNLJFg7y7JYEg1llTlPkK6UdwI4Hba3xpR0Q5W+OXgJidJ9xjK8J6PpmjY0imze/sRpPh4yqquyAZP8Kt0MQWfa7+pUSBKMxP3HCS0oppSCD9fpSK4w3hEQ2OUv0p+3RUrDxCpV6uUoH7i736u/5+aG4bTCTpPrFwpEuW2wePjeBopJpSRd2NfLpXyPQgx5eVzVudtnVbMW2l+I4YVKQtFe3dsirYCScHyXNPplkM5HrZ8C6uFVXY5Czgu
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR11MB4896.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(39860400002)(346002)(376002)(396003)(136003)(31686004)(186003)(8676002)(6486002)(26005)(54906003)(8936002)(71200400001)(5660300002)(6512007)(38100700002)(478600001)(83380400001)(91956017)(66446008)(64756008)(2616005)(76116006)(36756003)(31696002)(53546011)(6916009)(66476007)(66556008)(66946007)(4326008)(86362001)(6506007)(2906002)(316002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?bXZnaVFnWE1GYjhWR09FT1FCR3pCK1JDNDRPTk9YVGxmU1lhZ0Nud0JkVlF5?=
- =?utf-8?B?THUrNzJKNHRPY3B3dXVwVDlTU3B0R01tQW00V09ISSt1SVVOWEw1dXNveUVn?=
- =?utf-8?B?blgvQUt5bnBWckl4U3c1QlpjbzRlaDl5NGgxVzN2MHE2OE9DM0tNK3JObWFl?=
- =?utf-8?B?VWJQejRKdjlxcUVGNHdmTjROTk5TQXFkTHNueldrVHpJWnNQOGRxNGxLd090?=
- =?utf-8?B?T2tscTAyNnJZTXl6WWVLYTJWbjdpbU9xdFdJSVdtSjRMUjkzQXhsVERqZEJz?=
- =?utf-8?B?NXBUUHRMZ2VoN3ZpeTIzOWoya3ZJeW5lWFdqZlR6cTFiWUllRXoyRmF1NWly?=
- =?utf-8?B?eCtxTG9VK3JucHRTYi8wRjJhZk5aT3JkbzZQbjR0YW5iK0dZSG51ck04VzBH?=
- =?utf-8?B?OWpBdGM3cWJJbXpZRlhDZ2poSUNodEdGKzJQbU5MU2tJWittWTQ2OTBTcXUw?=
- =?utf-8?B?Tk82S3ZTbkdySklHZTk0L1VtU3dmSmt6eGwrRHpuc3dlUk00a055VmQ5Y3g3?=
- =?utf-8?B?MFNpQVhrenJZM3NjRE4va2MzaTIybHBlY2ZKcVJDQmYyVmlBRnlhTGRONDd5?=
- =?utf-8?B?TXNCK2hocStLMmdaQ0JrdHZGOHRIZmVRcHJYdWhIWWUrTTNsd2Z0UjFCU1JM?=
- =?utf-8?B?dHVYZnduWlNlSERnYnBKNDcydjBJQ1ErWURoemNIbCtuQkplTkk3MC93cC9o?=
- =?utf-8?B?THZ1WmhNWWFmeS9ncU84MGl4U2poNFZ0VXBTWkF4RlpJd2diellkRkFCN3FF?=
- =?utf-8?B?RGVraVl0cEdadHF5WVRkRHEvNHFUbkVHaFJodWpHNTNDQkxrZHpZQVVBL3lD?=
- =?utf-8?B?Wmc0c2s4UW16eW5va2FYbjI5eWtFbTlqT1o3cm54L2pyZlF5RS9jcFIvSXRs?=
- =?utf-8?B?dVY4V0w3UnhQK1B0YUoxL0g1T2UxK3FGNm05Nm43V0h0aFBoZERZblR1allD?=
- =?utf-8?B?SDhuNnJhSkcwUjBSL1hQOWZQMXpqK21Db0tLT0hmZVB2bDU1ODZSY20yMFlH?=
- =?utf-8?B?VGt1NGhyTnNEZlhRVzY5RG12M0E4N09VSVJubU44TFhUbCtNMXF1OUV0V3Bw?=
- =?utf-8?B?YlkxNEZIeGNmenJxZ0hXTnpCZ0VjWDBxdkZkMWlCem5aZVg2VkFQOW9WSFQ5?=
- =?utf-8?B?c3JCeVBLNVRoVzNnVXBMRStON2NETWVYOHJoZjhZRE1jSTl2WSsyMTVjZ0lm?=
- =?utf-8?B?RUtsbWFqZGxseURpT1hPZkZCV1JvKzBYZVRaMnJKOWl3MzFiRjZlTFhtbGo3?=
- =?utf-8?B?QXBMNGhoYUxMVGFkMzJYd1FhZDU5dndMZENHR3FrWDR0azJSZE5pMTZrblRr?=
- =?utf-8?B?ZVQ4ZGlNWmsrOU5qNmpSa0tDVjJuTzQ1c1F2VVVYRVd0Nm9PaS9pdmozSVV3?=
- =?utf-8?B?UndnbCtFWGdQZVcvN1hmVGlJbUFwMkI5ZDZ6YWhVczhWWDNJeXhZQmZPVEhO?=
- =?utf-8?B?alVYRytMWkVnQmVhR0xHbzFqcDBia2lwNjNxMzV1VGtoVWNkTm1vZXRNdUpy?=
- =?utf-8?B?THJiV3BBSDJhN3ZZdXVWS1U4N092a3NZTSszejBCUjEvUkZtTnlWeHJKS2Vp?=
- =?utf-8?B?d1JvOVBwems1dXNXZVRCNEtIcVdhTFFBYkxUdXArUmdkZFFlN1NUSHl3Sjcw?=
- =?utf-8?B?eHIxSkpYaHIrOXFaUG9CNFJGczdmMVdwamNQcFZsMTY1aHljSTZSTHgreE1y?=
- =?utf-8?B?Z051RDIvaTJQQ05rMjdOR3I0c0VqYy9nZjQ4M3A0cHZGazM2UG8wWDg3VHQ4?=
- =?utf-8?Q?MZxiQAtLNgdlc3q61InX45rOJh8ZU7rMOn8EsfZ?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B45C2AB4B2A0DE46ADF1333338C5CEF7@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S237283AbhDLKS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 06:18:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55880 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237043AbhDLKS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 06:18:57 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB2C6C061574
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 03:18:39 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1lVte5-0006Xr-Bo; Mon, 12 Apr 2021 12:18:17 +0200
+Received: from [IPv6:2a03:f580:87bc:d400:3d5d:9164:44d1:db57] (unknown [IPv6:2a03:f580:87bc:d400:3d5d:9164:44d1:db57])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256
+         client-signature RSA-PSS (4096 bits) client-digest SHA256)
+        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
+        (Authenticated sender: mkl@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 6704D60CD20;
+        Mon, 12 Apr 2021 10:18:13 +0000 (UTC)
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Sriram Dash <sriram.dash@samsung.com>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+References: <20210409134056.18740-1-a-govindraju@ti.com>
+ <20210409134056.18740-3-a-govindraju@ti.com>
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
+ 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
+Subject: Re: [PATCH 2/4] phy: phy-can-transceiver: Add support for generic CAN
+ transceiver driver
+Message-ID: <fe0a8a9b-35c6-8f23-5968-0b14abb6078d@pengutronix.de>
+Date:   Mon, 12 Apr 2021 12:18:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4896.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 345d1d81-4f1e-45f2-f950-08d8fd9b767e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Apr 2021 10:12:22.2009
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: IO8imkcncPL4wi/YzEc9WdQBtErVIzUIxtSr7H+atWqIb1EkkDXI+/vvPXSCQcfMyYcJ+cn0UMal50rumJyGwxS2KLArzmeJO/8Xz9tNbA8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3029
+In-Reply-To: <20210409134056.18740-3-a-govindraju@ti.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature";
+ boundary="ViNxBVKByHnvG5KCpPWTrvMkcB8VtWmDP"
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gNC8xMi8yMSAxMjo1NyBQTSwgSmFjb3BvIE1vbmRpIHdyb3RlOg0KPiBFWFRFUk5BTCBFTUFJ
-TDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSBrbm93
-IHRoZSBjb250ZW50IGlzIHNhZmUNCj4gDQo+IEhpIEV1Z2VuZSwNCj4gDQo+IE9uIE1vbiwgQXBy
-IDA1LCAyMDIxIGF0IDA2OjUxOjAzUE0gKzAzMDAsIEV1Z2VuIEhyaXN0ZXYgd3JvdGU6DQo+PiBB
-ZGQgYmluZGluZ3MgZm9yIHRoZSBtaWNyb2NoaXAgeGlzYywgYSBkcml2ZXIgYmFzZWQgb24gYXRt
-ZWwtaXNjLg0KPj4gSXQgc2hhcmVzIGNvbW1vbiBjb2RlIHdpdGggYXRtZWwtaXNjLCBidXQgdGhl
-IHhpc2MgaXMgdGhlIG5leHQgZ2VuZXJhdGlvbg0KPj4gSVNDIHdoaWNoIGlzIHByZXNlbnQgb24g
-c2FtYTdnNSBwcm9kdWN0Lg0KPj4gSXQgaGFzIGFuIGVuaGFuY2VkIHBpcGVsaW5lLCBhZGRpdGlv
-bmFsIG1vZHVsZXMsIGZvcm1hdHMsIGFuZCBpdCBzdXBwb3J0cw0KPj4gbm90IG9ubHkgcGFyYWxs
-ZWwgc2Vuc29ycywgYnV0IGFsc28gc2VyaWFsIHNlbnNvcnMsIGJ5IGNvbm5lY3RpbmcgdG8gYSBk
-ZW11eA0KPj4gZW5kcG9pbnQgcHJlc2VudCBvbiBzYW1hN2c1Lg0KPj4gT25lIG9mIHRoZSBrZXkg
-cG9pbnRzIGZvciBjcmVhdGluZyBhIG5ldyBiaW5kaW5nIGlzIHRoZSBjbG9ja2luZyBzY2hlbWUs
-IGFzDQo+PiBhdG1lbC1pc2MgcmVxdWlyZXMgMyBtYW5kYXRvcnkgY2xvY2tzLCB0aGUgbWljcm9j
-aGlwLXhpc2MgcmVxdWlyZXMgYSBzaW5nbGUNCj4+IGlucHV0IGNsb2NrLg0KPj4NCj4+IFNpZ25l
-ZC1vZmYtYnk6IEV1Z2VuIEhyaXN0ZXYgPGV1Z2VuLmhyaXN0ZXZAbWljcm9jaGlwLmNvbT4NCj4+
-IC0tLQ0KPj4NCj4+IEhlbGxvIFJvYiwgYWxsLA0KPj4NCj4+IEkgZGlkIG5vdCBjb252ZXJ0IHRo
-aXMgeWV0IHRvIHlhbWwgYmVjYXVzZSBJIHdvdWxkIGxpa2UgZmlyc3QgeW91ciBmZWVkYmFjaw0K
-Pj4gaWYgdGhlIGJpbmRpbmcgaXMgZ29vZC4NCj4+IElmIGl0J3MgZmluZSBJIHdpbGwgY29udmVy
-dCBib3RoIHRoaXMgbmV3IGJpbmRpbmcgYW5kIHRoZSBvbGQgYXRtZWwtaXNjDQo+PiB0byB5YW1s
-Lg0KPj4NCj4+IFRoYW5rcyBmb3IgeW91ciBmZWVkYmFjaywNCj4+IEV1Z2VuDQo+Pg0KPj4gICAu
-Li4vYmluZGluZ3MvbWVkaWEvbWljcm9jaGlwLXhpc2MudHh0ICAgICAgICAgfCA2NCArKysrKysr
-KysrKysrKysrKysrDQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCA2NCBpbnNlcnRpb25zKCspDQo+PiAg
-IGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVk
-aWEvbWljcm9jaGlwLXhpc2MudHh0DQo+Pg0KPj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy9tZWRpYS9taWNyb2NoaXAteGlzYy50eHQgYi9Eb2N1bWVudGF0
-aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVkaWEvbWljcm9jaGlwLXhpc2MudHh0DQo+PiBuZXcg
-ZmlsZSBtb2RlIDEwMDY0NA0KPj4gaW5kZXggMDAwMDAwMDAwMDAwLi4wODBhMzU3ZWQ4NGQNCj4+
-IC0tLSAvZGV2L251bGwNCj4+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy9tZWRpYS9taWNyb2NoaXAteGlzYy50eHQNCj4+IEBAIC0wLDAgKzEsNjQgQEANCj4+ICtNaWNy
-b2NoaXAgZVh0ZW5kZWQgSW1hZ2UgU2Vuc29yIENvbnRyb2xsZXIgKFhJU0MpDQo+PiArLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPj4gKw0KPj4gK1JlcXVp
-cmVkIHByb3BlcnRpZXMgZm9yIFhJU0M6DQo+PiArLSBjb21wYXRpYmxlDQo+PiArICAgICBNdXN0
-IGJlICJtaWNyb2NoaXAsc2FtYTdnNS14aXNjIi4NCj4+ICstIHJlZw0KPj4gKyAgICAgUGh5c2lj
-YWwgYmFzZSBhZGRyZXNzIGFuZCBsZW5ndGggb2YgdGhlIHJlZ2lzdGVycyBzZXQgZm9yIHRoZSBk
-ZXZpY2UuDQo+PiArLSBpbnRlcnJ1cHRzDQo+PiArICAgICBTaG91bGQgY29udGFpbiBJUlEgbGlu
-ZSBmb3IgdGhlIFhJU0MuDQo+PiArLSBjbG9ja3MNCj4+ICsgICAgIExpc3Qgb2YgY2xvY2sgc3Bl
-Y2lmaWVycywgY29ycmVzcG9uZGluZyB0byBlbnRyaWVzIGluDQo+PiArICAgICB0aGUgY2xvY2st
-bmFtZXMgcHJvcGVydHk7DQo+PiArICAgICBQbGVhc2UgcmVmZXIgdG8gY2xvY2stYmluZGluZ3Mu
-dHh0Lg0KPj4gKy0gY2xvY2stbmFtZXMNCj4+ICsgICAgIFJlcXVpcmVkIGVsZW1lbnRzOiAiaGNs
-b2NrIi4NCj4+ICsgICAgIFRoaXMgaXMgdGhlIGNsb2NrIHRoYXQgY2xvY2tzIHRoZSBzZW5zb3Ig
-Y29udHJvbGxlciwgYW5kIGlzIHVzdWFsbHkNCj4+ICsgICAgIGZlZCBmcm9tIHRoZSBjbG9jayB0
-cmVlLiBJdCBpcyB1c2VkIGZvciB0aGUgaW50ZXJuYWwgY29udHJvbGxlciBsb2dpYy4NCj4+ICst
-ICNjbG9jay1jZWxscw0KPj4gKyAgICAgU2hvdWxkIGJlIDAuDQo+PiArLSBjbG9jay1vdXRwdXQt
-bmFtZXMNCj4+ICsgICAgIFNob3VsZCBiZSAiaXNjLW1jayIuDQo+PiArLSBwaW5jdHJsLW5hbWVz
-LCBwaW5jdHJsLTANCj4+ICsgICAgIFBsZWFzZSByZWZlciB0byBwaW5jdHJsLWJpbmRpbmdzLnR4
-dC4NCj4+ICsNCj4+ICtPcHRpb25hbCBwcm9wZXJ0aWVzIGZvciBYSVNDOg0KPj4gKy0gbWljcm9j
-aGlwLG1pcGktbW9kZTsNCj4+ICsgICAgIEFzIHRoZSBYSVNDIGlzIHVzdWFsbHkgY29ubmVjdGVk
-IHRvIGEgZGVtdXgvYnJpZGdlLCB0aGUgWElTQyByZWNlaXZlcw0KPj4gKyAgICAgdGhlIHNhbWUg
-dHlwZSBvZiBpbnB1dCwgaG93ZXZlciwgaXQgc2hvdWxkIGJlIGF3YXJlIG9mIHRoZSB0eXBlIG9m
-DQo+PiArICAgICBzaWduYWxzIHJlY2VpdmVkLiBUaGUgbWlwaS1tb2RlIGVuYWJsZXMgZGlmZmVy
-ZW50IGludGVybmFsIGhhbmRsaW5nDQo+PiArICAgICBvZiB0aGUgZGF0YSBhbmQgY2xvY2sgbGlu
-ZXMuDQo+IA0KPiBXaGF0IGRvZXMgJ21pcGktbW9kZScgZG8gdG8gYSBjb21wb25lbnQgdGhhdCBo
-YXMgYW4gcGFyYWxsZWwgcmVjZWl2ZXIgPw0KDQpBY3R1YWxseSwgdGhpcyBpbmRlZWQgaGFzIGEg
-cGFyYWxsZWwgcmVjZWl2ZXIsIGJ1dCBpdCdzIG9ubHkgaW5zaWRlIHRoZSANClNvQy4gVGhlIG90
-aGVyIGVuZCBvZiB0aGUgcGFyYWxsZWwgY29ubmVjdGlvbiBpcyBhIGRlbXV4ZXIvYnJpZGdlLiBU
-aGlzIA0KZGVtdXhlciB3aWxsIHRha2UgdGhlIGlucHV0IGZyb20gZWl0aGVyIGEgcmVhbCBwYXJh
-bGxlbCBzZW5zb3Igb3IgYSBDU0kyIA0Kc3RyZWFtLg0KRXZlbiBpZiB0aGUgcGl4ZWxzIGFyZSB0
-aGVuIGNvbnZlcnRlZCBpbnRvIGEgcGFyYWxsZWwgc3RyZWFtLCBpdCBsb29rcyANCmxpa2UgdGhl
-IHBpeGVsIGRhdGEgaGFzIGEgYml0IG9mIGRpZmZlcmVudCBjb25zdHJhaW5zIGluIHRlcm0gb2Yg
-aG9sZCANCmFuZCBzZXR1cCB0aW1lLCBhbmQgb3RoZXIgZWxlY3RyaWNhbCBjaGFyYWN0ZXJpc3Rp
-Y3MgaW5zaWRlIHRoZSBTb0MuDQpUaGUgWElTQyBoYXJkd2FyZSBkZXNpZ25lciBkZWNpZGVkIHRv
-IGxlYXZlIGEgYml0IGluIHRoZSB1c2VyIGludGVyZmFjZSANCmNhbGxlZCAnbWlwaS1tb2RlJyAs
-IGFuZCBieSBzZXR0aW5nIHRoaXMsIHRoZSBjYXB0dXJlIGludGVyZmFjZSBvZiB0aGUgDQpYSVND
-IGlzIGJldHRlciBhZGFwdGVkIHRvIGEgZGVtdXhlZCBzdHJlYW0gZnJvbSBhIENTSTIsIHJhdGhl
-ciB0aGFuIA0KYWRhcHRlZCB0byBhIHN0cmVhbSBjb21pbmcgZnJvbSBhIHBhcmFsbGVsIHNlbnNv
-ciBkaXJlY3RseS4NCg0KSSBhbSBub3Qgc3VyZSBJIGV4cGxhaW5lZCBpdCByaWdodCwgYnV0IHRo
-aXMgaXMgd2hhdCBJIHVuZGVyc3RhbmQsIHdoZW4gDQpJIGFza2VkIHRoZSBoYXJkd2FyZSBkZXNp
-Z24gYWJvdXQgaXQuDQoNClNvIHdlIGhhdmUgdG8gbWFudWFsbHkgc2V0IHRoaXMgYml0IGlmIHdl
-IGhhdmUgdGhlIGRlbXV4ZXIgZGVzZXJpYWxpemluZyANCnRoZSBDU0kyIHBpeGVscyBvciB0aGV5
-IGFyZSBjb25uZWN0ZWQgdG8gYSBwYXJhbGxlbCBzZW5zb3IuDQpUaGUgWElTQyBoYXMgbm8gd2F5
-IG9mIHRlbGxpbmcgd2hpY2ggaXMgdGhlIGNvcnJlY3Qgc2V0dXAsIGFuZCBmcm9tIHRoZSANCmRl
-bXV4ZXIgcGVyc3BlY3RpdmUsIHRoaW5ncyBhcmUgdGhlIHNhbWUuDQoNClRoZSBlbmRwb2ludCBj
-b25uZWN0aW9uIGJldHdlZW4gdGhlIHhpc2MgYW5kIHRoZSBkZW11eGVyIGxvb2tzIHRvIGJlIHRo
-ZSANCnNhbWUsIGxvb2tpbmcgYXMgaWYgdGhlcmUgaXMgYSBwYXJhbGxlbCBjb25uZWN0aW9uLg0K
-VG8ga25vdyBtb3JlLCB0aGUgWElTQyB3b3VsZCBiZSBuZWVkaW5nIHRvIGxvb2sgZnVydGhlciBk
-b3duIHRoZSANCnBpcGVsaW5lLCBhbmQgdGhpcyBpcyBzb21ldGhpbmcgd2hpY2ggSSBjb3VsZCBu
-b3QgZm9yY2UgaXQgdG8gZG8uDQoNCg0KPiANCj4+ICsNCj4+ICtYSVNDIHN1cHBvcnRzIGEgc2lu
-Z2xlIHBvcnQgbm9kZSB3aXRoIGludGVybmFsIHBhcmFsbGVsIGJ1cy4NCj4+ICtJdCBzaG91bGQg
-Y29udGFpbiBvbmUgJ3BvcnQnIGNoaWxkIG5vZGUgd2l0aCBjaGlsZCAnZW5kcG9pbnQnIG5vZGUu
-DQo+PiArUGxlYXNlIHJlZmVyIHRvIHRoZSBiaW5kaW5ncyBkZWZpbmVkIGluDQo+PiArRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lZGlhL3ZpZGVvLWludGVyZmFjZXMudHh0Lg0K
-Pj4gKw0KPj4gK1RoaXMgZW5kcG9pbnQgaGFzIHRvIGJlIGNvbm5lY3RlZCB0byBhIGJyaWRnZSB0
-aGF0IGFjdHMgYXMgYSBkZW11eCBmcm9tIGVpdGhlcg0KPj4gK2Egc2VyaWFsIGludGVyZmFjZSBv
-ciBhY3RzIGFzIGEgc2ltcGxlIGRpcmVjdCBicmlkZ2UgdG8gYSBwYXJhbGxlbCBzZW5zb3IuDQo+
-PiArDQo+PiArRXhhbXBsZToNCj4+ICt4aXNjOiB4aXNjQGUxNDA4MDAwIHsNCj4+ICsgICAgIGNv
-bXBhdGlibGUgPSAibWljcm9jaGlwLHNhbWE3ZzUtaXNjIjsNCj4+ICsgICAgIHJlZyA9IDwweGUx
-NDA4MDAwIDB4MjAwMD47DQo+PiArICAgICBpbnRlcnJ1cHRzID0gPEdJQ19TUEkgNTYgSVJRX1RZ
-UEVfTEVWRUxfSElHSD47DQo+PiArICAgICAjYWRkcmVzcy1jZWxscyA9IDwxPjsNCj4+ICsgICAg
-ICNzaXplLWNlbGxzID0gPDA+Ow0KPj4gKyAgICAgY2xvY2tzID0gPCZwbWMgUE1DX1RZUEVfUEVS
-SVBIRVJBTCA1Nj47DQo+PiArICAgICBjbG9jay1uYW1lcyA9ICJoY2xvY2siOw0KPj4gKyAgICAg
-I2Nsb2NrLWNlbGxzID0gPDA+Ow0KPj4gKyAgICAgY2xvY2stb3V0cHV0LW5hbWVzID0gImlzYy1t
-Y2siOw0KPj4gKyAgICAgbWljcm9jaGlwLG1pcGktbW9kZTsNCj4+ICsNCj4+ICsgICAgIHBvcnRA
-MSB7DQo+PiArICAgICAgICAgICAgIHJlZyA9IDwxPjsNCj4+ICsgICAgICAgICAgICAgeGlzY19p
-bjogZW5kcG9pbnQgew0KPj4gKyAgICAgICAgICAgICBidXMtd2lkdGggPSA8MTI+Ow0KPj4gKyAg
-ICAgICAgICAgICBoc3luYy1hY3RpdmUgPSA8MT47DQo+PiArICAgICAgICAgICAgIHZzeW5jLWFj
-dGl2ZSA9IDwxPjsNCj4+ICsgICAgICAgICAgICAgcmVtb3RlLWVuZHBvaW50ID0gPCZjc2kyZGNf
-b3V0PjsNCj4gbml0OiBpbmRlbnRhdGlvbg0KPiANCj4gSGF2ZSB5b3UgY29uc2lkZWQgdXNpbmcg
-YnVzLXR5cGUgcHJvcGVydHkgPyBBcyB0aGF0J3MgYSBuZXcgYmluZGluZyBJDQo+IHdvdWxkIGNv
-bnNpZGVyIG1ha2luZyBpdCBtYW5kYXRvcnksIGFuZCB0byBtb2RpZnkgdGhlIERUIHBhcnNpbmdh
-DQo+IHJvdXRpbmUgYWNjb3JkaW5nbHkgdG8gcmVtb3ZlIGF1dG8tZ3Vlc3NpbmcsIHdoaWNoIGFj
-Y29yZGluZyB0byBteQ0KPiB1bmRlcnN0YW5kaW5nIGlzIGFsbW9zdCAnZGVwcmVjYXRlZCcgPw0K
-DQpIYXZpbmcgYnVzLXR5cGUgd291bGQganVzdCBiZSBhbiB1c2VmdWwgYWRkaXRpb24gZm9yIGZp
-bmRpbmcgb3V0IHRoZSBidXMgDQppbnRlcmZhY2UgPyBvciBpdCBoYXMgc29tZSBvdGhlciBjb25z
-ZXF1ZW5jZXMgYXMgd2VsbCA/DQpDdXJyZW50IFhJU0MgY29kZSBhY3R1YWxseSBleHBlY3RzIGEg
-cGFyYWxsZWwgaW50ZXJmYWNlLCBzbyBpdCdzIGtpbmQgb2YgDQpzZXQgYWxyZWFkeSwgaGF2aW5n
-IGEgYnVzLXR5cGUgd291bGQgbm90IGJyaW5nIGFueSBuZXcgaW5mb3JtYXRpb24gZnJvbSANCmEg
-ZHJpdmVyIHBlcnNwZWN0aXZlDQoNCj4gDQo+PiArICAgICAgICAgICAgIH07DQo+PiArICAgICB9
-Ow0KPj4gK307DQo+PiArDQo+PiAtLQ0KPj4gMi4yNS4xDQo+Pg0KDQo=
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--ViNxBVKByHnvG5KCpPWTrvMkcB8VtWmDP
+Content-Type: multipart/mixed; boundary="497uuTA2eeqwb5jo9Nue446FpEUvvKG5K";
+ protected-headers="v1"
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Aswath Govindraju <a-govindraju@ti.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>,
+ Kishon Vijay Abraham I <kishon@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
+ Grygorii Strashko <grygorii.strashko@ti.com>,
+ Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+ Wolfgang Grandegger <wg@grandegger.com>,
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Sriram Dash <sriram.dash@samsung.com>, linux-can@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Message-ID: <fe0a8a9b-35c6-8f23-5968-0b14abb6078d@pengutronix.de>
+Subject: Re: [PATCH 2/4] phy: phy-can-transceiver: Add support for generic CAN
+ transceiver driver
+References: <20210409134056.18740-1-a-govindraju@ti.com>
+ <20210409134056.18740-3-a-govindraju@ti.com>
+In-Reply-To: <20210409134056.18740-3-a-govindraju@ti.com>
+
+--497uuTA2eeqwb5jo9Nue446FpEUvvKG5K
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+On 4/9/21 3:40 PM, Aswath Govindraju wrote:
+> The driver adds support for generic CAN transceivers. Currently
+> the modes supported by this driver are standby and normal modes for TI
+> TCAN1042 and TCAN1043 CAN transceivers.
+>=20
+> The transceiver is modelled as a phy with pins controlled by gpios, to =
+put
+> the transceiver in various device functional modes. It also gets the ph=
+y
+> attribute max_link_rate for the usage of m_can drivers.
+
+This driver should be independent of CAN driver, so you should not mentio=
+n a
+specific driver here.
+
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> ---
+>  drivers/phy/Kconfig               |   9 ++
+>  drivers/phy/Makefile              |   1 +
+>  drivers/phy/phy-can-transceiver.c | 140 ++++++++++++++++++++++++++++++=
+
+>  3 files changed, 150 insertions(+)
+>  create mode 100644 drivers/phy/phy-can-transceiver.c
+>=20
+> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
+> index 54c1f2f0985f..51902b629fc6 100644
+> --- a/drivers/phy/Kconfig
+> +++ b/drivers/phy/Kconfig
+> @@ -61,6 +61,15 @@ config USB_LGM_PHY
+>  	  interface to interact with USB GEN-II and USB 3.x PHY that is part
+>  	  of the Intel network SOC.
+> =20
+> +config PHY_CAN_TRANSCEIVER
+> +	tristate "CAN transceiver PHY"
+> +	select GENERIC_PHY
+> +	help
+> +	  This option enables support for CAN transceivers as a PHY. This
+> +	  driver provides function for putting the transceivers in various
+> +	  functional modes using gpios and sets the attribute max link
+> +	  rate, for mcan drivers.
+> +
+>  source "drivers/phy/allwinner/Kconfig"
+>  source "drivers/phy/amlogic/Kconfig"
+>  source "drivers/phy/broadcom/Kconfig"
+> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
+> index adac1b1a39d1..9c66101c9605 100644
+> --- a/drivers/phy/Makefile
+> +++ b/drivers/phy/Makefile
+> @@ -9,6 +9,7 @@ obj-$(CONFIG_PHY_LPC18XX_USB_OTG)	+=3D phy-lpc18xx-usb-=
+otg.o
+>  obj-$(CONFIG_PHY_XGENE)			+=3D phy-xgene.o
+>  obj-$(CONFIG_PHY_PISTACHIO_USB)		+=3D phy-pistachio-usb.o
+>  obj-$(CONFIG_USB_LGM_PHY)		+=3D phy-lgm-usb.o
+> +obj-$(CONFIG_PHY_CAN_TRANSCEIVER)	+=3D phy-can-transceiver.o
+>  obj-y					+=3D allwinner/	\
+>  					   amlogic/	\
+>  					   broadcom/	\
+> diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-can-tr=
+ansceiver.c
+> new file mode 100644
+> index 000000000000..14496f6e1666
+> --- /dev/null
+> +++ b/drivers/phy/phy-can-transceiver.c
+> @@ -0,0 +1,140 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * phy-can-transceiver.c - phy driver for CAN transceivers
+> + *
+> + * Copyright (C) 2021 Texas Instruments Incorporated - http://www.ti.c=
+om
+> + *
+> + */
+> +#include<linux/phy/phy.h>
+> +#include<linux/platform_device.h>
+> +#include<linux/module.h>
+> +#include<linux/gpio.h>
+> +#include<linux/gpio/consumer.h>
+> +
+> +struct can_transceiver_data {
+> +	u32 flags;
+> +#define STB_PRESENT	BIT(0)
+> +#define EN_PRESENT	BIT(1)
+
+please add a common prefix to the defines
+
+> +};
+> +
+> +struct can_transceiver_phy {
+> +	struct phy *generic_phy;
+> +	struct gpio_desc *standby_gpio;
+> +	struct gpio_desc *enable_gpio;
+> +};
+> +
+> +/* Power on function */
+> +static int can_transceiver_phy_power_on(struct phy *phy)
+> +{
+> +	struct can_transceiver_phy *can_transceiver_phy =3D phy_get_drvdata(p=
+hy);
+> +
+> +	if (can_transceiver_phy->standby_gpio)
+> +		gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 0);
+> +	if (can_transceiver_phy->enable_gpio)
+> +		gpiod_set_value_cansleep(can_transceiver_phy->enable_gpio, 1);
+
+Please add a newline before the return.
+
+> +	return 0;
+> +}
+> +
+> +/* Power off function */
+> +static int can_transceiver_phy_power_off(struct phy *phy)
+> +{
+> +	struct can_transceiver_phy *can_transceiver_phy =3D phy_get_drvdata(p=
+hy);
+> +
+> +	if (can_transceiver_phy->standby_gpio)
+> +		gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 1);
+> +	if (can_transceiver_phy->enable_gpio)
+> +		gpiod_set_value_cansleep(can_transceiver_phy->enable_gpio, 0);
+
+same here
+
+> +	return 0;
+> +}
+> +
+> +static const struct phy_ops can_transceiver_phy_ops =3D {
+> +	.power_on	=3D can_transceiver_phy_power_on,
+> +	.power_off	=3D can_transceiver_phy_power_off,
+> +	.owner		=3D THIS_MODULE,
+> +};
+> +
+> +static const struct can_transceiver_data tcan1042_drvdata =3D {
+> +	.flags =3D STB_PRESENT,
+> +};
+> +
+> +static const struct can_transceiver_data tcan1043_drvdata =3D {
+> +	.flags =3D STB_PRESENT | EN_PRESENT,
+> +};
+> +
+> +static const struct of_device_id can_transceiver_phy_ids[] =3D {
+> +	{
+> +		.compatible =3D "ti,tcan1042",
+> +		.data =3D &tcan1042_drvdata
+> +	},
+> +	{
+> +		.compatible =3D "ti,tcan1043",
+> +		.data =3D &tcan1043_drvdata
+> +	},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, can_transceiver_phy_ids);
+> +
+> +int can_transceiver_phy_probe(struct platform_device *pdev)
+> +{
+> +	struct phy_provider *phy_provider;
+> +	struct device *dev =3D &pdev->dev;
+> +	struct can_transceiver_phy *can_transceiver_phy;
+> +	const struct can_transceiver_data *drvdata;
+> +	const struct of_device_id *match;
+> +	struct phy *phy;
+> +	struct gpio_desc *standby_gpio;
+> +	struct gpio_desc *enable_gpio;
+> +	u32 max_bitrate =3D 0;
+> +
+> +	can_transceiver_phy =3D devm_kzalloc(dev, sizeof(struct can_transceiv=
+er_phy), GFP_KERNEL);
+
+error handling?
+
+> +
+> +	match =3D of_match_node(can_transceiver_phy_ids, pdev->dev.of_node);
+> +	drvdata =3D match->data;
+> +
+> +	phy =3D devm_phy_create(dev, dev->of_node,
+> +			      &can_transceiver_phy_ops);
+> +	if (IS_ERR(phy)) {
+> +		dev_err(dev, "failed to create can transceiver phy\n");
+> +		return PTR_ERR(phy);
+> +	}
+> +
+> +	device_property_read_u32(dev, "max-bitrate", &max_bitrate);
+> +	phy->attrs.max_link_rate =3D max_bitrate / 1000000;
+
+The problem is, there are CAN transceivers with a max of 83.3 kbit/s or 1=
+25 kbit/s.
+
+> +	can_transceiver_phy->generic_phy =3D phy;
+> +
+> +	if (drvdata->flags & STB_PRESENT) {
+> +		standby_gpio =3D devm_gpiod_get(dev, "standby",   GPIOD_OUT_LOW);
+
+please use only one space after the ",".
+Why do you request the gpio standby low?
+
+> +		if (IS_ERR(standby_gpio))
+> +			return PTR_ERR(standby_gpio);
+> +		can_transceiver_phy->standby_gpio =3D standby_gpio;
+> +	}
+> +
+> +	if (drvdata->flags & EN_PRESENT) {
+> +		enable_gpio =3D devm_gpiod_get(dev, "enable",   GPIOD_OUT_LOW);
+> +		if (IS_ERR(enable_gpio))
+> +			return PTR_ERR(enable_gpio);
+> +		can_transceiver_phy->enable_gpio =3D enable_gpio;
+> +	}
+> +
+> +	phy_set_drvdata(can_transceiver_phy->generic_phy, can_transceiver_phy=
+);
+> +
+> +	phy_provider =3D devm_of_phy_provider_register(dev, of_phy_simple_xla=
+te);
+> +
+> +	return PTR_ERR_OR_ZERO(phy_provider);
+> +}
+> +
+> +static struct platform_driver can_transceiver_phy_driver =3D {
+> +	.probe =3D can_transceiver_phy_probe,
+> +	.driver =3D {
+> +		.name =3D "can-transceiver-phy",
+> +		.of_match_table =3D can_transceiver_phy_ids,
+> +	},
+> +};
+> +
+> +module_platform_driver(can_transceiver_phy_driver);
+> +
+> +MODULE_AUTHOR("Faiz Abbas <faiz_abbas@ti.com>");
+> +MODULE_AUTHOR("Aswath Govindraju <a-govindraju@ti.com>");
+> +MODULE_DESCRIPTION("CAN TRANSCEIVER PHY driver");
+> +MODULE_LICENSE("GPL v2");
+>=20
+
+marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+
+--497uuTA2eeqwb5jo9Nue446FpEUvvKG5K--
+
+--ViNxBVKByHnvG5KCpPWTrvMkcB8VtWmDP
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmB0HmAACgkQqclaivrt
+76kRvQf/UeAg/lS+KSt7XRJT/1ygqFlxVjg6mQQMvXPR9pp/fc7x0QrHzQrC6BpY
+FSkmJAVUBybGbghVHZXTyEJv3v0IIc1ChpJ/AyeGGKkeYYcF1ILlbxrpeHHwUGDk
+0Xu1+YKEhqmGr1+5rTTNaMfLSykv+uwaDmUnYSRQs+FCsqomB1wc9vFl22IqotZ0
+QhPyqtwbdoUDO8dQkkPt0q/E9TTYsR57GM/cHX8OYo11nBmcMRoCet/PA6Y5DrZU
+f+u8V6sHBFfferTQBhhL886bazjfzBdAJb4XvJUFp2vigHXROntQYLjoInBk05TH
+/cGhVa5tbhsHzNSeh67jedVtQfy8PQ==
+=CpjJ
+-----END PGP SIGNATURE-----
+
+--ViNxBVKByHnvG5KCpPWTrvMkcB8VtWmDP--
