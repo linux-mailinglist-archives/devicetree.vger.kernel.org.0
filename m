@@ -2,98 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C65A935BAA3
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 09:12:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B8DA35BA87
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 09:02:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230510AbhDLHM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 03:12:29 -0400
-Received: from cpanel.siel.si ([46.19.9.99]:57236 "EHLO cpanel.siel.si"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229581AbhDLHM2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Apr 2021 03:12:28 -0400
-X-Greylist: delayed 2830 seconds by postgrey-1.27 at vger.kernel.org; Mon, 12 Apr 2021 03:12:27 EDT
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-         s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=mO+22My/KZ+sO11KQeqXh3U98CwWZ/+qWW87gDzziJM=; b=YTTpOr8G3Qi/HthoQiQqnX+OCI
-        s+sB52V8+fZG9d3ERBIe/P4kXs+hfbgiGBpQoidjbMSQzowPTr5B+Hj7OTs/lgvNfemNlApzw+Vvs
-        EfhKkhzEfEbLn+b0KPFMP4u2DU/UeMtKOd81SwOPOrf93gS5h4+8AVtwF8LRmMKNNJv0k+5Zxgmi2
-        uO2dLlWaNLL0h4hcvd5su4thyu5J1JAhdtHSODKxA25euzjT3Rt9EF+lutxXN7FUX/vGJZL/P1VDw
-        DbE2ndESwl8i1WW9e0fG9ThQIecnrg9LKwX0z5PGDJxTKHZWJ3Usne3dBHgw/CIohN22GdXQjIumy
-        mskGrahg==;
-Received: from [89.212.21.243] (port=47212 helo=localhost.localdomain)
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94)
-        (envelope-from <primoz.fiser@norik.com>)
-        id 1lVq0F-00GDwe-ND; Mon, 12 Apr 2021 08:24:55 +0200
-From:   Primoz Fiser <primoz.fiser@norik.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Primoz Fiser <primoz.fiser@norik.com>
-Subject: [PATCH] ARM: dts: imx6: phyFLEX: Fix UART hardware flow control
-Date:   Mon, 12 Apr 2021 08:24:50 +0200
-Message-Id: <20210412062450.1430199-2-primoz.fiser@norik.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210412062450.1430199-1-primoz.fiser@norik.com>
-References: <20210412062450.1430199-1-primoz.fiser@norik.com>
+        id S236658AbhDLHDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 03:03:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40962 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236705AbhDLHDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 03:03:04 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB398C061574
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 00:02:46 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lVqah-0002Yf-Kn; Mon, 12 Apr 2021 09:02:35 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lVqae-00059Z-JF; Mon, 12 Apr 2021 09:02:32 +0200
+Date:   Mon, 12 Apr 2021 09:02:32 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
+        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] pwm: visconti: Add Toshiba Visconti SoC PWM
+ support
+Message-ID: <20210412070232.6q3cgqvuj53p4cmi@pengutronix.de>
+References: <20210409230837.1919744-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210409230837.1919744-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210410135321.oissremqropvrpd3@pengutronix.de>
+ <20210412025536.i5chpp6sighunvfx@toshiba.co.jp>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="dbinp4a6o4qjki4w"
+Content-Disposition: inline
+In-Reply-To: <20210412025536.i5chpp6sighunvfx@toshiba.co.jp>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Serial interface uart3 on phyFLEX board is capable of 5-wire connection
-including signals RTS and CTS for hardware flow control.
 
-Fix signals UART3_CTS_B and UART3_RTS_B padmux assignments and add
-missing property "uart-has-rtscts" to allow serial interface to be
-configured and used with the hardware flow control.
+--dbinp4a6o4qjki4w
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
----
- arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+On Mon, Apr 12, 2021 at 11:55:36AM +0900, Nobuhiro Iwamatsu wrote:
+> Hi Uwe,
+>=20
+> Thanks for your review.
+>=20
+> On Sat, Apr 10, 2021 at 03:53:21PM +0200, Uwe Kleine-K=F6nig wrote:
+> > Hello,
+> >=20
+> > just a few small details left to criticize ...
+> >=20
+> > On Sat, Apr 10, 2021 at 08:08:37AM +0900, Nobuhiro Iwamatsu wrote:
+> > > diff --git a/drivers/pwm/pwm-visconti.c b/drivers/pwm/pwm-visconti.c
+> > > new file mode 100644
+> > > index 000000000000..99d83f94ed86
+> > > --- /dev/null
+> > > +++ b/drivers/pwm/pwm-visconti.c
+> > > @@ -0,0 +1,188 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * Toshiba Visconti pulse-width-modulation controller driver
+> > > + *
+> > > + * Copyright (c) 2020 TOSHIBA CORPORATION
+> > > + * Copyright (c) 2020 Toshiba Electronic Devices & Storage Corporati=
+on
+> > > + *
+> > > + * Authors: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> > > + *
+> > > + */
+> > > +
+> > > +#include <linux/err.h>
+> > > +#include <linux/io.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of_device.h>
+> > > +#include <linux/platform_device.h>
+> > > +#include <linux/pwm.h>
+> > > +
+> > > +#define PIPGM_PCSR(ch) (0x400 + 4 * (ch))
+> > > +#define PIPGM_PDUT(ch) (0x420 + 4 * (ch))
+> > > +#define PIPGM_PWMC(ch) (0x440 + 4 * (ch))
+> > > +
+> > > +#define PIPGM_PWMC_PWMACT		BIT(5)
+> > > +#define PIPGM_PWMC_CLK_MASK		GENMASK(1, 0)
+> > > +#define PIPGM_PWMC_POLARITY_MASK	GENMASK(5, 5)
+> > > +
+> > > +struct visconti_pwm_chip {
+> > > +	struct pwm_chip chip;
+> > > +	void __iomem *base;
+> > > +};
+> > > +
+> > > +static inline struct visconti_pwm_chip *to_visconti_chip(struct pwm_=
+chip *chip)
+> > > +{
+> > > +	return container_of(chip, struct visconti_pwm_chip, chip);
+> > > +}
+> > > +
+> > > +static int visconti_pwm_apply(struct pwm_chip *chip, struct pwm_devi=
+ce *pwm,
+> > > +			      const struct pwm_state *state)
+> > > +{
+> > > +	struct visconti_pwm_chip *priv =3D to_visconti_chip(chip);
+> > > +	u32 period, duty_cycle, pwmc0;
+> > > +
+> > > +	/*
+> > > +	 * pwmc is a 2-bit divider for the input clock running at 1 MHz.
+> > > +	 * When the settings of the PWM are modified, the new values are sh=
+adowed in hardware until
+> > > +	 * the period register (PCSR) is written and the currently running =
+period is completed. This
+> > > +	 * way the hardware switches atomically from the old setting to the=
+ new.
+> > > +	 * Also, disabling the hardware completes the currently running per=
+iod and keeps the output
+> > > +	 * at low level at all times.
+> >=20
+> > Can you please put a paragraph analogous to the one in pwm-sifive in the
+> > same format. This simplified keeping an overview about the oddities of
+> > the various supported chips.
+>=20
+> OK, I will check pwm-sifive's, and add.
+>=20
+> >=20
+> > > +	 */
+> > > +	if (!state->enabled) {
+> > > +		writel(0, priv->base + PIPGM_PCSR(pwm->hwpwm));
+> > > +		return 0;
+> > > +	}
+> > > +
+> > > [...]
+> > > +
+> > > +static void visconti_pwm_get_state(struct pwm_chip *chip, struct pwm=
+_device *pwm,
+> > > +				   struct pwm_state *state)
+> > > +{
+> > > +	struct visconti_pwm_chip *priv =3D chip_to_priv(chip);
+> > > +	u32 period, duty, pwmc0, pwmc0_clk;
+> > > +
+> > > +	period =3D readl(priv->base + PIPGM_PCSR(pwm->hwpwm));
+> > > +	if (period)
+> > > +		state->enabled =3D true;
+> > > +	else
+> > > +		state->enabled =3D false;
+> >=20
+> > If PIPGM_PCSR is 0 the hardware is still active and setting a new
+> > configuration completes the currently running period, right? Then I
+> > think having always state->enabled =3D true is a better match.
+>
+> If PIPGM_PCSR is 0, the hardware is stopped. Even if the settings of
+> other registers are written, the values of other registers will not work
+> unless PIPGM_PCSR is written.
 
-diff --git a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-index f28a96fcf23e..3f262e8ebf7f 100644
---- a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-@@ -316,8 +316,8 @@ pinctrl_uart3: uart3grp {
- 			fsl,pins = <
- 				MX6QDL_PAD_EIM_D24__UART3_TX_DATA	0x1b0b1
- 				MX6QDL_PAD_EIM_D25__UART3_RX_DATA	0x1b0b1
--				MX6QDL_PAD_EIM_D30__UART3_RTS_B		0x1b0b1
--				MX6QDL_PAD_EIM_D31__UART3_CTS_B		0x1b0b1
-+				MX6QDL_PAD_EIM_D31__UART3_RTS_B		0x1b0b1
-+				MX6QDL_PAD_EIM_D30__UART3_CTS_B		0x1b0b1
- 			>;
- 		};
- 
-@@ -404,6 +404,7 @@ &reg_soc {
- &uart3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart3>;
-+	uart-has-rtscts;
- 	status = "disabled";
- };
- 
--- 
-2.25.1
+Correct me if I'm wrong, but how I understand it, PCSR is special as the
+other registers are shadow until PCSR is written. (And that is
+irrespective of which value is active in PCSR or what is written to
+PCSR.)
+=20
+> However, as a logic, if PIPGM_PCSR becomes 0, it is only
+> visconti_pwm_apply () in this driver,
+> so I think that this process should always be state-> enabled =3D true
+> as you pointed out.
+> I wil drop this, thanks.
 
+For me the critical (and only) difference between "off" and
+"duty cycle =3D 0" is that when a new configuration is to be applied. In
+the "off" state a new period can (and should) start immediately, while
+with "duty_cycle =3D 0" the rising edge should be delayed until the
+currently running period is over.[1]
+
+So the thing to do here (IMHO) is:
+
+Iff with PIPGM_PCSR =3D 0 configuring a new setting (that is finalized
+with writing a non-zero value to PIPGM_PCSR) completes the currently
+running period, then always assume the PWM as enabled.
+
+And so if the hardware is stopped and the counter is reset when 0 is
+written to PIPGM_PCSR, model that as enabled =3D false.
+
+Best regards
+Uwe
+
+[1] In practise this is more difficult because several PWMs don't
+complete periods in general. But the hardware under discussion luckily
+isn't one of these. And (worse) there are other hardware implementations
+where off doesn't emit an inactive level.
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--dbinp4a6o4qjki4w
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmBz8IUACgkQwfwUeK3K
+7Anv+ggAgcYjZXZNUVrkCgcupmpCm3IMfKahkwjrc5xduTQHdRPMTqPrJhyuwF7a
+G8bOQ5pxUHH5MEqns/nG8HTPawjKDgy36NLfDdY7yDQdKT15PsvXkHD6wUydcXzd
+Hn41ovzjGJUi4bkqjI8iLwCARX6ypaKh66IVZ/yRjJA1B2FkCbqfRgE8PHu78NJd
+GU+OrhCgmXyJ5e7FAcfDn5dlMVTpHbzxyGouC8PXtCCFgC5YLy2+Ajp3Y2ldv5Qs
+ceQ7LOzHqJ4NsiBq74KTOUFo2lTMZW9kzLl/upBxEhh/7jLRlJHFmx4jyb/LJOKe
+V+HuRxtoXSlhoOcb2azTl12IPVESZw==
+=+9VN
+-----END PGP SIGNATURE-----
+
+--dbinp4a6o4qjki4w--
