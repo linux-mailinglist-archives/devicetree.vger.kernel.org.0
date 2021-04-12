@@ -2,125 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D7E835C5B4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 13:52:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F12535C5BD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 13:55:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240581AbhDLLwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 07:52:10 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:51497 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S240699AbhDLLwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 07:52:09 -0400
-X-UUID: 6825986699c4436ba75bd76f0e4619ed-20210412
-X-UUID: 6825986699c4436ba75bd76f0e4619ed-20210412
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 123792971; Mon, 12 Apr 2021 19:51:47 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 12 Apr 2021 19:51:42 +0800
-Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 12 Apr 2021 19:51:41 +0800
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Subject: [PATCH v4, 3/3] mailbox: cmdq: add mt8192 support
-Date:   Mon, 12 Apr 2021 19:51:30 +0800
-Message-ID: <1618228290-18413-4-git-send-email-yongqiang.niu@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1618228290-18413-1-git-send-email-yongqiang.niu@mediatek.com>
-References: <1618228290-18413-1-git-send-email-yongqiang.niu@mediatek.com>
+        id S240499AbhDLLzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 07:55:17 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:23890 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237792AbhDLLzQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Apr 2021 07:55:16 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1618228498; h=Content-Type: MIME-Version: Message-ID:
+ In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
+ bh=vdPB/4mlyh2rNRzqrJP2XjppQ3JehxA6cUhYVRcwhQc=; b=mYIIwZKGd0KT+RcFf+dOZVdMiWTUwNj2Ku0xa77NSD+ViYqLP4inJo1VBiQ/pW9XKZyn7v4G
+ mhSwRPg94OeC3OFdKJxKfVbV2JaR72lw5cIV9ryn9t9585ve3Xge6lIxY7v3l70rZDAHyCvC
+ cJLJ277oT6t2o+n/sOb4SURtfw0=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 6074350d03cfff34528bdc3d (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 12 Apr 2021 11:54:53
+ GMT
+Sender: kvalo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 29BEEC43463; Mon, 12 Apr 2021 11:54:53 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D3890C433C6;
+        Mon, 12 Apr 2021 11:54:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D3890C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        =?utf-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+Subject: Re: [PATCH 1/2] dt-binding: bcm43xx-fmac: add optional brcm,ccode-map
+References: <20210408113022.18180-1-shawn.guo@linaro.org>
+        <20210408113022.18180-2-shawn.guo@linaro.org>
+        <87k0p9mewt.fsf@codeaurora.org> <20210412012528.GB15093@dragon>
+Date:   Mon, 12 Apr 2021 14:54:46 +0300
+In-Reply-To: <20210412012528.GB15093@dragon> (Shawn Guo's message of "Mon, 12
+        Apr 2021 09:25:29 +0800")
+Message-ID: <87im4rlnuh.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
 Content-Type: text/plain
-X-TM-SNTS-SMTP: 447C2C1B621AAE91646F4EA40E3586078D4BF77CC13B96936FD04B446FFE24992000:8
-X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add mt8192 support
+Shawn Guo <shawn.guo@linaro.org> writes:
 
-Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
----
- drivers/mailbox/mtk-cmdq-mailbox.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> On Sun, Apr 11, 2021 at 10:57:54AM +0300, Kalle Valo wrote:
+>> Shawn Guo <shawn.guo@linaro.org> writes:
+>> 
+>> > Add optional brcm,ccode-map property to support translation from ISO3166
+>> > country code to brcmfmac firmware country code and revision.
+>> >
+>> > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+>> > ---
+>> >  .../devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt | 7 +++++++
+>> >  1 file changed, 7 insertions(+)
+>> >
+>> > diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt b/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt
+>> > index cffb2d6876e3..a65ac4384c04 100644
+>> > --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt
+>> > +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt
+>> > @@ -15,6 +15,12 @@ Optional properties:
+>> >  	When not specified the device will use in-band SDIO interrupts.
+>> >   - interrupt-names : name of the out-of-band interrupt, which must be set
+>> >  	to "host-wake".
+>> > + - brcm,ccode-map : multiple strings for translating ISO3166 country code to
+>> > +	brcmfmac firmware country code and revision.  Each string must be in
+>> > +	format "AA-BB-num" where:
+>> > +	  AA is the ISO3166 country code which must be 2 characters.
+>> > +	  BB is the firmware country code which must be 2 characters.
+>> > +	  num is the revision number which must fit into signed integer.
+>> >  
+>> >  Example:
+>> >  
+>> > @@ -34,5 +40,6 @@ mmc3: mmc@1c12000 {
+>> >  		interrupt-parent = <&pio>;
+>> >  		interrupts = <10 8>; /* PH10 / EINT10 */
+>> >  		interrupt-names = "host-wake";
+>> > +		brcm,ccode-map = "JP-JP-78", "US-Q2-86";
+>> 
+>> The commit log does not answer "Why?". Why this needs to be in device
+>> tree and, for example, not hard coded in the driver?
+>
+> Thanks for the comment, Kalle.  Actually, this is something I need some
+> input from driver maintainers.  I can see this country code mapping
+> table is chipset specific, and can be hard coded in driver per chip id
+> and revision.  But on the other hand, it makes some sense to have this
+> table in device tree, as the country code that need to be supported
+> could be a device specific configuration.
 
-diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
-index e0d9a86..8da700a 100644
---- a/drivers/mailbox/mtk-cmdq-mailbox.c
-+++ b/drivers/mailbox/mtk-cmdq-mailbox.c
-@@ -36,6 +36,8 @@
- #define CMDQ_THR_WAIT_TOKEN		0x30
- #define CMDQ_THR_PRIORITY		0x40
- 
-+#define GCE_GCTL_VALUE			0x48
-+
- #define CMDQ_THR_ACTIVE_SLOT_CYCLES	0x3200
- #define CMDQ_THR_ENABLED		0x1
- #define CMDQ_THR_DISABLED		0x0
-@@ -77,11 +79,13 @@ struct cmdq {
- 	struct clk		*clock;
- 	bool			suspended;
- 	u8			shift_pa;
-+	bool			control_by_sw;
- };
- 
- struct gce_plat {
- 	u32 thread_nr;
- 	u8 shift;
-+	bool control_by_sw;
- };
- 
- u8 cmdq_get_shift_pa(struct mbox_chan *chan)
-@@ -122,6 +126,8 @@ static void cmdq_init(struct cmdq *cmdq)
- 	int i;
- 
- 	WARN_ON(clk_enable(cmdq->clock) < 0);
-+	if (cmdq->control_by_sw)
-+		writel(0x7, cmdq->base + GCE_GCTL_VALUE);
- 	writel(CMDQ_THR_ACTIVE_SLOT_CYCLES, cmdq->base + CMDQ_THR_SLOT_CYCLES);
- 	for (i = 0; i <= CMDQ_MAX_EVENT; i++)
- 		writel(i, cmdq->base + CMDQ_SYNC_TOKEN_UPDATE);
-@@ -598,6 +604,7 @@ static int cmdq_probe(struct platform_device *pdev)
- 
- 	cmdq->thread_nr = plat_data->thread_nr;
- 	cmdq->shift_pa = plat_data->shift;
-+	cmdq->control_by_sw = plat_data->control_by_sw;
- 	cmdq->irq_mask = GENMASK(cmdq->thread_nr - 1, 0);
- 	err = devm_request_irq(dev, cmdq->irq, cmdq_irq_handler, IRQF_SHARED,
- 			       "mtk_cmdq", cmdq);
-@@ -663,11 +670,14 @@ static int cmdq_probe(struct platform_device *pdev)
- static const struct gce_plat gce_plat_v2 = {.thread_nr = 16};
- static const struct gce_plat gce_plat_v3 = {.thread_nr = 24};
- static const struct gce_plat gce_plat_v4 = {.thread_nr = 24, .shift = 3};
-+static const struct gce_plat gce_plat_v5 = {.thread_nr = 24, .shift = 3,
-+					    .control_by_sw = true};
- 
- static const struct of_device_id cmdq_of_ids[] = {
- 	{.compatible = "mediatek,mt8173-gce", .data = (void *)&gce_plat_v2},
- 	{.compatible = "mediatek,mt8183-gce", .data = (void *)&gce_plat_v3},
- 	{.compatible = "mediatek,mt6779-gce", .data = (void *)&gce_plat_v4},
-+	{.compatible = "mediatek,mt8192-gce", .data = (void *)&gce_plat_v5},
- 	{}
- };
- 
+Could be? Does such a use case exist at the moment or are just guessing
+future needs?
+
+From what I have learned so far I think this kind of data should be in
+the driver, but of course I might be missing something.
+
 -- 
-1.8.1.1.dirty
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
