@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FB6135B80A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 03:19:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A303035B812
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 03:25:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236454AbhDLBT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Apr 2021 21:19:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51430 "EHLO
+        id S236540AbhDLBZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Apr 2021 21:25:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236382AbhDLBT2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Apr 2021 21:19:28 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B931CC06138E
-        for <devicetree@vger.kernel.org>; Sun, 11 Apr 2021 18:19:11 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id l123so8127042pfl.8
-        for <devicetree@vger.kernel.org>; Sun, 11 Apr 2021 18:19:11 -0700 (PDT)
+        with ESMTP id S236539AbhDLBZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Apr 2021 21:25:54 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C99C06138D
+        for <devicetree@vger.kernel.org>; Sun, 11 Apr 2021 18:25:36 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id w10so8144335pgh.5
+        for <devicetree@vger.kernel.org>; Sun, 11 Apr 2021 18:25:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=kOVEUZxKUzw5yKV3UzpP1C8KkT2dA4aQzXOrSWS1c5s=;
-        b=H2wD8qXLEIbcWHbeeSK56pfYG+r0PaLtaDxA+T5ueDArj3OfFJbkk9HBIf7sx9KPhO
-         qrV3RLfszPLe9E5Ycxp1uzvaoGTFrMU0oiRrq5pp+xAtgSO9kC0BFAHLrAk152jY/rIc
-         5/fUGWZDALdmFv/Bc2LwFy4WVGxUBG2qId4We4719D7RF3BOYJeTZBkacpkQHtEydXV/
-         KvVEyZH0dr8EYn4HNPHUjvQBnxiMdITkcfj72xGVqeepYTKYKLS1gSZAqfWaLa+ZUld9
-         RLaxLnMzz2ldt+0sKhqyNHScZ0LNN/WAHfBugBB5v6mWMEYsggwUPojtpBcZ47CZBZDK
-         rcpw==
+        bh=6UWOIGtqeOeXuUvHOjCb1jTlJLlUgyBDQUb3NqK9hjs=;
+        b=SzSdZEYQrxdEvWA2xFeyuX4kQNz4i53+4NSl/wYOSiZbjIXKqWbUS8Xa1zenkUCxsf
+         h5tNXMbgXWvIvWD5/jGXoRJCDJqqBoKlsNftMJdWNeL8inpJIKBBKuIeTJOXzdfOHsRW
+         a8LxX1o3yiNFyV0r7++xO3pSrtcQd9GBOA7iThaiPngO5gDi94SGiVnj5Cfu72xEdonk
+         t+BL5+EwUt3MFZtFbpNPD5Bw44ThjDg4gKNMBznERTvYX0tqyX76rBv7suQ9Ai3Gaw7D
+         uqeFM/WjhHUZAZ0esBNsNwuJgoRjzZCUhEmjCFEi0XACSEaVrxq1dyC6m1Z0u2SgKVB4
+         /3dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=kOVEUZxKUzw5yKV3UzpP1C8KkT2dA4aQzXOrSWS1c5s=;
-        b=q31J/2WuMjbRLBFxJdvyTIoyD5hHN9AfWiDR6xUMbXLv7WQbVIQYJpgCfWR4mgcoe+
-         xsoqYnrD1GNbwse56ygYPfl3L7PV7BiQdyoHes19K2pBgguepqwCUqTQ9w0s4ulku5Je
-         +dhLQNvswbIrLLyZmsgMqO+7kvrzHGnpiT+8mUS25BO8ntFA++vAvtQFrVNLjPqrBBwX
-         56PBbykXpHBjkay/EcZwL2FBSCi3QPO8r9F+ayOsbvF2xmnpsYs54zCIjxcQNxUnDR4T
-         r5SKvWYjh9qLfHeSGFxSy4D4093CjPDpRDrYVEmn8Xg2Y5QxPguS5AaiDgjU3n3S20ov
-         T1Pg==
-X-Gm-Message-State: AOAM532c1U6LDYNOcUdV+IxggeMpMBAmwFT3JVT07tSZPUqVnyfvPmc2
-        oPJU/JncWOAaqioLhr0CzoxBDw==
-X-Google-Smtp-Source: ABdhPJyYY8bXAkVUCN6156iGSWFTJ3daOgQEdJrFUj6OF2GV0aKJW9nsdxYVbYgshCW5j+gxQKJsMg==
-X-Received: by 2002:a63:77cf:: with SMTP id s198mr24458053pgc.252.1618190351123;
-        Sun, 11 Apr 2021 18:19:11 -0700 (PDT)
+        bh=6UWOIGtqeOeXuUvHOjCb1jTlJLlUgyBDQUb3NqK9hjs=;
+        b=re+X4h6CHAeHfvmERX9jwWCIWqT3wQ1vec0dXJnxnnJ+iToES3xTYBEmpfUen6Ndju
+         E23hkeB4KKPflRO4HlQXpJGjDEYND+LuV05tMWy3AGdpkKUy+Fz1UfuYxD7E3bZ1tuH0
+         0b5zClg0cwZb75vgPf+l9dT40l7faxGItS976NYFEtZpKBJl2lp+gJIvzxqoZibHoCUJ
+         r69fty+9R+Lo8zG8AZ8hDfXmg2y2oSjKIDdj74nduAsYv3TCiOpIONOFtJoKQDCDRxj2
+         O8/OK1sESrtvIX7nv5q9X1B2B2VWW63Akzpe+wtm4gAT4KCAEJSRq5H9xRCOi8NUOu8h
+         /fHw==
+X-Gm-Message-State: AOAM532m3jPuRiTiLH78Lslnevc+4ET4n7SUbMglTZBCKkNYb5HJgUbN
+        fMOlCzZzJvkkpwX9IMCCLzJUCg==
+X-Google-Smtp-Source: ABdhPJwVFHx91KywmuwrpjzYzCKCdiKF1p0NVsF6qcvxMQKRlCa6GXmZyyt9m1W2cMVjEagDhzweVA==
+X-Received: by 2002:a05:6a00:1c67:b029:215:6f93:d220 with SMTP id s39-20020a056a001c67b02902156f93d220mr21655362pfw.36.1618190736003;
+        Sun, 11 Apr 2021 18:25:36 -0700 (PDT)
 Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id q22sm7755303pfk.2.2021.04.11.18.19.07
+        by smtp.gmail.com with ESMTPSA id g21sm9050908pjl.28.2021.04.11.18.25.32
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 11 Apr 2021 18:19:10 -0700 (PDT)
-Date:   Mon, 12 Apr 2021 09:19:03 +0800
+        Sun, 11 Apr 2021 18:25:35 -0700 (PDT)
+Date:   Mon, 12 Apr 2021 09:25:29 +0800
 From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
+To:     Kalle Valo <kvalo@codeaurora.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
         Arend van Spriel <aspriel@gmail.com>,
         Franky Lin <franky.lin@broadcom.com>,
@@ -63,34 +63,30 @@ Cc:     Kalle Valo <kvalo@codeaurora.org>,
         brcm80211-dev-list.pdl@broadcom.com,
         SHA-cyfmac-dev-list@infineon.com
 Subject: Re: [PATCH 1/2] dt-binding: bcm43xx-fmac: add optional brcm,ccode-map
-Message-ID: <20210412011902.GA15093@dragon>
+Message-ID: <20210412012528.GB15093@dragon>
 References: <20210408113022.18180-1-shawn.guo@linaro.org>
  <20210408113022.18180-2-shawn.guo@linaro.org>
- <20210409184606.GA3937918@robh.at.kernel.org>
+ <87k0p9mewt.fsf@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210409184606.GA3937918@robh.at.kernel.org>
+In-Reply-To: <87k0p9mewt.fsf@codeaurora.org>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 09, 2021 at 01:46:06PM -0500, Rob Herring wrote:
-> On Thu, Apr 08, 2021 at 07:30:21PM +0800, Shawn Guo wrote:
+On Sun, Apr 11, 2021 at 10:57:54AM +0300, Kalle Valo wrote:
+> Shawn Guo <shawn.guo@linaro.org> writes:
+> 
 > > Add optional brcm,ccode-map property to support translation from ISO3166
 > > country code to brcmfmac firmware country code and revision.
-> > 
+> >
 > > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
 > > ---
 > >  .../devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt | 7 +++++++
 > >  1 file changed, 7 insertions(+)
-> 
-> Can you convert this to schema first.
-
-Yes.  Will do, after driver maintainers agree with the direction.
-> 
-> > 
+> >
 > > diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt b/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt
 > > index cffb2d6876e3..a65ac4384c04 100644
 > > --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt
@@ -105,23 +101,6 @@ Yes.  Will do, after driver maintainers agree with the direction.
 > > +	  AA is the ISO3166 country code which must be 2 characters.
 > > +	  BB is the firmware country code which must be 2 characters.
 > > +	  num is the revision number which must fit into signed integer.
-> 
-> Signed? So "AA-BB--num"?
-
-Hmm, for some reason, kernel driver uses signed integer to hold the
-revision.  It's just a reflecting of that.
-
-> 
-> You should be able to do something like:
-> 
-> items:
->   pattern: '^[A-Z][A-Z]-[A-Z][A-Z]-[0-9]+$'
-
-Ah, yes, that's much better and distinct.  Thanks for the suggestion.
-
-Shawn
-
-> 
 > >  
 > >  Example:
 > >  
@@ -130,8 +109,15 @@ Shawn
 > >  		interrupts = <10 8>; /* PH10 / EINT10 */
 > >  		interrupt-names = "host-wake";
 > > +		brcm,ccode-map = "JP-JP-78", "US-Q2-86";
-> >  	};
-> >  };
-> > -- 
-> > 2.17.1
-> > 
+> 
+> The commit log does not answer "Why?". Why this needs to be in device
+> tree and, for example, not hard coded in the driver?
+
+Thanks for the comment, Kalle.  Actually, this is something I need some
+input from driver maintainers.  I can see this country code mapping
+table is chipset specific, and can be hard coded in driver per chip id
+and revision.  But on the other hand, it makes some sense to have this
+table in device tree, as the country code that need to be supported
+could be a device specific configuration.
+
+Shawn
