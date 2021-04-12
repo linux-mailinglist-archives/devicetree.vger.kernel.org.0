@@ -2,114 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11A1235BA13
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 08:20:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54FE535BA25
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 08:36:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229810AbhDLGVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 02:21:12 -0400
-Received: from mail-lj1-f180.google.com ([209.85.208.180]:41578 "EHLO
-        mail-lj1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbhDLGVM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 02:21:12 -0400
-Received: by mail-lj1-f180.google.com with SMTP id a36so3122939ljq.8
-        for <devicetree@vger.kernel.org>; Sun, 11 Apr 2021 23:20:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
-         :from:date:message-id:subject:to:cc;
-        bh=igzuPkJhxst+MnvHXRdQo1m4AQpe2UounByOQCdu+6U=;
-        b=dKSD49Yg23d+wZNebm7/kVYvXNj/JTJhsecs5KjIovNQwYd6IAWlyYX6ApnIvgqNnY
-         OychU+U6Fr6tmrWn4AfcnjVPOeoFsAY24TFIKLgKtpOv7jRTxcq4dCoYIq55kxBQb9Vk
-         qKyBOVU1qYwIijcIT4+c21QN88Kx048+aPRI5cfBL2eujhD1GXUdC0KBxcAcKgIRSufC
-         tpkQIHoZq1C6pp/DN+X7AIi/zoo3hMfBc0y2wNXT/5OMSoeSpQe92AS4/BBVlY8OcGm6
-         mMkESL9JuJXfbxlPb7+KgzemfKWqCbfBCznb9n6CHn8Ul52+zJ6bt3iywIe9M54tIz/9
-         K2VA==
-X-Gm-Message-State: AOAM532W8R+b78f3Tww/zW5gb/PJW3TtvT1IuVpvv+GeKpXxF4L27AGo
-        vLLkWz6w/897F8T6hTbZPpRsJ4FY3WmG1w==
-X-Google-Smtp-Source: ABdhPJzQB6GDtnD3cnfmWKVZ39yAHDNkMQh6DHglfK8ZeeUaWyu/C91AV3tU1EmrIPk3KiXQeZQO9A==
-X-Received: by 2002:a2e:2f05:: with SMTP id v5mr255895ljv.63.1618208453327;
-        Sun, 11 Apr 2021 23:20:53 -0700 (PDT)
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com. [209.85.208.171])
-        by smtp.gmail.com with ESMTPSA id l7sm2130632lfp.234.2021.04.11.23.20.52
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Apr 2021 23:20:52 -0700 (PDT)
-Received: by mail-lj1-f171.google.com with SMTP id m7so3148331ljp.10
-        for <devicetree@vger.kernel.org>; Sun, 11 Apr 2021 23:20:52 -0700 (PDT)
-X-Received: by 2002:a2e:8559:: with SMTP id u25mr168139ljj.282.1618208452556;
- Sun, 11 Apr 2021 23:20:52 -0700 (PDT)
+        id S230177AbhDLGgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 02:36:22 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:45659 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229461AbhDLGgW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 02:36:22 -0400
+X-UUID: 3524d26865e645e68404ccc338cea1b9-20210412
+X-UUID: 3524d26865e645e68404ccc338cea1b9-20210412
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 600615843; Mon, 12 Apr 2021 14:35:58 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 12 Apr 2021 14:35:50 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 12 Apr 2021 14:35:49 +0800
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+Subject: [PATCH v1, 0/3] gamma set with cmdq
+Date:   Mon, 12 Apr 2021 14:35:44 +0800
+Message-ID: <1618209347-10816-1-git-send-email-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-References: <20210412000813.13071-1-andre.przywara@arm.com>
-In-Reply-To: <20210412000813.13071-1-andre.przywara@arm.com>
-Reply-To: wens@csie.org
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Mon, 12 Apr 2021 14:20:41 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65uwo5Ns_ODNyX9S4H=cS6TGWCgaEyzhMaRaayxUtif2g@mail.gmail.com>
-Message-ID: <CAGb2v65uwo5Ns_ODNyX9S4H=cS6TGWCgaEyzhMaRaayxUtif2g@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH] arm64: dts: allwinner: Revert SD card CD
- GPIO for Pine64-LTS
-To:     =?UTF-8?Q?Andr=C3=A9_Przywara?= <andre.przywara@arm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        Michael Weiser <michael.weiser@gmx.de>,
-        Daniel Kulesz <kuleszdl@posteo.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 9B38F95F394A55B17AF54078330921F9F4A0C88959C336EC271FA7319CCD28762000:8
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This series are based on 5.12-rc2 and provide 3 patch
+to set gamma lut with cmdq
 
-On Mon, Apr 12, 2021 at 8:08 AM Andre Przywara <andre.przywara@arm.com> wrote:
->
-> Commit 941432d00768 ("arm64: dts: allwinner: Drop non-removable from
-> SoPine/LTS SD card") enabled the card detect GPIO for the SOPine module,
-> along the way with the Pine64-LTS, which share the same base .dtsi.
->
-> This was based on the observation that the Pine64-LTS has as "push-push"
-> SD card socket, and that the schematic mentions the card detect GPIO.
->
-> After having received two reports about failing SD card access with that
-> patch, some more research and polls on that subject revealed that there
-> are at least two different versions of the Pine64-LTS out there:
-> - On some boards (including mine) the card detect pin is "stuck" at
->   high, regardless of an microSD card being inserted or not.
-> - On other boards the card-detect is working, but is active-high, by
->   virtue of an explicit inverter circuit, as shown in the schematic.
->
-> To cover all versions of the board out there, and don't take any chances,
-> let's revert the introduction of the CD GPIO, and go back to the
-> non-removable property for the Pine64-LTS. That should avoid regressions
-> and should work for everyone.
-> The SOPine card detect has proven to be working, so let's keep that
-> GPIO in place.
->
-> Fixes: 941432d00768 ("arm64: dts: allwinner: Drop non-removable from SoPine/LTS SD card")
-> Reported-by: Michael Weiser <michael.weiser@gmx.de>
-> Reported-by: Daniel Kulesz <kuleszdl@posteo.org>
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> index e79ce49e7e6a..843338e19694 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> @@ -21,5 +21,5 @@
->  };
->
->  &mmc0 {
-> -       cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 push-push switch */
-> +       non-removable;          /* card detect is broken on some boards */
+Yongqiang Niu (3):
+  drm/mediatek: Separate aal module
+  arm64: dts: mt8183: refine aal compatible name
+  drm/mediatek: gamma set with cmdq
 
-So a revert is good, but has anyone tried using the "broken-cd" instead?
-That way, at least on Linux, the mmc core resorts to polling for a card.
-At least this way the card is still removable.
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi    |   3 +-
+ drivers/gpu/drm/mediatek/Makefile           |   3 +-
+ drivers/gpu/drm/mediatek/mtk_disp_aal.c     | 167 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h     |  14 ++-
+ drivers/gpu/drm/mediatek/mtk_disp_gamma.c   |  11 +-
+ drivers/gpu/drm/mediatek/mtk_drm_crtc.c     |  18 +--
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |  39 +------
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |   8 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c      |   8 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h      |   1 +
+ 10 files changed, 213 insertions(+), 59 deletions(-)
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_aal.c
 
+-- 
+1.8.1.1.dirty
 
-ChenYu
