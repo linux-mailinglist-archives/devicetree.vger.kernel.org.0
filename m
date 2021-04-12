@@ -2,206 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF68D35C415
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 12:34:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D04A235C4A4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 13:05:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239401AbhDLKem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 06:34:42 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:51949 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239548AbhDLKek (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 06:34:40 -0400
-X-Originating-IP: 93.34.118.233
-Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 54B3320006;
-        Mon, 12 Apr 2021 10:34:18 +0000 (UTC)
-Date:   Mon, 12 Apr 2021 12:34:57 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Eugen.Hristev@microchip.com
-Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 28/30] dt-bindings: media: atmel: add microchip-xisc
- binding
-Message-ID: <20210412103457.3ahntx5ngskgb57e@uno.localdomain>
-References: <20210405155105.162529-1-eugen.hristev@microchip.com>
- <20210405155105.162529-29-eugen.hristev@microchip.com>
- <20210412095714.uivebcatgazzq5ae@uno.localdomain>
- <7269db4c-bc76-58e4-4423-7be9f0369d5c@microchip.com>
+        id S239692AbhDLLFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 07:05:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37900 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237440AbhDLLFV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 07:05:21 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A55C061574;
+        Mon, 12 Apr 2021 04:05:02 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a7so19591686eju.1;
+        Mon, 12 Apr 2021 04:05:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=V5dAFJoIeEivVJOccQwSPrrQGKQJ4TPKYt0s4Azreuk=;
+        b=WpZOT4czFb+ue9BhLqO4BESVZOKjpFHKWUuMOcecZg/Zux/ABOGfnDTuefIrNX4e1z
+         e07IpVVvfD61lTV/eywC0cIkd42hFcy1gQ6rqxf8YxsszKXU+zvU942Pnyt7+QlUrrP2
+         G+CHfI2pK1x9oXCham+hXnZyV45UjSuIxRuwxeN/AxTtdFTEwFycJRw09wTUrlryB1VK
+         mhC7ISCEIX6pWyFg91bHeQpZ3ig/qjHOnzpBJaL2aN3rn0MT83TN/zHkFOOLBcqWE5vc
+         dyLcCZBebyEdNHG8wVRtuIXxpi642tHJekUW4v3N/9s3BXl2uhy77Z+9E838TIrhDcxG
+         bO7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=V5dAFJoIeEivVJOccQwSPrrQGKQJ4TPKYt0s4Azreuk=;
+        b=SeVW7AeVBZRpn14uCJprRDdmBKjZVkDBR/1wu3onVBwdgrOQ2uucHX+uYTI3ohXF6u
+         oesxvGXj2hsrFRyIF877FmK+U14X/VJUXpRyRrhdjZgh9E0BTXvOFDZBAnzfoLcQofUY
+         +onKYtKvPPnZ16jQbU3TQSke8sGItncEFsez1/eciHMmpaY5mndO9wQV4HX6XoUtMtES
+         /L/k5btYDiFNfkvikCws/FUsa/cp7uJe8UUMnGvBHLunvpatZCbyVS7jWwQJ0tkbK9Vl
+         qPRFl0tTrS+BVzNZP8Zsl2N7afKZzPFiDsjZPjHRzGiT1Hp4txMn2x6HHGSo5CUkI1X5
+         CiHA==
+X-Gm-Message-State: AOAM5302STRk/iKNXOOtjK/2tJa4Y1Zg6ogQjah4LM3gESE33IgbpLE0
+        KeWFzG5ynO/emHLv/7V8ylA5Fr6P0QDrWQ==
+X-Google-Smtp-Source: ABdhPJyrVvWEYe2udlW1YYznobtl8vNAIfN1JQMcOPAuk2XUccouqVMNk50JwIdog8Ndgw2sIaLukA==
+X-Received: by 2002:a17:906:5487:: with SMTP id r7mr26039455ejo.550.1618225501490;
+        Mon, 12 Apr 2021 04:05:01 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id a9sm6327241eds.33.2021.04.12.04.05.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Apr 2021 04:05:01 -0700 (PDT)
+Subject: Re: [PATCH v2 3/6] ARM: dts: rockchip: remove interrupts properties
+ from pwm nodes rv1108.dtsi
+To:     wens@kernel.org
+Cc:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>, linux-pwm@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20210411131007.21757-1-jbx6244@gmail.com>
+ <20210411131007.21757-3-jbx6244@gmail.com>
+ <CAGb2v67s7a4GARfAnROKS40kaYQpdW_qWX=HX6GU09jV9wrbXw@mail.gmail.com>
+ <31b5ff50-afe5-b446-7d3c-943d148814d8@gmail.com>
+ <CAGb2v65+A402jCPVRJdDBdxqAEYOJmFTkKB4LJCvnW89hXb8QA@mail.gmail.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <20b7c702-9412-93b4-3174-e8633bc413d7@gmail.com>
+Date:   Mon, 12 Apr 2021 13:04:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
+In-Reply-To: <CAGb2v65+A402jCPVRJdDBdxqAEYOJmFTkKB4LJCvnW89hXb8QA@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <7269db4c-bc76-58e4-4423-7be9f0369d5c@microchip.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eugene,
+On 4/12/21 12:33 PM, Chen-Yu Tsai wrote:
+> On Mon, Apr 12, 2021 at 6:03 PM Johan Jonker <jbx6244@gmail.com> wrote:
+>>
+>> On 4/12/21 5:15 AM, Chen-Yu Tsai wrote:
+>>> On Sun, Apr 11, 2021 at 9:11 PM Johan Jonker <jbx6244@gmail.com> wrote:
+>>>>
+>>>> A test with the command below gives this error:
+>>>>
+>>>> /arch/arm/boot/dts/rv1108-evb.dt.yaml:
+>>>> pwm@10280000: 'interrupts' does not match any of the regexes:
+>>>> 'pinctrl-[0-9]+'
+>>>>
+>>>> "interrupts" is an undocumented property, so remove them
+>>>> from pwm nodes in rv1108.dtsi.
+>>>>
+>>>> make ARCH=arm dtbs_check
+>>>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+>>>>
+>>>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>>>
+>>> Given that the interrupts were specified, meaning they are wired up in hardware,
+>>> shouldn't the solution be to add the interrupts property to the binding instead?
+>>>
+>>> After all, the device tree describes the actual hardware, not just what the
+>>> implementations need.
+>>>
+>>> ChenYu
+>>>
+>>
+>> Hi,
+>>
+>> The question of what to do with it was asked in version 1, but no answer
+>> was given, so I made a proposal.
+>> The device tree description should be complete, but also as lean as
+>> possible. If someone manages to sneak in undocumented properties without
+>> reason then the ultimate consequence should be removal I think.
+>>
+>> Not sure about the (missing?) rv1108 TRM, but for rk3328 the interrupt
+>> is used for:
+>>
+>> PWM_INTSTS 0x0040 W 0x00000000 Interrupt Status Register
+>>   Channel Interrupt Polarity Flag
+>>     This bit is used in capture mode in order to identify the
+>>     transition of the input waveform when interrupt is generated.
+>>   Channel Interrupt Status
+>>     Interrupt generated
+>>
+>> PWM_INT_EN 0x0044 W 0x00000000 Interrupt Enable Register
+>>   Channel Interrupt Enable
+>>
+>> Is there any current realistic use/setup for it to convince rob+dt this
+>> should be added to pwm-rockchip.yaml?
 
-On Mon, Apr 12, 2021 at 10:12:22AM +0000, Eugen.Hristev@microchip.com wrote:
-> On 4/12/21 12:57 PM, Jacopo Mondi wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> >
-> > Hi Eugene,
-> >
-> > On Mon, Apr 05, 2021 at 06:51:03PM +0300, Eugen Hristev wrote:
-> >> Add bindings for the microchip xisc, a driver based on atmel-isc.
-> >> It shares common code with atmel-isc, but the xisc is the next generation
-> >> ISC which is present on sama7g5 product.
-> >> It has an enhanced pipeline, additional modules, formats, and it supports
-> >> not only parallel sensors, but also serial sensors, by connecting to a demux
-> >> endpoint present on sama7g5.
-> >> One of the key points for creating a new binding is the clocking scheme, as
-> >> atmel-isc requires 3 mandatory clocks, the microchip-xisc requires a single
-> >> input clock.
-> >>
-> >> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-> >> ---
-> >>
-> >> Hello Rob, all,
-> >>
-> >> I did not convert this yet to yaml because I would like first your feedback
-> >> if the binding is good.
-> >> If it's fine I will convert both this new binding and the old atmel-isc
-> >> to yaml.
-> >>
-> >> Thanks for your feedback,
-> >> Eugen
-> >>
-> >>   .../bindings/media/microchip-xisc.txt         | 64 +++++++++++++++++++
-> >>   1 file changed, 64 insertions(+)
-> >>   create mode 100644 Documentation/devicetree/bindings/media/microchip-xisc.txt
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/media/microchip-xisc.txt b/Documentation/devicetree/bindings/media/microchip-xisc.txt
-> >> new file mode 100644
-> >> index 000000000000..080a357ed84d
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/media/microchip-xisc.txt
-> >> @@ -0,0 +1,64 @@
-> >> +Microchip eXtended Image Sensor Controller (XISC)
-> >> +----------------------------------------------
-> >> +
-> >> +Required properties for XISC:
-> >> +- compatible
-> >> +     Must be "microchip,sama7g5-xisc".
-> >> +- reg
-> >> +     Physical base address and length of the registers set for the device.
-> >> +- interrupts
-> >> +     Should contain IRQ line for the XISC.
-> >> +- clocks
-> >> +     List of clock specifiers, corresponding to entries in
-> >> +     the clock-names property;
-> >> +     Please refer to clock-bindings.txt.
-> >> +- clock-names
-> >> +     Required elements: "hclock".
-> >> +     This is the clock that clocks the sensor controller, and is usually
-> >> +     fed from the clock tree. It is used for the internal controller logic.
-> >> +- #clock-cells
-> >> +     Should be 0.
-> >> +- clock-output-names
-> >> +     Should be "isc-mck".
-> >> +- pinctrl-names, pinctrl-0
-> >> +     Please refer to pinctrl-bindings.txt.
-> >> +
-> >> +Optional properties for XISC:
-> >> +- microchip,mipi-mode;
-> >> +     As the XISC is usually connected to a demux/bridge, the XISC receives
-> >> +     the same type of input, however, it should be aware of the type of
-> >> +     signals received. The mipi-mode enables different internal handling
-> >> +     of the data and clock lines.
-> >
-> > What does 'mipi-mode' do to a component that has an parallel receiver ?
->
-> Actually, this indeed has a parallel receiver, but it's only inside the
-> SoC. The other end of the parallel connection is a demuxer/bridge. This
-> demuxer will take the input from either a real parallel sensor or a CSI2
-> stream.
-> Even if the pixels are then converted into a parallel stream, it looks
-> like the pixel data has a bit of different constrains in term of hold
-> and setup time, and other electrical characteristics inside the SoC.
-> The XISC hardware designer decided to leave a bit in the user interface
-> called 'mipi-mode' , and by setting this, the capture interface of the
-> XISC is better adapted to a demuxed stream from a CSI2, rather than
-> adapted to a stream coming from a parallel sensor directly.
->
-> I am not sure I explained it right, but this is what I understand, when
-> I asked the hardware design about it.
->
-> So we have to manually set this bit if we have the demuxer deserializing
-> the CSI2 pixels or they are connected to a parallel sensor.
-> The XISC has no way of telling which is the correct setup, and from the
-> demuxer perspective, things are the same.
->
-> The endpoint connection between the xisc and the demuxer looks to be the
-> same, looking as if there is a parallel connection.
-> To know more, the XISC would be needing to look further down the
-> pipeline, and this is something which I could not force it to do.
+Found:
+pwm3 combined with ir uses a irq. Keep that as it is for now.
 
-Thanks for the details. It would be interesting to know what changes
-when the stream is received from the muxer, the parallel interface
-timings should not affected, but I get there are not many ways around
-this
+https://github.com/rockchip-linux/kernel/blob/develop-4.19/drivers/input/remotectl/rockchip_pwm_remotectl.c
 
->
->
-> >
-> >> +
-> >> +XISC supports a single port node with internal parallel bus.
-> >> +It should contain one 'port' child node with child 'endpoint' node.
-> >> +Please refer to the bindings defined in
-> >> +Documentation/devicetree/bindings/media/video-interfaces.txt.
-> >> +
-> >> +This endpoint has to be connected to a bridge that acts as a demux from either
-> >> +a serial interface or acts as a simple direct bridge to a parallel sensor.
-> >> +
-> >> +Example:
-> >> +xisc: xisc@e1408000 {
-> >> +     compatible = "microchip,sama7g5-isc";
-> >> +     reg = <0xe1408000 0x2000>;
-> >> +     interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
-> >> +     #address-cells = <1>;
-> >> +     #size-cells = <0>;
-> >> +     clocks = <&pmc PMC_TYPE_PERIPHERAL 56>;
-> >> +     clock-names = "hclock";
-> >> +     #clock-cells = <0>;
-> >> +     clock-output-names = "isc-mck";
-> >> +     microchip,mipi-mode;
-> >> +
-> >> +     port@1 {
-> >> +             reg = <1>;
-> >> +             xisc_in: endpoint {
-> >> +             bus-width = <12>;
-> >> +             hsync-active = <1>;
-> >> +             vsync-active = <1>;
-> >> +             remote-endpoint = <&csi2dc_out>;
-> > nit: indentation
-> >
-> > Have you consided using bus-type property ? As that's a new binding I
-> > would consider making it mandatory, and to modify the DT parsinga
-> > routine accordingly to remove auto-guessing, which according to my
-> > understanding is almost 'deprecated' ?
->
-> Having bus-type would just be an useful addition for finding out the bus
-> interface ? or it has some other consequences as well ?
-> Current XISC code actually expects a parallel interface, so it's kind of
-> set already, having a bus-type would not bring any new information from
-> a driver perspective
->
+> 
+> Well, the PWM core has capture support, and pwm-sti implements it with
+> interrupt support, so I guess there's at least a legitimate case for
+> adding that to the binding. Whether someone has an actual use case for
+> it and adds code to implement it is another story.
+> 
+>> The rk3328 interrupt rkpwm_int seems shared between channels, but only
+>> included to pwm3. What is the proper way for that?
+> 
+> I guess the bigger question is why was the PWM controller split into
+> four device nodes, instead of just one encompassing the whole block.
+> Now we'd have to introduce a new binding to support capture mode and
+> interrupts.
+> 
+> In that case I agree with dropping the interrupts for now, as it just
+> won't fit. But I would add this additional information to the commit
+> message.
 
-Have I read the parsing routine wrong, as it seems BT.656 is also
-supported. IF only parallel is, the dt parsing routine should set
-bus_type to V4L2_MBUS_PARALLEL. Although there's still plenty of drivers
-relying on auto-guessing, so I won't inist on this :)
+Will wait with adding "interrupts" to pwm-rockchip.yaml till someone
+makes a solution for the whole block. Convert only current
+document/binding to reduce notifications.
 
-Thanks
-  j
+For Heiko: patch 3 + 5 can go in the garbage bin:
+[PATCH v2 3/6] ARM: dts: rockchip: remove interrupts properties from pwm
+nodes rv1108.dtsi
+[PATCH v2 5/6] arm64: dts: rockchip: remove interrupts properties from
+pwm nodes rk3328.dtsi
 
-> >
-> >> +             };
-> >> +     };
-> >> +};
-> >> +
-> >> --
-> >> 2.25.1
-> >>
->
+Johan
+
+> 
+> 
+> Regards
+> ChenYu
+> 
+
