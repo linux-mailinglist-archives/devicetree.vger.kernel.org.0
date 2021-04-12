@@ -2,85 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6534035C677
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 14:41:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25B4535C68B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 14:46:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241211AbhDLMlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 08:41:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57754 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241214AbhDLMls (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Apr 2021 08:41:48 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 36F7B61027;
-        Mon, 12 Apr 2021 12:41:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618231290;
-        bh=YoBNM0KK19yBjUA1qlzbhAxnoNZZQ7sS/n3u78ikZp0=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Yml25TxioqYez+uY+20afQzLsEqRkAB4h4AN71BcxIvosxAidQlMAzXWp160/XLRX
-         QWJvrvkQyzv7ViamRKfCecbXMBD2+pJI9m+162cTsXLvfOYn8agY4r8ElKOvr5REdT
-         NNG+kyWNRyFVXeW2NyAyOs5KLiYVvXI44qvNZlEa/dbLzbchTd9Qzgi5+CAkJMfcio
-         bNqHlNreAjz3ubfAsB9oCqQxuJ08jzXJhhWoX2EaEf41NijQeCbqhjk3HB+qq7QnsV
-         InJ5cjYi/4Ef9Fisy2oluXaqF7gR5G3aypLbHL/Ts2llPjiTKGuRytiJ9o/l/54JHm
-         Wo2w5skXiTbKA==
-Received: by pali.im (Postfix)
-        id 160A7687; Mon, 12 Apr 2021 14:41:28 +0200 (CEST)
-From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        id S241111AbhDLMqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 08:46:23 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:54373 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S237283AbhDLMqW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 08:46:22 -0400
+X-UUID: 2a1e1c35d99b426ab4382b6af68c593b-20210412
+X-UUID: 2a1e1c35d99b426ab4382b6af68c593b-20210412
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1249279532; Mon, 12 Apr 2021 20:46:01 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 12 Apr 2021 20:45:59 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 12 Apr 2021 20:45:58 +0800
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: [PATCH] arm64: dts: marvell: armada-37xx: Set linux,pci-domain to zero
-Date:   Mon, 12 Apr 2021 14:39:36 +0200
-Message-Id: <20210412123936.25555-1-pali@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Tiffany Lin <tiffany.lin@mediatek.com>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Irui Wang <irui.wang@mediatek.com>, <yong.wu@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v3,0/6] Support H264 4K on MT8192
+Date:   Mon, 12 Apr 2021 20:45:49 +0800
+Message-ID: <20210412124555.26897-1-irui.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since commit 526a76991b7b ("PCI: aardvark: Implement driver 'remove'
-function and allow to build it as module") PCIe controller driver for
-Armada 37xx can be dynamically loaded and unloaded at runtime. Also driver
-allows dynamic binding and unbinding of PCIe controller device.
+Add MT8192 H264 venc driver and support H264 4K encoding on MT8192.
 
-Kernel PCI subsystem assigns by default dynamically allocated PCI domain
-number (starting from zero) for this PCIe controller every time when device
-is bound. So PCI domain changes after every unbind / bind operation.
+Change notes:
+v3: 1) This patch dependents on "Separating encoder device node"[1]
+       which has already been in linux-next.
+    2) redefine venc max supported resolution.
+[1] https://lore.kernel.org/linux-mediatek/20210325122625.15100-1-irui.wang@mediatek.com
 
-Alternative way for assigning PCI domain number is to use static allocated
-numbers defined in Device Tree. This option has requirement that every PCI
-controller in system must have defined PCI bus number in Device Tree.
+Alexandre Courbot (1):
+  media: mtk-vcodec: venc: remove redundant code
 
-Armada 37xx has only one PCIe controller, so assign for it PCI domain 0 in
-Device Tree.
+Irui Wang (5):
+  dt-bindings: media: mtk-vcodec: Add dma-ranges property
+  media: mtk-vcodec: Support 4GB~8GB range iova space for venc
+  dt-bindings: media: mtk-vcodec: Add binding for MT8192 VENC
+  media: mtk-vcodec: Add MT8192 H264 venc driver
+  media: mtk-vcodec: Support MT8192 H264 4K encoding
 
-After this change PCI domain on Armada 37xx is always zero, even after
-repeated unbind and bind operations.
+ .../bindings/media/mediatek-vcodec.txt        |  3 +
+ .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  1 +
+ .../platform/mtk-vcodec/mtk_vcodec_enc.c      | 89 +++++++++++--------
+ .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  | 17 ++++
+ .../platform/mtk-vcodec/venc/venc_h264_if.c   |  4 +
+ 5 files changed, 78 insertions(+), 36 deletions(-)
 
-Signed-off-by: Pali Rohár <pali@kernel.org>
-Fixes: 526a76991b7b ("PCI: aardvark: Implement driver 'remove' function and allow to build it as module")
----
- arch/arm64/boot/dts/marvell/armada-37xx.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-index 7a2df148c6a3..f02058ef5364 100644
---- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-@@ -495,6 +495,7 @@
- 					<0 0 0 2 &pcie_intc 1>,
- 					<0 0 0 3 &pcie_intc 2>,
- 					<0 0 0 4 &pcie_intc 3>;
-+			linux,pci-domain = <0>;
- 			max-link-speed = <2>;
- 			phys = <&comphy1 0>;
- 			pcie_intc: interrupt-controller {
 -- 
-2.20.1
+2.25.1
 
