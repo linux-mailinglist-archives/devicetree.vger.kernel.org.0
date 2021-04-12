@@ -2,93 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8B4935CAF2
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 18:21:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F5B935CB0D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 18:23:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237798AbhDLQVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 12:21:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51266 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238872AbhDLQVf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 12:21:35 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BC2FC06174A
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 09:21:17 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lVzJL-0000fo-A8; Mon, 12 Apr 2021 18:21:15 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lVzJK-0001No-W9; Mon, 12 Apr 2021 18:21:15 +0200
-Date:   Mon, 12 Apr 2021 18:21:14 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Clemens Gruber <clemens.gruber@pqgruber.com>
-Cc:     linux-pwm@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sven Van Asbroeck <TheSven73@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 2/8] pwm: pca9685: Support hardware readout
-Message-ID: <20210412162114.7yhfndb3cktynpme@pengutronix.de>
-References: <20210412132745.76609-1-clemens.gruber@pqgruber.com>
- <20210412132745.76609-2-clemens.gruber@pqgruber.com>
+        id S243349AbhDLQX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 12:23:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54798 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S243291AbhDLQXX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Apr 2021 12:23:23 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7822961289;
+        Mon, 12 Apr 2021 16:23:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618244585;
+        bh=08saPRykXgVBm3qGNlVbF5oPH9Hn4UhPEzwU3vJzLjI=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=l9BCrT5Tl58TyleZ5/w2cds4h3vvLMP0Dv/zlMjo0CGSs3OSCa00vgX2cGqEtMvgN
+         NkuFhSt0k717/ghvS6mEUMM+uXYJfGgoFs9Bsz5IjFDnU8wBgWRiMWexMR+X76iUru
+         UzgNSTPPF1doC/z8UzGVkDN4wSOE5B1BQx6xZpfTgRQCMxAHip2UP1CEvCjWEfn8/h
+         yICBMPi0tvRdXItz/FH+ZbzgAljmd/yqUmWKx3EoKNOb+54yePzbQLRYAB8MPuf3V8
+         O7nr8Is95AEMfSAEjoTPczFAtP7MfEdFIxiPwc6kTWbGQGmReKeIWmHUq/leg1zH9B
+         v+z2NyYSt5RnQ==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Tony Lindgren <tony@atomide.com>, Sasha Levin <sashal@kernel.org>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.11 06/51] ARM: dts: Drop duplicate sha2md5_fck to fix clk_disable race
+Date:   Mon, 12 Apr 2021 12:22:11 -0400
+Message-Id: <20210412162256.313524-6-sashal@kernel.org>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210412162256.313524-1-sashal@kernel.org>
+References: <20210412162256.313524-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7tmg3gsc2vxm7yox"
-Content-Disposition: inline
-In-Reply-To: <20210412132745.76609-2-clemens.gruber@pqgruber.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Tony Lindgren <tony@atomide.com>
 
---7tmg3gsc2vxm7yox
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[ Upstream commit 140a776833957539c84301dbdb4c3013876de118 ]
 
-Hello Clemens,
+We have a duplicate legacy clock defined for sha2md5_fck that can
+sometimes race with clk_disable() with the dts configured clock
+for OMAP4_SHA2MD5_CLKCTRL when unused clocks are disabled during
+boot causing an "Unhandled fault: imprecise external abort".
 
-On Mon, Apr 12, 2021 at 03:27:39PM +0200, Clemens Gruber wrote:
-> Implement .get_state to read-out the current hardware state.
->=20
-> The hardware readout may return slightly different values than those
-> that were set in apply due to the limited range of possible prescale and
-> counter register values.
->=20
-> Also note that although the datasheet mentions 200 Hz as default
-> frequency when using the internal 25 MHz oscillator, the calculated
-> period from the default prescaler register setting of 30 is 5079040ns.
->=20
-> Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/omap44xx-clocks.dtsi | 8 --------
+ 1 file changed, 8 deletions(-)
 
-Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+diff --git a/arch/arm/boot/dts/omap44xx-clocks.dtsi b/arch/arm/boot/dts/omap44xx-clocks.dtsi
+index 532868591107..1f1c04d8f472 100644
+--- a/arch/arm/boot/dts/omap44xx-clocks.dtsi
++++ b/arch/arm/boot/dts/omap44xx-clocks.dtsi
+@@ -770,14 +770,6 @@ per_abe_nc_fclk: per_abe_nc_fclk@108 {
+ 		ti,max-div = <2>;
+ 	};
+ 
+-	sha2md5_fck: sha2md5_fck@15c8 {
+-		#clock-cells = <0>;
+-		compatible = "ti,gate-clock";
+-		clocks = <&l3_div_ck>;
+-		ti,bit-shift = <1>;
+-		reg = <0x15c8>;
+-	};
+-
+ 	usb_phy_cm_clk32k: usb_phy_cm_clk32k@640 {
+ 		#clock-cells = <0>;
+ 		compatible = "ti,gate-clock";
+-- 
+2.30.2
 
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---7tmg3gsc2vxm7yox
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmB0c3cACgkQwfwUeK3K
-7AnbGgf/V6ZeU3R88Yp5XPjfGoo7IZqSwfDZVZyK5hzg9gm76VrpUCLzGAg0BBbV
-62eoMBBv6y7G7xMJboVc5A7tGcB8Pbu0pJOxhJQWT6DooteVy7kU5bxVG/Llm+b9
-hgcWABfQBLWDVisYqY4qadcq1gNK5jfH3oSKyiUwz+T2WpL79CGuFTUqlXCRPvTz
-Cuj1TZyOIi5DUNsMhaviwEys0WlHRdKth40oASNJsuTFhaZzX6hPHGGY0mZL814I
-BJYlSON8avEGQOpNLYWQcCjT1go5Uoo4hYDjW4938os6WR5fiwrvR3KKj/gQEJYQ
-+LZVSLjbrCRcx8EvNW1b/kiy42KETQ==
-=vQZD
------END PGP SIGNATURE-----
-
---7tmg3gsc2vxm7yox--
