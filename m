@@ -2,254 +2,451 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 785AB35C89C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 16:22:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06F7E35C8E2
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 16:37:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242106AbhDLOWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 10:22:19 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:49385 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S242163AbhDLOWS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 10:22:18 -0400
-X-UUID: 7bc88d8368194c98ade65c4677d8aa61-20210412
-X-UUID: 7bc88d8368194c98ade65c4677d8aa61-20210412
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1648031628; Mon, 12 Apr 2021 22:21:56 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 12 Apr 2021 22:21:54 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 12 Apr 2021 22:21:52 +0800
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Subject: [PATCH v7, 5/5] drm/mediatek: add support for mediatek SOC MT8192
-Date:   Mon, 12 Apr 2021 22:21:46 +0800
-Message-ID: <1618237306-17670-6-git-send-email-yongqiang.niu@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1618237306-17670-1-git-send-email-yongqiang.niu@mediatek.com>
-References: <1618237306-17670-1-git-send-email-yongqiang.niu@mediatek.com>
+        id S239166AbhDLOhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 10:37:51 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:29427 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237806AbhDLOhu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 10:37:50 -0400
+X-Originating-IP: 93.34.118.233
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id A4C65240018;
+        Mon, 12 Apr 2021 14:37:30 +0000 (UTC)
+Date:   Mon, 12 Apr 2021 16:38:09 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Eugen.Hristev@microchip.com
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 30/30] media: atmel: atmel-isc: add microchip-xisc
+ driver
+Message-ID: <20210412143809.tfw37xwt64oyaue3@uno.localdomain>
+References: <20210405155105.162529-1-eugen.hristev@microchip.com>
+ <20210405155105.162529-31-eugen.hristev@microchip.com>
+ <a22c2065-1a79-8a96-2b54-a2e28fa08b8a@microchip.com>
+ <20210412134157.4cqva5thylmiqds7@uno.localdomain>
+ <52f03c2b-01bd-0de3-83c5-204e6b577b9d@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <52f03c2b-01bd-0de3-83c5-204e6b577b9d@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add support for mediatek SOC MT8192
+Hi Eugene
 
-Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_disp_ccorr.c |  6 +++++
- drivers/gpu/drm/mediatek/mtk_disp_ovl.c   | 20 +++++++++++++++
- drivers/gpu/drm/mediatek/mtk_disp_rdma.c  |  6 +++++
- drivers/gpu/drm/mediatek/mtk_drm_drv.c    | 42 +++++++++++++++++++++++++++++++
- 4 files changed, 74 insertions(+)
+On Mon, Apr 12, 2021 at 02:15:32PM +0000, Eugen.Hristev@microchip.com wrote:
+> On 4/12/21 4:41 PM, Jacopo Mondi wrote:
+> > Hi Eugene,
+> >
+> > On Mon, Apr 12, 2021 at 12:37:41PM +0000, Eugen.Hristev@microchip.com wrote:
+> >>> +static int xisc_parse_dt(struct device *dev, struct isc_device *isc)
+> >>> +{
+> >>> +   struct device_node *np = dev->of_node;
+> >>> +   struct device_node *epn = NULL;
+> >>> +   struct isc_subdev_entity *subdev_entity;
+> >>> +   unsigned int flags;
+> >>> +   int ret;
+> >>> +   bool mipi_mode;
+> >>> +
+> >>> +   INIT_LIST_HEAD(&isc->subdev_entities);
+> >>> +
+> >>> +   mipi_mode = of_property_read_bool(np, "microchip,mipi-mode");
+> >>> +
+> >>> +   while (1) {
+> >>> +           struct v4l2_fwnode_endpoint v4l2_epn = { .bus_type = 0 };
+> >>> +
+> >>> +           epn = of_graph_get_next_endpoint(np, epn);
+> >>> +           if (!epn)
+> >>> +                   return 0;
+> >>> +
+> >>> +           ret = v4l2_fwnode_endpoint_parse(of_fwnode_handle(epn),
+> >>> +                                            &v4l2_epn);
+> >>> +           if (ret) {
+> >>> +                   ret = -EINVAL;
+> >>> +                   dev_err(dev, "Could not parse the endpoint\n");
+> >>> +                   break;
+> >>> +           }
+> >>> +
+> >>> +           subdev_entity = devm_kzalloc(dev, sizeof(*subdev_entity),
+> >>> +                                        GFP_KERNEL);
+> >>> +           if (!subdev_entity) {
+> >>> +                   ret = -ENOMEM;
+> >>> +                   break;
+> >>> +           }
+> >>> +           subdev_entity->epn = epn;
+> >>> +
+> >>> +           flags = v4l2_epn.bus.parallel.flags;
+> >>> +
+> >>> +           if (flags & V4L2_MBUS_HSYNC_ACTIVE_LOW)
+> >>> +                   subdev_entity->pfe_cfg0 = ISC_PFE_CFG0_HPOL_LOW;
+> >>> +
+> >>> +           if (flags & V4L2_MBUS_VSYNC_ACTIVE_LOW)
+> >>> +                   subdev_entity->pfe_cfg0 |= ISC_PFE_CFG0_VPOL_LOW;
+> >>> +
+> >>> +           if (flags & V4L2_MBUS_PCLK_SAMPLE_FALLING)
+> >>> +                   subdev_entity->pfe_cfg0 |= ISC_PFE_CFG0_PPOL_LOW;
+> >>> +
+> >>> +           if (v4l2_epn.bus_type == V4L2_MBUS_BT656)
+> >>> +                   subdev_entity->pfe_cfg0 |= ISC_PFE_CFG0_CCIR_CRC |
+> >>> +                                   ISC_PFE_CFG0_CCIR656;
+> >>
+> >> Hi Jacopo,
+> >>
+> >> If I use the bus-type property for the 'port' , do I actually have to
+> >> change something here ?
+> >
+> > You can set bus_type to the desired type, if it doesn't match the
+> > 'bus-type' property you will have an immediate error and a more strict
+> > check on the properties.
+> >
+> > You would likely:
+> >
+> >          v4l2_epn.bus_type = V4L2_MBUS_PARALLEL;
+> >          ret = v4l2_fwnode_endpoint_parse()
+> >          if (!ret) {
+> >                  /* It's parallel */
+> >          } else {
+> >                  v4l2_epn.bus_type = V4L2_MBUS_BT656;
+> >                  ret = v4l2_fwnode_endpoint_parse()
+> >                  if (ret) {
+> >                          /* Unsupported bus type: error out. */
+> >                  }
+> >
+> >                  /* It's BT656 */
+> >          }
+>
+> if the v4l2_fwnode_endpoint_parse will already fill in the
+> v4l2_epn.bus_type based on what is found in the 'bus-type' , why do I
+> need to do this assumption-fail-assumption-fail scenario ?
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ccorr.c b/drivers/gpu/drm/mediatek/mtk_disp_ccorr.c
-index 141cb36..3a53ebc 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_ccorr.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_ccorr.c
-@@ -205,9 +205,15 @@ static int mtk_disp_ccorr_remove(struct platform_device *pdev)
- 	.matrix_bits = 10,
- };
- 
-+static const struct mtk_disp_ccorr_data mt8192_ccorr_driver_data = {
-+	.matrix_bits = 11,
-+};
-+
- static const struct of_device_id mtk_disp_ccorr_driver_dt_match[] = {
- 	{ .compatible = "mediatek,mt8183-disp-ccorr",
- 	  .data = &mt8183_ccorr_driver_data},
-+	{ .compatible = "mediatek,mt8192-disp-ccorr",
-+	  .data = &mt8192_ccorr_driver_data},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mtk_disp_ccorr_driver_dt_match);
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-index 961f87f..e266baa 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-@@ -455,6 +455,22 @@ static int mtk_disp_ovl_remove(struct platform_device *pdev)
- 	.fmt_rgb565_is_0 = true,
- };
- 
-+static const struct mtk_disp_ovl_data mt8192_ovl_driver_data = {
-+	.addr = DISP_REG_OVL_ADDR_MT8173,
-+	.gmc_bits = 10,
-+	.layer_nr = 4,
-+	.fmt_rgb565_is_0 = true,
-+	.smi_id_en = true,
-+};
-+
-+static const struct mtk_disp_ovl_data mt8192_ovl_2l_driver_data = {
-+	.addr = DISP_REG_OVL_ADDR_MT8173,
-+	.gmc_bits = 10,
-+	.layer_nr = 2,
-+	.fmt_rgb565_is_0 = true,
-+	.smi_id_en = true,
-+};
-+
- static const struct of_device_id mtk_disp_ovl_driver_dt_match[] = {
- 	{ .compatible = "mediatek,mt2701-disp-ovl",
- 	  .data = &mt2701_ovl_driver_data},
-@@ -464,6 +480,10 @@ static int mtk_disp_ovl_remove(struct platform_device *pdev)
- 	  .data = &mt8183_ovl_driver_data},
- 	{ .compatible = "mediatek,mt8183-disp-ovl-2l",
- 	  .data = &mt8183_ovl_2l_driver_data},
-+	{ .compatible = "mediatek,mt8192-disp-ovl",
-+	  .data = &mt8192_ovl_driver_data},
-+	{ .compatible = "mediatek,mt8192-disp-ovl-2l",
-+	  .data = &mt8192_ovl_2l_driver_data},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mtk_disp_ovl_driver_dt_match);
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-index 8c9371b..274f3ce 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-@@ -355,6 +355,10 @@ static int mtk_disp_rdma_remove(struct platform_device *pdev)
- 	.fifo_size = 5 * SZ_1K,
- };
- 
-+static const struct mtk_disp_rdma_data mt8192_rdma_driver_data = {
-+	.fifo_size = 5 * SZ_1K,
-+};
-+
- static const struct of_device_id mtk_disp_rdma_driver_dt_match[] = {
- 	{ .compatible = "mediatek,mt2701-disp-rdma",
- 	  .data = &mt2701_rdma_driver_data},
-@@ -362,6 +366,8 @@ static int mtk_disp_rdma_remove(struct platform_device *pdev)
- 	  .data = &mt8173_rdma_driver_data},
- 	{ .compatible = "mediatek,mt8183-disp-rdma",
- 	  .data = &mt8183_rdma_driver_data},
-+	{ .compatible = "mediatek,mt8192-disp-rdma",
-+	  .data = &mt8192_rdma_driver_data},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mtk_disp_rdma_driver_dt_match);
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index b013d56..6df5510 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -147,6 +147,25 @@
- 	DDP_COMPONENT_DPI0,
- };
- 
-+static const enum mtk_ddp_comp_id mt8192_mtk_ddp_main[] = {
-+	DDP_COMPONENT_OVL0,
-+	DDP_COMPONENT_OVL_2L0,
-+	DDP_COMPONENT_RDMA0,
-+	DDP_COMPONENT_COLOR0,
-+	DDP_COMPONENT_CCORR,
-+	DDP_COMPONENT_AAL0,
-+	DDP_COMPONENT_GAMMA,
-+	DDP_COMPONENT_POSTMASK0,
-+	DDP_COMPONENT_DITHER,
-+	DDP_COMPONENT_DSI0,
-+};
-+
-+static const enum mtk_ddp_comp_id mt8192_mtk_ddp_ext[] = {
-+	DDP_COMPONENT_OVL_2L2,
-+	DDP_COMPONENT_RDMA4,
-+	DDP_COMPONENT_DPI0,
-+};
-+
- static const struct mtk_mmsys_driver_data mt2701_mmsys_driver_data = {
- 	.main_path = mt2701_mtk_ddp_main,
- 	.main_len = ARRAY_SIZE(mt2701_mtk_ddp_main),
-@@ -186,6 +205,13 @@
- 	.ext_len = ARRAY_SIZE(mt8183_mtk_ddp_ext),
- };
- 
-+static const struct mtk_mmsys_driver_data mt8192_mmsys_driver_data = {
-+	.main_path = mt8192_mtk_ddp_main,
-+	.main_len = ARRAY_SIZE(mt8192_mtk_ddp_main),
-+	.ext_path = mt8192_mtk_ddp_ext,
-+	.ext_len = ARRAY_SIZE(mt8192_mtk_ddp_ext),
-+};
-+
- static int mtk_drm_kms_init(struct drm_device *drm)
- {
- 	struct mtk_drm_private *private = drm->dev_private;
-@@ -404,22 +430,32 @@ static void mtk_drm_unbind(struct device *dev)
- 	  .data = (void *)MTK_DISP_OVL },
- 	{ .compatible = "mediatek,mt8183-disp-ovl-2l",
- 	  .data = (void *)MTK_DISP_OVL_2L },
-+	{ .compatible = "mediatek,mt8192-disp-ovl",
-+	  .data = (void *)MTK_DISP_OVL },
-+	{ .compatible = "mediatek,mt8192-disp-ovl-2l",
-+	  .data = (void *)MTK_DISP_OVL_2L },
- 	{ .compatible = "mediatek,mt2701-disp-rdma",
- 	  .data = (void *)MTK_DISP_RDMA },
- 	{ .compatible = "mediatek,mt8173-disp-rdma",
- 	  .data = (void *)MTK_DISP_RDMA },
- 	{ .compatible = "mediatek,mt8183-disp-rdma",
- 	  .data = (void *)MTK_DISP_RDMA },
-+	{ .compatible = "mediatek,mt8192-disp-rdma",
-+	  .data = (void *)MTK_DISP_RDMA },
- 	{ .compatible = "mediatek,mt8173-disp-wdma",
- 	  .data = (void *)MTK_DISP_WDMA },
- 	{ .compatible = "mediatek,mt8183-disp-ccorr",
- 	  .data = (void *)MTK_DISP_CCORR },
-+	{ .compatible = "mediatek,mt8192-disp-ccorr",
-+	  .data = (void *)MTK_DISP_CCORR },
- 	{ .compatible = "mediatek,mt2701-disp-color",
- 	  .data = (void *)MTK_DISP_COLOR },
- 	{ .compatible = "mediatek,mt8173-disp-color",
- 	  .data = (void *)MTK_DISP_COLOR },
- 	{ .compatible = "mediatek,mt8173-disp-aal",
- 	  .data = (void *)MTK_DISP_AAL},
-+	{ .compatible = "mediatek,mt8192-disp-aal",
-+	  .data = (void *)MTK_DISP_AAL},
- 	{ .compatible = "mediatek,mt8173-disp-gamma",
- 	  .data = (void *)MTK_DISP_GAMMA, },
- 	{ .compatible = "mediatek,mt8183-disp-gamma",
-@@ -448,12 +484,16 @@ static void mtk_drm_unbind(struct device *dev)
- 	  .data = (void *)MTK_DISP_MUTEX },
- 	{ .compatible = "mediatek,mt8183-disp-mutex",
- 	  .data = (void *)MTK_DISP_MUTEX },
-+	{ .compatible = "mediatek,mt8192-disp-mutex",
-+	  .data = (void *)MTK_DISP_MUTEX },
- 	{ .compatible = "mediatek,mt2701-disp-pwm",
- 	  .data = (void *)MTK_DISP_BLS },
- 	{ .compatible = "mediatek,mt8173-disp-pwm",
- 	  .data = (void *)MTK_DISP_PWM },
- 	{ .compatible = "mediatek,mt8173-disp-od",
- 	  .data = (void *)MTK_DISP_OD },
-+	{ .compatible = "mediatek,mt8192-disp-postmask",
-+	  .data = (void *)MTK_DISP_POSTMASK },
- 	{ }
- };
- 
-@@ -468,6 +508,8 @@ static void mtk_drm_unbind(struct device *dev)
- 	  .data = &mt8173_mmsys_driver_data},
- 	{ .compatible = "mediatek,mt8183-mmsys",
- 	  .data = &mt8183_mmsys_driver_data},
-+	{ .compatible = "mediatek,mt8192-mmsys",
-+	 .data = &mt8192_mmsys_driver_data},
- 	{ }
- };
- 
--- 
-1.8.1.1.dirty
+Because you would know exactly what bus type you're parsing, as
+v4l2_fwnode_endpoint_parse() would make sure the type you intend to
+parse matches what the endpoint reports
 
+	if (vep->bus_type != V4L2_MBUS_UNKNOWN) {
+		if (mbus_type != V4L2_MBUS_UNKNOWN &&
+		    vep->bus_type != mbus_type) {
+			pr_debug("expecting bus type %s\n",
+				 v4l2_fwnode_mbus_type_to_string(vep->bus_type));
+			return -ENXIO;
+		}
+
+I guess this is mostly useful if you want to specify default
+values the v4l2_fwnode_endpoint. If you go with autoguessing, a
+parallel endpoint without polarities flag specified can be identified
+as BT656 if I'm not mistaken.
+
+> Can't I simply check the value of v4l2_epn.bus_type , as I am doing it
+> already ?
+
+Only if you make bus-type required in DTS, then you can specify here
+bus_type = 0 like you're doing and rely on
+v4l2_fwnode_endpoint_parse() to set it to what it has found in DTS.
+
+Otherwise you rely on auto-guessing, if I got this right.
+
+Thanks
+   j
+
+>
+> >
+> > Not the greatest API, but it's more robust.
+> >
+> >> the v4l2_epn.bus_type won't be set automatically ? by the endpoint
+> >> parser I mean.
+> >
+> > Yes, that's what auto-discovery is, the endpoint parser tries to
+> > deduce the bus type from the properties that are there specified. It
+> > works, but leaves quite some ambiguity between ie PARALLEL and BT656
+> > as some polarities might not be necessarily specified even for
+> > PARALLEL bus types.
+> >
+> > As I've said, there's still plenty of code that relies on
+> > auto-discovery so I don't think this is blocking, also because making
+> > bus-type mandatory on existing DTS is quite painful. Since this is a
+> > new DTS you can consider this solution if you want to.
+> >
+> > Thanks
+> >     j
+> >
+> >>
+> >> Thanks,
+> >> Eugen
+> >>
+> >>> +
+> >>> +           if (mipi_mode)
+> >>> +                   subdev_entity->pfe_cfg0 |= ISC_PFE_CFG0_MIPI;
+> >>> +
+> >>> +           list_add_tail(&subdev_entity->list, &isc->subdev_entities);
+> >>> +   }
+> >>> +   of_node_put(epn);
+> >>> +
+> >>> +   return ret;
+> >>> +}
+> >>> +
+> >>> +static int microchip_xisc_probe(struct platform_device *pdev)
+> >>> +{
+> >>> +   struct device *dev = &pdev->dev;
+> >>> +   struct isc_device *isc;
+> >>> +   struct resource *res;
+> >>> +   void __iomem *io_base;
+> >>> +   struct isc_subdev_entity *subdev_entity;
+> >>> +   int irq;
+> >>> +   int ret;
+> >>> +   u32 ver;
+> >>> +
+> >>> +   isc = devm_kzalloc(dev, sizeof(*isc), GFP_KERNEL);
+> >>> +   if (!isc)
+> >>> +           return -ENOMEM;
+> >>> +
+> >>> +   platform_set_drvdata(pdev, isc);
+> >>> +   isc->dev = dev;
+> >>> +
+> >>> +   res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> >>> +   io_base = devm_ioremap_resource(dev, res);
+> >>> +   if (IS_ERR(io_base))
+> >>> +           return PTR_ERR(io_base);
+> >>> +
+> >>> +   isc->regmap = devm_regmap_init_mmio(dev, io_base, &isc_regmap_config);
+> >>> +   if (IS_ERR(isc->regmap)) {
+> >>> +           ret = PTR_ERR(isc->regmap);
+> >>> +           dev_err(dev, "failed to init register map: %d\n", ret);
+> >>> +           return ret;
+> >>> +   }
+> >>> +
+> >>> +   irq = platform_get_irq(pdev, 0);
+> >>> +   if (irq < 0)
+> >>> +           return irq;
+> >>> +
+> >>> +   ret = devm_request_irq(dev, irq, isc_interrupt, 0,
+> >>> +                          "microchip-sama7g5-xisc", isc);
+> >>> +   if (ret < 0) {
+> >>> +           dev_err(dev, "can't register ISR for IRQ %u (ret=%i)\n",
+> >>> +                   irq, ret);
+> >>> +           return ret;
+> >>> +   }
+> >>> +
+> >>> +   isc->gamma_table = isc_sama7g5_gamma_table;
+> >>> +   isc->gamma_max = 0;
+> >>> +
+> >>> +   isc->max_width = ISC_SAMA7G5_MAX_SUPPORT_WIDTH;
+> >>> +   isc->max_height = ISC_SAMA7G5_MAX_SUPPORT_HEIGHT;
+> >>> +
+> >>> +   isc->config_dpc = isc_sama7g5_config_dpc;
+> >>> +   isc->config_csc = isc_sama7g5_config_csc;
+> >>> +   isc->config_cbc = isc_sama7g5_config_cbc;
+> >>> +   isc->config_cc = isc_sama7g5_config_cc;
+> >>> +   isc->config_gam = isc_sama7g5_config_gam;
+> >>> +   isc->config_rlp = isc_sama7g5_config_rlp;
+> >>> +   isc->config_ctrls = isc_sama7g5_config_ctrls;
+> >>> +
+> >>> +   isc->adapt_pipeline = isc_sama7g5_adapt_pipeline;
+> >>> +
+> >>> +   isc->offsets.csc = ISC_SAMA7G5_CSC_OFFSET;
+> >>> +   isc->offsets.cbc = ISC_SAMA7G5_CBC_OFFSET;
+> >>> +   isc->offsets.sub422 = ISC_SAMA7G5_SUB422_OFFSET;
+> >>> +   isc->offsets.sub420 = ISC_SAMA7G5_SUB420_OFFSET;
+> >>> +   isc->offsets.rlp = ISC_SAMA7G5_RLP_OFFSET;
+> >>> +   isc->offsets.his = ISC_SAMA7G5_HIS_OFFSET;
+> >>> +   isc->offsets.dma = ISC_SAMA7G5_DMA_OFFSET;
+> >>> +   isc->offsets.version = ISC_SAMA7G5_VERSION_OFFSET;
+> >>> +   isc->offsets.his_entry = ISC_SAMA7G5_HIS_ENTRY_OFFSET;
+> >>> +
+> >>> +   isc->controller_formats = sama7g5_controller_formats;
+> >>> +   isc->controller_formats_size = ARRAY_SIZE(sama7g5_controller_formats);
+> >>> +   isc->formats_list = sama7g5_formats_list;
+> >>> +   isc->formats_list_size = ARRAY_SIZE(sama7g5_formats_list);
+> >>> +
+> >>> +   /* sama7g5-isc RAM access port is full AXI4 - 32 bits per beat */
+> >>> +   isc->dcfg = ISC_DCFG_YMBSIZE_BEATS32 | ISC_DCFG_CMBSIZE_BEATS32;
+> >>> +
+> >>> +   ret = isc_pipeline_init(isc);
+> >>> +   if (ret)
+> >>> +           return ret;
+> >>> +
+> >>> +   isc->hclock = devm_clk_get(dev, "hclock");
+> >>> +   if (IS_ERR(isc->hclock)) {
+> >>> +           ret = PTR_ERR(isc->hclock);
+> >>> +           dev_err(dev, "failed to get hclock: %d\n", ret);
+> >>> +           return ret;
+> >>> +   }
+> >>> +
+> >>> +   ret = clk_prepare_enable(isc->hclock);
+> >>> +   if (ret) {
+> >>> +           dev_err(dev, "failed to enable hclock: %d\n", ret);
+> >>> +           return ret;
+> >>> +   }
+> >>> +
+> >>> +   ret = isc_clk_init(isc);
+> >>> +   if (ret) {
+> >>> +           dev_err(dev, "failed to init isc clock: %d\n", ret);
+> >>> +           goto unprepare_hclk;
+> >>> +   }
+> >>> +
+> >>> +   isc->ispck = isc->isc_clks[ISC_ISPCK].clk;
+> >>> +
+> >>> +   ret = clk_prepare_enable(isc->ispck);
+> >>> +   if (ret) {
+> >>> +           dev_err(dev, "failed to enable ispck: %d\n", ret);
+> >>> +           goto unprepare_hclk;
+> >>> +   }
+> >>> +
+> >>> +   /* ispck should be greater or equal to hclock */
+> >>> +   ret = clk_set_rate(isc->ispck, clk_get_rate(isc->hclock));
+> >>> +   if (ret) {
+> >>> +           dev_err(dev, "failed to set ispck rate: %d\n", ret);
+> >>> +           goto unprepare_clk;
+> >>> +   }
+> >>> +
+> >>> +   ret = v4l2_device_register(dev, &isc->v4l2_dev);
+> >>> +   if (ret) {
+> >>> +           dev_err(dev, "unable to register v4l2 device.\n");
+> >>> +           goto unprepare_clk;
+> >>> +   }
+> >>> +
+> >>> +   ret = xisc_parse_dt(dev, isc);
+> >>> +   if (ret) {
+> >>> +           dev_err(dev, "fail to parse device tree\n");
+> >>> +           goto unregister_v4l2_device;
+> >>> +   }
+> >>> +
+> >>> +   if (list_empty(&isc->subdev_entities)) {
+> >>> +           dev_err(dev, "no subdev found\n");
+> >>> +           ret = -ENODEV;
+> >>> +           goto unregister_v4l2_device;
+> >>> +   }
+> >>> +
+> >>> +   list_for_each_entry(subdev_entity, &isc->subdev_entities, list) {
+> >>> +           struct v4l2_async_subdev *asd;
+> >>> +
+> >>> +           v4l2_async_notifier_init(&subdev_entity->notifier);
+> >>> +
+> >>> +           asd = v4l2_async_notifier_add_fwnode_remote_subdev(
+> >>> +                                   &subdev_entity->notifier,
+> >>> +                                   of_fwnode_handle(subdev_entity->epn),
+> >>> +                                   struct v4l2_async_subdev);
+> >>> +
+> >>> +           of_node_put(subdev_entity->epn);
+> >>> +           subdev_entity->epn = NULL;
+> >>> +
+> >>> +           if (IS_ERR(asd)) {
+> >>> +                   ret = PTR_ERR(asd);
+> >>> +                   goto cleanup_subdev;
+> >>> +           }
+> >>> +
+> >>> +           subdev_entity->notifier.ops = &isc_async_ops;
+> >>> +
+> >>> +           ret = v4l2_async_notifier_register(&isc->v4l2_dev,
+> >>> +                                              &subdev_entity->notifier);
+> >>> +           if (ret) {
+> >>> +                   dev_err(dev, "fail to register async notifier\n");
+> >>> +                   goto cleanup_subdev;
+> >>> +           }
+> >>> +
+> >>> +           if (video_is_registered(&isc->video_dev))
+> >>> +                   break;
+> >>> +   }
+> >>> +
+> >>> +   pm_runtime_set_active(dev);
+> >>> +   pm_runtime_enable(dev);
+> >>> +   pm_request_idle(dev);
+> >>> +
+> >>> +   regmap_read(isc->regmap, ISC_VERSION + isc->offsets.version, &ver);
+> >>> +   dev_info(dev, "Microchip XISC version %x\n", ver);
+> >>> +
+> >>> +   return 0;
+> >>> +
+> >>> +cleanup_subdev:
+> >>> +   isc_subdev_cleanup(isc);
+> >>> +
+> >>> +unregister_v4l2_device:
+> >>> +   v4l2_device_unregister(&isc->v4l2_dev);
+> >>> +
+> >>> +unprepare_clk:
+> >>> +   clk_disable_unprepare(isc->ispck);
+> >>> +unprepare_hclk:
+> >>> +   clk_disable_unprepare(isc->hclock);
+> >>> +
+> >>> +   isc_clk_cleanup(isc);
+> >>> +
+> >>> +   return ret;
+> >>> +}
+> >>> +
+> >>> +static int microchip_xisc_remove(struct platform_device *pdev)
+> >>> +{
+> >>> +   struct isc_device *isc = platform_get_drvdata(pdev);
+> >>> +
+> >>> +   pm_runtime_disable(&pdev->dev);
+> >>> +
+> >>> +   isc_subdev_cleanup(isc);
+> >>> +
+> >>> +   v4l2_device_unregister(&isc->v4l2_dev);
+> >>> +
+> >>> +   clk_disable_unprepare(isc->ispck);
+> >>> +   clk_disable_unprepare(isc->hclock);
+> >>> +
+> >>> +   isc_clk_cleanup(isc);
+> >>> +
+> >>> +   return 0;
+> >>> +}
+> >>> +
+> >>> +static int __maybe_unused xisc_runtime_suspend(struct device *dev)
+> >>> +{
+> >>> +   struct isc_device *isc = dev_get_drvdata(dev);
+> >>> +
+> >>> +   clk_disable_unprepare(isc->ispck);
+> >>> +   clk_disable_unprepare(isc->hclock);
+> >>> +
+> >>> +   return 0;
+> >>> +}
+> >>> +
+> >>> +static int __maybe_unused xisc_runtime_resume(struct device *dev)
+> >>> +{
+> >>> +   struct isc_device *isc = dev_get_drvdata(dev);
+> >>> +   int ret;
+> >>> +
+> >>> +   ret = clk_prepare_enable(isc->hclock);
+> >>> +   if (ret)
+> >>> +           return ret;
+> >>> +
+> >>> +   ret = clk_prepare_enable(isc->ispck);
+> >>> +   if (ret)
+> >>> +           clk_disable_unprepare(isc->hclock);
+> >>> +
+> >>> +   return ret;
+> >>> +}
+> >>> +
+> >>> +static const struct dev_pm_ops microchip_xisc_dev_pm_ops = {
+> >>> +   SET_RUNTIME_PM_OPS(xisc_runtime_suspend, xisc_runtime_resume, NULL)
+> >>> +};
+> >>> +
+> >>> +static const struct of_device_id microchip_xisc_of_match[] = {
+> >>> +   { .compatible = "microchip,sama7g5-isc" },
+> >>> +   { }
+> >>> +};
+> >>> +MODULE_DEVICE_TABLE(of, microchip_xisc_of_match);
+> >>> +
+> >>> +static struct platform_driver microchip_xisc_driver = {
+> >>> +   .probe  = microchip_xisc_probe,
+> >>> +   .remove = microchip_xisc_remove,
+> >>> +   .driver = {
+> >>> +           .name           = "microchip-sama7g5-xisc",
+> >>> +           .pm             = &microchip_xisc_dev_pm_ops,
+> >>> +           .of_match_table = of_match_ptr(microchip_xisc_of_match),
+> >>> +   },
+> >>> +};
+> >>> +
+> >>> +module_platform_driver(microchip_xisc_driver);
+> >>> +
+> >>> +MODULE_AUTHOR("Eugen Hristev <eugen.hristev@microchip.com>");
+> >>> +MODULE_DESCRIPTION("The V4L2 driver for Microchip-XISC");
+> >>> +MODULE_LICENSE("GPL v2");
+> >>> +MODULE_SUPPORTED_DEVICE("video");
+> >>>
+> >>
+>
