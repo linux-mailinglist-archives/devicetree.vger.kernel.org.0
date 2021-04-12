@@ -2,127 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1B5A35BC05
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 10:23:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99B2035BC11
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 10:26:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237300AbhDLIXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 04:23:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58660 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237284AbhDLIXp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 04:23:45 -0400
-Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 698D3C06138C
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 01:23:24 -0700 (PDT)
-Received: by mail-vs1-xe2d.google.com with SMTP id x14so1511393vsc.5
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 01:23:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=U3KvNK5Z0Y0b8uUls56fLMW/SjSCKNnm377bqkslXR8=;
-        b=XV1PbJ+lqigLdhRMkPoUSk3eluxQLHpAeYhojQKjAFRLh73UBVZravfBUk/6TYQ6JZ
-         Z1ga5Bk6TFjE8hY8ks7CpxDTwodN2YqGYM+WIUBjWz4NtIukPNPtuVV/sm8X/hnqXzlQ
-         FLOLj9c9r7tul6Lx5HRsd57MhXsVAmFOaRXBXej2siKsZXi7n5kmY2HWP7yJb9VzjPiM
-         EHV0KxKDvRELffiMpqo/+qlpoJnAkRo9mf1WC89QhOyjEM6wCQMjnXsnpvUNtlZCnmdt
-         gmkl2sQoD6/XWE3LT8o+fJtdCAaomGlMqX+vOqUpGqoeKV5aK1YZyD2AcJYq0Nvrzey8
-         klkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=U3KvNK5Z0Y0b8uUls56fLMW/SjSCKNnm377bqkslXR8=;
-        b=ryC9pEJ0yxKjHJOZp0rTiV1vnoRgcgRcqmy5wf1/jl56jxgpr2TToz6gG2CzI6VBaa
-         SqmxujPT0y36pT+MaFOUSDkF4JEguVHDBGiEZMtbELkbqb6rfbRDLn4GXMr8YVvNKphU
-         e1nUwWdiYN2xQa+piloH1whHOhtHBnox+ZA9fU4OU/03sT2aqvqSpVYTuUKmHPptXcWM
-         BgJeI8N749bg16QBWN3mzoFqV255/66wXh3JE0X3y1mxi7uoB6VM3uJi/ofVKAjMkEWU
-         F82pCyFrZR2wfSw0vAXfA2DR+ME742X9v7jZ5GZN7W9Y3jURb8V/joFdabgbY8/x/he6
-         Z8bA==
-X-Gm-Message-State: AOAM533MKfMMo+w37y9WDX6u7xUX7EN6iyQAWhOAdk+xFZG3SgcfS7M0
-        b/QWSfbvWF+R88oszXhisg5FPcGPdZbr8aw+Mog4fQ==
-X-Google-Smtp-Source: ABdhPJyrFlHZnGVUhfAiIaP7BcJxpBhp1fb8R1xQW2iTt60VxLne7puTBy7KBNawo5+T+YMuV2eaUOPVM9+WUyAOS18=
-X-Received: by 2002:a67:fd48:: with SMTP id g8mr11986932vsr.55.1618215803602;
- Mon, 12 Apr 2021 01:23:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210315132501.441681-1-Jerome.Pouiller@silabs.com>
- <4503971.bAhddQ8uqO@pc-42> <CAPDyKFoXgV3m-rMKfjqRj91PNjOGaWg6odWG-EGdFKkL+dGWoA@mail.gmail.com>
- <5713463.b6Cmjs1FeV@pc-42> <CAPDyKFrONrUvbVVVF9iy4P17jZ_Fq+1pGMmsqM6C1hOXOWQnBw@mail.gmail.com>
- <87pmz6mhim.fsf@codeaurora.org>
-In-Reply-To: <87pmz6mhim.fsf@codeaurora.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 12 Apr 2021 10:22:47 +0200
-Message-ID: <CAPDyKFrgrSAz-B7wqNNPKk3kB8UqhGs=+bZ8RRhmqh8HuvhcEQ@mail.gmail.com>
-Subject: Re: [PATCH v5 08/24] wfx: add bus_sdio.c
-To:     Kalle Valo <kvalo@codeaurora.org>
-Cc:     =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>,
-        linux-wireless <linux-wireless@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
+        id S237125AbhDLI0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 04:26:48 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:30355 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S236920AbhDLI0s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 04:26:48 -0400
+X-UUID: a80b141abf854893bc1027ae1b2b9d47-20210412
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Y91UEmfxo7TkpOZVpCYGKgvp4y4pf+m89LKPd0OxcK4=;
+        b=RzO6BybYYY38IsgRukGVIxmzbrYz1nkn3ElICYwLBFwJ1AJhLY/GfdL4DqfyzwlOb5PANFkqw5H5t9n4DH13MjAJQfUNVFPN2AGiEpKno3Cpq3rX0E/y4TlzKreI5IUDWpo7yB4LVfiDR1Fin+EFY877L0fvri9hOedIAPFUPlc=;
+X-UUID: a80b141abf854893bc1027ae1b2b9d47-20210412
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 5040697; Mon, 12 Apr 2021 16:26:19 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 12 Apr 2021 16:26:10 +0800
+Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 12 Apr 2021 16:26:10 +0800
+Message-ID: <1618215970.12699.1.camel@mtksdaap41>
+Subject: Re: [PATCH v1, 1/3] drm/mediatek: Separate aal module
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 12 Apr 2021 16:26:10 +0800
+In-Reply-To: <1618209347-10816-2-git-send-email-yongqiang.niu@mediatek.com>
+References: <1618209347-10816-1-git-send-email-yongqiang.niu@mediatek.com>
+         <1618209347-10816-2-git-send-email-yongqiang.niu@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 27C6CF159EDE7255DBEF1023E083CF953D637FF058428D7D3978E29C13898F522000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 7 Apr 2021 at 14:00, Kalle Valo <kvalo@codeaurora.org> wrote:
->
-> Ulf Hansson <ulf.hansson@linaro.org> writes:
->
-> >> If I follow what has been done in other drivers I would write something
-> >> like:
-> >>
-> >>   static int wfx_sdio_suspend(struct device *dev)
-> >>   {
-> >>           struct sdio_func *func = dev_to_sdio_func(dev);
-> >>           struct wfx_sdio_priv *bus = sdio_get_drvdata(func);
-> >>
-> >>           config_reg_write_bits(bus->core, CFG_IRQ_ENABLE_DATA, 0);
-> >>           // Necessary to keep device firmware in RAM
-> >>           return sdio_set_host_pm_flags(func, MMC_PM_KEEP_POWER);
-> >
-> > This will tell the mmc/sdio core to keep the SDIO card powered on
-> > during system suspend. Thus, it doesn't need to re-initialize it at
-> > system resume - and the firmware should not need to be re-programmed.
-> >
-> > On the other hand, if you don't plan to support system wakeups, it
-> > would probably be better to power off the card, to avoid wasting
-> > energy while the system is suspended. I assume that means you need to
-> > re-program the firmware as well. Normally, it's these kinds of things
-> > that need to be managed from a ->resume() callback.
->
-> Many mac80211 drivers do so that the device is powered off during
-> interface down (ifconfig wlan0 down), and as mac80211 does interface
-> down automatically during suspend, suspend then works without extra
-> handlers.
+SGksIFlvbmdxaWFuZzoNCg0KT24gTW9uLCAyMDIxLTA0LTEyIGF0IDE0OjM1ICswODAwLCBZb25n
+cWlhbmcgTml1IHdyb3RlOg0KPiBtdDgxODMgYWFsIGhhcyBubyBnYW1tYSBmdW5jdGlvbg0KDQpT
+ZXBhcmF0ZSB0aGlzIHBhdGNoIHRvIHR3byBwYXRjaDogb25lIGlzIGFkZCBoYXNfZ2FtbWEgY29u
+ZmlnIGluIGFhbC4NCmFub3RoZXIgb25lIGlzIGFkZCBtdDgxODMgYWFsIHN1cHBvcnQuDQoNClJl
+Z2FyZHMsDQpDSw0KDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBZb25ncWlhbmcgTml1IDx5b25ncWlh
+bmcubml1QG1lZGlhdGVrLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsv
+TWFrZWZpbGUgICAgICAgICAgIHwgICAzICstDQo+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsv
+bXRrX2Rpc3BfYWFsLmMgICAgIHwgMTY3ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysNCj4g
+IGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9kcnYuaCAgICAgfCAgIDkgKysNCj4g
+IGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2RkcF9jb21wLmMgfCAgMzkgKy0tLS0t
+LQ0KPiAgZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1fZHJ2LmMgICAgICB8ICAgOCAr
+LQ0KPiAgZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1fZHJ2LmggICAgICB8ICAgMSAr
+DQo+ICA2IGZpbGVzIGNoYW5nZWQsIDE4NyBpbnNlcnRpb25zKCspLCA0MCBkZWxldGlvbnMoLSkN
+Cj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3Bf
+YWFsLmMNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvTWFrZWZp
+bGUgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvTWFrZWZpbGUNCj4gaW5kZXggZGM1NGE3YS4u
+MjkwOThkNyAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL01ha2VmaWxl
+DQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9NYWtlZmlsZQ0KPiBAQCAtMSw2ICsx
+LDcgQEANCj4gICMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjANCj4gIA0KPiAtbWVk
+aWF0ZWstZHJtLXkgOj0gbXRrX2Rpc3BfY2NvcnIubyBcDQo+ICttZWRpYXRlay1kcm0teSA6PSBt
+dGtfZGlzcF9hYWwubyBcDQo+ICsJCSAgbXRrX2Rpc3BfY2NvcnIubyBcDQo+ICAJCSAgbXRrX2Rp
+c3BfY29sb3IubyBcDQo+ICAJCSAgbXRrX2Rpc3BfZ2FtbWEubyBcDQo+ICAJCSAgbXRrX2Rpc3Bf
+b3ZsLm8gXA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNw
+X2FhbC5jIGIvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX2FhbC5jDQo+IG5ldyBm
+aWxlIG1vZGUgMTAwNjQ0DQo+IGluZGV4IDAwMDAwMDAuLjY0YjQ1MjgNCj4gLS0tIC9kZXYvbnVs
+bA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3BfYWFsLmMNCj4gQEAg
+LTAsMCArMSwxNjcgQEANCj4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9u
+bHkNCj4gKy8qDQo+ICsgKiBDb3B5cmlnaHQgKGMpIDIwMjEgTWVkaWFUZWsgSW5jLg0KPiArICov
+DQo+ICsNCj4gKyNpbmNsdWRlIDxsaW51eC9jbGsuaD4NCj4gKyNpbmNsdWRlIDxsaW51eC9jb21w
+b25lbnQuaD4NCj4gKyNpbmNsdWRlIDxsaW51eC9tb2R1bGUuaD4NCj4gKyNpbmNsdWRlIDxsaW51
+eC9vZl9kZXZpY2UuaD4NCj4gKyNpbmNsdWRlIDxsaW51eC9vZl9pcnEuaD4NCj4gKyNpbmNsdWRl
+IDxsaW51eC9wbGF0Zm9ybV9kZXZpY2UuaD4NCj4gKyNpbmNsdWRlIDxsaW51eC9zb2MvbWVkaWF0
+ZWsvbXRrLWNtZHEuaD4NCj4gKw0KPiArI2luY2x1ZGUgIm10a19kaXNwX2Rydi5oIg0KPiArI2lu
+Y2x1ZGUgIm10a19kcm1fY3J0Yy5oIg0KPiArI2luY2x1ZGUgIm10a19kcm1fZGRwX2NvbXAuaCIN
+Cj4gKw0KPiArI2RlZmluZSBESVNQX0FBTF9FTgkJCQkweDAwMDANCj4gKyNkZWZpbmUgQUFMX0VO
+CQkJCQkJQklUKDApDQo+ICsjZGVmaW5lIERJU1BfQUFMX1NJWkUJCQkJMHgwMDMwDQo+ICsNCj4g
+Kw0KPiArc3RydWN0IG10a19kaXNwX2FhbF9kYXRhIHsNCj4gKwlib29sIGhhc19nYW1tYTsNCj4g
+K307DQo+ICsNCj4gKy8qKg0KPiArICogc3RydWN0IG10a19kaXNwX2FhbCAtIERJU1BfQUFMIGRy
+aXZlciBzdHJ1Y3R1cmUNCj4gKyAqIEBkZHBfY29tcCAtIHN0cnVjdHVyZSBjb250YWluaW5nIHR5
+cGUgZW51bSBhbmQgaGFyZHdhcmUgcmVzb3VyY2VzDQo+ICsgKiBAY3J0YyAtIGFzc29jaWF0ZWQg
+Y3J0YyB0byByZXBvcnQgaXJxIGV2ZW50cyB0bw0KPiArICovDQo+ICtzdHJ1Y3QgbXRrX2Rpc3Bf
+YWFsIHsNCj4gKwlzdHJ1Y3QgY2xrICpjbGs7DQo+ICsJdm9pZCBfX2lvbWVtICpyZWdzOw0KPiAr
+CXN0cnVjdCBjbWRxX2NsaWVudF9yZWcgY21kcV9yZWc7DQo+ICsJY29uc3Qgc3RydWN0IG10a19k
+aXNwX2FhbF9kYXRhICpkYXRhOw0KPiArfTsNCj4gKw0KPiAraW50IG10a19hYWxfY2xrX2VuYWJs
+ZShzdHJ1Y3QgZGV2aWNlICpkZXYpDQo+ICt7DQo+ICsJc3RydWN0IG10a19kaXNwX2FhbCAqYWFs
+ID0gZGV2X2dldF9kcnZkYXRhKGRldik7DQo+ICsNCj4gKwlyZXR1cm4gY2xrX3ByZXBhcmVfZW5h
+YmxlKGFhbC0+Y2xrKTsNCj4gK30NCj4gKw0KPiArdm9pZCBtdGtfYWFsX2Nsa19kaXNhYmxlKHN0
+cnVjdCBkZXZpY2UgKmRldikNCj4gK3sNCj4gKwlzdHJ1Y3QgbXRrX2Rpc3BfYWFsICphYWwgPSBk
+ZXZfZ2V0X2RydmRhdGEoZGV2KTsNCj4gKw0KPiArCWNsa19kaXNhYmxlX3VucHJlcGFyZShhYWwt
+PmNsayk7DQo+ICt9DQo+ICsNCj4gK3ZvaWQgbXRrX2FhbF9jb25maWcoc3RydWN0IGRldmljZSAq
+ZGV2LCB1bnNpZ25lZCBpbnQgdywNCj4gKwkJCSAgIHVuc2lnbmVkIGludCBoLCB1bnNpZ25lZCBp
+bnQgdnJlZnJlc2gsDQo+ICsJCQkgICB1bnNpZ25lZCBpbnQgYnBjLCBzdHJ1Y3QgY21kcV9wa3Qg
+KmNtZHFfcGt0KQ0KPiArew0KPiArCXN0cnVjdCBtdGtfZGlzcF9hYWwgKmFhbCA9IGRldl9nZXRf
+ZHJ2ZGF0YShkZXYpOw0KPiArDQo+ICsJbXRrX2RkcF93cml0ZShjbWRxX3BrdCwgdyA8PCAxNiB8
+IGgsICZhYWwtPmNtZHFfcmVnLCBhYWwtPnJlZ3MsIERJU1BfQUFMX1NJWkUpOw0KPiArfQ0KPiAr
+DQo+ICt2b2lkIG10a19hYWxfZ2FtbWFfc2V0KHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IGRy
+bV9jcnRjX3N0YXRlICpzdGF0ZSkNCj4gK3sNCj4gKwlzdHJ1Y3QgbXRrX2Rpc3BfYWFsICphYWwg
+PSBkZXZfZ2V0X2RydmRhdGEoZGV2KTsNCj4gKw0KPiArCWlmIChhYWwtPmRhdGEgJiYgYWFsLT5k
+YXRhLT5oYXNfZ2FtbWEpDQo+ICsJCW10a19nYW1tYV9zZXRfY29tbW9uKGFhbC0+cmVncywgc3Rh
+dGUpOw0KPiArfQ0KPiArDQo+ICt2b2lkIG10a19hYWxfc3RhcnQoc3RydWN0IGRldmljZSAqZGV2
+KQ0KPiArew0KPiArCXN0cnVjdCBtdGtfZGlzcF9hYWwgKmFhbCA9IGRldl9nZXRfZHJ2ZGF0YShk
+ZXYpOw0KPiArDQo+ICsJd3JpdGVsKEFBTF9FTiwgYWFsLT5yZWdzICsgRElTUF9BQUxfRU4pOw0K
+PiArfQ0KPiArDQo+ICt2b2lkIG10a19hYWxfc3RvcChzdHJ1Y3QgZGV2aWNlICpkZXYpDQo+ICt7
+DQo+ICsJc3RydWN0IG10a19kaXNwX2FhbCAqYWFsID0gZGV2X2dldF9kcnZkYXRhKGRldik7DQo+
+ICsNCj4gKwl3cml0ZWxfcmVsYXhlZCgweDAsIGFhbC0+cmVncyArIERJU1BfQUFMX0VOKTsNCj4g
+K30NCj4gKw0KPiArc3RhdGljIGludCBtdGtfZGlzcF9hYWxfYmluZChzdHJ1Y3QgZGV2aWNlICpk
+ZXYsIHN0cnVjdCBkZXZpY2UgKm1hc3RlciwNCj4gKwkJCSAgICAgICB2b2lkICpkYXRhKQ0KPiAr
+ew0KPiArCXJldHVybiAwOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgdm9pZCBtdGtfZGlzcF9hYWxf
+dW5iaW5kKHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IGRldmljZSAqbWFzdGVyLA0KPiArCQkJ
+CSAgdm9pZCAqZGF0YSkNCj4gK3sNCj4gK30NCj4gKw0KPiArc3RhdGljIGNvbnN0IHN0cnVjdCBj
+b21wb25lbnRfb3BzIG10a19kaXNwX2FhbF9jb21wb25lbnRfb3BzID0gew0KPiArCS5iaW5kCT0g
+bXRrX2Rpc3BfYWFsX2JpbmQsDQo+ICsJLnVuYmluZCA9IG10a19kaXNwX2FhbF91bmJpbmQsDQo+
+ICt9Ow0KPiArDQo+ICtzdGF0aWMgaW50IG10a19kaXNwX2FhbF9wcm9iZShzdHJ1Y3QgcGxhdGZv
+cm1fZGV2aWNlICpwZGV2KQ0KPiArew0KPiArCXN0cnVjdCBkZXZpY2UgKmRldiA9ICZwZGV2LT5k
+ZXY7DQo+ICsJc3RydWN0IG10a19kaXNwX2FhbCAqcHJpdjsNCj4gKwlzdHJ1Y3QgcmVzb3VyY2Ug
+KnJlczsNCj4gKwlpbnQgcmV0Ow0KPiArDQo+ICsJcHJpdiA9IGRldm1fa3phbGxvYyhkZXYsIHNp
+emVvZigqcHJpdiksIEdGUF9LRVJORUwpOw0KPiArCWlmICghcHJpdikNCj4gKwkJcmV0dXJuIC1F
+Tk9NRU07DQo+ICsNCj4gKwlwcml2LT5jbGsgPSBkZXZtX2Nsa19nZXQoZGV2LCBOVUxMKTsNCj4g
+KwlpZiAoSVNfRVJSKHByaXYtPmNsaykpIHsNCj4gKwkJZGV2X2VycihkZXYsICJmYWlsZWQgdG8g
+Z2V0IGFhbCBjbGtcbiIpOw0KPiArCQlyZXR1cm4gUFRSX0VSUihwcml2LT5jbGspOw0KPiArCX0N
+Cj4gKw0KPiArCXJlcyA9IHBsYXRmb3JtX2dldF9yZXNvdXJjZShwZGV2LCBJT1JFU09VUkNFX01F
+TSwgMCk7DQo+ICsJcHJpdi0+cmVncyA9IGRldm1faW9yZW1hcF9yZXNvdXJjZShkZXYsIHJlcyk7
+DQo+ICsJaWYgKElTX0VSUihwcml2LT5yZWdzKSkgew0KPiArCQlkZXZfZXJyKGRldiwgImZhaWxl
+ZCB0byBpb3JlbWFwIGFhbFxuIik7DQo+ICsJCXJldHVybiBQVFJfRVJSKHByaXYtPnJlZ3MpOw0K
+PiArCX0NCj4gKw0KPiArI2lmIElTX1JFQUNIQUJMRShDT05GSUdfTVRLX0NNRFEpDQo+ICsJcmV0
+ID0gY21kcV9kZXZfZ2V0X2NsaWVudF9yZWcoZGV2LCAmcHJpdi0+Y21kcV9yZWcsIDApOw0KPiAr
+CWlmIChyZXQpDQo+ICsJCWRldl9kYmcoZGV2LCAiZ2V0IG1lZGlhdGVrLGdjZS1jbGllbnQtcmVn
+IGZhaWwhXG4iKTsNCj4gKyNlbmRpZg0KPiArDQo+ICsJcHJpdi0+ZGF0YSA9IG9mX2RldmljZV9n
+ZXRfbWF0Y2hfZGF0YShkZXYpOw0KPiArCXBsYXRmb3JtX3NldF9kcnZkYXRhKHBkZXYsIHByaXYp
+Ow0KPiArDQo+ICsJcmV0ID0gY29tcG9uZW50X2FkZChkZXYsICZtdGtfZGlzcF9hYWxfY29tcG9u
+ZW50X29wcyk7DQo+ICsJaWYgKHJldCkNCj4gKwkJZGV2X2VycihkZXYsICJGYWlsZWQgdG8gYWRk
+IGNvbXBvbmVudDogJWRcbiIsIHJldCk7DQo+ICsNCj4gKwlyZXR1cm4gcmV0Ow0KPiArfQ0KPiAr
+DQo+ICtzdGF0aWMgaW50IG10a19kaXNwX2FhbF9yZW1vdmUoc3RydWN0IHBsYXRmb3JtX2Rldmlj
+ZSAqcGRldikNCj4gK3sNCj4gKwljb21wb25lbnRfZGVsKCZwZGV2LT5kZXYsICZtdGtfZGlzcF9h
+YWxfY29tcG9uZW50X29wcyk7DQo+ICsNCj4gKwlyZXR1cm4gMDsNCj4gK30NCj4gKw0KPiArc3Rh
+dGljIGNvbnN0IHN0cnVjdCBtdGtfZGlzcF9hYWxfZGF0YSBtdDgxNzNfYWFsX2RyaXZlcl9kYXRh
+ID0gew0KPiArCS5oYXNfZ2FtbWEgPSB0cnVlLA0KPiArfTsNCj4gKw0KPiArc3RhdGljIGNvbnN0
+IHN0cnVjdCBvZl9kZXZpY2VfaWQgbXRrX2Rpc3BfYWFsX2RyaXZlcl9kdF9tYXRjaFtdID0gew0K
+PiArCXsgLmNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTczLWRpc3AtYWFsIiwNCj4gKwkgIC5k
+YXRhID0gJm10ODE3M19hYWxfZHJpdmVyX2RhdGF9LA0KPiArCXsgLmNvbXBhdGlibGUgPSAibWVk
+aWF0ZWssbXQ4MTgzLWRpc3AtYWFsIn0sDQo+ICsJe30sDQo+ICt9Ow0KPiArTU9EVUxFX0RFVklD
+RV9UQUJMRShvZiwgbXRrX2Rpc3BfYWFsX2RyaXZlcl9kdF9tYXRjaCk7DQo+ICsNCj4gK3N0cnVj
+dCBwbGF0Zm9ybV9kcml2ZXIgbXRrX2Rpc3BfYWFsX2RyaXZlciA9IHsNCj4gKwkucHJvYmUJCT0g
+bXRrX2Rpc3BfYWFsX3Byb2JlLA0KPiArCS5yZW1vdmUJCT0gbXRrX2Rpc3BfYWFsX3JlbW92ZSwN
+Cj4gKwkuZHJpdmVyCQk9IHsNCj4gKwkJLm5hbWUJPSAibWVkaWF0ZWstZGlzcC1hYWwiLA0KPiAr
+CQkub3duZXIJPSBUSElTX01PRFVMRSwNCj4gKwkJLm9mX21hdGNoX3RhYmxlID0gbXRrX2Rpc3Bf
+YWFsX2RyaXZlcl9kdF9tYXRjaCwNCj4gKwl9LA0KPiArfTsNCj4gZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9tZWRp
+YXRlay9tdGtfZGlzcF9kcnYuaA0KPiBpbmRleCBjYWZkOWRmLi44NmMzMDY4IDEwMDY0NA0KPiAt
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3BfZHJ2LmgNCj4gKysrIGIvZHJp
+dmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX2Rydi5oDQo+IEBAIC05LDYgKzksMTUgQEAN
+Cj4gICNpbmNsdWRlIDxsaW51eC9zb2MvbWVkaWF0ZWsvbXRrLWNtZHEuaD4NCj4gICNpbmNsdWRl
+ICJtdGtfZHJtX3BsYW5lLmgiDQo+ICANCj4gK2ludCBtdGtfYWFsX2Nsa19lbmFibGUoc3RydWN0
+IGRldmljZSAqZGV2KTsNCj4gK3ZvaWQgbXRrX2FhbF9jbGtfZGlzYWJsZShzdHJ1Y3QgZGV2aWNl
+ICpkZXYpOw0KPiArdm9pZCBtdGtfYWFsX2NvbmZpZyhzdHJ1Y3QgZGV2aWNlICpkZXYsIHVuc2ln
+bmVkIGludCB3LA0KPiArCQkgICAgdW5zaWduZWQgaW50IGgsIHVuc2lnbmVkIGludCB2cmVmcmVz
+aCwNCj4gKwkJICAgIHVuc2lnbmVkIGludCBicGMsIHN0cnVjdCBjbWRxX3BrdCAqY21kcV9wa3Qp
+Ow0KPiArdm9pZCBtdGtfYWFsX2dhbW1hX3NldChzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdCBk
+cm1fY3J0Y19zdGF0ZSAqc3RhdGUpOw0KPiArdm9pZCBtdGtfYWFsX3N0YXJ0KHN0cnVjdCBkZXZp
+Y2UgKmRldik7DQo+ICt2b2lkIG10a19hYWxfc3RvcChzdHJ1Y3QgZGV2aWNlICpkZXYpOw0KPiAr
+DQo+ICB2b2lkIG10a19jY29ycl9jdG1fc2V0KHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IGRy
+bV9jcnRjX3N0YXRlICpzdGF0ZSk7DQo+ICBpbnQgbXRrX2Njb3JyX2Nsa19lbmFibGUoc3RydWN0
+IGRldmljZSAqZGV2KTsNCj4gIHZvaWQgbXRrX2Njb3JyX2Nsa19kaXNhYmxlKHN0cnVjdCBkZXZp
+Y2UgKmRldik7DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Ry
+bV9kZHBfY29tcC5jIGIvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1fZGRwX2NvbXAu
+Yw0KPiBpbmRleCA3NWJjMDBlLi5mMzY3MTQyIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vbWVkaWF0ZWsvbXRrX2RybV9kZHBfY29tcC5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9t
+ZWRpYXRlay9tdGtfZHJtX2RkcF9jb21wLmMNCj4gQEAgLTMyLDkgKzMyLDYgQEANCj4gIA0KPiAg
+I2RlZmluZSBESVNQX1JFR19VRk9fU1RBUlQJCQkweDAwMDANCj4gIA0KPiAtI2RlZmluZSBESVNQ
+X0FBTF9FTgkJCQkweDAwMDANCj4gLSNkZWZpbmUgRElTUF9BQUxfU0laRQkJCQkweDAwMzANCj4g
+LQ0KPiAgI2RlZmluZSBESVNQX0RJVEhFUl9FTgkJCQkweDAwMDANCj4gICNkZWZpbmUgRElUSEVS
+X0VOCQkJCUJJVCgwKQ0KPiAgI2RlZmluZSBESVNQX0RJVEhFUl9DRkcJCQkJMHgwMDIwDQo+IEBA
+IC00OCw4ICs0NSw2IEBADQo+ICANCj4gICNkZWZpbmUgVUZPX0JZUEFTUwkJCQlCSVQoMikNCj4g
+IA0KPiAtI2RlZmluZSBBQUxfRU4JCQkJCUJJVCgwKQ0KPiAtDQo+ICAjZGVmaW5lIERJU1BfRElU
+SEVSSU5HCQkJCUJJVCgyKQ0KPiAgI2RlZmluZSBESVRIRVJfTFNCX0VSUl9TSElGVF9SKHgpCQko
+KCh4KSAmIDB4NykgPDwgMjgpDQo+ICAjZGVmaW5lIERJVEhFUl9PVkZMV19CSVRfUih4KQkJCSgo
+KHgpICYgMHg3KSA8PCAyNCkNCj4gQEAgLTE5MCwzNiArMTg1LDYgQEAgc3RhdGljIHZvaWQgbXRr
+X3Vmb2Vfc3RhcnQoc3RydWN0IGRldmljZSAqZGV2KQ0KPiAgCXdyaXRlbChVRk9fQllQQVNTLCBw
+cml2LT5yZWdzICsgRElTUF9SRUdfVUZPX1NUQVJUKTsNCj4gIH0NCj4gIA0KPiAtc3RhdGljIHZv
+aWQgbXRrX2FhbF9jb25maWcoc3RydWN0IGRldmljZSAqZGV2LCB1bnNpZ25lZCBpbnQgdywNCj4g
+LQkJCSAgIHVuc2lnbmVkIGludCBoLCB1bnNpZ25lZCBpbnQgdnJlZnJlc2gsDQo+IC0JCQkgICB1
+bnNpZ25lZCBpbnQgYnBjLCBzdHJ1Y3QgY21kcV9wa3QgKmNtZHFfcGt0KQ0KPiAtew0KPiAtCXN0
+cnVjdCBtdGtfZGRwX2NvbXBfZGV2ICpwcml2ID0gZGV2X2dldF9kcnZkYXRhKGRldik7DQo+IC0N
+Cj4gLQltdGtfZGRwX3dyaXRlKGNtZHFfcGt0LCB3IDw8IDE2IHwgaCwgJnByaXYtPmNtZHFfcmVn
+LCBwcml2LT5yZWdzLCBESVNQX0FBTF9TSVpFKTsNCj4gLX0NCj4gLQ0KPiAtc3RhdGljIHZvaWQg
+bXRrX2FhbF9nYW1tYV9zZXQoc3RydWN0IGRldmljZSAqZGV2LCBzdHJ1Y3QgZHJtX2NydGNfc3Rh
+dGUgKnN0YXRlKQ0KPiAtew0KPiAtCXN0cnVjdCBtdGtfZGRwX2NvbXBfZGV2ICpwcml2ID0gZGV2
+X2dldF9kcnZkYXRhKGRldik7DQo+IC0NCj4gLQltdGtfZ2FtbWFfc2V0X2NvbW1vbihwcml2LT5y
+ZWdzLCBzdGF0ZSk7DQo+IC19DQo+IC0NCj4gLXN0YXRpYyB2b2lkIG10a19hYWxfc3RhcnQoc3Ry
+dWN0IGRldmljZSAqZGV2KQ0KPiAtew0KPiAtCXN0cnVjdCBtdGtfZGRwX2NvbXBfZGV2ICpwcml2
+ID0gZGV2X2dldF9kcnZkYXRhKGRldik7DQo+IC0NCj4gLQl3cml0ZWwoQUFMX0VOLCBwcml2LT5y
+ZWdzICsgRElTUF9BQUxfRU4pOw0KPiAtfQ0KPiAtDQo+IC1zdGF0aWMgdm9pZCBtdGtfYWFsX3N0
+b3Aoc3RydWN0IGRldmljZSAqZGV2KQ0KPiAtew0KPiAtCXN0cnVjdCBtdGtfZGRwX2NvbXBfZGV2
+ICpwcml2ID0gZGV2X2dldF9kcnZkYXRhKGRldik7DQo+IC0NCj4gLQl3cml0ZWxfcmVsYXhlZCgw
+eDAsIHByaXYtPnJlZ3MgKyBESVNQX0FBTF9FTik7DQo+IC19DQo+IC0NCj4gIHN0YXRpYyB2b2lk
+IG10a19kaXRoZXJfY29uZmlnKHN0cnVjdCBkZXZpY2UgKmRldiwgdW5zaWduZWQgaW50IHcsDQo+
+ICAJCQkgICAgICB1bnNpZ25lZCBpbnQgaCwgdW5zaWduZWQgaW50IHZyZWZyZXNoLA0KPiAgCQkJ
+ICAgICAgdW5zaWduZWQgaW50IGJwYywgc3RydWN0IGNtZHFfcGt0ICpjbWRxX3BrdCkNCj4gQEAg
+LTI0Nyw4ICsyMTIsOCBAQCBzdGF0aWMgdm9pZCBtdGtfZGl0aGVyX3N0b3Aoc3RydWN0IGRldmlj
+ZSAqZGV2KQ0KPiAgfQ0KPiAgDQo+ICBzdGF0aWMgY29uc3Qgc3RydWN0IG10a19kZHBfY29tcF9m
+dW5jcyBkZHBfYWFsID0gew0KPiAtCS5jbGtfZW5hYmxlID0gbXRrX2RkcF9jbGtfZW5hYmxlLA0K
+PiAtCS5jbGtfZGlzYWJsZSA9IG10a19kZHBfY2xrX2Rpc2FibGUsDQo+ICsJLmNsa19lbmFibGUg
+PSBtdGtfYWFsX2Nsa19lbmFibGUsDQo+ICsJLmNsa19kaXNhYmxlID0gbXRrX2FhbF9jbGtfZGlz
+YWJsZSwNCj4gIAkuZ2FtbWFfc2V0ID0gbXRrX2FhbF9nYW1tYV9zZXQsDQo+ICAJLmNvbmZpZyA9
+IG10a19hYWxfY29uZmlnLA0KPiAgCS5zdGFydCA9IG10a19hYWxfc3RhcnQsDQo+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kcnYuYyBiL2RyaXZlcnMvZ3B1
+L2RybS9tZWRpYXRlay9tdGtfZHJtX2Rydi5jDQo+IGluZGV4IGIwMTNkNTYuLmFlOGI2OWQgMTAw
+NjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2Rydi5jDQo+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2Rydi5jDQo+IEBAIC00MjAsNiAr
+NDIwLDggQEAgc3RhdGljIHZvaWQgbXRrX2RybV91bmJpbmQoc3RydWN0IGRldmljZSAqZGV2KQ0K
+PiAgCSAgLmRhdGEgPSAodm9pZCAqKU1US19ESVNQX0NPTE9SIH0sDQo+ICAJeyAuY29tcGF0aWJs
+ZSA9ICJtZWRpYXRlayxtdDgxNzMtZGlzcC1hYWwiLA0KPiAgCSAgLmRhdGEgPSAodm9pZCAqKU1U
+S19ESVNQX0FBTH0sDQo+ICsJeyAuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxODMtZGlzcC1h
+YWwiLA0KPiArCSAgLmRhdGEgPSAodm9pZCAqKU1US19ESVNQX0FBTH0sDQo+ICAJeyAuY29tcGF0
+aWJsZSA9ICJtZWRpYXRlayxtdDgxNzMtZGlzcC1nYW1tYSIsDQo+ICAJICAuZGF0YSA9ICh2b2lk
+ICopTVRLX0RJU1BfR0FNTUEsIH0sDQo+ICAJeyAuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgx
+ODMtZGlzcC1nYW1tYSIsDQo+IEBAIC01MzEsMTEgKzUzMywxMiBAQCBzdGF0aWMgaW50IG10a19k
+cm1fcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikNCj4gIAkJcHJpdmF0ZS0+Y29t
+cF9ub2RlW2NvbXBfaWRdID0gb2Zfbm9kZV9nZXQobm9kZSk7DQo+ICANCj4gIAkJLyoNCj4gLQkJ
+ICogQ3VycmVudGx5IG9ubHkgdGhlIENDT1JSLCBDT0xPUiwgR0FNTUEsIE9WTCwgUkRNQSwgRFNJ
+LCBhbmQgRFBJDQo+ICsJCSAqIEN1cnJlbnRseSBvbmx5IHRoZSBBQUwsIENDT1JSLCBDT0xPUiwg
+R0FNTUEsIE9WTCwgUkRNQSwgRFNJLCBhbmQgRFBJDQo+ICAJCSAqIGJsb2NrcyBoYXZlIHNlcGFy
+YXRlIGNvbXBvbmVudCBwbGF0Zm9ybSBkcml2ZXJzIGFuZCBpbml0aWFsaXplIHRoZWlyIG93bg0K
+PiAgCQkgKiBERFAgY29tcG9uZW50IHN0cnVjdHVyZS4gVGhlIG90aGVycyBhcmUgaW5pdGlhbGl6
+ZWQgaGVyZS4NCj4gIAkJICovDQo+IC0JCWlmIChjb21wX3R5cGUgPT0gTVRLX0RJU1BfQ0NPUlIg
+fHwNCj4gKwkJaWYgKGNvbXBfdHlwZSA9PSBNVEtfRElTUF9BQUwgfHwNCj4gKwkJICAgIGNvbXBf
+dHlwZSA9PSBNVEtfRElTUF9DQ09SUiB8fA0KPiAgCQkgICAgY29tcF90eXBlID09IE1US19ESVNQ
+X0NPTE9SIHx8DQo+ICAJCSAgICBjb21wX3R5cGUgPT0gTVRLX0RJU1BfR0FNTUEgfHwNCj4gIAkJ
+ICAgIGNvbXBfdHlwZSA9PSBNVEtfRElTUF9PVkwgfHwNCj4gQEAgLTYzNSw2ICs2MzgsNyBAQCBz
+dGF0aWMgU0lNUExFX0RFVl9QTV9PUFMobXRrX2RybV9wbV9vcHMsIG10a19kcm1fc3lzX3N1c3Bl
+bmQsDQo+ICB9Ow0KPiAgDQo+ICBzdGF0aWMgc3RydWN0IHBsYXRmb3JtX2RyaXZlciAqIGNvbnN0
+IG10a19kcm1fZHJpdmVyc1tdID0gew0KPiArCSZtdGtfZGlzcF9hYWxfZHJpdmVyLA0KPiAgCSZt
+dGtfZGlzcF9jY29ycl9kcml2ZXIsDQo+ICAJJm10a19kaXNwX2NvbG9yX2RyaXZlciwNCj4gIAkm
+bXRrX2Rpc3BfZ2FtbWFfZHJpdmVyLA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21l
+ZGlhdGVrL210a19kcm1fZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9k
+cnYuaA0KPiBpbmRleCA2MzdmNTY2Li4zZTdkMWU2IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kcnYuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVk
+aWF0ZWsvbXRrX2RybV9kcnYuaA0KPiBAQCAtNDYsNiArNDYsNyBAQCBzdHJ1Y3QgbXRrX2RybV9w
+cml2YXRlIHsNCj4gIAlzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3VzcGVuZF9zdGF0ZTsNCj4g
+IH07DQo+ICANCj4gK2V4dGVybiBzdHJ1Y3QgcGxhdGZvcm1fZHJpdmVyIG10a19kaXNwX2FhbF9k
+cml2ZXI7DQo+ICBleHRlcm4gc3RydWN0IHBsYXRmb3JtX2RyaXZlciBtdGtfZGlzcF9jY29ycl9k
+cml2ZXI7DQo+ICBleHRlcm4gc3RydWN0IHBsYXRmb3JtX2RyaXZlciBtdGtfZGlzcF9jb2xvcl9k
+cml2ZXI7DQo+ICBleHRlcm4gc3RydWN0IHBsYXRmb3JtX2RyaXZlciBtdGtfZGlzcF9nYW1tYV9k
+cml2ZXI7DQoNCg==
 
-That sounds simple. :-)
-
-Would you mind elaborating on what is actually being powered off at
-interface down - and thus also I am curious what happens at a typical
-interface up?
-
-Even if we don't want to use system wakeups (wake-on-lan), the SDIO
-core and the SDIO func driver still need to somewhat agree on how to
-manage the power for the card during system suspend, I think.
-
-For example, for a non-removable SDIO card, the SDIO/MMC core may
-decide to power off the card in system suspend. Then it needs to
-restore power to the card and re-initialize it at system resume, of
-course. This doesn't mean that the actual corresponding struct device
-for it, gets removed/re-added, thus the SDIO func driver isn't being
-re-probed after the system has resumed. Although, since the SDIO card
-was re-initialized, it's likely that the FW may need to be
-re-programmed after the system has been resumed.
-
-Are you saying that re-programming the FW is always happening at
-interface up, when there are none system suspend/resume callbacks
-assigned for the SDIO func driver?
-
-Kind regards
-Uffe
