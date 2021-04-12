@@ -2,222 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B8DA35BA87
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 09:02:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CBF235BA8D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 09:04:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236658AbhDLHDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 03:03:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40962 "EHLO
+        id S236754AbhDLHFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 03:05:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236705AbhDLHDE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 03:03:04 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB398C061574
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 00:02:46 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lVqah-0002Yf-Kn; Mon, 12 Apr 2021 09:02:35 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lVqae-00059Z-JF; Mon, 12 Apr 2021 09:02:32 +0200
-Date:   Mon, 12 Apr 2021 09:02:32 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
-        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] pwm: visconti: Add Toshiba Visconti SoC PWM
- support
-Message-ID: <20210412070232.6q3cgqvuj53p4cmi@pengutronix.de>
-References: <20210409230837.1919744-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20210409230837.1919744-3-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20210410135321.oissremqropvrpd3@pengutronix.de>
- <20210412025536.i5chpp6sighunvfx@toshiba.co.jp>
+        with ESMTP id S236569AbhDLHFI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 03:05:08 -0400
+X-Greylist: delayed 457 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 12 Apr 2021 00:04:50 PDT
+Received: from mx.i2x.nl (mx.i2x.nl [IPv6:2a04:52c0:101:921::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6D3BAC061574;
+        Mon, 12 Apr 2021 00:04:50 -0700 (PDT)
+Received: from mail.vdorst.com (mail.vdorst.com [IPv6:fd00::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by mx.i2x.nl (Postfix) with ESMTPS id 7DC8A5FB39;
+        Mon, 12 Apr 2021 09:04:49 +0200 (CEST)
+Authentication-Results: mx.i2x.nl;
+        dkim=pass (2048-bit key) header.d=vdorst.com header.i=@vdorst.com header.b="KOH61tZq";
+        dkim-atps=neutral
+Received: from www (unknown [192.168.2.222])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.vdorst.com (Postfix) with ESMTPSA id 33C67BCA030;
+        Mon, 12 Apr 2021 09:04:49 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.vdorst.com 33C67BCA030
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vdorst.com;
+        s=default; t=1618211089;
+        bh=M3JQj7NzQ2CBv+j5XuKuVWBX0H8tPiRu38YIUIPNjSc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KOH61tZqHiukrLYL9orX2yh2BVHg/y8DgL5igT2aG+TF571PC/ImF29hG0/4PBw/7
+         3Di7yXomrnD8HlzijAEPIKkRf58yfY75kRFmqmk3ZNvkIIB8fsIsus7DL2xMnnZFtu
+         mCrKmG/p3wBBnxrPZuFBlODuczwfhpwFJsxpABR0sBp2X1G6MwFdI4Js43WlaXRhqL
+         FbZaQUo8fm00uX0EJKouhWyspLxMyH81yxtvbP4UKXeBNmLddqZUy6sLusKEXXu6oI
+         Al3jwshnr79LRIAbUGE7OatklqNrl4RgNnM4XE1P9ArFAWIDktsHtvwRfp9BB1pM6D
+         EPFXRfrMGg+rQ==
+Received: from 48.79.2.5.in-addr.arpa (48.79.2.5.in-addr.arpa [5.2.79.48])
+ by www.vdorst.com (Horde Framework) with HTTPS; Mon, 12 Apr 2021 07:04:49
+ +0000
+Date:   Mon, 12 Apr 2021 07:04:49 +0000
+Message-ID: <20210412070449.Horde.wg9CWXW8V9o0P-heKYtQpVh@www.vdorst.com>
+From:   =?utf-8?b?UmVuw6k=?= van Dorst <opensource@vdorst.com>
+To:     DENG Qingfang <dqfext@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-staging@lists.linux.dev, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, Weijie Gao <weijie.gao@mediatek.com>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Subject: Re: [RFC v4 net-next 1/4] net: phy: add MediaTek PHY driver
+References: <20210412034237.2473017-1-dqfext@gmail.com>
+ <20210412034237.2473017-2-dqfext@gmail.com>
+In-Reply-To: <20210412034237.2473017-2-dqfext@gmail.com>
+User-Agent: Horde Application Framework 5
+Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="dbinp4a6o4qjki4w"
 Content-Disposition: inline
-In-Reply-To: <20210412025536.i5chpp6sighunvfx@toshiba.co.jp>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Qingfang,
 
---dbinp4a6o4qjki4w
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Quoting DENG Qingfang <dqfext@gmail.com>:
 
-On Mon, Apr 12, 2021 at 11:55:36AM +0900, Nobuhiro Iwamatsu wrote:
-> Hi Uwe,
->=20
-> Thanks for your review.
->=20
-> On Sat, Apr 10, 2021 at 03:53:21PM +0200, Uwe Kleine-K=F6nig wrote:
-> > Hello,
-> >=20
-> > just a few small details left to criticize ...
-> >=20
-> > On Sat, Apr 10, 2021 at 08:08:37AM +0900, Nobuhiro Iwamatsu wrote:
-> > > diff --git a/drivers/pwm/pwm-visconti.c b/drivers/pwm/pwm-visconti.c
-> > > new file mode 100644
-> > > index 000000000000..99d83f94ed86
-> > > --- /dev/null
-> > > +++ b/drivers/pwm/pwm-visconti.c
-> > > @@ -0,0 +1,188 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * Toshiba Visconti pulse-width-modulation controller driver
-> > > + *
-> > > + * Copyright (c) 2020 TOSHIBA CORPORATION
-> > > + * Copyright (c) 2020 Toshiba Electronic Devices & Storage Corporati=
-on
-> > > + *
-> > > + * Authors: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> > > + *
-> > > + */
-> > > +
-> > > +#include <linux/err.h>
-> > > +#include <linux/io.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/of_device.h>
-> > > +#include <linux/platform_device.h>
-> > > +#include <linux/pwm.h>
-> > > +
-> > > +#define PIPGM_PCSR(ch) (0x400 + 4 * (ch))
-> > > +#define PIPGM_PDUT(ch) (0x420 + 4 * (ch))
-> > > +#define PIPGM_PWMC(ch) (0x440 + 4 * (ch))
-> > > +
-> > > +#define PIPGM_PWMC_PWMACT		BIT(5)
-> > > +#define PIPGM_PWMC_CLK_MASK		GENMASK(1, 0)
-> > > +#define PIPGM_PWMC_POLARITY_MASK	GENMASK(5, 5)
-> > > +
-> > > +struct visconti_pwm_chip {
-> > > +	struct pwm_chip chip;
-> > > +	void __iomem *base;
-> > > +};
-> > > +
-> > > +static inline struct visconti_pwm_chip *to_visconti_chip(struct pwm_=
-chip *chip)
-> > > +{
-> > > +	return container_of(chip, struct visconti_pwm_chip, chip);
-> > > +}
-> > > +
-> > > +static int visconti_pwm_apply(struct pwm_chip *chip, struct pwm_devi=
-ce *pwm,
-> > > +			      const struct pwm_state *state)
-> > > +{
-> > > +	struct visconti_pwm_chip *priv =3D to_visconti_chip(chip);
-> > > +	u32 period, duty_cycle, pwmc0;
-> > > +
-> > > +	/*
-> > > +	 * pwmc is a 2-bit divider for the input clock running at 1 MHz.
-> > > +	 * When the settings of the PWM are modified, the new values are sh=
-adowed in hardware until
-> > > +	 * the period register (PCSR) is written and the currently running =
-period is completed. This
-> > > +	 * way the hardware switches atomically from the old setting to the=
- new.
-> > > +	 * Also, disabling the hardware completes the currently running per=
-iod and keeps the output
-> > > +	 * at low level at all times.
-> >=20
-> > Can you please put a paragraph analogous to the one in pwm-sifive in the
-> > same format. This simplified keeping an overview about the oddities of
-> > the various supported chips.
->=20
-> OK, I will check pwm-sifive's, and add.
->=20
-> >=20
-> > > +	 */
-> > > +	if (!state->enabled) {
-> > > +		writel(0, priv->base + PIPGM_PCSR(pwm->hwpwm));
-> > > +		return 0;
-> > > +	}
-> > > +
-> > > [...]
-> > > +
-> > > +static void visconti_pwm_get_state(struct pwm_chip *chip, struct pwm=
-_device *pwm,
-> > > +				   struct pwm_state *state)
-> > > +{
-> > > +	struct visconti_pwm_chip *priv =3D chip_to_priv(chip);
-> > > +	u32 period, duty, pwmc0, pwmc0_clk;
-> > > +
-> > > +	period =3D readl(priv->base + PIPGM_PCSR(pwm->hwpwm));
-> > > +	if (period)
-> > > +		state->enabled =3D true;
-> > > +	else
-> > > +		state->enabled =3D false;
-> >=20
-> > If PIPGM_PCSR is 0 the hardware is still active and setting a new
-> > configuration completes the currently running period, right? Then I
-> > think having always state->enabled =3D true is a better match.
+> Add support for MediaTek PHYs found in MT7530 and MT7531 switches.
+> The initialization procedure is from the vendor driver, but due to lack
+> of documentation, the function of some register values remains unknown.
 >
-> If PIPGM_PCSR is 0, the hardware is stopped. Even if the settings of
-> other registers are written, the values of other registers will not work
-> unless PIPGM_PCSR is written.
+> Signed-off-by: DENG Qingfang <dqfext@gmail.com>
+> ---
+> RFC v3 -> RFC v4:
+> - Remove unused include.
+>
+>  drivers/net/phy/Kconfig    |   5 ++
+>  drivers/net/phy/Makefile   |   1 +
+>  drivers/net/phy/mediatek.c | 111 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 117 insertions(+)
+>  create mode 100644 drivers/net/phy/mediatek.c
+>
+> diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
+> index a615b3660b05..edd858cec9ec 100644
+> --- a/drivers/net/phy/Kconfig
+> +++ b/drivers/net/phy/Kconfig
+> @@ -207,6 +207,11 @@ config MARVELL_88X2222_PHY
+>  	  Support for the Marvell 88X2222 Dual-port Multi-speed Ethernet
+>  	  Transceiver.
+>
+> +config MEDIATEK_PHY
+> +	tristate "MediaTek PHYs"
+> +	help
+> +	  Supports the MediaTek switch integrated PHYs.
+> +
+>  config MICREL_PHY
+>  	tristate "Micrel PHYs"
+>  	help
+> diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
+> index de683e3abe63..9ed7dbab7770 100644
+> --- a/drivers/net/phy/Makefile
+> +++ b/drivers/net/phy/Makefile
+> @@ -64,6 +64,7 @@ obj-$(CONFIG_LXT_PHY)		+= lxt.o
+>  obj-$(CONFIG_MARVELL_10G_PHY)	+= marvell10g.o
+>  obj-$(CONFIG_MARVELL_PHY)	+= marvell.o
+>  obj-$(CONFIG_MARVELL_88X2222_PHY)	+= marvell-88x2222.o
+> +obj-$(CONFIG_MEDIATEK_PHY)	+= mediatek.o
+>  obj-$(CONFIG_MESON_GXL_PHY)	+= meson-gxl.o
+>  obj-$(CONFIG_MICREL_KS8995MA)	+= spi_ks8995.o
+>  obj-$(CONFIG_MICREL_PHY)	+= micrel.o
+> diff --git a/drivers/net/phy/mediatek.c b/drivers/net/phy/mediatek.c
+> new file mode 100644
+> index 000000000000..1627b7c04345
+> --- /dev/null
+> +++ b/drivers/net/phy/mediatek.c
+> @@ -0,0 +1,111 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +#include <linux/module.h>
+> +#include <linux/phy.h>
+> +
+> +#define MTK_EXT_PAGE_ACCESS		0x1f
+> +#define MTK_PHY_PAGE_STANDARD		0x0000
+> +#define MTK_PHY_PAGE_EXTENDED		0x0001
+> +#define MTK_PHY_PAGE_EXTENDED_2		0x0002
+> +#define MTK_PHY_PAGE_EXTENDED_3		0x0003
+> +#define MTK_PHY_PAGE_EXTENDED_2A30	0x2a30
+> +#define MTK_PHY_PAGE_EXTENDED_52B5	0x52b5
+> +
+> +static int mtk_phy_read_page(struct phy_device *phydev)
+> +{
+> +	return __phy_read(phydev, MTK_EXT_PAGE_ACCESS);
+> +}
+> +
+> +static int mtk_phy_write_page(struct phy_device *phydev, int page)
+> +{
+> +	return __phy_write(phydev, MTK_EXT_PAGE_ACCESS, page);
+> +}
+> +
+> +static void mtk_phy_config_init(struct phy_device *phydev)
+> +{
+> +	/* Disable EEE */
+> +	phy_write_mmd(phydev, MDIO_MMD_AN, MDIO_AN_EEE_ADV, 0);
 
-Correct me if I'm wrong, but how I understand it, PCSR is special as the
-other registers are shadow until PCSR is written. (And that is
-irrespective of which value is active in PCSR or what is written to
-PCSR.)
-=20
-> However, as a logic, if PIPGM_PCSR becomes 0, it is only
-> visconti_pwm_apply () in this driver,
-> so I think that this process should always be state-> enabled =3D true
-> as you pointed out.
-> I wil drop this, thanks.
+For my EEE patch I changed this line to:
 
-For me the critical (and only) difference between "off" and
-"duty cycle =3D 0" is that when a new configuration is to be applied. In
-the "off" state a new period can (and should) start immediately, while
-with "duty_cycle =3D 0" the rising edge should be delayed until the
-currently running period is over.[1]
+genphy_config_eee_advert(phydev);
 
-So the thing to do here (IMHO) is:
+So PHY EEE part is setup properly at boot, instead enable it manual  
+via ethtool.
+This function also takes the DTS parameters "eee-broken-xxxx" in to  
+account while
+setting-up the PHY.
 
-Iff with PIPGM_PCSR =3D 0 configuring a new setting (that is finalized
-with writing a non-zero value to PIPGM_PCSR) completes the currently
-running period, then always assume the PWM as enabled.
+> +
+> +	/* Enable HW auto downshift */
+> +	phy_modify_paged(phydev, MTK_PHY_PAGE_EXTENDED, 0x14, 0, BIT(4));
+> +
+> +	/* Increase SlvDPSready time */
+> +	phy_select_page(phydev, MTK_PHY_PAGE_EXTENDED_52B5);
+> +	__phy_write(phydev, 0x10, 0xafae);
+> +	__phy_write(phydev, 0x12, 0x2f);
+> +	__phy_write(phydev, 0x10, 0x8fae);
+> +	phy_restore_page(phydev, MTK_PHY_PAGE_STANDARD, 0);
+> +
+> +	/* Adjust 100_mse_threshold */
+> +	phy_write_mmd(phydev, MDIO_MMD_VEND1, 0x123, 0xffff);
+> +
+> +	/* Disable mcc */
+> +	phy_write_mmd(phydev, MDIO_MMD_VEND1, 0xa6, 0x300);
+> +}
+> +
 
-And so if the hardware is stopped and the counter is reset when 0 is
-written to PIPGM_PCSR, model that as enabled =3D false.
+Greats,
 
-Best regards
-Uwe
+René
 
-[1] In practise this is more difficult because several PWMs don't
-complete periods in general. But the hardware under discussion luckily
-isn't one of these. And (worse) there are other hardware implementations
-where off doesn't emit an inactive level.
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---dbinp4a6o4qjki4w
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmBz8IUACgkQwfwUeK3K
-7Anv+ggAgcYjZXZNUVrkCgcupmpCm3IMfKahkwjrc5xduTQHdRPMTqPrJhyuwF7a
-G8bOQ5pxUHH5MEqns/nG8HTPawjKDgy36NLfDdY7yDQdKT15PsvXkHD6wUydcXzd
-Hn41ovzjGJUi4bkqjI8iLwCARX6ypaKh66IVZ/yRjJA1B2FkCbqfRgE8PHu78NJd
-GU+OrhCgmXyJ5e7FAcfDn5dlMVTpHbzxyGouC8PXtCCFgC5YLy2+Ajp3Y2ldv5Qs
-ceQ7LOzHqJ4NsiBq74KTOUFo2lTMZW9kzLl/upBxEhh/7jLRlJHFmx4jyb/LJOKe
-V+HuRxtoXSlhoOcb2azTl12IPVESZw==
-=+9VN
------END PGP SIGNATURE-----
-
---dbinp4a6o4qjki4w--
