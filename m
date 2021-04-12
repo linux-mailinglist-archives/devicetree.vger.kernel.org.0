@@ -2,75 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20C6E35BACE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 09:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90A1735BAEC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 09:39:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229771AbhDLH0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 03:26:03 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:31248 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231274AbhDLH0C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 03:26:02 -0400
-X-UUID: ea5359543a3541d181d5040e52e09060-20210412
-X-UUID: ea5359543a3541d181d5040e52e09060-20210412
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 633026518; Mon, 12 Apr 2021 15:25:38 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 12 Apr 2021 15:25:36 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 12 Apr 2021 15:25:35 +0800
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>
-Subject: [PATCH v1] drm/mediatek: adjust rdma fifo threshold calculate formula
-Date:   Mon, 12 Apr 2021 15:25:32 +0800
-Message-ID: <1618212332-3547-2-git-send-email-yongqiang.niu@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1618212332-3547-1-git-send-email-yongqiang.niu@mediatek.com>
-References: <1618212332-3547-1-git-send-email-yongqiang.niu@mediatek.com>
+        id S236888AbhDLHjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 03:39:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48864 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235386AbhDLHjf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 03:39:35 -0400
+Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89955C061574
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 00:39:17 -0700 (PDT)
+Received: by mail-vs1-xe34.google.com with SMTP id e16so5591879vsu.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 00:39:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+ExoxKCgaqdCsDepfvxx4zot0Xxz7DmLhOne1aZN2lc=;
+        b=uQWrxcfVq6tfFk45Dsu1M+8DO7/Y3gkFEqjkH08QcNmmKLD8MMRYdhz1uYrJfFXUR8
+         Ag7+QypWcgC7ioD1+aBvgrup18mKd563yDSy5jIK7AZEwztzNDB7RlHt+virdnOASLe4
+         zVXEBJxMmOwQfyhEhHuJQOmWK98iYJmSOV0kKNATYMEili8QMEamRMMEYXKTF5quQc2f
+         kZOpdTyUEmV0sOAI+Ff7bKlti9lucQgPmGGVnBJi6bNubf0CnO7FF4ruawkLQIIXp6AZ
+         MDjy24sd1F4eS+GzFpPuYxUCJqYNaC975P/rB38ekIY7Qy1WVBo/z8lVjIuvlywVPLgV
+         Pu/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+ExoxKCgaqdCsDepfvxx4zot0Xxz7DmLhOne1aZN2lc=;
+        b=tFZ8oS7UCdJWnkXc5LaPJ7KL8Cwm17cvDYHqHmnenzz2LFqoakkl+tPjtDAiK1tMMp
+         FsY1YyDoiUxYSJeyEvQenyLlzp39TEWuGLQvpYlIpJNJ07zYTk04SCtGqE29R0YTj2Iz
+         YIaMCC/yr43BWF8XmSBfUFQER4JdEDTXw7JfiGIeDD2WsnqeuH+fOwymjNp3uEAbLOeL
+         lewR+9SgY1NpS3C5HsZbbpNxuK5O+3C8ZlV6L8d4fXFj0FZN5u6WYuNS8MKa2+yW7/6S
+         iWfrCQeuJZ0e0UbyVKGo4ApAj3S0tPrrsJUyLLRw15d6K1aLkCxM51j1eJmFWXFtGSeb
+         HQqQ==
+X-Gm-Message-State: AOAM5329qZu0EHssKlTLprYD0uyt/NGZeB7L8Zt+6+NrQ3RLWH38AkD9
+        jX1nKZhKR345XMZgoKlynYnT6zaKFcpVr0tkcJSs0Q==
+X-Google-Smtp-Source: ABdhPJy3atKJOCw7R/9czTlSfDsNIyt3sFse/HJpxmIRKKl4EAag4GD6AjYNfHVS688ENiFwU5SbPJxcoVpMTnEjNso=
+X-Received: by 2002:a67:fe05:: with SMTP id l5mr18228581vsr.34.1618213156719;
+ Mon, 12 Apr 2021 00:39:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: DB7A3BFEED79B757735615E15A53186FA117C4AF185632B495D9651787FCF4D22000:8
-X-MTK:  N
+References: <20210408015218.20560-1-steven_lee@aspeedtech.com> <20210408015218.20560-2-steven_lee@aspeedtech.com>
+In-Reply-To: <20210408015218.20560-2-steven_lee@aspeedtech.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 12 Apr 2021 09:38:40 +0200
+Message-ID: <CAPDyKFr=Gtwu4v22FBaax5EjRbXTNez1N2ZQxP=v0LKGFTCovw@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: mmc: sdhci-of-aspeed: Add power-gpio
+ and power-switch-gpio
+To:     Steven Lee <steven_lee@aspeedtech.com>
+Cc:     Andrew Jeffery <andrew@aj.id.au>, Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ryan Chen <ryanchen.aspeed@gmail.com>,
+        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
+        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
+        "open list:ASPEED SD/MMC DRIVER" <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        ryan_chen@aspeedtech.com, chin-ting_kuo@aspeedtech.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-the orginal formula will caused rdma fifo threshold config overflow
+On Thu, 8 Apr 2021 at 03:52, Steven Lee <steven_lee@aspeedtech.com> wrote:
+>
+> AST2600-A2 EVB provides the reference design for enabling SD bus power
+> and toggling SD bus signal voltage by GPIO pins.
+> Add the definition and example for power-gpio and power-switch-gpio
+> properties.
+>
+> In the reference design, GPIOV0 of AST2600-A2 EVB is connected to power
+> load switch that providing 3.3v to SD1 bus vdd. GPIOV1 is connected to
+> a 1.8v and a 3.3v power load switch that providing signal voltage to
+> SD1 bus.
+> If GPIOV0 is active high, SD1 bus is enabled. Otherwise, SD1 bus is
+> disabled.
+> If GPIOV1 is active high, 3.3v power load switch is enabled, SD1 signal
+> voltage is 3.3v. Otherwise, 1.8v power load switch will be enabled, SD1
+> signal voltage becomes 1.8v.
+>
+> AST2600-A2 EVB also support toggling signal voltage for SD2 bus.
+> The design is the same as SD1 bus. It uses GPIOV2 as power-gpio and GPIOV3
+> as power-switch-gpio.
 
-Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_disp_rdma.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks for sharing the details, it certainly helps while reviewing.
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-index 728aaad..8c9371b 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
-@@ -167,7 +167,7 @@ void mtk_rdma_config(struct device *dev, unsigned int width,
- 	 * output threshold to 6 microseconds with 7/6 overhead to
- 	 * account for blanking, and with a pixel depth of 4 bytes:
- 	 */
--	threshold = width * height * vrefresh * 4 * 7 / 1000000;
-+	threshold = rdma_fifo_size * 7 / 10;
- 	reg = RDMA_FIFO_UNDERFLOW_EN |
- 	      RDMA_FIFO_PSEUDO_SIZE(rdma_fifo_size) |
- 	      RDMA_OUTPUT_VALID_FIFO_THRESHOLD(threshold);
--- 
-1.8.1.1.dirty
+>
+> Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> ---
+>  .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> index 987b287f3bff..515a74614f3c 100644
+> --- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> @@ -37,6 +37,14 @@ properties:
+>    clocks:
+>      maxItems: 1
+>      description: The SD/SDIO controller clock gate
+> +  power-gpio:
+> +    description:
+> +      The GPIO for enabling/disabling SD bus power.
+> +    maxItems: 1
+> +  power-switch-gpio:
+> +    description:
+> +      The GPIO for toggling the signal voltage between 3.3v and 1.8v.
+> +    maxItems: 1
 
+
+>
+>  patternProperties:
+>    "^sdhci@[0-9a-f]+$":
+> @@ -61,6 +69,14 @@ patternProperties:
+>        sdhci,auto-cmd12:
+>          type: boolean
+>          description: Specifies that controller should use auto CMD12
+> +      power-gpio:
+> +        description:
+> +          The GPIO for enabling/disabling SD bus power.
+> +        maxItems: 1
+> +      power-switch-gpio:
+> +        description:
+> +          The GPIO for toggling the signal voltage between 3.3v and 1.8v.
+> +        maxItems: 1
+>      required:
+
+Please do not model these as GPIO pins like this. Instead, it's better
+to model them as gpio regulators, since the mmc core manages them as
+regulators.
+
+We have a vmmc regulator (corresponding to vdd) and a vqmmc regulator
+(corresponding the signal-voltage level). These are also described in
+the common mmc DT bindings, see
+Documentation/devicetree/bindings/mmc/mmc-controller.yaml.
+
+>        - compatible
+>        - reg
+> @@ -80,6 +96,7 @@ required:
+>  examples:
+>    - |
+>      #include <dt-bindings/clock/aspeed-clock.h>
+> +    #include <dt-bindings/gpio/aspeed-gpio.h>
+>      sdc@1e740000 {
+>              compatible = "aspeed,ast2500-sd-controller";
+>              reg = <0x1e740000 0x100>;
+> @@ -94,6 +111,10 @@ examples:
+>                      interrupts = <26>;
+>                      sdhci,auto-cmd12;
+>                      clocks = <&syscon ASPEED_CLK_SDIO>;
+> +                    power-gpio = <&gpio0 ASPEED_GPIO(V, 0)
+> +                                     GPIO_ACTIVE_HIGH>;
+> +                    power-switch-gpio = <&gpio0 ASPEED_GPIO(V, 1)
+> +                                     GPIO_ACTIVE_HIGH>;
+>              };
+>
+>              sdhci1: sdhci@200 {
+> @@ -102,5 +123,9 @@ examples:
+>                      interrupts = <26>;
+>                      sdhci,auto-cmd12;
+>                      clocks = <&syscon ASPEED_CLK_SDIO>;
+> +                    power-gpio = <&gpio0 ASPEED_GPIO(V, 2)
+> +                                     GPIO_ACTIVE_HIGH>;
+> +                    power-switch-gpio = <&gpio0 ASPEED_GPIO(V, 3)
+> +                                     GPIO_ACTIVE_HIGH>;
+>              };
+>      };
+
+Kind regards
+Uffe
