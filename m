@@ -2,86 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCEA035C6CA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 14:55:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9F7A35C70F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 15:09:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241278AbhDLM4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 08:56:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34318 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240809AbhDLM4L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 08:56:11 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61E92C061574
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 05:55:53 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lVw6S-0000K5-Ld; Mon, 12 Apr 2021 14:55:44 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lVw6R-0002Vu-MH; Mon, 12 Apr 2021 14:55:43 +0200
-Date:   Mon, 12 Apr 2021 14:55:43 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-Cc:     lee.jones@linaro.org, robh+dt@kernel.org, joel@jms.id.au,
-        andrew@aj.id.au, thierry.reding@gmail.com, p.zabel@pengutronix.de,
-        billy_tasi@aspeedtech.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, BMC-SW@aspeedtech.com
-Subject: Re: [PATCH 1/4] dt-bindings: Add bindings for aspeed pwm-tach.
-Message-ID: <20210412125543.xhnitijeumddqdmn@pengutronix.de>
-References: <20210412095457.15095-1-billy_tsai@aspeedtech.com>
- <20210412095457.15095-2-billy_tsai@aspeedtech.com>
+        id S241747AbhDLNJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 09:09:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35786 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241738AbhDLNJx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Apr 2021 09:09:53 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8B5B26128A;
+        Mon, 12 Apr 2021 13:09:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618232975;
+        bh=XwUFNbernxh8G9/2E7N7iYvMgYs7Tdv6Yd/vyKkupO8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TfmW5LCEW4g0sWTGoOukXeLL8xBJwEkwCHSo38bx+pGmx19rTlWOLldHs+WpCEdgR
+         J1g1xsMcHFF1l9twWuibhyUtcgSHLtJFiEEE4KvxVXyLUAT810RQYm9TUZpWYhHoVv
+         43+I6EMXDqGPpvwYmgmiFYbP86y7xtPuOisWNzmktOTH2Pz0na754W7lAsPMkvlf15
+         QL1wVLVoIE0oLx1qtTcy6vePW/486nnNFZlt6caMHweNYl/Q+8H7q6jMspTyx69wXN
+         0oR1/ZQ0s1RTupXPTxt6XohGYQX+tqE0oxIblHY0Wn4Rl3j5h8H/h1RGwGjqCl6fHj
+         rJPGezzJm9Epg==
+Date:   Mon, 12 Apr 2021 14:09:14 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Kees Cook <keescook@chromium.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "agross@kernel.org" <agross@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 3/7] regulator: IRQ based event/error notification
+ helpers
+Message-ID: <20210412130914.GA5379@sirena.org.uk>
+References: <cover.1617690965.git.matti.vaittinen@fi.rohmeurope.com>
+ <2b87b4637fde2225006cc122bc855efca0dcd7f1.1617692184.git.matti.vaittinen@fi.rohmeurope.com>
+ <CAHp75VeoTVNDemV0qRA4BTVqOVfyR9UKGWhHgfeat8zVVGcu_Q@mail.gmail.com>
+ <55397166b1c4107efc2a013635f63af142d9b187.camel@fi.rohmeurope.com>
+ <CAHp75VeK+Oq9inOLcSSsq+FjaaPC5D=EMt4vLf97uR1BmpW2Zw@mail.gmail.com>
+ <42210c909c55f7672e4a4a9bfd34553a6f4c8146.camel@fi.rohmeurope.com>
+ <CAHp75VeX8H5E6GfVHxgu_6R+zbvmFV8fT9tO-nsm1nB3N4NF_A@mail.gmail.com>
+ <202104082015.4DADF9DC48@keescook>
+ <dbd6a71b1b907de004d23d2ea4b15045320f1ae1.camel@fi.rohmeurope.com>
+ <882c4561ebc20313098312bb9cfae60736d69475.camel@fi.rohmeurope.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="72zyimz3jwqrdzfk"
+        protocol="application/pgp-signature"; boundary="gBBFr7Ir9EOA20Yy"
 Content-Disposition: inline
-In-Reply-To: <20210412095457.15095-2-billy_tsai@aspeedtech.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <882c4561ebc20313098312bb9cfae60736d69475.camel@fi.rohmeurope.com>
+X-Cookie: Air is water with holes in it.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---72zyimz3jwqrdzfk
-Content-Type: text/plain; charset=iso-8859-1
+--gBBFr7Ir9EOA20Yy
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hello,
+On Mon, Apr 12, 2021 at 03:24:16PM +0300, Matti Vaittinen wrote:
 
-On Mon, Apr 12, 2021 at 05:54:54PM +0800, Billy Tsai wrote:
-> +  - Billy Tsai <billy_tasi@aspeedtech.com>
+> Maybe this 'hardware protection, in-kernel, emergency HW saving
+> shutdown' - logic, should be pulled out of thermal_core.c (or at least
+> exported) for (other parts like) the regulators to use?
 
-I object because the MTA at aspeedtech.com doesn't know this email
-address.
+That sounds sensible.
 
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---72zyimz3jwqrdzfk
+--gBBFr7Ir9EOA20Yy
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmB0Q0wACgkQwfwUeK3K
-7AlClggAkJzxzLk6CyBb65jTrLt6GHUVsNktatzSSRR+W6qXEyPzt1Snay/1HEex
-EDQicnfgTL16yXBjHLHwWEqg7ek82wnO3I8weSNFcM9xs3J49dcGUnMII6gBCDFK
-/UAD5sugnnHfDaaWDvj/OGT9uGQlPBtaA1LJBb6EGb4qeaSINwc77ySfzIqZyMeQ
-R+I6nNRvID/fJYg6cbpe4AUgr+jBnZ9YFxkkMdKjl3Wz0Zy2p0nIoqBFl3H8/NFs
-Xwk3HkIWwZ/M0YbVcBcHj4YVKC+TW47Pno+QGfmbTTxwBaTABKPkD2uTQOtg5Z5U
-0KRgU0CZnI/F2/IhLd0Qiz+V57VnMg==
-=x1yQ
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmB0RnkACgkQJNaLcl1U
+h9Beggf/diaDjvhkVAUMvzAA1oX7AadNx6lHCjXXbm+NhdqiqkwQL1Vggq68u1ia
+FxDab79iVpDTE8OMzcVaPak2NUweYBKnzO27jZTgeGvmPuYJgCPym/KaEMYrJ2bi
+WJ/iu6qhoZtNEvvtzuNUG/MmKWsTmsSSVsHRdh9qrMX5X1DJMmSK/wLifS/oaFHu
+4XYZomClBkP/KtOcPiceEwZiMouGDMyA8jxGYonD+HbLc8mFObkWDdIwdop7oP/u
+idX7TwA+ZzDvwHtsBghyeebRJm3Itbm05wGRw3g+mwVH9DdQBDXvQG2BRA7lv38U
+oqnNZSLTsIgmnLutP117InScnrXWGQ==
+=g1QC
 -----END PGP SIGNATURE-----
 
---72zyimz3jwqrdzfk--
+--gBBFr7Ir9EOA20Yy--
