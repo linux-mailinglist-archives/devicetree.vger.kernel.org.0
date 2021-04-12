@@ -2,97 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1AA035CFD5
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 19:51:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB2E235CFDD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 19:54:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244659AbhDLRv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 13:51:57 -0400
-Received: from mailoutvs20.siol.net ([185.57.226.211]:36661 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S244489AbhDLRv5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 13:51:57 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id C4F8F5256A1;
-        Mon, 12 Apr 2021 19:51:36 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id p7fWFXGhuUnB; Mon, 12 Apr 2021 19:51:36 +0200 (CEST)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id 7226B525715;
-        Mon, 12 Apr 2021 19:51:36 +0200 (CEST)
-Received: from kista.localnet (cpe-86-58-17-133.cable.triera.net [86.58.17.133])
-        (Authenticated sender: jernej.skrabec@siol.net)
-        by mail.siol.net (Postfix) with ESMTPA id D730F5256A1;
-        Mon, 12 Apr 2021 19:51:35 +0200 (CEST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
-To:     Andre Przywara <andre.przywara@arm.com>,
-        Michael Weiser <michael.weiser@gmx.de>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        Daniel Kulesz <kuleszdl@posteo.org>
-Subject: Re: Re: [linux-sunxi] [PATCH] arm64: dts: allwinner: Revert SD card CD GPIO for Pine64-LTS
-Date:   Mon, 12 Apr 2021 19:51:35 +0200
-Message-ID: <2453001.GT6EyWp2Io@kista>
-In-Reply-To: <YHSGRSQr5w0h8vtt@weiser.dinsnail.net>
-References: <20210412000813.13071-1-andre.przywara@arm.com> <20210412174558.4ba90cf8@slackpad.fritz.box> <YHSGRSQr5w0h8vtt@weiser.dinsnail.net>
+        id S243450AbhDLRym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 13:54:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43544 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243428AbhDLRym (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 13:54:42 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F217C061574;
+        Mon, 12 Apr 2021 10:54:23 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id u21so21681874ejo.13;
+        Mon, 12 Apr 2021 10:54:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=7xZ2z/REQKDHpPpudGHJDtF+j1fU3msVI7XisJ2amc4=;
+        b=UDvpB2a4GDnPlFBEkaSIRcfJMyWB2e4QNAnncdGeKlzcLUokn2c5mfaqypZdqPbzeL
+         Mgf+FlNviP3AHd3CvAVEfJtY/q6YxakAF/BnOFglDXUoiyj+C7c32AEOOA9F0iLhEWRO
+         CcdpFtRr/n/ZAKLasjDjtjzeWFNPP2j1akh81i+Rb3ZEI7wP+TrRBhduHH2pkpDyq7zi
+         4XTOk0keAF9aQ6vSqLAt5uftZrp5PRIi2yZvhFsGniVbqN+YeLI5d+1Yz4p3anyOs87f
+         UxN4fXHrpm3XJJZovc+HLoX4/DBDf11qcSXZG6UriPeE4PacTj0A2tfonbkOIIoyGX7A
+         Tvgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=7xZ2z/REQKDHpPpudGHJDtF+j1fU3msVI7XisJ2amc4=;
+        b=g5CwhagksympI0i+7dDVwY5ePbZhBvqIgzuFnpxeMvO54YdA+LVLniRMHHmFyilaUO
+         qaS4/L4xr5QBjocbc6juXOumcBj3bhMKwn8G8eaZMb5gS817ZKlQGdY5mti2LaGY5Cqo
+         dvq1FMxzn8A15J56X1y419zqrXtxCrlJNUNZorO45HILNs9ROaU6LoXn1hSgkwUEqQwV
+         btkm50g94+Qcevgt2+0QvYQI/uEJLTw+4V/jxIQtGjLzZwOXV7B5WXxb5njHFBjZPTOo
+         WnSvnrPgLrBs7HWuuCgdwZz7z6a/ho0usJSkemFSEjJAAuN2uvz77n9Iu5OCDUr02DQh
+         5iFg==
+X-Gm-Message-State: AOAM531xolMQVLpCoxfeZpHGqqC0fKfLYXS0eJgvQ8QeWxB9xwJCo/vn
+        cUorntbII/jkeL8rAs8Kpiw=
+X-Google-Smtp-Source: ABdhPJwmIXBWKA7QOETds/BhD3661kA4UbZLfCHUrVwbpjensenk1YYVEv3gTJRh6So+ofnhWvdZ+A==
+X-Received: by 2002:a17:906:3c45:: with SMTP id i5mr2579867ejg.368.1618250062327;
+        Mon, 12 Apr 2021 10:54:22 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id v5sm7472791edx.87.2021.04.12.10.54.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Apr 2021 10:54:21 -0700 (PDT)
+Subject: Re: [PATCH v2 2/6] dt-bindings: pwm: add more compatible strings to
+ pwm-rockchip.yaml
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        heiko@sntech.de, thierry.reding@gmail.com, lee.jones@linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        u.kleine-koenig@pengutronix.de
+References: <20210411131007.21757-1-jbx6244@gmail.com>
+ <20210411131007.21757-2-jbx6244@gmail.com>
+ <20210412150533.GA3898302@robh.at.kernel.org>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <ba14a833-10dd-fc70-d6bd-70e8f6811ab3@gmail.com>
+Date:   Mon, 12 Apr 2021 19:54:19 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+In-Reply-To: <20210412150533.GA3898302@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 12. april 2021 ob 19:41:25 CEST je Michael Weiser napisal(a):
-> Hi Andre, ChenYu,
-> 
-> On Mon, Apr 12, 2021 at 05:45:58PM +0100, Andre Przywara wrote:
-> > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts b/
-arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> > > > index e79ce49e7e6a..843338e19694 100644
-> > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> > > > @@ -21,5 +21,5 @@
-> > > >  };
-> > > >
-> > > >  &mmc0 {
-> > > > -       cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 push-push switch 
-*/
-> > > > +       non-removable;          /* card detect is broken on some 
-boards */  
-> > > 
-> > > So a revert is good, but has anyone tried using the "broken-cd" instead?
-> > Ha, that's a good idea, I totally forgot about this property!
-> 
-> > > That way, at least on Linux, the mmc core resorts to polling for a card.
-> > > At least this way the card is still removable.
-> > Yes indeed, I tested it on my "stuck at 1" Pine64-LTS, and it works like
-> > a charm!
-> 
-> > Daniel, Michael, can you test this on your boards? So removing the
-> > cd-gpios property, and adding "broken-cd;" instead?
-> 
-> Yes, it works fine. What flummoxed me at first was that obviously I also
-> have to disable the ACTIVE_LOW definition in sun50i-a64-sopine.dtsi
-> after having added and disabled an ACTIVE_HIGH definition in
-> sun50i-a64-pine64-lts.dts.
-> 
-> BTW: My boards have a marking "PINE64-R18-V1_1" and below it
-> "2017-08-03" on their upper side. On the back it says on one sticker
-> "Model:PineA64 2GB LTS" and on another "2O1-PINE64R18-00" and
-> "PINE64-R18-V1.1 2G". Is CD being stuck at 1 a bug of revision 1.0
-> perhaps?  Is there a way to detect this difference in software and add
-> some sort of quirk handler for it?
+Hi,
 
-This is job for bootloader (U-Boot) which can patch DT. Most Allwinner boards 
-have no reliable way to be distinguished, except from Olimex. So I would say 
-it's not possible.
+Sorry, made a little mistake in version 2 with "rockchip,rk3036-pwm",
+"rockchip,rk2928-pwm".
+Please trash. Will send version 3.
+By the change of schema for clocks and clock-names I add
+"rockchip,rk3328-pwm" to the "if:", so strictly speaking v1 and (v2) v3
+will not be the same.
 
-Best regards,
-Jernej
+Johan
 
 
+On 4/12/21 5:05 PM, Rob Herring wrote:
+> On Sun, 11 Apr 2021 15:10:03 +0200, Johan Jonker wrote:
+>> The compatible strings below are already in use in the Rockchip
+>> dtsi files, but were somehow never added to a document, so add
+>>
+>> "rockchip,rk3328-pwm"
+>>
+>> "rockchip,rk3036-pwm", "rockchip,rk2928-pwm"
+>>
+>> "rockchip,rk3368-pwm", "rockchip,rk3288-pwm"
+>> "rockchip,rk3399-pwm", "rockchip,rk3288-pwm"
+>>
+>> "rockchip,px30-pwm", "rockchip,rk3328-pwm"
+>> "rockchip,rk3308-pwm", "rockchip,rk3328-pwm"
+>>
+>> for pwm nodes to pwm-rockchip.yaml.
+>>
+>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>> ---
+>> Changed V2:
+>>   changed schema for clocks and clock-names
+>> ---
+>>  Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml | 9 +++++++++
+>>  1 file changed, 9 insertions(+)
+>>
+> 
+> 
+> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
+> 
+> If a tag was not added on purpose, please state why and what changed.
+> 
 
