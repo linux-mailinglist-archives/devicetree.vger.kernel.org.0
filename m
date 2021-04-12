@@ -2,113 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 644D635B8B4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 04:38:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B28F35B8B8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 04:42:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236625AbhDLCiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Apr 2021 22:38:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40198 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236562AbhDLCiV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Apr 2021 22:38:21 -0400
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00567C06138C
-        for <devicetree@vger.kernel.org>; Sun, 11 Apr 2021 19:38:03 -0700 (PDT)
-Received: by mail-qk1-x729.google.com with SMTP id b139so6543535qkc.10
-        for <devicetree@vger.kernel.org>; Sun, 11 Apr 2021 19:38:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=TmSSElCK4cYcHvK5QFQubtH5iynsu2VpzHMHEgHy8BA=;
-        b=mbWzSh1p+trrWvmtrxYTsTS6r7o6U7fHTEwOt2citEUHclf1uB5FPBJiH6Uq16l2JV
-         7WuM8/9cc+Q9XA+OT8dgVf3al8k3AXpsDyC+v53R4+AnBjGFPwhPBmMep7dSG9qWwiPn
-         y2lOHpMaMhzoaGwBKLgF+AXBg5myeg5sNVvR2DhVPVJ4Y4d/nMyhUal2MZ4RnV0f35y9
-         O2ZdG6+rWoMod5Bi2v9MraiB0Ky4PpWQYtFh5Uhau9HcJmkvZROGHW6sCvLRbRmgS5im
-         07TfdfkFA6AVfyhc/SPPmM2Ee2RgKBFftH43pPgOwx8c+uyoIclHVSsQuVVlAXdF9IQg
-         6OgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=TmSSElCK4cYcHvK5QFQubtH5iynsu2VpzHMHEgHy8BA=;
-        b=sxFgAg1JEHE6e+3vKRSImETZQq5WnZigAcdZz2yeQ/dbvGBmgIp17kH+xzjJJoBIa4
-         CMXUVXcI3aLZ8F7rfENG9WTV8T2GHNS8YMB0h68FSiWWaXOYKmhK3qLYTQvvm8g+PBpV
-         uUdxODVsYp9NDlpKXZe5f0hVivLQZ7/UFoIY0OxKFKxL56Y6ieukO9BJawGAoqS8Swrc
-         /xGQIorOmzmJ6dyF9t86cRTQ9rkYwnxqFCGm2hXhLgKcG2s73MmhihpKDAhyJworyBLu
-         Y1ZOF9ooDwua9H1MP3cl8zacDnnsoLMIubmMU5Af91qSFOK/ggntq6ICIdjYn2Zl5s6H
-         TDvA==
-X-Gm-Message-State: AOAM532BwMCGVrH7QSiY0lvkRpCZv7LP6Eye8gjrus5S3oqGtYdXY3jP
-        ArJ4sKV1RqbnVH7WNL21HQm/y8GZs0afdL3Aas/Gmw==
-X-Google-Smtp-Source: ABdhPJwOWzULd337c8NuXMd1ABRPnJWVXcSMZ167cl2J0oTgGU5gvgRC+qgOHXrTrA96Yon0OE2bEBoQct1g2/W01Fo=
-X-Received: by 2002:a05:620a:1497:: with SMTP id w23mr24922931qkj.260.1618195083134;
- Sun, 11 Apr 2021 19:38:03 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210406092634.50465-1-greentime.hu@sifive.com> <161795835843.16967.18210803147557738620.b4-ty@arm.com>
-In-Reply-To: <161795835843.16967.18210803147557738620.b4-ty@arm.com>
-From:   Greentime Hu <greentime.hu@sifive.com>
-Date:   Mon, 12 Apr 2021 10:37:50 +0800
-Message-ID: <CAHCEehJajVGWnAwvX+Jg3_U=WNxaNq89Xq3uvcfcHzt04qNfMQ@mail.gmail.com>
-Subject: Re: [PATCH v5 0/6] Add SiFive FU740 PCIe host controller driver support
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     jh80.chung@samsung.com, Zong Li <zong.li@sifive.com>,
-        robh+dt@kernel.org, vidyas@nvidia.com, alex.dewar90@gmail.com,
-        Erik Danie <erik.danie@sifive.com>,
+        id S236590AbhDLCnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Apr 2021 22:43:00 -0400
+Received: from thorn.bewilderbeest.net ([71.19.156.171]:53785 "EHLO
+        thorn.bewilderbeest.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235954AbhDLCm7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Apr 2021 22:42:59 -0400
+Received: from hatter.bewilderbeest.net (unknown [IPv6:2600:6c44:7f:ba20::7c6])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id AD5774DC;
+        Sun, 11 Apr 2021 19:42:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1618195362;
+        bh=2JSiMj2lTtmX/cUYNHcQfWGUlLOWOoaYmlbsGHi9kio=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Pj17EJIJVgdcFiOCc3Sp5k+Ahwe2EdYCOMrNIkcBILxo9psf3hCrccvT9SMGg01VH
+         HuSkUSpuQaQCc85/EC1LmH/OEuwkcoDCRqG9EYUJRGYv9QG+8O6kzFbVqCZgZ9ZA32
+         enjwhxM73UTmJ+0J96VAy9QZoMEhfN4R7652iOlo=
+Date:   Sun, 11 Apr 2021 21:42:39 -0500
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Andrew Jeffery <andrew@aj.id.au>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Stephen Boyd <sboyd@kernel.org>,
-        hayashi.kunihiko@socionext.com, hes@sifive.com,
-        khilman@baylibre.com, Philipp Zabel <p.zabel@pengutronix.de>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Bjorn Helgaas <helgaas@kernel.org>, devicetree@vger.kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v3] ARM: dts: aspeed: add ASRock E3C246D4I BMC
+Message-ID: <YHOznzolgu+j9Ruh@hatter.bewilderbeest.net>
+References: <20210401044232.9637-1-zev@bewilderbeest.net>
+ <84202973-1a94-4630-beeb-f33d044a0364@www.fastmail.com>
+ <CACPK8XcfuEyqGmO72taXFPARxwzLyct5__0C0CF-nyEf6Yubnw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <CACPK8XcfuEyqGmO72taXFPARxwzLyct5__0C0CF-nyEf6Yubnw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Lorenzo Pieralisi <lorenzo.pieralisi@arm.com> =E6=96=BC 2021=E5=B9=B44=E6=
-=9C=889=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=884:54=E5=AF=AB=E9=81=
-=93=EF=BC=9A
+On Sun, Apr 11, 2021 at 09:20:59PM CDT, Joel Stanley wrote:
+>On Mon, 12 Apr 2021 at 02:16, Andrew Jeffery <andrew@aj.id.au> wrote:
+>> On Thu, 1 Apr 2021, at 15:12, Zev Weiss wrote:
 >
-> On Tue, 6 Apr 2021 17:26:28 +0800, Greentime Hu wrote:
-> > This patchset includes SiFive FU740 PCIe host controller driver. We als=
-o
-> > add pcie_aux clock and pcie_power_on_reset controller to prci driver fo=
-r
-> > PCIe driver to use it.
-> >
-> > This is tested with e1000e: Intel(R) PRO/1000 Network Card, AMD Radeon =
-R5
-> > 230 graphics card and SP M.2 PCIe Gen 3 SSD in SiFive Unmatched based o=
-n
-> > v5.11 Linux kernel.
-> >
-> > [...]
+>> > +&vuart {
+>> > +     status = "okay";
+>> > +     aspeed,sirq-active-high;
+>>
+>> This should probably go away, but otherwise,
 >
-> Applied to pci/dwc [dropped patch 6], thanks!
+>Zev, this has already been merged (both to mainline for v5.13 and in
+>openbmc), so any fixups need to come as patches on top of the existing
+>code.
 >
-> [1/6] clk: sifive: Add pcie_aux clock in prci driver for PCIe driver
->       https://git.kernel.org/lpieralisi/pci/c/f3ce593b1a
-> [2/6] clk: sifive: Use reset-simple in prci driver for PCIe driver
->       https://git.kernel.org/lpieralisi/pci/c/0a78fcfd3d
-> [3/6] MAINTAINERS: Add maintainers for SiFive FU740 PCIe driver
->       https://git.kernel.org/lpieralisi/pci/c/8bb1c66a90
-> [4/6] dt-bindings: PCI: Add SiFive FU740 PCIe host controller
->       https://git.kernel.org/lpieralisi/pci/c/b86d55c107
-> [5/6] PCI: fu740: Add SiFive FU740 PCIe host controller driver
->       https://git.kernel.org/lpieralisi/pci/c/327c333a79
->
-> Thanks,
-> Lorenzo
 
-Hi Palmer,
+Got it, thanks -- I figured I'd wait until the DT-properties patches got 
+approved & merged (I'll be sending v6 of that shortly) and then send an 
+incremental update for the e3c246d4i dts to match the final form of 
+those.
 
-Since the PCIE driver has been applied, would you please pick patch 6
-to RISC-V for-next tree?
-Thank you. :)
+
+Zev
+
