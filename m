@@ -2,174 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8B3935CA7B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 17:52:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06F5835CA8C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 17:59:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243167AbhDLPxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 11:53:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45078 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240489AbhDLPxP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 11:53:15 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA7E0C061574
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 08:52:56 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id k128so7117323wmk.4
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 08:52:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=uV02flmSrRt81WJ4T3wiSuGURL6Hk/SHKuFa7qavV00=;
-        b=RjCj+XhW0mahSBR+DCjq261dtioFS3pQNq26EqT2Eme+Qgs1kQY7q87bJJp6ROMlz3
-         5TJYBHplQvmY0YB9sIglMsOH5V6KN8wL8vLTUZ+aqt4weVGFL7awcTi24PtR3Gb6H5wD
-         a5CsXAlFfYCAtrqLykuU0dVkaBOrQV2/tlGJX2Uu5CL7VEaIAXlUYSRbE7woTcHatmL4
-         rGlNPvxo33IMFNfke109vH5LbDqfjBWdYMjWvJMuzN5DpvqtIh3ycy7ch7GmANIvm1zK
-         icz6085aChrb+HiSMhFMqdr/qkpO3IZbevQJVTJpM3Rw4ENv25e9DpDZSrOod1km+z8S
-         sOkg==
+        id S239555AbhDLP7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 11:59:30 -0400
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:40698 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238498AbhDLP7a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 11:59:30 -0400
+Received: by mail-ot1-f44.google.com with SMTP id w31-20020a9d36220000b02901f2cbfc9743so13236093otb.7;
+        Mon, 12 Apr 2021 08:59:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=uV02flmSrRt81WJ4T3wiSuGURL6Hk/SHKuFa7qavV00=;
-        b=GKG+nQXllGCgyPvillOTUjIqXtXozmwF55bpybVWtMB2WdcSXYWDNLQJYXg3/FeEHp
-         0i+8oarU8dLKVmHFbHUuk8OjDpxPmwRwDPCHr3QadJvDaSMmR8H1umsh4Dz+dC2BniU2
-         4gPVh/hf82ZcOtoTDJa64PlBZxZI5ox8Qf6e3bZEdxTnRI5c7kiLADHIUOVbfT44xq0/
-         C1oYtaMAHCkSxvcTtJDKumtjLaen/qc3sdZXriiWOx38j/mzKyNxk7zfQGkTFppU3P+f
-         GbU3IMSVA4jQusnf+XFZZ9zlqlvwntOafYC1rexcFw8hVP7CCvTkb8FvejSSHKf6Vg8K
-         psZA==
-X-Gm-Message-State: AOAM530d8TawmcLbapsIuvccPl5664FGjvFgFhQmv9JkbVEZPOScDj1U
-        qtaxKQTdii61b/fOu5iLSuQvCA==
-X-Google-Smtp-Source: ABdhPJwfbFcviVSfTAbSMAnrXzK7dC+k5xmXgB/S2xxGvTPdrnsrbWO6uw4gslsvMhncxNmUXUSSSg==
-X-Received: by 2002:a1c:4d0e:: with SMTP id o14mr4859927wmh.141.1618242775624;
-        Mon, 12 Apr 2021 08:52:55 -0700 (PDT)
-Received: from ?IPv6:2a01:e0a:90c:e290:4c21:b00e:ff79:bf20? ([2a01:e0a:90c:e290:4c21:b00e:ff79:bf20])
-        by smtp.gmail.com with ESMTPSA id g84sm15277215wmf.30.2021.04.12.08.52.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Apr 2021 08:52:55 -0700 (PDT)
-Subject: Re: [PATCH v2 1/5] dt-bindings: display: mediatek,hdmi: Convert to
- use graph schema
-To:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
-        matthias.bgg@gmail.com, devicetree@vger.kernel.org
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210412093928.3321194-1-narmstrong@baylibre.com>
- <20210412093928.3321194-2-narmstrong@baylibre.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <415e0331-fc7c-6362-e81d-108f7ff8a654@baylibre.com>
-Date:   Mon, 12 Apr 2021 17:52:53 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=D8mqQNMejN8r3XNzqzZUQEDV1TBSvz3m0F5gnKEmk2Q=;
+        b=FjgWdnL7vAZdtwNfqMa6qJjQtSrvtVhTMvBz4zDrzHL9Sh9Xt9hIuVfFQl3dslPM63
+         XCzKYGStvbNEXhcCZVz5RbFfL6UW9YIVc3c4kBYdeJktt51VsLu7cDrBlgstgTlLq6bU
+         rpfXEuAfLviQuYad1WY6dEO10iT1PKPP7zw5LFoWbacjg5w1tUVS0bIxC7kYsfIY/2FA
+         P3YnnfnVJPFyVAb+Usc1NGSHoFHXTfIyyK3JeTC3U910SCSztzNa3+fgxmXaTJviHIqT
+         LgjEaqfYrvzJwhiEGLkr1EHxP19dUHa8mYFXWQvEXNDOd+5bDI5ZYVfVKzpNoaLzeYid
+         iA/Q==
+X-Gm-Message-State: AOAM53137qFjawe3SWq4fzczk/k+kQaG4B+/2WYQo06KSPZSJN26Pvkh
+        Z83Q+k79SLVjEo4lwBRiOg==
+X-Google-Smtp-Source: ABdhPJwP31fm7+UhlgtmiR5A5n5kQN+n3htgVpyOrqH3ry24ejd5rjWkE9SZqRHNPzuYBXMKB0w44Q==
+X-Received: by 2002:a05:6830:149:: with SMTP id j9mr24866361otp.66.1618243151906;
+        Mon, 12 Apr 2021 08:59:11 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id m3sm1191222oiw.27.2021.04.12.08.59.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Apr 2021 08:59:11 -0700 (PDT)
+Received: (nullmailer pid 3967470 invoked by uid 1000);
+        Mon, 12 Apr 2021 15:59:10 -0000
+Date:   Mon, 12 Apr 2021 10:59:10 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Nina Wu <nina-cm.wu@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Zhen Lei <thunder.leizhen@huawei.com>,
+        Neal Liu <neal.liu@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        Jackson-kt.Chang@mediatek.com
+Subject: Re: [PATCH v3 1/7] dt-bindings: devapc: Add 'vio-idx-num' field to
+ support mt8192
+Message-ID: <20210412155910.GA3966290@robh.at.kernel.org>
+References: <1617956377-4075-1-git-send-email-nina-cm.wu@mediatek.com>
 MIME-Version: 1.0
-In-Reply-To: <20210412093928.3321194-2-narmstrong@baylibre.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1617956377-4075-1-git-send-email-nina-cm.wu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2021 11:39, Neil Armstrong wrote:
-> Update the mediatek,dpi binding to use the graph schema.
+On Fri, Apr 09, 2021 at 04:19:31PM +0800, Nina Wu wrote:
+> From: Nina Wu <Nina-CM.Wu@mediatek.com>
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> For new ICs, there are multiple devapc HWs for different subsys.
+> We add a field 'vio-idx-num' in DT to indicate the number of
+> devices controlled by each devapc.
+> To be backward compatible with old ICs which have only one devapc
+> HW, this field is not required. The 'vio-idx-num' info will be set
+> in compatible data instead.
+> 
+> Signed-off-by: Nina Wu <Nina-CM.Wu@mediatek.com>
 > ---
->  .../display/mediatek/mediatek,cec.yaml        |  51 +++++++
->  .../display/mediatek/mediatek,hdmi-ddc.yaml   |  57 ++++++++
->  .../display/mediatek/mediatek,hdmi.txt        | 136 ------------------
->  .../display/mediatek/mediatek,hdmi.yaml       | 131 +++++++++++++++++
->  4 files changed, 239 insertions(+), 136 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.txt
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
+>  Documentation/devicetree/bindings/soc/mediatek/devapc.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
-> new file mode 100644
-> index 000000000000..408e7dfce409
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,cec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek HDMI CEC Controller Device Tree Bindings
-> +
-> +maintainers:
-> +  - CK Hu <ck.hu@mediatek.com>
-> +  - Jitao shi <jitao.shi@mediatek.com>
-> +
-> +description: |
-> +  The HDMI CEC controller handles hotplug detection and CEC communication.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt7623-hdmi
-
-=> mediatek,mt7623-cec
-
-> +      - mediatek,mt8173-hdmi
-
-=> mediatek,mt8173-cec
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
+> diff --git a/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml b/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml
+> index 31e4d3c..909e524 100644
+> --- a/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml
+> +++ b/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml
+> @@ -20,11 +20,17 @@ properties:
+>    compatible:
+>      enum:
+>        - mediatek,mt6779-devapc
+> +      - mediatek,mt8192-devapc
+>  
+>    reg:
+>      description: The base address of devapc register bank
+>      maxItems: 1
+>  
+> +  mediatek,vio-idx-num:
+> +    description: The number of the devices controlled by devapc
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 > +    maxItems: 1
 
-[..]
+A uint32 is always 1 item, so drop. With that,
 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
-> new file mode 100644
-> index 000000000000..c15b3470d652
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,hdmi-ddc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek HDMI DDC Device Tree Bindings
-> +
-> +maintainers:
-> +  - CK Hu <ck.hu@mediatek.com>
-> +  - Jitao shi <jitao.shi@mediatek.com>
-> +
-> +description: |
-> +  The HDMI DDC i2c controller is used to interface with the HDMI DDC pins.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt7623-hdmi
-
-=> mediatek,mt7623-hdmi-ddc
-
-> +      - mediatek,mt8173-hdmi
-
-=> mediatek,mt8173-hdmi-ddc
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 > +
-> +  reg:
-> +    maxItems: 1
-
-
-[..]
-will repost with these fixes in  a few days,
-
-Neil
+>    interrupts:
+>      description: A single interrupt specifier
+>      maxItems: 1
+> -- 
+> 2.6.4
+> 
