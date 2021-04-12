@@ -2,169 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE06635C2A2
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 12:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0680835C2B9
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 12:03:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241088AbhDLJqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 05:46:39 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:57461 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243727AbhDLJmz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 05:42:55 -0400
+        id S238297AbhDLJsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 05:48:07 -0400
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:34627 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242106AbhDLJqD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 05:46:03 -0400
+X-Originating-IP: 93.34.118.233
 Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
         (Authenticated sender: jacopo@jmondi.org)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 2E7F0240011;
-        Mon, 12 Apr 2021 09:42:33 +0000 (UTC)
-Date:   Mon, 12 Apr 2021 11:43:12 +0200
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 924C260009;
+        Mon, 12 Apr 2021 09:45:41 +0000 (UTC)
+Date:   Mon, 12 Apr 2021 11:46:20 +0200
 From:   Jacopo Mondi <jacopo@jmondi.org>
 To:     Eugen Hristev <eugen.hristev@microchip.com>
 Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 04/30] media: atmel: atmel-isc: specialize max width
- and max height
-Message-ID: <20210412094312.tsghnyhglxf3roiy@uno.localdomain>
+Subject: Re: [PATCH v2 05/30] media: atmel: atmel-isc: specialize dma cfg
+Message-ID: <20210412094620.uxzt5ri74awbmhpx@uno.localdomain>
 References: <20210405155105.162529-1-eugen.hristev@microchip.com>
- <20210405155105.162529-5-eugen.hristev@microchip.com>
+ <20210405155105.162529-6-eugen.hristev@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210405155105.162529-5-eugen.hristev@microchip.com>
+In-Reply-To: <20210405155105.162529-6-eugen.hristev@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eugene,
+Hi Eugene
 
-On Mon, Apr 05, 2021 at 06:50:39PM +0300, Eugen Hristev wrote:
-> Move the max width and max height constants to the product specific driver
-> and have them in the device struct.
+On Mon, Apr 05, 2021 at 06:50:40PM +0300, Eugen Hristev wrote:
+> The dma configuration (DCFG) is specific to the product.
+> Move this configuration in the product specific driver, and add the
+> field inside the driver struct.
+
+Do you plan to match on different compatible values ?
+As in that case you could retrieve platform-specific data with
+of_device_get_match_data() maybe ? Just pointing it out if it's anyway
+useful to you.
+
+Thanks
+  j
+
 >
 > Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
 > ---
->  drivers/media/platform/atmel/atmel-isc-base.c | 28 +++++++++----------
->  drivers/media/platform/atmel/atmel-isc.h      |  9 ++++--
->  .../media/platform/atmel/atmel-sama5d2-isc.c  |  7 +++--
->  3 files changed, 25 insertions(+), 19 deletions(-)
+>  drivers/media/platform/atmel/atmel-isc-base.c    | 3 +--
+>  drivers/media/platform/atmel/atmel-isc.h         | 2 ++
+>  drivers/media/platform/atmel/atmel-sama5d2-isc.c | 3 +++
+>  3 files changed, 6 insertions(+), 2 deletions(-)
 >
 > diff --git a/drivers/media/platform/atmel/atmel-isc-base.c b/drivers/media/platform/atmel/atmel-isc-base.c
-> index 45fc8dbb7943..350076dd029a 100644
+> index 350076dd029a..ff40ee2e2759 100644
 > --- a/drivers/media/platform/atmel/atmel-isc-base.c
 > +++ b/drivers/media/platform/atmel/atmel-isc-base.c
-> @@ -1204,8 +1204,8 @@ static void isc_try_fse(struct isc_device *isc,
->  	 * just use the maximum ISC can receive.
->  	 */
->  	if (ret) {
-> -		pad_cfg->try_crop.width = ISC_MAX_SUPPORT_WIDTH;
-> -		pad_cfg->try_crop.height = ISC_MAX_SUPPORT_HEIGHT;
-> +		pad_cfg->try_crop.width = isc->max_width;
-> +		pad_cfg->try_crop.height = isc->max_height;
->  	} else {
->  		pad_cfg->try_crop.width = fse.max_width;
->  		pad_cfg->try_crop.height = fse.max_height;
-> @@ -1282,10 +1282,10 @@ static int isc_try_fmt(struct isc_device *isc, struct v4l2_format *f,
->  	isc->try_config.sd_format = sd_fmt;
+> @@ -716,8 +716,7 @@ static int isc_configure(struct isc_device *isc)
+>  	rlp_mode = isc->config.rlp_cfg_mode;
+>  	pipeline = isc->config.bits_pipeline;
 >
->  	/* Limit to Atmel ISC hardware capabilities */
-> -	if (pixfmt->width > ISC_MAX_SUPPORT_WIDTH)
-> -		pixfmt->width = ISC_MAX_SUPPORT_WIDTH;
-> -	if (pixfmt->height > ISC_MAX_SUPPORT_HEIGHT)
-> -		pixfmt->height = ISC_MAX_SUPPORT_HEIGHT;
-> +	if (pixfmt->width > isc->max_width)
-> +		pixfmt->width = isc->max_width;
-> +	if (pixfmt->height > isc->max_height)
-> +		pixfmt->height = isc->max_height;
+> -	dcfg = isc->config.dcfg_imode |
+> -		       ISC_DCFG_YMBSIZE_BEATS8 | ISC_DCFG_CMBSIZE_BEATS8;
+> +	dcfg = isc->config.dcfg_imode | isc->dcfg;
 >
->  	/*
->  	 * The mbus format is the one the subdev outputs.
-> @@ -1327,10 +1327,10 @@ static int isc_try_fmt(struct isc_device *isc, struct v4l2_format *f,
->  	v4l2_fill_pix_format(pixfmt, &format.format);
->
->  	/* Limit to Atmel ISC hardware capabilities */
-> -	if (pixfmt->width > ISC_MAX_SUPPORT_WIDTH)
-> -		pixfmt->width = ISC_MAX_SUPPORT_WIDTH;
-> -	if (pixfmt->height > ISC_MAX_SUPPORT_HEIGHT)
-> -		pixfmt->height = ISC_MAX_SUPPORT_HEIGHT;
-> +	if (pixfmt->width > isc->max_width)
-> +		pixfmt->width = isc->max_width;
-> +	if (pixfmt->height > isc->max_height)
-> +		pixfmt->height = isc->max_height;
-
-What happens if the sensor sends a frame larger that the ISC max
-supported sizes ?
-
->
->  	pixfmt->field = V4L2_FIELD_NONE;
->  	pixfmt->bytesperline = (pixfmt->width * isc->try_config.bpp) >> 3;
-> @@ -1368,10 +1368,10 @@ static int isc_set_fmt(struct isc_device *isc, struct v4l2_format *f)
->  		return ret;
->
->  	/* Limit to Atmel ISC hardware capabilities */
-> -	if (pixfmt->width > ISC_MAX_SUPPORT_WIDTH)
-> -		pixfmt->width = ISC_MAX_SUPPORT_WIDTH;
-> -	if (pixfmt->height > ISC_MAX_SUPPORT_HEIGHT)
-> -		pixfmt->height = ISC_MAX_SUPPORT_HEIGHT;
-> +	if (f->fmt.pix.width > isc->max_width)
-> +		f->fmt.pix.width = isc->max_width;
-> +	if (f->fmt.pix.height > isc->max_height)
-> +		f->fmt.pix.height = isc->max_height;
->
->  	isc->fmt = *f;
->
+>  	pfe_cfg0  |= subdev->pfe_cfg0 | ISC_PFE_CFG0_MODE_PROGRESSIVE;
+>  	mask = ISC_PFE_CFG0_BPS_MASK | ISC_PFE_CFG0_HPOL_LOW |
 > diff --git a/drivers/media/platform/atmel/atmel-isc.h b/drivers/media/platform/atmel/atmel-isc.h
-> index 8d81d9967ad2..6becc6c3aaf0 100644
+> index 6becc6c3aaf0..d14ae096fbf6 100644
 > --- a/drivers/media/platform/atmel/atmel-isc.h
 > +++ b/drivers/media/platform/atmel/atmel-isc.h
-> @@ -10,9 +10,6 @@
->   */
->  #ifndef _ATMEL_ISC_H_
+> @@ -150,6 +150,7 @@ struct isc_ctrls {
+>   * @hclock:		Hclock clock input (refer datasheet)
+>   * @ispck:		iscpck clock (refer datasheet)
+>   * @isc_clks:		ISC clocks
+> + * @dcfg:		DMA master configuration, architecture dependent
+>   *
+>   * @dev:		Registered device driver
+>   * @v4l2_dev:		v4l2 registered device
+> @@ -197,6 +198,7 @@ struct isc_device {
+>  	struct clk		*hclock;
+>  	struct clk		*ispck;
+>  	struct isc_clk		isc_clks[2];
+> +	u32			dcfg;
 >
-> -#define ISC_MAX_SUPPORT_WIDTH   2592
-> -#define ISC_MAX_SUPPORT_HEIGHT  1944
-> -
->  #define ISC_CLK_MAX_DIV		255
->
->  enum isc_clk_id {
-> @@ -191,6 +188,9 @@ struct isc_ctrls {
->   * @gamma_table:	pointer to the table with gamma values, has
->   *			gamma_max sets of GAMMA_ENTRIES entries each
->   * @gamma_max:		maximum number of sets of inside the gamma_table
-> + *
-> + * @max_width:		maximum frame width, dependent on the internal RAM
-> + * @max_height:		maximum frame height, dependent on the internal RAM
->   */
->  struct isc_device {
->  	struct regmap		*regmap;
-> @@ -254,6 +254,9 @@ struct isc_device {
->  	/* pointer to the defined gamma table */
->  	const u32	(*gamma_table)[GAMMA_ENTRIES];
->  	u32		gamma_max;
-> +
-> +	u32		max_width;
-> +	u32		max_height;
->  };
->
->  extern struct isc_format formats_list[];
+>  	struct device		*dev;
+>  	struct v4l2_device	v4l2_dev;
 > diff --git a/drivers/media/platform/atmel/atmel-sama5d2-isc.c b/drivers/media/platform/atmel/atmel-sama5d2-isc.c
-> index f45d8b96bfb8..f8d1c8ba99b3 100644
+> index f8d1c8ba99b3..6d9942dcd7c1 100644
 > --- a/drivers/media/platform/atmel/atmel-sama5d2-isc.c
 > +++ b/drivers/media/platform/atmel/atmel-sama5d2-isc.c
-> @@ -49,8 +49,8 @@
->  #include "atmel-isc-regs.h"
->  #include "atmel-isc.h"
+> @@ -198,6 +198,9 @@ static int atmel_isc_probe(struct platform_device *pdev)
+>  	isc->max_width = ISC_SAMA5D2_MAX_SUPPORT_WIDTH;
+>  	isc->max_height = ISC_SAMA5D2_MAX_SUPPORT_HEIGHT;
 >
-> -#define ISC_MAX_SUPPORT_WIDTH   2592
-> -#define ISC_MAX_SUPPORT_HEIGHT  1944
-> +#define ISC_SAMA5D2_MAX_SUPPORT_WIDTH   2592
-> +#define ISC_SAMA5D2_MAX_SUPPORT_HEIGHT  1944
->
->  #define ISC_CLK_MAX_DIV		255
->
-> @@ -195,6 +195,9 @@ static int atmel_isc_probe(struct platform_device *pdev)
->  	isc->gamma_table = isc_sama5d2_gamma_table;
->  	isc->gamma_max = 2;
->
-> +	isc->max_width = ISC_SAMA5D2_MAX_SUPPORT_WIDTH;
-> +	isc->max_height = ISC_SAMA5D2_MAX_SUPPORT_HEIGHT;
+> +	/* sama5d2-isc - 8 bits per beat */
+> +	isc->dcfg = ISC_DCFG_YMBSIZE_BEATS8 | ISC_DCFG_CMBSIZE_BEATS8;
 > +
 >  	ret = isc_pipeline_init(isc);
 >  	if (ret)
