@@ -2,352 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0D1835B9C3
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 07:14:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F6A735B9FB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 08:05:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229581AbhDLFOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 01:14:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45754 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229669AbhDLFOh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 01:14:37 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0931EC06138E
-        for <devicetree@vger.kernel.org>; Sun, 11 Apr 2021 22:14:20 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id b8-20020a17090a5508b029014d0fbe9b64so8134395pji.5
-        for <devicetree@vger.kernel.org>; Sun, 11 Apr 2021 22:14:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QShRKzsEMp6U8GpuK5A8DEeE3/Uf7j3/vVAxV0LlqQc=;
-        b=AIiw6hUM7qMzpIYYYhYaG+qhav+fbxWTnxxgdFbFOjCbtoFg1oVT8kC6jRXF5sTGG8
-         OPedReYxorhiKILob9A256qYhQSr0Eonok0fGQTB1nvGMc/dzLnSXALXQ/XN7tH6n4vY
-         3KKyoqnRbv1Av+paR2BV5f8gTACO88Qt5VhiA=
+        id S229810AbhDLGGG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 02:06:06 -0400
+Received: from mail-lj1-f169.google.com ([209.85.208.169]:45718 "EHLO
+        mail-lj1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229448AbhDLGGF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 02:06:05 -0400
+Received: by mail-lj1-f169.google.com with SMTP id z8so13911095ljm.12;
+        Sun, 11 Apr 2021 23:05:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QShRKzsEMp6U8GpuK5A8DEeE3/Uf7j3/vVAxV0LlqQc=;
-        b=J1PBxlEDGlvdmCGuLlkfb+JX/n0+hEKtN0rcArBES/d7/s/ukSvhwrWPgQoboMZoRW
-         +3aCZED+5iDlE7DG/p5ibZbkYVl4M9FKdIdkCJ6l3QsHlowp9TtmRshE6dLGXO1+2+cq
-         Id8Xjz19o4YcACDYYVc5bm8bADqYj7adV7zqYtd7WnHBR1tyHGKaiWa+6xVpRZ71VnzQ
-         5PNRZXX7kVjskF8qBXPe/Jbqm+Cb7q4S9hqHqtvuAm4g1XKU+IkMZjmcjVPYmnk0EvaA
-         WVjgVUst+ulcxj6NCrcoPMQqaHhUdqtzH2ALMsijDLJckRR4uXTbH7qukwpdqMkXyOCg
-         ISWg==
-X-Gm-Message-State: AOAM5329F5b31uphggXe3uAGW4bNTi1rVyyvfYftwRXtQwKOS6Wt2CdJ
-        L8ho2bZJkkzqA4V5gFpObsYSvcacw3Hv1VJUPVc5ykJz0+8=
-X-Google-Smtp-Source: ABdhPJyDO64UupsvHzKZ+uXicHV9pojGVjsnKvKeIpeBF5UnTZUYcv5/4kikw6z/aLV0TJ+GOWF+/7loV4mBXH53cLE=
-X-Received: by 2002:a17:90b:349:: with SMTP id fh9mr4936936pjb.126.1618204459324;
- Sun, 11 Apr 2021 22:14:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <1617874514-12282-1-git-send-email-chunfeng.yun@mediatek.com>
- <1617874514-12282-4-git-send-email-chunfeng.yun@mediatek.com>
- <CAATdQgArnkdmbZefF4h7xp6=j-wHLgdQs1K0cDv06sP4eVdHmw@mail.gmail.com> <1617958441.12105.39.camel@mhfsdcap03>
-In-Reply-To: <1617958441.12105.39.camel@mhfsdcap03>
-From:   Ikjoon Jang <ikjn@chromium.org>
-Date:   Mon, 12 Apr 2021 13:14:09 +0800
-Message-ID: <CAATdQgCjNbUKsJYZjr5wHbXV5y-7ZZrN=URKccCv1d+S4zFiDA@mail.gmail.com>
-Subject: Re: [PATCH 4/6] usb: xhci-mtk: add support runtime PM
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Len Brown <len.brown@intel.com>, Pavel Machek <pavel@ucw.cz>,
-        linux-usb@vger.kernel.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        linux-pm@vger.kernel.org, Tony Lindgren <tony@atomide.com>,
-        Tianping Fang <tianping.fang@mediatek.com>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Nicolas Boichat <drinkcat@chromium.org>
+        h=x-gm-message-state:message-id:subject:from:reply-to:to:cc
+         :in-reply-to:references:mime-version:date:user-agent
+         :content-transfer-encoding;
+        bh=lcon2rmRARLmChe6kE+I9FLuhgI2av1Gb7xCDp3yuQ0=;
+        b=Xg7ciMM1TDIHe1d2ZcEC0pVpPz7APQvjkUw1AXjZls2wNPh4SjQEPwhBljcmpUEPFk
+         p/D3JLnwPN1vUkyXGwjPixBybVL86rtwoQ+JU7kS4hr5rJlvBAa2oqKpOhnMKA29UM7k
+         XcSslKEsxeyZlgE1At8ERwnKx1z9HaJUi8kjoJLFXBKDCWw5bMgG6KL+wI9QzCPWHGVd
+         H/WMLNTDqDhrUL5rjm2Z4wT+6fJkXtGkSRriUd99Z7NadhSq6CorYD4I70yMkRrLK5i4
+         p2tpYDUy1lOT15kXeuVlcWUhcTfzmKiGzbmeSr8KHDYsbZJgeobEDaX0Lw/UDJeNaqXf
+         peiw==
+X-Gm-Message-State: AOAM532IgKpSol9nd9oGtoo6TubEpesJlF6glyl11UEEVwjoEWBt8kU8
+        cHKkq/ujWfKfXtGIA4pGfUPtJAMsWdRSLQ==
+X-Google-Smtp-Source: ABdhPJyBUIynKa25iOasIiRQlPLnH6KH8qoGRt+hmACCB3+XZdckJI+CW20WJK3qTO5Ysj3j8+gY3A==
+X-Received: by 2002:a2e:9295:: with SMTP id d21mr13245670ljh.299.1618207546399;
+        Sun, 11 Apr 2021 23:05:46 -0700 (PDT)
+Received: from dc7vkhyyyyyyyyyyyyydy-3.rev.dnainternet.fi (dc7vkhyyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::6])
+        by smtp.gmail.com with ESMTPSA id f26sm416194lfj.37.2021.04.11.23.05.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Apr 2021 23:05:45 -0700 (PDT)
+Message-ID: <4abddb76d87a2e6e0d2ad98da0b8349251456158.camel@fi.rohmeurope.com>
+Subject: Re: [RFC PATCH v3 1/3] regmap-irq: Extend sub-irq to support
+ non-fixed reg strides
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Reply-To: matti.vaittinen@fi.rohmeurope.com
+To:     Guru Das Srinagesh <gurus@codeaurora.org>,
+        Mark Brown <broonie@kernel.org>,
+        Markus Elfring <Markus.Elfring@web.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Joe Perches <joe@perches.com>,
+        Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
+        David Collins <collinsd@codeaurora.org>,
+        Anirudh Ghayal <aghayal@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <526562423eaa58b4075362083f561841f1d6956c.1615423027.git.gurus@codeaurora.org>
+References: <cover.1615423027.git.gurus@codeaurora.org>
+         <526562423eaa58b4075362083f561841f1d6956c.1615423027.git.gurus@codeaurora.org>
 Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Date:   Mon, 12 Apr 2021 09:05:39 +0300
+User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 9, 2021 at 4:54 PM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
->
-> On Fri, 2021-04-09 at 13:45 +0800, Ikjoon Jang wrote:
-> > On Thu, Apr 8, 2021 at 5:35 PM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
-> > >
-> > > A dedicated wakeup irq will be used to handle runtime suspend/resume,
-> > > we use dev_pm_set_dedicated_wake_irq API to take care of requesting
-> > > and attaching wakeup irq, then the suspend/resume framework will help
-> > > to enable/disable wakeup irq.
-> > >
-> > > The runtime PM is default off since some platforms may not support it.
-> > > users can enable it via power/control (set "auto") in sysfs.
-> > >
-> > > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > > ---
-> > >  drivers/usb/host/xhci-mtk.c | 140 +++++++++++++++++++++++++++++++-----
-> > >  1 file changed, 124 insertions(+), 16 deletions(-)
-> > >
-> > > diff --git a/drivers/usb/host/xhci-mtk.c b/drivers/usb/host/xhci-mtk.c
-> > > index a74764ab914a..30927f4064d4 100644
-> > > --- a/drivers/usb/host/xhci-mtk.c
-> > > +++ b/drivers/usb/host/xhci-mtk.c
-> > > @@ -16,6 +16,7 @@
-> > >  #include <linux/of.h>
-> > >  #include <linux/platform_device.h>
-> > >  #include <linux/pm_runtime.h>
-> > > +#include <linux/pm_wakeirq.h>
-> > >  #include <linux/regmap.h>
-> > >  #include <linux/regulator/consumer.h>
-> > >
-> > > @@ -358,7 +359,6 @@ static int usb_wakeup_of_property_parse(struct xhci_hcd_mtk *mtk,
-> > >                         mtk->uwk_reg_base, mtk->uwk_vers);
-> > >
-> > >         return PTR_ERR_OR_ZERO(mtk->uwk);
-> > > -
-> > >  }
-> > >
-> > >  static void usb_wakeup_set(struct xhci_hcd_mtk *mtk, bool enable)
-> > > @@ -458,6 +458,7 @@ static int xhci_mtk_probe(struct platform_device *pdev)
-> > >         struct resource *res;
-> > >         struct usb_hcd *hcd;
-> > >         int ret = -ENODEV;
-> > > +       int wakeup_irq;
-> > >         int irq;
-> > >
-> > >         if (usb_disabled())
-> > > @@ -485,6 +486,21 @@ static int xhci_mtk_probe(struct platform_device *pdev)
-> > >         if (ret)
-> > >                 return ret;
-> > >
-> > > +       irq = platform_get_irq_byname_optional(pdev, "host");
-> > > +       if (irq < 0) {
-> > > +               if (irq == -EPROBE_DEFER)
-> > > +                       return irq;
-> > > +
-> > > +               /* for backward compatibility */
-> > > +               irq = platform_get_irq(pdev, 0);
-> > > +               if (irq < 0)
-> > > +                       return irq;
-> > > +       }
-> > > +
-> > > +       wakeup_irq = platform_get_irq_byname_optional(pdev, "wakeup");
-> > > +       if (wakeup_irq == -EPROBE_DEFER)
-> > > +               return wakeup_irq;
-> > > +
-> > >         mtk->lpm_support = of_property_read_bool(node, "usb3-lpm-capable");
-> > >         /* optional property, ignore the error if it does not exist */
-> > >         of_property_read_u32(node, "mediatek,u3p-dis-msk",
-> > > @@ -496,9 +512,11 @@ static int xhci_mtk_probe(struct platform_device *pdev)
-> > >                 return ret;
-> > >         }
-> > >
-> > > +       pm_runtime_set_active(dev);
-> > > +       pm_runtime_use_autosuspend(dev);
-> > > +       pm_runtime_set_autosuspend_delay(dev, 4000);
-> > >         pm_runtime_enable(dev);
-> > >         pm_runtime_get_sync(dev);
-> > > -       device_enable_async_suspend(dev);
-> > >
-> > >         ret = xhci_mtk_ldos_enable(mtk);
-> > >         if (ret)
-> > > @@ -508,12 +526,6 @@ static int xhci_mtk_probe(struct platform_device *pdev)
-> > >         if (ret)
-> > >                 goto disable_ldos;
-> > >
-> > > -       irq = platform_get_irq(pdev, 0);
-> > > -       if (irq < 0) {
-> > > -               ret = irq;
-> > > -               goto disable_clk;
-> > > -       }
-> > > -
-> > >         hcd = usb_create_hcd(driver, dev, dev_name(dev));
-> > >         if (!hcd) {
-> > >                 ret = -ENOMEM;
-> > > @@ -579,8 +591,26 @@ static int xhci_mtk_probe(struct platform_device *pdev)
-> > >         if (ret)
-> > >                 goto dealloc_usb2_hcd;
-> > >
-> > > +       if (wakeup_irq > 0) {
-> > > +               ret = dev_pm_set_dedicated_wake_irq(dev, wakeup_irq);
-> > > +               if (ret) {
-> > > +                       dev_err(dev, "set wakeup irq %d failed\n", wakeup_irq);
-> > > +                       goto dealloc_usb3_hcd;
-> > > +               }
-> > > +               dev_info(dev, "wakeup irq %d\n", wakeup_irq);
-> > > +       }
-> > > +
-> > > +       device_enable_async_suspend(dev);
-> > > +       pm_runtime_mark_last_busy(dev);
-> > > +       pm_runtime_put_autosuspend(dev);
-> > > +       pm_runtime_forbid(dev);
-> > > +
-> > >         return 0;
-> > >
-> > > +dealloc_usb3_hcd:
-> > > +       usb_remove_hcd(xhci->shared_hcd);
-> > > +       xhci->shared_hcd = NULL;
-> > > +
-> > >  dealloc_usb2_hcd:
-> > >         usb_remove_hcd(hcd);
-> > >
-> > > @@ -601,25 +631,26 @@ static int xhci_mtk_probe(struct platform_device *pdev)
-> > >         xhci_mtk_ldos_disable(mtk);
-> > >
-> > >  disable_pm:
-> > > -       pm_runtime_put_sync(dev);
-> > > +       pm_runtime_put_sync_autosuspend(dev);
-> > >         pm_runtime_disable(dev);
-> > >         return ret;
-> > >  }
-> > >
-> > > -static int xhci_mtk_remove(struct platform_device *dev)
-> > > +static int xhci_mtk_remove(struct platform_device *pdev)
-> > >  {
-> > > -       struct xhci_hcd_mtk *mtk = platform_get_drvdata(dev);
-> > > +       struct xhci_hcd_mtk *mtk = platform_get_drvdata(pdev);
-> > >         struct usb_hcd  *hcd = mtk->hcd;
-> > >         struct xhci_hcd *xhci = hcd_to_xhci(hcd);
-> > >         struct usb_hcd  *shared_hcd = xhci->shared_hcd;
-> > > +       struct device *dev = &pdev->dev;
-> > >
-> > > -       pm_runtime_put_noidle(&dev->dev);
-> > > -       pm_runtime_disable(&dev->dev);
-> > > +       pm_runtime_get_sync(dev);
-> > > +       xhci->xhc_state |= XHCI_STATE_REMOVING;
-> > > +       dev_pm_clear_wake_irq(dev);
-> > > +       device_init_wakeup(dev, false);
-> > >
-> > >         usb_remove_hcd(shared_hcd);
-> > >         xhci->shared_hcd = NULL;
-> > > -       device_init_wakeup(&dev->dev, false);
-> > > -
-> > >         usb_remove_hcd(hcd);
-> > >         usb_put_hcd(shared_hcd);
-> > >         usb_put_hcd(hcd);
-> > > @@ -627,6 +658,10 @@ static int xhci_mtk_remove(struct platform_device *dev)
-> > >         xhci_mtk_clks_disable(mtk);
-> > >         xhci_mtk_ldos_disable(mtk);
-> > >
-> > > +       pm_runtime_disable(dev);
-> > > +       pm_runtime_put_noidle(dev);
-> > > +       pm_runtime_set_suspended(dev);
-> > > +
-> > >         return 0;
-> > >  }
-> > >
-> > > @@ -690,10 +725,83 @@ static int __maybe_unused xhci_mtk_resume(struct device *dev)
-> > >         return ret;
-> > >  }
-> > >
-> > > +static int check_rhub_status(struct xhci_hcd *xhci, struct xhci_hub *rhub)
-> > > +{
-> > > +       u32 suspended_ports;
-> > > +       u32 status;
-> > > +       int num_ports;
-> > > +       int i;
-> > > +
-> > > +       num_ports = rhub->num_ports;
-> > > +       suspended_ports = rhub->bus_state.suspended_ports;
-> > > +       for (i = 0; i < num_ports; i++) {
-> > > +               if (!(suspended_ports & BIT(i))) {
-> > > +                       status = readl(rhub->ports[i]->addr);
-> > > +                       if (status & PORT_CONNECT)
-> >
-> > So this pm_runtime support is activated only when there's no devices
-> > connected at all?
-> No, if the connected devices also support runtime suspend, it will enter
-> suspend mode when no data transfer, then the controller can enter
-> suspend too
-> > I think this will always return -EBUSY with my board having an on-board hub
-> > connected to both rhubs.
-> the on-board hub supports runtime suspend by default, so if no devices
-> connected, it will enter suspend
+Hi All,
 
-Sorry, you're correct. I was confused that the condition was
-(suspended && connect)
-My on-board hub connected to rhub is always in a suspended state
-whenever it's called.
+On Wed, 2021-03-10 at 16:39 -0800, Guru Das Srinagesh wrote:
+> Qualcomm's MFD chips have a top level interrupt status register and
+> sub-irqs (peripherals).  When a bit in the main status register goes
+> high, it means that the peripheral corresponding to that bit has an
+> unserviced interrupt. If the bit is not set, this means that the
+> corresponding peripheral does not.
+> 
+> Commit a2d21848d9211d ("regmap: regmap-irq: Add main status register
+> support") introduced the sub-irq logic that is currently applied only
+> when reading status registers, but not for any other functions like
+> acking
+> or masking. Extend the use of sub-irq to all other functions, with
+> two
+> caveats regarding the specification of offsets:
+> 
+> - Each member of the sub_reg_offsets array should be of length 1
+> - The specified offsets should be the unequal strides for each sub-
+> irq
+>   device.
+> 
+> In QCOM's case, all the *_base registers are to be configured to the
+> base addresses of the first sub-irq group, with offsets of each
+> subsequent group calculated as a difference from these addresses.
+> 
+> Continuing from the example mentioned in the cover letter:
+> 
+> 	/*
+> 	 * Address of MISC_INT_MASK		= 0x1011
+> 	 * Address of TEMP_ALARM_INT_MASK	= 0x2011
+> 	 * Address of GPIO01_INT_MASK		= 0x3011
+> 	 *
+> 	 * Calculate offsets as:
+> 	 * offset_0 = 0x1011 - 0x1011 = 0       (to access MISC's
+> 	 * 					 registers)
+> 	 * offset_1 = 0x2011 - 0x1011 = 0x1000
+> 	 * offset_2 = 0x3011 - 0x1011 = 0x2000
+> 	 */
+> 
+> 	static unsigned int sub_unit0_offsets[] = {0};
+> 	static unsigned int sub_unit1_offsets[] = {0x1000};
+> 	static unsigned int sub_unit2_offsets[] = {0x2000};
+> 
+> 	static struct regmap_irq_sub_irq_map chip_sub_irq_offsets[] = {
+> 		REGMAP_IRQ_MAIN_REG_OFFSET(sub_unit0_offsets),
+> 		REGMAP_IRQ_MAIN_REG_OFFSET(sub_unit0_offsets),
+> 		REGMAP_IRQ_MAIN_REG_OFFSET(sub_unit0_offsets),
+> 	};
+> 
+> 	static struct regmap_irq_chip chip_irq_chip = {
+> 	--------8<--------
+> 	.not_fixed_stride = true,
+> 	.mask_base	  = MISC_INT_MASK,
+> 	.type_base	  = MISC_INT_TYPE,
+> 	.ack_base	  = MISC_INT_ACK,
+> 	.sub_reg_offsets  = chip_sub_irq_offsets,
+> 	--------8<--------
+> 	};
+> 
+> Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
+> ---
+>  drivers/base/regmap/regmap-irq.c | 81 ++++++++++++++++++++++++++--
+> ------------
+>  include/linux/regmap.h           |  7 ++++
+>  2 files changed, 60 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/base/regmap/regmap-irq.c
+> b/drivers/base/regmap/regmap-irq.c
+> index 19db764..e1d8fc9e 100644
+> --- a/drivers/base/regmap/regmap-irq.c
+> +++ b/drivers/base/regmap/regmap-irq.c
+> @@ -45,6 +45,27 @@ struct regmap_irq_chip_data {
+>  	bool clear_status:1;
+>  };
+> 
 
-However, I don't think this could return -EBUSY
-rpm_suspend() only be called when all the descendants are in sleep already.
-Did you see any cases of this function returning -EBUSY or any concerns on here?
+Sorry that I am late with the "review" but I only now noticed this
+change when I was following the references from PM8008 PMIC patch mail.
 
 
->
-> >
-> > > +                               return -EBUSY;
-> > > +               }
-> > > +       }
-> > > +
-> > > +       return 0;
-> > > +}
-> > > +
-> > > +/*
-> > > + * check the bus whether it could suspend or not
-> > > + * the bus will suspend if the downstream ports are already suspended,
-> > > + * or no devices connected.
-> > > + */
-> > > +static int check_bus_status(struct xhci_hcd *xhci)
-> > > +{
-> > > +       int ret;
-> > > +
-> > > +       ret = check_rhub_status(xhci, &xhci->usb3_rhub);
-> > > +       if (ret)
-> > > +               return ret;
-> > > +
-> > > +       return check_rhub_status(xhci, &xhci->usb2_rhub);
-> > > +}
-> > > +
-> > > +static int __maybe_unused xhci_mtk_runtime_suspend(struct device *dev)
-> > > +{
-> > > +       struct xhci_hcd_mtk  *mtk = dev_get_drvdata(dev);
-> > > +       struct xhci_hcd *xhci = hcd_to_xhci(mtk->hcd);
-> > > +       int ret = 0;
-> > > +
-> > > +       if (xhci->xhc_state)
-> > > +               return -ESHUTDOWN;
-> > > +
-> > > +       if (device_may_wakeup(dev)) {
-> > > +               ret = check_bus_status(xhci);
-> > > +               if (!ret)
-> > > +                       ret = xhci_mtk_suspend(dev);
-> > > +       }
-> > > +
-> > > +       /* -EBUSY: let PM automatically reschedule another autosuspend */
-> > > +       return ret ? -EBUSY : 0;
-> > > +}
-> > > +
-> > > +static int __maybe_unused xhci_mtk_runtime_resume(struct device *dev)
-> > > +{
-> > > +       struct xhci_hcd_mtk  *mtk = dev_get_drvdata(dev);
-> > > +       struct xhci_hcd *xhci = hcd_to_xhci(mtk->hcd);
-> > > +       int ret = 0;
-> > > +
-> > > +       if (xhci->xhc_state)
-> > > +               return -ESHUTDOWN;
-> > > +
-> > > +       if (device_may_wakeup(dev))
-> > > +               ret = xhci_mtk_resume(dev);
-> > > +
-> > > +       return ret;
-> > > +}
-> > > +
-> > >  static const struct dev_pm_ops xhci_mtk_pm_ops = {
-> > >         SET_SYSTEM_SLEEP_PM_OPS(xhci_mtk_suspend, xhci_mtk_resume)
-> > > +       SET_RUNTIME_PM_OPS(xhci_mtk_runtime_suspend,
-> > > +                          xhci_mtk_runtime_resume, NULL)
-> > >  };
-> > > -#define DEV_PM_OPS IS_ENABLED(CONFIG_PM) ? &xhci_mtk_pm_ops : NULL
-> > > +
-> > > +#define DEV_PM_OPS (IS_ENABLED(CONFIG_PM) ? &xhci_mtk_pm_ops : NULL)
-> > >
-> > >  static const struct of_device_id mtk_xhci_of_match[] = {
-> > >         { .compatible = "mediatek,mt8173-xhci"},
-> > > --
-> > > 2.18.0
-> > >
->
+>  
+> +static int sub_irq_reg(struct regmap_irq_chip_data *data,
+> +		       unsigned int base_reg, int i)
+
+Do I read this correctly - this function should map the main status bit
+(given in i) to the (sub)IRQ register, right? How does this work for
+cases where one bit corresponds to more than one sub-register? Or do I
+misunderstand the purpose of this function? (This is the case with both
+the BD70528 and BD71828).
+
+> +{
+> +	const struct regmap_irq_chip *chip = data->chip;
+> +	struct regmap *map = data->map;
+> +	struct regmap_irq_sub_irq_map *subreg;
+> +	unsigned int offset;
+> +	int reg = 0;
+> +
+> +	if (!chip->sub_reg_offsets || !chip->not_fixed_stride) {
+> +		/* Assume linear mapping */
+> +		reg = base_reg + (i * map->reg_stride * data-
+> >irq_reg_stride);
+> +	} else {
+> +		subreg = &chip->sub_reg_offsets[i];
+> +		offset = subreg->offset[0];
+> +		reg = base_reg + offset;
+> +	}
+> +
+> +	return reg;
+> +}
+> +
+>  static inline const
+>  struct regmap_irq *irq_to_regmap_irq(struct regmap_irq_chip_data
+> *data,
+>  				     int irq)
+> @@ -87,8 +108,7 @@ static void regmap_irq_sync_unlock(struct irq_data
+> *data)
+>  
+>  	if (d->clear_status) {
+>  		for (i = 0; i < d->chip->num_regs; i++) {
+> -			reg = d->chip->status_base +
+> -				(i * map->reg_stride * d-
+> >irq_reg_stride);
+> +			reg = sub_irq_reg(d, d->chip->status_base, i);
+
+How does this work with the case where we have many subregs pointed by
+single main-status register bit? If I read this correctly, then the
+chip->num_regs can be greater than amount of meaningful main-status
+bits and thus greater than amount of map entries.
+
+I don't have BD71828 or BD70528 at home so I haven't tested this. So
+hopefully I misunderstand something - but if I don't, then this change
+will break the existing main-IRQ functionality. I will visit the office
+later this week and I'll see if I have a chance to test this - but I
+hope you can check your change still supports the case where one main
+status IRQ bit signals more than one sub-register with active IRQs.
+
+Best Regards
+	Matti Vaittinen
+
+
+--
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+K
+iviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+
+Simon says - in Latin please.
+"non cogito me" dixit Rene Descarte, deinde evanescavit
+
+(Thanks for the translation Simon)
+
+
