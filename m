@@ -2,197 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CBF235BA8D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 09:04:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8323C35BAB5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 09:19:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236754AbhDLHFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 03:05:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41414 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236569AbhDLHFI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 03:05:08 -0400
-X-Greylist: delayed 457 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 12 Apr 2021 00:04:50 PDT
-Received: from mx.i2x.nl (mx.i2x.nl [IPv6:2a04:52c0:101:921::25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6D3BAC061574;
-        Mon, 12 Apr 2021 00:04:50 -0700 (PDT)
-Received: from mail.vdorst.com (mail.vdorst.com [IPv6:fd00::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by mx.i2x.nl (Postfix) with ESMTPS id 7DC8A5FB39;
-        Mon, 12 Apr 2021 09:04:49 +0200 (CEST)
-Authentication-Results: mx.i2x.nl;
-        dkim=pass (2048-bit key) header.d=vdorst.com header.i=@vdorst.com header.b="KOH61tZq";
-        dkim-atps=neutral
-Received: from www (unknown [192.168.2.222])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.vdorst.com (Postfix) with ESMTPSA id 33C67BCA030;
-        Mon, 12 Apr 2021 09:04:49 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.vdorst.com 33C67BCA030
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vdorst.com;
-        s=default; t=1618211089;
-        bh=M3JQj7NzQ2CBv+j5XuKuVWBX0H8tPiRu38YIUIPNjSc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KOH61tZqHiukrLYL9orX2yh2BVHg/y8DgL5igT2aG+TF571PC/ImF29hG0/4PBw/7
-         3Di7yXomrnD8HlzijAEPIKkRf58yfY75kRFmqmk3ZNvkIIB8fsIsus7DL2xMnnZFtu
-         mCrKmG/p3wBBnxrPZuFBlODuczwfhpwFJsxpABR0sBp2X1G6MwFdI4Js43WlaXRhqL
-         FbZaQUo8fm00uX0EJKouhWyspLxMyH81yxtvbP4UKXeBNmLddqZUy6sLusKEXXu6oI
-         Al3jwshnr79LRIAbUGE7OatklqNrl4RgNnM4XE1P9ArFAWIDktsHtvwRfp9BB1pM6D
-         EPFXRfrMGg+rQ==
-Received: from 48.79.2.5.in-addr.arpa (48.79.2.5.in-addr.arpa [5.2.79.48])
- by www.vdorst.com (Horde Framework) with HTTPS; Mon, 12 Apr 2021 07:04:49
- +0000
-Date:   Mon, 12 Apr 2021 07:04:49 +0000
-Message-ID: <20210412070449.Horde.wg9CWXW8V9o0P-heKYtQpVh@www.vdorst.com>
-From:   =?utf-8?b?UmVuw6k=?= van Dorst <opensource@vdorst.com>
-To:     DENG Qingfang <dqfext@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-staging@lists.linux.dev, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, Weijie Gao <weijie.gao@mediatek.com>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-Subject: Re: [RFC v4 net-next 1/4] net: phy: add MediaTek PHY driver
-References: <20210412034237.2473017-1-dqfext@gmail.com>
- <20210412034237.2473017-2-dqfext@gmail.com>
-In-Reply-To: <20210412034237.2473017-2-dqfext@gmail.com>
-User-Agent: Horde Application Framework 5
-Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
+        id S236841AbhDLHTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 03:19:48 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:37928 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S236745AbhDLHTs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 03:19:48 -0400
+X-UUID: f9c370dcbca343a9a175ac8cc5963b49-20210412
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=IhR0w7fkxv9QLOyDCj64kNBA7EE1dIlzyNRNY8w1a0w=;
+        b=dLPWpx6wT8oLrLoarFUAoruHTv5L9gWxemzw1WyTYeW1mre4BLYBfXZoXcmtjRnWZQsrB5PohkfBzwMvAFkb978RAluoyVz9Ua2RPh/v7Y7vczuAwL3lgNmSAkyKpYC5Pu6sZ6MFmYMrSqJxNzCotbQ60hSl997iWCvbSh2UbL4=;
+X-UUID: f9c370dcbca343a9a175ac8cc5963b49-20210412
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <flora.fu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1439433201; Mon, 12 Apr 2021 15:19:27 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 12 Apr 2021 15:19:25 +0800
+Received: from [172.21.84.99] (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 12 Apr 2021 15:19:25 +0800
+Message-ID: <1618211965.25062.34.camel@mtksdccf07>
+Subject: Re: [PATCH 3/8] dt-bindings: apu: Add MT8192 APU power domain
+From:   Flora Fu <flora.fu@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Pi-Cheng Chen <pi-cheng.chen@mediatek.com>,
+        Chiawen Lee <chiawen.lee@mediatek.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        Flora Fu <flora.fu@mediatek.com>
+Date:   Mon, 12 Apr 2021 15:19:25 +0800
+In-Reply-To: <20210409182338.GA3895583@robh.at.kernel.org>
+References: <1617766086-5502-1-git-send-email-flora.fu@mediatek.com>
+         <1617766086-5502-4-git-send-email-flora.fu@mediatek.com>
+         <20210409182338.GA3895583@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 MIME-Version: 1.0
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-TM-SNTS-SMTP: E6D439E09D1D32AB80FED7FFF7DDF6F5225F21D18AC1F0D6CB82EE2986E5CDF52000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Qingfang,
-
-Quoting DENG Qingfang <dqfext@gmail.com>:
-
-> Add support for MediaTek PHYs found in MT7530 and MT7531 switches.
-> The initialization procedure is from the vendor driver, but due to lack
-> of documentation, the function of some register values remains unknown.
->
-> Signed-off-by: DENG Qingfang <dqfext@gmail.com>
-> ---
-> RFC v3 -> RFC v4:
-> - Remove unused include.
->
->  drivers/net/phy/Kconfig    |   5 ++
->  drivers/net/phy/Makefile   |   1 +
->  drivers/net/phy/mediatek.c | 111 +++++++++++++++++++++++++++++++++++++
->  3 files changed, 117 insertions(+)
->  create mode 100644 drivers/net/phy/mediatek.c
->
-> diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
-> index a615b3660b05..edd858cec9ec 100644
-> --- a/drivers/net/phy/Kconfig
-> +++ b/drivers/net/phy/Kconfig
-> @@ -207,6 +207,11 @@ config MARVELL_88X2222_PHY
->  	  Support for the Marvell 88X2222 Dual-port Multi-speed Ethernet
->  	  Transceiver.
->
-> +config MEDIATEK_PHY
-> +	tristate "MediaTek PHYs"
-> +	help
-> +	  Supports the MediaTek switch integrated PHYs.
-> +
->  config MICREL_PHY
->  	tristate "Micrel PHYs"
->  	help
-> diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
-> index de683e3abe63..9ed7dbab7770 100644
-> --- a/drivers/net/phy/Makefile
-> +++ b/drivers/net/phy/Makefile
-> @@ -64,6 +64,7 @@ obj-$(CONFIG_LXT_PHY)		+= lxt.o
->  obj-$(CONFIG_MARVELL_10G_PHY)	+= marvell10g.o
->  obj-$(CONFIG_MARVELL_PHY)	+= marvell.o
->  obj-$(CONFIG_MARVELL_88X2222_PHY)	+= marvell-88x2222.o
-> +obj-$(CONFIG_MEDIATEK_PHY)	+= mediatek.o
->  obj-$(CONFIG_MESON_GXL_PHY)	+= meson-gxl.o
->  obj-$(CONFIG_MICREL_KS8995MA)	+= spi_ks8995.o
->  obj-$(CONFIG_MICREL_PHY)	+= micrel.o
-> diff --git a/drivers/net/phy/mediatek.c b/drivers/net/phy/mediatek.c
-> new file mode 100644
-> index 000000000000..1627b7c04345
-> --- /dev/null
-> +++ b/drivers/net/phy/mediatek.c
-> @@ -0,0 +1,111 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +#include <linux/module.h>
-> +#include <linux/phy.h>
-> +
-> +#define MTK_EXT_PAGE_ACCESS		0x1f
-> +#define MTK_PHY_PAGE_STANDARD		0x0000
-> +#define MTK_PHY_PAGE_EXTENDED		0x0001
-> +#define MTK_PHY_PAGE_EXTENDED_2		0x0002
-> +#define MTK_PHY_PAGE_EXTENDED_3		0x0003
-> +#define MTK_PHY_PAGE_EXTENDED_2A30	0x2a30
-> +#define MTK_PHY_PAGE_EXTENDED_52B5	0x52b5
-> +
-> +static int mtk_phy_read_page(struct phy_device *phydev)
-> +{
-> +	return __phy_read(phydev, MTK_EXT_PAGE_ACCESS);
-> +}
-> +
-> +static int mtk_phy_write_page(struct phy_device *phydev, int page)
-> +{
-> +	return __phy_write(phydev, MTK_EXT_PAGE_ACCESS, page);
-> +}
-> +
-> +static void mtk_phy_config_init(struct phy_device *phydev)
-> +{
-> +	/* Disable EEE */
-> +	phy_write_mmd(phydev, MDIO_MMD_AN, MDIO_AN_EEE_ADV, 0);
-
-For my EEE patch I changed this line to:
-
-genphy_config_eee_advert(phydev);
-
-So PHY EEE part is setup properly at boot, instead enable it manual  
-via ethtool.
-This function also takes the DTS parameters "eee-broken-xxxx" in to  
-account while
-setting-up the PHY.
-
-> +
-> +	/* Enable HW auto downshift */
-> +	phy_modify_paged(phydev, MTK_PHY_PAGE_EXTENDED, 0x14, 0, BIT(4));
-> +
-> +	/* Increase SlvDPSready time */
-> +	phy_select_page(phydev, MTK_PHY_PAGE_EXTENDED_52B5);
-> +	__phy_write(phydev, 0x10, 0xafae);
-> +	__phy_write(phydev, 0x12, 0x2f);
-> +	__phy_write(phydev, 0x10, 0x8fae);
-> +	phy_restore_page(phydev, MTK_PHY_PAGE_STANDARD, 0);
-> +
-> +	/* Adjust 100_mse_threshold */
-> +	phy_write_mmd(phydev, MDIO_MMD_VEND1, 0x123, 0xffff);
-> +
-> +	/* Disable mcc */
-> +	phy_write_mmd(phydev, MDIO_MMD_VEND1, 0xa6, 0x300);
-> +}
-> +
-
-Greats,
-
-René
-
+SGksIFJvYiwNCg0KSW4gbXQ4MTkyIGhhcmR3YXJlLCB3ZSBvbmx5IGNvbnRyb2wgdG9wIHBvd2Vy
+IGRvbWFpbiBpbiBrZXJuZWwuDQpJdCBpcyB1bm5lY2Vzc2FyeSB0byBjcmVhdGUgYSBzcGVjaWZp
+YyBoZWFkZXIganVzdCBmb3Igc3VjaCBwdXJwb3NlLiANCkkgd2lsbCB1cGRhdGUgdGhlIHBhdGNo
+IGluIHRoZSBuZXh0IHZlcnNpb24uDQpUaGFua3MgZm9yIHlvdXIgcmV2aWV3Lg0KDQpUaGFua3Ms
+DQpGbG9yYQ0KDQoNCk9uIEZyaSwgMjAyMS0wNC0wOSBhdCAxMzoyMyAtMDUwMCwgUm9iIEhlcnJp
+bmcgd3JvdGU6DQo+IE9uIFdlZCwgQXByIDA3LCAyMDIxIGF0IDExOjI4OjAxQU0gKzA4MDAsIEZs
+b3JhIEZ1IHdyb3RlOg0KPiA+IENyZWF0ZSBNVDgxOTIgQVBVIHBvd2VyIGRvbWFpbiBiaW5kaW5n
+cy4NCj4gPiBBZGQgdG9wIHBvd2VyIGRvbWFpbiBpZC4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5
+OiBGbG9yYSBGdSA8ZmxvcmEuZnVAbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICBpbmNsdWRl
+L2R0LWJpbmRpbmdzL3Bvd2VyL210ODE5Mi1hcHUtcG93ZXIuaCB8IDExICsrKysrKysrKysrDQo+
+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEw
+MDY0NCBpbmNsdWRlL2R0LWJpbmRpbmdzL3Bvd2VyL210ODE5Mi1hcHUtcG93ZXIuaA0KPiA+IA0K
+PiA+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2R0LWJpbmRpbmdzL3Bvd2VyL210ODE5Mi1hcHUtcG93
+ZXIuaCBiL2luY2x1ZGUvZHQtYmluZGluZ3MvcG93ZXIvbXQ4MTkyLWFwdS1wb3dlci5oDQo+ID4g
+bmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLmI4MjFiZDQ4MTFh
+Ng0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9pbmNsdWRlL2R0LWJpbmRpbmdzL3Bvd2Vy
+L210ODE5Mi1hcHUtcG93ZXIuaA0KPiA+IEBAIC0wLDAgKzEsMTEgQEANCj4gPiArLyogU1BEWC1M
+aWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjANCj4gPiArICoNCj4gPiArICogQ29weXJpZ2h0IChj
+KSAyMDIxIE1lZGlhVGVrIEluYy4NCj4gPiArICovDQo+ID4gKw0KPiA+ICsjaWZuZGVmIF9EVF9C
+SU5ESU5HU19QT1dFUl9NVDgxOTJfQVBVX1BPV0VSX0gNCj4gPiArI2RlZmluZSBfRFRfQklORElO
+R1NfUE9XRVJfTVQ4MTkyX0FQVV9QT1dFUl9IDQo+ID4gKw0KPiA+ICsjZGVmaW5lIE1UODE5Ml9Q
+T1dFUl9ET01BSU5fQVBVU1lTX1RPUAkwDQo+IA0KPiBSZWFsbHksIHlvdSBkb24ndCBrbm93IHdo
+YXQgdGhlIG90aGVyIHBvd2VyIGRvbWFpbnMgYXJlPyBQbGVhc2UgbWFrZSANCj4gdGhpcyBhcyBj
+b21wbGV0ZSBhcyBwb3NzaWJsZS4gVGhlc2UgaGVhZGVycyBjcmVhdGUgYSBtZXJnZSBtZXNzLg0K
+PiANCj4gUm9iDQoNCg==
 
