@@ -2,91 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC0E535C76F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 15:20:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 752FC35C782
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 15:26:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240080AbhDLNUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 09:20:30 -0400
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:37653 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239617AbhDLNU2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 09:20:28 -0400
-Received: by mail-oi1-f182.google.com with SMTP id k25so13388248oic.4;
-        Mon, 12 Apr 2021 06:20:10 -0700 (PDT)
+        id S239124AbhDLN1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 09:27:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41192 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237277AbhDLN1C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 09:27:02 -0400
+Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C14BC061574;
+        Mon, 12 Apr 2021 06:26:44 -0700 (PDT)
+Received: by mail-il1-x12d.google.com with SMTP id l19so7095981ilk.13;
+        Mon, 12 Apr 2021 06:26:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=1aO1TpF9MgF5lN0TP7fat48f1wzPDiMoVBU35EFvOUY=;
+        b=hZbmHOUsxJrApOYlVpHX0NnNIambFgFj57y1C7dMuRwaYhLGhUFJrD1N2JT/A1zCyQ
+         +1zrmVcfQTHu+vU2mW3T7e+sgsjRaVyZURQQF17VB6PmM8kfKumR+2djTtJ6eaWvAZkC
+         K47XC1xFM6kpL/QaiE3Mg0vLA0Uw4ea3h+Whxb19W0tkAhmRYwO+FmKdAgaRXA3ikCZV
+         HpisGjxH5ctqg2YswzNkfktESX8DKW1B8D7fWl+DiH1O4veAYcA5P3z1A3bjDfDc9Ou2
+         cEdS5s9koHb3VJFvvPMMtf0mjVpAJOcm0CZNYco+j1FkFDl4yt2MC9eYnliKH5JgIR+5
+         T4lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=5n3lwv9EjfPJBx+21UO8C42pguWqHmFLoVLJG4Pmt/8=;
-        b=mUO4Tm/BauiG1P7td9TeoY1tkpLhT3ZV9oojGNA5z90atxO4o85V0Dq83FMVWfGPzH
-         enHwzcIFwLvYIFOu+ZRUCQ4faOBwuUnefZncZuWd9JDwG4dizIVofNRLyRp8qIroMsys
-         BnrqM+hOXeEmxVfVbu26HFJqvf9CSzp3Xc+2wk2w5hdhDOpowjLgaRKO97D346H9WvpR
-         KfyzSepG44W/UhOP9uhp1cEWbr4Cnta6xKj7k/o/tQxeoTfcGntPnVjkgFcRXJHGHqz8
-         48TMvPs48Qh5dwI+sx+qKtAPRvKrN7YbN3gSAENSrVpik2ErfIVN7QseVyUOGl0hBnL+
-         JuMA==
-X-Gm-Message-State: AOAM532e8owmAa7UCrmlZGFYibkDGLc1wenKrzSQ7nC57cnoB3CJYoGH
-        Z6TfbpMyFtYba9NFGcSkkg==
-X-Google-Smtp-Source: ABdhPJxkwQARah6Q/rf1DbNTOAJlUzHL9osoUKpq9VAyJPVrU6baUsVLQdOFRK5Og/wakyM83q8y4Q==
-X-Received: by 2002:a05:6808:b09:: with SMTP id s9mr19069272oij.36.1618233610277;
-        Mon, 12 Apr 2021 06:20:10 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 3sm2636995otw.58.2021.04.12.06.20.08
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=1aO1TpF9MgF5lN0TP7fat48f1wzPDiMoVBU35EFvOUY=;
+        b=LTZqmEBAXODxOMoxN9ZujR925DuXVg1MvtZRn7cGebLtG16+D2voBf77zoCPU2BxJx
+         dVFwsdaHsP0ZbBQ/PQeJhUbR/q7iSw7J2CN4AhIAFU3yTMv+TlaSlXvEPbxI/EIOBf2V
+         b1NucNt4KYf4POczdwK3ULUqasSBm5DRQ8KGxTsjXolNaNr6jqsJU6JhK4C9Jf6HeeQR
+         k5gWdWbq7Lnlj0wSNadJXfikiL+1xnONIQ2bsOLnrTv/7I3LXKhIb2zWt1MSeO4crTol
+         35hQzHMIxadljQpiDQak/wAlKzYFfFoVwrTFgY63rzvUQhN36hPakvnDkDsdFf/OowZy
+         8WyA==
+X-Gm-Message-State: AOAM532xHFTsAPeWJDGrZBNy/ZUaxLu0b//xCeN+TTq9A4WzGAOxWPm6
+        QvRpk3tSjzVS8zyIWOUPhkAxbTJTL5lcEQ==
+X-Google-Smtp-Source: ABdhPJzWPKU50yhJTHZ80V98+NgHmzDKfCtomnXKv0s9HfBWRnZ/62rg7zaVAozcOhTgmrq2vr+z1Q==
+X-Received: by 2002:a92:5204:: with SMTP id g4mr23487727ilb.84.1618234003269;
+        Mon, 12 Apr 2021 06:26:43 -0700 (PDT)
+Received: from aford-OptiPlex-7050.logicpd.com ([174.46.170.158])
+        by smtp.gmail.com with ESMTPSA id x8sm5261118iov.7.2021.04.12.06.26.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Apr 2021 06:20:09 -0700 (PDT)
-Received: (nullmailer pid 3757980 invoked by uid 1000);
-        Mon, 12 Apr 2021 13:20:00 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-Cc:     u.kleine-koenig@pengutronix.de, devicetree@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org, andrew@aj.id.au,
-        linux-kernel@vger.kernel.org, billy_tasi@aspeedtech.com,
-        p.zabel@pengutronix.de, linux-pwm@vger.kernel.org, joel@jms.id.au,
-        thierry.reding@gmail.com, robh+dt@kernel.org,
-        BMC-SW@aspeedtech.com, linux-arm-kernel@lists.infradead.org,
-        lee.jones@linaro.org
-In-Reply-To: <20210412095457.15095-3-billy_tsai@aspeedtech.com>
-References: <20210412095457.15095-1-billy_tsai@aspeedtech.com> <20210412095457.15095-3-billy_tsai@aspeedtech.com>
-Subject: Re: [PATCH 2/4] dt-bindings: Add bindings for aspeed pwm
-Date:   Mon, 12 Apr 2021 08:20:00 -0500
-Message-Id: <1618233600.223110.3757979.nullmailer@robh.at.kernel.org>
+        Mon, 12 Apr 2021 06:26:42 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     netdev@vger.kernel.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH V4 1/2] dt-bindings: net: renesas,etheravb: Add additional clocks
+Date:   Mon, 12 Apr 2021 08:26:18 -0500
+Message-Id: <20210412132619.7896-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Apr 2021 17:54:55 +0800, Billy Tsai wrote:
-> This patch adds device bindings for aspeed pwm device which should be
-> the sub-node of aspeed,ast2600-pwm-tach.
-> 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> ---
->  .../bindings/pwm/aspeed,ast2600-pwm.yaml      | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
-> 
+The AVB driver assumes there is an external crystal, but it could
+be clocked by other means.  In order to enable a programmable
+clock, it needs to be added to the clocks list and enabled in the
+driver.  Since there currently only one clock, there is no
+clock-names list either.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Update bindings to add the additional optional clock, and explicitly
+name both of them.
 
-yamllint warnings/errors:
+Signed-off-by: Adam Ford <aford173@gmail.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Sergei Shtylyov <sergei.shtylyov@gmail.com>
+---
+V4:  No Change
+V3:  No Change
+V2:  No Change
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml: Additional properties are not allowed ('pwm-cells' was unexpected)
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml: Additional properties are not allowed ('pwm-cells' was unexpected)
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
-Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.example.dt.yaml:0:0: /example-0/pwm_tach@1e610000: failed to match any schema with compatible: ['aspeed,ast2600-pwm-tach', 'simple-mfd', 'syscon']
-Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.example.dt.yaml:0:0: /example-0/pwm_tach@1e610000/pwm@0: failed to match any schema with compatible: ['aspeed,ast2600-pwm']
-
-See https://patchwork.ozlabs.org/patch/1465116
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+index 91ba96d43c6c..fe72a5598add 100644
+--- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
++++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+@@ -50,7 +50,16 @@ properties:
+   interrupt-names: true
+ 
+   clocks:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 2
++    items:
++      - description: AVB functional clock
++      - description: Optional TXC reference clock
++
++  clock-names:
++    items:
++      - const: fck
++      - const: refclk
+ 
+   iommus:
+     maxItems: 1
+-- 
+2.17.1
 
