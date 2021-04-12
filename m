@@ -2,148 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA29735C332
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 12:06:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5A9735C364
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 12:12:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239265AbhDLJ6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 05:58:21 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:37773 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239992AbhDLJ5A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 05:57:00 -0400
-X-Originating-IP: 93.34.118.233
-Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 73077E0006;
-        Mon, 12 Apr 2021 09:56:35 +0000 (UTC)
-Date:   Mon, 12 Apr 2021 11:57:14 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Eugen Hristev <eugen.hristev@microchip.com>
-Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 28/30] dt-bindings: media: atmel: add microchip-xisc
- binding
-Message-ID: <20210412095714.uivebcatgazzq5ae@uno.localdomain>
-References: <20210405155105.162529-1-eugen.hristev@microchip.com>
- <20210405155105.162529-29-eugen.hristev@microchip.com>
+        id S238803AbhDLKHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 06:07:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52972 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241264AbhDLKFc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 06:05:32 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64037C06134C;
+        Mon, 12 Apr 2021 03:03:30 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id h10so14306449edt.13;
+        Mon, 12 Apr 2021 03:03:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=IecIer/Daj67JEJVhH+GPnEHHlaRlGiwgqpp2Q/YAIU=;
+        b=ln51gpRQqxs+aXEIsek0esHSItFg0Webv0LPtRTD2g0FmtU/iQPUd8sThf8D1iSel4
+         zwDkLyxXl4ytJMdasEVWhqEWwXgWLXzop/l06D5GK7a/ylDCpdbEQEgvURJ25qsVQ2Fn
+         /poXqgd6Gt0ZQK0VFY0dI3zwm35FeEgziFPsNKjYp9WdANyrO+PsLjAm7bSAA+s0Obsg
+         OemRwl/0IkyD8QMUYfUJLaErOm2jBvnEDkcyxGmcWYNjNQqEt4AMOTDQuQSEa5RePELp
+         t/iVc+YmVP/esBqgvjg+x8qM/w+81EGkWhvFsXSCmN7uwvJ2OR5WoY8V6wRuCwMjYIpe
+         7mwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=IecIer/Daj67JEJVhH+GPnEHHlaRlGiwgqpp2Q/YAIU=;
+        b=eWQt2wjbgP4/IEIqbLXAjTO7g0O3zVViHXL751+Imym+HXAlCq3prC8HZ/oQ/fBtkX
+         83Bba6slPf0/RTyZ3dGa1s3bK89HnlSPDpKTvzcqRlmTsb3elmdc7lFXuawbFFjlJwDA
+         AQWsk25tsyiDt8ILn6JJ0Rfr9F91TRLSGPllAa4jLMYfnsH8YkCkAcbxoz1kC6pUDJ1x
+         9iRRZV69wM9fj+sJjeL4D+WuVtYnlChQurSEsuq3kk6cfYH/RWgiIX791Qz5VORba4Gu
+         R5jS7Tj6se922bwG0YEdu0j9fXtV4sjcEBaixJJP1fDdLAxSHFam85SkrOHHBYYXsCzy
+         9gsA==
+X-Gm-Message-State: AOAM532Rl+CBfTIo2Y9UsO6WqlllEDDWvtv2XRBtYaluKwOl9wNicVGT
+        hiok7lylVsxLvMbAYPe1kBwxkMB7B708Dw==
+X-Google-Smtp-Source: ABdhPJwsC2fOcR1VpuH/xWkjRQVk4aT58cqY4kGqC/1+OKqjTFeg+noo1vbd2uJIVw1TFGySTfCM+w==
+X-Received: by 2002:a05:6402:11c9:: with SMTP id j9mr28456381edw.348.1618221809192;
+        Mon, 12 Apr 2021 03:03:29 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id w25sm6172320edq.66.2021.04.12.03.03.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Apr 2021 03:03:28 -0700 (PDT)
+Subject: Re: [PATCH v2 3/6] ARM: dts: rockchip: remove interrupts properties
+ from pwm nodes rv1108.dtsi
+To:     wens@kernel.org
+Cc:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>, linux-pwm@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20210411131007.21757-1-jbx6244@gmail.com>
+ <20210411131007.21757-3-jbx6244@gmail.com>
+ <CAGb2v67s7a4GARfAnROKS40kaYQpdW_qWX=HX6GU09jV9wrbXw@mail.gmail.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <31b5ff50-afe5-b446-7d3c-943d148814d8@gmail.com>
+Date:   Mon, 12 Apr 2021 12:03:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
+In-Reply-To: <CAGb2v67s7a4GARfAnROKS40kaYQpdW_qWX=HX6GU09jV9wrbXw@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210405155105.162529-29-eugen.hristev@microchip.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eugene,
+On 4/12/21 5:15 AM, Chen-Yu Tsai wrote:
+> On Sun, Apr 11, 2021 at 9:11 PM Johan Jonker <jbx6244@gmail.com> wrote:
+>>
+>> A test with the command below gives this error:
+>>
+>> /arch/arm/boot/dts/rv1108-evb.dt.yaml:
+>> pwm@10280000: 'interrupts' does not match any of the regexes:
+>> 'pinctrl-[0-9]+'
+>>
+>> "interrupts" is an undocumented property, so remove them
+>> from pwm nodes in rv1108.dtsi.
+>>
+>> make ARCH=arm dtbs_check
+>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+>>
+>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> 
+> Given that the interrupts were specified, meaning they are wired up in hardware,
+> shouldn't the solution be to add the interrupts property to the binding instead?
+> 
+> After all, the device tree describes the actual hardware, not just what the
+> implementations need.
+> 
+> ChenYu
+> 
 
-On Mon, Apr 05, 2021 at 06:51:03PM +0300, Eugen Hristev wrote:
-> Add bindings for the microchip xisc, a driver based on atmel-isc.
-> It shares common code with atmel-isc, but the xisc is the next generation
-> ISC which is present on sama7g5 product.
-> It has an enhanced pipeline, additional modules, formats, and it supports
-> not only parallel sensors, but also serial sensors, by connecting to a demux
-> endpoint present on sama7g5.
-> One of the key points for creating a new binding is the clocking scheme, as
-> atmel-isc requires 3 mandatory clocks, the microchip-xisc requires a single
-> input clock.
->
-> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-> ---
->
-> Hello Rob, all,
->
-> I did not convert this yet to yaml because I would like first your feedback
-> if the binding is good.
-> If it's fine I will convert both this new binding and the old atmel-isc
-> to yaml.
->
-> Thanks for your feedback,
-> Eugen
->
->  .../bindings/media/microchip-xisc.txt         | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/microchip-xisc.txt
->
-> diff --git a/Documentation/devicetree/bindings/media/microchip-xisc.txt b/Documentation/devicetree/bindings/media/microchip-xisc.txt
-> new file mode 100644
-> index 000000000000..080a357ed84d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/microchip-xisc.txt
-> @@ -0,0 +1,64 @@
-> +Microchip eXtended Image Sensor Controller (XISC)
-> +----------------------------------------------
-> +
-> +Required properties for XISC:
-> +- compatible
-> +	Must be "microchip,sama7g5-xisc".
-> +- reg
-> +	Physical base address and length of the registers set for the device.
-> +- interrupts
-> +	Should contain IRQ line for the XISC.
-> +- clocks
-> +	List of clock specifiers, corresponding to entries in
-> +	the clock-names property;
-> +	Please refer to clock-bindings.txt.
-> +- clock-names
-> +	Required elements: "hclock".
-> +	This is the clock that clocks the sensor controller, and is usually
-> +	fed from the clock tree. It is used for the internal controller logic.
-> +- #clock-cells
-> +	Should be 0.
-> +- clock-output-names
-> +	Should be "isc-mck".
-> +- pinctrl-names, pinctrl-0
-> +	Please refer to pinctrl-bindings.txt.
-> +
-> +Optional properties for XISC:
-> +- microchip,mipi-mode;
-> +	As the XISC is usually connected to a demux/bridge, the XISC receives
-> +	the same type of input, however, it should be aware of the type of
-> +	signals received. The mipi-mode enables different internal handling
-> +	of the data and clock lines.
+Hi,
 
-What does 'mipi-mode' do to a component that has an parallel receiver ?
+The question of what to do with it was asked in version 1, but no answer
+was given, so I made a proposal.
+The device tree description should be complete, but also as lean as
+possible. If someone manages to sneak in undocumented properties without
+reason then the ultimate consequence should be removal I think.
 
-> +
-> +XISC supports a single port node with internal parallel bus.
-> +It should contain one 'port' child node with child 'endpoint' node.
-> +Please refer to the bindings defined in
-> +Documentation/devicetree/bindings/media/video-interfaces.txt.
-> +
-> +This endpoint has to be connected to a bridge that acts as a demux from either
-> +a serial interface or acts as a simple direct bridge to a parallel sensor.
-> +
-> +Example:
-> +xisc: xisc@e1408000 {
-> +	compatible = "microchip,sama7g5-isc";
-> +	reg = <0xe1408000 0x2000>;
-> +	interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	clocks = <&pmc PMC_TYPE_PERIPHERAL 56>;
-> +	clock-names = "hclock";
-> +	#clock-cells = <0>;
-> +	clock-output-names = "isc-mck";
-> +	microchip,mipi-mode;
-> +
-> +	port@1 {
-> +		reg = <1>;
-> +		xisc_in: endpoint {
-> +		bus-width = <12>;
-> +		hsync-active = <1>;
-> +		vsync-active = <1>;
-> +		remote-endpoint = <&csi2dc_out>;
-nit: indentation
+Not sure about the (missing?) rv1108 TRM, but for rk3328 the interrupt
+is used for:
 
-Have you consided using bus-type property ? As that's a new binding I
-would consider making it mandatory, and to modify the DT parsinga
-routine accordingly to remove auto-guessing, which according to my
-understanding is almost 'deprecated' ?
+PWM_INTSTS 0x0040 W 0x00000000 Interrupt Status Register
+  Channel Interrupt Polarity Flag
+    This bit is used in capture mode in order to identify the
+    transition of the input waveform when interrupt is generated.
+  Channel Interrupt Status
+    Interrupt generated
 
-> +		};
-> +	};
-> +};
-> +
-> --
-> 2.25.1
->
+PWM_INT_EN 0x0044 W 0x00000000 Interrupt Enable Register
+  Channel Interrupt Enable
+
+Is there any current realistic use/setup for it to convince rob+dt this
+should be added to pwm-rockchip.yaml?
+
+The rk3328 interrupt rkpwm_int seems shared between channels, but only
+included to pwm3. What is the proper way for that?
+
+Johan
