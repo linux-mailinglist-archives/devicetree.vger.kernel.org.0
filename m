@@ -2,133 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE66E35D24E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 23:02:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BCD035D27B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 23:21:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238781AbhDLVCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 17:02:40 -0400
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:39914 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237497AbhDLVCk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 17:02:40 -0400
-Received: by mail-oi1-f172.google.com with SMTP id i81so14837176oif.6;
-        Mon, 12 Apr 2021 14:02:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZHMtmNecrmY3y2fepgRRAMQ6iU5MAkDsfuHyT8BFdP8=;
-        b=HaOVxIf9egW/Lrho1zEK4JvxV6Qw0N34RauFQA23uods3bFbZ1HMNCXQ3ZNlgUjwUy
-         KxOSDTjJQYoBF3YBncLmQgpnR5MLIHR+c+jADyJoi57kqp+2QiWMFgB0s9zue75FuuJY
-         XNBmwJxW3a5e4TibSROCNWgeuYYCHgGAOImVUydpZQrdlDleJDEHNVhMFSiPnfw9R4dg
-         iNWualXVvCmZ6kP+X9mzqxbV7CumNGLJEQdaMyJ5+hGaxgedinyNoffHCntyRqCy5cEz
-         FZPlT27BA7UgZXX1z8gzXE+SfpRRc62ai25iTEzAsbXDatnb2DLSadTB9DWXzwtrAqmt
-         g6Sg==
-X-Gm-Message-State: AOAM530VEluq3iKMV8WmRtFXHnyUvCVzzjrWJO6m52NiPbu5CR+dVs/Y
-        JruV82UmjU4VGYwuEejX5cMDRqFXFQ==
-X-Google-Smtp-Source: ABdhPJzMPKGimFvL8PxrICxQEBRfodPPJLvgC+E29eYLqMvHDh2koh5QSSC/u6KZd3VWtqCFyAH3LQ==
-X-Received: by 2002:aca:75c6:: with SMTP id q189mr809266oic.29.1618261340214;
-        Mon, 12 Apr 2021 14:02:20 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o18sm2919100ota.31.2021.04.12.14.02.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Apr 2021 14:02:19 -0700 (PDT)
-Received: (nullmailer pid 164433 invoked by uid 1000);
-        Mon, 12 Apr 2021 21:02:18 -0000
-Date:   Mon, 12 Apr 2021 16:02:18 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Tomas Melin <tomas.melin@vaisala.com>
-Cc:     jic23@kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: iio: accel: Add SCA3300 documentation
-Message-ID: <20210412210218.GA162500@robh.at.kernel.org>
-References: <20210412075056.56301-1-tomas.melin@vaisala.com>
- <20210412075056.56301-2-tomas.melin@vaisala.com>
+        id S237908AbhDLVU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 17:20:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55636 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240456AbhDLVU2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Apr 2021 17:20:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPS id 40E71613A9;
+        Mon, 12 Apr 2021 21:20:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618262410;
+        bh=McdKSr2lIRx4HpyFmlsBhy4KpZ1+yo9DQcE8iHKS40U=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=MMUhvQadzkqTyxsIQoiXxeQMgt22NFyLbn99TJ4IjqPsOEVFM0qEXgpPipW6vY4hh
+         5OLqrN5PBv15XJNet+k7yvcdMizo0/fknxTEUCrA6rKK5t3jslDzrRXoG5M5jLYZiw
+         dcfhFN04OaPigUdNTwV2j3HR5M9/Ktw8f0r9eukKNEMilHHTWlzUQniIf2lGkDcjWf
+         JKcYrcL2RnGMiUpmVXxcfuLsnNVLpWWy7AJfxJKDOVMPB+KRcpm9cAP3St2tQ+sZed
+         c40SexpWu51WyypZJBqNAz9X7WQTJ1tGGiJNnayQ1xHhvt+w/rzJJT6bxtEplkWDys
+         AesFJb2XUK3Hw==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 2F44260CCF;
+        Mon, 12 Apr 2021 21:20:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210412075056.56301-2-tomas.melin@vaisala.com>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH V4 1/2] dt-bindings: net: renesas,etheravb: Add additional
+ clocks
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <161826241018.26087.15056633928793158329.git-patchwork-notify@kernel.org>
+Date:   Mon, 12 Apr 2021 21:20:10 +0000
+References: <20210412132619.7896-1-aford173@gmail.com>
+In-Reply-To: <20210412132619.7896-1-aford173@gmail.com>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     netdev@vger.kernel.org, aford@beaconembedded.com,
+        sergei.shtylyov@gmail.com, davem@davemloft.net, kuba@kernel.org,
+        robh+dt@kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 12, 2021 at 10:50:55AM +0300, Tomas Melin wrote:
-> initial DT bindings for Murata SCA3300 Accelerometer.
+Hello:
+
+This series was applied to netdev/net-next.git (refs/heads/master):
+
+On Mon, 12 Apr 2021 08:26:18 -0500 you wrote:
+> The AVB driver assumes there is an external crystal, but it could
+> be clocked by other means.  In order to enable a programmable
+> clock, it needs to be added to the clocks list and enabled in the
+> driver.  Since there currently only one clock, there is no
+> clock-names list either.
 > 
-> Signed-off-by: Tomas Melin <tomas.melin@vaisala.com>
-> ---
->  .../bindings/iio/accel/sca3300.yaml           | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/accel/sca3300.yaml
+> Update bindings to add the additional optional clock, and explicitly
+> name both of them.
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/accel/sca3300.yaml b/Documentation/devicetree/bindings/iio/accel/sca3300.yaml
-> new file mode 100644
-> index 000000000000..32fe4b647cd0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/accel/sca3300.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only)
+> [...]
 
-For new bindings:
+Here is the summary with links:
+  - [V4,1/2] dt-bindings: net: renesas,etheravb: Add additional clocks
+    https://git.kernel.org/netdev/net-next/c/6f43735b6da6
+  - [V4,2/2] net: ethernet: ravb: Enable optional refclk
+    https://git.kernel.org/netdev/net-next/c/8ef7adc6beb2
 
-GPL-2.0-only OR BSD-2-Clause
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/accel/sca3300.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Murata SCA3300 Accelerometer
-> +
-> +description: |
-> +  3-axis industrial accelerometer with digital SPI interface
-> +  https://www.murata.com/en-global/products/sensor/accel/sca3300
-> +
-> +maintainers:
-> +  - Tomas Melin <tomas.melin@vaisala.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - murata,sca3300
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: SPI chip select number according to the general SPI bindings
-> +
-> +  spi-max-frequency:
-> +    maximum: 8000000
-> +
-> +  murata,opmode:
-> +    description: Accelerometer operation mode as described in datasheet (MODE)
-> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-0 - 2^32 are all valid modes?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - murata,opmode
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        sca3300@0 {
-
-accelerometer@0
-
-> +            compatible = "murata,sca3300";
-> +            reg = <0x0>;
-> +            spi-max-frequency = <4000000>;
-> +            murata,opmode = <4>;
-> +        };
-> +    };
-> +...
-> -- 
-> 2.21.3
-> 
