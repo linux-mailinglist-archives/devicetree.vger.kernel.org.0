@@ -2,98 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F2A335D2AB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 23:46:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94B8C35D335
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 00:36:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240671AbhDLVqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 17:46:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38148 "EHLO
+        id S240704AbhDLWgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 18:36:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238172AbhDLVqv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 17:46:51 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29134C061574;
-        Mon, 12 Apr 2021 14:46:29 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id sd23so14036495ejb.12;
-        Mon, 12 Apr 2021 14:46:29 -0700 (PDT)
+        with ESMTP id S240461AbhDLWgp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 18:36:45 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F5F9C061574;
+        Mon, 12 Apr 2021 15:36:26 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id z1so16993321edb.8;
+        Mon, 12 Apr 2021 15:36:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=uFUrnfIf09ezybuVkP04vDSdaVZKjH/YcufmPLg/EJA=;
-        b=SR9/ZPn34QjAzkHsEkByTJNEzre4oYG+GlELLhGkzdPICK2PzHnAXXdR2kuXrH+JBV
-         3CKshQfZrIH1zhl0sLSqUr+P3VV0MLnge6GRs/X7RQZosh7DpOd69z7rfaU4e7xlM7a4
-         nK+TlRUWEScPLSU81NiDnDPKd5sFB84OxNqnYwdL0QFMQXrvFEE3/sP1z8mu5mc86h+l
-         QmvlwgwJlwiBHWyBHIl1JnnBfffDXI4QEZDTs1fM8XNFbI0e7kSUlf8sWhXASFkqHPxl
-         sWCLRhK0IdebQcZRq78nfb4HRO6gO9aIk3+MdL2X/qbRVOMtraGSvKcqjc8E0f4rOYdg
-         dSog==
+        h=from:to:cc:subject:date:message-id;
+        bh=PCOQOWXTwfhkR+0L4ZauafZ+IJNAVs6L3CJ2sNHUQY8=;
+        b=jZxqWTmRDZRSaxNzAEYEgxfkixY7xakoWasaoKXnE32gQoAjkLQdYEB2QR/AA39KuS
+         vAM2y54IF33qMJh0ItuwD5JdoSMD6DeWNlf8WNdmcGYI9GdUTw1iG4YSW3veZZXbHg9p
+         ecfv6ZrnJofFEdOg6MDZVnBIDuUUXRQEuaOyJkX8zLBsyCLHdmJ5P+sy2xFW1KXwDaul
+         lu4z1zXZVApYc/vqzyfewYZqSZjCSJIJKb3hsKmuQ/WBO3V0jiUPUYZZrxCidvLhCULZ
+         6YSZxrxGwiSamlYH3dSQn9E+MRM/964QttOhQSPJntY3613LUiV1+Sio+hJDG3NyDsz0
+         bRfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=uFUrnfIf09ezybuVkP04vDSdaVZKjH/YcufmPLg/EJA=;
-        b=Rg/ifEv5zp6xbGEm3lmCaBXbUAOkQOfDL9SCqnpQWvWYV4/trMMkRKp36am7oMCkDX
-         nZ+1j2VSa4Y6NiU8MKXGw0W1La9F0tyxxKlNfYZHovwft4oi7BancxaYlKkpPZ99j/XV
-         A2mChI9kGDYqyPs2xQNYO6L53B+oS7Vd9eivKKgT2cgET9fhhu5y5tlu3HRzRkVyCfiK
-         ISx7qEzGFiDD88Xohdw0GGhxdD8cJ1lAfrQXum8uD5syErEwKiKshbgnaILNTrAi9JbL
-         aTeeTv2YaY07Fjf8Av9LyMz8E+EmolmCHInxSkNqgaHqQspaKXQEo61tx5sZ37WssDxa
-         XSyA==
-X-Gm-Message-State: AOAM532vArwjLEB/LA8LSyF67P7bTCtk3B8msvRUJadT+NFE/ClEa4Uk
-        cxadQGdip6H1bSdmHATQPUc=
-X-Google-Smtp-Source: ABdhPJzbzVMu26M4OrHzDAxRyzivV5rBNL9tM9AJWb1TsGiwOAomqyu6SFHVzQYgqpT8dKZrtMd0/Q==
-X-Received: by 2002:a17:906:5855:: with SMTP id h21mr29208531ejs.522.1618263987967;
-        Mon, 12 Apr 2021 14:46:27 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id ke14sm1698718ejc.1.2021.04.12.14.46.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Apr 2021 14:46:27 -0700 (PDT)
-Subject: Re: [PATCH v2 1/6] dt-bindings: pwm: convert pwm-rockchip.txt to YAML
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, u.kleine-koenig@pengutronix.de,
-        robh+dt@kernel.org, linux-pwm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, lee.jones@linaro.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        thierry.reding@gmail.com, heiko@sntech.de
-References: <20210411131007.21757-1-jbx6244@gmail.com>
- <20210412205753.GA158321@robh.at.kernel.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=PCOQOWXTwfhkR+0L4ZauafZ+IJNAVs6L3CJ2sNHUQY8=;
+        b=Su6B1O4vqFzlvGoOe4g4Dpd/XcUnO2Z81K6en5rNQJfcmqInyJgRwQeQpNqvhw/JXz
+         YUtqZe58U0+LGnVyhyb/JH0+i4FOGbxoCtHh8uJ8oqovkkV88aHQ3X//sehvn5tdxq3C
+         rKYaz44hOGa8Rh8sUsnumnPeqjTHnPC3oGsNwwTDRTQCzxJoJMCQZhktyE98K86yTezQ
+         qd8vQ1s1k4ADO58ogPYwc0PlVzoQMbQW+PhN/PjrsqJTwxUNEYMkBZefUX4VNPb/Pa95
+         em5FgKFammtVmhOjJXJpEyR2sBEMCglK29GZ3x2RUaTzp2+5lk1BPISUk9yG9wPjJHAo
+         TzxQ==
+X-Gm-Message-State: AOAM530AJ9FVjRp6Xed/UmNPb9pMB/e0iSZMYtX2lxAF8xPHxtEtu8ms
+        m/znzaCi4SuzNTuTL/0jNdM=
+X-Google-Smtp-Source: ABdhPJw+YvEYtJMzuEKk1ETc2B4l3L35SVDmbqMmrZESh4suaxrIyFV4hUg+5YEtDYRWlhnLfzV60w==
+X-Received: by 2002:a50:fd16:: with SMTP id i22mr31119515eds.239.1618266984692;
+        Mon, 12 Apr 2021 15:36:24 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id d10sm7817209edp.77.2021.04.12.15.36.23
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 12 Apr 2021 15:36:24 -0700 (PDT)
 From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <5705f804-5db0-1d14-f853-02be72fe4d2c@gmail.com>
-Date:   Mon, 12 Apr 2021 23:46:25 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
-MIME-Version: 1.0
-In-Reply-To: <20210412205753.GA158321@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/3] dt-bindings: gpio: add YAML description for rockchip,gpio-bank
+Date:   Tue, 13 Apr 2021 00:36:15 +0200
+Message-Id: <20210412223617.8634-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/12/21 10:57 PM, Rob Herring wrote:
-> On Sun, 11 Apr 2021 15:10:02 +0200, Johan Jonker wrote:
->> Current dts files with 'pwm' nodes are manually verified.
->> In order to automate this process pwm-rockchip.txt
->> has to be converted to yaml.
->>
->> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
->> ---
->> Changed V2:
->>   changed schema for clocks and clock-names
->> ---
->>  .../devicetree/bindings/pwm/pwm-rockchip.txt       | 27 -------
->>  .../devicetree/bindings/pwm/pwm-rockchip.yaml      | 91 ++++++++++++++++++++++
->>  2 files changed, 91 insertions(+), 27 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-rockchip.txt
->>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
->>
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-Hi
+Current dts files with "rockchip,gpio-bank" subnodes
+are manually verified. In order to automate this process
+the text that describes the compatible in rockchip,pinctrl.txt
+is removed and converted to YAML in rockchip,gpio-bank.yaml.
 
-This tags version 2 with a little mistake instead of version 3?
-Is that correct?
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+Changed V2:
+  changed example gpio nodename
+---
+ .../bindings/gpio/rockchip,gpio-bank.yaml          | 82 ++++++++++++++++++++++
+ .../bindings/pinctrl/rockchip,pinctrl.txt          | 58 +--------------
+ 2 files changed, 83 insertions(+), 57 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
 
-Johan
+diff --git a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
+new file mode 100644
+index 000000000..d993e002c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
+@@ -0,0 +1,82 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/rockchip,gpio-bank.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip GPIO bank
++
++maintainers:
++  - Heiko Stuebner <heiko@sntech.de>
++
++properties:
++  compatible:
++    enum:
++      - rockchip,gpio-bank
++      - rockchip,rk3188-gpio-bank0
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  gpio-controller: true
++
++  "#gpio-cells":
++    const: 2
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    const: 2
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - gpio-controller
++  - "#gpio-cells"
++  - interrupt-controller
++  - "#interrupt-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    pinctrl: pinctrl {
++      #address-cells = <1>;
++      #size-cells = <1>;
++      ranges;
++
++      gpio0: gpio@2000a000 {
++        compatible = "rockchip,rk3188-gpio-bank0";
++        reg = <0x2000a000 0x100>;
++        interrupts = <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clk_gates8 9>;
++
++        gpio-controller;
++        #gpio-cells = <2>;
++
++        interrupt-controller;
++        #interrupt-cells = <2>;
++      };
++
++      gpio1: gpio@2003c000 {
++        compatible = "rockchip,gpio-bank";
++        reg = <0x2003c000 0x100>;
++        interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clk_gates8 10>;
++
++        gpio-controller;
++        #gpio-cells = <2>;
++
++        interrupt-controller;
++        #interrupt-cells = <2>;
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.txt
+index d3eae61a3..4719a6a07 100644
+--- a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.txt
++++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.txt
+@@ -50,23 +50,7 @@ Deprecated properties for iomux controller:
+ 	 Use rockchip,grf and rockchip,pmu described above instead.
+ 
+ Required properties for gpio sub nodes:
+-  - compatible: "rockchip,gpio-bank"
+-  - reg: register of the gpio bank (different than the iomux registerset)
+-  - interrupts: base interrupt of the gpio bank in the interrupt controller
+-  - clocks: clock that drives this bank
+-  - gpio-controller: identifies the node as a gpio controller and pin bank.
+-  - #gpio-cells: number of cells in GPIO specifier. Since the generic GPIO
+-    binding is used, the amount of cells must be specified as 2. See generic
+-    GPIO binding documentation for description of particular cells.
+-  - interrupt-controller: identifies the controller node as interrupt-parent.
+-  - #interrupt-cells: the value of this property should be 2 and the interrupt
+-    cells should use the standard two-cell scheme described in
+-    bindings/interrupt-controller/interrupts.txt
+-
+-Deprecated properties for gpio sub nodes:
+-  - compatible: "rockchip,rk3188-gpio-bank0"
+-  - reg: second element: separate pull register for rk3188 bank0, use
+-	 rockchip,pmu described above instead
++See rockchip,gpio-bank.yaml
+ 
+ Required properties for pin configuration node:
+   - rockchip,pins: 3 integers array, represents a group of pins mux and config
+@@ -127,43 +111,3 @@ uart2: serial@20064000 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart2_xfer>;
+ };
+-
+-Example for rk3188:
+-
+-	pinctrl@20008000 {
+-		compatible = "rockchip,rk3188-pinctrl";
+-		rockchip,grf = <&grf>;
+-		rockchip,pmu = <&pmu>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		ranges;
+-
+-		gpio0: gpio0@2000a000 {
+-			compatible = "rockchip,rk3188-gpio-bank0";
+-			reg = <0x2000a000 0x100>;
+-			interrupts = <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&clk_gates8 9>;
+-
+-			gpio-controller;
+-			#gpio-cells = <2>;
+-
+-			interrupt-controller;
+-			#interrupt-cells = <2>;
+-		};
+-
+-		gpio1: gpio1@2003c000 {
+-			compatible = "rockchip,gpio-bank";
+-			reg = <0x2003c000 0x100>;
+-			interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&clk_gates8 10>;
+-
+-			gpio-controller;
+-			#gpio-cells = <2>;
+-
+-			interrupt-controller;
+-			#interrupt-cells = <2>;
+-		};
+-
+-		...
+-
+-	};
+-- 
+2.11.0
+
