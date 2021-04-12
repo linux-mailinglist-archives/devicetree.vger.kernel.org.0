@@ -2,92 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 616FC35C3E4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 12:25:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA29735C332
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 12:06:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239240AbhDLKZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 06:25:13 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:37829 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239256AbhDLKZM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 06:25:12 -0400
-Received: from twspam01.aspeedtech.com (localhost [127.0.0.2] (may be forged))
-        by twspam01.aspeedtech.com with ESMTP id 13C9jhwX096735;
-        Mon, 12 Apr 2021 17:45:43 +0800 (GMT-8)
-        (envelope-from billy_tsai@aspeedtech.com)
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 13C9iS0q096463;
-        Mon, 12 Apr 2021 17:44:29 +0800 (GMT-8)
-        (envelope-from billy_tsai@aspeedtech.com)
-Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 12 Apr
- 2021 17:54:51 +0800
-From:   Billy Tsai <billy_tsai@aspeedtech.com>
-To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>, <joel@jms.id.au>,
-        <andrew@aj.id.au>, <thierry.reding@gmail.com>,
-        <u.kleine-koenig@pengutronix.de>, <p.zabel@pengutronix.de>,
-        <billy_tasi@aspeedtech.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pwm@vger.kernel.org>
-CC:     <BMC-SW@aspeedtech.com>
-Subject: [PATCH 4/4] pwm: Add support for aspeed pwm controller
-Date:   Mon, 12 Apr 2021 17:54:57 +0800
-Message-ID: <20210412095457.15095-5-billy_tsai@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210412095457.15095-1-billy_tsai@aspeedtech.com>
-References: <20210412095457.15095-1-billy_tsai@aspeedtech.com>
+        id S239265AbhDLJ6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 05:58:21 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:37773 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239992AbhDLJ5A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 05:57:00 -0400
+X-Originating-IP: 93.34.118.233
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 73077E0006;
+        Mon, 12 Apr 2021 09:56:35 +0000 (UTC)
+Date:   Mon, 12 Apr 2021 11:57:14 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Eugen Hristev <eugen.hristev@microchip.com>
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 28/30] dt-bindings: media: atmel: add microchip-xisc
+ binding
+Message-ID: <20210412095714.uivebcatgazzq5ae@uno.localdomain>
+References: <20210405155105.162529-1-eugen.hristev@microchip.com>
+ <20210405155105.162529-29-eugen.hristev@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.2.149]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 13C9iS0q096463
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210405155105.162529-29-eugen.hristev@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the pwm controller which can be found at aspeed ast2600
-soc. This driver is part function of multi-funciton of device "pwm-tach
-controller".
+Hi Eugene,
 
-Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
----
- drivers/pwm/Kconfig  | 6 ++++++
- drivers/pwm/Makefile | 1 +
- 2 files changed, 7 insertions(+)
+On Mon, Apr 05, 2021 at 06:51:03PM +0300, Eugen Hristev wrote:
+> Add bindings for the microchip xisc, a driver based on atmel-isc.
+> It shares common code with atmel-isc, but the xisc is the next generation
+> ISC which is present on sama7g5 product.
+> It has an enhanced pipeline, additional modules, formats, and it supports
+> not only parallel sensors, but also serial sensors, by connecting to a demux
+> endpoint present on sama7g5.
+> One of the key points for creating a new binding is the clocking scheme, as
+> atmel-isc requires 3 mandatory clocks, the microchip-xisc requires a single
+> input clock.
+>
+> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> ---
+>
+> Hello Rob, all,
+>
+> I did not convert this yet to yaml because I would like first your feedback
+> if the binding is good.
+> If it's fine I will convert both this new binding and the old atmel-isc
+> to yaml.
+>
+> Thanks for your feedback,
+> Eugen
+>
+>  .../bindings/media/microchip-xisc.txt         | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/microchip-xisc.txt
+>
+> diff --git a/Documentation/devicetree/bindings/media/microchip-xisc.txt b/Documentation/devicetree/bindings/media/microchip-xisc.txt
+> new file mode 100644
+> index 000000000000..080a357ed84d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/microchip-xisc.txt
+> @@ -0,0 +1,64 @@
+> +Microchip eXtended Image Sensor Controller (XISC)
+> +----------------------------------------------
+> +
+> +Required properties for XISC:
+> +- compatible
+> +	Must be "microchip,sama7g5-xisc".
+> +- reg
+> +	Physical base address and length of the registers set for the device.
+> +- interrupts
+> +	Should contain IRQ line for the XISC.
+> +- clocks
+> +	List of clock specifiers, corresponding to entries in
+> +	the clock-names property;
+> +	Please refer to clock-bindings.txt.
+> +- clock-names
+> +	Required elements: "hclock".
+> +	This is the clock that clocks the sensor controller, and is usually
+> +	fed from the clock tree. It is used for the internal controller logic.
+> +- #clock-cells
+> +	Should be 0.
+> +- clock-output-names
+> +	Should be "isc-mck".
+> +- pinctrl-names, pinctrl-0
+> +	Please refer to pinctrl-bindings.txt.
+> +
+> +Optional properties for XISC:
+> +- microchip,mipi-mode;
+> +	As the XISC is usually connected to a demux/bridge, the XISC receives
+> +	the same type of input, however, it should be aware of the type of
+> +	signals received. The mipi-mode enables different internal handling
+> +	of the data and clock lines.
 
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 63be5362fd3a..947ed642debe 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -42,6 +42,12 @@ config PWM_DEBUG
- 	  It is expected to introduce some runtime overhead and diagnostic
- 	  output to the kernel log, so only enable while working on a driver.
- 
-+config PWM_ASPEED_G6
-+	tristate "ASPEEDG6 PWM support"
-+	help
-+	  This driver provides support for ASPEED G6 PWM controllers.
-+
-+
- config PWM_AB8500
- 	tristate "AB8500 PWM support"
- 	depends on AB8500_CORE && ARCH_U8500
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index cbdcd55d69ee..4a74c68547bf 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- obj-$(CONFIG_PWM)		+= core.o
- obj-$(CONFIG_PWM_SYSFS)		+= sysfs.o
-+obj-$(CONFIG_PWM_ASPEED_G6)	+= pwm-aspeed-g6.o
- obj-$(CONFIG_PWM_AB8500)	+= pwm-ab8500.o
- obj-$(CONFIG_PWM_ATMEL)		+= pwm-atmel.o
- obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+= pwm-atmel-hlcdc.o
--- 
-2.25.1
+What does 'mipi-mode' do to a component that has an parallel receiver ?
 
+> +
+> +XISC supports a single port node with internal parallel bus.
+> +It should contain one 'port' child node with child 'endpoint' node.
+> +Please refer to the bindings defined in
+> +Documentation/devicetree/bindings/media/video-interfaces.txt.
+> +
+> +This endpoint has to be connected to a bridge that acts as a demux from either
+> +a serial interface or acts as a simple direct bridge to a parallel sensor.
+> +
+> +Example:
+> +xisc: xisc@e1408000 {
+> +	compatible = "microchip,sama7g5-isc";
+> +	reg = <0xe1408000 0x2000>;
+> +	interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	clocks = <&pmc PMC_TYPE_PERIPHERAL 56>;
+> +	clock-names = "hclock";
+> +	#clock-cells = <0>;
+> +	clock-output-names = "isc-mck";
+> +	microchip,mipi-mode;
+> +
+> +	port@1 {
+> +		reg = <1>;
+> +		xisc_in: endpoint {
+> +		bus-width = <12>;
+> +		hsync-active = <1>;
+> +		vsync-active = <1>;
+> +		remote-endpoint = <&csi2dc_out>;
+nit: indentation
+
+Have you consided using bus-type property ? As that's a new binding I
+would consider making it mandatory, and to modify the DT parsinga
+routine accordingly to remove auto-guessing, which according to my
+understanding is almost 'deprecated' ?
+
+> +		};
+> +	};
+> +};
+> +
+> --
+> 2.25.1
+>
