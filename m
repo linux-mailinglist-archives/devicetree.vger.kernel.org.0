@@ -2,103 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38E4F35CAA6
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 18:02:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29DBC35CAAC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 18:03:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243214AbhDLQCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 12:02:38 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:41789 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238937AbhDLQCi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 12:02:38 -0400
-Received: by mail-ot1-f42.google.com with SMTP id v19-20020a0568300913b029028423b78c2dso4651243ott.8;
-        Mon, 12 Apr 2021 09:02:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Ngce6ec7f1c0lKTqeUe7A7Xm2r+o9qe2C4pUnKmBkEc=;
-        b=GbxSvq0j8LQanuvwTi2BLXwlOQ84zwVVHFp2Pul+6ErigKaIbsv6yDQLPbu1AJnw1+
-         v3s/srwOBKiq1GxyWE65Jg09KffvwAYongDoZxVs/fye/viT24pe55/MiqUckS+d4kYc
-         gOLalJCXSUcMUj+6MxJtvYPP5/wtJecvrPeg6/I4PG0VBArAJq8tYrhJnzbElwxeiVIR
-         d51I1Q3/PL1wMiWX8DFxoH8BQuko72WQG0xvbCiaGpehXdGoGEb4GeTy6yiGisz4Gdx+
-         SWQ796ZeuKsQw1wZPf9ObgxcqRCKJ8iMdI4owhG6wgD4tP4Y/dPo4SenHcXffAZvXcI6
-         f7zw==
-X-Gm-Message-State: AOAM533frYdG2ogYfaPkSfCqyA0QZY9s+ul3JOEOzZus64etx6nIlvL/
-        KwJk3MZtSKvwnJxUNGCIqYMvgqm9Og==
-X-Google-Smtp-Source: ABdhPJyphvrAAQqhZzq/xJoYqxJ9sKV8YW9PiHjAV9kYDD7MKFG4FnH+SHoCHCPLgsB18Sdm2QM8lw==
-X-Received: by 2002:a9d:6054:: with SMTP id v20mr24517464otj.81.1618243338556;
-        Mon, 12 Apr 2021 09:02:18 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l12sm651808oou.0.2021.04.12.09.02.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Apr 2021 09:02:17 -0700 (PDT)
-Received: (nullmailer pid 3971650 invoked by uid 1000);
-        Mon, 12 Apr 2021 16:02:16 -0000
-Date:   Mon, 12 Apr 2021 11:02:16 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        ludovic.desroches@microchip.com, linux@armlinux.org.uk,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 16/24] dt-bindings: atmel-sysreg: add bindings for
- sama7g5
-Message-ID: <20210412160216.GA3970458@robh.at.kernel.org>
-References: <20210409111345.294472-1-claudiu.beznea@microchip.com>
- <20210409111345.294472-17-claudiu.beznea@microchip.com>
+        id S238937AbhDLQEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 12:04:15 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:32594 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239928AbhDLQEP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 12:04:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1618243436; x=1649779436;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ZqO4v5XWvmV6i2qYDUBpRbDz6kva5C+vptihlshcyy0=;
+  b=M5XV94bCSOJ2crNUWv8ACHB1ykBN/FfJcL7EpqAW1kn940X1rLukiKcm
+   kQ9uKY66EOSRWt99Dh5xO9iMDbRu2OASIy1IsR0IcLCiaxkS4XLJA/6CZ
+   SvOewCg2x5d4h0PQk5ICqxYbMog2hG6lseNp/PPRT/7Z4W2gaWWitSiXz
+   myCO0lFcJCvMMTM3pnuBO29L9VHFQ1r36UiotAXIfkxSeK3GAOJcXuonb
+   VeOoHkRarfCz1FmTHwwclBUloyDWDZVuaWjhnZpvVu3zJqJbnExRJ3MCC
+   z20OI71E5A/VUhR5db/zWlDhxeb025SImUpxzsrwQI4if6eqWyiEazU/7
+   w==;
+IronPort-SDR: 3Y+J8lhBboqZ8hIyTdSdj+4JdPYf1yIzYTCnn7UOuIUaTc5J4GxCMxsixl92uKqdFPqd4IHvtT
+ O/YFMw/Lj2/4gY+ld45bINLVeHdQf1YdUNQ5sYfDPmxhuv+CgcInbQpGdbaF9hs/LBaze55U22
+ 5B4S48dCNZ+QcsFXR1x9+SAKu+WHHdoUXVuAdMwYACMKPGDAB5GGOY2WtxLpnfayELLy6eiCPA
+ BALZCf6JQISsY4uJZNPThy2f1skalb/KoXv7vbq0/agT2sWoldf7SQsgGK03DeUfKkIMO6wz6B
+ LVg=
+X-IronPort-AV: E=Sophos;i="5.82,216,1613458800"; 
+   d="scan'208";a="110516045"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Apr 2021 09:03:55 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Mon, 12 Apr 2021 09:03:55 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Mon, 12 Apr 2021 09:03:52 -0700
+From:   <conor.dooley@microchip.com>
+To:     <robh+dt@kernel.org>, <damien.lemoal@wdc.com>,
+        <jassisinghbrar@gmail.com>, <aou@eecs.berkeley.edu>,
+        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <j.neuschaefer@gmx.net>
+CC:     <lewis.hanly@microchip.com>, <cyril.jean@microchip.com>,
+        <daire.mcnamara@microchip.com>, <atish.patra@wdc.com>,
+        <anup.patel@wdc.com>, <david.abdurachmanov@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v5 0/5]  Add support for the PolarFire SoC system controller
+Date:   Mon, 12 Apr 2021 17:03:51 +0100
+Message-ID: <20210412160351.19229-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210409111345.294472-17-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 09, 2021 at 02:13:37PM +0300, Claudiu Beznea wrote:
-> Add RAM controller and RAM PHY controller DT bindings.
-> 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> ---
->  .../devicetree/bindings/arm/atmel-sysregs.txt     | 15 ++++++++++++++-
->  1 file changed, 14 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt b/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
-> index 807264a78edc..7cd55a760d41 100644
-> --- a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
-> +++ b/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
-> @@ -45,7 +45,8 @@ RAMC SDRAM/DDR Controller required properties:
->  			"atmel,at91sam9260-sdramc",
->  			"atmel,at91sam9g45-ddramc",
->  			"atmel,sama5d3-ddramc",
-> -			"microchip,sam9x60-ddramc"
-> +			"microchip,sam9x60-ddramc",
-> +			"microchip,sama7g5-uddrc"
->  - reg: Should contain registers location and length
->  
->  Examples:
-> @@ -55,6 +56,18 @@ Examples:
->  		reg = <0xffffe800 0x200>;
->  	};
->  
-> +RAMC PHY Controller required properties:
-> +- compatible: Should be "microchip,sama7g5-ddr3phy", "syscon"
-> +- reg: Should contain registers location and length
-> +
-> +Example:
-> +
-> +	ddr3phy: ddr3phy@e3804000 {
-> +		compatible = "microchip,sama7g5-ddr3phy", "syscon";
-> +		reg = <0xe3804000 0x1000>;
-> +		status = "okay";
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Really need an example for this? If so, drop 'status'.
+This patch series adds support for the system controller on
+the PolarFire SoC, using the mailbox framework. A Microchip directory
+in the SoC subsystem has been created to hold the mailbox client
+driver and will be used for future service drivers.
 
-> +};
-> +
->  SHDWC Shutdown Controller
->  
->  required properties:
-> -- 
-> 2.25.1
-> 
+These drivers are gated by the kconfig option:
+CONFIG_SOC_MICROCHIP_POLARFIRE, so this patch series depends on Atish
+Patra's PolarFire SoC support patches which introduce it.
+
+It further depends on the MAINTAINERS entry created in the same series.
+
+The following link, which is a direct download of a pdf, contains documentation
+for the system controller:
+https://www.microsemi.com/document-portal/doc_download/1244853-ug0905-polarfire-soc-fpga-system-services-user-guide
+
+Changes from v4:
+* Changed dt binding from Rob Herring's feedback
+* Shortened some verbose variable names
+* Reordered binding patches
+* Write directly into response array, rather than allocate in controller isr and memcpy in client
+
+Changes from v3:
+* Fixed mboxes reference in dt binding for mailbox client
+* Bug fixes and cleanup from Jonathan Neuschäfer's feedback on
+  mailbox-mpfs.c & mpfs-sys-controller.c
+* Renamed dt binding files to match compatible strings
+* Removed PFSoC gating condition on drivers/soc/microchip subdirectory
+* Converted all size based operations to bytes for consistency
+* Converted response array to a structure, enabling support for more
+  complex services that return a status instead of/alongside a payload.
+
+Changes from v2:
+* Further reworked dt bindings to satisfy errors and feedback
+  (hopefully phandle array is the correct type for the mboxes)
+* Full maintainers entry moved to Atish's PFSoC support series, this series now only adds mailbox driver
+* Converted config options from MPFS to POLARFIRE_SOC so they are more recognisable
+* Further simplified driver code from feedback
+
+Changes from v1:
+* Squashed header into first patch
+* Fixed DT binding warnings & small fixes
+* Cleaned up drivers from feedback
+
+Conor Dooley (5):
+  dt-bindings: add bindings for polarfire soc mailbox
+  mbox: add polarfire soc system controller mailbox
+  dt-bindings: add bindings for polarfire soc system controller
+  soc: add polarfire soc system controller
+  MAINTAINERS: add entry for polarfire soc mailbox driver
+
+ .../microchip,polarfire-soc-mailbox.yaml      |  47 +++
+ ...icrochip,polarfire-soc-sys-controller.yaml |  35 +++
+ MAINTAINERS                                   |   1 +
+ drivers/mailbox/Kconfig                       |  12 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/mailbox-mpfs.c                | 272 ++++++++++++++++++
+ drivers/soc/Kconfig                           |   1 +
+ drivers/soc/Makefile                          |   1 +
+ drivers/soc/microchip/Kconfig                 |  10 +
+ drivers/soc/microchip/Makefile                |   1 +
+ drivers/soc/microchip/mpfs-sys-controller.c   | 119 ++++++++
+ include/soc/microchip/mpfs.h                  |  56 ++++
+ 12 files changed, 557 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/microchip,polarfire-soc-mailbox.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
+ create mode 100644 drivers/mailbox/mailbox-mpfs.c
+ create mode 100644 drivers/soc/microchip/Kconfig
+ create mode 100644 drivers/soc/microchip/Makefile
+ create mode 100644 drivers/soc/microchip/mpfs-sys-controller.c
+ create mode 100644 include/soc/microchip/mpfs.h
+
+-- 
+2.31.1
+
