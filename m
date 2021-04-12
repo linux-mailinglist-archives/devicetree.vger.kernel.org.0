@@ -2,68 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C831035D130
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 21:38:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B21FB35D19D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 22:02:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237689AbhDLTig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 15:38:36 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:39868 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237469AbhDLTif (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 15:38:35 -0400
-Received: by mail-oi1-f178.google.com with SMTP id i81so14593418oif.6;
-        Mon, 12 Apr 2021 12:38:17 -0700 (PDT)
+        id S237034AbhDLUCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 16:02:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43438 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236978AbhDLUCZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 16:02:25 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 907D3C061574;
+        Mon, 12 Apr 2021 13:02:06 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id s15so16559213edd.4;
+        Mon, 12 Apr 2021 13:02:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=Q72c5txIW6Vzq4nbjDcQAJgkWiRNUCrhHe9INPM0VEE=;
+        b=tJQVV9XhgxzxoQ8aoestUB4a5ty8ZCg8+hVbq/t0xyx4KixPfGrjrBbefe2rqU760m
+         OdnuJI3JT/kJyKUzwxd9z0bdW1Wa60EHiJxgPV/UU/fQmumNdZTch1E+K5a0zAovY1Ub
+         DBpjEGBziq50g+VktPieA1x9CGF4ufX3DB1xddtJVw70m1i6IJFH4ay/p5qOq8Nb7Z8w
+         XIZHl1mjWUQCmJvHFHyy/AjY7OGU3DF0461XmhGFC2kyXGypsEffQF9GemeISG3ZTqRC
+         pFvTBIjMn0nDY1DfEf1azZsXpzDZq/LfkeCbEiHWjHymXne+9uIJrBjGPLTnup5BClZl
+         RmEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+YGPC6j0Haf5jPJGvyQH9U1N8NEZhf+Gd+k7m/Egkc4=;
-        b=WkP/0rSqEmaPTyPduPyvr4tQ4i12/DRkCMAigk5wyZBCmNlYDfSAeBIAvg3N8zx+ah
-         nlhg1yJ0caGjmMg+SNkTJbBqMbUfXVTXGInr2yQCsrtUqMLkJLjvocLsn7DNo+dWb49T
-         3knwCUevnb09W/XN1ahx/yo6tSZn46yiDAmgDR4TLAx+ae5ZlFDV5dZOp8DJyPMA1X/w
-         F6IaESKZ/te+0i+EXxXF1aFUOk5KRHS02pUb4xBX+Y9TAGyoIwHWd5gWlkaRwoI64uUj
-         60lv37I57juHJA5iHUsmJs3SVWCKj75g/VBHmAcTGdjIhwcogEZOXCBX9E8uDL2HcK5k
-         aHUQ==
-X-Gm-Message-State: AOAM5332yFvYlSCMkFW+Z5PJVdTgbS4Wu5vd/vvBXvV14qt45276BPvg
-        RVigMaM9ZXRh2VlpE2Vi33mvL02cbA==
-X-Google-Smtp-Source: ABdhPJwEYboQJdDHmtsifAJ0k0QLcvHMN4a2nDgSlZ2sVnTxA6x2CYbjGtVvUUODi9aPRJ1wH5BRZw==
-X-Received: by 2002:a05:6808:57b:: with SMTP id j27mr559474oig.161.1618256297227;
-        Mon, 12 Apr 2021 12:38:17 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j4sm2262581oom.11.2021.04.12.12.38.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Apr 2021 12:38:16 -0700 (PDT)
-Received: (nullmailer pid 55658 invoked by uid 1000);
-        Mon, 12 Apr 2021 19:38:14 -0000
-Date:   Mon, 12 Apr 2021 14:38:14 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Parshuram Thombare <pthombar@cadence.com>
-Cc:     dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
-        narmstrong@baylibre.com, sjakhade@cadence.com, daniel@ffwll.ch,
-        robert.foss@linaro.org, linux-kernel@vger.kernel.org,
-        kishon@ti.com, laurent.pinchart@ideasonboard.com, nikhil.nd@ti.com,
-        mparab@cadence.com, airlied@linux.ie, a.hajda@samsung.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: drm/bridge: MHDP8546 bridge binding
- changes for HDCP
-Message-ID: <20210412193814.GA55613@robh.at.kernel.org>
-References: <1618078449-28495-1-git-send-email-pthombar@cadence.com>
- <1618078508-30466-1-git-send-email-pthombar@cadence.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1618078508-30466-1-git-send-email-pthombar@cadence.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Q72c5txIW6Vzq4nbjDcQAJgkWiRNUCrhHe9INPM0VEE=;
+        b=hkts1X+76BeHJSzRIvOtsUFrF95mW4KOjqus+yPXxUz/F70iz48/S2CP6EIm/dTlIe
+         Sygv8R6bR7xpEFjHjVmitzENPGq2oJ9XE1HVEld2eIK2VH73vZasm+txd5w4T3zD8fuY
+         TNNpr+KGeMyGd70USMbdi+fJdLyE2O1kTP9RxQniqp5Z0wgHXF2PruKwX2teyj5H9PTf
+         odPOyEfKmFQPhWRMnrMUnHRPI4O36kWNJnarUmro8gVTRqvianCXfzXYsIvoOQTSe8ST
+         t7qignhJ3QPQIjyOFWYo4LH4KrG8ji5npzpBP2gxy2kUakzIcsWujfJRMhRNwRSzCiy7
+         faKw==
+X-Gm-Message-State: AOAM533NpPMGIAJGIeZtom9YCNC/pWjlyKyfqS+LGyD6F8qAVHDPyi1S
+        4u2wxoQMeZ+f5dJMch3XtLk=
+X-Google-Smtp-Source: ABdhPJyAntVAlRtzzphLGXMMBOsByDYF48e8RN8y5cNhnaHRnIui0sb3HqLsZmBef1XmYwmiFGRWAw==
+X-Received: by 2002:a05:6402:4245:: with SMTP id g5mr31166337edb.306.1618257725240;
+        Mon, 12 Apr 2021 13:02:05 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id x9sm7514531edv.22.2021.04.12.13.02.03
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 12 Apr 2021 13:02:04 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/4] dt-bindings: pwm: convert pwm-rockchip.txt to YAML
+Date:   Mon, 12 Apr 2021 22:01:52 +0200
+Message-Id: <20210412200155.5316-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 10 Apr 2021 20:15:08 +0200, Parshuram Thombare wrote:
-> Add binding changes for HDCP in the MHDP8546 DPI/DP bridge binding.
-> 
-> Signed-off-by: Parshuram Thombare <pthombar@cadence.com>
-> ---
->  .../bindings/display/bridge/cdns,mhdp8546.yaml    | 15 +++++++++++----
->  1 file changed, 11 insertions(+), 4 deletions(-)
-> 
+Current dts files with 'pwm' nodes are manually verified.
+In order to automate this process pwm-rockchip.txt
+has to be converted to yaml.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+For some SoC nodes this patch serie generates notifications
+for undocumented "interrupts" properties shared between
+PWM channels till there is consensus of what to do with it or
+someone makes a solution for the whole PWM block.
+
+Changed V3:
+  fix mistake with compatibles introduced in V2
+Changed V2:
+  changed schema for clocks and clock-names
+---
+ .../devicetree/bindings/pwm/pwm-rockchip.txt       | 27 -------
+ .../devicetree/bindings/pwm/pwm-rockchip.yaml      | 88 ++++++++++++++++++++++
+ 2 files changed, 88 insertions(+), 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-rockchip.txt
+ create mode 100644 Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-rockchip.txt b/Documentation/devicetree/bindings/pwm/pwm-rockchip.txt
+deleted file mode 100644
+index f70956dea..000000000
+--- a/Documentation/devicetree/bindings/pwm/pwm-rockchip.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-Rockchip PWM controller
+-
+-Required properties:
+- - compatible: should be "rockchip,<name>-pwm"
+-   "rockchip,rk2928-pwm": found on RK29XX,RK3066 and RK3188 SoCs
+-   "rockchip,rk3288-pwm": found on RK3288 SOC
+-   "rockchip,rv1108-pwm", "rockchip,rk3288-pwm": found on RV1108 SoC
+-   "rockchip,vop-pwm": found integrated in VOP on RK3288 SoC
+- - reg: physical base address and length of the controller's registers
+- - clocks: See ../clock/clock-bindings.txt
+-   - For older hardware (rk2928, rk3066, rk3188, rk3228, rk3288, rk3399):
+-     - There is one clock that's used both to derive the functional clock
+-       for the device and as the bus clock.
+-   - For newer hardware (rk3328 and future socs): specified by name
+-     - "pwm": This is used to derive the functional clock.
+-     - "pclk": This is the APB bus clock.
+- - #pwm-cells: must be 2 (rk2928) or 3 (rk3288). See pwm.yaml in this directory
+-   for a description of the cell format.
+-
+-Example:
+-
+-	pwm0: pwm@20030000 {
+-		compatible = "rockchip,rk2928-pwm";
+-		reg = <0x20030000 0x10>;
+-		clocks = <&cru PCLK_PWM01>;
+-		#pwm-cells = <2>;
+-	};
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml b/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+new file mode 100644
+index 000000000..19b42d31d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+@@ -0,0 +1,88 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/pwm-rockchip.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip PWM controller
++
++maintainers:
++  - Heiko Stuebner <heiko@sntech.de>
++
++properties:
++  compatible:
++    oneOf:
++      - const: rockchip,rk2928-pwm
++      - const: rockchip,rk3288-pwm
++      - const: rockchip,vop-pwm
++      - items:
++          - enum:
++              - rockchip,rv1108-pwm
++          - const: rockchip,rk3288-pwm
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++
++  clock-names:
++    maxItems: 2
++
++  "#pwm-cells":
++    enum: [2, 3]
++    description:
++      Must be 2 (rk2928) or 3 (rk3288 and later).
++      See pwm.yaml for a description of the cell format.
++
++required:
++  - compatible
++  - reg
++  - "#pwm-cells"
++
++if:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - rockchip,rv1108-pwm
++
++then:
++  properties:
++    clocks:
++      items:
++        - description: Used to derive the functional clock for the device.
++        - description: Used as the APB bus clock.
++
++    clock-names:
++      items:
++        - const: pwm
++        - const: pclk
++
++  required:
++    - clocks
++    - clock-names
++
++else:
++  properties:
++    clocks:
++      maxItems: 1
++      description:
++        Used both to derive the functional clock
++        for the device and as the bus clock.
++
++  required:
++    - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/rk3188-cru-common.h>
++    pwm0: pwm@20030000 {
++      compatible = "rockchip,rk2928-pwm";
++      reg = <0x20030000 0x10>;
++      clocks = <&cru PCLK_PWM01>;
++      #pwm-cells = <2>;
++    };
+-- 
+2.11.0
+
