@@ -2,86 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBC3235C76C
+	by mail.lfdr.de (Postfix) with ESMTP id 1B61235C76A
 	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 15:20:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239371AbhDLNU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 09:20:29 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:36704 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239497AbhDLNU1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 09:20:27 -0400
-Received: by mail-ot1-f51.google.com with SMTP id i16-20020a9d68d00000b0290286edfdfe9eso2111500oto.3;
-        Mon, 12 Apr 2021 06:20:08 -0700 (PDT)
+        id S239462AbhDLNU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 09:20:26 -0400
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:40715 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239388AbhDLNUY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 09:20:24 -0400
+Received: by mail-oi1-f173.google.com with SMTP id i3so13367893oik.7;
+        Mon, 12 Apr 2021 06:20:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=dYxhQAY8YlcxGKlNHGF/hP5NWDkLdUTva1d6cdSahEY=;
-        b=RyW1OLcORFyk5k4H5bBL4st9cPLVyFPMSEpFymWn8g77I0faz1cZRba8ztasKBgqge
-         JR1hgcES5I4kHvZxtAjfW5Pn6Gdo8lQwqIThub37s4NCB5RUqrnSW21FOqQ3B+8kRfQF
-         c3cjbDy1L0d3wLH5KFn+fhELMuuXXwRNo/Inx84JTPdMZH47kSwlge26hTX9CbuppavD
-         zsZqzgO1nvIfY0rDVAwLuzHNCzDQhQJWUnR9jlTJtjO7MF89utsipO5J2a2TfuzvQNsD
-         pLm8KaTbtc4Wm4LkRV3aNDJSFtd8sCfD79UkRjqRHzQTqBPRnVdxKcu61zuMLMM2zWE8
-         ab4g==
-X-Gm-Message-State: AOAM532sCPCyyOoHTT4c9wh5/OMN7EugYAfy5gIq68mybTs1WFbFAswk
-        LxT94wUJqLqidpGy6GQK5A==
-X-Google-Smtp-Source: ABdhPJxhxoL8CK12YPgvZCZL8xP6K9HKbNKbkGZlmCfJuRRPe+eQJYpjJcVShovdD/GLmYsW+QKVOQ==
-X-Received: by 2002:a9d:6a91:: with SMTP id l17mr23666160otq.297.1618233608236;
-        Mon, 12 Apr 2021 06:20:08 -0700 (PDT)
+        bh=hzHfZu8e65Sn1btLVYGzu7cBqxLKTQVgEFz+j4avFdk=;
+        b=J4Vcseh1ICbvph5Wtm45e5pe8FJq+BBC23VU03JZy0DFL+sjqZDsVDHe6xsERmqJkf
+         V0ER9wBmRVM/pSlLoO4BqJyf3ytrP/2cGo3bQaytDEnV9RNzD1Tuaz+grwyVLl79cFaA
+         +AOBcVoPy9sQk/H2DjDg8i/iv7pYvL2yT6pJ6JyS1Vu6XIlT89weThHc/lQVu7OYqLzz
+         eR7o+x2UiskbiqvHSmhcPHgQuyodH44+kHQPvvmhZdHcIl5T1W+z0gV+0cbx6hKBqZq4
+         +CUKWWTZpIfS116HHqXxRsmv/drjGoet5R7MqKHP6WgE1k5eILe6iJeE6CC3Iv29zAL+
+         YZgw==
+X-Gm-Message-State: AOAM532meCCdrbL0Xlj7P0sjqkl/NFo7VgnM7CSet5MjLSHb/Y2QI6yw
+        osU6RVYvzNTOFCZt3KJ8Yw==
+X-Google-Smtp-Source: ABdhPJyvWr8wbNAJq9fl9Tt+VaEYca5cgXsgpQzh5o8vHIS3waTqr6/xnHfjZAEI2jymUcrCseE9eA==
+X-Received: by 2002:aca:c34d:: with SMTP id t74mr20271983oif.131.1618233606225;
+        Mon, 12 Apr 2021 06:20:06 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x13sm56421otg.57.2021.04.12.06.20.06
+        by smtp.gmail.com with ESMTPSA id t14sm2634140otj.50.2021.04.12.06.20.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Apr 2021 06:20:07 -0700 (PDT)
-Received: (nullmailer pid 3757976 invoked by uid 1000);
+        Mon, 12 Apr 2021 06:20:05 -0700 (PDT)
+Received: (nullmailer pid 3757974 invoked by uid 1000);
         Mon, 12 Apr 2021 13:20:00 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Giulio Benetti <giulio.benetti@benettiengineering.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Henrik Rydberg <rydberg@bitmath.org>,
-        =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-In-Reply-To: <20210411114804.151754-3-giulio.benetti@benettiengineering.com>
-References: <20210408202137.GA1890401@robh.at.kernel.org> <20210411114804.151754-1-giulio.benetti@benettiengineering.com> <20210411114804.151754-3-giulio.benetti@benettiengineering.com>
-Subject: Re: [PATCH v5 2/3] dt-bindings: touchscreen: Add HY46XX bindings
+To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, srv_heupstream@mediatek.com,
+        linux-mediatek@lists.infradead.org, hongzhou.yang@mediatek.com,
+        seiya.wang@mediatek.com, sj.huang@mediatek.com,
+        jg_poxu@mediatek.com, sean.wang@mediatek.com, mark.rutland@arm.com,
+        eddie.huang@mediatek.com, sean.wang@kernel.org,
+        biao.huang@mediatek.com, linus.walleij@linaro.org,
+        matthias.bgg@gmail.com, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, hui.liu@mediatek.com,
+        erin.lo@mediatek.com
+In-Reply-To: <20210411092659.22838-2-zhiyong.tao@mediatek.com>
+References: <20210411092659.22838-1-zhiyong.tao@mediatek.com> <20210411092659.22838-2-zhiyong.tao@mediatek.com>
+Subject: Re: [PATCH v3 1/5] dt-bindings: pinctrl: mt8195: add pinctrl file and binding document
 Date:   Mon, 12 Apr 2021 08:20:00 -0500
-Message-Id: <1618233600.204061.3757975.nullmailer@robh.at.kernel.org>
+Message-Id: <1618233600.191242.3757973.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 11 Apr 2021 13:48:03 +0200, Giulio Benetti wrote:
-> This adds device tree bindings for the Hycon HY46XX touchscreen series.
+On Sun, 11 Apr 2021 17:26:55 +0800, Zhiyong Tao wrote:
+> 1. This patch adds pinctrl file for mt8195.
+> 2. This patch adds mt8195 compatible node in binding document.
 > 
-> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
 > ---
-> V1->V2:
-> As suggested by Rob Herring:
-> * fixed $id: address
-> * added "hycon," in front of every custom property
-> * changed all possible property to boolean type
-> * removed proximity-sensor-switch property since it's not handled in driver
-> V2->V3:
-> As suggested by Jonathan Neuschäfer:
-> * fixed some typo
-> * fixed description indentation
-> * improved boolean properties descriptions
-> * improved hycon,report-speed description
-> V3->V4:
-> * fixed binding compatible string in example as suggested by Jonathan Neuschäfer
-> V4->V5:
-> As suggested by Rob Herring:
-> * drop hycon- prefix from compatible
-> * use Hertz unit suffix for hycon,report-speed instead of u32
-> * set hycon,report-speed minimum to 1Hz, 0Hz make controller to do nothing
-> * change hycon,power-noise-enable property name to hycon,noise-filter-enable
-> * improve hycon,filter-data property description
-> * use generic touchscreen node name in example
-> ---
->  .../input/touchscreen/hycon,hy46xx.yaml       | 119 ++++++++++++++++++
->  MAINTAINERS                                   |   6 +
->  2 files changed, 125 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
+>  .../bindings/pinctrl/pinctrl-mt8195.yaml      | 152 +++
+>  include/dt-bindings/pinctrl/mt8195-pinfunc.h  | 962 ++++++++++++++++++
+>  2 files changed, 1114 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
+>  create mode 100644 include/dt-bindings/pinctrl/mt8195-pinfunc.h
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -90,20 +75,10 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml: properties:hycon,report-speed: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-	Additional properties are not allowed ('minimum', 'maximum' were unexpected)
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml: properties:hycon,report-speed: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml: properties:hycon,report-speed: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml: ignoring, error in schema: properties: hycon,report-speed
-warning: no schema found in file: ./Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
-Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.example.dt.yaml:0:0: /example-0/i2c/touchscreen@1c: failed to match any schema with compatible: ['hycon,hy4633']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.example.dt.yaml: pinctrl@10005000: reg: [[268455936, 4096], [298909696, 4096], [299040768, 4096], [299106304, 4096], [300023808, 4096], [300023808, 4096], [300613632, 4096], [301203456, 4096], [268480512, 4096]] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
 
-See https://patchwork.ozlabs.org/patch/1464803
+See https://patchwork.ozlabs.org/patch/1464777
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
