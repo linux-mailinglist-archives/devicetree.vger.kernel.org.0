@@ -2,89 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E713B35C822
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 16:04:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEBB935C837
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 16:05:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238998AbhDLOEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 10:04:23 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:55082 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238881AbhDLOEW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 10:04:22 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13CE3svD036245;
-        Mon, 12 Apr 2021 09:03:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1618236234;
-        bh=zgjIJOX67F133GyE7jFMloTf8XSU9KafolLWOzdOCHU=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=GLttpQixOpKg7csaL/7+ly+3UWCRc8q8OQgJAAgKdWXjfBk9NNszg8B4w9DxB//GD
-         7AQVV0/v23QxBM1lIZ8H2pUxsO5MdkPo/TTpA4PjqjKn4gNjCVbihRxjgnq/2GlrPh
-         Rpv7iHWOdE3ksXsbV1szHIy6QacEz6GJWmuk7VY8=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13CE3sLL081025
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 12 Apr 2021 09:03:54 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 12
- Apr 2021 09:03:54 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 12 Apr 2021 09:03:54 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13CE3sLX042972;
-        Mon, 12 Apr 2021 09:03:54 -0500
-Date:   Mon, 12 Apr 2021 09:03:54 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-CC:     Benoit Parrot <bparrot@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        id S242152AbhDLOFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 10:05:14 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:40195 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S242133AbhDLOFO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 10:05:14 -0400
+X-UUID: a31a3040b37f4cb483768e4522d2b267-20210412
+X-UUID: a31a3040b37f4cb483768e4522d2b267-20210412
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 681847970; Mon, 12 Apr 2021 22:04:54 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 12 Apr 2021 22:04:51 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 12 Apr 2021 22:04:50 +0800
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Pratyush Yadav <p.yadav@ti.com>
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am654-base-board: remove ov5640
-Message-ID: <20210412140354.bpwclelhcmepuepg@remodeler>
-References: <20210412075306.102884-1-tomi.valkeinen@ideasonboard.com>
- <20210412075306.102884-2-tomi.valkeinen@ideasonboard.com>
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v5, 0/4] soc: mediatek: mmsys: add mt8192 mmsys support
+Date:   Mon, 12 Apr 2021 22:04:44 +0800
+Message-ID: <1618236288-1617-1-git-send-email-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210412075306.102884-2-tomi.valkeinen@ideasonboard.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 67328E97F3056148482F62F7740128E2AC02CFD2990A87D1B2F4B07527D542662000:8
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10:53-20210412, Tomi Valkeinen wrote:
-> AM654 EVM boards are not shipped with OV5640 sensor module, it is a
-> separate purchase. OV5640 module is also just one of the possible
-> sensors or capture boards you can connect.
-> 
-> However, for some reason, OV5640 has been added to the board dts file,
-> making it cumbersome to use other sensors.
-> 
-> Remove the OV5640 from the dts file so that it is easy to use other
-> sensors via DT overlays.
-> 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> ---
->  .../arm64/boot/dts/ti/k3-am654-base-board.dts | 27 -------------------
->  1 file changed, 27 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-> index fe3043943906..76358b4944e1 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+base 5.12-rc2 and
+https://patchwork.kernel.org/project/linux-mediatek/patch/20210330110423.3542163-1-hsinyi@chromium.org/
 
-will be good if you can submit this patch separately. dra7 and am654 are
-maintained in different trees.
+Change since v4:
+- use routing table
 
+Yongqiang Niu (4):
+  soc: mediatek: mmsys: add component OVL_2L2
+  soc: mediatek: mmsys: add component POSTMASK
+  soc: mediatek: mmsys: add component RDMA4
+  soc: mediatek: mmsys: Add mt8192 mmsys routing table
+
+ drivers/soc/mediatek/mt8192-mmsys.h    | 68 ++++++++++++++++++++++++++++++++++
+ drivers/soc/mediatek/mtk-mmsys.c       |  7 ++++
+ include/linux/soc/mediatek/mtk-mmsys.h |  3 ++
+ 3 files changed, 78 insertions(+)
+ create mode 100644 drivers/soc/mediatek/mt8192-mmsys.h
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+1.8.1.1.dirty
+
