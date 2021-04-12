@@ -2,202 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAE0F35CFBB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 19:48:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C967435CFC5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 19:48:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244490AbhDLRsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 13:48:09 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:60029 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244535AbhDLRsH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 13:48:07 -0400
-Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id B82E42224F;
-        Mon, 12 Apr 2021 19:47:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1618249667;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=c+yRIxX6YaLNAHOU45LRTNERm8zuPZ6Nr6ms7o1jHdY=;
-        b=SzFeahlu14nK6lzpcdcdqIds+W3bdnvfv8MDl2HwNG72reKqItDuqKfd2OefWkj0+CCjLu
-        2i6/lT9RccSxY32Z2fkRRrsYiFeNlYFm4RHTcR+Ber1W7+h4Vr2FjH+T2K9LZ+QYJnbzGg
-        fdP0WDJWD66X0dJG0cIeWKdSs2V/dPc=
-From:   Michael Walle <michael@walle.cc>
-To:     ath9k-devel@qca.qualcomm.com, UNGLinuxDriver@microchip.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, netdev@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-amlogic@lists.infradead.org, linux-oxnas@groups.io,
-        linux-omap@vger.kernel.org, linux-wireless@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-staging@lists.linux.dev
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Andreas Larsson <andreas@gaisler.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Joyce Ooi <joyce.ooi@intel.com>,
-        Chris Snook <chris.snook@gmail.com>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Sunil Goutham <sgoutham@marvell.com>,
-        Fugang Duan <fugang.duan@nxp.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Pantelis Antoniou <pantelis.antoniou@gmail.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Yisen Zhuang <yisen.zhuang@huawei.com>,
-        Salil Mehta <salil.mehta@huawei.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Vadym Kochan <vkochan@marvell.com>,
-        Taras Chornyi <tchornyi@marvell.com>,
-        Mirko Lindner <mlindner@marvell.com>,
-        Stephen Hemminger <stephen@networkplumber.org>,
-        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bryan Whitehead <bryan.whitehead@microchip.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Byungho An <bh74.an@samsung.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Wingman Kwok <w-kwok2@ti.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Stanislaw Gruszka <stf_xl@wp.pl>,
-        Helmut Schaa <helmut.schaa@googlemail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
+        id S244708AbhDLRsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 13:48:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42160 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244739AbhDLRsZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 13:48:25 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B48CC061574;
+        Mon, 12 Apr 2021 10:48:06 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id p6so7109155wrn.9;
+        Mon, 12 Apr 2021 10:48:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:reply-to:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=7aCHD5WDPm5c82C8ZlURJklHVLxiB31MS7u9uRdey/A=;
+        b=q8AzcbnjP6y+/B3dqxMSnrIqZKukfZsMpBWmRViFvjNkSCP7JJ6HvnppUzwgMBdcWL
+         KnvXfpaNodpBD8Qqj4BDgX84+xvVqZC/PH7nwPiig+vBI+EiTeoc9yfUd5JO+Af5NJS2
+         PtpJHRWgjot6n8Nju1/rnpFzc0D2n7H/SzgH5EpEp4XD1QCiNrkCos/LFL7SuleCZHcg
+         l/5FD2oqftZ0a2jgKF95y4KtehGyuN9I/vubqa01hDMPtudJbFincZ76BOKibzaZs4mT
+         Q86L4vz0y2ZS6rxietVxlvPYrXSK3d59T6VEhU2JPjMJKIbLSnRCHw0KibV27SDiSQSI
+         5S0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:reply-to
+         :references:mime-version:content-disposition
+         :content-transfer-encoding:in-reply-to;
+        bh=7aCHD5WDPm5c82C8ZlURJklHVLxiB31MS7u9uRdey/A=;
+        b=OTJIp/RFgBk2FlNifT9bugR2HZGYBY/1aDirUoF4e2pe8PK+nqzNNHyOrs+eCMt6mQ
+         5jwO2HWsJW8Na/+39isRBOmUVwoZePG26MERRddt4UsdIjbGndKv5+G/Ck4NfGHZynQJ
+         e9pVTPNJhY1wnJpQLke8BVepG6xrSIu8Yo8VfiCZPPXIQf8E09nfyTJJoWDA2cZbFWqi
+         QMFK4YoqpYHRmXqUj4gb9tHv6FQst5NjVh0dbhnyTNAeTov7MN9D+3J3+yl83Xse3KY7
+         KhS7pH84Apd6OrMwQ+shXeQKptzt9Irl5JGtmIuBNwZuCCytHU+2eA+klftsEELwWy1x
+         9C1Q==
+X-Gm-Message-State: AOAM533aYpkmB2tS7YPNZOMvlCIXTxqhtYJh5k7PB0oQYJELI27a6zZf
+        1pwLNACc2DLODovXHvnepmM=
+X-Google-Smtp-Source: ABdhPJwur3aGWPQUt6Y/wj75hygTF4BHTQTNWucvxrpJantiBrpBK6J4+OmvMSCNbebmjE8fTnq5Ug==
+X-Received: by 2002:a5d:5642:: with SMTP id j2mr32398121wrw.172.1618249685081;
+        Mon, 12 Apr 2021 10:48:05 -0700 (PDT)
+Received: from pevik ([62.201.25.198])
+        by smtp.gmail.com with ESMTPSA id w7sm18882289wru.74.2021.04.12.10.48.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Apr 2021 10:48:04 -0700 (PDT)
+Date:   Mon, 12 Apr 2021 19:48:02 +0200
+From:   Petr Vorel <petr.vorel@gmail.com>
+To:     Konrad Dybcio <konradybcio@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        =?UTF-8?q?J=C3=A9r=C3=B4me=20Pouiller?= 
-        <jerome.pouiller@silabs.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH net-next v4 2/2] of: net: fix of_get_mac_addr_nvmem() for non-platform devices
-Date:   Mon, 12 Apr 2021 19:47:18 +0200
-Message-Id: <20210412174718.17382-3-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210412174718.17382-1-michael@walle.cc>
-References: <20210412174718.17382-1-michael@walle.cc>
+        Ricardo Ribalda <ribalda@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Cc:     KarimAllah Ahmed <karahmed@amazon.de>
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8994: Reserve gpio ranges
+Message-ID: <YHSH0gLow2g3AQNu@pevik>
+Reply-To: Petr Vorel <petr.vorel@gmail.com>
+References: <20210405200259.23525-1-petr.vorel@gmail.com>
+ <20210405225222.GD904837@yoga>
+ <CACRpkdZQ8qiqFPa0X8deVjZ7nLn_E6s8fmJdr5Ji8AuyJms1ug@mail.gmail.com>
+ <YG9TWEJlpDmNeeit@pevik>
+ <ea376d51-cd6c-0028-9602-d007c2bba71e@gmail.com>
+ <YG/HwrzRcm7bwgFe@pevik>
+ <20210409033726.GT904837@yoga>
+ <YHE9Df/Ztq7VaoK2@pevik>
+ <10d2cd96-3c35-2b06-82f7-98800888e244@gmail.com>
+ <YHHeRfAWrrusE/gB@pevik>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-2
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <YHHeRfAWrrusE/gB@pevik>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-of_get_mac_address() already supports fetching the MAC address by an
-nvmem provider. But until now, it was just working for platform devices.
-Esp. it was not working for DSA ports and PCI devices. It gets more
-common that PCI devices have a device tree binding since SoCs contain
-integrated root complexes.
+Hi,
 
-Use the nvmem of_* binding to fetch the nvmem cells by a struct
-device_node. We still have to try to read the cell by device first
-because there might be a nvmem_cell_lookup associated with that device.
+[ Cc KarimAllah Ahmed, as the author of 86588296acbf; Rob merged it ]
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- drivers/of/of_net.c | 35 ++++++++++++++++++++++++++++++-----
- 1 file changed, 30 insertions(+), 5 deletions(-)
+> > > Konrad, is there any public docs about GPIOs on this secure peripherals?
+> > > It it somehow related to Chain of Trust? [1].  I guess it's not, because once we
+> > > boot Linux all bootloader stuff is over.
 
-diff --git a/drivers/of/of_net.c b/drivers/of/of_net.c
-index cb77b774bf76..dbac3a172a11 100644
---- a/drivers/of/of_net.c
-+++ b/drivers/of/of_net.c
-@@ -11,6 +11,7 @@
- #include <linux/phy.h>
- #include <linux/export.h>
- #include <linux/device.h>
-+#include <linux/nvmem-consumer.h>
- 
- /**
-  * of_get_phy_mode - Get phy mode for given device_node
-@@ -59,15 +60,39 @@ static int of_get_mac_addr(struct device_node *np, const char *name, u8 *addr)
- static int of_get_mac_addr_nvmem(struct device_node *np, u8 *addr)
- {
- 	struct platform_device *pdev = of_find_device_by_node(np);
-+	struct nvmem_cell *cell;
-+	const void *mac;
-+	size_t len;
- 	int ret;
- 
--	if (!pdev)
--		return -ENODEV;
-+	/* Try lookup by device first, there might be a nvmem_cell_lookup
-+	 * associated with a given device.
-+	 */
-+	if (pdev) {
-+		ret = nvmem_get_mac_address(&pdev->dev, addr);
-+		put_device(&pdev->dev);
-+		return ret;
-+	}
-+
-+	cell = of_nvmem_cell_get(np, "mac-address");
-+	if (IS_ERR(cell))
-+		return PTR_ERR(cell);
-+
-+	mac = nvmem_cell_read(cell, &len);
-+	nvmem_cell_put(cell);
-+
-+	if (IS_ERR(mac))
-+		return PTR_ERR(mac);
-+
-+	if (len != ETH_ALEN || !is_valid_ether_addr(mac)) {
-+		kfree(mac);
-+		return -EINVAL;
-+	}
- 
--	ret = nvmem_get_mac_address(&pdev->dev, addr);
--	put_device(&pdev->dev);
-+	memcpy(addr, mac, ETH_ALEN);
-+	kfree(mac);
- 
--	return ret;
-+	return 0;
- }
- 
- /**
--- 
-2.20.1
+> > No, Qualcomm pretty much does security through obscurity. It's *probably* not even that very secure considering how big in size their TZ+HYP stack is - number of bugs rises exponentially with code size. But not many people tried breaking into it considering the complexity and QCOM's legal team size.
 
+> > There is no public documentation on that, and even if there were - you are not allowed to flash the "secure" partitions on *your device that you unlocked the bootloader of by choice* (which is absurd).
+
+> > Also, while "all bootloader stuff is over", the platform is still under control of the proprietary hypervisor and the "Trust Zone". For example if you try to write to some IOMMU registers on certain platforms, the hypervisor will treat that as a security violation and shut down the entire device. 
+
+> > This is essentially the same as your issue. You're trying to poke a thing that Qualcomm *really* doesn't want you to (the fingerprint SPI pins) and since *they* are in control, they say "nonono" and your device dies. All you can do is comply with that (or find a way to replace the blobs or politely ask Google to release a set of unsecure binaries for your Nexus - which they won't do).
+
+> Again, thanks a lot for info. I looked into downstream sources to see that
+> really pins 85-88 (which I've sent a patch to add into gpio-reserved-ranges) are
+> used for fingerprint. I also wonder if downstream commit d45c35c7b586 ("angler:
+> fingerprint: remove all the code about spi") [1] confirms that also downstream
+> kernel would reset or it's a security (it would not reset, thus they removed
+> the access). It's probably aosp issue tracker [2], but "Access denied" for me.
+
+> I also did some testing and this is maximum range which can be disabled:
+> gpio-reserved-ranges = <0 4>, <6 139> and it does not help to solve second
+> reset (in loop_init() or later when starting initramfs).
+> Removing access to GPIO 4 or 5 causes reset right immediately (no message from
+> kernel).
+
+> I still don't understand what changed in a99163e9e708 ("Merge tag
+> 'devicetree-for-5.12' of git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux")
+> I checked both 882d6edfc45c cb8be8b4b27f, which it merges and they're ok.
+
+I've found the other problem preventing booting. Appart from v2 [3] is also needed
+to revert 86588296acbf ("fdt: Properly handle "no-map" field in the memory region").
+
+I'm pretty sure, that this commit is needed, but what should I change in
+arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts in order to get my angler
+booting again? With it it reset again after loop_init:
+
+[   12.077756] initcall devcoredump_init+0x0/0x30 returned 0 after 22 usecs
+[   12.082425] calling  loop_init+0x0/0x158 @ 1
+
+And with disabled CONFIG_BLK_DEV_LOOP it get's reset before reaching initramfs:
+~/tmp/hackweek/loop_init.debug.a99163e9e708.disabled-CONFIG_BLK_DEV_LOOP/2021-04-07_21-01-34.log
+[   17.383267] calling  regulator_init_complete+0x0/0x4c @ 1
+[   17.390129] initcall regulator_init_complete+0x0/0x4c returned 0 after 6 usecs
+[   17.395682] calling  of_platform_sync_state_init+0x0/0x18 @ 1
+[   17.402800] initcall of_platform_sync_state_init+0x0/0x18 returned 0 after 3 usecs
+[   17.408616] calling  alsa_sound_last_init+0x0/0x88 @ 1
+[   17.416077] ALSA device list:
+[   17.421198]   No soundcardû[   17.431360] Freeing unused kernel memory: 5824K
+[   17.431633] Run /init as init process
+[   17.434700]   with arguments:
+[   17.438535]     /init
+[   17.441477]     PMOS_NO_OUTPUT_REDIRECT
+[   17.443737]   with environment:
+[   17.447381]     HOME=/
+[   17.450496]     TERM=linux
+D -     15494 - pm_driver_init, Delta
+
+Kind regards,
+Petr
+
+> Kind regards,
+> Petr
+
+> [1] https://android.googlesource.com/kernel/msm/+/d45c35c7b586711e757eb7e3239db5c88d114e0e
+> [2] https://issuetracker.google.com/issues/23756466
+[3] https://lore.kernel.org/linux-arm-msm/20210406202936.22500-1-petr.vorel@gmail.com/T/#u
+
+> > Konrad
