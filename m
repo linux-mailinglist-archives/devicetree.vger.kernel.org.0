@@ -2,213 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABB5F35CA54
-	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 17:46:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8B3935CA7B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Apr 2021 17:52:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239633AbhDLPrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 11:47:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43750 "EHLO
+        id S243167AbhDLPxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 11:53:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243029AbhDLPrO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 11:47:14 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E91F7C06174A
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 08:46:55 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 12so7102358wmf.5
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 08:46:55 -0700 (PDT)
+        with ESMTP id S240489AbhDLPxP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 11:53:15 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA7E0C061574
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 08:52:56 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id k128so7117323wmk.4
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 08:52:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=409QTL0hdWWRMQj+5oULQZC2JwXWrdGHiQRBuE3m5qs=;
-        b=nAc7PNeKZKqHAXmi3LGWyOFnnNBrBYXpokEAYTbOnLAdVfcV1kwh6MyRhBsqfibSL6
-         LfrmqDpGBiNzqnNHeTKn6Ivil6WHKCALe6CR4t3Yqa4f/TahR6oSt4Ur9Utgnvlnoi93
-         R3WN2Ojp2XmtR8YZea/nJ/BfpcOakszj9iBC+5LNJzPHo/WakSDw+teVeyLs0huwEdQW
-         Ffm0IuFnQBmMbEkMPsQ8H4kvpY5sRnrEWV578Haz8bfCxbRbdPAsWuv/6fTLSArOfZbF
-         Yy3kTyplYAf3gU9baaz0Okm2bjOLz8kQFfi0tJcohJXprMUfUTDcIAog/5I9mReOfZE6
-         nqrg==
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=uV02flmSrRt81WJ4T3wiSuGURL6Hk/SHKuFa7qavV00=;
+        b=RjCj+XhW0mahSBR+DCjq261dtioFS3pQNq26EqT2Eme+Qgs1kQY7q87bJJp6ROMlz3
+         5TJYBHplQvmY0YB9sIglMsOH5V6KN8wL8vLTUZ+aqt4weVGFL7awcTi24PtR3Gb6H5wD
+         a5CsXAlFfYCAtrqLykuU0dVkaBOrQV2/tlGJX2Uu5CL7VEaIAXlUYSRbE7woTcHatmL4
+         rGlNPvxo33IMFNfke109vH5LbDqfjBWdYMjWvJMuzN5DpvqtIh3ycy7ch7GmANIvm1zK
+         icz6085aChrb+HiSMhFMqdr/qkpO3IZbevQJVTJpM3Rw4ENv25e9DpDZSrOod1km+z8S
+         sOkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=409QTL0hdWWRMQj+5oULQZC2JwXWrdGHiQRBuE3m5qs=;
-        b=byjehmZx+kqZN2uozt/BRZwLy82/QKnspCXbfle9QvSmCVEoJ+hB5ypTY/t2K+u8WS
-         X3R+ZCs1JSnGnCab61Eaqwy79/D1B/iy9VgtpoYDjoqRHCSD3qa8+3Hu3BVDq4GXzr09
-         fDdUBJTbx7/jhhoEbikW4JvjSHIB4vJssxim+ovE5CEnHWzVynuXIdVZ24pez8LXNX56
-         cIhtb/bVGRPo8AmEDEtiZjVgI1FRxHtN8q8cOAUvGc+8LskSJX9dkdZFOSKYdJ93bJxB
-         yKhk3BH9nRvVwZhCrPSYxzMn/F5oVeCCdPjKG+XZd1AuhZTVELlKERJ/6KD7ytn3msdm
-         DuNQ==
-X-Gm-Message-State: AOAM531YNPRsGXQW+K++Zrsn1l6vDrz5eqNiBSLKvM5o5gyhEGEpo8So
-        Lm4MhmLX7n55m9w3yaso78hYxA==
-X-Google-Smtp-Source: ABdhPJyEI0xHO5CJxCBwlBCwlz9e2995zsMDWinK81u+lnXoNI6gulBFX/BaPKvpFJ2+9fLRYdJgWQ==
-X-Received: by 2002:a1c:7ec4:: with SMTP id z187mr27294205wmc.3.1618242414584;
-        Mon, 12 Apr 2021 08:46:54 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:90c:e290:4c21:b00e:ff79:bf20])
-        by smtp.gmail.com with ESMTPSA id u3sm12647332wmg.48.2021.04.12.08.46.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Apr 2021 08:46:54 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=uV02flmSrRt81WJ4T3wiSuGURL6Hk/SHKuFa7qavV00=;
+        b=GKG+nQXllGCgyPvillOTUjIqXtXozmwF55bpybVWtMB2WdcSXYWDNLQJYXg3/FeEHp
+         0i+8oarU8dLKVmHFbHUuk8OjDpxPmwRwDPCHr3QadJvDaSMmR8H1umsh4Dz+dC2BniU2
+         4gPVh/hf82ZcOtoTDJa64PlBZxZI5ox8Qf6e3bZEdxTnRI5c7kiLADHIUOVbfT44xq0/
+         C1oYtaMAHCkSxvcTtJDKumtjLaen/qc3sdZXriiWOx38j/mzKyNxk7zfQGkTFppU3P+f
+         GbU3IMSVA4jQusnf+XFZZ9zlqlvwntOafYC1rexcFw8hVP7CCvTkb8FvejSSHKf6Vg8K
+         psZA==
+X-Gm-Message-State: AOAM530d8TawmcLbapsIuvccPl5664FGjvFgFhQmv9JkbVEZPOScDj1U
+        qtaxKQTdii61b/fOu5iLSuQvCA==
+X-Google-Smtp-Source: ABdhPJwfbFcviVSfTAbSMAnrXzK7dC+k5xmXgB/S2xxGvTPdrnsrbWO6uw4gslsvMhncxNmUXUSSSg==
+X-Received: by 2002:a1c:4d0e:: with SMTP id o14mr4859927wmh.141.1618242775624;
+        Mon, 12 Apr 2021 08:52:55 -0700 (PDT)
+Received: from ?IPv6:2a01:e0a:90c:e290:4c21:b00e:ff79:bf20? ([2a01:e0a:90c:e290:4c21:b00e:ff79:bf20])
+        by smtp.gmail.com with ESMTPSA id g84sm15277215wmf.30.2021.04.12.08.52.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Apr 2021 08:52:55 -0700 (PDT)
+Subject: Re: [PATCH v2 1/5] dt-bindings: display: mediatek,hdmi: Convert to
+ use graph schema
+To:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
+        matthias.bgg@gmail.com, devicetree@vger.kernel.org
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210412093928.3321194-1-narmstrong@baylibre.com>
+ <20210412093928.3321194-2-narmstrong@baylibre.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     a.hajda@samsung.com, Laurent.pinchart@ideasonboard.com,
-        paul@crapouillou.net, robert.foss@linaro.org,
-        devicetree@vger.kernel.org
-Cc:     jonas@kwiboo.se, jernej.skrabec@siol.net,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        Phong LE <ple@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v3 1/3] dt-bindings: display: bridge: add it66121 bindings
-Date:   Mon, 12 Apr 2021 17:46:46 +0200
-Message-Id: <20210412154648.3719153-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210412154648.3719153-1-narmstrong@baylibre.com>
-References: <20210412154648.3719153-1-narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <415e0331-fc7c-6362-e81d-108f7ff8a654@baylibre.com>
+Date:   Mon, 12 Apr 2021 17:52:53 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-X-Patch-Hashes: v=1; h=sha256; i=A37XVUhvAjeOHadMAQvzsTXvq4/Mx+3fpb+QMgZO0wk=; m=4pbLDTHmUx/bdOuUE4bnndkED+bQKYHuWP7IpaPzTyo=; p=NMnvxRQNO0UfPjnn5oPHclBIYEUF7AEtJYQxnlns38g=; g=7885d5dafd4182d3fd1e195e1b4fc94b84582e40
-X-Patch-Sig: m=pgp; i=narmstrong@baylibre.com; s=0xA4CFF8AE; b=iQIzBAABCgAdFiEEPVPGJshWBf4d9CyLd9zb2sjISdEFAmB0a0kACgkQd9zb2sjISdFhZQ//WjD XF7VLF9hVcJzoOou9W5jDshNKpCH3+bOWnAe9BwzNjMAmUzV1ryLlgg/TlNWoxV0usgM65SF1BPEf MTWDid2YBLW4sheOhQhGD/EyFf0mtikyYjpHf2SbidFERb6qC3c6OjFsyGOflfbN+gjHn+u9PjYGE 7meaSxx/ftgijcGDJyI2BuCJkrRNPfnPk2DQBTYoBZF5rud3S1jGmS1N7GYEBwwVzCZqH0fMTR8H+ EhbuLIhMVI5xiZPu4sUM+swcrAJPrPB1oljkPpbQd2EK7cQh2m+DQhg/RdwkCKXrmEOOV6z65WEc5 7+1MlYujrMdAsc1gAieFZ+7RMTR1pD7z1z27AlqTVVTV3wd+7a36rjgqT18iDiCRt7R1cPKCbkAXD x29Kxkkvf1t/FF9QEhTzXbgxOY5RDIH9H1awza2Yg8HqpKbUDLj4hioSn/V7804ognNFIImOoUU0a zVFNGNuT3h47VSrKLOJUBGRV3qKxnP7UHlcPJYsehwtWD75xunr6JLM34QZ98NFb7DGys4XM35aCI 1jnr+ZFKajIuUYCqtRvZhPkhAh7Y9hjpZynj/MIX6DxRfgt3NY4EiUENSTLCKtEnglrtuDO0a0vGx mnEwF0IKUYiqrS1DcQD2hKl7C1jUJBIk150g9dTGHDa7z+wrpQcl257uYjrJCxUs=
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210412093928.3321194-2-narmstrong@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Phong LE <ple@baylibre.com>
+On 12/04/2021 11:39, Neil Armstrong wrote:
+> Update the mediatek,dpi binding to use the graph schema.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../display/mediatek/mediatek,cec.yaml        |  51 +++++++
+>  .../display/mediatek/mediatek,hdmi-ddc.yaml   |  57 ++++++++
+>  .../display/mediatek/mediatek,hdmi.txt        | 136 ------------------
+>  .../display/mediatek/mediatek,hdmi.yaml       | 131 +++++++++++++++++
+>  4 files changed, 239 insertions(+), 136 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
+> new file mode 100644
+> index 000000000000..408e7dfce409
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,cec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek HDMI CEC Controller Device Tree Bindings
+> +
+> +maintainers:
+> +  - CK Hu <ck.hu@mediatek.com>
+> +  - Jitao shi <jitao.shi@mediatek.com>
+> +
+> +description: |
+> +  The HDMI CEC controller handles hotplug detection and CEC communication.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt7623-hdmi
 
-Add the ITE bridge HDMI it66121 bindings.
+=> mediatek,mt7623-cec
 
-Signed-off-by: Phong LE <ple@baylibre.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../bindings/display/bridge/ite,it66121.yaml  | 123 ++++++++++++++++++
- 1 file changed, 123 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+> +      - mediatek,mt8173-hdmi
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
-new file mode 100644
-index 000000000000..61ed6dc7740b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
-@@ -0,0 +1,123 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/ite,it66121.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ITE it66121 HDMI bridge Device Tree Bindings
-+
-+maintainers:
-+  - Phong LE <ple@baylibre.com>
-+  - Neil Armstrong <narmstrong@baylibre.com>
-+
-+description: |
-+  The IT66121 is a high-performance and low-power single channel HDMI
-+  transmitter, fully compliant with HDMI 1.3a, HDCP 1.2 and backward compatible
-+  to DVI 1.0 specifications.
-+
-+properties:
-+  compatible:
-+    const: ite,it66121
-+
-+  reg:
-+    maxItems: 1
-+    description: base I2C address of the device
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: GPIO connected to active low reset
-+
-+  vrf12-supply:
-+    description: Regulator for 1.2V analog core power.
-+
-+  vcn33-supply:
-+    description: Regulator for 3.3V digital core power.
-+
-+  vcn18-supply:
-+    description: Regulator for 1.8V IO core power.
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: DPI input port.
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-+            unevaluatedProperties: false
-+
-+            properties:
-+              bus-width:
-+                description:
-+                  Endpoint bus width.
-+                enum:
-+                  - 12  # 12 data lines connected and dual-edge mode
-+                  - 24  # 24 data lines connected and single-edge mode
-+                default: 24
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: HDMI Connector port.
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+required:
-+  - compatible
-+  - reg
-+  - reset-gpios
-+  - vrf12-supply
-+  - vcn33-supply
-+  - vcn18-supply
-+  - interrupts
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      it66121hdmitx: it66121hdmitx@4c {
-+        compatible = "ite,it66121";
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&ite_pins_default>;
-+        vcn33-supply = <&mt6358_vcn33_wifi_reg>;
-+        vcn18-supply = <&mt6358_vcn18_reg>;
-+        vrf12-supply = <&mt6358_vrf12_reg>;
-+        reset-gpios = <&pio 160 1 /* GPIO_ACTIVE_LOW */>;
-+        interrupt-parent = <&pio>;
-+        interrupts = <4 8 /* IRQ_TYPE_LEVEL_LOW */>;
-+        reg = <0x4c>;
-+
-+        ports {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          port@0 {
-+            reg = <0>;
-+            it66121_in: endpoint {
-+              bus-width = <12>;
-+              remote-endpoint = <&display_out>;
-+            };
-+          };
-+
-+          port@1 {
-+            reg = <1>;
-+            hdmi_conn_out: endpoint {
-+              remote-endpoint = <&hdmi_conn_in>;
-+            };
-+          };
-+        };
-+      };
-+    };
--- 
-2.25.1
+=> mediatek,mt8173-cec
 
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+
+[..]
+
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
+> new file mode 100644
+> index 000000000000..c15b3470d652
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,hdmi-ddc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek HDMI DDC Device Tree Bindings
+> +
+> +maintainers:
+> +  - CK Hu <ck.hu@mediatek.com>
+> +  - Jitao shi <jitao.shi@mediatek.com>
+> +
+> +description: |
+> +  The HDMI DDC i2c controller is used to interface with the HDMI DDC pins.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt7623-hdmi
+
+=> mediatek,mt7623-hdmi-ddc
+
+> +      - mediatek,mt8173-hdmi
+
+=> mediatek,mt8173-hdmi-ddc
+
+> +
+> +  reg:
+> +    maxItems: 1
+
+
+[..]
+will repost with these fixes in  a few days,
+
+Neil
