@@ -2,138 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07A3A35E191
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 16:33:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35B3C35E1CA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 16:45:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230397AbhDMOdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 10:33:18 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:33430 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S243824AbhDMOc4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Apr 2021 10:32:56 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13DENfbF013334;
-        Tue, 13 Apr 2021 16:32:17 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=pjdn0iPLZsVnMrs5LhG4TkO0pVvE9Vj+yQMAhrHcFD4=;
- b=D8o3fopuhzzacBsQEBYvQTpOZjtYCfs7A40Lsqg9qTYRetxwbeP/tRK0uiwTIZAGiq2o
- mQG1SsVSv8VtLnkzeKPgCENWi3Og7b7XYsROd9NE9KMszI2bnrT9p9XnvUJgphP85hIv
- 3Yi0QnniZOhG8ctweBUAdvSP0xb3u4ObVFxEhT4ltCMrFIWtARaQewhdMyR2gJDRB9/6
- jYXzjZ/qUzzRbHycYtQg/mRm2bTl8nkRaldDmv++l2UxpukU3wGWDhVaqj92EWba2M/9
- TQq1o9qmJjRtFBbeGUm1CXXgChJI7nBaV8/5oN3BlVuXnUF2o/nWR4Jj/g8K+cSG/s92 ow== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 37vu4e5b92-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 13 Apr 2021 16:32:17 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 32EE5100038;
-        Tue, 13 Apr 2021 16:32:17 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 23D87246F3E;
-        Tue, 13 Apr 2021 16:32:17 +0200 (CEST)
-Received: from localhost (10.75.127.46) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 13 Apr 2021 16:32:16
- +0200
-From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>
-Subject: [PATCH v2 2/2] phy: stm32: manage optional vbus regulator on phy_power_on/off
-Date:   Tue, 13 Apr 2021 16:31:41 +0200
-Message-ID: <20210413143141.12919-3-amelie.delaunay@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210413143141.12919-1-amelie.delaunay@foss.st.com>
-References: <20210413143141.12919-1-amelie.delaunay@foss.st.com>
+        id S1344821AbhDMOpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 10:45:12 -0400
+Received: from smtpcmd15177.aruba.it ([62.149.156.177]:56840 "EHLO
+        smtpcmd15177.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344670AbhDMOpJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 10:45:09 -0400
+Received: from ubuntu.localdomain ([146.241.148.6])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id WKHXlmrLILwkNWKHXlJXst; Tue, 13 Apr 2021 16:44:48 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1618325088; bh=U0Qd1ET85p5b68Y13MpIUPlK1rDZzbVefoF3xvqLDOU=;
+        h=From:To:Subject:Date:MIME-Version:Content-Type;
+        b=NBaMcotXY70bC56EXyeoFnz3RCJ29sJl6g+TIIkxSELVlyJ7hfeHsJIyXfHuz/1Pp
+         keWgoiX6aQOIBx0JsvcWNlalUktwwkGg2QiZE6hZYK744XETkEPz+8+Dx1G2tBhIum
+         5fJNawsLqx3kU70SzDqKhZHNux9d+sFSZegxT304amEObSI6JU90CDeItptugt50N7
+         V0FrIjGe4TjFOvJl38524xiUzfJY+/YYqM4Bhl/CFAYqBp1yZjSIOeovVcuZHHtRp4
+         mrbUnmOnriZNejgRkQLN4Ko9CyxJQu1f2x7gcywfy0bTH4FFy+/xpR6siQrRoUTfVd
+         RJr4x3k0QgJeA==
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>
+Subject: [PATCH v7 0/3] Input: add Hycon HY46XX Touchscreen controller
+Date:   Tue, 13 Apr 2021 16:44:43 +0200
+Message-Id: <20210413144446.2277817-1-giulio.benetti@benettiengineering.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <CAL_JsqK6Bm==DaCMD3PruZoFO9iv0Te_KBVPnb9ZU0L8yDYF5Q@mail.gmail.com>
+References: <CAL_JsqK6Bm==DaCMD3PruZoFO9iv0Te_KBVPnb9ZU0L8yDYF5Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
- definitions=2021-04-13_08:2021-04-13,2021-04-13 signatures=0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4xfB+HwW2y5aybo6pZitV3RXOKGVSD8WEGtMAvMUoYxMPIR8MXShWixvm+OpeQtwmrpIYCjyoMziiHttrgE2F51MTZOCHNk4CLae/gqgZUPH2dfyqw2RQc
+ qn1nSafpPFia4c3LZOkT/F20xEsKv91Tm6LbSuXj7pASrSSzoT9GXvD/8vTBPIjB38R9zBBqhhe0BwQieaQOM1cyJDpj31r6IJaA3Bc0OE8UneoeHx5eTiLi
+ swJ7nzKHcXGO6jlmhHbfsZnYv4eR79gAAyFLrfBG2CQNst/scecMLvtzqDzfJEZ1dtj72eFK1ElOYbkeTGRkUWfGOrX8cAGygfQLYwYZ5IiSCRjxlADrmqjv
+ zDoD4M5UpLaT3odQwLa9Lxeg+NfnDyqY8x+IcrZSIr0nhvvtSEdICV0eUcVGa3WpXI8YAB8QlrbuXWP0FwMT+pNNqwWZqHY0yxFNGvW8odWDCbdiFD4sRVgT
+ bPGeSFOuu0xN/PqCfDZgWyoHavcrjzK6uuxiGg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for optional vbus regulator.
-It is managed on phy_power_on/off calls and may be needed for host mode.
+This patchset adds Hycon vendor, HY46XX touchscreen controller driver
+and its .yaml binding.
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
 ---
-No changes in v2.
+V1->V2:
+* changed authorship and SoBs to @benettiengineering.com domain
+* fixed vendor commit log according to Jonathan Neuschäfer's suggestion
+* fixed hy46xx bindings according to Rob Herring's suggestions
+* fixed hy46xx driver according to Dmitry Torokhov's suggestions
+further details are listed in single patches
+V2->V3:
+* fixed hy46xx bindings according to Jonathan Neuschäfer's suggestion
+* fixed hy46xx driver according to Jonathan Neuschäfer's suggestion
+further details are listed in single patches
+V3->V4:
+* fixed binding compatible string as suggested by Jonathan Neuschäfer
+V4->V5:
+* fixed hy46xx bindings and driver according to Rob Herring's suggestions
+further details are listed in single patches
+V5->V6:
+* changed report-speed property name into report-speed-hz according to
+Rob Herring's suggestion
+V6->V7:
+* added missing patch to series
 ---
- drivers/phy/st/phy-stm32-usbphyc.c | 31 ++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
 
-diff --git a/drivers/phy/st/phy-stm32-usbphyc.c b/drivers/phy/st/phy-stm32-usbphyc.c
-index c184f4e34584..3e491dfb2525 100644
---- a/drivers/phy/st/phy-stm32-usbphyc.c
-+++ b/drivers/phy/st/phy-stm32-usbphyc.c
-@@ -57,6 +57,7 @@ struct pll_params {
- struct stm32_usbphyc_phy {
- 	struct phy *phy;
- 	struct stm32_usbphyc *usbphyc;
-+	struct regulator *vbus;
- 	u32 index;
- 	bool active;
- };
-@@ -291,9 +292,31 @@ static int stm32_usbphyc_phy_exit(struct phy *phy)
- 	return stm32_usbphyc_pll_disable(usbphyc);
- }
- 
-+static int stm32_usbphyc_phy_power_on(struct phy *phy)
-+{
-+	struct stm32_usbphyc_phy *usbphyc_phy = phy_get_drvdata(phy);
-+
-+	if (usbphyc_phy->vbus)
-+		return regulator_enable(usbphyc_phy->vbus);
-+
-+	return 0;
-+}
-+
-+static int stm32_usbphyc_phy_power_off(struct phy *phy)
-+{
-+	struct stm32_usbphyc_phy *usbphyc_phy = phy_get_drvdata(phy);
-+
-+	if (usbphyc_phy->vbus)
-+		return regulator_disable(usbphyc_phy->vbus);
-+
-+	return 0;
-+}
-+
- static const struct phy_ops stm32_usbphyc_phy_ops = {
- 	.init = stm32_usbphyc_phy_init,
- 	.exit = stm32_usbphyc_phy_exit,
-+	.power_on = stm32_usbphyc_phy_power_on,
-+	.power_off = stm32_usbphyc_phy_power_off,
- 	.owner = THIS_MODULE,
- };
- 
-@@ -519,6 +542,14 @@ static int stm32_usbphyc_probe(struct platform_device *pdev)
- 		usbphyc->phys[port]->index = index;
- 		usbphyc->phys[port]->active = false;
- 
-+		usbphyc->phys[port]->vbus = devm_regulator_get_optional(&phy->dev, "vbus");
-+		if (IS_ERR(usbphyc->phys[port]->vbus)) {
-+			ret = PTR_ERR(usbphyc->phys[port]->vbus);
-+			if (ret == -EPROBE_DEFER)
-+				goto put_child;
-+			usbphyc->phys[port]->vbus = NULL;
-+		}
-+
- 		port++;
- 	}
- 
+Giulio Benetti (3):
+  dt-bindings: Add Hycon Technology vendor prefix
+  dt-bindings: touchscreen: Add HY46XX bindings
+  Input: add driver for the Hycon HY46XX touchpanel series
+
+ .../input/touchscreen/hycon,hy46xx.yaml       | 119 ++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   7 +
+ drivers/input/touchscreen/Kconfig             |  11 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/hycon-hy46xx.c      | 591 ++++++++++++++++++
+ 6 files changed, 731 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
+ create mode 100644 drivers/input/touchscreen/hycon-hy46xx.c
+
 -- 
-2.17.1
+2.25.1
 
