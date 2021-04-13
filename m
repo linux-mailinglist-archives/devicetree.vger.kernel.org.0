@@ -2,145 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0D8635DFE3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 15:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9366C35DFF0
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 15:19:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344972AbhDMNP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 09:15:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55788 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344864AbhDMNPx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Apr 2021 09:15:53 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A0FD6613B6;
-        Tue, 13 Apr 2021 13:15:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618319732;
-        bh=hntf3n54qqh0uXzZ6D8tUaPqStMPIr+/hNfZoDniY4A=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pFpwLvstWECXqVpOgyrkrKmlfsQ28mBYBwtR2o1zDIZNTN3s1OyR8ka9IMQF3ifAE
-         apbS1JSkX1Thm0Dz70rv4l+fRx8vcuF9w7H0zOOqpejghSANJvWB7UO37TuxD0SsPE
-         tPNQd5x1e3XOL1g/hzXjXdaL4D/pRLipUmK6nOWDyro+mXVGfwYFTYKNilgerKm4ss
-         VbyvwloBimOPyZejVrnXMy5SwDPYjcGpLt7in7dRz23norkDFszPBjq6XLp2scE4Ss
-         IpeYXQTzhOEVZSa4EnQ+y8p0vmIN3KT0xqanjCYFh1IMn2jykf6CATmG4DFSpIF8+T
-         9Z6LYAE7/ltbQ==
-Received: by mail-ej1-f48.google.com with SMTP id sd23so17205708ejb.12;
-        Tue, 13 Apr 2021 06:15:32 -0700 (PDT)
-X-Gm-Message-State: AOAM531BGVUO9slmIAe8bA1f5SyEqknh1J7ju3fJz278EpTLZq+Qp2fC
-        Zk6j3NCd6UNh+cxw8K9q57fsClDc2UWan1ALmA==
-X-Google-Smtp-Source: ABdhPJzC/tge5Y9i/M8U9jxXXMaHumRpj2qoNI/uM/HWkeG+5F6Zoeof4s70jO3VjFJc52wf9aBwCKB/22YZrMkMMhQ=
-X-Received: by 2002:a17:907:367:: with SMTP id rs7mr18299959ejb.468.1618319731269;
- Tue, 13 Apr 2021 06:15:31 -0700 (PDT)
+        id S241633AbhDMNT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 09:19:26 -0400
+Received: from router.aksignal.cz ([62.44.4.214]:47668 "EHLO
+        router.aksignal.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240255AbhDMNTN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 09:19:13 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by router.aksignal.cz (Postfix) with ESMTP id 75AC746CCD;
+        Tue, 13 Apr 2021 15:18:51 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at router.aksignal.cz
+Received: from router.aksignal.cz ([127.0.0.1])
+        by localhost (router.aksignal.cz [127.0.0.1]) (amavisd-new, port 10026)
+        with LMTP id mybEUXO63qix; Tue, 13 Apr 2021 15:18:50 +0200 (CEST)
+Received: from pc-gameroom.prchals.tk (unknown [83.240.30.185])
+        (Authenticated sender: jiri.prchal@aksignal.cz)
+        by router.aksignal.cz (Postfix) with ESMTPSA id 977FE46CCC;
+        Tue, 13 Apr 2021 15:18:50 +0200 (CEST)
+From:   Jiri Prchal <jiri.prchal@aksignal.cz>
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Christian Eggers <ceggers@arri.de>,
+        Jiri Prchal <jiri.prchal@aksignal.cz>
+Subject: [PATCH v2 3/3] nvmem: eeprom: add documentation for FRAM
+Date:   Tue, 13 Apr 2021 15:18:48 +0200
+Message-Id: <20210413131848.63597-1-jiri.prchal@aksignal.cz>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210409134056.18740-1-a-govindraju@ti.com> <20210409134056.18740-2-a-govindraju@ti.com>
- <f9b04d93-c249-970e-3721-50eb268a948f@pengutronix.de> <20210412174956.GA4049952@robh.at.kernel.org>
- <20210413074106.gvgtjkofyrdp5yxt@pengutronix.de>
-In-Reply-To: <20210413074106.gvgtjkofyrdp5yxt@pengutronix.de>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 13 Apr 2021 08:15:18 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+yEQGuZYWhsQ-we36_Xi5X94YJ23oFe-T6h4U4X6iUhg@mail.gmail.com>
-Message-ID: <CAL_Jsq+yEQGuZYWhsQ-we36_Xi5X94YJ23oFe-T6h4U4X6iUhg@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: phy: Add binding for TI TCAN104x CAN transceivers
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-Cc:     Aswath Govindraju <a-govindraju@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-can@vger.kernel.org,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 13, 2021 at 2:41 AM Marc Kleine-Budde <mkl@pengutronix.de> wrote:
->
-> On 12.04.2021 12:49:56, Rob Herring wrote:
-> > On Mon, Apr 12, 2021 at 12:19:30PM +0200, Marc Kleine-Budde wrote:
-> > > On 4/9/21 3:40 PM, Aswath Govindraju wrote:
-> > > > Add binding documentation for TI TCAN104x CAN transceivers.
-> > > >
-> > > > Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> > > > ---
-> > > >  .../bindings/phy/ti,tcan104x-can.yaml         | 56 +++++++++++++++++++
-> > > >  1 file changed, 56 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..4abfc30a97d0
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > > @@ -0,0 +1,56 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: "http://devicetree.org/schemas/phy/ti,tcan104x-can.yaml#"
-> > > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > > > +
-> > > > +title: TCAN104x CAN TRANSCEIVER PHY
-> > > > +
-> > > > +maintainers:
-> > > > +  - Aswath Govindraju <a-govindraju@ti.com>
-> > > > +
-> > > > +properties:
-> > > > +  $nodename:
-> > > > +    pattern: "^tcan104x-phy"
-> > > > +
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - ti,tcan1042
-> > > > +      - ti,tcan1043
-> > >
-> > > Can you create a generic standby only and a generic standby and enable transceiver?
-> >
-> > As a fallback compatible fine, but no generic binding please. A generic
-> > binding can't describe any timing requirements between the 2 GPIO as
-> > well as supplies when someone wants to add those (and they will).
->
-> Right - that makes sense.
->
-> > > > +
-> > > > +  '#phy-cells':
-> > > > +    const: 0
-> > > > +
-> > > > +  standby-gpios:
-> > > > +    description:
-> > > > +      gpio node to toggle standby signal on transceiver
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  enable-gpios:
-> > > > +    description:
-> > > > +      gpio node to toggle enable signal on transceiver
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  max-bitrate:
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > +    description:
-> > > > +      max bit rate supported in bps
-> >
-> > We already have 'max-speed' for serial devices, use that.
->
-> There is already the neither Ethernet PHY (PHYLINK/PHYLIB) nor generic
-> PHY (GENERIC_PHY) can-transceiver binding
-> Documentation/devicetree/bindings/net/can/can-transceiver.yaml which
-> specifies max-bitrate. I don't have strong feelings whether to use
-> max-bitrate or max-speed.
+Added dt binding documentation.
 
-Okay, max-bitrate is fine.
+Signed-off-by: Jiri Prchal <jiri.prchal@aksignal.cz>
+---
+-v2: fixed dt_binding_check warnings thanks to Rob Herring
+---
+ .../devicetree/bindings/eeprom/at25.yaml      | 31 +++++++++++++++----
+ 1 file changed, 25 insertions(+), 6 deletions(-)
 
->
-> Speaking about Ethernet PHYs, what are to pros and cons to use the
-> generic PHY compared to the Ethernet PHY infrastructure?
+diff --git a/Documentation/devicetree/bindings/eeprom/at25.yaml b/Documentation/devicetree/bindings/eeprom/at25.yaml
+index 121a601db22e..840ee7a83a14 100644
+--- a/Documentation/devicetree/bindings/eeprom/at25.yaml
++++ b/Documentation/devicetree/bindings/eeprom/at25.yaml
+@@ -4,14 +4,16 @@
+ $id: "http://devicetree.org/schemas/eeprom/at25.yaml#"
+ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ 
+-title: SPI EEPROMs compatible with Atmel's AT25
++title: SPI EEPROMs or FRAMs compatible with Atmel's AT25
+ 
+ maintainers:
+   - Christian Eggers <ceggers@arri.de>
+ 
+ properties:
+   $nodename:
+-    pattern: "^eeprom@[0-9a-f]{1,2}$"
++    anyOf:
++      - pattern: "^eeprom@[0-9a-f]{1,2}$"
++      - pattern: "^fram@[0-9a-f]{1,2}$"
+ 
+   # There are multiple known vendors who manufacture EEPROM chips compatible
+   # with Atmel's AT25. The compatible string requires two items where the
+@@ -31,6 +33,7 @@ properties:
+               - microchip,25lc040
+               - st,m95m02
+               - st,m95256
++              - cypress,fm25
+ 
+           - const: atmel,at25
+ 
+@@ -48,7 +51,7 @@ properties:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     enum: [1, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072]
+     description:
+-      Size of the eeprom page.
++      Size of the eeprom page. FRAMs don't have pages.
+ 
+   size:
+     $ref: /schemas/types.yaml#/definitions/uint32
+@@ -101,9 +104,19 @@ required:
+   - compatible
+   - reg
+   - spi-max-frequency
+-  - pagesize
+-  - size
+-  - address-width
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          not:
++            contains:
++              const: cypress,fm25
++    then:
++      required:
++        - pagesize
++        - size
++        - address-width
+ 
+ additionalProperties: false
+ 
+@@ -126,4 +139,10 @@ examples:
+             size = <32768>;
+             address-width = <16>;
+         };
++
++        fram@1 {
++            compatible = "cypress,fm25", "atmel,at25";
++            reg = <1>;
++            spi-max-frequency = <40000000>;
++        };
+     };
+-- 
+2.25.1
 
-For higher speed ethernet, both are used. There's the serdes phy and
-the ethernet phy with serdes phy using the generic phy binding. For
-CAN, it probably comes down to what's a better fit.
-
-Rob
