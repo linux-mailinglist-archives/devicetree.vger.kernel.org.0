@@ -2,184 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CAC235E85D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 23:35:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 367E935E86D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 23:40:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242133AbhDMVfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 17:35:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39152 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230247AbhDMVfK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 17:35:10 -0400
-Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E341AC061756
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 14:34:49 -0700 (PDT)
-Received: by mail-oo1-xc35.google.com with SMTP id s1-20020a4ac1010000b02901cfd9170ce2so4156574oop.12
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 14:34:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=FOllnPXHllv++nMeKGcRp72HvHtuzEorYNDS+7csQnc=;
-        b=p9sK5bIAOVE/cIygFsqF2n3RJ/Zvp7PrybYGikPgpMOukszsWN9yMqWh8+kqno3Ps7
-         R5ebKFToe6e8f8vRJt+jFwyNSobdRLprqZt+Hsy887uwEIDEh6os48OkyTvqg6KFbrTP
-         jNL6QUiU4Rc5uLuSb1WybpZuII9c1Yb36cOEHHl/S7qAvxsO68SBHZ+55PNfbasDQmiu
-         W91v0TctoRIZvmnh98wnCGVnNCQJXXSUiPNmu20LG3w3/U+ZW7DulFM/vQshw0YGIWmh
-         uixtKVdjPVdfb1wadaScaxQgzx02kG0G2U8YM/5ChAY+cFFOF0YO3h3vFTbzbp3k+5ae
-         kwDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FOllnPXHllv++nMeKGcRp72HvHtuzEorYNDS+7csQnc=;
-        b=oceWZehS7IQN3e/PHMK7f3mttM5Xo5Ray4i6Uc8CSFWGqgGpBsMGibzggodoHNn/Js
-         Ng1dWJReBfCV6hOyhmfbLeKhp8NoUEjzSy4z9FRVGRfyiJg07QjbleMQdndXxrb7VM7J
-         tjlC1GWoeF85pooNpUodR9Ln1qt1wNpiLd/z/y4xrXxiHvB9l60cs6233Lf+hxUIS7VL
-         dMtRMf0lP5BfKeL4L6ZPV75fsZzOZ+h7Tq+1GCJ3tbuLwgBFdA1yW2uC8LuxS3SVP5sx
-         dE3vh5FPStdvarIaVy2ZspR/OsGH7PX/vt41qofJNO5Z4cq3ALnhojeXYhDdlGMYZEgi
-         HEKw==
-X-Gm-Message-State: AOAM532JKJyBFpM496rGKKgiXnc2dbCW0gXy+rB0mOysMMyKpdNMe1uS
-        5gsrU9VRj5HWQRioEYnfhLe19A==
-X-Google-Smtp-Source: ABdhPJybcirmWf+UYoMFRkeUspQ4uHJRg55y+2KDoXOvGcKDZk1c3JAxpGR9+mLppviL0Pg0WFWg5A==
-X-Received: by 2002:a4a:9533:: with SMTP id m48mr28384650ooi.34.1618349689308;
-        Tue, 13 Apr 2021 14:34:49 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id m127sm3098859oib.32.2021.04.13.14.34.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Apr 2021 14:34:48 -0700 (PDT)
-Date:   Tue, 13 Apr 2021 16:34:47 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Cc:     Ohad Ben-Cohen <ohad@wizery.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] remoteproc: stm32: add capability to detach
-Message-ID: <YHYOd/vqeZCiqkpJ@builder.lan>
-References: <20210331073347.8293-1-arnaud.pouliquen@foss.st.com>
- <20210331073347.8293-3-arnaud.pouliquen@foss.st.com>
+        id S1344304AbhDMVkd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 17:40:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43730 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232542AbhDMVkd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Apr 2021 17:40:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPS id B20D2613B6;
+        Tue, 13 Apr 2021 21:40:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618350012;
+        bh=toVub+slEHyxpan1zl2EKjAs+n9L+DqJjmVyXdpSda8=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=pRV3XRV88aPlnwLClx5LDM21mdefxIbRGFcsOMAWKDGAPSf1o7HWMcUJArQ3XXTo2
+         omQ7Z2UBYmJ/4VEgdmDWMtz3nLyeoWfPZMbM/epzVuNn/dfLkNcaqGX/sQ3OpMjUBS
+         bAKgZugFWBnTeaINp8LqtfjdEpx90+cwvi+asWJoSAi80GbrFagrnhafBEMs9d/q64
+         V1GuK22jWWyeImHuDUYrsXisI7HOHaVrq3GZpA1n6OF84dCG4EQ57enrHgZGDRNpgk
+         +wx2yJOLG9rxC5gEKrr9mBBot2pLRQqzLRJSzYPRKCwgwQuIOp0m7AJtIXo8z3kOIr
+         TcOoK6hf+PaXg==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 9A519609B9;
+        Tue, 13 Apr 2021 21:40:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210331073347.8293-3-arnaud.pouliquen@foss.st.com>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v4 0/2] of: net: support non-platform devices in
+ of_get_mac_address()
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <161835001262.18297.4500601910911096840.git-patchwork-notify@kernel.org>
+Date:   Tue, 13 Apr 2021 21:40:12 +0000
+References: <20210412174718.17382-1-michael@walle.cc>
+In-Reply-To: <20210412174718.17382-1-michael@walle.cc>
+To:     Michael Walle <michael@walle.cc>
+Cc:     ath9k-devel@qca.qualcomm.com, UNGLinuxDriver@microchip.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, netdev@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org, linux-oxnas@groups.io,
+        linux-omap@vger.kernel.org, linux-wireless@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
+        andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, linux@armlinux.org.uk,
+        mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
+        andreas@gaisler.com, davem@davemloft.net, kuba@kernel.org,
+        mripard@kernel.org, wens@csie.org, jernej.skrabec@siol.net,
+        joyce.ooi@intel.com, chris.snook@gmail.com, rafal@milecki.pl,
+        bcm-kernel-feedback-list@broadcom.com, f.fainelli@gmail.com,
+        nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
+        sgoutham@marvell.com, fugang.duan@nxp.com, madalin.bucur@nxp.com,
+        pantelis.antoniou@gmail.com, claudiu.manoil@nxp.com,
+        leoyang.li@nxp.com, yisen.zhuang@huawei.com,
+        salil.mehta@huawei.com, hauke@hauke-m.de,
+        thomas.petazzoni@bootlin.com, vkochan@marvell.com,
+        tchornyi@marvell.com, mlindner@marvell.com,
+        stephen@networkplumber.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        matthias.bgg@gmail.com, bryan.whitehead@microchip.com,
+        vz@mleia.com, sergei.shtylyov@gmail.com, bh74.an@samsung.com,
+        hayashi.kunihiko@socionext.com, peppe.cavallaro@st.com,
+        alexandre.torgue@st.com, joabreu@synopsys.com,
+        mcoquelin.stm32@gmail.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, khilman@baylibre.com, narmstrong@baylibre.com,
+        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        vkoul@kernel.org, nobuhiro1.iwamatsu@toshiba.co.jp,
+        grygorii.strashko@ti.com, w-kwok2@ti.com, m-karicheri2@ti.com,
+        michal.simek@xilinx.com, radhey.shyam.pandey@xilinx.com,
+        kvalo@codeaurora.org, lorenzo.bianconi83@gmail.com,
+        ryder.lee@mediatek.com, stf_xl@wp.pl, helmut.schaa@googlemail.com,
+        hkallweit1@gmail.com, robh+dt@kernel.org, frowand.list@gmail.com,
+        gregkh@linuxfoundation.org, jerome.pouiller@silabs.com,
+        vivien.didelot@gmail.com, olteanv@gmail.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 31 Mar 02:33 CDT 2021, Arnaud Pouliquen wrote:
+Hello:
 
-> A mechanism similar to the shutdown mailbox signal is implemented to
-> detach a remote processor.
-> 
-> Upon detachment, a signal is sent to the remote firmware, allowing it
-> to perform specific actions such as stopping rpmsg communication.
-> 
-> The Cortex-M hold boot is also disabled to allow the remote processor
-> to restart in case of crash.
-> 
-> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Tested-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-> ---
->  drivers/remoteproc/stm32_rproc.c | 39 ++++++++++++++++++++++++++++++--
->  1 file changed, 37 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
-> index 3d45f51de4d0..7353f9e7e7af 100644
-> --- a/drivers/remoteproc/stm32_rproc.c
-> +++ b/drivers/remoteproc/stm32_rproc.c
-> @@ -28,7 +28,7 @@
->  #define RELEASE_BOOT		1
->  
->  #define MBOX_NB_VQ		2
-> -#define MBOX_NB_MBX		3
-> +#define MBOX_NB_MBX		4
->  
->  #define STM32_SMC_RCC		0x82001000
->  #define STM32_SMC_REG_WRITE	0x1
-> @@ -38,6 +38,7 @@
->  #define STM32_MBX_VQ1		"vq1"
->  #define STM32_MBX_VQ1_ID	1
->  #define STM32_MBX_SHUTDOWN	"shutdown"
-> +#define STM32_MBX_DETACH	"detach"
->  
->  #define RSC_TBL_SIZE		1024
->  
-> @@ -336,6 +337,15 @@ static const struct stm32_mbox stm32_rproc_mbox[MBOX_NB_MBX] = {
->  			.tx_done = NULL,
->  			.tx_tout = 500, /* 500 ms time out */
->  		},
-> +	},
-> +	{
-> +		.name = STM32_MBX_DETACH,
-> +		.vq_id = -1,
-> +		.client = {
-> +			.tx_block = true,
-> +			.tx_done = NULL,
-> +			.tx_tout = 200, /* 200 ms time out to detach should be fair enough */
-> +		},
->  	}
->  };
->  
-> @@ -461,6 +471,25 @@ static int stm32_rproc_attach(struct rproc *rproc)
->  	return stm32_rproc_set_hold_boot(rproc, true);
->  }
->  
-> +static int stm32_rproc_detach(struct rproc *rproc)
-> +{
-> +	struct stm32_rproc *ddata = rproc->priv;
-> +	int err, dummy_data, idx;
-> +
-> +	/* Inform the remote processor of the detach */
-> +	idx = stm32_rproc_mbox_idx(rproc, STM32_MBX_DETACH);
-> +	if (idx >= 0 && ddata->mb[idx].chan) {
-> +		/* A dummy data is sent to allow to block on transmit */
-> +		err = mbox_send_message(ddata->mb[idx].chan,
-> +					&dummy_data);
+This series was applied to netdev/net-next.git (refs/heads/master):
 
-Seems I posted my comment on v1, rather than this latest version. Please
-let me know if we should do anything about this dummy_data.
-
-Regards,
-Bjorn
-
-> +		if (err < 0)
-> +			dev_warn(&rproc->dev, "warning: remote FW detach without ack\n");
-> +	}
-> +
-> +	/* Allow remote processor to auto-reboot */
-> +	return stm32_rproc_set_hold_boot(rproc, false);
-> +}
-> +
->  static int stm32_rproc_stop(struct rproc *rproc)
->  {
->  	struct stm32_rproc *ddata = rproc->priv;
-> @@ -597,7 +626,12 @@ stm32_rproc_get_loaded_rsc_table(struct rproc *rproc, size_t *table_sz)
->  	}
->  
->  done:
-> -	/* Assuming the resource table fits in 1kB is fair */
-> +	/*
-> +	 * Assuming the resource table fits in 1kB is fair.
-> +	 * Notice for the detach, that this 1 kB memory area has to be reserved in the coprocessor
-> +	 * firmware for the resource table. On detach, the remoteproc core re-initializes this
-> +	 * entire area by overwriting it with the initial values stored in rproc->clean_table.
-> +	 */
->  	*table_sz = RSC_TBL_SIZE;
->  	return (struct resource_table *)ddata->rsc_va;
->  }
-> @@ -607,6 +641,7 @@ static const struct rproc_ops st_rproc_ops = {
->  	.start		= stm32_rproc_start,
->  	.stop		= stm32_rproc_stop,
->  	.attach		= stm32_rproc_attach,
-> +	.detach		= stm32_rproc_detach,
->  	.kick		= stm32_rproc_kick,
->  	.load		= rproc_elf_load_segments,
->  	.parse_fw	= stm32_rproc_parse_fw,
-> -- 
-> 2.17.1
+On Mon, 12 Apr 2021 19:47:16 +0200 you wrote:
+> of_get_mac_address() is commonly used to fetch the MAC address
+> from the device tree. It also supports reading it from a NVMEM
+> provider. But the latter is only possible for platform devices,
+> because only platform devices are searched for a matching device
+> node.
 > 
+> Add a second method to fetch the NVMEM cell by a device tree node
+> instead of a "struct device".
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next,v4,1/2] of: net: pass the dst buffer to of_get_mac_address()
+    https://git.kernel.org/netdev/net-next/c/83216e3988cd
+  - [net-next,v4,2/2] of: net: fix of_get_mac_addr_nvmem() for non-platform devices
+    https://git.kernel.org/netdev/net-next/c/f10843e04a07
+
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
