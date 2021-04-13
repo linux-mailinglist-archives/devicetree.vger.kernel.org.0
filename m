@@ -2,172 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1674535E74D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 21:50:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8929935E78C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 22:19:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348131AbhDMTuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 15:50:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44734 "EHLO
+        id S1348237AbhDMUTT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 16:19:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348070AbhDMTun (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 15:50:43 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44866C061756
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 12:50:23 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id e2so4508953plh.8
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 12:50:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=oOecOrjP4ebjB9MfD+t/MwQe3gJqtePCpwG7b5PQgBs=;
-        b=ep3RW5lfGiKUgUbny3bLO13DIO+Ejr205QO9Sj9bTseb2gaW4CooOeZ0UQy8VFbUo4
-         IoX72M2BDxEO7GAvHFCZUjex8Xjs5EFdJz2j2ipVz8L/TDgYsBhFf718ooClu5tAY56+
-         cNV3vwNptvDHbYivOEHLlfEUesW22uB/9W7/fRxp0jEh5N85IWibEQEgCkCSpXBN2pVM
-         M/TE4CRqqcG6GBj+VLaDiv1tOZL/YPffagrD+73atSsvba5eqQEGmwBWvEVEAtzHxMca
-         jBfOfF9bViKDnyIXT7i2qh/7zBfV3rhpzaBuLm2LkW+q67OGIYjpAdGJUnyyC5xjfGCk
-         AYhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oOecOrjP4ebjB9MfD+t/MwQe3gJqtePCpwG7b5PQgBs=;
-        b=UgMvAx4arySAjZ3t2aIFANQc1dQ6ndMYD+tAmZRHmJG++wkBd34eOGnPF6nsigij+J
-         Z4rJYuwK44nPs+xQvDE0LxU31v6uLyB0g7Eya8vyKliHorpXd61CZ5MZtHbABEh7jCQV
-         RUufh6+4DvBa+WmeN3LrJDzUBKma1Y5mqFnrA4xwf17aoJ1fRzxO0CvtkKyPlD3nXQtw
-         9C/1IklwUNSy1KFnHSfxBLbVIwrtiIVUfmBh31/gTHSTO6HL0MmVE/U/NRjWvkPVGwYP
-         /8jKHnvUr/1EN9y0tb+IYydYa21e3tLAUmBuMtKZDEBDoQML72ixsnF7mZUGkfN2qy5/
-         Sz7w==
-X-Gm-Message-State: AOAM532chO+OmwJqk9np30+G3MrCKfNq6uiX3WOCwhntjtxU62ffJ31G
-        UNXa0TUxbo11+QRg93gdILzcpBeonac+16+TZeXJYVtjVeI=
-X-Google-Smtp-Source: ABdhPJwaj6udX1dNnKNlsRCyFoPlCACj+fhdmzsOnCuN8ke1sAMbselzI6xf9r5pQiR9bEI7Hb/t9N6kmsPzQMoE9to=
-X-Received: by 2002:a17:90a:c7d5:: with SMTP id gf21mr1692957pjb.80.1618343422498;
- Tue, 13 Apr 2021 12:50:22 -0700 (PDT)
+        with ESMTP id S1348198AbhDMUTG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 16:19:06 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C5F6C061574;
+        Tue, 13 Apr 2021 13:18:46 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EF0AD9F0;
+        Tue, 13 Apr 2021 22:18:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1618345123;
+        bh=c4e7lBPFa0mIb5bY8GUL6gHcossp3SJOZrfVo9bPbVI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WDok0GxmhA3PJhBkvHJn7ugok9gHr6pMIeiXp6eQqhgfByRezUHzPak5M9J3srQm4
+         6kf80uTeKGpqlfBkrd2LyvzcWViYuAmDnypE+wG1xnDEwe/S9mKN6n/RjMcYFKbKWU
+         k2Ar5VN6iTlPabrn1B8FppMU2Ff5DO5y9YfQCZlo=
+Date:   Tue, 13 Apr 2021 23:17:52 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>, a.hajda@samsung.com,
+        robert.foss@linaro.org, devicetree@vger.kernel.org,
+        jonas@kwiboo.se, jernej.skrabec@siol.net,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        Phong LE <ple@baylibre.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: display: bridge: add it66121 bindings
+Message-ID: <YHX8cLQyt+LbzqT8@pendragon.ideasonboard.com>
+References: <20210412154648.3719153-1-narmstrong@baylibre.com>
+ <20210412154648.3719153-2-narmstrong@baylibre.com>
+ <H3LIRQ.7IT4EUNNTEBX1@crapouillou.net>
 MIME-Version: 1.0
-References: <20210224191720.7724-1-jae.hyun.yoo@linux.intel.com>
- <20210224191720.7724-2-jae.hyun.yoo@linux.intel.com> <20210306203011.GA1152769@robh.at.kernel.org>
- <f6732348-d6c8-f49b-6123-afe542bb1f8c@linux.intel.com> <CAL_Jsq+H2wCyTKhGcQvgiuyMtGW0hytQgw=948q0JGLSLOo9KA@mail.gmail.com>
- <f1811747-3826-215a-d822-85170303a7c9@linux.intel.com> <fadf1244-ed6e-5973-ff1b-018bd20ff3b1@linux.intel.com>
-In-Reply-To: <fadf1244-ed6e-5973-ff1b-018bd20ff3b1@linux.intel.com>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Tue, 13 Apr 2021 12:50:11 -0700
-Message-ID: <CAFd5g453L_+tu=vd0foiswJP16+repffPBEPCy6mpZQqnM50Ug@mail.gmail.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: i2c: aspeed: add transfer mode support
-To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-Cc:     Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>, Tao Ren <taoren@fb.com>,
-        Cedric Le Goater <clg@kaod.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <H3LIRQ.7IT4EUNNTEBX1@crapouillou.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 8, 2021 at 10:50 AM Jae Hyun Yoo
-<jae.hyun.yoo@linux.intel.com> wrote:
->
-> Ping.
->
-> On 3/10/2021 7:55 AM, Jae Hyun Yoo wrote:
-> > On 3/9/2021 6:15 PM, Rob Herring wrote:
-> >> On Tue, Mar 9, 2021 at 10:02 AM Jae Hyun Yoo
-> >> <jae.hyun.yoo@linux.intel.com> wrote:
-> >>>
-> >>> Hi Rob,
-> >>>
-> >>> On 3/6/2021 12:30 PM, Rob Herring wrote:
-> >>>> On Wed, Feb 24, 2021 at 11:17:17AM -0800, Jae Hyun Yoo wrote:
-> >>>>> Append bindings to support transfer mode.
-> >>>>>
-> >>>>> Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-> >>>>> Reviewed-by: Brendan Higgins <brendanhiggins@google.com>
-> >>>>> ---
-> >>>>> Changes since v3:
-> >>>>> - None
-> >>>>>
-> >>>>> Changes since v2:
-> >>>>> - Moved SRAM resources back to default dtsi and added mode selection
-> >>>>>     property.
-> >>>>>
-> >>>>> Changes since v1:
-> >>>>> - Removed buffer reg settings from default device tree and added
-> >>>>> the settings
-> >>>>>     into here to show the predefined buffer range per each bus.
-> >>>>>
-> >>>>>    .../devicetree/bindings/i2c/i2c-aspeed.txt    | 37
-> >>>>> +++++++++++++++----
-> >>>>>    1 file changed, 30 insertions(+), 7 deletions(-)
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
-> >>>>> b/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
-> >>>>> index b47f6ccb196a..242343177324 100644
-> >>>>> --- a/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
-> >>>>> +++ b/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
-> >>>>> @@ -17,6 +17,20 @@ Optional Properties:
-> >>>>>    - bus-frequency    : frequency of the bus clock in Hz defaults
-> >>>>> to 100 kHz when not
-> >>>>>                 specified
-> >>>>>    - multi-master     : states that there is another master active
-> >>>>> on this bus.
-> >>>>> +- aspeed,i2c-xfer-mode      : should be "byte", "buf" or "dma" to
-> >>>>> select transfer
-> >>>>> +                      mode defaults to "byte" mode when not
-> >>>>> specified.
-> >>>>> +
-> >>>>> +                      I2C DMA mode on AST2500 has these restrictions:
-> >>>>> +                        - If one of these controllers is enabled
-> >>>>> +                            * UHCI host controller
-> >>>>> +                            * MCTP controller
-> >>>>> +                          I2C has to use buffer mode or byte mode
-> >>>>> instead
-> >>>>> +                          since these controllers run only in DMA
-> >>>>> mode and
-> >>>>> +                          I2C is sharing the same DMA H/W with them.
-> >>>>> +                        - If one of these controllers uses DMA
-> >>>>> mode, I2C
-> >>>>> +                          can't use DMA mode
-> >>>>> +                            * SD/eMMC
-> >>>>> +                            * Port80 snoop
-> >>>>
-> >>>> How does one decide between byte or buf mode?
-> >>>
-> >>> If a given system makes just one byte r/w transactions most of the time
-> >>> then byte mode will be a right setting. Otherwise, buf mode is more
-> >>> efficient because it doesn't generate a bunch of interrupts on every
-> >>> byte handling.
-> >>
-> >> Then why doesn't the driver do byte transactions when it gets small
-> >> 1-4? byte transactions and buffer transactions when it gets larger
-> >> sized transactions.
-> >
-> > Good question and it could be an option of this implementation.
-> > Actually, each mode needs different register handling so we need to add
-> > additional conditional branches to make it dynamic mode change depends
-> > on the data size which can be a downside. Also, checked that small
-> > amount of data transfer efficiency in 'buf' transfer mode is almost same
-> > to 'byte' mode so there would be no big benefit from the dynamic mode
-> > change. Of course, we can remove the 'byte' transfer mode but we should
-> > also provide flexibility of configuration on what this hardware can
-> > support, IMO.
+Hi Paul,
 
-I would rather set the choice in device tree or Kconfig, which the
-former is what I think you did here.
+On Tue, Apr 13, 2021 at 07:09:17PM +0100, Paul Cercueil wrote:
+> Le lun. 12 avril 2021 à 17:46, Neil Armstrong a écrit :
+> > From: Phong LE <ple@baylibre.com>
+> > 
+> > Add the ITE bridge HDMI it66121 bindings.
+> > 
+> > Signed-off-by: Phong LE <ple@baylibre.com>
+> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> > ---
+> >  .../bindings/display/bridge/ite,it66121.yaml  | 123 ++++++++++++++++++
+> >  1 file changed, 123 insertions(+)
+> >  create mode 100644 
+> > Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+> > 
+> > diff --git 
+> > a/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml 
+> > b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+> > new file mode 100644
+> > index 000000000000..61ed6dc7740b
+> > --- /dev/null
+> > +++ 
+> > b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+> > @@ -0,0 +1,123 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/bridge/ite,it66121.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ITE it66121 HDMI bridge Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Phong LE <ple@baylibre.com>
+> > +  - Neil Armstrong <narmstrong@baylibre.com>
+> > +
+> > +description: |
+> > +  The IT66121 is a high-performance and low-power single channel HDMI
+> > +  transmitter, fully compliant with HDMI 1.3a, HDCP 1.2 and backward 
+> > compatible
+> > +  to DVI 1.0 specifications.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: ite,it66121
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +    description: base I2C address of the device
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +    description: GPIO connected to active low reset
+> > +
+> > +  vrf12-supply:
+> > +    description: Regulator for 1.2V analog core power.
+> > +
+> > +  vcn33-supply:
+> > +    description: Regulator for 3.3V digital core power.
+> > +
+> > +  vcn18-supply:
+> > +    description: Regulator for 1.8V IO core power.
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > +        unevaluatedProperties: false
+> > +        description: DPI input port.
+> > +
+> > +        properties:
+> > +          endpoint:
+> > +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> > +            unevaluatedProperties: false
+> > +
+> > +            properties:
+> > +              bus-width:
+> > +                description:
+> > +                  Endpoint bus width.
+> > +                enum:
+> > +                  - 12  # 12 data lines connected and dual-edge mode
+> > +                  - 24  # 24 data lines connected and single-edge 
+> > mode
+> > +                default: 24
+> > +
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: HDMI Connector port.
+> > +
+> > +    required:
+> > +      - port@0
+> > +      - port@1
+> 
+> Should port@1 really be required? Since the chip itself handles the 
+> hotplug detection and stuff like DCC, I'm not sure what to connect here.
 
-As for doing byte mode for small transactions and buffer/DMA for large
-transactions, I would prefer sticking to a single mode based on what
-is selected at build/boot time. Seems less error prone to me. Then
-again, Rob probably has more experience in this area than I do, so
-maybe this kind of thing is pretty common and I just don't realize it.
+It should be connected to a DT node that models the connector
+(Documentation/devicetree/bindings/display/connector/*).
 
-In any case, as for getting rid of byte mode, I would support that,
-but not in this patch set. I would rather switch the default and get
-users on buffer/DMA mode before taking away a fallback option.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reset-gpios
+> > +  - vrf12-supply
+> > +  - vcn33-supply
+> > +  - vcn18-supply
+> > +  - interrupts
+> > +  - ports
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +      #address-cells = <1>;
+> > +      #size-cells = <0>;
+> > +
+> > +      it66121hdmitx: it66121hdmitx@4c {
+> > +        compatible = "ite,it66121";
+> > +        pinctrl-names = "default";
+> > +        pinctrl-0 = <&ite_pins_default>;
+> > +        vcn33-supply = <&mt6358_vcn33_wifi_reg>;
+> > +        vcn18-supply = <&mt6358_vcn18_reg>;
+> > +        vrf12-supply = <&mt6358_vrf12_reg>;
+> > +        reset-gpios = <&pio 160 1 /* GPIO_ACTIVE_LOW */>;
+> > +        interrupt-parent = <&pio>;
+> > +        interrupts = <4 8 /* IRQ_TYPE_LEVEL_LOW */>;
+> > +        reg = <0x4c>;
+> > +
+> > +        ports {
+> > +          #address-cells = <1>;
+> > +          #size-cells = <0>;
+> > +
+> > +          port@0 {
+> > +            reg = <0>;
+> > +            it66121_in: endpoint {
+> > +              bus-width = <12>;
+> > +              remote-endpoint = <&display_out>;
+> > +            };
+> > +          };
+> > +
+> > +          port@1 {
+> > +            reg = <1>;
+> > +            hdmi_conn_out: endpoint {
+> > +              remote-endpoint = <&hdmi_conn_in>;
+> > +            };
+> > +          };
+> > +        };
+> > +      };
+> > +    };
 
-My 2 cents, but I think the OzLabs and other active OpenBMC people are
-probably a little more up to date on this.
+-- 
+Regards,
 
-Cheers
+Laurent Pinchart
