@@ -2,108 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95AD535DB2E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 11:31:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F43235DBEA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 11:54:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245663AbhDMJbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 05:31:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49738 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241815AbhDMJbg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 05:31:36 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFE9DC061574
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 02:31:16 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1lWFNy-0007Gv-O1; Tue, 13 Apr 2021 11:31:06 +0200
-Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ore@pengutronix.de>)
-        id 1lWFNx-00027d-Ut; Tue, 13 Apr 2021 11:31:05 +0200
-Date:   Tue, 13 Apr 2021 11:31:05 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        id S241630AbhDMJxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 05:53:43 -0400
+Received: from foss.arm.com ([217.140.110.172]:39512 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S243091AbhDMJxi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Apr 2021 05:53:38 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3AFE1106F;
+        Tue, 13 Apr 2021 02:53:18 -0700 (PDT)
+Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ACB7B3F73B;
+        Tue, 13 Apr 2021 02:53:15 -0700 (PDT)
+Date:   Tue, 13 Apr 2021 10:53:05 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     Jianjun Wang <jianjun.wang@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-Subject: [Ping for Dmitry] Re: [PATCH v5 3/3] iio: adc: add ADC driver for
- the TI TSC2046 controller
-Message-ID: <20210413093105.lbqe46srqvv7tj6s@pengutronix.de>
-References: <20210329073131.1759-1-o.rempel@pengutronix.de>
- <20210329073131.1759-4-o.rempel@pengutronix.de>
- <20210329115826.03bc5745@jic23-huawei>
+        linux-arm-kernel@lists.infradead.org, youlin.pei@mediatek.com,
+        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
+        sin_jieyang@mediatek.com, drinkcat@chromium.org,
+        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com,
+        Krzysztof Wilczyski <kw@linux.com>
+Subject: Re: [v9,2/7] PCI: Export pci_pio_to_address() for module use
+Message-ID: <20210413095257.GA21802@lpieralisi>
+References: <20210324030510.29177-1-jianjun.wang@mediatek.com>
+ <20210324030510.29177-3-jianjun.wang@mediatek.com>
+ <20210324090942.kmhxnxzm7tz3ynuy@pali>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20210329115826.03bc5745@jic23-huawei>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 11:26:06 up 131 days, 23:32, 46 users,  load average: 0.00, 0.02,
- 0.00
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210324090942.kmhxnxzm7tz3ynuy@pali>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+On Wed, Mar 24, 2021 at 10:09:42AM +0100, Pali Rohár wrote:
+> On Wednesday 24 March 2021 11:05:05 Jianjun Wang wrote:
+> > This interface will be used by PCI host drivers for PIO translation,
+> > export it to support compiling those drivers as kernel modules.
+> > 
+> > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> > ---
+> >  drivers/pci/pci.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> > index 16a17215f633..12bba221c9f2 100644
+> > --- a/drivers/pci/pci.c
+> > +++ b/drivers/pci/pci.c
+> > @@ -4052,6 +4052,7 @@ phys_addr_t pci_pio_to_address(unsigned long pio)
+> >  
+> >  	return address;
+> >  }
+> > +EXPORT_SYMBOL(pci_pio_to_address);
+> 
+> Hello! I'm not sure if EXPORT_SYMBOL is correct because file has GPL-2.0
+> header. Should not be in this case used only EXPORT_SYMBOL_GPL? Maybe
+> other people would know what is correct?
 
-probably this mail passed under your radar. Can you please add your
-statement here.
+I think this should be EXPORT_SYMBOL_GPL(), I can make this change
+but this requires Bjorn's ACK to go upstream (Bjorn, it is my fault,
+it was assigned to me on patchwork, now updated, please have a look).
 
-On Mon, Mar 29, 2021 at 11:58:26AM +0100, Jonathan Cameron wrote:
-> On Mon, 29 Mar 2021 09:31:31 +0200
-> Oleksij Rempel <o.rempel@pengutronix.de> wrote:
-> 
-> > Basically the TI TSC2046 touchscreen controller is 8 channel ADC optimized for
-> > the touchscreen use case. By implementing it as an IIO ADC device, we can
-> > make use of resistive-adc-touch and iio-hwmon drivers.
+Thanks,
+Lorenzo
+
+> >  
+> >  unsigned long __weak pci_address_to_pio(phys_addr_t address)
+> >  {
+> > -- 
+> > 2.25.1
 > > 
-> > Polled readings are currently not implemented to keep this patch small, so
-> > iio-hwmon will not work out of the box for now.
-> > 
-> > So far, this driver was tested with a custom version of resistive-adc-touch driver,
-> > since it needs to be extended to make use of Z1 and Z2 channels. The X/Y
-> > are working without additional changes.
-> > 
-> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> Hi Oleksij,
-> 
-> Couple of things in here I missed before, but big question is still whether
-> Dmitry is happy with what you mention in the cover letter:
-> 
-> "This driver can replace drivers/input/touchscreen/ads7846.c and has
-> following advantages over it:
-> - less code to maintain
-> - shared code paths (resistive-adc-touch, iio-hwmon, etc)
-> - can be used as plain IIO ADC to investigate signaling issues or test
->   real capacity of the plates and attached low-pass filters
->   (or use the touchscreen as a microphone if you like ;) )"
-> 
-> So two things that need addressing in here are
-> iio_dev->name (part number, not hybrid of that an spi device name)
-> Why oversampling is DT rather than userspace controllable.
-> For that I'm looking for clear reasoning for the choice.
- 
-Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
