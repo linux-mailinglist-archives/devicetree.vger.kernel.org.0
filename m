@@ -2,88 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFA6C35E492
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 19:06:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C23B835E4C2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 19:12:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347036AbhDMRGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 13:06:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37110 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347029AbhDMRGT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 13:06:19 -0400
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35464C06138C
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 10:05:59 -0700 (PDT)
-Received: by mail-il1-x12f.google.com with SMTP id r5so6522340ilb.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 10:05:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=w8hxS2oFPKpODRGlmUofbxB7DgkRVhysbFqdjt9eLM8=;
-        b=KJeRkza+4AMdwLLUa9Wy8mO4WCWajek1C7BQ3kkm3zGi4d8RCdc1zs1SVrxLXbbzDJ
-         VRXk/RXPlGv+RklwMm005To05qWaOOEX2EZHvlN2IVBnlp2NlNZWWbyby0PAv/25rpMy
-         2OgaVXuJx9lrcHnfrpZ1B0UJ/IUqOb4qT4qNBI/U3lU2Z2CmuK42FddC/pK1yd3999Rc
-         UhgmpjMsBptnNVgvvb4hKXPpR/v3akzuMsdW4kprQuebl0g83+MVf+pvrWVD385u+4VH
-         NQ87NTwF0EOyKxe8ihkHItp1f9mWEBJ54+wFw3dV4B9wYZuMlyICsiDS5dYESdBHpEkc
-         KoLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=w8hxS2oFPKpODRGlmUofbxB7DgkRVhysbFqdjt9eLM8=;
-        b=HOLZqKUkYYIVgotpn1ETIiIwuPzQ+E31H376/Ep2fLTZefBAvz09NncwyE+xUiIVfF
-         ELwGHt1WncTsUoX/zaUaSnDkVRaRAl808Yy6a1uSAppmq4/RYOwYO4GMMtD2nkczfsaw
-         PfYKZ9HUgToJV1UOcGmANeAgDNGQIlenO3Ndzw9wvJKMPYA791MS+QC5SIu7hYYXMDCC
-         gzBPAAkNh5miluj9sIvHxrJHiZsulV+YkVvxouX52MBKrjn8qyxDFBKe4zQU4SkO7kVe
-         lVroPrU4ivnCOLrVxvFWbW2pl253GQiHl7uelnksRTEU+lDqAe4x55b+QC4GjDJ8YOS7
-         e0FQ==
-X-Gm-Message-State: AOAM533eXLRO6ZqjB7RN/YFJsrDjzIDb9JKY97jiQ151FPzMDFTju6JZ
-        i5vQkr/WkyMwhddiTZa2lm46PQ==
-X-Google-Smtp-Source: ABdhPJwv6yyWuCTaX646jmpAci3flUez68KVN8En5150X2w0Sv9cW64uxmGjeoXh9jJf2XSEMgsdkg==
-X-Received: by 2002:a05:6e02:1584:: with SMTP id m4mr28722320ilu.108.1618333558637;
-        Tue, 13 Apr 2021 10:05:58 -0700 (PDT)
-Received: from presto.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.gmail.com with ESMTPSA id 23sm7495842iog.45.2021.04.13.10.05.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Apr 2021 10:05:58 -0700 (PDT)
-From:   Alex Elder <elder@linaro.org>
-To:     bjorn.andersson@linaro.org, agross@kernel.org
-Cc:     robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH net-next 2/2] arm64: dts: qcom: sm8350-mtp: enable IPA
-Date:   Tue, 13 Apr 2021 12:05:53 -0500
-Message-Id: <20210413170553.1778792-3-elder@linaro.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210413170553.1778792-1-elder@linaro.org>
-References: <20210413170553.1778792-1-elder@linaro.org>
+        id S232498AbhDMRNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 13:13:08 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:48476 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230074AbhDMRNH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 13:13:07 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13DHCbHf069372;
+        Tue, 13 Apr 2021 12:12:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1618333957;
+        bh=jgjpxafnCT8dubyJgOzHyTiAXL0LIjTz+bwGAxcGFFE=;
+        h=From:To:CC:Subject:Date;
+        b=FEvSJcRaU4q67R2d8roIAVX2L11cVMVY662R4xLbXo+2gFunNYX37wVluKrVuDRFF
+         KEYS85jWw9urzTvi4dTWZOXXX4v2QzCAWZnKWThn/jZeBuQTkote17jGZqXm9DL2PW
+         g/6OBy9SX2GW3DEpvI8gnAmujjF4ZwSRyHS5+abU=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13DHCbQW117571
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 13 Apr 2021 12:12:37 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 13
+ Apr 2021 12:12:37 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 13 Apr 2021 12:12:37 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13DHCbfN060185;
+        Tue, 13 Apr 2021 12:12:37 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <s-anna@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>
+Subject: [PATCH] dt-bindings: mailbox: ti,secure-proxy: Convert to yaml
+Date:   Tue, 13 Apr 2021 12:12:30 -0500
+Message-ID: <20210413171230.5872-1-nm@ti.com>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable IPA for the SM8350 MTP.
+Convert the ti,secure-proxy to yaml for better checks and documentation.
+Differences being mostly in the examples:
+- I've dropped the example usage of mailbox client, it is better done in
+  tisci node definition
+- Switched reg usage for address-cells and size-cells 1 - aligned with
+  schema checks as well
+- included header in example for buildable example
 
-Signed-off-by: Alex Elder <elder@linaro.org>
+NOTE: The following warning is generated since we do include the header
+in the example, but this is a false positive warning.
+  WARNING: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
+
+Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
- arch/arm64/boot/dts/qcom/sm8350-mtp.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../bindings/mailbox/ti,secure-proxy.txt      | 50 -------------
+ .../bindings/mailbox/ti,secure-proxy.yaml     | 72 +++++++++++++++++++
+ 2 files changed, 72 insertions(+), 50 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mailbox/ti,secure-proxy.txt
+ create mode 100644 Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-mtp.dts b/arch/arm64/boot/dts/qcom/sm8350-mtp.dts
-index 6ca638b4e3213..93740444dd1ea 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8350-mtp.dts
-@@ -364,3 +364,9 @@ &usb_2_qmpphy {
- 	vdda-phy-supply = <&vreg_l6b_1p2>;
- 	vdda-pll-supply = <&vreg_l5b_0p88>;
- };
+diff --git a/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.txt b/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.txt
+deleted file mode 100644
+index 6c9c7daf0f5c..000000000000
+--- a/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.txt
++++ /dev/null
+@@ -1,50 +0,0 @@
+-Texas Instruments' Secure Proxy
+-========================================
+-
+-The Texas Instruments' secure proxy is a mailbox controller that has
+-configurable queues selectable at SoC(System on Chip) integration. The
+-Message manager is broken up into different address regions that are
+-called "threads" or "proxies" - each instance is unidirectional and is
+-instantiated at SoC integration level by system controller to indicate
+-receive or transmit path.
+-
+-Message Manager Device Node:
+-===========================
+-Required properties:
+---------------------
+-- compatible:		Shall be "ti,am654-secure-proxy"
+-- reg-names 		target_data - Map the proxy data region
+-			rt - Map the realtime status region
+-			scfg - Map the configuration region
+-- reg:			Contains the register map per reg-names.
+-- #mbox-cells		Shall be 1 and shall refer to the transfer path
+-			called thread.
+-- interrupt-names:	Contains interrupt names matching the rx transfer path
+-			for a given SoC. Receive interrupts shall be of the
+-			format: "rx_<PID>".
+-- interrupts:		Contains the interrupt information corresponding to
+-			interrupt-names property.
+-
+-Example(AM654):
+-------------
+-
+-	secure_proxy: mailbox@32c00000 {
+-		compatible = "ti,am654-secure-proxy";
+-		#mbox-cells = <1>;
+-		reg-names = "target_data", "rt", "scfg";
+-		reg = <0x0 0x32c00000 0x0 0x100000>,
+-		      <0x0 0x32400000 0x0 0x100000>,
+-		      <0x0 0x32800000 0x0 0x100000>;
+-		interrupt-names = "rx_011";
+-		interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+-	};
+-
+-	dmsc: dmsc {
+-		[...]
+-		mbox-names = "rx", "tx";
+-		# RX Thread ID is 11
+-		# TX Thread ID is 13
+-		mboxes= <&secure_proxy 11>,
+-			<&secure_proxy 13>;
+-		[...]
+-	};
+diff --git a/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml b/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml
+new file mode 100644
+index 000000000000..88eb32cb5678
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mailbox/ti,secure-proxy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+&ipa {
-+	status = "okay";
++title: Texas Instruments' Secure Proxy
 +
-+	memory-region = <&pil_ipa_fw_mem>;
-+};
++maintainers:
++  - Nishanth Menon <nm@ti.com>
++
++description: |
++  The Texas Instruments' secure proxy is a mailbox controller that has
++  configurable queues selectable at SoC(System on Chip) integration. The
++  Message manager is broken up into different address regions that are
++  called "threads" or "proxies" - each instance is unidirectional and is
++  instantiated at SoC integration level by system controller to indicate
++  receive or transmit path.
++
++properties:
++  $nodename:
++    pattern: "^mailbox@[0-9a-f]+$"
++
++  compatible:
++    const: ti,am654-secure-proxy
++
++  "#mbox-cells":
++    const: 1
++
++  reg-names:
++    items:
++      - const: target_data
++      - const: rt
++      - const: scfg
++
++  reg:
++    minItems: 3
++
++  interrupt-names:
++    minItems: 1
++    description:
++      Contains the interrupt name information for the Rx interrupt path for
++      secure proxy.
++
++  interrupts:
++    minItems: 1
++    description:
++      Contains the interrupt information for the Rx interrupt path for secure
++      proxy.
++
++required:
++  - compatible
++  - reg-names
++  - reg
++  - interrupts
++  - "#mbox-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    secure_proxy: mailbox@32c00000 {
++          compatible = "ti,am654-secure-proxy";
++          #mbox-cells = <1>;
++          reg-names = "target_data", "rt", "scfg";
++          reg = <0x32c00000 0x100000>,
++                <0x32400000 0x100000>,
++                <0x32800000 0x100000>;
++          interrupt-names = "rx_011";
++          interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
++    };
 -- 
-2.27.0
+2.31.0
 
