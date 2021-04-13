@@ -2,77 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BD9835E358
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 18:00:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7ECA35E36F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 18:04:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238285AbhDMQAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 12:00:49 -0400
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:36527 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbhDMQAr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 12:00:47 -0400
-Received: by mail-oi1-f175.google.com with SMTP id c16so17495453oib.3;
-        Tue, 13 Apr 2021 09:00:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Hf71HnfjaYarecOimAnAmtORkCXf+7TlGhiC07dVSSk=;
-        b=RZENcQdYxQfRmvk0w9IXjVNRecnZsyLbcwXkDcHP4D44yvaixLIQwOxsC/zDtnGzWd
-         5UopLDBpxpixhKA9KMwM7RTCve1eUOPfMFeSgFTULOUUGsvpnRMZyh1VdSCVj23E7Znp
-         7RldkLuFzpZYOFed+54P3yuKu9UFoRKjGNJtwTREhK31gssA2uwWAXfCftwWWrpn3SMC
-         vjrNOSxBfWXRBuR4gtm6RwXFL8a72Y6DCn4EGCNR1KQqH8C8VCkH5tQ2+EN4PL2rbWJc
-         0SI1jrWSttRDx6sFdMrx5B91IQMgI0MqRx2UiQzjHx3zHcj0LFdRk7C8AgSz1exC4zEg
-         IDFg==
-X-Gm-Message-State: AOAM533Re44cNo8olWkrRe/j5tYn+mVPDFYBpltflzUDdToJaCEOj4qR
-        D+wZzjta6gLkINQdGh9f1QIWr4AZqQ==
-X-Google-Smtp-Source: ABdhPJymbM/isAJMJCc1wHnk+yvEtGmuDobqXx8udlWq6Wc6/HZpIfyPbj1/Zan303sALN4yTfl6Og==
-X-Received: by 2002:aca:3bc4:: with SMTP id i187mr508711oia.174.1618329627570;
-        Tue, 13 Apr 2021 09:00:27 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h28sm850702oof.47.2021.04.13.09.00.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Apr 2021 09:00:25 -0700 (PDT)
-Received: (nullmailer pid 1749085 invoked by uid 1000);
-        Tue, 13 Apr 2021 16:00:23 -0000
-Date:   Tue, 13 Apr 2021 11:00:23 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        Fabio Estevam <festevam@gmail.com>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rui Miguel Silva <rmfrfs@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH 22/23] dt-bindings: media: nxp,imx7-mipi-csi2: Add
- i.MX8MM support
-Message-ID: <20210413160023.GA1749037@robh.at.kernel.org>
-References: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
- <20210413023014.28797-23-laurent.pinchart@ideasonboard.com>
+        id S1346784AbhDMQEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 12:04:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52128 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346781AbhDMQEl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 12:04:41 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B69EFC061574;
+        Tue, 13 Apr 2021 09:04:21 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A3E8C9F0;
+        Tue, 13 Apr 2021 18:04:18 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1618329858;
+        bh=pUgM55miRgoN+NKLMy+bBwdxnn/EXzhYxduslvOw0Ag=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Uap0ILaCqSXV2FQ50sCvEAUadz05Gj75E13xc+gDhbZkBt6v8QkMz7prkHSAhSXyU
+         1Nd+cQJBWVeSwDO1yjQ9zvlHEd6mFAv271eFF1DwFbQxJOpWyUyu30lQioxBds4bUu
+         5LECcOIa3jxW/QL1qJCzvsWttGZlFonx0FHUmywg=
+Date:   Tue, 13 Apr 2021 19:03:28 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     a.hajda@samsung.com, paul@crapouillou.net, robert.foss@linaro.org,
+        devicetree@vger.kernel.org, jonas@kwiboo.se,
+        jernej.skrabec@siol.net, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, Phong LE <ple@baylibre.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: display: bridge: add it66121 bindings
+Message-ID: <YHXA0KFylvC7FDbK@pendragon.ideasonboard.com>
+References: <20210412154648.3719153-1-narmstrong@baylibre.com>
+ <20210412154648.3719153-2-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210413023014.28797-23-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20210412154648.3719153-2-narmstrong@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 13 Apr 2021 05:30:13 +0300, Laurent Pinchart wrote:
-> The i.MX8MM integrates a newer version of the CSIS CSI-2 receiver as the
-> i.MX7 family. Differences in integration are are:
-> 
-> - An additional clock is required
-> - Up to 4 data lanes are supported
-> - No reset or PHY supply is present
-> 
-> Support it in the DT binding.
-> 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 108 +++++++++++++++---
->  1 file changed, 94 insertions(+), 14 deletions(-)
-> 
+Hi Neil,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Thank you for the patch.
+
+On Mon, Apr 12, 2021 at 05:46:46PM +0200, Neil Armstrong wrote:
+> From: Phong LE <ple@baylibre.com>
+> 
+> Add the ITE bridge HDMI it66121 bindings.
+> 
+> Signed-off-by: Phong LE <ple@baylibre.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../bindings/display/bridge/ite,it66121.yaml  | 123 ++++++++++++++++++
+>  1 file changed, 123 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+> new file mode 100644
+> index 000000000000..61ed6dc7740b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+> @@ -0,0 +1,123 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/ite,it66121.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ITE it66121 HDMI bridge Device Tree Bindings
+> +
+> +maintainers:
+> +  - Phong LE <ple@baylibre.com>
+> +  - Neil Armstrong <narmstrong@baylibre.com>
+> +
+> +description: |
+> +  The IT66121 is a high-performance and low-power single channel HDMI
+> +  transmitter, fully compliant with HDMI 1.3a, HDCP 1.2 and backward compatible
+> +  to DVI 1.0 specifications.
+> +
+> +properties:
+> +  compatible:
+> +    const: ite,it66121
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: base I2C address of the device
+
+You can drop the description.
+
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: GPIO connected to active low reset
+> +
+> +  vrf12-supply:
+> +    description: Regulator for 1.2V analog core power.
+> +
+> +  vcn33-supply:
+> +    description: Regulator for 3.3V digital core power.
+> +
+> +  vcn18-supply:
+> +    description: Regulator for 1.8V IO core power.
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: DPI input port.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              bus-width:
+> +                description:
+> +                  Endpoint bus width.
+> +                enum:
+> +                  - 12  # 12 data lines connected and dual-edge mode
+> +                  - 24  # 24 data lines connected and single-edge mode
+> +                default: 24
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: HDMI Connector port.
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reset-gpios
+> +  - vrf12-supply
+> +  - vcn33-supply
+> +  - vcn18-supply
+> +  - interrupts
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+
+It's customary to indent DT examples with 4 spaces.
+
+> +
+> +      it66121hdmitx: it66121hdmitx@4c {
+> +        compatible = "ite,it66121";
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&ite_pins_default>;
+> +        vcn33-supply = <&mt6358_vcn33_wifi_reg>;
+> +        vcn18-supply = <&mt6358_vcn18_reg>;
+> +        vrf12-supply = <&mt6358_vrf12_reg>;
+> +        reset-gpios = <&pio 160 1 /* GPIO_ACTIVE_LOW */>;
+
+You can #include the necessary headers at the top of the example, and
+use GPIO_ACTIVE_LOW and IRQ_TYPE_LEVEL_LOW to replace the numerical
+values.
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> +        interrupt-parent = <&pio>;
+> +        interrupts = <4 8 /* IRQ_TYPE_LEVEL_LOW */>;
+> +        reg = <0x4c>;
+> +
+> +        ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          port@0 {
+> +            reg = <0>;
+> +            it66121_in: endpoint {
+> +              bus-width = <12>;
+> +              remote-endpoint = <&display_out>;
+> +            };
+> +          };
+> +
+> +          port@1 {
+> +            reg = <1>;
+> +            hdmi_conn_out: endpoint {
+> +              remote-endpoint = <&hdmi_conn_in>;
+> +            };
+> +          };
+> +        };
+> +      };
+> +    };
+
+-- 
+Regards,
+
+Laurent Pinchart
