@@ -2,127 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EC7035E683
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 20:34:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAB3235E6BD
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 21:00:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347923AbhDMSe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 14:34:56 -0400
-Received: from smtpcmd12131.aruba.it ([62.149.156.131]:43699 "EHLO
-        smtpcmd12131.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346383AbhDMSey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 14:34:54 -0400
-Received: from [192.168.50.29] ([146.241.148.6])
-        by Aruba Outgoing Smtp  with ESMTPA
-        id WNrqlufXNik8wWNrqlQ05W; Tue, 13 Apr 2021 20:34:30 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-        t=1618338870; bh=CspUVgxdSBvuBUguzxzfALnyZe40v7DECVkGTOkCOQc=;
-        h=Content-Type:From:Mime-Version:Subject:Date:To;
-        b=mNG0zmzOKSTpnLQiwfP6Oj7E0zHrmnSbXEXPkg9SpPiPtrFi+zH0l6aMLYIbEnIjN
-         sc5LLvTKP8mG9M4gz/4/fBrxwrhxAj1yofDnWBWBthVfzlToEzwNwJGnmMXiuWa+Te
-         zI9wxiblS3Kd91goxJcN6VZvkTFjQdUi5R4A/DGwUCS4ea8HfzsCWVPSFuV6YAU6PO
-         u+fgbiB/e2fJiyeDJm8NXhNuiYAVNg9d3z2VvJMQ+uw2UAL5aS5KSsLFCKZJAC2mYZ
-         mnFsRVFqk9t6Zb8uC+5c87vkuNur3aTmMhFNHW85h6udi+DtVJN+Q8DuJvI0dE2YHW
-         USg/l7RiQAAdA==
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
-Mime-Version: 1.0 (1.0)
-Subject: Re: [PATCH v6 1/2] dt-bindings: touchscreen: Add HY46XX bindings
-Date:   Tue, 13 Apr 2021 20:34:29 +0200
-Message-Id: <4B3FA892-C04C-49C7-B306-4105759C7157@benettiengineering.com>
-References: <CAL_JsqLZo45pY+mB+vvsAaGaE8N-P=4ojOMGSra4=6y1ESTJBw@mail.gmail.com>
-Cc:     Linux Input <linux-input@vger.kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        devicetree@vger.kernel.org,
-        =?utf-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <CAL_JsqLZo45pY+mB+vvsAaGaE8N-P=4ojOMGSra4=6y1ESTJBw@mail.gmail.com>
-To:     Rob Herring <robh@kernel.org>
-X-Mailer: iPhone Mail (18D70)
-X-CMAE-Envelope: MS4wfGnaV/O6FR29lYzhROo0xYBVWKV2SBBABAwe7HdHfP8EvfH9RBC9uZKToFhzly0ITNnh7wYtaWGG8BE17YcK5tt/Orn/t4u38EMLvBtNNQoIFIKZD26Z
- m3wxL4pHTssPYSMIE3D4FlPzuNvOQG8K++qU498WT/jh/AW6ACfmzKea8lf4CuY9Q04uaD7Ovul7yL+w9fy4+NIDgPiQ7k18mogwHTz25/opn6UoQn9smdCI
- 1NorJgb922VAsmWLFlojJxkRa8izZvjzJMJXmIhA8IV1sZMhWMdXpN1J6+BQ++lcwU/AzQb31fVgTjqQIJ7+Pl2Nq3X9fiI2a7AECj7zaUk6SeKv8jGBBpiI
- xzIdNBJLhovE5Xfh6rOcnqIff2nFT6gZ2FB+4KqXiGH9kAKD0pqmLZSi27OWaSe/OFzaMQPP
+        id S238639AbhDMTA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 15:00:57 -0400
+Received: from heinz.dinsnail.net ([81.169.187.250]:38626 "EHLO
+        heinz.dinsnail.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230397AbhDMTA5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 15:00:57 -0400
+Received: from heinz.dinsnail.net ([IPv6:0:0:0:0:0:0:0:1])
+        by heinz.dinsnail.net (8.15.2/8.15.2) with ESMTP id 13DJ09Dn019335;
+        Tue, 13 Apr 2021 21:00:09 +0200
+Received: from eldalonde.UUCP (uucp@localhost)
+        by heinz.dinsnail.net (8.15.2/8.15.2/Submit) with bsmtp id 13DJ084g019314;
+        Tue, 13 Apr 2021 21:00:08 +0200
+Received: from eldalonde.weiser.dinsnail.net (localhost [IPv6:0:0:0:0:0:0:0:1] (may be forged))
+        by eldalonde.weiser.dinsnail.net (8.15.2/8.15.2) with ESMTP id 13DImOtG023112;
+        Tue, 13 Apr 2021 20:48:24 +0200
+Received: (from michael@localhost)
+        by eldalonde.weiser.dinsnail.net (8.15.2/8.15.2/Submit) id 13DImOD8023111;
+        Tue, 13 Apr 2021 20:48:24 +0200
+Date:   Tue, 13 Apr 2021 20:48:24 +0200
+From:   Michael Weiser <michael.weiser@gmx.de>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        Daniel Kulesz <kuleszdl@posteo.org>
+Subject: Re: [linux-sunxi] [PATCH] arm64: dts: allwinner: Revert SD card CD
+ GPIO for Pine64-LTS
+Message-ID: <YHXneEEiFCwna7X6@weiser.dinsnail.net>
+References: <20210412000813.13071-1-andre.przywara@arm.com>
+ <CAGb2v65uwo5Ns_ODNyX9S4H=cS6TGWCgaEyzhMaRaayxUtif2g@mail.gmail.com>
+ <20210412174558.4ba90cf8@slackpad.fritz.box>
+ <YHSGRSQr5w0h8vtt@weiser.dinsnail.net>
+ <20210413115837.232c465a@slackpad.fritz.box>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210413115837.232c465a@slackpad.fritz.box>
+X-dinsnail.net-MailScanner-Information: Please contact the ISP for more information
+X-dinsnail.net-MailScanner-ID: 13DJ09Dn019335
+X-dinsnail.net-MailScanner: Found to be clean
+X-dinsnail.net-MailScanner-From: michael@weiser.dinsnail.net
+X-Spam-Status: No
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jernej and Andre,
 
-> Il giorno 13 apr 2021, alle ore 19:58, Rob Herring <robh@kernel.org> ha sc=
-ritto:
->=20
-> =EF=BB=BFOn Tue, Apr 13, 2021 at 10:27 AM Giulio Benetti
-> <giulio.benetti@benettiengineering.com> wrote:
->>=20
->>> On 4/13/21 5:07 PM, Rob Herring wrote:
->>> On Mon, 12 Apr 2021 17:23:59 +0200, Giulio Benetti wrote:
->>>> This adds device tree bindings for the Hycon HY46XX touchscreen series.=
+On Tue, Apr 13, 2021 at 11:58:37AM +0100, Andre Przywara wrote:
 
->>>>=20
->>>> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
->>>> ---
->>>> V1->V2:
->>>> As suggested by Rob Herring:
->>>> * fixed $id: address
->>>> * added "hycon," in front of every custom property
->>>> * changed all possible property to boolean type
->>>> * removed proximity-sensor-switch property since it's not handled in dr=
-iver
->>>> V2->V3:
->>>> As suggested by Jonathan Neusch=C3=A4fer:
->>>> * fixed some typo
->>>> * fixed description indentation
->>>> * improved boolean properties descriptions
->>>> * improved hycon,report-speed description
->>>> V3->V4:
->>>> * fixed binding compatible string in example as suggested by Jonathan N=
-eusch=C3=A4fer
->>>> V4->V5:
->>>> As suggested by Rob Herring:
->>>> * drop hycon- prefix from compatible
->>>> * use Hertz unit suffix for hycon,report-speed instead of u32
->>>> * set hycon,report-speed minimum to 1Hz, 0Hz make controller to do noth=
-ing
->>>> * change hycon,power-noise-enable property name to hycon,noise-filter-e=
-nable
->>>> * improve hycon,filter-data property description
->>>> * use generic touchscreen node name in example
->>>> V5->V6:
->>>> * changed report-speed property name into report-speed-hz according to
->>>> Rob Herring's suggestion
->>>> ---
->>>>  .../input/touchscreen/hycon,hy46xx.yaml       | 119 ++++++++++++++++++=
+> > > Daniel, Michael, can you test this on your boards? So removing the
+> > > cd-gpios property, and adding "broken-cd;" instead?  
+> > Yes, it works fine. What flummoxed me at first was that obviously I also
+> > have to disable the ACTIVE_LOW definition in sun50i-a64-sopine.dtsi
+> > after having added and disabled an ACTIVE_HIGH definition in
+> > sun50i-a64-pine64-lts.dts.
+> Why? From my experiments it should not matter, the actual card presence
+> is typically detected via the SD bus anyway (if I understand the code
+> correctly). broken-cd just prevents installation of an interrupt
+> handler, so it's less efficient and prevents wakeup on card detect,
+> AFAICS.
 
->>>>  MAINTAINERS                                   |   6 +
->>>>  2 files changed, 125 insertions(+)
->>>>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen=
-/hycon,hy46xx.yaml
->>>>=20
->>>=20
->>> Reviewed-by: Rob Herring <robh@kernel.org>
->>=20
->> I've sent v7[1] before receiving your Reviewed-by.
->> Do I have to re-submit it once and if I receive a Reviewed-by from you
->> as a v8 with all your Reviewed-by's?
->=20
-> I gave it on v7 too, so only if there are other changes on any of the
-> patches.
+I just retested to be sure: At least with 5.11.11 and on my boards,
+cd-gpio ACTIVE_LOW being specified in the sopine.dtsi takes precedence
+over broken-cd being specified in pine64-lts.dts. Could that spoil the
+plan of disabling cd-gpio for the LTS while leaving it enabled for
+Sopine and baseboard?
 
-Ah ok, thank you.
+Behaviour is as such: With cd-gpios ACTIVE_LOW in sopine.dtsi and
+broken-cd in pine64-lts.dts, card insertion, removal and reinsertion is
+not detected after booting the kernel without a card in the slot. With
+cd-gpios ACTIVE_LOW removed from sopine.dtsi it starts working.
 
-> The tools will generally pick up any tags on the version
-> applied. You just can't expect maintainers to go rummage thru old
-> versions to find any tags.
+In diffs for added clarity:
 
-Sure not, this is the reason why I=E2=80=99ve asked, I=E2=80=99ve forgotten t=
-o add some tag to my commits that I usually do, that=E2=80=99s why I=E2=80=99=
-ve messed things up.
+PAGER= git log --pretty=oneline HEAD~1..HEAD
+aa7258f8f3d48a29bc024ea8c5145bdc4a980e4d (HEAD, tag: v5.11.11) Linux 5.11.11
 
-Thank you again for reviewing and explaining me.
-Best regards
-Giulio Benetti
+- not working on its own:
 
->=20
-> Rob
+index 302e24be0a31..5b0c21e68352 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
+@@ -8,3 +8,7 @@ / {
+        compatible = "pine64,pine64-lts", "allwinner,sun50i-r18",
+                     "allwinner,sun50i-a64";
+ };
++
++&mmc0 {
++       broken-cd;
++};
 
+- working with this additional change:
+
+index 3402cec87035..ba2b7398993b 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine.dtsi
+@@ -34,7 +34,6 @@ &mmc0 {
+        vmmc-supply = <&reg_dcdc1>;
+        disable-wp;
+        bus-width = <4>;
+-       cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
+        status = "okay";
+ };
+
+> So for your particular board (version) you could actually remove the
+> whole &mmc0 node override, use the same node as the SOPine (working
+> active-high CD) and it should work.
+
+Correct. Again for reasons of laziness I tested with the dts from
+5.11.11 which is currently running on the board and which still has
+ACTIVE_LOW in sopine.dtsi. Sorry for not being clearer about that.
+
+But somewhat lucky as well because without ACTIVE_LOW still being set in
+sopine.dtsi I wouldn't have had a way to tell that broken-cd was not
+taking effect and silently have tested the working ACTIVE_HIGH
+definition from sopine.dtsi.
+
+Or am I somehow making a mess of this?
+
+> > BTW: My boards have a marking "PINE64-R18-V1_1" and below it
+> > "2017-08-03" on their upper side. On the back it says on one sticker
+> > "Model:PineA64 2GB LTS" and on another "2O1-PINE64R18-00" and
+> > "PINE64-R18-V1.1 2G". Is CD being stuck at 1 a bug of revision 1.0
+> > perhaps?  Is there a way to detect this difference in software and add
+> > some sort of quirk handler for it?
+> As Jernej mentioned, this would be U-Boot's task, but I don't see a
+> good reason for it. Firstly, you would need to find a good automatic
+> way of determining the board revision, which I doubt there is. And
+> secondly, I don't see the benefit: It works quite nicely with
+> broken-cd: card removals and insertions are detected automatically,
+> it's just not as efficient (interrupt-driven) as it could be.
+> Or do you see any problems with broken-cd?
+
+Of course not. My boards have their rootfs on mmc0, so the card is never
+removed and replaced during operation anyway. I was just asking out of
+curiosity.
+
+And out of curiosity again: Could one have a device tree overlay
+configured manually to be loaded by the bootloader that adds cd-gpio
+ACTIVE_HIGH for mmc0 and disables/overrules broken-cd? Somewhat like so
+(untested):
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+
+/ {
+        fragment@0 {
+                target = <&mmc0>;
+                __overlay__ {
+                        cd-gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>; /* PF6 push-push switch */
+                };
+        };
+};
+
+Here it would be useful if cd-gpios indeed took precedence over
+broken-cd because my grepping of the code can't find a way to un-specify
+it once set.
+-- 
+Michael
