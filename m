@@ -2,212 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C23B835E4C2
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 19:12:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DA5D35E4DE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 19:20:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232498AbhDMRNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 13:13:08 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:48476 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230074AbhDMRNH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 13:13:07 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13DHCbHf069372;
-        Tue, 13 Apr 2021 12:12:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1618333957;
-        bh=jgjpxafnCT8dubyJgOzHyTiAXL0LIjTz+bwGAxcGFFE=;
-        h=From:To:CC:Subject:Date;
-        b=FEvSJcRaU4q67R2d8roIAVX2L11cVMVY662R4xLbXo+2gFunNYX37wVluKrVuDRFF
-         KEYS85jWw9urzTvi4dTWZOXXX4v2QzCAWZnKWThn/jZeBuQTkote17jGZqXm9DL2PW
-         g/6OBy9SX2GW3DEpvI8gnAmujjF4ZwSRyHS5+abU=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13DHCbQW117571
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 13 Apr 2021 12:12:37 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 13
- Apr 2021 12:12:37 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 13 Apr 2021 12:12:37 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13DHCbfN060185;
-        Tue, 13 Apr 2021 12:12:37 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <s-anna@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>
-Subject: [PATCH] dt-bindings: mailbox: ti,secure-proxy: Convert to yaml
-Date:   Tue, 13 Apr 2021 12:12:30 -0500
-Message-ID: <20210413171230.5872-1-nm@ti.com>
-X-Mailer: git-send-email 2.31.0
+        id S1345795AbhDMRVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 13:21:12 -0400
+Received: from vsp-unauthed02.binero.net ([195.74.38.227]:20207 "EHLO
+        vsp-unauthed02.binero.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231661AbhDMRVI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 13:21:08 -0400
+X-Halon-ID: 93bacd3c-9c7c-11eb-a9ab-0050569116f7
+Authorized-sender: niklas.soderlund@fsdn.se
+Received: from bismarck.berto.se (p54ac5521.dip0.t-ipconnect.de [84.172.85.33])
+        by bin-vsp-out-03.atm.binero.net (Halon) with ESMTPA
+        id 93bacd3c-9c7c-11eb-a9ab-0050569116f7;
+        Tue, 13 Apr 2021 19:20:46 +0200 (CEST)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH] media: dt-bindings: media: renesas,csi2: Add r8a779a0 support
+Date:   Tue, 13 Apr 2021 19:20:41 +0200
+Message-Id: <20210413172041.2514916-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the ti,secure-proxy to yaml for better checks and documentation.
-Differences being mostly in the examples:
-- I've dropped the example usage of mailbox client, it is better done in
-  tisci node definition
-- Switched reg usage for address-cells and size-cells 1 - aligned with
-  schema checks as well
-- included header in example for buildable example
+Add support for R-Car V3U.
 
-NOTE: The following warning is generated since we do include the header
-in the example, but this is a false positive warning.
-  WARNING: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
-
-Signed-off-by: Nishanth Menon <nm@ti.com>
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 ---
- .../bindings/mailbox/ti,secure-proxy.txt      | 50 -------------
- .../bindings/mailbox/ti,secure-proxy.yaml     | 72 +++++++++++++++++++
- 2 files changed, 72 insertions(+), 50 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mailbox/ti,secure-proxy.txt
- create mode 100644 Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml
+ Documentation/devicetree/bindings/media/renesas,csi2.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.txt b/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.txt
-deleted file mode 100644
-index 6c9c7daf0f5c..000000000000
---- a/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.txt
-+++ /dev/null
-@@ -1,50 +0,0 @@
--Texas Instruments' Secure Proxy
--========================================
--
--The Texas Instruments' secure proxy is a mailbox controller that has
--configurable queues selectable at SoC(System on Chip) integration. The
--Message manager is broken up into different address regions that are
--called "threads" or "proxies" - each instance is unidirectional and is
--instantiated at SoC integration level by system controller to indicate
--receive or transmit path.
--
--Message Manager Device Node:
--===========================
--Required properties:
----------------------
--- compatible:		Shall be "ti,am654-secure-proxy"
--- reg-names 		target_data - Map the proxy data region
--			rt - Map the realtime status region
--			scfg - Map the configuration region
--- reg:			Contains the register map per reg-names.
--- #mbox-cells		Shall be 1 and shall refer to the transfer path
--			called thread.
--- interrupt-names:	Contains interrupt names matching the rx transfer path
--			for a given SoC. Receive interrupts shall be of the
--			format: "rx_<PID>".
--- interrupts:		Contains the interrupt information corresponding to
--			interrupt-names property.
--
--Example(AM654):
--------------
--
--	secure_proxy: mailbox@32c00000 {
--		compatible = "ti,am654-secure-proxy";
--		#mbox-cells = <1>;
--		reg-names = "target_data", "rt", "scfg";
--		reg = <0x0 0x32c00000 0x0 0x100000>,
--		      <0x0 0x32400000 0x0 0x100000>,
--		      <0x0 0x32800000 0x0 0x100000>;
--		interrupt-names = "rx_011";
--		interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
--	};
--
--	dmsc: dmsc {
--		[...]
--		mbox-names = "rx", "tx";
--		# RX Thread ID is 11
--		# TX Thread ID is 13
--		mboxes= <&secure_proxy 11>,
--			<&secure_proxy 13>;
--		[...]
--	};
-diff --git a/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml b/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml
-new file mode 100644
-index 000000000000..88eb32cb5678
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mailbox/ti,secure-proxy.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments' Secure Proxy
-+
-+maintainers:
-+  - Nishanth Menon <nm@ti.com>
-+
-+description: |
-+  The Texas Instruments' secure proxy is a mailbox controller that has
-+  configurable queues selectable at SoC(System on Chip) integration. The
-+  Message manager is broken up into different address regions that are
-+  called "threads" or "proxies" - each instance is unidirectional and is
-+  instantiated at SoC integration level by system controller to indicate
-+  receive or transmit path.
-+
-+properties:
-+  $nodename:
-+    pattern: "^mailbox@[0-9a-f]+$"
-+
-+  compatible:
-+    const: ti,am654-secure-proxy
-+
-+  "#mbox-cells":
-+    const: 1
-+
-+  reg-names:
-+    items:
-+      - const: target_data
-+      - const: rt
-+      - const: scfg
-+
-+  reg:
-+    minItems: 3
-+
-+  interrupt-names:
-+    minItems: 1
-+    description:
-+      Contains the interrupt name information for the Rx interrupt path for
-+      secure proxy.
-+
-+  interrupts:
-+    minItems: 1
-+    description:
-+      Contains the interrupt information for the Rx interrupt path for secure
-+      proxy.
-+
-+required:
-+  - compatible
-+  - reg-names
-+  - reg
-+  - interrupts
-+  - "#mbox-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    secure_proxy: mailbox@32c00000 {
-+          compatible = "ti,am654-secure-proxy";
-+          #mbox-cells = <1>;
-+          reg-names = "target_data", "rt", "scfg";
-+          reg = <0x32c00000 0x100000>,
-+                <0x32400000 0x100000>,
-+                <0x32800000 0x100000>;
-+          interrupt-names = "rx_011";
-+          interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-+    };
+diff --git a/Documentation/devicetree/bindings/media/renesas,csi2.yaml b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+index 20396f1be9993461..54b0768b2c1361a4 100644
+--- a/Documentation/devicetree/bindings/media/renesas,csi2.yaml
++++ b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+@@ -29,6 +29,7 @@ properties:
+           - renesas,r8a77970-csi2 # R-Car V3M
+           - renesas,r8a77980-csi2 # R-Car V3H
+           - renesas,r8a77990-csi2 # R-Car E3
++          - renesas,r8a779a0-csi2 # R-Car V3U
+ 
+   reg:
+     maxItems: 1
 -- 
-2.31.0
+2.31.1
 
