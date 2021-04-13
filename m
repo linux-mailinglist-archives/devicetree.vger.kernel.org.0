@@ -2,130 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B61E135D493
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 02:57:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1199535D4D5
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 03:31:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239901AbhDMA5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 20:57:41 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:47112 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237775AbhDMA5k (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Apr 2021 20:57:40 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1lW7Md-00GOFr-9U; Tue, 13 Apr 2021 02:57:11 +0200
-Date:   Tue, 13 Apr 2021 02:57:11 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Michael Walle <michael@walle.cc>
-Cc:     ath9k-devel@qca.qualcomm.com, UNGLinuxDriver@microchip.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, netdev@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-amlogic@lists.infradead.org, linux-oxnas@groups.io,
-        linux-omap@vger.kernel.org, linux-wireless@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Andreas Larsson <andreas@gaisler.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Joyce Ooi <joyce.ooi@intel.com>,
-        Chris Snook <chris.snook@gmail.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Sunil Goutham <sgoutham@marvell.com>,
-        Fugang Duan <fugang.duan@nxp.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Pantelis Antoniou <pantelis.antoniou@gmail.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Yisen Zhuang <yisen.zhuang@huawei.com>,
-        Salil Mehta <salil.mehta@huawei.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Vadym Kochan <vkochan@marvell.com>,
-        Taras Chornyi <tchornyi@marvell.com>,
-        Mirko Lindner <mlindner@marvell.com>,
-        Stephen Hemminger <stephen@networkplumber.org>,
-        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bryan Whitehead <bryan.whitehead@microchip.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Byungho An <bh74.an@samsung.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Wingman Kwok <w-kwok2@ti.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Stanislaw Gruszka <stf_xl@wp.pl>,
-        Helmut Schaa <helmut.schaa@googlemail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        =?iso-8859-1?B?Suly9G1l?= Pouiller <jerome.pouiller@silabs.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>
-Subject: Re: [PATCH net-next v4 2/2] of: net: fix of_get_mac_addr_nvmem() for
- non-platform devices
-Message-ID: <YHTsZ+EKdx0faXXQ@lunn.ch>
-References: <20210412174718.17382-1-michael@walle.cc>
- <20210412174718.17382-3-michael@walle.cc>
+        id S240104AbhDMBbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 21:31:50 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:39373 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237080AbhDMBbt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 21:31:49 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 13D1Js6L080544;
+        Tue, 13 Apr 2021 09:19:54 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 13 Apr
+ 2021 09:30:18 +0800
+Date:   Tue, 13 Apr 2021 09:30:10 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Andrew Jeffery <andrew@aj.id.au>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "Ryan Chen" <ryanchen.aspeed@gmail.com>,
+        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
+        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
+        "open list:ASPEED SD/MMC DRIVER" <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: mmc: sdhci-of-aspeed: Add power-gpio
+ and power-switch-gpio
+Message-ID: <20210413013010.GA353@aspeedtech.com>
+References: <20210408015218.20560-1-steven_lee@aspeedtech.com>
+ <20210408015218.20560-2-steven_lee@aspeedtech.com>
+ <20210409184118.GA3934798@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20210412174718.17382-3-michael@walle.cc>
+In-Reply-To: <20210409184118.GA3934798@robh.at.kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 13D1Js6L080544
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 12, 2021 at 07:47:18PM +0200, Michael Walle wrote:
-> of_get_mac_address() already supports fetching the MAC address by an
-> nvmem provider. But until now, it was just working for platform devices.
-> Esp. it was not working for DSA ports and PCI devices. It gets more
-> common that PCI devices have a device tree binding since SoCs contain
-> integrated root complexes.
+The 04/10/2021 02:41, Rob Herring wrote:
+> On Thu, Apr 08, 2021 at 09:52:17AM +0800, Steven Lee wrote:
+> > AST2600-A2 EVB provides the reference design for enabling SD bus power
+> > and toggling SD bus signal voltage by GPIO pins.
+> > Add the definition and example for power-gpio and power-switch-gpio
+> > properties.
+> > 
+> > In the reference design, GPIOV0 of AST2600-A2 EVB is connected to power
+> > load switch that providing 3.3v to SD1 bus vdd. GPIOV1 is connected to
+> > a 1.8v and a 3.3v power load switch that providing signal voltage to
+> > SD1 bus.
+> > If GPIOV0 is active high, SD1 bus is enabled. Otherwise, SD1 bus is
+> > disabled.
+> > If GPIOV1 is active high, 3.3v power load switch is enabled, SD1 signal
+> > voltage is 3.3v. Otherwise, 1.8v power load switch will be enabled, SD1
+> > signal voltage becomes 1.8v.
+> > 
+> > AST2600-A2 EVB also support toggling signal voltage for SD2 bus.
+> > The design is the same as SD1 bus. It uses GPIOV2 as power-gpio and GPIOV3
+> > as power-switch-gpio.
+> > 
+> > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> > ---
+> >  .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 25 +++++++++++++++++++
+> >  1 file changed, 25 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> > index 987b287f3bff..515a74614f3c 100644
+> > --- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> > @@ -37,6 +37,14 @@ properties:
+> >    clocks:
+> >      maxItems: 1
+> >      description: The SD/SDIO controller clock gate
+> > +  power-gpio:
 > 
-> Use the nvmem of_* binding to fetch the nvmem cells by a struct
-> device_node. We still have to try to read the cell by device first
-> because there might be a nvmem_cell_lookup associated with that device.
+> '-gpios' is the preferred form even if just 1.
 > 
-> Signed-off-by: Michael Walle <michael@walle.cc>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Thanks for reviewing, I will change the name.
 
-    Andrew
+> > +    description:
+> > +      The GPIO for enabling/disabling SD bus power.
+> > +    maxItems: 1
+> 
+> blank line
+> 
+
+I will remove the blank line.
+
+> > +  power-switch-gpio:
+> > +    description:
+> > +      The GPIO for toggling the signal voltage between 3.3v and 1.8v.
+> > +    maxItems: 1
+> >  
+> >  patternProperties:
+> >    "^sdhci@[0-9a-f]+$":
+> > @@ -61,6 +69,14 @@ patternProperties:
+> >        sdhci,auto-cmd12:
+> >          type: boolean
+> >          description: Specifies that controller should use auto CMD12
+> > +      power-gpio:
+> > +        description:
+> > +          The GPIO for enabling/disabling SD bus power.
+> > +        maxItems: 1
+> > +      power-switch-gpio:
+> > +        description:
+> > +          The GPIO for toggling the signal voltage between 3.3v and 1.8v.
+> > +        maxItems: 1
+> >      required:
+> >        - compatible
+> >        - reg
+> > @@ -80,6 +96,7 @@ required:
+> >  examples:
+> >    - |
+> >      #include <dt-bindings/clock/aspeed-clock.h>
+> > +    #include <dt-bindings/gpio/aspeed-gpio.h>
+> >      sdc@1e740000 {
+> >              compatible = "aspeed,ast2500-sd-controller";
+> >              reg = <0x1e740000 0x100>;
+> > @@ -94,6 +111,10 @@ examples:
+> >                      interrupts = <26>;
+> >                      sdhci,auto-cmd12;
+> >                      clocks = <&syscon ASPEED_CLK_SDIO>;
+> > +                    power-gpio = <&gpio0 ASPEED_GPIO(V, 0)
+> > +                                     GPIO_ACTIVE_HIGH>;
+> > +                    power-switch-gpio = <&gpio0 ASPEED_GPIO(V, 1)
+> > +                                     GPIO_ACTIVE_HIGH>;
+> >              };
+> >  
+> >              sdhci1: sdhci@200 {
+> > @@ -102,5 +123,9 @@ examples:
+> >                      interrupts = <26>;
+> >                      sdhci,auto-cmd12;
+> >                      clocks = <&syscon ASPEED_CLK_SDIO>;
+> > +                    power-gpio = <&gpio0 ASPEED_GPIO(V, 2)
+> > +                                     GPIO_ACTIVE_HIGH>;
+> > +                    power-switch-gpio = <&gpio0 ASPEED_GPIO(V, 3)
+> > +                                     GPIO_ACTIVE_HIGH>;
+> >              };
+> >      };
+> > -- 
+> > 2.17.1
+> > 
