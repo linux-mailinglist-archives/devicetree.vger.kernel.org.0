@@ -2,243 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0CDB35D54F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 04:31:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0492C35D558
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 04:36:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343683AbhDMCbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 22:31:46 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:35890 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343650AbhDMCbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 22:31:43 -0400
-Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5DC4E8B7;
-        Tue, 13 Apr 2021 04:31:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1618281084;
-        bh=7ytDq6KpF8o3WqTgq8qwM1/A3Hhbol++cpYXBb3hg0U=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gmAFrGb5pTDr4VhVG5Lef1/8bvcCLuV2Gl5vjMNrr+M+KruPqQjWSzvXEB0eB+Wu/
-         YotF64pJCB+sXl4n2sycU1XGPMi0T20eI2WNPtk973Y3yAFQ7D0sffumlCmMxROMGs
-         SCWcJJhaVxaC5dC6ojA5VITMukVZVkF3U/nHpCiM=
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     linux-media@vger.kernel.org
-Cc:     Rui Miguel Silva <rmfrfs@gmail.com>, kernel@pengutronix.de,
-        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 22/23] dt-bindings: media: nxp,imx7-mipi-csi2: Add i.MX8MM support
-Date:   Tue, 13 Apr 2021 05:30:13 +0300
-Message-Id: <20210413023014.28797-23-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.28.1
-In-Reply-To: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
-References: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
+        id S237438AbhDMCgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 22:36:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44402 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231138AbhDMCge (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 22:36:34 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB71C061574
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 19:36:15 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id a21so2504749oib.10
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 19:36:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1W0qgFXOwcGeGkoX3BtzeUrwEFAThPyRgahxXi51edQ=;
+        b=vFDPS8jGKHSnUpxbUJ06UCGO0qQ9WUhdhigkpPGZWZd+7ADtSAO0uObIBf8KwREmZT
+         wpwCYXvDZkbX5ElONctoFnT4rn68sv3+TtKLadv6L5G2eQOUEIqEI6VqD/gphdf8G+rE
+         HxbCgPf3xszCFVrUd82MOSCZ6B+6SzMsg3N5c/0DuoUjE577i8aOgCyBKhikCdOZF2at
+         GigsGGnWDtaZOHbA7ZpRcE7dZoUs3SY4yA/oex0Q7/mVRrXisCjoFufPQy11GA4FfLfv
+         Aa7vOIUVeN1nnADsppOjYVsCSrTTLnjRvZgRVhU7M5vH+Jtq5+DgxLuV2TRw5xk73SSt
+         VjrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1W0qgFXOwcGeGkoX3BtzeUrwEFAThPyRgahxXi51edQ=;
+        b=hFz7EGhjKmVPsIANGqRoV29dHSuA/CY2tSFJMlYwsvq87vaXZjK1tP0FIKm9Q18tTN
+         OjAqcG/MWH7CAMJhEBYnu3CmCo/J7Ko7Ufru9raA79pp88ruqcIEST1Iprdmi6/kup0m
+         gTsqeiydTT9ef8ugOcoK1x2/VQ361D8ST69m8YpyACkxMAgIz4jUd7Qw1epj3ZpCfoFg
+         SOkqfQjtDasisythpN3r16DA9zEJC7yFBR4YxOtnXp4Q5JGOurIseUEDpD2ft5uzbpIp
+         MThJAmXhB7VRv12RFET+Nh9G+QJIWzBmspP+sT89kCWknhvRj4XM2NPSuKisb7KFVaao
+         y8Xg==
+X-Gm-Message-State: AOAM532XTP/uCCKdWVT/W/Lbl/X7rwSLSCv+Ka1le/EElgX+t1ggNHBc
+        ulz70FvkA8Jvrklb81brVoGeQQ==
+X-Google-Smtp-Source: ABdhPJyETmo337jDHkzhWwLzvIm8y71EMibugr9rZ+9yLbbO2H2ShEbUvG4cC3VgfFHjeczqmy4Dyg==
+X-Received: by 2002:aca:df44:: with SMTP id w65mr1642090oig.36.1618281375262;
+        Mon, 12 Apr 2021 19:36:15 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 128sm2551521oog.37.2021.04.12.19.36.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Apr 2021 19:36:14 -0700 (PDT)
+Date:   Mon, 12 Apr 2021 21:36:12 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linusw@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        SoC Team <soc@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Subject: Re: New 'make dtbs_check W=1' warnings
+Message-ID: <20210413023612.GH1538589@yoga>
+References: <CAK8P3a1L8rWpR5b66v6Su8-m7-scA0wZQr_g_4KnV4dnrky6ZA@mail.gmail.com>
+ <CAMuHMdWY0aGoAw6QfF5PQRFNFwAzNP9cmFCjbKnsSbHsMz45fQ@mail.gmail.com>
+ <CAK8P3a3EaaTGvAYvffbf7AF-iaC05yMShdnTc2QMcKQGZv7N8Q@mail.gmail.com>
+ <20210412160116.GA904837@yoga>
+ <CAK8P3a1_YB944niA-ebk-nJx-JDBh1q7z6s-9mLGFjF2Nv9r9w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK8P3a1_YB944niA-ebk-nJx-JDBh1q7z6s-9mLGFjF2Nv9r9w@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MX8MM integrates a newer version of the CSIS CSI-2 receiver as the
-i.MX7 family. Differences in integration are are:
+On Mon 12 Apr 13:52 CDT 2021, Arnd Bergmann wrote:
 
-- An additional clock is required
-- Up to 4 data lanes are supported
-- No reset or PHY supply is present
+> On Mon, Apr 12, 2021 at 6:01 PM Bjorn Andersson
+> <bjorn.andersson@linaro.org> wrote:
+> > On Mon 12 Apr 08:14 CDT 2021, Arnd Bergmann wrote:
+> > > On Mon, Apr 12, 2021 at 1:32 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > On Thu, Apr 8, 2021 at 5:08 PM Arnd Bergmann <arnd@kernel.org> wrote:
+> >
+> > So the same binding patch is picked up both in the driver and soc tree?
+> > I was expecting that to cause (harmless) conflicts when things arrive in
+> > Linus' merge queue?
+> >
+> > Or are you saying people go the length to create immutable branches for
+> > each binding?
+> 
+> I think it's usually one immutable branch for all the bindings of a given
+> merge window. This avoids the merge conflicts, and you can add further
+> bindings on the same branch before sending it off to the soc tree.
+> 
 
-Support it in the DT binding.
+That would be convenient to have, but the binding changes we depend on
+in a given window (in particular if dtbs_check is expected to pass) is
+scattered over a wide range of maintainer trees.
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 108 +++++++++++++++---
- 1 file changed, 94 insertions(+), 14 deletions(-)
+> > I'm curious because it's fairly often that we introduce clocks,
+> > interconnects etc where the macros from the dt bindings includes aren't
+> > available for another release (so we use numerical constants and then go
+> > back and fix them up later).
+> 
+> Ah right, it is particularly bad for platforms that don't have a regular
+> layout in these blocks and need to define a new constant every time
+> another clock/reset/pin/... is discovered in the downstream sources.
+> 
 
-diff --git a/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
-index d8ed480482b9..97cf9c0968f9 100644
---- a/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
-+++ b/Documentation/devicetree/bindings/media/nxp,imx7-mipi-csi2.yaml
-@@ -4,15 +4,16 @@
- $id: http://devicetree.org/schemas/media/nxp,imx7-mipi-csi2.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: NXP i.MX7 MIPI CSI-2 receiver
-+title: NXP i.MX7 and i.MX8 MIPI CSI-2 receiver
- 
- maintainers:
-   - Rui Miguel Silva <rmfrfs@gmail.com>
- 
- description: |-
--  The NXP i.MX7 SoC family includes a MIPI CSI-2 receiver IP core, documented
--  as "CSIS V3.3". The IP core seems to originate from Samsung, and may be
--  compatible with some of the Exynos4 ad S5P SoCs.
-+  The NXP i.MX7 and i.MX8 families contain SoCs that include a MIPI CSI-2
-+  receiver IP core named CSIS. The IP core originates from Samsung, and may be
-+  compatible with some of the Exynos4 and S5P SoCs. i.MX7 SoCs use CSIS version
-+  3.3, and i.MX8 SoCs use CSIS version 3.6.3.
- 
-   While the CSI-2 receiver is separate from the MIPI D-PHY IP core, the PHY is
-   completely wrapped by the CSIS and doesn't expose a control interface of its
-@@ -20,7 +21,9 @@ description: |-
- 
- properties:
-   compatible:
--    const: fsl,imx7-mipi-csi2
-+    enum:
-+      - fsl,imx7-mipi-csi2
-+      - fsl,imx8mm-mipi-csi2
- 
-   reg:
-     maxItems: 1
-@@ -29,16 +32,20 @@ properties:
-     maxItems: 1
- 
-   clocks:
-+    minItems: 3
-     items:
-       - description: The peripheral clock (a.k.a. APB clock)
-       - description: The external clock (optionally used as the pixel clock)
-       - description: The MIPI D-PHY clock
-+      - description: The AXI clock
- 
-   clock-names:
-+    minItems: 3
-     items:
-       - const: pclk
-       - const: wrap
-       - const: phy
-+      - const: axi
- 
-   power-domains:
-     maxItems: 1
-@@ -71,16 +78,30 @@ properties:
- 
-             properties:
-               data-lanes:
--                oneOf:
--                  - items:
--                      - const: 1
--                  - items:
--                      - const: 1
--                      - const: 2
-+                items:
-+                  minItems: 1
-+                  maxItems: 4
-+                  items:
-+                    - const: 1
-+                    - const: 2
-+                    - const: 3
-+                    - const: 4
- 
-             required:
-               - data-lanes
- 
-+            allOf:
-+              - if:
-+                  properties:
-+                    compatible:
-+                      contains:
-+                        const: fsl,imx7-mipi-csi2
-+                then:
-+                  properties:
-+                    data-lanes:
-+                      items:
-+                        maxItems: 2
-+
-       port@1:
-         $ref: /schemas/graph.yaml#/properties/port
-         description:
-@@ -93,12 +114,29 @@ required:
-   - clocks
-   - clock-names
-   - power-domains
--  - phy-supply
--  - resets
-   - ports
- 
- additionalProperties: false
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: fsl,imx7-mipi-csi2
-+    then:
-+      required:
-+        - phy-supply
-+        - resets
-+    else:
-+      properties:
-+        clocks:
-+          minItems: 4
-+        clock-names:
-+          minItems: 4
-+        phy-supply: false
-+        resets: false
-+
- examples:
-   - |
-     #include <dt-bindings/clock/imx7d-clock.h>
-@@ -106,7 +144,7 @@ examples:
-     #include <dt-bindings/interrupt-controller/irq.h>
-     #include <dt-bindings/reset/imx7-reset.h>
- 
--    mipi_csi: mipi-csi@30750000 {
-+    mipi-csi@30750000 {
-         compatible = "fsl,imx7-mipi-csi2";
-         reg = <0x30750000 0x10000>;
-         interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-@@ -144,4 +182,46 @@ examples:
-         };
-     };
- 
-+  - |
-+    #include <dt-bindings/clock/imx8mm-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    mipi-csi@32e30000 {
-+        compatible = "fsl,imx8mm-mipi-csi2";
-+        reg = <0x32e30000 0x1000>;
-+        interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
-+        clock-frequency = <333000000>;
-+        clocks = <&clk IMX8MM_CLK_DISP_APB_ROOT>,
-+                 <&clk IMX8MM_CLK_CSI1_ROOT>,
-+                 <&clk IMX8MM_CLK_CSI1_PHY_REF>,
-+                 <&clk IMX8MM_CLK_DISP_AXI_ROOT>;
-+        clock-names = "pclk", "wrap", "phy", "axi";
-+        power-domains = <&mipi_pd>;
-+
-+        status = "disabled";
-+
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                reg = <0>;
-+
-+                imx8mm_mipi_csi_in: endpoint {
-+                    remote-endpoint = <&imx477_out>;
-+                    data-lanes = <1 2 3 4>;
-+                };
-+            };
-+
-+            port@1 {
-+                reg = <1>;
-+
-+                imx8mm_mipi_csi_out: endpoint {
-+                    remote-endpoint = <&csi_in>;
-+                };
-+            };
-+        };
-+    };
-+
- ...
--- 
+Even blocks following some standardized layout has this problem, because
+each platform will have it's own (often similar) set of
+clocks/resets/pins.
+
+And going back to dtbs_check, you will continue to see the warnings
+about missing compatibles, because most of the case they won't end up in
+the soc tree.
+
+> I was mainly referring to the simpler problem of defining a binding
+> document for a device once, and then merging the nodes.
+> 
+
+I'm sure we all love the hardware that's simple to translate to a DT
+binding, unfortunately though we're dealing with complex SoCs.
+
 Regards,
-
-Laurent Pinchart
-
+Bjorn
