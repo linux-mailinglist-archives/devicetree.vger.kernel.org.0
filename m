@@ -2,170 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C0CB35DC83
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 12:34:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E822335DCF4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 12:58:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245379AbhDMKeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 06:34:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35384 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245197AbhDMKeg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 06:34:36 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 176D0C061574
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 03:34:17 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lWGN2-0008Cb-Vn; Tue, 13 Apr 2021 12:34:12 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lWGN2-0002a2-FD; Tue, 13 Apr 2021 12:34:12 +0200
-Date:   Tue, 13 Apr 2021 12:34:12 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Clemens Gruber <clemens.gruber@pqgruber.com>
-Cc:     linux-pwm@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sven Van Asbroeck <TheSven73@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 6/8] pwm: pca9685: Support new PWM_USAGE_POWER flag
-Message-ID: <20210413103412.ngvtk5cw2ftyjvob@pengutronix.de>
-References: <20210412132745.76609-1-clemens.gruber@pqgruber.com>
- <20210412132745.76609-6-clemens.gruber@pqgruber.com>
- <20210412163045.apgnac7atgpboths@pengutronix.de>
- <YHR/Xm5nOjrSwVYs@workstation.tuxnet>
+        id S230123AbhDMK7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 06:59:05 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:18418 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244506AbhDMK7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 06:59:04 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1618311525; x=1649847525;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=YdGpj5pJyD3xcZj1C/WFa0LCBD0YJ41qa3FnAsfPwnI=;
+  b=WlEJ4Gw072kSGrBkO0AMMsy/EqheU9uAGCbr3aZ4vX+MYYQEnnPfCPnO
+   bzny24Fn1MIxNDeQGhjJGh7f9g8gZtJu59I5QHWyjwQPw/P3QAGMLp5Aa
+   OuixRbhR1//yjz4Hzt0GrE/moxyRwmDIVBp059wVFDBkfX0g5LtmunrMF
+   7vo47Ewohyml5yKwWpsvumul9/k+YXPTybqMzykIyZpLdZ6k36pD6U4NV
+   uTVyCTddRVkc6iN/gn7LSFnWDX3TMHN4fhhU/20FV62Kosd5wvZVHoIyB
+   q/vLBm291SgCFz85qHmq9SlTfpFM24IQN7XD77EN/wN41nbwwtorTesAA
+   g==;
+IronPort-SDR: hPtFseEXoz7fZgjIdiZHg0KEknt/iAh6oxij95TdFjXVbDv3G+vv3jhNVHQrc0vDSbqXOaByAL
+ LVoPcFwuGlfzvXMhH4UyXLNkfaeYgLXCX0aQaWDx7eG+4Cj31lA7unCHdlN7FwUwdaG8zdJG+N
+ 0tE14lxyIqtXHa1Q0tN3pe49f6k3mlCELRl5MHhTnbaRkwe6Xklz5DDEO4TdVQReOdmyjg5s1Y
+ DQCHjFOSAXzIXnz1eEkFxfGew5XKPHznZ1mSkO8vzJTtTywetFOFxsAgXHavOKo1gIN5895Fcj
+ TAU=
+X-IronPort-AV: E=Sophos;i="5.82,219,1613458800"; 
+   d="scan'208";a="50928209"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Apr 2021 03:58:43 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 13 Apr 2021 03:58:43 -0700
+Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Tue, 13 Apr 2021 03:58:16 -0700
+From:   Eugen Hristev <eugen.hristev@microchip.com>
+To:     <devicetree@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <jacopo@jmondi.org>, <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eugen Hristev <eugen.hristev@microchip.com>
+Subject: [PATCH v3 00/33] media: atmel: atmel-isc: add support for xisc
+Date:   Tue, 13 Apr 2021 13:56:58 +0300
+Message-ID: <20210413105731.610028-1-eugen.hristev@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="5yi73bsuwgixsqmt"
-Content-Disposition: inline
-In-Reply-To: <YHR/Xm5nOjrSwVYs@workstation.tuxnet>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
---5yi73bsuwgixsqmt
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series adds support for a variant of the ISC named XISC.
+This block is present in the product named sama7g5.
 
-Hi Clemens,
+I started by moving code around, the code which was specialized for sama5d2
+type of ISC, to have it inside the dedicated sama5d2 file.
 
-On Mon, Apr 12, 2021 at 07:11:58PM +0200, Clemens Gruber wrote:
-> On Mon, Apr 12, 2021 at 06:30:45PM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Mon, Apr 12, 2021 at 03:27:43PM +0200, Clemens Gruber wrote:
-> > >  static unsigned int pca9685_pwm_get_duty(struct pca9685 *pca, int ch=
-annel)
-> > >  {
-> > > -	unsigned int off_h =3D 0, val =3D 0;
-> > > +	struct pwm_device *pwm =3D &pca->chip.pwms[channel];
-> > > +	unsigned int off =3D 0, on =3D 0, val =3D 0;
-> > > =20
-> > >  	if (WARN_ON(channel >=3D PCA9685_MAXCHAN)) {
-> > >  		/* HW does not support reading state of "all LEDs" channel */
-> > >  		return 0;
-> > >  	}
-> > > =20
-> > > -	regmap_read(pca->regmap, LED_N_OFF_H(channel), &off_h);
-> > > -	if (off_h & LED_FULL) {
-> > > +	regmap_read(pca->regmap, LED_N_OFF_H(channel), &off);
-> > > +	if (off & LED_FULL) {
-> > >  		/* Full OFF bit is set */
-> > >  		return 0;
-> > >  	}
-> > > =20
-> > > -	regmap_read(pca->regmap, LED_N_ON_H(channel), &val);
-> > > -	if (val & LED_FULL) {
-> > > +	regmap_read(pca->regmap, LED_N_ON_H(channel), &on);
-> > > +	if (on & LED_FULL) {
-> > >  		/* Full ON bit is set */
-> > >  		return PCA9685_COUNTER_RANGE;
-> > >  	}
-> > > =20
-> > > -	val =3D 0;
-> > >  	regmap_read(pca->regmap, LED_N_OFF_L(channel), &val);
-> > > -	return ((off_h & 0xf) << 8) | (val & 0xff);
-> > > +	off =3D ((off & 0xf) << 8) | (val & 0xff);
-> > > +	if (!pwm->args.usage_power)
-> > > +		return off;
-> > > +
-> > > +	/* Read ON register to calculate duty cycle of staggered output */
-> > > +	val =3D 0;
-> > > +	regmap_read(pca->regmap, LED_N_ON_L(channel), &val);
-> > > +	on =3D ((on & 0xf) << 8) | (val & 0xff);
-> > > +	return (off - on) & (PCA9685_COUNTER_RANGE - 1);
-> >=20
-> > If LED_N_ON is !=3D 0 but usage_power is false, the returned state is
-> > bogus.
->=20
-> If usage_power is false, LED_N_ON is guaranteed to be 0. It is reset to
-> 0 in probe and never changed. Or did I miss something?
+I added several new pipeline elements to the code base, which would be common
+to sama5d2 and the new sama7g5, but only used by the new style pipeline.
 
-Ah right, so my concern is only a challenge once the reset in probe goes
-away.
+I separated the input and output formats on a per-product separate array.
 
-> > >  }
-> > > =20
-> > >  #if IS_ENABLED(CONFIG_GPIOLIB)
-> > > @@ -439,9 +469,11 @@ static int pca9685_pwm_probe(struct i2c_client *=
-client,
-> > >  	reg &=3D ~(MODE1_ALLCALL | MODE1_SUB1 | MODE1_SUB2 | MODE1_SUB3);
-> > >  	regmap_write(pca->regmap, PCA9685_MODE1, reg);
-> > > =20
-> > > -	/* Reset OFF registers to POR default */
-> > > +	/* Reset OFF/ON registers to POR default */
-> > >  	regmap_write(pca->regmap, PCA9685_ALL_LED_OFF_L, LED_FULL);
-> > >  	regmap_write(pca->regmap, PCA9685_ALL_LED_OFF_H, LED_FULL);
-> > > +	regmap_write(pca->regmap, PCA9685_ALL_LED_ON_L, 0);
-> > > +	regmap_write(pca->regmap, PCA9685_ALL_LED_ON_H, 0);
-> > > =20
-> > >  	pca->chip.ops =3D &pca9685_pwm_ops;
-> > >  	/* Add an extra channel for ALL_LED */
-> > > @@ -450,6 +482,9 @@ static int pca9685_pwm_probe(struct i2c_client *c=
-lient,
-> > >  	pca->chip.dev =3D &client->dev;
-> > >  	pca->chip.base =3D -1;
-> > > =20
-> > > +	pca->chip.of_xlate =3D of_pwm_xlate_with_flags;
-> > > +	pca->chip.of_pwm_n_cells =3D 3;
-> > > +
-> >=20
-> > Huh, you're incompatibly changing the device tree binding here.
->=20
-> No, I don't think so:
->=20
-> The third cell is optional with of_pwm_xlate_with_flags.
-> So previous DTs with pwm-cells =3D <2> will still work.
+I added the new sama7g5 compatible driver for the xisc, which is similar with
+the sama5d2, but with differences in terms of DT, clocks and callbacks to
+specific operations.
 
-I thought that .of_pwm_n_cells was enforced, let me check the code ... I
-had in mind that of_pwm_get() enforced that, but I cannot find it, so I
-guess you're right and my concern is unjustified.
+I converted the atmel-isc binding to yaml format, and added the new binding in yaml
+format.
 
-Best regards
-Uwe
+Feedback is appreciated.
+Thanks,
+Eugen
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+Changes in v3:
+- Adapted commit messages for several commits to explain several acronyms, especially
+for submodule names
+- Converted atmel-isc binding to yaml
+- Converted microchip-xisc binding to yaml
+- Updated MAINTAINERS
 
---5yi73bsuwgixsqmt
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v2:
+- Fixed krobot warnings with W=1 regarding functions with no prototype
+- Fixed new sama7g5 driver to use the new subdev fwnode API in kernel 5.12. my driver was
+based on old 5.10 style API.
 
------BEGIN PGP SIGNATURE-----
+Eugen Hristev (33):
+  media: atmel: atmel-isc: specialize gamma table into product specific
+  media: atmel: atmel-isc: specialize driver name constant
+  media: atmel: atmel-isc: add checks for limiting frame sizes
+  media: atmel: atmel-isc: specialize max width and max height
+  media: atmel: atmel-isc: specialize dma cfg
+  media: atmel: atmel-isc: extract CSC submodule config into separate
+    function
+  media: atmel: atmel-isc-base: add id to clock debug message
+  media: atmel: atmel-isc: create register offsets struct
+  media: atmel: atmel-isc: extract CBC submodule config into separate
+    function
+  media: atmel: atmel-isc: add CBC to the reg offsets struct
+  media: atmel: atmel-isc: add SUB422 and SUB420 to register offsets
+  media: atmel: atmel-isc: add RLP to register offsets
+  media: atmel: atmel-isc: add HIS to register offsets
+  media: atmel: atmel-isc: add DMA to register offsets
+  media: atmel: atmel-isc: add support for version register
+  media: atmel: atmel-isc: add his_entry to register offsets
+  media: atmel: atmel-isc: add register description for additional
+    modules
+  media: atmel: atmel-isc: extend pipeline with extra modules
+  media: atmel: atmel-isc: add CC initialization function
+  media: atmel: atmel-isc: create product specific v4l2 controls config
+  media: atmel: atmel-isc: create callback for DPC submodule product
+    specific
+  media: atmel: atmel-isc: create callback for GAM submodule product
+    specific
+  media: atmel: atmel-isc: create callback for RLP submodule product
+    specific
+  media: atmel: atmel-isc: move the formats list into product specific
+    code
+  media: atmel: atmel-isc: create an adapt pipeline callback for product
+    specific
+  media: atmel: atmel-isc-regs: add additional fields for sama7g5 type
+    pipeline
+  media: atmel: atmel-isc-base: add support for more formats and
+    additional pipeline modules
+  media: atmel: atmel-isc-sama5d2: remove duplicate define
+  dt-bindings: media: atmel-isc: convert to yaml
+  dt-bindings: media: add microchip,xisc device bindings
+  media: atmel: atmel-isc: add microchip-xisc driver
+  MAINTAINERS: update ISC driver bindings file
+  MAINTAINERS: add xisc files to isc driver entry
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmB1c6AACgkQwfwUeK3K
-7AklQQgAmLXZlUmBHqlmxp/futrTOuHVljzfFpomRmDqlZuObEjkJP81nV8mExNu
-DBAxVX1Th6DSWddMWZzkEUzVrqGo3xe9EDM1GhSRufq3Eh+PpIQfBEi4j1EiRjW0
-uq6Gz0e58FtVAGbcwQl/xEPTBDNdYtPQ3cPcNQ0btvlFGPnyALVaD1TzIajpxoOQ
-6sa4XqoXweKu+HNdD3l/VmnT9S7odmJw7BMgnJ8EMtGJVW4T/w9UvKFh6ZcJzskQ
-cAgv6qMUmEEjKd1bKZeIPui3OPAxVn7lwf9AVpem/U9iTikpuCpmPI7fbHp3jWw9
-5TUqU7sLjtkRr9qJr/VkCHNG2Wodeg==
-=KDCe
------END PGP SIGNATURE-----
+ .../devicetree/bindings/media/atmel,isc.yaml  | 115 ++++
+ .../devicetree/bindings/media/atmel-isc.txt   |  65 --
+ .../bindings/media/microchip,xisc.yaml        | 129 ++++
+ MAINTAINERS                                   |   4 +-
+ drivers/media/platform/Makefile               |   1 +
+ drivers/media/platform/atmel/Kconfig          |  11 +
+ drivers/media/platform/atmel/Makefile         |   2 +
+ drivers/media/platform/atmel/atmel-isc-base.c | 381 ++++-------
+ drivers/media/platform/atmel/atmel-isc-regs.h | 133 +++-
+ drivers/media/platform/atmel/atmel-isc.h      | 122 +++-
+ .../media/platform/atmel/atmel-sama5d2-isc.c  | 311 ++++++++-
+ .../media/platform/atmel/atmel-sama7g5-isc.c  | 643 ++++++++++++++++++
+ 12 files changed, 1574 insertions(+), 343 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/atmel,isc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/atmel-isc.txt
+ create mode 100644 Documentation/devicetree/bindings/media/microchip,xisc.yaml
+ create mode 100644 drivers/media/platform/atmel/atmel-sama7g5-isc.c
 
---5yi73bsuwgixsqmt--
+-- 
+2.25.1
+
