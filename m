@@ -2,278 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6A8C35D586
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 05:03:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16EB135D5F4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 05:34:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244623AbhDMDBU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 23:01:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49704 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241944AbhDMDBU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 23:01:20 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A64BDC061756
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 20:01:01 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id d3-20020a9d29030000b029027e8019067fso12910996otb.13
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 20:01:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Dmc0hZXmCrSXdyT5/+BGkfJc60KHiV2RT1PtaXLe5Bw=;
-        b=T6q6GhuwqN7A3KdhOF5AVGdnpPx5ePtwoQwax4QGqKNPuqCnCzmWx7Xc2zvZNLA4zw
-         vaWVs++vP4Y53aCeGS59FgjYf6jwZi5+tAcH6e2KCfepjvaujEFByGLFXodeBCAHms15
-         n06Fyqmo51EYaXN2AMozzYPIv3u0gm5xk7Wrk/de4TUjLuYJVEQ1hRSebmqFC1PbcU2C
-         dpgg9KSCjBCjOOpgtSH3DCQvQnRmvvEPrnNXmVgDcFXtNKHJH5Hz60BoLhbpL3RMfTgr
-         UHPE8N/nPoGFHpjQDVhAg0SrmPqDCGNs9uWSJbLWykuqskkUoTsYsLin9g8VznANsrY9
-         wlMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Dmc0hZXmCrSXdyT5/+BGkfJc60KHiV2RT1PtaXLe5Bw=;
-        b=JHjCF1CYeS++/YLB2LRrHvPoEQbxALIAcOUEGaod1iaY0IECMRam9BYOmTyAtx4MFT
-         SUR1+qhJKqIx2oHeItN+VvZlldUgpEjCiuHW5ytNN35ehvkgsk/nP+nFiJYi5MEMn1rz
-         5o3JvlibLAM4jQcNLSWXGJsoWm9jFQh4o3xth485xUGq6dwDhYOPGuBETTeqHPs54Nkm
-         i9g3Hnws9mwr1mUTu1O4mo38ui6SPXEinwBZb8dIeVZlrYFpPimTBtvARyknYiKVwx6E
-         xSv31UukvP731Ifgr1Btg6EyovbiE2yE/cuSMo1BbOE9XpjRzUxY1J2rhGGVFgPZk0S8
-         5cIQ==
-X-Gm-Message-State: AOAM531w4WecZt3SMMye1nXnwX2XKF4RbLDTZmogrmxVsem1YyhETLvs
-        G9RvtXFJrlrtces8Bn9LLfp2xA==
-X-Google-Smtp-Source: ABdhPJzLEu/ne59rxKLrYKwS39IEy24zduSSC5TNViBz5Wb5iDoKEYf/g3Cma7Q3wf5RooKPWOn1uw==
-X-Received: by 2002:a9d:1a1:: with SMTP id e30mr2371575ote.283.1618282860923;
-        Mon, 12 Apr 2021 20:01:00 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id h59sm3115213otb.29.2021.04.12.20.00.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Apr 2021 20:01:00 -0700 (PDT)
-Date:   Mon, 12 Apr 2021 22:00:58 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
-        Vinod Koul <vkoul@kernel.org>,
-        Courtney Cavin <courtney.cavin@sonymobile.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH V2 1/4] input: pm8941-pwrkey: add support for PMK8350
- PON_HLOS PMIC peripheral
-Message-ID: <20210413030058.GK1538589@yoga>
-References: <1617881469-31965-1-git-send-email-skakit@codeaurora.org>
- <1617881469-31965-2-git-send-email-skakit@codeaurora.org>
+        id S241695AbhDMDdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 23:33:24 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:52749 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241613AbhDMDdY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 23:33:24 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 13D3LYpM091103;
+        Tue, 13 Apr 2021 11:21:34 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 13 Apr
+ 2021 11:31:58 +0800
+Date:   Tue, 13 Apr 2021 11:31:56 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+CC:     Andrew Jeffery <andrew@aj.id.au>, Rob Herring <robh+dt@kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ryan Chen <ryanchen.aspeed@gmail.com>,
+        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
+        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
+        "open list:ASPEED SD/MMC DRIVER" <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: mmc: sdhci-of-aspeed: Add power-gpio
+ and power-switch-gpio
+Message-ID: <20210413033155.GA3522@aspeedtech.com>
+References: <20210408015218.20560-1-steven_lee@aspeedtech.com>
+ <20210408015218.20560-2-steven_lee@aspeedtech.com>
+ <CAPDyKFr=Gtwu4v22FBaax5EjRbXTNez1N2ZQxP=v0LKGFTCovw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <1617881469-31965-2-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <CAPDyKFr=Gtwu4v22FBaax5EjRbXTNez1N2ZQxP=v0LKGFTCovw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 13D3LYpM091103
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 08 Apr 06:31 CDT 2021, satya priya wrote:
+The 04/12/2021 15:38, Ulf Hansson wrote:
+> On Thu, 8 Apr 2021 at 03:52, Steven Lee <steven_lee@aspeedtech.com> wrote:
+> >
+> > AST2600-A2 EVB provides the reference design for enabling SD bus power
+> > and toggling SD bus signal voltage by GPIO pins.
+> > Add the definition and example for power-gpio and power-switch-gpio
+> > properties.
+> >
+> > In the reference design, GPIOV0 of AST2600-A2 EVB is connected to power
+> > load switch that providing 3.3v to SD1 bus vdd. GPIOV1 is connected to
+> > a 1.8v and a 3.3v power load switch that providing signal voltage to
+> > SD1 bus.
+> > If GPIOV0 is active high, SD1 bus is enabled. Otherwise, SD1 bus is
+> > disabled.
+> > If GPIOV1 is active high, 3.3v power load switch is enabled, SD1 signal
+> > voltage is 3.3v. Otherwise, 1.8v power load switch will be enabled, SD1
+> > signal voltage becomes 1.8v.
+> >
+> > AST2600-A2 EVB also support toggling signal voltage for SD2 bus.
+> > The design is the same as SD1 bus. It uses GPIOV2 as power-gpio and GPIOV3
+> > as power-switch-gpio.
+> 
+> Thanks for sharing the details, it certainly helps while reviewing.
+> 
+> >
+> > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> > ---
+> >  .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 25 +++++++++++++++++++
+> >  1 file changed, 25 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> > index 987b287f3bff..515a74614f3c 100644
+> > --- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> > @@ -37,6 +37,14 @@ properties:
+> >    clocks:
+> >      maxItems: 1
+> >      description: The SD/SDIO controller clock gate
+> > +  power-gpio:
+> > +    description:
+> > +      The GPIO for enabling/disabling SD bus power.
+> > +    maxItems: 1
+> > +  power-switch-gpio:
+> > +    description:
+> > +      The GPIO for toggling the signal voltage between 3.3v and 1.8v.
+> > +    maxItems: 1
+> 
+> 
+> >
+> >  patternProperties:
+> >    "^sdhci@[0-9a-f]+$":
+> > @@ -61,6 +69,14 @@ patternProperties:
+> >        sdhci,auto-cmd12:
+> >          type: boolean
+> >          description: Specifies that controller should use auto CMD12
+> > +      power-gpio:
+> > +        description:
+> > +          The GPIO for enabling/disabling SD bus power.
+> > +        maxItems: 1
+> > +      power-switch-gpio:
+> > +        description:
+> > +          The GPIO for toggling the signal voltage between 3.3v and 1.8v.
+> > +        maxItems: 1
+> >      required:
+> 
+> Please do not model these as GPIO pins like this. Instead, it's better
+> to model them as gpio regulators, since the mmc core manages them as
+> regulators.
+> 
+> We have a vmmc regulator (corresponding to vdd) and a vqmmc regulator
+> (corresponding the signal-voltage level). These are also described in
+> the common mmc DT bindings, see
+> Documentation/devicetree/bindings/mmc/mmc-controller.yaml.
+> 
 
-> From: David Collins <collinsd@codeaurora.org>
-> 
-> On Qualcomm Technologies, Inc. PMIC PMK8350, the PON peripheral
-> is split into two peripherals: PON_HLOS and PON_PBS.  The
-> application processor only has write access to PON_HLOS which
-> limits it to only receiving PON interrupts.
-> 
-> Add support for the PMK8350 PON_HLOS peripheral so that its
-> KPDPWR_N and RESIN_N interrupts can be used to detect key
-> presses.
-> 
+Thanks for the information. I will modify it.
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-Regards,
-Bjorn
-
-> Signed-off-by: David Collins <collinsd@codeaurora.org>
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> ---
-> Changes in V2:
->  - No change.
+> >        - compatible
+> >        - reg
+> > @@ -80,6 +96,7 @@ required:
+> >  examples:
+> >    - |
+> >      #include <dt-bindings/clock/aspeed-clock.h>
+> > +    #include <dt-bindings/gpio/aspeed-gpio.h>
+> >      sdc@1e740000 {
+> >              compatible = "aspeed,ast2500-sd-controller";
+> >              reg = <0x1e740000 0x100>;
+> > @@ -94,6 +111,10 @@ examples:
+> >                      interrupts = <26>;
+> >                      sdhci,auto-cmd12;
+> >                      clocks = <&syscon ASPEED_CLK_SDIO>;
+> > +                    power-gpio = <&gpio0 ASPEED_GPIO(V, 0)
+> > +                                     GPIO_ACTIVE_HIGH>;
+> > +                    power-switch-gpio = <&gpio0 ASPEED_GPIO(V, 1)
+> > +                                     GPIO_ACTIVE_HIGH>;
+> >              };
+> >
+> >              sdhci1: sdhci@200 {
+> > @@ -102,5 +123,9 @@ examples:
+> >                      interrupts = <26>;
+> >                      sdhci,auto-cmd12;
+> >                      clocks = <&syscon ASPEED_CLK_SDIO>;
+> > +                    power-gpio = <&gpio0 ASPEED_GPIO(V, 2)
+> > +                                     GPIO_ACTIVE_HIGH>;
+> > +                    power-switch-gpio = <&gpio0 ASPEED_GPIO(V, 3)
+> > +                                     GPIO_ACTIVE_HIGH>;
+> >              };
+> >      };
 > 
->  drivers/input/misc/pm8941-pwrkey.c | 103 ++++++++++++++++++++++++++-----------
->  1 file changed, 72 insertions(+), 31 deletions(-)
-> 
-> diff --git a/drivers/input/misc/pm8941-pwrkey.c b/drivers/input/misc/pm8941-pwrkey.c
-> index cf81044..10e3fc0 100644
-> --- a/drivers/input/misc/pm8941-pwrkey.c
-> +++ b/drivers/input/misc/pm8941-pwrkey.c
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  /*
-> - * Copyright (c) 2010-2011, Code Aurora Forum. All rights reserved.
-> + * Copyright (c) 2010-2011, 2020-2021, The Linux Foundation. All rights reserved.
->   * Copyright (c) 2014, Sony Mobile Communications Inc.
->   */
->  
-> @@ -22,6 +22,8 @@
->  #define PON_RT_STS			0x10
->  #define  PON_KPDPWR_N_SET		BIT(0)
->  #define  PON_RESIN_N_SET		BIT(1)
-> +#define  PON_GEN3_RESIN_N_SET		BIT(6)
-> +#define  PON_GEN3_KPDPWR_N_SET		BIT(7)
->  
->  #define PON_PS_HOLD_RST_CTL		0x5a
->  #define PON_PS_HOLD_RST_CTL2		0x5b
-> @@ -38,8 +40,12 @@
->  #define  PON_DBC_DELAY_MASK		0x7
->  
->  struct pm8941_data {
-> -	unsigned int pull_up_bit;
-> -	unsigned int status_bit;
-> +	unsigned int	pull_up_bit;
-> +	unsigned int	status_bit;
-> +	bool		supports_ps_hold_poff_config;
-> +	bool		supports_debounce_config;
-> +	const char	*name;
-> +	const char	*phys;
->  };
->  
->  struct pm8941_pwrkey {
-> @@ -231,34 +237,40 @@ static int pm8941_pwrkey_probe(struct platform_device *pdev)
->  
->  	input_set_capability(pwrkey->input, EV_KEY, pwrkey->code);
->  
-> -	pwrkey->input->name = "pm8941_pwrkey";
-> -	pwrkey->input->phys = "pm8941_pwrkey/input0";
-> -
-> -	req_delay = (req_delay << 6) / USEC_PER_SEC;
-> -	req_delay = ilog2(req_delay);
-> -
-> -	error = regmap_update_bits(pwrkey->regmap,
-> -				   pwrkey->baseaddr + PON_DBC_CTL,
-> -				   PON_DBC_DELAY_MASK,
-> -				   req_delay);
-> -	if (error) {
-> -		dev_err(&pdev->dev, "failed to set debounce: %d\n", error);
-> -		return error;
-> +	pwrkey->input->name = pwrkey->data->name;
-> +	pwrkey->input->phys = pwrkey->data->phys;
-> +
-> +	if (pwrkey->data->supports_debounce_config) {
-> +		req_delay = (req_delay << 6) / USEC_PER_SEC;
-> +		req_delay = ilog2(req_delay);
-> +
-> +		error = regmap_update_bits(pwrkey->regmap,
-> +					   pwrkey->baseaddr + PON_DBC_CTL,
-> +					   PON_DBC_DELAY_MASK,
-> +					   req_delay);
-> +		if (error) {
-> +			dev_err(&pdev->dev, "failed to set debounce: %d\n",
-> +				error);
-> +			return error;
-> +		}
->  	}
->  
-> -	error = regmap_update_bits(pwrkey->regmap,
-> -				   pwrkey->baseaddr + PON_PULL_CTL,
-> -				   pwrkey->data->pull_up_bit,
-> -				   pull_up ? pwrkey->data->pull_up_bit : 0);
-> -	if (error) {
-> -		dev_err(&pdev->dev, "failed to set pull: %d\n", error);
-> -		return error;
-> +	if (pwrkey->data->pull_up_bit) {
-> +		error = regmap_update_bits(pwrkey->regmap,
-> +					   pwrkey->baseaddr + PON_PULL_CTL,
-> +					   pwrkey->data->pull_up_bit,
-> +					   pull_up ? pwrkey->data->pull_up_bit :
-> +						     0);
-> +		if (error) {
-> +			dev_err(&pdev->dev, "failed to set pull: %d\n", error);
-> +			return error;
-> +		}
->  	}
->  
->  	error = devm_request_threaded_irq(&pdev->dev, pwrkey->irq,
->  					  NULL, pm8941_pwrkey_irq,
->  					  IRQF_ONESHOT,
-> -					  "pm8941_pwrkey", pwrkey);
-> +					  pwrkey->data->name, pwrkey);
->  	if (error) {
->  		dev_err(&pdev->dev, "failed requesting IRQ: %d\n", error);
->  		return error;
-> @@ -271,12 +283,14 @@ static int pm8941_pwrkey_probe(struct platform_device *pdev)
->  		return error;
->  	}
->  
-> -	pwrkey->reboot_notifier.notifier_call = pm8941_reboot_notify,
-> -	error = register_reboot_notifier(&pwrkey->reboot_notifier);
-> -	if (error) {
-> -		dev_err(&pdev->dev, "failed to register reboot notifier: %d\n",
-> -			error);
-> -		return error;
-> +	if (pwrkey->data->supports_ps_hold_poff_config) {
-> +		pwrkey->reboot_notifier.notifier_call = pm8941_reboot_notify,
-> +		error = register_reboot_notifier(&pwrkey->reboot_notifier);
-> +		if (error) {
-> +			dev_err(&pdev->dev, "failed to register reboot notifier: %d\n",
-> +				error);
-> +			return error;
-> +		}
->  	}
->  
->  	platform_set_drvdata(pdev, pwrkey);
-> @@ -289,7 +303,8 @@ static int pm8941_pwrkey_remove(struct platform_device *pdev)
->  {
->  	struct pm8941_pwrkey *pwrkey = platform_get_drvdata(pdev);
->  
-> -	unregister_reboot_notifier(&pwrkey->reboot_notifier);
-> +	if (pwrkey->data->supports_ps_hold_poff_config)
-> +		unregister_reboot_notifier(&pwrkey->reboot_notifier);
->  
->  	return 0;
->  }
-> @@ -297,16 +312,42 @@ static int pm8941_pwrkey_remove(struct platform_device *pdev)
->  static const struct pm8941_data pwrkey_data = {
->  	.pull_up_bit = PON_KPDPWR_PULL_UP,
->  	.status_bit = PON_KPDPWR_N_SET,
-> +	.name = "pm8941_pwrkey",
-> +	.phys = "pm8941_pwrkey/input0",
-> +	.supports_ps_hold_poff_config = true,
-> +	.supports_debounce_config = true,
->  };
->  
->  static const struct pm8941_data resin_data = {
->  	.pull_up_bit = PON_RESIN_PULL_UP,
->  	.status_bit = PON_RESIN_N_SET,
-> +	.name = "pm8941_resin",
-> +	.phys = "pm8941_resin/input0",
-> +	.supports_ps_hold_poff_config = true,
-> +	.supports_debounce_config = true,
-> +};
-> +
-> +static const struct pm8941_data pon_gen3_pwrkey_data = {
-> +	.status_bit = PON_GEN3_KPDPWR_N_SET,
-> +	.name = "pmic_pwrkey",
-> +	.phys = "pmic_pwrkey/input0",
-> +	.supports_ps_hold_poff_config = false,
-> +	.supports_debounce_config = false,
-> +};
-> +
-> +static const struct pm8941_data pon_gen3_resin_data = {
-> +	.status_bit = PON_GEN3_RESIN_N_SET,
-> +	.name = "pmic_resin",
-> +	.phys = "pmic_resin/input0",
-> +	.supports_ps_hold_poff_config = false,
-> +	.supports_debounce_config = false,
->  };
->  
->  static const struct of_device_id pm8941_pwr_key_id_table[] = {
->  	{ .compatible = "qcom,pm8941-pwrkey", .data = &pwrkey_data },
->  	{ .compatible = "qcom,pm8941-resin", .data = &resin_data },
-> +	{ .compatible = "qcom,pmk8350-pwrkey", .data = &pon_gen3_pwrkey_data },
-> +	{ .compatible = "qcom,pmk8350-resin", .data = &pon_gen3_resin_data },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, pm8941_pwr_key_id_table);
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
+> Kind regards
+> Uffe
