@@ -2,96 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFDE535D55B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 04:42:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C40435D560
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 04:43:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238720AbhDMCmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 22:42:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45634 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231138AbhDMCmW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 22:42:22 -0400
-Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24E60C06175F
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 19:42:03 -0700 (PDT)
-Received: by mail-oo1-xc29.google.com with SMTP id t14-20020a4ad0ae0000b02901e65c173a4bso81581oor.11
-        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 19:42:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=TqizwtPBazn4E4BBJNz6As5MhBNbZCtWHV//Y0hIMZs=;
-        b=ufItUzbBA4ZaQvXf4xjPrThPuCmG9xp5YKrfIgj5lJ/k/q31+z1o5Fqxr4FpxNcD2L
-         YYS/8XWFhyE0UlbGwRvmncuhuAZ3sF/ClB4lvmyAFip9MkK7AfUedWjLWrlwD1Mqj4nW
-         SGhRLRC+6K6eYBaDwsEiC/jzBmmuLSD/RM4PA4lvlYchP6CAxOXzZqm32ZIukLfpkuHg
-         IZ/wWYl+qgQQKoLCuFdOTDmeXNqQhVYH7lvSCWnHEtqq4eo9TJqclX66IA2WLdPBQBw9
-         VqiB3uB7qXowzEGR/YgLscEXJFXVp1sGMMYOg51ghSxA9ubAxtdcQBYmVi/8CNz+Me7Y
-         xJCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=TqizwtPBazn4E4BBJNz6As5MhBNbZCtWHV//Y0hIMZs=;
-        b=FR/rhITHJJQpxxH313TND37BP3ymuN3a4AfdZnnjvdFV7HxXQ28bHp3Kpa+3zmdV+V
-         28wv5pBJyZ18HrGT+huqjTnyb6PsdxLfVrn5wgnz8kZb2CR8gXPXQ/o9yJeTUpNMDEBf
-         tLqu1f0mGl1q3K1bWvajyMIAtoB9GfiX4eE8mwGJZY3NRcqE3d4Pig7QPFrf6RPDQaWe
-         35vNfMj/br8m++QnaQ/rO/jLMRbC94jfplzxo/M25n9R0YNpHpcEU2dVkMdwRt8F6EXH
-         /rvoVGxbtZhko3/7KzSL2wESY1wVz2o86l0siL+uBu6kl1QRrIQsZcTI4/nPjqV+Ltsn
-         Ck3g==
-X-Gm-Message-State: AOAM530tLAVYuEe7t0klRvZr7gGbWNeg/6sVaETBY0iY0ZDrYId3V4Vv
-        ruA4Dz6SGTh8tn+vO+CRz9gzbA==
-X-Google-Smtp-Source: ABdhPJwln6Bs1UzxhLsh5C748sEIkLCsUk9ZEx7meQ8HiDvRIVlzkHLxp/oktk9yVkRk9+E4wKBhNg==
-X-Received: by 2002:a05:6820:20a:: with SMTP id i10mr25119420oob.6.1618281722315;
-        Mon, 12 Apr 2021 19:42:02 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id q1sm1850149otm.26.2021.04.12.19.42.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Apr 2021 19:42:01 -0700 (PDT)
-Date:   Mon, 12 Apr 2021 21:41:59 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>, agross@kernel.org,
-        rjw@rjwysocki.net, devicetree@vger.kernel.org, robh+dt@kernel.org,
-        amit.kucheria@linaro.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, jeffrey.l.hugo@gmail.com
-Subject: Re: [PATCH v4 0/7] cpufreq-qcom-hw: Implement full OSM programming
-Message-ID: <20210413024159.GI1538589@yoga>
-References: <20210119174557.227318-1-angelogioacchino.delregno@somainline.org>
- <20210412051135.xtpokwrbclaptbot@vireshk-i7>
+        id S243568AbhDMCnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 22:43:37 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:45566 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S241731AbhDMCnh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Apr 2021 22:43:37 -0400
+Received: from pps.filterd (m0098394.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13D2X6wd052870
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 22:43:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=in-reply-to : from : to
+ : cc : date : references : content-type : message-id :
+ content-transfer-encoding : mime-version : subject; s=pp1;
+ bh=1EegNePvlfRJ5UCnwknjrsGUcTK3dCk5x+70rY0+tQY=;
+ b=LQfIT23J9dz4tgv/5nlFRGvn+G/K/GG1H2ozfnSP1A4GBuWa1LE9AG2uReyCtS1wqc0x
+ 6dwM//jaWpPWob2VOy074SNcqGNo/RT/fQ+mJ1NwN33D2K6JXDc74EaBgW8fkiyvgSwq
+ IFSG+PB+hJaM/owBVZg8Et+G3b4vWfy2eHdyuQSDs7vhcDlbDicOVtMAVlEjANe7pIEN
+ YUs021NlquF7Cm3n/9Hd+JGYYUf3B8riEyIKSwDLquJM6wjjwJZBOK6TSAAfnBUebpKR
+ +UokSKO+h9pWi+XlvX1esMl3R//MqbRoH7cFc7GrTYf7jHQOthuT9wXCH71jeUa1PFuJ hg== 
+Received: from smtp.notes.na.collabserv.com (smtp.notes.na.collabserv.com [158.85.210.109])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 37vujk5v3p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+        for <devicetree@vger.kernel.org>; Mon, 12 Apr 2021 22:43:17 -0400
+Received: from localhost
+        by smtp.notes.na.collabserv.com with smtp.notes.na.collabserv.com ESMTP
+        for <devicetree@vger.kernel.org> from <miltonm@us.ibm.com>;
+        Tue, 13 Apr 2021 02:43:17 -0000
+Received: from us1b3-smtp07.a3dr.sjc01.isc4sb.com (10.122.203.198)
+        by smtp.notes.na.collabserv.com (10.122.47.48) with smtp.notes.na.collabserv.com ESMTP;
+        Tue, 13 Apr 2021 02:43:15 -0000
+Received: from us1b3-mail228.a3dr.sjc03.isc4sb.com ([10.168.214.55])
+          by us1b3-smtp07.a3dr.sjc01.isc4sb.com
+          with ESMTP id 2021041302431439-860115 ;
+          Tue, 13 Apr 2021 02:43:14 +0000 
+In-Reply-To: <20210413013010.GA353@aspeedtech.com>
+From:   "Milton Miller II" <miltonm@us.ibm.com>
+To:     Steven Lee <steven_lee@aspeedtech.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "open list:ASPEED SD/MMC DRIVER" <linux-mmc@vger.kernel.org>,
+        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
+        Ryan Chen <ryanchen.aspeed@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Tue, 13 Apr 2021 02:43:14 +0000
+Sensitivity: 
+Importance: Normal
+X-Priority: 3 (Normal)
+References: <20210413013010.GA353@aspeedtech.com>,<20210408015218.20560-1-steven_lee@aspeedtech.com>
+ <20210408015218.20560-2-steven_lee@aspeedtech.com>
+ <20210409184118.GA3934798@robh.at.kernel.org>
+X-Mailer: IBM iNotes ($HaikuForm 1054.1) | IBM Domino Build
+ SCN1812108_20180501T0841_FP130 January 13, 2021 at 14:04
+X-LLNOutbound: False
+X-Disclaimed: 12715
+X-TNEFEvaluated: 1
+Content-Type: text/plain; charset=UTF-8
+x-cbid: 21041302-1429-0000-0000-000003AD7C50
+X-IBM-SpamModules-Scores: BY=0; FL=0; FP=0; FZ=0; HX=0; KW=0; PH=0; SC=0;
+ ST=0; TS=0; UL=0; ISC=; MB=0.008445
+X-IBM-SpamModules-Versions: BY=3.00014940; HX=3.00000242; KW=3.00000007;
+ PH=3.00000004; SC=3.00000296; SDB=6.01526390; UDB=6.00825164; IPR=6.01308223;
+ MB=3.00036522; MTD=3.00000008; XFM=3.00000015; UTC=2021-04-13 02:43:16
+X-IBM-AV-DETECTION: SAVI=unsuspicious REMOTE=unsuspicious XFE=unused
+X-IBM-AV-VERSION: SAVI=2021-03-22 13:55:12 - 6.00012377
+x-cbparentid: 21041302-1430-0000-0000-00003A2C7F01
+Message-Id: <OF2606E97A.D9A04B5B-ON002586B6.000DC6EE-002586B6.000EF1DC@notes.na.collabserv.com>
+X-Proofpoint-GUID: 2pVXnDtX8jbBft-EY48CIvRYyGPY7C4M
+X-Proofpoint-ORIG-GUID: 2pVXnDtX8jbBft-EY48CIvRYyGPY7C4M
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210412051135.xtpokwrbclaptbot@vireshk-i7>
+Subject: RE: [PATCH v1 1/2] dt-bindings: mmc: sdhci-of-aspeed: Add power-gpio and
+ power-switch-gpio
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-04-12_15:2021-04-12,2021-04-12 signatures=0
+X-Proofpoint-Spam-Reason: orgsafe
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 12 Apr 00:11 CDT 2021, Viresh Kumar wrote:
 
-> On 19-01-21, 18:45, AngeloGioacchino Del Regno wrote:
-> >   **
-> >   ** NOTE: To "view the full picture", please look at the following
-> >   ** patch series:
-> >   ** https://patchwork.kernel.org/project/linux-arm-msm/list/?series=413355
-> >   **              This is a subset of that series.
-> >   **
-> > 
-> > Changes in v4:
-> > - Huge patch series has been split for better reviewability,
-> >   as suggested by Bjorn
-> > - Rebased code on top of 266991721c15 ("cpufreq: qcom-hw: enable boost
-> >   support")
-> 
-> Bjorn, what am I supposed to do with patchset ? Is there anyone who can give
-> this some reviews from qcom team ?
-> 
 
-Sorry Viresh, I've been postponing reviewing this a few times too many.
-I'll take the time in the coming days to look through it properly,
-including Taniya's feedback.
+-----"openbmc" <openbmc-bounces+miltonm=3Dus.ibm.com@lists.ozlabs.org> wrot=
+e: -----
 
-Regards,
-Bjorn
+>To: Rob Herring <robh@kernel.org>
+>From: Steven Lee=20
+>Sent by: "openbmc"=20
+>Date: 04/12/2021 08:31PM
+>Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+><devicetree@vger.kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+>Ryan Chen <ryan_chen@aspeedtech.com>, "moderated list:ASPEED SD/MMC
+>DRIVER" <linux-aspeed@lists.ozlabs.org>, Andrew Jeffery
+><andrew@aj.id.au>, "open list:ASPEED SD/MMC DRIVER"
+><linux-mmc@vger.kernel.org>, "moderated list:ASPEED SD/MMC DRIVER"
+><openbmc@lists.ozlabs.org>, Ryan Chen <ryanchen.aspeed@gmail.com>,
+>Adrian Hunter <adrian.hunter@intel.com>, open list
+><linux-kernel@vger.kernel.org>, Chin-Ting Kuo
+><chin-ting_kuo@aspeedtech.com>, "moderated list:ARM/ASPEED MACHINE
+>SUPPORT" <linux-arm-kernel@lists.infradead.org>
+>Subject: [EXTERNAL] Re: [PATCH v1 1/2] dt-bindings: mmc:
+>sdhci-of-aspeed: Add power-gpio and power-switch-gpio
+>
+>The 04/10/2021 02:41, Rob Herring wrote:
+>> On Thu, Apr 08, 2021 at 09:52:17AM +0800, Steven Lee wrote:
+>> > AST2600-A2 EVB provides the reference design for enabling SD bus
+>power
+>> > and toggling SD bus signal voltage by GPIO pins.
+>> > Add the definition and example for power-gpio and
+>power-switch-gpio
+>> > properties.
+>> >=20
+>> > In the reference design, GPIOV0 of AST2600-A2 EVB is connected to
+>power
+>> > load switch that providing 3.3v to SD1 bus vdd. GPIOV1 is
+>connected to
+>> > a 1.8v and a 3.3v power load switch that providing signal voltage
+>to
+>> > SD1 bus.
+>> > If GPIOV0 is active high, SD1 bus is enabled. Otherwise, SD1 bus
+>is
+>> > disabled.
+>> > If GPIOV1 is active high, 3.3v power load switch is enabled, SD1
+>signal
+>> > voltage is 3.3v. Otherwise, 1.8v power load switch will be
+>enabled, SD1
+>> > signal voltage becomes 1.8v.
+>> >=20
+>> > AST2600-A2 EVB also support toggling signal voltage for SD2 bus.
+>> > The design is the same as SD1 bus. It uses GPIOV2 as power-gpio
+>and GPIOV3
+>> > as power-switch-gpio.
+>> >=20
+>> > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+>> > ---
+>> >  .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 25
+>+++++++++++++++++++
+>> >  1 file changed, 25 insertions(+)
+>> >=20
+>> > diff --git
+>a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+>b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+>> > index 987b287f3bff..515a74614f3c 100644
+>> > --- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+>> > +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+>> > @@ -37,6 +37,14 @@ properties:
+>> >    clocks:
+>> >      maxItems: 1
+>> >      description: The SD/SDIO controller clock gate
+>> > +  power-gpio:
+>>=20
+>> '-gpios' is the preferred form even if just 1.
+>>=20
+>
+>Thanks for reviewing, I will change the name.
+
+is this a clock gate or a power on gpio?
+
+
+>
+>> > +    description:
+>> > +      The GPIO for enabling/disabling SD bus power.
+>> > +    maxItems: 1
+>>=20
+>> blank line
+>>=20
+>
+>I will remove the blank line.
+>
+>> > +  power-switch-gpio:
+>> > +    description:
+>> > +      The GPIO for toggling the signal voltage between 3.3v and
+>1.8v.
+
+Which way does it toggle for which voltage?
+
+Oh, you said in the change log but not in the binding.
+
+But please, use gpio controled regulators as Ulf suggested and is
+already used by other mmc controllers upstream.
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/
+Documentation/devicetree/bindings/regulator/gpio-regulator.yaml
+
+Ulf> Please do not model these as GPIO pins like this. Instead, it's better
+Ulf> to model them as gpio regulators, since the mmc core manages them as
+Ulf> regulators.
+Ulf>=20
+Ulf> We have a vmmc regulator (corresponding to vdd) and a vqmmc regulator
+Ulf> (corresponding the signal-voltage level). These are also described in
+Ulf> the common mmc DT bindings, see
+Ulf> Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+Ulf> .
+
+milton
+
+>> > +    maxItems: 1
+>> >=20=20
+>> >  patternProperties:
+>> >    "^sdhci@[0-9a-f]+$":
+>> > @@ -61,6 +69,14 @@ patternProperties:
+>> >        sdhci,auto-cmd12:
+>> >          type: boolean
+>> >          description: Specifies that controller should use auto
+>CMD12
+>> > +      power-gpio:
+>> > +        description:
+>> > +          The GPIO for enabling/disabling SD bus power.
+>> > +        maxItems: 1
+>> > +      power-switch-gpio:
+>> > +        description:
+>> > +          The GPIO for toggling the signal voltage between 3.3v
+>and 1.8v.
+>> > +        maxItems: 1
+>> >      required:
+>> >        - compatible
+>> >        - reg
+>> > @@ -80,6 +96,7 @@ required:
+>> >  examples:
+>> >    - |
+>> >      #include <dt-bindings/clock/aspeed-clock.h>
+>> > +    #include <dt-bindings/gpio/aspeed-gpio.h>
+>> >      sdc@1e740000 {
+>> >              compatible =3D "aspeed,ast2500-sd-controller";
+>> >              reg =3D <0x1e740000 0x100>;
+>> > @@ -94,6 +111,10 @@ examples:
+>> >                      interrupts =3D <26>;
+>> >                      sdhci,auto-cmd12;
+>> >                      clocks =3D <&syscon ASPEED_CLK_SDIO>;
+>> > +                    power-gpio =3D <&gpio0 ASPEED_GPIO(V, 0)
+>> > +                                     GPIO_ACTIVE_HIGH>;
+>> > +                    power-switch-gpio =3D <&gpio0 ASPEED_GPIO(V,
+>1)
+>> > +                                     GPIO_ACTIVE_HIGH>;
+>> >              };
+>> >=20=20
+>> >              sdhci1: sdhci@200 {
+>> > @@ -102,5 +123,9 @@ examples:
+>> >                      interrupts =3D <26>;
+>> >                      sdhci,auto-cmd12;
+>> >                      clocks =3D <&syscon ASPEED_CLK_SDIO>;
+>> > +                    power-gpio =3D <&gpio0 ASPEED_GPIO(V, 2)
+>> > +                                     GPIO_ACTIVE_HIGH>;
+>> > +                    power-switch-gpio =3D <&gpio0 ASPEED_GPIO(V,
+>3)
+>> > +                                     GPIO_ACTIVE_HIGH>;
+>> >              };
+>> >      };
+>> > --=20
+>> > 2.17.1
+>> >=20
+>
+>
+
