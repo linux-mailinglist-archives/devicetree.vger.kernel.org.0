@@ -2,100 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D88FE35E524
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 19:38:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 974FC35E534
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 19:40:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232530AbhDMRi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 13:38:56 -0400
-Received: from vsp-unauthed02.binero.net ([195.74.38.227]:49023 "EHLO
-        vsp-unauthed02.binero.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232016AbhDMRir (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 13:38:47 -0400
-X-Halon-ID: 0b67b9b0-9c7f-11eb-a9ab-0050569116f7
-Authorized-sender: niklas.soderlund@fsdn.se
-Received: from bismarck.berto.se (p54ac5521.dip0.t-ipconnect.de [84.172.85.33])
-        by bin-vsp-out-03.atm.binero.net (Halon) with ESMTPA
-        id 0b67b9b0-9c7f-11eb-a9ab-0050569116f7;
-        Tue, 13 Apr 2021 19:38:26 +0200 (CEST)
-From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org,
-        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH] media: dt-bindings: media: renesas,vin: Add r8a779a0 support
-Date:   Tue, 13 Apr 2021 19:38:10 +0200
-Message-Id: <20210413173810.2561909-1-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.31.1
+        id S232592AbhDMRlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 13:41:00 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:10264 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S232356AbhDMRk6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Apr 2021 13:40:58 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13DHWLTQ025271;
+        Tue, 13 Apr 2021 19:40:21 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=pZ9s/N4lfu05HqEWvS2/jUO/gf8ZaUn/1iPWaeBL6gE=;
+ b=uRcjaPdUe34wNzIXpnwi73magRFgB096RjbKGaaJzULmjXgXJSdEBGdqsoLQ9azelkov
+ hI1h/slpMONIc14wLAa6f6iwikByOLFuNubPl9/sCnGCwIPKMXkj2vRhH/UdKeuq/B4I
+ aQBA+K9t5nAeZsuGqnB3DbNheTn6x8D1/Hk7jrjieZu22oPcFHTll5c7lqpRRO1frmjH
+ q8fFqIXNK4vQSphrlKd1yoXl27mftv8MPTzMeKmIpAXozbX4QEVHWQRyedpAOEtruHgB
+ mNRsoUG159HuD1iW9ViW1rpA2wPA/LSrHioZcUYw+KxrRVPCazydwzm5mzd8P6YDGRyJ MQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 37w3mbv1ar-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 13 Apr 2021 19:40:21 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 75C9810002A;
+        Tue, 13 Apr 2021 19:40:20 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 63CA92159E9;
+        Tue, 13 Apr 2021 19:40:20 +0200 (CEST)
+Received: from localhost (10.75.127.46) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 13 Apr 2021 19:40:19
+ +0200
+From:   Erwan Le Ray <erwan.leray@foss.st.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Erwan Le Ray <erwan.leray@foss.st.com>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Valentin Caron <valentin.caron@foss.st.com>
+Subject: [PATCH v2 0/4] stm32 usart add fifo threshold configuration
+Date:   Tue, 13 Apr 2021 19:40:11 +0200
+Message-ID: <20210413174015.23011-1-erwan.leray@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG3NODE1.st.com (10.75.127.7) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-04-13_12:2021-04-13,2021-04-13 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document support for the VIN module in the Renesas V3U (r8a779a0) SoC.
-The V3U is different from other SoCs as it have 32 instead of 16 VIN
-instances. The VIN instances are also connected to a new IP the R-Car
-ISP Channel Selector.
+This series adds the support for two optional DT properties to configure
+RX and TX FIFO thresholds:
+ - rx-threshold
+ - tx-threshold
+This replaces hard-coded 8 bytes threshold. No functional change expected
+if unspecified (keep 8 as default).
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
- .../bindings/media/renesas,vin.yaml           | 26 ++++++++++++++++++-
- 1 file changed, 25 insertions(+), 1 deletion(-)
+Changes in v2:
+Change added properties naming and factorize it in serial.yaml as proposed
+by Rob Herring. 
 
-diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-index fe7c4cbfe4ba960c..67459b94aeaaafed 100644
---- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
-+++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-@@ -51,6 +51,7 @@ properties:
-               - renesas,vin-r8a77980 # R-Car V3H
-               - renesas,vin-r8a77990 # R-Car E3
-               - renesas,vin-r8a77995 # R-Car D3
-+              - renesas,vin-r8a779a0 # R-Car V3U
- 
-   reg:
-     maxItems: 1
-@@ -111,7 +112,7 @@ properties:
-     description: VIN channel number
-     $ref: /schemas/types.yaml#/definitions/uint32
-     minimum: 0
--    maximum: 15
-+    maximum: 31
- 
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
-@@ -187,6 +188,29 @@ properties:
-           - required:
-               - endpoint@3
- 
-+      port@2:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Input port node, multiple endpoints describing all the R-Car ISP
-+          modules connected the VIN.
-+
-+        properties:
-+          endpoint@0:
-+            $ref: /schemas/graph.yaml#/properties/endpoint
-+            description: Endpoint connected to ISP0.
-+
-+          endpoint@1:
-+            $ref: /schemas/graph.yaml#/properties/endpoint
-+            description: Endpoint connected to ISP1.
-+
-+          endpoint@2:
-+            $ref: /schemas/graph.yaml#/properties/endpoint
-+            description: Endpoint connected to ISP2.
-+
-+          endpoint@3:
-+            $ref: /schemas/graph.yaml#/properties/endpoint
-+            description: Endpoint connected to ISP3.
-+
- required:
-   - compatible
-   - reg
+Erwan Le Ray (3):
+  dt-bindings: serial: add RX and TX FIFO properties
+  dt-bindings: serial: stm32: override FIFO threshold properties
+  dt-bindings: serial: 8250: update TX FIFO trigger level
+
+Fabrice Gasnier (1):
+  serial: stm32: add FIFO threshold configuration
+
+ .../devicetree/bindings/serial/8250.yaml      |  1 -
+ .../devicetree/bindings/serial/serial.yaml    | 10 ++++
+ .../bindings/serial/st,stm32-uart.yaml        | 27 +++++++++-
+ drivers/tty/serial/stm32-usart.c              | 53 ++++++++++++++++---
+ drivers/tty/serial/stm32-usart.h              |  8 +--
+ 5 files changed, 85 insertions(+), 14 deletions(-)
+
 -- 
-2.31.1
+2.17.1
 
