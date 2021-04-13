@@ -2,252 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0CA035E5B1
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 19:54:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 841CB35E5B8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 19:56:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238932AbhDMRyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 13:54:50 -0400
-Received: from mail-pg1-f170.google.com ([209.85.215.170]:36667 "EHLO
-        mail-pg1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232240AbhDMRx5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 13:53:57 -0400
-Received: by mail-pg1-f170.google.com with SMTP id j7so3066413pgi.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 10:53:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=iGGtMZKX2YLInurh4BISwmydKhxsm8+tXWheKKbrJIs=;
-        b=rfQecIKorawU48j142/9Powbab19AS70OsdZMCxOaMfzjXotbKEKLhMqB6uU6S434u
-         CNZACcrqivLnL6gIbONfmDUaZX3MZLQYT6VbxNNuCP01E71jspFIvM+hyJsEEGNJNkz2
-         F4+6IzZzlfYkAiZl1QijjOIF5excLkeQOCZgco+bFM12pR7FfsUn8ySz/Gsd94lrxzes
-         FsgkyzWDs6g3CiqSZ8mMP3L2wcC4DhG2DrfvnQyhoMgwbCiUfW09Sb3xnMNd9BGo99s7
-         EN5TkCAHM4iiTi7H4C0H6LrwUIY9oL7Nexu4ySuBTf3o2XyZfA/Nw6EtZDtIClTX+Abw
-         tn5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iGGtMZKX2YLInurh4BISwmydKhxsm8+tXWheKKbrJIs=;
-        b=AKV27USMLAMafV1S8+d1+a0wxFx20NoAv8/a9LwZO2ehHKhyTyabHfxxTUXbqacuIe
-         YqTIE3wlkuknz5zdQ0KdgbGa9xJhxl00+dvnhnx3izZoEOU/wVoHDM23GfEddzxgksku
-         WcOMvb/BpMmFCPjo6zTw2LCGpa1Lf+DbN6JQCB6mMMMtb8A671Dm2YpyVicdJwe8C9aj
-         /qzdHMu9v6YVUUvTOelspPRRakg3MIr6nSS2ujboHi8GjmKQT7g7wUoiFBRHPXG15kjF
-         0c4l6sGweSdrZRf51GYwEI4/WQ2MTCL6/cr2y1TuEtyEjM9FDj3+ki5NWSNCBeGuFmQM
-         yHgw==
-X-Gm-Message-State: AOAM531yZZNaZDXcq6dctHhk9LdDKbduZ/dNmRhzY60F6GIKlaoWVtBw
-        unTnG7UT0kxYLttbNX1FrnNj2w==
-X-Google-Smtp-Source: ABdhPJyyEXg62i5BdZiDu0m3S1V8MbiV5Jtp4AJkMbfRpffdDq9CsEFWExEnMEN31utSbTMwGh4KWA==
-X-Received: by 2002:a63:650:: with SMTP id 77mr33021690pgg.190.1618336357575;
-        Tue, 13 Apr 2021 10:52:37 -0700 (PDT)
-Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id w16sm13047504pfj.87.2021.04.13.10.52.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Apr 2021 10:52:37 -0700 (PDT)
-Date:   Tue, 13 Apr 2021 11:52:35 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     peng.fan@oss.nxp.com
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        o.rempel@pengutronix.de, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V3 8/8] remoteproc: imx_rproc: support i.MX8MN/P
-Message-ID: <20210413175235.GF750651@xps15>
-References: <1617846898-13662-1-git-send-email-peng.fan@oss.nxp.com>
- <1617846898-13662-9-git-send-email-peng.fan@oss.nxp.com>
+        id S231710AbhDMR5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 13:57:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48008 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231336AbhDMR5E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 13:57:04 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AC35C061574
+        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 10:56:44 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lWNH9-0001gH-CJ; Tue, 13 Apr 2021 19:56:35 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lWNH8-0005v0-T8; Tue, 13 Apr 2021 19:56:34 +0200
+Date:   Tue, 13 Apr 2021 19:56:31 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Clemens Gruber <clemens.gruber@pqgruber.com>,
+        linux-pwm@vger.kernel.org, Sven Van Asbroeck <TheSven73@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v8 4/8] dt-bindings: pwm: Support new PWM_USAGE_POWER flag
+Message-ID: <20210413175631.pwbynvwmnn7oog4m@pengutronix.de>
+References: <20210412132745.76609-1-clemens.gruber@pqgruber.com>
+ <20210412132745.76609-4-clemens.gruber@pqgruber.com>
+ <20210412162723.7hlhgqp6wlfbkeky@pengutronix.de>
+ <YHWFs1f0XHkqbddp@orome.fritz.box>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ky54kfraiix4vkcz"
 Content-Disposition: inline
-In-Reply-To: <1617846898-13662-9-git-send-email-peng.fan@oss.nxp.com>
+In-Reply-To: <YHWFs1f0XHkqbddp@orome.fritz.box>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 08, 2021 at 09:54:58AM +0800, peng.fan@oss.nxp.com wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add i.MX8MN/P remote processor(Cortex-M7) support, we are using ARM
-> SMCCC to start/stop M core, not using regmap interface.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/remoteproc/imx_rproc.c | 89 +++++++++++++++++++++++++++++++---
->  1 file changed, 82 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-> index b911a7539897..9351626f09c0 100644
-> --- a/drivers/remoteproc/imx_rproc.c
-> +++ b/drivers/remoteproc/imx_rproc.c
-> @@ -3,6 +3,7 @@
->   * Copyright (c) 2017 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
->   */
->  
-> +#include <linux/arm-smccc.h>
->  #include <linux/clk.h>
->  #include <linux/err.h>
->  #include <linux/interrupt.h>
-> @@ -50,6 +51,11 @@
->  
->  #define IMX_RPROC_MEM_MAX		32
->  
-> +#define IMX_SIP_RPROC			0xC2000005
-> +#define IMX_SIP_RPROC_START		0x00
-> +#define IMX_SIP_RPROC_STARTED		0x01
-> +#define IMX_SIP_RPROC_STOP		0x02
-> +
->  /**
->   * struct imx_rproc_mem - slim internal memory structure
->   * @cpu_addr: MPU virtual address of the memory region
-> @@ -119,6 +125,36 @@ struct imx_rproc {
->  	enum imx_rproc_mode		mode;
->  };
->  
-> +static const struct imx_rproc_att imx_rproc_att_imx8mn[] = {
-> +	/* dev addr , sys addr  , size	    , flags */
-> +	/* ITCM   */
-> +	{ 0x00000000, 0x007E0000, 0x00020000, ATT_OWN },
-> +	/* OCRAM_S */
-> +	{ 0x00180000, 0x00180000, 0x00009000, 0 },
-> +	/* OCRAM */
-> +	{ 0x00900000, 0x00900000, 0x00020000, 0 },
-> +	/* OCRAM */
-> +	{ 0x00920000, 0x00920000, 0x00020000, 0 },
-> +	/* OCRAM */
-> +	{ 0x00940000, 0x00940000, 0x00050000, 0 },
-> +	/* QSPI Code - alias */
-> +	{ 0x08000000, 0x08000000, 0x08000000, 0 },
-> +	/* DDR (Code) - alias */
-> +	{ 0x10000000, 0x40000000, 0x0FFE0000, 0 },
-> +	/* DTCM */
-> +	{ 0x20000000, 0x00800000, 0x00020000, ATT_OWN },
-> +	/* OCRAM_S - alias */
-> +	{ 0x20180000, 0x00180000, 0x00008000, ATT_OWN },
-> +	/* OCRAM */
-> +	{ 0x20200000, 0x00900000, 0x00020000, ATT_OWN },
-> +	/* OCRAM */
-> +	{ 0x20220000, 0x00920000, 0x00020000, ATT_OWN },
-> +	/* OCRAM */
-> +	{ 0x20240000, 0x00940000, 0x00040000, ATT_OWN },
-> +	/* DDR (Data) */
-> +	{ 0x40000000, 0x40000000, 0x80000000, 0 },
-> +};
-> +
->  static const struct imx_rproc_att imx_rproc_att_imx8mq[] = {
->  	/* dev addr , sys addr  , size	    , flags */
->  	/* TCML - alias */
-> @@ -205,6 +241,12 @@ static const struct imx_rproc_att imx_rproc_att_imx6sx[] = {
->  	{ 0x80000000, 0x80000000, 0x60000000, 0 },
->  };
->  
-> +static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn = {
-> +	.att		= imx_rproc_att_imx8mn,
-> +	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
-> +	.method		= IMX_RPROC_SMC,
-> +};
-> +
->  static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mq = {
->  	.src_reg	= IMX7D_SRC_SCR,
->  	.src_mask	= IMX7D_M4_RST_MASK,
-> @@ -246,12 +288,24 @@ static int imx_rproc_start(struct rproc *rproc)
->  	struct imx_rproc *priv = rproc->priv;
->  	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
->  	struct device *dev = priv->dev;
-> +	struct arm_smccc_res res;
->  	int ret;
->  
-> -	ret = regmap_update_bits(priv->regmap, dcfg->src_reg,
-> -				 dcfg->src_mask, dcfg->src_start);
-> +	switch (dcfg->method) {
-> +	case IMX_RPROC_MMIO:
-> +		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
-> +					 dcfg->src_start);
-> +		break;
-> +	case IMX_RPROC_SMC:
-> +		arm_smccc_smc(IMX_SIP_RPROC, IMX_SIP_RPROC_START, 0, 0, 0, 0, 0, 0, &res);
-> +		ret = res.a0;
-> +		break;
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +
->  	if (ret)
-> -		dev_err(dev, "Failed to enable M4!\n");
-> +		dev_err(dev, "Failed to enable remote cores!\n");
->  
->  	return ret;
->  }
-> @@ -261,12 +315,26 @@ static int imx_rproc_stop(struct rproc *rproc)
->  	struct imx_rproc *priv = rproc->priv;
->  	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
->  	struct device *dev = priv->dev;
-> +	struct arm_smccc_res res;
->  	int ret;
->  
-> -	ret = regmap_update_bits(priv->regmap, dcfg->src_reg,
-> -				 dcfg->src_mask, dcfg->src_stop);
-> +	switch (dcfg->method) {
-> +	case IMX_RPROC_MMIO:
-> +		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
-> +					 dcfg->src_stop);
-> +		break;
-> +	case IMX_RPROC_SMC:
-> +		arm_smccc_smc(IMX_SIP_RPROC, IMX_SIP_RPROC_STOP, 0, 0, 0, 0, 0, 0, &res);
-> +		ret = res.a0;
-> +		if (res.a1)
-> +			dev_info(dev, "Not in wfi, force stopped\n");
-> +		break;
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +
->  	if (ret)
-> -		dev_err(dev, "Failed to stop M4!\n");
-> +		dev_err(dev, "Failed to stop remote cores\n");
->  
->  	return ret;
->  }
-> @@ -600,6 +668,7 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
->  {
->  	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
->  	struct device *dev = priv->dev;
-> +	struct arm_smccc_res res;
->  	int ret;
->  	u32 val;
->  
-> @@ -616,8 +685,12 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
->  			priv->mode = IMX_RPROC_EARLY_BOOT;
->  	}
->  
-> -	if (dcfg->method == IMX_RPROC_NONE)
-> +	if (dcfg->method == IMX_RPROC_NONE) {
->  		priv->mode = IMX_RPROC_EARLY_BOOT;
-> +	} else if (dcfg->method == IMX_RPROC_SMC) {
-> +		arm_smccc_smc(IMX_SIP_RPROC, IMX_SIP_RPROC_STARTED, 0, 0, 0, 0, 0, 0, &res);
-> +		priv->mode = res.a0 ? IMX_RPROC_EARLY_BOOT : IMX_RPROC_NORMAL;
-> +	}
 
-When all patches have been applied this function is really hard to read.  I
-suggest using a switch() statement like you did in imx_rproc_start() and
-imx_rproc_stop().
+--ky54kfraiix4vkcz
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-Mathieu
+On Tue, Apr 13, 2021 at 01:51:15PM +0200, Thierry Reding wrote:
+> On Mon, Apr 12, 2021 at 06:27:23PM +0200, Uwe Kleine-K=F6nig wrote:
+> > On Mon, Apr 12, 2021 at 03:27:41PM +0200, Clemens Gruber wrote:
+> > > Add the flag and corresponding documentation for PWM_USAGE_POWER.
+> >=20
+> > My concern here in the previous round was that PWM_USAGE_POWER isn't a
+> > name that intuitively suggests its semantic. Do you disagree?
+>=20
+> I suggested PWM_USAGE_POWER because I think it accurately captures what
+> we want here.
+>=20
+> > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/pwm/pwm.txt | 3 +++
+> > >  include/dt-bindings/pwm/pwm.h                 | 1 +
+> > >  2 files changed, 4 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/pwm/pwm.txt b/Document=
+ation/devicetree/bindings/pwm/pwm.txt
+> > > index 084886bd721e..fe3a28f887c0 100644
+> > > --- a/Documentation/devicetree/bindings/pwm/pwm.txt
+> > > +++ b/Documentation/devicetree/bindings/pwm/pwm.txt
+> > > @@ -46,6 +46,9 @@ period in nanoseconds.
+> > >  Optionally, the pwm-specifier can encode a number of flags (defined =
+in
+> > >  <dt-bindings/pwm/pwm.h>) in a third cell:
+> > >  - PWM_POLARITY_INVERTED: invert the PWM signal polarity
+> > > +- PWM_USAGE_POWER: Only care about the power output of the signal. T=
+his
+> > > +  allows drivers (if supported) to optimize the signals, for example=
+ to
+> > > +  improve EMI and reduce current spikes.
+> >=20
+> > IMHO there are too many open questions about which freedom this gives to
+> > the lowlevel driver. If the consumer requests .duty_cycle =3D 25ns +
+> > .period =3D 100ns, can the driver provide .duty_cycle =3D 25s + .period=
+ =3D
+> > 100s which nominally has the same power output? Let's not introduce more
+> > ambiguity than there already is.
+>=20
+> The freedom given to the driver should be to adjust the signal within
+> reasonable bounds. Changing the time unit by a factor of 1000000000 is
+> not within reason, and I doubt anyone would interpret it that way, even
+> if we didn't document this at all.
 
->  
->  	if (priv->mode == IMX_RPROC_EARLY_BOOT)
->  		priv->rproc->state = RPROC_DETACHED;
-> @@ -747,6 +820,8 @@ static const struct of_device_id imx_rproc_of_match[] = {
->  	{ .compatible = "fsl,imx6sx-cm4", .data = &imx_rproc_cfg_imx6sx },
->  	{ .compatible = "fsl,imx8mq-cm4", .data = &imx_rproc_cfg_imx8mq },
->  	{ .compatible = "fsl,imx8mm-cm4", .data = &imx_rproc_cfg_imx8mq },
-> +	{ .compatible = "fsl,imx8mn-cm7", .data = &imx_rproc_cfg_imx8mn },
-> +	{ .compatible = "fsl,imx8mp-cm7", .data = &imx_rproc_cfg_imx8mn },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, imx_rproc_of_match);
-> -- 
-> 2.30.0
-> 
+Please define a rule that allows to judge if any given implementation is
+correct or not. For the record neither "within reasonable bounds" nor "a
+factor of 1000000000 is not within reason" is good enough.
+
+This is not only important to be able to review drivers that implement
+it, but also for consumers, because they should know what to expect.
+
+> To be frank I think that quest of yours to try and rid the PWM API of
+> all ambiguity is futile.
+
+I consider my quest about rounding reasonable. And I think this is
+painful because when the PWM framework was introduced it was too much ad
+hoc and the APIs were not thought through enough. And because I don't
+want to have that repeated, I express my concerns here.
+
+> I've been trying to be lenient because you seem
+> motivated, but I think you're taking this too far. There are always
+> going to be cases that aren't completely clear-cut and where drivers
+> need the flexibility to cheat in order to be useful at all. If we get to
+> a point where everything needs to be 100% accurate, the majority of the
+> PWM controllers won't be usable at all.
+>=20
+> Don't let perfect be the enemy of good.
+
+I admit here I don't have a constructive idea how to define what is
+needed.
+
+For example if we only care about the relative duty cycle, a consumer
+requests
+
+	.period =3D 1045
+	.duty_cyle =3D 680
+
+and the driver can provide multiples of 100 ns for both .period and
+=2Eduty_cycle, the candidates that might be sensible to chose from are
+(IMHO):
+
+ - exact relative duty:
+
+	.period =3D 104500
+	.duty_cycle =3D 68000
+
+ - round both values in the same direction, minimizing error
+
+ 	.period =3D 1100
+	.duty_cycle =3D 700
+
+   (requested relative duty =3D 65.07%, implemented =3D 63.64%; when
+   rounding both down we get 60%)
+
+ - round both values mathematically:=20
+
+ 	.period =3D 1000
+	.duty_cycle =3D 700
+
+   (yielding a relative duty of 70% instead of the requested 65.07%)
+
+ - Maybe
+
+ 	.period =3D 1000
+	.duty_cycle =3D 600
+
+   might also be preferable for some consumers?! (60%)
+
+ - Maybe
+
+ 	.period =3D 2000
+	.duty_cycle =3D 1300
+
+   is a good compromise because the relative duty is nearly exactly
+   matched and the period is only stretched by a factor < 2.
+
+In my eyes a driver author should be told which of these options should
+be picked. Do you consider it obvious which of these options is the
+objective best? If so why? Do you agree that we should tell driver
+authors how to implement this before we have several drivers that all
+implement their own ideas and getting this in a consistent state is
+another pain?
+
+(My bet is you are lax and don't consider consistency among drivers soo
+important. In this case we don't agree. I think it's important for
+consumer driver authors to be able to rely on some expectations
+independently which lowlevel driver is in use.)
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--ky54kfraiix4vkcz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmB120wACgkQwfwUeK3K
+7AkVXwf/Q85RA3Alm9y+oU4JSwFqQYvgpIdHmvqarGeBuncdhYUjiRnnB/UV9EKU
+auNZVYY4/+EtObhL/oBZti5V/tpLAO+aleSPwVr7ZmJvm6CtRjS2JTVS1FAQd195
+UdSVBzCVF46uo7UViXZH9UGnohYl3+HxvAZSxL2z+AAoRyBG57zVFDZu0vbRH6Xl
+o8Q0Jysl4pcMpWE2yLgI6aXDnUeNxaQikJy1nT3wU+g6FRngCQQNSwbYrz3GJ7L2
+fgmZ6fIu7kEusztqdSQmmAa9/Ts1qQVCAuf+Zz+NcbFaaDdHou0lgM6T+ASe5M5U
+6hsKqu9Q4qzg6/o4C1I/k2+yw20bww==
+=YLWV
+-----END PGP SIGNATURE-----
+
+--ky54kfraiix4vkcz--
