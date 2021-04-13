@@ -2,388 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39BDA35D50C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 04:01:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E386235D526
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 04:11:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241340AbhDMCAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 22:00:52 -0400
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:62544 "EHLO
-        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241299AbhDMCAv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Apr 2021 22:00:51 -0400
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 12 Apr 2021 19:00:29 -0700
-X-QCInternal: smtphost
-Received: from gurus-linux.qualcomm.com (HELO gurus-linux.localdomain) ([10.46.162.81])
-  by ironmsg01-sd.qualcomm.com with ESMTP; 12 Apr 2021 19:00:29 -0700
-Received: by gurus-linux.localdomain (Postfix, from userid 383780)
-        id 7627018C5; Mon, 12 Apr 2021 19:00:29 -0700 (PDT)
-From:   Guru Das Srinagesh <gurus@codeaurora.org>
-To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Guru Das Srinagesh <gurus@codeaurora.org>
-Subject: [PATCH v3 3/3] mfd: pm8008: Add driver for QCOM PM8008 PMIC
-Date:   Mon, 12 Apr 2021 19:00:27 -0700
-Message-Id: <a5d5f532ebd28f03b3236003a519adb68a979506.1618278453.git.gurus@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1618278453.git.gurus@codeaurora.org>
-References: <cover.1618278453.git.gurus@codeaurora.org>
-In-Reply-To: <cover.1618278453.git.gurus@codeaurora.org>
-References: <cover.1618278453.git.gurus@codeaurora.org>
+        id S240902AbhDMCL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 22:11:59 -0400
+Received: from mail-eopbgr1300139.outbound.protection.outlook.com ([40.107.130.139]:29568
+        "EHLO APC01-HK2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S239254AbhDMCL5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Apr 2021 22:11:57 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AtJ3ukqLuGSdXiZYRcAiUs0FF/uXiHrdqRbulrth59M9o5hBpRNP+v7hMEIMVYZHtGGUHliJREsVwVLcRIDdddOGj8OzwqiQBgaGUE84WntyGgZ+mVJXnbVjbk+56XBXMM6xDfU1vHZKuppTtl17lICgxYILNlBVfMl+rxOkByQEnuy7NTT5jnJZyRcLe84jQeBpgrrhe4l8KZGmSyvpxm+3nGaoqLGFqXp3M0IQh9yZT5cYN5y6VGugfuMmZAvFe7EeuARxp48/F2Fcu38y+GMfbrhWcG/6ERBt5h5FHS1xcWkv1gNboRoCDpjPRk8oQRSNI4If/bvX57byHq31qw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RtFkONwTsv4YY8agLXNOZThLsllqfV5U6g9hvd3Ksow=;
+ b=bKG3MRkFj5u/g1mKn+dT00uODhoSs3ypM8ewqjIOpDGZbq5+D7ZctTInLB7dhN0FQV1RRst630Xfp1e8kjqgH1lGSIXVjbUnNCSuoBo/Qulic0G7PxozkEG3N1cjwatIiRnq3SnDxj2/8D/mZEoo3i4c9V6Wm6UaA1HV2rDv1sau3qCFlDyGTCRMtru/jgtw87TjaJ0YPWdRfUATnMha4hW/oQg5PlAmpJwJOqUhpCvTnTcx8gW9FGD0x/FcG7u1/D+kIUscMGyMfFmYq8EAWy88UfGUH4uj3qeWzqQUk2IOo/xCYPP8tJr8CTQxCg7miw8Q9sc52Wm854SRJyU+Ig==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+Received: from HK0PR06MB3362.apcprd06.prod.outlook.com (2603:1096:203:8b::10)
+ by HK2PR06MB3537.apcprd06.prod.outlook.com (2603:1096:202:36::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.21; Tue, 13 Apr
+ 2021 02:11:30 +0000
+Received: from HK0PR06MB3362.apcprd06.prod.outlook.com
+ ([fe80::4d49:12fe:2d9a:b1bd]) by HK0PR06MB3362.apcprd06.prod.outlook.com
+ ([fe80::4d49:12fe:2d9a:b1bd%3]) with mapi id 15.20.4020.022; Tue, 13 Apr 2021
+ 02:11:30 +0000
+From:   Billy Tsai <billy_tsai@aspeedtech.com>
+To:     =?utf-8?B?VXdlIEtsZWluZS1Lw7ZuaWc=?= 
+        <u.kleine-koenig@pengutronix.de>
+CC:     "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "billy_tasi@aspeedtech.com" <billy_tasi@aspeedtech.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>
+Subject: Re: [PATCH 4/4] pwm: Add support for aspeed pwm controller
+Thread-Topic: [PATCH 4/4] pwm: Add support for aspeed pwm controller
+Thread-Index: AQHXL4HkpEnvYhPT9U6/7p/B4+axNaqwutwAgAGA3YA=
+Date:   Tue, 13 Apr 2021 02:11:30 +0000
+Message-ID: <BAD0AD58-BE95-4EF2-BC3F-EFAA19A91965@aspeedtech.com>
+References: <20210412095457.15095-1-billy_tsai@aspeedtech.com>
+ <20210412095457.15095-5-billy_tsai@aspeedtech.com>
+ <20210412111400.w4yafy2r2lcy3qqv@pengutronix.de>
+In-Reply-To: <20210412111400.w4yafy2r2lcy3qqv@pengutronix.de>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: pengutronix.de; dkim=none (message not signed)
+ header.d=none;pengutronix.de; dmarc=none action=none
+ header.from=aspeedtech.com;
+x-originating-ip: [211.20.114.70]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: acf280fe-c321-4469-d16d-08d8fe2173bd
+x-ms-traffictypediagnostic: HK2PR06MB3537:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <HK2PR06MB353703725F848F10BCD7A6C78B4F9@HK2PR06MB3537.apcprd06.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 5u4ME1wft5yNZjvJ7oiG4xvQ51pt7QTK/NDFTiGO8/EHt/dOQh34cmvpevXpvlupY0KBXr0TScPEBraExoQYqdIczfkJWKtQJ3JCBxTk6xMmgpcIhJO35aJAX3X0JM37o2t0ke73KrC85JMXTinPko1Ri2J4ReS08vNC+w6gku/n+VfTeqUHHc3wRvyLAS8nuMOpAlVO5Y39Zom2Wr1Wf4mr/Q07VkPNjj5b/eGQgPJHopnLkCuJSwv377bSuuqeV7jM6zzOhjCAb8us1foDTRm5KrMPifGkOPWVBvtjGVs0VfpGffWwL1gf0rCroGDex5AXISZrS+600Rt7RRUQrcIQr33J1eaxvm8NrN9t2ysUSffJakQ2lAWSn0xM7EiyjLTdQUJ0G9c32yQKst026SjwGWQpjdpb+aBINJ8Hcgn2jMIzxShow9Jovbkl/sTyOTcOwPyYh5Pa2rFXGh+xMYBtlwSJBZ3cE4xh3Qq1SGMIA+43Qf1pFJX6Pxoch1Z5+VgFBU8gBvpnQ4kSB/q12DQ8WNbY1lC0dhkIomFDh6YUraYvKqDSmDXFDwiV0tP+QIfU/TC91GPEoHMjYy/yku51PMFVDK7kuLHCtaSIbgtfKLcGFm+deszX1dDOmKiFqmo9HazpEVyGeoQp2WYAAvay/hpdWeype5XW6sn44bMx0qlWPvZouGo7476fTPCERUn55BNBVAbEvcmXXnQxhPRoEQuSnQzWniEiqgK2VhQxdTqldB/MKXtO58p+uJub
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3362.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(376002)(136003)(396003)(346002)(39840400004)(71200400001)(38100700002)(76116006)(107886003)(66476007)(66946007)(33656002)(64756008)(66446008)(7416002)(66556008)(6506007)(54906003)(6512007)(8676002)(55236004)(5660300002)(2906002)(4326008)(6916009)(478600001)(26005)(86362001)(6486002)(36756003)(966005)(316002)(2616005)(66574015)(8936002)(186003)(122000001)(45980500001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: axW2e844Y3ISbp+wwEYlsqyunoTro8Ki6wOmysjGdl4DQcPd1+9GYqGjkWHEDMnr9flS3XHNxgsiHDTS3y3/O0zZRzluq5OULAt/GWgs1s2zzcS9yDH1/9IH83HE1Dn/HGBGB9nrQqf+hIRyibGBG5O++678URMOP70eedoUs8YS8v/jO+adohLWLnbcWnWyB2DaORd8nshesSyHn25A4jHaizZL0VQ5wH83HJv2YCHnSA/zQqfdnKl7HzsmzRNhtbErlx1RjnUjATHydF/0NQQJRIEUO5G2PZ+BiFPJ/hI/5F6xJ1Ju4yLDTGt0S/7AFLpHfbBHzLWrBRPcHjxidUilhgOOj769MJxQu0DOTv3FlSvHv9ymNztEVn3jOD4JJaTXdXbIi24C5cD3HyVUFMcRbPd8OJKQ7Yp73q34kX36HmVtfxmk0yMC3VKWLEldeqxK0vF8VQYDixsH9Jd8eAxbg8ZJi3DvNdnCv1v8UsWI7md5XjznYncbbElkGYbpGRZmpUV3acKF1Aq/Fjl5RCW5vIhNJ3n0sBvhJCgaVFHSDS1f0RCMvbI2v8YbiDv+f12etDI91flRWaza7qq+qQT+ocblmpDv+3By7KuN2Xldv1LtLgW65PopZtNGkWPkSTGrtsupijXIwDJeB3mF5XYqlaHhWRVU0K9AYXrh8DRVs8VOtV5DCc3seygH6w9hgqVVnRMQQFYWaE6fyW/Ss5umcoCDE1OyC/ISOgJENZwP+9CHpP9jn4q7ISawduIU
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <95FB6D91137D5E42B958F38694EDCE15@apcprd06.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3362.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: acf280fe-c321-4469-d16d-08d8fe2173bd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Apr 2021 02:11:30.1121
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: NIEjRLeydxa5WGPTxvDKzKmG/PVN0e5yErJIvlNpzyeRjk0Smq9uqhgPOJVLKSGUFDjF4vn1wrIktW4JDP2kLAH2OzBQddk2SFr6xIZHYL8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR06MB3537
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qualcomm Technologies, Inc. PM8008 is a dedicated camera PMIC that
-integrates all the necessary power management, housekeeping, and
-interface support functions into a single IC. Its key features include
-overtemperature protection, low-dropout linear regulators, GPIOs, and an
-I2C interface.
-
-Add an MFD driver to support it.
-
-Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
----
- drivers/mfd/Kconfig       |  15 +++
- drivers/mfd/Makefile      |   1 +
- drivers/mfd/qcom-pm8008.c | 284 ++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 300 insertions(+)
- create mode 100644 drivers/mfd/qcom-pm8008.c
-
-diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-index b74efa4..d75f937 100644
---- a/drivers/mfd/Kconfig
-+++ b/drivers/mfd/Kconfig
-@@ -2087,6 +2087,21 @@ config MFD_ACER_A500_EC
- 	  The controller itself is ENE KB930, it is running firmware
- 	  customized for the specific needs of the Acer A500 hardware.
- 
-+config MFD_QCOM_PM8008
-+	tristate "QCOM PM8008 Power Management IC"
-+	depends on I2C && OF
-+	select REGMAP_I2C
-+	select REGMAP_IRQ
-+	help
-+	  Select this option to get support for the Qualcomm Technologies, Inc.
-+	  PM8008 PMIC chip. PM8008 is a dedicated camera PMIC that integrates
-+	  all the necessary power management, housekeeping, and interface
-+	  support functions into a single IC. This driver provides common
-+	  support for accessing the device by instantiating all the child nodes
-+	  under it in the device tree. Additional drivers must be enabled in
-+	  order to use the functionality of the device.
-+
-+
- menu "Multimedia Capabilities Port drivers"
- 	depends on ARCH_SA1100
- 
-diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-index 834f546..a5dda823 100644
---- a/drivers/mfd/Makefile
-+++ b/drivers/mfd/Makefile
-@@ -264,6 +264,7 @@ obj-$(CONFIG_MFD_ROHM_BD718XX)	+= rohm-bd718x7.o
- obj-$(CONFIG_MFD_STMFX) 	+= stmfx.o
- obj-$(CONFIG_MFD_KHADAS_MCU) 	+= khadas-mcu.o
- obj-$(CONFIG_MFD_ACER_A500_EC)	+= acer-ec-a500.o
-+obj-$(CONFIG_MFD_QCOM_PM8008)	+= qcom-pm8008.o
- 
- obj-$(CONFIG_SGI_MFD_IOC3)	+= ioc3.o
- obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)	+= simple-mfd-i2c.o
-diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
-new file mode 100644
-index 0000000..9315389
---- /dev/null
-+++ b/drivers/mfd/qcom-pm8008.c
-@@ -0,0 +1,284 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+ */
-+
-+#include <linux/bitops.h>
-+#include <linux/i2c.h>
-+#include <linux/interrupt.h>
-+#include <linux/irq.h>
-+#include <linux/irqdomain.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/pinctrl/consumer.h>
-+#include <linux/regmap.h>
-+#include <linux/slab.h>
-+#include <linux/of_device.h>
-+#include <dt-bindings/mfd/qcom-pm8008.h>
-+
-+#define I2C_INTR_STATUS_BASE	0x0550
-+#define INT_RT_STS_OFFSET	0x10
-+#define INT_SET_TYPE_OFFSET	0x11
-+#define INT_POL_HIGH_OFFSET	0x12
-+#define INT_POL_LOW_OFFSET	0x13
-+#define INT_LATCHED_CLR_OFFSET	0x14
-+#define INT_EN_SET_OFFSET	0x15
-+#define INT_EN_CLR_OFFSET	0x16
-+#define INT_LATCHED_STS_OFFSET	0x18
-+
-+enum {
-+	PM8008_MISC,
-+	PM8008_TEMP_ALARM,
-+	PM8008_GPIO1,
-+	PM8008_GPIO2,
-+	PM8008_NUM_PERIPHS,
-+};
-+
-+#define PM8008_PERIPH_0_BASE	0x900
-+#define PM8008_PERIPH_1_BASE	0x2400
-+#define PM8008_PERIPH_2_BASE	0xC000
-+#define PM8008_PERIPH_3_BASE	0xC100
-+
-+#define PM8008_TEMP_ALARM_ADDR	PM8008_PERIPH_1_BASE
-+#define PM8008_GPIO1_ADDR	PM8008_PERIPH_2_BASE
-+#define PM8008_GPIO2_ADDR	PM8008_PERIPH_3_BASE
-+
-+#define PM8008_STATUS_BASE	(PM8008_PERIPH_0_BASE | INT_LATCHED_STS_OFFSET)
-+#define PM8008_MASK_BASE	(PM8008_PERIPH_0_BASE | INT_EN_SET_OFFSET)
-+#define PM8008_UNMASK_BASE	(PM8008_PERIPH_0_BASE | INT_EN_CLR_OFFSET)
-+#define PM8008_TYPE_BASE	(PM8008_PERIPH_0_BASE | INT_SET_TYPE_OFFSET)
-+#define PM8008_ACK_BASE		(PM8008_PERIPH_0_BASE | INT_LATCHED_CLR_OFFSET)
-+#define PM8008_POLARITY_HI_BASE	(PM8008_PERIPH_0_BASE | INT_POL_HIGH_OFFSET)
-+#define PM8008_POLARITY_LO_BASE	(PM8008_PERIPH_0_BASE | INT_POL_LOW_OFFSET)
-+
-+#define ADDRESS_OFFSET(paddr, base)	(paddr - base)
-+
-+#define PM8008_PERIPH_OFFSET(paddr)	\
-+	ADDRESS_OFFSET(paddr, PM8008_PERIPH_0_BASE)
-+
-+struct pm8008_data {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	int irq;
-+	struct regmap_irq_chip_data *irq_data;
-+};
-+
-+static unsigned int p0_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_0_BASE)};
-+static unsigned int p1_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_1_BASE)};
-+static unsigned int p2_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_2_BASE)};
-+static unsigned int p3_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_3_BASE)};
-+
-+static struct regmap_irq_sub_irq_map pm8008_sub_reg_offsets[] = {
-+	REGMAP_IRQ_MAIN_REG_OFFSET(p0_offs),
-+	REGMAP_IRQ_MAIN_REG_OFFSET(p1_offs),
-+	REGMAP_IRQ_MAIN_REG_OFFSET(p2_offs),
-+	REGMAP_IRQ_MAIN_REG_OFFSET(p3_offs),
-+};
-+
-+static unsigned int pm8008_virt_regs[] = {
-+	PM8008_POLARITY_HI_BASE,
-+	PM8008_POLARITY_LO_BASE,
-+};
-+
-+enum {
-+	POLARITY_HI_INDEX,
-+	POLARITY_LO_INDEX,
-+	PM8008_NUM_VIRT_REGS,
-+};
-+
-+static struct regmap_irq pm8008_irqs[] = {
-+	/* MISC IRQs*/
-+	REGMAP_IRQ_REG(PM8008_IRQ_MISC_UVLO,	PM8008_MISC,	BIT(0)),
-+	REGMAP_IRQ_REG(PM8008_IRQ_MISC_OVLO,	PM8008_MISC,	BIT(1)),
-+	REGMAP_IRQ_REG(PM8008_IRQ_MISC_OTST2,	PM8008_MISC,	BIT(2)),
-+	REGMAP_IRQ_REG(PM8008_IRQ_MISC_OTST3,	PM8008_MISC,	BIT(3)),
-+	REGMAP_IRQ_REG(PM8008_IRQ_MISC_LDO_OCP,	PM8008_MISC,	BIT(4)),
-+	/* TEMP_ALARM IRQs */
-+	REGMAP_IRQ_REG(PM8008_IRQ_TEMP_ALARM,	PM8008_TEMP_ALARM, BIT(0)),
-+	/* GPIO1 IRQs */
-+	REGMAP_IRQ_REG(PM8008_IRQ_GPIO1,	PM8008_GPIO1,	BIT(0)),
-+	/* GPIO2 IRQs */
-+	REGMAP_IRQ_REG(PM8008_IRQ_GPIO2,	PM8008_GPIO2,	BIT(0)),
-+};
-+
-+static int pm8008_set_type_virt(unsigned int **virt_buf,
-+				      unsigned int type, unsigned long hwirq,
-+				      int reg)
-+{
-+	switch (type) {
-+	case IRQ_TYPE_EDGE_FALLING:
-+	case IRQ_TYPE_LEVEL_LOW:
-+		virt_buf[POLARITY_HI_INDEX][reg] &= ~pm8008_irqs[hwirq].mask;
-+		virt_buf[POLARITY_LO_INDEX][reg] |= pm8008_irqs[hwirq].mask;
-+		break;
-+
-+	case IRQ_TYPE_EDGE_RISING:
-+	case IRQ_TYPE_LEVEL_HIGH:
-+		virt_buf[POLARITY_HI_INDEX][reg] |= pm8008_irqs[hwirq].mask;
-+		virt_buf[POLARITY_LO_INDEX][reg] &= ~pm8008_irqs[hwirq].mask;
-+		break;
-+
-+	case IRQ_TYPE_EDGE_BOTH:
-+		virt_buf[POLARITY_HI_INDEX][reg] |= pm8008_irqs[hwirq].mask;
-+		virt_buf[POLARITY_LO_INDEX][reg] |= pm8008_irqs[hwirq].mask;
-+		break;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static struct regmap_irq_chip pm8008_irq_chip = {
-+	.name			= "pm8008_irq",
-+	.main_status		= I2C_INTR_STATUS_BASE,
-+	.num_main_regs		= 1,
-+	.num_virt_regs		= PM8008_NUM_VIRT_REGS,
-+	.irqs			= pm8008_irqs,
-+	.num_irqs		= ARRAY_SIZE(pm8008_irqs),
-+	.num_regs		= PM8008_NUM_PERIPHS,
-+	.not_fixed_stride	= true,
-+	.sub_reg_offsets	= pm8008_sub_reg_offsets,
-+	.set_type_virt		= pm8008_set_type_virt,
-+	.status_base		= PM8008_STATUS_BASE,
-+	.mask_base		= PM8008_MASK_BASE,
-+	.unmask_base		= PM8008_UNMASK_BASE,
-+	.type_base		= PM8008_TYPE_BASE,
-+	.ack_base		= PM8008_ACK_BASE,
-+	.virt_reg_base		= pm8008_virt_regs,
-+	.num_type_reg		= PM8008_NUM_PERIPHS,
-+};
-+
-+static struct regmap_config qcom_mfd_regmap_cfg = {
-+	.reg_bits	= 16,
-+	.val_bits	= 8,
-+	.max_register	= 0xFFFF,
-+};
-+
-+static int pm8008_init(struct pm8008_data *chip)
-+{
-+	int rc;
-+
-+	/*
-+	 * Set TEMP_ALARM peripheral's TYPE so that the regmap-irq framework
-+	 * reads this as the default value instead of zero, the HW default.
-+	 * This is required to enable the writing of TYPE registers in
-+	 * regmap_irq_sync_unlock().
-+	 */
-+	rc = regmap_write(chip->regmap,
-+			 (PM8008_TEMP_ALARM_ADDR | INT_SET_TYPE_OFFSET),
-+			 BIT(0));
-+	if (rc)
-+		return rc;
-+
-+	/* Do the same for GPIO1 and GPIO2 peripherals */
-+	rc = regmap_write(chip->regmap,
-+			 (PM8008_GPIO1_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
-+	if (rc)
-+		return rc;
-+
-+	rc = regmap_write(chip->regmap,
-+			 (PM8008_GPIO2_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
-+
-+	return rc;
-+}
-+
-+static int pm8008_probe_irq_peripherals(struct pm8008_data *chip,
-+					int client_irq)
-+{
-+	int rc, i;
-+	struct regmap_irq_type *type;
-+	struct regmap_irq_chip_data *irq_data;
-+
-+	rc = pm8008_init(chip);
-+	if (rc) {
-+		dev_err(chip->dev, "Init failed: %d\n", rc);
-+		return rc;
-+	}
-+
-+	for (i = 0; i < ARRAY_SIZE(pm8008_irqs); i++) {
-+		type = &pm8008_irqs[i].type;
-+
-+		type->type_reg_offset	  = pm8008_irqs[i].reg_offset;
-+		type->type_rising_val	  = pm8008_irqs[i].mask;
-+		type->type_falling_val	  = pm8008_irqs[i].mask;
-+		type->type_level_high_val = 0;
-+		type->type_level_low_val  = 0;
-+
-+		if (type->type_reg_offset == PM8008_MISC)
-+			type->types_supported = IRQ_TYPE_EDGE_RISING;
-+		else
-+			type->types_supported = (IRQ_TYPE_EDGE_BOTH |
-+				IRQ_TYPE_LEVEL_HIGH | IRQ_TYPE_LEVEL_LOW);
-+	}
-+
-+	rc = devm_regmap_add_irq_chip(chip->dev, chip->regmap, client_irq,
-+			IRQF_SHARED, 0, &pm8008_irq_chip, &irq_data);
-+	if (rc) {
-+		dev_err(chip->dev, "Failed to add IRQ chip: %d\n", rc);
-+		return rc;
-+	}
-+
-+	return 0;
-+}
-+
-+static int pm8008_probe(struct i2c_client *client,
-+			     const struct i2c_device_id *id)
-+{
-+	int rc;
-+	struct pm8008_data *chip;
-+
-+	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
-+	if (!chip)
-+		return -ENOMEM;
-+
-+	chip->dev = &client->dev;
-+	chip->regmap = devm_regmap_init_i2c(client, &qcom_mfd_regmap_cfg);
-+	if (!chip->regmap)
-+		return -ENODEV;
-+
-+	i2c_set_clientdata(client, chip);
-+
-+	if (of_find_property(chip->dev->of_node, "interrupt-controller",
-+			     NULL)) {
-+		rc = pm8008_probe_irq_peripherals(chip, client->irq);
-+		if (rc)
-+			dev_err(chip->dev, "Failed to probe irq periphs: %d\n",
-+				rc);
-+	}
-+
-+	return devm_of_platform_populate(chip->dev);
-+}
-+
-+static int pm8008_remove(struct i2c_client *client)
-+{
-+	i2c_set_clientdata(client, NULL);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id pm8008_match[] = {
-+	{ .compatible = "qcom,pm8008", },
-+	{ },
-+};
-+
-+static const struct i2c_device_id pm8008_id[] = {
-+	{ "pm8008", 0 },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(i2c, pm8008_id);
-+
-+static struct i2c_driver pm8008_mfd_driver = {
-+	.driver = {
-+		.name = "mfd-pm8008",
-+		.of_match_table = pm8008_match,
-+	},
-+	.probe		= pm8008_probe,
-+	.remove		= pm8008_remove,
-+	.id_table	= pm8008_id,
-+};
-+module_i2c_driver(pm8008_mfd_driver);
-+
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("i2c:qcom-pm8008");
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
-
+VGhhbmtzIGZvciB5b3VyIHJldmlldw0KDQpCZXN0IFJlZ2FyZHMsDQpCaWxseSBUc2FpDQoNCk9u
+IDIwMjEvNC8xMiwgNzoxNCBQTSxVd2UgS2xlaW5lLUvDtm5pZ3dyb3RlOg0KDQogICAgPkhlbGxv
+LA0KDQogICAgPk9uIE1vbiwgQXByIDEyLCAyMDIxIGF0IDA1OjU0OjU3UE0gKzA4MDAsIEJpbGx5
+IFRzYWkgd3JvdGU6DQogICAgPj4gQWRkIHN1cHBvcnQgZm9yIHRoZSBwd20gY29udHJvbGxlciB3
+aGljaCBjYW4gYmUgZm91bmQgYXQgYXNwZWVkIGFzdDI2MDANCiAgICA+PiBzb2MuIFRoaXMgZHJp
+dmVyIGlzIHBhcnQgZnVuY3Rpb24gb2YgbXVsdGktZnVuY2l0b24gb2YgZGV2aWNlICJwd20tdGFj
+aA0KICAgID4+IGNvbnRyb2xsZXIiLg0KDQogICAgPnBsZWFzZSBzcXVhc2ggdGhpcyBpbnRvIHBh
+dGNoIDMuDQoNCk9LLCBJIHdpbGwgc3F1YXNoIGl0IHdoZW4gc2VuZGluZyB2Mi4NCg0KICAgID4+
+IFNpZ25lZC1vZmYtYnk6IEJpbGx5IFRzYWkgPGJpbGx5X3RzYWlAYXNwZWVkdGVjaC5jb20+DQog
+ICAgPj4gLS0tDQogICAgPj4gIGRyaXZlcnMvcHdtL0tjb25maWcgIHwgNiArKysrKysNCiAgICA+
+PiAgZHJpdmVycy9wd20vTWFrZWZpbGUgfCAxICsNCiAgICA+PiAgMiBmaWxlcyBjaGFuZ2VkLCA3
+IGluc2VydGlvbnMoKykNCiAgICA+PiANCiAgICA+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9wd20v
+S2NvbmZpZyBiL2RyaXZlcnMvcHdtL0tjb25maWcNCiAgICA+PiBpbmRleCA2M2JlNTM2MmZkM2Eu
+Ljk0N2VkNjQyZGViZSAxMDA2NDQNCiAgICA+PiAtLS0gYS9kcml2ZXJzL3B3bS9LY29uZmlnDQog
+ICAgPj4gKysrIGIvZHJpdmVycy9wd20vS2NvbmZpZw0KICAgID4+IEBAIC00Miw2ICs0MiwxMiBA
+QCBjb25maWcgUFdNX0RFQlVHDQogICAgPj4gIAkgIEl0IGlzIGV4cGVjdGVkIHRvIGludHJvZHVj
+ZSBzb21lIHJ1bnRpbWUgb3ZlcmhlYWQgYW5kIGRpYWdub3N0aWMNCiAgICA+PiAgCSAgb3V0cHV0
+IHRvIHRoZSBrZXJuZWwgbG9nLCBzbyBvbmx5IGVuYWJsZSB3aGlsZSB3b3JraW5nIG9uIGEgZHJp
+dmVyLg0KICAgID4+ICANCiAgICA+PiArY29uZmlnIFBXTV9BU1BFRURfRzYNCiAgICA+PiArCXRy
+aXN0YXRlICJBU1BFRURHNiBQV00gc3VwcG9ydCINCg0KICAgID5ObyBkZXBlbmRzPw0KDQpJIHdp
+bGwgYWRkICJkZXBlbmRzIG9uIChBUkNIX0FTUEVFRCB8fCBDT01QSUxFX1RFU1QpIiBmb3IgdGhp
+cyBjb25maWd1cmUuDQoNCiAgICA+QmVzdCByZWdhcmRzDQogICAgPlV3ZQ0KDQogICAgPi0tIA0K
+ICAgID5QZW5ndXRyb25peCBlLksuICAgICAgICAgICAgICAgICAgICAgICAgICAgfCBVd2UgS2xl
+aW5lLUvDtm5pZyAgICAgICAgICAgIHwNCiAgICA+SW5kdXN0cmlhbCBMaW51eCBTb2x1dGlvbnMg
+ICAgICAgICAgICAgICAgIHwgaHR0cHM6Ly93d3cucGVuZ3V0cm9uaXguZGUvIHwNCg0K
