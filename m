@@ -2,161 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1199535D4D5
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 03:31:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27E8835D4FB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 03:52:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240104AbhDMBbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 21:31:50 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:39373 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237080AbhDMBbt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 21:31:49 -0400
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 13D1Js6L080544;
-        Tue, 13 Apr 2021 09:19:54 +0800 (GMT-8)
-        (envelope-from steven_lee@aspeedtech.com)
-Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 13 Apr
- 2021 09:30:18 +0800
-Date:   Tue, 13 Apr 2021 09:30:10 +0800
-From:   Steven Lee <steven_lee@aspeedtech.com>
+        id S237718AbhDMBwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 21:52:33 -0400
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:7118 "EHLO
+        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S241058AbhDMBwc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Apr 2021 21:52:32 -0400
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 12 Apr 2021 18:52:13 -0700
+X-QCInternal: smtphost
+Received: from gurus-linux.qualcomm.com (HELO gurus-linux.localdomain) ([10.46.162.81])
+  by ironmsg01-sd.qualcomm.com with ESMTP; 12 Apr 2021 18:52:13 -0700
+Received: by gurus-linux.localdomain (Postfix, from userid 383780)
+        id 418EF1B19; Mon, 12 Apr 2021 18:52:13 -0700 (PDT)
+Date:   Mon, 12 Apr 2021 18:52:13 -0700
+From:   Guru Das Srinagesh <gurus@codeaurora.org>
 To:     Rob Herring <robh@kernel.org>
-CC:     Andrew Jeffery <andrew@aj.id.au>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        "Ryan Chen" <ryanchen.aspeed@gmail.com>,
-        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
-        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
-        "open list:ASPEED SD/MMC DRIVER" <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: mmc: sdhci-of-aspeed: Add power-gpio
- and power-switch-gpio
-Message-ID: <20210413013010.GA353@aspeedtech.com>
-References: <20210408015218.20560-1-steven_lee@aspeedtech.com>
- <20210408015218.20560-2-steven_lee@aspeedtech.com>
- <20210409184118.GA3934798@robh.at.kernel.org>
+Cc:     Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: mfd: pm8008: Add bindings
+Message-ID: <20210413015213.GA32212@codeaurora.org>
+References: <cover.1618015804.git.gurus@codeaurora.org>
+ <787cb004e6e7db766f68cb7ace9028c37085088a.1618015804.git.gurus@codeaurora.org>
+ <20210412193748.GA53049@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210409184118.GA3934798@robh.at.kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [192.168.100.253]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 13D1Js6L080544
+In-Reply-To: <20210412193748.GA53049@robh.at.kernel.org>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 04/10/2021 02:41, Rob Herring wrote:
-> On Thu, Apr 08, 2021 at 09:52:17AM +0800, Steven Lee wrote:
-> > AST2600-A2 EVB provides the reference design for enabling SD bus power
-> > and toggling SD bus signal voltage by GPIO pins.
-> > Add the definition and example for power-gpio and power-switch-gpio
-> > properties.
+On Mon, Apr 12, 2021 at 02:37:48PM -0500, Rob Herring wrote:
+> On Fri, Apr 09, 2021 at 05:55:01PM -0700, Guru Das Srinagesh wrote:
+> > Add bindings for the Qualcomm Technologies, Inc. PM8008 MFD driver.
 > > 
-> > In the reference design, GPIOV0 of AST2600-A2 EVB is connected to power
-> > load switch that providing 3.3v to SD1 bus vdd. GPIOV1 is connected to
-> > a 1.8v and a 3.3v power load switch that providing signal voltage to
-> > SD1 bus.
-> > If GPIOV0 is active high, SD1 bus is enabled. Otherwise, SD1 bus is
-> > disabled.
-> > If GPIOV1 is active high, 3.3v power load switch is enabled, SD1 signal
-> > voltage is 3.3v. Otherwise, 1.8v power load switch will be enabled, SD1
-> > signal voltage becomes 1.8v.
-> > 
-> > AST2600-A2 EVB also support toggling signal voltage for SD2 bus.
-> > The design is the same as SD1 bus. It uses GPIOV2 as power-gpio and GPIOV3
-> > as power-switch-gpio.
-> > 
-> > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> > Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
 > > ---
-> >  .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 25 +++++++++++++++++++
-> >  1 file changed, 25 insertions(+)
+> >  .../devicetree/bindings/mfd/qcom,pm8008.yaml       | 119 +++++++++++++++++++++
+> >  1 file changed, 119 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
 > > 
-> > diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> > index 987b287f3bff..515a74614f3c 100644
-> > --- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> > @@ -37,6 +37,14 @@ properties:
-> >    clocks:
-> >      maxItems: 1
-> >      description: The SD/SDIO controller clock gate
-> > +  power-gpio:
-> 
-> '-gpios' is the preferred form even if just 1.
-> 
-
-Thanks for reviewing, I will change the name.
-
+> > diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+> > new file mode 100644
+> > index 0000000..0cafa98
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+> > @@ -0,0 +1,119 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mfd/qcom,pm8008.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm Technologies, Inc. PM8008 PMIC bindings
+> > +
+> > +maintainers:
+> > +  - Guru Das Srinagesh <gurus@codeaurora.org>
+> > +
+> > +description: |
+> > +  Qualcomm Technologies, Inc. PM8008 is a dedicated camera PMIC that integrates
+> > +  all the necessary power management, housekeeping, and interface support
+> > +  functions into a single IC.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: qcom,pm8008
+> > +
+> > +  reg:
 > > +    description:
-> > +      The GPIO for enabling/disabling SD bus power.
+> > +      I2C slave address.
+> > +
 > > +    maxItems: 1
-> 
-> blank line
-> 
-
-I will remove the blank line.
-
-> > +  power-switch-gpio:
-> > +    description:
-> > +      The GPIO for toggling the signal voltage between 3.3v and 1.8v.
+> > +
+> > +  interrupts:
 > > +    maxItems: 1
-> >  
-> >  patternProperties:
-> >    "^sdhci@[0-9a-f]+$":
-> > @@ -61,6 +69,14 @@ patternProperties:
-> >        sdhci,auto-cmd12:
-> >          type: boolean
-> >          description: Specifies that controller should use auto CMD12
-> > +      power-gpio:
-> > +        description:
-> > +          The GPIO for enabling/disabling SD bus power.
-> > +        maxItems: 1
-> > +      power-switch-gpio:
-> > +        description:
-> > +          The GPIO for toggling the signal voltage between 3.3v and 1.8v.
-> > +        maxItems: 1
-> >      required:
-> >        - compatible
-> >        - reg
-> > @@ -80,6 +96,7 @@ required:
-> >  examples:
-> >    - |
-> >      #include <dt-bindings/clock/aspeed-clock.h>
-> > +    #include <dt-bindings/gpio/aspeed-gpio.h>
-> >      sdc@1e740000 {
-> >              compatible = "aspeed,ast2500-sd-controller";
-> >              reg = <0x1e740000 0x100>;
-> > @@ -94,6 +111,10 @@ examples:
-> >                      interrupts = <26>;
-> >                      sdhci,auto-cmd12;
-> >                      clocks = <&syscon ASPEED_CLK_SDIO>;
-> > +                    power-gpio = <&gpio0 ASPEED_GPIO(V, 0)
-> > +                                     GPIO_ACTIVE_HIGH>;
-> > +                    power-switch-gpio = <&gpio0 ASPEED_GPIO(V, 1)
-> > +                                     GPIO_ACTIVE_HIGH>;
-> >              };
-> >  
-> >              sdhci1: sdhci@200 {
-> > @@ -102,5 +123,9 @@ examples:
-> >                      interrupts = <26>;
-> >                      sdhci,auto-cmd12;
-> >                      clocks = <&syscon ASPEED_CLK_SDIO>;
-> > +                    power-gpio = <&gpio0 ASPEED_GPIO(V, 2)
-> > +                                     GPIO_ACTIVE_HIGH>;
-> > +                    power-switch-gpio = <&gpio0 ASPEED_GPIO(V, 3)
-> > +                                     GPIO_ACTIVE_HIGH>;
-> >              };
-> >      };
-> > -- 
-> > 2.17.1
-> > 
+> > +
+> > +    description: Parent interrupt.
+> > +
+> > +  "#interrupt-cells":
+> > +    const: 2
+> > +
+> > +    description: |
+> > +      The first cell is the IRQ number, the second cell is the IRQ trigger
+> > +      flag. All interrupts are listed in include/dt-bindings/mfd/qcom-pm8008.h.
+> > +
+> > +  interrupt-controller: true
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 0
+> > +
+> > +patternProperties:
+> > +  "^pinctrl@[0-9a-f]+$":
+> 
+> Doesn't look like a pin controller. 'gpio@...' instead.
+
+Done.
+
+> 
+> > +    type: object
+> 
+>        additionalProperties: false
+
+Done.
+
+Thank you.
+Guru Das.
