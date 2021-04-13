@@ -2,126 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9237A35D632
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 06:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0425C35D6C2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 07:05:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbhDMD7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 23:59:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34136 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbhDMD7x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 23:59:53 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4FFFC061574;
-        Mon, 12 Apr 2021 20:59:32 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id ot17-20020a17090b3b51b0290109c9ac3c34so9998367pjb.4;
-        Mon, 12 Apr 2021 20:59:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-disposition:content-transfer-encoding;
-        bh=MMUmn5mABVsgrfWlibL4nmwnAT3Kpef8pz6y5TktZjk=;
-        b=Ys9jkndzAW5uBB7GfhA/tsOayE/UE2BtjjEmlkCxMxIaFyKY9MFSTgxpxWfdxDk5h6
-         4GWMRa1At+rbawl7r+Z1ypxff05XvHVP6FJk0rUwuZvpu7oHxR+zRcgQTNvQ5c0zIaDl
-         8zGjUvzQzTebIuUXkQQJtgi2n3hrI2nMtG7ol1GcxV4Yi5T7hMrrLyU/uTne4QGBGugO
-         m3Y2Ytu/ygqr53ax/sTz7JOBmqyJGoeegcv3N/XzUsjXfVnMz7S+aEA98LgmOUO/mHrP
-         LcQuUXLYbgSbQ+lkHAY2DGQLleHBdh18anpWTWfuYc2fxLb5YxO77/JoFn32/4foikjV
-         4yJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-disposition
-         :content-transfer-encoding;
-        bh=MMUmn5mABVsgrfWlibL4nmwnAT3Kpef8pz6y5TktZjk=;
-        b=McinsoHSu61UhEBu78fkTB09YALH63tw+V1Ok+aN180zT2deuBaeS8nAg4gzWBkcuu
-         CuTRrf5lFPaHtYVpMgjErVqVNcjS7DKJdmBv/tD5scEExArxks8iu+UbwXSwWpnpl0Au
-         FEF2hRTois5U6cv3UvEDq5/WRmC9S21AWVDUIt+fupwdScP4/uHWnXkDxeotLHYgWO1Y
-         LEp2ydWq8+K4ItaL8rMoZSzhzyDft6Ot2Mx0ktUcW/dExOjYhKwBIFrytRbTH9/DNFMB
-         knKSB16fwh2fwRmcDPeWY9AYAoDR0G8jO3+CxOa5AMBNXqqabyswVibUlJXYenrSIc6u
-         Xj4w==
-X-Gm-Message-State: AOAM5336Fbr/7unQrOgJFMewC+d3UomMTdcYGyfq5VH5T6yrRu1SAkEq
-        nYGiFlOSAHZy/vVhyJ4YzH0=
-X-Google-Smtp-Source: ABdhPJyMRWGljYt/4aZ19IQ3gt9VmDkMZt1nOhw1lL4WoWV67sNLFAuRj0SR3TADUx1CDcAdnktDiQ==
-X-Received: by 2002:a17:90a:7bce:: with SMTP id d14mr2751340pjl.139.1618286371967;
-        Mon, 12 Apr 2021 20:59:31 -0700 (PDT)
-Received: from localhost.localdomain ([138.197.212.246])
-        by smtp.gmail.com with ESMTPSA id 67sm11110165pfy.140.2021.04.12.20.59.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Apr 2021 20:59:31 -0700 (PDT)
-From:   DENG Qingfang <dqfext@gmail.com>
-To:     =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-staging@lists.linux.dev, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, Weijie Gao <weijie.gao@mediatek.com>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-Subject: Re: [RFC v4 net-next 1/4] net: phy: add MediaTek PHY driver
-Date:   Tue, 13 Apr 2021 11:59:20 +0800
-Message-Id: <20210413035920.1422364-1-dqfext@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210412150836.929610-1-dqfext@gmail.com>
-References: <20210412034237.2473017-1-dqfext@gmail.com> <20210412034237.2473017-2-dqfext@gmail.com> <20210412070449.Horde.wg9CWXW8V9o0P-heKYtQpVh@www.vdorst.com> <20210412150836.929610-1-dqfext@gmail.com>
+        id S230334AbhDMFFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 01:05:44 -0400
+Received: from mail-eopbgr80044.outbound.protection.outlook.com ([40.107.8.44]:14997
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229515AbhDMFFo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Apr 2021 01:05:44 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZwSCcK/v2StVipCgmiwTujwgruZIt5//mMujkaDndYlcI/8LMYV7xne0RKZ07oLM/MLOVXWyL/XAAH73qKsWkbZXryt7MYjRrwNT95FCPJay3Fs51d3i+kLihNxZhwZxbD7InGcfWbVqTsBFkNjhtdrvh2K8cfXP+gPGSCFKVx6iwN+Ezt8vCpuBjvRx7biZ/tOhr4dG7LaqooOoIBRKFq+UPzBCy32tjfZ3tsyiLLHP+dJf/6Aq8Fe/yEMVKtiOTPZ/FnjEpSvLz5j1QcGOGXzUs3KhT7VRrwl/3TKzYX+mpOIsdpoLL65YwcJf8rnT69ZKfcRnMkhVJH7No28m9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8DhGUal6g6HG8MJrji8fMyYRSSuJmyR60Ul2ATMjDdo=;
+ b=Nref5o9wYwfEfZYxgxEZjEMhj0YWohG/NyCOJSd7XAzPV45ZdgtVE3vGEvoXxUufLwhjCwrhHfrk1owjwzdbs4QKczies3pxIP/ZJ+jwamV+g/Wy/KdZSz1qBFiQy8NbHsRAUh6TFsBPOE2MEae9NhLZklgt9gT3qsId9VqaQsZYq3gBcL5UgmSeewBoY8WEMjNWDqtr6mdY/O79LnSN8U0UjyHoRdKZFcPNIzB2q27+Q/oROc9bRgWO3ifE1pP3YviWIC1rDCv2wUvOwV66R/CPBTlc864LqPmEzj+4VTaRBhnbZrWU3ZL4+DuwgaJ177Q4fdbCFcr9jfwxeDxO4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8DhGUal6g6HG8MJrji8fMyYRSSuJmyR60Ul2ATMjDdo=;
+ b=AJ7EIEnjRMiJ/4MP6EHHodz7WuqrpIOoAvw31I3ZpQbTb4SSkjmk64ll7gZx1Lo5qP3yfn/GkZGSItoM1zT26FSN9J+P805uGr5N9j6UyGR0j7qOUuoBwqUSkX7pcxw1CpE4ynDfhkkw3YxdcEKlyfjDweS4halCC5Hu71JH3rE=
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
+ by VI1PR0401MB2512.eurprd04.prod.outlook.com (2603:10a6:800:4e::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.21; Tue, 13 Apr
+ 2021 05:05:20 +0000
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::e8e2:7756:13bc:2cb3]) by VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::e8e2:7756:13bc:2cb3%7]) with mapi id 15.20.3999.037; Tue, 13 Apr 2021
+ 05:05:20 +0000
+From:   Robin Gong <yibin.gong@nxp.com>
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "martin.fuzzey@flowbird.group" <martin.fuzzey@flowbird.group>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+        "matthias.schiffer@ew.tq-group.com" 
+        <matthias.schiffer@ew.tq-group.com>,
+        "frieder.schrempf@kontron.de" <frieder.schrempf@kontron.de>,
+        "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
+        Clark Wang <xiaoning.wang@nxp.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH v14 12/12] dmaengine: imx-sdma: add terminated list for
+ freed descriptor in worker
+Thread-Topic: [PATCH v14 12/12] dmaengine: imx-sdma: add terminated list for
+ freed descriptor in worker
+Thread-Index: AQHXK335jrwJzEXFA0CdBZeUtRWghqqwqGUAgAFCLDA=
+Date:   Tue, 13 Apr 2021 05:05:20 +0000
+Message-ID: <VE1PR04MB663877142BA90AADDF9B3AB3894F9@VE1PR04MB6638.eurprd04.prod.outlook.com>
+References: <1617809456-17693-1-git-send-email-yibin.gong@nxp.com>
+ <1617809456-17693-13-git-send-email-yibin.gong@nxp.com>
+ <YHQVPoQAYVuHL3/S@vkoul-mobl.Dlink>
+In-Reply-To: <YHQVPoQAYVuHL3/S@vkoul-mobl.Dlink>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.67]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e63d70c8-6b76-4382-049b-08d8fe39bcc1
+x-ms-traffictypediagnostic: VI1PR0401MB2512:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR0401MB2512C0ED0E0E8FF911D67661894F9@VI1PR0401MB2512.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: FxiBFpSwWH3mmuD/qqhdXSfpnqnt/YIEm3KzWSe/U8JpV1pTsJ7rsMncRh/Se9B39miq8m46yh96Vbs+8A0rvhDIWfRSPC8IF2RgCPnGm1fzLqQk9vbKSLQ2aICIjYLYYGtdJJ8v9RMyr5uZI0AtyuQ/b/lik5GRP7aLRTQscToNzC6wOZwAUEngDeISivLEmZWWMvL/8GMcA0+CeJ5v1a5qCd+oUpiLVYcGlC3oF1v010r7f2AciD8wq0xR/XsP2GM6BpFkgdMI+3tFrU4tysqWAtQE/scib6Y/xt90U2Rct+Mu19t8CHxf5TzLKaq3o5ecCIMznlewL+518TT8DCVrCVyS21LMCqTIzhjnJF3VrrxWDG4FqIR4iR3YjCuTZJfhTSvFzkvzr1RPbG4UGQ/JCTKM97jRMfAL7lsOc4sFDORDck9dF2q6aGT4xygI1k/2n47AFc6aoUXJrhzekv4kONIi7GgvAyfAErabZ4XbhA6gi3XM0OZEJ3bj2CrdwFhVgjBo7ImVd09XDO5HB411WDrm9keQIMGrnje1TB1NqndXmeI190Jm+YYX5uqJxJpRUTodUUJEwVlzpwJU1OWEkv6iFr7QTL5cy191Uw4ab4g9u+XkvtE5KMMY20Rrr4MkOxOglRz3yF7gm2r67VPHBWahTlg35sYlpF+vfPueekcttT7vuaoVcQ8bA3td
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6638.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(39860400002)(346002)(136003)(396003)(376002)(53546011)(8936002)(2906002)(9686003)(26005)(38100700002)(55016002)(66476007)(64756008)(6506007)(66556008)(66946007)(5660300002)(7416002)(54906003)(76116006)(316002)(4326008)(52536014)(33656002)(186003)(966005)(478600001)(45080400002)(8676002)(86362001)(7696005)(122000001)(6916009)(66446008)(71200400001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?5675fMzAMU10JWz6X2pg/q9I+kejCu5xZoM06lTIae9bpckexX5qbGlLXK0x?=
+ =?us-ascii?Q?rJWA0c0xQrOEF3IWtRZZpVn8ZusqtB4AM0gD9I9vETbAz6h7Ed29hT2YvjoP?=
+ =?us-ascii?Q?l4Tog9W9QsoIGEmFfyuq+fn5LIwtqaAt/ny0blZwb2pjaL8QB7pSVZkXzFiE?=
+ =?us-ascii?Q?nqKxOfWCdRRoA6NOVSSkv6enYY5tHf740QzGsLOdP8CtmDIY/OgPLpLJzl7X?=
+ =?us-ascii?Q?T6qFo6lHkd+3gCHqVCqKwKCbU/Mmb5Oc12+eLWcd/y4L2oayUE5A63vUp1uI?=
+ =?us-ascii?Q?V2L/EahAgyfL1dSJf1kwHlPovV/425U09KTqbEhRAo5GhXwPrxtr6GSjeoFv?=
+ =?us-ascii?Q?RiTKnYSi/xDwf5PBpMUOQhFitiXxNTJVZl/gEoOHPFEwIAMvhvWZrNJm2KsK?=
+ =?us-ascii?Q?zablFdxCvzXdjUkoaSrAYOarCtu3m0OuY3gMNlNiD8Ksf2VP6Y+YSbN8WN1T?=
+ =?us-ascii?Q?mM0e1ilI/oPIMeZ7DKQWb6u8T+uXiyfN0zi4vx/H8HlPspGGWytOCdCc65Ck?=
+ =?us-ascii?Q?EgZNj623wfMtXHO3KkKH6ipR426EaZAIzyR9fgm2goqdpmTr+P9XRz1T7JMk?=
+ =?us-ascii?Q?vbRZGRmw6cye1eT/RbZcGnlD3yLfZYWgYLC7i36c8mtCeQHLgiiwJo2wBQma?=
+ =?us-ascii?Q?G7CHoAQ6F5UEZDAxufqcU6cntWmjT1mvPC52Y1W9HpoktWHGasR7rsqaEAXc?=
+ =?us-ascii?Q?5Oz9InUXLA7EaTSB4Yhs2nuMsnqtdLyd0hiz4pH+KLyHCcYfqXu1ogKoYNEw?=
+ =?us-ascii?Q?w78yiyBS7mS6GiSDK2IrR7oPQ0oGGw7GgxtrBadkHLwE59WeYcUWqzidPXVq?=
+ =?us-ascii?Q?cpCjLwQWOXucc/pY/wfRIuVj3LPOFnVE6UhYBC6w1iymIQpu+RBn7t9a7SUK?=
+ =?us-ascii?Q?LXV9ZvWQuXqCy+ShgKxfrtvhIRI6Lh+IM+SRvwl2dkxOPuNmUzp47dBWAWyi?=
+ =?us-ascii?Q?z6C5Gei4x6ZWQsJckqTXlF/FMTUgsCiVTQjUsQPdLR26utkckIJAzaoaqwxf?=
+ =?us-ascii?Q?I3Xl4M99XGQ79WBnONElcmInhr9A9logsVtwCEKsExQ1dxA+CXMaOgxGIRAs?=
+ =?us-ascii?Q?jE10O9nMPpVs1kOK6sY2ULr9HS1rpYxjDldZjpWnhVtRORFawtgF5ZgarPH7?=
+ =?us-ascii?Q?hReVrvMwAsj02KCfhn/s/AB2XE4L0O/x/HpTFib91Mdn8ZZneN6NgNpsHsCu?=
+ =?us-ascii?Q?7Pe/7zINqvc/rFmUQrH5TaJe444klw773X/YQr1n0MMCyMCEZ8l/fnOL+M2K?=
+ =?us-ascii?Q?KIuUZzgr76um6zC+QGpSnF2NoBvPZrm1w/3HKlDQxmp9bjFQYo0E+FcGteMV?=
+ =?us-ascii?Q?mITxfFfavE3opyX/kDS+LFfO?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6638.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e63d70c8-6b76-4382-049b-08d8fe39bcc1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Apr 2021 05:05:20.3264
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: u7VUrhK/LftswOGgBhEpZ3ObPeIpbcBaxLZsS7977vtrUCea2jentvvtYh31S5ZIsxxPnRgO9e13TEtCwSvp/A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2512
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 12, 2021 at 11:08:36PM +0800, DENG Qingfang wrote:
-> On Mon, Apr 12, 2021 at 07:04:49AM +0000, René van Dorst wrote:
-> > Hi Qingfang,
-> > > +static void mtk_phy_config_init(struct phy_device *phydev)
-> > > +{
-> > > +	/* Disable EEE */
-> > > +	phy_write_mmd(phydev, MDIO_MMD_AN, MDIO_AN_EEE_ADV, 0);
-> > 
-> > For my EEE patch I changed this line to:
-> > 
-> > genphy_config_eee_advert(phydev);
-> > 
-> > So PHY EEE part is setup properly at boot, instead enable it manual via
-> > ethtool.
-> > This function also takes the DTS parameters "eee-broken-xxxx" in to account
-> > while
-> > setting-up the PHY.
-> 
-> Thanks, I'm now testing with it.
+On 2021/04/12 17:39,  Vinod Koul <vkoul@kernel.org>  wrote:=20
+> On 07-04-21, 23:30, Robin Gong wrote:
+> > Add terminated list for keeping descriptor so that it could be freed
+> > in worker without any potential involving next descriptor raised up
+> > before this descriptor freed, because vchan_get_all_descriptors get
+> > all descriptors including the last terminated descriptor and the next
+> > descriptor, hence, the next descriptor maybe freed unexpectly when
+> > it's done in worker without this patch.
+> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fwww=
+.
+> >
+> spinics.net%2Flists%2Fdmaengine%2Fmsg23367.html&amp;data=3D04%7C01%
+> 7Cyib
+> >
+> in.gong%40nxp.com%7Cf255f329c8de459ffbaf08d8fd96d6c5%7C686ea1d3bc
+> 2b4c6
+> >
+> fa92cd99c5c301635%7C0%7C0%7C637538171591949442%7CUnknown%7CT
+> WFpbGZsb3d
+> >
+> 8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3
+> D%7C
+> >
+> 1000&amp;sdata=3D3YFgzHFDNwRnogvxZpNcwVKOKpk4GHrgScdrbuMKjwE%3D
+> &amp;rese
+> > rved=3D0
+>=20
+> Sound like you should implement .device_synchronize() and do the actual
+> work there..?
+Yes,  I believe no issue here if call dmaengine_terminate_sync() always sin=
+ce
+flush_work(&sdmac->terminate_worker) has already been in  .device_synchroni=
+ze() of
+sdma driver. But unfortunately, have to use dmaengine_terminate_all() inste=
+ad in some
+non-atomic case like ALSA.
 
-Hi Rene,
 
-Within 12 hours, I got some spontaneous link down/ups when EEE is enabled:
-
-[16334.236233] mt7530 mdio-bus:1f wan: Link is Down
-[16334.241340] br-lan: port 3(wan) entered disabled state
-[16337.355988] mt7530 mdio-bus:1f wan: Link is Up - 1Gbps/Full - flow control rx/tx
-[16337.363468] br-lan: port 3(wan) entered blocking state
-[16337.368638] br-lan: port 3(wan) entered forwarding state
-
-The cable is a 30m Cat.6 and never has such issue when EEE is disabled.
-Perhaps WAKEUP_TIME_1000/100 or some PHY registers need to be fine-tuned,
-but for now I think it should be disabled by default.
-
-> 
-> > 
-> > > +
-> > > +	/* Enable HW auto downshift */
-> > > +	phy_modify_paged(phydev, MTK_PHY_PAGE_EXTENDED, 0x14, 0, BIT(4));
