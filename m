@@ -2,153 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78B9335DBF0
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 11:55:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6727435DBFA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 11:57:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231207AbhDMJ4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 05:56:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55258 "EHLO
+        id S231434AbhDMJ5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 05:57:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231196AbhDMJ4J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 05:56:09 -0400
-X-Greylist: delayed 96659 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 13 Apr 2021 02:55:50 PDT
-Received: from mx.i2x.nl (mx.i2x.nl [IPv6:2a04:52c0:101:921::25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E7294C061574;
-        Tue, 13 Apr 2021 02:55:49 -0700 (PDT)
-Received: from mail.vdorst.com (mail.vdorst.com [IPv6:fd00::1])
+        with ESMTP id S229687AbhDMJ5P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 05:57:15 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F4B3C061574
+        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 02:56:56 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1lWFmp-0003l5-Ho; Tue, 13 Apr 2021 11:56:47 +0200
+Received: from [IPv6:2a03:f580:87bc:d400:d93:7b32:b325:ef5e] (unknown [IPv6:2a03:f580:87bc:d400:d93:7b32:b325:ef5e])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mx.i2x.nl (Postfix) with ESMTPS id 3CB085FBA8;
-        Tue, 13 Apr 2021 11:55:47 +0200 (CEST)
-Authentication-Results: mx.i2x.nl;
-        dkim=pass (2048-bit key; secure) header.d=vdorst.com header.i=@vdorst.com header.b="Gghi4hES";
-        dkim-atps=neutral
-Received: from www (unknown [192.168.2.222])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.vdorst.com (Postfix) with ESMTPSA id EDBE5BCBD82;
-        Tue, 13 Apr 2021 11:55:46 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.vdorst.com EDBE5BCBD82
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vdorst.com;
-        s=default; t=1618307747;
-        bh=sWQeaeOZs1zGfDyfM+Yma0gmKoH8b4gYtID9LwyyZ5w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Gghi4hEShLFgZnDXwuQW8jfIxh7MkxHmq+NZ0k2s+nND11zJt7k4G1H3UMRBbSPaD
-         8J4TJrlKR08JzOITEUFD5YjM4pojAxuGYtzuGKdq6w5ZWzOqiGhsgKvJlPayJXmgc7
-         0R343Hr8LuZBbSwqz95x5qGKYwtiSIlvw8pQ3lAl36oIOkYldIISeeHMwVz4w4kAI5
-         9nAiWev+Ipuk1zFHDSqVmaatXUONC8fEE+Tc14M4+Wy6WyaklIpKTZCXLLRFxukSYe
-         JwT3D1mxVmyaqSSScCNP6/pZMdOl4pKfTtOOhPskToPL6snJfFPMff7XOmFmRi0nWn
-         9cEMPEdyhK96Q==
-Received: from 48.79.2.5.in-addr.arpa (48.79.2.5.in-addr.arpa [5.2.79.48])
- by www.vdorst.com (Horde Framework) with HTTPS; Tue, 13 Apr 2021 09:55:46
- +0000
-Date:   Tue, 13 Apr 2021 09:55:46 +0000
-Message-ID: <20210413095546.Horde.AlZ6EGgmo3WL6JXtMEAWgRh@www.vdorst.com>
-From:   =?utf-8?b?UmVuw6k=?= van Dorst <opensource@vdorst.com>
-To:     DENG Qingfang <dqfext@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-staging@lists.linux.dev, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, Weijie Gao <weijie.gao@mediatek.com>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-Subject: Re: [RFC v4 net-next 1/4] net: phy: add MediaTek PHY driver
-References: <20210412034237.2473017-1-dqfext@gmail.com>
- <20210412034237.2473017-2-dqfext@gmail.com>
- <20210412070449.Horde.wg9CWXW8V9o0P-heKYtQpVh@www.vdorst.com>
- <20210412150836.929610-1-dqfext@gmail.com>
- <20210413035920.1422364-1-dqfext@gmail.com>
-In-Reply-To: <20210413035920.1422364-1-dqfext@gmail.com>
-User-Agent: Horde Application Framework 5
-Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits)
+         client-signature RSA-PSS (4096 bits))
+        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
+        (Authenticated sender: mkl@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 9196760DB47;
+        Tue, 13 Apr 2021 09:56:45 +0000 (UTC)
+Subject: Re: [PATCH v3] dt-bindings: net: can: rcar_can: Document r8a77961
+ support
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        wg@grandegger.com
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+References: <20210409000020.2317696-1-yoshihiro.shimoda.uh@renesas.com>
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <00ed27cf-f43e-334f-d7c7-0e1d196640d0@pengutronix.de>
+Date:   Tue, 13 Apr 2021 11:56:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210409000020.2317696-1-yoshihiro.shimoda.uh@renesas.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature";
+ boundary="80pny2FN6gKJ5tZHI6B5tIHrwyRFcCBHQ"
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting DENG Qingfang <dqfext@gmail.com>:
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--80pny2FN6gKJ5tZHI6B5tIHrwyRFcCBHQ
+Content-Type: multipart/mixed; boundary="lq6QyrMWuAfxX95EiohGyKJZGQNxXp84c";
+ protected-headers="v1"
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, wg@grandegger.com
+Cc: davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+ linux-can@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+Message-ID: <00ed27cf-f43e-334f-d7c7-0e1d196640d0@pengutronix.de>
+Subject: Re: [PATCH v3] dt-bindings: net: can: rcar_can: Document r8a77961
+ support
+References: <20210409000020.2317696-1-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20210409000020.2317696-1-yoshihiro.shimoda.uh@renesas.com>
 
-> On Mon, Apr 12, 2021 at 11:08:36PM +0800, DENG Qingfang wrote:
->> On Mon, Apr 12, 2021 at 07:04:49AM +0000, René van Dorst wrote:
->> > Hi Qingfang,
->> > > +static void mtk_phy_config_init(struct phy_device *phydev)
->> > > +{
->> > > +	/* Disable EEE */
->> > > +	phy_write_mmd(phydev, MDIO_MMD_AN, MDIO_AN_EEE_ADV, 0);
->> >
->> > For my EEE patch I changed this line to:
->> >
->> > genphy_config_eee_advert(phydev);
->> >
->> > So PHY EEE part is setup properly at boot, instead enable it manual via
->> > ethtool.
->> > This function also takes the DTS parameters "eee-broken-xxxx" in  
->> to account
->> > while
->> > setting-up the PHY.
->>
->> Thanks, I'm now testing with it.
->
-> Hi Rene,
->
-> Within 12 hours, I got some spontaneous link down/ups when EEE is enabled:
->
-> [16334.236233] mt7530 mdio-bus:1f wan: Link is Down
-> [16334.241340] br-lan: port 3(wan) entered disabled state
-> [16337.355988] mt7530 mdio-bus:1f wan: Link is Up - 1Gbps/Full -  
-> flow control rx/tx
-> [16337.363468] br-lan: port 3(wan) entered blocking state
-> [16337.368638] br-lan: port 3(wan) entered forwarding state
->
-> The cable is a 30m Cat.6 and never has such issue when EEE is disabled.
-> Perhaps WAKEUP_TIME_1000/100 or some PHY registers need to be fine-tuned,
-> but for now I think it should be disabled by default.
+--lq6QyrMWuAfxX95EiohGyKJZGQNxXp84c
+Content-Type: text/plain; charset=utf-8
+Content-Language: de-DE
+Content-Transfer-Encoding: quoted-printable
 
-Hi Qingfang,
+On 4/9/21 2:00 AM, Yoshihiro Shimoda wrote:
+> Document SoC specific bindings for R-Car M3-W+ (r8a77961) SoC.
+>=20
+> Also as R8A7796 is now called R8A77960 so that update those
+> references.
+>=20
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Problem is that, may be the other device on the other side, may is issue.
-So it is hard to tell which device is the issue.
+Added to latest pull request.
 
+Tnx,
+Marc
 
-I have a low traffic access point with 1meter cable running the  
-openwrt 5.10 kernel with the openwrt EEE patch.
-EEE is active and uptime with 16days without an issue.
-This was with the old patch which clears the WAKEUP_TIME_1000/100 values.
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
 
 
-I changed my ethernet setup so that access point switch has more  
-traffic and longer cable ~18meters.
-I also upgraded the kernel to 5.10.28 and added the EEE v2 patch.
-Let's see what happens for a longer time and with more real world traffic.
+--lq6QyrMWuAfxX95EiohGyKJZGQNxXp84c--
 
-Greats,
+--80pny2FN6gKJ5tZHI6B5tIHrwyRFcCBHQ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
-René
->
->>
->> >
->> > > +
->> > > +	/* Enable HW auto downshift */
->> > > +	phy_modify_paged(phydev, MTK_PHY_PAGE_EXTENDED, 0x14, 0, BIT(4));
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAEBCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmB1atoACgkQqclaivrt
+76kA3wf+Pilp2xNeO0//92ahLJklfruOnsMnUm27k26earWFMw47KNoMjCi/GCQ+
+OwdSeeT4J7Etio1roUgdWFD1hP+6I4+lgevddnHaFUS/DYRFRpLb7a6KlGJ5VldV
+bw4kBjGnq9aTEyDmxB4tDJ3Rwwi8hHgZe62AEqT9XsvUOKzl9OhUpPe8LvIFFHRU
+M2/96EWTdB3qPKbwPFG3QGzUC1a83yAlSqYIAbkwoLCprpaZnnxOjDEudtFyMxJN
+t/ECXqwXAxaXQCRoql91BY7SWvjCPKaZXU39bMsenrvcuCYomXJ9KMB3N7Yvsm5t
+kw6jvM7QXBLXu3fozsW/bTiGZY3afg==
+=k7YO
+-----END PGP SIGNATURE-----
 
-
+--80pny2FN6gKJ5tZHI6B5tIHrwyRFcCBHQ--
