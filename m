@@ -2,163 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7B8635D5FD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 05:38:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E220135D613
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 05:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344375AbhDMDgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Apr 2021 23:36:24 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:50610 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S238980AbhDMDgX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 23:36:23 -0400
-X-UUID: 7f31d8aaacd04ee98be674d7466c8656-20210413
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=IG3yM/hhJgI4HS5wGt30gHoTh2N5TgYAPQd9CFSLGVU=;
-        b=i8XHIhZmfMskkSFm9k2AgslQZBZgOa32QS5qXZZbIvfe6lVKw7IyZ5f9zk8gV5sdQjI3iLdB1xpQICa8w7D1pcQn233o2PRZvRwvCqd5peRnPK6yWQ9k2C0rE1jnvZDTbWClSjZ8IGJFQXB2nHqodVBVPDaIeqa6eEHkev1ue7Q=;
-X-UUID: 7f31d8aaacd04ee98be674d7466c8656-20210413
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 652302494; Tue, 13 Apr 2021 11:36:00 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 13 Apr
- 2021 11:35:56 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 13 Apr 2021 11:35:55 +0800
-Message-ID: <1618284955.25729.6.camel@mhfsdcap03>
-Subject: Re: [PATCH 4/6] usb: xhci-mtk: add support runtime PM
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Ikjoon Jang <ikjn@chromium.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Len Brown <len.brown@intel.com>, Pavel Machek <pavel@ucw.cz>,
-        <linux-usb@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
+        id S1344453AbhDMDj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Apr 2021 23:39:59 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:43289 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344418AbhDMDj6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Apr 2021 23:39:58 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 13D3S8KF091532;
+        Tue, 13 Apr 2021 11:28:08 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 13 Apr
+ 2021 11:38:33 +0800
+Date:   Tue, 13 Apr 2021 11:38:30 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Milton Miller II <miltonm@us.ibm.com>
+CC:     Rob Herring <robh@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "open list:ASPEED SD/MMC DRIVER" <linux-mmc@vger.kernel.org>,
+        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
+        Ryan Chen <ryanchen.aspeed@gmail.com>,
+        "Adrian Hunter" <adrian.hunter@intel.com>,
         open list <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, Tony Lindgren <tony@atomide.com>,
-        Tianping Fang <tianping.fang@mediatek.com>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Nicolas Boichat <drinkcat@chromium.org>
-Date:   Tue, 13 Apr 2021 11:35:55 +0800
-In-Reply-To: <CAATdQgCjNbUKsJYZjr5wHbXV5y-7ZZrN=URKccCv1d+S4zFiDA@mail.gmail.com>
-References: <1617874514-12282-1-git-send-email-chunfeng.yun@mediatek.com>
-         <1617874514-12282-4-git-send-email-chunfeng.yun@mediatek.com>
-         <CAATdQgArnkdmbZefF4h7xp6=j-wHLgdQs1K0cDv06sP4eVdHmw@mail.gmail.com>
-         <1617958441.12105.39.camel@mhfsdcap03>
-         <CAATdQgCjNbUKsJYZjr5wHbXV5y-7ZZrN=URKccCv1d+S4zFiDA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v1 1/2] dt-bindings: mmc: sdhci-of-aspeed: Add power-gpio
+ and power-switch-gpio
+Message-ID: <20210413033829.GB3522@aspeedtech.com>
+References: <20210413013010.GA353@aspeedtech.com>
+ <20210408015218.20560-1-steven_lee@aspeedtech.com>
+ <20210408015218.20560-2-steven_lee@aspeedtech.com>
+ <20210409184118.GA3934798@robh.at.kernel.org>
+ <OF2606E97A.D9A04B5B-ON002586B6.000DC6EE-002586B6.000EF1DC@notes.na.collabserv.com>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 0F74016DEA0EBF8425D7EB065E277E06D9AF29BCA93A4312D24DDEB9D2D3B32A2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <OF2606E97A.D9A04B5B-ON002586B6.000DC6EE-002586B6.000EF1DC@notes.na.collabserv.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 13D3S8KF091532
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIxLTA0LTEyIGF0IDEzOjE0ICswODAwLCBJa2pvb24gSmFuZyB3cm90ZToNCj4g
-T24gRnJpLCBBcHIgOSwgMjAyMSBhdCA0OjU0IFBNIENodW5mZW5nIFl1biA8Y2h1bmZlbmcueXVu
-QG1lZGlhdGVrLmNvbT4gd3JvdGU6DQo+ID4NCj4gPiBPbiBGcmksIDIwMjEtMDQtMDkgYXQgMTM6
-NDUgKzA4MDAsIElram9vbiBKYW5nIHdyb3RlOg0KPiA+ID4gT24gVGh1LCBBcHIgOCwgMjAyMSBh
-dCA1OjM1IFBNIENodW5mZW5nIFl1biA8Y2h1bmZlbmcueXVuQG1lZGlhdGVrLmNvbT4gd3JvdGU6
-DQo+ID4gPiA+DQo+ID4gPiA+IEEgZGVkaWNhdGVkIHdha2V1cCBpcnEgd2lsbCBiZSB1c2VkIHRv
-IGhhbmRsZSBydW50aW1lIHN1c3BlbmQvcmVzdW1lLA0KPiA+ID4gPiB3ZSB1c2UgZGV2X3BtX3Nl
-dF9kZWRpY2F0ZWRfd2FrZV9pcnEgQVBJIHRvIHRha2UgY2FyZSBvZiByZXF1ZXN0aW5nDQo+ID4g
-PiA+IGFuZCBhdHRhY2hpbmcgd2FrZXVwIGlycSwgdGhlbiB0aGUgc3VzcGVuZC9yZXN1bWUgZnJh
-bWV3b3JrIHdpbGwgaGVscA0KPiA+ID4gPiB0byBlbmFibGUvZGlzYWJsZSB3YWtldXAgaXJxLg0K
-PiA+ID4gPg0KPiA+ID4gPiBUaGUgcnVudGltZSBQTSBpcyBkZWZhdWx0IG9mZiBzaW5jZSBzb21l
-IHBsYXRmb3JtcyBtYXkgbm90IHN1cHBvcnQgaXQuDQo+ID4gPiA+IHVzZXJzIGNhbiBlbmFibGUg
-aXQgdmlhIHBvd2VyL2NvbnRyb2wgKHNldCAiYXV0byIpIGluIHN5c2ZzLg0KPiA+ID4gPg0KPiA+
-ID4gPiBTaWduZWQtb2ZmLWJ5OiBDaHVuZmVuZyBZdW4gPGNodW5mZW5nLnl1bkBtZWRpYXRlay5j
-b20+DQo+ID4gPiA+IC0tLQ0KPiA+ID4gPiAgZHJpdmVycy91c2IvaG9zdC94aGNpLW10ay5jIHwg
-MTQwICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKystLS0tLQ0KPiA+ID4gPiAgMSBmaWxl
-IGNoYW5nZWQsIDEyNCBpbnNlcnRpb25zKCspLCAxNiBkZWxldGlvbnMoLSkNCj4gPiA+ID4NCj4g
-PiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvdXNiL2hvc3QveGhjaS1tdGsuYyBiL2RyaXZlcnMv
-dXNiL2hvc3QveGhjaS1tdGsuYw0KPiA+ID4gPiBpbmRleCBhNzQ3NjRhYjkxNGEuLjMwOTI3ZjQw
-NjRkNCAxMDA2NDQNCj4gPiA+ID4gLS0tIGEvZHJpdmVycy91c2IvaG9zdC94aGNpLW10ay5jDQo+
-ID4gPiA+ICsrKyBiL2RyaXZlcnMvdXNiL2hvc3QveGhjaS1tdGsuYw0KWy4uLl0NCj4gPiA+ID4N
-Cj4gPiA+ID4gK3N0YXRpYyBpbnQgY2hlY2tfcmh1Yl9zdGF0dXMoc3RydWN0IHhoY2lfaGNkICp4
-aGNpLCBzdHJ1Y3QgeGhjaV9odWIgKnJodWIpDQo+ID4gPiA+ICt7DQo+ID4gPiA+ICsgICAgICAg
-dTMyIHN1c3BlbmRlZF9wb3J0czsNCj4gPiA+ID4gKyAgICAgICB1MzIgc3RhdHVzOw0KPiA+ID4g
-PiArICAgICAgIGludCBudW1fcG9ydHM7DQo+ID4gPiA+ICsgICAgICAgaW50IGk7DQo+ID4gPiA+
-ICsNCj4gPiA+ID4gKyAgICAgICBudW1fcG9ydHMgPSByaHViLT5udW1fcG9ydHM7DQo+ID4gPiA+
-ICsgICAgICAgc3VzcGVuZGVkX3BvcnRzID0gcmh1Yi0+YnVzX3N0YXRlLnN1c3BlbmRlZF9wb3J0
-czsNCj4gPiA+ID4gKyAgICAgICBmb3IgKGkgPSAwOyBpIDwgbnVtX3BvcnRzOyBpKyspIHsNCj4g
-PiA+ID4gKyAgICAgICAgICAgICAgIGlmICghKHN1c3BlbmRlZF9wb3J0cyAmIEJJVChpKSkpIHsN
-Cj4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgc3RhdHVzID0gcmVhZGwocmh1Yi0+cG9y
-dHNbaV0tPmFkZHIpOw0KPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICBpZiAoc3RhdHVz
-ICYgUE9SVF9DT05ORUNUKQ0KPiA+ID4NCj4gPiA+IFNvIHRoaXMgcG1fcnVudGltZSBzdXBwb3J0
-IGlzIGFjdGl2YXRlZCBvbmx5IHdoZW4gdGhlcmUncyBubyBkZXZpY2VzDQo+ID4gPiBjb25uZWN0
-ZWQgYXQgYWxsPw0KPiA+IE5vLCBpZiB0aGUgY29ubmVjdGVkIGRldmljZXMgYWxzbyBzdXBwb3J0
-IHJ1bnRpbWUgc3VzcGVuZCwgaXQgd2lsbCBlbnRlcg0KPiA+IHN1c3BlbmQgbW9kZSB3aGVuIG5v
-IGRhdGEgdHJhbnNmZXIsIHRoZW4gdGhlIGNvbnRyb2xsZXIgY2FuIGVudGVyDQo+ID4gc3VzcGVu
-ZCB0b28NCj4gPiA+IEkgdGhpbmsgdGhpcyB3aWxsIGFsd2F5cyByZXR1cm4gLUVCVVNZIHdpdGgg
-bXkgYm9hcmQgaGF2aW5nIGFuIG9uLWJvYXJkIGh1Yg0KPiA+ID4gY29ubmVjdGVkIHRvIGJvdGgg
-cmh1YnMuDQo+ID4gdGhlIG9uLWJvYXJkIGh1YiBzdXBwb3J0cyBydW50aW1lIHN1c3BlbmQgYnkg
-ZGVmYXVsdCwgc28gaWYgbm8gZGV2aWNlcw0KPiA+IGNvbm5lY3RlZCwgaXQgd2lsbCBlbnRlciBz
-dXNwZW5kDQo+IA0KPiBTb3JyeSwgeW91J3JlIGNvcnJlY3QuIEkgd2FzIGNvbmZ1c2VkIHRoYXQg
-dGhlIGNvbmRpdGlvbiB3YXMNCj4gKHN1c3BlbmRlZCAmJiBjb25uZWN0KQ0KPiBNeSBvbi1ib2Fy
-ZCBodWIgY29ubmVjdGVkIHRvIHJodWIgaXMgYWx3YXlzIGluIGEgc3VzcGVuZGVkIHN0YXRlDQo+
-IHdoZW5ldmVyIGl0J3MgY2FsbGVkLg0KPiANCj4gSG93ZXZlciwgSSBkb24ndCB0aGluayB0aGlz
-IGNvdWxkIHJldHVybiAtRUJVU1kNCj4gcnBtX3N1c3BlbmQoKSBvbmx5IGJlIGNhbGxlZCB3aGVu
-IGFsbCB0aGUgZGVzY2VuZGFudHMgYXJlIGluIHNsZWVwIGFscmVhZHkuDQpZb3UgbWVhbiB3ZSBj
-YW4gZHJvcCB0aGUgYnVzIGNoZWNrPyANCklmIFBNIGFscmVhZHkgdGFrZXMgY2FyZSBvZiBjaGls
-ZHJlbiBjb3VudCwgSSB0aGluayBubyBuZWVkIGNoZWNrIGl0DQphbnltb3JlLg0KPiBEaWQgeW91
-IHNlZSBhbnkgY2FzZXMgb2YgdGhpcyBmdW5jdGlvbiByZXR1cm5pbmcgLUVCVVNZIG9yIGFueSBj
-b25jZXJucyBvbiBoZXJlPw0KTm8sIEkgZGlkbid0IHNlZSBpdCBiZWZvcmUuDQoNClRoYW5rcw0K
-DQo+IA0KPiANCj4gPg0KPiA+ID4NCj4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICByZXR1cm4gLUVCVVNZOw0KPiA+ID4gPiArICAgICAgICAgICAgICAgfQ0KPiA+ID4gPiAr
-ICAgICAgIH0NCj4gPiA+ID4gKw0KPiA+ID4gPiArICAgICAgIHJldHVybiAwOw0KPiA+ID4gPiAr
-fQ0KPiA+ID4gPiArDQo+ID4gPiA+ICsvKg0KPiA+ID4gPiArICogY2hlY2sgdGhlIGJ1cyB3aGV0
-aGVyIGl0IGNvdWxkIHN1c3BlbmQgb3Igbm90DQo+ID4gPiA+ICsgKiB0aGUgYnVzIHdpbGwgc3Vz
-cGVuZCBpZiB0aGUgZG93bnN0cmVhbSBwb3J0cyBhcmUgYWxyZWFkeSBzdXNwZW5kZWQsDQo+ID4g
-PiA+ICsgKiBvciBubyBkZXZpY2VzIGNvbm5lY3RlZC4NCj4gPiA+ID4gKyAqLw0KPiA+ID4gPiAr
-c3RhdGljIGludCBjaGVja19idXNfc3RhdHVzKHN0cnVjdCB4aGNpX2hjZCAqeGhjaSkNCj4gPiA+
-ID4gK3sNCj4gPiA+ID4gKyAgICAgICBpbnQgcmV0Ow0KPiA+ID4gPiArDQo+ID4gPiA+ICsgICAg
-ICAgcmV0ID0gY2hlY2tfcmh1Yl9zdGF0dXMoeGhjaSwgJnhoY2ktPnVzYjNfcmh1Yik7DQo+ID4g
-PiA+ICsgICAgICAgaWYgKHJldCkNCj4gPiA+ID4gKyAgICAgICAgICAgICAgIHJldHVybiByZXQ7
-DQo+ID4gPiA+ICsNCj4gPiA+ID4gKyAgICAgICByZXR1cm4gY2hlY2tfcmh1Yl9zdGF0dXMoeGhj
-aSwgJnhoY2ktPnVzYjJfcmh1Yik7DQo+ID4gPiA+ICt9DQo+ID4gPiA+ICsNCj4gPiA+ID4gK3N0
-YXRpYyBpbnQgX19tYXliZV91bnVzZWQgeGhjaV9tdGtfcnVudGltZV9zdXNwZW5kKHN0cnVjdCBk
-ZXZpY2UgKmRldikNCj4gPiA+ID4gK3sNCj4gPiA+ID4gKyAgICAgICBzdHJ1Y3QgeGhjaV9oY2Rf
-bXRrICAqbXRrID0gZGV2X2dldF9kcnZkYXRhKGRldik7DQo+ID4gPiA+ICsgICAgICAgc3RydWN0
-IHhoY2lfaGNkICp4aGNpID0gaGNkX3RvX3hoY2kobXRrLT5oY2QpOw0KPiA+ID4gPiArICAgICAg
-IGludCByZXQgPSAwOw0KPiA+ID4gPiArDQo+ID4gPiA+ICsgICAgICAgaWYgKHhoY2ktPnhoY19z
-dGF0ZSkNCj4gPiA+ID4gKyAgICAgICAgICAgICAgIHJldHVybiAtRVNIVVRET1dOOw0KPiA+ID4g
-PiArDQo+ID4gPiA+ICsgICAgICAgaWYgKGRldmljZV9tYXlfd2FrZXVwKGRldikpIHsNCj4gPiA+
-ID4gKyAgICAgICAgICAgICAgIHJldCA9IGNoZWNrX2J1c19zdGF0dXMoeGhjaSk7DQo+ID4gPiA+
-ICsgICAgICAgICAgICAgICBpZiAoIXJldCkNCj4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAg
-ICAgcmV0ID0geGhjaV9tdGtfc3VzcGVuZChkZXYpOw0KPiA+ID4gPiArICAgICAgIH0NCj4gPiA+
-ID4gKw0KPiA+ID4gPiArICAgICAgIC8qIC1FQlVTWTogbGV0IFBNIGF1dG9tYXRpY2FsbHkgcmVz
-Y2hlZHVsZSBhbm90aGVyIGF1dG9zdXNwZW5kICovDQo+ID4gPiA+ICsgICAgICAgcmV0dXJuIHJl
-dCA/IC1FQlVTWSA6IDA7DQo+ID4gPiA+ICt9DQo+ID4gPiA+ICsNCj4gPiA+ID4gK3N0YXRpYyBp
-bnQgX19tYXliZV91bnVzZWQgeGhjaV9tdGtfcnVudGltZV9yZXN1bWUoc3RydWN0IGRldmljZSAq
-ZGV2KQ0KPiA+ID4gPiArew0KPiA+ID4gPiArICAgICAgIHN0cnVjdCB4aGNpX2hjZF9tdGsgICpt
-dGsgPSBkZXZfZ2V0X2RydmRhdGEoZGV2KTsNCj4gPiA+ID4gKyAgICAgICBzdHJ1Y3QgeGhjaV9o
-Y2QgKnhoY2kgPSBoY2RfdG9feGhjaShtdGstPmhjZCk7DQo+ID4gPiA+ICsgICAgICAgaW50IHJl
-dCA9IDA7DQo+ID4gPiA+ICsNCj4gPiA+ID4gKyAgICAgICBpZiAoeGhjaS0+eGhjX3N0YXRlKQ0K
-PiA+ID4gPiArICAgICAgICAgICAgICAgcmV0dXJuIC1FU0hVVERPV047DQo+ID4gPiA+ICsNCj4g
-PiA+ID4gKyAgICAgICBpZiAoZGV2aWNlX21heV93YWtldXAoZGV2KSkNCj4gPiA+ID4gKyAgICAg
-ICAgICAgICAgIHJldCA9IHhoY2lfbXRrX3Jlc3VtZShkZXYpOw0KPiA+ID4gPiArDQo+ID4gPiA+
-ICsgICAgICAgcmV0dXJuIHJldDsNCj4gPiA+ID4gK30NCj4gPiA+ID4gKw0KPiA+ID4gPiAgc3Rh
-dGljIGNvbnN0IHN0cnVjdCBkZXZfcG1fb3BzIHhoY2lfbXRrX3BtX29wcyA9IHsNCj4gPiA+ID4g
-ICAgICAgICBTRVRfU1lTVEVNX1NMRUVQX1BNX09QUyh4aGNpX210a19zdXNwZW5kLCB4aGNpX210
-a19yZXN1bWUpDQo+ID4gPiA+ICsgICAgICAgU0VUX1JVTlRJTUVfUE1fT1BTKHhoY2lfbXRrX3J1
-bnRpbWVfc3VzcGVuZCwNCj4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgeGhjaV9t
-dGtfcnVudGltZV9yZXN1bWUsIE5VTEwpDQo+ID4gPiA+ICB9Ow0KPiA+ID4gPiAtI2RlZmluZSBE
-RVZfUE1fT1BTIElTX0VOQUJMRUQoQ09ORklHX1BNKSA/ICZ4aGNpX210a19wbV9vcHMgOiBOVUxM
-DQo+ID4gPiA+ICsNCj4gPiA+ID4gKyNkZWZpbmUgREVWX1BNX09QUyAoSVNfRU5BQkxFRChDT05G
-SUdfUE0pID8gJnhoY2lfbXRrX3BtX29wcyA6IE5VTEwpDQo+ID4gPiA+DQo+ID4gPiA+ICBzdGF0
-aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBtdGtfeGhjaV9vZl9tYXRjaFtdID0gew0KPiA+
-ID4gPiAgICAgICAgIHsgLmNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTczLXhoY2kifSwNCj4g
-PiA+ID4gLS0NCj4gPiA+ID4gMi4xOC4wDQo+ID4gPiA+DQo+ID4NCg0K
+The 04/13/2021 10:43, Milton Miller II wrote:
+> 
+> 
+> -----"openbmc" <openbmc-bounces+miltonm=us.ibm.com@lists.ozlabs.org> wrote: -----
+> 
+> >To: Rob Herring <robh@kernel.org>
+> >From: Steven Lee 
+> >Sent by: "openbmc" 
+> >Date: 04/12/2021 08:31PM
+> >Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+> ><devicetree@vger.kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+> >Ryan Chen <ryan_chen@aspeedtech.com>, "moderated list:ASPEED SD/MMC
+> >DRIVER" <linux-aspeed@lists.ozlabs.org>, Andrew Jeffery
+> ><andrew@aj.id.au>, "open list:ASPEED SD/MMC DRIVER"
+> ><linux-mmc@vger.kernel.org>, "moderated list:ASPEED SD/MMC DRIVER"
+> ><openbmc@lists.ozlabs.org>, Ryan Chen <ryanchen.aspeed@gmail.com>,
+> >Adrian Hunter <adrian.hunter@intel.com>, open list
+> ><linux-kernel@vger.kernel.org>, Chin-Ting Kuo
+> ><chin-ting_kuo@aspeedtech.com>, "moderated list:ARM/ASPEED MACHINE
+> >SUPPORT" <linux-arm-kernel@lists.infradead.org>
+> >Subject: [EXTERNAL] Re: [PATCH v1 1/2] dt-bindings: mmc:
+> >sdhci-of-aspeed: Add power-gpio and power-switch-gpio
+> >
+> >The 04/10/2021 02:41, Rob Herring wrote:
+> >> On Thu, Apr 08, 2021 at 09:52:17AM +0800, Steven Lee wrote:
+> >> > AST2600-A2 EVB provides the reference design for enabling SD bus
+> >power
+> >> > and toggling SD bus signal voltage by GPIO pins.
+> >> > Add the definition and example for power-gpio and
+> >power-switch-gpio
+> >> > properties.
+> >> > 
+> >> > In the reference design, GPIOV0 of AST2600-A2 EVB is connected to
+> >power
+> >> > load switch that providing 3.3v to SD1 bus vdd. GPIOV1 is
+> >connected to
+> >> > a 1.8v and a 3.3v power load switch that providing signal voltage
+> >to
+> >> > SD1 bus.
+> >> > If GPIOV0 is active high, SD1 bus is enabled. Otherwise, SD1 bus
+> >is
+> >> > disabled.
+> >> > If GPIOV1 is active high, 3.3v power load switch is enabled, SD1
+> >signal
+> >> > voltage is 3.3v. Otherwise, 1.8v power load switch will be
+> >enabled, SD1
+> >> > signal voltage becomes 1.8v.
+> >> > 
+> >> > AST2600-A2 EVB also support toggling signal voltage for SD2 bus.
+> >> > The design is the same as SD1 bus. It uses GPIOV2 as power-gpio
+> >and GPIOV3
+> >> > as power-switch-gpio.
+> >> > 
+> >> > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> >> > ---
+> >> >  .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 25
+> >+++++++++++++++++++
+> >> >  1 file changed, 25 insertions(+)
+> >> > 
+> >> > diff --git
+> >a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> >b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> >> > index 987b287f3bff..515a74614f3c 100644
+> >> > --- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> >> > +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> >> > @@ -37,6 +37,14 @@ properties:
+> >> >    clocks:
+> >> >      maxItems: 1
+> >> >      description: The SD/SDIO controller clock gate
+> >> > +  power-gpio:
+> >> 
+> >> '-gpios' is the preferred form even if just 1.
+> >> 
+> >
+> >Thanks for reviewing, I will change the name.
+> 
+> is this a clock gate or a power on gpio?
+> 
+> 
 
+A power on gpio.
+
+> >
+> >> > +    description:
+> >> > +      The GPIO for enabling/disabling SD bus power.
+> >> > +    maxItems: 1
+> >> 
+> >> blank line
+> >> 
+> >
+> >I will remove the blank line.
+> >
+> >> > +  power-switch-gpio:
+> >> > +    description:
+> >> > +      The GPIO for toggling the signal voltage between 3.3v and
+> >1.8v.
+> 
+> Which way does it toggle for which voltage?
+> 
+> Oh, you said in the change log but not in the binding.
+>
+
+I will add description in the binding.
+
+> But please, use gpio controled regulators as Ulf suggested and is
+> already used by other mmc controllers upstream.
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/
+> Documentation/devicetree/bindings/regulator/gpio-regulator.yaml
+> 
+
+Thanks for reviewing and the information, I will use gpio-regulator
+instead of power-gpio and power-switch-gpio.
+
+> Ulf> Please do not model these as GPIO pins like this. Instead, it's better
+> Ulf> to model them as gpio regulators, since the mmc core manages them as
+> Ulf> regulators.
+> Ulf> 
+> Ulf> We have a vmmc regulator (corresponding to vdd) and a vqmmc regulator
+> Ulf> (corresponding the signal-voltage level). These are also described in
+> Ulf> the common mmc DT bindings, see
+> Ulf> Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> Ulf> .
+> 
+> milton
+> 
+> >> > +    maxItems: 1
+> >> >  
+> >> >  patternProperties:
+> >> >    "^sdhci@[0-9a-f]+$":
+> >> > @@ -61,6 +69,14 @@ patternProperties:
+> >> >        sdhci,auto-cmd12:
+> >> >          type: boolean
+> >> >          description: Specifies that controller should use auto
+> >CMD12
+> >> > +      power-gpio:
+> >> > +        description:
+> >> > +          The GPIO for enabling/disabling SD bus power.
+> >> > +        maxItems: 1
+> >> > +      power-switch-gpio:
+> >> > +        description:
+> >> > +          The GPIO for toggling the signal voltage between 3.3v
+> >and 1.8v.
+> >> > +        maxItems: 1
+> >> >      required:
+> >> >        - compatible
+> >> >        - reg
+> >> > @@ -80,6 +96,7 @@ required:
+> >> >  examples:
+> >> >    - |
+> >> >      #include <dt-bindings/clock/aspeed-clock.h>
+> >> > +    #include <dt-bindings/gpio/aspeed-gpio.h>
+> >> >      sdc@1e740000 {
+> >> >              compatible = "aspeed,ast2500-sd-controller";
+> >> >              reg = <0x1e740000 0x100>;
+> >> > @@ -94,6 +111,10 @@ examples:
+> >> >                      interrupts = <26>;
+> >> >                      sdhci,auto-cmd12;
+> >> >                      clocks = <&syscon ASPEED_CLK_SDIO>;
+> >> > +                    power-gpio = <&gpio0 ASPEED_GPIO(V, 0)
+> >> > +                                     GPIO_ACTIVE_HIGH>;
+> >> > +                    power-switch-gpio = <&gpio0 ASPEED_GPIO(V,
+> >1)
+> >> > +                                     GPIO_ACTIVE_HIGH>;
+> >> >              };
+> >> >  
+> >> >              sdhci1: sdhci@200 {
+> >> > @@ -102,5 +123,9 @@ examples:
+> >> >                      interrupts = <26>;
+> >> >                      sdhci,auto-cmd12;
+> >> >                      clocks = <&syscon ASPEED_CLK_SDIO>;
+> >> > +                    power-gpio = <&gpio0 ASPEED_GPIO(V, 2)
+> >> > +                                     GPIO_ACTIVE_HIGH>;
+> >> > +                    power-switch-gpio = <&gpio0 ASPEED_GPIO(V,
+> >3)
+> >> > +                                     GPIO_ACTIVE_HIGH>;
+> >> >              };
+> >> >      };
+> >> > -- 
+> >> > 2.17.1
+> >> > 
+> >
+> >
+> 
