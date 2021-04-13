@@ -2,99 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6C0535DA7A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 10:56:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8967A35DAA6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 11:08:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243899AbhDMIzg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 04:55:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41810 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243886AbhDMIzf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 04:55:35 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA212C061574;
-        Tue, 13 Apr 2021 01:55:15 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id v6so23384101ejo.6;
-        Tue, 13 Apr 2021 01:55:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ewtIu5p3Y0Xu99ur8olSmUgiErVcImHe/VcmOukwaEs=;
-        b=Cv1TjM96wPkaSAIumPZnOxI7YBMHUTN1xUGcSlLDNjw8cLkyu2Fm0FnxnJMd+SEdHm
-         OQmPnMf8N5ec8Plz/9sSPs10Stcq6t1XD3/eOlqcIXPJ7FilxfIs5Efc5lm17wvAT+9T
-         DbCdnpwuv/Us7hs9jtH4Tjvz8MuJUzRkP7NQPm2CYAML1ulEiJA7jkMbBMXy+UWs9W3I
-         v/WKoBe3h0vcfszKWB3NG7noUJjGDKZDhySuE6MbOHb9+XMCYUEadvA/9jT2WXY3rtXW
-         IwlflKhAQUIIUQWyoqKQj4c8Rck7lkW+PxMXcXLubbWdPhDA7a3Lk7xacbQRD1o5CJ3L
-         3/6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ewtIu5p3Y0Xu99ur8olSmUgiErVcImHe/VcmOukwaEs=;
-        b=ZwIERYTfW24skGe+UkvW9F4NHVPxlzbABZWo1baRQZypltXSGhl18+sImusA5FBjdT
-         yjn7/O+zifQuObUk6zxzH3L8K4FZd4wzwsWtiy/+VtHNMhUbeYkaeVfq/pyw+SgvLt3X
-         RjU6PLS2HKiDcB0cjuekzR3wEhto37XuHWj0wazBu2YJBzKTFWBUGlqzOW7FZGbKqcQr
-         hV7BPojwORdGss5ypVvct4Xg9umvSSnNsMvhXk64s11jVCHigUBprC3kD95LkYjmGY3X
-         cECX21hH8s73fkGcBxmGzbtU2MHUFUvhWewvJcok/wqwceXLP4JwN42Ol4NuaKBIdZKJ
-         sfbQ==
-X-Gm-Message-State: AOAM533JN9HO8v7aKSycsMmKTXLDq8QPGzEqR0teBOU61TBhCOY/uPDe
-        oixwgkDuLQnqk19xSMRYEHGed1c3v5IRGUre
-X-Google-Smtp-Source: ABdhPJz1+mFBiqlZivwu2ed0Bl8pELKvAdWOAjzLRzW7jC7p4OylH7FXt/JSJFA++n+ak3UZqLcBXA==
-X-Received: by 2002:a17:906:5fce:: with SMTP id k14mr16144197ejv.9.1618304114660;
-        Tue, 13 Apr 2021 01:55:14 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id e5sm8763675edr.64.2021.04.13.01.55.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Apr 2021 01:55:14 -0700 (PDT)
-Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: change gpio nodenames
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        bgolaszewski@baylibre.com,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel@vger.kernel.org
-References: <20210412223617.8634-1-jbx6244@gmail.com>
- <20210412223617.8634-3-jbx6244@gmail.com>
- <CAMdYzYqTS-qEOaVsnWMSABpj5Z55An_GLCUoOZZg-fjMp9qi8w@mail.gmail.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <9fa62a53-e4f2-5032-cf1b-267e470af1c9@gmail.com>
-Date:   Tue, 13 Apr 2021 10:55:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        id S244947AbhDMJJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 05:09:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44442 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240336AbhDMJJL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Apr 2021 05:09:11 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 382B4613B2;
+        Tue, 13 Apr 2021 09:08:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618304931;
+        bh=BtCfkdC846kD68VrDOZHRC7r5jMMmytCeBdRZ72xq1Q=;
+        h=From:To:Cc:Subject:Date:From;
+        b=o7SN17H0viIn6WodTi9Zmk5Rgn/8nITgHL49tTVFOU+HJHurIgj7ZtVvIxDatxv07
+         Ps76fM6sgb5+AlC0lPMtvN/Uzs/1KwBM3JOPEZRYX8WAR6D5A9lBtsg1ASABeoEWLc
+         LvG4+knSl35X1qUe53xqhHAoMoLS9NathcgIFfGh1iydIcfRnlFUFPwzF7Fd8Fhf9V
+         CvkAy+PW4pwFr82Aip8cYBH+6vtgUWCIobyvZgLy5OHsIv6Nh9B+THTMK4eun9AS2s
+         wAoK5PPUgJYVtJRsUYo1K0gJbDBzAjIt/gDt4hAkYJJFp2UDNZv8d7CyJzBHGuOkbz
+         bQmaMlbq9CKZA==
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     nbd@nbd.name
+Cc:     linux-wireless@vger.kernel.org, lorenzo.bianconi@redhat.com,
+        sean.wang@mediatek.com, ryder.lee@mediatek.com,
+        shayne.chen@mediatek.com, devicetree@vger.kernel.org,
+        robh@kernel.org
+Subject: [PATCH v3 0/7] introduce single-sku support for mt7663/mt7921 drivers
+Date:   Tue, 13 Apr 2021 11:08:34 +0200
+Message-Id: <cover.1618304559.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <CAMdYzYqTS-qEOaVsnWMSABpj5Z55An_GLCUoOZZg-fjMp9qi8w@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/13/21 1:22 AM, Peter Geis wrote:
-> On Mon, Apr 12, 2021 at 6:38 PM Johan Jonker <jbx6244@gmail.com> wrote:
->>
->> Currently all gpio nodenames are sort of identical to there label.
->> Nodenames should be of a generic type, so change them all.
-> 
-> Currently the rockchip pinctrl driver checks np->name against the
-> bank->name and if they do not match it does not set the gpio-bank as
-> valid.
-> The new GPIO driver appears to follow a similar method.
-> This will break the driver without a correction.
+Add per-rate power limitations for 802.11n/802.11ac/802.11ax rates to
+mt7663/mt7921 drivers.
+Introduce per-rate power limit dts parsing/binding.
 
-Given Rob's comment in version 1 maybe combine this serie with yours?
-With Heiko's blessing maybe add support both for legacy and for the new
-format?
+Changes since v2:
+- add missing properties in mt76 dts schema
 
-Johan
+Changes since v1:
+- drop patch 1/8 and move regdomain property in mt76.yaml
+- various power-limits property fixes in mt76.yaml
 
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/pinctrl/pinctrl-rockchip.c?h=next-20210412#n3836
-> 
->>
->> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
->> ---
+Felix Fietkau (2):
+  mt76: add functions for parsing rate power limits from DT
+  mt76: mt7615: implement support for using DT rate power limits
+
+Lorenzo Bianconi (3):
+  dt-bindings:net:wireless:mediatek,mt76: introduce power-limits node
+  mt76: mt7615: do not use mt7615 single-sku values for mt7663
+  mt76: introduce single-sku support for mt7663/mt7921
+
+Sean Wang (1):
+  mt76: mt7921: add dumping Tx power table
+
+Shayne Chen (1):
+  mt76: extend DT rate power limits to support 11ax devices
+
+ .../bindings/net/wireless/mediatek,mt76.yaml  | 107 +++++++++
+ drivers/net/wireless/mediatek/mt76/eeprom.c   | 220 ++++++++++++++++++
+ drivers/net/wireless/mediatek/mt76/mt76.h     |  13 ++
+ .../net/wireless/mediatek/mt76/mt7615/init.c  |  15 +-
+ .../net/wireless/mediatek/mt76/mt7615/main.c  |   4 +
+ .../net/wireless/mediatek/mt76/mt7615/mcu.c   |  66 +++++-
+ .../wireless/mediatek/mt76/mt76_connac_mcu.c  | 133 +++++++++++
+ .../wireless/mediatek/mt76/mt76_connac_mcu.h  |  24 ++
+ .../wireless/mediatek/mt76/mt7921/debugfs.c   |  79 +++++++
+ .../net/wireless/mediatek/mt76/mt7921/init.c  |   2 +
+ .../net/wireless/mediatek/mt76/mt7921/main.c  |   4 +
+ .../net/wireless/mediatek/mt76/mt7921/mcu.c   |  23 ++
+ .../net/wireless/mediatek/mt76/mt7921/mcu.h   |  17 ++
+ .../wireless/mediatek/mt76/mt7921/mt7921.h    |  31 +++
+ 14 files changed, 735 insertions(+), 3 deletions(-)
+
+-- 
+2.30.2
+
