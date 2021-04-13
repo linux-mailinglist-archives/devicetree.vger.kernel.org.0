@@ -2,300 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D99B835E729
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 21:38:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1674535E74D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 21:50:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345589AbhDMTip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 15:38:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42140 "EHLO
+        id S1348131AbhDMTuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 15:50:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231571AbhDMTip (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 15:38:45 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26230C061574
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 12:38:25 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lWOra-0003b7-NH; Tue, 13 Apr 2021 21:38:18 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lWOra-0003y5-9m; Tue, 13 Apr 2021 21:38:18 +0200
-Date:   Tue, 13 Apr 2021 21:38:18 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Clemens Gruber <clemens.gruber@pqgruber.com>
-Cc:     linux-pwm@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sven Van Asbroeck <TheSven73@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 1/8] pwm: pca9685: Switch to atomic API
-Message-ID: <20210413193818.r7oqzdzbxqf5sjj3@pengutronix.de>
-References: <20210412132745.76609-1-clemens.gruber@pqgruber.com>
- <20210412161808.lp2amdfopw74lvz7@pengutronix.de>
- <YHR3wP4Fk3jidnri@workstation.tuxnet>
- <20210412201019.vouxx4daumusrcvr@pengutronix.de>
- <YHWKehtYFSaHt1hC@workstation.tuxnet>
+        with ESMTP id S1348070AbhDMTun (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 15:50:43 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44866C061756
+        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 12:50:23 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id e2so4508953plh.8
+        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 12:50:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=oOecOrjP4ebjB9MfD+t/MwQe3gJqtePCpwG7b5PQgBs=;
+        b=ep3RW5lfGiKUgUbny3bLO13DIO+Ejr205QO9Sj9bTseb2gaW4CooOeZ0UQy8VFbUo4
+         IoX72M2BDxEO7GAvHFCZUjex8Xjs5EFdJz2j2ipVz8L/TDgYsBhFf718ooClu5tAY56+
+         cNV3vwNptvDHbYivOEHLlfEUesW22uB/9W7/fRxp0jEh5N85IWibEQEgCkCSpXBN2pVM
+         M/TE4CRqqcG6GBj+VLaDiv1tOZL/YPffagrD+73atSsvba5eqQEGmwBWvEVEAtzHxMca
+         jBfOfF9bViKDnyIXT7i2qh/7zBfV3rhpzaBuLm2LkW+q67OGIYjpAdGJUnyyC5xjfGCk
+         AYhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oOecOrjP4ebjB9MfD+t/MwQe3gJqtePCpwG7b5PQgBs=;
+        b=UgMvAx4arySAjZ3t2aIFANQc1dQ6ndMYD+tAmZRHmJG++wkBd34eOGnPF6nsigij+J
+         Z4rJYuwK44nPs+xQvDE0LxU31v6uLyB0g7Eya8vyKliHorpXd61CZ5MZtHbABEh7jCQV
+         RUufh6+4DvBa+WmeN3LrJDzUBKma1Y5mqFnrA4xwf17aoJ1fRzxO0CvtkKyPlD3nXQtw
+         9C/1IklwUNSy1KFnHSfxBLbVIwrtiIVUfmBh31/gTHSTO6HL0MmVE/U/NRjWvkPVGwYP
+         /8jKHnvUr/1EN9y0tb+IYydYa21e3tLAUmBuMtKZDEBDoQML72ixsnF7mZUGkfN2qy5/
+         Sz7w==
+X-Gm-Message-State: AOAM532chO+OmwJqk9np30+G3MrCKfNq6uiX3WOCwhntjtxU62ffJ31G
+        UNXa0TUxbo11+QRg93gdILzcpBeonac+16+TZeXJYVtjVeI=
+X-Google-Smtp-Source: ABdhPJwaj6udX1dNnKNlsRCyFoPlCACj+fhdmzsOnCuN8ke1sAMbselzI6xf9r5pQiR9bEI7Hb/t9N6kmsPzQMoE9to=
+X-Received: by 2002:a17:90a:c7d5:: with SMTP id gf21mr1692957pjb.80.1618343422498;
+ Tue, 13 Apr 2021 12:50:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4ttooeqacrohtzhf"
-Content-Disposition: inline
-In-Reply-To: <YHWKehtYFSaHt1hC@workstation.tuxnet>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210224191720.7724-1-jae.hyun.yoo@linux.intel.com>
+ <20210224191720.7724-2-jae.hyun.yoo@linux.intel.com> <20210306203011.GA1152769@robh.at.kernel.org>
+ <f6732348-d6c8-f49b-6123-afe542bb1f8c@linux.intel.com> <CAL_Jsq+H2wCyTKhGcQvgiuyMtGW0hytQgw=948q0JGLSLOo9KA@mail.gmail.com>
+ <f1811747-3826-215a-d822-85170303a7c9@linux.intel.com> <fadf1244-ed6e-5973-ff1b-018bd20ff3b1@linux.intel.com>
+In-Reply-To: <fadf1244-ed6e-5973-ff1b-018bd20ff3b1@linux.intel.com>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Tue, 13 Apr 2021 12:50:11 -0700
+Message-ID: <CAFd5g453L_+tu=vd0foiswJP16+repffPBEPCy6mpZQqnM50Ug@mail.gmail.com>
+Subject: Re: [PATCH v4 1/4] dt-bindings: i2c: aspeed: add transfer mode support
+To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+Cc:     Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>, Tao Ren <taoren@fb.com>,
+        Cedric Le Goater <clg@kaod.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Apr 8, 2021 at 10:50 AM Jae Hyun Yoo
+<jae.hyun.yoo@linux.intel.com> wrote:
+>
+> Ping.
+>
+> On 3/10/2021 7:55 AM, Jae Hyun Yoo wrote:
+> > On 3/9/2021 6:15 PM, Rob Herring wrote:
+> >> On Tue, Mar 9, 2021 at 10:02 AM Jae Hyun Yoo
+> >> <jae.hyun.yoo@linux.intel.com> wrote:
+> >>>
+> >>> Hi Rob,
+> >>>
+> >>> On 3/6/2021 12:30 PM, Rob Herring wrote:
+> >>>> On Wed, Feb 24, 2021 at 11:17:17AM -0800, Jae Hyun Yoo wrote:
+> >>>>> Append bindings to support transfer mode.
+> >>>>>
+> >>>>> Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+> >>>>> Reviewed-by: Brendan Higgins <brendanhiggins@google.com>
+> >>>>> ---
+> >>>>> Changes since v3:
+> >>>>> - None
+> >>>>>
+> >>>>> Changes since v2:
+> >>>>> - Moved SRAM resources back to default dtsi and added mode selection
+> >>>>>     property.
+> >>>>>
+> >>>>> Changes since v1:
+> >>>>> - Removed buffer reg settings from default device tree and added
+> >>>>> the settings
+> >>>>>     into here to show the predefined buffer range per each bus.
+> >>>>>
+> >>>>>    .../devicetree/bindings/i2c/i2c-aspeed.txt    | 37
+> >>>>> +++++++++++++++----
+> >>>>>    1 file changed, 30 insertions(+), 7 deletions(-)
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
+> >>>>> b/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
+> >>>>> index b47f6ccb196a..242343177324 100644
+> >>>>> --- a/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
+> >>>>> +++ b/Documentation/devicetree/bindings/i2c/i2c-aspeed.txt
+> >>>>> @@ -17,6 +17,20 @@ Optional Properties:
+> >>>>>    - bus-frequency    : frequency of the bus clock in Hz defaults
+> >>>>> to 100 kHz when not
+> >>>>>                 specified
+> >>>>>    - multi-master     : states that there is another master active
+> >>>>> on this bus.
+> >>>>> +- aspeed,i2c-xfer-mode      : should be "byte", "buf" or "dma" to
+> >>>>> select transfer
+> >>>>> +                      mode defaults to "byte" mode when not
+> >>>>> specified.
+> >>>>> +
+> >>>>> +                      I2C DMA mode on AST2500 has these restrictions:
+> >>>>> +                        - If one of these controllers is enabled
+> >>>>> +                            * UHCI host controller
+> >>>>> +                            * MCTP controller
+> >>>>> +                          I2C has to use buffer mode or byte mode
+> >>>>> instead
+> >>>>> +                          since these controllers run only in DMA
+> >>>>> mode and
+> >>>>> +                          I2C is sharing the same DMA H/W with them.
+> >>>>> +                        - If one of these controllers uses DMA
+> >>>>> mode, I2C
+> >>>>> +                          can't use DMA mode
+> >>>>> +                            * SD/eMMC
+> >>>>> +                            * Port80 snoop
+> >>>>
+> >>>> How does one decide between byte or buf mode?
+> >>>
+> >>> If a given system makes just one byte r/w transactions most of the time
+> >>> then byte mode will be a right setting. Otherwise, buf mode is more
+> >>> efficient because it doesn't generate a bunch of interrupts on every
+> >>> byte handling.
+> >>
+> >> Then why doesn't the driver do byte transactions when it gets small
+> >> 1-4? byte transactions and buffer transactions when it gets larger
+> >> sized transactions.
+> >
+> > Good question and it could be an option of this implementation.
+> > Actually, each mode needs different register handling so we need to add
+> > additional conditional branches to make it dynamic mode change depends
+> > on the data size which can be a downside. Also, checked that small
+> > amount of data transfer efficiency in 'buf' transfer mode is almost same
+> > to 'byte' mode so there would be no big benefit from the dynamic mode
+> > change. Of course, we can remove the 'byte' transfer mode but we should
+> > also provide flexibility of configuration on what this hardware can
+> > support, IMO.
 
---4ttooeqacrohtzhf
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I would rather set the choice in device tree or Kconfig, which the
+former is what I think you did here.
 
-Hello Clemens,
+As for doing byte mode for small transactions and buffer/DMA for large
+transactions, I would prefer sticking to a single mode based on what
+is selected at build/boot time. Seems less error prone to me. Then
+again, Rob probably has more experience in this area than I do, so
+maybe this kind of thing is pretty common and I just don't realize it.
 
-On Tue, Apr 13, 2021 at 02:11:38PM +0200, Clemens Gruber wrote:
-> On Mon, Apr 12, 2021 at 10:10:19PM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Mon, Apr 12, 2021 at 06:39:28PM +0200, Clemens Gruber wrote:
-> > > On Mon, Apr 12, 2021 at 06:18:08PM +0200, Uwe Kleine-K=F6nig wrote:
-> > > > On Mon, Apr 12, 2021 at 03:27:38PM +0200, Clemens Gruber wrote:
-> > > > > The switch to the atomic API goes hand in hand with a few fixes to
-> > > > > previously experienced issues:
-> > > > > - The duty cycle is no longer lost after disable/enable (previous=
-ly the
-> > > > >   OFF registers were cleared in disable and the user was required=
- to
-> > > > >   call config to restore the duty cycle settings)
-> > > > > - If one sets a period resulting in the same prescale register va=
-lue,
-> > > > >   the sleep and write to the register is now skipped
-> > > > > - Previously, only the full ON bit was toggled in GPIO mode (and =
-full
-> > > > >   OFF cleared if set to high), which could result in both full OF=
-F and
-> > > > >   full ON not being set and on=3D0, off=3D0, which is not allowed=
- according
-> > > > >   to the datasheet
-> > > > > - The OFF registers were reset to 0 in probe, which could lead to=
- the
-> > > > >   forbidden on=3D0, off=3D0. Fixed by resetting to POR default (f=
-ull OFF)
-> > > > >=20
-> > > > > Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
-> > > > > ---
-> > > > > Changes since v7:
-> > > > > - Moved check for !state->enabled before prescaler configuration
-> > > > > - Removed unnecessary cast
-> > > > > - Use DIV_ROUND_DOWN in .apply
-> > > > >=20
-> > > > > Changes since v6:
-> > > > > - Order of a comparison switched for improved readability
-> > > > >=20
-> > > > > Changes since v5:
-> > > > > - Function documentation for set_duty
-> > > > > - Variable initializations
-> > > > > - Print warning if all LEDs channel
-> > > > > - Changed EOPNOTSUPP to EINVAL
-> > > > > - Improved error messages
-> > > > > - Register reset corrections moved to this patch
-> > > > >=20
-> > > > > Changes since v4:
-> > > > > - Patches split up
-> > > > > - Use a single set_duty function
-> > > > > - Improve readability / new macros
-> > > > > - Added a patch to restrict prescale changes to the first user
-> > > > >=20
-> > > > > Changes since v3:
-> > > > > - Refactoring: Extracted common functions
-> > > > > - Read prescale register value instead of caching it
-> > > > > - Return all zeros and disabled for "all LEDs" channel state
-> > > > > - Improved duty calculation / mapping to 0..4096
-> > > > >=20
-> > > > > Changes since v2:
-> > > > > - Always set default prescale value in probe
-> > > > > - Simplified probe code
-> > > > > - Inlined functions with one callsite
-> > > > >=20
-> > > > > Changes since v1:
-> > > > > - Fixed a logic error
-> > > > > - Impoved PM runtime handling and fixed !CONFIG_PM
-> > > > > - Write default prescale reg value if invalid in probe
-> > > > > - Reuse full_off/_on functions throughout driver
-> > > > > - Use cached prescale value whenever possible
-> > > > >=20
-> > > > >  drivers/pwm/pwm-pca9685.c | 259 +++++++++++++-------------------=
-------
-> > > > >  1 file changed, 89 insertions(+), 170 deletions(-)
-> > > > >=20
-> > > > > diff --git a/drivers/pwm/pwm-pca9685.c b/drivers/pwm/pwm-pca9685.c
-> > > > > index 4a55dc18656c..827b57ced3c2 100644
-> > > > > --- a/drivers/pwm/pwm-pca9685.c
-> > > > > +++ b/drivers/pwm/pwm-pca9685.c
-> > > > > @@ -51,7 +51,6 @@
-> > > > >  #define PCA9685_PRESCALE_MAX	0xFF	/* =3D> min. frequency of 24 H=
-z */
-> > > > > =20
-> > > > >  #define PCA9685_COUNTER_RANGE	4096
-> > > > > -#define PCA9685_DEFAULT_PERIOD	5000000	/* Default period_ns =3D =
-1/200 Hz */
-> > > > >  #define PCA9685_OSC_CLOCK_MHZ	25	/* Internal oscillator with 25 =
-MHz */
-> > > > > =20
-> > > > >  #define PCA9685_NUMREGS		0xFF
-> > > > > @@ -71,10 +70,14 @@
-> > > > >  #define LED_N_OFF_H(N)	(PCA9685_LEDX_OFF_H + (4 * (N)))
-> > > > >  #define LED_N_OFF_L(N)	(PCA9685_LEDX_OFF_L + (4 * (N)))
-> > > > > =20
-> > > > > +#define REG_ON_H(C)	((C) >=3D PCA9685_MAXCHAN ? PCA9685_ALL_LED_=
-ON_H : LED_N_ON_H((C)))
-> > > > > +#define REG_ON_L(C)	((C) >=3D PCA9685_MAXCHAN ? PCA9685_ALL_LED_=
-ON_L : LED_N_ON_L((C)))
-> > > > > +#define REG_OFF_H(C)	((C) >=3D PCA9685_MAXCHAN ? PCA9685_ALL_LED=
-_OFF_H : LED_N_OFF_H((C)))
-> > > > > +#define REG_OFF_L(C)	((C) >=3D PCA9685_MAXCHAN ? PCA9685_ALL_LED=
-_OFF_L : LED_N_OFF_L((C)))
-> > > >=20
-> > > > I'd like to see these named PCA9685_REG_ON_H etc.
-> > >=20
-> > > I did not use the prefix because the existing LED_N_ON/OFF_H/L also do
-> > > not have a prefix. If the prefix is mandatory, I think LED_N_.. should
-> > > also be prefixed, right?
-> >=20
-> > I'd like to seem the prefixed (and assume that Thierry doesn't agree).
-> > IMHO it's good style and even though it yields longer name usually it
-> > yields easier understandable code. (But this seems to be subjective.)
->=20
-> I am not sure I want to also rename the existing LED_N_OFF stuff in this
-> patch. Maybe we can discuss unifying the macros (either with or without
-> prefix) in a later patch and I keep the REG_ON_ stuff for now without to
-> match the LED_N_ stuff?
+In any case, as for getting rid of byte mode, I would support that,
+but not in this patch set. I would rather switch the default and get
+users on buffer/DMA mode before taking away a fallback option.
 
-While consistency is fine I agree that this patch is already big and
-letting it do the things similar to other stuff in this driver is ok.
+My 2 cents, but I think the OzLabs and other active OpenBMC people are
+probably a little more up to date on this.
 
-> > > > Consider the following request: state->period =3D 4177921 [ns] +
-> > > > state->duty_cycle =3D 100000 [ns], then we get
-> > > > PRESCALE =3D round(25 * state->period / 4096000) - 1 =3D 25 and so =
-an actual
-> > > > period of 4096000 / 25 * (25 + 1) =3D 4259840 [ns]. If you now calc=
-ulate
-> > > > the duty using 4096 * 100000 / 4177920 =3D 98, this corresponds to =
-an
-> > > > actual duty cycle of 98 * 4259840 / 4096 =3D 101920 ns while you sh=
-ould
-> > > > actually configure 96 to get 99840 ns.
-> > > >=20
-> > > > So in the end I'd like to have the following:
-> > > >=20
-> > > > 	PRESCALE =3D round-down(25 * state->period / 4096000) - 1
-> > > >=20
-> > > > (to get the biggest period not bigger than state->period) and
-> > > >=20
-> > > > 	duty =3D round-down(state->duty_cycle * 25 / ((PRESCALE + 1) * 100=
-0))
-> > > >=20
-> > > > (to get the biggest duty cycle not bigger than state->duty_cycle). =
-With
-> > > > the example above this yields
-> > > >=20
-> > > > 	PRESCALE =3D 24
-> > > > 	duty =3D 100
-> > > >=20
-> > > > which results in
-> > > >=20
-> > > > 	.period =3D 4096000 / 25 * 25 =3D 4096000 [ns]
-> > > > 	.duty_cycle =3D 100000 [ns]
-> > > > =09
-> > > > Now you have a mixture of old and new with no consistent behaviour.=
- So
-> > > > please either stick to the old behaviour or do it right immediately.
-> > >=20
-> > > I avoided rounding down the prescale value because the datasheet has =
-an
-> > > example where a round-closest is used, see page 25.
-> >=20
-> > The hardware guy who wrote this data sheet wasn't aware of the rounding
-> > rules for Linux PWM drivers :-)
-> >=20
-> > > With your suggested round-down, the example with frequency of 200 Hz
-> > > would no longer result in 30 but 29 and that contradicts the datashee=
-t.
-> >=20
-> > Well, with PRESCALE =3D 30 we get a frequency of 196.88 Hz and with
-> > PRESCALE =3D 29 we get a frequency of 203.45 Hz. So no matter if you pi=
-ck
-> > 29 or 30, you don't get 200 Hz. And which of the two possible values is
-> > the better one depends on the consumer, no matter what rounding
-> > algorithm the data sheet suggests. Also note that the math here contains
-> > surprises you don't expect at first. For example, what PRESCALE value
-> > would you pick to get 284 Hz? [If my mail was a video, I'd suggest to
-> > press Space now to pause and let you think first :-)] The data sheet's
-> > formula suggests:
-> >=20
-> > 	round(25 MHz / (4096 * 284)) - 1 =3D 20
-> >=20
-> > The resulting frequency when picking PRESCALE =3D 20 is 290.644 Hz (so =
-an
-> > error of 6.644 Hz). If instead you pick PRESCALE =3D 21 you get 277.433=
- Hz
-> > (error =3D 6.567 Hz), so 21 is the better choice.
-> >=20
-> > Exercise for the reader:
-> >  What is the correct formula to really determine the PRESCALE value that
-> >  yields the best approximation (i.e. minimizing
-> >  abs(real_freq - target_freq)) for a given target_freq?
-
-I wonder if you tried this.
-
-> > These things don't happen when you round down only.
->=20
-> Sure, but it might also be counterintuitive that the Linux driver does
-> not use the same formula as the datasheet. And when using 200 Hz, 29 is
-> a little closer than 30.
-
-First let me state that I consider keeping the math as is in this patch
-a good idea. So to argue already for the future:
-
-I value consistency among the various pwm lowlevel drivers higher than
-what an individual hardware engineer happened to write in a data sheet.
-That engineer was successful in describing the functionality of the chip
-and that's where her/his job ends. How a driver should behave is to be
-decided by us.
-
-> I once measured the actual frequency and the internal oscillator is not
-> very accurate, so even if you think you should get 196.88 Hz, the actual
-> frequency measured with a decent scope is about 206 Hz and varies from
-> chip to chip (~=A0205-207 Hz).
-
-Huh. Did you do further measurements that suggest that the oscillator
-doesn't run at 25 MHz but maybe at 26 MHz (which would yield 204.7552
-Hz)? (Assume this is true, what do you think: Should be use the formula
-that matches reality, or should we stick to the formula defined in the
-data sheet?)
-=20
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---4ttooeqacrohtzhf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmB18yYACgkQwfwUeK3K
-7AlZtQf/dpKKWaEi2dVgMtedbzwCCGkr6zzvO9pydXc8m9t6W19n2jq0BiYtDaoZ
-ZWTP9sq1S8N8EkoRm1gKF99ZXlzo+Z/7wFa99F2tEB/go/2oWAnVwSvYyyCUKxtv
-ZkeqBYrciJOCdH1fD9fgm+rucUOjklMLJ1Betx9h7Nizx90ecNH+39ezXkX0JDVW
-QULrqiQWqXIb981QvhlxOt2x2sxMr9PmqvraSkY4vK/1vQgKiw5eQaLjfjx/p847
-Sm7IQMxwTG+QHfpdIFnS8gtQRvg+gUUR8Vrx7RMQ7IHkFtRlf+lVMU/oM0Joy8cc
-22XVndQuXAuI1k1U4cgxyjN8N+26Ow==
-=gQNC
------END PGP SIGNATURE-----
-
---4ttooeqacrohtzhf--
+Cheers
