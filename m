@@ -2,98 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0A3235E244
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 17:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 741F035E253
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 17:10:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229458AbhDMPHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 11:07:39 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:42590 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238720AbhDMPHe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 11:07:34 -0400
-Received: by mail-ot1-f48.google.com with SMTP id 101-20020a9d0d6e0000b02902816815ff62so10493791oti.9;
-        Tue, 13 Apr 2021 08:07:14 -0700 (PDT)
+        id S238834AbhDMPKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 11:10:39 -0400
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:45823 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240690AbhDMPKi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 11:10:38 -0400
+Received: by mail-oi1-f173.google.com with SMTP id d12so17281078oiw.12;
+        Tue, 13 Apr 2021 08:10:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=XMxCuAt8yGV3bjHJ384HQjwpFcmXOkbWEeUKtOHG6x8=;
-        b=e170ntUPhuw8nGMb8YysziGh+ouLY9TlLz1epkyDZebe1WWNPkKUCpqsVQFGbvBK++
-         1FZFX3VCP+98JO9fSeEir13RQX5JFVmUEORgBbEmDu6M7DNAZoBN+/eRm+t2J7RbPdJc
-         gV2RStei9LNyPFtOgi6R3ddBgabM++0Tjef5gA02mJXzjxz6EYhlKEQjGUFj3pAxudIP
-         yC1mS0BYPPnJC9lWGT7zvPKL8CNAesdsHUC4N5SPDuHWRnz1TKw9h3NXmgADiCWXBZvd
-         oxYMqG6UkvjkkgG/tPsXSHvupiFfeNe8Vp3AZIolTiGak3pku5av8FmRC1zzsFy0/y5J
-         MS8A==
-X-Gm-Message-State: AOAM531jlqHnAkma4hasq3oGP5/Duf33WbyyxVufGlwMSnJRqN917I3S
-        GxCIpqTEuYqgBD6ILH+xovULoxo/9A==
-X-Google-Smtp-Source: ABdhPJyKcxDc3UWZAMX83LBrzd/VCKV1nExf4mUHX0fy3poRtX3aaxgi+pJVXmIGi7FdEsoXjZvxYA==
-X-Received: by 2002:a9d:d45:: with SMTP id 63mr28320565oti.238.1618326433127;
-        Tue, 13 Apr 2021 08:07:13 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=YsCanL7b/TjLkmx+enx9Aus4Vr+uIbAaQh+vlFwv0l8=;
+        b=fHREhs4nzanSlZjyzq6dXXI/IojJCiai1w3o+ysNLZztaumMATzpeRg55MuObor/ci
+         6CpzR6mLmczhB/holIG2CB2suHp3LLcg116NvmYlkvpUYOf3dk2+Qm5zdtbzOZyASArY
+         tJ55tvMuoYDU8X3bWGA/Ms3wCHfE5J/g8Pfz3A0AICjAs/2bfJcRBZa4CrcVAgq8j4z6
+         uvp987zA+ByrTogFvQ4bNYdUF930CER2hE+e5in/9QZ7Rapi9w6bibU0z+TdEK+gWP5o
+         En+cXcBXaaQeNc2ff8oYkkgs5Ma1rpib2TL+q+fdOVM/Amw1qgpxU9/E1rMb5sjPtBvO
+         PK1w==
+X-Gm-Message-State: AOAM530+vcInOC7JrWrlf7c7tsP8RBjoRN4eKwQ6+17KhBu/oYtD6Q8m
+        Jf5hQ2Uho9a6efehIQHZ9Q==
+X-Google-Smtp-Source: ABdhPJzF1zgWHCJiGfVKDmhrJ2wTKR6x2ewP8TcygE4TuVMBkDsYK6eQpMYOS/t6b7dptR+qRTWBRw==
+X-Received: by 2002:a05:6808:10c5:: with SMTP id s5mr369821ois.58.1618326616659;
+        Tue, 13 Apr 2021 08:10:16 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n15sm2815754oos.1.2021.04.13.08.07.11
+        by smtp.gmail.com with ESMTPSA id x2sm3539688ote.47.2021.04.13.08.10.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Apr 2021 08:07:11 -0700 (PDT)
-Received: (nullmailer pid 1683099 invoked by uid 1000);
-        Tue, 13 Apr 2021 15:07:10 -0000
-Date:   Tue, 13 Apr 2021 10:07:10 -0500
+        Tue, 13 Apr 2021 08:10:15 -0700 (PDT)
+Received: (nullmailer pid 1686803 invoked by uid 1000);
+        Tue, 13 Apr 2021 15:10:13 -0000
+Date:   Tue, 13 Apr 2021 10:10:13 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Giulio Benetti <giulio.benetti@benettiengineering.com>
-Cc:     linux-input@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        devicetree@vger.kernel.org,
-        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: touchscreen: Add HY46XX bindings
-Message-ID: <20210413150710.GA1683048@robh.at.kernel.org>
-References: <20210412144624.GA3868831@robh.at.kernel.org>
- <20210412152400.1587623-1-giulio.benetti@benettiengineering.com>
- <20210412152400.1587623-2-giulio.benetti@benettiengineering.com>
+To:     bpeled@marvell.com
+Cc:     thomas.petazzoni@bootlin.com, lorenzo.pieralisi@arm.com,
+        bhelgaas@google.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, sebastian.hesselbarth@gmail.com,
+        gregory.clement@bootlin.com, andrew@lunn.ch, mw@semihalf.com,
+        jaz@semihalf.com, kostap@marvell.com, nadavh@marvell.com,
+        stefanc@marvell.com, oferh@marvell.com
+Subject: Re: =?utf-8?B?W+KAnVBBVENI4oCdIDMvNV0gZHQt?=
+ =?utf-8?Q?bindings=3A_pci=3A_add_system_controlle?= =?utf-8?Q?r?= and MAC
+ reset bit to Armada 7K/8K controller bindings
+Message-ID: <20210413151013.GA1683364@robh.at.kernel.org>
+References: <1618241456-27200-1-git-send-email-bpeled@marvell.com>
+ <1618241456-27200-4-git-send-email-bpeled@marvell.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210412152400.1587623-2-giulio.benetti@benettiengineering.com>
+In-Reply-To: <1618241456-27200-4-git-send-email-bpeled@marvell.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Apr 2021 17:23:59 +0200, Giulio Benetti wrote:
-> This adds device tree bindings for the Hycon HY46XX touchscreen series.
+On Mon, Apr 12, 2021 at 06:30:54PM +0300, bpeled@marvell.com wrote:
+> From: Ben Peled <bpeled@marvell.com>
 > 
-> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
-> ---
-> V1->V2:
-> As suggested by Rob Herring:
-> * fixed $id: address
-> * added "hycon," in front of every custom property
-> * changed all possible property to boolean type
-> * removed proximity-sensor-switch property since it's not handled in driver
-> V2->V3:
-> As suggested by Jonathan Neuschäfer:
-> * fixed some typo
-> * fixed description indentation
-> * improved boolean properties descriptions
-> * improved hycon,report-speed description
-> V3->V4:
-> * fixed binding compatible string in example as suggested by Jonathan Neuschäfer
-> V4->V5:
-> As suggested by Rob Herring:
-> * drop hycon- prefix from compatible
-> * use Hertz unit suffix for hycon,report-speed instead of u32
-> * set hycon,report-speed minimum to 1Hz, 0Hz make controller to do nothing
-> * change hycon,power-noise-enable property name to hycon,noise-filter-enable
-> * improve hycon,filter-data property description
-> * use generic touchscreen node name in example
-> V5->V6:
-> * changed report-speed property name into report-speed-hz according to
-> Rob Herring's suggestion
-> ---
->  .../input/touchscreen/hycon,hy46xx.yaml       | 119 ++++++++++++++++++
->  MAINTAINERS                                   |   6 +
->  2 files changed, 125 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
+> Adding optional system-controller and mac-reset-bit-mask
+> needed for linkdown procedure.
 > 
+> Signed-off-by: Ben Peled <bpeled@marvell.com>
+> ---
+>  Documentation/devicetree/bindings/pci/pci-armada8k.txt | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/pci-armada8k.txt b/Documentation/devicetree/bindings/pci/pci-armada8k.txt
+> index 7a813d0..2696e79 100644
+> --- a/Documentation/devicetree/bindings/pci/pci-armada8k.txt
+> +++ b/Documentation/devicetree/bindings/pci/pci-armada8k.txt
+> @@ -24,6 +24,10 @@ Optional properties:
+>  - phy-names: names of the PHYs corresponding to the number of lanes.
+>  	Must be "cp0-pcie0-x4-lane0-phy", "cp0-pcie0-x4-lane1-phy" for
+>  	2 PHYs.
+> +- marvell,system-controller: address of system controller needed
+> +	in order to reset MAC used by link-down handle
+> +- marvell,mac-reset-bit-mask: MAC reset bit of system controller
+> +	needed in order to reset MAC used by link-down handle
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Seems like this should use the reset controller binding instead.
+
+If not, this can be a single property with a phandle plus arg.
+
+Rob
