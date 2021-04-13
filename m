@@ -2,208 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 841CB35E5B8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 19:56:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D3F635E5BE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 19:58:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231710AbhDMR5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 13:57:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48008 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231336AbhDMR5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 13:57:04 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AC35C061574
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 10:56:44 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lWNH9-0001gH-CJ; Tue, 13 Apr 2021 19:56:35 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lWNH8-0005v0-T8; Tue, 13 Apr 2021 19:56:34 +0200
-Date:   Tue, 13 Apr 2021 19:56:31 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Clemens Gruber <clemens.gruber@pqgruber.com>,
-        linux-pwm@vger.kernel.org, Sven Van Asbroeck <TheSven73@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v8 4/8] dt-bindings: pwm: Support new PWM_USAGE_POWER flag
-Message-ID: <20210413175631.pwbynvwmnn7oog4m@pengutronix.de>
-References: <20210412132745.76609-1-clemens.gruber@pqgruber.com>
- <20210412132745.76609-4-clemens.gruber@pqgruber.com>
- <20210412162723.7hlhgqp6wlfbkeky@pengutronix.de>
- <YHWFs1f0XHkqbddp@orome.fritz.box>
+        id S1345556AbhDMR6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 13:58:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46682 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237095AbhDMR6e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Apr 2021 13:58:34 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 264F261220;
+        Tue, 13 Apr 2021 17:58:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618336694;
+        bh=FfzIve3xPN9IGoioW4OJdSXAM3DQmxDEqCa3p8D9AQs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=fuTGoumBPOYp4ArzUzEzdtlyVFhT4Do+2QkKOnSoMzO3NZlWlBXD0q66z+sDwPcJ1
+         yxhKOHl1nZJ/2FixiygQwO5y750qFPTJkaUTOmjfpYZ/tgSQIQkdSghWpmQSkR5DID
+         Gfj2KX1wOJDCTQxpnyojeXn90x6ATvGCYsSLyUFDjX2Ls9JUCqn5H7JQIeY3NWbLbA
+         W3+THEQzbKjWN2giFRICNYtQT1NkcUp/TuRTNDL3zrH+0vxtF3Ldx4KojaFtP3N7VV
+         +u08G/3IVOMTRHpR+s0eMohmvnbCvHekhiEqXdTNGMj0af0/iAByqrM9Oaf/IQeMDa
+         zHYWkXPSQqSOA==
+Received: by mail-qv1-f46.google.com with SMTP id h3so7746858qve.13;
+        Tue, 13 Apr 2021 10:58:14 -0700 (PDT)
+X-Gm-Message-State: AOAM533BEHKeaEOz4VYIDZLfaBd7q5AP6oRyjuixd+fKRGdt7HeKEurl
+        7x71+bThhXKsx/xOimX/MbX1DMPaAITtvWNR9A==
+X-Google-Smtp-Source: ABdhPJws1NfHPs84htGhmYHcyxv9pk+tCN0kYfaOX/vqo8HvO6tvcqeuum4MKIVrerz1ncj2JDFbf+S/ztoUdH6yMjc=
+X-Received: by 2002:a05:6214:8c4:: with SMTP id da4mr34787401qvb.57.1618336693305;
+ Tue, 13 Apr 2021 10:58:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ky54kfraiix4vkcz"
-Content-Disposition: inline
-In-Reply-To: <YHWFs1f0XHkqbddp@orome.fritz.box>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210412144624.GA3868831@robh.at.kernel.org> <20210412152400.1587623-1-giulio.benetti@benettiengineering.com>
+ <20210412152400.1587623-2-giulio.benetti@benettiengineering.com>
+ <20210413150710.GA1683048@robh.at.kernel.org> <3bf86aaf-bfad-0615-44c7-3a89417af56a@benettiengineering.com>
+In-Reply-To: <3bf86aaf-bfad-0615-44c7-3a89417af56a@benettiengineering.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 13 Apr 2021 12:58:01 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLZo45pY+mB+vvsAaGaE8N-P=4ojOMGSra4=6y1ESTJBw@mail.gmail.com>
+Message-ID: <CAL_JsqLZo45pY+mB+vvsAaGaE8N-P=4ojOMGSra4=6y1ESTJBw@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: touchscreen: Add HY46XX bindings
+To:     Giulio Benetti <giulio.benetti@benettiengineering.com>
+Cc:     Linux Input <linux-input@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        devicetree@vger.kernel.org,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Apr 13, 2021 at 10:27 AM Giulio Benetti
+<giulio.benetti@benettiengineering.com> wrote:
+>
+> On 4/13/21 5:07 PM, Rob Herring wrote:
+> > On Mon, 12 Apr 2021 17:23:59 +0200, Giulio Benetti wrote:
+> >> This adds device tree bindings for the Hycon HY46XX touchscreen series=
+.
+> >>
+> >> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+> >> ---
+> >> V1->V2:
+> >> As suggested by Rob Herring:
+> >> * fixed $id: address
+> >> * added "hycon," in front of every custom property
+> >> * changed all possible property to boolean type
+> >> * removed proximity-sensor-switch property since it's not handled in d=
+river
+> >> V2->V3:
+> >> As suggested by Jonathan Neusch=C3=A4fer:
+> >> * fixed some typo
+> >> * fixed description indentation
+> >> * improved boolean properties descriptions
+> >> * improved hycon,report-speed description
+> >> V3->V4:
+> >> * fixed binding compatible string in example as suggested by Jonathan =
+Neusch=C3=A4fer
+> >> V4->V5:
+> >> As suggested by Rob Herring:
+> >> * drop hycon- prefix from compatible
+> >> * use Hertz unit suffix for hycon,report-speed instead of u32
+> >> * set hycon,report-speed minimum to 1Hz, 0Hz make controller to do not=
+hing
+> >> * change hycon,power-noise-enable property name to hycon,noise-filter-=
+enable
+> >> * improve hycon,filter-data property description
+> >> * use generic touchscreen node name in example
+> >> V5->V6:
+> >> * changed report-speed property name into report-speed-hz according to
+> >> Rob Herring's suggestion
+> >> ---
+> >>   .../input/touchscreen/hycon,hy46xx.yaml       | 119 ++++++++++++++++=
+++
+> >>   MAINTAINERS                                   |   6 +
+> >>   2 files changed, 125 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/input/touchscre=
+en/hycon,hy46xx.yaml
+> >>
+> >
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+>
+> I've sent v7[1] before receiving your Reviewed-by.
+> Do I have to re-submit it once and if I receive a Reviewed-by from you
+> as a v8 with all your Reviewed-by's?
 
---ky54kfraiix4vkcz
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I gave it on v7 too, so only if there are other changes on any of the
+patches. The tools will generally pick up any tags on the version
+applied. You just can't expect maintainers to go rummage thru old
+versions to find any tags.
 
-On Tue, Apr 13, 2021 at 01:51:15PM +0200, Thierry Reding wrote:
-> On Mon, Apr 12, 2021 at 06:27:23PM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Mon, Apr 12, 2021 at 03:27:41PM +0200, Clemens Gruber wrote:
-> > > Add the flag and corresponding documentation for PWM_USAGE_POWER.
-> >=20
-> > My concern here in the previous round was that PWM_USAGE_POWER isn't a
-> > name that intuitively suggests its semantic. Do you disagree?
->=20
-> I suggested PWM_USAGE_POWER because I think it accurately captures what
-> we want here.
->=20
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/pwm/pwm.txt | 3 +++
-> > >  include/dt-bindings/pwm/pwm.h                 | 1 +
-> > >  2 files changed, 4 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/pwm/pwm.txt b/Document=
-ation/devicetree/bindings/pwm/pwm.txt
-> > > index 084886bd721e..fe3a28f887c0 100644
-> > > --- a/Documentation/devicetree/bindings/pwm/pwm.txt
-> > > +++ b/Documentation/devicetree/bindings/pwm/pwm.txt
-> > > @@ -46,6 +46,9 @@ period in nanoseconds.
-> > >  Optionally, the pwm-specifier can encode a number of flags (defined =
-in
-> > >  <dt-bindings/pwm/pwm.h>) in a third cell:
-> > >  - PWM_POLARITY_INVERTED: invert the PWM signal polarity
-> > > +- PWM_USAGE_POWER: Only care about the power output of the signal. T=
-his
-> > > +  allows drivers (if supported) to optimize the signals, for example=
- to
-> > > +  improve EMI and reduce current spikes.
-> >=20
-> > IMHO there are too many open questions about which freedom this gives to
-> > the lowlevel driver. If the consumer requests .duty_cycle =3D 25ns +
-> > .period =3D 100ns, can the driver provide .duty_cycle =3D 25s + .period=
- =3D
-> > 100s which nominally has the same power output? Let's not introduce more
-> > ambiguity than there already is.
->=20
-> The freedom given to the driver should be to adjust the signal within
-> reasonable bounds. Changing the time unit by a factor of 1000000000 is
-> not within reason, and I doubt anyone would interpret it that way, even
-> if we didn't document this at all.
-
-Please define a rule that allows to judge if any given implementation is
-correct or not. For the record neither "within reasonable bounds" nor "a
-factor of 1000000000 is not within reason" is good enough.
-
-This is not only important to be able to review drivers that implement
-it, but also for consumers, because they should know what to expect.
-
-> To be frank I think that quest of yours to try and rid the PWM API of
-> all ambiguity is futile.
-
-I consider my quest about rounding reasonable. And I think this is
-painful because when the PWM framework was introduced it was too much ad
-hoc and the APIs were not thought through enough. And because I don't
-want to have that repeated, I express my concerns here.
-
-> I've been trying to be lenient because you seem
-> motivated, but I think you're taking this too far. There are always
-> going to be cases that aren't completely clear-cut and where drivers
-> need the flexibility to cheat in order to be useful at all. If we get to
-> a point where everything needs to be 100% accurate, the majority of the
-> PWM controllers won't be usable at all.
->=20
-> Don't let perfect be the enemy of good.
-
-I admit here I don't have a constructive idea how to define what is
-needed.
-
-For example if we only care about the relative duty cycle, a consumer
-requests
-
-	.period =3D 1045
-	.duty_cyle =3D 680
-
-and the driver can provide multiples of 100 ns for both .period and
-=2Eduty_cycle, the candidates that might be sensible to chose from are
-(IMHO):
-
- - exact relative duty:
-
-	.period =3D 104500
-	.duty_cycle =3D 68000
-
- - round both values in the same direction, minimizing error
-
- 	.period =3D 1100
-	.duty_cycle =3D 700
-
-   (requested relative duty =3D 65.07%, implemented =3D 63.64%; when
-   rounding both down we get 60%)
-
- - round both values mathematically:=20
-
- 	.period =3D 1000
-	.duty_cycle =3D 700
-
-   (yielding a relative duty of 70% instead of the requested 65.07%)
-
- - Maybe
-
- 	.period =3D 1000
-	.duty_cycle =3D 600
-
-   might also be preferable for some consumers?! (60%)
-
- - Maybe
-
- 	.period =3D 2000
-	.duty_cycle =3D 1300
-
-   is a good compromise because the relative duty is nearly exactly
-   matched and the period is only stretched by a factor < 2.
-
-In my eyes a driver author should be told which of these options should
-be picked. Do you consider it obvious which of these options is the
-objective best? If so why? Do you agree that we should tell driver
-authors how to implement this before we have several drivers that all
-implement their own ideas and getting this in a consistent state is
-another pain?
-
-(My bet is you are lax and don't consider consistency among drivers soo
-important. In this case we don't agree. I think it's important for
-consumer driver authors to be able to rely on some expectations
-independently which lowlevel driver is in use.)
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---ky54kfraiix4vkcz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmB120wACgkQwfwUeK3K
-7AkVXwf/Q85RA3Alm9y+oU4JSwFqQYvgpIdHmvqarGeBuncdhYUjiRnnB/UV9EKU
-auNZVYY4/+EtObhL/oBZti5V/tpLAO+aleSPwVr7ZmJvm6CtRjS2JTVS1FAQd195
-UdSVBzCVF46uo7UViXZH9UGnohYl3+HxvAZSxL2z+AAoRyBG57zVFDZu0vbRH6Xl
-o8Q0Jysl4pcMpWE2yLgI6aXDnUeNxaQikJy1nT3wU+g6FRngCQQNSwbYrz3GJ7L2
-fgmZ6fIu7kEusztqdSQmmAa9/Ts1qQVCAuf+Zz+NcbFaaDdHou0lgM6T+ASe5M5U
-6hsKqu9Q4qzg6/o4C1I/k2+yw20bww==
-=YLWV
------END PGP SIGNATURE-----
-
---ky54kfraiix4vkcz--
+Rob
