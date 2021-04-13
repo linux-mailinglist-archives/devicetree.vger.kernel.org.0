@@ -2,195 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0551535DF21
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 14:44:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A8DF35DF77
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 14:56:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242468AbhDMMo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 08:44:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35672 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243460AbhDMMnq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 08:43:46 -0400
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73502C06175F
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 05:43:26 -0700 (PDT)
-Received: by mail-pg1-x530.google.com with SMTP id b17so11833981pgh.7
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 05:43:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to;
-        bh=eWW37qgJqfDUZrRMx9GpO5V+5PNwSYsHPFyrTCGwDaw=;
-        b=IHyNdSdrHXhrCXVW0Zpvz9z2ba3DwZFJG/mL9i7eKV91OmWbPVde876j5ap9xmiFVu
-         +CUVuOJP4unUxbetuTCQSYoc9gxAqvZpZwzAh8dEhjcQ4WbUo/aNDq/DQd5jRPfPWwzB
-         aOja5oLSk9FDbzhiZgeQHP+DeltI0Cl690jSQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to;
-        bh=eWW37qgJqfDUZrRMx9GpO5V+5PNwSYsHPFyrTCGwDaw=;
-        b=Qyk8wCkifmwypSRtjienZzY7RXQBizfC4LCXOlfX+d9aQI0DKzB/QBpKlJ+HkiaTLA
-         JgbggKptvZt45+mIS7K2kii/7kuf/JwxseBDIioyeV/lTDeDQjDR68sE/8xAyWL8rHI3
-         kUUv3NDmgKMTYWfRX0FgmuQAFz5+8ijZxV3gvZbdiC2Ce6ROHj+gJG8ghmsMnbkw1VDi
-         XCofDS720BhrLSaqBDeKRa8jYhFSyggbP2vcj1yaPSHbRUPGDgUoKKoGHpdu3JZ8n799
-         yNGZFG4TEQkYHLm50bvmN1N4QS4Bo4pCNQ5ewbZYzgg5Ip4rrtiB8R37mxhWIXO3gEC8
-         PdcQ==
-X-Gm-Message-State: AOAM532V/WVSMhYBXHq8VbT97HdWyNai5929DA8By1LpZLrxzjPIMzIf
-        PkE73vqbkMc6KBPDD7uiOGj0uTetx9yclMPfph2G+V8mQYCYZH96M4zrlCWjSq1zoT4Ie6VcSgr
-        /gx4KSpJbTKr3XqCoaQae9EA=
-X-Google-Smtp-Source: ABdhPJy+DPWb+TQaTpAs10UKUL8B0k8QLKuYXlse56LdzKpghxU75Ecq5eYFU0WgOJMaTkXXHv+VDQ==
-X-Received: by 2002:a63:30c1:: with SMTP id w184mr31415001pgw.230.1618317805836;
-        Tue, 13 Apr 2021 05:43:25 -0700 (PDT)
-Received: from [10.230.42.155] ([192.19.152.250])
-        by smtp.gmail.com with ESMTPSA id x2sm12415388pfx.41.2021.04.13.05.43.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Apr 2021 05:43:25 -0700 (PDT)
-Subject: Re: [PATCH 1/2] dt-binding: bcm43xx-fmac: add optional brcm,ccode-map
-To:     Rob Herring <robh@kernel.org>, Shawn Guo <shawn.guo@linaro.org>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-References: <20210408113022.18180-1-shawn.guo@linaro.org>
- <20210408113022.18180-2-shawn.guo@linaro.org>
- <20210409184606.GA3937918@robh.at.kernel.org>
-From:   Arend van Spriel <arend.vanspriel@broadcom.com>
-Message-ID: <e725fbd2-b02c-93ae-87c2-b9de2b0f4564@broadcom.com>
-Date:   Tue, 13 Apr 2021 14:43:12 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
+        id S239694AbhDMMxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 08:53:32 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:48200 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240321AbhDMMxb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Apr 2021 08:53:31 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lWIXL-00GTYv-RL; Tue, 13 Apr 2021 14:52:59 +0200
+Date:   Tue, 13 Apr 2021 14:52:59 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     DENG Qingfang <dqfext@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-staging@lists.linux.dev, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, Weijie Gao <weijie.gao@mediatek.com>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Greg Ungerer <gerg@kernel.org>
+Subject: Re: [RFC v4 net-next 2/4] net: dsa: mt7530: add interrupt support
+Message-ID: <YHWUK+tG3v9ZU/DT@lunn.ch>
+References: <20210412034237.2473017-1-dqfext@gmail.com>
+ <20210412034237.2473017-3-dqfext@gmail.com>
+ <87fszvoqvb.wl-maz@kernel.org>
+ <20210412152210.929733-1-dqfext@gmail.com>
+ <YHTgu1+6GZFdFgWJ@lunn.ch>
+ <8735vuobfo.wl-maz@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20210409184606.GA3937918@robh.at.kernel.org>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000f9ab5505bfd9f9b8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8735vuobfo.wl-maz@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000f9ab5505bfd9f9b8
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Language: en-US
+> I guess this is depends whether the most usual case is to have all
+> these interrupts being actively in use or not. Most interrupts only
+> use a limited portion of their interrupt space at any given time.
+> Allocating all interrupts and creating mappings upfront is a waste of
+> memory.
+> 
+> If the use case here is that all these interrupts will be wired and
+> used in most cases, then upfront allocation is probably not a problem.
 
-On 09-04-2021 20:46, Rob Herring wrote:
-> On Thu, Apr 08, 2021 at 07:30:21PM +0800, Shawn Guo wrote:
->> Add optional brcm,ccode-map property to support translation from ISO3166
->> country code to brcmfmac firmware country code and revision.
->>
->> Signed-off-by: Shawn Guo<shawn.guo@linaro.org>
->> ---
->>   .../devicetree/bindings/net/wireless/brcm,bcm43xx-fmac.txt | 7 +++++++
->>   1 file changed, 7 insertions(+)
-> Can you convert this to schema first.
-Hi Rob,
+Hi Marc
 
-You mean to change it to YAML, right? You already applied a patch for 
-that a few weeks ago:
+The interrupts are generally used. Since this is an Ethernet switch,
+generally the port is administratively up, even if there is no cable
+plugged in. Once/if a cable is plugged in and there is a link peer,
+the PHY will interrupt to indicate this.
 
-https://lore.kernel.org/linux-devicetree/20210324174737.GA3319687@robh.at.kernel.org/
+The only real case i can think of when the interrupts are not used is
+when the switch has more ports than connected to the front panel. This
+can happen in industrial settings, but not SOHO. Those ports which
+don't go anywhere are never configured up and so the interrupt is
+never used.
 
-Regards,
-Arend
-
--- 
-This electronic communication and the information and any files transmitted 
-with it, or attached to it, are confidential and are intended solely for 
-the use of the individual or entity to whom it is addressed and may contain 
-information that is confidential, legally privileged, protected by privacy 
-laws, or otherwise restricted from disclosure to anyone else. If you are 
-not the intended recipient or the person responsible for delivering the 
-e-mail to the intended recipient, you are hereby notified that any use, 
-copying, distributing, dissemination, forwarding, printing, or copying of 
-this e-mail is strictly prohibited. If you received this e-mail in error, 
-please return the e-mail to the sender, delete it from your computer, and 
-destroy any printed copy of it.
-
---000000000000f9ab5505bfd9f9b8
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-XSlOP9s1dqWlRRnnNxV7BVC87lkKKy0+1M2DOF6qRYQlnW4EfOyCToYLAG5zeV+AjepMoX6J9bUz
-yj4BlDtwH4HFjaRIlPPbdLshUA54/tV84x8woATuLGBq+hTZEpkZAgMBAAGjggHdMIIB2TAOBgNV
-HQ8BAf8EBAMCBaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJl
-Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYI
-KwYBBQUHMAGGNWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24y
-Y2EyMDIwME0GA1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3
-dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqG
-OGh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3Js
-MCcGA1UdEQQgMB6BHGFyZW5kLnZhbnNwcmllbEBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYB
-BQUHAwQwHwYDVR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFKb+3b9pz8zo
-0QsCHGb/p0UrBlU+MA0GCSqGSIb3DQEBCwUAA4IBAQCHisuRNqP0NfYfG3U3XF+bocf//aGLOCGj
-NvbnSbaUDT/ZkRFb9dQfDRVnZUJ7eDZWHfC+kukEzFwiSK1irDPZQAG9diwy4p9dM0xw5RXSAC1w
-FzQ0ClJvhK8PsjXF2yzITFmZsEhYEToTn2owD613HvBNijAnDDLV8D0K5gtDnVqkVB9TUAGjHsmo
-aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
-OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
-UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
-YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
-h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCCjk8xr6tb4R01sm9Ik
-AJnFxWNvbiiKy/YXkqBT5GrOHTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
-BTEPFw0yMTA0MTMxMjQzMjZaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
-AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
-BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAfWODm+Os07YpgJW8A3HqlfkTyGGydwIVxmzu
-Jaoj6reexJ3Ist54LEIj2Pw0EnbC9gUYSyI+gbFPNoHZPV8F3pvJ1tmtNJYjw66HPjRQTy9PlwGV
-gJ8J1p8G/p1aDwACqxKVdh4SazPEVc8l8mgEzdyvvGmscuN1I+Fm/yETkmUX3spe/dzFHSvo1y5J
-nnmTmBDPmEghMJmkLsPrcOPRoqEn+8s4hA6B0JWbX1jkFyPjAnZNnw9CDpGjG0xv8vkZNa9G8UrW
-wpgXwKU4hj3KA1v2/8ygHkXF7WWlG8PzB61/F+luR9rQrduOFg1wtpKbKVeiq0EDgY5UYL8REXt4
-jg==
---000000000000f9ab5505bfd9f9b8--
+      Andrew
