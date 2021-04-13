@@ -2,74 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07AA835E297
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 17:22:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20E5035E2C3
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 17:26:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230480AbhDMPWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 11:22:54 -0400
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:43521 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231485AbhDMPWv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 11:22:51 -0400
-Received: by mail-ot1-f41.google.com with SMTP id p6-20020a9d69460000b029028bb7c6ff64so339130oto.10;
-        Tue, 13 Apr 2021 08:22:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=M5LRlWktXGo8iA/Vsd38aM0WTulSItsG6aBATWd3DBQ=;
-        b=U0xKdxvL7NL/c9ONKtKpcFKzocW2rrGgtoeocUAWokGhItnIXib67gs1ybfeIXUBDJ
-         nBKJIFAlmbImRdmfRRNkXR58RW1HW/GQC8iUkEHzSz6Ge8ILVnslQlFYC8RkHSJxhmbZ
-         OCVVcuDg7WInxY/kpwjnyew7R+lFkv8TEx5uu3CZ3kjj2v1BB5a/8DWlNYATyr215SZ0
-         bj1nSCRMBNtW28HaIGWskQC5Fmi9GLfek8iAi0viKAXznkdYz0Inr+bvWXW7dxuIWLJn
-         9hsh9sYvSD/duptmWNE5uOCzqo5NSrENyCIthLDJqTORi+DIBqdqfnGwMln8vLSypIE4
-         eFTg==
-X-Gm-Message-State: AOAM53065pYZceMlA5yApwlagFwC2f2/cK8WEgqjMAD5lYckJ65GWmZz
-        JKSGKuk8uLMppijhk3jO0Q==
-X-Google-Smtp-Source: ABdhPJyE2+W7kpfnEGRVoGJRA12pV2gliQPOhMv99rM2tC2m7lXueFZ++JfkU3wSS8oiV9TXYajDtw==
-X-Received: by 2002:a05:6830:3115:: with SMTP id b21mr28240296ots.318.1618327351138;
-        Tue, 13 Apr 2021 08:22:31 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t3sm579967ooa.18.2021.04.13.08.22.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Apr 2021 08:22:30 -0700 (PDT)
-Received: (nullmailer pid 1702387 invoked by uid 1000);
-        Tue, 13 Apr 2021 15:22:29 -0000
-Date:   Tue, 13 Apr 2021 10:22:29 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        bgolaszewski@baylibre.com, robh+dt@kernel.org,
-        linux-rockchip@lists.infradead.org, heiko@sntech.de,
-        linus.walleij@linaro.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: gpio: add YAML description for
- rockchip, gpio-bank
-Message-ID: <20210413152229.GA1702359@robh.at.kernel.org>
-References: <20210412223617.8634-1-jbx6244@gmail.com>
+        id S239948AbhDMPYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 11:24:44 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:56878 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232125AbhDMPYg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Apr 2021 11:24:36 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1lWKtf-0000C8-KR; Tue, 13 Apr 2021 17:24:11 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Johan Jonker <jbx6244@gmail.com>, robh+dt@kernel.org,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: pwm: convert pwm-rockchip.txt to YAML
+Date:   Tue, 13 Apr 2021 17:24:09 +0200
+Message-ID: <9940894.0AQdONaE2F@diego>
+In-Reply-To: <YHW3DYjr2ifBltVk@orome.fritz.box>
+References: <20210412200155.5316-1-jbx6244@gmail.com> <YHW3DYjr2ifBltVk@orome.fritz.box>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210412223617.8634-1-jbx6244@gmail.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 13 Apr 2021 00:36:15 +0200, Johan Jonker wrote:
-> Current dts files with "rockchip,gpio-bank" subnodes
-> are manually verified. In order to automate this process
-> the text that describes the compatible in rockchip,pinctrl.txt
-> is removed and converted to YAML in rockchip,gpio-bank.yaml.
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
-> Changed V2:
->   changed example gpio nodename
-> ---
->  .../bindings/gpio/rockchip,gpio-bank.yaml          | 82 ++++++++++++++++++++++
->  .../bindings/pinctrl/rockchip,pinctrl.txt          | 58 +--------------
->  2 files changed, 83 insertions(+), 57 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
-> 
+Hi Thierry,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Am Dienstag, 13. April 2021, 17:21:49 CEST schrieb Thierry Reding:
+> On Mon, Apr 12, 2021 at 10:01:52PM +0200, Johan Jonker wrote:
+> > Current dts files with 'pwm' nodes are manually verified.
+> > In order to automate this process pwm-rockchip.txt
+> > has to be converted to yaml.
+> > 
+> > Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> > ---
+> > For some SoC nodes this patch serie generates notifications
+> > for undocumented "interrupts" properties shared between
+> > PWM channels till there is consensus of what to do with it or
+> > someone makes a solution for the whole PWM block.
+> > 
+> > Changed V3:
+> >   fix mistake with compatibles introduced in V2
+> > Changed V2:
+> >   changed schema for clocks and clock-names
+> > ---
+> >  .../devicetree/bindings/pwm/pwm-rockchip.txt       | 27 -------
+> >  .../devicetree/bindings/pwm/pwm-rockchip.yaml      | 88 ++++++++++++++++++++++
+> >  2 files changed, 88 insertions(+), 27 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-rockchip.txt
+> >  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+> 
+> Heiko, do you want to pick up patches 1 & 2 into your tree along with 3 & 4? If so:
+> 
+> Acked-by: Thierry Reding <thierry.reding@gmail.com>
+
+however you like :-)
+
+I can pick up everything for 5.14 for sure.
+
+Depending on your tree-schedule for the merge-window, you could also pick
+up all 4 with my:
+
+Acked-by: Heiko Stuebner <heiko@sntech.de>
+
+
+Heiko
+
+
+
