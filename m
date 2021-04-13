@@ -2,68 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B511D35E34E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 17:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BD9835E358
+	for <lists+devicetree@lfdr.de>; Tue, 13 Apr 2021 18:00:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238483AbhDMP7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 11:59:17 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:35458 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230329AbhDMP7Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 11:59:16 -0400
-Received: by mail-ot1-f53.google.com with SMTP id v24-20020a9d69d80000b02901b9aec33371so16568909oto.2;
-        Tue, 13 Apr 2021 08:58:56 -0700 (PDT)
+        id S238285AbhDMQAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 12:00:49 -0400
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:36527 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229492AbhDMQAr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 12:00:47 -0400
+Received: by mail-oi1-f175.google.com with SMTP id c16so17495453oib.3;
+        Tue, 13 Apr 2021 09:00:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=NCg6juRjawDZurZPMiPe5DGO2tjGv8Z93z5kbvheWfg=;
-        b=KXY9BnVgmGLTvk0WKM8lSacuVGV/P3n/JgpO8VBHmncuAREYpZNowOkWkWK68ULjwm
-         ECvC7LdFwjLHGlmWNqVA3kIeqXs0q0dfTEULjxQoK5u2B3u2U6rd4VVf6gLCN31FN3VX
-         U9B18XfQEA4NJ1lW1XBj1HLdVpSYfSw5klS/iU5vMEoNoRsTqO0JhqNPbdgJc1WjAGyS
-         QuQMmYf6E5S4L4jtUnZ1mRBybv7K53BnhGfKWUG94Q5YG5pGo1FTdycK72sAHVoUCuT4
-         YD86KVPMSDDKw3icVn3dTWjYC2jkbHVz5bPezL5BXXyOTYrXqEPcFR34tOZYB25iqjdD
-         VMhw==
-X-Gm-Message-State: AOAM531eP7ZlJ0enXzqBVwq0MllW0VcJvykoubkAH5lMB6uaHMSo5uVS
-        WeuqORAxa+FfDFlpNu75JQ==
-X-Google-Smtp-Source: ABdhPJxXk1vqV70OIkwKIF3fe5RrxTUT5VOgZ5gL/xcK6pbcL0ELeve5t75+q4h9TS9M6BSfNNVhHA==
-X-Received: by 2002:a9d:7699:: with SMTP id j25mr28921386otl.177.1618329536595;
-        Tue, 13 Apr 2021 08:58:56 -0700 (PDT)
+        bh=Hf71HnfjaYarecOimAnAmtORkCXf+7TlGhiC07dVSSk=;
+        b=RZENcQdYxQfRmvk0w9IXjVNRecnZsyLbcwXkDcHP4D44yvaixLIQwOxsC/zDtnGzWd
+         5UopLDBpxpixhKA9KMwM7RTCve1eUOPfMFeSgFTULOUUGsvpnRMZyh1VdSCVj23E7Znp
+         7RldkLuFzpZYOFed+54P3yuKu9UFoRKjGNJtwTREhK31gssA2uwWAXfCftwWWrpn3SMC
+         vjrNOSxBfWXRBuR4gtm6RwXFL8a72Y6DCn4EGCNR1KQqH8C8VCkH5tQ2+EN4PL2rbWJc
+         0SI1jrWSttRDx6sFdMrx5B91IQMgI0MqRx2UiQzjHx3zHcj0LFdRk7C8AgSz1exC4zEg
+         IDFg==
+X-Gm-Message-State: AOAM533Re44cNo8olWkrRe/j5tYn+mVPDFYBpltflzUDdToJaCEOj4qR
+        D+wZzjta6gLkINQdGh9f1QIWr4AZqQ==
+X-Google-Smtp-Source: ABdhPJymbM/isAJMJCc1wHnk+yvEtGmuDobqXx8udlWq6Wc6/HZpIfyPbj1/Zan303sALN4yTfl6Og==
+X-Received: by 2002:aca:3bc4:: with SMTP id i187mr508711oia.174.1618329627570;
+        Tue, 13 Apr 2021 09:00:27 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w2sm2923588oov.23.2021.04.13.08.58.55
+        by smtp.gmail.com with ESMTPSA id h28sm850702oof.47.2021.04.13.09.00.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Apr 2021 08:58:55 -0700 (PDT)
-Received: (nullmailer pid 1747120 invoked by uid 1000);
-        Tue, 13 Apr 2021 15:58:54 -0000
-Date:   Tue, 13 Apr 2021 10:58:54 -0500
+        Tue, 13 Apr 2021 09:00:25 -0700 (PDT)
+Received: (nullmailer pid 1749085 invoked by uid 1000);
+        Tue, 13 Apr 2021 16:00:23 -0000
+Date:   Tue, 13 Apr 2021 11:00:23 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Guru Das Srinagesh <gurus@codeaurora.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-imx@nxp.com, kernel@pengutronix.de,
+        Fabio Estevam <festevam@gmail.com>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v3 2/3] dt-bindings: mfd: pm8008: Add bindings
-Message-ID: <20210413155854.GA1747055@robh.at.kernel.org>
-References: <cover.1618278453.git.gurus@codeaurora.org>
- <3e126ba39cff60a66095911ceec08575dd658410.1618278453.git.gurus@codeaurora.org>
+        Rui Miguel Silva <rmfrfs@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH 22/23] dt-bindings: media: nxp,imx7-mipi-csi2: Add
+ i.MX8MM support
+Message-ID: <20210413160023.GA1749037@robh.at.kernel.org>
+References: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
+ <20210413023014.28797-23-laurent.pinchart@ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3e126ba39cff60a66095911ceec08575dd658410.1618278453.git.gurus@codeaurora.org>
+In-Reply-To: <20210413023014.28797-23-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Apr 2021 19:00:26 -0700, Guru Das Srinagesh wrote:
-> Add bindings for the Qualcomm Technologies, Inc. PM8008 MFD driver.
+On Tue, 13 Apr 2021 05:30:13 +0300, Laurent Pinchart wrote:
+> The i.MX8MM integrates a newer version of the CSIS CSI-2 receiver as the
+> i.MX7 family. Differences in integration are are:
 > 
-> Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
+> - An additional clock is required
+> - Up to 4 data lanes are supported
+> - No reset or PHY supply is present
+> 
+> Support it in the DT binding.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
->  .../devicetree/bindings/mfd/qcom,pm8008.yaml       | 121 +++++++++++++++++++++
->  1 file changed, 121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+>  .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 108 +++++++++++++++---
+>  1 file changed, 94 insertions(+), 14 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
