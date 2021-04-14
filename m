@@ -2,144 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89B9835FA28
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 20:01:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F05CA35FA5F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 20:22:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351406AbhDNSAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 14:00:19 -0400
-Received: from mail-vs1-f53.google.com ([209.85.217.53]:37687 "EHLO
-        mail-vs1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234303AbhDNSAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 14:00:18 -0400
-Received: by mail-vs1-f53.google.com with SMTP id 2so10774755vsh.4;
-        Wed, 14 Apr 2021 10:59:55 -0700 (PDT)
+        id S233964AbhDNSK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 14:10:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54588 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233919AbhDNSK4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 14:10:56 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A0CC061574
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 11:10:33 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id r13so6896601pjf.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 11:10:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mI3v9C6yt88wS1LOwc+lCFsWHWVb8SG6Vub87KGmR58=;
+        b=B3hrTTPLVyE/N8boQ+fUoZnC4axz4x0q8T4PUrXOm4hzoFHF1sQ1aCqlDtkkjVg0rI
+         n/dBPmkx/FZL4Ah3ASElJuCt3NwIgLN1M61TR86whK4hzADm/IK//67/SZc3lWocqdYd
+         zcJwSgUvp1zaqMNL16hudoiYYZLr17faZs/KQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LrQhYoofWK1qIE+Puebb8490xY7FtwOJErFPSvGIMtY=;
-        b=shBio9KXJcxBAmzKpdwcUWISMSsYL8M3tQO4z507KY7PgFMkaEswmzkin+rxfTFEUw
-         gE4FBQTec8Moz+tuk7xwCZCQ694Dh34mYn1t3vrNYsTp6XtEo/yIyTOEObyybO6aZjIV
-         +skifyO2nWsM3Z3ijX7gtDpYLtrtzg1JcaveBJzpODOGN1jTKKSRu1aEEGN4IlnfJbct
-         HDplDg8Oc8YQmB06F4JvM8/oyHSW8KbX3UCwkBx7/t2JOamu5s6mlW8VE7omAkYl9bCY
-         w1K2Og6Ug5L+vhdghyXYyoYkr0GknFN1TD18kRjMYxcz+FPdZERqV7nRsbZQvmly1iK3
-         7FQg==
-X-Gm-Message-State: AOAM531LqaKLI8iIRXD0m1UWr3iM/H2WaoPWUOy+C92HVyEXlTNx93N6
-        YjP0GApOe3SOjqCOX6O3o7/nOGUzO3Vp2eRPr8yBXqhjj/o=
-X-Google-Smtp-Source: ABdhPJyeOsV8TPzm4qfYRpIEOQxrAj6kXLid0sqN/BtkYP2cUAkLDMXrOtYnopbrTca5CncxrQqmj9wtMiDHf/+FZD8=
-X-Received: by 2002:a67:80c4:: with SMTP id b187mr29655934vsd.42.1618423195054;
- Wed, 14 Apr 2021 10:59:55 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mI3v9C6yt88wS1LOwc+lCFsWHWVb8SG6Vub87KGmR58=;
+        b=ttr/l3ro/FoV3ecjgnnR7xw2LVd1gmBe/UCf8fJtKGa0NL/GU3CWlAVf9I61Wig901
+         yFynPjYfG/Bfq3iY75euhrrMkVPrHpLP7hkGxVnaRXZnBpDtyQRdMyxs+anSUkJ6kYMo
+         ZgCO2Hs97s53xQH5YkF3CW2skwDGpDt1zeNCOIm5WflMGedwY8CsqgP/BbM4YznnhrdY
+         bXjxauAer3Y1E5uga66zf4FzLLW60dDb1GZJu3KPgm+lhexvFCWNlkdgZg6Gi143l5vW
+         DmeDag7JFTZuiCuUcDl4UhkFvKrqDSbZVU7Iksar2WH+NZdqg5LCwxJrCWLLCa7EG7fA
+         D7pA==
+X-Gm-Message-State: AOAM531Ta6Evi7vQ+MDUKll3P8xSBbhzPshJ8xwBoJnHPiCIOg0WhidP
+        8L5hobPK9gAAB9KAh4skd5xc8JyqxU6F8A==
+X-Google-Smtp-Source: ABdhPJyoC5OqM9JR8Y4VvGkxSm8nglCKaVoCJG3w0pq+uPHsx3z/VZP09coiwWhunb2zt4H5egESzA==
+X-Received: by 2002:a17:903:114:b029:eb:3963:9d1a with SMTP id y20-20020a1709030114b02900eb39639d1amr8564248plc.79.1618423833013;
+        Wed, 14 Apr 2021 11:10:33 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:9c75:7205:3ec1:5280])
+        by smtp.gmail.com with UTF8SMTPSA id a9sm104421pfo.186.2021.04.14.11.10.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Apr 2021 11:10:32 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH v1] arm64: dts: qcom: sc7180: coachz: Add thermal config for skin temperature
+Date:   Wed, 14 Apr 2021 11:10:26 -0700
+Message-Id: <20210414111007.v1.1.I1a438604a79025307f177347d45815987b105cb5@changeid>
+X-Mailer: git-send-email 2.31.1.295.g9ea45b61b8-goog
 MIME-Version: 1.0
-References: <20210412132619.7896-1-aford173@gmail.com> <20210412132619.7896-2-aford173@gmail.com>
- <CAMuHMdU5RfTGs3SCvJX9epKBLOo6o1BQMng49RjrBn+P7QOSeg@mail.gmail.com> <CAHCN7xKp1Lp+KAHwo_GobZoDKQCV9_7Yx2ZNKmTzkkShRBzm_Q@mail.gmail.com>
-In-Reply-To: <CAHCN7xKp1Lp+KAHwo_GobZoDKQCV9_7Yx2ZNKmTzkkShRBzm_Q@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 14 Apr 2021 19:59:43 +0200
-Message-ID: <CAMuHMdUhwyR8F6PeE1WEtaEtEPrnm0qFtGJ1rGqTJDYSotK8PA@mail.gmail.com>
-Subject: Re: [PATCH V4 2/2] net: ethernet: ravb: Enable optional refclk
-To:     Adam Ford <aford173@gmail.com>
-Cc:     netdev <netdev@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
+Add ADC and thermal monitor configuration for skin temperature,
+plus a thermal zone that monitors the skin temperature and uses
+the big cores as cooling devices.
 
-On Wed, Apr 14, 2021 at 3:08 PM Adam Ford <aford173@gmail.com> wrote:
-> On Tue, Apr 13, 2021 at 2:33 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Mon, Apr 12, 2021 at 3:27 PM Adam Ford <aford173@gmail.com> wrote:
-> > > For devices that use a programmable clock for the AVB reference clock,
-> > > the driver may need to enable them.  Add code to find the optional clock
-> > > and enable it when available.
-> > >
-> > > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > > Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> > >
-> > > ---
-> > > V4:  Eliminate the NULL check when disabling refclk, and add a line
-> > >      to disable the refclk if there is a failure after it's been
-> > >      initialized.
-> >
-> > Thanks for the update!
-> >
-> > > --- a/drivers/net/ethernet/renesas/ravb_main.c
-> > > +++ b/drivers/net/ethernet/renesas/ravb_main.c
-> > > @@ -2148,6 +2148,13 @@ static int ravb_probe(struct platform_device *pdev)
-> > >                 goto out_release;
-> > >         }
-> > >
-> > > +       priv->refclk = devm_clk_get_optional(&pdev->dev, "refclk");
-> > > +       if (IS_ERR(priv->refclk)) {
-> > > +               error = PTR_ERR(priv->refclk);
-> > > +               goto out_release;
-> >
-> > Note that this will call clk_disable_unprepare() in case of failure, which is
-> > fine, as that function is a no-op in case of a failed clock.
->
-> Geert,
->
-> A bot reported that if I jump to out_release may try to free a clock
-> if some instances where priv isn't defined.
+CoachZ rev1 is stuffed with an incompatible thermistor for the
+skin temperature, disable the thermal zone for rev1 to avoid
+the use of bogus temperature values.
 
-As priv is allocated using alloc_etherdev_mqs(), priv->refclk is
-NULL initially, but priv itself may indeed not be initialized when the first
-"goto out_release" is taken.  Sorry for missing that.
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+---
 
-> Currently, the priv->clk isn't freed either.  I have heard some
-> back-and-forth discussions in other threads on whether or not devm
-> functions auto free or not.
+ .../dts/qcom/sc7180-trogdor-coachz-r1.dts     |  9 +++
+ .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  | 63 +++++++++++++++++++
+ 2 files changed, 72 insertions(+)
 
-The devm_clk_get_optional() will be undone automatically, so there
-is no need to handle that explicitly.
-
-> I'm fine with sending a V5 to make the free for the refclock happen
-> only when the priv has successfully initialized.  Should I also add
-
-As this patch has been applied to net-next, you''ll have to send
-a follow-up fix patch, not a v5.
-
-> one for freeing priv->clk and change all the other goto out_release
-> commands to point to this new section?
-
-No, not for priv->clk, due to devm_*().
-
-> I am thinking it would like something like:
->
-> free_refclk:
->     clk_disable_unprepare(priv->refclk);
-
-OK.
-
-> free_clk;
->     clk_disable_unprepare(priv->clk);
-
-NAK, as priv->clk is not enabled in ravb_probe().
-
-> out_release:
->     free_netdev(ndev);
->     ....
-
-OK.
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
+index 86619f6c1134..80bdc4d5b523 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
+@@ -14,6 +14,15 @@ / {
+ 	compatible = "google,coachz-rev1", "qcom,sc7180";
+ };
+ 
++/*
++ * CoachZ rev1 is stuffed with a 47k NTC as thermistor for skin temperature,
++ * which currently is not supported by the PM6150 ADC driver. Disable the
++ * skin temperature thermal zone to avoid using bogus temperature values.
++ */
++&skin_temp_thermal {
++	status = "disabled";
++};
++
+ &tlmm {
+ 	gpio-line-names = "HUB_RST_L",
+ 			  "AP_RAM_ID0",
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+index e2ffe71c2d52..cabe5d6b981b 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+@@ -25,6 +25,50 @@ adau7002: audio-codec-1 {
+ 		IOVDD-supply = <&pp1800_l15a>;
+ 		#sound-dai-cells = <0>;
+ 	};
++
++	thermal-zones {
++		skin_temp_thermal: skin-temp-thermal {
++			polling-delay-passive = <250>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&pm6150_adc_tm 1>;
++			sustainable-power = <814>;
++
++			trips {
++				skin_temp_alert0: trip-point0 {
++					temperature = <42000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++
++				skin_temp_alert1: trip-point1 {
++					temperature = <45000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++
++				skin-temp-crit {
++					temperature = <60000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&skin_temp_alert0>;
++					cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++
++				map1 {
++					trip = <&skin_temp_alert1>;
++					cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++	};
+ };
+ 
+ &ap_spi_fp {
+@@ -77,6 +121,25 @@ &panel {
+ 	compatible = "boe,nv110wtm-n61";
+ };
+ 
++&pm6150_adc {
++	skin-temp-thermistor@4e {
++		reg = <ADC5_AMUX_THM2_100K_PU>;
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++	};
++};
++
++&pm6150_adc_tm {
++	status = "okay";
++
++	skin-temp-thermistor@1 {
++		reg = <1>;
++		io-channels = <&pm6150_adc ADC5_AMUX_THM2_100K_PU>;
++		qcom,ratiometric;
++		qcom,hw-settle-time-us = <200>;
++	};
++};
++
+ &pp3300_dx_edp {
+ 	gpio = <&tlmm 67 GPIO_ACTIVE_HIGH>;
+ };
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.31.1.295.g9ea45b61b8-goog
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
