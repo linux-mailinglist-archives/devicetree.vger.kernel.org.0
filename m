@@ -2,182 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F05CA35FA5F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 20:22:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54B8A35FAE9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 20:50:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233964AbhDNSK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 14:10:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54588 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233919AbhDNSK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 14:10:56 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A0CC061574
-        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 11:10:33 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id r13so6896601pjf.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 11:10:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=mI3v9C6yt88wS1LOwc+lCFsWHWVb8SG6Vub87KGmR58=;
-        b=B3hrTTPLVyE/N8boQ+fUoZnC4axz4x0q8T4PUrXOm4hzoFHF1sQ1aCqlDtkkjVg0rI
-         n/dBPmkx/FZL4Ah3ASElJuCt3NwIgLN1M61TR86whK4hzADm/IK//67/SZc3lWocqdYd
-         zcJwSgUvp1zaqMNL16hudoiYYZLr17faZs/KQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=mI3v9C6yt88wS1LOwc+lCFsWHWVb8SG6Vub87KGmR58=;
-        b=ttr/l3ro/FoV3ecjgnnR7xw2LVd1gmBe/UCf8fJtKGa0NL/GU3CWlAVf9I61Wig901
-         yFynPjYfG/Bfq3iY75euhrrMkVPrHpLP7hkGxVnaRXZnBpDtyQRdMyxs+anSUkJ6kYMo
-         ZgCO2Hs97s53xQH5YkF3CW2skwDGpDt1zeNCOIm5WflMGedwY8CsqgP/BbM4YznnhrdY
-         bXjxauAer3Y1E5uga66zf4FzLLW60dDb1GZJu3KPgm+lhexvFCWNlkdgZg6Gi143l5vW
-         DmeDag7JFTZuiCuUcDl4UhkFvKrqDSbZVU7Iksar2WH+NZdqg5LCwxJrCWLLCa7EG7fA
-         D7pA==
-X-Gm-Message-State: AOAM531Ta6Evi7vQ+MDUKll3P8xSBbhzPshJ8xwBoJnHPiCIOg0WhidP
-        8L5hobPK9gAAB9KAh4skd5xc8JyqxU6F8A==
-X-Google-Smtp-Source: ABdhPJyoC5OqM9JR8Y4VvGkxSm8nglCKaVoCJG3w0pq+uPHsx3z/VZP09coiwWhunb2zt4H5egESzA==
-X-Received: by 2002:a17:903:114:b029:eb:3963:9d1a with SMTP id y20-20020a1709030114b02900eb39639d1amr8564248plc.79.1618423833013;
-        Wed, 14 Apr 2021 11:10:33 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:9c75:7205:3ec1:5280])
-        by smtp.gmail.com with UTF8SMTPSA id a9sm104421pfo.186.2021.04.14.11.10.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Apr 2021 11:10:32 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v1] arm64: dts: qcom: sc7180: coachz: Add thermal config for skin temperature
-Date:   Wed, 14 Apr 2021 11:10:26 -0700
-Message-Id: <20210414111007.v1.1.I1a438604a79025307f177347d45815987b105cb5@changeid>
-X-Mailer: git-send-email 2.31.1.295.g9ea45b61b8-goog
+        id S1352729AbhDNSp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 14:45:57 -0400
+Received: from heinz.dinsnail.net ([81.169.187.250]:39884 "EHLO
+        heinz.dinsnail.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231288AbhDNSp4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 14:45:56 -0400
+Received: from heinz.dinsnail.net ([IPv6:0:0:0:0:0:0:0:1])
+        by heinz.dinsnail.net (8.15.2/8.15.2) with ESMTP id 13EIj9OC025817;
+        Wed, 14 Apr 2021 20:45:09 +0200
+Received: from eldalonde.UUCP (uucp@localhost)
+        by heinz.dinsnail.net (8.15.2/8.15.2/Submit) with bsmtp id 13EIj8JL025816;
+        Wed, 14 Apr 2021 20:45:08 +0200
+Received: from eldalonde.weiser.dinsnail.net (localhost [IPv6:0:0:0:0:0:0:0:1] (may be forged))
+        by eldalonde.weiser.dinsnail.net (8.15.2/8.15.2) with ESMTP id 13EIZ3pY028239;
+        Wed, 14 Apr 2021 20:35:03 +0200
+Received: (from michael@localhost)
+        by eldalonde.weiser.dinsnail.net (8.15.2/8.15.2/Submit) id 13EIZ3ZX028238;
+        Wed, 14 Apr 2021 20:35:03 +0200
+Date:   Wed, 14 Apr 2021 20:35:03 +0200
+From:   Michael Weiser <michael.weiser@gmx.de>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@googlegroups.com, Daniel Kulesz <kuleszdl@posteo.org>
+Subject: Re: [PATCH v2] arm64: dts: allwinner: Revert SD card CD GPIO for
+ Pine64-LTS
+Message-ID: <YHc11xC1vT1Yr+a1@weiser.dinsnail.net>
+References: <20210414104740.31497-1-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210414104740.31497-1-andre.przywara@arm.com>
+X-dinsnail.net-MailScanner-Information: Please contact the ISP for more information
+X-dinsnail.net-MailScanner-ID: 13EIj9OC025817
+X-dinsnail.net-MailScanner: Found to be clean
+X-dinsnail.net-MailScanner-From: michael@weiser.dinsnail.net
+X-Spam-Status: No
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add ADC and thermal monitor configuration for skin temperature,
-plus a thermal zone that monitors the skin temperature and uses
-the big cores as cooling devices.
+Hi Andre,
 
-CoachZ rev1 is stuffed with an incompatible thermistor for the
-skin temperature, disable the thermal zone for rev1 to avoid
-the use of bogus temperature values.
+On Wed, Apr 14, 2021 at 11:47:40AM +0100, Andre Przywara wrote:
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
+> Commit 941432d00768 ("arm64: dts: allwinner: Drop non-removable from
+> SoPine/LTS SD card") enabled the card detect GPIO for the SOPine module,
+> along the way with the Pine64-LTS, which share the same base .dtsi.
 
- .../dts/qcom/sc7180-trogdor-coachz-r1.dts     |  9 +++
- .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  | 63 +++++++++++++++++++
- 2 files changed, 72 insertions(+)
+> This was based on the observation that the Pine64-LTS has as "push-push"
+> SD card socket, and that the schematic mentions the card detect GPIO.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-index 86619f6c1134..80bdc4d5b523 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-@@ -14,6 +14,15 @@ / {
- 	compatible = "google,coachz-rev1", "qcom,sc7180";
- };
- 
-+/*
-+ * CoachZ rev1 is stuffed with a 47k NTC as thermistor for skin temperature,
-+ * which currently is not supported by the PM6150 ADC driver. Disable the
-+ * skin temperature thermal zone to avoid using bogus temperature values.
-+ */
-+&skin_temp_thermal {
-+	status = "disabled";
-+};
-+
- &tlmm {
- 	gpio-line-names = "HUB_RST_L",
- 			  "AP_RAM_ID0",
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-index e2ffe71c2d52..cabe5d6b981b 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-@@ -25,6 +25,50 @@ adau7002: audio-codec-1 {
- 		IOVDD-supply = <&pp1800_l15a>;
- 		#sound-dai-cells = <0>;
- 	};
-+
-+	thermal-zones {
-+		skin_temp_thermal: skin-temp-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <0>;
-+
-+			thermal-sensors = <&pm6150_adc_tm 1>;
-+			sustainable-power = <814>;
-+
-+			trips {
-+				skin_temp_alert0: trip-point0 {
-+					temperature = <42000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+
-+				skin_temp_alert1: trip-point1 {
-+					temperature = <45000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+
-+				skin-temp-crit {
-+					temperature = <60000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&skin_temp_alert0>;
-+					cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+
-+				map1 {
-+					trip = <&skin_temp_alert1>;
-+					cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &ap_spi_fp {
-@@ -77,6 +121,25 @@ &panel {
- 	compatible = "boe,nv110wtm-n61";
- };
- 
-+&pm6150_adc {
-+	skin-temp-thermistor@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm6150_adc_tm {
-+	status = "okay";
-+
-+	skin-temp-thermistor@1 {
-+		reg = <1>;
-+		io-channels = <&pm6150_adc ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
- &pp3300_dx_edp {
- 	gpio = <&tlmm 67 GPIO_ACTIVE_HIGH>;
- };
+> After having received two reports about failing SD card access with that
+> patch, some more research and polls on that subject revealed that there
+> are at least two different versions of the Pine64-LTS out there:
+> - On some boards (including mine) the card detect pin is "stuck" at
+>   high, regardless of an microSD card being inserted or not.
+> - On other boards the card-detect is working, but is active-high, by
+>   virtue of an explicit inverter circuit, as shown in the schematic.
+
+> To cover all versions of the board out there, and don't take any chances,
+> let's revert the introduction of the active-low CD GPIO, but let's use
+> the broken-cd property for the Pine64-LTS this time. That should avoid
+> regressions and should work for everyone, even allowing SD card changes
+> now.
+> The SOPine card detect has proven to be working, so let's keep that
+> GPIO in place.
+
+I can confirm that this change works on my Pine64 LTS boards (with
+working high-active card detect) when applied to today's linux-next (which
+already includes your previous change to change the card detect GPIO
+from low- to high-active in sun50i-a64-sopine.dtsi).
+
+> Fixes: 941432d00768 ("arm64: dts: allwinner: Drop non-removable from SoPine/LTS SD card")
+> Reported-by: Michael Weiser <michael.weiser@gmx.de>
+> Reported-by: Daniel Kulesz <kuleszdl@posteo.org>
+> Suggested-by: Chen-Yu Tsai <wens@csie.org>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+
+Tested-by: Michael Weiser <michael.weiser@gmx.de>
+
+Thanks!
+Michael
+
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
+> index e79ce49e7e6a..596a25907432 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
+> @@ -21,5 +21,5 @@
+>  };
+
+>  &mmc0 {
+> -	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 push-push switch */
+> +	broken-cd;		/* card detect is broken on *some* boards */
+>  };
+
 -- 
-2.31.1.295.g9ea45b61b8-goog
-
+tschoe, Michael
+Eisregen
