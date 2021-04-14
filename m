@@ -2,70 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7FB935FDC8
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 00:28:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F87F35FDE0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 00:34:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233037AbhDNW2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 18:28:24 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:34587 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231207AbhDNW2X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 18:28:23 -0400
-Received: by mail-ot1-f46.google.com with SMTP id k14-20020a9d7dce0000b02901b866632f29so20840485otn.1;
-        Wed, 14 Apr 2021 15:28:00 -0700 (PDT)
+        id S235363AbhDNWej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 18:34:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55654 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234740AbhDNWeY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 18:34:24 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8632FC06175F
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 15:34:01 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id l22so17609818ljc.9
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 15:34:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=oEM4GLfY3N+b425KFSxZgcAidy5uKGPHGopRtHJBSVQ=;
+        b=e68c8bJ3NeOnzmJijEMvO2UwsROIVSx00DPRyldtlVqI2m5MgLUq5Jbbl6jWxBj89l
+         Ditp4Hkahu2jav1BC4jfSi3XatTGyUkI80ndwVuwyR+0v+PqlkDWHUTPHhD7wpx43HhR
+         715FEOSasF6FcV8FRV58Xir9UMHVNeJYqutZWqktsQVk7QHwHn8h6+tKJ6Z/61mfBj8X
+         3uILKZAooL2lykgT0RB5Nws2l9ln+jAasB8MD/rdct2OEG6ZiGrtyTKisaKbm/vJg88F
+         4vCCaa6Ct037CNVuKczVuCGPnjVoPQjszFWK1SJmFHRhim2BwoDSSuwxzwraUgW/FyzK
+         RJmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=morGz6AeVvrUIzO5wIYaVgIKsZD8zVL1TUP4w+6z6sE=;
-        b=cdAJE/miosb8KneXUzihbUavLRGhJcH5TWND6fODxsFFD5q8RuPSNXeY30kCJ2CRO6
-         ID9KKwx9wWKfGWW6a+ze35kjt0yZ1ikT39jxGCium9mTf9UbwqE80KjnfiXh9qn92nPq
-         htnf7dZrCkjNFR9Sch0tBV/kTFzVfPqrz5hgfJvArHS2nf/5Hp2sz8Zt/J3I79/to0uv
-         eftjYinxg7M91QQ9FoC5zV6xxsRmUMDf4IfDdaJfA67tCwMYtjVVCt0YN/26PjsonFrf
-         2mpxAPGhFlSqmdcarccSZjlD3zcLKTvPhgE2d3xVwUTobL1HZrfO7hnCrA4znA+IftEk
-         LHHA==
-X-Gm-Message-State: AOAM530l9+hzItgK1XpyNAwxnCRkGS7Aw/WQW7JwkayDlBQE7wtxG/cS
-        AnfNq7DD9lzvu3qocJvebA==
-X-Google-Smtp-Source: ABdhPJxrtU0c9EKMuE2kgVb5yJ60Q4P4r+IPx1hYR+mmzQQRLlgL/rfFS3ceygMwRzvHHGUdMfnZwA==
-X-Received: by 2002:a05:6830:1d49:: with SMTP id p9mr237738oth.300.1618439280508;
-        Wed, 14 Apr 2021 15:28:00 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j11sm194513ooo.45.2021.04.14.15.27.59
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=oEM4GLfY3N+b425KFSxZgcAidy5uKGPHGopRtHJBSVQ=;
+        b=Vu2uG2u/CZA1w4E4dwM+4TTcwRNpGO98kFi8X/lN6riT9Q/bygL7+luZTIX5V3KrWn
+         +2G+ibVOrGyOa4BBYdreFIlyfzQwyZRAgAK0ryQnjQRrddxwQar4epa1ixzL/Qc94kwa
+         t0Fh/J0iIOMsIVJzEjbioXnqSujgr7pcjdgPczPhoslkknrjV1ibfSKG/EznbmTJrdur
+         wltjY54i4kgduZmXrAd9X9R7v2MkQHMGaekk4OuzZsh84EWrx7BJwK4sH3PDt2ekEjv1
+         vAu106CloKRGri813EN1MwU6p5+Gq7JR4jEzRRcVFL+jES1drUGykpzNOM9KqIn1pJ5T
+         XoDA==
+X-Gm-Message-State: AOAM533HAy97uavHbEqyEqPhx9d3hJVuf9va5tLXtmTAApIhE6kg2SBt
+        OzqqC9qQx5zWIe/2Y5m8jstsNw==
+X-Google-Smtp-Source: ABdhPJwJ8SvOu1cLSNV79Ecm8l7P1TkS4uMSlPO8PqcBRUY7Fw1drd9DGVL7Wy+13C5/gYZi8D/XvA==
+X-Received: by 2002:a2e:8713:: with SMTP id m19mr109555lji.207.1618439639997;
+        Wed, 14 Apr 2021 15:33:59 -0700 (PDT)
+Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
+        by smtp.gmail.com with ESMTPSA id i17sm254278lja.22.2021.04.14.15.33.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Apr 2021 15:27:59 -0700 (PDT)
-Received: (nullmailer pid 80432 invoked by uid 1000);
-        Wed, 14 Apr 2021 22:27:59 -0000
-Date:   Wed, 14 Apr 2021 17:27:59 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        enric.balletbo@collabora.com, linux-arm-kernel@lists.infradead.org,
-        heiko@sntech.de, zhangqing@rock-chips.com
-Subject: Re: [PATCH v7 10/11] dt-bindings: power: rockchip: Add bindings for
- RK3568 Soc
-Message-ID: <20210414222759.GA80384@robh.at.kernel.org>
-References: <20210414211856.12104-1-jbx6244@gmail.com>
- <20210414211856.12104-11-jbx6244@gmail.com>
+        Wed, 14 Apr 2021 15:33:59 -0700 (PDT)
+Date:   Thu, 15 Apr 2021 00:33:58 +0200
+From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] media: dt-bindings: media: renesas,vin: Add r8a779a0
+ support
+Message-ID: <YHdt1v8VBmv0U3MF@oden.dyn.berto.se>
+References: <20210413173810.2561909-1-niklas.soderlund+renesas@ragnatech.se>
+ <62b0a5ab-1b6c-3532-72af-bba23f82ff41@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20210414211856.12104-11-jbx6244@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <62b0a5ab-1b6c-3532-72af-bba23f82ff41@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Apr 2021 23:18:55 +0200, Johan Jonker wrote:
-> From: Elaine Zhang <zhangqing@rock-chips.com>
-> 
-> Add the compatible string for RK3568 SoC.
-> 
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->  Documentation/devicetree/bindings/power/rockchip,power-controller.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+Hi Sergei,
 
-Acked-by: Rob Herring <robh@kernel.org>
+On 2021-04-14 11:28:00 +0300, Sergei Shtylyov wrote:
+> On 13.04.2021 20:38, Niklas Söderlund wrote:
+> 
+> > Document support for the VIN module in the Renesas V3U (r8a779a0) SoC.
+> > The V3U is different from other SoCs as it have 32 instead of 16 VIN
+> 
+>    Only V3H has 16 VINs, no?
+
+You are correct, most Gen3 have 8 and V3H have 16 and now V3U with 32.  
+Will fix in a v2.
+
+> 
+> > instances. The VIN instances are also connected to a new IP the R-Car
+> > ISP Channel Selector.
+> > 
+> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> 
+> [...]
+> 
+> MBR, Sergei
+
+-- 
+Regards,
+Niklas Söderlund
