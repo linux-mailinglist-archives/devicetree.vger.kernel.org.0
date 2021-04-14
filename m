@@ -2,188 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 577BD35F860
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 18:08:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8690635F87C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 18:08:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352285AbhDNPuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 11:50:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52020 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352470AbhDNPuJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 11:50:09 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F312CC06134D
-        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 08:49:35 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id n2so32115343ejy.7
-        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 08:49:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=uGqXKNepWMiRK4L6umZmSd60JxhJtOROnMTMOBVaS0w=;
-        b=aVBbEZIeMYk9oUnjuxb6YOo9fxYJM1S/cNjUGQDK9xQ6/+30zuoBKKIfcZQM1quDxT
-         n4pY5r4Te6jfZnw2yIh9ztfc8G/5GnDP/67FXwI40UG8k90YBobXvPO3EN8Hm/Nng0Fv
-         Dtwf6nxRHGvTUFuOYexJLHQ5qgCOpuK4lkOKMhVugxAMYY5JqzB8dOWZXLnVRBgDq4e1
-         28PJZ49ojUZxWE18qti/t75A+GSDYol+GvHYrnKd9KoZIsb0QfgYCoOoFUwHvbQwDd9j
-         RZwEfIYKc/dKz/bTzvWEyIDQYDy2bWrmfTFcqsRQOT+osrXqy9vVSRuvS1teDfn+9bdT
-         Wy3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=uGqXKNepWMiRK4L6umZmSd60JxhJtOROnMTMOBVaS0w=;
-        b=eN6BvZiE4Q9NZAE6v4lUpJeQQLK49+kkvqgmbO0QdXDRzoZVsUmf/cF8V2NRxpTpi6
-         agLxE++rVot+OoVK0bl3hqDk4e1tq9oiW64dXDrTOVdoAGQn7VZ8RGY9rgpR7t2htGVC
-         5HSpwOq7L82xOAVB4YsorXFAGWVMgdVt/PINf4UeLYSWfmUMrlNsaVvbyfRIeaGxLyqI
-         jaCbJKRrXJtHml0/rW+4c5rurtosEbsq4dB/4mhiEaz9y4xgr6FUPBEkCRIGiIV0dG51
-         fv+8ADqr4Ff10mZEA9x4+7TKRjJOvv3SF8mZ/Se+71XFWDOu33G8fbHeSso2IBvb8sMz
-         M9eg==
-X-Gm-Message-State: AOAM532irKF1WulZ4o27mYJCt2cTPH+6KRRkmICtf/Ymczt00Nsu7aAB
-        NoLLkx+63BDiI5pykNXlvrPM3Q==
-X-Google-Smtp-Source: ABdhPJzJ5Ga3oUUSF6yxW11rMdnbZvkhMK+8HvUo9si67Acc0kkJGlquJt1PNko7UHX2MHMZs4B/gA==
-X-Received: by 2002:a17:906:4e93:: with SMTP id v19mr14016866eju.215.1618415374750;
-        Wed, 14 Apr 2021 08:49:34 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id q12sm10495540ejy.91.2021.04.14.08.49.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Apr 2021 08:49:34 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     broonie@kernel.org
-Cc:     robh@kernel.org, devicetree@vger.kernel.org, perex@perex.cz,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        lgirdwood@gmail.com,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v4 9/9] ASoC: codecs: wcd938x: add audio routing
-Date:   Wed, 14 Apr 2021 16:48:45 +0100
-Message-Id: <20210414154845.21964-10-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20210414154845.21964-1-srinivas.kandagatla@linaro.org>
-References: <20210414154845.21964-1-srinivas.kandagatla@linaro.org>
+        id S1352453AbhDNPyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 11:54:01 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:2914 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350999AbhDNPxq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 11:53:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1618415605; x=1649951605;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=eoxGhWeXcMiRg4o7K7hNlJmz6LK+/qrq3ZM8dOSUIks=;
+  b=RocW5Mgy7EGYDcLpqVYNW0cC/5O4W0UQRw7GZNJaF+ibw50X4Fkokd5P
+   ettpr1teyBNHgVhTVYuTWuvUGE2S94wF+mlFIrd2B6DYJuoKSvH3tPJKM
+   TixFNWG8oM3MooOL9QXRZKPqpZtXQQswxEzBFrlnftVXjDJo8Z4MzDmoA
+   jrX8xn4olmUW9LDkKoIAdLw87WDZLeiQOG9r3RCnt5wSWm/zPJ0hDm4VU
+   VgYhlf07FVce8LX8tQIRa/igWBjA7bXG7vtXQVD2DoOgjNF4w7JpJLqix
+   RE/5cjkBq2uaugS3Ei0s+BTs7MoC5lK0Lk9V+J+Xp+sZ2MY9w0HWPH3So
+   w==;
+IronPort-SDR: aC51Ga+H8tN724kKKQN97DuyDcjfKhqk0csyqfX+YVIqjE8fXvqZp+0/6RFtYaietuZE/u0hsI
+ nPCfUCIGUUH7zXLtOBwzpJCcfkGgP/FTzs4HaSWFCUJ1aVf7tV+ADlx4zi54r6bXz+6tQqJbMl
+ OxUILniB09+ISx7rkdFAfb3v4nYnnpVwEm+wIH3OoSv2EStD3bs4bfjCXWO15+54czeBv7nbZm
+ Xehn+b1VUKjSx82K2j5YAYm9m2bbh43gv+WCFlCmiyvL+lQiG0EJgEfni5eoUZy7eyLG9soVWx
+ sAA=
+X-IronPort-AV: E=Sophos;i="5.82,222,1613458800"; 
+   d="scan'208";a="116998808"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Apr 2021 08:53:24 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Wed, 14 Apr 2021 08:53:23 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Wed, 14 Apr 2021 08:53:21 -0700
+From:   <conor.dooley@microchip.com>
+To:     <robh+dt@kernel.org>, <damien.lemoal@wdc.com>,
+        <jassisinghbrar@gmail.com>, <aou@eecs.berkeley.edu>,
+        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <j.neuschaefer@gmx.net>
+CC:     <lewis.hanly@microchip.com>, <cyril.jean@microchip.com>,
+        <daire.mcnamara@microchip.com>, <atish.patra@wdc.com>,
+        <anup.patel@wdc.com>, <david.abdurachmanov@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v6 0/5]  Add support for the PolarFire SoC system controller
+Date:   Wed, 14 Apr 2021 16:53:20 +0100
+Message-ID: <20210414155320.29382-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds audio routing for both playback and capture.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- sound/soc/codecs/wcd938x.c | 94 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 94 insertions(+)
+This patch series adds support for the system controller on
+the PolarFire SoC, using the mailbox framework. A Microchip directory
+in the SoC subsystem has been created to hold the mailbox client
+driver and will be used for future service drivers.
 
-diff --git a/sound/soc/codecs/wcd938x.c b/sound/soc/codecs/wcd938x.c
-index 05e1b0fc4f5f..e0be916bad65 100644
---- a/sound/soc/codecs/wcd938x.c
-+++ b/sound/soc/codecs/wcd938x.c
-@@ -3132,6 +3132,98 @@ static const struct snd_soc_dapm_widget wcd938x_dapm_widgets[] = {
- 	SND_SOC_DAPM_OUTPUT("AUX"),
- 	SND_SOC_DAPM_OUTPUT("HPHL"),
- 	SND_SOC_DAPM_OUTPUT("HPHR"),
-+
-+};
-+
-+static const struct snd_soc_dapm_route wcd938x_audio_map[] = {
-+	{"ADC1_OUTPUT", NULL, "ADC1_MIXER"},
-+	{"ADC1_MIXER", "Switch", "ADC1 REQ"},
-+	{"ADC1 REQ", NULL, "ADC1"},
-+	{"ADC1", NULL, "AMIC1"},
-+
-+	{"ADC2_OUTPUT", NULL, "ADC2_MIXER"},
-+	{"ADC2_MIXER", "Switch", "ADC2 REQ"},
-+	{"ADC2 REQ", NULL, "ADC2"},
-+	{"ADC2", NULL, "HDR12 MUX"},
-+	{"HDR12 MUX", "NO_HDR12", "ADC2 MUX"},
-+	{"HDR12 MUX", "HDR12", "AMIC1"},
-+	{"ADC2 MUX", "INP3", "AMIC3"},
-+	{"ADC2 MUX", "INP2", "AMIC2"},
-+
-+	{"ADC3_OUTPUT", NULL, "ADC3_MIXER"},
-+	{"ADC3_MIXER", "Switch", "ADC3 REQ"},
-+	{"ADC3 REQ", NULL, "ADC3"},
-+	{"ADC3", NULL, "HDR34 MUX"},
-+	{"HDR34 MUX", "NO_HDR34", "ADC3 MUX"},
-+	{"HDR34 MUX", "HDR34", "AMIC5"},
-+	{"ADC3 MUX", "INP4", "AMIC4"},
-+	{"ADC3 MUX", "INP6", "AMIC6"},
-+
-+	{"ADC4_OUTPUT", NULL, "ADC4_MIXER"},
-+	{"ADC4_MIXER", "Switch", "ADC4 REQ"},
-+	{"ADC4 REQ", NULL, "ADC4"},
-+	{"ADC4", NULL, "ADC4 MUX"},
-+	{"ADC4 MUX", "INP5", "AMIC5"},
-+	{"ADC4 MUX", "INP7", "AMIC7"},
-+
-+	{"DMIC1_OUTPUT", NULL, "DMIC1_MIXER"},
-+	{"DMIC1_MIXER", "Switch", "DMIC1"},
-+
-+	{"DMIC2_OUTPUT", NULL, "DMIC2_MIXER"},
-+	{"DMIC2_MIXER", "Switch", "DMIC2"},
-+
-+	{"DMIC3_OUTPUT", NULL, "DMIC3_MIXER"},
-+	{"DMIC3_MIXER", "Switch", "DMIC3"},
-+
-+	{"DMIC4_OUTPUT", NULL, "DMIC4_MIXER"},
-+	{"DMIC4_MIXER", "Switch", "DMIC4"},
-+
-+	{"DMIC5_OUTPUT", NULL, "DMIC5_MIXER"},
-+	{"DMIC5_MIXER", "Switch", "DMIC5"},
-+
-+	{"DMIC6_OUTPUT", NULL, "DMIC6_MIXER"},
-+	{"DMIC6_MIXER", "Switch", "DMIC6"},
-+
-+	{"DMIC7_OUTPUT", NULL, "DMIC7_MIXER"},
-+	{"DMIC7_MIXER", "Switch", "DMIC7"},
-+
-+	{"DMIC8_OUTPUT", NULL, "DMIC8_MIXER"},
-+	{"DMIC8_MIXER", "Switch", "DMIC8"},
-+
-+	{"IN1_HPHL", NULL, "VDD_BUCK"},
-+	{"IN1_HPHL", NULL, "CLS_H_PORT"},
-+
-+	{"RX1", NULL, "IN1_HPHL"},
-+	{"RX1", NULL, "RXCLK"},
-+	{"RDAC1", NULL, "RX1"},
-+	{"HPHL_RDAC", "Switch", "RDAC1"},
-+	{"HPHL PGA", NULL, "HPHL_RDAC"},
-+	{"HPHL", NULL, "HPHL PGA"},
-+
-+	{"IN2_HPHR", NULL, "VDD_BUCK"},
-+	{"IN2_HPHR", NULL, "CLS_H_PORT"},
-+	{"RX2", NULL, "IN2_HPHR"},
-+	{"RDAC2", NULL, "RX2"},
-+	{"RX2", NULL, "RXCLK"},
-+	{"HPHR_RDAC", "Switch", "RDAC2"},
-+	{"HPHR PGA", NULL, "HPHR_RDAC"},
-+	{"HPHR", NULL, "HPHR PGA"},
-+
-+	{"IN3_AUX", NULL, "VDD_BUCK"},
-+	{"IN3_AUX", NULL, "CLS_H_PORT"},
-+	{"RX3", NULL, "IN3_AUX"},
-+	{"RDAC4", NULL, "RX3"},
-+	{"RX3", NULL, "RXCLK"},
-+	{"AUX_RDAC", "Switch", "RDAC4"},
-+	{"AUX PGA", NULL, "AUX_RDAC"},
-+	{"AUX", NULL, "AUX PGA"},
-+
-+	{"RDAC3_MUX", "RX3", "RX3"},
-+	{"RDAC3_MUX", "RX1", "RX1"},
-+	{"RDAC3", NULL, "RDAC3_MUX"},
-+	{"EAR_RDAC", "Switch", "RDAC3"},
-+	{"EAR PGA", NULL, "EAR_RDAC"},
-+	{"EAR", NULL, "EAR PGA"},
- };
- 
- static int wcd938x_get_micb_vout_ctl_val(u32 micb_mv)
-@@ -3299,6 +3391,8 @@ static const struct snd_soc_component_driver soc_codec_dev_wcd938x = {
- 	.num_controls = ARRAY_SIZE(wcd938x_snd_controls),
- 	.dapm_widgets = wcd938x_dapm_widgets,
- 	.num_dapm_widgets = ARRAY_SIZE(wcd938x_dapm_widgets),
-+	.dapm_routes = wcd938x_audio_map,
-+	.num_dapm_routes = ARRAY_SIZE(wcd938x_audio_map),
- };
- 
- static void wcd938x_dt_parse_micbias_info(struct device *dev, struct wcd938x_priv *wcd)
+These drivers are gated by the kconfig option:
+CONFIG_SOC_MICROCHIP_POLARFIRE, so this patch series depends on Atish
+Patra's PolarFire SoC support patches which introduce it.
+
+It further depends on the MAINTAINERS entry created in the same series.
+
+The following link, which is a direct download of a pdf, contains documentation
+for the system controller:
+https://www.microsemi.com/document-portal/doc_download/1244853-ug0905-polarfire-soc-fpga-system-services-user-guide
+
+Changes from v5:
+* removed excess functions, cleanup in mailbox-mpfs.c
+
+Changes from v4:
+* Changed dt binding from Rob Herring's feedback
+* Shortened some verbose variable names
+* Reordered binding patches
+* Write directly into response array, rather than allocate in controller isr and memcpy in client
+
+Changes from v3:
+* Fixed mboxes reference in dt binding for mailbox client
+* Bug fixes and cleanup from Jonathan Neuschäfer's feedback on
+  mailbox-mpfs.c & mpfs-sys-controller.c
+* Renamed dt binding files to match compatible strings
+* Removed PFSoC gating condition on drivers/soc/microchip subdirectory
+* Converted all size based operations to bytes for consistency
+* Converted response array to a structure, enabling support for more
+  complex services that return a status instead of/alongside a payload.
+
+Changes from v2:
+* Further reworked dt bindings to satisfy errors and feedback
+  (hopefully phandle array is the correct type for the mboxes)
+* Full maintainers entry moved to Atish's PFSoC support series, this series now only adds mailbox driver
+* Converted config options from MPFS to POLARFIRE_SOC so they are more recognisable
+* Further simplified driver code from feedback
+
+Changes from v1:
+* Squashed header into first patch
+* Fixed DT binding warnings & small fixes
+* Cleaned up drivers from feedback
+
+Conor Dooley (5):
+  dt-bindings: add bindings for polarfire soc mailbox
+  mbox: add polarfire soc system controller mailbox
+  dt-bindings: add bindings for polarfire soc system controller
+  soc: add polarfire soc system controller
+  MAINTAINERS: add entry for polarfire soc mailbox driver
+
+ .../microchip,polarfire-soc-mailbox.yaml      |  47 ++++
+ ...icrochip,polarfire-soc-sys-controller.yaml |  35 +++
+ MAINTAINERS                                   |   1 +
+ drivers/mailbox/Kconfig                       |  12 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/mailbox-mpfs.c                | 251 ++++++++++++++++++
+ drivers/soc/Kconfig                           |   1 +
+ drivers/soc/Makefile                          |   1 +
+ drivers/soc/microchip/Kconfig                 |  10 +
+ drivers/soc/microchip/Makefile                |   1 +
+ drivers/soc/microchip/mpfs-sys-controller.c   | 119 +++++++++
+ include/soc/microchip/mpfs.h                  |  56 ++++
+ 12 files changed, 536 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/microchip,polarfire-soc-mailbox.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
+ create mode 100644 drivers/mailbox/mailbox-mpfs.c
+ create mode 100644 drivers/soc/microchip/Kconfig
+ create mode 100644 drivers/soc/microchip/Makefile
+ create mode 100644 drivers/soc/microchip/mpfs-sys-controller.c
+ create mode 100644 include/soc/microchip/mpfs.h
+
 -- 
-2.21.0
+2.31.1
 
