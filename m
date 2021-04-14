@@ -2,106 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 514ED35EDA6
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 08:58:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57FB135EDB7
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 08:58:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349305AbhDNGrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 02:47:16 -0400
-Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:32783 "EHLO
-        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1348255AbhDNGrP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Apr 2021 02:47:15 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id 2787B177F;
-        Wed, 14 Apr 2021 02:46:54 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Wed, 14 Apr 2021 02:46:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=who-t.net; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=64gjXIhv/+g283uK3HI1Fy6VCqL
-        /A34oMNdA2BrGOz4=; b=SMaCRGz/2atN6NqYrJ7F7wtHeKeBu0pQtw6+0+gxgrv
-        jNqGUiEsy9osUhvQazpqF2fAcobI4KnuqEWNBgPfyKGpkBtICKwziz398aDmFxzm
-        u7gidnodlPnFNrVdsAIAfQNWAYC00b0OCWGnJ5A02WVuJIJsCzXo1fZkWNLtUsf/
-        XRapJVw1mBCRMgQLUlVCoKVb/szbct8avqt1lc+QuHRq37yyvMuu6Esw8CDovf38
-        jxM7c6MZECEefHH5sfVT581pvi/7y+/vdCRcs0GrHqbIgEE6c9GFhbs91cvKQC0L
-        9pFn6la4Zb2Dr/qno7G6U5A7TmnPcXVIB9BEF75vCrA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=64gjXI
-        hv/+g283uK3HI1Fy6VCqL/A34oMNdA2BrGOz4=; b=kmSpfRPsS/4s5V9AxcP3tq
-        6O0I+QZfYcEC9/0B+V8P8lznnN82Q/flYNTwhFkfetilxr/zlAnt5Zxl1SsXNE5F
-        IWNJXtZsRDPvWUS/OzYWHoGwImEX0+spE0nmyl2jUsPviNz0YG5pqaZA5P/pJonb
-        1Qj7KNLrNGH8H5poklrRVzMTEZXh/mc2Hz5yipbK7ClREB8taIOsw/sif/YKUHuG
-        eu6pYbXaXfY2/Zq3/sc5R9CPyxzJMXNpHlMaYPuKKcTOtcg422Lj9XRkGNCuw/2K
-        gnNZuuLFXTj/XTVPPKmoXUoa29CP6zRUwT/GmM4w0PSyJjAAUE18s0DquDOVkF2Q
-        ==
-X-ME-Sender: <xms:3Y92YDqZ5ag3wcVlNl4UXUSj2_5xyofxtNtTPZmIsO21YUYGXNFASg>
-    <xme:3Y92YLM1KKqVCsTPpRQBLIKep2l-8OK-b8lU6SUb9pdLwO8z_dxF0i29hdgdnUNkj
-    a9TS6pTgiu-TxcDZlg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudeltddgudduvdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheprfgvthgv
-    rhcujfhuthhtvghrvghruceophgvthgvrhdrhhhuthhtvghrvghrseifhhhoqdhtrdhnvg
-    htqeenucggtffrrghtthgvrhhnpeehhfehfffgheelgeeuudelhefgvdefveekudevjeev
-    jeevvefggefguddufeeuveenucfkphepuddujedrvddtrdejuddrvddvkeenucevlhhush
-    htvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehpvghtvghrrdhhuhht
-    thgvrhgvrhesfihhohdqthdrnhgvth
-X-ME-Proxy: <xmx:3Y92YGodEd2js7xKNzSWFi2rN3eVDhKabvvOtJsb8gR-OuImWAxgFQ>
-    <xmx:3Y92YIeWI9JDuxMiceK_-5AbpMaM6PFdOVI26iQk5pYiwCE8_I6WwQ>
-    <xmx:3Y92YETBJZs0fUENrGIiR4rSOiXiggKYWi-ftHDjMqNoBi0maf9QBg>
-    <xmx:3Y92YLGTs3Sir_Qd3Y8rL6mSW8UpcqQpoKBZ4iBVcU5j-A05wvDMwg>
-Received: from koala (117-20-71-228.751447.bne.nbn.aussiebb.net [117.20.71.228])
-        by mail.messagingengine.com (Postfix) with ESMTPA id E271524005C;
-        Wed, 14 Apr 2021 02:46:50 -0400 (EDT)
-Date:   Wed, 14 Apr 2021 16:46:44 +1000
-From:   Peter Hutterer <peter.hutterer@who-t.net>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        Rob Herring <robh@kernel.org>,
-        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 3/3] Input: add driver for the Hycon HY46XX touchpanel
- series
-Message-ID: <YHaP1Fzsi5pSaEq3@koala>
-References: <CAL_JsqK6Bm==DaCMD3PruZoFO9iv0Te_KBVPnb9ZU0L8yDYF5Q@mail.gmail.com>
- <20210413144446.2277817-1-giulio.benetti@benettiengineering.com>
- <20210413144446.2277817-4-giulio.benetti@benettiengineering.com>
- <YHaBJ6MX9c28MUQY@google.com>
+        id S1349371AbhDNGu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 02:50:28 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:45990 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239416AbhDNGu2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 02:50:28 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13E6nopT097466;
+        Wed, 14 Apr 2021 01:49:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1618382990;
+        bh=7cU4D04kdyILGRVSuThWUQaMOQqDRIEfWPmylp2Mimk=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=TkCt8oYzhmi/2AzqPsmlu89Y6ETx+rlasl/2DF/qR5gVqRtBRRqfxzr7yg0EfBgZ3
+         U9cpaq+7Fw5W/zyrXLDLiBD2XDOLj9W06c+iTCCaQ+Jt3fQIFm4FH2W8i56bLn6iWC
+         xixX7Pq56mhw5sksre/jPjqRSJ0nvlxduMR2qpwI=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13E6noWE035897
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 14 Apr 2021 01:49:50 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 14
+ Apr 2021 01:49:50 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 14 Apr 2021 01:49:50 -0500
+Received: from [172.24.145.148] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13E6niiC127386;
+        Wed, 14 Apr 2021 01:49:45 -0500
+Subject: Re: [PATCH 3/4] dt-bindings: net: can: Document transceiver
+ implementation as phy
+To:     Rob Herring <robh@kernel.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Sriram Dash <sriram.dash@samsung.com>,
+        <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+References: <20210409134056.18740-1-a-govindraju@ti.com>
+ <20210409134056.18740-4-a-govindraju@ti.com>
+ <20210412175134.GA4109207@robh.at.kernel.org>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <e1c2b752-5a2b-e973-c188-5916d8a2e31f@ti.com>
+Date:   Wed, 14 Apr 2021 12:19:43 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YHaBJ6MX9c28MUQY@google.com>
+In-Reply-To: <20210412175134.GA4109207@robh.at.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 13, 2021 at 10:44:07PM -0700, Dmitry Torokhov wrote:
-> Hi Giulio,
-> 
-> On Tue, Apr 13, 2021 at 04:44:46PM +0200, Giulio Benetti wrote:
-> > +
-> > +	input_mt_report_pointer_emulation(tsdata->input, true);
-> 
-> For touchscreens it does not make much sense to report BTN_DOUBLETAP,
-> BTN_TRIPLETAP, etc, events (they are really for touchpads), so I changed
-> this to
-> 
-> 	input_mt_report_pointer_emulation(tsdata->input, false);
-> 
-> to only report ABS_X, ABS_Y, and BTN_TOUCH, and applied.
+Hi Rob,
 
-Can you expand on this please, just to make sure I'm not misinterpreting
-those codes? Those bits are just for how many fingers are down (but without
-position), dropping those bits means you restrict the device to a pure
-single-touch screen. Or am I missing something here?
+On 12/04/21 11:21 pm, Rob Herring wrote:
+> On Fri, Apr 09, 2021 at 07:10:53PM +0530, Aswath Govindraju wrote:
+>> From: Faiz Abbas <faiz_abbas@ti.com>
+>>
+>> Some transceivers need a configuration step (for example, pulling the
+>> standby or enable lines) for them to start sending messages. The
+>> transceiver can be implemented as a phy with the configuration done in the
+>> phy driver. The bit rate limitation can the be obtained by the driver using
+>> the phy node.
+>>
+>> Document the above implementation in the bosch mcan bindings
+>>
+>> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
+>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>> ---
+>>  Documentation/devicetree/bindings/net/can/bosch,m_can.yaml | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+>> index 798fa5fb7bb2..2c01899b1a3e 100644
+>> --- a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+>> +++ b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+>> @@ -109,6 +109,12 @@ properties:
+>>    can-transceiver:
+>>      $ref: can-transceiver.yaml#
+>>  
+>> +  phys:
+>> +    minItems: 1
+> 
+> maxItems: 1
 
-then again, MT support has been in the kernel for long enough that by now
-everything should understand it, so there's a certain "meh" factor.
+Will add this in the respin.
 
-Cheers,
-   Peter
+> 
+>> +
+>> +  phy-names:
+>> +    const: can_transceiver
+> 
+> Kind of a pointless name. You don't really need a name if there's a 
+> single entry.
+> 
+
+This name used by devm_phy_optional_get() in m_can driver to get the phy
+data structure.
+
+Thank you for the review.
+
+Regards,
+Aswath
+
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> -- 
+>> 2.17.1
+>>
+
