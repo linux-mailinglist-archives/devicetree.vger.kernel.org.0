@@ -2,178 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C321235EFF6
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 10:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABFCB35EFF3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 10:46:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350235AbhDNIkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 04:40:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41650 "EHLO
+        id S1350213AbhDNIkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 04:40:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350239AbhDNIjd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 04:39:33 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48C1CC06134E
-        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 01:38:28 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id i190so13249361pfc.12
-        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 01:38:28 -0700 (PDT)
+        with ESMTP id S1350217AbhDNIjO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 04:39:14 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4AA9C061348
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 01:38:23 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id n2so30117122ejy.7
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 01:38:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=SDiflsGvBCYCoVMBt0Fyo3zuZR1BmIQO6zXHXOu40Mw=;
-        b=dHicorp99OgGYzZtDEhGPP14NXcmgNSFB7Mn9d/JE9VuRhG3WEeyTRH+9WHAtBXtIt
-         2b8tEJzbaOIhB31U0t5l4R12SrNzFBqxeFqFhyKAqht1YEWLa2c1o8vLDyx0spo9LUvd
-         Z4tI/rFuOgd5MX9mGBPO87LQS1vO3o5PcodAU=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=vhZ72Xg0BjOB8Y+YSTZaT0YeKtDJ45/09IKX2ejXKzU=;
+        b=gaiStzZagd8zAkEqqAKTFG81x7D+nyIHgzl6IOJE8VyQCaPv9Iae8hpRTB6pt71rd0
+         rrF5QicWAEIMxLCAvXR88QdOcT6rQW+MogInjgTXdHt5a7WRU7Tt0IlKCMWuknUDo2iB
+         Cz6jvWZtpXex64fuEPfnwok8HyphGmagniPMJ9VXLuT2Kq5Ify8+RFJn6OBPvwWBsKKG
+         K7JAXvVIkrMbcVjibJ2Qwb3WcvdLQ2oalcuerPyLwS55SQ98W/4JAxUA5pG5eT56EgvF
+         ogDa+291qqrpmn4kfvIB5djabdzsH2ynqYEWNYpZ4y/4O3/AW1HfmZ+QRUbshgjFL6sZ
+         /36w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=SDiflsGvBCYCoVMBt0Fyo3zuZR1BmIQO6zXHXOu40Mw=;
-        b=Rw43c65p+/KlXZXjwLVEHiP6nZBSOKHU8QMkcQ7sO6cx18a80V8RcUzFTV0AWt7pxS
-         uOvgLzE0NNRIcJV0ZuhWxE8eo2X1f68m+HSh6bU+c8HtEIy586wXyKfNNnLGbBWpGdxY
-         i2D+7oQFynntIpygiwHVQ7pWnoSgUK2scsEMStt6qOwxHn/K8HFDAsufnp83J2UgO61V
-         kZbPdmnKNHlq+HJw2l7TjSL697mYb77kqCL7+KkLdO7rlG1V7K3mR3r2sVGi59lDcNGy
-         gdoxWsjpzYSMdJF/1ay0v3nkF9qFcOyFNkkHE5K4AQS1s5yHt1sDDeoDDPwJfwB2gr5U
-         AuIA==
-X-Gm-Message-State: AOAM531jq89TD5N43rNr68Y6wyF8nHsDj339U5+smHxgzjj9SVL/Xtvy
-        ECCGjRx6wl4Ju0TGwjdwVYxV8g==
-X-Google-Smtp-Source: ABdhPJw8DhWVrzjIH8JTyLWzkCwTPDmhi+RWo2XG234hq40sGn8kYoUJy/Ov654V+I50pVRpW/d88A==
-X-Received: by 2002:a63:5b26:: with SMTP id p38mr3620664pgb.141.1618389507824;
-        Wed, 14 Apr 2021 01:38:27 -0700 (PDT)
-Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:bae3:4af0:9792:1539])
-        by smtp.gmail.com with ESMTPSA id g24sm8901582pfh.164.2021.04.14.01.38.25
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=vhZ72Xg0BjOB8Y+YSTZaT0YeKtDJ45/09IKX2ejXKzU=;
+        b=VU4PTxgG3yYW2gBz0X7wfYtr1NXjOcrdW6Gn9IRrbm7cK+FGlKEfgK9nud6bvZgkyY
+         9/2JgorJSTHVJrH5QR6duuJxjBbMXiEsMSCWdHhki7TuPE02El/S3WL6R3snUI+kFfOD
+         aoq/kBBBf0ibA164MP4BBO4lTTViT4w4KHNO0LyXivgfczW2oqyK+ez3DFzTpt8Emai6
+         T/ta69HDu4LtpsrFsgVp+jfiiOgkyLhOxqXeoeDRMMwBD6homiDqBX+Kp1wEu/1i9OZ9
+         MTKNy/Uzxdjbh0+lzyQbT7OXJFcMQJk7mL53V0gO6LgENQAOV2e5YVJhtzlDzsCQq3r/
+         Fd8g==
+X-Gm-Message-State: AOAM5323phh2gOeTc1ZoMKHkd+smKk78OsUzgFEDgS4jHUsebN9dhutL
+        uycBh1qldaeXmLl3Xiram/2hJg==
+X-Google-Smtp-Source: ABdhPJzQiYHdbxLZKSHPErRc+GwkdWizSUBzC7Y3CpNNw0NP18kwZPRTExKYXq+MLBKbjHipA6b0/A==
+X-Received: by 2002:a17:906:34da:: with SMTP id h26mr27108722ejb.496.1618389502585;
+        Wed, 14 Apr 2021 01:38:22 -0700 (PDT)
+Received: from dell ([91.110.221.215])
+        by smtp.gmail.com with ESMTPSA id q25sm476360ejd.9.2021.04.14.01.38.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Apr 2021 01:38:27 -0700 (PDT)
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-To:     Wolfram Sang <wsa@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        Wed, 14 Apr 2021 01:38:22 -0700 (PDT)
+Date:   Wed, 14 Apr 2021 09:38:20 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc:     linux-i2c@vger.kernel.org, Qii Wang <qii.wang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Brown <broonie@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        Arnd Bergmann <arnd@arndb.de>
-Subject: [PATCH v18 5/5] arm64: dts: mt8183: add supply name for eeprom
-Date:   Wed, 14 Apr 2021 16:38:09 +0800
-Message-Id: <20210414083809.1932133-6-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.31.1.295.g9ea45b61b8-goog
-In-Reply-To: <20210414083809.1932133-1-hsinyi@chromium.org>
-References: <20210414083809.1932133-1-hsinyi@chromium.org>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-rtc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kgunda@codeaurora.org
+Subject: Re: [PATCH V2 3/4] dt-bindings: mfd: Convert pm8xxx bindings to yaml
+Message-ID: <20210414083820.GH4869@dell>
+References: <1617976766-7852-1-git-send-email-skakit@codeaurora.org>
+ <1617976766-7852-4-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <1617976766-7852-4-git-send-email-skakit@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add supplies for eeprom for mt8183 boards.
+On Fri, 09 Apr 2021, satya priya wrote:
 
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
----
- arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi | 4 ++++
- arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi | 4 ++++
- arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi  | 4 ++++
- 3 files changed, 12 insertions(+)
+> Convert pm8xxx bindings from .txt to .yaml format. Also,
+> split this binding into two: parent binding(qcom-pm8xxx.yaml)
+> and child node RTC binding(qcom-pm8xxx-rtc.yaml).
+> 
+> Signed-off-by: satya priya <skakit@codeaurora.org>
+> ---
+> Changes in V2:
+>  - As per Bjorn's comments, I've split this into two, one parent binding
+>    and one child node rtc binding.
+>  - Fixed bot errors and changed maintainer name.
+> 
+>  .../devicetree/bindings/mfd/qcom-pm8xxx.txt        | 100 ---------------------
+>  .../devicetree/bindings/mfd/qcom-pm8xxx.yaml       |  54 +++++++++++
+>  2 files changed, 54 insertions(+), 100 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/qcom-pm8xxx.txt
+>  create mode 100644 Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
-index b442e38a3156..28966a65391b 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
-@@ -88,11 +88,13 @@ &i2c2 {
- 	pinctrl-0 = <&i2c2_pins>;
- 	status = "okay";
- 	clock-frequency = <400000>;
-+	vbus-supply = <&mt6358_vcamio_reg>;
- 
- 	eeprom@58 {
- 		compatible = "atmel,24c32";
- 		reg = <0x58>;
- 		pagesize = <32>;
-+		vcc-supply = <&mt6358_vcama2_reg>;
- 	};
- };
- 
-@@ -101,11 +103,13 @@ &i2c4 {
- 	pinctrl-0 = <&i2c4_pins>;
- 	status = "okay";
- 	clock-frequency = <400000>;
-+	vbus-supply = <&mt6358_vcn18_reg>;
- 
- 	eeprom@54 {
- 		compatible = "atmel,24c32";
- 		reg = <0x54>;
- 		pagesize = <32>;
-+		vcc-supply = <&mt6358_vcn18_reg>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi
-index 2f5234a16ead..3aa79403c0c2 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi
-@@ -62,11 +62,13 @@ &i2c2 {
- 	pinctrl-0 = <&i2c2_pins>;
- 	status = "okay";
- 	clock-frequency = <400000>;
-+	vbus-supply = <&mt6358_vcamio_reg>;
- 
- 	eeprom@58 {
- 		compatible = "atmel,24c64";
- 		reg = <0x58>;
- 		pagesize = <32>;
-+		vcc-supply = <&mt6358_vcamio_reg>;
- 	};
- };
- 
-@@ -75,11 +77,13 @@ &i2c4 {
- 	pinctrl-0 = <&i2c4_pins>;
- 	status = "okay";
- 	clock-frequency = <400000>;
-+	vbus-supply = <&mt6358_vcn18_reg>;
- 
- 	eeprom@54 {
- 		compatible = "atmel,24c64";
- 		reg = <0x54>;
- 		pagesize = <32>;
-+		vcc-supply = <&mt6358_vcn18_reg>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi
-index fbc471ccf805..30c183c96a54 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi
-@@ -71,11 +71,13 @@ &i2c2 {
- 	pinctrl-0 = <&i2c2_pins>;
- 	status = "okay";
- 	clock-frequency = <400000>;
-+	vbus-supply = <&mt6358_vcamio_reg>;
- 
- 	eeprom@58 {
- 		compatible = "atmel,24c32";
- 		reg = <0x58>;
- 		pagesize = <32>;
-+		vcc-supply = <&mt6358_vcama2_reg>;
- 	};
- };
- 
-@@ -84,11 +86,13 @@ &i2c4 {
- 	pinctrl-0 = <&i2c4_pins>;
- 	status = "okay";
- 	clock-frequency = <400000>;
-+	vbus-supply = <&mt6358_vcn18_reg>;
- 
- 	eeprom@54 {
- 		compatible = "atmel,24c32";
- 		reg = <0x54>;
- 		pagesize = <32>;
-+		vcc-supply = <&mt6358_vcn18_reg>;
- 	};
- };
- 
+Applied, thanks.
+
 -- 
-2.31.1.295.g9ea45b61b8-goog
-
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
