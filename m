@@ -2,132 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DABBC35F9E0
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 19:31:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89B9835FA28
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 20:01:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350941AbhDNRaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 13:30:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45644 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350781AbhDNRaF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 13:30:05 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDADFC061347
-        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 10:29:40 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id u11so6968586pjr.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 10:29:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=70dSAhdvNf9rW7naVyB8FacZo/tKpmgYTIzZpzN71Cs=;
-        b=LsiMLszNVSqTMFSOmT7Vt7BL2HWjYpQnn9/Ah8Ahmt14VXi38iwnxuRRnAMd7nV+F4
-         L8OiYKIW4vYpw8N0fUeTwgUCiDMq5+HbPF+3sOym2H36ZFwtvq4PnCKSeplaTzdczwh+
-         M1/M+ijlrnFtXNjeEsgG7aN63y8Ce7LLt8uSE=
+        id S1351406AbhDNSAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 14:00:19 -0400
+Received: from mail-vs1-f53.google.com ([209.85.217.53]:37687 "EHLO
+        mail-vs1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234303AbhDNSAS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 14:00:18 -0400
+Received: by mail-vs1-f53.google.com with SMTP id 2so10774755vsh.4;
+        Wed, 14 Apr 2021 10:59:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=70dSAhdvNf9rW7naVyB8FacZo/tKpmgYTIzZpzN71Cs=;
-        b=rVa95DPT2Bwv8EqW2fbQCbGIRhV4rsrPhwttoiUYvJmopj4tQJZWPXvbyRK2Fcc88x
-         cSTsPdoKHjtxzCvDJ68ZCAzH/IFdvkY6J/zr/pd17pobR0H2ER7wIJ+240sm6ubdJaSV
-         i3m5ZKQ+dwYgjArVcXkQLsIYdChCb18yPfIOAn9vC+F6jDAcPMBwHwfwfGG94zSv4Pfs
-         3crn1OwTE1WEdyXjnIlfYDqtFpRivQk6L6Lb6EeglBZZG4DSIy9ApULwEIyesx7aWbKk
-         HX9kHjraOJJ0RrKO909un8rCUiKc7wDkfyoD2MBs5FPrVjHQ0wnYaPwfmMawuzOP6jhB
-         EKdQ==
-X-Gm-Message-State: AOAM530JnQ9J22KCSA9VxdvakMpFyRp60qJ6DInirZXLT582kGebKZ2j
-        b9sxEnTgqX7bg9JwHSSIpbZlUQ==
-X-Google-Smtp-Source: ABdhPJwqy6xfsxSkXZwh4yhPlR+yx5Kxrr/lleQqawAAaqaYA9AZc2k7rgE80MSaJDQAOD1ejSDS8w==
-X-Received: by 2002:a17:90a:ca83:: with SMTP id y3mr4896192pjt.191.1618421380273;
-        Wed, 14 Apr 2021 10:29:40 -0700 (PDT)
-Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:bae3:4af0:9792:1539])
-        by smtp.gmail.com with ESMTPSA id e31sm63460pjk.4.2021.04.14.10.29.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Apr 2021 10:29:39 -0700 (PDT)
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-To:     Wolfram Sang <wsa@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc:     linux-i2c@vger.kernel.org, Qii Wang <qii.wang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Brown <broonie@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        intel-gfx@lists.freedesktop.org
-Subject: [PATCH v19 6/6] drm/i915/selftests: Rename functions names
-Date:   Thu, 15 Apr 2021 01:29:16 +0800
-Message-Id: <20210414172916.2689361-7-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.31.1.295.g9ea45b61b8-goog
-In-Reply-To: <20210414172916.2689361-1-hsinyi@chromium.org>
-References: <20210414172916.2689361-1-hsinyi@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LrQhYoofWK1qIE+Puebb8490xY7FtwOJErFPSvGIMtY=;
+        b=shBio9KXJcxBAmzKpdwcUWISMSsYL8M3tQO4z507KY7PgFMkaEswmzkin+rxfTFEUw
+         gE4FBQTec8Moz+tuk7xwCZCQ694Dh34mYn1t3vrNYsTp6XtEo/yIyTOEObyybO6aZjIV
+         +skifyO2nWsM3Z3ijX7gtDpYLtrtzg1JcaveBJzpODOGN1jTKKSRu1aEEGN4IlnfJbct
+         HDplDg8Oc8YQmB06F4JvM8/oyHSW8KbX3UCwkBx7/t2JOamu5s6mlW8VE7omAkYl9bCY
+         w1K2Og6Ug5L+vhdghyXYyoYkr0GknFN1TD18kRjMYxcz+FPdZERqV7nRsbZQvmly1iK3
+         7FQg==
+X-Gm-Message-State: AOAM531LqaKLI8iIRXD0m1UWr3iM/H2WaoPWUOy+C92HVyEXlTNx93N6
+        YjP0GApOe3SOjqCOX6O3o7/nOGUzO3Vp2eRPr8yBXqhjj/o=
+X-Google-Smtp-Source: ABdhPJyeOsV8TPzm4qfYRpIEOQxrAj6kXLid0sqN/BtkYP2cUAkLDMXrOtYnopbrTca5CncxrQqmj9wtMiDHf/+FZD8=
+X-Received: by 2002:a67:80c4:: with SMTP id b187mr29655934vsd.42.1618423195054;
+ Wed, 14 Apr 2021 10:59:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210412132619.7896-1-aford173@gmail.com> <20210412132619.7896-2-aford173@gmail.com>
+ <CAMuHMdU5RfTGs3SCvJX9epKBLOo6o1BQMng49RjrBn+P7QOSeg@mail.gmail.com> <CAHCN7xKp1Lp+KAHwo_GobZoDKQCV9_7Yx2ZNKmTzkkShRBzm_Q@mail.gmail.com>
+In-Reply-To: <CAHCN7xKp1Lp+KAHwo_GobZoDKQCV9_7Yx2ZNKmTzkkShRBzm_Q@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 14 Apr 2021 19:59:43 +0200
+Message-ID: <CAMuHMdUhwyR8F6PeE1WEtaEtEPrnm0qFtGJ1rGqTJDYSotK8PA@mail.gmail.com>
+Subject: Re: [PATCH V4 2/2] net: ethernet: ravb: Enable optional refclk
+To:     Adam Ford <aford173@gmail.com>
+Cc:     netdev <netdev@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-pm_resume and pm_suspend might be conflict with the ones defined in
-include/linux/suspend.h. Rename pm_resume{suspend} to
-i915_pm_resume{suspend} since they are only used here.
+Hi Adam,
 
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Reported-by: kernel test robot <lkp@intel.com>
----
- drivers/gpu/drm/i915/selftests/i915_gem.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+On Wed, Apr 14, 2021 at 3:08 PM Adam Ford <aford173@gmail.com> wrote:
+> On Tue, Apr 13, 2021 at 2:33 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Mon, Apr 12, 2021 at 3:27 PM Adam Ford <aford173@gmail.com> wrote:
+> > > For devices that use a programmable clock for the AVB reference clock,
+> > > the driver may need to enable them.  Add code to find the optional clock
+> > > and enable it when available.
+> > >
+> > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > > Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> > >
+> > > ---
+> > > V4:  Eliminate the NULL check when disabling refclk, and add a line
+> > >      to disable the refclk if there is a failure after it's been
+> > >      initialized.
+> >
+> > Thanks for the update!
+> >
+> > > --- a/drivers/net/ethernet/renesas/ravb_main.c
+> > > +++ b/drivers/net/ethernet/renesas/ravb_main.c
+> > > @@ -2148,6 +2148,13 @@ static int ravb_probe(struct platform_device *pdev)
+> > >                 goto out_release;
+> > >         }
+> > >
+> > > +       priv->refclk = devm_clk_get_optional(&pdev->dev, "refclk");
+> > > +       if (IS_ERR(priv->refclk)) {
+> > > +               error = PTR_ERR(priv->refclk);
+> > > +               goto out_release;
+> >
+> > Note that this will call clk_disable_unprepare() in case of failure, which is
+> > fine, as that function is a no-op in case of a failed clock.
+>
+> Geert,
+>
+> A bot reported that if I jump to out_release may try to free a clock
+> if some instances where priv isn't defined.
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_gem.c b/drivers/gpu/drm/i915/selftests/i915_gem.c
-index dc394fb7ccfa..525afda9d31f 100644
---- a/drivers/gpu/drm/i915/selftests/i915_gem.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_gem.c
-@@ -94,7 +94,7 @@ static int pm_prepare(struct drm_i915_private *i915)
- 	return 0;
- }
- 
--static void pm_suspend(struct drm_i915_private *i915)
-+static void i915_pm_suspend(struct drm_i915_private *i915)
- {
- 	intel_wakeref_t wakeref;
- 
-@@ -116,7 +116,7 @@ static void pm_hibernate(struct drm_i915_private *i915)
- 	}
- }
- 
--static void pm_resume(struct drm_i915_private *i915)
-+static void i915_pm_resume(struct drm_i915_private *i915)
- {
- 	intel_wakeref_t wakeref;
- 
-@@ -152,12 +152,12 @@ static int igt_gem_suspend(void *arg)
- 	if (err)
- 		goto out;
- 
--	pm_suspend(i915);
-+	i915_pm_suspend(i915);
- 
- 	/* Here be dragons! Note that with S3RST any S3 may become S4! */
- 	simulate_hibernate(i915);
- 
--	pm_resume(i915);
-+	i915_pm_resume(i915);
- 
- 	err = switch_to_context(ctx);
- out:
-@@ -192,7 +192,7 @@ static int igt_gem_hibernate(void *arg)
- 	/* Here be dragons! */
- 	simulate_hibernate(i915);
- 
--	pm_resume(i915);
-+	i915_pm_resume(i915);
- 
- 	err = switch_to_context(ctx);
- out:
+As priv is allocated using alloc_etherdev_mqs(), priv->refclk is
+NULL initially, but priv itself may indeed not be initialized when the first
+"goto out_release" is taken.  Sorry for missing that.
+
+> Currently, the priv->clk isn't freed either.  I have heard some
+> back-and-forth discussions in other threads on whether or not devm
+> functions auto free or not.
+
+The devm_clk_get_optional() will be undone automatically, so there
+is no need to handle that explicitly.
+
+> I'm fine with sending a V5 to make the free for the refclock happen
+> only when the priv has successfully initialized.  Should I also add
+
+As this patch has been applied to net-next, you''ll have to send
+a follow-up fix patch, not a v5.
+
+> one for freeing priv->clk and change all the other goto out_release
+> commands to point to this new section?
+
+No, not for priv->clk, due to devm_*().
+
+> I am thinking it would like something like:
+>
+> free_refclk:
+>     clk_disable_unprepare(priv->refclk);
+
+OK.
+
+> free_clk;
+>     clk_disable_unprepare(priv->clk);
+
+NAK, as priv->clk is not enabled in ravb_probe().
+
+> out_release:
+>     free_netdev(ndev);
+>     ....
+
+OK.
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.31.1.295.g9ea45b61b8-goog
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
