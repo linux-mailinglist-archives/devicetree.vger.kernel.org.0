@@ -2,104 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4475E35ECCD
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 08:01:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E87E335ED03
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 08:14:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348864AbhDNGAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 02:00:43 -0400
-Received: from mail-lf1-f42.google.com ([209.85.167.42]:38733 "EHLO
-        mail-lf1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345214AbhDNGAm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 02:00:42 -0400
-Received: by mail-lf1-f42.google.com with SMTP id j18so31240981lfg.5;
-        Tue, 13 Apr 2021 23:00:20 -0700 (PDT)
+        id S1349116AbhDNGOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 02:14:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37866 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349110AbhDNGO3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 02:14:29 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F9E8C061756;
+        Tue, 13 Apr 2021 23:13:54 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id e8-20020a17090a7288b029014e51f5a6baso4921466pjg.2;
+        Tue, 13 Apr 2021 23:13:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=UXAwnWVl9FGK5e7NxTb7oKp8bz3pEFOyiNZQXN930zA=;
+        b=V4QkjOheC7dts5+4UpWNzDlKBdjSFRD4zma0L5y3hgfERKigAEm4wO/Z+H0FK/4S/m
+         A0SMN052Kedg+Ciqnp/ymjwwPF1Udl4kNyh2bwZpzB6RCm6Fg14h2+cwjOTfug68eTM/
+         VTx2u5XALzMcQMOKwYTdFtDX0BCz9Drp/dmfroXiN0iOl7HbMdMB9Ur0T38YOunj5tCH
+         OWXGjE2SpQzm6fY/j5m1pXcZj4vtcN8D8Jgur6hB81Yp/dFHPYalT6txnbYbv46Gsqun
+         QMs7WiOAMNP0OaKOPGhmKTI19iE2Mdu3QE+nZEgBCmwE58boaoxFpZShk916061YghsK
+         XVJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=f4Q2DJD3DV7OkSynlanBwzkwssjVc6YxaICi84VA+UM=;
-        b=GzXOtX86BXEK5eU33ZzhWkwTVyiyu/enlgxl/SrAjfoZHK9ZP46dMovN2X0plumsln
-         0zvT9TmBmMv5ynh6lctYA/MMBmJ2F1b6hsHNNm102j+BLH039w2BrTntcY3hUOZCtFpD
-         srDlrmiMqM+x+GlbsLRpct8w9k7JV3opj9PCEwGc3JiH4mKyo3CDgbpZoZONA73wjJjy
-         gDhgWXfJXmvEKnaPNj+GcQVpw6KJhfuNhZnplQeieTUHYy+e/RjJtVGCj3YtWSqpnRBK
-         m+vC2V8CUwPBslDHGjWVB0V1wLCm6+iH7Zb9uXuZX81mLnm5AxgAgx+O6wbZBmsG6BZB
-         7nZQ==
-X-Gm-Message-State: AOAM531YTaVw7UueU6BUfUyio4JouUBXikoT1+nxMjt4OS07fq8QpEom
-        k9v7KbYgoW34JZx7363VK7c=
-X-Google-Smtp-Source: ABdhPJxKujG2wBrfUHPrlF/DdKRjT4FEXoJGh7s/PjOzpD3Sui6yZtGoMKr3dOoVNeNzWZ9WEYzYdg==
-X-Received: by 2002:a19:6906:: with SMTP id e6mr18423553lfc.385.1618380020330;
-        Tue, 13 Apr 2021 23:00:20 -0700 (PDT)
-Received: from localhost.localdomain (dc7vkhyyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::6])
-        by smtp.gmail.com with ESMTPSA id k9sm2285172lfg.64.2021.04.13.23.00.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Apr 2021 23:00:19 -0700 (PDT)
-Date:   Wed, 14 Apr 2021 09:00:13 +0300
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Mark Brown <broonie@kernel.org>, Kees Cook <keescook@chromium.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "agross@kernel.org" <agross@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: [PATCH v7 9/9] MAINTAINERS: Add reviewer for regulator irq_helpers
-Message-ID: <5a544430d447fb9a261eee8c5856a586dcab55f1.1618377272.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1618377272.git.matti.vaittinen@fi.rohmeurope.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1618377272.git.matti.vaittinen@fi.rohmeurope.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=UXAwnWVl9FGK5e7NxTb7oKp8bz3pEFOyiNZQXN930zA=;
+        b=XIJ1OCPoPHHb/8Qc/hRvlcZefHJQD4zaVZAMVcatR2qnfyiRETvzilBrZx0fQ/IkUo
+         3gaWpGhdsBSqnZxrX4zz19A6mLgA7Iq2mpC/vC2sncJx4UlGV1WwYXOMhyD7Gjr13y+n
+         EnKKpj7LxMI7Lhf8BkGbJwY8ddthfsCoR8XUG8db8xOFeyvAztlUmQT/W2R7O5jm++Cm
+         11EWakF4jfVb0UKgC2oB6eyw8cU7uXq+CEm/OHL9Spo3R3xUTQHV/sDMxprU0jb7Eq3/
+         7bKFZVz0X7xSOKAdEETZQ5RqU8bLz5RTRDZHME7QLm10YHsXubRg1uwGPTKWf03jCysK
+         JS7A==
+X-Gm-Message-State: AOAM531flR+JgbHkwORtXkEpiFP/uPqM3g+wP4PwKqsCeC3ictTu+aBd
+        u6B0efM3o4esPmW60c+ZEjw=
+X-Google-Smtp-Source: ABdhPJy/iTG5Q/Z0DWceNV1USVKc4qBVBjAGqSRzh6Jf+PUYXqgXQflOfQTuArQzGT0UNS30SYt3QQ==
+X-Received: by 2002:a17:90a:17ea:: with SMTP id q97mr1836880pja.71.1618380833855;
+        Tue, 13 Apr 2021 23:13:53 -0700 (PDT)
+Received: from fmin-OptiPlex-7060.nreal.work ([137.59.103.165])
+        by smtp.gmail.com with ESMTPSA id d17sm13629071pfn.60.2021.04.13.23.13.49
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 13 Apr 2021 23:13:53 -0700 (PDT)
+From:   dillon.minfei@gmail.com
+To:     robh+dt@kernel.org, shawnguo@kernel.org, krzk@kernel.org,
+        linux@rempel-privat.de, s.riedmueller@phytec.de,
+        matthias.schiffer@ew.tq-group.com, leoyang.li@nxp.com,
+        arnd@arndb.de, olof@lixom.net, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com,
+        prabhakar.csengg@gmail.com, mchehab@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-media@vger.kernel.org, dillon min <dillon.minfei@gmail.com>
+Subject: [PATCH v1 0/3] arm: imx: Add i.mx6q DaSheng COM-9XX SBC board support
+Date:   Wed, 14 Apr 2021 14:13:44 +0800
+Message-Id: <1618380827-16056-1-git-send-email-dillon.minfei@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a reviewer entry for the regulator irq_helpers.
+From: dillon min <dillon.minfei@gmail.com>
 
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
----
-Changelog:
- v6:
-  - New patch
----
- MAINTAINERS | 4 ++++
- 1 file changed, 4 insertions(+)
+This patchset aims to add kernel support on DaSheng COM-8XX SBC board
+optimize ov2659 driver to handle xvclk on/off at proper stage to save power
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7fdc513392f4..c917d85feccd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19228,6 +19228,10 @@ F:	include/dt-bindings/regulator/
- F:	include/linux/regulator/
- K:	regulator_get_optional
- 
-+VOLTAGE AND CURRENT REGULATOR IRQ HELPERS
-+R:	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-+F:	drivers/regulator/irq_helpers.c
-+
- VRF
- M:	David Ahern <dsahern@kernel.org>
- L:	netdev@vger.kernel.org
+changes based on master branch, since commit id:
+89698becf06d341a700913c3d89ce2a914af69a2
+
+The DaSheng Com-9xx is and ARM based signle board computer (SBC)
+featuring:
+- i.MX6Q
+- 2GiB LPDDR3 DRAM
+- 8GiB eMMC 5.0 FLASH
+- 4MiB SPI Flash
+- USB 2.0 Host/Device
+- Multiple multi-protocol RS232/RS485 Serial ports
+- microSD socket
+- 5V DC power input
+- HDMI1.4a,1080p@60
+- RGMIIx1 Gigabit Ethernet
+- CSI0x1, connect with ov2659
+
+dillon min (3):
+  dt-bindings: arm: imx: Add i.mx6q DaSheng COM-9XX SBC board dts
+    support
+  arm: dts: imx: Add i.mx6q DaSheng COM-9XX SBC board support
+  media: i2c: ov2659: Add clk_prepare_enable(), clk_disable_unprepare()
+    to handle xvclk
+
+ Documentation/devicetree/bindings/arm/fsl.yaml |   1 +
+ arch/arm/boot/dts/Makefile                     |   1 +
+ arch/arm/boot/dts/imx6q-ds.dts                 |  18 +
+ arch/arm/boot/dts/imx6qdl-ds.dtsi              | 465 +++++++++++++++++++++++++
+ drivers/media/i2c/ov2659.c                     |  24 +-
+ 5 files changed, 503 insertions(+), 6 deletions(-)
+ create mode 100644 arch/arm/boot/dts/imx6q-ds.dts
+ create mode 100644 arch/arm/boot/dts/imx6qdl-ds.dtsi
+
 -- 
-2.25.4
+2.7.4
 
-
--- 
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =] 
