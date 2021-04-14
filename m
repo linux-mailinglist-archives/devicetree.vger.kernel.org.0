@@ -2,81 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52B9535F19D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 12:48:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4560135F1B4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 12:51:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233791AbhDNKsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 06:48:25 -0400
-Received: from foss.arm.com ([217.140.110.172]:54572 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233742AbhDNKsY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Apr 2021 06:48:24 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EC63F11B3;
-        Wed, 14 Apr 2021 03:48:02 -0700 (PDT)
-Received: from localhost.localdomain (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 72BED3F694;
-        Wed, 14 Apr 2021 03:48:01 -0700 (PDT)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@googlegroups.com,
-        Michael Weiser <michael.weiser@gmx.de>,
-        Daniel Kulesz <kuleszdl@posteo.org>
-Subject: [PATCH v2] arm64: dts: allwinner: Revert SD card CD GPIO for Pine64-LTS
-Date:   Wed, 14 Apr 2021 11:47:40 +0100
-Message-Id: <20210414104740.31497-1-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.14.1
+        id S234044AbhDNKvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 06:51:31 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:12239 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233897AbhDNKva (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 06:51:30 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 13EAd1Si057543;
+        Wed, 14 Apr 2021 18:39:01 +0800 (GMT-8)
+        (envelope-from billy_tsai@aspeedtech.com)
+Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 14 Apr
+ 2021 18:49:31 +0800
+From:   Billy Tsai <billy_tsai@aspeedtech.com>
+To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>, <joel@jms.id.au>,
+        <andrew@aj.id.au>, <thierry.reding@gmail.com>,
+        <u.kleine-koenig@pengutronix.de>, <p.zabel@pengutronix.de>,
+        <billy_tsai@aspeedtech.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>
+CC:     <BMC-SW@aspeedtech.com>
+Subject: [v2 0/2] Support pwm driver for aspeed ast26xx
+Date:   Wed, 14 Apr 2021 18:49:37 +0800
+Message-ID: <20210414104939.1093-1-billy_tsai@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [192.168.2.149]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 13EAd1Si057543
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 941432d00768 ("arm64: dts: allwinner: Drop non-removable from
-SoPine/LTS SD card") enabled the card detect GPIO for the SOPine module,
-along the way with the Pine64-LTS, which share the same base .dtsi.
+The legacy driver of aspeed pwm is binding with tach controller and it
+doesn't follow the pwm framworks usage. In addition, the pwm register
+usage of the 6th generation of ast26xx has drastic change. So these
+patch serials add the new aspeed pwm driver to fix up the problem above.
 
-This was based on the observation that the Pine64-LTS has as "push-push"
-SD card socket, and that the schematic mentions the card detect GPIO.
+Changes since v1:
+- Fix the dt_binding_check fail suggested by Rob Herring
+- Add depends to PWM_ASPEED_G6 configure suggested by Uwe Kleine-Konig
+- pwm-aspeed-g6.c suggested by Uwe Kleine-König
+  - Fix license header
+  - Use bitfiled.h macro to define register fields
+  - Implement .remove device function
+  - Implement .get_state pwm api
 
-After having received two reports about failing SD card access with that
-patch, some more research and polls on that subject revealed that there
-are at least two different versions of the Pine64-LTS out there:
-- On some boards (including mine) the card detect pin is "stuck" at
-  high, regardless of an microSD card being inserted or not.
-- On other boards the card-detect is working, but is active-high, by
-  virtue of an explicit inverter circuit, as shown in the schematic.
+Billy Tsai (2):
+  dt-bindings: Add bindings for aspeed pwm-tach and pwm.
+  pwm: Add Aspeed ast2600 PWM support
 
-To cover all versions of the board out there, and don't take any chances,
-let's revert the introduction of the active-low CD GPIO, but let's use
-the broken-cd property for the Pine64-LTS this time. That should avoid
-regressions and should work for everyone, even allowing SD card changes
-now.
-The SOPine card detect has proven to be working, so let's keep that
-GPIO in place.
+ .../bindings/mfd/aspeed,ast2600-pwm-tach.yaml |  60 ++++
+ .../bindings/pwm/aspeed,ast2600-pwm.yaml      |  44 +++
+ drivers/pwm/Kconfig                           |   7 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-aspeed-g6.c                   | 324 ++++++++++++++++++
+ 5 files changed, 436 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
+ create mode 100644 Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-aspeed-g6.c
 
-Fixes: 941432d00768 ("arm64: dts: allwinner: Drop non-removable from SoPine/LTS SD card")
-Reported-by: Michael Weiser <michael.weiser@gmx.de>
-Reported-by: Daniel Kulesz <kuleszdl@posteo.org>
-Suggested-by: Chen-Yu Tsai <wens@csie.org>
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-index e79ce49e7e6a..596a25907432 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-@@ -21,5 +21,5 @@
- };
- 
- &mmc0 {
--	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 push-push switch */
-+	broken-cd;		/* card detect is broken on *some* boards */
- };
 -- 
-2.17.5
+2.25.1
 
