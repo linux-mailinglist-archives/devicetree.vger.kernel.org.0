@@ -2,85 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 517F035EF4F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 10:24:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 405FA35EF52
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 10:24:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349955AbhDNIOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 04:14:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34440 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1348355AbhDNIOs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Apr 2021 04:14:48 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DA6D261222;
-        Wed, 14 Apr 2021 08:14:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618388067;
-        bh=eyJvos0Ftnqm8tRluK8Dm6HkcCy4KxqjxYjQabzApjU=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=ohPsIJtmb1nHNgk4p25enpaiSwEL5mVy8OlZyhSkK3KzL0pRHNAXNIPMy9acIS/nC
-         pJ8Uue1PJNxrrvC7YgoCOG8eJmKX0vpK576Jk6msgzgqhXY5stgDtPyF6TZAB4b8D/
-         FJQfygBdfM8cVnOSCxkJRX1tI7BhkoSmzGDxrJoRb4NYPWU3rD41exsEgOK2uo7QSG
-         BFy1g8Tgu6Ha+xyIVoQpjj5FswPUWNbKlYRApmldfX/7n3c43YKzUPwloMQbVh8r/v
-         8kwafZ/bRYlLkgsvQ71oKtbzWOvGega/jCmegWZZkJ4GJQMC4FvooKfa2X2BD6//0V
-         m+VSVezor1f9g==
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Caleb Connolly <caleb@connolly.tech>, caleb@connolly.tech,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sm8150: add i2c nodes
-In-Reply-To: <20210408161953.26298-3-caleb@connolly.tech>
-References: <20210408161953.26298-3-caleb@connolly.tech>
-Date:   Wed, 14 Apr 2021 11:14:19 +0300
-Message-ID: <874kg9p9k4.fsf@kernel.org>
+        id S1348355AbhDNIPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 04:15:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36230 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349966AbhDNIPA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 04:15:00 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A4CEC061574
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 01:14:39 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id w4so15213089wrt.5
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 01:14:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=AzOeHUL5hWREqhzcyblXs0nwBc2sByyKR9pZRnAp0AI=;
+        b=0FmOSwJTluFKGhZXB4mnmPu/678q4lQVbHX5xKkleebC4yuu2Roe12fLkCO4z4yT0w
+         9zQnJRSNRxWV7DsOe/mDJfw6sCW6yvcK5nYcIaYEikqylBLKWTu9WezbOY6XfpeUvmGk
+         ijGprdgw8ZPAAa3PNPNMzFtK3LmpzC8QnGoQTVjxDFD+9Kfh8pGdZu2HqsG7FU0xK3Az
+         ADi19P7BqgzRRJRkrTO9rUEiO/VFiUTfRPduRqqoK6zKyUtDPFEZjmgWKod/zNgNXhOm
+         C6vAj/2HUQp4/3ro+DWNtg1dL2U35wOqw1bPMFoaSwWDKqdqC2RTXXD/w0fy6+iKziKk
+         TWUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=AzOeHUL5hWREqhzcyblXs0nwBc2sByyKR9pZRnAp0AI=;
+        b=mBvjVYCOm+ULBGGJ/rQ1bAM16JBp8fYcmBYBpTj7cVAr2YzRBkglQjAwXdrkjFuOFE
+         LuQeM7wl5YjFZlKkL/XQOa0JyOhAhdXNQlq9rdDJx2nJHW+7Wh/mda0Yg31rPdN+X07a
+         WPiy2HPILxEjDE5b2i2SwXd2SKmUV5/a24LBdI7CYA7e9lM+jDN/eJ7CiqmrYD1V7D1e
+         YQUkaQA2YChZ/lupFej4z2QUSw5YwklNzFVd5gkdzJFRX6EZa/zHAMjUBCziofFxCYVF
+         Xwb8BimXnM8rVLpUp8kXPaTif78V28y+eLqyLEwoBoqnXxRWGqO6QUwaD56T/iduP9u4
+         nq6A==
+X-Gm-Message-State: AOAM531BRmqN94PWAHi+tJIzVA87ga2yyqTvPLQfZpGr21vV9Cq4bpBA
+        EkDsuEk/D1qHJGnlrmnsiSLZmw==
+X-Google-Smtp-Source: ABdhPJzv2P3PwzGpjC5Oyj4tupZbVhAGn5ScmnavLeXSMF+c6aZxXfPaA4hgLXQ1YSsw26NNBLO+hw==
+X-Received: by 2002:a05:6000:1091:: with SMTP id y17mr14291716wrw.270.1618388077948;
+        Wed, 14 Apr 2021 01:14:37 -0700 (PDT)
+Received: from ?IPv6:2a01:e0a:90c:e290:49d:95f:49d5:fff7? ([2a01:e0a:90c:e290:49d:95f:49d5:fff7])
+        by smtp.gmail.com with ESMTPSA id d5sm27606092wrx.0.2021.04.14.01.14.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Apr 2021 01:14:37 -0700 (PDT)
+Subject: Re: [PATCH v3 1/3] dt-bindings: display: bridge: add it66121 bindings
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     a.hajda@samsung.com, paul@crapouillou.net, robert.foss@linaro.org,
+        devicetree@vger.kernel.org, jonas@kwiboo.se,
+        jernej.skrabec@siol.net, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, Phong LE <ple@baylibre.com>
+References: <20210412154648.3719153-1-narmstrong@baylibre.com>
+ <20210412154648.3719153-2-narmstrong@baylibre.com>
+ <YHXA0KFylvC7FDbK@pendragon.ideasonboard.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <7111ccdf-ff64-f959-a652-623fa89ffe87@baylibre.com>
+Date:   Wed, 14 Apr 2021 10:14:36 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
+In-Reply-To: <YHXA0KFylvC7FDbK@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+On 13/04/2021 18:03, Laurent Pinchart wrote:
+> Hi Neil,
+> 
+> Thank you for the patch.
+> 
+> On Mon, Apr 12, 2021 at 05:46:46PM +0200, Neil Armstrong wrote:
+>> From: Phong LE <ple@baylibre.com>
+>>
+>> Add the ITE bridge HDMI it66121 bindings.
+>>
+>> Signed-off-by: Phong LE <ple@baylibre.com>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  .../bindings/display/bridge/ite,it66121.yaml  | 123 ++++++++++++++++++
+>>  1 file changed, 123 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+>> new file mode 100644
+>> index 000000000000..61ed6dc7740b
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+>> @@ -0,0 +1,123 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/display/bridge/ite,it66121.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: ITE it66121 HDMI bridge Device Tree Bindings
+>> +
+>> +maintainers:
+>> +  - Phong LE <ple@baylibre.com>
+>> +  - Neil Armstrong <narmstrong@baylibre.com>
+>> +
+>> +description: |
+>> +  The IT66121 is a high-performance and low-power single channel HDMI
+>> +  transmitter, fully compliant with HDMI 1.3a, HDCP 1.2 and backward compatible
+>> +  to DVI 1.0 specifications.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: ite,it66121
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +    description: base I2C address of the device
+> 
+> You can drop the description.
 
-Caleb Connolly <caleb@connolly.tech> writes:
+Done
 
-> Tested on the OnePlus 7 Pro (including DMA).
->
-> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
-> Reviewed-by: Vinod Koul <vkoul@kernel.org>
-> Reviewed-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> 
+>> +
+>> +  reset-gpios:
+>> +    maxItems: 1
+>> +    description: GPIO connected to active low reset
+>> +
+>> +  vrf12-supply:
+>> +    description: Regulator for 1.2V analog core power.
+>> +
+>> +  vcn33-supply:
+>> +    description: Regulator for 3.3V digital core power.
+>> +
+>> +  vcn18-supply:
+>> +    description: Regulator for 1.8V IO core power.
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    properties:
+>> +      port@0:
+>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>> +        unevaluatedProperties: false
+>> +        description: DPI input port.
+>> +
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
+>> +            unevaluatedProperties: false
+>> +
+>> +            properties:
+>> +              bus-width:
+>> +                description:
+>> +                  Endpoint bus width.
+>> +                enum:
+>> +                  - 12  # 12 data lines connected and dual-edge mode
+>> +                  - 24  # 24 data lines connected and single-edge mode
+>> +                default: 24
+>> +
+>> +      port@1:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        description: HDMI Connector port.
+>> +
+>> +    required:
+>> +      - port@0
+>> +      - port@1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - reset-gpios
+>> +  - vrf12-supply
+>> +  - vcn33-supply
+>> +  - vcn18-supply
+>> +  - interrupts
+>> +  - ports
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    i2c {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+> 
+> It's customary to indent DT examples with 4 spaces.
 
-Tested on Microsoft Surface Duo (DTS will be sent after -rc1)
+Done
 
-Tested-by: Felipe Balbi <balbi@kernel.org>
+> 
+>> +
+>> +      it66121hdmitx: it66121hdmitx@4c {
+>> +        compatible = "ite,it66121";
+>> +        pinctrl-names = "default";
+>> +        pinctrl-0 = <&ite_pins_default>;
+>> +        vcn33-supply = <&mt6358_vcn33_wifi_reg>;
+>> +        vcn18-supply = <&mt6358_vcn18_reg>;
+>> +        vrf12-supply = <&mt6358_vrf12_reg>;
+>> +        reset-gpios = <&pio 160 1 /* GPIO_ACTIVE_LOW */>;
+> 
+> You can #include the necessary headers at the top of the example, and
+> use GPIO_ACTIVE_LOW and IRQ_TYPE_LEVEL_LOW to replace the numerical
+> values.
 
-=2D-=20
-balbi
+Done
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
------BEGIN PGP SIGNATURE-----
+Thanks,
+Neil
 
-iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAmB2pFsRHGJhbGJpQGtl
-cm5lbC5vcmcACgkQzL64meEamQYJng//f6Mm+/zbynbZedGD4wKL8FFeaOV82DhY
-jNyxofB6UgLAUU2nj6hDGFJ+1Tt/+roi1SPfePBlh5xJkUW3osUZ9uHfBO1EdRHS
-NZ/0U2BVy6Rufzrf8xtXml8WBBnOHp3Qnh0TTyRR0dIPiCLlBFQnsNVs6qD2Kd4k
-1VCmSKE6r6RQecZUubED7wmPL2VuoewRuInuF4ICvO8lLS6GXLohI5vysDD96nK/
-AaWw/4hCnIwU6tXgKnl6GfZIRrfwI5G2rRyBJH9wr2/HhmRuKOuyX2y89AycNpBH
-J4lv2r8hALd0+wp9HkfctDEcT1TDuPWwm/A7x2b6XH5Uv6DPiqoo+1F5LMgzY4t9
-waDfdjtCXHa9Kd4OY8w5AnMdfbhmK/dHpRE6SS9D8K/UGeA8GHRlS9WKMyleC6HY
-DPtJqjJO6K9ma/TJKKONsGFr66nn6T1JzglMAcQ3RVP4gEbljfr6i3KPpGjHQ8ik
-aWL8azCk6qapafkWCJpaXeEKuCwj4NjY22wC1JfYSqXUWomll1V1qO17eQuAP80b
-ELZw8cqi4Pki70YjY2QWHFnMjw4ZuHrNN8m9YxgBWKPA82aNaejuJOoglOkgzuOT
-h10ZK7i9+nb4JIr1NZmrQf2dwKdR3HdeOPKEXCkq26W3q2tMe1kZVRR0YwWYaEy7
-v0sQpjls5OI=
-=vuvI
------END PGP SIGNATURE-----
---=-=-=--
+> 
+>> +        interrupt-parent = <&pio>;
+>> +        interrupts = <4 8 /* IRQ_TYPE_LEVEL_LOW */>;
+>> +        reg = <0x4c>;
+>> +
+>> +        ports {
+>> +          #address-cells = <1>;
+>> +          #size-cells = <0>;
+>> +
+>> +          port@0 {
+>> +            reg = <0>;
+>> +            it66121_in: endpoint {
+>> +              bus-width = <12>;
+>> +              remote-endpoint = <&display_out>;
+>> +            };
+>> +          };
+>> +
+>> +          port@1 {
+>> +            reg = <1>;
+>> +            hdmi_conn_out: endpoint {
+>> +              remote-endpoint = <&hdmi_conn_in>;
+>> +            };
+>> +          };
+>> +        };
+>> +      };
+>> +    };
+> 
+
