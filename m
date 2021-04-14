@@ -2,184 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 283C535EA00
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 02:31:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1BF335EA1F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 02:59:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348848AbhDNAcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 20:32:00 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:48355 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1348308AbhDNAcA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Apr 2021 20:32:00 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 8F9AB580666;
-        Tue, 13 Apr 2021 20:31:37 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute3.internal (MEProxy); Tue, 13 Apr 2021 20:31:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm2; bh=knUE4eA4OJPF+HeLNfyGSHUwlIZ5VVc
-        yXxGwT1wC3mg=; b=HbYw7hONcS2tHP0GCTKx/rYFKmy6+Sd8TH68re77bRFrgzx
-        QfAEqd7AD81GTnpwPRTHX98f7jeTYe0eIJrVMD7TH3Ec6Gt15D3MejL0meVGrwHS
-        J5NfluxWOHookNX0PJoE6SkGMYt5rPCJ/gQX5daohJXLfcwOVgJ3S0XrgMD3BpJR
-        J/KSQK33bz/jrNS1sUH+Beav2jyJ94ajcCVDblqlzdIgjt5uaeDAduPXTJcqavWu
-        5ZWrRj3Jg1z1hCoanX2OMsAcGREhn+umQZF6L017nZowqg/gq/E70GTZD2uGK+rL
-        3R5nU9r7z+YX5ukYQt3oI/7NiZrlPuGorVs42ug==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=knUE4e
-        A4OJPF+HeLNfyGSHUwlIZ5VVcyXxGwT1wC3mg=; b=rHiavBpyRcIE+PMbzfzvJx
-        Cr0oPNN4/2GPWA08i2c3zxaa0bCXP6OpOt0z9DxTj3u7rX9bODvYxWjKt9AMh9oq
-        at3vN/9FuHI/5WPEOKa0OsHxcVXceSH7iIFcKTVpRmz/ojIULPbaVKHczk2sWa1D
-        24AjCtbKYoNJcRg2+JeTL2jRymF/6ytOVskQ7FqMAHT2q+YTtwiO5zxOGe4ohDAm
-        uvED+R76YyBdT354ty/u8x0Ab/7YTrQqQyWx/hw6XS2C2LDLtBex30XxQe0GjcCM
-        IhpOXK3epVnXqDeCFLLPJo4IKrr655YhdgYQdW1/byEQ7Fs5Z8LbDtYpNa99jNNw
-        ==
-X-ME-Sender: <xms:5zd2YEf91elAHYYF4a6xWKfQAzs7g9rGGYewbD2w0AF8U7yJZ-SyoQ>
-    <xme:5zd2YGO9FCnHPZFcDcYLZI4wtuK_1OstqatjI7Qh0DkBR-GKFZc3_9Su08_u9ZRVX
-    gMgo74vCRxb9gNtJw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudeltddgfeegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhepudevjeegleejteffgfdvudetgfdvjedujeefgfekheeitedtgedvtdei
-    keevjeeinecuffhomhgrihhnpehgihhthhhusgdrtghomhenucevlhhushhtvghrufhiii
-    gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghu
-X-ME-Proxy: <xmx:6Dd2YFjtn4geL8pbKnmdAxFVCoANBYEZVkahiXm_FtHrWW0aY8vmeQ>
-    <xmx:6Dd2YJ-KWD3CTYBpBOPTc1wpT8VvPQ16wE_vhPkC_b-a3QTwR38AGw>
-    <xmx:6Dd2YAukFZRXWD8XhWMtnEMZsuSwPC8CgxTCiwg3fr-9HN6LBY6b6w>
-    <xmx:6Td2YLmq1Q30OW6nlYM7YkKRtyM73qX1nztS54cbHVRn2JqlSrb0bw>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id D411AA0048E; Tue, 13 Apr 2021 20:31:35 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-273-g8500d2492d-fm-20210323.002-g8500d249
-Mime-Version: 1.0
-Message-Id: <37e75b07-a5c6-422f-84b3-54f2bea0b917@www.fastmail.com>
-In-Reply-To: <CAK8P3a1VFKuewt65RUK6hFAhZYSFFVUX7_nuJLoZW2WoPXGVTw@mail.gmail.com>
-References: <20210319062752.145730-1-andrew@aj.id.au>
- <20210319062752.145730-16-andrew@aj.id.au>
- <CAK8P3a1HDQdbTAT4aRMLu-VFz720ynPqPHG5b22NZ5p5QfUqOw@mail.gmail.com>
- <ba63f830-4758-49aa-a63e-f204a8eec1b4@www.fastmail.com>
- <CAK8P3a3RXr5CR7DJgD9rEkN8owpPxXRgzRnPB_5LuQcHkzc4LA@mail.gmail.com>
- <e2d7268b-bdaf-45bf-bb21-a5b9f7e985a4@www.fastmail.com>
- <CAK8P3a1VFKuewt65RUK6hFAhZYSFFVUX7_nuJLoZW2WoPXGVTw@mail.gmail.com>
-Date:   Wed, 14 Apr 2021 10:00:20 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Arnd Bergmann" <arnd@kernel.org>
-Cc:     "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
-        openipmi-developer@lists.sourceforge.net,
-        "OpenBMC Maillist" <openbmc@lists.ozlabs.org>,
-        "Corey Minyard" <minyard@acm.org>, "Joel Stanley" <joel@jms.id.au>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>,
-        DTML <devicetree@vger.kernel.org>,
-        "Tomer Maimon" <tmaimon77@gmail.com>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "Avi Fishman" <avifishman70@gmail.com>,
-        "Patrick Venture" <venture@google.com>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        "Tali Perry" <tali.perry1@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Lee Jones" <lee.jones@linaro.org>,
-        "Chia-Wei, Wang" <chiawei_wang@aspeedtech.com>,
-        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
-        "Benjamin Fair" <benjaminfair@google.com>
-Subject: =?UTF-8?Q?Re:_[PATCH_v2_16/21]_ipmi:_kcs=5Fbmc:_Add_a_"raw"_character_de?=
- =?UTF-8?Q?vice_interface?=
-Content-Type: text/plain
+        id S1348907AbhDNA7v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 20:59:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54982 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242865AbhDNA7v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 20:59:51 -0400
+Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFA63C061574
+        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 17:59:30 -0700 (PDT)
+Received: by mail-vs1-xe33.google.com with SMTP id d6so3260020vsm.8
+        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 17:59:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=y/54ILv5Q72An34zKDPTFESYNXFuudb6GNqLTSzT03Y=;
+        b=CD8jNA/CwaQxyYuthSMMfMZpaVUZR2GZiWtJsXZ52SSSLXN/jzrZplLASx/kNE/EBM
+         Aamv9Y3Sv7LmmjmZ4BSjuqthpjBvgo5eRI0JMRZ+KxbA87zHj1bRYv02e4dO8LHhEeTl
+         TMtOpsFlBPmCY7V4UVWS2CMjIDLlzC1MdyqoGTeucbjYZt/q7OFg4+XCl4NJfeeYvMHb
+         6yjj7fUpf4vfbSRPpsT81KWrZgXALIw10zseLHdDqAPIhhGOkvBpS5bLv402rzipm85r
+         kcCKjrh5NYQSSUCQIaLCIyFjkwNsgwXZGfX0tdUPqe50miff3mdU3UZO8fvAeaUy5WDn
+         V/fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=y/54ILv5Q72An34zKDPTFESYNXFuudb6GNqLTSzT03Y=;
+        b=iL+DC9ihMSqA8mUmZjNNqDA1kBKPfwRDv2k7BffNWqJZcUvM4qbfJ4AhVI9ghtm+6Q
+         jNnFzz470bWktupAmk2kNHjp/qmu0GzDvgY/2axcPxlP3gIH+3nXa7vAddUIVPkxB/3T
+         eyPSgOMBNoJ5FPALsu7WmojvGv5rxO88ESg0QO1k119mRD1QLVQv4h3Yr0fAxDWM7D9I
+         ZDFAb0Db5vd7wRKgwRPeQboaR2TT/QvnhjFbhv+74MQ9e+cR15O8dqUkoyX7T+/zMOpK
+         LNpfByk3eay3ZJ7qENgtuHdx/WDKMP7zrfbKLqu9VNoHMexmAq34Bap1VpfCWRcn1+iS
+         uLVg==
+X-Gm-Message-State: AOAM5306Z0fYXVP7sUBFbvLWolHdmzFCF5C6UHth7ngxB+QKBCaybn+E
+        Fm6QOh/mvgk/C3fSdiC/lyr4e7EnWPa2g9InIZhHZw==
+X-Google-Smtp-Source: ABdhPJzoRlLgGDRdvSA7gaqK4TOeAzpTt3J3nsLaQ3IVJCjYTp9P41srxdWa1+FAp4wB+e1i5FracvZv0O6XVGDg48U=
+X-Received: by 2002:a67:ee08:: with SMTP id f8mr18327069vsp.58.1618361969412;
+ Tue, 13 Apr 2021 17:59:29 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210407200723.1914388-1-badhri@google.com> <20210407200723.1914388-4-badhri@google.com>
+ <YG61KxWrwaOe0ddL@kuha.fi.intel.com>
+In-Reply-To: <YG61KxWrwaOe0ddL@kuha.fi.intel.com>
+From:   Badhri Jagan Sridharan <badhri@google.com>
+Date:   Tue, 13 Apr 2021 17:58:54 -0700
+Message-ID: <CAPTae5Kdsjz64Aj9tejjFYOYWz1WFLNsxEEh-Sc0QExZG8uMtQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/6] usb: typec: tcpm: Honour pSnkStdby requirement
+ during negotiation
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        USB <linux-usb@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Kyle Tso <kyletso@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On Tue, 13 Apr 2021, at 17:52, Arnd Bergmann wrote:
-> On Tue, Apr 13, 2021 at 1:45 AM Andrew Jeffery <andrew@aj.id.au> wrote:
-> > On Mon, 12 Apr 2021, at 18:18, Arnd Bergmann wrote:
-> > > On Mon, Apr 12, 2021 at 3:33 AM Andrew Jeffery <andrew@aj.id.au> wrote:
-> > > > On Fri, 9 Apr 2021, at 17:25, Arnd Bergmann wrote:
-> > > > > On Fri, Mar 19, 2021 at 7:31 AM Andrew Jeffery <andrew@aj.id.au> wrote:
-> > > > > >
-> > > > > > The existing IPMI chardev encodes IPMI behaviours as the name suggests.
-> > > > > > However, KCS devices are useful beyond IPMI (or keyboards), as they
-> > > > > > provide a means to generate IRQs and exchange arbitrary data between a
-> > > > > > BMC and its host system.
-> > > > >
-> > > > > I only noticed the series after Joel asked about the DT changes on the arm
-> > > > > side. One question though:
-> > > > >
-> > > > > How does this related to the drivers/input/serio/ framework that also talks
-> > > > > to the keyboard controller for things that are not keyboards?
-> > > >
-> > > > I've taken a brief look and I feel they're somewhat closely related.
-> > > >
-> > > > It's plausible that we could wrangle the code so the Aspeed and Nuvoton
-> > > > KCS drivers move under drivers/input/serio. If you squint, the i8042
-> > > > serio device driver has similarities with what the Aspeed and Nuvoton
-> > > > device drivers are providing to the KCS IPMI stack.
-> > >
-> > > After looking some more into it, I finally understood that the two are
-> > > rather complementary. While the  drivers/char/ipmi/kcs_bmc.c
-> > > is the other (bmc) end of drivers/char/ipmi/ipmi_kcs_sm.c, it seems
-> > > that the proposed kcs_bmc_cdev_raw.c interface would be
-> > > what corresponds to the other side of
-> > > drivers/input/serio/i8042.c+userio.c.
+On Thu, Apr 8, 2021 at 12:48 AM Heikki Krogerus
+<heikki.krogerus@linux.intel.com> wrote:
+>
+> On Wed, Apr 07, 2021 at 01:07:21PM -0700, Badhri Jagan Sridharan wrote:
+> > >From PD Spec:
+> > The Sink Shall transition to Sink Standby before a positive or
+> > negative voltage transition of VBUS. During Sink Standby
+> > the Sink Shall reduce its power draw to pSnkStdby. This allows
+> > the Source to manage the voltage transition as well as
+> > supply sufficient operating current to the Sink to maintain PD
+> > operation during the transition. The Sink Shall
+> > complete this transition to Sink Standby within tSnkStdby
+> > after evaluating the Accept Message from the Source. The
+> > transition when returning to Sink operation from Sink Standby
+> > Shall be completed within tSnkNewPower. The
+> > pSnkStdby requirement Shall only apply if the Sink power draw
+> > is higher than this level.
 > >
-> > Right. I guess the question is should we be splitting kernel subsystems
-> > along host/bmc lines? Doesn't feel intuitive, it's all Linux, but maybe
-> > we can consolidate in the future if it makes sense?
-> 
-> We actually have a number of subsystems with somewhat overlapping
-> functionality. I brought up serio, because it has an abstraction for multiple
-> things that communicate over the keyboard controller and I thought
-> the problem you were trying to solve was also related to the keyboard
-> controller.
-> It is also one of multiple abstractions that allow you to connect a device
-> to a uart (along with serdev and tty_ldisc, probably at least one more that
-> you can nest above or below these).
-> 
-> Consolidating the kcs_bmc.c interface into something that already
-> exists would obviously be best, but it's not clear which of these that
-> should be, that depends on the fundamental properties of the hardware
-> interface.
-> 
-> > > Then again, these are also on
-> > > separate ports (0x60 for the keyboard controller, 0xca2 for the BMC
-> > > KCS), so they would never actually talk to one another.
+> > The above requirement needs to be met to prevent hard resets
+> > from port partner.
 > >
-> > Well, sort of I guess. On Power systems we don't use the keyboard
-> > controller for IPMI or keyboards, so we're just kinda exploiting the
-> > hardware for our own purposes.
-> 
-> Can you describe in an abstract form what the hardware interface
-> can do here and what you want from it? I wonder if it could be
-> part of a higher-level interface such as drivers/mailbox/ instead.
+> > Without the patch: (5V/3A during SNK_DISCOVERY all the way through
+> > explicit contract)
+> > [   95.711984] CC1: 0 -> 0, CC2: 0 -> 5 [state TOGGLING, polarity 0, connected]
+> > [   95.712007] state change TOGGLING -> SNK_ATTACH_WAIT [rev3 NONE_AMS]
+> > [   95.712017] pending state change SNK_ATTACH_WAIT -> SNK_DEBOUNCED @ 170 ms [rev3 NONE_AMS]
+> > [   95.837190] VBUS on
+> > [   95.882075] state change SNK_ATTACH_WAIT -> SNK_DEBOUNCED [delayed 170 ms]
+> > [   95.882082] state change SNK_DEBOUNCED -> SNK_ATTACHED [rev3 NONE_AMS]
+> > [   95.882086] polarity 1
+> > [   95.883151] set_auto_vbus_discharge_threshold mode:0 pps_active:n vbus:5000 ret:0
+> > [   95.883441] enable vbus discharge ret:0
+> > [   95.883445] Requesting mux state 1, usb-role 2, orientation 2
+> > [   95.883776] state change SNK_ATTACHED -> SNK_STARTUP [rev3 NONE_AMS]
+> > [   95.883879] pending state change SNK_STARTUP -> SNK_DISCOVERY @ 500 ms [rev3 NONE_AMS]
+> > [   96.038960] VBUS on
+> > [   96.383939] state change SNK_STARTUP -> SNK_DISCOVERY [delayed 500 ms]
+> > [   96.383946] Setting voltage/current limit 5000 mV 3000 mA
+> > [   96.383961] vbus=0 charge:=1
+> > [   96.386044] state change SNK_DISCOVERY -> SNK_WAIT_CAPABILITIES [rev3 NONE_AMS]
+> > [   96.386309] pending state change SNK_WAIT_CAPABILITIES -> HARD_RESET_SEND @ 450 ms [rev3 NONE_AMS]
+> > [   96.394404] PD RX, header: 0x2161 [1]
+> > [   96.394408]  PDO 0: type 0, 5000 mV, 3000 mA [E]
+> > [   96.394410]  PDO 1: type 0, 9000 mV, 2000 mA []
+> > [   96.394412] state change SNK_WAIT_CAPABILITIES -> SNK_NEGOTIATE_CAPABILITIES [rev2 POWER_NEGOTIATION]
+> > [   96.394416] Setting usb_comm capable false
+> > [   96.395083] cc=0 cc1=0 cc2=5 vbus=0 vconn=sink polarity=1
+> > [   96.395089] Requesting PDO 1: 9000 mV, 2000 mA
+> > [   96.395093] PD TX, header: 0x1042
+> > [   96.397404] PD TX complete, status: 0
+> > [   96.397424] pending state change SNK_NEGOTIATE_CAPABILITIES -> HARD_RESET_SEND @ 60 ms [rev2 POWER_NEGOTIATION]
+> > [   96.400826] PD RX, header: 0x363 [1]
+> > [   96.400829] state change SNK_NEGOTIATE_CAPABILITIES -> SNK_TRANSITION_SINK [rev2 POWER_NEGOTIATION]
+> > [   96.400832] pending state change SNK_TRANSITION_SINK -> HARD_RESET_SEND @ 500 ms [rev2 POWER_NEGOTIATION]
+> > [   96.577315] PD RX, header: 0x566 [1]
+> > [   96.577321] Setting voltage/current limit 9000 mV 2000 mA
+> > [   96.578363] set_auto_vbus_discharge_threshold mode:3 pps_active:n vbus:9000 ret:0
+> > [   96.578370] state change SNK_TRANSITION_SINK -> SNK_READY [rev2 POWER_NEGOTIATION]
+> >
+> > With the patch:
+> > [  168.398573] CC1: 0 -> 0, CC2: 0 -> 5 [state TOGGLING, polarity 0, connected]
+> > [  168.398605] state change TOGGLING -> SNK_ATTACH_WAIT [rev3 NONE_AMS]
+> > [  168.398619] pending state change SNK_ATTACH_WAIT -> SNK_DEBOUNCED @ 170 ms [rev3 NONE_AMS]
+> > [  168.522348] VBUS on
+> > [  168.568676] state change SNK_ATTACH_WAIT -> SNK_DEBOUNCED [delayed 170 ms]
+> > [  168.568684] state change SNK_DEBOUNCED -> SNK_ATTACHED [rev3 NONE_AMS]
+> > [  168.568688] polarity 1
+> > [  168.569867] set_auto_vbus_discharge_threshold mode:0 pps_active:n vbus:5000 ret:0
+> > [  168.570158] enable vbus discharge ret:0
+> > [  168.570161] Requesting mux state 1, usb-role 2, orientation 2
+> > [  168.570504] state change SNK_ATTACHED -> SNK_STARTUP [rev3 NONE_AMS]
+> > [  168.570634] pending state change SNK_STARTUP -> SNK_DISCOVERY @ 500 ms [rev3 NONE_AMS]
+> > [  169.070689] state change SNK_STARTUP -> SNK_DISCOVERY [delayed 500 ms]
+> > [  169.070695] Setting voltage/current limit 5000 mV 3000 mA
+> > [  169.070702] vbus=0 charge:=1
+> > [  169.072719] state change SNK_DISCOVERY -> SNK_WAIT_CAPABILITIES [rev3 NONE_AMS]
+> > [  169.073145] pending state change SNK_WAIT_CAPABILITIES -> HARD_RESET_SEND @ 450 ms [rev3 NONE_AMS]
+> > [  169.077162] PD RX, header: 0x2161 [1]
+> > [  169.077172]  PDO 0: type 0, 5000 mV, 3000 mA [E]
+> > [  169.077178]  PDO 1: type 0, 9000 mV, 2000 mA []
+> > [  169.077183] state change SNK_WAIT_CAPABILITIES -> SNK_NEGOTIATE_CAPABILITIES [rev2 POWER_NEGOTIATION]
+> > [  169.077191] Setting usb_comm capable false
+> > [  169.077753] cc=0 cc1=0 cc2=5 vbus=0 vconn=sink polarity=1
+> > [  169.077759] Requesting PDO 1: 9000 mV, 2000 mA
+> > [  169.077762] PD TX, header: 0x1042
+> > [  169.079990] PD TX complete, status: 0
+> > [  169.080013] pending state change SNK_NEGOTIATE_CAPABILITIES -> HARD_RESET_SEND @ 60 ms [rev2 POWER_NEGOTIATION]
+> > [  169.083183] VBUS on
+> > [  169.084195] PD RX, header: 0x363 [1]
+> > [  169.084200] state change SNK_NEGOTIATE_CAPABILITIES -> SNK_TRANSITION_SINK [rev2 POWER_NEGOTIATION]
+> > [  169.084206] Setting standby current 5000 mV @ 500 mA
+> > [  169.084209] Setting voltage/current limit 5000 mV 500 mA
+> > [  169.084220] pending state change SNK_TRANSITION_SINK -> HARD_RESET_SEND @ 500 ms [rev2 POWER_NEGOTIATION]
+> > [  169.260222] PD RX, header: 0x566 [1]
+> > [  169.260227] Setting voltage/current limit 9000 mV 2000 mA
+> > [  169.261315] set_auto_vbus_discharge_threshold mode:3 pps_active:n vbus:9000 ret:0
+> > [  169.261321] state change SNK_TRANSITION_SINK -> SNK_READY [rev2 POWER_NEGOTIATION]
+> > [  169.261570] AMS POWER_NEGOTIATION finished
+> >
+> > Fixes: f0690a25a140b ("staging: typec: USB Type-C Port Manager (tcpm)")
+> > Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
+> > ---
+> >  drivers/usb/typec/tcpm/tcpm.c | 17 +++++++++++++++++
+> >  include/linux/usb/pd.h        |  2 ++
+> >  2 files changed, 19 insertions(+)
+> >
+> > diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
+> > index d1d03ee90d8f..770b2edd9a04 100644
+> > --- a/drivers/usb/typec/tcpm/tcpm.c
+> > +++ b/drivers/usb/typec/tcpm/tcpm.c
+> > @@ -4131,6 +4131,23 @@ static void run_state_machine(struct tcpm_port *port)
+> >               }
+> >               break;
+> >       case SNK_TRANSITION_SINK:
+> > +             /* From the USB PD spec:
+> > +              * "The Sink Shall transition to Sink Standby before a positive or
+> > +              * negative voltage transition of VBUS. During Sink Standby
+> > +              * the Sink Shall reduce its power draw to pSnkStdby."
+> > +              *
+> > +              * This is not applicable to PPS though as the port can continue
+> > +              * to draw negotiated power without switching to standby.
+> > +              */
+> > +             if (port->supply_voltage != port->req_supply_voltage && !port->pps_data.active &&
+> > +                 port->current_limit * port->supply_voltage / 1000 > PD_P_SNK_STDBY_MW) {
+> > +                     u32 stdby_ma = port->supply_voltage ? PD_P_SNK_STDBY_MW * 1000 /
+> > +                             port->supply_voltage : 0;
+>
+> Looks like unnecessary condition to me. The first condition can not be
+> true if port->supply_voltage == 0. So I think that should be just:
+>
+>                         u32 stdby_ma = PD_P_SNK_STDBY_MW * 1000 / port->supply_voltage;
+>
+> Or did I miss something?
 
-It gives us interrupts each way between the host and BMC when we send 
-some (small amount of) data/metadata. Mailbox is possibly a fit for 
-this? We're (ab)using the keyboard controllers to implement a vendor 
-MCTP binding over LPC[1] and also a simple protocol for the (Power) 
-host to trigger BMC debug data capture in the event of issues with 
-other (more complex) in-band communication stacks. The MCTP binding is 
-what requires access to STR.
+You are right. That's indeed not necessary. I was wondering whether
+port->supply_voltage would be
+0 during the swap sequence. It doesn't seem to be. Updating in my next
+version - V3. Thanks Heikki !
 
-It's feasible that we could implement the debug capture protocol with 
-the serio_raw interface now that I think about it (as it only makes use 
-of data and not status). What's unclear to me right now is what impact 
-that has on the Aspeed/Nuvoton KCS drivers we have in the IPMI 
-subsystem. If we can do something sensible to service both serio and 
-IPMI with the one driver implementation then I can put together a PoC 
-for the debug data stuff using serio_raw.
-
-Regarding the MCTP binding, Jeremy Kerr is working in an in-kernel, 
-socket-based implementation of MCTP. Eventually this will allow us to 
-bury the KCS details in the MCTP subsystem, which removes some of the 
-motivation for the raw interface here.
-
-Andrew
-
-[1] https://github.com/openbmc/libmctp/blob/master/docs/bindings/vendor-ibm-astlpc.md
+>
+> > +                     tcpm_log(port, "Setting standby current %u mV @ %u mA",
+> > +                              port->supply_voltage, stdby_ma);
+> > +                     tcpm_set_current_limit(port, stdby_ma, port->supply_voltage);
+> > +             }
+> > +             fallthrough;
+> >       case SNK_TRANSITION_SINK_VBUS:
+> >               tcpm_set_state(port, hard_reset_state(port),
+> >                              PD_T_PS_TRANSITION);
+> > diff --git a/include/linux/usb/pd.h b/include/linux/usb/pd.h
+> > index 70d681918d01..bf00259493e0 100644
+> > --- a/include/linux/usb/pd.h
+> > +++ b/include/linux/usb/pd.h
+> > @@ -493,4 +493,6 @@ static inline unsigned int rdo_max_power(u32 rdo)
+> >  #define PD_N_CAPS_COUNT              (PD_T_NO_RESPONSE / PD_T_SEND_SOURCE_CAP)
+> >  #define PD_N_HARD_RESET_COUNT        2
+> >
+> > +#define PD_P_SNK_STDBY_MW    2500    /* 2500 mW */
+> > +
+> >  #endif /* __LINUX_USB_PD_H */
+> > --
+> > 2.31.1.295.g9ea45b61b8-goog
+>
+> thanks,
+>
+> --
+> heikki
