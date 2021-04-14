@@ -2,635 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E35C835F3D6
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 14:34:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D62835F42E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 14:46:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230238AbhDNMeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 08:34:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36968 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229765AbhDNMeP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 08:34:15 -0400
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A0CBC061574;
-        Wed, 14 Apr 2021 05:33:52 -0700 (PDT)
-Received: by mail-ot1-x32f.google.com with SMTP id c8-20020a9d78480000b0290289e9d1b7bcso5072104otm.4;
-        Wed, 14 Apr 2021 05:33:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=w8ii4XDR2ivcw7sl8ciBbpj3uGDjJqqbNONNfrMFDnA=;
-        b=AEI82nikl6lmu8NLMM/3ud5LnWdupmwubLCWpU3hRaU4cvIRn71VPPyb+OPTiiEzpb
-         TfaN36aVDhcG6jXZMmTOij4Lc19x9aY9KFJ4uWbbYhtNlmFWJSwTFXoHVYoeuSgipIiT
-         c3LH6Z0ItrIeUrXa8dwnq56wFYNi6W2rZuurrmvYCuXdaDWJmmMgxFeQceeWwQ6ZYLjh
-         /D71vUn9pNcr8kpifMW+k3JQqhLT/Jnj55Iiq/D0G/pGEU3SLoZ1ofPH3oslafsu5P2+
-         BLwxcsBumgt9gF+74KymwLMVuOV18hj2Qb5BboApCosxdu+SFM72A+uifBJ7h6n14VYe
-         iY8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=w8ii4XDR2ivcw7sl8ciBbpj3uGDjJqqbNONNfrMFDnA=;
-        b=EXEYzV+ZyRhK9eFZUgmr7QO2CPbdeo74GA1Uwt76DiwXP7qx9nR4f5NPrpt+d+a5xB
-         lAOxtQCWhKoOGlYmbH8jfDESzhdIl09FGktuk7x3YUu+8JG+HmucaCZiO6THcWHLoHmz
-         iT7QZpjcVvD0CrQfugcJ3ESoK2WOPTPKOCelqhkbX5Kmqc/HqQkIdJxD1qEPPB7K5oJT
-         Bc9fKox3KceU3X7nJupCmdAdeLEoniAkJyFcr2vKfPH4ToWHeRFte/6n11tndHapj2DV
-         kqINwnqspQx0p6P2TUgrd6Z/6yHYD2v2Ywv8/SMeoEmWoJoX8mUKP6p9j8rl8dywfiiI
-         8ZpA==
-X-Gm-Message-State: AOAM530EG9+aKrIRmX9keyd0NL+8+lJhl4eKgPELez3uQwqJo+d2slYA
-        tcK9sfQxFx7tbLxqkR1Te14=
-X-Google-Smtp-Source: ABdhPJxAjvi08im0lNlExsNP5gMdOYnBIvapXZY3Chrl7yQYkdggU/Qm4bSHcLQkJh5fi4kdcq02nQ==
-X-Received: by 2002:a9d:740a:: with SMTP id n10mr32643871otk.27.1618403631847;
-        Wed, 14 Apr 2021 05:33:51 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id r63sm1535233oia.43.2021.04.14.05.33.50
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 14 Apr 2021 05:33:51 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Wed, 14 Apr 2021 05:33:49 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        openbmc@lists.ozlabs.org,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-Subject: Re: [PATCH v3 3/4] hwmon: smpro: Add Ampere's Altra smpro-hwmon
- driver
-Message-ID: <20210414123349.GA18905@roeck-us.net>
-References: <20210409031332.21919-1-quan@os.amperecomputing.com>
- <20210409031332.21919-4-quan@os.amperecomputing.com>
+        id S1347803AbhDNMog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 08:44:36 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:2856 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350776AbhDNMob (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 08:44:31 -0400
+Received: from fraeml715-chm.china.huawei.com (unknown [172.18.147.200])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4FL28W3vwzz689s1;
+        Wed, 14 Apr 2021 20:38:51 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml715-chm.china.huawei.com (10.206.15.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Wed, 14 Apr 2021 14:44:08 +0200
+Received: from localhost (10.52.122.47) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2106.2; Wed, 14 Apr
+ 2021 13:44:07 +0100
+Date:   Wed, 14 Apr 2021 13:42:40 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     <bpeled@marvell.com>
+CC:     <thomas.petazzoni@bootlin.com>, <lorenzo.pieralisi@arm.com>,
+        <bhelgaas@google.com>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <sebastian.hesselbarth@gmail.com>, <gregory.clement@bootlin.com>,
+        <andrew@lunn.ch>, <robh+dt@kernel.org>, <mw@semihalf.com>,
+        <jaz@semihalf.com>, <kostap@marvell.com>, <nadavh@marvell.com>,
+        <stefanc@marvell.com>, <oferh@marvell.com>
+Subject: Re: =?UTF-8?Q?[=E2=80=9DPATCH=E2=80=9D?= 2/5] PCI: armada8k: Add
+ link-down handle
+Message-ID: <20210414134240.000057b4@Huawei.com>
+In-Reply-To: <1618241456-27200-3-git-send-email-bpeled@marvell.com>
+References: <1618241456-27200-1-git-send-email-bpeled@marvell.com>
+        <1618241456-27200-3-git-send-email-bpeled@marvell.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210409031332.21919-4-quan@os.amperecomputing.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.52.122.47]
+X-ClientProxiedBy: lhreml701-chm.china.huawei.com (10.201.108.50) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 09, 2021 at 10:13:31AM +0700, Quan Nguyen wrote:
-> This commit adds support for Ampere SMpro hwmon driver. This driver
-> supports accessing various CPU sensors provided by the SMpro co-processor
-> including temperature, power, voltages, and current.
+On Mon, 12 Apr 2021 18:30:53 +0300
+<bpeled@marvell.com> wrote:
+
+> From: Ben Peled <bpeled@marvell.com>
 > 
-> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+> In PCIE ISR routine caused by RST_LINK_DOWN
+> we schedule work to handle the link-down procedure.
+> Link-down procedure will:
+> 1. Remove PCIe bus
+> 2. Reset the MAC
+> 3. Reconfigure link back up
+> 4. Rescan PCIe bus
+> 
+> Signed-off-by: Ben Peled <bpeled@marvell.com>
+
+Trivial comment inline.
+
+Also, something odd with quotes around PATCH in the title you probably
+want to clean up.
+
 > ---
-
-Change log goes here. You are making it difficult to review your patches.
-
->  drivers/hwmon/Kconfig       |   8 +
->  drivers/hwmon/Makefile      |   1 +
->  drivers/hwmon/smpro-hwmon.c | 491 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 500 insertions(+)
->  create mode 100644 drivers/hwmon/smpro-hwmon.c
+>  drivers/pci/controller/dwc/pcie-armada8k.c | 68 ++++++++++++++++++++
+>  1 file changed, 68 insertions(+)
 > 
-> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> index 0ddc974b102e..ba4b5a911baf 100644
-> --- a/drivers/hwmon/Kconfig
-> +++ b/drivers/hwmon/Kconfig
-> @@ -67,6 +67,14 @@ config SENSORS_ABITUGURU3
->  	  This driver can also be built as a module. If so, the module
->  	  will be called abituguru3.
->  
-> +config SENSORS_SMPRO
-> +	tristate "Ampere's Altra SMpro hardware monitoring driver"
-> +	depends on MFD_SMPRO
-> +	help
-> +	  If you say yes here you get support for the thermal, voltage,
-> +	  current and power sensors of Ampere's Altra processor family SoC
-> +	  with SMpro co-processor.
-> +
->  config SENSORS_AD7314
->  	tristate "Analog Devices AD7314 and compatibles"
->  	depends on SPI
-> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-> index 59e78bc212cf..b25391f9c651 100644
-> --- a/drivers/hwmon/Makefile
-> +++ b/drivers/hwmon/Makefile
-> @@ -174,6 +174,7 @@ obj-$(CONFIG_SENSORS_SHT3x)	+= sht3x.o
->  obj-$(CONFIG_SENSORS_SHTC1)	+= shtc1.o
->  obj-$(CONFIG_SENSORS_SIS5595)	+= sis5595.o
->  obj-$(CONFIG_SENSORS_SMM665)	+= smm665.o
-> +obj-$(CONFIG_SENSORS_SMPRO)	+= smpro-hwmon.o
->  obj-$(CONFIG_SENSORS_SMSC47B397)+= smsc47b397.o
->  obj-$(CONFIG_SENSORS_SMSC47M1)	+= smsc47m1.o
->  obj-$(CONFIG_SENSORS_SMSC47M192)+= smsc47m192.o
-> diff --git a/drivers/hwmon/smpro-hwmon.c b/drivers/hwmon/smpro-hwmon.c
-> new file mode 100644
-> index 000000000000..a3389fcbad82
-> --- /dev/null
-> +++ b/drivers/hwmon/smpro-hwmon.c
-> @@ -0,0 +1,491 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Ampere Computing SoC's SMPro Hardware Monitoring Driver
-> + *
-> + * Copyright (c) 2021, Ampere Computing LLC
-> + */
-> +#include <linux/bitfield.h>
-> +#include <linux/bitops.h>
-> +#include <linux/hwmon.h>
-> +#include <linux/hwmon-sysfs.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
+> diff --git a/drivers/pci/controller/dwc/pcie-armada8k.c b/drivers/pci/controller/dwc/pcie-armada8k.c
+> index b2278b1..4eb8607 100644
+> --- a/drivers/pci/controller/dwc/pcie-armada8k.c
+> +++ b/drivers/pci/controller/dwc/pcie-armada8k.c
+> @@ -22,6 +22,8 @@
+>  #include <linux/resource.h>
+>  #include <linux/of_pci.h>
+>  #include <linux/of_irq.h>
+> +#include <linux/mfd/syscon.h>
 > +#include <linux/regmap.h>
+>  
+>  #include "pcie-designware.h"
+>  
+> @@ -33,6 +35,9 @@ struct armada8k_pcie {
+>  	struct clk *clk_reg;
+>  	struct phy *phy[ARMADA8K_PCIE_MAX_LANES];
+>  	unsigned int phy_count;
+> +	struct regmap *sysctrl_base;
+> +	u32 mac_rest_bitmask;
+> +	struct work_struct recover_link_work;
+>  };
+>  
+>  #define PCIE_VENDOR_REGS_OFFSET		0x8000
+> @@ -73,6 +78,8 @@ struct armada8k_pcie {
+>  #define AX_USER_DOMAIN_MASK		0x3
+>  #define AX_USER_DOMAIN_SHIFT		4
+>  
+> +#define UNIT_SOFT_RESET_CONFIG_REG	0x268
 > +
-> +/* Identification Registers */
-> +#define MANUFACTURER_ID_REG	0x02
-> +#define AMPERE_MANUFACTURER_ID	0xCD3A
-> +
-> +/* Logical Power Sensor Registers */
-> +#define SOC_TEMP		0x00
-> +#define SOC_VRD_TEMP		0x01
-> +#define DIMM_VRD_TEMP		0x02
-> +#define CORE_VRD_TEMP		0x03
-> +#define CH0_DIMM_TEMP		0x04
-> +#define CH1_DIMM_TEMP		0x05
-> +#define CH2_DIMM_TEMP		0x06
-> +#define CH3_DIMM_TEMP		0x07
-> +#define CH4_DIMM_TEMP		0x08
-> +#define CH5_DIMM_TEMP		0x09
-> +#define CH6_DIMM_TEMP		0x0A
-> +#define CH7_DIMM_TEMP		0x0B
-> +#define RCA_VRD_TEMP		0x0C
-> +
-> +#define CORE_VRD_PWR		0x10
-> +#define SOC_PWR			0x11
-> +#define DIMM_VRD1_PWR		0x12
-> +#define DIMM_VRD2_PWR		0x13
-> +#define CORE_VRD_PWR_MW		0x16
-> +#define SOC_PWR_MW		0x17
-> +#define DIMM_VRD1_PWR_MW	0x18
-> +#define DIMM_VRD2_PWR_MW	0x19
-> +#define RCA_VRD_PWR		0x1A
-> +#define RCA_VRD_PWR_MW		0x1B
-> +
-> +#define MEM_HOT_THRESHOLD	0x22
-> +#define SOC_VR_HOT_THRESHOLD	0x23
-> +#define CORE_VRD_VOLT		0x24
-> +#define SOC_VRD_VOLT		0x25
-> +#define DIMM_VRD1_VOLT		0x26
-> +#define DIMM_VRD2_VOLT		0x27
-> +#define RCA_VRD_VOLT		0x28
-> +
-> +#define CORE_VRD_CURR		0x29
-> +#define SOC_VRD_CURR		0x2A
-> +#define DIMM_VRD1_CURR		0x2B
-> +#define DIMM_VRD2_CURR		0x2C
-> +#define RCA_VRD_CURR		0x2D
-> +
-> +struct smpro_hwmon {
-> +	struct regmap *regmap;
-> +	u32 offset;
-> +};
-> +
-> +struct smpro_sensor {
-> +	const u8 reg;
-> +	const u8 reg_ext;
-> +	const char *label;
-> +};
-> +
-> +static const struct smpro_sensor temperature[] = {
-> +	{
-> +		.reg = SOC_TEMP,
-> +		.label = "temp1 SoC"
-> +	},
-> +	{
-> +		.reg = SOC_VRD_TEMP,
-> +		.reg_ext = SOC_VR_HOT_THRESHOLD,
-> +		.label = "temp2 SoC VRD"
-> +	},
-> +	{
-> +		.reg = DIMM_VRD_TEMP,
-> +		.label = "temp3 DIMM VRD"
-> +	},
-> +	{
-> +		.reg = CORE_VRD_TEMP,
-> +		.label = "temp4 CORE VRD"
-> +	},
-> +	{
-> +		.reg = CH0_DIMM_TEMP,
-> +		.reg_ext = MEM_HOT_THRESHOLD,
-> +		.label = "temp5 CH0 DIMM"
-> +	},
-> +	{
-> +		.reg = CH1_DIMM_TEMP,
-> +		.reg_ext = MEM_HOT_THRESHOLD,
-> +		.label = "temp6 CH1 DIMM"
-> +	},
-> +	{
-> +		.reg = CH2_DIMM_TEMP,
-> +		.reg_ext = MEM_HOT_THRESHOLD,
-> +		.label = "temp7 CH2 DIMM"
-> +	},
-> +	{
-> +		.reg = CH3_DIMM_TEMP,
-> +		.reg_ext = MEM_HOT_THRESHOLD,
-> +		.label = "temp8 CH3 DIMM"
-> +	},
-> +	{
-> +		.reg = CH4_DIMM_TEMP,
-> +		.reg_ext = MEM_HOT_THRESHOLD,
-> +		.label = "temp9 CH4 DIMM"
-> +	},
-> +	{
-> +		.reg = CH5_DIMM_TEMP,
-> +		.reg_ext = MEM_HOT_THRESHOLD,
-> +		.label = "temp10 CH5 DIMM"
-> +	},
-> +	{
-> +		.reg = CH6_DIMM_TEMP,
-> +		.reg_ext = MEM_HOT_THRESHOLD,
-> +		.label = "temp11 CH6 DIMM"
-> +	},
-> +	{
-> +		.reg = CH7_DIMM_TEMP,
-> +		.reg_ext = MEM_HOT_THRESHOLD,
-> +		.label = "temp12 CH7 DIMM"
-> +	},
-> +	{
-> +		.reg = RCA_VRD_TEMP,
-> +		.label = "temp13 RCA VRD"
-> +	},
-> +};
-> +
-> +static const struct smpro_sensor voltage[] = {
-> +	{
-> +		.reg = CORE_VRD_VOLT,
-> +		.label = "vout0 CORE VRD"
-> +	},
-> +	{
-> +		.reg = SOC_VRD_VOLT,
-> +		.label = "vout1 SoC VRD"
-> +	},
-> +	{
-> +		.reg = DIMM_VRD1_VOLT,
-> +		.label = "vout2 DIMM VRD1"
-> +	},
-> +	{
-> +		.reg = DIMM_VRD2_VOLT,
-> +		.label = "vout3 DIMM VRD2"
-> +	},
-> +	{
-> +		.reg = RCA_VRD_VOLT,
-> +		.label = "vout4 RCA VRD"
-> +	},
-> +};
-> +
-> +static const struct smpro_sensor curr_sensor[] = {
-> +	{
-> +		.reg = CORE_VRD_CURR,
-> +		.label = "iout1 CORE VRD"
-> +	},
-> +	{
-> +		.reg = SOC_VRD_CURR,
-> +		.label = "iout2 SoC VRD"
-> +	},
-> +	{
-> +		.reg = DIMM_VRD1_CURR,
-> +		.label = "iout3 DIMM VRD1"
-> +	},
-> +	{
-> +		.reg = DIMM_VRD2_CURR,
-> +		.label = "iout4 DIMM VRD2"
-> +	},
-> +	{
-> +		.reg = RCA_VRD_CURR,
-> +		.label = "iout5 RCA VRD"
-> +	},
-> +};
-> +
-> +static const struct smpro_sensor power[] = {
-> +	{
-> +		.reg = CORE_VRD_PWR,
-> +		.reg_ext = CORE_VRD_PWR_MW,
-> +		.label = "power1 CORE VRD"
-> +	},
-> +	{
-> +		.reg = SOC_PWR,
-> +		.reg_ext = SOC_PWR_MW,
-> +		.label = "power2 SoC"
-> +	},
-> +	{
-> +		.reg = DIMM_VRD1_PWR,
-> +		.reg_ext = DIMM_VRD1_PWR_MW,
-> +		.label = "power3 DIMM VRD1"
-> +	},
-> +	{
-> +		.reg = DIMM_VRD2_PWR,
-> +		.reg_ext = DIMM_VRD2_PWR_MW,
-> +		.label = "power4 DIMM VRD2"
-> +	},
-> +	{
-> +		.reg = RCA_VRD_PWR,
-> +		.reg_ext = RCA_VRD_PWR_MW,
-> +		.label = "power5 RCA VRD"
-> +	},
-> +};
-> +
-> +static int smpro_read_temp(struct device *dev, u32 attr, int channel, long *val)
+>  #define to_armada8k_pcie(x)	dev_get_drvdata((x)->dev)
+>  
+>  static void armada8k_pcie_disable_phys(struct armada8k_pcie *pcie)
+> @@ -224,6 +231,49 @@ static int armada8k_pcie_host_init(struct pcie_port *pp)
+>  
+>  	return 0;
+>  }
+> +static void armada8k_pcie_recover_link(struct work_struct *ws)
 > +{
-> +	struct smpro_hwmon *hwmon = dev_get_drvdata(dev);
-> +	unsigned int value;
+> +	struct armada8k_pcie *pcie = container_of(ws, struct armada8k_pcie, recover_link_work);
+> +	struct pcie_port *pp = &pcie->pci->pp;
+> +	struct pci_bus *bus = pp->bridge->bus;
+> +	struct pci_dev *root_port;
 > +	int ret;
 > +
-> +	switch (attr) {
-> +	case hwmon_temp_input:
-> +		ret = regmap_read(hwmon->regmap, hwmon->offset + temperature[channel].reg, &value);
-> +		if (ret)
-> +			return ret;
-> +		break;
-> +	case hwmon_temp_crit:
-> +		ret = regmap_read(hwmon->regmap,
-> +				  hwmon->offset + temperature[channel].reg_ext, &value);
-> +		if (ret)
-> +			return ret;
-> +		break;
-> +	default:
-> +		return -EOPNOTSUPP;
+> +	root_port = pci_get_slot(bus, 0);
+> +	if (!root_port) {
+> +		dev_err(pcie->pci->dev, "failed to get root port\n");
+> +		return;
+> +	}
+> +	pci_lock_rescan_remove();
+> +	pci_stop_and_remove_bus_device(root_port);
+> +	/*
+> +	 * Sleep needed to make sure all pcie transactions and access
+> +	 * are flushed before resetting the mac
+> +	 */
+> +	msleep(100);
+> +
+> +	/* Reset mac */
+> +	regmap_update_bits_base(pcie->sysctrl_base, UNIT_SOFT_RESET_CONFIG_REG,
+> +				pcie->mac_rest_bitmask, 0, NULL, false, true);
+> +	udelay(1);
+> +	regmap_update_bits_base(pcie->sysctrl_base, UNIT_SOFT_RESET_CONFIG_REG,
+> +				pcie->mac_rest_bitmask, pcie->mac_rest_bitmask,
+> +				NULL, false, true);
+> +	udelay(1);
+> +	ret = armada8k_pcie_host_init(pp);
+> +	if (ret) {
+> +		dev_err(pcie->pci->dev, "failed to initialize host: %d\n", ret);
+> +		pci_unlock_rescan_remove();
+> +		pci_dev_put(root_port);
+> +		return;
 > +	}
 > +
-> +	*val = sign_extend32(value, 8) * 1000;
-> +	return 0;
+> +	bus = NULL;
+> +	while ((bus = pci_find_next_bus(bus)) != NULL)
+> +		pci_rescan_bus(bus);
+> +	pci_unlock_rescan_remove();
+> +	pci_dev_put(root_port);
 > +}
+>  
+>  static irqreturn_t armada8k_pcie_irq_handler(int irq, void *arg)
+>  {
+> @@ -262,6 +312,9 @@ static irqreturn_t armada8k_pcie_irq_handler(int irq, void *arg)
+>  		 * initiate a link retrain. If link retrains were
+>  		 * possible, that is.
+>  		 */
+> +		if (pcie->sysctrl_base && pcie->mac_rest_bitmask)
+> +			schedule_work(&pcie->recover_link_work);
 > +
-> +static int smpro_read_in(struct device *dev, u32 attr, int channel, long *val)
-> +{
-> +	struct smpro_hwmon *hwmon = dev_get_drvdata(dev);
-> +	unsigned int value;
-> +	int ret;
+>  		dev_dbg(pci->dev, "%s: link went down\n", __func__);
+>  	}
+>  
+> @@ -330,6 +383,8 @@ static int armada8k_pcie_probe(struct platform_device *pdev)
+>  
+>  	pcie->pci = pci;
+>  
+> +	INIT_WORK(&pcie->recover_link_work, armada8k_pcie_recover_link);
 > +
-> +	switch (attr) {
-> +	case hwmon_in_input:
-> +		ret = regmap_read(hwmon->regmap, hwmon->offset + voltage[channel].reg, &value);
-> +		if (ret < 0)
-> +			return ret;
-> +		/* 15-bit value in 1mV */
-> +		*val = value & 0x7fff;
-> +		return 0;
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static int smpro_read_curr(struct device *dev, u32 attr, int channel, long *val)
-> +{
-> +	struct smpro_hwmon *hwmon = dev_get_drvdata(dev);
-> +	unsigned int value;
-> +	int ret;
-> +
-> +	switch (attr) {
-> +	case hwmon_curr_input:
-> +		ret = regmap_read(hwmon->regmap, hwmon->offset + curr_sensor[channel].reg, &value);
-> +		if (ret < 0)
-> +			return ret;
-> +		/* Scale reported by the hardware is 1mA */
-> +		*val = value & 0x7fff;
-> +		return 0;
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static int smpro_read_power(struct device *dev, u32 attr, int channel, long *val_pwr)
-> +{
-> +	struct smpro_hwmon *hwmon = dev_get_drvdata(dev);
-> +	unsigned int val = 0, val_mw = 0;
-> +	int ret;
-> +
-> +	switch (attr) {
-> +	case hwmon_power_input:
-> +		ret = regmap_read(hwmon->regmap, hwmon->offset + power[channel].reg, &val);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = regmap_read(hwmon->regmap, hwmon->offset + power[channel].reg_ext, &val_mw);
-> +		if (ret)
-> +			return ret;
-> +
-> +		*val_pwr = val * 1000000 + val_mw * 1000;
-> +		return 0;
-> +
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static int smpro_read(struct device *dev, enum hwmon_sensor_types type,
-> +		      u32 attr, int channel, long *val)
-> +{
-> +	switch (type) {
-> +	case hwmon_temp:
-> +		return smpro_read_temp(dev, attr, channel, val);
-> +	case hwmon_in:
-> +		return smpro_read_in(dev, attr, channel, val);
-> +	case hwmon_power:
-> +		return smpro_read_power(dev, attr, channel, val);
-> +	case hwmon_curr:
-> +		return smpro_read_curr(dev, attr, channel, val);
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static int smpro_read_string(struct device *dev, enum hwmon_sensor_types type,
-> +			     u32 attr, int channel, const char **str)
-> +{
-> +	switch (type) {
-> +	case hwmon_temp:
-> +		switch (attr) {
-> +		case hwmon_temp_label:
-> +			*str = temperature[channel].label;
-> +			return 0;
-> +		default:
-> +			break;
-> +		}
-> +		break;
-> +
-> +	case hwmon_in:
-> +		switch (attr) {
-> +		case hwmon_in_label:
-> +			*str = voltage[channel].label;
-> +			return 0;
-> +		default:
-> +			break;
-> +		}
-> +		break;
-> +
-> +	case hwmon_curr:
-> +		switch (attr) {
-> +		case hwmon_curr_label:
-> +			*str = curr_sensor[channel].label;
-> +			return 0;
-> +		default:
-> +			break;
-> +		}
-> +		break;
-> +
-> +	case hwmon_power:
-> +		switch (attr) {
-> +		case hwmon_power_label:
-> +			*str = power[channel].label;
-> +			return 0;
-> +		default:
-> +			break;
-> +		}
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return -EOPNOTSUPP;
-> +}
-> +
-> +static umode_t smpro_is_visible(const void *data, enum hwmon_sensor_types type,
-> +				u32 attr, int channel)
-> +{
-> +	const struct smpro_hwmon *hwmon = data;
-> +	unsigned int value;
-> +	int ret;
-> +
-> +	switch (type) {
-> +	case hwmon_temp:
-> +		switch (attr) {
-> +		case hwmon_temp_input:
-> +		case hwmon_temp_label:
-> +		case hwmon_temp_crit:
-> +			ret = regmap_read(hwmon->regmap,
-> +					  hwmon->offset + temperature[channel].reg, &value);
-> +			if (ret || value == 0xFFFF)
-> +				return 0;
-> +		break;
-> +		}
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return 0444;
-> +}
-> +
-> +static const struct hwmon_channel_info *smpro_info[] = {
-> +	HWMON_CHANNEL_INFO(temp,
-> +			   HWMON_T_INPUT | HWMON_T_LABEL,
-> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
-> +			   HWMON_T_INPUT | HWMON_T_LABEL,
-> +			   HWMON_T_INPUT | HWMON_T_LABEL,
-> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
-> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
-> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
-> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
-> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
-> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
-> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
-> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_CRIT,
-> +			   HWMON_T_INPUT | HWMON_T_LABEL),
-> +	HWMON_CHANNEL_INFO(in,
-> +			   HWMON_I_INPUT | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LABEL),
-> +	HWMON_CHANNEL_INFO(power,
-> +			   HWMON_P_INPUT | HWMON_P_LABEL,
-> +			   HWMON_P_INPUT | HWMON_P_LABEL,
-> +			   HWMON_P_INPUT | HWMON_P_LABEL,
-> +			   HWMON_P_INPUT | HWMON_P_LABEL,
-> +			   HWMON_P_INPUT | HWMON_P_LABEL),
-> +	HWMON_CHANNEL_INFO(curr,
-> +			   HWMON_C_INPUT | HWMON_C_LABEL,
-> +			   HWMON_C_INPUT | HWMON_C_LABEL,
-> +			   HWMON_C_INPUT | HWMON_C_LABEL,
-> +			   HWMON_C_INPUT | HWMON_C_LABEL,
-> +			   HWMON_C_INPUT | HWMON_C_LABEL),
-> +	NULL
-> +};
-> +
-> +static const struct hwmon_ops smpro_hwmon_ops = {
-> +	.is_visible = smpro_is_visible,
-> +	.read = smpro_read,
-> +	.read_string = smpro_read_string,
-> +};
-> +
-> +static const struct hwmon_chip_info smpro_chip_info = {
-> +	.ops = &smpro_hwmon_ops,
-> +	.info = smpro_info,
-> +};
-> +
-> +static int smpro_hwmon_probe(struct platform_device *pdev)
-> +{
-> +	struct smpro_hwmon *hwmon;
-> +	struct device *hwmon_dev;
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	hwmon = devm_kzalloc(&pdev->dev, sizeof(struct smpro_hwmon), GFP_KERNEL);
-> +	if (!hwmon)
-> +		return -ENOMEM;
-> +
-> +	hwmon->regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> +	if (!hwmon->regmap)
-> +		return -ENODEV;
-> +
-> +	ret = device_property_read_u32(&pdev->dev, "reg", &hwmon->offset);
-> +	if (ret)
-> +		return -EINVAL;
-> +
-> +	/* Check for valid ID */
-> +	ret = regmap_read(hwmon->regmap, MANUFACTURER_ID_REG, &val);
-> +	if (ret)
-> +		return -EPROBE_DEFER;
+>  	pcie->clk = devm_clk_get(dev, NULL);
+>  	if (IS_ERR(pcie->clk))
+>  		return PTR_ERR(pcie->clk);
+> @@ -357,6 +412,19 @@ static int armada8k_pcie_probe(struct platform_device *pdev)
+>  		goto fail_clkreg;
+>  	}
+>  
+> +	pcie->sysctrl_base = syscon_regmap_lookup_by_phandle(pdev->dev.of_node,
+> +						       "marvell,system-controller");
+> +	if (IS_ERR(pcie->sysctrl_base)) {
+> +		dev_warn(dev, "failed to find marvell,system-controller\n");
+> +		pcie->sysctrl_base = 0x0;
 
-This is unacceptable. regmap_read() could return various errors.
-An error here might mean that the chip is simply not there, or that
-there is some other problem with, say, the i2c controller driver.
-The function might, for all we know, even return -ENOMEM.
+= NULL; ?
 
-If this is supposed to mean that the chip is not yet ready, some other
-and more specific solution will be needed. -EPROBE_DEFER means that
-some other driver needs to be loaded first, not "chip is not ready,
-try again later".
+> +	}
+> +
+> +	ret = of_property_read_u32(pdev->dev.of_node, "marvell,mac-reset-bit-mask",
+> +				   &pcie->mac_rest_bitmask);
+> +	if (ret < 0) {
+> +		dev_warn(dev, "couldn't find mac reset bit mask: %d\n", ret);
+> +		pcie->mac_rest_bitmask = 0x0;
+> +	}
+>  	ret = armada8k_pcie_setup_phys(pcie);
+>  	if (ret)
+>  		goto fail_clkreg;
 
-Thanks,
-Guenter
-
-> +
-> +	if (val != AMPERE_MANUFACTURER_ID)
-> +		return -ENODEV;
-> +
-> +	hwmon_dev = devm_hwmon_device_register_with_info(&pdev->dev, "smpro_hwmon",
-> +							 hwmon, &smpro_chip_info, NULL);
-> +
-> +	return PTR_ERR_OR_ZERO(hwmon_dev);
-> +}
-> +
-> +static const struct of_device_id smpro_hwmon_of_match[] = {
-> +	{ .compatible = "ampere,ac01-hwmon" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, smpro_hwmon_of_match);
-> +
-> +static struct platform_driver smpro_hwmon_driver = {
-> +	.probe		= smpro_hwmon_probe,
-> +	.driver = {
-> +		.name	= "smpro-hwmon",
-> +		.of_match_table = smpro_hwmon_of_match,
-> +	},
-> +};
-> +
-> +module_platform_driver(smpro_hwmon_driver);
-> +
-> +MODULE_AUTHOR("Thu Nguyen <thu@os.amperecomputing.com>");
-> +MODULE_AUTHOR("Quan Nguyen <quan@os.amperecomputing.com>");
-> +MODULE_DESCRIPTION("Ampere Altra SMPro hwmon driver");
-> +MODULE_LICENSE("GPL v2");
