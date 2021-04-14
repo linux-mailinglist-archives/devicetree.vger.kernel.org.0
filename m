@@ -2,112 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54B8A35FAE9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 20:50:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B701335FB92
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 21:21:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352729AbhDNSp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 14:45:57 -0400
-Received: from heinz.dinsnail.net ([81.169.187.250]:39884 "EHLO
-        heinz.dinsnail.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231288AbhDNSp4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 14:45:56 -0400
-Received: from heinz.dinsnail.net ([IPv6:0:0:0:0:0:0:0:1])
-        by heinz.dinsnail.net (8.15.2/8.15.2) with ESMTP id 13EIj9OC025817;
-        Wed, 14 Apr 2021 20:45:09 +0200
-Received: from eldalonde.UUCP (uucp@localhost)
-        by heinz.dinsnail.net (8.15.2/8.15.2/Submit) with bsmtp id 13EIj8JL025816;
-        Wed, 14 Apr 2021 20:45:08 +0200
-Received: from eldalonde.weiser.dinsnail.net (localhost [IPv6:0:0:0:0:0:0:0:1] (may be forged))
-        by eldalonde.weiser.dinsnail.net (8.15.2/8.15.2) with ESMTP id 13EIZ3pY028239;
-        Wed, 14 Apr 2021 20:35:03 +0200
-Received: (from michael@localhost)
-        by eldalonde.weiser.dinsnail.net (8.15.2/8.15.2/Submit) id 13EIZ3ZX028238;
-        Wed, 14 Apr 2021 20:35:03 +0200
-Date:   Wed, 14 Apr 2021 20:35:03 +0200
-From:   Michael Weiser <michael.weiser@gmx.de>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@googlegroups.com, Daniel Kulesz <kuleszdl@posteo.org>
-Subject: Re: [PATCH v2] arm64: dts: allwinner: Revert SD card CD GPIO for
- Pine64-LTS
-Message-ID: <YHc11xC1vT1Yr+a1@weiser.dinsnail.net>
-References: <20210414104740.31497-1-andre.przywara@arm.com>
+        id S1349236AbhDNTWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 15:22:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42004 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347863AbhDNTV7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 15:21:59 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3559C061756
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 12:21:36 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lWl4u-0001zT-NY; Wed, 14 Apr 2021 21:21:32 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lWl4u-00008G-1Y; Wed, 14 Apr 2021 21:21:32 +0200
+Date:   Wed, 14 Apr 2021 21:21:31 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Clemens Gruber <clemens.gruber@pqgruber.com>
+Cc:     linux-pwm@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sven Van Asbroeck <TheSven73@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 1/8] pwm: pca9685: Switch to atomic API
+Message-ID: <20210414192131.2o4c2eia6jnjatp2@pengutronix.de>
+References: <20210412132745.76609-1-clemens.gruber@pqgruber.com>
+ <20210412161808.lp2amdfopw74lvz7@pengutronix.de>
+ <YHR3wP4Fk3jidnri@workstation.tuxnet>
+ <20210412201019.vouxx4daumusrcvr@pengutronix.de>
+ <YHWKehtYFSaHt1hC@workstation.tuxnet>
+ <20210413193818.r7oqzdzbxqf5sjj3@pengutronix.de>
+ <YHbbaiwK9Tasb7NF@workstation.tuxnet>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="inuazthvvxg6ghkd"
 Content-Disposition: inline
-In-Reply-To: <20210414104740.31497-1-andre.przywara@arm.com>
-X-dinsnail.net-MailScanner-Information: Please contact the ISP for more information
-X-dinsnail.net-MailScanner-ID: 13EIj9OC025817
-X-dinsnail.net-MailScanner: Found to be clean
-X-dinsnail.net-MailScanner-From: michael@weiser.dinsnail.net
-X-Spam-Status: No
+In-Reply-To: <YHbbaiwK9Tasb7NF@workstation.tuxnet>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andre,
 
-On Wed, Apr 14, 2021 at 11:47:40AM +0100, Andre Przywara wrote:
+--inuazthvvxg6ghkd
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Commit 941432d00768 ("arm64: dts: allwinner: Drop non-removable from
-> SoPine/LTS SD card") enabled the card detect GPIO for the SOPine module,
-> along the way with the Pine64-LTS, which share the same base .dtsi.
+On Wed, Apr 14, 2021 at 02:09:14PM +0200, Clemens Gruber wrote:
+> Hi Uwe,
+>=20
+> On Tue, Apr 13, 2021 at 09:38:18PM +0200, Uwe Kleine-K=F6nig wrote:
+> > Hello Clemens,
+> >=20
+> > On Tue, Apr 13, 2021 at 02:11:38PM +0200, Clemens Gruber wrote:
+> > > On Mon, Apr 12, 2021 at 10:10:19PM +0200, Uwe Kleine-K=F6nig wrote:
+> > > > On Mon, Apr 12, 2021 at 06:39:28PM +0200, Clemens Gruber wrote:
+> > > > > With your suggested round-down, the example with frequency of 200=
+ Hz
+> > > > > would no longer result in 30 but 29 and that contradicts the data=
+sheet.
+> > > >=20
+> > > > Well, with PRESCALE =3D 30 we get a frequency of 196.88 Hz and with
+> > > > PRESCALE =3D 29 we get a frequency of 203.45 Hz. So no matter if yo=
+u pick
+> > > > 29 or 30, you don't get 200 Hz. And which of the two possible value=
+s is
+> > > > the better one depends on the consumer, no matter what rounding
+> > > > algorithm the data sheet suggests. Also note that the math here con=
+tains
+> > > > surprises you don't expect at first. For example, what PRESCALE val=
+ue
+> > > > would you pick to get 284 Hz? [If my mail was a video, I'd suggest =
+to
+> > > > press Space now to pause and let you think first :-)] The data shee=
+t's
+> > > > formula suggests:
+> > > >=20
+> > > > 	round(25 MHz / (4096 * 284)) - 1 =3D 20
+> > > >=20
+> > > > The resulting frequency when picking PRESCALE =3D 20 is 290.644 Hz =
+(so an
+> > > > error of 6.644 Hz). If instead you pick PRESCALE =3D 21 you get 277=
+=2E433 Hz
+> > > > (error =3D 6.567 Hz), so 21 is the better choice.
+> > > >=20
+> > > > Exercise for the reader:
+> > > >  What is the correct formula to really determine the PRESCALE value=
+ that
+> > > >  yields the best approximation (i.e. minimizing
+> > > >  abs(real_freq - target_freq)) for a given target_freq?
+> >=20
+> > I wonder if you tried this.
+>=20
+> We could calculate both round-up and round-down and decide which one is
+> closer to "real freq" (even though that is not the actual frequency but
+> just our backwards-calculated frequency).
 
-> This was based on the observation that the Pine64-LTS has as "push-push"
-> SD card socket, and that the schematic mentions the card detect GPIO.
+Yeah, the backwards-calculated frequency is the best assumption we
+have.
 
-> After having received two reports about failing SD card access with that
-> patch, some more research and polls on that subject revealed that there
-> are at least two different versions of the Pine64-LTS out there:
-> - On some boards (including mine) the card detect pin is "stuck" at
->   high, regardless of an microSD card being inserted or not.
-> - On other boards the card-detect is working, but is active-high, by
->   virtue of an explicit inverter circuit, as shown in the schematic.
+> But I can't give you a formula with minimized abs(real_freq-target_freq)
+> Is it a different round point than 0.5 and maybe relative to f ?
+>=20
+> Please enlighten us :-)
 
-> To cover all versions of the board out there, and don't take any chances,
-> let's revert the introduction of the active-low CD GPIO, but let's use
-> the broken-cd property for the Pine64-LTS this time. That should avoid
-> regressions and should work for everyone, even allowing SD card changes
-> now.
-> The SOPine card detect has proven to be working, so let's keep that
-> GPIO in place.
+Sorry, I cannot. I spend ~20 min today after lunch with pencil and
+paper, but without success. I was aware that it isn't trivial and this
+is the main reason I established round-down as default for new drivers
+instead of round-nearest.
 
-I can confirm that this change works on my Pine64 LTS boards (with
-working high-active card detect) when applied to today's linux-next (which
-already includes your previous change to change the card detect GPIO
-from low- to high-active in sun50i-a64-sopine.dtsi).
+Best regards
+Uwe
 
-> Fixes: 941432d00768 ("arm64: dts: allwinner: Drop non-removable from SoPine/LTS SD card")
-> Reported-by: Michael Weiser <michael.weiser@gmx.de>
-> Reported-by: Daniel Kulesz <kuleszdl@posteo.org>
-> Suggested-by: Chen-Yu Tsai <wens@csie.org>
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-Tested-by: Michael Weiser <michael.weiser@gmx.de>
+--inuazthvvxg6ghkd
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Thanks!
-Michael
+-----BEGIN PGP SIGNATURE-----
 
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmB3QLgACgkQwfwUeK3K
+7AnqbQf+O7AIVRO+G24LPhBJpVA9DGMwHmVgChEtFmCRO725hO1rE7mO20DH7WAU
++c9RxmhoT8Txdv3tAFWSKqhO6CJUvnn2YdJ5lAXCV5+xrKFFKjhcc/Xu/wH381f6
+jkAfpvyK3s3aQU3hrKYfSbzTiMfXymrrSUX9UeqqNsoX8WefwCTifnrmcbLMlIEu
+D9C0mQpHqzDuWu4K/V+Uc4jHbJ8G/uMS6cuymJCpk/2Q2kHsMeGmxHYoCJBTmQNW
+LMG6luBZ5xLbleVFEPTCqZ3Iv3ELzRmRueRgd3xVX4xkH7o3s8l5EkbzRW+fOfbA
+QVSvu1Vyry4vUpB5QtWnrpyh/vjvmQ==
+=N4NK
+-----END PGP SIGNATURE-----
 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> index e79ce49e7e6a..596a25907432 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-lts.dts
-> @@ -21,5 +21,5 @@
->  };
-
->  &mmc0 {
-> -	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 push-push switch */
-> +	broken-cd;		/* card detect is broken on *some* boards */
->  };
-
--- 
-tschoe, Michael
-Eisregen
+--inuazthvvxg6ghkd--
