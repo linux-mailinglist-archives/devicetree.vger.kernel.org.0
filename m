@@ -2,113 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A89135F201
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 13:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D15E35F242
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 13:27:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348652AbhDNLOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 07:14:03 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:35212 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348030AbhDNLN6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 07:13:58 -0400
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 14 Apr 2021 04:13:37 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 14 Apr 2021 04:13:35 -0700
-X-QCInternal: smtphost
-Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 14 Apr 2021 16:43:14 +0530
-Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
-        id 515A647ED; Wed, 14 Apr 2021 16:43:13 +0530 (IST)
-From:   satya priya <skakit@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     mka@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        kgunda@codeaurora.org, satya priya <skakit@codeaurora.org>
-Subject: [RESEND PATCH V3 5/5] arm64: dts: qcom: sc7280: Include PMIC DT files for sc7280
-Date:   Wed, 14 Apr 2021 16:43:03 +0530
-Message-Id: <1618398783-7834-6-git-send-email-skakit@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1618398783-7834-1-git-send-email-skakit@codeaurora.org>
-References: <1618398783-7834-1-git-send-email-skakit@codeaurora.org>
+        id S1348956AbhDNLXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 07:23:20 -0400
+Received: from smtpcmd01-sp1.aruba.it ([62.149.158.218]:56318 "EHLO
+        smtpcmd01-sp1.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229886AbhDNLXU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 07:23:20 -0400
+Received: from [192.168.126.129] ([146.241.148.6])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id WdbjllVNnkdBBWdbkl2XjH; Wed, 14 Apr 2021 13:22:56 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1618399377; bh=0F+vBt2TA34xwOMDg/rFjQNTe2kOJ5mDE5te0iNhXEY=;
+        h=Subject:To:From:Date:MIME-Version:Content-Type;
+        b=GTALKCDYaxeYuVDCyggMObVlGXrqVxKKYCYtbBDS7S/XJ2MCfs15CkYR0vBUfQuYu
+         78p5qNX91vwWQAdONSIysEiNYSGrSNdBcDYOV0Il2bEmYe/7hCQ1rDmp6U8wQlglN1
+         O9UrJHu0CntpsFmsheAduFLWES5nWfzqUBTj1jlhbTJF8yGEqiIO+N7VlsH1Y22B69
+         B/is15dvY6hRgr8wL/XfOprDlzCTlJyiUSsgiKbEZyMxa6Lc8Op/49Oq1585PIbfoX
+         dbwJsI01Lu6YCxbgFSUtmqdY2hGOrafFlE+HiDLYMTtepagTw8gFoC65jgNEzgKv5z
+         Qj1EIxHju9Kcg==
+Subject: Re: [PATCH v7 3/3] Input: add driver for the Hycon HY46XX touchpanel
+ series
+To:     Peter Hutterer <peter.hutterer@who-t.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <CAL_JsqK6Bm==DaCMD3PruZoFO9iv0Te_KBVPnb9ZU0L8yDYF5Q@mail.gmail.com>
+ <20210413144446.2277817-1-giulio.benetti@benettiengineering.com>
+ <20210413144446.2277817-4-giulio.benetti@benettiengineering.com>
+ <YHaBJ6MX9c28MUQY@google.com> <YHaP1Fzsi5pSaEq3@koala>
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+Message-ID: <080a71d9-d629-5589-c943-4e65a7f414d8@benettiengineering.com>
+Date:   Wed, 14 Apr 2021 13:22:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+MIME-Version: 1.0
+In-Reply-To: <YHaP1Fzsi5pSaEq3@koala>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfM7avIgFexNNvYx1guTyVc0Xmp2xddnI0yXtpkWYal7MGcfx7EvEZDqXSh7odITtGiUqYV1J1BX+HN9jGj/Zm730JLoyQ88cL9VfD5Rp4MAIcH+LYOGN
+ 2yWnnZkFcGp6L3L5/RkPTOImvvxeuILImclUFkVK3flqLQX9BuSzN2amk7oWj0rN+ACpeRN7rYEH0nFp7WU9dK3RzJAL+BTE5LwZdQwW8m1PcbpR54Svkf4Q
+ 2pBtnCJPBN1lM+oBs1bqY3oDndEImaHzbul1oBT97VgN+tt1e3Eg++Q3yG76qtZzk7tgqlziZKnPXypKwsdkqwUSKt7Gk0kppvbyP2ilVsj6v8h1JD0zperH
+ l2qAYeXUn8pfq3Z0JUEEepTSjUTVfxZOdqpVSRmYPVcUWyvajOLn/0nwvOWE3L2lzXKPe2F92HYit+6GImKFObbarQvz7FFldx7tI6kuPeTd0A6TOYM=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Include pm7325, pm8350c, pmk8350 and pmr735a DT files. Add
-channel nodes for pmk8350_vadc. Also, add the thermal_zones
-node in dtsi.
+Hi Peter, Dmitry,
 
-Signed-off-by: satya priya <skakit@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7280-idp.dts | 30 ++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sc7280.dtsi    |  3 +++
- 2 files changed, 33 insertions(+)
+On 4/14/21 8:46 AM, Peter Hutterer wrote:
+> On Tue, Apr 13, 2021 at 10:44:07PM -0700, Dmitry Torokhov wrote:
+>> Hi Giulio,
+>>
+>> On Tue, Apr 13, 2021 at 04:44:46PM +0200, Giulio Benetti wrote:
+>>> +
+>>> +	input_mt_report_pointer_emulation(tsdata->input, true);
+>>
+>> For touchscreens it does not make much sense to report BTN_DOUBLETAP,
+>> BTN_TRIPLETAP, etc, events (they are really for touchpads), so I changed
+>> this to
+>>
+>> 	input_mt_report_pointer_emulation(tsdata->input, false);
+>>
+>> to only report ABS_X, ABS_Y, and BTN_TOUCH, and applied.
+> 
+> Can you expand on this please, just to make sure I'm not misinterpreting
+> those codes? Those bits are just for how many fingers are down (but without
+> position), dropping those bits means you restrict the device to a pure
+> single-touch screen. Or am I missing something here?
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-index 950ecb2..9293502 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-@@ -8,6 +8,10 @@
- /dts-v1/;
- 
- #include "sc7280.dtsi"
-+#include "pm7325.dtsi"
-+#include "pm8350c.dtsi"
-+#include "pmk8350.dtsi"
-+#include "pmr735a.dtsi"
- 
- / {
- 	model = "Qualcomm Technologies, Inc. sc7280 IDP platform";
-@@ -22,6 +26,32 @@
- 	};
- };
- 
-+&pmk8350_vadc {
-+		pm8350_die_temp {
-+			reg = <PM8350_ADC7_DIE_TEMP>;
-+			label = "pm8350_die_temp";
-+			qcom,pre-scaling = <1 1>;
-+		};
-+
-+		pmk8350_die_temp {
-+			reg = <PMK8350_ADC7_DIE_TEMP>;
-+			label = "pmk8350_die_temp";
-+			qcom,pre-scaling = <1 1>;
-+		};
-+
-+		pmr735a_die_temp {
-+			reg = <PMR735A_ADC7_DIE_TEMP>;
-+			label = "pmr735a_die_temp";
-+			qcom,pre-scaling = <1 1>;
-+		};
-+
-+		pmr735b_die_temp {
-+			reg = <PMR735B_ADC7_DIE_TEMP>;
-+			label = "pmr735b_die_temp";
-+			qcom,pre-scaling = <1 1>;
-+		};
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 39cf0be..0f4fd33 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -605,4 +605,7 @@
- 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
- 	};
-+
-+	thermal_zones: thermal-zones {
-+	};
- };
+I've re-tested the driver after setting 
+input_mt_report_pointer_emulation() use_count to false. It works 
+correctly with all touch points expected. That use_count refers to 
+finger count of Touchpad[1]. Also you can see that even with 
+use_count=false this for loop[2] is entered by counting all the 
+mt->slots and then input_event() reports all of them.
+
+I hope I've understood correctly :-)
+
+[1]: 
+https://elixir.bootlin.com/linux/v5.12-rc7/source/drivers/input/input-mt.c#L190
+[2]: 
+https://elixir.bootlin.com/linux/v5.12-rc7/source/drivers/input/input-mt.c#L208
+
+> then again, MT support has been in the kernel for long enough that by now
+> everything should understand it, so there's a certain "meh" factor.
+> 
+> Cheers,
+>     Peter
+> 
+
+Best regards
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-of Code Aurora Forum, hosted by The Linux Foundation
-
+Giulio Benetti
+Benetti Engineering sas
