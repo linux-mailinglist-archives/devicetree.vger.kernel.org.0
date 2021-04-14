@@ -2,75 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 029A935FC09
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 21:55:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F302C35FCA4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 22:26:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353565AbhDNTzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 15:55:23 -0400
-Received: from mga07.intel.com ([134.134.136.100]:35237 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1353557AbhDNTzV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Apr 2021 15:55:21 -0400
-IronPort-SDR: 3PfOXKML9eXtcbSriSwLYu0zqfSxBGvol+LkqOEwJF6EYxd/8LaSjjPIad8+G/p/8cnMNwLPs/
- wJuk3dokdGnA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9954"; a="258686526"
-X-IronPort-AV: E=Sophos;i="5.82,223,1613462400"; 
-   d="scan'208";a="258686526"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Apr 2021 12:54:58 -0700
-IronPort-SDR: 6vhpZ4Hej12rSFO4cFI5+VgBbFUISmrtcjkqGX9qoL8JF5KM8B0zRN8TK054frgtM/JfRHyxct
- HyC4eo8KcC0g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,223,1613462400"; 
-   d="scan'208";a="612222039"
-Received: from black.fi.intel.com ([10.237.72.28])
-  by fmsmga006.fm.intel.com with ESMTP; 14 Apr 2021 12:54:56 -0700
-Received: by black.fi.intel.com (Postfix, from userid 1003)
-        id 1C66A12A; Wed, 14 Apr 2021 22:55:13 +0300 (EEST)
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        =?UTF-8?q?Ga=C3=ABtan=20Andr=C3=A9?= <rvlander@gaetanandre.eu>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-        Denis Ciocca <denis.ciocca@st.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v1 7/7] dt-bindings: iio: st,st-sensors: Add LSM9DS0 compatible string
-Date:   Wed, 14 Apr 2021 22:54:54 +0300
-Message-Id: <20210414195454.84183-7-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210414195454.84183-1-andriy.shevchenko@linux.intel.com>
-References: <20210414195454.84183-1-andriy.shevchenko@linux.intel.com>
+        id S1349849AbhDNU0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 16:26:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56146 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349805AbhDNU0c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 16:26:32 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B50C061756
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 13:26:11 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id n12so23572732ybf.8
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 13:26:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uXB/h0HritpGaogqR4MZ0Syh5r+OFtVKW/hzSi9q7iw=;
+        b=gmTqsMWsFi+G0V3Us4qP+jMCjW/ogfkX9UIVn0orHc7UWb0Tdbd6S6ynCZhGYn9aB/
+         JeiCFwrlqgLREEJfzkhy0CThiuhlTxiASsKxMsaV5ccjx22BZVUAG0cPPFjIfLvyVPYw
+         Rm7x8aX3VOAZBSbD5Bu3gokPJUUyNB4VWJXC7FF3hkZQv3CZgqFG887jNDLndyiMd0iB
+         j5ryaMtSsP5zWVdGzfES+axDLqO5sTTnJDJXUzzVQxmGHsgsS7Ap99VjSQdFLbFf6MUf
+         vsC9bzC2+Ip+qx5eZj8PN7i5JJdQ0wDd7A8qQrDvgubwEhzZ/0IR29/WspIfz9gdP1IE
+         AOTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uXB/h0HritpGaogqR4MZ0Syh5r+OFtVKW/hzSi9q7iw=;
+        b=O9U732UcgqoGuIC8TwDYJmEDv8rF/UTitJOxXiuZaCKuHoJLMOvy5OmAZtlVPRgdfr
+         zaz0FlWVHSK0nTEShB+G5JhJwMXW2dRkJ12RVbixC4g6V3Jf03ZaoVbQcCGb3detrykv
+         PvBMU6SR0YjwM+/hzNcSgq2N+WhIGtdpOZaG+X7wosELLz/ju6zauj87wQYaVlz6dNt1
+         giLc9K1b9yzykzUwdpJAhvWItWRah6yvK4z4EjK6HRE3AjtMY5B+GxhJy4b2pOuo1d8k
+         fTUnJXWrNYt+cUrA8/dCpjDhNKxVeesdy5WjXuzu+mtlXkORW7WU13EVXYjuvMr5Dap+
+         Cqug==
+X-Gm-Message-State: AOAM532H9jI5oBToD6EQTJJtnRDfNaADaDiM4FnuvEGO8ePnxQwcaU0R
+        nji98NqUOICgBdaHcHqR4+7A6qzaI4LYzn7VeUo+3A==
+X-Google-Smtp-Source: ABdhPJy68/JQ2akezNu6ZdB4kqML+b9w63gefQDDXSh7QMIsi4KZSHn4ZxpYoICD3BhsO3PYRnXFJtwrAc0x2iTGIIg=
+X-Received: by 2002:a25:6088:: with SMTP id u130mr56279885ybb.257.1618431970036;
+ Wed, 14 Apr 2021 13:26:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1616264220-25825-1-git-send-email-sbhanu@codeaurora.org>
+ <CAD=FV=WLZCSd6D5VFyD+1KBp5n1qyszER2EVaEMwYjQfPSSDnA@mail.gmail.com>
+ <b77f207b-2d90-3c8b-857f-625bd3867ed1@codeaurora.org> <6fdf704c4716f5873d413229ca8adc57@codeaurora.org>
+ <CAD=FV=Wa4fT5wZgd0==8kLy_tzTLgdZ-HwdfOEAM9pMeMjjFyg@mail.gmail.com> <8126e130e5c0ea1e7ea867414f0510c0@codeaurora.org>
+In-Reply-To: <8126e130e5c0ea1e7ea867414f0510c0@codeaurora.org>
+From:   Doug Anderson <dianders@google.com>
+Date:   Wed, 14 Apr 2021 13:25:58 -0700
+Message-ID: <CAD=FV=XavWbf_b7-=JT6V5_RNA8CjdK4oRu7H719AaPDJ5tsqQ@mail.gmail.com>
+Subject: Re: [PATCH V2] arm64: dts: qcom: sc7280: Add nodes for eMMC and SD card
+To:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>
+Cc:     Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Sahitya Tummala <stummala@codeaurora.org>,
+        Ram Prakash Gupta <rampraka@codeaurora.org>,
+        Sayali Lokhande <sayalil@codeaurora.org>,
+        sartgarg@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>, cang@codeaurora.org,
+        pragalla@codeaurora.org, nitirawa@codeaurora.org,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Evan Green <evgreen@chromium.org>,
+        Georgi Djakov <georgi.djakov@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enumerate LSM9DS0 (accelerometer and magnetometer parts) via
-'st,lsm9ds0-imu' compatible string.
+Hi,
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+On Tue, Apr 13, 2021 at 3:59 AM <sbhanu@codeaurora.org> wrote:
+>
+> >> >>> +                                       required-opps =
+> >> >>> <&rpmhpd_opp_low_svs>;
+> >> >>> +                                       opp-peak-kBps = <1200000
+> >> >>> 76000>;
+> >> >>> +                                       opp-avg-kBps = <1200000
+> >> >>> 50000>;
+> >> >> Why are the kBps numbers so vastly different than the ones on sc7180
+> >> >> for the same OPP point. That implies:
+> >> >>
+> >> >> a) sc7180 is wrong.
+> >> >>
+> >> >> b) This patch is wrong.
+> >> >>
+> >> >> c) The numbers are essentially random and don't really matter.
+> >> >>
+> >> >> Can you identify which of a), b), or c) is correct, or propose an
+> >> >> alternate explanation of the difference?
+> >> >>
+> >>
+> >> We calculated bus votes values for both sc7180 and sc7280 with ICB
+> >> tool,
+> >> above mentioned values we got for sc7280.
+> >
+> > I don't know what an ICB tool is. Please clarify.
+> >
+> > Also: just because a tool spits out numbers that doesn't mean it's
+> > correct. Presumably the tool could be wrong or incorrectly configured.
+> > We need to understand why these numbers are different.
+> >
+> we checked with ICB tool team on this they conformed as Rennell & Kodiak
+> are different chipsets,
+> we might see delta in ib/ab values due to delta in scaling factors.
 
-diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-index db291a9390b7..43d29a7d46f1 100644
---- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-+++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-@@ -74,6 +74,8 @@ properties:
-       - st,lps33hw
-       - st,lps35hw
-       - st,lps22hh
-+        # IMU
-+      - st,lsm9ds0-imu
- 
-   reg:
-     maxItems: 1
--- 
-2.30.2
+...but these numbers are in kbps, aren't they? As I understand it
+these aren't supposed to be random numbers spit out by a tool but are
+supposed to be understandable by how much bandwidth an IP block (like
+MMC) needs from the busses it's connected to. Since the MMC IP block
+on sc7180 and sc7280 is roughly the same there shouldn't be a big
+difference in numbers.
 
+Something smells wrong.
+
+Adding a few people who understand interconnects better than I do, though.
+
+-Doug
