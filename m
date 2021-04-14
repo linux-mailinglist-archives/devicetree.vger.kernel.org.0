@@ -2,154 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05BD035F47F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 15:08:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B25935F492
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 15:13:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351108AbhDNNI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 09:08:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44476 "EHLO
+        id S233694AbhDNNMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 09:12:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232933AbhDNNIX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 09:08:23 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1E66C061574;
-        Wed, 14 Apr 2021 06:08:01 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id e14so31270288ejz.11;
-        Wed, 14 Apr 2021 06:08:01 -0700 (PDT)
+        with ESMTP id S233529AbhDNNM2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 09:12:28 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E05E9C06175F
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 06:12:01 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id s15so23642145edd.4
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 06:12:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=h2glotSQNv6sLqKL+wvYFAeO5knjRBKMj7UoWHlfyWc=;
-        b=NtVk7QEN72VW9Nscr50h789KhTGxyVxK88UL1mfIGSrZ6YHIDLY2H+ylqi3osFVyL5
-         HdBrkG/DVuG0makrWXeAABIUSdOrKrS2Ngx4ruxgT3O6zBYPigaZgic5pQEs1ickxZx/
-         L+VKsO5+iGHne/kDMz/9wgOs8JcXqLSuEJOEZLPrTmunvdVDSTi4y5WDOmKBQvzBfXVv
-         SkNJqNEzo6ObWXYlKWybUFh9SvSS9hNHeLJwEwxN62e0PyvGw9U8rvOVrpWBVbTSmwgP
-         We6KZRaSD7fRkiOMiKDulLy4CPV4d3TmkZMNK+86RDSJ8mXZatcMKDiEVK3noGQ1GR7P
-         BKzQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=vRUDKBR7RwkkTXgZ+sUsbwVfdbHWNU9ESm88Dqvkblg=;
+        b=Z78a49v7+PWNoXCt2G+P7mD5Bje1NVfIXaUAnp/s74Fh0tMgIh5qZLBKAIfvh2LuoQ
+         rB+FjCghvIxW9JSkWdnMIjzY7Jhr8eaooqoR4PLDASf0hnBF5hVXTKvV6LP0j9Q7Pr+a
+         xEVRnnF7rHB4Ae5KkvtrhT59u5W0nzZuPeEoQ/61nBkwErKhPyBNHwJZj0qmq0WmHjxq
+         HsL2RinDYvbidfZq2/2UDkrBIJE94fkYg9+EaYxgTgclLH0nbp5Utk8EuktnT3SDxhGp
+         6+z8tJpqbNFmQhnySe7pXth1q/I5D8S4ZYlieBmpQlGRY8V0g7Pd4cEhfpokQyDQ4bCm
+         tfyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=h2glotSQNv6sLqKL+wvYFAeO5knjRBKMj7UoWHlfyWc=;
-        b=sq3Us2gbG9popFIXlh7G5juItENdUSoATFjAjjuoSKPmL7+o6tI6aF/c4af+udz/zl
-         qr1o2MLVlzv2x5AtsLqupmPi+YLGWMiLTrkhhZUvfAHh7rcx/4HT+3XXjMtVRM1gsBth
-         XtYPlNSu8bZB9bU1yV7Iu2YcaDEuLasNjsA8sgNi9PkDFYonu2VAKKo0o0J5nw59XW1U
-         dUJaLZxHoxolRTNcEslYLiaSH+d3lTSJ775M00nLsM4+HRrCgIUSeE6fLNXBB/vJui8B
-         wQXEDZn5FE0bwpS/QC3ft3AbGSY/0C7KCc7hN2qtJyhSDqmV+Is9O6QJMmyj5QnCrX7J
-         MzUQ==
-X-Gm-Message-State: AOAM533nsGaUhkoqYkhbsB08FHzc80YxYOI8GVOxp0+409lsiTO8Ydcs
-        H6+rYCiNkWKOgVwVoSoyw7NUQUPeLfpzRi5XzTdzvWkTX8J7FQ==
-X-Google-Smtp-Source: ABdhPJwbTgtsFbu/4xK4uFMDsQriGW1hh3UnzmaB0mGG0/FYgZppfrJUndPRT2YiPoZu3AhX3Yts0eNXSFzObDpqDpw=
-X-Received: by 2002:a17:906:44b:: with SMTP id e11mr30154715eja.551.1618405680381;
- Wed, 14 Apr 2021 06:08:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210412132619.7896-1-aford173@gmail.com> <20210412132619.7896-2-aford173@gmail.com>
- <CAMuHMdU5RfTGs3SCvJX9epKBLOo6o1BQMng49RjrBn+P7QOSeg@mail.gmail.com>
-In-Reply-To: <CAMuHMdU5RfTGs3SCvJX9epKBLOo6o1BQMng49RjrBn+P7QOSeg@mail.gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Wed, 14 Apr 2021 08:07:49 -0500
-Message-ID: <CAHCN7xKp1Lp+KAHwo_GobZoDKQCV9_7Yx2ZNKmTzkkShRBzm_Q@mail.gmail.com>
-Subject: Re: [PATCH V4 2/2] net: ethernet: ravb: Enable optional refclk
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     netdev <netdev@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=vRUDKBR7RwkkTXgZ+sUsbwVfdbHWNU9ESm88Dqvkblg=;
+        b=ccTZGlZ7aXwcIMHUr59d9/zJwbmAqmFOZx9cbBQ2V7l2EoWAwc+/p76Og7Qu/Y3yhy
+         CmKVjYkVb0b+/aWrB7t6zKbXxphrN33dpiucozl1Fcz/Ed97HzPZ37XA7Qq1WN4lNSa3
+         2wHM03dH9DxIS3wCN+WloV4vWtoqe0boJ6VJIZFcZNZEEUsl3uHZ8n3mm7iaFzk5dtYV
+         2HEOrturAdODVqdxWISnAg3BW0vNw8GDlgW9q2rPXAim1z8r9tt97Te09MQgKZInE0uE
+         Itl/8I94SUf/mNO+Itn7McLw0V7aB8rhmMTQdLcXfkgJezPh/d/vSAr+qjm3sJNfaPoa
+         hpxA==
+X-Gm-Message-State: AOAM531c5rtqM7iovMyCqEQ9fqB+qtxS1H7DS4h62xTQWGjD2YcKM+5c
+        gAAUwI0z2RZQyiTyufN6qP2+NA==
+X-Google-Smtp-Source: ABdhPJwn/rS2SfHF2VYdBHuVepuPkQv9wfCzaDCvZDOk0dS2tnN1gLRWPu+ZHWIj0/0V1hUU231VXg==
+X-Received: by 2002:a05:6402:42c8:: with SMTP id i8mr40924106edc.386.1618405920522;
+        Wed, 14 Apr 2021 06:12:00 -0700 (PDT)
+Received: from dell ([91.110.221.215])
+        by smtp.gmail.com with ESMTPSA id 1sm1095942ejt.95.2021.04.14.06.11.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Apr 2021 06:12:00 -0700 (PDT)
+Date:   Wed, 14 Apr 2021 14:11:58 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
+Subject: [GIT PULL] Immutable branch between MFD, Clock, GPIO, Regulator and
+ RTC due for the v5.13 merge window
+Message-ID: <20210414131158.GN4869@dell>
+References: <cover.1617616855.git.matti.vaittinen@fi.rohmeurope.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cover.1617616855.git.matti.vaittinen@fi.rohmeurope.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 13, 2021 at 2:33 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Adam,
->
-> On Mon, Apr 12, 2021 at 3:27 PM Adam Ford <aford173@gmail.com> wrote:
-> > For devices that use a programmable clock for the AVB reference clock,
-> > the driver may need to enable them.  Add code to find the optional clock
-> > and enable it when available.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> >
-> > ---
-> > V4:  Eliminate the NULL check when disabling refclk, and add a line
-> >      to disable the refclk if there is a failure after it's been
-> >      initialized.
->
-> Thanks for the update!
->
-> > --- a/drivers/net/ethernet/renesas/ravb_main.c
-> > +++ b/drivers/net/ethernet/renesas/ravb_main.c
-> > @@ -2148,6 +2148,13 @@ static int ravb_probe(struct platform_device *pdev)
-> >                 goto out_release;
-> >         }
-> >
-> > +       priv->refclk = devm_clk_get_optional(&pdev->dev, "refclk");
-> > +       if (IS_ERR(priv->refclk)) {
-> > +               error = PTR_ERR(priv->refclk);
-> > +               goto out_release;
->
-> Note that this will call clk_disable_unprepare() in case of failure, which is
-> fine, as that function is a no-op in case of a failed clock.
+Please note that this PR will break your build unless you have the
+required Regulator API update.
 
-Geert,
+ fb8fee9efdcf0 regulator: Add regmap helper for ramp-delay setting
+ e3baacf542756 regulator: helpers: Export helper voltage listing
 
-A bot reported that if I jump to out_release may try to free a clock
-if some instances where priv isn't defined.
-Currently, the priv->clk isn't freed either.  I have heard some
-back-and-forth discussions in other threads on whether or not devm
-functions auto free or not.
+Pull at your peril! :)
 
-I'm fine with sending a V5 to make the free for the refclock happen
-only when the priv has successfully initialized.  Should I also add
-one for freeing priv->clk and change all the other goto out_release
-commands to point to this new section?
+The following changes since commit a38fd8748464831584a19438cbb3082b5a2dab15:
 
-I am thinking it would like something like:
+  Linux 5.12-rc2 (2021-03-05 17:33:41 -0800)
 
-free_refclk:
-    clk_disable_unprepare(priv->refclk);
-free_clk;
-    clk_disable_unprepare(priv->clk);
-out_release:
-    free_netdev(ndev);
-    ....
+are available in the Git repository at:
 
+  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-clk-gpio-regulator-rtc-v5.13
 
-adam
->
-> > +       }
-> > +       clk_prepare_enable(priv->refclk);
-> > +
-> >         ndev->max_mtu = 2048 - (ETH_HLEN + VLAN_HLEN + ETH_FCS_LEN);
-> >         ndev->min_mtu = ETH_MIN_MTU;
-> >
-> > @@ -2244,6 +2251,7 @@ static int ravb_probe(struct platform_device *pdev)
-> >         if (chip_id != RCAR_GEN2)
-> >                 ravb_ptp_stop(ndev);
-> >  out_release:
-> > +       clk_disable_unprepare(priv->refclk);
-> >         free_netdev(ndev);
-> >
-> >         pm_runtime_put(&pdev->dev);
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+for you to fetch changes up to 5a8a64d9a38b9d3794f9f5e153fc0358b858cc24:
+
+  MAINTAINERS: Add ROHM BD71815AGW (2021-04-14 10:21:43 +0100)
+
+----------------------------------------------------------------
+Immutable branch between MFD, Clock, GPIO, Regulator and RTC due for the v5.13 merge window
+
+----------------------------------------------------------------
+Matti Vaittinen (16):
+      rtc: bd70528: Do not require parent data
+      mfd: bd718x7: simplify by cleaning unnecessary device data
+      dt_bindings: bd71828: Add clock output mode
+      dt_bindings: regulator: Add ROHM BD71815 PMIC regulators
+      dt_bindings: mfd: Add ROHM BD71815 PMIC
+      mfd: Add ROHM BD71815 ID
+      mfd: Sort ROHM chip ID list for better readability
+      mfd: Support for ROHM BD71815 PMIC core
+      gpio: Support ROHM BD71815 GPOs
+      regulator: rohm-regulator: linear voltage support
+      regulator: rohm-regulator: Support SNVS HW state.
+      regulator: bd718x7, bd71828: Use ramp-delay helper
+      regulator: Support ROHM BD71815 regulators
+      clk: bd718x7: Add support for clk gate on ROHM BD71815 PMIC
+      rtc: bd70528: Support RTC on ROHM BD71815
+      MAINTAINERS: Add ROHM BD71815AGW
+
+ .../devicetree/bindings/mfd/rohm,bd71815-pmic.yaml | 201 +++++++
+ .../devicetree/bindings/mfd/rohm,bd71828-pmic.yaml |   6 +
+ .../bindings/regulator/rohm,bd71815-regulator.yaml | 116 ++++
+ MAINTAINERS                                        |   3 +
+ drivers/clk/clk-bd718x7.c                          |   9 +-
+ drivers/gpio/Kconfig                               |  10 +
+ drivers/gpio/Makefile                              |   1 +
+ drivers/gpio/gpio-bd71815.c                        | 185 ++++++
+ drivers/mfd/Kconfig                                |  15 +-
+ drivers/mfd/rohm-bd71828.c                         | 486 +++++++++++----
+ drivers/mfd/rohm-bd718x7.c                         |  43 +-
+ drivers/regulator/Kconfig                          |  11 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/bd71815-regulator.c              | 652 +++++++++++++++++++++
+ drivers/regulator/bd71828-regulator.c              |  51 +-
+ drivers/regulator/bd718x7-regulator.c              |  60 +-
+ drivers/regulator/rohm-regulator.c                 |  23 +-
+ drivers/rtc/Kconfig                                |   6 +-
+ drivers/rtc/rtc-bd70528.c                          | 104 ++--
+ include/linux/mfd/rohm-bd71815.h                   | 562 ++++++++++++++++++
+ include/linux/mfd/rohm-bd71828.h                   |   3 +
+ include/linux/mfd/rohm-bd718x7.h                   |  13 -
+ include/linux/mfd/rohm-generic.h                   |  15 +-
+ 23 files changed, 2286 insertions(+), 290 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd71815-pmic.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd71815-regulator.yaml
+ create mode 100644 drivers/gpio/gpio-bd71815.c
+ create mode 100644 drivers/regulator/bd71815-regulator.c
+ create mode 100644 include/linux/mfd/rohm-bd71815.h
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
