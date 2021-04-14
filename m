@@ -2,149 +2,312 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6840735FD27
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 23:19:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19D2E35FD44
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 23:26:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232345AbhDNVTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 17:19:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39426 "EHLO
+        id S231199AbhDNV0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 17:26:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232234AbhDNVTk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 17:19:40 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FFAEC061761;
-        Wed, 14 Apr 2021 14:19:18 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id w3so33609221ejc.4;
-        Wed, 14 Apr 2021 14:19:18 -0700 (PDT)
+        with ESMTP id S230099AbhDNV0r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 17:26:47 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01BB6C061574
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 14:26:24 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id m7so14004849ljp.10
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 14:26:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=/8ue3C3/vuHzsBzvGcphBwhbaDZVSjtTH0PvrnAwtIQ=;
-        b=RAkpedgieo6Ep13Sekr7CIB6n2IGq56zyrXBeiWUrr2oaya8aJkAKWfASE4K5bS00H
-         DWRn9AUmEhtk5eME+Qz7CaqMUtTx1Xh7ril0pwoO0rlrCn/hllD4+MR4ZQcSozMhpmzB
-         uulq8AT0pEMugzmHuD3KpNnsJFzobZT6ZaqH1iM2E1SFXbYiMbuhjPT8PynnbFtE/0rI
-         9CUjU+K6t9b6K9UZsT5nN/HwMEcHVOMk0+/UydcQX3kXBbJzwvbEWuYAY6jIiZ8J+7VQ
-         fVNRtaMMS0ZsmeCBbH+C+k83s+kg9EU4nZc6LrfIdzMB2Ty5aGTK2HfuK0mUUPeqwzge
-         E1Gg==
+        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=P1hOBamynUxE5Ahteh8eMyUde+7o+FPvnuntgy3ekNM=;
+        b=mQ4lQf7+qErMrMUZh5zi+d044YnIkDFBPmKL8K1YRBWdc9Xl4I1WcOnfarc4a+7ICD
+         y4n0muxmGHQTAKnuHfJQDxblye38zu9stm6OR395cvs3QF6IgBK3LxonkxuxFVt09Wq/
+         Ioc79hrOGlrkLd0hIA1gyU72A+zEYAYO23IgaCuQn8tZCKKIhzeRL01D5sebIRHN+qNh
+         NpQMN+BKKPwXxFNXyzydTNDp2YNmEMOWjrjB7nF4GddaORmgxGRs9FF/dD/ndBRb18L9
+         sFFBLXNTXq5259Gn/fq9MM3IwcW1+5FuygQTKls4CpI4s6pRPqfKJA5u/3vYw9+BLPJZ
+         dCzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=/8ue3C3/vuHzsBzvGcphBwhbaDZVSjtTH0PvrnAwtIQ=;
-        b=FSr1fyEtrTfrYXmElATTb5GjuGCq8yDk05aLSpvD2Bu0sHNDeRTPvgnupb5zGKEKXX
-         YmEueyrrewsa+8h7IJkwJkKS7YtkEjN23pgiWMQuKuVWxeTXSypp0bvs2WY+5fJ0B/Gj
-         haEDemDSyASbXD2dq52vU/f7LU8rDFFyhvh6QqeA8jvsuXPJDIlB3Pwo/YfczPePA9ji
-         MBHLR/FylofWQI5H3caSZ+7/XFRPtSzzmQl59MWG8MBDwtEQXbwkqaxCIO90U57Z5Sc+
-         AlHxzQJZi8cnFcQQ7fUYaZtYcSp/SiAq7MHkqpsRiZ6CcKYMa1t63R+B7r9U0nuxcnx0
-         rI5w==
-X-Gm-Message-State: AOAM533n7xtUJrFLWKONRvyZIqgAwddCORfXP1Qt1PzcXfJPOZViiqKC
-        VsmV83WNQwl/RopSwN5QY3M=
-X-Google-Smtp-Source: ABdhPJz2txx79S14UfZsdJsSo99HGS9ws7jO5YHAS05dEXTpL7Ecbzn0sBBXV2TkQI9iZtVZy/sD4w==
-X-Received: by 2002:a17:906:b2cf:: with SMTP id cf15mr60523ejb.233.1618435157199;
-        Wed, 14 Apr 2021 14:19:17 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id v5sm568222edx.87.2021.04.14.14.19.16
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 14 Apr 2021 14:19:16 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, zhangqing@rock-chips.com,
-        enric.balletbo@collabora.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v7 11/11] soc: rockchip: power-domain: add rk3568 powerdomains
-Date:   Wed, 14 Apr 2021 23:18:56 +0200
-Message-Id: <20210414211856.12104-12-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210414211856.12104-1-jbx6244@gmail.com>
-References: <20210414211856.12104-1-jbx6244@gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=P1hOBamynUxE5Ahteh8eMyUde+7o+FPvnuntgy3ekNM=;
+        b=bK46WtlPWI4SM0bQuzcM3hGizPUrcwWVRAoAVyUm7C6Cu+f3rFZcfDqj+EQclgo40R
+         v93N5xh/5IqGWG3K5wevrwln+3z5n3/+N1eWJt/48K9j3TT75DFwtZwoACmZUrGnUBNs
+         mSiTBZlkV+ES2tca/HEhf/1lt+nNqsEddP5FP3Af4ZpyQRIzr4SVldtbnbnTxklgIPL/
+         4a0m9Vaypx+KhIiCjV7WM2xw2XMHklNGm1HmX2hv21BNj4CmyHIVRORirhjsoA8JTCb7
+         8Qpyi2d1lktmGntFaxidVWKTQKHq7nLp4O0nDD2UTBCGQ4Y28+WDW7zVp8AJxFVvo+3T
+         9E2A==
+X-Gm-Message-State: AOAM533W0bO8UrPfRUMSJe9tWJk/PL86zLyFtoJZjkIYkj3TcIypf2w1
+        YzJjLueYWwC8ZAaU4tAO+n3xmw==
+X-Google-Smtp-Source: ABdhPJwj2X9hN9ckj+zm7A+aR7ukKi1EvY8Ds6CvIWfMzqfnvPLJu1Q7wAtps9mMpVJvKFpg4JqcHA==
+X-Received: by 2002:a2e:5808:: with SMTP id m8mr16321ljb.354.1618435583361;
+        Wed, 14 Apr 2021 14:26:23 -0700 (PDT)
+Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
+        by smtp.gmail.com with ESMTPSA id x25sm241457lfn.307.2021.04.14.14.26.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Apr 2021 14:26:22 -0700 (PDT)
+Date:   Wed, 14 Apr 2021 23:26:21 +0200
+From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] media: dt-bindings: media: renesas,isp: Add bindings for
+ ISP Channel Selector
+Message-ID: <YHdd/XZQ3fypBZ9m@oden.dyn.berto.se>
+References: <20210413172708.2519173-1-niklas.soderlund+renesas@ragnatech.se>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210413172708.2519173-1-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Elaine Zhang <zhangqing@rock-chips.com>
+Hello Niklas,
 
-Add power-domains found on rk3568 socs.
+On 2021-04-13 19:27:08 +0200, Niklas Söderlund wrote:
+> Add bindings for Renesas R-Car ISP Channel Selector IP. The ISP is
+> responsible for filtering the MIPI CSI-2 bus and directing the different
+> CSI-2 virtual channels to different R-Car VIN instances (DMA engines)
+> for capture.
+> 
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> ---
+>  .../bindings/media/renesas,isp.yaml           | 197 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 198 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/renesas,isp.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/renesas,isp.yaml b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> new file mode 100644
+> index 0000000000000000..99a1556d21d00106
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> @@ -0,0 +1,197 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +# Copyright (C) 2021 Renesas Electronics Corp.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/renesas,isp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas R-Car ISP Channel Selector
+> +
+> +maintainers:
+> +  - Niklas Söderlund <niklas.soderlund@ragnatech.se>
+> +
+> +description:
+> +  The R-Car ISP Channel Selector provides MIPI CSI-2 VC and DT filtering
+> +  capabilities for the Renesas R-Car family of devices. It is used in
+> +  conjunction with the R-Car VIN and CSI-2 modules, which provides the video
+> +  capture capabilities.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - renesas,isp-r8a779a0 # V3U
 
-Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
-Changed V7:
-  Fix alignment
----
- drivers/soc/rockchip/pm_domains.c | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+This should of course be renesas,r8a779a0-isp.
 
-diff --git a/drivers/soc/rockchip/pm_domains.c b/drivers/soc/rockchip/pm_domains.c
-index 1d1b06672..0868b7d40 100644
---- a/drivers/soc/rockchip/pm_domains.c
-+++ b/drivers/soc/rockchip/pm_domains.c
-@@ -27,6 +27,7 @@
- #include <dt-bindings/power/rk3366-power.h>
- #include <dt-bindings/power/rk3368-power.h>
- #include <dt-bindings/power/rk3399-power.h>
-+#include <dt-bindings/power/rk3568-power.h>
- 
- struct rockchip_domain_info {
- 	const char *name;
-@@ -135,6 +136,9 @@ struct rockchip_pmu {
- #define DOMAIN_RK3399(name, pwr, status, req, wakeup)		\
- 	DOMAIN(name, pwr, status, req, req, req, wakeup)
- 
-+#define DOMAIN_RK3568(name, pwr, req, wakeup)		\
-+	DOMAIN_M(name, pwr, pwr, req, req, req, wakeup)
-+
- static bool rockchip_pmu_domain_is_idle(struct rockchip_pm_domain *pd)
- {
- 	struct rockchip_pmu *pmu = pd->pmu;
-@@ -848,6 +852,18 @@ static const struct rockchip_domain_info rk3399_pm_domains[] = {
- 	[RK3399_PD_SDIOAUDIO]	= DOMAIN_RK3399("sdioaudio", BIT(31), BIT(31), BIT(29), true),
- };
- 
-+static const struct rockchip_domain_info rk3568_pm_domains[] = {
-+	[RK3568_PD_NPU]		= DOMAIN_RK3568("npu",  BIT(1), BIT(2),  false),
-+	[RK3568_PD_GPU]		= DOMAIN_RK3568("gpu",  BIT(0), BIT(1),  false),
-+	[RK3568_PD_VI]		= DOMAIN_RK3568("vi",   BIT(6), BIT(3),  false),
-+	[RK3568_PD_VO]		= DOMAIN_RK3568("vo",   BIT(7), BIT(4),  false),
-+	[RK3568_PD_RGA]		= DOMAIN_RK3568("rga",  BIT(5), BIT(5),  false),
-+	[RK3568_PD_VPU]		= DOMAIN_RK3568("vpu",  BIT(2), BIT(6),  false),
-+	[RK3568_PD_RKVDEC]	= DOMAIN_RK3568("vdec", BIT(4), BIT(8),  false),
-+	[RK3568_PD_RKVENC]	= DOMAIN_RK3568("venc", BIT(3), BIT(7),  false),
-+	[RK3568_PD_PIPE]	= DOMAIN_RK3568("pipe", BIT(8), BIT(11), false),
-+};
-+
- static const struct rockchip_pmu_info px30_pmu = {
- 	.pwr_offset = 0x18,
- 	.status_offset = 0x20,
-@@ -983,6 +999,17 @@ static const struct rockchip_pmu_info rk3399_pmu = {
- 	.domain_info = rk3399_pm_domains,
- };
- 
-+static const struct rockchip_pmu_info rk3568_pmu = {
-+	.pwr_offset = 0xa0,
-+	.status_offset = 0x98,
-+	.req_offset = 0x50,
-+	.idle_offset = 0x68,
-+	.ack_offset = 0x60,
-+
-+	.num_domains = ARRAY_SIZE(rk3568_pm_domains),
-+	.domain_info = rk3568_pm_domains,
-+};
-+
- static const struct of_device_id rockchip_pm_domain_dt_match[] = {
- 	{
- 		.compatible = "rockchip,px30-power-controller",
-@@ -1028,6 +1055,10 @@ static const struct of_device_id rockchip_pm_domain_dt_match[] = {
- 		.compatible = "rockchip,rk3399-power-controller",
- 		.data = (void *)&rk3399_pmu,
- 	},
-+	{
-+		.compatible = "rockchip,rk3568-power-controller",
-+		.data = (void *)&rk3568_pmu,
-+	},
- 	{ /* sentinel */ },
- };
- 
+(un)lucky for me I managed to get it wrong in all three of bindings, 
+driver and DT files on the first try. I will fix this in a v2. Thanks 
+Geert for spotting this.
+
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        description:
+> +          Input port node, multiple endpoints describing the connected R-Car
+> +          CSI-2 receivers.
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Single endpoint describing the R-Car VIN connected to output port 0.
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Single endpoint describing the R-Car VIN connected to output port 1.
+> +
+> +      port@3:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Single endpoint describing the R-Car VIN connected to output port 2.
+> +
+> +      port@4:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Single endpoint describing the R-Car VIN connected to output port 3.
+> +
+> +      port@5:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Single endpoint describing the R-Car VIN connected to output port 4.
+> +
+> +      port@6:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Single endpoint describing the R-Car VIN connected to output port 5.
+> +
+> +      port@7:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Single endpoint describing the R-Car VIN connected to output port 6.
+> +
+> +      port@8:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Single endpoint describing the R-Car VIN connected to output port 7.
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +      - port@2
+> +      - port@3
+> +      - port@4
+> +      - port@5
+> +      - port@6
+> +      - port@7
+> +      - port@8
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - power-domains
+> +  - resets
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r8a779a0-cpg-mssr.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/power/r8a779a0-sysc.h>
+> +
+> +    isp1: isp@fed20000 {
+> +            compatible = "renesas,isp-r8a779a0";
+> +            reg = <0xfed20000 0x10000>;
+> +            interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+> +            clocks = <&cpg CPG_MOD 613>;
+> +            power-domains = <&sysc R8A779A0_PD_A3ISP01>;
+> +            resets = <&cpg 613>;
+> +            status = "disabled";
+> +
+> +            ports {
+> +                    #address-cells = <1>;
+> +                    #size-cells = <0>;
+> +
+> +                    port@0 {
+> +                            #address-cells = <1>;
+> +                            #size-cells = <0>;
+> +
+> +                            reg = <0>;
+> +                            isp1csi41: endpoint@1 {
+> +                                    reg = <1>;
+> +                                    remote-endpoint = <&csi41isp1>;
+> +                            };
+> +                    };
+> +
+> +                    port@1 {
+> +                            reg = <1>;
+> +                            isp1vin08: endpoint {
+> +                                    remote-endpoint = <&vin08isp1>;
+> +                            };
+> +                    };
+> +
+> +                    port@2 {
+> +                            reg = <2>;
+> +                            isp1vin09: endpoint {
+> +                                    remote-endpoint = <&vin09isp1>;
+> +                            };
+> +                    };
+> +
+> +                    port@3 {
+> +                            reg = <3>;
+> +                            isp1vin10: endpoint {
+> +                                    remote-endpoint = <&vin10isp1>;
+> +                            };
+> +                    };
+> +
+> +                    port@4 {
+> +                            reg = <4>;
+> +                            isp1vin11: endpoint {
+> +                                    remote-endpoint = <&vin11isp1>;
+> +                            };
+> +                    };
+> +
+> +                    port@5 {
+> +                            reg = <5>;
+> +                            isp1vin12: endpoint {
+> +                                    remote-endpoint = <&vin12isp1>;
+> +                            };
+> +                    };
+> +
+> +                    port@6 {
+> +                            reg = <6>;
+> +                            isp1vin13: endpoint {
+> +                                    remote-endpoint = <&vin13isp1>;
+> +                            };
+> +                    };
+> +
+> +                    port@7 {
+> +                            reg = <7>;
+> +                            isp1vin14: endpoint {
+> +                                    remote-endpoint = <&vin14isp1>;
+> +                            };
+> +                    };
+> +
+> +                    port@8 {
+> +                            reg = <8>;
+> +                            isp1vin15: endpoint {
+> +                                    remote-endpoint = <&vin15isp1>;
+> +                            };
+> +                    };
+> +            };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index b265a7ba60e709f3..e125d0eed7b021a0 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -11144,6 +11144,7 @@ L:	linux-renesas-soc@vger.kernel.org
+>  S:	Supported
+>  T:	git git://linuxtv.org/media_tree.git
+>  F:	Documentation/devicetree/bindings/media/renesas,csi2.yaml
+> +F:	Documentation/devicetree/bindings/media/renesas,isp.yaml
+>  F:	Documentation/devicetree/bindings/media/renesas,vin.yaml
+>  F:	drivers/media/platform/rcar-vin/
+>  
+> -- 
+> 2.31.1
+> 
+
 -- 
-2.11.0
-
+Regards,
+Niklas Söderlund
