@@ -2,77 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18B8435F68A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 16:54:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3A5435F6C7
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 16:54:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351917AbhDNOrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 10:47:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46364 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1351910AbhDNOrP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Apr 2021 10:47:15 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 507E061155;
-        Wed, 14 Apr 2021 14:46:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618411614;
-        bh=rs15LF3rKUgaMNwrFb8ZdV4uSTpiASPmNfBhf2NkQ8Q=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=BlWgvxSQ2ZbOX8yA6z647CrPNNwHdGVIuyKWyZAmtLTGxcIfIADJz56cYeUX8yGPt
-         UaEwZ384GIUt45h9yTeGAJ9LCbrUnhSyzprk6G6IAgXjbxv/gr1rOt7repANA3QTUO
-         TYibzSlsDiR4I8QWliFjqdpDecZP8/yvHFn/fAXfdhLjRpAerflaNUloy9YkVOeMI5
-         qje6uKz0HDdsCddm6t+E2x7DET6ZMQ80eVDkVJN+CFhlpM2kBHvCLEVz4AJgx30n5P
-         0mQ5/XmpUHKnc9DYaddEvFdt6IHBaWlQb+AuaiTo9FyUara0+Lz5Ba0dqB/GejEixP
-         geBE7lYrdoXkw==
-From:   matthias.bgg@kernel.org
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Fabien Parent <fparent@baylibre.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: mt8183-kukui: fix dtbs_check warnings
-Date:   Wed, 14 Apr 2021 16:46:42 +0200
-Message-Id: <20210414144643.17435-3-matthias.bgg@kernel.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210414144643.17435-1-matthias.bgg@kernel.org>
-References: <20210414144643.17435-1-matthias.bgg@kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1351994AbhDNOvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 10:51:06 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:34642 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1352007AbhDNOu5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 10:50:57 -0400
+Received: by mail-ot1-f43.google.com with SMTP id k14-20020a9d7dce0000b02901b866632f29so19572942otn.1;
+        Wed, 14 Apr 2021 07:50:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=imFjAaiBjLT6LuL67d8A8g+gXv6wR7zTuwnflF5k37w=;
+        b=G2+jOiZpR5KmKIliauD7G7JUe+PXdLowMX4PWYOguYOCuplbR5iPtpvdFWzSOJTKkl
+         uNF1hsNKF4sz9oICDwZjno6dlG6v4hZ62NTbzKXory66fgPKUiTyKC4La6ThRK8dZzwp
+         hN4EYKPICZi+j0rlr1/aeUnt7ImQJwR1m1XKPUepHMbWarUXW2WDnlBsPgDC5WjRiDQl
+         jOY2SI7rALynVUXG0+3qcLeSdt9AWkQfcXBmFf1vgxXOuVVzqdeOLAQOpVecItv8uWoE
+         GxU5zTEs/6I4kxBjRGEsFSgMbbLKks7etRLNJaDrJBJeGz17VlBMHZ+eM4Edru/l8f3h
+         uC0A==
+X-Gm-Message-State: AOAM531B6vIl5dDY3vmJmV1EIGIsSO0m3NTcC0XFQ17vIUdM0vJcARys
+        1EetIvpba1EnMl8xMGHNdQ==
+X-Google-Smtp-Source: ABdhPJx1p2gizTVe4suB3LooLj3w41cuF7yA9Nfe6OWEggQibFEqD0ctuHDjC/AXQoFjiBzMECorGw==
+X-Received: by 2002:a9d:7ac6:: with SMTP id m6mr372889otn.350.1618411835755;
+        Wed, 14 Apr 2021 07:50:35 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v195sm3653919oia.38.2021.04.14.07.50.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Apr 2021 07:50:34 -0700 (PDT)
+Received: (nullmailer pid 3605229 invoked by uid 1000);
+        Wed, 14 Apr 2021 14:50:33 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        p.zabel@pengutronix.de, joel@jms.id.au, BMC-SW@aspeedtech.com,
+        linux-aspeed@lists.ozlabs.org, thierry.reding@gmail.com,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org, andrew@aj.id.au
+In-Reply-To: <20210414104939.1093-2-billy_tsai@aspeedtech.com>
+References: <20210414104939.1093-1-billy_tsai@aspeedtech.com> <20210414104939.1093-2-billy_tsai@aspeedtech.com>
+Subject: Re: [v2 1/2] dt-bindings: Add bindings for aspeed pwm-tach and pwm.
+Date:   Wed, 14 Apr 2021 09:50:33 -0500
+Message-Id: <1618411833.809131.3605228.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Matthias Brugger <matthias.bgg@gmail.com>
+On Wed, 14 Apr 2021 18:49:38 +0800, Billy Tsai wrote:
+> This patch adds device bindings for aspeed pwm-tach device which is a
+> multi-function device include pwn and tach function and pwm device which
+> should be the sub-node of pwm-tach device.
+> 
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> Change-Id: I18d9dea14c3a04e1b7e38ffecd49d45917b9b545
+> ---
+>  .../bindings/mfd/aspeed,ast2600-pwm-tach.yaml | 60 +++++++++++++++++++
+>  .../bindings/pwm/aspeed,ast2600-pwm.yaml      | 44 ++++++++++++++
+>  2 files changed, 104 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
+> 
 
-The dsi children don't have any reg property, so we don't need address and
-size cells. This makes dtbs_check happy.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-CC: Hsin-Yi Wang <hsinyi@chromium.org>
-CC: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-CC: Nicolas Boichat <drinkcat@chromium.org>
-Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
+yamllint warnings/errors:
 
----
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.example.dt.yaml:0:0: /example-0/pwm_tach@1e610000/tach@1: failed to match any schema with compatible: ['aspeed,ast2600-tach']
 
- arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+See https://patchwork.ozlabs.org/patch/1466127
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index ff56bcfa3370..f4dca6a33168 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -251,8 +251,7 @@ &cpu7 {
- 
- &dsi0 {
- 	status = "okay";
--	#address-cells = <1>;
--	#size-cells = <0>;
-+
- 	panel: panel@0 {
- 		/* compatible will be set in board dts */
- 		reg = <0>;
--- 
-2.30.2
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
