@@ -2,113 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A20D335EB02
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 04:41:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF56D35EB5B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 05:15:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345824AbhDNCkd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Apr 2021 22:40:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48346 "EHLO
+        id S1346540AbhDNDPe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Apr 2021 23:15:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345704AbhDNCka (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 22:40:30 -0400
-Received: from mail-pj1-x1049.google.com (mail-pj1-x1049.google.com [IPv6:2607:f8b0:4864:20::1049])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAD00C06175F
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 19:40:09 -0700 (PDT)
-Received: by mail-pj1-x1049.google.com with SMTP id q10-20020a17090a2dcab029014e44f5454aso5667637pjm.4
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 19:40:09 -0700 (PDT)
+        with ESMTP id S233040AbhDNDPd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Apr 2021 23:15:33 -0400
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56CFAC06175F
+        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 20:15:11 -0700 (PDT)
+Received: by mail-ot1-x32b.google.com with SMTP id t17-20020a9d77510000b0290287a5143b41so6872234otl.11
+        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 20:15:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=qaeiP4TcmkgXReccF8JNSG63nl5JyNyZTFgqbhXpA8w=;
-        b=Inaem3hvoh6bBnQ/t6s8zhXAyDUbPjoohiMB3we9nLNBh9OKJSk3yK1ERidnzbCHKZ
-         8av0rHQJyFviHs3ODvVWEuBu5GgTUa02STo6Z1Vh0ois97JRYkWHQyptVwRgwoRqqdlp
-         jJfbzKXePPrVxhP0YSvbNs9AJ1lvAxYtAyPxAdzq66BU8IVKBGZXLTzI+mc7OlKjsF3l
-         b/8UvlKL+4XI5AlKBqS5QDBKrFGMW3hzsYog3y+O+yWhQpaO4jb6Q+GJFGG3CnCXY5zb
-         LebyUhmGy0RY2GgthKz/nGW7bfOuMWsmoe1FNMfsvD7Fw+fNnuPNXzEdftYUUZVvApUC
-         0olw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=lWYNYk08w1Eqo11tDp7n2MyKlkaxOTUBjMHwWUDYMiU=;
+        b=ybKZcbBXlGb+zPieCVgdhs+W/ZIPuFZYgO8jLu3+uu1SfGWdYkNWTsFu1VO/NYYxS9
+         VbKwCQ+hU6lCZjSOadkGrJnKZMspdWwEBZ/43/6v96dCeDGj4AjR/IBMP/+w7E5B45ok
+         c3gVEVde/kscNze+iLaD1trJsjYmS4cP3mpScrOHJA5gf4NqwGrykbXMuJ7bhbATI8P2
+         u2VPWENfRe5Tex1PCFlypJEjC99+DgIJwlZ1VArVTnnv2fD7CMPzJFunxJaCBmqjZCFI
+         Rlgl4NmRWrdaySA/H8jmUN7pKPjpIvXS9anTPVLXuDy1U2LPuXGpkA1Ci//u/e2iISPS
+         8ZzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=qaeiP4TcmkgXReccF8JNSG63nl5JyNyZTFgqbhXpA8w=;
-        b=Bzup8pwo2dc+lTe5H+ZzyO2aF9XY8nbJHP+n7pG/SNFCwgZiAU68xYNnpl7/HWHmzo
-         hp1q6eSKsvNrVlkPPo2zBaAwqBm9iMR0FFPJ3ynT7+em2DGHVzg5VGfN9KGVSN0bkoSB
-         1akXvna0i1/7d9ZsMZI/hV8N8XTCZj46wDcLd938N+ZMfP8WjoBrtRv7tbsPaSv/kEyO
-         38IMjLY2R1IeO3/QC6oH6h1TeoQzTJnkOMw/IkTEdpYKlRizQ/cu6IT/4tzJHmvYQTwB
-         UhaYkcfQsUVl0e+rulXVDWbH82+YNP9ZidOdBL/89/5RUiMvYhMcQ54RWbNjbeQyWX70
-         Wb7g==
-X-Gm-Message-State: AOAM533MZ4pszB6LP+nnmKp4qdYTuYD1BVXWbLd7JdCb1mQ3QpxdGBhu
-        wS/VAX4vV6a6kMSdT/1ryLg//EeQVHo=
-X-Google-Smtp-Source: ABdhPJwPV18N9xjx5dwA3igxAJiFUaZL/VMUHoyaPfs+7PbKnBAcBE9xSAnWOXyldokRvRo3Bqkk4S2P2pk=
-X-Received: from badhri.mtv.corp.google.com ([2620:15c:211:201:91dd:58ac:7590:aa21])
- (user=badhri job=sendgmr) by 2002:a62:4d86:0:b029:252:c889:2dd8 with SMTP id
- a128-20020a624d860000b0290252c8892dd8mr1790835pfb.41.1618368009191; Tue, 13
- Apr 2021 19:40:09 -0700 (PDT)
-Date:   Tue, 13 Apr 2021 19:40:00 -0700
-In-Reply-To: <20210414024000.4175263-1-badhri@google.com>
-Message-Id: <20210414024000.4175263-3-badhri@google.com>
-Mime-Version: 1.0
-References: <20210414024000.4175263-1-badhri@google.com>
-X-Mailer: git-send-email 2.31.1.295.g9ea45b61b8-goog
-Subject: [PATCH v3 3/3] dt-bindings:: connector: Add slow-charger-loop definition
-From:   Badhri Jagan Sridharan <badhri@google.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Kyle Tso <kyletso@google.com>,
-        Badhri Jagan Sridharan <badhri@google.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=lWYNYk08w1Eqo11tDp7n2MyKlkaxOTUBjMHwWUDYMiU=;
+        b=XkzlKUUkd4yOxZNw6U76fmBAnPl1S30icSJuNTgSTFkbO4lC/9Tlc98mVCO5brsRg2
+         fxbZvGXTVQ4oNHLAP4sfhAjcAboCdEElFiGqTBFNqxGPZXEYMGS3eAOyKxRqEYihk1p9
+         9L+bqrfBcn2SFvdwRWFvNHkrSGoF+8SWvdx9g89o6ZZZtUze0fggBYqLCMjLrP4TYMIS
+         QXIma/kAECRSH4KsheM8+kzGuC8iwt8FnFq/aIrN0YJm169JkB5QBa6tohkEkE7XAX9m
+         zat5WkieOqppurJ0Xz1l/hVw1AQsiEXw2XRSL4bAD8ZA7CEBJCNGDkd6pZ1sGPf5xzls
+         Omhg==
+X-Gm-Message-State: AOAM531p2737cU1WZm5dWl7NnrsukC5QbnPApKtY7nhOh0+b11GbTWl6
+        Ds4zFL5o0lp33UKyzgfz4S7NEQ==
+X-Google-Smtp-Source: ABdhPJzhuNpR60s28axQk88bCxDheLszIz7pnVj9A1oBNW6bNwfBRdsDc84DwlQ3JCGuQJQ9Kowyvg==
+X-Received: by 2002:a05:6830:3115:: with SMTP id b21mr30438984ots.318.1618370110582;
+        Tue, 13 Apr 2021 20:15:10 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id t14sm3872026otj.50.2021.04.13.20.15.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Apr 2021 20:15:10 -0700 (PDT)
+Date:   Tue, 13 Apr 2021 22:15:08 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Nikita Travkin <nikitos.tr@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: Add bindings for Qualcomm
+ Memshare service
+Message-ID: <20210414031508.GZ1538589@yoga>
+References: <20210319172321.22248-1-nikitos.tr@gmail.com>
+ <20210319172321.22248-2-nikitos.tr@gmail.com>
+ <20210330144048.GA264685@robh.at.kernel.org>
+ <bf20ff4b-1765-2bc8-d0de-bea675a1d090@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bf20ff4b-1765-2bc8-d0de-bea675a1d090@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allows PMIC charger loops which are slow(i.e. cannot meet the
-15ms deadline) to still comply to pSnkStby i.e Maximum power
-that can be consumed by sink while in Sink Standby state as defined
-in 7.4.2 Sink Electrical Parameters of USB Power Delivery Specification
-Revision 3.0, Version 1.2.
+On Sat 10 Apr 03:05 CDT 2021, Nikita Travkin wrote:
 
-This patch introduces slow-charger-loop which when set makes
-the port request PD_P_SNK_STDBY_MW(2.5W i.e 500mA@5V) upon entering
-SNK_DISCOVERY (instead of 3A or the 1.5A during SNK_DISCOVERY) and the
-actual currrent limit after RX of PD_CTRL_PSRDY for PD link or during
-SNK_READY for non-pd link.
+> Hi, sorry for a late reply but I couldn't answer earlier.
+> 
+> 30.03.2021 19:40, Rob Herring ??????????:
+> > On Fri, Mar 19, 2021 at 10:23:20PM +0500, nikitos.tr@gmail.com wrote:
+> >> From: Nikita Travkin <nikitos.tr@gmail.com>
+> >>
+> >> Add DT bindings for memshare: QMI service that allocates
+> >> memory per remote processor request.
+> >>
+> >> Signed-off-by: Nikita Travkin <nikitos.tr@gmail.com>
+> >> ---
+> >>  .../bindings/soc/qcom/qcom,memshare.yaml      | 109 ++++++++++++++++++
+> >>  include/dt-bindings/soc/qcom,memshare.h       |  10 ++
+> >>  2 files changed, 119 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,memshare.yaml
+> >>  create mode 100644 include/dt-bindings/soc/qcom,memshare.h
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,memshare.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,memshare.yaml
+> >> new file mode 100644
+> >> index 000000000000..ebdf128b066c
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,memshare.yaml
+> >> @@ -0,0 +1,109 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: "http://devicetree.org/schemas/soc/qcom/qcom,memshare.yaml#"
+> >> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> >> +
+> >> +title: Qualcomm QMI Shared Memory Service
+> > How many shared memory interfaces does Qcom have...
+> >
+> >> +
+> >> +description: |
+> >> +  This driver provides a QMI service that allows remote processors (like modem)
+> >> +  to request additional memory. It is used for applications like GPS in modem.
+> > If the memory region is defined in reserved-memory, how are you 
+> > allocating additional memory? 
+> 
+> Initially remoteproc is loaded into it's own reserved-memory region
+> but qcom decided that they sometimes need more memory than that.
+> Memshare driver in msm8916 downstream tree seem to blindly allocate
+> DMA region for every request that it gets. Additionally for those
+> clients described in the DT, they do the DMA allocation on boot
+> time and never free the region. They call it "guaranteed" allocation.
+> 
+> On msm8916 only one "guaranteed" client seem to be used so I decided
+> to implement it with reserved-memory node. On newer platforms they
+> seem to have more clients but I think that the driver can be easily
+> extended to support dynamic allocation if someone really needs it.
+> 
 
-Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
----
-Changes since V2:
-To address Rob's comments
-* Updated commit and the binding description.
-* Updated subject as well.
----
- .../devicetree/bindings/connector/usb-connector.yaml   | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Is the "guaranteed" memory required to come from the reserved-memory
+part of memory, or could it simply be allocated on demand as well (or
+preallocated, but at a dynamic address)?
 
-diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-index b6daedd62516..32509b98142e 100644
---- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-+++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-@@ -197,6 +197,16 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     enum: [1, 2, 3]
- 
-+  slow-charger-loop:
-+    description: Allows PMIC charger loops which are slow(i.e. cannot meet the 15ms deadline) to
-+      still comply to pSnkStby i.e Maximum power that can be consumed by sink while in Sink Standby
-+      state as defined in 7.4.2 Sink Electrical Parameters of USB Power Delivery Specification
-+      Revision 3.0, Version 1.2. When the property is set, the port requests pSnkStby(2.5W -
-+      5V@500mA) upon entering SNK_DISCOVERY(instead of 3A or the 1.5A, Rp current advertised, during
-+      SNK_DISCOVERY) and the actual currrent limit after reception of PS_Ready for PD link or during
-+      SNK_READY for non-pd link.
-+    type: boolean
-+
- required:
-   - compatible
- 
--- 
-2.31.1.295.g9ea45b61b8-goog
+If these allocations always came from a reserved-memory region, then
+adding a "qcom,memshare" compatible to the reserved-memory node itself
+seems like a reasonable approach. But if dma_alloc is sufficient, and
+there's cases where there's no "guaranteed" region, perhaps we should
+just describe this as part of the remoteproc node (i.e. essentially
+flipping the node/subnode in your current binding).
 
+
+E.g. can we get away with simply adding an optional qcom,memshare-node
+to the remoteproc binding and when that's present we make the Qualcomm
+remoteproc drivers spawn the memshare handler and listen for requests
+from that node?
+
+> I tried to explain that in the cover letter but I think I made some
+> mistake as I don't see it in the Patchwork.
+> 
+> >> +
+> >> +maintainers:
+> >> +  - Nikita Travkin <nikitos.tr@gmail.com>
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    const: qcom,memshare
+> >> +
+> >> +  qcom,legacy-client:
+> >> +    $ref: /schemas/types.yaml#/definitions/phandle
+> >> +    description: Phandle to a memshare client node used for legacy requests.
+> >> +
+> >> +  "#address-cells":
+> >> +    const: 1
+> >> +
+> >> +  "#size-cells":
+> >> +    const: 0
+> >> +
+> >> +patternProperties:
+> >> +  "^.*@[0-9]+$":
+> >> +    type: object
+> >> +
+> >> +    properties:
+> >> +      reg:
+> >> +        description: Proc-ID for clients in this node.
+> > What's Proc-ID?
+> 
+> The requests from the remote nodes contain client-id and proc-id
+> that are supposed to differentiate the clients. It's possible to
+> find the values in downstream DT or by observing what messages
+> are received by the memshare service (I left dev_dbg logging in
+> the driver for that reason)
+> 
+> I think I should reword it to make this more apparent, maybe
+> "Proc-ID that clients in this node send."?
+> 
+
+If this is a constant for each remote and we make this a child thing of
+remoteproc perhaps encode the number in the remoteproc nodes?
+
+(We still need something in DT to state that we want a memshare for
+a given platform/remoteproc)
+
+> >
+> >> +
+> >> +      qcom,qrtr-node:
+> >> +        $ref: /schemas/types.yaml#/definitions/uint32
+> >> +        description: Node from which the requests are expected.
+> >> +
+> >> +      "#address-cells":
+> >> +        const: 1
+> >> +
+> >> +      "#size-cells":
+> >> +        const: 0
+> >> +
+> >> +    patternProperties:
+> >> +      "^.*@[0-9]+$":
+> >> +        type: object
+> >> +
+> >> +        properties:
+> >> +          reg:
+> >> +            description: ID of this client.
+> > How does one determine the ID?
+> 
+> As with proc-id, maybe reword to "ID that this client sends."?
+> 
+> I will change those in v2, I still expect comments on the driver
+> itself, so I'll wait for that before submitting it with just a
+> couple lines changed.
+> 
+> >
+> >> +
+> >> +          memory-region:
+> >> +            $ref: /schemas/types.yaml#/definitions/phandle
+> >> +            description: |
+> >> +              Reserved memory region that should be used for allocation.
+> >> +
+> >> +        required:
+> >> +          - reg
+> >> +
+> >> +    required:
+> >> +      - reg
+> >> +      - qcom,qrtr-node
+> >> +
+> >> +required:
+> >> +  - compatible
+> >> +
+> >> +additionalProperties: false
+> >> +
+> >> +examples:
+> >> +  - |
+> >> +    #include <dt-bindings/soc/qcom,memshare.h>
+> >> +
+> >> +    reserved-memory {
+> >> +
+> >> +      #address-cells = <2>;
+> >> +      #size-cells = <2>;
+> >> +
+> >> +      gps_mem: gps@93c00000 {
+> >> +        reg = <0x0 0x93c00000 0x0 0x200000>;
+> >> +        no-map;
+> > We support 'compatible' in reserved-memory nodes, can you simplify the 
+> > binding and put everything in here?
+> 
+> If I understand this correctly, each reserved-memory node will
+> then load a new instance of memshare. Since the driver registers a
+> QMI service that handles multiple clients, there should be only one
+> instance.
+
+This you could work around in the driver implementation, to refcount a
+single implementation shared among all the instances.
+
+> Additionally, as I mentioned earlier, some clients may not
+> need reserved-memory at all
+> 
+
+This on the other hand, makes me feel like we shouldn't go that route.
+
+Regards,
+Bjorn
+
+> >> +      };
+> >> +    };
+> >> +
+> >> +    memshare {
+> >> +      compatible = "qcom,memshare";
+> >> +      qcom,legacy-client = <&memshare_gps>;
+> >> +
+> >> +      #address-cells = <1>;
+> >> +      #size-cells = <0>;
+> >> +
+> >> +      mpss@0 {
+> >> +        reg = <MEMSHARE_PROC_MPSS_V01>;
+> >> +        qcom,qrtr-node = <0>;
+> >> +
+> >> +        #address-cells = <1>;
+> >> +        #size-cells = <0>;
+> >> +
+> >> +        memshare_gps: gps@0 {
+> >> +          reg = <0>;
+> >> +          memory-region = <&gps_mem>;
+> >> +        };
+> >> +      };
+> >> +    };
+> >> +
+> >> +...
+> >> diff --git a/include/dt-bindings/soc/qcom,memshare.h b/include/dt-bindings/soc/qcom,memshare.h
+> >> new file mode 100644
+> >> index 000000000000..4cef1ef75d09
+> >> --- /dev/null
+> >> +++ b/include/dt-bindings/soc/qcom,memshare.h
+> >> @@ -0,0 +1,10 @@
+> >> +/* SPDX-License-Identifier: GPL-2.0 */
+> >> +
+> >> +#ifndef __DT_QCOM_MEMSHARE_H__
+> >> +#define __DT_QCOM_MEMSHARE_H__
+> >> +
+> >> +#define MEMSHARE_PROC_MPSS_V01 0
+> >> +#define MEMSHARE_PROC_ADSP_V01 1
+> >> +#define MEMSHARE_PROC_WCNSS_V01 2
+> >> +
+> >> +#endif /* __DT_QCOM_MEMSHARE_H__ */
+> >> -- 
+> >> 2.27.0
+> >>
+> 
