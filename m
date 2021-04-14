@@ -2,199 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5259B35F5DA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 16:14:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1441935F621
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 16:27:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351764AbhDNOGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 10:06:37 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:48018 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351736AbhDNOGa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 10:06:30 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13EE5uij012092;
-        Wed, 14 Apr 2021 09:05:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1618409156;
-        bh=Ka1Qy+cOYe6V8+ih28qlwPxSBVP6axSVpbaQDyyCpW8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Ny+VcP1QGW3QORuRtue5oaUxZ/4P4F3GZIbKhsqzvxLUjBT+YqLAKurqJQrn6eTFT
-         yhELoyDWm3JPhyCkqhBpZpZ5jhuN77TlE2epR2WxFCRSu+ZEFMYTjhThYoreEPAwR2
-         Ih1YNgvIseLF6nADGAPGjaBc5/jRDGjgLYR33aFM=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13EE5tUD119839
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 14 Apr 2021 09:05:55 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 14
- Apr 2021 09:05:55 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 14 Apr 2021 09:05:55 -0500
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13EE5LuE074247;
-        Wed, 14 Apr 2021 09:05:51 -0500
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        id S233809AbhDNO1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 10:27:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33704 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244938AbhDNO1Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 10:27:24 -0400
+Received: from mail-qk1-x749.google.com (mail-qk1-x749.google.com [IPv6:2607:f8b0:4864:20::749])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9694DC06175F
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 07:27:01 -0700 (PDT)
+Received: by mail-qk1-x749.google.com with SMTP id h21so13201901qkl.12
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 07:27:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=TzCISL5Evi9E9MUqbTCIPST71JA9ghFV2riMzpMB+Rg=;
+        b=eIyl28CgG+Padrujb0SCtaCm4FPxmKHaGszVxItv2G4Cjx9pnNGCpiDk3O9DkJ7XCz
+         X8AmmZTizdCT4hXTAJqnkBky6XlY3CNcAYpd3E2qiWsefDY/IeRICmecZhVpDV37E+z6
+         UDeNJAaIt+C7My/8U1Wiipl9bjc5k3AnZA3XZtJ6W+SX0xOS+GyEXk/mq2mgwjpxShsI
+         spNEx3/iGL/aSP6k+lut1Zyhf3tHxGMkVELIKM76ogzFq0Tdlbn9KYnlbH4/Hzns1VT5
+         Jymv3Cfjpeqg5T43EjK1LqpQfbDId9iQNLPG9cqD9TvtG5w+0OTiNzaNKemSGwtKDBsi
+         3M9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=TzCISL5Evi9E9MUqbTCIPST71JA9ghFV2riMzpMB+Rg=;
+        b=uV5wCGwYaPhB5CqhLvvpd5D+OmIyCPXb4JuM5WX9yRtUh+jICizy6MMPLs5gXHTdf8
+         3vDancejWQ3j4fT5SnPyoxjBsOI4dBtkm05+nYQ2fh/ESoc7b6Lgg6K1AXx91j4v8NRE
+         lAib/WSkCE1niM+LHj2cSLAhHhQCU5vPO3kgyaNCyVHV2rw0sPohtN/HJiH8BBYPZRBn
+         Va2FrrGBHE2nEXp+aiJATJwkS4BDTKh/zmT6EmBqmXAKlTxwPaAdxRgJX0RB6KNotShM
+         XFCG9bMLbK61m27nnjtEDMA0Q5Szr5u/sk2mOl9pi5q59WqzSqL7isNt3zOWw65nVuxE
+         f2+w==
+X-Gm-Message-State: AOAM530jlfasu67m5Xa48VBCT2vFfrS72ZiU2ndUqL/SFzRg36UKNQH3
+        +BrUxKyQoG/CpSJOUwLOx5oY1+cNqKk=
+X-Google-Smtp-Source: ABdhPJwKjo7BPebh34wQsBP7LI3668XinoH3slpguPVzXf9IdqGh3lw2g3cRflLWgsE4SsWWmJqcY6dVZmw=
+X-Received: from badhri.mtv.corp.google.com ([2620:15c:211:201:91dd:58ac:7590:aa21])
+ (user=badhri job=sendgmr) by 2002:a0c:c352:: with SMTP id j18mr8110850qvi.12.1618410420448;
+ Wed, 14 Apr 2021 07:27:00 -0700 (PDT)
+Date:   Wed, 14 Apr 2021 07:26:54 -0700
+Message-Id: <20210414142656.63749-1-badhri@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.31.1.295.g9ea45b61b8-goog
+Subject: [PATCH v4 1/3] usb: typec: tcpm: Honour pSnkStdby requirement during negotiation
+From:   Badhri Jagan Sridharan <badhri@google.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, <linux-can@vger.kernel.org>,
-        <netdev@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>
-Subject: [PATCH v2 6/6] can: m_can: Add support for transceiver as phy
-Date:   Wed, 14 Apr 2021 19:35:21 +0530
-Message-ID: <20210414140521.11463-7-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210414140521.11463-1-a-govindraju@ti.com>
-References: <20210414140521.11463-1-a-govindraju@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Kyle Tso <kyletso@google.com>,
+        Badhri Jagan Sridharan <badhri@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Faiz Abbas <faiz_abbas@ti.com>
+From PD Spec:
+The Sink Shall transition to Sink Standby before a positive or
+negative voltage transition of VBUS. During Sink Standby
+the Sink Shall reduce its power draw to pSnkStdby. This allows
+the Source to manage the voltage transition as well as
+supply sufficient operating current to the Sink to maintain PD
+operation during the transition. The Sink Shall
+complete this transition to Sink Standby within tSnkStdby
+after evaluating the Accept Message from the Source. The
+transition when returning to Sink operation from Sink Standby
+Shall be completed within tSnkNewPower. The
+pSnkStdby requirement Shall only apply if the Sink power draw
+is higher than this level.
 
-Add support for implementing transceiver node as phy. The max_bitrate is
-obtained by getting a phy attribute.
+The above requirement needs to be met to prevent hard resets
+from port partner.
 
-Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+Without the patch: (5V/3A during SNK_DISCOVERY all the way through
+explicit contract)
+[   95.711984] CC1: 0 -> 0, CC2: 0 -> 5 [state TOGGLING, polarity 0, connected]
+[   95.712007] state change TOGGLING -> SNK_ATTACH_WAIT [rev3 NONE_AMS]
+[   95.712017] pending state change SNK_ATTACH_WAIT -> SNK_DEBOUNCED @ 170 ms [rev3 NONE_AMS]
+[   95.837190] VBUS on
+[   95.882075] state change SNK_ATTACH_WAIT -> SNK_DEBOUNCED [delayed 170 ms]
+[   95.882082] state change SNK_DEBOUNCED -> SNK_ATTACHED [rev3 NONE_AMS]
+[   95.882086] polarity 1
+[   95.883151] set_auto_vbus_discharge_threshold mode:0 pps_active:n vbus:5000 ret:0
+[   95.883441] enable vbus discharge ret:0
+[   95.883445] Requesting mux state 1, usb-role 2, orientation 2
+[   95.883776] state change SNK_ATTACHED -> SNK_STARTUP [rev3 NONE_AMS]
+[   95.883879] pending state change SNK_STARTUP -> SNK_DISCOVERY @ 500 ms [rev3 NONE_AMS]
+[   96.038960] VBUS on
+[   96.383939] state change SNK_STARTUP -> SNK_DISCOVERY [delayed 500 ms]
+[   96.383946] Setting voltage/current limit 5000 mV 3000 mA
+[   96.383961] vbus=0 charge:=1
+[   96.386044] state change SNK_DISCOVERY -> SNK_WAIT_CAPABILITIES [rev3 NONE_AMS]
+[   96.386309] pending state change SNK_WAIT_CAPABILITIES -> HARD_RESET_SEND @ 450 ms [rev3 NONE_AMS]
+[   96.394404] PD RX, header: 0x2161 [1]
+[   96.394408]  PDO 0: type 0, 5000 mV, 3000 mA [E]
+[   96.394410]  PDO 1: type 0, 9000 mV, 2000 mA []
+[   96.394412] state change SNK_WAIT_CAPABILITIES -> SNK_NEGOTIATE_CAPABILITIES [rev2 POWER_NEGOTIATION]
+[   96.394416] Setting usb_comm capable false
+[   96.395083] cc=0 cc1=0 cc2=5 vbus=0 vconn=sink polarity=1
+[   96.395089] Requesting PDO 1: 9000 mV, 2000 mA
+[   96.395093] PD TX, header: 0x1042
+[   96.397404] PD TX complete, status: 0
+[   96.397424] pending state change SNK_NEGOTIATE_CAPABILITIES -> HARD_RESET_SEND @ 60 ms [rev2 POWER_NEGOTIATION]
+[   96.400826] PD RX, header: 0x363 [1]
+[   96.400829] state change SNK_NEGOTIATE_CAPABILITIES -> SNK_TRANSITION_SINK [rev2 POWER_NEGOTIATION]
+[   96.400832] pending state change SNK_TRANSITION_SINK -> HARD_RESET_SEND @ 500 ms [rev2 POWER_NEGOTIATION]
+[   96.577315] PD RX, header: 0x566 [1]
+[   96.577321] Setting voltage/current limit 9000 mV 2000 mA
+[   96.578363] set_auto_vbus_discharge_threshold mode:3 pps_active:n vbus:9000 ret:0
+[   96.578370] state change SNK_TRANSITION_SINK -> SNK_READY [rev2 POWER_NEGOTIATION]
+
+With the patch:
+[  168.398573] CC1: 0 -> 0, CC2: 0 -> 5 [state TOGGLING, polarity 0, connected]
+[  168.398605] state change TOGGLING -> SNK_ATTACH_WAIT [rev3 NONE_AMS]
+[  168.398619] pending state change SNK_ATTACH_WAIT -> SNK_DEBOUNCED @ 170 ms [rev3 NONE_AMS]
+[  168.522348] VBUS on
+[  168.568676] state change SNK_ATTACH_WAIT -> SNK_DEBOUNCED [delayed 170 ms]
+[  168.568684] state change SNK_DEBOUNCED -> SNK_ATTACHED [rev3 NONE_AMS]
+[  168.568688] polarity 1
+[  168.569867] set_auto_vbus_discharge_threshold mode:0 pps_active:n vbus:5000 ret:0
+[  168.570158] enable vbus discharge ret:0
+[  168.570161] Requesting mux state 1, usb-role 2, orientation 2
+[  168.570504] state change SNK_ATTACHED -> SNK_STARTUP [rev3 NONE_AMS]
+[  168.570634] pending state change SNK_STARTUP -> SNK_DISCOVERY @ 500 ms [rev3 NONE_AMS]
+[  169.070689] state change SNK_STARTUP -> SNK_DISCOVERY [delayed 500 ms]
+[  169.070695] Setting voltage/current limit 5000 mV 3000 mA
+[  169.070702] vbus=0 charge:=1
+[  169.072719] state change SNK_DISCOVERY -> SNK_WAIT_CAPABILITIES [rev3 NONE_AMS]
+[  169.073145] pending state change SNK_WAIT_CAPABILITIES -> HARD_RESET_SEND @ 450 ms [rev3 NONE_AMS]
+[  169.077162] PD RX, header: 0x2161 [1]
+[  169.077172]  PDO 0: type 0, 5000 mV, 3000 mA [E]
+[  169.077178]  PDO 1: type 0, 9000 mV, 2000 mA []
+[  169.077183] state change SNK_WAIT_CAPABILITIES -> SNK_NEGOTIATE_CAPABILITIES [rev2 POWER_NEGOTIATION]
+[  169.077191] Setting usb_comm capable false
+[  169.077753] cc=0 cc1=0 cc2=5 vbus=0 vconn=sink polarity=1
+[  169.077759] Requesting PDO 1: 9000 mV, 2000 mA
+[  169.077762] PD TX, header: 0x1042
+[  169.079990] PD TX complete, status: 0
+[  169.080013] pending state change SNK_NEGOTIATE_CAPABILITIES -> HARD_RESET_SEND @ 60 ms [rev2 POWER_NEGOTIATION]
+[  169.083183] VBUS on
+[  169.084195] PD RX, header: 0x363 [1]
+[  169.084200] state change SNK_NEGOTIATE_CAPABILITIES -> SNK_TRANSITION_SINK [rev2 POWER_NEGOTIATION]
+[  169.084206] Setting standby current 5000 mV @ 500 mA
+[  169.084209] Setting voltage/current limit 5000 mV 500 mA
+[  169.084220] pending state change SNK_TRANSITION_SINK -> HARD_RESET_SEND @ 500 ms [rev2 POWER_NEGOTIATION]
+[  169.260222] PD RX, header: 0x566 [1]
+[  169.260227] Setting voltage/current limit 9000 mV 2000 mA
+[  169.261315] set_auto_vbus_discharge_threshold mode:3 pps_active:n vbus:9000 ret:0
+[  169.261321] state change SNK_TRANSITION_SINK -> SNK_READY [rev2 POWER_NEGOTIATION]
+[  169.261570] AMS POWER_NEGOTIATION finished
+
+Fixes: f0690a25a140b ("staging: typec: USB Type-C Port Manager (tcpm)")
+Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 ---
- drivers/net/can/m_can/m_can.c          | 18 ++++++++++++++++++
- drivers/net/can/m_can/m_can.h          |  2 ++
- drivers/net/can/m_can/m_can_platform.c | 15 +++++++++++++++
- 3 files changed, 35 insertions(+)
+Changes since V3:
+* Added reviewed-by tag from Heikki
+Changes since V2:
+* Refactored code based on Heikki's suggestion
+* Added reviewed-by tag from Guenter
+---
+ drivers/usb/typec/tcpm/tcpm.c | 17 +++++++++++++++++
+ include/linux/usb/pd.h        |  2 ++
+ 2 files changed, 19 insertions(+)
 
-diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
-index 34073cd077e4..4807a1f69cc7 100644
---- a/drivers/net/can/m_can/m_can.c
-+++ b/drivers/net/can/m_can/m_can.c
-@@ -21,6 +21,7 @@
- #include <linux/iopoll.h>
- #include <linux/can/dev.h>
- #include <linux/pinctrl/consumer.h>
-+#include <linux/phy/phy.h>
- 
- #include "m_can.h"
- 
-@@ -1514,6 +1515,7 @@ static void m_can_stop(struct net_device *dev)
- static int m_can_close(struct net_device *dev)
- {
- 	struct m_can_classdev *cdev = netdev_priv(dev);
-+	int err;
- 
- 	netif_stop_queue(dev);
- 
-@@ -1536,6 +1538,14 @@ static int m_can_close(struct net_device *dev)
- 	close_candev(dev);
- 	can_led_event(dev, CAN_LED_EVENT_STOP);
- 
-+	if (cdev->transceiver) {
-+		err = phy_power_off(cdev->transceiver);
-+		if (err) {
-+			netdev_err(dev, "error powering off phy, err=%d\n", err);
-+			return err;
+diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
+index 1c32bdf62852..aedc8bb9532a 100644
+--- a/drivers/usb/typec/tcpm/tcpm.c
++++ b/drivers/usb/typec/tcpm/tcpm.c
+@@ -4131,6 +4131,23 @@ static void run_state_machine(struct tcpm_port *port)
+ 		}
+ 		break;
+ 	case SNK_TRANSITION_SINK:
++		/* From the USB PD spec:
++		 * "The Sink Shall transition to Sink Standby before a positive or
++		 * negative voltage transition of VBUS. During Sink Standby
++		 * the Sink Shall reduce its power draw to pSnkStdby."
++		 *
++		 * This is not applicable to PPS though as the port can continue
++		 * to draw negotiated power without switching to standby.
++		 */
++		if (port->supply_voltage != port->req_supply_voltage && !port->pps_data.active &&
++		    port->current_limit * port->supply_voltage / 1000 > PD_P_SNK_STDBY_MW) {
++			u32 stdby_ma = PD_P_SNK_STDBY_MW * 1000 / port->supply_voltage;
++
++			tcpm_log(port, "Setting standby current %u mV @ %u mA",
++				 port->supply_voltage, stdby_ma);
++			tcpm_set_current_limit(port, stdby_ma, port->supply_voltage);
 +		}
-+	}
++		fallthrough;
+ 	case SNK_TRANSITION_SINK_VBUS:
+ 		tcpm_set_state(port, hard_reset_state(port),
+ 			       PD_T_PS_TRANSITION);
+diff --git a/include/linux/usb/pd.h b/include/linux/usb/pd.h
+index 70d681918d01..bf00259493e0 100644
+--- a/include/linux/usb/pd.h
++++ b/include/linux/usb/pd.h
+@@ -493,4 +493,6 @@ static inline unsigned int rdo_max_power(u32 rdo)
+ #define PD_N_CAPS_COUNT		(PD_T_NO_RESPONSE / PD_T_SEND_SOURCE_CAP)
+ #define PD_N_HARD_RESET_COUNT	2
+ 
++#define PD_P_SNK_STDBY_MW	2500	/* 2500 mW */
 +
- 	return 0;
- }
- 
-@@ -1720,6 +1730,14 @@ static int m_can_open(struct net_device *dev)
- 	struct m_can_classdev *cdev = netdev_priv(dev);
- 	int err;
- 
-+	if (cdev->transceiver) {
-+		err = phy_power_on(cdev->transceiver);
-+		if (err) {
-+			netdev_err(dev, "error powering on phy, err=%d\n", err);
-+			return err;
-+		}
-+	}
-+
- 	err = m_can_clk_start(cdev);
- 	if (err)
- 		return err;
-diff --git a/drivers/net/can/m_can/m_can.h b/drivers/net/can/m_can/m_can.h
-index ace071c3e58c..38cad068abad 100644
---- a/drivers/net/can/m_can/m_can.h
-+++ b/drivers/net/can/m_can/m_can.h
-@@ -28,6 +28,7 @@
- #include <linux/iopoll.h>
- #include <linux/can/dev.h>
- #include <linux/pinctrl/consumer.h>
-+#include <linux/phy/phy.h>
- 
- /* m_can lec values */
- enum m_can_lec_type {
-@@ -82,6 +83,7 @@ struct m_can_classdev {
- 	struct workqueue_struct *tx_wq;
- 	struct work_struct tx_work;
- 	struct sk_buff *tx_skb;
-+	struct phy *transceiver;
- 
- 	struct can_bittiming_const *bit_timing;
- 	struct can_bittiming_const *data_timing;
-diff --git a/drivers/net/can/m_can/m_can_platform.c b/drivers/net/can/m_can/m_can_platform.c
-index 599de0e08cd7..566ba25fb186 100644
---- a/drivers/net/can/m_can/m_can_platform.c
-+++ b/drivers/net/can/m_can/m_can_platform.c
-@@ -6,6 +6,7 @@
- // Copyright (C) 2018-19 Texas Instruments Incorporated - http://www.ti.com/
- 
- #include <linux/platform_device.h>
-+#include <linux/phy/phy.h>
- 
- #include "m_can.h"
- 
-@@ -67,6 +68,7 @@ static int m_can_plat_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	void __iomem *addr;
- 	void __iomem *mram_addr;
-+	struct phy *transceiver;
- 	int irq, ret = 0;
- 
- 	mcan_class = m_can_class_allocate_dev(&pdev->dev,
-@@ -101,6 +103,18 @@ static int m_can_plat_probe(struct platform_device *pdev)
- 		goto probe_fail;
- 	}
- 
-+	transceiver = devm_of_phy_optional_get_by_index(&pdev->dev, pdev->dev.of_node, 0);
-+	if (IS_ERR(transceiver)) {
-+		ret = PTR_ERR(transceiver);
-+		dev_err(&pdev->dev, "error while getting phy, err=%d\n", ret);
-+		return ret;
-+	}
-+
-+	if (!transceiver)
-+		dev_info(&pdev->dev, "No transceiver phy found\n");
-+	else
-+		priv->cdev.can.bitrate_max = transceiver->attrs.max_link_rate;
-+
- 	priv->base = addr;
- 	priv->mram_base = mram_addr;
- 
-@@ -108,6 +122,7 @@ static int m_can_plat_probe(struct platform_device *pdev)
- 	mcan_class->pm_clock_support = 1;
- 	mcan_class->can.clock.freq = clk_get_rate(mcan_class->cclk);
- 	mcan_class->dev = &pdev->dev;
-+	mcan_class->transceiver = transceiver;
- 
- 	mcan_class->ops = &m_can_plat_ops;
- 
+ #endif /* __LINUX_USB_PD_H */
 -- 
-2.17.1
+2.31.1.295.g9ea45b61b8-goog
 
