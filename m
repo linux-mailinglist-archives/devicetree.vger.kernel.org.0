@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D374235F9DD
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 19:31:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DABBC35F9E0
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 19:31:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350885AbhDNRaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 13:30:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45708 "EHLO
+        id S1350941AbhDNRaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 13:30:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350341AbhDNRaE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 13:30:04 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB09FC061344
-        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 10:29:37 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id k23-20020a17090a5917b02901043e35ad4aso12887918pji.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 10:29:37 -0700 (PDT)
+        with ESMTP id S1350781AbhDNRaF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 13:30:05 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDADFC061347
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 10:29:40 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id u11so6968586pjr.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 10:29:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=SDiflsGvBCYCoVMBt0Fyo3zuZR1BmIQO6zXHXOu40Mw=;
-        b=bXgPeL+8QRF9Gjxpyiun2OlMg3Of3XNusHjUl10Do3tPZf0xCI4aDB2CRppJls5vCo
-         cQZrEVi7aWWJZUwv0C5LOB+dx0PcrY8Q6BfrgGB9OUU8NfN7SFS2zO5jCmIGYunfeawR
-         ywMgma3p50C1zJmwfplwwtgbrNeGp+IuyCWhA=
+        bh=70dSAhdvNf9rW7naVyB8FacZo/tKpmgYTIzZpzN71Cs=;
+        b=LsiMLszNVSqTMFSOmT7Vt7BL2HWjYpQnn9/Ah8Ahmt14VXi38iwnxuRRnAMd7nV+F4
+         L8OiYKIW4vYpw8N0fUeTwgUCiDMq5+HbPF+3sOym2H36ZFwtvq4PnCKSeplaTzdczwh+
+         M1/M+ijlrnFtXNjeEsgG7aN63y8Ce7LLt8uSE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=SDiflsGvBCYCoVMBt0Fyo3zuZR1BmIQO6zXHXOu40Mw=;
-        b=Pfl0OqGtrTs0IO9MJ5v0uLQR4+WHSgt8HQnIsIOudalZMLfskEwMm8wf75fbTfpDXa
-         fGhhbNl5h67l61oa3d79ufHZmZjNhavucC259w1PpdbDIz4C360HE8JslLVWawBp2Mg/
-         Y1ZgJcQtmmSpqf7xZ4jGiIC5YGMMstB9vOGmrSd0iGdpF7nVyr66AfyqOqRDqBeJ0Rjo
-         NbAyubcuVo29R21ZZHeWfuiGVcMXm66zaekJRx0Ch1p6o+5+u1x5nOa64kYs93teHv6V
-         D0z0H1VJCaahLtuBJjOy+fDYEeWr7ZEnqtjibMAcHKYl5HoH81Io47tD3K5W/vip0eka
-         YIWw==
-X-Gm-Message-State: AOAM533+7rZkvDM6dVVkdNVy01irQmxqWTyjL7IK7dwUl3oU/c2wKiTO
-        i16G0PoSw+WMs1x0g5ACyqe25w==
-X-Google-Smtp-Source: ABdhPJwM/DI2o34F+WDaWrZsOlue0b7UjEhkAxTdz2w/M4qUcKAuHYkMB4oCu8X13AIH9xl4tSLwfg==
-X-Received: by 2002:a17:90a:df17:: with SMTP id gp23mr2497950pjb.7.1618421377192;
-        Wed, 14 Apr 2021 10:29:37 -0700 (PDT)
+        bh=70dSAhdvNf9rW7naVyB8FacZo/tKpmgYTIzZpzN71Cs=;
+        b=rVa95DPT2Bwv8EqW2fbQCbGIRhV4rsrPhwttoiUYvJmopj4tQJZWPXvbyRK2Fcc88x
+         cSTsPdoKHjtxzCvDJ68ZCAzH/IFdvkY6J/zr/pd17pobR0H2ER7wIJ+240sm6ubdJaSV
+         i3m5ZKQ+dwYgjArVcXkQLsIYdChCb18yPfIOAn9vC+F6jDAcPMBwHwfwfGG94zSv4Pfs
+         3crn1OwTE1WEdyXjnIlfYDqtFpRivQk6L6Lb6EeglBZZG4DSIy9ApULwEIyesx7aWbKk
+         HX9kHjraOJJ0RrKO909un8rCUiKc7wDkfyoD2MBs5FPrVjHQ0wnYaPwfmMawuzOP6jhB
+         EKdQ==
+X-Gm-Message-State: AOAM530JnQ9J22KCSA9VxdvakMpFyRp60qJ6DInirZXLT582kGebKZ2j
+        b9sxEnTgqX7bg9JwHSSIpbZlUQ==
+X-Google-Smtp-Source: ABdhPJwqy6xfsxSkXZwh4yhPlR+yx5Kxrr/lleQqawAAaqaYA9AZc2k7rgE80MSaJDQAOD1ejSDS8w==
+X-Received: by 2002:a17:90a:ca83:: with SMTP id y3mr4896192pjt.191.1618421380273;
+        Wed, 14 Apr 2021 10:29:40 -0700 (PDT)
 Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:bae3:4af0:9792:1539])
-        by smtp.gmail.com with ESMTPSA id e31sm63460pjk.4.2021.04.14.10.29.34
+        by smtp.gmail.com with ESMTPSA id e31sm63460pjk.4.2021.04.14.10.29.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Apr 2021 10:29:36 -0700 (PDT)
+        Wed, 14 Apr 2021 10:29:39 -0700 (PDT)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
 To:     Wolfram Sang <wsa@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
@@ -60,9 +60,9 @@ Cc:     linux-i2c@vger.kernel.org, Qii Wang <qii.wang@mediatek.com>,
         Jani Nikula <jani.nikula@linux.intel.com>,
         Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
         intel-gfx@lists.freedesktop.org
-Subject: [PATCH v19 5/6] arm64: dts: mt8183: add supply name for eeprom
-Date:   Thu, 15 Apr 2021 01:29:15 +0800
-Message-Id: <20210414172916.2689361-6-hsinyi@chromium.org>
+Subject: [PATCH v19 6/6] drm/i915/selftests: Rename functions names
+Date:   Thu, 15 Apr 2021 01:29:16 +0800
+Message-Id: <20210414172916.2689361-7-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.31.1.295.g9ea45b61b8-goog
 In-Reply-To: <20210414172916.2689361-1-hsinyi@chromium.org>
 References: <20210414172916.2689361-1-hsinyi@chromium.org>
@@ -72,111 +72,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add supplies for eeprom for mt8183 boards.
+pm_resume and pm_suspend might be conflict with the ones defined in
+include/linux/suspend.h. Rename pm_resume{suspend} to
+i915_pm_resume{suspend} since they are only used here.
 
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Reported-by: kernel test robot <lkp@intel.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi | 4 ++++
- arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi | 4 ++++
- arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi  | 4 ++++
- 3 files changed, 12 insertions(+)
+ drivers/gpu/drm/i915/selftests/i915_gem.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
-index b442e38a3156..28966a65391b 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
-@@ -88,11 +88,13 @@ &i2c2 {
- 	pinctrl-0 = <&i2c2_pins>;
- 	status = "okay";
- 	clock-frequency = <400000>;
-+	vbus-supply = <&mt6358_vcamio_reg>;
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem.c b/drivers/gpu/drm/i915/selftests/i915_gem.c
+index dc394fb7ccfa..525afda9d31f 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem.c
+@@ -94,7 +94,7 @@ static int pm_prepare(struct drm_i915_private *i915)
+ 	return 0;
+ }
  
- 	eeprom@58 {
- 		compatible = "atmel,24c32";
- 		reg = <0x58>;
- 		pagesize = <32>;
-+		vcc-supply = <&mt6358_vcama2_reg>;
- 	};
- };
+-static void pm_suspend(struct drm_i915_private *i915)
++static void i915_pm_suspend(struct drm_i915_private *i915)
+ {
+ 	intel_wakeref_t wakeref;
  
-@@ -101,11 +103,13 @@ &i2c4 {
- 	pinctrl-0 = <&i2c4_pins>;
- 	status = "okay";
- 	clock-frequency = <400000>;
-+	vbus-supply = <&mt6358_vcn18_reg>;
+@@ -116,7 +116,7 @@ static void pm_hibernate(struct drm_i915_private *i915)
+ 	}
+ }
  
- 	eeprom@54 {
- 		compatible = "atmel,24c32";
- 		reg = <0x54>;
- 		pagesize = <32>;
-+		vcc-supply = <&mt6358_vcn18_reg>;
- 	};
- };
+-static void pm_resume(struct drm_i915_private *i915)
++static void i915_pm_resume(struct drm_i915_private *i915)
+ {
+ 	intel_wakeref_t wakeref;
  
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi
-index 2f5234a16ead..3aa79403c0c2 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi
-@@ -62,11 +62,13 @@ &i2c2 {
- 	pinctrl-0 = <&i2c2_pins>;
- 	status = "okay";
- 	clock-frequency = <400000>;
-+	vbus-supply = <&mt6358_vcamio_reg>;
+@@ -152,12 +152,12 @@ static int igt_gem_suspend(void *arg)
+ 	if (err)
+ 		goto out;
  
- 	eeprom@58 {
- 		compatible = "atmel,24c64";
- 		reg = <0x58>;
- 		pagesize = <32>;
-+		vcc-supply = <&mt6358_vcamio_reg>;
- 	};
- };
+-	pm_suspend(i915);
++	i915_pm_suspend(i915);
  
-@@ -75,11 +77,13 @@ &i2c4 {
- 	pinctrl-0 = <&i2c4_pins>;
- 	status = "okay";
- 	clock-frequency = <400000>;
-+	vbus-supply = <&mt6358_vcn18_reg>;
+ 	/* Here be dragons! Note that with S3RST any S3 may become S4! */
+ 	simulate_hibernate(i915);
  
- 	eeprom@54 {
- 		compatible = "atmel,24c64";
- 		reg = <0x54>;
- 		pagesize = <32>;
-+		vcc-supply = <&mt6358_vcn18_reg>;
- 	};
- };
+-	pm_resume(i915);
++	i915_pm_resume(i915);
  
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi
-index fbc471ccf805..30c183c96a54 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi
-@@ -71,11 +71,13 @@ &i2c2 {
- 	pinctrl-0 = <&i2c2_pins>;
- 	status = "okay";
- 	clock-frequency = <400000>;
-+	vbus-supply = <&mt6358_vcamio_reg>;
+ 	err = switch_to_context(ctx);
+ out:
+@@ -192,7 +192,7 @@ static int igt_gem_hibernate(void *arg)
+ 	/* Here be dragons! */
+ 	simulate_hibernate(i915);
  
- 	eeprom@58 {
- 		compatible = "atmel,24c32";
- 		reg = <0x58>;
- 		pagesize = <32>;
-+		vcc-supply = <&mt6358_vcama2_reg>;
- 	};
- };
+-	pm_resume(i915);
++	i915_pm_resume(i915);
  
-@@ -84,11 +86,13 @@ &i2c4 {
- 	pinctrl-0 = <&i2c4_pins>;
- 	status = "okay";
- 	clock-frequency = <400000>;
-+	vbus-supply = <&mt6358_vcn18_reg>;
- 
- 	eeprom@54 {
- 		compatible = "atmel,24c32";
- 		reg = <0x54>;
- 		pagesize = <32>;
-+		vcc-supply = <&mt6358_vcn18_reg>;
- 	};
- };
- 
+ 	err = switch_to_context(ctx);
+ out:
 -- 
 2.31.1.295.g9ea45b61b8-goog
 
