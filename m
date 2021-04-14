@@ -2,89 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3A5435F6C7
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 16:54:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96DC635F6E5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 16:54:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351994AbhDNOvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 10:51:06 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:34642 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352007AbhDNOu5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 10:50:57 -0400
-Received: by mail-ot1-f43.google.com with SMTP id k14-20020a9d7dce0000b02901b866632f29so19572942otn.1;
-        Wed, 14 Apr 2021 07:50:36 -0700 (PDT)
+        id S1345437AbhDNOyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 10:54:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39468 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345308AbhDNOyX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 10:54:23 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 435DBC06175F;
+        Wed, 14 Apr 2021 07:53:29 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id u7so8436319plr.6;
+        Wed, 14 Apr 2021 07:53:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3YMvYEtHewROZOpFAlE+YVnTRwtmI4sbne6ZZ7QNqKw=;
+        b=gk1viNQDK7ATXpkM7+FeLIsLNRfFMGyp0/r07qHCpZQpPF0CpIQj0R5blR/OdQwqB2
+         qpYJWOLGJa9ewSlnMr7wdEuxSxp1AfJ0Hjlpj1S1XFdpI/G2togUKr+loeuKgbgn4xFE
+         8Rr+gnWPuVitTPdq41lvXakBF6WbVHCpY+lhCb3AElHcbMRVoE1KfmagE6u06IuQdFB3
+         A9gK+4mFF66bDX416YCsn4iJ2j1XzECIGaECKtv7xaOkHwEkcCpxqocCfZK+BTgXmAnt
+         G2CFuNYv2k/qwJeLyXFeuPlTxHZtUEX3jj0lqdCDjc6u/eNvjcxcGqubjgwI9DFU8uDn
+         7SDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=imFjAaiBjLT6LuL67d8A8g+gXv6wR7zTuwnflF5k37w=;
-        b=G2+jOiZpR5KmKIliauD7G7JUe+PXdLowMX4PWYOguYOCuplbR5iPtpvdFWzSOJTKkl
-         uNF1hsNKF4sz9oICDwZjno6dlG6v4hZ62NTbzKXory66fgPKUiTyKC4La6ThRK8dZzwp
-         hN4EYKPICZi+j0rlr1/aeUnt7ImQJwR1m1XKPUepHMbWarUXW2WDnlBsPgDC5WjRiDQl
-         jOY2SI7rALynVUXG0+3qcLeSdt9AWkQfcXBmFf1vgxXOuVVzqdeOLAQOpVecItv8uWoE
-         GxU5zTEs/6I4kxBjRGEsFSgMbbLKks7etRLNJaDrJBJeGz17VlBMHZ+eM4Edru/l8f3h
-         uC0A==
-X-Gm-Message-State: AOAM531B6vIl5dDY3vmJmV1EIGIsSO0m3NTcC0XFQ17vIUdM0vJcARys
-        1EetIvpba1EnMl8xMGHNdQ==
-X-Google-Smtp-Source: ABdhPJx1p2gizTVe4suB3LooLj3w41cuF7yA9Nfe6OWEggQibFEqD0ctuHDjC/AXQoFjiBzMECorGw==
-X-Received: by 2002:a9d:7ac6:: with SMTP id m6mr372889otn.350.1618411835755;
-        Wed, 14 Apr 2021 07:50:35 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v195sm3653919oia.38.2021.04.14.07.50.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Apr 2021 07:50:34 -0700 (PDT)
-Received: (nullmailer pid 3605229 invoked by uid 1000);
-        Wed, 14 Apr 2021 14:50:33 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        p.zabel@pengutronix.de, joel@jms.id.au, BMC-SW@aspeedtech.com,
-        linux-aspeed@lists.ozlabs.org, thierry.reding@gmail.com,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org, andrew@aj.id.au
-In-Reply-To: <20210414104939.1093-2-billy_tsai@aspeedtech.com>
-References: <20210414104939.1093-1-billy_tsai@aspeedtech.com> <20210414104939.1093-2-billy_tsai@aspeedtech.com>
-Subject: Re: [v2 1/2] dt-bindings: Add bindings for aspeed pwm-tach and pwm.
-Date:   Wed, 14 Apr 2021 09:50:33 -0500
-Message-Id: <1618411833.809131.3605228.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3YMvYEtHewROZOpFAlE+YVnTRwtmI4sbne6ZZ7QNqKw=;
+        b=oDabDPxx9RX26y1ge4T3P3FW/1JHRqqF1v4TiZaEmEYU5SIFdZY9PoYdd0qp9HWgTV
+         TKYdCnxW9uoGySdPB0eRcmlLEMWQPfqxdUq+2HfF7EG5U1joevAOVMW74EqkrwYUDkbe
+         sLZgp1YAfQJP+9DNNfbDLKiSqsgbDnVKq+BRxKnJpM8bqGhymcxHjAjVPE5AnrMkI0tD
+         lbdJyc94KZ8FjViVvFcjGW6Q3j42U9j9ycLSFrHpXjuxuoNPq3QKjtmTB3psfI2RUL7V
+         VYwMMud47eHC18kY1c7ublQz4TcnNrKpBRSCxy1s8GlIcD9A90v3ID78AvHlq+hMwbSY
+         +P4A==
+X-Gm-Message-State: AOAM533wxJZOXUFK1i4qSEOOIADB5mkCYFC2Q27EtUneSK7heH8u40pH
+        YHXFZ3NL44WncnZR+lI4xn2UtXnvS3tN0zjsLR4=
+X-Google-Smtp-Source: ABdhPJxoTj72BoWiQQAL0hug/P6L4J7UqtuVV3Zj6//58oTaD2XEZzKaiijbRgpI7vJRshL+1CdfH5CNLg1PCWSM5ac=
+X-Received: by 2002:a17:902:ed14:b029:eb:8e3:bfc9 with SMTP id
+ b20-20020a170902ed14b02900eb08e3bfc9mr14876376pld.54.1618412008841; Wed, 14
+ Apr 2021 07:53:28 -0700 (PDT)
+MIME-Version: 1.0
+References: <1618226325-31927-1-git-send-email-yongqiang.niu@mediatek.com>
+ <CABb+yY1b9wD0hoBx=aYzpLcF-=EEG4QTrV68sZj8+rtf5J1aJQ@mail.gmail.com> <1d946d1c-1626-33ed-26ba-f840729d63e7@gmail.com>
+In-Reply-To: <1d946d1c-1626-33ed-26ba-f840729d63e7@gmail.com>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Wed, 14 Apr 2021 09:53:18 -0500
+Message-ID: <CABb+yY2ar8LcYMUrOTP8gH+DhNdV3aL7nuod4Uc_fuQq2A8K+A@mail.gmail.com>
+Subject: Re: [PATCH v2, 0/5] Revert "mailbox: mediatek: remove implementation
+ related to atomic_exec"
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-mediatek@lists.infradead.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        dri-devel@lists.freedesktop.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Apr 2021 18:49:38 +0800, Billy Tsai wrote:
-> This patch adds device bindings for aspeed pwm-tach device which is a
-> multi-function device include pwn and tach function and pwm device which
-> should be the sub-node of pwm-tach device.
-> 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> Change-Id: I18d9dea14c3a04e1b7e38ffecd49d45917b9b545
-> ---
->  .../bindings/mfd/aspeed,ast2600-pwm-tach.yaml | 60 +++++++++++++++++++
->  .../bindings/pwm/aspeed,ast2600-pwm.yaml      | 44 ++++++++++++++
->  2 files changed, 104 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
->  create mode 100644 Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
-> 
+On Wed, Apr 14, 2021 at 3:51 AM Matthias Brugger <matthias.bgg@gmail.com> wrote:
+>
+>
+>
+> On 12/04/2021 17:29, Jassi Brar wrote:
+> > On Mon, Apr 12, 2021 at 6:18 AM Yongqiang Niu
+> > <yongqiang.niu@mediatek.com> wrote:
+> >>
+> >> This series base linux 5.12-rc2
+> >> these patches will cause home ui flick when cursor moved,
+> >> there is no fix solution yet, revert these patches first.
+> >>
+> >> change since v1:
+> >> add mtk-gce.txt and dts modification
+> >>
+> >> Yongqiang Niu (5):
+> >>   Revert "drm/mediatek: Make sure previous message done or be aborted
+> >>     before send"
+> >>   Revert "mailbox: mediatek: remove implementation related to
+> >>     atomic_exec"
+> >>   Revert "dt-bindings: mailbox: mtk-gce: fix incorrect mbox-cells value"
+> >>   Revert "arm64: dts: mediatek: mt8183: fix gce incorrect mbox-cells
+> >>     value"
+> >>   arm64: dts: mediatek: mt8183: add gce information for mmsys
+> >>
+> >>  .../devicetree/bindings/mailbox/mtk-gce.txt        |  2 +-
+> >>  arch/arm64/boot/dts/mediatek/mt8183.dtsi           |  5 +-
+> >>  drivers/gpu/drm/mediatek/mtk_drm_crtc.c            |  1 -
+> >>  drivers/mailbox/mtk-cmdq-mailbox.c                 | 80 +++++++++++++++++++---
+> >>  4 files changed, 76 insertions(+), 12 deletions(-)
+> >>
+> > Please break the patchsets (this and the other 3) into mailbox only
+> > and platform specific ones.
+> > Also, it would help if there are some acked/reviewed by some mtk folks
+> > especially when reverting patches.
+> >
+>
+> I'd prefer to have DT and mailbox patches together as otherwise the burden on me
+> to find out which patches in the driver are needed, and to check if these got
+> accepted, gets higher.
+>
+I meant the patches that need to go via mailbox tree (controller) and the rest.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.example.dt.yaml:0:0: /example-0/pwm_tach@1e610000/tach@1: failed to match any schema with compatible: ['aspeed,ast2600-tach']
-
-See https://patchwork.ozlabs.org/patch/1466127
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+thanks.
