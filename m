@@ -2,144 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2576635EBAC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 06:16:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0855135EC46
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 07:44:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230063AbhDNEQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 00:16:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40700 "EHLO
+        id S233189AbhDNFom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 01:44:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229990AbhDNEQT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 00:16:19 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E474C061574
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 21:15:58 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id o123so12874694pfb.4
-        for <devicetree@vger.kernel.org>; Tue, 13 Apr 2021 21:15:58 -0700 (PDT)
+        with ESMTP id S231147AbhDNFom (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 01:44:42 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D5EC061574;
+        Tue, 13 Apr 2021 22:44:11 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id em21-20020a17090b0155b029014e204a81e6so2460224pjb.1;
+        Tue, 13 Apr 2021 22:44:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=H3/pHA1QytdkqwjWI/gVaQemFDcs5MXEtw754Smro1s=;
-        b=F29Hu7zFQzANZPHsTA7+K9pjZqrgxssfYBE838M1T0tCylLUv5Bd4xq7EvjDRPf5aW
-         iYoe9DaH4kXAY8PXknzVl7BmpxkRX4oInzQdW/neFeORV09agxEHn+tQ723uVcZ91VrG
-         NkMuz19o4wjMJeQlGiW23D4PfbHzYlol1Gj0s=
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=0yUWu7HT1CFubm9J9J6q0kW33Nxa/Vxt5+k9PPHbEws=;
+        b=taov2KT3L1c1f57u1+idS0honSH9d5nm2ajmI/KBa40GjvBtUJYuErDXVyirg63xxH
+         d2zN6EhW03EaWfa8xH+7qSCso4TtDma+si8kGuBlqgYMeC9wwibKZBa49eqmhEd3+fXt
+         u8+txaEJVZ1+NAzbUTA9Ry/nEL8yAUiJPhY8v1B/7Xs8M+KVO8y0FHZzuwgNETlsh3rV
+         j2pRG0cNWPb6uZ9RcRhlxBegvYFTriBEyOTn3Ry0BYh/SfUtiE4AdnXuhXWg3fZdP7IX
+         Db6OXgaHUVncqEsZHhkAftpbb66VAeWK5wo6jFZCnFEkhB26iNgSnX8YWjERU8MDpucF
+         CnoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=H3/pHA1QytdkqwjWI/gVaQemFDcs5MXEtw754Smro1s=;
-        b=St4IIo/3VBTXhTdsxtenfZ87851/OxQ5Xx1wKBaHCw74iWEtsK/LRiIa0xmyfps44Z
-         iULyF0wAhXLr2TGncwTS4mpBW6h5Ad5wfZUAJPkAcvUyqnEVHINH0ofW6dw4zF+tMDvM
-         MbuqOK06bQFlg54rcA7+ebnOZNktc3gzu8vjqKVupBlM2g2qqc/j6Ur/jIP3tpGPAkND
-         ltrodkve94ADinWVEzt09cQ84GbmVU+GJ3PSgKMWZO0BRf4ZSdZ58nvtJ9qOwxrIOw0z
-         NTA/XbZO4LRx7RYZFkKeZ6IiApHAs2i51PkhOep30OZO106jJc2zgdhG0d0DCPX9d0Zn
-         fMyw==
-X-Gm-Message-State: AOAM5304VeUz2a+RvEQvkrEQAfIgsdfuTaJNZ+KPP08pOzg7icRwa1/S
-        X6b5NuVOvUtp5BpkJiyCHKhzJByy6UX6SD8rHZxaFQ==
-X-Google-Smtp-Source: ABdhPJyBQe3jzDKjD8N8Rpl8uNcj92WPr21JgAbQ25TEX1kZs3MOe6zQnijETqkrZfG9PkmDTTRhUH//ng7XXis5I64=
-X-Received: by 2002:a63:1024:: with SMTP id f36mr15645361pgl.299.1618373757887;
- Tue, 13 Apr 2021 21:15:57 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0yUWu7HT1CFubm9J9J6q0kW33Nxa/Vxt5+k9PPHbEws=;
+        b=Oqw+gnaYcmzqR724eFqs75jYjD+RkdnUDqh+QvC5LUnfIKnmYECuRCQfTpzjG57o/p
+         0+ol//t15IjxS5lZUB9n9l/PWgE5nENj7fPm4Ml4x8tGoJET52Y7c5sTkoLJ1QlndeZ5
+         UDIJIalv+DiiY5AJb9fz6KMq/qX8yH4R+WwH1sB6wOgtE3xfJoNqa2RkiZ/4eL/K0du8
+         dYPZ/UZ8sYxdArrXIDniKXMLFJZ7tV+KXxI+TlyWtb7JwsBS+LUNCj0XZdZuruujs3lW
+         2A0omle5COVLEVGkF8ED74DWDaKgUFlXQQbpIyhDlWydmWuhvQZ3ApiwBQZoc+UZ9YHo
+         sU/w==
+X-Gm-Message-State: AOAM5331D5fRazvnVf2KL041Guvp32VZ73Afm4Mob/hka4a8GSMGOdRE
+        +hqg5hf7QS2WGDyI9kFdBE4=
+X-Google-Smtp-Source: ABdhPJxe01iw9hMUytKwMjDjm2FruOBj5fo5ljz2JrhYbGlLVBdQUY5kUyI+6gkArdn/pSDaRl3QLQ==
+X-Received: by 2002:a17:902:8601:b029:e6:7b87:8add with SMTP id f1-20020a1709028601b02900e67b878addmr36146232plo.3.1618379051313;
+        Tue, 13 Apr 2021 22:44:11 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:c22:82af:e208:38f6])
+        by smtp.gmail.com with ESMTPSA id q14sm16902014pgt.54.2021.04.13.22.44.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Apr 2021 22:44:09 -0700 (PDT)
+Date:   Tue, 13 Apr 2021 22:44:07 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Giulio Benetti <giulio.benetti@benettiengineering.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 3/3] Input: add driver for the Hycon HY46XX touchpanel
+ series
+Message-ID: <YHaBJ6MX9c28MUQY@google.com>
+References: <CAL_JsqK6Bm==DaCMD3PruZoFO9iv0Te_KBVPnb9ZU0L8yDYF5Q@mail.gmail.com>
+ <20210413144446.2277817-1-giulio.benetti@benettiengineering.com>
+ <20210413144446.2277817-4-giulio.benetti@benettiengineering.com>
 MIME-Version: 1.0
-References: <20210412113020.2724134-1-ikjn@chromium.org> <20210412113020.2724134-2-ikjn@chromium.org>
- <20210413145730.GA1667299@robh.at.kernel.org>
-In-Reply-To: <20210413145730.GA1667299@robh.at.kernel.org>
-From:   Ikjoon Jang <ikjn@chromium.org>
-Date:   Wed, 14 Apr 2021 12:15:47 +0800
-Message-ID: <CAATdQgDWS+D8rudTp_mSB_V=Esnh1MeU9wVywrzOBjVEVpJnfA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] mfd: google,cros-ec: add DT bindings for a
- baseboard's switch device
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-input@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
-        Dmitry Torokhov <dtor@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Guenter Roeck <groeck@chromium.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210413144446.2277817-4-giulio.benetti@benettiengineering.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 13, 2021 at 10:57 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Apr 12, 2021 at 07:30:19PM +0800, Ikjoon Jang wrote:
-> > This is for ChromeOS tablets which have a 'cros_cbas' switch device
-> > in the "Whiskers" base board. This device can be instantiated only by
-> > device tree on ARM platforms. ChromeOS EC doesn't provide a way to
-> > probe the device.
-> >
-> > Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
-> >
-> > ---
-> >
-> > Changes in v4:
-> > Define cros-cbase bindings inside google,cros-ec.yaml instead of
-> > a seperated binding document.
-> >
-> >  .../devicetree/bindings/mfd/google,cros-ec.yaml  | 16 ++++++++++++++++
-> >  1 file changed, 16 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> > index 76bf16ee27ec..c76809cd9f7f 100644
-> > --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> > @@ -127,6 +127,18 @@ patternProperties:
-> >      type: object
-> >      $ref: "/schemas/extcon/extcon-usbc-cros-ec.yaml#"
-> >
-> > +  "^cbas$":
->
-> Not a pattern, put under 'properties'.
->
-> > +    type: object
-> > +    properties:
-> > +      compatible:
-> > +        const: google,cros-cbas
->
-> Blank line
->
-> > +    required:
-> > +      - compatible
->
-> Blank line
->
-> > +    additionalProperties: false
-> > +    description:
->
-> Make this 1st or at least before 'properties'.
+Hi Giulio,
 
-ACKed, thanks!
+On Tue, Apr 13, 2021 at 04:44:46PM +0200, Giulio Benetti wrote:
+> +
+> +	input_mt_report_pointer_emulation(tsdata->input, true);
 
->
-> > +      This device is used to signal when a detachable base is attached
-> > +      to a Chrome OS tablet.
->
-> This can't happen at runtime?
+For touchscreens it does not make much sense to report BTN_DOUBLETAP,
+BTN_TRIPLETAP, etc, events (they are really for touchpads), so I changed
+this to
 
-There is no way to detect the switch device's existence at runtime.
-I'll add a note to the description about this.
+	input_mt_report_pointer_emulation(tsdata->input, false);
 
->
-> > +
-> >  required:
-> >    - compatible
-> >
-> > @@ -180,6 +192,10 @@ examples:
-> >              interrupts = <99 0>;
-> >              interrupt-parent = <&gpio7>;
-> >              spi-max-frequency = <5000000>;
-> > +
-> > +            base_detection: cbas {
-> > +                compatible = "google,cros-cbas";
-> > +            };
-> >          };
-> >      };
-> >
-> > --
-> > 2.31.1.295.g9ea45b61b8-goog
-> >
+to only report ABS_X, ABS_Y, and BTN_TOUCH, and applied.
+
+Thanks.
+
+-- 
+Dmitry
