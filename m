@@ -2,202 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D62835F42E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 14:46:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E100235F44C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 14:54:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347803AbhDNMog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 08:44:36 -0400
-Received: from frasgout.his.huawei.com ([185.176.79.56]:2856 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350776AbhDNMob (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 08:44:31 -0400
-Received: from fraeml715-chm.china.huawei.com (unknown [172.18.147.200])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4FL28W3vwzz689s1;
-        Wed, 14 Apr 2021 20:38:51 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml715-chm.china.huawei.com (10.206.15.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Wed, 14 Apr 2021 14:44:08 +0200
-Received: from localhost (10.52.122.47) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2106.2; Wed, 14 Apr
- 2021 13:44:07 +0100
-Date:   Wed, 14 Apr 2021 13:42:40 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     <bpeled@marvell.com>
-CC:     <thomas.petazzoni@bootlin.com>, <lorenzo.pieralisi@arm.com>,
-        <bhelgaas@google.com>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <sebastian.hesselbarth@gmail.com>, <gregory.clement@bootlin.com>,
-        <andrew@lunn.ch>, <robh+dt@kernel.org>, <mw@semihalf.com>,
-        <jaz@semihalf.com>, <kostap@marvell.com>, <nadavh@marvell.com>,
-        <stefanc@marvell.com>, <oferh@marvell.com>
-Subject: Re: =?UTF-8?Q?[=E2=80=9DPATCH=E2=80=9D?= 2/5] PCI: armada8k: Add
- link-down handle
-Message-ID: <20210414134240.000057b4@Huawei.com>
-In-Reply-To: <1618241456-27200-3-git-send-email-bpeled@marvell.com>
-References: <1618241456-27200-1-git-send-email-bpeled@marvell.com>
-        <1618241456-27200-3-git-send-email-bpeled@marvell.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S240801AbhDNMy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 08:54:26 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:43116 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347893AbhDNMyR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 08:54:17 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13ECrPse019753;
+        Wed, 14 Apr 2021 07:53:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1618404805;
+        bh=oirPo/EsDII0H0wpLt+7P4CG1KGd+DxoUWbHd1hnL7k=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=UKxa+T3vhnZmmhiJHXkh5+qGHdkxP1xM7OOV/veTJiY3Dj/RAvKGCGonvi2BfT4n1
+         nvr1jA88uKx+nNn2fFaLtiCoJaMmLo5pmHa6y0+9qOJPQy3fZT13zTv10SryvxHBug
+         RUupir4TkBgpl3icdq07CBAqxqCWUjnM1GqGq37A=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13ECrPYK044091
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 14 Apr 2021 07:53:25 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 14
+ Apr 2021 07:53:24 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 14 Apr 2021 07:53:25 -0500
+Received: from [172.24.145.148] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13ECrKdA092197;
+        Wed, 14 Apr 2021 07:53:21 -0500
+Subject: Re: [PATCH 1/4] dt-bindings: phy: Add binding for TI TCAN104x CAN
+ transceivers
+To:     Rob Herring <robh@kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, <linux-can@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+References: <20210409134056.18740-1-a-govindraju@ti.com>
+ <20210409134056.18740-2-a-govindraju@ti.com>
+ <f9b04d93-c249-970e-3721-50eb268a948f@pengutronix.de>
+ <20210412174956.GA4049952@robh.at.kernel.org>
+ <20210413074106.gvgtjkofyrdp5yxt@pengutronix.de>
+ <CAL_Jsq+yEQGuZYWhsQ-we36_Xi5X94YJ23oFe-T6h4U4X6iUhg@mail.gmail.com>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <9350f367-2c4f-1779-ec24-94066e152992@ti.com>
+Date:   Wed, 14 Apr 2021 18:23:19 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
+In-Reply-To: <CAL_Jsq+yEQGuZYWhsQ-we36_Xi5X94YJ23oFe-T6h4U4X6iUhg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.52.122.47]
-X-ClientProxiedBy: lhreml701-chm.china.huawei.com (10.201.108.50) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Apr 2021 18:30:53 +0300
-<bpeled@marvell.com> wrote:
+Hi Marc,
 
-> From: Ben Peled <bpeled@marvell.com>
+On 13/04/21 6:45 pm, Rob Herring wrote:
+> On Tue, Apr 13, 2021 at 2:41 AM Marc Kleine-Budde <mkl@pengutronix.de> wrote:
+>>
+>> On 12.04.2021 12:49:56, Rob Herring wrote:
+>>> On Mon, Apr 12, 2021 at 12:19:30PM +0200, Marc Kleine-Budde wrote:
+>>>> On 4/9/21 3:40 PM, Aswath Govindraju wrote:
+>>>>> Add binding documentation for TI TCAN104x CAN transceivers.
+>>>>>
+>>>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>>>>> ---
+>>>>>  .../bindings/phy/ti,tcan104x-can.yaml         | 56 +++++++++++++++++++
+>>>>>  1 file changed, 56 insertions(+)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..4abfc30a97d0
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>>>>> @@ -0,0 +1,56 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: "http://devicetree.org/schemas/phy/ti,tcan104x-can.yaml#"
+>>>>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>>>>> +
+>>>>> +title: TCAN104x CAN TRANSCEIVER PHY
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Aswath Govindraju <a-govindraju@ti.com>
+>>>>> +
+>>>>> +properties:
+>>>>> +  $nodename:
+>>>>> +    pattern: "^tcan104x-phy"
+>>>>> +
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - ti,tcan1042
+>>>>> +      - ti,tcan1043
+>>>>
+>>>> Can you create a generic standby only and a generic standby and enable transceiver?
+>>>
+>>> As a fallback compatible fine, but no generic binding please. A generic
+>>> binding can't describe any timing requirements between the 2 GPIO as
+>>> well as supplies when someone wants to add those (and they will).
+>>
+>> Right - that makes sense.
+>>
+
+So, I need not add any new compatible strings right because as a
+fallback the existing compatible strings can be used, as there are no
+timing constraints on them.
+
+Thanks,
+Aswath
+
+>>>>> +
+>>>>> +  '#phy-cells':
+>>>>> +    const: 0
+>>>>> +
+>>>>> +  standby-gpios:
+>>>>> +    description:
+>>>>> +      gpio node to toggle standby signal on transceiver
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  enable-gpios:
+>>>>> +    description:
+>>>>> +      gpio node to toggle enable signal on transceiver
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  max-bitrate:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    description:
+>>>>> +      max bit rate supported in bps
+>>>
+>>> We already have 'max-speed' for serial devices, use that.
+>>
+>> There is already the neither Ethernet PHY (PHYLINK/PHYLIB) nor generic
+>> PHY (GENERIC_PHY) can-transceiver binding
+>> Documentation/devicetree/bindings/net/can/can-transceiver.yaml which
+>> specifies max-bitrate. I don't have strong feelings whether to use
+>> max-bitrate or max-speed.
 > 
-> In PCIE ISR routine caused by RST_LINK_DOWN
-> we schedule work to handle the link-down procedure.
-> Link-down procedure will:
-> 1. Remove PCIe bus
-> 2. Reset the MAC
-> 3. Reconfigure link back up
-> 4. Rescan PCIe bus
+> Okay, max-bitrate is fine.
 > 
-> Signed-off-by: Ben Peled <bpeled@marvell.com>
-
-Trivial comment inline.
-
-Also, something odd with quotes around PATCH in the title you probably
-want to clean up.
-
-> ---
->  drivers/pci/controller/dwc/pcie-armada8k.c | 68 ++++++++++++++++++++
->  1 file changed, 68 insertions(+)
+>>
+>> Speaking about Ethernet PHYs, what are to pros and cons to use the
+>> generic PHY compared to the Ethernet PHY infrastructure?
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-armada8k.c b/drivers/pci/controller/dwc/pcie-armada8k.c
-> index b2278b1..4eb8607 100644
-> --- a/drivers/pci/controller/dwc/pcie-armada8k.c
-> +++ b/drivers/pci/controller/dwc/pcie-armada8k.c
-> @@ -22,6 +22,8 @@
->  #include <linux/resource.h>
->  #include <linux/of_pci.h>
->  #include <linux/of_irq.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/regmap.h>
->  
->  #include "pcie-designware.h"
->  
-> @@ -33,6 +35,9 @@ struct armada8k_pcie {
->  	struct clk *clk_reg;
->  	struct phy *phy[ARMADA8K_PCIE_MAX_LANES];
->  	unsigned int phy_count;
-> +	struct regmap *sysctrl_base;
-> +	u32 mac_rest_bitmask;
-> +	struct work_struct recover_link_work;
->  };
->  
->  #define PCIE_VENDOR_REGS_OFFSET		0x8000
-> @@ -73,6 +78,8 @@ struct armada8k_pcie {
->  #define AX_USER_DOMAIN_MASK		0x3
->  #define AX_USER_DOMAIN_SHIFT		4
->  
-> +#define UNIT_SOFT_RESET_CONFIG_REG	0x268
-> +
->  #define to_armada8k_pcie(x)	dev_get_drvdata((x)->dev)
->  
->  static void armada8k_pcie_disable_phys(struct armada8k_pcie *pcie)
-> @@ -224,6 +231,49 @@ static int armada8k_pcie_host_init(struct pcie_port *pp)
->  
->  	return 0;
->  }
-> +static void armada8k_pcie_recover_link(struct work_struct *ws)
-> +{
-> +	struct armada8k_pcie *pcie = container_of(ws, struct armada8k_pcie, recover_link_work);
-> +	struct pcie_port *pp = &pcie->pci->pp;
-> +	struct pci_bus *bus = pp->bridge->bus;
-> +	struct pci_dev *root_port;
-> +	int ret;
-> +
-> +	root_port = pci_get_slot(bus, 0);
-> +	if (!root_port) {
-> +		dev_err(pcie->pci->dev, "failed to get root port\n");
-> +		return;
-> +	}
-> +	pci_lock_rescan_remove();
-> +	pci_stop_and_remove_bus_device(root_port);
-> +	/*
-> +	 * Sleep needed to make sure all pcie transactions and access
-> +	 * are flushed before resetting the mac
-> +	 */
-> +	msleep(100);
-> +
-> +	/* Reset mac */
-> +	regmap_update_bits_base(pcie->sysctrl_base, UNIT_SOFT_RESET_CONFIG_REG,
-> +				pcie->mac_rest_bitmask, 0, NULL, false, true);
-> +	udelay(1);
-> +	regmap_update_bits_base(pcie->sysctrl_base, UNIT_SOFT_RESET_CONFIG_REG,
-> +				pcie->mac_rest_bitmask, pcie->mac_rest_bitmask,
-> +				NULL, false, true);
-> +	udelay(1);
-> +	ret = armada8k_pcie_host_init(pp);
-> +	if (ret) {
-> +		dev_err(pcie->pci->dev, "failed to initialize host: %d\n", ret);
-> +		pci_unlock_rescan_remove();
-> +		pci_dev_put(root_port);
-> +		return;
-> +	}
-> +
-> +	bus = NULL;
-> +	while ((bus = pci_find_next_bus(bus)) != NULL)
-> +		pci_rescan_bus(bus);
-> +	pci_unlock_rescan_remove();
-> +	pci_dev_put(root_port);
-> +}
->  
->  static irqreturn_t armada8k_pcie_irq_handler(int irq, void *arg)
->  {
-> @@ -262,6 +312,9 @@ static irqreturn_t armada8k_pcie_irq_handler(int irq, void *arg)
->  		 * initiate a link retrain. If link retrains were
->  		 * possible, that is.
->  		 */
-> +		if (pcie->sysctrl_base && pcie->mac_rest_bitmask)
-> +			schedule_work(&pcie->recover_link_work);
-> +
->  		dev_dbg(pci->dev, "%s: link went down\n", __func__);
->  	}
->  
-> @@ -330,6 +383,8 @@ static int armada8k_pcie_probe(struct platform_device *pdev)
->  
->  	pcie->pci = pci;
->  
-> +	INIT_WORK(&pcie->recover_link_work, armada8k_pcie_recover_link);
-> +
->  	pcie->clk = devm_clk_get(dev, NULL);
->  	if (IS_ERR(pcie->clk))
->  		return PTR_ERR(pcie->clk);
-> @@ -357,6 +412,19 @@ static int armada8k_pcie_probe(struct platform_device *pdev)
->  		goto fail_clkreg;
->  	}
->  
-> +	pcie->sysctrl_base = syscon_regmap_lookup_by_phandle(pdev->dev.of_node,
-> +						       "marvell,system-controller");
-> +	if (IS_ERR(pcie->sysctrl_base)) {
-> +		dev_warn(dev, "failed to find marvell,system-controller\n");
-> +		pcie->sysctrl_base = 0x0;
-
-= NULL; ?
-
-> +	}
-> +
-> +	ret = of_property_read_u32(pdev->dev.of_node, "marvell,mac-reset-bit-mask",
-> +				   &pcie->mac_rest_bitmask);
-> +	if (ret < 0) {
-> +		dev_warn(dev, "couldn't find mac reset bit mask: %d\n", ret);
-> +		pcie->mac_rest_bitmask = 0x0;
-> +	}
->  	ret = armada8k_pcie_setup_phys(pcie);
->  	if (ret)
->  		goto fail_clkreg;
+> For higher speed ethernet, both are used. There's the serdes phy and
+> the ethernet phy with serdes phy using the generic phy binding. For
+> CAN, it probably comes down to what's a better fit.
+> 
+> Rob
+> 
 
