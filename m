@@ -2,122 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9103835ED59
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 08:42:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 514ED35EDA6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 08:58:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349273AbhDNGlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 02:41:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43722 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349270AbhDNGlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 02:41:24 -0400
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27669C061574;
-        Tue, 13 Apr 2021 23:41:03 -0700 (PDT)
-Received: by mail-io1-xd30.google.com with SMTP id a9so8766211ioc.8;
-        Tue, 13 Apr 2021 23:41:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=N7vftel7/kHFhYOjGzZvWT3xrH6u8lWAjKbx3Xy3YRw=;
-        b=RJnHx5ck/RlYgj+beW67tKjeNzRs3D0s3vxKnLWROf/RBn876aPBEnniFLfgr/N+7z
-         +sHIhFPzFsX2Ns5UssQiymea0CSTq3VUMaiMfTavqJtvA/Lb366fl20TdGBFYs0kIr77
-         ONgNi91EhR5AR1B0ZuubDI4fV2u0kJgaSVeoOucmdTtjL1lbEa1IgCi2kju56PSCfFbt
-         BhLHdFCVBkPrpW+NTHcOm7M8OnXNWbwsl89cCjVKJpgiha88GPMhknjTx9+tVRR41Nro
-         2qTMbj8/Tfp1Yzh+O6nc8hzyI/u6/1q+mdJm6dMyKP9PRNMRxhyo1eH10H7d4gczgMII
-         HWRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=N7vftel7/kHFhYOjGzZvWT3xrH6u8lWAjKbx3Xy3YRw=;
-        b=qQzpsT6JuLVamsENtSOx8rTtI9PzV2s1HxOY4x3ITYUfHth1IBv6UgNGWqsPz9w6Xx
-         3rrXTvGx6FelX/npgMM4GBYw+bUmtYKUGCXOmuZkcAeLRe395GuI1wXIAsYkaTN/BdNr
-         LHxot5t8GW9SrQsjkkl/6G03He5+XhzrXyKl3yj4zljUuueUgRlm8hMpFENlXc9CNAh3
-         GMtZ0kl5n2QgrdU/8Zb44N51gO4DltrAX/Kll/W8lfv1flIfvEhvx5eGOtKCDJDqxGo/
-         8ouScKvIrnSNdNJhYA/raSApnw7Pl/c50m+06wTirnPDfdBLn5nroLosaHHAMKMAtSjE
-         kAbA==
-X-Gm-Message-State: AOAM533ZUmLvnCLhqOMR9VtZ3FKnoBG63kaWYw1GTQVI/Y2EJ80Qqj86
-        wnDg8oiMw00fntu4TNnTsKdgUisaCqbaLY8/x+g=
-X-Google-Smtp-Source: ABdhPJyWz6hj+7e/6wqtr7meX9crEQ2MiYOSLe47WWoSrrRd6Iblpr3NZT6qpB9Bpaw3r0QYh8vbPSMO8bJuEwj9DQM=
-X-Received: by 2002:a05:6638:d47:: with SMTP id d7mr36772176jak.2.1618382462646;
- Tue, 13 Apr 2021 23:41:02 -0700 (PDT)
+        id S1349305AbhDNGrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 02:47:16 -0400
+Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:32783 "EHLO
+        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1348255AbhDNGrP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Apr 2021 02:47:15 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id 2787B177F;
+        Wed, 14 Apr 2021 02:46:54 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Wed, 14 Apr 2021 02:46:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=who-t.net; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=64gjXIhv/+g283uK3HI1Fy6VCqL
+        /A34oMNdA2BrGOz4=; b=SMaCRGz/2atN6NqYrJ7F7wtHeKeBu0pQtw6+0+gxgrv
+        jNqGUiEsy9osUhvQazpqF2fAcobI4KnuqEWNBgPfyKGpkBtICKwziz398aDmFxzm
+        u7gidnodlPnFNrVdsAIAfQNWAYC00b0OCWGnJ5A02WVuJIJsCzXo1fZkWNLtUsf/
+        XRapJVw1mBCRMgQLUlVCoKVb/szbct8avqt1lc+QuHRq37yyvMuu6Esw8CDovf38
+        jxM7c6MZECEefHH5sfVT581pvi/7y+/vdCRcs0GrHqbIgEE6c9GFhbs91cvKQC0L
+        9pFn6la4Zb2Dr/qno7G6U5A7TmnPcXVIB9BEF75vCrA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=64gjXI
+        hv/+g283uK3HI1Fy6VCqL/A34oMNdA2BrGOz4=; b=kmSpfRPsS/4s5V9AxcP3tq
+        6O0I+QZfYcEC9/0B+V8P8lznnN82Q/flYNTwhFkfetilxr/zlAnt5Zxl1SsXNE5F
+        IWNJXtZsRDPvWUS/OzYWHoGwImEX0+spE0nmyl2jUsPviNz0YG5pqaZA5P/pJonb
+        1Qj7KNLrNGH8H5poklrRVzMTEZXh/mc2Hz5yipbK7ClREB8taIOsw/sif/YKUHuG
+        eu6pYbXaXfY2/Zq3/sc5R9CPyxzJMXNpHlMaYPuKKcTOtcg422Lj9XRkGNCuw/2K
+        gnNZuuLFXTj/XTVPPKmoXUoa29CP6zRUwT/GmM4w0PSyJjAAUE18s0DquDOVkF2Q
+        ==
+X-ME-Sender: <xms:3Y92YDqZ5ag3wcVlNl4UXUSj2_5xyofxtNtTPZmIsO21YUYGXNFASg>
+    <xme:3Y92YLM1KKqVCsTPpRQBLIKep2l-8OK-b8lU6SUb9pdLwO8z_dxF0i29hdgdnUNkj
+    a9TS6pTgiu-TxcDZlg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudeltddgudduvdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheprfgvthgv
+    rhcujfhuthhtvghrvghruceophgvthgvrhdrhhhuthhtvghrvghrseifhhhoqdhtrdhnvg
+    htqeenucggtffrrghtthgvrhhnpeehhfehfffgheelgeeuudelhefgvdefveekudevjeev
+    jeevvefggefguddufeeuveenucfkphepuddujedrvddtrdejuddrvddvkeenucevlhhush
+    htvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehpvghtvghrrdhhuhht
+    thgvrhgvrhesfihhohdqthdrnhgvth
+X-ME-Proxy: <xmx:3Y92YGodEd2js7xKNzSWFi2rN3eVDhKabvvOtJsb8gR-OuImWAxgFQ>
+    <xmx:3Y92YIeWI9JDuxMiceK_-5AbpMaM6PFdOVI26iQk5pYiwCE8_I6WwQ>
+    <xmx:3Y92YETBJZs0fUENrGIiR4rSOiXiggKYWi-ftHDjMqNoBi0maf9QBg>
+    <xmx:3Y92YLGTs3Sir_Qd3Y8rL6mSW8UpcqQpoKBZ4iBVcU5j-A05wvDMwg>
+Received: from koala (117-20-71-228.751447.bne.nbn.aussiebb.net [117.20.71.228])
+        by mail.messagingengine.com (Postfix) with ESMTPA id E271524005C;
+        Wed, 14 Apr 2021 02:46:50 -0400 (EDT)
+Date:   Wed, 14 Apr 2021 16:46:44 +1000
+From:   Peter Hutterer <peter.hutterer@who-t.net>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        Rob Herring <robh@kernel.org>,
+        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 3/3] Input: add driver for the Hycon HY46XX touchpanel
+ series
+Message-ID: <YHaP1Fzsi5pSaEq3@koala>
+References: <CAL_JsqK6Bm==DaCMD3PruZoFO9iv0Te_KBVPnb9ZU0L8yDYF5Q@mail.gmail.com>
+ <20210413144446.2277817-1-giulio.benetti@benettiengineering.com>
+ <20210413144446.2277817-4-giulio.benetti@benettiengineering.com>
+ <YHaBJ6MX9c28MUQY@google.com>
 MIME-Version: 1.0
-References: <1618380827-16056-1-git-send-email-dillon.minfei@gmail.com>
- <1618380827-16056-2-git-send-email-dillon.minfei@gmail.com> <2a993aa9-6933-4af8-da26-f53096dc6ab7@canonical.com>
-In-Reply-To: <2a993aa9-6933-4af8-da26-f53096dc6ab7@canonical.com>
-From:   dillon min <dillon.minfei@gmail.com>
-Date:   Wed, 14 Apr 2021 14:40:26 +0800
-Message-ID: <CAL9mu0+U2PN2HsQdw5mYGap+bH_YN55RyT-tw65EfH3zKxwScQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] dt-bindings: arm: imx: Add i.mx6q DaSheng COM-9XX
- SBC board dts support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        linux@rempel-privat.de, s.riedmueller@phytec.de,
-        matthias.schiffer@ew.tq-group.com, leoyang.li@nxp.com,
-        arnd@arndb.de, olof@lixom.net,
-        Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
-        festevam@gmail.com, prabhakar.csengg@gmail.com, mchehab@kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-imx@nxp.com, linux-media@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YHaBJ6MX9c28MUQY@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 14, 2021 at 2:22 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 14/04/2021 08:13, dillon.minfei@gmail.com wrote:
-> > From: dillon min <dillon.minfei@gmail.com>
-> >
-> > The DaSheng Com-9xx is and ARM based signle board computer (SBC)
-> > featuring:
-> > - i.MX6Q
-> > - 2GiB LPDDR3 DRAM
-> > - 8GiB eMMC 5.0 FLASH
-> > - 4MiB SPI Flash
-> > - USB 2.0 Host/Device
-> > - Multiple multi-protocol RS232/RS485 Serial ports
-> > - microSD socket
-> > - 5V DC power input
-> > - HDMI1.4a,1080p@60
-> > - RGMIIx1 Gigabit Ethernet
-> > - CSI0x1, connect with ov2659
-> >
-> > Signed-off-by: dillon min <dillon.minfei@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > index 297c87f45db8..24bdfbd4853f 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > @@ -206,6 +206,7 @@ properties:
-> >                - fsl,imx6q-sabreauto
-> >                - fsl,imx6q-sabrelite
-> >                - fsl,imx6q-sabresd
-> > +              - ds,imx6q-sbc              # Da Sheng COM-9XX Modules
-> >                - karo,imx6q-tx6q           # Ka-Ro electronics TX6Q Modules
-> >                - kiebackpeter,imx6q-tpc    # K+P i.MX6 Quad TPC Board
-> >                - kontron,imx6q-samx6i      # Kontron i.MX6 Dual/Quad SMARC Module
-> >
->
-> You miss change in vendor prefixes. Didn't checkpatch complain about it?
-> Did you run checkpatch?
+On Tue, Apr 13, 2021 at 10:44:07PM -0700, Dmitry Torokhov wrote:
+> Hi Giulio,
+> 
+> On Tue, Apr 13, 2021 at 04:44:46PM +0200, Giulio Benetti wrote:
+> > +
+> > +	input_mt_report_pointer_emulation(tsdata->input, true);
+> 
+> For touchscreens it does not make much sense to report BTN_DOUBLETAP,
+> BTN_TRIPLETAP, etc, events (they are really for touchpads), so I changed
+> this to
+> 
+> 	input_mt_report_pointer_emulation(tsdata->input, false);
+> 
+> to only report ABS_X, ABS_Y, and BTN_TOUCH, and applied.
 
-Yes. was checked with checkpatch, since it's a warning, i forget to
-fix it.thanks.
-Will add vendor prefixes to vendor-prefixes.yaml in v2
+Can you expand on this please, just to make sure I'm not misinterpreting
+those codes? Those bits are just for how many fingers are down (but without
+position), dropping those bits means you restrict the device to a pure
+single-touch screen. Or am I missing something here?
 
-Thanks.
-Dillon,
+then again, MT support has been in the kernel for long enough that by now
+everything should understand it, so there's a certain "meh" factor.
 
-> Best regards,
-> Best regards,
-> Krzysztof
+Cheers,
+   Peter
