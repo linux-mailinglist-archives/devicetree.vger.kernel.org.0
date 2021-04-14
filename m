@@ -2,53 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD4F535FD4D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 23:30:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A81935FD1A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 23:19:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233082AbhDNVa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 17:30:57 -0400
-Received: from [121.4.85.183] ([121.4.85.183]:43126 "EHLO mail.kuanyit.com"
-        rhost-flags-FAIL-FAIL-OK-OK) by vger.kernel.org with ESMTP
-        id S232302AbhDNVa5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Apr 2021 17:30:57 -0400
-X-Greylist: delayed 439 seconds by postgrey-1.27 at vger.kernel.org; Wed, 14 Apr 2021 17:30:57 EDT
-Received: from localhost (unknown [127.0.0.1])
-        by mail.kuanyit.com (Postfix) with ESMTP id DE2E6A4515;
-        Wed, 14 Apr 2021 21:20:38 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at kuanyit.com
-Received: from mail.kuanyit.com ([127.0.0.1])
-        by localhost (mail.kuanyit.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id NQ0woLGq-jCO; Thu, 15 Apr 2021 05:20:33 +0800 (CST)
-Received: from User (unknown [203.159.80.22])
-        by mail.kuanyit.com (Postfix) with SMTP id 973461CAD4;
-        Thu, 15 Apr 2021 03:24:22 +0800 (CST)
-Reply-To: <mr.greg_rhodes_0712@meta.ua>
-From:   "Greg Rhodes" <info@go.org>
-Subject: Your prompt response would be highly appreciated
-Date:   Wed, 14 Apr 2021 12:24:34 -0700
-MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="Windows-1251"
-Content-Transfer-Encoding: 7bit
-X-Priority: 3
-X-MSMail-Priority: Normal
-X-Mailer: Microsoft Outlook Express 6.00.2600.0000
-X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
-Message-Id: <20210414212038.DE2E6A4515@mail.kuanyit.com>
-To:     unlisted-recipients:; (no To-header on input)
+        id S232006AbhDNVTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 17:19:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39354 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231944AbhDNVT3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 17:19:29 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEDC7C061756;
+        Wed, 14 Apr 2021 14:19:06 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id f8so25411049edd.11;
+        Wed, 14 Apr 2021 14:19:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=sivu3yMxn7WQFGx4J7BCqHxoq6bWyr/i/BQeBwsAz6w=;
+        b=Ne/Jtg3R3EbB3PKuGutnf/94vrL4JxfSqvcOv9diXq+m8WnrlC7Hmjgy46yv0kjGVv
+         Z0qh3xdm3w/9Ei/Kv0xBklKcMIogFEFhQNmtJG2TTp+wkt+/K4D5XxsXgmefTSfsgr46
+         gZ7hvKMi6gGoky8WFB9ROmBPhKmHyXTHhiwJerbBzv4Pfzj2tuxJQfDeW/ZediFpeqoY
+         A9emGCjGWI0DjqqHG3lF2r5/PaDZZZTAbLtQ5cbbYtvL15pTf/OMLufZI9GMaEan0Uf7
+         Gw8rLpHQO0PR9fjtPlX7gQJgaJq091NQJKA8RZETsVqB5KEGxeJfjNAHe5Ug7oXFqR1K
+         l/Bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=sivu3yMxn7WQFGx4J7BCqHxoq6bWyr/i/BQeBwsAz6w=;
+        b=iLNnzdpp1tLKhKCfJHwufxr9SBCk37HC7e7Ii793963QdxqL/Y5+hfwXGATqSbYB5e
+         NokJzdfYVZ1O0EGSCmbVwb3VageYtJ7ZmIADEdgG0obIZWEjdXnnBJlVtruhHlp8fFmE
+         bzrTlJ0WP83ruQGen+PZDCS+R4E4CX33swtbDiGQJekXwBgK9tLLjiPkMUk5+c7h2vVN
+         /oIVXIbY0zj0ZavxWRp/Weoaml19tOi6gvg1Le1Nj8pQu4R1/kPWTKSiGNjcDMgppKBY
+         4686WvpdeizJUrs2zBYOr4eeT2qkNphzFenI3oZ548nlFnpDrPpk+nJvPxGUmnc4CPfS
+         9HQQ==
+X-Gm-Message-State: AOAM531y/d1M8EtQsa8ObtmhRN6C+hlxq8TRGxiFnkVy6Ti6UqZBfiRw
+        0DKPbMfD5nwur0Hefe3+PH6ily6IayX9Aqco
+X-Google-Smtp-Source: ABdhPJxgvC3a2ajhFLpY1gsJ62ZsK+Y70a6DRRd1syLq0+TpLW7ewr20jjQ3xy2O4NDexpBYso6UxQ==
+X-Received: by 2002:aa7:cf03:: with SMTP id a3mr259245edy.142.1618435145581;
+        Wed, 14 Apr 2021 14:19:05 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id v5sm568222edx.87.2021.04.14.14.19.04
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 14 Apr 2021 14:19:05 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, zhangqing@rock-chips.com,
+        enric.balletbo@collabora.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v7 00/11] soc: rockchip: power-domain: add rk3568 powerdomains
+Date:   Wed, 14 Apr 2021 23:18:45 +0200
+Message-Id: <20210414211856.12104-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I am Mr Greg Rhodes a supervisor at a gold mining site in Sierra Leone.
+Fix power-controller node names for dtbs_check.
+Convert power domain documentation to json-schema.
+Add a meaningful power domain name.
+Support power domain function for RK3568 Soc.
 
-Due to Covid-19 some of our customers are not picking up their orders, thus, there is a glut of gold bars in our safe.
+Changed in V7:
+[PATCH v7 07/11]
+  Fix TAB warning
+  Fix alignment
+[PATCH v7 09/11]:
+  Fix commit message and author format
+  Changed SPDX-License-Identifier back to GPL-2.0
+  Remove "clocks", "assigned-clocks" and "assigned-clock-parents"
+  Fix indent example
+[PATCH v7 11/11]
+  Fix alignment
 
-In view of this, we are seriously looking for buyers. Our prices are favourable and the business is profitable.
+Changed in V6:
+[PATCH v6 7/11]: Use kbasename(node->full_name).
+[PATCH v6 9/11]: Update the commit message.
 
-For a kilogram of gold purchased from us, you are sure to make at between $10,000 - $12,000.
+Changed in V5:
+[PATCH v5 1/11]: New.
+[PATCH v5 2/11]: New.
+[PATCH v5 3/11]: New.
+[PATCH v5 4/11]: New.
+[PATCH v5 5/11]: New.
+[PATCH v5 6/11]: New.
+[PATCH v5 7/11]: New.
+[PATCH v5 8/11]: No change. Same as [PATCH v4 1/4].
+[PATCH v5 9/11]: [PATCH v4 2/4] Fix up yaml code styles.
+[PATCH v5 10/11]: No change. Same as [PATCH v4 3/4].
+[PATCH v5 11/11]: [PATCH v4 4/4] add a meaningful power domain name for
+RK3568 Soc.
 
-We thank you and look forward to a good business relationship.
+Changed in V4:
+[PATCH v4 2/4]: Fix up yaml code styles. Remove the new compatible to [PATCH v4 3/4]
+[PATCH v4 3/4]: Adding new compatible for RK3568 Soc.
+[PATCH v4 4/4]: No change. Same as [PATCH v3 3/3].
 
-Best regards,
-Greg Rhodes
+Changed in V3:
+[PATCH v3 2/3]: Fix up the code styles and add rk3568 base on:
+https://patchwork.kernel.org/project/linux-rockchip/patch/20210225102643.653095-1-enric.balletbo@collabora.com/
+
+Changed in V2:
+[PATCH v2 2/3]: Fix up yaml code styles.
+
+Elaine Zhang (10):
+  arm: dts: rockchip: Fix power-controller node names for rk3066a
+  arm: dts: rockchip: Fix power-controller node names for rk3188
+  arm: dts: rockchip: Fix power-controller node names for rk3288
+  arm64: dts: rockchip: Fix power-controller node names for px30
+  arm64: dts: rockchip: Fix power-controller node names for rk3328
+  arm64: dts: rockchip: Fix power-controller node names for rk3399
+  soc: rockchip: pm-domains: Add a meaningful power domain name
+  dt-bindings: add power-domain header for RK3568 SoCs
+  dt-bindings: power: rockchip: Add bindings for RK3568 Soc
+  soc: rockchip: power-domain: add rk3568 powerdomains
+
+Enric Balletbo i Serra (1):
+  dt-bindings: power: rockchip: Convert to json-schema
+
+ .../bindings/power/rockchip,power-controller.yaml  | 285 +++++++++++++++++++++
+ .../bindings/soc/rockchip/power_domain.txt         | 136 ----------
+ arch/arm/boot/dts/rk3066a.dtsi                     |   6 +-
+ arch/arm/boot/dts/rk3188.dtsi                      |   6 +-
+ arch/arm/boot/dts/rk3288.dtsi                      |   8 +-
+ arch/arm64/boot/dts/rockchip/px30.dtsi             |  16 +-
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi           |   6 +-
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi           |  40 +--
+ drivers/soc/rockchip/pm_domains.c                  | 252 ++++++++++--------
+ include/dt-bindings/power/rk3568-power.h           |  32 +++
+ 10 files changed, 503 insertions(+), 284 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+ create mode 100644 include/dt-bindings/power/rk3568-power.h
+
+-- 
+2.11.0
+
