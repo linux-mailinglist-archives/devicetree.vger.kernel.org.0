@@ -2,76 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CD6335F1D8
-	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 13:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC8E735F1F9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Apr 2021 13:14:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235688AbhDNLDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 07:03:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45434 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232180AbhDNLDq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 07:03:46 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D948C061574
-        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 04:03:24 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id r8so32353071lfp.10
-        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 04:03:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3/vNS6umXkwbF29d+Z7tlr1T3O0+txjyE70BHssp7rg=;
-        b=fdJ/dPQmKi55RzbyBZIL1hkuqGGVcUSzFj43in6mgs3qA9PsjCYAdNT3pn972rgt10
-         16QCcDi23voSd1xBfjOMRaW1/mr5W3jXk2cEBV3SKAH+0uddV81gU2FgX01fRwYqIGDy
-         wMjWEnDhpuk1qup0MW1tEBFvM0INw8QTMvZByOHEeBW7k4HAzoa8h3HQqZJUseBW3hUh
-         lNqVhXcOmAaDcEw/FAuI8waKfcxDsf+RSsU+xh0BXT+YsE2YADQhLoxmGQJrGKmorFXl
-         r/Ytjb+PJGVzjn9a1Cnw+ypU1271xnSJwXKaLdivoW0z2RNHxLdvkVDiKeMaRbUyv8zf
-         FfKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3/vNS6umXkwbF29d+Z7tlr1T3O0+txjyE70BHssp7rg=;
-        b=SEuAj+kzlDDM9XjxE/R4moTEg4eTo2usZ4GfHZukEjmatX/NIG/eGZYaX6DYdrkAcL
-         enP6yPOHWeyqptp2gEfqe0s65r7h14EmZAS5wA7yppodP8Ke2wuww07yC2UbAXew9dxv
-         zMZuByMFOZLoLu0cByJh+Mn//XAGgnBK3gNBKj8yeLlY14l/mia3uCzV1JhKh2cPJ9cD
-         FsUy15rxazxaUXEVW+Y3UQCoE0B42urG8XVer0TrOgzi/GIG/ZqmApBv0x3xtGVfScTD
-         bb0vmLVhGB3ijNkzGY0n0XYwepO8wVeBzGej3m0b2qvSp81c03LgZb9qgY9G+wZi3iJa
-         c7GA==
-X-Gm-Message-State: AOAM533TU3lsrq3rXzEERwq11vjbE+SIM1NMda//TVN8hUi0bE/MWmlQ
-        2xKwS1yn0MMGEvd/NubpXZ0LXA57g9E+9BFID/E8sw==
-X-Google-Smtp-Source: ABdhPJw5W4a3WQ1O7p3Pr1A24/jEz2x5EJmTSO6VW7baQsN+jWwug+hpyjloLA0YsPf+3gSiUjffc5qI+Gpzp5tEnVo=
-X-Received: by 2002:a19:4f0e:: with SMTP id d14mr14276105lfb.649.1618398203177;
- Wed, 14 Apr 2021 04:03:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210410204500.18091-1-ezequiel@collabora.com>
-In-Reply-To: <20210410204500.18091-1-ezequiel@collabora.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 14 Apr 2021 13:03:12 +0200
-Message-ID: <CACRpkdYrFZOV=_yh9ab2tF6omiQ1MKeV21hYMnt0_KssuK8nGA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: rockchip: add RK3568 SoC support
-To:     Ezequiel Garcia <ezequiel@collabora.com>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Collabora Kernel ML <kernel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1346542AbhDNLN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 07:13:57 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:5632 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346172AbhDNLN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 07:13:56 -0400
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 14 Apr 2021 04:13:35 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 14 Apr 2021 04:13:33 -0700
+X-QCInternal: smtphost
+Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 14 Apr 2021 16:43:06 +0530
+Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
+        id 3C86E47ED; Wed, 14 Apr 2021 16:43:05 +0530 (IST)
+From:   satya priya <skakit@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     mka@chromium.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kgunda@codeaurora.org, satya priya <skakit@codeaurora.org>
+Subject: [RESEND PATCH V3 0/5] Add PMIC DT files for sc7280
+Date:   Wed, 14 Apr 2021 16:42:58 +0530
+Message-Id: <1618398783-7834-1-git-send-email-skakit@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 10, 2021 at 10:45 PM Ezequiel Garcia <ezequiel@collabora.com> wrote:
+Hi All,
 
-> Add RK3568/RK3566 SoC support to pinctrl.
->
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+Resending V3 as there was a mistake earlier, changes in patches 4 and 5
+got clubbed unknowingly. Apologies for that.
 
-Patch applied.
+Thanks,
+Satya Priya
 
-Yours,
-Linus Walleij
+Add PM7325 DT file with gpio and temp-alarm nodes.
+For PM8350C, PMR735A and PMK8350 add the required peripherals
+as the base DT files are already added [1].
+[1] https://lore.kernel.org/patchwork/project/lkml/list/?series=489011&state=%2A&archive=both
+
+Changes in V2:
+ - As per Matthias comments:
+   - I've Split the patch into per-PMIC patches and one sc7280 patch
+   - Removed 2nd critical point, thermal-governer property
+   - s/pm8325_tz/pm7325_temp_alarm and s/pm7325_temp_alarm/pm7325_thermal
+   - Fixed few other minor errors.
+
+ - As per Bjorn's comments, replaced '_' with '-' in node names and moved
+   DT files inclusion to board dts.
+
+Changes in V3:
+ - As per Matthias comments, changed commit text, modified critical interrupt
+   node name like <name>-crit for all pmics.
+ - Moved pmk8350_vadc channel nodes to idp dts, as it is not guaranteed that
+   a board with the pmk8350 will always have the other 3 PMICs
+
+satya priya (5):
+  arm64: dts: qcom: pm7325: Add pm7325 base dts file
+  arm64: dts: qcom: pm8350c: Add temp-alarm support
+  arm64: dts: qcom: pmr735a: Add temp-alarm support
+  arm64: dts: qcom: pmk8350: Add PMIC peripherals for pmk8350
+  arm64: dts: qcom: sc7280: Include PMIC DT files for sc7280
+
+ arch/arm64/boot/dts/qcom/pm7325.dtsi    | 53 +++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/pm8350c.dtsi   | 32 ++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/pmk8350.dtsi   | 55 ++++++++++++++++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/pmr735a.dtsi   | 32 ++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts | 30 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi    |  3 ++
+ 6 files changed, 202 insertions(+), 3 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/pm7325.dtsi
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
+
