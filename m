@@ -2,86 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA78D36103D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 18:36:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07D99361048
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 18:39:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233389AbhDOQgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 12:36:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38368 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231549AbhDOQgf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 12:36:35 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C999BC061574;
-        Thu, 15 Apr 2021 09:36:10 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id p2so1813398pgh.4;
-        Thu, 15 Apr 2021 09:36:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=xpLp18sMQ5PmZ6Zf0JUY6KPpGa5tNuFDxpQOSqk79K8=;
-        b=CtzJ4hExyDcCHoEt5Dw1HoIez7zshFPJcw6MDrrarcaDJkMnGDXsmDq20IbAL4G7Wk
-         0Hc6ZTklwxVLdIT0GscspC1io3M1s2TcUPrK1wCJEUSb+/3VIuvF03DbQ5Wz2AghQYdm
-         JNUseYXPoAkZpoBEYv9oR3RolFgUGcLBbM9vUbHkOg6xHDEq2RNl+uBJgOseHpIie1TF
-         UedBPqeakxxd4TMj5pO1RSUcpZ9HP6L2/qe7HFoYcWMognpdtzLbysQkv3VWp3upChsz
-         n0wHWHz/aaybdka51hy8ODgGT/uvSCZ3croJ8KvU6r9OpXxyMjfMKHE+ysE7KYrPtDcW
-         2g3w==
+        id S231549AbhDOQji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 12:39:38 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:37421 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231137AbhDOQji (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 12:39:38 -0400
+Received: by mail-ot1-f46.google.com with SMTP id c8-20020a9d78480000b0290289e9d1b7bcso9048668otm.4;
+        Thu, 15 Apr 2021 09:39:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=xpLp18sMQ5PmZ6Zf0JUY6KPpGa5tNuFDxpQOSqk79K8=;
-        b=W9nCMSvU6wpzK3jDEM6ad/rs+WNh4MGkDhxFbNXscg+MeOZn22/qSgerPHnA1iIT+U
-         8Lz/k0j6XybSHw2PzRKgdRyohmkHZ+tpFCcfPRV3hdJs1Qvjvqv/RsI/ShIcRcxLZHkV
-         2VJdAcrlhYGC4JWKr8coSor3PUs7VyheHVG7jPd9PInKkuyYpsk1SGkp0EL3hWEeatWQ
-         PtKB+2dJKp/cdqhirSABEU4Ss1ENHERL97FLFk7b44uUaA7vus0ZyUfv1b+XjxHljz+/
-         5VNuGsDEALuYzZs9WqVo3emyszlywFc9dG/KYLg/ne8rhNegJfp5WTpUJ1/fcIgzwUg3
-         rZbQ==
-X-Gm-Message-State: AOAM531pvnybELSAC4FRwdeZVtGnstxPJbiYuoQwr015jFbC8ivFNuVl
-        B620JTD76zptAKVmUHYo8SkcmveWsNY=
-X-Google-Smtp-Source: ABdhPJxlSveTFMbYbQw93g0Tf2/9MuFzPejwxz3/CcEC7snEHSyuytPQUSPELNbLOxPREAt69IyWeA==
-X-Received: by 2002:a63:f451:: with SMTP id p17mr4220611pgk.150.1618504569824;
-        Thu, 15 Apr 2021 09:36:09 -0700 (PDT)
-Received: from [10.230.29.202] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 8sm2654128pfw.118.2021.04.15.09.36.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Apr 2021 09:36:09 -0700 (PDT)
-Subject: Re: [PATCH v2 net-next 3/5] net: dsa: Only notify CPU ports of
- changes to the tag protocol
-To:     Tobias Waldekranz <tobias@waldekranz.com>, davem@davemloft.net,
-        kuba@kernel.org
-Cc:     andrew@lunn.ch, vivien.didelot@gmail.com, olteanv@gmail.com,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-References: <20210415092610.953134-1-tobias@waldekranz.com>
- <20210415092610.953134-4-tobias@waldekranz.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <ce97cdd1-4acf-e3ba-d776-38dd8bf80dd3@gmail.com>
-Date:   Thu, 15 Apr 2021 09:36:02 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.9.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ZpKNZqJMtuMERJQ2AbPwF8sZgkJqLPk+S+d3HTR1z9Y=;
+        b=K0IiRTYEBWmDwwSF1epcas/AIxV+gFsAgWd3co5eYSxNkZYhV21TiWv9/1UgI+XY5a
+         Ud4SqbKckofpWU2H/2dX3tJ38+/n3FgkH/jPzvbguaZVDFeWZLYCMg5tPNBPT6UjrTzC
+         VxkcygaabuRYwjxD88D/R6Dq81UJaFyiSz9FCIdnHEumC8yO33ypV66KQvAEQ0eJSDk3
+         zdfqsPrqNuQmSPSKF2IwmS+gQ+r55kg+5EeaK11ZYUKzJDd1FNRbfAVCYkB3jxc7AUXU
+         fi4PPe7y4uZOw1v5LF7HlFLhvrsywaaoKubJuA5ubvxkidU+KR9Q9trWCclMMHjeOBpU
+         B6nA==
+X-Gm-Message-State: AOAM533wWySHh3qR3Pb/HWbP14W6XcApXL/CJzwNwT2+vqt3CXtJjB9x
+        lpKiNsX1BHLt5Zi9u6mPzQ==
+X-Google-Smtp-Source: ABdhPJxfrT1TEsqC3ayPTt5SJKenn6259qEOzXxjhfz6tyEYwEVQfneK+liMC8rKdst2Q11qlP7W+Q==
+X-Received: by 2002:a05:6830:2491:: with SMTP id u17mr147988ots.198.1618504753664;
+        Thu, 15 Apr 2021 09:39:13 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id m3sm700725oiw.27.2021.04.15.09.39.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Apr 2021 09:39:13 -0700 (PDT)
+Received: (nullmailer pid 1533253 invoked by uid 1000);
+        Thu, 15 Apr 2021 16:39:12 -0000
+Date:   Thu, 15 Apr 2021 11:39:12 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     broonie@kernel.org, devicetree@vger.kernel.org, perex@perex.cz,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com
+Subject: Re: [PATCH v4 4/9] ASoC: dt-bindings: wcd938x-sdw: add bindings for
+ wcd938x-sdw
+Message-ID: <20210415163912.GA1524320@robh.at.kernel.org>
+References: <20210414154845.21964-1-srinivas.kandagatla@linaro.org>
+ <20210414154845.21964-5-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20210415092610.953134-4-tobias@waldekranz.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210414154845.21964-5-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 4/15/2021 2:26 AM, Tobias Waldekranz wrote:
-> Previously DSA ports were also included, on the assumption that the
-> protocol used by the CPU port had to the matched throughout the entire
-> tree.
+On Wed, Apr 14, 2021 at 04:48:40PM +0100, Srinivas Kandagatla wrote:
+> Qualcomm WCD9380/WCD9385 Codec is a standalone Hi-Fi audio codec IC
+> connected over SoundWire. This device has two SoundWire devices RX and
+> TX respectively. This bindings is for those slave devices on WCD9380/WCD9385.
 > 
-> As there is not yet any consumer in need of this, drop the call.
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  .../bindings/sound/qcom,wcd938x-sdw.yaml      | 61 +++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd938x-sdw.yaml
 > 
-> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd938x-sdw.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd938x-sdw.yaml
+> new file mode 100644
+> index 000000000000..fff33c65491b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/qcom,wcd938x-sdw.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/qcom,wcd938x-sdw.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bindings for Qualcomm SoundWire Slave devices on WCD9380/WCD9385
+> +
+> +maintainers:
+> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> +
+> +description: |
+> +  Qualcomm WCD9380/WCD9385 Codec is a standalone Hi-Fi audio codec IC.
+> +  It has RX and TX Soundwire slave devices. This bindings is for the
+> +  slave devices.
+> +
+> +properties:
+> +  compatible:
+> +    const: sdw20217010d00
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  qcom,direction:
+> +    description: direction of the SoundWire device instance
+> +    enum:
+> +      - rx
+> +      - tx
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+Was thinking these were some established bus properties...
+
+This would just be implied by the 'reg' property index. You could define 
+'reg-names' too I guess.
+
+> +
+> +  qcom,port-mapping:
+> +    description: |
+> +      Specifies static port mapping between slave and master ports.
+> +      In the order of slave port index.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 4
+> +    maxItems: 5
+
+qcom,rx-port-mapping and qcom,tx-port-mapping?
+
+Or keep a single property and the driver knows how many slave ports for 
+each direction. IOW, an array of 9 with first 4 entries for tx and last 
+5 for rx.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - qcom,direction
+> +  - qcom,port-mapping
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    soundwire@3230000 {
+> +        #address-cells = <2>;
+> +        #size-cells = <0>;
+> +        reg = <0x03230000 0x2000>;
+> +
+> +        codec@0,3 {
+> +            compatible = "sdw20217010d00";
+> +            reg  = <0 3>;
+> +            qcom,direction = "tx";
+> +            qcom,port-mapping = <2 3 4 5>;
+> +        };
+> +    };
+> +
+> +...
+> -- 
+> 2.21.0
+> 
