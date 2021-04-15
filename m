@@ -2,83 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21898361434
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 23:35:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A639736143C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 23:38:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236148AbhDOVfw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 17:35:52 -0400
-Received: from mail-oo1-f45.google.com ([209.85.161.45]:45602 "EHLO
-        mail-oo1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236043AbhDOVfw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 17:35:52 -0400
-Received: by mail-oo1-f45.google.com with SMTP id s1-20020a4ac1010000b02901cfd9170ce2so5710548oop.12;
-        Thu, 15 Apr 2021 14:35:28 -0700 (PDT)
+        id S235997AbhDOVjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 17:39:15 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:42706 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235046AbhDOVjN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 17:39:13 -0400
+Received: by mail-ot1-f48.google.com with SMTP id 101-20020a9d0d6e0000b02902816815ff62so18054816oti.9;
+        Thu, 15 Apr 2021 14:38:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=dmuE5OCkOCbeBnudYMpaUgY0xXoUF0wjgw61Smpjy14=;
-        b=cTueS5L/3GrtP9wt2//hsSyzW46sk+A0SadpdU/A/NEVQKUXnJ+QmPEdgChO+4X/7B
-         cqyur9dNuxUYIwIQFQqaX7zG98fAZrtLmDU8B0eN9eQIUsIE1xr7y3C6fgRgBIqqGQXH
-         dH7HJ701KRzwLdNBHimnPqUzRm/hmP+Fc+h+HWjahTzXROFDuy/ivd+okxPvJHSc6uhC
-         dyDGl/97ff5AXOv2bBVTirLCldB5nMxPcCHahHCfiV3m4qs/JTk32JLyMMkNbpOC/kK9
-         913ItVbMUqNIUf1YjIp79wEDnAX0iRc+ZbXlNXw9TOKLeKAzCL7qhn65Gh6f1xWHYr2p
-         ab7w==
-X-Gm-Message-State: AOAM5302aed0uOf3fePGI7pEgZnDijuFM5Ewcy2DxIc2SghZ9lyELdY9
-        L2TS/AnGc9/3WSRtUr0n8Q==
-X-Google-Smtp-Source: ABdhPJxzLUMdEqX+77oFQN5BKMZF2ysJ7VeUIUWuWlLQ4vgWD/mRY2KKgtSluZ/+OLXPTpWW/nRc5Q==
-X-Received: by 2002:a4a:2410:: with SMTP id m16mr861841oof.90.1618522528558;
-        Thu, 15 Apr 2021 14:35:28 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=5I8wWABck31NV1m65PD34RBvrDHA/tjv8Ta7oFlJnKU=;
+        b=QqADqdO+RFTG9Px6oBDw6Jui9uK23orPhm4SACo1bXxo8qKw0rvpEjqqGiIQZAfyhs
+         zz6DaPOqIbS3x9vXYdZPxorIUiP2oxy3xpjXrFoEP721cWS+FRYUfECS1k+Xvgo6L1ER
+         kUxkaBIq18ru2PbPuRw9aRQPYhZqaD2OSSotfgKbyXi8vXGBWJXF80WA9MhTW1P9NqKB
+         n8TYWJAgVjmpbpXq6ewrHWfT6C0q6fsFXmOM2RKozFfv3sHErFuVegDSIXEx5KUTSaM0
+         s0Gyd7g0jRgyFZ6Dey/kUqIKl69YXgcMl1qkbjt237lQ4Q9LFVA/wE0wk9svkaMK2blB
+         aLHQ==
+X-Gm-Message-State: AOAM531T8Rt8RN7rqBh+yqCKPutD5jcDmunsf/5PO0SEbdkRLoLKXoZv
+        E/JErjBvRFAE10shCgpDmq2bPlZquw==
+X-Google-Smtp-Source: ABdhPJxObK1IwxxoYH555Ot+Ucad9hQ4Ko2LY17PIKD6j25Co7RdJ/qjsfc2pioJIEJIziEYUzsiBQ==
+X-Received: by 2002:a05:6830:1af6:: with SMTP id c22mr945850otd.291.1618522728662;
+        Thu, 15 Apr 2021 14:38:48 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x14sm930615otk.32.2021.04.15.14.35.27
+        by smtp.gmail.com with ESMTPSA id x3sm1029215otj.8.2021.04.15.14.38.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 14:35:28 -0700 (PDT)
-Received: (nullmailer pid 1921871 invoked by uid 1000);
-        Thu, 15 Apr 2021 21:35:27 -0000
-Date:   Thu, 15 Apr 2021 16:35:27 -0500
+        Thu, 15 Apr 2021 14:38:48 -0700 (PDT)
+Received: (nullmailer pid 1926355 invoked by uid 1000);
+        Thu, 15 Apr 2021 21:38:47 -0000
+Date:   Thu, 15 Apr 2021 16:38:47 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        linux-can@vger.kernel.org,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-kernel@vger.kernel.org, Lokesh Vutla <lokeshvutla@ti.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: can: Document transceiver
- implementation as phy
-Message-ID: <20210415213527.GA1921841@robh.at.kernel.org>
-References: <20210415154635.30094-1-a-govindraju@ti.com>
- <20210415154635.30094-2-a-govindraju@ti.com>
+To:     Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Cc:     linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] media: dt-bindings: media: renesas,csi2: Add r8a779a0
+ support
+Message-ID: <20210415213847.GA1926287@robh.at.kernel.org>
+References: <20210413172041.2514916-1-niklas.soderlund+renesas@ragnatech.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20210415154635.30094-2-a-govindraju@ti.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210413172041.2514916-1-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Apr 2021 21:16:34 +0530, Aswath Govindraju wrote:
-> From: Faiz Abbas <faiz_abbas@ti.com>
+On Tue, 13 Apr 2021 19:20:41 +0200, Niklas Söderlund wrote:
+> Add support for R-Car V3U.
 > 
-> Some transceivers need a configuration step (for example, pulling the
-> standby or enable lines) for them to start sending messages. The
-> transceiver can be implemented as a phy with the configuration done in the
-> phy driver. The bit rate limitation can the be obtained by the driver using
-> the phy node.
-> 
-> Document the above implementation in the bosch mcan bindings
-> 
-> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 > ---
->  Documentation/devicetree/bindings/net/can/bosch,m_can.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  Documentation/devicetree/bindings/media/renesas,csi2.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
