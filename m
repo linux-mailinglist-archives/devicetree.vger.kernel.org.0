@@ -2,108 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C5E735FF8A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 03:28:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DD4335FF9F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 03:31:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229449AbhDOB2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 21:28:39 -0400
-Received: from gw.atmark-techno.com ([13.115.124.170]:36046 "EHLO
-        gw.atmark-techno.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbhDOB2i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 21:28:38 -0400
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-        by gw.atmark-techno.com (Postfix) with ESMTPS id 74DFB8048F
-        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 10:28:12 +0900 (JST)
-Received: by mail-pf1-f197.google.com with SMTP id c18-20020a62e8120000b0290250828ad346so1908771pfi.12
-        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 18:28:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FOM9b0pdtnYk8Fnx4fGxxS9X4Bl0c34VqGJkMkPLCys=;
-        b=sLPExGV0RAZx0NTjmtu4rcKqcXTuV/Pdg9LvLtqM/ryraWFtkXoKI+DqzgariWI/xt
-         McqarLWv+QFDp9g87YHqh1RIgeel9TNVVoySOZGUkccpDIRsHDgNFCmtclCMyB2RVvx3
-         0K38jgD//SnwtbPvKokGamW9Uqwlufc6k0E/enAnmH6qd93rgHuvjgji8iDF0RXw6WKA
-         T+sR3yGjP3fZCPyLL3zD1ld/RYI+TaektaorT/VOVQNz4SXYxmPYymKPgk2iw7p5ORe+
-         1sddOkD+DF99mjLjpM5CR5DQ7t7m9xGEkCrfIMK4rnIUov6kye4KT+6rbWdZ+mrkdJY4
-         Zygw==
-X-Gm-Message-State: AOAM533s4Tq8oR387bNCSEzkdSuMmBOTvztI59pERAxlxE4vWHrtNQiS
-        6Jk/7ZlTHf8LyL26bJfd2c2UkGK0HwAO3Un7eF6IUDwnkllcCVm3yOkd/ON3m2B8F3f18OqIBlc
-        4Q65MnbeCEhWqZoW9jXkv8AhM5g==
-X-Received: by 2002:aa7:9299:0:b029:21d:7ad1:2320 with SMTP id j25-20020aa792990000b029021d7ad12320mr936594pfa.22.1618450091301;
-        Wed, 14 Apr 2021 18:28:11 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwOS8ZF+FYzG7w9Mf8YFdOFOmZ/r+RgZwkgg5u3LbU7N9Rak2ehntN57YQtvkLegkVtKjlWww==
-X-Received: by 2002:aa7:9299:0:b029:21d:7ad1:2320 with SMTP id j25-20020aa792990000b029021d7ad12320mr936569pfa.22.1618450090996;
-        Wed, 14 Apr 2021 18:28:10 -0700 (PDT)
-Received: from pc-0115 (178.101.200.35.bc.googleusercontent.com. [35.200.101.178])
-        by smtp.gmail.com with ESMTPSA id e1sm643595pgl.25.2021.04.14.18.28.09
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 14 Apr 2021 18:28:10 -0700 (PDT)
-Received: from martinet by pc-0115 with local (Exim 4.94)
-        (envelope-from <martinet@pc-0115>)
-        id 1lWqng-004w4O-Qv; Thu, 15 Apr 2021 10:28:08 +0900
-Date:   Thu, 15 Apr 2021 10:27:58 +0900
-From:   Dominique MARTINET <dominique.martinet@atmark-techno.com>
-To:     "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>, dl-linux-imx <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [EXT] regression due to soc_device_match not handling defer
- (Was: [PATCH v4 4/4] soc: imx8m: change to use platform driver)
-Message-ID: <YHeWnuDQo76rYoz5@atmark-techno.com>
-References: <20201120101112.31819-4-alice.guo@nxp.com>
- <YGGZJjAxA1IO+/VU@atmark-techno.com>
- <AM6PR04MB60536EF0DEEE6EB64CF29390E27D9@AM6PR04MB6053.eurprd04.prod.outlook.com>
+        id S229573AbhDOBbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 21:31:45 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:32646 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229637AbhDOBbm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 21:31:42 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1618450280; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=9gnP5pgYelSlV/Rgr0abTb2Kc3chY5fICOH5Ndmud5U=; b=q0J7J7puWBMCrH1OW1Q4Z5/H3O81G5ET5z0PiunIgOuqhWs0lPb628ppXOZiIkpIBClVLqUz
+ rXu2fjH21d7LJzfDBjIbVadaezarA7aNiW8iMoAG++KUJMXjyblJ73hTVUkmmS+cLvtSqrq8
+ iWa99DZoOsHrBkLsyYVElPqMUEE=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 6077975f8166b7eff72d6a94 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 15 Apr 2021 01:31:11
+ GMT
+Sender: tdas=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 017C3C43463; Thu, 15 Apr 2021 01:31:10 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [192.168.0.103] (unknown [49.204.182.94])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id E0672C433C6;
+        Thu, 15 Apr 2021 01:31:05 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E0672C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=tdas@codeaurora.org
+Subject: Re: [PATCH v4 5/7] cpufreq: qcom-hw: Implement CPRh aware OSM
+ programming
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>, agross@kernel.org,
+        rjw@rjwysocki.net, devicetree@vger.kernel.org, robh+dt@kernel.org,
+        amit.kucheria@linaro.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, jeffrey.l.hugo@gmail.com
+References: <20210119174557.227318-1-angelogioacchino.delregno@somainline.org>
+ <20210119174557.227318-6-angelogioacchino.delregno@somainline.org>
+ <c35bfd76-0d7e-d7bc-79ab-041b1074c1af@codeaurora.org>
+ <YAh+9/IgRhI8M3ov@builder.lan>
+ <92e465e4-a0d9-43eb-84f7-69fa355097a9@codeaurora.org>
+ <20210413034940.o6uzjtnh2ylvikbf@vireshk-i7>
+From:   Taniya Das <tdas@codeaurora.org>
+Message-ID: <150e19b9-9ecf-7cac-8aa3-c7c4d7a11468@codeaurora.org>
+Date:   Thu, 15 Apr 2021 07:01:03 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <AM6PR04MB60536EF0DEEE6EB64CF29390E27D9@AM6PR04MB6053.eurprd04.prod.outlook.com>
+In-Reply-To: <20210413034940.o6uzjtnh2ylvikbf@vireshk-i7>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Alice Guo (OSS) wrote on Tue, Mar 30, 2021 at 02:41:23AM +0000:
-> Thanks for reporting this issue, I'll check and add a fix to handle defer probe.
 
-I haven't seen any follow up on this, have you had a chance to take a
-look?
-If this won't make it for 5.12 (in a couple of week probably?) would it
-make sense to revert 7d981405d0fd ("soc: imx8m: change to use platform
-driver") for now?
+On 4/13/2021 9:19 AM, Viresh Kumar wrote:
+> On 12-04-21, 15:01, Taniya Das wrote:
+>> Technically the HW we are trying to program here differs in terms of
+>> clocking, the LUT definitions and many more. It will definitely make
+>> debugging much more troublesome if we try to accommodate multiple versions of
+>> CPUFREQ-HW in the same code.
+>>
+>> Thus to keep it simple, easy to read, debug, the suggestion is to keep it
+>> with "v1" tag as the OSM version we are trying to put here is from OSM1.0.
+> 
+> That is a valid point and is always a case with so many drivers. What
+> I am concerned about is how much code is common across versions, if it
+> is 5-70%, or more, then we should definitely share, arrange to have
+> callbacks or ops per version and call them in a generic fashion instead
+> of writing a new driver. This is what's done across
+> drivers/frameworks, etc.
+> 
 
+The code sharing here between versions should be very minimal as most 
+portion of the code here in V1 would focus on programming to prepare the 
+LUT to be further read by the driver, the programming in itself is huge 
+for v1. I am okay if you move the v1 in a different file and invoke 
+based on version.
 
-
-While looking at the code earlier I also have an unrelated, late-review
-on the patch itself:
-
-> +static u32 __init imx8mq_soc_revision(struct device *dev)
-> [...]
->  @@ -191,8 +223,16 @@ static int __init imx8_soc_init(void)
->         data = id->data;
->         if (data) {
->                 soc_dev_attr->soc_id = data->name;
-> -               if (data->soc_revision)
-> -                       soc_rev = data->soc_revision();
-> +               if (data->soc_revision) {
-> +                       if (pdev) {
-> +                               soc_rev = data->soc_revision(&pdev->dev);
-> +                               ret = soc_rev;
-> +                               if (ret < 0)
-
-I appreciate current soc_revision are "small enough" (looking at
-include/soc/imx/revision.h we're talking < 256) so this actually works,
-but would it make sense to either make soc_rev signed, or to have
-soc_revision() return a s64, or have the revision filled in another *u32
-argument to make sure the error is an error and not just a large rev?
-
-This is most definitely fine for now but that kind of code patterns can
-lead to weird errors down the road.
-
-Thanks,
 -- 
-Dominique
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation.
+
+--
