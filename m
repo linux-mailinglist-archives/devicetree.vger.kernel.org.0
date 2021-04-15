@@ -2,207 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F116236051C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 11:00:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E645360527
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 11:03:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231488AbhDOJAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 05:00:53 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:12140 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231482AbhDOJAw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 05:00:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1618477230; x=1650013230;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=D5cldpGdpPzdZZc/GBpc1oa0Uxl+4GmAdtIlAp2JONo=;
-  b=kmp7JKG2SkHIm5U4zVxtJqIkMMuWOwIz1Y9q/21CbJwldRcV3VUos7pV
-   PNwOv+1GVRgFNsALeeRGjU+zEziJQ4GhOEn+C89QPneht9r1xQmhPk39E
-   sirR8mGFrlknu5LqxF98sgwbYYHZWg0HO57juG+bh5BPwVOdYqpdll6r7
-   BuzpI7bFbqkb0saLV/dETMV33+9Kg3VRk03pViY2/S56kdk9aBsfYzDTV
-   4+qN801P5pJUzyw3nYjaMKg3b4RdMK5ETeFZE2ScXIuH+1WdK9Tx7WRKN
-   hDUuNP2KuV4pmz2ScfZqoPhW4iV0PAZfFEW3M1mv0mv/82S6Wdtbsdmh7
-   A==;
-IronPort-SDR: mUKy5dSxOcCbNNJbKsfJNa8Tfv8bHT3XDZngpGtS8LmuI/RutkyfKxsSCXiVixy2B79lGV4qqw
- AHcEC906bgbKIqjoGr2pzWMUfmk/g30093VJHeYSL4fpAQyNjeIG6+sR4vN6BQAksYRDVWbs6H
- s2vJPdTaX9ZixTT+ZGNmXxg+f/Z4EwonJfVuyOTIkeE2ey3aMLUuGKbKik8bpTawwwbeoPAGlW
- VslRiPuinDqRGGR0inQ8JNlfeCO/pMaeMVOH83taVQZ9Akp/2YEqpXPgq8HtF5mLItNW2c4Iwo
- 0Ko=
-X-IronPort-AV: E=Sophos;i="5.82,223,1613458800"; 
-   d="scan'208";a="110909648"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Apr 2021 02:00:28 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 15 Apr 2021 02:00:28 -0700
-Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Thu, 15 Apr 2021 02:00:18 -0700
-From:   Eugen Hristev <eugen.hristev@microchip.com>
-To:     <devicetree@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <jacopo@jmondi.org>, <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Eugen Hristev <eugen.hristev@microchip.com>
-Subject: [PATCH v4 30/33] dt-bindings: media: add microchip,xisc device bindings
-Date:   Thu, 15 Apr 2021 11:58:46 +0300
-Message-ID: <20210415085846.824796-1-eugen.hristev@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210413105731.610028-31-eugen.hristev@microchip.com>
-References: <20210413105731.610028-31-eugen.hristev@microchip.com>
+        id S231143AbhDOJDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 05:03:39 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:49977 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231326AbhDOJDj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Apr 2021 05:03:39 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 3FBE5580731;
+        Thu, 15 Apr 2021 05:03:16 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Thu, 15 Apr 2021 05:03:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=Ix39sTXIdzBPeQc6zVxgol87V62
+        s6qIp0rqVdblLghI=; b=ZjPdlSAMvhzGHZTqukqSHIySHquqmpAGd57SVplw3wx
+        wtEnql7pT00+S8MigfilGegogxQhaxz3+W32v5osInHdI1gMlCT2yNuNGvNGh5Xv
+        exjimUBqqSrKHr8smU6GGYztrIc5pT4tXEpTrlZ2+w5jeh4X+vDdq/j+TllG17vJ
+        0RSM6VcDq8x0z2o5rhRXrB7jMAC6CE2RylXNQS0LO2l4Aohc/QoMOSpXtup3hpOl
+        fxdZlG2qt6HgiSX2Ne4og9U1ZeRsAd05EJQvA8tlfn8sSRhA2CovxiJJeKfxDF7a
+        jX+76iWHIMfo+5L7CRwfM1fVK5FPLUGmbhS6Sftlgpg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=Ix39sT
+        XIdzBPeQc6zVxgol87V62s6qIp0rqVdblLghI=; b=IkH8qVy+9k6U2N+2SlYNiB
+        JzRs+9uU7j1Jy+b0KSy64uO3kG7cfMMqTAkRACUL0aerc/d7WtshYhyNm64E30Bj
+        F17O0okCm+GLsYcorEVbKHyfU0tbLiwOXv0Yrpcdufgr+OuOdy9qf0rjy4g0EgbR
+        ke6eIsnBaDvBT4QL50NO8aSume8OTm7CAT3zrKhzDH6T+UXhVYewnqfShTtKdDXs
+        GuELPLaJ5rA7Fmb3bowZrA1+wxx3EV75zUDMCCYHSyy6TQpVMGqBu6BHjjo/cy+o
+        VS1RdD/o4eq2UJomFkJDZm/K2Z16GB0IsHHity7tUIB2Maaa48mr2AScoxG7JqPQ
+        ==
+X-ME-Sender: <xms:UwF4YOw9lyr9OemRme-Wa3av4Nc-Hr_KxjPtHWd13wx4I0XqV-Bjig>
+    <xme:UwF4YL1hnoow4g7g0-o_qCcH2UWwJWtnjhE5AEcMqZmjWfA1NQWTtYbJGaP0zqRh9
+    PqHnwFaWqYJB2vLbj8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudelfedgudduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepuedtgfejueduheevgfevvdettdduleffgfffkeeltdffkeegudekjeeuveei
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:UwF4YGpSR8noiMvS-M775CJeteQjU_k1XpAYE3i8Orf68uv6Ski-7Q>
+    <xmx:UwF4YAWMxyCfrrrH4qelauzQoHmPvuop4JJZUpZHxOacIaRNu8DHvA>
+    <xmx:UwF4YHod1NftVt0r8bqvjUEF94G7GPvwbZVZH_xcE-sWzE-b9KIbhg>
+    <xmx:VAF4YMwGaDJvpckZHF14L6205XLPw_olC4rZzxl9AAc0e7ukJ7JpvQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id CA03F1080069;
+        Thu, 15 Apr 2021 05:03:14 -0400 (EDT)
+Date:   Thu, 15 Apr 2021 11:03:12 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Kevin Tang <kevin3.tang@gmail.com>
+Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+        ML dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 4/6] drm/sprd: add Unisoc's drm display controller
+ driver
+Message-ID: <20210415090312.md6exuuv2y4mblxn@gilmour>
+References: <20210222132822.7830-1-kevin3.tang@gmail.com>
+ <20210222132822.7830-5-kevin3.tang@gmail.com>
+ <20210324111019.og6d3w47swjim2mq@gilmour>
+ <CAFPSGXYZPoM45vF_HcjMBcO_Ek-UJZw7F+Q0Of-gWZxvVaPQjg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ypmvmwrpdbpuk4rg"
+Content-Disposition: inline
+In-Reply-To: <CAFPSGXYZPoM45vF_HcjMBcO_Ek-UJZw7F+Q0Of-gWZxvVaPQjg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for the Microchip eXtended Image Sensor Controller.
-Based on the atmel,isc.yaml binding.
 
-Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
----
- .../bindings/media/microchip,xisc.yaml        | 129 ++++++++++++++++++
- 1 file changed, 129 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/microchip,xisc.yaml
+--ypmvmwrpdbpuk4rg
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/media/microchip,xisc.yaml b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
-new file mode 100644
-index 000000000000..c829fa3d2e0e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
-@@ -0,0 +1,129 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+# Copyright (C) 2021 Microchip Technology, Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/microchip,xisc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip eXtended Image Sensor Controller (XISC)
-+
-+maintainers:
-+  - Eugen Hristev <eugen.hristev@microchip.com>
-+
-+description: |
-+  The eXtended Image Sensor Controller (XISC) device provides the video input capabilities for the
-+  Microchip AT91 SAM family of devices.
-+
-+  The XISC has a single internal parallel input that supports RAW Bayer, RGB or YUV video.
-+  The source can be either a demuxer from a CSI2 type of bus, or a simple direct bridge to a
-+  parallel sensor.
-+
-+  The XISC provides one clock output that is used to clock the demuxer/bridge.
-+
-+properties:
-+  compatible:
-+    const: microchip,sama7g5-isc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: hclock
-+
-+  '#clock-cells':
-+    const: 0
-+
-+  clock-output-names:
-+    const: isc-mck
-+
-+  microchip,mipi-mode:
-+    type: boolean
-+    description:
-+      As the XISC is usually connected to a demux/bridge, the XISC receives
-+      the same type of input, however, it should be aware of the type of
-+      signals received. The mipi-mode enables different internal handling
-+      of the data and clock lines.
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/properties/port
-+    description:
-+      Input port node, single endpoint describing the input pad.
-+
-+    properties:
-+      endpoint:
-+        $ref: video-interfaces.yaml#
-+
-+        properties:
-+          bus-type:
-+            enum: [5, 6]
-+
-+          remote-endpoint: true
-+
-+          bus-width:
-+            enum: [8, 9, 10, 11, 12]
-+            default: 12
-+
-+          hsync-active:
-+            enum: [0, 1]
-+            default: 1
-+
-+          vsync-active:
-+            enum: [0, 1]
-+            default: 1
-+
-+          pclk-sample:
-+            enum: [0, 1]
-+            default: 1
-+
-+        required:
-+          - remote-endpoint
-+          - bus-type
-+
-+        additionalProperties: false
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+  - clock-output-names
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/at91.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    xisc: xisc@e1408000 {
-+        compatible = "microchip,sama7g5-isc";
-+        reg = <0xe1408000 0x2000>;
-+        interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&pmc PMC_TYPE_PERIPHERAL 56>;
-+        clock-names = "hclock";
-+        #clock-cells = <0>;
-+        clock-output-names = "isc-mck";
-+
-+        port {
-+                xisc_in: endpoint {
-+                       bus-type = <5>; /* Parallel */
-+                       remote-endpoint = <&csi2dc_out>;
-+                       hsync-active = <1>;
-+                       vsync-active = <1>;
-+                       bus-width = <12>;
-+                };
-+        };
-+    };
-+
--- 
-2.25.1
+Hi,
 
+On Thu, Apr 15, 2021 at 08:18:52AM +0800, Kevin Tang wrote:
+> Maxime Ripard <maxime@cerno.tech> =E4=BA=8E2021=E5=B9=B43=E6=9C=8824=E6=
+=97=A5=E5=91=A8=E4=B8=89 =E4=B8=8B=E5=8D=887:10=E5=86=99=E9=81=93=EF=BC=9A
+> > > +static struct sprd_dpu *sprd_crtc_init(struct drm_device *drm,
+> > > +                      struct drm_plane *primary)
+> > > +{
+> > > +     struct device_node *port;
+> > > +     struct sprd_dpu *dpu;
+> > > +
+> > > +     /*
+> > > +      * set crtc port so that drm_of_find_possible_crtcs call works
+> > > +      */
+> > > +     port =3D of_parse_phandle(drm->dev->of_node, "ports", 0);
+> > > +     if (!port) {
+> > > +             drm_err(drm, "find 'ports' phandle of %s failed\n",
+> > > +                       drm->dev->of_node->full_name);
+> > > +             return ERR_PTR(-EINVAL);
+> > > +     }
+> > > +     of_node_put(port);
+> >
+> > The YAML binding should already make sure that your binding is sane, and
+> > if you still get a DT that doesn't follow it, you have a whole lot of
+> > other issues than whether ports is there :)
+> >
+> > > +     dpu =3D drmm_crtc_alloc_with_planes(drm, struct sprd_dpu, base,
+> > > +                                     primary, NULL,
+> > > +                                     &sprd_crtc_funcs, NULL);
+> > > +     if (IS_ERR(dpu)) {
+> > > +             drm_err(drm, "failed to init crtc.\n");
+> > > +             return dpu;
+> > > +     }
+> > > +
+> > > +     dpu->base.port =3D port;
+> >
+> > But you're still referencing it here, while you called of_node_put on it
+> > already? You should only call it once you're done with it.
+>=20
+>  of_node_put should be called after done with it, this maybe indeed be a =
+bug.
+> i will fix it.
+> >
+> >
+> > I'm not really sure why you would need drm_of_find_possible_crtcs to
+> > work then if you don't follow the OF-Graph bindings.
+>=20
+> it scan all endports of encoder, if a matching crtc is found by
+> OF-Graph bindings
+> and then genarate the crtc mask, here is description:
+> 41  /**
+> 42   * drm_of_find_possible_crtcs - find the possible CRTCs for an encode=
+r port
+> 43   * @dev: DRM device
+> 44   * @port: encoder port to scan for endpoints
+> 45   *
+> 46   * Scan all endpoints attached to a port, locate their attached CRTCs,
+> 47   * and generate the DRM mask of CRTCs which may be attached to this
+> 48   * encoder.
+> 49   *
+> if we don't follow the OF-Graph bindings, crtc can't attched to encoder.
+
+Yeah, what I'm actually confused about is why you would need the
+of_parse_phandle call. You usually call drm_of_find_possible_crtcs with
+the encoder device node, so from your MIPI-DSI driver in your case, and
+with it's device->of_node pointer and it should work perfectly fine?
+
+Maxime
+
+--ypmvmwrpdbpuk4rg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYHgBUAAKCRDj7w1vZxhR
+xVRAAQDaqBTh/injDtSwQK3iV7Z5wvP7T2ktGwk9WYZ2ZfAq9gEAwhppNac9aGVm
+la/J2jdy4d1ngYkDjjhlgrRCDASW+gU=
+=Rre6
+-----END PGP SIGNATURE-----
+
+--ypmvmwrpdbpuk4rg--
