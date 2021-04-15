@@ -2,123 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFAC4360E77
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 17:16:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C997360E78
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 17:16:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233753AbhDOPPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 11:15:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55910 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233094AbhDOPNz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Apr 2021 11:13:55 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D360D613A9;
-        Thu, 15 Apr 2021 15:13:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618499612;
-        bh=gnCwUg8I/RSf0h2mo/u86eJvsrWWjx5n5P0C+aiTZms=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=jsXqeM1DZ9Pbi0TIf1LAc1x/cTz41yglDU1DiwKumU0UHb/AVzJeL/HbL9znhwHY+
-         HGXBQr8kO3G578Ea+0v/daT5jKFjH7Wa3oAahxQeQTd9gTPPbjfw2imZ0Fz2bYQy4Z
-         dwkeQC4/QQEST2sZl5pQ6mVxpPszSd3tBkmVsGI7Cw5i5haREtkOCtoDaj0qggwucL
-         xIi+St1+gABHhiPraQFmFif6Ur7AkNNnrliCryDCVqeJxVKYkiZU12tYTSLf9bqlZD
-         9tv6vF+HL/IjWgCTjrKhrNKeba7jdl0ScTrrfoiVkZiSJ/X+WzvQNR5og0UScJqRpx
-         WJ9XujAE4TaSw==
-Received: by mail-ed1-f53.google.com with SMTP id h10so28480775edt.13;
-        Thu, 15 Apr 2021 08:13:32 -0700 (PDT)
-X-Gm-Message-State: AOAM533sHoB5BLAv+Ovw5K+zmJaD1xcgchsObkzuEOU07WT0asnqPJZu
-        rHJE+ZEEqeIIcFmO+zDARX3eHRC8DcA1SUocvA==
-X-Google-Smtp-Source: ABdhPJwxfoJTLt7AJgzWRKNjUP7mZVPDURqIDUVhonvGhI1UgFtE8GSKjZvaIZcnAzBS3+qwQm+A9nTHwXqaPy5/22I=
-X-Received: by 2002:a05:6402:1b1c:: with SMTP id by28mr4859088edb.62.1618499611519;
- Thu, 15 Apr 2021 08:13:31 -0700 (PDT)
+        id S234353AbhDOPP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 11:15:58 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:53894 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236550AbhDOPPD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 11:15:03 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13FFEUCn013190;
+        Thu, 15 Apr 2021 10:14:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1618499670;
+        bh=+qBC1tnl5YMK3m60rKOq4hj1XFlwy6Q4817612NjXgE=;
+        h=Subject:CC:References:From:Date:In-Reply-To;
+        b=yfp2Ont4ALWQWjciYZ1YSZtvmOAulxg5cb/16pbUSzbGHThWmXB8x4vP0Um2MAn7N
+         x6Qc+dcMcdXltpENliCMx6/3tTikjIlxhhfC8lcSs7JVsGj4p0b3qdVkgcBRTo/ebf
+         Rz2L8jKNlffRGiKGr0T6Lk7QvTrGgaxO7Bsf+dok=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13FFEUTk017045
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Apr 2021 10:14:30 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 15
+ Apr 2021 10:14:29 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 15 Apr 2021 10:14:29 -0500
+Received: from [172.24.145.148] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13FFEPBM088778;
+        Thu, 15 Apr 2021 10:14:26 -0500
+Subject: Re: [PATCH 0/2] MCAN: Add support for implementing transceiver as a
+ phy
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+References: <20210415150629.5417-1-a-govindraju@ti.com>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <1fc33525-d879-f8b2-60e5-58c64b66b938@ti.com>
+Date:   Thu, 15 Apr 2021 20:44:24 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210412123936.25555-1-pali@kernel.org> <CAL_JsqLSse=W3TFu=Wc=eEAV4fKDGfsQ6JUvO3KyG_pnGTVg6A@mail.gmail.com>
- <20210415083640.ntg6kv6ayppxldgd@pali> <20210415104537.403de52e@thinkpad>
-In-Reply-To: <20210415104537.403de52e@thinkpad>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 15 Apr 2021 10:13:17 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL2gjprb3MDv8KPSpe0CUBFjGajnMbF71DM+F9Yewp2uw@mail.gmail.com>
-Message-ID: <CAL_JsqL2gjprb3MDv8KPSpe0CUBFjGajnMbF71DM+F9Yewp2uw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: marvell: armada-37xx: Set linux,pci-domain to zero
-To:     Marek Behun <marek.behun@nic.cz>,
-        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210415150629.5417-1-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 15, 2021 at 3:45 AM Marek Behun <marek.behun@nic.cz> wrote:
->
-> On Thu, 15 Apr 2021 10:36:40 +0200
-> Pali Roh=C3=A1r <pali@kernel.org> wrote:
->
-> > On Tuesday 13 April 2021 13:17:29 Rob Herring wrote:
-> > > On Mon, Apr 12, 2021 at 7:41 AM Pali Roh=C3=A1r <pali@kernel.org> wro=
-te:
-> > > >
-> > > > Since commit 526a76991b7b ("PCI: aardvark: Implement driver 'remove=
-'
-> > > > function and allow to build it as module") PCIe controller driver f=
-or
-> > > > Armada 37xx can be dynamically loaded and unloaded at runtime. Also=
- driver
-> > > > allows dynamic binding and unbinding of PCIe controller device.
-> > > >
-> > > > Kernel PCI subsystem assigns by default dynamically allocated PCI d=
-omain
-> > > > number (starting from zero) for this PCIe controller every time whe=
-n device
-> > > > is bound. So PCI domain changes after every unbind / bind operation=
-.
-> > >
-> > > PCI host bridges as a module are relatively new, so seems likely a bu=
-g to me.
-> >
-> > Why a bug? It is there since 5.10 and it is working.
+Hi all,
 
-I mean historically, the PCI subsystem didn't even support host
-bridges as a module. They weren't even proper drivers and it was all
-arch specific code. Most of the host bridge drivers are still built-in
-only. This seems like a small detail that was easily overlooked.
-unbind is not a well tested path.
+On 15/04/21 8:36 pm, Aswath Govindraju wrote:
+> The following series of patches add support for implementing the
+> transceiver as a phy of m_can_platform driver.
+> 
+> TCAN1042 has a standby signal that needs to be pulled high for
+> sending/receiving messages[1]. TCAN1043 has a enable signal along with
+> standby signal that needs to be pulled up for sending/receiving
+> messages[2], and other combinations of the two lines can be used to put the
+> transceiver in different states to reduce power consumption. On boards
+> like the AM654-idk and J721e-evm these signals are controlled using gpios.
+> 
+> These gpios are set in phy driver, and the transceiver can be put in
+> different states using phy API. The phy driver is added in the series [3].
+> 
+> [1] - https://www.ti.com/lit/ds/symlink/tcan1042h.pdf
+> [2] - https://www.ti.com/lit/ds/symlink/tcan1043-q1.pdf
+> [3] - https://lore.kernel.org/patchwork/project/lkml/list/?series=495365
+> 
 
-> > > > Alternative way for assigning PCI domain number is to use static al=
-located
-> > > > numbers defined in Device Tree. This option has requirement that ev=
-ery PCI
-> > > > controller in system must have defined PCI bus number in Device Tre=
-e.
-> > >
-> > > That seems entirely pointless from a DT point of view with a single P=
-CI bridge.
-> >
-> > If domain id is not specified in DT then kernel uses counter and assign=
-s
-> > counter++. So it is not pointless if we want to have stable domain id.
->
-> What Rob is trying to say is that
-> - the bug is that kernel assigns counter++
-> - device-tree should not be used to fix problems with how kernel does
->   things
-> - if a device has only one PCIe controller, it is pointless to define
->   it's pci-domain. If there were multiple controllers, then it would
->   make sense, but there is only one
+Please ignore this series. I will post a respin using
+devm_phy_get_optional instead of devm_of_phy_get_optional_by_index()
+based on the comments below[1]. Sorry for the noise.
 
-Yes. I think what we want here is a domain bitmap rather than a
-counter and we assign the lowest free bit. That could also allow for
-handling a mixture of fixed domain numbers and dynamically assigned
-ones.
+[1] - https://lore.kernel.org/patchwork/patch/1413931/
 
-You could create scenarios where the numbers change on you, but it
-wouldn't be any different than say plugging in USB serial adapters.
-You get the same ttyUSBx device when you re-attach unless there's been
-other ttyUSBx devices attached/detached.
+Thanks,
+Aswath
 
-Rob
+> Faiz Abbas (2):
+>   dt-bindings: net: can: Document transceiver implementation as phy
+>   can: m_can: Add support for transceiver as phy
+> 
+>  .../devicetree/bindings/net/can/bosch,m_can.yaml    |  3 +++
+>  drivers/net/can/m_can/m_can.c                       | 10 ++++++++++
+>  drivers/net/can/m_can/m_can.h                       |  2 ++
+>  drivers/net/can/m_can/m_can_platform.c              | 13 +++++++++++++
+>  4 files changed, 28 insertions(+)
+> 
+
