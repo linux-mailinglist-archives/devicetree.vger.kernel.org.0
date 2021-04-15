@@ -2,79 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B87C6361393
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 22:36:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B684361395
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 22:37:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235475AbhDOUgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 16:36:54 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:39828 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235254AbhDOUgx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 16:36:53 -0400
-Received: by mail-ot1-f43.google.com with SMTP id 65-20020a9d03470000b02902808b4aec6dso19052753otv.6;
-        Thu, 15 Apr 2021 13:36:29 -0700 (PDT)
+        id S235254AbhDOUhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 16:37:46 -0400
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:42903 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235251AbhDOUhq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 16:37:46 -0400
+Received: by mail-oi1-f177.google.com with SMTP id n140so25591982oig.9;
+        Thu, 15 Apr 2021 13:37:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=TVWoOZSHf10Y+tHRIXNRspTGFjz0DsA6m8OWQyKDUOI=;
-        b=c581PitjC3SYE6biCqSD7B1uxI0wR4JiA8ePOCQgEdA62rQibQob31QinVJ1amm3dv
-         B+CTb38gknYXxcIOzGnfbQhU/eBTjx4HOOCdSTo3/e1dLewt6jujI5x8LuZpv0JF5TbS
-         VfP+q+DAX0TmttM+lw3tgNLgKnnh+6sFD824ocYRATPRZjUEx3DdojsaE92TyUlxKG5K
-         YGObKw0amMgQWYxifGZJYVciWIlyBiO5it2mZWqXWVYmha07Z5VXmiQm6tRtMO+AOxEv
-         mzgx9LHtas2T+nfXNE37PS894ZyoVr2bPwons9CNiSngTU+M7GtBnXLdOKZnNTyTSXta
-         to4g==
-X-Gm-Message-State: AOAM531gd1RoSFvRn5ZapStn29na0KHgad9MQjWp/YkYb9V95sqdGb6H
-        lU5duVNckgXf0clwUKxeDA==
-X-Google-Smtp-Source: ABdhPJyD2gFCR2X0gACDKiW5lZzJttoGCo7WmNjMCtGp8RuwEVLfYupRV5at1oHQGVdJGFD11C4gLw==
-X-Received: by 2002:a05:6830:1e10:: with SMTP id s16mr867100otr.28.1618518988676;
-        Thu, 15 Apr 2021 13:36:28 -0700 (PDT)
+        bh=ohiEbSgaFrM/ICsd6CedVVm17ut2y+hUZeHNOcTvM1I=;
+        b=phBBMSyP6trg3M2gWf4qxgwkDxvRxaYOhnCscinYoWc7J1dLxpE8C6AsmqYtOBS9W9
+         /Hvfd4fsvlPRcf4TQg0BWx0S1g5clNYEqYtuSAI7EKarLv3K48jkcm2c2hPiMfHr7esg
+         0Hrct/lEwQgk68vqCWdW/nc1N+mOiy4cn/qnYE46O+vGYaroryKVdYchyPCX+NFnod40
+         3W133+ohxzCJvhWEarNg3TaNhd/3NxdsdFTCJUFMpHL9hGt+GOeGq7kic1CRx1KnGbYV
+         vWiPuM4ZAQAUmg9vYpg/DM2iRCF58ZECDACOUOvFKqK9oVWJvlXGgPnlONZ9/LUyywJV
+         nyGg==
+X-Gm-Message-State: AOAM530mWTRIzYTcsavu3cGVvkQhJIgi3McLp6gaO2e4rLjEOaeIGKcA
+        LSVgi8vWeSE5dmse/p3o3A==
+X-Google-Smtp-Source: ABdhPJzFHiPKVOh2fbJf8yK1iNazrCGGStLTahbzD+gt4N9J8esCtmWsD4vjGwt4xiQGfHNgLchRCg==
+X-Received: by 2002:aca:ab44:: with SMTP id u65mr3811548oie.173.1618519042754;
+        Thu, 15 Apr 2021 13:37:22 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h25sm754218oou.44.2021.04.15.13.36.27
+        by smtp.gmail.com with ESMTPSA id o10sm887962ote.5.2021.04.15.13.37.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 13:36:28 -0700 (PDT)
-Received: (nullmailer pid 1840238 invoked by uid 1000);
-        Thu, 15 Apr 2021 20:36:27 -0000
-Date:   Thu, 15 Apr 2021 15:36:27 -0500
+        Thu, 15 Apr 2021 13:37:21 -0700 (PDT)
+Received: (nullmailer pid 1841581 invoked by uid 1000);
+        Thu, 15 Apr 2021 20:37:20 -0000
+Date:   Thu, 15 Apr 2021 15:37:20 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        alsa-devel <alsa-devel@alsa-project.org>
-Subject: Re: [PATCH v3 2/2] ASoC: dt-bindings: renesas, rsnd: Clear warning
- 'ports' does not match any of the regexes
-Message-ID: <20210415203627.GA1840177@robh.at.kernel.org>
-References: <20210412100638.3349-1-thunder.leizhen@huawei.com>
- <20210412100638.3349-3-thunder.leizhen@huawei.com>
+To:     dillon.minfei@gmail.com
+Cc:     krzk@kernel.org, linux-kernel@vger.kernel.org, mchehab@kernel.org,
+        linux@rempel-privat.de, festevam@gmail.com, shawnguo@kernel.org,
+        arnd@arndb.de, matthias.schiffer@ew.tq-group.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org, leoyang.li@nxp.com,
+        s.hauer@pengutronix.de, linux-media@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        olof@lixom.net, prabhakar.csengg@gmail.com, linux-imx@nxp.com,
+        s.riedmueller@phytec.de, krzysztof.kozlowski@canonical.com
+Subject: Re: [PATCH v3 1/4] dt-bindings: add dasheng vendor prefix
+Message-ID: <20210415203720.GA1841552@robh.at.kernel.org>
+References: <1618459535-8141-1-git-send-email-dillon.minfei@gmail.com>
+ <1618459535-8141-2-git-send-email-dillon.minfei@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210412100638.3349-3-thunder.leizhen@huawei.com>
+In-Reply-To: <1618459535-8141-2-git-send-email-dillon.minfei@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Apr 2021 18:06:38 +0800, Zhen Lei wrote:
-> Currently, if there are more than two ports, or if there is only one port
-> but other properties(such as "#address-cells") is required, these ports
-> are placed under the "ports" node. So add the schema of property "ports".
+On Thu, 15 Apr 2021 12:05:32 +0800, dillon.minfei@gmail.com wrote:
+> From: dillon min <dillon.minfei@gmail.com>
 > 
-> Otherwise, warnings similar to the following will be reported:
-> arch/arm64/boot/dts/renesas/r8a774a1-beacon-rzg2m-kit.dt.yaml: \
-> sound@ec500000: 'ports' does not match any of the regexes: \
-> '^rcar_sound,ctu$', '^rcar_sound,dai$', '^rcar_sound,dvc$', ...
+> Add vendor prefix for DaSheng, Inc.
 > 
-> A given binding should just use 'ports' or 'port' depending on it's need.
-> Both are not allowed at the same time. The check is done in "allOf".
-> 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> Signed-off-by: dillon min <dillon.minfei@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > ---
->  .../devicetree/bindings/sound/renesas,rsnd.yaml      | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> v3:
+> - move v2 patch 4 to v3 patch 1
+> - add 'Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>'
+> 
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
