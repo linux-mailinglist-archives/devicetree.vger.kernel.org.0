@@ -2,99 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8DFE360B6E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 16:05:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3440360B92
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 16:13:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233018AbhDOOGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 10:06:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33440 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230056AbhDOOGP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 10:06:15 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53DFFC061574;
-        Thu, 15 Apr 2021 07:05:50 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id n8so39500500lfh.1;
-        Thu, 15 Apr 2021 07:05:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=gPiY+FwH2gRVnDBLwBz7oG10TpGLnHGvMx4jxp9Wvb0=;
-        b=Bm/MilRSFScyxsdyRbsaFklFyVzW5XBChpPpkddUspJnlJHDAHL2WaNfbwL4YYzeYf
-         HY97f36MnQnI4+C3p3BFnwKUPY+1weOoouiJrlc7atEw+PTHqEAas7g9rZ+EJGfkzfk6
-         6Lph8E6+JfDGxLl97XzI/+uTehOYt/rkI8rNVq8BFD+UUfsYBjNvL1urIVvpyHkLc5ui
-         gN273E+h4hVoopBQdRdbl/jOH/7IivhCEr1YYsvo7geoP64CBvyU8eJT9Pe4eBn+QCPC
-         pS7Wk1a//Fib5HW41jbelDx2/DguRhnZxYp215mcPHca397Su/a1Tyn4W3LNklKhrJVX
-         kh1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=gPiY+FwH2gRVnDBLwBz7oG10TpGLnHGvMx4jxp9Wvb0=;
-        b=UINMxaPpPfkcrF8cUAXqUK3IDl/W6OAiR5TnIjt2oB8gbZuAndQgQlXiwwPpRqkR3o
-         car6BWzcnsCD0sWt6eHmsxkihvJHiUz8L4oAHC0QRbPHa6qOZsy8WMEZfS4lH7dkc/kc
-         kvinhq8DJEW93JyJXRvwc/NbK00Zt7IoOd7vExL07swfBcvGIO/g4ihRWWwq5mXGWw0C
-         zHtFsZr4cTSv1/ii2fgZHaWXCVVZs1tSOVQWzpJP91QbZbia8jZhqcHENRlEqpwTuc3u
-         BIFESLG2+8pXhfYbk5Opx07PA0NqJOTvT4z/T7YqV5qbQlEtahH489U94CvqmCLo/4OO
-         1rjg==
-X-Gm-Message-State: AOAM531WKkFrrw+rPuCNnnuMollSxV6Gbh91RSnrUPEhNjSQ9l+Gk8W0
-        ffDxRxs3BDjMgNo5wWKmejqYkdkpwppzTg==
-X-Google-Smtp-Source: ABdhPJxAeJyOtPFkQla5RZUI+PSioepyRmiAJnqiyvMHao6fbwWN5/M8/Izt4TBFrDdx2Ps0RJLv6Q==
-X-Received: by 2002:ac2:520a:: with SMTP id a10mr2814536lfl.362.1618495548924;
-        Thu, 15 Apr 2021 07:05:48 -0700 (PDT)
-Received: from home.paul.comp (paulfertser.info. [2001:470:26:54b:226:9eff:fe70:80c2])
-        by smtp.gmail.com with ESMTPSA id l11sm679210lfh.16.2021.04.15.07.05.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 07:05:48 -0700 (PDT)
-Received: from home.paul.comp (home.paul.comp [IPv6:0:0:0:0:0:0:0:1])
-        by home.paul.comp (8.15.2/8.15.2/Debian-14~deb10u1) with ESMTP id 13FE5jxN011398;
-        Thu, 15 Apr 2021 17:05:46 +0300
-Received: (from paul@localhost)
-        by home.paul.comp (8.15.2/8.15.2/Submit) id 13FE5hEH011397;
-        Thu, 15 Apr 2021 17:05:43 +0300
-From:   Paul Fertser <fercerpav@gmail.com>
-To:     linux-aspeed@lists.ozlabs.org
-Cc:     Paul Fertser <fercerpav@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm: dts: aspeed: tiogapass: add hotplug controller
-Date:   Thu, 15 Apr 2021 17:05:00 +0300
-Message-Id: <20210415140521.11352-1-fercerpav@gmail.com>
-X-Mailer: git-send-email 2.20.1
+        id S233345AbhDOON7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 10:13:59 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:52784 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233369AbhDOON4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 10:13:56 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13FEDMS4080848;
+        Thu, 15 Apr 2021 09:13:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1618496002;
+        bh=5YT4Chv8mcz9fg6kjX7nJNPI+VOiKdBSqrEsz1/Lbd4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=ZxRZGOZIgQZ6xsENZGmqYsFwRhtOzaIrZ2JPiEJY5Qh6sLUON28GkgRT1zzJQxmZo
+         B8H+YjnHkNJ6i8TcmRBWLVLkA+klPikfZvEpuF1/ylf2/XIsHEiPsT6tKUfWmOmFwe
+         qur5gz0xJ5YgQ+LLnWPjK6Ig0MSYqQlm2UVaQ0jc=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13FEDMLN057555
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Apr 2021 09:13:22 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 15
+ Apr 2021 09:13:21 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 15 Apr 2021 09:13:21 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13FEDL52023697;
+        Thu, 15 Apr 2021 09:13:21 -0500
+Date:   Thu, 15 Apr 2021 09:13:21 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Lokesh Vutla <lokeshvutla@ti.com>
+CC:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] dt-bindings: mailbox: ti,message-manager: Convert to yaml
+Message-ID: <20210415141321.fbzzjgwpavoggpqh@endless>
+References: <20210414002721.23638-1-nm@ti.com>
+ <e649b712-071b-0287-a1bc-2de422806619@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <e649b712-071b-0287-a1bc-2de422806619@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ADM1278 IC is accessible on I2C bus and on both Wiwynn and Quanta
-Tioga Pass implementations a pair of parallel 0.5 mOhm resistors is used
-for current measurement.
+On 19:32-20210415, Lokesh Vutla wrote:
+> [..snip..]
+> 
+> > diff --git a/Documentation/devicetree/bindings/mailbox/ti,message-manager.yaml b/Documentation/devicetree/bindings/mailbox/ti,message-manager.yaml
+> > new file mode 100644
+> > index 000000000000..4987e803ac37
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mailbox/ti,message-manager.yaml
+> > @@ -0,0 +1,75 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mailbox/ti,message-manager.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Texas Instruments' Message Manager Driver
+> 
+> Driver is not the right word here. Can you change it to node?
 
-Signed-off-by: Paul Fertser <fercerpav@gmail.com>
----
- arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
-index 3cc2004fa2f2..500661956dea 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
-@@ -591,6 +591,11 @@
- &i2c7 {
- 	status = "okay";
- 	//HSC, AirMax Conn A
-+	adm1278@0x45 {
-+		compatible = "adm1275";
-+		reg = <0x45>;
-+		shunt-resistor-micro-ohms = <250>;
-+	};
- };
- 
- &i2c8 {
+Indeed, thanks. v2 incoming. I also noticed a commit message typo while
+at it.
+
 -- 
-2.17.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
