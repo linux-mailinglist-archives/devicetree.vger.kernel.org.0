@@ -2,89 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18E0536139B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 22:37:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C99B3613CA
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 22:59:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235251AbhDOUiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 16:38:09 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:33392 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235573AbhDOUiJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 16:38:09 -0400
-Received: by mail-ot1-f48.google.com with SMTP id 92-20020a9d02e50000b029028fcc3d2c9eso1318489otl.0;
-        Thu, 15 Apr 2021 13:37:44 -0700 (PDT)
+        id S234989AbhDOVAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 17:00:17 -0400
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:39501 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234863AbhDOVAP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 17:00:15 -0400
+Received: by mail-oi1-f175.google.com with SMTP id i81so25669350oif.6;
+        Thu, 15 Apr 2021 13:59:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=SV6uLdiUIbNtCGDaL9g5OEfzZbfEmr4PSTr5jNTx670=;
-        b=ShCNOqVuoEnziWaIVQ1c+tl9sX7uf2aoSCq8/oi8kXbGekuUkm6LlAAjjx1urCVbyF
-         4eyFk0AkZQhNB3SUSnDtlYLpNFRZG5VRxxmb0qviQMusHGmTnO1sqohcozshRRw8uUTe
-         rk5CsFwCUdKpbY+pPCp0yib7T5MPTH63ovw/GTk+guElvUiPeETMgCg9+BJ9HijiH6SF
-         VU85GJCGhFasrVFNDnBXDMyqzd7ZXkbxuZLmB/8dxjudkoLgZO2jOhdhFF+xQalvvE81
-         2yg3EALAHwHwDBYZKIt3/TTx1Z+hepjxc5lil6qFrUYKH6uTWQcoSzK3760nyJYkQoaa
-         atsg==
-X-Gm-Message-State: AOAM533+XRWZ4JJUvQhA+BfV7wKpjx1msX+zR00Eyev5H3f3fkPC5/xJ
-        TNM52J02mc6Vxfge0/v/Jw==
-X-Google-Smtp-Source: ABdhPJyNGtj7dGg5GwtUMbHWt8Ht+g49ssWkYBZp2WW5+yqeI81C8urNbu4W7m7D/jx0Em+fsnnwFQ==
-X-Received: by 2002:a05:6830:1515:: with SMTP id k21mr814922otp.269.1618519064589;
-        Thu, 15 Apr 2021 13:37:44 -0700 (PDT)
+        bh=7mGMuPtccSuN83Y4SSY9hXYKt6fW+rM8hyYTNMYHq0U=;
+        b=fPpJvhpssqRHF2wzzmnV1Iu/gp6DHreH2YOhnZUOwZm2UgS20tFLUIdMRRNfTDyrIc
+         LnQQQ0RYAhprTZFeIprmzZ2H1PRidG52OLABMQJoJcQwFN1ZTQCaZvbx9UaoJjQsjoqg
+         +dqJtoGjLJMpPwqdLt1W2Xz494e2PftElAx/HuncGixfPRr8mdqCtGS9Qxsec6ODswv2
+         DiAPLBwNwM3W2gpfaUTb9+Rx3/GAdFu2TtKrI5RWnzsdV7Ir10HwGjKtc169NiDy8WIy
+         sM2u8EEDou/bY6ZUBbZOb35KZ5uQ3eC6oz79DVfpljMcMl1xeA1S0cE0JoGL6ycXcp5h
+         svAQ==
+X-Gm-Message-State: AOAM530iUYYqy9SF7sP8cWlchNs9oOUaWiZWnmZrnSwDy14J7qoUryBi
+        CLFO3Pul0GSSFaWx4PkXKg==
+X-Google-Smtp-Source: ABdhPJw2k2YwivWYCgq6XP9+mYQZvcd7jcDxyuLTvkx4ro7eLday2daD8QuolWy9Vt1ZS3dYDG5S5g==
+X-Received: by 2002:a05:6808:14c8:: with SMTP id f8mr4016531oiw.55.1618520391545;
+        Thu, 15 Apr 2021 13:59:51 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d7sm774314oop.9.2021.04.15.13.37.41
+        by smtp.gmail.com with ESMTPSA id 79sm29256oty.76.2021.04.15.13.59.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 13:37:43 -0700 (PDT)
-Received: (nullmailer pid 1842170 invoked by uid 1000);
-        Thu, 15 Apr 2021 20:37:41 -0000
-Date:   Thu, 15 Apr 2021 15:37:41 -0500
+        Thu, 15 Apr 2021 13:59:28 -0700 (PDT)
+Received: (nullmailer pid 1871299 invoked by uid 1000);
+        Thu, 15 Apr 2021 20:59:07 -0000
+Date:   Thu, 15 Apr 2021 15:59:07 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     dillon.minfei@gmail.com
-Cc:     olof@lixom.net, arnd@arndb.de, matthias.schiffer@ew.tq-group.com,
-        mchehab@kernel.org, krzk@kernel.org,
-        krzysztof.kozlowski@canonical.com, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux@rempel-privat.de,
-        festevam@gmail.com, leoyang.li@nxp.com, linux-imx@nxp.com,
-        prabhakar.csengg@gmail.com, s.riedmueller@phytec.de,
-        s.hauer@pengutronix.de, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, shawnguo@kernel.org
-Subject: Re: [PATCH v3 2/4] dt-bindings: arm: imx: Add i.mx6q DaSheng COM-9XX
- SBC
-Message-ID: <20210415203741.GA1842113@robh.at.kernel.org>
-References: <1618459535-8141-1-git-send-email-dillon.minfei@gmail.com>
- <1618459535-8141-3-git-send-email-dillon.minfei@gmail.com>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux@armlinux.org.uk,
+        alexandre.belloni@bootlin.com, ludovic.desroches@microchip.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, nicolas.ferre@microchip.com
+Subject: Re: [PATCH v3 16/24] dt-bindings: atmel-sysreg: add bindings for
+ sama7g5
+Message-ID: <20210415205907.GA1871251@robh.at.kernel.org>
+References: <20210415105010.569620-1-claudiu.beznea@microchip.com>
+ <20210415105010.569620-17-claudiu.beznea@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1618459535-8141-3-git-send-email-dillon.minfei@gmail.com>
+In-Reply-To: <20210415105010.569620-17-claudiu.beznea@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Apr 2021 12:05:33 +0800, dillon.minfei@gmail.com wrote:
-> From: dillon min <dillon.minfei@gmail.com>
+On Thu, 15 Apr 2021 13:50:02 +0300, Claudiu Beznea wrote:
+> Add RAM controller and RAM PHY controller DT bindings.
 > 
-> The DaSheng Com-9xx is and ARM based signle board computer (SBC)
-> featuring:
-> - i.MX6Q
-> - 2GiB LPDDR3 DRAM
-> - 8GiB eMMC 5.0 FLASH
-> - 4MiB SPI Flash
-> - USB 2.0 Host/Device
-> - Multiple multi-protocol RS232/RS485 Serial ports
-> - microSD socket
-> - 5V DC power input
-> - HDMI1.4a,1080p@60
-> - RGMIIx1 Gigabit Ethernet
-> - CSI0x1, connect with ov2659
-> 
-> Signed-off-by: dillon min <dillon.minfei@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 > ---
-> v3: move 'ds,imx6q-sbc' after 'dmo,imx6q-edmqmx6' to follow the alphabetical
-> order.
-> 
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/arm/atmel-sysregs.txt      | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
