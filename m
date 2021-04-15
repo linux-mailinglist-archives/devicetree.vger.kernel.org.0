@@ -2,98 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFF9D36059D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 11:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BE2F3605A3
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 11:28:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232056AbhDOJ1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 05:27:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56250 "EHLO
+        id S231196AbhDOJ2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 05:28:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231816AbhDOJ07 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 05:26:59 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44C10C06138C
-        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 02:26:36 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id a1so26355511ljp.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 02:26:36 -0700 (PDT)
+        with ESMTP id S230056AbhDOJ2V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 05:28:21 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A25B6C061574;
+        Thu, 15 Apr 2021 02:27:58 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id m9so9862391wrx.3;
+        Thu, 15 Apr 2021 02:27:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=waldekranz-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:organization:content-transfer-encoding;
-        bh=JYXtByocNzdUyie9ZCRPrngMjOeMLMOYohNBttdV3IE=;
-        b=OtDalePQGPrcfmDLkkqJhNqNXLxO2CYFGmmSq6en2xvvXDWwaqDJqUrVW974yeKWg3
-         fODGiAhXfd+ZG8gAmMjdkYL7EoSQf8EVsmk30byuJNQuutWFgXlLtXipLqD8lTSVFLwt
-         mGk3uGvM2VitVm9U0GOWJY+G4CNbaIzPSptWZ8sFdtS+KWeF/Rvk4b8grhz/hYEtkGyg
-         ITzeK+30+zcwqNtXmx47G12D/6J/Zye79QSOhHuBF8QGo6918pbfcV63uo6odUrh5lOP
-         Vs5CnXRXFJnkgBx2MPveGyLonAzlIqtFcQ+ZDQBBz2R9yMGParVR01PqZbJmcCqW9Svm
-         JBhw==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=OzaAb1xzbKHG+f2zGIgAHnGkdZkzSpeH4/Qmqh90Svk=;
+        b=bImQPXhqOcQzb8Sa2H7+bP8UxFXPnDJhIEFZt0Y/sLCBtDnytaUzo8BAjMorvDLjkx
+         iMeuhivVnV6GOM3W2W06LsPnkKpUizOMtM4nFMZKvW/VUQkapX96PUGF/1dPOzFV3H0m
+         wp08uSoNqblXHKHfThDKvUe4i24bkX+gjfILuZT1Gmc5j8qZtoxM56I4JdRXUc65gwVE
+         b96ZjTPR0ECvo5Q9K9FJsI4knm+65uonSD9e/E0g0aaLfWCkN9k1PJ1isYizGKPPjYTn
+         EFMS2hqF3i9p1Yvtkew2MTf5TXOYSMoPFbi+w4kHVN9uqzis4qNMJUOxf04NhryJBLOp
+         DWJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:organization:content-transfer-encoding;
-        bh=JYXtByocNzdUyie9ZCRPrngMjOeMLMOYohNBttdV3IE=;
-        b=U5Ru7rY5OxcaN5qbSi8EvoccrS+K0t8pLkaIlWnOohLrLwonM3m17M+GCr7Ag0vqel
-         brx7j0ezdjwZLYaf5ecbzzxKJ5aM/yDqupkketbV/5+/Gl7TgGfuqwGhoRxT8WnXOsbM
-         XUrmHdlDKslfSz8QP8ShEdmeUHIU5ryw/r1+UTZ4ilKo3VzX6YZegnVfQCB4IH05SPon
-         mK4K7+mAuPbQHzmU0WqzM+qIRRYF2EH6+N9b9pp11KIRqcliCuhkPsOK/WZHC0YXeIkp
-         VSll4LenCWycaIr1IsnXIppGRMEocIxWAwCKIFZw4oHbMUO8BgO5NLfpkCw3+ClIxzm+
-         tNJg==
-X-Gm-Message-State: AOAM532oqc+CP7pWP1hdXjzrK9ga7Fuui9ChPE3W3Pg7yoVafHh3drZb
-        BYNQAvL/OjmCswcdFvrcpJZ97Q==
-X-Google-Smtp-Source: ABdhPJxBOc6E58NSwqXtquKlHZ9YkZfofkDdaScflkGBDsw7xpwNHi1/Vw0erwIUz4vVfOLt2/VTKw==
-X-Received: by 2002:a2e:320c:: with SMTP id y12mr1271942ljy.360.1618478794795;
-        Thu, 15 Apr 2021 02:26:34 -0700 (PDT)
-Received: from veiron.westermo.com (static-193-12-47-89.cust.tele2.se. [193.12.47.89])
-        by smtp.gmail.com with ESMTPSA id g4sm595557lfc.102.2021.04.15.02.26.34
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=OzaAb1xzbKHG+f2zGIgAHnGkdZkzSpeH4/Qmqh90Svk=;
+        b=pRKWLdZwdF60Dw27hsHtC+VjEvb4WTkI+kjEy7jaPBAFXLKEikB5VabRRP9Qhe+k+T
+         gZH4dMkcADAAKzFy4w1R9og3hjs+/dZsop2/gmVS+cbAzsCwLlvsd9dzFN0PwMfVDmZU
+         llZS/kvZipDxl9vDjFlaaNFQqObdjX4IuVQpXDio2IX4vGyChTkcpEhiVf9pzf4TneNk
+         3SbpxdQ2aptp394NUgejddXr+NcZ9FkyZYS20L/4ZMwm+R3diFE0rcqPhSSseyEXue72
+         sk118uQBqQNrLe58rqn0WuINMjC1Z5Xss1nMUkV7LrtocgnSv37c+EbI+X1oGInbPoKB
+         h1Wg==
+X-Gm-Message-State: AOAM532mEZkHQ3eq7y3mYBV9PlbhLjZblBCd2FQii1u/bOpPvGTyhViW
+        Ytq+Ve+yZJ1+b5pQ2cbWGD/bp2MdU5xJjg==
+X-Google-Smtp-Source: ABdhPJwA6mqe9tqZgKSMrNyXI501zD/PxzmtBZCceYm1IfTMWIzqfowsMAjPwU9sT7Hd4QEBICC+mw==
+X-Received: by 2002:adf:e650:: with SMTP id b16mr2355713wrn.273.1618478877442;
+        Thu, 15 Apr 2021 02:27:57 -0700 (PDT)
+Received: from arch-thunder.localdomain (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
+        by smtp.gmail.com with ESMTPSA id l7sm2209804wrb.35.2021.04.15.02.27.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 02:26:34 -0700 (PDT)
-From:   Tobias Waldekranz <tobias@waldekranz.com>
-To:     davem@davemloft.net, kuba@kernel.org
-Cc:     andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        olteanv@gmail.com, netdev@vger.kernel.org, robh+dt@kernel.org,
+        Thu, 15 Apr 2021 02:27:57 -0700 (PDT)
+Date:   Thu, 15 Apr 2021 10:27:55 +0100
+From:   Rui Miguel Silva <rmfrfs@gmail.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, kernel@pengutronix.de,
+        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org
-Subject: [PATCH v2 net-next 5/5] dt-bindings: net: dsa: Document dsa,tag-protocol property
-Date:   Thu, 15 Apr 2021 11:26:10 +0200
-Message-Id: <20210415092610.953134-6-tobias@waldekranz.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210415092610.953134-1-tobias@waldekranz.com>
-References: <20210415092610.953134-1-tobias@waldekranz.com>
+Subject: Re: [PATCH 00/23] media: imx: imx7-mipi-csis: Add i.MX8MM support
+Message-ID: <20210415092755.oev3s3kzetgap452@arch-thunder.localdomain>
+References: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
 MIME-Version: 1.0
-Organization: Westermo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 'dsa,tag-protocol' is used to force a switch tree to use a
-particular tag protocol, typically because the Ethernet controller
-that it is connected to is not compatible with the default one.
+Hey Laurent,
+On Tue, Apr 13, 2021 at 05:29:51AM +0300, Laurent Pinchart wrote:
+> Hello,
+> 
+> This patch series adds support for the CSIS found in the NXP i.MX8MM SoC
+> to the imx7-mipi-csis driver.
+> 
+> The CSIS is an IP core from Samsung, integrated in different NXP SoCs.
+> The driver currently supports v3.3 of the CSIS, found in SoCs from the
+> i.MX6 and i.MX7 families. This series extends the driver to support
+> v3.6.3 of the IP, found in i.MX8MM and other members of the i.MX8
+> family.
+> 
+> The first 21 patches are miscellaneous cleanups and improvements. Please
+> see individual patches for details.
+> 
+> Patch 22/23 extends the imx7-mipi-csis DT bindings with i.MX8MM support.
+> Support for other members of the i.MX8 family will come later, and for
+> SoCs including an ISI IP core (such as the i.MX8MP) this will require
+> more work to handle additional glue logic.
+> 
+> Patch 23/23 finaly extends the imx7-mipi-csis driver accordingly.
+> 
+> The changes in the integration of the CSIS between i.MX7 and i.MX8, as
+> described in the DT bindings, have been found through reading of
+> reference manuals and BSP source code, with different sources of
+> information contradicting each other. A confirmation from NXP would be
+> nice (in particular regarding the clocks).
 
-Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
----
- Documentation/devicetree/bindings/net/dsa/dsa.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Thanks a lot for this series, looks all very good to me.
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-index 8a3494db4d8d..c4dec0654c6a 100644
---- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-@@ -70,6 +70,15 @@ patternProperties:
-               device is what the switch port is connected to
-             $ref: /schemas/types.yaml#/definitions/phandle
- 
-+          dsa,tag-protocol:
-+            description:
-+              Instead of the default, the switch will use this tag protocol if
-+              possible. Useful when a device supports multiple protcols and
-+              the default is incompatible with the Ethernet device.
-+            enum:
-+              - dsa
-+              - edsa
-+
-           phy-handle: true
- 
-           phy-mode: true
--- 
-2.25.1
+Will only ask you, as we already talked, to add your name in
+the bindings file as maintainer and extend also the MAINTAINERS file
+entry with your details.
 
+You have a lot more hw/code working with this driver and also
+time/expertise.
+
+It can be in a follow patch no need to spin a new series for this.
+
+For all patches in this series:
+Acked-by: Rui Miguel Silva <rmfrfs@gmail.com>
+
+Thanks,
+------
+Cheers,
+     Rui
+
+> 
+> Laurent Pinchart (23):
+>   media: imx: imx7_mipi_csis: Fix logging of only error event counters
+>   media: imx: imx7_mipi_csis: Count the CSI-2 debug interrupts
+>   media: imx: imx7_mipi_csis: Update ISP_CONFIG macros for quad pixel
+>     mode
+>   media: imx: imx7_mipi_csis: Move static data to top of
+>     mipi_csis_dump_regs()
+>   media: imx: imx7_mipi_csis: Minimize locking in get/set format
+>   media: imx: imx7_mipi_csis: Don't set subdev data
+>   media: imx: imx7-mipi-csis: Reorganize code in sections
+>   media: imx: imx7_mipi_csis: Set the CLKSETTLE register field
+>   media: imx: imx7_mipi_csis: Drop unused csis_hw_reset structure
+>   media: imx: imx7_mipi_csis: Store CSI-2 data type in format structure
+>   media: imx: imx7_mipi_csis: Drop csi_state phy field
+>   media: imx: imx7_mipi_csis: Rename mipi_sd to sd
+>   media: imx: imx7_mipi_csis: Rename csi_state flag field to state
+>   media: imx: imx7_mipi_csis: Turn csi_state irq field into local
+>     variable
+>   media: imx: imx7_mipi_csis: Don't pass pdev to mipi_csis_parse_dt()
+>   media: imx: imx7_mipi_csis: Pass csi_state to mipi_csis_subdev_init()
+>   media: imx: imx7_mipi_csis: Drop csi_state pdev field
+>   media: imx: imx7_mipi_csis: Make csi_state num_clocks field unsigned
+>   media: imx: imx7_mipi_csis: Reorganize csi_state structure
+>   media: imx: imx7_mipi_csis: Reorganize mipi_csis_probe()
+>   media: imx: imx7_mipi_csis: Reject invalid data-lanes settings
+>   dt-bindings: media: nxp,imx7-mipi-csi2: Add i.MX8MM support
+>   media: imx: imx7_mipi_csis: Add i.MX8MM support
+> 
+>  .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 108 +-
+>  drivers/staging/media/imx/imx7-mipi-csis.c    | 943 ++++++++++--------
+>  2 files changed, 622 insertions(+), 429 deletions(-)
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+> 
