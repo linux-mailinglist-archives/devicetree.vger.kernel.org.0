@@ -2,95 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B878360063
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 05:24:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17F86360077
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 05:30:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229763AbhDODZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Apr 2021 23:25:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33662 "EHLO
+        id S229818AbhDODa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Apr 2021 23:30:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229732AbhDODZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 23:25:06 -0400
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57AB7C061574;
-        Wed, 14 Apr 2021 20:24:44 -0700 (PDT)
-Received: by mail-il1-x12f.google.com with SMTP id c15so19011651ilj.1;
-        Wed, 14 Apr 2021 20:24:44 -0700 (PDT)
+        with ESMTP id S229736AbhDODa1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Apr 2021 23:30:27 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 995A9C061574
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 20:30:04 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id kb13-20020a17090ae7cdb02901503d67f0beso699212pjb.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 20:30:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5qEo3mthyR3dOnmcZMQVvD2ZSwCGPs4Eje1etCG0w1Q=;
-        b=PBPl4AUojHm+9CmoViiO5eWVpd2gZgf93mXiISsejyDN4BJ3ByvjBrPuGm68e+7W75
-         5CLsWIlzG6OsnxjpBCP2FJ06XBoWYySLdlw3EOCCH5FaiHnjGZBQ3xFSoDSZpLW7kC4D
-         l1+a7/XDCAwIF46e22uzbJs11P1ok+mSV4RRNU/bBlwukoC0YHxmR26KYnPCY723GenC
-         KMV366uSRxQV9XQBRceX4DhtZusDKnLqXhZkbzGCahOS1eL1nypMWF4MpF7KAbzTSgG3
-         fJ/2G9M8ebPBg4zsdnBNHF6gKZS9MiFPnBfuMzdYfkv3Qi3f5ZobQ2WbRDbEOJB94NPa
-         zmDA==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GvsX7qkA/jJYB/kaGhlB4f/SEwZSfr+xVJPIWqSWblQ=;
+        b=XyR5JaiEjLdVLfe7kMSbUpCezlukHn1FRwXaQyTrO0KQGnVg+rpfAokH1d/3ttKGUz
+         ZYPv90o5q/8NQl0Mu19Zodv61T3ggjfhnqvIa6vXUxaQa7dT/2JZI/qg8nDzwMBUOJ8K
+         12AFdV62kVPPOhTfln7fqjdb0Ctcs6YSwrG7A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5qEo3mthyR3dOnmcZMQVvD2ZSwCGPs4Eje1etCG0w1Q=;
-        b=bBsqdBLWuawD1cNTpgRQcW/9dXOpENPUUh9Qi5WxCB8LsUPIueevqJ50blQNyDxGJY
-         ZUu8yauB78PAI4WvTr52C9rO/yiiYdlCw+OmHBWA6oUsBa1Zou3qgTFMLWAoWUFr0hCE
-         TGuSN2zXWyO5J4pha9UICX5siyddkqhDCrZAB1RyuLPG+qG1FcvG64xe07/zAItYQTJJ
-         fyIc8q4QoOcgJDROYN7QWEF8po0NlNa7LZ/WwlATYwq0yztHC2nw+LDrhSLrGGHd9Wk2
-         c6D5xJggGBYs7WfgCYt+35HRZKipVMXs2SxcdEaQJC/dxXr2U3GtplMkVUubfuB2m/ws
-         0w3g==
-X-Gm-Message-State: AOAM53346GlYKzuHpuxRpeOeCqMJHI5lgrk+xSdDHLwEf0xpiKXyIIzb
-        CA635175dK1dfcaMl/y0K6ccJHqqR33toJLxBy4=
-X-Google-Smtp-Source: ABdhPJwsC2fqSbm+ZcKDH7BP+UiKQX3ja0N2rwdXSTWKywzbyG3ZXx2KlpXuFVkWa+UICmCz9x4AOa8WUC8d3aDaYHc=
-X-Received: by 2002:a05:6e02:e0a:: with SMTP id a10mr1070085ilk.271.1618457083879;
- Wed, 14 Apr 2021 20:24:43 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GvsX7qkA/jJYB/kaGhlB4f/SEwZSfr+xVJPIWqSWblQ=;
+        b=JZV3Uo3sHmSPoWTsdCKAHiYC/md+NXmBMPguQzERpLtmFseDADL3OHRYpk6mis7i50
+         /z5SK/EZ0Awc3GpVrtXFZ84gWZEs70OKBFTQ6vzXOw/CnK9zVxJ7km2GYksUnHjdkWkp
+         D1bbzqP+sod/3MaPpud6NTpmCazY/oQE1Vaq6lKO7GhGa9SMD9adGyc/lVOd34Qf78Fz
+         LlnEqoh5ZK+C8yvCjkIS31DNqCcauKAFICdltSbK0/tzqIs4mRt+gAg75pEsPuRvzHHA
+         SnE3bqvCkHwzvCwl46ibMgA96H732xVSPHdWEOg1dwsh1/yravRdFNVm+tPE2mJgaGpv
+         5+CA==
+X-Gm-Message-State: AOAM531sH7dgBcdOWcj/rMrdBmcfLaSrU6UaVAnA91lHbXe/H2vNTeIl
+        hH0QqSvCEHqVx2GHL3G08W10Yg==
+X-Google-Smtp-Source: ABdhPJxUUfiFPUBBzwmICMHwGDD2yHq20aF5+8gQd99wX9xkVxlGC41VTmQVGYHoqjvv3QdY0zUn4A==
+X-Received: by 2002:a17:90a:dc07:: with SMTP id i7mr1500541pjv.16.1618457404133;
+        Wed, 14 Apr 2021 20:30:04 -0700 (PDT)
+Received: from ikjn-p920.tpe.corp.google.com ([2401:fa00:1:b:2d50:863d:8932:d6bc])
+        by smtp.gmail.com with ESMTPSA id n3sm351622pga.92.2021.04.14.20.30.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Apr 2021 20:30:03 -0700 (PDT)
+From:   Ikjoon Jang <ikjn@chromium.org>
+To:     linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Dmitry Torokhov <dtor@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Ikjoon Jang <ikjn@chromium.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Jiri Kosina <jikos@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/2] HID: google: add device tree bindings for Whiskers switch device
+Date:   Thu, 15 Apr 2021 11:29:56 +0800
+Message-Id: <20210415032958.740233-1-ikjn@chromium.org>
+X-Mailer: git-send-email 2.31.1.295.g9ea45b61b8-goog
 MIME-Version: 1.0
-References: <1618383117-17179-1-git-send-email-dillon.minfei@gmail.com>
- <1618383117-17179-5-git-send-email-dillon.minfei@gmail.com> <9f8f3d55-b3f3-54d6-9143-5d676a21c901@canonical.com>
-In-Reply-To: <9f8f3d55-b3f3-54d6-9143-5d676a21c901@canonical.com>
-From:   dillon min <dillon.minfei@gmail.com>
-Date:   Thu, 15 Apr 2021 11:24:08 +0800
-Message-ID: <CAL9mu0KB9cm6khKzftaW=X+RGkBEPEnRWFPHVaxLaHrQEzOGKw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] dt-bindings: add dasheng vendor prefix
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        krzk@kernel.org, linux@rempel-privat.de, s.riedmueller@phytec.de,
-        matthias.schiffer@ew.tq-group.com, leoyang.li@nxp.com,
-        arnd@arndb.de, olof@lixom.net,
-        Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
-        festevam@gmail.com, prabhakar.csengg@gmail.com, mchehab@kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-imx@nxp.com, linux-media@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 14, 2021 at 9:01 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 14/04/2021 08:51, dillon.minfei@gmail.com wrote:
-> > From: dillon min <dillon.minfei@gmail.com>
-> >
-> > Add vendor prefix for DaSheng, Inc.
-> >
-> > Signed-off-by: dillon min <dillon.minfei@gmail.com>
-> > ---
-> > v2: new add
-> >
-> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
->
-> This should be the first patch in the series.
-OK, will place this patch at v3's first. thanks
+Add device a tree binding for a "cros-cbas" switch device of
+ChromeOS tablets with Whiskers base board.
 
-Best regards
-Dillon,
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->
->
-> Best regards,
-> Krzysztof
+Changes in v5:
+ - Add missing blank lines and change the description property's position.
+ - Add a note to description: "this device cannot be detected at runtime."
+
+Changes in v4:
+Define cros-cbase bindings inside google,cros-ec.yaml instead of
+a separated binding document.
+
+Ikjoon Jang (2):
+  mfd: google,cros-ec: add DT bindings for a baseboard's switch device
+  HID: google: Add of_match table to Whiskers switch device.
+
+ .../bindings/mfd/google,cros-ec.yaml          | 20 +++++++++++++++++++
+ drivers/hid/hid-google-hammer.c               | 10 ++++++++++
+ 2 files changed, 30 insertions(+)
+
+-- 
+2.31.1.295.g9ea45b61b8-goog
+
