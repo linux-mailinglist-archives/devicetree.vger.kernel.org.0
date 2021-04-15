@@ -2,137 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4245360238
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 08:16:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FF2A36025E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 08:27:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230507AbhDOGRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 02:17:03 -0400
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:59443 "EHLO
-        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230491AbhDOGRD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Apr 2021 02:17:03 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 2DF285C010E;
-        Thu, 15 Apr 2021 02:16:40 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Thu, 15 Apr 2021 02:16:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=who-t.net; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=xpJeKXmkNApc5i/qtQ1rQItiME+
-        Z8v2/EI2GZ2dmgzI=; b=aZOQo76AVTMtgbcrHiVUCRwraZpTquqv+O25mIyDPhe
-        ld7iJpzKpWwUX5KFsEaTLErO8XS/WBMStPpip1ZID3w0c5CuAqjSnsvedObaf8Lf
-        gGNWmaRRlHLTXQBRyW+1tFSNSbVn63UQJf6f3Rfff6FXKpOzpvboOb2YlD9/DZN1
-        5aW9IuaR80CWnffFlmw27QgAaGbnf6QCXHlU8IJ1Qu+2jUtbTcuflvGSp76YdRkb
-        ENjKzM3fnskbc1xVLuQLf2KNIQkyR3s2mXZ+ZjEftyx0ybt6x93x1aJh5WoEl93F
-        N5OqC1z6/ripgt3sm8rj7v0pirA20m6eIirZ6deuePg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=xpJeKX
-        mkNApc5i/qtQ1rQItiME+Z8v2/EI2GZ2dmgzI=; b=qQs0eRptVmhNAPh5SXRF+s
-        HucmhY3lq+Bmsf0WMOltAkqwSrvX42lqqG3efLwv5Flm1C7K/O7gXPjsZgDtew+U
-        ymJ1Z1lq8pLDU+t5XC6WG/KLEcctsDx8H24T2Ics92sgT11rN6FgFiDJJYujkozy
-        2vgX+fFRctcUCQI0lMouJxFMIpRIk9fJHAuweesm4dBSNs5Xsfw2+26QpzUKI3WU
-        F0aX14izIk/BrqsK16rxCsnypx9Jnr5ZxJPLikSsdByJybOsaddEKrgqsCtbcnF3
-        6ro4SxDP+mKUqstglrFx0CvNTgkFZwE9wig9Zv6AO7oO8ZZ87tmqxdhL+4GEQGZw
-        ==
-X-ME-Sender: <xms:R9p3YPpjq_BgxeqhwiTJO3EJfMIZ15M_Llxaf-VLAW18jOj23QXITg>
-    <xme:R9p3YJpJOrPhQU557i0nc0bAG9MlSp9IHytYZU-8RWTd5JSYT_qsUVqVGUP0I3vTU
-    FrRM8lPb4j5PhfhtRM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudelvddguddtvdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheprfgvthgv
-    rhcujfhuthhtvghrvghruceophgvthgvrhdrhhhuthhtvghrvghrseifhhhoqdhtrdhnvg
-    htqeenucggtffrrghtthgvrhhnpeehhfehfffgheelgeeuudelhefgvdefveekudevjeev
-    jeevvefggefguddufeeuveenucfkphepuddujedrvddtrdejuddrvddvkeenucevlhhush
-    htvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehpvghtvghrrdhhuhht
-    thgvrhgvrhesfihhohdqthdrnhgvth
-X-ME-Proxy: <xmx:R9p3YMMKSgsLkPoTCERB9b0tIbkVO-bzTsQIcfrKaWsaN-7y5uF1Uw>
-    <xmx:R9p3YC4z2Z7_Th2H6nw4l8AC612AMgYFxkZ98LNzYApoc4fk57UhIg>
-    <xmx:R9p3YO7iIRW5_1w4jUsPVVKC-CRfRLrLGqLxPeaaMbyNbrGc-e1njA>
-    <xmx:SNp3YASdzxwCsSt2t6ecwuozouTHB3jaajjJYsZdgVIWiiK5ZnwVGg>
-Received: from jelly (117-20-71-228.751447.bne.nbn.aussiebb.net [117.20.71.228])
-        by mail.messagingengine.com (Postfix) with ESMTPA id BDD5F108005F;
-        Thu, 15 Apr 2021 02:16:36 -0400 (EDT)
-Date:   Thu, 15 Apr 2021 16:16:31 +1000
-From:   Peter Hutterer <peter.hutterer@who-t.net>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        Rob Herring <robh@kernel.org>,
-        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 3/3] Input: add driver for the Hycon HY46XX touchpanel
- series
-Message-ID: <YHfaP4lc1ZDWeBqb@jelly>
-References: <CAL_JsqK6Bm==DaCMD3PruZoFO9iv0Te_KBVPnb9ZU0L8yDYF5Q@mail.gmail.com>
- <20210413144446.2277817-1-giulio.benetti@benettiengineering.com>
- <20210413144446.2277817-4-giulio.benetti@benettiengineering.com>
- <YHaBJ6MX9c28MUQY@google.com>
- <YHaP1Fzsi5pSaEq3@koala>
- <080a71d9-d629-5589-c943-4e65a7f414d8@benettiengineering.com>
- <YHcltT7HkJoXrX0f@google.com>
+        id S229731AbhDOG2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 02:28:13 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:57810 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229503AbhDOG2M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 02:28:12 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13F6RSRu056407;
+        Thu, 15 Apr 2021 01:27:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1618468048;
+        bh=T1VGJWaSnZe1FPW2m57oyGHqhnqnwLtMvN8UhVow6dY=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=MgHlXsbXunc6B2jYzadb2+EQoQATkCj3eHcocRLODnfT0Mw4aX1II+ZWHdKY3TPQw
+         +3/wW85M+pIGnHlb/ynLl7Wfx7/QlPX19e3YCSqCOUXc/dhGBtAppo7igRU0oH+5Ta
+         K9N3o0Y12VdSwsu2mzWCZL8KB8r3ZVT3wGGCPOIA=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13F6RSod078266
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Apr 2021 01:27:28 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 15
+ Apr 2021 01:27:28 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 15 Apr 2021 01:27:28 -0500
+Received: from [172.24.145.148] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13F6RL2o127491;
+        Thu, 15 Apr 2021 01:27:22 -0500
+Subject: Re: [PATCH v2 3/6] dt-bindings: phy: Add binding for TI TCAN104x CAN
+ transceivers
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, <linux-can@vger.kernel.org>,
+        <netdev@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+References: <20210414140521.11463-1-a-govindraju@ti.com>
+ <20210414140521.11463-4-a-govindraju@ti.com>
+ <20210414153303.yig6bguue3g25yhg@pengutronix.de>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <9a9a3b8b-f345-faae-b9bc-3961518e3d29@ti.com>
+Date:   Thu, 15 Apr 2021 11:57:20 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YHcltT7HkJoXrX0f@google.com>
+In-Reply-To: <20210414153303.yig6bguue3g25yhg@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 14, 2021 at 10:26:13AM -0700, Dmitry Torokhov wrote:
-> Hi Giulio, Peter,
+Hi Marc,
+
+On 14/04/21 9:03 pm, Marc Kleine-Budde wrote:
+> On 14.04.2021 19:35:18, Aswath Govindraju wrote:
+>> Add binding documentation for TI TCAN104x CAN transceivers.
+>>
+>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>> ---
+>>  .../bindings/phy/ti,tcan104x-can.yaml         | 56 +++++++++++++++++++
+>>  MAINTAINERS                                   |  1 +
+>>  2 files changed, 57 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>> new file mode 100644
+>> index 000000000000..4abfc30a97d0
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>> @@ -0,0 +1,56 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/phy/ti,tcan104x-can.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: TCAN104x CAN TRANSCEIVER PHY
+>> +
+>> +maintainers:
+>> +  - Aswath Govindraju <a-govindraju@ti.com>
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^tcan104x-phy"
+>> +
+>> +  compatible:
+>> +    enum:
+>> +      - ti,tcan1042
+>> +      - ti,tcan1043
 > 
-> On Wed, Apr 14, 2021 at 01:22:55PM +0200, Giulio Benetti wrote:
-> > Hi Peter, Dmitry,
-> > 
-> > On 4/14/21 8:46 AM, Peter Hutterer wrote:
-> > > On Tue, Apr 13, 2021 at 10:44:07PM -0700, Dmitry Torokhov wrote:
-> > > > Hi Giulio,
-> > > > 
-> > > > On Tue, Apr 13, 2021 at 04:44:46PM +0200, Giulio Benetti wrote:
-> > > > > +
-> > > > > +	input_mt_report_pointer_emulation(tsdata->input, true);
-> > > > 
-> > > > For touchscreens it does not make much sense to report BTN_DOUBLETAP,
-> > > > BTN_TRIPLETAP, etc, events (they are really for touchpads), so I changed
-> > > > this to
-> > > > 
-> > > > 	input_mt_report_pointer_emulation(tsdata->input, false);
-> > > > 
-> > > > to only report ABS_X, ABS_Y, and BTN_TOUCH, and applied.
-> > > 
-> > > Can you expand on this please, just to make sure I'm not misinterpreting
-> > > those codes? Those bits are just for how many fingers are down (but without
-> > > position), dropping those bits means you restrict the device to a pure
-> > > single-touch screen. Or am I missing something here?
+> Can you ensure that the 1042 has only the standby gpio and the 1043 has both?
 > 
-> They are indeed represent number of fingers on the surface. I think I
-> over-simplified this a bit by saying these events are only for
-> touchpads, as there is allowance for BTN_TOOL_*TAP in
-> Documentation/input/multi-touch-protocol.rst for MT devices that may
-> report more contacts than what they can distinctly track, and it is
-> not restricted to touchpads (but I believe in reality only used by a
-> couple of "semi-MT" touchpad drivers).
 
-fwiw, almost all touchpads on ps2 use that functionality - they can track 2
-touchpoints but *detect* up to 5. There's significant insanity in libinput
-to deal with that because it is so common :)
+In the driver, it is the way the flags have been set for ti,tcan1042 and
+ti,tcan1043.
 
-semi-mt is orthogonal to that, it's the an inability to track two
-touchpoints correctly (only get top-left and bottom-right, but it's
-guesswork which finger is in which corner).
+>> +
+>> +  '#phy-cells':
+>> +    const: 0
+>> +
+>> +  standby-gpios:
+>> +    description:
+>> +      gpio node to toggle standby signal on transceiver
+>> +    maxItems: 1
+>> +
+>> +  enable-gpios:
+>> +    description:
+>> +      gpio node to toggle enable signal on transceiver
+>> +    maxItems: 1
+>> +
+>> +  max-bitrate:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      max bit rate supported in bps
+>> +    minimum: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - '#phy-cells'
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/gpio/gpio.h>
+>> +
+>> +    transceiver1: tcan104x-phy {
+>> +      compatible = "ti,tcan1043";
+>> +      #phy-cells = <0>;
+>> +      max-bitrate = <5000000>;
+>> +      standby-gpios = <&wakeup_gpio1 16 GPIO_ACTIVE_LOW>;
+>> +      enable-gpios = <&main_gpio1 67 GPIO_ACTIVE_LOW>;
+> 
+> AFAICS the enable gpio is active high.
+> 
 
-> What I meant to say that for ST fallback of MT-capable devices we
-> typically provide BTN_TOOL_*TAP for devices declared as INPUT_MT_POINTER
-> (which is touchpads) and for INPUT_MT_DIRECT and others we only provide
-> ABS_X, ABS_Y, ABS_PRESSURE and BTN_TOUCH (see input_mt_sync_frame()),
-> and I think this driver should follow the suit.
+I will correct this in the respin.
 
-ah, right. that makes sense, thanks for the clarification.
+Thanks,
+Aswath
 
-Cheers,
-   Peter
+> Marc
+> 
+
