@@ -2,212 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB832361245
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 20:45:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D8CB36124C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 20:47:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234392AbhDOSpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 14:45:54 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:18374 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233948AbhDOSpy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 14:45:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1618512332; x=1650048332;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=EfPKf6G7i8no32iDnXtauNdJhYQxJHVpG/8fquspKso=;
-  b=IL0TXdBhqJH+AH409K3G01GYScbgaOWkgFypg5JthIAAfYNX4vlF7LFp
-   vWUD0/EKxd0ji6swsZOAbQy9SuE6/uJps4YMnsX+gTPdxMs2yOqmtEyO+
-   gAUPq9CBE51T2ajM/zocaQtzjBoaoweC/CAi9h7DDA1cww3ildPi5l/D2
-   22/6fE1sYChEaKUv4pKL9NXrY4BbXEcw38gIdqPINcPDs/TdKMdQHkJ3o
-   +BMjQBqX5JlDB5zmVfJNoS2E69I5DISiQumrLLBNVnFWdEuic1m+bOp6l
-   2Q4AzwPoYrySOwdJBeQA5h7gSlHhFBE7R6+vf13Tmh3YD/JG92FG9FSzT
-   Q==;
-IronPort-SDR: TvVWtnNuCMr31Qr1s17juV9ul7As2ZenL7lCskz9YT/eY/kwv5lLWjFzC+kCuWd0CtBENu8Kpw
- wzMFNnD01ZoXewRviFDGrwSCq+0kBilhfpoPn3Id8HdrH5PJzX4x5Uu5QxozTI77fGF7AXEE6y
- ZkgCH6kbXCAF1DEyjWRPgcItwvGKSpxwlGoSzMYWNY8TrT0eKMoGBZFWCsEAc8yPGHg2luaItp
- D1YSsuURq8Zo7W9k9cYa5zOZsUpDHwBKHwCLDp7rbN3zocEBi3MY4SpM9Ar+r4DaAF522b79l1
- 2G4=
-X-IronPort-AV: E=Sophos;i="5.82,225,1613458800"; 
-   d="scan'208";a="116611454"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Apr 2021 11:45:31 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 15 Apr 2021 11:45:30 -0700
-Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Thu, 15 Apr 2021 11:45:14 -0700
-From:   Eugen Hristev <eugen.hristev@microchip.com>
-To:     <devicetree@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <jacopo@jmondi.org>, <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Eugen Hristev <eugen.hristev@microchip.com>
-Subject: [PATCH v5 30/33] dt-bindings: media: add microchip,xisc device bindings
-Date:   Thu, 15 Apr 2021 21:45:00 +0300
-Message-ID: <20210415184500.868264-1-eugen.hristev@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210415085846.824796-1-eugen.hristev@microchip.com>
-References: <20210415085846.824796-1-eugen.hristev@microchip.com>
+        id S234155AbhDOSr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 14:47:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38810 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234086AbhDOSrz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 14:47:55 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E02DC061574;
+        Thu, 15 Apr 2021 11:47:32 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id w23so22583950ejb.9;
+        Thu, 15 Apr 2021 11:47:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=LrdoSJYCGsUzby8AM8h5Z60zNCJMBo4mVvqNbEb5PnM=;
+        b=CkV/9ZT9dXWGZgQGNmAQpYglzxx9K3n7nS2+ouWZnjVg23jw6iLFIkTcLDbyDQNChD
+         HF8nGcUrrwH7n1WzdhD3mcx7ZSGlplzO9BV/0mQS/XB5fLFgJrbfrFlAYgjXIU89KX2Z
+         urqsB/Mguwnzwr3NBub/VkMe+j/vkg3avWc1uhGjHaWOC7oDlZFUC2NdBQdIl61Ex+tQ
+         0RSeFZnYbaiDLYJhgtQondlPtYHMJtAO+eIsv41B/yIl9e1TOwr6dSmWb8Qo8KEEj1iC
+         RUwlPyqwFMnVUmx4i9ygpZdj0V1/9N1JCmhC4YIZ/UOAYX8dVzbZt83aJFVONeiBXgoL
+         d0IQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=LrdoSJYCGsUzby8AM8h5Z60zNCJMBo4mVvqNbEb5PnM=;
+        b=hyHtNfBysRu84hVrq3l1inCRcZSAjmkvzkHlTKBBfm8PX55B6SVIvyU8sIJOPDeEb3
+         Co9U6av5wBb5Np9xR9bGB9iYTpZt/PxEZnokosKz4cJfQt25XkkQ3ytaUpo4i8+rW7ii
+         OtcfFio+Lav9SvT2m6YuwqPaMYRc7QowJ6383/D6q2IOsoqC1egA/nqv2kQ+XVUm6FM1
+         JURcncZVCjHNzUu72+sqPa0siXYshPw16QfeQ2O6WCej+El3cVzvwaBXOQCD2Uq1i3Ry
+         7FFZBGepANKz1yFmPZkeDRQ1s3GTzyg6/tE/TC9JP/FC7y4QsEswfAfNfUG8JfdzJja9
+         9P0w==
+X-Gm-Message-State: AOAM530nnyUKw4H1h+SfPuluIL3v6TvpeCDIe4OZYwQGPsgvc8NytSU5
+        BB7daMokT9DiHuyabtVLcENFEkrA5slN0A==
+X-Google-Smtp-Source: ABdhPJxY3kzeEn/gIiCftqbZM+6kWU1MG4paQCrQM5NS9vS9ub+1MgOiKfDhpn4ddkcAIeBt7Ltyzg==
+X-Received: by 2002:a17:906:3295:: with SMTP id 21mr4859039ejw.88.1618512451037;
+        Thu, 15 Apr 2021 11:47:31 -0700 (PDT)
+Received: from [192.168.1.101] (abac128.neoplus.adsl.tpnet.pl. [83.6.166.128])
+        by smtp.gmail.com with ESMTPSA id g22sm1473536ejz.46.2021.04.15.11.47.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Apr 2021 11:47:30 -0700 (PDT)
+Subject: Re: [PATCH v3 1/1] nexus: Fix gpio-reserved-ranges 85-88
+To:     Petr Vorel <petr.vorel@gmail.com>, linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ricardo Ribalda <ribalda@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+References: <20210415173957.28533-1-petr.vorel@gmail.com>
+From:   Konrad Dybcio <konradybcio@gmail.com>
+Message-ID: <c55fc341-244f-9f77-4ba6-06f4ab7cd07b@gmail.com>
+Date:   Thu, 15 Apr 2021 20:47:27 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+In-Reply-To: <20210415173957.28533-1-petr.vorel@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for the Microchip eXtended Image Sensor Controller.
-Based on the atmel,isc.yaml binding.
+Hi,
 
-Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
----
-Changes in v5:
-- fixed license clause to add BSD-2
-Changes in v4:
-- added '|' at description to preserve line breaks
+the patch title should be:
 
- .../bindings/media/microchip,xisc.yaml        | 129 ++++++++++++++++++
- 1 file changed, 129 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/microchip,xisc.yaml
+arm64: dts: qcom: angler: <blurb>
 
-diff --git a/Documentation/devicetree/bindings/media/microchip,xisc.yaml b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
-new file mode 100644
-index 000000000000..41afe2e5f133
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
-@@ -0,0 +1,129 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2021 Microchip Technology, Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/microchip,xisc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip eXtended Image Sensor Controller (XISC)
-+
-+maintainers:
-+  - Eugen Hristev <eugen.hristev@microchip.com>
-+
-+description: |
-+  The eXtended Image Sensor Controller (XISC) device provides the video input capabilities for the
-+  Microchip AT91 SAM family of devices.
-+
-+  The XISC has a single internal parallel input that supports RAW Bayer, RGB or YUV video.
-+  The source can be either a demuxer from a CSI2 type of bus, or a simple direct bridge to a
-+  parallel sensor.
-+
-+  The XISC provides one clock output that is used to clock the demuxer/bridge.
-+
-+properties:
-+  compatible:
-+    const: microchip,sama7g5-isc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: hclock
-+
-+  '#clock-cells':
-+    const: 0
-+
-+  clock-output-names:
-+    const: isc-mck
-+
-+  microchip,mipi-mode:
-+    type: boolean
-+    description:
-+      As the XISC is usually connected to a demux/bridge, the XISC receives
-+      the same type of input, however, it should be aware of the type of
-+      signals received. The mipi-mode enables different internal handling
-+      of the data and clock lines.
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/properties/port
-+    description:
-+      Input port node, single endpoint describing the input pad.
-+
-+    properties:
-+      endpoint:
-+        $ref: video-interfaces.yaml#
-+
-+        properties:
-+          bus-type:
-+            enum: [5, 6]
-+
-+          remote-endpoint: true
-+
-+          bus-width:
-+            enum: [8, 9, 10, 11, 12]
-+            default: 12
-+
-+          hsync-active:
-+            enum: [0, 1]
-+            default: 1
-+
-+          vsync-active:
-+            enum: [0, 1]
-+            default: 1
-+
-+          pclk-sample:
-+            enum: [0, 1]
-+            default: 1
-+
-+        required:
-+          - remote-endpoint
-+          - bus-type
-+
-+        additionalProperties: false
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+  - clock-output-names
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/at91.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    xisc: xisc@e1408000 {
-+        compatible = "microchip,sama7g5-isc";
-+        reg = <0xe1408000 0x2000>;
-+        interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&pmc PMC_TYPE_PERIPHERAL 56>;
-+        clock-names = "hclock";
-+        #clock-cells = <0>;
-+        clock-output-names = "isc-mck";
-+
-+        port {
-+                xisc_in: endpoint {
-+                       bus-type = <5>; /* Parallel */
-+                       remote-endpoint = <&csi2dc_out>;
-+                       hsync-active = <1>;
-+                       vsync-active = <1>;
-+                       bus-width = <12>;
-+                };
-+        };
-+    };
-+
--- 
-2.25.1
+or
 
+arm64: dts: qcom: msm8994-angler:
+
+But that's a nit, that could probably be fixed when applying. Otherwise, if the device now works:
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+
+
+Konrad
