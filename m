@@ -2,160 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44478360D51
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 17:01:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74BD6360D7E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 17:03:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234325AbhDOPBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 11:01:32 -0400
-Received: from phobos.denx.de ([85.214.62.61]:55638 "EHLO phobos.denx.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234869AbhDOPAF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Apr 2021 11:00:05 -0400
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id C55F181FE1;
-        Thu, 15 Apr 2021 16:59:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1618498780;
-        bh=Kw07LkJdKop/yJQQqAUybaOom8omiDfjimVgY6INlKM=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=qG3vJnacjJH2T6/LHSUKQqKJUBWrcEN7r6NhcGCSdBtN4nss3tWZ0nO/Ises27Xvc
-         VJGziRkn7XGX6HeJNFZ3NKxgJfYbo1qxsVRITxF5utVsu0V855wi9W/o5nOiAsG4j4
-         LzmcixCWz41r3/bCwgBpZpWa7aJMXgqoXHnAz/0L093+4TBflUjIMWQCZR0RFKlVXg
-         k47GEkzZmKdFN1i6BrfQukuubfOoZ8NLj6HD4D23S0QhGYD27jXWwe+QQ52WES1B9h
-         aS32TR1XAlYbdiafXGiMDKeW4MksrP+jd/DapR7g7HXa8+g0bzZaaTBKJcCvdhW4+c
-         +FMQpDAlr3Yfg==
-Subject: Re: [PATCH 11/13] ARM: dts: stm32: fix LTDC port node on STM32 MCU ad
- MPU
-To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>, arnd@arndb.de,
-        robh+dt@kernel.org, jagan@amarulasolutions.com,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        kuba@kernel.org
-References: <20210415101037.1465-1-alexandre.torgue@foss.st.com>
- <20210415101037.1465-12-alexandre.torgue@foss.st.com>
- <3b39908b-a263-a5d4-f6ac-ac30ffb06269@denx.de>
- <36e9f0df-dfdb-e2f5-3d6e-ac32a1b8156e@foss.st.com>
- <fa3885df-8977-9540-f2af-d4095f519483@denx.de>
- <3961c9ae-41cc-5a15-2704-ffc0832f0fe8@foss.st.com>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <57a7f4bf-42e9-56fb-e898-2c5749f53c60@denx.de>
-Date:   Thu, 15 Apr 2021 16:59:39 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        id S234349AbhDOPDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 11:03:06 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:37698 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235366AbhDOPBE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 11:01:04 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13FF0WgP101805;
+        Thu, 15 Apr 2021 10:00:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1618498832;
+        bh=pKl9USW4Lb4q2lT4TkJijaFrzIIfUx2rrVu/7hEAIwg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=IpcH/Wot0NJFgpovlSvrAMOg9Odk3OJmWmyBfGoQON3QRTjAuRndajqjOAcqBIa9t
+         ko7d9o0ZcL8vL4ULPPKHYFwWKfAMWBhEJMCvWLw77cE7N6e/zK92l+nYaLg7dFHju3
+         e1c12kCm/1KgPXQx5HsZPyWv4AzygpmoMr+kZrxc=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13FF0W7k105205
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Apr 2021 10:00:32 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 15
+ Apr 2021 10:00:31 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 15 Apr 2021 10:00:31 -0500
+Received: from [10.250.233.30] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13FF0RlR061690;
+        Thu, 15 Apr 2021 10:00:28 -0500
+Subject: Re: [PATCH v3 2/4] phy: Add API for devm_of_phy_optional_get_by_index
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-can@vger.kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+References: <20210415144947.4725-1-a-govindraju@ti.com>
+ <20210415144947.4725-3-a-govindraju@ti.com>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <c3baf0bc-e166-4aee-f4c7-e5915352ec82@ti.com>
+Date:   Thu, 15 Apr 2021 20:30:26 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <3961c9ae-41cc-5a15-2704-ffc0832f0fe8@foss.st.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20210415144947.4725-3-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.102.4 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/15/21 4:35 PM, Alexandre TORGUE wrote:
-> 
-> 
-> On 4/15/21 4:30 PM, Marek Vasut wrote:
->> On 4/15/21 3:34 PM, Alexandre TORGUE wrote:
->>> Hi Marek
->>
->> Hello Alexandre,
->>
->>>>> diff --git a/arch/arm/boot/dts/stm32mp157c-dk2.dts 
->>>>> b/arch/arm/boot/dts/stm32mp157c-dk2.dts
->>>>> index 2bc92ef3aeb9..19ef475a48fc 100644
->>>>> --- a/arch/arm/boot/dts/stm32mp157c-dk2.dts
->>>>> +++ b/arch/arm/boot/dts/stm32mp157c-dk2.dts
->>>>> @@ -82,9 +82,15 @@
->>>>>   };
->>>>>   &ltdc {
->>>>> -    status = "okay";
->>>>> -
->>>>>       port {
->>>>> +        #address-cells = <1>;
->>>>> +        #size-cells = <0>;
->>>>> +
->>>>> +        ltdc_ep0_out: endpoint@0 {
->>>>> +            reg = <0>;
->>>>> +            remote-endpoint = <&sii9022_in>;
->>>>> +        };
->>>>> +
->>>>>           ltdc_ep1_out: endpoint@1 {
->>>>>               reg = <1>;
->>>>>               remote-endpoint = <&dsi_in>;
->>>>
->>>> [...]
->>>>
->>>>> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi 
->>>>> b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
->>>>> index 64dca5b7f748..e7f10975cacf 100644
->>>>> --- a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
->>>>> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
->>>>> @@ -277,11 +277,7 @@
->>>>>       status = "okay";
->>>>>       port {
->>>>> -        #address-cells = <1>;
->>>>> -        #size-cells = <0>;
->>>>> -
->>>>> -        ltdc_ep0_out: endpoint@0 {
->>>>> -            reg = <0>;
->>>>> +        ltdc_ep0_out: endpoint {
->>>>>               remote-endpoint = <&adv7513_in>;
->>>>>           };
->>>>>       };
->>>>
->>>> I think this is wrong, the AV96 can have two displays connected to 
->>>> two ports of the LTDC, just like DK2 for example.
->>>
->>> As for dk2 address/size cells are added only if there are 2 
->>> endpoints. It is for this reason I moved endpoint0 definition from 
->>> stm32mp15xx-dkx to stm32mp151a-dk1.dts (dk1 has only one endpoint).
->>>
->>> Here it's the same, if you have second endpoint then adress/size will 
->>> have to be added.
->>
->> That's a bit problematic. Consider either the use case of DTO which 
->> adds the other display, or even a custom board DTS. Without your 
->> patch, this works:
->>
->> arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
->> &ltdc {
->>    ...
->>    ports {
->>      ltdc_ep0_out: endpoint@0 {
->>        remote-endpoint = <&adv7513_in>;
->>      };
->>    };
->> };
->>
->> board-with-display.dts or board-overlay.dts
->> &ltdc {
->>    ports {
->>      endpoint@1 { // just add another endpoint@1, no problem
->>        remote-endpoint = <&display>;
->>      };
->>    };
->> };
->>
->> With your patch, the DTS would have to modify the "endpoint" node to 
->> be "endpoint@0" probably with a whole lot of /detele-node/ etc. magic 
->> (DTO cannot do that, so that's a problem, and I do use DTOs on AV96 
->> extensively for the various expansion cards) and then add the 
->> endpoint@1. That becomes real complicated in custom board DT, and 
->> impossible with DTO.
-> 
-> Yes I agree that it'll be problematic. So maybe so solution would be to 
-> not detect a warning for the initial case (only one endpoint with a reg)
+Hi Aswath,
 
-That looks OK. Or even better, if the checker warned only on IPs which 
-cannot have more than one endpoint, but have endpoint@N in DT (where N 
-in 0..+inf) . On IPs which can have one or more endpoints, the warning 
-should not be emitted.
+On 15/04/21 8:19 pm, Aswath Govindraju wrote:
+> Add API for devm_of_phy_optional_get_by_index, to obtain a reference to an
+> optional phy by index.
+
+Rob has posted a patch
+http://lore.kernel.org/r/20210414135525.3535787-1-robh@kernel.org
+that doesn't require consumers to get a phy by using string. Since your
+usecase also requires only one PHY, that patch should be sufficient.
+$patch could be deferred until a real use case comes.
+
+Thanks
+Kishon
+
+> 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> ---
+>  drivers/phy/phy-core.c  | 26 ++++++++++++++++++++++++++
+>  include/linux/phy/phy.h |  2 ++
+>  2 files changed, 28 insertions(+)
+> 
+> diff --git a/drivers/phy/phy-core.c b/drivers/phy/phy-core.c
+> index ccb575b13777..bf06d4e0ede2 100644
+> --- a/drivers/phy/phy-core.c
+> +++ b/drivers/phy/phy-core.c
+> @@ -839,6 +839,32 @@ struct phy *devm_of_phy_get(struct device *dev, struct device_node *np,
+>  }
+>  EXPORT_SYMBOL_GPL(devm_of_phy_get);
+>  
+> +/**
+> + * devm_of_phy_optional_get_by_index() - lookup and obtain a reference to an optional phy by index.
+> + * @dev: device that requests this phy
+> + * @np: node containing the phy
+> + * @index: index of the phy
+> + *
+> + * Gets the phy using _of_phy_get(), then gets a refcount to it,
+> + * and associates a device with it using devres. On driver detach,
+> + * release function is invoked on the devres data, then,
+> + * devres data is freed. This differs to devm_of_phy_get_by_index() in
+> + * that if the phy does not exist, it is not considered an error and
+> + * -ENODEV will not be returned. Instead the NULL phy is returned,
+> + * which can be passed to all other phy consumer calls.
+> + */
+> +struct phy *devm_of_phy_optional_get_by_index(struct device *dev, struct device_node *np,
+> +					      int index)
+> +{
+> +	struct phy *phy = devm_of_phy_get_by_index(dev, np, index);
+> +
+> +	if (PTR_ERR(phy) == -ENODEV)
+> +		phy = NULL;
+> +
+> +	return phy;
+> +}
+> +EXPORT_SYMBOL_GPL(devm_of_phy_optional_get_by_index);
+> +
+>  /**
+>   * devm_of_phy_get_by_index() - lookup and obtain a reference to a phy by index.
+>   * @dev: device that requests this phy
+> diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
+> index f3286f4cd306..c5f32b4fadd6 100644
+> --- a/include/linux/phy/phy.h
+> +++ b/include/linux/phy/phy.h
+> @@ -253,6 +253,8 @@ struct phy *devm_of_phy_get(struct device *dev, struct device_node *np,
+>  			    const char *con_id);
+>  struct phy *devm_of_phy_get_by_index(struct device *dev, struct device_node *np,
+>  				     int index);
+> +struct phy *devm_of_phy_optional_get_by_index(struct device *dev, struct device_node *np,
+> +					      int index);
+>  void of_phy_put(struct phy *phy);
+>  void phy_put(struct device *dev, struct phy *phy);
+>  void devm_phy_put(struct device *dev, struct phy *phy);
+> 
