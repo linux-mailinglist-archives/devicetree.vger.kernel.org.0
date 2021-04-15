@@ -2,105 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00982360569
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 11:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7792E360596
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 11:26:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231750AbhDOJQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 05:16:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53800 "EHLO
+        id S231826AbhDOJ05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 05:26:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231718AbhDOJQA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 05:16:00 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DCBBC061574
-        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 02:15:37 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1lWy5s-0002bi-IT; Thu, 15 Apr 2021 11:15:24 +0200
-Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:983:856d:54dc:ee1c])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 0F88B60F30C;
-        Thu, 15 Apr 2021 09:15:21 +0000 (UTC)
-Date:   Thu, 15 Apr 2021 11:15:21 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-Subject: Re: [PATCH v2 3/6] dt-bindings: phy: Add binding for TI TCAN104x CAN
- transceivers
-Message-ID: <20210415091521.d62k47xpugcvid2t@pengutronix.de>
-References: <20210414140521.11463-1-a-govindraju@ti.com>
- <20210414140521.11463-4-a-govindraju@ti.com>
- <20210414153303.yig6bguue3g25yhg@pengutronix.de>
- <9a9a3b8b-f345-faae-b9bc-3961518e3d29@ti.com>
- <20210415073810.nwoi2hx57hdg4ima@pengutronix.de>
- <072648d4-a747-bc5f-a525-25dd055905ee@ti.com>
+        with ESMTP id S229820AbhDOJ04 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 05:26:56 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 344D5C061756
+        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 02:26:32 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id n138so38231488lfa.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 02:26:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=waldekranz-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version:organization
+         :content-transfer-encoding;
+        bh=uGnyIlNR+gHTNp/zACEMhB8cDITd6OLFs9XvWKNmoJY=;
+        b=nyyYb0WTLMxTLKVT5ZPvU+Z3GFViYA3rn9Awxtt3MWpwNo245XYNNE5j4EYbFlFKg3
+         /Xfa7rglL9L6p7QSmdN10mImiYKPDXIoAZTlnHy3XzgubgHbW8c3HKf7cjit2A2tPhpN
+         8y2fPh2ZHI57kh5cBIyn5sp36j2YLU0KMdvpc5jze9KlNS2KGezj8ndQGsFMD2kH4ekk
+         r8Ck3OBxqEiFjDkxgENo7P8xVhtrhy5RIVtpCoTN7WAfxQ/Guj10ZaXhqWQWxqlTefXW
+         JEwT2vBius9I0tUFYUWap1yFKcjJsnYMhLja8XKAjPXHvTo/bx8QCmOPU09xQVG7Bz9A
+         p+hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :organization:content-transfer-encoding;
+        bh=uGnyIlNR+gHTNp/zACEMhB8cDITd6OLFs9XvWKNmoJY=;
+        b=NKXPSk4FxdVjMBzYuS86Ie5ESY0LQokuE+jenu7/0JG+I7aJKxDyCk1eS435dacoTj
+         pXI2tAP1RIH7oU94MXZJZAOZBjJvAsfV6xPQiHfg0DYKah87KEQ6rHnL1U1D9idBQFt3
+         4IjuYXB68uAZMZlGNTy7MltpV+2MW4H3SvUIdbhcWrUQ9H4bwgCkdtiUHdEqoIMwFqbU
+         sHuVTMsA3uatC2Arv5KtpzP1t2zMiOZSFwYmp7zbmqII/tBqnstSLU05KEyRcsEYBckP
+         MZdgJELJ3WScRfQHUs3RTU/vFdaBCtgWBtBIaQOezvxJiZox98cUCVbDmpJHOW/eaGY3
+         n7og==
+X-Gm-Message-State: AOAM532nTrPL5DD4umzOBdqCvdAEzVoYZBQTkN9/97yf+eyGaGTEAs9j
+        6fHzoPQEyBYPmAD4fNo+CNcxnQ==
+X-Google-Smtp-Source: ABdhPJyOhajoZHsVfs/vGT0SJw1XGh9C/d5QPwPZ4BDjq6PvSir5ojd3FbETIiQSfny2GLa9xQGkPQ==
+X-Received: by 2002:a05:6512:2019:: with SMTP id a25mr1881809lfb.347.1618478790564;
+        Thu, 15 Apr 2021 02:26:30 -0700 (PDT)
+Received: from veiron.westermo.com (static-193-12-47-89.cust.tele2.se. [193.12.47.89])
+        by smtp.gmail.com with ESMTPSA id g4sm595557lfc.102.2021.04.15.02.26.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Apr 2021 02:26:30 -0700 (PDT)
+From:   Tobias Waldekranz <tobias@waldekranz.com>
+To:     davem@davemloft.net, kuba@kernel.org
+Cc:     andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        olteanv@gmail.com, netdev@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 net-next 0/5] net: dsa: Allow default tag protocol to be overridden from DT
+Date:   Thu, 15 Apr 2021 11:26:05 +0200
+Message-Id: <20210415092610.953134-1-tobias@waldekranz.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="sqrdgl4qh74mzxtg"
-Content-Disposition: inline
-In-Reply-To: <072648d4-a747-bc5f-a525-25dd055905ee@ti.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Organization: Westermo
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This is a continuation of the work started in this patch:
+https://lore.kernel.org/netdev/20210323102326.3677940-1-tobias@waldekranz.com/
 
---sqrdgl4qh74mzxtg
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In addition to the mv88e6xxx support to dynamically change the
+protocol, it is now possible to override the protocol from the device
+tree. This means that when a board vendor finds an incompatibility,
+they can specify a working protocol in the DT, and users will not have
+to worry about it.
 
-On 15.04.2021 14:41:57, Aswath Govindraju wrote:
-> >>>> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > Can you create a maintainers entry for this file with your address?
->=20
-> I don't see this being done for other phy yamls in the
-> Documentation/devicetree/bindings/phy folder. Also,
-> scripts/get_maintainer.pl is giving the names of maintainers after
-> reading the yaml files too.
+Some background information:
 
-Nice! Clever script.
+In a system using an NXP T1023 SoC connected to a 6390X switch, we
+noticed that TO_CPU frames where not reaching the CPU. This only
+happened on hardware port 8. Looking at the DSA master interface
+(dpaa-ethernet) we could see that an Rx error counter was bumped at
+the same rate. The logs indicated a parser error.
 
-Marc
+It just so happens that a TO_CPU coming in on device 0, port 8, will
+result in the first two bytes of the DSA tag being one of:
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+00 40
+00 44
+00 46
 
---sqrdgl4qh74mzxtg
-Content-Type: application/pgp-signature; name="signature.asc"
+My guess was that since these values looked like 802.3 length fields,
+the controller's parser would signal an error if the frame length did
+not match what was in the header.
 
------BEGIN PGP SIGNATURE-----
+This was later confirmed using two different workarounds provided by
+Vladimir. Unfortunately these either bypass or ignore the hardware
+parser and thus robs working combinations of the ability to do RSS and
+other nifty things. It was therefore decided to go with the option of
+a DT override.
 
-iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmB4BCYACgkQqclaivrt
-76ms1Qf+MgNCzkHp1rtwktzh+c3mVAPjupRXLxsmNoEJ2WJPx3eQSRbdqazlOO0T
-2AXVVEnrU9hXjdzIdGB4hPzQkZzSDfv0NpOL7DYRPqkHs60Y66fypAjL+K+N16ym
-oEEP7Kxh2WjuFzOgyVbOvxI9k4IODUfzQqklQBQda3If0UEHsQXqgMEy80oIiOlC
-Ua6+Cws6eV/PGSNHM6NQBnQwvN4kZGzy/4O+zYXRPwM+fAbISCGS8tH7kt+eL5hu
-y5HRO5V0YG+r99zfXnOkov69cz3pXAZOVdVZ5xtw0ja8djyBTZxXPLiWtNkrArRJ
-xYKkh8KdiJaK7pd0W2EonECPHCtQBA==
-=tebW
------END PGP SIGNATURE-----
+v1 -> v2:
+  - Fail if the device does not support changing protocols instead of
+    falling back to the default. (Andrew)
+  - Only call change_tag_protocol on CPU ports. (Andrew/Vladimir)
+  - Only allow changing the protocol on chips that have at least
+    "undocumented" level of support for EDSA. (Andrew).
+  - List the supported protocols in the binding documentation. I opted
+    for only listing the protocols that I have tested. As more people
+    test their drivers, they can add them. (Rob)
 
---sqrdgl4qh74mzxtg--
+  I did not change the property name, as I am not sure which vendor
+  prefix to use (if any). Since there is an existing "dsa,member"
+  property, "dsa" seemed reasonable.
+
+Tobias Waldekranz (5):
+  net: dsa: mv88e6xxx: Mark chips with undocumented EDSA tag support
+  net: dsa: mv88e6xxx: Allow dynamic reconfiguration of tag protocol
+  net: dsa: Only notify CPU ports of changes to the tag protocol
+  net: dsa: Allow default tag protocol to be overridden from DT
+  dt-bindings: net: dsa: Document dsa,tag-protocol property
+
+ .../devicetree/bindings/net/dsa/dsa.yaml      |  9 ++
+ drivers/net/dsa/mv88e6xxx/chip.c              | 99 ++++++++++++-------
+ drivers/net/dsa/mv88e6xxx/chip.h              | 21 +++-
+ include/net/dsa.h                             |  5 +
+ net/dsa/dsa2.c                                | 95 ++++++++++++++----
+ net/dsa/switch.c                              | 25 ++---
+ 6 files changed, 184 insertions(+), 70 deletions(-)
+
+-- 
+2.25.1
+
