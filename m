@@ -2,107 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 173C7360423
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 10:20:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 363253603EA
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 10:08:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231215AbhDOIUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 04:20:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41354 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231653AbhDOIUU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 04:20:20 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ECE7C061574;
-        Thu, 15 Apr 2021 01:19:57 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id j18so37893803lfg.5;
-        Thu, 15 Apr 2021 01:19:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=FfnqRo/ZbtdxVGZff5uYV7HooY4ykDd6sr4h4ImhvwQ=;
-        b=N6ZsqXWlokRSDYCT4+xA6odNxdJnv7grSWwu0sxH4elIwp7jQ6MPiwZZuCO2fTU59v
-         rnLylYpfOHfv0AQjYQ/KPNDosT2vGm+Nqy0OBHKuT3ZhgCH/+ZK7mOEZlaTOwZmzya/u
-         U/lgzKFdEwK6KwdxaRYfFNpXa2DBCwgn93RaUKeivGYNXzwSD650kY6H+M4gPAVye1HL
-         lE/tXudQTuHTo/JF/3VdfvR7JPQ1fr1PXbyMHtlvprJqct7EYtkY6F03g32R7i+NPxXC
-         pJMWQ8L+qrqsF7Pc3E0TTfxlCvQ2RZ6Nl9H1sfo8OKJ2pL03AEYeKHggmfjmMpluverF
-         uBhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=FfnqRo/ZbtdxVGZff5uYV7HooY4ykDd6sr4h4ImhvwQ=;
-        b=Pq6V7ggX74IP05Jp2xusYZLbRZLwE57rWG7LZqNDJR83nhBLBx8NwgQlayvt9M3Pja
-         UtYavdTOPi9Un1O9hx5JIKZkq5XT4XLIwYSKXb7N6rigjaNlOKLMSQ2B2byN8Fi46qiG
-         koGN0Evia8tv2+U27pHqgDBsI4naeU7Gg2DnRSkNARIChDmgOa72ajP0Z9nfsJ25C0Cb
-         AhHnkrTyAEEQaoeKYQ65Rr6TpHcN/fLxkiz7/ugZY48M+WjRqz4Q2gJ96U9/7tdXr5pZ
-         bUeCM211aeYVOOCTXdRvf3kOufLSRqO3SOUeONxIHimWKvnG9R7xLIKZH8Ne9WEXW4Gg
-         qG+A==
-X-Gm-Message-State: AOAM533ImeOl1QnKVT58ihbUdCLVYfnkD6BjrQB9guRFF7aW6z7Ajw1t
-        5UmdoKyf1j0KBFhpQ+tlGoGscEyG6PYd4QjhQa0iHAnS
-X-Google-Smtp-Source: ABdhPJyxWDC9p3efVyUxwazeMnyrL0/ToYsX1iaQQo8kZRbCfX6/ATFc5gfc1kCCW7fV3A8PYyjwxikEp2L07Fv0Fpo=
-X-Received: by 2002:a05:6512:1050:: with SMTP id c16mr1866048lfb.295.1618474795857;
- Thu, 15 Apr 2021 01:19:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210222132822.7830-1-kevin3.tang@gmail.com> <20210222132822.7830-7-kevin3.tang@gmail.com>
- <20210324112745.n76qhrbhzyfunmkd@gilmour> <CAFPSGXYK0Hi2-eYkukO2pNhHrJVZ=f79sj_hjXnGBZ_meVmkFg@mail.gmail.com>
- <20210407104854.fgn67pvau7dchcm2@gilmour>
-In-Reply-To: <20210407104854.fgn67pvau7dchcm2@gilmour>
-From:   Kevin Tang <kevin3.tang@gmail.com>
-Date:   Thu, 15 Apr 2021 08:19:44 +0800
-Message-ID: <CAFPSGXbJwNd47UAwVu4c1t5K7j4sgMtTLtDZ15woHZbRTghVfA@mail.gmail.com>
-Subject: Re: [PATCH v4 6/6] drm/sprd: add Unisoc's drm mipi dsi&dphy driver
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S230090AbhDOIJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 04:09:03 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:35879 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231326AbhDOIJC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Apr 2021 04:09:02 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id BB42B5C0154;
+        Thu, 15 Apr 2021 04:08:39 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Thu, 15 Apr 2021 04:08:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=9S9hqEIhNP1w4EXb199EfGfBgNN
+        /jD60qSEpPVXY8k0=; b=H/hSt5XjNodjwCgpzBmNxZiAmnh8kO/sIpIUXEozARL
+        2L9tpxo5s+3kRB6x1DpQ3EKOBFgGk1OrcdhUONjMR5XEHPiEPnw+DkE5kXfTDCOW
+        QaHraTIFPOyxBgn/WJlWnoKzf8nORIorxhjtj1HLe1GQaFo6d/+n6ejEDuCOvDIC
+        Zi+FA4fqMDmMPah5Gg+djlKWZYHlSDdQxcCM75eog009BrehzyexJ40olQJ7fIxE
+        pyjiD9tlarUPSvrL/e0fPuFqN4/u1WsnaCFoO5J49nQCaG9sgdo4qDEdo5JVCW+e
+        Nc4v686DgaHRC3aPk8dpazQjLEvRbpzER+m6Ip0zY2g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=9S9hqE
+        IhNP1w4EXb199EfGfBgNN/jD60qSEpPVXY8k0=; b=UcmRaWE6dcQ21syVfhTIVf
+        Q5jjZ6yMEF63NtEpm43xwHrgaHTHpD64+mfs7Aa3lZup+rHyQpOA3wMA9X42p+2c
+        XbK2SbnKmwZKOMaF/YBB7O7qF4ZAMi5sExxuCoz5edZRiHHVeFEzgTVLY0c+a4GR
+        hT2yWD8kcYRcVSP6gCFoo0qsDgvq10ZZ8TF7F+y7BkLdIUGINIkCw0XHp36gWa0V
+        iSi4+Zljbi5L38VoyZdvjD+2b/HanGhPveXZ3DHXk3mRg6YsQzB7MXLp08PCOMRm
+        2hDmDMC8bVK8h2e9TTsI0DJ/zuhSt+VNc6lCo0yBaQwKK8019DHru/nmxv+V6ItA
+        ==
+X-ME-Sender: <xms:hvR3YFF8_3NRMD-OjY8-POEayDvg95o54h-cg5dFE-uskYBOLbQtpw>
+    <xme:hvR3YKXQGg68gA_5aK1Rx2x0pfXQiDcghr4LtyR44tbi4AjfoKYfsp4Bb4kEni7eO
+    Oq0X-HcHNI-1Zrs_vM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudelfecutefuodetggdotefrodftvfcurf
+    hrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgvucft
+    ihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrh
+    hnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfgveen
+    ucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrh
+    grmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:hvR3YHJsW35iEGChzZe1DxwwfqtVe7jTl-iMdvxySbalF5zcSUOYbg>
+    <xmx:hvR3YLEEVwogjz96AnTWGJNBqzQyV7gxmOZv44V_S1PuaKW4kBuszA>
+    <xmx:hvR3YLXJs6L9owwqUIG63v-t6qkgNdVHL9r5Qp7xbguZpOZunNKvIQ>
+    <xmx:h_R3YBcnx2ahXTrAi0zU8wrRgBYKTEWMKAdtBdvlKHCtq-HBUt3ZBQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 1AA5C24005A;
+        Thu, 15 Apr 2021 04:08:38 -0400 (EDT)
+Date:   Thu, 15 Apr 2021 10:08:35 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Ivan Uvarov <i.uvarov@cognitivepilot.com>
+Cc:     devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
-        ML dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        linux-arm-kernel@lists.infradead.org,
+        Andre Przywara <andre.przywara@arm.com>,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: Re: [PATCH v4 0/5] add devicetree for Forlinx FETA40i-C & OKA40i-C
+Message-ID: <20210415080835.qieyynhxcwtx6vyj@gilmour>
+References: <20210407111428.3755684-1-i.uvarov@cognitivepilot.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="a5h2ot27vu5nyqmf"
+Content-Disposition: inline
+In-Reply-To: <20210407111428.3755684-1-i.uvarov@cognitivepilot.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Maxime Ripard <maxime@cerno.tech> =E4=BA=8E2021=E5=B9=B44=E6=9C=887=E6=97=
-=A5=E5=91=A8=E4=B8=89 =E4=B8=8B=E5=8D=886:48=E5=86=99=E9=81=93=EF=BC=9A
->
-> On Wed, Mar 31, 2021 at 09:47:12AM +0800, Kevin Tang wrote:
-> > > > diff --git a/drivers/gpu/drm/sprd/Makefile
-> > > b/drivers/gpu/drm/sprd/Makefile
-> > > > index 6c25bfa99..d49f4977b 100644
-> > > > --- a/drivers/gpu/drm/sprd/Makefile
-> > > > +++ b/drivers/gpu/drm/sprd/Makefile
-> > > > @@ -1,5 +1,8 @@
-> > > >  # SPDX-License-Identifier: GPL-2.0
-> > > >
-> > > >  obj-y :=3D sprd_drm.o \
-> > > > -     sprd_dpu.o
-> > > > -
-> > > > +     sprd_dpu.o \
-> > > > +     sprd_dsi.o \
-> > > > +     dw_dsi_ctrl.o \
-> > > > +     dw_dsi_ctrl_ppi.o \
-> > >
-> > > So it's a designware IP? There's a driver for it already that seems
-> > > fairly similar:
-> > > drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
-> > >
-> > Our dw dsi controller is not a standard synopsys ip, we have updated a =
-lot
-> > on the basic ip version,
-> > the entire control register is different, i have cc to drm/bridge revie=
-wers
-> > and maintainers.
->
-> You should make it more obvious then in a comment or in the name of the
-> driver. If it's fairly different from the original IP from Synopsys,
-> maybe you should just drop the reference to the name?
-Thks, i will be fix it.
->
-> Maxime
+
+--a5h2ot27vu5nyqmf
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Apr 07, 2021 at 02:14:23PM +0300, Ivan Uvarov wrote:
+> This patch series adds devicetree support for the Forlinx FETA40i-C SoM
+> and OKA40i-C carrier board/devboard.
+>=20
+> The FETA40i-C is an "industrial/automotive" SoM by Forlinx.
+>=20
+> SoM specs:
+> - SoC: R40 or A40i
+> - PMIC: AXP221S
+> - RAM: 1GiB/2GiB DDR3 (dual-rank)
+> - eMMC: 8GB,
+> - Mates with carrier board via four 80-pin connectors (AXK6F80337YG).
+>=20
+> OKA40i-C is a carrier board by the same manufacturer for this SoM,
+> whose main purpose is as a development board with a variety of
+> peripherals:
+>=20
+> - Power: DC5V barrel or USB OTG or 4.2V Lipo battery
+> - Video out: HDMI, TV out, LVDS
+> - WiFi+Bluetooth: RL-UM02WBS-8723BU-V1.2 (802.11 b/g/n, BT V2.1/3.0/4.0)
+> - Ethernet: 10/100Mbps
+> - Storage: =B5SD, fullsize SD, eMMC (on SoM), SATA
+> - USB: 3 x USB2.0 Host (2 via hub, 1 native), 1 x USB2.0 OTG (micro-B)
+> - UART: RS232, RS485, 4 3.3v uarts (of which 2 have RTS/CTS)
+> - Other I/O: SPI x2, TWI, SDIO header, GPIO header, JTAG header
+> - Mini PCIe slot with sim holder for WLAN modem
+> - Smart card holder
+> - RTC (RX8010SJ)
+> - Two user LEDs
+> - Three user buttons (via KeyADC).
+>=20
+> Of the board features listed above, support for the following has *NOT*
+> been tested:
+> - TV out & LVDS
+> - SATA
+> - Smart cards
+> - KeyADC buttons (no support)
+>=20
+> The series consists of five patches, with dependencies as follows:
+>=20
+> * Patch 4 depends on patch 3;
+> * Patch 5 depends on patches 2&4.
+>=20
+> The rest are independent, however patch 2 may refuse to apply
+> without patch 1.
+>=20
+> Signed-off-by: Ivan Uvarov <i.uvarov@cognitivepilot.com>
+
+Applied, thanks
+
+Maxime
+
+--a5h2ot27vu5nyqmf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYHf0gwAKCRDj7w1vZxhR
+xUpNAPwMT8YvV0i9xuPKCu7RFPap0qHeuura6wpSnB36OBxxeQEA966ljFhW76n4
+7TwlKGBsQ5z3Rlo2TEtXtBQ6FZFWdwg=
+=5jMp
+-----END PGP SIGNATURE-----
+
+--a5h2ot27vu5nyqmf--
