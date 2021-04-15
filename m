@@ -2,154 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F273360373
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 09:33:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16EB036037D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 09:38:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231309AbhDOHdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 03:33:44 -0400
-Received: from www381.your-server.de ([78.46.137.84]:37058 "EHLO
-        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230090AbhDOHdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 03:33:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
-         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=uxomR1aNpf7hkRODFDvGe9w7xQUUXiatU5dinFJRbWU=; b=AoiZTr2JLATQNjpwN2q0qW7IjY
-        ZWXdeEOKzVxIx7phjcRa6u0Jm1V6dqufsP4wv/aQ5AGYz+lAUUF7DNotppovjj4FQTn62WnQanU0E
-        cSWciOm+8V9G9fK17BWKthF8vHd1EjxLsab7SrnzxwIFSh6nZxgWYKOahc5dszt20r0WfaVmwT3F/
-        3tihluX370AIqvZ6FghBrYJ/w5TUoW+JIKrtNLzxs84QX5yZ3oPemqLS2RUCdxLrv3VnYjQZgI0SZ
-        RIgzHXZrYHF3/OiI4vLHMlBDRekvABBieXvNjcTD6IMPEvE9pZd5ZdLfnaPpYdvHEAguQ5RQO53rH
-        /6ywKe8w==;
-Received: from sslproxy05.your-server.de ([78.46.172.2])
-        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <lars@metafoo.de>)
-        id 1lWwV4-0001Z8-FC; Thu, 15 Apr 2021 09:33:18 +0200
-Received: from [2001:a61:2a42:9501:9e5c:8eff:fe01:8578]
-        by sslproxy05.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        id S231521AbhDOHjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 03:39:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60560 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231346AbhDOHjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 03:39:00 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B7CCC061756
+        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 00:38:37 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
-        (envelope-from <lars@metafoo.de>)
-        id 1lWwV4-000APh-9Y; Thu, 15 Apr 2021 09:33:18 +0200
-Subject: Re: [RFC v2 PATCH 7/7] dmaengine: xilinx_dma: Program interrupt delay
- timeout
-To:     Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
-        vkoul@kernel.org, robh+dt@kernel.org, michal.simek@xilinx.com
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        git@xilinx.com
-References: <1617990965-35337-1-git-send-email-radhey.shyam.pandey@xilinx.com>
- <1617990965-35337-8-git-send-email-radhey.shyam.pandey@xilinx.com>
-From:   Lars-Peter Clausen <lars@metafoo.de>
-Message-ID: <2985f8ac-ae2c-c142-f2d6-c5051bd6bfb2@metafoo.de>
-Date:   Thu, 15 Apr 2021 09:33:17 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        (envelope-from <mkl@pengutronix.de>)
+        id 1lWwZu-0008LU-1Y; Thu, 15 Apr 2021 09:38:18 +0200
+Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:983:856d:54dc:ee1c])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id F2D1860F1FE;
+        Thu, 15 Apr 2021 07:38:10 +0000 (UTC)
+Date:   Thu, 15 Apr 2021 09:38:10 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: Re: [PATCH v2 3/6] dt-bindings: phy: Add binding for TI TCAN104x CAN
+ transceivers
+Message-ID: <20210415073810.nwoi2hx57hdg4ima@pengutronix.de>
+References: <20210414140521.11463-1-a-govindraju@ti.com>
+ <20210414140521.11463-4-a-govindraju@ti.com>
+ <20210414153303.yig6bguue3g25yhg@pengutronix.de>
+ <9a9a3b8b-f345-faae-b9bc-3961518e3d29@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1617990965-35337-8-git-send-email-radhey.shyam.pandey@xilinx.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Authenticated-Sender: lars@metafoo.de
-X-Virus-Scanned: Clear (ClamAV 0.102.4/26140/Wed Apr 14 13:10:01 2021)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="x47mptupwgm4a7j3"
+Content-Disposition: inline
+In-Reply-To: <9a9a3b8b-f345-faae-b9bc-3961518e3d29@ti.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/9/21 7:56 PM, Radhey Shyam Pandey wrote:
-> Program IRQDelay for AXI DMA. The interrupt timeout mechanism causes
-> the DMA engine to generate an interrupt after the delay time period
-> has expired. It enables dmaengine to respond in real-time even though
-> interrupt coalescing is configured. It also remove the placeholder
-> for delay interrupt and merge it with frame completion interrupt.
-> Since by default interrupt delay timeout is disabled this feature
-> addition has no functional impact on VDMA and CDMA IP's.
 
-In my opinion this should not come from the devicetree. This setting is 
-application specific and should be configured through a runtime API.
+--x47mptupwgm4a7j3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-For the VDMA there is already xilinx_vdma_channel_set_config() which 
-allows to configure the maximum number of IRQs that can be coalesced and 
-the IRQ delay. Something similar is probably needed for the AXIDMA.
+On 15.04.2021 11:57:20, Aswath Govindraju wrote:
+> Hi Marc,
+>=20
+> On 14/04/21 9:03 pm, Marc Kleine-Budde wrote:
+> > On 14.04.2021 19:35:18, Aswath Govindraju wrote:
+> >> Add binding documentation for TI TCAN104x CAN transceivers.
+> >>
+> >> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> >> ---
+> >>  .../bindings/phy/ti,tcan104x-can.yaml         | 56 +++++++++++++++++++
+> >>  MAINTAINERS                                   |  1 +
+> >>  2 files changed, 57 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/phy/ti,tcan104x-=
+can.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yam=
+l b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> >> new file mode 100644
+> >> index 000000000000..4abfc30a97d0
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> >> @@ -0,0 +1,56 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: "http://devicetree.org/schemas/phy/ti,tcan104x-can.yaml#"
+> >> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> >> +
+> >> +title: TCAN104x CAN TRANSCEIVER PHY
+> >> +
+> >> +maintainers:
+> >> +  - Aswath Govindraju <a-govindraju@ti.com>
 
->
-> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-> ---
-> Changes for v2:
-> - Read irq delay timeout value from DT.
-> - Merge interrupt processing for frame done and delay interrupt.
-> ---
->   drivers/dma/xilinx/xilinx_dma.c | 20 +++++++++++---------
->   1 file changed, 11 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/dma/xilinx/xilinx_dma.c b/drivers/dma/xilinx/xilinx_dma.c
-> index a2ea2d649332..0c0dc9882a01 100644
-> --- a/drivers/dma/xilinx/xilinx_dma.c
-> +++ b/drivers/dma/xilinx/xilinx_dma.c
-> @@ -173,8 +173,10 @@
->   #define XILINX_DMA_MAX_TRANS_LEN_MAX	23
->   #define XILINX_DMA_V2_MAX_TRANS_LEN_MAX	26
->   #define XILINX_DMA_CR_COALESCE_MAX	GENMASK(23, 16)
-> +#define XILINX_DMA_CR_DELAY_MAX		GENMASK(31, 24)
->   #define XILINX_DMA_CR_CYCLIC_BD_EN_MASK	BIT(4)
->   #define XILINX_DMA_CR_COALESCE_SHIFT	16
-> +#define XILINX_DMA_CR_DELAY_SHIFT	24
->   #define XILINX_DMA_BD_SOP		BIT(27)
->   #define XILINX_DMA_BD_EOP		BIT(26)
->   #define XILINX_DMA_BD_COMP_MASK		BIT(31)
-> @@ -410,6 +412,7 @@ struct xilinx_dma_tx_descriptor {
->    * @stop_transfer: Differentiate b/w DMA IP's quiesce
->    * @tdest: TDEST value for mcdma
->    * @has_vflip: S2MM vertical flip
-> + * @irq_delay: Interrupt delay timeout
->    */
->   struct xilinx_dma_chan {
->   	struct xilinx_dma_device *xdev;
-> @@ -447,6 +450,7 @@ struct xilinx_dma_chan {
->   	int (*stop_transfer)(struct xilinx_dma_chan *chan);
->   	u16 tdest;
->   	bool has_vflip;
-> +	u8 irq_delay;
->   };
->   
->   /**
-> @@ -1555,6 +1559,9 @@ static void xilinx_dma_start_transfer(struct xilinx_dma_chan *chan)
->   	if (chan->has_sg)
->   		xilinx_write(chan, XILINX_DMA_REG_CURDESC,
->   			     head_desc->async_tx.phys);
-> +	reg  &= ~XILINX_DMA_CR_DELAY_MAX;
-> +	reg  |= chan->irq_delay << XILINX_DMA_CR_DELAY_SHIFT;
-> +	dma_ctrl_write(chan, XILINX_DMA_REG_DMACR, reg);
->   
->   	xilinx_dma_start(chan);
->   
-> @@ -1877,15 +1884,8 @@ static irqreturn_t xilinx_dma_irq_handler(int irq, void *data)
->   		}
->   	}
->   
-> -	if (status & XILINX_DMA_DMASR_DLY_CNT_IRQ) {
-> -		/*
-> -		 * Device takes too long to do the transfer when user requires
-> -		 * responsiveness.
-> -		 */
-> -		dev_dbg(chan->dev, "Inter-packet latency too long\n");
-> -	}
-> -
-> -	if (status & XILINX_DMA_DMASR_FRM_CNT_IRQ) {
-> +	if (status & (XILINX_DMA_DMASR_FRM_CNT_IRQ |
-> +		      XILINX_DMA_DMASR_DLY_CNT_IRQ)) {
->   		spin_lock(&chan->lock);
->   		xilinx_dma_complete_descriptor(chan);
->   		chan->idle = true;
-> @@ -2802,6 +2802,8 @@ static int xilinx_dma_chan_probe(struct xilinx_dma_device *xdev,
->   	/* Retrieve the channel properties from the device tree */
->   	has_dre = of_property_read_bool(node, "xlnx,include-dre");
->   
-> +	of_property_read_u8(node, "xlnx,irq-delay", &chan->irq_delay);
-> +
->   	chan->genlock = of_property_read_bool(node, "xlnx,genlock-mode");
->   
->   	err = of_property_read_u32(node, "xlnx,datawidth", &value);
+Can you create a maintainers entry for this file with your address?
 
+> >> +
+> >> +properties:
+> >> +  $nodename:
+> >> +    pattern: "^tcan104x-phy"
+> >> +
+> >> +  compatible:
+> >> +    enum:
+> >> +      - ti,tcan1042
+> >> +      - ti,tcan1043
+> >=20
+> > Can you ensure that the 1042 has only the standby gpio and the 1043 has=
+ both?
+> >=20
+>=20
+> In the driver, it is the way the flags have been set for ti,tcan1042 and
+> ti,tcan1043.
 
+I was wondering if we would enforce in the DT the 1042 has exactly one
+the standby GPIO and the 1043 has exactly the standby and the enable
+GPIO.
+
+On the other hand the HW might have pulled one or the other pin high or
+low and only one of the pins is connected to a GPIO.
+
+> >> +
+> >> +  '#phy-cells':
+> >> +    const: 0
+> >> +
+> >> +  standby-gpios:
+> >> +    description:
+> >> +      gpio node to toggle standby signal on transceiver
+> >> +    maxItems: 1
+> >> +
+> >> +  enable-gpios:
+> >> +    description:
+> >> +      gpio node to toggle enable signal on transceiver
+> >> +    maxItems: 1
+> >> +
+> >> +  max-bitrate:
+> >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >> +    description:
+> >> +      max bit rate supported in bps
+> >> +    minimum: 1
+> >> +
+> >> +required:
+> >> +  - compatible
+> >> +  - '#phy-cells'
+> >> +
+> >> +additionalProperties: false
+> >> +
+> >> +examples:
+> >> +  - |
+> >> +    #include <dt-bindings/gpio/gpio.h>
+> >> +
+> >> +    transceiver1: tcan104x-phy {
+> >> +      compatible =3D "ti,tcan1043";
+> >> +      #phy-cells =3D <0>;
+> >> +      max-bitrate =3D <5000000>;
+> >> +      standby-gpios =3D <&wakeup_gpio1 16 GPIO_ACTIVE_LOW>;
+> >> +      enable-gpios =3D <&main_gpio1 67 GPIO_ACTIVE_LOW>;
+> >=20
+> > AFAICS the enable gpio is active high.
+> >=20
+>=20
+> I will correct this in the respin.
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--x47mptupwgm4a7j3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmB37V8ACgkQqclaivrt
+76ng1gf/aCWi7jDI36fG5Q2jCFj5WHSssB52808LYtj6jR8zi7zjgjHCoCK7MhXW
+tBV3CtNonx5NvHo99xFZgdVyJGlBeairCMWf9yfxW48sJzke6S0+WZ+qhWEE7mTG
+ae8a5lcQ14qMT0ls/xHdBA4pQ2JGvd1s3/H3EIaMo2HPIA3rYycVaIGYd2eNlFAj
+EbFN6mU8xyk9mxfIVlaBsPGqAFFCy3aS1vKpT4IKmo5iUIK1qWnVigrCIPU9Zch6
+CRT0l5b0o9WsmkFe+oZpxGdDh+FO/bZNI2viH9avUhmx7uqwqb2sP2sljdR2CVtz
+j/9UhbSLDsxIKZHyaXZnknZ+W7KBNg==
+=ZTv2
+-----END PGP SIGNATURE-----
+
+--x47mptupwgm4a7j3--
