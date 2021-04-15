@@ -2,168 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CBA33610BC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 19:06:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46BBA36113B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 19:40:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233343AbhDORHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 13:07:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45126 "EHLO
+        id S233835AbhDORk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 13:40:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231137AbhDORHO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 13:07:14 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EED4EC061574
-        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 10:06:50 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id g17so28246756edm.6
-        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 10:06:50 -0700 (PDT)
+        with ESMTP id S233134AbhDORk2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 13:40:28 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A483DC061574;
+        Thu, 15 Apr 2021 10:40:04 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id h4so15086694wrt.12;
+        Thu, 15 Apr 2021 10:40:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=qiaTdRxVP+PjHJWnCOqI9pORWv0g/7bqvQKS7jz0//U=;
-        b=SeU4I60J41yRkWpulsHcyPQ0lGGZjLMdyTuau+HGDQ2VjSz3SciXMHUC3QvsZbqVcZ
-         voda+hYW9t0JiCwoD+6pWkUmyxu8t2ZvdA/PN+qMiHpbrhnM+z79QAtyGCb9577D4F/5
-         cb8mDEjiHuRcGGOQl8CsUsHU8dKj4L/bTu8JwtubTZWnlJ10yUV9DMW9zk7oyUTfilo1
-         PB96VLQ5miWm6uBcSkcY8dsCa9J0GgeCuRyJETl9c6vJAtiTh6alxsYKQ7tEbzHCPbv7
-         V8YMGaYrHRewcISh9agCA2zc5m6KwvJEMnVq5HSSWud0g0I+Sf58ew0RLoRfmX/dGO6f
-         uHsA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1Rbkk3YtrZq+cFsEONS3Ccixfv0q2I+gTYmfK7b4Oaw=;
+        b=NnNjTADq5CYotTW7JfIGypkWNEvpXWgtZ+uG8BZoaS7Ig3UPZsMvuD9fuN+WP3Pzpz
+         Gb/302R0MvHlvkLarRVkjAcpUq2BUF9TGPi+0KOFPTOqhkIrYYWLfNt1K2EsG2/iFIHK
+         wDc5BzQD+fnbHKCdaeel2Dl67RmRNBSSFTI4tXflFkrsc6+StFTuDd34e7AStclSxDWB
+         nCBgcmPVESo5Agrx0Q/EGpylswxQg/9AvM8mnO3W9GqgAXJhmciVh+LUIXcTZQtsjMsT
+         JfSecy8N6nm9UmwT5pJuXo0clMXvd+WMaWYvHbO9Z9vtoZG1HGjNzOpAOIu2tHxnedxK
+         OASA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=qiaTdRxVP+PjHJWnCOqI9pORWv0g/7bqvQKS7jz0//U=;
-        b=BLAOQPKyhDQUv982LsUFzuc/umWh7Y6gjqaKT4RR5bRjyDj4N31SSnqRexQc4WvgN/
-         baMGjOgEXKgl/PEeMERzmGI7ujbYdJvCvYvjn2DI2XuFk7vwAHMJbk5SGgun1zlQkoIO
-         XWyA9YXvLc16gX1qUl78GCAR9B9O7gJEU3l6OMxNTFJN/AqZ96Tn/4lz0qpJjfyW4xBr
-         tg+BlinmlouiU53oGDegjb3WNBcH276E1nrMDkkBOwAneia95NdJogk5VOABvEJGgcF5
-         IkevbS3Vi3JOSfFUjDJXckBhEhvdmFuvxYrUO1hoCT/gaeRXr4besek4XfF5Wr+j6PXR
-         AoPA==
-X-Gm-Message-State: AOAM533cKnFEC6cVzbFnOssBLuO5imy5m6sDBq41q/YotN3huyKscNvV
-        DqpuG4HJtEflDxzOm/X02dlgdbqYRoRlFA==
-X-Google-Smtp-Source: ABdhPJxnIwBJcv7n1yI2CZjRa7oKLiVaHxuL6ZCvd/+6CoD3FiDgjO1KW9xeG7XlP6U3ppCryqzvfQ==
-X-Received: by 2002:aa7:c349:: with SMTP id j9mr5643684edr.41.1618506409735;
-        Thu, 15 Apr 2021 10:06:49 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id cq26sm3046543edb.60.2021.04.15.10.06.48
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 15 Apr 2021 10:06:49 -0700 (PDT)
-Subject: Re: [PATCH v4 1/9] ASoC: dt-bindings: wcd938x: add bindings for
- wcd938x
-To:     Rob Herring <robh@kernel.org>
-Cc:     broonie@kernel.org, devicetree@vger.kernel.org, perex@perex.cz,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        lgirdwood@gmail.com
-References: <20210414154845.21964-1-srinivas.kandagatla@linaro.org>
- <20210414154845.21964-2-srinivas.kandagatla@linaro.org>
- <20210415162947.GA1511094@robh.at.kernel.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <019aa3c0-56ce-de17-4d64-be6dbc0a3a65@linaro.org>
-Date:   Thu, 15 Apr 2021 18:06:48 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        bh=1Rbkk3YtrZq+cFsEONS3Ccixfv0q2I+gTYmfK7b4Oaw=;
+        b=e/PwoXD1nWyBAfzfWg0Z2kEhHEOuTCkYeuSfEc4vYP7YL919DbZ/A6FBXGnxTUmpmo
+         45TDBUr07WmgpaumNCaBwri4T2QC7jJyRGrGC0eiK/JLDZrLB15rPrPZNv6g2NHxMZlQ
+         M5neXbB1wNrS3Dx6v8D1SYGl6kcPLuvXF1slzXVFW/yRRXlf3ZIr9XetUtixj46NEKmm
+         a3qofeG5s0Xmcbjv1POj1Er67ITeA3UZTyeFVr8UXd4ofO5xFrDqJw6OfN9472SR4G/q
+         5dhbWKwT28UZnpMtYJp8PvAMeVtbrMUtxF6FLiuHl6UATweEQxv9X8ZjWnpKGzH07HNY
+         nRPg==
+X-Gm-Message-State: AOAM531nTzbop+YyFJS+RpMu6fIMcuZYQwSbJEmL7t9RyUdb8RDJovtg
+        tYo/YN+2JmUbsmHxgldc529DA9RuSDOJ2w==
+X-Google-Smtp-Source: ABdhPJyrRJgvE1mLSAmQGUPPEaFIvCmCIDMqNAsV8dQDaZ5WUXQEVQzfTy85rlhx9+dy2mHrXZI2og==
+X-Received: by 2002:a5d:4e81:: with SMTP id e1mr4806632wru.305.1618508403334;
+        Thu, 15 Apr 2021 10:40:03 -0700 (PDT)
+Received: from dell5510.arch.suse.de ([62.201.25.198])
+        by smtp.gmail.com with ESMTPSA id u4sm4411470wml.0.2021.04.15.10.40.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Apr 2021 10:40:02 -0700 (PDT)
+From:   Petr Vorel <petr.vorel@gmail.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Petr Vorel <petr.vorel@gmail.com>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ricardo Ribalda <ribalda@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 1/1] nexus: Fix gpio-reserved-ranges 85-88
+Date:   Thu, 15 Apr 2021 19:39:57 +0200
+Message-Id: <20210415173957.28533-1-petr.vorel@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210415162947.GA1511094@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Reserve GPIO pins 85-88 as these aren't meant to be accessible from the
+application CPUs (causes reboot). Yet another fix similar to
+9134586715e3, 5f8d3ab136d0, which is needed to allow angler to boot after
+3edfb7bd76bd ("gpiolib: Show correct direction from the beginning").
 
+Fixes: feeaf56ac78d ("arm64: dts: msm8994 SoC and Huawei Angler (Nexus 6P) support")
 
-On 15/04/2021 17:29, Rob Herring wrote:
->> +    codec {
->> +        compatible = "qcom,wcd9380-codec";
->> +        reset-gpios = <&tlmm 32 0>;
->> +        #sound-dai-cells = <1>;
->> +        qcom,tx-device = <&wcd938x_tx>;
->> +        qcom,rx-device = <&wcd938x_rx>;
->> +        qcom,micbias1-microvolt = <1800000>;
->> +        qcom,micbias2-microvolt = <1800000>;
->> +        qcom,micbias3-microvolt = <1800000>;
->> +        qcom,micbias4-microvolt = <1800000>;
->> +        qcom,mbhc-hphl-switch;
->> +        qcom,mbhc-ground-switch;
->> +        qcom,mbhc-button0-vthreshold-microvolt = <75000>;
->> +        qcom,mbhc-button1-vthreshold-microvolt = <150000>;
->> +        qcom,mbhc-button2-vthreshold-microvolt = <237000>;
->> +        qcom,mbhc-button3-vthreshold-microvolt = <500000>;
->> +        qcom,mbhc-button5-vthreshold-microvolt = <500000>;
->> +        qcom,mbhc-button6-vthreshold-microvolt = <500000>;
->> +        qcom,mbhc-button7-vthreshold-microvolt = <500000>;
->> +    };
->> +
->> +    /* ... */
->> +
->> +    soundwire@3230000 {
->> +        #address-cells = <2>;
->> +        #size-cells = <0>;
->> +        reg = <0x03230000 0x2000>;
->> +        wcd938x_tx: codec@0,3 {
->> +            compatible = "sdw20217010d00";
->> +            reg  = <0 3>;
->> +            qcom,direction = "tx";
->> +            qcom,port-mapping = <2 3 4 5>;
->> +        };
->> +
->> +        wcd938x_rx: codec@0,4 {
->> +            compatible = "sdw20217010d00";
->> +            reg  = <0 4>;
->> +            qcom,direction = "rx";
->> +            qcom,port-mapping = <1 2 3 4 5>;
->> +        };
+Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
+---
+Hi,
 
-> This is a single device, right? We shouldn't need 3 nodes to describe
+NOTE: as I wrote there is also problem with 86588296acbf ("fdt: Properly
+handle "no-map" field in the memory region") from v5.12-rc1-dontuse, but
+that's another story.
 
-Just realized that the example is bit misleading here.
-It should look like:
+Kind regards,
+Petr
 
-  codec {
-         compatible = "qcom,wcd9380-codec";
-         reset-gpios = <&tlmm 32 0>;
-         #sound-dai-cells = <1>;
-         qcom,tx-device = <&wcd938x_tx>;
-         qcom,rx-device = <&wcd938x_rx>;
-         qcom,micbias1-microvolt = <1800000>;
-         qcom,micbias2-microvolt = <1800000>;
-         qcom,micbias3-microvolt = <1800000>;
-         qcom,micbias4-microvolt = <1800000>;
-         qcom,mbhc-hphl-switch;
-         qcom,mbhc-ground-switch;
-         qcom,mbhc-button0-vthreshold-microvolt = <75000>;
-         qcom,mbhc-button1-vthreshold-microvolt = <150000>;
-         qcom,mbhc-button2-vthreshold-microvolt = <237000>;
-         qcom,mbhc-button3-vthreshold-microvolt = <500000>;
-         qcom,mbhc-button5-vthreshold-microvolt = <500000>;
-         qcom,mbhc-button6-vthreshold-microvolt = <500000>;
-         qcom,mbhc-button7-vthreshold-microvolt = <500000>;
-     };
+ arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
+index baa55643b40f..ffe1a9bd8f70 100644
+--- a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
++++ b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
+@@ -32,3 +32,7 @@ serial@f991e000 {
+ 		};
+ 	};
+ };
++
++&tlmm {
++	gpio-reserved-ranges = <85 4>;
++};
+-- 
+2.31.1
 
-soundwire-controller@3230000 {
-	reg = <0 0x3230000 0 0x2000>;
-	compatible = "qcom,soundwire-v1.5.1";
-	wcd938x_tx: codec@0,3 {
-		compatible = "sdw20217010d00";
-		reg  = <0 3>;
-		qcom,direction = "tx";
-		qcom,port-mapping = <2 3 4 5>;
-	};
-};
-
-
-soundwire-controller@3210000 {
-	reg = <0 0x3210000 0 0x2000>;
-	compatible = "qcom,soundwire-v1.5.1";
-	 wcd938x_rx: codec@0,4 {
-		compatible = "sdw20217010d00";
-		reg  = <0 4>;
-		qcom,direction = "rx";
-		qcom,port-mapping = <1 2 3 4 5>;
-	};
-};
-
-
---srini
