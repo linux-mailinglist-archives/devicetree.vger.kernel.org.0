@@ -2,102 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6BD136140B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 23:20:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AACA4361414
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 23:25:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235588AbhDOVUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 17:20:34 -0400
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:34327 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234959AbhDOVUe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 17:20:34 -0400
-Received: by mail-oi1-f173.google.com with SMTP id k18so20812206oik.1;
-        Thu, 15 Apr 2021 14:20:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Pj47mw5Z19bo4piR6xETutvYCvQRjAqDcCMQcTewtb0=;
-        b=CFRqTyNIiYSuYzGQMB2ptFfgcIebn23WyzrX76+6CP3KynTiMo4D7cTXTa5pjc8dav
-         +hH+ZPkKuHS/YaULoREOhQ/p4Va7FRQXW0rEGAA6Z8w35KEg2DjXj3hnHsp0cIanNZJC
-         N7Nd1KGZ7+BndINfdTy7cFYU0a4e04AF75UDQy3KBDR+dIrImCf75GE31Dk9hH0PAqy8
-         8gJ1sgMZrqT2Uv+pmQ/YNIlqDsS/o1PQXeAwU/ZmGHVHxLswCkYgHFSuVqz8DRzeURR6
-         JGOeucsmC4mu1mZgKbNmVayC1Kfi+wp5C0Cu0rvUcDOewrL+YRq+a/curcVYc1/OHUB9
-         PXmw==
-X-Gm-Message-State: AOAM531jXzc9CAFklkoy5V6iSJ2SEIC/gfd+VpJTFk5ZIbPh6NRRY860
-        gJKcQ7p+DtdugZzLRLg+gw==
-X-Google-Smtp-Source: ABdhPJzB+zGK5+x9z0k6g9pTrJvnmc0/86T4mHby4SRSIHNvDcP2g42n+KY2RNWooSLxfUActPPVbA==
-X-Received: by 2002:aca:d907:: with SMTP id q7mr3934890oig.17.1618521610466;
-        Thu, 15 Apr 2021 14:20:10 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j4sm860879oiw.0.2021.04.15.14.20.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 14:20:09 -0700 (PDT)
-Received: (nullmailer pid 1901537 invoked by uid 1000);
-        Thu, 15 Apr 2021 21:20:08 -0000
-Date:   Thu, 15 Apr 2021 16:20:08 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     bpeled@marvell.com
-Cc:     thomas.petazzoni@bootlin.com, lorenzo.pieralisi@arm.com,
-        bhelgaas@google.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, sebastian.hesselbarth@gmail.com,
-        gregory.clement@bootlin.com, andrew@lunn.ch, mw@semihalf.com,
-        jaz@semihalf.com, kostap@marvell.com, nadavh@marvell.com,
-        stefanc@marvell.com, oferh@marvell.com
-Subject: Re: =?utf-8?B?W+KAnVBBVENI4oCdIHYyIDMvNV0g?=
- =?utf-8?Q?dt-bindings=3A_pci=3A_add_system_controlle?= =?utf-8?Q?r?= and MAC
- reset bit to Armada 7K/8K controller bindings
-Message-ID: <20210415212008.GA1899572@robh.at.kernel.org>
-References: <1618406454-7953-1-git-send-email-bpeled@marvell.com>
- <1618406454-7953-4-git-send-email-bpeled@marvell.com>
+        id S235893AbhDOVZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 17:25:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45270 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235093AbhDOVZ0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Apr 2021 17:25:26 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9867761026;
+        Thu, 15 Apr 2021 21:25:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618521902;
+        bh=wAzWz1t/6xImauPcT3XLaMkS802uQtcKstpMe9mSozY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=E/51QtVt+JZLl5YJKUji4jjUv0dBmA0cmazs/5w6+Bc4wZzO5QnL2dejEJKPWm3Nz
+         blOgsYGjclj6JlD5IGboMfeGiQ+yiXB0FaNPitc6n+Pgc/BPT4z4QUAn8LElc43w2p
+         DW0iYl09HZIPMm0/dSBmP6P7h0NNhw9kIp61XrB2T4R+z31rL4dpIhDyAXI0P+/egD
+         PKDC65q1VxcwFiaRYagT0Ob/+o2VdMqInrUvQpaSh8X9S4oseMskkKhQEu7aHiu4Pa
+         Rjns9bJQt/R4aYcJnf1arUZqeetP5o8esJ0rxv9BXDiQWIGv52jx2HETOIhpRi/JxD
+         Q8daW7WZwkObA==
+Received: by mail-qk1-f174.google.com with SMTP id d23so14764484qko.12;
+        Thu, 15 Apr 2021 14:25:02 -0700 (PDT)
+X-Gm-Message-State: AOAM532oaoYr97VvPhYbqYexx/1nCp6yi/SOQ48uIT9z1T6UsVsFY9+Y
+        5rOkD7/DhlCDcmL/6ElHSLh6id0keRcF7d6Eug==
+X-Google-Smtp-Source: ABdhPJwEOtVU/PBX8pl5Ub9lOQ0rQ9elsjO6RSPqK7TVDKWJEeKEiIDMHMw6Ipuhxv6/Qi8T03BgwK/XvLFUmMN9Nds=
+X-Received: by 2002:a37:84b:: with SMTP id 72mr5665420qki.464.1618521901808;
+ Thu, 15 Apr 2021 14:25:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1618406454-7953-4-git-send-email-bpeled@marvell.com>
+References: <1617766086-5502-1-git-send-email-flora.fu@mediatek.com>
+ <1617766086-5502-5-git-send-email-flora.fu@mediatek.com> <20210409182538.GA3913794@robh.at.kernel.org>
+ <1618209895.25062.11.camel@mtksdccf07>
+In-Reply-To: <1618209895.25062.11.camel@mtksdccf07>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 15 Apr 2021 16:24:50 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLKaYY=NHm1hD=YaQgvDOBTtraoUqcycA7tu7n-f2GVDw@mail.gmail.com>
+Message-ID: <CAL_JsqLKaYY=NHm1hD=YaQgvDOBTtraoUqcycA7tu7n-f2GVDw@mail.gmail.com>
+Subject: Re: [PATCH 4/8] dt-bindings: arm: mediatek: Add new document bindings
+ for APU
+To:     Flora Fu <flora.fu@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Pi-Cheng Chen <pi-cheng.chen@mediatek.com>,
+        Chiawen Lee <chiawen.lee@mediatek.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 14, 2021 at 04:20:52PM +0300, bpeled@marvell.com wrote:
-> From: Ben Peled <bpeled@marvell.com>
-> 
-> Adding optional system-controller and mac-reset-bit-mask
-> needed for linkdown procedure.
+On Mon, Apr 12, 2021 at 1:45 AM Flora Fu <flora.fu@mediatek.com> wrote:
+>
+> On Fri, 2021-04-09 at 13:25 -0500, Rob Herring wrote:
+> > On Wed, Apr 07, 2021 at 11:28:02AM +0800, Flora Fu wrote:
+> > > Document the apusys bindings.
+> > >
+> > > Signed-off-by: Flora Fu <flora.fu@mediatek.com>
+> > > ---
+> > >  .../arm/mediatek/mediatek,apusys.yaml         | 56 +++++++++++++++++++
+> > >  1 file changed, 56 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,apusys.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,apusys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,apusys.yaml
+> > > new file mode 100644
+> > > index 000000000000..dc04a46f1bad
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,apusys.yaml
+> > > @@ -0,0 +1,56 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: https://urldefense.com/v3/__http://devicetree.org/schemas/arm/mediatek/mediatek,apusys.yaml*__;Iw!!CTRNKA9wMg0ARbw!3ryKFTA2CvsVss4Pt2ZOG7wv4jgR-2LPxuGn30IxFmpxoxSRdzNdf8FrAYYvZWcw$
+> > > +$schema: https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!3ryKFTA2CvsVss4Pt2ZOG7wv4jgR-2LPxuGn30IxFmpxoxSRdzNdf8FrARlhCQ0w$
+> > > +
+> > > +title: MediaTek APUSYS Controller
+> > > +
+> > > +maintainers:
+> > > +  - Flora Fu <flora.fu@mediatek.com>
+> > > +
+> > > +description:
+> > > +  The Mediatek apusys controller provides functional configurations and clocks
+> > > +  to the system.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - enum:
+> > > +          - mediatek,mt8192-apu_mbox
+> > > +          - mediatek,mt8192-apu_conn
+> > > +          - mediatek,mt8192-apu_vcore
+> >
+> > s/_/-/
+> >
+>
+> OK. I will update expression strings in the next version.
+>
+> > > +      - const: syscon
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  '#clock-cells':
+> > > +    const: 1
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    apu_mbox: apu_mbox@19000000 {
+> >
+> > mailbox@...? Is this a mailbox provider?
+> >
+>
+> Yes, the apu_mbox is the for setup mailbox in the APU hardware.
 
-Same comment as v1.
+Then you need #mbox-cells here.
 
-BTW, it's PATCH not "PATCH". Don't do anything and git will do the right 
-thing here.
+And in that case, what makes it a syscon?
 
-> 
-> Signed-off-by: Ben Peled <bpeled@marvell.com>
-> ---
->  Documentation/devicetree/bindings/pci/pci-armada8k.txt | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/pci-armada8k.txt b/Documentation/devicetree/bindings/pci/pci-armada8k.txt
-> index 7a813d0..2696e79 100644
-> --- a/Documentation/devicetree/bindings/pci/pci-armada8k.txt
-> +++ b/Documentation/devicetree/bindings/pci/pci-armada8k.txt
-> @@ -24,6 +24,10 @@ Optional properties:
->  - phy-names: names of the PHYs corresponding to the number of lanes.
->  	Must be "cp0-pcie0-x4-lane0-phy", "cp0-pcie0-x4-lane1-phy" for
->  	2 PHYs.
-> +- marvell,system-controller: address of system controller needed
-> +	in order to reset MAC used by link-down handle
-> +- marvell,mac-reset-bit-mask: MAC reset bit of system controller
-> +	needed in order to reset MAC used by link-down handle
->  
->  Example:
->  
-> @@ -45,4 +49,6 @@ Example:
->  		interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
->  		num-lanes = <1>;
->  		clocks = <&cpm_syscon0 1 13>;
-> +		marvell,system-controller = <&CP11X_LABEL(syscon0)>;
-> +		marvell,mac-reset-bit-mask = <CP11X_PCIEx_MAC_RESET_BIT_MASK(1)>;
->  	};
-> -- 
-> 2.7.4
-> 
+>
+> > > +        compatible = "mediatek,mt8192-apu_mbox", "syscon";
+> > > +        reg = <0x19000000 0x1000>;
+> > > +    };
