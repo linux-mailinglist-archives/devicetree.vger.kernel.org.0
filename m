@@ -2,109 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB807360626
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 11:49:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA7CB3606A7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 12:11:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232026AbhDOJth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 05:49:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33090 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231954AbhDOJtf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 05:49:35 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC19C061574;
-        Thu, 15 Apr 2021 02:49:13 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id d10so16528069pgf.12;
-        Thu, 15 Apr 2021 02:49:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-disposition:content-transfer-encoding;
-        bh=MLJSeXjPoZhwM9OSDgG8lC1iJnB13aPm/yKl+/yfCV4=;
-        b=pRp6PcDwdUPowwS48+n5Vcn7b/Qu7Q0Bq2YvCP3A8ZlqeThBV3w1DUWLE2e8USg8pm
-         p56e0NTf8FPp/4keeaxSxU8itqoXcygZWccJHjzPYw6twkrPCaCeIa7t8UWAaOi13xiX
-         Ve6vDa0hTMEKVIEsbLjuxRulV/n9kQ+m5aOD6Vkf6r2/Bwusr+eQ/S2dwwn2oMFwp3Lc
-         2GkmtQYNPNgQcVe/+isx2vnEXxpY4KB3qC1LUVEX/QDmUFhh3+H3Qlnrawi6wO8qPSXX
-         n9LXQW/2cwdJBiHYuTEtqQ1QFQjXIxdEl7Z+WptTF8OVwNjIWlQO0gCPwfl0HQmBLn9z
-         KTxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-disposition
-         :content-transfer-encoding;
-        bh=MLJSeXjPoZhwM9OSDgG8lC1iJnB13aPm/yKl+/yfCV4=;
-        b=njomCBQASrMGDIrAB2ac1RY1Xp6y/SpXWX96EaS5PsxiHXMZa6nj/hAEhGeWvXE+fs
-         Qa+TIabsNVV803M6JV9uUtQYVFtRqhej5u4Ey3z0eeHbmfqowO/f/qqRmHHZbxzTVZwj
-         oE6FawiUMe1Jht0P0ZMFhoKTXMbR+irzYY2ao/U0//pp/RrnCyzIJZeX/Akbxr7pYYNR
-         e/eaPEnd7kVbFMj1CFuyIwxpfc7Twhd5yND49cgVqtCrG3Ak9H8qzdHAGDULNwTM9BP7
-         rVByJ0z/R5MdiNgURmEP3GfJojDp53/FK0HWlHIUokQVYdERxvqVyRkPo/mNWhdQfAfS
-         pV1g==
-X-Gm-Message-State: AOAM533yOavwkUmDhaPsMH2vjMzwNre838gkcRmXH14ZWDvncwj3C6Ii
-        ne272fSCU9Am7J1aw0EhHco=
-X-Google-Smtp-Source: ABdhPJz/296Ukvru+pRPqrOVz6BD93FwhsGWGwnliuGvZd2ixls4Ij1dvumbp8/IpFDe3RglPXeWtw==
-X-Received: by 2002:a62:7d07:0:b029:21b:d1bc:f6c8 with SMTP id y7-20020a627d070000b029021bd1bcf6c8mr2278450pfc.45.1618480152634;
-        Thu, 15 Apr 2021 02:49:12 -0700 (PDT)
-Received: from localhost.localdomain ([138.197.212.246])
-        by smtp.gmail.com with ESMTPSA id g10sm1581765pfj.137.2021.04.15.02.49.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 02:49:11 -0700 (PDT)
-From:   DENG Qingfang <dqfext@gmail.com>
-To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
-Cc:     =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-staging@lists.linux.dev, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, Weijie Gao <weijie.gao@mediatek.com>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-Subject: Re: [RFC v4 net-next 1/4] net: phy: add MediaTek PHY driver
-Date:   Thu, 15 Apr 2021 17:49:02 +0800
-Message-Id: <20210415094902.2946-1-dqfext@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210413131259.GP1463@shell.armlinux.org.uk>
-References: <20210412034237.2473017-1-dqfext@gmail.com> <20210412034237.2473017-2-dqfext@gmail.com> <20210412070449.Horde.wg9CWXW8V9o0P-heKYtQpVh@www.vdorst.com> <20210412150836.929610-1-dqfext@gmail.com> <20210413035920.1422364-1-dqfext@gmail.com> <20210413131259.GP1463@shell.armlinux.org.uk>
+        id S232401AbhDOKLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 06:11:25 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:49546 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231771AbhDOKLY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Apr 2021 06:11:24 -0400
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13FAAinD025292;
+        Thu, 15 Apr 2021 12:10:44 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=MHemc9dIypROVxJM89Wnd08Ri31AtNoLRiSbLCCA4dQ=;
+ b=R7b2D0kIdRD4UaDcHz2L0k/yinuw8rMDs4xxLItoy2F69/2iyoqr2sybIqx4+WOoWRRm
+ ewUUYx/S0I8BDdCUqd7c+NarMUQdy7l3XGljZrbXMRHSN4ls9E/RQogtEdtpvxFZl/Ex
+ eK6WWJxpYohkVv6LLaz/xb7XLe8O9cBWHHS8d0kgt/nRlYtaY8OIkHiRAarm0HdIRa4j
+ 7tK7ab/wKbnsbtFm6YHoKljdh6TLCEqyWxZU0G4FYwuzxQ08OqBC2GqQq61doKLlSg23
+ tbGMH/dMKvLRHNwinBaTxWwAXSFnBkAAdWku+9FlTq64eRdI/4QN5u1RbJUXV7NJ/4wK zg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 37xes0t5yh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 15 Apr 2021 12:10:44 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id F3A7A10002A;
+        Thu, 15 Apr 2021 12:10:39 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C812A226377;
+        Thu, 15 Apr 2021 12:10:39 +0200 (CEST)
+Received: from localhost (10.75.127.51) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 15 Apr 2021 12:10:39
+ +0200
+From:   Alexandre Torgue <alexandre.torgue@foss.st.com>
+To:     <arnd@arndb.de>, <robh+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+        <jagan@amarulasolutions.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        <kuba@kernel.org>
+Subject: [PATCH 00/13] ARM: dts: stm32: fix "make dtbs_check W=1" round1
+Date:   Thu, 15 Apr 2021 12:10:24 +0200
+Message-ID: <20210415101037.1465-1-alexandre.torgue@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-04-15_03:2021-04-15,2021-04-15 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 13, 2021 at 02:12:59PM +0100, Russell King - ARM Linux admin wrote:
-> On Tue, Apr 13, 2021 at 11:59:20AM +0800, DENG Qingfang wrote:
-> > Within 12 hours, I got some spontaneous link down/ups when EEE is enabled:
-> > 
-> > [16334.236233] mt7530 mdio-bus:1f wan: Link is Down
-> > [16334.241340] br-lan: port 3(wan) entered disabled state
-> > [16337.355988] mt7530 mdio-bus:1f wan: Link is Up - 1Gbps/Full - flow control rx/tx
-> > [16337.363468] br-lan: port 3(wan) entered blocking state
-> > [16337.368638] br-lan: port 3(wan) entered forwarding state
-> > 
-> > The cable is a 30m Cat.6 and never has such issue when EEE is disabled.
-> > Perhaps WAKEUP_TIME_1000/100 or some PHY registers need to be fine-tuned,
-> > but for now I think it should be disabled by default.
-> 
-> Experience with Atheros AR8035 which has a very similar issue would
-> suggest that before resorting to the blunt hammer of disabling
-> SmartEEE, one should definitely experiment with the 1G Tw settings.
-> 
-> Using 24us for 1G speeds on AR8035 helps a great deal, whereas the PHY
-> defaults to 17us for 1G and 23us for 100M.
+Hi,
 
-I set the 1G Tw to maximum 255us and still got the link issue..
+First round to cleanup warnings and yaml validation issues seen running
+"make dtbs_check W=1" command for STM32 platform. It concerns all SoC
+(MCU: f429/429, f746/769, h743, MPU) and all boards (ST reference boards,
+DH, Engicam, LxA ...).
+
+Main fixes are done in device tree files but some imply a change in yaml
+dt-bindings file.
+
+regards
+Alex
+
+Alexandre Torgue (13):
+  ARM: dts: stm32: fix gpio-keys node on STM32 MCU boards
+  ARM: dts: stm32: fix RCC node name on stm32f429 MCU
+  ARM: dts: stm32: fix timer nodes on STM32 MCU to prevent warnings
+  dt-bindings: mfd: stm32-timers: remove #address/size cells from
+    required properties
+  ARM: dts: stm32: update pinctrl node name on STM32 MCU to prevent
+    warnings
+  ARM: dts: stm32: fix i2c node name on stm32f746 to prevent warnings
+  ARM: dts: stm32: move stmmac axi config in ethernet node on stm32mp15
+  dt-bindings: net: document ptp_ref clk in dwmac
+  ARM: dts: stm32: fix stpmic node for stm32mp1 boards
+  dt-bindings: mfd: add vref_ddr-supply to st,stpmic1 yaml
+  ARM: dts: stm32: fix LTDC port node on STM32 MCU ad MPU
+  ARM: dts: stm32: fix DSI port node on STM32MP15
+  ARM: dts: stm32: fix ltdc pinctrl on microdev2.0-of7
+
+ .../bindings/mfd/st,stm32-timers.yaml         |  2 -
+ .../devicetree/bindings/mfd/st,stpmic1.yaml   |  2 +-
+ .../devicetree/bindings/net/snps,dwmac.yaml   |  4 +-
+ .../devicetree/bindings/net/stm32-dwmac.yaml  |  6 +-
+ arch/arm/boot/dts/stm32429i-eval.dts          |  8 +-
+ arch/arm/boot/dts/stm32746g-eval.dts          |  6 +-
+ arch/arm/boot/dts/stm32f4-pinctrl.dtsi        |  2 +-
+ arch/arm/boot/dts/stm32f429-disco.dts         |  6 +-
+ arch/arm/boot/dts/stm32f429-pinctrl.dtsi      | 72 +++++++++---------
+ arch/arm/boot/dts/stm32f429.dtsi              | 10 +--
+ arch/arm/boot/dts/stm32f469-disco.dts         |  8 +-
+ arch/arm/boot/dts/stm32f469-pinctrl.dtsi      | 74 +++++++++----------
+ arch/arm/boot/dts/stm32f7-pinctrl.dtsi        |  2 +-
+ arch/arm/boot/dts/stm32f746.dtsi              | 12 +--
+ arch/arm/boot/dts/stm32f769-disco.dts         |  6 +-
+ arch/arm/boot/dts/stm32h743.dtsi              |  4 -
+ arch/arm/boot/dts/stm32mp151.dtsi             | 16 ++--
+ arch/arm/boot/dts/stm32mp157.dtsi             |  2 -
+ arch/arm/boot/dts/stm32mp157a-dk1.dts         |  8 ++
+ ...157a-microgea-stm32mp1-microdev2.0-of7.dts |  5 +-
+ arch/arm/boot/dts/stm32mp157a-stinger96.dtsi  |  7 +-
+ arch/arm/boot/dts/stm32mp157c-dk2.dts         | 12 ++-
+ arch/arm/boot/dts/stm32mp157c-ev1.dts         |  5 +-
+ arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts     |  3 +-
+ .../arm/boot/dts/stm32mp157c-odyssey-som.dtsi |  5 +-
+ arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi  |  5 +-
+ .../boot/dts/stm32mp15xx-dhcor-avenger96.dtsi |  6 +-
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi        |  7 --
+ arch/arm/boot/dts/stm32mp15xx-osd32.dtsi      |  7 +-
+ 29 files changed, 130 insertions(+), 182 deletions(-)
+
+-- 
+2.17.1
+
