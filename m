@@ -2,521 +2,865 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AD633609CB
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 14:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4979E3609E9
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 15:02:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232650AbhDOMui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 08:50:38 -0400
-Received: from www381.your-server.de ([78.46.137.84]:35890 "EHLO
-        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231482AbhDOMuh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 08:50:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
-         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:Reply-To:Cc:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=exBXlZXH47Di0VF4aQtfxWmDcfoCGIqgQj0ApZVYOcQ=; b=VNKLh1oOJlVkfskhfYPc1+dstI
-        +bJfN2idkV7glNhAbasBtSkIkbYsOX4dCgXCgTmiYj6+1HTGKHb5Fb+vcx+PKOxzXOXnSfiosbOEg
-        qKdpd/8ceCvExYpEKv2loPR1Ivaf7/dFSz0hX8/HOYiOQhDFfxd1xC5uEGrV2PwAxQ9IeWozWvWg1
-        eRSTkSv3KSp+BvE+2lldZCNm81Nh+9hC92jzZWOxV32p07ccNgYYE4Jq9af1KNtRl5VCXhYzoajzB
-        c3wvCSsKXd0MlybAqO15uW8YzO/mPdYqms+iiQsEoavmoXGaxm9uG2QOkVB/OELnCYBomI3xwfQEr
-        5ZjFvoaw==;
-Received: from sslproxy03.your-server.de ([88.198.220.132])
-        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <lars@metafoo.de>)
-        id 1lX1Ri-0008lQ-MD; Thu, 15 Apr 2021 14:50:10 +0200
-Received: from [2001:a61:2a42:9501:9e5c:8eff:fe01:8578]
-        by sslproxy03.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <lars@metafoo.de>)
-        id 1lX1Ri-000FeK-FZ; Thu, 15 Apr 2021 14:50:10 +0200
-Subject: Re: [RFC PATCH 1/2] iio: accel: add support for FXLS8962AF/FXLS8964AF
- accelerometers
-To:     Sean Nyekjaer <sean@geanix.com>, jic23@kernel.org,
-        linux-iio@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-References: <20210415114614.1071928-1-sean@geanix.com>
-From:   Lars-Peter Clausen <lars@metafoo.de>
-Message-ID: <11adb882-1af8-ab08-fcd9-47bedad02699@metafoo.de>
-Date:   Thu, 15 Apr 2021 14:50:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        id S231391AbhDONC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 09:02:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47682 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230260AbhDONC6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 09:02:58 -0400
+Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF134C061756
+        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 06:02:35 -0700 (PDT)
+Received: by mail-vs1-xe32.google.com with SMTP id b18so6941935vso.7
+        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 06:02:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HcSqexEt5vR6uCgCgMM5NKqwtfT9a0imIzkh/t+OwgI=;
+        b=ZGrta9iX5fLbxpqUo3soFkwujYqq8NhhfLo+S41DyG8DgI2eTKCkz+3ijDVw29dOix
+         yarVIG6Pzn3m6/C5gHV4R4uJ8IeKgEgu4recFB/9H8QMTg5/rJDQhfRQj6F+Ng1gRwZs
+         RFhSj4F56+vIlzWr9s2UhOJK4heS1hYLlcwA+HJA426yNpfOI4DqpUe8PrE3s9VCARNc
+         7fC1E+qBwJYoTBj/SnfmLXvB4k4T4ZTfJBjU15u5dNaaHO05OYhwS62y/pGwjxQW4eG7
+         SWg+eNIaZjtL997InoXYqbeeqOkQ1VtW0m3A2vDY0P2PvhZQaJObyTo94nT1XxR/wiL4
+         g+Pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HcSqexEt5vR6uCgCgMM5NKqwtfT9a0imIzkh/t+OwgI=;
+        b=EGZq5+rvc0ZQ6js2cT9LQ+WsYlLcn9E38T5u5yK1VEI5xMIRrqHQt2dBq/QYHlBIPT
+         scOGenubFSn2Q3tdDRKNtBcL1Iot2GI5ozONVuEckXXnQSVB6MuQ9VkXMQ8C3BFKA5kn
+         wVyZQdzy4+p/mXCHanjMB7gIzGeZghFYRinwzM5u2B0symx6NyJgMhef5rbRY1tFFDi9
+         Z2KXxWjr0/j1BNubACmxROKtu/+VOBoOXkpNZd47Nxk+6WIUZvtS9qBEmVLHh5Hsy/rE
+         jEhnTiyx3PsWum6BWz12PNsy/yXCbiBn0bhBI8K98O13vCL5JJczuj+wO2bi4eICkn5I
+         SA6A==
+X-Gm-Message-State: AOAM533BGeFAwBodCPtoOKXuGJ/Kj4P/ivUwsE93d9yWC/4jupg39pQs
+        OpXn4N8p65aTSou3JcPW/KAkRIvodeZH9Cc9jtKBsw==
+X-Google-Smtp-Source: ABdhPJwiEJUdIo6K8bvT0prHs6DtmSryUuXgsWkneUhl5TZ6TwyXIYQxLutZ9tE7BxReUv2/RMfFogXAhbodSTPb/d4=
+X-Received: by 2002:a67:fd48:: with SMTP id g8mr1796106vsr.55.1618491752832;
+ Thu, 15 Apr 2021 06:02:32 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210415114614.1071928-1-sean@geanix.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Authenticated-Sender: lars@metafoo.de
-X-Virus-Scanned: Clear (ClamAV 0.102.4/26141/Thu Apr 15 13:13:26 2021)
+References: <20210318130512.1025416-1-anup.patel@wdc.com> <20210318130512.1025416-6-anup.patel@wdc.com>
+In-Reply-To: <20210318130512.1025416-6-anup.patel@wdc.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 15 Apr 2021 15:01:56 +0200
+Message-ID: <CAPDyKFq3JLqFabmay25e6JGX+UD-=yEPRykgYBadFo3y3sGbOw@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 5/8] cpuidle: Factor-out power domain related code
+ from PSCI domain driver
+To:     Anup Patel <anup.patel@wdc.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Sandeep Tripathy <milun.tripathy@gmail.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Liush <liush@allwinnertech.com>,
+        Anup Patel <anup@brainfault.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-riscv@lists.infradead.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/15/21 1:46 PM, Sean Nyekjaer wrote:
-> Add basic support for NXP FXLS8962AF/FXLS8964AF Automotive
-> accelerometers.
-> It will allow setting up scale/gain and reading x,y,z
-> axis.
+Hi Anup,
 
-Hi,
+First, my apologies for the very long delay.
 
-Thanks for the patch. This looks very good!
+On Thu, 18 Mar 2021 at 14:06, Anup Patel <anup.patel@wdc.com> wrote:
+>
+> The generic power domain related code in PSCI domain driver is largely
+> independent of PSCI and can be shared with RISC-V SBI domain driver
+> hence we factor-out this code into dt_idle_genpd.c and dt_idle_genpd.h.
+
+I do agree that some parts could be considered as independent of PSCI,
+perhaps those are rather "cpuidle-dt" specific.
+
+Although, while I was looking at the changes in $subject patch, it
+looks like you are adding another layer on top of
+genpd/cpuidle-psci-domain. For example, you add the struct
+dt_idle_genpd_ops with a couple of new callbacks. Even if this might
+reduce open-coding a bit, I think it also introduces complexity. In my
+opinion, those changes aren't really worth it.
+
+Perhaps you can find some smaller pieces of code that are really
+independent, which can be shared!?
 
 >
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+> Signed-off-by: Anup Patel <anup.patel@wdc.com>
+
+Kind regards
+Uffe
+
 > ---
-> - Interrupt, buffered reads and events support is in the works.
+>  drivers/cpuidle/Kconfig                       |   4 +
+>  drivers/cpuidle/Kconfig.arm                   |   1 +
+>  drivers/cpuidle/Makefile                      |   1 +
+>  drivers/cpuidle/cpuidle-psci-domain.c         | 244 +-----------------
+>  drivers/cpuidle/cpuidle-psci.h                |  15 +-
+>  ...{cpuidle-psci-domain.c => dt_idle_genpd.c} | 165 ++++--------
+>  drivers/cpuidle/dt_idle_genpd.h               |  42 +++
+>  7 files changed, 121 insertions(+), 351 deletions(-)
+>  copy drivers/cpuidle/{cpuidle-psci-domain.c => dt_idle_genpd.c} (52%)
+>  create mode 100644 drivers/cpuidle/dt_idle_genpd.h
 >
->   drivers/iio/accel/Kconfig           |  22 +
->   drivers/iio/accel/Makefile          |   4 +
->   drivers/iio/accel/fxls8962af-core.c | 739 ++++++++++++++++++++++++++++
->   drivers/iio/accel/fxls8962af-i2c.c  |  67 +++
->   drivers/iio/accel/fxls8962af-spi.c  |  72 +++
->   drivers/iio/accel/fxls8962af.h      |  21 +
->   6 files changed, 925 insertions(+)
->   create mode 100644 drivers/iio/accel/fxls8962af-core.c
->   create mode 100644 drivers/iio/accel/fxls8962af-i2c.c
->   create mode 100644 drivers/iio/accel/fxls8962af-spi.c
->   create mode 100644 drivers/iio/accel/fxls8962af.h
+> diff --git a/drivers/cpuidle/Kconfig b/drivers/cpuidle/Kconfig
+> index c0aeedd66f02..f1afe7ab6b54 100644
+> --- a/drivers/cpuidle/Kconfig
+> +++ b/drivers/cpuidle/Kconfig
+> @@ -47,6 +47,10 @@ config CPU_IDLE_GOV_HALTPOLL
+>  config DT_IDLE_STATES
+>         bool
 >
-> diff --git a/drivers/iio/accel/Kconfig b/drivers/iio/accel/Kconfig
-> index 2e0c62c39155..c4b42024de42 100644
-> --- a/drivers/iio/accel/Kconfig
-> +++ b/drivers/iio/accel/Kconfig
-> @@ -370,6 +370,28 @@ config MMA8452
->   	  To compile this driver as a module, choose M here: the module
->   	  will be called mma8452.
->   
-> +config FXLS8962AF
-
-We try to keep the entries in alphabetical order.
-
-> +	tristate "NXP FXLS8962AF and similar Accelerometers Driver"
-> +	select IIO_BUFFER
-> +	select IIO_TRIGGERED_BUFFER
-The driver does not yet make use of interrupts.
-> +	select REGMAP
-> +	select FXLS8962AF_I2C if I2C
-> +	select FXLS8962AF_SPI if SPI
-Usually we do this the other way around. Expose I2C and SPI support as 
-independent config items and let them select the core. The reason is 
-because I2C support can be built as a module. To be honest I'm not sure 
-how exactly this will be have if I2C support is a module, but FXLS8962AF 
-is built-in. It might actually work fine.
-> +	help
-> +	  Say yes here to build support for the NXP 3-axis automotive
-> +	  accelerometer FXLS8962AF/FXLS8964AF.
+> +config DT_IDLE_GENPD
+> +       depends on PM_GENERIC_DOMAINS_OF
+> +       bool
 > +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called fxls8962af.
-> +
-> +config FXLS8962AF_I2C
-> +	tristate
-> +	select REGMAP_I2C
-> +
-> +config FXLS8962AF_SPI
-> +	tristate
-> +	select REGMAP_SPI
-> +
->   config MMA9551_CORE
->   	tristate
->   
-> diff --git a/drivers/iio/accel/Makefile b/drivers/iio/accel/Makefile
-> index 4f6c1ebe13b0..3e48a9127863 100644
-> --- a/drivers/iio/accel/Makefile
-> +++ b/drivers/iio/accel/Makefile
-> @@ -40,6 +40,10 @@ obj-$(CONFIG_MMA7660)	+= mma7660.o
->   
->   obj-$(CONFIG_MMA8452)	+= mma8452.o
->   
-> +obj-$(CONFIG_FXLS8962AF)	+= fxls8962af-core.o
-> +obj-$(CONFIG_FXLS8962AF_I2C)	+= fxls8962af-i2c.o
-> +obj-$(CONFIG_FXLS8962AF_SPI)	+= fxls8962af-spi.o
-We try to keep the entries in alphabetical order.
-> +
->   obj-$(CONFIG_MMA9551_CORE)	+= mma9551_core.o
->   obj-$(CONFIG_MMA9551)		+= mma9551.o
->   obj-$(CONFIG_MMA9553)		+= mma9553.o
-> diff --git a/drivers/iio/accel/fxls8962af-core.c b/drivers/iio/accel/fxls8962af-core.c
-> new file mode 100644
-> index 000000000000..daee5b07ca49
-> --- /dev/null
-> +++ b/drivers/iio/accel/fxls8962af-core.c
-> @@ -0,0 +1,739 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2021 Connected Cars A/S
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/i2c.h>
-No I2C in this driver.
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-> +#include <linux/delay.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_irq.h>
-At least of_irq.h is unused
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/regmap.h>
-> +
-> +#include "fxls8962af.h"
-> [...]
-> +enum {
-> +	idx_x,
-> +	idx_y,
-> +	idx_z,
-> +	idx_ts,
-Might want to put a prefix on these. idx_x is not that unique of an 
-identifier.
+>  menu "ARM CPU Idle Drivers"
+>  depends on ARM || ARM64
+>  source "drivers/cpuidle/Kconfig.arm"
+> diff --git a/drivers/cpuidle/Kconfig.arm b/drivers/cpuidle/Kconfig.arm
+> index 0844fadc4be8..1007435ae298 100644
+> --- a/drivers/cpuidle/Kconfig.arm
+> +++ b/drivers/cpuidle/Kconfig.arm
+> @@ -27,6 +27,7 @@ config ARM_PSCI_CPUIDLE_DOMAIN
+>         bool "PSCI CPU idle Domain"
+>         depends on ARM_PSCI_CPUIDLE
+>         depends on PM_GENERIC_DOMAINS_OF
+> +       select DT_IDLE_GENPD
+>         default y
+>         help
+>           Select this to enable the PSCI based CPUidle driver to use PM domains,
+> diff --git a/drivers/cpuidle/Makefile b/drivers/cpuidle/Makefile
+> index 26bbc5e74123..11a26cef279f 100644
+> --- a/drivers/cpuidle/Makefile
+> +++ b/drivers/cpuidle/Makefile
+> @@ -6,6 +6,7 @@
+>  obj-y += cpuidle.o driver.o governor.o sysfs.o governors/
+>  obj-$(CONFIG_ARCH_NEEDS_CPU_IDLE_COUPLED) += coupled.o
+>  obj-$(CONFIG_DT_IDLE_STATES)             += dt_idle_states.o
+> +obj-$(CONFIG_DT_IDLE_GENPD)              += dt_idle_genpd.o
+>  obj-$(CONFIG_ARCH_HAS_CPU_RELAX)         += poll_state.o
+>  obj-$(CONFIG_HALTPOLL_CPUIDLE)           += cpuidle-haltpoll.o
+>
+> diff --git a/drivers/cpuidle/cpuidle-psci-domain.c b/drivers/cpuidle/cpuidle-psci-domain.c
+> index ff2c3f8e4668..b0621d890ab7 100644
+> --- a/drivers/cpuidle/cpuidle-psci-domain.c
+> +++ b/drivers/cpuidle/cpuidle-psci-domain.c
+> @@ -16,17 +16,9 @@
+>  #include <linux/pm_domain.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/psci.h>
+> -#include <linux/slab.h>
+> -#include <linux/string.h>
+>
+>  #include "cpuidle-psci.h"
+>
+> -struct psci_pd_provider {
+> -       struct list_head link;
+> -       struct device_node *node;
+> -};
+> -
+> -static LIST_HEAD(psci_pd_providers);
+>  static bool psci_pd_allow_domain_state;
+>
+>  static int psci_pd_power_off(struct generic_pm_domain *pd)
+> @@ -47,178 +39,6 @@ static int psci_pd_power_off(struct generic_pm_domain *pd)
+>         return 0;
+>  }
+>
+> -static int psci_pd_parse_state_nodes(struct genpd_power_state *states,
+> -                                    int state_count)
+> -{
+> -       int i, ret;
+> -       u32 psci_state, *psci_state_buf;
+> -
+> -       for (i = 0; i < state_count; i++) {
+> -               ret = psci_dt_parse_state_node(to_of_node(states[i].fwnode),
+> -                                       &psci_state);
+> -               if (ret)
+> -                       goto free_state;
+> -
+> -               psci_state_buf = kmalloc(sizeof(u32), GFP_KERNEL);
+> -               if (!psci_state_buf) {
+> -                       ret = -ENOMEM;
+> -                       goto free_state;
+> -               }
+> -               *psci_state_buf = psci_state;
+> -               states[i].data = psci_state_buf;
+> -       }
+> -
+> -       return 0;
+> -
+> -free_state:
+> -       i--;
+> -       for (; i >= 0; i--)
+> -               kfree(states[i].data);
+> -       return ret;
+> -}
+> -
+> -static int psci_pd_parse_states(struct device_node *np,
+> -                       struct genpd_power_state **states, int *state_count)
+> -{
+> -       int ret;
+> -
+> -       /* Parse the domain idle states. */
+> -       ret = of_genpd_parse_idle_states(np, states, state_count);
+> -       if (ret)
+> -               return ret;
+> -
+> -       /* Fill out the PSCI specifics for each found state. */
+> -       ret = psci_pd_parse_state_nodes(*states, *state_count);
+> -       if (ret)
+> -               kfree(*states);
+> -
+> -       return ret;
+> -}
+> -
+> -static void psci_pd_free_states(struct genpd_power_state *states,
+> -                               unsigned int state_count)
+> -{
+> -       int i;
+> -
+> -       for (i = 0; i < state_count; i++)
+> -               kfree(states[i].data);
+> -       kfree(states);
+> -}
+> -
+> -static int psci_pd_init(struct device_node *np, bool use_osi)
+> -{
+> -       struct generic_pm_domain *pd;
+> -       struct psci_pd_provider *pd_provider;
+> -       struct dev_power_governor *pd_gov;
+> -       struct genpd_power_state *states = NULL;
+> -       int ret = -ENOMEM, state_count = 0;
+> -
+> -       pd = kzalloc(sizeof(*pd), GFP_KERNEL);
+> -       if (!pd)
+> -               goto out;
+> -
+> -       pd_provider = kzalloc(sizeof(*pd_provider), GFP_KERNEL);
+> -       if (!pd_provider)
+> -               goto free_pd;
+> -
+> -       pd->name = kasprintf(GFP_KERNEL, "%pOF", np);
+> -       if (!pd->name)
+> -               goto free_pd_prov;
+> -
+> -       /*
+> -        * Parse the domain idle states and let genpd manage the state selection
+> -        * for those being compatible with "domain-idle-state".
+> -        */
+> -       ret = psci_pd_parse_states(np, &states, &state_count);
+> -       if (ret)
+> -               goto free_name;
+> -
+> -       pd->free_states = psci_pd_free_states;
+> -       pd->name = kbasename(pd->name);
+> -       pd->states = states;
+> -       pd->state_count = state_count;
+> -       pd->flags |= GENPD_FLAG_IRQ_SAFE | GENPD_FLAG_CPU_DOMAIN;
+> -
+> -       /* Allow power off when OSI has been successfully enabled. */
+> -       if (use_osi)
+> -               pd->power_off = psci_pd_power_off;
+> -       else
+> -               pd->flags |= GENPD_FLAG_ALWAYS_ON;
+> -
+> -       /* Use governor for CPU PM domains if it has some states to manage. */
+> -       pd_gov = state_count > 0 ? &pm_domain_cpu_gov : NULL;
+> -
+> -       ret = pm_genpd_init(pd, pd_gov, false);
+> -       if (ret) {
+> -               psci_pd_free_states(states, state_count);
+> -               goto free_name;
+> -       }
+> -
+> -       ret = of_genpd_add_provider_simple(np, pd);
+> -       if (ret)
+> -               goto remove_pd;
+> -
+> -       pd_provider->node = of_node_get(np);
+> -       list_add(&pd_provider->link, &psci_pd_providers);
+> -
+> -       pr_debug("init PM domain %s\n", pd->name);
+> -       return 0;
+> -
+> -remove_pd:
+> -       pm_genpd_remove(pd);
+> -free_name:
+> -       kfree(pd->name);
+> -free_pd_prov:
+> -       kfree(pd_provider);
+> -free_pd:
+> -       kfree(pd);
+> -out:
+> -       pr_err("failed to init PM domain ret=%d %pOF\n", ret, np);
+> -       return ret;
+> -}
+> -
+> -static void psci_pd_remove(void)
+> -{
+> -       struct psci_pd_provider *pd_provider, *it;
+> -       struct generic_pm_domain *genpd;
+> -
+> -       list_for_each_entry_safe(pd_provider, it, &psci_pd_providers, link) {
+> -               of_genpd_del_provider(pd_provider->node);
+> -
+> -               genpd = of_genpd_remove_last(pd_provider->node);
+> -               if (!IS_ERR(genpd))
+> -                       kfree(genpd);
+> -
+> -               of_node_put(pd_provider->node);
+> -               list_del(&pd_provider->link);
+> -               kfree(pd_provider);
+> -       }
+> -}
+> -
+> -static int psci_pd_init_topology(struct device_node *np)
+> -{
+> -       struct device_node *node;
+> -       struct of_phandle_args child, parent;
+> -       int ret;
+> -
+> -       for_each_child_of_node(np, node) {
+> -               if (of_parse_phandle_with_args(node, "power-domains",
+> -                                       "#power-domain-cells", 0, &parent))
+> -                       continue;
+> -
+> -               child.np = node;
+> -               child.args_count = 0;
+> -               ret = of_genpd_add_subdomain(&parent, &child);
+> -               of_node_put(parent.np);
+> -               if (ret) {
+> -                       of_node_put(node);
+> -                       return ret;
+> -               }
+> -       }
+> -
+> -       return 0;
+> -}
+> -
+>  static bool psci_pd_try_set_osi_mode(void)
+>  {
+>         int ret;
+> @@ -244,6 +64,10 @@ static void psci_cpuidle_domain_sync_state(struct device *dev)
+>         psci_pd_allow_domain_state = true;
+>  }
+>
+> +static struct dt_idle_genpd_ops psci_genpd_ops = {
+> +       .parse_state_node = psci_dt_parse_state_node,
 > +};
-> [...]
 > +
-> +static int fxls8962af_get_temp(struct fxls8962af_data *data, int *val)
-> +{
-> +	struct device *dev = regmap_get_device(data->regmap);
-> +	int ret;
-> +	unsigned int value;
-> +
-> +	mutex_lock(&data->lock);
-> +
-> +	ret = fxls8962af_drdy(data);
-> +	if (ret < 0) {
-> +		mutex_unlock(&data->lock);
-> +		return ret;
-> +	}
-> +
-> +	ret = fxls8962af_set_power_state(data, true);
-> +	if (ret) {
-> +		mutex_unlock(&data->lock);
-> +		return ret;
-> +	}
-> +
-> +	ret = regmap_read(data->regmap, FXLS8962AF_TEMP_OUT, &value);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Error reading reg_temp\n");
-> +		fxls8962af_set_power_state(data, false);
-> +		mutex_unlock(&data->lock);
-> +		return ret;
-> +	}
-> +
-> +	ret = fxls8962af_set_power_state(data, false);
-> +
-> +	*val = sign_extend32(value, 7);
-Doesn't really matter, but his could also be outside the locked section.
-> +
-> +	mutex_unlock(&data->lock);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return IIO_VAL_INT;
-> +}
-> [...]
-> +static int fxls8962af_write_raw_get_fmt(struct iio_dev *indio_dev,
-> +					struct iio_chan_spec const *chan,
-> +					long mask)
-> +{
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_SCALE:
-> +		switch (chan->type) {
-> +		case IIO_ACCEL:
-> +			return IIO_VAL_INT_PLUS_NANO;
-> +		default:
-> +			return IIO_VAL_INT_PLUS_MICRO;
-> +		}
-> +	default:
-> +		return IIO_VAL_INT_PLUS_MICRO;
-> +	}
-Since the driver only supports writing the accelerator scale this could 
-be simplified to just return IIO_VAL_INT_PLUS_NANO.
-> +}
-> +
-> +static IIO_DEVICE_ATTR(in_accel_scale_available, 0444,
-> +		       fxls8962af_show_scale_avail, NULL, 0);
-There is a new API to query the available values through the IIO API. 
-This can be done by implementing the read_avail callback of the iio_info 
-struct. This is the recommended method for new drivers rather than 
-registering a sysfs attribute and do manually formatting of the scale.
-> [...]
+>  static const struct of_device_id psci_of_match[] = {
+>         { .compatible = "arm,psci-1.0" },
+>         {}
+> @@ -252,48 +76,25 @@ static const struct of_device_id psci_of_match[] = {
+>  static int psci_cpuidle_domain_probe(struct platform_device *pdev)
+>  {
+>         struct device_node *np = pdev->dev.of_node;
+> -       struct device_node *node;
+>         bool use_osi;
+> -       int ret = 0, pd_count = 0;
+> +       int ret = 0;
 >
+>         if (!np)
+>                 return -ENODEV;
+>
+>         /* If OSI mode is supported, let's try to enable it. */
+>         use_osi = psci_pd_try_set_osi_mode();
+> +       if (use_osi)
+> +               psci_genpd_ops.power_off = psci_pd_power_off;
+>
+> -       /*
+> -        * Parse child nodes for the "#power-domain-cells" property and
+> -        * initialize a genpd/genpd-of-provider pair when it's found.
+> -        */
+> -       for_each_child_of_node(np, node) {
+> -               if (!of_find_property(node, "#power-domain-cells", NULL))
+> -                       continue;
+> -
+> -               ret = psci_pd_init(node, use_osi);
+> -               if (ret)
+> -                       goto put_node;
+> -
+> -               pd_count++;
+> -       }
+> -
+> -       /* Bail out if not using the hierarchical CPU topology. */
+> -       if (!pd_count)
+> -               goto no_pd;
+> -
+> -       /* Link genpd masters/subdomains to model the CPU topology. */
+> -       ret = psci_pd_init_topology(np);
+> +       /* Generic power domain probing based on DT node. */
+> +       ret = dt_idle_genpd_probe(&psci_genpd_ops, np);
+>         if (ret)
+> -               goto remove_pd;
+> +               goto no_pd;
+>
+>         pr_info("Initialized CPU PM domain topology\n");
+>         return 0;
+>
+> -put_node:
+> -       of_node_put(node);
+> -remove_pd:
+> -       psci_pd_remove();
+> -       pr_err("failed to create CPU PM domains ret=%d\n", ret);
+>  no_pd:
+>         if (use_osi)
+>                 psci_set_osi_mode(false);
+> @@ -314,28 +115,3 @@ static int __init psci_idle_init_domains(void)
+>         return platform_driver_register(&psci_cpuidle_domain_driver);
+>  }
+>  subsys_initcall(psci_idle_init_domains);
+> -
+> -struct device *psci_dt_attach_cpu(int cpu)
+> -{
+> -       struct device *dev;
+> -
+> -       dev = dev_pm_domain_attach_by_name(get_cpu_device(cpu), "psci");
+> -       if (IS_ERR_OR_NULL(dev))
+> -               return dev;
+> -
+> -       pm_runtime_irq_safe(dev);
+> -       if (cpu_online(cpu))
+> -               pm_runtime_get_sync(dev);
+> -
+> -       dev_pm_syscore_device(dev, true);
+> -
+> -       return dev;
+> -}
+> -
+> -void psci_dt_detach_cpu(struct device *dev)
+> -{
+> -       if (IS_ERR_OR_NULL(dev))
+> -               return;
+> -
+> -       dev_pm_domain_detach(dev, false);
+> -}
+> diff --git a/drivers/cpuidle/cpuidle-psci.h b/drivers/cpuidle/cpuidle-psci.h
+> index d8e925e84c27..70de1e3c00af 100644
+> --- a/drivers/cpuidle/cpuidle-psci.h
+> +++ b/drivers/cpuidle/cpuidle-psci.h
+> @@ -10,8 +10,19 @@ void psci_set_domain_state(u32 state);
+>  int psci_dt_parse_state_node(struct device_node *np, u32 *state);
+>
+>  #ifdef CONFIG_ARM_PSCI_CPUIDLE_DOMAIN
+> -struct device *psci_dt_attach_cpu(int cpu);
+> -void psci_dt_detach_cpu(struct device *dev);
 > +
-> +static int fxls8962af_write_raw(struct iio_dev *indio_dev,
-> +				struct iio_chan_spec const *chan,
-> +				int val, int val2, long mask)
+> +#include "dt_idle_genpd.h"
+> +
+> +static inline struct device *psci_dt_attach_cpu(int cpu)
 > +{
-> +	struct fxls8962af_data *data = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	ret = iio_device_claim_direct_mode(indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_SCALE:
-Should check that val is 0.
-> +		ret = fxls8962af_set_full_scale(data, val2);
-> +		break;
-> +	default:
-> +		ret = -EINVAL;
-> +		break;
-> +	}
-> +
-> +	iio_device_release_direct_mode(indio_dev);
-> +	return ret;
+> +       return dt_idle_genpd_attach_cpu(cpu, "psci");
 > +}
 > +
-> +#define FXLS8962AF_CHANNEL(axis, idx) { \
-> +	.type = IIO_ACCEL, \
-> +	.modified = 1, \
-> +	.channel2 = IIO_MOD_##axis, \
-> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | \
-> +			      BIT(IIO_CHAN_INFO_CALIBBIAS), \
-> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SAMP_FREQ) | \
-> +			BIT(IIO_CHAN_INFO_SCALE) | \
-> +			BIT(IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY) | \
-> +			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO), \
-Some of these attributes are not implemented yet.
-> +	.scan_index = idx, \
-> +	.scan_type = { \
-> +		.sign = 's', \
-> +		.realbits = 12, \
-> +		.storagebits = 16, \
-> +		.shift = 4, \
-> +		.endianness = IIO_BE, \
-> +	}, \
-> +}
-> +
-> [...]
-> +int fxls8962af_core_probe(struct device *dev, struct regmap *regmap, int irq,
-> +			  const char *name)
+> +static inline void psci_dt_detach_cpu(struct device *dev)
 > +{
-> +	struct fxls8962af_data *data;
-> +	struct iio_dev *indio_dev;
-> +	unsigned int reg;
-> +	int ret, i;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	data = iio_priv(indio_dev);
-> +	dev_set_drvdata(dev, indio_dev);
-> +	mutex_init(&data->lock);
-> +	data->regmap = regmap;
-> +
-> +	ret = iio_read_mount_matrix(dev, "mount-matrix", &data->orientation);
-> +	if (ret)
-> +		return ret;
-> +
-> +	data->vdd_reg = devm_regulator_get_optional(dev, "vdd");
-> +	if (IS_ERR(data->vdd_reg)) {
-> +		if ((PTR_ERR(data->vdd_reg) != -ENODEV) && dev->of_node)
-Why the check for of_node?
-> +			return PTR_ERR(data->vdd_reg);
-> +
-> +		data->vdd_reg = NULL;
-> +	} else {
-> +		ret = regulator_enable(data->vdd_reg);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = regmap_read(data->regmap, FXLS8962AF_WHO_AM_I, &reg);
-> +	if (ret < 0)
-> +		goto disable_regulators;
-> +
-> +	dev_dbg(dev, "Chip Id %x\n", reg);
-> +	for (i = 0; i < ARRAY_SIZE(fxls_chip_info_table); i++) {
-> +		if (fxls_chip_info_table[i].chip_id == reg) {
-> +			data->chip_info = &fxls_chip_info_table[i];
-> +			break;
-> +		}
-> +	}
-> +
-> +	indio_dev->channels = data->chip_info->channels;
-> +	indio_dev->num_channels = data->chip_info->num_channels;
-> +	indio_dev->name = name;
-Since the driver identifies the chip based on the who-am-i register, I 
-wonder if the name should also come from the chip_info_table.
-> +	indio_dev->available_scan_masks = fxls8962af_scan_masks;
-> +	indio_dev->info = &fxls8962af_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +
-> +	dev_info(dev, "registering %s accelerometer\n", name);
-Its a bit of personal taste, but I don't like these 'driver has probed' 
-messages. It is great for development, but not so great for production. 
-If every device that gets registered prints such a message that does 
-slow down boot a fair bit and clutters the boot log.
-> +
-> +	ret = fxls8962af_reset(data);
-> +	if (ret < 0)
-> +		goto disable_regulators;
-> +
-> +	ret = pm_runtime_set_active(dev);
-> +	if (ret < 0)
-> +		goto disable_regulators;
-> +
-> +	pm_runtime_enable(dev);
-> +	pm_runtime_set_autosuspend_delay(dev, FXLS8962AF_AUTO_SUSPEND_DELAY_MS);
-> +	pm_runtime_use_autosuspend(dev);
-> +
-> +	ret = iio_device_register(indio_dev);
-> +	if (ret < 0)
-> +		goto disable_regulators;
-> +
-> +	return 0;
-> +
-> + disable_regulators:
-> +	if (data->vdd_reg)
-> +		regulator_disable(data->vdd_reg);
-> +
-> +	return ret;
+> +       dt_idle_genpd_detach_cpu(dev);
 > +}
-> +EXPORT_SYMBOL_GPL(fxls8962af_core_probe);
 > +
-> [...]
-> +#ifdef CONFIG_PM
-> [...]
-> +static int fxls8962af_runtime_resume(struct device *dev)
+>  #else
+>  static inline struct device *psci_dt_attach_cpu(int cpu) { return NULL; }
+>  static inline void psci_dt_detach_cpu(struct device *dev) { }
+> diff --git a/drivers/cpuidle/cpuidle-psci-domain.c b/drivers/cpuidle/dt_idle_genpd.c
+> similarity index 52%
+> copy from drivers/cpuidle/cpuidle-psci-domain.c
+> copy to drivers/cpuidle/dt_idle_genpd.c
+> index ff2c3f8e4668..805c4c81d60f 100644
+> --- a/drivers/cpuidle/cpuidle-psci-domain.c
+> +++ b/drivers/cpuidle/dt_idle_genpd.c
+> @@ -1,71 +1,52 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only
+>  /*
+> - * PM domains for CPUs via genpd - managed by cpuidle-psci.
+> + * PM domains for CPUs via genpd.
+>   *
+>   * Copyright (C) 2019 Linaro Ltd.
+>   * Author: Ulf Hansson <ulf.hansson@linaro.org>
+>   *
+> + * Copyright (c) 2021 Western Digital Corporation or its affiliates.
+>   */
+>
+> -#define pr_fmt(fmt) "CPUidle PSCI: " fmt
+> +#define pr_fmt(fmt) "dt-idle-genpd: " fmt
+>
+>  #include <linux/cpu.h>
+>  #include <linux/device.h>
+>  #include <linux/kernel.h>
+> -#include <linux/platform_device.h>
+>  #include <linux/pm_domain.h>
+>  #include <linux/pm_runtime.h>
+> -#include <linux/psci.h>
+>  #include <linux/slab.h>
+>  #include <linux/string.h>
+>
+> -#include "cpuidle-psci.h"
+> +#include "dt_idle_genpd.h"
+>
+> -struct psci_pd_provider {
+> +struct dt_pd_provider {
+>         struct list_head link;
+>         struct device_node *node;
+>  };
+>
+> -static LIST_HEAD(psci_pd_providers);
+> -static bool psci_pd_allow_domain_state;
+> +static LIST_HEAD(dt_pd_providers);
+>
+> -static int psci_pd_power_off(struct generic_pm_domain *pd)
+> -{
+> -       struct genpd_power_state *state = &pd->states[pd->state_idx];
+> -       u32 *pd_state;
+> -
+> -       if (!state->data)
+> -               return 0;
+> -
+> -       if (!psci_pd_allow_domain_state)
+> -               return -EBUSY;
+> -
+> -       /* OSI mode is enabled, set the corresponding domain state. */
+> -       pd_state = state->data;
+> -       psci_set_domain_state(*pd_state);
+> -
+> -       return 0;
+> -}
+> -
+> -static int psci_pd_parse_state_nodes(struct genpd_power_state *states,
+> -                                    int state_count)
+> +static int dt_pd_parse_state_nodes(const struct dt_idle_genpd_ops *ops,
+> +                                  struct genpd_power_state *states,
+> +                                  int state_count)
+>  {
+>         int i, ret;
+> -       u32 psci_state, *psci_state_buf;
+> +       u32 state, *state_buf;
+>
+>         for (i = 0; i < state_count; i++) {
+> -               ret = psci_dt_parse_state_node(to_of_node(states[i].fwnode),
+> -                                       &psci_state);
+> +               ret = ops->parse_state_node(to_of_node(states[i].fwnode),
+> +                                           &state);
+>                 if (ret)
+>                         goto free_state;
+>
+> -               psci_state_buf = kmalloc(sizeof(u32), GFP_KERNEL);
+> -               if (!psci_state_buf) {
+> +               state_buf = kmalloc(sizeof(u32), GFP_KERNEL);
+> +               if (!state_buf) {
+>                         ret = -ENOMEM;
+>                         goto free_state;
+>                 }
+> -               *psci_state_buf = psci_state;
+> -               states[i].data = psci_state_buf;
+> +               *state_buf = state;
+> +               states[i].data = state_buf;
+>         }
+>
+>         return 0;
+> @@ -77,8 +58,10 @@ static int psci_pd_parse_state_nodes(struct genpd_power_state *states,
+>         return ret;
+>  }
+>
+> -static int psci_pd_parse_states(struct device_node *np,
+> -                       struct genpd_power_state **states, int *state_count)
+> +static int dt_pd_parse_states(const struct dt_idle_genpd_ops *ops,
+> +                             struct device_node *np,
+> +                             struct genpd_power_state **states,
+> +                             int *state_count)
+>  {
+>         int ret;
+>
+> @@ -87,15 +70,15 @@ static int psci_pd_parse_states(struct device_node *np,
+>         if (ret)
+>                 return ret;
+>
+> -       /* Fill out the PSCI specifics for each found state. */
+> -       ret = psci_pd_parse_state_nodes(*states, *state_count);
+> +       /* Fill out the dt specifics for each found state. */
+> +       ret = dt_pd_parse_state_nodes(ops, *states, *state_count);
+>         if (ret)
+>                 kfree(*states);
+>
+>         return ret;
+>  }
+>
+> -static void psci_pd_free_states(struct genpd_power_state *states,
+> +static void dt_pd_free_states(struct genpd_power_state *states,
+>                                 unsigned int state_count)
+>  {
+>         int i;
+> @@ -105,10 +88,11 @@ static void psci_pd_free_states(struct genpd_power_state *states,
+>         kfree(states);
+>  }
+>
+> -static int psci_pd_init(struct device_node *np, bool use_osi)
+> +static int dt_pd_init(const struct dt_idle_genpd_ops *ops,
+> +                     struct device_node *np)
+>  {
+>         struct generic_pm_domain *pd;
+> -       struct psci_pd_provider *pd_provider;
+> +       struct dt_pd_provider *pd_provider;
+>         struct dev_power_governor *pd_gov;
+>         struct genpd_power_state *states = NULL;
+>         int ret = -ENOMEM, state_count = 0;
+> @@ -129,19 +113,19 @@ static int psci_pd_init(struct device_node *np, bool use_osi)
+>          * Parse the domain idle states and let genpd manage the state selection
+>          * for those being compatible with "domain-idle-state".
+>          */
+> -       ret = psci_pd_parse_states(np, &states, &state_count);
+> +       ret = dt_pd_parse_states(ops, np, &states, &state_count);
+>         if (ret)
+>                 goto free_name;
+>
+> -       pd->free_states = psci_pd_free_states;
+> +       pd->free_states = dt_pd_free_states;
+>         pd->name = kbasename(pd->name);
+>         pd->states = states;
+>         pd->state_count = state_count;
+>         pd->flags |= GENPD_FLAG_IRQ_SAFE | GENPD_FLAG_CPU_DOMAIN;
+>
+> -       /* Allow power off when OSI has been successfully enabled. */
+> -       if (use_osi)
+> -               pd->power_off = psci_pd_power_off;
+> +       /* Allow power off when available. */
+> +       if (ops->power_off)
+> +               pd->power_off = ops->power_off;
+>         else
+>                 pd->flags |= GENPD_FLAG_ALWAYS_ON;
+>
+> @@ -150,7 +134,7 @@ static int psci_pd_init(struct device_node *np, bool use_osi)
+>
+>         ret = pm_genpd_init(pd, pd_gov, false);
+>         if (ret) {
+> -               psci_pd_free_states(states, state_count);
+> +               dt_pd_free_states(states, state_count);
+>                 goto free_name;
+>         }
+>
+> @@ -159,7 +143,7 @@ static int psci_pd_init(struct device_node *np, bool use_osi)
+>                 goto remove_pd;
+>
+>         pd_provider->node = of_node_get(np);
+> -       list_add(&pd_provider->link, &psci_pd_providers);
+> +       list_add(&pd_provider->link, &dt_pd_providers);
+>
+>         pr_debug("init PM domain %s\n", pd->name);
+>         return 0;
+> @@ -177,12 +161,12 @@ static int psci_pd_init(struct device_node *np, bool use_osi)
+>         return ret;
+>  }
+>
+> -static void psci_pd_remove(void)
+> +static void dt_pd_remove(void)
+>  {
+> -       struct psci_pd_provider *pd_provider, *it;
+> +       struct dt_pd_provider *pd_provider, *it;
+>         struct generic_pm_domain *genpd;
+>
+> -       list_for_each_entry_safe(pd_provider, it, &psci_pd_providers, link) {
+> +       list_for_each_entry_safe(pd_provider, it, &dt_pd_providers, link) {
+>                 of_genpd_del_provider(pd_provider->node);
+>
+>                 genpd = of_genpd_remove_last(pd_provider->node);
+> @@ -195,7 +179,7 @@ static void psci_pd_remove(void)
+>         }
+>  }
+>
+> -static int psci_pd_init_topology(struct device_node *np)
+> +static int dt_pd_init_topology(struct device_node *np)
+>  {
+>         struct device_node *node;
+>         struct of_phandle_args child, parent;
+> @@ -219,49 +203,15 @@ static int psci_pd_init_topology(struct device_node *np)
+>         return 0;
+>  }
+>
+> -static bool psci_pd_try_set_osi_mode(void)
+> -{
+> -       int ret;
+> -
+> -       if (!psci_has_osi_support())
+> -               return false;
+> -
+> -       ret = psci_set_osi_mode(true);
+> -       if (ret) {
+> -               pr_warn("failed to enable OSI mode: %d\n", ret);
+> -               return false;
+> -       }
+> -
+> -       return true;
+> -}
+> -
+> -static void psci_cpuidle_domain_sync_state(struct device *dev)
+> +int dt_idle_genpd_probe(const struct dt_idle_genpd_ops *ops,
+> +                       struct device_node *np)
+>  {
+> -       /*
+> -        * All devices have now been attached/probed to the PM domain topology,
+> -        * hence it's fine to allow domain states to be picked.
+> -        */
+> -       psci_pd_allow_domain_state = true;
+> -}
+> -
+> -static const struct of_device_id psci_of_match[] = {
+> -       { .compatible = "arm,psci-1.0" },
+> -       {}
+> -};
+> -
+> -static int psci_cpuidle_domain_probe(struct platform_device *pdev)
+> -{
+> -       struct device_node *np = pdev->dev.of_node;
+>         struct device_node *node;
+> -       bool use_osi;
+>         int ret = 0, pd_count = 0;
+>
+> -       if (!np)
+> +       if (!np || !ops || !ops->parse_state_node)
+>                 return -ENODEV;
+>
+> -       /* If OSI mode is supported, let's try to enable it. */
+> -       use_osi = psci_pd_try_set_osi_mode();
+> -
+>         /*
+>          * Parse child nodes for the "#power-domain-cells" property and
+>          * initialize a genpd/genpd-of-provider pair when it's found.
+> @@ -270,7 +220,7 @@ static int psci_cpuidle_domain_probe(struct platform_device *pdev)
+>                 if (!of_find_property(node, "#power-domain-cells", NULL))
+>                         continue;
+>
+> -               ret = psci_pd_init(node, use_osi);
+> +               ret = dt_pd_init(ops, node);
+>                 if (ret)
+>                         goto put_node;
+>
+> @@ -282,44 +232,27 @@ static int psci_cpuidle_domain_probe(struct platform_device *pdev)
+>                 goto no_pd;
+>
+>         /* Link genpd masters/subdomains to model the CPU topology. */
+> -       ret = psci_pd_init_topology(np);
+> +       ret = dt_pd_init_topology(np);
+>         if (ret)
+>                 goto remove_pd;
+>
+> -       pr_info("Initialized CPU PM domain topology\n");
+>         return 0;
+>
+>  put_node:
+>         of_node_put(node);
+>  remove_pd:
+> -       psci_pd_remove();
+> +       dt_pd_remove();
+>         pr_err("failed to create CPU PM domains ret=%d\n", ret);
+>  no_pd:
+> -       if (use_osi)
+> -               psci_set_osi_mode(false);
+>         return ret;
+>  }
+> +EXPORT_SYMBOL_GPL(dt_idle_genpd_probe);
+>
+> -static struct platform_driver psci_cpuidle_domain_driver = {
+> -       .probe  = psci_cpuidle_domain_probe,
+> -       .driver = {
+> -               .name = "psci-cpuidle-domain",
+> -               .of_match_table = psci_of_match,
+> -               .sync_state = psci_cpuidle_domain_sync_state,
+> -       },
+> -};
+> -
+> -static int __init psci_idle_init_domains(void)
+> -{
+> -       return platform_driver_register(&psci_cpuidle_domain_driver);
+> -}
+> -subsys_initcall(psci_idle_init_domains);
+> -
+> -struct device *psci_dt_attach_cpu(int cpu)
+> +struct device *dt_idle_genpd_attach_cpu(int cpu, const char *name)
+>  {
+>         struct device *dev;
+>
+> -       dev = dev_pm_domain_attach_by_name(get_cpu_device(cpu), "psci");
+> +       dev = dev_pm_domain_attach_by_name(get_cpu_device(cpu), name);
+>         if (IS_ERR_OR_NULL(dev))
+>                 return dev;
+>
+> @@ -331,11 +264,13 @@ struct device *psci_dt_attach_cpu(int cpu)
+>
+>         return dev;
+>  }
+> +EXPORT_SYMBOL_GPL(dt_idle_genpd_attach_cpu);
+>
+> -void psci_dt_detach_cpu(struct device *dev)
+> +void dt_idle_genpd_detach_cpu(struct device *dev)
+>  {
+>         if (IS_ERR_OR_NULL(dev))
+>                 return;
+>
+>         dev_pm_domain_detach(dev, false);
+>  }
+> +EXPORT_SYMBOL_GPL(dt_idle_genpd_detach_cpu);
+> diff --git a/drivers/cpuidle/dt_idle_genpd.h b/drivers/cpuidle/dt_idle_genpd.h
+> new file mode 100644
+> index 000000000000..a3d3d2e85871
+> --- /dev/null
+> +++ b/drivers/cpuidle/dt_idle_genpd.h
+> @@ -0,0 +1,42 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef __DT_IDLE_GENPD
+> +#define __DT_IDLE_GENPD
+> +
+> +struct device_node;
+> +struct generic_pm_domain;
+> +
+> +struct dt_idle_genpd_ops {
+> +       int (*parse_state_node)(struct device_node *np, u32 *state);
+> +       int (*power_off)(struct generic_pm_domain *pd);
+> +};
+> +
+> +#ifdef CONFIG_DT_IDLE_GENPD
+> +
+> +int dt_idle_genpd_probe(const struct dt_idle_genpd_ops *ops,
+> +                       struct device_node *np);
+> +
+> +struct device *dt_idle_genpd_attach_cpu(int cpu, const char *name);
+> +
+> +void dt_idle_genpd_detach_cpu(struct device *dev);
+> +
+> +#else
+> +
+> +int dt_idle_genpd_probe(const struct dt_idle_genpd_ops *ops,
+> +                       struct device_node *np)
 > +{
-> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-> +	struct fxls8962af_data *data = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	if (data->vdd_reg) {
-> +		ret = regulator_disable(data->vdd_reg);
-Should be regulator_enable()?
-> +		if (ret) {
-> +			dev_err(dev, "failed to disable VDD regulator\n");
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	ret = fxls8962af_active(data);
-> +	if (ret < 0)
-> +		goto runtime_resume_failed;
-> +
-> +	return 0;
-> +
-> + runtime_resume_failed:
-> +	if (data->vdd_reg)
-> +		regulator_disable(data->vdd_reg);
-> +
-> +	return ret;
+> +       return 0;
 > +}
+> +
+> +static inline struct device *dt_idle_genpd_attach_cpu(int cpu,
+> +                                                     const char *name)
+> +{
+> +       return NULL;
+> +}
+> +
+> +static inline void dt_idle_genpd_detach_cpu(struct device *dev)
+> +{
+> +}
+> +
 > +#endif
-> [...]
-> diff --git a/drivers/iio/accel/fxls8962af-i2c.c b/drivers/iio/accel/fxls8962af-i2c.c
-> new file mode 100644
-> index 000000000000..4cdbd9793df7
-> --- /dev/null
-> +++ b/drivers/iio/accel/fxls8962af-i2c.c
-> @@ -0,0 +1,67 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2021 Connected Cars A/S
-> + */
 > +
-> +#include <linux/device.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/acpi.h>
-No ACPI in this file.
-> +#include <linux/regmap.h>
-> +
-> +#include "fxls8962af.h"
-> +
-> +static int fxls8962af_probe(struct i2c_client *client,
-> +			    const struct i2c_device_id *id)
-> +{
-> +	struct regmap *regmap;
-> +	const char *name = NULL;
-> +
-> +	regmap = devm_regmap_init_i2c(client, &fxls8962af_regmap_conf);
-> +	if (IS_ERR(regmap)) {
-> +		dev_err(&client->dev, "Failed to initialize i2c regmap\n");
-> +		return PTR_ERR(regmap);
-> +	}
-> +
-> +	if (id)
-> +		name = id->name;
-> +
-> +	return fxls8962af_core_probe(&client->dev, regmap, client->irq, name);
-> +}
-> +
-> +static int fxls8962af_remove(struct i2c_client *client)
-> +{
-> +	return fxls8962af_core_remove(&client->dev);
-> +}
-> +
-> +static const struct i2c_device_id fxls8962af_id[] = {
-> +	{"fxls8962af", fxls8962af},
-> +	{"fxls8964af", fxls8964af},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(i2c, fxls8962af_id);
-> +
-> +static const struct of_device_id fxls8962af_of_match[] = {
-> +	{.compatible = "nxp,fxls8962af"},
-> +	{.compatible = "nxp,fxls8964af"},
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, fxls8962af_of_match);
-> +
-> +static struct i2c_driver fxls8962af_driver = {
-> +	.driver = {
-> +		   .name = "fxls8962af_i2c",
-> +		   .of_match_table = fxls8962af_of_match,
-> +		   .pm = &fxls8962af_pm_ops,
-> +		   },
-> +	.probe = fxls8962af_probe,
-For new i2C drivers use the probe_new callback.
-> +	.remove = fxls8962af_remove,
-> +	.id_table = fxls8962af_id,
-> +};
-> +
-> +module_i2c_driver(fxls8962af_driver);
-> +
-> +MODULE_AUTHOR("Sean Nyekjaer <sean@geanix.com>");
-> +MODULE_DESCRIPTION("NXP FXLS8962AF/FXLS8964AF accelerometer driver");
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/iio/accel/fxls8962af-spi.c b/drivers/iio/accel/fxls8962af-spi.c
-> new file mode 100644
-> index 000000000000..976851863e82
-> --- /dev/null
-> +++ b/drivers/iio/accel/fxls8962af-spi.c
-> @@ -0,0 +1,72 @@
-> [...]
-For the I2C driver you are using a global regmap config, but for the SPI 
-one a local. Looks to me as if the gobal one can also be used for the 
-SPI driver.
-> +static int fxls8962af_probe(struct spi_device *spi)
-> +{
-> +	const struct spi_device_id *id = spi_get_device_id(spi);
-> +	struct regmap *regmap;
-> +	const char *name = NULL;
-> +
-> +	regmap = devm_regmap_init_spi(spi, &fxls8962af_spi_regmap_config);
-> +	if (IS_ERR(regmap)) {
-> +		dev_err(&spi->dev, "Failed to register spi regmap %d\n",
-> +			(int)PTR_ERR(regmap));
-%ld and drop the cast.
-> +		return PTR_ERR(regmap);
-> +	}
-> +
-> +	if (id)
-> +		name = id->name;
-> +
-> +	return fxls8962af_core_probe(&spi->dev, regmap, spi->irq, name);
-> +}
-> +
-> +static int fxls8962af_remove(struct spi_device *spi)
-> +{
-> +	return fxls8962af_core_remove(&spi->dev);
-> +}
-
-
+> +#endif
+> --
+> 2.25.1
+>
