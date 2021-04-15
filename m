@@ -2,84 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01434360FFB
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 18:19:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51B8C36100A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 18:22:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232769AbhDOQTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 12:19:45 -0400
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:45696 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231137AbhDOQTo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 12:19:44 -0400
-Received: by mail-oi1-f176.google.com with SMTP id d12so24804076oiw.12;
-        Thu, 15 Apr 2021 09:19:21 -0700 (PDT)
+        id S231137AbhDOQWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 12:22:37 -0400
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:34436 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230056AbhDOQWg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 12:22:36 -0400
+Received: by mail-oi1-f170.google.com with SMTP id k18so19909575oik.1;
+        Thu, 15 Apr 2021 09:22:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=GXye7ilx4veJ07ZVeVmgMNULd7IMBz/+McBaXjxXerM=;
-        b=gcVJOyS49YY+ctlBFmsV9XBy7XQc7CsvlDm3qY3cvv4R9Ib9A6k60UXJ65K/JD3ySs
-         6tI0UeJ6YTV6Od06JnOtK4r7hh9NPOVhwjNgSDUGgGij3l0oZBktXsncGK5ki/Vdoazc
-         r/SM8cq/sJp5fNO/n+h5/u/iF/++9eb/gsD6a2PclW0mfh3XR0wNREG7bJTiDwfuforT
-         CPUTP5MdEceWaMiY0DHAdaix+Abbpt7WzsogzyoXJ9z88k6kiVYZuvO2qFemdXzhIWE2
-         TOY8JzcwfyM3kyY267SRyWbQQbncRtv8492xqHaDzJcv1eQFqqtyn12JGOtufnoi6vTO
-         VHxA==
-X-Gm-Message-State: AOAM532X4PxFWwSh6HaSigSzqCLx5DN+3A68dIB0FpsvwiBLRQFEnrS3
-        +ez1iJijrMd5LhpKTKU+tXfCeZ3+Yw==
-X-Google-Smtp-Source: ABdhPJyeQLL2y0QA+dbez5K0gutVcFqswv7Wdzq3KQXbUiV+OGfji1iLQUUKLSZTSsW1GKMZTCB+Ng==
-X-Received: by 2002:aca:fd81:: with SMTP id b123mr3062898oii.7.1618503560848;
-        Thu, 15 Apr 2021 09:19:20 -0700 (PDT)
+        bh=d/9SSe9qd76j3w/26tWnM9Z02p15+WwuG2Knfg+0n4s=;
+        b=hdh4Th3wA+wRxuR7Je/bM6fb8IuoKOCDo0hK3d3HU9doWjuBGO2Vaba2yQdDpVuDi0
+         FElJwI3P7sb5tggARlO7uQG9CrlMBHuZv/L0ixEIP+QHRCyv/aBemwpMUhPgo2wk3QNu
+         pSdkuZ8aJwW4P9leo0QEV6WMQ7HOImo/4VubsjuukThr/rPGB3p9y/VM7Q45exJMYpQv
+         vzhRHee04iVAdjrYQcbojpPj+6N4iDKfMRuxMJkWLHZcw6djN7+tLeP35r5dDMzyzRkB
+         yFADqygdJhGz4TCxBC/6B0phS7yZQLaWqQP/VnApXbZp2/og3FQzodn8sdzT6bykqHpV
+         y6fg==
+X-Gm-Message-State: AOAM531WTsXkRMZWK/ngmUmwUHWq0vLhXikv+rP8zu8pg1W5cUbexvE0
+        V11Fmy3kw7UTW5tHGdKvFg==
+X-Google-Smtp-Source: ABdhPJz/joP0ivmfqTjdzeEFa3WPY4cCr6cMFUQUdkSY3DpUdPQyNScyGlDoY4gcKaJ2jEHokIejNw==
+X-Received: by 2002:aca:5dd4:: with SMTP id r203mr3171331oib.6.1618503732015;
+        Thu, 15 Apr 2021 09:22:12 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t19sm765773otm.40.2021.04.15.09.19.18
+        by smtp.gmail.com with ESMTPSA id f12sm749230otf.65.2021.04.15.09.22.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 09:19:18 -0700 (PDT)
-Received: (nullmailer pid 1506918 invoked by uid 1000);
-        Thu, 15 Apr 2021 16:19:17 -0000
-Date:   Thu, 15 Apr 2021 11:19:17 -0500
+        Thu, 15 Apr 2021 09:22:11 -0700 (PDT)
+Received: (nullmailer pid 1510943 invoked by uid 1000);
+        Thu, 15 Apr 2021 16:22:09 -0000
+Date:   Thu, 15 Apr 2021 11:22:09 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Ikjoon Jang <ikjn@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Benson Leung <bleung@chromium.org>, devicetree@vger.kernel.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Dmitry Torokhov <dtor@chromium.org>
-Subject: Re: [PATCH v5 1/2] mfd: google,cros-ec: add DT bindings for a
- baseboard's switch device
-Message-ID: <20210415161917.GA1506870@robh.at.kernel.org>
-References: <20210415032958.740233-1-ikjn@chromium.org>
- <20210415032958.740233-2-ikjn@chromium.org>
+To:     Badhri Jagan Sridharan <badhri@google.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org, Kyle Tso <kyletso@google.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] dt-bindings: connector: Add slow-charger-loop
+ definition
+Message-ID: <20210415162209.GA1510914@robh.at.kernel.org>
+References: <20210414142656.63749-1-badhri@google.com>
+ <20210414142656.63749-3-badhri@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210415032958.740233-2-ikjn@chromium.org>
+In-Reply-To: <20210414142656.63749-3-badhri@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Apr 2021 11:29:57 +0800, Ikjoon Jang wrote:
-> This is for ChromeOS tablets which have a 'cros_cbas' switch device
-> in the "Whiskers" base board. This device can be instantiated only by
-> device tree on ARM platforms. ChromeOS EC doesn't provide a way to
-> probe the device.
+On Wed, 14 Apr 2021 07:26:56 -0700, Badhri Jagan Sridharan wrote:
+> Allows PMIC charger loops which are slow(i.e. cannot meet the
+> 15ms deadline) to still comply to pSnkStby i.e Maximum power
+> that can be consumed by sink while in Sink Standby state as defined
+> in 7.4.2 Sink Electrical Parameters of USB Power Delivery Specification
+> Revision 3.0, Version 1.2.
 > 
-> Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
+> This patch introduces slow-charger-loop which when set makes
+> the port request PD_P_SNK_STDBY_MW(2.5W i.e 500mA@5V) upon entering
+> SNK_DISCOVERY (instead of 3A or the 1.5A during SNK_DISCOVERY) and the
+> actual currrent limit after RX of PD_CTRL_PSRDY for PD link or during
+> SNK_READY for non-pd link.
 > 
+> Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
 > ---
-> 
-> Changes in v5:
->  - Add missing blank lines and change the description property's position.
->  - Add a note to description: "this device cannot be detected at runtime."
-> 
-> Changes in v4:
-> Define cros-cbase bindings inside google,cros-ec.yaml instead of
-> a separated binding document.
-> 
->  .../bindings/mfd/google,cros-ec.yaml          | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
+> Changes since v3:
+> * Removed additional semi-colon in the subject line
+> Changes since V2:
+> To address Rob's comments
+> * Updated commit and the binding description.
+> * Updated subject as well.
+> ---
+>  .../devicetree/bindings/connector/usb-connector.yaml   | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
