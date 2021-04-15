@@ -2,133 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C8BD360F72
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 17:53:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F082C360FCD
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 18:04:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232879AbhDOPxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 11:53:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57118 "EHLO
+        id S234228AbhDOQFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 12:05:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231726AbhDOPxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 11:53:45 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A80EC061574;
-        Thu, 15 Apr 2021 08:53:21 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id i10so4061926lfe.11;
-        Thu, 15 Apr 2021 08:53:20 -0700 (PDT)
+        with ESMTP id S234221AbhDOQFV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 12:05:21 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B5DC061574;
+        Thu, 15 Apr 2021 09:04:57 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id m18so10119729plc.13;
+        Thu, 15 Apr 2021 09:04:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=UWC2MC72dgX7erfaiK0WF/mEIAVWPqcVzYbZe8V5Z1E=;
-        b=NIfyHh1/PRmS+9vlJuhVugsnRZ6stFNyFEhxN5B4sVKKsp6mAb29+DAaFaoSGLzl+j
-         kB7i0+Kdn1JaNr89rQ7uUjyZXvqBm3h02KWgcPFwvSCOMog9/ENOTM3CdQPTdEpMyME0
-         W4f9ECChsCIsL8s8MwZG3O1IrDlEHDdkhrjiQctZFjP1FZRORvYCmpO8gg5H8YFAg8/7
-         TgnjY/s/871YpFDhEU9bv76gJ3VwUe8cetHG3IbZQHk8uaCxfklBHn7mHSKbXCE8OmTv
-         MFCjCXkgZVDC0p7rRjw3tqsPqQ+nS17Ri/cbBv+0JUHR1x+8rryyOdZ8zxExS15upiUa
-         MJyA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=kLD6StwdW4u/OcdFNxOlIIvKlMXP69prYCwtXPa51Vk=;
+        b=au/Cnl8VHA/HbnCjOFOxEwp/yHO8mSPXx2ftwpa1fTvtPyzl+DL7DyOWIm3ZtTffI+
+         lXl25q1zwGehMCzkeDtJi6QaI/Rq7rruico03faKPUfMVZ/Fqjp92nGjCvIEx6TClV4X
+         khrY4FhVZgYCyBb1OFOZr8TpeUwTPe3jLHoSn2YuasW/IYNuUUUYqjgEMr0isQHNqQ1Q
+         Ofi0ShQb3rYSEFsYwOBSL/ycECeOp8mlukY1N1PTKNQbEXuuCN5mwN3F6WUCkZK1LFUk
+         LvaKoiDtBla6mtD8CNyqx8edn26pUnl2coVjlU45xVge0E/g50w4ZZBIiC7esWf/XA09
+         mOGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=UWC2MC72dgX7erfaiK0WF/mEIAVWPqcVzYbZe8V5Z1E=;
-        b=AkLp+cJYs9eLRci9h7UytHbFepG/YpCwCIsmH6WVwVY4pcNsFqF89ulUOiqCDzp1A/
-         QRqhxKRedTW8V++9oQKvyTWqEifYlS5yGsGOywfUtafEsdI5lpQsPco2G2nT6sH23XwZ
-         uChLZ5t/cRaZPEFaIYjyD1CiYGmvsYauQ2HqL4YkZiMlaE7XEVzuRRAwp1Jeh/VImdB8
-         q6qtdPpPXvp/gxVftTF5T9kBU/GdnoB4tT4q1+larcnUtcv0fH0awY7/xzeJ3dRiMSx6
-         wBeQ+zFKywcVA8VBOdsfvsh18zKieEDftZmukFn/KGKtcEj40EY58Z1IqHN9VGvXI7JF
-         vGuw==
-X-Gm-Message-State: AOAM532ln9w/NMoiANdtzzF+kjc/ISsk3L9+sUsfOXzqjqoJA7UDmRXl
-        giu61QKPZZomPjFSkNat1sA=
-X-Google-Smtp-Source: ABdhPJw1hchhMCsax9EV0N/YbpI2KvNmp+q3ewQiaZLc00QNf4RW4J0wPjOl5hNgeyEJbgWUWIENVQ==
-X-Received: by 2002:a19:3849:: with SMTP id d9mr2943775lfj.388.1618501999617;
-        Thu, 15 Apr 2021 08:53:19 -0700 (PDT)
-Received: from PC10319.67 ([82.97.198.254])
-        by smtp.googlemail.com with ESMTPSA id s7sm674074ljg.31.2021.04.15.08.53.19
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kLD6StwdW4u/OcdFNxOlIIvKlMXP69prYCwtXPa51Vk=;
+        b=c538p64+3SmZctcc2Nt39KWWhK7g63d39/fPng0vyL4mE79IbanbfavegAAZZQBcge
+         oXiad75SZm1NgKZgBlPtJZeow4Cx5ABHH6IxwK5q2JsQLE1tuya5PVRIo1IXTLm3ZBS9
+         V5izElAOw8WFJzbp7fvdkWcdD/vdqXofBrXPs4OWEZn4tiyMiVv/YqlpMnnIHdFMUrfW
+         /FVRWC+FLT2IJ8vrxaIFgKbbbYMt9q9LyAMcgfJnDpoQ84BeDj9Po0sShGdKc/NDopI6
+         4QpD4A5H/UOSU3UVctH9HmypgqHfXN1rz9lXg7UnGhyNmEdziFFyvpmnlLZrOAp2Vsdn
+         jJBg==
+X-Gm-Message-State: AOAM5312E67X+dedFyat0O+PsLNvoYSVqGdCdh9xbldFOxHCaZtZNwXV
+        oXCMbKwhmz4OLBD48inOOS4=
+X-Google-Smtp-Source: ABdhPJynejMbEEL1eiJn6Npe7GSVkWdabcnFrcJZH82mbHV1oXCbkJ+3huzzgy+0O7TCkXL+Q/Bm0Q==
+X-Received: by 2002:a17:90b:388a:: with SMTP id mu10mr4522139pjb.203.1618502696514;
+        Thu, 15 Apr 2021 09:04:56 -0700 (PDT)
+Received: from skbuf (5-12-16-165.residential.rdsnet.ro. [5.12.16.165])
+        by smtp.gmail.com with ESMTPSA id h19sm2730461pgm.40.2021.04.15.09.04.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 08:53:19 -0700 (PDT)
-From:   Konstantin Aladyshev <aladyshev22@gmail.com>
-Cc:     supreeth.venkatesh@amd.com, aladyshev22@gmail.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: aspeed: amd-ethanolx: Enable all used I2C busses
-Date:   Thu, 15 Apr 2021 18:52:59 +0300
-Message-Id: <20210415155300.1135-1-aladyshev22@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        Thu, 15 Apr 2021 09:04:56 -0700 (PDT)
+Date:   Thu, 15 Apr 2021 19:04:46 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Tobias Waldekranz <tobias@waldekranz.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, andrew@lunn.ch,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        netdev@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 net-next 1/5] net: dsa: mv88e6xxx: Mark chips with
+ undocumented EDSA tag support
+Message-ID: <20210415160446.sqhwechnvknkfom6@skbuf>
+References: <20210415092610.953134-1-tobias@waldekranz.com>
+ <20210415092610.953134-2-tobias@waldekranz.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210415092610.953134-2-tobias@waldekranz.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable all I2C busses that are used in AMD EthanolX CRB:
- i2c0 - APML P0
- i2c1 - APML P1
- i2c2 - FPGA
- i2c3 - 24LC128 EEPROM
- i2c4 - P0 Power regulators
- i2c5 - P1 Power regulators
- i2c6 - P0/P1 Thermal diode
- i2c7 - Thermal Sensors
- i2c8 - BMC I2C
+On Thu, Apr 15, 2021 at 11:26:06AM +0200, Tobias Waldekranz wrote:
+> All devices are capable of using regular DSA tags. Support for
+> Ethertyped DSA tags sort into three categories:
+> 
+> 1. No support. Older chips fall into this category.
+> 
+> 2. Full support. Datasheet explicitly supports configuring the CPU
+>    port to receive FORWARDs with a DSA tag.
+> 
+> 3. Undocumented support. Datasheet lists the configuration from
+>    category 2 as "reserved for future use", but does empirically
+>    behave like a category 2 device.
+> 
+> So, instead of listing the one true protocol that should be used by a
+> particular chip, specify the level of support for EDSA (support for
+> regular DSA is implicit on all chips). As before, we use EDSA for all
+> chips that fully supports it.
+> 
+> In upcoming changes, we will use this information to support
+> dynamically changing the tag protocol.
+> 
+> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+> ---
 
-Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
----
- arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-index ac2d04cfaf2f..6aeb47c44eba 100644
---- a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-@@ -151,6 +151,31 @@ &i2c1 {
- 	status = "okay";
- };
- 
-+//FPGA
-+&i2c2 {
-+	status = "okay";
-+};
-+
-+//24LC128 EEPROM
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+//P0 Power regulators
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+//P1 Power regulators
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+//P0/P1 Thermal diode
-+&i2c6 {
-+	status = "okay";
-+};
-+
- // Thermal Sensors
- &i2c7 {
- 	status = "okay";
-@@ -196,6 +221,11 @@ lm75a@4f {
- 	};
- };
- 
-+//BMC I2C
-+&i2c8 {
-+	status = "okay";
-+};
-+
- &kcs1 {
- 	status = "okay";
- 	aspeed,lpc-io-reg = <0x60>;
--- 
-2.25.1
-
+Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
