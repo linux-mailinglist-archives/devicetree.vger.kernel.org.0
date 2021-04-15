@@ -2,85 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D60803607CF
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 12:56:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 995F236077A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 12:47:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230056AbhDOK4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 06:56:30 -0400
-Received: from mail-41103.protonmail.ch ([185.70.41.103]:53047 "EHLO
-        mail-41103.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbhDOK43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 06:56:29 -0400
-X-Greylist: delayed 542 seconds by postgrey-1.27 at vger.kernel.org; Thu, 15 Apr 2021 06:56:29 EDT
-Received: from mail-02.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        by mail-41103.protonmail.ch (Postfix) with ESMTPS id 4FLbd3722Tz4x99t
-        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 10:47:03 +0000 (UTC)
-Authentication-Results: mail-41103.protonmail.ch;
-        dkim=pass (1024-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="VFX0DLTP"
-Date:   Thu, 15 Apr 2021 10:46:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1618483619;
-        bh=FqqoljThLpOkKq3HVnBx6falyOkeZosZYHA11X1CY4Q=;
-        h=Date:To:From:Cc:Reply-To:Subject:From;
-        b=VFX0DLTPJGS+E8PEcqknTVMEkNY7s7p4wpU5cvvYem3E8esQCFuXBkL+29Y0d6+JE
-         kihOVEXGKkBxFg+Jd+M949kBliz9opJXziMSQm/bmxJ3mQ8xUw5yQdC3RRIt9pkmV+
-         PFwQA241d7BNnb9o1b1tfpjYnhhooef105I4Lnvo=
-To:     bjorn.andersson@linaro.org
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     agross@kernel.org, devicetree@vger.kernel.org, dmurphy@ti.com,
-        lee.jones@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-pwm@vger.kernel.org, martin.botka1@gmail.com, pavel@ucw.cz,
-        robh+dt@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de,
-        Yassine Oudjana <y.oudjana@protonmail.com>
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: Re: [PATCH v6 2/4] leds: Add driver for Qualcomm LPG
-Message-ID: <MhLF908GTTNiXzyq2bkuFfK30ETPKJrYqVSGyeT4rY@cp4-web-038.plabs.ch>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+        id S232453AbhDOKsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 06:48:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45976 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232439AbhDOKsC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 06:48:02 -0400
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7C5DC061760
+        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 03:47:38 -0700 (PDT)
+Received: by mail-pg1-x536.google.com with SMTP id p12so16629551pgj.10
+        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 03:47:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=aYENDE1t3vElmJ+PTLiR0xCgqit2MOoeiKicHtSG8Bs=;
+        b=PxyIgr/Mywj7RVveOC/cFCkXKnAYFqvlIiPMWzp+9rSYGGFx/O7W5gMoFdPRAMccD4
+         nRuOD6God6oDhE/YzsA3UlC+nN0jUYn1lp3aw73GT6v3rjpjRRGU4jMNG9SFfUR4L3C+
+         T2BIc8Wtbgo3F8+c1AB9jrbrLcBdSEYbhhvnuTfQ+O0/rxA4yqrh5pMy24Q34YldZEge
+         q/L1z3o+Djcp94kZCanF9zP8V36wyFDldbg/LJB0LPzNtXKFAOeAyaswjaQsLMrcczIb
+         CDH1bsiK4OcnhNRsARQhg1vKj3uePvZIiYKONgE0NURqgf5+ssbpi7AzYPuONlnVBuzg
+         3HnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=aYENDE1t3vElmJ+PTLiR0xCgqit2MOoeiKicHtSG8Bs=;
+        b=VFNw2B1SZo6p9RBc9Qqx0qk7UXn2PkvDof+h4z0b9k44MkDJHJ3Ly4FePnn7oWFkTu
+         ylnUAfRTsPwu6j5yUlqYtcgnkmuiKllwU/kQ5pLv94gpwCRasvAX23og/AvzWyXi/vjU
+         3aXvCkc2O3e1upBWxOZY+MF/xSlW2yFTPDzrRxxrqLxdSyFll1Zgoi99B77VsX6qxyDE
+         u291/cZrRKhI0Q3wCNtF/EB+g3s/kMzBV0vwd+ClwJS3SH2QPThhT23GgBu+IkHONT49
+         5UctGrtfEjdi/OwuPj/JaiFyJ3iiXdm/a/nP6KAr+gxGOpAkKg1E1JyIq54U6LWMFjae
+         YgjA==
+X-Gm-Message-State: AOAM530GBpK2QXixrmFn0DLmVb0zHt3JN2WR4nJGZkA1a3mlmwBGxxwR
+        vBJ+RIyYci0N4dG/ni0txyu8Jg==
+X-Google-Smtp-Source: ABdhPJwuv08rkzaEhZc4gHfd8sBnVXQ3KjUdGTmlkrCE2Rz7X2rSfsUXRl85QBxh4keGRCx1g0MlAQ==
+X-Received: by 2002:a63:f317:: with SMTP id l23mr2823553pgh.173.1618483658409;
+        Thu, 15 Apr 2021 03:47:38 -0700 (PDT)
+Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id f65sm2130672pgc.19.2021.04.15.03.47.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Apr 2021 03:47:37 -0700 (PDT)
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Kalle Valo <kvalo@codeaurora.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com, Shawn Guo <shawn.guo@linaro.org>
+Subject: [PATCH v2 0/2] brcmfmac: support parse country code map from DT
+Date:   Thu, 15 Apr 2021 18:47:26 +0800
+Message-Id: <20210415104728.8471-1-shawn.guo@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This is a couple of patches adding optional brcm,ccode-map bindings for
+brcmfmac driver to parse country code map from DT.
 
-On Wed, 21 Oct 2020 13:12:22 -0700 Bjorn Andersson wrote:
-> The Light Pulse Generator (LPG) is a PWM-block found in a wide range of
-> PMICs from Qualcomm. It can operate on fixed parameters or based on a
-> lookup-table, altering the duty cycle over time - which provides the
-> means for e.g. hardware assisted transitions of LED brightness.
->=20
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->=20
-> Changes since v5:
-> - Make sure to not used the state of the last channel in a group to
-> determine if the current sink should be active for all channels in the
-> group. - Replacement of unsigned -1 with UINT_MAX
-> - Work around potential overflow by using larger data types, instead of
-> separate code paths - Use cpu_to_l16() rather than hand rolling them
-> - Minor style cleanups
->=20
->  drivers/leds/Kconfig         |    9 +
->  drivers/leds/Makefile        |    1 +
->  drivers/leds/leds-qcom-lpg.c | 1190 ++++++++++++++++++++++++++++++++++
->  3 files changed, 1200 insertions(+)
->  create mode 100644 drivers/leds/leds-qcom-lpg.c
+Changes for v2:
+ - Rebase bindings patch on top of yaml conversion patch [1].
+ - Improve commit log with Arend's explanation on why this data could
+   be put in device tree.
+ - Use pattern to define mapping string as suggested by Rob.
+ - Use brcmf_err() instead of dev_warn() and print error code.
+ - Use sscanf() to validate mapping string.
+ - Use brcmf_dbg(INFO, ...) to print country code entry.
+ - Separate BRCMF_BUSTYPE_SDIO bus_type check from general DT validation.
 
-Works well on the Xiaomi Mi Note 2 (msm8996pro/pmi8996).
+[1] https://patchwork.kernel.org/project/linux-wireless/patch/20210315105911.138553-1-linus.walleij@linaro.org/
 
-Tested-by: Yassine Oudjana <y.oudjana@protonmail.com>
 
-Regards,
-Yassine
+Shawn Guo (2):
+  dt-bindings: bcm4329-fmac: add optional brcm,ccode-map
+  brcmfmac: support parse country code map from DT
+
+ .../net/wireless/brcm,bcm4329-fmac.yaml       |  8 +++
+ .../wireless/broadcom/brcm80211/brcmfmac/of.c | 57 ++++++++++++++++++-
+ 2 files changed, 63 insertions(+), 2 deletions(-)
+
+-- 
+2.17.1
 
