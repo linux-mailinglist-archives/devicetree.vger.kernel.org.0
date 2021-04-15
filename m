@@ -2,139 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AACA4361414
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 23:25:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECDA936141E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 23:28:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235893AbhDOVZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 17:25:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45270 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235093AbhDOVZ0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Apr 2021 17:25:26 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9867761026;
-        Thu, 15 Apr 2021 21:25:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618521902;
-        bh=wAzWz1t/6xImauPcT3XLaMkS802uQtcKstpMe9mSozY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=E/51QtVt+JZLl5YJKUji4jjUv0dBmA0cmazs/5w6+Bc4wZzO5QnL2dejEJKPWm3Nz
-         blOgsYGjclj6JlD5IGboMfeGiQ+yiXB0FaNPitc6n+Pgc/BPT4z4QUAn8LElc43w2p
-         DW0iYl09HZIPMm0/dSBmP6P7h0NNhw9kIp61XrB2T4R+z31rL4dpIhDyAXI0P+/egD
-         PKDC65q1VxcwFiaRYagT0Ob/+o2VdMqInrUvQpaSh8X9S4oseMskkKhQEu7aHiu4Pa
-         Rjns9bJQt/R4aYcJnf1arUZqeetP5o8esJ0rxv9BXDiQWIGv52jx2HETOIhpRi/JxD
-         Q8daW7WZwkObA==
-Received: by mail-qk1-f174.google.com with SMTP id d23so14764484qko.12;
-        Thu, 15 Apr 2021 14:25:02 -0700 (PDT)
-X-Gm-Message-State: AOAM532oaoYr97VvPhYbqYexx/1nCp6yi/SOQ48uIT9z1T6UsVsFY9+Y
-        5rOkD7/DhlCDcmL/6ElHSLh6id0keRcF7d6Eug==
-X-Google-Smtp-Source: ABdhPJwEOtVU/PBX8pl5Ub9lOQ0rQ9elsjO6RSPqK7TVDKWJEeKEiIDMHMw6Ipuhxv6/Qi8T03BgwK/XvLFUmMN9Nds=
-X-Received: by 2002:a37:84b:: with SMTP id 72mr5665420qki.464.1618521901808;
- Thu, 15 Apr 2021 14:25:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <1617766086-5502-1-git-send-email-flora.fu@mediatek.com>
- <1617766086-5502-5-git-send-email-flora.fu@mediatek.com> <20210409182538.GA3913794@robh.at.kernel.org>
- <1618209895.25062.11.camel@mtksdccf07>
-In-Reply-To: <1618209895.25062.11.camel@mtksdccf07>
+        id S235046AbhDOV2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 17:28:24 -0400
+Received: from mail-oo1-f43.google.com ([209.85.161.43]:33481 "EHLO
+        mail-oo1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235972AbhDOV2X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 17:28:23 -0400
+Received: by mail-oo1-f43.google.com with SMTP id i25-20020a4aa1190000b02901bbd9429832so5720340ool.0;
+        Thu, 15 Apr 2021 14:28:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LlSYClYyjrVNpAtzPLHqsC4Akv1Vowc0qSp13MS1Yco=;
+        b=LhGBadnS2wnAPosB6xJMdhYj8EJpjhSOuHCB79DmTuy35QROrRppm4mBjxxiOJ5CV7
+         81XgKjicUqCwlJYkcM3SFTxsasVEOM2xKJEvfLC5wOkJWyJ5XbH8ml9OYfHWbQUtd2Ss
+         AXHLnaEYmaHwkr9j9rSaE97oyCBHu5skuKFn3P9dUHOWYSMVwKfaF8RBAMMZ4WRgoF+i
+         KObuW5P9Bao9iwgn8Nk/xE943oSlanR8I0zAIY6CBc5gwwaW+d/7L+qbQuU8BtvlUJmN
+         e7w2zGdsMLXza0Wzih06um3fqoFpql49pMXbx2m2Wic0frklabpb2lbkziwm1Wad4mjc
+         NLJg==
+X-Gm-Message-State: AOAM533piEE5sQ9xcU7Yts194hdmSwuzcspHpD0DoofvxovWQbjAp9fy
+        gynW25lokoEuNrFt4OOMZA==
+X-Google-Smtp-Source: ABdhPJzsY7yEIIJmPGYwN/De+lVERrc0rNefswnCjP8X4ZoqwEwCV18fajBpajLu2Mw9RZpTMAmJ9w==
+X-Received: by 2002:a4a:d781:: with SMTP id c1mr861725oou.44.1618522079719;
+        Thu, 15 Apr 2021 14:27:59 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 8sm896531ott.68.2021.04.15.14.27.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Apr 2021 14:27:59 -0700 (PDT)
+Received: (nullmailer pid 1911639 invoked by uid 1000);
+        Thu, 15 Apr 2021 21:27:58 -0000
+Date:   Thu, 15 Apr 2021 16:27:58 -0500
 From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 15 Apr 2021 16:24:50 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLKaYY=NHm1hD=YaQgvDOBTtraoUqcycA7tu7n-f2GVDw@mail.gmail.com>
-Message-ID: <CAL_JsqLKaYY=NHm1hD=YaQgvDOBTtraoUqcycA7tu7n-f2GVDw@mail.gmail.com>
-Subject: Re: [PATCH 4/8] dt-bindings: arm: mediatek: Add new document bindings
- for APU
-To:     Flora Fu <flora.fu@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Pi-Cheng Chen <pi-cheng.chen@mediatek.com>,
-        Chiawen Lee <chiawen.lee@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Tobias Waldekranz <tobias@waldekranz.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, andrew@lunn.ch,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com, olteanv@gmail.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 net-next 5/5] dt-bindings: net: dsa: Document
+ dsa,tag-protocol property
+Message-ID: <20210415212758.GA1909992@robh.at.kernel.org>
+References: <20210415092610.953134-1-tobias@waldekranz.com>
+ <20210415092610.953134-6-tobias@waldekranz.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210415092610.953134-6-tobias@waldekranz.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 12, 2021 at 1:45 AM Flora Fu <flora.fu@mediatek.com> wrote:
->
-> On Fri, 2021-04-09 at 13:25 -0500, Rob Herring wrote:
-> > On Wed, Apr 07, 2021 at 11:28:02AM +0800, Flora Fu wrote:
-> > > Document the apusys bindings.
-> > >
-> > > Signed-off-by: Flora Fu <flora.fu@mediatek.com>
-> > > ---
-> > >  .../arm/mediatek/mediatek,apusys.yaml         | 56 +++++++++++++++++++
-> > >  1 file changed, 56 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,apusys.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,apusys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,apusys.yaml
-> > > new file mode 100644
-> > > index 000000000000..dc04a46f1bad
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,apusys.yaml
-> > > @@ -0,0 +1,56 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: https://urldefense.com/v3/__http://devicetree.org/schemas/arm/mediatek/mediatek,apusys.yaml*__;Iw!!CTRNKA9wMg0ARbw!3ryKFTA2CvsVss4Pt2ZOG7wv4jgR-2LPxuGn30IxFmpxoxSRdzNdf8FrAYYvZWcw$
-> > > +$schema: https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!3ryKFTA2CvsVss4Pt2ZOG7wv4jgR-2LPxuGn30IxFmpxoxSRdzNdf8FrARlhCQ0w$
-> > > +
-> > > +title: MediaTek APUSYS Controller
-> > > +
-> > > +maintainers:
-> > > +  - Flora Fu <flora.fu@mediatek.com>
-> > > +
-> > > +description:
-> > > +  The Mediatek apusys controller provides functional configurations and clocks
-> > > +  to the system.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - enum:
-> > > +          - mediatek,mt8192-apu_mbox
-> > > +          - mediatek,mt8192-apu_conn
-> > > +          - mediatek,mt8192-apu_vcore
-> >
-> > s/_/-/
-> >
->
-> OK. I will update expression strings in the next version.
->
-> > > +      - const: syscon
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  '#clock-cells':
-> > > +    const: 1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    apu_mbox: apu_mbox@19000000 {
-> >
-> > mailbox@...? Is this a mailbox provider?
-> >
->
-> Yes, the apu_mbox is the for setup mailbox in the APU hardware.
+On Thu, Apr 15, 2021 at 11:26:10AM +0200, Tobias Waldekranz wrote:
+> The 'dsa,tag-protocol' is used to force a switch tree to use a
+> particular tag protocol, typically because the Ethernet controller
+> that it is connected to is not compatible with the default one.
+> 
+> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+> ---
+>  Documentation/devicetree/bindings/net/dsa/dsa.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> index 8a3494db4d8d..c4dec0654c6a 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> @@ -70,6 +70,15 @@ patternProperties:
+>                device is what the switch port is connected to
+>              $ref: /schemas/types.yaml#/definitions/phandle
+>  
+> +          dsa,tag-protocol:
 
-Then you need #mbox-cells here.
+'dsa' is not a vendor. 'dsa-tag-protocol' instead.
 
-And in that case, what makes it a syscon?
-
->
-> > > +        compatible = "mediatek,mt8192-apu_mbox", "syscon";
-> > > +        reg = <0x19000000 0x1000>;
-> > > +    };
+> +            description:
+> +              Instead of the default, the switch will use this tag protocol if
+> +              possible. Useful when a device supports multiple protcols and
+> +              the default is incompatible with the Ethernet device.
+> +            enum:
+> +              - dsa
+> +              - edsa
+> +
+>            phy-handle: true
+>  
+>            phy-mode: true
+> -- 
+> 2.25.1
+> 
