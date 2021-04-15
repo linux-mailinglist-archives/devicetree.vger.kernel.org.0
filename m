@@ -2,96 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A18DE36119A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 20:01:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB832361245
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 20:45:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233395AbhDOSCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 14:02:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57040 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233052AbhDOSCF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 14:02:05 -0400
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BF56C061574;
-        Thu, 15 Apr 2021 11:01:42 -0700 (PDT)
-Received: by mail-qv1-xf31.google.com with SMTP id ef17so6482514qvb.0;
-        Thu, 15 Apr 2021 11:01:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=T+WxuAKEYQzQlAdaDBCbqiRsU5nkpRKPpDVKPGbJZoo=;
-        b=omSdtTy3Z5hj1lplWc42YYdNIlvPA/d1BuVz2FqBEc6iBdhR0s/5+WagAAL4Zk1YAc
-         CWjUthRXgYMcuzLis14YOrHsvBbIuTUswDXGQQJmOJ1+VpihxfgTWaBSqvA41vXj1lAR
-         ATm6S/A6Cbh/mzZHi9MgQnA8xEmV7s8/xCWzzUNZ8kVFvt++osMV0Pn1/pvc6B9PuHE4
-         YY12+zAA6R6/zkUeoIz1yTyqsuKrwU8Q+aw5AxOGJv177G0bgQZI4W8ZV/qRKccUshhz
-         umO9bqMYm9LobzFe6oKAEY3NlD/z4o17Lw3g/CKtL9Wk3um/gQJ2qZeLPffjsCTz6h2b
-         J3NA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=T+WxuAKEYQzQlAdaDBCbqiRsU5nkpRKPpDVKPGbJZoo=;
-        b=UvsdVXU3luBqHVFcBBa8mxdqvMX3afDcZVrusEfsg0TclYRhgbVuBp4wQVZYKbQSmL
-         Cjx2obj7ID09THyhy4S28myR+HvIYp4fSqo7lMw5altMNTDDdnaOQzvc7OfoFZEFJuRR
-         KfMPCejmE2NcvgnxvbMEWSSoyS1ppDNwkcmQuZ0DigcggxKpuzoJovYH05O+pWk6SrUD
-         Sa9WraZ9wJmYhEH9csNRM7LBMNGLU4GGSR5ekcvLqTKvc4OreznjBcE4eoeQ4wOssYZu
-         kqKFOSIgo09UibaCIlbvhEwU4NNFqjSe2a/yqszMjLGG+8HsTCyfu/YsmCxKARjVwEgk
-         Cyxw==
-X-Gm-Message-State: AOAM530Z8QF9ta26GpWdMv/3OHOchN4fHOXWXBJb7Lw7yimqWIRQS4bd
-        ZVpuAQLbaquo+44PRplKQnk=
-X-Google-Smtp-Source: ABdhPJwbEnxJ32ca8ntb2wP5VKo0v0Tu2H5S4ts3+g6Ej4zFLT4aKZE3Po2+SmGJRN4ouqA+MCapFw==
-X-Received: by 2002:a0c:fd62:: with SMTP id k2mr4410395qvs.51.1618509701724;
-        Thu, 15 Apr 2021 11:01:41 -0700 (PDT)
-Received: from li-908e0a4c-2250-11b2-a85c-f027e903211b.ibm.com ([2804:14c:482:7b04::1000])
-        by smtp.gmail.com with ESMTPSA id f16sm2544834qkl.25.2021.04.15.11.01.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 11:01:41 -0700 (PDT)
-From:   Leonardo Bras <leobras.c@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, aik@ozlabs.ru
-Cc:     Leonardo Bras <leobras.c@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] of/pci: Add IORESOURCE_MEM_64 to resource flags for 64-bit memory addresses
-Date:   Thu, 15 Apr 2021 15:00:51 -0300
-Message-Id: <20210415180050.373791-1-leobras.c@gmail.com>
-X-Mailer: git-send-email 2.30.2
+        id S234392AbhDOSpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 14:45:54 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:18374 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233948AbhDOSpy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 14:45:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1618512332; x=1650048332;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=EfPKf6G7i8no32iDnXtauNdJhYQxJHVpG/8fquspKso=;
+  b=IL0TXdBhqJH+AH409K3G01GYScbgaOWkgFypg5JthIAAfYNX4vlF7LFp
+   vWUD0/EKxd0ji6swsZOAbQy9SuE6/uJps4YMnsX+gTPdxMs2yOqmtEyO+
+   gAUPq9CBE51T2ajM/zocaQtzjBoaoweC/CAi9h7DDA1cww3ildPi5l/D2
+   22/6fE1sYChEaKUv4pKL9NXrY4BbXEcw38gIdqPINcPDs/TdKMdQHkJ3o
+   +BMjQBqX5JlDB5zmVfJNoS2E69I5DISiQumrLLBNVnFWdEuic1m+bOp6l
+   2Q4AzwPoYrySOwdJBeQA5h7gSlHhFBE7R6+vf13Tmh3YD/JG92FG9FSzT
+   Q==;
+IronPort-SDR: TvVWtnNuCMr31Qr1s17juV9ul7As2ZenL7lCskz9YT/eY/kwv5lLWjFzC+kCuWd0CtBENu8Kpw
+ wzMFNnD01ZoXewRviFDGrwSCq+0kBilhfpoPn3Id8HdrH5PJzX4x5Uu5QxozTI77fGF7AXEE6y
+ ZkgCH6kbXCAF1DEyjWRPgcItwvGKSpxwlGoSzMYWNY8TrT0eKMoGBZFWCsEAc8yPGHg2luaItp
+ D1YSsuURq8Zo7W9k9cYa5zOZsUpDHwBKHwCLDp7rbN3zocEBi3MY4SpM9Ar+r4DaAF522b79l1
+ 2G4=
+X-IronPort-AV: E=Sophos;i="5.82,225,1613458800"; 
+   d="scan'208";a="116611454"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Apr 2021 11:45:31 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 15 Apr 2021 11:45:30 -0700
+Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Thu, 15 Apr 2021 11:45:14 -0700
+From:   Eugen Hristev <eugen.hristev@microchip.com>
+To:     <devicetree@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <jacopo@jmondi.org>, <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eugen Hristev <eugen.hristev@microchip.com>
+Subject: [PATCH v5 30/33] dt-bindings: media: add microchip,xisc device bindings
+Date:   Thu, 15 Apr 2021 21:45:00 +0300
+Message-ID: <20210415184500.868264-1-eugen.hristev@microchip.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210415085846.824796-1-eugen.hristev@microchip.com>
+References: <20210415085846.824796-1-eugen.hristev@microchip.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Many other resource flag parsers already add this flag when the input
-has bits 24 & 25 set, so update this one to do the same.
+Add bindings for the Microchip eXtended Image Sensor Controller.
+Based on the atmel,isc.yaml binding.
 
-Some devices (like virtio-net) have more than one memory resource
-(like MMIO32 and MMIO64) and without this flag it would be needed to
-verify the address range to know which one is which.
-
-Signed-off-by: Leonardo Bras <leobras.c@gmail.com>
+Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
 ---
- drivers/of/address.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Changes in v5:
+- fixed license clause to add BSD-2
+Changes in v4:
+- added '|' at description to preserve line breaks
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index 73ddf2540f3f..dc7147843783 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -116,9 +116,12 @@ static unsigned int of_bus_pci_get_flags(const __be32 *addr)
- 		flags |= IORESOURCE_IO;
- 		break;
- 	case 0x02: /* 32 bits */
--	case 0x03: /* 64 bits */
- 		flags |= IORESOURCE_MEM;
- 		break;
+ .../bindings/media/microchip,xisc.yaml        | 129 ++++++++++++++++++
+ 1 file changed, 129 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/microchip,xisc.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/microchip,xisc.yaml b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
+new file mode 100644
+index 000000000000..41afe2e5f133
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
+@@ -0,0 +1,129 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2021 Microchip Technology, Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/microchip,xisc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	case 0x03: /* 64 bits */
-+		flags |= IORESOURCE_MEM | IORESOURCE_MEM_64;
-+		break;
- 	}
- 	if (w & 0x40000000)
- 		flags |= IORESOURCE_PREFETCH;
++title: Microchip eXtended Image Sensor Controller (XISC)
++
++maintainers:
++  - Eugen Hristev <eugen.hristev@microchip.com>
++
++description: |
++  The eXtended Image Sensor Controller (XISC) device provides the video input capabilities for the
++  Microchip AT91 SAM family of devices.
++
++  The XISC has a single internal parallel input that supports RAW Bayer, RGB or YUV video.
++  The source can be either a demuxer from a CSI2 type of bus, or a simple direct bridge to a
++  parallel sensor.
++
++  The XISC provides one clock output that is used to clock the demuxer/bridge.
++
++properties:
++  compatible:
++    const: microchip,sama7g5-isc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: hclock
++
++  '#clock-cells':
++    const: 0
++
++  clock-output-names:
++    const: isc-mck
++
++  microchip,mipi-mode:
++    type: boolean
++    description:
++      As the XISC is usually connected to a demux/bridge, the XISC receives
++      the same type of input, however, it should be aware of the type of
++      signals received. The mipi-mode enables different internal handling
++      of the data and clock lines.
++
++  port:
++    $ref: /schemas/graph.yaml#/properties/port
++    description:
++      Input port node, single endpoint describing the input pad.
++
++    properties:
++      endpoint:
++        $ref: video-interfaces.yaml#
++
++        properties:
++          bus-type:
++            enum: [5, 6]
++
++          remote-endpoint: true
++
++          bus-width:
++            enum: [8, 9, 10, 11, 12]
++            default: 12
++
++          hsync-active:
++            enum: [0, 1]
++            default: 1
++
++          vsync-active:
++            enum: [0, 1]
++            default: 1
++
++          pclk-sample:
++            enum: [0, 1]
++            default: 1
++
++        required:
++          - remote-endpoint
++          - bus-type
++
++        additionalProperties: false
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - '#clock-cells'
++  - clock-output-names
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/at91.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    xisc: xisc@e1408000 {
++        compatible = "microchip,sama7g5-isc";
++        reg = <0xe1408000 0x2000>;
++        interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&pmc PMC_TYPE_PERIPHERAL 56>;
++        clock-names = "hclock";
++        #clock-cells = <0>;
++        clock-output-names = "isc-mck";
++
++        port {
++                xisc_in: endpoint {
++                       bus-type = <5>; /* Parallel */
++                       remote-endpoint = <&csi2dc_out>;
++                       hsync-active = <1>;
++                       vsync-active = <1>;
++                       bus-width = <12>;
++                };
++        };
++    };
++
 -- 
-2.30.2
+2.25.1
 
