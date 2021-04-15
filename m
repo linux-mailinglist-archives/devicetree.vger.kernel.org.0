@@ -2,221 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61773360BB0
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 16:19:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64ACA360BD0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 16:30:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233094AbhDOOTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 10:19:38 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:54572 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231391AbhDOOTi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 10:19:38 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13FEJB2Y083373;
-        Thu, 15 Apr 2021 09:19:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1618496351;
-        bh=9+JIo8dGh10N/Eg2M52luFkO22/RrXwGwB/XpTEpCEg=;
-        h=From:To:CC:Subject:Date;
-        b=Ly1yurVKAfODvugaArU3Dm4KZbAf66C6LCd5uZ6nN4OlJrRL4wDZXNn8PatO8idVG
-         6iqYjyAK9qCAe2jP14Ou1CJTmg72dRxLIXmNo9PIHwsV2PdBxygHs9immfrdkynIQ8
-         XVAlgIVdrGG2Llp4Z46EEMBcjP2/oJ3xvqraiVPU=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13FEJADP034375
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Apr 2021 09:19:10 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 15
- Apr 2021 09:19:10 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 15 Apr 2021 09:19:10 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13FEJA2p035823;
-        Thu, 15 Apr 2021 09:19:10 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <lokeshvutla@ti.com>, <s-anna@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>
-Subject: [PATCH V2] dt-bindings: mailbox: ti,message-manager: Convert to json schema
-Date:   Thu, 15 Apr 2021 09:19:09 -0500
-Message-ID: <20210415141909.3013-1-nm@ti.com>
-X-Mailer: git-send-email 2.31.0
+        id S233344AbhDOObM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 10:31:12 -0400
+Received: from phobos.denx.de ([85.214.62.61]:40646 "EHLO phobos.denx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233341AbhDOObM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Apr 2021 10:31:12 -0400
+X-Greylist: delayed 4155 seconds by postgrey-1.27 at vger.kernel.org; Thu, 15 Apr 2021 10:31:11 EDT
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 31C6B81FD5;
+        Thu, 15 Apr 2021 16:30:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1618497045;
+        bh=QCFlP+DjDQQ/peWcEBQFC8IoSA2aoys0PklnNs1hhLw=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=Hg5s2vAe5leyJERNEtnaXGvcHS2i5r2lX942XGx3T7rPZx1Lddv495O0ezzI3YJEe
+         274OkqHdDLEBNFVviWcCwoQGQ8Xv2Y/JrM0TNLi8jsC2Tt2fl2/hs0p+l2a4TPHwko
+         6Euo2siHp9C6s0HuameFet8tjz0DJsBgk1tEt0tp0JvcLTYPvyj8FPeV95YH7FIfud
+         xMazhhb7XSzjBgpYzrN8RHaSY+QYWgHdub6eRo5UB16NVVsgCRSsXLHntW7G0fJvL0
+         F54soBKqD3w7kY8+s0dYzbslIVCyO8Y23VkDSJDeiRoBjVsa/HnY9CH7t+8okXEv16
+         efWSkQJG/d5QA==
+Subject: Re: [PATCH 11/13] ARM: dts: stm32: fix LTDC port node on STM32 MCU ad
+ MPU
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>, arnd@arndb.de,
+        robh+dt@kernel.org, jagan@amarulasolutions.com,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        kuba@kernel.org
+References: <20210415101037.1465-1-alexandre.torgue@foss.st.com>
+ <20210415101037.1465-12-alexandre.torgue@foss.st.com>
+ <3b39908b-a263-a5d4-f6ac-ac30ffb06269@denx.de>
+ <36e9f0df-dfdb-e2f5-3d6e-ac32a1b8156e@foss.st.com>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <fa3885df-8977-9540-f2af-d4095f519483@denx.de>
+Date:   Thu, 15 Apr 2021 16:30:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
+In-Reply-To: <36e9f0df-dfdb-e2f5-3d6e-ac32a1b8156e@foss.st.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Virus-Scanned: clamav-milter 0.102.4 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the ti,message-manager to yaml for better checks and documentation.
-Differences being mostly in the examples:
-- I've dropped the example usage of mailbox client, it is better done in
-  tisci node definition
-- included header in example for buildable example
+On 4/15/21 3:34 PM, Alexandre TORGUE wrote:
+> Hi Marek
 
-NOTE: The following checkpatch warning is generated since we do include
-the header in the example, but this is a false positive warning.
-  WARNING: DT binding docs and includes should be a separate patch. See:
-  Documentation/devicetree/bindings/submitting-patches.rst
+Hello Alexandre,
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
-Changes since v1:
- - Fixed title in yaml (not driver)
- - Commit message update to fix up a copy paste error (not secure-proxy).
- - Subject line rewording to indicate json schema rather than yaml -
-   more inline with patches elsewhere.
+>>> diff --git a/arch/arm/boot/dts/stm32mp157c-dk2.dts 
+>>> b/arch/arm/boot/dts/stm32mp157c-dk2.dts
+>>> index 2bc92ef3aeb9..19ef475a48fc 100644
+>>> --- a/arch/arm/boot/dts/stm32mp157c-dk2.dts
+>>> +++ b/arch/arm/boot/dts/stm32mp157c-dk2.dts
+>>> @@ -82,9 +82,15 @@
+>>>   };
+>>>   &ltdc {
+>>> -    status = "okay";
+>>> -
+>>>       port {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +
+>>> +        ltdc_ep0_out: endpoint@0 {
+>>> +            reg = <0>;
+>>> +            remote-endpoint = <&sii9022_in>;
+>>> +        };
+>>> +
+>>>           ltdc_ep1_out: endpoint@1 {
+>>>               reg = <1>;
+>>>               remote-endpoint = <&dsi_in>;
+>>
+>> [...]
+>>
+>>> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi 
+>>> b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+>>> index 64dca5b7f748..e7f10975cacf 100644
+>>> --- a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+>>> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+>>> @@ -277,11 +277,7 @@
+>>>       status = "okay";
+>>>       port {
+>>> -        #address-cells = <1>;
+>>> -        #size-cells = <0>;
+>>> -
+>>> -        ltdc_ep0_out: endpoint@0 {
+>>> -            reg = <0>;
+>>> +        ltdc_ep0_out: endpoint {
+>>>               remote-endpoint = <&adv7513_in>;
+>>>           };
+>>>       };
+>>
+>> I think this is wrong, the AV96 can have two displays connected to two 
+>> ports of the LTDC, just like DK2 for example.
+> 
+> As for dk2 address/size cells are added only if there are 2 endpoints. 
+> It is for this reason I moved endpoint0 definition from stm32mp15xx-dkx 
+> to stm32mp151a-dk1.dts (dk1 has only one endpoint).
+> 
+> Here it's the same, if you have second endpoint then adress/size will 
+> have to be added.
 
-V1: https://lore.kernel.org/linux-arm-kernel/20210414002721.23638-1-nm@ti.com/
- .../bindings/mailbox/ti,message-manager.txt   | 50 -------------
- .../bindings/mailbox/ti,message-manager.yaml  | 75 +++++++++++++++++++
- 2 files changed, 75 insertions(+), 50 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mailbox/ti,message-manager.txt
- create mode 100644 Documentation/devicetree/bindings/mailbox/ti,message-manager.yaml
+That's a bit problematic. Consider either the use case of DTO which adds 
+the other display, or even a custom board DTS. Without your patch, this 
+works:
 
-diff --git a/Documentation/devicetree/bindings/mailbox/ti,message-manager.txt b/Documentation/devicetree/bindings/mailbox/ti,message-manager.txt
-deleted file mode 100644
-index ebf0e3710cee..000000000000
---- a/Documentation/devicetree/bindings/mailbox/ti,message-manager.txt
-+++ /dev/null
-@@ -1,50 +0,0 @@
--Texas Instruments' Message Manager Driver
--========================================
--
--The Texas Instruments' Message Manager is a mailbox controller that has
--configurable queues selectable at SoC(System on Chip) integration. The Message
--manager is broken up into queues in different address regions that are called
--"proxies" - each instance is unidirectional and is instantiated at SoC
--integration level to indicate receive or transmit path.
--
--Message Manager Device Node:
--===========================
--Required properties:
----------------------
--- compatible:		Shall be: "ti,k2g-message-manager"
--- reg-names 		queue_proxy_region - Map the queue proxy region.
--			queue_state_debug_region - Map the queue state debug
--			region.
--- reg:			Contains the register map per reg-names.
--- #mbox-cells		Shall be 2. Contains the queue ID and proxy ID in that
--		        order referring to the transfer path.
--- interrupt-names:	Contains interrupt names matching the rx transfer path
--			for a given SoC. Receive interrupts shall be of the
--			format: "rx_<QID>".
--			For ti,k2g-message-manager, this shall contain:
--				"rx_005", "rx_057"
--- interrupts:		Contains the interrupt information corresponding to
--			interrupt-names property.
--
--Example(K2G):
--------------
--
--	msgmgr: msgmgr@2a00000 {
--		compatible = "ti,k2g-message-manager";
--		#mbox-cells = <2>;
--		reg-names = "queue_proxy_region", "queue_state_debug_region";
--		reg = <0x02a00000 0x400000>, <0x028c3400 0x400>;
--		interrupt-names = "rx_005", "rx_057";
--		interrupts = <GIC_SPI 324 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 327 IRQ_TYPE_LEVEL_HIGH>;
--	};
--
--	pmmc: pmmc {
--		[...]
--		mbox-names = "rx", "tx";
--		# RX queue ID is 5, proxy ID is 2
--		# TX queue ID is 0, proxy ID is 0
--		mboxes= <&msgmgr 5 2>,
--			<&msgmgr 0 0>;
--		[...]
--	};
-diff --git a/Documentation/devicetree/bindings/mailbox/ti,message-manager.yaml b/Documentation/devicetree/bindings/mailbox/ti,message-manager.yaml
-new file mode 100644
-index 000000000000..1cbf9a75522e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mailbox/ti,message-manager.yaml
-@@ -0,0 +1,75 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mailbox/ti,message-manager.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments' message manager node bindings
-+
-+maintainers:
-+  - Nishanth Menon <nm@ti.com>
-+
-+description: |
-+  The Texas Instruments' Message Manager is a mailbox controller that has
-+  configurable queues selectable at SoC(System on Chip) integration. The Message
-+  manager is broken up into queues in different address regions that are called
-+  "proxies" - each instance is unidirectional and is instantiated at SoC
-+  integration level to indicate receive or transmit path.
-+
-+properties:
-+  $nodename:
-+    pattern: "^mailbox@[0-9a-f]+$"
-+
-+  compatible:
-+    const: ti,k2g-message-manager
-+
-+  "#mbox-cells":
-+    const: 2
-+    description:
-+      Contains the queue ID and proxy ID in that order referring to the
-+      transfer path.
-+
-+  reg-names:
-+    items:
-+      - const: queue_proxy_region
-+      - const: queue_state_debug_region
-+
-+  reg:
-+    minItems: 2
-+
-+  interrupt-names:
-+    items:
-+      - const: rx_005
-+      - const: rx_057
-+    description:
-+      Contains interrupt names matching the Rx transfer path for a given SoC.
-+      Receive interrupts shall be of the format "rx_<QID>".
-+
-+  interrupts:
-+    minItems: 2
-+    description:
-+      Contains the interrupt information for the Rx interrupt paths for message
-+      manager corresponding to the interrupt-names.
-+
-+required:
-+  - compatible
-+  - reg-names
-+  - reg
-+  - interrupt-names
-+  - interrupts
-+  - "#mbox-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    msgmgr: mailbox@2a00000 {
-+          compatible = "ti,k2g-message-manager";
-+          #mbox-cells = <2>;
-+          reg-names = "queue_proxy_region", "queue_state_debug_region";
-+          reg = <0x02a00000 0x400000>, <0x028c3400 0x400>;
-+          interrupt-names = "rx_005", "rx_057";
-+          interrupts = <GIC_SPI 324 IRQ_TYPE_LEVEL_HIGH>,
-+                       <GIC_SPI 327 IRQ_TYPE_LEVEL_HIGH>;
-+    };
--- 
-2.31.0
+arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+&ltdc {
+   ...
+   ports {
+     ltdc_ep0_out: endpoint@0 {
+       remote-endpoint = <&adv7513_in>;
+     };
+   };
+};
 
+board-with-display.dts or board-overlay.dts
+&ltdc {
+   ports {
+     endpoint@1 { // just add another endpoint@1, no problem
+       remote-endpoint = <&display>;
+     };
+   };
+};
+
+With your patch, the DTS would have to modify the "endpoint" node to be 
+"endpoint@0" probably with a whole lot of /detele-node/ etc. magic (DTO 
+cannot do that, so that's a problem, and I do use DTOs on AV96 
+extensively for the various expansion cards) and then add the 
+endpoint@1. That becomes real complicated in custom board DT, and 
+impossible with DTO.
