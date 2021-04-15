@@ -2,70 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C24F360FF5
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 18:17:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01434360FFB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 18:19:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233426AbhDOQRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 12:17:23 -0400
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:45005 "EHLO
+        id S232769AbhDOQTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 12:19:45 -0400
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:45696 "EHLO
         mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231726AbhDOQRX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 12:17:23 -0400
-Received: by mail-oi1-f176.google.com with SMTP id e66so9518499oif.11;
-        Thu, 15 Apr 2021 09:16:58 -0700 (PDT)
+        with ESMTP id S231137AbhDOQTo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 12:19:44 -0400
+Received: by mail-oi1-f176.google.com with SMTP id d12so24804076oiw.12;
+        Thu, 15 Apr 2021 09:19:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=g9UUN7RgYxjHjT9JtXqaWGYYxyRhaw5q4SuyKDfZ6ek=;
-        b=XZfWMa7bAT3JFrU92rnxTsK2c3eQKZVd4yPDt7tF2lFp+3r4m6tBV+XttE06W3IHXO
-         AoWFZuldOGAgNhuQapn/fcmrrmthIbsgneoYA1P5GX/GyhOtmt6ZwelzaPKJqNpxOlDx
-         m5/UMR0mLzhYPFEqwLH0t1Z7heiS71MFzFDWzFYkT91MIOaUpMBojxwXH32hlfIYW47/
-         6mmD4KpUbpPZRB/h3nliFFULrmJGfvazyDmryiSrmdufN6tGCEDOisZmKfHLTKtb/+kZ
-         +vZ+i/25zEm7deEi8WwytIY/dezGSyk6F2QbHmhnzZP2OWN9c8a3FH6gcshF8SypUe61
-         74yA==
-X-Gm-Message-State: AOAM531rEup42QRSr45iR8m/qGGNWxBFbXYUPhbMIyvqHLSWV/dV0Tsh
-        aWGmCosJaP+14tGPR1QSoQ==
-X-Google-Smtp-Source: ABdhPJzNJxWVs55Q1wP3ChKCv6l4X9x3mXUuNvql+J6KLClI+cT0xQKtpjOG0h1NiIJYB6zqUHKp8A==
-X-Received: by 2002:aca:c74a:: with SMTP id x71mr3063497oif.22.1618503418210;
-        Thu, 15 Apr 2021 09:16:58 -0700 (PDT)
+        bh=GXye7ilx4veJ07ZVeVmgMNULd7IMBz/+McBaXjxXerM=;
+        b=gcVJOyS49YY+ctlBFmsV9XBy7XQc7CsvlDm3qY3cvv4R9Ib9A6k60UXJ65K/JD3ySs
+         6tI0UeJ6YTV6Od06JnOtK4r7hh9NPOVhwjNgSDUGgGij3l0oZBktXsncGK5ki/Vdoazc
+         r/SM8cq/sJp5fNO/n+h5/u/iF/++9eb/gsD6a2PclW0mfh3XR0wNREG7bJTiDwfuforT
+         CPUTP5MdEceWaMiY0DHAdaix+Abbpt7WzsogzyoXJ9z88k6kiVYZuvO2qFemdXzhIWE2
+         TOY8JzcwfyM3kyY267SRyWbQQbncRtv8492xqHaDzJcv1eQFqqtyn12JGOtufnoi6vTO
+         VHxA==
+X-Gm-Message-State: AOAM532X4PxFWwSh6HaSigSzqCLx5DN+3A68dIB0FpsvwiBLRQFEnrS3
+        +ez1iJijrMd5LhpKTKU+tXfCeZ3+Yw==
+X-Google-Smtp-Source: ABdhPJyeQLL2y0QA+dbez5K0gutVcFqswv7Wdzq3KQXbUiV+OGfji1iLQUUKLSZTSsW1GKMZTCB+Ng==
+X-Received: by 2002:aca:fd81:: with SMTP id b123mr3062898oii.7.1618503560848;
+        Thu, 15 Apr 2021 09:19:20 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 3sm726662otw.58.2021.04.15.09.16.57
+        by smtp.gmail.com with ESMTPSA id t19sm765773otm.40.2021.04.15.09.19.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 09:16:57 -0700 (PDT)
-Received: (nullmailer pid 1501918 invoked by uid 1000);
-        Thu, 15 Apr 2021 16:16:56 -0000
-Date:   Thu, 15 Apr 2021 11:16:56 -0500
+        Thu, 15 Apr 2021 09:19:18 -0700 (PDT)
+Received: (nullmailer pid 1506918 invoked by uid 1000);
+        Thu, 15 Apr 2021 16:19:17 -0000
+Date:   Thu, 15 Apr 2021 11:19:17 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Eugen Hristev <eugen.hristev@microchip.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        jacopo@jmondi.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v4 29/33] dt-bindings: media: atmel-isc: convert to yaml
-Message-ID: <20210415161656.GA1501812@robh.at.kernel.org>
-References: <20210413105731.610028-30-eugen.hristev@microchip.com>
- <20210415085530.824638-1-eugen.hristev@microchip.com>
+To:     Ikjoon Jang <ikjn@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Benson Leung <bleung@chromium.org>, devicetree@vger.kernel.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Dmitry Torokhov <dtor@chromium.org>
+Subject: Re: [PATCH v5 1/2] mfd: google,cros-ec: add DT bindings for a
+ baseboard's switch device
+Message-ID: <20210415161917.GA1506870@robh.at.kernel.org>
+References: <20210415032958.740233-1-ikjn@chromium.org>
+ <20210415032958.740233-2-ikjn@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210415085530.824638-1-eugen.hristev@microchip.com>
+In-Reply-To: <20210415032958.740233-2-ikjn@chromium.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Apr 2021 11:55:30 +0300, Eugen Hristev wrote:
-> Convert the Atmel ISC to yaml binding format.
+On Thu, 15 Apr 2021 11:29:57 +0800, Ikjoon Jang wrote:
+> This is for ChromeOS tablets which have a 'cros_cbas' switch device
+> in the "Whiskers" base board. This device can be instantiated only by
+> device tree on ARM platforms. ChromeOS EC doesn't provide a way to
+> probe the device.
 > 
-> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
+> 
 > ---
-> Changes in v4:
-> - added '|' at description to maintain line breaks
 > 
->  .../devicetree/bindings/media/atmel,isc.yaml  | 115 ++++++++++++++++++
->  .../devicetree/bindings/media/atmel-isc.txt   |  65 ----------
->  2 files changed, 115 insertions(+), 65 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/atmel,isc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/media/atmel-isc.txt
+> Changes in v5:
+>  - Add missing blank lines and change the description property's position.
+>  - Add a note to description: "this device cannot be detected at runtime."
+> 
+> Changes in v4:
+> Define cros-cbase bindings inside google,cros-ec.yaml instead of
+> a separated binding document.
+> 
+>  .../bindings/mfd/google,cros-ec.yaml          | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
