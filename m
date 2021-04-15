@@ -2,289 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B71BD36107F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 18:54:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACEF8361097
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 18:58:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234221AbhDOQyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 12:54:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42394 "EHLO
+        id S234316AbhDOQ6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 12:58:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231549AbhDOQyy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 12:54:54 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78B89C061756;
-        Thu, 15 Apr 2021 09:54:30 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id e2so8104115plh.8;
-        Thu, 15 Apr 2021 09:54:30 -0700 (PDT)
+        with ESMTP id S234301AbhDOQ6Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 12:58:24 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 044D1C061756
+        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 09:58:00 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id n2so37886774ejy.7
+        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 09:57:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=t6+Ib1ChpAOXnBtNGjoiDzvtXLgDYp5L8cXPxkw88KI=;
-        b=SS+wdoC3jTZO3q6l97sZan3UJT0ZFIDpPPakIwz5mq/vkz3EmB0XQZaovBD9A1zS3W
-         fVeFcdoBtRnpLriV8gLHUD7JjC60Hx102MnzAUnocvv0OP42mCRHAYxMik08H9xgVvbE
-         Tbpn6XwcDhJdcCaujFgmTYxlA9e16+mbh09ZGi+7O79BW9luQthw5qhLr4rFTlzRG12Z
-         NfPk0NX4Y72IMmIAcydeLCrJcR1yVh+tze7K+6s9a/CuUWto1GaH/g0sxlqNGX3iyeSg
-         n9vmU5NWtPs3/XVgb4gBaHzSiN8HwMhM4fUphd9gXpM6RGeiFVq3Rw4McLFfmGfQ8TBq
-         /y8w==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=3DgCO52fftNeZ41idappXG0DEfdrTMom3c7Wz2waGIc=;
+        b=zDujCGHhaJGpB03Y8csiGEnu2TlKuSIiAyw5BbLnVhntUDWISiQY0pre2AKCezZkzw
+         6cWjr+JIFvepZ9RZBujdjrQalMmbQRTfkAjky9igeT96ZKGFMUgC1c662fqo7VGZ2W0U
+         gMfe3Q39SE4y91BJEpZtHUEL36U1j6dXONhO4YNUkRQamSr67fP+YM9d7TK44uyDs2VT
+         n0qBlI2MTdEc3AmlfD8J6DKhKCq+OudbE7JYaxuBgC6WFmZShhC1xoxsbBllH/6rTB+d
+         hbmerLU8HwZlPJs2Zr3g6SSGZQKzm3nuW38nNpv2b2PdqNNP6MNjacC4MypEB2MOwGjJ
+         8lZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=t6+Ib1ChpAOXnBtNGjoiDzvtXLgDYp5L8cXPxkw88KI=;
-        b=t+rfXqdIDNinyuAqwJWBMsk6e9U+Mk3y37JgVOtS+1EhTuptJitWj4M0f2IkwTO8iO
-         vgIn/Q3QkKp7Dz7b+DCPRM4MhhpTiw+Tl8cEP87fxlzxeJDxVg6Yo7hMJqZHbIH/EegY
-         vglWW3YmNAF8kr/IojVa3rHYXFXBCj8/SWC8yaNLb9T6Br8fUf1rLaoNEsoWo5gq1mm0
-         WENzUK7rciRN33O6ZVRMfOEkVANjRwji75uJo+myVQwcKrCYpYzfNUSZzQMzKwesDjw3
-         dM1Y0LYCP9Kcm5HKhevNF2xgaxtk5gXyarSkeen/+ksJmhNva1jjqC7l3N+Vnjcku94v
-         uQKw==
-X-Gm-Message-State: AOAM531vIOdnKLtN66wodA/iH4OUm4dboXZ8uuBaErv9Veb75AOQJ3ja
-        fYOgRT9kTm0MGj/ouTfgmtrMfAYOXmvVdA==
-X-Google-Smtp-Source: ABdhPJztE+x+ADXySpEjI0QAgY+K+xJQ2ZC2r/Kv5mzuyDmX0YabtvPw4BhIJls7oaijQ61Hz6R//w==
-X-Received: by 2002:a17:90a:fa84:: with SMTP id cu4mr5022346pjb.2.1618505670012;
-        Thu, 15 Apr 2021 09:54:30 -0700 (PDT)
-Received: from skbuf (5-12-16-165.residential.rdsnet.ro. [5.12.16.165])
-        by smtp.gmail.com with ESMTPSA id j16sm2576105pfa.213.2021.04.15.09.54.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 09:54:29 -0700 (PDT)
-Date:   Thu, 15 Apr 2021 19:54:20 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Tobias Waldekranz <tobias@waldekranz.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, andrew@lunn.ch,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 4/5] net: dsa: Allow default tag protocol to
- be overridden from DT
-Message-ID: <20210415165420.pb5mgxyzhezqnvh5@skbuf>
-References: <20210415092610.953134-1-tobias@waldekranz.com>
- <20210415092610.953134-5-tobias@waldekranz.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=3DgCO52fftNeZ41idappXG0DEfdrTMom3c7Wz2waGIc=;
+        b=fEXXPsj9VT5GbGdk5l15jzI1bn+aHSsZfW8nbNKFfDIXYeRFEeCwJGYxW1TQumy3yS
+         t40OElFtKtwjKBhleYSz73uRLFsUtjRrtrCOlFz8nSquJsUFKg96y85ms/ubhtIeykWO
+         EYBy9R5f1gOzPZPo/Z0carilFRMPOpG0FedT4XcADtxKuXWCLKDvqYEGivSwYklUQ1PG
+         R5+yiIpJiM4L68WH60nSRv2C89ILoDtwKnYu+xs6jp31KzP+duM40kQJEWH0rU5brywz
+         RzwZEzzA0FDZFwmZriIGpZHCK74adOaa+EQ+VFJ8bYDkuikDDjr3EjzZ32zJ8vH6ZIqU
+         rGWQ==
+X-Gm-Message-State: AOAM532ttR8DnnP7Nt8KI9hcoyyanr9z0gl2gWwK3V7N+xL4VzoEYhxz
+        Za32YackZ8c+oGzJtaQBkfY17A==
+X-Google-Smtp-Source: ABdhPJy6gp4jWVe189u4BauC4L6mG/7JLHUHTYQJmlJd1gLmtdY4ro6AZVCQPt5FMgB6G++44TvNcA==
+X-Received: by 2002:a17:906:1519:: with SMTP id b25mr4441330ejd.254.1618505878656;
+        Thu, 15 Apr 2021 09:57:58 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id bw14sm2313535ejb.89.2021.04.15.09.57.57
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 15 Apr 2021 09:57:58 -0700 (PDT)
+Subject: Re: [PATCH v4 4/9] ASoC: dt-bindings: wcd938x-sdw: add bindings for
+ wcd938x-sdw
+To:     Rob Herring <robh@kernel.org>
+Cc:     broonie@kernel.org, devicetree@vger.kernel.org, perex@perex.cz,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com
+References: <20210414154845.21964-1-srinivas.kandagatla@linaro.org>
+ <20210414154845.21964-5-srinivas.kandagatla@linaro.org>
+ <20210415163912.GA1524320@robh.at.kernel.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <2458de43-2747-d377-e115-f014fb2b9907@linaro.org>
+Date:   Thu, 15 Apr 2021 17:57:57 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210415092610.953134-5-tobias@waldekranz.com>
+In-Reply-To: <20210415163912.GA1524320@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 15, 2021 at 11:26:09AM +0200, Tobias Waldekranz wrote:
-> Some combinations of tag protocols and Ethernet controllers are
-> incompatible, and it is hard for the driver to keep track of these.
+
+
+On 15/04/2021 17:39, Rob Herring wrote:
+> On Wed, Apr 14, 2021 at 04:48:40PM +0100, Srinivas Kandagatla wrote:
+>> Qualcomm WCD9380/WCD9385 Codec is a standalone Hi-Fi audio codec IC
+>> connected over SoundWire. This device has two SoundWire devices RX and
+>> TX respectively. This bindings is for those slave devices on WCD9380/WCD9385.
+>>
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> ---
+>>   .../bindings/sound/qcom,wcd938x-sdw.yaml      | 61 +++++++++++++++++++
+>>   1 file changed, 61 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd938x-sdw.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd938x-sdw.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd938x-sdw.yaml
+>> new file mode 100644
+>> index 000000000000..fff33c65491b
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/sound/qcom,wcd938x-sdw.yaml
+>> @@ -0,0 +1,61 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/sound/qcom,wcd938x-sdw.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Bindings for Qualcomm SoundWire Slave devices on WCD9380/WCD9385
+>> +
+>> +maintainers:
+>> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> +
+>> +description: |
+>> +  Qualcomm WCD9380/WCD9385 Codec is a standalone Hi-Fi audio codec IC.
+>> +  It has RX and TX Soundwire slave devices. This bindings is for the
+>> +  slave devices.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: sdw20217010d00
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  qcom,direction:
+>> +    description: direction of the SoundWire device instance
+>> +    enum:
+>> +      - rx
+>> +      - tx
 > 
-> Therefore, allow the device tree author (typically the board vendor)
-> to inform the driver of this fact by selecting an alternate protocol
-> that is known to work.
+> Was thinking these were some established bus properties...
 > 
-> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
-> ---
->  include/net/dsa.h |  5 +++
->  net/dsa/dsa2.c    | 95 ++++++++++++++++++++++++++++++++++++++---------
->  2 files changed, 83 insertions(+), 17 deletions(-)
+> This would just be implied by the 'reg' property index. You could define
+> 'reg-names' too I guess.
 > 
-> diff --git a/include/net/dsa.h b/include/net/dsa.h
-> index 1259b0f40684..2b25fe1ad5b7 100644
-> --- a/include/net/dsa.h
-> +++ b/include/net/dsa.h
-> @@ -149,6 +149,11 @@ struct dsa_switch_tree {
->  	/* Tagging protocol operations */
->  	const struct dsa_device_ops *tag_ops;
->  
-> +	/* Default tagging protocol preferred by the switches in this
-> +	 * tree.
-> +	 */
-> +	enum dsa_tag_protocol default_proto;
-> +
->  	/*
->  	 * Configuration data for the platform device that owns
->  	 * this dsa switch tree instance.
-> diff --git a/net/dsa/dsa2.c b/net/dsa/dsa2.c
-> index d7c22e3a1fbf..80dbf8b6bf8f 100644
-> --- a/net/dsa/dsa2.c
-> +++ b/net/dsa/dsa2.c
-> @@ -668,6 +668,35 @@ static const struct devlink_ops dsa_devlink_ops = {
->  	.sb_occ_tc_port_bind_get	= dsa_devlink_sb_occ_tc_port_bind_get,
->  };
->  
-> +static int dsa_switch_setup_tag_protocol(struct dsa_switch *ds)
-> +{
-> +	const struct dsa_device_ops *tag_ops = ds->dst->tag_ops;
-> +	struct dsa_switch_tree *dst = ds->dst;
-> +	int port, err;
-> +
-> +	if (tag_ops->proto == dst->default_proto)
-> +		return 0;
-> +
-> +	if (!ds->ops->change_tag_protocol) {
-> +		dev_err(ds->dev, "Tag protocol cannot be modified\n");
-> +		return -EINVAL;
-> +	}
-
-We validated this already here:
-
-		if (ds->ops->change_tag_protocol) {
-			tag_ops = dsa_find_tagger_by_name(user_protocol);
-		} else {
-			dev_err(ds->dev, "Tag protocol cannot be modified\n");
-			return -EINVAL;
-		}
-
-> +
-> +	for (port = 0; port < ds->num_ports; port++) {
-> +		if (!dsa_is_cpu_port(ds, port))
-> +			continue;
-> +
-> +		err = ds->ops->change_tag_protocol(ds, port, tag_ops->proto);
-> +		if (err) {
-> +			dev_err(ds->dev, "Tag protocol \"%s\" is not supported\n",
-> +				tag_ops->name);
-
-Maybe instead of saying "is not supported", you can say
-"Changing the tag protocol to \"%s\" returned %pe", tag_ops->name, ERR_PTR(err)
-which is a bit more informative.
-
-> +			return err;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int dsa_switch_setup(struct dsa_switch *ds)
->  {
->  	struct dsa_devlink_priv *dl_priv;
-> @@ -718,6 +747,10 @@ static int dsa_switch_setup(struct dsa_switch *ds)
->  	if (err < 0)
->  		goto unregister_notifier;
->  
-> +	err = dsa_switch_setup_tag_protocol(ds);
-> +	if (err)
-> +		goto teardown;
-> +
->  	devlink_params_publish(ds->devlink);
->  
->  	if (!ds->slave_mii_bus && ds->ops->phy_read) {
-> @@ -1068,34 +1101,60 @@ static enum dsa_tag_protocol dsa_get_tag_protocol(struct dsa_port *dp,
->  	return ds->ops->get_tag_protocol(ds, dp->index, tag_protocol);
->  }
->  
-> -static int dsa_port_parse_cpu(struct dsa_port *dp, struct net_device *master)
-> +static int dsa_port_parse_cpu(struct dsa_port *dp, struct net_device *master,
-> +			      const char *user_protocol)
->  {
->  	struct dsa_switch *ds = dp->ds;
->  	struct dsa_switch_tree *dst = ds->dst;
->  	const struct dsa_device_ops *tag_ops;
-> -	enum dsa_tag_protocol tag_protocol;
-> +	enum dsa_tag_protocol default_proto;
-> +
-> +	/* Find out which protocol the switch would prefer. */
-> +	default_proto = dsa_get_tag_protocol(dp, master);
-> +	if (dst->default_proto) {
-> +		if (dst->default_proto != default_proto) {
-> +			dev_err(ds->dev,
-> +				"A DSA switch tree can have only one tagging protocol\n");
-> +			return -EINVAL;
-> +		}
-> +	} else {
-> +		dst->default_proto = default_proto;
-> +	}
-> +
-> +	/* See if the user wants to override that preference. */
-> +	if (user_protocol) {
-> +		if (ds->ops->change_tag_protocol) {
-> +			tag_ops = dsa_find_tagger_by_name(user_protocol);
-> +		} else {
-> +			dev_err(ds->dev, "Tag protocol cannot be modified\n");
-> +			return -EINVAL;
-> +		}
-
-Your choice, but how about:
-
-		if (!ds->ops->change_tag_protocol) {
-			dev_err(ds->dev, "Tag protocol cannot be modified\n");
-			return -EINVAL;
-		}
-
-		tag_ops = dsa_find_tagger_by_name(user_protocol);
-
-> +	} else {
-> +		tag_ops = dsa_tag_driver_get(default_proto);
-> +	}
-> +
-> +	if (IS_ERR(tag_ops)) {
-> +		if (PTR_ERR(tag_ops) == -ENOPROTOOPT)
-> +			return -EPROBE_DEFER;
-> +
-> +		dev_warn(ds->dev, "No tagger for this switch\n");
-> +		return PTR_ERR(tag_ops);
-> +	}
->  
-> -	tag_protocol = dsa_get_tag_protocol(dp, master);
->  	if (dst->tag_ops) {
-> -		if (dst->tag_ops->proto != tag_protocol) {
-> +		if (dst->tag_ops != tag_ops) {
->  			dev_err(ds->dev,
->  				"A DSA switch tree can have only one tagging protocol\n");
-> +
-> +			dsa_tag_driver_put(tag_ops);
->  			return -EINVAL;
->  		}
-> +
->  		/* In the case of multiple CPU ports per switch, the tagging
-> -		 * protocol is still reference-counted only per switch tree, so
-> -		 * nothing to do here.
-> +		 * protocol is still reference-counted only per switch tree.
->  		 */
-> +		dsa_tag_driver_put(tag_ops);
->  	} else {
-> -		tag_ops = dsa_tag_driver_get(tag_protocol);
-> -		if (IS_ERR(tag_ops)) {
-> -			if (PTR_ERR(tag_ops) == -ENOPROTOOPT)
-> -				return -EPROBE_DEFER;
-> -			dev_warn(ds->dev, "No tagger for this switch\n");
-> -			dp->master = NULL;
-> -			return PTR_ERR(tag_ops);
-> -		}
-> -
->  		dst->tag_ops = tag_ops;
-
-So at the end of dsa_port_parse_cpu, we have a dst->tag_ops which is
-temporarily out of sync with the driver. We call dsa_port_set_tag_protocol()
-with the new tagging protocol _before_ we call ds->ops->change_tag_protocol.
-But as opposed to dsa_switch_change_tag_proto(), if ds->ops->change_tag_protocol
-fails from the probe path, we treat it as a catastrophic error. So at
-the end there is no risk of having anything out of sync I believe.
-
-Maybe you should write this down in a comment? The logic is pretty
-convoluted and hard to follow.
-
->  	}
->  
-> @@ -1117,12 +1176,14 @@ static int dsa_port_parse_of(struct dsa_port *dp, struct device_node *dn)
->  
->  	if (ethernet) {
->  		struct net_device *master;
-> +		const char *user_protocol;
->  
->  		master = of_find_net_device_by_node(ethernet);
->  		if (!master)
->  			return -EPROBE_DEFER;
->  
-> -		return dsa_port_parse_cpu(dp, master);
-> +		user_protocol = of_get_property(dn, "dsa,tag-protocol", NULL);
-> +		return dsa_port_parse_cpu(dp, master, user_protocol);
->  	}
->  
->  	if (link)
-> @@ -1234,7 +1295,7 @@ static int dsa_port_parse(struct dsa_port *dp, const char *name,
->  
->  		dev_put(master);
->  
-> -		return dsa_port_parse_cpu(dp, master);
-> +		return dsa_port_parse_cpu(dp, master, NULL);
->  	}
->  
->  	if (!strcmp(name, "dsa"))
-> -- 
-> 2.25.1
+>> +
+>> +  qcom,port-mapping:
+>> +    description: |
+>> +      Specifies static port mapping between slave and master ports.
+>> +      In the order of slave port index.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 4
+>> +    maxItems: 5
 > 
+> qcom,rx-port-mapping and qcom,tx-port-mapping?
+> 
+
+If we have this property then "qcom,direction" becomes redundant.
+
+> Or keep a single property and the driver knows how many slave ports for
+> each direction. IOW, an array of 9 with first 4 entries for tx and last
+> 5 for rx.
+
+We can't have a single property with 9 entries as these are two separate 
+devices, rx SoundWire Slave has 5 ports implemented where as tx SounWire 
+slave has only 4 ports implemented in hw.
+
+And the are on different SoundWire buses.
+
+--srini
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - qcom,direction
+>> +  - qcom,port-mapping
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    soundwire@3230000 {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <0>;
+>> +        reg = <0x03230000 0x2000>;
+>> +
+>> +        codec@0,3 {
+>> +            compatible = "sdw20217010d00";
+>> +            reg  = <0 3>;
+>> +            qcom,direction = "tx";
+>> +            qcom,port-mapping = <2 3 4 5>;
+>> +        };
+>> +    };
+>> +
+>> +...
+>> -- 
+>> 2.21.0
+>>
