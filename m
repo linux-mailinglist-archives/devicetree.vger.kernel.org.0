@@ -2,273 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9CCD3602DC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 08:59:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58BF13602EE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 09:06:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230118AbhDOHAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 03:00:14 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:52349 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230090AbhDOHAN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 03:00:13 -0400
-Received: from uno.localdomain (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 3EABA20000E;
-        Thu, 15 Apr 2021 06:59:47 +0000 (UTC)
-Date:   Thu, 15 Apr 2021 09:00:27 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/5] arm64: dts: renesas: eagle: Add GMSL .dtsi
-Message-ID: <20210415070027.t3p5mlxnwq2qazao@uno.localdomain>
-References: <20210414135128.180980-1-jacopo+renesas@jmondi.org>
- <20210414135128.180980-5-jacopo+renesas@jmondi.org>
- <YHeAbbyc2oURne3G@pendragon.ideasonboard.com>
+        id S230056AbhDOHGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 03:06:53 -0400
+Received: from www381.your-server.de ([78.46.137.84]:51512 "EHLO
+        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229503AbhDOHGw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 03:06:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=GpPC6kjMAScPgOy9gWmvzAqvitQWMheOac8bf5AM7OU=; b=MVjRdroWh7p90PFc+51tvIkr9K
+        5rF2ufksBnKBAKF/7NjjzvDgkpaf02c0VwzlLVv+C37KTg05jtSr4V4dz5fZRhDJicdJvfaZqYH7g
+        ni6MvHdyScuSCU1sLgyTCO6fh2H7CzQDXYeUCGNriJH53TNR6uw9dzAaAMyHVMIstZbwB60x5iMzS
+        FN/fg0UoS6uLdyxmOM+CImCns1dG55lSo0JOJxr3us/TggXzEUZFI0iZAt57cla95avOHwXyr8IXm
+        pi7DXOixVkneDuCsYuwNqsO8VeTvpxMHvUnIDhQh38qs1s+Aoqf/2d7xfZ9RdclMjWnqHROjojIiw
+        X6fsCtuA==;
+Received: from sslproxy05.your-server.de ([78.46.172.2])
+        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92.3)
+        (envelope-from <lars@metafoo.de>)
+        id 1lWw54-000Chl-Lw; Thu, 15 Apr 2021 09:06:26 +0200
+Received: from [2001:a61:2a42:9501:9e5c:8eff:fe01:8578]
+        by sslproxy05.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1lWw54-0003pF-B1; Thu, 15 Apr 2021 09:06:26 +0200
+Subject: Re: [RFC v2 PATCH 0/7] Xilinx DMA enhancements and optimization
+To:     Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
+        vkoul@kernel.org, robh+dt@kernel.org, michal.simek@xilinx.com
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        git@xilinx.com
+References: <1617990965-35337-1-git-send-email-radhey.shyam.pandey@xilinx.com>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+Message-ID: <0948eae0-b304-79f8-7d9a-543cba78fbe5@metafoo.de>
+Date:   Thu, 15 Apr 2021 09:06:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YHeAbbyc2oURne3G@pendragon.ideasonboard.com>
+In-Reply-To: <1617990965-35337-1-git-send-email-radhey.shyam.pandey@xilinx.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.102.4/26140/Wed Apr 14 13:10:01 2021)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+On 4/9/21 7:55 PM, Radhey Shyam Pandey wrote:
+> Some background about the patch series: Xilinx Axi Ethernet device driver
+> (xilinx_axienet_main.c) currently has axi-dma code inside it. The goal
+> is to refactor axiethernet driver and use existing AXI DMA driver using
+> DMAEngine API.
 
-On Thu, Apr 15, 2021 at 02:53:17AM +0300, Laurent Pinchart wrote:
-> Hi Jacopo and Kieran,
->
-> Thank you for the patch.
->
-> On Wed, Apr 14, 2021 at 03:51:27PM +0200, Jacopo Mondi wrote:
-> > From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-> >
-> > Describe the FAKRA connector available on Eagle board that allows
-> > connecting GMSL camera modules such as IMI RDACM20 and RDACM21.
-> >
-> > Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
-> > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> > ---
-> >  arch/arm64/boot/dts/renesas/eagle-gmsl.dtsi | 186 ++++++++++++++++++++
-> >  1 file changed, 186 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/renesas/eagle-gmsl.dtsi
-> >
-> > diff --git a/arch/arm64/boot/dts/renesas/eagle-gmsl.dtsi b/arch/arm64/boot/dts/renesas/eagle-gmsl.dtsi
-> > new file mode 100644
-> > index 000000000000..1836bca1e8b2
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/renesas/eagle-gmsl.dtsi
-> > @@ -0,0 +1,186 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * Device Tree Source (overlay) for the Eagle V3M GMSL connectors
-> > + *
-> > + * Copyright (C) 2017 Ideas on Board <kieran.bingham@ideasonboard.com>
-> > + * Copyright (C) 2021 Jacopo Mondi <jacopo+renesas@jmondi.org>
-> > + *
-> > + * This overlay allows you to define GMSL cameras connected to the FAKRA
-> > + * connectors on the Eagle-V3M (or compatible) board.
-> > + *
-> > + * The following cameras are currently supported:
-> > + *    "imi,rdacm20"
-> > + *    "imi,rdacm21"
-> > + */
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +
-> > +/*
-> > + * Select which cameras are in use:
-> > + * #define EAGLE_CAMERA0_RDACM20
-> > + * #define EAGLE_CAMERA0_RDACM21
-> > + *
-> > + * The two camera modules are configured with different image formats
-> > + * and cannot be mixed.
-> > + */
-> > +#define EAGLE_CAMERA0_RDACM21
-> > +#define EAGLE_CAMERA1_RDACM21
-> > +#define EAGLE_CAMERA2_RDACM21
-> > +#define EAGLE_CAMERA3_RDACM21
->
-> To avoid possible errors, I'd use one macro to set the camera model, and
-> another macro to select the ports. The second could be a bitmask if
-> desired.
->
-> These macros should be defined in the file that includes this file, not
-> here.
+This is pretty neat! Do you have the patches that modify the AXI 
+Ethernet driver in a public tree somewhere, so this series can be seen 
+in context?
 
-Don't worry, I have quite some comments from you on the dts patches
-from the previous versio of the series still to address... As said in
-the cover letter I was mostly interested in a validation of the new
-property and the driver support.
-
-Thanks
-  j
-
->
-> > +
-> > +/* Set the compatible string based on the camera model. */
-> > +#if defined(EAGLE_CAMERA0_RDACM21) || defined(EAGLE_CAMERA1_RDACM21) || \
-> > +    defined(EAGLE_CAMERA2_RDACM21) || defined(EAGLE_CAMERA3_RDACM21)
-> > +#define EAGLE_CAMERA_MODEL	"imi,rdacm21"
-> > +#define EAGLE_USE_RDACM21
-> > +#elif defined(EAGLE_CAMERA0_RDACM20) || defined(EAGLE_CAMERA1_RDACM20) || \
-> > +      defined(EAGLE_CAMERA2_RDACM20) || defined(EAGLE_CAMERA3_RDACM20)
-> > +#define EAGLE_CAMERA_MODEL	"imi,rdacm20"
-> > +#define EAGLE_USE_RDACM20
-> > +#endif
-> > +
-> > +/* Define which cameras are available. */
-> > +#if defined(EAGLE_CAMERA0_RDACM21) || defined(EAGLE_CAMERA0_RDACM20)
-> > +#define EAGLE_USE_CAMERA_0
-> > +#endif
-> > +
-> > +#if defined(EAGLE_CAMERA1_RDACM21) || defined(EAGLE_CAMERA1_RDACM20)
-> > +#define EAGLE_USE_CAMERA_1
-> > +#endif
-> > +
-> > +#if defined(EAGLE_CAMERA2_RDACM21) || defined(EAGLE_CAMERA2_RDACM20)
-> > +#define EAGLE_USE_CAMERA_2
-> > +#endif
-> > +
-> > +#if defined(EAGLE_CAMERA3_RDACM21) || defined(EAGLE_CAMERA3_RDACM20)
-> > +#define EAGLE_USE_CAMERA_3
-> > +#endif
-> > +
-> > +/* Define the endpoint links. */
-> > +#ifdef EAGLE_USE_CAMERA_0
-> > +&max9286_in0 {
-> > +	remote-endpoint = <&fakra_con0>;
-> > +};
-> > +#endif
-> > +
-> > +#ifdef EAGLE_USE_CAMERA_1
-> > +&max9286_in1 {
-> > +	remote-endpoint = <&fakra_con1>;
-> > +};
-> > +#endif
-> > +
-> > +#ifdef EAGLE_USE_CAMERA_2
-> > +&max9286_in2 {
-> > +	remote-endpoint = <&fakra_con2>;
-> > +};
-> > +#endif
-> > +
-> > +#ifdef EAGLE_USE_CAMERA_3
-> > +&max9286_in3 {
-> > +	remote-endpoint = <&fakra_con3>;
-> > +};
-> > +#endif
-> > +
-> > +/* Populate the GMSL i2c-mux bus with camera nodes. */
-> > +#if defined(EAGLE_USE_RDACM21) || defined(EAGLE_USE_RDACM20)
-> > +
-> > +#ifdef EAGLE_USE_CAMERA_0
-> > +&vin0 {
-> > +	status = "okay";
-> > +};
-> > +#endif
-> > +
-> > +#ifdef EAGLE_USE_CAMERA_1
-> > +&vin1 {
-> > +	status = "okay";
-> > +};
-> > +#endif
-> > +
-> > +#ifdef EAGLE_USE_CAMERA_2
-> > +&vin2 {
-> > +	status = "okay";
-> > +};
-> > +#endif
-> > +
-> > +#ifdef EAGLE_USE_CAMERA_3
-> > +&vin3 {
-> > +	status = "okay";
-> > +};
-> > +#endif
-> > +
-> > +&gmsl {
-> > +
-> > +	status = "okay";
-> > +	maxim,reverse-channel-microvolt = <100000>;
-> > +
-> > +	i2c-mux {
-> > +#ifdef EAGLE_USE_CAMERA_0
-> > +		i2c@0 {
-> > +			status = "okay";
-> > +
-> > +			camera@51 {
-> > +				compatible = EAGLE_CAMERA_MODEL;
-> > +				reg = <0x51>, <0x61>;
-> > +
-> > +				port {
-> > +					fakra_con0: endpoint {
-> > +						remote-endpoint = <&max9286_in0>;
-> > +					};
-> > +				};
-> > +			};
-> > +		};
-> > +#endif
-> > +
-> > +#ifdef EAGLE_USE_CAMERA_1
-> > +		i2c@1 {
-> > +			status = "okay";
-> > +
-> > +			camera@52 {
-> > +				compatible = EAGLE_CAMERA_MODEL;
-> > +				reg = <0x52>, <0x62>;
-> > +
-> > +				port {
-> > +					fakra_con1: endpoint {
-> > +						remote-endpoint = <&max9286_in1>;
-> > +					};
-> > +				};
-> > +			};
-> > +		};
-> > +#endif
-> > +
-> > +#ifdef EAGLE_USE_CAMERA_2
-> > +		i2c@2 {
-> > +			status = "okay";
-> > +
-> > +			camera@53 {
-> > +				compatible = EAGLE_CAMERA_MODEL;
-> > +				reg = <0x53>, <0x63>;
-> > +
-> > +				port {
-> > +					fakra_con2: endpoint {
-> > +						remote-endpoint = <&max9286_in2>;
-> > +					};
-> > +				};
-> > +			};
-> > +		};
-> > +#endif
-> > +
-> > +#ifdef EAGLE_USE_CAMERA_3
-> > +		i2c@3 {
-> > +			status = "okay";
-> > +
-> > +			camera@54 {
-> > +				compatible = EAGLE_CAMERA_MODEL;
-> > +				reg = <0x54>, <0x64>;
-> > +
-> > +				port {
-> > +					fakra_con3: endpoint {
-> > +						remote-endpoint = <&max9286_in3>;
-> > +					};
-> > +				};
-> > +			};
-> > +		};
-> > +#endif
-> > +	};
-> > +};
-> > +#endif
->
-> --
-> Regards,
->
-> Laurent Pinchart
