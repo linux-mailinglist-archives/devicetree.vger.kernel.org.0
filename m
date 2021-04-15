@@ -2,181 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BD483602A9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 08:49:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A78B53602C2
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 08:53:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229933AbhDOGt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 02:49:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49700 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbhDOGt0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 02:49:26 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF455C061574
-        for <devicetree@vger.kernel.org>; Wed, 14 Apr 2021 23:49:03 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lWvo8-0002Xv-UD; Thu, 15 Apr 2021 08:48:56 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lWvo8-0005YD-GV; Thu, 15 Apr 2021 08:48:56 +0200
-Date:   Thu, 15 Apr 2021 08:48:54 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Clemens Gruber <clemens.gruber@pqgruber.com>
-Cc:     linux-pwm@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sven Van Asbroeck <TheSven73@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 1/8] pwm: pca9685: Switch to atomic API
-Message-ID: <20210415064854.glrvk7d634bisb34@pengutronix.de>
-References: <20210412132745.76609-1-clemens.gruber@pqgruber.com>
- <20210412161808.lp2amdfopw74lvz7@pengutronix.de>
- <YHR3wP4Fk3jidnri@workstation.tuxnet>
- <20210412201019.vouxx4daumusrcvr@pengutronix.de>
- <YHWKehtYFSaHt1hC@workstation.tuxnet>
- <20210413193818.r7oqzdzbxqf5sjj3@pengutronix.de>
- <YHbbaiwK9Tasb7NF@workstation.tuxnet>
- <20210414192131.2o4c2eia6jnjatp2@pengutronix.de>
- <YHdGXG3PbsmicK7U@workstation.tuxnet>
+        id S230487AbhDOGyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 02:54:07 -0400
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:35971 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229933AbhDOGyH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 02:54:07 -0400
+X-Originating-IP: 93.61.96.190
+Received: from uno.localdomain (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id F114E60008;
+        Thu, 15 Apr 2021 06:53:41 +0000 (UTC)
+Date:   Thu, 15 Apr 2021 08:54:20 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: media: max9286: Define
+ 'maxim,gpio-poc'
+Message-ID: <20210415065420.lbba2hig4p2ynx6c@uno.localdomain>
+References: <20210414135128.180980-1-jacopo+renesas@jmondi.org>
+ <20210414135128.180980-2-jacopo+renesas@jmondi.org>
+ <YHd/AKIfxIHhTjWO@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="kij3efdivtjivdyy"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <YHdGXG3PbsmicK7U@workstation.tuxnet>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <YHd/AKIfxIHhTjWO@pendragon.ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Laurent,
 
---kij3efdivtjivdyy
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Apr 15, 2021 at 02:47:12AM +0300, Laurent Pinchart wrote:
+> Hi Jacopo,
+>
+> Thank you for the patch.
+>
+> On Wed, Apr 14, 2021 at 03:51:24PM +0200, Jacopo Mondi wrote:
+> > Define a new vendor property in the maxim,max9286 binding schema.
+> >
+> > The new property allows to declare that the remote camera
+> > power-over-coax is controlled by one of the MAX9286 gpio lines.
+> >
+> > As it is currently not possible to establish a regulator as consumer
+> > of the MAX9286 gpio controller for this purpose, the property allows to
+> > declare that the camera power is controlled by the MAX9286 directly.
+> >
+> > The property accepts a gpio-index (0 or 1) and one line polarity
+> > flag as defined by dt-bindings/gpio/gpio.h.
+> >
+> > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> > ---
+> >  .../bindings/media/i2c/maxim,max9286.yaml     | 53 ++++++++++++++++++-
+> >  1 file changed, 52 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> > index ee16102fdfe7..480a491f3744 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> > @@ -70,6 +70,24 @@ properties:
+> >        a remote serializer whose high-threshold noise immunity is not enabled
+> >        is 100000 micro volts
+> >
+> > +  maxim,gpio-poc:
+>
+> I would have written poc-gpio to match the order of the GPIO bindings
+> syntax.
+>
 
-On Wed, Apr 14, 2021 at 09:45:32PM +0200, Clemens Gruber wrote:
-> On Wed, Apr 14, 2021 at 09:21:31PM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Wed, Apr 14, 2021 at 02:09:14PM +0200, Clemens Gruber wrote:
-> > > Hi Uwe,
-> > >=20
-> > > On Tue, Apr 13, 2021 at 09:38:18PM +0200, Uwe Kleine-K=F6nig wrote:
-> > > > Hello Clemens,
-> > > >=20
-> > > > On Tue, Apr 13, 2021 at 02:11:38PM +0200, Clemens Gruber wrote:
-> > > > > On Mon, Apr 12, 2021 at 10:10:19PM +0200, Uwe Kleine-K=F6nig wrot=
-e:
-> > > > > > On Mon, Apr 12, 2021 at 06:39:28PM +0200, Clemens Gruber wrote:
-> > > > > > > With your suggested round-down, the example with frequency of=
- 200 Hz
-> > > > > > > would no longer result in 30 but 29 and that contradicts the =
-datasheet.
-> > > > > >=20
-> > > > > > Well, with PRESCALE =3D 30 we get a frequency of 196.88 Hz and =
-with
-> > > > > > PRESCALE =3D 29 we get a frequency of 203.45 Hz. So no matter i=
-f you pick
-> > > > > > 29 or 30, you don't get 200 Hz. And which of the two possible v=
-alues is
-> > > > > > the better one depends on the consumer, no matter what rounding
-> > > > > > algorithm the data sheet suggests. Also note that the math here=
- contains
-> > > > > > surprises you don't expect at first. For example, what PRESCALE=
- value
-> > > > > > would you pick to get 284 Hz? [If my mail was a video, I'd sugg=
-est to
-> > > > > > press Space now to pause and let you think first :-)] The data =
-sheet's
-> > > > > > formula suggests:
-> > > > > >=20
-> > > > > > 	round(25 MHz / (4096 * 284)) - 1 =3D 20
-> > > > > >=20
-> > > > > > The resulting frequency when picking PRESCALE =3D 20 is 290.644=
- Hz (so an
-> > > > > > error of 6.644 Hz). If instead you pick PRESCALE =3D 21 you get=
- 277.433 Hz
-> > > > > > (error =3D 6.567 Hz), so 21 is the better choice.
-> > > > > >=20
-> > > > > > Exercise for the reader:
-> > > > > >  What is the correct formula to really determine the PRESCALE v=
-alue that
-> > > > > >  yields the best approximation (i.e. minimizing
-> > > > > >  abs(real_freq - target_freq)) for a given target_freq?
-> > > >=20
-> > > > I wonder if you tried this.
-> > >=20
-> > > We could calculate both round-up and round-down and decide which one =
-is
-> > > closer to "real freq" (even though that is not the actual frequency b=
-ut
-> > > just our backwards-calculated frequency).
-> >=20
-> > Yeah, the backwards-calculated frequency is the best assumption we
-> > have.
-> >=20
-> > > But I can't give you a formula with minimized abs(real_freq-target_fr=
-eq)
-> > > Is it a different round point than 0.5 and maybe relative to f ?
-> > >=20
-> > > Please enlighten us :-)
-> >=20
-> > Sorry, I cannot. I spend ~20 min today after lunch with pencil and
-> > paper, but without success. I was aware that it isn't trivial and this
-> > is the main reason I established round-down as default for new drivers
-> > instead of round-nearest.
->=20
-> Oh, I thought you already solved it. I tried too for a while but was
-> unsuccessful. Not trivial indeed!
->=20
-> But regarding you establishing round-down: Wouldn't it be even better if
-> the driver did what I suggested above, namely calculate backwards from
-> both the rounded-up as well as the rounded-down prescale value and then
-> write the one with the smallest abs(f_target - f_real) to the register?
+That's what I had :) but then the property gets matched against the
+gpio schema and I get complains because it expects a phandle as first
+argument... Maybe there's a way I've missed to prevent the property to
+be matched with *-gpio ?
 
-No, I don't think so for several reasons. First, just rounding down is
-easier (and keeping lowlevel drivers rules and implementation easy is
-IMHO a good goal). The second reason is that round-nearest is a bit
-ambigous because round to the nearest frequency is slightly different to
-round to the nearest period length. So to actually implement (or use)
-it correctly, people have to grasp that difference. Compared to that
-rounding down the period length corresponds 1:1 to rounding up
-frequency. That's easy.
+> > +    $ref: '/schemas/types.yaml#/definitions/uint32-array'
+> > +    minItems: 2
+> > +    maxItems: 2
+> > +    description: |
+> > +      Identifier of gpio line that controls Power over Coax to the cameras and
+>
+> I'd write "Index of the MAX9286 GPIO output that ..." to make it clear
+> that this is not a generic GPIO.
+>
 
-For the third reason I have to backup a bit: I intend to introduce a
-function pwm_round_rate that predicts what pwm_apply_rate will actually
-implement. Of course it must have the same rounding rules. This allows
-to implement efficient search for consumers that e.g. prefer
-round-nearest time, or round-nearest frequency. I'm convinced that
-searching the optimal request to make is easier if round_rate uses
-round-down and not round-nearest.
+Ack
 
-All three reasons boil down to "the math for round-down is just simpler
-(for implementers and for users) than with round-nearest".
+> > +      the associated polarity flag (GPIO_ACTIVE_HIGH and GPIO_ACTIVE_LOW)
+> > +      as defined in <include/dt-bindings/gpio/gpio.h>.
+> > +
+> > +      When the remote cameras power is controlled by one of the MAX9286 gpio
+> > +      lines, this property has to be used to specify which line among the two
+> > +      available ones controls the remote camera power enablement.
+> > +
+> > +      When this property is used it is not possible to register a gpio
+> > +      controller as the gpio lines are controlled directly by the MAX9286 and
+> > +      not available for consumers, nor the 'poc-supply' property should be
+> > +      specified.
+>
+> Only one of the two lines would be controlled directly. Shouldn't we
+> still register a GPIO controller for the other line ?
 
-Best regards
-Uwe
+I considered that and thought it was a bit of an overkill (and I also
+had a bit of troubles identifying how to register only gpio #1, as it
+would be identified as gpio #0 if the actual #0 is not registered)
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+>
+> Could you also mention somewhere that the first item in the array should
+> be 0 or 1 ? It may be hard to express in a YAML schema, so I'm fine just
+> documenting it in the description.
+>
 
---kij3efdivtjivdyy
-Content-Type: application/pgp-signature; name="signature.asc"
+Sure, I tried identifying how to express that with yaml and failed :)
 
------BEGIN PGP SIGNATURE-----
+> I've been wondering whether this would be a common enough issue that it
+> could justify support in the GPIO core to handle consumer-provider
+> loops, but even if that happens at some point in the future, I think the
+> proposal here is good enough and we won't need to switch.
+>
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmB34dMACgkQwfwUeK3K
-7AkZWgf/SJH5gUNhVoq0Ss5l1e4cNXs73avV6WBUWFp9ZanIcKrNAo+vsErxneq3
-riw2RUutTTaVybfzlbwfeGJJVLrnnKDKIgp6DJPsHXVS3puf0hfjsVlSVmwpisnV
-xkfpshaAfWXdH+IBQFBj9p7CJsaqeVsV2Dwm8+A9Ud7J9LYduqNvKLq1eW1CbwcW
-NOJNIFQqB+Am4AnD8W7/jMbnKoXlhSG2Cc4+HSNjoczDw8029wYIMP1GBY62a7Q1
-OmhP696dLosuUs/T73ZZg65EojAZfg7qRaBFmgBlLtDFJHSl1njj1F0x7Qj277ut
-u4/11FzWpidfcR2e5PZiq0E5INSYqQ==
-=gN4c
------END PGP SIGNATURE-----
+Please note that with the suggestion offline from rob I will add to
+the next version:
 
---kij3efdivtjivdyy--
+# If 'maxim,gpio-poc' is present, then 'poc-supply' and 'gpio-controller'
+# are not allowed.
+if:
+  required:
+    - maxim,gpio-poc
+then:
+  allOf:
+    - not:
+        required:
+          - poc-supply
+    - not:
+        required:
+          - gpio-controller
+
+> > +
+> >    ports:
+> >      $ref: /schemas/graph.yaml#/properties/ports
+> >
+> > @@ -182,7 +200,6 @@ required:
+> >    - reg
+> >    - ports
+> >    - i2c-mux
+> > -  - gpio-controller
+> >
+> >  additionalProperties: false
+> >
+> > @@ -327,4 +344,38 @@ examples:
+> >            };
+> >          };
+> >        };
+> > +
+> > +      /*
+> > +       * Example of a deserializer that controls the camera Power over Coax
+> > +       * through one of its gpio lines.
+> > +       */
+> > +      gmsl-deserializer@6c {
+> > +        compatible = "maxim,max9286";
+> > +        reg = <0x6c>;
+> > +        enable-gpios = <&gpio 14 GPIO_ACTIVE_HIGH>;
+> > +
+> > +        /*
+> > +         * The remote camera power is controlled by MAX9286 GPIO line #0.
+> > +         * No 'poc-supply' nor 'gpio-controller' are specified.
+> > +         */
+> > +        maxim,gpio-poc = <0 GPIO_ACTIVE_LOW>;
+> > +
+> > +        /*
+> > +         * Do not describe connections as they're the same as in the previous
+> > +         * example.
+> > +         */
+> > +        ports {
+> > +          #address-cells = <1>;
+> > +          #size-cells = <0>;
+> > +
+> > +          port@4 {
+> > +            reg = <4>;
+> > +          };
+> > +        };
+> > +
+> > +        i2c-mux {
+> > +          #address-cells = <1>;
+> > +          #size-cells = <0>;
+> > +        };
+> > +      };
+> >      };
+>
+> It's customary to indent DT examples with 4 spaces. The existing
+> examples use two spaces, so maybe a patch on top of this would be useful
+> to increase readability ?
+>
+
+Ah weird! I can add a patch before this one!
+
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>
+
+Thanks
+   j
+
+> --
+> Regards,
+>
+> Laurent Pinchart
