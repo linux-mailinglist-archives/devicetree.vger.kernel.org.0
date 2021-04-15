@@ -2,66 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C99B3613CA
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 22:59:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E69673613DD
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 23:08:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234989AbhDOVAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 17:00:17 -0400
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:39501 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234863AbhDOVAP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 17:00:15 -0400
-Received: by mail-oi1-f175.google.com with SMTP id i81so25669350oif.6;
-        Thu, 15 Apr 2021 13:59:51 -0700 (PDT)
+        id S235055AbhDOVJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 17:09:13 -0400
+Received: from mail-oo1-f50.google.com ([209.85.161.50]:41618 "EHLO
+        mail-oo1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234869AbhDOVJN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 17:09:13 -0400
+Received: by mail-oo1-f50.google.com with SMTP id h2-20020a4ad7420000b02901e5901169a5so5473376oot.8;
+        Thu, 15 Apr 2021 14:08:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7mGMuPtccSuN83Y4SSY9hXYKt6fW+rM8hyYTNMYHq0U=;
-        b=fPpJvhpssqRHF2wzzmnV1Iu/gp6DHreH2YOhnZUOwZm2UgS20tFLUIdMRRNfTDyrIc
-         LnQQQ0RYAhprTZFeIprmzZ2H1PRidG52OLABMQJoJcQwFN1ZTQCaZvbx9UaoJjQsjoqg
-         +dqJtoGjLJMpPwqdLt1W2Xz494e2PftElAx/HuncGixfPRr8mdqCtGS9Qxsec6ODswv2
-         DiAPLBwNwM3W2gpfaUTb9+Rx3/GAdFu2TtKrI5RWnzsdV7Ir10HwGjKtc169NiDy8WIy
-         sM2u8EEDou/bY6ZUBbZOb35KZ5uQ3eC6oz79DVfpljMcMl1xeA1S0cE0JoGL6ycXcp5h
-         svAQ==
-X-Gm-Message-State: AOAM530iUYYqy9SF7sP8cWlchNs9oOUaWiZWnmZrnSwDy14J7qoUryBi
-        CLFO3Pul0GSSFaWx4PkXKg==
-X-Google-Smtp-Source: ABdhPJw2k2YwivWYCgq6XP9+mYQZvcd7jcDxyuLTvkx4ro7eLday2daD8QuolWy9Vt1ZS3dYDG5S5g==
-X-Received: by 2002:a05:6808:14c8:: with SMTP id f8mr4016531oiw.55.1618520391545;
-        Thu, 15 Apr 2021 13:59:51 -0700 (PDT)
+        bh=dBWyxdU6sbfl8J7+Mi7uwU0zvgg5AWmI3XulvlHXtE0=;
+        b=ZAQindKyZfVSQue+qmfd5XJbMmoebS8y3xd0EEM4fpDF8F+mwvf+0oqsRfaohngRl0
+         uLeVs74cqngBI5RKIGmOqLYmMv5jJVlToR2cZWsajw2eMVdEpfHcRMkBb2SYboN8RixC
+         3KBryPJgE7Q75A00yeY6Cxmm/KauQr0ZUsSzYf5hlHkLlhDATskbUzuF44cpgMEGYz3B
+         kqsFPZcW8d3IMoX0EgvMpEg/C7ukRawBrsePo1lZOEXZC7g9iM3B1gTloCYnNdCF/V4d
+         FFqeUCZTADIZQDosr6ESYturnlH9EXTIP368941HehlqT4/TIXuOuvc/PIZSI6EHE6J/
+         oLyA==
+X-Gm-Message-State: AOAM5323eO6raS1MFYsflmJDWhje+JNM8wNDyXYLF28ZmgsQoVqmiSpt
+        NofB4dH1QdDcvheejC3A9ePyIV0QJQ==
+X-Google-Smtp-Source: ABdhPJx11jv44MnT6jEOw+QxwzTP6f31Jok0fQUAizHEBbO1vMUV/JhaP/Ge0LqyHPQWXhQI3Xv5Ig==
+X-Received: by 2002:a4a:4304:: with SMTP id k4mr816573ooj.42.1618520927976;
+        Thu, 15 Apr 2021 14:08:47 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 79sm29256oty.76.2021.04.15.13.59.27
+        by smtp.gmail.com with ESMTPSA id i11sm778714oot.11.2021.04.15.14.08.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 13:59:28 -0700 (PDT)
-Received: (nullmailer pid 1871299 invoked by uid 1000);
-        Thu, 15 Apr 2021 20:59:07 -0000
-Date:   Thu, 15 Apr 2021 15:59:07 -0500
+        Thu, 15 Apr 2021 14:08:47 -0700 (PDT)
+Received: (nullmailer pid 1885798 invoked by uid 1000);
+        Thu, 15 Apr 2021 21:08:46 -0000
+Date:   Thu, 15 Apr 2021 16:08:46 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux@armlinux.org.uk,
-        alexandre.belloni@bootlin.com, ludovic.desroches@microchip.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, nicolas.ferre@microchip.com
-Subject: Re: [PATCH v3 16/24] dt-bindings: atmel-sysreg: add bindings for
- sama7g5
-Message-ID: <20210415205907.GA1871251@robh.at.kernel.org>
-References: <20210415105010.569620-1-claudiu.beznea@microchip.com>
- <20210415105010.569620-17-claudiu.beznea@microchip.com>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-can@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: Re: [PATCH v3 3/4] dt-bindings: phy: Add binding for TI TCAN104x CAN
+ transceivers
+Message-ID: <20210415210846.GA1871445@robh.at.kernel.org>
+References: <20210415144947.4725-1-a-govindraju@ti.com>
+ <20210415144947.4725-4-a-govindraju@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210415105010.569620-17-claudiu.beznea@microchip.com>
+In-Reply-To: <20210415144947.4725-4-a-govindraju@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Apr 2021 13:50:02 +0300, Claudiu Beznea wrote:
-> Add RAM controller and RAM PHY controller DT bindings.
+On Thu, Apr 15, 2021 at 08:19:46PM +0530, Aswath Govindraju wrote:
+> Add binding documentation for TI TCAN104x CAN transceivers.
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
 > ---
->  .../devicetree/bindings/arm/atmel-sysregs.txt      | 14 +++++++++++++-
->  1 file changed, 13 insertions(+), 1 deletion(-)
+>  .../bindings/phy/ti,tcan104x-can.yaml         | 56 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> new file mode 100644
+> index 000000000000..4643b979930a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/phy/ti,tcan104x-can.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: TCAN104x CAN TRANSCEIVER PHY
+> +
+> +maintainers:
+> +  - Aswath Govindraju <a-govindraju@ti.com>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^tcan104x-phy"
 
-Acked-by: Rob Herring <robh@kernel.org>
+Node names should be generic. So 'phy' or 'can-phy'.
+
+With that,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +
+> +  compatible:
+> +    enum:
+> +      - ti,tcan1042
+> +      - ti,tcan1043
+> +
+> +  '#phy-cells':
+> +    const: 0
+> +
+> +  standby-gpios:
+> +    description:
+> +      gpio node to toggle standby signal on transceiver
+> +    maxItems: 1
+> +
+> +  enable-gpios:
+> +    description:
+> +      gpio node to toggle enable signal on transceiver
+> +    maxItems: 1
+> +
+> +  max-bitrate:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      max bit rate supported in bps
+> +    minimum: 1
+> +
+> +required:
+> +  - compatible
+> +  - '#phy-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    transceiver1: tcan104x-phy {
+> +      compatible = "ti,tcan1043";
+> +      #phy-cells = <0>;
+> +      max-bitrate = <5000000>;
+> +      standby-gpios = <&wakeup_gpio1 16 GPIO_ACTIVE_LOW>;
+> +      enable-gpios = <&main_gpio1 67 GPIO_ACTIVE_HIGH>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 84ef96a444c3..e666d33af10d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -4046,6 +4046,7 @@ W:	https://github.com/linux-can
+>  T:	git git://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can.git
+>  T:	git git://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git
+>  F:	Documentation/devicetree/bindings/net/can/
+> +F:	Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>  F:	drivers/net/can/
+>  F:	include/linux/can/bittiming.h
+>  F:	include/linux/can/dev.h
+> -- 
+> 2.17.1
+> 
