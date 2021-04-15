@@ -2,90 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DBDE36147F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 00:04:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D312E36157B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 00:27:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235078AbhDOWEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 18:04:45 -0400
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:37519 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234735AbhDOWEp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 18:04:45 -0400
-Received: by mail-ot1-f50.google.com with SMTP id c8-20020a9d78480000b0290289e9d1b7bcso9921613otm.4;
-        Thu, 15 Apr 2021 15:04:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=cjrjUXHacNvGNDk7Q/C+ESbCLjg4Pa5yFyEf+O/Q6Rk=;
-        b=qwEY+POX/67u1x//6jonW/ZjR6UcIb/ZjbFT39/33rBTbIjKdA4iNiMX9eAkTH3Hii
-         qHgsCSBm8//LkMgn2+66nulMeeX0xXb6mipZFWzNqZA4aJG2ynuHhG8WmRdpy4Yqwwzn
-         Mn3QNGMnPPR1Dp6wLk+WxuGY+IFbxQdWdutHYyPxnpnD+gVKFHWk2LNlro0u9ifKqh6j
-         k7L/2xu0uZkMBMOy5AHTd2xKCnJ7vvbOEGEOy7P0RuEWE22ktBgFCFDkTPGEWkkPGgXo
-         aZR9Zi81RBeFfjW4SAfTvGquGd6Fho9EmJ7+OnCyT0U+2XjCiHriFkm+rSR6jyDO1n3Q
-         T5Bw==
-X-Gm-Message-State: AOAM531JN3UyYcLuOFvjCeW8Z7jR6GFbw5rZF/kdjCTMTwSDZD9AQO8q
-        +5WoPUmjMAUQRuUwkwUvAw==
-X-Google-Smtp-Source: ABdhPJzs5cTY0YiItEz95ckGhd4fP2bum5/rIk1QKiYpZyI1sYfO1Yo40mAXSSBYGF8zxgIXNDa72A==
-X-Received: by 2002:a05:6830:1e15:: with SMTP id s21mr1077237otr.334.1618524260057;
-        Thu, 15 Apr 2021 15:04:20 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l9sm820713oog.32.2021.04.15.15.04.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 15:04:18 -0700 (PDT)
-Received: (nullmailer pid 1959975 invoked by uid 1000);
-        Thu, 15 Apr 2021 22:04:16 -0000
-Date:   Thu, 15 Apr 2021 17:04:16 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Rajeev Nandan <rajeevny@codeaurora.org>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, mkrishn@codeaurora.org,
-        kalyan_t@codeaurora.org, hoegsberg@chromium.org,
-        abhinavk@codeaurora.org, seanpaul@chromium.org
-Subject: Re: [v1 2/3] dt-bindings: drm/bridge: ti-sn65dsi86: Document
- use-aux-backlight
-Message-ID: <20210415220416.GA1954887@robh.at.kernel.org>
-References: <1618418390-15055-1-git-send-email-rajeevny@codeaurora.org>
- <1618418390-15055-3-git-send-email-rajeevny@codeaurora.org>
+        id S235023AbhDOW2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 18:28:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58676 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234940AbhDOW2R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 18:28:17 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4EC9C061574;
+        Thu, 15 Apr 2021 15:27:53 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 53E4A2224D;
+        Fri, 16 Apr 2021 00:27:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1618525668;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=4EpAThp1KbLIOtaa6ziaIprjD37b45cKEYo+IUj/xDc=;
+        b=RADHosZmWWj2QD7mjS4sz9BVJiaQERQe0Bcb7BXZpDpOfvtxEOplhXLMYDSwYK+S4V5ZQ0
+        b+Zd4SNiE5Ahu0UYMQkOUv498tZhLqOXS4P9LAlKjuxzZnVRZAKrUHR/71v8j3vAwnTxBq
+        pEVrfONiHlfZ2usUT9gjS36RKk4W1t4=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1618418390-15055-3-git-send-email-rajeevny@codeaurora.org>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 16 Apr 2021 00:27:46 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: add
+ nvmem-mac-address-offset property
+In-Reply-To: <20210415215955.GA1937954@robh.at.kernel.org>
+References: <20210414152657.12097-1-michael@walle.cc>
+ <20210414152657.12097-2-michael@walle.cc> <YHcNtdq+oIYcB08+@lunn.ch>
+ <20210415215955.GA1937954@robh.at.kernel.org>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <fefde522146d18aa7f8fbb8fa698cb58@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 14, 2021 at 10:09:49PM +0530, Rajeev Nandan wrote:
-> If the panel connected to the bridge supports backlight control
-> using DPCD registers on the DisplayPort aux channel, setting
-> "use-aux-backlight" property in the bridge node will enable the
-> registration of a DP aux backlight device from the bridge driver.
+Am 2021-04-15 23:59, schrieb Rob Herring:
+> On Wed, Apr 14, 2021 at 05:43:49PM +0200, Andrew Lunn wrote:
+>> On Wed, Apr 14, 2021 at 05:26:55PM +0200, Michael Walle wrote:
+>> > It is already possible to read the MAC address via a NVMEM provider. But
+>> > there are boards, esp. with many ports, which only have a base MAC
+>> > address stored. Thus we need to have a way to provide an offset per
+>> > network device.
+>> 
+>> We need to see what Rob thinks of this. There was recently a patchset
+>> to support swapping the byte order of the MAC address in a NVMEM. Rob
+>> said the NVMEM provider should have the property, not the MAC driver.
+>> This does seems more ethernet specific, so maybe it should be an
+>> Ethernet property?
 > 
-> Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
-> ---
->  .../devicetree/bindings/display/bridge/ti,sn65dsi86.yaml          | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-> index 26932d2..c8d8c00 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-> @@ -58,6 +58,12 @@ properties:
->    clock-names:
->      const: refclk
->  
-> +  use-aux-backlight:
+> There was also this one[1]. I'm not totally opposed, but don't want to
+> see a never ending addition of properties to try to describe any
+> possible transformation.
 
-use-dp-aux-backlight perhaps.
+Agreed, that stuff like ASCII MAC address parsing should be done
+elsewhere. But IMHO adding an offset is a pretty common one (as also
+pointed out in [1]). And it also need to be a per ethernet device
+property.
 
-> +    type: boolean
-> +    description:
-> +      The panel backlight to be controlled using DPCD registers on
-> +      the DP aux channel.
+-michael
 
-Sounds like a property of the panel, not the bridge. So it should be in 
-the panel node.
-
-Rob
+[1] 
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20200920095724.8251-4-ansuelsmth@gmail.com/
