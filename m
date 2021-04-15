@@ -2,279 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3795A360C7D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 16:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44478360D51
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 17:01:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234063AbhDOOvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 10:51:09 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:34758 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233610AbhDOOuj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 10:50:39 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13FEo8oD097004;
-        Thu, 15 Apr 2021 09:50:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1618498208;
-        bh=lwxVMlwuqdF0QN7LNGKmmThT0L4EvWg4hfu0HYGlBX0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=yVBw0QndLY3kK7d0UVAHoHN4vHzJQgpnOu6uZbH87SOyOFAEL54rE5UVootK1Ob9U
-         Bz52pNsqX67BOsU62sYIDJFvpL+bBhjQ7tF0vWY0pFOkwrMrdb5ykapouI16e7H8U2
-         rO9631C88NY2soUkVFa/8urxTxNZlY2a+Gm7MXDc=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13FEo8kx103175
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Apr 2021 09:50:08 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 15
- Apr 2021 09:50:07 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 15 Apr 2021 09:50:07 -0500
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13FEnlS9037772;
-        Thu, 15 Apr 2021 09:50:04 -0500
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-can@vger.kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>
-Subject: [PATCH v3 4/4] phy: phy-can-transceiver: Add support for generic CAN transceiver driver
-Date:   Thu, 15 Apr 2021 20:19:47 +0530
-Message-ID: <20210415144947.4725-5-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210415144947.4725-1-a-govindraju@ti.com>
-References: <20210415144947.4725-1-a-govindraju@ti.com>
+        id S234325AbhDOPBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 11:01:32 -0400
+Received: from phobos.denx.de ([85.214.62.61]:55638 "EHLO phobos.denx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234869AbhDOPAF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Apr 2021 11:00:05 -0400
+Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id C55F181FE1;
+        Thu, 15 Apr 2021 16:59:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1618498780;
+        bh=Kw07LkJdKop/yJQQqAUybaOom8omiDfjimVgY6INlKM=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=qG3vJnacjJH2T6/LHSUKQqKJUBWrcEN7r6NhcGCSdBtN4nss3tWZ0nO/Ises27Xvc
+         VJGziRkn7XGX6HeJNFZ3NKxgJfYbo1qxsVRITxF5utVsu0V855wi9W/o5nOiAsG4j4
+         LzmcixCWz41r3/bCwgBpZpWa7aJMXgqoXHnAz/0L093+4TBflUjIMWQCZR0RFKlVXg
+         k47GEkzZmKdFN1i6BrfQukuubfOoZ8NLj6HD4D23S0QhGYD27jXWwe+QQ52WES1B9h
+         aS32TR1XAlYbdiafXGiMDKeW4MksrP+jd/DapR7g7HXa8+g0bzZaaTBKJcCvdhW4+c
+         +FMQpDAlr3Yfg==
+Subject: Re: [PATCH 11/13] ARM: dts: stm32: fix LTDC port node on STM32 MCU ad
+ MPU
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>, arnd@arndb.de,
+        robh+dt@kernel.org, jagan@amarulasolutions.com,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        kuba@kernel.org
+References: <20210415101037.1465-1-alexandre.torgue@foss.st.com>
+ <20210415101037.1465-12-alexandre.torgue@foss.st.com>
+ <3b39908b-a263-a5d4-f6ac-ac30ffb06269@denx.de>
+ <36e9f0df-dfdb-e2f5-3d6e-ac32a1b8156e@foss.st.com>
+ <fa3885df-8977-9540-f2af-d4095f519483@denx.de>
+ <3961c9ae-41cc-5a15-2704-ffc0832f0fe8@foss.st.com>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <57a7f4bf-42e9-56fb-e898-2c5749f53c60@denx.de>
+Date:   Thu, 15 Apr 2021 16:59:39 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+In-Reply-To: <3961c9ae-41cc-5a15-2704-ffc0832f0fe8@foss.st.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.102.4 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The driver adds support for generic CAN transceivers. Currently
-the modes supported by this driver are standby and normal modes for TI
-TCAN1042 and TCAN1043 CAN transceivers.
+On 4/15/21 4:35 PM, Alexandre TORGUE wrote:
+> 
+> 
+> On 4/15/21 4:30 PM, Marek Vasut wrote:
+>> On 4/15/21 3:34 PM, Alexandre TORGUE wrote:
+>>> Hi Marek
+>>
+>> Hello Alexandre,
+>>
+>>>>> diff --git a/arch/arm/boot/dts/stm32mp157c-dk2.dts 
+>>>>> b/arch/arm/boot/dts/stm32mp157c-dk2.dts
+>>>>> index 2bc92ef3aeb9..19ef475a48fc 100644
+>>>>> --- a/arch/arm/boot/dts/stm32mp157c-dk2.dts
+>>>>> +++ b/arch/arm/boot/dts/stm32mp157c-dk2.dts
+>>>>> @@ -82,9 +82,15 @@
+>>>>>   };
+>>>>>   &ltdc {
+>>>>> -    status = "okay";
+>>>>> -
+>>>>>       port {
+>>>>> +        #address-cells = <1>;
+>>>>> +        #size-cells = <0>;
+>>>>> +
+>>>>> +        ltdc_ep0_out: endpoint@0 {
+>>>>> +            reg = <0>;
+>>>>> +            remote-endpoint = <&sii9022_in>;
+>>>>> +        };
+>>>>> +
+>>>>>           ltdc_ep1_out: endpoint@1 {
+>>>>>               reg = <1>;
+>>>>>               remote-endpoint = <&dsi_in>;
+>>>>
+>>>> [...]
+>>>>
+>>>>> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi 
+>>>>> b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+>>>>> index 64dca5b7f748..e7f10975cacf 100644
+>>>>> --- a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+>>>>> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+>>>>> @@ -277,11 +277,7 @@
+>>>>>       status = "okay";
+>>>>>       port {
+>>>>> -        #address-cells = <1>;
+>>>>> -        #size-cells = <0>;
+>>>>> -
+>>>>> -        ltdc_ep0_out: endpoint@0 {
+>>>>> -            reg = <0>;
+>>>>> +        ltdc_ep0_out: endpoint {
+>>>>>               remote-endpoint = <&adv7513_in>;
+>>>>>           };
+>>>>>       };
+>>>>
+>>>> I think this is wrong, the AV96 can have two displays connected to 
+>>>> two ports of the LTDC, just like DK2 for example.
+>>>
+>>> As for dk2 address/size cells are added only if there are 2 
+>>> endpoints. It is for this reason I moved endpoint0 definition from 
+>>> stm32mp15xx-dkx to stm32mp151a-dk1.dts (dk1 has only one endpoint).
+>>>
+>>> Here it's the same, if you have second endpoint then adress/size will 
+>>> have to be added.
+>>
+>> That's a bit problematic. Consider either the use case of DTO which 
+>> adds the other display, or even a custom board DTS. Without your 
+>> patch, this works:
+>>
+>> arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+>> &ltdc {
+>>    ...
+>>    ports {
+>>      ltdc_ep0_out: endpoint@0 {
+>>        remote-endpoint = <&adv7513_in>;
+>>      };
+>>    };
+>> };
+>>
+>> board-with-display.dts or board-overlay.dts
+>> &ltdc {
+>>    ports {
+>>      endpoint@1 { // just add another endpoint@1, no problem
+>>        remote-endpoint = <&display>;
+>>      };
+>>    };
+>> };
+>>
+>> With your patch, the DTS would have to modify the "endpoint" node to 
+>> be "endpoint@0" probably with a whole lot of /detele-node/ etc. magic 
+>> (DTO cannot do that, so that's a problem, and I do use DTOs on AV96 
+>> extensively for the various expansion cards) and then add the 
+>> endpoint@1. That becomes real complicated in custom board DT, and 
+>> impossible with DTO.
+> 
+> Yes I agree that it'll be problematic. So maybe so solution would be to 
+> not detect a warning for the initial case (only one endpoint with a reg)
 
-The transceiver is modelled as a phy with pins controlled by gpios, to put
-the transceiver in various device functional modes. It also gets the phy
-attribute max_link_rate for the usage of CAN drivers.
-
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
- MAINTAINERS                       |   1 +
- drivers/phy/Kconfig               |   9 ++
- drivers/phy/Makefile              |   1 +
- drivers/phy/phy-can-transceiver.c | 146 ++++++++++++++++++++++++++++++
- 4 files changed, 157 insertions(+)
- create mode 100644 drivers/phy/phy-can-transceiver.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e666d33af10d..4e868f2a97c7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4048,6 +4048,7 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git
- F:	Documentation/devicetree/bindings/net/can/
- F:	Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
- F:	drivers/net/can/
-+F:	drivers/phy/phy-can-transceiver.c
- F:	include/linux/can/bittiming.h
- F:	include/linux/can/dev.h
- F:	include/linux/can/led.h
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index 54c1f2f0985f..51902b629fc6 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -61,6 +61,15 @@ config USB_LGM_PHY
- 	  interface to interact with USB GEN-II and USB 3.x PHY that is part
- 	  of the Intel network SOC.
- 
-+config PHY_CAN_TRANSCEIVER
-+	tristate "CAN transceiver PHY"
-+	select GENERIC_PHY
-+	help
-+	  This option enables support for CAN transceivers as a PHY. This
-+	  driver provides function for putting the transceivers in various
-+	  functional modes using gpios and sets the attribute max link
-+	  rate, for mcan drivers.
-+
- source "drivers/phy/allwinner/Kconfig"
- source "drivers/phy/amlogic/Kconfig"
- source "drivers/phy/broadcom/Kconfig"
-diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index adac1b1a39d1..01e9efffc726 100644
---- a/drivers/phy/Makefile
-+++ b/drivers/phy/Makefile
-@@ -5,6 +5,7 @@
- 
- obj-$(CONFIG_GENERIC_PHY)		+= phy-core.o
- obj-$(CONFIG_GENERIC_PHY_MIPI_DPHY)	+= phy-core-mipi-dphy.o
-+obj-$(CONFIG_PHY_CAN_TRANSCEIVER)	+= phy-can-transceiver.o
- obj-$(CONFIG_PHY_LPC18XX_USB_OTG)	+= phy-lpc18xx-usb-otg.o
- obj-$(CONFIG_PHY_XGENE)			+= phy-xgene.o
- obj-$(CONFIG_PHY_PISTACHIO_USB)		+= phy-pistachio-usb.o
-diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-can-transceiver.c
-new file mode 100644
-index 000000000000..c24aa2eab9e4
---- /dev/null
-+++ b/drivers/phy/phy-can-transceiver.c
-@@ -0,0 +1,146 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * phy-can-transceiver.c - phy driver for CAN transceivers
-+ *
-+ * Copyright (C) 2021 Texas Instruments Incorporated - http://www.ti.com
-+ *
-+ */
-+#include<linux/phy/phy.h>
-+#include<linux/platform_device.h>
-+#include<linux/module.h>
-+#include<linux/gpio.h>
-+#include<linux/gpio/consumer.h>
-+
-+struct can_transceiver_data {
-+	u32 flags;
-+#define CAN_TRANSCEIVER_STB_PRESENT	BIT(0)
-+#define CAN_TRANSCEIVER_EN_PRESENT	BIT(1)
-+};
-+
-+struct can_transceiver_phy {
-+	struct phy *generic_phy;
-+	struct gpio_desc *standby_gpio;
-+	struct gpio_desc *enable_gpio;
-+};
-+
-+/* Power on function */
-+static int can_transceiver_phy_power_on(struct phy *phy)
-+{
-+	struct can_transceiver_phy *can_transceiver_phy = phy_get_drvdata(phy);
-+
-+	if (can_transceiver_phy->standby_gpio)
-+		gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 0);
-+	if (can_transceiver_phy->enable_gpio)
-+		gpiod_set_value_cansleep(can_transceiver_phy->enable_gpio, 1);
-+
-+	return 0;
-+}
-+
-+/* Power off function */
-+static int can_transceiver_phy_power_off(struct phy *phy)
-+{
-+	struct can_transceiver_phy *can_transceiver_phy = phy_get_drvdata(phy);
-+
-+	if (can_transceiver_phy->standby_gpio)
-+		gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 1);
-+	if (can_transceiver_phy->enable_gpio)
-+		gpiod_set_value_cansleep(can_transceiver_phy->enable_gpio, 0);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops can_transceiver_phy_ops = {
-+	.power_on	= can_transceiver_phy_power_on,
-+	.power_off	= can_transceiver_phy_power_off,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static const struct can_transceiver_data tcan1042_drvdata = {
-+	.flags = CAN_TRANSCEIVER_STB_PRESENT,
-+};
-+
-+static const struct can_transceiver_data tcan1043_drvdata = {
-+	.flags = CAN_TRANSCEIVER_STB_PRESENT | CAN_TRANSCEIVER_EN_PRESENT,
-+};
-+
-+static const struct of_device_id can_transceiver_phy_ids[] = {
-+	{
-+		.compatible = "ti,tcan1042",
-+		.data = &tcan1042_drvdata
-+	},
-+	{
-+		.compatible = "ti,tcan1043",
-+		.data = &tcan1043_drvdata
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, can_transceiver_phy_ids);
-+
-+static int can_transceiver_phy_probe(struct platform_device *pdev)
-+{
-+	struct phy_provider *phy_provider;
-+	struct device *dev = &pdev->dev;
-+	struct can_transceiver_phy *can_transceiver_phy;
-+	const struct can_transceiver_data *drvdata;
-+	const struct of_device_id *match;
-+	struct phy *phy;
-+	struct gpio_desc *standby_gpio;
-+	struct gpio_desc *enable_gpio;
-+	u32 max_bitrate = 0;
-+
-+	can_transceiver_phy = devm_kzalloc(dev, sizeof(struct can_transceiver_phy), GFP_KERNEL);
-+	if (!can_transceiver_phy)
-+		return -ENOMEM;
-+
-+	match = of_match_node(can_transceiver_phy_ids, pdev->dev.of_node);
-+	drvdata = match->data;
-+
-+	phy = devm_phy_create(dev, dev->of_node,
-+			      &can_transceiver_phy_ops);
-+	if (IS_ERR(phy)) {
-+		dev_err(dev, "failed to create can transceiver phy\n");
-+		return PTR_ERR(phy);
-+	}
-+
-+	device_property_read_u32(dev, "max-bitrate", &max_bitrate);
-+	if (!max_bitrate)
-+		dev_warn(dev, "Invalid value for transceiver max bitrate. Ignoring bitrate limit\n");
-+	phy->attrs.max_link_rate = max_bitrate;
-+
-+	can_transceiver_phy->generic_phy = phy;
-+
-+	if (drvdata->flags & CAN_TRANSCEIVER_STB_PRESENT) {
-+		standby_gpio = devm_gpiod_get(dev, "standby", GPIOD_OUT_HIGH);
-+		if (IS_ERR(standby_gpio))
-+			return PTR_ERR(standby_gpio);
-+		can_transceiver_phy->standby_gpio = standby_gpio;
-+	}
-+
-+	if (drvdata->flags & CAN_TRANSCEIVER_EN_PRESENT) {
-+		enable_gpio = devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
-+		if (IS_ERR(enable_gpio))
-+			return PTR_ERR(enable_gpio);
-+		can_transceiver_phy->enable_gpio = enable_gpio;
-+	}
-+
-+	phy_set_drvdata(can_transceiver_phy->generic_phy, can_transceiver_phy);
-+
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static struct platform_driver can_transceiver_phy_driver = {
-+	.probe = can_transceiver_phy_probe,
-+	.driver = {
-+		.name = "can-transceiver-phy",
-+		.of_match_table = can_transceiver_phy_ids,
-+	},
-+};
-+
-+module_platform_driver(can_transceiver_phy_driver);
-+
-+MODULE_AUTHOR("Faiz Abbas <faiz_abbas@ti.com>");
-+MODULE_AUTHOR("Aswath Govindraju <a-govindraju@ti.com>");
-+MODULE_DESCRIPTION("CAN TRANSCEIVER PHY driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.17.1
-
+That looks OK. Or even better, if the checker warned only on IPs which 
+cannot have more than one endpoint, but have endpoint@N in DT (where N 
+in 0..+inf) . On IPs which can have one or more endpoints, the warning 
+should not be emitted.
