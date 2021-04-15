@@ -2,85 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7992C360C22
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 16:47:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D45F6360C6A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 16:51:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233506AbhDOOrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 10:47:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42510 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233052AbhDOOrv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 10:47:51 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50B97C061574;
-        Thu, 15 Apr 2021 07:47:28 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B9D5C89A;
-        Thu, 15 Apr 2021 16:47:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1618498046;
-        bh=Qt+bhzs/93o6wBx0emPldtNgrinS8ZG6nYZ/56Vl7tE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IYjUec1OtrBoWVfShOjB/r32/1dvQkO2pyFJ82DU12t0qCfL100+yQEypc8qgzK1L
-         dHN18CE6vSNmvo0ZGq7q1XKkOiB9vuMdfOgQZVC7DP+1ViY43NPpaRtRtT+/LVEXK/
-         bUEr+dqGJp2awIpW+CjXR24/gGJ03d9im915Url0=
-Date:   Thu, 15 Apr 2021 17:47:25 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        id S233556AbhDOOuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 10:50:54 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:46748 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233906AbhDOOuZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 10:50:25 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13FEnqjo001444;
+        Thu, 15 Apr 2021 09:49:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1618498192;
+        bh=dtU7yZZCXXN3KU4xhLoqZPhQYRi1AWdP0Mnfpha+Ma8=;
+        h=From:To:CC:Subject:Date;
+        b=w0PZWJbgd6z7XWw0Y0390BG0W3uy8yzBy/f45NNHjVujPK9SawGUHvgwa+cqhW8si
+         l2g/mCo0OjtfnXxlYke1/GFHPDr1CG09uCl5lEb18Kjs5dbUCn5gFRh0sgt/RA2UPR
+         kzzJO9srFthW5W2a3dGxn1mui2tJnBnomn22wuL8=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13FEnqX1102388
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Apr 2021 09:49:52 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 15
+ Apr 2021 09:49:51 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 15 Apr 2021 09:49:51 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13FEnlS5037772;
+        Thu, 15 Apr 2021 09:49:48 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-can@vger.kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 4/7] arm64: dts: renesas: r8a77970: Add csi40 port@0
-Message-ID: <YHhR/YR6Ecp6yU4D@pendragon.ideasonboard.com>
-References: <20210415122602.87697-1-jacopo+renesas@jmondi.org>
- <20210415122602.87697-5-jacopo+renesas@jmondi.org>
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: [PATCH v3 0/4] CAN TRANSCEIVER: Add support for CAN transceivers
+Date:   Thu, 15 Apr 2021 20:19:43 +0530
+Message-ID: <20210415144947.4725-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210415122602.87697-5-jacopo+renesas@jmondi.org>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
+The following series of patches add support for CAN transceivers.
 
-Thank you for the patch.
+TCAN1042 has a standby signal that needs to be pulled high for
+sending/receiving messages[1]. TCAN1043 has a enable signal along with
+standby signal that needs to be pulled up for sending/receiving
+messages[2], and other combinations of the two lines can be used to put the
+transceiver in different states to reduce power consumption. On boards
+like the AM654-idk and J721e-evm these signals are controlled using gpios.
 
-On Thu, Apr 15, 2021 at 02:25:59PM +0200, Jacopo Mondi wrote:
-> Declare port@0 in the csi40 device node and leave it un-connected.
-> Each board .dts file will connect the port as it requires.
-> 
-> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+Patch 1 rewords the comment that restricts max_link_rate attribute to have
+units of Mbps.
 
-The port exists at the hardware level, so including it here sounds good.
-The DT binding even makes the port mandatory :-)
+Patch 2 adds an API for devm_of_phy_optional_get_by_index
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Patch 3 models the transceiver as a phy device tree node with properties
+for max bit rate supported, gpio properties for indicating gpio pin numbers
+to which standby and enable signals are connected.
 
-> ---
->  arch/arm64/boot/dts/renesas/r8a77970.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77970.dtsi b/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-> index 5a5d5649332a..e8f6352c3665 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-> @@ -1106,6 +1106,10 @@ ports {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  
-> +				port@0 {
-> +					reg = <0>;
-> +				};
-> +
->  				port@1 {
->  					#address-cells = <1>;
->  					#size-cells = <0>;
+Patch 4 adds a generic driver to support CAN transceivers.
+
+changes since v2:
+- dropped 5 and 6 patches and to be sent via linux-can-next
+- added static keyword for can_transceiver_phy_probe()
+- changed enable gpio example to active high in patch 3
+- Rearranged the file names in alphabetical order in Makefile
+  and MAINTAINERS file
+
+changes since v1:
+- Added patch 1 (in v2) that rewords the comment that restrict
+  max_link_rate attribute to have units of Mbps.
+- Added patch 2 (in v2) that adds an API for
+  devm_of_phy_optional_get_by_index
+- Patch 1 (in v1)
+  - updated MAINTAINERS file
+- Patch 2 (in v1)
+  - replaced m_can with CAN to make the driver independent of CAN driver
+  - Added prefix CAN_TRANSCEIVER for EN_PRESENT and STB_PRESENT
+  - Added new line before return statements in power_on() and power_off
+  - Added error handling patch for devm_kzalloc()
+  - used the max_link_rate attribute directly instead of dividing it by
+    1000000
+  - removed the spaces before GPIOD_OUT_LOW in devm_gpiod_get()
+  - Corrected requested value for standby-gpios to GPIOD_OUT_HIGH
+  - Updated MAINTAINERS file
+- Patch 3 (in v1)
+  - replaced minItems with maxItems
+  - Removed phy-names property as there is only one phy
+- Patch 4 (in v1)
+  - replaced dev_warn with dev_info when no transceiver is found
+  - Added struct phy * field in m_can_classdev struct
+  - moved phy_power_on and phy_power_off to m_can_open and m_can_close
+    respectively
+  - Moved the check for max_bit_rate to generice transceiver driver
+
+[1] - https://www.ti.com/lit/ds/symlink/tcan1042h.pdf
+[2] - https://www.ti.com/lit/ds/symlink/tcan1043-q1.pdf
+
+Aswath Govindraju (4):
+  phy: core: Reword the comment specifying the units of max_link_rate to
+    be Mbps
+  phy: Add API for devm_of_phy_optional_get_by_index
+  dt-bindings: phy: Add binding for TI TCAN104x CAN transceivers
+  phy: phy-can-transceiver: Add support for generic CAN transceiver
+    driver
+
+ .../bindings/phy/ti,tcan104x-can.yaml         |  56 +++++++
+ MAINTAINERS                                   |   2 +
+ drivers/phy/Kconfig                           |   9 ++
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/phy-can-transceiver.c             | 146 ++++++++++++++++++
+ drivers/phy/phy-core.c                        |  26 ++++
+ include/linux/phy/phy.h                       |   4 +-
+ 7 files changed, 243 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+ create mode 100644 drivers/phy/phy-can-transceiver.c
 
 -- 
-Regards,
+2.17.1
 
-Laurent Pinchart
