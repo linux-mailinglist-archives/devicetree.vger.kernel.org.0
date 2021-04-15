@@ -2,67 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83CC2361174
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 19:53:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A18DE36119A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 20:01:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233134AbhDORx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 13:53:29 -0400
-Received: from first.geanix.com ([116.203.34.67]:35476 "EHLO first.geanix.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233052AbhDORx3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Apr 2021 13:53:29 -0400
-Received: from [192.168.16.66] (unknown [185.233.254.173])
-        by first.geanix.com (Postfix) with ESMTPSA id E86244633E2;
-        Thu, 15 Apr 2021 17:53:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=geanix.com; s=first;
-        t=1618509184; bh=d/GFrnKnmc5rFzC7uCDXeDSBdAQl0DzSoGqfq7W0Pwc=;
-        h=Subject:To:References:From:Date:In-Reply-To;
-        b=k78rt5KuFq4qC1qo227g4ecs6eIXxRlwhYh0LsYDrkxcq2qv8g3JAR27bb6yA5jL0
-         x8sUrfW65we8+HMehQFhTfqiRkYNze3jmo0to7IRK9z/ypUZQ/EB+9aBlpEl8aIGjM
-         9Es4f2/2eZeVSC1K0zW9dEaFCXTy9E6fAyo6yA9PD3IQJuEcMZKPj0GoOGnVWcSE9u
-         dmXuWdOX/InHo/huU3w9N169kfhVeOK3gNsACfCOow1c+QzD6X/3OHpjsEC7zB+uqa
-         X3k+GDAtsadq184ROzQnkj+/7d+fLWc3r9LkpCt1R2Tg5ZONH6HgM2bde8JjS5VjGE
-         NreumYWiz/3qg==
-Subject: Re: [RFC PATCH 1/2] iio: accel: add support for FXLS8962AF/FXLS8964AF
- accelerometers
-To:     Lars-Peter Clausen <lars@metafoo.de>, jic23@kernel.org,
-        linux-iio@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-References: <20210415114614.1071928-1-sean@geanix.com>
- <11adb882-1af8-ab08-fcd9-47bedad02699@metafoo.de>
-From:   Sean Nyekjaer <sean@geanix.com>
-Message-ID: <31ecc4b0-d09b-a0c4-531a-3c0c28bac46f@geanix.com>
-Date:   Thu, 15 Apr 2021 19:53:03 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        id S233395AbhDOSCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 14:02:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57040 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233052AbhDOSCF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 14:02:05 -0400
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BF56C061574;
+        Thu, 15 Apr 2021 11:01:42 -0700 (PDT)
+Received: by mail-qv1-xf31.google.com with SMTP id ef17so6482514qvb.0;
+        Thu, 15 Apr 2021 11:01:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=T+WxuAKEYQzQlAdaDBCbqiRsU5nkpRKPpDVKPGbJZoo=;
+        b=omSdtTy3Z5hj1lplWc42YYdNIlvPA/d1BuVz2FqBEc6iBdhR0s/5+WagAAL4Zk1YAc
+         CWjUthRXgYMcuzLis14YOrHsvBbIuTUswDXGQQJmOJ1+VpihxfgTWaBSqvA41vXj1lAR
+         ATm6S/A6Cbh/mzZHi9MgQnA8xEmV7s8/xCWzzUNZ8kVFvt++osMV0Pn1/pvc6B9PuHE4
+         YY12+zAA6R6/zkUeoIz1yTyqsuKrwU8Q+aw5AxOGJv177G0bgQZI4W8ZV/qRKccUshhz
+         umO9bqMYm9LobzFe6oKAEY3NlD/z4o17Lw3g/CKtL9Wk3um/gQJ2qZeLPffjsCTz6h2b
+         J3NA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=T+WxuAKEYQzQlAdaDBCbqiRsU5nkpRKPpDVKPGbJZoo=;
+        b=UvsdVXU3luBqHVFcBBa8mxdqvMX3afDcZVrusEfsg0TclYRhgbVuBp4wQVZYKbQSmL
+         Cjx2obj7ID09THyhy4S28myR+HvIYp4fSqo7lMw5altMNTDDdnaOQzvc7OfoFZEFJuRR
+         KfMPCejmE2NcvgnxvbMEWSSoyS1ppDNwkcmQuZ0DigcggxKpuzoJovYH05O+pWk6SrUD
+         Sa9WraZ9wJmYhEH9csNRM7LBMNGLU4GGSR5ekcvLqTKvc4OreznjBcE4eoeQ4wOssYZu
+         kqKFOSIgo09UibaCIlbvhEwU4NNFqjSe2a/yqszMjLGG+8HsTCyfu/YsmCxKARjVwEgk
+         Cyxw==
+X-Gm-Message-State: AOAM530Z8QF9ta26GpWdMv/3OHOchN4fHOXWXBJb7Lw7yimqWIRQS4bd
+        ZVpuAQLbaquo+44PRplKQnk=
+X-Google-Smtp-Source: ABdhPJwbEnxJ32ca8ntb2wP5VKo0v0Tu2H5S4ts3+g6Ej4zFLT4aKZE3Po2+SmGJRN4ouqA+MCapFw==
+X-Received: by 2002:a0c:fd62:: with SMTP id k2mr4410395qvs.51.1618509701724;
+        Thu, 15 Apr 2021 11:01:41 -0700 (PDT)
+Received: from li-908e0a4c-2250-11b2-a85c-f027e903211b.ibm.com ([2804:14c:482:7b04::1000])
+        by smtp.gmail.com with ESMTPSA id f16sm2544834qkl.25.2021.04.15.11.01.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Apr 2021 11:01:41 -0700 (PDT)
+From:   Leonardo Bras <leobras.c@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>, aik@ozlabs.ru
+Cc:     Leonardo Bras <leobras.c@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] of/pci: Add IORESOURCE_MEM_64 to resource flags for 64-bit memory addresses
+Date:   Thu, 15 Apr 2021 15:00:51 -0300
+Message-Id: <20210415180050.373791-1-leobras.c@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <11adb882-1af8-ab08-fcd9-47bedad02699@metafoo.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Spam-Status: No, score=-3.1 required=4.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        URIBL_BLOCKED autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on 93bd6fdb21b5
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Many other resource flag parsers already add this flag when the input
+has bits 24 & 25 set, so update this one to do the same.
 
+Some devices (like virtio-net) have more than one memory resource
+(like MMIO32 and MMIO64) and without this flag it would be needed to
+verify the address range to know which one is which.
 
-On 15/04/2021 14.50, Lars-Peter Clausen wrote:
-> On 4/15/21 1:46 PM, Sean Nyekjaer wrote:
->> Add basic support for NXP FXLS8962AF/FXLS8964AF Automotive
->> accelerometers.
->> It will allow setting up scale/gain and reading x,y,z
->> axis.
->
-> Hi,
->
-> Thanks for the patch. This looks very good! 
-Thanks for the review :)
-I have addressed the comments in my local tree.
-It took quite some time to implement the read_avail callback, it's not 
-that compatible with what I have done :/
+Signed-off-by: Leonardo Bras <leobras.c@gmail.com>
+---
+ drivers/of/address.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-/Sean
+diff --git a/drivers/of/address.c b/drivers/of/address.c
+index 73ddf2540f3f..dc7147843783 100644
+--- a/drivers/of/address.c
++++ b/drivers/of/address.c
+@@ -116,9 +116,12 @@ static unsigned int of_bus_pci_get_flags(const __be32 *addr)
+ 		flags |= IORESOURCE_IO;
+ 		break;
+ 	case 0x02: /* 32 bits */
+-	case 0x03: /* 64 bits */
+ 		flags |= IORESOURCE_MEM;
+ 		break;
++
++	case 0x03: /* 64 bits */
++		flags |= IORESOURCE_MEM | IORESOURCE_MEM_64;
++		break;
+ 	}
+ 	if (w & 0x40000000)
+ 		flags |= IORESOURCE_PREFETCH;
+-- 
+2.30.2
+
