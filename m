@@ -2,247 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAE2E36091D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 14:15:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E483B36093D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 14:23:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232902AbhDOMQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 08:16:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37418 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232849AbhDOMQG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 08:16:06 -0400
-Received: from mail.pqgruber.com (mail.pqgruber.com [IPv6:2a05:d014:575:f70b:4f2c:8f1d:40c4:b13e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89786C061760;
-        Thu, 15 Apr 2021 05:15:43 -0700 (PDT)
-Received: from workstation.tuxnet (213-47-165-233.cable.dynamic.surfer.at [213.47.165.233])
-        by mail.pqgruber.com (Postfix) with ESMTPSA id 0D003C725D8;
-        Thu, 15 Apr 2021 14:15:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pqgruber.com;
-        s=mail; t=1618488942;
-        bh=YWHML3DuOzwgSktSARm58ZchDBxU953bun9zG3JNyD4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=namyFJEA/JD59ikB0boIuCpTDl4yd1zMiSJaxuf3veHCUeveFM2CZh6E+ZFqgy/6G
-         NfMzE0cMfWLaFfCekgLixniO4+fQ+Kg0m0HekuXccwLIzosAsnWQjXe8CiOPC1r8/q
-         4GTjNhmXtgylXASNGe6Amy6JvSVNZZQLrCUiRGm8=
-From:   Clemens Gruber <clemens.gruber@pqgruber.com>
-To:     linux-pwm@vger.kernel.org
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sven Van Asbroeck <TheSven73@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Clemens Gruber <clemens.gruber@pqgruber.com>
-Subject: [PATCH v9 8/8] pwm: pca9685: Add error messages for failed regmap calls
-Date:   Thu, 15 Apr 2021 14:14:55 +0200
-Message-Id: <20210415121455.39536-8-clemens.gruber@pqgruber.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210415121455.39536-1-clemens.gruber@pqgruber.com>
-References: <20210415121455.39536-1-clemens.gruber@pqgruber.com>
+        id S230056AbhDOMYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 08:24:14 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:2290 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S232842AbhDOMYN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Apr 2021 08:24:13 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13FCCh6W018070;
+        Thu, 15 Apr 2021 14:23:35 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=F/GalzWzm89gxShNFkNRH3cF1SeIQnv7lFFgZazi5ZQ=;
+ b=gQ5SO8rWCWnYxZBEOdMNQbwMf98LxmuB0V4phCMQ3NG40IwZ7kjIpuvoMjJksPQrpNA2
+ B7E1C93lNcvWnttQuzXK2Cgk1Q23TWM/tsSibX/FSZAa3+XKA7t00qfuhbrhB2fxxTbm
+ WmnRw8Ra9AbM+zyq2qxsvORGIn0eA1rFuf7EVYyQKILpuq2BX++pvxffSoaFGHDnl4pg
+ rNjjDLHjtnTWDW7Z4ZWzXI8GwK1ixiCuBWWiJsEZzgXQXQSkz31njrDWw3PDGRybnbyE
+ BPAZArpPxHVSoBiIzjvrXzShLpFjiQZvZ1TjhjSHcnGol9EL85AjERUzhyfkYQsUYbkw iA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 37wx3yyyga-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 15 Apr 2021 14:23:35 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4E71110002A;
+        Thu, 15 Apr 2021 14:23:34 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 351CC22D63C;
+        Thu, 15 Apr 2021 14:23:34 +0200 (CEST)
+Received: from lmecxl0912.lme.st.com (10.75.127.45) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 15 Apr
+ 2021 14:23:33 +0200
+Subject: Re: [PATCH 12/13] ARM: dts: stm32: fix DSI port node on STM32MP15
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>, <arnd@arndb.de>,
+        <robh+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+        <jagan@amarulasolutions.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Marcin Sloniewski <marcin.sloniewski@gmail.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        <kuba@kernel.org>
+References: <20210415101037.1465-1-alexandre.torgue@foss.st.com>
+ <20210415101037.1465-13-alexandre.torgue@foss.st.com>
+ <ececc78c-4fca-bb93-ef62-5d107501d963@pengutronix.de>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <96da49dc-f24d-aa12-e1d8-39b5a5b6fbc9@foss.st.com>
+Date:   Thu, 15 Apr 2021 14:23:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <ececc78c-4fca-bb93-ef62-5d107501d963@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG3NODE3.st.com (10.75.127.9) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-04-15_04:2021-04-15,2021-04-15 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Regmap operations can fail if the underlying subsystem is not working
-properly (e.g. hogged I2C bus, etc.)
-As this is useful information for the user, print an error message if it
-happens.
-Let probe fail if the first regmap_read or the first regmap_write fails.
+Hi Ahmad
 
-Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
----
-Changes since v8:
-- Minor readability improvements
-- Rebased
+On 4/15/21 12:43 PM, Ahmad Fatoum wrote:
+> Hi,
+> 
+> On 15.04.21 12:10, Alexandre Torgue wrote:
+>> Running "make dtbs_check W=1", some warnings are reported concerning
+>> DSI. This patch reorder DSI nodes to avoid:
+>>
+>> soc/dsi@5a000000: unnecessary #address-cells/#size-cells without
+>> "ranges" or child "reg" property
+> 
+> This reverts parts of commit 9c32f980d9 ("ARM: dts: stm32: preset
+> stm32mp15x video #address- and #size-cells"):
+>      
+>      The cell count for address and size is defined by the binding and not
+>      something a board would change. Avoid each board adding this
+>      boilerplate by having the cell size specification in the SoC DTSI.
+>      
+> 
+> The DSI can have child nodes with a unit address (e.g. a panel) and ones
+> without (ports { } container). ports is described in the dtsi, panels are
+> described in the dts if available.
+> 
+> Apparently, the checker is fine with
+> ports {
+> 	#address-cells = <1>;
+> 	#size-cells = <0>;
+> };
+> 
+> I think my rationale for the patch above was sound, so I think the checker
+> taking offense at the DSI cells here should be considered a false positive.
 
-Changes since v7:
-- Use %pe instead of %d for error codes (Suggested by Uwe)
+If it's a "false positive" warning then we need to find a way to not 
+print it out. Else, it'll be difficult to distinguish which warnings are 
+"normal" and which are not. This question could also be applied to patch[3].
 
- drivers/pwm/pwm-pca9685.c | 83 ++++++++++++++++++++++++++++-----------
- 1 file changed, 59 insertions(+), 24 deletions(-)
+Arnd, Rob what is your feeling about this case ?
 
-diff --git a/drivers/pwm/pwm-pca9685.c b/drivers/pwm/pwm-pca9685.c
-index f3ff36381c5b..e88e02118f25 100644
---- a/drivers/pwm/pwm-pca9685.c
-+++ b/drivers/pwm/pwm-pca9685.c
-@@ -107,6 +107,30 @@ static bool pca9685_prescaler_can_change(struct pca9685 *pca, int channel)
- 	return test_bit(channel, pca->pwms_enabled);
- }
- 
-+static int pca9685_read_reg(struct pca9685 *pca, unsigned int reg, unsigned int *val)
-+{
-+	struct device *dev = pca->chip.dev;
-+	int err;
-+
-+	err = regmap_read(pca->regmap, reg, val);
-+	if (err)
-+		dev_err(dev, "regmap_read of register 0x%x failed: %pe\n", reg, ERR_PTR(err));
-+
-+	return err;
-+}
-+
-+static int pca9685_write_reg(struct pca9685 *pca, unsigned int reg, unsigned int val)
-+{
-+	struct device *dev = pca->chip.dev;
-+	int err;
-+
-+	err = regmap_write(pca->regmap, reg, val);
-+	if (err)
-+		dev_err(dev, "regmap_write to register 0x%x failed: %pe\n", reg, ERR_PTR(err));
-+
-+	return err;
-+}
-+
- /* Helper function to set the duty cycle ratio to duty/4096 (e.g. duty=2048 -> 50%) */
- static void pca9685_pwm_set_duty(struct pca9685 *pca, int channel, unsigned int duty)
- {
-@@ -115,12 +139,12 @@ static void pca9685_pwm_set_duty(struct pca9685 *pca, int channel, unsigned int
- 
- 	if (duty == 0) {
- 		/* Set the full OFF bit, which has the highest precedence */
--		regmap_write(pca->regmap, REG_OFF_H(channel), LED_FULL);
-+		pca9685_write_reg(pca, REG_OFF_H(channel), LED_FULL);
- 		return;
- 	} else if (duty >= PCA9685_COUNTER_RANGE) {
- 		/* Set the full ON bit and clear the full OFF bit */
--		regmap_write(pca->regmap, REG_ON_H(channel), LED_FULL);
--		regmap_write(pca->regmap, REG_OFF_H(channel), 0);
-+		pca9685_write_reg(pca, REG_ON_H(channel), LED_FULL);
-+		pca9685_write_reg(pca, REG_OFF_H(channel), 0);
- 		return;
- 	}
- 
-@@ -141,11 +165,11 @@ static void pca9685_pwm_set_duty(struct pca9685 *pca, int channel, unsigned int
- 	off = (on + duty) % PCA9685_COUNTER_RANGE;
- 
- 	/* Set ON time (clears full ON bit) */
--	regmap_write(pca->regmap, REG_ON_L(channel), on & 0xff);
--	regmap_write(pca->regmap, REG_ON_H(channel), (on >> 8) & 0xf);
-+	pca9685_write_reg(pca, REG_ON_L(channel), on & 0xff);
-+	pca9685_write_reg(pca, REG_ON_H(channel), (on >> 8) & 0xf);
- 	/* Set OFF time (clears full OFF bit) */
--	regmap_write(pca->regmap, REG_OFF_L(channel), off & 0xff);
--	regmap_write(pca->regmap, REG_OFF_H(channel), (off >> 8) & 0xf);
-+	pca9685_write_reg(pca, REG_OFF_L(channel), off & 0xff);
-+	pca9685_write_reg(pca, REG_OFF_H(channel), (off >> 8) & 0xf);
- }
- 
- static unsigned int pca9685_pwm_get_duty(struct pca9685 *pca, int channel)
-@@ -158,25 +182,25 @@ static unsigned int pca9685_pwm_get_duty(struct pca9685 *pca, int channel)
- 		return 0;
- 	}
- 
--	regmap_read(pca->regmap, LED_N_OFF_H(channel), &off);
-+	pca9685_read_reg(pca, LED_N_OFF_H(channel), &off);
- 	if (off & LED_FULL) {
- 		/* Full OFF bit is set */
- 		return 0;
- 	}
- 
--	regmap_read(pca->regmap, LED_N_ON_H(channel), &on);
-+	pca9685_read_reg(pca, LED_N_ON_H(channel), &on);
- 	if (on & LED_FULL) {
- 		/* Full ON bit is set */
- 		return PCA9685_COUNTER_RANGE;
- 	}
- 
--	regmap_read(pca->regmap, LED_N_OFF_L(channel), &val);
-+	pca9685_read_reg(pca, LED_N_OFF_L(channel), &val);
- 	off = ((off & 0xf) << 8) | (val & 0xff);
- 	if (!pwm->args.usage_power)
- 		return off;
- 
- 	/* Read ON register to calculate duty cycle of staggered output */
--	if (regmap_read(pca->regmap, LED_N_ON_L(channel), &val)) {
-+	if (pca9685_read_reg(pca, LED_N_ON_L(channel), &val)) {
- 		/* Reset val to 0 in case reading LED_N_ON_L failed */
- 		val = 0;
- 	}
-@@ -322,8 +346,15 @@ static inline int pca9685_pwm_gpio_probe(struct pca9685 *pca)
- 
- static void pca9685_set_sleep_mode(struct pca9685 *pca, bool enable)
- {
--	regmap_update_bits(pca->regmap, PCA9685_MODE1,
--			   MODE1_SLEEP, enable ? MODE1_SLEEP : 0);
-+	struct device *dev = pca->chip.dev;
-+	int err = regmap_update_bits(pca->regmap, PCA9685_MODE1,
-+				     MODE1_SLEEP, enable ? MODE1_SLEEP : 0);
-+	if (err) {
-+		dev_err(dev, "regmap_update_bits of register 0x%x failed: %pe\n",
-+			PCA9685_MODE1, ERR_PTR(err));
-+		return;
-+	}
-+
- 	if (!enable) {
- 		/* Wait 500us for the oscillator to be back up */
- 		udelay(500);
-@@ -352,7 +383,7 @@ static int __pca9685_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 		return 0;
- 	}
- 
--	regmap_read(pca->regmap, PCA9685_PRESCALE, &val);
-+	pca9685_read_reg(pca, PCA9685_PRESCALE, &val);
- 	if (prescale != val) {
- 		if (!pca9685_prescaler_can_change(pca, pwm->hwpwm)) {
- 			dev_err(chip->dev,
-@@ -370,7 +401,7 @@ static int __pca9685_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 		pca9685_set_sleep_mode(pca, true);
- 
- 		/* Change the chip-wide output frequency */
--		regmap_write(pca->regmap, PCA9685_PRESCALE, prescale);
-+		pca9685_write_reg(pca, PCA9685_PRESCALE, prescale);
- 
- 		/* Wake the chip up */
- 		pca9685_set_sleep_mode(pca, false);
-@@ -409,7 +440,7 @@ static void pca9685_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 	unsigned int val = 0;
- 
- 	/* Calculate (chip-wide) period from prescale value */
--	regmap_read(pca->regmap, PCA9685_PRESCALE, &val);
-+	pca9685_read_reg(pca, PCA9685_PRESCALE, &val);
- 	/*
- 	 * PCA9685_OSC_CLOCK_MHZ is 25, i.e. an integer divider of 1000.
- 	 * The following calculation is therefore only a multiplication
-@@ -506,7 +537,9 @@ static int pca9685_pwm_probe(struct i2c_client *client,
- 
- 	mutex_init(&pca->lock);
- 
--	regmap_read(pca->regmap, PCA9685_MODE2, &reg);
-+	ret = pca9685_read_reg(pca, PCA9685_MODE2, &reg);
-+	if (ret)
-+		return ret;
- 
- 	if (device_property_read_bool(&client->dev, "invert"))
- 		reg |= MODE2_INVRT;
-@@ -518,18 +551,20 @@ static int pca9685_pwm_probe(struct i2c_client *client,
- 	else
- 		reg |= MODE2_OUTDRV;
- 
--	regmap_write(pca->regmap, PCA9685_MODE2, reg);
-+	ret = pca9685_write_reg(pca, PCA9685_MODE2, reg);
-+	if (ret)
-+		return ret;
- 
- 	/* Disable all LED ALLCALL and SUBx addresses to avoid bus collisions */
--	regmap_read(pca->regmap, PCA9685_MODE1, &reg);
-+	pca9685_read_reg(pca, PCA9685_MODE1, &reg);
- 	reg &= ~(MODE1_ALLCALL | MODE1_SUB1 | MODE1_SUB2 | MODE1_SUB3);
--	regmap_write(pca->regmap, PCA9685_MODE1, reg);
-+	pca9685_write_reg(pca, PCA9685_MODE1, reg);
- 
- 	/* Reset OFF/ON registers to POR default */
--	regmap_write(pca->regmap, PCA9685_ALL_LED_OFF_L, LED_FULL);
--	regmap_write(pca->regmap, PCA9685_ALL_LED_OFF_H, LED_FULL);
--	regmap_write(pca->regmap, PCA9685_ALL_LED_ON_L, 0);
--	regmap_write(pca->regmap, PCA9685_ALL_LED_ON_H, 0);
-+	pca9685_write_reg(pca, PCA9685_ALL_LED_OFF_L, LED_FULL);
-+	pca9685_write_reg(pca, PCA9685_ALL_LED_OFF_H, LED_FULL);
-+	pca9685_write_reg(pca, PCA9685_ALL_LED_ON_L, 0);
-+	pca9685_write_reg(pca, PCA9685_ALL_LED_ON_H, 0);
- 
- 	pca->chip.ops = &pca9685_pwm_ops;
- 	/* Add an extra channel for ALL_LED */
--- 
-2.31.1
+thanks
+alex
 
+
+
+> Thanks,
+> Ahmad
+> 
+>>
+>> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+>>
+>> diff --git a/arch/arm/boot/dts/stm32mp157.dtsi b/arch/arm/boot/dts/stm32mp157.dtsi
+>> index 54e73ccea446..c355fcf26ec3 100644
+>> --- a/arch/arm/boot/dts/stm32mp157.dtsi
+>> +++ b/arch/arm/boot/dts/stm32mp157.dtsi
+>> @@ -24,8 +24,6 @@
+>>   			clock-names = "pclk", "ref", "px_clk";
+>>   			resets = <&rcc DSI_R>;
+>>   			reset-names = "apb";
+>> -			#address-cells = <1>;
+>> -			#size-cells = <0>;
+>>   			status = "disabled";
+>>   
+>>   			ports {
+>> diff --git a/arch/arm/boot/dts/stm32mp157c-dk2.dts b/arch/arm/boot/dts/stm32mp157c-dk2.dts
+>> index 19ef475a48fc..763dde1dbbaf 100644
+>> --- a/arch/arm/boot/dts/stm32mp157c-dk2.dts
+>> +++ b/arch/arm/boot/dts/stm32mp157c-dk2.dts
+>> @@ -36,6 +36,8 @@
+>>   &dsi {
+>>   	status = "okay";
+>>   	phy-dsi-supply = <&reg18>;
+>> +	#address-cells = <1>;
+>> +	#size-cells = <0>;
+>>   
+>>   	ports {
+>>   		port@0 {
+>> diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+>> index 6fe5b0fee7c4..4625bb58cc6d 100644
+>> --- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
+>> +++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+>> @@ -102,6 +102,8 @@
+>>   &dsi {
+>>   	phy-dsi-supply = <&reg18>;
+>>   	status = "okay";
+>> +	#address-cells = <1>;
+>> +	#size-cells = <0>;
+>>   
+>>   	ports {
+>>   		port@0 {
+>>
+> 
