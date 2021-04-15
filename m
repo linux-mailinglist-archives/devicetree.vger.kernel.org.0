@@ -2,155 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C229E36054B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 11:09:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE000360557
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 11:12:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231862AbhDOJJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 05:09:36 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:44441 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231842AbhDOJJf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Apr 2021 05:09:35 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id C8FBD580732;
-        Thu, 15 Apr 2021 05:09:12 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Thu, 15 Apr 2021 05:09:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=f9xNlW94bXKtHQ7VEokJAT3kze5
-        U1y0S6MsZACvD48M=; b=vEUIxIYLGCcSHcP4DmDFXZ9AYUaaSKq7OgPflDw3FSv
-        I+QdHQXmRsMSXDy692Vcurp4HsfjKzD8TG3Rmv1kgbYUy+sxPKivQ42P/qfUJ1aC
-        J4WU7ldZicYZ5FkUh3Hc9xb+FhsHhtcguaJy7mpsV04ySgy2YJx/686BRybIYL/w
-        ICc9RqpasWbNBhTY3YWAgMerurEbyKmghfb8h97ZKjgAaZZ9FxiL/d1slUuQFOWh
-        NBdrw6IvyI8tyKWFVAPSEdAhFMwBF0BbRMLCi9KZIAD1JBWHyEF6ChNwbKb6G3cc
-        PoCWK5G2Qy2MWNRfxAx3SyHGy3z8cChtwzrYGQtwAhw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=f9xNlW
-        94bXKtHQ7VEokJAT3kze5U1y0S6MsZACvD48M=; b=q6coCEfjbx39w8i+UiUlBw
-        2i04erJWb7K1nq8nA0IGYNGZcHyaLzTiWNHB5AFNCdNFH1eXjwTq+ddprFqrcS2z
-        WEHhAYVy7NDUqC8L9LdeiEvuxx3zep9x2Z7tFQdK6ygISVJ04+osAldNwTm+DoFl
-        awyyrEKeIXll5/y/3kwKwPGC+WDVqdRPqOsU46tW1V5EX/uk6lvqGtdEuB5IIGkl
-        egDv7g8jdxJIxR4ACRlqBOGkOx1bnSos9YdLJtQiRa1NCVG6+VE1zBLCBDeyzars
-        KqzEwGVVUDpUs6kPMa2QXf1s2hoFtvUaw5wjNjPNn589E9jHazF/SoyGq8XAa1Mg
-        ==
-X-ME-Sender: <xms:twJ4YD7hHahEVJY-5XgZ6ALhWFQdIBfVXSlkM_SAafJC6skWBPV08w>
-    <xme:twJ4YI63NB7Cvdmq0PMGWuwGX2L5YP62-h4_grA6UY6ZmBs9ryoQ84G8tty9IB-as
-    UxxWZRQyLjvh1fSoLQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudelfedguddvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepuedtgfejueduheevgfevvdettdduleffgfffkeeltdffkeegudekjeeuveei
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:twJ4YKcTpIt7aSdHWJShor-jeO79uTFT_5_0I4vhN6bdLFCHaqYuhw>
-    <xmx:twJ4YELUWxPD7jCsfSWlDFi3YsI9JIONzZMy3tzjtcgLyO53tt5Flg>
-    <xmx:twJ4YHJw6OPR5ti-pxTsIpN-unIEFbyldeOufzwK6bsnMPDMtYkR7Q>
-    <xmx:uAJ4YIWJ9qy5zVB6gYQb65jUxnil0TTLlTn-78kmIpBofH2uJZU7JQ>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 31DD9240057;
-        Thu, 15 Apr 2021 05:09:11 -0400 (EDT)
-Date:   Thu, 15 Apr 2021 11:09:08 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Kevin Tang <kevin3.tang@gmail.com>
-Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S231842AbhDOJMu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 05:12:50 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:47648 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231622AbhDOJMr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 05:12:47 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13F9C3QS127848;
+        Thu, 15 Apr 2021 04:12:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1618477923;
+        bh=jGR561TrDqzLWL9VO6pvcCN3CbJFcTaYeFYvpbcz6N0=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Z1jk2Vh/7eTOg55ohx9aljFaNhj3h4q4T2EY2S/V2NDbm16BoErnBInCT0JO0wL6/
+         5S0Uh/YA/4aUqMUJzHQBad2dqXgIh8DwMDmc97bzcDdiIdq+HlmvRNSENd4P6cShZl
+         07h4mzsn/LWP8wCgyBvOyTxnyAb7EVFFkFT79f5E=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13F9C31w073960
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Apr 2021 04:12:03 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 15
+ Apr 2021 04:12:03 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 15 Apr 2021 04:12:03 -0500
+Received: from [172.24.145.148] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13F9BwUV106092;
+        Thu, 15 Apr 2021 04:11:59 -0500
+Subject: Re: [PATCH v2 3/6] dt-bindings: phy: Add binding for TI TCAN104x CAN
+ transceivers
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
-        ML dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 4/6] drm/sprd: add Unisoc's drm display controller
- driver
-Message-ID: <20210415090908.lmu372lzzjb5hz2b@gilmour>
-References: <20210222132822.7830-1-kevin3.tang@gmail.com>
- <20210222132822.7830-5-kevin3.tang@gmail.com>
- <20210324111019.og6d3w47swjim2mq@gilmour>
- <CAFPSGXZ3DjKt87Kc=wc9YKVzTjkQ38Ok6HnHm+VEdqXyHv54Eg@mail.gmail.com>
- <20210407104538.cvssdck26rejrfye@gilmour>
- <CAFPSGXa3xsxmfVquN_pTyBJ4+kL4jQAj6sK+86G3SA2OhB7Jtg@mail.gmail.com>
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, <linux-can@vger.kernel.org>,
+        <netdev@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+References: <20210414140521.11463-1-a-govindraju@ti.com>
+ <20210414140521.11463-4-a-govindraju@ti.com>
+ <20210414153303.yig6bguue3g25yhg@pengutronix.de>
+ <9a9a3b8b-f345-faae-b9bc-3961518e3d29@ti.com>
+ <20210415073810.nwoi2hx57hdg4ima@pengutronix.de>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <072648d4-a747-bc5f-a525-25dd055905ee@ti.com>
+Date:   Thu, 15 Apr 2021 14:41:57 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="iqjdlfj2zil34vaj"
-Content-Disposition: inline
-In-Reply-To: <CAFPSGXa3xsxmfVquN_pTyBJ4+kL4jQAj6sK+86G3SA2OhB7Jtg@mail.gmail.com>
+In-Reply-To: <20210415073810.nwoi2hx57hdg4ima@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Marc,
 
---iqjdlfj2zil34vaj
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 15/04/21 1:08 pm, Marc Kleine-Budde wrote:
+> On 15.04.2021 11:57:20, Aswath Govindraju wrote:
+>> Hi Marc,
+>>
+>> On 14/04/21 9:03 pm, Marc Kleine-Budde wrote:
+>>> On 14.04.2021 19:35:18, Aswath Govindraju wrote:
+>>>> Add binding documentation for TI TCAN104x CAN transceivers.
+>>>>
+>>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>>>> ---
+>>>>  .../bindings/phy/ti,tcan104x-can.yaml         | 56 +++++++++++++++++++
+>>>>  MAINTAINERS                                   |  1 +
+>>>>  2 files changed, 57 insertions(+)
+>>>>  create mode 100644 Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..4abfc30a97d0
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>>>> @@ -0,0 +1,56 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: "http://devicetree.org/schemas/phy/ti,tcan104x-can.yaml#"
+>>>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>>>> +
+>>>> +title: TCAN104x CAN TRANSCEIVER PHY
+>>>> +
+>>>> +maintainers:
+>>>> +  - Aswath Govindraju <a-govindraju@ti.com>
+> 
+> Can you create a maintainers entry for this file with your address?
 
-Hi,
+I don't see this being done for other phy yamls in the
+Documentation/devicetree/bindings/phy folder. Also,
+scripts/get_maintainer.pl is giving the names of maintainers after
+reading the yaml files too.
 
-On Fri, Apr 09, 2021 at 09:35:07PM +0800, Kevin Tang wrote:
-> > > > > +     }
-> > > > > +
-> > > > > +     return MODE_OK;
-> > > > > +}
-> > > > > +
-> > > > > +static void sprd_crtc_atomic_enable(struct drm_crtc *crtc,
-> > > > > +                                struct drm_atomic_state *state)
-> > > > > +{
-> > > > > +     struct sprd_dpu *dpu =3D to_sprd_crtc(crtc);
-> > > > > +
-> > > > > +     sprd_dpu_init(dpu);
-> > > > > +
-> > > > > +     sprd_dpi_init(dpu);
-> > > > > +
-> > > > > +     enable_irq(dpu->ctx.irq);
-> > > >
-> > > > Shouldn't this be in enable_vblank? And I would assume that you wou=
-ld
-> > > > have the interrupts enabled all the time, but disabled in your devi=
-ce?
-> > > >
-> > > It seems better to put in enable_vblank, i will try and test it... Th=
-ks
-> > >
-> > >   And I would assume that you would
-> > > have the interrupts enabled all the time, but disabled in your device?
-> > > [kevin]I don=E2=80=99t quite understand this, can you help me explain=
- it in
-> > > detail?
-> >
-> > You seem to have a register that enables and disables the interrupt in
-> > that device. The way we usually deal with them in this case is just to
-> > call request_irq in your bind/probe with the interrupts enabled at the
-> > controller level, and mask them when needed at the device level by
-> > clearing / setting that bit.
-> >
->  Yeah, we have display controller interrupts setting and clear register.
-> But the interrupts all been enabled in bootloader(eg, lk or uboot),
-> if the interrupt handler is active in the probe/bind phase by request_irq,
-> but the whole display pipeline is not ready, there maybe have some proble=
-ms.
+Thanks,
+Aswath
 
-It's fairly common to clear / ack the interrupts from the device before
-calling request_irq precisely to avoid that issue.
+> 
+>>>> +
+>>>> +properties:
+>>>> +  $nodename:
+>>>> +    pattern: "^tcan104x-phy"
+>>>> +
+>>>> +  compatible:
+>>>> +    enum:
+>>>> +      - ti,tcan1042
+>>>> +      - ti,tcan1043
+>>>
+>>> Can you ensure that the 1042 has only the standby gpio and the 1043 has both?
+>>>
+>>
+>> In the driver, it is the way the flags have been set for ti,tcan1042 and
+>> ti,tcan1043.
+> 
+> I was wondering if we would enforce in the DT the 1042 has exactly one
+> the standby GPIO and the 1043 has exactly the standby and the enable
+> GPIO.
+> 
+> On the other hand the HW might have pulled one or the other pin high or
+> low and only one of the pins is connected to a GPIO.
+> 
+>>>> +
+>>>> +  '#phy-cells':
+>>>> +    const: 0
+>>>> +
+>>>> +  standby-gpios:
+>>>> +    description:
+>>>> +      gpio node to toggle standby signal on transceiver
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  enable-gpios:
+>>>> +    description:
+>>>> +      gpio node to toggle enable signal on transceiver
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  max-bitrate:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +    description:
+>>>> +      max bit rate supported in bps
+>>>> +    minimum: 1
+>>>> +
+>>>> +required:
+>>>> +  - compatible
+>>>> +  - '#phy-cells'
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    #include <dt-bindings/gpio/gpio.h>
+>>>> +
+>>>> +    transceiver1: tcan104x-phy {
+>>>> +      compatible = "ti,tcan1043";
+>>>> +      #phy-cells = <0>;
+>>>> +      max-bitrate = <5000000>;
+>>>> +      standby-gpios = <&wakeup_gpio1 16 GPIO_ACTIVE_LOW>;
+>>>> +      enable-gpios = <&main_gpio1 67 GPIO_ACTIVE_LOW>;
+>>>
+>>> AFAICS the enable gpio is active high.
+>>>
+>>
+>> I will correct this in the respin.
+> 
+> Marc
+> 
 
-Maxime
-
---iqjdlfj2zil34vaj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYHgCtAAKCRDj7w1vZxhR
-xXBaAQC3ACb0Go3hl2khk93hUI2vLUrRqFpmr9tlUyb7hqba7QD+NkO+fFD5Ue+7
-9aQgbCXUIw4o3IFlfY8J7s5gjehvog8=
-=JU1P
------END PGP SIGNATURE-----
-
---iqjdlfj2zil34vaj--
