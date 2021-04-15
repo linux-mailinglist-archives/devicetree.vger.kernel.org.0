@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFF3D36077D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 12:47:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A845360782
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 12:47:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232512AbhDOKsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 06:48:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45994 "EHLO
+        id S232542AbhDOKsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 06:48:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232486AbhDOKsF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 06:48:05 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4A5FC061760
-        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 03:47:42 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id ot17-20020a17090b3b51b0290109c9ac3c34so14166001pjb.4
-        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 03:47:42 -0700 (PDT)
+        with ESMTP id S232493AbhDOKsL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 06:48:11 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8673C061756
+        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 03:47:46 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id p2so1164382pgh.4
+        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 03:47:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=jZDSWVTMlAMb2GC5FLf9Wr+xeqh7iVHbgBuOpIuXmgM=;
-        b=NampagNzPrn6NSKjQijinEcRmJ+6VjtD0femYHPPlCRPWwAi9YpHUbts3GmziV4e0T
-         ev9UQcH5gJuTNiSr5NBZ30+KHwlpPiDC07hJEVMggSrBLQrsGtFFfTwNlQFV4//lUt5E
-         p3BjI3Bu+4wQJCHxmo//e1BuYYPt60Bca+AOl9vDgS0DiEM3NIsp69qiIQVvs8BXFUr4
-         MhFALAr4S4P2YUECtsnJlquCNt2uNVchZjD3AYJeeEuCQEdKyeXqY7E1KwI3AH4M4++3
-         juOky+zdxOjVkSYGXNpSueM0ZY8hS+KqqVWxB24ZxKqvVPOz39WdnDJrGsdni8LSToGI
-         eHPA==
+        bh=UbWREfxBgBA46ljl4hzVe4POfFo0RJt+3RiVINqCR2w=;
+        b=LudU/lZJma6j8HbUABdfJH1ovBCkubCT/zyHmenELpeVz3cmGlBjQDpbyXPvqA1xQO
+         oN6JDTR+pEQc8z7UlzgknGcFnc+4aT59tvsbwuG0f+aXaALP8cfl2/Ypku7uTm76Q1hw
+         zThdKIIHpXfWXfSd9TVmMGorlNz34Glkl+POqJkwtDZvEj9s3lSux0wZx/mYLq3fMb3D
+         DsZgTqQEd5JD+bA+8Rrzz9LKXaIU8GYwDH7FcRN3V9sMvix5qk7dL2tBqv8aojE7Ax+t
+         Y2ej84FN196JeGk/sROEzWa86dO6PhlFCQPQRoMu1vQA/a/5DZ/ZFwA9IojqNkI+sdD2
+         uDXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=jZDSWVTMlAMb2GC5FLf9Wr+xeqh7iVHbgBuOpIuXmgM=;
-        b=g5qFQZQRormWUS53W6m1RBofSrWlK3nVX6kXg6y9u/NHgWcyp/bzrb/x4ACQ9Ym/9H
-         OS0KKeTR9SbA/mLU2IlLzkEaYMa+Jz+ihFNwnwRk5Kbwi6Xr956B503N3G6NHWzzJCY+
-         U9MGTYTg3SnBDqA41gNGfFCtP7yQZwQUq8cyp53raEcpgLyxZehzIYZGKnctvQtI1GXx
-         1yENtzt8CwKYtmF+OZGpZlPcN5VS0izL17STpIpGegKSeJoHZyquCEo8+a9GLCkgki5r
-         6OHNlsSS1gQshgq2sKT5Z/ser2u5F1wHNcX6dfnYfZl0oouKk/Q6LvNX80vJHV01ULFA
-         4zGg==
-X-Gm-Message-State: AOAM533QdiFpt3bBR5Wd/b3LWZ8K5JyT6HGoc8ZkpBfQC8dnzcZBFzJV
-        I1qfy1H3IROdSMO15Kh0NyWCPQ==
-X-Google-Smtp-Source: ABdhPJy+pmq8JLU/ek1cCoTJ2vGhGprFa2FPymMVG3bBW9n0OHjDvrYzdFm67XV/33rUpYEEszwGew==
-X-Received: by 2002:a17:90b:1d88:: with SMTP id pf8mr3178517pjb.114.1618483662489;
-        Thu, 15 Apr 2021 03:47:42 -0700 (PDT)
+        bh=UbWREfxBgBA46ljl4hzVe4POfFo0RJt+3RiVINqCR2w=;
+        b=UD24v6ZunIraCq6iAvXL7CMnnfURgnKUhp4KgcCCW2+TPZaTlYFMTurnAA4YI4UzwM
+         hGfNDXdEv5tg4a14fbiJT3A2f31CDPz956HbNfwPOs7m+yaE5ICGxZG8x07lBmktV8Q8
+         +VUaqXqYuuRDLD0ONxEGdIHzy6hCiOBvMLKgNSvQpTAWTHrkomQOTfiIOShiNBEQxK+S
+         vYcysLOyw7DJV8m97Zd2WVBOedBaEGUmuxRMSa5uE5w2KX1DNZnHL+vRYp+pCLAXYJ1q
+         COXlPXyYHoJt//yWckIKyXaX03fBZdYMdhjk18SQYjBbwLWYUnASEBIGbf2lJJ331dur
+         2suw==
+X-Gm-Message-State: AOAM533dxOsZwFI0FFDtJoXcCGw1SQ69UHltIOrEydEl4Tozryh4wAbj
+        v3trhTNNymMGSww3M+e7Qu3Opw==
+X-Google-Smtp-Source: ABdhPJzFLKlpVtGZ0q11kbQWo2JAfA/tLTLQocjqxnmeMvk5/ShA9HzQ7iBZwbt0bc1xk8QUzvhilA==
+X-Received: by 2002:aa7:9183:0:b029:24b:87e2:6281 with SMTP id x3-20020aa791830000b029024b87e26281mr2599798pfa.14.1618483666469;
+        Thu, 15 Apr 2021 03:47:46 -0700 (PDT)
 Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id f65sm2130672pgc.19.2021.04.15.03.47.38
+        by smtp.gmail.com with ESMTPSA id f65sm2130672pgc.19.2021.04.15.03.47.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 03:47:41 -0700 (PDT)
+        Thu, 15 Apr 2021 03:47:46 -0700 (PDT)
 From:   Shawn Guo <shawn.guo@linaro.org>
 To:     Kalle Valo <kvalo@codeaurora.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -60,9 +60,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         brcm80211-dev-list.pdl@broadcom.com,
         SHA-cyfmac-dev-list@infineon.com, Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH v2 1/2] dt-bindings: bcm4329-fmac: add optional brcm,ccode-map
-Date:   Thu, 15 Apr 2021 18:47:27 +0800
-Message-Id: <20210415104728.8471-2-shawn.guo@linaro.org>
+Subject: [PATCH v2 2/2] brcmfmac: support parse country code map from DT
+Date:   Thu, 15 Apr 2021 18:47:28 +0800
+Message-Id: <20210415104728.8471-3-shawn.guo@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210415104728.8471-1-shawn.guo@linaro.org>
 References: <20210415104728.8471-1-shawn.guo@linaro.org>
@@ -70,46 +70,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add optional brcm,ccode-map property to support translation from ISO3166
-country code to brcmfmac firmware country code and revision.
+With any regulatory domain requests coming from either user space or
+802.11 IE (Information Element), the country is coded in ISO3166
+standard.  It needs to be translated to firmware country code and
+revision with the mapping info in settings->country_codes table.
+Support populate country_codes table by parsing the mapping from DT.
 
-The country revision is needed because the RF parameters that provide
-regulatory compliance are tweaked per platform/customer.  So depending
-on the RF path tight to the chip, certain country revision needs to be
-specified.  As such they could be seen as device specific calibration
-data which is a good fit into device tree.
+The BRCMF_BUSTYPE_SDIO bus_type check gets separated from general DT
+validation, so that country code can be handled as general part rather
+than SDIO bus specific one.
 
 Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
 Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
 ---
- .../bindings/net/wireless/brcm,bcm4329-fmac.yaml          | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../wireless/broadcom/brcm80211/brcmfmac/of.c | 57 ++++++++++++++++++-
+ 1 file changed, 55 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-index b5fcc73ce6be..c11f23b20c4c 100644
---- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-@@ -68,6 +68,13 @@ properties:
-     description: A GPIO line connected to the WL_RST line, if present
-       this shall be flagged as active low.
+diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+index a7554265f95f..dd99ac3410e3 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
++++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+@@ -12,12 +12,59 @@
+ #include "common.h"
+ #include "of.h"
  
-+  brcm,ccode-map:
-+    $ref: /schemas/types.yaml#/definitions/string-array
-+    description: Multiple strings for translating ISO3166 country code to
-+      brcmfmac firmware country code and revision.
-+    items:
-+      pattern: '^[A-Z][A-Z]-[A-Z][0-9A-Z]-[0-9]+$'
++static int brcmf_of_get_country_codes(struct device *dev,
++				      struct brcmf_mp_device *settings)
++{
++	struct device_node *np = dev->of_node;
++	struct brcmfmac_pd_cc_entry *cce;
++	struct brcmfmac_pd_cc *cc;
++	int count;
++	int i;
 +
- required:
-   - compatible
-   - reg
-@@ -97,5 +104,6 @@ examples:
-         interrupts = <24 IRQ_TYPE_EDGE_FALLING>;
-         interrupt-names = "host-wake";
-         reset-gpios = <&gpio 23 GPIO_ACTIVE_LOW>;
-+        brcm,ccode-map = "JP-JP-78", "US-Q2-86";
-       };
-     };
++	count = of_property_count_strings(np, "brcm,ccode-map");
++	if (count < 0) {
++		/* The property is optional, so return success if it doesn't
++		 * exist. Otherwise propagate the error code.
++		 */
++		return (count == -EINVAL) ? 0 : count;
++	}
++
++	cc = devm_kzalloc(dev, sizeof(*cc) + count * sizeof(*cce), GFP_KERNEL);
++	if (!cc)
++		return -ENOMEM;
++
++	cc->table_size = count;
++
++	for (i = 0; i < count; i++) {
++		const char *map;
++
++		cce = &cc->table[i];
++
++		if (of_property_read_string_index(np, "brcm,ccode-map",
++						  i, &map))
++			continue;
++
++		/* String format e.g. US-Q2-86 */
++		if (sscanf(map, "%2c-%2c-%d", cce->iso3166, cce->cc,
++			   &cce->rev) != 3)
++			brcmf_err("failed to read country map %s\n", map);
++		else
++			brcmf_dbg(INFO, "%s-%s-%d", cce->iso3166, cce->cc,
++				  cce->rev);
++	}
++
++	settings->country_codes = cc;
++
++	return 0;
++}
++
+ void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
+ 		    struct brcmf_mp_device *settings)
+ {
+ 	struct brcmfmac_sdio_pd *sdio = &settings->bus.sdio;
+ 	struct device_node *root, *np = dev->of_node;
+ 	int irq;
++	int err;
+ 	u32 irqf;
+ 	u32 val;
+ 
+@@ -43,8 +90,14 @@ void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
+ 		of_node_put(root);
+ 	}
+ 
+-	if (!np || bus_type != BRCMF_BUSTYPE_SDIO ||
+-	    !of_device_is_compatible(np, "brcm,bcm4329-fmac"))
++	if (!np || !of_device_is_compatible(np, "brcm,bcm4329-fmac"))
++		return;
++
++	err = brcmf_of_get_country_codes(dev, settings);
++	if (err)
++		brcmf_err("failed to get OF country code map (err=%d)\n", err);
++
++	if (bus_type != BRCMF_BUSTYPE_SDIO)
+ 		return;
+ 
+ 	if (of_property_read_u32(np, "brcm,drive-strength", &val) == 0)
 -- 
 2.17.1
 
