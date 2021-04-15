@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4576B3605E3
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 11:35:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60C793605E6
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 11:35:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232287AbhDOJfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 05:35:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58280 "EHLO
+        id S232302AbhDOJf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 05:35:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232280AbhDOJfx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 05:35:53 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EE04C061756
-        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 02:35:30 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id x21-20020a17090a5315b029012c4a622e4aso12369097pjh.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 02:35:30 -0700 (PDT)
+        with ESMTP id S232295AbhDOJfz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 05:35:55 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98EF3C061760
+        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 02:35:32 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id q14-20020a17090a430eb02901503aaee02bso1316474pjg.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 02:35:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=8nK9tfz3NVekxo0c4TpGRd2q1g2g0nUPwHfUPo4fv7U=;
-        b=d+H0aUou1mmX8YmV9TXJKHFFrAikaPsf0u0BJxftbdF94VgnyL7ojpDzqXFYzTEc7D
-         Ttdk9zcoWolsXWeG/UCWTRcFUVyEXC/Hx2CbqXeZjDCFZr42CSPMdKDirRd5GYDl+eDE
-         Y/5LjvYRJcB9vdq8c3b4FFTh4I9p/PibiCng4=
+        bh=wMjBnZVcviRSoI/fJCL0g5fel6FhaOBmtY6DkO6xXxY=;
+        b=h7u0EG2oQomUTpNXieEyKJqrlltD5arbBXhy5eiszP06AOd2iO8qgA0l8phkMady0h
+         RXy9ualjzfyUH1mVHjK6sWlRVzvyQzyz7FMmZOYklSvBZxeYa553SWRx6gDBlrF9QclM
+         yaWAoKzrqK9iHo82ft0OdCffwP+vbZ3wyjwEM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=8nK9tfz3NVekxo0c4TpGRd2q1g2g0nUPwHfUPo4fv7U=;
-        b=nLh0hMfzy+VP+I7joupOPlr6oWMMzT1aZAYV5CS6x7/gcirFDwzc7IYy8FQ0IUjQQ/
-         ePS7AMNXNetkUqD4ztx1GcLUj4dkmPG0TV2UnsqUj1JeMorsz0IeistckR/vXH4d8uJo
-         FWREFZiouAxo+fNlW9ljWbUSZsa2tqNgZpU25qTAC1Tm01RJkFg3fmUU4ING2CNQmzCp
-         YMRPXqy9h7i7iwySwWgAH4AOWzijsgv8YnRdm//ZzMTJmbhVP1N/Ck7ld4Swy6LRCvoj
-         9C5vmlMep/t/wedFxzSEAVtihRDWN0e1+tlhIoDjYbmw17vz7C+zA6gWiMvQTnw72fqn
-         jt8w==
-X-Gm-Message-State: AOAM533KtfCLlM/5oq6w9Mw1WDrK6ebUNgzzvO1w97e9K9LQghlDj5XY
-        cLK/6a7N7yfHK/1hBNzomHUNeg==
-X-Google-Smtp-Source: ABdhPJz8kFU5VfkPAeCLfeTkC6GhBXLlvbYC5C3lJFMiqzy47wA3ye0Sw2vDePOkEKm9vP1kxREt4A==
-X-Received: by 2002:a17:90a:fb4c:: with SMTP id iq12mr2869691pjb.121.1618479330163;
-        Thu, 15 Apr 2021 02:35:30 -0700 (PDT)
+        bh=wMjBnZVcviRSoI/fJCL0g5fel6FhaOBmtY6DkO6xXxY=;
+        b=YTia3oNw1S990qpSWH6IEFTq5Vr281cbAIDv5DZxgBvGUx7rCbgA3KvMsp1sHec4zI
+         LPxxAZ8EZJYQZ+WCAXf/a/Wom6gGCxnM8KMJNo76/pghRlk1SA1h1Jof1N703xMEACf3
+         ppHoHI1ygdOIY0WHGUSOqvvyxrs/BfKKwZrZbfXyGNTP+FubBmDvzWCLSiVNAA7KUixa
+         BSGLd4A8ifiH1F767NDhJZho+MTOJoD336LEP3edrbRsjmTQTh2xh3lvJu0m78griUXR
+         4jEKWZzHrq8HYc1VIMmm8DZjSD/J+KBAswAMnXnFDSQmFh/4vilYRle9PpyVf83XPg7a
+         KSJg==
+X-Gm-Message-State: AOAM533u7x96gnQGnnL6kk3ddZofgxqXJAV2Mv7JOhg91Wd03KMKm7A+
+        SeH7/AJa52CSFMBWlcEX2mEdNg==
+X-Google-Smtp-Source: ABdhPJwKP4wSfoYB0NTaL8DCzzFiEbrj1tlgDGva13KPsgrDRbYyepCR8GYmJblM/4ysaLF0o+vdZQ==
+X-Received: by 2002:a17:90a:f2cd:: with SMTP id gt13mr2815027pjb.43.1618479332053;
+        Thu, 15 Apr 2021 02:35:32 -0700 (PDT)
 Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:6432:a6cb:91d2:5e32])
-        by smtp.gmail.com with ESMTPSA id a13sm1849502pgm.43.2021.04.15.02.35.28
+        by smtp.gmail.com with ESMTPSA id a13sm1849502pgm.43.2021.04.15.02.35.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 02:35:29 -0700 (PDT)
+        Thu, 15 Apr 2021 02:35:31 -0700 (PDT)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
 To:     Matthias Brugger <matthias.bgg@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -52,9 +52,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         linux-kernel@vger.kernel.org, Sean Wang <sean.wang@mediatek.com>,
         Ben Ho <Ben.Ho@mediatek.com>,
         Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Subject: [PATCH 4/8] dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-jacuzzi-kenzo
-Date:   Thu, 15 Apr 2021 17:35:15 +0800
-Message-Id: <20210415093519.1920877-4-hsinyi@chromium.org>
+Subject: [PATCH 5/8] arm64: dts: mt8183: Add kukui-jacuzzi-kappa board
+Date:   Thu, 15 Apr 2021 17:35:16 +0800
+Message-Id: <20210415093519.1920877-5-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.31.1.295.g9ea45b61b8-goog
 In-Reply-To: <20210415093519.1920877-1-hsinyi@chromium.org>
 References: <20210415093519.1920877-1-hsinyi@chromium.org>
@@ -64,31 +64,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Kenzo is known as Acer Chromebook 311.
+Kappa is known as HP Chromebook 11a
 
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 ---
- Documentation/devicetree/bindings/arm/mediatek.yaml | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/mediatek/Makefile            |  1 +
+ .../dts/mediatek/mt8183-kukui-jacuzzi-kappa.dts  | 16 ++++++++++++++++
+ 2 files changed, 17 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index 0870490aa350..39e4a99ebb37 100644
---- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -137,9 +137,11 @@ properties:
-         items:
-           - const: google,damu
-           - const: mediatek,mt8183
--      - description: Google Juniper (Acer Chromebook Spin 311)
-+      - description: Google Juniper (Acer Chromebook Spin 311) / Kenzo (Acer Crhomebook 311)
-         items:
--          - const: google,juniper-sku16
-+          - enum:
-+              - google,juniper-sku16
-+              - google,juniper-sku17
-           - const: google,juniper
-           - const: mediatek,mt8183
-       - description: Google Kakadu (ASUS Chromebook Detachable CM3)
+diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+index a1c50adc98fa..df70674949ce 100644
+--- a/arch/arm64/boot/dts/mediatek/Makefile
++++ b/arch/arm64/boot/dts/mediatek/Makefile
+@@ -15,6 +15,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-evb.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-evb.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-damu.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-juniper-sku16.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-kappa.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kakadu.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku16.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku272.dtb
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dts
+new file mode 100644
+index 000000000000..b3f46c16e5d7
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dts
+@@ -0,0 +1,16 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2021 Google LLC
++ */
++
++/dts-v1/;
++#include "mt8183-kukui-jacuzzi.dtsi"
++
++/ {
++	model = "Google kappa board";
++	compatible = "google,kappa", "mediatek,mt8183";
++};
++
++&mt6358codec {
++	mediatek,dmic-mode = <1>; /* one-wire */
++};
 -- 
 2.31.1.295.g9ea45b61b8-goog
 
