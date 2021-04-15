@@ -2,105 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8000F360F54
-	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 17:48:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C8BD360F72
+	for <lists+devicetree@lfdr.de>; Thu, 15 Apr 2021 17:53:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233753AbhDOPsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 11:48:25 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:35036 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233330AbhDOPsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 11:48:24 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13FFlpL0028482;
-        Thu, 15 Apr 2021 10:47:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1618501671;
-        bh=uiHPH94tE4sIxoTIhjL8lKWiz49jYbtUss22vgnacZU=;
-        h=Subject:CC:References:From:Date:In-Reply-To;
-        b=eq0H2pxoQWFYaqm9B/JzGiBnJOx0DF8elBRyPAmjU2X4zb03AnWoTO7SWkwPqiKM/
-         0FRZXhDCD3VIVOcOfBsOvRF8ryigttBQenPgbdsiEfFHsnJyndNjrsZ201gBk6kqzN
-         3RJlJdlDP8A1eypvOq5+2B3R1BlWOiArX2tmyl1M=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13FFlpI0091560
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Apr 2021 10:47:51 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 15
- Apr 2021 10:47:51 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 15 Apr 2021 10:47:51 -0500
-Received: from [172.24.145.148] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13FFlkM9088230;
-        Thu, 15 Apr 2021 10:47:47 -0500
-Subject: Re: [PATCH 0/2] MCAN: Add support for implementing transceiver as a
- phy
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Wolfgang Grandegger <wg@grandegger.com>,
+        id S232879AbhDOPxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Apr 2021 11:53:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57118 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231726AbhDOPxp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 11:53:45 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A80EC061574;
+        Thu, 15 Apr 2021 08:53:21 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id i10so4061926lfe.11;
+        Thu, 15 Apr 2021 08:53:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UWC2MC72dgX7erfaiK0WF/mEIAVWPqcVzYbZe8V5Z1E=;
+        b=NIfyHh1/PRmS+9vlJuhVugsnRZ6stFNyFEhxN5B4sVKKsp6mAb29+DAaFaoSGLzl+j
+         kB7i0+Kdn1JaNr89rQ7uUjyZXvqBm3h02KWgcPFwvSCOMog9/ENOTM3CdQPTdEpMyME0
+         W4f9ECChsCIsL8s8MwZG3O1IrDlEHDdkhrjiQctZFjP1FZRORvYCmpO8gg5H8YFAg8/7
+         TgnjY/s/871YpFDhEU9bv76gJ3VwUe8cetHG3IbZQHk8uaCxfklBHn7mHSKbXCE8OmTv
+         MFCjCXkgZVDC0p7rRjw3tqsPqQ+nS17Ri/cbBv+0JUHR1x+8rryyOdZ8zxExS15upiUa
+         MJyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UWC2MC72dgX7erfaiK0WF/mEIAVWPqcVzYbZe8V5Z1E=;
+        b=AkLp+cJYs9eLRci9h7UytHbFepG/YpCwCIsmH6WVwVY4pcNsFqF89ulUOiqCDzp1A/
+         QRqhxKRedTW8V++9oQKvyTWqEifYlS5yGsGOywfUtafEsdI5lpQsPco2G2nT6sH23XwZ
+         uChLZ5t/cRaZPEFaIYjyD1CiYGmvsYauQ2HqL4YkZiMlaE7XEVzuRRAwp1Jeh/VImdB8
+         q6qtdPpPXvp/gxVftTF5T9kBU/GdnoB4tT4q1+larcnUtcv0fH0awY7/xzeJ3dRiMSx6
+         wBeQ+zFKywcVA8VBOdsfvsh18zKieEDftZmukFn/KGKtcEj40EY58Z1IqHN9VGvXI7JF
+         vGuw==
+X-Gm-Message-State: AOAM532ln9w/NMoiANdtzzF+kjc/ISsk3L9+sUsfOXzqjqoJA7UDmRXl
+        giu61QKPZZomPjFSkNat1sA=
+X-Google-Smtp-Source: ABdhPJw1hchhMCsax9EV0N/YbpI2KvNmp+q3ewQiaZLc00QNf4RW4J0wPjOl5hNgeyEJbgWUWIENVQ==
+X-Received: by 2002:a19:3849:: with SMTP id d9mr2943775lfj.388.1618501999617;
+        Thu, 15 Apr 2021 08:53:19 -0700 (PDT)
+Received: from PC10319.67 ([82.97.198.254])
+        by smtp.googlemail.com with ESMTPSA id s7sm674074ljg.31.2021.04.15.08.53.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Apr 2021 08:53:19 -0700 (PDT)
+From:   Konstantin Aladyshev <aladyshev22@gmail.com>
+Cc:     supreeth.venkatesh@amd.com, aladyshev22@gmail.com,
         Rob Herring <robh+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-References: <20210415150629.5417-1-a-govindraju@ti.com>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <3b669b65-9e68-7148-90fb-7ad28e9a93cc@ti.com>
-Date:   Thu, 15 Apr 2021 21:17:46 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: aspeed: amd-ethanolx: Enable all used I2C busses
+Date:   Thu, 15 Apr 2021 18:52:59 +0300
+Message-Id: <20210415155300.1135-1-aladyshev22@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210415150629.5417-1-a-govindraju@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+Enable all I2C busses that are used in AMD EthanolX CRB:
+ i2c0 - APML P0
+ i2c1 - APML P1
+ i2c2 - FPGA
+ i2c3 - 24LC128 EEPROM
+ i2c4 - P0 Power regulators
+ i2c5 - P1 Power regulators
+ i2c6 - P0/P1 Thermal diode
+ i2c7 - Thermal Sensors
+ i2c8 - BMC I2C
 
-On 15/04/21 8:36 pm, Aswath Govindraju wrote:
-> The following series of patches add support for implementing the
-> transceiver as a phy of m_can_platform driver.
-> 
-> TCAN1042 has a standby signal that needs to be pulled high for
-> sending/receiving messages[1]. TCAN1043 has a enable signal along with
-> standby signal that needs to be pulled up for sending/receiving
-> messages[2], and other combinations of the two lines can be used to put the
-> transceiver in different states to reduce power consumption. On boards
-> like the AM654-idk and J721e-evm these signals are controlled using gpios.
-> 
-> These gpios are set in phy driver, and the transceiver can be put in
-> different states using phy API. The phy driver is added in the series [3].
-> 
-> [1] - https://www.ti.com/lit/ds/symlink/tcan1042h.pdf
-> [2] - https://www.ti.com/lit/ds/symlink/tcan1043-q1.pdf
-> [3] - https://lore.kernel.org/patchwork/project/lkml/list/?series=495365
-> 
+Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
+---
+ arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-Posted v2 for this series.
-
-Thanks,
-Aswath
-
-> Faiz Abbas (2):
->   dt-bindings: net: can: Document transceiver implementation as phy
->   can: m_can: Add support for transceiver as phy
-> 
->  .../devicetree/bindings/net/can/bosch,m_can.yaml    |  3 +++
->  drivers/net/can/m_can/m_can.c                       | 10 ++++++++++
->  drivers/net/can/m_can/m_can.h                       |  2 ++
->  drivers/net/can/m_can/m_can_platform.c              | 13 +++++++++++++
->  4 files changed, 28 insertions(+)
-> 
+diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
+index ac2d04cfaf2f..6aeb47c44eba 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
+@@ -151,6 +151,31 @@ &i2c1 {
+ 	status = "okay";
+ };
+ 
++//FPGA
++&i2c2 {
++	status = "okay";
++};
++
++//24LC128 EEPROM
++&i2c3 {
++	status = "okay";
++};
++
++//P0 Power regulators
++&i2c4 {
++	status = "okay";
++};
++
++//P1 Power regulators
++&i2c5 {
++	status = "okay";
++};
++
++//P0/P1 Thermal diode
++&i2c6 {
++	status = "okay";
++};
++
+ // Thermal Sensors
+ &i2c7 {
+ 	status = "okay";
+@@ -196,6 +221,11 @@ lm75a@4f {
+ 	};
+ };
+ 
++//BMC I2C
++&i2c8 {
++	status = "okay";
++};
++
+ &kcs1 {
+ 	status = "okay";
+ 	aspeed,lpc-io-reg = <0x60>;
+-- 
+2.25.1
 
