@@ -2,147 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 802D1362730
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 19:49:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C28AA362750
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 19:58:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243841AbhDPRtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 13:49:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60364 "EHLO
+        id S244137AbhDPR7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 13:59:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235540AbhDPRtl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 13:49:41 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82069C061574;
-        Fri, 16 Apr 2021 10:49:14 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id x7so27453070wrw.10;
-        Fri, 16 Apr 2021 10:49:14 -0700 (PDT)
+        with ESMTP id S244115AbhDPR7V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 13:59:21 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABC0AC061756
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 10:58:55 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id lt13so5575043pjb.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 10:58:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=rsbI71LAtu2EmNV/K2CkqD1WqSCd6Qg76YsSGFCewFg=;
-        b=Q1Igkbx4N8NskCEHW2UdBTUvSzZkSbfC0bloCcWnBg/AZblyOKD1K3v3DBrdacyUyy
-         xpOXJh4GPTLWp5ABQJ/eKJQ9AE9mlyTYLNfRqK2SeQW10gty2MPfklDbQaAvMo2Y1q1c
-         DeL6dW6VPJt53p3/p7FdCuaHbspBvdT9n+44KTg/pRhQXKTd9fy9sslCDawtP1SRBnOT
-         tEUdMYYuP8Giyu5EQvfaYv/JAEZh5qdKtkGrsymgz/W2eM49ITxYy4Z3g9HqH5UOJtpE
-         E0bkUAQR0/DWHv9xW8fNz/MqD5TsD194AuipsfBa0RYW5pySWigTUuA21DZrOOF8Y2jm
-         xwJw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=p6foCwxVCDklL/5CLAd0ULHN1p3sHTS6VkpK8Ctm3DA=;
+        b=fffoeN4GJycmqznQs0nwnRxEJQ95+4/yJHVb/0GPi192N1u88XITWkwJdOWgLUgVDr
+         6W8gPp+n7VRT3NekSQsDBQZqHiDLZfk7PNVmu/QuR2CKMs5/WFtEM+qKoas9aOJO0jR6
+         5B1j00mBHPLQ4ebYcNzx9jP2xp4EioNDtqC2XH9nA/z3Ily6ea7lELBG+aRLbOqcSHDv
+         qp1Z7I9jFDPnJzkfoRboDsmJD99aiFbPjd2QRCKixaGP0N9QpOP5PHFMZ/zbhXB0u30s
+         jdE5/0LJoLLSllhgR9A2rijh3PrhNLhHs3yiDaajnRRULZbNj7R3XDQNo+NcQcrwNK26
+         uUiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=rsbI71LAtu2EmNV/K2CkqD1WqSCd6Qg76YsSGFCewFg=;
-        b=DFmsq4u6epBix9+p/udvie5uKVgb4w6v6GzEF8XrgzhF2zPoJqUFiCZhohQN5pckSQ
-         rom7HtCHHLZII8MIjGKuj88m6s0wXLAnaf9tJAVnw9ewljObAYv6x7bb6kkgyDkg2dph
-         7oRALfB/WgFqLVKOjyEjWbt//dqIZXW4Dq9xiuPILFJa5SOiqflMWpCnpcpDWkFTOafi
-         xg1XCjc4T/Q14kbX37VyOzgVqJmb9OqDghxJrY8OYXPnOiPTHyMANFwVW9e98tlNA556
-         5hjHKuxDckx1YdZ6yglwUEgKw1ZuW0jjlh1Lb7fkhKIGykk4m9U77vL3ZDsDSYHkBygY
-         M41g==
-X-Gm-Message-State: AOAM531QafjKOxd51jWnsOs8rOPDwFj9NPckOLDAOboAD4zjpZfL+HD/
-        0kegjdyXDRWy4r+pCjDVAmY=
-X-Google-Smtp-Source: ABdhPJyg+ah70RIs7U8pUtKTuFDfhL9I7KI29E5eAYEZ0MNKcVcuQbSUZ8R6exDAei5PZMOABFg+1w==
-X-Received: by 2002:a05:6000:186a:: with SMTP id d10mr340265wri.303.1618595353357;
-        Fri, 16 Apr 2021 10:49:13 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:4b00:8534:a300:74e9:62d:637a:9c4a])
-        by smtp.gmail.com with ESMTPSA id c16sm11552926wrt.83.2021.04.16.10.49.12
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=p6foCwxVCDklL/5CLAd0ULHN1p3sHTS6VkpK8Ctm3DA=;
+        b=aaJSoWTNMSDLOvmQvXZ7YNtfVL+Jh3lZ9L2Vs8YehggXyT+Mwtf4e50HxogS/KfTED
+         h/9mbRu5zOzOVaFCreXnJrPaS05t3JYVJfELbNXaGOi9oSaq75LUVSg/s2AG6OCA7ScD
+         CpqkHvpZVis4rrKWXqxXHsUKaILLTzK8YKpSx8V9c5b8uegvt8UD88d6+FRnCFTaDytw
+         4FAo3fU6cmWWQA8K3wBzSg3x18EVWj//0EHLCBcK9rDELZxF+yFjpgzzNvyzvvq1S6zD
+         Y3ErATRbE7ZVlNnsVvxXQBWSN6d8U6L4Kry5JJSPdRkw5Xkcx3M0BCUBm/mYJfZf/4Xc
+         7LBQ==
+X-Gm-Message-State: AOAM531qKgjBeBNB7iY9EkbX+E1taIKOsSlXevKSomx9kPBCwGOoU8XN
+        WissWYR9xtoiXQnqToBELhuUbQ==
+X-Google-Smtp-Source: ABdhPJxiAj8b5+5zgYtISRM9Z7KkIhSkLjEOGrG4RQsiofcjbDMLy3JIenak2OGgUCAw9n/ungf3yA==
+X-Received: by 2002:a17:902:7589:b029:e8:c011:1f28 with SMTP id j9-20020a1709027589b02900e8c0111f28mr10610951pll.35.1618595935289;
+        Fri, 16 Apr 2021 10:58:55 -0700 (PDT)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id o134sm5071499pfd.66.2021.04.16.10.58.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Apr 2021 10:49:13 -0700 (PDT)
-From:   Joe Sandom <joe.g.sandom@gmail.com>
-To:     jic23@kernel.org
-Cc:     andy.shevchenko@gmail.com, Joe Sandom <joe.g.sandom@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v8 2/2] Added AMS tsl2591 device tree binding
-Date:   Fri, 16 Apr 2021 18:49:02 +0100
-Message-Id: <20210416174902.9036-2-joe.g.sandom@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210416174902.9036-1-joe.g.sandom@gmail.com>
-References: <20210416174902.9036-1-joe.g.sandom@gmail.com>
+        Fri, 16 Apr 2021 10:58:54 -0700 (PDT)
+Date:   Fri, 16 Apr 2021 11:58:52 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     peng.fan@oss.nxp.com
+Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
+        o.rempel@pengutronix.de, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V4 0/8] remoteproc: imx_rproc: support i.MX7ULP/8MN/8MP
+Message-ID: <20210416175852.GE1050209@xps15>
+References: <1618493261-32606-1-git-send-email-peng.fan@oss.nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1618493261-32606-1-git-send-email-peng.fan@oss.nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Device tree binding for AMS/TAOS tsl2591 ambient light sensor.
+On Thu, Apr 15, 2021 at 09:27:33PM +0800, peng.fan@oss.nxp.com wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> V4:
+>  Typo fix 
+>  patch 4: take state as a check condition
+>  patch 5: move regmap lookup/attach to imx_rproc_detect_mode
+>  patch 6: add imx_rproc_clk_enable for optional clk
+>  patch 8: use switch/case in imx_rproc_detect_mode
+> V3:
+>  Add A-b tag for Patch 1/2
+>  Fix the checkpatch warning for Patch 6,8
+> 
+> V2:
+>  Patch 1/8, use fsl as vendor, typo fix
+>  Because patchset [1] has v2 version, patch 5,6,7,8 are adapted that
+>  change.
+> 
+> This patchset is to support i.MX7ULP/8MN/8MP, also includes a patch to
+> parse fsl,auto-boot
+>
 
-This driver supports configuration via device tree and sysfs.
-Supported channels for raw infrared light intensity,
-raw combined light intensity and illuminance in lux.
-The driver additionally supports iio events on lower and
-upper thresholds.
+Always specify what branch your work applies on and dependencies for it.  If
+this was ready to go Bjorn would have a fun time figuring out it depends on your
+other set[1].
 
-This is a very-high sensitivity light-to-digital converter that
-transforms light intensity into a digital signal.
+I am done reviewing this pathset.
 
-Signed-off-by: Joe Sandom <joe.g.sandom@gmail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-Changes in v8:
-- No changes
+Mathieu 
 
-Notes:
-- Re-submitted to align the version with part 1 of the patch series
-
- .../bindings/iio/light/amstaos,tsl2591.yaml   | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml
-
-diff --git a/Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml b/Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml
-new file mode 100644
-index 000000000000..596a3bc770f4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/light/amstaos,tsl2591.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/light/amstaos,tsl2591.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: AMS/TAOS TSL2591 Ambient Light Sensor (ALS)
-+
-+maintainers:
-+  - Joe Sandom <joe.g.sandom@gmail.com>
-+
-+description: |
-+  AMS/TAOS TSL2591 is a very-high sensitivity
-+  light-to-digital converter that transforms light intensity into a digital
-+  signal.
-+
-+properties:
-+  compatible:
-+    const: amstaos,tsl2591
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      Interrupt (INT:Pin 2) Active low. Should be set to IRQ_TYPE_EDGE_FALLING.
-+      interrupt is used to detect if the light intensity has fallen below
-+      or reached above the configured threshold values.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        tsl2591@29 {
-+            compatible = "amstaos,tsl2591";
-+            reg = <0x29>;
-+            interrupts = <20 IRQ_TYPE_EDGE_FALLING>;
-+       };
-+    };
-+...
--- 
-2.17.1
-
+[1] [PATCH V3 0/8] remoteproc: imx_rproc: support i.MX7ULP/8MN/8MP
+ 
+> 
+> Peng Fan (8):
+>   dt-bindings: remoteproc: imx_rproc: add fsl,auto-boot property
+>   dt-bindings: remoteproc: imx_rproc: add i.MX7ULP support
+>   dt-bindings: remoteproc: imx_rproc: support i.MX8MN/P
+>   remoteproc: imx_rproc: parse fsl,auto-boot
+>   remoteproc: imx_rproc: initial support for mutilple start/stop method
+>   remoteproc: imx_rproc: make clk optional
+>   remoteproc: imx_rproc: support i.MX7ULP
+>   remoteproc: imx_rproc: support i.MX8MN/P
+> 
+>  .../bindings/remoteproc/fsl,imx-rproc.yaml         |  11 +-
+>  drivers/remoteproc/imx_rproc.c                     | 206 +++++++++++++++++----
+>  2 files changed, 179 insertions(+), 38 deletions(-)
+> 
+> -- 
+> 2.7.4
+> 
