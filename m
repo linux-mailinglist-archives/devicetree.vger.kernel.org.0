@@ -2,217 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDA75361E83
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 13:20:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFF7D361EB9
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 13:32:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239276AbhDPLVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 07:21:11 -0400
-Received: from mga12.intel.com ([192.55.52.136]:63711 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235011AbhDPLVJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Apr 2021 07:21:09 -0400
-IronPort-SDR: V2L8wZ/qIxcSR8k6IDKfOh/L+1dGBRAhTDZRjUXelZ5eHbPhsq3Obuf+qsY74z2XiRXW9E062j
- IbHBU+0LeePQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9955"; a="174520052"
-X-IronPort-AV: E=Sophos;i="5.82,226,1613462400"; 
-   d="scan'208";a="174520052"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Apr 2021 04:20:44 -0700
-IronPort-SDR: KNUTpDmsWv3TqC084HypCIwIlD/plK0sn/ftJdo6Ss8lxaAf64SUvkXt+qT6ueC3oSnNzxUVe5
- CAn917c/wDPA==
-X-IronPort-AV: E=Sophos;i="5.82,226,1613462400"; 
-   d="scan'208";a="425560591"
-Received: from grosikox-mobl.ger.corp.intel.com (HELO [10.104.80.12]) ([10.104.80.12])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Apr 2021 04:20:42 -0700
-Subject: Re: [PATCH 00/10] Keem Bay Camera Subsystem
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Martina Krasteva <martinax.krasteva@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        sakari.ailus@linux.intel.com,
-        daniele.alessandrelli@linux.intel.com,
-        paul.j.murphy@linux.intel.com
-References: <20210319180632.585-1-martinax.krasteva@linux.intel.com>
- <YHlazqJeQp4cFYMl@pendragon.ideasonboard.com>
-From:   "Rosikopulos, GjorgjiX" <gjorgjix.rosikopulos@linux.intel.com>
-Message-ID: <4084cf8d-61f4-2ae4-b6d4-47668996a446@linux.intel.com>
-Date:   Fri, 16 Apr 2021 11:20:40 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        id S242019AbhDPLbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 07:31:42 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:46844 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239255AbhDPLbl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 07:31:41 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13GBV3jZ106510;
+        Fri, 16 Apr 2021 06:31:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1618572663;
+        bh=YzBU+cLhccqcsDURJtSYpEEhzleC4dnairSrugdNE1A=;
+        h=From:To:CC:Subject:Date;
+        b=Byweb9b+UMrEf5ZDslCCazJwDg0Vg7230dkxIilNF0VoU7p+ppY7EZtSBNiuVUuhJ
+         aNvuwpQpzyRkpxiwv0UyivgX5DSPfUTpNpEYMrg8BrSp1Ww47gjR+7RgAtTd+nYcEB
+         8tqOJyLVwFmb98BUIv4QoRWBFbrPCNYdP335QoSQ=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13GBV281122015
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 16 Apr 2021 06:31:03 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 16
+ Apr 2021 06:31:02 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Fri, 16 Apr 2021 06:31:02 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13GBUwIu073816;
+        Fri, 16 Apr 2021 06:30:59 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-can@vger.kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: [PATCH v5 0/3] CAN TRANSCEIVER: Add support for CAN transceivers
+Date:   Fri, 16 Apr 2021 17:00:55 +0530
+Message-ID: <20210416113058.23815-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <YHlazqJeQp4cFYMl@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+The following series of patches add support for CAN transceivers.
 
-On 16/04/2021 09:37, Laurent Pinchart wrote:
-> Hi Martina and Gjorgji,
->
-> Nice to see a new ISP driver :-)
-Pleasure for us submit new ISP driver :-).
->
-> Before reviewing patches in details, I have a few high-level questions:
->
-> - The driver seems to proxy access to the ISP through the VPU firmware.
->    I assume the VPU is a separate CPU core that controls the hardware
->    directly. Is that correct ?
+TCAN1042 has a standby signal that needs to be pulled high for
+sending/receiving messages[1]. TCAN1043 has a enable signal along with
+standby signal that needs to be pulled up for sending/receiving
+messages[2], and other combinations of the two lines can be used to put the
+transceiver in different states to reduce power consumption. On boards
+like the AM654-idk and J721e-evm these signals are controlled using gpios.
 
-Yes that is correct.
+Patch 1 rewords the comment that restricts max_link_rate attribute to have
+units of Mbps.
 
->
-> - Does this driver support all the features of the ISP, or only the
->    subset that a particular VPU firmware exposes ? In particular, the ISP
->    is exposed as an inline block, which no memory buffer between the
->    CSI-2 receiver and the ISP, and no ability to capture raw frames. How
->    is one supposed to tune cameras ?
+Patch 2 models the transceiver as a phy device tree node with properties
+for max bit rate supported, gpio properties for indicating gpio pin numbers
+to which standby and enable signals are connected.
 
-The driver exposes all the features supported by ISP the firmware as 
-high level API.
+Patch 2 adds a generic driver to support CAN transceivers.
 
-However this patch-set is not exposing all the features of the VPU API 
-in userspace. Some of them will came in next patch-set some of them
+changes since v4:
+- In patch 3 made the correction from mcan to CAN, in Kconfig help
 
-are part of the separate patch-set (HDR 2DOL and 3DOL support).
+changes since v3:
+- dropped patch 2(in v3)
+- changed the node name property in patch 3(in v3)
+- picked up Rob Herring's reviewed-by for patch 3(in v3)
 
-The changes which will be posted in next patch-set are:
+changes since v2:
+- dropped 5 and 6 patches and to be sent via linux-can-next
+- added static keyword for can_transceiver_phy_probe()
+- changed enable gpio example to active high in patch 3
+- Rearranged the file names in alphabetical order in Makefile
+  and MAINTAINERS file
 
-1. Raw capture support (link can be activated per need).
+changes since v1:
+- Added patch 1 (in v2) that rewords the comment that restrict
+  max_link_rate attribute to have units of Mbps.
+- Added patch 2 (in v2) that adds an API for
+  devm_of_phy_optional_get_by_index
+- Patch 1 (in v1)
+  - updated MAINTAINERS file
+- Patch 2 (in v1)
+  - replaced m_can with CAN to make the driver independent of CAN driver
+  - Added prefix CAN_TRANSCEIVER for EN_PRESENT and STB_PRESENT
+  - Added new line before return statements in power_on() and power_off
+  - Added error handling patch for devm_kzalloc()
+  - used the max_link_rate attribute directly instead of dividing it by
+    1000000
+  - removed the spaces before GPIOD_OUT_LOW in devm_gpiod_get()
+  - Corrected requested value for standby-gpios to GPIOD_OUT_HIGH
+  - Updated MAINTAINERS file
+- Patch 3 (in v1)
+  - replaced minItems with maxItems
+  - Removed phy-names property as there is only one phy
+- Patch 4 (in v1)
+  - replaced dev_warn with dev_info when no transceiver is found
+  - Added struct phy * field in m_can_classdev struct
+  - moved phy_power_on and phy_power_off to m_can_open and m_can_close
+    respectively
+  - Moved the check for max_bit_rate to generice transceiver driver
 
-2. Support for 2 additional scaled outputs which again their links can 
-be activated per need.
+[1] - https://www.ti.com/lit/ds/symlink/tcan1042h.pdf
+[2] - https://www.ti.com/lit/ds/symlink/tcan1043-q1.pdf
 
-3. The full size output which is included in this patch-set will remain 
-immutable active.
+Aswath Govindraju (3):
+  phy: core: Reword the comment specifying the units of max_link_rate to
+    be Mbps
+  dt-bindings: phy: Add binding for TI TCAN104x CAN transceivers
+  phy: phy-can-transceiver: Add support for generic CAN transceiver
+    driver
 
+ .../bindings/phy/ti,tcan104x-can.yaml         |  56 +++++++
+ MAINTAINERS                                   |   2 +
+ drivers/phy/Kconfig                           |   9 ++
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/phy-can-transceiver.c             | 146 ++++++++++++++++++
+ include/linux/phy/phy.h                       |   2 +-
+ 6 files changed, 215 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+ create mode 100644 drivers/phy/phy-can-transceiver.c
 
-The additional features which will be added as separate patch-set and 
-RFC are:
+-- 
+2.17.1
 
-4. 2DOL and 3DOL support. We dont have yet interface for multiple 
-streams over one link. We will use current RFC for that. (That why this 
-is not included in first patch-set).
-
-Also we need to discuss how to enable raw capture for 2DOL and 3DOL 
-usecases....
-
-
-Regarding the VPU operation. The VPU captures frames from CSI2 in to 
-memory and then uses ISP mem2mem processing, there is internal memory 
-pool used by the firmware.
-
-When raw capture is enabled the raw buffer pool is allocated in the 
-linux driver side and used by VPU for storing the frames to memory, then 
-they are processed
-
-by ISP and returned to linux driver side.
-
->
-> - More documentation is needed for both the device architecture (in
->    particular a block diagram of the processing pipeline), and the
->    configuration parameters. Is there ongoing work in this area ?
-Yes this is painful part. We are working to get approval for providing 
-the needed documentation...
->
-> - Last but not least, we need a reference userspace implementation to
->    test this driver. I recommend implementing support in libcamera :-)
-
-So i am not sure if this is a planned effort. Currently we are using 
-yavta for doing tests same as IPU3 example,
-
-with prepared configurations and read them from file. I agree that it 
-will be great to have libcamera support but
-
-for now is not part of our up-streaming effort :/
-
-Regards,
-
-~Gjorgji
-
->
-> On Fri, Mar 19, 2021 at 06:06:22PM +0000, Martina Krasteva wrote:
->> From: Martina Krasteva <martinax.krasteva@intel.com>
->>
->> Patch series contains Keem Bay Camera Subsystem driver implementation,
->> documentation and devicetree binding document.
->>
->> Gjorgji Rosikopulos (7):
->>    media: Keem Bay Camera: Keem Bay camera driver
->>    media: Keem Bay Camera: Add VPU camera interface
->>    uapi: Keem Bay ISP Parameters data types
->>    media: v4l: Add Keem Bay Camera meta buffer formats
->>    media: Keem Bay Camera: Add ISP sub-device
->>    media: Keem Bay Camera: Add metadata video node
->>    media: admin-guide: Add documentation for Keem Bay Camera
->>
->> Martina Krasteva (3):
->>    dt-bindings: media: Add bindings for Keem Bay Camera
->>    media: Keem Bay Camera: Add pipeline support
->>    media: Keem Bay Camera: Add capture video node
->>
->>   Documentation/admin-guide/media/keembay-camera.dot |   12 +
->>   Documentation/admin-guide/media/keembay-camera.rst |  174 ++
->>   Documentation/admin-guide/media/v4l-drivers.rst    |    1 +
->>   .../bindings/media/intel,keembay-camera.yaml       |   98 ++
->>   .../userspace-api/media/v4l/meta-formats.rst       |    1 +
->>   .../media/v4l/pixfmt-meta-intel-kmb.rst            |   98 ++
->>   MAINTAINERS                                        |   14 +
->>   drivers/media/platform/Kconfig                     |    1 +
->>   drivers/media/platform/Makefile                    |    2 +
->>   drivers/media/platform/keembay-camera/Kconfig      |   11 +
->>   drivers/media/platform/keembay-camera/Makefile     |    5 +
->>   .../platform/keembay-camera/keembay-cam-xlink.c    |  327 ++++
->>   .../platform/keembay-camera/keembay-cam-xlink.h    |   49 +
->>   .../media/platform/keembay-camera/keembay-camera.c |  287 +++
->>   .../media/platform/keembay-camera/keembay-camera.h |   43 +
->>   .../media/platform/keembay-camera/keembay-isp.c    | 1397 +++++++++++++++
->>   .../media/platform/keembay-camera/keembay-isp.h    |  136 ++
->>   .../platform/keembay-camera/keembay-metadata.c     | 1860 ++++++++++++++++++++
->>   .../platform/keembay-camera/keembay-metadata.h     |  154 ++
->>   .../keembay-camera/keembay-params-defaults.c       |  326 ++++
->>   .../keembay-camera/keembay-params-defaults.h       |   38 +
->>   .../platform/keembay-camera/keembay-pipeline.c     |  401 +++++
->>   .../platform/keembay-camera/keembay-pipeline.h     |   75 +
->>   .../media/platform/keembay-camera/keembay-video.c  |  922 ++++++++++
->>   .../media/platform/keembay-camera/keembay-video.h  |   74 +
->>   .../platform/keembay-camera/keembay-vpu-cmd.h      |  110 ++
->>   .../platform/keembay-camera/keembay-vpu-frame.h    |  102 ++
->>   .../platform/keembay-camera/keembay-vpu-isp.h      |  724 ++++++++
->>   .../platform/keembay-camera/keembay-vpu-pipe.h     |  110 ++
->>   .../platform/keembay-camera/keembay-vpu-src.h      |  193 ++
->>   include/uapi/linux/keembay-isp-ctl.h               |  796 +++++++++
->>   include/uapi/linux/videodev2.h                     |    4 +
->>   32 files changed, 8545 insertions(+)
->>   create mode 100644 Documentation/admin-guide/media/keembay-camera.dot
->>   create mode 100644 Documentation/admin-guide/media/keembay-camera.rst
->>   create mode 100644 Documentation/devicetree/bindings/media/intel,keembay-camera.yaml
->>   create mode 100644 Documentation/userspace-api/media/v4l/pixfmt-meta-intel-kmb.rst
->>   create mode 100644 drivers/media/platform/keembay-camera/Kconfig
->>   create mode 100644 drivers/media/platform/keembay-camera/Makefile
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-cam-xlink.c
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-cam-xlink.h
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-camera.c
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-camera.h
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-isp.c
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-isp.h
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-metadata.c
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-metadata.h
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-params-defaults.c
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-params-defaults.h
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-pipeline.c
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-pipeline.h
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-video.c
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-video.h
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-cmd.h
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-frame.h
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-isp.h
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-pipe.h
->>   create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-src.h
->>   create mode 100644 include/uapi/linux/keembay-isp-ctl.h
->>
->>
->> base-commit: f00397ee41c79b6155b9b44abd0055b2c0621349
