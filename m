@@ -2,143 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EBCC362139
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 15:40:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7460F36211F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 15:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232642AbhDPNkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 09:40:45 -0400
-Received: from elvis.franken.de ([193.175.24.41]:53884 "EHLO elvis.franken.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235192AbhDPNkn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Apr 2021 09:40:43 -0400
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1lXOhk-0002lT-00; Fri, 16 Apr 2021 15:40:16 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id A52AAC04CD; Fri, 16 Apr 2021 15:35:36 +0200 (CEST)
-Date:   Fri, 16 Apr 2021 15:35:36 +0200
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-Subject: Re: [PATCH v5 net-next 10/10] dt-bindings: net: korina: Add DT
- bindings for IDT 79RC3243x SoCs
-Message-ID: <20210416133536.GA10451@alpha.franken.de>
-References: <20210416085207.63181-1-tsbogend@alpha.franken.de>
- <20210416085207.63181-11-tsbogend@alpha.franken.de>
- <ca4d9975-c153-94c9-dec8-bf9416c76b45@gmail.com>
+        id S244071AbhDPNie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 09:38:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60096 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240255AbhDPNie (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 09:38:34 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6855EC061574
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 06:38:09 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id x20so14526565lfu.6
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 06:38:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GWSOjlZXxwUSOU910bqL41nHp+qOEswR2OpnvakbvcY=;
+        b=jNv2sQj+VJOaJRskvRBUEPXthNx/oI49HsHGJdpfUq6xHHfnj3uV9cna37tsb+RvLt
+         kv0jkIBJdH2WPVtRs1A4wxNDAxqd+P+/1GB1EWI71fY9ddND6/Bt/kakcjfsiga2A4Vm
+         bEHewC/ih6NG5gzBci10TSfgrnhlKB0ysJLbnQRFsVd5jE+R9xH4GbHLIYA1qDx81hTV
+         6TuCWzXLUe5WPUhJnkPTduXUCLeAFLCzQgeNCD/iocE3k1s2dqgfNGDIpBgkVflFL18J
+         YBqGN/4H7uG+ySU0XcASYODRw398iFWRmgjnF9w9CTZVISJegdrPLozGxibQzh77TUNH
+         Erjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GWSOjlZXxwUSOU910bqL41nHp+qOEswR2OpnvakbvcY=;
+        b=lI39sbNF4iip/aIHfVqIoSlKyOwgHkQlp6dqOq4N3YzxPOaoC7UT1j0qNbyRvQMBSn
+         JFRkTcSu1/iRsfiTHEioalh8LQcDtLAn6Oyz/CpdX01ZHCcI0ZNd4wWjEh6leiki8Q71
+         XQ3GVAEn+PKZ+u/mmG4MPCI7L+AF8/doPb7hY7xrLwVRBubh2I7JOZhT3AvqyEoAkQ8d
+         9iw1bc5xs7SFTJ/dpnHenySNEUpCrvxap7dZ7qfUHFGu41WgI12vqsJdIn/uzdTsjl2h
+         wPFoMKAkuDKtqn1dS7OdTUVuB8untx5t0c2nDy7Bh6YSSvIvgvWjvnATORcc8MJQYVct
+         JXnQ==
+X-Gm-Message-State: AOAM530vzFv4EAnvkM9FQt6s04TbYINGFezTFPQrx/2gfOOo4LXwn11a
+        9JpfFTpMeRPrV2mg5thjesY=
+X-Google-Smtp-Source: ABdhPJwDpFTOasWglgAMKOcLyBZoZn6Zn+AdLaqjJXM6BXI12XZV7j21Zz4Lb7ijTToRTGUfU04veQ==
+X-Received: by 2002:a19:e309:: with SMTP id a9mr2982831lfh.222.1618580287294;
+        Fri, 16 Apr 2021 06:38:07 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id y14sm948405ljy.18.2021.04.16.06.38.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Apr 2021 06:38:06 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH stblinux 1/6] ARM: dts: BCM5301X: Fix NAND nodes names
+Date:   Fri, 16 Apr 2021 15:37:48 +0200
+Message-Id: <20210416133753.32756-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ca4d9975-c153-94c9-dec8-bf9416c76b45@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 16, 2021 at 12:29:46PM +0300, Sergei Shtylyov wrote:
-> On 16.04.2021 11:52, Thomas Bogendoerfer wrote:
-> 
-> > Add device tree bindings for ethernet controller integrated into
-> > IDT 79RC3243x SoCs.
-> > 
-> > Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> > ---
-> >   .../bindings/net/idt,3243x-emac.yaml          | 74 +++++++++++++++++++
-> >   1 file changed, 74 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/net/idt,3243x-emac.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/idt,3243x-emac.yaml b/Documentation/devicetree/bindings/net/idt,3243x-emac.yaml
-> > new file mode 100644
-> > index 000000000000..3697af5cb66f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/idt,3243x-emac.yaml
-> > @@ -0,0 +1,74 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/idt,3243x-emac.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: IDT 79rc3243x Ethernet controller
-> > +
-> > +description: Ethernet controller integrated into IDT 79RC3243x family SoCs
-> > +
-> > +maintainers:
-> > +  - Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> > +
-> > +allOf:
-> > +  - $ref: ethernet-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: idt,3243x-emac
-> > +
-> > +  reg:
-> > +    maxItems: 3
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: korina_regs
-> > +      - const: korina_dma_rx
-> > +      - const: korina_dma_tx
-> > +
-> > +  interrupts:
-> > +    items:
-> > +      - description: RX interrupt
-> > +      - description: TX interrupt
-> > +
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: korina_rx
-> > +      - const: korina_tx
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: mdioclk
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - interrupts
-> > +  - interrupt-names
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +
-> > +    ethernet@60000 {
-> > +        compatible = "idt,3243x-emac";
-> > +
-> > +        reg = <0x60000 0x10000>,
-> > +              <0x40000 0x14>,
-> > +              <0x40014 0x14>;
-> > +        reg-names = "korina_regs",
-> > +                    "korina_dma_rx",
-> > +                    "korina_dma_tx";
-> > +
-> > +        interrupts-extended = <&rcpic3 0>, <&rcpic3 1>;
-> 
->    You use this prop, yet don't describe it?
+From: Rafał Miłecki <rafal@milecki.pl>
 
-that's just interrupt-parent and interrupts in one statement. And since
-make dt_binding_check didn't complained I thought that's good this way.
-Rob, do I need to describe interrupts-extended as well ?
+This matches nand-controller.yaml requirements.
 
-I could change that to interrupt-parent/interrupts as the driver no
-longer uses dma under/overrun interrupts, which have a different
-interrupt-parent.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts      | 4 ++--
+ arch/arm/boot/dts/bcm47094-dlink-dir-885l.dts     | 4 ++--
+ arch/arm/boot/dts/bcm5301x-nand-cs0.dtsi          | 4 ++--
+ arch/arm/boot/dts/bcm5301x.dtsi                   | 2 +-
+ arch/arm/boot/dts/bcm953012k.dts                  | 4 ++--
+ arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi | 2 +-
+ 6 files changed, 10 insertions(+), 10 deletions(-)
 
-Thomas.
-
+diff --git a/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts b/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts
+index 8636600385fd..c81944cd6d0b 100644
+--- a/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts
++++ b/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts
+@@ -24,8 +24,8 @@ memory@0 {
+ 		reg = <0x00000000 0x08000000>;
+ 	};
+ 
+-	nand: nand@18028000 {
+-		nandcs@0 {
++	nand_controller: nand-controller@18028000 {
++		nand@0 {
+ 			partitions {
+ 				compatible = "fixed-partitions";
+ 				#address-cells = <1>;
+diff --git a/arch/arm/boot/dts/bcm47094-dlink-dir-885l.dts b/arch/arm/boot/dts/bcm47094-dlink-dir-885l.dts
+index e635a15041dd..a6e2aeb28675 100644
+--- a/arch/arm/boot/dts/bcm47094-dlink-dir-885l.dts
++++ b/arch/arm/boot/dts/bcm47094-dlink-dir-885l.dts
+@@ -25,8 +25,8 @@ memory@0 {
+ 		      <0x88000000 0x08000000>;
+ 	};
+ 
+-	nand: nand@18028000 {
+-		nandcs@0 {
++	nand_controller: nand-controller@18028000 {
++		nand@0 {
+ 			partitions {
+ 				compatible = "fixed-partitions";
+ 				#address-cells = <1>;
+diff --git a/arch/arm/boot/dts/bcm5301x-nand-cs0.dtsi b/arch/arm/boot/dts/bcm5301x-nand-cs0.dtsi
+index 925a7c9ce5b7..be9a00ff752d 100644
+--- a/arch/arm/boot/dts/bcm5301x-nand-cs0.dtsi
++++ b/arch/arm/boot/dts/bcm5301x-nand-cs0.dtsi
+@@ -6,8 +6,8 @@
+  */
+ 
+ / {
+-	nand@18028000 {
+-		nandcs: nandcs@0 {
++	nand-controller@18028000 {
++		nandcs: nand@0 {
+ 			compatible = "brcm,nandcs";
+ 			reg = <0>;
+ 			#address-cells = <1>;
+diff --git a/arch/arm/boot/dts/bcm5301x.dtsi b/arch/arm/boot/dts/bcm5301x.dtsi
+index 7db72a2f1020..092ec525c01c 100644
+--- a/arch/arm/boot/dts/bcm5301x.dtsi
++++ b/arch/arm/boot/dts/bcm5301x.dtsi
+@@ -501,7 +501,7 @@ rng: rng@18004000 {
+ 		reg = <0x18004000 0x14>;
+ 	};
+ 
+-	nand: nand@18028000 {
++	nand_controller: nand-controller@18028000 {
+ 		compatible = "brcm,nand-iproc", "brcm,brcmnand-v6.1", "brcm,brcmnand";
+ 		reg = <0x18028000 0x600>, <0x1811a408 0x600>, <0x18028f00 0x20>;
+ 		reg-names = "nand", "iproc-idm", "iproc-ext";
+diff --git a/arch/arm/boot/dts/bcm953012k.dts b/arch/arm/boot/dts/bcm953012k.dts
+index 046c59fb4846..de40bd59a5fa 100644
+--- a/arch/arm/boot/dts/bcm953012k.dts
++++ b/arch/arm/boot/dts/bcm953012k.dts
+@@ -49,8 +49,8 @@ memory@80000000 {
+ 	};
+ };
+ 
+-&nand {
+-	nandcs@0 {
++&nand_controller {
++	nand@0 {
+ 		compatible = "brcm,nandcs";
+ 		reg = <0>;
+ 		nand-on-flash-bbt;
+diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+index 9354077f74cd..b69c87d7d9a2 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+@@ -269,7 +269,7 @@ nand@1800 {
+ 			interrupt-names = "nand";
+ 			status = "okay";
+ 
+-			nandcs: nandcs@0 {
++			nandcs: nand@0 {
+ 				compatible = "brcm,nandcs";
+ 				reg = <0>;
+ 			};
 -- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+2.26.2
+
