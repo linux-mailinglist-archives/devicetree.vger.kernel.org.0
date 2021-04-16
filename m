@@ -2,185 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C72C36223C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 16:29:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B80283622C1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 16:51:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236114AbhDPO3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 10:29:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43368 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236088AbhDPO3y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 10:29:54 -0400
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93812C06175F
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 07:29:29 -0700 (PDT)
-Received: by mail-qk1-x733.google.com with SMTP id f19so11288694qka.8
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 07:29:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8l9FyBuH/BTGEYuzxVaf9TucQyLLNilcn+KXBfwnWIU=;
-        b=M1hHNRamb82YIk/lbOBEDTCvbPD0rXi+/QC3Xk47O8ev5I5uqGpsn0K/Xsb2fYPEOK
-         YJqEo4l7GF90H8PqLByqgrCHdqH4xeW3B+V3RZ1R1ugX98E30j6tn+JygtMUHOcxcR1f
-         lD2yjfW/6QenhiFH0bwh7nZX2rqb7idpqDnAg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8l9FyBuH/BTGEYuzxVaf9TucQyLLNilcn+KXBfwnWIU=;
-        b=EweSCLaRWR4zPSY8UcG0Dca+4LmYgp2nrPCgTlCXXAo7/vMmBd4ujEdKlfXzlAPVQp
-         UFBi9VIQB3FybMtjqcaUHKMIPzmUwj3MDZoCzctdPGRe8K9ZFkBJ22mvbqGmML27K7lv
-         AA/6lTFNL7sEa9XEMU82lKSP1Kvcxe5cwCgFu5GdKDS+wkQXpWpe4nqKpM+p6Cc92gHc
-         dImBRj+fHFR3dOd9LHpt14lra0oMtwJKLXpFdUdjgqfbIiS4z//pCIrb9Gqe4M5JdcE5
-         kpXBjDFfI6YwGfVsgmxXbHxpdEnhvmbEimLZtXMbM34FLZTJE45E5Pqzj1zTgsDB641s
-         ThAA==
-X-Gm-Message-State: AOAM530ZDmkkg1sZxYaFndAqgp9110vQaawU25mP3xVVYZgsXVoCS6Kg
-        3DzGY7HyIIvccfh2erTLUjwUyqje6WgFqw==
-X-Google-Smtp-Source: ABdhPJzesTXXNWgap2oKv4cFx0HuvJP7b1GaJ3ieawUevee+u166AmqzcLEILK1fBNNxJoncELlijg==
-X-Received: by 2002:a37:e95:: with SMTP id 143mr8839016qko.422.1618583368371;
-        Fri, 16 Apr 2021 07:29:28 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id h65sm4251433qkc.128.2021.04.16.07.29.27
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Apr 2021 07:29:27 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id p3so9664617ybk.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 07:29:27 -0700 (PDT)
-X-Received: by 2002:a25:d34b:: with SMTP id e72mr12054749ybf.343.1618583366837;
- Fri, 16 Apr 2021 07:29:26 -0700 (PDT)
+        id S235483AbhDPOiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 10:38:13 -0400
+Received: from linux.microsoft.com ([13.77.154.182]:34056 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243059AbhDPOiE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 10:38:04 -0400
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 9764920B8001;
+        Fri, 16 Apr 2021 07:37:39 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9764920B8001
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1618583859;
+        bh=om/3vGgOZg+LIEcRJf0M9Ny9BhltFs3g4GQ3a2n92l0=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=iMRHKbiJoMe8luxwHTdfwJwXv0Zkz9XxY1n3v7T/KCX9IapcU85Sd3YKDZyS97TJf
+         a+n+FKvcKXNG9LVU0KVPIARBA+W02Gh+MyaTY1p/uLXZPIeO0wzbBRYzKywKAddSFc
+         sfpB57Bo2uiuXYLIZgdKcQ4/VJiDOpF5ndlYV87o=
+Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in
+ elf64_load()
+To:     Michael Ellerman <mpe@ellerman.id.au>,
+        Daniel Axtens <dja@axtens.net>, robh@kernel.org,
+        dan.carpenter@oracle.com
+Cc:     devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        kbuild-all@lists.01.org, bauerman@linux.ibm.com, lkp@intel.com
+References: <20210415191437.20212-1-nramas@linux.microsoft.com>
+ <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
+ <87eefag241.fsf@linkitivity.dja.id.au> <87tuo6eh0j.fsf@mpe.ellerman.id.au>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <2817d674-d420-580f-a0c1-b842da915a80@linux.microsoft.com>
+Date:   Fri, 16 Apr 2021 07:37:39 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210414111007.v1.1.I1a438604a79025307f177347d45815987b105cb5@changeid>
-In-Reply-To: <20210414111007.v1.1.I1a438604a79025307f177347d45815987b105cb5@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 16 Apr 2021 07:29:15 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XURtypK1G-Q+4FKtii=JnTVTRKQ=Ehr1rggVqxbXDH0w@mail.gmail.com>
-Message-ID: <CAD=FV=XURtypK1G-Q+4FKtii=JnTVTRKQ=Ehr1rggVqxbXDH0w@mail.gmail.com>
-Subject: Re: [PATCH v1] arm64: dts: qcom: sc7180: coachz: Add thermal config
- for skin temperature
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <87tuo6eh0j.fsf@mpe.ellerman.id.au>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 4/16/21 2:05 AM, Michael Ellerman wrote:
 
-On Wed, Apr 14, 2021 at 11:10 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> Add ADC and thermal monitor configuration for skin temperature,
-> plus a thermal zone that monitors the skin temperature and uses
-> the big cores as cooling devices.
->
-> CoachZ rev1 is stuffed with an incompatible thermistor for the
-> skin temperature, disable the thermal zone for rev1 to avoid
-> the use of bogus temperature values.
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
->
->  .../dts/qcom/sc7180-trogdor-coachz-r1.dts     |  9 +++
->  .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  | 63 +++++++++++++++++++
->  2 files changed, 72 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-> index 86619f6c1134..80bdc4d5b523 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-> @@ -14,6 +14,15 @@ / {
->         compatible = "google,coachz-rev1", "qcom,sc7180";
->  };
->
-> +/*
-> + * CoachZ rev1 is stuffed with a 47k NTC as thermistor for skin temperature,
-> + * which currently is not supported by the PM6150 ADC driver. Disable the
-> + * skin temperature thermal zone to avoid using bogus temperature values.
-> + */
-> +&skin_temp_thermal {
-> +       status = "disabled";
-> +};
-> +
->  &tlmm {
->         gpio-line-names = "HUB_RST_L",
->                           "AP_RAM_ID0",
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-> index e2ffe71c2d52..cabe5d6b981b 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-> @@ -25,6 +25,50 @@ adau7002: audio-codec-1 {
->                 IOVDD-supply = <&pp1800_l15a>;
->                 #sound-dai-cells = <0>;
->         };
-> +
-> +       thermal-zones {
-> +               skin_temp_thermal: skin-temp-thermal {
-> +                       polling-delay-passive = <250>;
-> +                       polling-delay = <0>;
-> +
-> +                       thermal-sensors = <&pm6150_adc_tm 1>;
-> +                       sustainable-power = <814>;
-> +
-> +                       trips {
-> +                               skin_temp_alert0: trip-point0 {
-> +                                       temperature = <42000>;
-> +                                       hysteresis = <1000>;
-> +                                       type = "passive";
-> +                               };
-> +
-> +                               skin_temp_alert1: trip-point1 {
-> +                                       temperature = <45000>;
-> +                                       hysteresis = <1000>;
-> +                                       type = "passive";
-> +                               };
-> +
-> +                               skin-temp-crit {
+> Daniel Axtens <dja@axtens.net> writes:
+>>> On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
+>>>
+>>> Sorry - missed copying device-tree and powerpc mailing lists.
+>>>
+>>>> There are a few "goto out;" statements before the local variable "fdt"
+>>>> is initialized through the call to of_kexec_alloc_and_setup_fdt() in
+>>>> elf64_load(). This will result in an uninitialized "fdt" being passed
+>>>> to kvfree() in this function if there is an error before the call to
+>>>> of_kexec_alloc_and_setup_fdt().
+>>>>
+>>>> Initialize the local variable "fdt" to NULL.
+>>>>
+>> I'm a huge fan of initialising local variables! But I'm struggling to
+>> find the code path that will lead to an uninit fdt being returned...
+>>
+>> The out label reads in part:
+>>
+>> 	/* Make kimage_file_post_load_cleanup free the fdt buffer for us. */
+>> 	return ret ? ERR_PTR(ret) : fdt;
+>>
+>> As far as I can tell, any time we get a non-zero ret, we're going to
+>> return an error pointer rather than the uninitialised value...
 
-If it were me I would have added a label to the "crit" too to match
-the alert0 and alert1. It's not needed right now, though, so it's not
-worth spinning the patch for.
+As Dan pointed out, the new code is in linux-next.
 
-> +                                       temperature = <60000>;
-> +                                       hysteresis = <1000>;
-> +                                       type = "critical";
-> +                               };
-> +                       };
-> +
-> +                       cooling-maps {
-> +                               map0 {
-> +                                       trip = <&skin_temp_alert0>;
-> +                                       cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +                                                        <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +                               };
-> +
-> +                               map1 {
-> +                                       trip = <&skin_temp_alert1>;
-> +                                       cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +                                                        <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +                               };
-> +                       };
-> +               };
-> +       };
->  };
->
->  &ap_spi_fp {
-> @@ -77,6 +121,25 @@ &panel {
->         compatible = "boe,nv110wtm-n61";
->  };
->
-> +&pm6150_adc {
-> +       skin-temp-thermistor@4e {
+I have copied the new one below - the function doesn't return fdt, but 
+instead sets it in the arch specific field (please see the link to the 
+updated elf_64.c below).
 
-A part of me wonders if we should just be using the generic name
-"thermistor@4e" which seems more common in dts.  ...but what you have
-matches what we've already done in pompom so I think it's fine.
+https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/tree/arch/powerpc/kexec/elf_64.c?h=for-next
 
-FWIW: I'm not an expert on any of the thermistor stuff but it looks
-sane and matches how pompom is working with this thermistor...
+>>
+>> (btw, it does look like we might leak fdt if we have an error after we
+>> successfully kmalloc it.)
+>>
+>> Am I missing something? Can you link to the report for the kernel test
+>> robot or from Dan?
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+/*
+          * Once FDT buffer has been successfully passed to 
+kexec_add_buffer(),
+          * the FDT buffer address is saved in image->arch.fdt. In that 
+case,
+          * the memory cannot be freed here in case of any other error.
+          */
+         if (ret && !image->arch.fdt)
+                 kvfree(fdt);
+
+         return ret ? ERR_PTR(ret) : NULL;
+
+In case of an error, the memory allocated for fdt is freed unless it has 
+already been passed to kexec_add_buffer().
+
+thanks,
+  -lakshmi
+
+>>
+>> FWIW, I think it's worth including this patch _anyway_ because initing
+>> local variables is good practice, but I'm just not sure on the
+>> justification.
+> 
+> Why is it good practice?
+> 
+> It defeats -Wuninitialized. So you're guaranteed to be returning
+> something initialised, but not necessarily initialised to the right
+> value.
+> 
+> In a case like this NULL seems like a safe choice, but it's still wrong.
+> The function is meant to return a pointer to the successfully allocated
+> fdt, or an ERR_PTR() value. NULL is neither of those.
+> 
+> I agree there are security reasons that initialising stack variables is
+> desirable, but I think that should be handled by the compiler, not at
+> the source level.
+> 
+> cheers
+> 
+
