@@ -2,359 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59CBB3623AA
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 17:20:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC6553623C0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 17:22:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236142AbhDPPRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 11:17:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54060 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245530AbhDPPPe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 11:15:34 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B29A8C061761
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 08:14:39 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1lXQAo-0001kj-On; Fri, 16 Apr 2021 17:14:22 +0200
-Message-ID: <529b61b1b1e6030c92a7944c4864246521b2ccdd.camel@pengutronix.de>
-Subject: Re: [PATCH v9 03/13] media: hantro: Use syscon instead of 'ctrl'
- register
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, lee.jones@linaro.org,
-        gregkh@linuxfoundation.org, mripard@kernel.org,
-        paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
-        emil.l.velikov@gmail.com, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>
-Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, kernel@collabora.com, cphealy@gmail.com,
-        linux-arm-kernel@lists.infradead.org
-Date:   Fri, 16 Apr 2021 17:14:18 +0200
-In-Reply-To: <ffe9b3f5-94f5-453e-73f0-4b42d0454b63@collabora.com>
-References: <20210407073534.376722-1-benjamin.gaignard@collabora.com>
-         <20210407073534.376722-4-benjamin.gaignard@collabora.com>
-         <7bcbb787d82f21d42563d8fb7e3c2e7d40123932.camel@pengutronix.de>
-         <ffe9b3f5-94f5-453e-73f0-4b42d0454b63@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+        id S236236AbhDPPVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 11:21:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45386 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240740AbhDPPUS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Apr 2021 11:20:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 126B76124B;
+        Fri, 16 Apr 2021 15:19:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618586393;
+        bh=pSsgz6SFE9awjWhpCd9doKdNFULnoUddJE0eDHwlPEw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=UxAqG9OtRb+QQxIjEDiDCQjDyuQCAA2d4ZFOE0N0q01hfecceetNP30Wn2cpoOVE9
+         WzIl3RlQROaX8eslzhr1HB02OC63p5qRAgAuwInnYgmiv5fbcBC9TWTmYo232GGxlq
+         zl187zQg298hyuS7vBp9IbYu6DRnXQnCKamPIPA4bmh5K0mikLKCBT6to2dCP1x8ty
+         zZx9ADxRCSv4iMzbDba1VKhTd/WRazgU+F/ual3PjLXwH8R3NcS540TNXA2d3csxLQ
+         52sEoFTMSZBaj5Io5xR7NND2H/FGQQX/xOraxhVAgnOADPCX7A2gJRiZJ6UQi8EIca
+         qbHUW/1etaTZw==
+Received: by mail-qv1-f50.google.com with SMTP id dp18so8964626qvb.5;
+        Fri, 16 Apr 2021 08:19:53 -0700 (PDT)
+X-Gm-Message-State: AOAM532l1zBWHnAq4t2Jj5dnVbng16I/pUevkfmsOrp4a9gX2OyAZlsE
+        nsvKvN+kzewR/ABkKCT91eKm6uDkXmC8UEFLuQ==
+X-Google-Smtp-Source: ABdhPJwFV5j0PpR0OOvbKTHrtQGM0/UHlnjLPz7IjIHFauq3IAwfsuj1+lSbzphYfDXiggRtdMYLzMTYnQvOIyCHQj8=
+X-Received: by 2002:ad4:5a07:: with SMTP id ei7mr8951384qvb.50.1618586391992;
+ Fri, 16 Apr 2021 08:19:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210412174718.17382-1-michael@walle.cc> <20210412174718.17382-3-michael@walle.cc>
+ <730d603b12e590c56770309b4df2bd668f7afbe3.camel@kernel.crashing.org> <8157eba9317609294da80472622deb28@walle.cc>
+In-Reply-To: <8157eba9317609294da80472622deb28@walle.cc>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 16 Apr 2021 10:19:40 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLrx6nFZrKiEtm2a1vDvQGG+FkpGtJCG2osM8hhGo3P=Q@mail.gmail.com>
+Message-ID: <CAL_JsqLrx6nFZrKiEtm2a1vDvQGG+FkpGtJCG2osM8hhGo3P=Q@mail.gmail.com>
+Subject: Re: [PATCH net-next v4 2/2] of: net: fix of_get_mac_addr_nvmem() for
+ non-platform devices
+To:     Michael Walle <michael@walle.cc>
+Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        QCA ath9k Development <ath9k-devel@qca.qualcomm.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        netdev <netdev@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "moderated list:ARM/STM32 ARCHITECTURE" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        linux-oxnas@groups.io, linux-omap <linux-omap@vger.kernel.org>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Paul Mackerras <paulus@samba.org>,
+        Andreas Larsson <andreas@gaisler.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Joyce Ooi <joyce.ooi@intel.com>,
+        Chris Snook <chris.snook@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Sunil Goutham <sgoutham@marvell.com>,
+        Fugang Duan <fugang.duan@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Pantelis Antoniou <pantelis.antoniou@gmail.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Yisen Zhuang <yisen.zhuang@huawei.com>,
+        Salil Mehta <salil.mehta@huawei.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Vadym Kochan <vkochan@marvell.com>,
+        Taras Chornyi <tchornyi@marvell.com>,
+        Mirko Lindner <mlindner@marvell.com>,
+        Stephen Hemminger <stephen@networkplumber.org>,
+        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Bryan Whitehead <bryan.whitehead@microchip.com>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        Byungho An <bh74.an@samsung.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Wingman Kwok <w-kwok2@ti.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Stanislaw Gruszka <stf_xl@wp.pl>,
+        Helmut Schaa <helmut.schaa@googlemail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, dem 16.04.2021 um 15:08 +0200 schrieb Benjamin Gaignard:
-> Le 16/04/2021 à 12:54, Lucas Stach a écrit :
-> > Am Mittwoch, dem 07.04.2021 um 09:35 +0200 schrieb Benjamin Gaignard:
-> > > In order to be able to share the control hardware block between
-> > > VPUs use a syscon instead a ioremap it in the driver.
-> > > To keep the compatibility with older DT if 'nxp,imx8mq-vpu-ctrl'
-> > > phandle is not found look at 'ctrl' reg-name.
-> > > With the method it becomes useless to provide a list of register
-> > > names so remove it.
-> > Sorry for putting a spoke in the wheel after many iterations of the
-> > series.
-> > 
-> > We just discussed a way forward on how to handle the clocks and resets
-> > provided by the blkctl block on i.MX8MM and later and it seems there is
-> > a consensus on trying to provide virtual power domains from a blkctl
-> > driver, controlling clocks and resets for the devices in the power
-> > domain. I would like to avoid introducing yet another way of handling
-> > the blkctl and thus would like to align the i.MX8MQ VPU blkctl with
-> > what we are planning to do on the later chip generations.
-> > 
-> > CC'ing Jacky Bai and Peng Fan from NXP, as they were going to give this
-> > virtual power domain thing a shot.
-> 
-> That could replace the 3 first patches and Dt patche of this series
-> but that will not impact the hevc part, so I wonder if pure hevc patches
-> could be merged anyway ?
-> They are reviewed and don't depend of how the ctrl block is managed.
+On Fri, Apr 16, 2021 at 2:30 AM Michael Walle <michael@walle.cc> wrote:
+>
+> Am 2021-04-16 05:24, schrieb Benjamin Herrenschmidt:
+> > On Mon, 2021-04-12 at 19:47 +0200, Michael Walle wrote:
+> >>
+> >>  /**
+> >>   * of_get_phy_mode - Get phy mode for given device_node
+> >> @@ -59,15 +60,39 @@ static int of_get_mac_addr(struct device_node *np,
+> >> const char *name, u8 *addr)
+> >>  static int of_get_mac_addr_nvmem(struct device_node *np, u8 *addr)
+> >>  {
+> >>         struct platform_device *pdev = of_find_device_by_node(np);
+> >> +       struct nvmem_cell *cell;
+> >> +       const void *mac;
+> >> +       size_t len;
+> >>         int ret;
+> >>
+> >> -       if (!pdev)
+> >> -               return -ENODEV;
+> >> +       /* Try lookup by device first, there might be a
+> >> nvmem_cell_lookup
+> >> +        * associated with a given device.
+> >> +        */
+> >> +       if (pdev) {
+> >> +               ret = nvmem_get_mac_address(&pdev->dev, addr);
+> >> +               put_device(&pdev->dev);
+> >> +               return ret;
+> >> +       }
+> >> +
+> >
+> > This smells like the wrong band aid :)
+> >
+> > Any struct device can contain an OF node pointer these days.
+>
+> But not all nodes might have an associated device, see DSA for example.
 
-I'm not really in a position to give any informed opinion about that
-hvec patches, as I only skimmed them, but I don't see any reason to
-delay patches 04-11 from this series until the i.MX8M platform issues
-are sorted. AFAICS those things are totally orthogonal.
+I believe what Ben is saying and what I said earlier is going from dev
+-> OF node is right and OF node -> dev is wrong. If you only have an
+OF node, then use an of_* function.
 
-Regards,
-Lucas
+> And as the name suggests of_get_mac_address() operates on a node. So
+> if a driver calls of_get_mac_address() it should work on the node. What
+> is wrong IMHO, is that the ethernet drivers where the corresponding
+> board
+> has a nvmem_cell_lookup registered is calling of_get_mac_address(node).
+> It should rather call eth_get_mac_address(dev) in the first place.
+>
+> One would need to figure out if there is an actual device (with an
+> assiciated of_node), then call eth_get_mac_address(dev) and if there
+> isn't a device call of_get_mac_address(node).
 
-> > 
-> > Regards,
-> > Lucas
-> > 
-> > > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> > > Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-> > > ---
-> > > version 9:
-> > >   - Corrections in commit message
-> > > 
-> > > version 7:
-> > >   - Add Philipp reviewed-by tag.
-> > >   - Change syscon phandle name.
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > version 5:
-> > >   - use syscon instead of VPU reset driver.
-> > >   - if DT doesn't provide syscon keep backward compatibilty by using
-> > >     'ctrl' reg-name.
-> > > 
-> > >   drivers/staging/media/hantro/hantro.h       |  5 +-
-> > >   drivers/staging/media/hantro/imx8m_vpu_hw.c | 52 ++++++++++++---------
-> > >   2 files changed, 34 insertions(+), 23 deletions(-)
-> > > 
-> > > diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
-> > > index 6c1b888abe75..37b9ce04bd4e 100644
-> > > --- a/drivers/staging/media/hantro/hantro.h
-> > > +++ b/drivers/staging/media/hantro/hantro.h
-> > > @@ -13,6 +13,7 @@
-> > >   #define HANTRO_H_
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > >   #include <linux/platform_device.h>
-> > > +#include <linux/regmap.h>
-> > >   #include <linux/videodev2.h>
-> > >   #include <linux/wait.h>
-> > >   #include <linux/clk.h>
-> > > @@ -167,7 +168,7 @@ hantro_vdev_to_func(struct video_device *vdev)
-> > >    * @reg_bases:		Mapped addresses of VPU registers.
-> > >    * @enc_base:		Mapped address of VPU encoder register for convenience.
-> > >    * @dec_base:		Mapped address of VPU decoder register for convenience.
-> > > - * @ctrl_base:		Mapped address of VPU control block.
-> > > + * @ctrl_base:		Regmap of VPU control block.
-> > >    * @vpu_mutex:		Mutex to synchronize V4L2 calls.
-> > >    * @irqlock:		Spinlock to synchronize access to data structures
-> > >    *			shared with interrupt handlers.
-> > > @@ -186,7 +187,7 @@ struct hantro_dev {
-> > >   	void __iomem **reg_bases;
-> > >   	void __iomem *enc_base;
-> > >   	void __iomem *dec_base;
-> > > -	void __iomem *ctrl_base;
-> > > +	struct regmap *ctrl_base;
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > >   	struct mutex vpu_mutex;	/* video_device lock */
-> > >   	spinlock_t irqlock;
-> > > diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> > > index c222de075ef4..8d0c3425234b 100644
-> > > --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> > > +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> > > @@ -7,6 +7,7 @@
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > >   #include <linux/clk.h>
-> > >   #include <linux/delay.h>
-> > > +#include <linux/mfd/syscon.h>
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > >   #include "hantro.h"
-> > >   #include "hantro_jpeg.h"
-> > > @@ -24,30 +25,28 @@
-> > >   #define CTRL_G1_PP_FUSE		0x0c
-> > >   #define CTRL_G2_DEC_FUSE	0x10
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > +static const struct regmap_config ctrl_regmap_ctrl = {
-> > > +	.reg_bits = 32,
-> > > +	.val_bits = 32,
-> > > +	.reg_stride = 0x14,
-> > > +};
-> > > +
-> > >   static void imx8m_soft_reset(struct hantro_dev *vpu, u32 reset_bits)
-> > >   {
-> > > -	u32 val;
-> > > -
-> > >   	/* Assert */
-> > > -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
-> > > -	val &= ~reset_bits;
-> > > -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
-> > > +	regmap_update_bits(vpu->ctrl_base, CTRL_SOFT_RESET, reset_bits, 0);
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > >   	udelay(2);
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > >   	/* Release */
-> > > -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
-> > > -	val |= reset_bits;
-> > > -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
-> > > +	regmap_update_bits(vpu->ctrl_base, CTRL_SOFT_RESET,
-> > > +			   reset_bits, reset_bits);
-> > >   }
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > >   static void imx8m_clk_enable(struct hantro_dev *vpu, u32 clock_bits)
-> > >   {
-> > > -	u32 val;
-> > > -
-> > > -	val = readl(vpu->ctrl_base + CTRL_CLOCK_ENABLE);
-> > > -	val |= clock_bits;
-> > > -	writel(val, vpu->ctrl_base + CTRL_CLOCK_ENABLE);
-> > > +	regmap_update_bits(vpu->ctrl_base, CTRL_CLOCK_ENABLE,
-> > > +			   clock_bits, clock_bits);
-> > >   }
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > >   static int imx8mq_runtime_resume(struct hantro_dev *vpu)
-> > > @@ -64,9 +63,9 @@ static int imx8mq_runtime_resume(struct hantro_dev *vpu)
-> > >   	imx8m_clk_enable(vpu, CLOCK_G1 | CLOCK_G2);
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > >   	/* Set values of the fuse registers */
-> > > -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_DEC_FUSE);
-> > > -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_PP_FUSE);
-> > > -	writel(0xffffffff, vpu->ctrl_base + CTRL_G2_DEC_FUSE);
-> > > +	regmap_write(vpu->ctrl_base, CTRL_G1_DEC_FUSE, 0xffffffff);
-> > > +	regmap_write(vpu->ctrl_base, CTRL_G1_PP_FUSE, 0xffffffff);
-> > > +	regmap_write(vpu->ctrl_base, CTRL_G2_DEC_FUSE, 0xffffffff);
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > >   	clk_bulk_disable_unprepare(vpu->variant->num_clocks, vpu->clocks);
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > @@ -150,8 +149,22 @@ static irqreturn_t imx8m_vpu_g1_irq(int irq, void *dev_id)
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > >   static int imx8mq_vpu_hw_init(struct hantro_dev *vpu)
-> > >   {
-> > > -	vpu->dec_base = vpu->reg_bases[0];
-> > > -	vpu->ctrl_base = vpu->reg_bases[vpu->variant->num_regs - 1];
-> > > +	struct device_node *np = vpu->dev->of_node;
-> > > +
-> > > +	vpu->ctrl_base = syscon_regmap_lookup_by_phandle(np, "nxp,imx8m-vpu-ctrl");
-> > > +	if (IS_ERR(vpu->ctrl_base)) {
-> > > +		struct resource *res;
-> > > +		void __iomem *ctrl;
-> > > +
-> > > +		res = platform_get_resource_byname(vpu->pdev, IORESOURCE_MEM, "ctrl");
-> > > +		ctrl = devm_ioremap_resource(vpu->dev, res);
-> > > +		if (IS_ERR(ctrl))
-> > > +			return PTR_ERR(ctrl);
-> > > +
-> > > +		vpu->ctrl_base = devm_regmap_init_mmio(vpu->dev, ctrl, &ctrl_regmap_ctrl);
-> > > +		if (IS_ERR(vpu->ctrl_base))
-> > > +			return PTR_ERR(vpu->ctrl_base);
-> > > +	}
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > >   	return 0;
-> > >   }
-> > > @@ -198,7 +211,6 @@ static const struct hantro_irq imx8mq_irqs[] = {
-> > >   };
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > >   static const char * const imx8mq_clk_names[] = { "g1", "g2", "bus" };
-> > > -static const char * const imx8mq_reg_names[] = { "g1", "g2", "ctrl" };
-> > >   
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > >   const struct hantro_variant imx8mq_vpu_variant = {
-> > >   	.dec_fmts = imx8m_vpu_dec_fmts,
-> > > @@ -215,6 +227,4 @@ const struct hantro_variant imx8mq_vpu_variant = {
-> > >   	.num_irqs = ARRAY_SIZE(imx8mq_irqs),
-> > >   	.clk_names = imx8mq_clk_names,
-> > >   	.num_clocks = ARRAY_SIZE(imx8mq_clk_names),
-> > > -	.reg_names = imx8mq_reg_names,
-> > > -	.num_regs = ARRAY_SIZE(imx8mq_reg_names)
-> > >   };
-> > 
-> > 
-> 
+Yes, I think we're all in agreement.
 
+> But I don't know if that is easy to figure out. Well, one could start
+> with just the device where nvmem_cell_lookup is used. Then we could
+> drop the workaround above.
 
+Start with the ones just passing dev.of_node directly:
+
+$ git grep 'of_get_mac_address(.*of_node)'
+drivers/net/ethernet/aeroflex/greth.c:          addr =
+of_get_mac_address(ofdev->dev.of_node);
+drivers/net/ethernet/altera/altera_tse_main.c:  macaddr =
+of_get_mac_address(pdev->dev.of_node);
+drivers/net/ethernet/arc/emac_main.c:   mac_addr =
+of_get_mac_address(dev->of_node);
+drivers/net/ethernet/broadcom/bgmac-bcma.c:             mac =
+of_get_mac_address(bgmac->dev->of_node);
+drivers/net/ethernet/cavium/octeon/octeon_mgmt.c:       mac =
+of_get_mac_address(pdev->dev.of_node);
+drivers/net/ethernet/ethoc.c:           mac =
+of_get_mac_address(pdev->dev.of_node);
+drivers/net/ethernet/ezchip/nps_enet.c: mac_addr =
+of_get_mac_address(dev->of_node);
+drivers/net/ethernet/freescale/fs_enet/fs_enet-main.c:  mac_addr =
+of_get_mac_address(ofdev->dev.of_node);
+drivers/net/ethernet/marvell/pxa168_eth.c:              mac_addr =
+of_get_mac_address(pdev->dev.of_node);
+drivers/net/ethernet/marvell/sky2.c:    iap =
+of_get_mac_address(hw->pdev->dev.of_node);
+drivers/net/ethernet/mediatek/mtk_eth_soc.c:    mac_addr =
+of_get_mac_address(mac->of_node);
+drivers/net/ethernet/microchip/lan743x_main.c:  mac_addr =
+of_get_mac_address(pdev->dev.of_node);
+drivers/net/ethernet/qualcomm/qca_spi.c:        mac =
+of_get_mac_address(spi->dev.of_node);
+drivers/net/ethernet/qualcomm/qca_uart.c:       mac =
+of_get_mac_address(serdev->dev.of_node);
+drivers/net/ethernet/wiznet/w5100-spi.c:        const void *mac =
+of_get_mac_address(spi->dev.of_node);
+drivers/net/ethernet/xilinx/xilinx_axienet_main.c:      mac_addr =
+of_get_mac_address(pdev->dev.of_node);
+drivers/net/ethernet/xilinx/xilinx_emaclite.c:  mac_address =
+of_get_mac_address(ofdev->dev.of_node);
+drivers/net/wireless/ralink/rt2x00/rt2x00dev.c: mac_addr =
+of_get_mac_address(rt2x00dev->dev->of_node);
+drivers/staging/octeon/ethernet.c:              mac =
+of_get_mac_address(priv->of_node);
+drivers/staging/wfx/main.c:             macaddr =
+of_get_mac_address(wdev->dev->of_node);
+net/ethernet/eth.c:             addr = of_get_mac_address(dev->of_node);
+
+Then this will find most of the rest:
+git grep -W 'of_get_mac_address([a-z]*)'| grep -E '(node|np)'
+
+Rob
