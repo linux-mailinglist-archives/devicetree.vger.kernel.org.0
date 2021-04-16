@@ -2,47 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB720362801
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 20:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55ED336280A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 20:53:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245460AbhDPSsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 14:48:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44930 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245564AbhDPSsS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 14:48:18 -0400
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6718AC061756
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 11:47:53 -0700 (PDT)
-Received: from [192.168.1.101] (abae68.neoplus.adsl.tpnet.pl [83.6.168.68])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 40D5C3F6B5;
-        Fri, 16 Apr 2021 20:47:49 +0200 (CEST)
-Subject: Re: [PATCH v3] arm64: boot: dts: qcom: sm8150: add SPI nodes
-To:     Felipe Balbi <balbi@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Caleb Connolly <caleb@connolly.tech>,
-        Felipe Balbi <felipe.balbi@microsoft.com>
-References: <20210416103225.1872145-1-balbi@kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-ID: <7c6a4d9d-a0c8-e558-518c-a2d70695fae5@somainline.org>
-Date:   Fri, 16 Apr 2021 20:47:48 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        id S231510AbhDPSxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 14:53:31 -0400
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:39719 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234948AbhDPSx3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 14:53:29 -0400
+Received: by mail-oi1-f182.google.com with SMTP id i81so28843677oif.6;
+        Fri, 16 Apr 2021 11:53:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bo317WIkFn1/Wn1GxMx0UU8JsonrX+yYrMt9jYM5jl4=;
+        b=PL9bOK1xrMO1Q3EP3VdcsdewmAZoBBKLJtN8DwZ5ebg098qVQVjzpK76AFvzQjiU8+
+         x4lQEZIaT9CaHwoo9qOvYYD7Mb7dX2VYLe6esjwlQ4y6v2z+FGRUkA3p1N/VF4Di5s5o
+         iDruYVpbYJvb2opl49U3LvdMapDu1rqZZJAAcXe7BnvmOSZKBoJg4DxLasw9C6gnFmw0
+         +axwdbjBd+MBTRXi2PRa9Bcr3cEX0aI9MB9Wbl+Xb6v48Jpe1WW//JCAcPKilyxdNA0F
+         awUcbFD/S3FPvpc8PLLe9B3DhIdnWvKik1k4TNBhrKWzra7VSSdbGh5a3doMC2kdkww9
+         cqog==
+X-Gm-Message-State: AOAM530xRuQEEy20FhfVChdTbFignSO5E2KVSFCLa1IrmBYokDvfuGj5
+        hnD2b/uynY/rH6CoT3ctPg==
+X-Google-Smtp-Source: ABdhPJwV/QSxYl/xWKLHE2sSkjYKOeWI050rZiPSwPhXZYb8RB1IsWPwyyh33QU5h7/MmnBvjGIKmg==
+X-Received: by 2002:aca:e003:: with SMTP id x3mr1658067oig.118.1618599184525;
+        Fri, 16 Apr 2021 11:53:04 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t6sm395376ood.41.2021.04.16.11.53.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Apr 2021 11:53:02 -0700 (PDT)
+Received: (nullmailer pid 3747499 invoked by uid 1000);
+        Fri, 16 Apr 2021 18:53:01 -0000
+Date:   Fri, 16 Apr 2021 13:53:01 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        enric.balletbo@collabora.com, heiko@sntech.de, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        zhangqing@rock-chips.com
+Subject: Re: [PATCH v8 14/15] dt-bindings: power: rockchip: Add bindings for
+ RK3568 Soc
+Message-ID: <20210416185301.GA3747214@robh.at.kernel.org>
+References: <20210416080342.18614-1-jbx6244@gmail.com>
+ <20210416080342.18614-15-jbx6244@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210416103225.1872145-1-balbi@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210416080342.18614-15-jbx6244@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+On Fri, 16 Apr 2021 10:03:41 +0200, Johan Jonker wrote:
+> From: Elaine Zhang <zhangqing@rock-chips.com>
+> 
+> Add the compatible string for RK3568 SoC.
+> 
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+> A note for rob+dt and others:
+>   A review and ack tag was not added, because in this version
+>   the schema layout changed a bit
+> Please have a look at it again
+> 
+> Changed V8:
+>   Add pd-node ref schema
+> ---
+>  Documentation/devicetree/bindings/power/rockchip,power-controller.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-
-Konrad
-
+Acked-by: Rob Herring <robh@kernel.org>
