@@ -2,109 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 531C7361ADB
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 09:55:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C620E361AEF
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 10:01:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238896AbhDPHwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 03:52:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39418 "EHLO
+        id S229719AbhDPH40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 03:56:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231898AbhDPHwL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 03:52:11 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1763C061574;
-        Fri, 16 Apr 2021 00:51:45 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id t17-20020a9d77510000b0290287a5143b41so13766333otl.11;
-        Fri, 16 Apr 2021 00:51:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=4GwvUVkQCAs0X/UNyX5pEqeUO1WdFhB1WSpRysQPPC8=;
-        b=ljbOw4dWBTZwCsHaMq0PZ/dctFokBT9dSEg2Wl9dz4QOE/hP5GrAF7ZL0ZQ4nIWc8p
-         GVNXrKAVueX8JdkY0wN5dOt/vg+Pwddybkab8HfeqAP261sEeE2sAmenIg40VaJTjcig
-         oSle/efFKv/StjK8RCTDswW3fIE/7aevPjOyy3SRIyZHSCfGfa48bUZeDSsPho0+yf/C
-         KJffQXuM2WgS4rHZjFHx/PuevLB1Uh5GtieZBbhwtml2KBFZfjR+UFEvz7NvlGj2e9L6
-         5wgZj4WxOYKw+IGwDwX7RkHD5EKlqbUBkIEgXLzvpqUK4LJ2ABhx0TwshlSdPyId4UUz
-         W7Lw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=4GwvUVkQCAs0X/UNyX5pEqeUO1WdFhB1WSpRysQPPC8=;
-        b=OpvpMDGksbRTiYlQyglT5njGAdJA3SsSpdoDOT2MEttRR/eCMcr7ujLALrl8M0wHau
-         q3oDWDAdntS1klmOjgEJQedOR+f2HsHhl+i5CosWjTqUBUHtDgoQgqFUbAguJ23FEE5J
-         df7rX98dxfTUG6plU+ExqYGhjy25dGAvopCijpEBtHBqu9yF/l0tZ9uQm/U8oz9956L8
-         6/4b6S+2Notskq6oEQak+TPrWgQW7XL4smccdCkw3y0Y8GFBvVfdmTJ7hsow6tLBdz7c
-         LFZX/ytlyUOYh0FtrATCe9s+de7KHmZsJpk3t5+D0ehr3h6RMfEgsc50xZbSI6BIEJha
-         EdEA==
-X-Gm-Message-State: AOAM532JXCONRIslecr7pFxS1y6dVs8TD+PmmzpNRFDokWESYSR5VdF2
-        1d29l3hYdcGs8MhvJRMkAvJ07m9DW8lhKgIJRu0=
-X-Google-Smtp-Source: ABdhPJx2zqCjdlBGHxyj00xydr3ubb35ShJaQk8s7sLVXgo86SVvtyMsx4K2PWJIMxLsD/RDwg4wOFQmAlPFoFPd/hE=
-X-Received: by 2002:a05:6830:1398:: with SMTP id d24mr2808423otq.281.1618559505373;
- Fri, 16 Apr 2021 00:51:45 -0700 (PDT)
+        with ESMTP id S239087AbhDPH4W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 03:56:22 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5571FC061574;
+        Fri, 16 Apr 2021 00:55:58 -0700 (PDT)
+Received: from [192.168.1.111] (91-157-208-71.elisa-laajakaista.fi [91.157.208.71])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4775A5A5;
+        Fri, 16 Apr 2021 09:55:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1618559756;
+        bh=+bDaegtHEBYbX+fu3MChiV4GjJPsWdC6eYbLMHjhSXo=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=TUxL2uqXDdDHuDHclH7mHlsOC5nJp1vSYy+A/XgmgGf15mtVBq029xAuWTZKWO7/C
+         tuDHzAw03sgi+/5aC/Em/VYz7agA2T8JWXKYRF7EpKqyJvA5bu3G3t8RCxWRdflvEj
+         fZpUsW3kDEyGnyKWv9Q0qsUZCBb8tfaLavbhwXZI=
+Subject: Re: [PATCHv2 2/6] drm/omapdrm/dss/hdmi4: switch to the connector
+ bridge ops
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        linux-media@vger.kernel.org
+Cc:     Tony Lindgren <tony@atomide.com>, Sekhar Nori <nsekhar@ti.com>,
+        dri-devel@lists.freedesktop.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210302162403.983585-1-hverkuil-cisco@xs4all.nl>
+ <20210302162403.983585-3-hverkuil-cisco@xs4all.nl>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Message-ID: <5a8dc63a-c711-2b99-0735-6427dc1a1a11@ideasonboard.com>
+Date:   Fri, 16 Apr 2021 10:55:55 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-References: <1618236288-1617-1-git-send-email-yongqiang.niu@mediatek.com> <1618236288-1617-3-git-send-email-yongqiang.niu@mediatek.com>
-In-Reply-To: <1618236288-1617-3-git-send-email-yongqiang.niu@mediatek.com>
-From:   Enric Balletbo Serra <eballetbo@gmail.com>
-Date:   Fri, 16 Apr 2021 09:51:36 +0200
-Message-ID: <CAFqH_50kRmQLukyRERwtRGErETuKP8jry9+oG1CSX+=-Ckz7gw@mail.gmail.com>
-Subject: Re: [PATCH v5, 2/4] soc: mediatek: mmsys: add component POSTMASK
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        David Airlie <airlied@linux.ie>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210302162403.983585-3-hverkuil-cisco@xs4all.nl>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yongqiang,
-
-Thank you for your patch.
-
-Missatge de Yongqiang Niu <yongqiang.niu@mediatek.com> del dia dl., 12
-d=E2=80=99abr. 2021 a les 16:05:
->
-> This patch add component POSTMASK
->
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-
+On 02/03/2021 18:23, Hans Verkuil wrote:
+> Implement the new connector_attach/detach bridge ops. This makes it
+> possible to associate a CEC adapter with a drm connector, which helps
+> userspace determine which cec device node belongs to which drm connector.
+> 
+> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
 > ---
->  include/linux/soc/mediatek/mtk-mmsys.h | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/include/linux/soc/mediatek/mtk-mmsys.h b/include/linux/soc/m=
-ediatek/mtk-mmsys.h
-> index f6b58f9..7718cd6 100644
-> --- a/include/linux/soc/mediatek/mtk-mmsys.h
-> +++ b/include/linux/soc/mediatek/mtk-mmsys.h
-> @@ -31,6 +31,7 @@ enum mtk_ddp_comp_id {
->         DDP_COMPONENT_OVL_2L1,
->         DDP_COMPONENT_OVL_2L2,
->         DDP_COMPONENT_OVL1,
-> +       DDP_COMPONENT_POSTMASK0,
->         DDP_COMPONENT_PWM0,
->         DDP_COMPONENT_PWM1,
->         DDP_COMPONENT_PWM2,
-> --
-> 1.8.1.1.dirty
->
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+>   drivers/gpu/drm/omapdrm/dss/hdmi4.c     | 27 +++++++++++++++++--------
+>   drivers/gpu/drm/omapdrm/dss/hdmi4_cec.c |  9 ++++++---
+>   drivers/gpu/drm/omapdrm/dss/hdmi4_cec.h |  7 ++++---
+>   3 files changed, 29 insertions(+), 14 deletions(-)
+
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+
+  Tomi
