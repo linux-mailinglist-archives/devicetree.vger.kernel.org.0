@@ -2,124 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9BBE3619F7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 08:44:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBB91361A0C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 08:50:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232618AbhDPGpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 02:45:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52932 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229555AbhDPGpB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 02:45:01 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B181EC061574
-        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 23:44:35 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id nk8so268620pjb.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Apr 2021 23:44:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=axtens.net; s=google;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=u+Ddaz9peG998Lz+UWrfM3P9RuEHrzjlPdY7UuQjR3w=;
-        b=cmkn0sPjbiOFMw3vcx7xC7oxxDxJsOQgHZThhseH2E67KTpHQzcGNfHb7pLVnAhbOd
-         KP5BsZj6O95A4Fa4wkODthEfd0hNN+33+PIYjmlwpopFRZq0d+33TC+2dwdcVT/ag8bH
-         sGdUdlu4WCj+TxjV14NkUd3V2tpQYOo5FZYog=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=u+Ddaz9peG998Lz+UWrfM3P9RuEHrzjlPdY7UuQjR3w=;
-        b=EW18uNwX7g1QnaOxOuHhoCTosr4/MXEyANx0qZYbeJ8qJtsLTI2OKq9MCngXEsfi/h
-         FPHv4PDn3rCoc1TYIFaIM2dNsr8UjQk4n8NKEkXyZ80isXmU4RoRDLe9zIB9TvXuS4cl
-         fyQzPFaBinIbBXZN/dO5nI7kQB9k1K9v96dZq+VmDxb+GUrqcjjSaSUC00CiTimnRt3o
-         qKQfAq+WnRaDcf+/+dn7BGPnXbwRa/54NksuIs6uV3DCxgBjgpVZQMf6BfAOTv9zqu7U
-         UjcN9PCa45tI+4ImMm3/n6ChvXybemB3kjg59sJgMBV8UZ6RzBqrG38csyLjDaHpcHCS
-         gm7A==
-X-Gm-Message-State: AOAM533QgVTi1QRiBnZt9424Wz2yOaM0W1Na2WJ+Rbovf2EBVjNhPuj5
-        zyhv7ITvGP0HhITyRXdQEtRLrg==
-X-Google-Smtp-Source: ABdhPJxGCOWnXZrcOlgeZVlgOb/YJRzhJ0+FDOT14Z0DI5NPNg9oeLXfCM2nZMTMzS98hh8QrL6eMg==
-X-Received: by 2002:a17:90a:6582:: with SMTP id k2mr8039400pjj.11.1618555475245;
-        Thu, 15 Apr 2021 23:44:35 -0700 (PDT)
-Received: from localhost (2001-44b8-111e-5c00-09c3-a49e-2955-78c6.static.ipv6.internode.on.net. [2001:44b8:111e:5c00:9c3:a49e:2955:78c6])
-        by smtp.gmail.com with ESMTPSA id g18sm3815559pfb.178.2021.04.15.23.44.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Apr 2021 23:44:34 -0700 (PDT)
-From:   Daniel Axtens <dja@axtens.net>
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
-        robh@kernel.org, dan.carpenter@oracle.com
-Cc:     devicetree@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        kbuild-all@lists.01.org, lkp@intel.com, bauerman@linux.ibm.com
-Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in elf64_load()
-In-Reply-To: <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
-References: <20210415191437.20212-1-nramas@linux.microsoft.com> <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
-Date:   Fri, 16 Apr 2021 16:44:30 +1000
-Message-ID: <87eefag241.fsf@linkitivity.dja.id.au>
+        id S237022AbhDPGuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 02:50:05 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:56544 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235140AbhDPGuE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 02:50:04 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EF4025A5;
+        Fri, 16 Apr 2021 08:49:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1618555779;
+        bh=QIXyCa/8U0k79+9j+v6xpl3VfrISRiU8LkDQ0NjttsE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tY2Y6crMcalol7VTk3NVy5/CUAh5s18Yt0m8rqYNN671OD/zNRzNDBdWI+ykOQJgi
+         Mzw3I85Drvgo1UNlyzxrydjMZNW9kXbZyg22YvnvZcsT0PR3SzkU2D1lKVtb3Exd9y
+         OfBWwJC0YqJtZ/syVWIQxqkrCAM/cgarLmPp4I04=
+Date:   Fri, 16 Apr 2021 09:49:35 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Antonio Borneo <antonio.borneo@st.com>,
+        Vincent Abriou <vincent.abriou@st.com>,
+        Philippe Cornu <philippe.cornu@st.com>,
+        dri-devel@lists.freedesktop.org,
+        Yannick Fertre <yannick.fertre@st.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: Re: [PATCH V2] drm/bridge: lvds-codec: Add support for pixel data
+ sampling edge select
+Message-ID: <YHkzf0fswqGYbU7R@pendragon.ideasonboard.com>
+References: <20201224061832.92010-1-marex@denx.de>
+ <YFfvjyllBa/tqTqI@pendragon.ideasonboard.com>
+ <4372d1cd-ffdb-e545-7262-d1ad1a649770@denx.de>
+ <YFhze79nDdtf7KQS@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YFhze79nDdtf7KQS@pendragon.ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lakshmi,
+Hi Rob,
 
-> On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
->
-> Sorry - missed copying device-tree and powerpc mailing lists.
->
->> There are a few "goto out;" statements before the local variable "fdt"
->> is initialized through the call to of_kexec_alloc_and_setup_fdt() in
->> elf64_load(). This will result in an uninitialized "fdt" being passed
->> to kvfree() in this function if there is an error before the call to
->> of_kexec_alloc_and_setup_fdt().
->> 
->> Initialize the local variable "fdt" to NULL.
->>
-I'm a huge fan of initialising local variables! But I'm struggling to
-find the code path that will lead to an uninit fdt being returned...
+There's a question for you below.
 
-The out label reads in part:
+On Mon, Mar 22, 2021 at 12:37:47PM +0200, Laurent Pinchart wrote:
+> Hi Marek,
+> 
+> (CC'ing Ron and the DT mailing list for the DT discussion)
+> 
+> On Mon, Mar 22, 2021 at 11:29:04AM +0100, Marek Vasut wrote:
+> > On 3/22/21 2:14 AM, Laurent Pinchart wrote:
+> > > Hi Marek,
+> > 
+> > Hi,
+> > 
+> > [...]
+> > 
+> > >> diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> > >> index e5e3c72630cf..399a6528780a 100644
+> > >> --- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> > >> +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> > >> @@ -74,6 +74,13 @@ properties:
+> > >>   
+> > >>       additionalProperties: false
+> > >>   
+> > >> +  pixelclk-active:
+> > >> +    description: |
+> > >> +      Data sampling on rising or falling edge.
+> > >> +      Use 0 to sample pixel data on rising edge and
+> > >> +      Use 1 to sample pixel data on falling edge and
+> > >> +    enum: [0, 1]
+> > > 
+> > > The idea is good, but instead of adding a custom property, how about
+> > > reusing the pclk-sample property defined in
+> > > ../../media/video-interfaces.yaml ?
+> > 
+> > Repeating myself from V1 discussion ... Either is fine by me, but I 
+> > think pixelclk-active, which comes from panel-timings.yaml is closer to 
+> > the video than multimedia bindings.
+> 
+> That's a good point. The part that bothers me a bit is that it would be
+> nice to define the property in a single YAML schema, referenced by
+> individual bindings. video-interfaces.yaml is there for that purpose. We
+> could do something similar on the display side, or consider the
+> pixelclk-active usage in panel-timings.yaml an exception that we can't
+> switch to video-interfaces.yaml as backward compatibility must be
+> preserved.
+> 
+> I don't have a too strong preference, whatever Rob prefers would be fine
+> with me.
+> 
+> > > The property is only valid for encoders, so I would at least mention
+> > > that in the description, or, better, handle this based on the compatible
+> > > string to allow validation.
+> > 
+> > How does that work in the Yaml file ?
+> 
+> Something along the lines of
+> 
+> if:
+>   not:
+>     properties:
+>       compatible:
+>         contains:
+>           const: lvds-encoder
+> then:
+>   properties:
+>     pixelclk-active: false
+> 
+> My YAML schema foo is a bit rusty though, I apologize if this doesn't
+> work as-is. There are lots of similar examples in DT bindings that
+> should hopefully be right :-)
+> 
+> > >> +
+> > >>     powerdown-gpios:
+> > >>       description:
+> > >>         The GPIO used to control the power down line of this device.
+> > >> diff --git a/drivers/gpu/drm/bridge/lvds-codec.c b/drivers/gpu/drm/bridge/lvds-codec.c
+> > >> index dcf579a4cf83..cab81ccd895d 100644
+> > >> --- a/drivers/gpu/drm/bridge/lvds-codec.c
+> > >> +++ b/drivers/gpu/drm/bridge/lvds-codec.c
+> > 
+> > [...]
+> > 
+> > >> @@ -126,6 +146,7 @@ static int lvds_codec_probe(struct platform_device *pdev)
+> > >>   	 */
+> > >>   	lvds_codec->bridge.of_node = dev->of_node;
+> > >>   	lvds_codec->bridge.funcs = &funcs;
+> > >> +	lvds_codec->bridge.timings = &lvds_codec->timings;
+> > >>   	drm_bridge_add(&lvds_codec->bridge);
+> > >>   
+> > >>   	platform_set_drvdata(pdev, lvds_codec);
+> > >> @@ -142,19 +163,20 @@ static int lvds_codec_remove(struct platform_device *pdev)
+> > >>   	return 0;
+> > >>   }
+> > >>   
+> > >> +static const struct lvds_codec_data decoder_data = {
+> > >> +	.connector_type = DRM_MODE_CONNECTOR_DPI,
+> > >> +	.is_encoder = false,
+> > > 
+> > > The two fields are a bit redundant, as the decoder is always
+> > > LVDS-to-DPI, and the encoder DPI-to-LVDS. I don't mind too much, but
+> > > maybe we could drop the connector_type field, and derive the connector
+> > > type from is_encoder ?
+> > 
+> > Or the other way around instead ? That is, if the connector_type is 
+> > LVDS, then it is encoder , otherwise its decoder ?
+> 
+> Either way works for me.
+> 
+> > > One may then say that we could drop the lvds_codec_data structure as it
+> > > contains a single field, but I foresee a need to have device-specific
+> > > timings at some point, so I think it's a good addition.
+> > 
+> > [...]
 
-	/* Make kimage_file_post_load_cleanup free the fdt buffer for us. */
-	return ret ? ERR_PTR(ret) : fdt;
+-- 
+Regards,
 
-As far as I can tell, any time we get a non-zero ret, we're going to
-return an error pointer rather than the uninitialised value...
-
-(btw, it does look like we might leak fdt if we have an error after we
-successfully kmalloc it.)
-
-Am I missing something? Can you link to the report for the kernel test
-robot or from Dan? 
-
-FWIW, I think it's worth including this patch _anyway_ because initing
-local variables is good practice, but I'm just not sure on the
-justification.
-
-Kind regards,
-Daniel
-
->> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
->> Reported-by: kernel test robot <lkp@intel.com>
->> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
->> ---
->>   arch/powerpc/kexec/elf_64.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->> 
->> diff --git a/arch/powerpc/kexec/elf_64.c b/arch/powerpc/kexec/elf_64.c
->> index 5a569bb51349..0051440c1f77 100644
->> --- a/arch/powerpc/kexec/elf_64.c
->> +++ b/arch/powerpc/kexec/elf_64.c
->> @@ -32,7 +32,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
->>   	int ret;
->>   	unsigned long kernel_load_addr;
->>   	unsigned long initrd_load_addr = 0, fdt_load_addr;
->> -	void *fdt;
->> +	void *fdt = NULL;
->>   	const void *slave_code;
->>   	struct elfhdr ehdr;
->>   	char *modified_cmdline = NULL;
->> 
->
-> thanks,
->   -lakshmi
+Laurent Pinchart
