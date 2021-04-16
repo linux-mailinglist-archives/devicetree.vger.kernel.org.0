@@ -2,91 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADBDD3627E5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 20:46:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB720362801
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 20:48:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237789AbhDPSqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 14:46:42 -0400
-Received: from mail-oo1-f41.google.com ([209.85.161.41]:42968 "EHLO
-        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237334AbhDPSql (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 14:46:41 -0400
-Received: by mail-oo1-f41.google.com with SMTP id e12-20020a056820060cb02901e94efc049dso1414756oow.9;
-        Fri, 16 Apr 2021 11:46:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=etRLZlwfrAw/ObAL86CRzvNdPZ4wzFCSG0hWaLZVyQQ=;
-        b=NNlEVSzfrH/ovKjZFgyVt7U0ekTXLzAGpDK/6gdRT3M5MNahfhdLNnGnCY//WundxN
-         9PFZAV94K4+OWfxXtxvMSTZqpGHMBBMS3VTt+f9CsX0+iHYRvSfVmBXav99SMbRkY4QV
-         KckBiCjvncnrdrUxxM7AzXK82v7ArWV2ZnYsQB6I2+3cdcLpYoRfGJw64ArqruJ9bjOC
-         x448v1+cE/dI8RUBPqFEBvXaFXITlw0DSaT6jJM6+4TL1Om/PW1c1nrZRWI/XNfBCfHL
-         fzd7ojaLPzXBz4muzKXMXusqxWX0akA2xJfXA+gMdwCJ7VaOS7MsUwldM/7+2fSi4Qsk
-         xwcA==
-X-Gm-Message-State: AOAM532fxZnSTVq0OGx9XWD8tGxlONgVNK8i2Db9ZLZJW5XU6T3rxZvf
-        JxEl4D5iq44Yjff8hpkcLA==
-X-Google-Smtp-Source: ABdhPJzM+rTbpoSYC8X7T8dgCSFTM86qBDJb19n9iGSJidvKf3L/X2rk0r8MR/j+ieTN7E1NrqOfkA==
-X-Received: by 2002:a4a:8c4f:: with SMTP id v15mr4358271ooj.25.1618598776489;
-        Fri, 16 Apr 2021 11:46:16 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m133sm1539286oia.22.2021.04.16.11.46.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Apr 2021 11:46:14 -0700 (PDT)
-Received: (nullmailer pid 3733903 invoked by uid 1000);
-        Fri, 16 Apr 2021 18:46:13 -0000
-Date:   Fri, 16 Apr 2021 13:46:13 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        Richard Weinberger <richard@nod.at>
-Subject: Re: [PATCH 3/5] dt-bindings: mtd: add OTP bindings
-Message-ID: <20210416184613.GA3731279@robh.at.kernel.org>
-References: <20210416114928.27758-1-michael@walle.cc>
- <20210416114928.27758-4-michael@walle.cc>
- <1618597801.604723.3708338.nullmailer@robh.at.kernel.org>
+        id S245460AbhDPSsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 14:48:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44930 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245564AbhDPSsS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 14:48:18 -0400
+Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6718AC061756
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 11:47:53 -0700 (PDT)
+Received: from [192.168.1.101] (abae68.neoplus.adsl.tpnet.pl [83.6.168.68])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 40D5C3F6B5;
+        Fri, 16 Apr 2021 20:47:49 +0200 (CEST)
+Subject: Re: [PATCH v3] arm64: boot: dts: qcom: sm8150: add SPI nodes
+To:     Felipe Balbi <balbi@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, Caleb Connolly <caleb@connolly.tech>,
+        Felipe Balbi <felipe.balbi@microsoft.com>
+References: <20210416103225.1872145-1-balbi@kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+Message-ID: <7c6a4d9d-a0c8-e558-518c-a2d70695fae5@somainline.org>
+Date:   Fri, 16 Apr 2021 20:47:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1618597801.604723.3708338.nullmailer@robh.at.kernel.org>
+In-Reply-To: <20210416103225.1872145-1-balbi@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 16, 2021 at 01:30:01PM -0500, Rob Herring wrote:
-> On Fri, 16 Apr 2021 13:49:26 +0200, Michael Walle wrote:
-> > Flash devices can have one-time-programmable regions. Add a nvmem
-> > binding so they can be used as a nvmem provider.
-> > 
-> > Signed-off-by: Michael Walle <michael@walle.cc>
-> > ---
-> > Changes since RFC:
-> >  - added missing "$"
-> >  - dropped first example
-> >  - use real device compatibles
-> > 
-> >    Please note, that this will lead to an error without patch 4/5, which
-> >    introduces that property for the jedec,spi-nor. Should I keep it
-> >    seperate or should I squash that patch into this one?
-> > 
-> >  .../devicetree/bindings/mtd/mtd.yaml          | 50 +++++++++++++++++++
-> >  1 file changed, 50 insertions(+)
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/mtd.example.dt.yaml: flash@0: 'otp-1', 'otp-2' do not match any of the regexes: '^partition@', 'pinctrl-[0-9]+'
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
-Don't worry about this one if the series passes. There's not really a 
-good way to avoid it other than moving the example.
 
-Rob
+Konrad
+
