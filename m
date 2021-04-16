@@ -2,179 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84A78362B0A
-	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 00:25:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 767C1362B39
+	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 00:41:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235138AbhDPWZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 18:25:54 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:59820 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235583AbhDPWZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 18:25:54 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13GMPJKm118270;
-        Fri, 16 Apr 2021 17:25:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1618611919;
-        bh=utgO5PVd5wR3Tdh3aSlX3zh2ppZqzEWKNEl2e6gL+58=;
-        h=From:To:CC:Subject:Date;
-        b=K+k2XntQa4HadpsrzbpLPauhygzKAb5JAsgFFwlQ5h7Lob7PgI8vEhrHBgxATEyXc
-         n2wfUAGEQWtAvtUyuT2rrfBQAXDKnymvhRTayocKHu5Zb6JsrAjOF5E8tHuPaV+68V
-         bKvVFiwqwXzEt9jAYYYEZfYpV7U7Pi3tE3VCanEg=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13GMPJlM125175
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 16 Apr 2021 17:25:19 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 16
- Apr 2021 17:25:18 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Fri, 16 Apr 2021 17:25:18 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13GMPI2u070293;
-        Fri, 16 Apr 2021 17:25:18 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Jens Wiklander <jens.wiklander@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>
-Subject: [PATCH] dt-bindings: arm: firmware: Convert linaro,optee-tz to json schema
-Date:   Fri, 16 Apr 2021 17:25:18 -0500
-Message-ID: <20210416222518.15801-1-nm@ti.com>
-X-Mailer: git-send-email 2.31.0
+        id S230489AbhDPWlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 18:41:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39814 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231997AbhDPWlS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 18:41:18 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBE74C06175F
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 15:40:53 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id h11so1621454pfn.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 15:40:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ViswrO4sNM/Xqi4udoIc8TV1g5Dhwym3dG9TOSi7ivs=;
+        b=TMpqd+SZZNmTBRTV6uWewh2kSXCh2ZpBo6CN20Dp1CF52eaoP14/KHfKKwODaGwtt5
+         xl0iLUpo8safOBqsFCvyhS5LCcuKLHRmVOjaOrgrg9NYd9R1G99pU2Ryy6JuC3vJBP5U
+         5TgykYHu6b4idrMShUykAgXxtyU1Zhne4XTJ0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ViswrO4sNM/Xqi4udoIc8TV1g5Dhwym3dG9TOSi7ivs=;
+        b=oU00y/bWfXEbOErE/nwI/kuCQeiCa9Kz9KSL8wUtyziXIZvT4Vsj9HRbE+cZjpUqPh
+         YR9spKnZCye15LkTo9KNTVZXdzYGQjY0o6vR5vep6BmEdFVaM1D3nH3bvh7YdYerT8ok
+         Z8ZRca3jbg41Ubow1/elH/SqAZMF462Du8waFDSDpFdqgZ1f3j+kmdZL6Xb5vdLQ2KvN
+         01M4xOUD7zktIfVYlf0aDkGX1dugNMsZ0H7Vdx2gdetwuQFZTumsIioYyalon7We66eC
+         0tITQcDsEBlzXHtmuIibsP5JQj75sYwtftaHv6POrjkjPjFdbUM8meVcDXdcx9KXjv5I
+         gsbg==
+X-Gm-Message-State: AOAM530jMLjhZMRLrot5XcCQwX7VdGjQDex9whADATGDS5bYN5alixCY
+        zPoLPv0CXVIKtrmEtuY9Nt7zMw==
+X-Google-Smtp-Source: ABdhPJx6lCORDd6OQS0dzEmoduf0wcmDKI4UY+j+Y/gi2+7rXDlEFFzUVrPJJjly2rZhsMrKa7vSlw==
+X-Received: by 2002:a63:c446:: with SMTP id m6mr1059717pgg.71.1618612853290;
+        Fri, 16 Apr 2021 15:40:53 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:dc8a:c9d0:aa5b:5386])
+        by smtp.gmail.com with ESMTPSA id r6sm5633659pgp.64.2021.04.16.15.40.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Apr 2021 15:40:52 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Sam Ravnborg <sam@ravnborg.org>, Wolfram Sang <wsa@kernel.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>, robdclark@chromium.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+        Steev Klimaszewski <steev@kali.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Linus W <linus.walleij@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 00/27] drm: Fix EDID reading on ti-sn65dsi86; solve some chicken-and-egg problems
+Date:   Fri, 16 Apr 2021 15:39:23 -0700
+Message-Id: <20210416223950.3586967-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.31.1.368.gbe11c130af-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert linaro,optee-tz to json schema format for better documentation
-and error checks.
+The primary goal of this series is to try to properly fix EDID reading
+for eDP panels using the ti-sn65dsi86 bridge.
 
-NOTE:
-1. This change does introduce a stricter naming convention for
-   optee nodes.
-2. We do have false positive checkpatch warning with this patch:
-   "DT binding docs and includes should be a separate patch"
+Previously we had a patch that added EDID reading but it turned out
+not to work at bootup. This caused some extra churn at bootup as we
+tried (and failed) to read the EDID several times and also ended up
+forcing us to use the hardcoded mode at boot. With this patch series I
+believe EDID reading is reliable at boot now and we never use the
+hardcoded mode.
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
- .../bindings/arm/firmware/linaro,optee-tz.txt | 31 ----------
- .../arm/firmware/linaro,optee-tz.yaml         | 62 +++++++++++++++++++
- 2 files changed, 62 insertions(+), 31 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.txt
- create mode 100644 Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+This series is the logical successor to the 3-part series containing
+the patch ("drm/bridge: ti-sn65dsi86: Properly get the EDID, but only
+if refclk") [1] though only one actual patch is the same between the
+two.
 
-diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.txt b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.txt
-deleted file mode 100644
-index d38834c67dff..000000000000
---- a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.txt
-+++ /dev/null
-@@ -1,31 +0,0 @@
--OP-TEE Device Tree Bindings
--
--OP-TEE is a piece of software using hardware features to provide a Trusted
--Execution Environment. The security can be provided with ARM TrustZone, but
--also by virtualization or a separate chip.
--
--We're using "linaro" as the first part of the compatible property for
--the reference implementation maintained by Linaro.
--
--* OP-TEE based on ARM TrustZone required properties:
--
--- compatible     : should contain "linaro,optee-tz"
--
--- method         : The method of calling the OP-TEE Trusted OS. Permitted
--                   values are:
--
--                   "smc" : SMC #0, with the register assignments specified
--		           in drivers/tee/optee/optee_smc.h
--
--                   "hvc" : HVC #0, with the register assignments specified
--		           in drivers/tee/optee/optee_smc.h
--
--
--
--Example:
--	firmware {
--		optee {
--			compatible = "linaro,optee-tz";
--			method = "smc";
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-new file mode 100644
-index 000000000000..6513b5ac8b2c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/firmware/linaro,optee-tz.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OP-TEE Device Tree Bindings
-+
-+maintainers:
-+  - Jens Wiklander <jens.wiklander@linaro.org>
-+
-+description: |
-+  OP-TEE is a piece of software using hardware features to provide a Trusted
-+  Execution Environment. The security can be provided with ARM TrustZone, but
-+  also by virtualization or a separate chip.
-+
-+  We're using "linaro" as the first part of the compatible property for
-+  the reference implementation maintained by Linaro.
-+
-+properties:
-+  $nodename:
-+    const: 'optee'
-+
-+  compatible:
-+    const: linaro,optee-tz
-+
-+  method:
-+    description: The method of calling the OP-TEE Trusted OS.
-+    oneOf:
-+      - description: |
-+          SMC #0, with the register assignments specified
-+          in drivers/tee/optee/optee_smc.h
-+        items:
-+          - const: smc
-+      - description: |
-+          HVC #0, with the register assignments specified
-+          in drivers/tee/optee/optee_smc.h
-+        items:
-+          - const: hvc
-+
-+required:
-+  - compatible
-+  - method
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    firmware  {
-+        optee  {
-+            compatible = "linaro,optee-tz";
-+            method = "smc";
-+        };
-+    };
-+
-+  - |
-+    firmware  {
-+        optee  {
-+            compatible = "linaro,optee-tz";
-+            method = "hvc";
-+        };
-+    };
+This series starts out with some general / obvious fixes and moves on
+to some more specific and maybe controversial ones. I wouldn't object
+to some of the earlier ones landing if they look ready.
+
+This patch was developed agains linuxnext (next-20210416) on a
+sc7180-trogdor-lazor device. To get things booting for me, I had to
+use Stephen's patch [2] to keep from crashing but otherwise all the
+patches I needed were here.
+
+Primary change between v2 and v3 is to stop doing the EDID caching in
+the core. I also added Andrzej's review tags.
+
+Between v3 and v4 this series grew a whole lot. I changed it so that
+the EDID reading is actually driven by the panel driver now as was
+suggested by Andrzej. While I still believe that the old approach
+wasn't too bad I'm still switching. Why?
+
+The main reason is that I think it's useful in general for the panel
+code to have access to the DDC bus and to be able to read the
+EDID. This may allow us to more easily have the panel code support
+multiple sources of panels--it can read the EDID and possibly adjust
+timings based on the model ID. It also allows the panel code (or
+perhaps backlight code?) to send DDC commands if they are need for a
+particular panel.
+
+At the moment, once the panel is provided the DDC bus then existing
+code will assume that it should be in charge of reading the
+EDID. While it doesn't have to work that way, it seems sane to build
+on what's already there.
+
+In order to expose the DDC bus to the panel, I had to solve a bunch of
+chicken-and-egg problems in terms of probe ordering between the bridge
+and the panel. I've broken the bridge driver into several sub drivers
+to make this happen. At the moment the sub-drivers are just there to
+solve the probe problem, but conceivably someone could use them to
+break the driver up in the future if need be.
+
+I apologize in advance for the length of this series. I'm currently
+working through getting commit access to drm-misc [3] so I can land
+the first several patches which are already reviewed. There are still
+a lot of patches even after the first few, but hopefully you can see
+that there are only so many because they're broken up into nice and
+reviewable bite-sized-chunks. :-)
+
+[1] https://lore.kernel.org/r/20210304155144.3.I60a7fb23ce4589006bc95c64ab8d15c74b876e68@changeid/
+[2] https://lore.kernel.org/r/161706912161.3012082.17313817257247946143@swboyd.mtv.corp.google.com/
+[3] https://gitlab.freedesktop.org/freedesktop/freedesktop/-/issues/348
+
+Changes in v4:
+- Reword commit mesage slightly.
+
+Changes in v3:
+- Removed "NOTES" from commit message.
+
+Changes in v2:
+- Removed 2nd paragraph in commit message.
+
+Douglas Anderson (27):
+  drm/bridge: Fix the stop condition of drm_bridge_chain_pre_enable()
+  drm/bridge: ti-sn65dsi86: Simplify refclk handling
+  drm/bridge: ti-sn65dsi86: Remove incorrectly tagged kerneldoc comment
+  drm/bridge: ti-sn65dsi86: Reorder remove()
+  drm/bridge: ti-sn65dsi86: Move drm_panel_unprepare() to post_disable()
+  drm/bridge: ti-sn65dsi86: Get rid of the useless detect() function
+  drm/panel: panel-simple: Use runtime pm to avoid excessive unprepare /
+    prepare
+  drm/bridge: ti-sn65dsi86: Rename the main driver data structure
+  drm/bridge: ti-sn65dsi86: More renames in prep for sub-devices
+  drm/bridge: ti-sn65dsi86: Clean debugfs code
+  drm/bridge: ti-sn65dsi86: Add local var for "dev" to simplify probe
+  drm/bridge: ti-sn65dsi86: Cleanup managing of drvdata
+  drm/bridge: ti-sn65dsi86: Use devm to do our runtime_disable
+  drm/bridge: ti-sn65dsi86: Move all the chip-related init to the start
+  drm/bridge: ti-sn65dsi86: Break GPIO and MIPI-to-eDP bridge into
+    sub-drivers
+  drm/panel: panel-simple: Get rid of hacky HPD chicken-and-egg code
+  drm/bridge: ti-sn65dsi86: Use pm_runtime autosuspend
+  drm/bridge: ti-sn65dsi86: Code motion of refclk management functions
+  drm/bridge: ti-sn65dsi86: If refclk, DP AUX can happen w/out
+    pre-enable
+  drm/bridge: ti-sn65dsi86: Promote the AUX channel to its own sub-dev
+  i2c: i2c-core-of: Fix corner case of finding adapter by node
+  drm/panel: panel-simple: Remove extra call:
+    drm_connector_update_edid_property()
+  drm/panel: panel-simple: Power the panel when reading the EDID
+  drm/panel: panel-simple: Cache the EDID as long as we retain power
+  drm/bridge: ti-sn65dsi86: Don't read EDID blob over DDC
+  arm64: dts: qcom: Link the panel to the bridge's DDC bus
+  drm/panel: panel-simple: Prepare/unprepare are refcounted, not forced
+
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi |   1 +
+ drivers/gpu/drm/bridge/Kconfig               |   1 +
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c        | 748 ++++++++++++-------
+ drivers/gpu/drm/drm_bridge.c                 |   3 +
+ drivers/gpu/drm/panel/Kconfig                |   1 +
+ drivers/gpu/drm/panel/panel-simple.c         | 123 +--
+ drivers/i2c/i2c-core-of.c                    |  17 +-
+ 7 files changed, 555 insertions(+), 339 deletions(-)
+
 -- 
-2.31.0
+2.31.1.368.gbe11c130af-goog
 
