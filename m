@@ -2,105 +2,359 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC21A362374
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 17:04:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59CBB3623AA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 17:20:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240740AbhDPPEA convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 16 Apr 2021 11:04:00 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:43799 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243051AbhDPPD5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 11:03:57 -0400
-X-Originating-IP: 90.89.138.59
-Received: from xps13 (lfbn-tou-1-1325-59.w90-89.abo.wanadoo.fr [90.89.138.59])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 7BD1E20015;
-        Fri, 16 Apr 2021 15:03:31 +0000 (UTC)
-Date:   Fri, 16 Apr 2021 17:03:30 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH] mtd: parsers: trx: parse "firmware" MTD partitions only
-Message-ID: <20210416170330.65c267f4@xps13>
-In-Reply-To: <20210413163700.12215-1-zajec5@gmail.com>
-References: <20210413163700.12215-1-zajec5@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S236142AbhDPPRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 11:17:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54060 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245530AbhDPPPe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 11:15:34 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B29A8C061761
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 08:14:39 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1lXQAo-0001kj-On; Fri, 16 Apr 2021 17:14:22 +0200
+Message-ID: <529b61b1b1e6030c92a7944c4864246521b2ccdd.camel@pengutronix.de>
+Subject: Re: [PATCH v9 03/13] media: hantro: Use syscon instead of 'ctrl'
+ register
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        festevam@gmail.com, lee.jones@linaro.org,
+        gregkh@linuxfoundation.org, mripard@kernel.org,
+        paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
+        emil.l.velikov@gmail.com, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>
+Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, kernel@collabora.com, cphealy@gmail.com,
+        linux-arm-kernel@lists.infradead.org
+Date:   Fri, 16 Apr 2021 17:14:18 +0200
+In-Reply-To: <ffe9b3f5-94f5-453e-73f0-4b42d0454b63@collabora.com>
+References: <20210407073534.376722-1-benjamin.gaignard@collabora.com>
+         <20210407073534.376722-4-benjamin.gaignard@collabora.com>
+         <7bcbb787d82f21d42563d8fb7e3c2e7d40123932.camel@pengutronix.de>
+         <ffe9b3f5-94f5-453e-73f0-4b42d0454b63@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rafał,
-
-Rafał Miłecki <zajec5@gmail.com> wrote on Tue, 13 Apr 2021 18:37:00
-+0200:
-
-> From: Rafał Miłecki <rafal@milecki.pl>
+Am Freitag, dem 16.04.2021 um 15:08 +0200 schrieb Benjamin Gaignard:
+> Le 16/04/2021 à 12:54, Lucas Stach a écrit :
+> > Am Mittwoch, dem 07.04.2021 um 09:35 +0200 schrieb Benjamin Gaignard:
+> > > In order to be able to share the control hardware block between
+> > > VPUs use a syscon instead a ioremap it in the driver.
+> > > To keep the compatibility with older DT if 'nxp,imx8mq-vpu-ctrl'
+> > > phandle is not found look at 'ctrl' reg-name.
+> > > With the method it becomes useless to provide a list of register
+> > > names so remove it.
+> > Sorry for putting a spoke in the wheel after many iterations of the
+> > series.
+> > 
+> > We just discussed a way forward on how to handle the clocks and resets
+> > provided by the blkctl block on i.MX8MM and later and it seems there is
+> > a consensus on trying to provide virtual power domains from a blkctl
+> > driver, controlling clocks and resets for the devices in the power
+> > domain. I would like to avoid introducing yet another way of handling
+> > the blkctl and thus would like to align the i.MX8MQ VPU blkctl with
+> > what we are planning to do on the later chip generations.
+> > 
+> > CC'ing Jacky Bai and Peng Fan from NXP, as they were going to give this
+> > virtual power domain thing a shot.
 > 
-> Parsing every partition with "compatible" set to "brcm,trx" results in
-> parsing both: firmware partition and failsafe partition on devices that
-> implement failsafe booting. This affects e.g. Linksys EA9500 which has:
-> 
-> partition@200000 {
-> 	reg = <0x0200000 0x01d00000>;
-> 	compatible = "linksys,ns-firmware", "brcm,trx";
-> };
-> 
-> partition@1f00000 {
-> 	reg = <0x01f00000 0x01d00000>;
-> 	compatible = "linksys,ns-firmware", "brcm,trx";
-> };
-> 
-> Check for MTD partition name "firmware" before parsing. Recently added
-> ofpart_linksys_ns.c creates "firmware" and "failsafe" depending on
-> bootloader setup.
+> That could replace the 3 first patches and Dt patche of this series
+> but that will not impact the hevc part, so I wonder if pure hevc patches
+> could be merged anyway ?
+> They are reviewed and don't depend of how the ctrl block is managed.
 
-I don't like very much the matching against a partition name, this is
-and should probably remain free text. Why not matching against the
-entire linksys,ns-firmware compatible instead?
+I'm not really in a position to give any informed opinion about that
+hvec patches, as I only skimmed them, but I don't see any reason to
+delay patches 04-11 from this series until the i.MX8M platform issues
+are sorted. AFAICS those things are totally orthogonal.
 
+Regards,
+Lucas
+
+> > 
+> > Regards,
+> > Lucas
+> > 
+> > > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> > > Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+> > > ---
+> > > version 9:
+> > >   - Corrections in commit message
+> > > 
+> > > version 7:
+> > >   - Add Philipp reviewed-by tag.
+> > >   - Change syscon phandle name.
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > version 5:
+> > >   - use syscon instead of VPU reset driver.
+> > >   - if DT doesn't provide syscon keep backward compatibilty by using
+> > >     'ctrl' reg-name.
+> > > 
+> > >   drivers/staging/media/hantro/hantro.h       |  5 +-
+> > >   drivers/staging/media/hantro/imx8m_vpu_hw.c | 52 ++++++++++++---------
+> > >   2 files changed, 34 insertions(+), 23 deletions(-)
+> > > 
+> > > diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
+> > > index 6c1b888abe75..37b9ce04bd4e 100644
+> > > --- a/drivers/staging/media/hantro/hantro.h
+> > > +++ b/drivers/staging/media/hantro/hantro.h
+> > > @@ -13,6 +13,7 @@
+> > >   #define HANTRO_H_
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > >   #include <linux/platform_device.h>
+> > > +#include <linux/regmap.h>
+> > >   #include <linux/videodev2.h>
+> > >   #include <linux/wait.h>
+> > >   #include <linux/clk.h>
+> > > @@ -167,7 +168,7 @@ hantro_vdev_to_func(struct video_device *vdev)
+> > >    * @reg_bases:		Mapped addresses of VPU registers.
+> > >    * @enc_base:		Mapped address of VPU encoder register for convenience.
+> > >    * @dec_base:		Mapped address of VPU decoder register for convenience.
+> > > - * @ctrl_base:		Mapped address of VPU control block.
+> > > + * @ctrl_base:		Regmap of VPU control block.
+> > >    * @vpu_mutex:		Mutex to synchronize V4L2 calls.
+> > >    * @irqlock:		Spinlock to synchronize access to data structures
+> > >    *			shared with interrupt handlers.
+> > > @@ -186,7 +187,7 @@ struct hantro_dev {
+> > >   	void __iomem **reg_bases;
+> > >   	void __iomem *enc_base;
+> > >   	void __iomem *dec_base;
+> > > -	void __iomem *ctrl_base;
+> > > +	struct regmap *ctrl_base;
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > >   	struct mutex vpu_mutex;	/* video_device lock */
+> > >   	spinlock_t irqlock;
+> > > diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
+> > > index c222de075ef4..8d0c3425234b 100644
+> > > --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
+> > > +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
+> > > @@ -7,6 +7,7 @@
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > >   #include <linux/clk.h>
+> > >   #include <linux/delay.h>
+> > > +#include <linux/mfd/syscon.h>
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > >   #include "hantro.h"
+> > >   #include "hantro_jpeg.h"
+> > > @@ -24,30 +25,28 @@
+> > >   #define CTRL_G1_PP_FUSE		0x0c
+> > >   #define CTRL_G2_DEC_FUSE	0x10
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > +static const struct regmap_config ctrl_regmap_ctrl = {
+> > > +	.reg_bits = 32,
+> > > +	.val_bits = 32,
+> > > +	.reg_stride = 0x14,
+> > > +};
+> > > +
+> > >   static void imx8m_soft_reset(struct hantro_dev *vpu, u32 reset_bits)
+> > >   {
+> > > -	u32 val;
+> > > -
+> > >   	/* Assert */
+> > > -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
+> > > -	val &= ~reset_bits;
+> > > -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
+> > > +	regmap_update_bits(vpu->ctrl_base, CTRL_SOFT_RESET, reset_bits, 0);
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > >   	udelay(2);
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > >   	/* Release */
+> > > -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
+> > > -	val |= reset_bits;
+> > > -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
+> > > +	regmap_update_bits(vpu->ctrl_base, CTRL_SOFT_RESET,
+> > > +			   reset_bits, reset_bits);
+> > >   }
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > >   static void imx8m_clk_enable(struct hantro_dev *vpu, u32 clock_bits)
+> > >   {
+> > > -	u32 val;
+> > > -
+> > > -	val = readl(vpu->ctrl_base + CTRL_CLOCK_ENABLE);
+> > > -	val |= clock_bits;
+> > > -	writel(val, vpu->ctrl_base + CTRL_CLOCK_ENABLE);
+> > > +	regmap_update_bits(vpu->ctrl_base, CTRL_CLOCK_ENABLE,
+> > > +			   clock_bits, clock_bits);
+> > >   }
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > >   static int imx8mq_runtime_resume(struct hantro_dev *vpu)
+> > > @@ -64,9 +63,9 @@ static int imx8mq_runtime_resume(struct hantro_dev *vpu)
+> > >   	imx8m_clk_enable(vpu, CLOCK_G1 | CLOCK_G2);
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > >   	/* Set values of the fuse registers */
+> > > -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_DEC_FUSE);
+> > > -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_PP_FUSE);
+> > > -	writel(0xffffffff, vpu->ctrl_base + CTRL_G2_DEC_FUSE);
+> > > +	regmap_write(vpu->ctrl_base, CTRL_G1_DEC_FUSE, 0xffffffff);
+> > > +	regmap_write(vpu->ctrl_base, CTRL_G1_PP_FUSE, 0xffffffff);
+> > > +	regmap_write(vpu->ctrl_base, CTRL_G2_DEC_FUSE, 0xffffffff);
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > >   	clk_bulk_disable_unprepare(vpu->variant->num_clocks, vpu->clocks);
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > @@ -150,8 +149,22 @@ static irqreturn_t imx8m_vpu_g1_irq(int irq, void *dev_id)
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > >   static int imx8mq_vpu_hw_init(struct hantro_dev *vpu)
+> > >   {
+> > > -	vpu->dec_base = vpu->reg_bases[0];
+> > > -	vpu->ctrl_base = vpu->reg_bases[vpu->variant->num_regs - 1];
+> > > +	struct device_node *np = vpu->dev->of_node;
+> > > +
+> > > +	vpu->ctrl_base = syscon_regmap_lookup_by_phandle(np, "nxp,imx8m-vpu-ctrl");
+> > > +	if (IS_ERR(vpu->ctrl_base)) {
+> > > +		struct resource *res;
+> > > +		void __iomem *ctrl;
+> > > +
+> > > +		res = platform_get_resource_byname(vpu->pdev, IORESOURCE_MEM, "ctrl");
+> > > +		ctrl = devm_ioremap_resource(vpu->dev, res);
+> > > +		if (IS_ERR(ctrl))
+> > > +			return PTR_ERR(ctrl);
+> > > +
+> > > +		vpu->ctrl_base = devm_regmap_init_mmio(vpu->dev, ctrl, &ctrl_regmap_ctrl);
+> > > +		if (IS_ERR(vpu->ctrl_base))
+> > > +			return PTR_ERR(vpu->ctrl_base);
+> > > +	}
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > >   	return 0;
+> > >   }
+> > > @@ -198,7 +211,6 @@ static const struct hantro_irq imx8mq_irqs[] = {
+> > >   };
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > >   static const char * const imx8mq_clk_names[] = { "g1", "g2", "bus" };
+> > > -static const char * const imx8mq_reg_names[] = { "g1", "g2", "ctrl" };
+> > >   
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > >   const struct hantro_variant imx8mq_vpu_variant = {
+> > >   	.dec_fmts = imx8m_vpu_dec_fmts,
+> > > @@ -215,6 +227,4 @@ const struct hantro_variant imx8mq_vpu_variant = {
+> > >   	.num_irqs = ARRAY_SIZE(imx8mq_irqs),
+> > >   	.clk_names = imx8mq_clk_names,
+> > >   	.num_clocks = ARRAY_SIZE(imx8mq_clk_names),
+> > > -	.reg_names = imx8mq_reg_names,
+> > > -	.num_regs = ARRAY_SIZE(imx8mq_reg_names)
+> > >   };
+> > 
+> > 
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
-> Vivek has recently reported this problem to me and this is soltuion I
-> came up with.
-> 
-> One alternative I thought of could be marking "failsafe" MTD partition
-> node as disabled (using of_update_property() + "status" + "disabled") and
-> then using of_device_is_available() in the parser_trx.c.
-> 
-> Let me know if you prefer the other (or any other) solution over this
-> patch.
-> ---
->  drivers/mtd/parsers/parser_trx.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/mtd/parsers/parser_trx.c b/drivers/mtd/parsers/parser_trx.c
-> index 8541182134d4..0063791e164d 100644
-> --- a/drivers/mtd/parsers/parser_trx.c
-> +++ b/drivers/mtd/parsers/parser_trx.c
-> @@ -58,6 +58,10 @@ static int parser_trx_parse(struct mtd_info *mtd,
->  	uint8_t curr_part = 0, i = 0;
->  	int err;
->  
-> +	/* Don't parse any failsafe / backup partitions */
-> +	if (strcmp(mtd->name, "firmware"))
-> +		return -EINVAL;
-> +
->  	parts = kcalloc(TRX_PARSER_MAX_PARTS, sizeof(struct mtd_partition),
->  			GFP_KERNEL);
->  	if (!parts)
 
 
-
-
-Thanks,
-Miquèl
