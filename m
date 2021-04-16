@@ -2,151 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77DA4361951
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 07:29:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9F6C36195C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 07:38:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234903AbhDPF3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 01:29:05 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:52732 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236523AbhDPF3E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 01:29:04 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13G5SWtG101289;
-        Fri, 16 Apr 2021 00:28:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1618550912;
-        bh=/Qqd8dLvkwqG8mfa3X8iRL7Luh5a0bspwqIhdDUwxwM=;
-        h=Subject:CC:References:From:Date:In-Reply-To;
-        b=JMhKhHA71v0DGGgavL5wDxDSb/YJSCa6Aq5jAINhZ+azSSNY7fp/Lhl/qkp9fnh81
-         iRjRzmoiv6eIJjBtZQJsFNmahiN+J3vUBFjfQW0eF3uGNbIMIxuTnreeM56lsryvb6
-         6L1pZYT53z/CgOJXmDXsjvT04QFoQIHtwjswT5YU=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13G5SVW3017837
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 16 Apr 2021 00:28:32 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 16
- Apr 2021 00:28:31 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Fri, 16 Apr 2021 00:28:31 -0500
-Received: from [172.24.145.148] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13G5SRf9102921;
-        Fri, 16 Apr 2021 00:28:28 -0500
-Subject: Re: [PATCH v3 0/4] CAN TRANSCEIVER: Add support for CAN transceivers
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-can@vger.kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-References: <20210415144947.4725-1-a-govindraju@ti.com>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <81266055-717b-d24d-6244-696f5df3d636@ti.com>
-Date:   Fri, 16 Apr 2021 10:58:27 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S236845AbhDPFiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 01:38:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38396 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230250AbhDPFiJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 01:38:09 -0400
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B4D7C061574;
+        Thu, 15 Apr 2021 22:37:45 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id k18so21818890oik.1;
+        Thu, 15 Apr 2021 22:37:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=T/IW+M3bZXs+TidV7rj8NDJLHs9tA2SQf7kB4PctnB8=;
+        b=u1XcTRAQSCYZMFFdJoZAgxCpueQIkybF5upn5JS7bciBx066PS/niKBAknL/+AZWsn
+         lyjhRluVLFodzDicNZ6q2nMyfdAwhNIAvaHZavphYt1FFjdETjPtXb74pIXAg0hhG/9T
+         LyZBU12TNfu21sVaCuIr4lbDxb5GMpSpsmPpigj6nwbgT6mxb9OvqFeLPbSi++OvFXcm
+         BfGZRn9uDMJZJNcbPwOFKLTZAX/OfxJnHCWIRDcydxXZKEuYj92NT12IU/tEgMA4P/Mp
+         lLcp908DoxyM3/wfKcxM4XQhbqMtgZM2/t1pA1vGm+vuanrPaU06DRVMIVCCxwHxhcmB
+         rkAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=T/IW+M3bZXs+TidV7rj8NDJLHs9tA2SQf7kB4PctnB8=;
+        b=rfNSazw03KWZifJB06CcoPU6o0g9P8id0EH8I9K79Iqorv3ICSv+mW58cYMpYpn3S5
+         rOWTk+3fiShEUQguJzbRScdnl+sao8JlYI9y/+qd5G5SO+xsSHo+HZX3JZw7j0FOwhve
+         17rcv8HJ8gK1hnh0gTGh1vNPN2n8z4WgcIhu7XPChPXOfzHQiFA9BtU8z+E3ChgvNcJS
+         QWg3+LMUHN5Le66vumgu1k/q8eSKlE2lGXRnMtPL28IIkNnYLbs8+VrxhpQiAZ/mkb9F
+         JOjKCYuiC8fU7DqJ+0g7wWL64A1dBQEL5OvvllfYA+ZLedtSpE7Zq8IotGNy4BkIVo3z
+         QYOg==
+X-Gm-Message-State: AOAM532IC8xPHBEUctDSOr8KGWGqG7fbykt3YxRHUlofxXo97QxKgjTs
+        QpG4lGsco5k4jZpqRnIrs3aDNQWXCZsX2C4/jJE=
+X-Google-Smtp-Source: ABdhPJzVVY8o2g1JY7ImbyMuNJEWh+ukSW598cUYKC5UHZjiTU7TXwWRbqaRryxNjJrLI/8oc2QpZPUbmGLfypCx2qw=
+X-Received: by 2002:aca:b408:: with SMTP id d8mr5275217oif.47.1618551464901;
+ Thu, 15 Apr 2021 22:37:44 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210415144947.4725-1-a-govindraju@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+References: <20210415032958.740233-1-ikjn@chromium.org> <20210415032958.740233-2-ikjn@chromium.org>
+In-Reply-To: <20210415032958.740233-2-ikjn@chromium.org>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Fri, 16 Apr 2021 07:37:35 +0200
+Message-ID: <CAFqH_53GXdCfPCke_UN3fqrDxHZ_scd21ZekVzrYoVWbmLUmrw@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] mfd: google,cros-ec: add DT bindings for a
+ baseboard's switch device
+To:     Ikjoon Jang <ikjn@chromium.org>
+Cc:     linux-input@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Dmitry Torokhov <dtor@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Guenter Roeck <groeck@chromium.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+Hi Ikjoon,
 
-On 15/04/21 8:19 pm, Aswath Govindraju wrote:
-> The following series of patches add support for CAN transceivers.
-> 
-> TCAN1042 has a standby signal that needs to be pulled high for
-> sending/receiving messages[1]. TCAN1043 has a enable signal along with
-> standby signal that needs to be pulled up for sending/receiving
-> messages[2], and other combinations of the two lines can be used to put the
-> transceiver in different states to reduce power consumption. On boards
-> like the AM654-idk and J721e-evm these signals are controlled using gpios.
-> 
-> Patch 1 rewords the comment that restricts max_link_rate attribute to have
-> units of Mbps.
-> 
-> Patch 2 adds an API for devm_of_phy_optional_get_by_index
-> 
-> Patch 3 models the transceiver as a phy device tree node with properties
-> for max bit rate supported, gpio properties for indicating gpio pin numbers
-> to which standby and enable signals are connected.
-> 
-> Patch 4 adds a generic driver to support CAN transceivers.
-> 
-> changes since v2:
-> - dropped 5 and 6 patches and to be sent via linux-can-next
-> - added static keyword for can_transceiver_phy_probe()
-> - changed enable gpio example to active high in patch 3
-> - Rearranged the file names in alphabetical order in Makefile
->   and MAINTAINERS file
-> 
-> changes since v1:
-> - Added patch 1 (in v2) that rewords the comment that restrict
->   max_link_rate attribute to have units of Mbps.
-> - Added patch 2 (in v2) that adds an API for
->   devm_of_phy_optional_get_by_index
-> - Patch 1 (in v1)
->   - updated MAINTAINERS file
-> - Patch 2 (in v1)
->   - replaced m_can with CAN to make the driver independent of CAN driver
->   - Added prefix CAN_TRANSCEIVER for EN_PRESENT and STB_PRESENT
->   - Added new line before return statements in power_on() and power_off
->   - Added error handling patch for devm_kzalloc()
->   - used the max_link_rate attribute directly instead of dividing it by
->     1000000
->   - removed the spaces before GPIOD_OUT_LOW in devm_gpiod_get()
->   - Corrected requested value for standby-gpios to GPIOD_OUT_HIGH
->   - Updated MAINTAINERS file
-> - Patch 3 (in v1)
->   - replaced minItems with maxItems
->   - Removed phy-names property as there is only one phy
-> - Patch 4 (in v1)
->   - replaced dev_warn with dev_info when no transceiver is found
->   - Added struct phy * field in m_can_classdev struct
->   - moved phy_power_on and phy_power_off to m_can_open and m_can_close
->     respectively
->   - Moved the check for max_bit_rate to generice transceiver driver
-> 
-> [1] - https://www.ti.com/lit/ds/symlink/tcan1042h.pdf
-> [2] - https://www.ti.com/lit/ds/symlink/tcan1043-q1.pdf
-> 
+Thank you for your patch.
 
-Posted v4 for this series.
+Missatge de Ikjoon Jang <ikjn@chromium.org> del dia dj., 15 d=E2=80=99abr.
+2021 a les 5:32:
+>
+> This is for ChromeOS tablets which have a 'cros_cbas' switch device
+> in the "Whiskers" base board. This device can be instantiated only by
+> device tree on ARM platforms. ChromeOS EC doesn't provide a way to
+> probe the device.
+>
+> Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
+>
+> ---
+>
+> Changes in v5:
+>  - Add missing blank lines and change the description property's position=
+.
+>  - Add a note to description: "this device cannot be detected at runtime.=
+"
+>
+> Changes in v4:
+> Define cros-cbase bindings inside google,cros-ec.yaml instead of
+> a separated binding document.
+>
+>  .../bindings/mfd/google,cros-ec.yaml          | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/=
+Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> index 76bf16ee27ec..8dcce176b72e 100644
+> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> @@ -114,6 +114,22 @@ properties:
+>        - "#address-cells"
+>        - "#size-cells"
+>
+> +  cbas:
+> +    type: object
+> +
+> +    description:
+> +      This device is used to signal when a detachable base is attached
+> +      to a Chrome OS tablet. This device cannot be detected at runtime.
+> +
+> +    properties:
+> +      compatible:
+> +        const: google,cros-cbas
+> +
+> +    required:
+> +      - compatible
+> +
+> +    additionalProperties: false
+> +
+>  patternProperties:
+>    "^i2c-tunnel[0-9]*$":
+>      type: object
+> @@ -180,6 +196,10 @@ examples:
+>              interrupts =3D <99 0>;
+>              interrupt-parent =3D <&gpio7>;
+>              spi-max-frequency =3D <5000000>;
+> +
+> +            base_detection: cbas {
 
-Thanks,
-Aswath
+nit: Rob, shouldn't this be just cbas?
 
-> Aswath Govindraju (4):
->   phy: core: Reword the comment specifying the units of max_link_rate to
->     be Mbps
->   phy: Add API for devm_of_phy_optional_get_by_index
->   dt-bindings: phy: Add binding for TI TCAN104x CAN transceivers
->   phy: phy-can-transceiver: Add support for generic CAN transceiver
->     driver
-> 
->  .../bindings/phy/ti,tcan104x-can.yaml         |  56 +++++++
->  MAINTAINERS                                   |   2 +
->  drivers/phy/Kconfig                           |   9 ++
->  drivers/phy/Makefile                          |   1 +
->  drivers/phy/phy-can-transceiver.c             | 146 ++++++++++++++++++
->  drivers/phy/phy-core.c                        |  26 ++++
->  include/linux/phy/phy.h                       |   4 +-
->  7 files changed, 243 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
->  create mode 100644 drivers/phy/phy-can-transceiver.c
-> 
+> +                compatible =3D "google,cros-cbas";
+> +            };
+>          };
+>      };
+>
+> --
+> 2.31.1.295.g9ea45b61b8-goog
+>
 
+Acked-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
