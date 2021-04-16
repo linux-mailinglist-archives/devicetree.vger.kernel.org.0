@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F676362121
+	by mail.lfdr.de (Postfix) with ESMTP id B2408362122
 	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 15:38:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240255AbhDPNik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 09:38:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60118 "EHLO
+        id S244078AbhDPNim (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 09:38:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244073AbhDPNij (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 09:38:39 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F209CC061756
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 06:38:13 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id y4so4683460lfl.10
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 06:38:13 -0700 (PDT)
+        with ESMTP id S244073AbhDPNik (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 09:38:40 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D96E9C061574
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 06:38:15 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id x20so14527146lfu.6
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 06:38:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=AR+7XLOvSpYVxyLBz/7tawEVAFla32hBEINeK8iY+NU=;
-        b=vWKOzv9tqY3kj4Dq44FoyQ1Q7LMAqmplE1W4SaW0ta2Jblh68vqGmt7b+4k+BUOGCD
-         4exLRHj+KDMzyMt3HYZLlbTOZltuG2TSlTu2+zUobZBRZiA7SR7ZBmZrJZxfzuva2WHl
-         U0RhU5cGUzn9wxe/6nqlxmI5R1XE52qYplB3rL3IMszD3nVXf5PbxM2lTPagLfF9WmU2
-         YEzvJ0MLwZcwWziOLTLsZzkl2l0jRpO4MNwhL5MtNFj51qKrZWnF2EAPmPLBBbzlMrY+
-         tBZbchOtVK/ZtzdJUzEou4g2hnNporQO/b2RCn/oLTrLAlYB/I0AlhNxj/KUYnkTD+bZ
-         eSPw==
+        bh=T3bMVzLBN0V0SKwgR6veMxI+dRI48WuWXoGAzJTDhtk=;
+        b=eGmfjr0niR/eJTs1IPZuoKLFVZFFQCJh9pHPcibX3JpnfSGzQMsYPmx9bj9BPeP21Q
+         iG1Gv2PSbhGMZIty9nWYOoGTKHMQyhg8u8bo0zxOslBp1aaHoUTcy3Jmh+ZceGC8WXGU
+         62lCxxBseVkumfxfwDc65+0E7apW2B5QexwakDamkLMCkh2PcPWxQNTO7PmxwzsHmUxT
+         TLZy8eOqwMVmHnYU2rMJU1J4qwPJCpa8fQqwuNp4XTxALNvrf+OgvbctGrtgIfwc4vJq
+         i4BuY/iK5bROzi6n+dPDx70ROr69B141xiLvmn27iPrd5wLnaHbJokit2IfVOmHnPHPA
+         e3gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=AR+7XLOvSpYVxyLBz/7tawEVAFla32hBEINeK8iY+NU=;
-        b=s/XX9sCsXfB/+ppF2fpzuJAY2wKLBI47uJizUqPW2SYHzBdHBFul7i4CA3+GbzCfBn
-         YnDzRYsqUJCqAIge1reeg5izrzvOG/CMtOj41LKXbrsSBhro0uU2suacRd1/9026dZLA
-         Hun6PGZtv8Sh+NY5zxG5Rzm7hbg48X+l+BYNsfSNHDFQwfC53IXYEgV8UgQlKCUz1hgG
-         DfHbNWskkxKeU796GKK1E6UtzEg1M4Pr9hkQ1vRZuifBVfH46BV1WNogONkTwahBHMEe
-         /yp4zIKrOnVl1Z2GheIlMWmt8VAZkt9F5KZc3ky+Lcx0ew3f/1YDO97B0AR3oYwhqtO4
-         s/BQ==
-X-Gm-Message-State: AOAM531rf3Ovq91DL0ciUy51mdpc7YKBxg3y4D2YS77xbwshmKs4WRt5
-        1YtBSdlpI+oT8NPl+Vh4W7X1uBEkHJE=
-X-Google-Smtp-Source: ABdhPJw5N2MME5Grc3LceIHvqkokODuoD2lpoxSEa+vilDhPjs899woPIVtCGjeRVE0X+Z51Vs0DNw==
-X-Received: by 2002:a19:8c55:: with SMTP id i21mr3029761lfj.352.1618580292552;
-        Fri, 16 Apr 2021 06:38:12 -0700 (PDT)
+        bh=T3bMVzLBN0V0SKwgR6veMxI+dRI48WuWXoGAzJTDhtk=;
+        b=NoKwTwuUXTW82Tmsk0YdDk6qi7v2g7UBcOPXV3aZvFirtHYZoqohfs9JS4Ki0dMnLw
+         xbsPrbtoG9s0ZZEsGvHy5Kr6Fq+PzsJ6oOpSCCOnjHpPscfYHU/Q++uNhpTWIJqBvXn+
+         ThNydG5mIYmHmGFKfEDAx5gxiX3LkeFwsRiAAqJ2HvzQduiaF61TybnU8t2VEOqd2ae2
+         Lf1v7Qr33C41KPiGf4HWlsz798o4BhkI/YpncvdME+9wYqyP9NJTv1LY4AA6rwjJGTGF
+         xFwgipne2C7ARSRPMfHDiw94vAOCGUq4abMHYnbNJd1pEKTjSkse4KjCtd4clKPaJHoX
+         mPMg==
+X-Gm-Message-State: AOAM5320WKXLr/+2BRXu3NgUxERVsnjZAbo+OQLYumdPhTicK0pcx2R7
+        RxZoQGYybVqxFxPUaqCUamY=
+X-Google-Smtp-Source: ABdhPJxyzuHBaSxezmWYv3T4KYn0Sd7WpkrtdQALRXMw5vSliDkh1E4/fKRjXsIo5gWIJXdM8q5YTQ==
+X-Received: by 2002:a05:6512:36cb:: with SMTP id e11mr3039265lfs.369.1618580294382;
+        Fri, 16 Apr 2021 06:38:14 -0700 (PDT)
 Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id y14sm948405ljy.18.2021.04.16.06.38.11
+        by smtp.gmail.com with ESMTPSA id y14sm948405ljy.18.2021.04.16.06.38.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Apr 2021 06:38:12 -0700 (PDT)
+        Fri, 16 Apr 2021 06:38:14 -0700 (PDT)
 From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>
@@ -55,9 +55,9 @@ Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
         bcm-kernel-feedback-list@broadcom.com,
         linux-arm-kernel@lists.infradead.org,
         =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH stblinux 4/6] ARM: NSP: dts: fix NAND nodes names
-Date:   Fri, 16 Apr 2021 15:37:51 +0200
-Message-Id: <20210416133753.32756-4-zajec5@gmail.com>
+Subject: [PATCH stblinux 5/6] ARM: dts: BCM63xx: Fix NAND nodes names
+Date:   Fri, 16 Apr 2021 15:37:52 +0200
+Message-Id: <20210416133753.32756-5-zajec5@gmail.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20210416133753.32756-1-zajec5@gmail.com>
 References: <20210416133753.32756-1-zajec5@gmail.com>
@@ -74,150 +74,40 @@ This matches nand-controller.yaml requirements.
 
 Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- arch/arm/boot/dts/bcm-nsp.dtsi     | 2 +-
- arch/arm/boot/dts/bcm958522er.dts  | 4 ++--
- arch/arm/boot/dts/bcm958525er.dts  | 4 ++--
- arch/arm/boot/dts/bcm958525xmc.dts | 4 ++--
- arch/arm/boot/dts/bcm958622hr.dts  | 4 ++--
- arch/arm/boot/dts/bcm958623hr.dts  | 4 ++--
- arch/arm/boot/dts/bcm958625hr.dts  | 4 ++--
- arch/arm/boot/dts/bcm958625k.dts   | 4 ++--
- arch/arm/boot/dts/bcm988312hr.dts  | 4 ++--
- 9 files changed, 17 insertions(+), 17 deletions(-)
+ arch/arm/boot/dts/bcm63138.dtsi    | 2 +-
+ arch/arm/boot/dts/bcm963138dvt.dts | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/bcm-nsp.dtsi b/arch/arm/boot/dts/bcm-nsp.dtsi
-index b4d2cc70afb1..748df7955ae6 100644
---- a/arch/arm/boot/dts/bcm-nsp.dtsi
-+++ b/arch/arm/boot/dts/bcm-nsp.dtsi
-@@ -269,7 +269,7 @@ mailbox: mailbox@25c00 {
- 			dma-coherent;
+diff --git a/arch/arm/boot/dts/bcm63138.dtsi b/arch/arm/boot/dts/bcm63138.dtsi
+index 9c0325cf9e22..cca49a2e2d62 100644
+--- a/arch/arm/boot/dts/bcm63138.dtsi
++++ b/arch/arm/boot/dts/bcm63138.dtsi
+@@ -203,7 +203,7 @@ serial1: serial@620 {
+ 			status = "disabled";
  		};
  
--		nand: nand@26000 {
-+		nand_controller: nand-controller@26000 {
- 			compatible = "brcm,nand-iproc", "brcm,brcmnand-v6.1";
- 			reg = <0x026000 0x600>,
- 			      <0x11b408 0x600>,
-diff --git a/arch/arm/boot/dts/bcm958522er.dts b/arch/arm/boot/dts/bcm958522er.dts
-index 5443fc079e6e..1f73885ec274 100644
---- a/arch/arm/boot/dts/bcm958522er.dts
-+++ b/arch/arm/boot/dts/bcm958522er.dts
-@@ -74,8 +74,8 @@ &ehci0 {
+-		nand: nand@2000 {
++		nand_controller: nand-controller@2000 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.0", "brcm,brcmnand";
+diff --git a/arch/arm/boot/dts/bcm963138dvt.dts b/arch/arm/boot/dts/bcm963138dvt.dts
+index 5b177274f182..df5c8ab90627 100644
+--- a/arch/arm/boot/dts/bcm963138dvt.dts
++++ b/arch/arm/boot/dts/bcm963138dvt.dts
+@@ -31,10 +31,10 @@ &serial1 {
  	status = "okay";
  };
  
 -&nand {
--	nandcs@0 {
 +&nand_controller {
-+	nand@0 {
- 		compatible = "brcm,nandcs";
- 		reg = <0>;
- 		nand-on-flash-bbt;
-diff --git a/arch/arm/boot/dts/bcm958525er.dts b/arch/arm/boot/dts/bcm958525er.dts
-index e1e3c26cef19..b6b9ca8b0972 100644
---- a/arch/arm/boot/dts/bcm958525er.dts
-+++ b/arch/arm/boot/dts/bcm958525er.dts
-@@ -74,8 +74,8 @@ &ehci0 {
  	status = "okay";
- };
  
--&nand {
 -	nandcs@0 {
-+&nand_controller {
 +	nand@0 {
  		compatible = "brcm,nandcs";
  		reg = <0>;
- 		nand-on-flash-bbt;
-diff --git a/arch/arm/boot/dts/bcm958525xmc.dts b/arch/arm/boot/dts/bcm958525xmc.dts
-index f161ba2e7e5e..ecf426f6ad5d 100644
---- a/arch/arm/boot/dts/bcm958525xmc.dts
-+++ b/arch/arm/boot/dts/bcm958525xmc.dts
-@@ -90,8 +90,8 @@ rtc@68 {
- 	};
- };
- 
--&nand {
--	nandcs@0 {
-+&nand_controller {
-+	nand@0 {
- 		compatible = "brcm,nandcs";
- 		reg = <0>;
- 		nand-on-flash-bbt;
-diff --git a/arch/arm/boot/dts/bcm958622hr.dts b/arch/arm/boot/dts/bcm958622hr.dts
-index 83cb877d63db..8ca18da981ad 100644
---- a/arch/arm/boot/dts/bcm958622hr.dts
-+++ b/arch/arm/boot/dts/bcm958622hr.dts
-@@ -78,8 +78,8 @@ &ehci0 {
- 	status = "okay";
- };
- 
--&nand {
--	nandcs@0 {
-+&nand_controller {
-+	nand@0 {
- 		compatible = "brcm,nandcs";
- 		reg = <0>;
- 		nand-on-flash-bbt;
-diff --git a/arch/arm/boot/dts/bcm958623hr.dts b/arch/arm/boot/dts/bcm958623hr.dts
-index 4e106ce1384a..9747378db531 100644
---- a/arch/arm/boot/dts/bcm958623hr.dts
-+++ b/arch/arm/boot/dts/bcm958623hr.dts
-@@ -78,8 +78,8 @@ &ehci0 {
- 	status = "okay";
- };
- 
--&nand {
--	nandcs@0 {
-+&nand_controller {
-+	nand@0 {
- 		compatible = "brcm,nandcs";
- 		reg = <0>;
- 		nand-on-flash-bbt;
-diff --git a/arch/arm/boot/dts/bcm958625hr.dts b/arch/arm/boot/dts/bcm958625hr.dts
-index cda6cc281e18..0f92b773afb8 100644
---- a/arch/arm/boot/dts/bcm958625hr.dts
-+++ b/arch/arm/boot/dts/bcm958625hr.dts
-@@ -89,8 +89,8 @@ &ehci0 {
- 	status = "okay";
- };
- 
--&nand {
--	nandcs@0 {
-+&nand_controller {
-+	nand@0 {
- 		compatible = "brcm,nandcs";
- 		reg = <0>;
- 		nand-on-flash-bbt;
-diff --git a/arch/arm/boot/dts/bcm958625k.dts b/arch/arm/boot/dts/bcm958625k.dts
-index ffbff0014c65..9e984ca0e6df 100644
---- a/arch/arm/boot/dts/bcm958625k.dts
-+++ b/arch/arm/boot/dts/bcm958625k.dts
-@@ -68,8 +68,8 @@ &ehci0 {
- 	status = "okay";
- };
- 
--&nand {
--	nandcs@0 {
-+&nand_controller {
-+	nand@0 {
- 		compatible = "brcm,nandcs";
- 		reg = <0>;
- 		nand-on-flash-bbt;
-diff --git a/arch/arm/boot/dts/bcm988312hr.dts b/arch/arm/boot/dts/bcm988312hr.dts
-index 3fd39c479a3c..5475dab8181d 100644
---- a/arch/arm/boot/dts/bcm988312hr.dts
-+++ b/arch/arm/boot/dts/bcm988312hr.dts
-@@ -74,8 +74,8 @@ &ehci0 {
- 	status = "okay";
- };
- 
--&nand {
--	nandcs@0 {
-+&nand_controller {
-+	nand@0 {
- 		compatible = "brcm,nandcs";
- 		reg = <0>;
- 		nand-on-flash-bbt;
+ 		nand-ecc-strength = <4>;
 -- 
 2.26.2
 
