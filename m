@@ -2,183 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80E8A36186E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 05:54:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 589A436188B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 06:09:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235036AbhDPDyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Apr 2021 23:54:35 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:38686 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234659AbhDPDye (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Apr 2021 23:54:34 -0400
-X-UUID: f3cce5beee8940d1baaee6af613c3041-20210416
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=NDHFGcF3B1jg010RNKdlQbBkhOaYGmBmo6W0xffwExI=;
-        b=KOfBYwZAH/4s8EboFVTNasZe9Z/dHfIhDpfG3fYnG9Zf6qFFBPFonO9l6mjHynXIvPdiqyjzi2kc/DeSyfw0uVM7MiQx0UhtzayJ0GNNO4QRu6gegrrXO/Io5zbW0afPTylx5c5BTr3minyKNRZKCxPr8KAhzDwc8bf6Yz7I7Jw=;
-X-UUID: f3cce5beee8940d1baaee6af613c3041-20210416
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <flora.fu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1682936127; Fri, 16 Apr 2021 11:54:09 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 16 Apr 2021 11:54:07 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 16 Apr 2021 11:54:07 +0800
-Message-ID: <1618545247.1478.21.camel@mtksdccf07>
-Subject: Re: [PATCH v2 4/7] dt-bindings: soc: mediatek: apusys: Add new
- document for APU power domain
-From:   Flora Fu <flora.fu@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Pi-Cheng Chen <pi-cheng.chen@mediatek.com>,
-        Chiawen Lee <chiawen.lee@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>
-Date:   Fri, 16 Apr 2021 11:54:07 +0800
-In-Reply-To: <20210415152500.GA1424680@robh.at.kernel.org>
-References: <1618465960-3013-1-git-send-email-flora.fu@mediatek.com>
-         <1618465960-3013-5-git-send-email-flora.fu@mediatek.com>
-         <20210415152500.GA1424680@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
+        id S230489AbhDPEJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 00:09:51 -0400
+Received: from rcdn-iport-8.cisco.com ([173.37.86.79]:1805 "EHLO
+        rcdn-iport-8.cisco.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229502AbhDPEJv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 00:09:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=cisco.com; i=@cisco.com; l=4282; q=dns/txt; s=iport;
+  t=1618546167; x=1619755767;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=qPo8os07gANgYc92EpzGmy/chN2RQQ3R6N3KjLTucyI=;
+  b=FyFqKR2/9aOfEoN32IL1cXM0n9yiJHC4fiUqXGAHnhZTu/WkVrM0zBC/
+   rsFL30WkrWYjuSVKS+9S6wSQvYqRIupZhbXCmUxYvrfMnwhL8Y9UwaJxp
+   x/uq9Edm07sDAtz6jVuJzENsUFrIn8rSBnKv0AaYzj2WG68Kdy2Xh8LSd
+   s=;
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AsIMqfqGs638gs2jIpLqEdseALOonbusQ8z?=
+ =?us-ascii?q?AX/mp6ICY4TuWzkceykPMHkSLugDEKV3063fyGMq+MQXTTnKQFg7U5EL++UG?=
+ =?us-ascii?q?Dd1leAA5pl6eLZqQHIPw3b2qpj2bx7c654YeeAbmRSqcrh+gG3H5IBzbC8kZ?=
+ =?us-ascii?q?yAvuvVw3dzQQwCUcgJhDtRMBqREUF9WWB9aqYRKZz03Kd6jgvlXXwWa8ihb0?=
+ =?us-ascii?q?NkY8Hz4/vWiZnhfRkKQzkg5QXmt0LN1JfKVz6FwxwZTzRDhY0HzFGAuQn46q?=
+ =?us-ascii?q?K/2svLryPh6w=3D=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0BMAAAiDXlg/4sNJK1aHAEBAQEBAQc?=
+ =?us-ascii?q?BARIBAQQEAQGBfgcBAQsBAYIpgU0BOY0YiU2BDJligXwLAQEBDzQEAQGEUIF?=
+ =?us-ascii?q?1AiU0CQ4CAwEBDAEBBQEBAQIBBgRxE4VdQxYBhiMBRoE+AYMDgwisCIIrgQG?=
+ =?us-ascii?q?IM4FEgTkBiGt0hBwcgUlCgROCbIstBIJABQEBgQ8HHoI4QpwtgX+KS5Figxa?=
+ =?us-ascii?q?BJptRDyOkfJUYo2KBVDqBWTMaCBsVgyVPGQ6cLAFbIQNnAgYKAQEDCYlOg0A?=
+ =?us-ascii?q?BAQ?=
+X-IronPort-AV: E=Sophos;i="5.82,226,1613433600"; 
+   d="scan'208";a="884877150"
+Received: from alln-core-6.cisco.com ([173.36.13.139])
+  by rcdn-iport-8.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 16 Apr 2021 04:09:25 +0000
+Received: from zorba.cisco.com ([10.24.7.67])
+        by alln-core-6.cisco.com (8.15.2/8.15.2) with ESMTP id 13G49OHf016753;
+        Fri, 16 Apr 2021 04:09:24 GMT
+From:   Daniel Walker <danielwa@cisco.com>
+To:     Will Deacon <will@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Rob Herring <robh@kernel.org>,
+        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
+        Andrew Morton <akpm@linux-foundation.org>, x86@kernel.org,
+        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        "H. Peter Anvin" <hpa@zytor.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org
+Cc:     linux-efi@vger.kernel.org
+Subject: [PATCH 0/8] generic command line v4
+Date:   Thu, 15 Apr 2021 21:09:11 -0700
+Message-Id: <20210416040924.2882771-1-danielwa@cisco.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: D0E2C189EE26BC0DE04A52CF893FE75B3723BC096B505982667A1212E4CA59372000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
+X-Outbound-SMTP-Client: 10.24.7.67, [10.24.7.67]
+X-Outbound-Node: alln-core-6.cisco.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIxLTA0LTE1IGF0IDEwOjI1IC0wNTAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
-T24gVGh1LCBBcHIgMTUsIDIwMjEgYXQgMDE6NTI6MzdQTSArMDgwMCwgRmxvcmEgRnUgd3JvdGU6
-DQo+ID4gRG9jdW1lbnQgdGhlIGJpbmRpbmdzIGZvciBBUFUgcG93ZXIgZG9tYWluIG9uIE1lZGlh
-VGVrIFNvQy4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBGbG9yYSBGdSA8ZmxvcmEuZnVAbWVk
-aWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+IE5vdGU6DQo+ID4gVGhpcyBwYXRjaCBkZXBlbmRzIG9u
-IE1UODE5MiBjbG9ja1sxXSBwYXRjaGVzIHdoaWNoIGhhdmVuJ3QgeWV0IGJlZW4gYWNjZXB0ZWQu
-DQo+ID4gWzFdIGh0dHBzOi8vdXJsZGVmZW5zZS5jb20vdjMvX19odHRwczovL3BhdGNod29yay5r
-ZXJuZWwub3JnL3Byb2plY3QvbGludXgtbWVkaWF0ZWsvcGF0Y2gvMjAyMTAzMjQxMDQxMTAuMTMz
-ODMtNy1jaHVuLWppZS5jaGVuQG1lZGlhdGVrLmNvbS9fXzshIUNUUk5LQTl3TWcwQVJidyF6SU5U
-QzNqd2VvNF9DMnl4cWY5a0hheEFYaE8tay1JX0pwbElZNE9RMzkwSWVTZms1UUNSNG9qbUZ6MmdQ
-YkJWJCANCj4gPiAtLS0NCj4gPiAgLi4uL3NvYy9tZWRpYXRlay9tZWRpYXRlayxhcHUtcG0ueWFt
-bCAgICAgICAgIHwgMTQ1ICsrKysrKysrKysrKysrKysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwg
-MTQ1IGluc2VydGlvbnMoKykNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy9zb2MvbWVkaWF0ZWsvbWVkaWF0ZWssYXB1LXBtLnlhbWwNCj4g
-PiANCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Nv
-Yy9tZWRpYXRlay9tZWRpYXRlayxhcHUtcG0ueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9zb2MvbWVkaWF0ZWsvbWVkaWF0ZWssYXB1LXBtLnlhbWwNCj4gPiBuZXcgZmls
-ZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uNmZmOTY2OTIwOTE3DQo+ID4g
-LS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy9zb2MvbWVkaWF0ZWsvbWVkaWF0ZWssYXB1LXBtLnlhbWwNCj4gPiBAQCAtMCwwICsxLDE0NSBA
-QA0KPiA+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMCBPUiBCU0QtMi1DbGF1
-c2UpDQo+ID4gKyVZQU1MIDEuMg0KPiA+ICstLS0NCj4gPiArJGlkOiBodHRwczovL3VybGRlZmVu
-c2UuY29tL3YzL19faHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvc29jL21lZGlhdGVrL21l
-ZGlhdGVrLGFwdS1wbS55YW1sKl9fO0l3ISFDVFJOS0E5d01nMEFSYncheklOVEMzandlbzRfQzJ5
-eHFmOWtIYXhBWGhPLWstSV9KcGxJWTRPUTM5MEllU2ZrNVFDUjRvam1GX3lIcFFVeCQgDQo+ID4g
-KyRzY2hlbWE6IGh0dHBzOi8vdXJsZGVmZW5zZS5jb20vdjMvX19odHRwOi8vZGV2aWNldHJlZS5v
-cmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCpfXztJdyEhQ1RSTktBOXdNZzBBUmJ3IXpJTlRDM2p3
-ZW80X0MyeXhxZjlrSGF4QVhoTy1rLUlfSnBsSVk0T1EzOTBJZVNmazVRQ1I0b2ptRnkxTDJGelUk
-IA0KPiA+ICsNCj4gPiArdGl0bGU6IE1lZGlhdGVrIEFQVSBQb3dlciBEb21haW5zDQo+ID4gKw0K
-PiA+ICttYWludGFpbmVyczoNCj4gPiArICAtIEZsb3JhIEZ1IDxmbG9yYS5mdUBtZWRpYXRlay5j
-b20+DQo+ID4gKw0KPiA+ICtkZXNjcmlwdGlvbjogfA0KPiA+ICsgIE1lZGlhdGVrIEFJIFByb2Nl
-c3MgVW5pdCAoQVBVKSBpbmNsdWRlIHN1cHBvcnQgZm9yIHBvd2VyIGRvbWFpbnMgd2hpY2ggY2Fu
-IGJlDQo+ID4gKyAgcG93ZXJlZCB1cC9kb3duIGJ5IHNvZnR3YXJlLg0KPiA+ICsgIEFQVSBzdWJz
-eXMgYmVsb25naW5nIHRvIGEgcG93ZXIgZG9tYWluIHNob3VsZCBjb250YWluIGEgJ3Bvd2VyLWRv
-bWFpbnMnDQo+ID4gKyAgcHJvcGVydHkgdGhhdCBpcyBhIHBoYW5kbGUgZm9yIGFwdXNwbSBub2Rl
-IHJlcHJlc2VudGluZyB0aGUgZG9tYWluLg0KPiA+ICsNCj4gPiArcHJvcGVydGllczoNCj4gPiAr
-ICBjb21wYXRpYmxlOg0KPiA+ICsgICAgaXRlbXM6DQo+ID4gKyAgICAgIC0gZW51bToNCj4gPiAr
-ICAgICAgICAgIC0gbWVkaWF0ZWssbXQ4MTkyLWFwdS1wbQ0KPiA+ICsgICAgICAtIGNvbnN0OiBz
-eXNjb24NCj4gPiArDQo+ID4gKyAgcmVnOg0KPiA+ICsgICAgZGVzY3JpcHRpb246IEFkZHJlc3Mg
-cmFuZ2Ugb2YgdGhlIEFQVSBwb3dlciBkb21haW4gY29udHJvbGxlci4NCj4gPiArICAgIG1heEl0
-ZW1zOiAxDQo+ID4gKw0KPiA+ICsgICcjYWRkcmVzcy1jZWxscyc6DQo+ID4gKyAgICBjb25zdDog
-MQ0KPiA+ICsNCj4gPiArICAnI3NpemUtY2VsbHMnOg0KPiA+ICsgICAgY29uc3Q6IDANCj4gPiAr
-DQo+ID4gKyAgJyNwb3dlci1kb21haW4tY2VsbHMnOg0KPiA+ICsgICAgY29uc3Q6IDENCj4gPiAr
-DQo+ID4gKyAgdnNyYW0tc3VwcGx5Og0KPiA+ICsgICAgZGVzY3JpcHRpb246IGFwdSBzcmFtIHJl
-Z3VsYXRvciBzdXBwbHkuDQo+ID4gKw0KPiA+ICsgIG1lZGlhdGVrLHNjcHN5czoNCj4gPiArICAg
-ICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3BoYW5kbGUNCj4gPiArICAg
-IGRlc2NyaXB0aW9uOiB8DQo+ID4gKyAgICAgIHBoYW5kbGUgdG8gdGhlIGRldmljZSBjb250YWlu
-aW5nIHRoZSBzY3BzeXMgcmVnaXN0ZXIgcmFuZ2UuDQo+ID4gKw0KPiA+ICsgIG1lZGlhdGVrLGFw
-dS1jb25uOg0KPiA+ICsgICAgJHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMv
-cGhhbmRsZQ0KPiA+ICsgICAgZGVzY3JpcHRpb246IHwNCj4gPiArICAgICAgcGhhbmRsZSB0byB0
-aGUgZGV2aWNlIGNvbnRhaW5pbmcgdGhlIHNjcHN5cyBhcHUgY29ubiByZWdpc3RlciByYW5nZS4N
-Cj4gPiArDQo+ID4gKyAgbWVkaWF0ZWssYXB1LWNvbm4xOg0KPiA+ICsgICAgJHJlZjogL3NjaGVt
-YXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvcGhhbmRsZQ0KPiA+ICsgICAgZGVzY3JpcHRpb246
-IHwNCj4gPiArICAgICAgcGhhbmRsZSB0byB0aGUgZGV2aWNlIGNvbnRhaW5pbmcgdGhlIHNjcHN5
-cyBhcHUgY29ubjEgcmVnaXN0ZXIgcmFuZ2UuDQo+ID4gKw0KPiA+ICsgIG1lZGlhdGVrLGFwdS12
-Y29yZToNCj4gPiArICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3Bo
-YW5kbGUNCj4gPiArICAgIGRlc2NyaXB0aW9uOiB8DQo+ID4gKyAgICAgIHBoYW5kbGUgdG8gdGhl
-IGRldmljZSBjb250YWluaW5nIHRoZSBzY3BzeXMgYXB1IHZjb3JlIHJlZ2lzdGVyIHJhbmdlLg0K
-PiA+ICsNCj4gPiArcGF0dGVyblByb3BlcnRpZXM6DQo+ID4gKyAgIl5wb3dlci1kb21haW5AWzAt
-OWEtZl0rJCI6DQo+ID4gKyAgICB0eXBlOiBvYmplY3QNCj4gPiArICAgIGRlc2NyaXB0aW9uOiB8
-DQo+ID4gKyAgICAgIFJlcHJlc2VudHMgdGhlIHBvd2VyIGRvbWFpbnMgd2l0aGluIHRoZSBwb3dl
-ciBjb250cm9sbGVyIG5vZGUgYXMNCj4gPiArICAgICAgZG9jdW1lbnRlZCBpbiBEb2N1bWVudGF0
-aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcG93ZXIvcG93ZXItZG9tYWluLnlhbWwuDQo+ID4gKw0K
-PiA+ICsgICAgcHJvcGVydGllczoNCj4gPiArICAgICAgcmVnOg0KPiA+ICsgICAgICAgIGRlc2Ny
-aXB0aW9uOiB8DQo+ID4gKyAgICAgICAgICBQb3dlciBkb21haW4gaW5kZXguIFZhbGlkIHZhbHVl
-cyBhcmUgZGVmaW5lZCBpbjoNCj4gPiArICAgICAgICAgICJpbmNsdWRlL2R0LWJpbmRpbmdzL3Bv
-d2VyL210ODE4Mi1hcHUtcG93ZXIuaCINCj4gPiArICAgICAgICBtYXhJdGVtczogMQ0KPiA+ICsN
-Cj4gPiArICAgICAgJyNwb3dlci1kb21haW4tY2VsbHMnOg0KPiA+ICsgICAgICAgIGRlc2NyaXB0
-aW9uOiB8DQo+ID4gKyAgICAgICAgICBNdXN0IGJlIDAgZm9yIG5vZGVzIHJlcHJlc2VudGluZyBh
-IHNpbmdsZSBQTSBkb21haW4gYW5kIDEgZm9yIG5vZGVzDQo+ID4gKyAgICAgICAgICBwcm92aWRp
-bmcgbXVsdGlwbGUgUE0uDQo+ID4gKw0KPiA+ICsgICAgICBjbG9ja3M6DQo+ID4gKyAgICAgICAg
-ZGVzY3JpcHRpb246IHwNCj4gPiArICAgICAgICAgIExpc3Qgb2YgcGhhbmRsZXMgb2YgY2xvY2tz
-IGxpc3QuIFNwZWNpZnkgYnkgb3JkZXIgYWNjb3JkaW5nIHRvDQo+ID4gKyAgICAgICAgICBwb3dl
-ci11cCBzZXF1ZW5jZS4NCj4gPiArDQo+ID4gKyAgICAgIGNsb2NrLW5hbWVzOg0KPiA+ICsgICAg
-ICAgIGRlc2NyaXB0aW9uOiB8DQo+ID4gKyAgICAgICAgICBMaXN0IG9mIG5hbWVzIG9mIGNsb2Nr
-cy4gU3BlY2lmeSBieSBvcmRlciBhY2NvcmRpbmcgdG8gcG93ZXItdXANCj4gPiArICAgICAgICAg
-IHNlcXVlbmNlLg0KPiA+ICsNCj4gPiArICAgICAgYXNzaWduZWQtY2xvY2tzOg0KPiA+ICsgICAg
-ICAgIG1heEl0ZW1zOiAyDQo+ID4gKw0KPiA+ICsgICAgICBhc3NpZ25lZC1jbG9jay1wYXJlbnRz
-Og0KPiA+ICsgICAgICAgIG1heEl0ZW1zOiAyDQo+ID4gKw0KPiA+ICsgICAgICBkb21haW4tc3Vw
-cGx5Og0KPiA+ICsgICAgICAgIGRlc2NyaXB0aW9uOiBkb21haW4gcmVndWxhdG9yIHN1cHBseS4N
-Cj4gPiArDQo+ID4gKyAgICByZXF1aXJlZDoNCj4gPiArICAgICAgLSByZWcNCj4gPiArICAgICAg
-LSAnI3Bvd2VyLWRvbWFpbi1jZWxscycNCj4gPiArDQo+ID4gKyAgICBhZGRpdGlvbmFsUHJvcGVy
-dGllczogZmFsc2UNCj4gPiArDQo+ID4gK3JlcXVpcmVkOg0KPiA+ICsgIC0gY29tcGF0aWJsZQ0K
-PiA+ICsgIC0gcmVnDQo+ID4gKyAgLSAnI3Bvd2VyLWRvbWFpbi1jZWxscycNCj4gPiArICAtIHZz
-cmFtLXN1cHBseQ0KPiA+ICsgIC0gbWVkaWF0ZWssc2Nwc3lzDQo+ID4gKw0KPiA+ICthZGRpdGlv
-bmFsUHJvcGVydGllczogZmFsc2UNCj4gPiArDQo+ID4gK2V4YW1wbGVzOg0KPiA+ICsgIC0gfA0K
-PiA+ICsgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2Nsb2NrL210ODE5Mi1jbGsuaD4NCj4gPiAr
-ICAgIGFwdXNwbTogcG93ZXItZG9tYWluQDE5MGYwMDAwIHsNCj4gPiArICAgICAgICBjb21wYXRp
-YmxlID0gIm1lZGlhdGVrLG10ODE5Mi1hcHUtcG0iLCAic3lzY29uIjsNCj4gPiArICAgICAgICBy
-ZWcgPSA8MHgxOTBmMDAwMCAweDEwMDA+Ow0KPiA+ICsgICAgICAgICNhZGRyZXNzLWNlbGxzID0g
-PDE+Ow0KPiA+ICsgICAgICAgICNzaXplLWNlbGxzID0gPDA+Ow0KPiA+ICsgICAgICAgICNwb3dl
-ci1kb21haW4tY2VsbHMgPSA8MT47DQo+IA0KPiBTbyB5b3UgaGF2ZSBkb21haW5zIHByb3ZpZGVk
-IGJ5IHRoaXMgbm9kZSBhbmQgdGhlbi4uLg0KPiANCj4gPiArICAgICAgICB2c3JhbS1zdXBwbHkg
-PSA8Jm10NjM1OV92c3JhbV9tZF9sZG9fcmVnPjsNCj4gPiArICAgICAgICBtZWRpYXRlayxzY3Bz
-eXMgPSA8JnNjcHN5cz47DQo+ID4gKyAgICAgICAgbWVkaWF0ZWssYXB1LWNvbm4gPSA8JmFwdV9j
-b25uPjsNCj4gPiArICAgICAgICBtZWRpYXRlayxhcHUtdmNvcmUgPSA8JmFwdV92Y29yZT47DQo+
-ID4gKw0KPiA+ICsgICAgICAgIGFwdV90b3A6IHBvd2VyLWRvbWFpbkAwIHsNCj4gPiArICAgICAg
-ICAgICAgcmVnID0gPDA+Ow0KPiA+ICsgICAgICAgICAgICAjcG93ZXItZG9tYWluLWNlbGxzID0g
-PDA+Ow0KPiANCj4gLi4uZWFjaCBjaGlsZCBub2RlIHByb3ZpZGVzIGEgZG9tYWluLiBXaGF0J3Mg
-dGhlIGRpZmZlcmVuY2U/DQoNClRoZSBoYXJkd2FyZSBAMTkwZjAwMDAgaGF2ZSBjb250cm9sbGVy
-IGZvciBzZXZlcmFsIGNoaWxkIHBvd2VyIGRvbWFpbnMNCmluIGFwdSBzdWJzeXMgYW5kIG5vdyBv
-bmx5IG9uZSBkb21haW4gKGFwdV90b3ApIGlzIGV4cG9zZWQgdG8gbXQ4MTkyDQprZXJuZWwuIEZv
-ciB0aGUgc29mdHdhcmUgZXh0ZW5zaW9uIHB1cnBvc2UsIHRoZSBkcml2ZXIgcGFyc2VzIGNoaWxk
-DQpub2RlcyBldmVuIGlmIGl0IGhhcyBvbmx5IG9uZSBjaGlsZC4gSW4gcHJldmlvdXMgdjEgcGF0
-Y2gsIEkgYWRkIGENCmRvbWFpbiBpZCBpbmRleCBpbiBhIGhlYWRlciBmaWxlIGJ1dCBpdCBzZWVt
-cyBub3QgbmVjZXNzYXJ5IHRvIGNyZWF0ZSBhDQpzdGFuZGFsb25lIGZpbGUgZm9yIHRoZSBjYXNl
-LiBTbyBJIGp1c3Qgc2V0IHRoZSBpbmRleCBpbiB0aGUgZGV2aWNlIHRyZWUNCmJ1dCBrZWVwIGR0
-cyBzdHJ1Y3R1cmUgdG8gcHJlc2VudCBoYXJkd2FyZSBkZXNpZ24uDQoNCj4gDQo+ID4gKyAgICAg
-ICAgICAgIGNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9EU1BfU0VMPiwNCj4gPiArICAgICAg
-ICAgICAgICAgICAgICAgPCZ0b3Bja2dlbiBDTEtfVE9QX0lQVV9JRl9TRUw+LA0KPiA+ICsgICAg
-ICAgICAgICAgICAgICAgICA8JmNsazI2bT4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIDwm
-dG9wY2tnZW4gQ0xLX1RPUF9VTklWUExMX0Q2X0QyPjsNCj4gPiArICAgICAgICAgICAgY2xvY2st
-bmFtZXMgPSAiY2xrX3RvcF9jb25uIiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAi
-Y2xrX3RvcF9pcHVfaWYiLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICJjbGtfb2Zm
-IiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAiY2xrX29uX2RlZmF1bHQiOw0KPiA+
-ICsgICAgICAgICAgICBhc3NpZ25lZC1jbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfRFNQX1NF
-TD4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwmdG9wY2tnZW4gQ0xLX1RP
-UF9JUFVfSUZfU0VMPjsNCj4gPiArICAgICAgICAgICAgYXNzaWduZWQtY2xvY2stcGFyZW50cyA9
-IDwmdG9wY2tnZW4gQ0xLX1RPUF9VTklWUExMX0Q2X0QyPiwNCj4gPiArICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIDwmdG9wY2tnZW4gQ0xLX1RPUF9VTklWUExMX0Q2X0QyPjsN
-Cj4gPiArICAgICAgICAgICAgZG9tYWluLXN1cHBseSA9IDwmbXQ2MzU5X3Zwcm9jMV9idWNrX3Jl
-Zz47DQo+ID4gKyAgICAgICAgfTsNCj4gPiArICAgIH07DQo+ID4gLS0gDQo+ID4gMi4xOC4wDQo+
-ID4gDQoNCg==
+
+v4 release changes
+
+* Updated insert-sys-cert tool to change command line symbols after
+  compilation.
+
+	This tool is used to release binary kernels internally to companies
+	and then later insert certificates for each product by consumers of
+	the binary kernel. Cisco uses this tool for this purpose.
+
+	Cisco has a similar need for the command line to be modified on a
+	binary released kernels similar to how certificates are setup.
+
+* Added global symbols to hold append and prepend values.
+
+	These changes follow the system certificate code to allow the
+	insert-sys-cert tool to be used.
+
+* Added a test case to confirm functionality.
+
+	Seemed sensible to add this to make sure everything is working.
+
+* Dropped powerpc changes
+
+	Christophe Leroy has reservations about the features for powerpc. I
+	don't think his reservations are founded, and these changes should
+	fully work on powerpc. However, I dropped these changes so Christophe
+	can have more time to get comfortable with the changes.
+
+
+Enjoy!
+
+
+Daniel Walker (8):
+  CMDLINE: add generic builtin command line
+  scripts: insert-sys-cert: add command line insert capability
+  scripts: insert-sys-cert: change name to insert-symbol
+  CMDLINE: mips: convert to generic builtin command line
+  drivers: firmware: efi: libstub: enable generic commandline
+  CMDLINE: x86: convert to generic builtin command line
+  of: allow sending a NULL value to early_init_dt_scan_chosen
+  CMDLINE: arm64: convert to generic builtin command line
+
+ arch/arm64/Kconfig                            |  33 +--
+ arch/arm64/include/asm/setup.h                |   2 +
+ arch/arm64/kernel/idreg-override.c            |   9 +-
+ arch/mips/Kconfig                             |   4 +-
+ arch/mips/Kconfig.debug                       |  44 ----
+ arch/mips/configs/ar7_defconfig               |   9 +-
+ arch/mips/configs/bcm47xx_defconfig           |   8 +-
+ arch/mips/configs/bcm63xx_defconfig           |  15 +-
+ arch/mips/configs/bmips_be_defconfig          |  11 +-
+ arch/mips/configs/bmips_stb_defconfig         |  11 +-
+ arch/mips/configs/capcella_defconfig          |  11 +-
+ arch/mips/configs/ci20_defconfig              |  10 +-
+ arch/mips/configs/cu1000-neo_defconfig        |  10 +-
+ arch/mips/configs/cu1830-neo_defconfig        |  10 +-
+ arch/mips/configs/e55_defconfig               |   4 +-
+ arch/mips/configs/generic_defconfig           |   6 +-
+ arch/mips/configs/gpr_defconfig               |  18 +-
+ arch/mips/configs/loongson3_defconfig         |  13 +-
+ arch/mips/configs/mpc30x_defconfig            |   7 +-
+ arch/mips/configs/tb0219_defconfig            |   7 +-
+ arch/mips/configs/tb0226_defconfig            |   7 +-
+ arch/mips/configs/tb0287_defconfig            |   7 +-
+ arch/mips/configs/workpad_defconfig           |  11 +-
+ arch/mips/include/asm/setup.h                 |   2 +
+ arch/mips/kernel/relocate.c                   |  17 +-
+ arch/mips/kernel/setup.c                      |  36 +--
+ arch/mips/pic32/pic32mzda/early_console.c     |   2 +-
+ arch/mips/pic32/pic32mzda/init.c              |   3 +-
+ arch/x86/Kconfig                              |  44 +---
+ arch/x86/kernel/setup.c                       |  18 +-
+ .../firmware/efi/libstub/efi-stub-helper.c    |  29 +++
+ drivers/firmware/efi/libstub/efi-stub.c       |   9 +
+ drivers/firmware/efi/libstub/efistub.h        |   1 +
+ drivers/firmware/efi/libstub/x86-stub.c       |  13 +-
+ drivers/of/fdt.c                              |  44 ++--
+ include/linux/cmdline.h                       | 103 ++++++++
+ init/Kconfig                                  |  78 ++++++
+ lib/Kconfig                                   |   4 +
+ lib/Makefile                                  |   3 +
+ lib/generic_cmdline.S                         |  53 ++++
+ lib/test_cmdline1.c                           | 139 ++++++++++
+ scripts/Makefile                              |   2 +-
+ .../{insert-sys-cert.c => insert-symbol.c}    | 243 ++++++++++++------
+ 43 files changed, 716 insertions(+), 394 deletions(-)
+ create mode 100644 include/linux/cmdline.h
+ create mode 100644 lib/generic_cmdline.S
+ create mode 100644 lib/test_cmdline1.c
+ rename scripts/{insert-sys-cert.c => insert-symbol.c} (72%)
+
+-- 
+2.25.1
 
