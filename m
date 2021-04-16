@@ -2,92 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8FFF36288E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 21:24:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54615362897
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 21:26:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238766AbhDPTYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 15:24:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60906 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235362AbhDPTYf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Apr 2021 15:24:35 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3B84B6137D;
-        Fri, 16 Apr 2021 19:24:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618601050;
-        bh=qHawK0oSTOLvJhEkLLbelkvEtYDRemD5y/71PvXJsow=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=i+nsE09tHA0GPcdM2/MeTaNM0szdQ0WdGtOryocd2mlqAtBAPS//L0i0bzZXsO8/u
-         fkLV7Gvab0QGNzDId6j792QJPu/gog3Dicsi9l6jZFfqUa3Plj723IeLds1pJpEKyr
-         6OgPJZied02D4CRJM27ck/2DbUH0P6noqZEX7ncjo7RzthjBNAzaObjGEgxy17r7VL
-         +SzfZO2eKYv3O9Q0TMm2hz5GTNKJ/yfV2ONFoik610B/49nvK59V7cy8m7CfnUYsqV
-         5lioX2gDeS8C6LthsG8R30YIzz9snIrCPJCSf5aLBXNxUvo3ks8yjt+OS6lELHHJwv
-         0hfkytCmujThA==
-Date:   Fri, 16 Apr 2021 14:24:09 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, youlin.pei@mediatek.com,
-        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
-        sin_jieyang@mediatek.com, drinkcat@chromium.org,
-        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com,
-        Krzysztof Wilczyski <kw@linux.com>
-Subject: Re: [v9,2/7] PCI: Export pci_pio_to_address() for module use
-Message-ID: <20210416192409.GA2744791@bjorn-Precision-5520>
+        id S243009AbhDPT0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 15:26:33 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:37575 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235362AbhDPT0b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 15:26:31 -0400
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 01C1022253;
+        Fri, 16 Apr 2021 21:26:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1618601164;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=iOKsLNHAvUNt6FOKX0n36qA6s7ZucezMgWOSW4v76s8=;
+        b=Hb1xtI/WzADiaRibdpmonxBtIdj9F1hpRIoWgSNvarzwJvNlayCeXjwOHk4k/q5vapGRy0
+        mZ4MWe8zwkie5eb66+W6rIaiyGkCEb3cCFQga8gMElsiMmwCxqHLmjmrU3+LW7L9M/xtGG
+        VEhMEaxzSx5188bB+2nPXjtvkdJNma0=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210413095257.GA21802@lpieralisi>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 16 Apr 2021 21:26:03 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH 0/5] mtd: core: OTP nvmem provider support
+In-Reply-To: <20210416184423.GA3715339@robh.at.kernel.org>
+References: <20210416114928.27758-1-michael@walle.cc>
+ <20210416184423.GA3715339@robh.at.kernel.org>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <9f33229a8fe83b49210289fc93a8554e@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 13, 2021 at 10:53:05AM +0100, Lorenzo Pieralisi wrote:
-> On Wed, Mar 24, 2021 at 10:09:42AM +0100, Pali Rohár wrote:
-> > On Wednesday 24 March 2021 11:05:05 Jianjun Wang wrote:
-> > > This interface will be used by PCI host drivers for PIO translation,
-> > > export it to support compiling those drivers as kernel modules.
-> > > 
-> > > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> > > ---
-> > >  drivers/pci/pci.c | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > > 
-> > > diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-> > > index 16a17215f633..12bba221c9f2 100644
-> > > --- a/drivers/pci/pci.c
-> > > +++ b/drivers/pci/pci.c
-> > > @@ -4052,6 +4052,7 @@ phys_addr_t pci_pio_to_address(unsigned long pio)
-> > >  
-> > >  	return address;
-> > >  }
-> > > +EXPORT_SYMBOL(pci_pio_to_address);
-> > 
-> > Hello! I'm not sure if EXPORT_SYMBOL is correct because file has GPL-2.0
-> > header. Should not be in this case used only EXPORT_SYMBOL_GPL? Maybe
-> > other people would know what is correct?
+Hi Rob,
+
+Am 2021-04-16 20:44, schrieb Rob Herring:
+> On Fri, Apr 16, 2021 at 01:49:23PM +0200, Michael Walle wrote:
+>> The goal is to fetch a (base) MAC address from the OTP region of a SPI 
+>> NOR
+>> flash.
+>> 
+>> This is the first part, where I try to add the nvmem provider support 
+>> to
+>> the MTD core.
+>> 
+>> I'm not sure about the device tree bindings. Consider the following 
+>> two
+>> variants:
+>> 
+>> (1)
+>>     flash@0 {
+>>         ..
+>> 
+>>         otp {
+>>             compatible = "mtd-user-otp";
 > 
-> I think this should be EXPORT_SYMBOL_GPL(), I can make this change
-> but this requires Bjorn's ACK to go upstream (Bjorn, it is my fault,
-> it was assigned to me on patchwork, now updated, please have a look).
+> mtd is a linuxism. Why not just 'nvmem-cells' here or as a fallback if
+> we come up with a better name?
 
-Yep, looks good to me, and I agree it should be EXPORT_SYMBOL_GPL().
+There are two different compatibles: "mtd-user-otp" and 
+"mtd-factory-otp"
+to differentiate what kind of OTP should be used (and both are possible
+at the same time). Thus nvmem-cells alone won't be enough. We could drop
+the "mtd-" prefix though.
 
-Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+Is there a benefit of having the following?
+   compatible = "user-otp", "nvmem-cells";
 
-> > >  
-> > >  unsigned long __weak pci_address_to_pio(phys_addr_t address)
-> > >  {
-> > > -- 
-> > > 2.25.1
-> > > 
+
+>>             #address-cells = <1>;
+>>             #size-cells = <1>;
+>> 
+>>             serial-number@0 {
+>>                 reg = <0x0 0x8>;
+>>             };
+>>         };
+>>     };
+>> 
+>> (2)
+>>     flash@0 {
+>>         ..
+>> 
+>>         otp {
+>>             compatible = "mtd-user-otp";
+>>             #address-cells = <1>;
+>>             #size-cells = <1>;
+>> 
+>> 			some-useful-name {
+>>                 compatible = "nvmem-cells";
+>> 
+>>                 serial-number@0 {
+>>                     reg = <0x0 0x8>;
+>>                 };
+>> 			};
+>>         };
+>>     };
+>> 
+>> Both bindings use a subnode "opt[-N]". We cannot have the nvmem cells 
+>> as
+>> children to the flash node because of the legacy partition binding.
+>> 
+>> (1) seems to be the form which is used almost everywhere in the 
+>> kernel.
+>> That is, the nvmem cells are just children of the parent node.
+>> 
+>> (2) seem to be more natural, because there might also be other 
+>> properties
+>> inside the otp subnode and might be more future-proof.
+>> 
+>> At the moment this patch implements (1).
+> 
+> I think approach (1) seems fine.
+
+ok
+
+-michael
