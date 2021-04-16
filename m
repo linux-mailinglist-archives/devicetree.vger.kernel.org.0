@@ -2,110 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42364361FF9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 14:37:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65A19362080
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 15:09:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240600AbhDPMhu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 08:37:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46518 "EHLO
+        id S235552AbhDPNJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 09:09:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229719AbhDPMhu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 08:37:50 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE240C061574
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 05:37:25 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1lXNie-0007oq-Rc; Fri, 16 Apr 2021 14:37:08 +0200
-Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:b21a:a98c:8cd:ce9c])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id F3648610325;
-        Fri, 16 Apr 2021 12:37:01 +0000 (UTC)
-Date:   Fri, 16 Apr 2021 14:37:00 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Faiz Abbas <faiz_abbas@ti.com>
-Subject: Re: [PATCH v2 0/2] MCAN: Add support for implementing transceiver as
- a phy
-Message-ID: <20210416123700.s77prohqjqkegebv@pengutronix.de>
-References: <20210415154635.30094-1-a-govindraju@ti.com>
+        with ESMTP id S235431AbhDPNJR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 09:09:17 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F953C061574;
+        Fri, 16 Apr 2021 06:08:52 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: benjamin.gaignard)
+        with ESMTPSA id 96C7C1F4367F
+Subject: Re: [PATCH v9 03/13] media: hantro: Use syscon instead of 'ctrl'
+ register
+To:     Lucas Stach <l.stach@pengutronix.de>, ezequiel@collabora.com,
+        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        lee.jones@linaro.org, gregkh@linuxfoundation.org,
+        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
+        emil.l.velikov@gmail.com, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>
+Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-imx@nxp.com, kernel@pengutronix.de, kernel@collabora.com,
+        cphealy@gmail.com, linux-arm-kernel@lists.infradead.org,
+        linux-media@vger.kernel.org
+References: <20210407073534.376722-1-benjamin.gaignard@collabora.com>
+ <20210407073534.376722-4-benjamin.gaignard@collabora.com>
+ <7bcbb787d82f21d42563d8fb7e3c2e7d40123932.camel@pengutronix.de>
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Message-ID: <ffe9b3f5-94f5-453e-73f0-4b42d0454b63@collabora.com>
+Date:   Fri, 16 Apr 2021 15:08:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xqo6yibeskab43ot"
-Content-Disposition: inline
-In-Reply-To: <20210415154635.30094-1-a-govindraju@ti.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <7bcbb787d82f21d42563d8fb7e3c2e7d40123932.camel@pengutronix.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---xqo6yibeskab43ot
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Le 16/04/2021 à 12:54, Lucas Stach a écrit :
+> Am Mittwoch, dem 07.04.2021 um 09:35 +0200 schrieb Benjamin Gaignard:
+>> In order to be able to share the control hardware block between
+>> VPUs use a syscon instead a ioremap it in the driver.
+>> To keep the compatibility with older DT if 'nxp,imx8mq-vpu-ctrl'
+>> phandle is not found look at 'ctrl' reg-name.
+>> With the method it becomes useless to provide a list of register
+>> names so remove it.
+> Sorry for putting a spoke in the wheel after many iterations of the
+> series.
+>
+> We just discussed a way forward on how to handle the clocks and resets
+> provided by the blkctl block on i.MX8MM and later and it seems there is
+> a consensus on trying to provide virtual power domains from a blkctl
+> driver, controlling clocks and resets for the devices in the power
+> domain. I would like to avoid introducing yet another way of handling
+> the blkctl and thus would like to align the i.MX8MQ VPU blkctl with
+> what we are planning to do on the later chip generations.
+>
+> CC'ing Jacky Bai and Peng Fan from NXP, as they were going to give this
+> virtual power domain thing a shot.
 
-On 15.04.2021 21:16:33, Aswath Govindraju wrote:
-> The following series of patches add support for implementing the
-> transceiver as a phy of m_can_platform driver.
->=20
-> TCAN1042 has a standby signal that needs to be pulled high for
-> sending/receiving messages[1]. TCAN1043 has a enable signal along with
-> standby signal that needs to be pulled up for sending/receiving
-> messages[2], and other combinations of the two lines can be used to put t=
-he
-> transceiver in different states to reduce power consumption. On boards
-> like the AM654-idk and J721e-evm these signals are controlled using gpios.
->=20
-> These gpios are set in phy driver, and the transceiver can be put in
-> different states using phy API. The phy driver is added in the series [3].
->=20
-> This patch series is dependent on [4].
+That could replace the 3 first patches and Dt patche of this series
+but that will not impact the hevc part, so I wonder if pure hevc patches
+could be merged anyway ?
+They are reviewed and don't depend of how the ctrl block is managed.
 
-Looks good. Can you ping me after the next -rc1, when this patch hits
-mainline. Then I'll merge this into linux-can-next.
+Regards,
+Benjamin
 
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---xqo6yibeskab43ot
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmB5hOkACgkQqclaivrt
-76kycAf/TIfrDUXPJ4ouUR5LkNcMylId2QQaYz+ki2uzFPcL4UAXc0pLCn28b/vH
-2mzqV8XCm7nKVp5mlmsdGFgVVTsgmQRvfTZIJoElsilOag3/BteSrdokpZAORcMO
-RBRQakm1Y3pvWr+8oiWXXkpuDwU+KQRP4XzC3IIaxed9Nbilh6bQkSc6E4396fSP
-lF9CWFILd+XcWcDJcdSwbYvXCUw1ofGanJ8To1ylT5GT8Hbcn6G3rv7ro1fQXua2
-JO722JYSmk/TkhiyCAELW6sDePv/0qJcYu/VX/P7QMsudUYhYjtGsEB402JXRKnr
-SJSwEJHtF20H8Eb9mamNsvo3CTk0+w==
-=4TFD
------END PGP SIGNATURE-----
-
---xqo6yibeskab43ot--
+>
+> Regards,
+> Lucas
+>
+>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+>> ---
+>> version 9:
+>>   - Corrections in commit message
+>>
+>> version 7:
+>>   - Add Philipp reviewed-by tag.
+>>   - Change syscon phandle name.
+>>   
+>>
+>>
+>>
+>> version 5:
+>>   - use syscon instead of VPU reset driver.
+>>   - if DT doesn't provide syscon keep backward compatibilty by using
+>>     'ctrl' reg-name.
+>>
+>>   drivers/staging/media/hantro/hantro.h       |  5 +-
+>>   drivers/staging/media/hantro/imx8m_vpu_hw.c | 52 ++++++++++++---------
+>>   2 files changed, 34 insertions(+), 23 deletions(-)
+>>
+>> diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
+>> index 6c1b888abe75..37b9ce04bd4e 100644
+>> --- a/drivers/staging/media/hantro/hantro.h
+>> +++ b/drivers/staging/media/hantro/hantro.h
+>> @@ -13,6 +13,7 @@
+>>   #define HANTRO_H_
+>>   
+>>
+>>
+>>
+>>   #include <linux/platform_device.h>
+>> +#include <linux/regmap.h>
+>>   #include <linux/videodev2.h>
+>>   #include <linux/wait.h>
+>>   #include <linux/clk.h>
+>> @@ -167,7 +168,7 @@ hantro_vdev_to_func(struct video_device *vdev)
+>>    * @reg_bases:		Mapped addresses of VPU registers.
+>>    * @enc_base:		Mapped address of VPU encoder register for convenience.
+>>    * @dec_base:		Mapped address of VPU decoder register for convenience.
+>> - * @ctrl_base:		Mapped address of VPU control block.
+>> + * @ctrl_base:		Regmap of VPU control block.
+>>    * @vpu_mutex:		Mutex to synchronize V4L2 calls.
+>>    * @irqlock:		Spinlock to synchronize access to data structures
+>>    *			shared with interrupt handlers.
+>> @@ -186,7 +187,7 @@ struct hantro_dev {
+>>   	void __iomem **reg_bases;
+>>   	void __iomem *enc_base;
+>>   	void __iomem *dec_base;
+>> -	void __iomem *ctrl_base;
+>> +	struct regmap *ctrl_base;
+>>   
+>>
+>>
+>>
+>>   	struct mutex vpu_mutex;	/* video_device lock */
+>>   	spinlock_t irqlock;
+>> diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
+>> index c222de075ef4..8d0c3425234b 100644
+>> --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
+>> +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
+>> @@ -7,6 +7,7 @@
+>>   
+>>
+>>
+>>
+>>   #include <linux/clk.h>
+>>   #include <linux/delay.h>
+>> +#include <linux/mfd/syscon.h>
+>>   
+>>
+>>
+>>
+>>   #include "hantro.h"
+>>   #include "hantro_jpeg.h"
+>> @@ -24,30 +25,28 @@
+>>   #define CTRL_G1_PP_FUSE		0x0c
+>>   #define CTRL_G2_DEC_FUSE	0x10
+>>   
+>>
+>>
+>>
+>> +static const struct regmap_config ctrl_regmap_ctrl = {
+>> +	.reg_bits = 32,
+>> +	.val_bits = 32,
+>> +	.reg_stride = 0x14,
+>> +};
+>> +
+>>   static void imx8m_soft_reset(struct hantro_dev *vpu, u32 reset_bits)
+>>   {
+>> -	u32 val;
+>> -
+>>   	/* Assert */
+>> -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
+>> -	val &= ~reset_bits;
+>> -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
+>> +	regmap_update_bits(vpu->ctrl_base, CTRL_SOFT_RESET, reset_bits, 0);
+>>   
+>>
+>>
+>>
+>>   	udelay(2);
+>>   
+>>
+>>
+>>
+>>   	/* Release */
+>> -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
+>> -	val |= reset_bits;
+>> -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
+>> +	regmap_update_bits(vpu->ctrl_base, CTRL_SOFT_RESET,
+>> +			   reset_bits, reset_bits);
+>>   }
+>>   
+>>
+>>
+>>
+>>   static void imx8m_clk_enable(struct hantro_dev *vpu, u32 clock_bits)
+>>   {
+>> -	u32 val;
+>> -
+>> -	val = readl(vpu->ctrl_base + CTRL_CLOCK_ENABLE);
+>> -	val |= clock_bits;
+>> -	writel(val, vpu->ctrl_base + CTRL_CLOCK_ENABLE);
+>> +	regmap_update_bits(vpu->ctrl_base, CTRL_CLOCK_ENABLE,
+>> +			   clock_bits, clock_bits);
+>>   }
+>>   
+>>
+>>
+>>
+>>   static int imx8mq_runtime_resume(struct hantro_dev *vpu)
+>> @@ -64,9 +63,9 @@ static int imx8mq_runtime_resume(struct hantro_dev *vpu)
+>>   	imx8m_clk_enable(vpu, CLOCK_G1 | CLOCK_G2);
+>>   
+>>
+>>
+>>
+>>   	/* Set values of the fuse registers */
+>> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_DEC_FUSE);
+>> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_PP_FUSE);
+>> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G2_DEC_FUSE);
+>> +	regmap_write(vpu->ctrl_base, CTRL_G1_DEC_FUSE, 0xffffffff);
+>> +	regmap_write(vpu->ctrl_base, CTRL_G1_PP_FUSE, 0xffffffff);
+>> +	regmap_write(vpu->ctrl_base, CTRL_G2_DEC_FUSE, 0xffffffff);
+>>   
+>>
+>>
+>>
+>>   	clk_bulk_disable_unprepare(vpu->variant->num_clocks, vpu->clocks);
+>>   
+>>
+>>
+>>
+>> @@ -150,8 +149,22 @@ static irqreturn_t imx8m_vpu_g1_irq(int irq, void *dev_id)
+>>   
+>>
+>>
+>>
+>>   static int imx8mq_vpu_hw_init(struct hantro_dev *vpu)
+>>   {
+>> -	vpu->dec_base = vpu->reg_bases[0];
+>> -	vpu->ctrl_base = vpu->reg_bases[vpu->variant->num_regs - 1];
+>> +	struct device_node *np = vpu->dev->of_node;
+>> +
+>> +	vpu->ctrl_base = syscon_regmap_lookup_by_phandle(np, "nxp,imx8m-vpu-ctrl");
+>> +	if (IS_ERR(vpu->ctrl_base)) {
+>> +		struct resource *res;
+>> +		void __iomem *ctrl;
+>> +
+>> +		res = platform_get_resource_byname(vpu->pdev, IORESOURCE_MEM, "ctrl");
+>> +		ctrl = devm_ioremap_resource(vpu->dev, res);
+>> +		if (IS_ERR(ctrl))
+>> +			return PTR_ERR(ctrl);
+>> +
+>> +		vpu->ctrl_base = devm_regmap_init_mmio(vpu->dev, ctrl, &ctrl_regmap_ctrl);
+>> +		if (IS_ERR(vpu->ctrl_base))
+>> +			return PTR_ERR(vpu->ctrl_base);
+>> +	}
+>>   
+>>
+>>
+>>
+>>   	return 0;
+>>   }
+>> @@ -198,7 +211,6 @@ static const struct hantro_irq imx8mq_irqs[] = {
+>>   };
+>>   
+>>
+>>
+>>
+>>   static const char * const imx8mq_clk_names[] = { "g1", "g2", "bus" };
+>> -static const char * const imx8mq_reg_names[] = { "g1", "g2", "ctrl" };
+>>   
+>>
+>>
+>>
+>>   const struct hantro_variant imx8mq_vpu_variant = {
+>>   	.dec_fmts = imx8m_vpu_dec_fmts,
+>> @@ -215,6 +227,4 @@ const struct hantro_variant imx8mq_vpu_variant = {
+>>   	.num_irqs = ARRAY_SIZE(imx8mq_irqs),
+>>   	.clk_names = imx8mq_clk_names,
+>>   	.num_clocks = ARRAY_SIZE(imx8mq_clk_names),
+>> -	.reg_names = imx8mq_reg_names,
+>> -	.num_regs = ARRAY_SIZE(imx8mq_reg_names)
+>>   };
+>
+>
