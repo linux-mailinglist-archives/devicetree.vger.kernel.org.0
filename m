@@ -2,120 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F6A1361AC5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 09:46:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C50361AD0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 09:51:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237041AbhDPHqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 03:46:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38200 "EHLO
+        id S234312AbhDPHv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 03:51:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231898AbhDPHqh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 03:46:37 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA3BC061574;
-        Fri, 16 Apr 2021 00:46:13 -0700 (PDT)
-Received: from [192.168.1.111] (91-157-208-71.elisa-laajakaista.fi [91.157.208.71])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BCBE05A5;
-        Fri, 16 Apr 2021 09:46:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1618559170;
-        bh=P7wwiy1ARCZJKs2Gzsnd/CbbG6MTgpoebNlqrb2EiGU=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=vGl2HQqQ6d+qaDSlFxoNL4JTPaQwlXITDJiAMAOMY+J0JwWUXmbYafcnXHvGemzzx
-         erq15XghRnW1hyHPgDs5Zr/tWfnTI8El+9yrE4habSs5L8IQ/qRqpkT1mT6X/HKYvv
-         2sVY8iONFHBD5NoFAmWxXnt6R5js5/1ipVHnY0AQ=
-Subject: Re: [PATCHv2 1/6] drm: drm_bridge: add connector_attach/detach bridge
- ops
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        linux-media@vger.kernel.org
-Cc:     Tony Lindgren <tony@atomide.com>, Sekhar Nori <nsekhar@ti.com>,
-        dri-devel@lists.freedesktop.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
-References: <20210302162403.983585-1-hverkuil-cisco@xs4all.nl>
- <20210302162403.983585-2-hverkuil-cisco@xs4all.nl>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Message-ID: <3ba8c7c3-2e86-964d-2e5b-5cdd805def5c@ideasonboard.com>
-Date:   Fri, 16 Apr 2021 10:46:08 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        with ESMTP id S231898AbhDPHv0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 03:51:26 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4DEEC061574;
+        Fri, 16 Apr 2021 00:51:00 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id u16so9702529oiu.7;
+        Fri, 16 Apr 2021 00:51:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Tkf19eO+Io33QpEZ9OrMFNNm5052NTcThj0KVfGt26E=;
+        b=adlH1/Y2CVaKl1vH5IxrVfUZMgz2Dm6ie2X3uyje5e5//jKV370i8WP3AQHuW3vbUw
+         ZR+LGSk9BXwPk7APtR6eguUQm/xqSCu6FWvyCoADVL/xkJa9yJ0to6Ep5QNQsQUa8OQi
+         dKJ7CEAM2gi0LExzHs8e0DLKB9jJui5rWFXtjCuEbf9WdkrtbP9PkUpS+dlFuUCBV0m2
+         EuCig2dFJc46pPzm4gaUo0QzEWnojq0BumD/utqFClI6ktM2LVk7cPjd52irMEQgbHmH
+         0+bNxavCXzaXXZ3IstK/v5s17t7Zui2goTK8NqTOBRQII4pkj6oF9XOxN1JU2z5T0nRn
+         Wdrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Tkf19eO+Io33QpEZ9OrMFNNm5052NTcThj0KVfGt26E=;
+        b=mKShCTUmE9R6M+R+jjUML670WjRaAUYA2/A6AYOkL998FJXDwmr9JJ4XCib9LkXYa8
+         AfRWYvQeQEhC330uGCjARCpZUpvscRQRC5mD3hO/CSmjfw9xB5O7NEcOcGjSEXYGa4NM
+         zbxkmQ1MTnKQ0W7kYLkFvBds5azrWc2imo7aImh4l8u/OdHn9BpsFcsuaj0yGKzEygwP
+         DUIe0N3MZXxqlF4fczagxzSnZOijfrpaX1nMzXZi0YWvzt1rgGg6CNsFK2nhktiEEsYC
+         OZCVTMfv1+B+Oqh3m3umvajMjn8XGiOF+y7mdoSWJndLKpCzXQyDy7nJEKU4BRSmXprz
+         huww==
+X-Gm-Message-State: AOAM5307txoOWYJY6nb6rS8QWDT8AVo71bJDl9vNeHdALBjRNCz6keu3
+        ReAsYSLrDzRrAZlcfMzwoHdtmyvtsu9z1is2ZY44mJOqckf/2Q==
+X-Google-Smtp-Source: ABdhPJz8CjIrb9secSmN82+8dgT65mEJoVfALDHzcnEalMEMeagCfEVWO/3pFoH/4IMU2ZnA4XlvzlP7/zSe0eH/qzY=
+X-Received: by 2002:aca:b408:: with SMTP id d8mr5584941oif.47.1618559460006;
+ Fri, 16 Apr 2021 00:51:00 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210302162403.983585-2-hverkuil-cisco@xs4all.nl>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <1618236288-1617-1-git-send-email-yongqiang.niu@mediatek.com> <1618236288-1617-2-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1618236288-1617-2-git-send-email-yongqiang.niu@mediatek.com>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Fri, 16 Apr 2021 09:50:50 +0200
+Message-ID: <CAFqH_50wSBVHnkzr1+Jh=1pppM7rKwZLjkVwhZnBnO=zEo46CA@mail.gmail.com>
+Subject: Re: [PATCH v5, 1/4] soc: mediatek: mmsys: add component OVL_2L2
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        David Airlie <airlied@linux.ie>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
+Hi Yongqiang,
 
-On 02/03/2021 18:23, Hans Verkuil wrote:
-> Add bridge connector_attach/detach ops. These ops are called when a
-> bridge is attached or detached to a drm_connector. These ops can be
-> used to register and unregister an HDMI CEC adapter for a bridge that
-> supports CEC.
-> 
-> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Thank you for your patch.
+
+Missatge de Yongqiang Niu <yongqiang.niu@mediatek.com> del dia dl., 12
+d=E2=80=99abr. 2021 a les 16:04:
+>
+> This patch add component OVL_2L2
+>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+
+Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+
 > ---
->   drivers/gpu/drm/drm_bridge_connector.c |  9 +++++++++
->   include/drm/drm_bridge.h               | 27 ++++++++++++++++++++++++++
->   2 files changed, 36 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_bridge_connector.c b/drivers/gpu/drm/drm_bridge_connector.c
-> index 791379816837..07db71d4f5b3 100644
-> --- a/drivers/gpu/drm/drm_bridge_connector.c
-> +++ b/drivers/gpu/drm/drm_bridge_connector.c
-> @@ -203,6 +203,11 @@ static void drm_bridge_connector_destroy(struct drm_connector *connector)
->   {
->   	struct drm_bridge_connector *bridge_connector =
->   		to_drm_bridge_connector(connector);
-> +	struct drm_bridge *bridge;
-> +
-> +	drm_for_each_bridge_in_chain(bridge_connector->encoder, bridge)
-> +		if (bridge->funcs->connector_detach)
-> +			bridge->funcs->connector_detach(bridge, connector);
->   
->   	if (bridge_connector->bridge_hpd) {
->   		struct drm_bridge *hpd = bridge_connector->bridge_hpd;
-> @@ -375,6 +380,10 @@ struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
->   		connector->polled = DRM_CONNECTOR_POLL_CONNECT
->   				  | DRM_CONNECTOR_POLL_DISCONNECT;
->   
-> +	drm_for_each_bridge_in_chain(encoder, bridge)
-> +		if (bridge->funcs->connector_attach)
-> +			bridge->funcs->connector_attach(bridge, connector);
-> +
->   	return connector;
->   }
->   EXPORT_SYMBOL_GPL(drm_bridge_connector_init);
-> diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
-> index 2195daa289d2..3320a6ebd253 100644
-> --- a/include/drm/drm_bridge.h
-> +++ b/include/drm/drm_bridge.h
-> @@ -629,6 +629,33 @@ struct drm_bridge_funcs {
->   	 * the DRM_BRIDGE_OP_HPD flag in their &drm_bridge->ops.
->   	 */
->   	void (*hpd_disable)(struct drm_bridge *bridge);
-> +
-> +	/**
-> +	 * @connector_attach:
-> +	 *
-> +	 * This callback is invoked whenever our bridge is being attached to a
-> +	 * &drm_connector. This is where an HDMI CEC adapter can be registered.
-> +	 * Note that this callback expects that this op always succeeds. Since
-> +	 * HDMI CEC support is an optional feature, any failure to register a
-> +	 * CEC adapter must be ignored since video output will still work
-> +	 * without CEC.
-> +	 *
-
-Even if CEC support is optional, the callback itself is generic. 
-Wouldn't it be better to make this function return an error, and for 
-CEC, just return 0 if CEC won't get registered correctly?
-
-Also, I personally like things to fail if something doesn't go right, 
-instead of continuing, if that thing is never supposed to happen in 
-normal situations. E.g. if CEC registration fails because we're out of 
-memory, I think the op should fail too.
-
-  Tomi
+>  include/linux/soc/mediatek/mtk-mmsys.h | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/include/linux/soc/mediatek/mtk-mmsys.h b/include/linux/soc/m=
+ediatek/mtk-mmsys.h
+> index 2228bf6..f6b58f9 100644
+> --- a/include/linux/soc/mediatek/mtk-mmsys.h
+> +++ b/include/linux/soc/mediatek/mtk-mmsys.h
+> @@ -29,6 +29,7 @@ enum mtk_ddp_comp_id {
+>         DDP_COMPONENT_OVL0,
+>         DDP_COMPONENT_OVL_2L0,
+>         DDP_COMPONENT_OVL_2L1,
+> +       DDP_COMPONENT_OVL_2L2,
+>         DDP_COMPONENT_OVL1,
+>         DDP_COMPONENT_PWM0,
+>         DDP_COMPONENT_PWM1,
+> --
+> 1.8.1.1.dirty
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
