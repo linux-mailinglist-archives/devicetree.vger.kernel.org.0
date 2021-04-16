@@ -2,77 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55ED336280A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 20:53:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E15C36281E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 20:55:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231510AbhDPSxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 14:53:31 -0400
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:39719 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234948AbhDPSx3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 14:53:29 -0400
-Received: by mail-oi1-f182.google.com with SMTP id i81so28843677oif.6;
-        Fri, 16 Apr 2021 11:53:04 -0700 (PDT)
+        id S235958AbhDPS4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 14:56:11 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:39914 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236142AbhDPS4H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 14:56:07 -0400
+Received: by mail-ot1-f53.google.com with SMTP id 65-20020a9d03470000b02902808b4aec6dso21893090otv.6;
+        Fri, 16 Apr 2021 11:55:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=bo317WIkFn1/Wn1GxMx0UU8JsonrX+yYrMt9jYM5jl4=;
-        b=PL9bOK1xrMO1Q3EP3VdcsdewmAZoBBKLJtN8DwZ5ebg098qVQVjzpK76AFvzQjiU8+
-         x4lQEZIaT9CaHwoo9qOvYYD7Mb7dX2VYLe6esjwlQ4y6v2z+FGRUkA3p1N/VF4Di5s5o
-         iDruYVpbYJvb2opl49U3LvdMapDu1rqZZJAAcXe7BnvmOSZKBoJg4DxLasw9C6gnFmw0
-         +axwdbjBd+MBTRXi2PRa9Bcr3cEX0aI9MB9Wbl+Xb6v48Jpe1WW//JCAcPKilyxdNA0F
-         awUcbFD/S3FPvpc8PLLe9B3DhIdnWvKik1k4TNBhrKWzra7VSSdbGh5a3doMC2kdkww9
-         cqog==
-X-Gm-Message-State: AOAM530xRuQEEy20FhfVChdTbFignSO5E2KVSFCLa1IrmBYokDvfuGj5
-        hnD2b/uynY/rH6CoT3ctPg==
-X-Google-Smtp-Source: ABdhPJwV/QSxYl/xWKLHE2sSkjYKOeWI050rZiPSwPhXZYb8RB1IsWPwyyh33QU5h7/MmnBvjGIKmg==
-X-Received: by 2002:aca:e003:: with SMTP id x3mr1658067oig.118.1618599184525;
-        Fri, 16 Apr 2021 11:53:04 -0700 (PDT)
+        bh=q0XnIQb5diD8IPv4s6rwLLTY1KVewVry0xUSPPhi/S8=;
+        b=OeBav5IPF57m6In1AqZT8t+Qjfpif7p049TBU5MsapN5DXvMqiSmCIf9kqfivbJkgH
+         fEGj/PNzhTXNtMjacJhkL2JxSPRyPdD5/cQrTHDmsrSD91G1zfEU7OyIkdFY4XS7mnro
+         VKgGd0zFicObK7qwqX1FPw4HOxsTkzZcxln1/YbzHlSiMxxwBojSlVve7PdkKQRGfpBW
+         Cg0Jt1lk1uzsN+L3uIpvvKOg0fWSpNWeDGKTZVUqwJryrLcKOdoeEjDqI7kbWYo16OE2
+         GBiibmCCmpogemUPM4tWzJL4lYbPu6Ra3lL/ZGq9xmvriBmzFwg1jzoO1D23aY4KrwWX
+         vC3A==
+X-Gm-Message-State: AOAM532pkN2c+W2gDyKKN3YdHb6fqIRd7G7sZTFQ9GXEE/gKPtzp3Umz
+        OvGJPBnARtG4Q9lspZMa6zCO7vK4DA==
+X-Google-Smtp-Source: ABdhPJxVd4dmTTWBaTQhaeWV5iEBuOJ5oUi07oM5z0AdLS/Wn6jqGGrjGDFsCB45thclYifOE/Ctuw==
+X-Received: by 2002:a05:6830:1697:: with SMTP id k23mr5103598otr.132.1618599341453;
+        Fri, 16 Apr 2021 11:55:41 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t6sm395376ood.41.2021.04.16.11.53.02
+        by smtp.gmail.com with ESMTPSA id c12sm1286587oou.26.2021.04.16.11.55.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Apr 2021 11:53:02 -0700 (PDT)
-Received: (nullmailer pid 3747499 invoked by uid 1000);
-        Fri, 16 Apr 2021 18:53:01 -0000
-Date:   Fri, 16 Apr 2021 13:53:01 -0500
+        Fri, 16 Apr 2021 11:55:40 -0700 (PDT)
+Received: (nullmailer pid 3751813 invoked by uid 1000);
+        Fri, 16 Apr 2021 18:55:39 -0000
+Date:   Fri, 16 Apr 2021 13:55:39 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        enric.balletbo@collabora.com, heiko@sntech.de, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        zhangqing@rock-chips.com
-Subject: Re: [PATCH v8 14/15] dt-bindings: power: rockchip: Add bindings for
- RK3568 Soc
-Message-ID: <20210416185301.GA3747214@robh.at.kernel.org>
+Cc:     linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, zhangqing@rock-chips.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, enric.balletbo@collabora.com,
+        heiko@sntech.de
+Subject: Re: [PATCH v8 11/15] dt-bindings: arm: rockchip: convert pmu.txt to
+ YAML
+Message-ID: <20210416185539.GA3751624@robh.at.kernel.org>
 References: <20210416080342.18614-1-jbx6244@gmail.com>
- <20210416080342.18614-15-jbx6244@gmail.com>
+ <20210416080342.18614-12-jbx6244@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210416080342.18614-15-jbx6244@gmail.com>
+In-Reply-To: <20210416080342.18614-12-jbx6244@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Apr 2021 10:03:41 +0200, Johan Jonker wrote:
-> From: Elaine Zhang <zhangqing@rock-chips.com>
+On Fri, 16 Apr 2021 10:03:38 +0200, Johan Jonker wrote:
+> Current dts files with 'pmu' nodes are manually verified.
+> In order to automate this process pmu.txt
+> has to be converted to yaml.
 > 
-> Add the compatible string for RK3568 SoC.
-> 
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
 > Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
-> A note for rob+dt and others:
->   A review and ack tag was not added, because in this version
->   the schema layout changed a bit
-> Please have a look at it again
-> 
-> Changed V8:
->   Add pd-node ref schema
-> ---
->  Documentation/devicetree/bindings/power/rockchip,power-controller.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/arm/rockchip/pmu.txt       | 16 -------
+>  .../devicetree/bindings/arm/rockchip/pmu.yaml      | 49 ++++++++++++++++++++++
+>  2 files changed, 49 insertions(+), 16 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/rockchip/pmu.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/rockchip/pmu.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
