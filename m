@@ -2,141 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F025361DB0
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 12:09:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B343A361D78
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 12:09:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235027AbhDPJpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 05:45:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36426 "EHLO
+        id S242191AbhDPJwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 05:52:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238871AbhDPJpI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 05:45:08 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA9E8C061574
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 02:44:43 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lXL1c-0004Kv-Br; Fri, 16 Apr 2021 11:44:32 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lXL1Y-0003fo-Dj; Fri, 16 Apr 2021 11:44:28 +0200
-Date:   Fri, 16 Apr 2021 11:44:26 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
-        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] pwm: visconti: Add Toshiba Visconti SoC PWM
- support
-Message-ID: <20210416094426.x4gyw3drp2fcwczs@pengutronix.de>
-References: <20210409230837.1919744-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20210409230837.1919744-3-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20210410135321.oissremqropvrpd3@pengutronix.de>
- <20210412025536.i5chpp6sighunvfx@toshiba.co.jp>
- <20210412070232.6q3cgqvuj53p4cmi@pengutronix.de>
- <20210416080721.oa7xdvu22w2b2rkf@toshiba.co.jp>
+        with ESMTP id S242198AbhDPJwb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 05:52:31 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5A4AC061760
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 02:52:06 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id s7so25974282wru.6
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 02:52:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=/JSJp+Tkpj2oHC+t+aQ3pMzn5E4MQekWdcaHODVVDPs=;
+        b=Zd2CpPg+2KjAqulL9Rnwmz6bHroGJTQVRiJWLNk6QjtL+9aK70oyA+gP4hUZ+xNgCX
+         pblmTtjslgvg8A8RxjsWDlJEFQMqHBya+h5w7Rm7lasOTgQ9+vpvbBBQMs3jcUk3PjkT
+         iLnDhBZbsW7QPC1t+byTsyp9j+4phtKgSYLmbZdM8wSxjwCbl1lz2MArmvahFC70AXZW
+         7Su7vcoeaspUdvfq681Z9k8KOmn/m1Cnv6y/9qacbQQCd/mTmGwxhY3Tf3TFePhfx6Qp
+         jsDLIv5iTGqcB1UdAuEykG5TfmkdzTUy0XxwkqpSjNuEK1JU9Y+WPf3GdnHJnw2gHU5a
+         acyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=/JSJp+Tkpj2oHC+t+aQ3pMzn5E4MQekWdcaHODVVDPs=;
+        b=OPICHUOctJx/dXNzgZDOKUCKP1Jvz5KwpnaEjU4S9g3d3SDI0I1IFMsRfjjdVfV/GQ
+         92o7Nx6qpHz/rG1XbggdP+Uzc9cTfrl2sbqMvngFVOG6LFS00QGda/Inb0/weA0KDnrW
+         0oj/XBExwd6zCNX1bnIFigsIO/noq6VR8R96GbiVogUdco3CzxQB/QSPI6jH3rR+lTIg
+         UjoXQse71B1AZDNQALXysHcY6GtZluS6F6FzikcE4MDmzYHLfGZBSxp0ren25CUnjWqh
+         oPkK+WAvbAdg0PV9N8I9QeTC3KnGoz9L8VktMJFuEprC9sv0v8EwN3eIumJDUN2/pOTf
+         PFDA==
+X-Gm-Message-State: AOAM5313ilqDygXmRd6xPwO+h8S3iMN4pZPBUPJ3GkQufj7MtGI2N3Cd
+        CmtmCkD0RdoK2NY1dpvvzoOI8Q==
+X-Google-Smtp-Source: ABdhPJwLeVjxevDvuRkaNwCHgSj2pf06ftSAwKCQNXwuAPm7bmGh/kmcoaI44wdJF08QBoLbr7t2yQ==
+X-Received: by 2002:adf:fbcc:: with SMTP id d12mr8031032wrs.151.1618566725566;
+        Fri, 16 Apr 2021 02:52:05 -0700 (PDT)
+Received: from MacBook-Pro.local ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id h17sm9483596wru.67.2021.04.16.02.52.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Apr 2021 02:52:05 -0700 (PDT)
+Subject: Re: [PATCH V2] arm64: dts: qcom: sc7280: Add nodes for eMMC and SD
+ card
+To:     Doug Anderson <dianders@google.com>,
+        Shaik Sajida Bhanu <sbhanu@codeaurora.org>
+Cc:     Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Sahitya Tummala <stummala@codeaurora.org>,
+        Ram Prakash Gupta <rampraka@codeaurora.org>,
+        Sayali Lokhande <sayalil@codeaurora.org>,
+        sartgarg@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>, cang@codeaurora.org,
+        pragalla@codeaurora.org, nitirawa@codeaurora.org,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Evan Green <evgreen@chromium.org>, okukatla@codeaurora.org
+References: <1616264220-25825-1-git-send-email-sbhanu@codeaurora.org>
+ <CAD=FV=WLZCSd6D5VFyD+1KBp5n1qyszER2EVaEMwYjQfPSSDnA@mail.gmail.com>
+ <b77f207b-2d90-3c8b-857f-625bd3867ed1@codeaurora.org>
+ <6fdf704c4716f5873d413229ca8adc57@codeaurora.org>
+ <CAD=FV=Wa4fT5wZgd0==8kLy_tzTLgdZ-HwdfOEAM9pMeMjjFyg@mail.gmail.com>
+ <8126e130e5c0ea1e7ea867414f0510c0@codeaurora.org>
+ <CAD=FV=XavWbf_b7-=JT6V5_RNA8CjdK4oRu7H719AaPDJ5tsqQ@mail.gmail.com>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Message-ID: <bdda73d8-0ba4-92e7-b4ae-ed05cc9a9f55@linaro.org>
+Date:   Fri, 16 Apr 2021 12:52:02 +0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="t42vctr7z7mwa3qh"
-Content-Disposition: inline
-In-Reply-To: <20210416080721.oa7xdvu22w2b2rkf@toshiba.co.jp>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <CAD=FV=XavWbf_b7-=JT6V5_RNA8CjdK4oRu7H719AaPDJ5tsqQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---t42vctr7z7mwa3qh
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 14.04.21 23:25, Doug Anderson wrote:
+> Hi,
+> 
+> On Tue, Apr 13, 2021 at 3:59 AM <sbhanu@codeaurora.org> wrote:
+>>
+>>>>>>> +                                       required-opps =
+>>>>>>> <&rpmhpd_opp_low_svs>;
+>>>>>>> +                                       opp-peak-kBps = <1200000
+>>>>>>> 76000>;
+>>>>>>> +                                       opp-avg-kBps = <1200000
+>>>>>>> 50000>;
+>>>>>> Why are the kBps numbers so vastly different than the ones on sc7180
+>>>>>> for the same OPP point. That implies:
+>>>>>>
+>>>>>> a) sc7180 is wrong.
+>>>>>>
+>>>>>> b) This patch is wrong.
+>>>>>>
+>>>>>> c) The numbers are essentially random and don't really matter.
+>>>>>>
+>>>>>> Can you identify which of a), b), or c) is correct, or propose an
+>>>>>> alternate explanation of the difference?
+>>>>>>
+>>>>
+>>>> We calculated bus votes values for both sc7180 and sc7280 with ICB
+>>>> tool,
+>>>> above mentioned values we got for sc7280.
+>>>
+>>> I don't know what an ICB tool is. Please clarify.
+>>>
+>>> Also: just because a tool spits out numbers that doesn't mean it's
+>>> correct. Presumably the tool could be wrong or incorrectly configured.
+>>> We need to understand why these numbers are different.
+>>>
+>> we checked with ICB tool team on this they conformed as Rennell & Kodiak
+>> are different chipsets,
+>> we might see delta in ib/ab values due to delta in scaling factors.
 
-Hello Nobuhiro,
+If the scaling factor is different, maybe this should be reflected
+in the BCM data, where we have the following:
+     @vote_scale: scaling factor for vote_x and vote_y
 
-On Fri, Apr 16, 2021 at 05:07:21PM +0900, Nobuhiro Iwamatsu wrote:
-> On Mon, Apr 12, 2021 at 09:02:32AM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Mon, Apr 12, 2021 at 11:55:36AM +0900, Nobuhiro Iwamatsu wrote:
-> > > On Sat, Apr 10, 2021 at 03:53:21PM +0200, Uwe Kleine-K=F6nig wrote:
-> > > > Can you please put a paragraph analogous to the one in pwm-sifive i=
-n the
-> > > > same format. This simplified keeping an overview about the oddities=
- of
-> > > > the various supported chips.
-> > >=20
-> > > OK, I will check pwm-sifive's, and add.
->=20
-> I will add the following :
->=20
->  * Limitations:
->  * - PIPGM_PWMC is a 2-bit divider (00: 1, 01: 2, 10: 4, 11: 8) for the i=
-nput
->  *   clock running at 1 MHz.
+This is 1000 by default, but maybe we should set it to some
+different value for some of the BCMs?
 
-I would strip that to:
+I'm adding Odelu, who is more familiar with this platform.
 
- - Fixed input clock running at 1 MHz
+> 
+> ...but these numbers are in kbps, aren't they? As I understand it
+> these aren't supposed to be random numbers spit out by a tool but are
+> supposed to be understandable by how much bandwidth an IP block (like
+> MMC) needs from the busses it's connected to. Since the MMC IP block
+> on sc7180 and sc7280 is roughly the same there shouldn't be a big
+> difference in numbers.
+> 
+> Something smells wrong.
+> 
+> Adding a few people who understand interconnects better than I do, though.
+> 
 
->  * - When the settings of the PWM are modified, the new values are shadow=
-ed
->  *   in hardware until the PIPGM_PCSR register is written and the current=
-ly
->  *   running period is completed. This way the hardware switches atomical=
-ly
->  *   from the old setting to the new.
->  * - Disabling the hardware completes the currently running period and ke=
-eps
->  *   the output at low level at all times.
-
-This looks fine.
-=20
-> > For me the critical (and only) difference between "off" and
-> > "duty cycle =3D 0" is that when a new configuration is to be applied. In
-> > the "off" state a new period can (and should) start immediately, while
-> > with "duty_cycle =3D 0" the rising edge should be delayed until the
-> > currently running period is over.[1]
-> >=20
-> > So the thing to do here (IMHO) is:
-> >=20
-> > Iff with PIPGM_PCSR =3D 0 configuring a new setting (that is finalized
-> > with writing a non-zero value to PIPGM_PCSR) completes the currently
-> > running period, then always assume the PWM as enabled.
->=20
-> Yes, this device works that way.
-
-OK, then please use
-
-	state->enabled =3D true
-
-unconditionally in visconti_pwm_get_state().
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---t42vctr7z7mwa3qh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmB5XHYACgkQwfwUeK3K
-7AnT3Qf/UxtGaRC2PkiqZqydmy5iwe/ufofn1G4HLEcTektGyzPwAuCYp21GNVm3
-aBTM7yjUKzm9tI3oxD3wWuSdEAyBp9rwPmyk/376GB7ZHcd2noXSH0DM8d0cYjMg
-l/vekoyFUOAPUMirdO4kdeukZeOU+Caskxd5y/UaZ+Gc9LI70ARXi6QnJbiL/4C2
-ej53UHhf2JZqKYpdPRdkSLuULpJ8mrbQQG1RSP/6YylyGB5aA1X84cw3kwyg7R0o
-LjccDhLne0qkSEi80EMCr3aW29sJjKMiMybOJkwyY62RdXHp1Cdd7c5BS1/+Bhnd
-CeTfOmimMouYVue4qyJstkswR/gHbg==
-=gYIm
------END PGP SIGNATURE-----
-
---t42vctr7z7mwa3qh--
+Thanks!
+Georgi
