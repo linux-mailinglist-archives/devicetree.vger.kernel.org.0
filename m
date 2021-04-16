@@ -2,145 +2,320 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEA76362088
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 15:09:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCC093620B0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 15:17:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243408AbhDPNJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 09:09:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53574 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243453AbhDPNJU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 09:09:20 -0400
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3482C06138A
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 06:08:55 -0700 (PDT)
-Received: by mail-io1-xd31.google.com with SMTP id d5so18169923iof.3
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 06:08:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=uIsY7rTiA+VYMrCL0Fk+IRPmeXg2RKOGnKhn6jk88kE=;
-        b=tFyHUHgdMoZuhKobVdbX2vg8qAX7TnojQWkhHz9Ak0pCsoCpXT12YGpXihZIDn6cHY
-         76bIRnoSoxcU9vlHDlv5LO540YctIM9vnF6ehSra3UAiJmV5/oMtoxD+vAeJFwUi8A76
-         SieIzgCha1dTrT/oBzi2Vn86SFQY/icxVndiVcjkFmrhOwtNSxX0pLZsM+BRHFjZFutl
-         32e4NvSs9rrSOSTP1eM5EFP32EMV3WDZybHcWen/vCsFxcDqF050TA1b86DwzrFjkRBQ
-         SEzn9j6xvzV+k0hKCinhT9DGl33HAOY7VAQY7jHee5JnmEkKYsuA/hLHRs9H3bFv/eTf
-         MylA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=uIsY7rTiA+VYMrCL0Fk+IRPmeXg2RKOGnKhn6jk88kE=;
-        b=Yg6qBugvXmzRRsziDF4lQkKhcWu0gBEXxsyqZaM16nU7YknIkLHRqKWHb2AZA+kaRv
-         Ckty+MlseltxVzwupOD0XSg80XxbsmadMY7LNVgTmGnVXKbenVE0oULZHohhaQygoinU
-         z3NpMUcv6hVeqCIPjYmCVPYgtHQar9C6+2UGhWCNhOGxsSwbJYi8JqKAMVS/aHkyHIg9
-         UXYmQXS2G89arGCk7brIE9CuQBgIVEInvS1ipiNfLpaYUfUQrtNdsgmcU/jG1dredfvs
-         BCX/pCcXwkww2Ta9lK39OHYqm6hu92U/fmH3J7ieGM4PahugyFB7ZyF/NLY5FJ509702
-         AZsA==
-X-Gm-Message-State: AOAM533IbeGjZ9LdvDXbo5wG4aDJWlpEkzIEL1rB5HFmPWudajpmnEAn
-        4m10X14/x4AUvjT7lXMjMLThNA==
-X-Google-Smtp-Source: ABdhPJyO/6DXTD88pvOp8rSOlXVJJ35Xta+9suI4ouLqEEhZDpNAUjVHC5RN3PwkZ+QI33qsrrtoOw==
-X-Received: by 2002:a6b:7601:: with SMTP id g1mr2792815iom.37.1618578535272;
-        Fri, 16 Apr 2021 06:08:55 -0700 (PDT)
-Received: from presto.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.gmail.com with ESMTPSA id e6sm2713535ilr.81.2021.04.16.06.08.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Apr 2021 06:08:55 -0700 (PDT)
-From:   Alex Elder <elder@linaro.org>
-To:     davem@davemloft.net, kuba@kernel.org
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org, robh+dt@kernel.org,
-        elder@kernel.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH net-next 2/2] net: ipa: optionally define firmware name via DT
-Date:   Fri, 16 Apr 2021 08:08:50 -0500
-Message-Id: <20210416130850.1970247-3-elder@linaro.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210416130850.1970247-1-elder@linaro.org>
-References: <20210416130850.1970247-1-elder@linaro.org>
+        id S243820AbhDPNRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 09:17:45 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:32851 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243775AbhDPNRg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 09:17:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1618579032; x=1650115032;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=EDerxEb/j3Egh03qW2BolO+2Li7UvsSGw6FFr4dgaFQ=;
+  b=qFU70cySRSWXsqjdf2w6/MX+DT9+EhdddpRWSAf36fSUkNQNkNE74zbm
+   pA4deQC5vuBd2WjYoHg6bgHgI/Sd6EN8NW9W9XXZev9RN/OVsJ5CH2kuk
+   0GG7QCS/IqqLcvNii4D28Ju2F4gUgkMu32zjMkzSFjGXtSENXWkadt++2
+   n1CO4oY4ce7nrXlmYzSr9yuYdf9ejpWO4Ip4X610GztM+fDAXnKW8zxyG
+   v5OClxhZMPdSKpCEm15b9JWCQ9HoAkXNqCUyFLx6cSqlfIRGsT0ELOQNN
+   /2gbDJNb0qieAfFf4sXBPmbFlklmFVhKkRqu9DEpZvv+Dw+LgvFmAxkpZ
+   Q==;
+IronPort-SDR: +fUFjGKZpcHWTp8eKCyox04M6rmsDMnvmCW4RizBXD7lIMuyMmWbD/DmUx9sVy1Zj9TF+VGs7z
+ CKLIpwoDQRgc2K4/sdi4DlNvoLnQXYrQ/f57bsRAhXsSwVnPcdMe2rXaA7BtTQYWheuUyM4Isw
+ mmTJ0hHs1e/cpT9RG6E04pD2JObSc3w6Ll463Qv0MD12pcUaZ0arlL/iwe/zHbuudmA7prj6IZ
+ 8jqzU2NgvLbzccJK7+NL45p381XyR1Cfk+VuZolqhqzuFrG/7ka2rB9aS7gghGDB5gu3JBNYOK
+ QWg=
+X-IronPort-AV: E=Sophos;i="5.82,226,1613458800"; 
+   d="scan'208";a="111092955"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Apr 2021 06:17:10 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Fri, 16 Apr 2021 06:17:10 -0700
+Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Fri, 16 Apr 2021 06:17:06 -0700
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Device Tree List <devicetree@vger.kernel.org>
+CC:     Steen Hegelund <steen.hegelund@microchip.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Russell King <linux@armlinux.org.uk>,
+        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Madalin Bucur <madalin.bucur@oss.nxp.com>,
+        Mark Einon <mark.einon@gmail.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Simon Horman" <simon.horman@netronome.com>,
+        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        "Lars Povlsen" <lars.povlsen@microchip.com>,
+        Bjarni Jonasson <bjarni.jonasson@microchip.com>
+Subject: [PATCH net-next 01/10] dt-bindings: net: sparx5: Add sparx5-switch bindings
+Date:   Fri, 16 Apr 2021 15:16:48 +0200
+Message-ID: <20210416131657.3151464-2-steen.hegelund@microchip.com>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210416131657.3151464-1-steen.hegelund@microchip.com>
+References: <20210416131657.3151464-1-steen.hegelund@microchip.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IPA initialization includes loading some firmware.  This step is
-done either by the modem or by the AP under Trust Zone.  If the
-AP loads firmware, the name of the firmware file is currently
-hard-coded ("ipa_fws.mdt").
+Document the Sparx5 switch device driver bindings
 
-Add the ability to specify the relative path of the firmware file to
-use in a property in the Device Tree IPA node.  If the property is
-not found (or if any other error occurs attempting to get it), fall
-back to using a default relative path.
-
-Use the "old" fixed name as the default.  Rename the symbol that
-represents this default to emphasize its purpose.
-
-Signed-off-by: Alex Elder <elder@linaro.org>
+Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+Signed-off-by: Bjarni Jonasson <bjarni.jonasson@microchip.com>
 ---
- drivers/net/ipa/ipa_main.c | 23 +++++++++++++++--------
- 1 file changed, 15 insertions(+), 8 deletions(-)
+ .../bindings/net/microchip,sparx5-switch.yaml | 227 ++++++++++++++++++
+ 1 file changed, 227 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
 
-diff --git a/drivers/net/ipa/ipa_main.c b/drivers/net/ipa/ipa_main.c
-index aad915e2ce523..9915603ed10ba 100644
---- a/drivers/net/ipa/ipa_main.c
-+++ b/drivers/net/ipa/ipa_main.c
-@@ -67,7 +67,7 @@
-  */
- 
- /* The name of the GSI firmware file relative to /lib/firmware */
--#define IPA_FWS_PATH		"ipa_fws.mdt"
-+#define IPA_FW_PATH_DEFAULT	"ipa_fws.mdt"
- #define IPA_PAS_ID		15
- 
- /* Shift of 19.2 MHz timestamp to achieve lower resolution timestamps */
-@@ -517,6 +517,7 @@ static int ipa_firmware_load(struct device *dev)
- 	struct device_node *node;
- 	struct resource res;
- 	phys_addr_t phys;
-+	const char *path;
- 	ssize_t size;
- 	void *virt;
- 	int ret;
-@@ -534,9 +535,17 @@ static int ipa_firmware_load(struct device *dev)
- 		return ret;
- 	}
- 
--	ret = request_firmware(&fw, IPA_FWS_PATH, dev);
-+	/* Use name from DTB if specified; use default for *any* error */
-+	ret = of_property_read_string(dev->of_node, "firmware-name", &path);
- 	if (ret) {
--		dev_err(dev, "error %d requesting \"%s\"\n", ret, IPA_FWS_PATH);
-+		dev_dbg(dev, "error %d getting \"firmware-name\" resource\n",
-+			ret);
-+		path = IPA_FW_PATH_DEFAULT;
-+	}
+diff --git a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
+new file mode 100644
+index 000000000000..2eeb5230d8c8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
+@@ -0,0 +1,227 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/microchip,sparx5-switch.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	ret = request_firmware(&fw, path, dev);
-+	if (ret) {
-+		dev_err(dev, "error %d requesting \"%s\"\n", ret, path);
- 		return ret;
- 	}
- 
-@@ -549,13 +558,11 @@ static int ipa_firmware_load(struct device *dev)
- 		goto out_release_firmware;
- 	}
- 
--	ret = qcom_mdt_load(dev, fw, IPA_FWS_PATH, IPA_PAS_ID,
--			    virt, phys, size, NULL);
-+	ret = qcom_mdt_load(dev, fw, path, IPA_PAS_ID, virt, phys, size, NULL);
- 	if (ret)
--		dev_err(dev, "error %d loading \"%s\"\n", ret, IPA_FWS_PATH);
-+		dev_err(dev, "error %d loading \"%s\"\n", ret, path);
- 	else if ((ret = qcom_scm_pas_auth_and_reset(IPA_PAS_ID)))
--		dev_err(dev, "error %d authenticating \"%s\"\n", ret,
--			IPA_FWS_PATH);
-+		dev_err(dev, "error %d authenticating \"%s\"\n", ret, path);
- 
- 	memunmap(virt);
- out_release_firmware:
++title: Microchip Sparx5 Ethernet switch controller
++
++maintainers:
++  - Steen Hegelund <steen.hegelund@microchip.com>
++  - Lars Povlsen <lars.povlsen@microchip.com>
++
++description: |
++  The SparX-5 Enterprise Ethernet switch family provides a rich set of
++  Enterprise switching features such as advanced TCAM-based VLAN and
++  QoS processing enabling delivery of differentiated services, and
++  security through TCAM-based frame processing using versatile content
++  aware processor (VCAP).
++
++  IPv4/IPv6 Layer 3 (L3) unicast and multicast routing is supported
++  with up to 18K IPv4/9K IPv6 unicast LPM entries and up to 9K IPv4/3K
++  IPv6 (S,G) multicast groups.
++
++  L3 security features include source guard and reverse path
++  forwarding (uRPF) tasks. Additional L3 features include VRF-Lite and
++  IP tunnels (IP over GRE/IP).
++
++  The SparX-5 switch family targets managed Layer 2 and Layer 3
++  equipment in SMB, SME, and Enterprise where high port count
++  1G/2.5G/5G/10G switching with 10G/25G aggregation links is required.
++
++properties:
++  $nodename:
++    pattern: "^switch@[0-9a-f]+$"
++
++  compatible:
++    const: microchip,sparx5-switch
++
++  reg:
++    minItems: 3
++    items:
++      - description: cpu target
++      - description: devices target
++      - description: general control block target
++
++  reg-names:
++    items:
++      - const: cpu
++      - const: devices
++      - const: gcb
++
++  interrupts:
++    minItems: 1
++    items:
++      - description: register based extraction
++      - description: frame dma based extraction
++
++  interrupt-names:
++    minItems: 1
++    items:
++      - const: xtr
++      - const: fdma
++
++  resets:
++    items:
++      - description: Reset controller used for switch core reset (soft reset)
++
++  reset-names:
++    items:
++      - const: switch
++
++  mac-address: true
++
++  ethernet-ports:
++    type: object
++    patternProperties:
++      "^port@[0-9a-f]+$":
++        type: object
++
++        properties:
++          '#address-cells':
++            const: 1
++          '#size-cells':
++            const: 0
++
++          reg:
++            description: Switch port number
++
++          phys:
++            maxItems: 1
++            description:
++              phandle of a Ethernet SerDes PHY.  This defines which SerDes
++              instance will handle the Ethernet traffic.
++
++          phy-mode:
++            description:
++              This specifies the interface used by the Ethernet SerDes towards
++              the PHY or SFP.
++
++          microchip,bandwidth:
++            description: Specifies bandwidth in Mbit/s allocated to the port.
++            $ref: "/schemas/types.yaml#/definitions/uint32"
++            maximum: 25000
++
++          phy-handle:
++            description:
++              phandle of a Ethernet PHY.  This is optional and if provided it
++              points to the cuPHY used by the Ethernet SerDes.
++
++          sfp:
++            description:
++              phandle of an SFP.  This is optional and used when not specifying
++              a cuPHY.  It points to the SFP node that describes the SFP used by
++              the Ethernet SerDes.
++
++          managed: true
++
++          microchip,sd-sgpio:
++            description:
++              Index of the ports Signal Detect SGPIO in the set of 384 SGPIOs
++              This is optional, and only needed if the default used index is
++              is not correct.
++            $ref: "/schemas/types.yaml#/definitions/uint32"
++            minimum: 0
++            maximum: 383
++
++        required:
++          - reg
++          - phys
++          - phy-mode
++          - microchip,bandwidth
++
++        oneOf:
++          - required:
++              - phy-handle
++          - required:
++              - sfp
++              - managed
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - interrupt-names
++  - resets
++  - reset-names
++  - ethernet-ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    switch: switch@600000000 {
++      compatible = "microchip,sparx5-switch";
++      reg =  <0 0x401000>,
++             <0x10004000 0x7fc000>,
++             <0x11010000 0xaf0000>;
++      reg-names = "cpu", "devices", "gcb";
++      interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
++      interrupt-names = "xtr";
++      resets = <&reset 0>;
++      reset-names = "switch";
++      ethernet-ports {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        port0: port@0 {
++          reg = <0>;
++          microchip,bandwidth = <1000>;
++          phys = <&serdes 13>;
++          phy-handle = <&phy0>;
++          phy-mode = "qsgmii";
++        };
++        /* ... */
++        /* Then the 25G interfaces */
++        port60: port@60 {
++          reg = <60>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 29>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth60>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <365>;
++        };
++        port61: port@61 {
++          reg = <61>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 30>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth61>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <369>;
++        };
++        port62: port@62 {
++          reg = <62>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 31>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth62>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <373>;
++        };
++        port63: port@63 {
++          reg = <63>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 32>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth63>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <377>;
++        };
++        /* Finally the Management interface */
++        port64: port@64 {
++          reg = <64>;
++          microchip,bandwidth = <1000>;
++          phys = <&serdes 0>;
++          phy-handle = <&phy64>;
++          phy-mode = "sgmii";
++          mac-address = [ 00 00 00 01 02 03 ];
++        };
++      };
++    };
++
++...
++#  vim: set ts=2 sw=2 sts=2 tw=80 et cc=80 ft=yaml :
 -- 
-2.27.0
+2.31.1
 
