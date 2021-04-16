@@ -2,151 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD5D836230D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 16:52:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC21A362374
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 17:04:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244938AbhDPOnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 10:43:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46524 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244793AbhDPOng (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 10:43:36 -0400
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5505BC06175F
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 07:43:11 -0700 (PDT)
-Received: by mail-io1-xd2d.google.com with SMTP id z5so6083737ioc.13
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 07:43:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Lp6KUcpzifC+AOvSZvapIoyzvGHXfJkgx9ufls5cSDs=;
-        b=euQfq2wFnH47LbM4abT1kLxvYkf6Sm9dtzlvDEkHRLT16XPhriYBl4jchj3CNIj5Cb
-         78dEEh4TPIwY63jFSpB3a/4Hw6jbLBUaSghrWwAniyOnmsLBpSGqHaFBCqMY0IIv7hvo
-         XREmLq4799LTQ+vzSqvxuvuQjrowfvajPCs7k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Lp6KUcpzifC+AOvSZvapIoyzvGHXfJkgx9ufls5cSDs=;
-        b=PDbbWvPRRxaULsdjfAUGUG9yfcif3Vo+PVR+ZD8ZgWJe4nqPC05dWElxSr/N3BsIDu
-         t2nx65wh0DDdNd4RORL0c2rfN5APS/zTjfz4WU2v5IccIbxoJA/HO0KeUQjSeljbYRx1
-         Kv2j0rolt5dIwZSX5FSZLU+SxKOzC2kTyGxyvMNi2KCA/LQGZmUAVEWUitVc7PbG2KlW
-         Y1GJZBj00Ii8SJNHsnPltrzFw84uMWXvmDfsHAONhWfKnFvuhS3Ywe3fPLbAsmxyXVuD
-         uy2kv7tB5u8cAd8bs2+lqwOVmfIDy3ByFIQBE8ctIknUUUffQgk/nFvs5OUYqogxvuei
-         MHDQ==
-X-Gm-Message-State: AOAM533CowztgVILBouXAhHCK2kRYTJdG6tBOg5xStUE6heN+BpemIag
-        0BMLaat6J9EnB8rlxiZfIEHpZsJ407s4oW8PDEPeOg==
-X-Google-Smtp-Source: ABdhPJzZne3Oah6jq0y3MQ7cXog0eHGiB4uUC0V04tFOpjqhXtg1Qck21Dtp3ESr9EjxkzptDtOP0iJHWG1Ya4WW0SQ=
-X-Received: by 2002:a05:6638:38a4:: with SMTP id b36mr4265974jav.102.1618584190633;
- Fri, 16 Apr 2021 07:43:10 -0700 (PDT)
+        id S240740AbhDPPEA convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 16 Apr 2021 11:04:00 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:43799 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243051AbhDPPD5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 11:03:57 -0400
+X-Originating-IP: 90.89.138.59
+Received: from xps13 (lfbn-tou-1-1325-59.w90-89.abo.wanadoo.fr [90.89.138.59])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 7BD1E20015;
+        Fri, 16 Apr 2021 15:03:31 +0000 (UTC)
+Date:   Fri, 16 Apr 2021 17:03:30 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Vivek Unune <npcomplete13@gmail.com>,
+        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH] mtd: parsers: trx: parse "firmware" MTD partitions only
+Message-ID: <20210416170330.65c267f4@xps13>
+In-Reply-To: <20210413163700.12215-1-zajec5@gmail.com>
+References: <20210413163700.12215-1-zajec5@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20210414172916.2689361-1-hsinyi@chromium.org> <20210414172916.2689361-7-hsinyi@chromium.org>
- <87y2dicnpy.fsf@intel.com>
-In-Reply-To: <87y2dicnpy.fsf@intel.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Fri, 16 Apr 2021 22:42:44 +0800
-Message-ID: <CAJMQK-iUgQBH8uW07fpbptE33D5NsVwmZXngcZknPw93apRK0A@mail.gmail.com>
-Subject: Re: [PATCH v19 6/6] drm/i915/selftests: Rename functions names
-To:     Jani Nikula <jani.nikula@linux.intel.com>
-Cc:     Wolfram Sang <wsa@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-i2c@vger.kernel.org, Qii Wang <qii.wang@mediatek.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Brown <broonie@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 16, 2021 at 10:23 PM Jani Nikula
-<jani.nikula@linux.intel.com> wrote:
->
-> On Thu, 15 Apr 2021, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
-> > pm_resume and pm_suspend might be conflict with the ones defined in
-> > include/linux/suspend.h. Rename pm_resume{suspend} to
-> > i915_pm_resume{suspend} since they are only used here.
->
-> I agree with the rationale here.
->
-> Do you need this to be part of your series, or shall we just pick this
-> up for i915? (We might consider renaming to something else or prefix the
-> functions with _ though, as we also have existing i915_pm_suspend and
-> i915_pm_resume elsewhere.)
->
+Hi Rafał,
 
-This patch can be separated from the series, thanks.
+Rafał Miłecki <zajec5@gmail.com> wrote on Tue, 13 Apr 2021 18:37:00
++0200:
+
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> Parsing every partition with "compatible" set to "brcm,trx" results in
+> parsing both: firmware partition and failsafe partition on devices that
+> implement failsafe booting. This affects e.g. Linksys EA9500 which has:
+> 
+> partition@200000 {
+> 	reg = <0x0200000 0x01d00000>;
+> 	compatible = "linksys,ns-firmware", "brcm,trx";
+> };
+> 
+> partition@1f00000 {
+> 	reg = <0x01f00000 0x01d00000>;
+> 	compatible = "linksys,ns-firmware", "brcm,trx";
+> };
+> 
+> Check for MTD partition name "firmware" before parsing. Recently added
+> ofpart_linksys_ns.c creates "firmware" and "failsafe" depending on
+> bootloader setup.
+
+I don't like very much the matching against a partition name, this is
+and should probably remain free text. Why not matching against the
+entire linksys,ns-firmware compatible instead?
+
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+> Vivek has recently reported this problem to me and this is soltuion I
+> came up with.
+> 
+> One alternative I thought of could be marking "failsafe" MTD partition
+> node as disabled (using of_update_property() + "status" + "disabled") and
+> then using of_device_is_available() in the parser_trx.c.
+> 
+> Let me know if you prefer the other (or any other) solution over this
+> patch.
+> ---
+>  drivers/mtd/parsers/parser_trx.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/mtd/parsers/parser_trx.c b/drivers/mtd/parsers/parser_trx.c
+> index 8541182134d4..0063791e164d 100644
+> --- a/drivers/mtd/parsers/parser_trx.c
+> +++ b/drivers/mtd/parsers/parser_trx.c
+> @@ -58,6 +58,10 @@ static int parser_trx_parse(struct mtd_info *mtd,
+>  	uint8_t curr_part = 0, i = 0;
+>  	int err;
+>  
+> +	/* Don't parse any failsafe / backup partitions */
+> +	if (strcmp(mtd->name, "firmware"))
+> +		return -EINVAL;
+> +
+>  	parts = kcalloc(TRX_PARSER_MAX_PARTS, sizeof(struct mtd_partition),
+>  			GFP_KERNEL);
+>  	if (!parts)
 
 
-> BR,
-> Jani.
->
-> >
-> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> > Reported-by: kernel test robot <lkp@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/selftests/i915_gem.c | 10 +++++-----
-> >  1 file changed, 5 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/selftests/i915_gem.c b/drivers/gpu/drm/i915/selftests/i915_gem.c
-> > index dc394fb7ccfa..525afda9d31f 100644
-> > --- a/drivers/gpu/drm/i915/selftests/i915_gem.c
-> > +++ b/drivers/gpu/drm/i915/selftests/i915_gem.c
-> > @@ -94,7 +94,7 @@ static int pm_prepare(struct drm_i915_private *i915)
-> >       return 0;
-> >  }
-> >
-> > -static void pm_suspend(struct drm_i915_private *i915)
-> > +static void i915_pm_suspend(struct drm_i915_private *i915)
-> >  {
-> >       intel_wakeref_t wakeref;
-> >
-> > @@ -116,7 +116,7 @@ static void pm_hibernate(struct drm_i915_private *i915)
-> >       }
-> >  }
-> >
-> > -static void pm_resume(struct drm_i915_private *i915)
-> > +static void i915_pm_resume(struct drm_i915_private *i915)
-> >  {
-> >       intel_wakeref_t wakeref;
-> >
-> > @@ -152,12 +152,12 @@ static int igt_gem_suspend(void *arg)
-> >       if (err)
-> >               goto out;
-> >
-> > -     pm_suspend(i915);
-> > +     i915_pm_suspend(i915);
-> >
-> >       /* Here be dragons! Note that with S3RST any S3 may become S4! */
-> >       simulate_hibernate(i915);
-> >
-> > -     pm_resume(i915);
-> > +     i915_pm_resume(i915);
-> >
-> >       err = switch_to_context(ctx);
-> >  out:
-> > @@ -192,7 +192,7 @@ static int igt_gem_hibernate(void *arg)
-> >       /* Here be dragons! */
-> >       simulate_hibernate(i915);
-> >
-> > -     pm_resume(i915);
-> > +     i915_pm_resume(i915);
-> >
-> >       err = switch_to_context(ctx);
-> >  out:
->
-> --
-> Jani Nikula, Intel Open Source Graphics Center
+
+
+Thanks,
+Miquèl
