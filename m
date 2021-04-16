@@ -2,200 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AAA2361A9D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 09:40:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A04AF361AB1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 09:40:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239295AbhDPHan (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 03:30:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34764 "EHLO
+        id S239455AbhDPHfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 03:35:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231666AbhDPHam (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 03:30:42 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11F0BC061574;
-        Fri, 16 Apr 2021 00:30:18 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 49EE022172;
-        Fri, 16 Apr 2021 09:29:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1618558211;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=PbMduC+y8U2TnYB1yFy6DIbM598uMx2+jq28dZXHweQ=;
-        b=EUtjzMP9GqVLqpUQjKAWkwn0o1sw8EWtxSv8YMRSVD0469vqt05Io1/SVJgobjz7HB/r6y
-        Vjk/Jn7gR9cbQkm/qxqSnOY+yQWCWcha3iHS/TQBkEhMmvcdPKJxGg9UyvHCIIkZANcb/g
-        63rLgVagJ+mEmiydqQVNecyvEgF/m50=
+        with ESMTP id S239201AbhDPHfj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 03:35:39 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7975EC061756
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 00:35:13 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id u16so9667043oiu.7
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 00:35:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bytedance-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tJD4Wffy8UFddOPkdi2YXR6U7i7vtfGmTFUKn6fdSpQ=;
+        b=G+yNnwMnLDElOBnF2B2+GxANp7XTkHj2DLoP/s3CNBCAi6w7gglXHy8oFGuZ6Qp2Qm
+         OkeIpoc212lPbkc1hyJkm4A51KOcLo2OlS6K9uJ5dEF7gXETSsxiw5XJDsJgsXb3s2oE
+         lTp4C8qSueJ08ORlfJ2m5xth4v57F+vKbyegAMM9luRp1wBe//U+v9gUr3+lZXdesng9
+         WwQpdi/QHfafpxLKTrJMbumRxFxzlDgN3ecEtb/fdhrAiLMY2USct0BXoIde0q8IFcLB
+         IWa4uZRPhHVPfVLPtQM/ta90PyYBStMFJkJZJ9KNDBnVYP5W6ET3vQKd71EAnaMFp0Hu
+         7rPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tJD4Wffy8UFddOPkdi2YXR6U7i7vtfGmTFUKn6fdSpQ=;
+        b=GPlmmTSYdHJCkztb9SoZc888e3yrGVp7foMZ2YG1f/z03BtCr8CGGKvMDbT2ii71Cg
+         shpFmLBwkGB02IWHZdLRCwP0SsCv9++NRaWy6sSdK1kgoBsVD0xQ+g4P4A1ZZKvUdheL
+         YBd1qZdL/7TaIVBcCdfalYiTtq7N3/8H39A4pCLvrc1ad56NZ+ECHUhgKMMT0oWXYy8j
+         MYmjquQYRNK2AMKWE4S+I879pglbFOZyMSAjQvFqgOLbX6Dwktsm81LZLoW89aQFtlmJ
+         MfGzqs6kTJ7HDoeOduKLWfjj3A0ZkLJwT1EOoFyXQ2bLC0psLj7gFyieVQWytYQBg0cM
+         ymRg==
+X-Gm-Message-State: AOAM530G/ku3XGkXktS+VbtfvxYXOcs+kruCenAq+ii3da/EQXZ/PYDw
+        RaCvQBRiaNFdtHwF1g1+NA49Y2Ai9OPtttPCwZ98ag==
+X-Google-Smtp-Source: ABdhPJyyb5uCrc4pETT//wgeijjcWgZHJwhyFG2hghIXA58CpkcDpTKOEaIX3WAcbBOMndCKUQq/lHReczEGRuQm9ms=
+X-Received: by 2002:a05:6808:d50:: with SMTP id w16mr5521425oik.28.1618558512880;
+ Fri, 16 Apr 2021 00:35:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 16 Apr 2021 09:29:59 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Benjamin Herrenschmidt <benh@kernel.crashing.org>
-Cc:     ath9k-devel@qca.qualcomm.com, UNGLinuxDriver@microchip.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, netdev@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-amlogic@lists.infradead.org, linux-oxnas@groups.io,
-        linux-omap@vger.kernel.org, linux-wireless@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Paul Mackerras <paulus@samba.org>,
-        Andreas Larsson <andreas@gaisler.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Joyce Ooi <joyce.ooi@intel.com>,
-        Chris Snook <chris.snook@gmail.com>,
-        =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Sunil Goutham <sgoutham@marvell.com>,
-        Fugang Duan <fugang.duan@nxp.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Pantelis Antoniou <pantelis.antoniou@gmail.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Yisen Zhuang <yisen.zhuang@huawei.com>,
-        Salil Mehta <salil.mehta@huawei.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Vadym Kochan <vkochan@marvell.com>,
-        Taras Chornyi <tchornyi@marvell.com>,
-        Mirko Lindner <mlindner@marvell.com>,
-        Stephen Hemminger <stephen@networkplumber.org>,
-        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bryan Whitehead <bryan.whitehead@microchip.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Byungho An <bh74.an@samsung.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Wingman Kwok <w-kwok2@ti.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Stanislaw Gruszka <stf_xl@wp.pl>,
-        Helmut Schaa <helmut.schaa@googlemail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
+References: <20210316085932.2601-1-troy_lee@aspeedtech.com> <CACPK8XeYtaLLWDMR8xZhERrQ_WCUJ2RM_JZmZNQ6oZSvgSDM_w@mail.gmail.com>
+In-Reply-To: <CACPK8XeYtaLLWDMR8xZhERrQ_WCUJ2RM_JZmZNQ6oZSvgSDM_w@mail.gmail.com>
+From:   Lei Yu <yulei.sh@bytedance.com>
+Date:   Fri, 16 Apr 2021 15:35:01 +0800
+Message-ID: <CAGm54UHgQSMh8WLzRf7Swhv9mmzNBuEK6eKf9eX0ASp95hjARw@mail.gmail.com>
+Subject: Re: [External] Re: [PATCH v1] ARM: dts: Fix 64MiB OpenBMC flash
+ layout and aspeed-ast2600-evb.dts
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Troy Lee <troy_lee@aspeedtech.com>,
+        John Wang <wangzhiqiang.bj@bytedance.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        =?UTF-8?Q?J=C3=A9r=C3=B4me?= =?UTF-8?Q?_Pouiller?= 
-        <jerome.pouiller@silabs.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>
-Subject: Re: [PATCH net-next v4 2/2] of: net: fix of_get_mac_addr_nvmem() for
- non-platform devices
-In-Reply-To: <730d603b12e590c56770309b4df2bd668f7afbe3.camel@kernel.crashing.org>
-References: <20210412174718.17382-1-michael@walle.cc>
- <20210412174718.17382-3-michael@walle.cc>
- <730d603b12e590c56770309b4df2bd668f7afbe3.camel@kernel.crashing.org>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <8157eba9317609294da80472622deb28@walle.cc>
-X-Sender: michael@walle.cc
+        Andrew Jeffery <andrew@aj.id.au>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>, leetroy@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2021-04-16 05:24, schrieb Benjamin Herrenschmidt:
-> On Mon, 2021-04-12 at 19:47 +0200, Michael Walle wrote:
->> 
->>  /**
->>   * of_get_phy_mode - Get phy mode for given device_node
->> @@ -59,15 +60,39 @@ static int of_get_mac_addr(struct device_node *np, 
->> const char *name, u8 *addr)
->>  static int of_get_mac_addr_nvmem(struct device_node *np, u8 *addr)
->>  {
->>         struct platform_device *pdev = of_find_device_by_node(np);
->> +       struct nvmem_cell *cell;
->> +       const void *mac;
->> +       size_t len;
->>         int ret;
->> 
->> -       if (!pdev)
->> -               return -ENODEV;
->> +       /* Try lookup by device first, there might be a 
->> nvmem_cell_lookup
->> +        * associated with a given device.
->> +        */
->> +       if (pdev) {
->> +               ret = nvmem_get_mac_address(&pdev->dev, addr);
->> +               put_device(&pdev->dev);
->> +               return ret;
->> +       }
->> +
-> 
-> This smells like the wrong band aid :)
-> 
-> Any struct device can contain an OF node pointer these days.
+On Fri, Apr 16, 2021 at 11:03 AM Joel Stanley <joel@jms.id.au> wrote:
+>
+> On Tue, 16 Mar 2021 at 08:59, Troy Lee <troy_lee@aspeedtech.com> wrote:
+> >
+> > Aspeed AST2600 u-boot requires 600KiB+ flash space. Sharing the same
+> > openbmc-flash-layout-64.dtsi requires to resize the flash partition.
+> >
+> > The updated flash layout as follows:
+> > - u-boot: 896 KiB
+> > - u-boot-env: 128 KiB
+> > - kernel: 9MiB
+> > - rofs: 32 MiB
+> > - rwfs: 22 MiB
+>
+> Changing the 64MB layout will break the systems that are already using
+> this layout. I'll get the Bytedance people to chime in, as theirs is
+> the only system using this layout so far.
+>
+> John, Lei?
 
-But not all nodes might have an associated device, see DSA for example.
-And as the name suggests of_get_mac_address() operates on a node. So
-if a driver calls of_get_mac_address() it should work on the node. What
-is wrong IMHO, is that the ethernet drivers where the corresponding 
-board
-has a nvmem_cell_lookup registered is calling of_get_mac_address(node).
-It should rather call eth_get_mac_address(dev) in the first place.
+Because the kernel's offset is updated, several other changes are required:
+1. The related offsets, which is already sent to
+https://gerrit.openbmc-project.xyz/c/openbmc/meta-phosphor/+/39343
+2. The u-boot patch to update the `bootm` address and make sure it
+only applies to the 64MiB layout.
 
-One would need to figure out if there is an actual device (with an
-assiciated of_node), then call eth_get_mac_address(dev) and if there
-isn't a device call of_get_mac_address(node).
+Without the above two changes, I would suggest holding the merge.
 
-But I don't know if that is easy to figure out. Well, one could start
-with just the device where nvmem_cell_lookup is used. Then we could
-drop the workaround above.
-
-> This seems all backwards. I think we are dealing with bad evolution.
-> 
-> We need to do a lookup for the device because we get passed an of_node.
-> We should just get passed a device here... or rather stop calling
-> of_get_mac_addr() from all those drivers and instead call
-> eth_platform_get_mac_address() which in turns calls of_get_mac_addr().
-> 
-> Then the nvmem stuff gets put in eth_platform_get_mac_address().
-> 
-> of_get_mac_addr() becomes a low-level thingy that most drivers don't
-> care about.
-
-The NVMEM thing is just another (optional) way how the MAC address
-is fetched from the device tree. Thus, if the drivers have the
-of_get_mac_address() call they should automatically get the NVMEM
-method, too.
-
--michael
+-- 
+BRs,
+Lei YU
