@@ -2,101 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E10E36247D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 17:53:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B33E93624A9
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 17:55:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235693AbhDPPxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 11:53:42 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:45194 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S235639AbhDPPxl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Apr 2021 11:53:41 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13GFbugM017081;
-        Fri, 16 Apr 2021 17:52:53 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=WZGwdTXw15LpdfwZttz+Ac4D8BUSBjoH6Vd+2D7iLnY=;
- b=wm0fx4MDGYw//NCJ8CmLYgOHWPxQVmzrGumXlnDutw90Yv8fDRl7e2gEYGXrjfHAJNJl
- Pl44WsqT8pwG2oa2n5N1XI4X7vMj98Sx/O/kf+sckZh1EwEhxpv/Mpofx1QVJBQKqjAR
- 88xYwdTrdfh3v1+BRq2vzvSSh/O9jIIIICv+4zfOrdp943QKcIfWDHy8oV+I9wFsjVrx
- 4/SzXUSm6A+Ew+t671EhVypFFstOu2SrTxU66BXfhTRd2B64UClQw0o4IOxS0LtfXpRo
- JzTEuEy3cHKWAgMiwdheiDiM8thirPKzmgUsZ8h7M+03vq1YL0iy0G3aFGYmvG6Q7Wc7 fg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 37xm4jrdgj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 16 Apr 2021 17:52:53 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C801710002A;
-        Fri, 16 Apr 2021 17:52:52 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A25C125D00A;
-        Fri, 16 Apr 2021 17:52:52 +0200 (CEST)
-Received: from [10.211.14.227] (10.75.127.48) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 16 Apr
- 2021 17:52:44 +0200
-Subject: Re: [Linux-stm32] [PATCH 04/13] dt-bindings: mfd: stm32-timers:
- remove #address/size cells from required properties
-To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     <arnd@arndb.de>, <robh+dt@kernel.org>, Marek Vasut <marex@denx.de>,
-        <jagan@amarulasolutions.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kuba@kernel.org>, Lee Jones <lee.jones@linaro.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20210415101037.1465-1-alexandre.torgue@foss.st.com>
- <20210415101037.1465-5-alexandre.torgue@foss.st.com>
-From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Message-ID: <bd85bd41-d899-7e7a-1878-35301a267eb9@foss.st.com>
-Date:   Fri, 16 Apr 2021 17:52:44 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S237723AbhDPPzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 11:55:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34860 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237789AbhDPPy7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 11:54:59 -0400
+Received: from mail.pqgruber.com (mail.pqgruber.com [IPv6:2a05:d014:575:f70b:4f2c:8f1d:40c4:b13e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFCB0C061574;
+        Fri, 16 Apr 2021 08:54:33 -0700 (PDT)
+Received: from workstation.tuxnet (213-47-165-233.cable.dynamic.surfer.at [213.47.165.233])
+        by mail.pqgruber.com (Postfix) with ESMTPSA id BA89BC725CF;
+        Fri, 16 Apr 2021 17:54:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pqgruber.com;
+        s=mail; t=1618588472;
+        bh=NNhXDYoC79S3jl0E1hHE8FZsVS7dE0pqNK7RzyynuQA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=v6JcobtsF82hH+WsspU/mpQG3YuMZtuT6nnQ8F3qfyh40O62l3GguyqXZ7wEBDZSI
+         zn5GdSH/YhU9IHvwaj0qh7ropwustLYTWKfmIjFaG0VllXat/ZeF3SIpUfHBs4tSPm
+         wddnDEQ2XlwugRbRA61Tq8kpRUYcRGEkPV8hwW7k=
+Date:   Fri, 16 Apr 2021 17:54:29 +0200
+From:   Clemens Gruber <clemens.gruber@pqgruber.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-pwm@vger.kernel.org,
+        Sven Van Asbroeck <TheSven73@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 4/8] dt-bindings: pwm: Support new PWM_USAGE_POWER flag
+Message-ID: <YHmzNaxMjPJMcPmK@workstation.tuxnet>
+References: <20210412132745.76609-1-clemens.gruber@pqgruber.com>
+ <20210412132745.76609-4-clemens.gruber@pqgruber.com>
+ <YHmXPyf+XjgJs3C8@orome.fritz.box>
 MIME-Version: 1.0
-In-Reply-To: <20210415101037.1465-5-alexandre.torgue@foss.st.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
- definitions=2021-04-16_08:2021-04-16,2021-04-16 signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YHmXPyf+XjgJs3C8@orome.fritz.box>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/15/21 12:10 PM, Alexandre Torgue wrote:
-> address-cells and size-cells can't be declared as "required" properties
-> as they are not needed if subnodes don't have a "reg" entry.
+On Fri, Apr 16, 2021 at 03:55:11PM +0200, Thierry Reding wrote:
+> On Mon, Apr 12, 2021 at 03:27:41PM +0200, Clemens Gruber wrote:
+> > Add the flag and corresponding documentation for PWM_USAGE_POWER.
+> > 
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
+> > ---
+> >  Documentation/devicetree/bindings/pwm/pwm.txt | 3 +++
+> >  include/dt-bindings/pwm/pwm.h                 | 1 +
+> >  2 files changed, 4 insertions(+)
 > 
-> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Rob, what are your thoughts on this? I've been thinking about this some
+> more and I'm having second thoughts about putting this into device tree
+> because it doesn't actually describe a property of the PWM hardware but
+> rather a use-case specific hint. It's a bit of a gray area because this
+> is just part of the PWM specifier which already has use-case specific
+> "configuration", such as the period and the polarity.
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml b/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
-> index 0f16c8864a87..dace35362a7a 100644
-> --- a/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
+> Perhaps a better place for this is within the PWM API? We could add the
+> same information into struct pwm_state and then consumers that don't
+> care about specifics of the signal (such as pwm-backlight) can set that
+> flag when they request a state to be applied.
 
-Hi Alexandre,
+I just want to note that in my opinion, this is not a flag that is
+changed often, so is it really a good idea to require setting this
+wherever PWM state is applied? Also, this can't be read-out in
+.get_state.
 
-Not sure if this matters: patches 3 and 4 could be swapped in the
-series. Apart from that:
-
-Reviewed-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Thierry: If this discussion carries on and a v10 is required: Could you
+maybe merge the uncontroversial patches 1 to 3 of v9 separately and
+maybe get those in 5.12 ? Patches 4 to 8 can probably wait for 5.13 and
+have some time in linux-next.
 
 Thanks,
-Fabrice
-> @@ -119,8 +119,6 @@ patternProperties:
->        - compatible
->  
->  required:
-> -  - "#address-cells"
-> -  - "#size-cells"
->    - compatible
->    - reg
->    - clocks
-> 
+Clemens
