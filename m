@@ -2,157 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D92FA361B75
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 10:34:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19AC8361BF5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 11:00:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238714AbhDPIKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 04:10:36 -0400
-Received: from aserp2130.oracle.com ([141.146.126.79]:58110 "EHLO
-        aserp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234708AbhDPIKg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 04:10:36 -0400
-Received: from pps.filterd (aserp2130.oracle.com [127.0.0.1])
-        by aserp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 13G89lxu134768;
-        Fri, 16 Apr 2021 08:09:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- content-transfer-encoding : in-reply-to; s=corp-2020-01-29;
- bh=TnjrNqXGwzrmLLe3F50P/kR2nYY4gyJkqThCBP01mmg=;
- b=cF7nXLe1SDiiik8nJ3mwtWOKSrLB63xl+MisOQqDXbLoK9mN3dFrh7Dcn4d5T2j/ILy9
- KOc1Mj68iwObAwEfn2Nc0jr/IK9wtbFkI54KOVuPfgZH1uEQf17Yi+KGKI1Y+j856Psl
- oAPDFB8YIip2owg8GMJ+vJ+3ZaUvVCQmsU8CNcYlrHrq34eWzdPfWROFrILzv4UVUP/B
- Vw9upcZHdGNzbEge7o0X3+MzgBdHq4T4uPaFlzTPrSL72Qw40G8LG/hCUNjnAAJeBzr2
- S79vGN6cSfA1IvSnL1wl1LpkXtX5Ke9lTqeWqfh1bb1U4yLS8PgJlhdQYa30bIzMKSio YA== 
-Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
-        by aserp2130.oracle.com with ESMTP id 37u1hbrda6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 16 Apr 2021 08:09:54 +0000
-Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
-        by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 13G80gTT002449;
-        Fri, 16 Apr 2021 08:09:53 GMT
-Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
-        by aserp3030.oracle.com with ESMTP id 37unkttprp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 16 Apr 2021 08:09:52 +0000
-Received: from abhmp0018.oracle.com (abhmp0018.oracle.com [141.146.116.24])
-        by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 13G89oV9006168;
-        Fri, 16 Apr 2021 08:09:50 GMT
-Received: from kadam (/102.36.221.92)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Fri, 16 Apr 2021 01:09:50 -0700
-Date:   Fri, 16 Apr 2021 11:09:41 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Daniel Axtens <dja@axtens.net>,
-        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
-        robh@kernel.org, devicetree@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        kbuild-all@lists.01.org, bauerman@linux.ibm.com, lkp@intel.com
-Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in
- elf64_load()
-Message-ID: <20210416080941.GO6048@kadam>
-References: <20210415191437.20212-1-nramas@linux.microsoft.com>
- <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
- <87eefag241.fsf@linkitivity.dja.id.au>
- <f82a9fe2-3254-3f25-616c-10e56103bdc6@csgroup.eu>
+        id S240555AbhDPIla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 04:41:30 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:53338 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239882AbhDPIl2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 04:41:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1618562464; x=1650098464;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=8lTZOjpt/PsZ0L6mL9vuEq3HADt4pfMakp+8pxOPEJk=;
+  b=lGofTreeGtdrhRbb3kbrSgNqezIGn0Sxd7XspPXTKPtzGPX1qdYBTMMz
+   Wba1ONTnzElddmyOS++BBhytngSAwIdmbzJr0l1r00KkbRwYChuSKHFh3
+   Cj1Hq0wwHlQweVg1QK0xZAqbpFtsP6ioc6wrBiXSxkWLbc0Zz4H0+CRQj
+   UdmAIl4HNlMvUaVyxyPCZR7yv/uURwVrund4uRNFCIEOM/yQkOdrdioy8
+   iAuxfNrsLNZIEFIoOyo7GXs1kt+gc9qvAra84d+vT/0gC5NRvWsBvO7EM
+   O5MGilK2Ocbjt419l0360wnidolvNablyzUvGtmG6Vj2z9kKUgvWF6t2I
+   g==;
+IronPort-SDR: Ha6NQ0j0CyD2wsaq7XsdO2Euv7+sh+eBpsXlZ5y52Mx46fmY+ed1kesyLwx2NelqvkM/NxS1E5
+ RgAWy0HfIdM9ErtRcbk6MB3H++4cREZE7mkVSlisjsA6x49BYSHDjo2jQt8GAWHWDe2WYITkwp
+ Oy/GOPAqlDHBFObS8LGAssse1rV8N9vexGmGf9RC2yM37FIicaoNfMtiyQSAc0GqCO7ocWG044
+ 7/MTFtgT0y48H4pQCEkiIP1SYuwK40lIutn1H8MRJYeiCEFH5xkhv9ZfVF/y2LPeF1914XgLZ9
+ b5w=
+X-IronPort-AV: E=Sophos;i="5.82,226,1613458800"; 
+   d="scan'208";a="116692462"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Apr 2021 01:41:02 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Fri, 16 Apr 2021 01:41:01 -0700
+Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Fri, 16 Apr 2021 01:40:59 -0700
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Steen Hegelund <steen.hegelund@microchip.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, "Rob Herring" <robh@kernel.org>
+Subject: [PATCH v9 1/3] dt-bindings: reset: microchip sparx5 reset driver bindings
+Date:   Fri, 16 Apr 2021 10:40:52 +0200
+Message-ID: <20210416084054.2922327-2-steen.hegelund@microchip.com>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210416084054.2922327-1-steen.hegelund@microchip.com>
+References: <20210416084054.2922327-1-steen.hegelund@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <f82a9fe2-3254-3f25-616c-10e56103bdc6@csgroup.eu>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-IMR: 1
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9955 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 mlxlogscore=999
- adultscore=0 phishscore=0 malwarescore=0 mlxscore=0 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104060000 definitions=main-2104160060
-X-Proofpoint-GUID: 6HXQ_LEuwfVp63QXRqzWQcS2rPDaKaDw
-X-Proofpoint-ORIG-GUID: 6HXQ_LEuwfVp63QXRqzWQcS2rPDaKaDw
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9955 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 priorityscore=1501
- clxscore=1011 adultscore=0 mlxlogscore=999 impostorscore=0 malwarescore=0
- lowpriorityscore=0 spamscore=0 phishscore=0 bulkscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104060000
- definitions=main-2104160061
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 16, 2021 at 09:00:12AM +0200, Christophe Leroy wrote:
-> 
-> 
-> Le 16/04/2021 à 08:44, Daniel Axtens a écrit :
-> > Hi Lakshmi,
-> > 
-> > > On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
-> > > 
-> > > Sorry - missed copying device-tree and powerpc mailing lists.
-> > > 
-> > > > There are a few "goto out;" statements before the local variable "fdt"
-> > > > is initialized through the call to of_kexec_alloc_and_setup_fdt() in
-> > > > elf64_load(). This will result in an uninitialized "fdt" being passed
-> > > > to kvfree() in this function if there is an error before the call to
-> > > > of_kexec_alloc_and_setup_fdt().
-> > > > 
-> > > > Initialize the local variable "fdt" to NULL.
-> > > > 
-> > I'm a huge fan of initialising local variables! But I'm struggling to
-> > find the code path that will lead to an uninit fdt being returned...
-> > 
-> > The out label reads in part:
-> > 
-> > 	/* Make kimage_file_post_load_cleanup free the fdt buffer for us. */
-> > 	return ret ? ERR_PTR(ret) : fdt;
-> > 
-> > As far as I can tell, any time we get a non-zero ret, we're going to
-> > return an error pointer rather than the uninitialised value...
-> 
-> I don't think GCC is smart enough to detect that.
-> 
+Document the Sparx5 reset device driver bindings
 
-We disabled uninitialized variable checking for GCC.
+The driver uses a syscon and an IO range on sparx5 for access to
+the reset control and the reset status.
 
-But actually is something that has been on my mind recently.  Smatch is
-supposed to parse this correctly but there is a bug that affects powerpc
-and I don't know how to debug it.  The kbuild bot is doing cross
-platform compiles but I don't have one set up on myself.  Could someone
-with Smatch installed test something for me?
+Sparx5 will no longer use the existing Ocelot chip reset driver, but use
+this new switch reset driver as it has the reset controller interface that
+allows the first client to perform the reset on behalf of all the Sparx5
+component drivers.
 
-Or if you don't have Smatch installed then you should definitely install
-it.  :P
-https://www.spinics.net/lists/smatch/msg00568.html
+Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/reset/microchip,rst.yaml         | 58 +++++++++++++++++++
+ 1 file changed, 58 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/microchip,rst.yaml
 
-Apply the patch from below and edit the path to point to the correct
-directory.  Then run kchecker and email me the output?
+diff --git a/Documentation/devicetree/bindings/reset/microchip,rst.yaml b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+new file mode 100644
+index 000000000000..370579aeeca1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/reset/microchip,rst.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Microchip Sparx5 Switch Reset Controller
++
++maintainers:
++  - Steen Hegelund <steen.hegelund@microchip.com>
++  - Lars Povlsen <lars.povlsen@microchip.com>
++
++description: |
++  The Microchip Sparx5 Switch provides reset control and implements the following
++  functions
++    - One Time Switch Core Reset (Soft Reset)
++
++properties:
++  $nodename:
++    pattern: "^reset-controller@[0-9a-f]+$"
++
++  compatible:
++    const: microchip,sparx5-switch-reset
++
++  reg:
++    items:
++      - description: global control block registers
++
++  reg-names:
++    items:
++      - const: gcb
++
++  "#reset-cells":
++    const: 1
++
++  cpu-syscon:
++    $ref: "/schemas/types.yaml#/definitions/phandle"
++    description: syscon used to access CPU reset
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - "#reset-cells"
++  - cpu-syscon
++
++additionalProperties: false
++
++examples:
++  - |
++    reset: reset-controller@11010008 {
++        compatible = "microchip,sparx5-switch-reset";
++        reg = <0x11010008 0x4>;
++        reg-names = "gcb";
++        #reset-cells = <1>;
++        cpu-syscon = <&cpu_ctrl>;
++    };
++
+-- 
+2.31.1
 
-~/path/to/smatch_scripts/kchecker arch/powerpc/kernel/hw_breakpoint.c
-
-regads,
-dan carpenter
-
-diff --git a/arch/powerpc/kernel/hw_breakpoint.c b/arch/powerpc/kernel/hw_breakpoint.c
-index 8fc7a14e4d71..f2dfba54e14d 100644
---- a/arch/powerpc/kernel/hw_breakpoint.c
-+++ b/arch/powerpc/kernel/hw_breakpoint.c
-@@ -167,13 +167,19 @@ static bool can_co_exist(struct breakpoint *b, struct perf_event *bp)
- 	return !(alternate_infra_bp(b, bp) && bp_addr_range_overlap(b->bp, bp));
- }
- 
-+#include "/home/XXX/path/to/smatch/check_debug.h"
- static int task_bps_add(struct perf_event *bp)
- {
- 	struct breakpoint *tmp;
- 
- 	tmp = alloc_breakpoint(bp);
--	if (IS_ERR(tmp))
-+	__smatch_about(tmp);
-+	__smatch_debug_on();
-+	if (IS_ERR(tmp)) {
-+		__smatch_debug_off();
-+		__smatch_about(tmp);
- 		return PTR_ERR(tmp);
-+	}
- 
- 	list_add(&tmp->list, &task_bps);
- 	return 0;
