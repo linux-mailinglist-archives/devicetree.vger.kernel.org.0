@@ -2,151 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75012361D96
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 12:09:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F025361DB0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 12:09:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241147AbhDPJhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 05:37:46 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:58912 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235027AbhDPJhp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 05:37:45 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5ADEA5A5;
-        Fri, 16 Apr 2021 11:37:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1618565840;
-        bh=TtTzqJqMSUNSNp3JKe1VnusjeBxQ4GqD4+KAOtjZIQQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dyDGV4rBVQfgZPW1AlVlvdEIJHPKc0isIPpcJ5BXyifE0rbnICulrcgZTtODZxEBN
-         UgJxv6ZIgEdxD+5N/XJhMm9KPjWpbsHUjmrcNg4ud9VdsClWq2QlQb1+x93VH2ijea
-         vSsDroWSY/FfZ9qfp5mMJsdywXbB0M/58eYZ563o=
-Date:   Fri, 16 Apr 2021 12:37:18 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Martina Krasteva <martinax.krasteva@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        sakari.ailus@linux.intel.com,
-        daniele.alessandrelli@linux.intel.com,
-        paul.j.murphy@linux.intel.com, gjorgjix.rosikopulos@linux.intel.com
-Subject: Re: [PATCH 00/10] Keem Bay Camera Subsystem
-Message-ID: <YHlazqJeQp4cFYMl@pendragon.ideasonboard.com>
-References: <20210319180632.585-1-martinax.krasteva@linux.intel.com>
+        id S235027AbhDPJpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 05:45:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36426 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238871AbhDPJpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 05:45:08 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA9E8C061574
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 02:44:43 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lXL1c-0004Kv-Br; Fri, 16 Apr 2021 11:44:32 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lXL1Y-0003fo-Dj; Fri, 16 Apr 2021 11:44:28 +0200
+Date:   Fri, 16 Apr 2021 11:44:26 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
+        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] pwm: visconti: Add Toshiba Visconti SoC PWM
+ support
+Message-ID: <20210416094426.x4gyw3drp2fcwczs@pengutronix.de>
+References: <20210409230837.1919744-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210409230837.1919744-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210410135321.oissremqropvrpd3@pengutronix.de>
+ <20210412025536.i5chpp6sighunvfx@toshiba.co.jp>
+ <20210412070232.6q3cgqvuj53p4cmi@pengutronix.de>
+ <20210416080721.oa7xdvu22w2b2rkf@toshiba.co.jp>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="t42vctr7z7mwa3qh"
 Content-Disposition: inline
-In-Reply-To: <20210319180632.585-1-martinax.krasteva@linux.intel.com>
+In-Reply-To: <20210416080721.oa7xdvu22w2b2rkf@toshiba.co.jp>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martina and Gjorgji,
 
-Nice to see a new ISP driver :-)
+--t42vctr7z7mwa3qh
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Before reviewing patches in details, I have a few high-level questions:
+Hello Nobuhiro,
 
-- The driver seems to proxy access to the ISP through the VPU firmware.
-  I assume the VPU is a separate CPU core that controls the hardware
-  directly. Is that correct ?
+On Fri, Apr 16, 2021 at 05:07:21PM +0900, Nobuhiro Iwamatsu wrote:
+> On Mon, Apr 12, 2021 at 09:02:32AM +0200, Uwe Kleine-K=F6nig wrote:
+> > On Mon, Apr 12, 2021 at 11:55:36AM +0900, Nobuhiro Iwamatsu wrote:
+> > > On Sat, Apr 10, 2021 at 03:53:21PM +0200, Uwe Kleine-K=F6nig wrote:
+> > > > Can you please put a paragraph analogous to the one in pwm-sifive i=
+n the
+> > > > same format. This simplified keeping an overview about the oddities=
+ of
+> > > > the various supported chips.
+> > >=20
+> > > OK, I will check pwm-sifive's, and add.
+>=20
+> I will add the following :
+>=20
+>  * Limitations:
+>  * - PIPGM_PWMC is a 2-bit divider (00: 1, 01: 2, 10: 4, 11: 8) for the i=
+nput
+>  *   clock running at 1 MHz.
 
-- Does this driver support all the features of the ISP, or only the
-  subset that a particular VPU firmware exposes ? In particular, the ISP
-  is exposed as an inline block, which no memory buffer between the
-  CSI-2 receiver and the ISP, and no ability to capture raw frames. How
-  is one supposed to tune cameras ?
+I would strip that to:
 
-- More documentation is needed for both the device architecture (in
-  particular a block diagram of the processing pipeline), and the
-  configuration parameters. Is there ongoing work in this area ?
+ - Fixed input clock running at 1 MHz
 
-- Last but not least, we need a reference userspace implementation to
-  test this driver. I recommend implementing support in libcamera :-)
+>  * - When the settings of the PWM are modified, the new values are shadow=
+ed
+>  *   in hardware until the PIPGM_PCSR register is written and the current=
+ly
+>  *   running period is completed. This way the hardware switches atomical=
+ly
+>  *   from the old setting to the new.
+>  * - Disabling the hardware completes the currently running period and ke=
+eps
+>  *   the output at low level at all times.
 
-On Fri, Mar 19, 2021 at 06:06:22PM +0000, Martina Krasteva wrote:
-> From: Martina Krasteva <martinax.krasteva@intel.com>
-> 
-> Patch series contains Keem Bay Camera Subsystem driver implementation,
-> documentation and devicetree binding document.
-> 
-> Gjorgji Rosikopulos (7):
->   media: Keem Bay Camera: Keem Bay camera driver
->   media: Keem Bay Camera: Add VPU camera interface
->   uapi: Keem Bay ISP Parameters data types
->   media: v4l: Add Keem Bay Camera meta buffer formats
->   media: Keem Bay Camera: Add ISP sub-device
->   media: Keem Bay Camera: Add metadata video node
->   media: admin-guide: Add documentation for Keem Bay Camera
-> 
-> Martina Krasteva (3):
->   dt-bindings: media: Add bindings for Keem Bay Camera
->   media: Keem Bay Camera: Add pipeline support
->   media: Keem Bay Camera: Add capture video node
-> 
->  Documentation/admin-guide/media/keembay-camera.dot |   12 +
->  Documentation/admin-guide/media/keembay-camera.rst |  174 ++
->  Documentation/admin-guide/media/v4l-drivers.rst    |    1 +
->  .../bindings/media/intel,keembay-camera.yaml       |   98 ++
->  .../userspace-api/media/v4l/meta-formats.rst       |    1 +
->  .../media/v4l/pixfmt-meta-intel-kmb.rst            |   98 ++
->  MAINTAINERS                                        |   14 +
->  drivers/media/platform/Kconfig                     |    1 +
->  drivers/media/platform/Makefile                    |    2 +
->  drivers/media/platform/keembay-camera/Kconfig      |   11 +
->  drivers/media/platform/keembay-camera/Makefile     |    5 +
->  .../platform/keembay-camera/keembay-cam-xlink.c    |  327 ++++
->  .../platform/keembay-camera/keembay-cam-xlink.h    |   49 +
->  .../media/platform/keembay-camera/keembay-camera.c |  287 +++
->  .../media/platform/keembay-camera/keembay-camera.h |   43 +
->  .../media/platform/keembay-camera/keembay-isp.c    | 1397 +++++++++++++++
->  .../media/platform/keembay-camera/keembay-isp.h    |  136 ++
->  .../platform/keembay-camera/keembay-metadata.c     | 1860 ++++++++++++++++++++
->  .../platform/keembay-camera/keembay-metadata.h     |  154 ++
->  .../keembay-camera/keembay-params-defaults.c       |  326 ++++
->  .../keembay-camera/keembay-params-defaults.h       |   38 +
->  .../platform/keembay-camera/keembay-pipeline.c     |  401 +++++
->  .../platform/keembay-camera/keembay-pipeline.h     |   75 +
->  .../media/platform/keembay-camera/keembay-video.c  |  922 ++++++++++
->  .../media/platform/keembay-camera/keembay-video.h  |   74 +
->  .../platform/keembay-camera/keembay-vpu-cmd.h      |  110 ++
->  .../platform/keembay-camera/keembay-vpu-frame.h    |  102 ++
->  .../platform/keembay-camera/keembay-vpu-isp.h      |  724 ++++++++
->  .../platform/keembay-camera/keembay-vpu-pipe.h     |  110 ++
->  .../platform/keembay-camera/keembay-vpu-src.h      |  193 ++
->  include/uapi/linux/keembay-isp-ctl.h               |  796 +++++++++
->  include/uapi/linux/videodev2.h                     |    4 +
->  32 files changed, 8545 insertions(+)
->  create mode 100644 Documentation/admin-guide/media/keembay-camera.dot
->  create mode 100644 Documentation/admin-guide/media/keembay-camera.rst
->  create mode 100644 Documentation/devicetree/bindings/media/intel,keembay-camera.yaml
->  create mode 100644 Documentation/userspace-api/media/v4l/pixfmt-meta-intel-kmb.rst
->  create mode 100644 drivers/media/platform/keembay-camera/Kconfig
->  create mode 100644 drivers/media/platform/keembay-camera/Makefile
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-cam-xlink.c
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-cam-xlink.h
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-camera.c
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-camera.h
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-isp.c
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-isp.h
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-metadata.c
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-metadata.h
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-params-defaults.c
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-params-defaults.h
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-pipeline.c
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-pipeline.h
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-video.c
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-video.h
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-cmd.h
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-frame.h
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-isp.h
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-pipe.h
->  create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-src.h
->  create mode 100644 include/uapi/linux/keembay-isp-ctl.h
-> 
-> 
-> base-commit: f00397ee41c79b6155b9b44abd0055b2c0621349
+This looks fine.
+=20
+> > For me the critical (and only) difference between "off" and
+> > "duty cycle =3D 0" is that when a new configuration is to be applied. In
+> > the "off" state a new period can (and should) start immediately, while
+> > with "duty_cycle =3D 0" the rising edge should be delayed until the
+> > currently running period is over.[1]
+> >=20
+> > So the thing to do here (IMHO) is:
+> >=20
+> > Iff with PIPGM_PCSR =3D 0 configuring a new setting (that is finalized
+> > with writing a non-zero value to PIPGM_PCSR) completes the currently
+> > running period, then always assume the PWM as enabled.
+>=20
+> Yes, this device works that way.
 
--- 
-Regards,
+OK, then please use
 
-Laurent Pinchart
+	state->enabled =3D true
+
+unconditionally in visconti_pwm_get_state().
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--t42vctr7z7mwa3qh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmB5XHYACgkQwfwUeK3K
+7AnT3Qf/UxtGaRC2PkiqZqydmy5iwe/ufofn1G4HLEcTektGyzPwAuCYp21GNVm3
+aBTM7yjUKzm9tI3oxD3wWuSdEAyBp9rwPmyk/376GB7ZHcd2noXSH0DM8d0cYjMg
+l/vekoyFUOAPUMirdO4kdeukZeOU+Caskxd5y/UaZ+Gc9LI70ARXi6QnJbiL/4C2
+ej53UHhf2JZqKYpdPRdkSLuULpJ8mrbQQG1RSP/6YylyGB5aA1X84cw3kwyg7R0o
+LjccDhLne0qkSEi80EMCr3aW29sJjKMiMybOJkwyY62RdXHp1Cdd7c5BS1/+Bhnd
+CeTfOmimMouYVue4qyJstkswR/gHbg==
+=gYIm
+-----END PGP SIGNATURE-----
+
+--t42vctr7z7mwa3qh--
