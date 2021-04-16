@@ -2,113 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6FC8361F0B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 13:46:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79050361F19
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 13:49:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229719AbhDPLpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 07:45:44 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:54500 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229706AbhDPLpo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 07:45:44 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13GBjA7Q112858;
-        Fri, 16 Apr 2021 06:45:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1618573510;
-        bh=LQzKzUALcHK7bf23nielNUyEdHtTqb3reVqwKHmjS60=;
-        h=Subject:CC:References:From:Date:In-Reply-To;
-        b=wKWu8/zh4nW9GmATPJPPnF/1xfuI5rN3BE+Tv7pCr3pgg1uXxP/Mu4f2PQD4oLdg0
-         MUcVn2hRcf+Ek7zkEvXJYe85BWmI8/Slfq/6CPEDRi9FDfYuLoGh+qiERq7hEjwaRc
-         jPSdET8Rgu6/15ZuP7w8y9CpksgLA8EIlBNu+nzw=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13GBjAUH101300
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 16 Apr 2021 06:45:10 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 16
- Apr 2021 06:45:10 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Fri, 16 Apr 2021 06:45:10 -0500
-Received: from [172.24.145.148] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13GBj5EX096321;
-        Fri, 16 Apr 2021 06:45:06 -0500
-Subject: Re: [PATCH v2 0/2] MCAN: Add support for implementing transceiver as
- a phy
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
+        id S235012AbhDPLuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 07:50:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35686 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229706AbhDPLuA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 07:50:00 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEE27C061574;
+        Fri, 16 Apr 2021 04:49:35 -0700 (PDT)
+Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 388732224A;
+        Fri, 16 Apr 2021 13:49:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1618573773;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=oB/Ab68gOO29EsC3+FTgow2Hyng5ZQUfAUylQq2Zats=;
+        b=BmPdDcxQB1Eapv8iuzLFQUGQJMmkEWLN+iC1WMgLX9XgvYdC/LdpG1VQHmIoaQCbC19VmY
+        NWGIbrbdzKftuXcqOst+rDVo+Mp3du3fr/lvnI1M54iPJFGVMbFvugME+g8iNlFrRHp6uG
+        JPT8OMRC8O5Ao/yeO+TrCDZN0X5cwjs=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Faiz Abbas <faiz_abbas@ti.com>
-References: <20210415154635.30094-1-a-govindraju@ti.com>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <2743eef1-6e20-28e5-769a-26ae8eb15dd6@ti.com>
-Date:   Fri, 16 Apr 2021 17:15:04 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH 0/5] mtd: core: OTP nvmem provider support
+Date:   Fri, 16 Apr 2021 13:49:23 +0200
+Message-Id: <20210416114928.27758-1-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20210415154635.30094-1-a-govindraju@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+The goal is to fetch a (base) MAC address from the OTP region of a SPI NOR
+flash.
 
-On 15/04/21 9:16 pm, Aswath Govindraju wrote:
-> The following series of patches add support for implementing the
-> transceiver as a phy of m_can_platform driver.
-> 
-> TCAN1042 has a standby signal that needs to be pulled high for
-> sending/receiving messages[1]. TCAN1043 has a enable signal along with
-> standby signal that needs to be pulled up for sending/receiving
-> messages[2], and other combinations of the two lines can be used to put the
-> transceiver in different states to reduce power consumption. On boards
-> like the AM654-idk and J721e-evm these signals are controlled using gpios.
-> 
-> These gpios are set in phy driver, and the transceiver can be put in
-> different states using phy API. The phy driver is added in the series [3].
-> 
-> This patch series is dependent on [4].
-> 
-> Changes since v1:
-> - Used the API devm_phy_get_optional() instead of 
->   devm_of_phy_get_optional_by_index()
-> 
-> [1] - https://www.ti.com/lit/ds/symlink/tcan1042h.pdf
-> [2] - https://www.ti.com/lit/ds/symlink/tcan1043-q1.pdf
-> [3] - https://lore.kernel.org/patchwork/project/lkml/list/?series=495365
-> [4] - https://lore.kernel.org/patchwork/patch/1413286/
-> 
+This is the first part, where I try to add the nvmem provider support to
+the MTD core.
 
-Posted v3 for this series.
+I'm not sure about the device tree bindings. Consider the following two
+variants:
 
-Thanks,
-Aswath
+(1)
+    flash@0 {
+        ..
 
-> Faiz Abbas (2):
->   dt-bindings: net: can: Document transceiver implementation as phy
->   can: m_can: Add support for transceiver as phy
-> 
->  .../devicetree/bindings/net/can/bosch,m_can.yaml    |  3 +++
->  drivers/net/can/m_can/m_can.c                       | 10 ++++++++++
->  drivers/net/can/m_can/m_can.h                       |  2 ++
->  drivers/net/can/m_can/m_can_platform.c              | 13 +++++++++++++
->  4 files changed, 28 insertions(+)
-> 
+        otp {
+            compatible = "mtd-user-otp";
+            #address-cells = <1>;
+            #size-cells = <1>;
+
+            serial-number@0 {
+                reg = <0x0 0x8>;
+            };
+        };
+    };
+
+(2)
+    flash@0 {
+        ..
+
+        otp {
+            compatible = "mtd-user-otp";
+            #address-cells = <1>;
+            #size-cells = <1>;
+
+			some-useful-name {
+                compatible = "nvmem-cells";
+
+                serial-number@0 {
+                    reg = <0x0 0x8>;
+                };
+			};
+        };
+    };
+
+Both bindings use a subnode "opt[-N]". We cannot have the nvmem cells as
+children to the flash node because of the legacy partition binding.
+
+(1) seems to be the form which is used almost everywhere in the kernel.
+That is, the nvmem cells are just children of the parent node.
+
+(2) seem to be more natural, because there might also be other properties
+inside the otp subnode and might be more future-proof.
+
+At the moment this patch implements (1).
+
+Michael Walle (5):
+  nvmem: core: allow specifying of_node
+  dt-bindings: mtd: add YAML schema for the generic MTD bindings
+  dt-bindings: mtd: add OTP bindings
+  dt-bindings: mtd: spi-nor: add otp property
+  mtd: core: add OTP nvmem provider support
+
+ .../devicetree/bindings/mtd/common.txt        |  16 +-
+ .../bindings/mtd/jedec,spi-nor.yaml           |   6 +
+ .../devicetree/bindings/mtd/mtd.yaml          |  89 +++++++++++
+ drivers/mtd/mtdcore.c                         | 149 ++++++++++++++++++
+ drivers/nvmem/core.c                          |   4 +-
+ include/linux/mtd/mtd.h                       |   2 +
+ include/linux/nvmem-provider.h                |   2 +
+ 7 files changed, 252 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/mtd.yaml
+
+-- 
+2.20.1
 
