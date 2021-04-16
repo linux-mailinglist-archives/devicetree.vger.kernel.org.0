@@ -2,142 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 145C6361A9C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 09:40:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEBE2361ABB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 09:45:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239510AbhDPH2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 03:28:47 -0400
-Received: from mail-db8eur05on2077.outbound.protection.outlook.com ([40.107.20.77]:51808
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S235012AbhDPH2q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Apr 2021 03:28:46 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kJJhnjLGe5u+ptV+I3Cm2NZHyGWFZeZad9A56HwZ3+GpL4g29OkIbAPdeDFBBPc+sSVDHpuEushq/TOKx9KjJNnRn7iVL9py61egHfgPBqaKTRDEHn/9YPGiCqtLONAplGSIld1VDcX9ITTb1vM49Ac++jqWlKlVOWd1/g8zZ1yTEzLIfHZu6ZIReC4RUDyp5GQ4CTU4H2xAO8xa0dOboOM4tDE0zEfzOfEksEtpIHeacQYiO/lMazGe4wkhgVEPV6/hgZ0rXA+7g2k0+sw5Jk/V3wiKfXB20kEzN8aUWBo+wAQCtdhUkjBsVA+O4aCZdCy8yJx1DlzayYCmSbVOow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=32Uba/Be5p938DF9skUUWKDuXeixpBUKOnowg8GBKEE=;
- b=ID65P4rWGDNPixX/GBmzywrltVBKF4wTSdddfJoinOkGHvCjFuHUfug6hS/NcgJ9mMcMT8pXC1gVagxVrEP+GNNDbN6iJfMy/iXHL52SCSwrM0iFiufBvM435hhl9loWY5mkBcBXAhUZ9x1kNP+gxNnnWGCz/Lbr/ecujRKYXJc3Amf9KFWXKr9sbdMCfrlLbMu1BTffTfcSBfy3w/+R1U33PJAQTGkyodzs+u7dYoX54Mi16JFjFKw/cRggfdKmPnD6hh3ofrphGLdFEq4vE/YEO17QwbM/pnZwrrX3p3DotkTtrlzefTe0T/2P240EoBcnz7jGE5JoguAsc3TecQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=32Uba/Be5p938DF9skUUWKDuXeixpBUKOnowg8GBKEE=;
- b=YrJRL/6t9oj9DjWWkCB/0CbeAGf+2MgKDvIo8XHwokKVEKph8hoDuih6O1vkyXfT9cm0C6I7pIcaVNjn0dZLbBs8f6LiFusaaRka1eLE2fFipIcUrGjb02d0KqgyY4ZrggJmkMvoCr2+5RTsZ6fABiA5m7LmY++eoCebwILSrPU=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from DBBPR04MB7930.eurprd04.prod.outlook.com (2603:10a6:10:1ea::12)
- by DB6PR0401MB2374.eurprd04.prod.outlook.com (2603:10a6:4:4c::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.19; Fri, 16 Apr
- 2021 07:28:20 +0000
-Received: from DBBPR04MB7930.eurprd04.prod.outlook.com
- ([fe80::ddbd:8680:c613:2274]) by DBBPR04MB7930.eurprd04.prod.outlook.com
- ([fe80::ddbd:8680:c613:2274%5]) with mapi id 15.20.4020.022; Fri, 16 Apr 2021
- 07:28:20 +0000
-From:   Jacky Bai <ping.bai@nxp.com>
-To:     shawnguo@kernel.org, robh+dt@kernel.org, abel.vesa@nxp.com,
-        s.hauer@pengutronix.de
-Cc:     festevam@gmail.com, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-imx@nxp.com
-Subject: [PATCH 2/2] clk: imx: Remove the audio ipg clock from imx8mp
-Date:   Fri, 16 Apr 2021 15:37:03 +0800
-Message-Id: <20210416073703.1037718-2-ping.bai@nxp.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210416073703.1037718-1-ping.bai@nxp.com>
-References: <20210416073703.1037718-1-ping.bai@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.71]
-X-ClientProxiedBy: HKAPR04CA0017.apcprd04.prod.outlook.com
- (2603:1096:203:d0::27) To DBBPR04MB7930.eurprd04.prod.outlook.com
- (2603:10a6:10:1ea::12)
+        id S235012AbhDPHl3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 03:41:29 -0400
+Received: from userp2130.oracle.com ([156.151.31.86]:43600 "EHLO
+        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231666AbhDPHl2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 03:41:28 -0400
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 13G7XvJx008767;
+        Fri, 16 Apr 2021 07:40:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=corp-2020-01-29;
+ bh=ljDSDK3Q1ImvITaEF0v+ltA3ZnYUagyVmRJFy5Xu9UU=;
+ b=eQPVRVL+7ECrSdEhckrbFCa5aHAsjIujPsQ/dyeOJVCXiHl64BqkEcJ+yWTVXC4CofbD
+ WUVMaCKrcSAuBL8YZz5HUrNjvXBbxiegHAvIqzgg+pBp8b91l7X2eSaC5bpQQZNzPPax
+ 2ECyhwhUmZrvP3Ov2ddcYr+Q/ytzcqmQ7H8UIxuDYOAE2KTDHVRReEAmbG9hYfIfKV0l
+ 2vDQkkuqhmxs2yzsaroG9vA+JNZkKu5Sb/06MLFTWN5PvrZPnt8fIGcKQGAmNoOWsBDC
+ m7j48WooLDuaBeIfQepiGPwuDTsCYSn35XIfocqi9D3gymfOPWAi+AHK4sXRQRqksqvP Gw== 
+Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
+        by userp2130.oracle.com with ESMTP id 37u3err83p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 16 Apr 2021 07:40:48 +0000
+Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
+        by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 13G7dp7K132935;
+        Fri, 16 Apr 2021 07:40:47 GMT
+Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
+        by aserp3020.oracle.com with ESMTP id 37unx43x6e-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 16 Apr 2021 07:40:46 +0000
+Received: from abhmp0016.oracle.com (abhmp0016.oracle.com [141.146.116.22])
+        by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 13G7efs0010074;
+        Fri, 16 Apr 2021 07:40:41 GMT
+Received: from kadam (/102.36.221.92)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Fri, 16 Apr 2021 00:40:41 -0700
+Date:   Fri, 16 Apr 2021 10:40:34 +0300
+From:   Dan Carpenter <dan.carpenter@oracle.com>
+To:     Daniel Axtens <dja@axtens.net>
+Cc:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        robh@kernel.org, devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        kbuild-all@lists.01.org, lkp@intel.com, bauerman@linux.ibm.com
+Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in
+ elf64_load()
+Message-ID: <20210416074034.GN6048@kadam>
+References: <20210415191437.20212-1-nramas@linux.microsoft.com>
+ <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
+ <87eefag241.fsf@linkitivity.dja.id.au>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.71) by HKAPR04CA0017.apcprd04.prod.outlook.com (2603:1096:203:d0::27) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.16 via Frontend Transport; Fri, 16 Apr 2021 07:28:18 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 02270ad2-7f7f-49db-5d58-08d900a9360d
-X-MS-TrafficTypeDiagnostic: DB6PR0401MB2374:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB6PR0401MB237415275E9557E1041C4542874C9@DB6PR0401MB2374.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:792;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: IqEjiFkW/+N2yo1kcBIQb/TagrR+X9RYIlRTPFPrjb9OekwIS7byUkx0d67ykwY11XMk+/u8LcIhDyfwq0r6bI+J/iYkOLwbxi2VIv7NN8a7i5f4PEldCW12Acfj8H/RUZRg+oODW1DdI4ooORAHDb0RnfsXz7jfsA8LbeJCpDBNL/AFtDkzqqfz/1dAIiCrcR7n5rhrDPrI3q+SWBulD/Z/J18+iU/BJISzkPPTzKklXRoVTvBGcDyPC6RUOMzLSPNMzE/1ipTHeu2P1xIHB8D14Sitebcuv8ws8ETrbAMQVw+2l71LNiBN6o2CBixStcgkoNrLT8ROKiD8+rdYPW7Q9mHARuZ37lSyklNTxt48eWJI3M5v8opbSysbovuSmW88TKFiLTqM2FhStVCG0fWSOgte3NZ+vYUBCaubMcKvjBlbhlZ+O92FKu4k5m/+WS9DaCn6rqTndUQW1tN6Mn44LQ83kGstSB+/YyGp0wvwxFwKJlpCOBcY30Op5IKv2hVZxCwQmbE2Ck2oUrR7ukC87DHC2Nv2Xf/v7NxM2mFGQDSbQJ40r8q2nM2QaFxvM4OJSO8bWwIkLKeVhViu6vI6ItPkohJnQRrMUcie72vynqcx65/lUPliA17x46E6D1vDnA38ocvdiUYWEb0i/lfEjq9npFjxk2e+4q0o7lpp0lrDjlU0WBHXxXul47ORAKnY345WfNeZx1FsDw3tNA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7930.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(346002)(39850400004)(396003)(376002)(366004)(83380400001)(1076003)(52116002)(6506007)(956004)(66946007)(86362001)(316002)(6666004)(66476007)(5660300002)(2616005)(186003)(16526019)(2906002)(26005)(6512007)(69590400012)(478600001)(38350700002)(38100700002)(36756003)(8676002)(8936002)(4326008)(66556008)(6486002)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?1+pPSMs71OEOV17idxQwGmnV8ozk+mahDumy1d+7+YH12vX9uwUwvhFMLvvJ?=
- =?us-ascii?Q?RvTQNzZpxaUPBgHo95n6D9prmD3PzzjRCd00lKkhqfltAa4j/K19ij87bBaJ?=
- =?us-ascii?Q?EB2XbFyhYE5sVS0MM+yn0v1c/DKaXwW2K8P9wPE6ZHdfdCegCAHrR+7MGYPF?=
- =?us-ascii?Q?m1Ad5ZpF/bXdi41UIXIqI9baVqp7EUz2o8nZyjfoYP5Ew9enXygYlEMYY2qZ?=
- =?us-ascii?Q?bW5+NW4QECdDIEKD4/rth639VAf4fJev/zhnRy9xnpxAzBPs5VlX6zSVU4vd?=
- =?us-ascii?Q?8pKVEORGfR+75eU/K2POF0OBBNQnV5ujQ1G8tRdekoi7g7oH8g83DMxU9FDP?=
- =?us-ascii?Q?qFCHVwjoWRz19HIs8tP3JrlSl8yXRE9IEHWqZRjbtWtdmoOWHhqa/kVhSgG3?=
- =?us-ascii?Q?AyQNhCpKAG8Cfp34eEaSutnKULoXaVk/zl2/jouLChOsZnP01VdEK0Q3aNrF?=
- =?us-ascii?Q?2tEkdfPFOsQF3HrV0J7mFdzFr4BsW2TEN1HA7y2b5QN1/lB8/zYf4L1DANQ3?=
- =?us-ascii?Q?NPvfF6qLW8ELENunqplcqCbiLjG6ehkU/zAJ5oLO9t8iJW8UiJV37OsbVjPf?=
- =?us-ascii?Q?DQI90Rl9eeyYXDgYSvmPP/29kAnmdKFHr5l+TJlQjPNAUvUh/xYVYmpJLC/Z?=
- =?us-ascii?Q?jOz9EfK7TOwytbL1efQUK1T/iWIH0xfjm5ITAZp+gSdr0tjNFtFn8I27TaPQ?=
- =?us-ascii?Q?mBej1xuFUgqWiNpFzMNb4fwDnE64BY88r4Bu6wGPH0bG3Q2rTDTCPrwAA4Iq?=
- =?us-ascii?Q?jCcSqkd+UWGWlmoUZd6nuXqweq6kzJ4vB9s0d2WN/dtXQZEpb1oww++rc73i?=
- =?us-ascii?Q?LgpCTEj/8Tr7c1bMpDuM/xBbcNDpJx78lHRmpwhmEVakFcNYBq/o6qaZXQKJ?=
- =?us-ascii?Q?vChYTC9xE59WIu+J8MVqa5ROT+mNdAIQL3zSmWjVe5pf71D0GIVhdBa2GyQj?=
- =?us-ascii?Q?qS67OGrTEsaU9UEHhoMorcKvUsFbwB3/C7uSuJALbpZQWk40aHYPk/kg/n79?=
- =?us-ascii?Q?1E9u9FMFbyUNw2UzrdZqv3xUT3VzfMUnQQUoBZffDxQevNI7A4AtU+Air0kr?=
- =?us-ascii?Q?j3Q1AKBiUNES2LhZeHzQIdVv0Wda5jU5xbmeY7APltkAnlWQ/VCl9yntMsN+?=
- =?us-ascii?Q?Y/ORCIGD6O1DaXprhw0hDPG5UALWfKkuavEoLyJr9r5ynfXLj7RqwwTidAmG?=
- =?us-ascii?Q?sB6GmeGGjIfeaBHBmpso5pCTFNC3AjmXhnTlFC/3cJtGgLYYiLm6LdWPTjeA?=
- =?us-ascii?Q?6bmnOAOIFf0/D67DoTDnr+dK04KpkiSHuQSfVQXikZurarcP8NfDyjdEGJao?=
- =?us-ascii?Q?3cjcKRy/bveYDsGewJ9JVIg5?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02270ad2-7f7f-49db-5d58-08d900a9360d
-X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7930.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2021 07:28:20.7437
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: A+JN1+6vF9GNbUr5epHqo6yWmE3CW6zJNKZVocVCPARevSFLGlzrPpvw49QBJ6K8+Rjx/te1io7768Uo8WLwTA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0401MB2374
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87eefag241.fsf@linkitivity.dja.id.au>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-IMR: 1
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9955 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 suspectscore=0
+ mlxscore=0 malwarescore=0 adultscore=0 bulkscore=0 spamscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104060000 definitions=main-2104160057
+X-Proofpoint-ORIG-GUID: PIKedz6Dm6ImVWbKw9yHjEjKggRYogvD
+X-Proofpoint-GUID: PIKedz6Dm6ImVWbKw9yHjEjKggRYogvD
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9955 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 clxscore=1011
+ adultscore=0 mlxlogscore=999 bulkscore=0 malwarescore=0 spamscore=0
+ impostorscore=0 suspectscore=0 mlxscore=0 phishscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104060000
+ definitions=main-2104160056
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is no audio ipg clock on i.MX8MP, so remove this from
-the clock driver.
+On Fri, Apr 16, 2021 at 04:44:30PM +1000, Daniel Axtens wrote:
+> Hi Lakshmi,
+> 
+> > On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
+> >
+> > Sorry - missed copying device-tree and powerpc mailing lists.
+> >
+> >> There are a few "goto out;" statements before the local variable "fdt"
+> >> is initialized through the call to of_kexec_alloc_and_setup_fdt() in
+> >> elf64_load(). This will result in an uninitialized "fdt" being passed
+> >> to kvfree() in this function if there is an error before the call to
+> >> of_kexec_alloc_and_setup_fdt().
+> >> 
+> >> Initialize the local variable "fdt" to NULL.
+> >>
+> I'm a huge fan of initialising local variables!
 
-Signed-off-by: Jacky Bai <ping.bai@nxp.com>
----
- drivers/clk/imx/clk-imx8mp.c             | 1 -
- include/dt-bindings/clock/imx8mp-clock.h | 1 -
- 2 files changed, 2 deletions(-)
+Don't be!  It just disables static checker warnings and hides bugs.
+The kbuild emails are archived but the email is mangled and unreadable.
+https://www.mail-archive.com/kbuild@lists.01.org/msg06371.html
 
-diff --git a/drivers/clk/imx/clk-imx8mp.c b/drivers/clk/imx/clk-imx8mp.c
-index e39c9c907c38..12837304545d 100644
---- a/drivers/clk/imx/clk-imx8mp.c
-+++ b/drivers/clk/imx/clk-imx8mp.c
-@@ -556,7 +556,6 @@ static int imx8mp_clocks_probe(struct platform_device *pdev)
- 	hws[IMX8MP_CLK_MIPI_DSI_ESC_RX] = imx8m_clk_hw_composite_bus("mipi_dsi_esc_rx", imx8mp_mipi_dsi_esc_rx_sels, ccm_base + 0x9200);
- 
- 	hws[IMX8MP_CLK_IPG_ROOT] = imx_clk_hw_divider2("ipg_root", "ahb_root", ccm_base + 0x9080, 0, 1);
--	hws[IMX8MP_CLK_IPG_AUDIO_ROOT] = imx_clk_hw_divider2("ipg_audio_root", "audio_ahb", ccm_base + 0x9180, 0, 1);
- 
- 	hws[IMX8MP_CLK_DRAM_ALT] = imx8m_clk_hw_composite("dram_alt", imx8mp_dram_alt_sels, ccm_base + 0xa000);
- 	hws[IMX8MP_CLK_DRAM_APB] = imx8m_clk_hw_composite_critical("dram_apb", imx8mp_dram_apb_sels, ccm_base + 0xa080);
-diff --git a/include/dt-bindings/clock/imx8mp-clock.h b/include/dt-bindings/clock/imx8mp-clock.h
-index 43927a1b9e94..235c7a00d379 100644
---- a/include/dt-bindings/clock/imx8mp-clock.h
-+++ b/include/dt-bindings/clock/imx8mp-clock.h
-@@ -117,7 +117,6 @@
- #define IMX8MP_CLK_AUDIO_AHB			108
- #define IMX8MP_CLK_MIPI_DSI_ESC_RX		109
- #define IMX8MP_CLK_IPG_ROOT			110
--#define IMX8MP_CLK_IPG_AUDIO_ROOT		111
- #define IMX8MP_CLK_DRAM_ALT			112
- #define IMX8MP_CLK_DRAM_APB			113
- #define IMX8MP_CLK_VPU_G1			114
--- 
-2.26.2
+I think maybe you're not on the most recent code.  In linux-next this
+code looks like:
 
+arch/powerpc/kexec/elf_64.c
+    27  static void *elf64_load(struct kimage *image, char *kernel_buf,
+    28                          unsigned long kernel_len, char *initrd,
+    29                          unsigned long initrd_len, char *cmdline,
+    30                          unsigned long cmdline_len)
+    31  {
+    32          int ret;
+    33          unsigned long kernel_load_addr;
+    34          unsigned long initrd_load_addr = 0, fdt_load_addr;
+    35          void *fdt;
+    36          const void *slave_code;
+    37          struct elfhdr ehdr;
+    38          char *modified_cmdline = NULL;
+    39          struct kexec_elf_info elf_info;
+    40          struct kexec_buf kbuf = { .image = image, .buf_min = 0,
+    41                                    .buf_max = ppc64_rma_size };
+    42          struct kexec_buf pbuf = { .image = image, .buf_min = 0,
+    43                                    .buf_max = ppc64_rma_size, .top_down = true,
+    44                                    .mem = KEXEC_BUF_MEM_UNKNOWN };
+    45  
+    46          ret = kexec_build_elf_info(kernel_buf, kernel_len, &ehdr, &elf_info);
+    47          if (ret)
+    48                  goto out;
+                        ^^^^^^^^
+I really despise "goto out;" because freeing things which haven't been
+allocated is always dangerous.
+
+[ snip ].
+
+
+   143  out:
+   144          kfree(modified_cmdline);
+   145          kexec_free_elf_info(&elf_info);
+                                     ^^^^^^^^
+There is a possibility that "elf_info" has holds uninitialized stack
+data if elf_read_ehdr() fails so that's probably fixing as well.  kexec()
+is root only so this can't be exploited.
+
+   146  
+   147          /*
+   148           * Once FDT buffer has been successfully passed to kexec_add_buffer(),
+   149           * the FDT buffer address is saved in image->arch.fdt. In that case,
+   150           * the memory cannot be freed here in case of any other error.
+   151           */
+   152          if (ret && !image->arch.fdt)
+   153                  kvfree(fdt);
+                               ^^^
+Uninitialized.
+
+   154  
+   155          return ret ? ERR_PTR(ret) : NULL;
+   156  }
+
+regards,
+dan carpenter
