@@ -2,167 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C20D3620FB
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 15:31:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EBCC362139
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 15:40:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243944AbhDPNcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 09:32:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44038 "EHLO mail.kernel.org"
+        id S232642AbhDPNkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 09:40:45 -0400
+Received: from elvis.franken.de ([193.175.24.41]:53884 "EHLO elvis.franken.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235011AbhDPNcJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Apr 2021 09:32:09 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4ED9B611AB;
-        Fri, 16 Apr 2021 13:31:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618579904;
-        bh=+ixLBXsOQJbJhcO4SAHjGAMGE+PG5w0UMyRTyWbfUW0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=RkQoER3ROwKwtIfeNG4gzDVgxV/cdgdMFzjPes8ZQA3vllFVAeFdTn84ELK2W7s1y
-         ddt7UcSvgfBcSkZTCd7Iz8JigS/vBdE/PHEpd8uX6hOYuh1/65KvuhqodyD6B0Jzbb
-         ++e+lWNIDSCb3rB8hdsje0cn+1VqIbakmJI9ka9F06yh8gOpr/DdAkdnC60vJIoRIl
-         xZfvechAVBVjc081CJ7y5E+6QG/1x3L7J9vDXX4Ew02sLVLVjMgI5eOKl/FEA3S9GE
-         3z7+5w7DDLgR3OHbL2ivqJQ8tZJ5SCBFrrfegwgQ7biR19Lx/wI1f/LFAWqCHw8h+T
-         3p6VnMnzZipig==
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        Felipe Balbi <felipe.balbi@microsoft.com>
-Subject: [PATCH 2/2] arm64: boot: dts: qcom: sm8150: Add DMA nodes
-Date:   Fri, 16 Apr 2021 16:31:33 +0300
-Message-Id: <20210416133133.2067467-3-balbi@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210416133133.2067467-1-balbi@kernel.org>
-References: <20210416133133.2067467-1-balbi@kernel.org>
+        id S235192AbhDPNkn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Apr 2021 09:40:43 -0400
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1lXOhk-0002lT-00; Fri, 16 Apr 2021 15:40:16 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id A52AAC04CD; Fri, 16 Apr 2021 15:35:36 +0200 (CEST)
+Date:   Fri, 16 Apr 2021 15:35:36 +0200
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Subject: Re: [PATCH v5 net-next 10/10] dt-bindings: net: korina: Add DT
+ bindings for IDT 79RC3243x SoCs
+Message-ID: <20210416133536.GA10451@alpha.franken.de>
+References: <20210416085207.63181-1-tsbogend@alpha.franken.de>
+ <20210416085207.63181-11-tsbogend@alpha.franken.de>
+ <ca4d9975-c153-94c9-dec8-bf9416c76b45@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ca4d9975-c153-94c9-dec8-bf9416c76b45@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Felipe Balbi <felipe.balbi@microsoft.com>
+On Fri, Apr 16, 2021 at 12:29:46PM +0300, Sergei Shtylyov wrote:
+> On 16.04.2021 11:52, Thomas Bogendoerfer wrote:
+> 
+> > Add device tree bindings for ethernet controller integrated into
+> > IDT 79RC3243x SoCs.
+> > 
+> > Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> > ---
+> >   .../bindings/net/idt,3243x-emac.yaml          | 74 +++++++++++++++++++
+> >   1 file changed, 74 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/net/idt,3243x-emac.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/idt,3243x-emac.yaml b/Documentation/devicetree/bindings/net/idt,3243x-emac.yaml
+> > new file mode 100644
+> > index 000000000000..3697af5cb66f
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/idt,3243x-emac.yaml
+> > @@ -0,0 +1,74 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/idt,3243x-emac.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: IDT 79rc3243x Ethernet controller
+> > +
+> > +description: Ethernet controller integrated into IDT 79RC3243x family SoCs
+> > +
+> > +maintainers:
+> > +  - Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> > +
+> > +allOf:
+> > +  - $ref: ethernet-controller.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: idt,3243x-emac
+> > +
+> > +  reg:
+> > +    maxItems: 3
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: korina_regs
+> > +      - const: korina_dma_rx
+> > +      - const: korina_dma_tx
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: RX interrupt
+> > +      - description: TX interrupt
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: korina_rx
+> > +      - const: korina_tx
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: mdioclk
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - interrupts
+> > +  - interrupt-names
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +
+> > +    ethernet@60000 {
+> > +        compatible = "idt,3243x-emac";
+> > +
+> > +        reg = <0x60000 0x10000>,
+> > +              <0x40000 0x14>,
+> > +              <0x40014 0x14>;
+> > +        reg-names = "korina_regs",
+> > +                    "korina_dma_rx",
+> > +                    "korina_dma_tx";
+> > +
+> > +        interrupts-extended = <&rcpic3 0>, <&rcpic3 1>;
+> 
+>    You use this prop, yet don't describe it?
 
-With this patch, DMA has a chance of probing and doing something
-useful.
+that's just interrupt-parent and interrupts in one statement. And since
+make dt_binding_check didn't complained I thought that's good this way.
+Rob, do I need to describe interrupts-extended as well ?
 
-Signed-off-by: Felipe Balbi <felipe.balbi@microsoft.com>
----
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 72 ++++++++++++++++++++++++++++
- 1 file changed, 72 insertions(+)
+I could change that to interrupt-parent/interrupts as the driver no
+longer uses dma under/overrun interrupts, which have a different
+interrupt-parent.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index c563f381a138..b426e935a36b 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -4,6 +4,7 @@
-  * Copyright (c) 2019, Linaro Limited
-  */
- 
-+#include <dt-bindings/dma/qcom-gpi.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/power/qcom-aoss-qmp.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
-@@ -577,6 +578,29 @@ gcc: clock-controller@100000 {
- 				 <&sleep_clk>;
- 		};
- 
-+		gpi_dma0: qcom,gpi-dma@800000 {
-+			#dma-cells = <3>;
-+			compatible = "qcom,sm8150-gpi-dma";
-+			reg = <0 0x800000 0 0x60000>;
-+			interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 253 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>;
-+			dma-channels = <13>;
-+			dma-channel-mask = <0xfa>;
-+			iommus = <&apps_smmu 0x00d6 0x0>;
-+			status = "disabled";
-+		};
-+
- 		qupv3_id_0: geniqup@8c0000 {
- 			compatible = "qcom,geni-se-qup";
- 			reg = <0x0 0x008c0000 0x0 0x6000>;
-@@ -612,6 +636,8 @@ spi0: spi@880000 {
- 				pinctrl-0 = <&qup_spi0_default>;
- 				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
- 				spi-max-frequency = <50000000>;
-+				dmas = <&gpi_dma0 0 0 QCOM_GPI_SPI>,
-+				       <&gpi_dma0 1 0 QCOM_GPI_SPI>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				status = "disabled";
-@@ -814,6 +840,29 @@ spi7: spi@89c000 {
- 			};
- 		};
- 
-+		gpi_dma1: qcom,gpi-dma@a00000 {
-+			#dma-cells = <3>;
-+			compatible = "qcom,sm8150-gpi-dma";
-+			reg = <0 0xa00000 0 0x60000>;
-+			interrupts = <GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 280 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 281 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 294 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 295 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 296 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 298 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
-+			dma-channels = <13>;
-+			dma-channel-mask = <0xfa>;
-+			iommus = <&apps_smmu 0x0616 0x0>;
-+			status = "disabled";
-+		};
-+
- 		qupv3_id_1: geniqup@ac0000 {
- 			compatible = "qcom,geni-se-qup";
- 			reg = <0x0 0x00ac0000 0x0 0x6000>;
-@@ -1004,6 +1053,29 @@ spi16: spi@a94000 {
- 			};
- 		};
- 
-+		gpi_dma2: qcom,gpi-dma@c00000 {
-+			#dma-cells = <3>;
-+			compatible = "qcom,sm8150-gpi-dma";
-+			reg = <0 0xc00000 0 0x60000>;
-+			interrupts = <GIC_SPI 588 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 589 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 590 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 591 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 592 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 593 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 594 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 595 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 596 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 597 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 598 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 599 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 600 IRQ_TYPE_LEVEL_HIGH>;
-+			dma-channels = <13>;
-+			dma-channel-mask = <0xfa>;
-+			iommus = <&apps_smmu 0x07b6 0x0>;
-+			status = "disabled";
-+		};
-+
- 		qupv3_id_2: geniqup@cc0000 {
- 			compatible = "qcom,geni-se-qup";
- 			reg = <0x0 0x00cc0000 0x0 0x6000>;
+Thomas.
+
 -- 
-2.31.1
-
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
