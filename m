@@ -2,227 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E24C8361B62
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 10:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D92FA361B75
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 10:34:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240131AbhDPIIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 04:08:24 -0400
-Received: from mo-csw1515.securemx.jp ([210.130.202.154]:51128 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235020AbhDPIIW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 04:08:22 -0400
-Received: by mo-csw.securemx.jp (mx-mo-csw1515) id 13G87UGW003391; Fri, 16 Apr 2021 17:07:30 +0900
-X-Iguazu-Qid: 34tr9jB2dbDVDmZAI3
-X-Iguazu-QSIG: v=2; s=0; t=1618560450; q=34tr9jB2dbDVDmZAI3; m=yhkDNzpcSRv3VLZjqeMnV3i50xF81NUOuQ8lkDquMT8=
-Received: from imx12-a.toshiba.co.jp (imx12-a.toshiba.co.jp [61.202.160.135])
-        by relay.securemx.jp (mx-mr1511) id 13G87Sx8021320
-        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-        Fri, 16 Apr 2021 17:07:28 +0900
-Received: from enc02.toshiba.co.jp (enc02.toshiba.co.jp [61.202.160.51])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by imx12-a.toshiba.co.jp (Postfix) with ESMTPS id BE3501000AA;
-        Fri, 16 Apr 2021 17:07:28 +0900 (JST)
-Received: from hop101.toshiba.co.jp ([133.199.85.107])
-        by enc02.toshiba.co.jp  with ESMTP id 13G87Sho013100;
-        Fri, 16 Apr 2021 17:07:28 +0900
-Date:   Fri, 16 Apr 2021 17:07:21 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
-        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] pwm: visconti: Add Toshiba Visconti SoC PWM
- support
-X-TSB-HOP: ON
-Message-ID: <20210416080721.oa7xdvu22w2b2rkf@toshiba.co.jp>
-References: <20210409230837.1919744-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20210409230837.1919744-3-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20210410135321.oissremqropvrpd3@pengutronix.de>
- <20210412025536.i5chpp6sighunvfx@toshiba.co.jp>
- <20210412070232.6q3cgqvuj53p4cmi@pengutronix.de>
+        id S238714AbhDPIKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 04:10:36 -0400
+Received: from aserp2130.oracle.com ([141.146.126.79]:58110 "EHLO
+        aserp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234708AbhDPIKg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 04:10:36 -0400
+Received: from pps.filterd (aserp2130.oracle.com [127.0.0.1])
+        by aserp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 13G89lxu134768;
+        Fri, 16 Apr 2021 08:09:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ content-transfer-encoding : in-reply-to; s=corp-2020-01-29;
+ bh=TnjrNqXGwzrmLLe3F50P/kR2nYY4gyJkqThCBP01mmg=;
+ b=cF7nXLe1SDiiik8nJ3mwtWOKSrLB63xl+MisOQqDXbLoK9mN3dFrh7Dcn4d5T2j/ILy9
+ KOc1Mj68iwObAwEfn2Nc0jr/IK9wtbFkI54KOVuPfgZH1uEQf17Yi+KGKI1Y+j856Psl
+ oAPDFB8YIip2owg8GMJ+vJ+3ZaUvVCQmsU8CNcYlrHrq34eWzdPfWROFrILzv4UVUP/B
+ Vw9upcZHdGNzbEge7o0X3+MzgBdHq4T4uPaFlzTPrSL72Qw40G8LG/hCUNjnAAJeBzr2
+ S79vGN6cSfA1IvSnL1wl1LpkXtX5Ke9lTqeWqfh1bb1U4yLS8PgJlhdQYa30bIzMKSio YA== 
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+        by aserp2130.oracle.com with ESMTP id 37u1hbrda6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 16 Apr 2021 08:09:54 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+        by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 13G80gTT002449;
+        Fri, 16 Apr 2021 08:09:53 GMT
+Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
+        by aserp3030.oracle.com with ESMTP id 37unkttprp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 16 Apr 2021 08:09:52 +0000
+Received: from abhmp0018.oracle.com (abhmp0018.oracle.com [141.146.116.24])
+        by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 13G89oV9006168;
+        Fri, 16 Apr 2021 08:09:50 GMT
+Received: from kadam (/102.36.221.92)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Fri, 16 Apr 2021 01:09:50 -0700
+Date:   Fri, 16 Apr 2021 11:09:41 +0300
+From:   Dan Carpenter <dan.carpenter@oracle.com>
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Daniel Axtens <dja@axtens.net>,
+        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        robh@kernel.org, devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        kbuild-all@lists.01.org, bauerman@linux.ibm.com, lkp@intel.com
+Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in
+ elf64_load()
+Message-ID: <20210416080941.GO6048@kadam>
+References: <20210415191437.20212-1-nramas@linux.microsoft.com>
+ <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
+ <87eefag241.fsf@linkitivity.dja.id.au>
+ <f82a9fe2-3254-3f25-616c-10e56103bdc6@csgroup.eu>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210412070232.6q3cgqvuj53p4cmi@pengutronix.de>
+In-Reply-To: <f82a9fe2-3254-3f25-616c-10e56103bdc6@csgroup.eu>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-IMR: 1
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9955 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 mlxlogscore=999
+ adultscore=0 phishscore=0 malwarescore=0 mlxscore=0 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104060000 definitions=main-2104160060
+X-Proofpoint-GUID: 6HXQ_LEuwfVp63QXRqzWQcS2rPDaKaDw
+X-Proofpoint-ORIG-GUID: 6HXQ_LEuwfVp63QXRqzWQcS2rPDaKaDw
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9955 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 priorityscore=1501
+ clxscore=1011 adultscore=0 mlxlogscore=999 impostorscore=0 malwarescore=0
+ lowpriorityscore=0 spamscore=0 phishscore=0 bulkscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104060000
+ definitions=main-2104160061
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-Thanks for your review.
-
-On Mon, Apr 12, 2021 at 09:02:32AM +0200, Uwe Kleine-König wrote:
-> On Mon, Apr 12, 2021 at 11:55:36AM +0900, Nobuhiro Iwamatsu wrote:
-> > Hi Uwe,
+On Fri, Apr 16, 2021 at 09:00:12AM +0200, Christophe Leroy wrote:
+> 
+> 
+> Le 16/04/2021 à 08:44, Daniel Axtens a écrit :
+> > Hi Lakshmi,
 > > 
-> > Thanks for your review.
+> > > On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
+> > > 
+> > > Sorry - missed copying device-tree and powerpc mailing lists.
+> > > 
+> > > > There are a few "goto out;" statements before the local variable "fdt"
+> > > > is initialized through the call to of_kexec_alloc_and_setup_fdt() in
+> > > > elf64_load(). This will result in an uninitialized "fdt" being passed
+> > > > to kvfree() in this function if there is an error before the call to
+> > > > of_kexec_alloc_and_setup_fdt().
+> > > > 
+> > > > Initialize the local variable "fdt" to NULL.
+> > > > 
+> > I'm a huge fan of initialising local variables! But I'm struggling to
+> > find the code path that will lead to an uninit fdt being returned...
 > > 
-> > On Sat, Apr 10, 2021 at 03:53:21PM +0200, Uwe Kleine-König wrote:
-> > > Hello,
-> > > 
-> > > just a few small details left to criticize ...
-> > > 
-> > > On Sat, Apr 10, 2021 at 08:08:37AM +0900, Nobuhiro Iwamatsu wrote:
-> > > > diff --git a/drivers/pwm/pwm-visconti.c b/drivers/pwm/pwm-visconti.c
-> > > > new file mode 100644
-> > > > index 000000000000..99d83f94ed86
-> > > > --- /dev/null
-> > > > +++ b/drivers/pwm/pwm-visconti.c
-> > > > @@ -0,0 +1,188 @@
-> > > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > > +/*
-> > > > + * Toshiba Visconti pulse-width-modulation controller driver
-> > > > + *
-> > > > + * Copyright (c) 2020 TOSHIBA CORPORATION
-> > > > + * Copyright (c) 2020 Toshiba Electronic Devices & Storage Corporation
-> > > > + *
-> > > > + * Authors: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> > > > + *
-> > > > + */
-> > > > +
-> > > > +#include <linux/err.h>
-> > > > +#include <linux/io.h>
-> > > > +#include <linux/module.h>
-> > > > +#include <linux/of_device.h>
-> > > > +#include <linux/platform_device.h>
-> > > > +#include <linux/pwm.h>
-> > > > +
-> > > > +#define PIPGM_PCSR(ch) (0x400 + 4 * (ch))
-> > > > +#define PIPGM_PDUT(ch) (0x420 + 4 * (ch))
-> > > > +#define PIPGM_PWMC(ch) (0x440 + 4 * (ch))
-> > > > +
-> > > > +#define PIPGM_PWMC_PWMACT		BIT(5)
-> > > > +#define PIPGM_PWMC_CLK_MASK		GENMASK(1, 0)
-> > > > +#define PIPGM_PWMC_POLARITY_MASK	GENMASK(5, 5)
-> > > > +
-> > > > +struct visconti_pwm_chip {
-> > > > +	struct pwm_chip chip;
-> > > > +	void __iomem *base;
-> > > > +};
-> > > > +
-> > > > +static inline struct visconti_pwm_chip *to_visconti_chip(struct pwm_chip *chip)
-> > > > +{
-> > > > +	return container_of(chip, struct visconti_pwm_chip, chip);
-> > > > +}
-> > > > +
-> > > > +static int visconti_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> > > > +			      const struct pwm_state *state)
-> > > > +{
-> > > > +	struct visconti_pwm_chip *priv = to_visconti_chip(chip);
-> > > > +	u32 period, duty_cycle, pwmc0;
-> > > > +
-> > > > +	/*
-> > > > +	 * pwmc is a 2-bit divider for the input clock running at 1 MHz.
-> > > > +	 * When the settings of the PWM are modified, the new values are shadowed in hardware until
-> > > > +	 * the period register (PCSR) is written and the currently running period is completed. This
-> > > > +	 * way the hardware switches atomically from the old setting to the new.
-> > > > +	 * Also, disabling the hardware completes the currently running period and keeps the output
-> > > > +	 * at low level at all times.
-> > > 
-> > > Can you please put a paragraph analogous to the one in pwm-sifive in the
-> > > same format. This simplified keeping an overview about the oddities of
-> > > the various supported chips.
+> > The out label reads in part:
 > > 
-> > OK, I will check pwm-sifive's, and add.
-
-I will add the following :
-
- * Limitations:
- * - PIPGM_PWMC is a 2-bit divider (00: 1, 01: 2, 10: 4, 11: 8) for the input
- *   clock running at 1 MHz.
- * - When the settings of the PWM are modified, the new values are shadowed
- *   in hardware until the PIPGM_PCSR register is written and the currently
- *   running period is completed. This way the hardware switches atomically
- *   from the old setting to the new.
- * - Disabling the hardware completes the currently running period and keeps
- *   the output at low level at all times.
-
-
+> > 	/* Make kimage_file_post_load_cleanup free the fdt buffer for us. */
+> > 	return ret ? ERR_PTR(ret) : fdt;
 > > 
-> > > 
-> > > > +	 */
-> > > > +	if (!state->enabled) {
-> > > > +		writel(0, priv->base + PIPGM_PCSR(pwm->hwpwm));
-> > > > +		return 0;
-> > > > +	}
-> > > > +
-> > > > [...]
-> > > > +
-> > > > +static void visconti_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-> > > > +				   struct pwm_state *state)
-> > > > +{
-> > > > +	struct visconti_pwm_chip *priv = chip_to_priv(chip);
-> > > > +	u32 period, duty, pwmc0, pwmc0_clk;
-> > > > +
-> > > > +	period = readl(priv->base + PIPGM_PCSR(pwm->hwpwm));
-> > > > +	if (period)
-> > > > +		state->enabled = true;
-> > > > +	else
-> > > > +		state->enabled = false;
-> > > 
-> > > If PIPGM_PCSR is 0 the hardware is still active and setting a new
-> > > configuration completes the currently running period, right? Then I
-> > > think having always state->enabled = true is a better match.
-> >
-> > If PIPGM_PCSR is 0, the hardware is stopped. Even if the settings of
-> > other registers are written, the values of other registers will not work
-> > unless PIPGM_PCSR is written.
+> > As far as I can tell, any time we get a non-zero ret, we're going to
+> > return an error pointer rather than the uninitialised value...
 > 
-> Correct me if I'm wrong, but how I understand it, PCSR is special as the
-> other registers are shadow until PCSR is written. (And that is
-> irrespective of which value is active in PCSR or what is written to
-> PCSR.)
-
-This is correct.
-
->  
-> > However, as a logic, if PIPGM_PCSR becomes 0, it is only
-> > visconti_pwm_apply () in this driver,
-> > so I think that this process should always be state-> enabled = true
-> > as you pointed out.
-> > I wil drop this, thanks.
+> I don't think GCC is smart enough to detect that.
 > 
-> For me the critical (and only) difference between "off" and
-> "duty cycle = 0" is that when a new configuration is to be applied. In
-> the "off" state a new period can (and should) start immediately, while
-> with "duty_cycle = 0" the rising edge should be delayed until the
-> currently running period is over.[1]
-> 
-> So the thing to do here (IMHO) is:
-> 
-> Iff with PIPGM_PCSR = 0 configuring a new setting (that is finalized
-> with writing a non-zero value to PIPGM_PCSR) completes the currently
-> running period, then always assume the PWM as enabled.
 
-Yes, this device works that way.
+We disabled uninitialized variable checking for GCC.
 
-> 
-> And so if the hardware is stopped and the counter is reset when 0 is
-> written to PIPGM_PCSR, model that as enabled = false.
+But actually is something that has been on my mind recently.  Smatch is
+supposed to parse this correctly but there is a bug that affects powerpc
+and I don't know how to debug it.  The kbuild bot is doing cross
+platform compiles but I don't have one set up on myself.  Could someone
+with Smatch installed test something for me?
 
-I don't think the current this driver can handle the above.
-As far as I can see your comment, I think I need to implement this,
-but after writing 0 to PIPGM_PCSR, driver need to confirm that signal has
-changed to low level and change state->enabled to false. 
-But with this device has no way of knowing that the signal has changed
-to low level.
+Or if you don't have Smatch installed then you should definitely install
+it.  :P
+https://www.spinics.net/lists/smatch/msg00568.html
 
-> 
-> Best regards
-> Uwe
-> 
-> [1] In practise this is more difficult because several PWMs don't
-> complete periods in general. But the hardware under discussion luckily
-> isn't one of these. And (worse) there are other hardware implementations
-> where off doesn't emit an inactive level.
+Apply the patch from below and edit the path to point to the correct
+directory.  Then run kchecker and email me the output?
 
-I see.
+~/path/to/smatch_scripts/kchecker arch/powerpc/kernel/hw_breakpoint.c
 
-Best regards,
-  Nobuhiro
+regads,
+dan carpenter
+
+diff --git a/arch/powerpc/kernel/hw_breakpoint.c b/arch/powerpc/kernel/hw_breakpoint.c
+index 8fc7a14e4d71..f2dfba54e14d 100644
+--- a/arch/powerpc/kernel/hw_breakpoint.c
++++ b/arch/powerpc/kernel/hw_breakpoint.c
+@@ -167,13 +167,19 @@ static bool can_co_exist(struct breakpoint *b, struct perf_event *bp)
+ 	return !(alternate_infra_bp(b, bp) && bp_addr_range_overlap(b->bp, bp));
+ }
+ 
++#include "/home/XXX/path/to/smatch/check_debug.h"
+ static int task_bps_add(struct perf_event *bp)
+ {
+ 	struct breakpoint *tmp;
+ 
+ 	tmp = alloc_breakpoint(bp);
+-	if (IS_ERR(tmp))
++	__smatch_about(tmp);
++	__smatch_debug_on();
++	if (IS_ERR(tmp)) {
++		__smatch_debug_off();
++		__smatch_about(tmp);
+ 		return PTR_ERR(tmp);
++	}
+ 
+ 	list_add(&tmp->list, &task_bps);
+ 	return 0;
