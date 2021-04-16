@@ -2,128 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 926EE362A4C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 23:27:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE1D2362AFE
+	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 00:18:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235705AbhDPV1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 17:27:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51896 "EHLO
+        id S231510AbhDPWS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 18:18:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235451AbhDPV1f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 17:27:35 -0400
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1ABCC061574;
-        Fri, 16 Apr 2021 14:27:09 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id gv2so4865925qvb.8;
-        Fri, 16 Apr 2021 14:27:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :organization:user-agent:mime-version:content-transfer-encoding;
-        bh=qnIWecU4j0go3BHki/tPX89ICgmbfzbrXzKLY+iWOac=;
-        b=PhDBZAzo+OIHeHKPUkiWebd2RIRE8h8B3dLA1tcUMxGsYd1ao5o99BL9jDla3voE9Y
-         GPrLd+bUmEtL5Yk6emTGq2QA+qjodIhVTE5gLa8+vGwH+nqQiXqR5PTrNRb7megwHdKn
-         Wy9vXZS5Sm4Ta5Zkbx3QfxiAas3oyIsb/c1ikDetmr7ImtGSBYSrROdswWOEGxzN4OK/
-         0tDo7I6b4S8YsPrY8Bq/+YVu2x7RMm/LIm/Y5NiS/zm5t/vCRaPTSryG0Re/JDsrjUbG
-         RL8lzHi9gtqu2COx+wLHUWnLJ1pKupIZsi9gTJPZNhnIAMrKyEgcA3tHthGlMk2qXO2B
-         YjIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:organization:user-agent:mime-version
-         :content-transfer-encoding;
-        bh=qnIWecU4j0go3BHki/tPX89ICgmbfzbrXzKLY+iWOac=;
-        b=D7t4FGUSdaCk1GUwEdmgslFVhjyMcfMqTM5ag/6YnPCWDHEsFqXyhhuodqD+fHi5mS
-         8x+3Xz2s94Z+EEY1LYLJmUwA1AbYn7ESVAMTZyRVXbLWOGwAvOaT5uGUakxKZk5mnju7
-         CIpEPw8Ia4H82ENvQukmYtdepoDfZ1NSW+MDEetDedgHw/v1NUnGnzw4ms74Erm1Z/Ct
-         YeOknntbws/xoMG5f0gH46yTitEeXR475TRmsegNnHWWA/JMRq6NuVY+sqXQtNtU1m1d
-         RdZplT9ddaDcu2IYC1ayG58R8DcQFllE42n6df/qriY7AS9+gy1OH8/mt7vlXyqkPjzR
-         S97Q==
-X-Gm-Message-State: AOAM531VHiBekJzpEB9LkwUxRUxEgz7K8ch9TxP+ndxa8roV2Vxum/I9
-        0MdLBEqqKiFq/eeb2Ou5iMo=
-X-Google-Smtp-Source: ABdhPJxiaMQSF5aQnwptHbIMI7IyFwQxTjUhS8gbDjqudrYedippV2ExrK8pQT0GQ6TQ9sjUaHt5/g==
-X-Received: by 2002:ad4:522b:: with SMTP id r11mr10787069qvq.6.1618608429096;
-        Fri, 16 Apr 2021 14:27:09 -0700 (PDT)
-Received: from li-908e0a4c-2250-11b2-a85c-f027e903211b.ibm.com ([177.35.200.187])
-        by smtp.gmail.com with ESMTPSA id l4sm5081376qkd.105.2021.04.16.14.27.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Apr 2021 14:27:08 -0700 (PDT)
-Message-ID: <bd3767f61d0a604918e9886ae6da2eadc8dde310.camel@gmail.com>
-Subject: Re: [PATCH 1/1] of/pci: Add IORESOURCE_MEM_64 to resource flags for
- 64-bit memory addresses
-From:   Leonardo Bras <leobras.c@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Alexey Kardashevskiy <aik@ozlabs.ru>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
-Date:   Fri, 16 Apr 2021 18:27:03 -0300
-In-Reply-To: <CAL_Jsq+WwAeziGN4EfPAWfA0fieAjfcxfi29=StOx0GeKjAe_g@mail.gmail.com>
-References: <20210415180050.373791-1-leobras.c@gmail.com>
-         <CAL_Jsq+WwAeziGN4EfPAWfA0fieAjfcxfi29=StOx0GeKjAe_g@mail.gmail.com>
-Organization: IBM
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+        with ESMTP id S230056AbhDPWS4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 18:18:56 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C061C061574;
+        Fri, 16 Apr 2021 15:18:31 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7B55C51E;
+        Sat, 17 Apr 2021 00:18:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1618611507;
+        bh=IuCnAAJS5v6qKyuXjBEuQoVksOGIAcJ5BWO3jyoj2DA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iP5IfDiRuTia/H1IW666sZLLlxVIs388+xasJ/C7VoWAN6txU3k2gyxSflbo6ZSRz
+         C2JPY3mYmNXTievNnInM0detPIu1xst2hkHoqGZHCLOu+xNHJ+NdC4TfT1ckvixql5
+         bY7GJmpB1gQMb6YTNjoVp8jQtrLCZ+7kaZG5JuPE=
+Date:   Sat, 17 Apr 2021 01:18:25 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] media: i2c: max9286: Use "maxim,gpio-poc" property
+Message-ID: <YHoNMXQWd5XyeI/I@pendragon.ideasonboard.com>
+References: <20210414135128.180980-1-jacopo+renesas@jmondi.org>
+ <20210414135128.180980-3-jacopo+renesas@jmondi.org>
+ <YHeCOCkn1YvYR09E@pendragon.ideasonboard.com>
+ <20210415065848.xgisi5cpcxvnxzb4@uno.localdomain>
+ <YHiQfcHoyyvSwFsp@pendragon.ideasonboard.com>
+ <20210416074307.mtd7bcv3yj6zekt6@uno.localdomain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210416074307.mtd7bcv3yj6zekt6@uno.localdomain>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob, thanks for this feedback!
+Hi Jacopo,
 
-On Thu, 2021-04-15 at 13:59 -0500, Rob Herring wrote:
-> +PPC and PCI lists
+On Fri, Apr 16, 2021 at 09:43:07AM +0200, Jacopo Mondi wrote:
+> On Thu, Apr 15, 2021 at 10:14:05PM +0300, Laurent Pinchart wrote:
+> > > > > +		/* GPIO values default to high */
+> > > > > +		priv->gpio_state = BIT(0) | BIT(1);
+> > > >
+> > > > Why is that ?
+> > > >
+> > > As the set/get functions of gpiochip use the gpio_state and I wanted
+> > > to use the same functions for the internal gpio handling I used
+> > > gpio_state in gpio_set(). My thinking was that in this way altering
+> > > the gpio line would be visibile to gpio consumers... which we don't
+> > > have as I won't register the gpio-controller :)
+> >
+> > My question was why they default to high here, when they default to low
+> > when there's a gpio-controller property.
 > 
-> On Thu, Apr 15, 2021 at 1:01 PM Leonardo Bras <leobras.c@gmail.com> wrote:
-> > 
-> > Many other resource flag parsers already add this flag when the input
-> > has bits 24 & 25 set, so update this one to do the same.
-> 
-> Many others? Looks like sparc and powerpc to me. 
-> 
+> Oh, got it now... the two output lines are high by default :)
+> Why do you say "they default to low when there's a gpio-controller
+> property" ? When does that requirement come from ?
 
-s390 also does that, but it look like it comes from a device-tree.
+My bad, I thought they were set to 0 in that case, but they're not.
 
-> Those would be the
-> ones I worry about breaking. Sparc doesn't use of/address.c so it's
-> fine. Powerpc version of the flags code was only fixed in 2019, so I
-> don't think powerpc will care either.
+How about moving this initialization from max9286_register_gpio() to the
+beginning of this function, as it's shared by both cases ?
 
-In powerpc I reach this function with this stack, while configuring a
-virtio-net device for a qemu/KVM pseries guest:
+> > > > > +		priv->regulator = NULL;
+> > > >
+> > > > As priv is initialized to 0, you can skip this.
+> > >
+> > > Yes, I liked it explicit as it is used as flag, but it is not
+> > > required...
+> > >
+> > > > > +
+> > > > > +		return 0;
+> > > > > +	}
+> > > > > +
+> > > > > +	ret = max9286_register_gpio(priv);
+> > > > > +	if (ret)
+> > > > > +		return ret;
+> > > > > +
+> > > > > +	priv->regulator = devm_regulator_get(dev, "poc");
+> > > > > +	if (IS_ERR(priv->regulator)) {
+> > > > > +		if (PTR_ERR(priv->regulator) != -EPROBE_DEFER)
+> > > > > +			dev_err(dev, "Unable to get PoC regulator (%ld)\n",
+> > > > > +				PTR_ERR(priv->regulator));
+> > > > > +		return PTR_ERR(priv->regulator);
+> > > > > +	}
+> > > > > +
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
+> > > > > +static int max9286_poc_enable(struct max9286_priv *priv, bool enable)
+> > > > > +{
+> > > > > +	int ret;
+> > > > > +
+> > > > > +	/* If "poc-gpio" is used, toggle the line and do not use regulator. */
+> > > > > +	if (!priv->regulator)
+> > > > > +		return max9286_gpio_set(priv, priv->gpio_poc,
+> > > > > +					enable ^ priv->gpio_poc_flags);
+> > > > > +
+> > > > > +	/* Otherwise PoC is controlled using a regulator. */
+> > > > > +	if (enable) {
+> > > > > +		ret = regulator_enable(priv->regulator);
+> > > > > +		if (ret < 0) {
+> > > > > +			dev_err(&priv->client->dev, "Unable to turn PoC on\n");
+> > > >
+> > > > As error message when max9286_gpio_set() fails (at least in the enable
+> > > > case) would be good too. Bonus points if there's a single dev_err()
+> > > > call.
+> > >
+> > > I'll see how it looks like
+> > >
+> > > > > +			return ret;
+> > > > > +		}
+> > > > > +
+> > > > > +		return 0;
+> > > > > +	}
+> > > > > +
+> > > > > +	return regulator_disable(priv->regulator);
+> > > > > +}
+> > > > > +
+> > > > >  static int max9286_init(struct device *dev)
+> > > > >  {
+> > > > >  	struct max9286_priv *priv;
+> > > > > @@ -1078,17 +1158,14 @@ static int max9286_init(struct device *dev)
+> > > > >  	client = to_i2c_client(dev);
+> > > > >  	priv = i2c_get_clientdata(client);
+> > > > >
+> > > > > -	/* Enable the bus power. */
+> > > > > -	ret = regulator_enable(priv->regulator);
+> > > > > -	if (ret < 0) {
+> > > > > -		dev_err(&client->dev, "Unable to turn PoC on\n");
+> > > > > +	ret = max9286_poc_enable(priv, true);
+> > > > > +	if (ret)
+> > > > >  		return ret;
+> > > > > -	}
+> > > > >
+> > > > >  	ret = max9286_setup(priv);
+> > > > >  	if (ret) {
+> > > > >  		dev_err(dev, "Unable to setup max9286\n");
+> > > > > -		goto err_regulator;
+> > > > > +		goto err_poc_disable;
+> > > > >  	}
+> > > > >
+> > > > >  	/*
+> > > > > @@ -1098,7 +1175,7 @@ static int max9286_init(struct device *dev)
+> > > > >  	ret = max9286_v4l2_register(priv);
+> > > > >  	if (ret) {
+> > > > >  		dev_err(dev, "Failed to register with V4L2\n");
+> > > > > -		goto err_regulator;
+> > > > > +		goto err_poc_disable;
+> > > > >  	}
+> > > > >
+> > > > >  	ret = max9286_i2c_mux_init(priv);
+> > > > > @@ -1114,8 +1191,8 @@ static int max9286_init(struct device *dev)
+> > > > >
+> > > > >  err_v4l2_register:
+> > > > >  	max9286_v4l2_unregister(priv);
+> > > > > -err_regulator:
+> > > > > -	regulator_disable(priv->regulator);
+> > > > > +err_poc_disable:
+> > > > > +	max9286_poc_enable(priv, false);
+> > > > >
+> > > > >  	return ret;
+> > > > >  }
+> > > > > @@ -1286,20 +1363,10 @@ static int max9286_probe(struct i2c_client *client)
+> > > > >  	 */
+> > > > >  	max9286_configure_i2c(priv, false);
+> > > > >
+> > > > > -	ret = max9286_register_gpio(priv);
+> > > > > +	ret = max9286_parse_gpios(priv);
+> > > > >  	if (ret)
+> > > > >  		goto err_powerdown;
+> > > > >
+> > > > > -	priv->regulator = devm_regulator_get(&client->dev, "poc");
+> > > > > -	if (IS_ERR(priv->regulator)) {
+> > > > > -		if (PTR_ERR(priv->regulator) != -EPROBE_DEFER)
+> > > > > -			dev_err(&client->dev,
+> > > > > -				"Unable to get PoC regulator (%ld)\n",
+> > > > > -				PTR_ERR(priv->regulator));
+> > > > > -		ret = PTR_ERR(priv->regulator);
+> > > > > -		goto err_powerdown;
+> > > > > -	}
+> > > > > -
+> > > > >  	ret = max9286_parse_dt(priv);
+> > > > >  	if (ret)
+> > > > >  		goto err_powerdown;
+> > > > > @@ -1326,7 +1393,7 @@ static int max9286_remove(struct i2c_client *client)
+> > > > >
+> > > > >  	max9286_v4l2_unregister(priv);
+> > > > >
+> > > > > -	regulator_disable(priv->regulator);
+> > > > > +	max9286_poc_enable(priv, false);
+> > > > >
+> > > > >  	gpiod_set_value_cansleep(priv->gpiod_pwdn, 0);
+> > > > >
 
-pci_process_bridge_OF_ranges+0xac/0x2d4
-pSeries_discover_phbs+0xc4/0x158
-discover_phbs+0x40/0x60
-do_one_initcall+0x60/0x2d0
-kernel_init_freeable+0x308/0x3a8
-kernel_init+0x2c/0x168
-ret_from_kernel_thread+0x5c/0x70
+-- 
+Regards,
 
-For this, both MMIO32 and MMIO64 resources will have flags 0x200.
-
-> 
-> I noticed both sparc and powerpc set PCI_BASE_ADDRESS_MEM_TYPE_64 in
-> the flags. AFAICT, that's not set anywhere outside of arch code. So
-> never for riscv, arm and arm64 at least. That leads me to
-> pci_std_update_resource() which is where the PCI code sets BARs and
-> just copies the flags in PCI_BASE_ADDRESS_MEM_MASK ignoring
-> IORESOURCE_* flags. So it seems like 64-bit is still not handled and
-> neither is prefetch.
-> 
-
-I am not sure if you mean here:
-a) it's ok to add IORESOURCE_MEM_64 here, because it does not affect
-anything else, or
-b) it should be using PCI_BASE_ADDRESS_MEM_TYPE_64 
-(or IORESOURCE_MEM_64 | PCI_BASE_ADDRESS_MEM_TYPE_64) instead, since
-it's how it's added in powerpc/sparc, and else there is no point.
-
-Again, thanks for helping!
-
-Best regards,
-Leonardo Bras
-
+Laurent Pinchart
