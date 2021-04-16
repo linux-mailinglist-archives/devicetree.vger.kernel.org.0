@@ -2,176 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C87636189A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 06:10:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ECA7361944
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 07:27:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237979AbhDPEKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 00:10:13 -0400
-Received: from rcdn-iport-7.cisco.com ([173.37.86.78]:34304 "EHLO
-        rcdn-iport-7.cisco.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238453AbhDPEKI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 00:10:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=3912; q=dns/txt; s=iport;
-  t=1618546184; x=1619755784;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=VP7PAoaR3l2w3et6aEwl6bAiAhFA9JKl6Z/MedxCeK8=;
-  b=UDO5fTNGt6fMUB4MZ2SxCaCWoZhuGCByf5fDu1nrtDno/0T5iD/lyIKs
-   cyvO1Jh3vUJPRhLw1G+PMcbJpj7p6+bumpRvzE4Acz7OiCwa+VO5WTOBT
-   21vW2f+dHSEovcdCu7Cy6PAL8GdmSY0CCIdy5ML68kJ7R48F/RLRngqu7
-   U=;
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AfmS0yqCf5eLAQ2PlHejxsceALOonbusQ8z?=
- =?us-ascii?q?AX/mp6ICY4TuWzkceykPMHkSLugDEKV3063fyGMq+MQXTTnKQFhbU5EL++UG?=
- =?us-ascii?q?Dd1leAA5pl6eLZqQHIOyq7zeJF0LclTq4WMqySMXFfreLXpDa1CMwhxt7vyt?=
- =?us-ascii?q?HMuc77w212RQ9nL4Fshj0ZNi+hHkd7RBZLCPMCffL22uN9qzWtYngRZMigb0?=
- =?us-ascii?q?N1PdTrncHBl57tfHc9aCIP1Q/mt16VwY+/OwSE2FMkXylXx7A5/Sz+jxXh/a?=
- =?us-ascii?q?m4qZiAu3jh/l6Wy5xXndf7o+EiOOW8zu4INz7rlgGkIKNmVrHqhkFNnMifrH?=
- =?us-ascii?q?A3jdLLvxAse/5W1kqUVGS0rRzxsjOQtgoT1w=3D=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0BMAABLDXlg/4sNJK1aHAEBAQEBAQc?=
- =?us-ascii?q?BARIBAQQEAQGBfgcBAQsBAYF6L4FNATkxjGeJTYEMlCyFNoF8CwEBAQ80BAE?=
- =?us-ascii?q?BhFACgXMCJTQJDgIDAQEMAQEFAQEBAgEGBHEThV1DFgGFawYyAUYQHTRJDgY?=
- =?us-ascii?q?BEoJxgwisB4IrgQGIM4FEFIElAYhrdIN1JxyBSUKBE4JsdIo5BIJABwaBCII?=
- =?us-ascii?q?6IwGRG41TnC2DFoEmm1EPI6R8LZRro2KBVDqBWTMaCBsVgyRQGQ6OKxaBAgE?=
- =?us-ascii?q?CjGYBWyEDLzgCBgoBAQMJiU6DQAEB?=
-X-IronPort-AV: E=Sophos;i="5.82,226,1613433600"; 
-   d="scan'208";a="871030791"
-Received: from alln-core-6.cisco.com ([173.36.13.139])
-  by rcdn-iport-7.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 16 Apr 2021 04:09:40 +0000
-Received: from zorba.cisco.com ([10.24.7.67])
-        by alln-core-6.cisco.com (8.15.2/8.15.2) with ESMTP id 13G49OHm016753;
-        Fri, 16 Apr 2021 04:09:39 GMT
-From:   Daniel Walker <danielwa@cisco.com>
-To:     Will Deacon <will@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Rob Herring <robh@kernel.org>,
-        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        Andrew Morton <akpm@linux-foundation.org>, x86@kernel.org,
-        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        id S236927AbhDPF1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 01:27:30 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:52448 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236464AbhDPF1a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 01:27:30 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13G5QqFO100260;
+        Fri, 16 Apr 2021 00:26:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1618550812;
+        bh=OGWmPUCq+G+tmdEY0d0MYzZx+ArvEQd++b9Kv5/YV/E=;
+        h=From:To:CC:Subject:Date;
+        b=bKVPKDEfLI2hpgA9W5zUZ+v+2bH+DJh7fvypqo7urWwKY/ggxJdKUdLtFYoqfqYz6
+         c3xBY35VBjYNuvG8dzBASwFwfRBe9DfXrX8YnIbOtlDITgos/pO9XA3ka1n1FX4Uoa
+         BZSpMEUfiF6x+WLYrjbI1VIN1Q/mOksR9ICq0AFw=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13G5Qqpt114854
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 16 Apr 2021 00:26:52 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 16
+ Apr 2021 00:26:52 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Fri, 16 Apr 2021 00:26:52 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13G5QlLL023847;
+        Fri, 16 Apr 2021 00:26:48 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-can@vger.kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     xe-linux-external@cisco.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 7/8] of: allow sending a NULL value to early_init_dt_scan_chosen
-Date:   Thu, 15 Apr 2021 21:09:18 -0700
-Message-Id: <20210416040924.2882771-8-danielwa@cisco.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210416040924.2882771-1-danielwa@cisco.com>
-References: <20210416040924.2882771-1-danielwa@cisco.com>
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: [PATCH v4 0/3] CAN TRANSCEIVER: Add support for CAN transceivers
+Date:   Fri, 16 Apr 2021 10:56:44 +0530
+Message-ID: <20210416052647.2758-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-Outbound-SMTP-Client: 10.24.7.67, [10.24.7.67]
-X-Outbound-Node: alln-core-6.cisco.com
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It's possible that an architecture may want to populate
-boot_command_line before calling the device tree code.
-Currently, early_init_dt_scan_chosen won't accept a NULL
-in the data parameter and it returns immediately if you
-send one.
+The following series of patches add support for CAN transceivers.
 
-I changed early_init_dt_scan_nodes() to send a NULL into
-early_init_dt_scan_chosen() , then I made
-early_init_dt_scan_chosen() to do the initrd checking, and
-the rng-seed checking and skip all the command line related
-code.
+TCAN1042 has a standby signal that needs to be pulled high for
+sending/receiving messages[1]. TCAN1043 has a enable signal along with
+standby signal that needs to be pulled up for sending/receiving
+messages[2], and other combinations of the two lines can be used to put the
+transceiver in different states to reduce power consumption. On boards
+like the AM654-idk and J721e-evm these signals are controlled using gpios.
 
-Given lots of changes to the command line, I think it makes sense
-to allow the initrd code and rng-seed code to be run without
-forcing the command line handling. I'm also submitting changes
-to arm64 which populate boot_command_line much early and this
-device tree code overwrites boot_command_line in that case.
+Patch 1 rewords the comment that restricts max_link_rate attribute to have
+units of Mbps.
 
-This code depends on all architecture to have a NULL
-boot_command_line at boot up when this function runs, unless
-it's already populated.
+Patch 2 models the transceiver as a phy device tree node with properties
+for max bit rate supported, gpio properties for indicating gpio pin numbers
+to which standby and enable signals are connected.
 
-This code was boot tested on powerpc 32bit, x86, and arm64.
+Patch 2 adds a generic driver to support CAN transceivers.
 
-Cc: xe-linux-external@cisco.com
-Signed-off-by: Daniel Walker <danielwa@cisco.com>
----
- drivers/of/fdt.c | 44 +++++++++++++++++++++++++-------------------
- 1 file changed, 25 insertions(+), 19 deletions(-)
+changes since v3:
+- dropped patch 2(in v3)
+- changed the node name property in patch 3(in v3)
+- picked up Rob Herring's reviewed-by for patch 3(in v3)
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index adb26aff481d..a1fda952ce60 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -1052,36 +1052,38 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
- 
- 	pr_debug("search \"chosen\", depth: %d, uname: %s\n", depth, uname);
- 
--	if (depth != 1 || !data ||
--	    (strcmp(uname, "chosen") != 0 && strcmp(uname, "chosen@0") != 0))
-+	if (depth != 1 || (strcmp(uname, "chosen") != 0
-+				&& strcmp(uname, "chosen@0") != 0))
- 		return 0;
- 
- 	early_init_dt_check_for_initrd(node);
- 
--	/* Retrieve command line */
--	p = of_get_flat_dt_prop(node, "bootargs", &l);
--	if (p != NULL && l > 0)
--		strlcpy(data, p, min(l, COMMAND_LINE_SIZE));
-+	if (data) {
-+		/* Retrieve command line */
-+		p = of_get_flat_dt_prop(node, "bootargs", &l);
-+		if (p != NULL && l > 0)
-+			strlcpy(data, p, min(l, COMMAND_LINE_SIZE));
- 
--	/*
--	 * CONFIG_CMDLINE is meant to be a default in case nothing else
--	 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
--	 * is set in which case we override whatever was found earlier.
--	 */
-+		/*
-+		 * CONFIG_CMDLINE is meant to be a default in case nothing else
-+		 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
-+		 * is set in which case we override whatever was found earlier.
-+		 */
- #ifdef CONFIG_CMDLINE
- #if defined(CONFIG_CMDLINE_EXTEND)
--	strlcat(data, " ", COMMAND_LINE_SIZE);
--	strlcat(data, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-+		strlcat(data, " ", COMMAND_LINE_SIZE);
-+		strlcat(data, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
- #elif defined(CONFIG_CMDLINE_FORCE)
--	strlcpy(data, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
--#else
--	/* No arguments from boot loader, use kernel's  cmdl*/
--	if (!((char *)data)[0])
- 		strlcpy(data, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-+#else
-+		/* No arguments from boot loader, use kernel's  cmdl*/
-+		if (!((char *)data)[0])
-+			strlcpy(data, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
- #endif
- #endif /* CONFIG_CMDLINE */
- 
--	pr_debug("Command line is: %s\n", (char *)data);
-+		pr_debug("Command line is: %s\n", (char *)data);
-+	}
- 
- 	rng_seed = of_get_flat_dt_prop(node, "rng-seed", &l);
- 	if (rng_seed && l > 0) {
-@@ -1202,7 +1204,11 @@ void __init early_init_dt_scan_nodes(void)
- 	int rc = 0;
- 
- 	/* Retrieve various information from the /chosen node */
--	rc = of_scan_flat_dt(early_init_dt_scan_chosen, boot_command_line);
-+	if (boot_command_line[0])
-+		rc = of_scan_flat_dt(early_init_dt_scan_chosen, NULL);
-+	else
-+		rc = of_scan_flat_dt(early_init_dt_scan_chosen,
-+					boot_command_line);
- 	if (!rc)
- 		pr_warn("No chosen node found, continuing without\n");
- 
+changes since v2:
+- dropped 5 and 6 patches and to be sent via linux-can-next
+- added static keyword for can_transceiver_phy_probe()
+- changed enable gpio example to active high in patch 3
+- Rearranged the file names in alphabetical order in Makefile
+  and MAINTAINERS file
+
+changes since v1:
+- Added patch 1 (in v2) that rewords the comment that restrict
+  max_link_rate attribute to have units of Mbps.
+- Added patch 2 (in v2) that adds an API for
+  devm_of_phy_optional_get_by_index
+- Patch 1 (in v1)
+  - updated MAINTAINERS file
+- Patch 2 (in v1)
+  - replaced m_can with CAN to make the driver independent of CAN driver
+  - Added prefix CAN_TRANSCEIVER for EN_PRESENT and STB_PRESENT
+  - Added new line before return statements in power_on() and power_off
+  - Added error handling patch for devm_kzalloc()
+  - used the max_link_rate attribute directly instead of dividing it by
+    1000000
+  - removed the spaces before GPIOD_OUT_LOW in devm_gpiod_get()
+  - Corrected requested value for standby-gpios to GPIOD_OUT_HIGH
+  - Updated MAINTAINERS file
+- Patch 3 (in v1)
+  - replaced minItems with maxItems
+  - Removed phy-names property as there is only one phy
+- Patch 4 (in v1)
+  - replaced dev_warn with dev_info when no transceiver is found
+  - Added struct phy * field in m_can_classdev struct
+  - moved phy_power_on and phy_power_off to m_can_open and m_can_close
+    respectively
+  - Moved the check for max_bit_rate to generice transceiver driver
+
+[1] - https://www.ti.com/lit/ds/symlink/tcan1042h.pdf
+[2] - https://www.ti.com/lit/ds/symlink/tcan1043-q1.pdf
+
+
+Aswath Govindraju (3):
+  phy: core: Reword the comment specifying the units of max_link_rate to
+    be Mbps
+  dt-bindings: phy: Add binding for TI TCAN104x CAN transceivers
+  phy: phy-can-transceiver: Add support for generic CAN transceiver
+    driver
+
+ .../bindings/phy/ti,tcan104x-can.yaml         |  56 +++++++
+ MAINTAINERS                                   |   2 +
+ drivers/phy/Kconfig                           |   9 ++
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/phy-can-transceiver.c             | 146 ++++++++++++++++++
+ include/linux/phy/phy.h                       |   2 +-
+ 6 files changed, 215 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+ create mode 100644 drivers/phy/phy-can-transceiver.c
+
 -- 
-2.25.1
+2.17.1
 
