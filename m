@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 045303629C5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 22:58:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 926EE362A4C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 23:27:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243487AbhDPU6e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 16:58:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45512 "EHLO
+        id S235705AbhDPV1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 17:27:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243809AbhDPU6b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 16:58:31 -0400
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D2DBC061574;
-        Fri, 16 Apr 2021 13:58:06 -0700 (PDT)
-Received: by mail-qk1-x72a.google.com with SMTP id o5so30335179qkb.0;
-        Fri, 16 Apr 2021 13:58:06 -0700 (PDT)
+        with ESMTP id S235451AbhDPV1f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 17:27:35 -0400
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1ABCC061574;
+        Fri, 16 Apr 2021 14:27:09 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id gv2so4865925qvb.8;
+        Fri, 16 Apr 2021 14:27:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=message-id:subject:from:to:cc:date:in-reply-to:references
          :organization:user-agent:mime-version:content-transfer-encoding;
         bh=qnIWecU4j0go3BHki/tPX89ICgmbfzbrXzKLY+iWOac=;
-        b=pz/bSOQmz9g+p6n0hHD1XQp4RAoq2j/Dj0uYmko1vHfn5u7RxBa80ABt2yiEG25v68
-         haJilWm4NQoEiFZmf6ZCbgXgD0WEvFImh7UxgbDrysgLT0RyxcXbeAQsfenuXFUhxMZ0
-         kqgYHnrvKY1kb9ACeLaIhxNJTlueR0VDBoK5nyTA7AWNFEcOVXwKX/bhRfyDzO5BDxYu
-         iyyzTYTkUbhk8xG+XjJB0unQDDTTmiCESPhkYjks9+OV4j3FvRjcw8FUhL+gaUffJ1XI
-         Ix5RU/RXzOdSgrB+BelgyWuXjivn2djucxlh6gW5fRKzGgkoysyHferoLsZxEue8M1RI
-         O/Og==
+        b=PhDBZAzo+OIHeHKPUkiWebd2RIRE8h8B3dLA1tcUMxGsYd1ao5o99BL9jDla3voE9Y
+         GPrLd+bUmEtL5Yk6emTGq2QA+qjodIhVTE5gLa8+vGwH+nqQiXqR5PTrNRb7megwHdKn
+         Wy9vXZS5Sm4Ta5Zkbx3QfxiAas3oyIsb/c1ikDetmr7ImtGSBYSrROdswWOEGxzN4OK/
+         0tDo7I6b4S8YsPrY8Bq/+YVu2x7RMm/LIm/Y5NiS/zm5t/vCRaPTSryG0Re/JDsrjUbG
+         RL8lzHi9gtqu2COx+wLHUWnLJ1pKupIZsi9gTJPZNhnIAMrKyEgcA3tHthGlMk2qXO2B
+         YjIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
          :references:organization:user-agent:mime-version
          :content-transfer-encoding;
         bh=qnIWecU4j0go3BHki/tPX89ICgmbfzbrXzKLY+iWOac=;
-        b=m589olun8jgQ7LV6pwltR65I4dYsSpTih87CCIIid0ogIa0FvJHrzFEARdA2J/VFYq
-         m+qvf7HETq77/z8P0jObY0Mkwr9OszSL4Vpzfwi8anDSHG8jfxHyGOE1ofsKVoKVPdR2
-         JpfMDxTBpRPJQSQPq1IAVbWfyaxK5/nr8npWQ3ikDuhRi+jTqy4bN+Wz0QvuD65EgBNT
-         8ykPf0e2udle4InyL3iPYJVwwPB/yNx6D0i/8keL7CY17r0Q90KBoiHoMri21zkPk+8A
-         n1xRQIrR219fejD9GQTVLqCeJqHNfZ2tRJc+VBvCZPQTBkMs/sXVONJqWeuOMsIFSpCX
-         UgwQ==
-X-Gm-Message-State: AOAM530Lebemi5nzWTma+PcqkqIQpnzStr46S4LDhoGmlVW+0nEh3XzK
-        CtiZZu6XFnpHgucPPwS0nHz7r14K1m4=
-X-Google-Smtp-Source: ABdhPJxFhinlHNn02trTin40jfBumlNTfk5ie7OrDNyXW4/JI/YC1pS+0OjO1mDC9iZf7UePRpjcKg==
-X-Received: by 2002:a37:d4e:: with SMTP id 75mr1110422qkn.457.1618606685688;
-        Fri, 16 Apr 2021 13:58:05 -0700 (PDT)
+        b=D7t4FGUSdaCk1GUwEdmgslFVhjyMcfMqTM5ag/6YnPCWDHEsFqXyhhuodqD+fHi5mS
+         8x+3Xz2s94Z+EEY1LYLJmUwA1AbYn7ESVAMTZyRVXbLWOGwAvOaT5uGUakxKZk5mnju7
+         CIpEPw8Ia4H82ENvQukmYtdepoDfZ1NSW+MDEetDedgHw/v1NUnGnzw4ms74Erm1Z/Ct
+         YeOknntbws/xoMG5f0gH46yTitEeXR475TRmsegNnHWWA/JMRq6NuVY+sqXQtNtU1m1d
+         RdZplT9ddaDcu2IYC1ayG58R8DcQFllE42n6df/qriY7AS9+gy1OH8/mt7vlXyqkPjzR
+         S97Q==
+X-Gm-Message-State: AOAM531VHiBekJzpEB9LkwUxRUxEgz7K8ch9TxP+ndxa8roV2Vxum/I9
+        0MdLBEqqKiFq/eeb2Ou5iMo=
+X-Google-Smtp-Source: ABdhPJxiaMQSF5aQnwptHbIMI7IyFwQxTjUhS8gbDjqudrYedippV2ExrK8pQT0GQ6TQ9sjUaHt5/g==
+X-Received: by 2002:ad4:522b:: with SMTP id r11mr10787069qvq.6.1618608429096;
+        Fri, 16 Apr 2021 14:27:09 -0700 (PDT)
 Received: from li-908e0a4c-2250-11b2-a85c-f027e903211b.ibm.com ([177.35.200.187])
-        by smtp.gmail.com with ESMTPSA id n15sm4860020qkk.109.2021.04.16.13.58.02
+        by smtp.gmail.com with ESMTPSA id l4sm5081376qkd.105.2021.04.16.14.27.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Apr 2021 13:58:05 -0700 (PDT)
-Message-ID: <7b089cd48b90f2445c7cb80da1ce8638607c46fc.camel@gmail.com>
+        Fri, 16 Apr 2021 14:27:08 -0700 (PDT)
+Message-ID: <bd3767f61d0a604918e9886ae6da2eadc8dde310.camel@gmail.com>
 Subject: Re: [PATCH 1/1] of/pci: Add IORESOURCE_MEM_64 to resource flags for
  64-bit memory addresses
 From:   Leonardo Bras <leobras.c@gmail.com>
@@ -59,7 +59,7 @@ Cc:     Frank Rowand <frowand.list@gmail.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         PCI <linux-pci@vger.kernel.org>,
         linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
-Date:   Fri, 16 Apr 2021 17:57:59 -0300
+Date:   Fri, 16 Apr 2021 18:27:03 -0300
 In-Reply-To: <CAL_Jsq+WwAeziGN4EfPAWfA0fieAjfcxfi29=StOx0GeKjAe_g@mail.gmail.com>
 References: <20210415180050.373791-1-leobras.c@gmail.com>
          <CAL_Jsq+WwAeziGN4EfPAWfA0fieAjfcxfi29=StOx0GeKjAe_g@mail.gmail.com>
