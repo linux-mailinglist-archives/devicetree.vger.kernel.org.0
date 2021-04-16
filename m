@@ -2,288 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0621A361E48
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 12:54:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDA75361E83
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 13:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235204AbhDPKzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 06:55:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51780 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242497AbhDPKzB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 06:55:01 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A22BC061574
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 03:54:37 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1lXM7C-0004vQ-27; Fri, 16 Apr 2021 12:54:22 +0200
-Message-ID: <7bcbb787d82f21d42563d8fb7e3c2e7d40123932.camel@pengutronix.de>
-Subject: Re: [PATCH v9 03/13] media: hantro: Use syscon instead of 'ctrl'
- register
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        ezequiel@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, lee.jones@linaro.org,
-        gregkh@linuxfoundation.org, mripard@kernel.org,
-        paul.kocialkowski@bootlin.com, wens@csie.org,
-        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
-        emil.l.velikov@gmail.com, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>
-Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-imx@nxp.com, kernel@pengutronix.de, kernel@collabora.com,
-        cphealy@gmail.com, linux-arm-kernel@lists.infradead.org,
-        linux-media@vger.kernel.org
-Date:   Fri, 16 Apr 2021 12:54:16 +0200
-In-Reply-To: <20210407073534.376722-4-benjamin.gaignard@collabora.com>
-References: <20210407073534.376722-1-benjamin.gaignard@collabora.com>
-         <20210407073534.376722-4-benjamin.gaignard@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+        id S239276AbhDPLVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 07:21:11 -0400
+Received: from mga12.intel.com ([192.55.52.136]:63711 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235011AbhDPLVJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Apr 2021 07:21:09 -0400
+IronPort-SDR: V2L8wZ/qIxcSR8k6IDKfOh/L+1dGBRAhTDZRjUXelZ5eHbPhsq3Obuf+qsY74z2XiRXW9E062j
+ IbHBU+0LeePQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9955"; a="174520052"
+X-IronPort-AV: E=Sophos;i="5.82,226,1613462400"; 
+   d="scan'208";a="174520052"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Apr 2021 04:20:44 -0700
+IronPort-SDR: KNUTpDmsWv3TqC084HypCIwIlD/plK0sn/ftJdo6Ss8lxaAf64SUvkXt+qT6ueC3oSnNzxUVe5
+ CAn917c/wDPA==
+X-IronPort-AV: E=Sophos;i="5.82,226,1613462400"; 
+   d="scan'208";a="425560591"
+Received: from grosikox-mobl.ger.corp.intel.com (HELO [10.104.80.12]) ([10.104.80.12])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Apr 2021 04:20:42 -0700
+Subject: Re: [PATCH 00/10] Keem Bay Camera Subsystem
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Martina Krasteva <martinax.krasteva@linux.intel.com>
+Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        sakari.ailus@linux.intel.com,
+        daniele.alessandrelli@linux.intel.com,
+        paul.j.murphy@linux.intel.com
+References: <20210319180632.585-1-martinax.krasteva@linux.intel.com>
+ <YHlazqJeQp4cFYMl@pendragon.ideasonboard.com>
+From:   "Rosikopulos, GjorgjiX" <gjorgjix.rosikopulos@linux.intel.com>
+Message-ID: <4084cf8d-61f4-2ae4-b6d4-47668996a446@linux.intel.com>
+Date:   Fri, 16 Apr 2021 11:20:40 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <YHlazqJeQp4cFYMl@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, dem 07.04.2021 um 09:35 +0200 schrieb Benjamin Gaignard:
-> In order to be able to share the control hardware block between
-> VPUs use a syscon instead a ioremap it in the driver.
-> To keep the compatibility with older DT if 'nxp,imx8mq-vpu-ctrl'
-> phandle is not found look at 'ctrl' reg-name.
-> With the method it becomes useless to provide a list of register
-> names so remove it.
+Hi Laurent,
 
-Sorry for putting a spoke in the wheel after many iterations of the
-series.
+On 16/04/2021 09:37, Laurent Pinchart wrote:
+> Hi Martina and Gjorgji,
+>
+> Nice to see a new ISP driver :-)
+Pleasure for us submit new ISP driver :-).
+>
+> Before reviewing patches in details, I have a few high-level questions:
+>
+> - The driver seems to proxy access to the ISP through the VPU firmware.
+>    I assume the VPU is a separate CPU core that controls the hardware
+>    directly. Is that correct ?
 
-We just discussed a way forward on how to handle the clocks and resets
-provided by the blkctl block on i.MX8MM and later and it seems there is
-a consensus on trying to provide virtual power domains from a blkctl
-driver, controlling clocks and resets for the devices in the power
-domain. I would like to avoid introducing yet another way of handling
-the blkctl and thus would like to align the i.MX8MQ VPU blkctl with
-what we are planning to do on the later chip generations.
+Yes that is correct.
 
-CC'ing Jacky Bai and Peng Fan from NXP, as they were going to give this
-virtual power domain thing a shot.
+>
+> - Does this driver support all the features of the ISP, or only the
+>    subset that a particular VPU firmware exposes ? In particular, the ISP
+>    is exposed as an inline block, which no memory buffer between the
+>    CSI-2 receiver and the ISP, and no ability to capture raw frames. How
+>    is one supposed to tune cameras ?
+
+The driver exposes all the features supported by ISP the firmware as 
+high level API.
+
+However this patch-set is not exposing all the features of the VPU API 
+in userspace. Some of them will came in next patch-set some of them
+
+are part of the separate patch-set (HDR 2DOL and 3DOL support).
+
+The changes which will be posted in next patch-set are:
+
+1. Raw capture support (link can be activated per need).
+
+2. Support for 2 additional scaled outputs which again their links can 
+be activated per need.
+
+3. The full size output which is included in this patch-set will remain 
+immutable active.
+
+
+The additional features which will be added as separate patch-set and 
+RFC are:
+
+4. 2DOL and 3DOL support. We dont have yet interface for multiple 
+streams over one link. We will use current RFC for that. (That why this 
+is not included in first patch-set).
+
+Also we need to discuss how to enable raw capture for 2DOL and 3DOL 
+usecases....
+
+
+Regarding the VPU operation. The VPU captures frames from CSI2 in to 
+memory and then uses ISP mem2mem processing, there is internal memory 
+pool used by the firmware.
+
+When raw capture is enabled the raw buffer pool is allocated in the 
+linux driver side and used by VPU for storing the frames to memory, then 
+they are processed
+
+by ISP and returned to linux driver side.
+
+>
+> - More documentation is needed for both the device architecture (in
+>    particular a block diagram of the processing pipeline), and the
+>    configuration parameters. Is there ongoing work in this area ?
+Yes this is painful part. We are working to get approval for providing 
+the needed documentation...
+>
+> - Last but not least, we need a reference userspace implementation to
+>    test this driver. I recommend implementing support in libcamera :-)
+
+So i am not sure if this is a planned effort. Currently we are using 
+yavta for doing tests same as IPU3 example,
+
+with prepared configurations and read them from file. I agree that it 
+will be great to have libcamera support but
+
+for now is not part of our up-streaming effort :/
 
 Regards,
-Lucas
 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-> ---
-> version 9:
->  - Corrections in commit message
-> 
-> version 7:
->  - Add Philipp reviewed-by tag.
->  - Change syscon phandle name.
->  
-> 
-> 
-> 
-> version 5:
->  - use syscon instead of VPU reset driver.
->  - if DT doesn't provide syscon keep backward compatibilty by using
->    'ctrl' reg-name.
-> 
->  drivers/staging/media/hantro/hantro.h       |  5 +-
->  drivers/staging/media/hantro/imx8m_vpu_hw.c | 52 ++++++++++++---------
->  2 files changed, 34 insertions(+), 23 deletions(-)
-> 
-> diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
-> index 6c1b888abe75..37b9ce04bd4e 100644
-> --- a/drivers/staging/media/hantro/hantro.h
-> +++ b/drivers/staging/media/hantro/hantro.h
-> @@ -13,6 +13,7 @@
->  #define HANTRO_H_
->  
-> 
-> 
-> 
->  #include <linux/platform_device.h>
-> +#include <linux/regmap.h>
->  #include <linux/videodev2.h>
->  #include <linux/wait.h>
->  #include <linux/clk.h>
-> @@ -167,7 +168,7 @@ hantro_vdev_to_func(struct video_device *vdev)
->   * @reg_bases:		Mapped addresses of VPU registers.
->   * @enc_base:		Mapped address of VPU encoder register for convenience.
->   * @dec_base:		Mapped address of VPU decoder register for convenience.
-> - * @ctrl_base:		Mapped address of VPU control block.
-> + * @ctrl_base:		Regmap of VPU control block.
->   * @vpu_mutex:		Mutex to synchronize V4L2 calls.
->   * @irqlock:		Spinlock to synchronize access to data structures
->   *			shared with interrupt handlers.
-> @@ -186,7 +187,7 @@ struct hantro_dev {
->  	void __iomem **reg_bases;
->  	void __iomem *enc_base;
->  	void __iomem *dec_base;
-> -	void __iomem *ctrl_base;
-> +	struct regmap *ctrl_base;
->  
-> 
-> 
-> 
->  	struct mutex vpu_mutex;	/* video_device lock */
->  	spinlock_t irqlock;
-> diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> index c222de075ef4..8d0c3425234b 100644
-> --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> @@ -7,6 +7,7 @@
->  
-> 
-> 
-> 
->  #include <linux/clk.h>
->  #include <linux/delay.h>
-> +#include <linux/mfd/syscon.h>
->  
-> 
-> 
-> 
->  #include "hantro.h"
->  #include "hantro_jpeg.h"
-> @@ -24,30 +25,28 @@
->  #define CTRL_G1_PP_FUSE		0x0c
->  #define CTRL_G2_DEC_FUSE	0x10
->  
-> 
-> 
-> 
-> +static const struct regmap_config ctrl_regmap_ctrl = {
-> +	.reg_bits = 32,
-> +	.val_bits = 32,
-> +	.reg_stride = 0x14,
-> +};
-> +
->  static void imx8m_soft_reset(struct hantro_dev *vpu, u32 reset_bits)
->  {
-> -	u32 val;
-> -
->  	/* Assert */
-> -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
-> -	val &= ~reset_bits;
-> -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
-> +	regmap_update_bits(vpu->ctrl_base, CTRL_SOFT_RESET, reset_bits, 0);
->  
-> 
-> 
-> 
->  	udelay(2);
->  
-> 
-> 
-> 
->  	/* Release */
-> -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
-> -	val |= reset_bits;
-> -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
-> +	regmap_update_bits(vpu->ctrl_base, CTRL_SOFT_RESET,
-> +			   reset_bits, reset_bits);
->  }
->  
-> 
-> 
-> 
->  static void imx8m_clk_enable(struct hantro_dev *vpu, u32 clock_bits)
->  {
-> -	u32 val;
-> -
-> -	val = readl(vpu->ctrl_base + CTRL_CLOCK_ENABLE);
-> -	val |= clock_bits;
-> -	writel(val, vpu->ctrl_base + CTRL_CLOCK_ENABLE);
-> +	regmap_update_bits(vpu->ctrl_base, CTRL_CLOCK_ENABLE,
-> +			   clock_bits, clock_bits);
->  }
->  
-> 
-> 
-> 
->  static int imx8mq_runtime_resume(struct hantro_dev *vpu)
-> @@ -64,9 +63,9 @@ static int imx8mq_runtime_resume(struct hantro_dev *vpu)
->  	imx8m_clk_enable(vpu, CLOCK_G1 | CLOCK_G2);
->  
-> 
-> 
-> 
->  	/* Set values of the fuse registers */
-> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_DEC_FUSE);
-> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_PP_FUSE);
-> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G2_DEC_FUSE);
-> +	regmap_write(vpu->ctrl_base, CTRL_G1_DEC_FUSE, 0xffffffff);
-> +	regmap_write(vpu->ctrl_base, CTRL_G1_PP_FUSE, 0xffffffff);
-> +	regmap_write(vpu->ctrl_base, CTRL_G2_DEC_FUSE, 0xffffffff);
->  
-> 
-> 
-> 
->  	clk_bulk_disable_unprepare(vpu->variant->num_clocks, vpu->clocks);
->  
-> 
-> 
-> 
-> @@ -150,8 +149,22 @@ static irqreturn_t imx8m_vpu_g1_irq(int irq, void *dev_id)
->  
-> 
-> 
-> 
->  static int imx8mq_vpu_hw_init(struct hantro_dev *vpu)
->  {
-> -	vpu->dec_base = vpu->reg_bases[0];
-> -	vpu->ctrl_base = vpu->reg_bases[vpu->variant->num_regs - 1];
-> +	struct device_node *np = vpu->dev->of_node;
-> +
-> +	vpu->ctrl_base = syscon_regmap_lookup_by_phandle(np, "nxp,imx8m-vpu-ctrl");
-> +	if (IS_ERR(vpu->ctrl_base)) {
-> +		struct resource *res;
-> +		void __iomem *ctrl;
-> +
-> +		res = platform_get_resource_byname(vpu->pdev, IORESOURCE_MEM, "ctrl");
-> +		ctrl = devm_ioremap_resource(vpu->dev, res);
-> +		if (IS_ERR(ctrl))
-> +			return PTR_ERR(ctrl);
-> +
-> +		vpu->ctrl_base = devm_regmap_init_mmio(vpu->dev, ctrl, &ctrl_regmap_ctrl);
-> +		if (IS_ERR(vpu->ctrl_base))
-> +			return PTR_ERR(vpu->ctrl_base);
-> +	}
->  
-> 
-> 
-> 
->  	return 0;
->  }
-> @@ -198,7 +211,6 @@ static const struct hantro_irq imx8mq_irqs[] = {
->  };
->  
-> 
-> 
-> 
->  static const char * const imx8mq_clk_names[] = { "g1", "g2", "bus" };
-> -static const char * const imx8mq_reg_names[] = { "g1", "g2", "ctrl" };
->  
-> 
-> 
-> 
->  const struct hantro_variant imx8mq_vpu_variant = {
->  	.dec_fmts = imx8m_vpu_dec_fmts,
-> @@ -215,6 +227,4 @@ const struct hantro_variant imx8mq_vpu_variant = {
->  	.num_irqs = ARRAY_SIZE(imx8mq_irqs),
->  	.clk_names = imx8mq_clk_names,
->  	.num_clocks = ARRAY_SIZE(imx8mq_clk_names),
-> -	.reg_names = imx8mq_reg_names,
-> -	.num_regs = ARRAY_SIZE(imx8mq_reg_names)
->  };
+~Gjorgji
 
-
+>
+> On Fri, Mar 19, 2021 at 06:06:22PM +0000, Martina Krasteva wrote:
+>> From: Martina Krasteva <martinax.krasteva@intel.com>
+>>
+>> Patch series contains Keem Bay Camera Subsystem driver implementation,
+>> documentation and devicetree binding document.
+>>
+>> Gjorgji Rosikopulos (7):
+>>    media: Keem Bay Camera: Keem Bay camera driver
+>>    media: Keem Bay Camera: Add VPU camera interface
+>>    uapi: Keem Bay ISP Parameters data types
+>>    media: v4l: Add Keem Bay Camera meta buffer formats
+>>    media: Keem Bay Camera: Add ISP sub-device
+>>    media: Keem Bay Camera: Add metadata video node
+>>    media: admin-guide: Add documentation for Keem Bay Camera
+>>
+>> Martina Krasteva (3):
+>>    dt-bindings: media: Add bindings for Keem Bay Camera
+>>    media: Keem Bay Camera: Add pipeline support
+>>    media: Keem Bay Camera: Add capture video node
+>>
+>>   Documentation/admin-guide/media/keembay-camera.dot |   12 +
+>>   Documentation/admin-guide/media/keembay-camera.rst |  174 ++
+>>   Documentation/admin-guide/media/v4l-drivers.rst    |    1 +
+>>   .../bindings/media/intel,keembay-camera.yaml       |   98 ++
+>>   .../userspace-api/media/v4l/meta-formats.rst       |    1 +
+>>   .../media/v4l/pixfmt-meta-intel-kmb.rst            |   98 ++
+>>   MAINTAINERS                                        |   14 +
+>>   drivers/media/platform/Kconfig                     |    1 +
+>>   drivers/media/platform/Makefile                    |    2 +
+>>   drivers/media/platform/keembay-camera/Kconfig      |   11 +
+>>   drivers/media/platform/keembay-camera/Makefile     |    5 +
+>>   .../platform/keembay-camera/keembay-cam-xlink.c    |  327 ++++
+>>   .../platform/keembay-camera/keembay-cam-xlink.h    |   49 +
+>>   .../media/platform/keembay-camera/keembay-camera.c |  287 +++
+>>   .../media/platform/keembay-camera/keembay-camera.h |   43 +
+>>   .../media/platform/keembay-camera/keembay-isp.c    | 1397 +++++++++++++++
+>>   .../media/platform/keembay-camera/keembay-isp.h    |  136 ++
+>>   .../platform/keembay-camera/keembay-metadata.c     | 1860 ++++++++++++++++++++
+>>   .../platform/keembay-camera/keembay-metadata.h     |  154 ++
+>>   .../keembay-camera/keembay-params-defaults.c       |  326 ++++
+>>   .../keembay-camera/keembay-params-defaults.h       |   38 +
+>>   .../platform/keembay-camera/keembay-pipeline.c     |  401 +++++
+>>   .../platform/keembay-camera/keembay-pipeline.h     |   75 +
+>>   .../media/platform/keembay-camera/keembay-video.c  |  922 ++++++++++
+>>   .../media/platform/keembay-camera/keembay-video.h  |   74 +
+>>   .../platform/keembay-camera/keembay-vpu-cmd.h      |  110 ++
+>>   .../platform/keembay-camera/keembay-vpu-frame.h    |  102 ++
+>>   .../platform/keembay-camera/keembay-vpu-isp.h      |  724 ++++++++
+>>   .../platform/keembay-camera/keembay-vpu-pipe.h     |  110 ++
+>>   .../platform/keembay-camera/keembay-vpu-src.h      |  193 ++
+>>   include/uapi/linux/keembay-isp-ctl.h               |  796 +++++++++
+>>   include/uapi/linux/videodev2.h                     |    4 +
+>>   32 files changed, 8545 insertions(+)
+>>   create mode 100644 Documentation/admin-guide/media/keembay-camera.dot
+>>   create mode 100644 Documentation/admin-guide/media/keembay-camera.rst
+>>   create mode 100644 Documentation/devicetree/bindings/media/intel,keembay-camera.yaml
+>>   create mode 100644 Documentation/userspace-api/media/v4l/pixfmt-meta-intel-kmb.rst
+>>   create mode 100644 drivers/media/platform/keembay-camera/Kconfig
+>>   create mode 100644 drivers/media/platform/keembay-camera/Makefile
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-cam-xlink.c
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-cam-xlink.h
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-camera.c
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-camera.h
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-isp.c
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-isp.h
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-metadata.c
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-metadata.h
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-params-defaults.c
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-params-defaults.h
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-pipeline.c
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-pipeline.h
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-video.c
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-video.h
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-cmd.h
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-frame.h
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-isp.h
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-pipe.h
+>>   create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-src.h
+>>   create mode 100644 include/uapi/linux/keembay-isp-ctl.h
+>>
+>>
+>> base-commit: f00397ee41c79b6155b9b44abd0055b2c0621349
