@@ -2,64 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23049361D7B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 12:09:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75012361D96
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 12:09:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241854AbhDPJdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 05:33:00 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:50812 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S241846AbhDPJc7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 05:32:59 -0400
-X-UUID: 542ecd2361ec4b18807be65b8aa7aa9c-20210416
-X-UUID: 542ecd2361ec4b18807be65b8aa7aa9c-20210416
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <pk.chi@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 11946504; Fri, 16 Apr 2021 17:32:33 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 16 Apr 2021 17:32:31 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 16 Apr 2021 17:32:30 +0800
-From:   Po-Kai Chi <pk.chi@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>, CC Hwang <cc.hwang@mediatek.com>,
-        Po-Kai Chi <pk.chi@mediatek.com>
-Subject: [PATCH v2 4/4] arm64: defconfig: Enable MediaTek DRAMC common driver
-Date:   Fri, 16 Apr 2021 17:32:18 +0800
-Message-ID: <1618565538-6972-5-git-send-email-pk.chi@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1618565538-6972-1-git-send-email-pk.chi@mediatek.com>
-References: <1618565538-6972-1-git-send-email-pk.chi@mediatek.com>
+        id S241147AbhDPJhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 05:37:46 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:58912 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235027AbhDPJhp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 05:37:45 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5ADEA5A5;
+        Fri, 16 Apr 2021 11:37:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1618565840;
+        bh=TtTzqJqMSUNSNp3JKe1VnusjeBxQ4GqD4+KAOtjZIQQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dyDGV4rBVQfgZPW1AlVlvdEIJHPKc0isIPpcJ5BXyifE0rbnICulrcgZTtODZxEBN
+         UgJxv6ZIgEdxD+5N/XJhMm9KPjWpbsHUjmrcNg4ud9VdsClWq2QlQb1+x93VH2ijea
+         vSsDroWSY/FfZ9qfp5mMJsdywXbB0M/58eYZ563o=
+Date:   Fri, 16 Apr 2021 12:37:18 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Martina Krasteva <martinax.krasteva@linux.intel.com>
+Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        sakari.ailus@linux.intel.com,
+        daniele.alessandrelli@linux.intel.com,
+        paul.j.murphy@linux.intel.com, gjorgjix.rosikopulos@linux.intel.com
+Subject: Re: [PATCH 00/10] Keem Bay Camera Subsystem
+Message-ID: <YHlazqJeQp4cFYMl@pendragon.ideasonboard.com>
+References: <20210319180632.585-1-martinax.krasteva@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 13DF5259ACF754A1C8355D8857F1BF498FD04F2B3C8B8E785D4E4A59B96A78172000:8
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210319180632.585-1-martinax.krasteva@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit enables MediaTek DRAMC common driver to be built
-as a module by default for the ARM64 builds.
+Hi Martina and Gjorgji,
 
-Signed-off-by: Po-Kai Chi <pk.chi@mediatek.com>
----
- arch/arm64/configs/defconfig |    1 +
- 1 file changed, 1 insertion(+)
+Nice to see a new ISP driver :-)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index d612f63..49d7464 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1163,3 +1163,4 @@ CONFIG_DEBUG_KERNEL=y
- # CONFIG_DEBUG_PREEMPT is not set
- # CONFIG_FTRACE is not set
- CONFIG_MEMTEST=y
-+CONFIG_MTK_DRAMC=m
+Before reviewing patches in details, I have a few high-level questions:
+
+- The driver seems to proxy access to the ISP through the VPU firmware.
+  I assume the VPU is a separate CPU core that controls the hardware
+  directly. Is that correct ?
+
+- Does this driver support all the features of the ISP, or only the
+  subset that a particular VPU firmware exposes ? In particular, the ISP
+  is exposed as an inline block, which no memory buffer between the
+  CSI-2 receiver and the ISP, and no ability to capture raw frames. How
+  is one supposed to tune cameras ?
+
+- More documentation is needed for both the device architecture (in
+  particular a block diagram of the processing pipeline), and the
+  configuration parameters. Is there ongoing work in this area ?
+
+- Last but not least, we need a reference userspace implementation to
+  test this driver. I recommend implementing support in libcamera :-)
+
+On Fri, Mar 19, 2021 at 06:06:22PM +0000, Martina Krasteva wrote:
+> From: Martina Krasteva <martinax.krasteva@intel.com>
+> 
+> Patch series contains Keem Bay Camera Subsystem driver implementation,
+> documentation and devicetree binding document.
+> 
+> Gjorgji Rosikopulos (7):
+>   media: Keem Bay Camera: Keem Bay camera driver
+>   media: Keem Bay Camera: Add VPU camera interface
+>   uapi: Keem Bay ISP Parameters data types
+>   media: v4l: Add Keem Bay Camera meta buffer formats
+>   media: Keem Bay Camera: Add ISP sub-device
+>   media: Keem Bay Camera: Add metadata video node
+>   media: admin-guide: Add documentation for Keem Bay Camera
+> 
+> Martina Krasteva (3):
+>   dt-bindings: media: Add bindings for Keem Bay Camera
+>   media: Keem Bay Camera: Add pipeline support
+>   media: Keem Bay Camera: Add capture video node
+> 
+>  Documentation/admin-guide/media/keembay-camera.dot |   12 +
+>  Documentation/admin-guide/media/keembay-camera.rst |  174 ++
+>  Documentation/admin-guide/media/v4l-drivers.rst    |    1 +
+>  .../bindings/media/intel,keembay-camera.yaml       |   98 ++
+>  .../userspace-api/media/v4l/meta-formats.rst       |    1 +
+>  .../media/v4l/pixfmt-meta-intel-kmb.rst            |   98 ++
+>  MAINTAINERS                                        |   14 +
+>  drivers/media/platform/Kconfig                     |    1 +
+>  drivers/media/platform/Makefile                    |    2 +
+>  drivers/media/platform/keembay-camera/Kconfig      |   11 +
+>  drivers/media/platform/keembay-camera/Makefile     |    5 +
+>  .../platform/keembay-camera/keembay-cam-xlink.c    |  327 ++++
+>  .../platform/keembay-camera/keembay-cam-xlink.h    |   49 +
+>  .../media/platform/keembay-camera/keembay-camera.c |  287 +++
+>  .../media/platform/keembay-camera/keembay-camera.h |   43 +
+>  .../media/platform/keembay-camera/keembay-isp.c    | 1397 +++++++++++++++
+>  .../media/platform/keembay-camera/keembay-isp.h    |  136 ++
+>  .../platform/keembay-camera/keembay-metadata.c     | 1860 ++++++++++++++++++++
+>  .../platform/keembay-camera/keembay-metadata.h     |  154 ++
+>  .../keembay-camera/keembay-params-defaults.c       |  326 ++++
+>  .../keembay-camera/keembay-params-defaults.h       |   38 +
+>  .../platform/keembay-camera/keembay-pipeline.c     |  401 +++++
+>  .../platform/keembay-camera/keembay-pipeline.h     |   75 +
+>  .../media/platform/keembay-camera/keembay-video.c  |  922 ++++++++++
+>  .../media/platform/keembay-camera/keembay-video.h  |   74 +
+>  .../platform/keembay-camera/keembay-vpu-cmd.h      |  110 ++
+>  .../platform/keembay-camera/keembay-vpu-frame.h    |  102 ++
+>  .../platform/keembay-camera/keembay-vpu-isp.h      |  724 ++++++++
+>  .../platform/keembay-camera/keembay-vpu-pipe.h     |  110 ++
+>  .../platform/keembay-camera/keembay-vpu-src.h      |  193 ++
+>  include/uapi/linux/keembay-isp-ctl.h               |  796 +++++++++
+>  include/uapi/linux/videodev2.h                     |    4 +
+>  32 files changed, 8545 insertions(+)
+>  create mode 100644 Documentation/admin-guide/media/keembay-camera.dot
+>  create mode 100644 Documentation/admin-guide/media/keembay-camera.rst
+>  create mode 100644 Documentation/devicetree/bindings/media/intel,keembay-camera.yaml
+>  create mode 100644 Documentation/userspace-api/media/v4l/pixfmt-meta-intel-kmb.rst
+>  create mode 100644 drivers/media/platform/keembay-camera/Kconfig
+>  create mode 100644 drivers/media/platform/keembay-camera/Makefile
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-cam-xlink.c
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-cam-xlink.h
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-camera.c
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-camera.h
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-isp.c
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-isp.h
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-metadata.c
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-metadata.h
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-params-defaults.c
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-params-defaults.h
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-pipeline.c
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-pipeline.h
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-video.c
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-video.h
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-cmd.h
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-frame.h
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-isp.h
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-pipe.h
+>  create mode 100644 drivers/media/platform/keembay-camera/keembay-vpu-src.h
+>  create mode 100644 include/uapi/linux/keembay-isp-ctl.h
+> 
+> 
+> base-commit: f00397ee41c79b6155b9b44abd0055b2c0621349
+
 -- 
-1.7.9.5
+Regards,
 
+Laurent Pinchart
