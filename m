@@ -2,256 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 129AB361F20
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 13:51:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60ED1361F3D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 14:01:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242475AbhDPLuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 07:50:06 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:51417 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242019AbhDPLuD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 07:50:03 -0400
-Received: from mwalle01.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:fa59:71ff:fe9b:b851])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S234323AbhDPMCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 08:02:08 -0400
+Received: from polaris.svanheule.net ([84.16.241.116]:60116 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229706AbhDPMCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 08:02:08 -0400
+Received: from [192.168.1.109] (47.118-244-81.adsl-dyn.isp.belgacom.be [81.244.118.47])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 82CA22225B;
-        Fri, 16 Apr 2021 13:49:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1618573777;
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 162F01F06E0;
+        Fri, 16 Apr 2021 14:01:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1618574502;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=fy2TknQelkaWAwih3c9RX3wpYmd2fHGk991OFZfGCJM=;
-        b=oXp2i9LZdX2yzA+AUKE7tvvA1Y1K16AoWOPdzbBpYp8Os1DqaGzfYuIgE36ROugCU5nNOr
-        xKF+Eyqbq/Zgs8hqJ+SImSaBaqAXSeUlAmRMO0Wks1HsbdjXrz9imK2lHuQ6/MrumVVIOu
-        mmWA3HNCRLqMfby8TQ6r2CMaHDjdLX8=
-From:   Michael Walle <michael@walle.cc>
-To:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH 5/5] mtd: core: add OTP nvmem provider support
-Date:   Fri, 16 Apr 2021 13:49:28 +0200
-Message-Id: <20210416114928.27758-6-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210416114928.27758-1-michael@walle.cc>
-References: <20210416114928.27758-1-michael@walle.cc>
+        bh=VJ7MVFlc6buS1xyU5lySPKOaiRufxeVsh/CWmY9V8Z8=;
+        b=068y1HiGqrgYJmi1RlDPWVLQIGkVBldGHRNFkHzOZV6k48riVQjjKUzvBacisnDzqM+tlN
+        cWQ92FXIrpEPje9k/630HNruFT6O+iDjX73+21dlaXwqdmQwH2seC2+9HgDrkxXlKpQ6tY
+        sp7i1sUNwOiQhv+6YWKTGmE3Qm58ROzq1MNc/xBSh7865zIDt//SevCugIX+EIHPr6prB6
+        BS9yz8KuSEIVDSpzU85GmIHNfWg5i6msz3vBQt+huIYtO7k/6r+UC/Z3UeeWYkIlEzG7Kg
+        T7QjkCNPnnRZSwc5PU27Whcy3F00ZwHsdJ+MB0JgbsHvYQW7DU6cWP9SzMHPmw==
+Message-ID: <f4c264d651dfc42bb5cef727ed1645f11fcd9ecb.camel@svanheule.net>
+Subject: Re: [RFC PATCH 0/2] MIIM regmap and RTL8231 GPIO expander support
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>, bert@biot.com,
+        Birger Koblitz <mail@birger-koblitz.de>
+Date:   Fri, 16 Apr 2021 14:01:40 +0200
+In-Reply-To: <YHC0vh/4O5Zm9+vO@lunn.ch>
+References: <cover.1617914861.git.sander@svanheule.net>
+         <YG+BObnBEOZnoJ1K@lunn.ch>
+         <d73a44809c96abd0397474c63219a41e28f78235.camel@svanheule.net>
+         <YHC0vh/4O5Zm9+vO@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Flash OTP regions can already be read via user space. Some boards have
-their serial number or MAC addresses stored in the OTP regions. Add
-support for them being a (read-only) nvmem provider.
+Hi Andrew,
 
-The API to read the OTP data is already in place. It distinguishes
-between factory and user OTP, thus there are up to two different
-providers.
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
-Changes since RFC:
- - none
+On Fri, 2021-04-09 at 22:10 +0200, Andrew Lunn wrote:
+> On Fri, Apr 09, 2021 at 07:42:32AM +0200, Sander Vanheule wrote:
+> > Hi Andrew,
+> > 
+> > Thank you for the feedback. You can find a (leaked) datasheet at:
+> > https://github.com/libc0607/Realtek_switch_hacking/blob/files/RTL8231_Datasheet_1.2.pdf
+> 
+> So this is not really an MFD. It has different ways of making use of
+> pins, which could be used for GPIO, but can also be used for LEDs. You
+> could look if it better fits in drivers/leds. But you can also use
+> GPIO drivers for LEDs via led-gpio.
 
- drivers/mtd/mtdcore.c   | 149 ++++++++++++++++++++++++++++++++++++++++
- include/linux/mtd/mtd.h |   2 +
- 2 files changed, 151 insertions(+)
+The chip provides LED scanning matrix functionality, for which one needs to set up row and column
+pins. The chip supports 3×12 + 3×12 + 2×8 (88) LEDs; a lot more than it has pins available. There is
+also (limited) support for hardware-accelerated blinking.
 
-diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
-index 0bc6871c3863..92201e3d187a 100644
---- a/drivers/mtd/mtdcore.c
-+++ b/drivers/mtd/mtdcore.c
-@@ -777,6 +777,147 @@ static void mtd_set_dev_defaults(struct mtd_info *mtd)
- 	mutex_init(&mtd->master.chrdev_lock);
- }
- 
-+static ssize_t mtd_otp_size(struct mtd_info *mtd, bool is_user)
-+{
-+	struct otp_info *info = kmalloc(PAGE_SIZE, GFP_KERNEL);
-+	ssize_t size = 0;
-+	unsigned int i;
-+	size_t retlen;
-+	int ret;
-+
-+	if (is_user)
-+		ret = mtd_get_user_prot_info(mtd, PAGE_SIZE, &retlen, info);
-+	else
-+		ret = mtd_get_fact_prot_info(mtd, PAGE_SIZE, &retlen, info);
-+	if (ret)
-+		goto err;
-+
-+	for (i = 0; i < retlen / sizeof(*info); i++) {
-+		size += info->length;
-+		info++;
-+	}
-+
-+	kfree(info);
-+	return size;
-+
-+err:
-+	kfree(info);
-+	return ret;
-+}
-+
-+static struct nvmem_device *mtd_otp_nvmem_register(struct mtd_info *mtd,
-+						   const char *name, int size,
-+						   nvmem_reg_read_t reg_read,
-+						   const char *compatible)
-+{
-+	struct nvmem_device *nvmem = NULL;
-+	struct nvmem_config config = {};
-+	struct device_node *np;
-+
-+	/* DT binding is optional */
-+	np = of_get_compatible_child(mtd->dev.of_node, compatible);
-+
-+	/* OTP nvmem will be registered on the physical device */
-+	config.dev = mtd->dev.parent;
-+	config.name = name;
-+	config.id = NVMEM_DEVID_NONE;
-+	config.owner = THIS_MODULE;
-+	config.type = NVMEM_TYPE_OTP;
-+	config.root_only = true;
-+	config.reg_read = reg_read;
-+	config.size = size;
-+	config.of_node = np;
-+	config.priv = mtd;
-+
-+	nvmem = nvmem_register(&config);
-+	/* Just ignore if there is no NVMEM support in the kernel */
-+	if (IS_ERR(nvmem) && PTR_ERR(nvmem) == -EOPNOTSUPP)
-+		nvmem = NULL;
-+
-+	of_node_put(np);
-+
-+	return nvmem;
-+}
-+
-+static int mtd_nvmem_user_otp_reg_read(void *priv, unsigned int offset,
-+				       void *val, size_t bytes)
-+{
-+	struct mtd_info *mtd = priv;
-+	size_t retlen;
-+	int ret;
-+
-+	ret = mtd_read_user_prot_reg(mtd, offset, bytes, &retlen, val);
-+	if (ret)
-+		return ret;
-+
-+	return retlen == bytes ? 0 : -EIO;
-+}
-+
-+static int mtd_nvmem_fact_otp_reg_read(void *priv, unsigned int offset,
-+				       void *val, size_t bytes)
-+{
-+	struct mtd_info *mtd = priv;
-+	size_t retlen;
-+	int ret;
-+
-+	ret = mtd_read_fact_prot_reg(mtd, offset, bytes, &retlen, val);
-+	if (ret)
-+		return ret;
-+
-+	return retlen == bytes ? 0 : -EIO;
-+}
-+
-+static int mtd_otp_nvmem_add(struct mtd_info *mtd)
-+{
-+	struct nvmem_device *nvmem;
-+	ssize_t size;
-+	int err;
-+
-+	if (mtd->_get_user_prot_info && mtd->_read_user_prot_reg) {
-+		size = mtd_otp_size(mtd, true);
-+		if (size < 0)
-+			return size;
-+
-+		if (size > 0) {
-+			nvmem = mtd_otp_nvmem_register(mtd, "user-otp", size,
-+						       mtd_nvmem_user_otp_reg_read,
-+						       "mtd-user-otp");
-+			if (IS_ERR(nvmem)) {
-+				dev_err(&mtd->dev, "Failed to register OTP NVMEM device\n");
-+				return PTR_ERR(nvmem);
-+			}
-+			mtd->otp_user_nvmem = nvmem;
-+		}
-+	}
-+
-+	if (mtd->_get_fact_prot_info && mtd->_read_fact_prot_reg) {
-+		size = mtd_otp_size(mtd, false);
-+		if (size < 0) {
-+			err = size;
-+			goto err;
-+		}
-+
-+		if (size > 0) {
-+			nvmem = mtd_otp_nvmem_register(mtd, "factory-otp", size,
-+						       mtd_nvmem_fact_otp_reg_read,
-+						       "mtd-factory-otp");
-+			if (IS_ERR(nvmem)) {
-+				dev_err(&mtd->dev, "Failed to register OTP NVMEM device\n");
-+				err = PTR_ERR(nvmem);
-+				goto err;
-+			}
-+			mtd->otp_factory_nvmem = nvmem;
-+		}
-+	}
-+
-+	return 0;
-+
-+err:
-+	if (mtd->otp_user_nvmem)
-+		nvmem_unregister(mtd->otp_user_nvmem);
-+	return err;
-+}
-+
- /**
-  * mtd_device_parse_register - parse partitions and register an MTD device.
-  *
-@@ -852,6 +993,8 @@ int mtd_device_parse_register(struct mtd_info *mtd, const char * const *types,
- 		register_reboot_notifier(&mtd->reboot_notifier);
- 	}
- 
-+	ret = mtd_otp_nvmem_add(mtd);
-+
- out:
- 	if (ret && device_is_registered(&mtd->dev))
- 		del_mtd_device(mtd);
-@@ -873,6 +1016,12 @@ int mtd_device_unregister(struct mtd_info *master)
- 	if (master->_reboot)
- 		unregister_reboot_notifier(&master->reboot_notifier);
- 
-+	if (master->otp_user_nvmem)
-+		nvmem_unregister(master->otp_user_nvmem);
-+
-+	if (master->otp_factory_nvmem)
-+		nvmem_unregister(master->otp_factory_nvmem);
-+
- 	err = del_mtd_partitions(master);
- 	if (err)
- 		return err;
-diff --git a/include/linux/mtd/mtd.h b/include/linux/mtd/mtd.h
-index 4aac200ca8b5..71e751d18c22 100644
---- a/include/linux/mtd/mtd.h
-+++ b/include/linux/mtd/mtd.h
-@@ -379,6 +379,8 @@ struct mtd_info {
- 	int usecount;
- 	struct mtd_debug_info dbg;
- 	struct nvmem_device *nvmem;
-+	struct nvmem_device *otp_user_nvmem;
-+	struct nvmem_device *otp_factory_nvmem;
- 
- 	/*
- 	 * Parent device from the MTD partition point of view.
--- 
-2.20.1
+For example, single LED color scan matrix ("group A" for ports 0-11) would be wired up as follows:
+   
+    Row and column pins of scan matrix for LED0, LED1, LED2
+    Columns control LED0/1/2 for ports [n] and [n+6]
+          L0[n]    L1[n]    L2[n]    L0[n+6]  L1[n+6]  L2[n+6]
+            |        |        |        |        |        |
+    P0/P6 --X--------X--------X--------X--------X--------X (3)
+            |        |        |        |        |        |
+    P1/P7 --X--------X--------X--------X--------X--------X (4)
+            |        |        |        |        |        |
+    P2/P8 --X--------X--------X--------X--------X--------X (5)
+            |        |        |        |        |        |
+    P3/P9 --X--------X--------X--------X--------X--------X (6)
+            |        |        |        |        |        |
+   P4/P10 --X--------X--------X--------X--------X--------X (7)
+            |        |        |        |        |        |
+   P5/P11 --X--------X--------X--------X--------X--------X (8)
+           (0)      (1)      (2)      (9)      (10)     (11)
+
+So far, I haven't seen any actual hardware implementation that uses the scanning matrix
+functionality (or the buzzer control feature with frequency selection).
+
+1:1 use of GPIO pins for LEDs is indeed trivial with led-gpio, and I am currently using this on one
+of my devices.
+
+> > > I don't understand this split. Why not
+> > > 
+> > >      mdio-bus {
+> > >          compatible = "vendor,mdio";
+> > >          ...
+> > >  
+> > >          expander0: expander@0 {
+> > >              /*
+> > >               * Provide compatible for working registration of mdio
+> > > device.
+> > >               * Device probing happens in gpio1 node.
+> > >               */
+> > >              compatible = "realtek,rtl8231-expander";
+> > >              reg = <0>;
+> > >              gpio-controller;
+> > >          };
+> > >      };
+> > > 
+> > > You can list whatever properties you need in the node. Ethernet
+> > > switches have interrupt-controller, embedded MDIO busses with PHYs on
+> > > them etc.
+> > 
+> > This is what I tried initially, but it doesn't seem to work. The node
+> > is probably still added as an MDIO device, but rtl8231_gpio_probe()
+> > doesn't appear to get called at all. I do agree it would be preferable
+> > over the split specification.
+> 
+> Look at drivers/net/dsa/mv88e6xxx/chip.c for how to register an mdio
+> driver. If you still cannot get it to work, post your code and i will
+> take a look.
+
+Thanks for the suggestion. I've managed to create a cleaner mdio_device driver with a single
+corresponding DT node.
+
+Would the following make sense for a more complete DT description? Or would I need sub-nodes to
+group e.g. the pin control or LED nodes/properties?
+
+   expander@31 {
+   	/* Either "realtek,rtl8231-mdio" or "realtek,rtl8231-smi" */
+   	compatible = "realtek,rtl8231-mdio";
+   	reg = <31>;
+   
+   	/* Must be <1> (8 bit) or <2> (16 bit); only for "realtek,rtl8231-smi" */
+   	realtek,smi-regnum-width = <1>;
+   
+   	/** GPIO controller properties **/
+   	gpio-controller;
+   	#gpio-cells = <2>;
+   	ngpios = <37>;
+   
+   	poe_enable {
+   		gpio-hog;
+   		gpios = <10 0>;
+   		output-high;
+   	};
+   
+   	/** Pin controller properties **/
+   	/* Can only set a global drive strength, 4mA or 8mA */
+   	realtek,gpio-drive-strength = <4>;
+   
+   	/* Global LED scan matrix setting, 0 (single-color) or 1 (bi-color) */
+   	realtek,led-color-scan-mode = <0>;
+   
+   	pinctrl-names = "default";
+   	pinctrl-0 = <&user_button>, <&port_leds>;
+   
+   	user_button : user_button_cfg {
+   		pins = "gpio31";
+   		function = "gpio";
+   		/* Only GPIOs 31-35 can do hardware debouncing */
+   		/* Debouncing is either disabled or 100ms */
+   		input-debounce = <100000>;
+   	};
+   
+   	port_leds : port_leds_cfg {
+   		/* Select two columns (LED colors) for switch ports 0-7 */
+   		pins = "gpio0", "gpio1", "gpio9", "gpio10",
+   		       "gpio3", "gpio4", "gpio5", "gpio6";
+   		function = "led";
+   	};
+   	
+   	/** LED config **/
+   	#address-cells = <2>;
+   	#size-cells = <0>;
+   
+   	led@0.0 {
+   		/* LED0 for port 0, corresponds to bits [2:0] in regnum 0x09 */
+   		reg = <0 0>;
+   		...
+   	};
+   	led@0.1 {
+   		/* LED1 for port 0 */
+   		reg = <0 1>;
+   		...
+   	};
+   	/* LEDs 1.x, 2.x, 3.x, 6.x, 7.x, 8.x, 9.x omitted */
+   };
+   
+
+As a final remark, I have found out that this chip doesn't actually talk I2C, but rather Realtek's
+proprietary SMI. These two protocols are very similar w.r.t. to byte framing, but SMI requires the bus
+master to write the register number byte(s) on both READ and WRITE frames. I2C/SMBUS does a WRITE for
+the register number first, then a separate READ for the register value. This means I can't get
+regmap_i2c to work.
+
+There is an existing, bit-banged implementation of this SMI protocol (see "realtek,smi-mdio", realtek-
+smi.c). If I could re-use this in some way, there would only need to be an MDIO implementation.
+However, we have noticed that the larger phy address space (7-bit in SMI vs. 5-bit in MDIO) did require
+a patch to make it work on ethernet switches with more than 32 ports (and corresponding phys) on a
+single SMI bus.
+
+Best,
+Sander
 
