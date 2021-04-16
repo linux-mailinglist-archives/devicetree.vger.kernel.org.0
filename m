@@ -2,165 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAA6436285E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 21:11:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C37DD362868
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 21:12:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236408AbhDPTLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 15:11:33 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:46878 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235715AbhDPTLd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 15:11:33 -0400
-Received: by mail-ot1-f45.google.com with SMTP id d3-20020a9d29030000b029027e8019067fso24763465otb.13;
-        Fri, 16 Apr 2021 12:11:08 -0700 (PDT)
+        id S235735AbhDPTNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 15:13:22 -0400
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:41978 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235122AbhDPTNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 15:13:21 -0400
+Received: by mail-oi1-f180.google.com with SMTP id r186so1113555oif.8;
+        Fri, 16 Apr 2021 12:12:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7kkTDXKovXIYC5vNheXczRDZhYQJOa8QXII+sZNZW1U=;
-        b=BA+0EKkJYIIL1l5o/3rZVQoL8tiRg/3+6PiGrjosPrhBfcolMaFcoxpxeaFVNh1wyy
-         4mjWjJw5NvVRS5g5JtRCpT0BKMCVqHSLWDP5lYchm45+sZ6W8CnxpISJoSz39Xfg51O0
-         iNcBMbjQE/DnqDSgblUTEOtsrQ7iSm8mwns6PFRnNBqRlLvw36HeVdfJJDeO5cJcQ5ud
-         4+k/wHmKLMp3fwYsQUS4ZbQHOs8mKUwFlDSdYmMrS246j5ntGxw6osOyF0LgZTzAo9id
-         dkh0LmFmdkM1OrrqIQZRJa+uUqq7Ghq45x18umh+Bs2ag07oyp7gefTVhh9XQG3Axm9s
-         NIhA==
-X-Gm-Message-State: AOAM5332KN9BunCH6xclUbSVRk/8RQjWqNmg2LshrHC1TXsCjKUsGZRN
-        Raobhar8YQEnnKnZvMaZbg==
-X-Google-Smtp-Source: ABdhPJyXHTioo0D1PWDv8uhr84Ecya6KUrH26PwVEjr9f3PEJkrt8iUeVlzVy7Zf8FxASveORI8/Gg==
-X-Received: by 2002:a05:6830:10:: with SMTP id c16mr4809791otp.48.1618600267611;
-        Fri, 16 Apr 2021 12:11:07 -0700 (PDT)
+        bh=DNjkbun/XYfHCNxGgq9zHxG/GMby9cLqXNMucsqMB1w=;
+        b=TmbNKGiJYCTTEpGWhsMRe9TW/qy0paCIVp94CjBt5rwfjFMhJxgDQk3YLKi9WN9+T3
+         D/XtGPK5si7qqQrnufRzaNtT02NqmCP0+maB8hPQqDZnApqHPFsdR4meWKCnopF3GnRQ
+         8j7YeSrkHFKwdyQcCfTQAzS13omveaqDBxcZkM6Qu7qChuGjXNuifWwtauRxvstBjRjd
+         M97isnLiMJGGH0LYpVfihhIK3DyJ/hIbNqQCiDzUX3CNkXyvsRawnJzAh6CHVgGwgajD
+         O+WLrl1cE2vKH6Q9YGKP9FSBoA88qfsl/i0271rdGSFsCcdhKLA1lXAK0L+us65TGM+w
+         /ucg==
+X-Gm-Message-State: AOAM530G8eu4c0D60UU/S/hA3hueinS1mJ5UyAwb3mgYvC5YPiTrk1Xt
+        rY9XgSizU4KsZWdoOTtgbg==
+X-Google-Smtp-Source: ABdhPJxgh6O5W1jlb8bKCqeMgP6WIAUMETr3Uer8iH7Yq2NSXt9VKsmR9WjIZMIRYZ2jxU7aSlU0WA==
+X-Received: by 2002:aca:4442:: with SMTP id r63mr7533105oia.102.1618600376326;
+        Fri, 16 Apr 2021 12:12:56 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t4sm246593oie.27.2021.04.16.12.11.04
+        by smtp.gmail.com with ESMTPSA id h17sm1498246otj.38.2021.04.16.12.12.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Apr 2021 12:11:05 -0700 (PDT)
-Received: (nullmailer pid 3776346 invoked by uid 1000);
-        Fri, 16 Apr 2021 19:11:04 -0000
-Date:   Fri, 16 Apr 2021 14:11:04 -0500
+        Fri, 16 Apr 2021 12:12:55 -0700 (PDT)
+Received: (nullmailer pid 3779654 invoked by uid 1000);
+        Fri, 16 Apr 2021 19:12:54 -0000
+Date:   Fri, 16 Apr 2021 14:12:54 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-Subject: Re: [PATCH v5 net-next 10/10] dt-bindings: net: korina: Add DT
- bindings for IDT 79RC3243x SoCs
-Message-ID: <20210416191104.GB3770043@robh.at.kernel.org>
-References: <20210416085207.63181-1-tsbogend@alpha.franken.de>
- <20210416085207.63181-11-tsbogend@alpha.franken.de>
- <ca4d9975-c153-94c9-dec8-bf9416c76b45@gmail.com>
- <20210416133536.GA10451@alpha.franken.de>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        s-anna@ti.com, linux-kernel@vger.kernel.org,
+        Jassi Brar <jassisinghbrar@gmail.com>
+Subject: Re: [PATCH V3] dt-bindings: mailbox: ti, secure-proxy: Convert to
+ json schema
+Message-ID: <20210416191254.GA3779553@robh.at.kernel.org>
+References: <20210416005953.17147-1-nm@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210416133536.GA10451@alpha.franken.de>
+In-Reply-To: <20210416005953.17147-1-nm@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 16, 2021 at 03:35:36PM +0200, Thomas Bogendoerfer wrote:
-> On Fri, Apr 16, 2021 at 12:29:46PM +0300, Sergei Shtylyov wrote:
-> > On 16.04.2021 11:52, Thomas Bogendoerfer wrote:
-> > 
-> > > Add device tree bindings for ethernet controller integrated into
-> > > IDT 79RC3243x SoCs.
-> > > 
-> > > Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> > > ---
-> > >   .../bindings/net/idt,3243x-emac.yaml          | 74 +++++++++++++++++++
-> > >   1 file changed, 74 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/net/idt,3243x-emac.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/net/idt,3243x-emac.yaml b/Documentation/devicetree/bindings/net/idt,3243x-emac.yaml
-> > > new file mode 100644
-> > > index 000000000000..3697af5cb66f
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/net/idt,3243x-emac.yaml
-> > > @@ -0,0 +1,74 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/net/idt,3243x-emac.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: IDT 79rc3243x Ethernet controller
-> > > +
-> > > +description: Ethernet controller integrated into IDT 79RC3243x family SoCs
-> > > +
-> > > +maintainers:
-> > > +  - Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> > > +
-> > > +allOf:
-> > > +  - $ref: ethernet-controller.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: idt,3243x-emac
-> > > +
-> > > +  reg:
-> > > +    maxItems: 3
-> > > +
-> > > +  reg-names:
-> > > +    items:
-> > > +      - const: korina_regs
-> > > +      - const: korina_dma_rx
-> > > +      - const: korina_dma_tx
-> > > +
-> > > +  interrupts:
-> > > +    items:
-> > > +      - description: RX interrupt
-> > > +      - description: TX interrupt
-> > > +
-> > > +  interrupt-names:
-> > > +    items:
-> > > +      - const: korina_rx
-> > > +      - const: korina_tx
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 1
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: mdioclk
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - reg-names
-> > > +  - interrupts
-> > > +  - interrupt-names
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +
-> > > +    ethernet@60000 {
-> > > +        compatible = "idt,3243x-emac";
-> > > +
-> > > +        reg = <0x60000 0x10000>,
-> > > +              <0x40000 0x14>,
-> > > +              <0x40014 0x14>;
-> > > +        reg-names = "korina_regs",
-> > > +                    "korina_dma_rx",
-> > > +                    "korina_dma_tx";
-> > > +
-> > > +        interrupts-extended = <&rcpic3 0>, <&rcpic3 1>;
-> > 
-> >    You use this prop, yet don't describe it?
+On Thu, 15 Apr 2021 19:59:53 -0500, Nishanth Menon wrote:
+> Convert the ti,secure-proxy to yaml for better checks and documentation.
+> Differences being mostly in the examples:
+> - Dropped the example usage of mailbox client, it is better done in
+>   tisci node definition.
+> - Switched reg usage for address-cells and size-cells 1 - aligned with
+>   schema checks as well.
+> - included header in example for a buildable example.
 > 
-> that's just interrupt-parent and interrupts in one statement. And since
-> make dt_binding_check didn't complained I thought that's good this way.
-> Rob, do I need to describe interrupts-extended as well ?
+> While at this, lets make sure to support upto 100 rx threads even though
+> typically upto 1 threads is practically in use.
+> 
+> NOTE: The following checkpatch warning is generated since we do include the header
+> in the example, but this is a false positive warning.
+>   WARNING: DT binding docs and includes should be a separate patch. See:
+>   Documentation/devicetree/bindings/submitting-patches.rst
+> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
+> 
+> Changes since v2:
+>  - Subject line rewording to indicate json schema rather than yaml
+>  - Review comment: Dropped "-" in interrupt-names pattern so that it will match all
+>    entries
+>  - Minor commit message formatting changes
+> 
+> V2: https://lore.kernel.org/linux-arm-kernel/20210413224535.30910-1-nm@ti.com/
+> V1: https://lore.kernel.org/linux-arm-kernel/20210413171230.5872-1-nm@ti.com/
+> 
+>  .../bindings/mailbox/ti,secure-proxy.txt      | 50 ------------
+>  .../bindings/mailbox/ti,secure-proxy.yaml     | 79 +++++++++++++++++++
+>  2 files changed, 79 insertions(+), 50 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mailbox/ti,secure-proxy.txt
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml
+> 
 
-No, the tooling handles both cases. What the parent is is outside the 
-scope of a binding.
-
-> I could change that to interrupt-parent/interrupts as the driver no
-> longer uses dma under/overrun interrupts, which have a different
-> interrupt-parent.
-
-Humm, you should be describing the interrupt connections the h/w block 
-has, not what the driver uses (today) or not.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
