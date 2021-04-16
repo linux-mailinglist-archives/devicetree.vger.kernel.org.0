@@ -2,322 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C072F361AF7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 10:01:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7963A361B04
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 10:06:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239778AbhDPH6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 03:58:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40732 "EHLO
+        id S237986AbhDPIFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 04:05:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239776AbhDPH6F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 03:58:05 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABE9FC061756
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 00:57:40 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id z13so26341887lfd.9
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 00:57:40 -0700 (PDT)
+        with ESMTP id S236893AbhDPIFK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 04:05:10 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60833C061574;
+        Fri, 16 Apr 2021 01:04:46 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id u21so40825065ejo.13;
+        Fri, 16 Apr 2021 01:04:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=RcVtLHPeILqwps9F3MFYnE/GXHTurEjZg7QnfR3gelU=;
-        b=xKDd9jzm56KHncFPXTs5Fbka4j7wQjtp2WPwTV0JnM22Z3sgex6TTbzQNKUCSXIc6h
-         4DLBdFZkoQTW9nQD18nrlHggk5TegXzDrQMQ5IGtI69dGxmRPAjiCRbdCdCjQo0kLFdU
-         68VMAw7Scgn1rO5QMIQA4z1fEyKlP1hxrWm3hpiUqh+xb2Xa9+OdfCnuVIvnFwisDnBU
-         LdiBjfweP+tZsZYvzPaLVDovAS57Lexx1nqrwjIKUxFWZa26OKefFTcKLuMk46m5goHG
-         gmOyWD0uVyFIGLXo6Ju9X5GGmKiEzmIZfJXfztRzhZgthD739g06M6POl1W8IXXV+Zuf
-         SOvg==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=OWRXiPGRi09QbcBFvA9VOlXlTCFeZlC+E/sc4KUB+7A=;
+        b=YAfK0ActrpH0ig12JPJ+SU8a+VVAabRSDFiW+zaSwaLg0Ee6gIJZn8tP3RecwrR+rm
+         g9L8LxCirOy1w6dhRcBh3/qU5dkA/OtyLYGDq62985DRxXQF+TK5KM38e5nkfxNuObdc
+         qsH+BjsSndNVdByxQHGyiIS1ZC6XuZuxbfjRLmC0F75xRk7GMnfygH1qDvS1FvFhMC1k
+         M25J8o0IRNA3InSOtUJqD2ANSElOIXkvhzUgZm+KCudblw0YK/Z1UVx7M+qutDP9d0T0
+         jIh6ikRCPI++HL+ZybODn3A/jgsAzu/TKQ7KsowWG7/i+Olh9gAWOU6GF7Oy8yVgpiM/
+         78CA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=RcVtLHPeILqwps9F3MFYnE/GXHTurEjZg7QnfR3gelU=;
-        b=lqKDitVHpaByxtyDmq5kTwXAg2FRV6t1pmAq8yJx03ESFiNo39AUXB4i3HQWXXjlvh
-         u92Hh5g/Gtfk/a6ePWGYDpUDThZbrZ1juLdrDcLJ8bedAIZyCl4dTOM/382vOb8h+dOa
-         gM7MrZ+PJlH0z2iO1fTspponFMo8jyAGU8SUXc9eXTduCsgvKl9DV3bin+kkP8iCmRxa
-         l7J0uAU5Q7Z6Ef+tKwNjv0o27VmaeyDkUIBA35FrYkqubuo+mATbldSu5MeA0bk6Ek+B
-         a8k+1HmFj0BE8pvWoBqKn5wGUr6xYHtO8ozfvuZWrPMiisetWkyt2VB0cx40E+IaFZpj
-         nUUg==
-X-Gm-Message-State: AOAM5321ipTMCKVRLpAweBJRR6FWZgKJrcHf/AspIx8OOW6Bg2LIdPER
-        i4phLVWkgVHyoqtccIqfLrF8Kw==
-X-Google-Smtp-Source: ABdhPJyMDNuOZNysId/2LQHJXDaURFQm5QHJBBKSuHsJGsbgxCnrL5DQttRYOCoe4BYmC0g76S2A6w==
-X-Received: by 2002:ac2:5c04:: with SMTP id r4mr2112862lfp.387.1618559859161;
-        Fri, 16 Apr 2021 00:57:39 -0700 (PDT)
-Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
-        by smtp.gmail.com with ESMTPSA id t2sm913206lfc.58.2021.04.16.00.57.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Apr 2021 00:57:38 -0700 (PDT)
-Date:   Fri, 16 Apr 2021 09:57:38 +0200
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] media: dt-bindings: media: renesas,isp: Add bindings for
- ISP Channel Selector
-Message-ID: <YHlDctgP3++tyX1A@oden.dyn.berto.se>
-References: <20210413172708.2519173-1-niklas.soderlund+renesas@ragnatech.se>
- <20210415214611.GA1929236@robh.at.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210415214611.GA1929236@robh.at.kernel.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=OWRXiPGRi09QbcBFvA9VOlXlTCFeZlC+E/sc4KUB+7A=;
+        b=PbnmhgDHALkkd/rkjaUnemZboGXr3txFxQTPdTJcFp3WrfG/EbSLx5j5R4lsFIgWI8
+         yonN+0hruv511xOnnve3HOHdCKugOSA2R1TZhRYwUEVumpYqtZKwcyMWDb334UBEjJ3h
+         16m4rJaiBbAG9duS5syETeNCZe1P58EHmCmXUZNOVSHjZL2h5UR9LoJRl4yp6tJHfVTE
+         QSu2o1ts99Kf+L3TCxtKcVyBus9LyoHDrEnzd6j3yL6ZfmrIBQMDd8W7bmly/85SD77j
+         hvuBZteM7FOnuZ8wNV1dR44YGl1UXPDaAyWQDGC/J4gDYWtIbyeiIQJxW5DnTiNXAnVu
+         uD5Q==
+X-Gm-Message-State: AOAM531BdoD8EVXUM9eXuBYrShFHeLOCcw37wwCCTyczbo3qd3zkH8H4
+        QeXcD2VQPB/gjG7eDLTzNa5Ns59UPaF5Kff1
+X-Google-Smtp-Source: ABdhPJwtExuvPla2KbvdeXR3UALergaPe7QsuMA4vfP9OXbIKm+ngpy0r+5X0gsJnpl0ENGH/GqBfw==
+X-Received: by 2002:a17:906:cb1:: with SMTP id k17mr7136631ejh.307.1618560285007;
+        Fri, 16 Apr 2021 01:04:45 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id q16sm4672303edv.61.2021.04.16.01.04.35
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 16 Apr 2021 01:04:44 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, zhangqing@rock-chips.com,
+        enric.balletbo@collabora.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v8 00/15] soc: rockchip: power-domain: add rk3568 powerdomains
+Date:   Fri, 16 Apr 2021 10:03:27 +0200
+Message-Id: <20210416080342.18614-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Fix power-controller node names for dtbs_check.
+Convert power domain documentation to json-schema.
+Add a meaningful power domain name.
+Support power domain function for RK3568 Soc.
 
-Thanks for your feedback.
+Changed in V8:
+  Add #power-domain-cells to power domain nodes.
+  Convert pmu.txt to YAML.
+  Add more compatible strings to pmu.yaml
+  Add pd-node ref schema.
 
-On 2021-04-15 16:46:11 -0500, Rob Herring wrote:
-> On Tue, Apr 13, 2021 at 07:27:08PM +0200, Niklas Söderlund wrote:
-> > Add bindings for Renesas R-Car ISP Channel Selector IP. The ISP is
-> > responsible for filtering the MIPI CSI-2 bus and directing the different
-> > CSI-2 virtual channels to different R-Car VIN instances (DMA engines)
-> > for capture.
-> > 
-> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> > ---
-> >  .../bindings/media/renesas,isp.yaml           | 197 ++++++++++++++++++
-> >  MAINTAINERS                                   |   1 +
-> >  2 files changed, 198 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/renesas,isp.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/renesas,isp.yaml b/Documentation/devicetree/bindings/media/renesas,isp.yaml
-> > new file mode 100644
-> > index 0000000000000000..99a1556d21d00106
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/renesas,isp.yaml
-> > @@ -0,0 +1,197 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +# Copyright (C) 2021 Renesas Electronics Corp.
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/renesas,isp.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Renesas R-Car ISP Channel Selector
-> > +
-> > +maintainers:
-> > +  - Niklas Söderlund <niklas.soderlund@ragnatech.se>
-> > +
-> > +description:
-> > +  The R-Car ISP Channel Selector provides MIPI CSI-2 VC and DT filtering
-> > +  capabilities for the Renesas R-Car family of devices. It is used in
-> > +  conjunction with the R-Car VIN and CSI-2 modules, which provides the video
-> > +  capture capabilities.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - renesas,isp-r8a779a0 # V3U
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> 
-> Why port-base on this one? That should be used if you have custom 
-> properties in the port or endpoint nodes.
+Changed in V7:
+[PATCH v7 07/11]:
+  Fix TAB warning
+  Fix alignment
+[PATCH v7 09/11]:
+  Fix commit message and author format
+  Changed SPDX-License-Identifier back to GPL-2.0
+  Remove "clocks", "assigned-clocks" and "assigned-clock-parents"
+  Fix indent example
+[PATCH v7 11/11]:
+  Fix alignment
 
-Ahh I see, then yes this indeed not needed for port@0.
+Changed in V6:
+[PATCH v6 7/11]: Use kbasename(node->full_name).
+[PATCH v6 9/11]: Update the commit message.
 
-> 
-> > +        description:
-> > +          Input port node, multiple endpoints describing the connected R-Car
-> > +          CSI-2 receivers.
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description:
-> > +          Single endpoint describing the R-Car VIN connected to output port 0.
-> > +
-> > +      port@2:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description:
-> > +          Single endpoint describing the R-Car VIN connected to output port 1.
-> > +
-> > +      port@3:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description:
-> > +          Single endpoint describing the R-Car VIN connected to output port 2.
-> > +
-> > +      port@4:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description:
-> > +          Single endpoint describing the R-Car VIN connected to output port 3.
-> > +
-> > +      port@5:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description:
-> > +          Single endpoint describing the R-Car VIN connected to output port 4.
-> > +
-> > +      port@6:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description:
-> > +          Single endpoint describing the R-Car VIN connected to output port 5.
-> > +
-> > +      port@7:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description:
-> > +          Single endpoint describing the R-Car VIN connected to output port 6.
-> > +
-> > +      port@8:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description:
-> > +          Single endpoint describing the R-Car VIN connected to output port 7.
-> > +
-> > +    required:
-> > +      - port@0
-> > +      - port@1
-> > +      - port@2
-> > +      - port@3
-> > +      - port@4
-> > +      - port@5
-> > +      - port@6
-> > +      - port@7
-> > +      - port@8
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - power-domains
-> > +  - resets
-> > +  - ports
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/r8a779a0-cpg-mssr.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/power/r8a779a0-sysc.h>
-> > +
-> > +    isp1: isp@fed20000 {
-> > +            compatible = "renesas,isp-r8a779a0";
-> > +            reg = <0xfed20000 0x10000>;
-> > +            interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
-> > +            clocks = <&cpg CPG_MOD 613>;
-> > +            power-domains = <&sysc R8A779A0_PD_A3ISP01>;
-> > +            resets = <&cpg 613>;
-> > +            status = "disabled";
-> 
-> Don't show 'status' in examples.
+Changed in V5:
+[PATCH v5 1/11]: New.
+[PATCH v5 2/11]: New.
+[PATCH v5 3/11]: New.
+[PATCH v5 4/11]: New.
+[PATCH v5 5/11]: New.
+[PATCH v5 6/11]: New.
+[PATCH v5 7/11]: New.
+[PATCH v5 8/11]: No change. Same as [PATCH v4 1/4].
+[PATCH v5 9/11]: [PATCH v4 2/4] Fix up yaml code styles.
+[PATCH v5 10/11]: No change. Same as [PATCH v4 3/4].
+[PATCH v5 11/11]: [PATCH v4 4/4] add a meaningful power domain name for
+RK3568 Soc.
 
-Thanks.
+Changed in V4:
+[PATCH v4 2/4]: Fix up yaml code styles. Remove the new compatible to [PATCH v4 3/4]
+[PATCH v4 3/4]: Adding new compatible for RK3568 Soc.
+[PATCH v4 4/4]: No change. Same as [PATCH v3 3/3].
 
-> 
-> > +
-> > +            ports {
-> > +                    #address-cells = <1>;
-> > +                    #size-cells = <0>;
-> > +
-> > +                    port@0 {
-> > +                            #address-cells = <1>;
-> > +                            #size-cells = <0>;
-> > +
-> > +                            reg = <0>;
-> > +                            isp1csi41: endpoint@1 {
-> > +                                    reg = <1>;
-> > +                                    remote-endpoint = <&csi41isp1>;
-> > +                            };
-> > +                    };
-> > +
-> > +                    port@1 {
-> > +                            reg = <1>;
-> > +                            isp1vin08: endpoint {
-> > +                                    remote-endpoint = <&vin08isp1>;
-> > +                            };
-> > +                    };
-> > +
-> > +                    port@2 {
-> > +                            reg = <2>;
-> > +                            isp1vin09: endpoint {
-> > +                                    remote-endpoint = <&vin09isp1>;
-> > +                            };
-> > +                    };
-> > +
-> > +                    port@3 {
-> > +                            reg = <3>;
-> > +                            isp1vin10: endpoint {
-> > +                                    remote-endpoint = <&vin10isp1>;
-> > +                            };
-> > +                    };
-> > +
-> > +                    port@4 {
-> > +                            reg = <4>;
-> > +                            isp1vin11: endpoint {
-> > +                                    remote-endpoint = <&vin11isp1>;
-> > +                            };
-> > +                    };
-> > +
-> > +                    port@5 {
-> > +                            reg = <5>;
-> > +                            isp1vin12: endpoint {
-> > +                                    remote-endpoint = <&vin12isp1>;
-> > +                            };
-> > +                    };
-> > +
-> > +                    port@6 {
-> > +                            reg = <6>;
-> > +                            isp1vin13: endpoint {
-> > +                                    remote-endpoint = <&vin13isp1>;
-> > +                            };
-> > +                    };
-> > +
-> > +                    port@7 {
-> > +                            reg = <7>;
-> > +                            isp1vin14: endpoint {
-> > +                                    remote-endpoint = <&vin14isp1>;
-> > +                            };
-> > +                    };
-> > +
-> > +                    port@8 {
-> > +                            reg = <8>;
-> > +                            isp1vin15: endpoint {
-> > +                                    remote-endpoint = <&vin15isp1>;
-> > +                            };
-> > +                    };
-> > +            };
-> > +    };
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index b265a7ba60e709f3..e125d0eed7b021a0 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -11144,6 +11144,7 @@ L:	linux-renesas-soc@vger.kernel.org
-> >  S:	Supported
-> >  T:	git git://linuxtv.org/media_tree.git
-> >  F:	Documentation/devicetree/bindings/media/renesas,csi2.yaml
-> > +F:	Documentation/devicetree/bindings/media/renesas,isp.yaml
-> >  F:	Documentation/devicetree/bindings/media/renesas,vin.yaml
-> >  F:	drivers/media/platform/rcar-vin/
-> >  
-> > -- 
-> > 2.31.1
-> > 
+Changed in V3:
+[PATCH v3 2/3]: Fix up the code styles and add rk3568 base on:
+https://patchwork.kernel.org/project/linux-rockchip/patch/20210225102643.653095-1-enric.balletbo@collabora.com/
+
+Changed in V2:
+[PATCH v2 2/3]: Fix up yaml code styles.
+
+Elaine Zhang (10):
+  ARM: dts: rockchip: Fix power-controller node names for rk3066a
+  ARM: dts: rockchip: Fix power-controller node names for rk3188
+  ARM: dts: rockchip: Fix power-controller node names for rk3288
+  arm64: dts: rockchip: Fix power-controller node names for px30
+  arm64: dts: rockchip: Fix power-controller node names for rk3328
+  arm64: dts: rockchip: Fix power-controller node names for rk3399
+  soc: rockchip: pm-domains: Add a meaningful power domain name
+  dt-bindings: add power-domain header for RK3568 SoCs
+  dt-bindings: power: rockchip: Add bindings for RK3568 Soc
+  soc: rockchip: power-domain: add rk3568 powerdomains
+
+Enric Balletbo i Serra (1):
+  dt-bindings: power: rockchip: Convert to json-schema
+
+Johan Jonker (4):
+  ARM: dts: rockchip: add #power-domain-cells to power domain nodes
+  arm64: dts: rockchip: add #power-domain-cells to power domain nodes
+  dt-bindings: arm: rockchip: convert pmu.txt to YAML
+  dt-bindings: arm: rockchip: add more compatible strings to pmu.yaml
+
+ .../devicetree/bindings/arm/rockchip/pmu.txt       |  16 --
+ .../devicetree/bindings/arm/rockchip/pmu.yaml      |  57 +++++
+ .../bindings/power/rockchip,power-controller.yaml  | 259 +++++++++++++++++++++
+ .../bindings/soc/rockchip/power_domain.txt         | 136 -----------
+ arch/arm/boot/dts/rk3066a.dtsi                     |   9 +-
+ arch/arm/boot/dts/rk3188.dtsi                      |   9 +-
+ arch/arm/boot/dts/rk3288.dtsi                      |  12 +-
+ arch/arm64/boot/dts/rockchip/px30.dtsi             |  24 +-
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi           |   9 +-
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi           |  60 +++--
+ drivers/soc/rockchip/pm_domains.c                  | 252 +++++++++++---------
+ include/dt-bindings/power/rk3568-power.h           |  32 +++
+ 12 files changed, 575 insertions(+), 300 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/rockchip/pmu.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/rockchip/pmu.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+ create mode 100644 include/dt-bindings/power/rk3568-power.h
 
 -- 
-Regards,
-Niklas Söderlund
+2.11.0
+
