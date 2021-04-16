@@ -2,83 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 26855362419
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 17:39:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E159536247E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 17:53:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236315AbhDPPjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 11:39:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52402 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236141AbhDPPjv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Apr 2021 11:39:51 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F040561222;
-        Fri, 16 Apr 2021 15:39:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618587567;
-        bh=ysgpDz+BTTXYH0RnwQoQvpA6pJla49qmtt338wMhnUQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=sA/oNszQk49bAP/+H3BmykaTAQenh0iw/Gpf7uZ+GwDgztxBf05slIkJ18rtE3vgt
-         6QAX+ltavm9lwirWjcgh+xIT+8pAJF2SmfSKB3ljq+JiNQFSUUiYMRQ+i4yM9C9gxd
-         j3phuIcFMg2fM8hlack0KOlcPk1Fzlx3ZzuSd0FHbGz3rBtMVfgHCwJM9kij8xZkaj
-         w3hZ74yumnv50xxRMCuJfBdxa3mJmGkWGbAK/83+9CyOGbmJDOd5kr6cwNXQwCRk09
-         kLMQIvZlBpeA5eH5Uq5CWKBvRRjVkjpbGo7ub8jYpasd2QZ800U5T+kQM8XziNmiVA
-         KGLAmXuUUfXLw==
-Received: by mail-ej1-f46.google.com with SMTP id w23so26962029ejb.9;
-        Fri, 16 Apr 2021 08:39:26 -0700 (PDT)
-X-Gm-Message-State: AOAM531eCdSgwLYf3jaXNtVYynLhC/Kq37Ha//da4IFdtBVKyk2lUhWD
-        jyOMojJGLZiL4Y/Y7sfZyiC2xjhkd5dpCYPgpA==
-X-Google-Smtp-Source: ABdhPJzFqy5Zhk2BT4rI/0OIAYEXZHtqzMK+r4zLrmuDcRgl1XfMcGCbqbDrhsyfDhzhIy4/n6neYfSAgSfwWszGhb8=
-X-Received: by 2002:a17:906:7806:: with SMTP id u6mr8390324ejm.130.1618587565661;
- Fri, 16 Apr 2021 08:39:25 -0700 (PDT)
+        id S235727AbhDPPxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 11:53:42 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:24842 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S235676AbhDPPxl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Apr 2021 11:53:41 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13GFatue019016;
+        Fri, 16 Apr 2021 17:52:53 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=Bw/LpDxwLjnc9O3u0xRK0A8jPAhQBjd5ZdY8L9kkF84=;
+ b=uqm2U4FehdigsCmM3+wpsxjknXqR6NPeGCmC9dN8J+VdCulrsYFNlqGjdA+h+3Utwx+7
+ pNbrBOYaYhv7TUByNtLDLkCAZCxReTtanwjbwX5AP9qD1Vh4Vjk1GRVKCL1mCR9K9BSO
+ OnlYC6Kao61roNJFNJ4M7MaNKE25Lu2Q2+A5n5UUP1V6dN15WANSJzUnw/0zoT5ni1Ub
+ bBDOTGKZM1pwdo0ebFAmgO8OaAUR10E19nVo8KaJJ+SYoqGSJAT9COOaMN6P//sC+VNR
+ mHvFqV4oVNt9muK5JU4OAjt8fNJhg/TORyC8kZROgcUDkK9chXpWSFyhjhONZ7xAb8ZR lQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 37y0g84ehy-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 16 Apr 2021 17:52:53 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C8064100034;
+        Fri, 16 Apr 2021 17:52:52 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 92F7225D00B;
+        Fri, 16 Apr 2021 17:52:52 +0200 (CEST)
+Received: from [10.211.14.227] (10.75.127.48) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 16 Apr
+ 2021 17:52:18 +0200
+Subject: Re: [Linux-stm32] [PATCH 03/13] ARM: dts: stm32: fix timer nodes on
+ STM32 MCU to prevent warnings
+To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     <arnd@arndb.de>, <robh+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+        <jagan@amarulasolutions.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kuba@kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210415101037.1465-1-alexandre.torgue@foss.st.com>
+ <20210415101037.1465-4-alexandre.torgue@foss.st.com>
+From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Message-ID: <c329f116-458c-0d33-3c8f-ee5d22189ca4@foss.st.com>
+Date:   Fri, 16 Apr 2021 17:52:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210412132745.76609-1-clemens.gruber@pqgruber.com>
- <20210412132745.76609-4-clemens.gruber@pqgruber.com> <YHmXPyf+XjgJs3C8@orome.fritz.box>
-In-Reply-To: <YHmXPyf+XjgJs3C8@orome.fritz.box>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 16 Apr 2021 10:39:12 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ3MU+iCr+R784r7UkPEsmDUgsgL-Qvi7edKnpe3T8M5g@mail.gmail.com>
-Message-ID: <CAL_JsqJ3MU+iCr+R784r7UkPEsmDUgsgL-Qvi7edKnpe3T8M5g@mail.gmail.com>
-Subject: Re: [PATCH v8 4/8] dt-bindings: pwm: Support new PWM_USAGE_POWER flag
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Clemens Gruber <clemens.gruber@pqgruber.com>,
-        Linux PWM List <linux-pwm@vger.kernel.org>,
-        Sven Van Asbroeck <TheSven73@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210415101037.1465-4-alexandre.torgue@foss.st.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.48]
+X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-04-16_08:2021-04-16,2021-04-16 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 16, 2021 at 8:54 AM Thierry Reding <thierry.reding@gmail.com> wrote:
->
-> On Mon, Apr 12, 2021 at 03:27:41PM +0200, Clemens Gruber wrote:
-> > Add the flag and corresponding documentation for PWM_USAGE_POWER.
-> >
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
-> > ---
-> >  Documentation/devicetree/bindings/pwm/pwm.txt | 3 +++
-> >  include/dt-bindings/pwm/pwm.h                 | 1 +
-> >  2 files changed, 4 insertions(+)
->
-> Rob, what are your thoughts on this? I've been thinking about this some
-> more and I'm having second thoughts about putting this into device tree
-> because it doesn't actually describe a property of the PWM hardware but
-> rather a use-case specific hint. It's a bit of a gray area because this
-> is just part of the PWM specifier which already has use-case specific
-> "configuration", such as the period and the polarity.
+On 4/15/21 12:10 PM, Alexandre Torgue wrote:
+> Prevent warning seen with "make dtbs_check W=1" command:
+> 
+> Warning (avoid_unnecessary_addr_size): /soc/timers@40001c00: unnecessary
+> address-cells/size-cells without "ranges" or child "reg" property
+> 
+> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
 
-I'm pretty neutral. My main hesitation from what I've followed is
-'power' seems a bit indirect. A PWM signal doesn't have a 'power' any
-more than a GPIO signal does.
+Hi Alexandre,
 
-> Perhaps a better place for this is within the PWM API? We could add the
-> same information into struct pwm_state and then consumers that don't
-> care about specifics of the signal (such as pwm-backlight) can set that
-> flag when they request a state to be applied.
+Reviewed-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
 
-Yeah, seems like this is fairly well tied to the class of consumer.
-
-Rob
+Thanks,
+Fabrice
+> 
+> diff --git a/arch/arm/boot/dts/stm32f429.dtsi b/arch/arm/boot/dts/stm32f429.dtsi
+> index 41e0087bdbf9..8748d5850298 100644
+> --- a/arch/arm/boot/dts/stm32f429.dtsi
+> +++ b/arch/arm/boot/dts/stm32f429.dtsi
+> @@ -283,8 +283,6 @@
+>  		};
+>  
+>  		timers13: timers@40001c00 {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+>  			compatible = "st,stm32-timers";
+>  			reg = <0x40001C00 0x400>;
+>  			clocks = <&rcc 0 STM32F4_APB1_CLOCK(TIM13)>;
+> @@ -299,8 +297,6 @@
+>  		};
+>  
+>  		timers14: timers@40002000 {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+>  			compatible = "st,stm32-timers";
+>  			reg = <0x40002000 0x400>;
+>  			clocks = <&rcc 0 STM32F4_APB1_CLOCK(TIM14)>;
+> @@ -633,8 +629,6 @@
+>  		};
+>  
+>  		timers10: timers@40014400 {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+>  			compatible = "st,stm32-timers";
+>  			reg = <0x40014400 0x400>;
+>  			clocks = <&rcc 0 STM32F4_APB2_CLOCK(TIM10)>;
+> @@ -649,8 +643,6 @@
+>  		};
+>  
+>  		timers11: timers@40014800 {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+>  			compatible = "st,stm32-timers";
+>  			reg = <0x40014800 0x400>;
+>  			clocks = <&rcc 0 STM32F4_APB2_CLOCK(TIM11)>;
+> diff --git a/arch/arm/boot/dts/stm32f746.dtsi b/arch/arm/boot/dts/stm32f746.dtsi
+> index e1df603fc981..72c1b76684b6 100644
+> --- a/arch/arm/boot/dts/stm32f746.dtsi
+> +++ b/arch/arm/boot/dts/stm32f746.dtsi
+> @@ -265,8 +265,6 @@
+>  		};
+>  
+>  		timers13: timers@40001c00 {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+>  			compatible = "st,stm32-timers";
+>  			reg = <0x40001C00 0x400>;
+>  			clocks = <&rcc 0 STM32F7_APB1_CLOCK(TIM13)>;
+> @@ -281,8 +279,6 @@
+>  		};
+>  
+>  		timers14: timers@40002000 {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+>  			compatible = "st,stm32-timers";
+>  			reg = <0x40002000 0x400>;
+>  			clocks = <&rcc 0 STM32F7_APB1_CLOCK(TIM14)>;
+> @@ -531,8 +527,6 @@
+>  		};
+>  
+>  		timers10: timers@40014400 {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+>  			compatible = "st,stm32-timers";
+>  			reg = <0x40014400 0x400>;
+>  			clocks = <&rcc 0 STM32F7_APB2_CLOCK(TIM10)>;
+> @@ -547,8 +541,6 @@
+>  		};
+>  
+>  		timers11: timers@40014800 {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+>  			compatible = "st,stm32-timers";
+>  			reg = <0x40014800 0x400>;
+>  			clocks = <&rcc 0 STM32F7_APB2_CLOCK(TIM11)>;
+> diff --git a/arch/arm/boot/dts/stm32h743.dtsi b/arch/arm/boot/dts/stm32h743.dtsi
+> index 05ecdf9ff03a..6e42ca2dada2 100644
+> --- a/arch/arm/boot/dts/stm32h743.dtsi
+> +++ b/arch/arm/boot/dts/stm32h743.dtsi
+> @@ -485,8 +485,6 @@
+>  		};
+>  
+>  		lptimer4: timer@58002c00 {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+>  			compatible = "st,stm32-lptimer";
+>  			reg = <0x58002c00 0x400>;
+>  			clocks = <&rcc LPTIM4_CK>;
+> @@ -501,8 +499,6 @@
+>  		};
+>  
+>  		lptimer5: timer@58003000 {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+>  			compatible = "st,stm32-lptimer";
+>  			reg = <0x58003000 0x400>;
+>  			clocks = <&rcc LPTIM5_CK>;
+> 
