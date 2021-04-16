@@ -2,123 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 423B9362226
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 16:24:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C72C36223C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 16:29:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233976AbhDPOYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 10:24:12 -0400
-Received: from mga05.intel.com ([192.55.52.43]:58771 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233916AbhDPOYL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Apr 2021 10:24:11 -0400
-IronPort-SDR: Bt4GF+FuRQqU/l95hose+W77oPu0RAs+MJ3yNuwEi/pCr/Tx8q+YQtxAJU5WwYEMkyZc4rJKFK
- XCqhuZBI/TdQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9956"; a="280364393"
-X-IronPort-AV: E=Sophos;i="5.82,226,1613462400"; 
-   d="scan'208";a="280364393"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Apr 2021 07:23:46 -0700
-IronPort-SDR: c+FI3oydeo1UnYvVMy7D0CuxTiDIzFiG/ULHSqqKGuFXsu/k0ae4CcJ8Zv7aU0bzsx9FKqgiGB
- TrXX879pyXsQ==
-X-IronPort-AV: E=Sophos;i="5.82,226,1613462400"; 
-   d="scan'208";a="425615875"
-Received: from lelicken-mobl2.ger.corp.intel.com (HELO localhost) ([10.249.37.239])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Apr 2021 07:23:40 -0700
-From:   Jani Nikula <jani.nikula@linux.intel.com>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>, Wolfram Sang <wsa@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc:     linux-i2c@vger.kernel.org, Qii Wang <qii.wang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Brown <broonie@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v19 6/6] drm/i915/selftests: Rename functions names
-In-Reply-To: <20210414172916.2689361-7-hsinyi@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210414172916.2689361-1-hsinyi@chromium.org> <20210414172916.2689361-7-hsinyi@chromium.org>
-Date:   Fri, 16 Apr 2021 17:23:37 +0300
-Message-ID: <87y2dicnpy.fsf@intel.com>
+        id S236114AbhDPO3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 10:29:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43368 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236088AbhDPO3y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 10:29:54 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93812C06175F
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 07:29:29 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id f19so11288694qka.8
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 07:29:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8l9FyBuH/BTGEYuzxVaf9TucQyLLNilcn+KXBfwnWIU=;
+        b=M1hHNRamb82YIk/lbOBEDTCvbPD0rXi+/QC3Xk47O8ev5I5uqGpsn0K/Xsb2fYPEOK
+         YJqEo4l7GF90H8PqLByqgrCHdqH4xeW3B+V3RZ1R1ugX98E30j6tn+JygtMUHOcxcR1f
+         lD2yjfW/6QenhiFH0bwh7nZX2rqb7idpqDnAg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8l9FyBuH/BTGEYuzxVaf9TucQyLLNilcn+KXBfwnWIU=;
+        b=EweSCLaRWR4zPSY8UcG0Dca+4LmYgp2nrPCgTlCXXAo7/vMmBd4ujEdKlfXzlAPVQp
+         UFBi9VIQB3FybMtjqcaUHKMIPzmUwj3MDZoCzctdPGRe8K9ZFkBJ22mvbqGmML27K7lv
+         AA/6lTFNL7sEa9XEMU82lKSP1Kvcxe5cwCgFu5GdKDS+wkQXpWpe4nqKpM+p6Cc92gHc
+         dImBRj+fHFR3dOd9LHpt14lra0oMtwJKLXpFdUdjgqfbIiS4z//pCIrb9Gqe4M5JdcE5
+         kpXBjDFfI6YwGfVsgmxXbHxpdEnhvmbEimLZtXMbM34FLZTJE45E5Pqzj1zTgsDB641s
+         ThAA==
+X-Gm-Message-State: AOAM530ZDmkkg1sZxYaFndAqgp9110vQaawU25mP3xVVYZgsXVoCS6Kg
+        3DzGY7HyIIvccfh2erTLUjwUyqje6WgFqw==
+X-Google-Smtp-Source: ABdhPJzesTXXNWgap2oKv4cFx0HuvJP7b1GaJ3ieawUevee+u166AmqzcLEILK1fBNNxJoncELlijg==
+X-Received: by 2002:a37:e95:: with SMTP id 143mr8839016qko.422.1618583368371;
+        Fri, 16 Apr 2021 07:29:28 -0700 (PDT)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id h65sm4251433qkc.128.2021.04.16.07.29.27
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Apr 2021 07:29:27 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id p3so9664617ybk.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 07:29:27 -0700 (PDT)
+X-Received: by 2002:a25:d34b:: with SMTP id e72mr12054749ybf.343.1618583366837;
+ Fri, 16 Apr 2021 07:29:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20210414111007.v1.1.I1a438604a79025307f177347d45815987b105cb5@changeid>
+In-Reply-To: <20210414111007.v1.1.I1a438604a79025307f177347d45815987b105cb5@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 16 Apr 2021 07:29:15 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XURtypK1G-Q+4FKtii=JnTVTRKQ=Ehr1rggVqxbXDH0w@mail.gmail.com>
+Message-ID: <CAD=FV=XURtypK1G-Q+4FKtii=JnTVTRKQ=Ehr1rggVqxbXDH0w@mail.gmail.com>
+Subject: Re: [PATCH v1] arm64: dts: qcom: sc7180: coachz: Add thermal config
+ for skin temperature
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Apr 2021, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
-> pm_resume and pm_suspend might be conflict with the ones defined in
-> include/linux/suspend.h. Rename pm_resume{suspend} to
-> i915_pm_resume{suspend} since they are only used here.
+Hi,
 
-I agree with the rationale here.
-
-Do you need this to be part of your series, or shall we just pick this
-up for i915? (We might consider renaming to something else or prefix the
-functions with _ though, as we also have existing i915_pm_suspend and
-i915_pm_resume elsewhere.)
-
-BR,
-Jani.
-
+On Wed, Apr 14, 2021 at 11:10 AM Matthias Kaehlcke <mka@chromium.org> wrote:
 >
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Reported-by: kernel test robot <lkp@intel.com>
+> Add ADC and thermal monitor configuration for skin temperature,
+> plus a thermal zone that monitors the skin temperature and uses
+> the big cores as cooling devices.
+>
+> CoachZ rev1 is stuffed with an incompatible thermistor for the
+> skin temperature, disable the thermal zone for rev1 to avoid
+> the use of bogus temperature values.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > ---
->  drivers/gpu/drm/i915/selftests/i915_gem.c | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_gem.c b/drivers/gpu/drm/i915/selftests/i915_gem.c
-> index dc394fb7ccfa..525afda9d31f 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_gem.c
-> @@ -94,7 +94,7 @@ static int pm_prepare(struct drm_i915_private *i915)
->  	return 0;
->  }
->  
-> -static void pm_suspend(struct drm_i915_private *i915)
-> +static void i915_pm_suspend(struct drm_i915_private *i915)
->  {
->  	intel_wakeref_t wakeref;
->  
-> @@ -116,7 +116,7 @@ static void pm_hibernate(struct drm_i915_private *i915)
->  	}
->  }
->  
-> -static void pm_resume(struct drm_i915_private *i915)
-> +static void i915_pm_resume(struct drm_i915_private *i915)
->  {
->  	intel_wakeref_t wakeref;
->  
-> @@ -152,12 +152,12 @@ static int igt_gem_suspend(void *arg)
->  	if (err)
->  		goto out;
->  
-> -	pm_suspend(i915);
-> +	i915_pm_suspend(i915);
->  
->  	/* Here be dragons! Note that with S3RST any S3 may become S4! */
->  	simulate_hibernate(i915);
->  
-> -	pm_resume(i915);
-> +	i915_pm_resume(i915);
->  
->  	err = switch_to_context(ctx);
->  out:
-> @@ -192,7 +192,7 @@ static int igt_gem_hibernate(void *arg)
->  	/* Here be dragons! */
->  	simulate_hibernate(i915);
->  
-> -	pm_resume(i915);
-> +	i915_pm_resume(i915);
->  
->  	err = switch_to_context(ctx);
->  out:
+>  .../dts/qcom/sc7180-trogdor-coachz-r1.dts     |  9 +++
+>  .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  | 63 +++++++++++++++++++
+>  2 files changed, 72 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
+> index 86619f6c1134..80bdc4d5b523 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
+> @@ -14,6 +14,15 @@ / {
+>         compatible = "google,coachz-rev1", "qcom,sc7180";
+>  };
+>
+> +/*
+> + * CoachZ rev1 is stuffed with a 47k NTC as thermistor for skin temperature,
+> + * which currently is not supported by the PM6150 ADC driver. Disable the
+> + * skin temperature thermal zone to avoid using bogus temperature values.
+> + */
+> +&skin_temp_thermal {
+> +       status = "disabled";
+> +};
+> +
+>  &tlmm {
+>         gpio-line-names = "HUB_RST_L",
+>                           "AP_RAM_ID0",
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+> index e2ffe71c2d52..cabe5d6b981b 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+> @@ -25,6 +25,50 @@ adau7002: audio-codec-1 {
+>                 IOVDD-supply = <&pp1800_l15a>;
+>                 #sound-dai-cells = <0>;
+>         };
+> +
+> +       thermal-zones {
+> +               skin_temp_thermal: skin-temp-thermal {
+> +                       polling-delay-passive = <250>;
+> +                       polling-delay = <0>;
+> +
+> +                       thermal-sensors = <&pm6150_adc_tm 1>;
+> +                       sustainable-power = <814>;
+> +
+> +                       trips {
+> +                               skin_temp_alert0: trip-point0 {
+> +                                       temperature = <42000>;
+> +                                       hysteresis = <1000>;
+> +                                       type = "passive";
+> +                               };
+> +
+> +                               skin_temp_alert1: trip-point1 {
+> +                                       temperature = <45000>;
+> +                                       hysteresis = <1000>;
+> +                                       type = "passive";
+> +                               };
+> +
+> +                               skin-temp-crit {
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+If it were me I would have added a label to the "crit" too to match
+the alert0 and alert1. It's not needed right now, though, so it's not
+worth spinning the patch for.
+
+> +                                       temperature = <60000>;
+> +                                       hysteresis = <1000>;
+> +                                       type = "critical";
+> +                               };
+> +                       };
+> +
+> +                       cooling-maps {
+> +                               map0 {
+> +                                       trip = <&skin_temp_alert0>;
+> +                                       cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +                                                        <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +                               };
+> +
+> +                               map1 {
+> +                                       trip = <&skin_temp_alert1>;
+> +                                       cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +                                                        <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +                               };
+> +                       };
+> +               };
+> +       };
+>  };
+>
+>  &ap_spi_fp {
+> @@ -77,6 +121,25 @@ &panel {
+>         compatible = "boe,nv110wtm-n61";
+>  };
+>
+> +&pm6150_adc {
+> +       skin-temp-thermistor@4e {
+
+A part of me wonders if we should just be using the generic name
+"thermistor@4e" which seems more common in dts.  ...but what you have
+matches what we've already done in pompom so I think it's fine.
+
+FWIW: I'm not an expert on any of the thermistor stuff but it looks
+sane and matches how pompom is working with this thermistor...
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
