@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BECBA3619A7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 08:02:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B16763619AA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 08:02:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239008AbhDPGBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 02:01:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43560 "EHLO
+        id S239038AbhDPGCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 02:02:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239003AbhDPGBe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 02:01:34 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC2D3C061756;
-        Thu, 15 Apr 2021 23:01:10 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id f75-20020a9d03d10000b0290280def9ab76so19683158otf.12;
-        Thu, 15 Apr 2021 23:01:10 -0700 (PDT)
+        with ESMTP id S238753AbhDPGCL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 02:02:11 -0400
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F00CC061574;
+        Thu, 15 Apr 2021 23:01:47 -0700 (PDT)
+Received: by mail-ot1-x32f.google.com with SMTP id w31-20020a9d36220000b02901f2cbfc9743so24788442otb.7;
+        Thu, 15 Apr 2021 23:01:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=59UpTKt8YsSM4yGeu5c+Ux0/BszmMe/B0VMIiCo5InM=;
-        b=AlBYRPkf4BcdE5GsKj8NLy9Ztx84clzZk2jWtyx1bRTRPu0aEnpU750JylT5G/IU00
-         ineal0qXWAnllcNxV+OXG5SNvmhqs4QG+AKASREA6S96ilhUpRweNRb3c12RNtMp3nKx
-         5jvNPfgLfokqgUmTqdQvVd03l57R6DAeHInc3N4dQ/9FTEPXi/35OWo95jgatEpeaLw3
-         dTpBxPCcmJ67QJymQWSOxlMvnIa+58URGDAiZ9BIE7bWw+LGFmLr9L9Oj+6Y5L/aMIzi
-         STPV0ldYRipsgehpStEo+jOgg2yTieIdl9+a89yVuDTpZWQAOq1BcdwUxmEzgG5J/svQ
-         nIxA==
+        bh=T4qHEDweevzaKk+/Z7BMChCVb0eziZLwAYSXDX8BD/Q=;
+        b=gBtm9gxXcMOgIUXbqx9Dano+Ty2CSlmYq4jCAqzvhb1V2WUOeAi2V50ECrk7ENP0Z3
+         xoeNLkQH/VzHK4wZrI4yAaNTOOKF29SCeox3B1+9t4oSKKPoOGjsm1ljGPj8qlZt67EZ
+         Tty/xNjM/PInqfCa9P//rKTFG6JUCZOsyyfmMMNPVctirKlbX8ob0u2PUcPoMqn+Ydzd
+         9Wga1CdYoNE/ROSpb/g6yj32I4nMh4KP4CSXn2pcu9Sj1/C0L4KFb5FbCFpLP/zY5bVX
+         FbDUD8iOC/JhlJrIqaqkwbvcK/vZo5m0BByG0QSg6vjdtJ2s/3Or9LGRdtBPQXrhdf58
+         ov8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=59UpTKt8YsSM4yGeu5c+Ux0/BszmMe/B0VMIiCo5InM=;
-        b=uGGQgzHfWlmwIhkAB7JBhxdx7pCNVSGiuksDBFeg85ofMCGzdO1YlW0uSXuPqhsvzq
-         55NwukSlplAd6Faa/kS7TkE35UEdNwaWGmBSIfIa/oKqu5BZwCOkhAoDMtfiG7nh4hIh
-         JVO+2OkYGUDXAn6tbIW7kfILp4eG56vzf+qlElpulKnCLGzcQ9f3lf1+MDccAkmuaQcs
-         LGGxeJPaLEiKWTIghB0sVmHfJIz9rx9zCuqYphequjPudsLuwHyjD/UUpXjLqzJphvDf
-         dgU+BBUhncVbZ+esxco+Cbl7gNl4QVaLErIMwk7SQ3biga5jFZalyeJ3+m7IdUQ6pTr1
-         vuyA==
-X-Gm-Message-State: AOAM531FMFKgXFC7/vFVO2gwOOH/OiUypd0+f6hWQemtBDlpX+5FCD5T
-        b3nERabADqocHhDDnmnTQ3+voOQoNgVJymy3lhY=
-X-Google-Smtp-Source: ABdhPJxBKw4vtrSAg1ORAmYzpKMGQpP+wahz4rortWZlJxR83gLaTM9Dqyb9dP7Xrw17j3oaTXBFoqpEKPE7GgHmHYg=
-X-Received: by 2002:a05:6830:1398:: with SMTP id d24mr2499173otq.281.1618552870163;
- Thu, 15 Apr 2021 23:01:10 -0700 (PDT)
+        bh=T4qHEDweevzaKk+/Z7BMChCVb0eziZLwAYSXDX8BD/Q=;
+        b=A3RG8aE7Nbn/LzFta0obYzhsK6cFVW9KQ1YnK2nLxsNb74/Tca+ioKtMWfyWLaOvVK
+         nTkwznXaklc80Z/P+XOF6RLyP2ygZKZqJw/iekZ340R8mpLo8qAKdpS6S0q57BXMBsfA
+         cIeHbcTcjQPilAYGmEPJ/EZHYszEyp9/whVjWMLB+67MvDGYN20J79rnQvpF9OT/cpOP
+         t7sI3CXKsT41UhxHryj163fa7KnzS9o8jmJIlRryD+bebLwtdgtmypmn4pQey+f/MyKS
+         CquG38R7UYCU/VI8NVDulEkmV6CojaAYkFF3q9tnlWH7Kr/0EP5YCZyt0IwJhaXW+jmr
+         75eg==
+X-Gm-Message-State: AOAM530JR3fL8Yg8ywms2Pz2GSyVXgtNh/aFsOfD7bTfXNYW9DdgQuXb
+        hxs+1RrGhf7oP4q2EJ/onZnqQvtxN0fFxiC/Z4A=
+X-Google-Smtp-Source: ABdhPJyKhobAkSPrF0bBE94D2OcYfN/PyYnWg2+xNPQ+k2AGgT/bPjH/3M5KcyXX5guT86pQU+koBSKDN7y/XH2ctlQ=
+X-Received: by 2002:a05:6830:15d0:: with SMTP id j16mr2509358otr.184.1618552906846;
+ Thu, 15 Apr 2021 23:01:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210415093519.1920877-1-hsinyi@chromium.org> <20210415093519.1920877-7-hsinyi@chromium.org>
-In-Reply-To: <20210415093519.1920877-7-hsinyi@chromium.org>
+References: <20210415093519.1920877-1-hsinyi@chromium.org> <20210415093519.1920877-8-hsinyi@chromium.org>
+In-Reply-To: <20210415093519.1920877-8-hsinyi@chromium.org>
 From:   Enric Balletbo Serra <eballetbo@gmail.com>
-Date:   Fri, 16 Apr 2021 08:01:02 +0200
-Message-ID: <CAFqH_50LbYBbJKs_yYQRuW7RPnwVTyJo_n7ZyJ-H_4u955b1NA@mail.gmail.com>
-Subject: Re: [PATCH 7/8] arm64: dts: mt8183: Add kukui-jacuzzi-burnet board
+Date:   Fri, 16 Apr 2021 08:01:38 +0200
+Message-ID: <CAFqH_53t4Y-D2tvi7yySc04VeJrYQWBFtVE7ZipHvpwPN-Zy6g@mail.gmail.com>
+Subject: Re: [PATCH 8/8] arm64: dts: mt8183: Add kukui-jacuzzi-kenzo board
 To:     Hsin-Yi Wang <hsinyi@chromium.org>
 Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -73,73 +73,54 @@ Thank you for your patch.
 
 Missatge de Hsin-Yi Wang <hsinyi@chromium.org> del dia dj., 15 d=E2=80=99ab=
 r.
-2021 a les 11:36:
+2021 a les 11:37:
 >
-> Burnet is known as HP Chromebook x360 11MK G3 EE
+> Kenzo is known as Acer Chromebook 311.
 >
 > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 
 Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 
 > ---
->  arch/arm64/boot/dts/mediatek/Makefile         |  1 +
->  .../mediatek/mt8183-kukui-jacuzzi-burnet.dts  | 33 +++++++++++++++++++
->  2 files changed, 34 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-bur=
-net.dts
+>  arch/arm64/boot/dts/mediatek/Makefile                |  1 +
+>  .../boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dts | 12 ++++++++++++
+>  2 files changed, 13 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-ken=
+zo.dts
 >
 > diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/=
 mediatek/Makefile
-> index 5f43bbc2ea72..b33d0bc58021 100644
+> index b33d0bc58021..25770d83059d 100644
 > --- a/arch/arm64/boot/dts/mediatek/Makefile
 > +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8173-elm-hana.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8173-elm-hana-rev7.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8173-evb.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-evb.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-kukui-jacuzzi-burnet.dtb
+> @@ -17,6 +17,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-kukui-jacuzzi-b=
+urnet.dtb
 >  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-kukui-jacuzzi-damu.dtb
 >  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-kukui-jacuzzi-juniper-sku16.dtb
 >  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-kukui-jacuzzi-kappa.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts=
- b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts
+> +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-kukui-jacuzzi-kenzo.dtb
+>  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-kukui-jacuzzi-willow-sku0.dtb
+>  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-kukui-jacuzzi-willow-sku1.dtb
+>  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-kukui-kakadu.dtb
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dts =
+b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dts
 > new file mode 100644
-> index 000000000000..b97ca331970e
+> index 000000000000..6f1aa692753a
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts
-> @@ -0,0 +1,33 @@
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dts
+> @@ -0,0 +1,12 @@
 > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 > +/*
 > + * Copyright 2021 Google LLC
 > + */
 > +
 > +/dts-v1/;
-> +#include "mt8183-kukui-jacuzzi.dtsi"
+> +#include "mt8183-kukui-jacuzzi-juniper.dtsi"
 > +
 > +/ {
-> +       model =3D "Google burnet board";
-> +       compatible =3D "google,burnet", "mediatek,mt8183";
-> +};
-> +
-> +&mt6358codec {
-> +       mediatek,dmic-mode =3D <1>; /* one-wire */
-> +};
-> +
-> +&i2c0 {
-> +       touchscreen@2c {
-> +               compatible =3D "hid-over-i2c";
-> +               reg =3D <0x2c>;
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&touchscreen_pins>;
-> +               interrupts-extended =3D <&pio 155 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +               post-power-on-delay-ms =3D <200>;
-> +               hid-descr-addr =3D <0x0020>;
-> +       };
-> +};
-> +
-> +&i2c2 {
-> +       clock-stretch-ns =3D <4100>;
+> +       model =3D "Google kenzo sku17 board";
+> +       compatible =3D "google,juniper-sku17", "google,juniper", "mediate=
+k,mt8183";
 > +};
 > --
 > 2.31.1.295.g9ea45b61b8-goog
