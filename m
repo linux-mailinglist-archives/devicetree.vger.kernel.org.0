@@ -2,92 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AE893623D5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 17:24:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26855362419
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 17:39:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343492AbhDPPXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 11:23:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46280 "EHLO mail.kernel.org"
+        id S236315AbhDPPjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 11:39:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52402 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245198AbhDPPXN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Apr 2021 11:23:13 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 773D06108E;
-        Fri, 16 Apr 2021 15:22:46 +0000 (UTC)
+        id S236141AbhDPPjv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Apr 2021 11:39:51 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F040561222;
+        Fri, 16 Apr 2021 15:39:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618586568;
-        bh=UCKWKHLkdVDLh4B5BSFqDmm4kFaMLm1dcAxBoArsevE=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=FGoRsOclkKlCKcw6rgXINyJAGcTpW0dN4IIju1cOwA99yCTttbeKD6DNlHazYdCUi
-         8RNnSCbNoEU3AXm3rAwp13aMJOjv1d8EJd0/Jd+xLSKeQHpL2AGMtPKDDAr4b5CvUu
-         puzZ7/rfJzd3zwkmX5CXNI+R2HXy01lrg96MqGAzjiVBb1U57GFrDcZpsgMSVJoaKq
-         tU1N39vM3RXYltkjOCZarzYIyHfxlcRc3HerjLpiy3x2iFgxYSQSo0L7T6kmYxJBLQ
-         PBCEPbmcp/SWNyFCV4rAKnZ8G2LEVxSUwXcG0wy1w+edEs8eIc/AInRssH0s/wiTPb
-         XeO3IH0MMiYvA==
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Caleb Connolly <caleb@connolly.tech>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Felipe Balbi <felipe.balbi@microsoft.com>
-Subject: Re: [PATCH v3] arm64: boot: dts: qcom: sm8150: add SPI nodes
-In-Reply-To: <0688f0cc-55f1-4450-c86a-5e661a85310b@connolly.tech>
-References: <20210416103225.1872145-1-balbi@kernel.org>
- <0688f0cc-55f1-4450-c86a-5e661a85310b@connolly.tech>
-Date:   Fri, 16 Apr 2021 18:22:44 +0300
-Message-ID: <87r1jameyj.fsf@kernel.org>
+        s=k20201202; t=1618587567;
+        bh=ysgpDz+BTTXYH0RnwQoQvpA6pJla49qmtt338wMhnUQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=sA/oNszQk49bAP/+H3BmykaTAQenh0iw/Gpf7uZ+GwDgztxBf05slIkJ18rtE3vgt
+         6QAX+ltavm9lwirWjcgh+xIT+8pAJF2SmfSKB3ljq+JiNQFSUUiYMRQ+i4yM9C9gxd
+         j3phuIcFMg2fM8hlack0KOlcPk1Fzlx3ZzuSd0FHbGz3rBtMVfgHCwJM9kij8xZkaj
+         w3hZ74yumnv50xxRMCuJfBdxa3mJmGkWGbAK/83+9CyOGbmJDOd5kr6cwNXQwCRk09
+         kLMQIvZlBpeA5eH5Uq5CWKBvRRjVkjpbGo7ub8jYpasd2QZ800U5T+kQM8XziNmiVA
+         KGLAmXuUUfXLw==
+Received: by mail-ej1-f46.google.com with SMTP id w23so26962029ejb.9;
+        Fri, 16 Apr 2021 08:39:26 -0700 (PDT)
+X-Gm-Message-State: AOAM531eCdSgwLYf3jaXNtVYynLhC/Kq37Ha//da4IFdtBVKyk2lUhWD
+        jyOMojJGLZiL4Y/Y7sfZyiC2xjhkd5dpCYPgpA==
+X-Google-Smtp-Source: ABdhPJzFqy5Zhk2BT4rI/0OIAYEXZHtqzMK+r4zLrmuDcRgl1XfMcGCbqbDrhsyfDhzhIy4/n6neYfSAgSfwWszGhb8=
+X-Received: by 2002:a17:906:7806:: with SMTP id u6mr8390324ejm.130.1618587565661;
+ Fri, 16 Apr 2021 08:39:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20210412132745.76609-1-clemens.gruber@pqgruber.com>
+ <20210412132745.76609-4-clemens.gruber@pqgruber.com> <YHmXPyf+XjgJs3C8@orome.fritz.box>
+In-Reply-To: <YHmXPyf+XjgJs3C8@orome.fritz.box>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 16 Apr 2021 10:39:12 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ3MU+iCr+R784r7UkPEsmDUgsgL-Qvi7edKnpe3T8M5g@mail.gmail.com>
+Message-ID: <CAL_JsqJ3MU+iCr+R784r7UkPEsmDUgsgL-Qvi7edKnpe3T8M5g@mail.gmail.com>
+Subject: Re: [PATCH v8 4/8] dt-bindings: pwm: Support new PWM_USAGE_POWER flag
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Clemens Gruber <clemens.gruber@pqgruber.com>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        Sven Van Asbroeck <TheSven73@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Hi,
-
-Caleb Connolly <caleb@connolly.tech> writes:
->> From: Felipe Balbi <felipe.balbi@microsoft.com>
->>
->> Add missing SPI nodes for SM8150.
->>
->> Signed-off-by: Felipe Balbi <felipe.balbi@microsoft.com>
->> ---
->>
->> changes since v2:
->> 	- switch to new pinctrl format
->>
->> Changes since v1:
->>
->> 	- avoid modifying drive strength on i2c. No functional
->>            changes, just keeping 0x02 instead of 2
->>
->>   arch/arm64/boot/dts/qcom/sm8150.dtsi | 439 +++++++++++++++++++++++++++
->>   1 file changed, 439 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
->> index 7207a3689d9d..c563f381a138 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
->> @@ -602,6 +602,21 @@ i2c0: i2c@880000 {
->>   				status = "disabled";
->>   			};
->>
->> +			spi0: spi@880000 {
->> +				compatible = "qcom,geni-spi";
->> +				reg = <0 0x880000 0 0x4000>;
->> +				reg-names = "se";
+On Fri, Apr 16, 2021 at 8:54 AM Thierry Reding <thierry.reding@gmail.com> wrote:
 >
-> I don't think we need the reg-names property on any of these.
-
-true, but it doesn't hurt either :-) I can remove, but I'll wait before
-spinning another revision
-
-> Otherwise,
+> On Mon, Apr 12, 2021 at 03:27:41PM +0200, Clemens Gruber wrote:
+> > Add the flag and corresponding documentation for PWM_USAGE_POWER.
+> >
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
+> > ---
+> >  Documentation/devicetree/bindings/pwm/pwm.txt | 3 +++
+> >  include/dt-bindings/pwm/pwm.h                 | 1 +
+> >  2 files changed, 4 insertions(+)
 >
-> Reviewed-by: Caleb Connolly <caleb@connolly.tech>
+> Rob, what are your thoughts on this? I've been thinking about this some
+> more and I'm having second thoughts about putting this into device tree
+> because it doesn't actually describe a property of the PWM hardware but
+> rather a use-case specific hint. It's a bit of a gray area because this
+> is just part of the PWM specifier which already has use-case specific
+> "configuration", such as the period and the polarity.
 
-Thanks
+I'm pretty neutral. My main hesitation from what I've followed is
+'power' seems a bit indirect. A PWM signal doesn't have a 'power' any
+more than a GPIO signal does.
 
--- 
-balbi
+> Perhaps a better place for this is within the PWM API? We could add the
+> same information into struct pwm_state and then consumers that don't
+> care about specifics of the signal (such as pwm-backlight) can set that
+> flag when they request a state to be applied.
+
+Yeah, seems like this is fairly well tied to the class of consumer.
+
+Rob
