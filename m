@@ -2,1660 +2,809 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3218F361FA3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 14:19:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92906361FAB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 14:22:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243346AbhDPMTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 08:19:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42562 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243350AbhDPMTy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 08:19:54 -0400
-Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAC92C061574
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 05:19:28 -0700 (PDT)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4FMFd66r9jz9sVb;
-        Fri, 16 Apr 2021 22:19:22 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ellerman.id.au;
-        s=201909; t=1618575564;
-        bh=UHfql/y2BW+iWPWEbqHI6kWiIjvfmk8q8pCLl6y33sk=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=m724Hrg4Qv39m4WfL3Lb91m/2exBtElfSbYdV18xx9FL14p5GrPUqdIeh+/wtaAPd
-         XYVyKGH2PtrwbbNqjymVm/SmPPNGBuXRruJrZmK1grW3p5/HNH+uLODuAy9IovW6gw
-         SJ0Q9D+kjWVF2gsTVNT/NgFGx0xG1PaoH591HuzGJcKjU9QSE5SLKOoeAonsl7s7nf
-         NUVKbKhLKqsElHW45FSV/9+bO6AA7PBwlrhk7H2T6c27n81A5goOw5gG0LZG4WNrzY
-         2zExtRusw2fjlRt6bu1V0e7evJp1tMNnsGnNMRCnVl9ehwZKLpuGfOFuycEr83eN8I
-         ZUokiJgbxiE8A==
-From:   Michael Ellerman <mpe@ellerman.id.au>
-To:     Dan Carpenter <dan.carpenter@oracle.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     devicetree@vger.kernel.org, kbuild-all@lists.01.org, lkp@intel.com,
-        robh@kernel.org,
-        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        bauerman@linux.ibm.com, Daniel Axtens <dja@axtens.net>
-Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in
- elf64_load()
-In-Reply-To: <20210416080941.GO6048@kadam>
-References: <20210415191437.20212-1-nramas@linux.microsoft.com>
- <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
- <87eefag241.fsf@linkitivity.dja.id.au>
- <f82a9fe2-3254-3f25-616c-10e56103bdc6@csgroup.eu>
- <20210416080941.GO6048@kadam>
-Date:   Fri, 16 Apr 2021 22:19:19 +1000
-Message-ID: <87lf9ie81k.fsf@mpe.ellerman.id.au>
+        id S242329AbhDPMVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 08:21:45 -0400
+Received: from mail-eopbgr80081.outbound.protection.outlook.com ([40.107.8.81]:39300
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S235577AbhDPMVo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Apr 2021 08:21:44 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MAUgTIjukpwj8uqUAbZMNRoSyQTN6zTNv7d8ZJ4AZGPrGNP6F1B0iAcJcpRfUqRWffTwyx90LLrEGnVJgS6F3U73liFXu6JuNYRyQQRrikMRynMA/PHg7NgOEBhc0DdM0XP99Fm/P5id1k7q8uZgiVo47LYjCUKX+NB9fQqIHj3VRLSGirosX8cGdd7NsdOgvehAZ4cgFrDvxmYZMoKVbLtXexBgkq/X8RGCMYk8omCGieQwvmmMLVdi8zTPDrOCruL/K8oFYdQwrWQgDskHDIL3dZZKqPHHgO/W4R75MKPRJqm8Btuvr99MRjqvahDRILyxBHlhjO6wb9O8hVoAPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6uwpNjLhbhe84xgMN+ScFWGrKLVq9to5wGWwRSv5L7Y=;
+ b=gBA7SQPmRx4i8e4TI/qwiRwMtCR2L+u+IPFXims3ERkGm2U7sk3EYyK8EtTBnln128qyH9zPbguza8i0kj+BjMdaFMbfULWfsSmbEFD41DmsCJk30n857B0YS+EGdiI4nFoQWQmF9kwZ9sxl0ABSvnHWOZ6wmb2Heu4nK3Hs6q1IU+IOWUyTAETsObaBCYdIoTcpKSEaOBAVX8UE7qXbcdufmP14w84/dtmEnRDLpno87Jv0bitC52otL8ZsGr6QFaYJkq5p2IcBvaJHhvUVHSYygpfOl/BZZI0KB54W1hvUXTT/pjBxlAxqCTcLF5xZX0TVwDyqGNSMia+gS408HA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vaisala.com; dmarc=pass action=none header.from=vaisala.com;
+ dkim=pass header.d=vaisala.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vaisala.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6uwpNjLhbhe84xgMN+ScFWGrKLVq9to5wGWwRSv5L7Y=;
+ b=Vz8V8hMSJkGsbA4g9XFAPKdkk93jF51jCWB05W4geejZT22U/rDWhGa2a/xRBbek8NpQ8LcFbrI+/UCOyPrmvH0zPExJjyVFuonHg+eTQp6iNSzxgGY/anNKi7joYsUJ2qZ1+3Q+OQmOxXEkrIFWm+/t+Qgi2B2uEbLrGGXvtiOjv+UUPQmedl9PQ8xToJJIwr6L8edpbu1lhD3Qby24IKBgPhrEDVA0q5MlP37r+ah2h9h0ghcj2d6+z2TTQGLegbt/2PEh31EtBchj3u+tWP0he5izQxhAg7z3Fxw4uPEXyD9XyHUyQ3NUDUXJLNFhAGRC0na6FDCdvM9Sl++kZQ==
+Authentication-Results: deviqon.com; dkim=none (message not signed)
+ header.d=none;deviqon.com; dmarc=none action=none header.from=vaisala.com;
+Received: from VI1PR0602MB3568.eurprd06.prod.outlook.com
+ (2603:10a6:803:10::31) by VI1PR0602MB2973.eurprd06.prod.outlook.com
+ (2603:10a6:800:b9::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.19; Fri, 16 Apr
+ 2021 12:21:16 +0000
+Received: from VI1PR0602MB3568.eurprd06.prod.outlook.com
+ ([fe80::c471:1848:5f45:95a4]) by VI1PR0602MB3568.eurprd06.prod.outlook.com
+ ([fe80::c471:1848:5f45:95a4%7]) with mapi id 15.20.4042.016; Fri, 16 Apr 2021
+ 12:21:16 +0000
+Subject: Re: [PATCH 2/2] iio: accel: Add driver for Murata SCA3300
+ accelerometer
+From:   Tomas Melin <tomas.melin@vaisala.com>
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc:     jic23@kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        aardelean@deviqon.com
+References: <20210412075056.56301-1-tomas.melin@vaisala.com>
+ <20210412075056.56301-3-tomas.melin@vaisala.com>
+ <20210412120807.000044d3@Huawei.com>
+ <87302341-f9d0-372a-1f18-b934df202e82@vaisala.com>
+ <c3fca8dc-9617-220b-2085-febe2a7f3b7e@vaisala.com>
+Message-ID: <1541221b-3dd3-9cc6-1dfe-6a4a100579d0@vaisala.com>
+Date:   Fri, 16 Apr 2021 15:21:14 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
+In-Reply-To: <c3fca8dc-9617-220b-2085-febe2a7f3b7e@vaisala.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Originating-IP: [85.156.166.106]
+X-ClientProxiedBy: HE1PR0502CA0002.eurprd05.prod.outlook.com
+ (2603:10a6:3:e3::12) To VI1PR0602MB3568.eurprd06.prod.outlook.com
+ (2603:10a6:803:10::31)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.242.132] (85.156.166.106) by HE1PR0502CA0002.eurprd05.prod.outlook.com (2603:10a6:3:e3::12) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.21 via Frontend Transport; Fri, 16 Apr 2021 12:21:15 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c09c9bf7-e0e9-480d-edc9-08d900d221ba
+X-MS-TrafficTypeDiagnostic: VI1PR0602MB2973:
+X-Microsoft-Antispam-PRVS: <VI1PR0602MB2973B723DF31CBCA9742E594FD4C9@VI1PR0602MB2973.eurprd06.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Pclk8nL7M7lrPA4LX/olCa+GowqOlSYwh5RYE+EH5zuUKrNIx6qRT0HfDqqOSe3Abl5X3SFh8xtt/OVRw55vh3Nq5Ztqi4trtt7CcFEMZkx5x3AnXgl9zzs5YQYaBHKyKSyF+VJx/Lp5H5tZM99Ixr4sVvrMLB+M3ldH7G75IXZXcU60aDRxGZeiSh344faRwP8b+Kf33/cCW6f4t6SATMtuPiiUJc/pxt4Df7glpuOkce5OarF4yfD8TJQoaH+cm0I6Wb6c/3Ks17xMrnogzCxV0rne32mg/3GNEkjoSE43WWfzOz9fxy4gKO17hpkNwl2a7NIdvIWzyMO7qJXtVf12A+NxGego9kdZ9PsjVTHeTsJVMYirr4xHgLhTSZqkfsaDNdvnUIwME5Z0RbOfp8tR4EZ1AZKknHaxHPDWNhi98JsXsue2Rd6mH9LiYupP1X56XRrCJnZSpQYgzx2A28ta4cq7LUe91L9kogb1DsSPDEEEErbYor2vD8lCyLkaUOIVCXDeyEDe0duJERG2/lkGlZUhtB/EaTx+z8DxIDiwD5cnPHAJK5Su6C8tQCEQ4Yoq5nNYtEIPpM3SNM4ph8r9FTy/jP6NvO0GFYxr5kU55XsaYCUB1+FdDk0tc6EcnWb7c7f9AWkKig7o/Zeccvet3v6nuoFXnm3GoPbVFU/lz30UPPHJgcWdm47hA85iD7Ma8xrHjM0uCIokeulNvA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0602MB3568.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39850400004)(376002)(396003)(346002)(136003)(366004)(16576012)(316002)(38350700002)(66946007)(8936002)(956004)(5660300002)(478600001)(66476007)(8676002)(86362001)(66556008)(31686004)(38100700002)(36756003)(31696002)(4326008)(53546011)(52116002)(16526019)(6916009)(83380400001)(26005)(186003)(2616005)(44832011)(30864003)(2906002)(6486002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?QkhJb1JBNnNrS2ZOT1BkdUNJb2M0VXp2ZGdySXZjQzQ0VVFIVk8zNFRrSTNU?=
+ =?utf-8?B?NDV0Qkx0Z2hCQUdML2l0VUh4V2Nad3BFcm1YYUFrNkFUNFFXeVdDRjBWZGlX?=
+ =?utf-8?B?eXZQUG40emlUWktVU2xralZteERUOFJkUGlBYXRyYjBtREx6RXNsVU9yWURq?=
+ =?utf-8?B?U01WNjhVR0ZNYVl1RUNFSFpVN2NkUXhjR2ZzakpNRldaM3greTdpSVl4aWV3?=
+ =?utf-8?B?U0tGSU9XOUJTWkNtZnJtTTN1aFBjemdUQmpuT2pTMTZYUGVmV1E2REt3ajhv?=
+ =?utf-8?B?VFFJdmRJdzg5VEJVOHZmVG9sN29IRWxjTmpuZmVOZkpUamdnam5VZGdRbVFH?=
+ =?utf-8?B?cEdQTDRLTWJidEN1L2IxN01HOHZybUJzeGxuc3UzdUJJVTEwOU5yUEVRdTc3?=
+ =?utf-8?B?WlV3L3d6NWk2ODRtN0NIUGNqUDRkcEJnUDJ5N2lmd2RISHRpcG00Wnpac0xP?=
+ =?utf-8?B?eGhUVDRGMlAvUVpIM005VGdZakJrSVdLQUFYVWRzVDNvRFVsMGkxQjUvYlFa?=
+ =?utf-8?B?ZTAzaW93dkJJcW1IYkpLR21BUUYvV3M3c3ZIOUIwc3lZQTNaL2l2bCtDTitT?=
+ =?utf-8?B?eXp1T3g1SkxOdVo0ZjF3RmVPYkpsQ3JHWlFmLzhHcDhKalBUUm81ZmVOSE1Z?=
+ =?utf-8?B?TFFCQ3UxQzFFOVk2VUZNbGV5TFRlTnUyaUtCaHVxYUdpTkU4Sk55dzZzb3or?=
+ =?utf-8?B?b01CY2tTNkJ3NGMvbkRpOUJENEN6cHBabDRYenhFbWR2YjNndGlhOG1WRTZx?=
+ =?utf-8?B?QjB0ZjhhM0RTODVUQWU3OTZnRm9ucmdqVXM5bWFiM0tDV2RIeTVrWWVPSXFD?=
+ =?utf-8?B?bFdjZHNQWC92M2JPdjJPVFBDVGh2ektxZW9CZWROd2hlRzg5LzFwNjVnMTA0?=
+ =?utf-8?B?MmNrTFRmaFlUSUMwNzVNajNPOHNnL2VheHMrbUtXM1poUFBBd0tiSWVUSVZh?=
+ =?utf-8?B?RTJkZFgzaVFRTCtBVGFDYVZ5Mm9laGxyRFJyRndxcnFmOEtKSXpUVHYwV3pY?=
+ =?utf-8?B?QWZDL01PZzEyVFArRjltQkFmRFZOTWZGV01TeitUR00yKzgxd05Oc0w3dElh?=
+ =?utf-8?B?MVY5RFFIUUMxMmNOV2VJVW1adzZUdG9LWW5pVkp3NXlMSE5KMHFwcnpPWWxy?=
+ =?utf-8?B?eHZlZGRrc09aRHNMdDhpQUlKYnpueVk5blprNFEzaHZaaXgwdndJZG1IeTNE?=
+ =?utf-8?B?S2lLcmlVWlVoMEd4N05IM0dIY21ZVHhkbXNqOFJqZzIvRDdXeEZxUDBLODVG?=
+ =?utf-8?B?czR3MURmazFyZUdYUjJSV1hCdWVSTFlEY3crc2VMeTliZDZEdkkwRTZwM3l1?=
+ =?utf-8?B?VEhCSWJPWEx4MGVVS3pWU3FvbjVQZ0JzZVphSnRlSExybVFMRENtYlk5OVJL?=
+ =?utf-8?B?UHpoLzhQZHhSclgzTFNQQVBPMndWbXBaTFRTT2R1bGN0d0NSaDlSSGdHRk81?=
+ =?utf-8?B?dnRKemFCTkVBb0wyaXZYNTMrMlFIREppbmx0WVZwLy9xcUpDaUNtRExrTmdD?=
+ =?utf-8?B?YWpQOWo2Y1l0RmNIaHQ4UUV3NHhFRkUxSXZZQlB2cFlvOE9WVkNWS1B4NkFO?=
+ =?utf-8?B?aXhNeUtXTkZxOU5Za01mM1YvR3RDZ2R0VEsyN3YvU3JVdDR1QmgwQ25GUzhV?=
+ =?utf-8?B?MlR4aEtyUWFUb0pJMmpLeUcvTm9nV3RYOEJseVdBRTBjOGtLbWhmWU9hV2lR?=
+ =?utf-8?B?WEtqb3hzSDlVbmFGa3hSdHVrYXRyMjBrZ3NQdG5ESHFzSHNWa3YyelYzUmxl?=
+ =?utf-8?Q?w1huaj4DByC6wsjhQGk710Wp+5x1GFEOmKLOwqS?=
+X-OriginatorOrg: vaisala.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c09c9bf7-e0e9-480d-edc9-08d900d221ba
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0602MB3568.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2021 12:21:16.1615
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 6d7393e0-41f5-4c2e-9b12-4c2be5da5c57
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Rj+JY6Em7uub4l3WoFAhydyuNIyjRmdJ0TV0+6LM+bTyedxvBwb0v2tQwM0uFfQwV87NlMIaWGUKaTb4x8hv/w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0602MB2973
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dan Carpenter <dan.carpenter@oracle.com> writes:
-> On Fri, Apr 16, 2021 at 09:00:12AM +0200, Christophe Leroy wrote:
->> Le 16/04/2021 =C3=A0 08:44, Daniel Axtens a =C3=A9crit=C2=A0:
->> > > On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
->> > >=20
->> > > > There are a few "goto out;" statements before the local variable "=
-fdt"
->> > > > is initialized through the call to of_kexec_alloc_and_setup_fdt() =
-in
->> > > > elf64_load(). This will result in an uninitialized "fdt" being pas=
-sed
->> > > > to kvfree() in this function if there is an error before the call =
-to
->> > > > of_kexec_alloc_and_setup_fdt().
->> > > >=20
->> > > > Initialize the local variable "fdt" to NULL.
->> > > >=20
->> > I'm a huge fan of initialising local variables! But I'm struggling to
->> > find the code path that will lead to an uninit fdt being returned...
->> >=20
->> > The out label reads in part:
->> >=20
->> > 	/* Make kimage_file_post_load_cleanup free the fdt buffer for us. */
->> > 	return ret ? ERR_PTR(ret) : fdt;
->> >=20
->> > As far as I can tell, any time we get a non-zero ret, we're going to
->> > return an error pointer rather than the uninitialised value...
->>=20
->> I don't think GCC is smart enough to detect that.
->>=20
+Updated email-address for Alexandru.
+
+
+On 4/16/21 3:17 PM, Tomas Melin wrote:
+> On 4/15/21 11:41 AM, Tomas Melin wrote:
 >
-> We disabled uninitialized variable checking for GCC.
-
-We disabled -Wmaybe-uninitialized, but that doesn't disable *all*
-uninitialized warnings does it?
-
-I wish we hadn't disabled it, it's already led to bugs slipping through.
-
-> But actually is something that has been on my mind recently.  Smatch is
-> supposed to parse this correctly but there is a bug that affects powerpc
-> and I don't know how to debug it.  The kbuild bot is doing cross
-> platform compiles but I don't have one set up on myself.  Could someone
-> with Smatch installed test something for me?
+>>
+>> While working on updates I did notice something new which I cannot
+>>
+>> reproduce on older (5.10.17 kernel) version. If compiling this as a 
+>> module, getting error while
+>>
+>> unloading module:
+>>
+>> [   40.200084] Unable to handle kernel NULL pointer dereference at 
+>> virtual address 00000104
+>> ...
+>>
+>> [   40.510054] Backtrace:
+>> [   40.512502] [<c06c5e0c>] (iio_device_ioctl_handler_unregister) 
+>> from [<c06ca8c4>] (iio_buffers_free_sysfs_and_mask+0x2c/0x6c)
+>> [   40.523735] [<c06ca898>] (iio_buffers_free_sysfs_and_mask) from 
+>> [<c06c4a18>] (iio_device_unregister+0xa8/0xac)
+>> [   40.533746]  r5:c1811228 r4:c1811000
+>> [   40.537318] [<c06c4970>] (iio_device_unregister) from [<c06c4a38>] 
+>> (devm_iio_device_unreg+0x1c/0x20)
+>> [   40.546461]  r5:c2415000 r4:c25bab80
+>> [   40.550025] [<c06c4a1c>] (devm_iio_device_unreg) from [<c0556820>] 
+>> (release_nodes+0x1c0/0x1f0)
+>> [   40.558654] [<c0556660>] (release_nodes) from [<c0556bb0>] 
+>> (devres_release_all+0x40/0x60)
+>> [   40.566847]  r10:00000081 r9:c2350000 r8:c0100264 r7:00000081 
+>> r6:bf00c010 r5:c19be000
+>> [   40.574669]  r4:c1a91c00
+>> [   40.577194] [<c0556b70>] (devres_release_all) from [<c055216c>] 
+>> (device_release_driver_internal+0x120/0x1cc)
+>> [   40.587031]  r5:c19be000 r4:c1a91c00
+>> [   40.590596] [<c055204c>] (device_release_driver_internal) from 
+>> [<c05522b4>] (driver_detach+0x54/0x90)
+>> [   40.599828]  r7:00000081 r6:00000000 r5:bf00c010 r4:c1a91c00
+>> [   40.605482] [<c0552260>] (driver_detach) from [<c0550ba4>] 
+>> (bus_remove_driver+0x5c/0xb0)
+>> [   40.613583]  r5:00000800 r4:bf00c010
+>> [   40.617148] [<c0550b48>] (bus_remove_driver) from [<c0552c38>] 
+>> (driver_unregister+0x38/0x5c)
+>> [   40.625596]  r5:00000800 r4:bf00c010
+>> [   40.629161] [<c0552c00>] (driver_unregister) from [<bf00a760>] 
+>> (sca3300_driver_exit+0x14/0x8b4 [sca3300])
+>> [   40.638747]  r5:00000800 r4:bf00c080
+>> [   40.642311] [<bf00a74c>] (sca3300_driver_exit [sca3300]) from 
+>> [<c01c06f0>] (sys_delete_module+0x16c/0x238)
+>> [   40.651990] [<c01c0584>] (sys_delete_module) from [<c0100244>] 
+>> (__sys_trace_return+0x0/0x1c)
+>> [   40.660435] Exception stack(0xc2351fa8 to 0xc2351ff0)
+>> [   40.665484] 1fa0:                   0050e5a8 00000000 0050e5e4 
+>> 00000800 081d4b00 bec18af4
+>> [   40.673661] 1fc0: 0050e5a8 00000000 bec18b50 00000081 bec18e51 
+>> 0050e190 00000001 bec18d3c
+>> [   40.681834] 1fe0: 0050cf70 bec18afc 004f1ec8 b6ecb27c
+>> [   40.686887]  r6:bec18b50 r5:00000000 r4:0050e5a8
+>> [   40.691507] Code: e8bd4000 e1c020d0 e3a0cc01 e3001122 (e5823004)
+>> [   40.707675] ---[ end trace 189882b050077333 ]---
+>>
+>> This happens when building against linux-next 
+>> 5.12.0-rc6-next-20210409. I'm failing to see what is wrong. Any ideas?
+>>
+>> Thanks,
+>>
+>> Tomas
 >
-> Or if you don't have Smatch installed then you should definitely install
-> it.  :P
-> https://www.spinics.net/lists/smatch/msg00568.html
-
-I have smatch installed, and even run it sometimes ;)
-
-
-> Apply the patch from below and edit the path to point to the correct
-> directory.  Then run kchecker and email me the output?
-
-That gave me:
-
-    CC      arch/powerpc/kernel/hw_breakpoint.o
-  /home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c: In function =E2=
-=80=98task_bps_add=E2=80=99:
-  /home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:176:16: error: pa=
-ssing argument 1 of =E2=80=98__smatch_about=E2=80=99 makes integer from poi=
-nter without a cast [-Werror=3Dint-conversion]
-    176 | __smatch_about(tmp);
-        |                ^~~
-        |                |
-        |                struct breakpoint *
-  In file included from /home/michael/linux/arch/powerpc/kernel/hw_breakpoi=
-nt.c:170:
-  /home/michael/smatch/check_debug.h:4:40: note: expected =E2=80=98long int=
-=E2=80=99 but argument is of type =E2=80=98struct breakpoint *=E2=80=99
-      4 | static inline void __smatch_about(long var){}
-        |                                   ~~~~~^~~
-  /home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:180:21: error: pa=
-ssing argument 1 of =E2=80=98__smatch_about=E2=80=99 makes integer from poi=
-nter without a cast [-Werror=3Dint-conversion]
-    180 |      __smatch_about(tmp);
-        |                     ^~~
-        |                     |
-        |                     struct breakpoint *
-  In file included from /home/michael/linux/arch/powerpc/kernel/hw_breakpoi=
-nt.c:170:
-  /home/michael/smatch/check_debug.h:4:40: note: expected =E2=80=98long int=
-=E2=80=99 but argument is of type =E2=80=98struct breakpoint *=E2=80=99
-      4 | static inline void __smatch_about(long var){}
-        |                                   ~~~~~^~~
-  cc1: all warnings being treated as errors
-
-
-Which looks like it didn't work.
-
-Right, needs tmp cast to long.
-
-Output below, hope it helps. Happy to test other things.
-
-cheers
-
-
-  GEN     Makefile
-  CHECK   /home/michael/linux/scripts/mod/empty.c
-  CALL    /home/michael/linux/scripts/checksyscalls.sh
-  CALL    /home/michael/linux/scripts/atomic/check-atomics.sh
-  CHECK   /home/michael/linux/arch/powerpc/kernel/vdso64/vgettimeofday.c
-  CC      arch/powerpc/kernel/hw_breakpoint.o
-  CHECK   /home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:177 task_bps_add() =
----- about ----
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:177 task_bps_add() =
-implied: tmp =3D 's64min-(-4096),(-12),4096-s64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:177 task_bps_add() =
-buf size: 'tmp' 0 elements, 0 bytes (rl =3D (-1),32)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:177 task_bps_add() =
-strlen: 'tmp'  characters
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:177 task_bps_add() =
-real absolute: tmp =3D 's64min-(-4096),(-12),4096-s64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:177 task_bps_add() =
-mtag =3D 0 offset =3D 0 rl =3D ''
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:177 task_bps_add() =
-[register_smatch_extra] tmp =3D '4096-ptr_max,(-12)' [merged] (4096-ptr_max=
-,(-12), 4096-ptr_max, (-12), 4096-ptr_max, (-12))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:177 task_bps_add() =
-[register_modification_hooks] tmp =3D 'tmp =3D alloc_breakpoint(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:177 task_bps_add() =
-[register_buf_size] tmp =3D '(-1),32' [merged] ((-1), (-1),32, 32)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:177 task_bps_add() =
-[register_comparison_links] tmp =3D '__fake_param_0x7da6ac1c7450_0 vs tmp, =
-return 0x7da6ac1c7360 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:177 task_bps_add() =
-[register_fresh_alloc] tmp =3D 'undefined'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:177 task_bps_add() =
-[check_deref] tmp =3D 'ok'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:177 task_bps_add() =
-[check_uninitialized] tmp =3D 'initialized' [merged]
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:177 task_bps_add() =
-[register_assigned_expr] tmp =3D 'alloc_breakpoint(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:177 task_bps_add() =
-[register_assigned_expr_links] tmp =3D '__fake_param_0x7da6ac1c7450_0'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:178 task_bps_add() =
-set_state change [register_definition_db_callbacks] 'db_incomplete' incompl=
-ete =3D> incomplete
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:178 task_bps_add() =
-__set_sm change [register_definition_db_callbacks] db_incomplete =3D 'incom=
-plete' (was incomplete)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_statement_count] 'stmts' 10 =3D> 11
-179 in __split_whole_condition
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-179 in split_conditions (IS_ERR(tmp))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_buf_size] '__fake_param_0x7da6ac1c7630_0' (-1),32
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0' 4096-=
-ptr_max,(-12)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] __fake_param_0x7da6ac1c7630_0 =3D '=
-4096-ptr_max,(-12)' [merged] (4096-ptr_max,(-12), 4096-ptr_max, (-12), 4096=
--ptr_max, (-12)) (was 4096-ptr_max,(-12))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] tmp =3D '4096-ptr_max,(-12)' [merge=
-d] (4096-ptr_max,(-12), 4096-ptr_max, (-12), 4096-ptr_max, (-12)) (was 4096=
--ptr_max,(-12))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] __fake_param_0x7da6ac1c7630_0 =3D '=
-4096-ptr_max,(-12)' [merged] (4096-ptr_max,(-12), 4096-ptr_max, (-12), 4096=
--ptr_max, (-12)) (was 4096-ptr_max,(-12))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_comparison] '__fake_param_0x7da6ac1c7630_0 vs retur=
-n 0x7da6ac1c7360' =3D=3D
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_comparison_links] '__fake_param_0x7da6ac1c7630_0' _=
-_fake_param_0x7da6ac1c7630_0 vs return 0x7da6ac1c7360
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_comparison] '__fake_param_0x7da6ac1c7630_0 vs tmp' =
-=3D=3D
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_comparison_links] '__fake_param_0x7da6ac1c7630_0=
-' __fake_param_0x7da6ac1c7630_0 vs return 0x7da6ac1c7360 =3D> __fake_param_=
-0x7da6ac1c7630_0 vs return 0x7da6ac1c7360, __fake_param_0x7da6ac1c7630_0 vs=
- tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_comparison_links] 'tmp' __fake_param_0x7da6ac1c7=
-450_0 vs tmp, return 0x7da6ac1c7360 vs tmp =3D> __fake_param_0x7da6ac1c7450=
-_0 vs tmp, __fake_param_0x7da6ac1c7630_0 vs tmp, return 0x7da6ac1c7360 vs t=
-mp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_assigned_expr] '__fake_param_0x7da6ac1c7630_0' tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_assigned_expr_links] 'tmp' __fake_param_0x7da6ac=
-1c7450_0 =3D> __fake_param_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0
-debug: insert into caller_info values ('/home/michael/linux/arch/powerpc/ke=
-rnel/hw_breakpoint.c', 'task_bps_add', 'IS_ERR', 138154805589552, 1, 0, -1,=
- '%call_marker%', 'bool(*)(void*)');
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-insert into caller_info values ('/home/michael/linux/arch/powerpc/kernel/hw=
-_breakpoint.c', 'task_bps_add', 'IS_ERR', 138154805589552, 1, 0, -1, '%call=
-_marker%', 'bool(*)(void*)');
-debug: insert into caller_info values ('/home/michael/linux/arch/powerpc/ke=
-rnel/hw_breakpoint.c', 'task_bps_add', 'IS_ERR', 138154805589552, 1, 1001, =
-0, '$', '4096-ptr_max,(-12)');
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-insert into caller_info values ('/home/michael/linux/arch/powerpc/kernel/hw=
-_breakpoint.c', 'task_bps_add', 'IS_ERR', 138154805589552, 1, 1001, 0, '$',=
- '4096-ptr_max,(-12)');
-debug: insert into caller_info values ('/home/michael/linux/arch/powerpc/ke=
-rnel/hw_breakpoint.c', 'task_bps_add', 'IS_ERR', 138154805589552, 1, 1014, =
-0, '$', 'r alloc_breakpoint');
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-insert into caller_info values ('/home/michael/linux/arch/powerpc/kernel/hw=
-_breakpoint.c', 'task_bps_add', 'IS_ERR', 138154805589552, 1, 1014, 0, '$',=
- 'r alloc_breakpoint');
-debug: insert into caller_info values ('/home/michael/linux/arch/powerpc/ke=
-rnel/hw_breakpoint.c', 'task_bps_add', 'IS_ERR', 138154805589552, 1, 1002, =
-0, '$', '(-1),32');
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-insert into caller_info values ('/home/michael/linux/arch/powerpc/kernel/hw=
-_breakpoint.c', 'task_bps_add', 'IS_ERR', 138154805589552, 1, 1002, 0, '$',=
- '(-1),32');
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_modification_hooks] '*tmp' __smatch_about(tmp) =
-=3D> IS_ERR(tmp)
-inline function:  IS_ERR
-/home/michael/linux/include/linux/err.h:34 IS_ERR() set_state new [internal=
-] 'unnull_path' true
-debug: select call_id, type, parameter, key, value from caller_info where c=
-all_id =3D 138154805589552;
-/home/michael/linux/include/linux/err.h:34 IS_ERR() select call_id, type, p=
-arameter, key, value from caller_info where call_id =3D 138154805589552;
-138154805589552, 0, -1, %call_marker%, bool(*)(void*)
-138154805589552, 1001, 0, $, 4096-ptr_max,(-12)
-138154805589552, 1014, 0, $, r alloc_breakpoint
-138154805589552, 1002, 0, $, (-1),32
-/home/michael/linux/include/linux/err.h:34 IS_ERR() set_state new [register=
-_kernel_user_data2] 'this_function' called
-/home/michael/linux/include/linux/err.h:34 IS_ERR() set_state new [register=
-_smatch_extra] 'ptr' 4096-ptr_max,(-12)
-/home/michael/linux/include/linux/err.h:34 IS_ERR() set_state new [register=
-_buf_size] 'ptr' (-1),32
-/home/michael/linux/include/linux/err.h:34 IS_ERR() __set_sm new [register_=
-smatch_extra] ptr =3D '4096-ptr_max,(-12)'
-/home/michael/linux/include/linux/err.h:34 IS_ERR() __set_sm new [register_=
-buf_size] ptr =3D '(-1),32'
-/home/michael/linux/include/linux/err.h:34 IS_ERR() __set_sm new [register_=
-kernel_user_data2] this_function =3D 'called'
-mem-db: insert into function_type values ('/home/michael/linux/arch/powerpc=
-/kernel/hw_breakpoint.c', 'IS_ERR', 1, 0, 'void*');
-/home/michael/linux/include/linux/err.h:34 IS_ERR() set_state new [check_de=
-references_param] 'ptr' param
-/home/michael/linux/include/linux/err.h:34 IS_ERR() set_state new [register=
-_comparison] 'ptr vs ptr orig' =3D=3D
-/home/michael/linux/include/linux/err.h:34 IS_ERR() set_state new [register=
-_comparison_links] 'ptr' ptr vs ptr orig
-/home/michael/linux/include/linux/err.h:34 IS_ERR() set_state new [register=
-_statement_count] 'stmts' 1
-/home/michael/linux/include/linux/err.h:36 IS_ERR() set_state change [regis=
-ter_statement_count] 'stmts' 1 =3D> 2
-36 in __handle_condition_assigns
-/home/michael/linux/include/linux/err.h:36 IS_ERR() 36 in split_conditions =
-(!!((ptr) >=3D -4095))
-/home/michael/linux/include/linux/err.h:36 IS_ERR() 36 in split_conditions =
-(!((ptr) >=3D -4095))
-/home/michael/linux/include/linux/err.h:36 IS_ERR() 36 in split_conditions =
-(((ptr) >=3D -4095))
-/home/michael/linux/include/linux/err.h:36 IS_ERR() set_true_false_states [=
-register_smatch_extra] 'ptr'.  Was 4096-ptr_max,(-12).  Now T:(-12) F:4096-=
-ptr_max
-/home/michael/linux/include/linux/err.h:36 IS_ERR() set_true_false_states [=
-register_parsed_conditions] 'condition 0x7da6aed21be0'.  Was (null).  Now T=
-:true_path F:false_path
-/home/michael/linux/include/linux/err.h:36 IS_ERR() set_state new [register=
-_smatch_extra] '__sm_fake_0x7da6aed219b0' 1
-/home/michael/linux/include/linux/err.h:36 IS_ERR() set_state new [register=
-_smatch_extra] '__sm_fake_0x7da6aed219b0' 0
-/home/michael/linux/include/linux/err.h:36 IS_ERR() merge [register_smatch_=
-extra] 'ptr' 4096-ptr_max(L 36) + (-12)(L 36) =3D> 4096-ptr_max,(-12) (4096=
--ptr_max,(-12), (-12), 4096-ptr_max)
-/home/michael/linux/include/linux/err.h:36 IS_ERR() merge [register_parsed_=
-conditions] 'condition 0x7da6aed21be0' false_path(L 36) + true_path(L 36) =
-=3D> merged (merged, false_path, true_path)
-/home/michael/linux/include/linux/err.h:36 IS_ERR() merge [register_smatch_=
-extra] '__sm_fake_0x7da6aed219b0' 1(L 36) + 0(L 36) =3D> 0-1 (0-1, 0, 1)
-/home/michael/linux/include/linux/err.h:36 IS_ERR() merge [register_smatch_=
-extra] 'ptr' (-12)(L 36) + 4096-ptr_max(L 36) =3D> 4096-ptr_max,(-12) (4096=
--ptr_max,(-12), 4096-ptr_max, (-12))
-/home/michael/linux/include/linux/err.h:36 IS_ERR() merge [register_parsed_=
-conditions] 'condition 0x7da6aed21be0' true_path(L 36) + false_path(L 36) =
-=3D> merged (merged, false_path, true_path)
-/home/michael/linux/include/linux/err.h:36 IS_ERR() __set_sm new [register_=
-smatch_extra] __sm_fake_0x7da6aed219b0 =3D '0-1' [merged] (0-1, 0, 1, 0, 1)
-/home/michael/linux/include/linux/err.h:36 IS_ERR() __set_sm change [regist=
-er_smatch_extra] ptr =3D '4096-ptr_max,(-12)' [merged] (4096-ptr_max,(-12),=
- 4096-ptr_max, (-12), 4096-ptr_max, (-12)) (was 4096-ptr_max,(-12))
-/home/michael/linux/include/linux/err.h:36 IS_ERR() __set_sm change [regist=
-er_parsed_conditions] condition 0x7da6aed21be0 =3D 'merged' [merged] (merge=
-d, false_path, true_path) (was merged)
-36 done __handle_condition_assigns
-/home/michael/linux/include/linux/err.h:36 IS_ERR() set_state new [register=
-_assigned_expr] '__sm_fake_0x7da6aed219b0' !!((ptr) >=3D -4095)
-36 in __split_whole_condition
-/home/michael/linux/include/linux/err.h:36 IS_ERR() 36 in split_conditions =
-(!!((ptr) >=3D -4095))
-/home/michael/linux/include/linux/err.h:36 IS_ERR() 36 in split_conditions =
-(!((ptr) >=3D -4095))
-/home/michael/linux/include/linux/err.h:36 IS_ERR() 36 in split_conditions =
-(((ptr) >=3D -4095))
-/home/michael/linux/include/linux/err.h:36 IS_ERR() __set_true_false_sm [re=
-gister_smatch_extra] '__sm_fake_0x7da6aed219b0'.  Was 0-1.  Now T:1 F:(null)
-/home/michael/linux/include/linux/err.h:36 IS_ERR() __set_true_false_sm [re=
-gister_smatch_extra] 'ptr'.  Was 4096-ptr_max,(-12).  Now T:(-12) F:(null)
-/home/michael/linux/include/linux/err.h:36 IS_ERR() __set_true_false_sm [re=
-gister_parsed_conditions] 'condition 0x7da6aed21be0'.  Was merged.  Now T:t=
-rue_path F:(null)
-/home/michael/linux/include/linux/err.h:36 IS_ERR() __set_true_false_sm [re=
-gister_smatch_extra] '__sm_fake_0x7da6aed219b0'.  Was 0-1.  Now T:(null) F:0
-/home/michael/linux/include/linux/err.h:36 IS_ERR() __set_true_false_sm [re=
-gister_smatch_extra] 'ptr'.  Was 4096-ptr_max,(-12).  Now T:(null) F:4096-p=
-tr_max
-/home/michael/linux/include/linux/err.h:36 IS_ERR() __set_true_false_sm [re=
-gister_parsed_conditions] 'condition 0x7da6aed21be0'.  Was merged.  Now T:(=
-null) F:false_path
-/home/michael/linux/include/linux/err.h:36 IS_ERR() set_true_false_states [=
-register_smatch_extra] 'ptr'.  Was 4096-ptr_max,(-12).  Now T:(-12) F:4096-=
-ptr_max
-/home/michael/linux/include/linux/err.h:36 IS_ERR() set_true_false_states [=
-register_parsed_conditions] 'condition 0x7da6aed21be0'.  Was merged.  Now T=
-:true_path F:false_path
-36 done __split_whole_condition
-/home/michael/linux/include/linux/err.h:36 IS_ERR() set_state new [register=
-_returns_early] 'return_ranges' 1
-mem-db: insert into return_states values ('/home/michael/linux/arch/powerpc=
-/kernel/hw_breakpoint.c', 'IS_ERR', 138154805589552, 93, '1', 1, 0, -1, '',=
- 'bool(*)(void*)');
-mem-db: insert into return_states values ('/home/michael/linux/arch/powerpc=
-/kernel/hw_breakpoint.c', 'IS_ERR', 138154805589552, 93, '1', 1, 103, 0, '$=
-', '(-12)');
-mem-db: insert into return_states values ('/home/michael/linux/arch/powerpc=
-/kernel/hw_breakpoint.c', 'IS_ERR', 138154805589552, 93, '1', 1, 1037, -1, =
-'', '2');
-/home/michael/linux/include/linux/err.h:36 IS_ERR() set_state new [register=
-_returns_early] 'return_ranges' 0
-mem-db: insert into return_states values ('/home/michael/linux/arch/powerpc=
-/kernel/hw_breakpoint.c', 'IS_ERR', 138154805589552, 94, '0', 1, 0, -1, '',=
- 'bool(*)(void*)');
-/home/michael/linux/include/linux/err.h:36 IS_ERR() merge [register_smatch_=
-extra] '__sm_fake_0x7da6aed219b0' 1(L 36) + 0(L 36) =3D> 0-1 (0-1, 0, 1)
-/home/michael/linux/include/linux/err.h:36 IS_ERR() merge [register_smatch_=
-extra] 'ptr' (-12)(L 36) + 4096-ptr_max(L 36) =3D> 4096-ptr_max,(-12) (4096=
--ptr_max,(-12), 4096-ptr_max, (-12))
-/home/michael/linux/include/linux/err.h:36 IS_ERR() merge [register_returns=
-_early] 'return_ranges' 1(L 36) + 0(L 36) =3D> merged (0, 1, merged)
-/home/michael/linux/include/linux/err.h:36 IS_ERR() merge [register_parsed_=
-conditions] 'condition 0x7da6aed21be0' true_path(L 36) + false_path(L 36) =
-=3D> merged (merged, false_path, true_path)
-mem-db: insert into return_states values ('/home/michael/linux/arch/powerpc=
-/kernel/hw_breakpoint.c', 'IS_ERR', 138154805589552, 94, '0', 1, 103, 0, '$=
-', '4096-ptr_max');
-mem-db: insert into return_states values ('/home/michael/linux/arch/powerpc=
-/kernel/hw_breakpoint.c', 'IS_ERR', 138154805589552, 94, '0', 1, 1037, -1, =
-'', '2');
-/home/michael/linux/include/linux/err.h:36 IS_ERR() merge [register_smatch_=
-extra] '__sm_fake_0x7da6aed219b0' 0(L 36) + 1(L 36) =3D> 0-1 (0-1, 1, 0)
-/home/michael/linux/include/linux/err.h:36 IS_ERR() merge [register_smatch_=
-extra] 'ptr' 4096-ptr_max(L 36) + (-12)(L 36) =3D> 4096-ptr_max,(-12) (4096=
--ptr_max,(-12), (-12), 4096-ptr_max)
-/home/michael/linux/include/linux/err.h:36 IS_ERR() merge [register_returns=
-_early] 'return_ranges' 0(L 36) + 1(L 36) =3D> merged (0, 1, merged)
-/home/michael/linux/include/linux/err.h:36 IS_ERR() merge [register_parsed_=
-conditions] 'condition 0x7da6aed21be0' false_path(L 36) + true_path(L 36) =
-=3D> merged (merged, false_path, true_path)
-debug: select function, type, parameter, key, value from return_implies whe=
-re call_id =3D '138154805589552';
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-select function, type, parameter, key, value from return_implies where call=
-_id =3D '138154805589552';
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_smatch_extra] __fake_param_0x7da6ac1c7630_0 =3D '409=
-6-ptr_max,(-12)' [merged] (4096-ptr_max,(-12), 4096-ptr_max, (-12), 4096-pt=
-r_max, (-12))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0'=
-.  Was 4096-ptr_max,(-12).  Now T:4096-ptr_max,(-12) F:4096-ptr_max,(-12)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] tmp =3D '4096-ptr_max,(-12)' [merge=
-d] (4096-ptr_max,(-12), 4096-ptr_max, (-12), 4096-ptr_max, (-12)) (was 4096=
--ptr_max,(-12))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] 'tmp'.  Was 4096-ptr_max,(-12).=
-  Now T:4096-ptr_max,(-12) F:4096-ptr_max,(-12)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_modification_hooks] *tmp =3D 'IS_ERR(tmp)' (was _=
-_smatch_about(tmp))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_modification_hooks] '*tmp'.  Was IS_ERR(tmp).=
-  Now T:IS_ERR(tmp) F:IS_ERR(tmp)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_buf_size] __fake_param_0x7da6ac1c7630_0 =3D '(-1),32'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_buf_size] '__fake_param_0x7da6ac1c7630_0'.  W=
-as (-1),32.  Now T:(-1),32 F:(-1),32
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_comparison] __fake_param_0x7da6ac1c7630_0 vs return =
-0x7da6ac1c7360 =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_comparison] '__fake_param_0x7da6ac1c7630_0 vs=
- return 0x7da6ac1c7360'.  Was =3D=3D.  Now T:=3D=3D F:=3D=3D
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_comparison] __fake_param_0x7da6ac1c7630_0 vs tmp =3D=
- '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_comparison] '__fake_param_0x7da6ac1c7630_0 vs=
- tmp'.  Was =3D=3D.  Now T:=3D=3D F:=3D=3D
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_comparison_links] __fake_param_0x7da6ac1c7630_0 =3D =
-'__fake_param_0x7da6ac1c7630_0 vs return 0x7da6ac1c7360, __fake_param_0x7da=
-6ac1c7630_0 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_comparison_links] '__fake_param_0x7da6ac1c763=
-0_0'.  Was __fake_param_0x7da6ac1c7630_0 vs return 0x7da6ac1c7360, __fake_p=
-aram_0x7da6ac1c7630_0 vs tmp.  Now T:__fake_param_0x7da6ac1c7630_0 vs retur=
-n 0x7da6ac1c7360, __fake_param_0x7da6ac1c7630_0 vs tmp F:__fake_param_0x7da=
-6ac1c7630_0 vs return 0x7da6ac1c7360, __fake_param_0x7da6ac1c7630_0 vs tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_comparison_links] tmp =3D '__fake_param_0x7da6ac1=
-c7450_0 vs tmp, __fake_param_0x7da6ac1c7630_0 vs tmp, return 0x7da6ac1c7360=
- vs tmp' (was __fake_param_0x7da6ac1c7450_0 vs tmp, return 0x7da6ac1c7360 v=
-s tmp)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_comparison_links] 'tmp'.  Was __fake_param_0x=
-7da6ac1c7450_0 vs tmp, __fake_param_0x7da6ac1c7630_0 vs tmp, return 0x7da6a=
-c1c7360 vs tmp.  Now T:__fake_param_0x7da6ac1c7450_0 vs tmp, __fake_param_0=
-x7da6ac1c7630_0 vs tmp, return 0x7da6ac1c7360 vs tmp F:__fake_param_0x7da6a=
-c1c7450_0 vs tmp, __fake_param_0x7da6ac1c7630_0 vs tmp, return 0x7da6ac1c73=
-60 vs tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_assigned_expr] __fake_param_0x7da6ac1c7630_0 =3D 'tm=
-p'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_assigned_expr] '__fake_param_0x7da6ac1c7630_0=
-'.  Was tmp.  Now T:tmp F:tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_assigned_expr_links] tmp =3D '__fake_param_0x7da6=
-ac1c7450_0, __fake_param_0x7da6ac1c7630_0' (was __fake_param_0x7da6ac1c7450=
-_0)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_assigned_expr_links] 'tmp'.  Was __fake_param=
-_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0.  Now T:__fake_param_0x7da=
-6ac1c7450_0, __fake_param_0x7da6ac1c7630_0 F:__fake_param_0x7da6ac1c7450_0,=
- __fake_param_0x7da6ac1c7630_0
-debug: select distinct return from return_states where call_id =3D '1381548=
-05589552';
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-select distinct return from return_states where call_id =3D '13815480558955=
-2';
-1
-0
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [check_err_ptr_deref] 'tmp' err_ptr
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [check_err_ptr_deref] 'tmp' checked
-debug: select return_id, return, type, parameter, key, value from return_st=
-ates where call_id =3D '138154805589552' order by return_id, type;
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-select return_id, return, type, parameter, key, value from return_states wh=
-ere call_id =3D '138154805589552' order by return_id, type;
-93, 1, 0, -1, , bool(*)(void*)
-93, 1, 103, 0, $, (-12)
-93, 1, 1037, -1, , 2
-94, 0, 0, -1, , bool(*)(void*)
-94, 0, 103, 0, $, 4096-ptr_max
-94, 0, 1037, -1, , 2
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [internal] 'unnull_path' true =3D> true
-'tmp =3D (-12)' from 176 is true. [leaf][stree 3]
-'tmp =3D 4096-ptr_max' from 176 is false. [leaf][stree 4]
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_fake_stree change [register_smatch_extra] __fake_param_0x7da6ac1c7=
-630_0 =3D '(-12)' [merged] (was 4096-ptr_max,(-12))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_fake_stree change [register_smatch_extra] tmp->bp =3D '' [merged] =
-(was 0-u64max)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_fake_stree change [register_smatch_extra] tmp->list.next =3D '' [m=
-erged] (was 0)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_fake_stree change [register_smatch_extra] tmp->list.prev =3D '' [m=
-erged] (was 0)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_fake_stree change [register_untracked_param] bp =3D 'undefined' [m=
-erged] (was merged)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_smatch_extra_links] 'tmp' tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0' 40=
-96-ptr_max,(-12) =3D> (-12)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_smatch_extra] 'tmp' 4096-ptr_max,(-12) =3D> (-12)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0' (-=
-12) =3D> (-12)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_smatch_extra_links] 'tmp' tmp =3D> __fake_param_=
-0x7da6ac1c7630_0, tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0' (-=
-12) =3D> (-12)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] tmp =3D '(-12)' [merged] (was (-12))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_buf_size] tmp =3D '(-1)' [merged] (was (-1),32)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [check_uninitialized] tmp =3D 'initialized' [merged] (was i=
-nitialized)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_statement_count] 'stmts' 11 =3D> 13
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [internal] 'unnull_path' true
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] __fake_param_0x7da6ac1c7630_=
-0 =3D '4096-ptr_max,(-12)' [merged] (4096-ptr_max,(-12), 4096-ptr_max, (-12=
-), 4096-ptr_max, (-12))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] tmp =3D '4096-ptr_max,(-12)'=
- [merged] (4096-ptr_max,(-12), 4096-ptr_max, (-12), 4096-ptr_max, (-12))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] tmp->bp =3D '0-u64max' [merg=
-ed] (0-u64max, 0-u64max, , 0-u64max, )
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] tmp->list.next =3D '0' [merg=
-ed] (0, 0, , 0, )
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] tmp->list.prev =3D '0' [merg=
-ed] (0, 0, , 0, )
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *bp =3D 'alloc_breakpo=
-int(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *tmp =3D 'IS_ERR(tmp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] tmp =3D 'tmp =3D alloc=
-_breakpoint(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_definition_db_callbacks] db_incomplete =3D=
- 'incomplete'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_untracked_param] bp =3D 'merged' [merged] =
-(untracked, merged, undefined)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_buf_size] __fake_param_0x7da6ac1c7630_0 =
-=3D '(-1),32'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_buf_size] tmp =3D '(-1),32' [merged] ((-1)=
-, (-1),32, 32)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] __fake_param_0x7da6ac1c7630_0 =
-vs return 0x7da6ac1c7360 =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] __fake_param_0x7da6ac1c7630_0 =
-vs tmp =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] bp vs bp orig =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] return 0x7da6ac1c7360 vs tmp =
-=3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] __fake_param_0x7da6ac1c7=
-630_0 =3D '__fake_param_0x7da6ac1c7630_0 vs return 0x7da6ac1c7360, __fake_p=
-aram_0x7da6ac1c7630_0 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] bp =3D 'bp vs bp orig'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] return 0x7da6ac1c7360 =
-=3D 'return 0x7da6ac1c7360 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] tmp =3D '__fake_param_0x=
-7da6ac1c7450_0 vs tmp, __fake_param_0x7da6ac1c7630_0 vs tmp, return 0x7da6a=
-c1c7360 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_statement_count] stmts =3D '11'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_fresh_alloc] tmp =3D 'undefined'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_deref] tmp =3D 'ok'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_dereferences_param] bp =3D 'param'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_uninitialized] tmp =3D 'initialized' [merged]
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] __fake_param_0x7da6ac1c7630=
-_0 =3D 'tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] tmp =3D 'alloc_breakpoint(b=
-p)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr_links] tmp =3D '__fake_param=
-_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree change [internal] unnull_path =3D 'true' [merged] (was t=
-rue)
-debug: select return_id, return, type, parameter, key, value from return_st=
-ates where call_id =3D '138154805589552' order by return_id, type;
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-select return_id, return, type, parameter, key, value from return_states wh=
-ere call_id =3D '138154805589552' order by return_id, type;
-93, 1, 0, -1, , bool(*)(void*)
-93, 1, 103, 0, $, (-12)
-93, 1, 1037, -1, , 2
-94, 0, 0, -1, , bool(*)(void*)
-94, 0, 103, 0, $, 4096-ptr_max
-94, 0, 1037, -1, , 2
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [internal] 'unnull_path' true =3D> true
-'tmp =3D (-12)' from 176 is false. [leaf][stree 3]
-'tmp =3D 4096-ptr_max' from 176 is true. [leaf][stree 4]
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_fake_stree change [register_smatch_extra] __fake_param_0x7da6ac1c7=
-630_0 =3D '4096-ptr_max' [merged] (was 4096-ptr_max,(-12))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_fake_stree change [register_smatch_extra] tmp->bp =3D '0-u64max' [=
-merged] (was 0-u64max)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_fake_stree change [register_smatch_extra] tmp->list.next =3D '0' [=
-merged] (was 0)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_fake_stree change [register_smatch_extra] tmp->list.prev =3D '0' [=
-merged] (was 0)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_fake_stree change [register_untracked_param] bp =3D 'untracked' [m=
-erged] (was merged)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_smatch_extra_links] 'tmp' tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0' 40=
-96-ptr_max,(-12) =3D> 4096-ptr_max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_smatch_extra] 'tmp' 4096-ptr_max,(-12) =3D> 4096=
--ptr_max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0' 40=
-96-ptr_max =3D> 4096-ptr_max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_smatch_extra_links] 'tmp' tmp =3D> __fake_param_=
-0x7da6ac1c7630_0, tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0' 40=
-96-ptr_max =3D> 4096-ptr_max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] tmp =3D '4096-ptr_max' [merged] (wa=
-s 4096-ptr_max)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_buf_size] tmp =3D '32' [merged] (was (-1),32)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [check_uninitialized] tmp =3D 'initialized' [merged] (was i=
-nitialized)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_statement_count] 'stmts' 11 =3D> 13
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [internal] 'unnull_path' true
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] __fake_param_0x7da6ac1c7630_=
-0 =3D '4096-ptr_max,(-12)' [merged] (4096-ptr_max,(-12), 4096-ptr_max, (-12=
-), 4096-ptr_max, (-12))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] tmp =3D '4096-ptr_max,(-12)'=
- [merged] (4096-ptr_max,(-12), 4096-ptr_max, (-12), 4096-ptr_max, (-12))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] tmp->bp =3D '0-u64max' [merg=
-ed] (0-u64max, 0-u64max, , 0-u64max, )
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] tmp->list.next =3D '0' [merg=
-ed] (0, 0, , 0, )
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] tmp->list.prev =3D '0' [merg=
-ed] (0, 0, , 0, )
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *bp =3D 'alloc_breakpo=
-int(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *tmp =3D 'IS_ERR(tmp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] tmp =3D 'tmp =3D alloc=
-_breakpoint(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_definition_db_callbacks] db_incomplete =3D=
- 'incomplete'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_untracked_param] bp =3D 'merged' [merged] =
-(untracked, merged, undefined)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_buf_size] __fake_param_0x7da6ac1c7630_0 =
-=3D '(-1),32'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_buf_size] tmp =3D '(-1),32' [merged] ((-1)=
-, (-1),32, 32)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] __fake_param_0x7da6ac1c7630_0 =
-vs return 0x7da6ac1c7360 =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] __fake_param_0x7da6ac1c7630_0 =
-vs tmp =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] bp vs bp orig =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] return 0x7da6ac1c7360 vs tmp =
-=3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] __fake_param_0x7da6ac1c7=
-630_0 =3D '__fake_param_0x7da6ac1c7630_0 vs return 0x7da6ac1c7360, __fake_p=
-aram_0x7da6ac1c7630_0 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] bp =3D 'bp vs bp orig'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] return 0x7da6ac1c7360 =
-=3D 'return 0x7da6ac1c7360 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] tmp =3D '__fake_param_0x=
-7da6ac1c7450_0 vs tmp, __fake_param_0x7da6ac1c7630_0 vs tmp, return 0x7da6a=
-c1c7360 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_statement_count] stmts =3D '11'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_fresh_alloc] tmp =3D 'undefined'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_deref] tmp =3D 'ok'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_dereferences_param] bp =3D 'param'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_uninitialized] tmp =3D 'initialized' [merged]
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] __fake_param_0x7da6ac1c7630=
-_0 =3D 'tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] tmp =3D 'alloc_breakpoint(b=
-p)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr_links] tmp =3D '__fake_param=
-_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree change [internal] unnull_path =3D 'true' [merged] (was t=
-rue)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0'=
-.  Was 4096-ptr_max,(-12).  Now T:(-12) F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] 'tmp'.  Was 4096-ptr_max,(-12).=
-  Now T:(-12) F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] 'tmp->bp'.  Was 0-u64max.  Now =
-T: F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] 'tmp->list.next'.  Was 0.  Now =
-T: F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] 'tmp->list.prev'.  Was 0.  Now =
-T: F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra_links] 'tmp'.  Was (null).  Now =
-T:__fake_param_0x7da6ac1c7630_0, tmp F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_untracked_param] 'bp'.  Was merged.  Now T:un=
-defined F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_buf_size] 'tmp'.  Was (-1),32.  Now T:(-1) F:=
-(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_statement_count] 'stmts'.  Was 11.  Now T:13 =
-F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [check_uninitialized] 'tmp'.  Was initialized.  Now T:i=
-nitialized F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [internal] 'unnull_path'.  Was true.  Now T:true F:(nul=
-l)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0'=
-.  Was 4096-ptr_max,(-12).  Now T:(null) F:4096-ptr_max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] 'tmp'.  Was 4096-ptr_max,(-12).=
-  Now T:(null) F:4096-ptr_max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] 'tmp->bp'.  Was 0-u64max.  Now =
-T:(null) F:0-u64max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] 'tmp->list.next'.  Was 0.  Now =
-T:(null) F:0
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] 'tmp->list.prev'.  Was 0.  Now =
-T:(null) F:0
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra_links] 'tmp'.  Was (null).  Now =
-T:(null) F:__fake_param_0x7da6ac1c7630_0, tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_untracked_param] 'bp'.  Was merged.  Now T:(n=
-ull) F:untracked
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_buf_size] 'tmp'.  Was (-1),32.  Now T:(null) =
-F:32
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_statement_count] 'stmts'.  Was 11.  Now T:(nu=
-ll) F:13
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [check_uninitialized] 'tmp'.  Was initialized.  Now T:(=
-null) F:initialized
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [internal] 'unnull_path'.  Was true.  Now T:(null) F:tr=
-ue
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [check_err_ptr_deref] 'tmp'.  Was (null).  Now T:err_pt=
-r F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [check_err_ptr_deref] 'tmp'.  Was (null).  Now T:(null)=
- F:checked
-debug: select distinct return from return_states where call_id =3D '1381548=
-05589552';
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-select distinct return from return_states where call_id =3D '13815480558955=
-2';
-1
-0
-debug: select distinct return from return_states where call_id =3D '1381548=
-05589552';
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-select distinct return from return_states where call_id =3D '13815480558955=
-2';
-1
-0
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_true_false_states [register_parsed_conditions] 'condition 0x7da6ac1c763=
-0'.  Was (null).  Now T:true_path F:false_path
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [internal] unnull_path =3D 'true' (was true)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [internal] 'unnull_path'.  Was true.  Now T:true F:true
-179 done __split_whole_condition
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_statement_count] 'stmts' 13 =3D> 14
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:180 task_bps_add() =
-set_state change [register_statement_count] 'stmts' 14 =3D> 15
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
----- about ----
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-implied: tmp =3D '(-12)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-buf size: 'tmp' 0 elements, 0 bytes
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-strlen: 'tmp'  characters
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-real absolute: tmp =3D '(-12)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-mtag =3D 0 offset =3D 0 rl =3D ''
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-[register_smatch_extra] tmp =3D '(-12)' [merged]
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-[register_smatch_extra_links] tmp =3D '__fake_param_0x7da6ac1c7630_0, tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-[register_modification_hooks] tmp =3D 'tmp =3D alloc_breakpoint(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-[register_buf_size] tmp =3D '(-1)' [merged]
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-[register_comparison_links] tmp =3D '__fake_param_0x7da6ac1c7450_0 vs tmp, =
-__fake_param_0x7da6ac1c7630_0 vs tmp, __fake_param_0x7da6ac1c77c0_0 vs tmp,=
- return 0x7da6ac1c7360 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-[register_fresh_alloc] tmp =3D 'undefined'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-[check_deref] tmp =3D 'ok'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-[check_uninitialized] tmp =3D 'initialized' [merged]
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-[check_err_ptr_deref] tmp =3D 'err_ptr'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-[register_assigned_expr] tmp =3D 'alloc_breakpoint(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:181 task_bps_add() =
-[register_assigned_expr_links] tmp =3D '__fake_param_0x7da6ac1c7450_0, __fa=
-ke_param_0x7da6ac1c7630_0, __fake_param_0x7da6ac1c77c0_0'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:178 task_bps_add() =
-set_state change [register_definition_db_callbacks] 'db_incomplete' incompl=
-ete =3D> incomplete
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:178 task_bps_add() =
-__set_sm change [register_definition_db_callbacks] db_incomplete =3D 'incom=
-plete' (was incomplete)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_statement_count] 'stmts' 5 =3D> 6
-179 in __split_whole_condition
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-179 in split_conditions (IS_ERR(tmp))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0' 0-u64=
-max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] __fake_param_0x7da6ac1c7630_0 =3D '=
-0-u64max' (was 0-u64max)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] tmp =3D '0-u64max' (was 0-u64max)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] __fake_param_0x7da6ac1c7630_0 =3D '=
-0-u64max' (was 0-u64max)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_assigned_expr] '__fake_param_0x7da6ac1c7630_0' tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_assigned_expr_links] 'tmp' __fake_param_0x7da6ac=
-1c7450_0 =3D> __fake_param_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_modification_hooks] '*tmp' __smatch_about(tmp) =
-=3D> IS_ERR(tmp)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_smatch_extra] __fake_param_0x7da6ac1c7630_0 =3D '0-u=
-64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0'=
-.  Was 0-u64max.  Now T:0-u64max F:0-u64max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] tmp =3D '0-u64max' (was 0-u64max)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] 'tmp'.  Was 0-u64max.  Now T:0-=
-u64max F:0-u64max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_modification_hooks] *tmp =3D 'IS_ERR(tmp)' (was _=
-_smatch_about(tmp))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_modification_hooks] '*tmp'.  Was IS_ERR(tmp).=
-  Now T:IS_ERR(tmp) F:IS_ERR(tmp)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_assigned_expr] __fake_param_0x7da6ac1c7630_0 =3D 'tm=
-p'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_assigned_expr] '__fake_param_0x7da6ac1c7630_0=
-'.  Was tmp.  Now T:tmp F:tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_assigned_expr_links] tmp =3D '__fake_param_0x7da6=
-ac1c7450_0, __fake_param_0x7da6ac1c7630_0' (was __fake_param_0x7da6ac1c7450=
-_0)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_assigned_expr_links] 'tmp'.  Was __fake_param=
-_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0.  Now T:__fake_param_0x7da=
-6ac1c7450_0, __fake_param_0x7da6ac1c7630_0 F:__fake_param_0x7da6ac1c7450_0,=
- __fake_param_0x7da6ac1c7630_0
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [check_err_ptr_deref] 'tmp' err_ptr
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [check_err_ptr_deref] 'tmp' checked
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_definition_db_callbacks] 'db_incomplete' incompl=
-ete =3D> incomplete
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [internal] 'unnull_path' true
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] __fake_param_0x7da6ac1c7630_=
-0 =3D '0-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp =3D '4096-ptr_max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp->overflow_handler =3D '40=
-96-ptr_max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] tmp =3D '0-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *bp =3D 'alloc_breakpo=
-int(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *tmp =3D 'IS_ERR(tmp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] tmp =3D 'tmp =3D alloc=
-_breakpoint(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_definition_db_callbacks] db_incomplete =3D=
- 'incomplete'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_untracked_param] bp =3D 'untracked'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] bp vs bp orig =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] bp =3D 'bp vs bp orig'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_statement_count] stmts =3D '6'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_kernel_user_data2] this_function =3D 'call=
-ed'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_deref] tmp =3D 'ok'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_dereferences_param] bp =3D 'param'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_uninitialized] tmp =3D 'initialized'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] __fake_param_0x7da6ac1c7630=
-_0 =3D 'tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] tmp =3D 'alloc_breakpoint(b=
-p)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr_links] tmp =3D '__fake_param=
-_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree change [internal] unnull_path =3D 'true' (was true)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_definition_db_callbacks] 'db_incomplete' incompl=
-ete =3D> incomplete
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [internal] 'unnull_path' true
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] __fake_param_0x7da6ac1c7630_=
-0 =3D '0-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp =3D '4096-ptr_max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp->overflow_handler =3D '40=
-96-ptr_max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] tmp =3D '0-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *bp =3D 'alloc_breakpo=
-int(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *tmp =3D 'IS_ERR(tmp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] tmp =3D 'tmp =3D alloc=
-_breakpoint(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_definition_db_callbacks] db_incomplete =3D=
- 'incomplete'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_untracked_param] bp =3D 'untracked'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] bp vs bp orig =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] bp =3D 'bp vs bp orig'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_statement_count] stmts =3D '6'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_kernel_user_data2] this_function =3D 'call=
-ed'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_deref] tmp =3D 'ok'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_dereferences_param] bp =3D 'param'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_uninitialized] tmp =3D 'initialized'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] __fake_param_0x7da6ac1c7630=
-_0 =3D 'tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] tmp =3D 'alloc_breakpoint(b=
-p)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr_links] tmp =3D '__fake_param=
-_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree change [internal] unnull_path =3D 'true' (was true)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_definition_db_callbacks] 'db_incomplete'.  Wa=
-s incomplete.  Now T:incomplete F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_definition_db_callbacks] 'db_incomplete'.  Wa=
-s incomplete.  Now T:(null) F:incomplete
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_untracked_param] 'tmp' untracked
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [check_err_ptr_deref] 'tmp'.  Was (null).  Now T:err_pt=
-r F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [check_err_ptr_deref] 'tmp'.  Was (null).  Now T:(null)=
- F:checked
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_true_false_states [register_parsed_conditions] 'condition 0x7da6ac1c763=
-0'.  Was (null).  Now T:true_path F:false_path
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_untracked_param] tmp =3D 'untracked'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_untracked_param] 'tmp'.  Was untracked.  Now =
-T:untracked F:untracked
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [internal] unnull_path =3D 'true' (was true)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [internal] 'unnull_path'.  Was true.  Now T:true F:true
-179 done __split_whole_condition
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_statement_count] 'stmts' 6 =3D> 7
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:180 task_bps_add() =
-set_state change [register_statement_count] 'stmts' 7 =3D> 8
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:178 task_bps_add() =
-set_state change [register_definition_db_callbacks] 'db_incomplete' incompl=
-ete =3D> incomplete
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:178 task_bps_add() =
-__set_sm change [register_definition_db_callbacks] db_incomplete =3D 'incom=
-plete' (was incomplete)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_statement_count] 'stmts' 5 =3D> 6
-179 in __split_whole_condition
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-179 in split_conditions (IS_ERR(tmp))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0' 0-u64=
-max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] __fake_param_0x7da6ac1c7630_0 =3D '=
-0-u64max' (was 0-u64max)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] tmp =3D '0-u64max' (was 0-u64max)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] __fake_param_0x7da6ac1c7630_0 =3D '=
-0-u64max' (was 0-u64max)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_assigned_expr] '__fake_param_0x7da6ac1c7630_0' tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_assigned_expr_links] 'tmp' __fake_param_0x7da6ac=
-1c7450_0 =3D> __fake_param_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_modification_hooks] '*tmp' __smatch_about(tmp) =
-=3D> IS_ERR(tmp)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_smatch_extra] __fake_param_0x7da6ac1c7630_0 =3D '0-u=
-64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0'=
-.  Was 0-u64max.  Now T:0-u64max F:0-u64max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] tmp =3D '0-u64max' (was 0-u64max)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] 'tmp'.  Was 0-u64max.  Now T:0-=
-u64max F:0-u64max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_modification_hooks] *tmp =3D 'IS_ERR(tmp)' (was _=
-_smatch_about(tmp))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_modification_hooks] '*tmp'.  Was IS_ERR(tmp).=
-  Now T:IS_ERR(tmp) F:IS_ERR(tmp)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_assigned_expr] __fake_param_0x7da6ac1c7630_0 =3D 'tm=
-p'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_assigned_expr] '__fake_param_0x7da6ac1c7630_0=
-'.  Was tmp.  Now T:tmp F:tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_assigned_expr_links] tmp =3D '__fake_param_0x7da6=
-ac1c7450_0, __fake_param_0x7da6ac1c7630_0' (was __fake_param_0x7da6ac1c7450=
-_0)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_assigned_expr_links] 'tmp'.  Was __fake_param=
-_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0.  Now T:__fake_param_0x7da=
-6ac1c7450_0, __fake_param_0x7da6ac1c7630_0 F:__fake_param_0x7da6ac1c7450_0,=
- __fake_param_0x7da6ac1c7630_0
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [check_err_ptr_deref] 'tmp' err_ptr
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [check_err_ptr_deref] 'tmp' checked
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_definition_db_callbacks] 'db_incomplete' incompl=
-ete =3D> incomplete
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [internal] 'unnull_path' true
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] __fake_param_0x7da6ac1c7630_=
-0 =3D '0-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp =3D '4096-ptr_max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp->attr.bp_addr =3D '0-1383=
-5058055282163711'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp->cpu =3D '(-1)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp->hw.target =3D '1-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp->overflow_handler =3D '0-=
-4644892087836254207,4644892087836254209-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] tmp =3D '0-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *bp =3D 'alloc_breakpo=
-int(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *tmp =3D 'IS_ERR(tmp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] tmp =3D 'tmp =3D alloc=
-_breakpoint(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_definition_db_callbacks] db_incomplete =3D=
- 'incomplete'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_untracked_param] bp =3D 'untracked'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_capped] bp->hw.target =3D 'capped'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] bp vs bp orig =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] bp =3D 'bp vs bp orig'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_statement_count] stmts =3D '6'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_kernel_user_data2] this_function =3D 'call=
-ed'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_deref] tmp =3D 'ok'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_dereferences_param] bp =3D 'param'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_uninitialized] tmp =3D 'initialized'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] __fake_param_0x7da6ac1c7630=
-_0 =3D 'tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] tmp =3D 'alloc_breakpoint(b=
-p)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr_links] tmp =3D '__fake_param=
-_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree change [internal] unnull_path =3D 'true' (was true)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_definition_db_callbacks] 'db_incomplete' incompl=
-ete =3D> incomplete
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [internal] 'unnull_path' true
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] __fake_param_0x7da6ac1c7630_=
-0 =3D '0-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp =3D '4096-ptr_max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp->attr.bp_addr =3D '0-1383=
-5058055282163711'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp->cpu =3D '(-1)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp->hw.target =3D '1-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp->overflow_handler =3D '0-=
-4644892087836254207,4644892087836254209-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] tmp =3D '0-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *bp =3D 'alloc_breakpo=
-int(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *tmp =3D 'IS_ERR(tmp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] tmp =3D 'tmp =3D alloc=
-_breakpoint(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_definition_db_callbacks] db_incomplete =3D=
- 'incomplete'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_untracked_param] bp =3D 'untracked'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_capped] bp->hw.target =3D 'capped'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] bp vs bp orig =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] bp =3D 'bp vs bp orig'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_statement_count] stmts =3D '6'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_kernel_user_data2] this_function =3D 'call=
-ed'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_deref] tmp =3D 'ok'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_dereferences_param] bp =3D 'param'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_uninitialized] tmp =3D 'initialized'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] __fake_param_0x7da6ac1c7630=
-_0 =3D 'tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] tmp =3D 'alloc_breakpoint(b=
-p)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr_links] tmp =3D '__fake_param=
-_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree change [internal] unnull_path =3D 'true' (was true)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_definition_db_callbacks] 'db_incomplete'.  Wa=
-s incomplete.  Now T:incomplete F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_definition_db_callbacks] 'db_incomplete'.  Wa=
-s incomplete.  Now T:(null) F:incomplete
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_untracked_param] 'tmp' untracked
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [check_err_ptr_deref] 'tmp'.  Was (null).  Now T:err_pt=
-r F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [check_err_ptr_deref] 'tmp'.  Was (null).  Now T:(null)=
- F:checked
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_true_false_states [register_parsed_conditions] 'condition 0x7da6ac1c763=
-0'.  Was (null).  Now T:true_path F:false_path
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_untracked_param] tmp =3D 'untracked'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_untracked_param] 'tmp'.  Was untracked.  Now =
-T:untracked F:untracked
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [internal] unnull_path =3D 'true' (was true)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [internal] 'unnull_path'.  Was true.  Now T:true F:true
-179 done __split_whole_condition
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_statement_count] 'stmts' 6 =3D> 7
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:180 task_bps_add() =
-set_state change [register_statement_count] 'stmts' 7 =3D> 8
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:178 task_bps_add() =
-set_state change [register_definition_db_callbacks] 'db_incomplete' incompl=
-ete =3D> incomplete
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:178 task_bps_add() =
-__set_sm change [register_definition_db_callbacks] db_incomplete =3D 'incom=
-plete' (was incomplete)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_statement_count] 'stmts' 5 =3D> 6
-179 in __split_whole_condition
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-179 in split_conditions (IS_ERR(tmp))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0' 0-u64=
-max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] __fake_param_0x7da6ac1c7630_0 =3D '=
-0-u64max' (was 0-u64max)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] tmp =3D '0-u64max' (was 0-u64max)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] __fake_param_0x7da6ac1c7630_0 =3D '=
-0-u64max' (was 0-u64max)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_comparison] '__fake_param_0x7da6ac1c7630_0 vs retur=
-n 0x7da6ac1c7360' =3D=3D
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_comparison_links] '__fake_param_0x7da6ac1c7630_0' _=
-_fake_param_0x7da6ac1c7630_0 vs return 0x7da6ac1c7360
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_comparison] '__fake_param_0x7da6ac1c7630_0 vs tmp' =
-=3D=3D
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_comparison_links] '__fake_param_0x7da6ac1c7630_0=
-' __fake_param_0x7da6ac1c7630_0 vs return 0x7da6ac1c7360 =3D> __fake_param_=
-0x7da6ac1c7630_0 vs return 0x7da6ac1c7360, __fake_param_0x7da6ac1c7630_0 vs=
- tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_comparison_links] 'tmp' __fake_param_0x7da6ac1c7=
-450_0 vs tmp, return 0x7da6ac1c7360 vs tmp =3D> __fake_param_0x7da6ac1c7450=
-_0 vs tmp, __fake_param_0x7da6ac1c7630_0 vs tmp, return 0x7da6ac1c7360 vs t=
-mp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_assigned_expr] '__fake_param_0x7da6ac1c7630_0' tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_assigned_expr_links] 'tmp' __fake_param_0x7da6ac=
-1c7450_0 =3D> __fake_param_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_modification_hooks] '*tmp' __smatch_about(tmp) =
-=3D> IS_ERR(tmp)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_smatch_extra] __fake_param_0x7da6ac1c7630_0 =3D '0-u=
-64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] '__fake_param_0x7da6ac1c7630_0'=
-.  Was 0-u64max.  Now T:0-u64max F:0-u64max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_smatch_extra] tmp =3D '0-u64max' (was 0-u64max)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_smatch_extra] 'tmp'.  Was 0-u64max.  Now T:0-=
-u64max F:0-u64max
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_modification_hooks] *tmp =3D 'IS_ERR(tmp)' (was _=
-_smatch_about(tmp))
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_modification_hooks] '*tmp'.  Was IS_ERR(tmp).=
-  Now T:IS_ERR(tmp) F:IS_ERR(tmp)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_comparison] __fake_param_0x7da6ac1c7630_0 vs return =
-0x7da6ac1c7360 =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_comparison] '__fake_param_0x7da6ac1c7630_0 vs=
- return 0x7da6ac1c7360'.  Was =3D=3D.  Now T:=3D=3D F:=3D=3D
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_comparison] __fake_param_0x7da6ac1c7630_0 vs tmp =3D=
- '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_comparison] '__fake_param_0x7da6ac1c7630_0 vs=
- tmp'.  Was =3D=3D.  Now T:=3D=3D F:=3D=3D
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_comparison_links] __fake_param_0x7da6ac1c7630_0 =3D =
-'__fake_param_0x7da6ac1c7630_0 vs return 0x7da6ac1c7360, __fake_param_0x7da=
-6ac1c7630_0 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_comparison_links] '__fake_param_0x7da6ac1c763=
-0_0'.  Was __fake_param_0x7da6ac1c7630_0 vs return 0x7da6ac1c7360, __fake_p=
-aram_0x7da6ac1c7630_0 vs tmp.  Now T:__fake_param_0x7da6ac1c7630_0 vs retur=
-n 0x7da6ac1c7360, __fake_param_0x7da6ac1c7630_0 vs tmp F:__fake_param_0x7da=
-6ac1c7630_0 vs return 0x7da6ac1c7360, __fake_param_0x7da6ac1c7630_0 vs tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_comparison_links] tmp =3D '__fake_param_0x7da6ac1=
-c7450_0 vs tmp, __fake_param_0x7da6ac1c7630_0 vs tmp, return 0x7da6ac1c7360=
- vs tmp' (was __fake_param_0x7da6ac1c7450_0 vs tmp, return 0x7da6ac1c7360 v=
-s tmp)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_comparison_links] 'tmp'.  Was __fake_param_0x=
-7da6ac1c7450_0 vs tmp, __fake_param_0x7da6ac1c7630_0 vs tmp, return 0x7da6a=
-c1c7360 vs tmp.  Now T:__fake_param_0x7da6ac1c7450_0 vs tmp, __fake_param_0=
-x7da6ac1c7630_0 vs tmp, return 0x7da6ac1c7360 vs tmp F:__fake_param_0x7da6a=
-c1c7450_0 vs tmp, __fake_param_0x7da6ac1c7630_0 vs tmp, return 0x7da6ac1c73=
-60 vs tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_assigned_expr] __fake_param_0x7da6ac1c7630_0 =3D 'tm=
-p'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_assigned_expr] '__fake_param_0x7da6ac1c7630_0=
-'.  Was tmp.  Now T:tmp F:tmp
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [register_assigned_expr_links] tmp =3D '__fake_param_0x7da6=
-ac1c7450_0, __fake_param_0x7da6ac1c7630_0' (was __fake_param_0x7da6ac1c7450=
-_0)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_assigned_expr_links] 'tmp'.  Was __fake_param=
-_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0.  Now T:__fake_param_0x7da=
-6ac1c7450_0, __fake_param_0x7da6ac1c7630_0 F:__fake_param_0x7da6ac1c7450_0,=
- __fake_param_0x7da6ac1c7630_0
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [check_err_ptr_deref] 'tmp' err_ptr
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [check_err_ptr_deref] 'tmp' checked
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_definition_db_callbacks] 'db_incomplete' incompl=
-ete =3D> incomplete
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [internal] 'unnull_path' true
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] __fake_param_0x7da6ac1c7630_=
-0 =3D '0-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp =3D '4096-ptr_max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp->attr.bp_addr =3D '0-1383=
-5058055282163711'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp->overflow_handler =3D '0-=
-4644892087836254207,4644892087836254209-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] tmp =3D '0-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *bp =3D 'alloc_breakpo=
-int(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *tmp =3D 'IS_ERR(tmp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] tmp =3D 'tmp =3D alloc=
-_breakpoint(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_definition_db_callbacks] db_incomplete =3D=
- 'incomplete'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_untracked_param] bp =3D 'untracked'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] __fake_param_0x7da6ac1c7630_0 =
-vs return 0x7da6ac1c7360 =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] __fake_param_0x7da6ac1c7630_0 =
-vs tmp =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] bp vs bp orig =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] return 0x7da6ac1c7360 vs tmp =
-=3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] __fake_param_0x7da6ac1c7=
-630_0 =3D '__fake_param_0x7da6ac1c7630_0 vs return 0x7da6ac1c7360, __fake_p=
-aram_0x7da6ac1c7630_0 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] bp =3D 'bp vs bp orig'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] return 0x7da6ac1c7360 =
-=3D 'return 0x7da6ac1c7360 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] tmp =3D '__fake_param_0x=
-7da6ac1c7450_0 vs tmp, __fake_param_0x7da6ac1c7630_0 vs tmp, return 0x7da6a=
-c1c7360 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_statement_count] stmts =3D '6'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_kernel_user_data2] this_function =3D 'call=
-ed'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_deref] tmp =3D 'ok'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_dereferences_param] bp =3D 'param'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_uninitialized] tmp =3D 'initialized'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] __fake_param_0x7da6ac1c7630=
-_0 =3D 'tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] tmp =3D 'alloc_breakpoint(b=
-p)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr_links] tmp =3D '__fake_param=
-_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree change [internal] unnull_path =3D 'true' (was true)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_definition_db_callbacks] 'db_incomplete' incompl=
-ete =3D> incomplete
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [internal] 'unnull_path' true
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] __fake_param_0x7da6ac1c7630_=
-0 =3D '0-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp =3D '4096-ptr_max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp->attr.bp_addr =3D '0-1383=
-5058055282163711'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] bp->overflow_handler =3D '0-=
-4644892087836254207,4644892087836254209-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_smatch_extra] tmp =3D '0-u64max'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *bp =3D 'alloc_breakpo=
-int(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] *tmp =3D 'IS_ERR(tmp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_modification_hooks] tmp =3D 'tmp =3D alloc=
-_breakpoint(bp)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_definition_db_callbacks] db_incomplete =3D=
- 'incomplete'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_untracked_param] bp =3D 'untracked'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] __fake_param_0x7da6ac1c7630_0 =
-vs return 0x7da6ac1c7360 =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] __fake_param_0x7da6ac1c7630_0 =
-vs tmp =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] bp vs bp orig =3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison] return 0x7da6ac1c7360 vs tmp =
-=3D '=3D=3D'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] __fake_param_0x7da6ac1c7=
-630_0 =3D '__fake_param_0x7da6ac1c7630_0 vs return 0x7da6ac1c7360, __fake_p=
-aram_0x7da6ac1c7630_0 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] bp =3D 'bp vs bp orig'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] return 0x7da6ac1c7360 =
-=3D 'return 0x7da6ac1c7360 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_comparison_links] tmp =3D '__fake_param_0x=
-7da6ac1c7450_0 vs tmp, __fake_param_0x7da6ac1c7630_0 vs tmp, return 0x7da6a=
-c1c7360 vs tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_statement_count] stmts =3D '6'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_kernel_user_data2] this_function =3D 'call=
-ed'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_deref] tmp =3D 'ok'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_dereferences_param] bp =3D 'param'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [check_uninitialized] tmp =3D 'initialized'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] __fake_param_0x7da6ac1c7630=
-_0 =3D 'tmp'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr] tmp =3D 'alloc_breakpoint(b=
-p)'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree new [register_assigned_expr_links] tmp =3D '__fake_param=
-_0x7da6ac1c7450_0, __fake_param_0x7da6ac1c7630_0'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm_cur_stree change [internal] unnull_path =3D 'true' (was true)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_definition_db_callbacks] 'db_incomplete'.  Wa=
-s incomplete.  Now T:incomplete F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_definition_db_callbacks] 'db_incomplete'.  Wa=
-s incomplete.  Now T:(null) F:incomplete
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state new [register_untracked_param] 'tmp' untracked
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [check_err_ptr_deref] 'tmp'.  Was (null).  Now T:err_pt=
-r F:(null)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [check_err_ptr_deref] 'tmp'.  Was (null).  Now T:(null)=
- F:checked
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_true_false_states [register_parsed_conditions] 'condition 0x7da6ac1c763=
-0'.  Was (null).  Now T:true_path F:false_path
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm new [register_untracked_param] tmp =3D 'untracked'
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [register_untracked_param] 'tmp'.  Was untracked.  Now =
-T:untracked F:untracked
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_sm change [internal] unnull_path =3D 'true' (was true)
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-__set_true_false_sm [internal] 'unnull_path'.  Was true.  Now T:true F:true
-179 done __split_whole_condition
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:179 task_bps_add() =
-set_state change [register_statement_count] 'stmts' 6 =3D> 7
-/home/michael/linux/arch/powerpc/kernel/hw_breakpoint.c:180 task_bps_add() =
-set_state change [register_statement_count] 'stmts' 7 =3D> 8
+>
+> Tested further that for this driver, loading and unloading as module 
+> works fine until commit:
+>
+> commit f73f7f4da581875f9b1f2fb8ebd1ab15ed634488
+> Author: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> Date:   Mon Feb 15 12:40:39 2021 +0200
+>
+>     iio: buffer: add ioctl() to support opening extra buffers for IIO 
+> device
+>
+>
+> Any thoughts what causes this issue?
+>
+> Thanks,
+>
+> Tomas
+>
+>
+>
+>>
+>>
+>>>
+>>>> ---
+>>>>   drivers/iio/accel/Kconfig   |  13 ++
+>>>>   drivers/iio/accel/Makefile  |   1 +
+>>>>   drivers/iio/accel/sca3300.c | 434 
+>>>> ++++++++++++++++++++++++++++++++++++
+>>>>   3 files changed, 448 insertions(+)
+>>>>   create mode 100644 drivers/iio/accel/sca3300.c
+>>>>
+>>>> diff --git a/drivers/iio/accel/Kconfig b/drivers/iio/accel/Kconfig
+>>>> index cceda3cecbcf..0dbf7b648e8a 100644
+>>>> --- a/drivers/iio/accel/Kconfig
+>>>> +++ b/drivers/iio/accel/Kconfig
+>>>> @@ -450,6 +450,19 @@ config SCA3000
+>>>>         To compile this driver as a module, say M here: the module 
+>>>> will be
+>>>>         called sca3000.
+>>>>   +config SCA3300
+>>>> +    tristate "Murata SCA3300 3-Axis Accelerometer Driver"
+>>>> +    depends on SPI
+>>>> +    select CRC8
+>>>> +    select IIO_BUFFER
+>>>> +    select IIO_TRIGGERED_BUFFER
+>>>> +    help
+>>>> +      Say yes here to build support for Murata SCA3300 3-Axis
+>>>> +      accelerometer.
+>>>> +
+>>>> +      To compile this driver as a module, choose M here: the 
+>>>> module will be
+>>>> +      called sca3300.
+>>>> +
+>>>>   config STK8312
+>>>>       tristate "Sensortek STK8312 3-Axis Accelerometer Driver"
+>>>>       depends on I2C
+>>>> diff --git a/drivers/iio/accel/Makefile b/drivers/iio/accel/Makefile
+>>>> index 32cd1342a31a..4b56527a2b97 100644
+>>>> --- a/drivers/iio/accel/Makefile
+>>>> +++ b/drivers/iio/accel/Makefile
+>>>> @@ -50,6 +50,7 @@ obj-$(CONFIG_MXC4005)        += mxc4005.o
+>>>>   obj-$(CONFIG_MXC6255)        += mxc6255.o
+>>>>     obj-$(CONFIG_SCA3000)        += sca3000.o
+>>>> +obj-$(CONFIG_SCA3300)        += sca3300.o
+>>>>     obj-$(CONFIG_STK8312)        += stk8312.o
+>>>>   obj-$(CONFIG_STK8BA50)        += stk8ba50.o
+>>>> diff --git a/drivers/iio/accel/sca3300.c b/drivers/iio/accel/sca3300.c
+>>>> new file mode 100644
+>>>> index 000000000000..112fb88ecd3a
+>>>> --- /dev/null
+>>>> +++ b/drivers/iio/accel/sca3300.c
+>>>> @@ -0,0 +1,434 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>>> +/*
+>>>> + * Copyright (c) Vaisala Oyj. All rights reserved.
+>>> Give a year for the copyright notice if you can.
+>>>
+>>>> + */
+>>>> +#include <linux/crc8.h>
+>>>> +#include <linux/delay.h>
+>>>> +#include <linux/iio/buffer.h>
+>>>> +#include <linux/iio/iio.h>
+>>>> +#include <linux/iio/sysfs.h>
+>>>> +#include <linux/iio/trigger_consumer.h>
+>>>> +#include <linux/iio/triggered_buffer.h>
+>>>> +#include <linux/kernel.h>
+>>>> +#include <linux/module.h>
+>>>> +#include <linux/spi/spi.h>
+>>>> +
+>>>> +#define SCA3300_ALIAS "sca3300"
+>>>> +
+>>>> +#define SCA3300_REG_STATUS 0x6
+>>>> +#define SCA3300_REG_MODE 0xd
+>>>> +#define SCA3300_REG_WHOAMI 0x10
+>>>> +#define SCA3300_VALUE_SW_RESET 0x20
+>>>> +#define SCA3300_CRC8_POLYNOMIAL 0x1d
+>>>> +#define SCA3300_X_READ 0
+>>> I wouldn't bother defining this.
+>>>
+>>>> +#define SCA3300_X_WRITE BIT(7)
+>>> Even this one is something I'd just put inline with a comment.
+>>>
+>>>> +#define SCA3300_DEVICE_ID 0x51
+>>>> +#define SCA3300_RS_ERROR 0x3
+>>>> +
+>>>> +enum sca3300_scan_indexes {
+>>>> +    SCA3300_ACC_X = 0,
+>>>> +    SCA3300_ACC_Y,
+>>>> +    SCA3300_ACC_Z,
+>>>> +    SCA3300_TEMP,
+>>>> +    SCA3300_TIMESTAMP,
+>>>> +};
+>>>> +
+>>>> +#define SCA3300_ACCEL_CHANNEL(index, reg, axis) { \
+>>>> +        .type = IIO_ACCEL,                    \
+>>>> +        .address = reg,                        \
+>>>> +        .modified = 1,                        \
+>>>> +        .channel2 = IIO_MOD_##axis,                \
+>>>> +        .info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | \
+>>>> +                      BIT(IIO_CHAN_INFO_PROCESSED),    \
+>>> As mentioned below, don't provide PROCESSED. Userspace is better at 
+>>> handling the
+>>> conversion so leave it to them.
+>>>
+>>>> +        .info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),    \
+>>>> +        .scan_index = index,                    \
+>>>> +        .scan_type = {                        \
+>>>> +            .sign = 's',                    \
+>>>> +            .realbits = 16,                    \
+>>>> +            .storagebits = 16,                \
+>>>> +            .shift = 0,                    \
+>>>> +            .endianness = IIO_CPU,                \
+>>>> +        },                            \
+>>>> +    }
+>>>> +
+>>>> +static const struct iio_chan_spec sca3300_channels[] = {
+>>>> +    SCA3300_ACCEL_CHANNEL(SCA3300_ACC_X, 0x1, X),
+>>>> +    SCA3300_ACCEL_CHANNEL(SCA3300_ACC_Y, 0x2, Y),
+>>>> +    SCA3300_ACCEL_CHANNEL(SCA3300_ACC_Z, 0x3, Z),
+>>>> +    {
+>>>> +        .type = IIO_TEMP,
+>>>> +        .address = 0x5,
+>>>> +        .scan_index = SCA3300_TEMP,
+>>>> +        .info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
+>>>> +        .scan_type = {
+>>>> +            .sign = 's',
+>>>> +            .realbits = 16,
+>>>> +            .storagebits = 16,
+>>>> +            .shift = 0,
+>>>> +            .endianness = IIO_CPU,
+>>>> +        },
+>>>> +    },
+>>>> +    IIO_CHAN_SOFT_TIMESTAMP(4),
+>>>> +};
+>>>> +
+>>>> +static const int sca3300_accel_scale[] = {2700, 1350, 5400, 5400};
+>>>> +
+>>>> +static const unsigned long sca3300_scan_masks[] = {
+>>>> +    BIT(SCA3300_ACC_X) | BIT(SCA3300_ACC_Y) | BIT(SCA3300_ACC_Z) |
+>>>> +    BIT(SCA3300_TEMP),
+>>>> +    0};
+>>>> +
+>>>> +/**
+>>>> + * SCA3300 device data
+>>> run scripts/kernel-doc over the file and fix the warnings + errors.
+>>>
+>>>> + *
+>>>> + * @spi SPI device structure
+>>>> + * @opmode Device operation mode
+>>>> + * @lock Data buffer lock
+>>>> + * @txbuf Transmit buffer
+>>>> + * @rxbuf Receive buffer
+>>>> + * @scan Triggered buffer. Four channel 16-bit data + 64-bit 
+>>>> timestamp
+>>>> + */
+>>>> +struct sca3300_data {
+>>>> +    struct spi_device *spi;
+>>>> +    u32 opmode;
+>>>> +    struct mutex lock;
+>>>> +    u8 txbuf[4];
+>>>> +    u8 rxbuf[4];
+>>>> +    struct {
+>>>> +        s16 channels[4];
+>>>> +        s64 ts __aligned(sizeof(s64));
+>>>> +    } scan;
+>>>> +};
+>>>> +
+>>>> +DECLARE_CRC8_TABLE(sca3300_crc_table);
+>>>> +
+>>>> +static int sca3300_transfer(struct sca3300_data *sca_data, int *val)
+>>>> +{
+>>>> +    struct spi_delay delay = {.value = 10, .unit = 
+>>>> SPI_DELAY_UNIT_USECS};
+>>>> +    int32_t ret;
+>>>> +    int rs;
+>>>> +    u8 crc;
+>>>> +    struct spi_transfer xfers[2] = {
+>>>> +        {
+>>>> +            .tx_buf = sca_data->txbuf,
+>>>> +            .rx_buf = NULL,
+>>>> +            .len = ARRAY_SIZE(sca_data->txbuf),
+>>>> +            .delay = delay,
+>>>> +            .cs_change = 1,
+>>>> +        },
+>>>> +        {
+>>>> +            .tx_buf = NULL,
+>>>> +            .rx_buf = sca_data->rxbuf,
+>>>> +            .len = ARRAY_SIZE(sca_data->rxbuf),
+>>>> +            .delay = delay,
+>>>> +            .cs_change = 0,
+>>>> +        }
+>>>> +    };
+>>>> +
+>>>> +    /* inverted crc value as described in device data sheet */
+>>>> +    crc = ~crc8(sca3300_crc_table, &sca_data->txbuf[0], 3, 
+>>>> CRC8_INIT_VALUE);
+>>>> +    sca_data->txbuf[3] = crc;
+>>>> +
+>>>> +    ret = spi_sync_transfer(sca_data->spi, xfers, 2);
+>>> Use ARRAY_SIZE(xfers) instead of 2.
+>>>
+>>>> +    if (ret < 0) {
+>>>> +        dev_err(&sca_data->spi->dev,
+>>>> +            "transfer error, error: %d\n", ret);
+>>>> +        return -EIO;
+>>>> +    }
+>>>> +
+>>>> +    crc = ~crc8(sca3300_crc_table, &sca_data->rxbuf[0], 3, 
+>>>> CRC8_INIT_VALUE);
+>>>> +    if (sca_data->rxbuf[3] != crc) {
+>>>> +        dev_err(&sca_data->spi->dev, "CRC checksum mismatch");
+>>>> +        return -EIO;
+>>>> +    }
+>>>> +
+>>>> +    /* get return status */
+>>>> +    rs = sca_data->rxbuf[0] & 0x03;
+>>>> +    if (rs == SCA3300_RS_ERROR)
+>>>> +        return rs;
+>>>> +
+>>>> +    *val = (s16)(sca_data->rxbuf[2] | (sca_data->rxbuf[1] << 8));
+>>> Preference for an unaligned endian conversion here and explicit sign 
+>>> extend e.g
+>>> something like
+>>>
+>>> sign_extend32(get_unaligned_le16(&sca_data->rxbuf[1]), 15)
+>>>
+>>>> +
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +static int sca3300_read_reg(struct sca3300_data *sca_data, u8 reg, 
+>>>> int *val)
+>>>> +{
+>>>> +    int ret;
+>>>> +
+>>>> +    mutex_lock(&sca_data->lock);
+>>>> +    sca_data->txbuf[0] = SCA3300_X_READ | (reg << 2);
+>>>> +    ret = sca3300_transfer(sca_data, val);
+>>>> +    if (ret > 0) {
+>>>> +        sca_data->txbuf[0] = SCA3300_X_READ | (SCA3300_REG_STATUS 
+>>>> << 2);
+>>>> +        ret = sca3300_transfer(sca_data, val);
+>>>> +        /* status 0 = startup, 0x2 = mode change */
+>>>> +        if (ret > 0 && *val != 0 && *val != 0x2) {
+>>>> + dev_err_ratelimited(&sca_data->spi->dev,
+>>>> +                        "device status: %x\n",
+>>>> +                        (u16)*val);
+>>>> +            mutex_unlock(&sca_data->lock);
+>>>> +            return -EIO;
+>>>> +        }
+>>>> +        if (ret > 0)
+>>>> +            ret = 0;
+>>>> +    }
+>>>> +    mutex_unlock(&sca_data->lock);
+>>>> +
+>>>> +    return ret;
+>>>> +}
+>>>> +
+>>>> +static int sca3300_write_reg(struct sca3300_data *sca_data, u8 
+>>>> reg, int val)
+>>>> +{
+>>>> +    int reg_val = 0;
+>>>> +    int ret;
+>>>> +
+>>>> +    mutex_lock(&sca_data->lock);
+>>>> +    sca_data->txbuf[0] = SCA3300_X_WRITE | (reg << 2);
+>>>> +    sca_data->txbuf[1] = val >> 8;
+>>>> +    sca_data->txbuf[2] = val & 0xFF;
+>>> Prefer (Slightly) an unaligned put.
+>>>
+>>>> +    ret = sca3300_transfer(sca_data, &reg_val);
+>>>> +    if (ret > 0) {
+>>> Factor this error handling out to another function, plus trigger it 
+>>> from an
+>>> appropriate standard error code rather than a positive return value.
+>>>
+>>>> +        sca_data->txbuf[0] = SCA3300_X_READ | (SCA3300_REG_STATUS 
+>>>> << 2);
+>>>> +        ret = sca3300_transfer(sca_data, &reg_val);
+>>>> +        /* status 0 = startup, 0x2 = mode change */
+>>>> +        if (ret > 0 && reg_val != 0 && reg_val != 0x2) {
+>>>> + dev_err_ratelimited(&sca_data->spi->dev,
+>>>> +                        "device status: %x\n",
+>>>> +                        (u16)reg_val);
+>>>> +            mutex_unlock(&sca_data->lock);
+>>>> +            return -EIO;
+>>>> +        }
+>>>> +        if (ret > 0)
+>>>> +            ret = 0;
+>>> Whenever you get this sort of juggling it rather implies your design is
+>>> less than ideal.
+>>>
+>>>> +    }
+>>>> +    mutex_unlock(&sca_data->lock);
+>>>> +
+>>>> +    return ret;
+>>>> +}
+>>>> +
+>>>> +static int sca3300_write_raw(struct iio_dev *indio_dev,
+>>>> +                 struct iio_chan_spec const *chan,
+>>>> +                 int val, int val2, long mask)
+>>>> +{
+>>>> +    struct sca3300_data *data = iio_priv(indio_dev);
+>>>> +
+>>>> +    switch (mask) {
+>>>> +    case IIO_CHAN_INFO_SCALE:
+>>>> +        if (val < 0 || val > 3)
+>>>> +            return -EINVAL;
+>>> No.  Scale values need to be the value of 1LSB not a random integer
+>>> that requires you to look up the datasheet.
+>>>
+>>>> +        return sca3300_write_reg(data, SCA3300_REG_MODE, val);
+>>>> +    default:
+>>>> +        return -EINVAL;
+>>>> +    }
+>>>> +}
+>>>> +
+>>>> +static int sca3300_read_raw(struct iio_dev *indio_dev,
+>>>> +                struct iio_chan_spec const *chan,
+>>>> +                int *val, int *val2, long mask)
+>>>> +{
+>>>> +    struct sca3300_data *data = iio_priv(indio_dev);
+>>>> +    int ret;
+>>>> +    int reg_val;
+>>>> +
+>>>> +    switch (mask) {
+>>>> +    case IIO_CHAN_INFO_RAW:
+>>>> +        ret = sca3300_read_reg(data, chan->address, val);
+>>>> +        if (ret < 0)
+>>>> +            return ret;
+>>>> +        return IIO_VAL_INT;
+>>>> +    case IIO_CHAN_INFO_SCALE:
+>>>> +        ret = sca3300_read_reg(data, SCA3300_REG_MODE, &reg_val);
+>>>> +        if (ret < 0)
+>>>> +            return ret;
+>>>> +        *val = sca3300_accel_scale[reg_val];
+>>> Scale is very very rarely an integer value which makes me wonder what
+>>> you are returning here...  It should be the multiplier needed to
+>>> take the raw value to a reading in m/sec^2  Given you use it as 
+>>> fractional
+>>> below, I'm guessing this is 1/scale_value?
+>>>
+>>>> +        return IIO_VAL_INT;
+>>>> +    case IIO_CHAN_INFO_PROCESSED:
+>>> Don't provide processed here.   Userspace needs to do the conversion 
+>>> itself
+>>> (and given it has floating point easily available will probably do a 
+>>> better
+>>>   job than we can).   I'm assuming the mode can't autonomously change?
+>>>
+>>>> +        ret = sca3300_read_reg(data, SCA3300_REG_MODE, &reg_val);
+>>>> +        if (ret < 0)
+>>>> +            return ret;
+>>>> +        *val2 = sca3300_accel_scale[reg_val];
+>>>> +        ret = sca3300_read_reg(data, chan->address, val);
+>>>> +        if (ret < 0)
+>>>> +            return ret;
+>>>> +        return IIO_VAL_FRACTIONAL;
+>>>> +    default:
+>>>> +        return -EINVAL;
+>>>> +    }
+>>>> +}
+>>>> +
+>>>> +static irqreturn_t sca3300_trigger_handler(int irq, void *p)
+>>>> +{
+>>>> +    struct iio_poll_func *pf = p;
+>>>> +    struct iio_dev *indio_dev = pf->indio_dev;
+>>>> +    struct sca3300_data *data = iio_priv(indio_dev);
+>>>> +    s64 time_ns = iio_get_time_ns(indio_dev);
+>>> Is the timestamp at the start more accurate that that at the end
+>>> of reading the channels?  If not, just put this inline in the
+>>> iio_push_to_buffers_with_timestamp() call.
+>>>
+>>>> +    int bit, ret, val, i = 0;
+>>>> +
+>>>> +    for_each_set_bit(bit, indio_dev->active_scan_mask,
+>>>> +             indio_dev->masklength) {
+>>>> +        ret = sca3300_read_reg(data, sca3300_channels[bit].address,
+>>>> +                       &val);
+>>>> +        if (ret < 0)
+>>> Given we can't return an error code from interrupt handlers, it is 
+>>> usually
+>>> a good idea to print something to the log. Otherwise we get missing 
+>>> data
+>>> with no idea of why..
+>>>
+>>>> +            goto out;
+>>>> +        if (ARRAY_SIZE(data->scan.channels) > i)
+>>> How could this not be true?  If it's always true, don't bother
+>>> checking i.
+>>>
+>>>> +            ((s16 *)data->scan.channels)[i++] = val;
+>>>> +    }
+>>>> +
+>>>> +    iio_push_to_buffers_with_timestamp(indio_dev, &data->scan, 
+>>>> time_ns);
+>>>> +out:
+>>>> +    iio_trigger_notify_done(indio_dev->trig);
+>>>> +
+>>>> +    return IRQ_HANDLED;
+>>>> +}
+>>>> +
+>>>> +static int sca3300_init(struct sca3300_data *sca_data,
+>>>> +            struct iio_dev *indio_dev)
+>>>> +{
+>>>> +    int ret;
+>>>> +    int value = 0;
+>>>> +
+>>>> +    if (sca_data->opmode < 1 || sca_data->opmode > 4)
+>>>> +        return -EINVAL;
+>>> Whilst this is going anyway, better to check that next to where
+>>> it is read so we drop out immediately rather than buried in this
+>>> function.
+>>>
+>>>> +
+>>>> +    ret = sca3300_write_reg(sca_data, SCA3300_REG_MODE,
+>>>> +                SCA3300_VALUE_SW_RESET);
+>>>> +    if (ret != 0)
+>>>> +        return ret;
+>>> For sleeps, good to reference which section in data sheet gives the
+>>> timing.
+>>>
+>>>> +    usleep_range(2e3, 10e3);
+>>>> +
+>>>> +    ret = sca3300_write_reg(sca_data, SCA3300_REG_MODE,
+>>>> +                sca_data->opmode - 1);
+>>>> +    if (ret != 0)
+>>> if (ret) see below.
+>>>
+>>>> +        return ret;
+>>>> +    msleep(100);
+>>> Again, document where the time comes from. Saves reviewers time if
+>>> they want to check it. (I'm too lazy :)
+>>>
+>>>> +    ret = sca3300_read_reg(sca_data, SCA3300_REG_WHOAMI, &value);
+>>>> +    if (ret != 0)
+>>> if (ret) is more idiomatic in kernel code.
+>>>
+>>>> +        return ret;
+>>>> +
+>>>> +    if (value != SCA3300_DEVICE_ID) {
+>>>> +        dev_err(&sca_data->spi->dev, "device id not expected 
+>>>> value\n");
+>>> Perhaps useful to print what was expected and what was seen. Maybe it's
+>>> a new variant and this might help the user to identify that and add 
+>>> it to the
+>>> driver.
+>>>
+>>>> +        return -EIO;
+>>> -EINVAL probably more appropriate return.
+>>>
+>>>> +    }
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +static int sca3300_debugfs_reg_access(struct iio_dev *indio_dev,
+>>>> +                      unsigned int reg, unsigned int writeval,
+>>>> +                      unsigned int *readval)
+>>>> +{
+>>>> +    struct sca3300_data *data = iio_priv(indio_dev);
+>>>> +    int value;
+>>>> +    int ret;
+>>>> +
+>>>> +    if (reg > 0x1f)
+>>> Use a define that names that register.
+>>>
+>>>> +        return -EINVAL;
+>>>> +
+>>>> +    if (!readval)
+>>>> +        return sca3300_write_reg(data, reg, writeval);
+>>>> +
+>>>> +    ret = sca3300_read_reg(data, reg, &value);
+>>>> +    if (ret < 0)
+>>>> +        return ret;
+>>>> +
+>>>> +    *readval = (unsigned int)value;
+>>>> +
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +static const struct iio_info sca3300_info = {
+>>>> +    .read_raw = sca3300_read_raw,
+>>>> +    .write_raw = sca3300_write_raw,
+>>>> +    .debugfs_reg_access = &sca3300_debugfs_reg_access,
+>>>> +};
+>>>> +
+>>>> +static int sca3300_probe(struct spi_device *spi)
+>>>> +{
+>>>> +    struct sca3300_data *sca_data;
+>>>> +    struct iio_dev *indio_dev;
+>>>> +    int ret;
+>>>> +
+>>>> +    indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*sca_data));
+>>>> +    if (!indio_dev) {
+>>>> +        dev_err(&spi->dev,
+>>>> +            "failed to allocate memory for iio device\n");
+>>>> +        return -ENOMEM;
+>>>> +    }
+>>>> +
+>>>> +    sca_data = iio_priv(indio_dev);
+>>>> +    mutex_init(&sca_data->lock);
+>>>> +    sca_data->spi = spi;
+>>>> +    spi_set_drvdata(spi, indio_dev);
+>>> Won't be used once using devm as below and remove() is dropped, so 
+>>> drop this.
+>>>
+>>>> +
+>>>> +    crc8_populate_msb(sca3300_crc_table, SCA3300_CRC8_POLYNOMIAL);
+>>>> +
+>>>> +    indio_dev->dev.parent = &spi->dev;
+>>>> +    indio_dev->info = &sca3300_info;
+>>>> +    indio_dev->name = SCA3300_ALIAS;
+>>>> +    indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_TRIGGERED;
+>>> BUFFER_TRIGGERED bit now set by iio_triggered_buffer_setup() so 
+>>> shouldn't
+>>> be ehre as well.
+>>>
+>>>> +    indio_dev->channels = sca3300_channels;
+>>>> +    indio_dev->num_channels = ARRAY_SIZE(sca3300_channels);
+>>>> +    indio_dev->available_scan_masks = sca3300_scan_masks;
+>>>> +
+>>>> +    if (spi->dev.of_node) {
+>>>> +        ret = of_property_read_u32(spi->dev.of_node, "murata,opmode",
+>>> Please use generic firmware access calls rather than the of specific 
+>>> ones.
+>>> That lets us get ACPI support for free :)
+>>>
+>>> As per the binding review however, this one needs to go in favour of 
+>>> userspace
+>>> control of scale + filter frequencies / sampling freq.
+>>>
+>>>> + &sca_data->opmode);
+>>>> +        if (ret < 0)
+>>>> +            return ret;
+>>>> +    }
+>>>> +
+>>>> +    ret = sca3300_init(sca_data, indio_dev);
+>>>> +    if (ret < 0) {
+>>>> +        dev_err(&spi->dev, "failed to init device, error: %d\n", 
+>>>> ret);
+>>>> +        return ret;
+>>>> +    }
+>>>> +
+>>>> +    ret = iio_triggered_buffer_setup(indio_dev, 
+>>>> iio_pollfunc_store_time,
+>>>> +                     sca3300_trigger_handler, NULL);
+>>> devm_iio_triggered_buffer_setup() and you can drop the manual 
+>>> cleanup in remove()
+>>> and hence drop remove() entirely as nothing else left.
+>>>
+>>>> +    if (ret < 0) {
+>>>> +        dev_err(&spi->dev,
+>>>> +            "iio triggered buffer setup failed, error: %d\n", ret);
+>>>> +        return ret;
+>>>> +    }
+>>>> +
+>>>> +    ret = devm_iio_device_register(&spi->dev, indio_dev);
+>>>> +    if (ret < 0) {
+>>>> +        dev_err(&spi->dev, "iio device register failed, error: %d\n",
+>>>> +            ret);
+>>>> +        iio_triggered_buffer_cleanup(indio_dev);
+>>> With devm above, no need to manually clean this up.
+>>>
+>>>> +        return ret;
+>>>> +    }
+>>>> +
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +static int sca3300_remove(struct spi_device *spi)
+>>>> +{
+>>>> +    struct iio_dev *indio_dev = spi_get_drvdata(spi);
+>>>> +
+>>>> +    iio_triggered_buffer_cleanup(indio_dev);
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +static const struct of_device_id sca3300_dt_ids[] = {
+>>>> +    { .compatible = "murata,sca3300"},
+>>>> +    {},
+>>>> +};
+>>>> +MODULE_DEVICE_TABLE(of, sca3300_dt_ids);
+>>>> +
+>>>> +static struct spi_driver sca3300_driver = {
+>>>> +    .driver = {
+>>>> +        .name        = SCA3300_ALIAS,
+>>>> +        .owner        = THIS_MODULE,
+>>>> +        .of_match_table = of_match_ptr(sca3300_dt_ids),
+>>>> +    },
+>>>> +
+>>>> +    .probe    = sca3300_probe,
+>>>> +    .remove    = sca3300_remove,
+>>>> +};
+>>>> +
+>>>> +module_spi_driver(sca3300_driver);
+>>>> +
+>>>> +MODULE_AUTHOR("Tomas Melin <tomas.melin@vaisala.com>");
+>>>> +MODULE_DESCRIPTION("Murata SCA3300 SPI Accelerometer");
+>>>> +MODULE_LICENSE("GPL v2");
