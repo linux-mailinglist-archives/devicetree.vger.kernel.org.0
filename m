@@ -2,149 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DDCA361B71
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 10:34:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E24C8361B62
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 10:34:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239810AbhDPIJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 04:09:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43350 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240296AbhDPIJQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 04:09:16 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A568C061574;
-        Fri, 16 Apr 2021 01:08:51 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id g5so34140028ejx.0;
-        Fri, 16 Apr 2021 01:08:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=/8ue3C3/vuHzsBzvGcphBwhbaDZVSjtTH0PvrnAwtIQ=;
-        b=GJxNTmKCDg7Z923XplEfpvDRQSeRcE3jGB9BGTMk3H0R3ozQa6JIQtaSbC52d/VxFp
-         5p6V9SyCrg4w0utuHtDRsUOn5I4VXrGPrrvNuzeLA3t+yj0obMMQ11aiJNWy7Lmt+QF2
-         9Y0lHdolqDF4Zag/DBme2LJUnzxTJHLxkVRBP9u1bW23vss9A0dQi3eXoxtlyqE2g2rv
-         Qid55Sf9EgMsDCM+8u8MBwrs0AUnha4EXZmkKbYUmeg2ICWHA46bx204EPqR2By0v/z8
-         Yuhg5ZDbTeOCfod+hsG2Akt0lai3XFpAQPW1HY7ayIJApJ49mZUnXL3ua5fQMGM9f6Dj
-         hOuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=/8ue3C3/vuHzsBzvGcphBwhbaDZVSjtTH0PvrnAwtIQ=;
-        b=ey7RQSHcilPfebUY1MiXlxxpzOS6dsf7M+1dPa67AJyxYz+AKoWSexfePpiUGQK0Jf
-         MQDoZymZr/bYMpy5zvMrzqsLnASHKBV+fQjoSOLxOTfFhc0X4fQLsN7bD/P+TA+a3bQr
-         FZV7LWVHisC8gdQTTWLEdkJ+5oa0AdQ8F9Fm0fyMJA16qWFkDCwqetTw9wJ7jsSYmn7l
-         m9guQTYRIles8BcAnUpQ0vjr8fQEwq4m06bJmOOL74uougHTo071VNU/ffLQ1FMc2vNd
-         38bSpy3vzieTByTZ4gJ5D2nYiLxE6JPitwaNQTsPlUTz5RGEGCdlNOh9lBN1wzMGxzkS
-         MaQA==
-X-Gm-Message-State: AOAM531t1J8BynGhYdBaTx8QX6z5t1hxtF+6A7yGzd2U/xQub7bfmOt+
-        O6/wQ387YXTHxBSgWlrZ/mTwwnRyG2SF4xE/
-X-Google-Smtp-Source: ABdhPJyV8avaJPgdMYyt8BtM3A2JV07Z/b7leScFYvGuVQMMxg1M5anegufoGAcJA1pXwugB//SGOQ==
-X-Received: by 2002:a17:907:76c5:: with SMTP id kf5mr7033982ejc.526.1618560530253;
-        Fri, 16 Apr 2021 01:08:50 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id q16sm4672303edv.61.2021.04.16.01.08.45
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 16 Apr 2021 01:08:50 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, zhangqing@rock-chips.com,
-        enric.balletbo@collabora.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v8 15/15] soc: rockchip: power-domain: add rk3568 powerdomains
-Date:   Fri, 16 Apr 2021 10:03:42 +0200
-Message-Id: <20210416080342.18614-16-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210416080342.18614-1-jbx6244@gmail.com>
-References: <20210416080342.18614-1-jbx6244@gmail.com>
+        id S240131AbhDPIIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 04:08:24 -0400
+Received: from mo-csw1515.securemx.jp ([210.130.202.154]:51128 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235020AbhDPIIW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 04:08:22 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1515) id 13G87UGW003391; Fri, 16 Apr 2021 17:07:30 +0900
+X-Iguazu-Qid: 34tr9jB2dbDVDmZAI3
+X-Iguazu-QSIG: v=2; s=0; t=1618560450; q=34tr9jB2dbDVDmZAI3; m=yhkDNzpcSRv3VLZjqeMnV3i50xF81NUOuQ8lkDquMT8=
+Received: from imx12-a.toshiba.co.jp (imx12-a.toshiba.co.jp [61.202.160.135])
+        by relay.securemx.jp (mx-mr1511) id 13G87Sx8021320
+        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+        Fri, 16 Apr 2021 17:07:28 +0900
+Received: from enc02.toshiba.co.jp (enc02.toshiba.co.jp [61.202.160.51])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by imx12-a.toshiba.co.jp (Postfix) with ESMTPS id BE3501000AA;
+        Fri, 16 Apr 2021 17:07:28 +0900 (JST)
+Received: from hop101.toshiba.co.jp ([133.199.85.107])
+        by enc02.toshiba.co.jp  with ESMTP id 13G87Sho013100;
+        Fri, 16 Apr 2021 17:07:28 +0900
+Date:   Fri, 16 Apr 2021 17:07:21 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
+        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] pwm: visconti: Add Toshiba Visconti SoC PWM
+ support
+X-TSB-HOP: ON
+Message-ID: <20210416080721.oa7xdvu22w2b2rkf@toshiba.co.jp>
+References: <20210409230837.1919744-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210409230837.1919744-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210410135321.oissremqropvrpd3@pengutronix.de>
+ <20210412025536.i5chpp6sighunvfx@toshiba.co.jp>
+ <20210412070232.6q3cgqvuj53p4cmi@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210412070232.6q3cgqvuj53p4cmi@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Elaine Zhang <zhangqing@rock-chips.com>
+Hi,
 
-Add power-domains found on rk3568 socs.
+Thanks for your review.
 
-Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
-Changed V7:
-  Fix alignment
----
- drivers/soc/rockchip/pm_domains.c | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+On Mon, Apr 12, 2021 at 09:02:32AM +0200, Uwe Kleine-König wrote:
+> On Mon, Apr 12, 2021 at 11:55:36AM +0900, Nobuhiro Iwamatsu wrote:
+> > Hi Uwe,
+> > 
+> > Thanks for your review.
+> > 
+> > On Sat, Apr 10, 2021 at 03:53:21PM +0200, Uwe Kleine-König wrote:
+> > > Hello,
+> > > 
+> > > just a few small details left to criticize ...
+> > > 
+> > > On Sat, Apr 10, 2021 at 08:08:37AM +0900, Nobuhiro Iwamatsu wrote:
+> > > > diff --git a/drivers/pwm/pwm-visconti.c b/drivers/pwm/pwm-visconti.c
+> > > > new file mode 100644
+> > > > index 000000000000..99d83f94ed86
+> > > > --- /dev/null
+> > > > +++ b/drivers/pwm/pwm-visconti.c
+> > > > @@ -0,0 +1,188 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > > +/*
+> > > > + * Toshiba Visconti pulse-width-modulation controller driver
+> > > > + *
+> > > > + * Copyright (c) 2020 TOSHIBA CORPORATION
+> > > > + * Copyright (c) 2020 Toshiba Electronic Devices & Storage Corporation
+> > > > + *
+> > > > + * Authors: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> > > > + *
+> > > > + */
+> > > > +
+> > > > +#include <linux/err.h>
+> > > > +#include <linux/io.h>
+> > > > +#include <linux/module.h>
+> > > > +#include <linux/of_device.h>
+> > > > +#include <linux/platform_device.h>
+> > > > +#include <linux/pwm.h>
+> > > > +
+> > > > +#define PIPGM_PCSR(ch) (0x400 + 4 * (ch))
+> > > > +#define PIPGM_PDUT(ch) (0x420 + 4 * (ch))
+> > > > +#define PIPGM_PWMC(ch) (0x440 + 4 * (ch))
+> > > > +
+> > > > +#define PIPGM_PWMC_PWMACT		BIT(5)
+> > > > +#define PIPGM_PWMC_CLK_MASK		GENMASK(1, 0)
+> > > > +#define PIPGM_PWMC_POLARITY_MASK	GENMASK(5, 5)
+> > > > +
+> > > > +struct visconti_pwm_chip {
+> > > > +	struct pwm_chip chip;
+> > > > +	void __iomem *base;
+> > > > +};
+> > > > +
+> > > > +static inline struct visconti_pwm_chip *to_visconti_chip(struct pwm_chip *chip)
+> > > > +{
+> > > > +	return container_of(chip, struct visconti_pwm_chip, chip);
+> > > > +}
+> > > > +
+> > > > +static int visconti_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> > > > +			      const struct pwm_state *state)
+> > > > +{
+> > > > +	struct visconti_pwm_chip *priv = to_visconti_chip(chip);
+> > > > +	u32 period, duty_cycle, pwmc0;
+> > > > +
+> > > > +	/*
+> > > > +	 * pwmc is a 2-bit divider for the input clock running at 1 MHz.
+> > > > +	 * When the settings of the PWM are modified, the new values are shadowed in hardware until
+> > > > +	 * the period register (PCSR) is written and the currently running period is completed. This
+> > > > +	 * way the hardware switches atomically from the old setting to the new.
+> > > > +	 * Also, disabling the hardware completes the currently running period and keeps the output
+> > > > +	 * at low level at all times.
+> > > 
+> > > Can you please put a paragraph analogous to the one in pwm-sifive in the
+> > > same format. This simplified keeping an overview about the oddities of
+> > > the various supported chips.
+> > 
+> > OK, I will check pwm-sifive's, and add.
 
-diff --git a/drivers/soc/rockchip/pm_domains.c b/drivers/soc/rockchip/pm_domains.c
-index 1d1b06672..0868b7d40 100644
---- a/drivers/soc/rockchip/pm_domains.c
-+++ b/drivers/soc/rockchip/pm_domains.c
-@@ -27,6 +27,7 @@
- #include <dt-bindings/power/rk3366-power.h>
- #include <dt-bindings/power/rk3368-power.h>
- #include <dt-bindings/power/rk3399-power.h>
-+#include <dt-bindings/power/rk3568-power.h>
- 
- struct rockchip_domain_info {
- 	const char *name;
-@@ -135,6 +136,9 @@ struct rockchip_pmu {
- #define DOMAIN_RK3399(name, pwr, status, req, wakeup)		\
- 	DOMAIN(name, pwr, status, req, req, req, wakeup)
- 
-+#define DOMAIN_RK3568(name, pwr, req, wakeup)		\
-+	DOMAIN_M(name, pwr, pwr, req, req, req, wakeup)
-+
- static bool rockchip_pmu_domain_is_idle(struct rockchip_pm_domain *pd)
- {
- 	struct rockchip_pmu *pmu = pd->pmu;
-@@ -848,6 +852,18 @@ static const struct rockchip_domain_info rk3399_pm_domains[] = {
- 	[RK3399_PD_SDIOAUDIO]	= DOMAIN_RK3399("sdioaudio", BIT(31), BIT(31), BIT(29), true),
- };
- 
-+static const struct rockchip_domain_info rk3568_pm_domains[] = {
-+	[RK3568_PD_NPU]		= DOMAIN_RK3568("npu",  BIT(1), BIT(2),  false),
-+	[RK3568_PD_GPU]		= DOMAIN_RK3568("gpu",  BIT(0), BIT(1),  false),
-+	[RK3568_PD_VI]		= DOMAIN_RK3568("vi",   BIT(6), BIT(3),  false),
-+	[RK3568_PD_VO]		= DOMAIN_RK3568("vo",   BIT(7), BIT(4),  false),
-+	[RK3568_PD_RGA]		= DOMAIN_RK3568("rga",  BIT(5), BIT(5),  false),
-+	[RK3568_PD_VPU]		= DOMAIN_RK3568("vpu",  BIT(2), BIT(6),  false),
-+	[RK3568_PD_RKVDEC]	= DOMAIN_RK3568("vdec", BIT(4), BIT(8),  false),
-+	[RK3568_PD_RKVENC]	= DOMAIN_RK3568("venc", BIT(3), BIT(7),  false),
-+	[RK3568_PD_PIPE]	= DOMAIN_RK3568("pipe", BIT(8), BIT(11), false),
-+};
-+
- static const struct rockchip_pmu_info px30_pmu = {
- 	.pwr_offset = 0x18,
- 	.status_offset = 0x20,
-@@ -983,6 +999,17 @@ static const struct rockchip_pmu_info rk3399_pmu = {
- 	.domain_info = rk3399_pm_domains,
- };
- 
-+static const struct rockchip_pmu_info rk3568_pmu = {
-+	.pwr_offset = 0xa0,
-+	.status_offset = 0x98,
-+	.req_offset = 0x50,
-+	.idle_offset = 0x68,
-+	.ack_offset = 0x60,
-+
-+	.num_domains = ARRAY_SIZE(rk3568_pm_domains),
-+	.domain_info = rk3568_pm_domains,
-+};
-+
- static const struct of_device_id rockchip_pm_domain_dt_match[] = {
- 	{
- 		.compatible = "rockchip,px30-power-controller",
-@@ -1028,6 +1055,10 @@ static const struct of_device_id rockchip_pm_domain_dt_match[] = {
- 		.compatible = "rockchip,rk3399-power-controller",
- 		.data = (void *)&rk3399_pmu,
- 	},
-+	{
-+		.compatible = "rockchip,rk3568-power-controller",
-+		.data = (void *)&rk3568_pmu,
-+	},
- 	{ /* sentinel */ },
- };
- 
--- 
-2.11.0
+I will add the following :
 
+ * Limitations:
+ * - PIPGM_PWMC is a 2-bit divider (00: 1, 01: 2, 10: 4, 11: 8) for the input
+ *   clock running at 1 MHz.
+ * - When the settings of the PWM are modified, the new values are shadowed
+ *   in hardware until the PIPGM_PCSR register is written and the currently
+ *   running period is completed. This way the hardware switches atomically
+ *   from the old setting to the new.
+ * - Disabling the hardware completes the currently running period and keeps
+ *   the output at low level at all times.
+
+
+> > 
+> > > 
+> > > > +	 */
+> > > > +	if (!state->enabled) {
+> > > > +		writel(0, priv->base + PIPGM_PCSR(pwm->hwpwm));
+> > > > +		return 0;
+> > > > +	}
+> > > > +
+> > > > [...]
+> > > > +
+> > > > +static void visconti_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+> > > > +				   struct pwm_state *state)
+> > > > +{
+> > > > +	struct visconti_pwm_chip *priv = chip_to_priv(chip);
+> > > > +	u32 period, duty, pwmc0, pwmc0_clk;
+> > > > +
+> > > > +	period = readl(priv->base + PIPGM_PCSR(pwm->hwpwm));
+> > > > +	if (period)
+> > > > +		state->enabled = true;
+> > > > +	else
+> > > > +		state->enabled = false;
+> > > 
+> > > If PIPGM_PCSR is 0 the hardware is still active and setting a new
+> > > configuration completes the currently running period, right? Then I
+> > > think having always state->enabled = true is a better match.
+> >
+> > If PIPGM_PCSR is 0, the hardware is stopped. Even if the settings of
+> > other registers are written, the values of other registers will not work
+> > unless PIPGM_PCSR is written.
+> 
+> Correct me if I'm wrong, but how I understand it, PCSR is special as the
+> other registers are shadow until PCSR is written. (And that is
+> irrespective of which value is active in PCSR or what is written to
+> PCSR.)
+
+This is correct.
+
+>  
+> > However, as a logic, if PIPGM_PCSR becomes 0, it is only
+> > visconti_pwm_apply () in this driver,
+> > so I think that this process should always be state-> enabled = true
+> > as you pointed out.
+> > I wil drop this, thanks.
+> 
+> For me the critical (and only) difference between "off" and
+> "duty cycle = 0" is that when a new configuration is to be applied. In
+> the "off" state a new period can (and should) start immediately, while
+> with "duty_cycle = 0" the rising edge should be delayed until the
+> currently running period is over.[1]
+> 
+> So the thing to do here (IMHO) is:
+> 
+> Iff with PIPGM_PCSR = 0 configuring a new setting (that is finalized
+> with writing a non-zero value to PIPGM_PCSR) completes the currently
+> running period, then always assume the PWM as enabled.
+
+Yes, this device works that way.
+
+> 
+> And so if the hardware is stopped and the counter is reset when 0 is
+> written to PIPGM_PCSR, model that as enabled = false.
+
+I don't think the current this driver can handle the above.
+As far as I can see your comment, I think I need to implement this,
+but after writing 0 to PIPGM_PCSR, driver need to confirm that signal has
+changed to low level and change state->enabled to false. 
+But with this device has no way of knowing that the signal has changed
+to low level.
+
+> 
+> Best regards
+> Uwe
+> 
+> [1] In practise this is more difficult because several PWMs don't
+> complete periods in general. But the hardware under discussion luckily
+> isn't one of these. And (worse) there are other hardware implementations
+> where off doesn't emit an inactive level.
+
+I see.
+
+Best regards,
+  Nobuhiro
