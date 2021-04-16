@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 968CA36271A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 19:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA1C1362721
+	for <lists+devicetree@lfdr.de>; Fri, 16 Apr 2021 19:47:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243542AbhDPRqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 13:46:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59728 "EHLO
+        id S243582AbhDPRrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 13:47:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243532AbhDPRqw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 13:46:52 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0999C06175F
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 10:46:24 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id ot17-20020a17090b3b51b0290109c9ac3c34so16795807pjb.4
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 10:46:24 -0700 (PDT)
+        with ESMTP id S235877AbhDPRrm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Apr 2021 13:47:42 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46AF4C061756
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 10:47:17 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id m11so18825554pfc.11
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 10:47:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=7wXuYb2sAQupo2LG+aIJB2xPslEGiIuMvjBT329yg3U=;
-        b=J5PjHQGscCeSuO/gbZXuoewf8jGW9qKmFdTqS24XZn2uTUgChpjgJRSE0zIyVx56Wh
-         K6ruEk05Qdf/5KJuHfJh2gsM6DgcJMLk5XKJdzJRHkL5lactllzN9rrVHBS3m4GBuPHW
-         eErmAOFfOjDA/Gt40EEImNaXyzYe9+WbtA+ropKWwpYzYE1tOk8HmAhaJuhfg8l14tS1
-         CfAvjkhATJRg+pCAjnA8NuY+7lDvuXhPFECRnCp9ZI6N07vSV0SN/rLQq6OvPXv2/Jtt
-         nNvYqgvphMkTuvocMNUxcBqqrnKDOd6jNIrLIhFiOp9Oxgy7/iZfIezi6KBvTcO48Upy
-         qVRw==
+        bh=7KzCp5SZQ4n6aE/PkZv5EsNr8oR/kNNNZI4+o5RebUo=;
+        b=b9owdBkmwCbVQFzLYGtUvkObEEJZZ+1P/Lnl3/qCmxzd1N22iJduMKm7s2bjUAMwQx
+         8rk7lEQ8pQDdrfJJc5uQkRUH5kbyReRXy++EiR6DLDQXQlnWdtFeBjf3qO7OXdf9r7fN
+         xHifN4IMshFJiTY/MHe+9g+vVEsxSRYep4geOXnT2Jt+lLOVnp5jV3Z8xOTMLYpck/WG
+         SR6+9+HOcumHLEb4JNNvmHhsTjEPgTVn+MbCIIc/2fnUB4Uk8xHC31I+v9XfTrFm9GZU
+         eibwUUkwv4m1bVRUrqIGVvaDF/7GVbUQ/ydoo89MAkZkndsGKukdVt8Hs6YHMFLzFcx0
+         WRNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7wXuYb2sAQupo2LG+aIJB2xPslEGiIuMvjBT329yg3U=;
-        b=inHceM28M0Awh6PcQ9xBN2yv3bAO8tw+miupLNL6XwwvZvjfnqDQVSjvHMhhf19rUV
-         XvUISz9Yxfs4w3IP/XI5hHSa44wuFTy+wM3+SUweSkJY1c66relEJCNm0Uwe/iGrKqAQ
-         vRNP5XsxiC9SwEYYRuk/20a6dIGzxoYL4kmnHM03+Zr1IXnXfzZSTrVYQspCKE3erwJi
-         AR/ORg4Ip61kNZYHGHNEEY1jsF66rdzi95wYtPutS7CVoKVnvGcC2CoO3dmQ6/4LpdXN
-         P6LPx/UDj9EJgEdpMRk95QnOf6954tmF+JLjbE5BJXGAHNrDj/pSRf5OntbIhuRnDAlj
-         GAAw==
-X-Gm-Message-State: AOAM531zWJvh3amlnzoEEiYcAkRustvZ5pSkwQNtNzumaC+DuY9pMlsS
-        zrshPpoub3pNUDA71P6RGbZnSA==
-X-Google-Smtp-Source: ABdhPJzfFYb59axooQ1Dcvl2ibVjHLLezR7oN3SWOQimhjaIEN5XT1qNMQndTGWqeZYEeUsA9MoKxA==
-X-Received: by 2002:a17:902:f1d3:b029:ec:7b6e:5826 with SMTP id e19-20020a170902f1d3b02900ec7b6e5826mr4473776plc.22.1618595184388;
-        Fri, 16 Apr 2021 10:46:24 -0700 (PDT)
+        bh=7KzCp5SZQ4n6aE/PkZv5EsNr8oR/kNNNZI4+o5RebUo=;
+        b=r8P1JDBFxNObVt1oKhmr6Uj6JCpBJC0eHSmgM8OlwA8wzChdTR7IhCoVJh09XDQ0P7
+         m07KyLExzbbjsTEgb3OqHJSEjfc2PsCn7PzymO0zZ/DjNq7N2ZieHO71Vlg4Oqz3M/Wu
+         Gtp/K1mXJRaoCMT8YteYBosp/HtoQwqbka9LFHs4AJ703vpLvntDU/48pJRT8r+MU1FJ
+         TW+MQ9iDqLbpjMpAhB8KIoZvXz2je6SRPSnfmP/ZmuI5VVvOS+883bDQc7BAT1gkY0zi
+         xyR0Gm4SjW0ttViADykJL1iUCVqRQ4r2VSMNAeVaIKIMXVYyjMyHNyrVNHmY1jINrAG4
+         VJVQ==
+X-Gm-Message-State: AOAM530jupHn9+vQ/n1xJfpSQu5pVLwzgPbIgKtLXatMZSGkkQJFUDb0
+        BculTDweLk+AqjP5lkce1G4+uIc5PUaw/g==
+X-Google-Smtp-Source: ABdhPJwi7oTNxU9nTxZiQwipdj2kfGpyZICOgioceA0PnOFydpJH5SRcxCqdYrnQGTogNU+AMQmBfg==
+X-Received: by 2002:a63:1b5e:: with SMTP id b30mr236720pgm.254.1618595236773;
+        Fri, 16 Apr 2021 10:47:16 -0700 (PDT)
 Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id w123sm1891141pfb.109.2021.04.16.10.46.23
+        by smtp.gmail.com with ESMTPSA id 123sm5339437pfx.180.2021.04.16.10.47.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Apr 2021 10:46:24 -0700 (PDT)
-Date:   Fri, 16 Apr 2021 11:46:22 -0600
+        Fri, 16 Apr 2021 10:47:11 -0700 (PDT)
+Date:   Fri, 16 Apr 2021 11:47:09 -0600
 From:   Mathieu Poirier <mathieu.poirier@linaro.org>
 To:     peng.fan@oss.nxp.com
 Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
@@ -57,99 +57,99 @@ Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
         linux-remoteproc@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V4 6/8] remoteproc: imx_rproc: make clk optional
-Message-ID: <20210416174622.GC1050209@xps15>
+Subject: Re: [PATCH V4 7/8] remoteproc: imx_rproc: support i.MX7ULP
+Message-ID: <20210416174709.GD1050209@xps15>
 References: <1618493261-32606-1-git-send-email-peng.fan@oss.nxp.com>
- <1618493261-32606-7-git-send-email-peng.fan@oss.nxp.com>
+ <1618493261-32606-8-git-send-email-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1618493261-32606-7-git-send-email-peng.fan@oss.nxp.com>
+In-Reply-To: <1618493261-32606-8-git-send-email-peng.fan@oss.nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 15, 2021 at 09:27:39PM +0800, peng.fan@oss.nxp.com wrote:
+On Thu, Apr 15, 2021 at 09:27:40PM +0800, peng.fan@oss.nxp.com wrote:
 > From: Peng Fan <peng.fan@nxp.com>
 > 
-> To i.MX7ULP, M4 is the master to control everything, no need to provide
-> clk from Linux side. So make clk optional when method is IMX_RPROC_NONE.
+> i.MX7ULP A7 core runs under control of M4 core, M4 core starts by ROM
+> and powers most serivces used by A7 core, so A7 core has no power to
+
+s/serivces/services
+
+> start and stop M4 core. And the M4 core's state is default RPROC_DETACHED
+> and remoteproc framework not able to stop the M4 core.
 > 
 > Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  drivers/remoteproc/imx_rproc.c | 46 ++++++++++++++++++++++++++++--------------
->  1 file changed, 31 insertions(+), 15 deletions(-)
+>  drivers/remoteproc/imx_rproc.c | 25 ++++++++++++++++++++++++-
+>  1 file changed, 24 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-> index 2b633fd..56dfcc1 100644
+> index 56dfcc1..0592865 100644
 > --- a/drivers/remoteproc/imx_rproc.c
 > +++ b/drivers/remoteproc/imx_rproc.c
-> @@ -606,6 +606,35 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
->  	return 0;
+> @@ -136,6 +136,14 @@ static const struct imx_rproc_att imx_rproc_att_imx8mq[] = {
+>  	{ 0x40000000, 0x40000000, 0x80000000, 0 },
+>  };
+>  
+> +static const struct imx_rproc_att imx_rproc_att_imx7ulp[] = {
+> +	{0x1FFD0000, 0x1FFD0000, 0x30000, ATT_OWN},
+> +	{0x20000000, 0x20000000, 0x10000, ATT_OWN},
+> +	{0x2F000000, 0x2F000000, 0x20000, ATT_OWN},
+> +	{0x2F020000, 0x2F020000, 0x20000, ATT_OWN},
+> +	{0x60000000, 0x60000000, 0x40000000, 0}
+> +};
+> +
+>  static const struct imx_rproc_att imx_rproc_att_imx7d[] = {
+>  	/* dev addr , sys addr  , size	    , flags */
+>  	/* OCRAM_S (M4 Boot code) - alias */
+> @@ -196,6 +204,12 @@ static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mq = {
+>  	.method		= IMX_RPROC_MMIO,
+>  };
+>  
+> +static const struct imx_rproc_dcfg imx_rproc_cfg_imx7ulp = {
+> +	.att		= imx_rproc_att_imx7ulp,
+> +	.att_size	= ARRAY_SIZE(imx_rproc_att_imx7ulp),
+> +	.method		= IMX_RPROC_NONE,
+> +};
+> +
+>  static const struct imx_rproc_dcfg imx_rproc_cfg_imx7d = {
+>  	.src_reg	= IMX7D_SRC_SCR,
+>  	.src_mask	= IMX7D_M4_RST_MASK,
+> @@ -238,6 +252,9 @@ static int imx_rproc_stop(struct rproc *rproc)
+>  	struct device *dev = priv->dev;
+>  	int ret;
+>  
+> +	if (dcfg->method == IMX_RPROC_NONE)
+> +		return -EOPNOTSUPP;
+> +
+>  	ret = regmap_update_bits(priv->regmap, dcfg->src_reg,
+>  				 dcfg->src_mask, dcfg->src_stop);
+>  	if (ret)
+> @@ -580,8 +597,13 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
+>  	int ret;
+>  	u32 val;
+>  
+> -	if (dcfg->method != IMX_RPROC_MMIO)
+> +	switch (dcfg->method) {
+> +	case IMX_RPROC_NONE:
+> +		priv->rproc->state = RPROC_DETACHED;
+>  		return 0;
+> +	default:
+> +		break;
+> +	}
+>  
+>  	regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
+>  	if (IS_ERR(regmap)) {
+> @@ -726,6 +748,7 @@ static int imx_rproc_remove(struct platform_device *pdev)
 >  }
 >  
-> +static int imx_rproc_clk_enable(struct imx_rproc *priv)
-> +{
-> +	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
-> +	struct device *dev = priv->dev;
-> +	int ret;
-> +
-> +	/* Remote core is not under control of Linux */
-> +	if (dcfg->method == IMX_RPROC_NONE)
-> +		return 0;
-> +
-> +	priv->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(priv->clk)) {
-> +		dev_err(dev, "Failed to get clock\n");
-> +		return PTR_ERR(priv->clk);
-> +	}
-> +
-> +	/*
-> +	 * clk for M4 block including memory. Should be
-> +	 * enabled before .start for FW transfer.
-> +	 */
-> +	ret = clk_prepare_enable(priv->clk);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to enable clock\n");
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int imx_rproc_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> @@ -654,22 +683,9 @@ static int imx_rproc_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto err_put_mbox;
->  
-> -	priv->clk = devm_clk_get(dev, NULL);
-> -	if (IS_ERR(priv->clk)) {
-> -		dev_err(dev, "Failed to get clock\n");
-> -		ret = PTR_ERR(priv->clk);
-> -		goto err_put_mbox;
-> -	}
-> -
-> -	/*
-> -	 * clk for M4 block including memory. Should be
-> -	 * enabled before .start for FW transfer.
-> -	 */
-> -	ret = clk_prepare_enable(priv->clk);
-> -	if (ret) {
-> -		dev_err(&rproc->dev, "Failed to enable clock\n");
-> +	ret = imx_rproc_clk_enable(priv);
-> +	if (ret)
-
-Much better
-
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-
->  		goto err_put_mbox;
-> -	}
->  
->  	INIT_WORK(&priv->rproc_work, imx_rproc_vq_work);
->  
+>  static const struct of_device_id imx_rproc_of_match[] = {
+> +	{ .compatible = "fsl,imx7ulp-cm4", .data = &imx_rproc_cfg_imx7ulp },
+>  	{ .compatible = "fsl,imx7d-cm4", .data = &imx_rproc_cfg_imx7d },
+>  	{ .compatible = "fsl,imx6sx-cm4", .data = &imx_rproc_cfg_imx6sx },
+>  	{ .compatible = "fsl,imx8mq-cm4", .data = &imx_rproc_cfg_imx8mq },
 > -- 
 > 2.7.4
 > 
