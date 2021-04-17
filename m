@@ -2,73 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7AB636313C
-	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 18:40:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 770203631FD
+	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 21:42:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236670AbhDQQlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Apr 2021 12:41:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47548 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236665AbhDQQlK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Apr 2021 12:41:10 -0400
-Received: from mail.pqgruber.com (mail.pqgruber.com [IPv6:2a05:d014:575:f70b:4f2c:8f1d:40c4:b13e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56DC0C061574;
-        Sat, 17 Apr 2021 09:40:43 -0700 (PDT)
-Received: from workstation.tuxnet (213-47-165-233.cable.dynamic.surfer.at [213.47.165.233])
-        by mail.pqgruber.com (Postfix) with ESMTPSA id 9F41CC725D8;
-        Sat, 17 Apr 2021 18:40:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pqgruber.com;
-        s=mail; t=1618677641;
-        bh=RmhXOMCFFCbce605ZIbZPj9mHR2sZMVr+GIMZbzQjv8=;
+        id S236974AbhDQTnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Apr 2021 15:43:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60326 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236212AbhDQTnL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 17 Apr 2021 15:43:11 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 50D5361210;
+        Sat, 17 Apr 2021 19:42:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618688564;
+        bh=kDCeGLiIbk3s1J+iRbwzWhKCRZTMQX5ViQwwKLvHukY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IPxU1qS2JQXMzTWtfWiwsM7n21Ahu6UzIOMp2QGzj9UAPQwRduji1PDlM2rNt6nOj
-         ms8PbzKUgjXC2Xz8zKDfVN4KKxG+7ESy73YaG/4r3PPmOvldfZIw+OD5GDuhJXXnD1
-         21oosYNzdL/xumg3nPoCbxYYw58F7iokMJUP6jiw=
-Date:   Sat, 17 Apr 2021 18:40:40 +0200
-From:   Clemens Gruber <clemens.gruber@pqgruber.com>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     linux-pwm@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sven Van Asbroeck <TheSven73@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 1/8] pwm: pca9685: Switch to atomic API
-Message-ID: <YHsPiNAjr919VGIe@workstation.tuxnet>
-References: <20210412132745.76609-1-clemens.gruber@pqgruber.com>
- <20210417153728.eohhphmtm6qf26y4@pengutronix.de>
+        b=GFEF7SRTA7SU/2d2scU1gX8zykLfkbLKw6fLSamla2je+pWSdMF3od8VGvk1QiTK5
+         GQJavOxvTaxVNefkI9eMqKJZ/UaXFm9QVNBaEYoYBvVLMBJBCdbyOB+TKKBaiBinAU
+         rSNQYn5mEB4Jw+Nft42aGJXaNhq+c9HvH12q/XRd09/BAx5pcxFNcAhnEhXDSeJJD6
+         y983EOoF9nNZR04KEMvegOQR57E47DqDePP7rL8hou4bPfmlijod8ZG/VP2aoeFXg8
+         BqZTVzkTBtwoMujNO1j8Q3m1qF4TPDwNXQqu3/SsUkLZsE/6MXXZD3dBqHM3VZC52l
+         JAe+2cXGIydCQ==
+Received: by pali.im (Postfix)
+        id BD0359F7; Sat, 17 Apr 2021 21:42:41 +0200 (CEST)
+Date:   Sat, 17 Apr 2021 21:42:41 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Rob Herring <robh+dt@kernel.org>, Marek Behun <marek.behun@nic.cz>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        PCI <linux-pci@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: marvell: armada-37xx: Set linux,pci-domain
+ to zero
+Message-ID: <20210417194241.zobxpau3ejwzhzbj@pali>
+References: <20210412123936.25555-1-pali@kernel.org>
+ <CAL_JsqLSse=W3TFu=Wc=eEAV4fKDGfsQ6JUvO3KyG_pnGTVg6A@mail.gmail.com>
+ <20210415083640.ntg6kv6ayppxldgd@pali>
+ <20210415104537.403de52e@thinkpad>
+ <CAL_JsqL2gjprb3MDv8KPSpe0CUBFjGajnMbF71DM+F9Yewp2uw@mail.gmail.com>
+ <20210417144953.pznysgn5rdraxggx@pali>
+ <YHr8ikD+zoT2/K3W@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210417153728.eohhphmtm6qf26y4@pengutronix.de>
+In-Reply-To: <YHr8ikD+zoT2/K3W@lunn.ch>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Sat, Apr 17, 2021 at 05:37:28PM +0200, Uwe Kleine-König wrote:
-> On Mon, Apr 12, 2021 at 03:27:38PM +0200, Clemens Gruber wrote:
-> > The switch to the atomic API goes hand in hand with a few fixes to
-> > previously experienced issues:
-> > - The duty cycle is no longer lost after disable/enable (previously the
-> >   OFF registers were cleared in disable and the user was required to
-> >   call config to restore the duty cycle settings)
-> > - If one sets a period resulting in the same prescale register value,
-> >   the sleep and write to the register is now skipped
-> > - Previously, only the full ON bit was toggled in GPIO mode (and full
-> >   OFF cleared if set to high), which could result in both full OFF and
-> >   full ON not being set and on=0, off=0, which is not allowed according
-> >   to the datasheet
-> > - The OFF registers were reset to 0 in probe, which could lead to the
-> >   forbidden on=0, off=0. Fixed by resetting to POR default (full OFF)
+On Saturday 17 April 2021 17:19:38 Andrew Lunn wrote:
+> > Currently this code is implemented in pci_bus_find_domain_nr() function.
+> > IIRC domain number is 16bit integer, so plain bitmap would consume 8 kB
+> > of memory. I'm not sure if it is fine or some other tree-based structure
+> > for allocated domain numbers is needed.
 > 
-> I didn't recheck all details, but the patch is definitively an
-> improvement, so:
+> Hi Pali
 > 
-> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> Have a look at lib/idr.c
+> 
+>      Andrew
 
-Thanks, but there is a newer version v9, I assume your acks are meant
-for the newer one?
-
-Clemens
+Great! So number allocation is already implemented in kernel (via radix trees).
