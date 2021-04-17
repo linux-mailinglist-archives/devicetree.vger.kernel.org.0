@@ -2,63 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 057EC362C19
-	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 01:58:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 664AE362C23
+	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 02:00:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235081AbhDPX5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Apr 2021 19:57:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35652 "EHLO mail.kernel.org"
+        id S235165AbhDQAAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Apr 2021 20:00:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36256 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235084AbhDPX53 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Apr 2021 19:57:29 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6A3DF61152;
-        Fri, 16 Apr 2021 23:57:04 +0000 (UTC)
+        id S235010AbhDQAAg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Apr 2021 20:00:36 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPS id 8E9C3611AF;
+        Sat, 17 Apr 2021 00:00:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618617424;
-        bh=+AJHAJB6/OcXWHmor2QJm+5al3mQBTCwb2ckRG3xbE0=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=e+MsQUO1GRmm8SQEy0Oj+p62WX5A4N8bEiseOlcmi5MjhtamnwCZSFmKs4QVsx05R
-         XglWfpMZymLPrzuQbSUlepoi0P3BQ6y7ocWDWZJjaTIv524MDF1Ua4B1wcYC9NdMd2
-         ZyfU/YEU67U9N3RpI9znCI4GL1qL/0+bJfcFu0pqTYViyNznE/piPcHXEPbEbEOb7X
-         N1CPjMerHq9wfY59WncFm1ycv06YHUUSDOFUW3WnCpDzxzPtpww3PqeIWgk3hViRZT
-         AwynhHOGdAOz47GIkAuzyI/Km8sjsG/8xTHtBPsk6mD5sFkmxxyKqJYhDikQWmysfJ
-         uy+ocn2JGUIbA==
+        s=k20201202; t=1618617611;
+        bh=UWmFFH882qEW+CCAJckvBlwDzQC97jt9sn5omLp/nJU=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=KVM+yGwGRBmURy5VWDyQXu+V9popEVx1XvqtDvPT7YrOlE9bTsqYkn8w5iRMxXWTp
+         /slAbjCx1j2mQV6UJTq64xC/pLg0+ZXPT6ZbEdSr9mfWV5rImZepH3NVtUYraZEtI8
+         IEWSnh5FHx7dW1Ebv1nhubxzrq5f+aq9c3BLI0akTW6Ecfu+I2RiT3Xsm++Kra3xlU
+         wFY0/vk9MvsNKh9XaCD8pHKKVOZo0j6rHKlJwZzLpZYYKOHtfWlCKieWd2v+XQ6XC9
+         uF7FffvkBf2LtULVZvIpDHuGcUbpfd6E+2b8NTFDTdAe9jjSbsx0Y7TJUkg5Z8yAYU
+         tT1WbQQ6Gwr6A==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 7E6FC60CD6;
+        Sat, 17 Apr 2021 00:00:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210416073703.1037718-2-ping.bai@nxp.com>
-References: <20210416073703.1037718-1-ping.bai@nxp.com> <20210416073703.1037718-2-ping.bai@nxp.com>
-Subject: Re: [PATCH 2/2] clk: imx: Remove the audio ipg clock from imx8mp
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     festevam@gmail.com, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-imx@nxp.com
-To:     Jacky Bai <ping.bai@nxp.com>, abel.vesa@nxp.com,
-        robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
-Date:   Fri, 16 Apr 2021 16:57:03 -0700
-Message-ID: <161861742323.46595.18103968329383725805@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next 0/2] net: gianfar: Drop GFAR_MQ_POLLING support
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <161861761151.26880.8323384757169074141.git-patchwork-notify@kernel.org>
+Date:   Sat, 17 Apr 2021 00:00:11 +0000
+References: <20210416171123.22969-1-claudiu.manoil@nxp.com>
+In-Reply-To: <20210416171123.22969-1-claudiu.manoil@nxp.com>
+To:     Claudiu Manoil <claudiu.manoil@nxp.com>
+Cc:     netdev@vger.kernel.org, kuba@kernel.org, davem@davemloft.net,
+        vladimir.oltean@nxp.com, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, robh+dt@kernel.org,
+        benh@kernel.crashing.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Jacky Bai (2021-04-16 00:37:03)
-> diff --git a/include/dt-bindings/clock/imx8mp-clock.h b/include/dt-bindin=
-gs/clock/imx8mp-clock.h
-> index 43927a1b9e94..235c7a00d379 100644
-> --- a/include/dt-bindings/clock/imx8mp-clock.h
-> +++ b/include/dt-bindings/clock/imx8mp-clock.h
-> @@ -117,7 +117,6 @@
->  #define IMX8MP_CLK_AUDIO_AHB                   108
->  #define IMX8MP_CLK_MIPI_DSI_ESC_RX             109
->  #define IMX8MP_CLK_IPG_ROOT                    110
-> -#define IMX8MP_CLK_IPG_AUDIO_ROOT              111
+Hello:
 
-Maybe just add a comment saying it isn't there? Or remove it in three
-months time once DTS no longer references it?
+This series was applied to netdev/net-next.git (refs/heads/master):
 
-Removing this here means that it has to merge whenever the DTS doesn't
-reference it anymore which causes a cross tree dependency.
+On Fri, 16 Apr 2021 20:11:21 +0300 you wrote:
+> Drop long time obsolete "per NAPI multi-queue" support in gianfar,
+> and related (and undocumented) device tree properties.
+> 
+> Claudiu Manoil (2):
+>   gianfar: Drop GFAR_MQ_POLLING support
+>   powerpc: dts: fsl: Drop obsolete fsl,rx-bit-map and fsl,tx-bit-map
+>     properties
+> 
+> [...]
 
->  #define IMX8MP_CLK_DRAM_ALT                    112
->  #define IMX8MP_CLK_DRAM_APB                    113
->  #define IMX8MP_CLK_VPU_G1                      114
+Here is the summary with links:
+  - [net-next,1/2] gianfar: Drop GFAR_MQ_POLLING support
+    https://git.kernel.org/netdev/net-next/c/8eda54c5e6c4
+  - [net-next,2/2] powerpc: dts: fsl: Drop obsolete fsl,rx-bit-map and fsl,tx-bit-map properties
+    https://git.kernel.org/netdev/net-next/c/221e8c126b78
+
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
