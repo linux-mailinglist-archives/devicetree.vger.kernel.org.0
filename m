@@ -2,105 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3EB4363074
-	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 15:54:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A630D3630B6
+	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 16:49:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236058AbhDQNzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Apr 2021 09:55:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40100 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230442AbhDQNzS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Apr 2021 09:55:18 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52606C061574;
-        Sat, 17 Apr 2021 06:54:52 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id i3so9824754edt.1;
-        Sat, 17 Apr 2021 06:54:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kwbXOEfw/hpTzD4hhTkstPphtWsfZTra37TCCCrtY84=;
-        b=sPI3XPceh+wzpsQW6flE9OtViinFEbi/tneD3luRPZoawpv9l7XAmkkdUG2ChVygdE
-         whv2VOrrWLneqFlT4ejHnVmHfHjPzCfbkT58gjCuI4CuimVgu9Sr4UXddlUCghDxO5IU
-         mTr50e8nUf1LEDJXyXT/GrEfuqIK77XI4vaRAVwR0SCii5bpGE3p+xto+o/7R/hPmHYr
-         cwAOwPYQOeadpxLa91ZVNBOtJ+H8SQ8leIzF+Ya6Do5RTNpLe0ZseUUS0rswfTH/FyRm
-         cNn8binRD3E7KCpTB1ncWGW6hRilDUbADBzG4fI5eNl5g+jz0okT8tgNZ7a12zUeCGKF
-         nelg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kwbXOEfw/hpTzD4hhTkstPphtWsfZTra37TCCCrtY84=;
-        b=MZ0eajFAv2hVaB9Y4Rw0IptJbGahUo1LgPUjONr9jLL4er0wzN3G8ElMpl9CZs14bp
-         1RPkaRiUGmKnvYgqXtJZOCzp9L17QTQnnLFiljW1xuE/AJQgy1zhFzyGeRtF6C++PeuU
-         Vc0A7MDztAH6KvM7M4Nts6O6wr6LthK+DviJTYD8nzYu+JisryCt/S87/79dQbgZEBKG
-         mBffsIA58HmioJq5cWrVm2qxRHcuMOCK0aZ0GdqArUt0Yxz5Xmqhse+26E+1MIvz3Fsa
-         47TU6aKFXbWZexobTk7wTzGpnUCZgwcbTkRG9lGIyDFpSqMpJVD4pucDNv08/hnx3+VN
-         uOjg==
-X-Gm-Message-State: AOAM531KntlBVju4QB3LFH74uHhK/S3+WQLQlwTCtjVRT1GGSAujZSpy
-        7zOAocnrSkK2Mu+csncxzKvtGaT2Edl+oedkG2k=
-X-Google-Smtp-Source: ABdhPJwphSsgjfmY6bf7Zp5OmyrMvNCEsUL9E55kZxOq+KCz976opRnejwfP8hrs6KBMVnkjvAEm4KIvo1nhTS50/gM=
-X-Received: by 2002:a05:6402:382:: with SMTP id o2mr9326951edv.370.1618667690889;
- Sat, 17 Apr 2021 06:54:50 -0700 (PDT)
+        id S236287AbhDQOuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Apr 2021 10:50:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33438 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236187AbhDQOuX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 17 Apr 2021 10:50:23 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 78EEE610CD;
+        Sat, 17 Apr 2021 14:49:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618670996;
+        bh=qehR/qi1HdpadgVx4RXRuIlyvC1z5fqzguqhj2k70oM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qKO66V5uRMBz/SaS5RCWc+6FwVV1Qd8rmptpEUkUfbB5AIzrhaegfdqvqZHeLwndv
+         5ytO2BuDO0x/vtkEzgpBCd3jtco/kFonXd0odds6Fm0hKJJjVRnO4uC2s3gYzCc/Yr
+         fk9/ah/KHiMENIkEuvMXyFkPS9fj84AM6YiOODRzJslViyn7j9JIQq2Nfl7IpUXWgo
+         H9synoDM8lJ3K6w/JNowfj9shByw1C9m8oPLfRtY0MiTFX10DRY2yXURpvtgIxPo4r
+         sRdhZl1QHqf+8ojZTU5GhKtT5dMyE51OlklFZ+KuBaoxEm5oitvvDTfz4NymBcxMxv
+         En5Rh5zvrpfQg==
+Received: by pali.im (Postfix)
+        id 94E1B9F7; Sat, 17 Apr 2021 16:49:53 +0200 (CEST)
+Date:   Sat, 17 Apr 2021 16:49:53 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Marek Behun <marek.behun@nic.cz>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        PCI <linux-pci@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: marvell: armada-37xx: Set linux,pci-domain
+ to zero
+Message-ID: <20210417144953.pznysgn5rdraxggx@pali>
+References: <20210412123936.25555-1-pali@kernel.org>
+ <CAL_JsqLSse=W3TFu=Wc=eEAV4fKDGfsQ6JUvO3KyG_pnGTVg6A@mail.gmail.com>
+ <20210415083640.ntg6kv6ayppxldgd@pali>
+ <20210415104537.403de52e@thinkpad>
+ <CAL_JsqL2gjprb3MDv8KPSpe0CUBFjGajnMbF71DM+F9Yewp2uw@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210224115146.9131-1-aford173@gmail.com> <20210224115146.9131-5-aford173@gmail.com>
- <CAMuHMdW3SO7LemssHrGKkV0TUVNuT4oq1EfmJ-Js79=QBvNhqQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdW3SO7LemssHrGKkV0TUVNuT4oq1EfmJ-Js79=QBvNhqQ@mail.gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Sat, 17 Apr 2021 08:54:39 -0500
-Message-ID: <CAHCN7xJrmQgC=skC7UJuzshUnf06D4nHrv1grrW8QV-+07dgKA@mail.gmail.com>
-Subject: Re: [PATCH V3 5/5] arm64: dts: renesas: beacon kits: Setup AVB refclk
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     netdev <netdev@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqL2gjprb3MDv8KPSpe0CUBFjGajnMbF71DM+F9Yewp2uw@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 4, 2021 at 2:04 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> On Wed, Feb 24, 2021 at 12:52 PM Adam Ford <aford173@gmail.com> wrote:
-> > The AVB refererence clock assumes an external clock that runs
->
-> reference
->
-> > automatically.  Because the Versaclock is wired to provide the
-> > AVB refclock, the device tree needs to reference it in order for the
-> > driver to start the clock.
+On Thursday 15 April 2021 10:13:17 Rob Herring wrote:
+> On Thu, Apr 15, 2021 at 3:45 AM Marek Behun <marek.behun@nic.cz> wrote:
 > >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> i.e. will queue in renesas-devel (with the typo fixed) once the DT
-> bindings have been accepted.
+> > On Thu, 15 Apr 2021 10:36:40 +0200
+> > Pali Rohár <pali@kernel.org> wrote:
+> >
+> > > On Tuesday 13 April 2021 13:17:29 Rob Herring wrote:
+> > > > On Mon, Apr 12, 2021 at 7:41 AM Pali Rohár <pali@kernel.org> wrote:
+> > > > >
+> > > > > Since commit 526a76991b7b ("PCI: aardvark: Implement driver 'remove'
+> > > > > function and allow to build it as module") PCIe controller driver for
+> > > > > Armada 37xx can be dynamically loaded and unloaded at runtime. Also driver
+> > > > > allows dynamic binding and unbinding of PCIe controller device.
+> > > > >
+> > > > > Kernel PCI subsystem assigns by default dynamically allocated PCI domain
+> > > > > number (starting from zero) for this PCIe controller every time when device
+> > > > > is bound. So PCI domain changes after every unbind / bind operation.
+> > > >
+> > > > PCI host bridges as a module are relatively new, so seems likely a bug to me.
+> > >
+> > > Why a bug? It is there since 5.10 and it is working.
+> 
+> I mean historically, the PCI subsystem didn't even support host
+> bridges as a module. They weren't even proper drivers and it was all
+> arch specific code. Most of the host bridge drivers are still built-in
+> only. This seems like a small detail that was easily overlooked.
+> unbind is not a well tested path.
 
-Geert,
+Ok! Just to note that during my testing I have not spotted any issue.
 
-Since the refclk update and corresponding dt-bindings are in net-next,
-are you OK applying the rest of the DT changes so they can get into
-5.13?
+> > > > > Alternative way for assigning PCI domain number is to use static allocated
+> > > > > numbers defined in Device Tree. This option has requirement that every PCI
+> > > > > controller in system must have defined PCI bus number in Device Tree.
+> > > >
+> > > > That seems entirely pointless from a DT point of view with a single PCI bridge.
+> > >
+> > > If domain id is not specified in DT then kernel uses counter and assigns
+> > > counter++. So it is not pointless if we want to have stable domain id.
+> >
+> > What Rob is trying to say is that
+> > - the bug is that kernel assigns counter++
+> > - device-tree should not be used to fix problems with how kernel does
+> >   things
+> > - if a device has only one PCIe controller, it is pointless to define
+> >   it's pci-domain. If there were multiple controllers, then it would
+> >   make sense, but there is only one
+> 
+> Yes. I think what we want here is a domain bitmap rather than a
+> counter and we assign the lowest free bit. That could also allow for
+> handling a mixture of fixed domain numbers and dynamically assigned
+> ones.
 
-adam
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+Currently this code is implemented in pci_bus_find_domain_nr() function.
+IIRC domain number is 16bit integer, so plain bitmap would consume 8 kB
+of memory. I'm not sure if it is fine or some other tree-based structure
+for allocated domain numbers is needed.
+
+> You could create scenarios where the numbers change on you, but it
+> wouldn't be any different than say plugging in USB serial adapters.
+> You get the same ttyUSBx device when you re-attach unless there's been
+> other ttyUSBx devices attached/detached.
+
+This should be fine for most scenarios. Dynamically attaching /
+detaching PCI domain is not such common action...
+
+Will you implement this new feature?
