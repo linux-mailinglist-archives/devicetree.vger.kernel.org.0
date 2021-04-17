@@ -2,187 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5AFD362F22
-	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 12:19:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 625F0362F5A
+	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 12:51:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230510AbhDQKUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Apr 2021 06:20:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49440 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229972AbhDQKUA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Apr 2021 06:20:00 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50E2CC061574;
-        Sat, 17 Apr 2021 03:19:33 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id x20so18318017lfu.6;
-        Sat, 17 Apr 2021 03:19:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=yP0+tXJppEoVKPFPyIZF13u7hO0z5tpvlrY6orlnmJ8=;
-        b=p3qriIIzAFlcTYskj/a064wvn8X7Swo9IwasmmisihorVMHxdEkGrfRTUtKsPjnIub
-         SZ7aVJ9ddHrZfWSl1MFdvZicVV+pTxQ4t4YgBiEDIs9JFoax7OJLTEXahSlw7nbFwaCP
-         /uB2OEhmmYIQoHnMctcQVcaHFPArOVbN7FvSDgfAuwoW+eia3wCw4zToZe5towrcMwoX
-         vN3FxRirnv3/onaBDaGjEhEaiC6vEExe79YvCfzt7ueVgAxl6JqjCEnfQXry4MvrAX8D
-         MgWzMFR6a+okpJuBvZiSkGgo14z8wrxh+1F18WFb+kFk8PgQPqj11AhmB+6+xAgRUx4e
-         WG4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=yP0+tXJppEoVKPFPyIZF13u7hO0z5tpvlrY6orlnmJ8=;
-        b=Fp7IL+/C2FgCrsHDJPPchtZOiYFm/c1cgFWvYsv961u2PuSm5Uj7jC5wlWjdSDO1AE
-         ZplJbVwD5AE5bw4bAZF+HhSrAiI3ovVQ02yK6H+kVe6nGtfoMOqqe94Yd1HBUG4ww+b1
-         o7nIQUQP6aqOXPp3ueLm9/Jko5M8pDgkFXBqF/cT+QApj987CBIXE4aO4IQAP54VvFBK
-         +ehDiojOZZbNL7G7rr3g9dknvbT3YLLT14us0M4EbW+ZkrydHNDQVPxTh+l6tnT5Iwyr
-         ONugVQeLTfnlH54o6xwcTks8ZPmsRB6Rg5FN2cIXGrqq/NmAwmEhdrAVvJjpnKSpWSAK
-         BCgg==
-X-Gm-Message-State: AOAM530B1tlrjgWZbidlTHa607hJPCwajYvbSJ/yPUpa9tk9iQq0U3R5
-        KmLq7ECzyHCFtxMhtBDCgwaFwXihsTs=
-X-Google-Smtp-Source: ABdhPJximB+q9Luq+jysIIMqTIgqVm6o3QzfxROAMSheAI1BCcFwqZrbRm/6BK7UehcAvVjOMFGezw==
-X-Received: by 2002:a19:ee16:: with SMTP id g22mr5991709lfb.513.1618654770870;
-        Sat, 17 Apr 2021 03:19:30 -0700 (PDT)
-Received: from [192.168.1.100] ([178.176.78.168])
-        by smtp.gmail.com with ESMTPSA id v24sm1246492lfp.195.2021.04.17.03.19.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Apr 2021 03:19:30 -0700 (PDT)
-Subject: Re: [PATCH v5 net-next 10/10] dt-bindings: net: korina: Add DT
- bindings for IDT 79RC3243x SoCs
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20210416085207.63181-1-tsbogend@alpha.franken.de>
- <20210416085207.63181-11-tsbogend@alpha.franken.de>
- <ca4d9975-c153-94c9-dec8-bf9416c76b45@gmail.com>
- <20210416133536.GA10451@alpha.franken.de>
-From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Organization: Brain-dead Software
-Message-ID: <eb85c151-cb22-9fff-13e1-3c26c8d76ab4@gmail.com>
-Date:   Sat, 17 Apr 2021 13:19:27 +0300
-User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.1
+        id S231387AbhDQKv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Apr 2021 06:51:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55712 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229972AbhDQKvz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 17 Apr 2021 06:51:55 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B5370606A5;
+        Sat, 17 Apr 2021 10:51:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618656689;
+        bh=9/tc/wXYRdUG9mbYlOPIkpy2FgsFbviR+V3KchkASus=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=erFgjgVe401+n/oW1Hd169bCXH1l6m0QQpzE0y0a283DsaleeoJf5VAivuyQsPFCf
+         mK2KoN6wD9yj0MOB2PmxytRqp3MibeN3+6wtTC90/Z/dV1tScMqSsQxqfK/6i0k6BY
+         cEy1E1JZ8V2To+zy1y/DeNoFaNZZ8fCxo1SAxxZomKqJE7cYKBSGoE4qbHkRjvmVWO
+         RnCYS+XtYzoAN4z0SdmbtgU9dpFa3WVyLUFf3fBZUYeddp+TYWAt4AqX9mBD7ULiR+
+         F287YJ8TmILBxIHOlmvdH/Y5HSA2W5i8JWCYKvc12Be7pEFYEBBzPVWaG0tLqbI+91
+         RAfL6XklHE2uA==
+Received: by pali.im (Postfix)
+        id 453B09F7; Sat, 17 Apr 2021 12:51:26 +0200 (CEST)
+Date:   Sat, 17 Apr 2021 12:51:26 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     bpeled@marvell.com
+Cc:     thomas.petazzoni@bootlin.com, lorenzo.pieralisi@arm.com,
+        bhelgaas@google.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, sebastian.hesselbarth@gmail.com,
+        gregory.clement@bootlin.com, andrew@lunn.ch, robh+dt@kernel.org,
+        mw@semihalf.com, jaz@semihalf.com, kostap@marvell.com,
+        nadavh@marvell.com, stefanc@marvell.com, oferh@marvell.com
+Subject: Re: =?utf-8?B?W+KAnVBBVENI?= =?utf-8?B?4oCd?= v2 2/5] PCI: armada8k:
+ Add link-down handle
+Message-ID: <20210417105126.qrqmviqnbppktzw7@pali>
+References: <1618406454-7953-1-git-send-email-bpeled@marvell.com>
+ <1618406454-7953-3-git-send-email-bpeled@marvell.com>
 MIME-Version: 1.0
-In-Reply-To: <20210416133536.GA10451@alpha.franken.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1618406454-7953-3-git-send-email-bpeled@marvell.com>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16.04.2021 16:35, Thomas Bogendoerfer wrote:
-> On Fri, Apr 16, 2021 at 12:29:46PM +0300, Sergei Shtylyov wrote:
->> On 16.04.2021 11:52, Thomas Bogendoerfer wrote:
->>
->>> Add device tree bindings for ethernet controller integrated into
->>> IDT 79RC3243x SoCs.
->>>
->>> Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
->>> ---
->>>    .../bindings/net/idt,3243x-emac.yaml          | 74 +++++++++++++++++++
->>>    1 file changed, 74 insertions(+)
->>>    create mode 100644 Documentation/devicetree/bindings/net/idt,3243x-emac.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/idt,3243x-emac.yaml b/Documentation/devicetree/bindings/net/idt,3243x-emac.yaml
->>> new file mode 100644
->>> index 000000000000..3697af5cb66f
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/idt,3243x-emac.yaml
->>> @@ -0,0 +1,74 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/net/idt,3243x-emac.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: IDT 79rc3243x Ethernet controller
->>> +
->>> +description: Ethernet controller integrated into IDT 79RC3243x family SoCs
->>> +
->>> +maintainers:
->>> +  - Thomas Bogendoerfer <tsbogend@alpha.franken.de>
->>> +
->>> +allOf:
->>> +  - $ref: ethernet-controller.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: idt,3243x-emac
->>> +
->>> +  reg:
->>> +    maxItems: 3
->>> +
->>> +  reg-names:
->>> +    items:
->>> +      - const: korina_regs
->>> +      - const: korina_dma_rx
->>> +      - const: korina_dma_tx
->>> +
->>> +  interrupts:
->>> +    items:
->>> +      - description: RX interrupt
->>> +      - description: TX interrupt
->>> +
->>> +  interrupt-names:
->>> +    items:
->>> +      - const: korina_rx
->>> +      - const: korina_tx
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: mdioclk
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - reg-names
->>> +  - interrupts
->>> +  - interrupt-names
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +
->>> +    ethernet@60000 {
->>> +        compatible = "idt,3243x-emac";
->>> +
->>> +        reg = <0x60000 0x10000>,
->>> +              <0x40000 0x14>,
->>> +              <0x40014 0x14>;
->>> +        reg-names = "korina_regs",
->>> +                    "korina_dma_rx",
->>> +                    "korina_dma_tx";
->>> +
->>> +        interrupts-extended = <&rcpic3 0>, <&rcpic3 1>;
->>
->>     You use this prop, yet don't describe it?
+On Wednesday 14 April 2021 16:20:51 bpeled@marvell.com wrote:
+> From: Ben Peled <bpeled@marvell.com>
 > 
-> that's just interrupt-parent and interrupts in one statement. And since
+> In PCIE ISR routine caused by RST_LINK_DOWN
+> we schedule work to handle the link-down procedure.
+> Link-down procedure will:
+> 1. Remove PCIe bus
+> 2. Reset the MAC
+> 3. Reconfigure link back up
+> 4. Rescan PCIe bus
 
-    I know. :-) Yet you don't mention it, making the "interrupts" prop 
-mandatory instead. And as both interrupt parents are the same here, it does 
-not even seem justified...
+Hello! This looks like a part of PCIe Hot Plug procedure, which is
+already handled by kernel pci hotplug code, it can detect link down
+interrupt and remove PCI device from the bus. I'm not sure if it would
+not be better to use existing "infrastructure" for hotplug rather then
+implementing new in controller driver. But I do not know what is
+"correct" way, so I hope that other people (maybe Bjorn?) would say
+something about this topic.
 
-> make dt_binding_check didn't complained I thought that's good this way.
-> Rob, do I need to describe interrupts-extended as well ?
+> Signed-off-by: Ben Peled <bpeled@marvell.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-armada8k.c | 69 ++++++++++++++++++++
+>  1 file changed, 69 insertions(+)
 > 
-> I could change that to interrupt-parent/interrupts as the driver no
-> longer uses dma under/overrun interrupts, which have a different
-> interrupt-parent.
-
-    In DT, we describe the hardware,  not the driver's capabilities.
-
-> Thomas.
-
-MBR, Sergei
-
+> diff --git a/drivers/pci/controller/dwc/pcie-armada8k.c b/drivers/pci/controller/dwc/pcie-armada8k.c
+> index b2278b1..34b253c 100644
+> --- a/drivers/pci/controller/dwc/pcie-armada8k.c
+> +++ b/drivers/pci/controller/dwc/pcie-armada8k.c
+> @@ -22,6 +22,8 @@
+>  #include <linux/resource.h>
+>  #include <linux/of_pci.h>
+>  #include <linux/of_irq.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/regmap.h>
+>  
+>  #include "pcie-designware.h"
+>  
+> @@ -33,6 +35,9 @@ struct armada8k_pcie {
+>  	struct clk *clk_reg;
+>  	struct phy *phy[ARMADA8K_PCIE_MAX_LANES];
+>  	unsigned int phy_count;
+> +	struct regmap *sysctrl_base;
+> +	u32 mac_rest_bitmask;
+> +	struct work_struct recover_link_work;
+>  };
+>  
+>  #define PCIE_VENDOR_REGS_OFFSET		0x8000
+> @@ -73,6 +78,8 @@ struct armada8k_pcie {
+>  #define AX_USER_DOMAIN_MASK		0x3
+>  #define AX_USER_DOMAIN_SHIFT		4
+>  
+> +#define UNIT_SOFT_RESET_CONFIG_REG	0x268
+> +
+>  #define to_armada8k_pcie(x)	dev_get_drvdata((x)->dev)
+>  
+>  static void armada8k_pcie_disable_phys(struct armada8k_pcie *pcie)
+> @@ -225,6 +232,50 @@ static int armada8k_pcie_host_init(struct pcie_port *pp)
+>  	return 0;
+>  }
+>  
+> +static void armada8k_pcie_recover_link(struct work_struct *ws)
+> +{
+> +	struct armada8k_pcie *pcie = container_of(ws, struct armada8k_pcie, recover_link_work);
+> +	struct pcie_port *pp = &pcie->pci->pp;
+> +	struct pci_bus *bus = pp->bridge->bus;
+> +	struct pci_dev *root_port;
+> +	int ret;
+> +
+> +	root_port = pci_get_slot(bus, 0);
+> +	if (!root_port) {
+> +		dev_err(pcie->pci->dev, "failed to get root port\n");
+> +		return;
+> +	}
+> +	pci_lock_rescan_remove();
+> +	pci_stop_and_remove_bus_device(root_port);
+> +	/*
+> +	 * Sleep needed to make sure all pcie transactions and access
+> +	 * are flushed before resetting the mac
+> +	 */
+> +	msleep(100);
+> +
+> +	/* Reset mac */
+> +	regmap_update_bits_base(pcie->sysctrl_base, UNIT_SOFT_RESET_CONFIG_REG,
+> +				pcie->mac_rest_bitmask, 0, NULL, false, true);
+> +	udelay(1);
+> +	regmap_update_bits_base(pcie->sysctrl_base, UNIT_SOFT_RESET_CONFIG_REG,
+> +				pcie->mac_rest_bitmask, pcie->mac_rest_bitmask,
+> +				NULL, false, true);
+> +	udelay(1);
+> +	ret = armada8k_pcie_host_init(pp);
+> +	if (ret) {
+> +		dev_err(pcie->pci->dev, "failed to initialize host: %d\n", ret);
+> +		pci_unlock_rescan_remove();
+> +		pci_dev_put(root_port);
+> +		return;
+> +	}
+> +
+> +	bus = NULL;
+> +	while ((bus = pci_find_next_bus(bus)) != NULL)
+> +		pci_rescan_bus(bus);
+> +	pci_unlock_rescan_remove();
+> +	pci_dev_put(root_port);
+> +}
+> +
+>  static irqreturn_t armada8k_pcie_irq_handler(int irq, void *arg)
+>  {
+>  	struct armada8k_pcie *pcie = arg;
+> @@ -262,6 +313,9 @@ static irqreturn_t armada8k_pcie_irq_handler(int irq, void *arg)
+>  		 * initiate a link retrain. If link retrains were
+>  		 * possible, that is.
+>  		 */
+> +		if (pcie->sysctrl_base && pcie->mac_rest_bitmask)
+> +			schedule_work(&pcie->recover_link_work);
+> +
+>  		dev_dbg(pci->dev, "%s: link went down\n", __func__);
+>  	}
+>  
+> @@ -330,6 +384,8 @@ static int armada8k_pcie_probe(struct platform_device *pdev)
+>  
+>  	pcie->pci = pci;
+>  
+> +	INIT_WORK(&pcie->recover_link_work, armada8k_pcie_recover_link);
+> +
+>  	pcie->clk = devm_clk_get(dev, NULL);
+>  	if (IS_ERR(pcie->clk))
+>  		return PTR_ERR(pcie->clk);
+> @@ -357,6 +413,19 @@ static int armada8k_pcie_probe(struct platform_device *pdev)
+>  		goto fail_clkreg;
+>  	}
+>  
+> +	pcie->sysctrl_base = syscon_regmap_lookup_by_phandle(pdev->dev.of_node,
+> +						       "marvell,system-controller");
+> +	if (IS_ERR(pcie->sysctrl_base)) {
+> +		dev_warn(dev, "failed to find marvell,system-controller\n");
+> +		pcie->sysctrl_base = 0x0;
+> +	}
+> +
+> +	ret = of_property_read_u32(pdev->dev.of_node, "marvell,mac-reset-bit-mask",
+> +				   &pcie->mac_rest_bitmask);
+> +	if (ret < 0) {
+> +		dev_warn(dev, "couldn't find mac reset bit mask: %d\n", ret);
+> +		pcie->mac_rest_bitmask = 0x0;
+> +	}
+>  	ret = armada8k_pcie_setup_phys(pcie);
+>  	if (ret)
+>  		goto fail_clkreg;
+> -- 
+> 2.7.4
+> 
