@@ -2,226 +2,409 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9931F362E9E
-	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 10:49:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 286F4362EEC
+	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 11:38:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235860AbhDQIuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Apr 2021 04:50:07 -0400
-Received: from mail-lj1-f171.google.com ([209.85.208.171]:46723 "EHLO
-        mail-lj1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235859AbhDQIuH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Apr 2021 04:50:07 -0400
-Received: by mail-lj1-f171.google.com with SMTP id u20so33592211lja.13;
-        Sat, 17 Apr 2021 01:49:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:reply-to:to:cc
-         :in-reply-to:references:mime-version:date:user-agent
-         :content-transfer-encoding;
-        bh=9Q8i358kUoVCgVrcMHeBfy2VnHJ+AKT+L+dEpF7HrO0=;
-        b=LE+Do5dr5+IwHWkfDjY5TdL/bYDeuYaC2ie3WJiyaFhdIFod/WLgUcicr25mDxCaim
-         XixpjrtYhp3uU1yzELV/YFMIP6Qw/FooXWNGb3sXT3uRSl1pljKKOFkHRMtgDW46nXgd
-         qSniydgG3Vt4YGxe/sy6NT3mZ3o2dggiF2f17Z+3ds0lNNE2Nig4Q42KQ5ltiZ5YJe8c
-         hk30LPCFdxpPfs+9XylEGSztDJeYghVCXDBiwNdTFH/pisdeRc38m5jZxHoudeopya3P
-         /X1tO2zDSSlk225tEhc0wz9HN6HZNxwt1Z/RiHZApLBw5gBOhUmGicArPnSy0GSujRoN
-         roxw==
-X-Gm-Message-State: AOAM53046QNl4ugNX6fs0P6Iw8fHUZ5lqT0GhkHA8oKw7qaRxfYYONqX
-        BARzZpU1nMzYu7tseBcO5EQO1JCktIav1Q==
-X-Google-Smtp-Source: ABdhPJxwyxi+pbhWVb+mB84S0MDuc/MbX60vLFRp3xgZ5N8SXQ8hv5/O6s1Z66VXMYZ6Y4JMpcdJjA==
-X-Received: by 2002:a05:651c:612:: with SMTP id k18mr1478809lje.445.1618649378453;
-        Sat, 17 Apr 2021 01:49:38 -0700 (PDT)
-Received: from dc7vkhyyyyyyyyyyyyydy-3.rev.dnainternet.fi (dc7vkhyyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::6])
-        by smtp.gmail.com with ESMTPSA id l18sm1171756ljj.55.2021.04.17.01.49.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Apr 2021 01:49:37 -0700 (PDT)
-Message-ID: <1aac32e16906c4e7def072698d9d3b32d8e32ca5.camel@fi.rohmeurope.com>
-Subject: Re: [PATCH v7 2/9] reboot: thermal: Export hardware protection
- shutdown
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Reply-To: matti.vaittinen@fi.rohmeurope.com
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>, Kees Cook <keescook@chromium.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "agross@kernel.org" <agross@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Matteo Croce <mcroce@microsoft.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Petr Mladek <pmladek@suse.com>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Mike Rapoport <rppt@kernel.org>,
-        Josef Bacik <josef@toxicpanda.com>,
-        Kai-Heng Feng <kai.heng.feng@canonical.com>,
-        linux-pm@vger.kernel.org
-In-Reply-To: <ce0918d9-bedb-e48f-5779-c0ef47c6909d@linaro.org>
-References: <cover.1618377272.git.matti.vaittinen@fi.rohmeurope.com>
-         <adf417797006c996605a03c8bacfb4961e8f0b42.1618377272.git.matti.vaittinen@fi.rohmeurope.com>
-         <ce0918d9-bedb-e48f-5779-c0ef47c6909d@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S235455AbhDQJis convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sat, 17 Apr 2021 05:38:48 -0400
+Received: from aposti.net ([89.234.176.197]:39742 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229972AbhDQJir (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 17 Apr 2021 05:38:47 -0400
+Date:   Sat, 17 Apr 2021 10:38:03 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v5 04/11] pinctrl: Ingenic: Improve LCD pins related code.
+To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        linux-gpio@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        hns@goldelico.com, paul@boddie.org.uk, andy.shevchenko@gmail.com,
+        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
+        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com,
+        siyanteng@loongson.cn
+Message-Id: <F3CPRQ.3JROPDM9B51L3@crapouillou.net>
+In-Reply-To: <1618589645-96504-5-git-send-email-zhouyanjie@wanyeetech.com>
+References: <1618589645-96504-1-git-send-email-zhouyanjie@wanyeetech.com>
+        <1618589645-96504-5-git-send-email-zhouyanjie@wanyeetech.com>
 MIME-Version: 1.0
-Date:   Sat, 17 Apr 2021 11:49:32 +0300
-User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
+Hi Zhou,
 
-Thank you for the review. Much appreciated!
-
-On Sat, 2021-04-17 at 07:32 +0200, Daniel Lezcano wrote:
-> On 14/04/2021 07:52, Matti Vaittinen wrote:
-> > Thermal core contains a logic for safety shutdown. System is
-> > attempted to
-> > be powered off if temperature exceeds safety limits.
-> > 
-> > Currently this can be also utilized by regulator subsystem as a
-> > final
-> > protection measure if PMICs report dangerous over-voltage, over-
-> > current or
-> > over-temperature and if per regulator counter measures fail or do
-> > not
-> > exist.
-> > 
-> > Move this logic to kernel/reboot.c and export the functionality for
-> > other
-> > subsystems to use. Also replace the mutex with a spinlock to allow
-> > using
-> > the function from any context.
-> > 
-> > Also the EMIF bus code has implemented a safety shut-down. EMIF
-> > does not
-> > attempt orderly_poweroff at all. Thus the EMIF code is not
-> > converted to use
-> > this new function.
-> > 
-> > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> > ---
-> > Changelog
-> >  v7:
-> >   - new patch
-> > 
-> > Please note - this patch has received only a minimal amount of
-> > testing.
-> > (The new API call was tested to shut-down my system at driver probe
-> > but
-> > no odd corner-cases have been tested).
-> > 
-> > Any testing for thermal shutdown is appreciated.
-> > ---
-> >  drivers/thermal/thermal_core.c | 63 ++-----------------------
-> >  include/linux/reboot.h         |  1 +
-> >  kernel/reboot.c                | 86
-> > ++++++++++++++++++++++++++++++++++
+Le sam. 17 avril 2021 à 0:13, 周琰杰 (Zhou Yanjie) 
+<zhouyanjie@wanyeetech.com> a écrit :
+> 1.In the JZ4740 part, remove pointless "lcd-no-pins", use 
+> "lcd-special"
+>   and "lcd-generic" instead "lcd-18bit-tft". Currently, in the 
+> mainline,
+>   no other devicetree out there is using the "lcd-18bit-tft" ABI, so 
+> we
+>   should be able to replace it safely.
+> 2.In the JZ4725B part, adjust the location of the LCD pins related 
+> code
+>   to keep them consistent with the style of other parts.
+> 3.In the JZ4760 part, add the missing comma and adjust element order 
+> in
+>   "jz4760_lcd_special_pins[]", keep them in the order of 
+> CLS/SPL/PS/REV
+>   like other "lcd_special_pins" arrays. And adjust the location of the
+>   "jz4760_lcd_generic" related code to keep them consistent with the
+>   style of other parts.
+> 4.In the JZ4770 part, remove pointless "lcd-no-pins", add the missing
+>   "lcd-16bit", "lcd-18bit", "lcd-special", "lcd-generic".
+> 5.In the X1000 part and the X1500 part, remove pointless 
+> "lcd-no-pins".
+> 6.In the X1830 part, replace "lcd-rgb-18bit" with "lcd-tft-8bit" and
+>   "lcd-tft-24bit", because of the description of the TRANS_CONFIG.MODE
+>   register bits in the PM manual of the X1830, shows that the X1830 
+> only
+>   supppots 24bit mode and 8bit mode for tft interface, only 18 pins in
+>   the GPIO table are because of the data[17:16], the data[9:8], and 
+> the
+>   data[1:0] has not been connected. And according to the description,
+>   the two interfaces supported by X1830 are respectively referred to 
+> as
+>   "TFT interface" and "SLCD interface", so the "lcd-rgb-xxx" is 
+> replaced
+>   with "lcd-tft-xxx" to avoid confusion.
 > 
-> Please send a patch implementing the reboot/shutdown and then another
-> one replacing the thermal shutdown code by a call to the new API.
+> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
 
-I guess your suggestion makes sense. That way if the change causes any
-problems in thermal-core it can be reverted without impacting other
-potential users of this API. My original thinking was that this was
-more of an move of functionality than adding an API. Having the move as
-one patch makes sense as it shows where the code came from.
+Reviewed-by: Paul Cercueil <paul@crapouillou.net>
 
-> 
-> >  3 files changed, 91 insertions(+), 59 deletions(-)
-> > 
-> > diff --git a/drivers/thermal/thermal_core.c
-> > b/drivers/thermal/thermal_core.c
-> > index 996c038f83a4..b1444845af38 100644
-> > --- a/drivers/thermal/thermal_core.c
-> > +++ b/drivers/thermal/thermal_core.c
-> > @@ -36,10 +36,8 @@ static LIST_HEAD(thermal_governor_list);
-> >  
-> > 
+Cheers,
+-Paul
 
-...
-
-> > +static bool prot_power_off_triggered;
-> > +static DEFINE_SPINLOCK(poweroff_lock);
-> > +
-> > +/**
-> > + * hw_protection_shutdown - Trigger an emergency system poweroff
-> > + *
-> > + * @reason:		Reason of emergency shutdown to be
-> > printed.
-> > + * @ms_until_forced:	Time to wait for orderly shutdown
-> > before tiggering a
-> > + *			forced shudown. Negative value disables the
-> > forced
-> > + *			shutdown.
-> > + *
-> > + * Initiate an emergency system shutdown in order to protect
-> > hardware from
-> > + * further damage. Usage examples include a thermal protection or
-> > a voltage or
-> > + * current regulator failures.
-> > + * NOTE: The request is ignored if protection shutdown is already
-> > pending even
-> > + * if the previous request has given a large timeout for forced
-> > shutdown.
-> > + * Can be called from any context.
-> > + */
-> > +void hw_protection_shutdown(const char *reason, int
-> > ms_until_forced)
-> > +{
-> > +	unsigned long flags;
-> > +
-> > +	pr_emerg("HARDWARE PROTECTION shutdown (%s)\n", reason);
-> > +
-> > +	spin_lock_irqsave(&poweroff_lock, flags);
-> > +	if (prot_power_off_triggered) {
-> > +		spin_unlock(&poweroff_lock);
+> ---
 > 
-> Why not spin_unlock_irqrestore() ?
+> Notes:
+>     v4:
+>     New patch.
 > 
-
-Well spotted It for sure must be spin_unlock_irqrestore. My bad.
-
-> > +		return;
-> > +	}
-> > +	prot_power_off_triggered = true;
-> > +	spin_unlock_irqrestore(&poweroff_lock, flags);
+>     v4->v5:
+>     No change.
 > 
-> Why not take the spin_lock definitively for all the procedure ?
+>  drivers/pinctrl/pinctrl-ingenic.c | 110 
+> +++++++++++++++++++++-----------------
+>  1 file changed, 61 insertions(+), 49 deletions(-)
 > 
-> eg.
+> diff --git a/drivers/pinctrl/pinctrl-ingenic.c 
+> b/drivers/pinctrl/pinctrl-ingenic.c
+> index 72d9daa..8ed62a4 100644
+> --- a/drivers/pinctrl/pinctrl-ingenic.c
+> +++ b/drivers/pinctrl/pinctrl-ingenic.c
+> @@ -113,13 +113,15 @@ static int jz4740_uart0_data_pins[] = { 0x7a, 
+> 0x79, };
+>  static int jz4740_uart0_hwflow_pins[] = { 0x7e, 0x7f, };
+>  static int jz4740_uart1_data_pins[] = { 0x7e, 0x7f, };
+>  static int jz4740_lcd_8bit_pins[] = {
+> -	0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x52, 0x53, 0x54,
+> +	0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47,
+> +	0x52, 0x53, 0x54,
+>  };
+>  static int jz4740_lcd_16bit_pins[] = {
+> -	0x48, 0x49, 0x4a, 0x4b, 0x4c, 0x4d, 0x4e, 0x4f, 0x55,
+> +	0x48, 0x49, 0x4a, 0x4b, 0x4c, 0x4d, 0x4e, 0x4f,
+>  };
+>  static int jz4740_lcd_18bit_pins[] = { 0x50, 0x51, };
+> -static int jz4740_lcd_18bit_tft_pins[] = { 0x56, 0x57, 0x31, 0x32, };
+> +static int jz4740_lcd_special_pins[] = { 0x31, 0x32, 0x56, 0x57, };
+> +static int jz4740_lcd_generic_pins[] = { 0x55, };
+>  static int jz4740_nand_cs1_pins[] = { 0x39, };
+>  static int jz4740_nand_cs2_pins[] = { 0x3a, };
+>  static int jz4740_nand_cs3_pins[] = { 0x3b, };
+> @@ -155,8 +157,8 @@ static const struct group_desc jz4740_groups[] = {
+>  	INGENIC_PIN_GROUP("lcd-8bit", jz4740_lcd_8bit, 0),
+>  	INGENIC_PIN_GROUP("lcd-16bit", jz4740_lcd_16bit, 0),
+>  	INGENIC_PIN_GROUP("lcd-18bit", jz4740_lcd_18bit, 0),
+> -	INGENIC_PIN_GROUP("lcd-18bit-tft", jz4740_lcd_18bit_tft, 0),
+> -	{ "lcd-no-pins", },
+> +	INGENIC_PIN_GROUP("lcd-special", jz4740_lcd_special, 0),
+> +	INGENIC_PIN_GROUP("lcd-generic", jz4740_lcd_generic, 0),
+>  	INGENIC_PIN_GROUP("nand-cs1", jz4740_nand_cs1, 0),
+>  	INGENIC_PIN_GROUP("nand-cs2", jz4740_nand_cs2, 0),
+>  	INGENIC_PIN_GROUP("nand-cs3", jz4740_nand_cs3, 0),
+> @@ -176,7 +178,7 @@ static const char *jz4740_mmc_groups[] = { 
+> "mmc-1bit", "mmc-4bit", };
+>  static const char *jz4740_uart0_groups[] = { "uart0-data", 
+> "uart0-hwflow", };
+>  static const char *jz4740_uart1_groups[] = { "uart1-data", };
+>  static const char *jz4740_lcd_groups[] = {
+> -	"lcd-8bit", "lcd-16bit", "lcd-18bit", "lcd-18bit-tft", 
+> "lcd-no-pins",
+> +	"lcd-8bit", "lcd-16bit", "lcd-18bit", "lcd-special", "lcd-generic",
+>  };
+>  static const char *jz4740_nand_groups[] = {
+>  	"nand-cs1", "nand-cs2", "nand-cs3", "nand-cs4", "nand-fre-fwe",
+> @@ -223,6 +225,17 @@ static int jz4725b_mmc0_4bit_pins[] = { 0x5d, 
+> 0x5b, 0x56, };
+>  static int jz4725b_mmc1_1bit_pins[] = { 0x7a, 0x7b, 0x7c, };
+>  static int jz4725b_mmc1_4bit_pins[] = { 0x7d, 0x7e, 0x7f, };
+>  static int jz4725b_uart_data_pins[] = { 0x4c, 0x4d, };
+> +static int jz4725b_lcd_8bit_pins[] = {
+> +	0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67,
+> +	0x72, 0x73, 0x74,
+> +};
+> +static int jz4725b_lcd_16bit_pins[] = {
+> +	0x68, 0x69, 0x6a, 0x6b, 0x6c, 0x6d, 0x6e, 0x6f,
+> +};
+> +static int jz4725b_lcd_18bit_pins[] = { 0x70, 0x71, };
+> +static int jz4725b_lcd_24bit_pins[] = { 0x76, 0x77, 0x78, 0x79, };
+> +static int jz4725b_lcd_special_pins[] = { 0x76, 0x77, 0x78, 0x79, };
+> +static int jz4725b_lcd_generic_pins[] = { 0x75, };
+>  static int jz4725b_nand_cs1_pins[] = { 0x55, };
+>  static int jz4725b_nand_cs2_pins[] = { 0x56, };
+>  static int jz4725b_nand_cs3_pins[] = { 0x57, };
+> @@ -235,19 +248,6 @@ static int jz4725b_pwm_pwm2_pins[] = { 0x4c, };
+>  static int jz4725b_pwm_pwm3_pins[] = { 0x4d, };
+>  static int jz4725b_pwm_pwm4_pins[] = { 0x4e, };
+>  static int jz4725b_pwm_pwm5_pins[] = { 0x4f, };
+> -static int jz4725b_lcd_8bit_pins[] = {
+> -	0x72, 0x73, 0x74,
+> -	0x60, 0x61, 0x62, 0x63,
+> -	0x64, 0x65, 0x66, 0x67,
+> -};
+> -static int jz4725b_lcd_16bit_pins[] = {
+> -	0x68, 0x69, 0x6a, 0x6b,
+> -	0x6c, 0x6d, 0x6e, 0x6f,
+> -};
+> -static int jz4725b_lcd_18bit_pins[] = { 0x70, 0x71, };
+> -static int jz4725b_lcd_24bit_pins[] = { 0x76, 0x77, 0x78, 0x79, };
+> -static int jz4725b_lcd_special_pins[] = { 0x76, 0x77, 0x78, 0x79, };
+> -static int jz4725b_lcd_generic_pins[] = { 0x75, };
 > 
+>  static u8 jz4725b_mmc0_4bit_funcs[] = { 1, 0, 1, };
+> 
+> @@ -258,6 +258,12 @@ static const struct group_desc jz4725b_groups[] 
+> = {
+>  	INGENIC_PIN_GROUP("mmc1-1bit", jz4725b_mmc1_1bit, 0),
+>  	INGENIC_PIN_GROUP("mmc1-4bit", jz4725b_mmc1_4bit, 0),
+>  	INGENIC_PIN_GROUP("uart-data", jz4725b_uart_data, 1),
+> +	INGENIC_PIN_GROUP("lcd-8bit", jz4725b_lcd_8bit, 0),
+> +	INGENIC_PIN_GROUP("lcd-16bit", jz4725b_lcd_16bit, 0),
+> +	INGENIC_PIN_GROUP("lcd-18bit", jz4725b_lcd_18bit, 0),
+> +	INGENIC_PIN_GROUP("lcd-24bit", jz4725b_lcd_24bit, 1),
+> +	INGENIC_PIN_GROUP("lcd-special", jz4725b_lcd_special, 0),
+> +	INGENIC_PIN_GROUP("lcd-generic", jz4725b_lcd_generic, 0),
+>  	INGENIC_PIN_GROUP("nand-cs1", jz4725b_nand_cs1, 0),
+>  	INGENIC_PIN_GROUP("nand-cs2", jz4725b_nand_cs2, 0),
+>  	INGENIC_PIN_GROUP("nand-cs3", jz4725b_nand_cs3, 0),
+> @@ -270,17 +276,15 @@ static const struct group_desc jz4725b_groups[] 
+> = {
+>  	INGENIC_PIN_GROUP("pwm3", jz4725b_pwm_pwm3, 0),
+>  	INGENIC_PIN_GROUP("pwm4", jz4725b_pwm_pwm4, 0),
+>  	INGENIC_PIN_GROUP("pwm5", jz4725b_pwm_pwm5, 0),
+> -	INGENIC_PIN_GROUP("lcd-8bit", jz4725b_lcd_8bit, 0),
+> -	INGENIC_PIN_GROUP("lcd-16bit", jz4725b_lcd_16bit, 0),
+> -	INGENIC_PIN_GROUP("lcd-18bit", jz4725b_lcd_18bit, 0),
+> -	INGENIC_PIN_GROUP("lcd-24bit", jz4725b_lcd_24bit, 1),
+> -	INGENIC_PIN_GROUP("lcd-special", jz4725b_lcd_special, 0),
+> -	INGENIC_PIN_GROUP("lcd-generic", jz4725b_lcd_generic, 0),
+>  };
+> 
+>  static const char *jz4725b_mmc0_groups[] = { "mmc0-1bit", 
+> "mmc0-4bit", };
+>  static const char *jz4725b_mmc1_groups[] = { "mmc1-1bit", 
+> "mmc1-4bit", };
+>  static const char *jz4725b_uart_groups[] = { "uart-data", };
+> +static const char *jz4725b_lcd_groups[] = {
+> +	"lcd-8bit", "lcd-16bit", "lcd-18bit", "lcd-24bit",
+> +	"lcd-special", "lcd-generic",
+> +};
+>  static const char *jz4725b_nand_groups[] = {
+>  	"nand-cs1", "nand-cs2", "nand-cs3", "nand-cs4",
+>  	"nand-cle-ale", "nand-fre-fwe",
+> @@ -291,10 +295,6 @@ static const char *jz4725b_pwm2_groups[] = { 
+> "pwm2", };
+>  static const char *jz4725b_pwm3_groups[] = { "pwm3", };
+>  static const char *jz4725b_pwm4_groups[] = { "pwm4", };
+>  static const char *jz4725b_pwm5_groups[] = { "pwm5", };
+> -static const char *jz4725b_lcd_groups[] = {
+> -	"lcd-8bit", "lcd-16bit", "lcd-18bit", "lcd-24bit",
+> -	"lcd-special", "lcd-generic",
+> -};
+> 
+>  static const struct function_desc jz4725b_functions[] = {
+>  	{ "mmc0", jz4725b_mmc0_groups, ARRAY_SIZE(jz4725b_mmc0_groups), },
+> @@ -389,7 +389,7 @@ static int jz4760_lcd_18bit_pins[] = {
+>  static int jz4760_lcd_24bit_pins[] = {
+>  	0x40, 0x41, 0x4a, 0x4b, 0x54, 0x55,
+>  };
+> -static int jz4760_lcd_special_pins[] = { 0x40, 0x41, 0x4a, 0x54 };
+> +static int jz4760_lcd_special_pins[] = { 0x54, 0x4a, 0x41, 0x40, };
+>  static int jz4760_lcd_generic_pins[] = { 0x49, };
+>  static int jz4760_pwm_pwm0_pins[] = { 0x80, };
+>  static int jz4760_pwm_pwm1_pins[] = { 0x81, };
+> @@ -450,8 +450,8 @@ static const struct group_desc jz4760_groups[] = {
+>  	INGENIC_PIN_GROUP("lcd-16bit", jz4760_lcd_16bit, 0),
+>  	INGENIC_PIN_GROUP("lcd-18bit", jz4760_lcd_18bit, 0),
+>  	INGENIC_PIN_GROUP("lcd-24bit", jz4760_lcd_24bit, 0),
+> -	INGENIC_PIN_GROUP("lcd-generic", jz4760_lcd_generic, 0),
+>  	INGENIC_PIN_GROUP("lcd-special", jz4760_lcd_special, 1),
+> +	INGENIC_PIN_GROUP("lcd-generic", jz4760_lcd_generic, 0),
+>  	INGENIC_PIN_GROUP("pwm0", jz4760_pwm_pwm0, 0),
+>  	INGENIC_PIN_GROUP("pwm1", jz4760_pwm_pwm1, 0),
+>  	INGENIC_PIN_GROUP("pwm2", jz4760_pwm_pwm2, 0),
+> @@ -648,7 +648,13 @@ static int jz4770_cim_12bit_pins[] = {
+>  };
+>  static int jz4770_lcd_8bit_pins[] = {
+>  	0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x4c, 0x4d,
+> -	0x48, 0x49, 0x52, 0x53,
+> +	0x48, 0x52, 0x53,
+> +};
+> +static int jz4770_lcd_16bit_pins[] = {
+> +	0x4e, 0x4f, 0x50, 0x51, 0x56, 0x57, 0x58, 0x59,
+> +};
+> +static int jz4770_lcd_18bit_pins[] = {
+> +	0x5a, 0x5b,
+>  };
+>  static int jz4770_lcd_24bit_pins[] = {
+>  	0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47,
+> @@ -656,6 +662,8 @@ static int jz4770_lcd_24bit_pins[] = {
+>  	0x50, 0x51, 0x52, 0x53, 0x54, 0x55, 0x56, 0x57,
+>  	0x58, 0x59, 0x5a, 0x5b,
+>  };
+> +static int jz4770_lcd_special_pins[] = { 0x54, 0x4a, 0x41, 0x40, };
+> +static int jz4770_lcd_generic_pins[] = { 0x49, };
+>  static int jz4770_pwm_pwm0_pins[] = { 0x80, };
+>  static int jz4770_pwm_pwm1_pins[] = { 0x81, };
+>  static int jz4770_pwm_pwm2_pins[] = { 0x82, };
+> @@ -756,8 +764,11 @@ static const struct group_desc jz4770_groups[] = 
 > {
-> 	...
+>  	INGENIC_PIN_GROUP("cim-data-8bit", jz4770_cim_8bit, 0),
+>  	INGENIC_PIN_GROUP("cim-data-12bit", jz4770_cim_12bit, 0),
+>  	INGENIC_PIN_GROUP("lcd-8bit", jz4770_lcd_8bit, 0),
+> +	INGENIC_PIN_GROUP("lcd-16bit", jz4770_lcd_16bit, 0),
+> +	INGENIC_PIN_GROUP("lcd-18bit", jz4770_lcd_18bit, 0),
+>  	INGENIC_PIN_GROUP("lcd-24bit", jz4770_lcd_24bit, 0),
+> -	{ "lcd-no-pins", },
+> +	INGENIC_PIN_GROUP("lcd-special", jz4770_lcd_special, 1),
+> +	INGENIC_PIN_GROUP("lcd-generic", jz4770_lcd_generic, 0),
+>  	INGENIC_PIN_GROUP("pwm0", jz4770_pwm_pwm0, 0),
+>  	INGENIC_PIN_GROUP("pwm1", jz4770_pwm_pwm1, 0),
+>  	INGENIC_PIN_GROUP("pwm2", jz4770_pwm_pwm2, 0),
+> @@ -818,7 +829,8 @@ static const char *jz4770_i2c1_groups[] = { 
+> "i2c1-data", };
+>  static const char *jz4770_i2c2_groups[] = { "i2c2-data", };
+>  static const char *jz4770_cim_groups[] = { "cim-data-8bit", 
+> "cim-data-12bit", };
+>  static const char *jz4770_lcd_groups[] = {
+> -	"lcd-8bit", "lcd-24bit", "lcd-no-pins",
+> +	"lcd-8bit", "lcd-16bit", "lcd-18bit", "lcd-24bit",
+> +	"lcd-special", "lcd-generic",
+>  };
+>  static const char *jz4770_pwm0_groups[] = { "pwm0", };
+>  static const char *jz4770_pwm1_groups[] = { "pwm1", };
+> @@ -1030,8 +1042,12 @@ static const struct group_desc jz4780_groups[] 
+> = {
+>  	INGENIC_PIN_GROUP("hdmi-ddc", jz4780_hdmi_ddc, 0),
+>  	INGENIC_PIN_GROUP("cim-data", jz4770_cim_8bit, 0),
+>  	INGENIC_PIN_GROUP("cim-data-12bit", jz4770_cim_12bit, 0),
+> +	INGENIC_PIN_GROUP("lcd-8bit", jz4770_lcd_8bit, 0),
+> +	INGENIC_PIN_GROUP("lcd-16bit", jz4770_lcd_16bit, 0),
+> +	INGENIC_PIN_GROUP("lcd-18bit", jz4770_lcd_18bit, 0),
+>  	INGENIC_PIN_GROUP("lcd-24bit", jz4770_lcd_24bit, 0),
+> -	{ "lcd-no-pins", },
+> +	INGENIC_PIN_GROUP("lcd-special", jz4770_lcd_special, 1),
+> +	INGENIC_PIN_GROUP("lcd-generic", jz4770_lcd_generic, 0),
+>  	INGENIC_PIN_GROUP("pwm0", jz4770_pwm_pwm0, 0),
+>  	INGENIC_PIN_GROUP("pwm1", jz4770_pwm_pwm1, 0),
+>  	INGENIC_PIN_GROUP("pwm2", jz4770_pwm_pwm2, 0),
+> @@ -1259,7 +1275,6 @@ static const struct group_desc x1000_groups[] = 
+> {
+>  	INGENIC_PIN_GROUP("cim-data", x1000_cim, 2),
+>  	INGENIC_PIN_GROUP("lcd-8bit", x1000_lcd_8bit, 1),
+>  	INGENIC_PIN_GROUP("lcd-16bit", x1000_lcd_16bit, 1),
+> -	{ "lcd-no-pins", },
+>  	INGENIC_PIN_GROUP("pwm0", x1000_pwm_pwm0, 0),
+>  	INGENIC_PIN_GROUP("pwm1", x1000_pwm_pwm1, 1),
+>  	INGENIC_PIN_GROUP("pwm2", x1000_pwm_pwm2, 1),
+> @@ -1301,9 +1316,7 @@ static const char *x1000_i2s_groups[] = {
+>  	"i2s-data-tx", "i2s-data-rx", "i2s-clk-txrx", "i2s-sysclk",
+>  };
+>  static const char *x1000_cim_groups[] = { "cim-data", };
+> -static const char *x1000_lcd_groups[] = {
+> -	"lcd-8bit", "lcd-16bit", "lcd-no-pins",
+> -};
+> +static const char *x1000_lcd_groups[] = { "lcd-8bit", "lcd-16bit", };
+>  static const char *x1000_pwm0_groups[] = { "pwm0", };
+>  static const char *x1000_pwm1_groups[] = { "pwm1", };
+>  static const char *x1000_pwm2_groups[] = { "pwm2", };
+> @@ -1395,7 +1408,6 @@ static const struct group_desc x1500_groups[] = 
+> {
+>  	INGENIC_PIN_GROUP("i2s-clk-txrx", x1500_i2s_clk_txrx, 1),
+>  	INGENIC_PIN_GROUP("i2s-sysclk", x1500_i2s_sysclk, 1),
+>  	INGENIC_PIN_GROUP("cim-data", x1500_cim, 2),
+> -	{ "lcd-no-pins", },
+>  	INGENIC_PIN_GROUP("pwm0", x1500_pwm_pwm0, 0),
+>  	INGENIC_PIN_GROUP("pwm1", x1500_pwm_pwm1, 1),
+>  	INGENIC_PIN_GROUP("pwm2", x1500_pwm_pwm2, 1),
+> @@ -1416,7 +1428,6 @@ static const char *x1500_i2s_groups[] = {
+>  	"i2s-data-tx", "i2s-data-rx", "i2s-clk-txrx", "i2s-sysclk",
+>  };
+>  static const char *x1500_cim_groups[] = { "cim-data", };
+> -static const char *x1500_lcd_groups[] = { "lcd-no-pins", };
+>  static const char *x1500_pwm0_groups[] = { "pwm0", };
+>  static const char *x1500_pwm1_groups[] = { "pwm1", };
+>  static const char *x1500_pwm2_groups[] = { "pwm2", };
+> @@ -1434,7 +1445,6 @@ static const struct function_desc 
+> x1500_functions[] = {
+>  	{ "i2c2", x1500_i2c2_groups, ARRAY_SIZE(x1500_i2c2_groups), },
+>  	{ "i2s", x1500_i2s_groups, ARRAY_SIZE(x1500_i2s_groups), },
+>  	{ "cim", x1500_cim_groups, ARRAY_SIZE(x1500_cim_groups), },
+> -	{ "lcd", x1500_lcd_groups, ARRAY_SIZE(x1500_lcd_groups), },
+>  	{ "pwm0", x1500_pwm0_groups, ARRAY_SIZE(x1500_pwm0_groups), },
+>  	{ "pwm1", x1500_pwm1_groups, ARRAY_SIZE(x1500_pwm1_groups), },
+>  	{ "pwm2", x1500_pwm2_groups, ARRAY_SIZE(x1500_pwm2_groups), },
+> @@ -1496,11 +1506,13 @@ static int x1830_i2s_data_rx_pins[] = { 0x54, 
+> };
+>  static int x1830_i2s_clk_txrx_pins[] = { 0x58, 0x52, };
+>  static int x1830_i2s_clk_rx_pins[] = { 0x56, 0x55, };
+>  static int x1830_i2s_sysclk_pins[] = { 0x57, };
+> -static int x1830_lcd_rgb_18bit_pins[] = {
+> +static int x1830_lcd_tft_8bit_pins[] = {
+>  	0x62, 0x63, 0x64, 0x65, 0x66, 0x67,
+> -	0x68, 0x69, 0x6c, 0x6d, 0x6e, 0x6f,
+> -	0x70, 0x71, 0x72, 0x73, 0x76, 0x77,
+> -	0x78, 0x79, 0x7a, 0x7b,
+> +	0x68, 0x73, 0x72, 0x69,
+> +};
+> +static int x1830_lcd_tft_24bit_pins[] = {
+> +	0x6c, 0x6d, 0x6e, 0x6f, 0x70, 0x71,
+> +	0x76, 0x77, 0x78, 0x79, 0x7a, 0x7b,
+>  };
+>  static int x1830_lcd_slcd_8bit_pins[] = {
+>  	0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x6c, 0x6d,
+> @@ -1564,10 +1576,10 @@ static const struct group_desc x1830_groups[] 
+> = {
+>  	INGENIC_PIN_GROUP("i2s-clk-txrx", x1830_i2s_clk_txrx, 0),
+>  	INGENIC_PIN_GROUP("i2s-clk-rx", x1830_i2s_clk_rx, 0),
+>  	INGENIC_PIN_GROUP("i2s-sysclk", x1830_i2s_sysclk, 0),
+> -	INGENIC_PIN_GROUP("lcd-rgb-18bit", x1830_lcd_rgb_18bit, 0),
+> +	INGENIC_PIN_GROUP("lcd-tft-8bit", x1830_lcd_tft_8bit, 0),
+> +	INGENIC_PIN_GROUP("lcd-tft-24bit", x1830_lcd_tft_24bit, 0),
+>  	INGENIC_PIN_GROUP("lcd-slcd-8bit", x1830_lcd_slcd_8bit, 1),
+>  	INGENIC_PIN_GROUP("lcd-slcd-16bit", x1830_lcd_slcd_16bit, 1),
+> -	{ "lcd-no-pins", },
+>  	INGENIC_PIN_GROUP("pwm0-b", x1830_pwm_pwm0_b, 0),
+>  	INGENIC_PIN_GROUP("pwm0-c", x1830_pwm_pwm0_c, 1),
+>  	INGENIC_PIN_GROUP("pwm1-b", x1830_pwm_pwm1_b, 0),
+> @@ -1610,7 +1622,7 @@ static const char *x1830_i2s_groups[] = {
+>  	"i2s-data-tx", "i2s-data-rx", "i2s-clk-txrx", "i2s-clk-rx", 
+> "i2s-sysclk",
+>  };
+>  static const char *x1830_lcd_groups[] = {
+> -	"lcd-rgb-18bit", "lcd-slcd-8bit", "lcd-slcd-16bit", "lcd-no-pins",
+> +	"lcd-tft-8bit", "lcd-tft-24bit", "lcd-slcd-8bit", "lcd-slcd-16bit",
+>  };
+>  static const char *x1830_pwm0_groups[] = { "pwm0-b", "pwm0-c", };
+>  static const char *x1830_pwm1_groups[] = { "pwm1-b", "pwm1-c", };
+> --
+> 2.7.4
 > 
-> 	pr_emerg( ... );
-> 
-> 	if (spin_trylock(&lock))
-> 		return;
-> 
-> 	hw_failure_emergency_poweroff(ms_until_forced);
-> 
-> 	orderly_poweroff(true);
-> }
-> 
-> No need of prot_power_off_triggered and the spin_lock can be declared
-> static inside the function.
 
-I think this makes perfect sense. My thinking just jammed to replacing
-the mutex thermal-core used with a spin-lock using similar logic. I
-guess this could even be just an atomic cmpxchg (or equivalent, I don't
-remember what atomic abstractions we have) just to return if function
-has been previously executed. Well, the spin_trylock() should work just
-fine as far as I can say. So - thanks.
-
-
-Best Regards
-	Matti Vaittinen
 
