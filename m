@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBA46362DCD
-	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 06:57:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D343362DE5
+	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 07:32:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235569AbhDQE5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Apr 2021 00:57:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36428 "EHLO
+        id S230207AbhDQFdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Apr 2021 01:33:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230189AbhDQE5l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Apr 2021 00:57:41 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5040DC061760
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 21:57:14 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id x7so28515938wrw.10
-        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 21:57:14 -0700 (PDT)
+        with ESMTP id S229614AbhDQFdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Apr 2021 01:33:06 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DDA4C06175F
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 22:32:39 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id g9so12566509wrx.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Apr 2021 22:32:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=JrhmhIl/zhGbk6XFbxC+wKuQyPiAESBYDekvQYnTwUo=;
-        b=kTENIkt3ohnfY8gzDt9X9UpyWfrG2z+vcRKHpiVcW37n2oW6MxYYRforPRt0I/4Vq6
-         u8Lffpmzm85G7upERi/9EcMjIE3G4xAVRqBmTi3gUbwkx09ej1uxI0SvcxXL+Pf4nphc
-         0IQcI+rVpHRGaqwFXkCDqBQSUQCPTWF5EQD2qn0MoJUw2acoz0OIE4Fuga6iVMjgCQ7i
-         xR/NlQJgxgsmLlui/aDmOqoDbPE060sdl9Fyv4U2ieQ14l371ZGLNDJptHz7hyCAaQ4P
-         tEq3CqomTDQM1L2xAgIokyu0W64+VkosDXPANrnV3gh+fejePG2/Mf+ZYTXSbuIPmHIs
-         dipg==
+        bh=Yel8kZ2Tma5qDHkl5VF5hUJv3VRyJBHjD01XcbFMm7o=;
+        b=FQeRAuHlScrBu6MaDSe9PflLWcLWOp7EliDRc9b5tvICvRAMo75ftKKbT1k1wZ6eJN
+         rW+6UpKSlakpb0vJdaoOyAXDMLYZMbRxMsjqRTOazR5LHZ4gbH/1045yCfA8YpV5osKA
+         2qJ3BMMT92CpfwV7WxWhg9xFX6V7xXrZX/d1UOas4dtwL8cDN+L4OC2CiGzsPZNrcEj3
+         IIQTBaeApIn/e36fWpvlutCVAS3oaXzYDLCyXl50k3hamJSDkB3FWoUGaMAyJkozGGns
+         CNYjbms2JALKoPLg+gNdtLKkblqV1L1ymmzQ6m81wNUY2FSdsIoDZz+UwzlOR9n0NHHl
+         MTtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=JrhmhIl/zhGbk6XFbxC+wKuQyPiAESBYDekvQYnTwUo=;
-        b=jYCPAGqdVu4PdILZ770OvtZkA87K7ubGJUVb90NM+VEXfxeU+IZOeACOSy9Gbg510c
-         YInM3Gf67ebZeK532PvMAIIaHNirQI3faJ8CzYIv/OMtQxEjiZy2EX9veKqB5w2oMbiy
-         6xWIcJQWmtyiZwHoJgyl/KtpzaRdP4jRFgdrSw0lGEyvKI9hyDK6F5dyVqy0LiftNBf2
-         XFoGXhLvI5pa70MnrXqEfASC2GKV/Q5S6ZHFHXForKozCa1CYo6ekuy+Yoj67YNpsbZF
-         HywqqSyOa2ZE4VcnQeI94Fner6U2QZTQdLoxcCQoDX4XL3v04EU+7LjoEVYHwmcpllRl
-         xrzQ==
-X-Gm-Message-State: AOAM5321kTxS/MU7kh45Mimm3CsiLXPQMidfkSNeWGX7OfEcyxKhIuwa
-        c/qb2dDVkpYpBF+1+YmLG0bJXQ==
-X-Google-Smtp-Source: ABdhPJwdlA0oLxm64mxca7Gh2rEvsG06SVMGsYf7lk9AZu4FeXneCvbU8Tt+uVhYxvDI91e4aX7SXA==
-X-Received: by 2002:adf:efc9:: with SMTP id i9mr2414964wrp.173.1618635432685;
-        Fri, 16 Apr 2021 21:57:12 -0700 (PDT)
+        bh=Yel8kZ2Tma5qDHkl5VF5hUJv3VRyJBHjD01XcbFMm7o=;
+        b=KEL88FleT8ENfxVTSHdvjVXOOkXcqha+TBDWnN2+7iq0YnTDe6T68QZhmMVUDFKkFv
+         NNrsyCU4v1I8Y7E3zY0jd0OVr1rDAMZ3a+4relvKRbyHx4lDaDvSRkcS+SI4FuMbRdnM
+         pwhLqyX06hAkrj28eW7SwHV9h0Pom/xo5CoBLgWMZSKks6m6Jb5ctNIGC2phdKyW8Z9z
+         CCEmGppbdoE4U5INj5niboh1xyBv5kBObFDO8/AlUG/wdT0+f9HBqx0cuidOQYf4+Bo5
+         iZmnq+tka0amCudEtjvxJ7YiMdogrczAVuZ77a+SFo6nM6dAgGwGx/JL91EraO6ItZ/Z
+         4+9w==
+X-Gm-Message-State: AOAM5333bcTdbFeB11mGdEm3hNUa5382HOfjpDn0ufNn2KD+LMv9UNs4
+        2TR9K1BNtkIYxdc7tucGWjFRlQ==
+X-Google-Smtp-Source: ABdhPJw61fNpL5fSjrTieaEhqFpiY7r82WcRE8yKeIbtOkcHwNUSzz6t/vjSZhernYbDulhiaFEzTQ==
+X-Received: by 2002:a5d:6d41:: with SMTP id k1mr2702788wri.66.1618637556090;
+        Fri, 16 Apr 2021 22:32:36 -0700 (PDT)
 Received: from ?IPv6:2a01:e34:ed2f:f020:689d:e652:825c:501e? ([2a01:e34:ed2f:f020:689d:e652:825c:501e])
-        by smtp.googlemail.com with ESMTPSA id x25sm11567040wmj.34.2021.04.16.21.57.10
+        by smtp.googlemail.com with ESMTPSA id y17sm13822381wrq.76.2021.04.16.22.32.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Apr 2021 21:57:12 -0700 (PDT)
+        Fri, 16 Apr 2021 22:32:35 -0700 (PDT)
 Subject: Re: [PATCH v7 2/9] reboot: thermal: Export hardware protection
  shutdown
 To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
@@ -78,8 +78,8 @@ Cc:     Mark Brown <broonie@kernel.org>, Kees Cook <keescook@chromium.org>,
 References: <cover.1618377272.git.matti.vaittinen@fi.rohmeurope.com>
  <adf417797006c996605a03c8bacfb4961e8f0b42.1618377272.git.matti.vaittinen@fi.rohmeurope.com>
 From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <7e231384-77c9-d32d-a0e0-63b735072b2d@linaro.org>
-Date:   Sat, 17 Apr 2021 06:57:10 +0200
+Message-ID: <ce0918d9-bedb-e48f-5779-c0ef47c6909d@linaro.org>
+Date:   Sat, 17 Apr 2021 07:32:33 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
@@ -119,19 +119,14 @@ On 14/04/2021 07:52, Matti Vaittinen wrote:
 > no odd corner-cases have been tested).
 > 
 > Any testing for thermal shutdown is appreciated.
-
-You can test it easily by enabling the option CONFIG_THERMAL_EMULATION
-
-Then in any thermal zone:
-
-Assuming the critical temp is below the one specified in the command:
-
-echo 100000 > /sys/class/thermal/thermal_zone0/emul_temp
-
 > ---
 >  drivers/thermal/thermal_core.c | 63 ++-----------------------
 >  include/linux/reboot.h         |  1 +
 >  kernel/reboot.c                | 86 ++++++++++++++++++++++++++++++++++
+
+Please send a patch implementing the reboot/shutdown and then another
+one replacing the thermal shutdown code by a call to the new API.
+
 >  3 files changed, 91 insertions(+), 59 deletions(-)
 > 
 > diff --git a/drivers/thermal/thermal_core.c b/drivers/thermal/thermal_core.c
@@ -324,11 +319,34 @@ echo 100000 > /sys/class/thermal/thermal_zone0/emul_temp
 > +	spin_lock_irqsave(&poweroff_lock, flags);
 > +	if (prot_power_off_triggered) {
 > +		spin_unlock(&poweroff_lock);
+
+Why not spin_unlock_irqrestore() ?
+
 > +		return;
 > +	}
 > +	prot_power_off_triggered = true;
 > +	spin_unlock_irqrestore(&poweroff_lock, flags);
-> +
+
+Why not take the spin_lock definitively for all the procedure ?
+
+eg.
+
+{
+	...
+
+	pr_emerg( ... );
+
+	if (spin_trylock(&lock))
+		return;
+
+	hw_failure_emergency_poweroff(ms_until_forced);
+
+	orderly_poweroff(true);
+}
+
+No need of prot_power_off_triggered and the spin_lock can be declared
+static inside the function.
+
 > +	/*
 > +	 * Queue a backup emergency shutdown in the event of
 > +	 * orderly_poweroff failure
