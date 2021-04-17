@@ -2,171 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90502362E69
-	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 09:55:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45E65362E8F
+	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 10:37:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235968AbhDQHzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Apr 2021 03:55:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46636 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230460AbhDQHzK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Apr 2021 03:55:10 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E6CBC061574
-        for <devicetree@vger.kernel.org>; Sat, 17 Apr 2021 00:54:44 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id e8-20020a17090a7288b029014e51f5a6baso10610669pjg.2
-        for <devicetree@vger.kernel.org>; Sat, 17 Apr 2021 00:54:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=kyDOfNlO5v5BNocRUhW3soIeQiOs29dwPp3e5LBPghA=;
-        b=ZpSz0nHBHKx6SCNZijL6Y+WXj9cWQ4MoEeV3tf+u0cLeL3es/YPptsX/GJzjPfEdwJ
-         zOtUqAXSKu4afgcZx79N08Iw0CxTQmubHheJdCzYUhBhTN3u/Ol1F03/0CznvmbfS+hM
-         rPSdfIMM+/HrizcMi9p7aI6+1Lo/K4u0vTENzexJOtyt8JgE0B5Wz1ipZp1r2NaYnqIv
-         iViO1gBP1AWenpyRCC6jTJYj7qyHLQjfxKpfWf83YKOlPloY4/SLWLyEwkkduXH68u2K
-         SSJtIqCtkhiqq3jT3Q9v0fQACscFnP4VAiMTF+nh9WX5a3LvtqV/htu6vmTeH94LxeDu
-         Qgcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=kyDOfNlO5v5BNocRUhW3soIeQiOs29dwPp3e5LBPghA=;
-        b=trD6s8aagAe9mnpOZByL/SkZMN9w/SI5YfEEYQ3LqR0fEhN5aOcnDVqNJ0TovvToie
-         tww9oXOldMk5ZAZXSOTl0nYGWQ/9pSBR9E8j3wO08cDBg2YdrXNL4Dk1UHe2ynDQWHE2
-         Ye7IYw5dB3S2pk6nI35Q8K/ZXnYFFWtaWvsnN5I4ftSv6+7zVTxpiwaNm8a0UaUirLwb
-         v3S4gMVyQKyTd5VdMqoY8SstCKSonzuVgQE7v20NyvGwtOvY3OhK/kxXaU71e14E+iKB
-         4EA3XbbxHv5nVwYoFTH/PhKbc6iZHASjNMhdipL4GTqUIMVSAMiaXp5FLqo6Qrl9zCeB
-         hfjQ==
-X-Gm-Message-State: AOAM533nO+NIrhNZdIDYoxyvxzsWw3XIEhZdfG23TlsvrVk50iXHVioS
-        LSuzXHxq6D7EQIa7E66PIisz1g==
-X-Google-Smtp-Source: ABdhPJzUjKIBSGFaO3HxivB8L2xHV1ZXaT7Q/92d2bWn57qZ+nOrC+gStN/ipU/dzn0BTCIRGFS9Zw==
-X-Received: by 2002:a17:90a:6385:: with SMTP id f5mr13821314pjj.212.1618646084083;
-        Sat, 17 Apr 2021 00:54:44 -0700 (PDT)
-Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id w75sm7087179pfc.135.2021.04.17.00.54.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Apr 2021 00:54:43 -0700 (PDT)
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Kalle Valo <kvalo@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com, Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH v3] brcmfmac: support parse country code map from DT
-Date:   Sat, 17 Apr 2021 15:54:28 +0800
-Message-Id: <20210417075428.2671-1-shawn.guo@linaro.org>
-X-Mailer: git-send-email 2.17.1
+        id S231386AbhDQIhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Apr 2021 04:37:32 -0400
+Received: from muru.com ([72.249.23.125]:55464 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229631AbhDQIhb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 17 Apr 2021 04:37:31 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 050CA80CD;
+        Sat, 17 Apr 2021 08:38:22 +0000 (UTC)
+Date:   Sat, 17 Apr 2021 11:37:01 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Dario Binacchi <dariobin@libero.it>
+Cc:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Bin Meng <bmeng.cn@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-omap <linux-omap@vger.kernel.org>
+Subject: Re: [PATCH 0/2] fdt: translate address if #size-cells = <0>
+Message-ID: <YHqeLe/mqzu5OZpg@atomide.com>
+References: <1727466283.11523.1617746554330@mail1.libero.it>
+ <CAL_JsqLd+BxW9T99Sx9vgEkxdbMFe+tL7X_nZ7ExvRxVd_9GNQ@mail.gmail.com>
+ <1044574275.383115.1617779265390@mail1.libero.it>
+ <CAL_JsqLcus=Y5nOuV1wiAiVb1mTq9N8xqJpGJD6ip+Ec_6YDyw@mail.gmail.com>
+ <a197b5d8-621b-6655-e571-2877d007cd4c@kernel.org>
+ <116337570.107804.1617913442196@mail1.libero.it>
+ <8f232b81-4c83-54db-bcbd-2cae78ede814@kernel.org>
+ <333530206.539702.1618169440615@mail1.libero.it>
+ <a17dec03-d98c-0aac-0bbb-eeaa11f156f3@kernel.org>
+ <1627640615.696710.1618432773724@mail1.libero.it>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1627640615.696710.1618432773724@mail1.libero.it>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With any regulatory domain requests coming from either user space or
-802.11 IE (Information Element), the country is coded in ISO3166
-standard.  It needs to be translated to firmware country code and
-revision with the mapping info in settings->country_codes table.
-Support populate country_codes table by parsing the mapping from DT.
+* Dario Binacchi <dariobin@libero.it> [210414 20:40]:
+> > Il 12/04/2021 09:41 Tero Kristo <kristo@kernel.org> ha scritto:
+> > The change on the DT itself would be pretty large, removing all clock 
+> > nodes and modifying any existing handles towards the clock nodes, and 
+> > this would impact all OMAP architectures.
+> > 
+> > Anyways, it is mostly up-to Tony how he wants to see the DT change, as 
+> > he is the maintainer for the OMAP family DT data.
 
-The BRCMF_BUSTYPE_SDIO bus_type check gets separated from general DT
-validation, so that country code can be handled as general part rather
-than SDIO bus specific one.
+While I think all the clocks should use a similar binding to the clkctrl
+binding, I don't know if it makes sense to start changing things around
+at such a large scale.
 
-Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
----
-Changes for v3:
- - Add missing terminating '\n' in brcmf_dbg(INFO, ...) format string.
+Certainly if somebody does the patches and they can be tested to not cause
+regressions, sure why not :)
 
- .../wireless/broadcom/brcm80211/brcmfmac/of.c | 57 ++++++++++++++++++-
- 1 file changed, 55 insertions(+), 2 deletions(-)
+> > I am just raising the opinion here that from kernel point of view, 
+> > adding the missing size cells seems unnecessary, and I can't see why 
+> > u-boot can't be changed to support the existing broken DT. It is broken 
+> > now, and it will be broken with the addition of the size cells in place, 
+> > and the actual "neat" end result would be to get rid of the clock nodes 
+> > completely.
+> 
+> I'll fix U-boot.
+> Thanks for your explanations.
+> Hope for SSC patch review from you and/or some TI MAINTAINER.
 
-diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
-index a7554265f95f..2f7bc3a70c65 100644
---- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
-+++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
-@@ -12,12 +12,59 @@
- #include "common.h"
- #include "of.h"
- 
-+static int brcmf_of_get_country_codes(struct device *dev,
-+				      struct brcmf_mp_device *settings)
-+{
-+	struct device_node *np = dev->of_node;
-+	struct brcmfmac_pd_cc_entry *cce;
-+	struct brcmfmac_pd_cc *cc;
-+	int count;
-+	int i;
-+
-+	count = of_property_count_strings(np, "brcm,ccode-map");
-+	if (count < 0) {
-+		/* The property is optional, so return success if it doesn't
-+		 * exist. Otherwise propagate the error code.
-+		 */
-+		return (count == -EINVAL) ? 0 : count;
-+	}
-+
-+	cc = devm_kzalloc(dev, sizeof(*cc) + count * sizeof(*cce), GFP_KERNEL);
-+	if (!cc)
-+		return -ENOMEM;
-+
-+	cc->table_size = count;
-+
-+	for (i = 0; i < count; i++) {
-+		const char *map;
-+
-+		cce = &cc->table[i];
-+
-+		if (of_property_read_string_index(np, "brcm,ccode-map",
-+						  i, &map))
-+			continue;
-+
-+		/* String format e.g. US-Q2-86 */
-+		if (sscanf(map, "%2c-%2c-%d", cce->iso3166, cce->cc,
-+			   &cce->rev) != 3)
-+			brcmf_err("failed to read country map %s\n", map);
-+		else
-+			brcmf_dbg(INFO, "%s-%s-%d\n", cce->iso3166, cce->cc,
-+				  cce->rev);
-+	}
-+
-+	settings->country_codes = cc;
-+
-+	return 0;
-+}
-+
- void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
- 		    struct brcmf_mp_device *settings)
- {
- 	struct brcmfmac_sdio_pd *sdio = &settings->bus.sdio;
- 	struct device_node *root, *np = dev->of_node;
- 	int irq;
-+	int err;
- 	u32 irqf;
- 	u32 val;
- 
-@@ -43,8 +90,14 @@ void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
- 		of_node_put(root);
- 	}
- 
--	if (!np || bus_type != BRCMF_BUSTYPE_SDIO ||
--	    !of_device_is_compatible(np, "brcm,bcm4329-fmac"))
-+	if (!np || !of_device_is_compatible(np, "brcm,bcm4329-fmac"))
-+		return;
-+
-+	err = brcmf_of_get_country_codes(dev, settings);
-+	if (err)
-+		brcmf_err("failed to get OF country code map (err=%d)\n", err);
-+
-+	if (bus_type != BRCMF_BUSTYPE_SDIO)
- 		return;
- 
- 	if (of_property_read_u32(np, "brcm,drive-strength", &val) == 0)
--- 
-2.17.1
+Best to fix the issues first, then make any clean-up patches a separate
+series.
 
+Regards,
+
+Tony
