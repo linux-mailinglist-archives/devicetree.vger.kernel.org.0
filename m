@@ -2,213 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D9583637FE
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 00:04:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9809363802
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 00:17:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232491AbhDRWE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Apr 2021 18:04:29 -0400
-Received: from relay04.th.seeweb.it ([5.144.164.165]:51111 "EHLO
-        relay04.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232357AbhDRWE3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Apr 2021 18:04:29 -0400
-Received: from [10.0.20.3] (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 96E351F60D;
-        Sun, 18 Apr 2021 23:54:32 +0200 (CEST)
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-Subject: Re: [PATCH v6 2/4] leds: Add driver for Qualcomm LPG
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        id S232023AbhDRWRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Apr 2021 18:17:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59910 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230258AbhDRWRd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Apr 2021 18:17:33 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F973C06174A;
+        Sun, 18 Apr 2021 15:17:03 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id y5-20020a05600c3645b0290132b13aaa3bso5286368wmq.1;
+        Sun, 18 Apr 2021 15:17:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=MakLW4/ABJt5A2wbd0oookNXhTi2QU35p1hgi1JeVaQ=;
+        b=RIcsx4Qj/fYUqHsay8hlOGfVyRR9i3jEw6oCGvUEWEXprIcJ3NvqfYRqeKU+q5clT4
+         E8G9J3UgbBrz8cUBc0efK2kfZYH1NV9jSJyPbeDbl5kOe7Cae8HM7oTdJU3pRGksemBu
+         zyMoVKbb5Ek89cIqUkp35oyCMGTjHOdbJsd/i39iXBoyacSwrB1zMdcvMrhJf+Deme4r
+         6+sTnoUqxgLUQEHna2l2YG6QpZXNcfAmYRFLQXz0P/RSrNoJQ0JcXNOlIISd5IiSZyNa
+         KQIUHLMVc9CmozdgWYGbFtH49NHsPAQrDfpP/736+pgSA12Ucjwbpemcpd2sYvNCFjdR
+         08pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=MakLW4/ABJt5A2wbd0oookNXhTi2QU35p1hgi1JeVaQ=;
+        b=Q5lqST0XwSsgqxIE2Q6a4dMwme7TxLq05xBDC0tCRLvGIOHeaGhCvsjS9tYp0t7nk4
+         vRH/SrmkRI0Rrh5o3xebwH/wB3kQxRx4ov0lu3zfbuHAgxew/6VBGvOOLNv3wRlC0a+I
+         X5zAzWUvudWqUrHvB8/ey3ocEdj6dVA/kltltxccPSko2Q9boXxGvoYz8MTS4eka6ne0
+         ZmBy+tK26+p9teU1+MynXF1/P69zNVU8CSvo6ElaMLLY+Qt1S2l4xivSLrErFEpnYJdJ
+         HWkU5d7VRSRzI3PLQRvm0833Mf85/bkJXx3C0G1KO8aPR3/9GxYQchlPZpUic7dTrAlh
+         YlIw==
+X-Gm-Message-State: AOAM530EVzPErprt5PNmeiJdqkhzNZKa5ZvOaHTpfoft4hVNcugBJTBA
+        SU/sKYT4pnZoKF7mtQCIj3VEK2g60No=
+X-Google-Smtp-Source: ABdhPJwXcQQ0S/0sj9OBcptSDCVIfr5v3KiLoVygwWGT/UNTo5Qp4hhb6/3ncjo7xost7PYxIxnFoA==
+X-Received: by 2002:a05:600c:35cc:: with SMTP id r12mr2504688wmq.147.1618784222206;
+        Sun, 18 Apr 2021 15:17:02 -0700 (PDT)
+Received: from pop-os.localdomain ([2a01:4b00:8534:a300:35c9:f774:7b2:b3ba])
+        by smtp.gmail.com with ESMTPSA id p18sm19409239wrs.68.2021.04.18.15.17.01
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 18 Apr 2021 15:17:01 -0700 (PDT)
+Date:   Sun, 18 Apr 2021 23:17:00 +0100
+From:   Joe Sandom <joe.g.sandom@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Martin Botka <martin.botka1@gmail.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pwm@vger.kernel.org
-References: <20201021201224.3430546-1-bjorn.andersson@linaro.org>
- <20201021201224.3430546-3-bjorn.andersson@linaro.org>
-Message-ID: <881fb5a3-fb51-3967-63de-a09950839855@somainline.org>
-Date:   Sun, 18 Apr 2021 23:54:32 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.1
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v8 1/2] Added AMS tsl2591 driver implementation
+Message-ID: <20210418221659.iyzihpmgkggsb5id@pop-os.localdomain>
+References: <20210416174902.9036-1-joe.g.sandom@gmail.com>
+ <CAHp75VeSNDdY_jUsgy06mLpLVXnuyw3NjvxJBN6D-cxV5-VvUg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20201021201224.3430546-3-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75VeSNDdY_jUsgy06mLpLVXnuyw3NjvxJBN6D-cxV5-VvUg@mail.gmail.com>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
-
-On 10/21/20 10:12 PM, Bjorn Andersson wrote:
-> The Light Pulse Generator (LPG) is a PWM-block found in a wide range of
-> PMICs from Qualcomm. It can operate on fixed parameters or based on a
-> lookup-table, altering the duty cycle over time - which provides the
-> means for e.g. hardware assisted transitions of LED brightness.
+On Sat, Apr 17, 2021 at 03:50:16PM +0300, Andy Shevchenko wrote:
+> On Fri, Apr 16, 2021 at 8:49 PM Joe Sandom <joe.g.sandom@gmail.com> wrote:
+> >
+> > Driver implementation for AMS/TAOS tsl2591 ambient light sensor.
+> >
+> > This driver supports configuration via device tree and sysfs.
+> > Supported channels for raw infrared light intensity,
+> > raw combined light intensity and illuminance in lux.
+> > The driver additionally supports iio events on lower and
+> > upper thresholds.
+> >
+> > This is a very-high sensitivity light-to-digital converter that
+> > transforms light intensity into a digital signal.
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Tested-by: Luca Weiss <luca@z3ntu.xyz>
+> Hmm... It's v8 and the subject line is wrongly formatted.
+> Please add the corresponding prefix "iio: light: ..."
+> 
+Thanks for pointing that out Andy. I'll be sure to correct this in v9.
 
-
-Thanks for these patches.  I have tested them successfully on the Sony 
-Xperia XA2 (Discovery, Nile platform) with the leds on the PM660l - feel 
-free to add my Tested-by.  Should I send the configuration your way for 
-inclusion in this patch, or submit them separately (either applied 
-after, or included as separate patches in the next version of this series)?
-
-> +/**
-> + * struct lpg_data - initialization data
-> + * @lut_base:		base address of LUT block
-> + * @lut_size:		number of entries in LUT
-> + * @triled_base:	base address of TRILED
-> + * @pwm_9bit_mask:	bitmask for switching from 6bit to 9bit pwm
-
-
-Our downstream kernel derives this from the "LPG subtype" for each 
-distinct channel, read from register offset +0x5.  A value of 0xb is 
-subtype "PWM" with a shift of 2, a value of 0x11 is subtype "LPG_LITE" 
-with a shift of 4.  Can we do the same here instead of hardcoding it for 
-all channels in the LPG at once?  How should we determine if the mask is 
-one or two bits wide, for the 3<<4 case?
-
-> + * @num_channels:	number of channels in LPG
-> + * @channels:		list of channel initialization data
-> + */
-
-> +	if (ping_pong) {
-> +		if (len % 2)
-> +			hi_pause = 0;
-> +		else
-> +			hi_pause = pattern[len + 1 / 2].delta_t;
-
-
-len + 1 should be wrapped in parentheses just like the reassignment to 
-len= below, otherwise this is always an out of bounds read (at len + 0).
-
-> +		lo_pause = pattern[len - 1].delta_t;
-> +
-> +		len = (len + 1) / 2;
-> +	} else {
-> +		hi_pause = pattern[len - 1].delta_t;
-> +		lo_pause = 0;
-> +	}
-> +
-> +	ret = lpg_lut_store(lpg, pattern, len, &lo_idx, &hi_idx);
-> +	if (ret < 0)
-> +		goto out;
-> +
-> +	for (i = 0; i < led->num_channels; i++) {
-> +		chan = led->channels[i];
-> +
-> +		chan->ramp_duration_ms = pattern[0].delta_t * len;
-
-
-Perhaps this could store the duration of a single step instead, since 
-the only use in lpg_apply_lut_control divides it by pattern length again?
-
-> +		chan->ramp_ping_pong = ping_pong;
-> +		chan->ramp_oneshot = repeat != -1;
-> +
-> +		chan->ramp_lo_pause_ms = lo_pause;
-> +		chan->ramp_hi_pause_ms = hi_pause;
-> +
-> +		chan->pattern_lo_idx = lo_idx;
-> +		chan->pattern_hi_idx = hi_idx;
-> +	}
-> +
-> +out:
-> +	return ret;
-> +}
-
-> +static int lpg_init_lut(struct lpg *lpg)
-> +{
-> +	const struct lpg_data *data = lpg->data;
-> +	size_t bitmap_size;
-> +
-> +	if (!data->lut_base)
-> +		return 0;
-> +
-> +	lpg->lut_base = data->lut_base;
-> +	lpg->lut_size = data->lut_size;
-> +
-> +	bitmap_size = BITS_TO_LONGS(lpg->lut_size) * sizeof(unsigned long);
-> +	lpg->lut_bitmap = devm_kzalloc(lpg->dev, bitmap_size, GFP_KERNEL);
-
-
-Would it be nicer to use BITS_TO_BYTES here, or otherwise 
-devm_kcalloc(..., bitmap_size, sizeof(long), ...) without mutiplying 
-with sizeof(unsigned long)?
-
-> +
-> +	bitmap_clear(lpg->lut_bitmap, 0, lpg->lut_size);
-> +	return lpg->lut_bitmap ? 0 : -ENOMEM;
-> +}
-> +
-> +static int lpg_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *np;
-> +	struct lpg *lpg;
-> +	int ret;
-> +	int i;
-> +
-> +	lpg = devm_kzalloc(&pdev->dev, sizeof(*lpg), GFP_KERNEL);
-> +	if (!lpg)
-> +		return -ENOMEM;
-> +
-> +	lpg->data = of_device_get_match_data(&pdev->dev);
-> +	if (!lpg->data)
-> +		return -EINVAL;
-> +
-> +	lpg->dev = &pdev->dev;
-> +
-> +	lpg->map = dev_get_regmap(pdev->dev.parent, NULL);
-> +	if (!lpg->map) {
-> +		dev_err(&pdev->dev, "parent regmap unavailable\n");
-> +		return -ENXIO;
-> +	}
-> +
-> +	ret = lpg_init_channels(lpg);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = lpg_init_triled(lpg);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = lpg_init_lut(lpg);
-> +	if (ret < 0)
-> +		return ret;
-
-
-How about turning these returns into dev_err_probe?  I'm not sure if 
-that's the expected way to go nowadays, but having some form of logging 
-when a driver fails to probe is always good to have.
-
-Thanks!
-Marijn
-
-> +
-> +	for_each_available_child_of_node(pdev->dev.of_node, np) {
-> +		ret = lpg_add_led(lpg, np);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	for (i = 0; i < lpg->num_channels; i++)
-> +		lpg_apply_dtest(&lpg->channels[i]);
-> +
-> +	ret = lpg_add_pwm(lpg);
-> +	if (ret)
-> +		return ret;
-> +
-> +	platform_set_drvdata(pdev, lpg);
-> +
-> +	return 0;
-> +}
+> Otherwise it's in very good shape.
+> 
+> ...
+> 
+> > +/* TSL2591 enable register definitions */
+> > +#define TSL2591_PWR_ON              0x01
+> > +#define TSL2591_PWR_OFF             0x00
+> 
+> > +#define TSL2591_ENABLE_ALS          0x02
+> > +#define TSL2591_ENABLE_ALS_INT      0x10
+> > +#define TSL2591_ENABLE_SLEEP_INT    0x40
+> > +#define TSL2591_ENABLE_NP_INT       0x80
+> 
+> Is it a bitfield?
+> 
+> ...
+> 
+> > +       als_lower_l = als_lower_threshold;
+> 
+> >> 0, but it's up to you.
+> 
+> > +       als_lower_h = als_lower_threshold >> 8;
+> 
+> ...
+> 
+> > +       als_upper_l = als_upper_threshold;
+> > +       als_upper_h = als_upper_threshold >> 8;
+> 
+> Ditto.
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
