@@ -2,614 +2,483 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36A38363351
-	for <lists+devicetree@lfdr.de>; Sun, 18 Apr 2021 06:24:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA59736345F
+	for <lists+devicetree@lfdr.de>; Sun, 18 Apr 2021 11:08:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232237AbhDREZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Apr 2021 00:25:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56592 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231974AbhDREZC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Apr 2021 00:25:02 -0400
-Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62742C06174A
-        for <devicetree@vger.kernel.org>; Sat, 17 Apr 2021 21:24:32 -0700 (PDT)
-Received: by mail-il1-x12b.google.com with SMTP id i22so21723772ila.11
-        for <devicetree@vger.kernel.org>; Sat, 17 Apr 2021 21:24:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=7Yk7wDR5DVLigW8+aCafiruNBKM5TwcUcMGWu4mLtg0=;
-        b=Z5vgfGPS72+uOuBhyoYQHeT77NEAdWuEV0xordn3BP93Px0x/eNLQcy3MyT1cj2GEU
-         Tv/7ov+BqLNTktOdzPxaQtTulGp4CozLo/MTZfAHzhDhH4AfsXJetxSgBIawtqE2wD9b
-         BRHxqbD2IHFPJPc5WBrFodTGE9Ntvqq5EDy5E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=7Yk7wDR5DVLigW8+aCafiruNBKM5TwcUcMGWu4mLtg0=;
-        b=cVCuUbru/mTtRUmVcYPtAbd3a1bemZnDkjRJGASwlhFW24pbmKqzC0PFTBkt+rsSOo
-         vN7n9Ontj+jig96q9/qMRzb0gh7L9FDyUf600GH3OG1j+fbneMFJCvjUMLxyaVwGUE1o
-         jSG7XAhSMQmbQlmoN8k37cKhNA2ELjapV4uTOjasadCvq1GW0xIJOKT3wOcVEt2I3j40
-         1g11y2Q3RYocYU5LqYKAgQaTfgAD3bdFbJquucg3JSemNIypJaHbDHfPlUfZ1k4nZRCv
-         wHlidpVpUyYu/J37B9QypLj75A6uyCLCcrEY+6dpmhUt9N1V62WQek4eE9Tx7+eD69N2
-         csGA==
-X-Gm-Message-State: AOAM532c+1h0kkhTzY+lu5y8oUDz4Oqberr3WVATaF1I9vRXHUaw835o
-        3QhiUm8fRsBnwxa05lkkfot+0bR18n0Zh73moEXi
-X-Google-Smtp-Source: ABdhPJyH4zlvjSkE3YLi25ug0PTDgsPYtVwooLmwW3swhg9mKZ5IckwsYc5Ze10/HQ81xj6KsdE+MlZ4s0YNCwzcQ0c=
-X-Received: by 2002:a92:a30f:: with SMTP id a15mr10147998ili.126.1618719870902;
- Sat, 17 Apr 2021 21:24:30 -0700 (PDT)
+        id S229777AbhDRJId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Apr 2021 05:08:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36316 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229652AbhDRJIc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 18 Apr 2021 05:08:32 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DAA37610CD;
+        Sun, 18 Apr 2021 09:08:01 +0000 (UTC)
+Date:   Sun, 18 Apr 2021 10:08:30 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Joe Sandom <joe.g.sandom@gmail.com>
+Cc:     andy.shevchenko@gmail.com, Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 1/2] Added AMS tsl2591 driver implementation
+Message-ID: <20210418100830.6d7bc975@jic23-huawei>
+In-Reply-To: <20210416174902.9036-1-joe.g.sandom@gmail.com>
+References: <20210416174902.9036-1-joe.g.sandom@gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20210303200253.1827553-1-atish.patra@wdc.com> <20210303200253.1827553-4-atish.patra@wdc.com>
- <7eb2b954-6b0a-b143-9107-57f4dd90d0cf@ghiti.fr> <CAM4kBBJXguCi7n_Y+inWqh5cp3Vq7UtQZz76Lox34ajNvU+Pwg@mail.gmail.com>
- <CAOnJCUJCqVnBjQYuKPZwLUPVipMbm6nPHwA0roQ6+iXQOToEKA@mail.gmail.com>
-In-Reply-To: <CAOnJCUJCqVnBjQYuKPZwLUPVipMbm6nPHwA0roQ6+iXQOToEKA@mail.gmail.com>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Sat, 17 Apr 2021 21:24:18 -0700
-Message-ID: <CAOnJCUJFfnoYdAEEvpvb91z+r3dwJfKo1Ta7=Wg6nFd_j8Vavw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] RISC-V: Initial DTS for Microchip ICICLE board
-To:     Vitaly Wool <vitaly.wool@konsulko.com>
-Cc:     Alex Ghiti <alex@ghiti.fr>, Atish Patra <atish.patra@wdc.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>, Conor.Dooley@microchip.com,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Ivan.Griffin@microchip.com, Lewis.Hanly@microchip.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 17, 2021 at 8:36 PM Atish Patra <atishp@atishpatra.org> wrote:
->
-> On Mon, Mar 29, 2021 at 10:04 AM Vitaly Wool <vitaly.wool@konsulko.com> w=
-rote:
-> >
-> > On Sat, Mar 27, 2021 at 6:24 PM Alex Ghiti <alex@ghiti.fr> wrote:
-> > >
-> > > Hi Atish,
-> > >
-> > > Le 3/3/21 =C3=A0 3:02 PM, Atish Patra a =C3=A9crit :
-> > > > Add initial DTS for Microchip ICICLE board having only
-> > > > essential devices (clocks, sdhci, ethernet, serial, etc).
-> > > > The device tree is based on the U-Boot patch.
-> > > >
-> > > > https://patchwork.ozlabs.org/project/uboot/patch/20201110103414.101=
-42-6-padmarao.begari@microchip.com/
-> > > >
-> > > > Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> > > > ---
-> > > >   arch/riscv/boot/dts/Makefile                  |   1 +
-> > > >   arch/riscv/boot/dts/microchip/Makefile        |   2 +
-> > > >   .../microchip/microchip-mpfs-icicle-kit.dts   |  72 ++++
-> > > >   .../boot/dts/microchip/microchip-mpfs.dtsi    | 329 +++++++++++++=
-+++++
-> > > >   4 files changed, 404 insertions(+)
-> > > >   create mode 100644 arch/riscv/boot/dts/microchip/Makefile
-> > > >   create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs-i=
-cicle-kit.dts
-> > > >   create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs.d=
-tsi
-> > > >
-> > > > diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Mak=
-efile
-> > > > index 7ffd502e3e7b..fe996b88319e 100644
-> > > > --- a/arch/riscv/boot/dts/Makefile
-> > > > +++ b/arch/riscv/boot/dts/Makefile
-> > > > @@ -1,5 +1,6 @@
-> > > >   # SPDX-License-Identifier: GPL-2.0
-> > > >   subdir-y +=3D sifive
-> > > >   subdir-$(CONFIG_SOC_CANAAN_K210_DTB_BUILTIN) +=3D canaan
-> > > > +subdir-y +=3D microchip
-> > > >
-> > > >   obj-$(CONFIG_BUILTIN_DTB) :=3D $(addsuffix /, $(subdir-y))
-> > > > diff --git a/arch/riscv/boot/dts/microchip/Makefile b/arch/riscv/bo=
-ot/dts/microchip/Makefile
-> > > > new file mode 100644
-> > > > index 000000000000..622b12771fd3
-> > > > --- /dev/null
-> > > > +++ b/arch/riscv/boot/dts/microchip/Makefile
-> > > > @@ -0,0 +1,2 @@
-> > > > +# SPDX-License-Identifier: GPL-2.0
-> > > > +dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) +=3D microchip-mpfs-icicle-k=
-it.dtb
-> > >
-> > > I'm playing (or trying to...) with XIP_KERNEL and I had to add the
-> > > following to have the device tree actually builtin the kernel:
-> > >
-> > > diff --git a/arch/riscv/boot/dts/microchip/Makefile
-> > > b/arch/riscv/boot/dts/microchip/Makefile
-> > > index 622b12771fd3..855c1502d912 100644
-> > > --- a/arch/riscv/boot/dts/microchip/Makefile
-> > > +++ b/arch/riscv/boot/dts/microchip/Makefile
-> > > @@ -1,2 +1,3 @@
-> > >   # SPDX-License-Identifier: GPL-2.0
-> > >   dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) +=3D microchip-mpfs-icicle-ki=
-t.dtb
-> > > +obj-$(CONFIG_BUILTIN_DTB) +=3D $(addsuffix .o, $(dtb-y))
-> > >
-> > > Alex
-> >
-> > Yes, I believe this is necessary for BUILTIN_DTB to work on Polarfire,
-> > regardless of whether the kernel is XIP or not.
-> >
->
-> But there is no usecase for BUILTIN_DTB for polarfire except XIP kernel.
-> The bootloaders for polarfire is capable of providing a DTB to kernel.
->
-> If XIP kernel is enabled, the following line in
-> arch/riscv/boot/dts/Makefile should take care of things
->
-(Sorry. The mail was sent by mistake earlier with incomplete response)
-Otherwise, we need a similar change for unleashed as well. No ?
+On Fri, 16 Apr 2021 18:49:01 +0100
+Joe Sandom <joe.g.sandom@gmail.com> wrote:
 
->
-> > Best regards,
-> >    Vitaly
-> >
-> > > > diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-ki=
-t.dts b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-> > > > new file mode 100644
-> > > > index 000000000000..ec79944065c9
-> > > > --- /dev/null
-> > > > +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-> > > > @@ -0,0 +1,72 @@
-> > > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > > > +/* Copyright (c) 2020 Microchip Technology Inc */
-> > > > +
-> > > > +/dts-v1/;
-> > > > +
-> > > > +#include "microchip-mpfs.dtsi"
-> > > > +
-> > > > +/* Clock frequency (in Hz) of the rtcclk */
-> > > > +#define RTCCLK_FREQ          1000000
-> > > > +
-> > > > +/ {
-> > > > +     #address-cells =3D <2>;
-> > > > +     #size-cells =3D <2>;
-> > > > +     model =3D "Microchip PolarFire-SoC Icicle Kit";
-> > > > +     compatible =3D "microchip,mpfs-icicle-kit";
-> > > > +
-> > > > +     chosen {
-> > > > +             stdout-path =3D &serial0;
-> > > > +     };
-> > > > +
-> > > > +     cpus {
-> > > > +             timebase-frequency =3D <RTCCLK_FREQ>;
-> > > > +     };
-> > > > +
-> > > > +     memory@80000000 {
-> > > > +             device_type =3D "memory";
-> > > > +             reg =3D <0x0 0x80000000 0x0 0x40000000>;
-> > > > +             clocks =3D <&clkcfg 26>;
-> > > > +     };
-> > > > +
-> > > > +     soc {
-> > > > +     };
-> > > > +};
-> > > > +
-> > > > +&serial0 {
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&serial1 {
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&serial2 {
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&serial3 {
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&sdcard {
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&emac0 {
-> > > > +     phy-mode =3D "sgmii";
-> > > > +     phy-handle =3D <&phy0>;
-> > > > +     phy0: ethernet-phy@8 {
-> > > > +             reg =3D <8>;
-> > > > +             ti,fifo-depth =3D <0x01>;
-> > > > +     };
-> > > > +};
-> > > > +
-> > > > +&emac1 {
-> > > > +     status =3D "okay";
-> > > > +     phy-mode =3D "sgmii";
-> > > > +     phy-handle =3D <&phy1>;
-> > > > +     phy1: ethernet-phy@9 {
-> > > > +             reg =3D <9>;
-> > > > +             ti,fifo-depth =3D <0x01>;
-> > > > +     };
-> > > > +};
-> > > > diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/ar=
-ch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-> > > > new file mode 100644
-> > > > index 000000000000..b9819570a7d1
-> > > > --- /dev/null
-> > > > +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-> > > > @@ -0,0 +1,329 @@
-> > > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > > > +/* Copyright (c) 2020 Microchip Technology Inc */
-> > > > +
-> > > > +/dts-v1/;
-> > > > +
-> > > > +/ {
-> > > > +     #address-cells =3D <2>;
-> > > > +     #size-cells =3D <2>;
-> > > > +     model =3D "Microchip MPFS Icicle Kit";
-> > > > +     compatible =3D "microchip,mpfs-icicle-kit";
-> > > > +
-> > > > +     chosen {
-> > > > +     };
-> > > > +
-> > > > +     cpus {
-> > > > +             #address-cells =3D <1>;
-> > > > +             #size-cells =3D <0>;
-> > > > +
-> > > > +             cpu@0 {
-> > > > +                     clock-frequency =3D <0>;
-> > > > +                     compatible =3D "sifive,e51", "sifive,rocket0"=
-, "riscv";
-> > > > +                     device_type =3D "cpu";
-> > > > +                     i-cache-block-size =3D <64>;
-> > > > +                     i-cache-sets =3D <128>;
-> > > > +                     i-cache-size =3D <16384>;
-> > > > +                     reg =3D <0>;
-> > > > +                     riscv,isa =3D "rv64imac";
-> > > > +                     status =3D "disabled";
-> > > > +
-> > > > +                     cpu0_intc: interrupt-controller {
-> > > > +                             #interrupt-cells =3D <1>;
-> > > > +                             compatible =3D "riscv,cpu-intc";
-> > > > +                             interrupt-controller;
-> > > > +                     };
-> > > > +             };
-> > > > +
-> > > > +             cpu@1 {
-> > > > +                     clock-frequency =3D <0>;
-> > > > +                     compatible =3D "sifive,u54-mc", "sifive,rocke=
-t0", "riscv";
-> > > > +                     d-cache-block-size =3D <64>;
-> > > > +                     d-cache-sets =3D <64>;
-> > > > +                     d-cache-size =3D <32768>;
-> > > > +                     d-tlb-sets =3D <1>;
-> > > > +                     d-tlb-size =3D <32>;
-> > > > +                     device_type =3D "cpu";
-> > > > +                     i-cache-block-size =3D <64>;
-> > > > +                     i-cache-sets =3D <64>;
-> > > > +                     i-cache-size =3D <32768>;
-> > > > +                     i-tlb-sets =3D <1>;
-> > > > +                     i-tlb-size =3D <32>;
-> > > > +                     mmu-type =3D "riscv,sv39";
-> > > > +                     reg =3D <1>;
-> > > > +                     riscv,isa =3D "rv64imafdc";
-> > > > +                     tlb-split;
-> > > > +                     status =3D "okay";
-> > > > +
-> > > > +                     cpu1_intc: interrupt-controller {
-> > > > +                             #interrupt-cells =3D <1>;
-> > > > +                             compatible =3D "riscv,cpu-intc";
-> > > > +                             interrupt-controller;
-> > > > +                     };
-> > > > +             };
-> > > > +
-> > > > +             cpu@2 {
-> > > > +                     clock-frequency =3D <0>;
-> > > > +                     compatible =3D "sifive,u54-mc", "sifive,rocke=
-t0", "riscv";
-> > > > +                     d-cache-block-size =3D <64>;
-> > > > +                     d-cache-sets =3D <64>;
-> > > > +                     d-cache-size =3D <32768>;
-> > > > +                     d-tlb-sets =3D <1>;
-> > > > +                     d-tlb-size =3D <32>;
-> > > > +                     device_type =3D "cpu";
-> > > > +                     i-cache-block-size =3D <64>;
-> > > > +                     i-cache-sets =3D <64>;
-> > > > +                     i-cache-size =3D <32768>;
-> > > > +                     i-tlb-sets =3D <1>;
-> > > > +                     i-tlb-size =3D <32>;
-> > > > +                     mmu-type =3D "riscv,sv39";
-> > > > +                     reg =3D <2>;
-> > > > +                     riscv,isa =3D "rv64imafdc";
-> > > > +                     tlb-split;
-> > > > +                     status =3D "okay";
-> > > > +
-> > > > +                     cpu2_intc: interrupt-controller {
-> > > > +                             #interrupt-cells =3D <1>;
-> > > > +                             compatible =3D "riscv,cpu-intc";
-> > > > +                             interrupt-controller;
-> > > > +                     };
-> > > > +             };
-> > > > +
-> > > > +             cpu@3 {
-> > > > +                     clock-frequency =3D <0>;
-> > > > +                     compatible =3D "sifive,u54-mc", "sifive,rocke=
-t0", "riscv";
-> > > > +                     d-cache-block-size =3D <64>;
-> > > > +                     d-cache-sets =3D <64>;
-> > > > +                     d-cache-size =3D <32768>;
-> > > > +                     d-tlb-sets =3D <1>;
-> > > > +                     d-tlb-size =3D <32>;
-> > > > +                     device_type =3D "cpu";
-> > > > +                     i-cache-block-size =3D <64>;
-> > > > +                     i-cache-sets =3D <64>;
-> > > > +                     i-cache-size =3D <32768>;
-> > > > +                     i-tlb-sets =3D <1>;
-> > > > +                     i-tlb-size =3D <32>;
-> > > > +                     mmu-type =3D "riscv,sv39";
-> > > > +                     reg =3D <3>;
-> > > > +                     riscv,isa =3D "rv64imafdc";
-> > > > +                     tlb-split;
-> > > > +                     status =3D "okay";
-> > > > +
-> > > > +                     cpu3_intc: interrupt-controller {
-> > > > +                             #interrupt-cells =3D <1>;
-> > > > +                             compatible =3D "riscv,cpu-intc";
-> > > > +                             interrupt-controller;
-> > > > +                     };
-> > > > +             };
-> > > > +
-> > > > +             cpu@4 {
-> > > > +                     clock-frequency =3D <0>;
-> > > > +                     compatible =3D "sifive,u54-mc", "sifive,rocke=
-t0", "riscv";
-> > > > +                     d-cache-block-size =3D <64>;
-> > > > +                     d-cache-sets =3D <64>;
-> > > > +                     d-cache-size =3D <32768>;
-> > > > +                     d-tlb-sets =3D <1>;
-> > > > +                     d-tlb-size =3D <32>;
-> > > > +                     device_type =3D "cpu";
-> > > > +                     i-cache-block-size =3D <64>;
-> > > > +                     i-cache-sets =3D <64>;
-> > > > +                     i-cache-size =3D <32768>;
-> > > > +                     i-tlb-sets =3D <1>;
-> > > > +                     i-tlb-size =3D <32>;
-> > > > +                     mmu-type =3D "riscv,sv39";
-> > > > +                     reg =3D <4>;
-> > > > +                     riscv,isa =3D "rv64imafdc";
-> > > > +                     tlb-split;
-> > > > +                     status =3D "okay";
-> > > > +                     cpu4_intc: interrupt-controller {
-> > > > +                             #interrupt-cells =3D <1>;
-> > > > +                             compatible =3D "riscv,cpu-intc";
-> > > > +                             interrupt-controller;
-> > > > +                     };
-> > > > +             };
-> > > > +     };
-> > > > +
-> > > > +     soc {
-> > > > +             #address-cells =3D <2>;
-> > > > +             #size-cells =3D <2>;
-> > > > +             compatible =3D "simple-bus";
-> > > > +             ranges;
-> > > > +
-> > > > +             cache-controller@2010000 {
-> > > > +                     compatible =3D "sifive,fu540-c000-ccache", "c=
-ache";
-> > > > +                     cache-block-size =3D <64>;
-> > > > +                     cache-level =3D <2>;
-> > > > +                     cache-sets =3D <1024>;
-> > > > +                     cache-size =3D <2097152>;
-> > > > +                     cache-unified;
-> > > > +                     interrupt-parent =3D <&plic>;
-> > > > +                     interrupts =3D <1 2 3>;
-> > > > +                     reg =3D <0x0 0x2010000 0x0 0x1000>;
-> > > > +             };
-> > > > +
-> > > > +             clint@2000000 {
-> > > > +                     compatible =3D "sifive,clint0";
-> > > > +                     reg =3D <0x0 0x2000000 0x0 0xC000>;
-> > > > +                     interrupts-extended =3D <&cpu0_intc 3 &cpu0_i=
-ntc 7
-> > > > +                                             &cpu1_intc 3 &cpu1_in=
-tc 7
-> > > > +                                             &cpu2_intc 3 &cpu2_in=
-tc 7
-> > > > +                                             &cpu3_intc 3 &cpu3_in=
-tc 7
-> > > > +                                             &cpu4_intc 3 &cpu4_in=
-tc 7>;
-> > > > +             };
-> > > > +
-> > > > +             plic: interrupt-controller@c000000 {
-> > > > +                     #interrupt-cells =3D <1>;
-> > > > +                     compatible =3D "sifive,plic-1.0.0";
-> > > > +                     reg =3D <0x0 0xc000000 0x0 0x4000000>;
-> > > > +                     riscv,ndev =3D <186>;
-> > > > +                     interrupt-controller;
-> > > > +                     interrupts-extended =3D <&cpu0_intc 11
-> > > > +                                     &cpu1_intc 11 &cpu1_intc 9
-> > > > +                                     &cpu2_intc 11 &cpu2_intc 9
-> > > > +                                     &cpu3_intc 11 &cpu3_intc 9
-> > > > +                                     &cpu4_intc 11 &cpu4_intc 9>;
-> > > > +             };
-> > > > +
-> > > > +             dma@3000000 {
-> > > > +                     compatible =3D "sifive,fu540-c000-pdma";
-> > > > +                     reg =3D <0x0 0x3000000 0x0 0x8000>;
-> > > > +                     interrupt-parent =3D <&plic>;
-> > > > +                     interrupts =3D <23 24 25 26 27 28 29 30>;
-> > > > +                     #dma-cells =3D <1>;
-> > > > +             };
-> > > > +
-> > > > +             refclk: refclk {
-> > > > +                     compatible =3D "fixed-clock";
-> > > > +                     #clock-cells =3D <0>;
-> > > > +                     clock-frequency =3D <600000000>;
-> > > > +                     clock-output-names =3D "msspllclk";
-> > > > +             };
-> > > > +
-> > > > +             clkcfg: clkcfg@20002000 {
-> > > > +                     compatible =3D "microchip,mpfs-clkcfg";
-> > > > +                     reg =3D <0x0 0x20002000 0x0 0x1000>;
-> > > > +                     reg-names =3D "mss_sysreg";
-> > > > +                     clocks =3D <&refclk>;
-> > > > +                     #clock-cells =3D <1>;
-> > > > +                     clock-output-names =3D "cpu", "axi", "ahb", "=
-envm",       /* 0-3   */
-> > > > +                              "mac0", "mac1", "mmc", "timer",     =
-           /* 4-7   */
-> > > > +                             "mmuart0", "mmuart1", "mmuart2", "mmu=
-art3",     /* 8-11  */
-> > > > +                             "mmuart4", "spi0", "spi1", "i2c0",   =
-           /* 12-15 */
-> > > > +                             "i2c1", "can0", "can1", "usb",       =
-           /* 16-19 */
-> > > > +                             "rsvd", "rtc", "qspi", "gpio0",      =
-           /* 20-23 */
-> > > > +                             "gpio1", "gpio2", "ddrc", "fic0",    =
-           /* 24-27 */
-> > > > +                             "fic1", "fic2", "fic3", "athena", "cf=
-m";        /* 28-32 */
-> > > > +             };
-> > > > +
-> > > > +             serial0: serial@20000000 {
-> > > > +                     compatible =3D "ns16550a";
-> > > > +                     reg =3D <0x0 0x20000000 0x0 0x400>;
-> > > > +                     reg-io-width =3D <4>;
-> > > > +                     reg-shift =3D <2>;
-> > > > +                     interrupt-parent =3D <&plic>;
-> > > > +                     interrupts =3D <90>;
-> > > > +                     current-speed =3D <115200>;
-> > > > +                     clocks =3D <&clkcfg 8>;
-> > > > +                     status =3D "disabled";
-> > > > +             };
-> > > > +
-> > > > +             serial1: serial@20100000 {
-> > > > +                     compatible =3D "ns16550a";
-> > > > +                     reg =3D <0x0 0x20100000 0x0 0x400>;
-> > > > +                     reg-io-width =3D <4>;
-> > > > +                     reg-shift =3D <2>;
-> > > > +                     interrupt-parent =3D <&plic>;
-> > > > +                     interrupts =3D <91>;
-> > > > +                     current-speed =3D <115200>;
-> > > > +                     clocks =3D <&clkcfg 9>;
-> > > > +                     status =3D "disabled";
-> > > > +             };
-> > > > +
-> > > > +             serial2: serial@20102000 {
-> > > > +                     compatible =3D "ns16550a";
-> > > > +                     reg =3D <0x0 0x20102000 0x0 0x400>;
-> > > > +                     reg-io-width =3D <4>;
-> > > > +                     reg-shift =3D <2>;
-> > > > +                     interrupt-parent =3D <&plic>;
-> > > > +                     interrupts =3D <92>;
-> > > > +                     current-speed =3D <115200>;
-> > > > +                     clocks =3D <&clkcfg 10>;
-> > > > +                     status =3D "disabled";
-> > > > +             };
-> > > > +
-> > > > +             serial3: serial@20104000 {
-> > > > +                     compatible =3D "ns16550a";
-> > > > +                     reg =3D <0x0 0x20104000 0x0 0x400>;
-> > > > +                     reg-io-width =3D <4>;
-> > > > +                     reg-shift =3D <2>;
-> > > > +                     interrupt-parent =3D <&plic>;
-> > > > +                     interrupts =3D <93>;
-> > > > +                     current-speed =3D <115200>;
-> > > > +                     clocks =3D <&clkcfg 11>;
-> > > > +                     status =3D "disabled";
-> > > > +             };
-> > > > +
-> > > > +             emmc: mmc@20008000 {
-> > > > +                     compatible =3D "cdns,sd4hc";
-> > > > +                     reg =3D <0x0 0x20008000 0x0 0x1000>;
-> > > > +                     interrupt-parent =3D <&plic>;
-> > > > +                     interrupts =3D <88 89>;
-> > > > +                     pinctrl-names =3D "default";
-> > > > +                     clocks =3D <&clkcfg 6>;
-> > > > +                     bus-width =3D <4>;
-> > > > +                     cap-mmc-highspeed;
-> > > > +                     mmc-ddr-3_3v;
-> > > > +                     max-frequency =3D <200000000>;
-> > > > +                     non-removable;
-> > > > +                     no-sd;
-> > > > +                     no-sdio;
-> > > > +                     voltage-ranges =3D <3300 3300>;
-> > > > +                     status =3D "disabled";
-> > > > +             };
-> > > > +
-> > > > +             sdcard: sdhc@20008000 {
-> > > > +                     compatible =3D "cdns,sd4hc";
-> > > > +                     reg =3D <0x0 0x20008000 0x0 0x1000>;
-> > > > +                     interrupt-parent =3D <&plic>;
-> > > > +                     interrupts =3D <88>;
-> > > > +                     pinctrl-names =3D "default";
-> > > > +                     clocks =3D <&clkcfg 6>;
-> > > > +                     bus-width =3D <4>;
-> > > > +                     disable-wp;
-> > > > +                     cap-sd-highspeed;
-> > > > +                     card-detect-delay =3D <200>;
-> > > > +                     sd-uhs-sdr12;
-> > > > +                     sd-uhs-sdr25;
-> > > > +                     sd-uhs-sdr50;
-> > > > +                     sd-uhs-sdr104;
-> > > > +                     max-frequency =3D <200000000>;
-> > > > +                     status =3D "disabled";
-> > > > +             };
-> > > > +
-> > > > +             emac0: ethernet@20110000 {
-> > > > +                     compatible =3D "cdns,macb";
-> > > > +                     reg =3D <0x0 0x20110000 0x0 0x2000>;
-> > > > +                     interrupt-parent =3D <&plic>;
-> > > > +                     interrupts =3D <64 65 66 67>;
-> > > > +                     local-mac-address =3D [00 00 00 00 00 00];
-> > > > +                     clocks =3D <&clkcfg 4>, <&clkcfg 2>;
-> > > > +                     clock-names =3D "pclk", "hclk";
-> > > > +                     status =3D "disabled";
-> > > > +                     #address-cells =3D <1>;
-> > > > +                     #size-cells =3D <0>;
-> > > > +             };
-> > > > +
-> > > > +             emac1: ethernet@20112000 {
-> > > > +                     compatible =3D "cdns,macb";
-> > > > +                     reg =3D <0x0 0x20112000 0x0 0x2000>;
-> > > > +                     interrupt-parent =3D <&plic>;
-> > > > +                     interrupts =3D <70 71 72 73>;
-> > > > +                     mac-address =3D [00 00 00 00 00 00];
-> > > > +                     clocks =3D <&clkcfg 5>, <&clkcfg 2>;
-> > > > +                     status =3D "disabled";
-> > > > +                     clock-names =3D "pclk", "hclk";
-> > > > +                     #address-cells =3D <1>;
-> > > > +                     #size-cells =3D <0>;
-> > > > +             };
-> > > > +
-> > > > +     };
-> > > > +};
-> > > >
-> > >
-> > > _______________________________________________
-> > > linux-riscv mailing list
-> > > linux-riscv@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-riscv
-> >
-> > _______________________________________________
-> > linux-riscv mailing list
-> > linux-riscv@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-riscv
->
->
->
-> --
-> Regards,
-> Atish
+> Driver implementation for AMS/TAOS tsl2591 ambient light sensor.
+> 
+> This driver supports configuration via device tree and sysfs.
+> Supported channels for raw infrared light intensity,
+> raw combined light intensity and illuminance in lux.
+> The driver additionally supports iio events on lower and
+> upper thresholds.
+> 
+> This is a very-high sensitivity light-to-digital converter that
+> transforms light intensity into a digital signal.
+> 
+> Datasheet: https://ams.com/tsl25911#tab/documents
+> Signed-off-by: Joe Sandom <joe.g.sandom@gmail.com>
+
+Hi Joe,
+
+I was in two minds about whether to just apply this and roll in the below
+suggestions + those Andy made or whether to ask you to do a v9.
+
+The naming and units things below are complex enough that I'm not 100% sure
+I'd get the right so please take a look and clean up those last few
+corners!
+
+Thanks,
+
+Jonathan
 
 
+> ---
+> Changes in v8;
+> - tsl2591_write_raw() - goto after tsl2591_set_als_gain_int_time() not necessary
+> - tsl2591_read_event_value() and tsl2591_write_event_value() - break instead of goto in default case
+> - Introduced tsl2591_info_no_irq iio_info structure which is used when the interrupt is disabled. 
+>   This variant doesn't expose anything that can't be used when the interrupt is disabled
+> - Corrected ordering of includes for <asm/unaligned.h>
+> - Renamed TSL2591_FVAL_TO_ATIME to TSL2591_MSEC_TO_ATIME
+> - Renamed TSL2591_ATIME_TO_FVAL to TSL2591_ATIME_TO_MSEC
+> - Changed TSL2591_STS_ALS* defines to all use BIT for consistency
+> - Use (BIT(4) - 1) instead of value from list for TSL2591_PRST_ALS_INT_CYCLE_MAX
+> - Cleaned up a few blank lines that were unneccesary
+> - Use sysfs_emit() instead of snprintf() in tsl2591_in_illuminance_period_available_show()
+> - Use err_unlock branch instead of err to be clear on mutex_unlock cases
+> - Tidied up use of goto err_unlock in tsl2591_read_raw() to be consistent with other functions
+> 
+> NOTE;
+> - tsl2591_set_als_lower_threshold() and tsl2591_set_als_upper_threshold() forward declaration needed
+>   because tsl2591_set_als_lower_threshold() calls tsl2591_set_als_upper_threshold() and vice versa
+> 
+>  drivers/iio/light/Kconfig   |   11 +
+>  drivers/iio/light/Makefile  |    1 +
+>  drivers/iio/light/tsl2591.c | 1227 +++++++++++++++++++++++++++++++++++
+>  3 files changed, 1239 insertions(+)
+>  create mode 100644 drivers/iio/light/tsl2591.c
+> 
 
---=20
-Regards,
-Atish
+...
+
+> diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
+> index ea376deaca54..d10912faf964 100644
+> --- a/drivers/iio/light/Makefile
+> +++ b/drivers/iio/light/Makefile
+> @@ -48,6 +48,7 @@ obj-$(CONFIG_ST_UVIS25_SPI)	+= st_uvis25_spi.o
+>  obj-$(CONFIG_TCS3414)		+= tcs3414.o
+>  obj-$(CONFIG_TCS3472)		+= tcs3472.o
+>  obj-$(CONFIG_TSL2583)		+= tsl2583.o
+> +obj-$(CONFIG_TSL2591)		+= tsl2591.o
+>  obj-$(CONFIG_TSL2772)		+= tsl2772.o
+>  obj-$(CONFIG_TSL4531)		+= tsl4531.o
+>  obj-$(CONFIG_US5182D)		+= us5182d.o
+> diff --git a/drivers/iio/light/tsl2591.c b/drivers/iio/light/tsl2591.c
+> new file mode 100644
+> index 000000000000..4f9c5e19ee35
+> --- /dev/null
+> +++ b/drivers/iio/light/tsl2591.c
+> @@ -0,0 +1,1227 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (C) 2020 Joe Sandom <joe.g.sandom@gmail.com>
+
+Update perhaps?
+
+> + *
+> + * Datasheet: https://ams.com/tsl25911#tab/documents
+> + *
+> + * Device driver for the TAOS TSL2591. This is a very-high sensitivity
+> + * light-to-digital converter that transforms light intensity into a digital
+> + * signal.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/debugfs.h>
+> +#include <linux/delay.h>
+> +#include <linux/i2c.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/sysfs.h>
+> +
+> +#include <asm/unaligned.h>
+> +
+> +#include <linux/iio/events.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +
+> +/* ADC integration time, field value to time in ms */
+> +#define TSL2591_MSEC_TO_ATIME(x) (((x) + 1) * 100)
+
+Naming here seems backwards.   I'd assume that at MSEC_TO_ATIME
+function went msecs -> atime but it seems to be doing the opposite.
+
+> +/* ADC integration time, time in ms to field value */
+> +#define TSL2591_ATIME_TO_MSEC(x) (((x) / 100) - 1)
+> +
+
+...
+
+> +
+> +/*
+> + * Period table is ALS persist cycle x integration time setting
+> + * Integration times: 100ms, 200ms, 300ms, 400ms, 500ms, 600ms
+> + * ALS cycles: 1, 2, 3, 5, 10, 20, 25, 30, 35, 40, 45, 50, 55, 60
+> + */
+> +static const char * const tsl2591_als_period_list[] = {
+> +	"0.1 0.2 0.3 0.5 1.0 2.0 2.5 3.0 3.5 4.0 4.5 5.0 5.5 6.0",
+> +	"0.2 0.4 0.6 1.0 2.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 11.0 12.0",
+> +	"0.3 0.6 0.9 1.5 3.0 6.0 7.5 9.0 10.5 12.0 13.5 15.0 16.5 18.0",
+> +	"0.4 0.8 1.2 2.0 4.0 8.0 10.0 12.0 14.0 16.0 18.0 20.0 22.0 24.0",
+> +	"0.5 1.0 1.5 2.5 5.0 10.0 12.5 15.0 17.5 20.0 22.5 25.0 27.5 30.0",
+> +	"0.6 1.2 1.8 3.0 6.0 12.0 15.0 18.0 21.0 24.0 27.0 30.0 33.0 36.0",
+> +};
+> +
+> +static const int tsl2591_int_time_available[] = {
+> +	100, 200, 300, 400, 500, 600,
+
+As mentioned below, these should be in seconds and I think here they are in milisecs.
+
+> +};
+
+...
+
+
+> +static int tsl2591_wait_adc_complete(struct tsl2591_chip *chip)
+> +{
+> +	struct tsl2591_als_settings settings = chip->als_settings;
+> +	struct i2c_client *client = chip->client;
+> +	int delay;
+> +	int val;
+> +	int ret;
+> +
+> +	delay = TSL2591_MSEC_TO_ATIME(settings.als_int_time);
+> +	if (!delay)
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * Sleep for ALS integration time to allow enough time
+
+Strangely short lines; perhaps rewrap?
+
+> +	 * for an ADC read cycle to complete. Check status after
+> +	 * delay for ALS valid.
+> +	 */
+> +	msleep(delay);
+> +
+> +	/* Check for status ALS valid flag for up to 100ms */
+> +	ret = readx_poll_timeout(tsl2591_check_als_valid, client,
+> +				 val, val == TSL2591_STS_VAL_HIGH_MASK,
+> +				 TSL2591_DELAY_PERIOD_US,
+> +				 TSL2591_DELAY_PERIOD_US * TSL2591_ALS_STS_VALID_COUNT);
+> +	if (ret)
+> +		dev_err(&client->dev, "Timed out waiting for valid ALS data\n");
+> +
+> +	return ret;
+> +}
+> +
+
+...
+
+> +
+> +static int tsl2591_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan,
+> +			    int *val, int *val2, long mask)
+> +{
+> +	struct tsl2591_chip *chip = iio_priv(indio_dev);
+> +	struct i2c_client *client = chip->client;
+> +	int ret;
+> +
+> +	pm_runtime_get_sync(&client->dev);
+> +
+> +	mutex_lock(&chip->als_mutex);
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		if (chan->type != IIO_INTENSITY) {
+> +			ret = -EINVAL;
+> +			goto err_unlock;
+> +		}
+> +
+> +		ret = tsl2591_read_channel_data(indio_dev, chan, val, val2);
+> +		if (ret < 0)
+> +			goto err_unlock;
+> +
+> +		ret = IIO_VAL_INT;
+> +		break;
+> +	case IIO_CHAN_INFO_PROCESSED:
+> +		if (chan->type != IIO_LIGHT) {
+> +			ret = -EINVAL;
+> +			goto err_unlock;
+> +		}
+> +
+> +		ret = tsl2591_read_channel_data(indio_dev, chan, val, val2);
+> +		if (ret < 0)
+> +			break;
+> +
+> +		ret = IIO_VAL_INT_PLUS_MICRO;
+> +		break;
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		if (chan->type != IIO_INTENSITY) {
+> +			ret = -EINVAL;
+> +			goto err_unlock;
+> +		}
+> +
+> +		*val = TSL2591_MSEC_TO_ATIME(chip->als_settings.als_int_time);
+
+My gut feeling was that integration time should be in seconds, not milliseconds.
+Seems our documentation on this is lacking, though there are other integration_time
+entries that are stated as being in seconds.  I haven't checked all the
+drivers, but the first few I looked at do have this in seconds.
+The vast majority of IIO units effectively the base SI unit.  Exceptions exist
+where we (unwisely) decided to try and match hwmon, or where the particular thing
+being measured is always so small in the base units that it gets silly.
+
+Documentation/ABI/testing/sysfs-bus-iio
+
+If you fancy improving the docs as a follow up patch to make the unit more explicit
+that would be great, if not I'll get to it at some point.
+
+
+> +		ret = IIO_VAL_INT;
+> +		break;
+> +	case IIO_CHAN_INFO_CALIBSCALE:
+> +		if (chan->type != IIO_INTENSITY) {
+> +			ret = -EINVAL;
+> +			goto err_unlock;
+> +		}
+> +
+> +		*val = tsl2591_gain_to_multiplier(chip->als_settings.als_gain);
+> +		ret = IIO_VAL_INT;
+> +		break;
+> +	default:
+> +		ret = -EINVAL;
+> +		break;
+> +	}
+> +
+> +err_unlock:
+> +	mutex_unlock(&chip->als_mutex);
+> +
+> +	pm_runtime_mark_last_busy(&client->dev);
+> +	pm_runtime_put_autosuspend(&client->dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static int tsl2591_write_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan,
+> +			     int val, int val2, long mask)
+> +{
+> +	struct tsl2591_chip *chip = iio_priv(indio_dev);
+> +	u32 int_time;
+> +	u8 gain;
+> +	int ret;
+> +
+> +	mutex_lock(&chip->als_mutex);
+
+It isn't particularly important but i would have been inclined to tighten
+the scope of this mutex lock so that it only covered the parts of
+this code that touch state rather than the conversions and range checks.
+
+Up to you however on whether you bother at this stage!
+
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		int_time = tsl2591_als_time_to_fval(val);
+> +		if (int_time < 0) {
+> +			ret = int_time;
+> +			goto err_unlock;
+> +		}
+> +		ret = tsl2591_compatible_int_time(chip, int_time);
+> +		if (ret < 0)
+> +			goto err_unlock;
+> +
+> +		chip->als_settings.als_int_time = int_time;
+> +		break;
+> +	case IIO_CHAN_INFO_CALIBSCALE:
+> +		gain = tsl2591_multiplier_to_gain(val);
+> +		if (gain < 0) {
+> +			ret = gain;
+> +			goto err_unlock;
+> +		}
+> +		ret = tsl2591_compatible_gain(chip, gain);
+> +		if (ret < 0)
+> +			goto err_unlock;
+> +
+> +		chip->als_settings.als_gain = gain;
+> +		break;
+> +	default:
+> +		ret = -EINVAL;
+> +		goto err_unlock;
+> +	}
+> +
+> +	ret = tsl2591_set_als_gain_int_time(chip);
+> +
+> +err_unlock:
+> +	mutex_unlock(&chip->als_mutex);
+> +	return ret;
+> +}
+> +
+
+...
+
+> +
+> +static const struct iio_info tsl2591_info = {
+> +	.event_attrs = &tsl2591_event_attribute_group,
+> +	.read_raw = tsl2591_read_raw,
+> +	.write_raw = tsl2591_write_raw,
+> +	.read_avail = tsl2591_read_available,
+> +	.read_event_value = tsl2591_read_event_value,
+> +	.write_event_value = tsl2591_write_event_value,
+> +	.read_event_config = tsl2591_read_event_config,
+> +	.write_event_config = tsl2591_write_event_config,
+> +};
+> +
+> +static const struct iio_info tsl2591_info_no_irq = {
+> +	.event_attrs = &tsl2591_event_attribute_group,
+
+Why have event attributes if no irq and hence no events?
+
+> +	.read_raw = tsl2591_read_raw,
+> +	.write_raw = tsl2591_write_raw,
+> +	.read_avail = tsl2591_read_available,
+> +};
+> +
+
+...
+
+> +
+> +static int tsl2591_probe(struct i2c_client *client)
+> +{
+> +	struct tsl2591_chip *chip;
+> +	struct iio_dev *indio_dev;
+> +	int ret;
+> +
+> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_BYTE_DATA)) {
+> +		dev_err(&client->dev,
+> +			"I2C smbus byte data functionality is not supported\n");
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*chip));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	chip = iio_priv(indio_dev);
+> +	chip->client = client;
+> +	i2c_set_clientdata(client, indio_dev);
+> +
+> +	if (client->irq) {
+> +		ret = devm_request_threaded_irq(&client->dev, client->irq,
+> +						NULL, tsl2591_event_handler,
+> +						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
+> +						"tsl2591_irq", indio_dev);
+> +		if (ret) {
+> +			dev_err(&client->dev, "IRQ request error %d\n", -ret);
+
+dev_err_probe() as that won't print an error message if you get a deferred probe
+error (and so will come around again later). That could happen here if the
+irq chip driver hasn't loaded yet.
+
+> +			return -EINVAL;
+> +		}
+> +		indio_dev->info = &tsl2591_info;
+> +	} else {
+> +		indio_dev->info = &tsl2591_info_no_irq;
+> +	}
+> +
+> +	mutex_init(&chip->als_mutex);
+> +
+> +	ret = i2c_smbus_read_byte_data(client,
+> +				       TSL2591_CMD_NOP | TSL2591_DEVICE_ID);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev,
+> +			"Failed to read the device ID register\n");
+> +		return ret;
+> +	}
+> +	ret = FIELD_GET(TSL2591_DEVICE_ID_MASK, ret);
+> +	if (ret != TSL2591_DEVICE_ID_VAL) {
+> +		dev_err(&client->dev, "Device ID: %#04x unknown\n", ret);
+> +		return -EINVAL;
+> +	}
+> +
+> +	indio_dev->channels = tsl2591_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(tsl2591_channels);
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->name = chip->client->name;
+> +	chip->events_enabled = false;
+> +
+> +	pm_runtime_enable(&client->dev);
+> +	pm_runtime_set_autosuspend_delay(&client->dev,
+> +					 TSL2591_POWER_OFF_DELAY_MS);
+> +	pm_runtime_use_autosuspend(&client->dev);
+> +
+> +	/*
+> +	 * Add chip off to automatically managed path and disable runtime
+> +	 * power management. This ensures that the chip power management
+> +	 * is handled correctly on driver remove. tsl2591_chip_off() must be
+> +	 * added to the managed path after pm runtime is enabled and before
+> +	 * any error exit paths are met to ensure we're not left in a state
+> +	 * of pm runtime not being disabled properly.
+> +	 */
+> +	ret = devm_add_action_or_reset(&client->dev, tsl2591_chip_off,
+> +				       indio_dev);
+> +	if (ret < 0)
+> +		return -EINVAL;
+> +
+> +	ret = tsl2591_load_defaults(chip);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "Failed to load sensor defaults\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = i2c_smbus_write_byte(client, TSL2591_CMD_SF_CALS_NPI);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "Failed to clear als irq\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return devm_iio_device_register(&client->dev, indio_dev);
+> +}
+> +
+
+...
