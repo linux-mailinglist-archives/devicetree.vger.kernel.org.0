@@ -2,125 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DBB53636B6
-	for <lists+devicetree@lfdr.de>; Sun, 18 Apr 2021 18:44:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA8E83636E4
+	for <lists+devicetree@lfdr.de>; Sun, 18 Apr 2021 18:59:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbhDRQpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Apr 2021 12:45:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49366 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229446AbhDRQpL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 18 Apr 2021 12:45:11 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S230028AbhDRQ7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Apr 2021 12:59:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48448 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229446AbhDRQ7o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Apr 2021 12:59:44 -0400
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [IPv6:2001:67c:2050::465:201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9C8DC06174A
+        for <devicetree@vger.kernel.org>; Sun, 18 Apr 2021 09:59:15 -0700 (PDT)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:105:465:1:2:0])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1B9756101E;
-        Sun, 18 Apr 2021 16:44:38 +0000 (UTC)
-Date:   Sun, 18 Apr 2021 17:45:10 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        =?UTF-8?B?R2HDq3RhbiBBbmRyw6k=?= <rvlander@gaetanandre.eu>,
-        Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
-        Denis Ciocca <denis.ciocca@st.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matija Podravec <matija_podravec@fastmail.fm>,
-        Sergey Borishchenko <borischenko.sergey@gmail.com>
-Subject: Re: [PATCH v1 6/7] iio: st_sensors: Add lsm9ds0 IMU support
-Message-ID: <20210418174510.64df5344@jic23-huawei>
-In-Reply-To: <CAHp75VeRgGcat18p+dN+pbHEYqm+YLGB_06kFEjFsahB2EW9Fw@mail.gmail.com>
-References: <20210414195454.84183-1-andriy.shevchenko@linux.intel.com>
-        <20210414195454.84183-6-andriy.shevchenko@linux.intel.com>
-        <20210418120655.3b2501fc@jic23-huawei>
-        <CAHp75Vcrf02cVaeDevN-cEFFTPoxq6kyO3gGQYTcs-U4yHOFaQ@mail.gmail.com>
-        <CAHp75VeRgGcat18p+dN+pbHEYqm+YLGB_06kFEjFsahB2EW9Fw@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4FNbl52FpbzQjmP;
+        Sun, 18 Apr 2021 18:59:13 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hauke-m.de; s=MBO0001;
+        t=1618765151;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=a7z4XegMYo+OkjjZeeWcvq6/tiuPjYPWQG+a4wQcIFE=;
+        b=q2YH3CGg6BIVR8AlfECI2iDTT8plxAdLiO7FklKDFVYilsP5XQHV9g3SzdJTq0F6BggVpm
+        DOzkxBZABDBD0r+sxyWGeYt1rE1vd/fEKLaJM7e378DATEmeg18McIZxInJvEBUIeEdx5f
+        PX81u3NjyRobjhOXYLbeMu2nDXEJubWqDS4A/ejcYMatAOj4QsJRKXudr6viyLoqlA2UHb
+        UZ/X6a2x5Vt9haOreAAZPMX/ZcQ02YEyabROHFUHdWhvi1fOR+dkWWCQdXKUA5AwVPvYwI
+        uGKxvYP40kRdOjLSQHVOLmsYk7vj9W3ao07qzWahMZIImx1ohR5gAw95n700rg==
+Received: from smtp2.mailbox.org ([80.241.60.241])
+        by spamfilter03.heinlein-hosting.de (spamfilter03.heinlein-hosting.de [80.241.56.117]) (amavisd-new, port 10030)
+        with ESMTP id adG7yC-3MJXb; Sun, 18 Apr 2021 18:59:09 +0200 (CEST)
+Subject: Re: [PATCH 1/2] mtd: parsers: trx: Allow to specify trx-magic in DT
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        rafal@milecki.pl, musashino.open@gmail.com
+References: <20210315170711.567358-1-hauke@hauke-m.de>
+ <20210315170711.567358-2-hauke@hauke-m.de>
+ <c596dbe2-a948-81c4-1e4e-e2d6c1b58b44@gmail.com>
+From:   Hauke Mehrtens <hauke@hauke-m.de>
+Message-ID: <a1c7bdbf-8975-94d7-ce93-de45f7104a32@hauke-m.de>
+Date:   Sun, 18 Apr 2021 18:59:08 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <c596dbe2-a948-81c4-1e4e-e2d6c1b58b44@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-MBO-SPAM-Probability: 
+X-Rspamd-Score: -2.41 / 15.00 / 15.00
+X-Rspamd-Queue-Id: 1E0B217F6
+X-Rspamd-UID: 2d6050
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 18 Apr 2021 16:59:02 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+On 3/18/21 7:43 AM, Rafał Miłecki wrote:
+> On 15.03.2021 18:07, Hauke Mehrtens wrote:
+>> Buffalo uses a different TRX magic for every device, to be able to use
+>> this trx parser, make it possible to specify the TRX magic in device
+>> tree. If no TRX magic is specified in device tree, the standard value
+>> will be used. This value should only be specified if a vendor chooses to
+>> use a non standard TRX magic.
+>>
+>> Signed-off-by: Hauke Mehrtens <hauke@hauke-m.de>
+>> ---
+>>   .../bindings/mtd/partitions/brcm,trx.txt      |  5 +++++
+>>   drivers/mtd/parsers/parser_trx.c              | 21 ++++++++++++++++++-
+>>   2 files changed, 25 insertions(+), 1 deletion(-)
+>>
+>> diff --git 
+>> a/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.txt 
+>> b/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.txt
+>> index b677147ca4e1..715a18ca36bd 100644
+>> --- a/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.txt
+>> +++ b/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.txt
+>> @@ -28,6 +28,11 @@ detected by a software parsing TRX header.
+>>   Required properties:
+>>   - compatible : (required) must be "brcm,trx"
+>> +Optional properties:
+>> +
+>> +- trx-magic: TRX magic, if it is different from the default magic
+>> +         0x30524448 as a u32.
+> 
+> It may need to be brcm,trx-magic and ack for sending a separated 
+> bt-bindings patch.
 
-> On Sun, Apr 18, 2021 at 4:49 PM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> >
-> > On Sun, Apr 18, 2021 at 2:07 PM Jonathan Cameron <jic23@kernel.org> wrote:
-> >
-> > Thanks for review, my answers below.
-> >  
-> > > On Wed, 14 Apr 2021 22:54:53 +0300
-> > > Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> > >  
-> > > > We can utilize separate drivers for accelerometer and magnetometer,
-> > > > so here is the glue driver to enable LSM9DS0 IMU support.
-> > > >
-> > > > The idea was suggested by Crestez Dan Leonard in [1]. The proposed change
-> > > > was sent as RFC due to race condition concerns, which are indeed possible.  
-> > >
-> > > If you are going to mention races, good to give some flavour in here!  
-> >
-> > I meant that the initial idea is racy due to different devices
-> > communicating to the same i2c address.
-> > So, any sequence of transfers are not serialized and you may end up with
-> >
-> > drv1 -> i2c
-> > drv2 -> i2c
-> > drv1 <- i2c # garbage
-> >  
-> > > This driver makes me very nervous indeed.  
-> >
-> > Why?! This one is race free as far as I can see. Or maybe I interpret
-> > this wrongly and you are talking about initial RFC?
-> >  
-> > >  I haven't 'found' any places
-> > > where the fact we'll write the same registers from each of the drivers
-> > > causes problems (e.g. int pin setup etc) but perhaps I'm missing something.
-> > >
-> > > Shall we say that makes me rather keener to get eyes (and thought) on this
-> > > patch than normal :)  
-> >
-> > How should I amend the commit message to state:
-> > 1. First idea (RFC by the link) *is* racy AFAIU
-> > 2. This one *is not* racy.  
+Ok, I will rename it to brcm,trx-magic.
 
-Great.  I read it as meaning they were both potentially racey!
-This is less worrying.
+>> diff --git a/drivers/mtd/parsers/parser_trx.c 
+>> b/drivers/mtd/parsers/parser_trx.c
+>> index 8541182134d4..fd424587caa4 100644
+>> --- a/drivers/mtd/parsers/parser_trx.c
+>> +++ b/drivers/mtd/parsers/parser_trx.c
+>> @@ -47,6 +47,24 @@ static const char *parser_trx_data_part_name(struct 
+>> mtd_info *master,
+>>       return "rootfs";
+>>   }
+>> +static uint32_t parser_trx_get_magic(struct mtd_info *mtd)
+>> +{
+>> +    uint32_t trx_magic = TRX_MAGIC;
+>> +    struct device_node *np;
+>> +    int err;
+>> +
+>> +    np = mtd_get_of_node(mtd);
+>> +    if (!np)
+>> +        return trx_magic;
+> 
+> This check seems redundant, of_ returns -EINVAL also for NULL node.
+
+Thanks for the information, I will remove this check. Then it could also 
+be easier to just inline this code.
 
 > 
-> I re-read this and now understand better what you meant.
-> So, it may be that the initial proposal may work without any
-> amendment, but since I haven't investigated much, I should rather use
-> the phrase "potentially racy". In my variant it's using one regmap for
-> both drivers (not two), which makes the register state consistent. Am
-> I wrong?
-
-I think this approach is fine.  I'd be more worried about the two 'sub' drivers
-not necessarily being happy that someone else touches state they care about.
-There are places where I think we write the same value to the same register
-twice during setup with this model, but that shouldn't matter.   I'm not 100%
-sure that there aren't other cases though I think there aren't.
-
-So what you have is probably fine, but more eyes would make me happier ;)
-
-Lots of people care about this particular driver so hopefully we'll get
-them.
-
-> Do we have some places where we may write to the same register concurrently?
 > 
-Only ones I can find are the setup ones where it writes the same value twice
-I think.  So *crosses fingers* :)
+>> +    /* Get different magic from device tree if specified */
+>> +    err = of_property_read_u32(np, "trx-magic", &trx_magic);
+>> +    if (err != 0 && err != -EINVAL)
+>> +        pr_err("failed to parse \"trx-magic\" DT attribute, use 
+>> default: %d\n", err);
+> 
+> I'm not native, but shouldn't that be s/use/using/ ?
 
-Given timing (missed merge window) we have masses of time to let this sit
-on list a while and see if anyone can spot issues neither of us have found.
+I am also not a native speaker, but I agree with you and will change this.
 
-Jonathan
+Hauke
