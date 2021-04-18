@@ -2,95 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C95F363742
-	for <lists+devicetree@lfdr.de>; Sun, 18 Apr 2021 21:09:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1411736377A
+	for <lists+devicetree@lfdr.de>; Sun, 18 Apr 2021 22:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232195AbhDRTKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Apr 2021 15:10:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48040 "EHLO
+        id S232479AbhDRUQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Apr 2021 16:16:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbhDRTKE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Apr 2021 15:10:04 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D93CC06174A;
-        Sun, 18 Apr 2021 12:09:35 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id y22-20020a17090a8b16b0290150ae1a6d2bso343865pjn.0;
-        Sun, 18 Apr 2021 12:09:35 -0700 (PDT)
+        with ESMTP id S229488AbhDRUQg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Apr 2021 16:16:36 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3696CC06174A;
+        Sun, 18 Apr 2021 13:16:04 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id g5so43011754ejx.0;
+        Sun, 18 Apr 2021 13:16:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=o2tYufll/NX6d87pvgl+s9xxBkdd0xug4aHJ/ZVKLa0=;
-        b=q4Ct89cbWRxw1j2BaB8janLyLEtrqBHPvpHX0bkKxrQu4QbTYbMESLo4pC9NlDQUbL
-         mdTDiVdVrTA9/EEHCoUR9HpCIFspQEZXTA8331JXDQKiuGQWjTj8rbB2OWXVD+2q5+l+
-         baGdGW3TBWfsMekERyoVBRvie94mCrYXx5t354jd2+2ftSQ6OFZMP23t7mnKiE72Jq4n
-         x0c0B75dCymAFxCLWDwHBlkCCLlQiZI+fHw10xlpWD7Hz9eMJdq2N3eezPTsu5bvLc5C
-         rkkI51JECMxGNyXOUeGzeP/waDx7+8sk3SEp/nopERSqXLKg4qDh1plu2v2Z2bwFjlfL
-         hfNQ==
+        bh=aNuUdltEGVx+LNO7Cjlx/rXKrfa7ugDPwassLJV+nSs=;
+        b=mqPm+w7JmVVzXfnrSms0ASX1jFQJYUm3p1sJbaCl3/uMEbArElAa/R8U9HVvFxQ0hz
+         pNliHaRGcBWhgHcNb4xSxzoLx5IHVf3ke0tTMUbYVp/pQN06syEUmeZPHaGAwanbPYz/
+         5hfKXtZhctLLIwv8WazMfyxG5k6P12959FpVJuFy98OX0dNx1vwp1E6rNPos3PicqmBm
+         9SEMFMjIAhNzyG8ReegFzJpbPEzrinE59CfhKV2IDdIj3ujfOPSyLUTsNVTQMT01GSd4
+         T9tNmIdRTOMcB9DgbcbReGxNawcUc3bU5NotsUpebZ8zruG28KZF694GOt0eA1JFn/Zm
+         oCyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=o2tYufll/NX6d87pvgl+s9xxBkdd0xug4aHJ/ZVKLa0=;
-        b=mwXPAfdk5XuqY2mZjaP/YxAiNC1O4XrayiPCBNBPA6DTH3cj3rNo82SWAtsI/6eqiI
-         Gq2PgnRuGB6spiPB2xxVYbj78qEclmQ8+j7tPQRth2m2vVOa9gjUsgT6E5Q0jl0Z5NWx
-         CrJu36IFG8z4NZPpjfKQbbjKHFNYg6vZAgM3k/wYCvHPCUuubWLIz4xZ+nr6AGs5NiLz
-         Azozhk1d3Ui15PvlDxsWP9xzsUuxvds9CyVrYjwThbBPFwOlR/Qao6QdaqJXdp70wJE2
-         RxzWjddyRAzEreuFcaeVqxXU5XKQpgMRbfpilhd2d7BHNe8B01sgpD5KaNzDraV20olu
-         rp2w==
-X-Gm-Message-State: AOAM533vskDX3QiEYqfxeaH4uZmeITYYd/oIFPfI3WDgxCmusp6HSSot
-        h4h4ZreO4pQEAm0k2aEusBcxxQmv6lMvprwiGkw=
-X-Google-Smtp-Source: ABdhPJx9TuThlLPUyP7gKC2hKyMVVZVabcKn8CWJZzF5F5pl08wclqvs0NsmBk8ioIV5CzollKsye7UejcmMsWJiE7I=
-X-Received: by 2002:a17:90b:1184:: with SMTP id gk4mr15448275pjb.129.1618772974826;
- Sun, 18 Apr 2021 12:09:34 -0700 (PDT)
+        bh=aNuUdltEGVx+LNO7Cjlx/rXKrfa7ugDPwassLJV+nSs=;
+        b=ZtO4DlpCa+hobLRNh9O+cNbLBqN1eYK6EXK1BX1nsqsAclMJLdXKwmBWZU/EauzQ6x
+         b9p8qpoqEh6dqzi+M59/rnYh0Ku938fMKMCsFtPhcHebf5H8s9GPhXp9Ptf8cwD9d4fu
+         hBcAcZCEzrvpw0uvckL1gJ3oB0ER7Pfovg3mGfgzrMBnZPg2tWqgpS5gM+DqpjSW3KsF
+         YVJRuZokknsZitXKaFFMx5vYgXQn9sU7EBRY+UdJr7ZZxdH80WvC+oAYIJCajETrJt4Y
+         xfrFai+ii6JymRAK/S9HT1nmT+ilgksaQohlX9p4mpL95apW625KfaWlQD0Pqzv3cr6h
+         mb7g==
+X-Gm-Message-State: AOAM531HPJoInwt/i80dWnoLlcTnuxPnIJ8ewYjVmoiTj6un6MVU4qWG
+        GAM+xBwYwse1i2fVSV8DtQuIRTPhwxxaaqrIlu0=
+X-Google-Smtp-Source: ABdhPJyhQS7ewMgAuX/LkyOxZdJtKiVze0rTgdP222AQTI32WgZhH+58iLsPWoHbamLBE9hqYjmeo3DutxyH8F6btks=
+X-Received: by 2002:a17:906:3ce9:: with SMTP id d9mr18688147ejh.172.1618776962793;
+ Sun, 18 Apr 2021 13:16:02 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210414195454.84183-1-andriy.shevchenko@linux.intel.com>
- <20210414195454.84183-4-andriy.shevchenko@linux.intel.com> <20210418115403.059f94cd@jic23-huawei>
-In-Reply-To: <20210418115403.059f94cd@jic23-huawei>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sun, 18 Apr 2021 22:09:18 +0300
-Message-ID: <CAHp75Ve+_XurtoyOKizocyO0RkFaLvhR3mKp_pSvznmmGrQEXA@mail.gmail.com>
-Subject: Re: [PATCH v1 4/7] iio: st_sensors: Call st_sensors_power_enable()
- from bus drivers
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        =?UTF-8?B?R2HDq3RhbiBBbmRyw6k=?= <rvlander@gaetanandre.eu>,
-        =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
-        Denis Ciocca <denis.ciocca@st.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>
+References: <20210407042609.9736-1-christianshewitt@gmail.com> <20210407042609.9736-3-christianshewitt@gmail.com>
+In-Reply-To: <20210407042609.9736-3-christianshewitt@gmail.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Sun, 18 Apr 2021 22:15:51 +0200
+Message-ID: <CAFBinCAL1zpcNm5VdbwpwZM1DPvfhnx0+npZvs8Hi5DOLz+7kA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] arm64: dts: meson: add saradc node to ODROID N2/N2+
+To:     Christian Hewitt <christianshewitt@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Hyeonki Hong <hhk7734@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 18, 2021 at 1:54 PM Jonathan Cameron <jic23@kernel.org> wrote:
+On Wed, Apr 7, 2021 at 6:27 AM Christian Hewitt
+<christianshewitt@gmail.com> wrote:
 >
-> On Wed, 14 Apr 2021 22:54:51 +0300
-> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> From: Hyeonki Hong <hhk7734@gmail.com>
 >
-> > In case we would initialize two IIO devices from one physical device,
-> > we shouldn't have a clash on regulators. That's why move
-> > st_sensors_power_enable() call from core to bus drivers.
+> Add the meson saradc node to the ODROID N2/N2+ common dtsi.
 >
-> Why is this a problem?  The two instances would double up and both get +
-> enable + disable the regulators.  However, that shouldn't matter as
-> they are reference counted anyway.
-
-> Perhaps an example?  Even in patch 6 I can only see that it is wasteful
-> to do it twice, rather than wrong as such.
-
-Yep, now I also understand that I do it twice after this patch. But
-lemme check next week this all
-
-P.S. I have real hardware to test on. But my tests I guess are limited
-to iio_info or so.
-
--- 
-With Best Regards,
-Andy Shevchenko
+> Signed-off-by: Hyeonki Hong <hhk7734@gmail.com>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
