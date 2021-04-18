@@ -2,88 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 881ED363222
-	for <lists+devicetree@lfdr.de>; Sat, 17 Apr 2021 21:59:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E71E33632FF
+	for <lists+devicetree@lfdr.de>; Sun, 18 Apr 2021 03:54:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237070AbhDQT7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Apr 2021 15:59:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33676 "EHLO
+        id S234904AbhDRBy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Apr 2021 21:54:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236956AbhDQT7r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Apr 2021 15:59:47 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2318C06175F
-        for <devicetree@vger.kernel.org>; Sat, 17 Apr 2021 12:59:20 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lXr66-0007P9-O0; Sat, 17 Apr 2021 21:59:18 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lXr66-0003XK-CT; Sat, 17 Apr 2021 21:59:18 +0200
-Date:   Sat, 17 Apr 2021 21:59:18 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Clemens Gruber <clemens.gruber@pqgruber.com>
-Cc:     linux-pwm@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sven Van Asbroeck <TheSven73@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 8/8] pwm: pca9685: Add error messages for failed
- regmap calls
-Message-ID: <20210417195918.i4ugym3busamymtl@pengutronix.de>
-References: <20210415121455.39536-1-clemens.gruber@pqgruber.com>
- <20210415121455.39536-8-clemens.gruber@pqgruber.com>
+        with ESMTP id S230339AbhDRBy6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Apr 2021 21:54:58 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A103AC061760
+        for <devicetree@vger.kernel.org>; Sat, 17 Apr 2021 18:54:31 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id k23-20020a17090a5917b02901043e35ad4aso18427019pji.3
+        for <devicetree@vger.kernel.org>; Sat, 17 Apr 2021 18:54:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=SbmkNJObxP9556wdW+xlQaE/Mp8r2OHG8tzhh7P27Xs=;
+        b=LhKV87qH3gAOImsHtS8QBPR1qLMUI4TzeYbUJi0VIMueON/LYIs1FZtncqgfHHMYEN
+         Wr4NoLqKLHgSEhbIHZK6XBXuuE4BMDE0QZxOfabkvABV0G9fZQ2Z8uEYd94VZpFThHbm
+         uGH0PihCTwxkuhw2y+zXOMbtHEfPsP7RdaLNo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=SbmkNJObxP9556wdW+xlQaE/Mp8r2OHG8tzhh7P27Xs=;
+        b=AanRLPePW26BqvPgQx5w1OBZpakCf8F4IVDrk6JkMzhO7iYTF9KEJU0/os3munDF0X
+         nGr3ljBvyUAHUdqYdJ+89hyOsrqqYGjCoPdM7yGbGu7uvmSHo2hrSG61G6cR20gMDnQ+
+         4rfs/U6NGWMA3WEOADim73zKIeqWiGi6LI4U3+ZvttclLrrb/AcyPSYSDvZGst5MNVEy
+         ctRjpz18WX0DZ/Za4BFzHDTVniyU6j8nYJ5ojCtrQ/j9UxiA2faaKyA0Xzv0kaewowbG
+         VphO7qq9Sojln8S/rj4br37YQwObpw+NvN7hA8wohKAFXnGQm7lGIIVFc6kNltHVbtwM
+         0vag==
+X-Gm-Message-State: AOAM531jzOoEVDgJ8GkGgH5cKUXffHDuehTRbYThN1knzM/sdXZdbEMe
+        alqc9AtXc5WY/o6uPO6gvIh1WQ==
+X-Google-Smtp-Source: ABdhPJyemFBIhm9Dndl7HZBNNf1HHGiN+9UjdhBbcR/ZeXECMvMKe2/UdI9Wmi8AF9bqnYYeHjfsUA==
+X-Received: by 2002:a17:90b:1b0a:: with SMTP id nu10mr17597498pjb.118.1618710871167;
+        Sat, 17 Apr 2021 18:54:31 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:201:e47c:5232:82d9:6d3f])
+        by smtp.gmail.com with ESMTPSA id a16sm9039400pgl.12.2021.04.17.18.54.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 17 Apr 2021 18:54:30 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vpfteztswegvpk7m"
-Content-Disposition: inline
-In-Reply-To: <20210415121455.39536-8-clemens.gruber@pqgruber.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1618574638-5117-2-git-send-email-sibis@codeaurora.org>
+References: <1618574638-5117-1-git-send-email-sibis@codeaurora.org> <1618574638-5117-2-git-send-email-sibis@codeaurora.org>
+Subject: Re: [PATCH 01/12] dt-bindings: soc: qcom: aoss: Drop power-domain bindings
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     rjw@rjwysocki.net, agross@kernel.org, ohad@wizery.com,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dianders@chromium.org, rishabhb@codeaurora.org,
+        sidgup@codeaurora.org, Sibi Sankar <sibis@codeaurora.org>
+To:     Sibi Sankar <sibis@codeaurora.org>, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, robh+dt@kernel.org,
+        ulf.hansson@linaro.org
+Date:   Sat, 17 Apr 2021 18:54:26 -0700
+Message-ID: <161871086661.46595.17217922888505535304@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---vpfteztswegvpk7m
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Apr 15, 2021 at 02:14:55PM +0200, Clemens Gruber wrote:
-> Regmap operations can fail if the underlying subsystem is not working
-> properly (e.g. hogged I2C bus, etc.)
-> As this is useful information for the user, print an error message if it
-> happens.
-> Let probe fail if the first regmap_read or the first regmap_write fails.
+Quoting Sibi Sankar (2021-04-16 05:03:47)
+> Drop power-domain bindings exposed by AOSS QMP node.
 >=20
-> Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> ---
 
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---vpfteztswegvpk7m
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmB7PhIACgkQwfwUeK3K
-7Amz8wf9H+ets8pXp0ZaXVDhobF/LbaLnPgzRIIN5R6LKyP0dZZ8ZHo/XjoPzB73
-bsyxK0fhwbakNoMxrw86mcS/+vOV0R93BLb4p4qIVo9myEM2xQwWFfvcKvqyyED5
-AI6nLpDYk6knguJZbIpMUEQeE48DXAra6BENdD4idTcMgF5hSb1oCW3SddZsAV3m
-78M8YPgPbfazURIQ3Hvt9H6rCYpp+HrPsDXAWVrX2AI9fUSW0TaAEYZcrbaKK0KF
-7ju801s60JgND0+3fFCjVIHBAH2P6jozUI70aAn4FpbEgGinYhnvRT6tUFyig9Vz
-d4yIKAdWn3iec+HjtHG90IiMDzInrQ==
-=w+wf
------END PGP SIGNATURE-----
-
---vpfteztswegvpk7m--
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
