@@ -2,160 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 837563644F9
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 15:47:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C08836456C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 15:56:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241396AbhDSNhY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 09:37:24 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:53406 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241512AbhDSNg3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 09:36:29 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13JDZhIo110437;
-        Mon, 19 Apr 2021 08:35:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1618839343;
-        bh=qeZcN+h8qnPRTBufAOnY5cwD/Q0Lqcs0+bre14HwovE=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=ENexWrbeYpj1oR7s5ZNzjDgFGxdy9V5O5I+UoZJrHh+oyikFGpjm2EC1r5PkdOExF
-         YxrIJjWVnpq4YdeaqGu0T2i5G6p+Nq15aoOR/DwnUgNzQKYCMLGI7g9EYJYsSAe7W+
-         NeyvnQbpUEuUUsh9Xei/vmLpjIyd1hvq3MPj04GQ=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13JDZhtI129553
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 19 Apr 2021 08:35:43 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 19
- Apr 2021 08:35:42 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 19 Apr 2021 08:35:42 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13JDZgj9049023;
-        Mon, 19 Apr 2021 08:35:42 -0500
-Date:   Mon, 19 Apr 2021 08:35:42 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Stephen Boyd <sboyd@kernel.org>
-CC:     Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Tero Kristo <kristo@kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 2/4] dt-bindings: clock: Convert ti,sci-clk to json schema
-Message-ID: <20210419133542.ndgkmf7eq4oqse34@ladies>
-References: <20210416063721.20538-1-nm@ti.com>
- <20210416063721.20538-3-nm@ti.com>
- <161861731160.46595.786611690053722257@swboyd.mtv.corp.google.com>
- <20210417125127.vigq23mdoodje6b5@velcro>
+        id S238677AbhDSN4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 09:56:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38622 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239493AbhDSN4C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 09:56:02 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF444C061760;
+        Mon, 19 Apr 2021 06:55:32 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id g16so886514plq.3;
+        Mon, 19 Apr 2021 06:55:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=p6yu+Pr8j6CmUPfAOl20hpdd+dcUNMLZ0wSKOzuThNo=;
+        b=UomtuHtQQP5neGGQA6cOPDBRXqcCaG4BO2XKhit1HQ5EqvdZhaDx7B0p6U9eHsGT1F
+         jZD9wnQvv3Kh3a/DBadXdiW8sBtNP6nnIt0yQIh4ThoxyIKogDrqwlqtHFxhIFq/dl9J
+         uTnHbFHLb4MUg9hxvij9pCe3D6hUcD45uxBkv+nzwoi6xXrfeKaoafRZrDQfpEDeOtqo
+         +9u7MMuHCOaZ6/ZHb5PjoK3lcnEXfnm0AYa9FoFym+fzuLm6+uGyZay4RhIR0AJlLCKe
+         AWfqnzTaIrt+5+3CsDHNGdIVIULrfKbzJ1ufoOJPGjuB/6YSUi2Gwa+K+yKx7whSMu9U
+         q1Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=p6yu+Pr8j6CmUPfAOl20hpdd+dcUNMLZ0wSKOzuThNo=;
+        b=nU7O+dqeMCVp9EuJv/dqLo57VlozoPMXxIARKprrFH10wgqilhRh0IhY11JFMiQww3
+         /hVDvko7trh0RCtBhSXSiUIlo9dWDa5GdPArTFWuSN9OnA9KE+pRkmOlCYhKEiE0KRXZ
+         ITQha3CUG1aMR+dedHhSTjyhcqF88XVap4vabMd9fwlMEZIhrXrUJ7OsHIjZL9qZot8t
+         iIIqIVULNw5G+oVG4/xd3BcL4Qb/4k3CPcshTYvJ+gq8MyYjVZBhVA7yD+PrR2prWETA
+         xcwhGiDtv+eMI9OQ1xl75Qzv9/ojqIkI2W0WpijiSaQ3mLrYa/ohKkIHl1QoU1sWC0uX
+         9c3w==
+X-Gm-Message-State: AOAM531chOqzKzQK7dNbjldBXkikgEs+Xb3ugEaPn9mqX6pJttv45PIR
+        26df8kUrUP1YTMD1ElTc1rrQiyw66yaFnGT+QFJTuaA5h00=
+X-Google-Smtp-Source: ABdhPJyUp8qQPpiII3NAf3R9g3lixO6K3PNK3Uc79tE85s6uZyIVtNHvDxKUi4X4kTcYavaAyfeLe76Gf5lKa7fksbs=
+X-Received: by 2002:a17:90a:bd13:: with SMTP id y19mr6236736pjr.181.1618840532302;
+ Mon, 19 Apr 2021 06:55:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210417125127.vigq23mdoodje6b5@velcro>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210419132159.4450-1-tomas.melin@vaisala.com> <20210419132159.4450-3-tomas.melin@vaisala.com>
+In-Reply-To: <20210419132159.4450-3-tomas.melin@vaisala.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 19 Apr 2021 16:55:16 +0300
+Message-ID: <CAHp75VdApCk_Ydt2W_WWJ_wme4d1ocrrnvo+TjZcQ62RG6uOUA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] iio: accel: Add driver for Murata SCA3300 accelerometer
+To:     Tomas Melin <tomas.melin@vaisala.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Stephen,
+On Mon, Apr 19, 2021 at 4:26 PM Tomas Melin <tomas.melin@vaisala.com> wrote:
 
-On 07:51-20210417, Nishanth Menon wrote:
-> On 16:55-20210416, Stephen Boyd wrote:
-> > Quoting Nishanth Menon (2021-04-15 23:37:19)
-> > > diff --git a/Documentation/devicetree/bindings/clock/ti,sci-clk.yaml b/Documentation/devicetree/bindings/clock/ti,sci-clk.yaml
-> > > new file mode 100644
-> > > index 000000000000..72633651f0c7
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/clock/ti,sci-clk.yaml
-> > > @@ -0,0 +1,52 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/clock/ti,sci-clk.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: TI-SCI clock controller node bindings
-> > > +
-> > > +maintainers:
-> > > +  - Nishanth Menon <nm@ti.com>
-> > > +
-> > > +allOf:
-> > > +  - $ref: /schemas/clock/clock.yaml#
-> > 
-> > Is this needed?
-> 
-> https://github.com/devicetree-org/dt-schema/blob/master/schemas/clock/clock.yaml
-> This standardizes provider properties like '#clock-cells' etc, allowing
-> you to add more stricter checks or controls in the future if necessary.
-> 
-> while:
-> 
-> https://github.com/devicetree-org/dt-schema/blob/master/meta-schemas/clocks.yaml
-> is more a consumer node description.
-> 
-> Should I have picked a different yaml as base for a standard clock-controller
-> base?
-> 
+Thanks for an update, it's getting better! My comments below.
 
-Thinking again, I think your comment was to drop the clock.yaml
-inclusion, and, as a result this schema can become more stringent..
+> Add initial support for Murata SCA3300 3-axis industrial
+> accelerometer with digital SPI interface. This device also
+> provides a temperature measurement.
 
-Could you clarify?
+First of all, you forgot Cc reviewer(s).
+
+> Datasheet: https://www.murata.com/en-global/products/sensor/accel/sca3300
+
+>
+
+No blank line in the tag block.
+
+> Signed-off-by: Tomas Melin <tomas.melin@vaisala.com>
 
 
-> > 
-> > > +
-> > > +description: |
-> > > +  Some TI SoCs contain a system controller (like the Power Management Micro
-> > > +  Controller (PMMC) on Keystone 66AK2G SoC) that are responsible for controlling
-> > > +  the state of the various hardware modules present on the SoC. Communication
-> > > +  between the host processor running an OS and the system controller happens
-> > > +  through a protocol called TI System Control Interface (TI-SCI protocol).
-> > > +
-> > > +  This clock controller node uses the TI SCI protocol to perform various clock
-> > > +  management of various hardware modules (devices) present on the SoC. This
-> > > +  node must be a child node of the associated TI-SCI system controller node.
-> > > +
-> > > +properties:
-> > > +  $nodename:
-> > > +    pattern: "^clock-controller$"
-> > 
-> > Is this nodename pattern check required?
-> 
-> I'd like the definition on rails and not subject to interpretation, and
-> restrict the kind of subnodes under TISCI controller node.
-> 
-> > 
-> > > +
-> > > +  compatible:
-> > > +    const: ti,k2g-sci-clk
-> > 
-> > I thought most things keyed off the compatible string.
-> 
-> Yes, they are. I am not sure I understand your question here. Did you
-> mean to indicate that having $nodename and compatible both are
-> redundant?
-> 
-> Redundancy was'nt the intent of this schema definition, rather, I'd like
-> to make sure that it is not upto interpretation or debate as to what the
-> node name should be: I believe clock-controller is the correct nodename
-> (without @0x... since this does'nt use reg property) instead of using
-> clocks, tisci-clock as the node names.
-> 
-> 
-> Do you suggest something  different?
-> 
-> -- 
-> Regards,
-> Nishanth Menon
-> Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+...
+
+> +/*
+> + * Copyright (c) 2021 Vaisala Oyj. All rights reserved.
+> + */
+
+One line.
+
+...
+
+> +#define SCA3300_MASK_STATUS    GENMASK(8, 0)
+> +#define SCA3300_MASK_RS_STATUS GENMASK(1, 0)
+
+This feels like an orphan. Shouldn't you move it closer to the group
+of corresponding register / etc definition?
+
+> +#define SCA3300_REG_MODE       0xd
+> +#define SCA3300_REG_SELBANK    0x1f
+> +#define SCA3300_REG_STATUS     0x6
+> +#define SCA3300_REG_WHOAMI     0x10
+> +
+> +#define SCA3300_VALUE_DEVICE_ID        0x51
+> +#define SCA3300_VALUE_RS_ERROR 0x3
+> +#define SCA3300_VALUE_SW_RESET 0x20
+
+As above it doesn't shed a light for the relationship between
+registers and these fields (?). I.o.w the names w/o properly grouped
+(and probably commented) are confusing.
+
+...
+
+> +/**
+> + * struct sca3300_data - device data
+> + * @spi: SPI device structure
+> + * @lock: Data buffer lock
+
+> + * @txbuf: Transmit buffer
+> + * @rxbuf: Receive buffer
+
+Are the buffers subject to DMA? Shouldn't they have the proper alignment?
+
+> + * @scan: Triggered buffer. Four channel 16-bit data + 64-bit timestamp
+> + */
+> +struct sca3300_data {
+> +       struct spi_device *spi;
+> +       struct mutex lock;
+> +       u8 txbuf[4];
+> +       u8 rxbuf[4];
+> +       struct {
+> +               s16 channels[4];
+> +               s64 ts __aligned(sizeof(s64));
+> +       } scan;
+> +};
+
+...
+
+> +       struct spi_delay delay = {.value = 10, .unit = SPI_DELAY_UNIT_USECS};
+
+Missed space.
+
+...
+
+> +       sca_data->txbuf[0] = 0x0 | (SCA3300_REG_STATUS << 2);
+
+Seems you ignored my comment. What is this 0x0? What is the meaning of it?
+Same for all the rest magic numbers in the code.
+
+> +       /*
+> +        * return status error is cleared after reading status register once,
+> +        * expect EINVAL here
+
+/*
+ * Fix the style of all your multi-line comments.
+ * You may follow this example.
+ */
+
+> +        */
+> +       if (ret != -EINVAL) {
+> +               dev_err(&sca_data->spi->dev,
+> +                       "error reading device status: %d\n", ret);
+> +               return ret;
+> +       }
+> +
+> +       dev_err(&sca_data->spi->dev, "device status: 0x%lx\n",
+> +               (val & SCA3300_MASK_STATUS));
+
+Too many parentheses.
+
+> +       return 0;
+> +}
+
+...
+
+> +static irqreturn_t sca3300_trigger_handler(int irq, void *p)
+> +{
+> +       struct iio_poll_func *pf = p;
+> +       struct iio_dev *indio_dev = pf->indio_dev;
+> +       struct sca3300_data *data = iio_priv(indio_dev);
+> +       int bit, ret, val, i = 0;
+> +
+> +       for_each_set_bit(bit, indio_dev->active_scan_mask,
+> +                        indio_dev->masklength) {
+> +               ret = sca3300_read_reg(data, sca3300_channels[bit].address,
+> +                                      &val);
+> +               if (ret) {
+> +                       dev_err(&data->spi->dev,
+> +                               "failed to read register, error: %d\n", ret);
+
+> +                       goto out;
+
+Does it mean interrupt is handled in this case?
+Perhaps a comment why it's okay to consider so?
+
+> +               }
+> +               data->scan.channels[i++] = val;
+> +       }
+> +
+> +       iio_push_to_buffers_with_timestamp(indio_dev, &data->scan,
+> +                                          iio_get_time_ns(indio_dev));
+> +out:
+> +       iio_trigger_notify_done(indio_dev->trig);
+> +
+> +       return IRQ_HANDLED;
+> +}
+
+...
+
+> +       /*
+> +        * wait 1ms after SW-reset command
+> +        * wait 15ms for settling of signal paths
+> +        */
+> +       usleep_range(16e3, 50e3);
+
++ blank line
+
+> +       ret = sca3300_read_reg(sca_data, SCA3300_REG_WHOAMI, &value);
+> +       if (ret)
+> +               return ret;
+
+> +       ret = devm_iio_device_register(&spi->dev, indio_dev);
+> +       if (ret) {
+> +               dev_err(&spi->dev, "iio device register failed, error: %d\n",
+> +                       ret);
+
+> +               return ret;
+> +       }
+> +
+> +       return ret;
+
+Deduplicate it.
+
+Simply leave the latter one.
+
+> +}
+
+...
+
+> +
+
+No need for this blank line.
+
+> +       .probe  = sca3300_probe,
+> +};
+
+> +
+
+Ditto.
+
+> +module_spi_driver(sca3300_driver);
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+With Best Regards,
+Andy Shevchenko
