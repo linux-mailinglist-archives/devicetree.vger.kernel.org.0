@@ -2,737 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73013364118
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 13:54:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C25E63640E7
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 13:50:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238904AbhDSLzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 07:55:15 -0400
-Received: from mout.web.de ([212.227.15.3]:51813 "EHLO mout.web.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233717AbhDSLzM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Apr 2021 07:55:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
-        s=dbaedf251592; t=1618833281;
-        bh=gfHCfxuagiO51BKPo/nWIdMmIgZx8rankpWkG7jz79Q=;
-        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
-        b=JTodMaU3CD1MrZNmtKF42wmwT/RdgI748EVhA6CeqZoOT94rmCYw0eI07KBbPSGqs
-         eei1YWURT4hS55XXY0mchgSwlYQYtxFieiI7iSdiJBHsrJfYVh0h2BL6gM3870XS46
-         gFNPcvApbpClUNczAlGPdOpnRcX6ImoUo37lEMbw=
-X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [167.87.42.108] ([88.215.87.53]) by smtp.web.de (mrweb004
- [213.165.67.108]) with ESMTPSA (Nemesis) id 0MBY4U-1lP4C61vcM-00ATuv; Mon, 19
- Apr 2021 13:48:48 +0200
-Subject: Re: [PATCH 1/3] arm64: dts: xilinx: Add the clock nodes for zynqmp
-To:     Michal Simek <michal.simek@xilinx.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, harini.katakam@xilinx.com,
-        ulf.hansson@linaro.org, xuwei5@hisilicon.com, mripard@kernel.org,
-        heiko@sntech.de
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <1573119856-13548-1-git-send-email-rajan.vaja@xilinx.com>
- <1573119856-13548-2-git-send-email-rajan.vaja@xilinx.com>
- <8b039dac-06c4-6b33-f53b-44b8fa144495@web.de>
- <580bccb2-2e41-aec7-2612-99a2b231f2fc@xilinx.com>
- <09343e7d-fcd8-1a54-470f-c0d8741921b1@web.de>
- <7e8ee1fe-a02d-f6ac-337f-88b35736e1eb@web.de>
- <2f2e3019-afdd-103f-b984-06e65b10fc50@xilinx.com>
-From:   Jan Kiszka <jan.kiszka@web.de>
-Message-ID: <5176e9bc-50a0-6952-0e5a-8e43095235eb@web.de>
-Date:   Mon, 19 Apr 2021 13:48:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        id S238757AbhDSLtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 07:49:39 -0400
+Received: from mail-lj1-f169.google.com ([209.85.208.169]:41968 "EHLO
+        mail-lj1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238730AbhDSLti (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 07:49:38 -0400
+Received: by mail-lj1-f169.google.com with SMTP id a36so28140549ljq.8;
+        Mon, 19 Apr 2021 04:49:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1y568k09qtcL9FbHc6AZ/jNHO50SGhDLwYirPpmIwsU=;
+        b=Y2TjJZ8UYyNPiyt5o+0GgNjastLMavb+BRq9xFQVVQgThsjpVIDCufnY8BFwiP7SOk
+         DGF5tIUM6PMh5UP4l2sVh15Ej6uxSubQVDa9Qru4CocSEwv1VkDqvfytxETrAQvtU4O8
+         LthlYBMza+kg9DTzCtYg/88uK2xYaXNBWKKue/wQhC858Kp/YqnVe/TOV6XdpNIeE9CN
+         v7vk81VMX4es+NV5vFMtxGt8KCD1XljC9mcXLFilwotiyLlsd63QZ7kMHTTxjhIbGwaA
+         UPS/zplZcY6eDXvaZcBLcJwLmqHjEXwipw2PrhcNCMXB6aaFzTjFhzVEJb/GMZPgdsvB
+         WcfQ==
+X-Gm-Message-State: AOAM531RWmBuavJFk2frsAvn42UgVO5Btjscj2FAM+QYv8Ixi4ImKU4T
+        3o3xe2wmEsLOyE3cU9roxyc=
+X-Google-Smtp-Source: ABdhPJz0+6sYh/9WvqRk29PhyZlnlhB58yYK7gD7vOFVu1WxhJxDyYTfQ5h62FTofyAoeJH2J2o+Dw==
+X-Received: by 2002:a2e:3209:: with SMTP id y9mr11421161ljy.146.1618832946239;
+        Mon, 19 Apr 2021 04:49:06 -0700 (PDT)
+Received: from localhost.localdomain (dc7vkhyyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::6])
+        by smtp.gmail.com with ESMTPSA id a9sm1815963lfo.186.2021.04.19.04.49.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Apr 2021 04:49:05 -0700 (PDT)
+Date:   Mon, 19 Apr 2021 14:48:57 +0300
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, Kees Cook <keescook@chromium.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "agross@kernel.org" <agross@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Petr Mladek <pmladek@suse.com>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Mike Rapoport <rppt@kernel.org>,
+        Josef Bacik <josef@toxicpanda.com>,
+        Kai-Heng Feng <kai.heng.feng@canonical.com>,
+        linux-pm@vger.kernel.org
+Subject: [PATCH v8 02/10] reboot: Add hardware protection power-off
+Message-ID: <aae403d309b4f37be580f536d1ecd7d83b5a9523.1618832466.git.matti.vaittinen@fi.rohmeurope.com>
+References: <cover.1618832466.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-In-Reply-To: <2f2e3019-afdd-103f-b984-06e65b10fc50@xilinx.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:snCgpjO1Sl+dx6ZGaXfdIhtULxTYowmDcXyHm7rcBbYnVMqZceq
- KVj9Kk//Ymm4gKOkPt/H1O9993HaOAcgaqIlVJEoxNIIA+8le7kgdhKJxx0pTk/Cfupiw8a
- 9kZf43POGnaDimOr69GoTLHTIDvvTzSwOvhAzdpXh24Xi4M0wIL5LianxAdh78npzmD6Z1s
- GCbn166WRuQl+uCM93qbw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:l/+L1HTzXa8=:IEoi3NxPX8XiiMjjuNHWPl
- 6feRgP2QJn7d3N6j7xpWSrXvyLpR4m8HGUU4/D/Cm+viZx4ugQcR6fcpwsqblddx6XAjcNk66
- Ovver8h5nxJf+c5yBh8uWKLg+ud61ICovG3JUh6VPwg802AsikbOtt9vELpgmCkzd/oZZlbsV
- NtBLDEd7ikvc36FRWFYE3rubWb2nCtEDPxuZeRlp6yM8Vs4TuLryDxisbJBVKEzd0Evow9agA
- q6XBvt32VSEfYEmrR7qva/JWdF1pDFK2tRc34gtsHAH7TMH9lf1bUGzJ2N97zX0cBG13E+AbH
- q6UXpHXYm5tlXGUIkKtkkoW9njzoOBbDkjEXVLEcuYdREtrNRiVwxxkWSYnHN2FBzQIPNaS3s
- mKJ/0eSMSYd7wPP40+8kUNe8RXJ10opUCorvzLQ45Ml8vzcrd/cQOqHuothLG5JgGFAxY/BVw
- kxqPRPMBFk/I3U3MnG6m1U8Iu/Ln5cAGpdn2/yihSaRq8rT7VRDOaoH29wvunOVoH6Inwj0bh
- eehuwTJcI5qpm5boLamlvqNQG7emJR6Z518w38q5sUwTqGBHZsqXCzXcKGtHq8JBTwG2exP50
- k/fLU1mME3BbJ0RDA2ob05OfoNeYWKzdtw75c53nQapqsIJtP2wvDO3lNdoRJAHJuSg0Ncdg2
- RNhA9SxadzHClqzTBcYAg/aAGEI5uHOJIKqUKPAm+pgsuwQjEUsyorIzdCJ64m3kC2ruy4GRA
- NP51TJQpKcOtFo3R3rV2a6SWiDogj7DYPeovUSJWHuVfuTvwDd+7RMi/Th09CSGMIxq5msSPL
- xCZftG8ozaAaU3rAJnoNDL3Oaq7NfE2pUg4PNkm9XBnikeCXkq9bpgleaspAa4UT5ewldv32L
- eGWnlHOS3Vb2s1t6Hi7qervAOEZV1NqzLh5G3WbdE2oYqDsXxuB7w4VVYkqZKRjxtpq+l4HbX
- PJHJ9tLfqznjozeRYuiAu/N3bZlcxCMcezdkUNQhaoC+g4Jjtfh4sJ0uZpQoJKFBCBNNFGOS4
- w3bETSa7+tUaZzb2UzVSFWbHIt1iQSLJCTcsGRzjmeY//NWs30nj4wAuxfo4a0qWYKf/yLNLo
- 2ncJbuTic1P8SrUoKfMV473ICkYU7J6RZQyik+RxaUJb24+GnV49V4hxfLAC0Eg11LivJDXXf
- nGWhjKodIaBYzsdy00KVnmk83alvnmy2OGxhRyzMgRs6kwKJfBdWKzkcScR8yYA34EIl4=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1618832466.git.matti.vaittinen@fi.rohmeurope.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19.04.21 12:52, Michal Simek wrote:
-> Hi Jan,
->
-> On 4/18/21 2:12 PM, Jan Kiszka wrote:
->> On 01.04.21 16:52, Jan Kiszka wrote:
->>> On 01.04.21 13:42, Michal Simek wrote:
->>>> Hi Jan,
->>>>
->>>> On 3/27/21 8:55 PM, Jan Kiszka wrote:
->>>>> On 07.11.19 10:44, Rajan Vaja wrote:
->>>>>> Add clock nodes for zynqmp based on CCF.
->>>>>>
->>>>>> Signed-off-by: Rajan Vaja <rajan.vaja@xilinx.com>
->>>>>> ---
->>>>>>  arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi     | 222 +++++++++=
-++++++++++++
->>>>>>  arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts  |   4 +-
->>>>>>  arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts  |   4 +-
->>>>>>  arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts  |   2 +-
->>>>>>  .../boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts    |   4 +-
->>>>>>  .../boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts    |   4 +-
->>>>>>  .../boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts    |   4 +-
->>>>>>  .../boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts    |   4 +-
->>>>>>  .../boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts    |   4 +-
->>>>>>  arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts  |   4 +-
->>>>>>  arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts  |   4 +-
->>>>>>  arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts  |   4 +-
->>>>>>  arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts  |   4 +-
->>>>>>  arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts  |   4 +-
->>>>>>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi             |  24 ++-
->>>>>>  15 files changed, 270 insertions(+), 26 deletions(-)
->>>>>>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
->>>>>>
->>>>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/=
-arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
->>>>>> new file mode 100644
->>>>>> index 0000000..9868ca1
->>>>>> --- /dev/null
->>>>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
->>>>>> @@ -0,0 +1,222 @@
->>>>>> +// SPDX-License-Identifier: GPL-2.0+
->>>>>> +/*
->>>>>> + * Clock specification for Xilinx ZynqMP
->>>>>> + *
->>>>>> + * (C) Copyright 2017 - 2019, Xilinx, Inc.
->>>>>> + *
->>>>>> + * Michal Simek <michal.simek@xilinx.com>
->>>>>> + */
->>>>>> +
->>>>>> +#include <dt-bindings/clock/xlnx-zynqmp-clk.h>
->>>>>> +/ {
->>>>>> +	pss_ref_clk: pss_ref_clk {
->>>>>> +		u-boot,dm-pre-reloc;
->>>>>> +		compatible =3D "fixed-clock";
->>>>>> +		#clock-cells =3D <0>;
->>>>>> +		clock-frequency =3D <33333333>;
->>>>>> +	};
->>>>>> +
->>>>>> +	video_clk: video_clk {
->>>>>> +		u-boot,dm-pre-reloc;
->>>>>> +		compatible =3D "fixed-clock";
->>>>>> +		#clock-cells =3D <0>;
->>>>>> +		clock-frequency =3D <27000000>;
->>>>>> +	};
->>>>>> +
->>>>>> +	pss_alt_ref_clk: pss_alt_ref_clk {
->>>>>> +		u-boot,dm-pre-reloc;
->>>>>> +		compatible =3D "fixed-clock";
->>>>>> +		#clock-cells =3D <0>;
->>>>>> +		clock-frequency =3D <0>;
->>>>>> +	};
->>>>>> +
->>>>>> +	gt_crx_ref_clk: gt_crx_ref_clk {
->>>>>> +		u-boot,dm-pre-reloc;
->>>>>> +		compatible =3D "fixed-clock";
->>>>>> +		#clock-cells =3D <0>;
->>>>>> +		clock-frequency =3D <108000000>;
->>>>>> +	};
->>>>>> +
->>>>>> +	aux_ref_clk: aux_ref_clk {
->>>>>> +		u-boot,dm-pre-reloc;
->>>>>> +		compatible =3D "fixed-clock";
->>>>>> +		#clock-cells =3D <0>;
->>>>>> +		clock-frequency =3D <27000000>;
->>>>>> +	};
->>>>>> +};
->>>>>> +
->>>>>> +&can0 {
->>>>>> +	clocks =3D <&zynqmp_clk CAN0_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&can1 {
->>>>>> +	clocks =3D <&zynqmp_clk CAN1_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&cpu0 {
->>>>>> +	clocks =3D <&zynqmp_clk ACPU>;
->>>>>> +};
->>>>>> +
->>>>>> +&fpd_dma_chan1 {
->>>>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&fpd_dma_chan2 {
->>>>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&fpd_dma_chan3 {
->>>>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&fpd_dma_chan4 {
->>>>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&fpd_dma_chan5 {
->>>>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&fpd_dma_chan6 {
->>>>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&fpd_dma_chan7 {
->>>>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&fpd_dma_chan8 {
->>>>>> +	clocks =3D <&zynqmp_clk GDMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&lpd_dma_chan1 {
->>>>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&lpd_dma_chan2 {
->>>>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&lpd_dma_chan3 {
->>>>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&lpd_dma_chan4 {
->>>>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&lpd_dma_chan5 {
->>>>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&lpd_dma_chan6 {
->>>>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&lpd_dma_chan7 {
->>>>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&lpd_dma_chan8 {
->>>>>> +	clocks =3D <&zynqmp_clk ADMA_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&gem0 {
->>>>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM0_REF>,
->>>>>> +		 <&zynqmp_clk GEM0_TX>, <&zynqmp_clk GEM0_RX>,
->>>>>> +		 <&zynqmp_clk GEM_TSU>;
->>>>>> +	clock-names =3D "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
->>>>>> +};
->>>>>> +
->>>>>> +&gem1 {
->>>>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM1_REF>,
->>>>>> +		 <&zynqmp_clk GEM1_TX>, <&zynqmp_clk GEM1_RX>,
->>>>>> +		 <&zynqmp_clk GEM_TSU>;
->>>>>> +	clock-names =3D "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
->>>>>> +};
->>>>>> +
->>>>>> +&gem2 {
->>>>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM2_REF>,
->>>>>> +		 <&zynqmp_clk GEM2_TX>, <&zynqmp_clk GEM2_RX>,
->>>>>> +		 <&zynqmp_clk GEM_TSU>;
->>>>>> +	clock-names =3D "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
->>>>>> +};
->>>>>> +
->>>>>> +&gem3 {
->>>>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>, <&zynqmp_clk GEM3_REF>,
->>>>>> +		 <&zynqmp_clk GEM3_TX>, <&zynqmp_clk GEM3_RX>,
->>>>>> +		 <&zynqmp_clk GEM_TSU>;
->>>>>> +	clock-names =3D "pclk", "hclk", "tx_clk", "rx_clk", "tsu_clk";
->>>>>> +};
->>>>>> +
->>>>>> +&gpio {
->>>>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&i2c0 {
->>>>>> +	clocks =3D <&zynqmp_clk I2C0_REF>;
->>>>>> +};
->>>>>> +
->>>>>> +&i2c1 {
->>>>>> +	clocks =3D <&zynqmp_clk I2C1_REF>;
->>>>>> +};
->>>>>> +
->>>>>> +&pcie {
->>>>>> +	clocks =3D <&zynqmp_clk PCIE_REF>;
->>>>>> +};
->>>>>> +
->>>>>> +&sata {
->>>>>> +	clocks =3D <&zynqmp_clk SATA_REF>;
->>>>>> +};
->>>>>> +
->>>>>> +&sdhci0 {
->>>>>> +	clocks =3D <&zynqmp_clk SDIO0_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&sdhci1 {
->>>>>> +	clocks =3D <&zynqmp_clk SDIO1_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&spi0 {
->>>>>> +	clocks =3D <&zynqmp_clk SPI0_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&spi1 {
->>>>>> +	clocks =3D <&zynqmp_clk SPI1_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&ttc0 {
->>>>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&ttc1 {
->>>>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&ttc2 {
->>>>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&ttc3 {
->>>>>> +	clocks =3D <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&uart0 {
->>>>>> +	clocks =3D <&zynqmp_clk UART0_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&uart1 {
->>>>>> +	clocks =3D <&zynqmp_clk UART1_REF>, <&zynqmp_clk LPD_LSBUS>;
->>>>>> +};
->>>>>> +
->>>>>> +&usb0 {
->>>>>> +	clocks =3D <&zynqmp_clk USB0_BUS_REF>, <&zynqmp_clk USB3_DUAL_REF=
->;
->>>>>> +};
->>>>>> +
->>>>>> +&usb1 {
->>>>>> +	clocks =3D <&zynqmp_clk USB1_BUS_REF>, <&zynqmp_clk USB3_DUAL_REF=
->;
->>>>>> +};
->>>>>> +
->>>>>> +&watchdog0 {
->>>>>> +	clocks =3D <&zynqmp_clk WDT>;
->>>>>> +};
->>>>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts b/ar=
-ch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts
->>>>>> index 0f7b4cf..2e05fa4 100644
->>>>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts
->>>>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts
->>>>>> @@ -2,7 +2,7 @@
->>>>>>  /*
->>>>>>   * dts file for Xilinx ZynqMP ZC1232
->>>>>>   *
->>>>>> - * (C) Copyright 2017 - 2018, Xilinx, Inc.
->>>>>> + * (C) Copyright 2017 - 2019, Xilinx, Inc.
->>>>>>   *
->>>>>>   * Michal Simek <michal.simek@xilinx.com>
->>>>>>   */
->>>>>> @@ -10,7 +10,7 @@
->>>>>>  /dts-v1/;
->>>>>>
->>>>>>  #include "zynqmp.dtsi"
->>>>>> -#include "zynqmp-clk.dtsi"
->>>>>> +#include "zynqmp-clk-ccf.dtsi"
->>>>>>
->>>>>>  / {
->>>>>>  	model =3D "ZynqMP ZC1232 RevA";
->>>>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts b/ar=
-ch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
->>>>>> index 9092828..3d0aaa0 100644
->>>>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
->>>>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
->>>>>> @@ -2,7 +2,7 @@
->>>>>>  /*
->>>>>>   * dts file for Xilinx ZynqMP ZC1254
->>>>>>   *
->>>>>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
->>>>>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
->>>>>>   *
->>>>>>   * Michal Simek <michal.simek@xilinx.com>
->>>>>>   * Siva Durga Prasad Paladugu <sivadur@xilinx.com>
->>>>>> @@ -11,7 +11,7 @@
->>>>>>  /dts-v1/;
->>>>>>
->>>>>>  #include "zynqmp.dtsi"
->>>>>> -#include "zynqmp-clk.dtsi"
->>>>>> +#include "zynqmp-clk-ccf.dtsi"
->>>>>>
->>>>>>  / {
->>>>>>  	model =3D "ZynqMP ZC1254 RevA";
->>>>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts b/ar=
-ch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts
->>>>>> index 4f404c5..1a8127d4 100644
->>>>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts
->>>>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts
->>>>>> @@ -11,7 +11,7 @@
->>>>>>  /dts-v1/;
->>>>>>
->>>>>>  #include "zynqmp.dtsi"
->>>>>> -#include "zynqmp-clk.dtsi"
->>>>>> +#include "zynqmp-clk-ccf.dtsi"
->>>>>>
->>>>>>  / {
->>>>>>  	model =3D "ZynqMP ZC1275 RevA";
->>>>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts=
- b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
->>>>>> index 9a3e39d..fa7eb1b 100644
->>>>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
->>>>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
->>>>>> @@ -2,7 +2,7 @@
->>>>>>  /*
->>>>>>   * dts file for Xilinx ZynqMP zc1751-xm015-dc1
->>>>>>   *
->>>>>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
->>>>>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
->>>>>>   *
->>>>>>   * Michal Simek <michal.simek@xilinx.com>
->>>>>>   */
->>>>>> @@ -10,7 +10,7 @@
->>>>>>  /dts-v1/;
->>>>>>
->>>>>>  #include "zynqmp.dtsi"
->>>>>> -#include "zynqmp-clk.dtsi"
->>>>>> +#include "zynqmp-clk-ccf.dtsi"
->>>>>>  #include <dt-bindings/gpio/gpio.h>
->>>>>>
->>>>>>  / {
->>>>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts=
- b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
->>>>>> index 2421ec7..4191dfa 100644
->>>>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
->>>>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
->>>>>> @@ -2,7 +2,7 @@
->>>>>>  /*
->>>>>>   * dts file for Xilinx ZynqMP zc1751-xm016-dc2
->>>>>>   *
->>>>>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
->>>>>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
->>>>>>   *
->>>>>>   * Michal Simek <michal.simek@xilinx.com>
->>>>>>   */
->>>>>> @@ -10,7 +10,7 @@
->>>>>>  /dts-v1/;
->>>>>>
->>>>>>  #include "zynqmp.dtsi"
->>>>>> -#include "zynqmp-clk.dtsi"
->>>>>> +#include "zynqmp-clk-ccf.dtsi"
->>>>>>  #include <dt-bindings/gpio/gpio.h>
->>>>>>
->>>>>>  / {
->>>>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts=
- b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
->>>>>> index 7a49dee..3750690 100644
->>>>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
->>>>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
->>>>>> @@ -2,7 +2,7 @@
->>>>>>  /*
->>>>>>   * dts file for Xilinx ZynqMP zc1751-xm017-dc3
->>>>>>   *
->>>>>> - * (C) Copyright 2016 - 2018, Xilinx, Inc.
->>>>>> + * (C) Copyright 2016 - 2019, Xilinx, Inc.
->>>>>>   *
->>>>>>   * Michal Simek <michal.simek@xilinx.com>
->>>>>>   */
->>>>>> @@ -10,7 +10,7 @@
->>>>>>  /dts-v1/;
->>>>>>
->>>>>>  #include "zynqmp.dtsi"
->>>>>> -#include "zynqmp-clk.dtsi"
->>>>>> +#include "zynqmp-clk-ccf.dtsi"
->>>>>>
->>>>>>  / {
->>>>>>  	model =3D "ZynqMP zc1751-xm017-dc3 RevA";
->>>>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts=
- b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
->>>>>> index 54c7b4f..2366cd9 100644
->>>>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
->>>>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
->>>>>> @@ -2,7 +2,7 @@
->>>>>>  /*
->>>>>>   * dts file for Xilinx ZynqMP zc1751-xm018-dc4
->>>>>>   *
->>>>>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
->>>>>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
->>>>>>   *
->>>>>>   * Michal Simek <michal.simek@xilinx.com>
->>>>>>   */
->>>>>> @@ -10,7 +10,7 @@
->>>>>>  /dts-v1/;
->>>>>>
->>>>>>  #include "zynqmp.dtsi"
->>>>>> -#include "zynqmp-clk.dtsi"
->>>>>> +#include "zynqmp-clk-ccf.dtsi"
->>>>>>
->>>>>>  / {
->>>>>>  	model =3D "ZynqMP zc1751-xm018-dc4";
->>>>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts=
- b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
->>>>>> index b8b5ff1..9a894e6 100644
->>>>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
->>>>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
->>>>>> @@ -2,7 +2,7 @@
->>>>>>  /*
->>>>>>   * dts file for Xilinx ZynqMP zc1751-xm019-dc5
->>>>>>   *
->>>>>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
->>>>>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
->>>>>>   *
->>>>>>   * Siva Durga Prasad <siva.durga.paladugu@xilinx.com>
->>>>>>   * Michal Simek <michal.simek@xilinx.com>
->>>>>> @@ -11,7 +11,7 @@
->>>>>>  /dts-v1/;
->>>>>>
->>>>>>  #include "zynqmp.dtsi"
->>>>>> -#include "zynqmp-clk.dtsi"
->>>>>> +#include "zynqmp-clk-ccf.dtsi"
->>>>>>  #include <dt-bindings/gpio/gpio.h>
->>>>>>
->>>>>>  / {
->>>>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/ar=
-ch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
->>>>>> index e5699d0..3e39454 100644
->>>>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
->>>>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
->>>>>> @@ -2,7 +2,7 @@
->>>>>>  /*
->>>>>>   * dts file for Xilinx ZynqMP ZCU100 revC
->>>>>>   *
->>>>>> - * (C) Copyright 2016 - 2018, Xilinx, Inc.
->>>>>> + * (C) Copyright 2016 - 2019, Xilinx, Inc.
->>>>>>   *
->>>>>>   * Michal Simek <michal.simek@xilinx.com>
->>>>>>   * Nathalie Chan King Choy
->>>>>> @@ -11,7 +11,7 @@
->>>>>>  /dts-v1/;
->>>>>>
->>>>>>  #include "zynqmp.dtsi"
->>>>>> -#include "zynqmp-clk.dtsi"
->>>>>> +#include "zynqmp-clk-ccf.dtsi"
->>>>>>  #include <dt-bindings/input/input.h>
->>>>>>  #include <dt-bindings/interrupt-controller/irq.h>
->>>>>>  #include <dt-bindings/gpio/gpio.h>
->>>>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/ar=
-ch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
->>>>>> index 2a3b665..f6e9558 100644
->>>>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
->>>>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
->>>>>> @@ -2,7 +2,7 @@
->>>>>>  /*
->>>>>>   * dts file for Xilinx ZynqMP ZCU102 RevA
->>>>>>   *
->>>>>> - * (C) Copyright 2015 - 2018, Xilinx, Inc.
->>>>>> + * (C) Copyright 2015 - 2019, Xilinx, Inc.
->>>>>>   *
->>>>>>   * Michal Simek <michal.simek@xilinx.com>
->>>>>>   */
->>>>>> @@ -10,7 +10,7 @@
->>>>>>  /dts-v1/;
->>>>>>
->>>>>>  #include "zynqmp.dtsi"
->>>>>> -#include "zynqmp-clk.dtsi"
->>>>>> +#include "zynqmp-clk-ccf.dtsi"
->>>>>>  #include <dt-bindings/input/input.h>
->>>>>>  #include <dt-bindings/gpio/gpio.h>
->>>>>>
->>>>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/ar=
-ch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
->>>>>> index 8f45614..f457f8a 100644
->>>>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
->>>>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
->>>>>> @@ -2,7 +2,7 @@
->>>>>>  /*
->>>>>>   * dts file for Xilinx ZynqMP ZCU104
->>>>>>   *
->>>>>> - * (C) Copyright 2017 - 2018, Xilinx, Inc.
->>>>>> + * (C) Copyright 2017 - 2019, Xilinx, Inc.
->>>>>>   *
->>>>>>   * Michal Simek <michal.simek@xilinx.com>
->>>>>>   */
->>>>>> @@ -10,7 +10,7 @@
->>>>>>  /dts-v1/;
->>>>>>
->>>>>>  #include "zynqmp.dtsi"
->>>>>> -#include "zynqmp-clk.dtsi"
->>>>>> +#include "zynqmp-clk-ccf.dtsi"
->>>>>>  #include <dt-bindings/gpio/gpio.h>
->>>>>>
->>>>>>  / {
->>>>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/ar=
-ch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
->>>>>> index 93ce7eb..f15b99a 100644
->>>>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
->>>>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
->>>>>> @@ -2,7 +2,7 @@
->>>>>>  /*
->>>>>>   * dts file for Xilinx ZynqMP ZCU106
->>>>>>   *
->>>>>> - * (C) Copyright 2016, Xilinx, Inc.
->>>>>> + * (C) Copyright 2016 - 2019, Xilinx, Inc.
->>>>>>   *
->>>>>>   * Michal Simek <michal.simek@xilinx.com>
->>>>>>   */
->>>>>> @@ -10,7 +10,7 @@
->>>>>>  /dts-v1/;
->>>>>>
->>>>>>  #include "zynqmp.dtsi"
->>>>>> -#include "zynqmp-clk.dtsi"
->>>>>> +#include "zynqmp-clk-ccf.dtsi"
->>>>>>  #include <dt-bindings/input/input.h>
->>>>>>  #include <dt-bindings/gpio/gpio.h>
->>>>>>
->>>>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/ar=
-ch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
->>>>>> index 8bb0001..e27cd60 100644
->>>>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
->>>>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
->>>>>> @@ -2,7 +2,7 @@
->>>>>>  /*
->>>>>>   * dts file for Xilinx ZynqMP ZCU111
->>>>>>   *
->>>>>> - * (C) Copyright 2017 - 2018, Xilinx, Inc.
->>>>>> + * (C) Copyright 2017 - 2019, Xilinx, Inc.
->>>>>>   *
->>>>>>   * Michal Simek <michal.simek@xilinx.com>
->>>>>>   */
->>>>>> @@ -10,7 +10,7 @@
->>>>>>  /dts-v1/;
->>>>>>
->>>>>>  #include "zynqmp.dtsi"
->>>>>> -#include "zynqmp-clk.dtsi"
->>>>>> +#include "zynqmp-clk-ccf.dtsi"
->>>>>>  #include <dt-bindings/input/input.h>
->>>>>>  #include <dt-bindings/gpio/gpio.h>
->>>>>>
->>>>>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/bo=
-ot/dts/xilinx/zynqmp.dtsi
->>>>>> index 9aa6734..59a547b 100644
->>>>>> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->>>>>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->>>>>> @@ -2,7 +2,7 @@
->>>>>>  /*
->>>>>>   * dts file for Xilinx ZynqMP
->>>>>>   *
->>>>>> - * (C) Copyright 2014 - 2015, Xilinx, Inc.
->>>>>> + * (C) Copyright 2014 - 2019, Xilinx, Inc.
->>>>>>   *
->>>>>>   * Michal Simek <michal.simek@xilinx.com>
->>>>>>   *
->>>>>> @@ -124,6 +124,28 @@
->>>>>>  			     <1 10 0xf08>;
->>>>>>  	};
->>>>>>
->>>>>> +	firmware {
->>>>>> +		zynqmp_firmware: zynqmp-firmware {
->>>>>> +			compatible =3D "xlnx,zynqmp-firmware";
->>>>>> +			method =3D "smc";
->>>>>> +			zynqmp_clk: clock-controller {
->>>>>> +				u-boot,dm-pre-reloc;
->>>>>> +				#clock-cells =3D <1>;
->>>>>> +				compatible =3D "xlnx,zynqmp-clk";
->>>>>> +				clocks =3D <&pss_ref_clk>,
->>>>>> +					 <&video_clk>,
->>>>>> +					 <&pss_alt_ref_clk>,
->>>>>> +					 <&aux_ref_clk>,
->>>>>> +					 <&gt_crx_ref_clk>;
->>>>>> +				clock-names =3D "pss_ref_clk",
->>>>>> +					      "video_clk",
->>>>>> +					      "pss_alt_ref_clk",
->>>>>> +					      "aux_ref_clk",
->>>>>> +					      "gt_crx_ref_clk";
->>>>>> +			};
->>>>>> +		};
->>>>>> +	};
->>>>>> +
->>>>>>  	amba_apu: amba-apu@0 {
->>>>>>  		compatible =3D "simple-bus";
->>>>>>  		#address-cells =3D <2>;
->>>>>>
->>>>>
->>>>> Updating my Ultra96 setups from 5.4 to 5.10, I ran into a blocker:
->>>>> Starting from this commit on, I'm no longer getting the kernel to bo=
-ot
->>>>> on both revision 1 and 2 (arm64 defconfig as reference). If I switch=
- the
->>>>> DTBs back before this commit, even a kernel from today's head is fin=
-e.
->>>>>
->>>>> Further versions of potential relevance:
->>>>>  - PMUFW 2019.1 and 2020.2
->>>>>  - TF-A 2.3
->>>>>  - U-Boot 2020.10
->>>>>
->>>>> What's missing? I suspect someone forgot to document a subtle depend=
-ency
->>>>> of this change.
->>>>
->>>> Does this fix your issue?
->>>> https://lore.kernel.org/linux-arm-kernel/20210316090540.973014-1-puni=
-t1.agrawal@toshiba.co.jp/
->>>>
->>>
->>> Nope, CONFIG_COMMON_CLK_ZYNQMP=3Dy does not help. Maybe the defconfig =
-is
->>> missing even more. If you have some reference, I'm happy to try. I
->>> suspect that earlyprintk will also not reveal more without clocks (but=
- I
->>> didn't play with that yet).
->>>
->>> Meanwhile, I'm carrying a revert of this commit and a related cleanup.
->>> That helps for now.
->>>
->>
->> OK, dependencies resolved (unfortunately the hard way): It either
->> requires TF-A master or latest release v2.4 + [1] and [2].
->>
->> Those TF-A commits were upstream about a year after the firmware-based
->> clock control hit the kernel. A note would have been nice - or better
->> sychronization between both upstreaming efforts.
->
-> I wasn't responsible for TFA but I found this last year in Nov timeframe
-> that none really upstream this. Right now that development is working
-> like that. I am asking everybody to contribute upstream to have all the
-> time upstream heads to work together.
-> I haven't had a time to dig into this but unfortunatelly there is no
-> feature checking mechanism on zynqmp TFA side to check if this is there
-> or not but we are trying our best to check as much as possible but bugs
-> happen.
+There can be few cases when we need to shut-down the system in order to
+protect the hardware. Currently this is done at east by the thermal core
+when temperature raises over certain limit.
 
-OK, I understand. Reminding of "upstream first" is part of my daily
-business as well. :)
+Some PMICs can also generate interrupts for example for over-current or
+over-voltage, voltage drops, short-circuit, ... etc. On some systems
+these are a sign of hardware failure and only thing to do is try to
+protect the rest of the hardware by shutting down the system.
 
-And integration is generally more and more complicated with the growing
-number of firmware services and interfaces, not only on this SOC...
+Add shut-down logic which can be used by all subsystems instead of
+implementing the shutdown in each subsystem. The logic is stolen from
+thermal_core with difference of using atomic_t instead of a mutex in
+order to allow calls directly from IRQ context.
 
-> And we are lacking space in OCM to be able to add more features to TFA
-> anyway.
+Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 
-Yeah, I know - I'm also overflowing it via the SDEI patch [1].
+---
 
-Jan
+Changelog:
+v8: (changes suggested by Daniel Lezcano)
+ - replace a protection implemented by a flag + spin_lock_irqsave() with
+   simple atomic_dec_and_test().
+ - Split thermal-core changes and adding the new API to separate patches
+v7:
+ - New patch
+---
+ include/linux/reboot.h |  1 +
+ kernel/reboot.c        | 80 ++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 81 insertions(+)
 
-[1] https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/9673
+diff --git a/include/linux/reboot.h b/include/linux/reboot.h
+index 3734cd8f38a8..af907a3d68d1 100644
+--- a/include/linux/reboot.h
++++ b/include/linux/reboot.h
+@@ -79,6 +79,7 @@ extern char poweroff_cmd[POWEROFF_CMD_PATH_LEN];
+ 
+ extern void orderly_poweroff(bool force);
+ extern void orderly_reboot(void);
++void hw_protection_shutdown(const char *reason, int ms_until_forced);
+ 
+ /*
+  * Emergency restart, callable from an interrupt handler.
+diff --git a/kernel/reboot.c b/kernel/reboot.c
+index a6ad5eb2fa73..5da8c80a2647 100644
+--- a/kernel/reboot.c
++++ b/kernel/reboot.c
+@@ -7,6 +7,7 @@
+ 
+ #define pr_fmt(fmt)	"reboot: " fmt
+ 
++#include <linux/atomic.h>
+ #include <linux/ctype.h>
+ #include <linux/export.h>
+ #include <linux/kexec.h>
+@@ -518,6 +519,85 @@ void orderly_reboot(void)
+ }
+ EXPORT_SYMBOL_GPL(orderly_reboot);
+ 
++/**
++ * hw_failure_emergency_poweroff_func - emergency poweroff work after a known delay
++ * @work: work_struct associated with the emergency poweroff function
++ *
++ * This function is called in very critical situations to force
++ * a kernel poweroff after a configurable timeout value.
++ */
++static void hw_failure_emergency_poweroff_func(struct work_struct *work)
++{
++	/*
++	 * We have reached here after the emergency shutdown waiting period has
++	 * expired. This means orderly_poweroff has not been able to shut off
++	 * the system for some reason.
++	 *
++	 * Try to shut down the system immediately using kernel_power_off
++	 * if populated
++	 */
++	WARN(1, "Hardware protection timed-out. Trying forced poweroff\n");
++	kernel_power_off();
++
++	/*
++	 * Worst of the worst case trigger emergency restart
++	 */
++	WARN(1,
++	     "Hardware protection shutdown failed. Trying emergency restart\n");
++	emergency_restart();
++}
++
++static DECLARE_DELAYED_WORK(hw_failure_emergency_poweroff_work,
++			    hw_failure_emergency_poweroff_func);
++
++/**
++ * hw_failure_emergency_poweroff - Trigger an emergency system poweroff
++ *
++ * This may be called from any critical situation to trigger a system shutdown
++ * after a given period of time. If time is negative this is not scheduled.
++ */
++static void hw_failure_emergency_poweroff(int poweroff_delay_ms)
++{
++	if (poweroff_delay_ms <= 0)
++		return;
++	schedule_delayed_work(&hw_failure_emergency_poweroff_work,
++			      msecs_to_jiffies(poweroff_delay_ms));
++}
++
++/**
++ * hw_protection_shutdown - Trigger an emergency system poweroff
++ *
++ * @reason:		Reason of emergency shutdown to be printed.
++ * @ms_until_forced:	Time to wait for orderly shutdown before tiggering a
++ *			forced shudown. Negative value disables the forced
++ *			shutdown.
++ *
++ * Initiate an emergency system shutdown in order to protect hardware from
++ * further damage. Usage examples include a thermal protection or a voltage or
++ * current regulator failures.
++ * NOTE: The request is ignored if protection shutdown is already pending even
++ * if the previous request has given a large timeout for forced shutdown.
++ * Can be called from any context.
++ */
++void hw_protection_shutdown(const char *reason, int ms_until_forced)
++{
++	static atomic_t allow_proceed = ATOMIC_INIT(1);
++
++	pr_emerg("HARDWARE PROTECTION shutdown (%s)\n", reason);
++
++	/* Shutdown should be initiated only once. */
++	if (!atomic_dec_and_test(&allow_proceed))
++		return;
++
++	/*
++	 * Queue a backup emergency shutdown in the event of
++	 * orderly_poweroff failure
++	 */
++	hw_failure_emergency_poweroff(ms_until_forced);
++	orderly_poweroff(true);
++}
++EXPORT_SYMBOL_GPL(hw_protection_shutdown);
++
+ static int __init reboot_setup(char *str)
+ {
+ 	for (;;) {
+-- 
+2.25.4
+
+
+-- 
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =] 
