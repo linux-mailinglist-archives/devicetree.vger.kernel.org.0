@@ -2,133 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09BD736459E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 16:04:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AEC93645F3
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 16:23:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231307AbhDSOEz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 10:04:55 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:44772 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230021AbhDSOEz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Apr 2021 10:04:55 -0400
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13JE1JPa005836;
-        Mon, 19 Apr 2021 16:04:04 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=OXaauSRjk+zYc9QtLxaKiJoUKuIYku9vCcs2vSIe314=;
- b=xm0vfKYH4RfavqXSCDEG56lsKxSLAGH/1vKj3XM3QCsbGBIBBwGYY+om8iR/HEoZlKc/
- eeJXar3zcjyznTceE5SVhnlfO5DaDgcdVsMXso+QUhyr3faVzlHKjIVOzWb5mnrcbIXK
- cJbyF5jY3d8tQyAW04vMfzZVpp+LSnMd0kxGhNvEuTsszk5GTQ+EWj3RMe3wCUbo8SWX
- pRRPfY4yW3UL6YWoXIeBXR1jBEvEM3TuKBUqBhfpgZlXaZHUTKYmrbFOBUNkSiD2lxGm
- Y2Lw31YG/P6a3yMbUoJoHzoVj6fq0qbl5iYChIUHgEPSp9eTrS+AZWtjq79nvPihfzUt ew== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 380wj64130-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 19 Apr 2021 16:04:04 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BB42B10002A;
-        Mon, 19 Apr 2021 16:04:03 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 845B92200B1;
-        Mon, 19 Apr 2021 16:04:03 +0200 (CEST)
-Received: from lmecxl0912.lme.st.com (10.75.127.49) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 19 Apr
- 2021 16:04:02 +0200
-Subject: Re: [PATCH 12/13] ARM: dts: stm32: fix DSI port node on STM32MP15
-To:     Arnd Bergmann <arnd@arndb.de>
-CC:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, Marek Vasut <marex@denx.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Jakub Kicinski <kuba@kernel.org>
-References: <20210415101037.1465-1-alexandre.torgue@foss.st.com>
- <20210415101037.1465-13-alexandre.torgue@foss.st.com>
- <ececc78c-4fca-bb93-ef62-5d107501d963@pengutronix.de>
- <96da49dc-f24d-aa12-e1d8-39b5a5b6fbc9@foss.st.com>
- <CAK8P3a1bGAUbqTGqyz+PB=7fuVLkJce0awtx1Z9PE3uiX6uysQ@mail.gmail.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <f37abf6d-f82b-e253-d9f9-772df0b800d1@foss.st.com>
-Date:   Mon, 19 Apr 2021 16:04:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S239341AbhDSOXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 10:23:43 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:62519 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233073AbhDSOXn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 10:23:43 -0400
+X-Originating-IP: 93.34.118.233
+Received: from uno.lan (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 7BB1540007;
+        Mon, 19 Apr 2021 14:23:10 +0000 (UTC)
+From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/7] arm64: dts: renesas: Enable GMSL on R8A77970 V3M Eagle
+Date:   Mon, 19 Apr 2021 16:23:38 +0200
+Message-Id: <20210419142345.53152-1-jacopo+renesas@jmondi.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <CAK8P3a1bGAUbqTGqyz+PB=7fuVLkJce0awtx1Z9PE3uiX6uysQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
- definitions=2021-04-19_10:2021-04-19,2021-04-19 signatures=0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello, small changes compared to v4:
 
+- bindings:
+  - Took in Rob's suggestions and used a more compact
 
-On 4/19/21 3:57 PM, Arnd Bergmann wrote:
-> On Thu, Apr 15, 2021 at 2:23 PM Alexandre TORGUE
-> <alexandre.torgue@foss.st.com> wrote:
->> On 4/15/21 12:43 PM, Ahmad Fatoum wrote:
->>> On 15.04.21 12:10, Alexandre Torgue wrote:
->>>> Running "make dtbs_check W=1", some warnings are reported concerning
->>>> DSI. This patch reorder DSI nodes to avoid:
->>>>
->>>> soc/dsi@5a000000: unnecessary #address-cells/#size-cells without
->>>> "ranges" or child "reg" property
->>>
->>> This reverts parts of commit 9c32f980d9 ("ARM: dts: stm32: preset
->>> stm32mp15x video #address- and #size-cells"):
->>>
->>>       The cell count for address and size is defined by the binding and not
->>>       something a board would change. Avoid each board adding this
->>>       boilerplate by having the cell size specification in the SoC DTSI.
->>>
->>>
->>> The DSI can have child nodes with a unit address (e.g. a panel) and ones
->>> without (ports { } container). ports is described in the dtsi, panels are
->>> described in the dts if available.
->>>
->>> Apparently, the checker is fine with
->>> ports {
->>>        #address-cells = <1>;
->>>        #size-cells = <0>;
->>> };
->>>
->>> I think my rationale for the patch above was sound, so I think the checker
->>> taking offense at the DSI cells here should be considered a false positive.
->>
->> If it's a "false positive" warning then we need to find a way to not
->> print it out. Else, it'll be difficult to distinguish which warnings are
->> "normal" and which are not. This question could also be applied to patch[3].
->>
->> Arnd, Rob what is your feeling about this case ?
-> 
-> I don't have a strong opinion on this either way, but I would just
-> not apply this one for 5.13 in this case. Rob, Alexandre, please
-> let me know if I should apply the other patches before the
-> merge window, I usually don't mind taking bugfixes late before the
-> merge window, but I still want some level of confidence that they
-> are actually correct.
+	if:
+	  required:
+	    - maxim,gpio-poc
+	then:
+	  properties:
+	    poc-supply: false
+	    gpio-controller: false
 
-For me, we can keep this series for the v5.14 cycle.
+    it's a shame we can't use 'properties' in the if: clause :)
+    but this already looks better than the preceding version
 
-regards
-alex
+- driver:
+  - Backtrack on the set_gpio() function and share implementation with
+    the gpiochip function
 
-> 
-> Ahmad, if you feel strongly about this particular issue, would you like
-> to suggest a patch for the checker?
-> 
->          Arnd
-> 
+Tested on Eagle-V3M
+
+Thanks
+  j
+
+Jacopo Mondi (4):
+  dt-bindings: media: max9286: Re-indent example
+  dt-bindings: media: max9286: Define 'maxim,gpio-poc'
+  media: i2c: max9286: Use "maxim,gpio-poc" property
+  arm64: dts: renesas: r8a77970: Add csi40 port@0
+
+Kieran Bingham (3):
+  arm64: dts: renesas: eagle: Enable MAX9286
+  arm64: dts: renesas: eagle: Add GMSL .dtsi
+  DNI: arm64: dts: renesas: eagle: Include eagle-gmsl
+
+ .../bindings/media/i2c/maxim,max9286.yaml     | 275 +++++++++++-------
+ arch/arm64/boot/dts/renesas/eagle-gmsl.dtsi   | 178 ++++++++++++
+ .../arm64/boot/dts/renesas/r8a77970-eagle.dts | 114 ++++++++
+ arch/arm64/boot/dts/renesas/r8a77970.dtsi     |   4 +
+ drivers/media/i2c/max9286.c                   | 125 ++++++--
+ 5 files changed, 560 insertions(+), 136 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/eagle-gmsl.dtsi
+
+--
+2.31.1
+
