@@ -2,124 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1042363982
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 04:52:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18DBA3639B4
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 05:20:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237297AbhDSCxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Apr 2021 22:53:20 -0400
-Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:35723 "EHLO
-        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232775AbhDSCxT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 18 Apr 2021 22:53:19 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id A28CF22D9;
-        Sun, 18 Apr 2021 22:52:49 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Sun, 18 Apr 2021 22:52:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=fknWd3je8bKB9
-        0K09u49b0QN8C2hWKG3Vt+kDBR0zXE=; b=aDdWixQ7+0dBsYBrY1EbUBs1EeDKj
-        kzXKTpy1ES8KlSB5eZWrf2uKe5oPEDDoAM86fTuz7xy+EhqMf4keKNjpsvQyFCFs
-        OGt8Op0ZbDUCJBW7FM/95hPA44g4R22hpTcKi5/+QbltOo+AxvBjS8fLDEY8oJ2/
-        /ie1bbCPz+N6eHpcb0AAlXAHuhhkOHHV6//wxYo2hQxFkYcXgf5tzYerJIGaUxlR
-        29HH9CWLzeHSwwE3kJlEyYINzoizYFOPFU88MSXEgYqnuCZ9TgJZqGY96mArnzW7
-        +HGasOaOS7jqma/lFDelY2F6hfCwPLuwKJMgUGOlcRu1ptO4/ro1B3inA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; bh=fknWd3je8bKB90K09u49b0QN8C2hWKG3Vt+kDBR0zXE=; b=Uzkm73pX
-        iCSwF8gZJDLUVkZFIbLS7QiSvKF493qM1NBpRIoftIEEGBykeuyuP1oggU05tq2c
-        F2WWXj+GBL3WyG1WdX6imnIYu66vnBXdDfZ9ZqsLmpuKgIjFj/CJtXiJ1YUi2eC9
-        t0b51LHZ0wrrw15Gv3QUvpSFoMtxDIUr6LFB4c37O/tP5RkMt5B98mGdlCEkei0d
-        gOnfS1zOgiAzqFGX4v27S2/sNTqQVVFSStGYlVAQWBPKWvB3k/vnV4PmmpVjn9Vv
-        LxbtDAkHrxj/gyYGlDxHHB/f3envEZM5BpCzPOhlCYMCCELXUt+8Peu3Zr9vU/qv
-        8eCNOk4h/1I8eA==
-X-ME-Sender: <xms:gPB8YAZaGb0xFc_KlLxBs6bbZBvztjAqQy-_FE44uABQplCJvHKPQw>
-    <xme:gPB8YLbUKsQycVJ-Cs9f0VHt6hjw4TluJi-2wF-uibiDSv3QR8IJ8ugMO2jqfJjzU
-    2HLmPYWaajXG2J1vQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvddtvddgleekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpeduhfejfedvhffgfeehtefghfeiiefgfeehgfdvvdevfeegjeehjedv
-    gfejheeuieenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghn
-    ugdrohhrgh
-X-ME-Proxy: <xmx:gPB8YK9tgOScctT5rIFKU8eUdT5IpyU2EDR7tmMzxobP00jCCh_cPQ>
-    <xmx:gPB8YKpZcdHWjv9Qmpw2_XoITJNVvzTyg_GrN_VDMN1MFEhRC3NInQ>
-    <xmx:gPB8YLqtzVTM1b3MVZQsDbvo14c__gZdqWqoGuJ3mxMMS3JWLJ92eQ>
-    <xmx:gfB8YMC6U_baTtVdleFAskL8Ercsi5ULcDzxqjY02EICeHC3M1Szdw>
-Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 17A8824005B;
-        Sun, 18 Apr 2021 22:52:48 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Samuel Holland <samuel@sholland.org>
-Subject: [PATCH 2/2] arm64: dts: allwinner: Enforce consistent MMC numbering
-Date:   Sun, 18 Apr 2021 21:52:46 -0500
-Message-Id: <20210419025246.21722-3-samuel@sholland.org>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210419025246.21722-1-samuel@sholland.org>
-References: <20210419025246.21722-1-samuel@sholland.org>
+        id S237407AbhDSDSB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Apr 2021 23:18:01 -0400
+Received: from mail-lj1-f180.google.com ([209.85.208.180]:35371 "EHLO
+        mail-lj1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237406AbhDSDSB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Apr 2021 23:18:01 -0400
+Received: by mail-lj1-f180.google.com with SMTP id a1so37678275ljp.2;
+        Sun, 18 Apr 2021 20:17:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc;
+        bh=b1Esi1WD3INsXc8Mpz0AJivayvHJYCQXopFXhNta98w=;
+        b=SwP6qdDfULNgiFhCReun5MFiKaUhBiFxL61WvF0I2F3onHcpUglftWCVGcIlTnrA2P
+         ZuyDNJawkATYMnfYearmEjtNtJAcwu03Il1QdSw8zNODvHelC0Z25jvwCZt1CUmPWS8L
+         /QC0IH88XHvW4Qeb7mEgu91vYWTA+bNxzXjI4nyhFNaEQRtqX2RK7Wp9UzpZpt9JfSh3
+         ho5RC6A4gkzWNHA4PMJhkkvqvxLqC3+ODFtW7r5FzJthEboOYGxIkI38uTDrC1NW4Ifm
+         1GNntD/FfLaBKGlNTkDpItr0s63k7c6BiIuxTB7gb8MbFjtUtATwmJSyLFiLFFQTN1R7
+         dT6w==
+X-Gm-Message-State: AOAM532vmh2Q7XZ1tNrvx3ygJpRMFwYi027kOqO+PYO4qsVEp2pAyZtY
+        oOyDVGYcNX1i6Z+x4xebY7GPVk2HgersdQ==
+X-Google-Smtp-Source: ABdhPJw/RqNKojJfu3DeiCIkYZ+LkTRMGTrzf+il+R/vQVf6hnz9t5/JKTZm2Cvutf+Is5ahVNPzug==
+X-Received: by 2002:a2e:804d:: with SMTP id p13mr9994910ljg.267.1618802250357;
+        Sun, 18 Apr 2021 20:17:30 -0700 (PDT)
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com. [209.85.167.44])
+        by smtp.gmail.com with ESMTPSA id a25sm1720590ljm.130.2021.04.18.20.17.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 Apr 2021 20:17:30 -0700 (PDT)
+Received: by mail-lf1-f44.google.com with SMTP id f17so46630103lfu.7;
+        Sun, 18 Apr 2021 20:17:29 -0700 (PDT)
+X-Received: by 2002:a05:6512:3e0a:: with SMTP id i10mr10803227lfv.496.1618802249832;
+ Sun, 18 Apr 2021 20:17:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210419025246.21722-1-samuel@sholland.org>
+In-Reply-To: <20210419025246.21722-1-samuel@sholland.org>
+Reply-To: wens@csie.org
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Mon, 19 Apr 2021 11:17:19 +0800
+X-Gmail-Original-Message-ID: <CAGb2v642Z3iH7fUWa31Rb5j+nWdZ=sXn2BYw3_dyE9P6iuL0Cg@mail.gmail.com>
+Message-ID: <CAGb2v642Z3iH7fUWa31Rb5j+nWdZ=sXn2BYw3_dyE9P6iuL0Cg@mail.gmail.com>
+Subject: Re: [PATCH 0/2] sunxi: Enforce consistent MMC numbering
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@lists.linux.dev,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Traditionally, the sunxi-mmc device numbers matched the register address
-order. However, that was broken by asynchronous probe, and now the MMC
-device numbers are not deterministic. Add aliases to keep the device
-numbers consistent between boots. Use the traditional order, since there
-is no need to change it.
+Hi,
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
- arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 6 ++++++
- arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 6 ++++++
- 2 files changed, 12 insertions(+)
+On Mon, Apr 19, 2021 at 10:52 AM Samuel Holland <samuel@sholland.org> wrote:
+>
+> Dealing with the inconsistent numbering has been a major pain, and
+> there is a solution with (as far as I can tell) no tangible downsides.
+> So let's use it.
+>
+> Yes, I know the kernel supports UUIDs for root=. But UUIDs do not help
+> when referencing the whole, unpartitioned device, like is needed for
+> updating the bootloader and firmware. So for the use case of "write a
+> bootloader to the SD card, regardless of where the board is currently
+> booted from", I know of two options:
+>   - Dig around in sysfs to find the mmc number from the MMIO address,
+>     which means I have to know the MMIO addresses for every SoC, or
+>   - Apply patches like these.
+>
+> Samuel Holland (2):
+>   ARM: dts: sunxi: h3/h5: Enforce consistent MMC numbering
+>   arm64: dts: allwinner: Enforce consistent MMC numbering
+>
+>  arch/arm/boot/dts/sunxi-h3-h5.dtsi            | 6 ++++++
+>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 6 ++++++
+>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 6 ++++++
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-index 9b58cfbefa6d..3df70a41b3b9 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-@@ -17,6 +17,12 @@ / {
- 	#address-cells = <1>;
- 	#size-cells = <1>;
- 
-+	aliases {
-+		mmc0 = &mmc0;
-+		mmc1 = &mmc1;
-+		mmc2 = &mmc2;
-+	};
-+
- 	chosen {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-index d8ebc1a84af9..4bdc48caf68a 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-@@ -16,6 +16,12 @@ / {
- 	#address-cells = <1>;
- 	#size-cells = <1>;
- 
-+	aliases {
-+		mmc0 = &mmc0;
-+		mmc1 = &mmc1;
-+		mmc2 = &mmc2;
-+	};
-+
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--- 
-2.26.3
+At least with Rockchip this is now done at the board level. IIRC it was
+a request from other people to not do it at the SoC level. I don't recall
+exactly who though.
 
+ChenYu
+
+
+>  3 files changed, 18 insertions(+)
+>
+> --
+> 2.26.3
+>
+>
