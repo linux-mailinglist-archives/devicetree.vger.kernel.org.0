@@ -2,117 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C87B363C97
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 09:33:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C99D363CA4
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 09:37:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237844AbhDSHdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 03:33:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38416 "EHLO
+        id S237658AbhDSHhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 03:37:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237890AbhDSHde (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 03:33:34 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C29C061763
-        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 00:33:03 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id f195-20020a1c1fcc0000b029012eb88126d7so7501946wmf.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 00:33:02 -0700 (PDT)
+        with ESMTP id S233831AbhDSHhL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 03:37:11 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 515D3C061760
+        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 00:36:42 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id n10-20020a05600c4f8ab0290130f0d3cba3so4449191wmq.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 00:36:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=h2PEGOMW+3gpulsJ3q1pOUjCBVZvJJtGNOmv6/kS2ZM=;
-        b=yZHvSB3fef3HnnFjWGamiYb5ZJjeXp8+WDU0fFLeest0MXpgvf7sM6naMALr2nV3r0
-         OaVPutnaC6Y7Ddmmw0/Ke6QAWh2+uBV+Fwb5WDwwTFBRdN/jTEoeIPOvXzfhd2ftDYLG
-         p4QCyFiYCMyseJOfmQdvccFpiNSxKQdqpwI0ryCF+PrFFYv0fbR2Oesb9EqmMjDgir5g
-         hlpRH0/NPN0gqyreH5u1gXnl+PC9/j2r5bSL7m4IUvDaG9yFQMCmo6910OYdz4qChSDf
-         mRdH/h9Oq7HVAmSWeE+JCikmPx2UFoRPQpHwOK/uJfC9sWTpZGtLLaqIuDh1XzIznzT/
-         9LSQ==
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=0+ERtxBLAKa344j/COpxgJf/tgpBFvh5Bj4l219hncw=;
+        b=qrk6vf1EOZdLHLwAxVz1yLbK4ih6Ze0oyf5aUVfqKSeGfRpRrjHCeWDhSl0aK6r0G4
+         uBLiywKB0tytKu40gqqeJOkf9hpfwC0J6TGEFhZAZsNQt3ldmpVBWKUC4D7WqHH1JMTu
+         C7lp/oFtxQMQ7CyuaDlrdh+auWRZItDHFPiForkAdJsU/ElCedxw98+ajBOPNccur+7d
+         uricePPL9tXoIUHIGDPwnC9COfraCyMam0tUHiEhovXZfQBxRm6r4cWYWFFMLTcQMlAX
+         E3CSk6AfNuqq98koEPfaulkns9/dJcV3OduT/xwJ83x4GL9+CAMRZCOxRsGqDqbPSOQn
+         lMuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=h2PEGOMW+3gpulsJ3q1pOUjCBVZvJJtGNOmv6/kS2ZM=;
-        b=K3Qgu0BwqBVEqeHrD/FbfbS7TRMabv/tNv3Mtn/pE9QF/6l5F0C604IwdpQcyYcGut
-         2bkuoK8B9PdA7cXKZaJBgKS18hhHi1HtCmi2VldHe3zvpxqxb9NWxkcrDsq7qv5MAhGD
-         iCZ61K8UTCAk9FM+oFUDx0iqiCKO1COLxGkaqrI54Z546y2i3+RQALY3AZ+sa0RyJUz3
-         h3op4dnI4QR6znT9xUWtlJtVEMR5BSQ7QuspuQENFELaHBIkJgbPJWDeH8cnzlIwJTaI
-         05DJaIvS+xzSDoKRqBryrCzmw7M7yK/9v6ghWuuh7WvQfqTQDIHA6tBkJQFfEuKUBB+8
-         Yvzw==
-X-Gm-Message-State: AOAM531Z3QrdFqrWs1GwaumNnhqMNeCW3ZZtoSp+Z6O3tnxNgQSO+gQG
-        IwQUl4Kdvg2yAHDMOACTsjoODw==
-X-Google-Smtp-Source: ABdhPJwWOVRcnouCxuWBQ/lQ5ASbbEd+ynjH8QI7wycxaKzH87nIRpFgnrsrwB6ZhQ7D/YYr/9AhDQ==
-X-Received: by 2002:a1c:7515:: with SMTP id o21mr19913634wmc.90.1618817581576;
-        Mon, 19 Apr 2021 00:33:01 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:90c:e290:2e82:31e6:67f1:4f33])
-        by smtp.gmail.com with ESMTPSA id y125sm5492311wmy.34.2021.04.19.00.33.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Apr 2021 00:33:01 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=0+ERtxBLAKa344j/COpxgJf/tgpBFvh5Bj4l219hncw=;
+        b=YcibBye+6Mmf0hWtKzMlv97j6c3vLFQkOE/8ooBZWjPJ8j7s1/aCkinL9hIZtQtbCc
+         TMA/gpB5m4O/Qe3Att+thaX0/2y0gUu3iseuT7lDKbKa7Sk6O19stXKkJENRNTZnRDsJ
+         OL/3niUcTZrdQDBmZbikYXgwRAKDwKua3dItxVPWtbiXBxbmWzomBND1BFGhfp75p1/y
+         GOFtfm1OAdhEjkrut18QesXRjPMvmO6wRicTvA1287ZqL1R49HkSiU0G6QLYs1lBMEoR
+         dOvloyEuWweWpm/DkhAi7yIVIv9+y+IT8JolDdksmXgJrCgvhf9ryv85oA+S4df3FRDM
+         XD0w==
+X-Gm-Message-State: AOAM532E4ZxIHjx2+ebcFNbuM7rHhZxqrYFnyINWaFGqFM9Q4sAVIUW/
+        f6lhoko66fsO33ndwG4hUPe3vQ==
+X-Google-Smtp-Source: ABdhPJw2g0pS+qOTAkbmbUZIhuDHi3UKmV+q/ol9tb6YWfNBVWi/V+7tn1DJrHP6PL03s7jfw/PZHw==
+X-Received: by 2002:a7b:cb82:: with SMTP id m2mr20362725wmi.105.1618817800987;
+        Mon, 19 Apr 2021 00:36:40 -0700 (PDT)
+Received: from ?IPv6:2a01:e0a:90c:e290:2e82:31e6:67f1:4f33? ([2a01:e0a:90c:e290:2e82:31e6:67f1:4f33])
+        by smtp.gmail.com with ESMTPSA id i12sm18382688wmd.3.2021.04.19.00.36.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Apr 2021 00:36:40 -0700 (PDT)
+Subject: Re: [v2,PATCH 1/3] drm/mediatek: dpi dual edge sample mode support
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
+        matthias.bgg@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Jitao Shi <jitao.shi@mediatek.com>
+References: <1618407316-10042-1-git-send-email-rex-bc.chen@mediatek.com>
+ <1618407316-10042-2-git-send-email-rex-bc.chen@mediatek.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
-        matthias.bgg@gmail.com, devicetree@vger.kernel.org
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v3 2/5] dt-bindings: mediatek: add mt8167 to hdmi, hdmi-ddc and cec bindings
-Date:   Mon, 19 Apr 2021 09:32:41 +0200
-Message-Id: <20210419073244.2678688-3-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210419073244.2678688-1-narmstrong@baylibre.com>
-References: <20210419073244.2678688-1-narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <a1ffcce8-621e-7493-22d4-e28ff09c31a4@baylibre.com>
+Date:   Mon, 19 Apr 2021 09:36:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-X-Patch-Hashes: v=1; h=sha256; i=weRuGrIrSCS/7E0z7zGXTfkieqKmo2b9b3zEqPhglEk=; m=4OhWpDRl3EWsKo2xAbHezHdcGoUrsEeovaOubbEbqC4=; p=zKmvMzMsvi/UJaeb54phx7cTaLZasyaFc1SoAWluN64=; g=bc9c5611c788292574b503426cd53c1df4c9afa2
-X-Patch-Sig: m=pgp; i=narmstrong@baylibre.com; s=0xA4CFF8AE; b=iQIzBAABCgAdFiEEPVPGJshWBf4d9CyLd9zb2sjISdEFAmB9MgwACgkQd9zb2sjISdHkERAAk+N +2dE9zUrVcQjhb8YopX7VKUMGbIIP9PuZo9jpMxJOiARMjBObXYlVFKIabe6tjTwGJOmdd7UJRCRN Q5arXTAze7ZBggM4NU9T5iGkUf8q1PCfsfKWVKwpRLAe517LqsBICviVOlivfrokYS2wrD4y6YvBJ fuisd9b7iwfSrPSr0bUkxCdrMoOwasYUrsLDygxYcQeE7++YZnBjVfdiiP0G05ktzUdbxruMOOSN1 Ox3hrMIKqujAGnSaqSi5TXssVrSUMU9R1qb9nZ/M6SEEBoQ8+HNRQDAM2NfDGqy0cNoCVUzvJ/Yt1 r6D3xKSWFpzqKXkQTR8tdpTy4wXeeLJdKdZnlNXbpyNCdTAGKZS/kAbul8/TMKRdWwBr0hUYZlz4I nq3NdEkJOq5by7N2JZk2dzXUmxcmvzg7SADvoQRBhi4TgVTo4Z92XMDaX3dcjErqWARwGw7mUhSMZ yuaVibaskfGYgBQbKhMdft/+JMW/HA5SB9DHhDKZLsyIa9emSThNz94R95xeJ+xeIEcQFWrwBvDS2 gRMT+iay39T04/VYfwkq0RJxD+9Bwz4XqWH6awDvAlprJmQRPwGnUkh+3cQUjEIMTTSfU8uDPbECl 03oxBby4nmvDVtxMFk5jb/vDz+b12P3pYj9ZBYgM+IrTEETFaVALYE0F2LmFyDaQ=
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1618407316-10042-2-git-send-email-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add mt8167 SoC compatible to Mediatek hdmi, hdmi-ddc and cec schema bindings.
+Hi,
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../devicetree/bindings/display/mediatek/mediatek,cec.yaml       | 1 +
- .../devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml  | 1 +
- .../devicetree/bindings/display/mediatek/mediatek,hdmi.yaml      | 1 +
- 3 files changed, 3 insertions(+)
+On 14/04/2021 15:35, Rex-BC Chen wrote:
+> DPI can sample on falling, rising or both edge.
+> When DPI sample the data both rising and falling edge.
+> It can reduce half data io pins.
+> 
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dpi.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> index b05f900d9322..21a3a7b78835 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> @@ -83,6 +83,7 @@ struct mtk_dpi {
+>  	struct pinctrl *pinctrl;
+>  	struct pinctrl_state *pins_gpio;
+>  	struct pinctrl_state *pins_dpi;
+> +	bool ddr_edge_sel;
+>  	int refcount;
+>  };
+>  
+> @@ -121,6 +122,7 @@ struct mtk_dpi_conf {
+>  	unsigned int (*cal_factor)(int clock);
+>  	u32 reg_h_fre_con;
+>  	bool edge_sel_en;
+> +	bool dual_edge;
+>  };
+>  
+>  static void mtk_dpi_mask(struct mtk_dpi *dpi, u32 offset, u32 val, u32 mask)
+> @@ -380,6 +382,15 @@ static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
+>  	}
+>  }
+>  
+> +static void mtk_dpi_dual_edge(struct mtk_dpi *dpi)
+> +{
+> +	if (dpi->conf->dual_edge) {
+> +		mtk_dpi_mask(dpi, DPI_DDR_SETTING, DDR_EN | DDR_4PHASE,
+> +			     DDR_EN | DDR_4PHASE);
+> +		mtk_dpi_mask(dpi, DPI_OUTPUT_SETTING, dpi->ddr_edge_sel ? EDGE_SEL : 0, EDGE_SEL);
+> +	}
+> +}
+> +
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
-index b38d8732d7e0..66288b9f0aa6 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
-@@ -17,6 +17,7 @@ properties:
-   compatible:
-     enum:
-       - mediatek,mt7623-cec
-+      - mediatek,mt8167-cec
-       - mediatek,mt8173-cec
- 
-   reg:
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
-index c8ba94d6908b..b6fcdfb99ab2 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
-@@ -17,6 +17,7 @@ properties:
-   compatible:
-     enum:
-       - mediatek,mt7623-hdmi-ddc
-+      - mediatek,mt8167-hdmi-ddc
-       - mediatek,mt8173-hdmi-ddc
- 
-   reg:
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
-index 6a144faed682..111967efa999 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
-@@ -19,6 +19,7 @@ properties:
-     enum:
-       - mediatek,mt2701-hdmi
-       - mediatek,mt7623-hdmi
-+      - mediatek,mt8167-hdmi
-       - mediatek,mt8173-hdmi
- 
-   reg:
--- 
-2.25.1
+By using the downstream code as reference:
 
+-       clk_set_rate(dpi->pixel_clk, vm.pixelclock);
++       clk_set_rate(dpi->pixel_clk, vm.pixelclock * (dpi->conf->dual_edge ? 2 : 1));
+
+is missing in mtk_dpi_set_display_mode()
+
+>  static void mtk_dpi_power_off(struct mtk_dpi *dpi)
+>  {
+>  	if (WARN_ON(dpi->refcount == 0))
+> @@ -518,6 +529,7 @@ static int mtk_dpi_set_display_mode(struct mtk_dpi *dpi,
+>  	mtk_dpi_config_yc_map(dpi, dpi->yc_map);
+>  	mtk_dpi_config_color_format(dpi, dpi->color_format);
+>  	mtk_dpi_config_2n_h_fre(dpi);
+> +	mtk_dpi_dual_edge(dpi);
+>  	mtk_dpi_config_disable_edge(dpi);
+>  	mtk_dpi_sw_reset(dpi, false);
+>  
+> 
+
+Neil
