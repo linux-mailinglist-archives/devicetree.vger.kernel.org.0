@@ -2,94 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20E88364A28
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 20:55:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22A5E364A39
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 21:06:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233350AbhDSS4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 14:56:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48964 "EHLO
+        id S239614AbhDSTHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 15:07:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230295AbhDSS4J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 14:56:09 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B32ACC06174A;
-        Mon, 19 Apr 2021 11:55:39 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id u21so54563852ejo.13;
-        Mon, 19 Apr 2021 11:55:39 -0700 (PDT)
+        with ESMTP id S234508AbhDSTHX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 15:07:23 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A81FC06174A
+        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 12:06:53 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id v19-20020a0568300913b029028423b78c2dso24973310ott.8
+        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 12:06:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=2Kl6/XsKB4uVxndqv3mYsWGSZextgKDhPDmtJ8QQBRM=;
-        b=q5QFZ/hH5e0MENcVZCOWxgrIcVD+x58W9oga6EEDqv1wAOyLGDVwtrlayWli6GN5AK
-         Lmheu1RHFV/UN1f8+FG/4dsc/ebkprq4wsmtISxnN+wQwbsyfAnzprqe0eYyb+6Wg4TR
-         12l8yFYZ7CDVSKpM87GyWSnc/pW4OwuTEyxcbT804MOR4psebIb5Z+1rO4oStjzRDODF
-         5IyPmwGXHYJ45WSyjD8vQgBn78Rz/zFgdml86o6xj9spVQCZCY7sy1XXEOWuHaJziXJT
-         h0Gu/aMVmjFtERx9Y2X23N6ZNDYb5bl034IU9k9Vp40TtY7bBqZTQwqFA9MTTnLvC0Qp
-         HknA==
+        bh=nS6lVdjAQFuFmi8OcV/NWRT3J31GQHJ6x1DbiIVFs9c=;
+        b=BPS3XGyjmuDU202kT6j+i4GUG7bH0/UX6id7ANkMV4j6krFsStfFOmpSp1GowHtFqs
+         e+bUAwvY3QxQO1YyLyH69dbyH3NyOXU3oJ+GMp6XG8jvwXdEkmOnrCXZ5jMU9TVDhovZ
+         aE1yuktnSwTYK06qRFKjU5MQ6mLf0UO420Q7FASQEjvUNPtQ/uHChVwio8CoM+EolYX7
+         fkkhhel/1cjHRpx8+jDLmsU0+5YNsad5K05glfAL9ZQisVQF9qiJSFMW8nv1F1mUohLT
+         nc9nsFQjMdgDVRHNURGoBPaMlmkTRKiVAv8rz8heuq/d6zwIDVHb/DDTl/ZfCER06ZJV
+         X2ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=2Kl6/XsKB4uVxndqv3mYsWGSZextgKDhPDmtJ8QQBRM=;
-        b=n8qfyjWpDKS4W2KdosKM5vZLz6syfz+XRR6hs8kxUQsICN8iuZofEH8mkUSHy4XH+4
-         WNjrU4tpfiId169e8h9PwMWTemmEB7XmI/eIYDINnIIQCO0/tLf0IeE5okA6uAZ1moU8
-         /zXk0Ih3j2aWAZ1gxu8T8B9cQEGDHqjrtmL8bc5KTC1M+PQFnvswxB1fmQGgL4q5jiS9
-         J0w9n2MgUyLJSX/i9Wg8k5EAUvQf+wnjLNzgdLp98RvOdYPYE2rC3qcPZSP4sm29yKls
-         rNO0VBhGQYx/HnCbhF3lPS6eFK0XE8vULorqK4HWRONRdoT+SU/yZwDdrX42u21hDGeN
-         gw3w==
-X-Gm-Message-State: AOAM530+dblYmMczFQ1qE1ILuwJQAY8tblF1Q6dO1ySnKxCZW7SseApU
-        mCcxUnJJsW0oiR95b5PyHCGwp7yg5ZyScw==
-X-Google-Smtp-Source: ABdhPJyqZ3UKB+EigHMcMycYToCXsV86+2xkdrbAkiThQH6r+sg7GVidMSVwKmTOpk6QSfw6LC70Yg==
-X-Received: by 2002:a17:906:b85a:: with SMTP id ga26mr23484691ejb.366.1618858538430;
-        Mon, 19 Apr 2021 11:55:38 -0700 (PDT)
-Received: from skbuf (5-12-16-165.residential.rdsnet.ro. [5.12.16.165])
-        by smtp.gmail.com with ESMTPSA id t14sm10968949ejj.77.2021.04.19.11.55.37
+        bh=nS6lVdjAQFuFmi8OcV/NWRT3J31GQHJ6x1DbiIVFs9c=;
+        b=K6bP5zKrcE15kbKh8uKzWhusojfegWxqVZM1XykTRRY1ZBvCxJH/4HsdFWrsaV5fM7
+         paiyAHvcUrA+9fpCCS4+hRIPC+Bx/ucOfdjZu7+af5lmET0nJxecfLvxtj6atbynNzQx
+         +7lBFpOsqVPSe5l5vEV7eJtL2bZdyAVxNQUXcNRaT8WzH7M1dNi/QXAaTsupjGMVpNge
+         CDDIjbSOFeWUZns78Ep60xlfroJ0gUbppmK50DEXhlmOWX6PS4dQFDQzuEsfXlOlXCo/
+         we6bLQFptApUJpy8BpruW6yhO16W7gWFzczBA34OyNOdIWaEWTaHo8T6bXqYibsWzidi
+         rEug==
+X-Gm-Message-State: AOAM533SkLO2b9lpoxtHId9WS7Pa9Gw69VehL/22jSS+LjM1MFFtpcnL
+        KZ6eSpMO4Ax0aCRWhASUboIyoA==
+X-Google-Smtp-Source: ABdhPJxLe1/3CzYqXXwB0vxZ7+8+NQMslhHXoPfV20wEMFYc4HCiSCuaa98SjiWVXIrgij/eVTVZZg==
+X-Received: by 2002:a9d:4808:: with SMTP id c8mr15759494otf.115.1618859212509;
+        Mon, 19 Apr 2021 12:06:52 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id h81sm1642638oif.53.2021.04.19.12.06.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Apr 2021 11:55:37 -0700 (PDT)
-Date:   Mon, 19 Apr 2021 21:55:36 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Tobias Waldekranz <tobias@waldekranz.com>
-Cc:     Rob Herring <robh@kernel.org>, davem@davemloft.net,
-        kuba@kernel.org, andrew@lunn.ch, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 5/5] dt-bindings: net: dsa: Document
- dsa,tag-protocol property
-Message-ID: <20210419185536.csivtk5557fcr6nh@skbuf>
-References: <20210415092610.953134-1-tobias@waldekranz.com>
- <20210415092610.953134-6-tobias@waldekranz.com>
- <20210415212758.GA1909992@robh.at.kernel.org>
+        Mon, 19 Apr 2021 12:06:51 -0700 (PDT)
+Date:   Mon, 19 Apr 2021 14:06:49 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Taniya Das <tdas@codeaurora.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>, agross@kernel.org,
+        rjw@rjwysocki.net, devicetree@vger.kernel.org, robh+dt@kernel.org,
+        amit.kucheria@linaro.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, jeffrey.l.hugo@gmail.com
+Subject: Re: [PATCH v4 5/7] cpufreq: qcom-hw: Implement CPRh aware OSM
+ programming
+Message-ID: <20210419190649.GR1538589@yoga>
+References: <20210119174557.227318-1-angelogioacchino.delregno@somainline.org>
+ <20210119174557.227318-6-angelogioacchino.delregno@somainline.org>
+ <c35bfd76-0d7e-d7bc-79ab-041b1074c1af@codeaurora.org>
+ <YAh+9/IgRhI8M3ov@builder.lan>
+ <92e465e4-a0d9-43eb-84f7-69fa355097a9@codeaurora.org>
+ <20210413034940.o6uzjtnh2ylvikbf@vireshk-i7>
+ <150e19b9-9ecf-7cac-8aa3-c7c4d7a11468@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210415212758.GA1909992@robh.at.kernel.org>
+In-Reply-To: <150e19b9-9ecf-7cac-8aa3-c7c4d7a11468@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 15, 2021 at 04:27:58PM -0500, Rob Herring wrote:
-> On Thu, Apr 15, 2021 at 11:26:10AM +0200, Tobias Waldekranz wrote:
-> > The 'dsa,tag-protocol' is used to force a switch tree to use a
-> > particular tag protocol, typically because the Ethernet controller
-> > that it is connected to is not compatible with the default one.
-> > 
-> > Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/dsa/dsa.yaml | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> > index 8a3494db4d8d..c4dec0654c6a 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> > +++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> > @@ -70,6 +70,15 @@ patternProperties:
-> >                device is what the switch port is connected to
-> >              $ref: /schemas/types.yaml#/definitions/phandle
-> >  
-> > +          dsa,tag-protocol:
-> 
-> 'dsa' is not a vendor. 'dsa-tag-protocol' instead.
+On Wed 14 Apr 20:31 CDT 2021, Taniya Das wrote:
 
-Can confirm, DSA is not a vendor.
-You can change to 'dsa-tag-protocol' if this makes acceptance any easier.
+> 
+> On 4/13/2021 9:19 AM, Viresh Kumar wrote:
+> > On 12-04-21, 15:01, Taniya Das wrote:
+> > > Technically the HW we are trying to program here differs in terms of
+> > > clocking, the LUT definitions and many more. It will definitely make
+> > > debugging much more troublesome if we try to accommodate multiple versions of
+> > > CPUFREQ-HW in the same code.
+> > > 
+> > > Thus to keep it simple, easy to read, debug, the suggestion is to keep it
+> > > with "v1" tag as the OSM version we are trying to put here is from OSM1.0.
+> > 
+> > That is a valid point and is always a case with so many drivers. What
+> > I am concerned about is how much code is common across versions, if it
+> > is 5-70%, or more, then we should definitely share, arrange to have
+> > callbacks or ops per version and call them in a generic fashion instead
+> > of writing a new driver. This is what's done across
+> > drivers/frameworks, etc.
+> > 
+> 
+> The code sharing here between versions should be very minimal as most
+> portion of the code here in V1 would focus on programming to prepare the LUT
+> to be further read by the driver, the programming in itself is huge for v1.
+> I am okay if you move the v1 in a different file and invoke based on
+> version.
+> 
+
+The initialization of the hardware certainly is a large chunk of code,
+but once initialized it's the same driver. Your argument that this new
+code makes it harder to debug things doesn't seem relevant, as the old
+support doesn't seem to affect the code paths used on the modern
+version.
+
+Creating a new driver and picking it by compatible is certainly possible
+to do, but looking at Angelo's patch it seems like it would contain 100%
+of what's in qcom-cpufreq-hw today.
+
+As such, I like the approach suggested in this series.
+
+Regards,
+Bjorn
