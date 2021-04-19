@@ -2,92 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C47163642F7
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 15:17:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBDCE364392
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 15:20:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240168AbhDSNMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 09:12:51 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:34731 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239885AbhDSNLg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 09:11:36 -0400
-Received: by mail-ot1-f47.google.com with SMTP id k14-20020a9d7dce0000b02901b866632f29so32487293otn.1;
-        Mon, 19 Apr 2021 06:11:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=bUOnAN9m9JsNWQhRgesz+7tvMCC84BONiT/82qQ3gaw=;
-        b=af8qF+ug8A0Mmr4Z8kQDauTmskpAja/c0xfOpZWkc1mbN6VjI+4kzxFsgnJyi7mbgN
-         2q58lS8JdSc+rfsG1264ihRvtS84IM+H/dag/RPZrdajbrzsqSHWGGE41ZYVEZINpx5W
-         PypnfSVLeit9yjU/G5XbhFiCHClaaKpcuG0YD+Jpe4q3IrDyAviUjrEJ1dLnEXxscxac
-         hc+4u1vNnRN6FgqZVwMISbhnBw1Dh49d1zekIkIyoDAV4mQsY65zF+mbz+XT0ku+/7aP
-         S3LQCKH3AieYk5p3bSffsXzt8uriampx3VNvuXniXjb80VMeqnbUFEvPgSS+FHVH23hq
-         KLNQ==
-X-Gm-Message-State: AOAM530sIz8hqcgmyuej6xYhS5mzTPtA7s5vgDrleJPpC4k1/7XLW98T
-        qrry6yRSfQJTCrgOzFfzQQ==
-X-Google-Smtp-Source: ABdhPJyapjCa0fKnnqCAnOdhUBGTP9VwWD+Dv/EJDnnLHQJ3NH0YdFo0HuJK4aAn0PgiE2ymjj5IXQ==
-X-Received: by 2002:a9d:6056:: with SMTP id v22mr8249688otj.231.1618837866868;
-        Mon, 19 Apr 2021 06:11:06 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u126sm3165595oig.4.2021.04.19.06.11.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Apr 2021 06:11:05 -0700 (PDT)
-Received: (nullmailer pid 1055971 invoked by uid 1000);
-        Mon, 19 Apr 2021 13:11:03 -0000
-From:   Rob Herring <robh@kernel.org>
+        id S240553AbhDSNVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 09:21:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53186 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240484AbhDSNRc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Apr 2021 09:17:32 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 08B8A613DD;
+        Mon, 19 Apr 2021 13:14:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618838059;
+        bh=OosnQ5ZFutS/+bz82y+4HRJ1FsflS0HFY219LJA20Zg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cXCoDJObGt8mlc8RE/N7u6SAP1xQN9WKe8Z2EmIc1FAqzJ1DD9T/cVXDD/kev34w1
+         ZAjCInQ7Wo2kbM1c8eS3sZAXWAlm1PJsMSBg/gjdBiTxF1rxtpwipoFLWM6E2BQmW5
+         vW8/RmYlgttdpR3uMJP8tKTtTYgeODVV4qkB/Wn/SFRxh8RC/nkIPebhjNTmIYZ50n
+         hn52nGU4ze7UJ3dqfIybKTmK6oT4UUACmCTw0XlvbeobEsoS8mtrH2HgIZaO6Y0PJw
+         Rl8pgpa6jqBUnkJ5Yusz/CAa0QxLh+RPRRfbPaPgPRqqmfCiE3EmqwscCorOsJlfaS
+         s01Uqo/BrhPPA==
+Date:   Mon, 19 Apr 2021 14:13:54 +0100
+From:   Mark Brown <broonie@kernel.org>
 To:     Alistair Francis <alistair@alistair23.me>
-Cc:     kernel@pengutronix.de, robh+dt@kernel.org, linux-imx@nxp.com,
+Cc:     lee.jones@linaro.org, robh+dt@kernel.org, lgirdwood@gmail.com,
+        linux-imx@nxp.com, kernel@pengutronix.de,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        broonie@kernel.org, lee.jones@linaro.org, lgirdwood@gmail.com,
         alistair23@gmail.com
-In-Reply-To: <20210418210222.2945-1-alistair@alistair23.me>
+Subject: Re: [PATCH v5 3/5] regulator: sy7636a: Initial commit
+Message-ID: <20210419131354.GA5645@sirena.org.uk>
 References: <20210418210222.2945-1-alistair@alistair23.me>
-Subject: Re: [PATCH v5 1/5] dt-bindings: mfd: Initial commit of silergy,sy7636a.yaml
-Date:   Mon, 19 Apr 2021 08:11:03 -0500
-Message-Id: <1618837863.719734.1055970.nullmailer@robh.at.kernel.org>
+ <20210418210222.2945-3-alistair@alistair23.me>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="u3/rZRmxL6MmkK24"
+Content-Disposition: inline
+In-Reply-To: <20210418210222.2945-3-alistair@alistair23.me>
+X-Cookie: I will never lie to you.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Apr 2021 07:02:18 +1000, Alistair Francis wrote:
-> Initial support for the Silergy SY7636A Power Management chip
-> and regulator.
-> 
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> ---
-> v5:
->  - Improve the documentation
-> 
->  .../bindings/mfd/silergy,sy7636a.yaml         | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
-> 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+--u3/rZRmxL6MmkK24
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-yamllint warnings/errors:
+On Mon, Apr 19, 2021 at 07:02:20AM +1000, Alistair Francis wrote:
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml: properties:regulators:properties:$ref: '/schemas/regulator/regulator.yaml#' is not of type 'object', 'boolean'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml: properties:regulators:properties: {'enum': ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'deprecated', 'description', 'else', 'enum', 'if', 'items', 'maxItems', 'maximum', 'minItems', 'minimum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'propertyNames', 'required', 'then', 'unevaluatedProperties']} is not allowed for '$ref'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml: properties:regulators:properties: {'enum': ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'deprecated', 'description', 'else', 'enum', 'if', 'items', 'maxItems', 'maximum', 'minItems', 'minimum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'propertyNames', 'required', 'then', 'unevaluatedProperties']} is not allowed for 'additionalProperties'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml: ignoring, error in schema: properties: regulators: properties: $ref
-warning: no schema found in file: ./Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
-Documentation/devicetree/bindings/mfd/silergy,sy7636a.example.dt.yaml:0:0: /example-0/i2c/pmic@62: failed to match any schema with compatible: ['silergy,sy7636a']
-Documentation/devicetree/bindings/mfd/silergy,sy7636a.example.dt.yaml:0:0: /example-0/i2c/pmic@62/regulators: failed to match any schema with compatible: ['silergy,sy7636a-regulator']
+>  drivers/regulator/sy7636a-regulator.c | 127 ++++++++++++++++++++++++++
+>  include/linux/mfd/sy7636a.h           |   1 +
 
-See https://patchwork.ozlabs.org/patch/1467830
+It would make merging slightly easier if you could either put the MFD
+change in the MFD patch or allocate separate driver data in the
+regulator driver.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+--u3/rZRmxL6MmkK24
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+-----BEGIN PGP SIGNATURE-----
 
-pip3 install dtschema --upgrade
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmB9ghEACgkQJNaLcl1U
+h9An1Af+LUOyWNM47BJBtCSiI7ILggSSn/BW5zEMf1FdRXs5GJw+VScSox9IYqQ2
+iAS05Gn//xmdUb2AdVE5YkBYpdypHrhicYEZWG+SdFEveuLGn7awvyEcvMFmJeO7
+NwSSdllvzN8Wsc7aVsr/D0lf7rvR2oEiEYsh68PBcWLIoIVyE77l1OUP5eZpzyw7
+4OXuF6vR9FxgimabfVukIC+o7vviPECBQdqvH+ZLsTMsMYpbm+aKgvAcfmD9PrmQ
+7dYmwqQQWc+85kd/s4xm1cKr7T3iE3rv4bsq/tnSvgbFyIHu6PkpZg+mWTMFgprM
+VWc8rlVO5e03r/YnPnTtOCuQ4IqrGQ==
+=zVAZ
+-----END PGP SIGNATURE-----
 
-Please check and re-submit.
-
+--u3/rZRmxL6MmkK24--
