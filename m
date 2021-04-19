@@ -2,93 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A305363EC8
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 11:40:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40EF3363F57
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 12:11:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238709AbhDSJjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 05:39:52 -0400
-Received: from mail-ua1-f48.google.com ([209.85.222.48]:42697 "EHLO
-        mail-ua1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238616AbhDSJjv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 05:39:51 -0400
-Received: by mail-ua1-f48.google.com with SMTP id 23so1395081uac.9;
-        Mon, 19 Apr 2021 02:39:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JFnEYs0WaAV75WlD8zGflv32bIq/erGNiBIRw5DkFRw=;
-        b=I3ku2Fq+gWMhM8fgMSGyADTm+oOy4pCwjCLriLuJUNqlSRtsUih3jhwZL3lmjVKPPQ
-         IexUJt70xzrA7uNBxXfBKem4Oy3srFgbfdMth0xOEaUX0v3z4hXMxzXRLAFcXPXbNRYx
-         ggQ7p1aOAqFyDyk44/VS2EOWX1ABFc1A0E7PE2AvdvajBWrxJ7zry5/S+uNBqVagsNqc
-         +tJM48knnHQTW4pXRCEbQxZhq1B7sP1QXgnMppBRab/x2dbCqWb5uK9i37ehz+hR6n53
-         VstYc/e8NrN98vrdEdM0Tz2mxZ1MW/yxo86SPHYBT/TS5LjNLDp+G+Y2mmuNYOWQNd9G
-         sT4w==
-X-Gm-Message-State: AOAM533BVq04t4uGztGa48G0WXb3fWABJPvCfDEwIZNGrQw3B6FruVdO
-        mHrLva+5jgkg5EgpjnQBd68suz93wGkvXxwXTxg=
-X-Google-Smtp-Source: ABdhPJzI1nTVBxfpGOUmS3JtlCDIsY+hnRpCSOl2ldMILXr0qaqtQKXvm6kr3ejivGQNCy0qQnj6tDTua7gAjIQxFjw=
-X-Received: by 2002:ab0:6306:: with SMTP id a6mr6143891uap.2.1618825154819;
- Mon, 19 Apr 2021 02:39:14 -0700 (PDT)
+        id S238373AbhDSKLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 06:11:38 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:24860 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238334AbhDSKLg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Apr 2021 06:11:36 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1618827066; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=6Aptr+/L0+w9rf4i+SajziWUdZ5O4veMlgS9jJhzw+c=;
+ b=p9gihfOX9oledeEtU2wY3ieSMdTA9z6Zs1DxHMwtDUw7tbqzSM4iau6S5EhfAMMFOVLK+yYw
+ dz+VNebKYaMpwpPlpMnOnvFDgvE4I5GgsEsOeGp7PPeq8mnyfBFq6Qiy/5h66tsOmpGk6shv
+ avHn9UHwCvErrRFsPlX/zfVeAJg=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 607d5731a817abd39a4600f1 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 19 Apr 2021 10:10:57
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 04801C4323A; Mon, 19 Apr 2021 10:10:57 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 25721C433D3;
+        Mon, 19 Apr 2021 10:10:56 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210224115146.9131-1-aford173@gmail.com> <20210224115146.9131-5-aford173@gmail.com>
- <CAMuHMdW3SO7LemssHrGKkV0TUVNuT4oq1EfmJ-Js79=QBvNhqQ@mail.gmail.com> <CAHCN7xJrmQgC=skC7UJuzshUnf06D4nHrv1grrW8QV-+07dgKA@mail.gmail.com>
-In-Reply-To: <CAHCN7xJrmQgC=skC7UJuzshUnf06D4nHrv1grrW8QV-+07dgKA@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 19 Apr 2021 11:39:03 +0200
-Message-ID: <CAMuHMdUb+M-BLf1OZ31S57PaUM8wnOeaoy_hkgxyjpHtAwkL0Q@mail.gmail.com>
-Subject: Re: [PATCH V3 5/5] arm64: dts: renesas: beacon kits: Setup AVB refclk
-To:     Adam Ford <aford173@gmail.com>
-Cc:     netdev <netdev@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 19 Apr 2021 15:40:56 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        p.zabel@pengutronix.de, robh+dt@kernel.org, agross@kernel.org,
+        mani@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: sc7280: Add nodes to boot WPSS
+In-Reply-To: <14476306c74356a747473e820d4067a6@codeaurora.org>
+References: <1615269111-25559-1-git-send-email-sibis@codeaurora.org>
+ <1615269111-25559-7-git-send-email-sibis@codeaurora.org>
+ <161567197220.1478170.12600358804299446135@swboyd.mtv.corp.google.com>
+ <YE2OJz1pI81Uj8DA@builder.lan>
+ <161653719350.3012082.12055201782488576903@swboyd.mtv.corp.google.com>
+ <14476306c74356a747473e820d4067a6@codeaurora.org>
+Message-ID: <92f87f0b2a080077f426b7d704314e35@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
+On 2021-03-24 12:19, Sibi Sankar wrote:
+> On 2021-03-24 03:36, Stephen Boyd wrote:
+>> Quoting Bjorn Andersson (2021-03-13 20:16:39)
+>>> On Sat 13 Mar 15:46 CST 2021, Stephen Boyd wrote:
+>>> 
+>>> > Quoting Sibi Sankar (2021-03-08 21:51:51)
+>>> > > Add miscellaneous nodes to boot the Wireless Processor Subsystem on
+>>> >
+>>> > Maybe add (WPSS) after the name so we know they're related.
+>>> >
+>>> > > SC7280 SoCs.
+>>> > >
+>>> > > Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+>>> > > ---
+>>> > >
+>>> > > https://patchwork.kernel.org/project/linux-arm-msm/list/?series=438217
+>>> > > Depends on ipcc dt node enablement from ^^
+>>> > >
+>>> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 143 +++++++++++++++++++++++++++++++++++
+>>> > >  1 file changed, 143 insertions(+)
+>>> > >
+>>> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>> > > index 18637c369c1d..4f03c468df51 100644
+>>> > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>> > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>> > > @@ -244,12 +251,131 @@
+>>> > >                 reg = <0 0x80000000 0 0>;
+>>> > >         };
+>>> > >
+>>> > > +       tcsr_mutex: hwlock {
+>>> > > +               compatible = "qcom,tcsr-mutex";
+>>> > > +               syscon = <&tcsr_mutex_regs 0 0x1000>;
+>>> > > +               #hwlock-cells = <1>;
+>>> > > +       };
+>>> >
+>>> > Is this node in the right place? I think the node above it is 'memory'?
+>>> > In which case 'hwlock' comes before 'memory' alphabetically.
+>>> >
+>>> 
+>>> Thanks for spotting this, as it's no longer acceptable to have a
+>>> standalone "syscon" node I was asked to rewrite the binding for this 
+>>> a
+>>> few months ago. So the tcsr_mutex should now be represented with a 
+>>> reg
+>>> under /soc.
+>> 
+>> Oh nice, I wasn't aware.
+>> 
+>>> > > +                       #interrupt-cells = <2>;
+>>> > > +               };
+>>> > > +       };
+>>> > > +
+>>> > > +       smp2p-mpss {
+>>> > > +               compatible = "qcom,smp2p";
+>>> > > +               qcom,smem = <435>, <428>;
+>>> > > +               interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
+>>> > > +                                            IPCC_MPROC_SIGNAL_SMP2P
+>>> > > +                                            IRQ_TYPE_EDGE_RISING>;
+>>> > > +               mboxes = <&ipcc IPCC_CLIENT_MPSS
+>>> > > +                               IPCC_MPROC_SIGNAL_SMP2P>;
+>>> > > +
+>>> > > +               qcom,local-pid = <0>;
+>>> > > +               qcom,remote-pid = <1>;
+>>> > > +
+>>> > > +               modem_smp2p_out: master-kernel {
+>>> > > +                       qcom,entry-name = "master-kernel";
+>>> > > +                       #qcom,smem-state-cells = <1>;
+>>> > > +               };
+>>> > > +
+>>> > > +               modem_smp2p_in: slave-kernel {
+>>> > > +                       qcom,entry-name = "slave-kernel";
+>>> >
+>>> > Do these names need to have 'master' and 'slave' in them? We're trying
+>>> > to avoid these terms. See Documentation/process/coding-style.rst Section
+>>> > 4 naming.
+>>> >
+>>> 
+>>> They need to match the naming in the firmware, but I would welcome a
+>>> future change to something in line with the coding style and simply 
+>>> more
+>>> descriptive.
+>>> 
+>> 
+>> Sibi can this be done? I think it's still pretty early days for the
+>> firmware so hopefully the terms can be replaced with something
+>> different.
+> 
+> I'll discuss the ask with the modem fw team and
+> get back.
 
-On Sat, Apr 17, 2021 at 3:54 PM Adam Ford <aford173@gmail.com> wrote:
-> On Thu, Mar 4, 2021 at 2:04 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Wed, Feb 24, 2021 at 12:52 PM Adam Ford <aford173@gmail.com> wrote:
-> > > The AVB refererence clock assumes an external clock that runs
-> >
-> > reference
-> >
-> > > automatically.  Because the Versaclock is wired to provide the
-> > > AVB refclock, the device tree needs to reference it in order for the
-> > > driver to start the clock.
-> > >
-> > > Signed-off-by: Adam Ford <aford173@gmail.com>
-> >
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > i.e. will queue in renesas-devel (with the typo fixed) once the DT
-> > bindings have been accepted.
->
-> Geert,
->
-> Since the refclk update and corresponding dt-bindings are in net-next,
-> are you OK applying the rest of the DT changes so they can get into
-> 5.13?
-
-Queueing in renesas-devel for v5.14, as the soc deadline for v5.13
-has already passed two weeks ago.
-
-Gr{oetje,eeting}s,
-
-                        Geert
+Sorry for the delayed response. Looks
+like it's something Qualcomm wouldn't
+want to do mid-project since a number
+of the fw images are re-used across
+platforms. But this is something that
+will be taken up on newer SoCs.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
