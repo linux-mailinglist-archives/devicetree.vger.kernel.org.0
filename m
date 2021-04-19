@@ -2,123 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D27A3646AD
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 17:04:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D5FA3646CB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 17:12:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232572AbhDSPFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 11:05:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54198 "EHLO
+        id S233989AbhDSPNB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 11:13:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231496AbhDSPEy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 11:04:54 -0400
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F5FDC06174A;
-        Mon, 19 Apr 2021 08:04:24 -0700 (PDT)
-Received: by mail-io1-xd2d.google.com with SMTP id x16so35222715iob.1;
-        Mon, 19 Apr 2021 08:04:24 -0700 (PDT)
+        with ESMTP id S230213AbhDSPNA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 11:13:00 -0400
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4310C06174A;
+        Mon, 19 Apr 2021 08:12:29 -0700 (PDT)
+Received: by mail-io1-xd2f.google.com with SMTP id x16so35252617iob.1;
+        Mon, 19 Apr 2021 08:12:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=sK9kJH32/DEKrA6KoYri3PZGBlZT1dWah2hqamZZ9Cc=;
-        b=s7wVo0vApXU/OM1jt4+gMA9B0M0TVD8p1XDGpgxiXAxuyzaHz2Gj1uaR28sDh9Meyq
-         M+ZPjuGWqIFb91kh+t5jJbJhqs8vxijOqlUhQ4V3TEo8yK7ZobGdz5Hr1JHP3AjtAn59
-         Re249SBEmo/8oNw//lAyJDppVQ0CHLS5EtwgWyNYZNNCIRMuCnfCXdAvTdD4zSc/vpbc
-         vTMTAbEzFLOBOQTWIt4/WlgQzt3Iahmlb6W8ItRJAayJiQUHk2q6qO7zju/SgZJ6EGFn
-         YBYjVlEXIUwLGeNoNGzxjQ0CwwpVAeSLagMmZf0XzsRv0HX/+FQoSJGxYUlm4OUkYYnA
-         TiBw==
+        bh=enuxCBzOZSQQTThLvTHnDCBlihynTSHnXViR8rDBbQQ=;
+        b=Jg7U7ipVmPDaLTK17RAAkpjGW0FoPQs+7OlUy+j89+geITJnhZvHkWherjiRVDAt5T
+         sjBI57LusNfXqTaaIuYrZKirU6Ij+Wy0aha0OiMDG10sogLWOsr70QsFrlY59DZEfZ2o
+         E6dUvyk4OOjNVdz37XumfoopH3wnI8kASbul2Q60t52qwVgxrBHH3ZkV9snAjkuNiIBF
+         0DElQfdZ78U8e0KH0jlkROoZl6fPARkFGtb1rIP8h+HLLLh5Tg9VfrR4si6xZfekwEFA
+         2uaQrXmS7S9mocFWnmuTvPrqKQqKlcgBSIwBopBWFscgX0+GsDxpEhr5kP7A4rjQs2bp
+         gX5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=sK9kJH32/DEKrA6KoYri3PZGBlZT1dWah2hqamZZ9Cc=;
-        b=L2/BomEruN9lYVixdEFEhq0ZQGQA2sLIisIUrfphUTndu2xlRGi2jDHEQkMt62pWZm
-         cyWHCVdhhtCYCWC4BRxodLuWUgy2gsGwNQEHcK/nK/2NrGsYUCPOklvcrdNfnKqW1v5w
-         /kXiuQswFAaVYZvf0Anzelf7s+HOZSb7bWd/VKp7YyaWwoMgW+sVtmrLYn9eoBC5EanF
-         0hGlS/O0F4CI4KbdvMU3IPtxJiRLBB8DNu0O2oiY212/2NbGvdEVy14D5LzDI2wmAH9V
-         mASv5sRidOOTX2DycB2YzOGBiDa5l3tUWx/F+n/UeNTzd6R7GBBF9bRRV0t0BV2ILgYh
-         lPrA==
-X-Gm-Message-State: AOAM530spKkFxu5Cca/rbuXtOvSKZ7DyN2TJTLw6AI49O+nVeSDsblHZ
-        rrDW/yZTp4yxIwQZnRQ/1zvAdrVS3DUF70B2nes=
-X-Google-Smtp-Source: ABdhPJzEZQjUJvUvF+QDBgYHgewS1rUZVS39JXLXF5zSRaqhTgFexQhrwFdP/SIkUu/RjU+JN91KzcVrPuuY0GRWz/U=
-X-Received: by 2002:a02:a487:: with SMTP id d7mr2653012jam.84.1618844661634;
- Mon, 19 Apr 2021 08:04:21 -0700 (PDT)
+        bh=enuxCBzOZSQQTThLvTHnDCBlihynTSHnXViR8rDBbQQ=;
+        b=m/FROK/GjSKikLUyHt29VSphnEPaBd6WPWhDHQaFFRV8XyhuAZFzrjcpnbZpW+Sc5r
+         GfMfX7xbQNtWwHuo6j/EOluZijcEU0uzPZUxMGdDiScU44E/Q/q3g2zzTZPErGl3uinG
+         13eWHqLtId8sWkZ8iX1E8WhrXOl3TqCAl4C/LpWpGJv9wcg8D4Z2Nb+Ht6Q3cIw9XckP
+         DhR+XFQBWD4ORY9xB5jc44/O+llDrC9T/H2V91XZSlewVN8+J3waN29fy9K1neLeEL9v
+         WkCtVcBuOeL3rYOZPaE5wsAdY69TKvdsvOQUM1dqGpFMIK+WRRCtNVv94FJIHp2LW96s
+         4VRw==
+X-Gm-Message-State: AOAM532gXCEAMMIgsko2k7tRwIT/xuQPyVHKrGIjssBxm7bpglVv9yck
+        wnw6j/OS4BI03iu7+ViPnJNVKr7X32p3IKPBups=
+X-Google-Smtp-Source: ABdhPJxoUl6YJfpW7AMeJwEOa5A6FXIH6OX8VLWw+H7/eB475YO1aN9eBJmUgllZaJjRPtUS8JmaST9N86i7Ln04Gig=
+X-Received: by 2002:a6b:b542:: with SMTP id e63mr11488250iof.144.1618845149416;
+ Mon, 19 Apr 2021 08:12:29 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210419040352.2452-1-ilya.lipnitskiy@gmail.com>
- <20210419040352.2452-3-ilya.lipnitskiy@gmail.com> <YH10UNuJZ5s7dfLh@lunn.ch>
-In-Reply-To: <YH10UNuJZ5s7dfLh@lunn.ch>
+References: <20210419034253.21322-1-ilya.lipnitskiy@gmail.com> <878s5e94hi.fsf@miraculix.mork.no>
+In-Reply-To: <878s5e94hi.fsf@miraculix.mork.no>
 From:   Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
-Date:   Mon, 19 Apr 2021 08:04:10 -0700
-Message-ID: <CALCv0x2SSGjiqKOBhK1GT2ksjc9J--Qm3Uq-0xc3sgHvDju5-A@mail.gmail.com>
-Subject: Re: [PATCH net-next 2/2] net: ethernet: mediatek: support custom GMAC label
-To:     Andrew Lunn <andrew@lunn.ch>
+Date:   Mon, 19 Apr 2021 08:12:18 -0700
+Message-ID: <CALCv0x1Z2rXJtRTh9WQfPMBfVkfosg00kqEmo1uB6RJeNLptJw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: net: mediatek: support MT7621 SoC
+To:     =?UTF-8?Q?Bj=C3=B8rn_Mork?= <bjorn@mork.no>
 Cc:     "David S. Miller" <davem@davemloft.net>,
         Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Felix Fietkau <nbd@nbd.name>,
-        John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        Greg Ungerer <gerg@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>, netdev@vger.kernel.org,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>
+        linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 19, 2021 at 5:15 AM Andrew Lunn <andrew@lunn.ch> wrote:
+On Sun, Apr 18, 2021 at 11:24 PM Bj=C3=B8rn Mork <bjorn@mork.no> wrote:
 >
-> On Sun, Apr 18, 2021 at 09:03:52PM -0700, Ilya Lipnitskiy wrote:
-> > The MAC device name can now be set within DTS file instead of always
-> > being "ethX". This is helpful for DSA to clearly label the DSA master
-> > device and distinguish it from DSA slave ports.
+> Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com> writes:
+>
+> > Add missing binding documentation for SoC support that has been in plac=
+e
+> > since v5.1
 > >
-> > For example, some devices, such as the Ubiquiti EdgeRouter X, may have
-> > ports labeled ethX. Labeling the master GMAC with a different prefix
-> > than DSA ports helps with clarity.
-> >
-> > Suggested-by: Ren=C3=A9 van Dorst <opensource@vdorst.com>
+> > Fixes: 889bcbdeee57 ("net: ethernet: mediatek: support MT7621 SoC ether=
+net hardware")
+> > Cc: Bj=C3=B8rn Mork <bjorn@mork.no>
 > > Signed-off-by: Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
 > > ---
-> >  drivers/net/ethernet/mediatek/mtk_eth_soc.c | 4 ++++
-> >  1 file changed, 4 insertions(+)
+> >  Documentation/devicetree/bindings/net/mediatek-net.txt | 1 +
+> >  1 file changed, 1 insertion(+)
 > >
-> > diff --git a/drivers/net/ethernet/mediatek/mtk_eth_soc.c b/drivers/net/=
-ethernet/mediatek/mtk_eth_soc.c
-> > index 6b00c12c6c43..4c0ce4fb7735 100644
-> > --- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-> > +++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-> > @@ -2845,6 +2845,7 @@ static const struct net_device_ops mtk_netdev_ops=
- =3D {
-> >
-> >  static int mtk_add_mac(struct mtk_eth *eth, struct device_node *np)
-> >  {
-> > +     const char *label =3D of_get_property(np, "label", NULL);
-> >       const __be32 *_id =3D of_get_property(np, "reg", NULL);
-> >       phy_interface_t phy_mode;
-> >       struct phylink *phylink;
-> > @@ -2940,6 +2941,9 @@ static int mtk_add_mac(struct mtk_eth *eth, struc=
-t device_node *np)
-> >       else
-> >               eth->netdev[id]->max_mtu =3D MTK_MAX_RX_LENGTH_2K - MTK_R=
-X_ETH_HLEN;
-> >
-> > +     if (label)
-> > +             strscpy(eth->netdev[id]->name, label, IFNAMSIZ);
+> > diff --git a/Documentation/devicetree/bindings/net/mediatek-net.txt b/D=
+ocumentation/devicetree/bindings/net/mediatek-net.txt
+> > index 72d03e07cf7c..950ef6af20b1 100644
+> > --- a/Documentation/devicetree/bindings/net/mediatek-net.txt
+> > +++ b/Documentation/devicetree/bindings/net/mediatek-net.txt
+> > @@ -10,6 +10,7 @@ Required properties:
+> >  - compatible: Should be
+> >               "mediatek,mt2701-eth": for MT2701 SoC
+> >               "mediatek,mt7623-eth", "mediatek,mt2701-eth": for MT7623 =
+SoC
+> > +             "mediatek,mt7621-eth": for MT7621 SoC
+> >               "mediatek,mt7622-eth": for MT7622 SoC
+> >               "mediatek,mt7629-eth": for MT7629 SoC
+> >               "ralink,rt5350-eth": for Ralink Rt5350F and MT7628/88 SoC
 >
-> It is better to use alloc_netdev_mqs() so you get validation the name
-> is unique.
-It doesn't look like the name validation happens until the netdev is
-registered, and it does not get registered at alloc, right?
-
-I do agree that it's better to use the correct name in the first place
-instead of renaming, regardless, so using alloc_netdev_mqs() seems
-like a better solution - I'll make the change.
+>
+> Thanks for taking care of this!
+>
+> Note, however, that this compatible value is defined in
+> Documentation/devicetree/bindings/net/ralink,rt2880-net.txt
+Good point. I don't think there is a driver in-tree for that binding.
+It looks like commit 663148e48a66 ("Documentation: DT: net: add docs
+for ralink/mediatek SoC ethernet binding") should just be reverted and
+the three documents (mediatek,mt7620-gsw.txt; ralink,rt2880-net.txt;
+ralink,rt3050-esw.txt) removed. Any objections?
 
 Ilya
