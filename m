@@ -2,98 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67AE5364044
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 13:15:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 783A2364069
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 13:25:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232539AbhDSLPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 07:15:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58994 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230070AbhDSLPm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 07:15:42 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9FD0C06174A;
-        Mon, 19 Apr 2021 04:15:12 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id cu16so15728885pjb.4;
-        Mon, 19 Apr 2021 04:15:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fyLO68cYQAdbeG7I5stptSDRdNhYWf3KZX5hVoH8RUc=;
-        b=tVD+Frbk3fpsSGakZ6vAUeXjiXHk6aLxIzoWOJ79QCPRe5sg+qOssPKCBuFpZ5ExOh
-         cYbxMV4raTskb/a7ddC9H5i2BKwdEq7spfQHIlf2jVAkHJxBU0Ei6GsXCcCdL2QMpnuE
-         NuGaQ74p+iU9G4sazo85cs6eV/ZPi5LU+H8jafL3qNVRBzyNmgrPMsxyXExPo+DHuwFv
-         tdPpf/Vv0zAL3K2sebt2+RdE1DKO/JaqaSETVgIsu5ibHTsU6O17m3ulHZtfSBA3otBu
-         36NS3LLD+mlC9bWFvFn98OLWOwUKvIpKeoMzxT9rPLm0PMCFOiMv5yHZ7jV44lhX0FUs
-         RgGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fyLO68cYQAdbeG7I5stptSDRdNhYWf3KZX5hVoH8RUc=;
-        b=mioWvyt+fHfRk88zYgm96AIrBvJoaQlcCMhkEQZjow9BrW4Y4NXqRIPY5HMyQRJQZk
-         pK9c6F8eTDxhI0AaO/TSbDbOY+Mk1wY/unOAN/ksIvFen5ZKktNTMkeukiAzkX1NOyLP
-         RY+OW9zc8qvhHZg7jMXe4nebJ3dV8inoKQ86CV7C9Uu3WJnfEmHe9rV3+My9sBln7wIT
-         AIgO5kGQaU7IhEm7i0G0oSNJUW4fVAxG3rvzeSjQb0i52R1L6V9WCYwnLELWlv00DM1I
-         VHk/IEhJII5yHE0iPYOQU564gSp2k3sX8rN2my8l3W1LLk6rZCsW/Vi4SPU4dbMHYT7F
-         yJfQ==
-X-Gm-Message-State: AOAM53144tzNkvaI3rzKuKugd1VjBMQo2OIK7pa8BSvxvcvZW/eizFZk
-        KkZk5V395zG0nsnKMiMxEeDD7iKULBywJgpjojU=
-X-Google-Smtp-Source: ABdhPJz+wzghLLCvx06cKOPWLeBhgarcoxi0Xt2i3Juf+K3Pdv7kq6+jr+XQ6egZQWF1rL5+Yj/RWsbr5jNrL4ku0SM=
-X-Received: by 2002:a17:902:a406:b029:e6:78c4:71c8 with SMTP id
- p6-20020a170902a406b02900e678c471c8mr22295456plq.17.1618830911997; Mon, 19
- Apr 2021 04:15:11 -0700 (PDT)
+        id S238235AbhDSLZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 07:25:29 -0400
+Received: from mga03.intel.com ([134.134.136.65]:61250 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238087AbhDSLZ0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Apr 2021 07:25:26 -0400
+IronPort-SDR: 06qUESQ5jX9w0DgNM2KRPnHDJBDvy8/ObOqLnOmAcGJYovDbSR2GHIDINsCjEELexFWacqojoT
+ NLDqRGPKxerw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9958"; a="195337211"
+X-IronPort-AV: E=Sophos;i="5.82,234,1613462400"; 
+   d="scan'208";a="195337211"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Apr 2021 04:24:56 -0700
+IronPort-SDR: 5OZIRQYIR9a6lghPfoytwhZsFRUVQY9MPv0LfTDo4TxoIEz4VD2QxJxV1Fu6f6vaXmR+9qp0Uk
+ QUjXUkElZeCw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,234,1613462400"; 
+   d="scan'208";a="602113557"
+Received: from black.fi.intel.com ([10.237.72.28])
+  by orsmga005.jf.intel.com with ESMTP; 19 Apr 2021 04:24:52 -0700
+Received: by black.fi.intel.com (Postfix, from userid 1003)
+        id 699FF13C; Mon, 19 Apr 2021 14:25:10 +0300 (EEST)
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Yangbo Lu <yangbo.lu@nxp.com>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Mark Brown <broonie@kernel.org>
+Subject: [PATCH v1 1/6] mmc: core: Correct descriptions in mmc_of_parse()
+Date:   Mon, 19 Apr 2021 14:24:54 +0300
+Message-Id: <20210419112459.25241-1-andriy.shevchenko@linux.intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20210416134546.38475-1-tomas.melin@vaisala.com>
- <20210416134546.38475-3-tomas.melin@vaisala.com> <CAHp75VcibWup79np=xeQpO2z+OGCFXPhL6vWL6aWRZ+G8+djwQ@mail.gmail.com>
- <91ea3aba-854e-30f1-1236-733debfcf5dc@vaisala.com>
-In-Reply-To: <91ea3aba-854e-30f1-1236-733debfcf5dc@vaisala.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 19 Apr 2021 14:14:55 +0300
-Message-ID: <CAHp75VcWu96EAjzYYwt_gqscvJp3s9Y+ZnaK2NQa_=L+S+r5zQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] iio: accel: Add driver for Murata SCA3300 accelerometer
-To:     Tomas Melin <tomas.melin@vaisala.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 19, 2021 at 1:29 PM Tomas Melin <tomas.melin@vaisala.com> wrote:
-> On 4/17/21 3:39 PM, Andy Shevchenko wrote:
-> > On Fri, Apr 16, 2021 at 5:21 PM Tomas Melin <tomas.melin@vaisala.com> wrote:
-> >> Add initial support for Murata SCA3300 3-axis industrial
-> >> accelerometer with digital SPI interface. This device also
-> >> provides a temperature measurement.
+Since it has been converted to use device property API, the function
+and field descriptions become outdated. Correct them.
 
-...
+Fixes: 73a47a9bb3e2 ("mmc: core: Use device_property_read instead of of_property_read")
+Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+---
+ drivers/mmc/core/host.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> >> +       ret = spi_sync_transfer(sca_data->spi, xfers, ARRAY_SIZE(xfers));
-> >> +       if (ret < 0) {
-> >> +               dev_err(&sca_data->spi->dev,
-> >> +                       "transfer error, error: %d\n", ret);
-> >> +               return -EIO;
-> > Why shadowing error code?
->
-> Returning EIO here to have full control over the return value from this
-> function. As return value of this is used for testing
-
-Care to show what kind of testing requires this?
-Also why can't it be refactored to accept all error codes?
-
-> for possible status error (EINVAL), feels more confident to have it like
-> this to avoid any confusion. And atleast spi_sync_transfer() return value
->
-> would be visible in error message.
-
-> >> +       }
-
-
-
+diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
+index 9b89a91b6b47..ce030c5aa53c 100644
+--- a/drivers/mmc/core/host.c
++++ b/drivers/mmc/core/host.c
+@@ -209,8 +209,8 @@ mmc_of_parse_clk_phase(struct mmc_host *host, struct mmc_clk_phase_map *map)
+ EXPORT_SYMBOL(mmc_of_parse_clk_phase);
+ 
+ /**
+- *	mmc_of_parse() - parse host's device-tree node
+- *	@host: host whose node should be parsed.
++ * mmc_of_parse() - parse host's device properties
++ * @host: host whose properties should be parsed.
+  *
+  * To keep the rest of the MMC subsystem unaware of whether DT has been
+  * used to to instantiate and configure this host instance or not, we
 -- 
-With Best Regards,
-Andy Shevchenko
+2.30.2
+
