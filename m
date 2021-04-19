@@ -2,160 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23166364E8C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 01:22:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEC8F364E92
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 01:23:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230121AbhDSXW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 19:22:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50742 "EHLO
+        id S232449AbhDSXX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 19:23:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230114AbhDSXW1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 19:22:27 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42774C061763
-        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 16:21:56 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id i190so24241348pfc.12
-        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 16:21:56 -0700 (PDT)
+        with ESMTP id S232410AbhDSXX1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 19:23:27 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAE4EC06174A
+        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 16:22:56 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id k25so37199898oic.4
+        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 16:22:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lTXVzOlOEiCu/x5YV8po+6uFDpU/Gnvba9Ryw/CBpDM=;
-        b=ZJyb1R+5bJFnqwF3bQmGCPzsnXZi3BRzYioz/NexC7553PawPQ4hN81uwcxrl5jYwh
-         44KnRZxy5l3BtVmRR0fKQ1HSNamXhaz0j3rRjCXElrfWqpARK+BlLxuqng04RnupdHCV
-         ouqKIYNxXJZCz7vgyumEtJwA5s3ihMYTulQ3fXYvqyuF+r6Ie1MYI1PJ+OCqoUWHAbd6
-         ugeaIZlRwyE5yE81dug1aMAHGyJAODJ/C9FE3cnATcft6jMTij84CRLgxVNPYOEibWQw
-         lQCsnRDNMaS2I1shMJNXZ1aq1enDKn2Rw4t96KTiGTChE000tJ7+kcEXAnsrWtw4L5n9
-         CLgQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ZL8naNYW6+lQXsNwg4wa0reXC9U90f82sYjKZ1TEVfg=;
+        b=lTYqQB87lrkthc2zaFVsrnngpUwM/bE6ADojNZ8AnZ86bGhfIVaGCf5I+IB7K64wFm
+         bEvBqBGiBa1vz5m5u2RXlWexGoz47jkdj8v6FPsMdx4RHsSMgKsLeOeKN6vC1Wt1Dv2A
+         IT1iGKb/4Z4/1v4/5nOhb8bjOS/kuXGeY0ilKnMHxlIK2s9t6h2B2wYj916oeP3jIO+F
+         RLUiTXq4xd3t1ytVVL1V8HEW66UQMejHOtoI76Al6gKbQB+JZZSpdhhPXRq9Nz4Hj8I/
+         1ugfXXOlvdblQcxp68El6gutRL+DdYztw6ZKVklNT67lCxpUrskn6vK4yR5NQPgy9ufm
+         ryHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lTXVzOlOEiCu/x5YV8po+6uFDpU/Gnvba9Ryw/CBpDM=;
-        b=oUbjD+gqECdCEG/LuhGQqq6UQAZJKFCz7025gRaiNRWFg34TTLZMvexRpBEDJvhMyU
-         YtYn+SNd0W3pke/iKK9PoqcGqmqDp/YYUiZxSeN24Gb/1o95waLFnspLxp2IdR4DLXol
-         VY3CvK5MqzDXTdC34TD0UDZqH2S5R5ss9nPZSf8swHnWiu/aWAH3iLSnIQr0mSaQ/eYP
-         0XSRDYoZwesO0Z1L0stH3nlio3kHcsx0ZUvNLbL9wm6ARRxFaY5wVciY84nFIzbE9K7f
-         OEawRbGdQ4I2GDnwjVSaNFipCWWbob4bFMd+wkpG+t3RTZkTJ8jUL5oqmBj7ku2Ps2w4
-         vr5Q==
-X-Gm-Message-State: AOAM531D9hps4R7ydq6eXNcJwpLBfQeacFufG8wXMn+/jLLYEMjPDYVd
-        31i64U/4P0IYk+TBSuLA1cUwhTV0cyEXvaDa/UIAvA==
-X-Google-Smtp-Source: ABdhPJzsPHdZ6m2OrgGWPr4K75bxd1by1RdKGIUuNZzqLN0SBU3Lr+re4qvr2NPbNXKYNUG76KA+mrxWCCSIV0F3xDM=
-X-Received: by 2002:a63:b515:: with SMTP id y21mr5324980pge.253.1618874515638;
- Mon, 19 Apr 2021 16:21:55 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ZL8naNYW6+lQXsNwg4wa0reXC9U90f82sYjKZ1TEVfg=;
+        b=Cj29+wxQyQIoVT6tUj9lq4AehkHfqt4edoZdWJtZF9nbdJTCLinWaMNWr3wYOFuwFu
+         pmh9PYLgxY8CNY11C7tXKr5nK9xYV/esVjwqNPkbI7NKvcMdpRUDkjenNv21jSA2oEG5
+         /qIwEd4zZ3J9m6SqCgzX4SJU7kmNFFxwav7yvHnHR/gOSIJ+tYrMBy5k/BqYBObnKHtN
+         LXXAV0NU9gEhDk6jLUL5EC1+4fTO/b1fSQQDZNalAMZDq9zANoKZczVJmHTMdkglVNWO
+         6A8PMeiEgkxDMHSiLSVPYXCSAdF4/xRrVk5g0NTOkSrS45IM8m3O3v/UPt1t6hFJDltr
+         HuYA==
+X-Gm-Message-State: AOAM533rA+PchcEgsaVITS3L3TlxJkEaRgGTLIe52NKW2V1mzncUgD/X
+        7lPycgimv9cPL0qyGx1U0zhayg==
+X-Google-Smtp-Source: ABdhPJzJBZHzx45B2l5HoTJYouZf0YYV2op+G/HwUYciFdnEwwrICxLjS7ofpfvnLtqzJC619tgCYw==
+X-Received: by 2002:aca:ed50:: with SMTP id l77mr1029626oih.13.1618874576101;
+        Mon, 19 Apr 2021 16:22:56 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id c12sm3134418oou.26.2021.04.19.16.22.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Apr 2021 16:22:55 -0700 (PDT)
+Date:   Mon, 19 Apr 2021 18:22:53 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     viresh.kumar@linaro.org, agross@kernel.org, rjw@rjwysocki.net,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        amit.kucheria@linaro.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, jeffrey.l.hugo@gmail.com
+Subject: Re: [PATCH v4 5/7] cpufreq: qcom-hw: Implement CPRh aware OSM
+ programming
+Message-ID: <20210419232253.GW1538589@yoga>
+References: <20210119174557.227318-1-angelogioacchino.delregno@somainline.org>
+ <20210119174557.227318-6-angelogioacchino.delregno@somainline.org>
+ <20210419185203.GQ1538589@yoga>
+ <e486d752-b99a-3479-b2ae-b37cdb3edd9a@somainline.org>
 MIME-Version: 1.0
-References: <20210407185039.621248-1-varmam@google.com> <20210407185039.621248-2-varmam@google.com>
- <20210409183415.GA3919775@robh.at.kernel.org>
-In-Reply-To: <20210409183415.GA3919775@robh.at.kernel.org>
-From:   Manish Varma <varmam@google.com>
-Date:   Mon, 19 Apr 2021 16:21:44 -0700
-Message-ID: <CAMyCerLy2bA_D=8j9C+pAUe7fDHh9DYJwXQWGgKGnD-dadnewg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: i2c: add "dev-name" property to
- assign specific device name
-To:     Rob Herring <robh@kernel.org>
-Cc:     Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e486d752-b99a-3479-b2ae-b37cdb3edd9a@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Mon 19 Apr 15:59 CDT 2021, AngeloGioacchino Del Regno wrote:
 
-Thanks for the inputs.
+> Il 19/04/21 20:52, Bjorn Andersson ha scritto:
+> > On Tue 19 Jan 11:45 CST 2021, AngeloGioacchino Del Regno wrote:
+[..]
+> > > +static int qcom_cpufreq_hw_acd_init(struct device *cpu_dev,
+> > > +				    struct cpufreq_policy *policy,
+> > > +				    int index)
+> > > +{
+[..]
+> > > +	acd_resname = kasprintf(GFP_KERNEL, "osm-acd%d", index);
+> > 
+> > How about just sprintf() into a 10 byte array on the stack?
+> > 
+> 
+> My motto, apart the clearly possible chance to get 1000 clusters in the
+> future (lol), is to free the (very little) memory as soon as I'm done with
+> it.
+> 
+> Was I too much paranoid there again? :)))
+> 
 
-On Fri, Apr 9, 2021 at 11:34 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Apr 07, 2021 at 11:50:38AM -0700, Manish Varma wrote:
-> > I2C devices currently are named dynamically using
-> > <adapter_id>-<device_address> convention, unless they are instantiated
-> > through ACPI.
-> >
-> > This means the device name may vary for the same device across different
-> > systems, infact even on the same system if the I2C bus enumeration order
-> > changes, i.e. because of device tree modifications.
-> >
-> > By adding an optional "dev-name" property, it provides a mechanism to
-> > set consistent and easy to recognize names for I2C devices.
->
-> So? Why do you need 'easy to recognize names'?
->
+Feel free to waste a couple of extra bytes in that array then ;)
 
-From the cover letter:
+[..]
+> > >   static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
+[..]
+> > > +		/*
+> > > +		 * If the power domain device is not registered yet, then
+> > > +		 * defer probing this driver until that is available.
+> > > +		 */
+> > > +		pd_dev = of_find_device_by_node(pd_node);
+> > > +		if (!pd_dev || !pd_dev->dev.driver ||
+> > > +		    !device_is_bound(&pd_dev->dev))
+> > > +			return -EPROBE_DEFER;
+> > 
+> > I wonder if there's a more appropriate way to probe defer on resources
+> > described in the CPU nodes...
+> > 
+> 
+> I was wondering the same. I had nightmares about this one.
+> If there's any better way... please, let me know!
+> 
 
-"Currently I2C device names are assigned dynamically unless they are
-instantiated through ACPI, this names are based on adapter_id and
-device_address. While device_address will remain constant for a given
-device, the adapter_id may vary across different systems and hence,
-overall, the device name won't be unique for the same I2C device."
+Let's see if Viresh has any good suggestions, otherwise let's stick with
+this for now.
 
-Basically, the motivation here is to provide a mechanism to allow overriding
-those names to easy to recognize names (e.g. <vendor_name_dev_name>
-or <device part number> which leaves more information compared to just
-device name in the form of numbers such as "2-001f").
+> 
+> P.S.: There is a v5 of this (and CPR3) set(s) that I had sent immediately
+> after this v4, back in January, addressing the big abuse of the OPP API that
+> is present in the v4 (this) version of the driver.
+> 
 
-These (device) names are further used by different module e.g. system
-wakeup events framework, and hence this presents difficulties debug/identify
-issues at various levels in the software stack.
-
-So, the idea was to address it at the lowest level possible.
-
-> Why is I2C special? If we wanted this in DT, it wouldn't be I2C specific
-> and we probably would have added it long ago.
->
-
-"Unlike PCI or USB devices, I2C devices are not enumerated at the hardware
-level. Instead, the software must know which devices are connected on each
-I2C bus segment, and what address these devices are using. For this
-reason, the kernel code must instantiate I2C devices explicitly."
-
-Reference: https://www.kernel.org/doc/Documentation/i2c/instantiating-devices
-
-There are various ways to instantiate I2C devices e.g. through board_info
-interface, ACPI and device tree etc.
-
-While board_info and ACPI both allow specifying device name, I find no such
-provision to assign device names for the I2C devices instantiated through
-device tree interface.
-
-> > Signed-off-by: Manish Varma <varmam@google.com>
-> > ---
-> >  Documentation/devicetree/bindings/i2c/i2c.txt | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
-> > index df41f72afc87..6fb03f464b81 100644
-> > --- a/Documentation/devicetree/bindings/i2c/i2c.txt
-> > +++ b/Documentation/devicetree/bindings/i2c/i2c.txt
-> > @@ -130,6 +130,11 @@ wants to support one of the below features, it should adapt these bindings.
-> >  - wakeup-source
-> >       device can be used as a wakeup source.
-> >
-> > +- dev-name
-> > +     Name of the device.
-> > +     Overrides the default device name which is in the form of
-> > +     <busnr>-<addr>.
->
-> What's 'busnr'? No such thing in DT.
->
-
-Right! dev-name introduced to hold the string value for overriding
-device names assigned by the kernel. Currently, kernel assigns the device
-name in the form of <busnr>-<addr>.
-
-Reference:
-https://www.kernel.org/doc/html/latest/driver-api/i2c.html?highlight=i2c_board_info#c.i2c_board_info
-
-> > +
-> >  Binding may contain optional "interrupts" property, describing interrupts
-> >  used by the device. I2C core will assign "irq" interrupt (or the very first
-> >  interrupt if not using interrupt names) as primary interrupt for the slave.
-> > --
-> > 2.31.1.295.g9ea45b61b8-goog
-> >
-
-Hope the explanation provided above answers your questions.
+May I ask for you to incorporate the changes I pointed out here and post
+a v6 instead of me re-reviewing v5? I'll make sure to prioritize the
+next round.
 
 Thanks,
-Manish
+Bjorn
