@@ -2,98 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE1F3363B32
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 08:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA4DB363B6A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 08:24:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231310AbhDSGBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 02:01:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46474 "EHLO
+        id S231203AbhDSGYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 02:24:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229652AbhDSGBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 02:01:08 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE9A5C06174A;
-        Sun, 18 Apr 2021 23:00:37 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id m9so19862568wrx.3;
-        Sun, 18 Apr 2021 23:00:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=IYmFJ+BJKkV6xPPlNj0ePpOdoBvoVWpe2CwMz3Be8Ss=;
-        b=Bx+I8SIqnxfc3KJVfIaC2oBMA/L4EgNFa92VX6KUDIUF/U14nTrnjPkjluEi6kzKUG
-         moN01JivZ6Ck9ID5HPo5sZM1z3XygR94dzlOzBb4wbspl1H/dn2eIwil8jKN7HS+YIfJ
-         PkVaiEOMmLmx9KpWivXVxdyCS62UtNmVIUA4kaLyavDPYO63BhZYnzLQ/T/fc/WHY5Ar
-         QvsV31kmlU6ifzAGsTxmucmyrDKyOJw7fCWnysRhODnQPnXUfvXHpvWxqinvv3/YLT5q
-         slvJWet+ZTLGqsWquqNQSz+KOYzLYLwLn01MHUlKdELUdZRUcLnwzyMn7CSFLGL5sIKO
-         bEUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=IYmFJ+BJKkV6xPPlNj0ePpOdoBvoVWpe2CwMz3Be8Ss=;
-        b=pG1QJ1TYRQenIpl5ua1t91ywJgm3YjnsvNysQoz5cM7Vco9HQKi33Zsr61G1yBNLXU
-         yzW1ZHb6NW8ZdD3kln+ZY0zNzjhtbhrgkK7vnCm49RW4mp4fByOXBYFWLdGA6aTso+GZ
-         PsOiA98fN927MpRwG+ePA/RlsQmMlUeVU6v12FViP8ZMNZx0JnEmUK54nBGinMnEEDad
-         RUGyLBYdoYJhQI52HCjDjMNfcw6yGyDXowWIyYepfDh8yBurktAdkXNqoxl1yYp9F/h/
-         wZ0yW26luSzd4TVphvZIhSLgF/ADYir9HNxKen8rHpUPQ3JqkQQqbjqdgbntaE7UUo7H
-         1DfQ==
-X-Gm-Message-State: AOAM530Bx8P0BvdrNsx81jOW7v5oXz+V4uLKytu+cFexfTxVSXUd4WEJ
-        d0ofGTq8fntNf4iXDZrtwXI=
-X-Google-Smtp-Source: ABdhPJzYywU4adD/FSSILOqIQ2oUcfN8M9ai7CyR3KbsTivPZ0TmissuJy2yFcha1mQSvrljanSTMg==
-X-Received: by 2002:adf:f38e:: with SMTP id m14mr12103905wro.34.1618812032763;
-        Sun, 18 Apr 2021 23:00:32 -0700 (PDT)
-Received: from felia.fritz.box ([2001:16b8:2dc6:900:a414:a08d:9e82:6738])
-        by smtp.gmail.com with ESMTPSA id d200sm3837731wmd.45.2021.04.18.23.00.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Apr 2021 23:00:32 -0700 (PDT)
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-To:     Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Ralf Ramsauer <ralf.ramsauer@oth-regensburg.de>,
-        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Subject: [PATCH] MAINTAINERS: repair reference in HYCON HY46XX TOUCHSCREEN SUPPORT
-Date:   Mon, 19 Apr 2021 08:00:23 +0200
-Message-Id: <20210419060023.3460-1-lukas.bulwahn@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S229840AbhDSGYp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 02:24:45 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77E67C06174A
+        for <devicetree@vger.kernel.org>; Sun, 18 Apr 2021 23:24:16 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lYNKE-0001CT-97; Mon, 19 Apr 2021 08:24:02 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lYNK8-0006Ew-S7; Mon, 19 Apr 2021 08:23:56 +0200
+Date:   Mon, 19 Apr 2021 08:23:56 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
+        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] pwm: visconti: Add Toshiba Visconti SoC PWM
+ support
+Message-ID: <20210419062356.bfgkcdrceovdwkh5@pengutronix.de>
+References: <20210419000007.1944301-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210419000007.1944301-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zgu4pc5obhcggw3s"
+Content-Disposition: inline
+In-Reply-To: <20210419000007.1944301-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit aa2f62cf211a ("Input: add driver for the Hycon HY46XX touchpanel
-series") adds the file ./drivers/input/touchscreen/hycon-hy46xx.c, but the
-file entry in MAINTAINERS refers to ./drivers/input/touchscreen/hy46xx.c.
 
-Hence, ./scripts/get_maintainer.pl --self-test=patterns complains:
+--zgu4pc5obhcggw3s
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-  warning: no file matches    F:    drivers/input/touchscreen/hy46xx.c
+On Mon, Apr 19, 2021 at 09:00:07AM +0900, Nobuhiro Iwamatsu wrote:
+> Add driver for the PWM controller on Toshiba Visconti ARM SoC.
+>=20
+> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
 
-Repair the file entry by referring to the right location.
+Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
 
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
----
-applies cleanly on next-20210419
+Thanks for your endurance to improve the driver
+Uwe
 
-Guilio, please ack.
-Dmitry, please pick this minor clean up patch for your -next tree.
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--zgu4pc5obhcggw3s
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c54b8e4520d1..bbe356508f29 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8425,7 +8425,7 @@ M:	Giulio Benetti <giulio.benetti@benettiengineering.com>
- L:	linux-input@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
--F:	drivers/input/touchscreen/hy46xx.c
-+F:	drivers/input/touchscreen/hycon-hy46xx.c
- 
- HYGON PROCESSOR SUPPORT
- M:	Pu Wen <puwen@hygon.cn>
--- 
-2.17.1
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmB9IfkACgkQwfwUeK3K
+7AlgHwf+Nx79sbNY1GlGt+gijv/vJoNs1ZFqTScJnkczL704cUw0dg4phGRgFgb9
+f89mQTXKNPKmRFvEs2NbWKWLQ4wuvLb5V8VIf1h/0BxfFzqhOKWNxjBDbkRAZjzp
+02SfpghGEgFzGzOD0h/9CuwYCcb8kox51Vn4fkLYSvQGV1kvlBEVwAzgR3pXqzc9
+6+cMBOgGdkuQqmjPAB9IrlDK0UzJAVbORkC5ATJFzyWIHKp+FI29sk6cPjrBUMmA
+uMFRBW2LgEwCRZ/Vk0VXVdHIQhd2uW7gssU8E1F0ZB7ipnd7NnsdmXm/C60Pi7Yq
+ICOagB8h0YuiptPdst7kTok8nEW5gA==
+=Uaqc
+-----END PGP SIGNATURE-----
+
+--zgu4pc5obhcggw3s--
