@@ -2,172 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BF53363FA2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 12:32:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F4AB363FBF
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 12:44:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238608AbhDSKdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 06:33:03 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:16578 "EHLO m43-7.mailgun.net"
+        id S232271AbhDSKpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 06:45:15 -0400
+Received: from foss.arm.com ([217.140.110.172]:40068 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238606AbhDSKc5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Apr 2021 06:32:57 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1618828343; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=ESACqJYaXvwAZn4Bk6b9plMihNkvBsJRi3qglzpCdmk=;
- b=kIxXyY38bS2IOks8AX1/oJ6im+oVJ29fRSYEvWIK80vcTKet9HK8bCnuDHoSh0k3bFRfAyRj
- sV+0KdFHI/pL+lli5ltS+9ICxT5rAJz11Pjf7LoyHZehGQA4zdJeIXU6K9Ar9ILC3/WyvhTY
- 4gvaSmP0vIe010eLtZkPUuqFI9A=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 607d5c37853c0a2c46236e9b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 19 Apr 2021 10:32:23
- GMT
-Sender: schowdhu=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 604E1C4338A; Mon, 19 Apr 2021 10:32:22 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: schowdhu)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 03BA7C433D3;
-        Mon, 19 Apr 2021 10:32:19 +0000 (UTC)
+        id S229537AbhDSKpN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Apr 2021 06:45:13 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BB1581FB;
+        Mon, 19 Apr 2021 03:44:43 -0700 (PDT)
+Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 37ACA3F85F;
+        Mon, 19 Apr 2021 03:44:41 -0700 (PDT)
+Date:   Mon, 19 Apr 2021 11:44:32 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Bjorn Helgaas <helgaas@kernel.org>,
+        Jianjun Wang <jianjun.wang@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, youlin.pei@mediatek.com,
+        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
+        sin_jieyang@mediatek.com, drinkcat@chromium.org,
+        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com,
+        Krzysztof Wilczyski <kw@linux.com>,
+        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Subject: Re: [v9,0/7] PCI: mediatek: Add new generation controller support
+Message-ID: <20210419104432.GA2427@lpieralisi>
+References: <20210324030510.29177-1-jianjun.wang@mediatek.com>
+ <20210416192100.GA2745484@bjorn-Precision-5520>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 19 Apr 2021 16:02:19 +0530
-From:   schowdhu@codeaurora.org
-To:     Felipe Balbi <balbi@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org
-Subject: Re: [PATCH V3 2/4] soc: qcom: dcc:Add driver support for Data Capture
- and Compare unit(DCC)
-In-Reply-To: <87k0p4njni.fsf@kernel.org>
-References: <cover.1618387606.git.schowdhu@codeaurora.org>
- <59b2e83d5d0f435112f6ae266612ff91c85b120f.1618387606.git.schowdhu@codeaurora.org>
- <87k0p4njni.fsf@kernel.org>
-Message-ID: <ffc2076e7145af0099bab8ef37611556@codeaurora.org>
-X-Sender: schowdhu@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210416192100.GA2745484@bjorn-Precision-5520>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-04-15 12:01, Felipe Balbi wrote:
-> Hi,
+On Fri, Apr 16, 2021 at 02:21:00PM -0500, Bjorn Helgaas wrote:
+> On Wed, Mar 24, 2021 at 11:05:03AM +0800, Jianjun Wang wrote:
+> > These series patches add pcie-mediatek-gen3.c and dt-bindings file to
+> > support new generation PCIe controller.
 > 
-> Souradeep Chowdhury <schowdhu@codeaurora.org> writes:
->> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
->> index ad675a6..e7f0ccb 100644
->> --- a/drivers/soc/qcom/Makefile
->> +++ b/drivers/soc/qcom/Makefile
->> @@ -1,19 +1,22 @@
->>  # SPDX-License-Identifier: GPL-2.0
->>  CFLAGS_rpmh-rsc.o := -I$(src)
->>  obj-$(CONFIG_QCOM_AOSS_QMP) +=	qcom_aoss.o
->> -obj-$(CONFIG_QCOM_GENI_SE) +=	qcom-geni-se.o
->> +obj-$(CONFIG_QCOM_APR) += apr.o
->>  obj-$(CONFIG_QCOM_COMMAND_DB) += cmd-db.o
->>  obj-$(CONFIG_QCOM_CPR)		+= cpr.o
->> +obj-$(CONFIG_QCOM_DCC) += dcc.o
->> +obj-$(CONFIG_QCOM_GENI_SE) +=   qcom-geni-se.o
->>  obj-$(CONFIG_QCOM_GSBI)	+=	qcom_gsbi.o
->> +obj-$(CONFIG_QCOM_KRYO_L2_ACCESSORS) += kryo-l2-accessors.o
->> +obj-$(CONFIG_QCOM_LLCC) += llcc-qcom.o
->>  obj-$(CONFIG_QCOM_MDT_LOADER)	+= mdt_loader.o
->>  obj-$(CONFIG_QCOM_OCMEM)	+= ocmem.o
->>  obj-$(CONFIG_QCOM_PDR_HELPERS)	+= pdr_interface.o
->>  obj-$(CONFIG_QCOM_QMI_HELPERS)	+= qmi_helpers.o
->> -qmi_helpers-y	+= qmi_encdec.o qmi_interface.o
->>  obj-$(CONFIG_QCOM_RMTFS_MEM)	+= rmtfs_mem.o
->>  obj-$(CONFIG_QCOM_RPMH)		+= qcom_rpmh.o
->> -qcom_rpmh-y			+= rpmh-rsc.o
->> -qcom_rpmh-y			+= rpmh.o
->> +obj-$(CONFIG_QCOM_RPMHPD) += rpmhpd.o
->> +obj-$(CONFIG_QCOM_RPMPD) += rpmpd.o
->>  obj-$(CONFIG_QCOM_SMD_RPM)	+= smd-rpm.o
->>  obj-$(CONFIG_QCOM_SMEM) +=	smem.o
->>  obj-$(CONFIG_QCOM_SMEM_STATE) += smem_state.o
->> @@ -21,8 +24,6 @@ obj-$(CONFIG_QCOM_SMP2P)	+= smp2p.o
->>  obj-$(CONFIG_QCOM_SMSM)	+= smsm.o
->>  obj-$(CONFIG_QCOM_SOCINFO)	+= socinfo.o
->>  obj-$(CONFIG_QCOM_WCNSS_CTRL) += wcnss_ctrl.o
->> -obj-$(CONFIG_QCOM_APR) += apr.o
->> -obj-$(CONFIG_QCOM_LLCC) += llcc-qcom.o
->> -obj-$(CONFIG_QCOM_RPMHPD) += rpmhpd.o
->> -obj-$(CONFIG_QCOM_RPMPD) += rpmpd.o
->> -obj-$(CONFIG_QCOM_KRYO_L2_ACCESSORS) +=	kryo-l2-accessors.o
->> +qmi_helpers-y   += qmi_encdec.o qmi_interface.o
->> +qcom_rpmh-y                     += rpmh-rsc.o
->> +qcom_rpmh-y                     += rpmh.o
+> Incidental: b4 doesn't work on this thread, I suspect because the
+> usual subject line format is:
 > 
-> why so many changes?
+>   [PATCH v9 9/7]
+> 
+> instead of:
+> 
+>   [v9,0/7]
+> 
+> For b4 info, see https://git.kernel.org/pub/scm/utils/b4/b4.git/tree/README.rst
 
-This has been accidentally sorted based on the config names. Will be 
-fixing this in next version of the patch.
+Jianjun will update the series accordingly (and please add to v10 the
+review tags you received.
 
-> 
->> diff --git a/drivers/soc/qcom/dcc.c b/drivers/soc/qcom/dcc.c
->> new file mode 100644
->> index 0000000..fcd5580
->> --- /dev/null
->> +++ b/drivers/soc/qcom/dcc.c
->> @@ -0,0 +1,1539 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2015-2021, The Linux Foundation. All rights 
->> reserved.
->> + */
->> +
->> +#include <linux/bitfield.h>
->> +#include <linux/bitops.h>
->> +#include <linux/cdev.h>
->> +#include <linux/delay.h>
->> +#include <linux/fs.h>
->> +#include <linux/io.h>
->> +#include <linux/iopoll.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/of_device.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/slab.h>
->> +#include <linux/uaccess.h>
->> +
->> +
-> 
-> one blank line is enough
-
-Ack
-
-> 
->> +#define TIMEOUT_US		100
->> +
->> +#define dcc_writel(drvdata, val, off)					\
->> +	writel((val), drvdata->base + dcc_offset_conv(drvdata, off))
->> +#define dcc_readl(drvdata, off)						\
->> +	readl(drvdata->base + dcc_offset_conv(drvdata, off))
->> +
->> +#define dcc_sram_readl(drvdata, off)					\
->> +	readl(drvdata->ram_base + off)
-> 
-> this would be probably be better as static inlines.
-
-These are simple read and write operations used in the driver
-which just calls the generic writel and readl function.
-That's why macros have been used here to lesson the overhead
-of an extra function call.
+Lorenzo
