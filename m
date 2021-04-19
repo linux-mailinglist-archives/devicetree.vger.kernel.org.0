@@ -2,76 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13A40363EAF
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 11:38:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7952363ECE
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 11:40:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238618AbhDSJir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 05:38:47 -0400
-Received: from mail-ua1-f51.google.com ([209.85.222.51]:42665 "EHLO
-        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbhDSJiq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 05:38:46 -0400
-Received: by mail-ua1-f51.google.com with SMTP id 23so1394399uac.9;
-        Mon, 19 Apr 2021 02:38:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Qz7eHg+GDhB5/+UldzTXRkP4L7o5XFBAhOrV0CebfS8=;
-        b=NpLBTFuoQnYPSKDN3QIGdnckJ9HK9IIVmGIAwvdMSN25C1/MoO3eYmQhhAyEv57ivu
-         P9bH4kIihlc0r5+JWSkjfuj/Ch5SbN2+2bZeiKQRWS9A8gWHNcZR+ekMMiBvTwWd/P7B
-         PCGwkaiQWa9MRjxkeOC4El3gRy781kkYxCnyGNEBJS0aoIJIJbHNCI75XQcl57h2goAk
-         sV51OZa5e0SRSw5RR2QwuxjDofgVZ5uvw0bt10CMBFlZzMM3X8id0Yu8b/Y1ztrr0TjA
-         VOuL6zLN5v0n3ggk6IHsNZq3anl3jFyQVQkjvxbEdUkU5C6HQmYu4cwAnkoPlVvJPbzl
-         bugQ==
-X-Gm-Message-State: AOAM531JuGkvXGb3cNIS1FWYxX4aqVeRb+Fj+0U+GNA/kqAb7hNZ1Nsv
-        oBPJB1Qy+uMbnxFdMcH0lIcwKR001cMJfuat4qw=
-X-Google-Smtp-Source: ABdhPJwd2fxrRVcezspfqpd49brhoi5lLIDhZwfeLnamGRZertBmVP+kBGQLGSvBRrowPHG+qjcTR166Fl0LF3PPrz8=
-X-Received: by 2002:a9f:3852:: with SMTP id q18mr6058483uad.58.1618825096295;
- Mon, 19 Apr 2021 02:38:16 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210224115146.9131-1-aford173@gmail.com> <20210224115146.9131-3-aford173@gmail.com>
-In-Reply-To: <20210224115146.9131-3-aford173@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 19 Apr 2021 11:38:05 +0200
-Message-ID: <CAMuHMdWozQPDTDMPtqqoHJJoshHAUCBCxWkGYEe6eV1q2xL6jw@mail.gmail.com>
-Subject: Re: [PATCH V3 3/5] arm64: dts: renesas: Add fck to etheravb-rcar-gen3
- clock-names list
-To:     Adam Ford <aford173@gmail.com>
-Cc:     netdev <netdev@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        id S238656AbhDSJkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 05:40:04 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:21724 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S238616AbhDSJj4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Apr 2021 05:39:56 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13J9RIHb027890;
+        Mon, 19 Apr 2021 11:39:06 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=wOdBXreJaHkgnJPvNm4hYfpoNn+S6pHPol0liOPRIiU=;
+ b=Uo86N0X7eVrHf8AswCNPqmebR9xfEdJiaO01eE/irTjjKYtuoChcMetJeoL4+GbUGy45
+ P47id3ekrxFkBRVngLJhG9yogUgxx/0m5lBf5GhI/E9qyc8o7UQgCZ6HvBKt1CR+A9Jx
+ EyNovc7lG60qvCKNsiRn3BxhuMFecw5mKy8gwM5VjpZVKC+OPZlxPgtzCfm0XWQOemQ2
+ umkvGvyKP0HEtYTJimuH41y+Hg/4tWidRR2G1jPYpYjuMrvvrDA+sXrtZzjePKa3YgVq
+ hWiAlPIRzOZOT9UBDd909dNz9IgIUrd+30eYWXNTo3iMdUMgyeld69qtJk+Dy+nfUcrR tQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 380s8c3bfy-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 19 Apr 2021 11:39:06 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 155E410002A;
+        Mon, 19 Apr 2021 11:39:06 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id DEF9820A07F;
+        Mon, 19 Apr 2021 11:39:05 +0200 (CEST)
+Received: from localhost (10.75.127.49) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 19 Apr 2021 11:39:05
+ +0200
+From:   <gabriel.fernandez@foss.st.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Etienne Carriere <etienne.carriere@st.com>,
+        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
+        <marex@denx.de>
+CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 00/11] Introduce STM32MP1 RCC in secured mode
+Date:   Mon, 19 Apr 2021 11:38:41 +0200
+Message-ID: <20210419093852.14978-1-gabriel.fernandez@foss.st.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-04-19_05:2021-04-16,2021-04-19 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 24, 2021 at 12:52 PM Adam Ford <aford173@gmail.com> wrote:
-> The bindings have been updated to support two clocks, but the
-> original clock now requires the name fck.  Add a clock-names
-> list in the device tree with fck in it.
->
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 
-queueing in renesas-devel for v5.14, with an additional update for
-the recently added r8a779a0.dtsi.
+Platform STM32MP1 can be used in configuration where some clocks and
+IP resets can relate as secure resources.
+These resources are moved from a RCC clock/reset handle to a SCMI
+clock/reset_domain handle.
 
-Gr{oetje,eeting}s,
+The RCC clock driver is now dependent of the SCMI driver, then we have
+to manage now the probe defering.
 
-                        Geert
+v2 -> v3:
+  - use determine_rate op instead of round_rate for ck_rtc
+  - remove DT patches from patchset to keek Kernel device tree as there are in basic boot.
+     We will applied scmi clock phandle thanks dtbo in U-boot.
+v1 -> v2:
+  - fix yamllint warnings.
+
+Gabriel Fernandez (11):
+  clk: stm32mp1: merge 'clk-hsi-div' and 'ck_hsi' into one clock
+  clk: stm32mp1: merge 'ck_hse_rtc' and 'ck_rtc' into one clock
+  clk: stm32mp1: remove intermediate pll clocks
+  clk: stm32mp1: convert to module driver
+  clk: stm32mp1: move RCC reset controller into RCC clock driver
+  reset: stm32mp1: remove stm32mp1 reset
+  dt-bindings: clock: add IDs for SCMI clocks on stm32mp15
+  dt-bindings: reset: add IDs for SCMI reset domains on stm32mp15
+  dt-bindings: reset: add MCU HOLD BOOT ID for SCMI reset domains on
+    stm32mp15
+  dt-bindings: clock: stm32mp1 new compatible for secure rcc
+  clk: stm32mp1: new compatible for secure RCC support
+
+ .../bindings/clock/st,stm32mp1-rcc.yaml       |   6 +-
+ drivers/clk/Kconfig                           |  10 +
+ drivers/clk/clk-stm32mp1.c                    | 500 +++++++++++++++---
+ drivers/reset/Kconfig                         |   6 -
+ drivers/reset/Makefile                        |   1 -
+ drivers/reset/reset-stm32mp1.c                | 115 ----
+ include/dt-bindings/clock/stm32mp1-clks.h     |  27 +
+ include/dt-bindings/reset/stm32mp1-resets.h   |  15 +
+ 8 files changed, 469 insertions(+), 211 deletions(-)
+ delete mode 100644 drivers/reset/reset-stm32mp1.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
