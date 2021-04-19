@@ -2,186 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BFAE364628
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 16:32:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADDE336466F
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 16:50:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239968AbhDSOdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 10:33:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47144 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239934AbhDSOdA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 10:33:00 -0400
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 494A8C06174A
-        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 07:32:29 -0700 (PDT)
-Received: by mail-oi1-x22b.google.com with SMTP id r186so7816763oif.8
-        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 07:32:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=4nWRWEmvjlM65gvpUkZGPybpr9Usfroi21CGmSCGgnQ=;
-        b=dKL+8Di3Vh6QSg4UqSIU/ueXxsqOGsn3aeAhCMqzWv41AGVzSLAx1Ybl794pFYHlfG
-         3TUX1OT/sBVmuDWRZOG8OqLuCv0p08RsLlCGp5JmsYmuOLPShTe2tXYNpIVo1mXY4nPg
-         8W94VxamJxc4H91RpnHe8FbFMEXdkhnkEbNv5G3SHB+Pl7IZDP8DwwLKVe0VITYW7Z6O
-         hVIKKJzfjEB0Zxd0+uM9b/b76cwX63K/kOrrVNR++7bhgj90+LQIuCzqmjUhKKf0IQiO
-         fuCn9ZmD3+G8qXxepR7uHqrVcdxpjY8KisVw5KC7qdNTn9x8SioiKjV/nTVbgTFw1TGR
-         C7OQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4nWRWEmvjlM65gvpUkZGPybpr9Usfroi21CGmSCGgnQ=;
-        b=H9FP5ImO/Xuq+S1MU0xJhLlG7qwI28wd/m9bG+F9k0qwN3IXE95MzK0gi51bXMSum7
-         qKNrfb54GXMhLG3rkDwsb36aA5tKdkyEhE9PtfknnH5LrrMpQyfPhSgcnJTqVcbzts8O
-         4XKRUN6sdK+kkKmJDJSYmxa5w5kP18RoMXiYOkpIYIO4gpwG8755EVZ4IIYM7wOtPc2A
-         2Tv6cYKh3hqI+LaR3gKqJvyrNoM7HgZPKgaHeNT6WRGT+a3OHYzWm6O+UjV/mc5kIK2F
-         lZ93SpWCqFdeG0F/dwmNKhJHIwBDtfYolxD0WeIUQPNhMUskYV4C+X/Qv4aCZy4jpE+L
-         rZfA==
-X-Gm-Message-State: AOAM533mtPgnPTKmpughKzs4syykAAXDCQzC+IFMLGxN9DphbVVn1y4j
-        UpYBp93cPYbHYqIe6a+6FMsAHw==
-X-Google-Smtp-Source: ABdhPJy3ipgPHZ4m9cveqEO3UoOQ3lZDcUGjgRZW0c3MiRNf9Yn6lUjxnt5tD4qel7g8ZRGUhgynJA==
-X-Received: by 2002:aca:408b:: with SMTP id n133mr13137273oia.13.1618842748685;
-        Mon, 19 Apr 2021 07:32:28 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id g26sm3567915otr.73.2021.04.19.07.32.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Apr 2021 07:32:28 -0700 (PDT)
-Date:   Mon, 19 Apr 2021 09:32:25 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     schowdhu@codeaurora.org
-Cc:     Felipe Balbi <balbi@kernel.org>, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org
-Subject: Re: [PATCH V3 2/4] soc: qcom: dcc:Add driver support for Data
- Capture and Compare unit(DCC)
-Message-ID: <20210419143225.GO1538589@yoga>
-References: <cover.1618387606.git.schowdhu@codeaurora.org>
- <59b2e83d5d0f435112f6ae266612ff91c85b120f.1618387606.git.schowdhu@codeaurora.org>
- <87k0p4njni.fsf@kernel.org>
- <ffc2076e7145af0099bab8ef37611556@codeaurora.org>
+        id S240569AbhDSOup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 10:50:45 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:47574 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240570AbhDSOuo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 10:50:44 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13JEo6Zb015049;
+        Mon, 19 Apr 2021 09:50:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1618843806;
+        bh=ADQ0RSQetq2WAGPxcXPK7Ft1yLeNW7b6Jvk0MZ/3yjM=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=DAY3f+S0fgHzwx5/e3eR+7ecG7JmTz8Xjv7aZXKAwyV4uTJyued+9VBeivNMoQU/f
+         HnuHDmsuX/FwTxWsCPUAmkotRh6SQlMmkwIC1eBukUZc97y5fMoAIm3QUH0vGzqfIx
+         Ak6+78KvIsL/rTFJ6JgJVb6Dmeafo1mNP4hPRCd0=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13JEo6TN076519
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 19 Apr 2021 09:50:06 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 19
+ Apr 2021 09:50:06 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 19 Apr 2021 09:50:06 -0500
+Received: from [10.250.33.21] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13JEo6T5034030;
+        Mon, 19 Apr 2021 09:50:06 -0500
+Subject: Re: [PATCH] ARM: dts: keystone-k2g: Rename message-manager node
+To:     Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210414001926.20002-1-nm@ti.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <e52fe654-a9b7-ca49-d501-1dd01159c787@ti.com>
+Date:   Mon, 19 Apr 2021 09:50:01 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ffc2076e7145af0099bab8ef37611556@codeaurora.org>
+In-Reply-To: <20210414001926.20002-1-nm@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 19 Apr 05:32 CDT 2021, schowdhu@codeaurora.org wrote:
+On 4/13/21 7:19 PM, Nishanth Menon wrote:
+> Rename message-manager instance node name to be better aligned with
+> current style of device tree nodes for mailboxes.
+> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
 
-> On 2021-04-15 12:01, Felipe Balbi wrote:
-> > Hi,
-> > 
-> > Souradeep Chowdhury <schowdhu@codeaurora.org> writes:
-> > > diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
-> > > index ad675a6..e7f0ccb 100644
-> > > --- a/drivers/soc/qcom/Makefile
-> > > +++ b/drivers/soc/qcom/Makefile
-> > > @@ -1,19 +1,22 @@
-> > >  # SPDX-License-Identifier: GPL-2.0
-> > >  CFLAGS_rpmh-rsc.o := -I$(src)
-> > >  obj-$(CONFIG_QCOM_AOSS_QMP) +=	qcom_aoss.o
-> > > -obj-$(CONFIG_QCOM_GENI_SE) +=	qcom-geni-se.o
-> > > +obj-$(CONFIG_QCOM_APR) += apr.o
-> > >  obj-$(CONFIG_QCOM_COMMAND_DB) += cmd-db.o
-> > >  obj-$(CONFIG_QCOM_CPR)		+= cpr.o
-> > > +obj-$(CONFIG_QCOM_DCC) += dcc.o
-> > > +obj-$(CONFIG_QCOM_GENI_SE) +=   qcom-geni-se.o
-> > >  obj-$(CONFIG_QCOM_GSBI)	+=	qcom_gsbi.o
-> > > +obj-$(CONFIG_QCOM_KRYO_L2_ACCESSORS) += kryo-l2-accessors.o
-> > > +obj-$(CONFIG_QCOM_LLCC) += llcc-qcom.o
-> > >  obj-$(CONFIG_QCOM_MDT_LOADER)	+= mdt_loader.o
-> > >  obj-$(CONFIG_QCOM_OCMEM)	+= ocmem.o
-> > >  obj-$(CONFIG_QCOM_PDR_HELPERS)	+= pdr_interface.o
-> > >  obj-$(CONFIG_QCOM_QMI_HELPERS)	+= qmi_helpers.o
-> > > -qmi_helpers-y	+= qmi_encdec.o qmi_interface.o
-> > >  obj-$(CONFIG_QCOM_RMTFS_MEM)	+= rmtfs_mem.o
-> > >  obj-$(CONFIG_QCOM_RPMH)		+= qcom_rpmh.o
-> > > -qcom_rpmh-y			+= rpmh-rsc.o
-> > > -qcom_rpmh-y			+= rpmh.o
-> > > +obj-$(CONFIG_QCOM_RPMHPD) += rpmhpd.o
-> > > +obj-$(CONFIG_QCOM_RPMPD) += rpmpd.o
-> > >  obj-$(CONFIG_QCOM_SMD_RPM)	+= smd-rpm.o
-> > >  obj-$(CONFIG_QCOM_SMEM) +=	smem.o
-> > >  obj-$(CONFIG_QCOM_SMEM_STATE) += smem_state.o
-> > > @@ -21,8 +24,6 @@ obj-$(CONFIG_QCOM_SMP2P)	+= smp2p.o
-> > >  obj-$(CONFIG_QCOM_SMSM)	+= smsm.o
-> > >  obj-$(CONFIG_QCOM_SOCINFO)	+= socinfo.o
-> > >  obj-$(CONFIG_QCOM_WCNSS_CTRL) += wcnss_ctrl.o
-> > > -obj-$(CONFIG_QCOM_APR) += apr.o
-> > > -obj-$(CONFIG_QCOM_LLCC) += llcc-qcom.o
-> > > -obj-$(CONFIG_QCOM_RPMHPD) += rpmhpd.o
-> > > -obj-$(CONFIG_QCOM_RPMPD) += rpmpd.o
-> > > -obj-$(CONFIG_QCOM_KRYO_L2_ACCESSORS) +=	kryo-l2-accessors.o
-> > > +qmi_helpers-y   += qmi_encdec.o qmi_interface.o
-> > > +qcom_rpmh-y                     += rpmh-rsc.o
-> > > +qcom_rpmh-y                     += rpmh.o
-> > 
-> > why so many changes?
-> 
-> This has been accidentally sorted based on the config names. Will be fixing
-> this in next version of the patch.
-> 
-> > 
-> > > diff --git a/drivers/soc/qcom/dcc.c b/drivers/soc/qcom/dcc.c
-> > > new file mode 100644
-> > > index 0000000..fcd5580
-> > > --- /dev/null
-> > > +++ b/drivers/soc/qcom/dcc.c
-> > > @@ -0,0 +1,1539 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * Copyright (c) 2015-2021, The Linux Foundation. All rights
-> > > reserved.
-> > > + */
-> > > +
-> > > +#include <linux/bitfield.h>
-> > > +#include <linux/bitops.h>
-> > > +#include <linux/cdev.h>
-> > > +#include <linux/delay.h>
-> > > +#include <linux/fs.h>
-> > > +#include <linux/io.h>
-> > > +#include <linux/iopoll.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/of.h>
-> > > +#include <linux/of_device.h>
-> > > +#include <linux/platform_device.h>
-> > > +#include <linux/slab.h>
-> > > +#include <linux/uaccess.h>
-> > > +
-> > > +
-> > 
-> > one blank line is enough
-> 
-> Ack
-> 
-> > 
-> > > +#define TIMEOUT_US		100
-> > > +
-> > > +#define dcc_writel(drvdata, val, off)					\
-> > > +	writel((val), drvdata->base + dcc_offset_conv(drvdata, off))
-> > > +#define dcc_readl(drvdata, off)						\
-> > > +	readl(drvdata->base + dcc_offset_conv(drvdata, off))
-> > > +
-> > > +#define dcc_sram_readl(drvdata, off)					\
-> > > +	readl(drvdata->ram_base + off)
-> > 
-> > this would be probably be better as static inlines.
-> 
-> These are simple read and write operations used in the driver
-> which just calls the generic writel and readl function.
-> That's why macros have been used here to lesson the overhead
-> of an extra function call.
+Acked-by: Suman Anna <s-anna@ti.com>
 
-The compiler will realize that your static dcc_sram_readl() is cheaper
-to inline than call and do so for you. So you can expect that there's no
-difference in the output from the compiler, and if there is then the
-compiler knows something that you're overlooking.
+> ---
+> 
+> Santosh:
+> - This is'nt critical to queue up for 5.13-rc1 window, but just getting
+>   it out of the way. I noticed it as I was converting the binding to
+>   yaml. (patch for yaml conversion for the node follows)
+> 
+>  arch/arm/boot/dts/keystone-k2g.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/keystone-k2g.dtsi b/arch/arm/boot/dts/keystone-k2g.dtsi
+> index 05a75019275e..e5c813b5556d 100644
+> --- a/arch/arm/boot/dts/keystone-k2g.dtsi
+> +++ b/arch/arm/boot/dts/keystone-k2g.dtsi
+> @@ -242,7 +242,7 @@ dsp0: dsp@10800000 {
+>  			status = "disabled";
+>  		};
+>  
+> -		msgmgr: msgmgr@2a00000 {
+> +		msgmgr: mailbox@2a00000 {
+>  			compatible = "ti,k2g-message-manager";
+>  			#mbox-cells = <2>;
+>  			reg-names = "queue_proxy_region",
+> 
 
-Regards,
-Bjorn
