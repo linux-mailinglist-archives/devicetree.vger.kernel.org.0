@@ -2,114 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FF853639E2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 06:04:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08226363AF0
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 07:13:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234118AbhDSEEs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 00:04:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49562 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233491AbhDSEEj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 00:04:39 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A3A7C06174A;
-        Sun, 18 Apr 2021 21:04:09 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id g16so9000970pfq.5;
-        Sun, 18 Apr 2021 21:04:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=nooF0bh3uQe/ilf/ttra6OUts5vU91KPBygIK+rN8CU=;
-        b=lAE1M2kH8mYGvH4QI2ZOpm39wWa82gcbp2UhP0pd8YfHtS/cOHPn9k/+8vBbmYjPJQ
-         B7YLOHcKKQodQni2ID6ZRG2C0cTCaYNx0r8PsACXLeUGRwGlqUl6sFPiguWqasIDKqv7
-         9sQbY2hmfpnYLHWq9rpDcQ8NcaTO9VZfmP6dzOiwAOykn5lV7XDx4ktxT1rTQzVPy/K8
-         EoGHHeIwtJ2vkaSTMK03l0Ffalq/2ItfJ/UjGYt33pY8UzUOtJc4ki8GM+TECddbVxH9
-         gZBsQUe370IvM+hutvbSC+uZlHx4BTSlVKqXbdZ4kLdJaD68OVyJoBhG9DWErIBZWrLm
-         Ucbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=nooF0bh3uQe/ilf/ttra6OUts5vU91KPBygIK+rN8CU=;
-        b=pZsKj0eAEPdjU+IouHOAPGGdSDQGwSmTdIl+LheHsfKZh/BA8wR9sBsPHkY3tdMycd
-         apb2m5oq46OATYz224ivbInrAlZJnBaKdV38L+dblG41urlQXnWCqEn4quhwrt7TSFrX
-         EUq/TNCxQHq3XQgJgCmb2SdzQdEwYPkHUrDrnYKgLhbhdN3Y3BTGnZiEfSLK0UlOJOwU
-         PNAtd3WvXI3SeNL5JG8pTVOr3fTM9CZMwBt6kjtLn2R99GU/25UY+du9WugRr1fH5c1K
-         T4Z8IF1KSyKxb4U2K2UhgtrCunvA97u2GKyWGhzzY7HnxhHsU9QWA7MNjLX3jgsEtUs7
-         ZEIQ==
-X-Gm-Message-State: AOAM533oNstQZktnlU5NLsziM0pRVwPSJisMipSrL5ySPpqLIqF2l0Gn
-        a+h2JsXIxe1DW5lAIAHGFRM=
-X-Google-Smtp-Source: ABdhPJz2bKhFE3qPTDDPaQXc8tpwKJvnnZWr0+4qR2uTa5yoJE0Y33ONufXaKA1nPG7HARQ8c5C9Tw==
-X-Received: by 2002:a63:5f54:: with SMTP id t81mr3727918pgb.286.1618805048816;
-        Sun, 18 Apr 2021 21:04:08 -0700 (PDT)
-Received: from z640-arch.lan ([2602:61:7344:f100::678])
-        by smtp.gmail.com with ESMTPSA id 25sm12169423pgx.72.2021.04.18.21.04.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Apr 2021 21:04:08 -0700 (PDT)
-From:   Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Felix Fietkau <nbd@nbd.name>,
-        John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Cc:     Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
-        =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>
-Subject: [PATCH net-next 2/2] net: ethernet: mediatek: support custom GMAC label
-Date:   Sun, 18 Apr 2021 21:03:52 -0700
-Message-Id: <20210419040352.2452-3-ilya.lipnitskiy@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210419040352.2452-1-ilya.lipnitskiy@gmail.com>
-References: <20210419040352.2452-1-ilya.lipnitskiy@gmail.com>
+        id S229473AbhDSFOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 01:14:02 -0400
+Received: from mail.ilitek.com.tw ([60.248.80.92]:58530 "EHLO cello.ilitek.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230111AbhDSFOB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Apr 2021 01:14:01 -0400
+X-UUID: ba3c78d55116487f967b33bc4f6b1419-20210419
+X-UUID: ba3c78d55116487f967b33bc4f6b1419-20210419
+Received: from ex2.ili.com.tw [(192.168.1.132)] by cello.ilitek.com
+        (envelope-from <joe_hung@ilitek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256 128/128)
+        with ESMTP id 1768123034; Mon, 19 Apr 2021 13:13:27 +0800
+Received: from EX2.ili.com.tw (192.168.1.132) by EX2.ili.com.tw
+ (192.168.1.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Mon, 19 Apr
+ 2021 13:13:26 +0800
+Received: from joehung-Ilitek.mshome.net (192.168.18.73) by EX2.ili.com.tw
+ (192.168.1.133) with Microsoft SMTP Server id 15.1.2242.4 via Frontend
+ Transport; Mon, 19 Apr 2021 13:13:26 +0800
+From:   Joe Hung <joe_hung@ilitek.com>
+To:     <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <linux-input@vger.kernel.org>, <joe_hung@ilitek.com>,
+        <luca_hsu@ilitek.com>, Rob Herring <robh@kernel.org>
+Subject: [RESEND v7 1/2] dt-bindings: input: touchscreen: ilitek_ts_i2c: Add bindings
+Date:   Mon, 19 Apr 2021 13:13:24 +0800
+Message-ID: <20210419051325.147314-1-joe_hung@ilitek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MAC device name can now be set within DTS file instead of always
-being "ethX". This is helpful for DSA to clearly label the DSA master
-device and distinguish it from DSA slave ports.
+Add binding documentation for ILITEK touch devices.
 
-For example, some devices, such as the Ubiquiti EdgeRouter X, may have
-ports labeled ethX. Labeling the master GMAC with a different prefix
-than DSA ports helps with clarity.
-
-Suggested-by: René van Dorst <opensource@vdorst.com>
-Signed-off-by: Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
+Signed-off-by: Joe Hung <joe_hung@ilitek.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- drivers/net/ethernet/mediatek/mtk_eth_soc.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Changes in v7:
+  - None
 
-diff --git a/drivers/net/ethernet/mediatek/mtk_eth_soc.c b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-index 6b00c12c6c43..4c0ce4fb7735 100644
---- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-+++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-@@ -2845,6 +2845,7 @@ static const struct net_device_ops mtk_netdev_ops = {
- 
- static int mtk_add_mac(struct mtk_eth *eth, struct device_node *np)
- {
-+	const char *label = of_get_property(np, "label", NULL);
- 	const __be32 *_id = of_get_property(np, "reg", NULL);
- 	phy_interface_t phy_mode;
- 	struct phylink *phylink;
-@@ -2940,6 +2941,9 @@ static int mtk_add_mac(struct mtk_eth *eth, struct device_node *np)
- 	else
- 		eth->netdev[id]->max_mtu = MTK_MAX_RX_LENGTH_2K - MTK_RX_ETH_HLEN;
- 
-+	if (label)
-+		strscpy(eth->netdev[id]->name, label, IFNAMSIZ);
+Changes in v6:
+  - Add Reviewed-by trailer
+
+Changes in v5:
+  - Remove tab in yaml
+
+Changes in v4:
+  - Change IRQ flag to level interrupt
+  - Add support for common touchscreen-related properties
+  - Modify reset gpio to active low
+  - Modify irq type to LEVEL_LOW
+  - Add compatible for Lego series ICs
+
+Changes in v3:
+  - Add include header in examples, and pass the dt binding check
+
+Changes in v2:
+  - Convert to DT schema format
+  - Using interrupts instead of irq-gpios
+
+ .../input/touchscreen/ilitek_ts_i2c.yaml      | 73 +++++++++++++++++++
+ 1 file changed, 73 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
+
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml b/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
+new file mode 100644
+index 000000000000..a190e7baac31
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
+@@ -0,0 +1,73 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/ilitek_ts_i2c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 	return 0;
- 
- free_netdev:
--- 
-2.31.1
++title: Ilitek I2C Touchscreen Controller
++
++maintainers:
++  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
++
++allOf:
++  - $ref: touchscreen.yaml#
++
++properties:
++  compatible:
++    enum:
++      - ilitek,ili2130
++      - ilitek,ili2131
++      - ilitek,ili2132
++      - ilitek,ili2316
++      - ilitek,ili2322
++      - ilitek,ili2323
++      - ilitek,ili2326
++      - ilitek,ili2520
++      - ilitek,ili2521
++
++  reg:
++    const: 0x41
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  wakeup-source:
++    type: boolean
++    description: touchscreen can be used as a wakeup source.
++
++  touchscreen-size-x: true
++  touchscreen-size-y: true
++  touchscreen-inverted-x: true
++  touchscreen-inverted-y: true
++  touchscreen-swapped-x-y: true
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - reset-gpios
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        touchscreen@41 {
++            compatible = "ilitek,ili2520";
++            reg = <0x41>;
++
++            interrupt-parent = <&gpio1>;
++            interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
++            reset-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
++            touchscreen-inverted-y;
++            wakeup-source;
++        };
++    };
+--
+2.25.1
+
 
