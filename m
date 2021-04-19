@@ -2,136 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21BAA363DEE
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 10:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B2C9363D87
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 10:34:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238286AbhDSIsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 04:48:50 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:57779 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238324AbhDSIst (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Apr 2021 04:48:49 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id C36EA58108F;
-        Mon, 19 Apr 2021 04:48:19 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Mon, 19 Apr 2021 04:48:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=x1lvtnCvqnur4
-        ESKPxZ8yfTy9HL79mbmCtNhz9bHNYA=; b=o3EJD316+0eqA2bfZkcWY0tV1TQoM
-        BNPb6B17cvgaYMEksh3OKNLPwUuerF7ox/txIcZn+zfY0Gd8Z6sOZ0n9YQpeH649
-        XsJWryZwAj6bK3apEbi9RZBQYYKYXEKKbSdbEDjPEd3PesH5OoN+eUDMozbKKoI+
-        lg3sJideu6uwaA0HMNsDDJwsin1wnCvmx8LMKXmA1jLkuhjZf7EJN7LYNsA6588f
-        aDBEqqaNnscKjlgvjhrLNHqy1frMGR8kLO573qPV1RKFtSIBffgvNbR1qWqcLUv2
-        A2MMgW+j5a1pXCzkOteOQ9cw5VbGLKhZZGrV4yRcPqT5oYjfi4ZwQDDLA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; bh=x1lvtnCvqnur4ESKPxZ8yfTy9HL79mbmCtNhz9bHNYA=; b=KkZBDDnh
-        j2qLa76zp6k+e7Ih/+DtOOCX24YsK0X3q9Fc5Pa91KTclfi+O32LxR0zXFilu3a2
-        av+YFk6RJ3YxdaxsA7QCbYCxMgGmzrh/oCYejK5cIGaytp1z7oyMN5zjBXljMxF+
-        tV1U0lw4xcBQXD5XatvV0lq8W6j/qaDF8fii81iyLSnnsLPlbWuhQDIUOcw6lFHj
-        0Ok7Njp+WDXuX/I2rT/R72hG5ni6FbYX8Yx/qtG47G/6aYlddygmS29DYID35jGz
-        7lw5ZopLfEuB3ZB9lhiWG0aN2zm601phupBTekYuyEAOPLNqWms7JUE9LpPllA9g
-        DcmO2gPezrHsuQ==
-X-ME-Sender: <xms:0UN9YAYnIdupBLHOK-7gBsq9nYG65KHguTktG3JEwbMhKqeV-lf3MQ>
-    <xme:0UN9YLYdq4sK-SVkCSK0B0yx3bOMPUd60v5ZqyK0_axQe-HrVDs5Hjf78LEjmEnNs
-    CSxQpCi7y2h8S2iGBA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvddtgedgtdekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgjfhgggfestdekre
-    dtredttdenucfhrhhomheptehlihhsthgrihhrucfhrhgrnhgtihhsuceorghlihhsthgr
-    ihhrsegrlhhishhtrghirhdvfedrmhgvqeenucggtffrrghtthgvrhhnpeevjeelleejfe
-    dvheeuieetfeejfefhhffffefffefhveetffeuudegudduhedtueenucffohhmrghinhep
-    vghinhhkrdgtohhmnecukfhppeekledrgeegrddutddruddvfeenucevlhhushhtvghruf
-    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrlhhishhtrghirhesrghlihhs
-    thgrihhrvdefrdhmvg
-X-ME-Proxy: <xmx:0UN9YK-CtWN5PIGBGZQCLLAsUc_-YejsK1kqetzVaPdtMlTmxOlICw>
-    <xmx:0UN9YKpK6QdEpVooG414pwkCyNql3XBsW_5VrrTnrps_Cg9pdSmgAg>
-    <xmx:0UN9YLpKZXQFRkkJhj60gZ8-rr8HnO-QS8D9P5iV_bs2uAvk81GQ6w>
-    <xmx:00N9YJjZHdFTvolqufRqbeEy3StaYt-fKFWWkrAugFjazIMWSnzarQ>
-Received: from ThinkpadX1Yoga3.localdomain (unknown [89.44.10.123])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 1691324005D;
-        Mon, 19 Apr 2021 04:48:11 -0400 (EDT)
-From:   Alistair Francis <alistair@alistair23.me>
-To:     robh+dt@kernel.org, thierry.reding@gmail.com, sam@ravnborg.org,
-        krzk@kernel.org, shawnguo@kernel.org, daniel@0x0f.com,
-        linux@rempel-privat.de, kuninori.morimoto.gx@renesas.com,
-        Max.Merchel@tq-group.com, geert+renesas@glider.be,
-        airlied@linux.ie, daniel@ffwll.ch
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Alistair Francis <alistair@alistair23.me>
-Subject: [PATCH 2/2] drm/panel: Add support for E Ink VB3300-KCA
-Date:   Mon, 19 Apr 2021 07:09:56 +1000
-Message-Id: <20210418210956.3024-2-alistair@alistair23.me>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210418210956.3024-1-alistair@alistair23.me>
-References: <20210418210956.3024-1-alistair@alistair23.me>
+        id S237639AbhDSIfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 04:35:17 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:38074 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229671AbhDSIfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 04:35:15 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13J8YA9H119166;
+        Mon, 19 Apr 2021 03:34:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1618821250;
+        bh=lDZMGFvOojG166N3pt/xx3m8GVsBndajtYIH24dGjQM=;
+        h=From:To:CC:Subject:Date;
+        b=FoGsDH7/2v7pycsqNBf8qDfP/CyC5r0v34Fr7FN2LkC74GMvO0cJjATNk39xgXaH7
+         VblW4RfO0TkbTWR5PMU2TldQDkGMB+kwu2IVPdrmC2QRu+iC6BRnzxYUHLcsxWqJSw
+         IGxgx4ybzRBJpR9CONER7iCJggF8iV2qL73E07wA=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13J8YAfC025030
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 19 Apr 2021 03:34:10 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 19
+ Apr 2021 03:34:10 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 19 Apr 2021 03:34:10 -0500
+Received: from a0393678-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13J8Y2aP051194;
+        Mon, 19 Apr 2021 03:34:02 -0500
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Heiko Stuebner <heiko@sntech.de>
+CC:     Jonathan Corbet <corbet@lwn.net>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <linux-pci@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-renesas-soc@vger.kernel.org>,
+        <linux-rockchip@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH v5 0/7] Add SR-IOV support in PCIe Endpoint Core
+Date:   Mon, 19 Apr 2021 14:03:54 +0530
+Message-ID: <20210419083401.31628-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the 10.3" E Ink panel described at:
-https://www.eink.com/product.html?type=productdetail&id=7
+Patch series
+*) Adds support to add virtual functions to enable endpoint controller
+   which supports SR-IOV capability
+*) Add support in Cadence endpoint driver to configure virtual functions
+*) Enable pci_endpoint_test driver to create pci_device for virtual
+   functions
 
-Signed-off-by: Alistair Francis <alistair@alistair23.me>
----
- drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+v1 of the patch series can be found at [1]
+v2 of the patch series can be found at [2]
+v3 of the patch series can be found at [3]
+v4 of the patch series can be found at [4]
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 4e2dad314c79..f1f6fd2517f6 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -1964,6 +1964,32 @@ static const struct panel_desc edt_etm0700g0bdh6 = {
- 	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
- };
- 
-+static const struct display_timing eink_vb3300_kca_timing = {
-+	.pixelclock = { 40000000, 40000000, 40000000 },
-+	.hactive = { 334, 334, 334 },
-+	.hfront_porch = { 1, 1, 1 },
-+	.hback_porch = { 1, 1, 1 },
-+	.hsync_len = { 1, 1, 1 },
-+	.vactive = { 1405, 1405, 1405 },
-+	.vfront_porch = { 1, 1, 1 },
-+	.vback_porch = { 1, 1, 1 },
-+	.vsync_len = { 1, 1, 1 },
-+	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
-+		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE,
-+};
-+
-+static const struct panel_desc eink_vb3300_kca = {
-+	.modes = &edt_etm0700g0dh6_mode,
-+	.num_modes = 1,
-+	.bpc = 6,
-+	.size = {
-+		.width = 157,
-+		.height = 209,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
-+};
-+
- static const struct display_timing evervision_vgg804821_timing = {
- 	.pixelclock = { 27600000, 33300000, 50000000 },
- 	.hactive = { 800, 800, 800 },
-@@ -4232,6 +4258,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "edt,etm0700g0dh6",
- 		.data = &edt_etm0700g0dh6,
-+	}, {
-+		.compatible = "eink,vb3300-kca",
-+		.data = &eink_vb3300_kca,
- 	}, {
- 		.compatible = "edt,etm0700g0bdh6",
- 		.data = &edt_etm0700g0bdh6,
+Here both physical functions and virtual functions use the same
+pci_endpoint_test driver and existing pcitest utility can be used
+to test virtual functions as well.
+
+Changes from v4:
+*) Added a fix in Cadence driver which was overwriting BAR configuration
+   of physical function.
+*) Didn't include Tom's Acked-by since Cadence driver is modified in
+   this revision.
+
+Changes from v3:
+*) Fixed Rob's comment and added his Reviewed-by as suggested by him.
+
+Changes from v2:
+*) Fixed DT binding documentation comment by Rob
+*) Fixed the error check in pci-epc-core.c
+
+Changes from v1:
+*) Re-based and Re-worked to latest kernel 5.10.0-rc2+ (now has generic
+   binding for EP)
+
+[1] -> http://lore.kernel.org/r/20191231113534.30405-1-kishon@ti.com
+[2] -> http://lore.kernel.org/r/20201112175358.2653-1-kishon@ti.com
+[3] -> https://lore.kernel.org/r/20210305050410.9201-1-kishon@ti.com
+[4] -> http://lore.kernel.org/r/20210310160943.7606-1-kishon@ti.com
+
+Kishon Vijay Abraham I (7):
+  dt-bindings: PCI: pci-ep: Add binding to specify virtual function
+  PCI: endpoint: Add support to add virtual function in endpoint core
+  PCI: endpoint: Add support to link a physical function to a virtual
+    function
+  PCI: endpoint: Add virtual function number in pci_epc ops
+  PCI: cadence: Add support to configure virtual functions
+  misc: pci_endpoint_test: Populate sriov_configure ops to configure
+    SR-IOV device
+  Documentation: PCI: endpoint/pci-endpoint-cfs: Guide to use SR-IOV
+
+ .../PCI/endpoint/pci-endpoint-cfs.rst         |  12 +-
+ .../devicetree/bindings/pci/pci-ep.yaml       |   7 +
+ drivers/misc/pci_endpoint_test.c              |   1 +
+ .../pci/controller/cadence/pcie-cadence-ep.c  | 285 ++++++++++++++----
+ drivers/pci/controller/cadence/pcie-cadence.h |   7 +
+ .../pci/controller/dwc/pcie-designware-ep.c   |  36 +--
+ drivers/pci/controller/pcie-rcar-ep.c         |  19 +-
+ drivers/pci/controller/pcie-rockchip-ep.c     |  18 +-
+ drivers/pci/endpoint/functions/pci-epf-ntb.c  |  79 +++--
+ drivers/pci/endpoint/functions/pci-epf-test.c |  66 ++--
+ drivers/pci/endpoint/pci-ep-cfs.c             |  24 ++
+ drivers/pci/endpoint/pci-epc-core.c           | 130 +++++---
+ drivers/pci/endpoint/pci-epf-core.c           | 144 ++++++++-
+ include/linux/pci-epc.h                       |  57 ++--
+ include/linux/pci-epf.h                       |  16 +-
+ 15 files changed, 684 insertions(+), 217 deletions(-)
+
 -- 
-2.31.1
+2.17.1
 
