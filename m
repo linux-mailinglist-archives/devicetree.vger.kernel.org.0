@@ -2,87 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B08B9364E71
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 01:10:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23166364E8C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 01:22:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232081AbhDSXKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 19:10:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59276 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229723AbhDSXKp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Apr 2021 19:10:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id 4EE19613B0;
-        Mon, 19 Apr 2021 23:10:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618873815;
-        bh=b6blVwfl2DhdusyHGWjEMcVc0oUxN/8m8X1QHPFPsZw=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=J4i2ImTQBC2nI/KALuGGJfVvzWcvou6fBhJMZd+dTBhoyQJK2KLO74pPR6VbzmFhb
-         MChQpt9dBuiY/Y19KOckyIq9I8OTOtXMp8snpl8rt+EJQs/+bR6oLujUbsABpr742B
-         1Z5kJe2VWo7o3SE4m4HeH9uPAB0rJdKD2bJTKv77obxlWiuft406x1MzE5sb4OL88R
-         /Z6nt/PARzC7HWcNIW0fd2AEPpF3n+VwBWr/Co1UBr2xXX7TUCCS6zEeX+MVQYdRMZ
-         NTlm0EiDM+n3bOKmAu9m5KuWugVym2NferQYuEEBX93GWgzMDUNbyC/rpbnoszO2GZ
-         6F38WYcFcwouw==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 4394860970;
-        Mon, 19 Apr 2021 23:10:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S230121AbhDSXW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 19:22:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50742 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230114AbhDSXW1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 19:22:27 -0400
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42774C061763
+        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 16:21:56 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id i190so24241348pfc.12
+        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 16:21:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lTXVzOlOEiCu/x5YV8po+6uFDpU/Gnvba9Ryw/CBpDM=;
+        b=ZJyb1R+5bJFnqwF3bQmGCPzsnXZi3BRzYioz/NexC7553PawPQ4hN81uwcxrl5jYwh
+         44KnRZxy5l3BtVmRR0fKQ1HSNamXhaz0j3rRjCXElrfWqpARK+BlLxuqng04RnupdHCV
+         ouqKIYNxXJZCz7vgyumEtJwA5s3ihMYTulQ3fXYvqyuF+r6Ie1MYI1PJ+OCqoUWHAbd6
+         ugeaIZlRwyE5yE81dug1aMAHGyJAODJ/C9FE3cnATcft6jMTij84CRLgxVNPYOEibWQw
+         lQCsnRDNMaS2I1shMJNXZ1aq1enDKn2Rw4t96KTiGTChE000tJ7+kcEXAnsrWtw4L5n9
+         CLgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lTXVzOlOEiCu/x5YV8po+6uFDpU/Gnvba9Ryw/CBpDM=;
+        b=oUbjD+gqECdCEG/LuhGQqq6UQAZJKFCz7025gRaiNRWFg34TTLZMvexRpBEDJvhMyU
+         YtYn+SNd0W3pke/iKK9PoqcGqmqDp/YYUiZxSeN24Gb/1o95waLFnspLxp2IdR4DLXol
+         VY3CvK5MqzDXTdC34TD0UDZqH2S5R5ss9nPZSf8swHnWiu/aWAH3iLSnIQr0mSaQ/eYP
+         0XSRDYoZwesO0Z1L0stH3nlio3kHcsx0ZUvNLbL9wm6ARRxFaY5wVciY84nFIzbE9K7f
+         OEawRbGdQ4I2GDnwjVSaNFipCWWbob4bFMd+wkpG+t3RTZkTJ8jUL5oqmBj7ku2Ps2w4
+         vr5Q==
+X-Gm-Message-State: AOAM531D9hps4R7ydq6eXNcJwpLBfQeacFufG8wXMn+/jLLYEMjPDYVd
+        31i64U/4P0IYk+TBSuLA1cUwhTV0cyEXvaDa/UIAvA==
+X-Google-Smtp-Source: ABdhPJzsPHdZ6m2OrgGWPr4K75bxd1by1RdKGIUuNZzqLN0SBU3Lr+re4qvr2NPbNXKYNUG76KA+mrxWCCSIV0F3xDM=
+X-Received: by 2002:a63:b515:: with SMTP id y21mr5324980pge.253.1618874515638;
+ Mon, 19 Apr 2021 16:21:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v6 net-next 00/10] net: Korina improvements
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <161887381527.661.5050099431763141238.git-patchwork-notify@kernel.org>
-Date:   Mon, 19 Apr 2021 23:10:15 +0000
-References: <20210418221949.130779-1-tsbogend@alpha.franken.de>
-In-Reply-To: <20210418221949.130779-1-tsbogend@alpha.franken.de>
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20210407185039.621248-1-varmam@google.com> <20210407185039.621248-2-varmam@google.com>
+ <20210409183415.GA3919775@robh.at.kernel.org>
+In-Reply-To: <20210409183415.GA3919775@robh.at.kernel.org>
+From:   Manish Varma <varmam@google.com>
+Date:   Mon, 19 Apr 2021 16:21:44 -0700
+Message-ID: <CAMyCerLy2bA_D=8j9C+pAUe7fDHh9DYJwXQWGgKGnD-dadnewg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: i2c: add "dev-name" property to
+ assign specific device name
+To:     Rob Herring <robh@kernel.org>
+Cc:     Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel-team@android.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hi Rob,
 
-This series was applied to netdev/net-next.git (refs/heads/master):
+Thanks for the inputs.
 
-On Mon, 19 Apr 2021 00:19:38 +0200 you wrote:
-> While converting Mikrotik RB532 support to use device tree I stumbled
-> over the korina ethernet driver, which used way too many MIPS specific
-> hacks. This series cleans this all up and adds support for device tree.
-> 
-> Changes in v6:
->  - remove korina from resource names and adapt DT binding to it
->  - removed superfluous braces around of_get_mac_address
-> 
-> [...]
+On Fri, Apr 9, 2021 at 11:34 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Apr 07, 2021 at 11:50:38AM -0700, Manish Varma wrote:
+> > I2C devices currently are named dynamically using
+> > <adapter_id>-<device_address> convention, unless they are instantiated
+> > through ACPI.
+> >
+> > This means the device name may vary for the same device across different
+> > systems, infact even on the same system if the I2C bus enumeration order
+> > changes, i.e. because of device tree modifications.
+> >
+> > By adding an optional "dev-name" property, it provides a mechanism to
+> > set consistent and easy to recognize names for I2C devices.
+>
+> So? Why do you need 'easy to recognize names'?
+>
 
-Here is the summary with links:
-  - [v6,net-next,01/10] net: korina: Fix MDIO functions
-    https://git.kernel.org/netdev/net-next/c/89f9d5400b53
-  - [v6,net-next,02/10] net: korina: Use devres functions
-    https://git.kernel.org/netdev/net-next/c/b4cd249a8cc0
-  - [v6,net-next,03/10] net: korina: Remove not needed cache flushes
-    https://git.kernel.org/netdev/net-next/c/e42f10533d7c
-  - [v6,net-next,04/10] net: korina: Remove nested helpers
-    https://git.kernel.org/netdev/net-next/c/0fe632471aeb
-  - [v6,net-next,05/10] net: korina: Use DMA API
-    https://git.kernel.org/netdev/net-next/c/0fc96939a97f
-  - [v6,net-next,06/10] net: korina: Only pass mac address via platform data
-    https://git.kernel.org/netdev/net-next/c/af80425e05b2
-  - [v6,net-next,07/10] net: korina: Add support for device tree
-    https://git.kernel.org/netdev/net-next/c/10b26f078151
-  - [v6,net-next,08/10] net: korina: Get mdio input clock via common clock framework
-    https://git.kernel.org/netdev/net-next/c/e4cd854ec487
-  - [v6,net-next,09/10] net: korina: Make driver COMPILE_TESTable
-    https://git.kernel.org/netdev/net-next/c/6ef92063bf94
-  - [v6,net-next,10/10] dt-bindings: net: korina: Add DT bindings for IDT 79RC3243x SoCs
-    https://git.kernel.org/netdev/net-next/c/d1a2c2315cc9
+From the cover letter:
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+"Currently I2C device names are assigned dynamically unless they are
+instantiated through ACPI, this names are based on adapter_id and
+device_address. While device_address will remain constant for a given
+device, the adapter_id may vary across different systems and hence,
+overall, the device name won't be unique for the same I2C device."
 
+Basically, the motivation here is to provide a mechanism to allow overriding
+those names to easy to recognize names (e.g. <vendor_name_dev_name>
+or <device part number> which leaves more information compared to just
+device name in the form of numbers such as "2-001f").
 
+These (device) names are further used by different module e.g. system
+wakeup events framework, and hence this presents difficulties debug/identify
+issues at various levels in the software stack.
+
+So, the idea was to address it at the lowest level possible.
+
+> Why is I2C special? If we wanted this in DT, it wouldn't be I2C specific
+> and we probably would have added it long ago.
+>
+
+"Unlike PCI or USB devices, I2C devices are not enumerated at the hardware
+level. Instead, the software must know which devices are connected on each
+I2C bus segment, and what address these devices are using. For this
+reason, the kernel code must instantiate I2C devices explicitly."
+
+Reference: https://www.kernel.org/doc/Documentation/i2c/instantiating-devices
+
+There are various ways to instantiate I2C devices e.g. through board_info
+interface, ACPI and device tree etc.
+
+While board_info and ACPI both allow specifying device name, I find no such
+provision to assign device names for the I2C devices instantiated through
+device tree interface.
+
+> > Signed-off-by: Manish Varma <varmam@google.com>
+> > ---
+> >  Documentation/devicetree/bindings/i2c/i2c.txt | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
+> > index df41f72afc87..6fb03f464b81 100644
+> > --- a/Documentation/devicetree/bindings/i2c/i2c.txt
+> > +++ b/Documentation/devicetree/bindings/i2c/i2c.txt
+> > @@ -130,6 +130,11 @@ wants to support one of the below features, it should adapt these bindings.
+> >  - wakeup-source
+> >       device can be used as a wakeup source.
+> >
+> > +- dev-name
+> > +     Name of the device.
+> > +     Overrides the default device name which is in the form of
+> > +     <busnr>-<addr>.
+>
+> What's 'busnr'? No such thing in DT.
+>
+
+Right! dev-name introduced to hold the string value for overriding
+device names assigned by the kernel. Currently, kernel assigns the device
+name in the form of <busnr>-<addr>.
+
+Reference:
+https://www.kernel.org/doc/html/latest/driver-api/i2c.html?highlight=i2c_board_info#c.i2c_board_info
+
+> > +
+> >  Binding may contain optional "interrupts" property, describing interrupts
+> >  used by the device. I2C core will assign "irq" interrupt (or the very first
+> >  interrupt if not using interrupt names) as primary interrupt for the slave.
+> > --
+> > 2.31.1.295.g9ea45b61b8-goog
+> >
+
+Hope the explanation provided above answers your questions.
+
+Thanks,
+Manish
