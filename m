@@ -2,99 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54561363E72
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 11:26:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13A40363EAF
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 11:38:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237789AbhDSJ1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 05:27:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35180 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233132AbhDSJ1L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 05:27:11 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5967CC061763;
-        Mon, 19 Apr 2021 02:26:26 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id r12so51836645ejr.5;
-        Mon, 19 Apr 2021 02:26:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=HmfVs+hiDRXJZWZEBHBQ3JAhFTKr+C9J2z3911ynMEw=;
-        b=BDha9bfXAT8giuVCew3679cxC64+xg9PxhnDm/+mz8+W47wOpU9/W+8n18jhtEMoMh
-         qY8QDyNfZINfycHz8ENrWkdBPFYkMid6s++vYfllnAPg82YcP5eeu9F2DrlFPIe70Lyx
-         MZEXSVloX+iUWuzuCIniGL3h0MRmD4/U7jGMT130yiHU+MWmhoeYi4qtds9GnfkZUk53
-         aQRwlRrqSTC4nMuu81C1qP7RDNaAihQwFBVlyQDSDbzsN+i1WazkLJfevOl1W7bQzV8R
-         H4TCAij4yj5pLp0SMemIHKCOndc+IlqPu5lQXw3LucTLlqineqbRa/of2Icg24yy2e+i
-         Nlrg==
+        id S238618AbhDSJir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 05:38:47 -0400
+Received: from mail-ua1-f51.google.com ([209.85.222.51]:42665 "EHLO
+        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229635AbhDSJiq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 05:38:46 -0400
+Received: by mail-ua1-f51.google.com with SMTP id 23so1394399uac.9;
+        Mon, 19 Apr 2021 02:38:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=HmfVs+hiDRXJZWZEBHBQ3JAhFTKr+C9J2z3911ynMEw=;
-        b=W37ju3dAagNV1q3B0vYwi400J0yyWXhtY6uYVA88dkrDJk7cVvBqEKfiySBiz1h+o/
-         abno1Q5rmMoACm82nyxRNeZtUsWtH2eoSI2kTfXbNBlRT4y3s9GBZckdBNkptuQ8E4HK
-         KTt0pe1NV4Rt5BCd9AUAtfuWmn5EY+2TMgCuYk6FO2edooe8MYH6BPkEHYsObHME22p7
-         UhbFo5W6GI5aiG+n8gMMKrtyVZ7oeQZ1bnJpQroZRDIM1ayqil3gnsYmhsrznIkazDjc
-         MU2EuxlQyJEYsgcmcP+J8owR0YLC4+gSnUl7x6Xy9SItce/gtdUi0xR9fUxS1sAgzRl2
-         VRSg==
-X-Gm-Message-State: AOAM532dfNceiCavCbNedTjaOgIW5siX+4++Ofnvhgte3+OKxPEc0atL
-        3frdFKPapLo/whnjohSCj40=
-X-Google-Smtp-Source: ABdhPJztvNS0sFK4JkfQ4EGlh9BsAWq5TFQ/tSjLqw/fAb309CW7p/9NoVmVOold+Em/ozwXu95KLQ==
-X-Received: by 2002:a17:906:fb92:: with SMTP id lr18mr20590092ejb.511.1618824385070;
-        Mon, 19 Apr 2021 02:26:25 -0700 (PDT)
-Received: from felia.fritz.box ([2001:16b8:2dc6:900:a414:a08d:9e82:6738])
-        by smtp.gmail.com with ESMTPSA id bh14sm9943706ejb.104.2021.04.19.02.26.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Apr 2021 02:26:24 -0700 (PDT)
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Yu Chen <chenyu56@huawei.com>,
-        Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Joe Perches <joe@perches.com>,
-        Ralf Ramsauer <ralf.ramsauer@oth-regensburg.de>,
-        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Subject: [PATCH 3/3] MAINTAINERS: rectify entry for INTEL KEEM BAY DRM DRIVER
-Date:   Mon, 19 Apr 2021 11:26:09 +0200
-Message-Id: <20210419092609.3692-4-lukas.bulwahn@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210419092609.3692-1-lukas.bulwahn@gmail.com>
-References: <20210419092609.3692-1-lukas.bulwahn@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Qz7eHg+GDhB5/+UldzTXRkP4L7o5XFBAhOrV0CebfS8=;
+        b=NpLBTFuoQnYPSKDN3QIGdnckJ9HK9IIVmGIAwvdMSN25C1/MoO3eYmQhhAyEv57ivu
+         P9bH4kIihlc0r5+JWSkjfuj/Ch5SbN2+2bZeiKQRWS9A8gWHNcZR+ekMMiBvTwWd/P7B
+         PCGwkaiQWa9MRjxkeOC4El3gRy781kkYxCnyGNEBJS0aoIJIJbHNCI75XQcl57h2goAk
+         sV51OZa5e0SRSw5RR2QwuxjDofgVZ5uvw0bt10CMBFlZzMM3X8id0Yu8b/Y1ztrr0TjA
+         VOuL6zLN5v0n3ggk6IHsNZq3anl3jFyQVQkjvxbEdUkU5C6HQmYu4cwAnkoPlVvJPbzl
+         bugQ==
+X-Gm-Message-State: AOAM531JuGkvXGb3cNIS1FWYxX4aqVeRb+Fj+0U+GNA/kqAb7hNZ1Nsv
+        oBPJB1Qy+uMbnxFdMcH0lIcwKR001cMJfuat4qw=
+X-Google-Smtp-Source: ABdhPJwd2fxrRVcezspfqpd49brhoi5lLIDhZwfeLnamGRZertBmVP+kBGQLGSvBRrowPHG+qjcTR166Fl0LF3PPrz8=
+X-Received: by 2002:a9f:3852:: with SMTP id q18mr6058483uad.58.1618825096295;
+ Mon, 19 Apr 2021 02:38:16 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210224115146.9131-1-aford173@gmail.com> <20210224115146.9131-3-aford173@gmail.com>
+In-Reply-To: <20210224115146.9131-3-aford173@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 19 Apr 2021 11:38:05 +0200
+Message-ID: <CAMuHMdWozQPDTDMPtqqoHJJoshHAUCBCxWkGYEe6eV1q2xL6jw@mail.gmail.com>
+Subject: Re: [PATCH V3 3/5] arm64: dts: renesas: Add fck to etheravb-rcar-gen3
+ clock-names list
+To:     Adam Ford <aford173@gmail.com>
+Cc:     netdev <netdev@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit ed794057b052 ("drm/kmb: Build files for KeemBay Display driver")
-refers to the non-existing file intel,kmb_display.yaml in
-./Documentation/devicetree/bindings/display/.
+On Wed, Feb 24, 2021 at 12:52 PM Adam Ford <aford173@gmail.com> wrote:
+> The bindings have been updated to support two clocks, but the
+> original clock now requires the name fck.  Add a clock-names
+> list in the device tree with fck in it.
+>
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Commit 5a76b1ed73b9 ("dt-bindings: display: Add support for Intel KeemBay
-Display") originating from the same patch series however adds the file
-intel,keembay-display.yaml in that directory instead.
+queueing in renesas-devel for v5.14, with an additional update for
+the recently added r8a779a0.dtsi.
 
-So, refer to intel,keembay-display.yaml in the INTEL KEEM BAY DRM DRIVER
-section instead.
+Gr{oetje,eeting}s,
 
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
----
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+                        Geert
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4f152717365c..421e24e43335 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9268,7 +9268,7 @@ INTEL KEEM BAY DRM DRIVER
- M:	Anitha Chrisanthus <anitha.chrisanthus@intel.com>
- M:	Edmund Dea <edmund.j.dea@intel.com>
- S:	Maintained
--F:	Documentation/devicetree/bindings/display/intel,kmb_display.yaml
-+F:	Documentation/devicetree/bindings/display/intel,keembay-display.yaml
- F:	drivers/gpu/drm/kmb/
- 
- INTEL KEEM BAY OCS AES/SM4 CRYPTO DRIVER
 -- 
-2.17.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
