@@ -2,175 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D045364DD9
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 00:51:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B08B9364E71
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 01:10:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229799AbhDSWwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 18:52:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44052 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229718AbhDSWwR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 18:52:17 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9825C06174A
-        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 15:51:46 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id f41so35145361lfv.8
-        for <devicetree@vger.kernel.org>; Mon, 19 Apr 2021 15:51:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=hRmZK9+uf+fZtxPOtr/Jm881SXcXvuSAx594PbZFhW4=;
-        b=Py09nIfFDrvcZu9qx8JKpdaEpfY1vFnQg+G3M2RQycLPJPbDnP4LM9lowezTQk2PT6
-         qNy8/hxg+5uIWAfjPQgomI3VrFcAKRNtw4jwZGhnRDTydLlwmqnshMvSCJqIcdckfqtJ
-         9dhiT+OEoHerlixJq9ZRSe9jB+e955l0yii6LgKxdNGLIhRqlJspDr0rgM+ihBYvBXSG
-         Ghww2BbogHZ20OcgyKY7vTskWGe4wB9Y3UHGk8DxC6F11/dxYiMd6OZMriqDGLq22awd
-         EM5nql5qYE/XF/TJoSB72YbJUMryuKvWh0d1jhZSja6RcFYModilAo7ow60Comklq5ii
-         kI5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=hRmZK9+uf+fZtxPOtr/Jm881SXcXvuSAx594PbZFhW4=;
-        b=dKKzAlB/8QxRgzV3Tw91zzIs1Cqza/NNtnJVY0xGvcRs4IL7ZcMHg1S1bDwGcw+8gr
-         13mLBsMXM/9EUTLR/r+EGeAk3TuE0yoIwkvSbaXFQhEGvUzcFJlaWazDV4Vnkvt0Ql98
-         re4SLE7KOgyxTzUwjy9L5nLYYB/57wqYO0IIFuEmAAGGVQDXpZVRGCCiKKCr3+wQMdFm
-         BK3ty17v0Leg3mrPQbMYVdW9iaC8B6cwWwrW6V3kthcVdtljNDTazeJjw+hcHBpB/S+z
-         BqcYiQhc0AcTDHialkasamQJFDHaZSB1SYm5pTJLx9O+zDv50iiWHPObBjWnZzo+tprF
-         WIVA==
-X-Gm-Message-State: AOAM531wWQDVWFcC8vMkG+3GdRc78NMeih+s3lky4a/LYjfitagUENnQ
-        DGEHdo5i8+6r3Jx1Jvn5pUvKTw==
-X-Google-Smtp-Source: ABdhPJzIyB3PJLWF9guTTw8yfc8EyNCajD14vOz7iwvnc6gAxxFoE1pWxryPsUdTl1pVH+5LAofX3Q==
-X-Received: by 2002:ac2:48ac:: with SMTP id u12mr13390767lfg.604.1618872705352;
-        Mon, 19 Apr 2021 15:51:45 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id p5sm1950179lfg.183.2021.04.19.15.51.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Apr 2021 15:51:45 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Zoltan HERPAI <wigyori@uid0.hu>,
-        Raylynn Knight <rayknight@me.com>, devicetree@vger.kernel.org
-Subject: [PATCH 1/3] net: ethernet: ixp4xx: Add DT bindings
-Date:   Tue, 20 Apr 2021 00:51:31 +0200
-Message-Id: <20210419225133.2005360-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.29.2
+        id S232081AbhDSXKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 19:10:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59276 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229723AbhDSXKp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Apr 2021 19:10:45 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPS id 4EE19613B0;
+        Mon, 19 Apr 2021 23:10:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618873815;
+        bh=b6blVwfl2DhdusyHGWjEMcVc0oUxN/8m8X1QHPFPsZw=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=J4i2ImTQBC2nI/KALuGGJfVvzWcvou6fBhJMZd+dTBhoyQJK2KLO74pPR6VbzmFhb
+         MChQpt9dBuiY/Y19KOckyIq9I8OTOtXMp8snpl8rt+EJQs/+bR6oLujUbsABpr742B
+         1Z5kJe2VWo7o3SE4m4HeH9uPAB0rJdKD2bJTKv77obxlWiuft406x1MzE5sb4OL88R
+         /Z6nt/PARzC7HWcNIW0fd2AEPpF3n+VwBWr/Co1UBr2xXX7TUCCS6zEeX+MVQYdRMZ
+         NTlm0EiDM+n3bOKmAu9m5KuWugVym2NferQYuEEBX93GWgzMDUNbyC/rpbnoszO2GZ
+         6F38WYcFcwouw==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 4394860970;
+        Mon, 19 Apr 2021 23:10:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v6 net-next 00/10] net: Korina improvements
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <161887381527.661.5050099431763141238.git-patchwork-notify@kernel.org>
+Date:   Mon, 19 Apr 2021 23:10:15 +0000
+References: <20210418221949.130779-1-tsbogend@alpha.franken.de>
+In-Reply-To: <20210418221949.130779-1-tsbogend@alpha.franken.de>
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the IXP4xx ethernet
-controller with optional MDIO bridge.
+Hello:
 
-Cc: Zoltan HERPAI <wigyori@uid0.hu>
-Cc: Raylynn Knight <rayknight@me.com>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v1->v2:
-- Add schema for the (optional) embedded MDIO bus inside
-  the ethernet controller in an "mdio" node instead of just
-  letting the code randomly populate and present it to
-  the operating system.
-- Reference the standard schemas for ethernet controller and
-  MDIO buses.
-- Add intel,npe to indentify the NPE unit used with each
-  ethernet adapter.
----
- .../bindings/net/intel,ixp4xx-ethernet.yaml   | 80 +++++++++++++++++++
- 1 file changed, 80 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
+This series was applied to netdev/net-next.git (refs/heads/master):
 
-diff --git a/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml b/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
-new file mode 100644
-index 000000000000..55ef6ff7d171
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
-@@ -0,0 +1,80 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2018 Linaro Ltd.
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/net/intel,ixp4xx-ethernet.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Intel IXP4xx ethernet
-+
-+allOf:
-+  - $ref: "ethernet-controller.yaml#"
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  The Intel IXP4xx ethernet makes use of the IXP4xx NPE (Network
-+  Processing Engine) and the IXP4xx Queue Mangager to process
-+  the ethernet frames. It can optionally contain an MDIO bus to
-+  talk to PHYs.
-+
-+properties:
-+  compatible:
-+    const: intel,ixp4xx-ethernet
-+
-+  reg:
-+    maxItems: 1
-+    description: Ethernet MMIO address range
-+
-+  queue-rx:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the RX queue on the NPE
-+
-+  queue-txready:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the TX READY queue on the NPE
-+
-+  phy-handle: true
-+
-+  intel,npe:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1, 2, 3]
-+    description: which NPE (Network Processing Engine) this ethernet
-+      instance is using
-+
-+  mdio:
-+    type: object
-+    $ref: "mdio.yaml#"
-+    description: optional node for embedded MDIO controller
-+
-+required:
-+  - compatible
-+  - reg
-+  - queue-rx
-+  - queue-txready
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    ethernet@c8009000 {
-+      compatible = "intel,ixp4xx-ethernet";
-+      reg = <0xc8009000 0x1000>;
-+      status = "disabled";
-+      queue-rx = <&qmgr 3>;
-+      queue-txready = <&qmgr 20>;
-+      intel,npe = <1>;
-+      phy-handle = <&phy1>;
-+
-+      mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        phy1: phy@1 {
-+          #phy-cells = <0>;
-+          reg = <1>;
-+        };
-+      };
-+    };
--- 
-2.29.2
+On Mon, 19 Apr 2021 00:19:38 +0200 you wrote:
+> While converting Mikrotik RB532 support to use device tree I stumbled
+> over the korina ethernet driver, which used way too many MIPS specific
+> hacks. This series cleans this all up and adds support for device tree.
+> 
+> Changes in v6:
+>  - remove korina from resource names and adapt DT binding to it
+>  - removed superfluous braces around of_get_mac_address
+> 
+> [...]
+
+Here is the summary with links:
+  - [v6,net-next,01/10] net: korina: Fix MDIO functions
+    https://git.kernel.org/netdev/net-next/c/89f9d5400b53
+  - [v6,net-next,02/10] net: korina: Use devres functions
+    https://git.kernel.org/netdev/net-next/c/b4cd249a8cc0
+  - [v6,net-next,03/10] net: korina: Remove not needed cache flushes
+    https://git.kernel.org/netdev/net-next/c/e42f10533d7c
+  - [v6,net-next,04/10] net: korina: Remove nested helpers
+    https://git.kernel.org/netdev/net-next/c/0fe632471aeb
+  - [v6,net-next,05/10] net: korina: Use DMA API
+    https://git.kernel.org/netdev/net-next/c/0fc96939a97f
+  - [v6,net-next,06/10] net: korina: Only pass mac address via platform data
+    https://git.kernel.org/netdev/net-next/c/af80425e05b2
+  - [v6,net-next,07/10] net: korina: Add support for device tree
+    https://git.kernel.org/netdev/net-next/c/10b26f078151
+  - [v6,net-next,08/10] net: korina: Get mdio input clock via common clock framework
+    https://git.kernel.org/netdev/net-next/c/e4cd854ec487
+  - [v6,net-next,09/10] net: korina: Make driver COMPILE_TESTable
+    https://git.kernel.org/netdev/net-next/c/6ef92063bf94
+  - [v6,net-next,10/10] dt-bindings: net: korina: Add DT bindings for IDT 79RC3243x SoCs
+    https://git.kernel.org/netdev/net-next/c/d1a2c2315cc9
+
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
