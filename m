@@ -2,97 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18DBA3639B4
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 05:20:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FB923639C9
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 05:42:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237407AbhDSDSB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Apr 2021 23:18:01 -0400
-Received: from mail-lj1-f180.google.com ([209.85.208.180]:35371 "EHLO
-        mail-lj1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237406AbhDSDSB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Apr 2021 23:18:01 -0400
-Received: by mail-lj1-f180.google.com with SMTP id a1so37678275ljp.2;
-        Sun, 18 Apr 2021 20:17:31 -0700 (PDT)
+        id S232729AbhDSDnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Apr 2021 23:43:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45034 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232317AbhDSDnY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Apr 2021 23:43:24 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2E14C06174A;
+        Sun, 18 Apr 2021 20:42:55 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id z16so23291927pga.1;
+        Sun, 18 Apr 2021 20:42:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FjmLOq8AscliWv+GjWQBYtgkGTnMApgANFmdxbvdJ2Q=;
+        b=WbPn5dbLh4aFvVmT5ar1EU2Ik4b66KqeuOQsi+yxhJiYauhJZ8VGl79NcwLlm2NDiQ
+         kQNrVyLAgO+U1VDGF1LaKeIPWAXfCcSrunA4AHxW/CMbv98j4Dma9W1w63F4SoTz7KX4
+         NOSyJQxVFIADh85rlrWRwuK1R2GQnieSVYYwPsicjWpxIIP/dJ4X1p4hiZMBQvNIzjDh
+         wyf/tj0eZggxroVzT+yjNG/yUfj+G2f7027fhR9Y9bfvdw2qHt+EiFHbia3GMI4zxARq
+         wBhwoS7NG/lH8Hdnul/CUREzQ1+zKZwjuFmcao2IDLazNAlj8RECgmrdUKqORIwlZoa4
+         ZtmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
-         :from:date:message-id:subject:to:cc;
-        bh=b1Esi1WD3INsXc8Mpz0AJivayvHJYCQXopFXhNta98w=;
-        b=SwP6qdDfULNgiFhCReun5MFiKaUhBiFxL61WvF0I2F3onHcpUglftWCVGcIlTnrA2P
-         ZuyDNJawkATYMnfYearmEjtNtJAcwu03Il1QdSw8zNODvHelC0Z25jvwCZt1CUmPWS8L
-         /QC0IH88XHvW4Qeb7mEgu91vYWTA+bNxzXjI4nyhFNaEQRtqX2RK7Wp9UzpZpt9JfSh3
-         ho5RC6A4gkzWNHA4PMJhkkvqvxLqC3+ODFtW7r5FzJthEboOYGxIkI38uTDrC1NW4Ifm
-         1GNntD/FfLaBKGlNTkDpItr0s63k7c6BiIuxTB7gb8MbFjtUtATwmJSyLFiLFFQTN1R7
-         dT6w==
-X-Gm-Message-State: AOAM532vmh2Q7XZ1tNrvx3ygJpRMFwYi027kOqO+PYO4qsVEp2pAyZtY
-        oOyDVGYcNX1i6Z+x4xebY7GPVk2HgersdQ==
-X-Google-Smtp-Source: ABdhPJw/RqNKojJfu3DeiCIkYZ+LkTRMGTrzf+il+R/vQVf6hnz9t5/JKTZm2Cvutf+Is5ahVNPzug==
-X-Received: by 2002:a2e:804d:: with SMTP id p13mr9994910ljg.267.1618802250357;
-        Sun, 18 Apr 2021 20:17:30 -0700 (PDT)
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com. [209.85.167.44])
-        by smtp.gmail.com with ESMTPSA id a25sm1720590ljm.130.2021.04.18.20.17.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Apr 2021 20:17:30 -0700 (PDT)
-Received: by mail-lf1-f44.google.com with SMTP id f17so46630103lfu.7;
-        Sun, 18 Apr 2021 20:17:29 -0700 (PDT)
-X-Received: by 2002:a05:6512:3e0a:: with SMTP id i10mr10803227lfv.496.1618802249832;
- Sun, 18 Apr 2021 20:17:29 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FjmLOq8AscliWv+GjWQBYtgkGTnMApgANFmdxbvdJ2Q=;
+        b=IYRTrJTyM6x27Y0Nv/JHRn19t/sGrPpYzju4fBjJay5T0Bjgrz3W3rNdKtYDyNKdXO
+         R8SIGgPTN6qNOoSL1T+9WsmDeN4qYcjOzEmbByRXVhP998+xGtBAAaeBVepwLrYqEl9O
+         if2+ADH5wXRkZ4PjWT3YDzzL35eXfyy4w9mDR5INfMCdv204NWRBH5VRDJVjYkCtwLSX
+         K0miC/cG9gyGLAtXCk2GkoY9zcS4LOltn18jBD/jdBuTEgy9QEZGTZxBLL+pfGLm6/WU
+         tYWYujWlFJy2c+AdOaHolIIc6k57qINgNF9h9EjT/nkntMpPUXUE30HLcOlWICGO7XK0
+         MaWQ==
+X-Gm-Message-State: AOAM532DbYdbI7KGmvR0JqbJH17JynsYEfPC7FT7UTDtbRhn7kRYbZrZ
+        7SbDnPOHagFdHQqCHWdzdl8=
+X-Google-Smtp-Source: ABdhPJyoeOP0a/t5AWeTecXUJVWmB3q/yKl6pz4SiOFjNc/pWuDErwkkhtu6tb0rZWDuVNO5McblIw==
+X-Received: by 2002:a62:be16:0:b029:25a:e1b4:5deb with SMTP id l22-20020a62be160000b029025ae1b45debmr10911501pff.66.1618803775470;
+        Sun, 18 Apr 2021 20:42:55 -0700 (PDT)
+Received: from z640-arch.lan ([2602:61:7344:f100::678])
+        by smtp.gmail.com with ESMTPSA id g24sm12477681pgn.18.2021.04.18.20.42.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 18 Apr 2021 20:42:55 -0700 (PDT)
+From:   Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Greg Ungerer <gerg@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        =?UTF-8?q?Bj=C3=B8rn=20Mork?= <bjorn@mork.no>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Cc:     Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
+Subject: [PATCH] dt-bindings: net: mediatek: support MT7621 SoC
+Date:   Sun, 18 Apr 2021 20:42:53 -0700
+Message-Id: <20210419034253.21322-1-ilya.lipnitskiy@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20210419025246.21722-1-samuel@sholland.org>
-In-Reply-To: <20210419025246.21722-1-samuel@sholland.org>
-Reply-To: wens@csie.org
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Mon, 19 Apr 2021 11:17:19 +0800
-X-Gmail-Original-Message-ID: <CAGb2v642Z3iH7fUWa31Rb5j+nWdZ=sXn2BYw3_dyE9P6iuL0Cg@mail.gmail.com>
-Message-ID: <CAGb2v642Z3iH7fUWa31Rb5j+nWdZ=sXn2BYw3_dyE9P6iuL0Cg@mail.gmail.com>
-Subject: Re: [PATCH 0/2] sunxi: Enforce consistent MMC numbering
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi@lists.linux.dev,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add missing binding documentation for SoC support that has been in place
+since v5.1
 
-On Mon, Apr 19, 2021 at 10:52 AM Samuel Holland <samuel@sholland.org> wrote:
->
-> Dealing with the inconsistent numbering has been a major pain, and
-> there is a solution with (as far as I can tell) no tangible downsides.
-> So let's use it.
->
-> Yes, I know the kernel supports UUIDs for root=. But UUIDs do not help
-> when referencing the whole, unpartitioned device, like is needed for
-> updating the bootloader and firmware. So for the use case of "write a
-> bootloader to the SD card, regardless of where the board is currently
-> booted from", I know of two options:
->   - Dig around in sysfs to find the mmc number from the MMIO address,
->     which means I have to know the MMIO addresses for every SoC, or
->   - Apply patches like these.
->
-> Samuel Holland (2):
->   ARM: dts: sunxi: h3/h5: Enforce consistent MMC numbering
->   arm64: dts: allwinner: Enforce consistent MMC numbering
->
->  arch/arm/boot/dts/sunxi-h3-h5.dtsi            | 6 ++++++
->  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 6 ++++++
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 6 ++++++
+Fixes: 889bcbdeee57 ("net: ethernet: mediatek: support MT7621 SoC ethernet hardware")
+Cc: Bjørn Mork <bjorn@mork.no>
+Signed-off-by: Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
+---
+ Documentation/devicetree/bindings/net/mediatek-net.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-At least with Rockchip this is now done at the board level. IIRC it was
-a request from other people to not do it at the SoC level. I don't recall
-exactly who though.
+diff --git a/Documentation/devicetree/bindings/net/mediatek-net.txt b/Documentation/devicetree/bindings/net/mediatek-net.txt
+index 72d03e07cf7c..950ef6af20b1 100644
+--- a/Documentation/devicetree/bindings/net/mediatek-net.txt
++++ b/Documentation/devicetree/bindings/net/mediatek-net.txt
+@@ -10,6 +10,7 @@ Required properties:
+ - compatible: Should be
+ 		"mediatek,mt2701-eth": for MT2701 SoC
+ 		"mediatek,mt7623-eth", "mediatek,mt2701-eth": for MT7623 SoC
++		"mediatek,mt7621-eth": for MT7621 SoC
+ 		"mediatek,mt7622-eth": for MT7622 SoC
+ 		"mediatek,mt7629-eth": for MT7629 SoC
+ 		"ralink,rt5350-eth": for Ralink Rt5350F and MT7628/88 SoC
+-- 
+2.31.1
 
-ChenYu
-
-
->  3 files changed, 18 insertions(+)
->
-> --
-> 2.26.3
->
->
