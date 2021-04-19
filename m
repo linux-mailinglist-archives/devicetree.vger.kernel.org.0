@@ -2,100 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC33A363D2E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 10:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87583363D54
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 10:20:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232271AbhDSIRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 04:17:08 -0400
-Received: from smtpcmd10101.aruba.it ([62.149.156.101]:55105 "EHLO
-        smtpcmd10101.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232302AbhDSIRI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 04:17:08 -0400
-Received: from [192.168.126.129] ([146.241.148.6])
-        by Aruba Outgoing Smtp  with ESMTPSA
-        id YP54lgfxuSvjVYP55lMM7u; Mon, 19 Apr 2021 10:16:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-        t=1618820195; bh=EgjvdP/tGfj217l54hOzQFhxxNRicPHj7+iUKb5Klzk=;
-        h=Subject:To:From:Date:MIME-Version:Content-Type;
-        b=OdGiKazruJIOzO2Lw+iFZsKaL+ePF+h5fiuJ+4J2kXiwQJW1M3HJ6O1dLIvUFukYR
-         e6QpVNABlg5iS1HBfloytPLpR+0vNQiYKk6p4solbGpDmhFLg1owlizCn5wEZrP0HI
-         GLvW5wJ6uDDQNn0sIFbdN/3Y98yysEOGYTv3VE4W9G1Dw84PHRw2G+jFnsDLGBYggD
-         QmgtAFoJz10fBUpJ0QBLZV/zNc5f7m3FQcq87t8m7lcN28iuuEuZbV6lStDE4aieoM
-         ttyfJAJjfgiSxBKz25KzWds2eYSKTL7Aw8u50XI9uwINfYc0qnaFg0uwniRiguvtRX
-         0/rbY5sZoY5Xw==
-Subject: Re: [PATCH] MAINTAINERS: repair reference in HYCON HY46XX TOUCHSCREEN
- SUPPORT
-To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Ralf Ramsauer <ralf.ramsauer@oth-regensburg.de>,
-        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210419060023.3460-1-lukas.bulwahn@gmail.com>
-From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
-Message-ID: <02ce3130-f86e-7a91-ba06-e79d96d7eab7@benettiengineering.com>
-Date:   Mon, 19 Apr 2021 10:16:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S230313AbhDSIUh convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 19 Apr 2021 04:20:37 -0400
+Received: from aposti.net ([89.234.176.197]:46346 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229635AbhDSIUg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Apr 2021 04:20:36 -0400
+Date:   Mon, 19 Apr 2021 09:19:47 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v6 05/12] pinctrl: Ingenic: Add DMIC pins support for
+ Ingenic SoCs.
+To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        linux-gpio@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        hns@goldelico.com, paul@boddie.org.uk, andy.shevchenko@gmail.com,
+        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
+        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com
+Message-Id: <ZSXSRQ.5IWXIL536Y38@crapouillou.net>
+In-Reply-To: <1618757073-1724-6-git-send-email-zhouyanjie@wanyeetech.com>
+References: <1618757073-1724-1-git-send-email-zhouyanjie@wanyeetech.com>
+        <1618757073-1724-6-git-send-email-zhouyanjie@wanyeetech.com>
 MIME-Version: 1.0
-In-Reply-To: <20210419060023.3460-1-lukas.bulwahn@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfFBxJkjiGMfFM17OV5dn0SLigDntxG2hC2J3+yB/AC7MPEPD5xXgRLQ11iql2I2X3jqwoT5knCQpXDuf+J/zMGQGD13NUrXSbKT1wSPBxrlSZyf36BUG
- tYcsYv9QQDGsn5SvPQ7AtR7WFpoJ0wRrsYB+kShf7hno7mtDJ9dMTy1nRgM1qh7QOcHMp3pqz9cYJyXF14yN1FIzabScoPqREx0AI6/UYWgmAn/6Yos2he9v
- vtBsi1Fde9Y9An5JlXpVnwa8pLG8Advgzm6iwXroShhnpwlKHWXsXiPY7caVj93E0lTca4qG7p0ceNYFm4LKkziarb/gApSxo9gL/lpnLAggB7fRuRynkQcu
- gQQx6lY5JLnrb8Kk0HhxPHgy3MSKP8/8qqN2sS4mNC0pUaqDb60aqJpOAHD2w4tqe2diZcZyKjQCFoJDljMhhXKCP0rOMRhwzel8rh3de8OaS+UOpyn5mRBw
- +fR8xSpgLwZihyrb
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lukas,
+Hi Zhou,
 
-thank you,
+Le dim. 18 avril 2021 à 22:44, 周琰杰 (Zhou Yanjie) 
+<zhouyanjie@wanyeetech.com> a écrit :
+> 1.Add DMIC pins support for the JZ4780 SoC.
+> 2.Add DMIC pins support for the X1000 SoC.
+> 3.Add DMIC pins support for the X1500 SoC.
+> 4.Add DMIC pins support for the X1830 SoC.
+> 
+> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
 
-On 4/19/21 8:00 AM, Lukas Bulwahn wrote:
-> Commit aa2f62cf211a ("Input: add driver for the Hycon HY46XX touchpanel
-> series") adds the file ./drivers/input/touchscreen/hycon-hy46xx.c, but the
-> file entry in MAINTAINERS refers to ./drivers/input/touchscreen/hy46xx.c.
-> 
-> Hence, ./scripts/get_maintainer.pl --self-test=patterns complains:
-> 
->    warning: no file matches    F:    drivers/input/touchscreen/hy46xx.c
-> 
-> Repair the file entry by referring to the right location.
-> 
-> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Reviewed-by: Paul Cercueil <paul@crapouillou.net>
 
-Acked-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
-
-Best regards
--- 
-Giulio Benetti
-Benetti Engineering sas
+Cheers,
+-Paul
 
 > ---
-> applies cleanly on next-20210419
 > 
-> Guilio, please ack.
-> Dmitry, please pick this minor clean up patch for your -next tree.
+> Notes:
+>     v6:
+>     New patch.
 > 
->   MAINTAINERS | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/pinctrl/pinctrl-ingenic.c | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index c54b8e4520d1..bbe356508f29 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8425,7 +8425,7 @@ M:	Giulio Benetti <giulio.benetti@benettiengineering.com>
->   L:	linux-input@vger.kernel.org
->   S:	Maintained
->   F:	Documentation/devicetree/bindings/input/touchscreen/hycon,hy46xx.yaml
-> -F:	drivers/input/touchscreen/hy46xx.c
-> +F:	drivers/input/touchscreen/hycon-hy46xx.c
->   
->   HYGON PROCESSOR SUPPORT
->   M:	Pu Wen <puwen@hygon.cn>
+> diff --git a/drivers/pinctrl/pinctrl-ingenic.c 
+> b/drivers/pinctrl/pinctrl-ingenic.c
+> index 8ed62a4..b57433d 100644
+> --- a/drivers/pinctrl/pinctrl-ingenic.c
+> +++ b/drivers/pinctrl/pinctrl-ingenic.c
+> @@ -941,6 +941,7 @@ static int jz4780_i2s_data_rx_pins[] = { 0x86, };
+>  static int jz4780_i2s_clk_txrx_pins[] = { 0x6c, 0x6d, };
+>  static int jz4780_i2s_clk_rx_pins[] = { 0x88, 0x89, };
+>  static int jz4780_i2s_sysclk_pins[] = { 0x85, };
+> +static int jz4780_dmic_pins[] = { 0x32, 0x33, };
+>  static int jz4780_hdmi_ddc_pins[] = { 0xb9, 0xb8, };
 > 
+>  static u8 jz4780_i2s_clk_txrx_funcs[] = { 1, 0, };
+> @@ -1039,6 +1040,7 @@ static const struct group_desc jz4780_groups[] 
+> = {
+>  				jz4780_i2s_clk_txrx_funcs),
+>  	INGENIC_PIN_GROUP("i2s-clk-rx", jz4780_i2s_clk_rx, 1),
+>  	INGENIC_PIN_GROUP("i2s-sysclk", jz4780_i2s_sysclk, 2),
+> +	INGENIC_PIN_GROUP("dmic", jz4780_dmic, 1),
+>  	INGENIC_PIN_GROUP("hdmi-ddc", jz4780_hdmi_ddc, 0),
+>  	INGENIC_PIN_GROUP("cim-data", jz4770_cim_8bit, 0),
+>  	INGENIC_PIN_GROUP("cim-data-12bit", jz4770_cim_12bit, 0),
+> @@ -1095,6 +1097,7 @@ static const char *jz4780_i2c4_groups[] = { 
+> "i2c4-data-e", "i2c4-data-f", };
+>  static const char *jz4780_i2s_groups[] = {
+>  	"i2s-data-tx", "i2s-data-rx", "i2s-clk-txrx", "i2s-clk-rx", 
+> "i2s-sysclk",
+>  };
+> +static const char *jz4780_dmic_groups[] = { "dmic", };
+>  static const char *jz4780_cim_groups[] = { "cim-data", };
+>  static const char *jz4780_hdmi_ddc_groups[] = { "hdmi-ddc", };
+> 
+> @@ -1122,6 +1125,7 @@ static const struct function_desc 
+> jz4780_functions[] = {
+>  	{ "i2c3", jz4780_i2c3_groups, ARRAY_SIZE(jz4780_i2c3_groups), },
+>  	{ "i2c4", jz4780_i2c4_groups, ARRAY_SIZE(jz4780_i2c4_groups), },
+>  	{ "i2s", jz4780_i2s_groups, ARRAY_SIZE(jz4780_i2s_groups), },
+> +	{ "dmic", jz4780_dmic_groups, ARRAY_SIZE(jz4780_dmic_groups), },
+>  	{ "cim", jz4780_cim_groups, ARRAY_SIZE(jz4780_cim_groups), },
+>  	{ "lcd", jz4770_lcd_groups, ARRAY_SIZE(jz4770_lcd_groups), },
+>  	{ "pwm0", jz4770_pwm0_groups, ARRAY_SIZE(jz4770_pwm0_groups), },
+> @@ -1207,6 +1211,8 @@ static int x1000_i2s_data_tx_pins[] = { 0x24, };
+>  static int x1000_i2s_data_rx_pins[] = { 0x23, };
+>  static int x1000_i2s_clk_txrx_pins[] = { 0x21, 0x22, };
+>  static int x1000_i2s_sysclk_pins[] = { 0x20, };
+> +static int x1000_dmic0_pins[] = { 0x35, 0x36, };
+> +static int x1000_dmic1_pins[] = { 0x25, };
+>  static int x1000_cim_pins[] = {
+>  	0x08, 0x09, 0x0a, 0x0b,
+>  	0x13, 0x12, 0x11, 0x10, 0x0f, 0x0e, 0x0d, 0x0c,
+> @@ -1272,6 +1278,8 @@ static const struct group_desc x1000_groups[] = 
+> {
+>  	INGENIC_PIN_GROUP("i2s-data-rx", x1000_i2s_data_rx, 1),
+>  	INGENIC_PIN_GROUP("i2s-clk-txrx", x1000_i2s_clk_txrx, 1),
+>  	INGENIC_PIN_GROUP("i2s-sysclk", x1000_i2s_sysclk, 1),
+> +	INGENIC_PIN_GROUP("dmic0", x1000_dmic0, 0),
+> +	INGENIC_PIN_GROUP("dmic1", x1000_dmic1, 1),
+>  	INGENIC_PIN_GROUP("cim-data", x1000_cim, 2),
+>  	INGENIC_PIN_GROUP("lcd-8bit", x1000_lcd_8bit, 1),
+>  	INGENIC_PIN_GROUP("lcd-16bit", x1000_lcd_16bit, 1),
+> @@ -1315,6 +1323,7 @@ static const char *x1000_i2c2_groups[] = { 
+> "i2c2-data", };
+>  static const char *x1000_i2s_groups[] = {
+>  	"i2s-data-tx", "i2s-data-rx", "i2s-clk-txrx", "i2s-sysclk",
+>  };
+> +static const char *x1000_dmic_groups[] = { "dmic0", "dmic1", };
+>  static const char *x1000_cim_groups[] = { "cim-data", };
+>  static const char *x1000_lcd_groups[] = { "lcd-8bit", "lcd-16bit", };
+>  static const char *x1000_pwm0_groups[] = { "pwm0", };
+> @@ -1339,6 +1348,7 @@ static const struct function_desc 
+> x1000_functions[] = {
+>  	{ "i2c1", x1000_i2c1_groups, ARRAY_SIZE(x1000_i2c1_groups), },
+>  	{ "i2c2", x1000_i2c2_groups, ARRAY_SIZE(x1000_i2c2_groups), },
+>  	{ "i2s", x1000_i2s_groups, ARRAY_SIZE(x1000_i2s_groups), },
+> +	{ "dmic", x1000_dmic_groups, ARRAY_SIZE(x1000_dmic_groups), },
+>  	{ "cim", x1000_cim_groups, ARRAY_SIZE(x1000_cim_groups), },
+>  	{ "lcd", x1000_lcd_groups, ARRAY_SIZE(x1000_lcd_groups), },
+>  	{ "pwm0", x1000_pwm0_groups, ARRAY_SIZE(x1000_pwm0_groups), },
+> @@ -1378,6 +1388,8 @@ static int x1500_i2s_data_tx_pins[] = { 0x24, };
+>  static int x1500_i2s_data_rx_pins[] = { 0x23, };
+>  static int x1500_i2s_clk_txrx_pins[] = { 0x21, 0x22, };
+>  static int x1500_i2s_sysclk_pins[] = { 0x20, };
+> +static int x1500_dmic0_pins[] = { 0x35, 0x36, };
+> +static int x1500_dmic1_pins[] = { 0x25, };
+>  static int x1500_cim_pins[] = {
+>  	0x08, 0x09, 0x0a, 0x0b,
+>  	0x13, 0x12, 0x11, 0x10, 0x0f, 0x0e, 0x0d, 0x0c,
+> @@ -1407,6 +1419,8 @@ static const struct group_desc x1500_groups[] = 
+> {
+>  	INGENIC_PIN_GROUP("i2s-data-rx", x1500_i2s_data_rx, 1),
+>  	INGENIC_PIN_GROUP("i2s-clk-txrx", x1500_i2s_clk_txrx, 1),
+>  	INGENIC_PIN_GROUP("i2s-sysclk", x1500_i2s_sysclk, 1),
+> +	INGENIC_PIN_GROUP("dmic0", x1500_dmic0, 0),
+> +	INGENIC_PIN_GROUP("dmic1", x1500_dmic1, 1),
+>  	INGENIC_PIN_GROUP("cim-data", x1500_cim, 2),
+>  	INGENIC_PIN_GROUP("pwm0", x1500_pwm_pwm0, 0),
+>  	INGENIC_PIN_GROUP("pwm1", x1500_pwm_pwm1, 1),
+> @@ -1427,6 +1441,7 @@ static const char *x1500_i2c2_groups[] = { 
+> "i2c2-data", };
+>  static const char *x1500_i2s_groups[] = {
+>  	"i2s-data-tx", "i2s-data-rx", "i2s-clk-txrx", "i2s-sysclk",
+>  };
+> +static const char *x1500_dmic_groups[] = { "dmic0", "dmic1", };
+>  static const char *x1500_cim_groups[] = { "cim-data", };
+>  static const char *x1500_pwm0_groups[] = { "pwm0", };
+>  static const char *x1500_pwm1_groups[] = { "pwm1", };
+> @@ -1444,6 +1459,7 @@ static const struct function_desc 
+> x1500_functions[] = {
+>  	{ "i2c1", x1500_i2c1_groups, ARRAY_SIZE(x1500_i2c1_groups), },
+>  	{ "i2c2", x1500_i2c2_groups, ARRAY_SIZE(x1500_i2c2_groups), },
+>  	{ "i2s", x1500_i2s_groups, ARRAY_SIZE(x1500_i2s_groups), },
+> +	{ "dmic", x1500_dmic_groups, ARRAY_SIZE(x1500_dmic_groups), },
+>  	{ "cim", x1500_cim_groups, ARRAY_SIZE(x1500_cim_groups), },
+>  	{ "pwm0", x1500_pwm0_groups, ARRAY_SIZE(x1500_pwm0_groups), },
+>  	{ "pwm1", x1500_pwm1_groups, ARRAY_SIZE(x1500_pwm1_groups), },
+> @@ -1506,6 +1522,8 @@ static int x1830_i2s_data_rx_pins[] = { 0x54, };
+>  static int x1830_i2s_clk_txrx_pins[] = { 0x58, 0x52, };
+>  static int x1830_i2s_clk_rx_pins[] = { 0x56, 0x55, };
+>  static int x1830_i2s_sysclk_pins[] = { 0x57, };
+> +static int x1830_dmic0_pins[] = { 0x48, 0x59, };
+> +static int x1830_dmic1_pins[] = { 0x5a, };
+>  static int x1830_lcd_tft_8bit_pins[] = {
+>  	0x62, 0x63, 0x64, 0x65, 0x66, 0x67,
+>  	0x68, 0x73, 0x72, 0x69,
+> @@ -1576,6 +1594,8 @@ static const struct group_desc x1830_groups[] = 
+> {
+>  	INGENIC_PIN_GROUP("i2s-clk-txrx", x1830_i2s_clk_txrx, 0),
+>  	INGENIC_PIN_GROUP("i2s-clk-rx", x1830_i2s_clk_rx, 0),
+>  	INGENIC_PIN_GROUP("i2s-sysclk", x1830_i2s_sysclk, 0),
+> +	INGENIC_PIN_GROUP("dmic0", x1830_dmic0, 2),
+> +	INGENIC_PIN_GROUP("dmic1", x1830_dmic1, 2),
+>  	INGENIC_PIN_GROUP("lcd-tft-8bit", x1830_lcd_tft_8bit, 0),
+>  	INGENIC_PIN_GROUP("lcd-tft-24bit", x1830_lcd_tft_24bit, 0),
+>  	INGENIC_PIN_GROUP("lcd-slcd-8bit", x1830_lcd_slcd_8bit, 1),
+> @@ -1621,6 +1641,7 @@ static const char *x1830_i2c2_groups[] = { 
+> "i2c2-data", };
+>  static const char *x1830_i2s_groups[] = {
+>  	"i2s-data-tx", "i2s-data-rx", "i2s-clk-txrx", "i2s-clk-rx", 
+> "i2s-sysclk",
+>  };
+> +static const char *x1830_dmic_groups[] = { "dmic0", "dmic1", };
+>  static const char *x1830_lcd_groups[] = {
+>  	"lcd-tft-8bit", "lcd-tft-24bit", "lcd-slcd-8bit", "lcd-slcd-16bit",
+>  };
+> @@ -1646,6 +1667,7 @@ static const struct function_desc 
+> x1830_functions[] = {
+>  	{ "i2c1", x1830_i2c1_groups, ARRAY_SIZE(x1830_i2c1_groups), },
+>  	{ "i2c2", x1830_i2c2_groups, ARRAY_SIZE(x1830_i2c2_groups), },
+>  	{ "i2s", x1830_i2s_groups, ARRAY_SIZE(x1830_i2s_groups), },
+> +	{ "dmic", x1830_dmic_groups, ARRAY_SIZE(x1830_dmic_groups), },
+>  	{ "lcd", x1830_lcd_groups, ARRAY_SIZE(x1830_lcd_groups), },
+>  	{ "pwm0", x1830_pwm0_groups, ARRAY_SIZE(x1830_pwm0_groups), },
+>  	{ "pwm1", x1830_pwm1_groups, ARRAY_SIZE(x1830_pwm1_groups), },
+> --
+> 2.7.4
+> 
+
 
