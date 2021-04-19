@@ -2,127 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F17AD363DA8
-	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 10:36:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EBAF363E0B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Apr 2021 10:55:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234949AbhDSIgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 04:36:03 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:38376 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238235AbhDSIfy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 04:35:54 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13J8Z3gb119417;
-        Mon, 19 Apr 2021 03:35:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1618821303;
-        bh=PswJzuVJEpo2V7rLJvAKEapfrXwbPZ/ywMR3JM+8zp4=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=QTc06a+hqPZjvTA9C7tbHS3ZVkO4sTIYgMUrrxHc4H3HNoJGau+iCAK8eDbtLiV2g
-         YFfrI0yBPaj2TgnPmAxCiyqBIZ62/gdVFrHeTI+MeYe/zbj22SMqnzSHib9LRlKZBf
-         1fca5fnFRzHscfyVNgIyTXrcl6Lc0z2S35qxlRl8=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13J8Z3hm022740
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 19 Apr 2021 03:35:03 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 19
- Apr 2021 03:35:03 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 19 Apr 2021 03:35:03 -0500
-Received: from a0393678-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13J8Y2aW051194;
-        Mon, 19 Apr 2021 03:34:56 -0500
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>
-CC:     Jonathan Corbet <corbet@lwn.net>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <linux-pci@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        <linux-rockchip@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH v5 7/7] Documentation: PCI: endpoint/pci-endpoint-cfs: Guide to use SR-IOV
-Date:   Mon, 19 Apr 2021 14:04:01 +0530
-Message-ID: <20210419083401.31628-8-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210419083401.31628-1-kishon@ti.com>
-References: <20210419083401.31628-1-kishon@ti.com>
+        id S231823AbhDSIzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 04:55:38 -0400
+Received: from foss.arm.com ([217.140.110.172]:38622 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229671AbhDSIzg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Apr 2021 04:55:36 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2BDA51FB;
+        Mon, 19 Apr 2021 01:55:07 -0700 (PDT)
+Received: from slackpad.fritz.box (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0C81B3F85F;
+        Mon, 19 Apr 2021 01:55:05 -0700 (PDT)
+Date:   Mon, 19 Apr 2021 09:54:43 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@lists.linux.dev,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 0/2] sunxi: Enforce consistent MMC numbering
+Message-ID: <20210419095443.1548432e@slackpad.fritz.box>
+In-Reply-To: <CAGb2v642Z3iH7fUWa31Rb5j+nWdZ=sXn2BYw3_dyE9P6iuL0Cg@mail.gmail.com>
+References: <20210419025246.21722-1-samuel@sholland.org>
+        <CAGb2v642Z3iH7fUWa31Rb5j+nWdZ=sXn2BYw3_dyE9P6iuL0Cg@mail.gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Documentation to help users use PCI endpoint to create virtual
-functions using configfs. An endpoint function is designated as a
-virtual endpoint function device when it is linked to a physical
-endpoint function device (instead of a endpoint controller).
+On Mon, 19 Apr 2021 11:17:19 +0800
+Chen-Yu Tsai <wens@csie.org> wrote:
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- Documentation/PCI/endpoint/pci-endpoint-cfs.rst | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+Hi,
 
-diff --git a/Documentation/PCI/endpoint/pci-endpoint-cfs.rst b/Documentation/PCI/endpoint/pci-endpoint-cfs.rst
-index 696f8eeb4738..56fb33c5e8fd 100644
---- a/Documentation/PCI/endpoint/pci-endpoint-cfs.rst
-+++ b/Documentation/PCI/endpoint/pci-endpoint-cfs.rst
-@@ -43,6 +43,7 @@ entries corresponding to EPF driver will be created by the EPF core.
- 		.. <EPF Driver1>/
- 			... <EPF Device 11>/
- 			... <EPF Device 21>/
-+			... <EPF Device 31>/
- 		.. <EPF Driver2>/
- 			... <EPF Device 12>/
- 			... <EPF Device 22>/
-@@ -68,6 +69,7 @@ created)
- 				... subsys_vendor_id
- 				... subsys_id
- 				... interrupt_pin
-+			        ... <Symlink EPF Device 31>/
-                                 ... primary/
- 			                ... <Symlink EPC Device1>/
-                                 ... secondary/
-@@ -79,6 +81,13 @@ interface should be added in 'primary' directory and symlink of endpoint
- controller connected to secondary interface should be added in 'secondary'
- directory.
- 
-+The <EPF Device> directory can have a list of symbolic links
-+(<Symlink EPF Device 31>) to other <EPF Device>. These symbolic links should
-+be created by the user to represent the virtual functions that are bound to
-+the physical function. In the above directory structure <EPF Device 11> is a
-+physical function and <EPF Device 31> is a virtual function. An EPF device once
-+it's linked to another EPF device, cannot be linked to a EPC device.
-+
- EPC Device
- ==========
- 
-@@ -98,7 +107,8 @@ entries corresponding to EPC device will be created by the EPC core.
- 
- The <EPC Device> directory will have a list of symbolic links to
- <EPF Device>. These symbolic links should be created by the user to
--represent the functions present in the endpoint device.
-+represent the functions present in the endpoint device. Only <EPF Device>
-+that represents a physical function can be linked to a EPC device.
- 
- The <EPC Device> directory will also have a *start* field. Once
- "1" is written to this field, the endpoint device will be ready to
--- 
-2.17.1
+> On Mon, Apr 19, 2021 at 10:52 AM Samuel Holland <samuel@sholland.org> wrote:
+> >
+> > Dealing with the inconsistent numbering has been a major pain, and
+> > there is a solution with (as far as I can tell) no tangible downsides.
+> > So let's use it.
 
+Thanks Samuel for sending this!
+
+> > Yes, I know the kernel supports UUIDs for root=. But UUIDs do not help
+> > when referencing the whole, unpartitioned device, like is needed for
+> > updating the bootloader and firmware. So for the use case of "write a
+> > bootloader to the SD card, regardless of where the board is currently
+> > booted from", I know of two options:
+> >   - Dig around in sysfs to find the mmc number from the MMIO address,
+> >     which means I have to know the MMIO addresses for every SoC, or
+> >   - Apply patches like these.
+> >
+> > Samuel Holland (2):
+> >   ARM: dts: sunxi: h3/h5: Enforce consistent MMC numbering
+> >   arm64: dts: allwinner: Enforce consistent MMC numbering
+> >
+> >  arch/arm/boot/dts/sunxi-h3-h5.dtsi            | 6 ++++++
+> >  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 6 ++++++
+> >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 6 ++++++  
+> 
+> At least with Rockchip this is now done at the board level. IIRC it was
+> a request from other people to not do it at the SoC level. I don't recall
+> exactly who though.
+
+FWIW, I am very much in favour of these patches, at a SoC level:
+The *SoC* BootROM imposes an order, by probing the first (by MMIO
+address order) MMC controller first for boot devices. IIRC that's a
+different story for Rockchip?
+And if people really don't care about the order, then having a certain
+order doesn't hurt, so we could as well use the "natural" order, as it
+was before.
+
+Also UUIDs only help if you boot with an initramfs to resolve them,
+which proves to be extra pain if you don't compile kernels on the
+device, or not inside a distribution environment.
+
+
+One thing I was wondering about though is that U-Boot currently defines
+"mmc1 = &mmc2;", so that the eMMC is always MMC device 1. This is also
+the BootROM probe order (MMC1 is never touched). I wonder if we should
+mimic this here, since MMC2 is clearly the device for eMMC (due to
+8-bit bus width support)? So from a block device perspective we would
+have always have mmcblk0 and mmcblk1.
+Otherwise it would conflict with U-Boot's current fixup[1], so
+U-Boot's DT would either need to deviate or create boot script breakages
+there.
+
+Cheers,
+Andre
+
+[1]
+https://source.denx.de/u-boot/u-boot/-/blob/master/arch/arm/dts/sunxi-u-boot.dtsi#L14-16
