@@ -2,220 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2357D365C95
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 17:48:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 811F0365CB0
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 17:54:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232303AbhDTPsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 11:48:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44914 "EHLO mail.kernel.org"
+        id S232835AbhDTPzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 11:55:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48462 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232764AbhDTPsV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Apr 2021 11:48:21 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4F03B613CA
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 15:47:50 +0000 (UTC)
+        id S232303AbhDTPzV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Apr 2021 11:55:21 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B923A613C3;
+        Tue, 20 Apr 2021 15:54:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618933670;
-        bh=IYqfg7kAXJ4Rm7YLHyAad4JAlWepcjRKNyoYDCNpags=;
+        s=k20201202; t=1618934089;
+        bh=KZq5/wRY4YGDVOPORw3nU8SC0AVzsWcVeDZv4TcVeDY=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ptxt5xT8VW0ErKPoXdAVz4uqQsNYogTTn+TJLYIkfIFZ8sLFBH0UPmskqSpeamgIj
-         +rovtDASFIasau/8YVVn+qZVdHxQFUIilllmVPzZdPSdhDrg5YB15l4ZPwxVcrf4EU
-         HitVE8i4HMwfrySdYcRa4Zf50vbewnYaKK3EL5Rxfpd/aljhVGjwBqtVJBph/P1Fzq
-         dKFR/THcGHEcLFiyAhAkZEOPp3dl5eENzC/xSTthB7cR+J500w7noP9fw/OtIzWczd
-         km+/eniHy+ITuQkZNkmDqDPAAwpxezFZK64rMB5pepart+EWzhrye+qaEFneeqCyUB
-         OAH4CvG0qFcaA==
-Received: by mail-ed1-f45.google.com with SMTP id s15so45691457edd.4
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 08:47:50 -0700 (PDT)
-X-Gm-Message-State: AOAM5328wsRmTeX3b5jH9DihzCMQ5y2twuAuyJKd7TGWRClQpXlG6rsb
-        3CDBvDfH7+3EdNlTfkZyOwuZS1o2Jc3z+DHnVg==
-X-Google-Smtp-Source: ABdhPJzwUCwDAs9HaD9luzICTw9yTZ3mv8AFbQQ4N9TOgAbafBYxLlIpYgWL71kwt1BKCFzGNMDumpaHgoIXGlEJ/T8=
-X-Received: by 2002:a05:6402:51c6:: with SMTP id r6mr14587868edd.258.1618933668588;
- Tue, 20 Apr 2021 08:47:48 -0700 (PDT)
+        b=gqqC/lZMF78AIjK+lsYvmr4WeYe5ZzfxljlcTDFpJPdmD/iMCurTItPSMmY8qH3St
+         LFMHXEd4bj9GBcX5akpIBLRU6sBCgmxrZgwmml38S2BadsFjKZrmvo5OeJkRcdd/c+
+         a09cKwfoZT3RRWka6JkQUZalxHE1agf30nepJCsyc4HjP7K5MvgAFrRVM/4D3uRqKu
+         0s6Y789OfQCvviSpha1bC93pp+yLuAT5oy2Y31IQxryQ6WQfvlBQ0OiDEHwjtRoYsy
+         tF/d+Mt71HhkqbgPmI0mhMPnmcQnOMd/up7jkZiR5EhGpWA3vX4WME9ZVzQqKPFTB/
+         0OP/iZ4zkTfRA==
+Received: by mail-ej1-f44.google.com with SMTP id sd23so50385088ejb.12;
+        Tue, 20 Apr 2021 08:54:49 -0700 (PDT)
+X-Gm-Message-State: AOAM531bxZH+F/u9WK+v0IPJRdE2AlIByI+N9g1XC4nw3LtkcsBypHsx
+        Ry7ftzMpnHwRtcCxWCvD6+zWTcwUx2HybMUFWw==
+X-Google-Smtp-Source: ABdhPJzp3lYZdPdNVLhuX/2phA/xrwQbMnDUOzFFLWg1gmLwSoM6HCDWBOhQ5OgOMvK39G8i6DxgWSIwuIi02EQ5Cwg=
+X-Received: by 2002:a17:907:217b:: with SMTP id rl27mr28429006ejb.359.1618934088130;
+ Tue, 20 Apr 2021 08:54:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210415191437.20212-1-nramas@linux.microsoft.com>
- <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
- <87eefag241.fsf@linkitivity.dja.id.au> <87tuo6eh0j.fsf@mpe.ellerman.id.au>
- <2817d674-d420-580f-a0c1-b842da915a80@linux.microsoft.com>
- <87pmypdf93.fsf@mpe.ellerman.id.au> <20210420050015.GA1959@kadam>
- <b84c76d6-2be8-77a4-3c0f-ad8657c0e508@linux.microsoft.com>
- <CAL_JsqLS9Wu_+_S-2wwMb3Chd_8RYAtFe_uLh5tjj_sAkTgRJA@mail.gmail.com>
- <2e8dd39b-0372-4874-340e-6f87185091cc@linux.microsoft.com> <433b4518-0a83-5a97-ac07-da8748dcc90e@linux.microsoft.com>
-In-Reply-To: <433b4518-0a83-5a97-ac07-da8748dcc90e@linux.microsoft.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 20 Apr 2021 10:47:36 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ5QWiQKiw+hYC6554U+tzKboMM4qc_vpfSz0QTm7+_Lw@mail.gmail.com>
-Message-ID: <CAL_JsqJ5QWiQKiw+hYC6554U+tzKboMM4qc_vpfSz0QTm7+_Lw@mail.gmail.com>
-Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in elf64_load()
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Cc:     Dan Carpenter <dan.carpenter@oracle.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Daniel Axtens <dja@axtens.net>, devicetree@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        kbuild-all@lists.01.org,
-        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
-        kbuild test robot <lkp@intel.com>
+References: <4a4734d6-49df-677b-71d3-b926c44d89a9@foss.st.com>
+ <CAL_JsqKGG8E9Y53+az+5qAOOGiZRAA-aD-1tKB-hcOp+m3CJYw@mail.gmail.com> <001f8550-b625-17d2-85a6-98a483557c70@foss.st.com>
+In-Reply-To: <001f8550-b625-17d2-85a6-98a483557c70@foss.st.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 20 Apr 2021 10:54:36 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+LUPZFhXd+j-xM67rZB=pvEvZM+1sfckip0Lqq02PkZQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+LUPZFhXd+j-xM67rZB=pvEvZM+1sfckip0Lqq02PkZQ@mail.gmail.com>
+Subject: Re: [v5.4 stable] arm: stm32: Regression observed on "no-map"
+ reserved memory region
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Cc:     Ard Biesheuvel <ardb@kernel.org>,
+        Quentin Perret <qperret@google.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sasha Levin <sashal@kernel.org>,
+        stable <stable@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        KarimAllah Ahmed <karahmed@amazon.de>,
+        Android Kernel Team <kernel-team@android.com>,
+        Architecture Mailman List <boot-architecture@lists.linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 20, 2021 at 10:04 AM Lakshmi Ramasubramanian
-<nramas@linux.microsoft.com> wrote:
+On Tue, Apr 20, 2021 at 10:12 AM Alexandre TORGUE
+<alexandre.torgue@foss.st.com> wrote:
 >
-> On 4/20/21 7:42 AM, Lakshmi Ramasubramanian wrote:
-> > On 4/20/21 6:06 AM, Rob Herring wrote:
-> >> On Tue, Apr 20, 2021 at 12:20 AM Lakshmi Ramasubramanian
-> >> <nramas@linux.microsoft.com> wrote:
-> >>>
-> >>> On 4/19/21 10:00 PM, Dan Carpenter wrote:
-> >>>> On Tue, Apr 20, 2021 at 09:30:16AM +1000, Michael Ellerman wrote:
-> >>>>> Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
-> >>>>>> On 4/16/21 2:05 AM, Michael Ellerman wrote:
-> >>>>>>
-> >>>>>>> Daniel Axtens <dja@axtens.net> writes:
-> >>>>>>>>> On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
-> >>>>>>>>>
-> >>>>>>>>> Sorry - missed copying device-tree and powerpc mailing lists.
-> >>>>>>>>>
-> >>>>>>>>>> There are a few "goto out;" statements before the local
-> >>>>>>>>>> variable "fdt"
-> >>>>>>>>>> is initialized through the call to
-> >>>>>>>>>> of_kexec_alloc_and_setup_fdt() in
-> >>>>>>>>>> elf64_load(). This will result in an uninitialized "fdt" being
-> >>>>>>>>>> passed
-> >>>>>>>>>> to kvfree() in this function if there is an error before the
-> >>>>>>>>>> call to
-> >>>>>>>>>> of_kexec_alloc_and_setup_fdt().
-> >>>>>>>>>>
-> >>>>>>>>>> Initialize the local variable "fdt" to NULL.
-> >>>>>>>>>>
-> >>>>>>>> I'm a huge fan of initialising local variables! But I'm
-> >>>>>>>> struggling to
-> >>>>>>>> find the code path that will lead to an uninit fdt being
-> >>>>>>>> returned...
-> >>>>>>>>
-> >>>>>>>> The out label reads in part:
-> >>>>>>>>
-> >>>>>>>>    /* Make kimage_file_post_load_cleanup free the fdt buffer for
-> >>>>>>>> us. */
-> >>>>>>>>    return ret ? ERR_PTR(ret) : fdt;
-> >>>>>>>>
-> >>>>>>>> As far as I can tell, any time we get a non-zero ret, we're
-> >>>>>>>> going to
-> >>>>>>>> return an error pointer rather than the uninitialised value...
-> >>>>>>
-> >>>>>> As Dan pointed out, the new code is in linux-next.
-> >>>>>>
-> >>>>>> I have copied the new one below - the function doesn't return fdt,
-> >>>>>> but
-> >>>>>> instead sets it in the arch specific field (please see the link to
-> >>>>>> the
-> >>>>>> updated elf_64.c below).
-> >>>>>>
-> >>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/tree/arch/powerpc/kexec/elf_64.c?h=for-next
-> >>>>>>
-> >>>>>>
-> >>>>>>>>
-> >>>>>>>> (btw, it does look like we might leak fdt if we have an error
-> >>>>>>>> after we
-> >>>>>>>> successfully kmalloc it.)
-> >>>>>>>>
-> >>>>>>>> Am I missing something? Can you link to the report for the
-> >>>>>>>> kernel test
-> >>>>>>>> robot or from Dan?
-> >>>>>>
-> >>>>>> /*
-> >>>>>>             * Once FDT buffer has been successfully passed to
-> >>>>>> kexec_add_buffer(),
-> >>>>>>             * the FDT buffer address is saved in image->arch.fdt.
-> >>>>>> In that
-> >>>>>> case,
-> >>>>>>             * the memory cannot be freed here in case of any other
-> >>>>>> error.
-> >>>>>>             */
-> >>>>>>            if (ret && !image->arch.fdt)
-> >>>>>>                    kvfree(fdt);
-> >>>>>>
-> >>>>>>            return ret ? ERR_PTR(ret) : NULL;
-> >>>>>>
-> >>>>>> In case of an error, the memory allocated for fdt is freed unless
-> >>>>>> it has
-> >>>>>> already been passed to kexec_add_buffer().
-> >>>>>
-> >>>>> It feels like the root of the problem is that the kvfree of fdt is in
-> >>>>> the wrong place. It's only allocated later in the function, so the
-> >>>>> error
-> >>>>> path should reflect that. Something like the patch below.
-> >>>>>
-> >>>>> cheers
-> >>>>>
-> >>>>>
-> >>>>> diff --git a/arch/powerpc/kexec/elf_64.c b/arch/powerpc/kexec/elf_64.c
-> >>>>> index 5a569bb51349..02662e72c53d 100644
-> >>>>> --- a/arch/powerpc/kexec/elf_64.c
-> >>>>> +++ b/arch/powerpc/kexec/elf_64.c
-> >>>>> @@ -114,7 +114,7 @@ static void *elf64_load(struct kimage *image,
-> >>>>> char *kernel_buf,
-> >>>>>       ret = setup_new_fdt_ppc64(image, fdt, initrd_load_addr,
-> >>>>>                                 initrd_len, cmdline);
-> >>>>>       if (ret)
-> >>>>> -            goto out;
-> >>>>> +            goto out_free_fdt;
-> >>>>>
-> >>>>>       fdt_pack(fdt);
-> >>>>>
-> >>>>> @@ -125,7 +125,7 @@ static void *elf64_load(struct kimage *image,
-> >>>>> char *kernel_buf,
-> >>>>>       kbuf.mem = KEXEC_BUF_MEM_UNKNOWN;
-> >>>>>       ret = kexec_add_buffer(&kbuf);
-> >>>>>       if (ret)
-> >>>>> -            goto out;
-> >>>>> +            goto out_free_fdt;
-> >>>>>
-> >>>>>       /* FDT will be freed in arch_kimage_file_post_load_cleanup */
-> >>>>>       image->arch.fdt = fdt;
-> >>>>> @@ -140,18 +140,14 @@ static void *elf64_load(struct kimage *image,
-> >>>>> char *kernel_buf,
-> >>>>>       if (ret)
-> >>>>>               pr_err("Error setting up the purgatory.\n");
-> >>>>>
-> >>>>> +    goto out;
-> >>>>
-> >>>> This will leak.  It would need to be something like:
-> >>>>
-> >>>>        if (ret) {
-> >>>>                pr_err("Error setting up the purgatory.\n");
-> >>>>                goto out_free_fdt;
-> >>>>        }
-> >>> Once "fdt" buffer is successfully passed to kexec_add_buffer() it cannot
-> >>> be freed here - it will be freed when the kexec cleanup function is
-> >>> called.
+>
+>
+> On 4/20/21 4:45 PM, Rob Herring wrote:
+> > On Tue, Apr 20, 2021 at 9:03 AM Alexandre TORGUE
+> > <alexandre.torgue@foss.st.com> wrote:
 > >>
-> >> That may be the case currently, but really if a function returns an
-> >> error it should have undone anything it did like memory allocations. I
-> >> don't think you should do that to fix this issue, but it would be a
-> >> good clean-up.
+> >> Hi,
+> >
+> > Greg or Sasha won't know what to do with this. Not sure who follows
+> > the stable list either. Quentin sent the patch, but is not the author.
+> > Given the patch in question is about consistency between EFI memory
+> > map boot and DT memory map boot, copying EFI knowledgeable folks would
+> > help (Ard B for starters).
+>
+> Ok thanks for the tips. I add Ard in the loop.
+
+Sigh. If it was only Ard I was suggesting I would have done that
+myself. Now everyone on the patch in question and relevant lists are
+Cc'ed.
+
+>
+> Ard, let me know if other people have to be directly added or if I have
+> to resend to another mailing list.
+>
+> thanks
+> alex
+>
+> >
 > >>
-> >
-> > I agree - in case of an error the function should do a proper clean-up.
-> > Just to be clear - for now, I will leave this as is. Correct?
-
-Yes.
-
-> > In my patch, I will do the following changes:
-> >
-> >   => Free "fdt" when possible (as Michael had suggested in his patch)
-> >   => Zero out "elf_info" struct at the start of the function.
-> >
->
-> Instead of zeroing out "elf_info", I think it would be better to return
-> an error immediately, instead of the "goto out;", if
-> kexec_build_elf_info() fails.
->
->     ret = kexec_build_elf_info(kernel_buf, kernel_len, &ehdr, &elf_info);
->     if (ret)
->       return ERR_PTR(ret);
-
-I thought kexec_build_elf_info() can return an error and allocated
-memory, so that would leak memory.
-
-Rob
+> >> Since v5.4.102 I observe a regression on stm32mp1 platform: "no-map"
+> >> reserved-memory regions are no more "reserved" and make part of the
+> >> kernel System RAM. This causes allocation failure for devices which try
+> >> to take a reserved-memory region.
+> >>
+> >> It has been introduced by the following path:
+> >>
+> >> "fdt: Properly handle "no-map" field in the memory region
+> >> [ Upstream commit 86588296acbfb1591e92ba60221e95677ecadb43 ]"
+> >> which replace memblock_remove by memblock_mark_nomap in no-map case.
+> >>
+> >> Reverting this patch it's fine.
+> >>
+> >> I add part of my DT (something is maybe wrong inside):
+> >>
+> >> memory@c0000000 {
+> >>          reg = <0xc0000000 0x20000000>;
+> >> };
+> >>
+> >> reserved-memory {
+> >>          #address-cells = <1>;
+> >>          #size-cells = <1>;
+> >>          ranges;
+> >>
+> >>          gpu_reserved: gpu@d4000000 {
+> >>                  reg = <0xd4000000 0x4000000>;
+> >>                  no-map;
+> >>          };
+> >> };
+> >>
+> >> Sorry if this issue has already been raised and discussed.
+> >>
+> >> Thanks
+> >> alex
