@@ -2,90 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0436F364EC2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 01:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B4C4364F88
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 02:35:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232478AbhDSXk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Apr 2021 19:40:56 -0400
-Received: from mo-csw1116.securemx.jp ([210.130.202.158]:36098 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232484AbhDSXk4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 19:40:56 -0400
-Received: by mo-csw.securemx.jp (mx-mo-csw1116) id 13JNdlVM005625; Tue, 20 Apr 2021 08:39:47 +0900
-X-Iguazu-Qid: 2wHHhVLfD68WbBSrrf
-X-Iguazu-QSIG: v=2; s=0; t=1618875586; q=2wHHhVLfD68WbBSrrf; m=OpTumAytCPng2rPIF8zru+UG0PLMCzlcfWIBcmKYL68=
-Received: from imx2-a.toshiba.co.jp (imx2-a.toshiba.co.jp [106.186.93.35])
-        by relay.securemx.jp (mx-mr1110) id 13JNdivT005802
-        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-        Tue, 20 Apr 2021 08:39:44 +0900
-Received: from enc01.toshiba.co.jp (enc01.toshiba.co.jp [106.186.93.100])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by imx2-a.toshiba.co.jp (Postfix) with ESMTPS id 1E4FB1000B0;
-        Tue, 20 Apr 2021 08:39:44 +0900 (JST)
-Received: from hop001.toshiba.co.jp ([133.199.164.63])
-        by enc01.toshiba.co.jp  with ESMTP id 13JNdhoP024180;
-        Tue, 20 Apr 2021 08:39:43 +0900
-Date:   Tue, 20 Apr 2021 08:39:07 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Yu Chen <chenyu56@huawei.com>,
-        Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Joe Perches <joe@perches.com>,
-        Ralf Ramsauer <ralf.ramsauer@oth-regensburg.de>,
-        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] MAINTAINERS: rectify entry for HIKEY960 ONBOARD USB
- GPIO HUB DRIVER
-X-TSB-HOP: ON
-Message-ID: <20210419233907.qaxgwlggm35fyklz@toshiba.co.jp>
-References: <20210419092609.3692-1-lukas.bulwahn@gmail.com>
- <20210419092609.3692-3-lukas.bulwahn@gmail.com>
+        id S229994AbhDTAgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Apr 2021 20:36:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38458 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229758AbhDTAf7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Apr 2021 20:35:59 -0400
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E70DC06174A;
+        Mon, 19 Apr 2021 17:35:29 -0700 (PDT)
+Received: by mail-qt1-x835.google.com with SMTP id z15so19495838qtj.7;
+        Mon, 19 Apr 2021 17:35:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :organization:user-agent:mime-version:content-transfer-encoding;
+        bh=pEYRyKVxUjCxsNQMksqG31lLFUmgL2MrXrf40tljCg4=;
+        b=nGKjCKGkH1i15sEaijoImhaKj8wjyiOB5eGaqdzOJrfsAhjZZ3ChAxhYXlt+6b55fp
+         yKYLwdWXIeaY75bmJPJqeqhj8Us+Q0+CwJCAihgCJKztck/ofYwGnDa6+NYt14Yn7BAi
+         nvxnGgEfGVLth+2boPNIYGqitfIuomiMt1bMUB1eQbfFGhQB+eUPb0oM/G4HGpXW1Abu
+         HrBCM9CErcTG3nTbrD6JXH5AqLNuAYXCZq37x2o4+O8C7ZjWW8pfY5EXSrkF94VbwTuW
+         RleKkrgwUrY4kwhas3BcWvYa/xG1GmulkOzRXg0nWqceRAcR82ebG3fJhNr7mO0toMK1
+         JKNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:organization:user-agent:mime-version
+         :content-transfer-encoding;
+        bh=pEYRyKVxUjCxsNQMksqG31lLFUmgL2MrXrf40tljCg4=;
+        b=fznCTmLCdgA3HbXaXFJQGmXClJwWmFUhhGbcjSv50tUi8J/hOW0KIS8iulUyQwef5k
+         S59U+k66nyNiK+jXZIB0yLTEczwfYi6mcptGV/3UyRGS6Bxe1KYglYf+CJ7SHYFa6ZyM
+         bACC3imSrGn3CVkf0tCzT6hVPZgV8byue1LsfjMPu7cMDCKD/KRj95IUTL7bByds3p2f
+         an94H8JSg1t2c3Wlk4r2pE1nQoAXNzkhu+7E0rtCNB7QBBHvoQ2ffMv84qdHqHQ9ufqU
+         gzC9Wq9pczqt2cMFrHJWtJzRVz0usppevtYnq+H5bMsWT4fuRAyMj8siqZAKQnRqwvUA
+         Zydw==
+X-Gm-Message-State: AOAM530fiteQpH5ddpV6tEp74MbnqBqsBtqK7SZLfVMA+HJ0oJ9gieBG
+        QU55ungnAVJX4sOyDeTWwjE=
+X-Google-Smtp-Source: ABdhPJxsZEYxx8OIGG9YIGcVVmVZRAeygEPIj5D+OTRiDUAKNgAm/jDK5Qo7LSQj5tMoj8ccxnnDvg==
+X-Received: by 2002:ac8:5559:: with SMTP id o25mr2748109qtr.36.1618878928589;
+        Mon, 19 Apr 2021 17:35:28 -0700 (PDT)
+Received: from li-908e0a4c-2250-11b2-a85c-f027e903211b.ibm.com ([177.35.200.187])
+        by smtp.gmail.com with ESMTPSA id h79sm8706785qke.129.2021.04.19.17.35.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Apr 2021 17:35:28 -0700 (PDT)
+Message-ID: <b875ef1778e17a87ee1f4b71d26f2782831b1d07.camel@gmail.com>
+Subject: Re: [PATCH 1/1] of/pci: Add IORESOURCE_MEM_64 to resource flags for
+ 64-bit memory addresses
+From:   Leonardo Bras <leobras.c@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Alexey Kardashevskiy <aik@ozlabs.ru>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        PCI <linux-pci@vger.kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+Date:   Mon, 19 Apr 2021 21:35:24 -0300
+In-Reply-To: <CAL_Jsq+m6CkGj_NYGvwxoKwoQ4PkEu6hfGdMTT3i4APoHSkNeg@mail.gmail.com>
+References: <20210415180050.373791-1-leobras.c@gmail.com>
+         <CAL_Jsq+WwAeziGN4EfPAWfA0fieAjfcxfi29=StOx0GeKjAe_g@mail.gmail.com>
+         <7b089cd48b90f2445c7cb80da1ce8638607c46fc.camel@gmail.com>
+         <CAL_Jsq+m6CkGj_NYGvwxoKwoQ4PkEu6hfGdMTT3i4APoHSkNeg@mail.gmail.com>
+Organization: IBM
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210419092609.3692-3-lukas.bulwahn@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, 2021-04-19 at 10:44 -0500, Rob Herring wrote:
+> On Fri, Apr 16, 2021 at 3:58 PM Leonardo Bras <leobras.c@gmail.com> wrote:
+> > 
+> > Hello Rob, thanks for this feedback!
+> > 
+> > On Thu, 2021-04-15 at 13:59 -0500, Rob Herring wrote:
+> > > +PPC and PCI lists
+> > > 
+> > > On Thu, Apr 15, 2021 at 1:01 PM Leonardo Bras <leobras.c@gmail.com> wrote:
+> > > > 
+> > > > Many other resource flag parsers already add this flag when the input
+> > > > has bits 24 & 25 set, so update this one to do the same.
+> > > 
+> > > Many others? Looks like sparc and powerpc to me.
+> > > 
+> > 
+> > s390 also does that, but it look like it comes from a device-tree.
+> 
+> I'm only looking at DT based platforms, and s390 doesn't use DT.
 
-On Mon, Apr 19, 2021 at 11:26:08AM +0200, Lukas Bulwahn wrote:
-> Commit 7a6ff4c4cbc3 ("misc: hisi_hikey_usb: Driver to support onboard USB
-> gpio hub on Hikey960") refers to the non-existing file
-> ./Documentation/devicetree/bindings/misc/hisilicon-hikey-usb.yaml, but this
-> commit's patch series does not add any related devicetree binding in misc.
+Correct. 
+Sorry, I somehow write above the opposite of what I was thinking.
+
 > 
-> So, just drop this file reference in HIKEY960 ONBOARD USB GPIO HUB DRIVER.
+> > > Those would be the
+> > > ones I worry about breaking. Sparc doesn't use of/address.c so it's
+> > > fine. Powerpc version of the flags code was only fixed in 2019, so I
+> > > don't think powerpc will care either.
+> > 
+> > In powerpc I reach this function with this stack, while configuring a
+> > virtio-net device for a qemu/KVM pseries guest:
+> > 
+> > pci_process_bridge_OF_ranges+0xac/0x2d4
+> > pSeries_discover_phbs+0xc4/0x158
+> > discover_phbs+0x40/0x60
+> > do_one_initcall+0x60/0x2d0
+> > kernel_init_freeable+0x308/0x3a8
+> > kernel_init+0x2c/0x168
+> > ret_from_kernel_thread+0x5c/0x70
+> > 
+> > For this, both MMIO32 and MMIO64 resources will have flags 0x200.
+> 
+> Oh good, powerpc has 2 possible flags parsing functions. So in the
+> above path, do we need to set PCI_BASE_ADDRESS_MEM_TYPE_64?
+> 
+> Does pci_parse_of_flags() get called in your case?
 > 
 
-Could you add Fixes: tag ?
-Please also add this to patch: "MAINTAINERS: rectify entry for INTEL KEEM BAY
-DRM DRIVER".
+It's called in some cases, but not for the device I am debugging
+(virtio-net pci@800000020000000). 
 
-> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
-> ---
->  MAINTAINERS | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d31c8058b17f..4f152717365c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8239,7 +8239,6 @@ M:	John Stultz <john.stultz@linaro.org>
->  L:	linux-kernel@vger.kernel.org
->  S:	Maintained
->  F:	drivers/misc/hisi_hikey_usb.c
-> -F:	Documentation/devicetree/bindings/misc/hisilicon-hikey-usb.yaml
->  
->  HISILICON PMU DRIVER
->  M:	Shaokun Zhang <zhangshaokun@hisilicon.com>
-> -- 
-> 2.17.1
-> 
-> 
+For the above device, here is an expanded stack trace:
 
-Best regards,
-  Nobuhiro
+of_bus_pci_get_flags() (from parser->bus->get_flags()) 
+of_pci_range_parser_one() (from macro for_each_of_pci_range)
+pci_process_bridge_OF_ranges+0xac/0x2d4
+pSeries_discover_phbs+0xc4/0x158
+discover_phbs+0x40/0x60
+do_one_initcall+0x60/0x2d0
+kernel_init_freeable+0x308/0x3a8
+kernel_init+0x2c/0x168
+ret_from_kernel_thread+0x5c/0x70
+
+For other devices, I could also see the following stack trace:
+## device ethernet@8
+
+pci_parse_of_flags()
+of_create_pci_dev+0x7f0/0xa40
+__of_scan_bus+0x248/0x320
+pcibios_scan_phb+0x370/0x3b0
+pcibios_init+0x8c/0x12c
+do_one_initcall+0x60/0x2d0
+kernel_init_freeable+0x308/0x3a8
+kernel_init+0x2c/0x168
+ret_from_kernel_thread+0x5c/0x70
+
+Devices that get parsed with of_bus_pci_get_flags() appears first at
+dmesg (around 0.015s in my test), while devices that get parsed by
+pci_parse_of_flags() appears later (0.025s in my test).
+
+I am not really used to this code, but having the term "discover phbs"
+in the first trace and the term "scan phb" in the second, makes me
+wonder if the first trace is seen on devices that are seen/described in
+the device-tree and the second trace is seen in devices not present in
+the device-tree and found scanning pci bus.
+
+> > > I noticed both sparc and powerpc set PCI_BASE_ADDRESS_MEM_TYPE_64 in
+> > > the flags. AFAICT, that's not set anywhere outside of arch code. So
+> > > never for riscv, arm and arm64 at least. That leads me to
+> > > pci_std_update_resource() which is where the PCI code sets BARs and
+> > > just copies the flags in PCI_BASE_ADDRESS_MEM_MASK ignoring
+> > > IORESOURCE_* flags. So it seems like 64-bit is still not handled and
+> > > neither is prefetch.
+> > > 
+> > 
+> > I am not sure if you mean here:
+> > a) it's ok to add IORESOURCE_MEM_64 here, because it does not affect
+> > anything else, or
+> > b) it should be using PCI_BASE_ADDRESS_MEM_TYPE_64
+> > (or IORESOURCE_MEM_64 | PCI_BASE_ADDRESS_MEM_TYPE_64) instead, since
+> > it's how it's added in powerpc/sparc, and else there is no point.
+> 
+> I'm wondering if a) is incomplete and PCI_BASE_ADDRESS_MEM_TYPE_64
+> also needs to be set. The question is ultimately are BARs getting set
+> correctly for 64-bit? It looks to me like they aren't.
+
+I am not used to these terms, does BAR means 'Base Address Register'?
+
+If so, those are the addresses stored in pci->phb->mem_resources[i] and
+pci->phb->mem_offset[i], printed from enable_ddw() (which takes place a
+lot after discovering the device (0.17s in my run)).
+
+resource #1 pci@800000020000000: start=0x200080000000
+end=0x2000ffffffff flags=0x200 desc=0x0 offset=0x200000000000
+resource #2 pci@800000020000000: start=0x210000000000
+end=0x21ffffffffff flags=0x200 desc=0x0 offset=0x0
+
+The message above was printed without this patch.
+With the patch, the flags for memory resource #2 gets ORed with 
+0x00100000.
+
+Is it enough to know if BARs are correctly set for 64-bit?
+If it's not, how can I check?
+
+> 
+> Rob
+
+Thanks Rob!
+
+Leonardo Brás
+
