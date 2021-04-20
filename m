@@ -2,169 +2,358 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 97A763654BE
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 11:05:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 263C73654E5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 11:10:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230168AbhDTJGG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 05:06:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36118 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230090AbhDTJGF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 05:06:05 -0400
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00E06C06174A
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 02:05:34 -0700 (PDT)
-Received: by mail-io1-xd2a.google.com with SMTP id p8so16364939iol.11
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 02:05:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Sky0InoRGfz08ZIPfmMoicP8h0LTiiMAffpNGDgYJbs=;
-        b=nXMxTLh0sKp6GpxETText2EprCJ00h2r68bNjyo/IF5LUKD5vBUWvHwARRPAn+uyrJ
-         kQjDZ0KCSUQEIki+oYck1Elb/FO48FaV2LtgbHDizELXrrlpNqUAtUVQ5tTUE9mHKyB5
-         ZbQXnv+ZIdsOqZz8tjBc7JlTrPQwcxVciypAE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Sky0InoRGfz08ZIPfmMoicP8h0LTiiMAffpNGDgYJbs=;
-        b=Vha9anvggjXaeA+RwdlBy3rOcr8U/MnAwAxdcylh902OY012IpeRiSmQks/C7Jfw9V
-         J0Q6FFS5vPTfn1PdlV72lUnvmHRXf9ubomesuZestq2jv2I007yGgECTdp9CeaXbvYPQ
-         bysMPMKxffnu0zeZBD1ncuoL67v/lwEzT8pjxO1dTSsnjM9kS+XZiPWsp6AJMREZ9H8K
-         zqeSprmxnP1BYd6oeuFf1W4Q7BYdC2sZ2z98uext8p5NOQ619jIa6LiND+hJXV5IOMNQ
-         XB34uFRz710DBU29i7uEk/zZy49wP/OxpAyjpNLCr8ofDjHevWLW3xqjoBPJga0ZlblH
-         fv/Q==
-X-Gm-Message-State: AOAM5310m2bfwnP7ged2hn7ZgImbwCseWFr0d/IklJtqsCQ18pzPqZrW
-        sGTMBV5/g7WqG/wR1GvRQ/9gou/UIb8G6tryyx0nyw==
-X-Google-Smtp-Source: ABdhPJzFCTPxONwGXoOnArB99NKE78wLC243d0eUdaQKA1eYD2nbVDr80hIVXEpRVLb15Vj/6o9+Igu1fSkXz87MjDc=
-X-Received: by 2002:a5d:9682:: with SMTP id m2mr18657371ion.20.1618909533198;
- Tue, 20 Apr 2021 02:05:33 -0700 (PDT)
+        id S231325AbhDTJKo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 05:10:44 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:42278 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231322AbhDTJKn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 05:10:43 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: benjamin.gaignard)
+        with ESMTPSA id 34F941F4270E
+Subject: Re: [PATCH v9 03/13] media: hantro: Use syscon instead of 'ctrl'
+ register
+To:     Lucas Stach <l.stach@pengutronix.de>, ezequiel@collabora.com,
+        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        lee.jones@linaro.org, gregkh@linuxfoundation.org,
+        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
+        emil.l.velikov@gmail.com, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>
+Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, kernel@collabora.com, cphealy@gmail.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20210407073534.376722-1-benjamin.gaignard@collabora.com>
+ <20210407073534.376722-4-benjamin.gaignard@collabora.com>
+ <7bcbb787d82f21d42563d8fb7e3c2e7d40123932.camel@pengutronix.de>
+ <ffe9b3f5-94f5-453e-73f0-4b42d0454b63@collabora.com>
+ <529b61b1b1e6030c92a7944c4864246521b2ccdd.camel@pengutronix.de>
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Message-ID: <36008691-d075-203d-0cac-2a012773ea34@collabora.com>
+Date:   Tue, 20 Apr 2021 11:10:07 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-References: <20210409045314.3420733-1-hsinyi@chromium.org>
-In-Reply-To: <20210409045314.3420733-1-hsinyi@chromium.org>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Tue, 20 Apr 2021 17:05:06 +0800
-Message-ID: <CAJMQK-gFk8WV0W2TTP7=OTsBqgWmy_eKSd42Xa5dJzvUFDTAXQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] drm/mediatek: set panel orientation before drm_dev_register().
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <529b61b1b1e6030c92a7944c4864246521b2ccdd.camel@pengutronix.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 9, 2021 at 12:53 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
->
-> drm_dev_register() sets connector->registration_state to
-> DRM_CONNECTOR_REGISTERED and dev->registered to true. If
-> drm_connector_set_panel_orientation() is first called after
-> drm_dev_register(), it will fail several checks and results in following
-> warning. So set panel orientation in dsi before drm_dev_register() is
-> called.
->
-> [    4.480976] ------------[ cut here ]------------
-> [    4.485603] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:45 __drm_mode_object_add+0xb4/0xbc
-> <snip>
-> [    4.609772] Call trace:
-> [    4.612208]  __drm_mode_object_add+0xb4/0xbc
-> [    4.616466]  drm_mode_object_add+0x20/0x2c
-> [    4.620552]  drm_property_create+0xdc/0x174
-> [    4.624723]  drm_property_create_enum+0x34/0x98
-> [    4.629241]  drm_connector_set_panel_orientation+0x64/0xa0
-> [    4.634716]  boe_panel_get_modes+0x88/0xd8
-> [    4.638802]  drm_panel_get_modes+0x2c/0x48
-> [    4.642887]  panel_bridge_get_modes+0x1c/0x28
-> [    4.647233]  drm_bridge_connector_get_modes+0xa0/0xd4
-> [    4.652273]  drm_helper_probe_single_connector_modes+0x218/0x700
-> [    4.658266]  drm_mode_getconnector+0x1b4/0x45c
-> [    4.662699]  drm_ioctl_kernel+0xac/0x128
-> [    4.666611]  drm_ioctl+0x268/0x410
-> [    4.670002]  drm_compat_ioctl+0xdc/0xf0
-> [    4.673829]  __arm64_compat_sys_ioctl+0xc8/0x100
-> [    4.678436]  el0_svc_common+0xf4/0x1c0
-> [    4.682174]  do_el0_svc_compat+0x28/0x3c
-> [    4.686088]  el0_svc_compat+0x10/0x1c
-> [    4.689738]  el0_sync_compat_handler+0xa8/0xcc
-> [    4.694171]  el0_sync_compat+0x178/0x180
-> [    4.698082] ---[ end trace b4f2db9d9c88610b ]---
-> [    4.702721] ------------[ cut here ]------------
-> [    4.707329] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:243 drm_object_attach_property+0x48/0xb8
-> <snip>
-> [    4.833830] Call trace:
-> [    4.836266]  drm_object_attach_property+0x48/0xb8
-> [    4.840958]  drm_connector_set_panel_orientation+0x84/0xa0
-> [    4.846432]  boe_panel_get_modes+0x88/0xd8
-> [    4.850516]  drm_panel_get_modes+0x2c/0x48
-> [    4.854600]  panel_bridge_get_modes+0x1c/0x28
-> [    4.858946]  drm_bridge_connector_get_modes+0xa0/0xd4
-> [    4.863984]  drm_helper_probe_single_connector_modes+0x218/0x700
-> [    4.869978]  drm_mode_getconnector+0x1b4/0x45c
-> [    4.874410]  drm_ioctl_kernel+0xac/0x128
-> [    4.878320]  drm_ioctl+0x268/0x410
-> [    4.881711]  drm_compat_ioctl+0xdc/0xf0
-> [    4.885536]  __arm64_compat_sys_ioctl+0xc8/0x100
-> [    4.890142]  el0_svc_common+0xf4/0x1c0
-> [    4.893879]  do_el0_svc_compat+0x28/0x3c
-> [    4.897791]  el0_svc_compat+0x10/0x1c
-> [    4.901441]  el0_sync_compat_handler+0xa8/0xcc
-> [    4.905873]  el0_sync_compat+0x178/0x180
-> [    4.909783] ---[ end trace b4f2db9d9c88610c ]---
->
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 
-ping on the thread, thanks.
+Le 16/04/2021 à 17:14, Lucas Stach a écrit :
+> Am Freitag, dem 16.04.2021 um 15:08 +0200 schrieb Benjamin Gaignard:
+>> Le 16/04/2021 à 12:54, Lucas Stach a écrit :
+>>> Am Mittwoch, dem 07.04.2021 um 09:35 +0200 schrieb Benjamin Gaignard:
+>>>> In order to be able to share the control hardware block between
+>>>> VPUs use a syscon instead a ioremap it in the driver.
+>>>> To keep the compatibility with older DT if 'nxp,imx8mq-vpu-ctrl'
+>>>> phandle is not found look at 'ctrl' reg-name.
+>>>> With the method it becomes useless to provide a list of register
+>>>> names so remove it.
+>>> Sorry for putting a spoke in the wheel after many iterations of the
+>>> series.
+>>>
+>>> We just discussed a way forward on how to handle the clocks and resets
+>>> provided by the blkctl block on i.MX8MM and later and it seems there is
+>>> a consensus on trying to provide virtual power domains from a blkctl
+>>> driver, controlling clocks and resets for the devices in the power
+>>> domain. I would like to avoid introducing yet another way of handling
+>>> the blkctl and thus would like to align the i.MX8MQ VPU blkctl with
+>>> what we are planning to do on the later chip generations.
+>>>
+>>> CC'ing Jacky Bai and Peng Fan from NXP, as they were going to give this
+>>> virtual power domain thing a shot.
+>> That could replace the 3 first patches and Dt patche of this series
+>> but that will not impact the hevc part, so I wonder if pure hevc patches
+>> could be merged anyway ?
+>> They are reviewed and don't depend of how the ctrl block is managed.
+> I'm not really in a position to give any informed opinion about that
+> hvec patches, as I only skimmed them, but I don't see any reason to
+> delay patches 04-11 from this series until the i.MX8M platform issues
+> are sorted. AFAICS those things are totally orthogonal.
 
-> ---
->  drivers/gpu/drm/mediatek/mtk_dsi.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
+Hi Hans,
+What do you think about this proposal to split this series ?
+Get hevc part merged could allow me to continue to add features
+like scaling lists, compressed reference buffers and 10-bit supports.
+
+Regards,
+Benjamin
+
 >
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> index ae403c67cbd9..45a702ee09f3 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -205,6 +205,7 @@ struct mtk_dsi {
->         u32 irq_data;
->         wait_queue_head_t irq_wait_queue;
->         const struct mtk_dsi_driver_data *driver_data;
-> +       enum drm_panel_orientation orientation;
->  };
+> Regards,
+> Lucas
 >
->  static inline struct mtk_dsi *bridge_to_dsi(struct drm_bridge *b)
-> @@ -966,6 +967,8 @@ static int mtk_dsi_encoder_init(struct drm_device *drm, struct mtk_dsi *dsi)
->         }
->         drm_connector_attach_encoder(dsi->connector, &dsi->encoder);
+>>> Regards,
+>>> Lucas
+>>>
+>>>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>>>> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+>>>> ---
+>>>> version 9:
+>>>>    - Corrections in commit message
+>>>>
+>>>> version 7:
+>>>>    - Add Philipp reviewed-by tag.
+>>>>    - Change syscon phandle name.
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>> version 5:
+>>>>    - use syscon instead of VPU reset driver.
+>>>>    - if DT doesn't provide syscon keep backward compatibilty by using
+>>>>      'ctrl' reg-name.
+>>>>
+>>>>    drivers/staging/media/hantro/hantro.h       |  5 +-
+>>>>    drivers/staging/media/hantro/imx8m_vpu_hw.c | 52 ++++++++++++---------
+>>>>    2 files changed, 34 insertions(+), 23 deletions(-)
+>>>>
+>>>> diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
+>>>> index 6c1b888abe75..37b9ce04bd4e 100644
+>>>> --- a/drivers/staging/media/hantro/hantro.h
+>>>> +++ b/drivers/staging/media/hantro/hantro.h
+>>>> @@ -13,6 +13,7 @@
+>>>>    #define HANTRO_H_
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>    #include <linux/platform_device.h>
+>>>> +#include <linux/regmap.h>
+>>>>    #include <linux/videodev2.h>
+>>>>    #include <linux/wait.h>
+>>>>    #include <linux/clk.h>
+>>>> @@ -167,7 +168,7 @@ hantro_vdev_to_func(struct video_device *vdev)
+>>>>     * @reg_bases:		Mapped addresses of VPU registers.
+>>>>     * @enc_base:		Mapped address of VPU encoder register for convenience.
+>>>>     * @dec_base:		Mapped address of VPU decoder register for convenience.
+>>>> - * @ctrl_base:		Mapped address of VPU control block.
+>>>> + * @ctrl_base:		Regmap of VPU control block.
+>>>>     * @vpu_mutex:		Mutex to synchronize V4L2 calls.
+>>>>     * @irqlock:		Spinlock to synchronize access to data structures
+>>>>     *			shared with interrupt handlers.
+>>>> @@ -186,7 +187,7 @@ struct hantro_dev {
+>>>>    	void __iomem **reg_bases;
+>>>>    	void __iomem *enc_base;
+>>>>    	void __iomem *dec_base;
+>>>> -	void __iomem *ctrl_base;
+>>>> +	struct regmap *ctrl_base;
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>    	struct mutex vpu_mutex;	/* video_device lock */
+>>>>    	spinlock_t irqlock;
+>>>> diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
+>>>> index c222de075ef4..8d0c3425234b 100644
+>>>> --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
+>>>> +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
+>>>> @@ -7,6 +7,7 @@
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>    #include <linux/clk.h>
+>>>>    #include <linux/delay.h>
+>>>> +#include <linux/mfd/syscon.h>
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>    #include "hantro.h"
+>>>>    #include "hantro_jpeg.h"
+>>>> @@ -24,30 +25,28 @@
+>>>>    #define CTRL_G1_PP_FUSE		0x0c
+>>>>    #define CTRL_G2_DEC_FUSE	0x10
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>> +static const struct regmap_config ctrl_regmap_ctrl = {
+>>>> +	.reg_bits = 32,
+>>>> +	.val_bits = 32,
+>>>> +	.reg_stride = 0x14,
+>>>> +};
+>>>> +
+>>>>    static void imx8m_soft_reset(struct hantro_dev *vpu, u32 reset_bits)
+>>>>    {
+>>>> -	u32 val;
+>>>> -
+>>>>    	/* Assert */
+>>>> -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
+>>>> -	val &= ~reset_bits;
+>>>> -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
+>>>> +	regmap_update_bits(vpu->ctrl_base, CTRL_SOFT_RESET, reset_bits, 0);
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>    	udelay(2);
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>    	/* Release */
+>>>> -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
+>>>> -	val |= reset_bits;
+>>>> -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
+>>>> +	regmap_update_bits(vpu->ctrl_base, CTRL_SOFT_RESET,
+>>>> +			   reset_bits, reset_bits);
+>>>>    }
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>    static void imx8m_clk_enable(struct hantro_dev *vpu, u32 clock_bits)
+>>>>    {
+>>>> -	u32 val;
+>>>> -
+>>>> -	val = readl(vpu->ctrl_base + CTRL_CLOCK_ENABLE);
+>>>> -	val |= clock_bits;
+>>>> -	writel(val, vpu->ctrl_base + CTRL_CLOCK_ENABLE);
+>>>> +	regmap_update_bits(vpu->ctrl_base, CTRL_CLOCK_ENABLE,
+>>>> +			   clock_bits, clock_bits);
+>>>>    }
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>    static int imx8mq_runtime_resume(struct hantro_dev *vpu)
+>>>> @@ -64,9 +63,9 @@ static int imx8mq_runtime_resume(struct hantro_dev *vpu)
+>>>>    	imx8m_clk_enable(vpu, CLOCK_G1 | CLOCK_G2);
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>    	/* Set values of the fuse registers */
+>>>> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_DEC_FUSE);
+>>>> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_PP_FUSE);
+>>>> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G2_DEC_FUSE);
+>>>> +	regmap_write(vpu->ctrl_base, CTRL_G1_DEC_FUSE, 0xffffffff);
+>>>> +	regmap_write(vpu->ctrl_base, CTRL_G1_PP_FUSE, 0xffffffff);
+>>>> +	regmap_write(vpu->ctrl_base, CTRL_G2_DEC_FUSE, 0xffffffff);
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>    	clk_bulk_disable_unprepare(vpu->variant->num_clocks, vpu->clocks);
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>> @@ -150,8 +149,22 @@ static irqreturn_t imx8m_vpu_g1_irq(int irq, void *dev_id)
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>    static int imx8mq_vpu_hw_init(struct hantro_dev *vpu)
+>>>>    {
+>>>> -	vpu->dec_base = vpu->reg_bases[0];
+>>>> -	vpu->ctrl_base = vpu->reg_bases[vpu->variant->num_regs - 1];
+>>>> +	struct device_node *np = vpu->dev->of_node;
+>>>> +
+>>>> +	vpu->ctrl_base = syscon_regmap_lookup_by_phandle(np, "nxp,imx8m-vpu-ctrl");
+>>>> +	if (IS_ERR(vpu->ctrl_base)) {
+>>>> +		struct resource *res;
+>>>> +		void __iomem *ctrl;
+>>>> +
+>>>> +		res = platform_get_resource_byname(vpu->pdev, IORESOURCE_MEM, "ctrl");
+>>>> +		ctrl = devm_ioremap_resource(vpu->dev, res);
+>>>> +		if (IS_ERR(ctrl))
+>>>> +			return PTR_ERR(ctrl);
+>>>> +
+>>>> +		vpu->ctrl_base = devm_regmap_init_mmio(vpu->dev, ctrl, &ctrl_regmap_ctrl);
+>>>> +		if (IS_ERR(vpu->ctrl_base))
+>>>> +			return PTR_ERR(vpu->ctrl_base);
+>>>> +	}
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>    	return 0;
+>>>>    }
+>>>> @@ -198,7 +211,6 @@ static const struct hantro_irq imx8mq_irqs[] = {
+>>>>    };
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>    static const char * const imx8mq_clk_names[] = { "g1", "g2", "bus" };
+>>>> -static const char * const imx8mq_reg_names[] = { "g1", "g2", "ctrl" };
+>>>>    
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>    const struct hantro_variant imx8mq_vpu_variant = {
+>>>>    	.dec_fmts = imx8m_vpu_dec_fmts,
+>>>> @@ -215,6 +227,4 @@ const struct hantro_variant imx8mq_vpu_variant = {
+>>>>    	.num_irqs = ARRAY_SIZE(imx8mq_irqs),
+>>>>    	.clk_names = imx8mq_clk_names,
+>>>>    	.num_clocks = ARRAY_SIZE(imx8mq_clk_names),
+>>>> -	.reg_names = imx8mq_reg_names,
+>>>> -	.num_regs = ARRAY_SIZE(imx8mq_reg_names)
+>>>>    };
+>>>
 >
-> +       drm_connector_set_panel_orientation(dsi->connector, dsi->orientation);
-> +
->         return 0;
->
->  err_cleanup_encoder:
-> @@ -1029,6 +1032,12 @@ static int mtk_dsi_probe(struct platform_device *pdev)
->                         ret = PTR_ERR(dsi->next_bridge);
->                         goto err_unregister_host;
->                 }
-> +
-> +               ret = of_drm_get_panel_orientation(panel->dev->of_node, &dsi->orientation);
-> +               if (ret) {
-> +                       dev_err(dev, "failed to get panel orientation %d\n", ret);
-> +                       return ret;
-> +               }
->         }
->
->         dsi->driver_data = of_device_get_match_data(dev);
-> --
-> 2.31.1.295.g9ea45b61b8-goog
 >
