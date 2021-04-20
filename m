@@ -2,164 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2ECD36604B
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 21:37:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0515936606A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 21:51:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233751AbhDTTiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 15:38:21 -0400
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:40486 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233740AbhDTTiV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 15:38:21 -0400
-Received: by mail-oi1-f182.google.com with SMTP id u16so22784241oiu.7;
-        Tue, 20 Apr 2021 12:37:48 -0700 (PDT)
+        id S233617AbhDTTwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 15:52:08 -0400
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:37446 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233548AbhDTTwI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 15:52:08 -0400
+Received: by mail-ot1-f50.google.com with SMTP id c8-20020a9d78480000b0290289e9d1b7bcso22821220otm.4;
+        Tue, 20 Apr 2021 12:51:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Y2BpotxAReH+14W0XNHlls+cgG6EVIk6Cecdi206lYo=;
-        b=Fjb0iRHVecB2VkFG346xepL7F02P5jEx/OCx1jbEhh1PRshZdTHEdjBLKJpPBYHzx4
-         CmKi3sccHMVifc2mAKmBFL1J2Mc4qx6u8CRGBR/5D7z+P9H4vnd5EEBLcF0JHPIoANWv
-         Y0ZFDSky3FpdqLIhuDah9mgLpapNXm35jbUVVo0CDAxtEVc6pQwNZJNu1I+SIOYGgVll
-         qltMPyR5l3jL3aw+Pt/7vpRYwJxUUZTokEdYHZo1qrGzX0xziJ8Y/tdNZ1pEPncpHmJo
-         8Q5p/TnB7VewniOXktTjbxcuBMJErSMwiNFfsAgxdOnaBc7y2jBraN7OKg2hDAC/wTgi
-         B9ig==
-X-Gm-Message-State: AOAM533UN2dn1Bv3B1/Ob8oX+VE2HWeeADFkYeW7Vm/Kx3GKFoOAE/6y
-        Oc+vA+R+9ATLRvkMOwwIiA==
-X-Google-Smtp-Source: ABdhPJyYaKWvPGHWzWpZ5aOhL3B5gXbb40vd1L0fhx2/v9KRHo1ivKyL7LrVtMqs09gmFu4rhzZoSw==
-X-Received: by 2002:aca:d513:: with SMTP id m19mr4115453oig.111.1618947467961;
-        Tue, 20 Apr 2021 12:37:47 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=91fi6dwzAdBY2nGUmibCb/N6XGFP0Q1yBnL6rpHM38c=;
+        b=arcJxCAllwSuqeP1flnenvyC3sZblM/fULlEZVqdRn1Zm4mwdQXejWEnTLB/zKw4Wv
+         T2CY1+3i/tXP4EkofyUP6v7/h4U2Cn0AvsRd6vLf2g4KvVqOjaHjcmchiCdZEeGevxLU
+         sndkhIqk1l92EYfR0W1l+R3EMd6wUu4TrU/JhuzJJbwyITjQCL8Zm9YoBtehhhopUZsw
+         5p+GI4/K6fcP0dEidKNy8VE8UloYUmzswXMVYEHjuZAuye+g0GvaVnD0yMi51kNCYvRK
+         fyVVcbf6wjC9gu5IELNA3UA4dxwHTzH9BFjqPWz8b+vRJZlOzQumFFxUWY5Ajp+lu80z
+         xykg==
+X-Gm-Message-State: AOAM532tIket7OqDlghzOMtd9cD6JzUi0lW0up6EY/NArCmYTc+tBdIg
+        DFO1bKJYLUZqm+zjvxRA/w==
+X-Google-Smtp-Source: ABdhPJyDOyHsUaTNR8GhgpoBM5E9nKGrXLHVqaHZkgjU1rUdcTZ12QClh2TVTRdYZKw3WqsuwQxNbA==
+X-Received: by 2002:a9d:628f:: with SMTP id x15mr5024183otk.186.1618948295051;
+        Tue, 20 Apr 2021 12:51:35 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r14sm3741562oth.3.2021.04.20.12.37.46
+        by smtp.gmail.com with ESMTPSA id w141sm3757oie.5.2021.04.20.12.51.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Apr 2021 12:37:47 -0700 (PDT)
-Received: (nullmailer pid 3686765 invoked by uid 1000);
-        Tue, 20 Apr 2021 19:37:46 -0000
-Date:   Tue, 20 Apr 2021 14:37:46 -0500
+        Tue, 20 Apr 2021 12:51:34 -0700 (PDT)
+Received: (nullmailer pid 3704908 invoked by uid 1000);
+        Tue, 20 Apr 2021 19:51:32 -0000
+Date:   Tue, 20 Apr 2021 14:51:32 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Lucas Stankus <lucas.p.stankus@gmail.com>
-Cc:     lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-        gregkh@linuxfoundation.org, linux-iio@vger.kernel.org,
-        linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: staging: iio: cdc: ad7746: add
- binding documentation for AD7746
-Message-ID: <20210420193746.GA3632576@robh.at.kernel.org>
-References: <cover.1618785336.git.lucas.p.stankus@gmail.com>
- <54a9eaeaa42d47037b2a07bd933e6dfade745d02.1618785336.git.lucas.p.stankus@gmail.com>
+To:     Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>
+Subject: Re: [PATCH net-next v2 2/2] net: ethernet: mediatek: support custom
+ GMAC label
+Message-ID: <20210420195132.GA3686955@robh.at.kernel.org>
+References: <20210419154659.44096-1-ilya.lipnitskiy@gmail.com>
+ <20210419154659.44096-3-ilya.lipnitskiy@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <54a9eaeaa42d47037b2a07bd933e6dfade745d02.1618785336.git.lucas.p.stankus@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210419154659.44096-3-ilya.lipnitskiy@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 18, 2021 at 07:49:51PM -0300, Lucas Stankus wrote:
-> Add device tree binding documentation for AD7746 cdc in YAML format.
+On Mon, Apr 19, 2021 at 08:46:59AM -0700, Ilya Lipnitskiy wrote:
+> The MAC device name can now be set within DTS file instead of always
+> being "ethX". This is helpful for DSA to clearly label the DSA master
+> device and distinguish it from DSA slave ports.
 > 
-> Signed-off-by: Lucas Stankus <lucas.p.stankus@gmail.com>
+> For example, some devices, such as the Ubiquiti EdgeRouter X, may have
+> ports labeled ethX. Labeling the master GMAC with a different prefix
+> than DSA ports helps with clarity.
+> 
+> Suggested-by: René van Dorst <opensource@vdorst.com>
+> Signed-off-by: Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
 > ---
+>  drivers/net/ethernet/mediatek/mtk_eth_soc.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
-> A minor note about the adi,excitation-vdd-permille property. Jonathan
-> suggested the name to be adi,excitation-vdd-milicent, but I was unsure of
-> the milicent naming. With a quick search I found out that the common way to
-> call a thousandth is 'per mille'[1], but I didn't find any use of it in the
-> kernel documentation. Any thoughts about it?
+> diff --git a/drivers/net/ethernet/mediatek/mtk_eth_soc.c b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+> index 6b00c12c6c43..df3cda63a8c5 100644
+> --- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+> +++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+> @@ -2845,6 +2845,7 @@ static const struct net_device_ops mtk_netdev_ops = {
+>  
+>  static int mtk_add_mac(struct mtk_eth *eth, struct device_node *np)
+>  {
+> +	const char *label = of_get_property(np, "label", NULL);
+>  	const __be32 *_id = of_get_property(np, "reg", NULL);
+>  	phy_interface_t phy_mode;
+>  	struct phylink *phylink;
+> @@ -2867,9 +2868,10 @@ static int mtk_add_mac(struct mtk_eth *eth, struct device_node *np)
+>  		return -EINVAL;
+>  	}
+>  
+> -	eth->netdev[id] = alloc_etherdev(sizeof(*mac));
+> +	eth->netdev[id] = alloc_netdev(sizeof(*mac), label ? label : "eth%d",
+> +				       NET_NAME_UNKNOWN, ether_setup);
 
-Seems okay to me.
+'label' is generally supposed to correspond to the sticker for the 
+device connector for a human to id. I can't really tell if that's the 
+case here. I don't see how 'gmacX' vs. 'ethX' maps to DSA master vs. 
+slave.
 
-> [1] https://en.wikipedia.org/wiki/Per_mille
-> 
->  .../bindings/iio/cdc/adi,ad7746.yaml          | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/cdc/adi,ad7746.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/cdc/adi,ad7746.yaml b/Documentation/devicetree/bindings/iio/cdc/adi,ad7746.yaml
-> new file mode 100644
-> index 000000000000..a2a7eee674ba
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/cdc/adi,ad7746.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/cdc/adi,ad7746.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: AD7746 24-Bit Capacitance-to-Digital Converter with Temperature Sensor
-> +
-> +maintainers:
-> +  - Michael Hennerich <michael.hennerich@analog.com>
-> +
-> +description: |
-> +  AD7746 24-Bit Capacitance-to-Digital Converter with Temperature Sensor
-> +
-> +  Specifications about the part can be found at:
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7291.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad7745
-> +      - adi,ad7746
-> +      - adi,ad7747
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  adi,excitation-vdd-permille:
-> +    description: |
-> +      Set VDD per mille to be used as the excitation voltage.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [125, 250, 375, 500]
-> +
-> +  adi,exca-output-en:
-> +    description: Enables the EXCA pin as the excitation output.
-> +    type: boolean
-> +
-> +  adi,exca-output-invert:
-> +    description: Inverts the excitation output in the EXCA pin.
-> +    type: boolean
+I don't think this should be handled within a specific driver either. If 
+we're going to have a way to name things, then fix it in 
+alloc_etherdev().
 
-'invert' assumes I know what the non-inverted signal is. Sometimes that 
-makes sense, but if you can define in terms of the inverse that would be 
-better. For example, for a normally active low signal, name the property 
-'foo-active-high'.
+It can also be argued that device naming for userspace is a userspace 
+(udev) problem. 
 
-> +
-> +  adi,excb-output-en:
-> +    description: Enables the EXCB pin as the excitation output.
-> +    type: boolean
-> +
-> +  adi,excb-output-invert:
-> +    description: Inverts the excitation output in the EXCB pin.
-> +    type: boolean
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      ad7746: cdc@48 {
-> +        compatible = "adi,ad7746";
-> +        reg = <0x48>;
-> +        adi,excitation-vdd-permille = <125>;
-> +
-> +        adi,exca-output-en;
-> +        adi,exca-output-invert;
-> +        adi,excb-output-en;
-> +        adi,excb-output-invert;
-> +      };
-> +    };
-> +...
-> -- 
-> 2.31.1
-> 
+Rob
