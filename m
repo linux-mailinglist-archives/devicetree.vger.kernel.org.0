@@ -2,168 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51A5A36597E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 15:06:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EF99365998
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 15:13:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231718AbhDTNGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 09:06:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57832 "EHLO mail.kernel.org"
+        id S231526AbhDTNOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 09:14:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60270 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230408AbhDTNGy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Apr 2021 09:06:54 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DD680613CE
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 13:06:22 +0000 (UTC)
+        id S231313AbhDTNOU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Apr 2021 09:14:20 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DCB21613C3;
+        Tue, 20 Apr 2021 13:13:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618923982;
-        bh=CfqZXCjLwBP0f+W+AaxrMRRsIoRAmM/sskwxdAjlPg4=;
+        s=k20201202; t=1618924428;
+        bh=5ngbTZUuRjFnbOZ5YDzcHl+LD9EANqvUFI4zXthVZ3c=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Fl2BhKlmGiK4e6nKiiMFrM0Am2XibPm4gRwNRXM4/rt/hVLsNNHFFbLtAts6K6VEA
-         XQhRMvgbHpod0W3WZWrsojXlpLOKgoSIS5BkD0c/EchX/hFb6tnL24D0SgSdbzQwfO
-         PE7iHjNRHfJoA4SWBbLwKrO/OdAq/qhUxFlMKlF4pNg3j+6+OCdVDc9Bl9IKBk4yV9
-         6Y2cWVUsp2pDXunfMJN0Eq9xF2iatkemFq1l0pcEF4RtFGrzQQ1kDs/hseaSw+0qJ2
-         1upPGdMSHOXKIbVrDDcyKqSSpORq9yfflO0Brjyf31HjasrYA2GKbRQYYTy0u8dLcw
-         FqLX1mHvWq3pg==
-Received: by mail-qk1-f170.google.com with SMTP id 8so5425179qkv.8
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 06:06:22 -0700 (PDT)
-X-Gm-Message-State: AOAM532msUTYD0XCdC0x690GvCHXrtNtXM1wz+ENb9YrpR1O5DoI2huR
-        jGT9coKp9FprXif525XPXcD6VCUpS53C1DNbaA==
-X-Google-Smtp-Source: ABdhPJyxRmeQRtP34kVgJ1VcAt/5/6Rr319QqoBi2Fg/d6DssQfy2PWRrBwLl1DEPzI5MZkaE9xhv2zuR2uj7FpF9lM=
-X-Received: by 2002:a05:620a:1118:: with SMTP id o24mr9366188qkk.128.1618923981791;
- Tue, 20 Apr 2021 06:06:21 -0700 (PDT)
+        b=Gz/e+o12WxLzV3ekArfmfo20J6qj9dTLaUY7ZAg9u1OIEnukYqc1aVsHHI1iQAial
+         ankcIIu9pN7y/rdVRjeGM15yDzPl8KS+yS9IKmPy2DwHMiexBerA755IlnTX48DlPq
+         2UjytdFvLT50E37InemU1Tu22R/7YkV3NIzF3ECpC51idKLDWOCt6qtpzza4OfTSpk
+         v7MVDHBS+ObZj1zgVF+IcNM8QeC+T37Q5HzLa6TkZTMzpY8eWVyLE7iyOmNxDlBXi1
+         AvDg3kzJXs26eovH0qTnGOrpkxZc8j+6TSeiLV3mM/O8by7LXLhOkPAKGm8VL/Ffro
+         gj/zsalLiNdQQ==
+Received: by mail-qk1-f175.google.com with SMTP id t17so10731737qkg.4;
+        Tue, 20 Apr 2021 06:13:48 -0700 (PDT)
+X-Gm-Message-State: AOAM53158r6agaca+BqPW276xAIaRBZuzR6bQmvjesiUO9gz25s+WZ29
+        9EhqdUTT/IStDzEKte/vULYQQHdu8Lndsdgd5Q==
+X-Google-Smtp-Source: ABdhPJwjtWC1cE3ElIyzvn6w+ghuEwSU5cAamZB/FX4d8iNqmT6pm4fi4UvG2KW0N9SXxdsqQeBiuQpdEII07+6JSdE=
+X-Received: by 2002:a05:620a:1409:: with SMTP id d9mr814132qkj.464.1618924427919;
+ Tue, 20 Apr 2021 06:13:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210415191437.20212-1-nramas@linux.microsoft.com>
- <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
- <87eefag241.fsf@linkitivity.dja.id.au> <87tuo6eh0j.fsf@mpe.ellerman.id.au>
- <2817d674-d420-580f-a0c1-b842da915a80@linux.microsoft.com>
- <87pmypdf93.fsf@mpe.ellerman.id.au> <20210420050015.GA1959@kadam> <b84c76d6-2be8-77a4-3c0f-ad8657c0e508@linux.microsoft.com>
-In-Reply-To: <b84c76d6-2be8-77a4-3c0f-ad8657c0e508@linux.microsoft.com>
+References: <20210325090026.8843-1-kishon@ti.com> <20210325090026.8843-2-kishon@ti.com>
+ <20210325233812.GA1943834@robh.at.kernel.org> <985bd950-7bdf-d9b5-0a89-c05a56739c68@ti.com>
+In-Reply-To: <985bd950-7bdf-d9b5-0a89-c05a56739c68@ti.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 20 Apr 2021 08:06:10 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLS9Wu_+_S-2wwMb3Chd_8RYAtFe_uLh5tjj_sAkTgRJA@mail.gmail.com>
-Message-ID: <CAL_JsqLS9Wu_+_S-2wwMb3Chd_8RYAtFe_uLh5tjj_sAkTgRJA@mail.gmail.com>
-Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in elf64_load()
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Cc:     Dan Carpenter <dan.carpenter@oracle.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Daniel Axtens <dja@axtens.net>, devicetree@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        kbuild-all@lists.01.org,
-        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
-        kbuild test robot <lkp@intel.com>
+Date:   Tue, 20 Apr 2021 08:13:36 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ+LLLxOgb_cXNKSzYToWArnPESHDRKjaezn1bh2yBMFA@mail.gmail.com>
+Message-ID: <CAL_JsqJ+LLLxOgb_cXNKSzYToWArnPESHDRKjaezn1bh2yBMFA@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: PCI: ti,am65: Add PCIe host mode
+ dt-bindings for TI's AM65 SoC
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Marc Zyngier <maz@kernel.org>, PCI <linux-pci@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 20, 2021 at 12:20 AM Lakshmi Ramasubramanian
-<nramas@linux.microsoft.com> wrote:
+On Tue, Mar 30, 2021 at 4:29 AM Kishon Vijay Abraham I <kishon@ti.com> wrote:
 >
-> On 4/19/21 10:00 PM, Dan Carpenter wrote:
-> > On Tue, Apr 20, 2021 at 09:30:16AM +1000, Michael Ellerman wrote:
-> >> Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
-> >>> On 4/16/21 2:05 AM, Michael Ellerman wrote:
-> >>>
-> >>>> Daniel Axtens <dja@axtens.net> writes:
-> >>>>>> On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
-> >>>>>>
-> >>>>>> Sorry - missed copying device-tree and powerpc mailing lists.
-> >>>>>>
-> >>>>>>> There are a few "goto out;" statements before the local variable "fdt"
-> >>>>>>> is initialized through the call to of_kexec_alloc_and_setup_fdt() in
-> >>>>>>> elf64_load(). This will result in an uninitialized "fdt" being passed
-> >>>>>>> to kvfree() in this function if there is an error before the call to
-> >>>>>>> of_kexec_alloc_and_setup_fdt().
-> >>>>>>>
-> >>>>>>> Initialize the local variable "fdt" to NULL.
-> >>>>>>>
-> >>>>> I'm a huge fan of initialising local variables! But I'm struggling to
-> >>>>> find the code path that will lead to an uninit fdt being returned...
-> >>>>>
-> >>>>> The out label reads in part:
-> >>>>>
-> >>>>>   /* Make kimage_file_post_load_cleanup free the fdt buffer for us. */
-> >>>>>   return ret ? ERR_PTR(ret) : fdt;
-> >>>>>
-> >>>>> As far as I can tell, any time we get a non-zero ret, we're going to
-> >>>>> return an error pointer rather than the uninitialised value...
-> >>>
-> >>> As Dan pointed out, the new code is in linux-next.
-> >>>
-> >>> I have copied the new one below - the function doesn't return fdt, but
-> >>> instead sets it in the arch specific field (please see the link to the
-> >>> updated elf_64.c below).
-> >>>
-> >>> https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/tree/arch/powerpc/kexec/elf_64.c?h=for-next
-> >>>
-> >>>>>
-> >>>>> (btw, it does look like we might leak fdt if we have an error after we
-> >>>>> successfully kmalloc it.)
-> >>>>>
-> >>>>> Am I missing something? Can you link to the report for the kernel test
-> >>>>> robot or from Dan?
-> >>>
-> >>> /*
-> >>>            * Once FDT buffer has been successfully passed to
-> >>> kexec_add_buffer(),
-> >>>            * the FDT buffer address is saved in image->arch.fdt. In that
-> >>> case,
-> >>>            * the memory cannot be freed here in case of any other error.
-> >>>            */
-> >>>           if (ret && !image->arch.fdt)
-> >>>                   kvfree(fdt);
-> >>>
-> >>>           return ret ? ERR_PTR(ret) : NULL;
-> >>>
-> >>> In case of an error, the memory allocated for fdt is freed unless it has
-> >>> already been passed to kexec_add_buffer().
+> Hi Rob,
+>
+> On 26/03/21 5:08 am, Rob Herring wrote:
+> > On Thu, Mar 25, 2021 at 02:30:21PM +0530, Kishon Vijay Abraham I wrote:
+> >> Add PCIe host mode dt-bindings for TI's AM65 SoC.
 > >>
-> >> It feels like the root of the problem is that the kvfree of fdt is in
-> >> the wrong place. It's only allocated later in the function, so the error
-> >> path should reflect that. Something like the patch below.
+> >> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> >> ---
+> >>  .../bindings/pci/ti,am65-pci-host.yaml        | 111 ++++++++++++++++++
+> >>  1 file changed, 111 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
 > >>
-> >> cheers
-> >>
-> >>
-> >> diff --git a/arch/powerpc/kexec/elf_64.c b/arch/powerpc/kexec/elf_64.c
-> >> index 5a569bb51349..02662e72c53d 100644
-> >> --- a/arch/powerpc/kexec/elf_64.c
-> >> +++ b/arch/powerpc/kexec/elf_64.c
-> >> @@ -114,7 +114,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
-> >>      ret = setup_new_fdt_ppc64(image, fdt, initrd_load_addr,
-> >>                                initrd_len, cmdline);
-> >>      if (ret)
-> >> -            goto out;
-> >> +            goto out_free_fdt;
-> >>
-> >>      fdt_pack(fdt);
-> >>
-> >> @@ -125,7 +125,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
-> >>      kbuf.mem = KEXEC_BUF_MEM_UNKNOWN;
-> >>      ret = kexec_add_buffer(&kbuf);
-> >>      if (ret)
-> >> -            goto out;
-> >> +            goto out_free_fdt;
-> >>
-> >>      /* FDT will be freed in arch_kimage_file_post_load_cleanup */
-> >>      image->arch.fdt = fdt;
-> >> @@ -140,18 +140,14 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
-> >>      if (ret)
-> >>              pr_err("Error setting up the purgatory.\n");
-> >>
-> >> +    goto out;
+> >> diff --git a/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
+> >> new file mode 100644
+> >> index 000000000000..b77e492886fa
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
+> >> @@ -0,0 +1,111 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +# Copyright (C) 2021 Texas Instruments Incorporated - http://www.ti.com/
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: "http://devicetree.org/schemas/pci/ti,am65-pci-host.yaml#"
+> >> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> >> +
+> >> +title: TI AM65 PCI Host
+> >> +
+> >> +maintainers:
+> >> +  - Kishon Vijay Abraham I <kishon@ti.com>
+> >> +
+> >> +allOf:
+> >> +  - $ref: /schemas/pci/pci-bus.yaml#
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    enum:
+> >> +      - ti,am654-pcie-rc
+> >> +
+> >> +  reg:
+> >> +    maxItems: 4
+> >> +
+> >> +  reg-names:
+> >> +    items:
+> >> +      - const: app
+> >> +      - const: dbics
 > >
-> > This will leak.  It would need to be something like:
-> >
-> >       if (ret) {
-> >               pr_err("Error setting up the purgatory.\n");
-> >               goto out_free_fdt;
-> >       }
-> Once "fdt" buffer is successfully passed to kexec_add_buffer() it cannot
-> be freed here - it will be freed when the kexec cleanup function is called.
+> > Please use 'dbi' like everyone else if this isn't shared with the other
+> > TI DW PCI bindings.
+>
+> I'm just converting existing binding in pci-keystone.txt to yaml.
+> Documentation/devicetree/bindings/pci/pci-keystone.txt
+>
+> Device tree for AM65 is also already in the upstream kernel.
+>
+> I can try to remove the am65 specific part from pci-keystone.txt
 
-That may be the case currently, but really if a function returns an
-error it should have undone anything it did like memory allocations. I
-don't think you should do that to fix this issue, but it would be a
-good clean-up.
+Can you remove pci-keystone.txt entirely. That's what 'converting' means.
 
 Rob
