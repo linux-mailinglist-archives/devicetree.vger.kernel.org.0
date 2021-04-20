@@ -2,80 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D3D4365598
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 11:39:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB29F3655A7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 11:44:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231479AbhDTJjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 05:39:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43558 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229878AbhDTJjq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 05:39:46 -0400
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E638CC06174A;
-        Tue, 20 Apr 2021 02:39:15 -0700 (PDT)
-Received: by mail-il1-x135.google.com with SMTP id c4so4964028ilq.9;
-        Tue, 20 Apr 2021 02:39:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=Jv5XlEMdRtVgenqiZFyWIe5z8G9lvh79SljGhJQ5iIM=;
-        b=H1nzBXQp6OjNHpXgu51le5wMfd2pwcAFiJP0R+kp5IrQmMCiqKK2i4wp4uvNwA8mkC
-         1i7NbMpztGGoUmqQoAA9rP+9NWJvSWy/SektYHoF9qYltXVWOYX/rxOmuxSVTgkV3WoW
-         qkXEW67a+ypUFeFuVOeNhs33INPBiFM4NmkkvRs+O1FKTEmUg83ZGF3rlb9EpYSF4AO0
-         xm/6BqFwFgd/I6pmu1iFGIkEeB5Iyli+6K4kOH4qtpju+4JkOEFbd2Agk7rUFekhIfwe
-         +82a5WBdZ61OBO21WqOsNVCMi3blttOJUs3g2yu+JxkISD6FqZ5Od67qtYP3oYTaVEQn
-         5h5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=Jv5XlEMdRtVgenqiZFyWIe5z8G9lvh79SljGhJQ5iIM=;
-        b=NvS3t6rADmP8dJQdL273tQTWaUpXvXhVp5Rj7hZGFRRRU2125R2Q0Dih9xhLga5AYb
-         ykkd1rwW0LXIEk9ASg0Adr2NoyWuSDxU9ylPTLSLUvSmDW8W6xbdvk5TtU7m2/HjiiRd
-         P+2hOEltNZOehNe905VpIm7vhVZA/KAnfevCLOanz74I1MfOMex3xU+SFmZyIxaB2MwA
-         15Hhz1+4HHI086iBeqQTkoOQHYAcCllYZpsjkjDVaaILj6Wtawr9ujbgNpb7+4VgVDpO
-         PhCFlRC0b7lOgbHrU9V+gFVKDgBJJOl7kTLCPUYfEKTYmNzzW7Kl/Hu74ZxEq0gaV9ai
-         VVpA==
-X-Gm-Message-State: AOAM530rPrM8lmVGM/Hb55+brY+rWaFmYpwRgZWPArfWkmlrWfraKkGl
-        21Cd7q9Xm4pCBtOAP5+KtQ2GKqUUR35xH0Psl9ow7Hm1vKE=
-X-Google-Smtp-Source: ABdhPJzBwwnQt1AiH7nyI9wz4liUzDDs9HQBAr7UqNPeVpKHVHWQUgcdY6OYQnSV6wAZpbYPcHG8gWn8IwNlbBOiVr8=
-X-Received: by 2002:a92:c78a:: with SMTP id c10mr21311323ilk.64.1618911555324;
- Tue, 20 Apr 2021 02:39:15 -0700 (PDT)
-MIME-Version: 1.0
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Date:   Tue, 20 Apr 2021 11:39:04 +0200
-Message-ID: <CAKXUXMyNf4xCF2mWr878MKDa0-8svaiR5GToQyoEVM4FbmfJ8w@mail.gmail.com>
-Subject: Invalid License ID: GPL-3.0 for arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-To:     Qing Zhang <zhangqing@loongson.cn>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        id S229937AbhDTJoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 05:44:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37786 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230511AbhDTJoh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Apr 2021 05:44:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7AF81610A1;
+        Tue, 20 Apr 2021 09:44:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618911845;
+        bh=amcldydssZ0SAWDeOp2/A7nVn5OVi/p4nIOw88gtbDc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=c3faew728/ChhgCkd8dNWeWMB0T1xKZYqaoqNMLcvCxqfDeUfRVR6zNi7N0nMT5ov
+         MrRKcW6YiniUq6RIRzGKEMWVooLThhb5HN26QqqsWKEwaJ0FASGRjorxYYiJ65hTEM
+         HIKN70JWTC/YekCAqVvRPMOBkqi5Gm4TV7tFDeF8LLQaA3oOcyfXhYVNvXKWUYQe03
+         GwfD+mMjjV/W6WZMVT5Dfv3ozFv3/ezvTSipYhKPFYOkym8R64SF7De+TvDp2WK2my
+         56Wdp0FOI48/IXJ/wl2q0ridBMq4nx+fT0Ltyl/KpvkoAxmPQQj5iwWNRxFwDZu+A+
+         IosE53sPB3P0Q==
+Received: by pali.im (Postfix)
+        id 849A4A2D; Tue, 20 Apr 2021 11:44:02 +0200 (CEST)
+Date:   Tue, 20 Apr 2021 11:44:02 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Marc Zyngier <maz@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc:     linux-spdx@vger.kernel.org,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, Ming Wang <wangming01@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, youlin.pei@mediatek.com,
+        chuanjia.liu@mediatek.com, qizhong.cheng@mediatek.com,
+        sin_jieyang@mediatek.com, drinkcat@chromium.org,
+        Rex-BC.Chen@mediatek.com, anson.chuang@mediatek.com,
+        Krzysztof Wilczyski <kw@linux.com>
+Subject: Re: [PATCH v10 5/7] PCI: mediatek-gen3: Add MSI support
+Message-ID: <20210420094402.hwdkbspl5wu4rtex@pali>
+References: <20210420061723.989-1-jianjun.wang@mediatek.com>
+ <20210420061723.989-6-jianjun.wang@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210420061723.989-6-jianjun.wang@mediatek.com>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Qing,
+Hello!
 
-./scripts/spdxcheck.py reports:
+On Tuesday 20 April 2021 14:17:21 Jianjun Wang wrote:
+> +static void mtk_pcie_enable_msi(struct mtk_pcie_port *port)
+> +{
+> +	int i;
+> +	u32 val;
+> +
+> +	for (i = 0; i < PCIE_MSI_SET_NUM; i++) {
+> +		struct mtk_msi_set *msi_set = &port->msi_sets[i];
+> +
+> +		msi_set->base = port->base + PCIE_MSI_SET_BASE_REG +
+> +				i * PCIE_MSI_SET_OFFSET;
+> +		msi_set->msg_addr = port->reg_base + PCIE_MSI_SET_BASE_REG +
+> +				    i * PCIE_MSI_SET_OFFSET;
+> +
+> +		/* Configure the MSI capture address */
+> +		writel_relaxed(lower_32_bits(msi_set->msg_addr), msi_set->base);
+> +		writel_relaxed(upper_32_bits(msi_set->msg_addr),
+> +			       port->base + PCIE_MSI_SET_ADDR_HI_BASE +
+> +			       i * PCIE_MSI_SET_ADDR_HI_OFFSET);
 
-arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi: 1:28 Invalid
-License ID: GPL-3.0
+This looks like as setting MSI doorbell address to MSI doorbell address.
 
-You have contributed this file with commit b1a792601f26 ("MIPS:
-Loongson64: DeviceTree for Loongson-2K1000") to the current
-linux-next.
+> +static void mtk_compose_msi_msg(struct irq_data *data, struct msi_msg *msg)
+> +{
+> +	struct mtk_msi_set *msi_set = irq_data_get_irq_chip_data(data);
+> +	struct mtk_pcie_port *port = data->domain->host_data;
+> +	unsigned long hwirq;
+> +
+> +	hwirq =	data->hwirq % PCIE_MSI_IRQS_PER_SET;
+> +
+> +	msg->address_hi = upper_32_bits(msi_set->msg_addr);
+> +	msg->address_lo = lower_32_bits(msi_set->msg_addr);
+> +	msg->data = hwirq;
+> +	dev_dbg(port->dev, "msi#%#lx address_hi %#x address_lo %#x data %d\n",
+> +		hwirq, msg->address_hi, msg->address_lo, msg->data);
 
-Do you intend to contribute this under this non-default license
-(GPL-3.0) for the kernel project or did you simply mean the default
-license GPL-2.0?
+... which is later used in compose_msi_msg().
 
-Best regards,
+Marc in some other patches for other pci controller drivers changed this
+address to just main "port" structure. It simplified implementations and
+also avoided need to declare additional member "msg_addr".
 
-Lukas
+Marc, would it be possible to simplify it also for this driver and just
+set msg_addr to virt_to_phys(port)?
