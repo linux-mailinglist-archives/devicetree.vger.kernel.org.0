@@ -2,192 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2342E3651C6
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 07:20:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FAED3651E0
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 07:45:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229577AbhDTFUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 01:20:53 -0400
-Received: from linux.microsoft.com ([13.77.154.182]:39744 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbhDTFUw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 01:20:52 -0400
-Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 9AD9520B8001;
-        Mon, 19 Apr 2021 22:20:20 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9AD9520B8001
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1618896020;
-        bh=aRBA6FfHHK8DUXurr79VpD5khf52ADOGAt/z6uwGduE=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=ZmJxG2Ln1dU115nL8LgzhlnlMUetr4GlEku/w0IgKXMVbtw43U9lP1k6VQYctS9mc
-         eXKMoTENBa5HPFsiNTYSRq2zDvWR3Nzv1UsS1kKZirVBAIQZCye2/SvM0stqko+7Xs
-         mcUGQY2v2PDw8dnBzsyeOQgEN650A9k4u3UrPyjY=
-Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in
- elf64_load()
-To:     Dan Carpenter <dan.carpenter@oracle.com>,
-        Michael Ellerman <mpe@ellerman.id.au>
-Cc:     Daniel Axtens <dja@axtens.net>, robh@kernel.org,
-        devicetree@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        kbuild-all@lists.01.org, bauerman@linux.ibm.com, lkp@intel.com
-References: <20210415191437.20212-1-nramas@linux.microsoft.com>
- <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
- <87eefag241.fsf@linkitivity.dja.id.au> <87tuo6eh0j.fsf@mpe.ellerman.id.au>
- <2817d674-d420-580f-a0c1-b842da915a80@linux.microsoft.com>
- <87pmypdf93.fsf@mpe.ellerman.id.au> <20210420050015.GA1959@kadam>
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Message-ID: <b84c76d6-2be8-77a4-3c0f-ad8657c0e508@linux.microsoft.com>
-Date:   Mon, 19 Apr 2021 22:20:20 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S229763AbhDTFpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 01:45:46 -0400
+Received: from mail-eopbgr80055.outbound.protection.outlook.com ([40.107.8.55]:13540
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229450AbhDTFpq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Apr 2021 01:45:46 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=c+1BCzEcMRMMtL37nGWp2ntop0mDaruML8MnOGCaaULtghooBRDpAoF4oREM2ERmScSGrIRJZgkjpvgZuK/VVD0XWLBGM6qE12Ul8wNcTuei9QGz3znkYaVi65R5GTCDAs9bUzfwERFlIFS36w6FIZlP55uXCAeDf71umOnH+uMhYuruILYJRVz1Lf+dGiMxYlSdES10aDSxG2H9MoQOBW/if5s5A5+8uLsYhfmwr3MqL7u88TCe0YHK/i//SkS1RzylcwVIs4w8+JZAWnwBZFCKb/XbgYPEaRK0z06+Awe4/Myx4f+sHGa7IU/uQMqfbJenLPUakJqWuwU5ZLA8oA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/yA3ZAT6rdUozt9Xi14XeoT7pwKdHOiv2qFdUf27x84=;
+ b=JSrcSYXpNdRl7eDB+TByPy2DRQiCxW0QrY8pQ9pzLNH0nTbM+GXa3L/JNEqYI0NXdLXAKf1+HSqOQrdNPIlViaAzcrKd4yk8Cxp0gYiXmrZDk/efBd6G6ro8o86QXFCrKsJ3k7DbTKCfkXUMzqM8zxRfP4RR6ROFNpq2vmJsrBEzg6ikJNpCxZMyzeMLPuDKsWQGbBoYZKg2ILf0mhVxXrh66WSKbs2+RBio2W9Sa3jaUC723Sza2qX+Q3SlZKrTH0eOTYhYAcSLSrd0g8mrKyVSfU7OpOm2uwcxy+PzFzGdMya/gN3fFwjUUGFgRxyrzPRWDdPpSIHS1IejAyLpiw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/yA3ZAT6rdUozt9Xi14XeoT7pwKdHOiv2qFdUf27x84=;
+ b=elVQz5ro/yjqPqWMIYZwjScvEDpKxsU8tOuKRNb6zqRyn2wY8mlO7C58foCxpCrukIo+CVxOHw/kAxpriUO7B7sawo2ogpNSCehGo4+v7CpUM0sRIpq3Pxwl/ZjmxR8oxw1YcMPRCWGHr+TQ6VVnsNkTx3AmKJkW5kuA2KGHFrc=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from DBBPR04MB7930.eurprd04.prod.outlook.com (2603:10a6:10:1ea::12)
+ by DB6PR04MB3013.eurprd04.prod.outlook.com (2603:10a6:6:4::28) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4042.16; Tue, 20 Apr 2021 05:45:12 +0000
+Received: from DBBPR04MB7930.eurprd04.prod.outlook.com
+ ([fe80::ddbd:8680:c613:2274]) by DBBPR04MB7930.eurprd04.prod.outlook.com
+ ([fe80::ddbd:8680:c613:2274%5]) with mapi id 15.20.4042.024; Tue, 20 Apr 2021
+ 05:45:11 +0000
+From:   Jacky Bai <ping.bai@nxp.com>
+To:     shawnguo@kernel.org, robh+dt@kernel.org, abel.vesa@nxp.com,
+        s.hauer@pengutronix.de, sboyd@kernel.org
+Cc:     festevam@gmail.com, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-imx@nxp.com
+Subject: [PATCH v2 1/2] arm64: dts: imx8mp: Remove the reference to audio ipg clock on imx8mp
+Date:   Tue, 20 Apr 2021 13:54:52 +0800
+Message-Id: <20210420055453.1235297-1-ping.bai@nxp.com>
+X-Mailer: git-send-email 2.26.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.71]
+X-ClientProxiedBy: HK2PR03CA0045.apcprd03.prod.outlook.com
+ (2603:1096:202:17::15) To DBBPR04MB7930.eurprd04.prod.outlook.com
+ (2603:10a6:10:1ea::12)
 MIME-Version: 1.0
-In-Reply-To: <20210420050015.GA1959@kadam>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.71) by HK2PR03CA0045.apcprd03.prod.outlook.com (2603:1096:202:17::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.6 via Frontend Transport; Tue, 20 Apr 2021 05:45:08 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 98d97b7c-baad-44ea-dd29-08d903bf76c2
+X-MS-TrafficTypeDiagnostic: DB6PR04MB3013:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB6PR04MB3013F16399AC243A969940FE87489@DB6PR04MB3013.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2803;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Bx3J7IrzQm9D/ywEZDHi4a2uucZsllCYQfF305Z9KXr4Quot3ojtkcTHyrVx1DiUmtclQDU2QdnbI6Dv+G6EDDlnwPYbnqpSaJ79oIJ3S41UesRsw6t07QuviFxEKpf8MtuuljDxvXnHWOK4hhsXEjVLkVuDqsAdLTxhcLaoD36bZfOX7cwoLmn8J7SzMylgBKPx4x/7KDzTuMXAr7NaDrfFTeYV0j3zlpGM8aCTsP4DosLVDXRhtAMqliS2uH1XcfSsG7HOE/0bm7puBb6RIO+9LqBAgwE6Jcu/4IvctneFd6stdzMLd12qXFS3DN44pVuYjvaGs70Y5PEBmzg0oiGCZjJQvARt5/PQ/H7asYCtpESFQBB0JAeUpyDciWw1cYr7IYPKJK+XlQElEqr+csKkmnUw2nlBFc4V6Mgd2ooFpLaNRisdowD4vtU95IbY19YJdJZPnnnU2Dur4fwhBJc6kGh58oMzvr4KDo/YOEwuVMp3kUtDzYpoe2LzTE4RtfOP/7FvHOR1NMHchCzLVH8gZem9jjRqDss982Hd6H0mPVzQPtVOtFFpjigb3Kc6OxRBS4ImWTDu+KWYwglS1vn8KXbEhwNYHLmQ3IXl56NfkWu28vJt4/MzMUcr3nxdH1La+4ZvNO/ig0GUjrq0AaZokyXgLaCmHR1dsyyyF52bK627O27mcdwskAC/uQ2O0soTNHdmz2spdEcEIjJlig==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7930.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(376002)(346002)(366004)(396003)(136003)(186003)(1076003)(16526019)(38100700002)(52116002)(26005)(316002)(38350700002)(86362001)(6506007)(83380400001)(956004)(6486002)(2616005)(6666004)(66556008)(66476007)(8676002)(36756003)(6512007)(4326008)(5660300002)(2906002)(8936002)(66946007)(4744005)(478600001)(69590400013)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?s/T7HKAtYtoeyhQEgigEha21v8WrLroohFZAb8TcQFK2l9ixLb9At96frSmL?=
+ =?us-ascii?Q?GMt05iyQ05hV0oWpXxGWrq1Zxyhrj1mov/p/ON417FECvklgASXn+iCkzx4p?=
+ =?us-ascii?Q?qIAJttcpVlFp2fMZzatElD9QvnzpLkCweerwyPbPcZIWHVixXlWw4xOZl6bv?=
+ =?us-ascii?Q?jZ2Olz8udhSoKYHes9UyOf8fSRA0bVDLcUKGWOKeU/gk37ONJ6iODO/FqcOH?=
+ =?us-ascii?Q?MvgS3HQ+1l4d2yyLC8Pf9TZHEymPzhim9xFT2LM+Xb7ngASoSp7hgUDRsOsl?=
+ =?us-ascii?Q?oDVQkyNZLAicJx0rREaIrVo0jPnxugyD49vWBqB9B0sIGj0Gm7sW/8Zk0Nv3?=
+ =?us-ascii?Q?XjhW3AXrgBGUpXU4YfAwScnJSYgHUw3+FXWa38vDMrhTAtxmnoXAHDQqPQaE?=
+ =?us-ascii?Q?lIROJtb9jUaDnD/nZv8cVkFaVkdAct9pGKM65UbSJkjrAeb+FMoxjoXVTxoh?=
+ =?us-ascii?Q?NKs7IWxTkTOJ620ZMJl+DpGkl/e42HAhwc1TEs0zw9+7dv3i/UvIKGO34sGT?=
+ =?us-ascii?Q?D0RtXifQ2D5/3ZdWFrYXZ/KTK1TMsFNqpYwT+Qow2yRb/9OQ/1+VM17F6y9T?=
+ =?us-ascii?Q?ihCTkLrhx5SvhvwmEuBUzTeI6SKV1QMScWX+acF5Q1oQlcKrFuDF6gEw9Rk3?=
+ =?us-ascii?Q?7ic+Er1HQ06T9zQ3ymCLWAs/8aax4dGdqm2j8EoghPb9W4SvuLeqmUTooziD?=
+ =?us-ascii?Q?EkVClnxNaUeOcm3P9VNbaHrN6y6b3WzWAQPBQIDgT0QG4ztHKQEmKpTMAv+O?=
+ =?us-ascii?Q?qruHuMUWSqX17yodu36uF8ee20k5duHP7ep5tzi2ERYL9AE6m//aTa0Jh1Gh?=
+ =?us-ascii?Q?+e+CvH00jDl66cyhx/0WKsOlGAvSnvHc6o/LDw9IYOV2KBYZK2wxnVRLDMmG?=
+ =?us-ascii?Q?kUpHpXHCiyCj8WQ3wFHzzjlPenw/U4ZQw3bBdChV9Nx+V/4IFNFuTA7Xt59i?=
+ =?us-ascii?Q?qE3OUWZ6IgZCOdC76C7jCZ6vhJCKOecFMch7a/jjDFSo9JVcBMqOtWegPPKi?=
+ =?us-ascii?Q?eGcqiIJO+HbtsxORbfJvTjbcideJtw0/yltbWw/BoNlo6654xVrj4ihSQU+v?=
+ =?us-ascii?Q?oPmLnTEwVhtLKn3Jx+XedPwxJSxrsZP/8c1ZWS/pTOgSQKZIUPlR3+pv1WnJ?=
+ =?us-ascii?Q?XYrpCx7entKuGsrSXuUmxNc7Bi6hBeIfX3nFusyDWcLuNzJpeOArSA39dBnm?=
+ =?us-ascii?Q?6aAptOqcV6OEpjS7pZwbNP3CAsfnyPKgTr1UgHoQIkd0qbALbPawjmnIFIyI?=
+ =?us-ascii?Q?7Gl1uKNpD/7u09ka853nXhlDtUHBeRcaN10oBJebboskFu2HS7B66Pw0JWWs?=
+ =?us-ascii?Q?Y5qBUsXKV06kE/P4dU1fJIV6?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98d97b7c-baad-44ea-dd29-08d903bf76c2
+X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7930.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2021 05:45:11.9388
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1GgRiKCMz4PThbadBKDdXg4DtT4D8SMrnNnlW63LAeC0ytIbuuJKeDBy5JHWMQ3aRhQbX/A9bi5l7AvQoAKWGw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR04MB3013
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/19/21 10:00 PM, Dan Carpenter wrote:
-> On Tue, Apr 20, 2021 at 09:30:16AM +1000, Michael Ellerman wrote:
->> Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
->>> On 4/16/21 2:05 AM, Michael Ellerman wrote:
->>>
->>>> Daniel Axtens <dja@axtens.net> writes:
->>>>>> On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
->>>>>>
->>>>>> Sorry - missed copying device-tree and powerpc mailing lists.
->>>>>>
->>>>>>> There are a few "goto out;" statements before the local variable "fdt"
->>>>>>> is initialized through the call to of_kexec_alloc_and_setup_fdt() in
->>>>>>> elf64_load(). This will result in an uninitialized "fdt" being passed
->>>>>>> to kvfree() in this function if there is an error before the call to
->>>>>>> of_kexec_alloc_and_setup_fdt().
->>>>>>>
->>>>>>> Initialize the local variable "fdt" to NULL.
->>>>>>>
->>>>> I'm a huge fan of initialising local variables! But I'm struggling to
->>>>> find the code path that will lead to an uninit fdt being returned...
->>>>>
->>>>> The out label reads in part:
->>>>>
->>>>> 	/* Make kimage_file_post_load_cleanup free the fdt buffer for us. */
->>>>> 	return ret ? ERR_PTR(ret) : fdt;
->>>>>
->>>>> As far as I can tell, any time we get a non-zero ret, we're going to
->>>>> return an error pointer rather than the uninitialised value...
->>>
->>> As Dan pointed out, the new code is in linux-next.
->>>
->>> I have copied the new one below - the function doesn't return fdt, but
->>> instead sets it in the arch specific field (please see the link to the
->>> updated elf_64.c below).
->>>
->>> https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/tree/arch/powerpc/kexec/elf_64.c?h=for-next
->>>
->>>>>
->>>>> (btw, it does look like we might leak fdt if we have an error after we
->>>>> successfully kmalloc it.)
->>>>>
->>>>> Am I missing something? Can you link to the report for the kernel test
->>>>> robot or from Dan?
->>>
->>> /*
->>>            * Once FDT buffer has been successfully passed to
->>> kexec_add_buffer(),
->>>            * the FDT buffer address is saved in image->arch.fdt. In that
->>> case,
->>>            * the memory cannot be freed here in case of any other error.
->>>            */
->>>           if (ret && !image->arch.fdt)
->>>                   kvfree(fdt);
->>>
->>>           return ret ? ERR_PTR(ret) : NULL;
->>>
->>> In case of an error, the memory allocated for fdt is freed unless it has
->>> already been passed to kexec_add_buffer().
->>
->> It feels like the root of the problem is that the kvfree of fdt is in
->> the wrong place. It's only allocated later in the function, so the error
->> path should reflect that. Something like the patch below.
->>
->> cheers
->>
->>
->> diff --git a/arch/powerpc/kexec/elf_64.c b/arch/powerpc/kexec/elf_64.c
->> index 5a569bb51349..02662e72c53d 100644
->> --- a/arch/powerpc/kexec/elf_64.c
->> +++ b/arch/powerpc/kexec/elf_64.c
->> @@ -114,7 +114,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
->>   	ret = setup_new_fdt_ppc64(image, fdt, initrd_load_addr,
->>   				  initrd_len, cmdline);
->>   	if (ret)
->> -		goto out;
->> +		goto out_free_fdt;
->>   
->>   	fdt_pack(fdt);
->>   
->> @@ -125,7 +125,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
->>   	kbuf.mem = KEXEC_BUF_MEM_UNKNOWN;
->>   	ret = kexec_add_buffer(&kbuf);
->>   	if (ret)
->> -		goto out;
->> +		goto out_free_fdt;
->>   
->>   	/* FDT will be freed in arch_kimage_file_post_load_cleanup */
->>   	image->arch.fdt = fdt;
->> @@ -140,18 +140,14 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
->>   	if (ret)
->>   		pr_err("Error setting up the purgatory.\n");
->>   
->> +	goto out;
-> 
-> This will leak.  It would need to be something like:
-> 
-> 	if (ret) {
-> 		pr_err("Error setting up the purgatory.\n");
-> 		goto out_free_fdt;
-> 	}
-Once "fdt" buffer is successfully passed to kexec_add_buffer() it cannot 
-be freed here - it will be freed when the kexec cleanup function is called.
+On i.MX8MP, there is no audio ipg clock, so remove the wrong reference
+to this clock in dts file.
 
-> 
-> 	goto out;
-> 
-> But we should also fix the uninitialized variable of "elf_info" if
-> kexec_build_elf_info() fails.
+Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+---
+- changes v2:
+  no 
+---
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-kexec_build_elf_info() frees elf_info and zeroes it in error paths, 
-except when elf_read_ehdr() fails. So, I think it is better to 
-initialize the local variable "elf_info" before calling 
-kexec_build_elf_info().
-
-	memset(&elf_info, 0, sizeof(elf_info));
-
-thanks,
-  -lakshmi
-
-> 
->> +
->> +out_free_fdt:
->> +	kvfree(fdt);
->>   out:
->>   	kfree(modified_cmdline);
->>   	kexec_free_elf_info(&elf_info);
->>   
->> -	/*
->> -	 * Once FDT buffer has been successfully passed to kexec_add_buffer(),
->> -	 * the FDT buffer address is saved in image->arch.fdt. In that case,
->> -	 * the memory cannot be freed here in case of any other error.
->> -	 */
->> -	if (ret && !image->arch.fdt)
->> -		kvfree(fdt);
->> -
->>   	return ret ? ERR_PTR(ret) : NULL;
->>   }
-> 
-> regards,
-> dan carpenter
-> 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index c2d51a46cb3c..0283c22c2bd3 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -407,7 +407,6 @@ clk: clock-controller@30380000 {
+ 						  <&clk IMX8MP_CLK_GIC>,
+ 						  <&clk IMX8MP_CLK_AUDIO_AHB>,
+ 						  <&clk IMX8MP_CLK_AUDIO_AXI_SRC>,
+-						  <&clk IMX8MP_CLK_IPG_AUDIO_ROOT>,
+ 						  <&clk IMX8MP_AUDIO_PLL1>,
+ 						  <&clk IMX8MP_AUDIO_PLL2>;
+ 				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>,
+@@ -423,7 +422,6 @@ clk: clock-controller@30380000 {
+ 						       <500000000>,
+ 						       <400000000>,
+ 						       <800000000>,
+-						       <400000000>,
+ 						       <393216000>,
+ 						       <361267200>;
+ 			};
+-- 
+2.26.2
 
