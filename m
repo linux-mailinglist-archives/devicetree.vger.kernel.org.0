@@ -2,278 +2,427 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0994A36622C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 00:34:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9A6C36625A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 01:04:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233992AbhDTWfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 18:35:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56526 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233964AbhDTWfU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Apr 2021 18:35:20 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4731861401;
-        Tue, 20 Apr 2021 22:34:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618958088;
-        bh=mOdMYZl26/NOZWPNIO9NmvmkA7iXHbO5ZbM5OlOhJyM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=UAQY+BL1k7rdXPpPvgQJgrM8geVQzuys0slJrTAdT7UuqrUiOBVtqFrBW+ElljARL
-         yvNlamYTz7mTbZZ7HYf27F3FFL9cRKUw4w0W72LQtOEzh4LdCvJN21TLhwK6s6SipP
-         ONsy/FmdBUEAceLTfZkYuT9ts4sg+nmeTAZEBtFqUyRU1NpKHCnXWb9XsKC6VjVPE4
-         apnsh022cPpsuUndcYBm8GrzZYzvVT+fHeUGjFfsfK27xwdC0AA3+o6S6YH6qTDnEG
-         F/kV3G2E5ZUs8FDEeUVOYEXMhrNQhgumVLOsJOrd9sT9hbMyJmtedJ+5Mborxx3yj3
-         6F3umTtEVmxpw==
-Received: by mail-qk1-f174.google.com with SMTP id 66so1553492qkf.2;
-        Tue, 20 Apr 2021 15:34:48 -0700 (PDT)
-X-Gm-Message-State: AOAM532j6vocPVM3BjLABlt+HqNiRdKvH7/KX4/yuaBAFH/m1gT/+Hbw
-        mhRKC8cMlGnLD2PITD3C679i0BrGk4aTUMWQRQ==
-X-Google-Smtp-Source: ABdhPJy10+HqQKmcie6cSAKhZUBGN3k1UWCcvqC9FDITLEQDDTu1Rf0nYi5UC6N88wAkUE0CAVsmU4z6sgJ4wuehLfA=
-X-Received: by 2002:a05:620a:1642:: with SMTP id c2mr13807588qko.311.1618958087193;
- Tue, 20 Apr 2021 15:34:47 -0700 (PDT)
+        id S234276AbhDTXEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 19:04:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52434 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233964AbhDTXEf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 19:04:35 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA416C06174A
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 16:04:03 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id e2so16217493plh.8
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 16:04:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hot/XD38hSJlw3yqwRZmpSJt456nIc70hCLVFo4byo8=;
+        b=Xz8NVSkcPXFO1td97DWfz1ah5C4XlY10Ij3tzxheolzhCwhywPplg55PbHRAb9Kol9
+         LS9LXv5y236jvzZkMtT5nq2QyzL3OPfsKWaE91k6cFmBDXkdw4EiPfytYJxuma5qt+mT
+         +Rx8qtW2F6Aw2aMItW4e6mlhFc549OoYKpTq8C20uvKDLfI17n61OTeyAuiLqIAN2Bpt
+         MWcrRV8c345vM52ejzaIaCl66gwfdhTkQdQ4vXjl24l2LSV9gGNOCc2219bo4DMKa6JB
+         YvsIYFCQz6xb+byiJf8byKFH/u6ipPX6BsFs1uu7wwZqZP6A0t6BQIB1O22ELsjJ+LFK
+         2cFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hot/XD38hSJlw3yqwRZmpSJt456nIc70hCLVFo4byo8=;
+        b=rnxsAewVSvSD+rsx3wV83D+1ZXMDoBknGr8G4d2L8iba4GoNnhpWdhHTbE5/0Yd0gG
+         Ax1vPwu6p9SUprYxFTrEML8lIMWMBLBjedCXXsIkgsMfhUAJyCctU66e4BjHLw3v7WKS
+         SFX121iZBJCKmUtF5AwOwB5ITshH5+/tqbcZ6vVdYnxb15XvGVYlDxQB93CrqhQPIgvR
+         MY1SOzUKi7LTizWwx7KR3LBu4U3sjO5HFf0i+pWdjWgXZGt6kW4yZVHwlQl+P0zW9XGp
+         Ttx7Bkr4ewsrRbJATDSI0/jdR2OMa2dcu8qMN1JEvwhwx2sJJQ2PdYaTlaG3EfuFJzpB
+         efZw==
+X-Gm-Message-State: AOAM533npdzgmxjd6IcW9BvrVpOcc8RhHsLVQuEanUT7GfoV5HXQc5qc
+        EUqP5MZupg1WPpNEtNhkM3/DsyUARUe7yCes
+X-Google-Smtp-Source: ABdhPJwvqz79PjHQemZUYMkP617oxKVf0o9rqM+dMwjhmO+k1dxrcManmIUzdTxCpwJO0ML4//PLGw==
+X-Received: by 2002:a17:902:9002:b029:e6:c95f:2a1d with SMTP id a2-20020a1709029002b02900e6c95f2a1dmr31376484plp.79.1618959843160;
+        Tue, 20 Apr 2021 16:04:03 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id a190sm87079pfd.118.2021.04.20.16.04.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Apr 2021 16:04:02 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Arnd Bergmann <arnd@arndb.de>, soc@kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
+Subject: [PATCH] arm64: dts: amlogic: misc DT schema fixups
+Date:   Tue, 20 Apr 2021 16:04:02 -0700
+Message-Id: <20210420230402.8807-1-khilman@baylibre.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20210415180050.373791-1-leobras.c@gmail.com> <CAL_Jsq+WwAeziGN4EfPAWfA0fieAjfcxfi29=StOx0GeKjAe_g@mail.gmail.com>
- <7b089cd48b90f2445c7cb80da1ce8638607c46fc.camel@gmail.com>
- <CAL_Jsq+m6CkGj_NYGvwxoKwoQ4PkEu6hfGdMTT3i4APoHSkNeg@mail.gmail.com>
- <b875ef1778e17a87ee1f4b71d26f2782831b1d07.camel@gmail.com>
- <CAL_JsqK83MFqZ4yCz+i7sunpXFmi+vvjCSxVmcCh1YG=mOxY9A@mail.gmail.com> <b56b8a5c8f02a2afea9554ebf16a423c182a9fc3.camel@gmail.com>
-In-Reply-To: <b56b8a5c8f02a2afea9554ebf16a423c182a9fc3.camel@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 20 Apr 2021 17:34:36 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJXKVUFh9KrJjobn-jE-PFKN0w-V_i3qkfBrpTah4g8Xw@mail.gmail.com>
-Message-ID: <CAL_JsqJXKVUFh9KrJjobn-jE-PFKN0w-V_i3qkfBrpTah4g8Xw@mail.gmail.com>
-Subject: Re: [PATCH 1/1] of/pci: Add IORESOURCE_MEM_64 to resource flags for
- 64-bit memory addresses
-To:     Leonardo Bras <leobras.c@gmail.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Alexey Kardashevskiy <aik@ozlabs.ru>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 19, 2021 at 9:03 PM Leonardo Bras <leobras.c@gmail.com> wrote:
->
-> On Mon, 2021-04-19 at 20:39 -0500, Rob Herring wrote:
-> > On Mon, Apr 19, 2021 at 7:35 PM Leonardo Bras <leobras.c@gmail.com> wrote:
-> > >
-> > > On Mon, 2021-04-19 at 10:44 -0500, Rob Herring wrote:
-> > > > On Fri, Apr 16, 2021 at 3:58 PM Leonardo Bras <leobras.c@gmail.com> wrote:
-> > > > >
-> > > > > Hello Rob, thanks for this feedback!
-> > > > >
-> > > > > On Thu, 2021-04-15 at 13:59 -0500, Rob Herring wrote:
-> > > > > > +PPC and PCI lists
-> > > > > >
-> > > > > > On Thu, Apr 15, 2021 at 1:01 PM Leonardo Bras <leobras.c@gmail.com> wrote:
-> > > > > > >
-> > > > > > > Many other resource flag parsers already add this flag when the input
-> > > > > > > has bits 24 & 25 set, so update this one to do the same.
-> > > > > >
-> > > > > > Many others? Looks like sparc and powerpc to me.
-> > > > > >
-> > > > >
-> > > > > s390 also does that, but it look like it comes from a device-tree.
-> > > >
-> > > > I'm only looking at DT based platforms, and s390 doesn't use DT.
-> > >
-> > > Correct.
-> > > Sorry, I somehow write above the opposite of what I was thinking.
-> > >
-> > > >
-> > > > > > Those would be the
-> > > > > > ones I worry about breaking. Sparc doesn't use of/address.c so it's
-> > > > > > fine. Powerpc version of the flags code was only fixed in 2019, so I
-> > > > > > don't think powerpc will care either.
-> > > > >
-> > > > > In powerpc I reach this function with this stack, while configuring a
-> > > > > virtio-net device for a qemu/KVM pseries guest:
-> > > > >
-> > > > > pci_process_bridge_OF_ranges+0xac/0x2d4
-> > > > > pSeries_discover_phbs+0xc4/0x158
-> > > > > discover_phbs+0x40/0x60
-> > > > > do_one_initcall+0x60/0x2d0
-> > > > > kernel_init_freeable+0x308/0x3a8
-> > > > > kernel_init+0x2c/0x168
-> > > > > ret_from_kernel_thread+0x5c/0x70
-> > > > >
-> > > > > For this, both MMIO32 and MMIO64 resources will have flags 0x200.
-> > > >
-> > > > Oh good, powerpc has 2 possible flags parsing functions. So in the
-> > > > above path, do we need to set PCI_BASE_ADDRESS_MEM_TYPE_64?
-> > > >
-> > > > Does pci_parse_of_flags() get called in your case?
-> > > >
-> > >
-> > > It's called in some cases, but not for the device I am debugging
-> > > (virtio-net pci@800000020000000).
-> > >
-> > > For the above device, here is an expanded stack trace:
-> > >
-> > > of_bus_pci_get_flags() (from parser->bus->get_flags())
-> > > of_pci_range_parser_one() (from macro for_each_of_pci_range)
-> > > pci_process_bridge_OF_ranges+0xac/0x2d4
-> > > pSeries_discover_phbs+0xc4/0x158
-> > > discover_phbs+0x40/0x60
-> > > do_one_initcall+0x60/0x2d0
-> > > kernel_init_freeable+0x308/0x3a8
-> > > kernel_init+0x2c/0x168
-> > > ret_from_kernel_thread+0x5c/0x70
-> > >
-> > > For other devices, I could also see the following stack trace:
-> > > ## device ethernet@8
-> > >
-> > > pci_parse_of_flags()
-> > > of_create_pci_dev+0x7f0/0xa40
-> > > __of_scan_bus+0x248/0x320
-> > > pcibios_scan_phb+0x370/0x3b0
-> > > pcibios_init+0x8c/0x12c
-> > > do_one_initcall+0x60/0x2d0
-> > > kernel_init_freeable+0x308/0x3a8
-> > > kernel_init+0x2c/0x168
-> > > ret_from_kernel_thread+0x5c/0x70
-> > >
-> > > Devices that get parsed with of_bus_pci_get_flags() appears first at
-> > > dmesg (around 0.015s in my test), while devices that get parsed by
-> > > pci_parse_of_flags() appears later (0.025s in my test).
-> > >
-> > > I am not really used to this code, but having the term "discover phbs"
-> > > in the first trace and the term "scan phb" in the second, makes me
-> > > wonder if the first trace is seen on devices that are seen/described in
-> > > the device-tree and the second trace is seen in devices not present in
-> > > the device-tree and found scanning pci bus.
-> >
-> > That was my guess as well. I think on pSeries that most PCI devices
-> > are in the DT whereas on Arm and other flattened DT (non OpenFirmware)
-> > platforms PCI devices are not in DT.
-> >
->
-> It makes sense to me.
->
-> >  Of course, for virtio devices,
-> > they would not be in DT in either case.
->
-> I don't get this part... in pseries it looks like virtio devices can be
-> in device-tree.
->
-> Oh, I think I get it... this pci@800000020000000 looks like a bus
-> (described in device-tree, so discovered), and then the devices are
-> inside it, getting scanned.
->
-> The virtio device gets the correct flags (from pci_parse_of_flags), but
-> the bus (pci@800000020000000) does not seem to get it correctly,
-> because it comes from of_bus_pci_get_flags() which makes sense
-> according to the name of the function.
->
-> (see lspci bellow, output without patch)
->
->
-> 00:08.0 Ethernet controller: Red Hat, Inc. Virtio network device (rev
-> 01)
->         Subsystem: Red Hat, Inc. Device 1100
->         Device tree node:
-> /sys/firmware/devicetree/base/pci@800000020000000/ethernet@8
->         Control: I/O- Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop-
-> ParErr- Stepping- SERR+ FastB2B- DisINTx+
->         Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort-
-> <TAbort- <MAbort- >SERR- <PERR- INTx-
->         Latency: 0
->         Interrupt: pin A routed to IRQ 19
->         IOMMU group: 0
->         Region 1: Memory at 200080020000 (32-bit, non-prefetchable)
-> [size=4K]
->         Region 4: Memory at 210000010000 (64-bit, prefetchable)
-> [size=16K]
->         Expansion ROM at 200080040000 [disabled] [size=256K]
->         Capabilities: [98] MSI-X: Enable+ Count=3 Masked-
->                 Vector table: BAR=1 offset=00000000
->                 PBA: BAR=1 offset=00000800
->         Capabilities: [84] Vendor Specific Information: VirtIO:
-> <unknown>
->                 BAR=0 offset=00000000 size=00000000
->         Capabilities: [70] Vendor Specific Information: VirtIO: Notify
->                 BAR=4 offset=00003000 size=00001000 multiplier=00000004
->         Capabilities: [60] Vendor Specific Information: VirtIO:
-> DeviceCfg
->                 BAR=4 offset=00002000 size=00001000
->         Capabilities: [50] Vendor Specific Information: VirtIO: ISR
->                 BAR=4 offset=00001000 size=00001000
->         Capabilities: [40] Vendor Specific Information: VirtIO:
-> CommonCfg
->                 BAR=4 offset=00000000 size=00001000
->         Kernel driver in use: virtio-pci
->
->
-> >
-> > > > > > I noticed both sparc and powerpc set PCI_BASE_ADDRESS_MEM_TYPE_64 in
-> > > > > > the flags. AFAICT, that's not set anywhere outside of arch code. So
-> > > > > > never for riscv, arm and arm64 at least. That leads me to
-> > > > > > pci_std_update_resource() which is where the PCI code sets BARs and
-> > > > > > just copies the flags in PCI_BASE_ADDRESS_MEM_MASK ignoring
-> > > > > > IORESOURCE_* flags. So it seems like 64-bit is still not handled and
-> > > > > > neither is prefetch.
-> > > > > >
-> > > > >
-> > > > > I am not sure if you mean here:
-> > > > > a) it's ok to add IORESOURCE_MEM_64 here, because it does not affect
-> > > > > anything else, or
-> > > > > b) it should be using PCI_BASE_ADDRESS_MEM_TYPE_64
-> > > > > (or IORESOURCE_MEM_64 | PCI_BASE_ADDRESS_MEM_TYPE_64) instead, since
-> > > > > it's how it's added in powerpc/sparc, and else there is no point.
-> > > >
-> > > > I'm wondering if a) is incomplete and PCI_BASE_ADDRESS_MEM_TYPE_64
-> > > > also needs to be set. The question is ultimately are BARs getting set
-> > > > correctly for 64-bit? It looks to me like they aren't.
-> > >
-> > > I am not used to these terms, does BAR means 'Base Address Register'?
-> >
-> > Yes. Standard PCI thing.
->
-> Nice :)
->
-> >
-> > > If so, those are the addresses stored in pci->phb->mem_resources[i] and
-> > > pci->phb->mem_offset[i], printed from enable_ddw() (which takes place a
-> > > lot after discovering the device (0.17s in my run)).
-> > >
-> > > resource #1 pci@800000020000000: start=0x200080000000
-> > > end=0x2000ffffffff flags=0x200 desc=0x0 offset=0x200000000000
-> > > resource #2 pci@800000020000000: start=0x210000000000
-> > > end=0x21ffffffffff flags=0x200 desc=0x0 offset=0x0
-> > >
-> > > The message above was printed without this patch.
-> > > With the patch, the flags for memory resource #2 gets ORed with
-> > > 0x00100000.
-> >
-> > Right, as expected.
-> >
-> > > Is it enough to know if BARs are correctly set for 64-bit?
-> >
-> > No, because AFAICT, bit 2 in the BAR would not be set.
-> >
-> > > If it's not, how can I check?
-> >
-> > Can you try 'lspci -vv' and look at the 'Region X:' lines which will
-> > say 32 or 64-bit. I *think* that should reflect what actually got
-> > written into the BARs.
->
-> As seen in the lspci from above comment:
-> Region 1: Memory at 200080020000 (32-bit, non-prefetchable) [size=4K]
-> Region 4: Memory at 210000010000 (64-bit, prefetchable) [size=16K]
->
-> So it seems to be getting configured properly.
->
-> I think the point here is bus resources not getting the MEM_64 flag,
-> but device resources getting it correctly. Is that supposed to happen?
+Take a pass at cleaning up a bunch of warnings
+from 'make dtbs_check' that have crept in.
 
-I experimented with this on Arm with qemu and it seems fine there too.
-Looks like the BARs are first read and will have bit 2 set by default
-(or hardwired?). Now I'm just wondering why powerpc needs the code it
-has...
+Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+---
+ .../devicetree/bindings/gpu/arm,mali-bifrost.yaml  |  5 +++++
+ .../bindings/media/amlogic,axg-ge2d.yaml           |  1 +
+ Documentation/devicetree/bindings/media/rc.yaml    |  4 ++++
+ .../devicetree/bindings/sound/amlogic,t9015.yaml   |  1 +
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |  4 ++--
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  | 14 +++++++-------
+ .../arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts |  2 +-
+ .../boot/dts/amlogic/meson-g12b-gtking-pro.dts     |  4 ++--
+ arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts  |  2 +-
+ .../boot/dts/amlogic/meson-g12b-odroid-n2.dtsi     |  4 ++--
+ .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |  2 +-
+ .../dts/amlogic/meson-gxl-s905d-mecool-kii-pro.dts |  2 +-
+ .../boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts |  8 ++++----
+ .../boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dts |  2 +-
+ .../boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts   |  2 +-
+ .../boot/dts/amlogic/meson-gxm-wetek-core2.dts     |  2 +-
+ arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi |  4 ++--
+ .../arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts |  2 +-
+ 18 files changed, 38 insertions(+), 27 deletions(-)
 
-Anyways, I'll apply the patch.
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+index 184492162e7e..db2240bad012 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+@@ -69,6 +69,11 @@ properties:
+ 
+       where voltage is in V, frequency is in MHz.
+ 
++  dma-coherent:
++    description: |
++      Present if page table walks made by the SMMU are cache coherent with the
++      CPU.
++
+ required:
+   - compatible
+   - reg
+diff --git a/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
+index bee93bd84771..f3a337954eb3 100644
+--- a/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
++++ b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
+@@ -33,6 +33,7 @@ required:
+   - interrupts
+   - clocks
+   - resets
++  - reset-names
+ 
+ additionalProperties: false
+ 
+diff --git a/Documentation/devicetree/bindings/media/rc.yaml b/Documentation/devicetree/bindings/media/rc.yaml
+index 946441b4e1a5..c4a088669112 100644
+--- a/Documentation/devicetree/bindings/media/rc.yaml
++++ b/Documentation/devicetree/bindings/media/rc.yaml
+@@ -90,9 +90,12 @@ properties:
+       - rc-leadtek-y04g0051
+       - rc-lme2510
+       - rc-manli
++      - rc-mecool-kii-pro
++      - rc-mecool-kiii-pro
+       - rc-medion-x10
+       - rc-medion-x10-digitainer
+       - rc-medion-x10-or2x
++      - rc-minix-neo
+       - rc-msi-digivox-ii
+       - rc-msi-digivox-iii
+       - rc-msi-tvanywhere
+@@ -145,6 +148,7 @@ properties:
+       - rc-videomate-s350
+       - rc-videomate-tv-pvr
+       - rc-videostrong-kii-pro
++      - rc-vega-s9x
+       - rc-wetek-hub
+       - rc-wetek-play2
+       - rc-winfast
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
+index c7613ea728d4..7bcbed603824 100644
+--- a/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
++++ b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
+@@ -41,6 +41,7 @@ required:
+   - clocks
+   - clock-names
+   - resets
++  - reset-names
+ 
+ additionalProperties: false
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index 755b4ad15184..b4000cf65a9a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -88,13 +88,13 @@ reset: reset-controller@0 {
+ 				#reset-cells = <1>;
+ 			};
+ 
+-			periphs_pinctrl: pinctrl@0400 {
++			periphs_pinctrl: pinctrl@400 {
+ 				compatible = "amlogic,meson-a1-periphs-pinctrl";
+ 				#address-cells = <2>;
+ 				#size-cells = <2>;
+ 				ranges;
+ 
+-				gpio: bank@0400 {
++				gpio: bank@400 {
+ 					reg = <0x0 0x0400 0x0 0x003c>,
+ 					      <0x0 0x0480 0x0 0x0118>;
+ 					reg-names = "mux", "gpio";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index 3dd2a5a8739b..793d48f72390 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -128,9 +128,9 @@ soc {
+ 
+ 		pcie: pcie@fc000000 {
+ 			compatible = "amlogic,g12a-pcie", "snps,dw-pcie";
+-			reg = <0x0 0xfc000000 0x0 0x400000
+-			       0x0 0xff648000 0x0 0x2000
+-			       0x0 0xfc400000 0x0 0x200000>;
++			reg = <0x0 0xfc000000 0x0 0x400000>,
++			      <0x0 0xff648000 0x0 0x2000>,
++			      <0x0 0xfc400000 0x0 0x200000>;
+ 			reg-names = "elbi", "cfg", "config";
+ 			interrupts = <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
+ 			#interrupt-cells = <1>;
+@@ -140,8 +140,8 @@ pcie: pcie@fc000000 {
+ 			#address-cells = <3>;
+ 			#size-cells = <2>;
+ 			device_type = "pci";
+-			ranges = <0x81000000 0 0 0x0 0xfc600000 0 0x00100000
+-				  0x82000000 0 0xfc700000 0x0 0xfc700000 0 0x1900000>;
++			ranges = <0x81000000 0 0 0x0 0xfc600000 0 0x00100000>,
++				 <0x82000000 0 0xfc700000 0x0 0xfc700000 0 0x1900000>;
+ 
+ 			clocks = <&clkc CLKID_PCIE_PHY
+ 				  &clkc CLKID_PCIE_COMB
+@@ -2009,7 +2009,7 @@ mux {
+ 				};
+ 			};
+ 
+-			vrtc: rtc@0a8 {
++			vrtc: rtc@a8 {
+ 				compatible = "amlogic,meson-vrtc";
+ 				reg = <0x0 0x000a8 0x0 0x4>;
+ 			};
+@@ -2187,7 +2187,7 @@ gpio_intc: interrupt-controller@f080 {
+ 				amlogic,channel-interrupts = <64 65 66 67 68 69 70 71>;
+ 			};
+ 
+-			watchdog: wdt@f0d0 {
++			watchdog: watchdog@f0d0 {
+ 				compatible = "amlogic,meson-gxbb-wdt";
+ 				reg = <0x0 0xf0d0 0x0 0x10>;
+ 				clocks = <&xtal>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
+index 211191f66344..6c7bfacbad78 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
+@@ -12,7 +12,7 @@
+ #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+ 
+ / {
+-	compatible = "azw,gsking-x", "amlogic,g12b";
++	compatible = "azw,gsking-x", "amlogic,s922x", "amlogic,g12b";
+ 	model = "Beelink GS-King X";
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
+index 0e331aa5a2d7..707daf92787b 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
+@@ -11,7 +11,7 @@
+ #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+ 
+ / {
+-	compatible = "azw,gtking", "amlogic,g12b";
++	compatible = "azw,gtking", "amlogic,s922x", "amlogic,g12b";
+ 	model = "Beelink GT-King Pro";
+ 
+ 	aliases {
+@@ -35,7 +35,7 @@ power-button {
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+-		white {
++		led-white {
+ 			label = "power:white";
+ 			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_HIGH>;
+ 			default-state = "on";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
+index a7db84a500bb..5d96c1449050 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
+@@ -11,7 +11,7 @@
+ #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+ 
+ / {
+-	compatible = "azw,gtking", "amlogic,g12b";
++	compatible = "azw,gtking", "amlogic,s922x", "amlogic,g12b";
+ 	model = "Beelink GT-King";
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 473b81c652cf..344573e157a7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -42,7 +42,7 @@ emmc_pwrseq: emmc-pwrseq {
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+-		blue {
++		led-blue {
+ 			label = "n2:blue";
+ 			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "heartbeat";
+@@ -497,7 +497,7 @@ &gpio {
+ 	 * This signal should be handled by a USB specific power sequence
+ 	 * in order to reset the Hub when USB bus is powered down.
+ 	 */
+-	usb-hub {
++	hog-0 {
+ 		gpio-hog;
+ 		gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
+ 		output-high;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index bfaf7f41a2d6..201596247fd9 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -257,7 +257,7 @@ &gpio_ao {
+ 	 * This signal should be handled by a USB specific power sequence
+ 	 * in order to reset the Hub when USB bus is powered down.
+ 	 */
+-	usb-hub {
++	hog-0 {
+ 		gpio-hog;
+ 		gpios = <GPIOAO_4 GPIO_ACTIVE_HIGH>;
+ 		output-high;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-mecool-kii-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-mecool-kii-pro.dts
+index 5ab5d3aa0646..c529b6c860a4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-mecool-kii-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-mecool-kii-pro.dts
+@@ -44,7 +44,7 @@ button@0 {
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+-		blue {
++		led-blue {
+ 			color = <LED_COLOR_ID_BLUE>;
+ 			function = LED_FUNCTION_POWER;
+ 			gpios = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts
+index ad6d72254150..b331a013572f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts
+@@ -16,28 +16,28 @@ / {
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+-		yellow {
++		led-yellow {
+ 			color = <LED_COLOR_ID_YELLOW>;
+ 			function = LED_FUNCTION_STATUS;
+ 			gpios = <&gpio_ao GPIOAO_6 GPIO_ACTIVE_HIGH>;
+ 			default-state = "off";
+ 		};
+ 
+-		blue {
++		led-blue {
+ 			color = <LED_COLOR_ID_BLUE>;
+ 			function = LED_FUNCTION_STATUS;
+ 			gpios = <&gpio GPIODV_28 GPIO_ACTIVE_HIGH>;
+ 			default-state = "off";
+ 		};
+ 
+-		green {
++		led-green {
+ 			color = <LED_COLOR_ID_GREEN>;
+ 			function = LED_FUNCTION_STATUS;
+ 			gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
+ 			default-state = "on";
+ 		};
+ 
+-		red {
++		led-red {
+ 			color = <LED_COLOR_ID_RED>;
+ 			function = LED_FUNCTION_STATUS;
+ 			gpios = <&gpio GPIODV_27 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dts
+index 0651756d7fb5..ebebf344b715 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dts
+@@ -49,7 +49,7 @@ button@0 {
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+-		blue {
++		led-blue {
+ 			color = <LED_COLOR_ID_BLUE>;
+ 			function = LED_FUNCTION_POWER;
+ 			gpios = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts
+index a414cd39c2b1..ea9f234d1fc7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts
+@@ -17,7 +17,7 @@ / {
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+-		white {
++		led-white {
+ 			color = <LED_COLOR_ID_WHITE>;
+ 			function = LED_FUNCTION_POWER;
+ 			gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dts
+index ec794c134c15..1e7f77f9b533 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dts
+@@ -22,7 +22,7 @@ memory@0 {
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+-		blue {
++		led-blue {
+ 			color = <LED_COLOR_ID_BLUE>;
+ 			function = LED_FUNCTION_STATUS;
+ 			gpios = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+index 877e3b989203..66d67524b031 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+@@ -43,14 +43,14 @@ button-function {
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+-		white {
++		led-white {
+ 			color = <LED_COLOR_ID_WHITE>;
+ 			function = LED_FUNCTION_STATUS;
+ 			gpios = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "heartbeat";
+ 		};
+ 
+-		red {
++		led-red {
+ 			color = <LED_COLOR_ID_RED>;
+ 			function = LED_FUNCTION_STATUS;
+ 			gpios = <&gpio_expander 5 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
+index b2a4e823c1d8..8c327c03d845 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts
+@@ -47,7 +47,7 @@ &gpio {
+ 	 * This signal should be handled by a USB specific power sequence
+ 	 * in order to reset the Hub when USB bus is powered down.
+ 	 */
+-	usb-hub {
++	hog-0 {
+ 		gpio-hog;
+ 		gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
+ 		output-high;
+-- 
+2.29.2
 
-Rob
