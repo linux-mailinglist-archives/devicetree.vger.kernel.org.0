@@ -2,94 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C8BE365F7D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 20:36:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B598F365FA8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 20:46:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233540AbhDTSgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 14:36:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60264 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233521AbhDTSgc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Apr 2021 14:36:32 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BCE4C61002;
-        Tue, 20 Apr 2021 18:35:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618943760;
-        bh=Vl/xDfhSSSaJydX/7Hg32mJnZm6/w8UcQTG3m5vrcuY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=HUgPhxnv6izynLvQdPFBj2C4xdDAa0LJqBogAVwt3dctL/WvUb01Clwh5TugC5TwA
-         6vZUBKlvaLmy4sXc2ep2lkWUsJSukC3X1dB5mVG/sYkomE5qu3iK2eotwVHwHOYOdC
-         NbvDzx4LZT4CW4gxAmh/vzwnIjobOhWK0lpGIalCV3adsBiNBxWeuNeflLsfqxOtDK
-         XF+eU42lbcisn/UtvAXAxx2J48H82gQttNCmEYsVBj4UGTCLs9Hhy1ZKf8xoK22bow
-         cxBYmEk8MAtD52LgglRSdzl7c1gsafRd9iJI1vOIQ1jhScnDsiNWqRenUXEb1ZrD1v
-         2RtsAu4vf+inQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-spi@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        Kamal Dasu <kdasu.kdev@gmail.com>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH V3] dt-bindings: spi: brcm,spi-bcm-qspi: convert to the json-schema
-Date:   Tue, 20 Apr 2021 19:35:29 +0100
-Message-Id: <161894372992.35357.4077976563390352628.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210416194723.23855-1-zajec5@gmail.com>
-References: <20210416062320.21414-1-zajec5@gmail.com> <20210416194723.23855-1-zajec5@gmail.com>
+        id S233510AbhDTSqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 14:46:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52240 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233541AbhDTSqe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 14:46:34 -0400
+Received: from zeniv-ca.linux.org.uk (zeniv-ca.linux.org.uk [IPv6:2607:5300:60:148a::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68840C06174A;
+        Tue, 20 Apr 2021 11:46:02 -0700 (PDT)
+Received: from viro by zeniv-ca.linux.org.uk with local (Exim 4.94 #2 (Red Hat Linux))
+        id 1lYvNH-006r8h-GM; Tue, 20 Apr 2021 18:45:27 +0000
+Date:   Tue, 20 Apr 2021 18:45:27 +0000
+From:   Al Viro <viro@zeniv.linux.org.uk>
+To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Cc:     Qing Zhang <zhangqing@loongson.cn>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        linux-spdx@vger.kernel.org,
+        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Ming Wang <wangming01@loongson.cn>
+Subject: Re: Invalid License ID: GPL-3.0 for
+ arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+Message-ID: <YH8hR5LkA9X5Eyfa@zeniv-ca.linux.org.uk>
+References: <CAKXUXMyNf4xCF2mWr878MKDa0-8svaiR5GToQyoEVM4FbmfJ8w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAKXUXMyNf4xCF2mWr878MKDa0-8svaiR5GToQyoEVM4FbmfJ8w@mail.gmail.com>
+Sender: Al Viro <viro@ftp.linux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Apr 2021 21:47:23 +0200, Rafał Miłecki wrote:
-> This helps validating DTS files.
+On Tue, Apr 20, 2021 at 11:39:04AM +0200, Lukas Bulwahn wrote:
+> Dear Qing,
 > 
-> Changes that require mentioning:
-> 1. reg-names
->    "mspi_regs" and "bspi_regs" were renamed to "mspi" and "bspi" as that
->    is what's used in DTS files and in Linux driver
-> 2. interrupt-names
->    Names were reordered. "mspi_done" has to go first as it's always
->    required.
-> 3. spi-rx-bus-width
->    Property description was dropped as it's part of the
->    spi-controller.yaml
-> 4. Examples:
->    * drop partitions as they are well documented elsewhere
->    * regs and interrupts were formatted and reordered to match yaml
->    * <0x1c> was replaced with <&gic>
->    * "m25p80" node name became "flash"
->    * dropped invalid "m25p,fast-read" property
->    * dropped undocumented and Linux-unused "clock-names"
+> ./scripts/spdxcheck.py reports:
 > 
-> [...]
+> arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi: 1:28 Invalid
+> License ID: GPL-3.0
+> 
+> You have contributed this file with commit b1a792601f26 ("MIPS:
+> Loongson64: DeviceTree for Loongson-2K1000") to the current
+> linux-next.
+> 
+> Do you intend to contribute this under this non-default license
+> (GPL-3.0) for the kernel project or did you simply mean the default
+> license GPL-2.0?
 
-Applied to
+Ouch...  That's quite likely to be impossible to distribute, since the
+requirements of v2 and v3 are mutually incompatible and quite a bit of
+the kernel is under v2-only, not v2-or-any-later-version.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Seriously, folks - talk to lawyers; if the result is *NOT* a mere aggregation
+(i.e. is derived work wrt the kernel proper), you are in a copyright violation.
 
-Thanks!
-
-[1/1] dt-bindings: spi: brcm,spi-bcm-qspi: convert to the json-schema
-      commit: 7d82f89c39ad3193893d36924fc1f8d44f3dc612
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Moreover, if anything in that file is derived from others' work, you can't
+use GPL-3.0 unless the terms for everything it's derived from allow
+redistribution under GPL-3.0.  Anything derived from others' GPL-2.0 work
+(as opposed to GPL-2.0-or-later one) can't be relicensed to GPL-3.0 at
+all.
