@@ -2,99 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68FCD365C8E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 17:46:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2357D365C95
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 17:48:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232174AbhDTPrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 11:47:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40392 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233119AbhDTPrD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 11:47:03 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86022C06138C
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 08:46:31 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id y62so2006973pfg.4
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 08:46:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=c8ssYGouwaSQxS4XvnAPrHZNGOh02XxZ6Rmplg6qhmE=;
-        b=WjtM64E8tq5y3tsNgJD8zpjHOkD0+lTSBFiFcPBuTqRUG15VZ6PgXhq2ZR69a37Y4r
-         W7yax5Y5dc/hcVfA1IHTDWVS/4FiU7/G8oc6lOV0eV8rDifWA1LeDphkkW/SuVG6cXGO
-         VUouDPaFSnQqowsNCP+ytJ5sJnOfeRN0anlJs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=c8ssYGouwaSQxS4XvnAPrHZNGOh02XxZ6Rmplg6qhmE=;
-        b=WoL+s9k2sMpT6HQD1O9Kfyr2M3zXqroKAD6tqWS5RGYOQydJm40OzWxHiwUrwswQO1
-         ya8v8DAYpsWYEV+BmqYVf1Lg7EsuRRk1B+xkJDvo+gOssnZonJzgRU2Sp9EJeMYaNza4
-         L7EWDbj0X8OgWOfCwKOZ/hCSjbqh10OT77RPc/2t9i/GD7G/OEM456V+5DeRlqq4bPly
-         EaoW0kXxtBUDlzTdlzMI0kzh6gv6TH9vNL3AND9GLPFDJ8rdxMT6jdWHW/dcPZRS671P
-         awjOmgkZCOqnl6ScBxk0U9GMfGbXNygdvpsxNiaoghHFXGBfIesHXY6jjF9abz2+mK9d
-         3sDg==
-X-Gm-Message-State: AOAM532Hp7gJCOzG57ViCE+BWSvg6z2Ss544Ltn+dHhqRcjmqPG52QqV
-        1AWJ4bGIwYmHTMN4nTcmppLPiA==
-X-Google-Smtp-Source: ABdhPJy6gy7LAnUoij0pvKq6YQ3cakdNrlN8b9JOHux4pmSWQsdyD+DrID/+VNIQjFqOiwzQTyczDA==
-X-Received: by 2002:a63:1316:: with SMTP id i22mr17206048pgl.419.1618933591048;
-        Tue, 20 Apr 2021 08:46:31 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:7a9:7e56:e9c3:13e8])
-        by smtp.gmail.com with UTF8SMTPSA id n85sm1593685pfd.170.2021.04.20.08.46.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Apr 2021 08:46:30 -0700 (PDT)
-Date:   Tue, 20 Apr 2021 08:46:29 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [PATCH V3 2/5] arm64: dts: qcom: pm8350c: Add temp-alarm support
-Message-ID: <YH73VU+mSHodeTSf@google.com>
-References: <1618389266-5990-1-git-send-email-skakit@codeaurora.org>
- <1618389266-5990-3-git-send-email-skakit@codeaurora.org>
+        id S232303AbhDTPsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 11:48:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44914 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232764AbhDTPsV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Apr 2021 11:48:21 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4F03B613CA
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 15:47:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618933670;
+        bh=IYqfg7kAXJ4Rm7YLHyAad4JAlWepcjRKNyoYDCNpags=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ptxt5xT8VW0ErKPoXdAVz4uqQsNYogTTn+TJLYIkfIFZ8sLFBH0UPmskqSpeamgIj
+         +rovtDASFIasau/8YVVn+qZVdHxQFUIilllmVPzZdPSdhDrg5YB15l4ZPwxVcrf4EU
+         HitVE8i4HMwfrySdYcRa4Zf50vbewnYaKK3EL5Rxfpd/aljhVGjwBqtVJBph/P1Fzq
+         dKFR/THcGHEcLFiyAhAkZEOPp3dl5eENzC/xSTthB7cR+J500w7noP9fw/OtIzWczd
+         km+/eniHy+ITuQkZNkmDqDPAAwpxezFZK64rMB5pepart+EWzhrye+qaEFneeqCyUB
+         OAH4CvG0qFcaA==
+Received: by mail-ed1-f45.google.com with SMTP id s15so45691457edd.4
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 08:47:50 -0700 (PDT)
+X-Gm-Message-State: AOAM5328wsRmTeX3b5jH9DihzCMQ5y2twuAuyJKd7TGWRClQpXlG6rsb
+        3CDBvDfH7+3EdNlTfkZyOwuZS1o2Jc3z+DHnVg==
+X-Google-Smtp-Source: ABdhPJzwUCwDAs9HaD9luzICTw9yTZ3mv8AFbQQ4N9TOgAbafBYxLlIpYgWL71kwt1BKCFzGNMDumpaHgoIXGlEJ/T8=
+X-Received: by 2002:a05:6402:51c6:: with SMTP id r6mr14587868edd.258.1618933668588;
+ Tue, 20 Apr 2021 08:47:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1618389266-5990-3-git-send-email-skakit@codeaurora.org>
+References: <20210415191437.20212-1-nramas@linux.microsoft.com>
+ <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
+ <87eefag241.fsf@linkitivity.dja.id.au> <87tuo6eh0j.fsf@mpe.ellerman.id.au>
+ <2817d674-d420-580f-a0c1-b842da915a80@linux.microsoft.com>
+ <87pmypdf93.fsf@mpe.ellerman.id.au> <20210420050015.GA1959@kadam>
+ <b84c76d6-2be8-77a4-3c0f-ad8657c0e508@linux.microsoft.com>
+ <CAL_JsqLS9Wu_+_S-2wwMb3Chd_8RYAtFe_uLh5tjj_sAkTgRJA@mail.gmail.com>
+ <2e8dd39b-0372-4874-340e-6f87185091cc@linux.microsoft.com> <433b4518-0a83-5a97-ac07-da8748dcc90e@linux.microsoft.com>
+In-Reply-To: <433b4518-0a83-5a97-ac07-da8748dcc90e@linux.microsoft.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 20 Apr 2021 10:47:36 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ5QWiQKiw+hYC6554U+tzKboMM4qc_vpfSz0QTm7+_Lw@mail.gmail.com>
+Message-ID: <CAL_JsqJ5QWiQKiw+hYC6554U+tzKboMM4qc_vpfSz0QTm7+_Lw@mail.gmail.com>
+Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in elf64_load()
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Cc:     Dan Carpenter <dan.carpenter@oracle.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Daniel Axtens <dja@axtens.net>, devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        kbuild-all@lists.01.org,
+        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        kbuild test robot <lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 14, 2021 at 02:04:23PM +0530, satya priya wrote:
-> Add temp-alarm node for PM8350C pmic and also modify gpio
-> node to add gpio ranges and "qcom,spmi-gpio" compatible.
-> 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/pm8350c.dtsi | 32 +++++++++++++++++++++++++++++++-
->  1 file changed, 31 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8350c.dtsi b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-> index 2b9b75e..e1b75ae 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-> @@ -13,13 +13,43 @@
->  		#address-cells = <1>;
->  		#size-cells = <0>;
->  
-> +		pm8350c_temp_alarm: temp-alarm@a00 {
-> +			compatible = "qcom,spmi-temp-alarm";
-> +			reg = <0xa00>;
-> +			interrupts = <0x2 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-> +			#thermal-sensor-cells = <0>;
-> +		};
-> +
->  		pm8350c_gpios: gpio@8800 {
-> -			compatible = "qcom,pm8350c-gpio";
-> +			compatible = "qcom,pm8350c-gpio", "qcom,spmi-gpio";
->  			reg = <0x8800>;
->  			gpio-controller;
-> +			gpio-ranges = <&pm8350c_gpios 0 0 9>;
+On Tue, Apr 20, 2021 at 10:04 AM Lakshmi Ramasubramanian
+<nramas@linux.microsoft.com> wrote:
+>
+> On 4/20/21 7:42 AM, Lakshmi Ramasubramanian wrote:
+> > On 4/20/21 6:06 AM, Rob Herring wrote:
+> >> On Tue, Apr 20, 2021 at 12:20 AM Lakshmi Ramasubramanian
+> >> <nramas@linux.microsoft.com> wrote:
+> >>>
+> >>> On 4/19/21 10:00 PM, Dan Carpenter wrote:
+> >>>> On Tue, Apr 20, 2021 at 09:30:16AM +1000, Michael Ellerman wrote:
+> >>>>> Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
+> >>>>>> On 4/16/21 2:05 AM, Michael Ellerman wrote:
+> >>>>>>
+> >>>>>>> Daniel Axtens <dja@axtens.net> writes:
+> >>>>>>>>> On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
+> >>>>>>>>>
+> >>>>>>>>> Sorry - missed copying device-tree and powerpc mailing lists.
+> >>>>>>>>>
+> >>>>>>>>>> There are a few "goto out;" statements before the local
+> >>>>>>>>>> variable "fdt"
+> >>>>>>>>>> is initialized through the call to
+> >>>>>>>>>> of_kexec_alloc_and_setup_fdt() in
+> >>>>>>>>>> elf64_load(). This will result in an uninitialized "fdt" being
+> >>>>>>>>>> passed
+> >>>>>>>>>> to kvfree() in this function if there is an error before the
+> >>>>>>>>>> call to
+> >>>>>>>>>> of_kexec_alloc_and_setup_fdt().
+> >>>>>>>>>>
+> >>>>>>>>>> Initialize the local variable "fdt" to NULL.
+> >>>>>>>>>>
+> >>>>>>>> I'm a huge fan of initialising local variables! But I'm
+> >>>>>>>> struggling to
+> >>>>>>>> find the code path that will lead to an uninit fdt being
+> >>>>>>>> returned...
+> >>>>>>>>
+> >>>>>>>> The out label reads in part:
+> >>>>>>>>
+> >>>>>>>>    /* Make kimage_file_post_load_cleanup free the fdt buffer for
+> >>>>>>>> us. */
+> >>>>>>>>    return ret ? ERR_PTR(ret) : fdt;
+> >>>>>>>>
+> >>>>>>>> As far as I can tell, any time we get a non-zero ret, we're
+> >>>>>>>> going to
+> >>>>>>>> return an error pointer rather than the uninitialised value...
+> >>>>>>
+> >>>>>> As Dan pointed out, the new code is in linux-next.
+> >>>>>>
+> >>>>>> I have copied the new one below - the function doesn't return fdt,
+> >>>>>> but
+> >>>>>> instead sets it in the arch specific field (please see the link to
+> >>>>>> the
+> >>>>>> updated elf_64.c below).
+> >>>>>>
+> >>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/tree/arch/powerpc/kexec/elf_64.c?h=for-next
+> >>>>>>
+> >>>>>>
+> >>>>>>>>
+> >>>>>>>> (btw, it does look like we might leak fdt if we have an error
+> >>>>>>>> after we
+> >>>>>>>> successfully kmalloc it.)
+> >>>>>>>>
+> >>>>>>>> Am I missing something? Can you link to the report for the
+> >>>>>>>> kernel test
+> >>>>>>>> robot or from Dan?
+> >>>>>>
+> >>>>>> /*
+> >>>>>>             * Once FDT buffer has been successfully passed to
+> >>>>>> kexec_add_buffer(),
+> >>>>>>             * the FDT buffer address is saved in image->arch.fdt.
+> >>>>>> In that
+> >>>>>> case,
+> >>>>>>             * the memory cannot be freed here in case of any other
+> >>>>>> error.
+> >>>>>>             */
+> >>>>>>            if (ret && !image->arch.fdt)
+> >>>>>>                    kvfree(fdt);
+> >>>>>>
+> >>>>>>            return ret ? ERR_PTR(ret) : NULL;
+> >>>>>>
+> >>>>>> In case of an error, the memory allocated for fdt is freed unless
+> >>>>>> it has
+> >>>>>> already been passed to kexec_add_buffer().
+> >>>>>
+> >>>>> It feels like the root of the problem is that the kvfree of fdt is in
+> >>>>> the wrong place. It's only allocated later in the function, so the
+> >>>>> error
+> >>>>> path should reflect that. Something like the patch below.
+> >>>>>
+> >>>>> cheers
+> >>>>>
+> >>>>>
+> >>>>> diff --git a/arch/powerpc/kexec/elf_64.c b/arch/powerpc/kexec/elf_64.c
+> >>>>> index 5a569bb51349..02662e72c53d 100644
+> >>>>> --- a/arch/powerpc/kexec/elf_64.c
+> >>>>> +++ b/arch/powerpc/kexec/elf_64.c
+> >>>>> @@ -114,7 +114,7 @@ static void *elf64_load(struct kimage *image,
+> >>>>> char *kernel_buf,
+> >>>>>       ret = setup_new_fdt_ppc64(image, fdt, initrd_load_addr,
+> >>>>>                                 initrd_len, cmdline);
+> >>>>>       if (ret)
+> >>>>> -            goto out;
+> >>>>> +            goto out_free_fdt;
+> >>>>>
+> >>>>>       fdt_pack(fdt);
+> >>>>>
+> >>>>> @@ -125,7 +125,7 @@ static void *elf64_load(struct kimage *image,
+> >>>>> char *kernel_buf,
+> >>>>>       kbuf.mem = KEXEC_BUF_MEM_UNKNOWN;
+> >>>>>       ret = kexec_add_buffer(&kbuf);
+> >>>>>       if (ret)
+> >>>>> -            goto out;
+> >>>>> +            goto out_free_fdt;
+> >>>>>
+> >>>>>       /* FDT will be freed in arch_kimage_file_post_load_cleanup */
+> >>>>>       image->arch.fdt = fdt;
+> >>>>> @@ -140,18 +140,14 @@ static void *elf64_load(struct kimage *image,
+> >>>>> char *kernel_buf,
+> >>>>>       if (ret)
+> >>>>>               pr_err("Error setting up the purgatory.\n");
+> >>>>>
+> >>>>> +    goto out;
+> >>>>
+> >>>> This will leak.  It would need to be something like:
+> >>>>
+> >>>>        if (ret) {
+> >>>>                pr_err("Error setting up the purgatory.\n");
+> >>>>                goto out_free_fdt;
+> >>>>        }
+> >>> Once "fdt" buffer is successfully passed to kexec_add_buffer() it cannot
+> >>> be freed here - it will be freed when the kexec cleanup function is
+> >>> called.
+> >>
+> >> That may be the case currently, but really if a function returns an
+> >> error it should have undone anything it did like memory allocations. I
+> >> don't think you should do that to fix this issue, but it would be a
+> >> good clean-up.
+> >>
+> >
+> > I agree - in case of an error the function should do a proper clean-up.
+> > Just to be clear - for now, I will leave this as is. Correct?
 
-a separate patch for this would probably be preferable, but I guess it's ok
+Yes.
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> > In my patch, I will do the following changes:
+> >
+> >   => Free "fdt" when possible (as Michael had suggested in his patch)
+> >   => Zero out "elf_info" struct at the start of the function.
+> >
+>
+> Instead of zeroing out "elf_info", I think it would be better to return
+> an error immediately, instead of the "goto out;", if
+> kexec_build_elf_info() fails.
+>
+>     ret = kexec_build_elf_info(kernel_buf, kernel_len, &ehdr, &elf_info);
+>     if (ret)
+>       return ERR_PTR(ret);
+
+I thought kexec_build_elf_info() can return an error and allocated
+memory, so that would leak memory.
+
+Rob
