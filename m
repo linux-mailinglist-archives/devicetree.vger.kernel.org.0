@@ -2,165 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20FBC365970
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 15:01:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51A5A36597E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 15:06:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232233AbhDTNCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 09:02:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56350 "EHLO mail.kernel.org"
+        id S231718AbhDTNGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 09:06:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57832 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232091AbhDTNB7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Apr 2021 09:01:59 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DA9EC613D0;
-        Tue, 20 Apr 2021 13:01:26 +0000 (UTC)
+        id S230408AbhDTNGy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Apr 2021 09:06:54 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DD680613CE
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 13:06:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618923686;
-        bh=rtORbGc3mPMhlArrUrjghPvRhVtKXaf7d9TRrasS6l0=;
+        s=k20201202; t=1618923982;
+        bh=CfqZXCjLwBP0f+W+AaxrMRRsIoRAmM/sskwxdAjlPg4=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=VMumAygSE2Ss89tpuyftaMuLsWVlHbuUiOCbE8Ai7UM5E6RsNHIG9Vf4xtaC5qwKr
-         O/qTpB4pkucmnZ3hez0dd3jHy+B2ziZ24j2pdzihRTrnG631AEEeFTonndrokzneRV
-         fAlejQkAack3j+VindxNlgBzaFt6E33gc8tfDylJhzkcXhrUMNnxV+lZ6QtSmdN5EQ
-         +1QNhVUNNq7EWbL1+0+jlludkTmVA2DTA/EPQmmN7+A2XDrkH6E/Edh5Is/S5zN1UY
-         Dm+m093pRdDh3yhZFuuV6lxhG7ADpLJlcxGCBoTiokyTGU3rhh236EaQmxjuveju2R
-         kvvrKuGcEAYbA==
-Received: by mail-qk1-f178.google.com with SMTP id u20so6964803qku.10;
-        Tue, 20 Apr 2021 06:01:26 -0700 (PDT)
-X-Gm-Message-State: AOAM532WT6gnQe63xUoGePZXcK7WyX/GXoJ7+pOe0StbObSIXubVf7A+
-        EbKcqHzZXqEzJFsLhyOuPFlscIl7Po8e5aATzQ==
-X-Google-Smtp-Source: ABdhPJytCtVfQJCSrxQnJlrByY2ajWXURyVePKmlcnaE97mOqQU4IvcMx9ee78uVQZawM9qyCusf98X4PqudjDjJq+I=
-X-Received: by 2002:ae9:f819:: with SMTP id x25mr9783240qkh.68.1618923685847;
- Tue, 20 Apr 2021 06:01:25 -0700 (PDT)
+        b=Fl2BhKlmGiK4e6nKiiMFrM0Am2XibPm4gRwNRXM4/rt/hVLsNNHFFbLtAts6K6VEA
+         XQhRMvgbHpod0W3WZWrsojXlpLOKgoSIS5BkD0c/EchX/hFb6tnL24D0SgSdbzQwfO
+         PE7iHjNRHfJoA4SWBbLwKrO/OdAq/qhUxFlMKlF4pNg3j+6+OCdVDc9Bl9IKBk4yV9
+         6Y2cWVUsp2pDXunfMJN0Eq9xF2iatkemFq1l0pcEF4RtFGrzQQ1kDs/hseaSw+0qJ2
+         1upPGdMSHOXKIbVrDDcyKqSSpORq9yfflO0Brjyf31HjasrYA2GKbRQYYTy0u8dLcw
+         FqLX1mHvWq3pg==
+Received: by mail-qk1-f170.google.com with SMTP id 8so5425179qkv.8
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 06:06:22 -0700 (PDT)
+X-Gm-Message-State: AOAM532msUTYD0XCdC0x690GvCHXrtNtXM1wz+ENb9YrpR1O5DoI2huR
+        jGT9coKp9FprXif525XPXcD6VCUpS53C1DNbaA==
+X-Google-Smtp-Source: ABdhPJyxRmeQRtP34kVgJ1VcAt/5/6Rr319QqoBi2Fg/d6DssQfy2PWRrBwLl1DEPzI5MZkaE9xhv2zuR2uj7FpF9lM=
+X-Received: by 2002:a05:620a:1118:: with SMTP id o24mr9366188qkk.128.1618923981791;
+ Tue, 20 Apr 2021 06:06:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210126011759.1605641-1-drinkcat@chromium.org> <20210126091747.v11.1.Ie74d3355761aab202d4825ac6f66d990bba0130e@changeid>
-In-Reply-To: <20210126091747.v11.1.Ie74d3355761aab202d4825ac6f66d990bba0130e@changeid>
+References: <20210415191437.20212-1-nramas@linux.microsoft.com>
+ <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
+ <87eefag241.fsf@linkitivity.dja.id.au> <87tuo6eh0j.fsf@mpe.ellerman.id.au>
+ <2817d674-d420-580f-a0c1-b842da915a80@linux.microsoft.com>
+ <87pmypdf93.fsf@mpe.ellerman.id.au> <20210420050015.GA1959@kadam> <b84c76d6-2be8-77a4-3c0f-ad8657c0e508@linux.microsoft.com>
+In-Reply-To: <b84c76d6-2be8-77a4-3c0f-ad8657c0e508@linux.microsoft.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 20 Apr 2021 08:01:13 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+gWm+94zF1XN2KiRYgAZewiDkCk5B5bhLB=M+-HbD=fA@mail.gmail.com>
-Message-ID: <CAL_Jsq+gWm+94zF1XN2KiRYgAZewiDkCk5B5bhLB=M+-HbD=fA@mail.gmail.com>
-Subject: Re: [PATCH v11 1/4] dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
-To:     Nicolas Boichat <drinkcat@chromium.org>
-Cc:     Steven Price <steven.price@arm.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Fei Shao <fshao@chromium.org>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
+Date:   Tue, 20 Apr 2021 08:06:10 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLS9Wu_+_S-2wwMb3Chd_8RYAtFe_uLh5tjj_sAkTgRJA@mail.gmail.com>
+Message-ID: <CAL_JsqLS9Wu_+_S-2wwMb3Chd_8RYAtFe_uLh5tjj_sAkTgRJA@mail.gmail.com>
+Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in elf64_load()
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Cc:     Dan Carpenter <dan.carpenter@oracle.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Daniel Axtens <dja@axtens.net>, devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        kbuild-all@lists.01.org,
+        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        kbuild test robot <lkp@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 25, 2021 at 7:18 PM Nicolas Boichat <drinkcat@chromium.org> wrote:
+On Tue, Apr 20, 2021 at 12:20 AM Lakshmi Ramasubramanian
+<nramas@linux.microsoft.com> wrote:
 >
-> Define a compatible string for the Mali Bifrost GPU found in
-> Mediatek's MT8183 SoCs.
->
-> Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
-> ---
->
-> Changes in v11:
->  - binding: power-domain-names not power-domainS-names
->
-> Changes in v10:
->  - Fix the binding to make sure sram-supply property can be provided.
->
-> Changes in v9: None
-> Changes in v8: None
-> Changes in v7: None
-> Changes in v6:
->  - Rebased, actually tested with recent mesa driver.
->
-> Changes in v5:
->  - Rename "2d" power domain to "core2"
->
-> Changes in v4:
->  - Add power-domain-names description
->    (kept Alyssa's reviewed-by as the change is minor)
->
-> Changes in v3: None
-> Changes in v2: None
->
->  .../bindings/gpu/arm,mali-bifrost.yaml        | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> index 184492162e7e..3e758f88e2cd 100644
-> --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> @@ -17,6 +17,7 @@ properties:
->      items:
->        - enum:
->            - amlogic,meson-g12a-mali
-> +          - mediatek,mt8183-mali
->            - realtek,rtd1619-mali
->            - rockchip,px30-mali
->        - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
-> @@ -41,6 +42,8 @@ properties:
->
->    mali-supply: true
->
-> +  sram-supply: true
-> +
->    operating-points-v2: true
->
->    power-domains:
-> @@ -87,6 +90,31 @@ allOf:
->      then:
->        required:
->          - resets
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: mediatek,mt8183-mali
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          description:
-> +            List of phandle and PM domain specifier as documented in
-> +            Documentation/devicetree/bindings/power/power_domain.txt
-> +          minItems: 3
-> +          maxItems: 3
+> On 4/19/21 10:00 PM, Dan Carpenter wrote:
+> > On Tue, Apr 20, 2021 at 09:30:16AM +1000, Michael Ellerman wrote:
+> >> Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
+> >>> On 4/16/21 2:05 AM, Michael Ellerman wrote:
+> >>>
+> >>>> Daniel Axtens <dja@axtens.net> writes:
+> >>>>>> On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
+> >>>>>>
+> >>>>>> Sorry - missed copying device-tree and powerpc mailing lists.
+> >>>>>>
+> >>>>>>> There are a few "goto out;" statements before the local variable "fdt"
+> >>>>>>> is initialized through the call to of_kexec_alloc_and_setup_fdt() in
+> >>>>>>> elf64_load(). This will result in an uninitialized "fdt" being passed
+> >>>>>>> to kvfree() in this function if there is an error before the call to
+> >>>>>>> of_kexec_alloc_and_setup_fdt().
+> >>>>>>>
+> >>>>>>> Initialize the local variable "fdt" to NULL.
+> >>>>>>>
+> >>>>> I'm a huge fan of initialising local variables! But I'm struggling to
+> >>>>> find the code path that will lead to an uninit fdt being returned...
+> >>>>>
+> >>>>> The out label reads in part:
+> >>>>>
+> >>>>>   /* Make kimage_file_post_load_cleanup free the fdt buffer for us. */
+> >>>>>   return ret ? ERR_PTR(ret) : fdt;
+> >>>>>
+> >>>>> As far as I can tell, any time we get a non-zero ret, we're going to
+> >>>>> return an error pointer rather than the uninitialised value...
+> >>>
+> >>> As Dan pointed out, the new code is in linux-next.
+> >>>
+> >>> I have copied the new one below - the function doesn't return fdt, but
+> >>> instead sets it in the arch specific field (please see the link to the
+> >>> updated elf_64.c below).
+> >>>
+> >>> https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/tree/arch/powerpc/kexec/elf_64.c?h=for-next
+> >>>
+> >>>>>
+> >>>>> (btw, it does look like we might leak fdt if we have an error after we
+> >>>>> successfully kmalloc it.)
+> >>>>>
+> >>>>> Am I missing something? Can you link to the report for the kernel test
+> >>>>> robot or from Dan?
+> >>>
+> >>> /*
+> >>>            * Once FDT buffer has been successfully passed to
+> >>> kexec_add_buffer(),
+> >>>            * the FDT buffer address is saved in image->arch.fdt. In that
+> >>> case,
+> >>>            * the memory cannot be freed here in case of any other error.
+> >>>            */
+> >>>           if (ret && !image->arch.fdt)
+> >>>                   kvfree(fdt);
+> >>>
+> >>>           return ret ? ERR_PTR(ret) : NULL;
+> >>>
+> >>> In case of an error, the memory allocated for fdt is freed unless it has
+> >>> already been passed to kexec_add_buffer().
+> >>
+> >> It feels like the root of the problem is that the kvfree of fdt is in
+> >> the wrong place. It's only allocated later in the function, so the error
+> >> path should reflect that. Something like the patch below.
+> >>
+> >> cheers
+> >>
+> >>
+> >> diff --git a/arch/powerpc/kexec/elf_64.c b/arch/powerpc/kexec/elf_64.c
+> >> index 5a569bb51349..02662e72c53d 100644
+> >> --- a/arch/powerpc/kexec/elf_64.c
+> >> +++ b/arch/powerpc/kexec/elf_64.c
+> >> @@ -114,7 +114,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+> >>      ret = setup_new_fdt_ppc64(image, fdt, initrd_load_addr,
+> >>                                initrd_len, cmdline);
+> >>      if (ret)
+> >> -            goto out;
+> >> +            goto out_free_fdt;
+> >>
+> >>      fdt_pack(fdt);
+> >>
+> >> @@ -125,7 +125,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+> >>      kbuf.mem = KEXEC_BUF_MEM_UNKNOWN;
+> >>      ret = kexec_add_buffer(&kbuf);
+> >>      if (ret)
+> >> -            goto out;
+> >> +            goto out_free_fdt;
+> >>
+> >>      /* FDT will be freed in arch_kimage_file_post_load_cleanup */
+> >>      image->arch.fdt = fdt;
+> >> @@ -140,18 +140,14 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+> >>      if (ret)
+> >>              pr_err("Error setting up the purgatory.\n");
+> >>
+> >> +    goto out;
+> >
+> > This will leak.  It would need to be something like:
+> >
+> >       if (ret) {
+> >               pr_err("Error setting up the purgatory.\n");
+> >               goto out_free_fdt;
+> >       }
+> Once "fdt" buffer is successfully passed to kexec_add_buffer() it cannot
+> be freed here - it will be freed when the kexec cleanup function is called.
 
-This won't work because the top level schema restricts this to 1. The
-top level needs to say:
+That may be the case currently, but really if a function returns an
+error it should have undone anything it did like memory allocations. I
+don't think you should do that to fix this issue, but it would be a
+good clean-up.
 
-power-domains:
-  minItems: 1
-  maxItems: 3
-
-And you need just 'minItems: 3' here and 'maxItems: 1' in the else clause.
-
-And drop the description. That's every 'power-domains' property.
-
-> +        power-domain-names:
-> +          items:
-> +            - const: core0
-> +            - const: core1
-> +            - const: core2
-
-Blank line
-
-> +      required:
-> +        - sram-supply
-> +        - power-domains
-> +        - power-domain-names
-> +    else:
-> +      properties:
-> +        sram-supply: false
->
->  examples:
->    - |
-> --
-> 2.30.0.280.ga3ce27912f-goog
->
+Rob
