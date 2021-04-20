@@ -2,98 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3802365A10
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 15:28:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC4C2365A39
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 15:34:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232566AbhDTN15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 09:27:57 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:32955 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232026AbhDTN15 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 09:27:57 -0400
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 4FBD422249;
-        Tue, 20 Apr 2021 15:27:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1618925244;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=cqPRIy4v2i/c1w7ayO1W45KlATKGUfD4CdFjLYlm4kE=;
-        b=Li6Cd6/DW5gL1MTAQkmCrunz2p8blk2b9L2zzdexi8NYTetq9sIeaQuqUUgEexHUrNHesb
-        uii8wsgu/3oOz/+/o6JWQbFucGnDZstSqF2ogHqwPYZxYceqQF5R54h8WBHMbwSMJrqmRO
-        zzaVh/gcW6bBQvu4KxdrVS3CnMaE2x0=
+        id S232174AbhDTNe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 09:34:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39204 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232634AbhDTNe0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 09:34:26 -0400
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1661DC06138B
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 06:33:53 -0700 (PDT)
+Received: by mail-il1-x12b.google.com with SMTP id i22so27336887ila.11
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 06:33:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Xgfc7mO4E1wXWUmekqC8sEt5bIbUy15Zn+YoHQva8NI=;
+        b=PYyvqtFzdzRakpUOqbunR4I7/Lj/8HDyE7lqd9tAm0PNx6Uh1yOIHCDmuaqBR1ViP4
+         mmStHq4YHDIb9iNLpswctc4T/0gjz0QMypKb9sh/woNGTQHvzByI8qY89af1f2aYk6+S
+         wieFezmrOmmKh35TaWQ/tU2N5mVDzf8HRzVYk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Xgfc7mO4E1wXWUmekqC8sEt5bIbUy15Zn+YoHQva8NI=;
+        b=b4JFXZ6OPV42+UTGcn38F7oOluPNm0cwGOP+fiorZBvBmDi9AsL7s7ITA0OFlR17mw
+         F/l2DJhrWPiNivIZcoIwe7U53vovsKOiYnoY+TSi7wdCLQrObh0nAJ1wIb8+JX5JSv48
+         IPZsMAeMxdlF59BKi7B/0Gp+3D7UJWNCZAeTcWxJlY45p6F4TQjnKKASUf0iWAlc9k1H
+         hq2vqAS1IJ9+DUvB06dbeVXWaykOtkgS8Jcp5QoD9zTkMOXoiOIuRuZooRKXZprZQwYY
+         0inp8ohu5hjMvokFnVjzY1EfDxUerA0TXxg/jU8K1WG3YQmKhOP+RcIQjx5Ri2Z1LhVD
+         sUDw==
+X-Gm-Message-State: AOAM533uMVkr8xvSnxYAe7p8K5wJHu4xVI6f5sI6u50kzXy4WW3BLlDV
+        wFE7mXoaaO2QHGyKh0JdwUAyqlco/3lSGV3XUWi/KQ==
+X-Google-Smtp-Source: ABdhPJy6RgMFJUk30o3Bp+6VqEWzChzCOkzvaHDVug4JPECZShpDcemglkoDMMwZ/VXKrU9wV09fLSo20xOiZ0XVnHs=
+X-Received: by 2002:a92:d684:: with SMTP id p4mr22468413iln.150.1618925632435;
+ Tue, 20 Apr 2021 06:33:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 20 Apr 2021 15:27:24 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        Po Liu <po.liu@nxp.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alex Marginean <alexandru.marginean@nxp.com>,
+References: <20210414172916.2689361-1-hsinyi@chromium.org> <20210414172916.2689361-5-hsinyi@chromium.org>
+ <CAMpxmJUGxUPYC9NEnJDHYq7Nu=akP5GTpU0ts9htf1vELhK15Q@mail.gmail.com>
+In-Reply-To: <CAMpxmJUGxUPYC9NEnJDHYq7Nu=akP5GTpU0ts9htf1vELhK15Q@mail.gmail.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Tue, 20 Apr 2021 21:33:25 +0800
+Message-ID: <CAJMQK-huKTYepZ+xCZDG01RBGB5Tu4ic=Hs03=remLii0WBTaQ@mail.gmail.com>
+Subject: Re: [PATCH v19 4/6] misc: eeprom: at24: check suspend status before
+ disable regulator
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     Wolfram Sang <wsa@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Russell King - ARM Linux admin <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>
-Subject: Re: [PATCH net-next 0/5] Flow control for NXP ENETC
-In-Reply-To: <20210416234225.3715819-1-olteanv@gmail.com>
-References: <20210416234225.3715819-1-olteanv@gmail.com>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <fa2347b25d25e71f891e50f6f789e421@walle.cc>
-X-Sender: michael@walle.cc
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        Qii Wang <qii.wang@mediatek.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC..." 
+        <linux-mediatek@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+        intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vladimir,
+On Fri, Apr 16, 2021 at 10:09 PM Bartosz Golaszewski
+<bgolaszewski@baylibre.com> wrote:
+>
+> On Wed, Apr 14, 2021 at 7:29 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+> >
+> > cd5676db0574 ("misc: eeprom: at24: support pm_runtime control") disables
+> > regulator in runtime suspend. If runtime suspend is called before
+> > regulator disable, it will results in regulator unbalanced disabling.
+> >
+> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+>
+> Please add the Fixes tag.
+>
 
-Am 2021-04-17 01:42, schrieb Vladimir Oltean:
-> From: Vladimir Oltean <vladimir.oltean@nxp.com>
-> 
-> This patch series contains logic for enabling the lossless mode on the
-> RX rings of the ENETC, and the PAUSE thresholds on the internal FIFO
-> memory.
-> 
-> During testing it was found that, with the default FIFO configuration,
-> a sender which isn't persuaded by our PAUSE frames and keeps sending
-> will cause some MAC RX frame errors. To mitigate this, we need to 
-> ensure
-> that the FIFO never runs completely full, so we need to fix up a 
-> setting
-> that was supposed to be configured well out of reset. Unfortunately 
-> this
-> requires the addition of a new mini-driver.
+Hi,
 
-What happens if the mini driver is not enabled? Then the fixes aren't
-applied and bad things happen (now with the addition of flow control),
-right?
+I resend the patch with the fix tag separately since other patches in
+this series are not changed.
 
-I'm asking because, if you have the arm64 defconfig its not enabled.
+https://patchwork.ozlabs.org/project/linux-i2c/patch/20210420133050.377209-1-hsinyi@chromium.org/
 
-shouldn't it be something like:
+Thanks
 
-diff --git a/drivers/net/ethernet/freescale/enetc/Kconfig 
-b/drivers/net/ethernet/freescale/enetc/Kconfig
-index d88f60c2bb82..cdc0ff89388a 100644
---- a/drivers/net/ethernet/freescale/enetc/Kconfig
-+++ b/drivers/net/ethernet/freescale/enetc/Kconfig
-@@ -2,7 +2,7 @@
-  config FSL_ENETC
-         tristate "ENETC PF driver"
-         depends on PCI && PCI_MSI
--       depends on FSL_ENETC_IERB || FSL_ENETC_IERB=n
-+       select FSL_ENETC_IERB
-         select FSL_ENETC_MDIO
-         select PHYLINK
-         select PCS_LYNX
-
--michael
+> > ---
+> >  drivers/misc/eeprom/at24.c | 6 ++++--
+> >  1 file changed, 4 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
+> > index 926408b41270..7a6f01ace78a 100644
+> > --- a/drivers/misc/eeprom/at24.c
+> > +++ b/drivers/misc/eeprom/at24.c
+> > @@ -763,7 +763,8 @@ static int at24_probe(struct i2c_client *client)
+> >         at24->nvmem = devm_nvmem_register(dev, &nvmem_config);
+> >         if (IS_ERR(at24->nvmem)) {
+> >                 pm_runtime_disable(dev);
+> > -               regulator_disable(at24->vcc_reg);
+> > +               if (!pm_runtime_status_suspended(dev))
+> > +                       regulator_disable(at24->vcc_reg);
+> >                 return PTR_ERR(at24->nvmem);
+> >         }
+> >
+> > @@ -774,7 +775,8 @@ static int at24_probe(struct i2c_client *client)
+> >         err = at24_read(at24, 0, &test_byte, 1);
+> >         if (err) {
+> >                 pm_runtime_disable(dev);
+> > -               regulator_disable(at24->vcc_reg);
+> > +               if (!pm_runtime_status_suspended(dev))
+> > +                       regulator_disable(at24->vcc_reg);
+> >                 return -ENODEV;
+> >         }
+> >
+> > --
+> > 2.31.1.295.g9ea45b61b8-goog
+> >
+>
+> Acked-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
