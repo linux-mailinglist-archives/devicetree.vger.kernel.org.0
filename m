@@ -2,95 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6846B365EF7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 20:02:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28816365F14
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 20:16:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233583AbhDTSCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 14:02:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42450 "EHLO
+        id S232879AbhDTSQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 14:16:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233587AbhDTSCp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 14:02:45 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C62B5C06174A
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 11:02:13 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id nm3-20020a17090b19c3b029014e1bbf6c60so16672793pjb.4
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 11:02:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hbT6P4sTnHjPVBNP+gpODkwhWALRT12GXZ+BrAU9z6c=;
-        b=IK3Klm6cN5YqBN7qVuJ4lLmzTgfg3eCcqpFIHbGZOJH1ExUBQp0z3TU+fzS11X9elp
-         nMS/d5adt4C5erUZjmqL3j0sGxixcUKBKBU/XVjwwhNYpvycOGFJUZunmlzn5qykoY3E
-         t6lZw6dvzFt5qu67rp+6m0PPfV6Phco9cMnWg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hbT6P4sTnHjPVBNP+gpODkwhWALRT12GXZ+BrAU9z6c=;
-        b=f8NmN8dyZZZ9sYGNQmccMZwoMO1SuCbnMV0ssICZmLnoCQil5D0PNWAVN5fRyu45Q3
-         7yuP45VDDvuzO2VgtDAuXvjuSJxP2x0P84UyStl9JUxvk2JPohlj/VYKR0hbtdCN+d/Z
-         R+DtuAgD3ifeRuoGLT5Unca3yZ5VrGHwDTfdr6oeBdW/KERe3uXXxArpFj6qmQsMZGSK
-         ZKWA/2Czc2TYFqxRfknQyFGG0EDlZjgv7YXdu6smXheSLNlaxEzVWCNKHc4uwag9UCFG
-         yh1houY+vmxeJUE1ryeBr5afVDP3GeKgtlrzbzsj4l/qnjVeK3C1E/BL+wBbtVGmSU+/
-         w+pQ==
-X-Gm-Message-State: AOAM53205hktumG000MM8rtFZZUhszFmq0BgzW2MkEhQ+8FKOVpGAb19
-        BFTdE15ncpUQOarXY+YMzvD2WA==
-X-Google-Smtp-Source: ABdhPJx1smAbs/nJboZ6ngogE39uC6bgXMI37IgfFLX/P1zHxGxFgpyakNxvN7zFAybgcJgGWkDOiQ==
-X-Received: by 2002:a17:90a:302:: with SMTP id 2mr6540846pje.34.1618941732683;
-        Tue, 20 Apr 2021 11:02:12 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:7a9:7e56:e9c3:13e8])
-        by smtp.gmail.com with UTF8SMTPSA id f10sm3103078pju.27.2021.04.20.11.02.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Apr 2021 11:02:12 -0700 (PDT)
-Date:   Tue, 20 Apr 2021 11:02:11 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [RESEND PATCH V3 5/5] arm64: dts: qcom: sc7280: Include PMIC DT
- files for sc7280
-Message-ID: <YH8XIyp/l4C0JPvc@google.com>
-References: <1618398783-7834-1-git-send-email-skakit@codeaurora.org>
- <1618398783-7834-6-git-send-email-skakit@codeaurora.org>
+        with ESMTP id S232648AbhDTSQr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 14:16:47 -0400
+Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29E00C06174A;
+        Tue, 20 Apr 2021 11:16:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:
+        Reply-To:Cc:Content-ID:Content-Description;
+        bh=B8wdXqMqUBLzsCivp+edaOcFTlLJLF22BvmBImW3Cds=; b=idQGC38rPRBjbmYwZbtyZOm3jE
+        6dHdTfCI3TU2tQDB+jpBCRy7jAANYERDUPDCn1zPAvNNhKLwmJgHQdkPnuCGUgXe4OLSvdasZwwEV
+        vGnhMchBXwHkGiegv9uTQMK4CE6ct+pa6L17ZpY33ur9mazKAqLDjhLEj3v7lmkbjJcCpF7ZCNR2Q
+        8oXOj+in3tu1t5ajV4nsp8QhCc8HzzGkgzfruWz/wYkoPdgpPr1Ogq1T/4Xd2446qkLVW1yn/qHxX
+        Y/m9ahMvYiCdElUwTNd/ravPIY24mm8yU8lIFGAucoiyjLTNoIuDbjsvxaxMKqHP/wTyCNh0agJbi
+        GDEmOr/A==;
+Received: from [2601:1c0:6280:3f0::df68]
+        by casper.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
+        id 1lYuu5-00FUHM-Cw; Tue, 20 Apr 2021 18:15:24 +0000
+Subject: Re: [PATCH 5/5] misc: zynqmp: Add afi config driver
+To:     Nava kishore Manne <nava.manne@xilinx.com>, robh+dt@kernel.org,
+        michal.simek@xilinx.com, derek.kiernan@xilinx.com,
+        dragan.cvetic@xilinx.com, arnd@arndb.de,
+        gregkh@linuxfoundation.org, rajan.vaja@xilinx.com,
+        jolly.shah@xilinx.com, tejas.patel@xilinx.com,
+        amit.sunil.dhamne@xilinx.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        chinnikishore369@gmail.com, git@xilinx.com
+References: <20210420081153.17020-1-nava.manne@xilinx.com>
+ <20210420081153.17020-6-nava.manne@xilinx.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <c16bb43d-a4e6-cece-85f0-beef3797ee8f@infradead.org>
+Date:   Tue, 20 Apr 2021 11:15:12 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
+In-Reply-To: <20210420081153.17020-6-nava.manne@xilinx.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1618398783-7834-6-git-send-email-skakit@codeaurora.org>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 14, 2021 at 04:43:03PM +0530, satya priya wrote:
+On 4/20/21 1:11 AM, Nava kishore Manne wrote:
+> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> index 877b43b3377d..d1ea1eeb3ac1 100644
+> --- a/drivers/misc/Kconfig
+> +++ b/drivers/misc/Kconfig
+> @@ -456,6 +456,17 @@ config ZYNQ_AFI
+>  	  between PS and PL, the AXI port data path should be configured
+>  	  with the proper Bus-width values
+>  
+> +config ZYNQMP_AFI
+> +        tristate "Xilinx ZYNQMP AFI support"
+> +        help
+> +	  ZynqMP AFI driver support for writing to the AFI registers for
+> +	  configuring PS_PL Bus-width. Xilinx Zynq US+ MPSoC connect the
+> +	  PS to the programmable logic (PL) through the AXI port. This AXI
+> +	  port helps to establish the data path between the PS and PL.
+> +	  In-order to establish the proper communication path between
+> +	  PS and PL, the AXI port data path should be configured with
+> +	  the proper Bus-width values
+> +
+>  source "drivers/misc/c2port/Kconfig"
+>  source "drivers/misc/eeprom/Kconfig"
+>  source "drivers/misc/cb710/Kconfig"
 
-> Subject: arm64: dts: qcom: sc7280: Include PMIC DT files for sc7280
+Hi,
+from my notabot:
 
-Please make sure to distinguish between the SoC (sc7280) and the
-board (sc7280-idp), this patch primarily adds stuff to the board not
-the SoC, this should be clear from the subject.
+Please follow coding-style for Kconfig files:
 
-> Include pm7325, pm8350c, pmk8350 and pmr735a DT files.
+from Documentation/process/coding-style.rst, section 10):
 
-How about something like 'The sc7280-idp has four PMICs, include their
-.dtsi files'?
+For all of the Kconfig* configuration files throughout the source tree,
+the indentation is somewhat different.  Lines under a ``config`` definition
+are indented with one tab, while help text is indented an additional two
+spaces.
 
-> Add channel nodes for pmk8350_vadc.
 
-It's not super important, but I don't like it when things like this get
-sneaked in with a commit message saying 'Include PMIC DT files for
-sc7280'. I would suggest a separate patch. And please mention that
-the channels are for the on die temperatures of the PMICs.
-
-> Also, add the thermal_zones node in dtsi.
-
-This is not the right patch to add it. This patch is about the sc7280-board
-and doesn't do anything (directly) with thermal zones. However other
-patches further down in the stack of in this series require the
-'thermal-zones' to exist, hence the node should exist before these patches
-reference it. A dedicated patch adding the node seems like the best option
-to me.
+thanks.
+-- 
+~Randy
 
