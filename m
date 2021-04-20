@@ -2,115 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DC6D365AEC
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 16:10:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 158B0365AFE
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 16:15:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232504AbhDTOLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 10:11:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47404 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232419AbhDTOLI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 10:11:08 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C55E2C06174A;
-        Tue, 20 Apr 2021 07:10:36 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 0AC6E22249;
-        Tue, 20 Apr 2021 16:10:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1618927834;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=gZzdrVgE6rVEqETqHd8rICoxokCvYVI1LWiUV3nczwY=;
-        b=cBJj9IsnVoI7b/0muDZcpHZqc3LniZ3iMVIeIikjGvHDpK7tINA/9wf5YXiBKC5wIPvUKh
-        M9aKOmcv2URowTX4Aix2zhYd4BtWcv3VvOMJkHoPl9tdTj3La9JvMlblmLKJy9OB3ArGBh
-        BdVn4VeZ8hENRNVkvb0Vtlq9iurmfMo=
+        id S232303AbhDTOPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 10:15:40 -0400
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:41728 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231758AbhDTOPj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 10:15:39 -0400
+Received: by mail-ot1-f50.google.com with SMTP id v19-20020a0568300913b029028423b78c2dso27271843ott.8;
+        Tue, 20 Apr 2021 07:15:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CQrvXF6jsBsxQM/n8Qq8tJqXRILLahzSGccdVi41rnI=;
+        b=ToVL/VuGHSudHLc3Ez+E+to+CYK4noz3cGRqs7Qb+MQwtWcg4399fb2/Xa8Vslf+0G
+         qofTEsCieHfXkXtyd+wLfRTKnvF+V4sQG3kol9BO+ddeH5hZjJNA2GZbOgNF2citgF+T
+         Ie3PQB0wxl7fQzbvpmi4FFdz1UEQ6E/k7syfUoPLpbNi1evzsoWEkNKHKINqOqy+C7/6
+         3V1JGjmIdEUTLbjOI4zw1pHNRyrFa6Xlq6h0Lm3Re0M9TQHUHuI4fNrTf66l94BJ7JyS
+         ynYxlh5gNvYuf7Q50wsotQQaa+zCaxV/bMq0aQT7y3Q9hMgWDd/qXMBfaB0qUd5k95tO
+         ktQQ==
+X-Gm-Message-State: AOAM5333HgueLmIvzFJLowUV1Dd5ahpUSQM3m1XKAvwnBa0uimoxHm81
+        0TE6PNAFs+El5iI5eSN7qA==
+X-Google-Smtp-Source: ABdhPJzBaI1//hsQGZTcOWdRWoMXwE1B6ZcuDc85ad+AzX0kLozdA0RkAjoMY5tiPLN4fWNr5i/Cpg==
+X-Received: by 2002:a9d:5f0c:: with SMTP id f12mr18888376oti.258.1618928106552;
+        Tue, 20 Apr 2021 07:15:06 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id r127sm224943oor.2.2021.04.20.07.15.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Apr 2021 07:15:05 -0700 (PDT)
+Received: (nullmailer pid 3257176 invoked by uid 1000);
+        Tue, 20 Apr 2021 14:15:04 -0000
+Date:   Tue, 20 Apr 2021 09:15:04 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Nava kishore Manne <nava.manne@xilinx.com>
+Cc:     michal.simek@xilinx.com, derek.kiernan@xilinx.com,
+        dragan.cvetic@xilinx.com, arnd@arndb.de,
+        gregkh@linuxfoundation.org, rajan.vaja@xilinx.com,
+        jolly.shah@xilinx.com, tejas.patel@xilinx.com,
+        amit.sunil.dhamne@xilinx.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        chinnikishore369@gmail.com, git@xilinx.com
+Subject: Re: [PATCH 4/5] misc: doc: Add binding doc for the zynqmp afi config
+ driver
+Message-ID: <20210420141504.GA3250182@robh.at.kernel.org>
+References: <20210420081153.17020-1-nava.manne@xilinx.com>
+ <20210420081153.17020-5-nava.manne@xilinx.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 20 Apr 2021 16:10:34 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        Po Liu <po.liu@nxp.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alex Marginean <alexandru.marginean@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Russell King - ARM Linux admin <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>
-Subject: Re: [PATCH net-next 0/5] Flow control for NXP ENETC
-In-Reply-To: <20210420140433.hajuvfiz4humhhkt@skbuf>
-References: <20210416234225.3715819-1-olteanv@gmail.com>
- <fa2347b25d25e71f891e50f6f789e421@walle.cc>
- <20210420140433.hajuvfiz4humhhkt@skbuf>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <0bf4aa61dea7be0723fda2d8597644ad@walle.cc>
-X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210420081153.17020-5-nava.manne@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vladimir,
+On Tue, Apr 20, 2021 at 01:41:52PM +0530, Nava kishore Manne wrote:
+> This patch adds the binding document for the zynqmp afi
+> config driver.
 
-Am 2021-04-20 16:04, schrieb Vladimir Oltean:
-> On Tue, Apr 20, 2021 at 03:27:24PM +0200, Michael Walle wrote:
->> Hi Vladimir,
->> 
->> Am 2021-04-17 01:42, schrieb Vladimir Oltean:
->> > From: Vladimir Oltean <vladimir.oltean@nxp.com>
->> >
->> > This patch series contains logic for enabling the lossless mode on the
->> > RX rings of the ENETC, and the PAUSE thresholds on the internal FIFO
->> > memory.
->> >
->> > During testing it was found that, with the default FIFO configuration,
->> > a sender which isn't persuaded by our PAUSE frames and keeps sending
->> > will cause some MAC RX frame errors. To mitigate this, we need to ensure
->> > that the FIFO never runs completely full, so we need to fix up a setting
->> > that was supposed to be configured well out of reset. Unfortunately this
->> > requires the addition of a new mini-driver.
->> 
->> What happens if the mini driver is not enabled? Then the fixes aren't
->> applied and bad things happen (now with the addition of flow control),
->> right?
->> 
->> I'm asking because, if you have the arm64 defconfig its not enabled.
->> 
->> shouldn't it be something like:
->> 
->> diff --git a/drivers/net/ethernet/freescale/enetc/Kconfig
->> b/drivers/net/ethernet/freescale/enetc/Kconfig
->> index d88f60c2bb82..cdc0ff89388a 100644
->> --- a/drivers/net/ethernet/freescale/enetc/Kconfig
->> +++ b/drivers/net/ethernet/freescale/enetc/Kconfig
->> @@ -2,7 +2,7 @@
->>  config FSL_ENETC
->>         tristate "ENETC PF driver"
->>         depends on PCI && PCI_MSI
->> -       depends on FSL_ENETC_IERB || FSL_ENETC_IERB=n
->> +       select FSL_ENETC_IERB
->>         select FSL_ENETC_MDIO
->>         select PHYLINK
->>         select PCS_LYNX
+Bindings are for h/w blocks, not drivers.
+
 > 
-> Yes, ideally the IERB driver and the ENETC PF driver should be built in
-> the same way, or the IERB driver can be built-in and the PF driver can
-> be module. I don't know how to express this using Kconfig, sorry.
+> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> ---
+>  .../bindings/misc/xlnx,zynqmp-afi-fpga.yaml   | 136 ++++++++++++++++++
+>  1 file changed, 136 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/xlnx,zynqmp-afi-fpga.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/xlnx,zynqmp-afi-fpga.yaml b/Documentation/devicetree/bindings/misc/xlnx,zynqmp-afi-fpga.yaml
+> new file mode 100644
+> index 000000000000..3ae22096b22a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/xlnx,zynqmp-afi-fpga.yaml
+> @@ -0,0 +1,136 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/xlnx,zynqmp-afi-fpga.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx ZynqMP AFI interface Manager.
+> +
+> +maintainers:
+> +  - Nava kishore Manne <nava.manne@xilinx.com>
+> +
+> +description: |
+> +  The Zynq UltraScale+ MPSoC Processing System core provides access from PL
+> +  masters to PS internal peripherals, and memory through AXI FIFO interface(AFI)
+> +  interfaces.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - xlnx,zynqmp-afi-fpga
+> +
+> +  config-afi:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description: |
+> +      Pairs of  <regid value >
+> +      The possible values of regid and values are
+> +      regid - Regids of the register to be written possible values
 
-With the small patch above it is:
-  FSL_ENETC=m -> FSL_ENETC_IERB = m or y
-  FSL_ENETC=y -> FSL_ENETC_IERB = y
-  FSL_ENETC=n -> FSL_ENETC_IERB = m,y or n
+If we wanted sequences of register accesses in DT, we'd have a 
+generic mechanism to do so.
 
-Will you fix it? Should I prepare a patch?
-
--michael
+> +        0- AFIFM0_RDCTRL
+> +        1- AFIFM0_WRCTRL
+> +        2- AFIFM1_RDCTRL
+> +        3- AFIFM1_WRCTRL
+> +        4- AFIFM2_RDCTRL
+> +        5- AFIFM2_WRCTRL
+> +        6- AFIFM3_RDCTRL
+> +        7- AFIFM3_WRCTRL
+> +        8- AFIFM4_RDCTRL
+> +        9- AFIFM4_WRCTRL
+> +        10- AFIFM5_RDCTRL
+> +        11- AFIFM5_WRCTRL
+> +        12- AFIFM6_RDCTRL
+> +        13- AFIFM6_WRCTRL
+> +        14- AFIFS
+> +        15- AFIFS_SS2
+> +      value - Array of values to be written.
+> +        for FM0_RDCTRL(0) the valid values-fabric width
+> +          2 - 32-bit
+> +          1 - 64-bit
+> +          0 - 128-bit
+> +        for FM0_WRCTRL(1) the valid values-fabric width
+> +          2 - 32-bit
+> +          1 - 64-bit
+> +          0 - 128-bit
+> +        for FM1_RDCTRL(2) the valid values-fabric width
+> +          2 - 32-bit
+> +          1 - 64-bit
+> +          0 - 128-bit
+> +        for FM1_WRCTRL(3) the valid values-fabric width
+> +          2 - 32-bit
+> +          1 - 64-bit
+> +          0 - 128-bit
+> +        for FM2_RDCTRL(4) the valid values-fabric width
+> +          2 - 32-bit
+> +          1 - 64-bit
+> +          0 - 128-bit
+> +        for FM2_WRCTRL(5) the valid values-fabric width
+> +          2 - 32-bit
+> +          1 - 64-bit
+> +          0 - 128-bit
+> +        for FM3_RDCTRL(6) the valid values-fabric width
+> +          2 - 32-bit
+> +          1 - 64-bit
+> +          0 - 128-bit
+> +        for FM3_WRCTRL(7) the valid values-fabric width
+> +          2 - 32-bit
+> +          1 - 64-bit
+> +          0 - 128-bit
+> +        for FM4_RDCTRL(8) the valid values-fabric width
+> +          2 - 32-bit
+> +          1 - 64-bit
+> +          0 - 128-bit
+> +        for FM4_WRCTRL(9) the valid values-fabric width
+> +          2 - 32-bit
+> +          1 - 64-bit
+> +          0 - 128-bit
+> +        for FM5_RDCTRL(10) the valid values-fabric width
+> +          2 - 32-bit
+> +          1 - 64-bit
+> +          0 - 128-bit
+> +        for FM5_WRCTRL(11) the valid values-fabric width
+> +          2 - 32-bit
+> +          1 - 64-bit
+> +          0 - 128-bit
+> +        for FM6_RDCTRL(12) the valid values-fabric width
+> +          2 - 32-bit
+> +          1 - 64-bit
+> +          0 - 128-bit
+> +        for FM6_WRCTRL(13) the valid values-fabric width
+> +          2 - 32-bit
+> +          1 - 64-bit
+> +          0 - 128-bit
+> +        for AFI_FA(14)
+> +          dw_ss1_sel      bits (11:10)
+> +          dw_ss0_sel      bits (9:8)
+> +            0x0 - 32-bit AXI data width
+> +            0x1 - 64-bit AXI data width
+> +            0x2 - 128-bit AXI data width
+> +            All other bits are 0 write ignored.
+> +
+> +        for AFI_FA(15)  selects for ss2AXI data width valid values
+> +          0x000 - 32-bit AXI data width
+> +          0x100 - 64-bit AXI data width
+> +          0x200 - 128-bit AXI data width
+> +    minItems: 1
+> +    maxItems: 15
+> +
+> +required:
+> +  - compatible
+> +  - config-afi
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    firmware {
+> +      zynqmp_firmware: zynqmp-firmware {
+> +        compatible = "xlnx,zynqmp-firmware";
+> +        method = "smc";
+> +        afi0: afi {
+> +          compatible = "xlnx,afi-fpga";
+> +          config-afi = <0 2>, <1 1>, <2 1>;
+> +        };
+> +      };
+> +    };
+> +
+> +...
+> -- 
+> 2.18.0
+> 
