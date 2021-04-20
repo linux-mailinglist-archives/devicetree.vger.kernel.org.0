@@ -2,72 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC5023660F4
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 22:34:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1D1336611F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 22:48:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233660AbhDTUeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 16:34:10 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:40706 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233982AbhDTUeD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 16:34:03 -0400
-Received: by mail-ot1-f45.google.com with SMTP id g4-20020a9d6b040000b029029debbbb3ecso4020392otp.7;
-        Tue, 20 Apr 2021 13:33:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=DD7/NL5gJzpXCQeXb8QeXwOzocwutpc19YrHhJ83w6s=;
-        b=POivqFdWIfya0+Y1SCPc0Pmp5tkkvlCK3+s1J/Z1ke5+tgkIUzjQia7qwXGy5CCbzl
-         v3kLrfFsdVoIhqaEHLQHQLq1r6tJaBbkcJawLjl06Li7vx/0B3QBTZn9clSbgfbz4ggn
-         3tz29v95aUwCY07gshIPUdr2Y9moW6mjKXQxLnsWBs0stLN/tejer49r2Q3M+CNlKGYO
-         8RXLUzFZsP3USErpHoB0a+451zr/y7V6ZAfLsewNSd7v8MQ0vsksPFMKAxM4N5eIPTKW
-         BZeYyGksmG1I7E7aL/XCe3D1xbAohOc9RUOmo1Qqc5lpQxAfBwoJVFF4Efzw1c+zRtoW
-         UJ9g==
-X-Gm-Message-State: AOAM532XcLZZigaCqZ08WBl/ALri/moNFRx8v0GkElUcYAoYvTQzEm1f
-        LnWf4qOM+57ppeWhJvfaHg==
-X-Google-Smtp-Source: ABdhPJxirUjL80mT5wdFTiFnB3kTym+arpTEAai9wz+jx+d5GDsx7qkghe+QQRd+h1ll2s19tFIWKw==
-X-Received: by 2002:a05:6830:1d74:: with SMTP id l20mr20127340oti.211.1618950809972;
-        Tue, 20 Apr 2021 13:33:29 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g84sm20943oia.45.2021.04.20.13.33.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Apr 2021 13:33:29 -0700 (PDT)
-Received: (nullmailer pid 3760959 invoked by uid 1000);
-        Tue, 20 Apr 2021 20:33:28 -0000
-Date:   Tue, 20 Apr 2021 15:33:28 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
+        id S234034AbhDTUs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 16:48:56 -0400
+Received: from mx2.suse.de ([195.135.220.15]:36212 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234009AbhDTUs4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Apr 2021 16:48:56 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 97294B4FE;
+        Tue, 20 Apr 2021 20:48:23 +0000 (UTC)
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: thermal: thermal-sensor: require
- "#thermal-sensor-cells"
-Message-ID: <20210420203328.GA3760918@robh.at.kernel.org>
-References: <20210415112121.4999-1-zajec5@gmail.com>
+Subject: [PATCH v2 2/2] dt-bindings: interrupt-controller: Add IDT 79RC3243x Interrupt Controller
+Date:   Tue, 20 Apr 2021 22:48:20 +0200
+Message-Id: <20210420204821.39396-2-tsbogend@alpha.franken.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210420204821.39396-1-tsbogend@alpha.franken.de>
+References: <20210420204821.39396-1-tsbogend@alpha.franken.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210415112121.4999-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Apr 2021 13:21:21 +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> This property is required for every thermal sensor as it's used when
-> using phandles.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->  Documentation/devicetree/bindings/thermal/thermal-sensor.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
+Document DT bindings for IDT 79RC3243x Interrupt Controller.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+---
+ .../interrupt-controller/idt,3243x-pic.yaml   | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/idt,3243x-pic.yaml
+
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/idt,3243x-pic.yaml b/Documentation/devicetree/bindings/interrupt-controller/idt,3243x-pic.yaml
+new file mode 100644
+index 000000000000..6a1c5ac75f1a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/idt,3243x-pic.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/idt,3243x-pic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: IDT 79RC3243x Interrupt Controller Device Tree Bindings
++
++maintainers:
++  - Thomas Bogendoerfer <tsbogend@alpha.franken.de>
++
++allOf:
++  - $ref: /schemas/interrupt-controller.yaml#
++
++properties:
++  "#interrupt-cells":
++    const: 1
++
++  compatible:
++    const: idt,3243x-pci
++
++  reg:
++    maxItems: 1
++
++  interrupt-controller: true
++
++required:
++  - "#interrupt-cells"
++  - compatible
++  - reg
++  - interrupt-controller
++
++additionalProperties: false
++
++examples:
++  - |
++    idtpic3: interrupt-controller@3800c {
++        compatible = "idt,rc3243x-pic";
++        reg = <0x3800c 0x0c>;
++
++        interrupt-controller;
++        #interrupt-cells = <1>;
++
++        interrupt-parent = <&cpuintc>;
++        interrupts = <3>;
++    };
++
++...
+-- 
+2.29.2
+
