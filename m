@@ -2,109 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9E2836518A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 06:34:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F22D23651B2
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 07:01:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229532AbhDTEeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 00:34:44 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:34790 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbhDTEem (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 00:34:42 -0400
-Received: by mail-oi1-f178.google.com with SMTP id k18so32829797oik.1;
-        Mon, 19 Apr 2021 21:34:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5qq8dgtGJwrS7fKasipW8Urc+VaRmsOcPysIaaEEznk=;
-        b=C37uCDsGjwa7puQ7LloX15GHytqOKEYLsuUETj9DwGmUvxVQwZb6mEt2jRtwwSUJmE
-         ier9FoILlIY+zsNZL4NlpnNs6Nvq/iueX5R5muBNbXeUT27mFoDqFrCUSPvMok6Ly1ER
-         dSSCzjVloX23rZZAs/+Vm+H+bm2W67uxX6B4BQhyYLkhgANpRFATK3AapM7RIsNMaBPU
-         7/TpRPhhwJhPaLq0g7z8ntP86q3D/LhnAHUpYvAgy+9caPL4Czj4jG4lN1ZVTscSsaZm
-         9CRxiG9ga8s6z1LWw87PGiDyWsiASCVLyxk7ICAKucMEXVaeJ2j+IDMEUTYm/H2HN4Ey
-         RtVw==
-X-Gm-Message-State: AOAM533wdgSlaXFMUOyia5aOquTzLj59Kwh2O14ENB5rMWzdqsBfJpv2
-        iX0hDW0k96UgsoJbP7swyHaqMjfH85A=
-X-Google-Smtp-Source: ABdhPJwxBQ/0nWO04t3JGQp5NWR6VdNPU11Xmuj2p7yK4kjZI5Fm4cVDPzNYb5IKEFNuqDF6I4BPoA==
-X-Received: by 2002:a54:470e:: with SMTP id k14mr1665713oik.151.1618893251487;
-        Mon, 19 Apr 2021 21:34:11 -0700 (PDT)
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com. [209.85.210.45])
-        by smtp.gmail.com with ESMTPSA id s7sm1342142oij.15.2021.04.19.21.34.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Apr 2021 21:34:10 -0700 (PDT)
-Received: by mail-ot1-f45.google.com with SMTP id k14-20020a9d7dce0000b02901b866632f29so34723299otn.1;
-        Mon, 19 Apr 2021 21:34:10 -0700 (PDT)
-X-Received: by 2002:a9d:19c7:: with SMTP id k65mr17387755otk.221.1618893250401;
- Mon, 19 Apr 2021 21:34:10 -0700 (PDT)
+        id S229563AbhDTFB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 01:01:29 -0400
+Received: from aserp2130.oracle.com ([141.146.126.79]:37754 "EHLO
+        aserp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229507AbhDTFB0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 01:01:26 -0400
+Received: from pps.filterd (aserp2130.oracle.com [127.0.0.1])
+        by aserp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 13K4xlwe099815;
+        Tue, 20 Apr 2021 05:00:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=corp-2020-01-29;
+ bh=SEJ5hJT1rZy5KrqpbX553PdqtwAkJhD/gbN+EqTQ0pM=;
+ b=wwwuUeBYkyI8PiUeT8p0L0SoQaW11u2ng14R328IzwLPYqsP8MAS7NAWRBDSl3WT7dHz
+ xOoZirEcfgHvhvM/suM7UIxHSg1E19iIF6M3uZmJrXqc4PrFpT1XjJ05waUjefu5/I1D
+ 10FwBZcCuEnlO1fQ3D7lgpgubMpsJolWNSjMkFUGYDkTloUS2jYJJEDnHcgkA7QrpYvc
+ 5esr2xafpowQyre8HvkIAkujWA7nL7YmqoTlg+wzCT0kVbyINzJdMg97lq3NHYyz4bNv
+ F6gB0dR5XM9a7NAf4pQjOxtAeJ7VtmolrC0P4Fz4jgxKln+OybZaunXvolC6/J5fTedx iQ== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+        by aserp2130.oracle.com with ESMTP id 37yn6c5ue8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 20 Apr 2021 05:00:36 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 13K4trRa018061;
+        Tue, 20 Apr 2021 05:00:35 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by userp3020.oracle.com with ESMTP id 3809es1v1c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 20 Apr 2021 05:00:35 +0000
+Received: from userp3020.oracle.com (userp3020.oracle.com [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 13K50ZLF030450;
+        Tue, 20 Apr 2021 05:00:35 GMT
+Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
+        by userp3020.oracle.com with ESMTP id 3809es1v0e-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 20 Apr 2021 05:00:35 +0000
+Received: from abhmp0005.oracle.com (abhmp0005.oracle.com [141.146.116.11])
+        by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 13K50NkC026650;
+        Tue, 20 Apr 2021 05:00:23 GMT
+Received: from kadam (/102.36.221.92)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Mon, 19 Apr 2021 22:00:23 -0700
+Date:   Tue, 20 Apr 2021 08:00:15 +0300
+From:   Dan Carpenter <dan.carpenter@oracle.com>
+To:     Michael Ellerman <mpe@ellerman.id.au>
+Cc:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        Daniel Axtens <dja@axtens.net>, robh@kernel.org,
+        devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        kbuild-all@lists.01.org, bauerman@linux.ibm.com, lkp@intel.com
+Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in
+ elf64_load()
+Message-ID: <20210420050015.GA1959@kadam>
+References: <20210415191437.20212-1-nramas@linux.microsoft.com>
+ <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
+ <87eefag241.fsf@linkitivity.dja.id.au>
+ <87tuo6eh0j.fsf@mpe.ellerman.id.au>
+ <2817d674-d420-580f-a0c1-b842da915a80@linux.microsoft.com>
+ <87pmypdf93.fsf@mpe.ellerman.id.au>
 MIME-Version: 1.0
-References: <20210330145027.16897-1-sahil.malhotra@oss.nxp.com>
-In-Reply-To: <20210330145027.16897-1-sahil.malhotra@oss.nxp.com>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Mon, 19 Apr 2021 23:33:58 -0500
-X-Gmail-Original-Message-ID: <CADRPPNSdDU-G-sLe8j27Rmd923jSWKirRdYS9qzZMHotsMuKCQ@mail.gmail.com>
-Message-ID: <CADRPPNSdDU-G-sLe8j27Rmd923jSWKirRdYS9qzZMHotsMuKCQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: ls1028a-rdb: enable optee node
-To:     Sahil Malhotra <sahil.malhotra@oss.nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sahil Malhotra <sahil.malhotra@nxp.com>,
-        Michael Walle <michael@walle.cc>,
-        Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87pmypdf93.fsf@mpe.ellerman.id.au>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-GUID: 0EOg1N2B9-n1LG6hmribXNvEhEfUTzWY
+X-Proofpoint-ORIG-GUID: 0EOg1N2B9-n1LG6hmribXNvEhEfUTzWY
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9959 signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 priorityscore=1501
+ bulkscore=0 suspectscore=0 impostorscore=0 mlxscore=0 lowpriorityscore=0
+ clxscore=1011 spamscore=0 mlxlogscore=999 adultscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104060000
+ definitions=main-2104200036
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 30, 2021 at 9:53 AM Sahil Malhotra
-<sahil.malhotra@oss.nxp.com> wrote:
->
-> From: Sahil Malhotra <sahil.malhotra@nxp.com>
->
-> optee node was disabled by default, enabling it for ls1028a-rdb.
->
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> Signed-off-by: Sahil Malhotra <sahil.malhotra@nxp.com>
+On Tue, Apr 20, 2021 at 09:30:16AM +1000, Michael Ellerman wrote:
+> Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
+> > On 4/16/21 2:05 AM, Michael Ellerman wrote:
+> >
+> >> Daniel Axtens <dja@axtens.net> writes:
+> >>>> On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
+> >>>>
+> >>>> Sorry - missed copying device-tree and powerpc mailing lists.
+> >>>>
+> >>>>> There are a few "goto out;" statements before the local variable "fdt"
+> >>>>> is initialized through the call to of_kexec_alloc_and_setup_fdt() in
+> >>>>> elf64_load(). This will result in an uninitialized "fdt" being passed
+> >>>>> to kvfree() in this function if there is an error before the call to
+> >>>>> of_kexec_alloc_and_setup_fdt().
+> >>>>>
+> >>>>> Initialize the local variable "fdt" to NULL.
+> >>>>>
+> >>> I'm a huge fan of initialising local variables! But I'm struggling to
+> >>> find the code path that will lead to an uninit fdt being returned...
+> >>>
+> >>> The out label reads in part:
+> >>>
+> >>> 	/* Make kimage_file_post_load_cleanup free the fdt buffer for us. */
+> >>> 	return ret ? ERR_PTR(ret) : fdt;
+> >>>
+> >>> As far as I can tell, any time we get a non-zero ret, we're going to
+> >>> return an error pointer rather than the uninitialised value...
+> >
+> > As Dan pointed out, the new code is in linux-next.
+> >
+> > I have copied the new one below - the function doesn't return fdt, but 
+> > instead sets it in the arch specific field (please see the link to the 
+> > updated elf_64.c below).
+> >
+> > https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/tree/arch/powerpc/kexec/elf_64.c?h=for-next 
+> >
+> >>>
+> >>> (btw, it does look like we might leak fdt if we have an error after we
+> >>> successfully kmalloc it.)
+> >>>
+> >>> Am I missing something? Can you link to the report for the kernel test
+> >>> robot or from Dan?
+> >
+> > /*
+> >           * Once FDT buffer has been successfully passed to 
+> > kexec_add_buffer(),
+> >           * the FDT buffer address is saved in image->arch.fdt. In that 
+> > case,
+> >           * the memory cannot be freed here in case of any other error.
+> >           */
+> >          if (ret && !image->arch.fdt)
+> >                  kvfree(fdt);
+> >
+> >          return ret ? ERR_PTR(ret) : NULL;
+> >
+> > In case of an error, the memory allocated for fdt is freed unless it has 
+> > already been passed to kexec_add_buffer().
+> 
+> It feels like the root of the problem is that the kvfree of fdt is in
+> the wrong place. It's only allocated later in the function, so the error
+> path should reflect that. Something like the patch below.
+> 
+> cheers
+> 
+> 
+> diff --git a/arch/powerpc/kexec/elf_64.c b/arch/powerpc/kexec/elf_64.c
+> index 5a569bb51349..02662e72c53d 100644
+> --- a/arch/powerpc/kexec/elf_64.c
+> +++ b/arch/powerpc/kexec/elf_64.c
+> @@ -114,7 +114,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+>  	ret = setup_new_fdt_ppc64(image, fdt, initrd_load_addr,
+>  				  initrd_len, cmdline);
+>  	if (ret)
+> -		goto out;
+> +		goto out_free_fdt;
+>  
+>  	fdt_pack(fdt);
+>  
+> @@ -125,7 +125,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+>  	kbuf.mem = KEXEC_BUF_MEM_UNKNOWN;
+>  	ret = kexec_add_buffer(&kbuf);
+>  	if (ret)
+> -		goto out;
+> +		goto out_free_fdt;
+>  
+>  	/* FDT will be freed in arch_kimage_file_post_load_cleanup */
+>  	image->arch.fdt = fdt;
+> @@ -140,18 +140,14 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+>  	if (ret)
+>  		pr_err("Error setting up the purgatory.\n");
+>  
+> +	goto out;
 
-Acked-by: Li Yang <leoyang.li@nxp.com>
+This will leak.  It would need to be something like:
 
-> ---
->  arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts | 4 ++++
->  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi    | 2 +-
->  2 files changed, 5 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-> index 41ae6e7675ba..1bdf0104d492 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-> @@ -274,6 +274,10 @@
->         status = "okay";
->  };
->
-> +&optee {
-> +       status = "okay";
-> +};
+	if (ret) {
+		pr_err("Error setting up the purgatory.\n");
+		goto out_free_fdt;
+	}
+
+	goto out;
+
+But we should also fix the uninitialized variable of "elf_info" if
+kexec_build_elf_info() fails.
+
 > +
->  &sai4 {
->         status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> index 262fbad8f0ec..fb155ac192b1 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> @@ -92,7 +92,7 @@
->         };
->
->         firmware {
-> -               optee {
-> +               optee: optee  {
->                         compatible = "linaro,optee-tz";
->                         method = "smc";
->                         status = "disabled";
-> --
-> 2.17.1
->
+> +out_free_fdt:
+> +	kvfree(fdt);
+>  out:
+>  	kfree(modified_cmdline);
+>  	kexec_free_elf_info(&elf_info);
+>  
+> -	/*
+> -	 * Once FDT buffer has been successfully passed to kexec_add_buffer(),
+> -	 * the FDT buffer address is saved in image->arch.fdt. In that case,
+> -	 * the memory cannot be freed here in case of any other error.
+> -	 */
+> -	if (ret && !image->arch.fdt)
+> -		kvfree(fdt);
+> -
+>  	return ret ? ERR_PTR(ret) : NULL;
+>  }
+
+regards,
+dan carpenter
+
