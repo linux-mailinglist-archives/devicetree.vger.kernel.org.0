@@ -2,65 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEF2F365CC9
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 18:03:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95BC9365CD3
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 18:05:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232835AbhDTQDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 12:03:35 -0400
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:42945 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232504AbhDTQDf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 12:03:35 -0400
-Received: by mail-oi1-f171.google.com with SMTP id n140so39410142oig.9;
-        Tue, 20 Apr 2021 09:03:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ADnmKHAsx4NVOEncBCc7lt8okoolcZcwGDkULCgdHiA=;
-        b=U7LnBcxYXRkYAwGEe+sXhvhb8Jtdr9kRGi7ANdrbRMTzkk0T9A9ezmBcX8bWlUH1DU
-         1BRx0/8OsY+JlO2hrwWqWGSvjJxJXuAjJvApqsOlH0e0UCYdNSk7aLAvK2nU+r0Fg2z8
-         Fxi7s49M4+fhUzAAApnfA8TWi8Ow1PU1X2/9KD9AHw2pZO0HQMTmB4lj+K+7sNZjukCl
-         QUXGAiW4yCLKAx2WswO0vblheFcYPCrJ1JdBJYGkAInfzpe20X1RhQLHj7rTDphPmf1U
-         6xejyGx7cUVS2JIuoP/BFCGrAap9ue/uYp6Tj3yj0cD4bA861thwBrhkF0xfP1CKC5Lm
-         tuGQ==
-X-Gm-Message-State: AOAM531Mf/UgGnbWd9kvVZSSX7BoWYuCAjfku1x2HV8hwTtlxKpgwlH0
-        Kv8OlyewxXn4Tv2O+V+Rlw==
-X-Google-Smtp-Source: ABdhPJw82p9JhXTo3yZ4APAxY73n7AHXducX/yk5pYR8J9Evr3+dNCSYhaVBnlf8pvYh0ibcuiijeQ==
-X-Received: by 2002:aca:dc87:: with SMTP id t129mr3662364oig.137.1618934581641;
-        Tue, 20 Apr 2021 09:03:01 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 93sm2862901otr.31.2021.04.20.09.02.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Apr 2021 09:02:57 -0700 (PDT)
-Received: (nullmailer pid 3401936 invoked by uid 1000);
-        Tue, 20 Apr 2021 16:02:56 -0000
-Date:   Tue, 20 Apr 2021 11:02:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Tomas Melin <tomas.melin@vaisala.com>
-Cc:     devicetree@vger.kernel.org, jic23@kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        andy.shevchenko@gmail.com
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: accel: Add SCA3300 documentation
-Message-ID: <20210420160256.GA3401889@robh.at.kernel.org>
-References: <20210420132333.99886-1-tomas.melin@vaisala.com>
- <20210420132333.99886-2-tomas.melin@vaisala.com>
+        id S232507AbhDTQGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 12:06:21 -0400
+Received: from pegase1.c-s.fr ([93.17.236.30]:23168 "EHLO pegase1.c-s.fr"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232174AbhDTQGV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Apr 2021 12:06:21 -0400
+Received: from localhost (mailhub1-int [192.168.12.234])
+        by localhost (Postfix) with ESMTP id 4FPpST5fYSz9tyMJ;
+        Tue, 20 Apr 2021 18:05:45 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at c-s.fr
+Received: from pegase1.c-s.fr ([192.168.12.234])
+        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
+        with ESMTP id 6qTfVqAOsH66; Tue, 20 Apr 2021 18:05:45 +0200 (CEST)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+        by pegase1.c-s.fr (Postfix) with ESMTP id 4FPpST4Shgz9tyMF;
+        Tue, 20 Apr 2021 18:05:45 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id 2B5AD8B807;
+        Tue, 20 Apr 2021 18:05:47 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+        with ESMTP id ZiEcE-0Tlz-R; Tue, 20 Apr 2021 18:05:47 +0200 (CEST)
+Received: from [192.168.4.90] (unknown [192.168.4.90])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id 0267E8B7ED;
+        Tue, 20 Apr 2021 18:05:45 +0200 (CEST)
+Subject: Re: [PATCH v4 19/20] mips: Convert to GENERIC_CMDLINE
+To:     Daniel Walker <danielwa@cisco.com>, Rob Herring <robh@kernel.org>
+Cc:     will@kernel.org, daniel@gimpelevich.san-francisco.ca.us,
+        arnd@kernel.org, akpm@linux-foundation.org,
+        linux-arch@vger.kernel.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        microblaze <monstr@monstr.eu>, linux-mips@vger.kernel.org,
+        nios2 <ley.foon.tan@intel.com>, openrisc@lists.librecores.org,
+        linux-hexagon@vger.kernel.org, linux-riscv@lists.infradead.org,
+        x86@kernel.org, linux-xtensa@linux-xtensa.org,
+        linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
+        linux-mm@kvack.org
+References: <cover.1617375802.git.christophe.leroy@csgroup.eu>
+ <a01b6cdbae01fff77e26f7a5c40ee5260e1952b5.1617375802.git.christophe.leroy@csgroup.eu>
+ <20210406173836.GW2469518@zorba>
+ <20210408190408.GA1724284@robh.at.kernel.org>
+ <20210409012349.GG3981976@zorba>
+From:   Christophe Leroy <christophe.leroy@csgroup.eu>
+Message-ID: <d92f99bf-20b7-a4b6-3d86-5b859e42cad8@csgroup.eu>
+Date:   Tue, 20 Apr 2021 18:05:44 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210420132333.99886-2-tomas.melin@vaisala.com>
+In-Reply-To: <20210409012349.GG3981976@zorba>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: fr
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Apr 2021 16:23:32 +0300, Tomas Melin wrote:
-> initial DT bindings for Murata SCA3300 Accelerometer.
+
+
+Le 09/04/2021 à 03:23, Daniel Walker a écrit :
+> On Thu, Apr 08, 2021 at 02:04:08PM -0500, Rob Herring wrote:
+>> On Tue, Apr 06, 2021 at 10:38:36AM -0700, Daniel Walker wrote:
+>>> On Fri, Apr 02, 2021 at 03:18:21PM +0000, Christophe Leroy wrote:
+>>>> -config CMDLINE_BOOL
+>>>> -	bool "Built-in kernel command line"
+>>>> -	help
+>>>> -	  For most systems, it is firmware or second stage bootloader that
+>>>> -	  by default specifies the kernel command line options.  However,
+>>>> -	  it might be necessary or advantageous to either override the
+>>>> -	  default kernel command line or add a few extra options to it.
+>>>> -	  For such cases, this option allows you to hardcode your own
+>>>> -	  command line options directly into the kernel.  For that, you
+>>>> -	  should choose 'Y' here, and fill in the extra boot arguments
+>>>> -	  in CONFIG_CMDLINE.
+>>>> -
+>>>> -	  The built-in options will be concatenated to the default command
+>>>> -	  line if CMDLINE_OVERRIDE is set to 'N'. Otherwise, the default
+>>>> -	  command line will be ignored and replaced by the built-in string.
+>>>> -
+>>>> -	  Most MIPS systems will normally expect 'N' here and rely upon
+>>>> -	  the command line from the firmware or the second-stage bootloader.
+>>>> -
+>>>
+>>>
+>>> See how you complained that I have CMDLINE_BOOL in my changed, and you think it
+>>> shouldn't exist.
+>>>
+>>> Yet here mips has it, and you just deleted it with no feature parity in your
+>>> changes for this.
+>>
+>> AFAICT, CMDLINE_BOOL equates to a non-empty or empty CONFIG_CMDLINE. You
+>> seem to need it just because you have CMDLINE_PREPEND and
+>> CMDLINE_APPEND. If that's not it, what feature is missing? CMDLINE_BOOL
+>> is not a feature, but an implementation detail.
 > 
-> Signed-off-by: Tomas Melin <tomas.melin@vaisala.com>
-> ---
->  .../bindings/iio/accel/murata,sca3300.yaml    | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/accel/murata,sca3300.yaml
+> Not true.
+> 
+> It makes it easier to turn it all off inside the Kconfig , so it's for usability
+> and multiple architecture have it even with just CMDLINE as I was commenting
+> here.
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Among the 13 architectures having CONFIG_CMDLINE, todayb only 6 have a CONFIG_CMDLINE_BOOL in addition:
+
+arch/arm/Kconfig:config CMDLINE
+arch/arm64/Kconfig:config CMDLINE
+arch/hexagon/Kconfig:config CMDLINE
+arch/microblaze/Kconfig:config CMDLINE
+arch/mips/Kconfig.debug:config CMDLINE
+arch/nios2/Kconfig:config CMDLINE
+arch/openrisc/Kconfig:config CMDLINE
+arch/powerpc/Kconfig:config CMDLINE
+arch/riscv/Kconfig:config CMDLINE
+arch/sh/Kconfig:config CMDLINE
+arch/sparc/Kconfig:config CMDLINE
+arch/x86/Kconfig:config CMDLINE
+arch/xtensa/Kconfig:config CMDLINE
+
+arch/microblaze/Kconfig:config CMDLINE_BOOL
+arch/mips/Kconfig.debug:config CMDLINE_BOOL
+arch/nios2/Kconfig:config CMDLINE_BOOL
+arch/sparc/Kconfig:config CMDLINE_BOOL
+arch/x86/Kconfig:config CMDLINE_BOOL
+arch/xtensa/Kconfig:config CMDLINE_BOOL
+
+
+In the begining I hesitated about the CMDLINE_BOOL, at the end I decided to go the same way as what 
+is done today in the kernel for initramfs with CONFIG_INITRAMFS_SOURCE.
+
+The problem I see within adding CONFIG_CMDLINE_BOOL for every architecture which don't have it today 
+is that when doing a "make oldconfig" on their custom configs, thousands of users will loose their 
+CMDLINE without notice.
+
+When we do the other way round, removing CONFIG_CMDLINE_BOOL on the 6 architectures that have it 
+today will have no impact on existing config.
+
+Also, in order to avoid tons of #ifdefs in the code as mandated by Kernel Codying Style §21, we have 
+to have CONFIG_CMDLINE defined at all time, so at the end CONFIG_CMDLINE_BOOL is really redundant 
+with an empty CONFIG_CMDLINE.
+
+Unlike you, the approach I took for my series is to minimise the impact on existing implementation 
+and existing configurations as much as possible.
+
+I know you have a different approach where you break every existing config anyway.
+
+https://www.kernel.org/doc/html/latest/process/coding-style.html#conditional-compilation
+
+Christophe
