@@ -2,132 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87E07365B1B
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 16:27:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7434365B60
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 16:42:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232303AbhDTO1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 10:27:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51074 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231758AbhDTO1u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 10:27:50 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9330BC06174A;
-        Tue, 20 Apr 2021 07:27:18 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id r128so34787584lff.4;
-        Tue, 20 Apr 2021 07:27:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2OP51eQPmA2v/Axf9XtUd+B6i5qCHxFde65D8J1wyZg=;
-        b=Z46uel55L3Pi98OUkDhOokQ4LpvljzcjAA6huSHhwTg9l42PnLzkXLfUURi77NZlKx
-         647qV39IcmyIbGXt5yylVavoCXlBggb2FOZf9P9Lzs10FuorQuM5hEx1SHq8MZgu437L
-         /9vRSfs/Eg1pW/TqVq1SFQGWDCLqtXf16Uz21FJXpfcg+7LPINNmA9h2QkpuL6/f2Fq+
-         8Nxrobaj75iR5oVapq2zzrPxD3PmzWIIhNPm6pgAn5jJpqmxy8QD9OmXPLDH4+8meZQl
-         RuxLhp0qCgJ6UgFUG7eNKq2EwJ7dgvoof1TV4R4czSf1Q/id1Pm8EG+T+aazm4anGlEw
-         DsCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2OP51eQPmA2v/Axf9XtUd+B6i5qCHxFde65D8J1wyZg=;
-        b=XtGj4G+Uj4oILMH5LSbekydI3FvIzSIKBVk+qVLCzu07Xzhtc2vHQ23O8RsMMyRChE
-         ae24zB3Ny3tjR9/fgK257/mGPSDaAlQ6CcP+cGp+0azMqbt48GmJN9LwXp57ovLhDKGz
-         2VwMN7JJuTIofhluP7W9fpygoqTwlTMlSl3SL6z15K/TRD2bXZAIuITX49OfTBsdLb/Q
-         7MbreeS2zO8Vvq2W8VqmNQJjc5AaEiWMK25biv8RNTBis2l6IOwhEHlO4sOFzUSAcP5A
-         p0F/nHGgY0bKr6t8rpH2X6y40GDRLw5dK6BBaTdUkxlupjss+AeZMDJbMs9Wr+kwo2iS
-         QT/A==
-X-Gm-Message-State: AOAM530DAYJ23iNER75Km1zGTmozD46Te91ODeV/yKg9EP2VEW7fj5q+
-        n4MQlFPoUBX5VNjAirP9vq9niDpHMu5TMO53qB4=
-X-Google-Smtp-Source: ABdhPJyDacLoI/mDyJgh1BiFhZW3NCtORmww/paWiBZ3vsgsugc+4BppgoVI02f+QG+gkPk0dh4JjS5HH0leABbKfxs=
-X-Received: by 2002:a05:6512:1105:: with SMTP id l5mr15305227lfg.223.1618928837100;
- Tue, 20 Apr 2021 07:27:17 -0700 (PDT)
+        id S232277AbhDTOmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 10:42:42 -0400
+Received: from linux.microsoft.com ([13.77.154.182]:55562 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232174AbhDTOmm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 10:42:42 -0400
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 9A08120B8001;
+        Tue, 20 Apr 2021 07:42:10 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9A08120B8001
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1618929730;
+        bh=NVm2vo4GXXRMexKDwSwg3+CXMqPX9ItM3I9tjQFYJeI=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=hepldv/2ui8GWJoHLyLWTVwmm7kq5UZFZipOgtP3OsMPbMS9OYkxhqJnRuBEqq1pz
+         bkxXeMEs2LfKkTxZ2eAUkbIvjhEm/6oJHz4TChxZn9vCS57zzDEv7MyH7h66bossYy
+         NjuigEso0BBbnxccOgktltZzkcaxa9xPIai7Xxjc=
+Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in
+ elf64_load()
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dan Carpenter <dan.carpenter@oracle.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Daniel Axtens <dja@axtens.net>, devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        kbuild-all@lists.01.org,
+        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        kbuild test robot <lkp@intel.com>
+References: <20210415191437.20212-1-nramas@linux.microsoft.com>
+ <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
+ <87eefag241.fsf@linkitivity.dja.id.au> <87tuo6eh0j.fsf@mpe.ellerman.id.au>
+ <2817d674-d420-580f-a0c1-b842da915a80@linux.microsoft.com>
+ <87pmypdf93.fsf@mpe.ellerman.id.au> <20210420050015.GA1959@kadam>
+ <b84c76d6-2be8-77a4-3c0f-ad8657c0e508@linux.microsoft.com>
+ <CAL_JsqLS9Wu_+_S-2wwMb3Chd_8RYAtFe_uLh5tjj_sAkTgRJA@mail.gmail.com>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <2e8dd39b-0372-4874-340e-6f87185091cc@linux.microsoft.com>
+Date:   Tue, 20 Apr 2021 07:42:10 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <1618459535-8141-1-git-send-email-dillon.minfei@gmail.com> <1618459535-8141-4-git-send-email-dillon.minfei@gmail.com>
-In-Reply-To: <1618459535-8141-4-git-send-email-dillon.minfei@gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 20 Apr 2021 11:27:05 -0300
-Message-ID: <CAOMZO5CcoKDZhj5rQ0_0wkHgk5Mf2RtAHy94EAzjwVgXvvmNeg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] arm: dts: imx: Add i.mx6q DaSheng COM-9XX SBC
- board support
-To:     dillon.minfei@gmail.com
-Cc:     krzysztof.kozlowski@canonical.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        leoyang.li@nxp.com, arnd@arndb.de, olof@lixom.net,
-        s.hauer@pengutronix.de, kernel@pengutronix.de,
-        prabhakar.csengg@gmail.com, mchehab@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-media@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAL_JsqLS9Wu_+_S-2wwMb3Chd_8RYAtFe_uLh5tjj_sAkTgRJA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dillon,
+On 4/20/21 6:06 AM, Rob Herring wrote:
+> On Tue, Apr 20, 2021 at 12:20 AM Lakshmi Ramasubramanian
+> <nramas@linux.microsoft.com> wrote:
+>>
+>> On 4/19/21 10:00 PM, Dan Carpenter wrote:
+>>> On Tue, Apr 20, 2021 at 09:30:16AM +1000, Michael Ellerman wrote:
+>>>> Lakshmi Ramasubramanian <nramas@linux.microsoft.com> writes:
+>>>>> On 4/16/21 2:05 AM, Michael Ellerman wrote:
+>>>>>
+>>>>>> Daniel Axtens <dja@axtens.net> writes:
+>>>>>>>> On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
+>>>>>>>>
+>>>>>>>> Sorry - missed copying device-tree and powerpc mailing lists.
+>>>>>>>>
+>>>>>>>>> There are a few "goto out;" statements before the local variable "fdt"
+>>>>>>>>> is initialized through the call to of_kexec_alloc_and_setup_fdt() in
+>>>>>>>>> elf64_load(). This will result in an uninitialized "fdt" being passed
+>>>>>>>>> to kvfree() in this function if there is an error before the call to
+>>>>>>>>> of_kexec_alloc_and_setup_fdt().
+>>>>>>>>>
+>>>>>>>>> Initialize the local variable "fdt" to NULL.
+>>>>>>>>>
+>>>>>>> I'm a huge fan of initialising local variables! But I'm struggling to
+>>>>>>> find the code path that will lead to an uninit fdt being returned...
+>>>>>>>
+>>>>>>> The out label reads in part:
+>>>>>>>
+>>>>>>>    /* Make kimage_file_post_load_cleanup free the fdt buffer for us. */
+>>>>>>>    return ret ? ERR_PTR(ret) : fdt;
+>>>>>>>
+>>>>>>> As far as I can tell, any time we get a non-zero ret, we're going to
+>>>>>>> return an error pointer rather than the uninitialised value...
+>>>>>
+>>>>> As Dan pointed out, the new code is in linux-next.
+>>>>>
+>>>>> I have copied the new one below - the function doesn't return fdt, but
+>>>>> instead sets it in the arch specific field (please see the link to the
+>>>>> updated elf_64.c below).
+>>>>>
+>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/tree/arch/powerpc/kexec/elf_64.c?h=for-next
+>>>>>
+>>>>>>>
+>>>>>>> (btw, it does look like we might leak fdt if we have an error after we
+>>>>>>> successfully kmalloc it.)
+>>>>>>>
+>>>>>>> Am I missing something? Can you link to the report for the kernel test
+>>>>>>> robot or from Dan?
+>>>>>
+>>>>> /*
+>>>>>             * Once FDT buffer has been successfully passed to
+>>>>> kexec_add_buffer(),
+>>>>>             * the FDT buffer address is saved in image->arch.fdt. In that
+>>>>> case,
+>>>>>             * the memory cannot be freed here in case of any other error.
+>>>>>             */
+>>>>>            if (ret && !image->arch.fdt)
+>>>>>                    kvfree(fdt);
+>>>>>
+>>>>>            return ret ? ERR_PTR(ret) : NULL;
+>>>>>
+>>>>> In case of an error, the memory allocated for fdt is freed unless it has
+>>>>> already been passed to kexec_add_buffer().
+>>>>
+>>>> It feels like the root of the problem is that the kvfree of fdt is in
+>>>> the wrong place. It's only allocated later in the function, so the error
+>>>> path should reflect that. Something like the patch below.
+>>>>
+>>>> cheers
+>>>>
+>>>>
+>>>> diff --git a/arch/powerpc/kexec/elf_64.c b/arch/powerpc/kexec/elf_64.c
+>>>> index 5a569bb51349..02662e72c53d 100644
+>>>> --- a/arch/powerpc/kexec/elf_64.c
+>>>> +++ b/arch/powerpc/kexec/elf_64.c
+>>>> @@ -114,7 +114,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+>>>>       ret = setup_new_fdt_ppc64(image, fdt, initrd_load_addr,
+>>>>                                 initrd_len, cmdline);
+>>>>       if (ret)
+>>>> -            goto out;
+>>>> +            goto out_free_fdt;
+>>>>
+>>>>       fdt_pack(fdt);
+>>>>
+>>>> @@ -125,7 +125,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+>>>>       kbuf.mem = KEXEC_BUF_MEM_UNKNOWN;
+>>>>       ret = kexec_add_buffer(&kbuf);
+>>>>       if (ret)
+>>>> -            goto out;
+>>>> +            goto out_free_fdt;
+>>>>
+>>>>       /* FDT will be freed in arch_kimage_file_post_load_cleanup */
+>>>>       image->arch.fdt = fdt;
+>>>> @@ -140,18 +140,14 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+>>>>       if (ret)
+>>>>               pr_err("Error setting up the purgatory.\n");
+>>>>
+>>>> +    goto out;
+>>>
+>>> This will leak.  It would need to be something like:
+>>>
+>>>        if (ret) {
+>>>                pr_err("Error setting up the purgatory.\n");
+>>>                goto out_free_fdt;
+>>>        }
+>> Once "fdt" buffer is successfully passed to kexec_add_buffer() it cannot
+>> be freed here - it will be freed when the kexec cleanup function is called.
+> 
+> That may be the case currently, but really if a function returns an
+> error it should have undone anything it did like memory allocations. I
+> don't think you should do that to fix this issue, but it would be a
+> good clean-up.
+> 
 
-On Thu, Apr 15, 2021 at 1:05 AM <dillon.minfei@gmail.com> wrote:
+I agree - in case of an error the function should do a proper clean-up.
+Just to be clear - for now, I will leave this as is. Correct?
 
-> +               green {
-> +                       gpios = <&gpio4 8 0>;
+In my patch, I will do the following changes:
 
-Please use GPIO_ACTIVE_HIGH label instead:
-gpios = <&gpio4 8 GPIO_ACTIVE_HIGH>;
+  => Free "fdt" when possible (as Michael had suggested in his patch)
+  => Zero out "elf_info" struct at the start of the function.
 
-> +&clks {
-> +       assigned-clocks = <&clks IMX6QDL_CLK_LDB_DI0_SEL>,
-> +                         <&clks IMX6QDL_CLK_LDB_DI1_SEL>;
-> +       assigned-clock-parents = <&clks IMX6QDL_CLK_PLL3_USB_OTG>,
-> +                                <&clks IMX6QDL_CLK_PLL3_USB_OTG>;
-> +};
+thanks,
+  -lakshmi
 
-You are setting the LDB clock parent, but you don't use LDB in this
-devicetree. You could simply remove this.
 
-> +&ecspi1 {
-> +       cs-gpios = <&gpio4 9 GPIO_ACTIVE_LOW>;
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_ecspi1>;
-> +       status = "okay";
-> +
-> +       flash: m25p80@0 {
 
-Node names should be generic:
-
-m25p80: flash@0
-
-> +&iomuxc {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_hog>;
-> +
-> +       imx6qdl-ds {
-> +               pinctrl_hog: hoggrp {
-> +                       fsl,pins = <
-> +                               MX6QDL_PAD_NANDF_D0__GPIO2_IO00 0x1b0b0
-> +                               MX6QDL_PAD_NANDF_D1__GPIO2_IO01 0x1b0b0
-> +                               MX6QDL_PAD_GPIO_0__CCM_CLKO1    0x130b0
-
-This could be part of the pinctrl_ov2659 group as it provides the
-clock for the camera.
-
-Please try to keep in the hoggrp only the pins that cannot be
-controlled by any other node.
-
-> +&wdog1 {
-> +       status = "okay";
-> +};
-> +
-> +&wdog2 {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_wdog>;
-> +       fsl,ext-reset-output;
-> +       status = "disabled";
-
-Wouldn't it be better to enable wdog2 and disable wdog1 instead? wdog2
-provides a POR, which is preferred.
