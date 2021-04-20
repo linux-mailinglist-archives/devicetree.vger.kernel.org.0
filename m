@@ -2,139 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CE96366087
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 22:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DE6836608F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 22:02:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233541AbhDTUBU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 16:01:20 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:35725 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233548AbhDTUBT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 16:01:19 -0400
-Received: by mail-ot1-f53.google.com with SMTP id 35-20020a9d05260000b029029c82502d7bso5498829otw.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 13:00:48 -0700 (PDT)
+        id S233751AbhDTUDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 16:03:22 -0400
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:35574 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233682AbhDTUDW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 16:03:22 -0400
+Received: by mail-oi1-f173.google.com with SMTP id e25so10210135oii.2;
+        Tue, 20 Apr 2021 13:02:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=IhDL9E4EMajKLlxLPAH3/m7tAdxZQuhhLK82BEcjgIs=;
-        b=oxtSrGJiwDui/COG8T5CCCqAU9MTisHHwXT6iT+lyhU26urdo7OkDCR67IGAMMukLQ
-         vgTvX4+ft6RD5715sBgnpH76z920rFoGijiPfMqs3+3lLLSIbCoixAD41GOPRp72sH2x
-         eSS+naLHHI0Jz3Kk6mF7z5XJpdMWR4FUDvRbtCoaXBVQ7ud93sSNE0rK58g5uXNVlntO
-         r76tzkqosk7SBeQVnX5bnm0XgiVuIvWLX1oVF7peeWquw5bULTKV7JOxDF/yA60A/1eI
-         kb5ZeJUV8BLIbj9cSorSSue7cIzTX56XdV0brJzC1c3ZTyYt/e9/u/wGb5gQlCWDfkrb
-         eY3Q==
-X-Gm-Message-State: AOAM532LeNwUWe9RZgJpPSYl3XTzgHXk9EJSNRlKG2cfE4i/EoS02ZCw
-        S/xffmPY4x1JD/7JesWG/oUmgkTW+Q==
-X-Google-Smtp-Source: ABdhPJxboA35RcbHVSP5NuFAUvqrJnu9tWe+0EajshhhLShxYWXe+BvyeYC2Odu+m/93QhL4uVgxMA==
-X-Received: by 2002:a9d:6e9:: with SMTP id 96mr19886392otx.118.1618948847684;
-        Tue, 20 Apr 2021 13:00:47 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=KjD4lXtva/+btnljL9bkUIKj0w5NavTEnen058f6CYg=;
+        b=FwFN0OQwKjwGjgtCZ2g0D/uu/VUsmDzV9vzUvFrWf9fZjjNrGjKEU3bhsOI6eBoFQP
+         dsg6j2b1juxqNTMLOkFI2Je7/0A065Oo3jNaghEnAT0TDok9bkyo4MTopgQI5ug/qxHZ
+         skV7oXxyWSdDZHqtxkCaK+s7SNyosGQI92sHeOgqDk+G7t7Hr1JWaWNJ/ERwsiuYFgVV
+         Sz8Ms3iba0DYDZM8eJPcmOtyC7UViOkPF8GSEMLNImKzoAmU/6bnFKyOQgfOqg6xwF2+
+         /FRqgelRpD4wCW/kxJ4jHDkznviZK2u/A6b3r+MXispB+YloiTd0fJgdRN8KWSdHm0iA
+         nPkQ==
+X-Gm-Message-State: AOAM531eEpJWNtcmwyiaCTzMryGFyZdekZkQ9/Njj0TC8Oj3iqazLAEc
+        hkxncQF3mJBJuM5Ng21KJg==
+X-Google-Smtp-Source: ABdhPJxsU17fvzON9fb6P8t7ei/fmSZiVxJF23/q6NmCKy9c1HHOB/zC0Uq2cgzpTjxZzey78BhuzA==
+X-Received: by 2002:a05:6808:b3b:: with SMTP id t27mr4236059oij.131.1618948970562;
+        Tue, 20 Apr 2021 13:02:50 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e20sm8797otl.15.2021.04.20.13.00.46
+        by smtp.gmail.com with ESMTPSA id s3sm14508ool.36.2021.04.20.13.02.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Apr 2021 13:00:47 -0700 (PDT)
-Received: (nullmailer pid 3717287 invoked by uid 1000);
-        Tue, 20 Apr 2021 20:00:45 -0000
-Date:   Tue, 20 Apr 2021 15:00:45 -0500
+        Tue, 20 Apr 2021 13:02:47 -0700 (PDT)
+Received: (nullmailer pid 3719999 invoked by uid 1000);
+        Tue, 20 Apr 2021 20:02:46 -0000
+Date:   Tue, 20 Apr 2021 15:02:46 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH robh dt/next] dt-bindings: mfd: add Broadcom CRU
-Message-ID: <20210420200045.GA3710852@robh.at.kernel.org>
-References: <20210415062839.11713-1-zajec5@gmail.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-serial <linux-serial@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] dt-bindings: serial: Add label property for pl011
+Message-ID: <20210420200246.GA3717650@robh.at.kernel.org>
+References: <20210415073105.3687-1-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210415062839.11713-1-zajec5@gmail.com>
+In-Reply-To: <20210415073105.3687-1-thunder.leizhen@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 15, 2021 at 08:28:39AM +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Thu, Apr 15, 2021 at 03:31:05PM +0800, Zhen Lei wrote:
+> When there is more than one pl011 serial port present, the label property
+> allows a custom name to be used for briefly describe the usage or position
+> of each serial port.
 > 
-> CRU is a block used in e.g. Northstar devices. It can be seen in the
-> bcm5301x.dtsi and this binding documents its proper usage.
+> Without this "label" property, many dtbs_check warnings similar to the
+> following are reported:
+> arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dt.yaml: \
+> serial@ffd74000: Additional properties are not allowed ('label' was unexpected)
+>         From schema: Documentation/devicetree/bindings/serial/pl011.yaml
+
+I think this should go into serial.yaml instead.
+
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 > ---
-> This is reworked version of the
-> [PATCH robh next] dt-bindings: bus: add Broadcom CRU
-> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210309142241.16259-1-zajec5@gmail.com/
-> ---
->  .../devicetree/bindings/mfd/brcm,cru.yaml     | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/brcm,cru.yaml
+>  Documentation/devicetree/bindings/serial/pl011.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/brcm,cru.yaml b/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-> new file mode 100644
-> index 000000000000..f5bce6453c33
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/brcm,cru.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom CRU
-> +
-> +maintainers:
-> +  - Rafał Miłecki <rafal@milecki.pl>
-> +
-> +description: |
-> +  Broadcom CRU ("Clock and Reset Unit" or "Central Resource Unit") is a hardware
-> +  block grouping smaller blocks. On Broadcom Northstar platform it contains e.g.
-> +  clocks, pinctrl, USB PHY and thermal.
+> diff --git a/Documentation/devicetree/bindings/serial/pl011.yaml b/Documentation/devicetree/bindings/serial/pl011.yaml
+> index 1f8e9f2644b6b80..303c7746423f503 100644
+> --- a/Documentation/devicetree/bindings/serial/pl011.yaml
+> +++ b/Documentation/devicetree/bindings/serial/pl011.yaml
+> @@ -34,6 +34,9 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  label:
+> +    maxItems: 1
 
-As I said before, this needs to be a complete binding.
+label is always a single string and so 'maxItems' is always 1. Just 
+need:
+
+label: true
 
 > +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - brcm,ns-cru
-> +      - const: simple-mfd
-
-As of now, it is not a 'simple-mfd' because there are no defined 
-children.
-
-> +
-> +  reg:
-> +    description: CRU registers
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +additionalProperties: true
-
-This needs to be 'false' (and then any child nodes defined).
-
-> +
-> +required:
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    cru-bus@1800c100 {
-> +      compatible = "brcm,ns-cru", "simple-mfd";
-> +      reg = <0x1800c100 0x1d0>;
-> +      ranges;
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +    };
+>    interrupts:
+>      maxItems: 1
+>  
 > -- 
-> 2.26.2
+> 2.26.0.106.g9fadedd
+> 
 > 
