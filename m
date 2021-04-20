@@ -2,100 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63835365D2F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 18:21:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D73F7365D3A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 18:25:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232879AbhDTQW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 12:22:28 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:44619 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232174AbhDTQW1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 12:22:27 -0400
-Received: by mail-ot1-f51.google.com with SMTP id 5-20020a9d09050000b029029432d8d8c5so10352164otp.11;
-        Tue, 20 Apr 2021 09:21:55 -0700 (PDT)
+        id S232473AbhDTQZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 12:25:31 -0400
+Received: from mail-oi1-f174.google.com ([209.85.167.174]:34701 "EHLO
+        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232901AbhDTQZb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 12:25:31 -0400
+Received: by mail-oi1-f174.google.com with SMTP id k18so34575730oik.1;
+        Tue, 20 Apr 2021 09:24:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=7rCWJmNituqDy50oQV6vLgBSIuPKc5eqe/iLgSwO2TM=;
-        b=I7vqDCeqNeiMACIfkyVWzcYWtQaPtdq7vbfXkk4q8cJRW+SqmGrBM94bz2MiWhvycg
-         cvGGt/yJIiMymbs4gEGxaUmXuQabovdY0xr6sWIoe/+I2mluzt0lGItx7MlBHywbKoD3
-         J2zcxIDRMU+sEtD/BdXSow7Bejjg91sGeUU6c4RFPPuCJlVD+objTjUwHoUFrXhRemkq
-         fkfB4vcRhTR4U5ULxMNssLUVHqpuxXrFEVO0yuJ62DZLofyc5QmgyzUr9STJspRD/RJ4
-         0QDFMqK44ZW/E0VbGaM1Bfmw3RfKZoaMI4Xy6QymyvLQck9NT0aFbu26UsXRIDW9+W6K
-         IcAg==
-X-Gm-Message-State: AOAM531aiKbvxBBnAb2Fnhf2uR9QYa22WI0U6A+sxD2y3Bm4HuopV8Fi
-        cMYIHC0+R/up9adT070kDhBm4wAIaw==
-X-Google-Smtp-Source: ABdhPJzSZJd1xZjbRrIhDmOV9dO5iilxg5M145vsthNtjLR9vWBjyBiv2DCy1LrMWYVpe5u2D2KkOg==
-X-Received: by 2002:a9d:6649:: with SMTP id q9mr11012411otm.197.1618935715512;
-        Tue, 20 Apr 2021 09:21:55 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=A8dVyfjRQex2uU+PHTE48uLGNVgNmujkBe81Of/rrYw=;
+        b=P3gaD0+aOS9yHNK+MA8bZdd5d1naMbFEznQRiFmc2nqU1Q29+2Yhz6XvxtUXdeYRVf
+         Y5x5CcVwjbIcNBXqxPmHJ1nMYIOdEvjQE9JrDvGgDNGrV3XlB3fPxfWEV4KDaYMzwtTa
+         pVZaoh8GTtxJxFcf2NjDyOaLSxSIzbVAl+jjDtrfMClzDw3sRI0hn3K/CfzJL0/rmqjX
+         UBlzPbntqSLOy5jmrsMY+Y/B+XmLLIaFaeTcbuTD5ocDQqtIKjj5NiY7OMaYfDHOj5JY
+         PPqan/NE27LR8Dj5qJfzAWL95oIBm1Q9eYOQL8PjaHi1nX2J/eEaY3e73JxPAAxT7cSJ
+         YTCQ==
+X-Gm-Message-State: AOAM530X//IsdJtpOFVTbAMbl3d0l7TkXhxOrJcWQYGJ/WN+erS9QiPb
+        PHFnu3H3EmnuiwcxZipwxQ==
+X-Google-Smtp-Source: ABdhPJzwYqxFN2+jlPlIrVKF+pkBftc8P1b64ffzN6SRSJxNtkEw2eWPlANKkhIUOyrz343BVhv/gQ==
+X-Received: by 2002:aca:b387:: with SMTP id c129mr3598986oif.30.1618935898028;
+        Tue, 20 Apr 2021 09:24:58 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id p127sm1454676oig.16.2021.04.20.09.21.53
+        by smtp.gmail.com with ESMTPSA id i25sm4370603otf.37.2021.04.20.09.24.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Apr 2021 09:21:54 -0700 (PDT)
-Received: (nullmailer pid 3427069 invoked by uid 1000);
-        Tue, 20 Apr 2021 16:21:52 -0000
-Date:   Tue, 20 Apr 2021 11:21:52 -0500
+        Tue, 20 Apr 2021 09:24:57 -0700 (PDT)
+Received: (nullmailer pid 3431205 invoked by uid 1000);
+        Tue, 20 Apr 2021 16:24:55 -0000
+Date:   Tue, 20 Apr 2021 11:24:55 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     linux-spi@vger.kernel.org, Kamal Dasu <kdasu.kdev@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH V3] dt-bindings: spi: brcm,spi-bcm-qspi: convert to the
- json-schema
-Message-ID: <20210420162152.GA3427001@robh.at.kernel.org>
-References: <20210416062320.21414-1-zajec5@gmail.com>
- <20210416194723.23855-1-zajec5@gmail.com>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        p.zabel@pengutronix.de, chunkuang.hu@kernel.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: display: mediatek, hdmi: Convert to
+ use graph schema
+Message-ID: <20210420162455.GA3431175@robh.at.kernel.org>
+References: <20210419073244.2678688-1-narmstrong@baylibre.com>
+ <20210419073244.2678688-2-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210416194723.23855-1-zajec5@gmail.com>
+In-Reply-To: <20210419073244.2678688-2-narmstrong@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Apr 2021 21:47:23 +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Mon, 19 Apr 2021 09:32:40 +0200, Neil Armstrong wrote:
+> Update the mediatek,dpi binding to use the graph schema.
 > 
-> This helps validating DTS files.
-> 
-> Changes that require mentioning:
-> 1. reg-names
->    "mspi_regs" and "bspi_regs" were renamed to "mspi" and "bspi" as that
->    is what's used in DTS files and in Linux driver
-> 2. interrupt-names
->    Names were reordered. "mspi_done" has to go first as it's always
->    required.
-> 3. spi-rx-bus-width
->    Property description was dropped as it's part of the
->    spi-controller.yaml
-> 4. Examples:
->    * drop partitions as they are well documented elsewhere
->    * regs and interrupts were formatted and reordered to match yaml
->    * <0x1c> was replaced with <&gic>
->    * "m25p80" node name became "flash"
->    * dropped invalid "m25p,fast-read" property
->    * dropped undocumented and Linux-unused "clock-names"
-> 
-> This rewritten binding validates cleanly using the  "dt_binding_check".
-> Some Linux stored DTS files will require reordering regs and interrupts
-> to make dtbs_check happy.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
-> V2: Add Kamal as maintainer
-> V3: Fix examples (see commit message for details) - thanks Rob
-> ---
->  .../bindings/spi/brcm,spi-bcm-qspi.txt        | 245 ------------------
->  .../bindings/spi/brcm,spi-bcm-qspi.yaml       | 198 ++++++++++++++
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 199 insertions(+), 246 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/spi/brcm,spi-bcm-qspi.txt
->  create mode 100644 Documentation/devicetree/bindings/spi/brcm,spi-bcm-qspi.yaml
+>  .../display/mediatek/mediatek,cec.yaml        |  51 +++++++
+>  .../display/mediatek/mediatek,hdmi-ddc.yaml   |  57 ++++++++
+>  .../display/mediatek/mediatek,hdmi.txt        | 136 ------------------
+>  .../display/mediatek/mediatek,hdmi.yaml       | 132 +++++++++++++++++
+>  4 files changed, 240 insertions(+), 136 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,cec.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
