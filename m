@@ -2,67 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 137EF365FDC
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 20:56:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65F73365FFD
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 21:04:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233509AbhDTS5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 14:57:19 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:37728 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233092AbhDTS5T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 14:57:19 -0400
-Received: by mail-oi1-f179.google.com with SMTP id k25so39988707oic.4
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 11:56:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=kfEdsP7VJ9uETA9reqQ+u/WnsOOL4stsZUCK1ENhc+s=;
-        b=OAlPsp9ipAaVdcsoC8b8BIuzdtWJRp8vCJkq0f+6iXQIfMIQK5LjPQtSDX95J7IFLN
-         GqMZDjLn1AAp83pLIU+DhW2cyII5mfC66BNa8dxsEpo8p5m+1tFKiC0lY4SzJxmzdfue
-         Zt58m86NggS1XKKE3RIh5cykFRxejtf5j8sN35cseBh1ss9PWVffH+Z1G7+19Hu2K3me
-         nAS66MhbJk0dyBqjYVsf50846ts6fsLPWNdKmWtm1rmT0XjFB3XqpVZX3dfW4Q/O1F1i
-         hbbqQ+JSjKbCDyC9ZRz6ZfGA8kv9jTR1b/0VcreIzK8evjqvHUv/FzOYHFY+okwk5JOf
-         n+LA==
-X-Gm-Message-State: AOAM532Au3tuF9dwJkQy3kwGI7M4x1qUpJ863udsHGSndPE3JvfGSbQg
-        GKg/MM4GRbgHCtSKVa/sJw==
-X-Google-Smtp-Source: ABdhPJyhge0joJ+/Co2f/SMQv2Pu0c6B1SYJblXNbNcObWdvq+mSApSjCf3j1/wJ0zfhLy5YAv4GqQ==
-X-Received: by 2002:a05:6808:9a7:: with SMTP id e7mr3926558oig.105.1618945007542;
-        Tue, 20 Apr 2021 11:56:47 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 2sm396426ooy.22.2021.04.20.11.56.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Apr 2021 11:56:46 -0700 (PDT)
-Received: (nullmailer pid 3632453 invoked by uid 1000);
-        Tue, 20 Apr 2021 18:56:45 -0000
-Date:   Tue, 20 Apr 2021 13:56:45 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Hauke Mehrtens <hauke@hauke-m.de>
-Cc:     miquel.raynal@bootlin.com, rafal@milecki.pl, vigneshr@ti.com,
-        devicetree@vger.kernel.org, musashino.open@gmail.com,
-        richard@nod.at, linux-mtd@lists.infradead.org, robh+dt@kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: brcm,trx: Add brcm,trx-magic
-Message-ID: <20210420185645.GA3632403@robh.at.kernel.org>
-References: <20210418214616.239574-1-hauke@hauke-m.de>
- <20210418214616.239574-2-hauke@hauke-m.de>
+        id S233541AbhDTTEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 15:04:36 -0400
+Received: from linux.microsoft.com ([13.77.154.182]:32922 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233509AbhDTTEf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 15:04:35 -0400
+Received: from localhost.localdomain (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 83D1F20B8001;
+        Tue, 20 Apr 2021 12:04:03 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 83D1F20B8001
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1618945443;
+        bh=8x9Z6Pn0gsHVrbzHkVGyrsRvVrOFpcOpSD9vUQrj0u0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=kZAUCo7NAEYJldRA4ZxoQSzVxQqR0qIj8mp0+Kbgrt5xWnmb8+Ql5L4R6grifxzJs
+         ulc8WUqA217L4uZF6u1Yh9+kS6B2W3IYF/tEEPvMIKJ9pkqAifhZNinUCNsjq9RQhS
+         yYl55lo+IyUTla/J71tZ02ND2fyiGmcylOsTviOo=
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+To:     robh@kernel.org, dan.carpenter@oracle.com, mpe@ellerman.id.au
+Cc:     bauerman@linux.ibm.com, dja@axtens.net,
+        christophe.leroy@csgroup.eu, nramas@linux.microsoft.com,
+        lkp@intel.com, kbuild-all@lists.01.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH 1/2] powerpc: Free fdt on error in elf64_load()
+Date:   Tue, 20 Apr 2021 12:03:54 -0700
+Message-Id: <20210420190355.10059-1-nramas@linux.microsoft.com>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210418214616.239574-2-hauke@hauke-m.de>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 18 Apr 2021 23:46:14 +0200, Hauke Mehrtens wrote:
-> This adds the description of an additional property which allows to
-> specify a custom partition parser magic to detect a trx partition.
-> Buffalo has multiple device which are using the trx format, but with
-> different magic values.
-> 
-> Signed-off-by: Hauke Mehrtens <hauke@hauke-m.de>
-> ---
->  .../devicetree/bindings/mtd/partitions/brcm,trx.txt          | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+There are a few "goto out;" statements before the local variable "fdt"
+is initialized through the call to of_kexec_alloc_and_setup_fdt() in
+elf64_load().  This will result in an uninitialized "fdt" being passed
+to kvfree() in this function if there is an error before the call to
+of_kexec_alloc_and_setup_fdt().
 
-Acked-by: Rob Herring <robh@kernel.org>
+If there is any error after fdt is allocated, but before it is
+saved in the arch specific kimage struct, free the fdt.
+
+Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Reported-by: kernel test robot <lkp@intel.com>
+Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+Suggested-by: Michael Ellerman <mpe@ellerman.id.au>
+---
+ arch/powerpc/kexec/elf_64.c | 16 ++++++----------
+ 1 file changed, 6 insertions(+), 10 deletions(-)
+
+diff --git a/arch/powerpc/kexec/elf_64.c b/arch/powerpc/kexec/elf_64.c
+index 5a569bb51349..02662e72c53d 100644
+--- a/arch/powerpc/kexec/elf_64.c
++++ b/arch/powerpc/kexec/elf_64.c
+@@ -114,7 +114,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+ 	ret = setup_new_fdt_ppc64(image, fdt, initrd_load_addr,
+ 				  initrd_len, cmdline);
+ 	if (ret)
+-		goto out;
++		goto out_free_fdt;
+ 
+ 	fdt_pack(fdt);
+ 
+@@ -125,7 +125,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+ 	kbuf.mem = KEXEC_BUF_MEM_UNKNOWN;
+ 	ret = kexec_add_buffer(&kbuf);
+ 	if (ret)
+-		goto out;
++		goto out_free_fdt;
+ 
+ 	/* FDT will be freed in arch_kimage_file_post_load_cleanup */
+ 	image->arch.fdt = fdt;
+@@ -140,18 +140,14 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+ 	if (ret)
+ 		pr_err("Error setting up the purgatory.\n");
+ 
++	goto out;
++
++out_free_fdt:
++	kvfree(fdt);
+ out:
+ 	kfree(modified_cmdline);
+ 	kexec_free_elf_info(&elf_info);
+ 
+-	/*
+-	 * Once FDT buffer has been successfully passed to kexec_add_buffer(),
+-	 * the FDT buffer address is saved in image->arch.fdt. In that case,
+-	 * the memory cannot be freed here in case of any other error.
+-	 */
+-	if (ret && !image->arch.fdt)
+-		kvfree(fdt);
+-
+ 	return ret ? ERR_PTR(ret) : NULL;
+ }
+ 
+-- 
+2.31.0
+
