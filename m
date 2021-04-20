@@ -2,201 +2,306 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD20C365C31
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 17:28:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A77F9365C45
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 17:34:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232507AbhDTP3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 11:29:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39916 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232915AbhDTP3A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Apr 2021 11:29:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B1540613AB;
-        Tue, 20 Apr 2021 15:28:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1618932508;
-        bh=Alypod0I+kUabfejeO7uWU4e1wf53VKZIKSlCvlTQDE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aAsz+KUb4fD1wtwgDFKbiojfSeUJ827cHUPpe9aB8j+AZlk/vapL8u1lSpokpdsTv
-         4468kvn4Rfn5Hj4jOj5OBM/Qgp+M6Buj0pJD76DHiJrPgy/Bl4QW+maPhwrq7NFO18
-         PDhqx/MePHNODaT5g0d0K8Y1JYtMpYQvPrCoVQ78=
-Date:   Tue, 20 Apr 2021 17:28:25 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Nava kishore Manne <navam@xilinx.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Michal Simek <michals@xilinx.com>,
-        Derek Kiernan <dkiernan@xilinx.com>,
-        Dragan Cvetic <draganc@xilinx.com>,
-        "arnd@arndb.de" <arnd@arndb.de>, Rajan Vaja <RAJANV@xilinx.com>,
-        Jolly Shah <JOLLYS@xilinx.com>,
-        Tejas Patel <tejasp@xlnx.xilinx.com>,
-        Amit Sunil Dhamne <amitsuni@xilinx.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "chinnikishore369@gmail.com" <chinnikishore369@gmail.com>,
-        git <git@xilinx.com>
-Subject: Re: [PATCH 5/5] misc: zynqmp: Add afi config driver
-Message-ID: <YH7zGf3/NrXmMN8/@kroah.com>
-References: <20210420081153.17020-1-nava.manne@xilinx.com>
- <20210420081153.17020-6-nava.manne@xilinx.com>
- <YH6V9Im3L/gJJ/CP@kroah.com>
- <MWHPR02MB26233345F140ACA18E55BC15C2489@MWHPR02MB2623.namprd02.prod.outlook.com>
+        id S233025AbhDTPe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 11:34:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37500 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232507AbhDTPe1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 11:34:27 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77C8CC06174A
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 08:33:55 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id x7so38047797wrw.10
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 08:33:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=2RUcpYL/40xZk/Fwbeu/5LDtsqSdVxolXOdE5oj/SaE=;
+        b=jW47qVb6Sff7g5KDuO7kOczbtJ5s5+TLXXsMdeI166bWCOqCuoQj7VR9abtIsYgTIy
+         YfKtSbCeXok6vje9cNwY93AibypKuQ4Or8ZoZs59Y+VXChEkWRPrNkAo9p/qGMcGLt1Y
+         91oJxfHsMbelUceeOO5BRvIXHirptUPRCIIRRbc79MZfze20JlZW/dVNHd4T92yeMXsw
+         IKhPqXVFCVqDcWWiINRVTM45twBj2WUlYeEpLOeg4sT/H+bFiFqHYUzFl2wCzDdldidH
+         6fBYuwKtM8c/bgoEZvSXo58vPe47cIzuLiukkqtUQgYBYEd+iZS8wXsZH0pdmNC9WsAy
+         O/yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=2RUcpYL/40xZk/Fwbeu/5LDtsqSdVxolXOdE5oj/SaE=;
+        b=JNFOWwvCE88VS5xPyE8Vd5Ts6lWL7Aqtmp9odba/hOaSBIjlQ5S/KBzQvuJ9OKNpvZ
+         4oV3Ugu8d/f9gLQ4OgUUc/61on42UWekv3lUTpdn5y3Xw2ekSZiCqhIFgfLOFlFtaxMg
+         RNx8zgHiN/AzLQaa6iseM5ptio2D3cBlR2x7RFlypEkAnlT2k2QfdxUa78OWmTYaRaM9
+         iIyN86f3D6ZZSA15vN6dc4SfAH6NyX9RcEOM4lPJYw4pAEMlOX1NDIJdsKnrGJhYuWyu
+         V6kqNp97tgH2z6S028EfMXNAWdk5ndvVRpybfGbCXrkVImfD7IrwraSxQ6GW+IOVpz9y
+         xQ1w==
+X-Gm-Message-State: AOAM531a9n4N/IKhAhyQ0iMGtS/4JZ2x3hB2+TUa4yZ+UJlCn26uW7/E
+        ZrCfT6DscYpqF/Jc2de1GkIPVA==
+X-Google-Smtp-Source: ABdhPJy5l0gIuB65i1nz6DiiogsfamvF/J/BoQblaMJkVSqvHrVhib9McmSo7ecHx7lP56sGnoOphw==
+X-Received: by 2002:adf:b1d3:: with SMTP id r19mr22055115wra.97.1618932834092;
+        Tue, 20 Apr 2021 08:33:54 -0700 (PDT)
+Received: from ?IPv6:2a01:e0a:90c:e290:b4:316d:263e:1360? ([2a01:e0a:90c:e290:b4:316d:263e:1360])
+        by smtp.gmail.com with ESMTPSA id p18sm26966711wrs.68.2021.04.20.08.33.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Apr 2021 08:33:53 -0700 (PDT)
+Subject: Re: [PATCH v11 2/4] arm64: dts: mt8183: Add node for the Mali GPU
+To:     Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        Steven Price <steven.price@arm.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+Cc:     devicetree@vger.kernel.org,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>, fshao@chromium.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        boris.brezillon@collabora.com, linux-mediatek@lists.infradead.org,
+        hsinyi@chromium.org, Matthias Brugger <matthias.bgg@gmail.com>,
+        hoegsberg@chromium.org, linux-arm-kernel@lists.infradead.org
+References: <20210126011759.1605641-1-drinkcat@chromium.org>
+ <20210126091747.v11.2.I9f45f5c1f975422d58b5904d11546349e9ccdc94@changeid>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <1a37f9be-8ec8-893a-e2fc-f0739948f71f@baylibre.com>
+Date:   Tue, 20 Apr 2021 17:33:52 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MWHPR02MB26233345F140ACA18E55BC15C2489@MWHPR02MB2623.namprd02.prod.outlook.com>
+In-Reply-To: <20210126091747.v11.2.I9f45f5c1f975422d58b5904d11546349e9ccdc94@changeid>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 20, 2021 at 01:47:17PM +0000, Nava kishore Manne wrote:
-> Hi Greg,
+On 26/01/2021 02:17, Nicolas Boichat wrote:
+> Add a basic GPU node for mt8183.
 > 
-> 	Please find my response inline.
+> Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+> ---
+> The binding we use with out-of-tree Mali drivers includes more
+> clocks, this is used for devfreq: the out-of-tree driver switches
+> clk_mux to clk_sub_parent (26Mhz), adjusts clk_main_parent, then
+> switches clk_mux back to clk_main_parent:
+> (see https://chromium.googlesource.com/chromiumos/third_party/kernel/+/chromeos-4.19/drivers/gpu/arm/midgard/platform/mediatek/mali_kbase_runtime_pm.c#423)
+> clocks =
+>         <&topckgen CLK_TOP_MFGPLL_CK>,
+>         <&topckgen CLK_TOP_MUX_MFG>,
+>         <&clk26m>,
+>         <&mfgcfg CLK_MFG_BG3D>;
+> clock-names =
+>         "clk_main_parent",
+>         "clk_mux",
+>         "clk_sub_parent",
+>         "subsys_mfg_cg";
+> (based on discussions, this probably belongs in the clock core)
 > 
-> > -----Original Message-----
-> > From: Greg KH <gregkh@linuxfoundation.org>
-> > Sent: Tuesday, April 20, 2021 2:21 PM
-> > To: Nava kishore Manne <navam@xilinx.com>
-> > Cc: robh+dt@kernel.org; Michal Simek <michals@xilinx.com>; Derek Kiernan
-> > <dkiernan@xilinx.com>; Dragan Cvetic <draganc@xilinx.com>;
-> > arnd@arndb.de; Rajan Vaja <RAJANV@xilinx.com>; Jolly Shah
-> > <JOLLYS@xilinx.com>; Tejas Patel <tejasp@xlnx.xilinx.com>; Amit Sunil
-> > Dhamne <amitsuni@xilinx.com>; devicetree@vger.kernel.org; linux-arm-
-> > kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
-> > chinnikishore369@gmail.com; git <git@xilinx.com>
-> > Subject: Re: [PATCH 5/5] misc: zynqmp: Add afi config driver
-> > 
-> > On Tue, Apr 20, 2021 at 01:41:53PM +0530, Nava kishore Manne wrote:
-> > > This patch adds zynqmp afi config driver.This is useful for the
-> > > configuration of the PS-PL interface on Zynq US+ MPSoC platform.
-> > >
-> > > Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
-> > > ---
-> > >  drivers/misc/Kconfig      | 11 ++++++
-> > >  drivers/misc/Makefile     |  1 +
-> > >  drivers/misc/zynqmp-afi.c | 83
-> > > +++++++++++++++++++++++++++++++++++++++
-> > >  3 files changed, 95 insertions(+)
-> > >  create mode 100644 drivers/misc/zynqmp-afi.c
-> > >
-> > > diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig index
-> > > 877b43b3377d..d1ea1eeb3ac1 100644
-> > > --- a/drivers/misc/Kconfig
-> > > +++ b/drivers/misc/Kconfig
-> > > @@ -456,6 +456,17 @@ config ZYNQ_AFI
-> > >  	  between PS and PL, the AXI port data path should be configured
-> > >  	  with the proper Bus-width values
-> > >
-> > > +config ZYNQMP_AFI
-> > > +        tristate "Xilinx ZYNQMP AFI support"
-> > > +        help
-> > > +	  ZynqMP AFI driver support for writing to the AFI registers for
-> > > +	  configuring PS_PL Bus-width. Xilinx Zynq US+ MPSoC connect the
-> > > +	  PS to the programmable logic (PL) through the AXI port. This AXI
-> > > +	  port helps to establish the data path between the PS and PL.
-> > > +	  In-order to establish the proper communication path between
-> > > +	  PS and PL, the AXI port data path should be configured with
-> > > +	  the proper Bus-width values
-> > > +
-> > >  source "drivers/misc/c2port/Kconfig"
-> > >  source "drivers/misc/eeprom/Kconfig"
-> > >  source "drivers/misc/cb710/Kconfig"
-> > > diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile index
-> > > e9b03843100f..54bd0edc511e 100644
-> > > --- a/drivers/misc/Makefile
-> > > +++ b/drivers/misc/Makefile
-> > > @@ -57,3 +57,4 @@ obj-$(CONFIG_UACCE)		+= uacce/
-> > >  obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
-> > >  obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
-> > >  obj-$(CONFIG_ZYNQ_AFI)		+= zynq-afi.o
-> > > +obj-$(CONFIG_ZYNQMP_AFI)	+= zynqmp-afi.o
-> > > diff --git a/drivers/misc/zynqmp-afi.c b/drivers/misc/zynqmp-afi.c new
-> > > file mode 100644 index 000000000000..a318652576d2
-> > > --- /dev/null
-> > > +++ b/drivers/misc/zynqmp-afi.c
-> > > @@ -0,0 +1,83 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * Xilinx FPGA AFI bridge.
-> > > + * Copyright (c) 2018-2021 Xilinx Inc.
-> > > + */
-> > > +
-> > > +#include <linux/err.h>
-> > > +#include <linux/firmware/xlnx-zynqmp.h> #include <linux/io.h>
-> > > +#include <linux/module.h> #include <linux/of.h> #include
-> > > +<linux/platform_device.h> #include <linux/slab.h>
-> > > +
-> > > +/**
-> > > + * struct zynqmp_afi_fpga - AFI register description
-> > > + * @value: value to be written to the register
-> > > + * @regid: Register id for the register to be written
-> > > + */
-> > > +struct zynqmp_afi_fpga {
-> > > +	u32 value;
-> > > +	u32 regid;
-> > > +};
-> > > +
-> > > +static int zynqmp_afi_fpga_probe(struct platform_device *pdev)
-> > > +{
-> > > +	struct zynqmp_afi_fpga *zynqmp_afi_fpga;
-> > > +	struct device_node *np = pdev->dev.of_node;
-> > > +	int i, entries, ret;
-> > > +	u32 reg, val;
-> > > +
-> > > +	zynqmp_afi_fpga = devm_kzalloc(&pdev->dev,
-> > > +				       sizeof(*zynqmp_afi_fpga), GFP_KERNEL);
-> > > +	if (!zynqmp_afi_fpga)
-> > > +		return -ENOMEM;
-> > > +	platform_set_drvdata(pdev, zynqmp_afi_fpga);
-> > > +
-> > > +	entries = of_property_count_u32_elems(np, "config-afi");
-> > > +	if (!entries || (entries % 2)) {
-> > > +		dev_err(&pdev->dev, "Invalid number of registers\n");
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > +	for (i = 0; i < entries / 2; i++) {
-> > > +		ret = of_property_read_u32_index(np, "config-afi", i * 2,
-> > &reg);
-> > > +		if (ret) {
-> > > +			dev_err(&pdev->dev, "failed to read register\n");
-> > > +			return -EINVAL;
-> > > +		}
-> > > +		ret = of_property_read_u32_index(np, "config-afi", i * 2 + 1,
-> > > +						 &val);
-> > > +		if (ret) {
-> > > +			dev_err(&pdev->dev, "failed to read value\n");
-> > > +			return -EINVAL;
-> > > +		}
-> > > +		ret = zynqmp_pm_afi(reg, val);
-> > > +		if (ret < 0) {
-> > > +			dev_err(&pdev->dev, "AFI register write error %d\n",
-> > > +				ret);
-> > > +			return ret;
-> > > +		}
-> > > +	}
-> > > +	return 0;
-> > > +}
-> > 
-> > Again, why does this have to be in the kernel?  All it does is make a
-> > single call to the hardware based on some values read from the device
-> > tree.  Can't you do this from userspace?
-> > 
-> For every PL design has its own PS-PL configuration.
+> This only matters for devfreq, that is disabled anyway as we don't
+> have platform-specific code to handle >1 supplies.
+> 
+> Changes in v11:
+>  - mt8183*.dts: remove incorrect supply-names
+> 
+> Changes in v10: None
+> Changes in v9: None
+> Changes in v8: None
+> Changes in v7: None
+> Changes in v6:
+>  - Add gpu regulators to kukui dtsi as well.
+>  - Power domains are now attached to spm, not scpsys
+>  - Drop R-B.
+> 
+> Changes in v5:
+>  - Rename "2d" power domain to "core2" (keep R-B again).
+> 
+> Changes in v4:
+>  - Add power-domain-names to describe the 3 domains.
+>    (kept Alyssa's reviewed-by as the change is minor)
+> 
+> Changes in v3: None
+> Changes in v2:
+>  - Use sram instead of mali_sram as SRAM supply name.
+>  - Rename mali@ to gpu@.
+> 
+>  arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   5 +
+>  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   5 +
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 105 ++++++++++++++++++
+>  3 files changed, 115 insertions(+)
+> 
 
-What is a "PL design", and what is a "PS-PL configuration"?  :)
+If you re-spin, you can also add the same changes to mt8183-pumpkin.dts :
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
+index eb6e595c2975..cc23e5df391e 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
+@@ -68,6 +68,11 @@ &auxadc {
+        status = "okay";
+ };
 
-> This driver will be used by the overlay framework for configuring the interface after programming the FPGA and before probing the drivers that are present in the PL.
++&gpu {
++       mali-supply = <&mt6358_vgpu_reg>;
++       sram-supply = <&mt6358_vsram_gpu_reg>;
++};
++
+ &i2c0 {
+        pinctrl-names = "default";
+        pinctrl-0 = <&i2c_pins_0>;
 
-Again, I have no idea what this means at all.
+I did a boot-test of the platform with panfrost and drm-misc-next and it worked fine.
 
-And again, why does this have to be done in the kernel?  All you are
-doing is sending some random values read in DT down to a hardware
-device.   What requires a kernel driver for this?
+Thanks,
+Neil
 
-thanks,
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+> index cba2d8933e79..1cfbea5a0101 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+> @@ -42,6 +42,11 @@ &auxadc {
+>  	status = "okay";
+>  };
+>  
+> +&gpu {
+> +	mali-supply = <&mt6358_vgpu_reg>;
+> +	sram-supply = <&mt6358_vsram_gpu_reg>;
+> +};
+> +
+>  &i2c0 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&i2c_pins_0>;
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> index bf2ad1294dd3..a38315b604df 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> @@ -249,6 +249,11 @@ &cpu7 {
+>  	proc-supply = <&mt6358_vproc11_reg>;
+>  };
+>  
+> +&gpu {
+> +	mali-supply = <&mt6358_vgpu_reg>;
+> +	sram-supply = <&mt6358_vsram_gpu_reg>;
+> +};
+> +
+>  &i2c0 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&i2c0_pins>;
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index 5b782a4769e7..5430e05e18a0 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -964,6 +964,111 @@ mfgcfg: syscon@13000000 {
+>  			#clock-cells = <1>;
+>  		};
+>  
+> +		gpu: gpu@13040000 {
+> +			compatible = "mediatek,mt8183-mali", "arm,mali-bifrost";
+> +			reg = <0 0x13040000 0 0x4000>;
+> +			interrupts =
+> +				<GIC_SPI 280 IRQ_TYPE_LEVEL_LOW>,
+> +				<GIC_SPI 279 IRQ_TYPE_LEVEL_LOW>,
+> +				<GIC_SPI 278 IRQ_TYPE_LEVEL_LOW>;
+> +			interrupt-names = "job", "mmu", "gpu";
+> +
+> +			clocks = <&topckgen CLK_TOP_MFGPLL_CK>;
+> +
+> +			power-domains =
+> +				<&spm MT8183_POWER_DOMAIN_MFG_CORE0>,
+> +				<&spm MT8183_POWER_DOMAIN_MFG_CORE1>,
+> +				<&spm MT8183_POWER_DOMAIN_MFG_2D>;
+> +			power-domain-names = "core0", "core1", "core2";
+> +
+> +			operating-points-v2 = <&gpu_opp_table>;
+> +		};
+> +
+> +		gpu_opp_table: opp_table0 {
+> +			compatible = "operating-points-v2";
+> +			opp-shared;
+> +
+> +			opp-300000000 {
+> +				opp-hz = /bits/ 64 <300000000>;
+> +				opp-microvolt = <625000>, <850000>;
+> +			};
+> +
+> +			opp-320000000 {
+> +				opp-hz = /bits/ 64 <320000000>;
+> +				opp-microvolt = <631250>, <850000>;
+> +			};
+> +
+> +			opp-340000000 {
+> +				opp-hz = /bits/ 64 <340000000>;
+> +				opp-microvolt = <637500>, <850000>;
+> +			};
+> +
+> +			opp-360000000 {
+> +				opp-hz = /bits/ 64 <360000000>;
+> +				opp-microvolt = <643750>, <850000>;
+> +			};
+> +
+> +			opp-380000000 {
+> +				opp-hz = /bits/ 64 <380000000>;
+> +				opp-microvolt = <650000>, <850000>;
+> +			};
+> +
+> +			opp-400000000 {
+> +				opp-hz = /bits/ 64 <400000000>;
+> +				opp-microvolt = <656250>, <850000>;
+> +			};
+> +
+> +			opp-420000000 {
+> +				opp-hz = /bits/ 64 <420000000>;
+> +				opp-microvolt = <662500>, <850000>;
+> +			};
+> +
+> +			opp-460000000 {
+> +				opp-hz = /bits/ 64 <460000000>;
+> +				opp-microvolt = <675000>, <850000>;
+> +			};
+> +
+> +			opp-500000000 {
+> +				opp-hz = /bits/ 64 <500000000>;
+> +				opp-microvolt = <687500>, <850000>;
+> +			};
+> +
+> +			opp-540000000 {
+> +				opp-hz = /bits/ 64 <540000000>;
+> +				opp-microvolt = <700000>, <850000>;
+> +			};
+> +
+> +			opp-580000000 {
+> +				opp-hz = /bits/ 64 <580000000>;
+> +				opp-microvolt = <712500>, <850000>;
+> +			};
+> +
+> +			opp-620000000 {
+> +				opp-hz = /bits/ 64 <620000000>;
+> +				opp-microvolt = <725000>, <850000>;
+> +			};
+> +
+> +			opp-653000000 {
+> +				opp-hz = /bits/ 64 <653000000>;
+> +				opp-microvolt = <743750>, <850000>;
+> +			};
+> +
+> +			opp-698000000 {
+> +				opp-hz = /bits/ 64 <698000000>;
+> +				opp-microvolt = <768750>, <868750>;
+> +			};
+> +
+> +			opp-743000000 {
+> +				opp-hz = /bits/ 64 <743000000>;
+> +				opp-microvolt = <793750>, <893750>;
+> +			};
+> +
+> +			opp-800000000 {
+> +				opp-hz = /bits/ 64 <800000000>;
+> +				opp-microvolt = <825000>, <925000>;
+> +			};
+> +		};
+> +
+>  		mmsys: syscon@14000000 {
+>  			compatible = "mediatek,mt8183-mmsys", "syscon";
+>  			reg = <0 0x14000000 0 0x1000>;
+> 
 
-greg k-h
