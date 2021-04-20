@@ -2,97 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DE6836608F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 22:02:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28D9B366096
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 22:04:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233751AbhDTUDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 16:03:22 -0400
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:35574 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233682AbhDTUDW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 16:03:22 -0400
-Received: by mail-oi1-f173.google.com with SMTP id e25so10210135oii.2;
-        Tue, 20 Apr 2021 13:02:50 -0700 (PDT)
+        id S233548AbhDTUFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 16:05:14 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:45804 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233541AbhDTUFO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 16:05:14 -0400
+Received: by mail-ot1-f51.google.com with SMTP id f75-20020a9d03d10000b0290280def9ab76so31822360otf.12;
+        Tue, 20 Apr 2021 13:04:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=KjD4lXtva/+btnljL9bkUIKj0w5NavTEnen058f6CYg=;
-        b=FwFN0OQwKjwGjgtCZ2g0D/uu/VUsmDzV9vzUvFrWf9fZjjNrGjKEU3bhsOI6eBoFQP
-         dsg6j2b1juxqNTMLOkFI2Je7/0A065Oo3jNaghEnAT0TDok9bkyo4MTopgQI5ug/qxHZ
-         skV7oXxyWSdDZHqtxkCaK+s7SNyosGQI92sHeOgqDk+G7t7Hr1JWaWNJ/ERwsiuYFgVV
-         Sz8Ms3iba0DYDZM8eJPcmOtyC7UViOkPF8GSEMLNImKzoAmU/6bnFKyOQgfOqg6xwF2+
-         /FRqgelRpD4wCW/kxJ4jHDkznviZK2u/A6b3r+MXispB+YloiTd0fJgdRN8KWSdHm0iA
-         nPkQ==
-X-Gm-Message-State: AOAM531eEpJWNtcmwyiaCTzMryGFyZdekZkQ9/Njj0TC8Oj3iqazLAEc
-        hkxncQF3mJBJuM5Ng21KJg==
-X-Google-Smtp-Source: ABdhPJxsU17fvzON9fb6P8t7ei/fmSZiVxJF23/q6NmCKy9c1HHOB/zC0Uq2cgzpTjxZzey78BhuzA==
-X-Received: by 2002:a05:6808:b3b:: with SMTP id t27mr4236059oij.131.1618948970562;
-        Tue, 20 Apr 2021 13:02:50 -0700 (PDT)
+        bh=/HxOtJjXRLRSor/ODsPfy5BZOXhp79IDyQZu4OyaTbM=;
+        b=c11/Tyzbc+k/SgLwCJMyBg9SiF8uUDbp1iN9UR+zf+dNgoW88GWJe2t1BlfQro6bav
+         Y+QKim0QoO52ZXjKnkMmKCeOWcFtEOZNVGDMWwKPe2OAekCZK0vz/osZQ7X8P0+UMB+e
+         KQhIyGasE58LFrC/TWL/DTkOGjWSemp5FwSo79puo6YlipHRiNd8KAhAE3RDGY6BlfIS
+         dBMN9ghdPS1a8vzZFxQYbVq0jTVNvWRUscxuv7OvfWRBVq0TZba2TzNWnj0y04+MAtxS
+         eKYJ/2WOumsq4wGLQ1Sf9cdM6bwdcAsQ6ufr78nVveNzJvm1egtZZdXvkBLybRnQTFN3
+         sSdQ==
+X-Gm-Message-State: AOAM532JqN8f/PG9TJ1S6OEcb2V3YQtVji/P2saAlU0tTzQ0VcwVixdC
+        XPqXNToXiSPVn2C9lSgAelROUpecCw==
+X-Google-Smtp-Source: ABdhPJwfhMsGLd8dCI8UsdaTln+zjv3z7qFHlTK2dy8VLuAY3ZbTsa1fQZ1mSQcT3X05kHEMYafhWg==
+X-Received: by 2002:a9d:64b:: with SMTP id 69mr20371216otn.63.1618949081968;
+        Tue, 20 Apr 2021 13:04:41 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s3sm14508ool.36.2021.04.20.13.02.46
+        by smtp.gmail.com with ESMTPSA id l1sm16447oot.40.2021.04.20.13.04.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Apr 2021 13:02:47 -0700 (PDT)
-Received: (nullmailer pid 3719999 invoked by uid 1000);
-        Tue, 20 Apr 2021 20:02:46 -0000
-Date:   Tue, 20 Apr 2021 15:02:46 -0500
+        Tue, 20 Apr 2021 13:04:41 -0700 (PDT)
+Received: (nullmailer pid 3722585 invoked by uid 1000);
+        Tue, 20 Apr 2021 20:04:40 -0000
+Date:   Tue, 20 Apr 2021 15:04:40 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-serial <linux-serial@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] dt-bindings: serial: Add label property for pl011
-Message-ID: <20210420200246.GA3717650@robh.at.kernel.org>
-References: <20210415073105.3687-1-thunder.leizhen@huawei.com>
+To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     devicetree@vger.kernel.org, jagan@amarulasolutions.com,
+        Marek Vasut <marex@denx.de>,
+        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org,
+        arnd@arndb.de, robh+dt@kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>, kuba@kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH 04/13] dt-bindings: mfd: stm32-timers: remove
+ #address/size cells from required properties
+Message-ID: <20210420200440.GA3722536@robh.at.kernel.org>
+References: <20210415101037.1465-1-alexandre.torgue@foss.st.com>
+ <20210415101037.1465-5-alexandre.torgue@foss.st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210415073105.3687-1-thunder.leizhen@huawei.com>
+In-Reply-To: <20210415101037.1465-5-alexandre.torgue@foss.st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 15, 2021 at 03:31:05PM +0800, Zhen Lei wrote:
-> When there is more than one pl011 serial port present, the label property
-> allows a custom name to be used for briefly describe the usage or position
-> of each serial port.
+On Thu, 15 Apr 2021 12:10:28 +0200, Alexandre Torgue wrote:
+> address-cells and size-cells can't be declared as "required" properties
+> as they are not needed if subnodes don't have a "reg" entry.
 > 
-> Without this "label" property, many dtbs_check warnings similar to the
-> following are reported:
-> arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dt.yaml: \
-> serial@ffd74000: Additional properties are not allowed ('label' was unexpected)
->         From schema: Documentation/devicetree/bindings/serial/pl011.yaml
-
-I think this should go into serial.yaml instead.
-
+> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
 > 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> ---
->  Documentation/devicetree/bindings/serial/pl011.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/pl011.yaml b/Documentation/devicetree/bindings/serial/pl011.yaml
-> index 1f8e9f2644b6b80..303c7746423f503 100644
-> --- a/Documentation/devicetree/bindings/serial/pl011.yaml
-> +++ b/Documentation/devicetree/bindings/serial/pl011.yaml
-> @@ -34,6 +34,9 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  label:
-> +    maxItems: 1
 
-label is always a single string and so 'maxItems' is always 1. Just 
-need:
-
-label: true
-
-> +
->    interrupts:
->      maxItems: 1
->  
-> -- 
-> 2.26.0.106.g9fadedd
-> 
-> 
+Acked-by: Rob Herring <robh@kernel.org>
