@@ -2,180 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1612365F6D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 20:34:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C8BE365F7D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 20:36:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233589AbhDTSfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 14:35:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49470 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233654AbhDTSeu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 14:34:50 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92102C06138B;
-        Tue, 20 Apr 2021 11:34:16 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id w3so59796741ejc.4;
-        Tue, 20 Apr 2021 11:34:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Ka7h2yhzf5rJ0AJdlIXPMvLZF9eZ+jtPp29EnOmIYbU=;
-        b=oKWLl9k0s7WTJasrDiDiAxKaZzVOW4BwfeeHeegWvS5lhoAyu71WNwbvZnxM/16GQD
-         Pyix+a1HY9AUESgF0zPeRFZQfCSkYtMmv0hEqOel51zdqLfIFPxruajDiAZQ/YOqf6eb
-         z7W8hsZR+NcVREh2l6JM0x27BPc9+FwqtJTQvoqwIF5nVitTE5LN9uSvw4Bz/s83v2NU
-         Cj8GzUNhJ9WZLN2YoO/JuIc6feN8Hglh9oAR+g5jGb/YpXXttSyPz8kAz1vbOgxEk3sw
-         qTvwBP6Ms0/hEzdSEOgmYQW6DYX3qPANNA/WuyfmM4VyTj1WEzBkUkvUTTNc8zhT4Tf0
-         so5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Ka7h2yhzf5rJ0AJdlIXPMvLZF9eZ+jtPp29EnOmIYbU=;
-        b=folzH3lbQqfRQYguDaInjB+8ZgJwDggMDR0EWNDWe8irH3PC2UE7TcrDnbvO+1VBAI
-         UNgCw/prX33H//NbhGbjS9y3zT4w7aLXVtHF+ZP+w1jI3bS5oK7D0fwc2N4mBT4Mvc5V
-         1o/LpO1BagT3athvdCKXRuxeSZPcGChojhTTAHnHtJfSOIRtUXgD4lgcBDUausnyI4Mh
-         9jDa/HVLZbXboAfV21zRmox6Xs8wGVKPwcaGxrqXNC2LuiW09QVqZ5pe0nH6RL2s6y/R
-         vWfrBiCijDtql9IvlpDF1pSDgmohev+M7vQ2imdGDS2HL6ONF+M7bzwsz5C0fmBYeW2Z
-         HeyQ==
-X-Gm-Message-State: AOAM5320tssxivPlv1YGfJNjZwPsPA2uN0KMLhwg2wTqId/fztpl5yED
-        HWzOKGi3FgACbj2LhHMLkXc=
-X-Google-Smtp-Source: ABdhPJwv33CLEGrYqkVhLcx/Zsnzo17NjXob6cnEp3+3K39m61LeH+SiigeB+XdpgiNkkvWZCufheQ==
-X-Received: by 2002:a17:907:7283:: with SMTP id dt3mr28992621ejc.47.1618943655052;
-        Tue, 20 Apr 2021 11:34:15 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-35-189-2.ip56.fastwebnet.it. [93.35.189.2])
-        by smtp.googlemail.com with ESMTPSA id n10sm13357141ejg.124.2021.04.20.11.34.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Apr 2021 11:34:14 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>, Rob Herring <robh@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [thermal PATCH v15 9/9] dt-bindings: thermal: tsens: Document ipq8064 bindings
-Date:   Tue, 20 Apr 2021 20:33:43 +0200
-Message-Id: <20210420183343.2272-10-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210420183343.2272-1-ansuelsmth@gmail.com>
-References: <20210420183343.2272-1-ansuelsmth@gmail.com>
+        id S233540AbhDTSgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 14:36:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60264 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233521AbhDTSgc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Apr 2021 14:36:32 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BCE4C61002;
+        Tue, 20 Apr 2021 18:35:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1618943760;
+        bh=Vl/xDfhSSSaJydX/7Hg32mJnZm6/w8UcQTG3m5vrcuY=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=HUgPhxnv6izynLvQdPFBj2C4xdDAa0LJqBogAVwt3dctL/WvUb01Clwh5TugC5TwA
+         6vZUBKlvaLmy4sXc2ep2lkWUsJSukC3X1dB5mVG/sYkomE5qu3iK2eotwVHwHOYOdC
+         NbvDzx4LZT4CW4gxAmh/vzwnIjobOhWK0lpGIalCV3adsBiNBxWeuNeflLsfqxOtDK
+         XF+eU42lbcisn/UtvAXAxx2J48H82gQttNCmEYsVBj4UGTCLs9Hhy1ZKf8xoK22bow
+         cxBYmEk8MAtD52LgglRSdzl7c1gsafRd9iJI1vOIQ1jhScnDsiNWqRenUXEb1ZrD1v
+         2RtsAu4vf+inQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-spi@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH V3] dt-bindings: spi: brcm,spi-bcm-qspi: convert to the json-schema
+Date:   Tue, 20 Apr 2021 19:35:29 +0100
+Message-Id: <161894372992.35357.4077976563390352628.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210416194723.23855-1-zajec5@gmail.com>
+References: <20210416062320.21414-1-zajec5@gmail.com> <20210416194723.23855-1-zajec5@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the use of bindings used for msm8960 tsens based devices.
-msm8960 use the same gcc regs and is set as a child of the qcom gcc.
+On Fri, 16 Apr 2021 21:47:23 +0200, Rafał Miłecki wrote:
+> This helps validating DTS files.
+> 
+> Changes that require mentioning:
+> 1. reg-names
+>    "mspi_regs" and "bspi_regs" were renamed to "mspi" and "bspi" as that
+>    is what's used in DTS files and in Linux driver
+> 2. interrupt-names
+>    Names were reordered. "mspi_done" has to go first as it's always
+>    required.
+> 3. spi-rx-bus-width
+>    Property description was dropped as it's part of the
+>    spi-controller.yaml
+> 4. Examples:
+>    * drop partitions as they are well documented elsewhere
+>    * regs and interrupts were formatted and reordered to match yaml
+>    * <0x1c> was replaced with <&gic>
+>    * "m25p80" node name became "flash"
+>    * dropped invalid "m25p,fast-read" property
+>    * dropped undocumented and Linux-unused "clock-names"
+> 
+> [...]
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/thermal/qcom-tsens.yaml          | 56 ++++++++++++++++---
- 1 file changed, 48 insertions(+), 8 deletions(-)
+Applied to
 
-diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-index d7be931b4..2e762596b 100644
---- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-@@ -19,6 +19,11 @@ description: |
- properties:
-   compatible:
-     oneOf:
-+      - description: msm9860 TSENS based
-+        items:
-+          - enum:
-+              - qcom,ipq8064-tsens
-+
-       - description: v0.1 of TSENS
-         items:
-           - enum:
-@@ -70,7 +75,9 @@ properties:
-     maxItems: 2
-     items:
-       - const: calib
--      - const: calib_sel
-+      - enum:
-+          - calib_backup
-+          - calib_sel
- 
-   "#qcom,sensors":
-     description:
-@@ -85,12 +92,20 @@ properties:
-       Number of cells required to uniquely identify the thermal sensors. Since
-       we have multiple sensors this is set to 1
- 
-+required:
-+  - compatible
-+  - interrupts
-+  - interrupt-names
-+  - "#thermal-sensor-cells"
-+  - "#qcom,sensors"
-+
- allOf:
-   - if:
-       properties:
-         compatible:
-           contains:
-             enum:
-+              - qcom,ipq8064-tsens
-               - qcom,msm8916-tsens
-               - qcom,msm8974-tsens
-               - qcom,msm8976-tsens
-@@ -111,17 +126,42 @@ allOf:
-         interrupt-names:
-           minItems: 2
- 
--required:
--  - compatible
--  - reg
--  - "#qcom,sensors"
--  - interrupts
--  - interrupt-names
--  - "#thermal-sensor-cells"
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,tsens-v0_1
-+              - qcom,tsens-v1
-+              - qcom,tsens-v2
-+
-+    then:
-+      required:
-+        - reg
- 
- additionalProperties: false
- 
- examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    // Example msm9860 based SoC (ipq8064):
-+    gcc: clock-controller {
-+
-+           /* ... */
-+
-+           tsens: thermal-sensor {
-+                compatible = "qcom,ipq8064-tsens";
-+
-+                 nvmem-cells = <&tsens_calib>, <&tsens_calib_backup>;
-+                 nvmem-cell-names = "calib", "calib_backup";
-+                 interrupts = <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>;
-+                 interrupt-names = "uplow";
-+
-+                 #qcom,sensors = <11>;
-+                 #thermal-sensor-cells = <1>;
-+          };
-+    };
-+
-   - |
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-     // Example 1 (legacy: for pre v1 IP):
--- 
-2.30.2
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
+Thanks!
+
+[1/1] dt-bindings: spi: brcm,spi-bcm-qspi: convert to the json-schema
+      commit: 7d82f89c39ad3193893d36924fc1f8d44f3dc612
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
