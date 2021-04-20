@@ -2,84 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95391365D25
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 18:19:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63835365D2F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 18:21:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233025AbhDTQUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 12:20:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57526 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232910AbhDTQUM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Apr 2021 12:20:12 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E9CCF613CD;
-        Tue, 20 Apr 2021 16:19:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1618935580;
-        bh=wo0Ma+Ga1AFTjgDUVkyTQw4kODt/cwUCMSS14hRgUNg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=us9AuT+exCEr0zbASBxHw2qmmSsVS6/zUm+sHeS71IHEbaYbXR4fDkSmiu/75SZTF
-         6+G6RPoo++S67ORiwwURUJp1//a4XjxY05+h27MdruM4uqj3z724dJM0Q/Buf/zTTq
-         unTpAaffQ0S67azl9QCQMqn6OKiYI2x2Dis1VptuWdu7lUDh6uKPcc2IHHXTXecB7q
-         u2LNLBzEyg62emP49CkuXf1eaIv6GnhYob09eUIvoiLNtVMfA2c6ddACYxKm9PbB7j
-         7sd1hMU1M2HZTpxYqpUlVGxcv1cH9wdZCG91ghvjlWfmn9tSHNBWsrJXOzoPMeRKpP
-         MjOwZ1LAUfg6Q==
-Date:   Tue, 20 Apr 2021 17:19:13 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        pierre-louis.bossart@linux.intel.com, tiwai@suse.com,
-        heiko@sntech.de, lee.jones@linaro.org, robh+dt@kernel.org,
-        perex@perex.cz, jbx6244@gmail.com, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [v7 2/4] ASoC: Add Rockchip rk817 audio CODEC support
-Message-ID: <20210420161913.GF6073@sirena.org.uk>
-References: <20210420160747.22942-1-macroalpha82@gmail.com>
- <20210420160747.22942-2-macroalpha82@gmail.com>
+        id S232879AbhDTQW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 12:22:28 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:44619 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232174AbhDTQW1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 12:22:27 -0400
+Received: by mail-ot1-f51.google.com with SMTP id 5-20020a9d09050000b029029432d8d8c5so10352164otp.11;
+        Tue, 20 Apr 2021 09:21:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=7rCWJmNituqDy50oQV6vLgBSIuPKc5eqe/iLgSwO2TM=;
+        b=I7vqDCeqNeiMACIfkyVWzcYWtQaPtdq7vbfXkk4q8cJRW+SqmGrBM94bz2MiWhvycg
+         cvGGt/yJIiMymbs4gEGxaUmXuQabovdY0xr6sWIoe/+I2mluzt0lGItx7MlBHywbKoD3
+         J2zcxIDRMU+sEtD/BdXSow7Bejjg91sGeUU6c4RFPPuCJlVD+objTjUwHoUFrXhRemkq
+         fkfB4vcRhTR4U5ULxMNssLUVHqpuxXrFEVO0yuJ62DZLofyc5QmgyzUr9STJspRD/RJ4
+         0QDFMqK44ZW/E0VbGaM1Bfmw3RfKZoaMI4Xy6QymyvLQck9NT0aFbu26UsXRIDW9+W6K
+         IcAg==
+X-Gm-Message-State: AOAM531aiKbvxBBnAb2Fnhf2uR9QYa22WI0U6A+sxD2y3Bm4HuopV8Fi
+        cMYIHC0+R/up9adT070kDhBm4wAIaw==
+X-Google-Smtp-Source: ABdhPJzSZJd1xZjbRrIhDmOV9dO5iilxg5M145vsthNtjLR9vWBjyBiv2DCy1LrMWYVpe5u2D2KkOg==
+X-Received: by 2002:a9d:6649:: with SMTP id q9mr11012411otm.197.1618935715512;
+        Tue, 20 Apr 2021 09:21:55 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id p127sm1454676oig.16.2021.04.20.09.21.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Apr 2021 09:21:54 -0700 (PDT)
+Received: (nullmailer pid 3427069 invoked by uid 1000);
+        Tue, 20 Apr 2021 16:21:52 -0000
+Date:   Tue, 20 Apr 2021 11:21:52 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     linux-spi@vger.kernel.org, Kamal Dasu <kdasu.kdev@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH V3] dt-bindings: spi: brcm,spi-bcm-qspi: convert to the
+ json-schema
+Message-ID: <20210420162152.GA3427001@robh.at.kernel.org>
+References: <20210416062320.21414-1-zajec5@gmail.com>
+ <20210416194723.23855-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="udcq9yAoWb9A4FsZ"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210420160747.22942-2-macroalpha82@gmail.com>
-X-Cookie: Falling rock.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210416194723.23855-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---udcq9yAoWb9A4FsZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Apr 20, 2021 at 11:07:45AM -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
->=20
-> Add support for the Rockchip rk817 audio codec integrated into the
-> rk817 PMIC. This is based on the sources provided by Rockchip from
-> their BSP kernel.
->=20
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+On Fri, 16 Apr 2021 21:47:23 +0200, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> This helps validating DTS files.
+> 
+> Changes that require mentioning:
+> 1. reg-names
+>    "mspi_regs" and "bspi_regs" were renamed to "mspi" and "bspi" as that
+>    is what's used in DTS files and in Linux driver
+> 2. interrupt-names
+>    Names were reordered. "mspi_done" has to go first as it's always
+>    required.
+> 3. spi-rx-bus-width
+>    Property description was dropped as it's part of the
+>    spi-controller.yaml
+> 4. Examples:
+>    * drop partitions as they are well documented elsewhere
+>    * regs and interrupts were formatted and reordered to match yaml
+>    * <0x1c> was replaced with <&gic>
+>    * "m25p80" node name became "flash"
+>    * dropped invalid "m25p,fast-read" property
+>    * dropped undocumented and Linux-unused "clock-names"
+> 
+> This rewritten binding validates cleanly using the  "dt_binding_check".
+> Some Linux stored DTS files will require reordering regs and interrupts
+> to make dtbs_check happy.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
+> V2: Add Kamal as maintainer
+> V3: Fix examples (see commit message for details) - thanks Rob
+> ---
+>  .../bindings/spi/brcm,spi-bcm-qspi.txt        | 245 ------------------
+>  .../bindings/spi/brcm,spi-bcm-qspi.yaml       | 198 ++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 199 insertions(+), 246 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/spi/brcm,spi-bcm-qspi.txt
+>  create mode 100644 Documentation/devicetree/bindings/spi/brcm,spi-bcm-qspi.yaml
+> 
 
-If you've not made substantial changes to a patch you should carry
-forwards any tags you've got when resending so reviewers know they don't
-need to do things again.
-
---udcq9yAoWb9A4FsZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmB+/wEACgkQJNaLcl1U
-h9D6Iwf+L1DybQOPGsl6KtAAhQp17fNdKFCqL5+Uil1WOS6NbkToX2lb+DZOK09u
-r77tLW80Zlelg1tgjPZNPXWztxH+NMtVq2fyuxvKsHOHkACMLMRYpLgCSgjctYA1
-n1pxh74sIshX+rRt5UO40Erek04i3sTq3Z8fS/r/SN3xaDqowhtXgur3dGsfWwlb
-TJCqKeAYDlkR7KDxJ+vdanOWIQ8kmHSPwrKNLePrjD8YAx0iTRut7oSbG6EoeFWr
-kQ8ZY4dLohmQ8sKjoAlGMqw21MuME4hFmgZuelwpCU0IV2QGqgq2s8wEQQ0SuBZE
-W+01hbiShhGlSmt4IGCfYt+xp+yuAw==
-=a2sH
------END PGP SIGNATURE-----
-
---udcq9yAoWb9A4FsZ--
+Reviewed-by: Rob Herring <robh@kernel.org>
