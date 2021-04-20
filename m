@@ -2,70 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52898365F40
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 20:30:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B106B365F4E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 20:34:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233498AbhDTSaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 14:30:55 -0400
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:37424 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233381AbhDTSay (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 14:30:54 -0400
-Received: by mail-oi1-f169.google.com with SMTP id k25so39911985oic.4;
-        Tue, 20 Apr 2021 11:30:22 -0700 (PDT)
+        id S233517AbhDTSef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 14:34:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49438 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233092AbhDTSef (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 14:34:35 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D195C06174A;
+        Tue, 20 Apr 2021 11:34:01 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id k17so6790078edr.7;
+        Tue, 20 Apr 2021 11:34:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ud/6nSIADQgMKFdabHKRuxpt1Sau0GLHCd2R3Rgi9YE=;
+        b=bPWP+3ZvPg7ZAPNIUrM0PjfoMkB9Y0bUv9jUN1M8740heuI5kMokhH5nnFi0v9EhZA
+         QVZKG6wgbN6m3jWeTn6QvXmfhC1IdXJ82z7tUnq+NPAGeT6HuHhHAJ3LSPp2cTU/zFZL
+         hL/cNupO87WjPFRutzdICBe4RFKGjLY3+4zY6V4mEFsPxgoLULTCs16HByELRUmGCccT
+         5CMRAO0kmX3QaRlujORxqKrLXuOgs68shxigeEGZ3hXqLVSKPEqSTGMXcWaqiROBdg8M
+         pld3ITU2iPgqA4QxWt1+Y6IEA44RSF1fdJgOchc9C9DWyjutt0thIaE6pOkmob/7oG0Z
+         GwGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qRJfvycjMVS7+Dlrjz9iVo/JVehkXqgejrTGtGxoW4s=;
-        b=efCUz1DVG91rjsCBAKPFYT+8bm69jPJ1B0bsOls42QbQT7tDGrrx3YIvLlcRB19xn6
-         V4F6jhaLE/aAROT7aD69mGPVbRtmdSpoSAINzFoKXfpY2jgwSsAmWysaEJLrv04I8Spe
-         Y3aQQSa02UVR6vG/YqK9e4RpIsx6Yroi8aBf9H49zf87Axd5UFIlgT+UvMdxBLN13Pw8
-         uv+2Ph8BWDFu4jfHQ81GgEmNDMumNwWol+7Yc87Yx+luhyh+2WNyJNKN0w4klIBqJ03S
-         WZCVpLt4p0OS+6I3Zfc+0McsDDrLi6eYsCqRpNCT1Oy3nJAkJc4q3BHoYH334y3Ex72B
-         wOoQ==
-X-Gm-Message-State: AOAM532ngv+PKmY92N9IFO+GfE6+DkbaehKXH9Y6AdcO7zFieExtxsvx
-        KecgIWpjls++z0ptBheU/Q==
-X-Google-Smtp-Source: ABdhPJxWkFPc8q9nP0fElXNWc9Q4jrFRA2tAzgnQqBAEDU5kiVPRlVmLTq5c/xsKqk85G5VWPJqWAQ==
-X-Received: by 2002:aca:3286:: with SMTP id y128mr4170561oiy.145.1618943422492;
-        Tue, 20 Apr 2021 11:30:22 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j8sm4542127otj.49.2021.04.20.11.30.21
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ud/6nSIADQgMKFdabHKRuxpt1Sau0GLHCd2R3Rgi9YE=;
+        b=QJuWTd8ckm6VMeltayVnce3zCjzElRwbbueAE2qENaiF7s7PVgEjU8ZH8k06mdSb6u
+         +syv4X09I8HKbt1qgZehTwnPZOp5hgiXkXR/8bGIXmyG0xBsAP0rVkuxC06BIrn81se6
+         VXwZq81KJVu6ThbinT2NbueboLLZYgQxmZLXt2G0wFjsIgrzOQBvZ1D3yJdUSeiAwabx
+         U7vTWnppioaQ/FziINV++HwVyloqHnEFw6gttGV+WWzpVDUmqnNwKMdgY9CnNL/3kcRG
+         YJOYfXSIpK9VyfYuThUqzf08AzTIW8gawkM2RVhfH5E1ObRRS9Zl71vD09OaRIZXhRkG
+         ia/Q==
+X-Gm-Message-State: AOAM532KMuQIdKUcW95NGJx/zy4GaXfqQ9jzi1j/586WUnYgnvVzAAYr
+        lVgBb75s2awhOAqpxiPdToeX6ixq4z+lRg==
+X-Google-Smtp-Source: ABdhPJxhZ1DrtIpGJ+PZfKA2B8kcWuAnGmU6GpUP0v0W0NLIFD32fD35qcfp3T5XZXP4jY7MrWPy1A==
+X-Received: by 2002:a05:6402:51d0:: with SMTP id r16mr30518669edd.52.1618943640016;
+        Tue, 20 Apr 2021 11:34:00 -0700 (PDT)
+Received: from Ansuel-xps.localdomain (93-35-189-2.ip56.fastwebnet.it. [93.35.189.2])
+        by smtp.googlemail.com with ESMTPSA id n10sm13357141ejg.124.2021.04.20.11.33.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Apr 2021 11:30:21 -0700 (PDT)
-Received: (nullmailer pid 3597326 invoked by uid 1000);
-        Tue, 20 Apr 2021 18:30:20 -0000
-Date:   Tue, 20 Apr 2021 13:30:20 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     Ben Ho <Ben.Ho@mediatek.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/8] dt-bindings: arm64: dts: mediatek: Add
- mt8183-kukui-jacuzzi-kenzo
-Message-ID: <20210420183020.GA3597276@robh.at.kernel.org>
-References: <20210416164055.3223088-1-hsinyi@chromium.org>
- <20210416164055.3223088-4-hsinyi@chromium.org>
+        Tue, 20 Apr 2021 11:33:59 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [thermal PATCH v15 0/9] Add support for ipq8064 tsens
+Date:   Tue, 20 Apr 2021 20:33:34 +0200
+Message-Id: <20210420183343.2272-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210416164055.3223088-4-hsinyi@chromium.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 17 Apr 2021 00:40:51 +0800, Hsin-Yi Wang wrote:
-> Kenzo is known as Acer Chromebook 311.
-> 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> ---
->  Documentation/devicetree/bindings/arm/mediatek.yaml | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
+This patchset convert msm8960 to reg_filed, use int_common instead 
+of a custom function and fix wrong tsens get_temp function for msm8960.
+Ipq8064 SoCs tsens driver is based on 8960 tsens driver. Ipq8064 needs
+to be registered as a gcc child as the tsens regs on this platform are
+shared with the controller.
+This is based on work and code here
+https://git.linaro.org/people/amit.kucheria/kernel.git/log/?h=wrk3/tsens-8960-breakage
 
-Acked-by: Rob Herring <robh@kernel.org>
+This series has already been approved but the "kernel test robot" reported
+some bisect error.
+
+v15:
+* Fix bisect error reported by bot (add feat define in the VER_0 patch)
+* Fix static slope table (offset -350 instead of -200 to have a more accurate temp)
+v14:
+* Fix warning reported by Dan Carpenter
+v13:
+* Simple reword
+v12:
+* Even more fix reported by Thara
+v11:
+* Address comments from Thara (thx)
+v10:
+* Fix wrong tsens init for ver_0 (crit_trips needs to be set in tsens_register)
+v9:
+* Fix warning from Documentation bot
+v8:
+* Drop MIN and MAX THRESH and use CRIT_THRESH instead
+* Fix broken documentation patch
+v7:
+* Rework calibrate function to use get_temp_common
+* Fix wrong required in the Documentation for ipq8064
+* Fix hardware bug in sensor enable function
+v6:
+* Fix spelling error (can't find the problem with variable misallignment)
+* Rework big if-else
+* Remove extra comments
+* Add description about different interrupts
+v5:
+* Conver driver to use reg_fiedl
+* Use init_common 
+* Drop custom set_trip and set_interrupt
+* Use common set_trip and set_interrupt
+* Fix bad get_temp function
+* Add missing hardcoded slope
+v4:
+* Fix compilation error and warning reported by the bot
+v3:
+* Change driver to register as child instead of use phandle
+v2:
+* Fix dt-bindings problems
+
+Ansuel Smith (9):
+  drivers: thermal: tsens: Don't hardcode sensor slope
+  drivers: thermal: tsens: Convert msm8960 to reg_field
+  drivers: thermal: tsens: Add VER_0 tsens version
+  drivers: thermal: tsens: Use init_common for msm8960
+  drivers: thermal: tsens: Fix bug in sensor enable for msm8960
+  drivers: thermal: tsens: Replace custom 8960 apis with generic apis
+  drivers: thermal: tsens: Drop unused define for msm8960
+  drivers: thermal: tsens: Add support for ipq8064-tsens
+  dt-bindings: thermal: tsens: Document ipq8064 bindings
+
+ .../bindings/thermal/qcom-tsens.yaml          |  56 ++++-
+ drivers/thermal/qcom/tsens-8960.c             | 235 +++++++++---------
+ drivers/thermal/qcom/tsens.c                  | 156 +++++++++---
+ drivers/thermal/qcom/tsens.h                  |   4 +-
+ 4 files changed, 293 insertions(+), 158 deletions(-)
+
+-- 
+2.30.2
+
