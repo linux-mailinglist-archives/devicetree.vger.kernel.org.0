@@ -2,132 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2AD73651E2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 07:45:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7AB3365229
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 08:17:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbhDTFpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 01:45:51 -0400
-Received: from mail-eopbgr80049.outbound.protection.outlook.com ([40.107.8.49]:46110
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229843AbhDTFpu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Apr 2021 01:45:50 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ieowY4y8s8amUb8BKrUj7DMCNuWa2TKfHCJ2HNf9x1nEhckJM19bBuOij5vvA+O5F0l2Utugo06JuhBfRX1REy7iDnRS8zt99AiwUfKWjGmmM1tWX55O8IUkwc7K0uhE/T8wkxI1ykDng1RTuHo8IyRs4uZedzc4cVI3YbVaZuSjmv0rGWoh9PCuL/cZQXRuOryIeVvHza7iG6PWo7uelEK85z52lzXodQk4tGguQiF7QEu/4IiiuEiq/DKWIaOKE1Z5TQBhLjOiVBy01T8zk1S56xubhG/5zqDq/eHwTiXDEBBgYd+J6Kl8YpiJET+WfEFQm0ZiR5lHoT0NcekMag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5LhGjzwwDuD6hKf1llzoxPSu68LXYfgv/hMbYEZY4L4=;
- b=Nf8XglBisseIpYMfu+iA4DL7aXIL8Za2mPAQfUxrgRKz4idFHTUZyBELO5q99vCUE3KxpBw09LT/TALy7WPPnBJZzOyuHyKYmbhboLDgoyvaHlizctqQGcWMx57BnNeM8WdfDOviit0+7fVXC98xLfVBEaEWfgYP7SoYb90KFCMqKGYmktRUT03hh7rjslDyyWQL833HaWn0RbS5mPHn5DwswdZNyjbnN8jrbLJWa7av3hCOxjpeLbfRRyqnSv+l8HQ54dwfJNhrclnv6DNBN/dxyM8BqPe8EY5kWqSkxyRUYGm3Z3AhGjeehBumsIWgCcrHcRU6KnOomHeEPD/OUA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5LhGjzwwDuD6hKf1llzoxPSu68LXYfgv/hMbYEZY4L4=;
- b=dIIuG+25lFzFP+FWjpcgtw+T4UdSetqNiUdTGpG5SuGBf/qOK73DvbJvfMrwwM81gAq7fqZSKFBmwr6hPOz8gkoWouc6VK7Z3HUoRhJeXN0iFyi1jUSFHIkQ4WGr07MDrWa8QgAe0sdDvizH1lM+byRdje3B7hcktNslZ/lvH2I=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from DBBPR04MB7930.eurprd04.prod.outlook.com (2603:10a6:10:1ea::12)
- by DB6PR04MB3013.eurprd04.prod.outlook.com (2603:10a6:6:4::28) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4042.16; Tue, 20 Apr 2021 05:45:17 +0000
-Received: from DBBPR04MB7930.eurprd04.prod.outlook.com
- ([fe80::ddbd:8680:c613:2274]) by DBBPR04MB7930.eurprd04.prod.outlook.com
- ([fe80::ddbd:8680:c613:2274%5]) with mapi id 15.20.4042.024; Tue, 20 Apr 2021
- 05:45:17 +0000
-From:   Jacky Bai <ping.bai@nxp.com>
-To:     shawnguo@kernel.org, robh+dt@kernel.org, abel.vesa@nxp.com,
-        s.hauer@pengutronix.de, sboyd@kernel.org
-Cc:     festevam@gmail.com, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-imx@nxp.com
-Subject: [PATCH v2 2/2] clk: imx: Remove the audio ipg clock from imx8mp
-Date:   Tue, 20 Apr 2021 13:54:53 +0800
-Message-Id: <20210420055453.1235297-2-ping.bai@nxp.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210420055453.1235297-1-ping.bai@nxp.com>
-References: <20210420055453.1235297-1-ping.bai@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.71]
-X-ClientProxiedBy: HK2PR03CA0045.apcprd03.prod.outlook.com
- (2603:1096:202:17::15) To DBBPR04MB7930.eurprd04.prod.outlook.com
- (2603:10a6:10:1ea::12)
+        id S229831AbhDTGSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 02:18:16 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:56414 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229577AbhDTGSQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 02:18:16 -0400
+X-UUID: e64997969f214ffe9c8521d07650a47c-20210420
+X-UUID: e64997969f214ffe9c8521d07650a47c-20210420
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1752252126; Tue, 20 Apr 2021 14:17:40 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 20 Apr 2021 14:17:39 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 20 Apr 2021 14:17:38 +0800
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        <youlin.pei@mediatek.com>, <chuanjia.liu@mediatek.com>,
+        <qizhong.cheng@mediatek.com>, <sin_jieyang@mediatek.com>,
+        <drinkcat@chromium.org>, <Rex-BC.Chen@mediatek.com>,
+        <anson.chuang@mediatek.com>, Krzysztof Wilczyski <kw@linux.com>,
+        =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+Subject: [PATCH v10 0/7] PCI: mediatek: Add new generation controller support
+Date:   Tue, 20 Apr 2021 14:17:16 +0800
+Message-ID: <20210420061723.989-1-jianjun.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.71) by HK2PR03CA0045.apcprd03.prod.outlook.com (2603:1096:202:17::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.6 via Frontend Transport; Tue, 20 Apr 2021 05:45:14 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: dd72d71e-c914-4e82-0f6b-08d903bf7a35
-X-MS-TrafficTypeDiagnostic: DB6PR04MB3013:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB6PR04MB3013720D47B79CB32B0A4A3687489@DB6PR04MB3013.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1148;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HWi1ZgSePn2pIf5rxxIgBDwSPv0JIYGH8cm2ok3OUzcVCJxvqwLWVMDkINkgz5zNm2434NwwaetNtORy0dQ/qysaAFjxzRybWkYLCF+P6+ABY2s3OufDUKAhFaSKk7/bX5qwy2oqblqlBn1CX0zZAHv8RvzfHaSJmdb0aX0n6MMB7bJvR950uCRwyO3vROmU5rgJvOx1gtY2vBTkAt63cWZd5jguF/1PMO/UzBwlJzjw68lMxjy7+lIjJddOYHnwLhWclnBlR5TviVcQ6EyIJfoJ5RCKUDEiLbEvLSreBIY6fWcfFY5v/Odz7zRDpvqK49HFxJm5fLw2Nu1Fki3BywZlZzYgU4365/L3s4FxRIJDSuE0+vaEJcjdBTxJTcteMXMhN2Ub7V4bisTZXTlW96V9aNGXjaeKcS2Qff2eD7qVcU4OHk80b0DIxFUhn90quMUO3ly/4NP7E1jPY7yfn7/qJRWIoitDDp16+3fN/hfGdOvcReZUwiC2Yf+tcDsf1S0362TiMSq+k20EXwkztw5A1ZPcxJkWQTMPD3YPkfeIxaMlAImewugRF38xNax9trJM1U5gCRr6E0ny+7w8eW19zZULt5QlLgESu5At7RV2vC2uDr2b4QW+++Esgir6em3/Gqfq0W7jbjBJXLzh/eGeUkv2EqhKL7h0Z0cggvrzvvQAoP5cIabZ8WJxowjdyAn71wr2YAgu8a04hs9MoA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7930.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(376002)(346002)(366004)(396003)(136003)(186003)(1076003)(16526019)(38100700002)(52116002)(26005)(316002)(38350700002)(86362001)(6506007)(83380400001)(956004)(6486002)(2616005)(6666004)(66556008)(66476007)(8676002)(36756003)(6512007)(4326008)(5660300002)(2906002)(8936002)(66946007)(478600001)(69590400013)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?AX9XLwzLgqgcG1YNMUtyOwj20uKwReEuaW/KHrPYpBm4w8CxWKbxgZbhRgX5?=
- =?us-ascii?Q?69c2hDsuevqCVJ26YypOXW8bOY/TT2Z1aOmMD2lRsax3XGSwi9C98PFxCyJ8?=
- =?us-ascii?Q?6xPUUMQGZjXuCAfpLy/HaOTNFL1R5cLV4Uep5UFFMmiWyDl7uIe7Dhth8MnV?=
- =?us-ascii?Q?wzfISasFImrRB7fbk8ngfNCPldcW70NoBwU+1EtaKbrr7q1lF8+g/RZfD6El?=
- =?us-ascii?Q?vui0pIbfLR5fES1IQBZ6AxJl8UUZyQ580jCwKmMN7G3Zgsq+pQrE+6iqWYg3?=
- =?us-ascii?Q?QuxznioLyAdM3AcRY7bSZCHLni74+c5qDdSlhnB9OVQ1gOQegalgYMRioZFN?=
- =?us-ascii?Q?9dp5TOv2X0Rdi5SSrhOhLGpX64Z693gCGWUyox9w4hSzR0raY1pWriD0od+U?=
- =?us-ascii?Q?Kr2uEPK2d+mAJxfexl9sXew3GVDW3QQzGxcpWVUyORbSUkL/KV2gOKeih4L9?=
- =?us-ascii?Q?PNjj91Lir2wzaNNKSUdgozsT8ij7uY2vJFfh1ZVVCQWrwVcAo7gZKT/xTkRj?=
- =?us-ascii?Q?Ql/BLklSjty+8oq+Uc20dqeI52pdTtlt3SGuxpDkYJZrKJHShIvJuGoGHo4S?=
- =?us-ascii?Q?/hRKFt/Fmlh+HXmoQr7CyBWsO1M4xS9ypJ7OP2V0wedbcgZSrtoI110zNVNJ?=
- =?us-ascii?Q?c5CYlMoKiuaVVtJEwRN3pUXauYoP/9q5sR0Cs1Iqn0aUDxydSR6k2G1dsEMB?=
- =?us-ascii?Q?5E1VAddX2TP4kU2Uep47Vc1NYkFLGEuwr+Q5/krmZw9hFmzcqFVehtem23ER?=
- =?us-ascii?Q?B3cd93rfOOB1kOn88AEwsBbb0azzh5U/2CH5ahkxle1yxl2YjQs/SI8Xye6w?=
- =?us-ascii?Q?3ErJ+S93Yw5aTUFitLHr0SEo7WINBIbF1+vYm3BlNyElFOQxe9AFcRWrFdfg?=
- =?us-ascii?Q?RhdVLOgA1Qd8eKHgzj9P5gnVz6m3GpS7O59zt8Kk9yl7mhVAQQIyueQyeuvq?=
- =?us-ascii?Q?jtlmEQ3ES3keH4KYbi5d45X+iaRGI/InvxEGQ9m0O49CwGgDhPRChjSZVRKg?=
- =?us-ascii?Q?p/Um6gwdChxtSkl0D9/fZRBKA1ThEBsGIKweHy59GNf4b4rog+2+jz0DrJvp?=
- =?us-ascii?Q?7YFttChuxJE/6pWEZYuAjguUp7iEI+Y624J8t4lqegsqEl7On/TA6+Qo+egF?=
- =?us-ascii?Q?Xtg9aS8fnnK/CYTRS2XuFggN3DAH0EWJ6VMrSGdryo9s0GDAFEnCTv5QO/JO?=
- =?us-ascii?Q?lE0Q/MqG5Muy0soAJ7L+jh+nxYlMVEwZQnzNBwAFtG9S0vKeiu+flIqRxNTA?=
- =?us-ascii?Q?/druIjJI7eTKK3dhdIM3QjsSGq5NtVRokX0G9Ew5dEaAYSfs0k3m7Uv07rNq?=
- =?us-ascii?Q?fSZXListkoylzcYN286xS/4g?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd72d71e-c914-4e82-0f6b-08d903bf7a35
-X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7930.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2021 05:45:17.6806
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aV7dPhVtldnSxqdSRE7dTJ9mD5OgAdTAPfT2vw19sOb4vdoQ2mp2lKh7lCpTL6pMQyj7jX1DFgZc2EeJtk+3gw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR04MB3013
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is no audio ipg clock on i.MX8MP, so remove this from
-the clock driver.
+From: mtk15901 <jianjun.wang@mediatek.com>
 
-Signed-off-by: Jacky Bai <ping.bai@nxp.com>
----
-- changes v2:
-  keep the clock binding define no changes to fix the cross tree
-  dependency with dts.
----
- drivers/clk/imx/clk-imx8mp.c | 1 -
- 1 file changed, 1 deletion(-)
+These series patches add pcie-mediatek-gen3.c and dt-bindings file to
+support new generation PCIe controller.
 
-diff --git a/drivers/clk/imx/clk-imx8mp.c b/drivers/clk/imx/clk-imx8mp.c
-index e39c9c907c38..12837304545d 100644
---- a/drivers/clk/imx/clk-imx8mp.c
-+++ b/drivers/clk/imx/clk-imx8mp.c
-@@ -556,7 +556,6 @@ static int imx8mp_clocks_probe(struct platform_device *pdev)
- 	hws[IMX8MP_CLK_MIPI_DSI_ESC_RX] = imx8m_clk_hw_composite_bus("mipi_dsi_esc_rx", imx8mp_mipi_dsi_esc_rx_sels, ccm_base + 0x9200);
- 
- 	hws[IMX8MP_CLK_IPG_ROOT] = imx_clk_hw_divider2("ipg_root", "ahb_root", ccm_base + 0x9080, 0, 1);
--	hws[IMX8MP_CLK_IPG_AUDIO_ROOT] = imx_clk_hw_divider2("ipg_audio_root", "audio_ahb", ccm_base + 0x9180, 0, 1);
- 
- 	hws[IMX8MP_CLK_DRAM_ALT] = imx8m_clk_hw_composite("dram_alt", imx8mp_dram_alt_sels, ccm_base + 0xa000);
- 	hws[IMX8MP_CLK_DRAM_APB] = imx8m_clk_hw_composite_critical("dram_apb", imx8mp_dram_apb_sels, ccm_base + 0xa080);
+Changes in v10:
+1. Fix the subject line format in commit message;
+2. Use EXPORT_SYMBOL_GPL() to export pci_pio_to_address().
+
+Changes in v9:
+1. Use mtk_pcie_parse_port() to get the hw resources;
+2. Remove unnecessary logs;
+3. Add local IRQ enable status save/restore instead of
+   the enable/disable callbacks;
+4. Fix typos.
+
+Changes in v8:
+1. Add irq_clock to protect IRQ register access;
+2. Mask all INTx interrupt when startup port;
+3. Remove activate/deactivate callbacks from bottom_domain_ops;
+4. Add unmask/mask callbacks in mtk_msi_bottom_irq_chip;
+5. Add property information for reg-names.
+
+Changes in v7:
+1. Split the driver patch to core PCIe, INTx, MSI and PM patches;
+2. Reshape MSI init and handle flow,
+   use msi_bottom_domain to cover all sets;
+3. Replace readl/writel with their relaxed version;
+4. Add MSI description in binding document;
+5. Add pl_250m clock in binding document.
+
+Changes in v6:
+1. Export pci_pio_to_address() to support compiling as kernel module;
+2. Replace usleep_range(100 * 1000, 120 * 1000) with msleep(100);
+3. Replace dev_notice with dev_err;
+4. Fix MSI get hwirq flow;
+5. Fix warning for possible recursive locking in mtk_pcie_set_affinity.
+
+Changes in v5:
+1. Remove unused macros
+2. Modify the config read/write callbacks, set the config byte field
+   in TLP header and use pci_generic_config_read32/write32
+   to access the config space
+3. Fix the settings of translation window, both MEM and IO regions
+   works properly
+4. Fix typos
+
+Changes in v4:
+1. Fix PCIe power up/down flow
+2. Use "mac" and "phy" for reset names
+3. Add clock names
+4. Fix the variables type
+
+Changes in v3:
+1. Remove standard property in binding document
+2. Return error number when get_optional* API throws an error
+3. Use the bulk clk APIs
+
+Changes in v2:
+1. Fix the typo of dt-bindings patch
+2. Remove the unnecessary properties in binding document
+3. dispos the irq mappings of msi top domain when irq teardown
+
+Jianjun Wang (7):
+  dt-bindings: PCI: mediatek-gen3: Add YAML schema
+  PCI: Export pci_pio_to_address() for module use
+  PCI: mediatek-gen3: Add MediaTek Gen3 driver for MT8192
+  PCI: mediatek-gen3: Add INTx support
+  PCI: mediatek-gen3: Add MSI support
+  PCI: mediatek-gen3: Add system PM support
+  MAINTAINERS: Add Jianjun Wang as MediaTek PCI co-maintainer
+
+ .../bindings/pci/mediatek-pcie-gen3.yaml      |  181 +++
+ MAINTAINERS                                   |    1 +
+ drivers/pci/controller/Kconfig                |   13 +
+ drivers/pci/controller/Makefile               |    1 +
+ drivers/pci/controller/pcie-mediatek-gen3.c   | 1025 +++++++++++++++++
+ drivers/pci/pci.c                             |    1 +
+ 6 files changed, 1222 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+ create mode 100644 drivers/pci/controller/pcie-mediatek-gen3.c
+
 -- 
-2.26.2
+2.25.1
 
