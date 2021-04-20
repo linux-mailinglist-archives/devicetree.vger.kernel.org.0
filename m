@@ -2,40 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E95E365A69
-	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 15:45:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3BC5365A7C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Apr 2021 15:48:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231769AbhDTNpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 09:45:45 -0400
-Received: from mail-bn8nam11on2062.outbound.protection.outlook.com ([40.107.236.62]:14368
-        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
+        id S232600AbhDTNrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 09:47:55 -0400
+Received: from mail-co1nam11on2087.outbound.protection.outlook.com ([40.107.220.87]:41233
+        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230479AbhDTNpp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Apr 2021 09:45:45 -0400
+        id S232450AbhDTNrw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Apr 2021 09:47:52 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KTK9FOBHoSM1IWQlHfXF43VjDTv+KyZ0ix1Kapp9pOnk+T7m1QDwBxiLk6lwSmZ9jWTgSzrqbE3YCkY/0V+5g2iuWJpHDIyijgAf5vEUiKqDSOr0zXn+xsOG5amdh2XgtxZQygHY2h4BykNgDqTCXmzDGQHC1pt+iLBkEYgtqdrEIy257LwuKe6IfASbXqj2D1CJEW5WcRQc46NCv/Vjhr/e5n6PrKZG+TmiqZgMtzSs46/QBcv1OxJlfJrhrvj8gSDkhA6tbnT2Uuha0n4EXjB4HOZM7j65ml1AbrhjoBbU8PLYKQudk7xRHEdKsr1JHq+4MhRcjq9UVqSk/smY3A==
+ b=mtJB8dCtEOFCAqZpdZe04gFRHe5h4nFn+TgiWahPzpfZzh/dqRjGmwMcBgQm+oeQYa9GQTBrg3DPPPjIDsb0lVNtFDyq2VybbO5lqquj3GpRHYwVQ/NuqKn/U9y5cpGFjE86VYmWEJ/QPic9oo6Vd3+872vByMoGouRKHhAIsdnIXherTpx8n5c3ezXhsWMZrhEXYTnBlksMQA8h8Os3Tal+2IGhbOcMHEDjMYG+DdEWvUYS5dlCZcq4vtpa/Ee8m0y+UGu5m9FFodMCsmp0Iwz/vG4tITfVCaHbM2A+/6bUp0mSFFwskCdIpjgY/j74DGzWTamE1d5Pc3724Cv2Gg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m/vED/fqhGDPG5rGpCrF9DbKxLkq4Ld0heVT/s1BQ48=;
- b=covIJJxQKtckiJIz09yZO9JreCl0PruKRME233ea6r1zd3X5yRg9V7YgPsOAiXuFXAiS0ymepq6Woe7X5fMlQYeCaHTWrfJETOWykNbwoupD2nubwC9cdDADIAcZtlpJkq+HXK64bicTJoLmKU9qbR02RKPUVR8PjudFYdmaFRbW48q2+tlCjyVu3CVcnFRKay+yaY0PuSurNAyDIbUfI+XgSgkT/sDsArnruqVsLNH7C7JJ+6KN/kENHKwvqHuHBaS8lND41gYQTArszaJUGzgS6HFBHz1cmZHRVR4hrxcPjzjCVuw7wTdFWQcBjTC4YKCCnBpCfGZGz4/hVT7XlQ==
+ bh=/IjP1QE/RgUptSbSmCpkxY5zAo4SbHc1J8zcSyWS0XY=;
+ b=QRULkY1R1huyNwMpWW2N0k555ReMlTS40eErTqmrEXeXKW/EbA2a3t2WjQTLwOoLtwTkvnRGBD4iADEzAeLnNm0UHLRZMu3Qrs+nE556XVegfqXXSnvTvuV26m4Ya/gvvb8MDs8bCInTVmv9TpAsFc9yJNXG0ejpHgYPdztj7zXacMHye8vCsspXm0+J6/bolLe2xjbf/Fgi1iubDPNf+7AWaoEe+SzBdt5aH/H62tBQr5GrylAfgWFjPSUtDW3HrtM6Tr/Y9K96R3vJ9jILxmAkZuCB9a/ExhEvSI39b1mnJMHq4PHWfhJSeXC1+SZOf0usoiapiuqOKCgIxu8Prw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
  dkim=pass header.d=xilinx.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m/vED/fqhGDPG5rGpCrF9DbKxLkq4Ld0heVT/s1BQ48=;
- b=mTaZi2vJHISLz6YcN5gyAmwk2OhrvLbO0AF2V1l074hptLoWRdnE7uMa2DReTbh1InAf/Iofsyh8OqS2dLMUswN+ybs6FaJGkLiEYJwgctFtbm2aU80AtQeGP6guZcObAmTxtIRd1+X0zfWj8+YpdQnNXNwYMsgs7vcZBF1PKJw=
+ bh=/IjP1QE/RgUptSbSmCpkxY5zAo4SbHc1J8zcSyWS0XY=;
+ b=og+NgirBFYeFfG36+VsgwKuNNr5cngIf+Gk+VtIKa2nslGq1a+69AvOyKWXUzTp59Ctd3qOu3HmZRsV6NR9EyIEXKQR/kPDhyvtEQir2yGbR9HUNikLXaIBdn1a1MW5/r13I4VHzLB0/wbF2/A5Lshk9he924d/qPrSjh7GUR0E=
 Received: from MWHPR02MB2623.namprd02.prod.outlook.com (2603:10b6:300:44::9)
- by CO6PR02MB7697.namprd02.prod.outlook.com (2603:10b6:303:ad::22) with
+ by MW4PR02MB7297.namprd02.prod.outlook.com (2603:10b6:303:77::16) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.16; Tue, 20 Apr
- 2021 13:45:08 +0000
+ 2021 13:47:18 +0000
 Received: from MWHPR02MB2623.namprd02.prod.outlook.com
  ([fe80::297d:1fb:ad07:1b26]) by MWHPR02MB2623.namprd02.prod.outlook.com
  ([fe80::297d:1fb:ad07:1b26%9]) with mapi id 15.20.4042.024; Tue, 20 Apr 2021
- 13:45:08 +0000
+ 13:47:18 +0000
 From:   Nava kishore Manne <navam@xilinx.com>
 To:     Greg KH <gregkh@linuxfoundation.org>
 CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
@@ -54,12 +54,12 @@ CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
         git <git@xilinx.com>
 Subject: RE: [PATCH 5/5] misc: zynqmp: Add afi config driver
 Thread-Topic: [PATCH 5/5] misc: zynqmp: Add afi config driver
-Thread-Index: AQHXNb4YA+92oo6dgkaPdwzLOSQ8W6q9GD0AgABSIaA=
-Date:   Tue, 20 Apr 2021 13:45:08 +0000
-Message-ID: <MWHPR02MB2623C9BAFBA0CB47449E8724C2489@MWHPR02MB2623.namprd02.prod.outlook.com>
+Thread-Index: AQHXNb4YA+92oo6dgkaPdwzLOSQ8W6q9GRYAgABSSTA=
+Date:   Tue, 20 Apr 2021 13:47:17 +0000
+Message-ID: <MWHPR02MB26233345F140ACA18E55BC15C2489@MWHPR02MB2623.namprd02.prod.outlook.com>
 References: <20210420081153.17020-1-nava.manne@xilinx.com>
- <20210420081153.17020-6-nava.manne@xilinx.com> <YH6VPt6qfxdFhFEB@kroah.com>
-In-Reply-To: <YH6VPt6qfxdFhFEB@kroah.com>
+ <20210420081153.17020-6-nava.manne@xilinx.com> <YH6V9Im3L/gJJ/CP@kroah.com>
+In-Reply-To: <YH6V9Im3L/gJJ/CP@kroah.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -70,53 +70,53 @@ authentication-results: linuxfoundation.org; dkim=none (message not signed)
  header.from=xilinx.com;
 x-originating-ip: [149.199.50.130]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1cdee38e-f422-4972-a218-08d9040282f8
-x-ms-traffictypediagnostic: CO6PR02MB7697:
+x-ms-office365-filtering-correlation-id: d5f0e8ac-bcbc-44b2-5ee8-08d90402d046
+x-ms-traffictypediagnostic: MW4PR02MB7297:
 x-ld-processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CO6PR02MB7697DD405386D092C64DD070C2489@CO6PR02MB7697.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-microsoft-antispam-prvs: <MW4PR02MB7297158E8D9CE66896F7D749C2489@MW4PR02MB7297.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 3yKRwB+6pVP36TR1cLAqeTGsbvdv36tlfMn4Mg6VhSLP4HKAZLC1AhWv+lFZNrJJRDi09lMgHuApDkhLseVno58wEoifMaYhhBePVxhtvaOaP3hJXrXljz/EWQRwRXndBzge+qjJROgDt7ZZmpnSmT7gpPEWOOHDcWeoC87kIFTsOrBrpUpRTD6Wo7JTFepRi5i5cO/deOJ027vIyQVLOIexnIpc1RMBdYu21nZ1Lz9VItdN05uvOPHxmGi4YezyuwRzk+a+RhRU3nZAktyZBCfvC2XfsSQ8bhCBnZaqw9CGkSHkGCJ24C81Zsvqc5ZvtmLeZMoWzh5kzmsbh1bIWtDzL9BbLcxSu74JaMWZ4+KsvF/niSNMQHdo0NK7Hkg5hv3/JswzSdLm7xNiG8784KGTwXmZFuLPtxh895TLuua7jLz3cxyTkGKILfcCellur2XOVopaTdWzh3OMXce4ze1mK1IaWyTrbnQ7Q/WXtHyQ32AvuNTsFOTZN8o85nyii9OMo3BJY9tZPC/Lu5qDRu3INBp0Mc6mKCoHTCLuPxNWZwlCdDSq5lkSioLftP8NqKOWDfJvXMKrNYFdI7QqrrFpfF77CBvLi7Wjfuy+3U0=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR02MB2623.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(346002)(136003)(376002)(39860400002)(396003)(83380400001)(54906003)(86362001)(4326008)(71200400001)(6916009)(52536014)(33656002)(76116006)(53546011)(26005)(478600001)(5660300002)(316002)(66446008)(186003)(8936002)(9686003)(2906002)(64756008)(66946007)(7696005)(66556008)(107886003)(38100700002)(66476007)(55016002)(6506007)(122000001)(8676002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?q2iQCDTyJ3fTPpkyn1GuXQH0o/3Y8fEgu6f4W5vO5TgPhg4RWPVdbvpTwqVH?=
- =?us-ascii?Q?TUnWyS6oQfF0/UWP1fXFXH53sP0W9ZSbDmobue10X3uZZgk7FIMJ/2zkC8a4?=
- =?us-ascii?Q?j/n+G/vgPP7t+qUwZ8FTzyt4UoaIUHH6W6FlxyGBhMa6PvR2tjp9ieMAnSuV?=
- =?us-ascii?Q?qoFP0+hUX9CqduA9GGrrk00PVdna2h1rXzZMJA+1+psL+RZuJrhRw5sljXNB?=
- =?us-ascii?Q?jof8HGmLIY4/BMfGzsZlbjoYBgS2LH5KGYg65yV+XxcbQDmmZazIrqs1+wz5?=
- =?us-ascii?Q?3kgYwiXejqtB7p2EUqaDChbSQntIvMqHAo789BR1kcYu4zBhoflog1GzqBOm?=
- =?us-ascii?Q?CipyiQ1I1wmZc8b++KxLyVdoLxcIgiDYH0r4qd3D8PRO7YXNHN/UpHvcxWpi?=
- =?us-ascii?Q?99V4wjod8ULG/Xqn330tqO4/gM8I9VQz/nwceQ8EUxxDdzlcwCc0nSn+6ibb?=
- =?us-ascii?Q?QlO0NZ+b7bPF317paeYrfWtyLBeBIgk3ez/xNj05lSsT0hPPgbviXmTgMU/d?=
- =?us-ascii?Q?6e97EmS61FPZPB2883Oxw8pac/nR78vt9Ph9eWn04a8o2cQjq+KzJOug+NTE?=
- =?us-ascii?Q?XUx3o505iDeH83rfz1kJPHJ4Di/rgFFpy4Mk3TLgT9QuVsu1Ps7fXaJbaSN+?=
- =?us-ascii?Q?O+PLnfG5dZCkNeTMhfox+g2pM+DXqVs2BJumB8DulIVGafHNtdqkgpAAwdoz?=
- =?us-ascii?Q?rrHFyYjqYmGv/L9+jZm81tcZBvhuf9WLsxhKtsi0Puyv7rfxfWN58Q4mu7jl?=
- =?us-ascii?Q?dkZtGwessJZg9Ye4TWlDBScMqyYlX7i+YFxfg1MTNg4I8mVMsH0R1ABlfABW?=
- =?us-ascii?Q?sFQtyFC7cAnSzvoIeW27f4PN0t6Ah6qBdW3rBkLAvsKyhpnlHnPVYOCHTzv3?=
- =?us-ascii?Q?yZUYGn0pJnV7irCyMYm/KFSo+dS90lub7hJv2SKjKV55pMkP58q5ah1CQqDx?=
- =?us-ascii?Q?ddWtC8EkRk5T1T9jgq79lILahltzpeXknQ0hctuXAquXKnFIZjly6XjvjCXE?=
- =?us-ascii?Q?wBdaPzV6Jbl6ct6t+JjSQfZQqFLlecsFlpQd4u61KNVJlcIzPzr8BKCZNRWX?=
- =?us-ascii?Q?slWGILdFaoXfWGVNqqSXcPGjDSR3E2iN1Whq6FcU8C8mXfibvIRPDwJj1LGw?=
- =?us-ascii?Q?o+upa86OV3WSnKpysWP6+FOPvzCKPSRriKugswVEg7fxSfw3/c44f1dlHt/3?=
- =?us-ascii?Q?SzmXDK2e+lpukqfzqzIdjzqeM82Aa/osWaQjUhzH9TOHnFGir7DtLw1jIXXD?=
- =?us-ascii?Q?BEehRpfq+4qX8JGCiLodnD3lcqeDvQaT/gl/Cl3LTDKsv/5bfis5cIUaBo6f?=
- =?us-ascii?Q?+cjURQsz/HFdRkss+kvWl+0R?=
+x-microsoft-antispam-message-info: 46kZFBbryQyldZOWmnZsk6JfRJKw/PHEK/kEN7l2bA6m5n8TeuuZ3t+kQEe0WVzYsZ7evkhkLX45XB/vnhOb+de3R/8mjWGRynE760nxOQ3t5PeBSbHA5d533l3BrlqH6PVGwkwKuK5vwOj/RO1ZkkECcW6yhi8+mlCkog6ZwWqxQLueSMO2yM6ryRBgu9QxorHhnA9ehrd1f+D7kN0jfOtJWvbR62irnrAen/fyd35gMcUNB/yXhf5Gf35kBcUeapkydD228GDT+//t78RU2LdLULuFeScHK9h9PXbCOAOJKBp0XzZHJVQqrEzT9pCYZ49mymVRxR45k2FtMSLRKnJriKD8sAvobSwZSZhw8alMDoHYPPZI4e/0XPOumt5D7EcPq/TWfAeqDh6KrF80zCc8iFI2k5pwlEkanUn51ubyk+QQMvmB2eZA5pnj+PqmRZryyQVNoxKOAC1Wk80WaNwvQ4YmmUYtHD7nRfXwSyu1uk2D00l988GCkqb7HD2JVCHbplS7O8IxI6tKfyso5tVvrogPZyxHGtnFP7pkPqsbunZUXqM3qRt8ywEhsIYb1tnJVuFcwOrrCq8cY7Tp2AxB0Esy2XiKHuAsBembx48=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR02MB2623.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(366004)(346002)(39860400002)(376002)(396003)(4326008)(83380400001)(8936002)(7696005)(9686003)(316002)(71200400001)(5660300002)(6506007)(53546011)(66556008)(55016002)(33656002)(64756008)(2906002)(76116006)(66446008)(66476007)(66946007)(107886003)(54906003)(52536014)(6916009)(86362001)(38100700002)(122000001)(8676002)(186003)(478600001)(26005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?vZuKhe3B6zwj6aQk1sGOzLORZ45b3yW2Db8jPM8d3Iv9D1aw3WZ5Dwo5Xilw?=
+ =?us-ascii?Q?E2nolpovJ23j9vnchuTyYDnjZCOoS1EdbL6ziEcOUSVF+44KfCyyu9NkJqgk?=
+ =?us-ascii?Q?hs3sj9sH9Vf1HKyeHMnxusMSERthY0zQ8+j/ikCcw65UauIYytZcO6vDjMQY?=
+ =?us-ascii?Q?Cx2sh3qPX+TNWjGF6pBniUAX/kNksQ3Gqr5RpKNMnMrJu96U3oBqext63eWr?=
+ =?us-ascii?Q?DGldHH4tu5xazm0AuFpDD3s9gbBbSa8qsqWKqI1dA1v5ncYpJFY74cdX33Dt?=
+ =?us-ascii?Q?LISiB3csieYCea2AFyBEcVC37Rm9NTROmrTI5K6+OnZ/ah1+tX+uIV7t3hC/?=
+ =?us-ascii?Q?8Af+3G9v/RZL6bqO18s7FFbQGS8KHJmwRY2hcDvUw5tJz1K9dslAxz6EIvgM?=
+ =?us-ascii?Q?6msi4dRZd9oYupWvJUL5CGAepvRqrusi6NlGhIt4NBqMrIhNZqPwrlDzluBZ?=
+ =?us-ascii?Q?cREv1QxxhGwSZUcxaVoz8Zy6GoNasK33WVJ+Cr5AYdcPu8QKefbA4yEPtISE?=
+ =?us-ascii?Q?c8RGzrtkHzE8IiWM+2zxR+5E/OWMG3iUdjyEapj8VEesGKF1b0YG7xfhh3XP?=
+ =?us-ascii?Q?yUhaVXyGjhckVFVYjwMdSynYmJnfnKAQnDIIUmLzAnxPR2NwunFNu6J3l+tz?=
+ =?us-ascii?Q?T7Sd5QPSqOuV0O06VoZPsE9A0JJVaP2Duefxk3NdDDB0FLGQa3Mo072UPGi8?=
+ =?us-ascii?Q?r01FGaYni1yJHkGumVGwBEKOQygdHR789Q/1gddBbEKdodAJJKspMTF8QKaW?=
+ =?us-ascii?Q?1HhPQT4MzMxjDqVLdEn5aFiX9ZnO+HDoSwNHaYrPTyZhn2agHIANX4quNxua?=
+ =?us-ascii?Q?kGxIWCBog59iuXmo6ge4fQg7miM8i+yW/F8X5P474bcB7fPPGtiRaexWMeSW?=
+ =?us-ascii?Q?URKZg1aZFWtQvMkoJFNrTVoJWWOHDbf95xsq5rL9eomT3EmsaVSxczSuN2he?=
+ =?us-ascii?Q?TP04gbzexlBSkhpoGDdUhIubQ8cS6nwFPY6IhQSIFJ/s8TMgYwVJnbhsTB+S?=
+ =?us-ascii?Q?ePV/iN4U8aGVf/Ymyzp8baXGwd4ZeSH178GexW/gEoLi2T037YF4Wror3SNN?=
+ =?us-ascii?Q?US9NaWDxwvpHE5jmxz8T1iFAdk9E1m2KSGAnj72rIy39+Xe8IbUy1P9A6IdQ?=
+ =?us-ascii?Q?KuNBkmPQ4llg4uZw1bLptFIieMR6KWeXOoDwFhk5P7X9/ACPMByW0Tgk2xev?=
+ =?us-ascii?Q?aRYYssn3ixzcFBt7koKqyRmJE14oVUINfWeBIcphW+wHbyI3QZaANAatdVL7?=
+ =?us-ascii?Q?JX2DDRLN45x9ATYVSKILwbu1Dd9kyGq3dxOjjCT2HIoyvSidyF/9jqlKGWpE?=
+ =?us-ascii?Q?rmwG+pgnEc3IV/mwxiKLBjWE?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: xilinx.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: MWHPR02MB2623.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1cdee38e-f422-4972-a218-08d9040282f8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Apr 2021 13:45:08.2024
+X-MS-Exchange-CrossTenant-Network-Message-Id: d5f0e8ac-bcbc-44b2-5ee8-08d90402d046
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Apr 2021 13:47:17.1438
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: v0nrIOGoo8Xx0PKUv4qiCtT75kQT+uYM9izyg2plmuuU0dSiR6MfjVkvUE2phuYgdSkJwaUGhCp5ptwNRfVshg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR02MB7697
+X-MS-Exchange-CrossTenant-userprincipalname: o0lmHuPH8LGjDCuTUm7BCghsEZUPXe8pEmfn5WlKwvq07yZrIV7/6Jk3PXEH/Tuk2msnbGP+iIegttox3H5WvA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR02MB7297
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
@@ -127,7 +127,7 @@ Hi Greg,
 
 > -----Original Message-----
 > From: Greg KH <gregkh@linuxfoundation.org>
-> Sent: Tuesday, April 20, 2021 2:18 PM
+> Sent: Tuesday, April 20, 2021 2:21 PM
 > To: Nava kishore Manne <navam@xilinx.com>
 > Cc: robh+dt@kernel.org; Michal Simek <michals@xilinx.com>; Derek Kiernan
 > <dkiernan@xilinx.com>; Dragan Cvetic <draganc@xilinx.com>;
@@ -141,12 +141,6 @@ Hi Greg,
 > On Tue, Apr 20, 2021 at 01:41:53PM +0530, Nava kishore Manne wrote:
 > > This patch adds zynqmp afi config driver.This is useful for the
 > > configuration of the PS-PL interface on Zynq US+ MPSoC platform.
->=20
-> Again, please spell out what those terms mean, as I have no idea :(
->=20
-
-Will fix in v2
-
 > >
 > > Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
 > > ---
@@ -175,13 +169,95 @@ Will fix in v2
 > > +	  In-order to establish the proper communication path between
 > > +	  PS and PL, the AXI port data path should be configured with
 > > +	  the proper Bus-width values
+> > +
+> >  source "drivers/misc/c2port/Kconfig"
+> >  source "drivers/misc/eeprom/Kconfig"
+> >  source "drivers/misc/cb710/Kconfig"
+> > diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile index
+> > e9b03843100f..54bd0edc511e 100644
+> > --- a/drivers/misc/Makefile
+> > +++ b/drivers/misc/Makefile
+> > @@ -57,3 +57,4 @@ obj-$(CONFIG_UACCE)		+=3D uacce/
+> >  obj-$(CONFIG_XILINX_SDFEC)	+=3D xilinx_sdfec.o
+> >  obj-$(CONFIG_HISI_HIKEY_USB)	+=3D hisi_hikey_usb.o
+> >  obj-$(CONFIG_ZYNQ_AFI)		+=3D zynq-afi.o
+> > +obj-$(CONFIG_ZYNQMP_AFI)	+=3D zynqmp-afi.o
+> > diff --git a/drivers/misc/zynqmp-afi.c b/drivers/misc/zynqmp-afi.c new
+> > file mode 100644 index 000000000000..a318652576d2
+> > --- /dev/null
+> > +++ b/drivers/misc/zynqmp-afi.c
+> > @@ -0,0 +1,83 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Xilinx FPGA AFI bridge.
+> > + * Copyright (c) 2018-2021 Xilinx Inc.
+> > + */
+> > +
+> > +#include <linux/err.h>
+> > +#include <linux/firmware/xlnx-zynqmp.h> #include <linux/io.h>
+> > +#include <linux/module.h> #include <linux/of.h> #include
+> > +<linux/platform_device.h> #include <linux/slab.h>
+> > +
+> > +/**
+> > + * struct zynqmp_afi_fpga - AFI register description
+> > + * @value: value to be written to the register
+> > + * @regid: Register id for the register to be written
+> > + */
+> > +struct zynqmp_afi_fpga {
+> > +	u32 value;
+> > +	u32 regid;
+> > +};
+> > +
+> > +static int zynqmp_afi_fpga_probe(struct platform_device *pdev)
+> > +{
+> > +	struct zynqmp_afi_fpga *zynqmp_afi_fpga;
+> > +	struct device_node *np =3D pdev->dev.of_node;
+> > +	int i, entries, ret;
+> > +	u32 reg, val;
+> > +
+> > +	zynqmp_afi_fpga =3D devm_kzalloc(&pdev->dev,
+> > +				       sizeof(*zynqmp_afi_fpga), GFP_KERNEL);
+> > +	if (!zynqmp_afi_fpga)
+> > +		return -ENOMEM;
+> > +	platform_set_drvdata(pdev, zynqmp_afi_fpga);
+> > +
+> > +	entries =3D of_property_count_u32_elems(np, "config-afi");
+> > +	if (!entries || (entries % 2)) {
+> > +		dev_err(&pdev->dev, "Invalid number of registers\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	for (i =3D 0; i < entries / 2; i++) {
+> > +		ret =3D of_property_read_u32_index(np, "config-afi", i * 2,
+> &reg);
+> > +		if (ret) {
+> > +			dev_err(&pdev->dev, "failed to read register\n");
+> > +			return -EINVAL;
+> > +		}
+> > +		ret =3D of_property_read_u32_index(np, "config-afi", i * 2 + 1,
+> > +						 &val);
+> > +		if (ret) {
+> > +			dev_err(&pdev->dev, "failed to read value\n");
+> > +			return -EINVAL;
+> > +		}
+> > +		ret =3D zynqmp_pm_afi(reg, val);
+> > +		if (ret < 0) {
+> > +			dev_err(&pdev->dev, "AFI register write error %d\n",
+> > +				ret);
+> > +			return ret;
+> > +		}
+> > +	}
+> > +	return 0;
+> > +}
 >=20
-> Please use tabs properly, you mix them above, checkpatch should have
-> caught that.
+> Again, why does this have to be in the kernel?  All it does is make a
+> single call to the hardware based on some values read from the device
+> tree.  Can't you do this from userspace?
 >=20
-Yes, Ideally check patch should report this issue but it's failed to report=
-.
-Will fix this issue in v2.
+For every PL design has its own PS-PL configuration.
+This driver will be used by the overlay framework for configuring the inter=
+face after programming the FPGA and before probing the drivers that are pre=
+sent in the PL.
 
 Regards,
 Navakishore.
