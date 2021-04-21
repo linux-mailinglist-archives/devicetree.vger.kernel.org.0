@@ -2,258 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A95A83670C0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 18:57:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A9D43670C4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 18:59:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244361AbhDUQ6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 12:58:20 -0400
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:36614 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241333AbhDUQ6S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 12:58:18 -0400
-Received: by mail-oi1-f182.google.com with SMTP id v6so15240738oiv.3;
-        Wed, 21 Apr 2021 09:57:44 -0700 (PDT)
+        id S242256AbhDURA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 13:00:27 -0400
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:45779 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238561AbhDURA1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 13:00:27 -0400
+Received: by mail-ot1-f54.google.com with SMTP id f75-20020a9d03d10000b0290280def9ab76so34438923otf.12;
+        Wed, 21 Apr 2021 09:59:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=dj2Qh7xMKJFcrmCxu5nCBfLMViTrmBXGJolx8Z1PHiY=;
-        b=OxN1OVtJTAbsBxMUCF0UfcYuviVZBp7IYt3JhOjXf0tue87x9sGa0qVh3Mi7ldfptG
-         hmEzwctz+3hKolGhum2wHqym0Eeo6ngoxslPyYADQHPxsyuIBbZqCwZa1UexPkEmGjXR
-         RCYnPM1kQhMCfWHn7wdO5NwDJoSblCdnt08xha4SwhgChqqA4kaNqBV+vMr/iRHN5iEx
-         dpUcjeaPIJPr8EUd6X3IPhNW6USR+maYNyvKyfNKfHaIdYOQKg07lUC0piVYkom0NdPq
-         gdEVJqoPpNE/POtXhIw2dsDsRf4gaZXldp439W/9klfhvlqp5fQZw3W1VGRw2cRHem4g
-         GrnQ==
-X-Gm-Message-State: AOAM5310hAtTGVUNWN+eS+tEGuSfIoUI1na7LJAzwmlCzOMDeL6N+6tL
-        UC8uGTxLO7UDyNVOYlX1yQ==
-X-Google-Smtp-Source: ABdhPJxmZP0jvFq1Lbd/6/YBHYNFZmruff1uFOT1sHcSZMAkZnvwms4oIxdDs2Ve9JMt5SkNTtDcYA==
-X-Received: by 2002:aca:4806:: with SMTP id v6mr7315520oia.90.1619024264525;
-        Wed, 21 Apr 2021 09:57:44 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=h+2uWSkW19YMSUIgrRyX+Zrerp6y6BIi//8JY71zHg0=;
+        b=Xd1X497ITXsACaOZInK/gmCLpdgEOGJaKoQvMGpiaq0PZRAYBb8kYIfXPzSwaAIn7d
+         2IqY3OweFp5cXFVIPLHUTnko6COXAix+YsFIrBIsg70ZuGj6yQW+upI9ADZJ8iD/ZnzW
+         ksozCgk7cG4Kxb0v+yuIk11k0Xdvl9xge13AN1cw9yCihtdZpWfQn2sS3eRdjhtT/aae
+         xv9i2BoWzW8dfeE3jpywrStE3hcOU3KcYVHGcV4+V953J0aDh5vPBWp6uT+PMo8Idhm3
+         Byz3MaqzEPVWMUL3UkicVJjbSzSjFb4LrTnIL4fIZ6lS6LZia75oxV12y8V8LZtR7hKA
+         KfrA==
+X-Gm-Message-State: AOAM532O/xi75qhnKjzf2qUkTqonpMvH1qwvwMgY3QqbFiL4BuAyPffJ
+        6CGFL+wR+w/7LRwY3bfKig==
+X-Google-Smtp-Source: ABdhPJwWoz3BS4dg+l9N7pX1PZhZ/4wlq0ogtsxElhcG8h2QSloGBtatkURwBVfcHg/r68nPpaIvzw==
+X-Received: by 2002:a9d:615b:: with SMTP id c27mr22752308otk.119.1619024393434;
+        Wed, 21 Apr 2021 09:59:53 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o2sm619998oti.30.2021.04.21.09.57.43
+        by smtp.gmail.com with ESMTPSA id w23sm643762otl.60.2021.04.21.09.59.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Apr 2021 09:57:43 -0700 (PDT)
-Received: (nullmailer pid 1286564 invoked by uid 1000);
-        Wed, 21 Apr 2021 16:57:42 -0000
-Date:   Wed, 21 Apr 2021 11:57:42 -0500
+        Wed, 21 Apr 2021 09:59:52 -0700 (PDT)
+Received: (nullmailer pid 1292145 invoked by uid 1000);
+        Wed, 21 Apr 2021 16:59:51 -0000
+Date:   Wed, 21 Apr 2021 11:59:51 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH] dt-bindings: pinctrl: convert Broadcom Northstar to the
- json-schema
-Message-ID: <20210421165742.GA1278985@robh.at.kernel.org>
-References: <20210421082928.26869-1-zajec5@gmail.com>
+To:     Nicolas Boichat <drinkcat@chromium.org>
+Cc:     devicetree@vger.kernel.org,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Steven Price <steven.price@arm.com>,
+        David Airlie <airlied@linux.ie>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        boris.brezillon@collabora.com,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        hsinyi@chromium.org, hoegsberg@chromium.org,
+        Matthias Brugger <matthias.bgg@gmail.com>, fshao@chromium.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v13 1/4] dt-bindings: gpu: mali-bifrost: Add Mediatek
+ MT8183
+Message-ID: <20210421165951.GA1292095@robh.at.kernel.org>
+References: <20210421052855.1279713-1-drinkcat@chromium.org>
+ <20210421132841.v13.1.Ie74d3355761aab202d4825ac6f66d990bba0130e@changeid>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210421082928.26869-1-zajec5@gmail.com>
+In-Reply-To: <20210421132841.v13.1.Ie74d3355761aab202d4825ac6f66d990bba0130e@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 21, 2021 at 10:29:28AM +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Wed, 21 Apr 2021 13:28:52 +0800, Nicolas Boichat wrote:
+> Define a compatible string for the Mali Bifrost GPU found in
+> Mediatek's MT8183 SoCs.
 > 
-> Important: this change converts the binding as it is. It includes
-> dependency on undocumented CRU that must be refactored. That will be
-> handled once every CRU MFD subdevice gets documented properly (including
-> pinmux).
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
 > ---
->  .../bindings/pinctrl/brcm,bcm4708-pinmux.txt  | 55 -----------
->  .../bindings/pinctrl/brcm,ns-pinmux.yaml      | 98 +++++++++++++++++++
->  2 files changed, 98 insertions(+), 55 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm4708-pinmux.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/brcm,bcm4708-pinmux.txt b/Documentation/devicetree/bindings/pinctrl/brcm,bcm4708-pinmux.txt
-> deleted file mode 100644
-> index 8ab2d468dbdb..000000000000
-> --- a/Documentation/devicetree/bindings/pinctrl/brcm,bcm4708-pinmux.txt
-> +++ /dev/null
-> @@ -1,55 +0,0 @@
-> -Broadcom Northstar pins mux controller
-> -
-> -Some of Northstar SoCs's pins can be used for various purposes thanks to the mux
-> -controller. This binding allows describing mux controller and listing available
-> -functions. They can be referenced later by other bindings to let system
-> -configure controller correctly.
-> -
-> -A list of pins varies across chipsets so few bindings are available.
-> -
-> -Node of the pinmux must be nested in the CRU (Central Resource Unit) "syscon"
-> -noce.
-> -
-> -Required properties:
-> -- compatible: must be one of:
-> -	"brcm,bcm4708-pinmux"
-> -	"brcm,bcm4709-pinmux"
-> -	"brcm,bcm53012-pinmux"
-> -- offset: offset of pin registers in the CRU block
-> -
-> -Functions and their groups available for all chipsets:
-> -- "spi": "spi_grp"
-> -- "i2c": "i2c_grp"
-> -- "pwm": "pwm0_grp", "pwm1_grp", "pwm2_grp", "pwm3_grp"
-> -- "uart1": "uart1_grp"
-> -
-> -Additionally available on BCM4709 and BCM53012:
-> -- "mdio": "mdio_grp"
-> -- "uart2": "uart2_grp"
-> -- "sdio": "sdio_pwr_grp", "sdio_1p8v_grp"
-> -
-> -For documentation of subnodes see:
-> -Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
-> -
-> -Example:
-> -	dmu@1800c000 {
-> -		compatible = "simple-bus";
-> -		ranges = <0 0x1800c000 0x1000>;
-> -		#address-cells = <1>;
-> -		#size-cells = <1>;
-> -
-> -		cru@100 {
-> -			compatible = "syscon", "simple-mfd";
-> -			reg = <0x100 0x1a4>;
-> -
-> -			pinctrl {
-> -				compatible = "brcm,bcm4708-pinmux";
-> -				offset = <0xc0>;
-> -
-> -				spi-pins {
-> -					function = "spi";
-> -					groups = "spi_grp";
-> -				};
-> -			};
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml b/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
-> new file mode 100644
-> index 000000000000..1cba8f0db5c1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
-> @@ -0,0 +1,98 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/brcm,ns-pinmux.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom Northstar pins mux controller
-> +
-> +maintainers:
-> +  - Rafał Miłecki <rafal@milecki.pl>
-> +
-> +description:
-> +  Some of Northstar SoCs's pins can be used for various purposes thanks to the
-> +  mux controller. This binding allows describing mux controller and listing
-> +  available functions. They can be referenced later by other bindings to let
-> +  system configure controller correctly.
-> +
-> +  A list of pins varies across chipsets so few bindings are available.
-> +
-> +  Node of the pinmux must be nested in the CRU (Central Resource Unit) "syscon"
-> +  node.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - brcm,bcm4708-pinmux
-> +      - brcm,bcm4709-pinmux
-> +      - brcm,bcm53012-pinmux
-> +
-> +  offset:
-> +    description: offset of pin registers in the CRU block
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-
-How many entries are valid?
-
-Really, this should have been just 'reg'.
-
-> +
-> +patternProperties:
-> +  '-pins$':
-> +    type: object
-> +    description: pin node
-> +    $ref: pinmux-node.yaml#
-> +
-> +    properties:
-> +      function:
-> +        enum: [ spi, i2c, pwm, uart1, mdio, uart2, sdio ]
-> +      groups:
-> +        items:
-> +          enum: [ spi_grp, i2c_grp, pwm0_grp, pwm1_grp, pwm2_grp, pwm3_grp,
-> +                  uart1_grp, mdio_grp, uart2_grp, sdio_pwr_grp, sdio_1p8v_grp ]
-
-How many items are valid?
-
-I thought I made the meta-schema require an 'items' schema to also have 
-minItems/maxItems. I'll have to check...
-
-> +
-> +    required:
-> +      - function
-> +      - groups
-> +
-> +    additionalProperties: false
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,bcm4708-pinmux
-> +    then:
-> +      patternProperties:
-> +        '-pins$':
-> +          properties:
-> +            function:
-> +              enum: [ spi, i2c, pwm, uart1 ]
-> +            groups:
-> +              items:
-> +                enum: [ spi_grp, i2c_grp, pwm0_grp, pwm1_grp, pwm2_grp, pwm3_grp,
-> +                        uart1_grp ]
-> +
-> +required:
-> +  - offset
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    dmu@1800c000 {
-> +        compatible = "simple-bus";
-
-No need to show this node in examples.
-
-> +        ranges = <0 0x1800c000 0x1000>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        cru@100 {
-> +            compatible = "syscon", "simple-mfd";
-
-Is this the same CRU as your other patch?
-
-> +            reg = <0x100 0x1a4>;
-> +
-> +            pinctrl {
-> +                compatible = "brcm,bcm4708-pinmux";
-> +                offset = <0xc0>;
-> +
-> +                spi-pins {
-> +                    function = "spi";
-> +                    groups = "spi_grp";
-> +                };
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.26.2
+> (no changes since v12)
 > 
+> Changes in v12:
+>  - binding: Fix min/maxItems logic (Rob Herring)
+> 
+> Changes in v11:
+>  - binding: power-domain-names not power-domainS-names
+> 
+> Changes in v10:
+>  - Fix the binding to make sure sram-supply property can be provided.
+> 
+> Changes in v6:
+>  - Rebased, actually tested with recent mesa driver.
+> 
+> Changes in v5:
+>  - Rename "2d" power domain to "core2"
+> 
+> Changes in v4:
+>  - Add power-domain-names description
+>    (kept Alyssa's reviewed-by as the change is minor)
+> 
+>  .../bindings/gpu/arm,mali-bifrost.yaml        | 30 ++++++++++++++++++-
+>  1 file changed, 29 insertions(+), 1 deletion(-)
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
