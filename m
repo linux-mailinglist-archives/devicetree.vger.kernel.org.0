@@ -2,258 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1474B366EEC
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 17:17:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D47B1366F23
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 17:27:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240299AbhDUPSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 11:18:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40288 "EHLO
+        id S244008AbhDUP2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 11:28:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239567AbhDUPSN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 11:18:13 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EF15C06174A;
-        Wed, 21 Apr 2021 08:17:40 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id q10so30149635pgj.2;
-        Wed, 21 Apr 2021 08:17:40 -0700 (PDT)
+        with ESMTP id S243998AbhDUP2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 11:28:01 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CA43C06138A
+        for <devicetree@vger.kernel.org>; Wed, 21 Apr 2021 08:27:28 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id z16so30179219pga.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Apr 2021 08:27:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=KzQai6Tg69wKbEAWcqKNbEL/MC5Qt4Kn9kSRArYjd2g=;
-        b=s7lpu9qIoTGsbb3qGjUxrXpmysb//u/qu+m3Te9oX2yvS4cFW3GrodM0J1j8OpEuz3
-         7rJ/E3//KYlvJOCIr3CXPU17b5ER7R9cM9Nup+fg8uq8ay20aOIBqpzlM1Ed56i4SGYP
-         4402FemHi+AnOvtD8fFROic4B5IkxaY96gFWppCPnUoqgQ7+mDR9DbMUgSEVK0BRLVqU
-         1ESorBljqOxtuvFFAM48FVwfnK0yaWnSLk1moWpBSqwYM1D8TQeuP1Mr3T1Dtu4UcHDj
-         KQ8hNoUWdVim/JBhkrZ6s1cT75lt1ONMY+MP3O/it58Yz4GmJ557nFpvB5/QwOPXJVx+
-         kglg==
+        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mFb+ckbAGYD+H2juq/+J+FbQx9rWZFkMXDw0jxLuV1I=;
+        b=zFO8YgqNBI8miB1U/nr0bfbagGSyMnqO7k1r+sVvpCZAhSXLcCu5zdhxL+84BmLp6E
+         3kO0BaJgkY0n4umuOml0/maXhuLxqCUgNp7V6KTVeCD4woJrzuJBodzmlXHCQCnHDzFS
+         6NkxajgOflI+YgbNmKCUeh+2cH6rYTILDtUQwR/mmiF64kCmlS19Rj1N+3Q6+JzkO9jn
+         rTw3hzHg95oP9bjSXgLS9I84dzNu0ptot2NZXYQEmfsP7uj5ft+fDOY8AG02fbsvqDxM
+         o4mkG2cVQmzuROeqd8CZmjQh2ELxsh2WEPQo8Ap4xP8PTn1bPS4P1tkAiuDNHA36ln+i
+         0MwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=KzQai6Tg69wKbEAWcqKNbEL/MC5Qt4Kn9kSRArYjd2g=;
-        b=ZwHEYVwTNlcSgdK7r6xKdMO8yzbUWZkqQRVWNrgCG2sLUHneyCvlQ8Tooun0yyeggM
-         x7vy1YUCW3z6xtULjeM0jmWkedwAxffp74gqzOtEn9g7jaG9wMMTqrX67oU91hF/qCi9
-         vLz2ONXOoMLlz1hN5lt1NVQJWDjCFtHBtr1U7/SUOzwNhUdxL3C4poek2cCFX7B6AS+S
-         AR67Ria4oa9zb8IphvLqBsTPg4CBpcdmUtRRAGiWB2WtdKOGZHwUocnNWJ+GouuDzMQQ
-         e8K+WpKXWFujtpUfXOYWlnJe0AAV/uX8v4MkH9TTNZEEFpFAbL202w1PhG72IkRtw8kH
-         Tmbg==
-X-Gm-Message-State: AOAM530CGZBKdb/XVTfM3kZBcYVMWNU75px9WPMJvPjyA492k750yNqU
-        bGdTtnQJxqF3gMUXq/+0ISE=
-X-Google-Smtp-Source: ABdhPJxWgYwkYHXJWtQtqRBFUzxtigMBTBDBodEWRcQR33QhN1G7Hh69HONKn+mKsR3H0iVm3S5vpA==
-X-Received: by 2002:a65:5282:: with SMTP id y2mr22785908pgp.293.1619018259633;
-        Wed, 21 Apr 2021 08:17:39 -0700 (PDT)
-Received: from [10.230.29.202] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id h22sm2084545pfn.55.2021.04.21.08.17.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Apr 2021 08:17:39 -0700 (PDT)
-Subject: Re: [v5.4 stable] arm: stm32: Regression observed on "no-map"
- reserved memory region
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     Quentin Perret <qperret@google.com>
-Cc:     Ard Biesheuvel <ardb@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sasha Levin <sashal@kernel.org>,
-        stable <stable@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        KarimAllah Ahmed <karahmed@amazon.de>,
-        Android Kernel Team <kernel-team@android.com>,
-        Architecture Mailman List <boot-architecture@lists.linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <4a4734d6-49df-677b-71d3-b926c44d89a9@foss.st.com>
- <CAL_JsqKGG8E9Y53+az+5qAOOGiZRAA-aD-1tKB-hcOp+m3CJYw@mail.gmail.com>
- <001f8550-b625-17d2-85a6-98a483557c70@foss.st.com>
- <CAL_Jsq+LUPZFhXd+j-xM67rZB=pvEvZM+1sfckip0Lqq02PkZQ@mail.gmail.com>
- <CAMj1kXE2Mgr9CsAMnKXff+96xhDaE5OLeNhypHvpN815vZGZhQ@mail.gmail.com>
- <d7f9607a-9fcb-7ba2-6e39-03030da2deb0@gmail.com>
- <YH/ixPnHMxNo08mJ@google.com>
- <cc8f96a4-6c85-b869-d3cf-5dc543982054@gmail.com>
-Message-ID: <498b8759-1a70-d80f-3a4d-39042b4f608e@gmail.com>
-Date:   Wed, 21 Apr 2021 08:17:28 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.9.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mFb+ckbAGYD+H2juq/+J+FbQx9rWZFkMXDw0jxLuV1I=;
+        b=ptKxX0/7I+5SWK6Twt+USDbFOkfe9Ybr33baNXE0l0eOu6dtMS8lIqAJtubBM8fxZs
+         hQpgj7z321yGPjMwbSYP8B6wmOLhTg5rA+UT4wR+7PktsdqTc6YaCKwxmAp0j4g22dyJ
+         3g3KiP+kjfWv03i3yx1BdSdxaNOX309SAiSWbBOucZksjNR634/WkP/20RXuL6VRxTSM
+         l0JcoMERe6TAlrnlczl1UNNmZ6CCvUWtA1NcajFjsnL8Q3GK+nGNKi+ZsdQCrG0r1agO
+         I280DpcJ0gSkHGsXmg09hd7lSFEr4jWOzvD6fYJzQ1CM6//SzdIk8PIvGCdnyKgr/BXL
+         wNRw==
+X-Gm-Message-State: AOAM531z2g3jojli77FP94vQY9fzp1mRSbFTmyqBwcjHjt048aTWwdTJ
+        EFpDFhSb0F7fOzJFn0U+EaHiLv/dFqcxAIs8z1OJLA==
+X-Google-Smtp-Source: ABdhPJwmmGQxWjj9eomSe6AfAEC4wDbf7Pfmu9GRlZZn8+saMdBdYQvxpEaU7L058l81v89reEK9S911TaNhfBRWfJQ=
+X-Received: by 2002:a62:33c6:0:b029:225:5266:28df with SMTP id
+ z189-20020a6233c60000b0290225526628dfmr29996329pfz.7.1619018847549; Wed, 21
+ Apr 2021 08:27:27 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <cc8f96a4-6c85-b869-d3cf-5dc543982054@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Wed, 21 Apr 2021 08:27:15 -0700
+Message-ID: <CAJ+vNU1bnR+L-QkHAN_Yar0MUTjF+QoxgTHV9ZxQW+VWpM6cpg@mail.gmail.com>
+Subject: Re: [PATCH 00/23] media: imx: imx7-mipi-csis: Add i.MX8MM support
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media <linux-media@vger.kernel.org>,
+        Rui Miguel Silva <rmfrfs@gmail.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Apr 12, 2021 at 7:31 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hello,
+>
+> This patch series adds support for the CSIS found in the NXP i.MX8MM SoC
+> to the imx7-mipi-csis driver.
+>
+> The CSIS is an IP core from Samsung, integrated in different NXP SoCs.
+> The driver currently supports v3.3 of the CSIS, found in SoCs from the
+> i.MX6 and i.MX7 families. This series extends the driver to support
+> v3.6.3 of the IP, found in i.MX8MM and other members of the i.MX8
+> family.
+>
+> The first 21 patches are miscellaneous cleanups and improvements. Please
+> see individual patches for details.
+>
+> Patch 22/23 extends the imx7-mipi-csis DT bindings with i.MX8MM support.
+> Support for other members of the i.MX8 family will come later, and for
+> SoCs including an ISI IP core (such as the i.MX8MP) this will require
+> more work to handle additional glue logic.
+>
+> Patch 23/23 finaly extends the imx7-mipi-csis driver accordingly.
+>
+> The changes in the integration of the CSIS between i.MX7 and i.MX8, as
+> described in the DT bindings, have been found through reading of
+> reference manuals and BSP source code, with different sources of
+> information contradicting each other. A confirmation from NXP would be
+> nice (in particular regarding the clocks).
+>
+> Laurent Pinchart (23):
+>   media: imx: imx7_mipi_csis: Fix logging of only error event counters
+>   media: imx: imx7_mipi_csis: Count the CSI-2 debug interrupts
+>   media: imx: imx7_mipi_csis: Update ISP_CONFIG macros for quad pixel
+>     mode
+>   media: imx: imx7_mipi_csis: Move static data to top of
+>     mipi_csis_dump_regs()
+>   media: imx: imx7_mipi_csis: Minimize locking in get/set format
+>   media: imx: imx7_mipi_csis: Don't set subdev data
+>   media: imx: imx7-mipi-csis: Reorganize code in sections
+>   media: imx: imx7_mipi_csis: Set the CLKSETTLE register field
+>   media: imx: imx7_mipi_csis: Drop unused csis_hw_reset structure
+>   media: imx: imx7_mipi_csis: Store CSI-2 data type in format structure
+>   media: imx: imx7_mipi_csis: Drop csi_state phy field
+>   media: imx: imx7_mipi_csis: Rename mipi_sd to sd
+>   media: imx: imx7_mipi_csis: Rename csi_state flag field to state
+>   media: imx: imx7_mipi_csis: Turn csi_state irq field into local
+>     variable
+>   media: imx: imx7_mipi_csis: Don't pass pdev to mipi_csis_parse_dt()
+>   media: imx: imx7_mipi_csis: Pass csi_state to mipi_csis_subdev_init()
+>   media: imx: imx7_mipi_csis: Drop csi_state pdev field
+>   media: imx: imx7_mipi_csis: Make csi_state num_clocks field unsigned
+>   media: imx: imx7_mipi_csis: Reorganize csi_state structure
+>   media: imx: imx7_mipi_csis: Reorganize mipi_csis_probe()
+>   media: imx: imx7_mipi_csis: Reject invalid data-lanes settings
+>   dt-bindings: media: nxp,imx7-mipi-csi2: Add i.MX8MM support
+>   media: imx: imx7_mipi_csis: Add i.MX8MM support
+>
+>  .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 108 +-
+>  drivers/staging/media/imx/imx7-mipi-csis.c    | 943 ++++++++++--------
+>  2 files changed, 622 insertions(+), 429 deletions(-)
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
+>
 
+Laurent,
 
-On 4/21/2021 7:33 AM, Florian Fainelli wrote:
-> 
-> 
-> On 4/21/2021 1:31 AM, Quentin Perret wrote:
->> On Tuesday 20 Apr 2021 at 09:33:56 (-0700), Florian Fainelli wrote:
->>> I do wonder as well, we have a 32MB "no-map" reserved memory region on
->>> our platforms located at 0xfe000000. Without the offending commit,
->>> /proc/iomem looks like this:
->>>
->>> 40000000-fdffefff : System RAM
->>>   40008000-40ffffff : Kernel code
->>>   41e00000-41ef1d77 : Kernel data
->>> 100000000-13fffffff : System RAM
->>>
->>> and with the patch applied, we have this:
->>>
->>> 40000000-fdffefff : System RAM
->>>   40008000-40ffffff : Kernel code
->>>   41e00000-41ef3db7 : Kernel data
->>> fdfff000-ffffffff : System RAM
->>> 100000000-13fffffff : System RAM
->>>
->>> so we can now see that the region 0xfe000000 - 0xfffffff is also cobbled
->>> up with the preceding region which is a mailbox between Linux and the
->>> secure monitor at 0xfdfff000 and of size 4KB. It seems like there is
->>>
->>> The memblock=debug outputs is also different:
->>>
->>> [    0.000000] MEMBLOCK configuration:
->>> [    0.000000]  memory size = 0xfdfff000 reserved size = 0x7ce4d20d
->>> [    0.000000]  memory.cnt  = 0x2
->>> [    0.000000]  memory[0x0]     [0x00000040000000-0x000000fdffefff],
->>> 0xbdfff000 bytes flags: 0x0
->>> [    0.000000]  memory[0x1]     [0x00000100000000-0x0000013fffffff],
->>> 0x40000000 bytes flags: 0x0
->>> [    0.000000]  reserved.cnt  = 0x6
->>> [    0.000000]  reserved[0x0]   [0x00000040003000-0x0000004000e494],
->>> 0xb495 bytes flags: 0x0
->>> [    0.000000]  reserved[0x1]   [0x00000040200000-0x00000041ef1d77],
->>> 0x1cf1d78 bytes flags: 0x0
->>> [    0.000000]  reserved[0x2]   [0x00000045000000-0x000000450fffff],
->>> 0x100000 bytes flags: 0x0
->>> [    0.000000]  reserved[0x3]   [0x00000047000000-0x0000004704ffff],
->>> 0x50000 bytes flags: 0x0
->>> [    0.000000]  reserved[0x4]   [0x000000c2c00000-0x000000fdbfffff],
->>> 0x3b000000 bytes flags: 0x0
->>> [    0.000000]  reserved[0x5]   [0x00000100000000-0x0000013fffffff],
->>> 0x40000000 bytes flags: 0x0
->>>
->>> [    0.000000] MEMBLOCK configuration:
->>> [    0.000000]  memory size = 0x100000000 reserved size = 0x7ca4f24d
->>> [    0.000000]  memory.cnt  = 0x3
->>> [    0.000000]  memory[0x0]     [0x00000040000000-0x000000fdffefff],
->>> 0xbdfff000 bytes flags: 0x0
->>> [    0.000000]  memory[0x1]     [0x000000fdfff000-0x000000ffffffff],
->>> 0x2001000 bytes flags: 0x4
->>> [    0.000000]  memory[0x2]     [0x00000100000000-0x0000013fffffff],
->>> 0x40000000 bytes flags: 0x0
->>> [    0.000000]  reserved.cnt  = 0x6
->>> [    0.000000]  reserved[0x0]   [0x00000040003000-0x0000004000e494],
->>> 0xb495 bytes flags: 0x0
->>> [    0.000000]  reserved[0x1]   [0x00000040200000-0x00000041ef3db7],
->>> 0x1cf3db8 bytes flags: 0x0
->>> [    0.000000]  reserved[0x2]   [0x00000045000000-0x000000450fffff],
->>> 0x100000 bytes flags: 0x0
->>> [    0.000000]  reserved[0x3]   [0x00000047000000-0x0000004704ffff],
->>> 0x50000 bytes flags: 0x0
->>> [    0.000000]  reserved[0x4]   [0x000000c3000000-0x000000fdbfffff],
->>> 0x3ac00000 bytes flags: 0x0
->>> [    0.000000]  reserved[0x5]   [0x00000100000000-0x0000013fffffff],
->>> 0x40000000 bytes flags: 0x0
->>>
->>> in the second case we can clearly see that the 32MB no-map region is now
->>> considered as usable RAM.
->>>
->>> Hope this helps.
->>>
->>>>
->>>> In any case, the mere fact that this causes a regression should be
->>>> sufficient justification to revert/withdraw it from v5.4, as I don't
->>>> see a reason why it was merged there in the first place. (It has no
->>>> fixes tag or cc:stable)
->>>
->>> Agreed, however that means we still need to find out whether a more
->>> recent kernel is also broken, I should be able to tell you that a little
->>> later.
->>
->> FWIW I did test this on Qemu before posting. With 5.12-rc8 and a 1MiB
->> no-map region at 0x80000000, I have the following:
->>
->> 40000000-7fffffff : System RAM
->>   40210000-417fffff : Kernel code
->>   41800000-41daffff : reserved
->>   41db0000-4210ffff : Kernel data
->>   48000000-48008fff : reserved
->> 80000000-800fffff : reserved
->> 80100000-13fffffff : System RAM
->>   fa000000-ffffffff : reserved
->>   13b000000-13f5fffff : reserved
->>   13f6de000-13f77dfff : reserved
->>   13f77e000-13f77efff : reserved
->>   13f77f000-13f7dafff : reserved
->>   13f7dd000-13f7defff : reserved
->>   13f7df000-13f7dffff : reserved
->>   13f7e0000-13f7f3fff : reserved
->>   13f7f4000-13f7fdfff : reserved
->>   13f7fe000-13fffffff : reserved
->>
->> If I remove the 'no-map' qualifier from DT, I get this:
->>
->> 40000000-13fffffff : System RAM
->>   40210000-417fffff : Kernel code
->>   41800000-41daffff : reserved
->>   41db0000-4210ffff : Kernel data
->>   48000000-48008fff : reserved
->>   80000000-800fffff : reserved
->>   fa000000-ffffffff : reserved
->>   13b000000-13f5fffff : reserved
->>   13f6de000-13f77dfff : reserved
->>   13f77e000-13f77efff : reserved
->>   13f77f000-13f7dafff : reserved
->>   13f7dd000-13f7defff : reserved
->>   13f7df000-13f7dffff : reserved
->>   13f7e0000-13f7f3fff : reserved
->>   13f7f4000-13f7fdfff : reserved
->>   13f7fe000-13fffffff : reserved
->>
->> So this does seem to be working fine on my setup. I'll try again with
->> 5.4 to see if I can repro.
->>
->> Also, 8a5a75e5e9e5 ("of/fdt: Make sure no-map does not remove already
->> reserved regions") looks more likely to cause the issue observed here,
->> but that shouldn't be silent. I get the following error message in dmesg
->> if I if place the no-map region on top of the kernel image:
->>
->> OF: fdt: Reserved memory: failed to reserve memory for node 'foobar@40210000': base 0x0000000040210000, size 1 MiB
->>
->> Is that triggering on your end?
-> 
-> It is not, otherwise I would have noticed earlier, can you try the same
-> thing that happens on my platform with a reserved region (without
-> no-map) adjacent to a reserved region with 'no-map'? I will test
-> different and newer kernels than 5.4 today to find out if this is still
-> a problem with upstream. I could confirm that v4.9.259 also have this
-> problem now.
+Thank you for your work on this!
 
-5.10.31 works correctly and shows the following for my platform:
+I have an IMX8MM board supporting CSI and a couple of devices to test with:
+- Sony IMX477 12.3MP sensor (do not see any mainline support but there
+are some hits on the net as this is a RPi camera)
+- Sony IMX219 8MP sensor (should be supported by drivers/media/i2c/imx219.c)
+- Auvidea B10x HDMI to CSI-2 bridge (Toshiba TC358743XBG HDMI to CSI-2
+(MIPI)- 2D+C) (should be supported by drivers/media/i2c/tc358743.c)
 
-40000000-fdffefff : System RAM
-  40200000-40eaffff : Kernel code
-  40eb0000-4237ffff : reserved
-  42380000-425affff : Kernel data
-  45000000-450fffff : reserved
-  47000000-4704ffff : reserved
-  4761e000-47624fff : reserved
-  f8c00000-fdbfffff : reserved
-fdfff000-ffffffff : reserved
-100000000-13fffffff : System RAM
-  13b000000-13effffff : reserved
-  13f114000-13f173fff : reserved
-  13f174000-13f774fff : reserved
-  13f775000-13f7e8fff : reserved
-  13f7eb000-13f7ecfff : reserved
-  13f7ed000-13f7effff : reserved
-  13f7f0000-13fffffff : reserved
--- 
-Florian
+Can you summarize the state of IMX8MM CSI capture in mainline? I
+suppose the MIPI power domain is still an issue? Anything else that
+would keep me from testing the above devices?
+
+Best regards,
+
+Tim
