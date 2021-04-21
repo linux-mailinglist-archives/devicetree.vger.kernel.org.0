@@ -2,69 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2252366B40
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 14:52:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83556366CF4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 15:36:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240047AbhDUMwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 08:52:40 -0400
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:42523 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240016AbhDUMwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 08:52:34 -0400
-Received: by mail-oi1-f174.google.com with SMTP id n140so42263125oig.9;
-        Wed, 21 Apr 2021 05:52:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=zwO8vsC3WF0Gf7xPYT37EC+0RIGJQlGIPk45BXNQjoI=;
-        b=grvdIkWuf3ZT8DGVkXokuG4yJmlqziGnXWdZaMxujn/yRddNSVjYOQ56PYcmeC/6QP
-         4Y1mfu6OjDFFg8Be8oUKumZu6WUW2Sw66HzGN9jOis0qty2cD5KFgIliGyDzAyqm5fxb
-         dW8vYT6qLJiha/y5iwyIYlEQTi55QxxAu7pgXgQc5NL79nin3fH25xLmvJ54OD0wB67i
-         hjJthjvKqkw5Fi5YlSqAAy7SpiEtuyT1KFruo5n7zoSvUv1Z5DQjtZEVcgQBqL9+p1kZ
-         L99qniCpODaX6HdJpIBiJy7skCpgkp6Cwd7nSE44+zYHIzTwA2jbUiPfdOzvpnS5yEfZ
-         Ii+g==
-X-Gm-Message-State: AOAM533FA4BY6arVXyH5nFmpSQqnRL3N44oxZ7Fl5IEtNAdxp+tBm/Xe
-        QwjNqiz4kJGhy08Cqxct9A==
-X-Google-Smtp-Source: ABdhPJwuXxmsp6awIny76czSvcTY/qAULnw3HztMD4Vy1/7UEk9JaKovoI9nMVJars5LmQkTsmaVZQ==
-X-Received: by 2002:aca:c74c:: with SMTP id x73mr6718116oif.100.1619009520597;
-        Wed, 21 Apr 2021 05:52:00 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c13sm487459otr.51.2021.04.21.05.51.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Apr 2021 05:51:59 -0700 (PDT)
-Received: (nullmailer pid 967440 invoked by uid 1000);
-        Wed, 21 Apr 2021 12:51:57 -0000
-Date:   Wed, 21 Apr 2021 07:51:57 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Leonardo Bras <leobras.c@gmail.com>
-Cc:     aik@ozlabs.ru, Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] of/pci: Add IORESOURCE_MEM_64 to resource flags for
- 64-bit memory addresses
-Message-ID: <20210421125157.GA967343@robh.at.kernel.org>
-References: <20210415180050.373791-1-leobras.c@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210415180050.373791-1-leobras.c@gmail.com>
+        id S239272AbhDUNgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 09:36:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50286 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234038AbhDUNgr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Apr 2021 09:36:47 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id F3AFA611F2;
+        Wed, 21 Apr 2021 13:36:13 +0000 (UTC)
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1lZD1X-008hT6-Vv; Wed, 21 Apr 2021 14:36:12 +0100
+Date:   Wed, 21 Apr 2021 14:36:10 +0100
+Message-ID: <87zgxrpxo5.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     <cl@rock-chips.com>
+Cc:     heiko@sntech.de, robh+dt@kernel.org, jagan@amarulasolutions.com,
+        wens@csie.org, uwe@kleine-koenig.org, mail@david-bauer.net,
+        jbx6244@gmail.com, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
+        cnsztl@gmail.com, devicetree@vger.kernel.org,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
+        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
+        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
+        zhangqing@rock-chips.com, huangtao@rock-chips.com
+Subject: Re: [PATCH v1 4/5] arm64: dts: rockchip: add core dtsi for RK3568 SoC
+In-Reply-To: <20210421065921.23917-5-cl@rock-chips.com>
+References: <20210421065921.23917-1-cl@rock-chips.com>
+        <20210421065921.23917-5-cl@rock-chips.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: cl@rock-chips.com, heiko@sntech.de, robh+dt@kernel.org, jagan@amarulasolutions.com, wens@csie.org, uwe@kleine-koenig.org, mail@david-bauer.net, jbx6244@gmail.com, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, jensenhuang@friendlyarm.com, michael@amarulasolutions.com, cnsztl@gmail.com, devicetree@vger.kernel.org, ulf.hansson@linaro.org, linux-mmc@vger.kernel.org, gregkh@linuxfoundation.org, linux-serial@vger.kernel.org, linux-i2c@vger.kernel.org, jay.xu@rock-chips.com, shawn.lin@rock-chips.com, david.wu@rock-chips.com, zhangqing@rock-chips.com, huangtao@rock-chips.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Apr 2021 15:00:51 -0300, Leonardo Bras wrote:
-> Many other resource flag parsers already add this flag when the input
-> has bits 24 & 25 set, so update this one to do the same.
+On Wed, 21 Apr 2021 07:59:20 +0100,
+<cl@rock-chips.com> wrote:
 > 
-> Some devices (like virtio-net) have more than one memory resource
-> (like MMIO32 and MMIO64) and without this flag it would be needed to
-> verify the address range to know which one is which.
+> From: Liang Chen <cl@rock-chips.com>
 > 
-> Signed-off-by: Leonardo Bras <leobras.c@gmail.com>
+> RK3568 is a high-performance and low power quad-core application processor
+> designed for personal mobile internet device and AIoT equipments.
+> 
+> This patch add basic core dtsi file for it.
+> 
+> Signed-off-by: Liang Chen <cl@rock-chips.com>
 > ---
->  drivers/of/address.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
+>  .../boot/dts/rockchip/rk3568-pinctrl.dtsi     | 2789 +++++++++++++++++
+>  arch/arm64/boot/dts/rockchip/rk3568.dtsi      |  795 +++++
+>  .../boot/dts/rockchip/rockchip-pinconf.dtsi   |  346 ++
+>  3 files changed, 3930 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568.dtsi
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rockchip-pinconf.dtsi
+>
 
-Applied, thanks!
+[...]
+
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> new file mode 100644
+> index 000000000000..ac8db2f54f2b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> @@ -0,0 +1,795 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
+> + */
+> +
+> +#include <dt-bindings/clock/rk3568-cru.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include <dt-bindings/soc/rockchip,boot-mode.h>
+> +#include <dt-bindings/phy/phy.h>
+> +#include <dt-bindings/thermal/thermal.h>
+> +
+> +/ {
+> +	compatible = "rockchip,rk3568";
+> +
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial2 = &uart2;
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <2>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x0 0x0>;
+> +			enable-method = "psci";
+> +			clocks = <&scmi_clk 0>;
+> +			operating-points-v2 = <&cpu0_opp_table>;
+> +			#cooling-cells = <2>;
+> +		};
+> +		cpu1: cpu@100 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x0 0x100>;
+> +			enable-method = "psci";
+> +			operating-points-v2 = <&cpu0_opp_table>;
+> +		};
+> +		cpu2: cpu@200 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x0 0x200>;
+> +			enable-method = "psci";
+> +			operating-points-v2 = <&cpu0_opp_table>;
+> +		};
+> +		cpu3: cpu@300 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a55";
+> +			reg = <0x0 0x300>;
+> +			enable-method = "psci";
+> +			operating-points-v2 = <&cpu0_opp_table>;
+> +		};
+> +	};
+> +
+> +	cpu0_opp_table: cpu0-opp-table {
+> +		compatible = "operating-points-v2";
+> +		opp-shared;
+> +
+> +		opp-408000000 {
+> +			opp-hz = /bits/ 64 <408000000>;
+> +			opp-microvolt = <825000 825000 1150000>;
+> +			clock-latency-ns = <40000>;
+> +		};
+> +		opp-600000000 {
+> +			opp-hz = /bits/ 64 <600000000>;
+> +			opp-microvolt = <825000 825000 1150000>;
+> +		};
+> +		opp-816000000 {
+> +			opp-hz = /bits/ 64 <816000000>;
+> +			opp-microvolt = <825000 825000 1150000>;
+> +			opp-suspend;
+> +		};
+> +		opp-1104000000 {
+> +			opp-hz = /bits/ 64 <1104000000>;
+> +			opp-microvolt = <825000 825000 1150000>;
+> +		};
+> +		opp-1416000000 {
+> +			opp-hz = /bits/ 64 <1416000000>;
+> +			opp-microvolt = <900000 900000 1150000>;
+> +		};
+> +		opp-1608000000 {
+> +			opp-hz = /bits/ 64 <1608000000>;
+> +			opp-microvolt = <975000 975000 1150000>;
+> +		};
+> +		opp-1800000000 {
+> +			opp-hz = /bits/ 64 <1800000000>;
+> +			opp-microvolt = <1050000 1050000 1150000>;
+> +		};
+> +		opp-1992000000 {
+> +			opp-hz = /bits/ 64 <1992000000>;
+> +			opp-microvolt = <1150000 1150000 1150000>;
+> +		};
+> +	};
+> +
+> +	arm-pmu {
+> +		compatible = "arm,cortex-a55-pmu", "arm,armv8-pmuv3";
+> +		interrupts = <GIC_SPI 228 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 230 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 231 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
+> +	};
+> +
+> +	firmware {
+> +		scmi: scmi {
+> +			compatible = "arm,scmi-smc";
+> +			shmem = <&scmi_shmem>;
+> +			arm,smc-id = <0x82000010>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			scmi_clk: protocol@14 {
+> +				reg = <0x14>;
+> +				#clock-cells = <1>;
+> +			};
+> +		};
+> +
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
+> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+
+This doesn't match the GICv3 binding for PPIs.
+
+> +		arm,no-tick-in-suspend;
+
+Oh, really? :-(
+
+> +	};
+> +
+> +	xin24m: xin24m {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <24000000>;
+> +		clock-output-names = "xin24m";
+> +	};
+> +
+> +	xin32k: xin32k {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <32768>;
+> +		clock-output-names = "xin32k";
+> +		#clock-cells = <0>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&clk32k_out0>;
+> +	};
+> +
+> +	scmi_shmem: scmi-shmem@10f000 {
+> +		compatible = "arm,scmi-shmem";
+> +		reg = <0x0 0x0010f000 0x0 0x100>;
+> +	};
+> +
+> +	gic: interrupt-controller@fd400000 {
+> +		compatible = "arm,gic-v3";
+> +		#interrupt-cells = <3>;
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +		interrupt-controller;
+> +
+> +		reg = <0x0 0xfd400000 0 0x10000>, /* GICD */
+> +		      <0x0 0xfd460000 0 0xc0000>; /* GICR */
+> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+
+Please add the 'mbi-alias' property, which should map onto the GICA
+range that GIC600 provides. At least this could be useful to have MSIs
+despite the lack of a working ITS. We can work out the usable ranges
+on a per-board basis.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
