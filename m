@@ -2,78 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEC9F366F60
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 17:45:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0BB3366FBC
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 18:12:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241093AbhDUPq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 11:46:27 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:33372 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240962AbhDUPqY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 11:46:24 -0400
-Received: by mail-ot1-f49.google.com with SMTP id 92-20020a9d02e50000b029028fcc3d2c9eso16844826otl.0;
-        Wed, 21 Apr 2021 08:45:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6szp+K/skstRZ22g2HkIN/dwWJKe6yh8+ljhvoOIFsI=;
-        b=Kt/WMVrbsHgoJEGqr9vwueru42daxd9Sv74uSUJRUDnc766pVmbxb2FK0r6YqVHGhy
-         rBcK+YPWs8/GhW3E1c5FbG/KGSkII9hToxE2TBkmMEEsA5NitLGTJQkBp9EVnHOAQiD4
-         +ldEDTRiA4W8+XNFlEN0WiS6Cni9g087vYu0Fufm0exkYbCpzImm/AK36tArFUNQWHYg
-         mB2k90Yrh1+zN7TiJ25IZl15iN1rBrfxHn4BUJ8TgeoWbt/ZMyYnB6IR4Vxtuj+a10rG
-         LuD6PmwfKJjiq4TL1K6+rYn3iCjV76TZH7ZwO5CUWq8bU1mc/H0z5cnVaXKF4q/TKXYD
-         7P3Q==
-X-Gm-Message-State: AOAM530oxA3yhQ3p76wSsL+hmj1T9R6wQNJQRArYVMIUWPg3EtSUogdB
-        o4haF0/qIK2klaDvKWwoetEVSte88Q==
-X-Google-Smtp-Source: ABdhPJxrY+4y5kCxDwL2hl7IEcxYxMcWj3M3NguFPeIndRClkk0+br8zBnH3nJzwU9o3KpNicPDwnA==
-X-Received: by 2002:a9d:5f1:: with SMTP id 104mr7706859otd.306.1619019950473;
-        Wed, 21 Apr 2021 08:45:50 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id g16sm519050oof.43.2021.04.21.08.45.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Apr 2021 08:45:49 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [PATCH] of: overlay: Fix kerneldoc warning in of_overlay_remove()
-Date:   Wed, 21 Apr 2021 10:45:48 -0500
-Message-Id: <20210421154548.1192903-1-robh@kernel.org>
-X-Mailer: git-send-email 2.27.0
+        id S236804AbhDUQN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 12:13:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50122 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235591AbhDUQN2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Apr 2021 12:13:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7E3D961450;
+        Wed, 21 Apr 2021 16:12:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1619021575;
+        bh=8jqI6aiH4hwiHUgcEN1wRksGRNJ3OFRgxcK50mKzTYw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=fPQcWTXKg4IZRaXn4/53Yl4hzHzapNVbn+DLd1wwgWAjBax7AgkREfPjUsErp4H3M
+         jNmMiZ5rPN9f1ZGfy30vQvByCVwwkKhIMSoFglUgUgJETzjLcpNVHGzU+XAWdC4Sq2
+         4DajKoc79CxkU0iCv5gL5N+Oo6N2h9YonTOrOCgvGEvTrnBpnh/iYEVV6atDJlFoWX
+         gSynMO0aG14h+kWt17RQQqyFQ10/83koXf9icg5K3RmFoJWADw2q3iAK2gxcNtC56f
+         GFTU+ScXneP80QZzU+z0fVZ8zZew4jGc5g/HZAcQJfxbOgi57+gJewRRfIY26ho9KK
+         CHpSqL7gZO/5w==
+Received: by mail-ej1-f44.google.com with SMTP id u21so64362697ejo.13;
+        Wed, 21 Apr 2021 09:12:55 -0700 (PDT)
+X-Gm-Message-State: AOAM530bJlJvZpMkxBK3AVWKj9uFKx8Fx4d5R4KXihtbcTxn3RbzsQXN
+        CEtw2uwI1AeF03LX428vpexTQbagimZnHiV3/A==
+X-Google-Smtp-Source: ABdhPJxOKAdqZq6IBYcoFGb3nyhYuCkTa9hB/kMgxIzc6Zfwc8YSVY7+dSAiZk8bwd57agaZVZVrL3grCvYgGpATndc=
+X-Received: by 2002:a17:907:70d3:: with SMTP id yk19mr33344448ejb.108.1619021573865;
+ Wed, 21 Apr 2021 09:12:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210419154659.44096-1-ilya.lipnitskiy@gmail.com>
+ <20210419154659.44096-3-ilya.lipnitskiy@gmail.com> <20210420195132.GA3686955@robh.at.kernel.org>
+ <CALCv0x2SG=0kBRnxfSPxi+FvaBK=QGPHQkHWHvTXOw64KawPUQ@mail.gmail.com> <trinity-47c2d588-093d-4054-a16f-81d76aa667e0-1619013874284@3c-app-gmx-bs34>
+In-Reply-To: <trinity-47c2d588-093d-4054-a16f-81d76aa667e0-1619013874284@3c-app-gmx-bs34>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 21 Apr 2021 11:12:41 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKne=ASOyd0E9GakVvDvaXDauHOOU5NgxU8X8ySvyrAcw@mail.gmail.com>
+Message-ID: <CAL_JsqKne=ASOyd0E9GakVvDvaXDauHOOU5NgxU8X8ySvyrAcw@mail.gmail.com>
+Subject: Re: Re: [PATCH net-next v2 2/2] net: ethernet: mediatek: support
+ custom GMAC label
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-'*ovcs_id' causes a warning because '*' is treated as bold markup:
+On Wed, Apr 21, 2021 at 9:05 AM Frank Wunderlich
+<frank-w@public-files.de> wrote:
+>
+> Hi,
+>
+> for dsa slave-ports there is already a property "label", but not for mast=
+er/cpu-ports
 
-Documentation/devicetree/kernel-api:56: ../drivers/of/overlay.c:1184: WARNING: Inline emphasis start-string without end-string.
+Is that because slave ports are external and master are not? If so,
+that makes sense.
 
-Fix this to use the normal '@' markup for function parameters.
+> https://elixir.bootlin.com/linux/v5.12-rc8/source/arch/arm64/boot/dts/med=
+iatek/mt7622-bananapi-bpi-r64.dts#L163
+>
+> handled here:
+>
+> https://elixir.bootlin.com/linux/v5.12-rc8/source/net/dsa/dsa2.c#L1113
+>
+> @ilya maybe you can rename slave-ports instead of master-port without cod=
+e change?
+>
+> i also prefer a more generic way to name interfaces in dts, not only in t=
+he mtk-driver, but the udev-approach is a way too, but this needs to be con=
+figured on each system manually...a preset by kernel/dts will be nice (at l=
+east to distinguish master/cpu- and user-ports).
 
-Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- drivers/of/overlay.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-index d241273170fd..67c9aa6f14da 100644
---- a/drivers/of/overlay.c
-+++ b/drivers/of/overlay.c
-@@ -1181,7 +1181,7 @@ static int overlay_removal_is_ok(struct overlay_changeset *remove_ovcs)
-  * If an error is returned by an overlay changeset post-remove notifier
-  * then no further overlay changeset post-remove notifier will be called.
-  *
-- * Return: 0 on success, or a negative error number.  *ovcs_id is set to
-+ * Return: 0 on success, or a negative error number.  @ovcs_id is set to
-  * zero after reverting the changeset, even if a subsequent error occurs.
-  */
- int of_overlay_remove(int *ovcs_id)
--- 
-2.27.0
+Seems like it could be possible to want to distinguish port types for
+reasons other than just what to name the device. Better to describe
+that difference in DT and then base the device name off of that.
 
+If you just want fixed numbering, then 'aliases' node is generally how
+that is done (either because it sneaks in or fatigue from arguing
+fixed /dev nodes are an anti-feature). There's already 'ethernetN'
+which u-boot uses, but the kernel so far does not.
+
+Rob
