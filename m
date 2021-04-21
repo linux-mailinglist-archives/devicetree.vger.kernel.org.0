@@ -2,103 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D45F367505
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 00:12:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F1C5367507
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 00:12:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236133AbhDUWNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 18:13:10 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:46662 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236112AbhDUWNJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 18:13:09 -0400
-Received: by mail-ot1-f48.google.com with SMTP id d3-20020a9d29030000b029027e8019067fso38427611otb.13;
-        Wed, 21 Apr 2021 15:12:36 -0700 (PDT)
+        id S243739AbhDUWNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 18:13:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47384 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236112AbhDUWNX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 18:13:23 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D50EAC06174A;
+        Wed, 21 Apr 2021 15:12:49 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id v6so64408453ejo.6;
+        Wed, 21 Apr 2021 15:12:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=R+7lOBqLD5Z6bTcs4+c+UgzXRm2npxKYFhj46LfCB+M=;
+        b=RnLNg4giHfH1ktF1ZYjXkxbfCpDfkSVazNzxCmpJ2H+gAtqqpTP0zuLNXXtZeRK41Q
+         VPO7hFAJPPpWbcwIJqMw9xycXohInbfOaaQGDLsZVEDra6ECEY5LRmu11L1kWBQQ9Byg
+         nSh05Zb5tYVk6lMiuxkCmdBI+VbTOoY8CAPCfnY/eOhAQfddZC0baDWQaCN0wdCHPtNy
+         kDcPP93R0TalPoVut7B6cJCU5XQyH7vN3bwXArfYTU5tqVqwsXnmkxiPIprAlOKe+ILN
+         d63OeuZf74MFE5AmEtuRzFbVrgayct3HLHAYmpSUQBR513m3b/X/jSZ0MswAcSMfKzNA
+         kyPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9vfZ85qaNRDwLWK6paIlumo1fUktvseuhhjpTPIiObQ=;
-        b=kiNCDVfMII2MvtKxqSi0z+sxjnz4Nt5i4PlPLhrNlXLNkDNsUJOJJ0jdstFn06/rZv
-         tPlngEoQp3JvkMo0GE2Ux3qCwGyeV6YFvpiltKmLQ8sHih5bO2HNW8zu+BGLdMPI1ZIt
-         SAUTiWd0rU9Ga83XB1Susd9lvRtfpptiKOJJZNklzVQQ/7PsdAJhiSdqDCMX6miLoniR
-         UbgBUXY2QqzZrC06lEtWkkwoUfyy/c8YqMmuGHq85j2ldmdeoaHM2ak9ulL6oysyaNiM
-         q9BBtmKXfpax++ibL1eXa3/NCZHdEOCsJdCTZjlmCWzcQk2KTEFyEmb+leVZnYUJkdd7
-         q1gw==
-X-Gm-Message-State: AOAM532+U4/Msl+SAN1HgZDhvyfsCUxMGJbQSZvvH79Bwbz6lhRP5mu+
-        YbDYQfSHvSk5Bsk9op4BLA==
-X-Google-Smtp-Source: ABdhPJw6ztIYw2u9aV58Nwci+XDmx1pHvvuUJfxXD65mDFjOzNkizDKgyLgUCDTJ1Z0zh+WzGKPBuQ==
-X-Received: by 2002:a9d:7583:: with SMTP id s3mr241540otk.367.1619043155325;
-        Wed, 21 Apr 2021 15:12:35 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v81sm151880oie.13.2021.04.21.15.12.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Apr 2021 15:12:34 -0700 (PDT)
-Received: (nullmailer pid 1708485 invoked by uid 1000);
-        Wed, 21 Apr 2021 22:12:33 -0000
-Date:   Wed, 21 Apr 2021 17:12:33 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Tero Kristo <kristo@kernel.org>, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/4] dt-bindings: soc/arm: Convert pending ti,sci*
- bindings to json format
-Message-ID: <20210421221233.GA1705110@robh.at.kernel.org>
-References: <20210416063721.20538-1-nm@ti.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=R+7lOBqLD5Z6bTcs4+c+UgzXRm2npxKYFhj46LfCB+M=;
+        b=DIXa0PSCUexO3qRBov5FduspSEcFw9at8Da+VZ1sKUyEUL6bl7b56fYxd0g/91BFfc
+         nrc6J003uRuRS8n5a2cPCeo4oAdrrLCSXX1l6CE9njXg9p1J2fxD4OcdYWFQnMKG8wyR
+         FG/v6x7Ha72iFM7tT1qHjjCFEJMr6AMcisVcjlu+Xmrwrgi7ceOfe44qFAqw0zn7C2hr
+         5r1+rFqTrgi5siZC/L5OK7SxUKJfhif7BFUqtJw71q22k2cIw+mTZyGS3fBsw29DfRda
+         EVrjDXCedh+EIxHc2tm68aTtWNZ2T81GJUfpoi//8L9hJHiAEnPc9jcgg303O08F+O0q
+         fykA==
+X-Gm-Message-State: AOAM531JiVuv2ULWtU30VK9R02RxR2AkQ+X3eNvv0KPGzWyA05EV0YSb
+        ltKtN8qFvEI7/6M7SzUnHY4=
+X-Google-Smtp-Source: ABdhPJwnO50+gnpA5Ec9ZaKtMRJev8c9mYapkUNSr2Ko1H5jXHxGgWECrUE+oV3mG0u03kYyKSE36Q==
+X-Received: by 2002:a17:907:270f:: with SMTP id w15mr54666ejk.462.1619043168600;
+        Wed, 21 Apr 2021 15:12:48 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id n2sm560459edi.32.2021.04.21.15.12.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Apr 2021 15:12:48 -0700 (PDT)
+Subject: Re: [PATCH 1/2] dt-bindings: rockchip-thermal: Support the RK3568 SoC
+ compatible
+To:     Ezequiel Garcia <ezequiel@collabora.com>, linux-pm@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Finley Xiao <finley.xiao@rock-chips.com>, kernel@collabora.com
+References: <20210421200445.32977-1-ezequiel@collabora.com>
+ <557ae27c-1d62-69e0-7ae6-921571059f9f@gmail.com>
+ <31272ad0e6a5274080831406796960506c6a6912.camel@collabora.com>
+ <ca5d55ef-e364-be7a-5ad6-81f039c691e6@gmail.com>
+ <bf0771cec69e11bf4622421a3aa8f2092da42429.camel@collabora.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <31c2e531-96d0-a1c1-644c-28c60eb40cf4@gmail.com>
+Date:   Thu, 22 Apr 2021 00:12:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210416063721.20538-1-nm@ti.com>
+In-Reply-To: <bf0771cec69e11bf4622421a3aa8f2092da42429.camel@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 16, 2021 at 01:37:17AM -0500, Nishanth Menon wrote:
-> Hi,
+On 4/21/21 11:56 PM, Ezequiel Garcia wrote:
+> On Wed, 2021-04-21 at 23:25 +0200, Johan Jonker wrote:
+>> On 4/21/21 11:06 PM, Ezequiel Garcia wrote:
+>>> On Wed, 2021-04-21 at 22:46 +0200, Johan Jonker wrote:
+>>>> On 4/21/21 10:04 PM, Ezequiel Garcia wrote:
+>>>>> Add a new compatible for the thermal sensor device on RK3568 SoCs.
+>>>>>
+>>>>> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/thermal/rockchip-thermal.txt | 1 +
+>>>>>  1 file changed, 1 insertion(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt b/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
+>>>>> index 7f94669e9ebe..346e466c2006 100644
+>>>>> --- a/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
+>>>>> +++ b/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
+>>>>> @@ -9,6 +9,7 @@ Required properties:
+>>>>>     "rockchip,rk3328-tsadc": found on RK3328 SoCs
+>>>>>     "rockchip,rk3368-tsadc": found on RK3368 SoCs
+>>>>>     "rockchip,rk3399-tsadc": found on RK3399 SoCs
+>>>>
+>>>>> +   "rockchip,rk3568-tsadc": found on RK3568 SoCs
+>>>>
+>>>> This is still a text document.
+>>>> rob+dt has now scripts that check for undocumented compatibility
+>>>> strings, so first convert rockchip-thermal.txt to YAML and then add this
+>>>> in a separated patch.
+>>>>
+>>>
+>>> Is it a showstopper to convert devicetree bindings to YAML for driver submission?
+>>
+>> You now that hardware best, so try to fix the documents as well.
 > 
-> I understand that the following series belong to various maintainers,
-> but, it is a bit better reviewed as a single series for
-> cohesiveness.
+> Well, not really. I'm just forward porting the driver from downstream kernels,
+> so we can support this new SoC. Not really a hardware _expert_ for all the
+> devices I plan to be pushing.
+> 
+>> The new norm is YAML, so aim for that.
+> 
+> I am aware of that. In fact, at Collabora we encourage all the kernel
+> developers to convert to YAML, if/when possible.
+> 
+>> Try to submit a complete package of YAML, driver (and dts nodes) for review.
+> 
+> The devicetree for RK3566 and RK3568 is under discussion, in fact it was submitted today.
+> Rockhip is leading that, and doing a great job already :)
+> 
+> Meanwhile, I'd like to merge the small drivers (thermal, pmic, dwmac, io-domains and so on),
+> so they are ready when the devicetree lands.
+> 
 
-They need to go in together as patch 4 depends on the others.
+> Most if not all of these devices just need a new compatible string. It would really delay
+> things if I aim to convert all those bindings docs to YAML first, so let's please avoid that...
+> ... unless it's a new hard-rule that DT maintainers have agreed on.
+
+Every driver group has it's own delay time, so better do it right in one
+run.
+Mostly people tend to 'forget' documentation and then someone else has
+to clean up the mess. So I propose that the person that submits a new
+driver also fixes the documentation. The norm is now YAML, so this serie
+has more work then other, so be it. Others can help you with it if you ask.
+
+Johan
 
 > 
-> There are also dts fixups that this series exposes, which is good, but
-> I chose to hold them back for now pending binding review at least. The
-> complete series is available in [1] if folks are curious.
+> Having said that, if you want to help the RK3568 bringup adventure,
+> converting the bindings to YAML, that would be really appreciated! Of course, I know
+> you've converted plenty of them already, and I already appreciate that :)
 > 
-> Nishanth Menon (4):
->   dt-bindings: reset: Convert ti,sci-reset to json schema
->   dt-bindings: clock: Convert ti,sci-clk to json schema
->   dt-bindings: soc: ti: Convert ti,sci-pm-domain to json schema
->   dt-bindings: arm: keystone: Convert ti,sci to json schema
+> Thanks,
+> Ezequiel
 > 
->  .../bindings/arm/keystone/ti,sci.txt          |  86 ------------
->  .../bindings/arm/keystone/ti,sci.yaml         | 129 ++++++++++++++++++
->  .../devicetree/bindings/clock/ti,sci-clk.txt  |  36 -----
->  .../devicetree/bindings/clock/ti,sci-clk.yaml |  52 +++++++
->  .../bindings/reset/ti,sci-reset.txt           |  62 ---------
->  .../bindings/reset/ti,sci-reset.yaml          |  51 +++++++
->  .../bindings/soc/ti/sci-pm-domain.txt         |  65 ---------
->  .../bindings/soc/ti/sci-pm-domain.yaml        |  59 ++++++++
->  8 files changed, 291 insertions(+), 249 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/keystone/ti,sci.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
->  delete mode 100644 Documentation/devicetree/bindings/clock/ti,sci-clk.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/ti,sci-clk.yaml
->  delete mode 100644 Documentation/devicetree/bindings/reset/ti,sci-reset.txt
->  create mode 100644 Documentation/devicetree/bindings/reset/ti,sci-reset.yaml
->  delete mode 100644 Documentation/devicetree/bindings/soc/ti/sci-pm-domain.txt
->  create mode 100644 Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml
-> 
-> [1] https://github.com/nmenon/linux-2.6-playground/commits/yaml/tisci
-> 
-> Regards,
-> Nishanth Menon
-> -- 
-> 2.31.0
-> 
+
