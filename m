@@ -2,104 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D485366E23
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 16:26:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD7C5366E41
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 16:31:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241659AbhDUO0p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 10:26:45 -0400
-Received: from mx2.suse.de ([195.135.220.15]:36460 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237893AbhDUO0m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Apr 2021 10:26:42 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 7AFB8B4D0;
-        Wed, 21 Apr 2021 14:26:08 +0000 (UTC)
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        id S243568AbhDUOcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 10:32:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58302 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235533AbhDUOcV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 10:32:21 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04299C06174A;
+        Wed, 21 Apr 2021 07:31:48 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id u21so63855733ejo.13;
+        Wed, 21 Apr 2021 07:31:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=76/MK3U9p2w1LAxessam/b1YnGwnwr95hug2odeXPdY=;
+        b=rSGq4LsRS/EdSViNrrkL8PPr/4AV5XwIM0Ey3yO5xb3CZAuPiSFViSdNhtSx9PnwQU
+         8x6axKQaLh4x0+3fIwLqv6ZIV+LNPy/zS6Sd4g2Hs/RG7/FN2LYELIVDpZ1Gec8wlsBA
+         nrJ36Ck76N1GDh4tZkA0gc/x7n5YIEICX8wi3sjJ6DPmGDPzkd6FF06aiECWLD4Mx1d+
+         cnjL1sWiDyTypQw/3qF3sAGC86MlYI4qh2P98fqmtO77avCA69keTOutF1JEfeu4+sbv
+         lzq2ruTeq6Bju7Pe+fIWdhaWxyjGer9Mx/GBpLqDYyMqQu5n+tKkvtVDESxBUhibAjiP
+         RADw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=76/MK3U9p2w1LAxessam/b1YnGwnwr95hug2odeXPdY=;
+        b=dSRQJ/lxUZdBAarG3hM+szCWlelNL5uKrYHepUcDu/AJwdWUfVWvRRql7Dx+tCGSjf
+         SKD/ADM+z3zuazcFUsdsS7m3VTPqXHYLbsF8VMfaGdH3m89JDMwTFq8vdaCenHgq1gxV
+         ifsW8cq9Pxkpr2YQ+TDdORT67V7wLUSCFlkSwTNKHg41/TX86bxbJmRiFtzFj6GTVYs7
+         BBnUKixcCYP/jglOgvTP6xrZDGFSAyi5EguL8ymEeWBnVQorEjVlB+7+mbKE1WhGmyNf
+         s0Uwx3Ipdd5xeFgytzhnqnUUnHCPlLzCSgwKW4yVyNbSzbeF0r62GlfpFf2bQrqFzJIs
+         61IQ==
+X-Gm-Message-State: AOAM532L9TGBw/sITssLCtDWD69pwV1gP5MIgUb5uYkVUcmDOfQgDRGy
+        2KxYmpaa5tFEmLYhDuwnLbo=
+X-Google-Smtp-Source: ABdhPJwXIFr4CdAKCHSzNSXUMcFnND3YA+X11z+WT1K03k7HMaOSBeGd8VTUC/u1cKlQ2Y5yhn8z6A==
+X-Received: by 2002:a17:906:cb88:: with SMTP id mf8mr33804099ejb.541.1619015506673;
+        Wed, 21 Apr 2021 07:31:46 -0700 (PDT)
+Received: from felia.fritz.box ([2001:16b8:2dab:e100:dc6b:6f9a:b8a4:111b])
+        by smtp.gmail.com with ESMTPSA id s8sm3586133edj.25.2021.04.21.07.31.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Apr 2021 07:31:46 -0700 (PDT)
+From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
         devicetree@vger.kernel.org
-Subject: [PATCH v3 2/2] dt-bindings: interrupt-controller: Add IDT 79RC3243x Interrupt Controller
-Date:   Wed, 21 Apr 2021 16:26:05 +0200
-Message-Id: <20210421142606.23188-2-tsbogend@alpha.franken.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210421142606.23188-1-tsbogend@alpha.franken.de>
-References: <20210421142606.23188-1-tsbogend@alpha.franken.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Cc:     linux-doc@vger.kernel.org, kernel-janitors@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Subject: [PATCH] of: address recent kernel-doc warnings
+Date:   Wed, 21 Apr 2021 16:31:24 +0200
+Message-Id: <20210421143124.17873-1-lukas.bulwahn@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document DT bindings for IDT 79RC3243x Interrupt Controller.
+Recently, make htmldocs reports these kernel-doc warnings:
 
-Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+  warning: Function parameter or member 'output' not described in 'of_property_read_string_index'
+  warning: Excess function parameter 'out_string' description in 'of_property_read_string_index'
+  warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+    * Overlay support
+
+Address those kernel-doc warnings by simple adjustment of the comments.
+
+Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
 ---
-Changes in v3:
-  - fixed compatible string in example
+applies cleanly on next-20210421
 
-Changes in v2:
-  - added dt binding doc
+Rob, please pick this minor clean-up patch for the devicetree tree.
 
- .../interrupt-controller/idt,3243x-pic.yaml   | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/idt,3243x-pic.yaml
+ include/linux/of.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/idt,3243x-pic.yaml b/Documentation/devicetree/bindings/interrupt-controller/idt,3243x-pic.yaml
-new file mode 100644
-index 000000000000..2d7dd34872bf
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/idt,3243x-pic.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/idt,3243x-pic.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: IDT 79RC3243x Interrupt Controller Device Tree Bindings
-+
-+maintainers:
-+  - Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-+
-+allOf:
-+  - $ref: /schemas/interrupt-controller.yaml#
-+
-+properties:
-+  "#interrupt-cells":
-+    const: 1
-+
-+  compatible:
-+    const: idt,3243x-pci
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+required:
-+  - "#interrupt-cells"
-+  - compatible
-+  - reg
-+  - interrupt-controller
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    idtpic3: interrupt-controller@3800c {
-+        compatible = "idt,3243x-pic";
-+        reg = <0x3800c 0x0c>;
-+
-+        interrupt-controller;
-+        #interrupt-cells = <1>;
-+
-+        interrupt-parent = <&cpuintc>;
-+        interrupts = <3>;
-+    };
-+
-+...
+diff --git a/include/linux/of.h b/include/linux/of.h
+index ef6b161d1f91..4d84674f8aac 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -1192,7 +1192,7 @@ static inline int of_property_count_strings(const struct device_node *np,
+  * @np:		device node from which the property value is to be read.
+  * @propname:	name of the property to be searched.
+  * @index:	index of the string in the list of strings
+- * @out_string:	pointer to null terminated return string, modified only if
++ * @output:	pointer to null terminated return string, modified only if
+  *		return value is 0.
+  *
+  * Search for a property in a device tree node and retrieve a null
+@@ -1203,7 +1203,7 @@ static inline int of_property_count_strings(const struct device_node *np,
+  * property does not have a value, and -EILSEQ if the string is not
+  * null-terminated within the length of the property data.
+  *
+- * The out_string pointer is modified only if a valid string can be decoded.
++ * The output pointer is modified only if a valid string can be decoded.
+  */
+ static inline int of_property_read_string_index(const struct device_node *np,
+ 						const char *propname,
+@@ -1473,7 +1473,7 @@ static inline bool of_device_is_system_power_controller(const struct device_node
+ 	return of_property_read_bool(np, "system-power-controller");
+ }
+ 
+-/**
++/*
+  * Overlay support
+  */
+ 
 -- 
-2.29.2
+2.17.1
 
