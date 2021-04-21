@@ -2,111 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4251367566
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 00:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEB0236756A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 00:58:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234312AbhDUW6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 18:58:18 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:38771 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233822AbhDUW6S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 18:58:18 -0400
-Received: by mail-ot1-f49.google.com with SMTP id e89-20020a9d01e20000b0290294134181aeso14631778ote.5;
-        Wed, 21 Apr 2021 15:57:43 -0700 (PDT)
+        id S235583AbhDUW62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 18:58:28 -0400
+Received: from mail-oo1-f54.google.com ([209.85.161.54]:36651 "EHLO
+        mail-oo1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233822AbhDUW62 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 18:58:28 -0400
+Received: by mail-oo1-f54.google.com with SMTP id c6-20020a4aacc60000b02901e6260b12e2so7060370oon.3;
+        Wed, 21 Apr 2021 15:57:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7gUtOOV9KcLOf0wlBAVa9uVjHIcSuYOVO49M1SrRIXU=;
-        b=ZL1ABcn3gmho7DhVZoFDYIviddHrCe3rcjHXFpeoEF2LJfETBzMcvdPc+mQxgnv9ME
-         XacaQAl8OHL2CmM+nDQIb2BxzBiaTYSkAYHW+ju012CZpG3UFM9tFCaZy3vx3DNlLfhZ
-         Bh9ImNjcELLfrKlcO1KpbFqRrjInwR/Pvm8ObrauDkqYbZ58DM+V80U6jevw5i1pVHe0
-         xK32QDp6IFDaFYDnIaju1XLJtTuKAjZJoSAuRTubz229Jp8lJt6DEbLVk4EK/LkiUU1g
-         alfA545pS8iKmzGv9LYTq7ju2+fx3mbjgKiP9H69zxd+j+ojasSB2++RROyd6sVm7aeS
-         6PPA==
-X-Gm-Message-State: AOAM533TwaLlXyv0Dx6lzrYNbc3N2z4zaxjshZM0nVfPPjBQB0ak7gWV
-        2kxUiGoHanYMbb7zvKnfKg==
-X-Google-Smtp-Source: ABdhPJwzx7yNCetR6H1tZfEMFFVR4TklZtpIg9nFQeKreaeUFAVoF2RRu0yi1+aoWeqpKfQmikN4oA==
-X-Received: by 2002:a9d:74d3:: with SMTP id a19mr389635otl.120.1619045862714;
-        Wed, 21 Apr 2021 15:57:42 -0700 (PDT)
+        bh=nHc0vu0f8/Y88zC2/CmuoX75thIIdILFhNQVN4NX95s=;
+        b=rTDukeFGpnCT3kKY1ylV/m44Qun3r8aOGzmredzHytSW9OIMa1lZw9zaGN3P3bHuhh
+         0jX5rN0QiV71QmXFLJI5rKVCAUQGvSmhHVrbHkTluY8rTkJS6ZWJhq4JRCWWu4NdjMP4
+         BsR7nI7QyB6fiA9SmKc7qgJULwbwIQDlIOsAkz+850ylIuw8EWNYgZrJOb78Jthc4hhR
+         i4ISD4xUJsAQKjT6QpRtB0I9abtGtVHu39QJdzDuNP5+tP7SkHBCNQYnTodvN7xGI5Fy
+         4HiAwlCsrjy6fV6STOzlnzw2vwuoovMlaP1wkowu2y649QHUYZ3f960GoCN+rgjZb6Wo
+         n+yg==
+X-Gm-Message-State: AOAM533anX1ETS/y7//Ds1ORi2uXYP+lIcWbNLxDnC0fL1LIiKRI+jAk
+        +1AttcjkJuBoDq1NXEzQTg==
+X-Google-Smtp-Source: ABdhPJwjYos/WcIL+RFdiTSvzgpoXxQwdK0ohpOuRaRk2GRIIl/pMcr7rplvisvozdFf0meqaKMQ8A==
+X-Received: by 2002:a4a:a6ca:: with SMTP id i10mr180307oom.62.1619045874190;
+        Wed, 21 Apr 2021 15:57:54 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n37sm226073otn.9.2021.04.21.15.57.41
+        by smtp.gmail.com with ESMTPSA id 79sm224478oty.76.2021.04.21.15.57.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Apr 2021 15:57:42 -0700 (PDT)
-Received: (nullmailer pid 1768471 invoked by uid 1000);
-        Wed, 21 Apr 2021 22:57:40 -0000
-Date:   Wed, 21 Apr 2021 17:57:40 -0500
+        Wed, 21 Apr 2021 15:57:53 -0700 (PDT)
+Received: (nullmailer pid 1768772 invoked by uid 1000);
+        Wed, 21 Apr 2021 22:57:52 -0000
+Date:   Wed, 21 Apr 2021 17:57:52 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Alistair Francis <alistair@alistair23.me>
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org, krzk@kernel.org,
-        shawnguo@kernel.org, daniel@0x0f.com, linux@rempel-privat.de,
-        kuninori.morimoto.gx@renesas.com, Max.Merchel@tq-group.com,
-        geert+renesas@glider.be, airlied@linux.ie, daniel@ffwll.ch,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm/panel: Add support for E Ink VB3300-KCA
-Message-ID: <20210421225740.GA1761342@robh.at.kernel.org>
+Cc:     kuninori.morimoto.gx@renesas.com, devicetree@vger.kernel.org,
+        daniel@0x0f.com, linux@rempel-privat.de,
+        linux-kernel@vger.kernel.org, shawnguo@kernel.org,
+        Max.Merchel@tq-group.com, dri-devel@lists.freedesktop.org,
+        geert+renesas@glider.be, daniel@ffwll.ch, krzk@kernel.org,
+        sam@ravnborg.org, robh+dt@kernel.org, thierry.reding@gmail.com,
+        airlied@linux.ie
+Subject: Re: [PATCH 1/2] dt-bindings: Add E Ink to vendor bindings
+Message-ID: <20210421225752.GA1768719@robh.at.kernel.org>
 References: <20210418210956.3024-1-alistair@alistair23.me>
- <20210418210956.3024-2-alistair@alistair23.me>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210418210956.3024-2-alistair@alistair23.me>
+In-Reply-To: <20210418210956.3024-1-alistair@alistair23.me>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 19, 2021 at 07:09:56AM +1000, Alistair Francis wrote:
-> Add support for the 10.3" E Ink panel described at:
-> https://www.eink.com/product.html?type=productdetail&id=7
+On Mon, 19 Apr 2021 07:09:55 +1000, Alistair Francis wrote:
+> Add the E Ink Corporation to the vendor bindings.
 > 
 > Signed-off-by: Alistair Francis <alistair@alistair23.me>
 > ---
->  drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> index 4e2dad314c79..f1f6fd2517f6 100644
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -1964,6 +1964,32 @@ static const struct panel_desc edt_etm0700g0bdh6 = {
->  	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
->  };
->  
-> +static const struct display_timing eink_vb3300_kca_timing = {
-> +	.pixelclock = { 40000000, 40000000, 40000000 },
-> +	.hactive = { 334, 334, 334 },
-> +	.hfront_porch = { 1, 1, 1 },
-> +	.hback_porch = { 1, 1, 1 },
-> +	.hsync_len = { 1, 1, 1 },
-> +	.vactive = { 1405, 1405, 1405 },
-> +	.vfront_porch = { 1, 1, 1 },
-> +	.vback_porch = { 1, 1, 1 },
-> +	.vsync_len = { 1, 1, 1 },
-> +	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
-> +		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE,
-> +};
-> +
-> +static const struct panel_desc eink_vb3300_kca = {
-> +	.modes = &edt_etm0700g0dh6_mode,
-> +	.num_modes = 1,
-> +	.bpc = 6,
-> +	.size = {
-> +		.width = 157,
-> +		.height = 209,
-> +	},
-> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
-> +};
-> +
->  static const struct display_timing evervision_vgg804821_timing = {
->  	.pixelclock = { 27600000, 33300000, 50000000 },
->  	.hactive = { 800, 800, 800 },
-> @@ -4232,6 +4258,9 @@ static const struct of_device_id platform_of_match[] = {
->  	}, {
->  		.compatible = "edt,etm0700g0dh6",
->  		.data = &edt_etm0700g0dh6,
-> +	}, {
-> +		.compatible = "eink,vb3300-kca",
 
-You have to document this string too.
+Acked-by: Rob Herring <robh@kernel.org>
