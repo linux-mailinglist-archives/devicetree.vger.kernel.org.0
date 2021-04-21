@@ -2,145 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DF7736673B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 10:45:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91EF2366770
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 11:00:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237197AbhDUIqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 04:46:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37468 "EHLO
+        id S235435AbhDUJAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 05:00:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234885AbhDUIqV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 04:46:21 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3509EC06138B
-        for <devicetree@vger.kernel.org>; Wed, 21 Apr 2021 01:45:47 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id c4so1533643wrt.8
-        for <devicetree@vger.kernel.org>; Wed, 21 Apr 2021 01:45:47 -0700 (PDT)
+        with ESMTP id S231354AbhDUJAv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 05:00:51 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79DDFC06174A
+        for <devicetree@vger.kernel.org>; Wed, 21 Apr 2021 02:00:18 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id j4so26267397lfp.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Apr 2021 02:00:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=nF07lGmK8d790hYBNTxLzN+JqkeiBDMUtoFoxeafsPs=;
-        b=PKuxgMvuAnY4j3XFS5LDSlKmE9K0hmcw+6xcrwyF5EYk7C+8Q8rY09FX5klV91bQ+H
-         oxmSb48NV+BkZM2nurcQFUv1xeSoPd8ubDufrdjItZVFace8Vy9HXrRYrLCvASct4xst
-         k2HVS4BbQnxp0VWuIYmqyQEC00n+oyX/PUzMbomZhrRxe1W5qS/8vi/xIpyFSfSRyQGR
-         VD0ijrBlEJVy0twXMsrs3GbESBEL9NBaTOoV8sRIGfz8wN0dTLTFKO9tLjT7A+yyVTuj
-         95XwzYTffbWs4+c3mq8VdLDECQASB+DEPMqJcnV/smKRAqP6IVD5PKCha4TOYf9mBp/n
-         4DeQ==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rCPduy7SnanGcwWUA7fYZluRTUTOG9uzQWoQTaTpB/c=;
+        b=WDtOaHmDTXiUGUdzUuaUjOV9ukdvijJTJZax5UggsTiDTU8tsXdHKg7MRzEeRPsP0a
+         KEbRnaE6f6s/+CfsuRXMwuUxggRoKEOfxN4Y0Ag5YrqPJF8XEiwCSBVaiR9LIHL4pr1O
+         O58Eq+W48fYOk1szSYaS/QC5Xz4xIo2ogxQiF+lE1uOUF2Y/yNACmM7SsVZWRz2bMUMQ
+         7hG+Jo6qXmtVxl6+VkEJogjoA4DT33hi3AoL1Ec7JFZHKTtruW/jOF1NZSdI8sD9aLs4
+         yEJuanb58VK+VgwO2lsCtTECz4Lq+rF4HUg65rvba0/WHZP/QJgljiBwDmQrxJWsyfvM
+         kgvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nF07lGmK8d790hYBNTxLzN+JqkeiBDMUtoFoxeafsPs=;
-        b=qw53lJs6YZ2yW6cqTgOxkh10J/cYtW+nnZt1HDjt5+IANQGly3rEF9rr4SBhFZ8pOk
-         t9DFTBg909z37uN+XXRwq5tt4Ks/z+/6QhSgD81sNbUQzo381iNBNMUp5OMStIKIbfo+
-         NkNZoZpr0FXkXIJmXp8jB0itP3nguvT/mEDPgFcwM9kmmtYD1avl/wTGdXQbY4Re7pdF
-         jir8W1VjMbks+cvytV64ieKNtH/3nDvsCRMgYD142KEYdukgL2JelPES8KwL7rzEhfSM
-         AvcOm1kgI1JHN7Ba+ZcCz/OoPWWGhVaxVQA2i96V55JapISIaT/JSDHyQbxKufZ8in3u
-         oZDw==
-X-Gm-Message-State: AOAM533zaeN+RYw6ja1wrpD/sJUkDT5n4vCKt5t/snrkR42mAt9ST8iC
-        hu0TSUampXBuIWrjzFWKa+B9YQ==
-X-Google-Smtp-Source: ABdhPJxLbEgvbfDHrIA7WnlMIVdZHppOGkiCV3bbFTTWBqmRn3tbZ6PUlt6yVY2Qyreu5khHX/9XXQ==
-X-Received: by 2002:adf:f081:: with SMTP id n1mr25780163wro.137.1618994745796;
-        Wed, 21 Apr 2021 01:45:45 -0700 (PDT)
-Received: from google.com (105.168.195.35.bc.googleusercontent.com. [35.195.168.105])
-        by smtp.gmail.com with ESMTPSA id s8sm2246313wrn.97.2021.04.21.01.45.45
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rCPduy7SnanGcwWUA7fYZluRTUTOG9uzQWoQTaTpB/c=;
+        b=kSPD0S3+5ESMTjlXJFXZ3r5emh8uNbEOwuQGZa3tDLUvcBb4u8Ng7DmQHKl/2XuASI
+         eOLUeU72Fp8aK3dIM5yHq1QxOXH3Dxlu6qsLq1oRGXs6pFsaFblz42wr2p2dIe8hH1zP
+         U2ugdm6/IoUwhaeT/C00XmE1p6XZnkPgvhqsRj7dt7A8EwwavwcODWrVW710y8nK72X1
+         joVH5R0Xz1qUk0IRe1w/itOqiM6YkRa5C41nxspEuWSSvZQeeR4GWbWfk9mIZPpWVl3f
+         NKyVn1xApiF9BRHBqjXXTbUBFsPTKa+qGUfWaX45mZYmMzzdQPiuKI+cUiwvVWt/JYNo
+         PDiQ==
+X-Gm-Message-State: AOAM532tDE3uOEQA2TY+isxFG1fGRRNUENlvZK9lApETyqPglWA38zXN
+        jIPkjn4bCHQ+abHOkmEuX8VLGxdbAOE=
+X-Google-Smtp-Source: ABdhPJwBIohEV4ymPT/yV74wwMHs16XVEAa7i7YJsGvILC33p13O11Un8WAxroND+OzKDmsMOZZQPw==
+X-Received: by 2002:a05:6512:455:: with SMTP id y21mr19639531lfk.220.1618995616949;
+        Wed, 21 Apr 2021 02:00:16 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id e11sm146346ljj.59.2021.04.21.02.00.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Apr 2021 01:45:45 -0700 (PDT)
-Date:   Wed, 21 Apr 2021 08:45:42 +0000
-From:   Quentin Perret <qperret@google.com>
+        Wed, 21 Apr 2021 02:00:16 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Ard Biesheuvel <ardb@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sasha Levin <sashal@kernel.org>,
-        stable <stable@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        KarimAllah Ahmed <karahmed@amazon.de>,
-        Android Kernel Team <kernel-team@android.com>,
-        Architecture Mailman List <boot-architecture@lists.linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [v5.4 stable] arm: stm32: Regression observed on "no-map"
- reserved memory region
-Message-ID: <YH/mNosARuC1KiuY@google.com>
-References: <4a4734d6-49df-677b-71d3-b926c44d89a9@foss.st.com>
- <CAL_JsqKGG8E9Y53+az+5qAOOGiZRAA-aD-1tKB-hcOp+m3CJYw@mail.gmail.com>
- <001f8550-b625-17d2-85a6-98a483557c70@foss.st.com>
- <CAL_Jsq+LUPZFhXd+j-xM67rZB=pvEvZM+1sfckip0Lqq02PkZQ@mail.gmail.com>
- <CAMj1kXE2Mgr9CsAMnKXff+96xhDaE5OLeNhypHvpN815vZGZhQ@mail.gmail.com>
- <d7f9607a-9fcb-7ba2-6e39-03030da2deb0@gmail.com>
- <YH/ixPnHMxNo08mJ@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] ARM: dts: BCM5301X: Fix pinmux subnodes names
+Date:   Wed, 21 Apr 2021 11:00:06 +0200
+Message-Id: <20210421090006.28228-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YH/ixPnHMxNo08mJ@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 21 Apr 2021 at 08:31:00 (+0000), Quentin Perret wrote:
-> FWIW I did test this on Qemu before posting. With 5.12-rc8 and a 1MiB
-> no-map region at 0x80000000, I have the following:
-> 
-> 40000000-7fffffff : System RAM
->   40210000-417fffff : Kernel code
->   41800000-41daffff : reserved
->   41db0000-4210ffff : Kernel data
->   48000000-48008fff : reserved
-> 80000000-800fffff : reserved
-> 80100000-13fffffff : System RAM
->   fa000000-ffffffff : reserved
->   13b000000-13f5fffff : reserved
->   13f6de000-13f77dfff : reserved
->   13f77e000-13f77efff : reserved
->   13f77f000-13f7dafff : reserved
->   13f7dd000-13f7defff : reserved
->   13f7df000-13f7dffff : reserved
->   13f7e0000-13f7f3fff : reserved
->   13f7f4000-13f7fdfff : reserved
->   13f7fe000-13fffffff : reserved
-> 
-> If I remove the 'no-map' qualifier from DT, I get this:
-> 
-> 40000000-13fffffff : System RAM
->   40210000-417fffff : Kernel code
->   41800000-41daffff : reserved
->   41db0000-4210ffff : Kernel data
->   48000000-48008fff : reserved
->   80000000-800fffff : reserved
->   fa000000-ffffffff : reserved
->   13b000000-13f5fffff : reserved
->   13f6de000-13f77dfff : reserved
->   13f77e000-13f77efff : reserved
->   13f77f000-13f7dafff : reserved
->   13f7dd000-13f7defff : reserved
->   13f7df000-13f7dffff : reserved
->   13f7e0000-13f7f3fff : reserved
->   13f7f4000-13f7fdfff : reserved
->   13f7fe000-13fffffff : reserved
-> 
-> So this does seem to be working fine on my setup. I'll try again with
-> 5.4 to see if I can repro.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-I just ran the same experiment on v5.4.102 which is where the
-regression was reported, and I'm seeing the same correct result...
+This matches pinmux-node.yaml requirements.
 
-> Also, 8a5a75e5e9e5 ("of/fdt: Make sure no-map does not remove already
-> reserved regions") looks more likely to cause the issue observed here,
-> but that shouldn't be silent. I get the following error message in dmesg
-> if I if place the no-map region on top of the kernel image:
-> 
-> OF: fdt: Reserved memory: failed to reserve memory for node 'foobar@40210000': base 0x0000000040210000, size 1 MiB
-> 
-> Is that triggering on your end?
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm/boot/dts/bcm47094.dtsi | 2 +-
+ arch/arm/boot/dts/bcm5301x.dtsi | 6 +++---
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-So that really sounds like the cause of the issue here, though arguably
-this should be indicative a something funny in the DT.
+diff --git a/arch/arm/boot/dts/bcm47094.dtsi b/arch/arm/boot/dts/bcm47094.dtsi
+index 2a8f7312d1be..6282363313e1 100644
+--- a/arch/arm/boot/dts/bcm47094.dtsi
++++ b/arch/arm/boot/dts/bcm47094.dtsi
+@@ -11,7 +11,7 @@ / {
+ &pinctrl {
+ 	compatible = "brcm,bcm4709-pinmux";
+ 
+-	pinmux_mdio: mdio {
++	pinmux_mdio: mdio-pins {
+ 		groups = "mdio_grp";
+ 		function = "mdio";
+ 	};
+diff --git a/arch/arm/boot/dts/bcm5301x.dtsi b/arch/arm/boot/dts/bcm5301x.dtsi
+index 092ec525c01c..5b9723a10bd6 100644
+--- a/arch/arm/boot/dts/bcm5301x.dtsi
++++ b/arch/arm/boot/dts/bcm5301x.dtsi
+@@ -458,18 +458,18 @@ spi-pins {
+ 					function = "spi";
+ 				};
+ 
+-				pinmux_i2c: i2c {
++				pinmux_i2c: i2c-pins {
+ 					groups = "i2c_grp";
+ 					function = "i2c";
+ 				};
+ 
+-				pinmux_pwm: pwm {
++				pinmux_pwm: pwm-pins {
+ 					groups = "pwm0_grp", "pwm1_grp",
+ 						 "pwm2_grp", "pwm3_grp";
+ 					function = "pwm";
+ 				};
+ 
+-				pinmux_uart1: uart1 {
++				pinmux_uart1: uart1-pins {
+ 					groups = "uart1_grp";
+ 					function = "uart1";
+ 				};
+-- 
+2.26.2
 
-Thanks,
-Quentin
