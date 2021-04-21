@@ -2,113 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C1E33667FB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 11:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAD36366836
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 11:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238130AbhDUJ2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 05:28:04 -0400
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:51921 "EHLO
-        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230516AbhDUJ2D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Apr 2021 05:28:03 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id BFC615C0114;
-        Wed, 21 Apr 2021 05:27:29 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Wed, 21 Apr 2021 05:27:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=9dH6I2lCf6KaG/adJovZAIRRmL2
-        xnY0W1xR7ps1E0Jg=; b=Z9yTpzRefPDTbMCbpvemRI6X9mADIGXhjCEXJNL5PX2
-        KfhNOMe9z+svdtgvKSRv/bOiSh12b1Qi42l4w9feuNoHMAOCS7qAa9BuabhP9MMX
-        V3+4x+ge4M0xzXypNvCB7VIvby3tCZJjgeaHDoLOjkWGR0Ces+Sbi2W+TOfCvI0M
-        Tog505mPq1HN7rYDWhc+RKsrt5PU9cpcw1ooGno8bQsQ5eU3/xI0R1wwXsBSFGG5
-        yPpMqSzGEppNA3m5KE2aUzsq+5Z1LiF6jmfOuIYjEIU8koCfAvnXb2ObsEGWM+eL
-        PQGhEJPCkwGqjQCyjgkN1e0bYUa6lONlRnnyzoVKYjA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=9dH6I2
-        lCf6KaG/adJovZAIRRmL2xnY0W1xR7ps1E0Jg=; b=c1tCO1B5qpa+mxSE3EeT5L
-        OjrnDfv6OhArJpEGLe0juS+SCBDM7bo5tIuYy3me1fD+vo1x9SFcoYahCfH58oQJ
-        gDjLwBmwQ80k+d9MQsk2NHa0Rb4U/ZV0O3AtzMwGok1PlNWam275ldO59UmUcR2J
-        /5Bi7qXhzkUC4QDF4KA4Gep89dmbUxidqnoMz8DH8PFM3cJEgpldKeUNktlvxytS
-        zkM62QD6Mscf0Wv1W++SBjQVzCb45W+a+cfCMGHIJl6aM9lMxkS9IXwBZFQY5hrq
-        ShrP2IiSmY/U37pYBBfEoLjQ1hzQzC8SIzEQ5w5ikCOE+VJ20GpQbaSS0lXPHWZw
-        ==
-X-ME-Sender: <xms:APB_YLmVQub7r2Ise749WjUjfm0ahIuMRoWRwXSV-CQqBDH-1MhuMA>
-    <xme:APB_YO0RYJmtauWGYInNMyByIbCsy63OmJcS_BNivgKE8y4mlON6VjPClX709SI-j
-    4cS-50iUh436NyqwLg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvddtkedgudeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:APB_YBro3qGu7WtCcUWnDa-eSOBXPCMRjv-YCP9y-9TWEOaO3R_-oQ>
-    <xmx:APB_YDmbS_l_OUjd7EfWcJNWVAXX0gSh0N3t4ycuwxBxJ609mQ8FKw>
-    <xmx:APB_YJ0RdtXWc5IfzT3kyQH3B5kY6pa7KfA7nEWweNVv9WBKW41Vag>
-    <xmx:AfB_YGnxVaOse70VGiKkULfZf0E_F7Z5MiONHWQv4p89GrzNyaxN6Q>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id C855C24005B;
-        Wed, 21 Apr 2021 05:27:27 -0400 (EDT)
-Date:   Wed, 21 Apr 2021 11:27:25 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 0/2] Allwinner H6 USB3 device tree updates
-Message-ID: <20210421092725.qacp3446hiyf73ov@gilmour>
-References: <20210421042834.27309-1-samuel@sholland.org>
+        id S238321AbhDUJiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 05:38:51 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:16487 "EHLO
+        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238140AbhDUJiv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 05:38:51 -0400
+Received: from DGGEMS405-HUB.china.huawei.com (unknown [172.30.72.60])
+        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4FQFmB2XhhztWfr;
+        Wed, 21 Apr 2021 17:35:54 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.72) by DGGEMS405-HUB.china.huawei.com
+ (10.3.19.205) with Microsoft SMTP Server id 14.3.498.0; Wed, 21 Apr 2021
+ 17:38:12 +0800
+Subject: Re: [PATCH 1/1] dt-bindings: serial: Add label property for pl011
+To:     Rob Herring <robh@kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-serial <linux-serial@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20210415073105.3687-1-thunder.leizhen@huawei.com>
+ <20210420200246.GA3717650@robh.at.kernel.org>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <fa6c6079-8061-5774-8252-31956ac84ae2@huawei.com>
+Date:   Wed, 21 Apr 2021 17:38:11 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jf4xm3l2oukir3xt"
-Content-Disposition: inline
-In-Reply-To: <20210421042834.27309-1-samuel@sholland.org>
+In-Reply-To: <20210420200246.GA3717650@robh.at.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.174.177.72]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---jf4xm3l2oukir3xt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On 2021/4/21 4:02, Rob Herring wrote:
+> On Thu, Apr 15, 2021 at 03:31:05PM +0800, Zhen Lei wrote:
+>> When there is more than one pl011 serial port present, the label property
+>> allows a custom name to be used for briefly describe the usage or position
+>> of each serial port.
+>>
+>> Without this "label" property, many dtbs_check warnings similar to the
+>> following are reported:
+>> arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dt.yaml: \
+>> serial@ffd74000: Additional properties are not allowed ('label' was unexpected)
+>>         From schema: Documentation/devicetree/bindings/serial/pl011.yaml
+> 
+> I think this should go into serial.yaml instead.
 
-On Tue, Apr 20, 2021 at 11:28:32PM -0500, Samuel Holland wrote:
-> While implementing support for this USB controller in U-Boot, I noticed
-> that the reset line alsp affects they PHY. It looks like most platforms
-> use a separate glue node to represent this, and in fact there is already
-> a compatible for the H6 listed in drivers/usb/dwc3/dwc3-of-simple.c.
->=20
-> Since this layout matches the usual way of modeling this hardware, it
-> allows using the existing drivers without adding platform-specific code.
+Yes，But if I add "label: true" into serial.yaml, it doesn't work. I haven't figured out why.
 
-I'm not sure which branch you based this on, but the Pine H64 seems to
-be missing the USB3 support in the first place. I've applied the rest of
-the changes though, thanks!
+By the way, should "$ref: /schemas/serial.yaml#" be replaced with "$ref: /schemas/serial/serial.yaml#"?
 
-Maxime
+> 
+>>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>> ---
+>>  Documentation/devicetree/bindings/serial/pl011.yaml | 3 +++
+>>  1 file changed, 3 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/serial/pl011.yaml b/Documentation/devicetree/bindings/serial/pl011.yaml
+>> index 1f8e9f2644b6b80..303c7746423f503 100644
+>> --- a/Documentation/devicetree/bindings/serial/pl011.yaml
+>> +++ b/Documentation/devicetree/bindings/serial/pl011.yaml
+>> @@ -34,6 +34,9 @@ properties:
+>>    reg:
+>>      maxItems: 1
+>>  
+>> +  label:
+>> +    maxItems: 1
+> 
+> label is always a single string and so 'maxItems' is always 1. Just 
+> need:
+> 
+> label: true
 
---jf4xm3l2oukir3xt
-Content-Type: application/pgp-signature; name="signature.asc"
+OK
 
------BEGIN PGP SIGNATURE-----
+> 
+>> +
+>>    interrupts:
+>>      maxItems: 1
+>>  
+>> -- 
+>> 2.26.0.106.g9fadedd
+>>
+>>
+> 
+> .
+> 
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYH/v/QAKCRDj7w1vZxhR
-xTUmAP4qrMOtgHXTjgmjwRw2xJfTRkCrMp+xzzfSSSrM/DANwAEA6RyQ7yp3cV66
-SblHZBPC6Yj8DUMVRy+KT0nJelfcvQ8=
-=Gcf+
------END PGP SIGNATURE-----
-
---jf4xm3l2oukir3xt--
