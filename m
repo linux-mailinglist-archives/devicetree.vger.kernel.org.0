@@ -2,248 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAC8336649D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 06:45:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1D8D3664CD
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 07:29:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232194AbhDUEpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 00:45:41 -0400
-Received: from guitar.tcltek.co.il ([192.115.133.116]:43816 "EHLO
-        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232146AbhDUEpj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Apr 2021 00:45:39 -0400
-Received: from tarshish (unknown [10.0.8.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id 402D64405EB;
-        Wed, 21 Apr 2021 07:45:02 +0300 (IDT)
-References: <cover.1618916235.git.baruch@tkos.co.il>
- <c6ff03d1377ea9b5ff40ab283c884aeff6254dd9.1618916235.git.baruch@tkos.co.il>
- <20210420161855.GA3402221@robh.at.kernel.org>
-User-agent: mu4e 1.4.15; emacs 27.1
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Selvam Sathappan Periakaruppan <speriaka@codeaurora.org>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-pci@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/5] PCI: qcom: add support for IPQ60xx PCIe controller
-In-reply-to: <20210420161855.GA3402221@robh.at.kernel.org>
-Date:   Wed, 21 Apr 2021 07:45:01 +0300
-Message-ID: <87r1j4kzzm.fsf@tarshish>
+        id S234792AbhDUF3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 01:29:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50820 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230409AbhDUF3e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 01:29:34 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ECDEC06174A
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 22:29:02 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id 10so18724449pfl.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 22:29:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nlaqIWp5Fzquc+zXrvm2JPBL/vMUuB8HIWaERbo23p4=;
+        b=b9uo6QVHkt0VV4y2Dg4EHFFElBLjCCyDwSVMIDwkIqTNzjblJgeigtidsR81zNfOKi
+         L9BdKCqmzSXE5ap3gH4eJRWiqRq8DRRS9euzxGTLTf1LjmmzIBna0Go87oNJJ+H/tVRB
+         9vmQqLh2nvM1a7DwwiGupaXA5Ur6p8XSVXvdg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nlaqIWp5Fzquc+zXrvm2JPBL/vMUuB8HIWaERbo23p4=;
+        b=as9UGpgA8DQeX6U0vTVeeBova0+E9Hp69dX+IO30fonLuAQfIHPUyL6fqrEAKsiZ+N
+         EfXRMI4qxFXspFK0jO6hKVUeJN9uhhG6fMHhSq+AZ69l2+WnmptrNUltr/WhmWY1eRP4
+         I0dmpANrcHD4AuoDe8tTFeCc2SAE4lU+LsQrRcDRMhZ1b0L+zdKT5wq1C1Hj5adpQX/J
+         Qqq0v1leCyMGAGMCmZSE8VunadXctc71dD7hcMh8uM8AtOjeaHqeFxzvTNObh4Zu+cTc
+         RLu9zmCkqfcnddUqCktpC2f4DhX45cBJYO64Oyz7OS14ZRxq6S45fOtABXs7IeAzyp+A
+         mXlA==
+X-Gm-Message-State: AOAM531rAzl+59zwk1AJrWpTs0l0UkR8bCktCne1QBX0P+YK8LHbCKav
+        3qjTLKYcqRPRnr1d3CpzXH2dfw==
+X-Google-Smtp-Source: ABdhPJy/v51axJc4IPprUcfU5wqCBVCs3deVpfNqoQc0PWEDX48zVr/uPgS2uSMuQue7WI3t0o/AXg==
+X-Received: by 2002:a62:6202:0:b029:208:f11c:2143 with SMTP id w2-20020a6262020000b0290208f11c2143mr28513587pfb.32.1618982941649;
+        Tue, 20 Apr 2021 22:29:01 -0700 (PDT)
+Received: from drinkcat2.tpe.corp.google.com ([2401:fa00:1:b:b3e5:49c0:4843:2bbe])
+        by smtp.gmail.com with ESMTPSA id b6sm602537pfa.185.2021.04.20.22.28.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Apr 2021 22:29:01 -0700 (PDT)
+From:   Nicolas Boichat <drinkcat@chromium.org>
+To:     Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+Cc:     fshao@chromium.org, hsinyi@chromium.org, hoegsberg@chromium.org,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        boris.brezillon@collabora.com,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v13 0/4] drm/panfrost: Add support for mt8183 GPU
+Date:   Wed, 21 Apr 2021 13:28:51 +0800
+Message-Id: <20210421052855.1279713-1-drinkcat@chromium.org>
+X-Mailer: git-send-email 2.31.1.368.gbe11c130af-goog
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi!
 
-Thanks for your review.
+This is just a rebase of the v11, untested (but it seems like
+Neil Armstrong recently tested it), with small changes in
+binding and dts. v11 cover follows:
 
-I have a few comments below.
+Follow-up on the v5 [1], things have gotten significantly
+better in the last year, thanks to the efforts on Bifrost
+support by the Collabora team (and probably others I'm not
+aware of).
 
-On Tue, Apr 20 2021, Rob Herring wrote:
-> On Tue, Apr 20, 2021 at 02:21:36PM +0300, Baruch Siach wrote:
->> From: Selvam Sathappan Periakaruppan <speriaka@codeaurora.org>
->> 
->> IPQ60xx series of SoCs have one port of PCIe gen 3. Add support for that
->> platform.
->> 
->> The code is based on downstream Codeaurora kernel v5.4. Split out the
->> registers access part from .init into .post_init. Registers are only
->> accessible after phy_power_on().
->> 
->> Signed-off-by: Selvam Sathappan Periakaruppan <speriaka@codeaurora.org>
->> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
->> ---
->>  drivers/pci/controller/dwc/pcie-qcom.c | 279 +++++++++++++++++++++++++
->>  1 file changed, 279 insertions(+)
->> 
->> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
->> index 8a7a300163e5..3e27de744738 100644
->> --- a/drivers/pci/controller/dwc/pcie-qcom.c
->> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
->> @@ -41,6 +41,31 @@
->>  #define L23_CLK_RMV_DIS				BIT(2)
->>  #define L1_CLK_RMV_DIS				BIT(1)
->>  
->> +#define PCIE_ATU_CR1_OUTBOUND_6_GEN3		0xC00
->> +#define PCIE_ATU_CR2_OUTBOUND_6_GEN3		0xC04
->> +#define PCIE_ATU_LOWER_BASE_OUTBOUND_6_GEN3	0xC08
->> +#define PCIE_ATU_UPPER_BASE_OUTBOUND_6_GEN3	0xC0C
->> +#define PCIE_ATU_LIMIT_OUTBOUND_6_GEN3		0xC10
->> +#define PCIE_ATU_LOWER_TARGET_OUTBOUND_6_GEN3	0xC14
->> +#define PCIE_ATU_UPPER_TARGET_OUTBOUND_6_GEN3	0xC18
->> +
->> +#define PCIE_ATU_CR1_OUTBOUND_7_GEN3		0xE00
->> +#define PCIE_ATU_CR2_OUTBOUND_7_GEN3		0xE04
->> +#define PCIE_ATU_LOWER_BASE_OUTBOUND_7_GEN3	0xE08
->> +#define PCIE_ATU_UPPER_BASE_OUTBOUND_7_GEN3	0xE0C
->> +#define PCIE_ATU_LIMIT_OUTBOUND_7_GEN3		0xE10
->> +#define PCIE_ATU_LOWER_TARGET_OUTBOUND_7_GEN3	0xE14
->> +#define PCIE_ATU_UPPER_TARGET_OUTBOUND_7_GEN3 	0xE18
->
-> ATU registers are standard DWC registers. Plus upstream now dynamically 
-> detects how many ATU regions there are.
->
->> +#define PCIE20_COMMAND_STATUS			0x04
->> +#define BUS_MASTER_EN				0x7
->> +#define PCIE20_DEVICE_CONTROL2_STATUS2		0x98
->> +#define PCIE_CAP_CPL_TIMEOUT_DISABLE		0x10
->
-> All PCI standard registers.
+I've been testing this series on a MT8183/kukui device, with a
+chromeos-5.10 kernel [2], and got basic Chromium OS UI up with
+mesa 20.3.2 (lots of artifacts though).
 
-PCIE20_COMMAND_STATUS is indeed the common PCI_COMMAND. I could not find
-anything that matches PCIE20_DEVICE_CONTROL2_STATUS2. Where should I
-look?
+devfreq is currently not supported, as we'll need:
+ - Clock core support for switching the GPU core clock (see 2/4).
+ - Platform-specific handling of the 2-regulator (see 3/4).
 
->
->> +#define PCIE30_GEN3_RELATED_OFF			0x890
->
-> Looks like a DWC port logic register. The define at a minimum goes in 
-> the common code. We probably already have one. Code touching the 
-> register should ideally be there too (hint: look at the other drivers). 
+Since the latter is easy to detect, patch 3/4 just disables
+devfreq if the more than one regulator is specified in the
+compatible matching table.
 
-pcie-tegra194.c uses the equivalent GEN3_RELATED_OFF. So I can move the
-definition to a common header. As for the code, I don't know. The tegra
-configuration sequence involves other registers as well.
+[1] https://patchwork.kernel.org/project/linux-mediatek/cover/20200306041345.259332-1-drinkcat@chromium.org/
+[2] https://crrev.com/c/2608070
 
-[snip]
+Changes in v13:
+ - devfreq: Fix conflict resolution mistake when rebasing, didn't
+   even compile. Oops.
 
->> +static int qcom_pcie_post_init_2_9_0(struct qcom_pcie *pcie)
->> +{
->> +	struct dw_pcie *pci = pcie->pci;
->> +	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
->> +	u32 val;
->> +	int i;
->> +
->> +	writel(SLV_ADDR_SPACE_SZ,
->> +		pcie->parf + PCIE20_v3_PARF_SLV_ADDR_SPACE_SIZE);
->> +
->> +	val = readl(pcie->parf + PCIE20_PARF_PHY_CTRL);
->> +	val &= ~BIT(0);
->
-> What's BIT(0)?
+Changes in v12:
+ - binding: Fix min/maxItems logic (Rob Herring)
+ - Add gpu node to mt8183-pumpkin.dts as well (Neil Armstrong).
 
-I have no idea. I have no access to hardware documentation. I'm just
-porting working code from the Codeaurora tree.
+Changes in v11:
+ - binding: power-domain-names not power-domainS-names
+ - mt8183*.dts: remove incorrect supply-names
 
->
->> +	writel(val, pcie->parf + PCIE20_PARF_PHY_CTRL);
->> +
->> +	writel(0, pcie->parf + PCIE20_PARF_DBI_BASE_ADDR);
->> +
->> +	writel(DEVICE_TYPE_RC, pcie->parf + PCIE20_PARF_DEVICE_TYPE);
->> +	writel(BYPASS | MSTR_AXI_CLK_EN | AHB_CLK_EN,
->> +		pcie->parf + PCIE20_PARF_MHI_CLOCK_RESET_CTRL);
->> +	writel(RXEQ_RGRDLESS_RXTS | GEN3_ZRXDC_NONCOMPL,
->> +		pci->dbi_base + PCIE30_GEN3_RELATED_OFF);
->> +
->> +	writel(MST_WAKEUP_EN | SLV_WAKEUP_EN | MSTR_ACLK_CGC_DIS
->> +		| SLV_ACLK_CGC_DIS | CORE_CLK_CGC_DIS |
->> +		AUX_PWR_DET | L23_CLK_RMV_DIS | L1_CLK_RMV_DIS,
->> +		pcie->parf + PCIE20_PARF_SYS_CTRL);
->> +
->> +	writel(0, pcie->parf + PCIE20_PARF_Q2A_FLUSH);
->> +
->> +	writel(BUS_MASTER_EN, pci->dbi_base + PCIE20_COMMAND_STATUS);
->
-> Pretty sure the DWC core or PCI core does this already.
->
->> +
->> +	writel(DBI_RO_WR_EN, pci->dbi_base + PCIE20_MISC_CONTROL_1_REG);
->> +	writel(PCIE_CAP_LINK1_VAL, pci->dbi_base + offset + PCI_EXP_SLTCAP);
->> +
->> +	/* Configure PCIe link capabilities for ASPM */
->> +	val = readl(pci->dbi_base + offset + PCI_EXP_LNKCAP);
->> +	val &= ~PCI_EXP_LNKCAP_ASPMS;
->> +	writel(val, pci->dbi_base + offset + PCI_EXP_LNKCAP);
->> +
->> +	writel(PCIE_CAP_CPL_TIMEOUT_DISABLE, pci->dbi_base +
->> +		PCIE20_DEVICE_CONTROL2_STATUS2);
->> +
->> +	writel(PCIE_CAP_CURR_DEEMPHASIS | SPEED_GEN3,
->> +			pci->dbi_base + offset + PCI_EXP_DEVCTL2);
->
-> This all looks like stuff that should be in the DWC core code. Maybe we 
-> need an ASPM disable quirk or something? That's probably somewhat 
-> common.
+Changes in v10:
+ - Fix the binding to make sure sram-supply property can be provided.
 
-Where in common code should that be? Which part is quirky?
+Changes in v9:
+ - Explain why devfreq needs to be disabled for GPUs with >1
+   regulators.
 
->> +
->> +	for (i = 0;i < 256;i++)
->> +		writel(0x0, pcie->parf + PCIE20_PARF_BDF_TO_SID_TABLE_N
->> +				+ (4 * i));
->> +
->
->> +	writel(0x4, pci->atu_base + PCIE_ATU_CR1_OUTBOUND_6_GEN3);
->> +	writel(0x90000000, pci->atu_base + PCIE_ATU_CR2_OUTBOUND_6_GEN3);
->> +	writel(0x0, pci->atu_base + PCIE_ATU_LOWER_BASE_OUTBOUND_6_GEN3);
->> +	writel(0x0, pci->atu_base + PCIE_ATU_UPPER_BASE_OUTBOUND_6_GEN3);
->> +	writel(0x00107FFFF, pci->atu_base + PCIE_ATU_LIMIT_OUTBOUND_6_GEN3);
->> +	writel(0x0, pci->atu_base + PCIE_ATU_LOWER_TARGET_OUTBOUND_6_GEN3);
->> +	writel(0x0, pci->atu_base + PCIE_ATU_UPPER_TARGET_OUTBOUND_6_GEN3);
->> +	writel(0x5, pci->atu_base + PCIE_ATU_CR1_OUTBOUND_7_GEN3);
->> +	writel(0x90000000, pci->atu_base + PCIE_ATU_CR2_OUTBOUND_7_GEN3);
->> +	writel(0x200000, pci->atu_base + PCIE_ATU_LOWER_BASE_OUTBOUND_7_GEN3);
->> +	writel(0x0, pci->atu_base + PCIE_ATU_UPPER_BASE_OUTBOUND_7_GEN3);
->> +	writel(0x7FFFFF, pci->atu_base + PCIE_ATU_LIMIT_OUTBOUND_7_GEN3);
->> +	writel(0x0, pci->atu_base + PCIE_ATU_LOWER_TARGET_OUTBOUND_7_GEN3);
->> +	writel(0x0, pci->atu_base + PCIE_ATU_UPPER_TARGET_OUTBOUND_7_GEN3);
->
-> This should all be coming from 'ranges' in the DT. If not, why not?
+Changes in v8:
+ - Use DRM_DEV_INFO instead of ERROR
 
-I'll try to drop it and see if it works. I see that common code
-overwrites this area anyway.
+Changes in v7:
+ - Fix GPU ID in commit message
+ - Fix GPU ID in commit message
 
->
-> If you haven't caught the theme yet, everything outside of PARF register 
-> accesses had better have a good explanation why they can't be in common 
-> code.
->
->> +
->> +	return 0;
->> +}
->> +
->>  static int qcom_pcie_link_up(struct dw_pcie *pci)
->>  {
->>  	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
->> @@ -1456,6 +1720,15 @@ static const struct qcom_pcie_ops ops_1_9_0 = {
->>  	.config_sid = qcom_pcie_config_sid_sm8250,
->>  };
->>  
->> +/* Qcom IP rev.: 2.9.0  Synopsys IP rev.: 5.00a */
->> +static const struct qcom_pcie_ops ops_2_9_0 = {
->> +	.get_resources = qcom_pcie_get_resources_2_9_0,
->> +	.init = qcom_pcie_init_2_9_0,
->> +	.post_init = qcom_pcie_post_init_2_9_0,
->> +	.deinit = qcom_pcie_deinit_2_9_0,
->> +	.ltssm_enable = qcom_pcie_2_3_2_ltssm_enable,
->> +};
->> +
->>  static const struct dw_pcie_ops dw_pcie_ops = {
->>  	.link_up = qcom_pcie_link_up,
->>  	.start_link = qcom_pcie_start_link,
->> @@ -1508,6 +1781,11 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->>  		goto err_pm_runtime_put;
->>  	}
->>  
->> +	/* We need ATU for .post_init */
->> +	pci->atu_base = devm_platform_ioremap_resource_byname(pdev, "atu");
->
-> The DWC core handles this now.
+Changes in v6:
+ - Rebased, actually tested with recent mesa driver.
+ - Add gpu regulators to kukui dtsi as well.
+ - Power domains are now attached to spm, not scpsys
+ - Drop R-B.
+ - devfreq: New change
+ - Context conflicts, reflow the code.
+ - Use ARRAY_SIZE for power domains too.
 
-With ATU code in .post_init gone, we can remove this as well.
+Changes in v5:
+ - Rename "2d" power domain to "core2"
+ - Rename "2d" power domain to "core2" (keep R-B again).
+ - Change power domain name from 2d to core2.
 
-baruch
+Changes in v4:
+ - Add power-domain-names description
+   (kept Alyssa's reviewed-by as the change is minor)
+ - Add power-domain-names to describe the 3 domains.
+   (kept Alyssa's reviewed-by as the change is minor)
+ - Add power domain names.
+
+Changes in v3:
+ - Match mt8183-mali instead of bifrost, as we require special
+   handling for the 2 regulators and 3 power domains.
+
+Changes in v2:
+ - Use sram instead of mali_sram as SRAM supply name.
+ - Rename mali@ to gpu@.
+
+Nicolas Boichat (4):
+  dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
+  arm64: dts: mt8183: Add node for the Mali GPU
+  drm/panfrost: devfreq: Disable devfreq when num_supplies > 1
+  drm/panfrost: Add mt8183-mali compatible string
+
+ .../bindings/gpu/arm,mali-bifrost.yaml        |  30 ++++-
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   5 +
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   5 +
+ .../boot/dts/mediatek/mt8183-pumpkin.dts      |   5 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 105 ++++++++++++++++++
+ drivers/gpu/drm/panfrost/panfrost_devfreq.c   |   9 ++
+ drivers/gpu/drm/panfrost/panfrost_drv.c       |  10 ++
+ 7 files changed, 168 insertions(+), 1 deletion(-)
 
 -- 
-                                                     ~. .~   Tk Open Systems
-=}------------------------------------------------ooO--U--Ooo------------{=
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
+2.31.1.368.gbe11c130af-goog
+
