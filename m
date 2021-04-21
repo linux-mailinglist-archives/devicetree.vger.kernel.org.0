@@ -2,70 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A1E6366B37
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 14:52:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A818E366B32
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 14:52:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239984AbhDUMwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 08:52:30 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:35779 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239981AbhDUMwa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 08:52:30 -0400
-Received: by mail-ot1-f53.google.com with SMTP id 35-20020a9d05260000b029029c82502d7bso7413604otw.2;
-        Wed, 21 Apr 2021 05:51:56 -0700 (PDT)
+        id S239957AbhDUMw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 08:52:27 -0400
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:44837 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239900AbhDUMw1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 08:52:27 -0400
+Received: by mail-oi1-f180.google.com with SMTP id l17so10962244oil.11;
+        Wed, 21 Apr 2021 05:51:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=kzUnia443FDp3cfEpVSUaMEUxbjwIzwp2k+x6o1CFGs=;
-        b=NoO8URHb2TfbcDVRf6ADSjFtl64hSe4JiWJfJyyxU+4mZ1dZfG4a/Cd9now4j/AnWJ
-         +XpZmTDJ6XTkiUR2djn5X2wHiyhifFqAoJaNJ1hbA/CI9HubvXptw6/VB/P7rRajRe3c
-         +0c1eKhZSr1cOBxxFbbZztWk874rxousxMsGotAHwir8tHNA/e7p2eLYU5P3MAZYkkt5
-         oNbrAYTYN418Y2o6rT8e5gWZCH9op0Jqv7jVY5bgR48+jHFwxDwpNiDA+1OfAw4LO/YM
-         ftv9zoOWfn1rAsHNUIrqeLvFrqRoE44duW46BYb1xlMkPj5bpfLNiy6qSfDZxElyx4/B
-         TEqA==
-X-Gm-Message-State: AOAM5311wCPfkEypCHkAosGNSuWfQnnZQqTCa/K8Sz6Q+qqHph83li0L
-        B6goMMz442i7xlzwtNRZDQ==
-X-Google-Smtp-Source: ABdhPJy7u0Na1Gm17gGUotWoc87lsCS2jMB18HY7U6qv2ub6C2qYplKSuDIf2TVhkPBN+CVB/uD/Gg==
-X-Received: by 2002:a05:6830:1bf6:: with SMTP id k22mr2522066otb.112.1619009515853;
-        Wed, 21 Apr 2021 05:51:55 -0700 (PDT)
+        bh=VQLhFO5JI2Nq15ywY7H92sO8oP4b0Dz1pppaueHAcNU=;
+        b=r7Ufdkz7un7hNP2rxe0x1EBxikF89lVdpLMFG/ZMyW86vWXdSO6XcPGFI+ZDkZ6EHp
+         /nTUPmMX1rEW4rtDFILGIzJJY8X1rslnh8Bqx/zicteN3+3zGJlyqY+XKJjnGbePn3/x
+         i5+Z/V20h8QPcn0NtbBjfGh/JLl0R3wRcHos94uZXGyq9oesf8wA9V9YD+6qVkdsyX6b
+         P7xPLBmU6DEXeKzbvrBfed3e0lbefe6VY05S3h8iZjOorBGOHbLVYXHLtW74xRETmJqh
+         Xpo2UDajVOx/WrFGOPQAbEGVg9k4lyvFlbQPEvMIpYz2ejrWKmgrsPlyUO5uiFEnuWlA
+         B6pQ==
+X-Gm-Message-State: AOAM531fsHaX8jKOYeLu+hJyp1YNa4BPiWuMTXFKMLHW32IO7997hjYD
+        UAivKHeo4EAZIU6WQv5WJQ==
+X-Google-Smtp-Source: ABdhPJxG41MeL3PxhD71HzvRtfENDs4R5CQOxLlgb/LRxz2WM4nMPgFKXQYTsviQQ3g8PDxRCJXIvw==
+X-Received: by 2002:aca:cf8a:: with SMTP id f132mr350321oig.178.1619009513762;
+        Wed, 21 Apr 2021 05:51:53 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u195sm440184oif.55.2021.04.21.05.51.54
+        by smtp.gmail.com with ESMTPSA id l1sm436992oot.40.2021.04.21.05.51.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Apr 2021 05:51:54 -0700 (PDT)
-Received: (nullmailer pid 967212 invoked by uid 1000);
+        Wed, 21 Apr 2021 05:51:51 -0700 (PDT)
+Received: (nullmailer pid 967210 invoked by uid 1000);
         Wed, 21 Apr 2021 12:51:48 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20210421082928.26869-1-zajec5@gmail.com>
-References: <20210421082928.26869-1-zajec5@gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: convert Broadcom Northstar to the json-schema
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-sunxi@lists.linux.dev,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <20210421042834.27309-2-samuel@sholland.org>
+References: <20210421042834.27309-1-samuel@sholland.org> <20210421042834.27309-2-samuel@sholland.org>
+Subject: Re: [PATCH 1/2] dt-bindings: usb: Document the Allwinner H6 DWC3 glue
 Date:   Wed, 21 Apr 2021 07:51:48 -0500
-Message-Id: <1619009508.524210.967211.nullmailer@robh.at.kernel.org>
+Message-Id: <1619009508.513542.967209.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Apr 2021 10:29:28 +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Tue, 20 Apr 2021 23:28:33 -0500, Samuel Holland wrote:
+> The RST_BUS_XHCI reset line in the H6 affects both the DWC3 core and the
+> USB3 PHY. This suggests the reset line controls the USB3 IP as a whole.
+> Represent this by attaching the reset line to a glue layer device.
 > 
-> Important: this change converts the binding as it is. It includes
-> dependency on undocumented CRU that must be refactored. That will be
-> handled once every CRU MFD subdevice gets documented properly (including
-> pinmux).
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
->  .../bindings/pinctrl/brcm,bcm4708-pinmux.txt  | 55 -----------
->  .../bindings/pinctrl/brcm,ns-pinmux.yaml      | 98 +++++++++++++++++++
->  2 files changed, 98 insertions(+), 55 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm4708-pinmux.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
+>  .../usb/allwinner,sun50i-h6-dwc3.yaml         | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -74,10 +71,17 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.example.dt.yaml: dmu@1800c000: $nodename:0: 'dmu@1800c000' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/simple-bus.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.yaml: $id: 'http://devicetree.org/schemas/usb/allwinner,sun50i-h6-dwc3#' does not match 'http://devicetree.org/schemas/.*\\.yaml#'
+Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/usb/allwinner,sun50i-h6-usb3-phy.yaml'
+xargs: dt-doc-validate: exited with status 255; aborting
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.yaml: ignoring, error in schema: $id
+warning: no schema found in file: ./Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.yaml
+Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.example.dts:23.27-50.11: Warning (unit_address_vs_reg): /example-0/usb@5200000: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.example.dt.yaml:0:0: /example-0/usb@5200000: failed to match any schema with compatible: ['allwinner,sun50i-h6-dwc3']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.example.dt.yaml: usb@5200000: phy-names:0: 'usb2-phy' was expected
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
 
-See https://patchwork.ozlabs.org/patch/1468632
+See https://patchwork.ozlabs.org/patch/1468558
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
