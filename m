@@ -2,108 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF8E4366AEC
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 14:38:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A1E6366B37
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 14:52:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239854AbhDUMjE convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 21 Apr 2021 08:39:04 -0400
-Received: from mail-vs1-f42.google.com ([209.85.217.42]:33386 "EHLO
-        mail-vs1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238447AbhDUMiz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 08:38:55 -0400
-Received: by mail-vs1-f42.google.com with SMTP id k19so7990711vsg.0;
-        Wed, 21 Apr 2021 05:38:22 -0700 (PDT)
+        id S239984AbhDUMwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 08:52:30 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:35779 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239981AbhDUMwa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 08:52:30 -0400
+Received: by mail-ot1-f53.google.com with SMTP id 35-20020a9d05260000b029029c82502d7bso7413604otw.2;
+        Wed, 21 Apr 2021 05:51:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=6ALp4ZieNZZ/Ge8Ck+QEaMFcRz5+PoS2G+LjWU70FyA=;
-        b=cbQacpdmULEeC8FwKazMuMPkF4LBWPoup5XG3rA1/pkgeZafOvlaLIfZvDYhy9p5hC
-         hEYfnAomQxlrnTQwcrJZ2iu7gg3FkDXelsA9oP+2rsd3TYH7Cvbye/WOP/aot9Wqjo7E
-         0+UCkdRXExLyitvmJuJGc5xB97zwHDNzDcgEI+NORyMsk/kYuQ21KlLrftzYlL3zOSaR
-         EBfQ2mL3KK0eYA4MCGwFUswVhHUKkixnz3U9BLZoAOLSdenEyFmu8kEtBUMv6FWqXo54
-         g4EwCm49PsXUW3UP+ZwTgquYPJJf3Nae5H6hsaBV2pH+4EsEUIMkC5FN8l/8jcXkpK3N
-         Or/g==
-X-Gm-Message-State: AOAM530cFDFQYpYoYmYf7xryUYS3emxcVeeP9zEyyFFUlPFGGRjPCuEv
-        zwpnAHFChRVp7CSlzOh1K8Z6/fCzZe1ILg+hy0ryeSZu
-X-Google-Smtp-Source: ABdhPJxCa92hyV2QXrUDmNrbi9fPbCWQyb2GtX+ATD7zl2J88K+uhBVzhTODAbNWn/MYolnGB7uJN4epBz1tKa7KzaM=
-X-Received: by 2002:a67:7c8c:: with SMTP id x134mr24769126vsc.40.1619008702371;
- Wed, 21 Apr 2021 05:38:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210413155346.2471776-1-niklas.soderlund+renesas@ragnatech.se>
- <YHiPWPTjWeEQ522E@pendragon.ideasonboard.com> <YHlFWvVBps2vYnPM@oden.dyn.berto.se>
- <YH/zyzfgpmXvkDpB@pendragon.ideasonboard.com> <YIAbBoqEAZONAYii@oden.dyn.berto.se>
-In-Reply-To: <YIAbBoqEAZONAYii@oden.dyn.berto.se>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 21 Apr 2021 14:38:11 +0200
-Message-ID: <CAMuHMdUiqhjm49cg0UMjk3qxgVZYQM0RAHbefvh8mdj58qDr4A@mail.gmail.com>
-Subject: Re: [PATCH] media: dt-bindings: media: renesas,csi2: Node port@0 is
- not mandatory
-To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=kzUnia443FDp3cfEpVSUaMEUxbjwIzwp2k+x6o1CFGs=;
+        b=NoO8URHb2TfbcDVRf6ADSjFtl64hSe4JiWJfJyyxU+4mZ1dZfG4a/Cd9now4j/AnWJ
+         +XpZmTDJ6XTkiUR2djn5X2wHiyhifFqAoJaNJ1hbA/CI9HubvXptw6/VB/P7rRajRe3c
+         +0c1eKhZSr1cOBxxFbbZztWk874rxousxMsGotAHwir8tHNA/e7p2eLYU5P3MAZYkkt5
+         oNbrAYTYN418Y2o6rT8e5gWZCH9op0Jqv7jVY5bgR48+jHFwxDwpNiDA+1OfAw4LO/YM
+         ftv9zoOWfn1rAsHNUIrqeLvFrqRoE44duW46BYb1xlMkPj5bpfLNiy6qSfDZxElyx4/B
+         TEqA==
+X-Gm-Message-State: AOAM5311wCPfkEypCHkAosGNSuWfQnnZQqTCa/K8Sz6Q+qqHph83li0L
+        B6goMMz442i7xlzwtNRZDQ==
+X-Google-Smtp-Source: ABdhPJy7u0Na1Gm17gGUotWoc87lsCS2jMB18HY7U6qv2ub6C2qYplKSuDIf2TVhkPBN+CVB/uD/Gg==
+X-Received: by 2002:a05:6830:1bf6:: with SMTP id k22mr2522066otb.112.1619009515853;
+        Wed, 21 Apr 2021 05:51:55 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id u195sm440184oif.55.2021.04.21.05.51.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Apr 2021 05:51:54 -0700 (PDT)
+Received: (nullmailer pid 967212 invoked by uid 1000);
+        Wed, 21 Apr 2021 12:51:48 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+        bcm-kernel-feedback-list@broadcom.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20210421082928.26869-1-zajec5@gmail.com>
+References: <20210421082928.26869-1-zajec5@gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: convert Broadcom Northstar to the json-schema
+Date:   Wed, 21 Apr 2021 07:51:48 -0500
+Message-Id: <1619009508.524210.967211.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Niklas,
+On Wed, 21 Apr 2021 10:29:28 +0200, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> Important: this change converts the binding as it is. It includes
+> dependency on undocumented CRU that must be refactored. That will be
+> handled once every CRU MFD subdevice gets documented properly (including
+> pinmux).
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  .../bindings/pinctrl/brcm,bcm4708-pinmux.txt  | 55 -----------
+>  .../bindings/pinctrl/brcm,ns-pinmux.yaml      | 98 +++++++++++++++++++
+>  2 files changed, 98 insertions(+), 55 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm4708-pinmux.txt
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
+> 
 
-On Wed, Apr 21, 2021 at 2:31 PM Niklas Söderlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> On 2021-04-21 12:43:39 +0300, Laurent Pinchart wrote:
-> > On Fri, Apr 16, 2021 at 10:05:46AM +0200, Niklas Söderlund wrote:
-> > > On 2021-04-15 22:09:12 +0300, Laurent Pinchart wrote:
-> > > > On Tue, Apr 13, 2021 at 05:53:46PM +0200, Niklas Söderlund wrote:
-> > > > > When converting the binding to use the video-interfaces schemas the node
-> > > > > port@0 was incorrectly made a mandatory property.
-> > > > >
-> > > > > The port@0 node describes which CSI-2 transmitter the R-Car CSI-2
-> > > > > receiver is connected too. Not all boards connects all CSI-2 receivers
-> > > > > to an CSI-2 transmitter.
-> > > >
-> > > > Ports are properties of the device, they should always be there,
-> > > > regardless of connections. It's the endpoints that describe connections.
-> > >
-> > > I understand what you are saying and if that is the way things are done
-> > > I'm fine with it. As this was brought to light by a recent change in the
-> > > bindings I wish to understand if this was always the case the bindings
-> > > have been wrong all along or not.
-> > >
-> > > I only ask as because if we keep the port@0 mandatory there will be
-> > > board files that needs to add empty port@0 nodes as we know they are not
-> > > used. And as the media bindings are already quiet large for some Renesas
-> > > boards I want to understand this before spewing out a lot of patches
-> > > adding empty nodes ;-)
-> >
-> > In my opinion port@0 should be in the SoC .dtsi, not in the board .dts.
-> > Individual boards can then add endpoints when the CSI-2 receiver is
-> > connected. Would that make sense for you ?
->
-> I think this is a case of pragmatism vs being technically correct, and
-> of course 'technically correct' being the best kind of correct ;-)
->
-> Any of the two options works for me as long as we fix the DT validation
-> errors that currently exists. Laurent seems to prefers keeping the
-> port@0 mandatory and adding empty port@0 nodes to dtsi files.
->
-> @Geert: Does this work for you?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Yes, that's fine for me. Thanks!
+yamllint warnings/errors:
 
-Gr{oetje,eeting}s,
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.example.dt.yaml: dmu@1800c000: $nodename:0: 'dmu@1800c000' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/simple-bus.yaml
 
-                        Geert
+See https://patchwork.ozlabs.org/patch/1468632
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
