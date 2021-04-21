@@ -2,69 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34AD8366F2F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 17:30:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEC9F366F60
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 17:45:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242646AbhDUPbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 11:31:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54876 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240811AbhDUPbL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Apr 2021 11:31:11 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E7F3761445;
-        Wed, 21 Apr 2021 15:30:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1619019037;
-        bh=718R0mWssWWbm9DM0aJGix93KoNJSCbMgOXMmPJ0jgs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=HxH5fExVY5G00Yaucsbs0LugLx0HsqMzgzRe+A5a2hzPz8TmXqjJMzHCTeADU0HkR
-         7RlxA/xY3oakYs+jK319pxC+xUr3/kJeHqdA5nXcXWGffWzGOjq7dLNdkkcJKzIXG+
-         +WExcd807ziYZQf81BKjyNGTaLRP8moTIObiHK8/w8ejsUhxy48R1C5doif/sjk5XG
-         KCO8Xz3oICFV5HeAMD6quZW5gN99gIoRKA1HniF+xwrYHGRvMuwgrd0MCXgQpxw3K/
-         5RzjihjAokusuvYbk+8MgkGT1tREp24kL3WIa8qR68aqU894uVAuQCcPIiCQbTzEsK
-         zEk7L8uFxThqw==
-Received: by mail-ed1-f46.google.com with SMTP id y3so13589823eds.5;
-        Wed, 21 Apr 2021 08:30:37 -0700 (PDT)
-X-Gm-Message-State: AOAM5304ZT1LY/DlbfDGykEOnHmH/ex61jA0KYaTStKZyuY+Y6CkVPV+
-        lJlmzW4xnjs1WnZ4bAVXUMRiRywDzMj61RYN2w==
-X-Google-Smtp-Source: ABdhPJy//f7FU1zXPNeSv6PF0tDqCIoFAQ6hiYnWTU1NluOr5ecodptHdhmZ4BdAMTUfU0qmmTi4/E9bUHTYpAsZ09Y=
-X-Received: by 2002:aa7:cd51:: with SMTP id v17mr39467692edw.137.1619019034404;
- Wed, 21 Apr 2021 08:30:34 -0700 (PDT)
+        id S241093AbhDUPq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 11:46:27 -0400
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:33372 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240962AbhDUPqY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 11:46:24 -0400
+Received: by mail-ot1-f49.google.com with SMTP id 92-20020a9d02e50000b029028fcc3d2c9eso16844826otl.0;
+        Wed, 21 Apr 2021 08:45:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6szp+K/skstRZ22g2HkIN/dwWJKe6yh8+ljhvoOIFsI=;
+        b=Kt/WMVrbsHgoJEGqr9vwueru42daxd9Sv74uSUJRUDnc766pVmbxb2FK0r6YqVHGhy
+         rBcK+YPWs8/GhW3E1c5FbG/KGSkII9hToxE2TBkmMEEsA5NitLGTJQkBp9EVnHOAQiD4
+         +ldEDTRiA4W8+XNFlEN0WiS6Cni9g087vYu0Fufm0exkYbCpzImm/AK36tArFUNQWHYg
+         mB2k90Yrh1+zN7TiJ25IZl15iN1rBrfxHn4BUJ8TgeoWbt/ZMyYnB6IR4Vxtuj+a10rG
+         LuD6PmwfKJjiq4TL1K6+rYn3iCjV76TZH7ZwO5CUWq8bU1mc/H0z5cnVaXKF4q/TKXYD
+         7P3Q==
+X-Gm-Message-State: AOAM530oxA3yhQ3p76wSsL+hmj1T9R6wQNJQRArYVMIUWPg3EtSUogdB
+        o4haF0/qIK2klaDvKWwoetEVSte88Q==
+X-Google-Smtp-Source: ABdhPJxrY+4y5kCxDwL2hl7IEcxYxMcWj3M3NguFPeIndRClkk0+br8zBnH3nJzwU9o3KpNicPDwnA==
+X-Received: by 2002:a9d:5f1:: with SMTP id 104mr7706859otd.306.1619019950473;
+        Wed, 21 Apr 2021 08:45:50 -0700 (PDT)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id g16sm519050oof.43.2021.04.21.08.45.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Apr 2021 08:45:49 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: [PATCH] of: overlay: Fix kerneldoc warning in of_overlay_remove()
+Date:   Wed, 21 Apr 2021 10:45:48 -0500
+Message-Id: <20210421154548.1192903-1-robh@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20210421143124.17873-1-lukas.bulwahn@gmail.com>
-In-Reply-To: <20210421143124.17873-1-lukas.bulwahn@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 21 Apr 2021 10:30:22 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+ApYJxd2zGFy-XXBkXXYsBeZBjV55cYS_4R3+Ce4u2qg@mail.gmail.com>
-Message-ID: <CAL_Jsq+ApYJxd2zGFy-XXBkXXYsBeZBjV55cYS_4R3+Ce4u2qg@mail.gmail.com>
-Subject: Re: [PATCH] of: address recent kernel-doc warnings
-To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        devicetree@vger.kernel.org,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        kernel-janitors@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 21, 2021 at 9:31 AM Lukas Bulwahn <lukas.bulwahn@gmail.com> wrote:
->
-> Recently, make htmldocs reports these kernel-doc warnings:
->
->   warning: Function parameter or member 'output' not described in 'of_property_read_string_index'
->   warning: Excess function parameter 'out_string' description in 'of_property_read_string_index'
->   warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
->     * Overlay support
->
-> Address those kernel-doc warnings by simple adjustment of the comments.
->
-> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
-> ---
-> applies cleanly on next-20210421
->
-> Rob, please pick this minor clean-up patch for the devicetree tree.
+'*ovcs_id' causes a warning because '*' is treated as bold markup:
 
-Already got a similar fix.
+Documentation/devicetree/kernel-api:56: ../drivers/of/overlay.c:1184: WARNING: Inline emphasis start-string without end-string.
+
+Fix this to use the normal '@' markup for function parameters.
+
+Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ drivers/of/overlay.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+index d241273170fd..67c9aa6f14da 100644
+--- a/drivers/of/overlay.c
++++ b/drivers/of/overlay.c
+@@ -1181,7 +1181,7 @@ static int overlay_removal_is_ok(struct overlay_changeset *remove_ovcs)
+  * If an error is returned by an overlay changeset post-remove notifier
+  * then no further overlay changeset post-remove notifier will be called.
+  *
+- * Return: 0 on success, or a negative error number.  *ovcs_id is set to
++ * Return: 0 on success, or a negative error number.  @ovcs_id is set to
+  * zero after reverting the changeset, even if a subsequent error occurs.
+  */
+ int of_overlay_remove(int *ovcs_id)
+-- 
+2.27.0
+
