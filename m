@@ -2,114 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD7C5366E41
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 16:31:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 278C1366E4E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 16:34:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243568AbhDUOcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 10:32:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58302 "EHLO
+        id S243612AbhDUOei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 10:34:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235533AbhDUOcV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 10:32:21 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04299C06174A;
-        Wed, 21 Apr 2021 07:31:48 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id u21so63855733ejo.13;
-        Wed, 21 Apr 2021 07:31:47 -0700 (PDT)
+        with ESMTP id S243607AbhDUOeh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 10:34:37 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54E2DC06174A;
+        Wed, 21 Apr 2021 07:34:04 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id s22so8915056pgk.6;
+        Wed, 21 Apr 2021 07:34:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=76/MK3U9p2w1LAxessam/b1YnGwnwr95hug2odeXPdY=;
-        b=rSGq4LsRS/EdSViNrrkL8PPr/4AV5XwIM0Ey3yO5xb3CZAuPiSFViSdNhtSx9PnwQU
-         8x6axKQaLh4x0+3fIwLqv6ZIV+LNPy/zS6Sd4g2Hs/RG7/FN2LYELIVDpZ1Gec8wlsBA
-         nrJ36Ck76N1GDh4tZkA0gc/x7n5YIEICX8wi3sjJ6DPmGDPzkd6FF06aiECWLD4Mx1d+
-         cnjL1sWiDyTypQw/3qF3sAGC86MlYI4qh2P98fqmtO77avCA69keTOutF1JEfeu4+sbv
-         lzq2ruTeq6Bju7Pe+fIWdhaWxyjGer9Mx/GBpLqDYyMqQu5n+tKkvtVDESxBUhibAjiP
-         RADw==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=1MMJc9E2vJ4S7Mny58l5zqOl5ND0C+JpidbUw7b0wr8=;
+        b=hmCLQPukuwX5xjaiFufvuWOBk/GDwoQezj8xLqvWrNJKbeXdhYEcx9oQOKRoQgN9VD
+         O1ZpkhRTflPPxkWOsy3GiUNM9gcl0aypYx5HNwhsaG56YoSCEmUeEc4D1PqNoE2Hzjv7
+         t3Rzdx7S2zIx1OU6Lrq9zofN703C9q3CYsiAMnOLMYPbsqDsYn7BiXSb3irOPD1wCDLU
+         rxIsiw63E4Q0jR0M7gfeob9kGUQmH1CwZZKE7QPyXUilwshoKeofozWas1Q/QDpgxumQ
+         1zpS8n03cBXQ3iPvump4FS51nouHFpO9NKPYmLWISCTk+BVe+L9Y3u0WTXIqScpU/oMf
+         CmwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=76/MK3U9p2w1LAxessam/b1YnGwnwr95hug2odeXPdY=;
-        b=dSRQJ/lxUZdBAarG3hM+szCWlelNL5uKrYHepUcDu/AJwdWUfVWvRRql7Dx+tCGSjf
-         SKD/ADM+z3zuazcFUsdsS7m3VTPqXHYLbsF8VMfaGdH3m89JDMwTFq8vdaCenHgq1gxV
-         ifsW8cq9Pxkpr2YQ+TDdORT67V7wLUSCFlkSwTNKHg41/TX86bxbJmRiFtzFj6GTVYs7
-         BBnUKixcCYP/jglOgvTP6xrZDGFSAyi5EguL8ymEeWBnVQorEjVlB+7+mbKE1WhGmyNf
-         s0Uwx3Ipdd5xeFgytzhnqnUUnHCPlLzCSgwKW4yVyNbSzbeF0r62GlfpFf2bQrqFzJIs
-         61IQ==
-X-Gm-Message-State: AOAM532L9TGBw/sITssLCtDWD69pwV1gP5MIgUb5uYkVUcmDOfQgDRGy
-        2KxYmpaa5tFEmLYhDuwnLbo=
-X-Google-Smtp-Source: ABdhPJwXIFr4CdAKCHSzNSXUMcFnND3YA+X11z+WT1K03k7HMaOSBeGd8VTUC/u1cKlQ2Y5yhn8z6A==
-X-Received: by 2002:a17:906:cb88:: with SMTP id mf8mr33804099ejb.541.1619015506673;
-        Wed, 21 Apr 2021 07:31:46 -0700 (PDT)
-Received: from felia.fritz.box ([2001:16b8:2dab:e100:dc6b:6f9a:b8a4:111b])
-        by smtp.gmail.com with ESMTPSA id s8sm3586133edj.25.2021.04.21.07.31.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Apr 2021 07:31:46 -0700 (PDT)
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=1MMJc9E2vJ4S7Mny58l5zqOl5ND0C+JpidbUw7b0wr8=;
+        b=ngCJeapmzi62YN0qnnKIyoFM7KLGm313tqtlaU4yGORsNQSRBTMHLoQqncf68CfDCw
+         uNHWYEteQ3ctyQ9Bo5Yjy21uPeEKbW5iHFj8PZ3vsAWucAYDM4PQpyaTeoEcN9VibIRW
+         kW9HKXbPiRYsJpCXRe0RCAhQyh2CmXqCUfuodt5oldcqvuKAmswI7YEeaClaWXzz0j22
+         0XrlLIeYkxkCVDw3QvEaeZgEUdisGiAvZ8Kx9TFrNBTFYu0WcJZKfMEjSPLGxhdXEAj4
+         X5WgqTBB4Vd5iLqT1/k0lHrvUzAKGKT0+5HyO4mYKy/o+jmhahx4zHJyxRQRl7091PeT
+         XUKA==
+X-Gm-Message-State: AOAM530j44crAyu4EqU1dQ1fv0AGAXPzHRazTVZXrAktsXQ+1IRqoPUj
+        SdjyyzjjV7FMAI0HEuM3rL8=
+X-Google-Smtp-Source: ABdhPJzJoeMfm9yb4ykA4VQqjob3L1dTR1jGK0bpZKmOxdgkOzg82y+ruzcbLkM1cWTVuglShYikiQ==
+X-Received: by 2002:a17:90a:684d:: with SMTP id e13mr11225600pjm.161.1619015643726;
+        Wed, 21 Apr 2021 07:34:03 -0700 (PDT)
+Received: from [10.230.29.202] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id 14sm2072289pfi.145.2021.04.21.07.33.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Apr 2021 07:34:02 -0700 (PDT)
+Subject: Re: [v5.4 stable] arm: stm32: Regression observed on "no-map"
+ reserved memory region
+To:     Quentin Perret <qperret@google.com>
+Cc:     Ard Biesheuvel <ardb@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sasha Levin <sashal@kernel.org>,
+        stable <stable@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        KarimAllah Ahmed <karahmed@amazon.de>,
+        Android Kernel Team <kernel-team@android.com>,
+        Architecture Mailman List <boot-architecture@lists.linaro.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        devicetree@vger.kernel.org
-Cc:     linux-doc@vger.kernel.org, kernel-janitors@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Subject: [PATCH] of: address recent kernel-doc warnings
-Date:   Wed, 21 Apr 2021 16:31:24 +0200
-Message-Id: <20210421143124.17873-1-lukas.bulwahn@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+References: <4a4734d6-49df-677b-71d3-b926c44d89a9@foss.st.com>
+ <CAL_JsqKGG8E9Y53+az+5qAOOGiZRAA-aD-1tKB-hcOp+m3CJYw@mail.gmail.com>
+ <001f8550-b625-17d2-85a6-98a483557c70@foss.st.com>
+ <CAL_Jsq+LUPZFhXd+j-xM67rZB=pvEvZM+1sfckip0Lqq02PkZQ@mail.gmail.com>
+ <CAMj1kXE2Mgr9CsAMnKXff+96xhDaE5OLeNhypHvpN815vZGZhQ@mail.gmail.com>
+ <d7f9607a-9fcb-7ba2-6e39-03030da2deb0@gmail.com>
+ <YH/ixPnHMxNo08mJ@google.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <cc8f96a4-6c85-b869-d3cf-5dc543982054@gmail.com>
+Date:   Wed, 21 Apr 2021 07:33:52 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.9.0
+MIME-Version: 1.0
+In-Reply-To: <YH/ixPnHMxNo08mJ@google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Recently, make htmldocs reports these kernel-doc warnings:
 
-  warning: Function parameter or member 'output' not described in 'of_property_read_string_index'
-  warning: Excess function parameter 'out_string' description in 'of_property_read_string_index'
-  warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * Overlay support
 
-Address those kernel-doc warnings by simple adjustment of the comments.
+On 4/21/2021 1:31 AM, Quentin Perret wrote:
+> On Tuesday 20 Apr 2021 at 09:33:56 (-0700), Florian Fainelli wrote:
+>> I do wonder as well, we have a 32MB "no-map" reserved memory region on
+>> our platforms located at 0xfe000000. Without the offending commit,
+>> /proc/iomem looks like this:
+>>
+>> 40000000-fdffefff : System RAM
+>>   40008000-40ffffff : Kernel code
+>>   41e00000-41ef1d77 : Kernel data
+>> 100000000-13fffffff : System RAM
+>>
+>> and with the patch applied, we have this:
+>>
+>> 40000000-fdffefff : System RAM
+>>   40008000-40ffffff : Kernel code
+>>   41e00000-41ef3db7 : Kernel data
+>> fdfff000-ffffffff : System RAM
+>> 100000000-13fffffff : System RAM
+>>
+>> so we can now see that the region 0xfe000000 - 0xfffffff is also cobbled
+>> up with the preceding region which is a mailbox between Linux and the
+>> secure monitor at 0xfdfff000 and of size 4KB. It seems like there is
+>>
+>> The memblock=debug outputs is also different:
+>>
+>> [    0.000000] MEMBLOCK configuration:
+>> [    0.000000]  memory size = 0xfdfff000 reserved size = 0x7ce4d20d
+>> [    0.000000]  memory.cnt  = 0x2
+>> [    0.000000]  memory[0x0]     [0x00000040000000-0x000000fdffefff],
+>> 0xbdfff000 bytes flags: 0x0
+>> [    0.000000]  memory[0x1]     [0x00000100000000-0x0000013fffffff],
+>> 0x40000000 bytes flags: 0x0
+>> [    0.000000]  reserved.cnt  = 0x6
+>> [    0.000000]  reserved[0x0]   [0x00000040003000-0x0000004000e494],
+>> 0xb495 bytes flags: 0x0
+>> [    0.000000]  reserved[0x1]   [0x00000040200000-0x00000041ef1d77],
+>> 0x1cf1d78 bytes flags: 0x0
+>> [    0.000000]  reserved[0x2]   [0x00000045000000-0x000000450fffff],
+>> 0x100000 bytes flags: 0x0
+>> [    0.000000]  reserved[0x3]   [0x00000047000000-0x0000004704ffff],
+>> 0x50000 bytes flags: 0x0
+>> [    0.000000]  reserved[0x4]   [0x000000c2c00000-0x000000fdbfffff],
+>> 0x3b000000 bytes flags: 0x0
+>> [    0.000000]  reserved[0x5]   [0x00000100000000-0x0000013fffffff],
+>> 0x40000000 bytes flags: 0x0
+>>
+>> [    0.000000] MEMBLOCK configuration:
+>> [    0.000000]  memory size = 0x100000000 reserved size = 0x7ca4f24d
+>> [    0.000000]  memory.cnt  = 0x3
+>> [    0.000000]  memory[0x0]     [0x00000040000000-0x000000fdffefff],
+>> 0xbdfff000 bytes flags: 0x0
+>> [    0.000000]  memory[0x1]     [0x000000fdfff000-0x000000ffffffff],
+>> 0x2001000 bytes flags: 0x4
+>> [    0.000000]  memory[0x2]     [0x00000100000000-0x0000013fffffff],
+>> 0x40000000 bytes flags: 0x0
+>> [    0.000000]  reserved.cnt  = 0x6
+>> [    0.000000]  reserved[0x0]   [0x00000040003000-0x0000004000e494],
+>> 0xb495 bytes flags: 0x0
+>> [    0.000000]  reserved[0x1]   [0x00000040200000-0x00000041ef3db7],
+>> 0x1cf3db8 bytes flags: 0x0
+>> [    0.000000]  reserved[0x2]   [0x00000045000000-0x000000450fffff],
+>> 0x100000 bytes flags: 0x0
+>> [    0.000000]  reserved[0x3]   [0x00000047000000-0x0000004704ffff],
+>> 0x50000 bytes flags: 0x0
+>> [    0.000000]  reserved[0x4]   [0x000000c3000000-0x000000fdbfffff],
+>> 0x3ac00000 bytes flags: 0x0
+>> [    0.000000]  reserved[0x5]   [0x00000100000000-0x0000013fffffff],
+>> 0x40000000 bytes flags: 0x0
+>>
+>> in the second case we can clearly see that the 32MB no-map region is now
+>> considered as usable RAM.
+>>
+>> Hope this helps.
+>>
+>>>
+>>> In any case, the mere fact that this causes a regression should be
+>>> sufficient justification to revert/withdraw it from v5.4, as I don't
+>>> see a reason why it was merged there in the first place. (It has no
+>>> fixes tag or cc:stable)
+>>
+>> Agreed, however that means we still need to find out whether a more
+>> recent kernel is also broken, I should be able to tell you that a little
+>> later.
+> 
+> FWIW I did test this on Qemu before posting. With 5.12-rc8 and a 1MiB
+> no-map region at 0x80000000, I have the following:
+> 
+> 40000000-7fffffff : System RAM
+>   40210000-417fffff : Kernel code
+>   41800000-41daffff : reserved
+>   41db0000-4210ffff : Kernel data
+>   48000000-48008fff : reserved
+> 80000000-800fffff : reserved
+> 80100000-13fffffff : System RAM
+>   fa000000-ffffffff : reserved
+>   13b000000-13f5fffff : reserved
+>   13f6de000-13f77dfff : reserved
+>   13f77e000-13f77efff : reserved
+>   13f77f000-13f7dafff : reserved
+>   13f7dd000-13f7defff : reserved
+>   13f7df000-13f7dffff : reserved
+>   13f7e0000-13f7f3fff : reserved
+>   13f7f4000-13f7fdfff : reserved
+>   13f7fe000-13fffffff : reserved
+> 
+> If I remove the 'no-map' qualifier from DT, I get this:
+> 
+> 40000000-13fffffff : System RAM
+>   40210000-417fffff : Kernel code
+>   41800000-41daffff : reserved
+>   41db0000-4210ffff : Kernel data
+>   48000000-48008fff : reserved
+>   80000000-800fffff : reserved
+>   fa000000-ffffffff : reserved
+>   13b000000-13f5fffff : reserved
+>   13f6de000-13f77dfff : reserved
+>   13f77e000-13f77efff : reserved
+>   13f77f000-13f7dafff : reserved
+>   13f7dd000-13f7defff : reserved
+>   13f7df000-13f7dffff : reserved
+>   13f7e0000-13f7f3fff : reserved
+>   13f7f4000-13f7fdfff : reserved
+>   13f7fe000-13fffffff : reserved
+> 
+> So this does seem to be working fine on my setup. I'll try again with
+> 5.4 to see if I can repro.
+> 
+> Also, 8a5a75e5e9e5 ("of/fdt: Make sure no-map does not remove already
+> reserved regions") looks more likely to cause the issue observed here,
+> but that shouldn't be silent. I get the following error message in dmesg
+> if I if place the no-map region on top of the kernel image:
+> 
+> OF: fdt: Reserved memory: failed to reserve memory for node 'foobar@40210000': base 0x0000000040210000, size 1 MiB
+> 
+> Is that triggering on your end?
 
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
----
-applies cleanly on next-20210421
-
-Rob, please pick this minor clean-up patch for the devicetree tree.
-
- include/linux/of.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/include/linux/of.h b/include/linux/of.h
-index ef6b161d1f91..4d84674f8aac 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -1192,7 +1192,7 @@ static inline int of_property_count_strings(const struct device_node *np,
-  * @np:		device node from which the property value is to be read.
-  * @propname:	name of the property to be searched.
-  * @index:	index of the string in the list of strings
-- * @out_string:	pointer to null terminated return string, modified only if
-+ * @output:	pointer to null terminated return string, modified only if
-  *		return value is 0.
-  *
-  * Search for a property in a device tree node and retrieve a null
-@@ -1203,7 +1203,7 @@ static inline int of_property_count_strings(const struct device_node *np,
-  * property does not have a value, and -EILSEQ if the string is not
-  * null-terminated within the length of the property data.
-  *
-- * The out_string pointer is modified only if a valid string can be decoded.
-+ * The output pointer is modified only if a valid string can be decoded.
-  */
- static inline int of_property_read_string_index(const struct device_node *np,
- 						const char *propname,
-@@ -1473,7 +1473,7 @@ static inline bool of_device_is_system_power_controller(const struct device_node
- 	return of_property_read_bool(np, "system-power-controller");
- }
- 
--/**
-+/*
-  * Overlay support
-  */
- 
+It is not, otherwise I would have noticed earlier, can you try the same
+thing that happens on my platform with a reserved region (without
+no-map) adjacent to a reserved region with 'no-map'? I will test
+different and newer kernels than 5.4 today to find out if this is still
+a problem with upstream. I could confirm that v4.9.259 also have this
+problem now.
 -- 
-2.17.1
-
+Florian
