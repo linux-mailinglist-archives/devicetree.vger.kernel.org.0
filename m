@@ -2,266 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 959D8366331
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 02:50:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBA9336637B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 03:56:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233836AbhDUAvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 20:51:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47354 "EHLO
+        id S234538AbhDUB5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 21:57:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234454AbhDUAvQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 20:51:16 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8D61C061763
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 17:50:42 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id m12so7390081pgr.9
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 17:50:42 -0700 (PDT)
+        with ESMTP id S234482AbhDUB5J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 21:57:09 -0400
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD642C06174A
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 18:56:35 -0700 (PDT)
+Received: by mail-il1-x133.google.com with SMTP id c4so7136051ilq.9
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 18:56:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=8YLOYTL9uFfTlsUBTt4KtFnsgrD3qMKDwpIsIQc1OzQ=;
-        b=GTHAWJyYH+TVJoASsZJVT+rFImVeTfbBdAU0ib1vxL3BQwDL7OWyZZRY+dVfY+CbpJ
-         teVIlUg3keh/0L70wBaEjFOe9F0jWuGp5A/2LL2L+QU1LNxy3sEJmhmPc3v7dSxnSngQ
-         I87A7TZRRHK9Zj4RcZGYcgJgbC3ctsHHRvmxI=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=cvMssSvc8hPyloKKClMogTnqJuOXUsMOm4XH61nQD34=;
+        b=duz3UEHMYloeEwUBvhhwPqYWfptD8iwoHpnlrEhziVb7cG+9UwhbQIR/oX+ERtldRA
+         goUOXoKvlHGEQTxqX44Jp1mncGTT57MJTkgjQmU/eNUhT6+523DnP8gKv/62bVAhmJ1t
+         Orm8ZwXPdwjhFxkm9f+trZgH68wjoz69x7JSM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8YLOYTL9uFfTlsUBTt4KtFnsgrD3qMKDwpIsIQc1OzQ=;
-        b=kPOp1b0uzxq0EDc+svMktPbI3yuIkIufdUMwiQBbR2fFu4sd4QERAOwM6C1zl+TkP0
-         SxZHvYKrgpNrnqoTdJBm9fnu5Wb/wA2hjqX3zmNetz4sU6/hncuKPAFfupdao6o0rOJd
-         KPB1b7W1CJcN++pbZmH3xpEWoAoO317QL+UseZah9CF6qugJCIknxTL2VfCJpHQ7wYo5
-         Dn/1swp6ANzDM+EWYg+MhAF1dJQd90Kjgi9MBgpyKfJ8IIXrIZLk6lnggnc/TueBOzfQ
-         BTnkL1C1aNB3GBpoO94L/VQv5fqRlkAdJBogm6URMHiHc0Q+iMwYaAwNe5qoNWWYEpD/
-         8iZA==
-X-Gm-Message-State: AOAM531bcVbVGk1YWz0rGcBKnnqwkWoHIi+x/r3CjM4rj7xkHXeqeEET
-        u3FFwnLp114+n6kTAOmmxpmZqw==
-X-Google-Smtp-Source: ABdhPJyqsXFJPEW53dgWZWzIl1MKNJhSGg4Hv/Awq+xELaEHiZszta5Vzv92f/tFkQR8imMYCtKe3w==
-X-Received: by 2002:a63:1a47:: with SMTP id a7mr19505511pgm.437.1618966242338;
-        Tue, 20 Apr 2021 17:50:42 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:b1f0:79e0:c1ca:fd1])
-        by smtp.gmail.com with UTF8SMTPSA id x38sm183812pfu.22.2021.04.20.17.50.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Apr 2021 17:50:41 -0700 (PDT)
-Date:   Tue, 20 Apr 2021 17:50:40 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>
-Cc:     marcel@holtmann.org, johan.hedberg@gmail.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, hemantg@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, bgodavar@codeaurora.org,
-        rjliao@codeaurora.org, hbandi@codeaurora.org,
-        abhishekpandit@chromium.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: net: bluetooth: Convert to DT schema
-Message-ID: <YH924M62b7PDd/r6@google.com>
-References: <1618936010-16579-1-git-send-email-gubbaven@codeaurora.org>
- <1618936010-16579-3-git-send-email-gubbaven@codeaurora.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=cvMssSvc8hPyloKKClMogTnqJuOXUsMOm4XH61nQD34=;
+        b=DPU1iOOif23Meqpyyj/AlXHupyWkXERz3eh/QCgF4jUa0sVP69/YGaPoBTfVHcQa7R
+         66RH+o1fou0+jcrrZiFI6BBM/Ml0tH58DNJMM6CCEIRFQYF5FZRPzzJuhfFWH33A9/7r
+         Z12TSfONgI3sHQ3OR9RBU1mTYuFu3Kd7pvbSvrvvmt1dYaQhdMhkHGQzTOhzPVvLRrjW
+         8jWw709rl/YUunem7rNBIhik2GkeRIl2vVgy/BNPUShHDty+P9KPMjonQfj+epxpXmiG
+         G0C+lcV67xW0O+0gPjo0yZNJivTLubej2+iZ6WkLJSZJiWVasp4vqZtlTlxUr3dUWQAK
+         cX2g==
+X-Gm-Message-State: AOAM533hV+wyukeY3+G8ldtewF4TJWI1eD6fOHHt3S5TNfZhZLlm5vgv
+        mWc2qewUCzQBqPlySIHjReyp2+57f7RnaMhfAwNGsQ==
+X-Google-Smtp-Source: ABdhPJyduQbgwU81Uwxufem1ofj2vTk7xmlEMfaBM6o4S82+Dp7cP5qxHhrJsqLF8Jh6BVMCYX0eqfz3T+c6stggfO0=
+X-Received: by 2002:a05:6e02:20ce:: with SMTP id 14mr24148490ilq.102.1618970193723;
+ Tue, 20 Apr 2021 18:56:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1618936010-16579-3-git-send-email-gubbaven@codeaurora.org>
+References: <20210409045314.3420733-1-hsinyi@chromium.org> <CAJMQK-gFk8WV0W2TTP7=OTsBqgWmy_eKSd42Xa5dJzvUFDTAXQ@mail.gmail.com>
+ <CAAOTY_9pJ=H4gQKsC1VeHo6Z4qsHFzOe267QVu6p_Jid0AXsKQ@mail.gmail.com>
+In-Reply-To: <CAAOTY_9pJ=H4gQKsC1VeHo6Z4qsHFzOe267QVu6p_Jid0AXsKQ@mail.gmail.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Wed, 21 Apr 2021 09:56:07 +0800
+Message-ID: <CAJMQK-i8aZWmKyJ=7Gf8Wee3MynnqVvpijTOxqKp9M0vyECcPQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/mediatek: set panel orientation before drm_dev_register().
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 20, 2021 at 09:56:49PM +0530, Venkata Lakshmi Narayana Gubba wrote:
-
-> Subject: dt-bindings: net: bluetooth: Convert to DT schema
-
-This doesn't convert the generic binding or all bindings to DT schema
-as the subject suggests, but the Qualcomm BT binding.
-
+On Wed, Apr 21, 2021 at 7:47 AM Chun-Kuang Hu <chunkuang.hu@kernel.org> wro=
+te:
 >
-> Converted Qualcomm Bluetooth binidings to DT schema.
-> 
-> Signed-off-by: Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>
-> ---
->  .../devicetree/bindings/net/qualcomm-bluetooth.txt | 69 -----------------
->  .../bindings/net/qualcomm-bluetooth.yaml           | 87 ++++++++++++++++++++++
->  2 files changed, 87 insertions(+), 69 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
->  create mode 100644 Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
-> deleted file mode 100644
-> index 709ca6d..0000000
-> --- a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
-> +++ /dev/null
-> @@ -1,69 +0,0 @@
-> -Qualcomm Bluetooth Chips
-> ----------------------
-> -
-> -This documents the binding structure and common properties for serial
-> -attached Qualcomm devices.
-> -
-> -Serial attached Qualcomm devices shall be a child node of the host UART
-> -device the slave device is attached to.
-> -
-> -Required properties:
-> - - compatible: should contain one of the following:
-> -   * "qcom,qca6174-bt"
-> -   * "qcom,qca9377-bt"
-> -   * "qcom,wcn3990-bt"
-> -   * "qcom,wcn3991-bt"
-> -   * "qcom,wcn3998-bt"
-> -   * "qcom,qca6390-bt"
-> -
-> -Optional properties for compatible string qcom,qca6174-bt:
-> -
-> - - enable-gpios: gpio specifier used to enable chip
-> - - clocks: clock provided to the controller (SUSCLK_32KHZ)
-> - - firmware-name: specify the name of nvm firmware to load
-> -
-> -Optional properties for compatible string qcom,qca9377-bt:
-> -
-> - - max-speed: see Documentation/devicetree/bindings/serial/serial.yaml
-> -
-> -Required properties for compatible string qcom,wcn399x-bt:
-> -
-> - - vddio-supply: VDD_IO supply regulator handle.
-> - - vddxo-supply: VDD_XO supply regulator handle.
-> - - vddrf-supply: VDD_RF supply regulator handle.
-> - - vddch0-supply: VDD_CH0 supply regulator handle.
-> -
-> -Optional properties for compatible string qcom,wcn399x-bt:
-> -
-> - - max-speed: see Documentation/devicetree/bindings/serial/serial.yaml
-> - - firmware-name: specify the name of nvm firmware to load
-> - - clocks: clock provided to the controller
-> -
-> -Examples:
-> -
-> -serial@7570000 {
-> -	label = "BT-UART";
-> -	status = "okay";
-> -
-> -	bluetooth {
-> -		compatible = "qcom,qca6174-bt";
-> -
-> -		enable-gpios = <&pm8994_gpios 19 GPIO_ACTIVE_HIGH>;
-> -		clocks = <&divclk4>;
-> -		firmware-name = "nvm_00440302.bin";
-> -	};
-> -};
-> -
-> -serial@898000 {
-> -	bluetooth {
-> -		compatible = "qcom,wcn3990-bt";
-> -
-> -		vddio-supply = <&vreg_s4a_1p8>;
-> -		vddxo-supply = <&vreg_l7a_1p8>;
-> -		vddrf-supply = <&vreg_l17a_1p3>;
-> -		vddch0-supply = <&vreg_l25a_3p3>;
-> -		max-speed = <3200000>;
-> -		firmware-name = "crnv21.bin";
-> -		clocks = <&rpmhcc RPMH_RF_CLK2>;
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
-> new file mode 100644
-> index 0000000..55cd995
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/qualcomm-bluetooth.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Bluetooth Chips
-> +
-> +maintainers:
-> +  - Rob Herring <robh@kernel.org>
-> +  - Marcel Holtmann <marcel@holtmann.org>
-> +
-> +description:
-> +  This binding describes Qualcomm UART-attached bluetooth chips.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,qca6174-bt
-> +      - qcom,qca9377-bt
-> +      - qcom,wcn3990-bt
-> +      - qcom,wcn3991-bt
-> +      - qcom,wcn3998-bt
-> +      - qcom,qca6390-bt      
+> Hi, Hsin-Yi:
+>
+> Hsin-Yi Wang <hsinyi@chromium.org> =E6=96=BC 2021=E5=B9=B44=E6=9C=8820=E6=
+=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=885:05=E5=AF=AB=E9=81=93=EF=BC=9A
+> >
+> > On Fri, Apr 9, 2021 at 12:53 PM Hsin-Yi Wang <hsinyi@chromium.org> wrot=
+e:
+> > >
+> > > drm_dev_register() sets connector->registration_state to
+> > > DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+> > > drm_connector_set_panel_orientation() is first called after
+> > > drm_dev_register(), it will fail several checks and results in follow=
+ing
+> > > warning. So set panel orientation in dsi before drm_dev_register() is
+> > > called.
+>
+> All connector would have this problem, so I would like to fix this in
+> common code.
+> In drm_connector_init(), you could add "panel orientation" property
+> with value DRM_MODE_PANEL_ORIENTATION_UNKNOWN, so it would not add new
+> object when get modes.
 
-delete trailing blanks
+Hi CK,
 
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +    description: gpio specifier used to enable chip
-> +   
+Calling drm_connector_set_panel_orientation() with
+DRM_MODE_PANEL_ORIENTATION_UNKNOWN will be a no-op. And once the
+orientation is set, the 2nd call to this is also no-op.
+https://elixir.bootlin.com/linux/v5.12-rc8/source/drivers/gpu/drm/drm_conne=
+ctor.c#L2182
 
-delete blanks
+The 1st time call to drm_connector_set_panel_orientation() has to be
+prior than drm_dev_register().
 
-> +  clocks:
-> +    maxItems: 1
-> +    description: clock provided to the controller (SUSCLK_32KHZ)
-> +
-> +  vddio-supply:
-> +    description: VDD_IO supply regulator handle
-> +
-> +  vddxo-supply:
-> +    description: VDD_XO supply regulator handle
-> +
-> +  vddrf-supply:
-> +    description: VDD_RF supply regulator handle
-> +
-> +  vddch0-supply:
-> +    description: VDD_CH0 supply regulator handle
-> +
-> +  max-speed: 
+Orientation is an optional property, and different dsi has different
+ways to read and handle this. Eg. vlv_dsi[1], intel_dp[2], so I think
+it's better to let each connector decide how to handle orientation.
 
-delete trailing blank
+[1] https://elixir.bootlin.com/linux/v5.12-rc8/source/drivers/gpu/drm/i915/=
+display/vlv_dsi.c#L1632
+[2] https://elixir.bootlin.com/linux/v5.12-rc8/source/drivers/gpu/drm/i915/=
+display/intel_dp.c#L6488
 
-> +    description: see Documentation/devicetree/bindings/serial/serial.yaml
-> +
-> +  firmware-name:
-> +    description: specify the name of nvm firmware to load
-> +
-> +  local-bd-address:
-> +    description: see Documentation/devicetree/bindings/net/bluetooth.txt
-> +
-> +
-> +required:
-> +  - compatible
-
-it seems you could make the supplies conditionally required based on the
-compatible string. See Documentation/devicetree/bindings/connector/usb-connector.yaml
-for an example
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    uart {
-> +        label = "BT-UART";
-> +        status = "okay";
-> +
-> +        bluetooth {
-> +            compatible = "qcom,qca6174-bt";
-> +            enable-gpios = <&pm8994_gpios 19 GPIO_ACTIVE_HIGH>;
-> +            clocks = <&divclk4>;
-> +            firmware-name = "nvm_00440302.bin";
-> +        };
-> +    };
-> +  - |
-> +    uart {
-> +
-> +        bluetooth {
-> +            compatible = "qcom,wcn3990-bt";
-> +            vddio-supply = <&vreg_s4a_1p8>;
-> +            vddxo-supply = <&vreg_l7a_1p8>;
-> +            vddrf-supply = <&vreg_l17a_1p3>;
-> +            vddch0-supply = <&vreg_l25a_3p3>;
-> +            max-speed = <3200000>;
-> +            firmware-name = "crnv21.bin";		
-
-delete trailing blanks
+Thanks
+>
+> Regards,
+> Chun-Kuang.
+>
+> > >
+> > > [    4.480976] ------------[ cut here ]------------
+> > > [    4.485603] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_o=
+bject.c:45 __drm_mode_object_add+0xb4/0xbc
+> > > <snip>
+> > > [    4.609772] Call trace:
+> > > [    4.612208]  __drm_mode_object_add+0xb4/0xbc
+> > > [    4.616466]  drm_mode_object_add+0x20/0x2c
+> > > [    4.620552]  drm_property_create+0xdc/0x174
+> > > [    4.624723]  drm_property_create_enum+0x34/0x98
+> > > [    4.629241]  drm_connector_set_panel_orientation+0x64/0xa0
+> > > [    4.634716]  boe_panel_get_modes+0x88/0xd8
+> > > [    4.638802]  drm_panel_get_modes+0x2c/0x48
+> > > [    4.642887]  panel_bridge_get_modes+0x1c/0x28
+> > > [    4.647233]  drm_bridge_connector_get_modes+0xa0/0xd4
+> > > [    4.652273]  drm_helper_probe_single_connector_modes+0x218/0x700
+> > > [    4.658266]  drm_mode_getconnector+0x1b4/0x45c
+> > > [    4.662699]  drm_ioctl_kernel+0xac/0x128
+> > > [    4.666611]  drm_ioctl+0x268/0x410
+> > > [    4.670002]  drm_compat_ioctl+0xdc/0xf0
+> > > [    4.673829]  __arm64_compat_sys_ioctl+0xc8/0x100
+> > > [    4.678436]  el0_svc_common+0xf4/0x1c0
+> > > [    4.682174]  do_el0_svc_compat+0x28/0x3c
+> > > [    4.686088]  el0_svc_compat+0x10/0x1c
+> > > [    4.689738]  el0_sync_compat_handler+0xa8/0xcc
+> > > [    4.694171]  el0_sync_compat+0x178/0x180
+> > > [    4.698082] ---[ end trace b4f2db9d9c88610b ]---
+> > > [    4.702721] ------------[ cut here ]------------
+> > > [    4.707329] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_o=
+bject.c:243 drm_object_attach_property+0x48/0xb8
+> > > <snip>
+> > > [    4.833830] Call trace:
+> > > [    4.836266]  drm_object_attach_property+0x48/0xb8
+> > > [    4.840958]  drm_connector_set_panel_orientation+0x84/0xa0
+> > > [    4.846432]  boe_panel_get_modes+0x88/0xd8
+> > > [    4.850516]  drm_panel_get_modes+0x2c/0x48
+> > > [    4.854600]  panel_bridge_get_modes+0x1c/0x28
+> > > [    4.858946]  drm_bridge_connector_get_modes+0xa0/0xd4
+> > > [    4.863984]  drm_helper_probe_single_connector_modes+0x218/0x700
+> > > [    4.869978]  drm_mode_getconnector+0x1b4/0x45c
+> > > [    4.874410]  drm_ioctl_kernel+0xac/0x128
+> > > [    4.878320]  drm_ioctl+0x268/0x410
+> > > [    4.881711]  drm_compat_ioctl+0xdc/0xf0
+> > > [    4.885536]  __arm64_compat_sys_ioctl+0xc8/0x100
+> > > [    4.890142]  el0_svc_common+0xf4/0x1c0
+> > > [    4.893879]  do_el0_svc_compat+0x28/0x3c
+> > > [    4.897791]  el0_svc_compat+0x10/0x1c
+> > > [    4.901441]  el0_sync_compat_handler+0xa8/0xcc
+> > > [    4.905873]  el0_sync_compat+0x178/0x180
+> > > [    4.909783] ---[ end trace b4f2db9d9c88610c ]---
+> > >
+> > > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> >
+> > ping on the thread, thanks.
+> >
+> > > ---
+> > >  drivers/gpu/drm/mediatek/mtk_dsi.c | 9 +++++++++
+> > >  1 file changed, 9 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/med=
+iatek/mtk_dsi.c
+> > > index ae403c67cbd9..45a702ee09f3 100644
+> > > --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> > > +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> > > @@ -205,6 +205,7 @@ struct mtk_dsi {
+> > >         u32 irq_data;
+> > >         wait_queue_head_t irq_wait_queue;
+> > >         const struct mtk_dsi_driver_data *driver_data;
+> > > +       enum drm_panel_orientation orientation;
+> > >  };
+> > >
+> > >  static inline struct mtk_dsi *bridge_to_dsi(struct drm_bridge *b)
+> > > @@ -966,6 +967,8 @@ static int mtk_dsi_encoder_init(struct drm_device=
+ *drm, struct mtk_dsi *dsi)
+> > >         }
+> > >         drm_connector_attach_encoder(dsi->connector, &dsi->encoder);
+> > >
+> > > +       drm_connector_set_panel_orientation(dsi->connector, dsi->orie=
+ntation);
+> > > +
+> > >         return 0;
+> > >
+> > >  err_cleanup_encoder:
+> > > @@ -1029,6 +1032,12 @@ static int mtk_dsi_probe(struct platform_devic=
+e *pdev)
+> > >                         ret =3D PTR_ERR(dsi->next_bridge);
+> > >                         goto err_unregister_host;
+> > >                 }
+> > > +
+> > > +               ret =3D of_drm_get_panel_orientation(panel->dev->of_n=
+ode, &dsi->orientation);
+> > > +               if (ret) {
+> > > +                       dev_err(dev, "failed to get panel orientation=
+ %d\n", ret);
+> > > +                       return ret;
+> > > +               }
+> > >         }
+> > >
+> > >         dsi->driver_data =3D of_device_get_match_data(dev);
+> > > --
+> > > 2.31.1.295.g9ea45b61b8-goog
+> > >
