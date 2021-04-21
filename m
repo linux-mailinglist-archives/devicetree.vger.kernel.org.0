@@ -2,164 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7476E366430
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 05:50:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7D8B36648D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 06:28:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235040AbhDUDuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 23:50:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57802 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235008AbhDUDur (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 23:50:47 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CE2FC06138F;
-        Tue, 20 Apr 2021 20:49:31 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id a12so27401337pfc.7;
-        Tue, 20 Apr 2021 20:49:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=syxVRnkuORiuxVC3x3JHzejHdJyYju0fZMcok/+Zg/U=;
-        b=mGuWz00rSagy0fM3KEAHYzQyW3PjHGpT75+41xTIy21z9uTeLYmPLHg/UJWaX8puOH
-         zJ/SSXJLQGvL5O23A3LKhH8njEP7SEmL6uJLf3GbhM+ftWlHuhixxQm6G9aLAPmySe3u
-         mO8eN+dVZa3tt59N4SUx1dWWRbm8nv0C40yay88PMSty6woytJl5ZqkghT86FYXRzaTD
-         qJ3RaPwc7pBJBjkhHAa0xJcIYhlv7L3pJDvXYLEpf6YiIdNb/cnnpPVqvWN5N15w5kA9
-         9FzoExa/j4bHLy2DUqKgskTe1aH2yWtl62z3ywLS0j5DDDtkDtv71b8e0h00edOa9VBm
-         SQgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=syxVRnkuORiuxVC3x3JHzejHdJyYju0fZMcok/+Zg/U=;
-        b=iK44ENNzBa/lGQRMyk/PWXO1ObS9hD4Watx1LCWYu9Jj9AOIKBTEeZmmZ8epieg6QM
-         iM1cUrIAjJbfnbWBTzr3+kngHfDrtvLb+uKWjZ+KTvhAhgt6GRKGu31x90uTj53jInja
-         50J3btx+iGJIq8TanVFLyXPxwvQnl/apL8bRLsxQ1YFeTj4Dq7PYBnWpWgsDz4v3P6gZ
-         TE02bdSdBXXf33fOQkqESGEN/eY7iqVsEIaaeCFXdTzpnBoM4AzMpQ4wj5sjX+PXMz4j
-         zgsfJ+k9tXqUkX1BAu+0sCF+ogZ961LIoMp71UDYZvX/efXuOAcWMeh9RTjvP5MYkVfe
-         +rXQ==
-X-Gm-Message-State: AOAM531+DNHvKLt094y84yABsLQE99N+kgR7oyJO2SZ9j2qXIQH0IKj5
-        qE0pDNP17iqnXJqzQBqPbTk=
-X-Google-Smtp-Source: ABdhPJytKG0jhPRD66R1JT/Y6Z0Ht5LdA6hnzqxjsT/udSFB7ol1cX3ixT/9Jz4hLwGlKDx/4upupg==
-X-Received: by 2002:a17:90a:b78d:: with SMTP id m13mr9040857pjr.47.1618976970680;
-        Tue, 20 Apr 2021 20:49:30 -0700 (PDT)
-Received: from fmin-OptiPlex-7060.nreal.work ([137.59.103.165])
-        by smtp.gmail.com with ESMTPSA id s43sm382555pfw.164.2021.04.20.20.49.26
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 20 Apr 2021 20:49:30 -0700 (PDT)
-From:   dillon.minfei@gmail.com
-To:     festevam@gmail.com, shawnguo@kernel.org, s.riedmueller@phytec.de,
-        matthias.schiffer@ew.tq-group.com, leoyang.li@nxp.com,
-        arnd@arndb.de, olof@lixom.net, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, prabhakar.csengg@gmail.com,
-        mchehab@kernel.org
-Cc:     krzysztof.kozlowski@canonical.com, krzk@kernel.org,
-        robh+dt@kernel.org, linux@rempel-privat.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, dillon min <dillon.minfei@gmail.com>
-Subject: [PATCH v4 4/4] media: i2c: ov2659: Use clk_{prepare_enable,disable_unprepare}() to set xvclk on/off
-Date:   Wed, 21 Apr 2021 11:48:58 +0800
-Message-Id: <1618976938-20834-5-git-send-email-dillon.minfei@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1618976938-20834-1-git-send-email-dillon.minfei@gmail.com>
-References: <1618976938-20834-1-git-send-email-dillon.minfei@gmail.com>
+        id S235050AbhDUE3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 00:29:13 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:60857 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232146AbhDUE3K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Apr 2021 00:29:10 -0400
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 208A9580E36;
+        Wed, 21 Apr 2021 00:28:38 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Wed, 21 Apr 2021 00:28:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm2; bh=YXnwjaQf4TTDuRmPezz8p5W4Jg
+        qo7LkSPHQCWgY88+M=; b=YLEYDOnSCY6uJsLXSQ1JmuVG3Rzr6SOCgxRZkoWcjZ
+        eKEbd0oUunvLRN3plY3ecTweyhZIjOVKXDoXvasqSMM+mKMZcxf78gcXBIRFUWbH
+        aj1Rv/nWsFhF/Pqu0ViG8Yg9L3VikT9o5pJ7b7qIxxSojIx4gOQmffuqYn1I31mS
+        jpC7946qWIdiwcSgSB8XSBEdxLVBG+6MmVNbXgrn+0VI9c6efMg7XQHUfp/DU3J3
+        0d+7GrQnt+lZptomaQ32Dcg4e1JUutxUpNjcKCB6bAXE1rQ6g2tSYik0DJiDak5k
+        n90tdtf5Tg5BRGQp7Y4cHGwkfGsb6egSx39bV3epCu7w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=YXnwjaQf4TTDuRmPe
+        zz8p5W4Jgqo7LkSPHQCWgY88+M=; b=IQQMKATz/C5peZqJUjIwgisq89Je0gnVq
+        MB8u3OKT0EePtYp+RDv6vpHXwSU5O+KoKolpLs9OhSizsUEOdx2YVklXSQpTgeQ5
+        tm6Ewq0K+QJn3SxJKzryMZ4qjWq6KROi/pDOO1sYgNeng/xs8IYlBnjFNQrkBiEX
+        YPxPMuJF7xzOYN4pTIIdemFviBKYrAzh6o9uzQzVzRMEEfdFovp5EKQ9rySys+ZH
+        5mLbDu5hk7pZyTupbQTv2nvzu8DLhcqRbAAIY36lpg7gfRJ2G/sdSvXYl8lfSzOq
+        ZpAUmfz5HLVIBHVOwr1cuBICOnK0s3ezy1L017gLRrS+Z4nu43TpQ==
+X-ME-Sender: <xms:9Kl_YFzUQHsh5scW-mQlJawaUUTbLMlZMus9uUPm0odRRAl1mk1cKg>
+    <xme:9Kl_YFQvK46b8vZNqkZwBx0WoESPk0cgc4Xy384q6ALzscks2PblDKBcNxO7q36hU
+    CEbaW3zBPHoEa4RNg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvddtjedgkedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
+    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrg
+    htthgvrhhnpeeiteekhfehuddugfeltddufeejjeefgeevheekueffhffhjeekheeiffdt
+    vedtveenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdr
+    ohhrgh
+X-ME-Proxy: <xmx:9Kl_YPX2uMXYxfVK98bPgeI4FXSptLgYEyAcjTlJbjChFLV6Lj4BIA>
+    <xmx:9Kl_YHiwYMLnzNxBBceFQLHD7LSa7yQdo50DspMsNlga4NJokfL05A>
+    <xmx:9Kl_YHC3mpw6mhXHOfBKMCPvKeD0EHMowrlWNJzRoxnueAc5X7hqQQ>
+    <xmx:9ql_YL2Gl6Q91ZHp5rMkpvJSkTMQOMIBz5yYvJJAm3ptI1___MA_TQ>
+Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 9AB9D24005A;
+        Wed, 21 Apr 2021 00:28:35 -0400 (EDT)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+        Samuel Holland <samuel@sholland.org>
+Subject: [PATCH 0/2] Allwinner H6 USB3 device tree updates
+Date:   Tue, 20 Apr 2021 23:28:32 -0500
+Message-Id: <20210421042834.27309-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.26.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: dillon min <dillon.minfei@gmail.com>
+While implementing support for this USB controller in U-Boot, I noticed
+that the reset line alsp affects they PHY. It looks like most platforms
+use a separate glue node to represent this, and in fact there is already
+a compatible for the H6 listed in drivers/usb/dwc3/dwc3-of-simple.c.
 
-On some platform(imx6q), xvclk might not switch on in advance,
-also for power save purpose, xvclk should not be always on.
-so, add clk_prepare_enable(), clk_disable_unprepare() in driver
-side to set xvclk on/off at proper stage.
+Since this layout matches the usual way of modeling this hardware, it
+allows using the existing drivers without adding platform-specific code.
 
-Add following changes:
-- add 'struct clk *clk;' in 'struct ov2659 {}'
-- enable xvclk in ov2659_power_on()
-- disable xvclk in ov2659_power_off()
+Samuel Holland (2):
+  dt-bindings: usb: Document the Allwinner H6 DWC3 glue
+  arm64: dts: allwinner: h6: Wrap DWC3 and PHY in glue layer
 
-Signed-off-by: dillon min <dillon.minfei@gmail.com>
----
-v4: no changes
+ .../usb/allwinner,sun50i-h6-dwc3.yaml         | 75 +++++++++++++++++++
+ .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  6 +-
+ .../dts/allwinner/sun50i-h6-orangepi-3.dts    |  6 +-
+ .../boot/dts/allwinner/sun50i-h6-pine-h64.dts |  9 +--
+ .../dts/allwinner/sun50i-h6-tanix-tx6.dts     |  6 +-
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 60 ++++++++-------
+ 6 files changed, 115 insertions(+), 47 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.yaml
 
- drivers/media/i2c/ov2659.c | 24 ++++++++++++++++++------
- 1 file changed, 18 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/media/i2c/ov2659.c b/drivers/media/i2c/ov2659.c
-index 42f64175a6df..fb78a1cedc03 100644
---- a/drivers/media/i2c/ov2659.c
-+++ b/drivers/media/i2c/ov2659.c
-@@ -204,6 +204,7 @@ struct ov2659 {
- 	struct i2c_client *client;
- 	struct v4l2_ctrl_handler ctrls;
- 	struct v4l2_ctrl *link_frequency;
-+	struct clk *clk;
- 	const struct ov2659_framesize *frame_size;
- 	struct sensor_register *format_ctrl_regs;
- 	struct ov2659_pll_ctrl pll;
-@@ -1270,6 +1271,8 @@ static int ov2659_power_off(struct device *dev)
- 
- 	gpiod_set_value(ov2659->pwdn_gpio, 1);
- 
-+	clk_disable_unprepare(ov2659->clk);
-+
- 	return 0;
- }
- 
-@@ -1278,9 +1281,17 @@ static int ov2659_power_on(struct device *dev)
- 	struct i2c_client *client = to_i2c_client(dev);
- 	struct v4l2_subdev *sd = i2c_get_clientdata(client);
- 	struct ov2659 *ov2659 = to_ov2659(sd);
-+	int ret;
- 
- 	dev_dbg(&client->dev, "%s:\n", __func__);
- 
-+	ret = clk_prepare_enable(ov2659->clk);
-+	if (ret) {
-+		dev_err(&client->dev, "%s: failed to enable clock\n",
-+			__func__);
-+		return ret;
-+	}
-+
- 	gpiod_set_value(ov2659->pwdn_gpio, 0);
- 
- 	if (ov2659->resetb_gpio) {
-@@ -1425,7 +1436,6 @@ static int ov2659_probe(struct i2c_client *client)
- 	const struct ov2659_platform_data *pdata = ov2659_get_pdata(client);
- 	struct v4l2_subdev *sd;
- 	struct ov2659 *ov2659;
--	struct clk *clk;
- 	int ret;
- 
- 	if (!pdata) {
-@@ -1440,11 +1450,11 @@ static int ov2659_probe(struct i2c_client *client)
- 	ov2659->pdata = pdata;
- 	ov2659->client = client;
- 
--	clk = devm_clk_get(&client->dev, "xvclk");
--	if (IS_ERR(clk))
--		return PTR_ERR(clk);
-+	ov2659->clk = devm_clk_get(&client->dev, "xvclk");
-+	if (IS_ERR(ov2659->clk))
-+		return PTR_ERR(ov2659->clk);
- 
--	ov2659->xvclk_frequency = clk_get_rate(clk);
-+	ov2659->xvclk_frequency = clk_get_rate(ov2659->clk);
- 	if (ov2659->xvclk_frequency < 6000000 ||
- 	    ov2659->xvclk_frequency > 27000000)
- 		return -EINVAL;
-@@ -1506,7 +1516,9 @@ static int ov2659_probe(struct i2c_client *client)
- 	ov2659->frame_size = &ov2659_framesizes[2];
- 	ov2659->format_ctrl_regs = ov2659_formats[0].format_ctrl_regs;
- 
--	ov2659_power_on(&client->dev);
-+	ret = ov2659_power_on(&client->dev);
-+	if (ret < 0)
-+		goto error;
- 
- 	ret = ov2659_detect(sd);
- 	if (ret < 0)
 -- 
-2.7.4
+2.26.3
 
