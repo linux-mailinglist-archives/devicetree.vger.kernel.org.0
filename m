@@ -2,122 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD8CA367061
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 18:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C26036708F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 18:49:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242509AbhDUQnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 12:43:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59226 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236214AbhDUQnE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 12:43:04 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CA87C06174A;
-        Wed, 21 Apr 2021 09:42:30 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id g4-20020a9d6b040000b029029debbbb3ecso6514532otp.7;
-        Wed, 21 Apr 2021 09:42:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=+HMsZR01SUGrSKoyCPBgGVTfre4b5FPjtX+nOat0LfM=;
-        b=q52eNNzYLmethgyacKl8edmlqufEtd/jQdcqujH8rlWgs0aJ3HGIxfKatO2hwVG87f
-         elDi1Lf7RQiOHJSS1hwVn2frsRYKGLWwakfvGWk06fzkcwe8Ho8kvkKqBl/LEhsUNXR6
-         1Ky6D2G3Q/UqXObse2fAKiLsnejLouhXQTF6bxst0EmlxieoksoME29+yFTdmWnLImh4
-         N03UiaVR0vRqpD+VvwVw0Hb3gIiSehptHDWPuseU6v7Kz/ZGexJzOOwAUmNvBIGAMo31
-         i6cATVYx95TsYqeJtMHFdWyXJAvWOwSbsT3ssVdoaHWQzDcYihn/EMt9qQafyoskY6uK
-         lyrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=+HMsZR01SUGrSKoyCPBgGVTfre4b5FPjtX+nOat0LfM=;
-        b=sknLVvgT2ItgAeV3knR/2nmDsFBmbsGevffU7ku+1cRpi0vst/Hu/JCD6ggeQehnaE
-         HYKu/KnspEYO3MlR8cdam3mcz0nP80YBpi5exyxifqad+Syj3udqRlTWXwdSwGCiNQf8
-         UFpqgQSM+ukGO5D3qa9/Ss3jAAwM0XTAZVZ8vtsx7digjhYNm1Kq6jd2iZk5l6WooBv1
-         8dvO0erL41mJ+6RnQ8gQrBB+AO/OvnDRYJHThFTdirXvIlAZqficemPek5qEXi5/Eb48
-         0y/k2aEzAJPeU3d0iHqftYuWkYApHqF7TSLTRU3hiksrFB4ue36Y6KhMpdWm2VAcVNPy
-         4WXw==
-X-Gm-Message-State: AOAM531QK2KdHDcJoAEOB4JYQKNO3KdFa3Ph2vZryP1oIoDMAmsg0Xos
-        ksaX0LEy4BKCcdeC5n4oNXA=
-X-Google-Smtp-Source: ABdhPJynyT8t8dhhtlf1I9iP2ifK685oycLgV9T9v/dz50dOYCDtHhrd2aVcaBcrxxovgrqN9VKYGQ==
-X-Received: by 2002:a05:6830:1398:: with SMTP id d24mr24511988otq.281.1619023350064;
-        Wed, 21 Apr 2021 09:42:30 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id q189sm564750oih.25.2021.04.21.09.42.29
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 21 Apr 2021 09:42:29 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Wed, 21 Apr 2021 09:42:28 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Francesco Zanella <francesco.zanella@vimar.com>
-Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] watchdog: gpio_wdt: add "start-at-boot" feature
-Message-ID: <20210421164228.GB110463@roeck-us.net>
-References: <20210421162621.24910-1-francesco.zanella@vimar.com>
- <20210421162621.24910-3-francesco.zanella@vimar.com>
+        id S240973AbhDUQtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 12:49:51 -0400
+Received: from mout.gmx.net ([212.227.15.19]:49523 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237358AbhDUQtu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Apr 2021 12:49:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1619023715;
+        bh=40y2ogTwZHjVV2UFcvvi314l227rNstpubsLcSaRYGw=;
+        h=X-UI-Sender-Class:Date:In-Reply-To:References:Subject:Reply-to:To:
+         CC:From;
+        b=RD4rwJLAE+hx8dc2j+xXELvDJe44VQWdkz6RArOIzrmoxQHmULbh+wDgIL1BFhg3Y
+         KZNPcHepnC4Jae6Ppw6bBoENc/M9Tk6xUK7/zZwALhLXB607ZmPus9SyeZ7oLxjauE
+         7tX9N4UBHJ0Ch9U1GjJh6U2WtwVjpS3HjlOUOcFA=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from frank-s9 ([80.245.77.133]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MwQT9-1lJ65W2iwP-00sLhi; Wed, 21
+ Apr 2021 18:48:35 +0200
+Date:   Wed, 21 Apr 2021 18:48:28 +0200
+User-Agent: K-9 Mail for Android
+In-Reply-To: <CAL_JsqKne=ASOyd0E9GakVvDvaXDauHOOU5NgxU8X8ySvyrAcw@mail.gmail.com>
+References: <20210419154659.44096-1-ilya.lipnitskiy@gmail.com> <20210419154659.44096-3-ilya.lipnitskiy@gmail.com> <20210420195132.GA3686955@robh.at.kernel.org> <CALCv0x2SG=0kBRnxfSPxi+FvaBK=QGPHQkHWHvTXOw64KawPUQ@mail.gmail.com> <trinity-47c2d588-093d-4054-a16f-81d76aa667e0-1619013874284@3c-app-gmx-bs34> <CAL_JsqKne=ASOyd0E9GakVvDvaXDauHOOU5NgxU8X8ySvyrAcw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210421162621.24910-3-francesco.zanella@vimar.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: Re: [PATCH net-next v2 2/2] net: ethernet: mediatek: support custom GMAC label
+Reply-to: frank-w@public-files.de
+To:     linux-mediatek@lists.infradead.org, Rob Herring <robh@kernel.org>
+CC:     Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        =?ISO-8859-1?Q?Ren=E9_van_Dorst?= <opensource@vdorst.com>
+From:   Frank Wunderlich <frank-w@public-files.de>
+Message-ID: <278445B7-727F-444D-8F5F-986CAD38BA57@public-files.de>
+X-Provags-ID: V03:K1:i4lFH21GXNNZAau9Nq++WTeXreXX1sfRjeshPFKYIVVtlsNV0e1
+ IMeY+l/cJEiY5tCksT+kTXePvUQkmN3Rwevzn/muTwx8SeR6zdgtVBMrMoYlLr4JS637SG0
+ SKZ13gCYiTkam5Zl0Wz3brEPXaqN7gDh/s5x6vzPFue7gDkKI+UNBYFUmeF1+9R+LhIrnfF
+ 1ytvCuGAUq6JMwbIrTA4A==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:o9viHyDaucU=:0rlcnz0e7JdvUX3oF/E7p9
+ J1/G+8uMTzTLN6yJCNebZmuNDxl4tmI/GrZWf3xe140dNFsL9LyJndS8gPRATWrxVN+bYyw7t
+ w8zikTRkv+QxI+rHBdDYoyJqwd11YxRrQrPvKAoFyIbq5427Ah7UGSDT0swtuli42GH1oxypZ
+ DDt1JyjFBRGVfn1O2giVC+oIB1Hc20s4bUlvD9B8mhT75LkQYbzHrh1Bq5eAOhJH3usXHz1Tr
+ d1pOc1VEQHagmnjGIiaw3QVpzcqRqd3MynpGKCMv77cX0/ZB/mxddj3R5qYWh9N63m8/ouReX
+ pRa/acWLfxWi0CEFG0eDe7DamprjGlZv8nuAJ6x/Ut+FqLZk1faHmTW/tpWWFAWy9ovmLzLvR
+ a68NvgC8RWTCIYqNmgoGWDmTR+x+qml+EYzLen0Owz8h4ZKoXTz26NEPG0+16o+2FkTdmPRtN
+ s7/YqXEKhbajEJoDtO09uCLYRdB8geyRfO7ceCbA4lzvakEr63DXc7TbKaE87FIZBWhChxmgj
+ cIeA455EMmLZ5irtHjCGShxm4Pc4UKowHM+GM5LDAvV5QYgSr0R3fZNKjB20tN57uDeGeA5qn
+ 2V05j1bMRPoVFgW7uRVJs+44tw3XDw+Ypw1Yd/O5c5ZYnn3AzDZ8pzn7lGd1SVN18VBEDL3IN
+ YN5m2PicnkMZKkFvZ+LMVO91Gi0HKMGQTF2UttBnlw7bBq1DXebjGS1vO4mtG1tx84snUV/oR
+ M43B00vF4AVldwJsvgY6bymPduJD6PaMIta1YGcHuQ8oY4MIV1kxcTgPPlo/iPXGOCjuynAZA
+ waOSiw6WWVz89E5A+BlGJFVJMH48IzpvPy0SORIp2AGHAsUas4gjH4uoVvMwFTSadgkKT9yLi
+ yu1apNeAcatOzWgodjIloZB1vPXJ8ynY5onfF/dvHgeDcT9eeHh9jbZoyBh4oXi3/iwtd84dw
+ AqBRagZHByPnqYkuVrj4yJxo7ZGU4D2o0H1FYDPc+vfgrRJEOOB0CrEbnAsvi3vqqL21sIfOO
+ qkKIX0ct23cGDnCVv+SFSrpSHBsSffM0TJrSCEeK7LSvEBV0tBxY4Z3m8iyTkJneJPuAC7RGy
+ LHOlKeKKu5hoP/Tkue4KoO/HXrs6XfLYOU3iCn1rU6uos6BkYB6m4au+94Mh4XBd+oa2viZse
+ 4P3lc49bw1wYiPKQ8YsTB78S5RVzV4jlbXPhl80YuhNgW0JYl+XT+iOfavig1jjHyia2vLL/A
+ 3IJFskSsr1P3MJQIA
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 21, 2021 at 06:26:21PM +0200, Francesco Zanella wrote:
-> If "start-at-boot" property is present in the device tree, start pinging
-> hw watchdog at probe, in order to take advantage of kernel configs:
-> - WATCHDOG_HANDLE_BOOT_ENABLED: Avoid possible reboot if hw watchdog was
->   been enabled before the kernel (by uboot for example) and userspace
->   doesn't take control of /dev/watchdog in time;
-> - WATCHDOG_OPEN_TIMEOUT: Reboot if userspace doesn't take control of
->   /dev/watchdog within the timeout.
-> 
-> Signed-off-by: Francesco Zanella <francesco.zanella@vimar.com>
-> ---
->  drivers/watchdog/gpio_wdt.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/watchdog/gpio_wdt.c b/drivers/watchdog/gpio_wdt.c
-> index 0923201ce874..1e6f0322ab7a 100644
-> --- a/drivers/watchdog/gpio_wdt.c
-> +++ b/drivers/watchdog/gpio_wdt.c
-> @@ -31,6 +31,7 @@ struct gpio_wdt_priv {
->  	struct gpio_desc	*gpiod;
->  	bool			state;
->  	bool			always_running;
-> +	bool			start_at_boot;
->  	unsigned int		hw_algo;
->  	struct watchdog_device	wdd;
->  };
-> @@ -147,6 +148,9 @@ static int gpio_wdt_probe(struct platform_device *pdev)
->  	priv->always_running = of_property_read_bool(np,
->  						     "always-running");
->  
-> +	priv->start_at_boot = of_property_read_bool(np,
-> +						    "start-at-boot");
-> +
->  	watchdog_set_drvdata(&priv->wdd, priv);
->  
->  	priv->wdd.info		= &gpio_wdt_ident;
-> @@ -161,7 +165,7 @@ static int gpio_wdt_probe(struct platform_device *pdev)
->  
->  	watchdog_stop_on_reboot(&priv->wdd);
->  
-> -	if (priv->always_running)
-> +	if (priv->always_running || priv->start_at_boot)
->  		gpio_wdt_start(&priv->wdd);
+Am 21=2E April 2021 18:12:41 MESZ schrieb Rob Herring <robh@kernel=2Eorg>:
+>On Wed, Apr 21, 2021 at 9:05 AM Frank Wunderlich
+><frank-w@public-files=2Ede> wrote:
+>>
+>> Hi,
+>>
+>> for dsa slave-ports there is already a property "label", but not for
+>master/cpu-ports
+>
+>Is that because slave ports are external and master are not? If so,
+>that makes sense=2E
 
-So the only real difference to always_running is that always_running
-doesn't stop the watchdog on close but keeps it running.
+In my case gmac is internal,yes=2E=2E=2Ei don't know if ilyas device is si=
+milar=2E
 
-Does that really warrant another property ? Why not just use
-always-running ?
+But in a previous kernel-version the gmac of bpi-r2 can be passed through =
+mt7530 switch and gets available external while bypassing dsa core=2E Here =
+i wanted renaming of this port (gmac1=3Deth1 mapped as wan-port,while gmac0=
+=3Deth0 was splitted by dsa switch driver to lan0-lan3)
 
-The special use case of being able to stop the watchdog doesn't seem
-to be worth the trouble. Please explain your use case.
+>Seems like it could be possible to want to distinguish port types for
+>reasons other than just what to name the device=2E Better to describe
+>that difference in DT and then base the device name off of that=2E
 
-Guenter
+Interface names should be not only numbering as they can have different me=
+aning (wan vs=2E lan)=2E
+
+>If you just want fixed numbering, then 'aliases' node is generally how
+>that is done (either because it sneaks in or fatigue from arguing
+>fixed /dev nodes are an anti-feature)=2E There's already 'ethernetN'
+>which u-boot uses, but the kernel so far does not=2E
+
+Aliases are not yet used as interface name=2E=2E=2Edo you want this way (u=
+se alias name as ifname)? imho we can define multiple aliases to one dt nod=
+e which is imho not the best way as interface can have only one name, and i=
+nterface is created feom target node from where the alias needs to be found=
+=2E
+
+regards Frank
