@@ -2,285 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 875263663C0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 04:37:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91B20366410
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 05:27:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234771AbhDUCg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 22:36:57 -0400
-Received: from mail-db8eur05on2067.outbound.protection.outlook.com ([40.107.20.67]:30941
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234739AbhDUCg4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Apr 2021 22:36:56 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kzLUhYMRMkcNnmQHt3RtXrqCVha17AChxQe523yJdeCMrQVhnY3NEMdxrystw97D6eSGn/uZrJWUt5gPi3Zx4CIofrA0Vty9tpIwlJzDyVtTVA2SQ4332uuTSx8Ms4f7ZD/g/BeoBb4PzWJdA2VOlH8LDt49JZGaDLTLOauTB8rCiy2Qg5z9AID9qwFnU5gJmXIPBfkBj7PbTS2Adm3lj36ACiosUhJ8zLM5bL1qzDAMWvCWonwXBG85R/Am8mXVbNZgvoAcsr48Hv10z7MtnfdT1nsjnTRczOAvPhS9kMBGeMvccFHZsVN/ehYmPW/Khp75VmhH2CNC7nIqCsMRyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OixwFy/wa21b++X4r/qZTxLEQDqzfM6PlpewOGtoI5o=;
- b=lJzaFTdkHGSc7p/p9gKfCLWQhjm0nAqhPRBhyaOCOgJicRwQaI/qy+QO5PeSAokNbxlOkGeEqh053mq0oozZhYnszpzQ70ryqSvFitlhjPis/LRsZkLbqKqTxO/v21iOIWrcy0p3H4bxxp45sdgdS30uvpwpFc2X96lJmLhNbHMpgdQ8ltup5ig9mJ09mm09uXwR6jUyY1kDmMJLphthh1N/T0UmBTlfEsFoDdGW8usbXcZkHRoi8Iv8Hh244wzCOp9hbM+OX9ooqQWXms+ZvQLL0NvA8uPACc4Z+znhpbynO1hjJpUbInOC8pGSuFtysyU/hoRy3xKZzBxR195+6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OixwFy/wa21b++X4r/qZTxLEQDqzfM6PlpewOGtoI5o=;
- b=SEKNcfNHWOsMCYIOKk2+Je9rcqLer2yum184yjlhR0okcY6xPwfEyN1hLJ9x+qni9wl7z6QisTzHKzi6iPaRHWFQvaTq2EU3Spe6fUYtcuR0ENse3Jj7Ft6ZCqjKn/BCILbvMH5ciU/qGaI8sZ4/r80lFZawv9Yhaq0oX4J2poY=
-Authentication-Results: wizery.com; dkim=none (message not signed)
- header.d=none;wizery.com; dmarc=none action=none header.from=oss.nxp.com;
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
- by DB9PR04MB8313.eurprd04.prod.outlook.com (2603:10a6:10:241::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.19; Wed, 21 Apr
- 2021 02:36:22 +0000
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::45b9:c993:87ec:9a64]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::45b9:c993:87ec:9a64%8]) with mapi id 15.20.4042.020; Wed, 21 Apr 2021
- 02:36:22 +0000
-From:   peng.fan@oss.nxp.com
-To:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, o.rempel@pengutronix.de,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V5 8/8] remoteproc: imx_rproc: support i.MX8MN/P
-Date:   Wed, 21 Apr 2021 10:20:22 +0800
-Message-Id: <1618971622-30539-9-git-send-email-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1618971622-30539-1-git-send-email-peng.fan@oss.nxp.com>
-References: <1618971622-30539-1-git-send-email-peng.fan@oss.nxp.com>
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: HK2PR02CA0204.apcprd02.prod.outlook.com
- (2603:1096:201:20::16) To DB6PR0402MB2760.eurprd04.prod.outlook.com
- (2603:10a6:4:a1::14)
+        id S234754AbhDUD1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 23:27:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52780 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234730AbhDUD13 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 23:27:29 -0400
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F895C06174A;
+        Tue, 20 Apr 2021 20:26:56 -0700 (PDT)
+Received: by mail-oi1-x236.google.com with SMTP id v6so13318713oiv.3;
+        Tue, 20 Apr 2021 20:26:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=MWK09kw+cZABiUewyDvRKqcNr5Wzfd1T9if6kGy1ACU=;
+        b=ptMZMIkRBfbvDMtNiL/47XyoIRY0/jim8ZQBu+A/J93zDBYnxub/u8Wbel9O2EDqqr
+         dzCKJktHtZRAgvf+KbqCaGkj8KW9htgeKKwN44cxgZULx+uwcY5O8oV8PymAASNdi4K5
+         +Q+gTTtJyAj/DTb0ZejoV+cOlaHyN2NEjYMGrvtJmyZMqZ+mn/kB0yEeN0Mk8gJz9QoX
+         L5RRXWtDo8jWyWJ49Ga+a+QYN4HitC+k0lifY0jU5unzcm/iSC8NzqMVbU5hBlvT4Mlb
+         JIRrdVCgX4OwZCb1eUibJodHdLt6b+I9KwRUO3OSI8k+dMl6zomSkhKoI4oefCcv7MEL
+         j8lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=MWK09kw+cZABiUewyDvRKqcNr5Wzfd1T9if6kGy1ACU=;
+        b=c5OccDrmpypBLC+w6cniE05gHJC28sLBDu9ZK/QmREPjFCKJqaeLH7945ankRB4XhW
+         dv1N22bLMDTdRNn4X9OaFK9GvV7HMoWuF5ll69udwPLMkQVv/EUqi+tsC6O35b/+yKyg
+         L7ppj+9cmHn8XNDKVgxHHrYTRnYUajI/VfS8X4hExlduOkgbO+/w5z39AsJhRJf8SilS
+         wqPVpAF1F25T2ct9mAwXCBl+w7f5aeSkbICsds2zNhmI0AtncHLiT/NhsqgeZbJ3EORJ
+         7bfjd3iP5nXReByOVu6D7BR8nbDHvuOgrQZ8gcEMxHPs3WUK+TkvOGdvdjFi1mtzNKOO
+         ToaA==
+X-Gm-Message-State: AOAM5325JBBkWeAmc2H4IhDaLGGSK/gmEjtQI/EYM41i69bllaKAC3+z
+        apkTW4GiVUmq6cS5XF6mgmQ=
+X-Google-Smtp-Source: ABdhPJzBGPf2Jx0aPwkboV3X5V/3IZLEVS9eZVQ3647srnUE4TdLpLSWoZ0pSjT5NFquSXI0fjb7bA==
+X-Received: by 2002:aca:d90a:: with SMTP id q10mr5421443oig.63.1618975615856;
+        Tue, 20 Apr 2021 20:26:55 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d7sm245312oib.49.2021.04.20.20.26.54
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 20 Apr 2021 20:26:55 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 20 Apr 2021 20:26:53 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Tudor Ambarus <tudor.ambarus@microchip.com>
+Cc:     corbet@lwn.net, gregkh@linuxfoundation.org, rafael@kernel.org,
+        khilman@kernel.org, ulf.hansson@linaro.org, len.brown@intel.com,
+        lenb@kernel.org, pavel@ucw.cz, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org, frowand.list@gmail.com,
+        maz@kernel.org, tglx@linutronix.de, saravanak@google.com,
+        nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+        m.szyprowski@samsung.com, geert@linux-m68k.org,
+        kernel-team@android.com
+Subject: Re: [PATCH] clk: Mark fwnodes when their clock provider is added
+Message-ID: <20210421032653.GA179924@roeck-us.net>
+References: <20210205222644.2357303-9-saravanak@google.com>
+ <20210210114435.122242-1-tudor.ambarus@microchip.com>
+ <20210210114435.122242-2-tudor.ambarus@microchip.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.66) by HK2PR02CA0204.apcprd02.prod.outlook.com (2603:1096:201:20::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.4065.20 via Frontend Transport; Wed, 21 Apr 2021 02:36:18 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d5c2b272-2cb2-44bf-1a0d-08d9046e4013
-X-MS-TrafficTypeDiagnostic: DB9PR04MB8313:
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB9PR04MB8313287D10353E14FEE7CBA1C9479@DB9PR04MB8313.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:335;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9ANvPLCe/Xh/f2k/ts1Nu38M1dzDO/e/1LmDuNx7PkovlZ3YXH+LUgXrfpoBnAiOVJn4eQIKM07Upy88QmX7kM+Bd4QyliPdTNrW7HBiB7b0LjD0B9VoI9tQYn/d5R6IVGB5oejxIqOpKRbqxvGSG5ltOoUn1cjxJwfMKthPiwKPOS4HbnPv08diU+EonFh4wFgDn2yf7yRqOGMPMsGAsrO9u47f1aNw4h/xLSxs45c6mJVKNvYBK+dlgtYJpcrXUef/gHw1nJ+amidk1gkkYGXBDVbrAv8Dz4xQ69gfN/6XyY5xB/NOfADgIPdSqrcTTtvkdtpOu7dzL3tn2J/1dqqlCK9Ii23SJ96rzc1sIRc9itNjlWkIfpZ4xiY3FHJ1VAEH6v67LzG6zfPN59tprX1ksmstq1wAn93lLhV5h6Gd8C/SEkZu+58h1MOdKs9owjxAeDD7HtECwQnHRVg2xpYEuwfhoqbqFysIJ03Ixa8br2y2HCbREl6apHTIjih7tAUhmoo33pnaswSbjBYGpoG3y+/hiQSo0778ToepfbEPT2rmz2SkuR3rHUFxLYB7AatGOu9nFD5xwifl0ACu7+jRBT4UvkOB6sN5By9cHOG6ZJxyOnERhS2nDf8ht2sY+mtEztIBZxIJHgWkBj0/IE615HA6fmJNQq+sCDoCBEiE+T+Zxh3lJtamjuNeNFud
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(366004)(136003)(39860400002)(346002)(396003)(38350700002)(26005)(186003)(38100700002)(66556008)(52116002)(5660300002)(956004)(4326008)(8676002)(66946007)(8936002)(316002)(86362001)(83380400001)(6666004)(66476007)(7416002)(6506007)(6512007)(2906002)(9686003)(478600001)(2616005)(16526019)(6486002)(69590400013);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?MP+QpeN8QE08ZipcA3rvPUEgDq5Q3fnRVrOy0y+Cd7WM8S5oCVm4EuqnXWCZ?=
- =?us-ascii?Q?YsixcWKSMHZoY3YDQCML3lvxCHwm+Fd7CnVDuywxpIxp1XBUXWCEE2093/L7?=
- =?us-ascii?Q?QyVRjh4ktY1OD8+hPU2gs9lJ2vBTo7wwUQltAD244zirB0fSvqJLxQ2F1trJ?=
- =?us-ascii?Q?yiX52isktxAaAr9rP4sCqN2bOwIwVZAbNAk1Eq/do4FcVuK8a2gwcQpODSq0?=
- =?us-ascii?Q?61q883eHcMMYI+H3iouqRCV0xAeDtctt7xMJqmm+L9xgjT5BV0LHLIC7T1Qb?=
- =?us-ascii?Q?pxF6/tPyaSMEchs9fV/Ta2D0ph5i+OgkycvRscNrXFiKPPQMNptzCI1IVlMp?=
- =?us-ascii?Q?BNQ0YMk0hN5jx1crsM6jfjf5dQyVoCOzDEtTaT5Fe/IedJBmEomlchtvreWi?=
- =?us-ascii?Q?fGfM9wVFDaLqAaEgBYYQ7VVr7ebcn+QaM0ce72wkNoucD8bkyoyQCvNxpkLa?=
- =?us-ascii?Q?IRCx2HfeKnOsXAfJQTP+fGXtzyWr/HWU+7aLjhY79SiHLOJvLxED3pronf4l?=
- =?us-ascii?Q?FPa+6+aqZTy5Gxpf9HDWlHMlrbWE5Wqsbjuulwi55quoO+G6mrMk28u9qTYl?=
- =?us-ascii?Q?pK3bQyNNl3HrLEna3fpVxvKRsMuXCRsxz1TGE+GVMfDkdDB/LnG1yBVQgPI3?=
- =?us-ascii?Q?SAvfWUrjwXlcCds+lJIBIeG5uu2V9uKS3fvtk0c8XFVXHdrYFyityFlPNEIU?=
- =?us-ascii?Q?CNe7HRyxH34F88GxGxZL94IBllFH6JEXB0Nl/XcdlTC31W/1qQ5pj6t2JBLU?=
- =?us-ascii?Q?dJZsHCcfWVOlaM9YceEztP/zH+fxNPZ4/63yWebr5q1I4iSgQV+z/7+Khktd?=
- =?us-ascii?Q?XKrfkSnvf98/zuthFDHyqUT48ntU6GsEE3dv8CiJZipuPNFonqHwdO+GcASn?=
- =?us-ascii?Q?5I2zBxdsqEq0pgzR9XR4jDd23J8Vje1tfYcQMeuxpD8fsYmDcqHDd8q9fKHD?=
- =?us-ascii?Q?Jmlq7LaL5DUbMIxKPFXgKEaYSo8HbMN4TtKt0lNA4cjrgeN60XASqR2/HwML?=
- =?us-ascii?Q?0v/uD3v/ZB+ONNL57Qc60F7PGZdUTqt27gWprduUpu3cMvuDwog9ZmUeCK2D?=
- =?us-ascii?Q?2f/8dAMsEuR7r87wBUHbCQ1GuLYLvrvs/DRyUDX6iehx0OE/FXEAOR7hGG3e?=
- =?us-ascii?Q?O9NU9qGDhLG49J22I+64C9U9aN5UIdPlqVZ2l9KM2nNhgiTgvtjflqUAmTOQ?=
- =?us-ascii?Q?GZoIpMCOsNVjEcUoyssx6Jr5MT2lp/zHg4tNlXJ2jYAwPJWiFhBvMXDjyOls?=
- =?us-ascii?Q?hxVkpSlyuCOWZL61o5x3HETQrIiz/kCjuNKdCkIWxyR2GD9dvhuf5TyM/tbg?=
- =?us-ascii?Q?rKXNpgUcQrIwg9g7tkuI+NMU?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d5c2b272-2cb2-44bf-1a0d-08d9046e4013
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2021 02:36:22.1121
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mN0EvG9qIE3gnQIALMm75yZQUZPe7IvDLyhK5wZuAnu/UAK4pzFaUU4mrGA/xuEIs8qBhEEeRWXo2rU4a+89+A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8313
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210210114435.122242-2-tudor.ambarus@microchip.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+Hi,
 
-Add i.MX8MN/P remote processor(Cortex-M7) support, we are using ARM
-SMCCC to start/stop M core, not using regmap interface.
+On Wed, Feb 10, 2021 at 01:44:35PM +0200, Tudor Ambarus wrote:
+> This is a follow-up for:
+> commit 3c9ea42802a1 ("clk: Mark fwnodes when their clock provider is added/removed")
+> 
+> The above commit updated the deprecated of_clk_add_provider(),
+> but missed to update the preferred of_clk_add_hw_provider().
+> Update it now.
+> 
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
+This patch still causes a crash when booting a raspi2 image in linux-next.
+
+[   21.456500] Unable to handle kernel NULL pointer dereference at virtual address 00000028
+[   21.456750] pgd = (ptrval)
+[   21.456927] [00000028] *pgd=00000000
+[   21.457567] Internal error: Oops: 5 [#1] SMP ARM
+[   21.457882] Modules linked in:
+[   21.458077] CPU: 0 PID: 77 Comm: kworker/u8:10 Not tainted 5.12.0-rc8-next-20210420 #1
+[   21.458291] Hardware name: BCM2835
+[   21.458525] Workqueue: events_unbound deferred_probe_work_func
+[   21.458997] PC is at of_clk_add_hw_provider+0xbc/0xe8
+[   21.459176] LR is at of_clk_add_hw_provider+0xa8/0xe8
+...
+[   21.477603] [<c0a32aec>] (of_clk_add_hw_provider) from [<c0a32b60>] (devm_of_clk_add_hw_provider+0x48/0x80)
+[   21.477861] [<c0a32b60>] (devm_of_clk_add_hw_provider) from [<c0a471e4>] (raspberrypi_clk_probe+0x260/0x388)
+[   21.478087] [<c0a471e4>] (raspberrypi_clk_probe) from [<c0c1c4d0>] (platform_probe+0x5c/0xb8)
+[   21.478287] [<c0c1c4d0>] (platform_probe) from [<c0c19d84>] (really_probe+0xf0/0x39c)
+[   21.478471] [<c0c19d84>] (really_probe) from [<c0c1a098>] (driver_probe_device+0x68/0xc0)
+[   21.478659] [<c0c1a098>] (driver_probe_device) from [<c0c17f54>] (bus_for_each_drv+0x84/0xc8)
+[   21.478860] [<c0c17f54>] (bus_for_each_drv) from [<c0c19c20>] (__device_attach+0xec/0x158)
+[   21.479050] [<c0c19c20>] (__device_attach) from [<c0c18de8>] (bus_probe_device+0x88/0x90)
+[   21.479236] [<c0c18de8>] (bus_probe_device) from [<c0c16a68>] (device_add+0x398/0x8ac)
+[   21.479421] [<c0c16a68>] (device_add) from [<c0c1c1b4>] (platform_device_add+0xf0/0x200)
+[   21.479607] [<c0c1c1b4>] (platform_device_add) from [<c0c1ccc0>] (platform_device_register_full+0xd0/0x110)
+[   21.479836] [<c0c1ccc0>] (platform_device_register_full) from [<c104c130>] (rpi_firmware_probe+0x1a4/0x20c)
+[   21.480061] [<c104c130>] (rpi_firmware_probe) from [<c0c1c4d0>] (platform_probe+0x5c/0xb8)
+[   21.480255] [<c0c1c4d0>] (platform_probe) from [<c0c19d84>] (really_probe+0xf0/0x39c)
+[   21.480437] [<c0c19d84>] (really_probe) from [<c0c1a098>] (driver_probe_device+0x68/0xc0)
+[   21.480626] [<c0c1a098>] (driver_probe_device) from [<c0c17f54>] (bus_for_each_drv+0x84/0xc8)
+[   21.480829] [<c0c17f54>] (bus_for_each_drv) from [<c0c19c20>] (__device_attach+0xec/0x158)
+[   21.481018] [<c0c19c20>] (__device_attach) from [<c0c18de8>] (bus_probe_device+0x88/0x90)
+[   21.481205] [<c0c18de8>] (bus_probe_device) from [<c0c192bc>] (deferred_probe_work_func+0x8c/0xbc)
+[   21.481413] [<c0c192bc>] (deferred_probe_work_func) from [<c036802c>] (process_one_work+0x268/0x798)
+[   21.481624] [<c036802c>] (process_one_work) from [<c0368774>] (worker_thread+0x218/0x4f4)
+[   21.481822] [<c0368774>] (worker_thread) from [<c0370f28>] (kthread+0x140/0x174)
+[   21.481999] [<c0370f28>] (kthread) from [<c030017c>] (ret_from_fork+0x14/0x38)
+[   21.482185] Exception stack(0xc42b7fb0 to 0xc42b7ff8)
+
+Updated bisect log is attached.
+
+Guenter
+
 ---
- drivers/remoteproc/imx_rproc.c | 87 +++++++++++++++++++++++++++++++---
- 1 file changed, 80 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-index d26254609a52..3cb901c87a7d 100644
---- a/drivers/remoteproc/imx_rproc.c
-+++ b/drivers/remoteproc/imx_rproc.c
-@@ -3,6 +3,7 @@
-  * Copyright (c) 2017 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
-  */
- 
-+#include <linux/arm-smccc.h>
- #include <linux/clk.h>
- #include <linux/err.h>
- #include <linux/interrupt.h>
-@@ -50,6 +51,11 @@
- 
- #define IMX_RPROC_MEM_MAX		32
- 
-+#define IMX_SIP_RPROC			0xC2000005
-+#define IMX_SIP_RPROC_START		0x00
-+#define IMX_SIP_RPROC_STARTED		0x01
-+#define IMX_SIP_RPROC_STOP		0x02
-+
- /**
-  * struct imx_rproc_mem - slim internal memory structure
-  * @cpu_addr: MPU virtual address of the memory region
-@@ -108,6 +114,36 @@ struct imx_rproc {
- 	void __iomem			*rsc_table;
- };
- 
-+static const struct imx_rproc_att imx_rproc_att_imx8mn[] = {
-+	/* dev addr , sys addr  , size	    , flags */
-+	/* ITCM   */
-+	{ 0x00000000, 0x007E0000, 0x00020000, ATT_OWN },
-+	/* OCRAM_S */
-+	{ 0x00180000, 0x00180000, 0x00009000, 0 },
-+	/* OCRAM */
-+	{ 0x00900000, 0x00900000, 0x00020000, 0 },
-+	/* OCRAM */
-+	{ 0x00920000, 0x00920000, 0x00020000, 0 },
-+	/* OCRAM */
-+	{ 0x00940000, 0x00940000, 0x00050000, 0 },
-+	/* QSPI Code - alias */
-+	{ 0x08000000, 0x08000000, 0x08000000, 0 },
-+	/* DDR (Code) - alias */
-+	{ 0x10000000, 0x40000000, 0x0FFE0000, 0 },
-+	/* DTCM */
-+	{ 0x20000000, 0x00800000, 0x00020000, ATT_OWN },
-+	/* OCRAM_S - alias */
-+	{ 0x20180000, 0x00180000, 0x00008000, ATT_OWN },
-+	/* OCRAM */
-+	{ 0x20200000, 0x00900000, 0x00020000, ATT_OWN },
-+	/* OCRAM */
-+	{ 0x20220000, 0x00920000, 0x00020000, ATT_OWN },
-+	/* OCRAM */
-+	{ 0x20240000, 0x00940000, 0x00040000, ATT_OWN },
-+	/* DDR (Data) */
-+	{ 0x40000000, 0x40000000, 0x80000000, 0 },
-+};
-+
- static const struct imx_rproc_att imx_rproc_att_imx8mq[] = {
- 	/* dev addr , sys addr  , size	    , flags */
- 	/* TCML - alias */
-@@ -194,6 +230,12 @@ static const struct imx_rproc_att imx_rproc_att_imx6sx[] = {
- 	{ 0x80000000, 0x80000000, 0x60000000, 0 },
- };
- 
-+static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn = {
-+	.att		= imx_rproc_att_imx8mn,
-+	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
-+	.method		= IMX_RPROC_SMC,
-+};
-+
- static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mq = {
- 	.src_reg	= IMX7D_SRC_SCR,
- 	.src_mask	= IMX7D_M4_RST_MASK,
-@@ -235,12 +277,24 @@ static int imx_rproc_start(struct rproc *rproc)
- 	struct imx_rproc *priv = rproc->priv;
- 	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
- 	struct device *dev = priv->dev;
-+	struct arm_smccc_res res;
- 	int ret;
- 
--	ret = regmap_update_bits(priv->regmap, dcfg->src_reg,
--				 dcfg->src_mask, dcfg->src_start);
-+	switch (dcfg->method) {
-+	case IMX_RPROC_MMIO:
-+		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
-+					 dcfg->src_start);
-+		break;
-+	case IMX_RPROC_SMC:
-+		arm_smccc_smc(IMX_SIP_RPROC, IMX_SIP_RPROC_START, 0, 0, 0, 0, 0, 0, &res);
-+		ret = res.a0;
-+		break;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
- 	if (ret)
--		dev_err(dev, "Failed to enable M4!\n");
-+		dev_err(dev, "Failed to enable remote cores!\n");
- 
- 	return ret;
- }
-@@ -250,15 +304,26 @@ static int imx_rproc_stop(struct rproc *rproc)
- 	struct imx_rproc *priv = rproc->priv;
- 	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
- 	struct device *dev = priv->dev;
-+	struct arm_smccc_res res;
- 	int ret;
- 
--	if (dcfg->method == IMX_RPROC_NONE)
-+	switch (dcfg->method) {
-+	case IMX_RPROC_MMIO:
-+		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
-+					 dcfg->src_stop);
-+		break;
-+	case IMX_RPROC_SMC:
-+		arm_smccc_smc(IMX_SIP_RPROC, IMX_SIP_RPROC_STOP, 0, 0, 0, 0, 0, 0, &res);
-+		ret = res.a0;
-+		if (res.a1)
-+			dev_info(dev, "Not in wfi, force stopped\n");
-+		break;
-+	default:
- 		return -EOPNOTSUPP;
-+	}
- 
--	ret = regmap_update_bits(priv->regmap, dcfg->src_reg,
--				 dcfg->src_mask, dcfg->src_stop);
- 	if (ret)
--		dev_err(dev, "Failed to stop M4!\n");
-+		dev_err(dev, "Failed to stop remote cores\n");
- 
- 	return ret;
- }
-@@ -594,6 +659,7 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
- 	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
- 	struct device *dev = priv->dev;
- 	struct regmap *regmap;
-+	struct arm_smccc_res res;
- 	int ret;
- 	u32 val;
- 
-@@ -601,6 +667,11 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
- 	case IMX_RPROC_NONE:
- 		priv->rproc->state = RPROC_DETACHED;
- 		return 0;
-+	case IMX_RPROC_SMC:
-+		arm_smccc_smc(IMX_SIP_RPROC, IMX_SIP_RPROC_STARTED, 0, 0, 0, 0, 0, 0, &res);
-+		if (res.a0)
-+			priv->rproc->state = RPROC_DETACHED;
-+		return 0;
- 	default:
- 		break;
- 	}
-@@ -751,6 +822,8 @@ static const struct of_device_id imx_rproc_of_match[] = {
- 	{ .compatible = "fsl,imx6sx-cm4", .data = &imx_rproc_cfg_imx6sx },
- 	{ .compatible = "fsl,imx8mq-cm4", .data = &imx_rproc_cfg_imx8mq },
- 	{ .compatible = "fsl,imx8mm-cm4", .data = &imx_rproc_cfg_imx8mq },
-+	{ .compatible = "fsl,imx8mn-cm7", .data = &imx_rproc_cfg_imx8mn },
-+	{ .compatible = "fsl,imx8mp-cm7", .data = &imx_rproc_cfg_imx8mn },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, imx_rproc_of_match);
--- 
-2.30.0
-
+# bad: [50b8b1d699ac313c0a07a3c185ffb23aecab8abb] Add linux-next specific files for 20210419
+# good: [bf05bf16c76bb44ab5156223e1e58e26dfe30a88] Linux 5.12-rc8
+git bisect start 'HEAD' 'v5.12-rc8'
+# good: [c4bb91fc07e59241cde97f913d7a2fbedc248f0d] Merge remote-tracking branch 'crypto/master'
+git bisect good c4bb91fc07e59241cde97f913d7a2fbedc248f0d
+# good: [f15bbf170b40b48a43ed7076ce9f8ac9380e5752] Merge remote-tracking branch 'edac/edac-for-next'
+git bisect good f15bbf170b40b48a43ed7076ce9f8ac9380e5752
+# bad: [550a78090dcc4061e191312a757a127f0b6e6323] Merge remote-tracking branch 'vfio/next'
+git bisect bad 550a78090dcc4061e191312a757a127f0b6e6323
+# bad: [9f074d2a7bf49b2c9e1609703757b18de7611aef] Merge remote-tracking branch 'usb/usb-next'
+git bisect bad 9f074d2a7bf49b2c9e1609703757b18de7611aef
+# good: [855b2fdb7c543c94e7623e6ad0b492f04a5317db] Merge remote-tracking branch 'percpu/for-next'
+git bisect good 855b2fdb7c543c94e7623e6ad0b492f04a5317db
+# good: [1d08ed588c6a85a35a24c82eb4cf0807ec2b366a] usbip: vudc: fix missing unlock on error in usbip_sockfd_store()
+git bisect good 1d08ed588c6a85a35a24c82eb4cf0807ec2b366a
+# good: [1b7ce8fab5fd0c406dbf165b12d44b301decf589] Merge remote-tracking branch 'ipmi/for-next'
+git bisect good 1b7ce8fab5fd0c406dbf165b12d44b301decf589
+# good: [fe8e488058c47e9a8a2c85321f7198a0a17b0131] dt-bindings: usb: mtk-xhci: add wakeup interrupt
+git bisect good fe8e488058c47e9a8a2c85321f7198a0a17b0131
+# bad: [3c652132ce9052e626bf509932fcacfebed1ccb4] platform-msi: fix kernel-doc warnings
+git bisect bad 3c652132ce9052e626bf509932fcacfebed1ccb4
+# bad: [7f2fac70b729d68a34e5eba8d1fb68eb69b05169] device property: Add test cases for fwnode_property_count_*() APIs
+git bisect bad 7f2fac70b729d68a34e5eba8d1fb68eb69b05169
+# good: [38f087de8947700d3b06d3d1594490e0f611c5d1] devtmpfs: fix placement of complete() call
+git bisect good 38f087de8947700d3b06d3d1594490e0f611c5d1
+# good: [b6f617df4fa936c1ab1831c2b23563f6c1add6c4] driver core: Update device link status properly for device_bind_driver()
+git bisect good b6f617df4fa936c1ab1831c2b23563f6c1add6c4
+# bad: [6579c8d97ad7fc5671ee60234f3b8388abee5f77] clk: Mark fwnodes when their clock provider is added
+git bisect bad 6579c8d97ad7fc5671ee60234f3b8388abee5f77
+# good: [ea718c699055c8566eb64432388a04974c43b2ea] Revert "Revert "driver core: Set fw_devlink=on by default""
+git bisect good ea718c699055c8566eb64432388a04974c43b2ea
+# first bad commit: [6579c8d97ad7fc5671ee60234f3b8388abee5f77] clk: Mark fwnodes when their clock provider is added
