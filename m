@@ -2,67 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A818E366B32
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 14:52:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96864366B3F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 14:52:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239957AbhDUMw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 08:52:27 -0400
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:44837 "EHLO
+        id S240046AbhDUMwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 08:52:40 -0400
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:35374 "EHLO
         mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239900AbhDUMw1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 08:52:27 -0400
-Received: by mail-oi1-f180.google.com with SMTP id l17so10962244oil.11;
-        Wed, 21 Apr 2021 05:51:54 -0700 (PDT)
+        with ESMTP id S240011AbhDUMwc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 08:52:32 -0400
+Received: by mail-oi1-f180.google.com with SMTP id e25so12331631oii.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Apr 2021 05:51:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=VQLhFO5JI2Nq15ywY7H92sO8oP4b0Dz1pppaueHAcNU=;
-        b=r7Ufdkz7un7hNP2rxe0x1EBxikF89lVdpLMFG/ZMyW86vWXdSO6XcPGFI+ZDkZ6EHp
-         /nTUPmMX1rEW4rtDFILGIzJJY8X1rslnh8Bqx/zicteN3+3zGJlyqY+XKJjnGbePn3/x
-         i5+Z/V20h8QPcn0NtbBjfGh/JLl0R3wRcHos94uZXGyq9oesf8wA9V9YD+6qVkdsyX6b
-         P7xPLBmU6DEXeKzbvrBfed3e0lbefe6VY05S3h8iZjOorBGOHbLVYXHLtW74xRETmJqh
-         Xpo2UDajVOx/WrFGOPQAbEGVg9k4lyvFlbQPEvMIpYz2ejrWKmgrsPlyUO5uiFEnuWlA
-         B6pQ==
-X-Gm-Message-State: AOAM531fsHaX8jKOYeLu+hJyp1YNa4BPiWuMTXFKMLHW32IO7997hjYD
-        UAivKHeo4EAZIU6WQv5WJQ==
-X-Google-Smtp-Source: ABdhPJxG41MeL3PxhD71HzvRtfENDs4R5CQOxLlgb/LRxz2WM4nMPgFKXQYTsviQQ3g8PDxRCJXIvw==
-X-Received: by 2002:aca:cf8a:: with SMTP id f132mr350321oig.178.1619009513762;
-        Wed, 21 Apr 2021 05:51:53 -0700 (PDT)
+        bh=K1VN0E2afsXuIRa/0LuPNToiHvD7gJG5kP9WS3acX7M=;
+        b=GVDX0637fD+bbGrvMRbDIn+TONL+Dk+TBiI19i2TttYV6P0dq9JoIZ30lOvC8twnM8
+         CILP0l4+hp6uCJJbIvm7ZaQw+CPp7qWJa8QodaWQGzt6X/65PvompSobqaYwKbK9Wkm7
+         YSSRB9opW4goFY33tlaFxkMJYGm+ZWFI3nH6QE6NcS5YtfObafUiVI8vaZieji/iYRN3
+         upD68wddlUesSwXqWMJ9AkK19jOM2jm8v3ygD3yZmud4C879/y5w9QdxZISuJbyJ0Ywe
+         d/tnvB/U3vAD9uQgEdSLevLje6uBqLN3eKruvMG94adr7L9q1gRrc9sWIGMlUxJJO9jG
+         T1CQ==
+X-Gm-Message-State: AOAM530XpH99vWJQ6OVXhWz6zz1pNUsNPcRUZtNNf8vL7u2XhY+kz63n
+        Ve2Lgj9JqG+HfAjzZk5Dpw==
+X-Google-Smtp-Source: ABdhPJzBQLaeAdphPS+lRTeJpyFlvyfn8teAf6BdWXlXZzgiwjh0PpzFEFV066OXCxVYfGg6dPnRug==
+X-Received: by 2002:aca:cf09:: with SMTP id f9mr6712741oig.95.1619009518555;
+        Wed, 21 Apr 2021 05:51:58 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l1sm436992oot.40.2021.04.21.05.51.50
+        by smtp.gmail.com with ESMTPSA id u4sm433608ool.25.2021.04.21.05.51.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Apr 2021 05:51:51 -0700 (PDT)
-Received: (nullmailer pid 967210 invoked by uid 1000);
+        Wed, 21 Apr 2021 05:51:56 -0700 (PDT)
+Received: (nullmailer pid 967208 invoked by uid 1000);
         Wed, 21 Apr 2021 12:51:48 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-sunxi@lists.linux.dev,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Andre Przywara <andre.przywara@arm.com>
-In-Reply-To: <20210421042834.27309-2-samuel@sholland.org>
-References: <20210421042834.27309-1-samuel@sholland.org> <20210421042834.27309-2-samuel@sholland.org>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: Document the Allwinner H6 DWC3 glue
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, soc@kernel.org,
+        Arnd Bergmann <arnd@arndb.de>
+In-Reply-To: <20210420230402.8807-1-khilman@baylibre.com>
+References: <20210420230402.8807-1-khilman@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: amlogic: misc DT schema fixups
 Date:   Wed, 21 Apr 2021 07:51:48 -0500
-Message-Id: <1619009508.513542.967209.nullmailer@robh.at.kernel.org>
+Message-Id: <1619009508.502472.967207.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Apr 2021 23:28:33 -0500, Samuel Holland wrote:
-> The RST_BUS_XHCI reset line in the H6 affects both the DWC3 core and the
-> USB3 PHY. This suggests the reset line controls the USB3 IP as a whole.
-> Represent this by attaching the reset line to a glue layer device.
+On Tue, 20 Apr 2021 16:04:02 -0700, Kevin Hilman wrote:
+> Take a pass at cleaning up a bunch of warnings
+> from 'make dtbs_check' that have crept in.
 > 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 > ---
->  .../usb/allwinner,sun50i-h6-dwc3.yaml         | 75 +++++++++++++++++++
->  1 file changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.yaml
+>  .../devicetree/bindings/gpu/arm,mali-bifrost.yaml  |  5 +++++
+>  .../bindings/media/amlogic,axg-ge2d.yaml           |  1 +
+>  Documentation/devicetree/bindings/media/rc.yaml    |  4 ++++
+>  .../devicetree/bindings/sound/amlogic,t9015.yaml   |  1 +
+>  arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |  4 ++--
+>  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  | 14 +++++++-------
+>  .../arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts |  2 +-
+>  .../boot/dts/amlogic/meson-g12b-gtking-pro.dts     |  4 ++--
+>  arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts  |  2 +-
+>  .../boot/dts/amlogic/meson-g12b-odroid-n2.dtsi     |  4 ++--
+>  .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |  2 +-
+>  .../dts/amlogic/meson-gxl-s905d-mecool-kii-pro.dts |  2 +-
+>  .../boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts |  8 ++++----
+>  .../boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dts |  2 +-
+>  .../boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts   |  2 +-
+>  .../boot/dts/amlogic/meson-gxm-wetek-core2.dts     |  2 +-
+>  arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi |  4 ++--
+>  .../arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts |  2 +-
+>  18 files changed, 38 insertions(+), 27 deletions(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -71,17 +82,12 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.yaml: $id: 'http://devicetree.org/schemas/usb/allwinner,sun50i-h6-dwc3#' does not match 'http://devicetree.org/schemas/.*\\.yaml#'
-Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/usb/allwinner,sun50i-h6-usb3-phy.yaml'
-xargs: dt-doc-validate: exited with status 255; aborting
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.yaml: ignoring, error in schema: $id
-warning: no schema found in file: ./Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.yaml
-Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.example.dts:23.27-50.11: Warning (unit_address_vs_reg): /example-0/usb@5200000: node has a unit name, but no reg or ranges property
-Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.example.dt.yaml:0:0: /example-0/usb@5200000: failed to match any schema with compatible: ['allwinner,sun50i-h6-dwc3']
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.example.dt.yaml: usb@5200000: phy-names:0: 'usb2-phy' was expected
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.example.dt.yaml: ge2d@ff940000: 'reset-names' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/amlogic,t9015.example.dt.yaml: audio-controller@32000: 'reset-names' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
 
-See https://patchwork.ozlabs.org/patch/1468558
+See https://patchwork.ozlabs.org/patch/1468511
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
