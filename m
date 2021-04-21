@@ -2,105 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A96F3674E8
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 23:57:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79EAF3674F4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 00:04:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241973AbhDUV6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 17:58:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44108 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235570AbhDUV6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 17:58:16 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 244B5C06174A;
-        Wed, 21 Apr 2021 14:56:43 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id E12251F41E98
-Message-ID: <bf0771cec69e11bf4622421a3aa8f2092da42429.camel@collabora.com>
-Subject: Re: [PATCH 1/2] dt-bindings: rockchip-thermal: Support the RK3568
- SoC compatible
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Johan Jonker <jbx6244@gmail.com>, linux-pm@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Finley Xiao <finley.xiao@rock-chips.com>, kernel@collabora.com
-Date:   Wed, 21 Apr 2021 18:56:31 -0300
-In-Reply-To: <ca5d55ef-e364-be7a-5ad6-81f039c691e6@gmail.com>
-References: <20210421200445.32977-1-ezequiel@collabora.com>
-         <557ae27c-1d62-69e0-7ae6-921571059f9f@gmail.com>
-         <31272ad0e6a5274080831406796960506c6a6912.camel@collabora.com>
-         <ca5d55ef-e364-be7a-5ad6-81f039c691e6@gmail.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.2-1 
+        id S1343526AbhDUWFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 18:05:03 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:38656 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343520AbhDUWE4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 18:04:56 -0400
+Received: by mail-ot1-f43.google.com with SMTP id e89-20020a9d01e20000b0290294134181aeso14524824ote.5;
+        Wed, 21 Apr 2021 15:04:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YyWRRR5pID7wLfiSPpITLgjBSDaDSiWNgGz2ZVQAVm4=;
+        b=ae3d0T1qBMB0S5CiJdUCkqxiBbzoDZTcyk1Hv1yZGEfclEJ8a84CxuTmx6DFGBmIgb
+         pJ3b83yJATEs+TrFrye2NQGk+LK9NPfmu5LZ3R6mJc8jgqJwoNRF+zc0A2AdKMOa4WJS
+         0jsx5O4M0Ll2Y+TQHal+Ki8kBSgWF1an5cIiJ/Ew6BYFlpbMP+YXNXGrjK243TXbjzQD
+         PlwQczhVAqYXkm+uL54ui78CR0XMdaRkXQy4UqWPOso7H2lZAOrkVVOhLUask8ABCcA3
+         FodC2SSiqbMtxqTYftGhWvWKRbZNJmDm/wRibb3QMiKpi/eHuZy9Sj16j53L4KCcAUA3
+         ZLXQ==
+X-Gm-Message-State: AOAM530Vh7QAUovCX6O1WaCOYH2dbG0kLlnPlQpa+0IFLRsYs8VcSUw4
+        x/6ISTwszo9tiXv/IQKDo3CViY126w==
+X-Google-Smtp-Source: ABdhPJzSgNh0eNuEFHn0OFogk6iPvpAuniBWUk4gpFN/M9tEV9RdIvzxu7w4iRlWdvf0PZgHYwNEIQ==
+X-Received: by 2002:a05:6830:158e:: with SMTP id i14mr258106otr.154.1619042584165;
+        Wed, 21 Apr 2021 15:03:04 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v12sm163185ota.63.2021.04.21.15.03.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Apr 2021 15:03:03 -0700 (PDT)
+Received: (nullmailer pid 1695324 invoked by uid 1000);
+        Wed, 21 Apr 2021 22:03:02 -0000
+Date:   Wed, 21 Apr 2021 17:03:02 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        John Crispin <john@phrozen.org>
+Subject: Re: [PATCH] dt-bindings: net: mediatek/ralink: remove unused bindings
+Message-ID: <20210421220302.GA1637795@robh.at.kernel.org>
+References: <20210420024222.101615-1-ilya.lipnitskiy@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210420024222.101615-1-ilya.lipnitskiy@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2021-04-21 at 23:25 +0200, Johan Jonker wrote:
-> On 4/21/21 11:06 PM, Ezequiel Garcia wrote:
-> > On Wed, 2021-04-21 at 22:46 +0200, Johan Jonker wrote:
-> > > On 4/21/21 10:04 PM, Ezequiel Garcia wrote:
-> > > > Add a new compatible for the thermal sensor device on RK3568 SoCs.
-> > > > 
-> > > > Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/thermal/rockchip-thermal.txt | 1 +
-> > > >  1 file changed, 1 insertion(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt b/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
-> > > > index 7f94669e9ebe..346e466c2006 100644
-> > > > --- a/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
-> > > > +++ b/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
-> > > > @@ -9,6 +9,7 @@ Required properties:
-> > > >     "rockchip,rk3328-tsadc": found on RK3328 SoCs
-> > > >     "rockchip,rk3368-tsadc": found on RK3368 SoCs
-> > > >     "rockchip,rk3399-tsadc": found on RK3399 SoCs
-> > > 
-> > > > +   "rockchip,rk3568-tsadc": found on RK3568 SoCs
-> > > 
-> > > This is still a text document.
-> > > rob+dt has now scripts that check for undocumented compatibility
-> > > strings, so first convert rockchip-thermal.txt to YAML and then add this
-> > > in a separated patch.
-> > > 
-> > 
-> > Is it a showstopper to convert devicetree bindings to YAML for driver submission?
+On Mon, Apr 19, 2021 at 07:42:22PM -0700, Ilya Lipnitskiy wrote:
+> Revert commit 663148e48a66 ("Documentation: DT: net: add docs for
+> ralink/mediatek SoC ethernet binding")
 > 
-> You now that hardware best, so try to fix the documents as well.
+> No in-tree drivers use the compatible strings present in these bindings,
+> and some have been superseded by DSA-capable mtk_eth_soc driver, so
+> remove these obsolete bindings.
 
-Well, not really. I'm just forward porting the driver from downstream kernels,
-so we can support this new SoC. Not really a hardware _expert_ for all the
-devices I plan to be pushing.
+Looks like maybe OpenWRT folks are using these. If so, you can't revert 
+them.
 
-> The new norm is YAML, so aim for that.
-
-I am aware of that. In fact, at Collabora we encourage all the kernel
-developers to convert to YAML, if/when possible.
-
-> Try to submit a complete package of YAML, driver (and dts nodes) for review.
-
-The devicetree for RK3566 and RK3568 is under discussion, in fact it was submitted today.
-Rockhip is leading that, and doing a great job already :)
-
-Meanwhile, I'd like to merge the small drivers (thermal, pmic, dwmac, io-domains and so on),
-so they are ready when the devicetree lands.
-
-Most if not all of these devices just need a new compatible string. It would really delay
-things if I aim to convert all those bindings docs to YAML first, so let's please avoid that...
-... unless it's a new hard-rule that DT maintainers have agreed on.
-
-Having said that, if you want to help the RK3568 bringup adventure,
-converting the bindings to YAML, that would be really appreciated! Of course, I know
-you've converted plenty of them already, and I already appreciate that :)
-
-Thanks,
-Ezequiel
-
+> 
+> Cc: John Crispin <john@phrozen.org>
+> Signed-off-by: Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
+> ---
+>  .../bindings/net/mediatek,mt7620-gsw.txt      | 24 --------
+>  .../bindings/net/ralink,rt2880-net.txt        | 59 -------------------
+>  .../bindings/net/ralink,rt3050-esw.txt        | 30 ----------
+>  3 files changed, 113 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/mediatek,mt7620-gsw.txt
+>  delete mode 100644 Documentation/devicetree/bindings/net/ralink,rt2880-net.txt
+>  delete mode 100644 Documentation/devicetree/bindings/net/ralink,rt3050-esw.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/net/mediatek,mt7620-gsw.txt b/Documentation/devicetree/bindings/net/mediatek,mt7620-gsw.txt
+> deleted file mode 100644
+> index 358fed2fab43..000000000000
+> --- a/Documentation/devicetree/bindings/net/mediatek,mt7620-gsw.txt
+> +++ /dev/null
+> @@ -1,24 +0,0 @@
+> -Mediatek Gigabit Switch
+> -=======================
+> -
+> -The mediatek gigabit switch can be found on Mediatek SoCs (mt7620, mt7621).
+> -
+> -Required properties:
+> -- compatible: Should be "mediatek,mt7620-gsw" or "mediatek,mt7621-gsw"
+> -- reg: Address and length of the register set for the device
+> -- interrupts: Should contain the gigabit switches interrupt
+> -- resets: Should contain the gigabit switches resets
+> -- reset-names: Should contain the reset names "gsw"
+> -
+> -Example:
+> -
+> -gsw@10110000 {
+> -	compatible = "ralink,mt7620-gsw";
+> -	reg = <0x10110000 8000>;
+> -
+> -	resets = <&rstctrl 23>;
+> -	reset-names = "gsw";
+> -
+> -	interrupt-parent = <&intc>;
+> -	interrupts = <17>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/net/ralink,rt2880-net.txt b/Documentation/devicetree/bindings/net/ralink,rt2880-net.txt
+> deleted file mode 100644
+> index 9fe1a0a22e44..000000000000
+> --- a/Documentation/devicetree/bindings/net/ralink,rt2880-net.txt
+> +++ /dev/null
+> @@ -1,59 +0,0 @@
+> -Ralink Frame Engine Ethernet controller
+> -=======================================
+> -
+> -The Ralink frame engine ethernet controller can be found on Ralink and
+> -Mediatek SoCs (RT288x, RT3x5x, RT366x, RT388x, rt5350, mt7620, mt7621, mt76x8).
+> -
+> -Depending on the SoC, there is a number of ports connected to the CPU port
+> -directly and/or via a (gigabit-)switch.
+> -
+> -* Ethernet controller node
+> -
+> -Required properties:
+> -- compatible: Should be one of "ralink,rt2880-eth", "ralink,rt3050-eth",
+> -  "ralink,rt3050-eth", "ralink,rt3883-eth", "ralink,rt5350-eth",
+> -  "mediatek,mt7620-eth", "mediatek,mt7621-eth"
+> -- reg: Address and length of the register set for the device
+> -- interrupts: Should contain the frame engines interrupt
+> -- resets: Should contain the frame engines resets
+> -- reset-names: Should contain the reset names "fe". If a switch is present
+> -  "esw" is also required.
+> -
+> -
+> -* Ethernet port node
+> -
+> -Required properties:
+> -- compatible: Should be "ralink,eth-port"
+> -- reg: The number of the physical port
+> -- phy-handle: reference to the node describing the phy
+> -
+> -Example:
+> -
+> -mdio-bus {
+> -	...
+> -	phy0: ethernet-phy@0 {
+> -		phy-mode = "mii";
+> -		reg = <0>;
+> -	};
+> -};
+> -
+> -ethernet@400000 {
+> -	compatible = "ralink,rt2880-eth";
+> -	reg = <0x00400000 10000>;
+> -
+> -	#address-cells = <1>;
+> -	#size-cells = <0>;
+> -
+> -	resets = <&rstctrl 18>;
+> -	reset-names = "fe";
+> -
+> -	interrupt-parent = <&cpuintc>;
+> -	interrupts = <5>;
+> -
+> -	port@0 {
+> -		compatible = "ralink,eth-port";
+> -		reg = <0>;
+> -		phy-handle = <&phy0>;
+> -	};
+> -
+> -};
+> diff --git a/Documentation/devicetree/bindings/net/ralink,rt3050-esw.txt b/Documentation/devicetree/bindings/net/ralink,rt3050-esw.txt
+> deleted file mode 100644
+> index 87e315856efa..000000000000
+> --- a/Documentation/devicetree/bindings/net/ralink,rt3050-esw.txt
+> +++ /dev/null
+> @@ -1,30 +0,0 @@
+> -Ralink Fast Ethernet Embedded Switch
+> -====================================
+> -
+> -The ralink fast ethernet embedded switch can be found on Ralink and Mediatek
+> -SoCs (RT3x5x, RT5350, MT76x8).
+> -
+> -Required properties:
+> -- compatible: Should be "ralink,rt3050-esw"
+> -- reg: Address and length of the register set for the device
+> -- interrupts: Should contain the embedded switches interrupt
+> -- resets: Should contain the embedded switches resets
+> -- reset-names: Should contain the reset names "esw"
+> -
+> -Optional properties:
+> -- ralink,portmap: can be used to choose if the default switch setup is
+> -  llllw or wllll
+> -- ralink,led_polarity: override the active high/low settings of the leds
+> -
+> -Example:
+> -
+> -esw@10110000 {
+> -	compatible = "ralink,rt3050-esw";
+> -	reg = <0x10110000 8000>;
+> -
+> -	resets = <&rstctrl 23>;
+> -	reset-names = "esw";
+> -
+> -	interrupt-parent = <&intc>;
+> -	interrupts = <17>;
+> -};
+> -- 
+> 2.31.1
+> 
