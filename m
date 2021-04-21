@@ -2,189 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 706A8367557
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 00:52:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E9F3367562
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 00:56:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240271AbhDUWwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 18:52:50 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:39792 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235481AbhDUWwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 18:52:49 -0400
-Received: by mail-oi1-f178.google.com with SMTP id i81so43992171oif.6;
-        Wed, 21 Apr 2021 15:52:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZfP+v08fbXOyQGmlXgs34y9m62CQJ9d66rbECIK0MBw=;
-        b=Dd0tQaJJBFhGob251JdzNdw0wZj2fT81LhNPTPSlIEYY31ATxH55JwJQ1v5+52qBlt
-         yu0wgqO7EE3ycpSrtCHxtbF/77kOUX2xWW42W6/nD5prBiMg+IbEaF8aKATdS2fcvy7Q
-         zxsJ0ZmvSv3rHedkTWF9MHhRuj8wWwrLj/rmiV6GIhiGAtXDPz00TDRK5nRXCNFvBno9
-         9gG2mgw/fKJ60C3Zt2fhqFagu6B7EoHCOMCwh3oTpFTgK6ASPnNGUwdVjZ5oLNLzGPil
-         UG92kUZMNb9PDhQQZ1UsQepMy1aHR/x0ZRjkdrIKN5AHAPrp7t8VcfNgzNfgBkBOuZlZ
-         SDzQ==
-X-Gm-Message-State: AOAM533z5uPGpPwCrzzLjVQ3BUPrc/oncgllu5MtttTSpy13cojgaKaF
-        QvMhWqRJ1r5ls2fZp2hATA==
-X-Google-Smtp-Source: ABdhPJxM2G9XHRqVP6I+dA7m+p0XdMvLC72ekhQnsH+Rh1qvuIPrfU3LUCdqIWAsIOh3/pRWmS17Pg==
-X-Received: by 2002:aca:44b:: with SMTP id 72mr216449oie.68.1619045534389;
-        Wed, 21 Apr 2021 15:52:14 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d17sm181223oth.19.2021.04.21.15.52.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Apr 2021 15:52:13 -0700 (PDT)
-Received: (nullmailer pid 1761097 invoked by uid 1000);
-        Wed, 21 Apr 2021 22:52:12 -0000
-Date:   Wed, 21 Apr 2021 17:52:12 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Jens Wiklander <jens.wiklander@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: arm: firmware: Convert linaro,optee-tz to
- json schema
-Message-ID: <20210421225212.GB1750844@robh.at.kernel.org>
-References: <20210416222518.15801-1-nm@ti.com>
+        id S234506AbhDUW44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 18:56:56 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:38798 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230466AbhDUW4z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 18:56:55 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0F1AD3EE;
+        Thu, 22 Apr 2021 00:56:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1619045780;
+        bh=WkmhH9Q1vj2dITe+hob3K9pQ6MPQI2TTUhf7EEkHmJE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CmJRnLv0TlDZsY7jtbPmrshOFHIN830cvkV/knMXFnkmmf09MmCfkGocFG847Bqez
+         Ky/iDF55GK6b1FqH07tcDB00001BH2TVYGVxppUyDkd8yzSkNoEC7S0rJmwggA1Vig
+         I6MAncScCk6CeE9+BW2T2HQxv01kcxBG6foTlz6w=
+Date:   Thu, 22 Apr 2021 01:56:15 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org, ch@denx.de,
+        Douglas Anderson <dianders@chromium.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Stephen Boyd <swboyd@chromium.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH V2 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add TI
+ SN65DSI83 and SN65DSI84 bindings
+Message-ID: <YICtj+cX7t6mmWM5@pendragon.ideasonboard.com>
+References: <20210421223122.112736-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210416222518.15801-1-nm@ti.com>
+In-Reply-To: <20210421223122.112736-1-marex@denx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 16, 2021 at 05:25:18PM -0500, Nishanth Menon wrote:
-> Convert linaro,optee-tz to json schema format for better documentation
-> and error checks.
+Hi Marek,
+
+Thank you for the patch.
+
+On Thu, Apr 22, 2021 at 12:31:21AM +0200, Marek Vasut wrote:
+> Add DT binding document for TI SN65DSI83 and SN65DSI84 DSI to LVDS bridge.
 > 
-> NOTE:
-> 1. This change does introduce a stricter naming convention for
->    optee nodes.
-> 2. We do have false positive checkpatch warning with this patch:
->    "DT binding docs and includes should be a separate patch"
-
-Not really something that needs to be in the commit msg. I'm aware of 
-the issue, just haven't gotten around to fixing it.
-
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Douglas Anderson <dianders@chromium.org>
+> Cc: Jagan Teki <jagan@amarulasolutions.com>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Stephen Boyd <swboyd@chromium.org>
+> Cc: devicetree@vger.kernel.org
+> To: dri-devel@lists.freedesktop.org
 > ---
->  .../bindings/arm/firmware/linaro,optee-tz.txt | 31 ----------
->  .../arm/firmware/linaro,optee-tz.yaml         | 62 +++++++++++++++++++
->  2 files changed, 62 insertions(+), 31 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> V2: Add compatible string for SN65DSI84, since this is now tested on it
+> ---
+>  .../bindings/display/bridge/ti,sn65dsi83.yaml | 134 ++++++++++++++++++
+>  1 file changed, 134 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.txt b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.txt
-> deleted file mode 100644
-> index d38834c67dff..000000000000
-> --- a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.txt
-> +++ /dev/null
-> @@ -1,31 +0,0 @@
-> -OP-TEE Device Tree Bindings
-> -
-> -OP-TEE is a piece of software using hardware features to provide a Trusted
-> -Execution Environment. The security can be provided with ARM TrustZone, but
-> -also by virtualization or a separate chip.
-> -
-> -We're using "linaro" as the first part of the compatible property for
-> -the reference implementation maintained by Linaro.
-> -
-> -* OP-TEE based on ARM TrustZone required properties:
-> -
-> -- compatible     : should contain "linaro,optee-tz"
-> -
-> -- method         : The method of calling the OP-TEE Trusted OS. Permitted
-> -                   values are:
-> -
-> -                   "smc" : SMC #0, with the register assignments specified
-> -		           in drivers/tee/optee/optee_smc.h
-> -
-> -                   "hvc" : HVC #0, with the register assignments specified
-> -		           in drivers/tee/optee/optee_smc.h
-> -
-> -
-> -
-> -Example:
-> -	firmware {
-> -		optee {
-> -			compatible = "linaro,optee-tz";
-> -			method = "smc";
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
 > new file mode 100644
-> index 000000000000..6513b5ac8b2c
+> index 000000000000..42d11b46a1eb
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> @@ -0,0 +1,134 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/arm/firmware/linaro,optee-tz.yaml#
+> +$id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: OP-TEE Device Tree Bindings
+> +title: SN65DSI83 and SN65DSI84 DSI to LVDS bridge chip
 > +
 > +maintainers:
-> +  - Jens Wiklander <jens.wiklander@linaro.org>
+> +  - Marek Vasut <marex@denx.de>
 > +
 > +description: |
-> +  OP-TEE is a piece of software using hardware features to provide a Trusted
-> +  Execution Environment. The security can be provided with ARM TrustZone, but
-> +  also by virtualization or a separate chip.
-> +
-> +  We're using "linaro" as the first part of the compatible property for
-> +  the reference implementation maintained by Linaro.
+> +  Texas Instruments SN65DSI83 1x Single-link MIPI DSI
+> +  to 1x Single-link LVDS
+> +  https://www.ti.com/lit/gpn/sn65dsi83
+> +  Texas Instruments SN65DSI84 1x Single-link MIPI DSI
+> +  to 1x Dual-link or 2x Single-link LVDS
+> +  https://www.ti.com/lit/gpn/sn65dsi84
 > +
 > +properties:
-> +  $nodename:
-> +    const: 'optee'
-
-Don't need quotes.
-
-> +
 > +  compatible:
-> +    const: linaro,optee-tz
-> +
-> +  method:
-> +    description: The method of calling the OP-TEE Trusted OS.
 > +    oneOf:
-> +      - description: |
-> +          SMC #0, with the register assignments specified
-> +          in drivers/tee/optee/optee_smc.h
-> +        items:
-> +          - const: smc
-> +      - description: |
-> +          HVC #0, with the register assignments specified
-> +          in drivers/tee/optee/optee_smc.h
-> +        items:
-> +          - const: hvc
+> +      - const: ti,sn65dsi83
+> +      - const: ti,sn65dsi84
+> +
+> +  reg:
+> +    const: 0x2d
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +    description: GPIO specifier for bridge_en pin (active high).
+> +
+> +  ports:
+> +    type: object
 
-Please just do 'enum: [ smc, hvc ]' and rework to a single description.
+Could you use the OF graph schema, now that it is available ? There
+should be plenty of examples in bindings, both in display and in media.
+You will be able to drop quite a bit of boilerplate.
 
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +      port@0:
+> +        type: object
+> +        additionalProperties: false
+> +
+> +        description:
+> +          Video port for MIPI DSI input
+> +
+> +        properties:
+> +          reg:
+> +            const: 0
+> +
+> +          endpoint:
+> +            type: object
+> +            additionalProperties: false
+> +            properties:
+> +              remote-endpoint: true
+> +              data-lanes:
+> +                description: array of physical DSI data lane indexes.
+> +
+> +        required:
+> +          - reg
+> +
+> +      port@1:
+> +        type: object
+> +        additionalProperties: false
+> +
+> +        description:
+> +          Video port for LVDS output (panel or bridge).
+> +
+> +        properties:
+> +          reg:
+> +            const: 1
+> +
+> +          endpoint:
+> +            type: object
+> +            additionalProperties: false
+> +            properties:
+> +              remote-endpoint: true
+> +
+> +        required:
+> +          - reg
+> +
+> +    required:
+> +      - "#address-cells"
+> +      - "#size-cells"
+> +      - port@0
+> +      - port@1
 > +
 > +required:
 > +  - compatible
-> +  - method
+> +  - reg
+> +  - enable-gpios
+> +  - ports
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    firmware  {
-> +        optee  {
-> +            compatible = "linaro,optee-tz";
-> +            method = "smc";
-> +        };
-> +    };
+> +    #include <dt-bindings/gpio/gpio.h>
 > +
-> +  - |
-> +    firmware  {
-> +        optee  {
-> +            compatible = "linaro,optee-tz";
-> +            method = "hvc";
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+
+While not a hard rule, it's customary to indent DT examples with 4
+spaces. I find it to increase readability, but if you feel otherwise,
+that's OK.
+
+> +
+> +      bridge@2d {
+> +        compatible = "ti,sn65dsi83";
+> +        reg = <0x2d>;
+> +
+> +        enable-gpios = <&gpio2 1 GPIO_ACTIVE_HIGH>;
+> +
+> +        ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          port@0 {
+> +            reg = <0>;
+> +            endpoint {
+> +              remote-endpoint = <&dsi0_out>;
+> +              data-lanes = <1 2 3 4>;
+> +            };
+> +          };
+> +
+> +          port@1 {
+> +            reg = <1>;
+> +            endpoint {
+> +              remote-endpoint = <&panel_in_lvds>;
+> +            };
+> +          };
 > +        };
+> +      };
 > +    };
-> -- 
-> 2.31.0
-> 
+
+-- 
+Regards,
+
+Laurent Pinchart
