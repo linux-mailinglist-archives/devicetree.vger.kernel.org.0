@@ -2,288 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD05C3662FA
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 02:19:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 959D8366331
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 02:50:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234487AbhDUAUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 20:20:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40654 "EHLO
+        id S233836AbhDUAvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 20:51:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233752AbhDUAT5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 20:19:57 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73D2AC06138A
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 17:19:24 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id d124so26918790pfa.13
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 17:19:24 -0700 (PDT)
+        with ESMTP id S234454AbhDUAvQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 20:51:16 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8D61C061763
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 17:50:42 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id m12so7390081pgr.9
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 17:50:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=RCqPlzEmXjfX2LhfDG7ZqVVTzyANyALfk0BCd+rwAe8=;
-        b=kjZXoGV6ws9q+YDReseSjdTt8acdr14sRul0BTJeDFBr02iJTREhlYR8xyu4EefQdl
-         YE431rfeafAyZAqlpUI2W/7G8JiNL3O5hfC1kMGN8I64LSQpveQOsN5d8MxoV+QTKGm9
-         STyju5pvSFtoZ9yDjo6iZlPNBFLTRnMEi/CUQ=
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=8YLOYTL9uFfTlsUBTt4KtFnsgrD3qMKDwpIsIQc1OzQ=;
+        b=GTHAWJyYH+TVJoASsZJVT+rFImVeTfbBdAU0ib1vxL3BQwDL7OWyZZRY+dVfY+CbpJ
+         teVIlUg3keh/0L70wBaEjFOe9F0jWuGp5A/2LL2L+QU1LNxy3sEJmhmPc3v7dSxnSngQ
+         I87A7TZRRHK9Zj4RcZGYcgJgbC3ctsHHRvmxI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=RCqPlzEmXjfX2LhfDG7ZqVVTzyANyALfk0BCd+rwAe8=;
-        b=DkXzc8l0Gqgm8KGxjFcohDfoNwhrDlbRunXCX6tf8YYEedESychovBV7MvASr9cleS
-         MNzNUYn+9zpnXnGYTlg8TrxJgQZCbq0OcjzLiMpqt3H5ay8P4pNPS5wqFmVi2etGu6Hr
-         xWzoUqBMXI8C4/dF3Icg4oT3FZg9rM6JNaSIOWTYy4Vm5Y1Mw0RYvVyKZRqzBBIlR4jA
-         M4T+hINJoixIbk39bgOJ0NwhWZ7S6/78BiyNjb20CKMFtg9pq9ohwaHGwn/4Wipn7T8V
-         J0/s2IEikEr+2Qzfo9d0CAjXSqEhnBJ8c+Xh+aloRg9uaA2wC6iDFKvoqx2Vwb4kTzwR
-         SgWA==
-X-Gm-Message-State: AOAM531ZzUEpd/7lrH1Bof4Xq9JQM3IuHb2kEtoorAJ6ysAQs0Brnc+I
-        fVHQwBdWdF2Pp+AWw5R31EAj7g==
-X-Google-Smtp-Source: ABdhPJy9/hRSthlk5pyjMJ3uJuCdD3gU2Cbt3KBcr8FuvdrBSHgyCRS7P+1AOXV4jOuNR3VCtHpN8Q==
-X-Received: by 2002:a63:5a50:: with SMTP id k16mr19221302pgm.185.1618964363677;
-        Tue, 20 Apr 2021 17:19:23 -0700 (PDT)
-Received: from drinkcat2.tpe.corp.google.com ([2401:fa00:1:b:95d2:8c89:b629:ff49])
-        by smtp.gmail.com with ESMTPSA id d20sm145494pfn.166.2021.04.20.17.19.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Apr 2021 17:19:22 -0700 (PDT)
-From:   Nicolas Boichat <drinkcat@chromium.org>
-To:     Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
-Cc:     fshao@chromium.org, hsinyi@chromium.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        hoegsberg@chromium.org, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        boris.brezillon@collabora.com,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v12 2/4] arm64: dts: mt8183: Add node for the Mali GPU
-Date:   Wed, 21 Apr 2021 08:19:06 +0800
-Message-Id: <20210421081831.v12.2.I9f45f5c1f975422d58b5904d11546349e9ccdc94@changeid>
-X-Mailer: git-send-email 2.31.1.368.gbe11c130af-goog
-In-Reply-To: <20210421001908.813625-1-drinkcat@chromium.org>
-References: <20210421001908.813625-1-drinkcat@chromium.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8YLOYTL9uFfTlsUBTt4KtFnsgrD3qMKDwpIsIQc1OzQ=;
+        b=kPOp1b0uzxq0EDc+svMktPbI3yuIkIufdUMwiQBbR2fFu4sd4QERAOwM6C1zl+TkP0
+         SxZHvYKrgpNrnqoTdJBm9fnu5Wb/wA2hjqX3zmNetz4sU6/hncuKPAFfupdao6o0rOJd
+         KPB1b7W1CJcN++pbZmH3xpEWoAoO317QL+UseZah9CF6qugJCIknxTL2VfCJpHQ7wYo5
+         Dn/1swp6ANzDM+EWYg+MhAF1dJQd90Kjgi9MBgpyKfJ8IIXrIZLk6lnggnc/TueBOzfQ
+         BTnkL1C1aNB3GBpoO94L/VQv5fqRlkAdJBogm6URMHiHc0Q+iMwYaAwNe5qoNWWYEpD/
+         8iZA==
+X-Gm-Message-State: AOAM531bcVbVGk1YWz0rGcBKnnqwkWoHIi+x/r3CjM4rj7xkHXeqeEET
+        u3FFwnLp114+n6kTAOmmxpmZqw==
+X-Google-Smtp-Source: ABdhPJyqsXFJPEW53dgWZWzIl1MKNJhSGg4Hv/Awq+xELaEHiZszta5Vzv92f/tFkQR8imMYCtKe3w==
+X-Received: by 2002:a63:1a47:: with SMTP id a7mr19505511pgm.437.1618966242338;
+        Tue, 20 Apr 2021 17:50:42 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:b1f0:79e0:c1ca:fd1])
+        by smtp.gmail.com with UTF8SMTPSA id x38sm183812pfu.22.2021.04.20.17.50.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Apr 2021 17:50:41 -0700 (PDT)
+Date:   Tue, 20 Apr 2021 17:50:40 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>
+Cc:     marcel@holtmann.org, johan.hedberg@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, hemantg@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, bgodavar@codeaurora.org,
+        rjliao@codeaurora.org, hbandi@codeaurora.org,
+        abhishekpandit@chromium.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: net: bluetooth: Convert to DT schema
+Message-ID: <YH924M62b7PDd/r6@google.com>
+References: <1618936010-16579-1-git-send-email-gubbaven@codeaurora.org>
+ <1618936010-16579-3-git-send-email-gubbaven@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1618936010-16579-3-git-send-email-gubbaven@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a basic GPU node for mt8183.
+On Tue, Apr 20, 2021 at 09:56:49PM +0530, Venkata Lakshmi Narayana Gubba wrote:
 
-Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
----
-The binding we use with out-of-tree Mali drivers includes more
-clocks, this is used for devfreq: the out-of-tree driver switches
-clk_mux to clk_sub_parent (26Mhz), adjusts clk_main_parent, then
-switches clk_mux back to clk_main_parent:
-(see https://chromium.googlesource.com/chromiumos/third_party/kernel/+/chromeos-4.19/drivers/gpu/arm/midgard/platform/mediatek/mali_kbase_runtime_pm.c#423)
-clocks =
-        <&topckgen CLK_TOP_MFGPLL_CK>,
-        <&topckgen CLK_TOP_MUX_MFG>,
-        <&clk26m>,
-        <&mfgcfg CLK_MFG_BG3D>;
-clock-names =
-        "clk_main_parent",
-        "clk_mux",
-        "clk_sub_parent",
-        "subsys_mfg_cg";
-(based on discussions, this probably belongs in the clock core)
+> Subject: dt-bindings: net: bluetooth: Convert to DT schema
 
-This only matters for devfreq, that is disabled anyway as we don't
-have platform-specific code to handle >1 supplies.
+This doesn't convert the generic binding or all bindings to DT schema
+as the subject suggests, but the Qualcomm BT binding.
 
-Changes in v12:
- - Add gpu node to mt8183-pumpkin.dts as well (Neil Armstrong).
+>
+> Converted Qualcomm Bluetooth binidings to DT schema.
+> 
+> Signed-off-by: Venkata Lakshmi Narayana Gubba <gubbaven@codeaurora.org>
+> ---
+>  .../devicetree/bindings/net/qualcomm-bluetooth.txt | 69 -----------------
+>  .../bindings/net/qualcomm-bluetooth.yaml           | 87 ++++++++++++++++++++++
+>  2 files changed, 87 insertions(+), 69 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
+> deleted file mode 100644
+> index 709ca6d..0000000
+> --- a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
+> +++ /dev/null
+> @@ -1,69 +0,0 @@
+> -Qualcomm Bluetooth Chips
+> ----------------------
+> -
+> -This documents the binding structure and common properties for serial
+> -attached Qualcomm devices.
+> -
+> -Serial attached Qualcomm devices shall be a child node of the host UART
+> -device the slave device is attached to.
+> -
+> -Required properties:
+> - - compatible: should contain one of the following:
+> -   * "qcom,qca6174-bt"
+> -   * "qcom,qca9377-bt"
+> -   * "qcom,wcn3990-bt"
+> -   * "qcom,wcn3991-bt"
+> -   * "qcom,wcn3998-bt"
+> -   * "qcom,qca6390-bt"
+> -
+> -Optional properties for compatible string qcom,qca6174-bt:
+> -
+> - - enable-gpios: gpio specifier used to enable chip
+> - - clocks: clock provided to the controller (SUSCLK_32KHZ)
+> - - firmware-name: specify the name of nvm firmware to load
+> -
+> -Optional properties for compatible string qcom,qca9377-bt:
+> -
+> - - max-speed: see Documentation/devicetree/bindings/serial/serial.yaml
+> -
+> -Required properties for compatible string qcom,wcn399x-bt:
+> -
+> - - vddio-supply: VDD_IO supply regulator handle.
+> - - vddxo-supply: VDD_XO supply regulator handle.
+> - - vddrf-supply: VDD_RF supply regulator handle.
+> - - vddch0-supply: VDD_CH0 supply regulator handle.
+> -
+> -Optional properties for compatible string qcom,wcn399x-bt:
+> -
+> - - max-speed: see Documentation/devicetree/bindings/serial/serial.yaml
+> - - firmware-name: specify the name of nvm firmware to load
+> - - clocks: clock provided to the controller
+> -
+> -Examples:
+> -
+> -serial@7570000 {
+> -	label = "BT-UART";
+> -	status = "okay";
+> -
+> -	bluetooth {
+> -		compatible = "qcom,qca6174-bt";
+> -
+> -		enable-gpios = <&pm8994_gpios 19 GPIO_ACTIVE_HIGH>;
+> -		clocks = <&divclk4>;
+> -		firmware-name = "nvm_00440302.bin";
+> -	};
+> -};
+> -
+> -serial@898000 {
+> -	bluetooth {
+> -		compatible = "qcom,wcn3990-bt";
+> -
+> -		vddio-supply = <&vreg_s4a_1p8>;
+> -		vddxo-supply = <&vreg_l7a_1p8>;
+> -		vddrf-supply = <&vreg_l17a_1p3>;
+> -		vddch0-supply = <&vreg_l25a_3p3>;
+> -		max-speed = <3200000>;
+> -		firmware-name = "crnv21.bin";
+> -		clocks = <&rpmhcc RPMH_RF_CLK2>;
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
+> new file mode 100644
+> index 0000000..55cd995
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/qualcomm-bluetooth.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Bluetooth Chips
+> +
+> +maintainers:
+> +  - Rob Herring <robh@kernel.org>
+> +  - Marcel Holtmann <marcel@holtmann.org>
+> +
+> +description:
+> +  This binding describes Qualcomm UART-attached bluetooth chips.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,qca6174-bt
+> +      - qcom,qca9377-bt
+> +      - qcom,wcn3990-bt
+> +      - qcom,wcn3991-bt
+> +      - qcom,wcn3998-bt
+> +      - qcom,qca6390-bt      
 
-Changes in v11:
- - mt8183*.dts: remove incorrect supply-names
+delete trailing blanks
 
-Changes in v6:
- - Add gpu regulators to kukui dtsi as well.
- - Power domains are now attached to spm, not scpsys
- - Drop R-B.
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +    description: gpio specifier used to enable chip
+> +   
 
-Changes in v5:
- - Rename "2d" power domain to "core2" (keep R-B again).
+delete blanks
 
-Changes in v4:
- - Add power-domain-names to describe the 3 domains.
-   (kept Alyssa's reviewed-by as the change is minor)
+> +  clocks:
+> +    maxItems: 1
+> +    description: clock provided to the controller (SUSCLK_32KHZ)
+> +
+> +  vddio-supply:
+> +    description: VDD_IO supply regulator handle
+> +
+> +  vddxo-supply:
+> +    description: VDD_XO supply regulator handle
+> +
+> +  vddrf-supply:
+> +    description: VDD_RF supply regulator handle
+> +
+> +  vddch0-supply:
+> +    description: VDD_CH0 supply regulator handle
+> +
+> +  max-speed: 
 
-Changes in v2:
- - Use sram instead of mali_sram as SRAM supply name.
- - Rename mali@ to gpu@.
+delete trailing blank
 
- arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   5 +
- .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   5 +
- .../boot/dts/mediatek/mt8183-pumpkin.dts      |   5 +
- arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 105 ++++++++++++++++++
- 4 files changed, 120 insertions(+)
+> +    description: see Documentation/devicetree/bindings/serial/serial.yaml
+> +
+> +  firmware-name:
+> +    description: specify the name of nvm firmware to load
+> +
+> +  local-bd-address:
+> +    description: see Documentation/devicetree/bindings/net/bluetooth.txt
+> +
+> +
+> +required:
+> +  - compatible
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-index edff1e03e6fe..7bc0a6a7fadf 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-@@ -42,6 +42,11 @@ &auxadc {
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&mt6358_vgpu_reg>;
-+	sram-supply = <&mt6358_vsram_gpu_reg>;
-+};
-+
- &i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c_pins_0>;
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index ff56bcfa3370..e4e54be1c2b2 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -279,6 +279,11 @@ dsi_out: endpoint {
- 	};
- };
- 
-+&gpu {
-+	mali-supply = <&mt6358_vgpu_reg>;
-+	sram-supply = <&mt6358_vsram_gpu_reg>;
-+};
-+
- &i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0_pins>;
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-index 0aff5eb52e88..ee912825cfc6 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-@@ -68,6 +68,11 @@ &auxadc {
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&mt6358_vgpu_reg>;
-+	sram-supply = <&mt6358_vsram_gpu_reg>;
-+};
-+
- &i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c_pins_0>;
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index c5e822b6b77a..c75fdeea8aa4 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -1118,6 +1118,111 @@ mfgcfg: syscon@13000000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		gpu: gpu@13040000 {
-+			compatible = "mediatek,mt8183-mali", "arm,mali-bifrost";
-+			reg = <0 0x13040000 0 0x4000>;
-+			interrupts =
-+				<GIC_SPI 280 IRQ_TYPE_LEVEL_LOW>,
-+				<GIC_SPI 279 IRQ_TYPE_LEVEL_LOW>,
-+				<GIC_SPI 278 IRQ_TYPE_LEVEL_LOW>;
-+			interrupt-names = "job", "mmu", "gpu";
-+
-+			clocks = <&topckgen CLK_TOP_MFGPLL_CK>;
-+
-+			power-domains =
-+				<&spm MT8183_POWER_DOMAIN_MFG_CORE0>,
-+				<&spm MT8183_POWER_DOMAIN_MFG_CORE1>,
-+				<&spm MT8183_POWER_DOMAIN_MFG_2D>;
-+			power-domain-names = "core0", "core1", "core2";
-+
-+			operating-points-v2 = <&gpu_opp_table>;
-+		};
-+
-+		gpu_opp_table: opp_table0 {
-+			compatible = "operating-points-v2";
-+			opp-shared;
-+
-+			opp-300000000 {
-+				opp-hz = /bits/ 64 <300000000>;
-+				opp-microvolt = <625000>, <850000>;
-+			};
-+
-+			opp-320000000 {
-+				opp-hz = /bits/ 64 <320000000>;
-+				opp-microvolt = <631250>, <850000>;
-+			};
-+
-+			opp-340000000 {
-+				opp-hz = /bits/ 64 <340000000>;
-+				opp-microvolt = <637500>, <850000>;
-+			};
-+
-+			opp-360000000 {
-+				opp-hz = /bits/ 64 <360000000>;
-+				opp-microvolt = <643750>, <850000>;
-+			};
-+
-+			opp-380000000 {
-+				opp-hz = /bits/ 64 <380000000>;
-+				opp-microvolt = <650000>, <850000>;
-+			};
-+
-+			opp-400000000 {
-+				opp-hz = /bits/ 64 <400000000>;
-+				opp-microvolt = <656250>, <850000>;
-+			};
-+
-+			opp-420000000 {
-+				opp-hz = /bits/ 64 <420000000>;
-+				opp-microvolt = <662500>, <850000>;
-+			};
-+
-+			opp-460000000 {
-+				opp-hz = /bits/ 64 <460000000>;
-+				opp-microvolt = <675000>, <850000>;
-+			};
-+
-+			opp-500000000 {
-+				opp-hz = /bits/ 64 <500000000>;
-+				opp-microvolt = <687500>, <850000>;
-+			};
-+
-+			opp-540000000 {
-+				opp-hz = /bits/ 64 <540000000>;
-+				opp-microvolt = <700000>, <850000>;
-+			};
-+
-+			opp-580000000 {
-+				opp-hz = /bits/ 64 <580000000>;
-+				opp-microvolt = <712500>, <850000>;
-+			};
-+
-+			opp-620000000 {
-+				opp-hz = /bits/ 64 <620000000>;
-+				opp-microvolt = <725000>, <850000>;
-+			};
-+
-+			opp-653000000 {
-+				opp-hz = /bits/ 64 <653000000>;
-+				opp-microvolt = <743750>, <850000>;
-+			};
-+
-+			opp-698000000 {
-+				opp-hz = /bits/ 64 <698000000>;
-+				opp-microvolt = <768750>, <868750>;
-+			};
-+
-+			opp-743000000 {
-+				opp-hz = /bits/ 64 <743000000>;
-+				opp-microvolt = <793750>, <893750>;
-+			};
-+
-+			opp-800000000 {
-+				opp-hz = /bits/ 64 <800000000>;
-+				opp-microvolt = <825000>, <925000>;
-+			};
-+		};
-+
- 		mmsys: syscon@14000000 {
- 			compatible = "mediatek,mt8183-mmsys", "syscon";
- 			reg = <0 0x14000000 0 0x1000>;
--- 
-2.31.1.368.gbe11c130af-goog
+it seems you could make the supplies conditionally required based on the
+compatible string. See Documentation/devicetree/bindings/connector/usb-connector.yaml
+for an example
 
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    uart {
+> +        label = "BT-UART";
+> +        status = "okay";
+> +
+> +        bluetooth {
+> +            compatible = "qcom,qca6174-bt";
+> +            enable-gpios = <&pm8994_gpios 19 GPIO_ACTIVE_HIGH>;
+> +            clocks = <&divclk4>;
+> +            firmware-name = "nvm_00440302.bin";
+> +        };
+> +    };
+> +  - |
+> +    uart {
+> +
+> +        bluetooth {
+> +            compatible = "qcom,wcn3990-bt";
+> +            vddio-supply = <&vreg_s4a_1p8>;
+> +            vddxo-supply = <&vreg_l7a_1p8>;
+> +            vddrf-supply = <&vreg_l17a_1p3>;
+> +            vddch0-supply = <&vreg_l25a_3p3>;
+> +            max-speed = <3200000>;
+> +            firmware-name = "crnv21.bin";		
+
+delete trailing blanks
