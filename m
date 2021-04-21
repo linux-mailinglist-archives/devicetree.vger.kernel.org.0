@@ -2,153 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D47B1366F23
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 17:27:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95397366F29
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 17:29:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244008AbhDUP2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 11:28:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42508 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243998AbhDUP2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 11:28:01 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CA43C06138A
-        for <devicetree@vger.kernel.org>; Wed, 21 Apr 2021 08:27:28 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id z16so30179219pga.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Apr 2021 08:27:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mFb+ckbAGYD+H2juq/+J+FbQx9rWZFkMXDw0jxLuV1I=;
-        b=zFO8YgqNBI8miB1U/nr0bfbagGSyMnqO7k1r+sVvpCZAhSXLcCu5zdhxL+84BmLp6E
-         3kO0BaJgkY0n4umuOml0/maXhuLxqCUgNp7V6KTVeCD4woJrzuJBodzmlXHCQCnHDzFS
-         6NkxajgOflI+YgbNmKCUeh+2cH6rYTILDtUQwR/mmiF64kCmlS19Rj1N+3Q6+JzkO9jn
-         rTw3hzHg95oP9bjSXgLS9I84dzNu0ptot2NZXYQEmfsP7uj5ft+fDOY8AG02fbsvqDxM
-         o4mkG2cVQmzuROeqd8CZmjQh2ELxsh2WEPQo8Ap4xP8PTn1bPS4P1tkAiuDNHA36ln+i
-         0MwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mFb+ckbAGYD+H2juq/+J+FbQx9rWZFkMXDw0jxLuV1I=;
-        b=ptKxX0/7I+5SWK6Twt+USDbFOkfe9Ybr33baNXE0l0eOu6dtMS8lIqAJtubBM8fxZs
-         hQpgj7z321yGPjMwbSYP8B6wmOLhTg5rA+UT4wR+7PktsdqTc6YaCKwxmAp0j4g22dyJ
-         3g3KiP+kjfWv03i3yx1BdSdxaNOX309SAiSWbBOucZksjNR634/WkP/20RXuL6VRxTSM
-         l0JcoMERe6TAlrnlczl1UNNmZ6CCvUWtA1NcajFjsnL8Q3GK+nGNKi+ZsdQCrG0r1agO
-         I280DpcJ0gSkHGsXmg09hd7lSFEr4jWOzvD6fYJzQ1CM6//SzdIk8PIvGCdnyKgr/BXL
-         wNRw==
-X-Gm-Message-State: AOAM531z2g3jojli77FP94vQY9fzp1mRSbFTmyqBwcjHjt048aTWwdTJ
-        EFpDFhSb0F7fOzJFn0U+EaHiLv/dFqcxAIs8z1OJLA==
-X-Google-Smtp-Source: ABdhPJwmmGQxWjj9eomSe6AfAEC4wDbf7Pfmu9GRlZZn8+saMdBdYQvxpEaU7L058l81v89reEK9S911TaNhfBRWfJQ=
-X-Received: by 2002:a62:33c6:0:b029:225:5266:28df with SMTP id
- z189-20020a6233c60000b0290225526628dfmr29996329pfz.7.1619018847549; Wed, 21
- Apr 2021 08:27:27 -0700 (PDT)
+        id S238305AbhDUPaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 11:30:04 -0400
+Received: from mga14.intel.com ([192.55.52.115]:36169 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235345AbhDUPaE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Apr 2021 11:30:04 -0400
+IronPort-SDR: ruu8feqctliNma3CtjiGHlp2vNC/9qASoEAtjwddPwzH+C/RQJyKWGjrskOQrEsVN9Tco5nOrD
+ i6vg9zhvcJZQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9961"; a="195274683"
+X-IronPort-AV: E=Sophos;i="5.82,240,1613462400"; 
+   d="scan'208";a="195274683"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Apr 2021 08:29:30 -0700
+IronPort-SDR: 9fWtUGSPFotxXAqm0lM3tPgJ094AIawKLi9DrR5MZ1csBXEIMfNi5Qve6FJ4b3C4A/8RZNvDW0
+ QicCeMxC4c8Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,240,1613462400"; 
+   d="scan'208";a="452971662"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
+  by FMSMGA003.fm.intel.com with ESMTP; 21 Apr 2021 08:29:30 -0700
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Wed, 21 Apr 2021 08:29:29 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Wed, 21 Apr 2021 08:29:29 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2
+ via Frontend Transport; Wed, 21 Apr 2021 08:29:29 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2106.2; Wed, 21 Apr 2021 08:29:29 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=b999zmP2LBZcmfcyH59WCHx+tKTo9Mu8/0ExEFfrmHFlq9/9PfosZ/WV7fZ06iO4dj4ZJV13ur7YVTDrfNW+GIXLP5sJY/1YZjmU2zO06VxSye7AbpN87Ul2KrlOD0lkg61VBFnIRaF6oCMnjjiFnm195Z7FykpTwwEH14MFimB7FEsib2EMuCUwliO/9SfHDSXViMepUgvpMF3kEkNF/kPPzZ2mfv2lKgT+3AqoZJEDBucqGdq2JziXZOMtZ+IbOjKMp7Oq5Vu9FDKQaOLZ7OP5DVWA0o/HwKYozlYEyLmMLWFBJsipHIkELj8yGpg9e41a9G1h/oRo4KTPqTtG+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1zKCT8ETQlYxYPJgb2j2igCdsygQgWM4S56epIZwixw=;
+ b=GFamnWHs1TzM3R8eEYMleTQL+GfWB0hxyQ5NuMhu05ayNelElWw/TfKubOIhywH8/05QOd8LkmGSoupOHNuSLopkgRhx0j/mOQjN2KESrTwN1sYUiMebR1fq+bkcWXIJJDqb3dAp5VZQrXCPsezPVdOjJNQTQvbTHTvJIhHo2jjECOwxExwLr85HALEd4+xQrO8VbYdEThVlO+URMpl9e98SyKYVrUC9JnDlPd5PpAy0SJaTsVyZh++A6Cd6LRfqFICdr3OqXEPHl2XDSvyYlohkgWue6JgssLqVtaPS+vS57s3YZIdF8BKNyiAZEtG53ReA9dM8GApn+eY5HVz65A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1zKCT8ETQlYxYPJgb2j2igCdsygQgWM4S56epIZwixw=;
+ b=Z2poRQCtjA46ZQMXs5Kd+w4Xj30BTDdc8wALHeI1LnohZb+TKVrg9ep+ebdIrpPelmrMivETf3ioQMb++whWzCJ1Km2LGZR3NsO3oGmyuvSjcB6FuxVLKXZIQo0ZiV1o8UumgiN24rhXUinTuzoZ+dM4AIpOJ659EkIRM+igXkQ=
+Received: from SN6PR11MB3055.namprd11.prod.outlook.com (2603:10b6:805:dc::18)
+ by SA2PR11MB5065.namprd11.prod.outlook.com (2603:10b6:806:115::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.21; Wed, 21 Apr
+ 2021 15:29:28 +0000
+Received: from SN6PR11MB3055.namprd11.prod.outlook.com
+ ([fe80::15d2:c175:b922:8d8c]) by SN6PR11MB3055.namprd11.prod.outlook.com
+ ([fe80::15d2:c175:b922:8d8c%3]) with mapi id 15.20.4065.020; Wed, 21 Apr 2021
+ 15:29:28 +0000
+From:   "Alessandrelli, Daniele" <daniele.alessandrelli@intel.com>
+To:     "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>
+CC:     "dragan.cvetic@xilinx.com" <dragan.cvetic@xilinx.com>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "markgross@kernel.org" <markgross@kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "damien.lemoal@wdc.com" <damien.lemoal@wdc.com>,
+        "bp@suse.de" <bp@suse.de>, "robh@kernel.org" <robh@kernel.org>,
+        "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "peng.fan@nxp.com" <peng.fan@nxp.com>,
+        "palmerdabbelt@google.com" <palmerdabbelt@google.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v6 04/34] dt-bindings: Add bindings for Keem Bay IPC
+ driver
+Thread-Topic: [PATCH v6 04/34] dt-bindings: Add bindings for Keem Bay IPC
+ driver
+Thread-Index: AQHXAY2nfFFRQ8LmikK1K8OxNdNLX6p2Al4AgASrZACANxOigIAMoLSAgAEG1QCAAALWgIAAF1sA
+Date:   Wed, 21 Apr 2021 15:29:28 +0000
+Message-ID: <0736599f9266375908e4f79de09fe5eda6d4f183.camel@intel.com>
+References: <20210212222304.110194-1-mgross@linux.intel.com>
+         <20210212222304.110194-5-mgross@linux.intel.com>
+         <20210305210140.GA622142@robh.at.kernel.org>
+         <20210308202008.GA138795@linux.intel.com>
+         <CABb+yY3kRj2F1ao9A1_+ve5dZm0Q=tThJyu-cVo-cqMjZ+uQ2g@mail.gmail.com>
+         <20210420221459.GA108315@linux.intel.com>
+         <20210421135542.GB108315@linux.intel.com>
+         <CABb+yY3F+kyvGGXN5feVPBqhuBn9L4Qr9ZhCDFotkjKFzKVofw@mail.gmail.com>
+In-Reply-To: <CABb+yY3F+kyvGGXN5feVPBqhuBn9L4Qr9ZhCDFotkjKFzKVofw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.36.5 (3.36.5-2.fc32) 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [192.198.151.44]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d6902744-2336-45d4-8dfd-08d904da40b4
+x-ms-traffictypediagnostic: SA2PR11MB5065:
+x-microsoft-antispam-prvs: <SA2PR11MB5065EE34F85694FF18AEBD68F2479@SA2PR11MB5065.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: qUwN5+wKp9ZZvtTQ3SKEzsjyJGegJMpeg0OAnUiLa3KG1R+Wj+rOAt6zNA2At3/CugobsqkegJYQAUoh1ksEVFZBP5Mcif5Qxfkog75wb/hwAYS3HfvGqUWTtEJffuxmVx8nHiF43CUKVHChlBCIh+bY4ooW65SWBXDfpIz/n+MzIS0U1cdAsj8Mt8+s6IHU4Ggd0NFfUryGW/24tN8G/nqg5HA7+Q7NoIy+d4BK6NPFv6lXwoE0aEhBGUE+FE72sQrYEWDEYDrIRpkRssBRs4qmAYlptfhWCXGlEotISJpECqjjzDcTZOy3xM3yFQujPCGb6PTN67gcRoHR6Dnmtr97Ka+ejVhNIlhGbJT7FYcdbmJjsAEMdSfzMLgG3RdqnhbyJHJfbxdI1Brpx8O2vro7H50died+P5Okr83e9jINrxVTRixVTpI4NqjEGA8MQ9USOkx7lJGhfn+q646p4b2+OwGP9ZLGF1NWdlSqvehhSj8pFeQHAsjlH7jZBE7QdZWcFC0TQl5F3oSmtRXkLqtyFYUsjdksSntHYeFW41Wc8vrAx1MiG3i3G6XkDcu7ZDG8T6k5mJxXRIYhoZAl7eURtqV+z9T7mgQVCqH7TF0=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR11MB3055.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(39860400002)(136003)(396003)(376002)(346002)(5660300002)(86362001)(316002)(7416002)(83380400001)(64756008)(66946007)(66446008)(91956017)(76116006)(66476007)(66556008)(6512007)(2616005)(36756003)(186003)(4326008)(71200400001)(8676002)(478600001)(6506007)(53546011)(122000001)(38100700002)(6486002)(26005)(110136005)(54906003)(2906002)(8936002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?TEJkUUZFeEFqQWFMb3FIWS83Q3RXYjlLVWZZUWErQkgzS2orNzlMODRCQ0s3?=
+ =?utf-8?B?bTNkbytEN24yNDZtcytLN1duQy9sZFNBN0xud2ZpektueCt0Tmc2SzQrNnhm?=
+ =?utf-8?B?V09NemdpRmp5SGsrQldxTVJPM0I0OGtDVjRMdnN1V1lodGc1YTJwL1ZNQzha?=
+ =?utf-8?B?K2pCY2FCZEgvMFdGSE5tdW1nVWV6VXZmbjdMZUhYQ2Y5d3ljcVF4ckRTZXZQ?=
+ =?utf-8?B?Y2VESXc2V29UWll4YzAxK0dwci9OWG5SWFZsOWE5WHR5ZlFkL09ya0ErZmtE?=
+ =?utf-8?B?MXoxa1dZRy8waUdDT3pVQnBDMWNiMVRCVU4xU0Yxck5ZVHFhSUJMbVNsV2xv?=
+ =?utf-8?B?T1hveFMwaXVyOXA0aUg0YWQ2K3d4L05pVTFYUTNQL2c5YUw2VUoyUTl3bk1L?=
+ =?utf-8?B?ZFFwYlJ5b3hZZjlnejMrOFZPT1hZendzVE9hQjFDYlg5RUUydGQ5UVhoV25s?=
+ =?utf-8?B?WXU1NlFiZ3ZDMHhFQzd6bVI3V0NFQTdjc3dTTUg2bWd5aGlCdjNPdG1DV3dW?=
+ =?utf-8?B?L0tWbmpXQzVmc281N1M3dzR2dTFBZGpWSWJ4T1FPU04yOEl3amQ2UXpucTEx?=
+ =?utf-8?B?M2VsSkdiZExEL0Z1akI3VThBUVhEUHhMbU9UMGM2UFBKVTBxYWtxUDhHNldZ?=
+ =?utf-8?B?RjM3c0Q1L1VURXZkc0tJY1lkVkNjOTlvSHJLY1BsNnJ4YmlZYUhjOHcrdXha?=
+ =?utf-8?B?WjB3N0Qvc3ptNGpmSmxpUTlKWEw2RSswa0pHY0cwQ3NHTVhRRlpNaGFYOThI?=
+ =?utf-8?B?VWpzRWRMc2l4UW9RSVlVVlBKL1A4Vi9VOUVBTW9tM0ZZNXVkd2hOeVAzbVNH?=
+ =?utf-8?B?THdqYnVDaWxRUXBEOFJkR0JYV2JCaS9FVVVOUFd3MTJERndnT24xQmlEdHJ5?=
+ =?utf-8?B?OHhFQldGc1E2dTJnc0hnMHN4b3RBcHJnY0NRZ2NhM0o2QWNwbEJyMkdXSXNz?=
+ =?utf-8?B?SFRUYThnZVFaQlFQeUdSMmVIdVZicWZ5bUFzUzJ2YTExUEdKUXJrYzJPM01U?=
+ =?utf-8?B?cUJxSVB5QnVFaG02b3BOdGt5VzZYbGVXdXhKL29PcXMzSTJ6cktLZFFsRFZu?=
+ =?utf-8?B?MmV3N1pKK3QxZzVPblJXZXl6RXJmM2tFL2dJK1JkWHg3QzFSL001TlJrRmxV?=
+ =?utf-8?B?ZmV5ZGoyZG9RMnJiRys4SnRLTjFCNHg0U3lsOGROckRlc0dHZFBlejdGK0Ns?=
+ =?utf-8?B?cWNVcWdFVWVTYm01Z1NseVlXL0hxRWNPVzFKNXRWNUU2VksxVysyU0ZaQVlH?=
+ =?utf-8?B?Q0wwdUV2V3BGRk1nYjR5QTRmQ3lzajRmZ1cvZENOWGVVRjZMSkJ5anpoTmNo?=
+ =?utf-8?B?eTI5TDhuNVB4bUkza3pUQkRQbnhJNUVaMEVoanZYRFV0Zk5JckVLK0ozNWcr?=
+ =?utf-8?B?SUt5aHp4dEFLMW0rOG9zazVEM0hlajNSSHlsRk4rbk5vamx3bG1pbEpzdFhR?=
+ =?utf-8?B?aFd3L2ZnaVRkSXAveFdXQm51RVlvcjRlNVFDb1lnQWtzdzhvT2NYeDFKeVRl?=
+ =?utf-8?B?ZXBoYnkvUHY2VVZ4Z1p2eUdhNFZUSFoyQWQwazhRcWw0ZE45MWROUjA0YU80?=
+ =?utf-8?B?a08xVk1zRGtsYStPMDVFVGp3cGV1a1JHVTVDSXgwbzFDMndWWlhyOHFEYUxx?=
+ =?utf-8?B?NFl0NGdlQ3VmWStiT1Y3dGJwV05Ha2NrMDdnTStnQzdLZTJ2S0duUmdzWmtU?=
+ =?utf-8?B?cGI0ci93cnhLWTQxelJnalJRZmJsbk1zYmxEang2SlJ4V2RwTGorQzNGUGZl?=
+ =?utf-8?B?V0prVDdUQzQ2MVc5REIweHZELzZKd0xVNWtWVlVjeVN1RG5rdzZxQ2pLR25L?=
+ =?utf-8?B?MTlHUlZuNFlLUElFNFFOQT09?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <DA821A5750C105448467102EFE4F6C56@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
-In-Reply-To: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Wed, 21 Apr 2021 08:27:15 -0700
-Message-ID: <CAJ+vNU1bnR+L-QkHAN_Yar0MUTjF+QoxgTHV9ZxQW+VWpM6cpg@mail.gmail.com>
-Subject: Re: [PATCH 00/23] media: imx: imx7-mipi-csis: Add i.MX8MM support
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media <linux-media@vger.kernel.org>,
-        Rui Miguel Silva <rmfrfs@gmail.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB3055.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6902744-2336-45d4-8dfd-08d904da40b4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Apr 2021 15:29:28.3462
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: De98ChkCtcKlU/UKQi3oJtqQICFv097C/o9S1ItNxDhBOjOiBDwQnaVR5gfjeUcF7X8Qi941coQMNRMoKenBRIWs4JxJNgF7u2zwXHjfHoM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5065
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 12, 2021 at 7:31 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hello,
->
-> This patch series adds support for the CSIS found in the NXP i.MX8MM SoC
-> to the imx7-mipi-csis driver.
->
-> The CSIS is an IP core from Samsung, integrated in different NXP SoCs.
-> The driver currently supports v3.3 of the CSIS, found in SoCs from the
-> i.MX6 and i.MX7 families. This series extends the driver to support
-> v3.6.3 of the IP, found in i.MX8MM and other members of the i.MX8
-> family.
->
-> The first 21 patches are miscellaneous cleanups and improvements. Please
-> see individual patches for details.
->
-> Patch 22/23 extends the imx7-mipi-csis DT bindings with i.MX8MM support.
-> Support for other members of the i.MX8 family will come later, and for
-> SoCs including an ISI IP core (such as the i.MX8MP) this will require
-> more work to handle additional glue logic.
->
-> Patch 23/23 finaly extends the imx7-mipi-csis driver accordingly.
->
-> The changes in the integration of the CSIS between i.MX7 and i.MX8, as
-> described in the DT bindings, have been found through reading of
-> reference manuals and BSP source code, with different sources of
-> information contradicting each other. A confirmation from NXP would be
-> nice (in particular regarding the clocks).
->
-> Laurent Pinchart (23):
->   media: imx: imx7_mipi_csis: Fix logging of only error event counters
->   media: imx: imx7_mipi_csis: Count the CSI-2 debug interrupts
->   media: imx: imx7_mipi_csis: Update ISP_CONFIG macros for quad pixel
->     mode
->   media: imx: imx7_mipi_csis: Move static data to top of
->     mipi_csis_dump_regs()
->   media: imx: imx7_mipi_csis: Minimize locking in get/set format
->   media: imx: imx7_mipi_csis: Don't set subdev data
->   media: imx: imx7-mipi-csis: Reorganize code in sections
->   media: imx: imx7_mipi_csis: Set the CLKSETTLE register field
->   media: imx: imx7_mipi_csis: Drop unused csis_hw_reset structure
->   media: imx: imx7_mipi_csis: Store CSI-2 data type in format structure
->   media: imx: imx7_mipi_csis: Drop csi_state phy field
->   media: imx: imx7_mipi_csis: Rename mipi_sd to sd
->   media: imx: imx7_mipi_csis: Rename csi_state flag field to state
->   media: imx: imx7_mipi_csis: Turn csi_state irq field into local
->     variable
->   media: imx: imx7_mipi_csis: Don't pass pdev to mipi_csis_parse_dt()
->   media: imx: imx7_mipi_csis: Pass csi_state to mipi_csis_subdev_init()
->   media: imx: imx7_mipi_csis: Drop csi_state pdev field
->   media: imx: imx7_mipi_csis: Make csi_state num_clocks field unsigned
->   media: imx: imx7_mipi_csis: Reorganize csi_state structure
->   media: imx: imx7_mipi_csis: Reorganize mipi_csis_probe()
->   media: imx: imx7_mipi_csis: Reject invalid data-lanes settings
->   dt-bindings: media: nxp,imx7-mipi-csi2: Add i.MX8MM support
->   media: imx: imx7_mipi_csis: Add i.MX8MM support
->
->  .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 108 +-
->  drivers/staging/media/imx/imx7-mipi-csis.c    | 943 ++++++++++--------
->  2 files changed, 622 insertions(+), 429 deletions(-)
->
-> --
-> Regards,
->
-> Laurent Pinchart
->
-
-Laurent,
-
-Thank you for your work on this!
-
-I have an IMX8MM board supporting CSI and a couple of devices to test with:
-- Sony IMX477 12.3MP sensor (do not see any mainline support but there
-are some hits on the net as this is a RPi camera)
-- Sony IMX219 8MP sensor (should be supported by drivers/media/i2c/imx219.c)
-- Auvidea B10x HDMI to CSI-2 bridge (Toshiba TC358743XBG HDMI to CSI-2
-(MIPI)- 2D+C) (should be supported by drivers/media/i2c/tc358743.c)
-
-Can you summarize the state of IMX8MM CSI capture in mainline? I
-suppose the MIPI power domain is still an issue? Anything else that
-would keep me from testing the above devices?
-
-Best regards,
-
-Tim
+T24gV2VkLCAyMDIxLTA0LTIxIGF0IDA5OjA1IC0wNTAwLCBKYXNzaSBCcmFyIHdyb3RlOg0KPiBP
+biBXZWQsIEFwciAyMSwgMjAyMSBhdCA4OjU1IEFNIG1hcmsgZ3Jvc3MgPG1ncm9zc0BsaW51eC5p
+bnRlbC5jb20+IHdyb3RlOg0KPiA+IE9uIFR1ZSwgQXByIDIwLCAyMDIxIGF0IDAzOjE0OjU5UE0g
+LTA3MDAsIG1hcmsgZ3Jvc3Mgd3JvdGU6DQo+ID4gPiBPbiBNb24sIEFwciAxMiwgMjAyMSBhdCAw
+NDoyNDo0MVBNIC0wNTAwLCBKYXNzaSBCcmFyIHdyb3RlOg0KPiA+ID4gPiBPbiBNb24sIE1hciA4
+LCAyMDIxIGF0IDI6MjAgUE0gbWFyayBncm9zcyA8bWdyb3NzQGxpbnV4LmludGVsLmNvbT4gd3Jv
+dGU6DQo+ID4gPiA+ID4gT24gRnJpLCBNYXIgMDUsIDIwMjEgYXQgMDM6MDE6NDBQTSAtMDYwMCwg
+Um9iIEhlcnJpbmcgd3JvdGU6DQo+ID4gPiA+ID4gPiBPbiBGcmksIEZlYiAxMiwgMjAyMSBhdCAw
+MjoyMjozNFBNIC0wODAwLCBtZ3Jvc3NAbGludXguaW50ZWwuY29tIHdyb3RlOg0KPiA+ID4gPiA+
+ID4gPiBGcm9tOiBEYW5pZWxlIEFsZXNzYW5kcmVsbGkgPGRhbmllbGUuYWxlc3NhbmRyZWxsaUBp
+bnRlbC5jb20+DQo+ID4gPiA+ID4gPiA+IA0KPiA+ID4gPiA+ID4gPiBBZGQgRFQgYmluZGluZyBk
+b2N1bWVudGF0aW9uIGZvciB0aGUgSW50ZWwgS2VlbSBCYXkgSVBDIGRyaXZlciwgd2hpY2gNCj4g
+PiA+ID4gPiA+IA0KPiA+ID4gPiA+ID4gQmluZGluZ3MgYXJlIGZvciBoL3cgYmxvY2tzLCBub3Qg
+ZHJpdmVycy4gRnJvbSBhIGJpbmRpbmcgcGVyc3BlY3RpdmUsIEkNCj4gPiA+ID4gPiA+IGRvbid0
+IHJlYWxseSBjYXJlIHdoYXQgdGhlIGRyaXZlciBhcmNoaXRlY3R1cmUgZm9yIHNvbWUgT1MgbG9v
+a3MgbGlrZS4gSQ0KPiA+ID4gPiA+ID4gY29udGludWUgdG8gbm90IHVuZGVyc3RhbmQgd2hhdCB0
+aGlzIGgvdyBsb29rcyBsaWtlLiBBIGJsb2NrIGRpYWdyYW0NCj4gPiA+ID4gPiA+IHdvdWxkIGhl
+bHAgYXMgd291bGQgdW5kZXJzdGFuZGluZyB3aGF0IGJsb2NrcyBoYXZlIG11bHRpcGxlIGNsaWVu
+dHMNCj4gPiA+ID4gPiA+IChtYWlsYm94ZXMgYW5kIHhsaW5rIGluIHBhcnRpY3VsYXIpLg0KPiA+
+ID4gPiA+IEknbSB3b3JraW5nIHRvIGdhdGhlciB0aGlzIGluZm8uDQo+ID4gPiA+ID4gDQo+ID4g
+PiA+IERvIEkgcGljayB0aGUgbWFpbGJveCByZWxhdGVkIHBhdGNoZXMgKGFuZCB3aGljaCBvbmVz
+IGV4YWN0bHkpID8NCj4gPiA+IA0KPiA+ID4gdjYtMDAwMi1kdC1iaW5kaW5ncy1tYWlsYm94LUFk
+ZC1JbnRlbC1WUFUtSVBDLW1haWxib3gtYmluLnBhdGNoDQo+ID4gPiBhbmQNCj4gPiA+IHY2LTAw
+MDMtbWFpbGJveC12cHUtaXBjLW1haWxib3gtQWRkLXN1cHBvcnQtZm9yLUludGVsLVZQVS5wYXRj
+aA0KPiA+ID4gDQo+ID4gU29ycnkgZm9yIHRoZSBjb25mdXNpb24gYW5kIGRlbGF5LiAgSXQgc2Vl
+bXMgdGhlcmUgYXJlIHNvbWUgaW50ZXJuYWwgcmVxdWVzdHMNCj4gPiB0byBjaGFuZ2UgdGhlIG5h
+bWUgb2YgdGhpcyBwYXJ0IG9mIHRoZSBWUFUgZHJpdmVyIHN0YWNrIHRvIGF2b2lkIHBvc3NpYmxl
+IGZ1dHVyZQ0KPiA+IG5hbWVzcGFjZSBjb2xsaXNpb25zLg0KPiA+IA0KPiA+IFdlIHdpbGwgcmVu
+YW1lIHRoZSB2cHUtaXBjLW1haWxib3ggd2l0aCBzb21ldGhpbmcgbW9yZSBzcGVjaWZpYyB0byBL
+TUIgb24gdGhlDQo+ID4gbmV4dCBwb3N0aW5nLiAgVGhhdCBsb29rcyBsaWtlIHdpbGwgaGF2ZSB0
+byBiZSBhZ2FpbnN0IHY1LjEzLXJjMSBhdCB0aGlzIHBvaW50Lg0KPiA+IFNpZ2guDQo+ID4gDQo+
+IE9rLCBJIHdpbGwgZGVxdWV1ZSB0aGUgcGF0Y2hlcy4NCg0KSSBhY3R1YWxseSBoYXZlIHRoZSBy
+ZW5hbWVkIGRyaXZlciByZWFkeSAodGhlIG5ldyBuYW1lIGlzIGtlZW1iYXktaXBjLQ0KbWFpbGJv
+eCwgdG8gYWxpZ24gaXQgd2l0aCB0aGUgb3RoZXIgZHJpdmVycyBpbiB0aGUgc2VyaWVzKS4NCg0K
+SmFzc2ksIEkgY2FuIHNlbmQgdGhlIHR3byB1cGRhdGVkIHBhdGNoZXMgYXMgYSBzZXBhcmF0ZSBw
+YXRjaHNldCBpZiB5b3UNCmhhdmUgdGltZSB0byByZS1yZXZpZXcgdGhlbSBhbmQsIGluIGNhc2Ug
+cGljayB0aGVtLiBXb3VsZCB0aGF0IGJlIG9rYXkNCndpdGggeW91PyBPciBpcyBpdCB0b28gbGF0
+ZSBmb3IgdGhhdD8NCg0KPiANCj4gLWoNCg==
