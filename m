@@ -2,145 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 651A336655B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 08:23:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C5D8366576
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 08:32:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236035AbhDUGYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 02:24:14 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:35803 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234072AbhDUGYO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 02:24:14 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1618986222; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=joVt7EiJpq5MpkTsFfA7/raYnftwlEGm8PrYlH6jj2I=;
- b=DkbHvbE4w1MMfJu+bT6r5gh7em96MbTYBJLGvHcXMYrQnFT5u1ch9PogQIHECeD9549KgE50
- cDWAPPc77nn0MRK3sh8rLoFryychDN9Wn0iIB+LnmGbxqTiJ1OA3CJfwy25kaP8lUaNphh4g
- LTWN3/UHaaoQxgdXwivg+DlpBks=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 607fc4db215b831afb7a20d5 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 21 Apr 2021 06:23:23
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id C9C07C4338A; Wed, 21 Apr 2021 06:23:23 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 73638C433D3;
-        Wed, 21 Apr 2021 06:23:21 +0000 (UTC)
+        id S230440AbhDUGdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 02:33:01 -0400
+Received: from mout.kundenserver.de ([217.72.192.74]:47983 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230250AbhDUGdB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 02:33:01 -0400
+Received: from mail-wr1-f41.google.com ([209.85.221.41]) by
+ mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1M7s1M-1lUASP1SRW-004x96 for <devicetree@vger.kernel.org>; Wed, 21 Apr
+ 2021 08:32:27 +0200
+Received: by mail-wr1-f41.google.com with SMTP id c4so1133190wrt.8
+        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 23:32:27 -0700 (PDT)
+X-Gm-Message-State: AOAM530lLjoGEH38sUeKKSMuOjfbIzZbGcw5v7hoT0JGLseFI2mXZRpx
+        wj9kK3WsvLtRp+p4YCLocfpu4KUkFGpnmkVvQ14=
+X-Google-Smtp-Source: ABdhPJz8KQSQMuG/h3FrLd/30pB27ABNbzxI+tJP3O1/oI7h1c5S/4lxz8O5iRBe9dLjnXhf6FKlZ1EzgS+Z6bRkkoQ=
+X-Received: by 2002:adf:e483:: with SMTP id i3mr25900890wrm.286.1618986747076;
+ Tue, 20 Apr 2021 23:32:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 21 Apr 2021 11:53:21 +0530
-From:   skakit@codeaurora.org
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
-        Vinod Koul <vkoul@kernel.org>,
-        Courtney Cavin <courtney.cavin@sonymobile.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH V2 4/4] dt-bindings: input: pm8941-pwrkey: Convert pm8941
- power key binding to yaml
-In-Reply-To: <20210409185044.GA3946207@robh.at.kernel.org>
-References: <1617881469-31965-1-git-send-email-skakit@codeaurora.org>
- <1617881469-31965-5-git-send-email-skakit@codeaurora.org>
- <20210409185044.GA3946207@robh.at.kernel.org>
-Message-ID: <68095bad57e336c70b622c5b8d5870b1@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+References: <20210420230402.8807-1-khilman@baylibre.com>
+In-Reply-To: <20210420230402.8807-1-khilman@baylibre.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 21 Apr 2021 08:32:09 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a2bJL732XttLnjRH_1TA3EpuVaPyBDD0NbhbCO0WmqcNw@mail.gmail.com>
+Message-ID: <CAK8P3a2bJL732XttLnjRH_1TA3EpuVaPyBDD0NbhbCO0WmqcNw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: amlogic: misc DT schema fixups
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "open list:ARM/Amlogic Meson SoC support" 
+        <linux-amlogic@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:EmFVc8J2HA7NQQKeLT5uy7erRYJ1kzUYeugBWsy7xlr0ClPq7id
+ 1nXRsEQQIRk0XhlBPaL4GoiFs8TzDp19gfPOc4otLNGzfhTPPoi8eCcu4ia3Rsqo3WggLNq
+ PYWWHy0ON/NME2rC8B+lO2xK/F9d0jwEUpD2ghHPVfIbExHef2uWKJrVFAQqQpNfUkKePVD
+ asLcyzcGNZmWJIGCvoHvA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:cSuANd85X2I=:meyqZjHBsCJjvJDP3Iy1DJ
+ SHEWY5pINFf86CD4XhrqAxtXnzudfFOTt2Vx5V5OB3h239GGJ+5yrnM+yiWdmRUZ32tMDJud5
+ 1a7I8z06r2PTpRJhnJE0kWHpNFq4/yp1R8qQFySaZvVSC24IKw0FHTWuTVRSxAnMbItfxkBYB
+ ra0qtLFwYezvFF/flYgU+g4qifWM5fqSqhRN6k+9CKfrcbQqRtrvPNpVigQa2N5OVt6q1+gE2
+ djTPjkPpDQmvDrOg6K3tGwrDgpavlu6zPo1NVGsDmXK996tt50tbwRHx4YJ3jSQcDA/zb+BTx
+ imyg0Qd1362KSWk0K8H++y5MOQCwNtUn+p0TCm2xa8rx1RDZabBU4dpuDW05XstKuF5JB5hKX
+ aF9dCBfx8Ibekye1oUZYZnuSYIOFIu5CUU6dohQopvj/pHS5F4L8H76g2bOZvUv04pbjwvh6H
+ 2AXk9N0nkHf/KEMTMwU6HmjOJL6OPstwddBR3JZyYZYeTrMBnNNxDBdKPT6ZfDSBqgtqns4tX
+ 9c85P5hnI8hXE+1kDVhBT0=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Wed, Apr 21, 2021 at 1:04 AM Kevin Hilman <khilman@baylibre.com> wrote:
+>
+> Take a pass at cleaning up a bunch of warnings
+> from 'make dtbs_check' that have crept in.
+>
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 
-On 2021-04-10 00:20, Rob Herring wrote:
-> On Thu, Apr 08, 2021 at 05:01:09PM +0530, satya priya wrote:
->> Convert qcom pm8941 power key binding from .txt to .yaml format.
->> 
->> Signed-off-by: satya priya <skakit@codeaurora.org>
-[...]
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - qcom,pm8941-pwrkey
->> +      - qcom,pm8941-resin
->> +      - qcom,pmk8350-pwrkey
->> +      - qcom,pmk8350-resin
->> +
->> +  interrupts:
-> 
-> How many?
-> 
+Thank you for addressing these. If Rob or someone else can review them
+and confirm that they all look good, I'll apply them on top of the branch
+I already have for 5.13.
 
-ok, will add maxItems.
-
->> +    description: |
->> +          Key change interrupt; The format of the specifier is
->> +          defined by the binding document describing the node's
->> +          interrupt parent.
-> 
-> The 2nd sentence is every 'interrupts' property. Drop.
-> 
-
-Will remove the description.
-
->> +
->> +  debounce:
->> +    description: |
->> +          Time in microseconds that key must be pressed or
->> +          released for state change interrupt to trigger.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +  bias-pull-up:
->> +    description: |
->> +           Presence of this property indicates that the KPDPWR_N
->> +           pin should be configured for pull up.
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +
->> +  linux,code:
->> +    description: |
->> +           The input key-code associated with the power key.
->> +           Use the linux event codes defined in
->> +           include/dt-bindings/input/linux-event-codes.h
->> +           When property is omitted KEY_POWER is assumed.
->> +    $ref: "input.yaml#"
-> 
-> You've just defined that 'linux,code' is a node with properties defined
-> in input.yaml. Need to move this up to the top level.
-> 
-
-allOf:
-   $ref: "input.yaml#"
-That means I should add like this at the beginning? please correct me if 
-wrong.
-
->> +
->> +required:
->> +  - compatible
->> +  - interrupts
->> +
->> +additionalProperties: false
-[...]
-
-Thanks,
-Satya Priya
+     Arnd
