@@ -2,221 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBA9336637B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 03:56:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F5353663A9
+	for <lists+devicetree@lfdr.de>; Wed, 21 Apr 2021 04:35:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234538AbhDUB5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Apr 2021 21:57:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33254 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234482AbhDUB5J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Apr 2021 21:57:09 -0400
-Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD642C06174A
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 18:56:35 -0700 (PDT)
-Received: by mail-il1-x133.google.com with SMTP id c4so7136051ilq.9
-        for <devicetree@vger.kernel.org>; Tue, 20 Apr 2021 18:56:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=cvMssSvc8hPyloKKClMogTnqJuOXUsMOm4XH61nQD34=;
-        b=duz3UEHMYloeEwUBvhhwPqYWfptD8iwoHpnlrEhziVb7cG+9UwhbQIR/oX+ERtldRA
-         goUOXoKvlHGEQTxqX44Jp1mncGTT57MJTkgjQmU/eNUhT6+523DnP8gKv/62bVAhmJ1t
-         Orm8ZwXPdwjhFxkm9f+trZgH68wjoz69x7JSM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=cvMssSvc8hPyloKKClMogTnqJuOXUsMOm4XH61nQD34=;
-        b=DPU1iOOif23Meqpyyj/AlXHupyWkXERz3eh/QCgF4jUa0sVP69/YGaPoBTfVHcQa7R
-         66RH+o1fou0+jcrrZiFI6BBM/Ml0tH58DNJMM6CCEIRFQYF5FZRPzzJuhfFWH33A9/7r
-         Z12TSfONgI3sHQ3OR9RBU1mTYuFu3Kd7pvbSvrvvmt1dYaQhdMhkHGQzTOhzPVvLRrjW
-         8jWw709rl/YUunem7rNBIhik2GkeRIl2vVgy/BNPUShHDty+P9KPMjonQfj+epxpXmiG
-         G0C+lcV67xW0O+0gPjo0yZNJivTLubej2+iZ6WkLJSZJiWVasp4vqZtlTlxUr3dUWQAK
-         cX2g==
-X-Gm-Message-State: AOAM533hV+wyukeY3+G8ldtewF4TJWI1eD6fOHHt3S5TNfZhZLlm5vgv
-        mWc2qewUCzQBqPlySIHjReyp2+57f7RnaMhfAwNGsQ==
-X-Google-Smtp-Source: ABdhPJyduQbgwU81Uwxufem1ofj2vTk7xmlEMfaBM6o4S82+Dp7cP5qxHhrJsqLF8Jh6BVMCYX0eqfz3T+c6stggfO0=
-X-Received: by 2002:a05:6e02:20ce:: with SMTP id 14mr24148490ilq.102.1618970193723;
- Tue, 20 Apr 2021 18:56:33 -0700 (PDT)
+        id S233950AbhDUCgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Apr 2021 22:36:20 -0400
+Received: from mail-eopbgr150040.outbound.protection.outlook.com ([40.107.15.40]:9030
+        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S233939AbhDUCgT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Apr 2021 22:36:19 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QePhJknhxIc1qiz5PfIHZvsaS+xmIWmSgQ5clumSKxzzeYL2uAdwQWax6+rtoAGWsJGBH+kB+H78yX7ZWmGnH0KQ7IbtCvx7qVtKDB8r0dlVngLwqVADeq6oz8YRq/P/4iJ0BunL+lML5KY3N7CNvw8iD7/bDmXC0TvVuMXBfqGl86Li6LM3Jl5izDAEsND607bN4nRO1xBLtPkWP5GZ8HKXmp6gOouYYrlUb0kBea4T3T7oCeUIIdWXrW2ytGUeLXzFhyZRYFygueq3dYlRTyGxX2ue83//uSkKmZnKJlsdx8kVqG2dE7sZ44u+ffz+SgPaMTOl8MUcIaasz/+Eqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wauKtxitTzJAgFvAGmLr1zGQdsrsNY9o1uVZjC4OEKs=;
+ b=EtaM2aWtLRZIeeNnCMNDaJb/ZHeq6rQ9qqm56fiAC/UTJA7dWVtFsTMOFcs2VNYqbY+iwBXC4U8JwcwBqtIT6HrcuudHeYr8UvKcbdvnB29jWN1OW7IuXZet4uF1gm2a5G3wwZPScd4vbAvU440+4+SkOi0iDDa9ctPsiAwsSqvNBrq/cUYvIkf86oXU4TqU/9r5yC9iKQvy2UeS/uKpRhOZjlztPw+BqIMq5DNKc47kuROJqsSkvoHrI3miiD7HOE/FrrHmo6AIw8uBhUq6yCUcCTxFQWR8lhJs6h2E/qLwOql8NGGjKOCA5q39LK/DkrbTb2yxIDRwnpkNMmWW0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wauKtxitTzJAgFvAGmLr1zGQdsrsNY9o1uVZjC4OEKs=;
+ b=GrNvsCRWddpVPtCAx2hcBXneIeWX4v6CpmzOToBhjaH7QDhmODwBc7UyRUs/zJvidbphaZX6/QfWsz2a6i/we3Ez+I9rn6Qkm1hbyV/CFfOaVSF1+sLzsSQsrcrIF0iacSNw7teuGOiBP/BgVJecVpOpZZsCMDbv4Rid8oBRJyA=
+Authentication-Results: wizery.com; dkim=none (message not signed)
+ header.d=none;wizery.com; dmarc=none action=none header.from=oss.nxp.com;
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB9PR04MB8313.eurprd04.prod.outlook.com (2603:10a6:10:241::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.19; Wed, 21 Apr
+ 2021 02:35:45 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::45b9:c993:87ec:9a64]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::45b9:c993:87ec:9a64%8]) with mapi id 15.20.4042.020; Wed, 21 Apr 2021
+ 02:35:45 +0000
+From:   peng.fan@oss.nxp.com
+To:     ohad@wizery.com, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, o.rempel@pengutronix.de,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V5 0/8] remoteproc: imx_rproc: support i.MX7ULP/8MN/8MP
+Date:   Wed, 21 Apr 2021 10:20:14 +0800
+Message-Id: <1618971622-30539-1-git-send-email-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: HK2PR02CA0204.apcprd02.prod.outlook.com
+ (2603:1096:201:20::16) To DB6PR0402MB2760.eurprd04.prod.outlook.com
+ (2603:10a6:4:a1::14)
 MIME-Version: 1.0
-References: <20210409045314.3420733-1-hsinyi@chromium.org> <CAJMQK-gFk8WV0W2TTP7=OTsBqgWmy_eKSd42Xa5dJzvUFDTAXQ@mail.gmail.com>
- <CAAOTY_9pJ=H4gQKsC1VeHo6Z4qsHFzOe267QVu6p_Jid0AXsKQ@mail.gmail.com>
-In-Reply-To: <CAAOTY_9pJ=H4gQKsC1VeHo6Z4qsHFzOe267QVu6p_Jid0AXsKQ@mail.gmail.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Wed, 21 Apr 2021 09:56:07 +0800
-Message-ID: <CAJMQK-i8aZWmKyJ=7Gf8Wee3MynnqVvpijTOxqKp9M0vyECcPQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] drm/mediatek: set panel orientation before drm_dev_register().
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by HK2PR02CA0204.apcprd02.prod.outlook.com (2603:1096:201:20::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.4065.20 via Frontend Transport; Wed, 21 Apr 2021 02:35:40 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4c397cc5-41ca-4e4b-5439-08d9046e29cf
+X-MS-TrafficTypeDiagnostic: DB9PR04MB8313:
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB9PR04MB831385C3CFB908BDE13CBE93C9479@DB9PR04MB8313.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5n31hZ19RvtONGtFF1jRBD7o9/yYO6c5d/n6xu8jFZMdCBASeyG6CVu2i1xuyxE3w1j42c3R5/EbZ/4ybGGO10Tw3ruwkY0lTIYNAvDPW464EFkr51f4GEY1M6q+GwfaGx9XfhlRdjlqrIwWhryQlWt42PHgn+6GEZNvUoB/fDIWOf8x3d2rAlgd/+q3l20b0k0B7beQTpTzsqWrXWQXw7x8lae6bwA9wv7fTZw97Sicazi+K+thK6qBwwsXlSWBUe1Yr27vG15MvlIsATX2KujB0bIo4oaJkm63hQn0ysewMlSWTlrSFhaCdhoRGt5sUI1djfsOJ971Isi6VFFIv5H0oDEhx9k078rYUkKJneUZSC0O82806lfuQgOJLL3tNDKcXbxvB0eCSJMDrJOV2hdjE9Q0dM9Hg0nfZnodyDDPD+QQICy7/8noRIalnGVmcLVUP34G/5Q+PL69hqb/tHoxk3Yr1fbgsGmi5Bscw0c1VncyYBVpjJkYL1DGWpTz+BJu1PrY73m3pLWXI5DgS/zVYMIO9X995V4Xrn/1j8ymVGa0HhI920Xnq8XpvelUW+GQM1SA6EmstbPMQtvl4ZuGrU4vbQitr6PQfzARyJgOZgmomqNJAtqcvs8l2LhmToZi7bHjqUP0mQa5daF8ByAMVHbj8XsExxN2D3iD00hzQX7DKa630gBQABc7g0Cs
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(366004)(136003)(39860400002)(346002)(396003)(38350700002)(26005)(186003)(38100700002)(66556008)(52116002)(5660300002)(956004)(4326008)(8676002)(66946007)(8936002)(316002)(86362001)(83380400001)(6666004)(66476007)(7416002)(6506007)(6512007)(2906002)(9686003)(478600001)(2616005)(16526019)(6486002)(69590400013);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?F5dN4cbjZteax6qo+aLA9yw6iziT/I7BlRUzcg/2Ts1ScfkOOO4XjfeIz0S3?=
+ =?us-ascii?Q?tZhGSwqFugy+WGoayKeCGV1YxUgdlOM14vaX0EcAo+ejTRqVBQQQrxNna7gm?=
+ =?us-ascii?Q?cwicn9G0JZLFzXuefsMuBM+8JafDLMlGY/KLu3okL3kd7k3yRXbN/rFNPjz4?=
+ =?us-ascii?Q?Yf0nCB2IpVaaCRQm3cB+ktJHyuZ0x4GRH3TYrBzhDvH94ZpEArqrcYetlyrf?=
+ =?us-ascii?Q?BUtjjLqZsLnuhUd2/+LKKhiJxK7gpxd3gcFH3f8L6c1JAsyXkUH134X/ZEeU?=
+ =?us-ascii?Q?Qn8NRkx6RPfhu2ZRe6Nb8YUWlC0eljz6AJTce/cs0WaKUduGEyjTUM8TrqLl?=
+ =?us-ascii?Q?2EKnX+RnoJw6hRNhSq5/4qBPk7h+uweO9e4rf6rWDHmKGMIWM4r+nPED06oq?=
+ =?us-ascii?Q?BSJfChhuOyPF379PH7mRHqUE/uNlZwjH6j9p4WGdpUJCEsPLiUCW/q/nv7Ur?=
+ =?us-ascii?Q?14PZd276d2vc70Wn8avipSO/AEYqY0whYqECZZWewRe/2HWxpRBzeionoi+B?=
+ =?us-ascii?Q?52ly6iEw4MDALxckcYvtnUPOAQNilFPAcLHRaCxM8obsRpKzA0Bmx7Jh+roS?=
+ =?us-ascii?Q?voH1JoSNAr36dYgRUT/Nb+KYJwVUBcIl8zZaP1NeBnVylBPkNmCYs9sR0TqQ?=
+ =?us-ascii?Q?nS4pACYNA2klTsiXc8wGfCq2OpvlMIT/FIvgSAU1NYZ9sGkwhKENYst9EHIc?=
+ =?us-ascii?Q?I6DOSKXzuqf7s+5vC5QQaLRR3EDf8+4ZsbcPk4vRp2Qp5R7fbbRqnwPUiWle?=
+ =?us-ascii?Q?O7+VYq/cHiAYFJvWIwNdC4hZfzGd/KsdyHnB5Gru0c7zYCwFJACCqYykw+Wt?=
+ =?us-ascii?Q?apr9YGF+o8tqFGGHxkBtTxzCSmuzonH+1Ig7uYHfqzkMxFDTGN8tOzv3xRvZ?=
+ =?us-ascii?Q?zMGteJUtDMTCqoUMYLVOMeRDROSJCk0zgw/bUAC3eDwmVKT8qX+QHKcBEmak?=
+ =?us-ascii?Q?UvhLAgbpy0R3KuYKBp/+P0/ArtxiWaxw63EOvWUErDN3dzNHgS/4/+PsjyoJ?=
+ =?us-ascii?Q?qTxYrUMEN3z50XEBFQ1ferpDqPLUJhwP7kmMDKu7riWlOvG1p2XNeYPMcWEj?=
+ =?us-ascii?Q?6HoeBdsh4CziGi1oP6M/loGTsXYjSgjCJvg68oouJJcX5JuuS0k37iSOrdw8?=
+ =?us-ascii?Q?LckbmVc+NghR6atUs4jxJ/WPOjF5WB7wXg9YFNQZ8YNpiKzQC33UdrV2arZF?=
+ =?us-ascii?Q?arNNeuF4OYPV7lFhiNHhiGsStKg6ptnXXIYPX70V7Aq2MM2UoI/yVO6MWtqN?=
+ =?us-ascii?Q?Yc+mVYcfAkh2lOinRQBPatCyK0Ia34i5zJzhM5jAdOx9Sxdywy9xUSECFww0?=
+ =?us-ascii?Q?kWGi2zMPcyPvEHoi0QQKmkco?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c397cc5-41ca-4e4b-5439-08d9046e29cf
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2021 02:35:45.0519
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RAqmRbknqBOeIxuZZwHuvsSg5z5JOXlHeGaDLy2L2xbijUSDpT94gwcWJogSOMOWR2EyBBFbos8EVgKszWzrjg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8313
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 21, 2021 at 7:47 AM Chun-Kuang Hu <chunkuang.hu@kernel.org> wro=
-te:
->
-> Hi, Hsin-Yi:
->
-> Hsin-Yi Wang <hsinyi@chromium.org> =E6=96=BC 2021=E5=B9=B44=E6=9C=8820=E6=
-=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=885:05=E5=AF=AB=E9=81=93=EF=BC=9A
-> >
-> > On Fri, Apr 9, 2021 at 12:53 PM Hsin-Yi Wang <hsinyi@chromium.org> wrot=
-e:
-> > >
-> > > drm_dev_register() sets connector->registration_state to
-> > > DRM_CONNECTOR_REGISTERED and dev->registered to true. If
-> > > drm_connector_set_panel_orientation() is first called after
-> > > drm_dev_register(), it will fail several checks and results in follow=
-ing
-> > > warning. So set panel orientation in dsi before drm_dev_register() is
-> > > called.
->
-> All connector would have this problem, so I would like to fix this in
-> common code.
-> In drm_connector_init(), you could add "panel orientation" property
-> with value DRM_MODE_PANEL_ORIENTATION_UNKNOWN, so it would not add new
-> object when get modes.
+From: Peng Fan <peng.fan@nxp.com>
 
-Hi CK,
+V5:
+ Add R-b tag
+ Move the change in detect mode of patch 5 to patch 7 Per Mathieu's
+ comments
 
-Calling drm_connector_set_panel_orientation() with
-DRM_MODE_PANEL_ORIENTATION_UNKNOWN will be a no-op. And once the
-orientation is set, the 2nd call to this is also no-op.
-https://elixir.bootlin.com/linux/v5.12-rc8/source/drivers/gpu/drm/drm_conne=
-ctor.c#L2182
+V4:
+ Typo fix
+ patch 4: take state as a check condition
+ patch 5: move regmap lookup/attach to imx_rproc_detect_mode
+ patch 6: add imx_rproc_clk_enable for optional clk
+ patch 8: use switch/case in imx_rproc_detect_mode
+V3:
+ Add A-b tag for Patch 1/2
+ Fix the checkpatch warning for Patch 6,8
 
-The 1st time call to drm_connector_set_panel_orientation() has to be
-prior than drm_dev_register().
+V2:
+ Patch 1/8, use fsl as vendor, typo fix
+ Because patchset [1] has v2 version, patch 5,6,7,8 are adapted that
+ change.
 
-Orientation is an optional property, and different dsi has different
-ways to read and handle this. Eg. vlv_dsi[1], intel_dp[2], so I think
-it's better to let each connector decide how to handle orientation.
+This patchset is to support i.MX7ULP/8MN/8MP, also includes a patch to
+parse fsl,auto-boot
 
-[1] https://elixir.bootlin.com/linux/v5.12-rc8/source/drivers/gpu/drm/i915/=
-display/vlv_dsi.c#L1632
-[2] https://elixir.bootlin.com/linux/v5.12-rc8/source/drivers/gpu/drm/i915/=
-display/intel_dp.c#L6488
+Peng Fan (8):
+  dt-bindings: remoteproc: imx_rproc: add fsl,auto-boot property
+  dt-bindings: remoteproc: imx_rproc: add i.MX7ULP support
+  dt-bindings: remoteproc: imx_rproc: support i.MX8MN/P
+  remoteproc: imx_rproc: parse fsl,auto-boot
+  remoteproc: imx_rproc: initial support for mutilple start/stop method
+  remoteproc: imx_rproc: make clk optional
+  remoteproc: imx_rproc: support i.MX7ULP
+  remoteproc: imx_rproc: support i.MX8MN/P
 
-Thanks
->
-> Regards,
-> Chun-Kuang.
->
-> > >
-> > > [    4.480976] ------------[ cut here ]------------
-> > > [    4.485603] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_o=
-bject.c:45 __drm_mode_object_add+0xb4/0xbc
-> > > <snip>
-> > > [    4.609772] Call trace:
-> > > [    4.612208]  __drm_mode_object_add+0xb4/0xbc
-> > > [    4.616466]  drm_mode_object_add+0x20/0x2c
-> > > [    4.620552]  drm_property_create+0xdc/0x174
-> > > [    4.624723]  drm_property_create_enum+0x34/0x98
-> > > [    4.629241]  drm_connector_set_panel_orientation+0x64/0xa0
-> > > [    4.634716]  boe_panel_get_modes+0x88/0xd8
-> > > [    4.638802]  drm_panel_get_modes+0x2c/0x48
-> > > [    4.642887]  panel_bridge_get_modes+0x1c/0x28
-> > > [    4.647233]  drm_bridge_connector_get_modes+0xa0/0xd4
-> > > [    4.652273]  drm_helper_probe_single_connector_modes+0x218/0x700
-> > > [    4.658266]  drm_mode_getconnector+0x1b4/0x45c
-> > > [    4.662699]  drm_ioctl_kernel+0xac/0x128
-> > > [    4.666611]  drm_ioctl+0x268/0x410
-> > > [    4.670002]  drm_compat_ioctl+0xdc/0xf0
-> > > [    4.673829]  __arm64_compat_sys_ioctl+0xc8/0x100
-> > > [    4.678436]  el0_svc_common+0xf4/0x1c0
-> > > [    4.682174]  do_el0_svc_compat+0x28/0x3c
-> > > [    4.686088]  el0_svc_compat+0x10/0x1c
-> > > [    4.689738]  el0_sync_compat_handler+0xa8/0xcc
-> > > [    4.694171]  el0_sync_compat+0x178/0x180
-> > > [    4.698082] ---[ end trace b4f2db9d9c88610b ]---
-> > > [    4.702721] ------------[ cut here ]------------
-> > > [    4.707329] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_o=
-bject.c:243 drm_object_attach_property+0x48/0xb8
-> > > <snip>
-> > > [    4.833830] Call trace:
-> > > [    4.836266]  drm_object_attach_property+0x48/0xb8
-> > > [    4.840958]  drm_connector_set_panel_orientation+0x84/0xa0
-> > > [    4.846432]  boe_panel_get_modes+0x88/0xd8
-> > > [    4.850516]  drm_panel_get_modes+0x2c/0x48
-> > > [    4.854600]  panel_bridge_get_modes+0x1c/0x28
-> > > [    4.858946]  drm_bridge_connector_get_modes+0xa0/0xd4
-> > > [    4.863984]  drm_helper_probe_single_connector_modes+0x218/0x700
-> > > [    4.869978]  drm_mode_getconnector+0x1b4/0x45c
-> > > [    4.874410]  drm_ioctl_kernel+0xac/0x128
-> > > [    4.878320]  drm_ioctl+0x268/0x410
-> > > [    4.881711]  drm_compat_ioctl+0xdc/0xf0
-> > > [    4.885536]  __arm64_compat_sys_ioctl+0xc8/0x100
-> > > [    4.890142]  el0_svc_common+0xf4/0x1c0
-> > > [    4.893879]  do_el0_svc_compat+0x28/0x3c
-> > > [    4.897791]  el0_svc_compat+0x10/0x1c
-> > > [    4.901441]  el0_sync_compat_handler+0xa8/0xcc
-> > > [    4.905873]  el0_sync_compat+0x178/0x180
-> > > [    4.909783] ---[ end trace b4f2db9d9c88610c ]---
-> > >
-> > > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> >
-> > ping on the thread, thanks.
-> >
-> > > ---
-> > >  drivers/gpu/drm/mediatek/mtk_dsi.c | 9 +++++++++
-> > >  1 file changed, 9 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/med=
-iatek/mtk_dsi.c
-> > > index ae403c67cbd9..45a702ee09f3 100644
-> > > --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> > > +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> > > @@ -205,6 +205,7 @@ struct mtk_dsi {
-> > >         u32 irq_data;
-> > >         wait_queue_head_t irq_wait_queue;
-> > >         const struct mtk_dsi_driver_data *driver_data;
-> > > +       enum drm_panel_orientation orientation;
-> > >  };
-> > >
-> > >  static inline struct mtk_dsi *bridge_to_dsi(struct drm_bridge *b)
-> > > @@ -966,6 +967,8 @@ static int mtk_dsi_encoder_init(struct drm_device=
- *drm, struct mtk_dsi *dsi)
-> > >         }
-> > >         drm_connector_attach_encoder(dsi->connector, &dsi->encoder);
-> > >
-> > > +       drm_connector_set_panel_orientation(dsi->connector, dsi->orie=
-ntation);
-> > > +
-> > >         return 0;
-> > >
-> > >  err_cleanup_encoder:
-> > > @@ -1029,6 +1032,12 @@ static int mtk_dsi_probe(struct platform_devic=
-e *pdev)
-> > >                         ret =3D PTR_ERR(dsi->next_bridge);
-> > >                         goto err_unregister_host;
-> > >                 }
-> > > +
-> > > +               ret =3D of_drm_get_panel_orientation(panel->dev->of_n=
-ode, &dsi->orientation);
-> > > +               if (ret) {
-> > > +                       dev_err(dev, "failed to get panel orientation=
- %d\n", ret);
-> > > +                       return ret;
-> > > +               }
-> > >         }
-> > >
-> > >         dsi->driver_data =3D of_device_get_match_data(dev);
-> > > --
-> > > 2.31.1.295.g9ea45b61b8-goog
-> > >
+ .../bindings/remoteproc/fsl,imx-rproc.yaml    |  11 +-
+ drivers/remoteproc/imx_rproc.c                | 196 +++++++++++++++---
+ 2 files changed, 173 insertions(+), 34 deletions(-)
+
+-- 
+2.30.0
+
