@@ -2,36 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16AA43685A6
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 19:17:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 844443685CE
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 19:23:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236659AbhDVRRk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 13:17:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45496 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236651AbhDVRRj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 13:17:39 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3932FC06174A;
-        Thu, 22 Apr 2021 10:17:04 -0700 (PDT)
+        id S236651AbhDVRYE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 13:24:04 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:54176 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236287AbhDVRYD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 13:24:03 -0400
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (Authenticated sender: ezequiel)
-        with ESMTPSA id A3A6B1F4359E
-Message-ID: <7557bc8aaaa1924ad39676b32ba6a3f6474a3722.camel@collabora.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: iommu: rockchip: Convert IOMMU to
- DT schema
+        with ESMTPSA id 3EF8B1F4361F
+Message-ID: <7d1f197d868ae84a8bc475f1f48178d2737518c1.camel@collabora.com>
+Subject: Re: [PATCH v1 4/5] arm64: dts: rockchip: add core dtsi for RK3568
+ SoC
 From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
-        heiko@sntech.de, xxm@rock-chips.com
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+To:     Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+        cl@rock-chips.com
+Cc:     robh+dt@kernel.org, jagan@amarulasolutions.com, wens@csie.org,
+        uwe@kleine-koenig.org, mail@david-bauer.net, jbx6244@gmail.com,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, Kever Yang <kever.yang@rock-chips.com>
-Date:   Thu, 22 Apr 2021 14:16:53 -0300
-In-Reply-To: <20210422141602.350746-2-benjamin.gaignard@collabora.com>
-References: <20210422141602.350746-1-benjamin.gaignard@collabora.com>
-         <20210422141602.350746-2-benjamin.gaignard@collabora.com>
+        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
+        cnsztl@gmail.com, devicetree@vger.kernel.org,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
+        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
+        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
+        zhangqing@rock-chips.com, huangtao@rock-chips.com,
+        kever.yang@rock-chips.com
+Date:   Thu, 22 Apr 2021 14:23:15 -0300
+In-Reply-To: <11131098.F0gNSz5aLb@diego>
+References: <20210421065921.23917-1-cl@rock-chips.com>
+         <20210421065921.23917-5-cl@rock-chips.com> <11131098.F0gNSz5aLb@diego>
 Organization: Collabora
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.38.2-1 
@@ -41,122 +45,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-(Adding Kever)
+Hi Liang,
 
-Hi Benjamin,
+I'm very impressed Rockchip is pushing patches so early, thanks a lot!
 
-Thanks a lot for working on this, it looks amazing. Together with the great work
-that Rockchip is doing, it seems RK3566/RK3568 will have decent support very soon.
+See below.
 
-One comment here:
-
-On Thu, 2021-04-22 at 16:15 +0200, Benjamin Gaignard wrote:
-> Convert Rockchip IOMMU to DT schema
+On Wed, 2021-04-21 at 11:13 +0200, Heiko Stübner wrote:
+> Hi Liang,
 > 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> ---
-> version 2:
->  - Change maintainer
->  - Change reg maxItems
->  - Change interrupt maxItems
+> Am Mittwoch, 21. April 2021, 08:59:20 CEST schrieb cl@rock-chips.com:
+> > From: Liang Chen <cl@rock-chips.com>
+> > 
+> > RK3568 is a high-performance and low power quad-core application processor
+> > designed for personal mobile internet device and AIoT equipments.
+> > 
+> > This patch add basic core dtsi file for it.
+> > 
+> > Signed-off-by: Liang Chen <cl@rock-chips.com>
 > 
->  .../bindings/iommu/rockchip,iommu.txt         | 38 ---------
->  .../bindings/iommu/rockchip,iommu.yaml        | 79 +++++++++++++++++++
->  2 files changed, 79 insertions(+), 38 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/iommu/rockchip,iommu.txt
->  create mode 100644 Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+> this is a first round of basic stuff :-) .
 > 
-> diff --git a/Documentation/devicetree/bindings/iommu/rockchip,iommu.txt b/Documentation/devicetree/bindings/iommu/rockchip,iommu.txt
-> deleted file mode 100644
-> index 6ecefea1c6f9..000000000000
-> --- a/Documentation/devicetree/bindings/iommu/rockchip,iommu.txt
-> +++ /dev/null
-> @@ -1,38 +0,0 @@
-> -Rockchip IOMMU
-> -==============
-> -
-> -A Rockchip DRM iommu translates io virtual addresses to physical addresses for
-> -its master device.  Each slave device is bound to a single master device, and
-> -shares its clocks, power domain and irq.
-> -
-> -Required properties:
-> -- compatible      : Should be "rockchip,iommu"
-> -- reg             : Address space for the configuration registers
-> -- interrupts      : Interrupt specifier for the IOMMU instance
-> -- interrupt-names : Interrupt name for the IOMMU instance
-> -- #iommu-cells    : Should be <0>.  This indicates the iommu is a
-> -                    "single-master" device, and needs no additional information
-> -                    to associate with its master device.  See:
-> -                    Documentation/devicetree/bindings/iommu/iommu.txt
-> -- clocks          : A list of clocks required for the IOMMU to be accessible by
-> -                    the host CPU.
-> -- clock-names     : Should contain the following:
-> -       "iface" - Main peripheral bus clock (PCLK/HCL) (required)
-> -       "aclk"  - AXI bus clock (required)
-> -
-> -Optional properties:
-> -- rockchip,disable-mmu-reset : Don't use the mmu reset operation.
-> -                              Some mmu instances may produce unexpected results
-> -                              when the reset operation is used.
-> -
-> -Example:
-> -
-> -       vopl_mmu: iommu@ff940300 {
-> -               compatible = "rockchip,iommu";
-> -               reg = <0xff940300 0x100>;
-> -               interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
-> -               interrupt-names = "vopl_mmu";
-> -               clocks = <&cru ACLK_VOP1>, <&cru HCLK_VOP1>;
-> -               clock-names = "aclk", "iface";
-> -               #iommu-cells = <0>;
-> -       };
-> diff --git a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
-> new file mode 100644
-> index 000000000000..0db208cf724a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
-> @@ -0,0 +1,79 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iommu/rockchip,iommu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip IOMMU
-> +
-> +maintainers:
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +description: |+
-> +  A Rockchip DRM iommu translates io virtual addresses to physical addresses for
-> +  its master device. Each slave device is bound to a single master device and
-> +  shares its clocks, power domain and irq.
-> +
-> +  For information on assigning IOMMU controller to its peripheral devices,
-> +  see generic IOMMU bindings.
-> +
-> +properties:
-> +  compatible:
-> +    const: rockchip,iommu
-> +
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    maxItems: 2
-> +
+> First of all, I really like the move of moving the pretty standardized
+> pinconfig entries to the rockchip-pinconf.dtsi .
+> 
+> (1) But please move this into a separate patch to make that more visible
+> and maybe even convert _some_ or all arm64 Rockchip socs to use that
+> as well
+> 
+> "arm64: dts: rockchip: add generic pinconfig settings used by most Rockchip socs
+> 
+> The pinconfig settings for Rockchip SoCs are pretty similar on all socs,
+> so move them to a shared dtsi to be included, instead of redefining them
+> for each soc"
+> 
+> (2) I also like the external rk3568-pinctrl approach with the dtsi getting
+> auto-generated. This will probably help us in keeping pinctrl settings
+> synchronous between mainline and the vendor kernel.
+> 
+> (3) From my basic understanding the rk3568 is basically a rk3566 + more
+> peripherals, so ideally they would share the basic ones in a rk3566.dtsi
+> which the rk3568.dtsi then could include and extend with its additional
+> peripherals.
+> 
+> With at least the pine64 boards being based on the rk3566, there probably
+> will be quite a mainline use of it as well.
+> 
+> Or is there something that would prevent this?
+> 
 
-AFAICS, the driver supports handling multiple MMUs, and there's one reg and
-interrupt cell for each MMU. IOW, there's no requirement that maxItems is 2.
+I agree with having a rk3566.dtsi, and rk3568.dtsi on top, instead of the
+other way around. We have some RK3566 boards here, so we can surely test
+the RK3566.dtsi patches very quickly.
 
-Is there any way we can describe that? Or maybe just allow a bigger maximum?
+Also, it's fine if you want to send v2 with just these minimal peripherals.
+However, I think you could include GMAC and TS-ADC:
 
-Thanks,
+https://lore.kernel.org/linux-rockchip/31c2e531-96d0-a1c1-644c-28c60eb40cf4@gmail.com/T/#t
+https://lore.kernel.org/linux-rockchip/20210421203409.40717-1-ezequiel@collabora.com/T/#t
+
+These should work right out of the box!
+
+Thanks!
 Ezequiel
 
