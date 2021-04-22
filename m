@@ -2,79 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71FD336862A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 19:45:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC03A368659
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 20:05:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236668AbhDVRpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 13:45:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51820 "EHLO
+        id S236773AbhDVSGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 14:06:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236287AbhDVRpm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 13:45:42 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37887C06174A
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 10:45:07 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id u11so18046229pjr.0
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 10:45:07 -0700 (PDT)
+        with ESMTP id S236287AbhDVSGR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 14:06:17 -0400
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1C26C06174A;
+        Thu, 22 Apr 2021 11:05:41 -0700 (PDT)
+Received: by mail-oi1-x235.google.com with SMTP id n140so46627394oig.9;
+        Thu, 22 Apr 2021 11:05:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=a/ccmlK2SC2bFrmvJC8izkh8L57aGgHSLoN7bzusakc=;
-        b=XBThIrflRQA3fgbEWX8gOjDQIuHreDNWe3wFiwgDIEWqE846XRJL+Amq1Wqsu+BUVP
-         dllJKnRrsSYGsSQR7TLehlrcw1PeqX73rVmr66wC7bXwXkuHP2SUfviOg4RisDHxPEUb
-         ffgqf7oc0PCVSEDXQ/BLKsfVlvnktjo1sMQJE=
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=17m0G7DImnLvNaA0ALmee3EGwU+5fWnJUzbWancxTSI=;
+        b=owTpyRcQwbSTb/u9rOV3Ef/i1PgEh57DdgCyWP088HtpsxxA3m3T3ayh+B8f8FzBDa
+         +J1dOck59tmd6m5CV3rpDl7gsoaMpuYHDRNAmYpqG6oe/e/fPq+Pcqe/eCzvd5C5sTRG
+         H1NkNEHWr7SqxCJVSL8H5roJwtfqhSalAM/nNUmfwgV5ib7aEcXpRK1iISPaIK1/jGNS
+         EVVt/wnvYYrl3hds1I1AZvAMmXDQV2b3s9XVVH4Q57iuk1NofSfYfd/qZaZkrig+hu5/
+         olgZljXWWd4VC6TI0YHlMhbxd75knYX8tW0TvYgXUA/EeMcNrakN5O/XErk7wgNWsjTD
+         rl0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=a/ccmlK2SC2bFrmvJC8izkh8L57aGgHSLoN7bzusakc=;
-        b=Sx4wczh2Xcyw3P/WBSxJefIntIp6rH6c+PSLPy7gZuXg8ZX15omKLben2vQfSJU9Qp
-         0uo7p5Nj8Dl0SU+I1sDGUmIV//2k4ACyWiRz/JQGK3EQ1XzaujssHo4ztu8e079fVnEW
-         aM5mjbWX7rdIwRKBiMMszColZhRXwqV05AzpMW+plhEZGA6XAGE5xxL7voLtjsM4bnMU
-         cdVJvlwWAa6Op5trPJsK7FVrPPqAlJ3Nb5MqV5WQp7NwFcfxO+Z4g2HniV6JEn37hJYe
-         TV8Qyd8vBegmVN9HblknkmYRbPw5JEh5Vvc+MjUR0AfpJMDyUjhoC6ALetSAPdmMDlus
-         cz2A==
-X-Gm-Message-State: AOAM5339Q5sXqNyY/D8Mtg2wsH8QM2xenVPKiZMUuFwdizlHi4vA86+i
-        RVBckEHsqhkBDGXUORBzqENj/g==
-X-Google-Smtp-Source: ABdhPJzBjWu8RWw2bEU+LvfjTh9NYw4eIo6vp5pvYVW7q6jfIzHVgRHbByOj8TQ64v427KWpqBDA6Q==
-X-Received: by 2002:a17:902:ce85:b029:eb:46e1:2da2 with SMTP id f5-20020a170902ce85b02900eb46e12da2mr2687plg.38.1619113506760;
-        Thu, 22 Apr 2021 10:45:06 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:acff:4f9f:d039:23ff])
-        by smtp.gmail.com with UTF8SMTPSA id i18sm2640082pfq.59.2021.04.22.10.45.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Apr 2021 10:45:06 -0700 (PDT)
-Date:   Thu, 22 Apr 2021 10:45:05 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rajeshwari <rkambl@codeaurora.org>
-Cc:     amitk@kernel.org, thara.gopinath@linaro.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, rui.zhang@intel.com,
-        daniel.lezcano@linaro.org, robh+dt@kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sanm@codeaurora.org
-Subject: Re: [PATCH V1 2/2] dt-bindings: thermal: tsens: Add configuration in
- yaml
-Message-ID: <YIG2IckKRBHqzpu3@google.com>
-References: <1619005442-16485-1-git-send-email-rkambl@codeaurora.org>
- <1619005442-16485-3-git-send-email-rkambl@codeaurora.org>
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=17m0G7DImnLvNaA0ALmee3EGwU+5fWnJUzbWancxTSI=;
+        b=tXXY7eTgVNu/dSEbvhvu4EiAduXZSamH82ydZEE/WUPRS093KmR50zNbYOqq2ZRNF5
+         lrMxKVrqt6lElI4ihReAgjDjQn6NAeaXI5GB2IFConERmJxPXHN59QFwI89wdV1DQQAo
+         +PYrurYNI3z/gxmDUqvGvNin2W5fgMzZMLccd/6gOH4nZb3BJCP7O26ewBFkUUd5Y5a1
+         hzbxWIvrNgV//rs36ufuKj3uTS/Q1yrTZt8yn2LrQJrgOVip+ZJUrKAkFrRw3vivkJ7d
+         CU7XH3ZRiIsewGb8hmQrLsp1TFBB4lv0CG/pS13suzDVJybd8Cpb+CZ19D7imVw/NFuA
+         LlDA==
+X-Gm-Message-State: AOAM532dfvlXbpxrn5Q7FErONySJ/0CvH3P8SmgOba++A1tpVHaliGlp
+        /wjuS2+sZxh/EbIXmTVqMxxJWOkP1so=
+X-Google-Smtp-Source: ABdhPJw0god0XZwiUQLDg7+c+UlduCOc32cSMSxfM6LoUI9lD3N+e/ZhfW9tOQD81embb2byHZoMvg==
+X-Received: by 2002:a05:6808:1302:: with SMTP id y2mr3180685oiv.86.1619114741346;
+        Thu, 22 Apr 2021 11:05:41 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id h9sm784695otr.67.2021.04.22.11.05.40
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 22 Apr 2021 11:05:40 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Thu, 22 Apr 2021 11:05:39 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Francesco Zanella <francesco.zanella@vimar.com>
+Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] watchdog: gpio_wdt: add "start-at-boot" feature
+Message-ID: <20210422180539.GB107132@roeck-us.net>
+References: <20210421162621.24910-1-francesco.zanella@vimar.com>
+ <20210421162621.24910-3-francesco.zanella@vimar.com>
+ <20210421164228.GB110463@roeck-us.net>
+ <1b53153c-e890-cf3c-74f7-9106965c23fe@vimar.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1619005442-16485-3-git-send-email-rkambl@codeaurora.org>
+In-Reply-To: <1b53153c-e890-cf3c-74f7-9106965c23fe@vimar.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 21, 2021 at 05:14:02PM +0530, Rajeshwari wrote:
+On Thu, Apr 22, 2021 at 06:28:40PM +0200, Francesco Zanella wrote:
+> 
+> 
+> On 21/04/21 18:42, Guenter Roeck wrote:
+> > On Wed, Apr 21, 2021 at 06:26:21PM +0200, Francesco Zanella wrote:
+> >> If "start-at-boot" property is present in the device tree, start pinging
+> >> hw watchdog at probe, in order to take advantage of kernel configs:
+> >> - WATCHDOG_HANDLE_BOOT_ENABLED: Avoid possible reboot if hw watchdog was
+> >>   been enabled before the kernel (by uboot for example) and userspace
+> >>   doesn't take control of /dev/watchdog in time;
+> >> - WATCHDOG_OPEN_TIMEOUT: Reboot if userspace doesn't take control of
+> >>   /dev/watchdog within the timeout.
+> >>
+> >> Signed-off-by: Francesco Zanella <francesco.zanella@vimar.com>
+> >> ---
+> >>  drivers/watchdog/gpio_wdt.c | 6 +++++-
+> >>  1 file changed, 5 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/drivers/watchdog/gpio_wdt.c b/drivers/watchdog/gpio_wdt.c
+> >> index 0923201ce874..1e6f0322ab7a 100644
+> >> --- a/drivers/watchdog/gpio_wdt.c
+> >> +++ b/drivers/watchdog/gpio_wdt.c
+> >> @@ -31,6 +31,7 @@ struct gpio_wdt_priv {
+> >>  	struct gpio_desc	*gpiod;
+> >>  	bool			state;
+> >>  	bool			always_running;
+> >> +	bool			start_at_boot;
+> >>  	unsigned int		hw_algo;
+> >>  	struct watchdog_device	wdd;
+> >>  };
+> >> @@ -147,6 +148,9 @@ static int gpio_wdt_probe(struct platform_device *pdev)
+> >>  	priv->always_running = of_property_read_bool(np,
+> >>  						     "always-running");
+> >>  
+> >> +	priv->start_at_boot = of_property_read_bool(np,
+> >> +						    "start-at-boot");
+> >> +
+> >>  	watchdog_set_drvdata(&priv->wdd, priv);
+> >>  
+> >>  	priv->wdd.info		= &gpio_wdt_ident;
+> >> @@ -161,7 +165,7 @@ static int gpio_wdt_probe(struct platform_device *pdev)
+> >>  
+> >>  	watchdog_stop_on_reboot(&priv->wdd);
+> >>  
+> >> -	if (priv->always_running)
+> >> +	if (priv->always_running || priv->start_at_boot)
+> >>  		gpio_wdt_start(&priv->wdd);
+> > 
+> > So the only real difference to always_running is that always_running
+> > doesn't stop the watchdog on close but keeps it running.
+> > 
+> > Does that really warrant another property ? Why not just use
+> > always-running ?
+> > 
+> > The special use case of being able to stop the watchdog doesn't seem
+> > to be worth the trouble. Please explain your use case.
+> > 
+> > Guenter
+> > 
+> 
+> You got the point.
+> I would like to be able to stop the watchdog when I want.
+> From my point of view always_running is used in the very special
+> case when the wdt chip can't be stopped.
+> I want a normal wdt that can be stopped (for example during a system
+> update), but I want it to start at boot for the 2 reasons that I
+> explained before:
+> - I need continuity in hw wdt pinging because I start in uboot,
+>   so I take advantage of WATCHDOG_HANDLE_BOOT_ENABLED that makes
+>   the kernel to do that job; but it is triggered only if it is
+>   started at probe, if I'm not wrong.
 
-> Subject: dt-bindings: thermal: tsens: Add configuration in yaml
+That depends. If the driver can read the current state (ie if
+it can detect if the watchdog is running) it can report it
+to the watchdog core accordingly. That would be the preferred
+mechanism. Everything else is just a workaround for bad hardware
+(bad as in "it doesn't report its state").
 
-This subject isn't really useful. The fact that the format of the
-binding is yaml is irrelevant here. What is important is that you
-are adding the compatible string for the SC7280 to the TSENS
-binding. This should be reflected in the subject.
+Guenter
 
-Also this is patch [2/2] and patch [1/2] adds DT entries with the new
-compatible string. The binding should be defined before adding new
-entries, hence the order of the patches should be inversed.
+> - I would like to monitor with the wdt also the kernel at boot,
+>   and more importantly handle the case when the userspace app
+>   doesn't take control of /dev/watchdog for whatever reason
+>   within the timeout set with WATCHDOG_OPEN_TIMEOUT.
+> 
+> Hope that this explain my target.
+> Thanks for your attention,
+> 
+> Francesco
