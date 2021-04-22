@@ -2,104 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38E64368381
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 17:39:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1684F368421
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 17:46:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236333AbhDVPj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 11:39:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52042 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230005AbhDVPj4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 11:39:56 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED259C06138B
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 08:39:21 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id m7so41544639ljp.10
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 08:39:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=plUAjDarJDyekWMgy0FkCFDFLzZZtjqWEzp24FU/oGc=;
-        b=GVH7LtAe5IDyGNM32nkxm/Tgkc6AEW7bnz47XlEd306jLo9Sz+3otiD153LTZCS6hU
-         zlvadG+MGKUqUToThdUM+Ssx2R667Egb2lM/Va5QeINqdYBIidLxQL9pUdIuYsUSNa4J
-         dqXhNm07FCyw6r5TAhCpqR7iyYiopZWLSKGSIRcg59kFbcOEh+/ULoZjHuDgRS0P3+Wb
-         r7mjAM+y9oCpHaC3/98Rg/k3ORBAqR8u/120Gx/x98aqQmTZjC3oWr6wQJ6eh+K5YO+8
-         DexZVNeifd2ofIyi2kMmTn8TBKrhaGjy+GFamuBSOMX+K/2DbiZfiJCroX/iyIuaR7y6
-         /bkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=plUAjDarJDyekWMgy0FkCFDFLzZZtjqWEzp24FU/oGc=;
-        b=ObO09TAHILBwBt9t6xlrJ1Dln9oHJHGGHg2e2BcOsKvAUice7k9h5ePxKmcUUrgblu
-         NVlxoqngzbMhHrEiF2SEfdoZX2Nx8ruwhZUUudcnok5vlMtrj+bicI47AWm46fkHL2fZ
-         xg90J3rL0yAdRHzTGXo9SoxHpw5yqcwoL3UImaLaaspSgHbdR88KEXOSElph+F/GnAtL
-         IC7XoQ1afCGPmRctYSNKjrz3yl4X30qG2iZAclyWF1A00hvmBFRQh+U11JTqqJ5qUdYV
-         n04zcGWE1NKMl8jxjjtDPrslUVM9QDLZFZiFRgabNIgG8M6w2tSjCcdMZymgFcXWlFD6
-         J1OA==
-X-Gm-Message-State: AOAM532+Rf65Tf9/QzqT8co0I1AfOu4os8gMEh7uweZeGKFtFNBOxUHV
-        PnIyAlTiq44ZGn1juCP+qHyje2Z8t6EkWFY7LWlcBg==
-X-Google-Smtp-Source: ABdhPJy+J6pn957FhOHwZjyk7gcCN1x7YgAp+VD5Efd7/IgYIAUbnOKSxezAgYN+dswKer5KxJuLbQCCFr6srLhrZpo=
-X-Received: by 2002:a05:651c:c1:: with SMTP id 1mr2777078ljr.467.1619105959048;
- Thu, 22 Apr 2021 08:39:19 -0700 (PDT)
+        id S237379AbhDVPq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 11:46:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41182 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236594AbhDVPq6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Apr 2021 11:46:58 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CFCD560FD7;
+        Thu, 22 Apr 2021 15:46:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1619106383;
+        bh=5wuJRfbMCsCCjkM9s9M1nBLXOjEsvSWtEiDEUi5jm+w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nGOcl2LlvLr7+Tl0B1l3Ua+fi162i1kPjjxjgXu9wnDjpN9wzTqSzS5kP2R/3kAfP
+         CxoNK9hP93qYwNYybEYBeH8pv1vE+wDuA4ltDO6Pm5WhaSLYUmL90HHwJs2U2R0JIB
+         NpzlvpmJZX8qyZzKOTwAGrKbpj3GyxFTjMLzceH2/JjBgpqih9+2LksR/OfSnETvdX
+         tfr8NmItm15uflxB668UdQuFJ83rsVmbn0hAcz6bscKgHdhN5wVzosiulK7t9XqICj
+         AoXFIM6Gk08B96L7BijaE2Vvt0+Sm8JFXU6cLuVbGibH1kqoIZNH/XIur4ztbNsRgp
+         FfsBmQRiUjy/w==
+Date:   Thu, 22 Apr 2021 16:45:55 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Kuldeep Singh <kuldeep.singh@nxp.com>
+Cc:     Han Xu <han.xu@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [EXT] Re: [PATCH] dt-bindings: spi: Convert Freescale QSPI
+ binding to json schema
+Message-ID: <20210422154555.GJ4572@sirena.org.uk>
+References: <20210312054038.3586706-1-kuldeep.singh@nxp.com>
+ <20210324152420.GA3093662@robh.at.kernel.org>
+ <DB6PR0402MB275836552946D34CBEA47C48E0469@DB6PR0402MB2758.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-References: <20210419225133.2005360-1-linus.walleij@linaro.org> <YH4tsFtGJUMf2BFS@lunn.ch>
-In-Reply-To: <YH4tsFtGJUMf2BFS@lunn.ch>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 22 Apr 2021 17:39:07 +0200
-Message-ID: <CACRpkdbppvaNUXE9GD_UXDrB8SJA5qv7wrQ1dj5E4ySU_6bG7w@mail.gmail.com>
-Subject: Re: [PATCH 1/3] net: ethernet: ixp4xx: Add DT bindings
-To:     Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>
-Cc:     netdev <netdev@vger.kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Zoltan HERPAI <wigyori@uid0.hu>,
-        Raylynn Knight <rayknight@me.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="PEkEgRdBLZYkpbX2"
+Content-Disposition: inline
+In-Reply-To: <DB6PR0402MB275836552946D34CBEA47C48E0469@DB6PR0402MB2758.eurprd04.prod.outlook.com>
+X-Cookie: Jesus is my POSTMASTER GENERAL ...
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 20, 2021 at 3:26 AM Andrew Lunn <andrew@lunn.ch> wrote:
 
-> > +      mdio {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +        phy1: phy@1 {
-> > +          #phy-cells = <0>;
->
-> Hi Linus
->
-> phy-cells is not part of the Ethernet PHY binding.
+--PEkEgRdBLZYkpbX2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Nevertheless:
+On Thu, Apr 22, 2021 at 11:09:19AM +0000, Kuldeep Singh wrote:
 
-  CHECK   Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.example.dt.yaml
-/var/linus/linux-nomadik/build-ixp4/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.example.dt.yaml:
-phy@1: '#phy-cells' is a required property
-    From schema:
-/home/linus/.local/lib/python3.9/site-packages/dtschema/schemas/phy/phy-provider.yaml
+> Apologies for content free pings.
+> This patch has already been reviewed by Rob and can be accepted if no fur=
+ther changes required.
 
-It has been hardcoded as required into the dtschema python package.
-Looks like this:
+Whenever I complain about content free pings I also point out that
+resends are helpful, it's not just don't ping it's also that having a
+copy of the patch helps if anything went wrong:
 
-properties:
-  $nodename:
-    pattern: "^(|usb-|usb2-|usb3-|pci-|pcie-|sata-)phy(@[0-9a-f,]+)*$"
+Please don't send content free pings and please allow a reasonable time
+for review.  People get busy, go on holiday, attend conferences and so=20
+on so unless there is some reason for urgency (like critical bug fixes)
+please allow at least a couple of weeks for review.  If there have been
+review comments then people may be waiting for those to be addressed.
 
-  "#phy-cells": true
+Sending content free pings adds to the mail volume (if they are seen at
+all) which is often the problem and since they can't be reviewed
+directly if something has gone wrong you'll have to resend the patches
+anyway, so sending again is generally a better approach though there are
+some other maintainers who like them - if in doubt look at how patches
+for the subsystem are normally handled.
 
-  phy-supply: true
+--PEkEgRdBLZYkpbX2
+Content-Type: application/pgp-signature; name="signature.asc"
 
-required:
-  - "#phy-cells"
+-----BEGIN PGP SIGNATURE-----
 
-additionalProperties: true
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmCBmjIACgkQJNaLcl1U
+h9BvQgf5AVLciabft5X6466v4Dge6sLOoOT8wulxXKj82y72udIad15u39P9LyPd
+YwQMNu9ySd9x5a0yCrYAie83dIAF+D1J3GmgnhbpomISfpQ6TuyzAce9TqXrq0+S
+MVXSKynpZWJAePgjUhUo/IO/XHZgvE47AMmGK8GQuvnUaqWIGCT5UeIxQQopHbPQ
+W4l0guE1yNEVvCF5aM4PfY2vXWcUpC7Hqhq6AAXYL3YhmnVbLOEW/+gupoCJgVWo
+sDX7qp45aS4oNM6ZGpXZXzH8TTA03FTtExGg9ch+vHlLSct3E9w5tM66IkAeW/mn
+Xd8Ttl6p30JSDX8qj1+XNIyFkGGYWg==
+=TmjE
+-----END PGP SIGNATURE-----
 
-If this is wrong I bet Rob needs to hear about it.
-
-Yours,
-Linus Walleij
+--PEkEgRdBLZYkpbX2--
