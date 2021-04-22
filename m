@@ -2,159 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC03A368659
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 20:05:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FA6E36867D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 20:21:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236773AbhDVSGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 14:06:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56372 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236287AbhDVSGR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 14:06:17 -0400
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1C26C06174A;
-        Thu, 22 Apr 2021 11:05:41 -0700 (PDT)
-Received: by mail-oi1-x235.google.com with SMTP id n140so46627394oig.9;
-        Thu, 22 Apr 2021 11:05:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=17m0G7DImnLvNaA0ALmee3EGwU+5fWnJUzbWancxTSI=;
-        b=owTpyRcQwbSTb/u9rOV3Ef/i1PgEh57DdgCyWP088HtpsxxA3m3T3ayh+B8f8FzBDa
-         +J1dOck59tmd6m5CV3rpDl7gsoaMpuYHDRNAmYpqG6oe/e/fPq+Pcqe/eCzvd5C5sTRG
-         H1NkNEHWr7SqxCJVSL8H5roJwtfqhSalAM/nNUmfwgV5ib7aEcXpRK1iISPaIK1/jGNS
-         EVVt/wnvYYrl3hds1I1AZvAMmXDQV2b3s9XVVH4Q57iuk1NofSfYfd/qZaZkrig+hu5/
-         olgZljXWWd4VC6TI0YHlMhbxd75knYX8tW0TvYgXUA/EeMcNrakN5O/XErk7wgNWsjTD
-         rl0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=17m0G7DImnLvNaA0ALmee3EGwU+5fWnJUzbWancxTSI=;
-        b=tXXY7eTgVNu/dSEbvhvu4EiAduXZSamH82ydZEE/WUPRS093KmR50zNbYOqq2ZRNF5
-         lrMxKVrqt6lElI4ihReAgjDjQn6NAeaXI5GB2IFConERmJxPXHN59QFwI89wdV1DQQAo
-         +PYrurYNI3z/gxmDUqvGvNin2W5fgMzZMLccd/6gOH4nZb3BJCP7O26ewBFkUUd5Y5a1
-         hzbxWIvrNgV//rs36ufuKj3uTS/Q1yrTZt8yn2LrQJrgOVip+ZJUrKAkFrRw3vivkJ7d
-         CU7XH3ZRiIsewGb8hmQrLsp1TFBB4lv0CG/pS13suzDVJybd8Cpb+CZ19D7imVw/NFuA
-         LlDA==
-X-Gm-Message-State: AOAM532dfvlXbpxrn5Q7FErONySJ/0CvH3P8SmgOba++A1tpVHaliGlp
-        /wjuS2+sZxh/EbIXmTVqMxxJWOkP1so=
-X-Google-Smtp-Source: ABdhPJw0god0XZwiUQLDg7+c+UlduCOc32cSMSxfM6LoUI9lD3N+e/ZhfW9tOQD81embb2byHZoMvg==
-X-Received: by 2002:a05:6808:1302:: with SMTP id y2mr3180685oiv.86.1619114741346;
-        Thu, 22 Apr 2021 11:05:41 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id h9sm784695otr.67.2021.04.22.11.05.40
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 22 Apr 2021 11:05:40 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Thu, 22 Apr 2021 11:05:39 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Francesco Zanella <francesco.zanella@vimar.com>
-Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] watchdog: gpio_wdt: add "start-at-boot" feature
-Message-ID: <20210422180539.GB107132@roeck-us.net>
-References: <20210421162621.24910-1-francesco.zanella@vimar.com>
- <20210421162621.24910-3-francesco.zanella@vimar.com>
- <20210421164228.GB110463@roeck-us.net>
- <1b53153c-e890-cf3c-74f7-9106965c23fe@vimar.com>
+        id S236906AbhDVSVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 14:21:42 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:37636 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236773AbhDVSVl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Apr 2021 14:21:41 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1lZdwh-00021a-Lc; Thu, 22 Apr 2021 20:20:59 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Ezequiel Garcia <ezequiel@collabora.com>, linux-pm@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Johan Jonker <jbx6244@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Finley Xiao <finley.xiao@rock-chips.com>, kernel@collabora.com
+Subject: Re: [PATCH 1/2] dt-bindings: rockchip-thermal: Support the RK3568 SoC compatible
+Date:   Thu, 22 Apr 2021 20:20:58 +0200
+Message-ID: <4689477.1oUyQt6lIG@diego>
+In-Reply-To: <31c2e531-96d0-a1c1-644c-28c60eb40cf4@gmail.com>
+References: <20210421200445.32977-1-ezequiel@collabora.com> <bf0771cec69e11bf4622421a3aa8f2092da42429.camel@collabora.com> <31c2e531-96d0-a1c1-644c-28c60eb40cf4@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1b53153c-e890-cf3c-74f7-9106965c23fe@vimar.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 22, 2021 at 06:28:40PM +0200, Francesco Zanella wrote:
-> 
-> 
-> On 21/04/21 18:42, Guenter Roeck wrote:
-> > On Wed, Apr 21, 2021 at 06:26:21PM +0200, Francesco Zanella wrote:
-> >> If "start-at-boot" property is present in the device tree, start pinging
-> >> hw watchdog at probe, in order to take advantage of kernel configs:
-> >> - WATCHDOG_HANDLE_BOOT_ENABLED: Avoid possible reboot if hw watchdog was
-> >>   been enabled before the kernel (by uboot for example) and userspace
-> >>   doesn't take control of /dev/watchdog in time;
-> >> - WATCHDOG_OPEN_TIMEOUT: Reboot if userspace doesn't take control of
-> >>   /dev/watchdog within the timeout.
+Hi,
+
+Am Donnerstag, 22. April 2021, 00:12:45 CEST schrieb Johan Jonker:
+> On 4/21/21 11:56 PM, Ezequiel Garcia wrote:
+> > On Wed, 2021-04-21 at 23:25 +0200, Johan Jonker wrote:
+> >> On 4/21/21 11:06 PM, Ezequiel Garcia wrote:
+> >>> On Wed, 2021-04-21 at 22:46 +0200, Johan Jonker wrote:
+> >>>> On 4/21/21 10:04 PM, Ezequiel Garcia wrote:
+> >>>>> Add a new compatible for the thermal sensor device on RK3568 SoCs.
+> >>>>>
+> >>>>> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> >>>>> ---
+> >>>>>  Documentation/devicetree/bindings/thermal/rockchip-thermal.txt | 1 +
+> >>>>>  1 file changed, 1 insertion(+)
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt b/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
+> >>>>> index 7f94669e9ebe..346e466c2006 100644
+> >>>>> --- a/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
+> >>>>> +++ b/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
+> >>>>> @@ -9,6 +9,7 @@ Required properties:
+> >>>>>     "rockchip,rk3328-tsadc": found on RK3328 SoCs
+> >>>>>     "rockchip,rk3368-tsadc": found on RK3368 SoCs
+> >>>>>     "rockchip,rk3399-tsadc": found on RK3399 SoCs
+> >>>>
+> >>>>> +   "rockchip,rk3568-tsadc": found on RK3568 SoCs
+> >>>>
+> >>>> This is still a text document.
+> >>>> rob+dt has now scripts that check for undocumented compatibility
+> >>>> strings, so first convert rockchip-thermal.txt to YAML and then add this
+> >>>> in a separated patch.
+> >>>>
+> >>>
+> >>> Is it a showstopper to convert devicetree bindings to YAML for driver submission?
 > >>
-> >> Signed-off-by: Francesco Zanella <francesco.zanella@vimar.com>
-> >> ---
-> >>  drivers/watchdog/gpio_wdt.c | 6 +++++-
-> >>  1 file changed, 5 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/watchdog/gpio_wdt.c b/drivers/watchdog/gpio_wdt.c
-> >> index 0923201ce874..1e6f0322ab7a 100644
-> >> --- a/drivers/watchdog/gpio_wdt.c
-> >> +++ b/drivers/watchdog/gpio_wdt.c
-> >> @@ -31,6 +31,7 @@ struct gpio_wdt_priv {
-> >>  	struct gpio_desc	*gpiod;
-> >>  	bool			state;
-> >>  	bool			always_running;
-> >> +	bool			start_at_boot;
-> >>  	unsigned int		hw_algo;
-> >>  	struct watchdog_device	wdd;
-> >>  };
-> >> @@ -147,6 +148,9 @@ static int gpio_wdt_probe(struct platform_device *pdev)
-> >>  	priv->always_running = of_property_read_bool(np,
-> >>  						     "always-running");
-> >>  
-> >> +	priv->start_at_boot = of_property_read_bool(np,
-> >> +						    "start-at-boot");
-> >> +
-> >>  	watchdog_set_drvdata(&priv->wdd, priv);
-> >>  
-> >>  	priv->wdd.info		= &gpio_wdt_ident;
-> >> @@ -161,7 +165,7 @@ static int gpio_wdt_probe(struct platform_device *pdev)
-> >>  
-> >>  	watchdog_stop_on_reboot(&priv->wdd);
-> >>  
-> >> -	if (priv->always_running)
-> >> +	if (priv->always_running || priv->start_at_boot)
-> >>  		gpio_wdt_start(&priv->wdd);
+> >> You now that hardware best, so try to fix the documents as well.
 > > 
-> > So the only real difference to always_running is that always_running
-> > doesn't stop the watchdog on close but keeps it running.
+> > Well, not really. I'm just forward porting the driver from downstream kernels,
+> > so we can support this new SoC. Not really a hardware _expert_ for all the
+> > devices I plan to be pushing.
 > > 
-> > Does that really warrant another property ? Why not just use
-> > always-running ?
+> >> The new norm is YAML, so aim for that.
 > > 
-> > The special use case of being able to stop the watchdog doesn't seem
-> > to be worth the trouble. Please explain your use case.
+> > I am aware of that. In fact, at Collabora we encourage all the kernel
+> > developers to convert to YAML, if/when possible.
 > > 
-> > Guenter
+> >> Try to submit a complete package of YAML, driver (and dts nodes) for review.
+> > 
+> > The devicetree for RK3566 and RK3568 is under discussion, in fact it was submitted today.
+> > Rockhip is leading that, and doing a great job already :)
+> > 
+> > Meanwhile, I'd like to merge the small drivers (thermal, pmic, dwmac, io-domains and so on),
+> > so they are ready when the devicetree lands.
 > > 
 > 
-> You got the point.
-> I would like to be able to stop the watchdog when I want.
-> From my point of view always_running is used in the very special
-> case when the wdt chip can't be stopped.
-> I want a normal wdt that can be stopped (for example during a system
-> update), but I want it to start at boot for the 2 reasons that I
-> explained before:
-> - I need continuity in hw wdt pinging because I start in uboot,
->   so I take advantage of WATCHDOG_HANDLE_BOOT_ENABLED that makes
->   the kernel to do that job; but it is triggered only if it is
->   started at probe, if I'm not wrong.
-
-That depends. If the driver can read the current state (ie if
-it can detect if the watchdog is running) it can report it
-to the watchdog core accordingly. That would be the preferred
-mechanism. Everything else is just a workaround for bad hardware
-(bad as in "it doesn't report its state").
-
-Guenter
-
-> - I would like to monitor with the wdt also the kernel at boot,
->   and more importantly handle the case when the userspace app
->   doesn't take control of /dev/watchdog for whatever reason
->   within the timeout set with WATCHDOG_OPEN_TIMEOUT.
+> > Most if not all of these devices just need a new compatible string. It would really delay
+> > things if I aim to convert all those bindings docs to YAML first, so let's please avoid that...
+> > ... unless it's a new hard-rule that DT maintainers have agreed on.
 > 
-> Hope that this explain my target.
-> Thanks for your attention,
-> 
-> Francesco
+> Every driver group has it's own delay time, so better do it right in one
+> run.
+> Mostly people tend to 'forget' documentation and then someone else has
+> to clean up the mess. So I propose that the person that submits a new
+> driver also fixes the documentation. The norm is now YAML, so this serie
+> has more work then other, so be it. Others can help you with it if you ask.
+
+personally I feel this approach being a bit too strict.
+
+While it is definitly cool to convert everything to a yaml base in a
+hopefully short time, being overly strict can also stiffle participation.
+
+This is especially true if a series only adds a single compatible to an
+already existing binding. So depending on the time constraints of the
+contributor they might very well refrain from submitting another version.
+
+In then end though, it's Rob's decision on how strict this conversion
+is to be taken.
+
+
+Heiko
+
+
+
