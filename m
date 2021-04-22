@@ -2,90 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01D1D368951
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 01:28:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD707368960
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 01:32:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235502AbhDVX3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 19:29:12 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:36726 "EHLO vps0.lunn.ch"
+        id S237104AbhDVXde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 19:33:34 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:36744 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235977AbhDVX3M (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Apr 2021 19:29:12 -0400
+        id S235977AbhDVXdd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Apr 2021 19:33:33 -0400
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
         (envelope-from <andrew@lunn.ch>)
-        id 1lZikE-000YjU-Sh; Fri, 23 Apr 2021 01:28:26 +0200
-Date:   Fri, 23 Apr 2021 01:28:26 +0200
+        id 1lZioX-000YlM-A7; Fri, 23 Apr 2021 01:32:53 +0200
+Date:   Fri, 23 Apr 2021 01:32:53 +0200
 From:   Andrew Lunn <andrew@lunn.ch>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
+To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+Cc:     netdev@vger.kernel.org, olteanv@gmail.com, robh+dt@kernel.org,
         UNGLinuxDriver@microchip.com, hkallweit1@gmail.com,
         linux@armlinux.org.uk, davem@davemloft.net, kuba@kernel.org,
         linux-kernel@vger.kernel.org, vivien.didelot@gmail.com,
         f.fainelli@gmail.com, devicetree@vger.kernel.org
 Subject: Re: [PATCH v2 net-next 4/9] net: dsa: microchip: add DSA support for
  microchip lan937x
-Message-ID: <YIIGmpea6Mf0yzYS@lunn.ch>
+Message-ID: <YIIHpfW4nF/H/GJe@lunn.ch>
 References: <20210422094257.1641396-1-prasanna.vengateshan@microchip.com>
  <20210422094257.1641396-5-prasanna.vengateshan@microchip.com>
- <20210422195921.utxdh5dn4ddltxkf@skbuf>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210422195921.utxdh5dn4ddltxkf@skbuf>
+In-Reply-To: <20210422094257.1641396-5-prasanna.vengateshan@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > +
-> > +		lan937x_pread8(dev, port, REG_PORT_XMII_CTRL_1, &data8);
-> > +
-> > +		/* clear MII selection & set it based on interface later */
-> > +		data8 &= ~PORT_MII_SEL_M;
-> > +
-> > +		/* configure MAC based on p->interface */
-> > +		switch (p->interface) {
-> > +		case PHY_INTERFACE_MODE_MII:
-> > +			lan937x_set_gbit(dev, false, &data8);
-> > +			data8 |= PORT_MII_SEL;
-> > +			break;
-> > +		case PHY_INTERFACE_MODE_RMII:
-> > +			lan937x_set_gbit(dev, false, &data8);
-> > +			data8 |= PORT_RMII_SEL;
-> > +			break;
-> > +		default:
-> > +			lan937x_set_gbit(dev, true, &data8);
-> > +			data8 |= PORT_RGMII_SEL;
-> > +
-> > +			data8 &= ~PORT_RGMII_ID_IG_ENABLE;
-> > +			data8 &= ~PORT_RGMII_ID_EG_ENABLE;
-> > +
-> > +			if (p->interface == PHY_INTERFACE_MODE_RGMII_ID ||
-> > +			    p->interface == PHY_INTERFACE_MODE_RGMII_RXID)
-> > +				data8 |= PORT_RGMII_ID_IG_ENABLE;
-> > +
-> > +			if (p->interface == PHY_INTERFACE_MODE_RGMII_ID ||
-> > +			    p->interface == PHY_INTERFACE_MODE_RGMII_TXID)
-> > +				data8 |= PORT_RGMII_ID_EG_ENABLE;
-> 
-> This is interesting. If you have an RGMII port connected to an external
-> PHY, how do you ensure that either the lan937x driver, or the PHY driver,
-> but not both, enable RGMII delays?
+> +static void lan937x_r_mib_cnt(struct ksz_device *dev, int port, u16 addr,
+> +			      u64 *cnt)
+> +{
+> +	unsigned int val;
+> +	u32 data;
+> +	int ret;
+> +
+> +	/* Enable MIB Counter read*/
+> +	data = MIB_COUNTER_READ;
+> +	data |= (addr << MIB_COUNTER_INDEX_S);
+> +	lan937x_pwrite32(dev, port, REG_PORT_MIB_CTRL_STAT__4, data);
+> +
+> +	ret = regmap_read_poll_timeout(dev->regmap[2],
+> +				       PORT_CTRL_ADDR(port,
+> +						      REG_PORT_MIB_CTRL_STAT__4),
+> +					   val, !(val & MIB_COUNTER_READ), 10, 1000);
+> +	/* failed to read MIB. get out of loop */
 
-What generally happens is the MAC adds no delays, and the PHY acts
-upon the interface mode, inserting delays as requested.
+Another loop which is not a loop. Please review your comments and
+check they make sense.
 
-There are a very small number of exceptions to this, for boards which
-have a PHY which cannot do delays, and the MAC can. If i remember
-correctly, this pretty much limited to one MAC vendor. In that case,
-the MAC adds delays, if the interface mode requests it, and it always
-passes PHY_INTERFACE_MODE_RGMII to the PHY so it does not add delays.
-
-So what needs to be looked at here is what is passed to the phy
-connect call? passing p->interface is definitely wrong if the MAC is
-acting on it.
-
-If even if the connect is correct, i would still prefer the MAC not do
-the delays, let the PHY do it, like nearly every other setup.
-
-	Andrew
+      Andrew
