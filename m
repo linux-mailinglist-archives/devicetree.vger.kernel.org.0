@@ -2,83 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5CC53681A7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 15:43:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA95F3681BF
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 15:47:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236427AbhDVNoa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 09:44:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54750 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236231AbhDVNo3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 09:44:29 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3103C06174A
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 06:43:53 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id n138so72357429lfa.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 06:43:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=wIyg2GUygQADS0eUtcX7ugYOAZAbRSLVkr0bewDkhhE=;
-        b=U6lNDDcds7fRHXvMPIDhBL90TH/4aTaDhe6/Y4WSihHMniN0B1MJj31UcIZvm691qS
-         2fKXD61zPu0s5Y/7pqwrj8+l/3pfKOEykFIgPOWhLdEfo1X3+IMBCZNPfXIRFDyYyRIB
-         j0ftoUP0IjI3ZF5+4oJolp4x/ACoWf2Y2iXAVePDA+9sHp23dGKJlencxktuwek174A4
-         izDcyzk8lbekH0fepW117SUceWEvYmXV/UTm0lsEi5jzSS0rXg/osksj4pfjvAP0pyZi
-         GPmaXSyTZ2S1+Qu8P9jkvZwfvkJd5gOsklvrK3L5RfJJVzo+a6+HE/+XHJRZkYoD3JNo
-         weUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=wIyg2GUygQADS0eUtcX7ugYOAZAbRSLVkr0bewDkhhE=;
-        b=AWhtR7H+HR3RKyV2Ejsdb1VkWnu9W+FnTflF4rJW80axTZ0lm6bn1FAwW7O2wZdihI
-         /X7jUYNbMrVT8r8SD/GjU3btQLe87YfeenhzUVc49Jk6rDaPw5cLE5dF1gvDJv18Vj18
-         Gm1jgsjSA+yv6qemVOJnQbVfyY2bifMk3+y7wFqZJBkETp4Sez0j6FvAfE3xxjULZ1lq
-         n8/DZ4BDY4yriNyXXW3J8KpiVBfpba4lNG2WRjyCKlXY/9ydZqyk+z31tVZOOmYexzu2
-         wZMyBNOuJrYSi8/PlR//HxNVh05MpnNBMJhNIkNPpCKREY6dfyZTTTTcGnvG21a9NqfG
-         yRVw==
-X-Gm-Message-State: AOAM533wMCxv+mkft9gqvctOQpfUlRzRH4DGV1ynLcm0mgXmp3n/npOf
-        qrfNICpS0g3NR/ljsP8d1cYCvIWv3rTSx3NRr3E=
-X-Google-Smtp-Source: ABdhPJy+m/KSBt0K/G5Mc5bpm55RYk3zUpx/KzUO27DFfDJ9//kWBH4bO2hyxrUIOmLC9cyqdy9nYHbqV0XAwHqMNOQ=
-X-Received: by 2002:a05:6512:790:: with SMTP id x16mr2525153lfr.167.1619099032440;
- Thu, 22 Apr 2021 06:43:52 -0700 (PDT)
+        id S236672AbhDVNqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 09:46:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37866 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236630AbhDVNqO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Apr 2021 09:46:14 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0D67961474;
+        Thu, 22 Apr 2021 13:45:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1619099140;
+        bh=QC3KXdIOSNGgOkLCWo6id3fbWhn2ss9tO650jBq63qw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=OUbbidoWGeMGpfyc2ufUGAuQwe0SiS+syanVdru5ACXVf9WARPL0JbAgIaThNGT4m
+         mzn/EMcd7KFdezBnTtEkqc9PzIdKJKtuz9GW8AQtqUUB7NcErtqNNR7gG5LFgaUK/v
+         w10al5zOIjVCJ5Tks8MK1cwf1oxZ14iweBChy23hYAkiIyigUbA8oJYE/7X8fCm3xV
+         vuUa7sgneFZqYYZ+mwJr82CSkkGY2FqaWGUQxC7Nc8dA3XG2XbeSFZDpEj3Q5BldtL
+         gCaQKfjy3Sm1tKsw15JzIQAxpG2R/DNRHMOjfi0cyNlUy7I+liUMl0qCVLhc8TvZwv
+         dOcwGyyDUipMw==
+Received: by mail-ej1-f51.google.com with SMTP id n2so68844338ejy.7;
+        Thu, 22 Apr 2021 06:45:39 -0700 (PDT)
+X-Gm-Message-State: AOAM5321hrdtVN+geJm4p8mixZIwkO3HR5M3bJrzMzeG69I273OtsEJv
+        P+Ec//mpN8K6Uxamd9wVGnYpnbJIozlxMthBdA==
+X-Google-Smtp-Source: ABdhPJxIlMzmWBvc+z6zFDoc9ubJY2LolnfwvLV7lxx8HXJUVpYJphrB8gnVMSg12DRcl7Uk7hOw6eTurfA9jo8tYHA=
+X-Received: by 2002:a17:906:7806:: with SMTP id u6mr3321658ejm.130.1619099138450;
+ Thu, 22 Apr 2021 06:45:38 -0700 (PDT)
 MIME-Version: 1.0
-Sender: greenarcsafeties@gmail.com
-Received: by 2002:ab3:644f:0:0:0:0:0 with HTTP; Thu, 22 Apr 2021 06:43:51
- -0700 (PDT)
-From:   Peter Schulman <schulman.pet@gmail.com>
-Date:   Thu, 22 Apr 2021 14:43:51 +0100
-X-Google-Sender-Auth: QvapMg_upxBMdcQtZU8vda9YREQ
-Message-ID: <CACduR+L-M9gf0ZB28mw1YyPk5MQQaBLT2NK6XP1OGH-XtYWrfg@mail.gmail.com>
-Subject: Re: Proposal With Jeffery & Schulman
-To:     undisclosed-recipients:;
+References: <20210421162026.41978-1-tsbogend@alpha.franken.de>
+ <20210421162026.41978-2-tsbogend@alpha.franken.de> <20210421171727.GA1310436@robh.at.kernel.org>
+ <20210421173924.GA15599@alpha.franken.de>
+In-Reply-To: <20210421173924.GA15599@alpha.franken.de>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 22 Apr 2021 08:45:26 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLPCUni0tSybpGzqo7GRh5pfc4iUx=bWkygq+GnSDGo2A@mail.gmail.com>
+Message-ID: <CAL_JsqLPCUni0tSybpGzqo7GRh5pfc4iUx=bWkygq+GnSDGo2A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: gpio: Add devicetree binding for IDT
+ 79RC3243x GPIO controller
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Hello ,
+On Wed, Apr 21, 2021 at 12:40 PM Thomas Bogendoerfer
+<tsbogend@alpha.franken.de> wrote:
+>
+> On Wed, Apr 21, 2021 at 12:17:27PM -0500, Rob Herring wrote:
+> > On Wed, Apr 21, 2021 at 06:20:26PM +0200, Thomas Bogendoerfer wrote:
+> > > Add YAML devicetree binding for IDT 79RC3243x GPIO controller
+> > >
+> > > Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> > > ---
+> > >  .../bindings/gpio/gpio-idt3243x.yaml          | 73 +++++++++++++++++++
+> >
+> > Use compatible string for filename.
+>
+> ok
+>
+> > >  1 file changed, 73 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-idt3243x.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/gpio/gpio-idt3243x.yaml b/Documentation/devicetree/bindings/gpio/gpio-idt3243x.yaml
+> > > new file mode 100644
+> > > index 000000000000..346a57ef8298
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/gpio/gpio-idt3243x.yaml
+> > > @@ -0,0 +1,73 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/gpio/gpio-idt3243x.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: IDT 79RC32434x GPIO controller
+> > > +
+> > > +maintainers:
+> > > +  - Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: idt,3243x-gpio
+> >
+> > What's the 'x'? Generally, we don't do wildcards for compatible strings.
+>
+> there are 3 different SoCs 79rc32434, 79rc32435 and 79rc32438. So should
+> I add 3 compatible strings and use the first as filename ?
 
-I sent you an email before about an inheritance without hearing from you.
-Let me reintroduce my email again to you and please reply immediately.
+Kind of depends on the differences. If it is just fuse or packaging
+differences between them, then probably okay to use the same
+compatible. If the block is maybe the same, but not certain, then then
+you can make the oldest a fallback (e.g. compatible =
+"idt,32435-gpio", "idt,32434-gpio").
 
-My name is Mr. Peter Schulman the principal attorney at Jeffery & Schulman
-Law Office based in Canada. I am contacting you because of my deceased
-client who died leaving some funds with a bank in Europe in the sum of
-9,850,000 USD. I want to announce you as a heir/beneficiary to the fund.
+Either the first/oldest or a wildcard is fine for the filename.
 
-You don't have to worry, this transaction will be done legally without any
-problem. If you are interested, I can give you more information about my
-proposal as soon as i get your reply.
-
-Regards,
-Best Regards,
-
-Mr. Peter Schulman
-Senior Partner | Project Manager | Litigation
-
-Jeffery & Schulman Law Office
-1230 Bay Street
-Suite 810 Toronto
-Ontario, M5R 2A7
+Rob
