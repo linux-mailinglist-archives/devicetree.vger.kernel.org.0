@@ -2,95 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 739BA367722
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 04:10:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 670CC36774E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 04:21:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231475AbhDVCL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 22:11:29 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:38690 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230319AbhDVCL3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 22:11:29 -0400
-X-UUID: db0207a1956544dca90c22d29a20a729-20210422
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=NWZUJCNxO3pM4ccYtxmcJrgXOTaZ34GcudHZtUurBwQ=;
-        b=CldFiwWtGyWbCDmJbKW5uJSibt8Wb7kWsL5lV8bQWynjIXRDReYkbEBySpoNB2aAsS4/8RovKmCKVZZ0/qlIv07M+xE2wrlkpSowcZ7Vc772VNgLmctogf7KYmx2go+5xonTS9vRxzYsnc36s3/Xk/19lPn9NfS9X2Jc3NqXdFA=;
-X-UUID: db0207a1956544dca90c22d29a20a729-20210422
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <zhiyong.tao@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1414987183; Thu, 22 Apr 2021 10:10:49 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 22 Apr
- 2021 10:10:47 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 22 Apr 2021 10:10:46 +0800
-Message-ID: <1619057446.27999.2.camel@mhfsdcap03>
-Subject: Re: [PATCH v4 4/4] pinctrl: add rsel setting on MT8195
-From:   zhiyong tao <zhiyong.tao@mediatek.com>
-To:     Sean Wang <sean.wang@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Hui Liu =?UTF-8?Q?=28=E5=88=98=E8=BE=89=29?= 
-        <Hui.Liu@mediatek.com>,
-        Eddie Huang =?UTF-8?Q?=28=E9=BB=83=E6=99=BA=E5=82=91=29?= 
-        <eddie.huang@mediatek.com>,
-        Po Xu =?UTF-8?Q?=28=E5=BE=90=E5=9D=A1=29?= 
-        <ot_po.xu@mediatek.com>,
-        "Biao Huang =?UTF-8?Q?=28=E9=BB=84=E5=BD=AA=29?=" 
-        <Biao.Huang@mediatek.com>,
-        Hongzhou Yang <hongzhou.yang@mediatek.com>,
-        Sean Wang <Sean.Wang@mediatek.com>,
-        Seiya Wang =?UTF-8?Q?=28=E7=8E=8B=E8=BF=BA=E5=90=9B=29?= 
-        <seiya.wang@mediatek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Date:   Thu, 22 Apr 2021 10:10:46 +0800
-In-Reply-To: <CAGp9LzoM=9v5mLxtAN9sQm_2f+66xc7G4YqfUF1Mwvr4K_wz5w@mail.gmail.com>
-References: <20210413055702.27535-1-zhiyong.tao@mediatek.com>
-         <20210413055702.27535-5-zhiyong.tao@mediatek.com>
-         <CAGp9LzoM=9v5mLxtAN9sQm_2f+66xc7G4YqfUF1Mwvr4K_wz5w@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S230259AbhDVCVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 22:21:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45116 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229706AbhDVCVj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 22:21:39 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99E3EC06174A
+        for <devicetree@vger.kernel.org>; Wed, 21 Apr 2021 19:21:05 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id f2-20020a17090a4a82b02900c67bf8dc69so131842pjh.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Apr 2021 19:21:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=axtens.net; s=google;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=rtMvEVhQW7PSxXx3gDEY/7/ndA+VJactp7XJCyvYRds=;
+        b=e9ZQBA84dRYzG3c8qvB3M8kCpiwPbX0MF0xpeInbdqk0aAlkzOGlE/VTdOSoydcYJZ
+         jH4i3Da7Gg5jq9AOdbo6muUudMD4MZaRMQF8uI8YLSQD++Ng8nmb7seDkOSdRvAVEDBL
+         OO1kpq/LngnBf+Hk+gHoS86FQhMtGk3ET4xj8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=rtMvEVhQW7PSxXx3gDEY/7/ndA+VJactp7XJCyvYRds=;
+        b=jWKA8yhNXqBfpCWJ3Tixz8L6db+upLhapNyPsDi15MzMzB95oX5zRG1WG5PGBL/fYe
+         GQ4lUyA+mcNXecx0sWgEbqI7O6CwBmf3i+/IZEfNQt9XcFr611GLAaZ57QYuin+Emy8e
+         E70vbJkKMAfuQ1K6qfZkkEjHGSWh45UXPUta6+HdZuMuAh3b5sIjKSwDJHUcZeTeIrNQ
+         +2kfQ5uaMOttN5ErCWmCpd3dDOgvqM6KNJBwzzRCphfkjHfoyT1dJ1ozH6WW2hmDtmU/
+         QxyKi5HcSMEY6Q/DkgqrARx2rd37bwICNMohvwDk+G6dJjfedsitItU7WOKvSufzn2LH
+         sBZQ==
+X-Gm-Message-State: AOAM530kYzhmqJmYG5mxoBjdiPWCiGxqJ+zG5dVoNNPu/LbRobnhNfyQ
+        Wuymq/TMqRV8IvEyjLMrMgL3mSZLUc/tWg==
+X-Google-Smtp-Source: ABdhPJzSfBbIuocRNt5X/klBmTsHAtSRfJcc6vLLNyDfYWk2IMBm6IUeS/HlmWtYoMPitwmt5p0UEQ==
+X-Received: by 2002:a17:90a:c404:: with SMTP id i4mr14838105pjt.10.1619058065160;
+        Wed, 21 Apr 2021 19:21:05 -0700 (PDT)
+Received: from localhost (2001-44b8-1113-6700-0077-ddd3-a27e-431c.static.ipv6.internode.on.net. [2001:44b8:1113:6700:77:ddd3:a27e:431c])
+        by smtp.gmail.com with ESMTPSA id nv7sm3032529pjb.18.2021.04.21.19.21.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Apr 2021 19:21:04 -0700 (PDT)
+From:   Daniel Axtens <dja@axtens.net>
+To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        robh@kernel.org, dan.carpenter@oracle.com
+Cc:     devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        kbuild-all@lists.01.org, lkp@intel.com, bauerman@linux.ibm.com
+Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in elf64_load()
+In-Reply-To: <87eefag241.fsf@linkitivity.dja.id.au>
+References: <20210415191437.20212-1-nramas@linux.microsoft.com> <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com> <87eefag241.fsf@linkitivity.dja.id.au>
+Date:   Thu, 22 Apr 2021 12:21:01 +1000
+Message-ID: <87r1j3ys8i.fsf@dja-thinkpad.axtens.net>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: D12B029E0DF7614013281B6D52E7723B0881247E94195CE17C8D141C4811031E2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIxLTA0LTIwIGF0IDExOjUwICswODAwLCBTZWFuIFdhbmcgd3JvdGU6DQo+IE9u
-IE1vbiwgQXByIDEyLCAyMDIxIGF0IDEwOjU3IFBNIFpoaXlvbmcgVGFvIDx6aGl5b25nLnRhb0Bt
-ZWRpYXRlay5jb20+IHdyb3RlOg0KPiANCj4gPHNuaXA+DQo+ID4gQEAgLTE3Niw2ICsxODAsMTIg
-QEAgc3RhdGljIGludCBtdGtfcGluY29uZl9nZXQoc3RydWN0IHBpbmN0cmxfZGV2ICpwY3RsZGV2
-LA0KPiA+ICAgICAgICAgICAgICAgICBlbHNlDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAg
-ZXJyID0gLUVOT1RTVVBQOw0KPiA+ICAgICAgICAgICAgICAgICBicmVhazsNCj4gPiArICAgICAg
-IGNhc2UgTVRLX1BJTl9DT05GSUdfUlNFTDoNCj4gPiArICAgICAgICAgICAgICAgaWYgKGh3LT5z
-b2MtPnJzZWxfZ2V0KQ0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIGVyciA9IGh3LT5zb2Mt
-PnJzZWxfZ2V0KGh3LCBkZXNjLCAmcmV0KTsNCj4gPiArICAgICAgICAgICAgICAgZWxzZQ0KPiA+
-ICsgICAgICAgICAgICAgICAgICAgICAgIGVyciA9IC1FT1BOT1RTVVBQOw0KPiANCj4gSSB0aGlu
-ayB0aGF0IHNob3VsZCB3YW50IHRvIGJlIC1FTk9UU1VQUCB0byBhbGlnbiBvdGhlciBvY2N1cnJl
-bmNlcy4NCj09PkhpIHNlYW4sDQpDYW4geW91IGdpdmUgbWUgc29tZSBzdWdnZXN0aW9uPyAtRU5P
-UEFSQU0gb3IgLUVCQURUWVBFPw0KDQpUaGFua3MuDQo+IA0KPiA+ICsgICAgICAgICAgICAgICBi
-cmVhazsNCj4gPiAgICAgICAgIGRlZmF1bHQ6DQo+ID4gICAgICAgICAgICAgICAgIGVyciA9IC1F
-Tk9UU1VQUDsNCj4gPiAgICAgICAgIH0NCj4gPiBAQCAtMjk1LDYgKzMwNSwxMiBAQCBzdGF0aWMg
-aW50IG10a19waW5jb25mX3NldChzdHJ1Y3QgcGluY3RybF9kZXYgKnBjdGxkZXYsIHVuc2lnbmVk
-IGludCBwaW4sDQo+ID4gICAgICAgICAgICAgICAgIGVsc2UNCj4gPiAgICAgICAgICAgICAgICAg
-ICAgICAgICBlcnIgPSAtRU5PVFNVUFA7DQo+ID4gICAgICAgICAgICAgICAgIGJyZWFrOw0KPiA+
-ICsgICAgICAgY2FzZSBNVEtfUElOX0NPTkZJR19SU0VMOg0KPiA+ICsgICAgICAgICAgICAgICBp
-ZiAoaHctPnNvYy0+cnNlbF9zZXQpDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgZXJyID0g
-aHctPnNvYy0+cnNlbF9zZXQoaHcsIGRlc2MsIGFyZyk7DQo+ID4gKyAgICAgICAgICAgICAgIGVs
-c2UNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICBlcnIgPSAtRU9QTk9UU1VQUDsNCj4gDQo+
-IERpdHRvDQo+IA0KPiA+ICsgICAgICAgICAgICAgICBicmVhazsNCj4gPiAgICAgICAgIGRlZmF1
-bHQ6DQo+ID4gICAgICAgICAgICAgICAgIGVyciA9IC1FTk9UU1VQUDsNCj4gPiAgICAgICAgIH0N
-Cj4gPiAtLQ0KPiA+IDIuMTguMA0KPiA+DQoNCg==
+Daniel Axtens <dja@axtens.net> writes:
 
+> Hi Lakshmi,
+>
+>> On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
+>>
+>> Sorry - missed copying device-tree and powerpc mailing lists.
+>>
+>>> There are a few "goto out;" statements before the local variable "fdt"
+>>> is initialized through the call to of_kexec_alloc_and_setup_fdt() in
+>>> elf64_load(). This will result in an uninitialized "fdt" being passed
+>>> to kvfree() in this function if there is an error before the call to
+>>> of_kexec_alloc_and_setup_fdt().
+>>> 
+>>> Initialize the local variable "fdt" to NULL.
+>>>
+> I'm a huge fan of initialising local variables! But I'm struggling to
+> find the code path that will lead to an uninit fdt being returned...
+
+OK, so perhaps this was putting it too strongly. I have been bitten
+by uninitialised things enough in C that I may have taken a slightly
+overly-agressive view of fixing them in the source rather than the
+compiler. I do think compiler-level mitigations are better, and I take
+the point that we don't want to defeat compiler checking.
+
+(Does anyone - and by anyone I mean any large distro - compile with
+local variables inited by the compiler?)
+
+I was reading the version in powerpc/next, clearly I should have looked
+at linux-next. Having said that, I think I will leave the rest of the
+bikeshedding to the rest of you, you all seem to have it in hand :)
+
+Kind regards,
+Daniel
+
+>
+> The out label reads in part:
+>
+> 	/* Make kimage_file_post_load_cleanup free the fdt buffer for us. */
+> 	return ret ? ERR_PTR(ret) : fdt;
+>
+> As far as I can tell, any time we get a non-zero ret, we're going to
+> return an error pointer rather than the uninitialised value...
+>
+> (btw, it does look like we might leak fdt if we have an error after we
+> successfully kmalloc it.)
+>
+> Am I missing something? Can you link to the report for the kernel test
+> robot or from Dan? 
+>
+> FWIW, I think it's worth including this patch _anyway_ because initing
+> local variables is good practice, but I'm just not sure on the
+> justification.
+>
+> Kind regards,
+> Daniel
+>
+>>> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+>>> Reported-by: kernel test robot <lkp@intel.com>
+>>> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+>>> ---
+>>>   arch/powerpc/kexec/elf_64.c | 2 +-
+>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>> 
+>>> diff --git a/arch/powerpc/kexec/elf_64.c b/arch/powerpc/kexec/elf_64.c
+>>> index 5a569bb51349..0051440c1f77 100644
+>>> --- a/arch/powerpc/kexec/elf_64.c
+>>> +++ b/arch/powerpc/kexec/elf_64.c
+>>> @@ -32,7 +32,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+>>>   	int ret;
+>>>   	unsigned long kernel_load_addr;
+>>>   	unsigned long initrd_load_addr = 0, fdt_load_addr;
+>>> -	void *fdt;
+>>> +	void *fdt = NULL;
+>>>   	const void *slave_code;
+>>>   	struct elfhdr ehdr;
+>>>   	char *modified_cmdline = NULL;
+>>> 
+>>
+>> thanks,
+>>   -lakshmi
