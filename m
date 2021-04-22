@@ -2,65 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E2BA367798
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 04:53:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3DAD3677C2
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 05:10:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232796AbhDVCyM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 22:54:12 -0400
-Received: from mail-m121145.qiye.163.com ([115.236.121.145]:26386 "EHLO
-        mail-m121145.qiye.163.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234140AbhDVCyL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 22:54:11 -0400
-X-Greylist: delayed 475 seconds by postgrey-1.27 at vger.kernel.org; Wed, 21 Apr 2021 22:54:11 EDT
-Received: from vivo-HP-ProDesk-680-G4-PCI-MT.vivo.xyz (unknown [58.251.74.232])
-        by mail-m121145.qiye.163.com (Hmail) with ESMTPA id EF26180012E;
-        Thu, 22 Apr 2021 10:45:44 +0800 (CST)
-From:   Wang Qing <wangqing@vivo.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Wang Qing <wangqing@vivo.com>
-Subject: [PATCH V6 2/2] doc: mtk-wdt: support pre-timeout when the bark irq is available
-Date:   Thu, 22 Apr 2021 10:45:32 +0800
-Message-Id: <1619059532-17805-3-git-send-email-wangqing@vivo.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1619059532-17805-1-git-send-email-wangqing@vivo.com>
-References: <1619059532-17805-1-git-send-email-wangqing@vivo.com>
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZS1VLWVdZKFlBSE83V1ktWUFJV1kPCR
-        oVCBIfWUFZGkNDS1ZMHRoYTR5JTBofGU1VEwETFhoSFyQUDg9ZV1kWGg8SFR0UWUFZT0tIVUpKS0
-        hKTFVLWQY+
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NSI6Mio5Sj8NPA8aMFFNFSoy
-        CipPCy9VSlVKTUpCS05CTk9OTElLVTMWGhIXVQwaFRwKEhUcOw0SDRRVGBQWRVlXWRILWUFZTkNV
-        SU5KVUxPVUlISVlXWQgBWUFJSkhINwY+
-X-HM-Tid: 0a78f77814f4b03akuuuef26180012e
+        id S234149AbhDVDK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 23:10:57 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:17022 "EHLO
+        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229706AbhDVDK4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 23:10:56 -0400
+Received: from DGGEMS406-HUB.china.huawei.com (unknown [172.30.72.58])
+        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4FQj5L6t88zPtLX;
+        Thu, 22 Apr 2021 11:07:18 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.72) by DGGEMS406-HUB.china.huawei.com
+ (10.3.19.206) with Microsoft SMTP Server id 14.3.498.0; Thu, 22 Apr 2021
+ 11:10:17 +0800
+Subject: Re: [PATCH 1/1] dt-bindings: serial: Add label property for pl011
+To:     Rob Herring <robh@kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-serial <linux-serial@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20210415073105.3687-1-thunder.leizhen@huawei.com>
+ <20210420200246.GA3717650@robh.at.kernel.org>
+ <fa6c6079-8061-5774-8252-31956ac84ae2@huawei.com>
+ <CAL_JsqKggh0XDCHg8E694Zjuz2yiJ6tkxHDBDsMM3Y_XiZxypA@mail.gmail.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <6491648e-aab1-72cb-c766-5c4eff331412@huawei.com>
+Date:   Thu, 22 Apr 2021 11:10:16 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <CAL_JsqKggh0XDCHg8E694Zjuz2yiJ6tkxHDBDsMM3Y_XiZxypA@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.174.177.72]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add description of pre-timeout in mtk-wdt.
 
-Signed-off-by: Wang Qing <wangqing@vivo.com>
----
- Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 3 +++
- 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
-index e36ba60..ae57d6c
---- a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
-+++ b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
-@@ -1,5 +1,8 @@
- Mediatek SoCs Watchdog timer
- 
-+The watchdog supports a pre-timeout interrupt that fires timeout-sec/2
-+before the expiry.
-+
- Required properties:
- 
- - compatible should contain:
--- 
-2.7.4
+On 2021/4/21 21:53, Rob Herring wrote:
+> On Wed, Apr 21, 2021 at 4:38 AM Leizhen (ThunderTown)
+> <thunder.leizhen@huawei.com> wrote:
+>>
+>>
+>>
+>> On 2021/4/21 4:02, Rob Herring wrote:
+>>> On Thu, Apr 15, 2021 at 03:31:05PM +0800, Zhen Lei wrote:
+>>>> When there is more than one pl011 serial port present, the label property
+>>>> allows a custom name to be used for briefly describe the usage or position
+>>>> of each serial port.
+>>>>
+>>>> Without this "label" property, many dtbs_check warnings similar to the
+>>>> following are reported:
+>>>> arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dt.yaml: \
+>>>> serial@ffd74000: Additional properties are not allowed ('label' was unexpected)
+>>>>         From schema: Documentation/devicetree/bindings/serial/pl011.yaml
+>>>
+>>> I think this should go into serial.yaml instead.
+>>
+>> Yes，But if I add "label: true" into serial.yaml, it doesn't work. I haven't figured out why.
+> 
+> Change the 'additionalProperties: false' to 'unevaluatedProperties: false'.
+
+Wow, it works. I admire you so much. You're a master.
+
+> 
+>> By the way, should "$ref: /schemas/serial.yaml#" be replaced with "$ref: /schemas/serial/serial.yaml#"?
+> 
+> Oh, yes! Looks like it should be fixed for the other serial schemas
+> too. There is a /schemas/serial.yaml schema from dt-schema which
+> predates the kernel one, but it just has the $nodename. The kernel one
+> is much more complete.
+
+All right, I'll fix them all.
+
+> 
+> Rob
+> 
+> .
+> 
 
