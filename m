@@ -2,110 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1745368257
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 16:20:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5704E3682C6
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 16:53:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236570AbhDVOUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 10:20:53 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:58106 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236496AbhDVOUw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 10:20:52 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13MEKClj074412;
-        Thu, 22 Apr 2021 09:20:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1619101212;
-        bh=eLCNEeT9z0g1L4VWRS3pYMec87wOC2TuVWX5CHcWjjc=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=JX2Qi2RVy+cgLm4xZG0ELG0EljMsR2mUXfYv3oa+z9aF47wFE+SjUecuwFEDCfDjs
-         dNO0AKFSR98+cG6xBzfyj7/P9Hqx9TLyBW/4dyc+pC+xazht9tuLnGETnlgs0+f3hC
-         Uq6Yj9jzR0cLlz5qf1PW6nAiSFl7DCv5dX9Z7Tek=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13MEKCYg067110
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 22 Apr 2021 09:20:12 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 22
- Apr 2021 09:20:12 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 22 Apr 2021 09:20:12 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13MEKCNu104239;
-        Thu, 22 Apr 2021 09:20:12 -0500
-Date:   Thu, 22 Apr 2021 09:20:12 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Jens Wiklander <jens.wiklander@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] dt-bindings: arm: firmware: Convert linaro,optee-tz to
- json schema
-Message-ID: <20210422142012.lcjiy2gaoqllzlna@nervy>
-References: <20210416222518.15801-1-nm@ti.com>
- <20210421225212.GB1750844@robh.at.kernel.org>
+        id S236527AbhDVOyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 10:54:08 -0400
+Received: from mx2.suse.de ([195.135.220.15]:35000 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236476AbhDVOyH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Apr 2021 10:54:07 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 845D7B16C;
+        Thu, 22 Apr 2021 14:53:31 +0000 (UTC)
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v4 2/2] dt-bindings: interrupt-controller: Add IDT 79RC3243x Interrupt Controller
+Date:   Thu, 22 Apr 2021 16:53:29 +0200
+Message-Id: <20210422145330.73452-2-tsbogend@alpha.franken.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210422145330.73452-1-tsbogend@alpha.franken.de>
+References: <20210422145330.73452-1-tsbogend@alpha.franken.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210421225212.GB1750844@robh.at.kernel.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17:52-20210421, Rob Herring wrote:
-> On Fri, Apr 16, 2021 at 05:25:18PM -0500, Nishanth Menon wrote:
-> > Convert linaro,optee-tz to json schema format for better documentation
-> > and error checks.
-> > 
-> > NOTE:
-> > 1. This change does introduce a stricter naming convention for
-> >    optee nodes.
-> > 2. We do have false positive checkpatch warning with this patch:
-> >    "DT binding docs and includes should be a separate patch"
-> 
-> Not really something that needs to be in the commit msg. I'm aware of 
-> the issue, just haven't gotten around to fixing it.
+Document DT bindings for IDT 79RC3243x Interrupt Controller.
 
-sure, thanks..
-In this patch and my previous patches as well, I will move them all
-to diffstat comment.
+Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+---
+Changes in v4:
+  - renamed to idt,32434-pic
 
-> > +properties:
-> > +  $nodename:
-> > +    const: 'optee'
-> 
-> Don't need quotes.
+Changes in v3:
+  - fixed compatible string in example
 
-aarrgh.. yes, ofcourse.
-> 
-> > +
-> > +  compatible:
-> > +    const: linaro,optee-tz
-> > +
-> > +  method:
-> > +    description: The method of calling the OP-TEE Trusted OS.
-> > +    oneOf:
-> > +      - description: |
-> > +          SMC #0, with the register assignments specified
-> > +          in drivers/tee/optee/optee_smc.h
-> > +        items:
-> > +          - const: smc
-> > +      - description: |
-> > +          HVC #0, with the register assignments specified
-> > +          in drivers/tee/optee/optee_smc.h
-> > +        items:
-> > +          - const: hvc
-> 
-> Please just do 'enum: [ smc, hvc ]' and rework to a single description.
+Changes in v2:
+  - added dt binding doc
 
-Sure, will do. thanks for the comments.
+ .../interrupt-controller/idt,32434-pic.yaml   | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/idt,32434-pic.yaml
 
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/idt,32434-pic.yaml b/Documentation/devicetree/bindings/interrupt-controller/idt,32434-pic.yaml
+new file mode 100644
+index 000000000000..df5d8d1ead70
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/idt,32434-pic.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/idt,32434-pic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: IDT 79RC32434 Interrupt Controller Device Tree Bindings
++
++maintainers:
++  - Thomas Bogendoerfer <tsbogend@alpha.franken.de>
++
++allOf:
++  - $ref: /schemas/interrupt-controller.yaml#
++
++properties:
++  "#interrupt-cells":
++    const: 1
++
++  compatible:
++    const: idt,32434-pic
++
++  reg:
++    maxItems: 1
++
++  interrupt-controller: true
++
++required:
++  - "#interrupt-cells"
++  - compatible
++  - reg
++  - interrupt-controller
++
++additionalProperties: false
++
++examples:
++  - |
++    idtpic3: interrupt-controller@3800c {
++        compatible = "idt,32434-pic";
++        reg = <0x3800c 0x0c>;
++
++        interrupt-controller;
++        #interrupt-cells = <1>;
++
++        interrupt-parent = <&cpuintc>;
++        interrupts = <3>;
++    };
++
++...
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.29.2
+
