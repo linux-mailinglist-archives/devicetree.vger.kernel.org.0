@@ -2,85 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0811368356
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 17:31:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38E64368381
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 17:39:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236356AbhDVPbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 11:31:37 -0400
-Received: from mail-oo1-f46.google.com ([209.85.161.46]:41730 "EHLO
-        mail-oo1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233106AbhDVPbg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 11:31:36 -0400
-Received: by mail-oo1-f46.google.com with SMTP id d16-20020a4a3c100000b02901f0590a614eso2227443ooa.8;
-        Thu, 22 Apr 2021 08:31:00 -0700 (PDT)
+        id S236333AbhDVPj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 11:39:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52042 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230005AbhDVPj4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 11:39:56 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED259C06138B
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 08:39:21 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id m7so41544639ljp.10
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 08:39:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=plUAjDarJDyekWMgy0FkCFDFLzZZtjqWEzp24FU/oGc=;
+        b=GVH7LtAe5IDyGNM32nkxm/Tgkc6AEW7bnz47XlEd306jLo9Sz+3otiD153LTZCS6hU
+         zlvadG+MGKUqUToThdUM+Ssx2R667Egb2lM/Va5QeINqdYBIidLxQL9pUdIuYsUSNa4J
+         dqXhNm07FCyw6r5TAhCpqR7iyYiopZWLSKGSIRcg59kFbcOEh+/ULoZjHuDgRS0P3+Wb
+         r7mjAM+y9oCpHaC3/98Rg/k3ORBAqR8u/120Gx/x98aqQmTZjC3oWr6wQJ6eh+K5YO+8
+         DexZVNeifd2ofIyi2kMmTn8TBKrhaGjy+GFamuBSOMX+K/2DbiZfiJCroX/iyIuaR7y6
+         /bkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=HTlnkyJ2bx5zva7MZ1v2kYWtL16cGGPmEHiXhdTzOHU=;
-        b=EzEwUI9DTgrtUEQoSY/ckO7miu6TK/4GpdX7I7IimXkPohTTXOqvS4be3LEvlkQe/V
-         nqGbnQ21fQP/SEGR0aEVqGK16uWBYHeKd+mHimf2BcMlC2ha64aI2RlZaYAAR16XqH85
-         RjzS0cd82EltzB/TnEeG1pjG/oHLUxNljlAXKRFwIl3GB0QOLveXQ7tliYl2ERjDCp5y
-         AVhio6OO66KWvFcSAgpZr+7IsDu8yS71jwcPLGoANL6rxX4Xdcek3s90BhY+1owI19DI
-         B7Anx7Jy8tqSLRshjYsxS+OsHPv84cK+06d+tUL7opLCJSkyZe4ztNJ49UOQRO8Fk+2D
-         siog==
-X-Gm-Message-State: AOAM530qWSSAPG8UaFpwXv0ygJooKWlAbRX5qybpS7r8TJlapiE+4P/k
-        gqC1owLV6hiiWv/GiKTZDA==
-X-Google-Smtp-Source: ABdhPJwqakckRYJVHwoIhYL2B1/ENLYjf63BtHWsSTRO8L+AxUf+NmRdpEGbtri7jdAiD6oKA1/hOQ==
-X-Received: by 2002:a4a:e08c:: with SMTP id w12mr2847550oos.48.1619105459963;
-        Thu, 22 Apr 2021 08:30:59 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g26sm696687otr.73.2021.04.22.08.30.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Apr 2021 08:30:58 -0700 (PDT)
-Received: (nullmailer pid 3134281 invoked by uid 1000);
-        Thu, 22 Apr 2021 15:30:57 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     davem@davemloft.net, devicetree@vger.kernel.org,
-        vivien.didelot@gmail.com, olteanv@gmail.com, linux@armlinux.org.uk,
-        robh+dt@kernel.org, kuba@kernel.org, linux-kernel@vger.kernel.org,
-        hkallweit1@gmail.com, f.fainelli@gmail.com, netdev@vger.kernel.org,
-        UNGLinuxDriver@microchip.com, andrew@lunn.ch
-In-Reply-To: <20210422094257.1641396-2-prasanna.vengateshan@microchip.com>
-References: <20210422094257.1641396-1-prasanna.vengateshan@microchip.com> <20210422094257.1641396-2-prasanna.vengateshan@microchip.com>
-Subject: Re: [PATCH v2 net-next 1/9] dt-bindings: net: dsa: dt bindings for microchip lan937x
-Date:   Thu, 22 Apr 2021 10:30:57 -0500
-Message-Id: <1619105457.718289.3134280.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=plUAjDarJDyekWMgy0FkCFDFLzZZtjqWEzp24FU/oGc=;
+        b=ObO09TAHILBwBt9t6xlrJ1Dln9oHJHGGHg2e2BcOsKvAUice7k9h5ePxKmcUUrgblu
+         NVlxoqngzbMhHrEiF2SEfdoZX2Nx8ruwhZUUudcnok5vlMtrj+bicI47AWm46fkHL2fZ
+         xg90J3rL0yAdRHzTGXo9SoxHpw5yqcwoL3UImaLaaspSgHbdR88KEXOSElph+F/GnAtL
+         IC7XoQ1afCGPmRctYSNKjrz3yl4X30qG2iZAclyWF1A00hvmBFRQh+U11JTqqJ5qUdYV
+         n04zcGWE1NKMl8jxjjtDPrslUVM9QDLZFZiFRgabNIgG8M6w2tSjCcdMZymgFcXWlFD6
+         J1OA==
+X-Gm-Message-State: AOAM532+Rf65Tf9/QzqT8co0I1AfOu4os8gMEh7uweZeGKFtFNBOxUHV
+        PnIyAlTiq44ZGn1juCP+qHyje2Z8t6EkWFY7LWlcBg==
+X-Google-Smtp-Source: ABdhPJy+J6pn957FhOHwZjyk7gcCN1x7YgAp+VD5Efd7/IgYIAUbnOKSxezAgYN+dswKer5KxJuLbQCCFr6srLhrZpo=
+X-Received: by 2002:a05:651c:c1:: with SMTP id 1mr2777078ljr.467.1619105959048;
+ Thu, 22 Apr 2021 08:39:19 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210419225133.2005360-1-linus.walleij@linaro.org> <YH4tsFtGJUMf2BFS@lunn.ch>
+In-Reply-To: <YH4tsFtGJUMf2BFS@lunn.ch>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 22 Apr 2021 17:39:07 +0200
+Message-ID: <CACRpkdbppvaNUXE9GD_UXDrB8SJA5qv7wrQ1dj5E4ySU_6bG7w@mail.gmail.com>
+Subject: Re: [PATCH 1/3] net: ethernet: ixp4xx: Add DT bindings
+To:     Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>
+Cc:     netdev <netdev@vger.kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Zoltan HERPAI <wigyori@uid0.hu>,
+        Raylynn Knight <rayknight@me.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Apr 2021 15:12:49 +0530, Prasanna Vengateshan wrote:
-> Documentation in .yaml format and updates to the MAINTAINERS
-> Also 'make dt_binding_check' is passed
-> 
-> Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-> ---
->  .../bindings/net/dsa/microchip,lan937x.yaml   | 142 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 143 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
-> 
+On Tue, Apr 20, 2021 at 3:26 AM Andrew Lunn <andrew@lunn.ch> wrote:
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > +      mdio {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +        phy1: phy@1 {
+> > +          #phy-cells = <0>;
+>
+> Hi Linus
+>
+> phy-cells is not part of the Ethernet PHY binding.
 
-yamllint warnings/errors:
+Nevertheless:
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/net/dsa/microchip,lan937x.example.dt.yaml:0:0: /example-0/spi/switch@0/mdio: failed to match any schema with compatible: ['microchip,lan937x-mdio']
+  CHECK   Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.example.dt.yaml
+/var/linus/linux-nomadik/build-ixp4/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.example.dt.yaml:
+phy@1: '#phy-cells' is a required property
+    From schema:
+/home/linus/.local/lib/python3.9/site-packages/dtschema/schemas/phy/phy-provider.yaml
 
-See https://patchwork.ozlabs.org/patch/1469135
+It has been hardcoded as required into the dtschema python package.
+Looks like this:
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+properties:
+  $nodename:
+    pattern: "^(|usb-|usb2-|usb3-|pci-|pcie-|sata-)phy(@[0-9a-f,]+)*$"
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+  "#phy-cells": true
 
-pip3 install dtschema --upgrade
+  phy-supply: true
 
-Please check and re-submit.
+required:
+  - "#phy-cells"
 
+additionalProperties: true
+
+If this is wrong I bet Rob needs to hear about it.
+
+Yours,
+Linus Walleij
