@@ -2,313 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5133A36869B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 20:35:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2C5C3686CD
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 20:54:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236058AbhDVSfe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 14:35:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34700 "EHLO
+        id S236665AbhDVSyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 14:54:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238344AbhDVSfd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 14:35:33 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90DE8C06138B
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 11:34:57 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id i190so32318734pfc.12
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 11:34:57 -0700 (PDT)
+        with ESMTP id S236659AbhDVSyh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 14:54:37 -0400
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D4DC06174A;
+        Thu, 22 Apr 2021 11:54:02 -0700 (PDT)
+Received: by mail-qk1-x72f.google.com with SMTP id o5so47406715qkb.0;
+        Thu, 22 Apr 2021 11:54:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=fIQGP5hbKxQ2AbrjuHVsEc+gLwD1Ifi6sPdpnHLAXEU=;
-        b=f8UNiwNy63Nq+gwYfc7TIo47CogfxT77XpfYfYqcuRTxf5Ttw5fmjTdRT/R+GjVmtn
-         bEm3Y+0dxjATq63vvrh2z8+1lfcFFPc8Xv6M5vssBo47Kb8VlXxRMgAFGuD2NTGowJ0f
-         Y/W8f495wGtkVKqTfrPo52qW4vMgG0ZcCdcKQ=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=8IWAEfyI2PXcv9oLTm41TbJTcMQt1Y19HZbbnmNLpXo=;
+        b=TWDMlK2hINdwlgTlhHGziGWtwe6gTTlF3sb1vVFKjVVFILa/+/CpOSkKVT/KcelOJm
+         Z0ABTTmNu6QJ7odFPNkV2LCmClqNup4KDI2NchD1tSo3b0NykoCLL3rpfdBZmk8QEwbL
+         i+p1z9HDvOWcPtRBS1WneDHrKKBxU/5hkCrhxsUsi7R3cQdn6z6GWAqVMdTRlDLGKP4v
+         sguPOMsjSkPBFdC7diksYEDjd0XmI1YDNoOuDIhxOZaTXlyrf2XKHhfNtadFeyq29w+a
+         CX/q1FcZtzgSjwGf1k1MeM5FOZFZ1EwdWcUfEqDdnTQA1EqTChS0c2x5ym+thjgVZvaB
+         MVvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=fIQGP5hbKxQ2AbrjuHVsEc+gLwD1Ifi6sPdpnHLAXEU=;
-        b=RpYaOYRmOSh8Mpt0DeiUaVwrLaXVMgNo50Tm/aMKDQojSnRA59rL1rPNvumz18a8uE
-         zXyjzuiX8RGE7HT5lJpo2bfoBZ7blzlZ4IqEmDBGpGJwBnRWzYvlENfv3/4vJKaSmAff
-         tkalnpC04VlHaIcrBs/gCRYnkz9n3icqG0EEx3Ze+rGL62CH0Ruhi9BsXHJY4UYNyamY
-         jjlrSf6570yp/T6+BbRwdrUeKyCQmRyY3PEnKsjdfiJqVItv/JRXVrnxlExkBzNCUwpD
-         HwAlgyJl2Xy4bKf50qSDj+F41k62yVTPBDu0Nk/xHaQDc5uKmnaJH/Na4Cmsqkq+0pWH
-         LSrw==
-X-Gm-Message-State: AOAM533dHU10+7HlhFrx4rtbdUiOQbg34HYVMiuAXci0MbavqN8PzRWI
-        MjqGDQ2DeSMuKHXUMA8iVX8/+Q==
-X-Google-Smtp-Source: ABdhPJxQXisVXNdHeC/K1YPSaxq3pq+fVgXtyyRPEWHARZ9IremNzgNVlEy4hhINfix50PAx5/0CRA==
-X-Received: by 2002:aa7:87d3:0:b029:259:ff63:3500 with SMTP id i19-20020aa787d30000b0290259ff633500mr85995pfo.35.1619116497024;
-        Thu, 22 Apr 2021 11:34:57 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:acff:4f9f:d039:23ff])
-        by smtp.gmail.com with UTF8SMTPSA id t19sm2884558pfg.38.2021.04.22.11.34.56
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=8IWAEfyI2PXcv9oLTm41TbJTcMQt1Y19HZbbnmNLpXo=;
+        b=dV49WaT6zQjySSXqa9KLxxxKrTVNeQcL/UEVFho/yWEioX70p8egeWZHM0KRwKkIG0
+         SD5PDox6vzf0pt76Je+IaiUxXk5FiW/YmEMIfJ1xRMoon0VeabN+ORadCK/5hjH1R0xk
+         MdhVUDoKon52NYOZwpx7skFNywqnh3rq7fF2wbPTbHpVgJBKz8gHlfcdzI3rtmed+/8f
+         LxUYJUTElGjwx5pT8JEDFSOYBtJBGGARevDKuk01y6rtk4GtIQOeYvlpz32J3t8ooCSC
+         GGhGhy4/NjbK2U4yM4Pq7563Gd95qVbWQG0rzw35FMSyhi+nlgHC0MaQDPSE59/0G9fE
+         H1xA==
+X-Gm-Message-State: AOAM530YmsHvw9Kx7Ki72yKjf7LkYNocvw8w4xRWm1NMuLCLl672wS2G
+        1jpV2svuWMA2oKagerEtXkS1iu/WNNnnzg==
+X-Google-Smtp-Source: ABdhPJzNBUgSIeBU1+9Sa2ktkuxVreCDVZdxo6G5W386qxoAws2idezxMv40/0oPFS/Q5BJLwaaCOA==
+X-Received: by 2002:a05:620a:1475:: with SMTP id j21mr220816qkl.118.1619117641660;
+        Thu, 22 Apr 2021 11:54:01 -0700 (PDT)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id o130sm2796003qke.121.2021.04.22.11.54.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Apr 2021 11:34:56 -0700 (PDT)
-Date:   Thu, 22 Apr 2021 11:34:55 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sandeep Maheswaram <sanm@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manu Gautam <mgautam@codeaurora.org>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Add USB related nodes
-Message-ID: <YIHBzxN/9O9a98Xd@google.com>
-References: <1619112931-2144-1-git-send-email-sanm@codeaurora.org>
- <1619112931-2144-2-git-send-email-sanm@codeaurora.org>
+        Thu, 22 Apr 2021 11:54:01 -0700 (PDT)
+Subject: Re: [PATCH 1/1] of: unittest: rename overlay source files from .dts
+ to .dtso
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Anmar Oueja <anmar.oueja@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20210324223713.1334666-1-frowand.list@gmail.com>
+ <20210327174035.GA291160@robh.at.kernel.org>
+ <3e6710e7-08ac-7d1b-aa69-bcd36f0d932a@gmail.com>
+ <CAMuHMdXpGKMi-xv6hZQmmEw0JO=Q0WuvUzwJ2v0O28Tx5uW+sg@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <d1aefaae-7b12-b5fb-4b97-7230bd52c1be@gmail.com>
+Date:   Thu, 22 Apr 2021 13:54:00 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <CAMuHMdXpGKMi-xv6hZQmmEw0JO=Q0WuvUzwJ2v0O28Tx5uW+sg@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1619112931-2144-2-git-send-email-sanm@codeaurora.org>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 22, 2021 at 11:05:31PM +0530, Sandeep Maheswaram wrote:
-> Add nodes for DWC3 USB controller, QMP and HS USB PHYs.
+On 4/22/21 3:44 AM, Geert Uytterhoeven wrote:
+> Hi Frank, Rob,
 > 
-> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
-> ---
-
-What changes with respect to v1? Please always include a change log for
-versions > 1
-
->  arch/arm64/boot/dts/qcom/sc7280-idp.dts |  40 +++++++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 150 ++++++++++++++++++++++++++++++++
->  2 files changed, 190 insertions(+)
+> On Mon, Mar 29, 2021 at 9:23 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>> On 3/27/21 12:40 PM, Rob Herring wrote:
+>>> On Wed, Mar 24, 2021 at 05:37:13PM -0500, frowand.list@gmail.com wrote:
+>>>> From: Frank Rowand <frank.rowand@sony.com>
+>>>>
+>>>> Add Makefile rule to build .dtbo.o assembly file from overlay .dtso
+>>>> source file.
+>>>>
+>>>> Rename unittest .dts overlay source files to use .dtso suffix.
+>>>
+>>> I'm pretty lukewarm on .dtso...
+>>
+>> I was originally also, but I'm warming up to it.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> index 54d2cb3..f1998d8 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> What's the status of this?
 
-I suggest to split this into two patches, one for the SoC and one for
-the board (IDP). That way it is evident from the subject what each
-patch does and reverts could be done individually if needed.
+I was planning to resend on top of the upcoming -rc1.
 
-> @@ -242,6 +242,46 @@
->  	status = "okay";
->  };
->  
-> +
 
-don't add a second empty line
+> v5.12 (introducing the concept of dtbo) is around the corner, and it
+> would be best to decide on dts or dtso before its release.
+> 
+> Thanks!
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
 
-> +&usb_1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_dwc3 {
-> +	dr_mode = "host";
-> +};
-> +
-> +&usb_1_hsphy {
-> +	status = "okay";
-> +
-> +	vdda-pll-supply = <&vreg_l10c_0p8>;
-> +	vdda33-supply = <&vreg_l2b_3p0>;
-> +	vdda18-supply = <&vreg_l1c_1p8>;
-> +};
-> +
-> +&usb_1_qmpphy {
-> +	status = "okay";
-> +
-> +	vdda-phy-supply = <&vreg_l6b_1p2>;
-> +	vdda-pll-supply = <&vreg_l1b_0p8>;
-> +};
-> +
-> +&usb_2 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_2_dwc3 {
-> +	dr_mode = "peripheral";
-> +};
-> +
-> +&usb_2_hsphy {
-> +	status = "okay";
-> +
-> +	vdda-pll-supply = <&vreg_l10c_0p8>;
-> +	vdda33-supply = <&vreg_l2b_3p0>;
-> +	vdda18-supply = <&vreg_l1c_1p8>;
-> +};
-> +
->  /* PINCTRL - additions to nodes defined in sc7280.dtsi */
->  
->  &qup_uart5_default {
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 2cc4785..8323f53 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -805,6 +805,110 @@
->  			};
->  		};
->  
-> +		usb_1_hsphy: phy@88e3000 {
-> +			compatible = "qcom,sc7280-usb-hs-phy",
-> +				     "qcom,usb-snps-hs-7nm-phy";
-> +			reg = <0 0x088e3000 0 0x400>;
-> +			status = "disabled";
-> +			#phy-cells = <0>;
-> +
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
-> +			clock-names = "ref";
-> +
-> +			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
-> +		};
-> +
-> +		usb_2_hsphy: phy@88e4000 {
-> +			compatible = "qcom,sc7280-usb-hs-phy",
-> +				     "qcom,usb-snps-hs-7nm-phy";
-> +			reg = <0 0x088e4000 0 0x400>;
-> +			status = "disabled";
-> +			#phy-cells = <0>;
-> +
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
-> +			clock-names = "ref";
-> +
-> +			resets = <&gcc GCC_QUSB2PHY_SEC_BCR>;
-> +		};
-> +
-> +		usb_1_qmpphy: phy-wrapper@88e9000 {
-> +			compatible = "qcom,sm8250-qmp-usb3-phy";
-> +			reg = <0 0x088e9000 0 0x200>,
-> +			      <0 0x088e8000 0 0x20>;
-> +			reg-names = "reg-base", "dp_com";
-> +			status = "disabled";
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +
-> +			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
-> +				 <&rpmhcc RPMH_CXO_CLK>,
-> +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
-> +			clock-names = "aux", "ref_clk_src", "com_aux";
-> +
-> +			resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
-> +				 <&gcc GCC_USB3_PHY_PRIM_BCR>;
-> +			reset-names = "phy", "common";
-> +
-> +			usb_1_ssphy: usb3-phy@88e9200 {
-> +				reg = <0 0x088e9200 0 0x200>,
-> +				      <0 0x088e9400 0 0x200>,
-> +				      <0 0x088e9c00 0 0x400>,
-> +				      <0 0x088e9600 0 0x200>,
-> +				      <0 0x088e9800 0 0x200>,
-> +				      <0 0x088e9a00 0 0x100>;
-> +				#phy-cells = <0>;
-> +				#clock-cells = <1>;
-> +				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> +				clock-names = "pipe0";
-> +				clock-output-names = "usb3_phy_pipe_clk_src";
-> +			};
-> +		};
-> +
-> +		usb_2: usb@8cf8800 {
-> +			compatible = "qcom,sc7280-dwc3", "qcom,dwc3";
-> +			reg = <0 0x08cf8800 0 0x400>;
-> +			status = "disabled";
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +			dma-ranges;
-> +
-> +			clocks = <&gcc GCC_CFG_NOC_USB3_SEC_AXI_CLK>,
-> +				 <&gcc GCC_USB30_SEC_MASTER_CLK>,
-> +				 <&gcc GCC_AGGRE_USB3_SEC_AXI_CLK>,
-> +				 <&gcc GCC_USB30_SEC_MOCK_UTMI_CLK>,
-> +				 <&gcc GCC_USB30_SEC_SLEEP_CLK>;
-> +			clock-names = "cfg_noc", "core", "iface","mock_utmi",
-> +				      "sleep";
-> +
-> +			assigned-clocks = <&gcc GCC_USB30_SEC_MOCK_UTMI_CLK>,
-> +					  <&gcc GCC_USB30_SEC_MASTER_CLK>;
-> +			assigned-clock-rates = <19200000>, <200000000>;
-> +
-> +			interrupts-extended = <&intc GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <&pdc 13 IRQ_TYPE_EDGE_RISING>,
-> +				     <&pdc 12 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "hs_phy_irq",
-> +					  "dm_hs_phy_irq", "dp_hs_phy_irq";
-> +
-> +			power-domains = <&gcc GCC_USB30_SEC_GDSC>;
-> +
-> +			resets = <&gcc GCC_USB30_SEC_BCR>;
-> +
-> +			usb_2_dwc3: dwc3@8c00000 {
-> +				compatible = "snps,dwc3";
-> +				reg = <0 0x08c00000 0 0xe000>;
-> +				interrupts = <GIC_SPI 242 IRQ_TYPE_LEVEL_HIGH>;
-> +				iommus = <&apps_smmu 0xa0 0x0>;
-> +				snps,dis_u2_susphy_quirk;
-> +				snps,dis_enblslpm_quirk;
-> +				phys = <&usb_2_hsphy>;
-> +				phy-names = "usb2-phy";
-> +				maximum-speed = "high-speed";
-> +			};
-> +		};
-> +
->  		system-cache-controller@9200000 {
->  			compatible = "qcom,sc7280-llcc";
->  			reg = <0 0x09200000 0 0xd0000>, <0 0x09600000 0 0x50000>;
-> @@ -812,6 +916,52 @@
->  			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
->  		};
->  
-> +		usb_1: usb@a6f8800 {
-> +			compatible = "qcom,sc7280-dwc3", "qcom,dwc3";
-> +			reg = <0 0x0a6f8800 0 0x400>;
-> +			status = "disabled";
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +			dma-ranges;
-> +
-> +			clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
-> +				 <&gcc GCC_USB30_PRIM_MASTER_CLK>,
-> +				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
-> +				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
-> +				 <&gcc GCC_USB30_PRIM_SLEEP_CLK>;
-> +
-
-nit: remove empty line (as for 'usb_2' above), 'clocks' and 'clock-names'
-belong together
-
-> +			clock-names = "cfg_noc", "core", "iface", "mock_utmi",
-> +				      "sleep";
-> +
-> +			assigned-clocks = <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
-> +					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
-> +			assigned-clock-rates = <19200000>, <200000000>;
-> +
-> +			interrupts-extended = <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&pdc 14 IRQ_TYPE_EDGE_BOTH>,
-> +					      <&pdc 15 IRQ_TYPE_EDGE_BOTH>,
-> +					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "hs_phy_irq", "dp_hs_phy_irq",
-> +					  "dm_hs_phy_irq", "ss_phy_irq";
-> +
-> +			power-domains = <&gcc GCC_USB30_PRIM_GDSC>;
-> +
-> +			resets = <&gcc GCC_USB30_PRIM_BCR>;
-> +
-> +			usb_1_dwc3: dwc3@a600000 {
-> +				compatible = "snps,dwc3";
-> +				reg = <0 0x0a600000 0 0xe000>;
-> +				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
-> +				iommus = <&apps_smmu 0xe0 0x0>;
-> +				snps,dis_u2_susphy_quirk;
-> +				snps,dis_enblslpm_quirk;
-> +				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
-> +				phy-names = "usb2-phy", "usb3-phy";
-> +				maximum-speed = "super-speed";
-> +			};
-> +		};
-> +
->  		pdc: interrupt-controller@b220000 {
->  			compatible = "qcom,sc7280-pdc", "qcom,pdc";
->  			reg = <0 0x0b220000 0 0x30000>;
