@@ -2,113 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A70E5367B5C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 09:46:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6469367BB0
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 10:05:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235004AbhDVHrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 03:47:17 -0400
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:45727 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229629AbhDVHrR (ORCPT
+        id S230228AbhDVIGF convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 22 Apr 2021 04:06:05 -0400
+Received: from eu-smtp-delivery-151.mimecast.com ([185.58.85.151]:45063 "EHLO
+        eu-smtp-delivery-151.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229655AbhDVIGF (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Apr 2021 03:47:17 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id E67745C0095;
-        Thu, 22 Apr 2021 03:46:42 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Thu, 22 Apr 2021 03:46:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=AwgIZmB5EJH5trGQOylc/pmaEoL
-        b27QzY3Dbivxts48=; b=FIhh7xz2qR41LUeduUh/o8n4W+lw4V3lGGbLhAIOuaa
-        aDq3jZyvBLRF0YllAVkjncYKjBmFvr4Z47zFG/qfay72i4hJKeqtu1Y2wl3p2UOa
-        MF1HnRJVXSDCR8fw5ow5fUrE1738+6H2/XlRRulXzKEn/OxFrq41m7MnAGhLvlSF
-        D+KlsMrtkdVTOA4hOREGZUQfBGYLBJwM9jR7S6zKujoV9Oc2KQDns/xwLZfVvi75
-        7iYL7NLwEDxDr8SqRDzfxMxspfe8XyW/PWMjgxZ+TTDDLQ2QSY8gS4tuAMpXUMS7
-        orEUkyn66MBM0ipq78EYDIK/vhROjsuHWYA21hYf8Zw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=AwgIZm
-        B5EJH5trGQOylc/pmaEoLb27QzY3Dbivxts48=; b=uB4CSYKpKc3UHsQS0UyS2g
-        LDXApeeu+JYDk6TmO5YshWbt46ByjaIpgN5jJhOI3AkyegpfNwtMVcRkJWR0gdro
-        bWDOV0hlmlsTXUABylO8xx2RaPiQEv5yoM/8myEe5/BmN64+gIt4CoGlBm+uKEqF
-        z3+8AOMvY9B8QXau4yBiRR+xnrw8AftCnxjUmU7qdh+mnf4d+YCpGV7vkr0rtYIG
-        BtQylSMvMf/6CG7K6TZGH+c+vkL1R1tu6uUwsEyDLDcaVB5c9VjVWoaJl8mUOf/H
-        8/qWH3pncBlE/GPjrIe5Cn/we29BBMS4T9LfOvRB+7AYQDvadqWFreHBcYlORDdA
-        ==
-X-ME-Sender: <xms:4SmBYB_hs8rrapBC1jVyrdqFP1a__uldZvFq5Hu27AcwnmwgPxFS9g>
-    <xme:4SmBYFvQYp16xQEo2BcyIlHGcGUwN_EJjWIUpjrpG8HFeI9096TYm9lhk9xg895oK
-    GFDNVMNYj2MdfD53VA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvddtledguddulecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheei
-    heegudenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
-    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:4SmBYPDQiL9oeeYZeANR_MVwtTDpEcqBdspk98oJDVNe6BBPvPHlVA>
-    <xmx:4SmBYFcCHHt-l4Coi2xCz6_odV320pw9wYF190-j-IyVeKTRF7NmYw>
-    <xmx:4SmBYGPtfmt6MkIH4IkfaAjael47fMu8JfEKfUJjzH0Spl3TMinIBg>
-    <xmx:4imBYCDM5yzZN_Nv08OTgyJvbkm0n8UgIpeLhIDN4rbEcJ0ehofCFw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 01FD724005E;
-        Thu, 22 Apr 2021 03:46:40 -0400 (EDT)
-Date:   Thu, 22 Apr 2021 09:46:39 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Michael Weiser <michael.weiser@gmx.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@googlegroups.com, Daniel Kulesz <kuleszdl@posteo.org>
-Subject: Re: [PATCH v2] arm64: dts: allwinner: Revert SD card CD GPIO for
- Pine64-LTS
-Message-ID: <20210422074639.46imznubua2yhj4n@gilmour>
-References: <20210414104740.31497-1-andre.przywara@arm.com>
- <YHc11xC1vT1Yr+a1@weiser.dinsnail.net>
- <20210421123354.0a7209a1@slackpad.fritz.box>
+        Thu, 22 Apr 2021 04:06:05 -0400
+Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ uk-mta-144-i8bViBFkNvu_lZID7Y2huA-1; Thu, 22 Apr 2021 09:05:27 +0100
+X-MC-Unique: i8bViBFkNvu_lZID7Y2huA-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
+ Server (TLS) id 15.0.1497.2; Thu, 22 Apr 2021 09:05:27 +0100
+Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
+ AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
+ 15.00.1497.015; Thu, 22 Apr 2021 09:05:27 +0100
+From:   David Laight <David.Laight@ACULAB.COM>
+To:     'Daniel Axtens' <dja@axtens.net>,
+        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "dan.carpenter@oracle.com" <dan.carpenter@oracle.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>,
+        "bauerman@linux.ibm.com" <bauerman@linux.ibm.com>,
+        "lkp@intel.com" <lkp@intel.com>
+Subject: RE: [PATCH] powerpc: Initialize local variable fdt to NULL in
+ elf64_load()
+Thread-Topic: [PATCH] powerpc: Initialize local variable fdt to NULL in
+ elf64_load()
+Thread-Index: AQHXNx40L6Jjg9Iqf02Ssp9xJukHBarALKRw
+Date:   Thu, 22 Apr 2021 08:05:27 +0000
+Message-ID: <3e6b31d92d5042d982daeb989e49299e@AcuMS.aculab.com>
+References: <20210415191437.20212-1-nramas@linux.microsoft.com>
+ <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
+ <87eefag241.fsf@linkitivity.dja.id.au>
+ <87r1j3ys8i.fsf@dja-thinkpad.axtens.net>
+In-Reply-To: <87r1j3ys8i.fsf@dja-thinkpad.axtens.net>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="pewxlg7gul6shcna"
-Content-Disposition: inline
-In-Reply-To: <20210421123354.0a7209a1@slackpad.fritz.box>
+Authentication-Results: relay.mimecast.com;
+        auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Daniel Axtens
+> Sent: 22 April 2021 03:21
+> 
+> > Hi Lakshmi,
+> >
+> >> On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
+> >>
+> >> Sorry - missed copying device-tree and powerpc mailing lists.
+> >>
+> >>> There are a few "goto out;" statements before the local variable "fdt"
+> >>> is initialized through the call to of_kexec_alloc_and_setup_fdt() in
+> >>> elf64_load(). This will result in an uninitialized "fdt" being passed
+> >>> to kvfree() in this function if there is an error before the call to
+> >>> of_kexec_alloc_and_setup_fdt().
+> >>>
+> >>> Initialize the local variable "fdt" to NULL.
+> >>>
+> > I'm a huge fan of initialising local variables! But I'm struggling to
+> > find the code path that will lead to an uninit fdt being returned...
+> 
+> OK, so perhaps this was putting it too strongly. I have been bitten
+> by uninitialised things enough in C that I may have taken a slightly
+> overly-agressive view of fixing them in the source rather than the
+> compiler. I do think compiler-level mitigations are better, and I take
+> the point that we don't want to defeat compiler checking.
+> 
+> (Does anyone - and by anyone I mean any large distro - compile with
+> local variables inited by the compiler?)
 
---pewxlg7gul6shcna
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+There are compilers that initialise locals to zero for 'debug' builds
+and leave the 'random' for optimised 'release' builds.
+Lets not test what we are releasing!
 
-On Wed, Apr 21, 2021 at 12:33:54PM +0100, Andre Przywara wrote:
-> On Wed, 14 Apr 2021 20:35:03 +0200
-> Michael Weiser <michael.weiser@gmx.de> wrote:
->=20
-> Maxime, Chen-Yu:
->=20
-> can you please try to push this patch into 5.12, still?
-> The Pine64-LTS' SD card is broken otherwise, on both versions of the
-> board. The incriminating patch was introduced in 5.12-rc1 (my bad!), so
-> it qualifies as a regression fix.
+I also think there is a new option to gcc (or clang?) to initialise
+on-stack structures and arrays to ensure garbage isn't passed.
+That seems to be a horrid performance hit!
+Especially in userspace where large stack allocations are almost free.
 
-I just sent a PR for it, thanks
+Any auto-initialise ought to be with a semi-random value
+(especially not zero) so that it is never right and doesn't
+lead to lazy coding.
 
-Maxime
+	David
 
---pewxlg7gul6shcna
-Content-Type: application/pgp-signature; name="signature.asc"
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
+Registration No: 1397386 (Wales)
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYIEp3wAKCRDj7w1vZxhR
-xQAfAQCTWNddslINMVlZqc+yj8ebu60lvqsXQyMZsxthdHux5AEAoQ4x8LIpylpa
-KeguZo6pLnGCtVs8R2pUET6ZkxmZhwo=
-=QqnK
------END PGP SIGNATURE-----
-
---pewxlg7gul6shcna--
