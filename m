@@ -2,241 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF75B36861C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 19:38:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71FD336862A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 19:45:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236823AbhDVRjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 13:39:23 -0400
-Received: from mail-oo1-f41.google.com ([209.85.161.41]:33456 "EHLO
-        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236754AbhDVRjW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 13:39:22 -0400
-Received: by mail-oo1-f41.google.com with SMTP id i25-20020a4aa1190000b02901bbd9429832so10135347ool.0;
-        Thu, 22 Apr 2021 10:38:47 -0700 (PDT)
+        id S236668AbhDVRpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 13:45:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51820 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236287AbhDVRpm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 13:45:42 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37887C06174A
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 10:45:07 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id u11so18046229pjr.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 10:45:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=a/ccmlK2SC2bFrmvJC8izkh8L57aGgHSLoN7bzusakc=;
+        b=XBThIrflRQA3fgbEWX8gOjDQIuHreDNWe3wFiwgDIEWqE846XRJL+Amq1Wqsu+BUVP
+         dllJKnRrsSYGsSQR7TLehlrcw1PeqX73rVmr66wC7bXwXkuHP2SUfviOg4RisDHxPEUb
+         ffgqf7oc0PCVSEDXQ/BLKsfVlvnktjo1sMQJE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=tMVnVypmvdM6x0K9pdf9C+ZDup5EGo+8ylMsMxOJ0dM=;
-        b=jUVgvYDgYY7/6lBdZB7v17Y4UXOhNeHgAp2SNjivYk6i0UsJw7yzxGiABecnL5RIUF
-         muiHrJGHVmrsCiK3We5ZYuQRLh+WAi29bJcPQQfsgotRNHAF7eDqDQ80OBYqFTA8hY7z
-         5t7l+A5HGxMyBvSz5+SKcKjOi4ORekr7nvQEKwiGVzaOwCrRHZYBs/MisaNfYNQQslfY
-         W6Y+37DDYevkTi3PVKXtZPBuqWYTV+gWuAtvtVn8j7wHEaqhu8fZgEE5Qk94uYo/k8rJ
-         G1afdT+zNG3uHbPn1GeFMJ+cPyVZsGu1mFkJelrwjD7rOkezDBcygrB+iJkqw30aS/BV
-         HyRw==
-X-Gm-Message-State: AOAM531BKL00Dj/Mpkt+42P+vW2RQYfeSEZ6w+zF/FjRqDiIvlzEfvBJ
-        Lk1KPYdqibL5Y7GpXgkSkA==
-X-Google-Smtp-Source: ABdhPJwcgWM0XLWrK7WEs8CdBSkklMghctKgwcSHGZbx3s62U5GMyPjoEZD7BN22/aQxOKo2Wojj3w==
-X-Received: by 2002:a4a:96e3:: with SMTP id t32mr3235742ooi.14.1619113127295;
-        Thu, 22 Apr 2021 10:38:47 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r9sm688532ool.3.2021.04.22.10.38.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Apr 2021 10:38:46 -0700 (PDT)
-Received: (nullmailer pid 3297132 invoked by uid 1000);
-        Thu, 22 Apr 2021 17:38:44 -0000
-Date:   Thu, 22 Apr 2021 12:38:44 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     andrew@lunn.ch, netdev@vger.kernel.org, olteanv@gmail.com,
-        UNGLinuxDriver@microchip.com, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 1/9] dt-bindings: net: dsa: dt bindings for
- microchip lan937x
-Message-ID: <20210422173844.GA3227277@robh.at.kernel.org>
-References: <20210422094257.1641396-1-prasanna.vengateshan@microchip.com>
- <20210422094257.1641396-2-prasanna.vengateshan@microchip.com>
+        bh=a/ccmlK2SC2bFrmvJC8izkh8L57aGgHSLoN7bzusakc=;
+        b=Sx4wczh2Xcyw3P/WBSxJefIntIp6rH6c+PSLPy7gZuXg8ZX15omKLben2vQfSJU9Qp
+         0uo7p5Nj8Dl0SU+I1sDGUmIV//2k4ACyWiRz/JQGK3EQ1XzaujssHo4ztu8e079fVnEW
+         aM5mjbWX7rdIwRKBiMMszColZhRXwqV05AzpMW+plhEZGA6XAGE5xxL7voLtjsM4bnMU
+         cdVJvlwWAa6Op5trPJsK7FVrPPqAlJ3Nb5MqV5WQp7NwFcfxO+Z4g2HniV6JEn37hJYe
+         TV8Qyd8vBegmVN9HblknkmYRbPw5JEh5Vvc+MjUR0AfpJMDyUjhoC6ALetSAPdmMDlus
+         cz2A==
+X-Gm-Message-State: AOAM5339Q5sXqNyY/D8Mtg2wsH8QM2xenVPKiZMUuFwdizlHi4vA86+i
+        RVBckEHsqhkBDGXUORBzqENj/g==
+X-Google-Smtp-Source: ABdhPJzBjWu8RWw2bEU+LvfjTh9NYw4eIo6vp5pvYVW7q6jfIzHVgRHbByOj8TQ64v427KWpqBDA6Q==
+X-Received: by 2002:a17:902:ce85:b029:eb:46e1:2da2 with SMTP id f5-20020a170902ce85b02900eb46e12da2mr2687plg.38.1619113506760;
+        Thu, 22 Apr 2021 10:45:06 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:acff:4f9f:d039:23ff])
+        by smtp.gmail.com with UTF8SMTPSA id i18sm2640082pfq.59.2021.04.22.10.45.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Apr 2021 10:45:06 -0700 (PDT)
+Date:   Thu, 22 Apr 2021 10:45:05 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rajeshwari <rkambl@codeaurora.org>
+Cc:     amitk@kernel.org, thara.gopinath@linaro.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sanm@codeaurora.org
+Subject: Re: [PATCH V1 2/2] dt-bindings: thermal: tsens: Add configuration in
+ yaml
+Message-ID: <YIG2IckKRBHqzpu3@google.com>
+References: <1619005442-16485-1-git-send-email-rkambl@codeaurora.org>
+ <1619005442-16485-3-git-send-email-rkambl@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210422094257.1641396-2-prasanna.vengateshan@microchip.com>
+In-Reply-To: <1619005442-16485-3-git-send-email-rkambl@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 22, 2021 at 03:12:49PM +0530, Prasanna Vengateshan wrote:
-> Documentation in .yaml format and updates to the MAINTAINERS
-> Also 'make dt_binding_check' is passed
-> 
-> Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-> ---
->  .../bindings/net/dsa/microchip,lan937x.yaml   | 142 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 143 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
-> new file mode 100644
-> index 000000000000..22128a52d699
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
-> @@ -0,0 +1,142 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/dsa/microchip,lan937x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LAN937x Ethernet Switch Series Tree Bindings
-> +
-> +maintainers:
-> +  - UNGLinuxDriver@microchip.com
-> +
-> +allOf:
-> +  - $ref: dsa.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,lan9370
-> +      - microchip,lan9371
-> +      - microchip,lan9372
-> +      - microchip,lan9373
-> +      - microchip,lan9374
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 50000000
-> +
-> +  reset-gpios:
-> +    description: Optional gpio specifier for a reset line
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    //Ethernet switch connected via spi to the host
+On Wed, Apr 21, 2021 at 05:14:02PM +0530, Rajeshwari wrote:
 
-If this is on SPI, why is it not under the spi bus node?
+> Subject: dt-bindings: thermal: tsens: Add configuration in yaml
 
-> +    ethernet {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      fixed-link {
-> +        speed = <1000>;
-> +        full-duplex;
-> +      };
-> +    };
-> +
-> +    spi {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      lan9374: switch@0 {
-> +        compatible = "microchip,lan9374";
-> +        reg = <0>;
-> +
-> +        spi-max-frequency = <44000000>;
-> +
-> +        ethernet-ports {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +          port@0 {
-> +            reg = <0>;
-> +            label = "lan1";
-> +            phy-handle = <&t1phy0>;
-> +          };
-> +          port@1 {
-> +            reg = <1>;
-> +            label = "lan2";
-> +            phy-handle = <&t1phy1>;
-> +          };
-> +          port@2 {
-> +            reg = <2>;
-> +            label = "lan4";
-> +            phy-handle = <&t1phy2>;
-> +          };
-> +          port@3 {
-> +            reg = <3>;
-> +            label = "lan6";
-> +            phy-handle = <&t1phy3>;
-> +          };
-> +          port@4 {
-> +            reg = <4>;
-> +            phy-mode = "rgmii";
-> +            ethernet = <&ethernet>;
+This subject isn't really useful. The fact that the format of the
+binding is yaml is irrelevant here. What is important is that you
+are adding the compatible string for the SC7280 to the TSENS
+binding. This should be reflected in the subject.
 
-You are missing 'ethernet' label.
-
-> +            fixed-link {
-> +              speed = <1000>;
-> +              full-duplex;
-> +            };
-> +          };
-> +          port@5 {
-> +            reg = <5>;
-> +            label = "lan7";
-> +            fixed-link {
-> +              speed = <1000>;
-> +              full-duplex;
-> +            };
-> +          };
-> +          port@6 {
-> +            reg = <6>;
-> +            label = "lan5";
-> +            phy-handle = <&t1phy4>;
-> +          };
-> +          port@7 {
-> +            reg = <7>;
-> +            label = "lan3";
-> +            phy-handle = <&t1phy5>;
-> +          };
-> +        };
-> +
-> +        mdio {
-> +          compatible = "microchip,lan937x-mdio";
-
-You can just drop this to make the example pass. Or convert that binding 
-to schema.
-
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          t1phy0: ethernet-phy@0{
-> +            reg = <0x0>;
-> +          };
-> +          t1phy1: ethernet-phy@1{
-> +            reg = <0x1>;
-> +          };
-> +          t1phy2: ethernet-phy@2{
-> +            reg = <0x2>;
-> +          };
-> +          t1phy3: ethernet-phy@3{
-> +            reg = <0x3>;
-> +          };
-> +          t1phy4: ethernet-phy@6{
-> +            reg = <0x6>;
-> +          };
-> +          t1phy5: ethernet-phy@7{
-> +            reg = <0x7>;
-> +          };
-> +        };
-> +      };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index c3c8fa572580..a0fdfef8802a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11752,6 +11752,7 @@ M:	UNGLinuxDriver@microchip.com
->  L:	netdev@vger.kernel.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> +F:	Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
->  F:	drivers/net/dsa/microchip/*
->  F:	include/linux/platform_data/microchip-ksz.h
->  F:	net/dsa/tag_ksz.c
-> -- 
-> 2.27.0
-> 
+Also this is patch [2/2] and patch [1/2] adds DT entries with the new
+compatible string. The binding should be defined before adding new
+entries, hence the order of the patches should be inversed.
