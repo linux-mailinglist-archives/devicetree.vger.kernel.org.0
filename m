@@ -2,63 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A406F3680C3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 14:45:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7956A3680FB
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 14:59:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236206AbhDVMqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 08:46:22 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:35658 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236144AbhDVMqW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Apr 2021 08:46:22 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1lZYiD-000UwN-Aq; Thu, 22 Apr 2021 14:45:41 +0200
-Date:   Thu, 22 Apr 2021 14:45:41 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     netdev@vger.kernel.org, olteanv@gmail.com, robh+dt@kernel.org,
-        UNGLinuxDriver@microchip.com, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 2/9] net: phy: Add support for LAN937x T1 phy
- driver
-Message-ID: <YIFv9Wcp94395Hbb@lunn.ch>
-References: <20210422094257.1641396-1-prasanna.vengateshan@microchip.com>
- <20210422094257.1641396-3-prasanna.vengateshan@microchip.com>
+        id S236376AbhDVNAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 09:00:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45056 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236078AbhDVNAJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 09:00:09 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9152C06174A
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 05:59:34 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id j5so43739716wrn.4
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 05:59:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=8/KGFnryAMctn88NFbO1ivk8J+24Ebdlr0KrvWJNTF4=;
+        b=LTsH5gXGyubkKcVYB8Ynk7SMn7nxBV4yszikxczHPdXwJz2bxhsfIHZN52OTMrfRg2
+         bEKIiiJnx48IpL8ja52SlvcFs0ltkVhGGyB85N7P4RyjdCsQpL84V6u/h/aAiZkEnTZc
+         R0SxmGFhg95qsW96dsZAOrvIyMGrHOBsNYh7sbV0RMeliifMd3nzpITHmZLrSzucSu3Q
+         seBDkvYcPARRkZiwiLzbQlIGvlI743WT0GaOlIKQus4q9Yj997OznifHUATtMpyeTYWl
+         gUz4CM3Ndl0M9joGzDeJkFPNklowzwJKAb7aV/pFhvBP5n+RdZZpQaXU3rHgII/2drcm
+         wQCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8/KGFnryAMctn88NFbO1ivk8J+24Ebdlr0KrvWJNTF4=;
+        b=Wdii5VflQKAT7OwN843j5Bn/JA2DJquJT2IvrP9AtmtkTKwWsg30owDO3jF1YX4kYG
+         gpAUjSkfKE7Qq1Xk9FdwZs1ovxvsE+L6Hnf7P7ieISPjKKzVWoXLiGES5bhNhJ9tFoL/
+         CwUYX995nTkyUP1yganOEe+AhifYW1eLSoC2+kk7JIyPheN+R33cdD27UzJ0ChMWleX+
+         L6PkV6v2heMTuqpsV3HQJ2PHyfIOA0u++sJRH4l8vKPhE9dtDkEv1xxol/SBmh1OGj0d
+         xC9rEA73clwIJCIonYYJqI8XQ/yNAlIiyGNSBtFYDiKw3PJTMREq1dbv0nx5mieGaDwJ
+         xqrw==
+X-Gm-Message-State: AOAM530oOvPepNeZ8NLM9zXEffhy90U9WOfUcKaTOpCsbEkWKiA8E7x+
+        V3ZW5ZKNGR+ntMsfwD/PYzdx6w==
+X-Google-Smtp-Source: ABdhPJwga1KoquWBDh8puv2zY37IP/IsmTxlR9E3qbmX6e6wIHa7F35Xq2GPHqGBcuhHDmMnxBw8Eg==
+X-Received: by 2002:adf:e50d:: with SMTP id j13mr3993488wrm.80.1619096373378;
+        Thu, 22 Apr 2021 05:59:33 -0700 (PDT)
+Received: from google.com (105.168.195.35.bc.googleusercontent.com. [35.195.168.105])
+        by smtp.gmail.com with ESMTPSA id q7sm3518275wrr.62.2021.04.22.05.59.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Apr 2021 05:59:32 -0700 (PDT)
+Date:   Thu, 22 Apr 2021 12:59:30 +0000
+From:   Quentin Perret <qperret@google.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Ard Biesheuvel <ardb@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sasha Levin <sashal@kernel.org>,
+        stable <stable@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        KarimAllah Ahmed <karahmed@amazon.de>,
+        Android Kernel Team <kernel-team@android.com>,
+        Architecture Mailman List <boot-architecture@lists.linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [v5.4 stable] arm: stm32: Regression observed on "no-map"
+ reserved memory region
+Message-ID: <YIFzMkW+tXonTf0K@google.com>
+References: <4a4734d6-49df-677b-71d3-b926c44d89a9@foss.st.com>
+ <CAL_JsqKGG8E9Y53+az+5qAOOGiZRAA-aD-1tKB-hcOp+m3CJYw@mail.gmail.com>
+ <001f8550-b625-17d2-85a6-98a483557c70@foss.st.com>
+ <CAL_Jsq+LUPZFhXd+j-xM67rZB=pvEvZM+1sfckip0Lqq02PkZQ@mail.gmail.com>
+ <CAMj1kXE2Mgr9CsAMnKXff+96xhDaE5OLeNhypHvpN815vZGZhQ@mail.gmail.com>
+ <d7f9607a-9fcb-7ba2-6e39-03030da2deb0@gmail.com>
+ <YH/ixPnHMxNo08mJ@google.com>
+ <cc8f96a4-6c85-b869-d3cf-5dc543982054@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210422094257.1641396-3-prasanna.vengateshan@microchip.com>
+In-Reply-To: <cc8f96a4-6c85-b869-d3cf-5dc543982054@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +#define PORT_T1_PHY_RESET	BIT(15)
-> +#define PORT_T1_PHY_LOOPBACK	BIT(14)
-> +#define PORT_T1_SPEED_100MBIT	BIT(13)
-> +#define PORT_T1_POWER_DOWN	BIT(11)
-> +#define PORT_T1_ISOLATE	BIT(10)
-> +#define PORT_T1_FULL_DUPLEX	BIT(8)
+On Wednesday 21 Apr 2021 at 07:33:52 (-0700), Florian Fainelli wrote:
+> It is not, otherwise I would have noticed earlier, can you try the same
+> thing that happens on my platform with a reserved region (without
+> no-map) adjacent to a reserved region with 'no-map'?
 
-These appear to be standard BMCR_ values. Please don't define your
-own.
+I just tried, but still no luck. FTR, I tried to reproduce your setup
+with the following DT:
 
-> +
-> +#define REG_PORT_T1_PHY_BASIC_STATUS 0x01
-> +
-> +#define PORT_T1_MII_SUPPRESS_CAPABLE	BIT(6)
-> +#define PORT_T1_LINK_STATUS		BIT(2)
-> +#define PORT_T1_EXTENDED_CAPABILITY	BIT(0)
-> +
-> +#define REG_PORT_T1_PHY_ID_HI 0x02
-> +#define REG_PORT_T1_PHY_ID_LO 0x03
+        memory@40000000 {
+                reg = <0x00 0x40000000 0x01 0x00>;
+                device_type = "memory";
+        };
 
-MII_PHYSID1 and MII_PHYSID2
+        reserved-memory {
+                #address-cells = <2>;
+                #size-cells = <2>;
+                ranges;
 
-Please go through all these #defines and replace them with the
-standard ones Linux provides. You are obfusticating the code by not
-using what people already know.
+                foo@fdfff000{
+                        reg = <0x00 0xfdfff000 0x0 0x1000>;
+                };
+                bar@fe000000{
+                        reg = <0x00 0xfe000000 0x0 0x2000000>;
+                        no-map;
+                };
+        };
 
-      Andrew
+And with 5.4.102 and 5.10.31 I get the following in /proc/iomem
+
+<...>
+40000000-fdffffff : System RAM
+  40080000-412cffff : Kernel code
+  412d0000-417affff : reserved
+  417b0000-419f8fff : Kernel data
+  48000000-48008fff : reserved
+  f7c00000-fdbfffff : reserved
+  fdfff000-fdffffff : reserved
+fe000000-ffffffff : reserved
+100000000-13fffffff : System RAM
+<...>
+
+which looks about right. I'll keep trying a few other things.
+
+Thanks,
+Quentin
