@@ -2,224 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF2EE367806
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 05:36:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89ACC36781E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 05:56:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234722AbhDVDgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 23:36:48 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:48728 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234716AbhDVDgr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 23:36:47 -0400
-X-UUID: 6c61a8f8a36f4d48b3aa977653ea8851-20210422
-X-UUID: 6c61a8f8a36f4d48b3aa977653ea8851-20210422
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <zhiyong.tao@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2146847449; Thu, 22 Apr 2021 11:36:09 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 22 Apr 2021 11:36:07 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 22 Apr 2021 11:36:06 +0800
-From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
-To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
-        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
-        <sean.wang@kernel.org>
-CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
-        <hui.liu@mediatek.com>, <eddie.huang@mediatek.com>,
-        <jg_poxu@mediatek.com>, <biao.huang@mediatek.com>,
-        <hongzhou.yang@mediatek.com>, <sean.wang@mediatek.com>,
-        <seiya.wang@mediatek.com>, <sj.huang@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>
-Subject: [PATCH v5] pinctrl: add rsel setting on MT8195
-Date:   Thu, 22 Apr 2021 11:35:59 +0800
-Message-ID: <20210422033559.29700-2-zhiyong.tao@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210422033559.29700-1-zhiyong.tao@mediatek.com>
-References: <20210422033559.29700-1-zhiyong.tao@mediatek.com>
+        id S230319AbhDVD5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 23:57:25 -0400
+Received: from m176149.mail.qiye.163.com ([59.111.176.149]:19036 "EHLO
+        m176149.mail.qiye.163.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229536AbhDVD5Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 23:57:24 -0400
+X-Greylist: delayed 630 seconds by postgrey-1.27 at vger.kernel.org; Wed, 21 Apr 2021 23:57:24 EDT
+Received: from vivo.com (wm-9.qy.internal [127.0.0.1])
+        by m176149.mail.qiye.163.com (Hmail) with ESMTP id 25A0E282E70;
+        Thu, 22 Apr 2021 11:46:18 +0800 (CST)
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+Message-ID: <AJYA1QBSDhatYsq-n3vbqqrl.3.1619063178146.Hmail.wangqing@vivo.com>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: =?UTF-8?B?UmU6UmU6IFtQQVRDSCBWNiAxLzJdIHdhdGNoZG9nOiBtdGs6IHN1cHBvcnQgcHJlLXRpbWVvdXQgd2hlbiB0aGUgYmFyayBpcnEgaXMgYXZhaWxhYmxl?=
+X-Priority: 3
+X-Mailer: HMail Webmail Server V2.0 Copyright (c) 2016-163.com
+X-Originating-IP: 36.152.145.182
+In-Reply-To: <740481ed-97e0-3439-1af2-bc54cdb28536@roeck-us.net>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 4751D653B100337B4670D9DA71444D5CC62E43A955A1B1D0D0D2B03C28ED45912000:8
-X-MTK:  N
+Received: from wangqing@vivo.com( [36.152.145.182) ] by ajax-webmail ( [127.0.0.1] ) ; Thu, 22 Apr 2021 11:46:18 +0800 (GMT+08:00)
+From:   =?UTF-8?B?546L5pOO?= <wangqing@vivo.com>
+Date:   Thu, 22 Apr 2021 11:46:18 +0800 (GMT+08:00)
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZS1VLWVdZKFlBSE83V1ktWUFJV1kPCR
+        oVCBIfWUFZGR4ZS1ZJSU8fGUJKS0kYHxlVEwETFhoSFyQUDg9ZV1kWGg8SFR0UWUFZT0tIVUpKS0
+        hKTFVLWQY+
+X-HM-Sender-Digest: e1kJHlYWEh9ZQU1IS09OS0tDS05CN1dZDB4ZWUEPCQ4eV1kSHx4VD1lB
+        WUc6MSI6Sio5KD8TGg8iCApWFUgNGQoKCRdVSFVKTUpCS01ISkxDTktMVTMWGhIXVQwaFRwKEhUc
+        Ow0SDRRVGBQWRVlXWRILWUFZSE1VSk5JVUpPTlVKQ0lZV1kIAVlBQkhPQjcG
+X-HM-Tid: 0a78f7af83ad9395kuws25a0e282e70
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch provides rsel setting on MT8195.
-
-Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
----
- drivers/pinctrl/mediatek/pinctrl-mt8195.c     | 22 +++++++++++++++++++
- .../pinctrl/mediatek/pinctrl-mtk-common-v2.c  | 14 ++++++++++++
- .../pinctrl/mediatek/pinctrl-mtk-common-v2.h  | 10 +++++++++
- drivers/pinctrl/mediatek/pinctrl-paris.c      | 16 ++++++++++++++
- 4 files changed, 62 insertions(+)
-
-diff --git a/drivers/pinctrl/mediatek/pinctrl-mt8195.c b/drivers/pinctrl/mediatek/pinctrl-mt8195.c
-index a7500e18bb1d..66608b8d346a 100644
---- a/drivers/pinctrl/mediatek/pinctrl-mt8195.c
-+++ b/drivers/pinctrl/mediatek/pinctrl-mt8195.c
-@@ -779,6 +779,25 @@ static const struct mtk_pin_field_calc mt8195_pin_drv_adv_range[] = {
- 	PIN_FIELD_BASE(45, 45, 1, 0x040, 0x10, 9, 3),
- };
- 
-+static const struct mtk_pin_field_calc mt8195_pin_rsel_range[] = {
-+	PIN_FIELD_BASE(8, 8, 4, 0x0c0, 0x10, 15, 3),
-+	PIN_FIELD_BASE(9, 9, 4, 0x0c0, 0x10, 0, 3),
-+	PIN_FIELD_BASE(10, 10, 4, 0x0c0, 0x10, 18, 3),
-+	PIN_FIELD_BASE(11, 11, 4, 0x0c0, 0x10, 3, 3),
-+	PIN_FIELD_BASE(12, 12, 4, 0x0c0, 0x10, 21, 3),
-+	PIN_FIELD_BASE(13, 13, 4, 0x0c0, 0x10, 6, 3),
-+	PIN_FIELD_BASE(14, 14, 4, 0x0c0, 0x10, 24, 3),
-+	PIN_FIELD_BASE(15, 15, 4, 0x0c0, 0x10, 9, 3),
-+	PIN_FIELD_BASE(16, 16, 4, 0x0c0, 0x10, 27, 3),
-+	PIN_FIELD_BASE(17, 17, 4, 0x0c0, 0x10, 12, 3),
-+	PIN_FIELD_BASE(29, 29, 2, 0x080, 0x10, 0, 3),
-+	PIN_FIELD_BASE(30, 30, 2, 0x080, 0x10, 3, 3),
-+	PIN_FIELD_BASE(34, 34, 1, 0x0e0, 0x10, 0, 3),
-+	PIN_FIELD_BASE(35, 35, 1, 0x0e0, 0x10, 3, 3),
-+	PIN_FIELD_BASE(44, 44, 1, 0x0e0, 0x10, 6, 3),
-+	PIN_FIELD_BASE(45, 45, 1, 0x0e0, 0x10, 9, 3),
-+};
-+
- static const struct mtk_pin_reg_calc mt8195_reg_cals[PINCTRL_PIN_REG_MAX] = {
- 	[PINCTRL_PIN_REG_MODE] = MTK_RANGE(mt8195_pin_mode_range),
- 	[PINCTRL_PIN_REG_DIR] = MTK_RANGE(mt8195_pin_dir_range),
-@@ -793,6 +812,7 @@ static const struct mtk_pin_reg_calc mt8195_reg_cals[PINCTRL_PIN_REG_MAX] = {
- 	[PINCTRL_PIN_REG_R0] = MTK_RANGE(mt8195_pin_r0_range),
- 	[PINCTRL_PIN_REG_R1] = MTK_RANGE(mt8195_pin_r1_range),
- 	[PINCTRL_PIN_REG_DRV_ADV] = MTK_RANGE(mt8195_pin_drv_adv_range),
-+	[PINCTRL_PIN_REG_RSEL] = MTK_RANGE(mt8195_pin_rsel_range),
- };
- 
- static const char * const mt8195_pinctrl_register_base_names[] = {
-@@ -823,6 +843,8 @@ static const struct mtk_pin_soc mt8195_data = {
- 	.drive_get = mtk_pinconf_drive_get_rev1,
- 	.adv_drive_get = mtk_pinconf_adv_drive_get_raw,
- 	.adv_drive_set = mtk_pinconf_adv_drive_set_raw,
-+	.rsel_set = mtk_pinconf_rsel_set,
-+	.rsel_get = mtk_pinconf_rsel_get,
- };
- 
- static const struct of_device_id mt8195_pinctrl_of_match[] = {
-diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-index 2b51f4a9b860..d1526d0c6248 100644
---- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-+++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-@@ -1041,6 +1041,20 @@ int mtk_pinconf_adv_drive_get_raw(struct mtk_pinctrl *hw,
- }
- EXPORT_SYMBOL_GPL(mtk_pinconf_adv_drive_get_raw);
- 
-+int mtk_pinconf_rsel_set(struct mtk_pinctrl *hw,
-+			 const struct mtk_pin_desc *desc, u32 arg)
-+{
-+	return mtk_hw_set_value(hw, desc, PINCTRL_PIN_REG_RSEL, arg);
-+}
-+EXPORT_SYMBOL_GPL(mtk_pinconf_rsel_set);
-+
-+int mtk_pinconf_rsel_get(struct mtk_pinctrl *hw,
-+			 const struct mtk_pin_desc *desc, u32 *val)
-+{
-+	return mtk_hw_get_value(hw, desc, PINCTRL_PIN_REG_RSEL, val);
-+}
-+EXPORT_SYMBOL_GPL(mtk_pinconf_rsel_get);
-+
- MODULE_LICENSE("GPL v2");
- MODULE_AUTHOR("Sean Wang <sean.wang@mediatek.com>");
- MODULE_DESCRIPTION("Pin configuration library module for mediatek SoCs");
-diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-index fd5ce9c5dcbd..570e8da7bf38 100644
---- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-+++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-@@ -67,6 +67,7 @@ enum {
- 	PINCTRL_PIN_REG_DRV_E0,
- 	PINCTRL_PIN_REG_DRV_E1,
- 	PINCTRL_PIN_REG_DRV_ADV,
-+	PINCTRL_PIN_REG_RSEL,
- 	PINCTRL_PIN_REG_MAX,
- };
- 
-@@ -237,6 +238,10 @@ struct mtk_pin_soc {
- 			     const struct mtk_pin_desc *desc, u32 arg);
- 	int (*adv_drive_get)(struct mtk_pinctrl *hw,
- 			     const struct mtk_pin_desc *desc, u32 *val);
-+	int (*rsel_set)(struct mtk_pinctrl *hw,
-+			const struct mtk_pin_desc *desc, u32 arg);
-+	int (*rsel_get)(struct mtk_pinctrl *hw,
-+			const struct mtk_pin_desc *desc, u32 *val);
- 
- 	/* Specific driver data */
- 	void				*driver_data;
-@@ -320,5 +325,10 @@ int mtk_pinconf_adv_drive_set_raw(struct mtk_pinctrl *hw,
- int mtk_pinconf_adv_drive_get_raw(struct mtk_pinctrl *hw,
- 				  const struct mtk_pin_desc *desc, u32 *val);
- 
-+int mtk_pinconf_rsel_set(struct mtk_pinctrl *hw,
-+			 const struct mtk_pin_desc *desc, u32 arg);
-+int mtk_pinconf_rsel_get(struct mtk_pinctrl *hw,
-+			 const struct mtk_pin_desc *desc, u32 *val);
-+
- bool mtk_is_virt_gpio(struct mtk_pinctrl *hw, unsigned int gpio_n);
- #endif /* __PINCTRL_MTK_COMMON_V2_H */
-diff --git a/drivers/pinctrl/mediatek/pinctrl-paris.c b/drivers/pinctrl/mediatek/pinctrl-paris.c
-index da1f19288aa6..392fdfcb5b87 100644
---- a/drivers/pinctrl/mediatek/pinctrl-paris.c
-+++ b/drivers/pinctrl/mediatek/pinctrl-paris.c
-@@ -22,6 +22,8 @@
- #define MTK_PIN_CONFIG_PU_ADV	(PIN_CONFIG_END + 3)
- #define MTK_PIN_CONFIG_PD_ADV	(PIN_CONFIG_END + 4)
- #define MTK_PIN_CONFIG_DRV_ADV	(PIN_CONFIG_END + 5)
-+#define MTK_PIN_CONFIG_RSEL	(PIN_CONFIG_END + 6)
-+
- 
- static const struct pinconf_generic_params mtk_custom_bindings[] = {
- 	{"mediatek,tdsel",	MTK_PIN_CONFIG_TDSEL,		0},
-@@ -29,6 +31,7 @@ static const struct pinconf_generic_params mtk_custom_bindings[] = {
- 	{"mediatek,pull-up-adv", MTK_PIN_CONFIG_PU_ADV,		1},
- 	{"mediatek,pull-down-adv", MTK_PIN_CONFIG_PD_ADV,	1},
- 	{"mediatek,drive-strength-adv", MTK_PIN_CONFIG_DRV_ADV,	2},
-+	{"mediatek,rsel",		MTK_PIN_CONFIG_RSEL,	2},
- };
- 
- #ifdef CONFIG_DEBUG_FS
-@@ -38,6 +41,7 @@ static const struct pin_config_item mtk_conf_items[] = {
- 	PCONFDUMP(MTK_PIN_CONFIG_PU_ADV, "pu-adv", NULL, true),
- 	PCONFDUMP(MTK_PIN_CONFIG_PD_ADV, "pd-adv", NULL, true),
- 	PCONFDUMP(MTK_PIN_CONFIG_DRV_ADV, "drive-strength-adv", NULL, true),
-+	PCONFDUMP(MTK_PIN_CONFIG_RSEL, "rsel", NULL, true),
- };
- #endif
- 
-@@ -176,6 +180,12 @@ static int mtk_pinconf_get(struct pinctrl_dev *pctldev,
- 		else
- 			err = -ENOTSUPP;
- 		break;
-+	case MTK_PIN_CONFIG_RSEL:
-+		if (hw->soc->rsel_get)
-+			err = hw->soc->rsel_get(hw, desc, &ret);
-+		else
-+			err = -ENOTSUPP;
-+		break;
- 	default:
- 		err = -ENOTSUPP;
- 	}
-@@ -295,6 +305,12 @@ static int mtk_pinconf_set(struct pinctrl_dev *pctldev, unsigned int pin,
- 		else
- 			err = -ENOTSUPP;
- 		break;
-+	case MTK_PIN_CONFIG_RSEL:
-+		if (hw->soc->rsel_set)
-+			err = hw->soc->rsel_set(hw, desc, arg);
-+		else
-+			err = -ENOTSUPP;
-+		break;
- 	default:
- 		err = -ENOTSUPP;
- 	}
--- 
-2.18.0
-
+Cj5PbiA0LzIxLzIxIDc6NDUgUE0sIFdhbmcgUWluZyB3cm90ZToKPj4gVXNlIHRoZSBiYXJrIGlu
+dGVycnVwdCBhcyB0aGUgcHJldGltZW91dCBub3RpZmllciBpZiBhdmFpbGFibGUuCj4+IAo+PiBX
+aGVuIHRoZSB3YXRjaGRvZyB0aW1lciBleHBpcmVzIGluIGR1YWwgbW9kZSwgYW4gaW50ZXJydXB0
+IHdpbGwgYmUKPj4gdHJpZ2dlcmVkIGZpcnN0LCB0aGVuIHRoZSB0aW1pbmcgcmVzdGFydHMuIFRo
+ZSByZXNldCBzaWduYWwgd2lsbCBiZQo+PiBpbml0aWF0ZWQgd2hlbiB0aGUgdGltZXIgZXhwaXJl
+cyBhZ2Fpbi4KPj4gCj4+IFRoZSBwcmV0aW1lb3V0IG5vdGlmaWNhdGlvbiBzaGFsbCBvY2N1ciBh
+dCB0aW1lb3V0LXNlYy8yLgo+PiAKPj4gVjI6Cj4+IC0gcGFuaWMoKSBieSBkZWZhdWx0IGlmIFdB
+VENIRE9HX1BSRVRJTUVPVVRfR09WIGlzIG5vdCBlbmFibGVkLgo+PiAKPj4gVjM6Cj4+IC0gTW9k
+aWZ5IHRoZSBwcmV0aW1lb3V0IGJlaGF2aW9yLCBtYW51YWxseSByZXNldCBhZnRlciB0aGUgcHJl
+dGltZW91dAo+PiAtIGlzIHByb2Nlc3NlZCBhbmQgd2FpdCB1bnRpbCB0aW1lb3V0Lgo+PiAKPj4g
+VjQ6Cj4+IC0gUmVtb3ZlIHByZXRpbWVvdXQgcmVsYXRlZCBwcm9jZXNzaW5nLiAKPj4gLSBBZGQg
+ZHVhbCBtb2RlIGNvbnRyb2wgc2VwYXJhdGVseS4KPj4gCj4+IFY1Ogo+PiAtIEZpeCBzb21lIGZv
+cm1hdHRpbmcgYW5kIHByaW50aW5nIHByb2JsZW1zLgo+PiAKPj4gVjY6Cj4+IC0gUmVhbGl6ZSBw
+cmV0aW1lb3V0IHByb2Nlc3NpbmcgdGhyb3VnaCBkdWFsbW9kZS4KPj4gCj4+IFNpZ25lZC1vZmYt
+Ynk6IFdhbmcgUWluZyA8d2FuZ3FpbmdAdml2by5jb20+Cj4+IC0tLQo+PiAgZHJpdmVycy93YXRj
+aGRvZy9tdGtfd2R0LmMgfCA1MyArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
+KysrKy0tLS0tCj4+ICAxIGZpbGUgY2hhbmdlZCwgNDggaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlv
+bnMoLSkKPj4gCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3dhdGNoZG9nL210a193ZHQuYyBiL2Ry
+aXZlcnMvd2F0Y2hkb2cvbXRrX3dkdC5jCj4+IGluZGV4IDk3Y2E5OTMuLmViYzY0OGIKPj4gLS0t
+IGEvZHJpdmVycy93YXRjaGRvZy9tdGtfd2R0LmMKPj4gKysrIGIvZHJpdmVycy93YXRjaGRvZy9t
+dGtfd2R0LmMKPj4gQEAgLTI1LDYgKzI1LDcgQEAKPj4gICNpbmNsdWRlIDxsaW51eC9yZXNldC1j
+b250cm9sbGVyLmg+Cj4+ICAjaW5jbHVkZSA8bGludXgvdHlwZXMuaD4KPj4gICNpbmNsdWRlIDxs
+aW51eC93YXRjaGRvZy5oPgo+PiArI2luY2x1ZGUgPGxpbnV4L2ludGVycnVwdC5oPgo+PiAgCj4+
+ICAjZGVmaW5lIFdEVF9NQVhfVElNRU9VVAkJMzEKPj4gICNkZWZpbmUgV0RUX01JTl9USU1FT1VU
+CQkxCj4+IEBAIC0xODQsMTUgKzE4NSwyMiBAQCBzdGF0aWMgaW50IG10a193ZHRfc2V0X3RpbWVv
+dXQoc3RydWN0IHdhdGNoZG9nX2RldmljZSAqd2R0X2RldiwKPj4gIHsKPj4gIAlzdHJ1Y3QgbXRr
+X3dkdF9kZXYgKm10a193ZHQgPSB3YXRjaGRvZ19nZXRfZHJ2ZGF0YSh3ZHRfZGV2KTsKPj4gIAl2
+b2lkIF9faW9tZW0gKndkdF9iYXNlID0gbXRrX3dkdC0+d2R0X2Jhc2U7Cj4+ICsJdW5zaWduZWQg
+aW50IHRpbWVvdXRfaW50ZXJ2YWw7Cj4+ICAJdTMyIHJlZzsKPj4gIAo+PiAtCXdkdF9kZXYtPnRp
+bWVvdXQgPSB0aW1lb3V0Owo+PiArCXRpbWVvdXRfaW50ZXJ2YWwgPSB3ZHRfZGV2LT50aW1lb3V0
+ID0gdGltZW91dDsKPj4gKwkvKgo+PiArCSAqIEluIGR1YWwgbW9kZSwgaXJxIHdpbGwgYmUgdHJp
+Z2dlcmVkIGF0IHRpbWVvdXQvMgo+PiArCSAqIHRoZSByZWFsIHRpbWVvdXQgb2NjdXJzIGF0IHRp
+bWVvdXQKPj4gKwkgKi8KPj4gKwlpZiAod2R0X2Rldi0+cHJldGltZW91dCkKPj4gKwkJdGltZW91
+dF9pbnRlcnZhbCA9IHdkdF9kZXYtPnByZXRpbWVvdXQgPSB0aW1lb3V0LzI7Cj4KPlBsZWFzZSBy
+dW4gY2hlY2twYXRjaCAtLXN0cmljdCBhbmQgZml4IHdoYXQgaXQgcmVwb3J0cy4KPkFsc28sIHRo
+ZXJlIHNob3VsZCBiZSBhIHNldF9wcmV0aW1lb3V0IGZ1bmN0aW9uIHRvIHNldCB0aGUKPnByZXRp
+bWVvdXQuIEl0IGlzIG9rIHRvIHVwZGF0ZSBpdCBoZXJlLCBidXQgaXQgc2hvdWxkIGJlIHNldAo+
+aW4gaXRzIG93biBmdW5jdGlvbiB0byBtYWtlIHN1cmUgdGhhdCB0aGUgYWN0dWFsIHZhbHVlCj5p
+cyByZXBvcnRlZCBiYWNrIHRvIHVzZXJzcGFjZS4KPgo+VGhhbmtzLAo+R3VlbnRlcgoKVGhlIHJl
+YXNvbiB3aHkgdGhlIHNldF9wcmV0aW1lb3V0IGludGVyZmFjZSBpcyBub3QgcHJvdmlkZWQgaXMg
+CmJlY2F1c2UgdGhlIHByZXRpbWVvdXQgaXMgZml4ZWQgYWZ0ZXIgdGhlIHRpbWVvdXQgaXMgc2V0
+LCAgd2UgbmVlZAp0byBtb2RpZnkgdGltZW91dCBhZnRlciBzZXR0aW5nIHByZXRpbWVvdXQsIHdo
+aWNoIGlzIHB1enpsaW5nLgoKSSB3aWxsIHBvaW50IG91dCB0aGlzIGJlaGF2aW9yIGluIHRoZSBk
+b2MgYW5kIGNvbW1lbnRzLApvciBpbXBsZW1lbnQgdGhlIHNldF9wcmV0aW1lb3V0IGludGVyZmFj
+ZSBvbmx5IGFzIGEgcHJpbnQgcHJvbXB0LgpXaGF0IGRvIHlvdSB0aGluayBvZiBpdD8KClRoYW5r
+cywKUWluZwo+Cj4+ICAKPj4gIAkvKgo+PiAgCSAqIE9uZSBiaXQgaXMgdGhlIHZhbHVlIG9mIDUx
+MiB0aWNrcwo+PiAgCSAqIFRoZSBjbG9jayBoYXMgMzIgS0h6Cj4+ICAJICovCj4+IC0JcmVnID0g
+V0RUX0xFTkdUSF9USU1FT1VUKHRpbWVvdXQgPDwgNikgfCBXRFRfTEVOR1RIX0tFWTsKPj4gKwly
+ZWcgPSBXRFRfTEVOR1RIX1RJTUVPVVQodGltZW91dF9pbnRlcnZhbCA8PCA2KSB8IFdEVF9MRU5H
+VEhfS0VZOwo+PiAgCWlvd3JpdGUzMihyZWcsIHdkdF9iYXNlICsgV0RUX0xFTkdUSCk7Cj4+ICAK
+Pj4gIAltdGtfd2R0X3Bpbmcod2R0X2Rldik7Cj4+IEBAIC0yMzksMTMgKzI0NywyNSBAQCBzdGF0
+aWMgaW50IG10a193ZHRfc3RhcnQoc3RydWN0IHdhdGNoZG9nX2RldmljZSAqd2R0X2RldikKPj4g
+IAkJcmV0dXJuIHJldDsKPj4gIAo+PiAgCXJlZyA9IGlvcmVhZDMyKHdkdF9iYXNlICsgV0RUX01P
+REUpOwo+PiAtCXJlZyAmPSB+KFdEVF9NT0RFX0lSUV9FTiB8IFdEVF9NT0RFX0RVQUxfRU4pOwo+
+PiArCWlmICh3ZHRfZGV2LT5wcmV0aW1lb3V0KQo+PiArCQlyZWcgfD0gKFdEVF9NT0RFX0lSUV9F
+TiB8IFdEVF9NT0RFX0RVQUxfRU4pOwo+PiArCWVsc2UKPj4gKwkJcmVnICY9IH4oV0RUX01PREVf
+SVJRX0VOIHwgV0RUX01PREVfRFVBTF9FTik7Cj4+ICAJcmVnIHw9IChXRFRfTU9ERV9FTiB8IFdE
+VF9NT0RFX0tFWSk7Cj4+ICAJaW93cml0ZTMyKHJlZywgd2R0X2Jhc2UgKyBXRFRfTU9ERSk7Cj4+
+ICAKPj4gIAlyZXR1cm4gMDsKPj4gIH0KPj4gIAo+PiArc3RhdGljIGlycXJldHVybl90IG10a193
+ZHRfaXNyKGludCBpcnEsIHZvaWQgKmFyZykKPj4gK3sKPj4gKwlzdHJ1Y3Qgd2F0Y2hkb2dfZGV2
+aWNlICp3ZGQgPSBhcmc7Cj4+ICsKPj4gKwl3YXRjaGRvZ19ub3RpZnlfcHJldGltZW91dCh3ZGQp
+Owo+PiArCj4+ICsJcmV0dXJuIElSUV9IQU5ETEVEOwo+PiArfQo+PiArCj4+ICBzdGF0aWMgY29u
+c3Qgc3RydWN0IHdhdGNoZG9nX2luZm8gbXRrX3dkdF9pbmZvID0gewo+PiAgCS5pZGVudGl0eQk9
+IERSVl9OQU1FLAo+PiAgCS5vcHRpb25zCT0gV0RJT0ZfU0VUVElNRU9VVCB8Cj4+IEBAIC0yNTMs
+NiArMjczLDE0IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3Qgd2F0Y2hkb2dfaW5mbyBtdGtfd2R0X2lu
+Zm8gPSB7Cj4+ICAJCQkgIFdESU9GX01BR0lDQ0xPU0UsCj4+ICB9Owo+PiAgCj4+ICtzdGF0aWMg
+Y29uc3Qgc3RydWN0IHdhdGNoZG9nX2luZm8gbXRrX3dkdF9wdF9pbmZvID0gewo+PiArCS5pZGVu
+dGl0eQk9IERSVl9OQU1FLAo+PiArCS5vcHRpb25zCT0gV0RJT0ZfU0VUVElNRU9VVCB8Cj4+ICsJ
+CQkgIFdESU9GX1BSRVRJTUVPVVQgfAo+PiArCQkJICBXRElPRl9LRUVQQUxJVkVQSU5HIHwKPj4g
+KwkJCSAgV0RJT0ZfTUFHSUNDTE9TRSwKPj4gK307Cj4+ICsKPj4gIHN0YXRpYyBjb25zdCBzdHJ1
+Y3Qgd2F0Y2hkb2dfb3BzIG10a193ZHRfb3BzID0gewo+PiAgCS5vd25lcgkJPSBUSElTX01PRFVM
+RSwKPj4gIAkuc3RhcnQJCT0gbXRrX3dkdF9zdGFydCwKPj4gQEAgLTI2Nyw3ICsyOTUsNyBAQCBz
+dGF0aWMgaW50IG10a193ZHRfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKPj4g
+IAlzdHJ1Y3QgZGV2aWNlICpkZXYgPSAmcGRldi0+ZGV2Owo+PiAgCXN0cnVjdCBtdGtfd2R0X2Rl
+diAqbXRrX3dkdDsKPj4gIAljb25zdCBzdHJ1Y3QgbXRrX3dkdF9kYXRhICp3ZHRfZGF0YTsKPj4g
+LQlpbnQgZXJyOwo+PiArCWludCBlcnIsIGlycTsKPj4gIAo+PiAgCW10a193ZHQgPSBkZXZtX2t6
+YWxsb2MoZGV2LCBzaXplb2YoKm10a193ZHQpLCBHRlBfS0VSTkVMKTsKPj4gIAlpZiAoIW10a193
+ZHQpCj4+IEBAIC0yNzksNyArMzA3LDIyIEBAIHN0YXRpYyBpbnQgbXRrX3dkdF9wcm9iZShzdHJ1
+Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQo+PiAgCWlmIChJU19FUlIobXRrX3dkdC0+d2R0X2Jh
+c2UpKQo+PiAgCQlyZXR1cm4gUFRSX0VSUihtdGtfd2R0LT53ZHRfYmFzZSk7Cj4+ICAKPj4gLQlt
+dGtfd2R0LT53ZHRfZGV2LmluZm8gPSAmbXRrX3dkdF9pbmZvOwo+PiArCWlycSA9IHBsYXRmb3Jt
+X2dldF9pcnEocGRldiwgMCk7Cj4+ICsJaWYgKGlycSA+IDApIHsKPj4gKwkJZXJyID0gZGV2bV9y
+ZXF1ZXN0X2lycSgmcGRldi0+ZGV2LCBpcnEsIG10a193ZHRfaXNyLCAwLCAid2R0X2JhcmsiLAo+
+PiArCQkJCQkJCSZtdGtfd2R0LT53ZHRfZGV2KTsKPj4gKwkJaWYgKGVycikKPj4gKwkJCXJldHVy
+biBlcnI7Cj4+ICsKPj4gKwkJbXRrX3dkdC0+d2R0X2Rldi5pbmZvID0gJm10a193ZHRfcHRfaW5m
+bzsKPj4gKwkJbXRrX3dkdC0+d2R0X2Rldi5wcmV0aW1lb3V0ID0gV0RUX01BWF9USU1FT1VULzI7
+Cj4+ICsJfSBlbHNlIHsKPj4gKwkJaWYgKGlycSA9PSAtRVBST0JFX0RFRkVSKQo+PiArCQkJcmV0
+dXJuIC1FUFJPQkVfREVGRVI7Cj4+ICsKPj4gKwkJbXRrX3dkdC0+d2R0X2Rldi5pbmZvID0gJm10
+a193ZHRfaW5mbzsKPj4gKwl9Cj4+ICsKPj4gIAltdGtfd2R0LT53ZHRfZGV2Lm9wcyA9ICZtdGtf
+d2R0X29wczsKPj4gIAltdGtfd2R0LT53ZHRfZGV2LnRpbWVvdXQgPSBXRFRfTUFYX1RJTUVPVVQ7
+Cj4+ICAJbXRrX3dkdC0+d2R0X2Rldi5tYXhfaHdfaGVhcnRiZWF0X21zID0gV0RUX01BWF9USU1F
+T1VUICogMTAwMDsKPj4gCj4KDQoNCg==
