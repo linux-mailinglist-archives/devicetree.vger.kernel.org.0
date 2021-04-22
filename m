@@ -2,113 +2,289 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2829B368119
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 15:03:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E1BB36814A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 15:13:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235791AbhDVNDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 09:03:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45890 "EHLO
+        id S235830AbhDVNOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 09:14:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235977AbhDVNDw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 09:03:52 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5D59C06138C
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 06:03:17 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id e7so35747553wrs.11
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 06:03:17 -0700 (PDT)
+        with ESMTP id S230005AbhDVNOT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 09:14:19 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADBCCC06174A;
+        Thu, 22 Apr 2021 06:13:43 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id x12so47956994ejc.1;
+        Thu, 22 Apr 2021 06:13:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ZHLzNOHj90q7Oj3aQnNhu92h15Ny9i/xNLc3zPdfQ4g=;
-        b=WpphpWM7d4l8VUDnKXFsMAY2uU4Ft2tRsNLcpI2xJpUu4g0bNIaUUKE0gGVDhLiX/g
-         OjnVmquOzil9wscCXKdb84emGCUDQkMe4RFl4hJh8KN5Wd87NYtHx57Sv7BqWckv6n5b
-         mVKgWt6qQdgryA8hdzD2XfYDmSwjXZKn5xTSogNopKH/q3ToOfYDhJw1XORyZm3uCz19
-         LImQkK/2tVquZeYhYYgKPruClmVOtjO6X9iyj5D3O7rCfKE3B5QJfT3WgAaiUusI+dvP
-         QA4JMoLeJWEErqUPzSDb5DHeWxwyXkFsBjyqfLJOX31XqB42pSNoVWxe8TRRr0KNpNzp
-         Htbg==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=3hsr6lCLd7JFlK9taoygzcaxUpuGrqlvJuCbv9uQLPQ=;
+        b=faywr3P7WFufLom1rX2WOmWEReYjumYY9+Q6qWzuIDUblJZ2Hxu+9YJPrj+Eikd4cf
+         RHkz3e/YFfIXC6Us+iaAW/hnfF7gtQ4tegZIM1gbbESI19XyOjf+9s60ZhU4khOVRGSz
+         TMU4rRlg+LNAyMKzX5rNrDsMZ6AA80QzwLWnt5ac/tggOvuZN901ZZ5Ah1lUv4DWXVUB
+         1pRQyRooIodQOoPK0gLLq2miQkvc1pgNe82optlJgVzv+pSvAmJzpXJU5kYuuEE0BqEF
+         XVYqJJZbvEGytp0OI/5zaAbSILvPtqeY+DNHFIALp6cCINm1R5CtzQXunT4f7g7+06PB
+         n9fA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZHLzNOHj90q7Oj3aQnNhu92h15Ny9i/xNLc3zPdfQ4g=;
-        b=piEFMvV1OwLkFu/cLy/2sToXMxR0wM0dWYiJ0DmWoFt9+vq+45eQYSNBO9ZhhBE9aR
-         f7Qfhp1D5luA3Q/TKMTzDOa+YosFiPVJYCAPkI7xmW1LA9CrJabUOVLFMe+M1mQyB64/
-         wy7qXARzhAu/Qf3Kbs5KBhj/LGeRH72c/obmx++kY2sMfE4kO1sMsV1EblyJXrS09Q6+
-         HHYEjICFygg+Y1FpKVurJJ2bEKanbXrqUKrNDSZno7JPzmibpGtUygUwR/iYsXypa1qS
-         MNl1itrCsNFy6ir4gVDBR0w7hfOG8RM5MIdwgXrToNrf8JsN/A3XZ+lbdltAWbQw0phv
-         6ozw==
-X-Gm-Message-State: AOAM532bQEwyv3+MfxaI7m+jM3XBnGH8PO8qM42i7Z3i51mWaavmN6Wt
-        t+F2SziFLM4DIY30Ef91P9vNAg==
-X-Google-Smtp-Source: ABdhPJzhRXkQSnlUedDmqIlV0CkRTeBNaGDZqXpCq7gzsxQIKyjCm9svb44UVutt3ylPh+tyhXcIWw==
-X-Received: by 2002:a5d:47ce:: with SMTP id o14mr4045996wrc.236.1619096595880;
-        Thu, 22 Apr 2021 06:03:15 -0700 (PDT)
-Received: from google.com (105.168.195.35.bc.googleusercontent.com. [35.195.168.105])
-        by smtp.gmail.com with ESMTPSA id n18sm3369617wrw.11.2021.04.22.06.03.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Apr 2021 06:03:15 -0700 (PDT)
-Date:   Thu, 22 Apr 2021 13:03:12 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Ard Biesheuvel <ardb@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sasha Levin <sashal@kernel.org>,
-        stable <stable@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        KarimAllah Ahmed <karahmed@amazon.de>,
-        Android Kernel Team <kernel-team@android.com>,
-        Architecture Mailman List <boot-architecture@lists.linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [v5.4 stable] arm: stm32: Regression observed on "no-map"
- reserved memory region
-Message-ID: <YIF0EIXylUJzIsTS@google.com>
-References: <4a4734d6-49df-677b-71d3-b926c44d89a9@foss.st.com>
- <CAL_JsqKGG8E9Y53+az+5qAOOGiZRAA-aD-1tKB-hcOp+m3CJYw@mail.gmail.com>
- <001f8550-b625-17d2-85a6-98a483557c70@foss.st.com>
- <CAL_Jsq+LUPZFhXd+j-xM67rZB=pvEvZM+1sfckip0Lqq02PkZQ@mail.gmail.com>
- <CAMj1kXE2Mgr9CsAMnKXff+96xhDaE5OLeNhypHvpN815vZGZhQ@mail.gmail.com>
- <d7f9607a-9fcb-7ba2-6e39-03030da2deb0@gmail.com>
- <YH/ixPnHMxNo08mJ@google.com>
- <cc8f96a4-6c85-b869-d3cf-5dc543982054@gmail.com>
- <498b8759-1a70-d80f-3a4d-39042b4f608e@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=3hsr6lCLd7JFlK9taoygzcaxUpuGrqlvJuCbv9uQLPQ=;
+        b=Mg9DjCt/km9aTNwgno/dtwzuDCCpsvf5ov84F8xjqKMlxtHhFeGDB5fslv9/gSosIF
+         deIkQJsX0HlFD5gvqYx8jWm+BUa5QRVOKNAQq5iH/g9k7lFBiz3TgB4AwdOAt+FXRhpc
+         t8yDXoPSMmZLdXQLy8SQaF3MmS4AIyHJkgZyH9eQwYEAbUWKYqmnjgGPNa/uDmEag0ti
+         hVQ7VMV5xwuxUiarkHF8AlXYjKYMw7iFr4Y7gHYIaPECwwrfDcFQ0LGT1XqcslgWFCGP
+         9tiDrQnbeNVt/vVrShu/uv8KcDQAMN0PLiR8kDRXCxg0mEUoJurlumufJgRSNi3F5KKT
+         osbg==
+X-Gm-Message-State: AOAM531CavmZm7ro1SScYD/irON/lCnEK/s0KPXo+9N6t41mQpLHaWgm
+        t/A4sdfAjGyoORLEreuu0tU=
+X-Google-Smtp-Source: ABdhPJzXCfbHhFUzaYpljXPt1Ch/X5HDXhU8dNkH2BmhotD1eZOoiPgxt8o6p0gUe9CTiF8IOY5I3g==
+X-Received: by 2002:a17:906:a449:: with SMTP id cb9mr3312469ejb.118.1619097222388;
+        Thu, 22 Apr 2021 06:13:42 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id f22sm1828519ejr.35.2021.04.22.06.13.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Apr 2021 06:13:41 -0700 (PDT)
+Subject: Re: [PATCH 1/3] dt-bindings: iommu: rockchip: Convert IOMMU to DT
+ schema
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
+        heiko@sntech.de, xxm@rock-chips.com
+Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20210422072442.111070-1-benjamin.gaignard@collabora.com>
+ <20210422072442.111070-2-benjamin.gaignard@collabora.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <c2087946-0dfb-b66e-bcb9-5bba5fd098bf@gmail.com>
+Date:   Thu, 22 Apr 2021 15:13:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <498b8759-1a70-d80f-3a4d-39042b4f608e@gmail.com>
+In-Reply-To: <20210422072442.111070-2-benjamin.gaignard@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 21 Apr 2021 at 08:17:28 (-0700), Florian Fainelli wrote:
-> 5.10.31 works correctly and shows the following for my platform:
+Hi Benjamin,
+
+Please check robh/dtbs-check failed build log at
+
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210422072442.111070-2-benjamin.gaignard@collabora.com/
+
+make ARCH=arm64 dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+
+
+make ARCH=arm dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+
+Test if all notifications are gone.
+
+===
+
+YAML also checks extra properties like "power-domains" not yet included
+but needed for rk3568.
+Add them in a separate patch.
+
+===
+
+rk3229-evb.dt.yaml: iommu@20030480: 'iommu-cells' does not match any of
+the regexes
+
+Change a rk322x.dtsi property to #iommu-cells in a separate patch.
+
+===
+
+rk3229-xms6.dt.yaml: iommu@20030480: reg: [[537068672, 64], [537068736,
+64]] is too long
+
+Change reg minItems maxItems.
+
+===
+
+Johan
+
+On 4/22/21 9:24 AM, Benjamin Gaignard wrote:
+> Convert Rockchip IOMMU to DT schema
 > 
-> 40000000-fdffefff : System RAM
->   40200000-40eaffff : Kernel code
->   40eb0000-4237ffff : reserved
->   42380000-425affff : Kernel data
->   45000000-450fffff : reserved
->   47000000-4704ffff : reserved
->   4761e000-47624fff : reserved
->   f8c00000-fdbfffff : reserved
-> fdfff000-ffffffff : reserved
-> 100000000-13fffffff : System RAM
->   13b000000-13effffff : reserved
->   13f114000-13f173fff : reserved
->   13f174000-13f774fff : reserved
->   13f775000-13f7e8fff : reserved
->   13f7eb000-13f7ecfff : reserved
->   13f7ed000-13f7effff : reserved
->   13f7f0000-13fffffff : reserved
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> ---
+>  .../bindings/iommu/rockchip,iommu.txt         | 38 ----------
+>  .../bindings/iommu/rockchip,iommu.yaml        | 76 +++++++++++++++++++
+>  2 files changed, 76 insertions(+), 38 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/iommu/rockchip,iommu.txt
+>  create mode 100644 Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/rockchip,iommu.txt b/Documentation/devicetree/bindings/iommu/rockchip,iommu.txt
+> deleted file mode 100644
+> index 6ecefea1c6f9..000000000000
+> --- a/Documentation/devicetree/bindings/iommu/rockchip,iommu.txt
+> +++ /dev/null
+> @@ -1,38 +0,0 @@
+> -Rockchip IOMMU
+> -==============
+> -
+> -A Rockchip DRM iommu translates io virtual addresses to physical addresses for
+> -its master device.  Each slave device is bound to a single master device, and
+> -shares its clocks, power domain and irq.
+> -
+> -Required properties:
+> -- compatible      : Should be "rockchip,iommu"
+> -- reg             : Address space for the configuration registers
+> -- interrupts      : Interrupt specifier for the IOMMU instance
+> -- interrupt-names : Interrupt name for the IOMMU instance
+> -- #iommu-cells    : Should be <0>.  This indicates the iommu is a
+> -                    "single-master" device, and needs no additional information
+> -                    to associate with its master device.  See:
+> -                    Documentation/devicetree/bindings/iommu/iommu.txt
+> -- clocks          : A list of clocks required for the IOMMU to be accessible by
+> -                    the host CPU.
+> -- clock-names     : Should contain the following:
+> -	"iface" - Main peripheral bus clock (PCLK/HCL) (required)
+> -	"aclk"  - AXI bus clock (required)
+> -
+> -Optional properties:
+> -- rockchip,disable-mmu-reset : Don't use the mmu reset operation.
+> -			       Some mmu instances may produce unexpected results
+> -			       when the reset operation is used.
+> -
+> -Example:
+> -
+> -	vopl_mmu: iommu@ff940300 {
+> -		compatible = "rockchip,iommu";
+> -		reg = <0xff940300 0x100>;
+> -		interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+> -		interrupt-names = "vopl_mmu";
+> -		clocks = <&cru ACLK_VOP1>, <&cru HCLK_VOP1>;
+> -		clock-names = "aclk", "iface";
+> -		#iommu-cells = <0>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+> new file mode 100644
+> index 000000000000..ab128f8e4c73
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+> @@ -0,0 +1,76 @@
 
-OK, so if we're confident this works from 5.10 onwards, I would suggest
-to follow Ard's original suggestion to revert this patch from older
-LTSes as we're clearly missing something there.
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 
-Thanks,
-Quentin
+GPL-2.0
+This is a conversion of an existing document.
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iommu/rockchip,iommu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip IOMMU
+> +
+> +maintainers:
+> +  - Simon Xue <xxm@rock-chips.com>
+
+  - Heiko Stuebner <heiko@sntech.de>
+
+Add someone that can respond in a short time in case rob+dt wants to
+delete something.
+
+> +
+> +description: |+
+> +  A Rockchip DRM iommu translates io virtual addresses to physical addresses for
+
+> +  its master device. Each slave device is bound to a single master device, and
+
+No comma "," before "and"
+
+> +  shares its clocks, power domain and irq.
+> +
+> +  For information on assigning IOMMU controller to its peripheral devices,
+> +  see generic IOMMU bindings.
+> +
+> +properties:
+> +  compatible:
+> +    const: rockchip,iommu
+> +
+> +  reg:
+
+> +    maxItems: 1
+
+minItems: 1
+maxItems: 2
+
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-names:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Core clock
+> +      - description: Interface clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: aclk
+> +      - const: iface
+> +
+> +  "#iommu-cells":
+> +    const: 0
+> +
+
+  power-domains:
+    maxItems: 1
+
+Add in separate patch for review by rob+bt
+
+> +  rockchip,disable-mmu-reset:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+
+> +      Don't use the mmu reset operation.
+
+Do not use ....
+
+The use of "'" in a YAML description gives problems in some text
+highlighters. Try to avoid.
+
+> +      Some mmu instances may produce unexpected results
+> +      when the reset operation is used.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - "#iommu-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3399-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    vopl_mmu: iommu@ff940300 {
+> +      compatible = "rockchip,iommu";
+> +      reg = <0xff940300 0x100>;
+> +      interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+> +      interrupt-names = "vopl_mmu";
+> +      clocks = <&cru ACLK_VOP1>, <&cru HCLK_VOP1>;
+> +      clock-names = "aclk", "iface";
+> +      #iommu-cells = <0>;
+> +    };
+> 
+
