@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7956A3680FB
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 14:59:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2829B368119
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 15:03:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236376AbhDVNAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 09:00:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45056 "EHLO
+        id S235791AbhDVNDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 09:03:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236078AbhDVNAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 09:00:09 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9152C06174A
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 05:59:34 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id j5so43739716wrn.4
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 05:59:34 -0700 (PDT)
+        with ESMTP id S235977AbhDVNDw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 09:03:52 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5D59C06138C
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 06:03:17 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id e7so35747553wrs.11
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 06:03:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=8/KGFnryAMctn88NFbO1ivk8J+24Ebdlr0KrvWJNTF4=;
-        b=LTsH5gXGyubkKcVYB8Ynk7SMn7nxBV4yszikxczHPdXwJz2bxhsfIHZN52OTMrfRg2
-         bEKIiiJnx48IpL8ja52SlvcFs0ltkVhGGyB85N7P4RyjdCsQpL84V6u/h/aAiZkEnTZc
-         R0SxmGFhg95qsW96dsZAOrvIyMGrHOBsNYh7sbV0RMeliifMd3nzpITHmZLrSzucSu3Q
-         seBDkvYcPARRkZiwiLzbQlIGvlI743WT0GaOlIKQus4q9Yj997OznifHUATtMpyeTYWl
-         gUz4CM3Ndl0M9joGzDeJkFPNklowzwJKAb7aV/pFhvBP5n+RdZZpQaXU3rHgII/2drcm
-         wQCw==
+        bh=ZHLzNOHj90q7Oj3aQnNhu92h15Ny9i/xNLc3zPdfQ4g=;
+        b=WpphpWM7d4l8VUDnKXFsMAY2uU4Ft2tRsNLcpI2xJpUu4g0bNIaUUKE0gGVDhLiX/g
+         OjnVmquOzil9wscCXKdb84emGCUDQkMe4RFl4hJh8KN5Wd87NYtHx57Sv7BqWckv6n5b
+         mVKgWt6qQdgryA8hdzD2XfYDmSwjXZKn5xTSogNopKH/q3ToOfYDhJw1XORyZm3uCz19
+         LImQkK/2tVquZeYhYYgKPruClmVOtjO6X9iyj5D3O7rCfKE3B5QJfT3WgAaiUusI+dvP
+         QA4JMoLeJWEErqUPzSDb5DHeWxwyXkFsBjyqfLJOX31XqB42pSNoVWxe8TRRr0KNpNzp
+         Htbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8/KGFnryAMctn88NFbO1ivk8J+24Ebdlr0KrvWJNTF4=;
-        b=Wdii5VflQKAT7OwN843j5Bn/JA2DJquJT2IvrP9AtmtkTKwWsg30owDO3jF1YX4kYG
-         gpAUjSkfKE7Qq1Xk9FdwZs1ovxvsE+L6Hnf7P7ieISPjKKzVWoXLiGES5bhNhJ9tFoL/
-         CwUYX995nTkyUP1yganOEe+AhifYW1eLSoC2+kk7JIyPheN+R33cdD27UzJ0ChMWleX+
-         L6PkV6v2heMTuqpsV3HQJ2PHyfIOA0u++sJRH4l8vKPhE9dtDkEv1xxol/SBmh1OGj0d
-         xC9rEA73clwIJCIonYYJqI8XQ/yNAlIiyGNSBtFYDiKw3PJTMREq1dbv0nx5mieGaDwJ
-         xqrw==
-X-Gm-Message-State: AOAM530oOvPepNeZ8NLM9zXEffhy90U9WOfUcKaTOpCsbEkWKiA8E7x+
-        V3ZW5ZKNGR+ntMsfwD/PYzdx6w==
-X-Google-Smtp-Source: ABdhPJwga1KoquWBDh8puv2zY37IP/IsmTxlR9E3qbmX6e6wIHa7F35Xq2GPHqGBcuhHDmMnxBw8Eg==
-X-Received: by 2002:adf:e50d:: with SMTP id j13mr3993488wrm.80.1619096373378;
-        Thu, 22 Apr 2021 05:59:33 -0700 (PDT)
+        bh=ZHLzNOHj90q7Oj3aQnNhu92h15Ny9i/xNLc3zPdfQ4g=;
+        b=piEFMvV1OwLkFu/cLy/2sToXMxR0wM0dWYiJ0DmWoFt9+vq+45eQYSNBO9ZhhBE9aR
+         f7Qfhp1D5luA3Q/TKMTzDOa+YosFiPVJYCAPkI7xmW1LA9CrJabUOVLFMe+M1mQyB64/
+         wy7qXARzhAu/Qf3Kbs5KBhj/LGeRH72c/obmx++kY2sMfE4kO1sMsV1EblyJXrS09Q6+
+         HHYEjICFygg+Y1FpKVurJJ2bEKanbXrqUKrNDSZno7JPzmibpGtUygUwR/iYsXypa1qS
+         MNl1itrCsNFy6ir4gVDBR0w7hfOG8RM5MIdwgXrToNrf8JsN/A3XZ+lbdltAWbQw0phv
+         6ozw==
+X-Gm-Message-State: AOAM532bQEwyv3+MfxaI7m+jM3XBnGH8PO8qM42i7Z3i51mWaavmN6Wt
+        t+F2SziFLM4DIY30Ef91P9vNAg==
+X-Google-Smtp-Source: ABdhPJzhRXkQSnlUedDmqIlV0CkRTeBNaGDZqXpCq7gzsxQIKyjCm9svb44UVutt3ylPh+tyhXcIWw==
+X-Received: by 2002:a5d:47ce:: with SMTP id o14mr4045996wrc.236.1619096595880;
+        Thu, 22 Apr 2021 06:03:15 -0700 (PDT)
 Received: from google.com (105.168.195.35.bc.googleusercontent.com. [35.195.168.105])
-        by smtp.gmail.com with ESMTPSA id q7sm3518275wrr.62.2021.04.22.05.59.32
+        by smtp.gmail.com with ESMTPSA id n18sm3369617wrw.11.2021.04.22.06.03.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Apr 2021 05:59:32 -0700 (PDT)
-Date:   Thu, 22 Apr 2021 12:59:30 +0000
+        Thu, 22 Apr 2021 06:03:15 -0700 (PDT)
+Date:   Thu, 22 Apr 2021 13:03:12 +0000
 From:   Quentin Perret <qperret@google.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>
 Cc:     Ard Biesheuvel <ardb@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -67,7 +67,7 @@ Cc:     Ard Biesheuvel <ardb@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
 Subject: Re: [v5.4 stable] arm: stm32: Regression observed on "no-map"
  reserved memory region
-Message-ID: <YIFzMkW+tXonTf0K@google.com>
+Message-ID: <YIF0EIXylUJzIsTS@google.com>
 References: <4a4734d6-49df-677b-71d3-b926c44d89a9@foss.st.com>
  <CAL_JsqKGG8E9Y53+az+5qAOOGiZRAA-aD-1tKB-hcOp+m3CJYw@mail.gmail.com>
  <001f8550-b625-17d2-85a6-98a483557c70@foss.st.com>
@@ -76,56 +76,39 @@ References: <4a4734d6-49df-677b-71d3-b926c44d89a9@foss.st.com>
  <d7f9607a-9fcb-7ba2-6e39-03030da2deb0@gmail.com>
  <YH/ixPnHMxNo08mJ@google.com>
  <cc8f96a4-6c85-b869-d3cf-5dc543982054@gmail.com>
+ <498b8759-1a70-d80f-3a4d-39042b4f608e@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cc8f96a4-6c85-b869-d3cf-5dc543982054@gmail.com>
+In-Reply-To: <498b8759-1a70-d80f-3a4d-39042b4f608e@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 21 Apr 2021 at 07:33:52 (-0700), Florian Fainelli wrote:
-> It is not, otherwise I would have noticed earlier, can you try the same
-> thing that happens on my platform with a reserved region (without
-> no-map) adjacent to a reserved region with 'no-map'?
+On Wednesday 21 Apr 2021 at 08:17:28 (-0700), Florian Fainelli wrote:
+> 5.10.31 works correctly and shows the following for my platform:
+> 
+> 40000000-fdffefff : System RAM
+>   40200000-40eaffff : Kernel code
+>   40eb0000-4237ffff : reserved
+>   42380000-425affff : Kernel data
+>   45000000-450fffff : reserved
+>   47000000-4704ffff : reserved
+>   4761e000-47624fff : reserved
+>   f8c00000-fdbfffff : reserved
+> fdfff000-ffffffff : reserved
+> 100000000-13fffffff : System RAM
+>   13b000000-13effffff : reserved
+>   13f114000-13f173fff : reserved
+>   13f174000-13f774fff : reserved
+>   13f775000-13f7e8fff : reserved
+>   13f7eb000-13f7ecfff : reserved
+>   13f7ed000-13f7effff : reserved
+>   13f7f0000-13fffffff : reserved
 
-I just tried, but still no luck. FTR, I tried to reproduce your setup
-with the following DT:
-
-        memory@40000000 {
-                reg = <0x00 0x40000000 0x01 0x00>;
-                device_type = "memory";
-        };
-
-        reserved-memory {
-                #address-cells = <2>;
-                #size-cells = <2>;
-                ranges;
-
-                foo@fdfff000{
-                        reg = <0x00 0xfdfff000 0x0 0x1000>;
-                };
-                bar@fe000000{
-                        reg = <0x00 0xfe000000 0x0 0x2000000>;
-                        no-map;
-                };
-        };
-
-And with 5.4.102 and 5.10.31 I get the following in /proc/iomem
-
-<...>
-40000000-fdffffff : System RAM
-  40080000-412cffff : Kernel code
-  412d0000-417affff : reserved
-  417b0000-419f8fff : Kernel data
-  48000000-48008fff : reserved
-  f7c00000-fdbfffff : reserved
-  fdfff000-fdffffff : reserved
-fe000000-ffffffff : reserved
-100000000-13fffffff : System RAM
-<...>
-
-which looks about right. I'll keep trying a few other things.
+OK, so if we're confident this works from 5.10 onwards, I would suggest
+to follow Ard's original suggestion to revert this patch from older
+LTSes as we're clearly missing something there.
 
 Thanks,
 Quentin
