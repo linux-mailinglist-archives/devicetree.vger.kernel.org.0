@@ -2,105 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BD39367C96
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 10:32:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 862EC367CAD
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 10:38:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235004AbhDVIdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 04:33:22 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:52492 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230285AbhDVIdV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 04:33:21 -0400
-X-UUID: 9438226266c84c38b3bebda3edc21c8b-20210422
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=8OCuYAoKRzyNIrFHDh0JFHLltn0XV5hbwr2yNVi0Wv0=;
-        b=sQdBXljMP9zdCC0P4a0WXUbw2kbeoOhX9EMv02JhlR1tuT6azcM851P54tCUg9gC0N6vElQBqjCTOcHGHeLPScPM5615RajLGatWZjXlDOFTdRXF6HMnZgN1FP+TcBUeFTwWWsT1GEKX1m1PYexdg7ptVvmz11y+l7kkyY7Kibg=;
-X-UUID: 9438226266c84c38b3bebda3edc21c8b-20210422
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <michael.kao@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2096331822; Thu, 22 Apr 2021 16:32:39 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 22 Apr 2021 16:32:38 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 22 Apr 2021 16:32:38 +0800
-Message-ID: <8532c21e518530d06a37c25bbcbc08d97147769a.camel@mediatek.com>
-Subject: Re: [v3,1/3] thermal: mediatek: Relocate driver to mediatek folder
-From:   Michael Kao <michael.kao@mediatek.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>, <linux-pm@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>
-CC:     Eduardo Valentin <edubezval@gmail.com>,
+        id S235503AbhDVIjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 04:39:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43638 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235498AbhDVIjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 04:39:18 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18280C06174A
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 01:38:44 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id w7-20020a1cdf070000b0290125f388fb34so2776411wmg.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 01:38:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=e/+oo5NyWhxN8td4aAh9SsnnFirRgQL1gPvUfVwD200=;
+        b=pkB2qIX1usxFoCNOI2x3+oaGnCZE8vB+31MwBTWvuKgbLe/MnyjERza/5A2qeA1Uq0
+         V3N2zi/t/QQI/pG2oTryHaWiivXLOBHUvlnNnSDw6YJftjxQ12Gjt3tZ5PZlSzUvAJa5
+         VIYnP6R/et6DPyl0/5P0H2Yr0KGxruw3lA9ZamlTXYDTwQDOv6gvbJKT3ODOmLHNzMhi
+         QfqC+Z9Qf62l6bwNhxnJxF7/hKpzf3Q4YJRmXbbDvXeshx9tocSleoKc8FMmMy1hHD9t
+         ntlk4YRTzR0saqmXJBuQTJm0lOqQYckvCcwGT7D3XF+Qykwjpks92kH7sln+gv2FWiiE
+         zvTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=e/+oo5NyWhxN8td4aAh9SsnnFirRgQL1gPvUfVwD200=;
+        b=cht95HBsO7vcQznFdmuzyyoEtov7hUJTd/2JAqNlvxdgWhA7Btgb8YcxOiU+YNGGa8
+         pS/1tTw36RGT2zQogNi5HCe16lPdD4SwqVcpaoosIvc2RYgU3sEXGMyneD58/k8pWWHS
+         qdE0rc6ptBCXOcc8XE8UPbgjuToIl80buJOwuyl+e2pxh/TshyFTMergfslr0g+u/cV0
+         +KhGuEoauM7YNMAYgUpXrPhX7w2dX06scqLnsiM577AI30I8YryvgPd27forFaPteVfe
+         KWhRC7AaB4kXhJpI4QW0Wv5PQzlIoQYiCuVrilMReRjvZpVHUlMdIuvSfQS6+mW3kQ71
+         ntXg==
+X-Gm-Message-State: AOAM530xdDRtWAzNSLtV99FKoeSZ54gWSDvKI1nk0oAi+QMiIrwlzhol
+        XKteqhK6fNASAOjAynMdKMTiFA==
+X-Google-Smtp-Source: ABdhPJw0qRItyXI0pzjkKJwKn1n4YLbsxzSoq8E70voh0hqRrA92cKUJw89gaQ6iXB6LnwWEdz8dLQ==
+X-Received: by 2002:a7b:c006:: with SMTP id c6mr2507234wmb.129.1619080722686;
+        Thu, 22 Apr 2021 01:38:42 -0700 (PDT)
+Received: from ?IPv6:2a01:e0a:90c:e290:916d:6f7:3c58:6b43? ([2a01:e0a:90c:e290:916d:6f7:3c58:6b43])
+        by smtp.gmail.com with ESMTPSA id u9sm2245828wmc.38.2021.04.22.01.38.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Apr 2021 01:38:42 -0700 (PDT)
+Subject: Re: [PATCH V2 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add TI
+ SN65DSI83 and SN65DSI84 bindings
+To:     Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org
+Cc:     devicetree@vger.kernel.org, ch@denx.de,
+        Douglas Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>, <hsinyi@chromium.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Thu, 22 Apr 2021 16:32:38 +0800
-In-Reply-To: <836581c1-0738-8e42-b168-b54d0bd078a5@linaro.org>
-References: <20210312034018.17437-1-michael.kao@mediatek.com>
-         <20210312034018.17437-2-michael.kao@mediatek.com>
-         <836581c1-0738-8e42-b168-b54d0bd078a5@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20210421223122.112736-1-marex@denx.de>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <9ffbea6e-c341-4a43-3c9e-0b177cfe98d5@baylibre.com>
+Date:   Thu, 22 Apr 2021 10:38:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20210421223122.112736-1-marex@denx.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIxLTA0LTIwIGF0IDIzOjIyICswMjAwLCBEYW5pZWwgTGV6Y2FubyB3cm90ZToN
-Cj4gT24gMTIvMDMvMjAyMSAwNDo0MCwgTWljaGFlbCBLYW8gd3JvdGU6DQo+ID4gQWRkIE1lZGlh
-dGVrIHByb3ByaWV0YXJ5IGZvbGRlciB0byB1cHN0cmVhbSBtb3JlIHRoZXJtYWwgem9uZSBhbmQN
-Cj4gPiBjb29sZXINCj4gPiBkcml2ZXJzLiBSZWxvY2F0ZSB0aGUgb3JpZ2luYWwgdGhlcm1hbCBj
-b250cm9sbGVyIGRyaXZlciB0byBpdCBhbmQNCj4gPiByZW5hbWUNCj4gPiBhcyBzb2NfdGVtcC5j
-IHRvIHNob3cgaXRzIHB1cnBvc2UgbW9yZSBjbGVhcmx5Lg0KPiANCj4gV2UgYWxyZWFkeSBrbm93
-IHRoZSBwdXJwb3NlIDopDQo+IA0KPiBzb2NfdGVtcCBnaXZlcyBubyBhZGRpdGlvbmFsIGluZm9y
-bWF0aW9uLg0KPiANCj4gRWl0aGVyIGtlZXAgdGhlIG5hbWUgb3IgZ2l2ZSB0aGUgaGFyZHdhcmUg
-c2Vuc29yIG5hbWUuIEl0IGlzIGEgZHJpdmVyDQo+IGRpcmVjdG9yeS4NCj4gDQpEZWFyIERhbmll
-bCwNCg0KV2UgaW50cm9kdWNlIHRoZSBuZXcgdGhlcm1hbCBoYXJkd2FyZSBkZXNpZ24gY2FsbGVk
-IGx2dHMgaW4gdGhlIG5ldw0KcHJvamVjdC4gVGhlIG5ldyBwcm9qZWN0IHdpbGwgZGVzZ2luIHdp
-dGggbHZ0cyB3aWxsIGVuYWJsZSB0aGUNCkNPTkZJR19NVEtfU09DX1RIRVJNQUxfTFZUUyB0byBi
-dWlsZCBsdnRzIGRyaXZlclsxXS4NClRoZSBvbGQgcHJvamVjdCB3aWxsIHVzZSBDT05GSUdfTVRL
-X1RIRVJNQUwgdG8gYnVpbGQgc29jX3RlbXAuYy4NCg0KVGhlIG5ldyBkZXNpZ24gdXNlIGx2dHMg
-ZGV2aWNlIHRvIGFjY2VzcyB0aGVybWFsIHNlbnNvcnMgaW4gdGhlIHNvYy4NClRoZSBvcmlnaW5h
-bCBkZXNpZ24gYWNjZXNzIHRoZXJtYWwgc2Vuc29ycyBieSBhdXhhZGMuDQoNClsxXSBbdjMsMi8z
-XSB0aGVybWFsOiBtZWRpYXRlazogQWRkIExWVFMgZHJpdmVycyBmb3IgU29DIHRoZXJhbWwgem9u
-ZXMNCg0KDQo+ID4gU2lnbmVkLW9mZi1ieTogTWljaGFlbCBLYW8gPG1pY2hhZWwua2FvQG1lZGlh
-dGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgZHJpdmVycy90aGVybWFsL0tjb25maWcgICAgICAgICAg
-ICAgICAgICAgICAgIHwgMTQgKysrKy0tLS0tLS0NCj4gPiAgZHJpdmVycy90aGVybWFsL01ha2Vm
-aWxlICAgICAgICAgICAgICAgICAgICAgIHwgIDIgKy0NCj4gPiAgZHJpdmVycy90aGVybWFsL21l
-ZGlhdGVrL0tjb25maWcgICAgICAgICAgICAgIHwgMjMNCj4gPiArKysrKysrKysrKysrKysrKysr
-DQo+ID4gIGRyaXZlcnMvdGhlcm1hbC9tZWRpYXRlay9NYWtlZmlsZSAgICAgICAgICAgICB8ICAx
-ICsNCj4gPiAgLi4uL3ttdGtfdGhlcm1hbC5jID0+IG1lZGlhdGVrL3NvY190ZW1wLmN9ICAgIHwg
-IDANCj4gDQo+IFsgLi4uIF0NCj4gDQo+IHZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2
-dnZ2dnZ2DQo+IA0KPiANCj4gPiArY29uZmlnIE1US19USEVSTUFMDQo+ID4gKwl0cmlzdGF0ZSAi
-TWVkaWF0ZWsgdGhlcm1hbCBkcml2ZXJzIg0KPiA+ICsJZGVwZW5kcyBvbiBUSEVSTUFMX09GDQo+
-ID4gKwloZWxwDQo+ID4gKwkgIFRoaXMgaXMgdGhlIG9wdGlvbiBmb3IgTWVkaWF0ZWsgdGhlcm1h
-bCBzb2Z0d2FyZQ0KPiA+ICsJICBzb2x1dGlvbnMuIFBsZWFzZSBlbmFibGUgY29ycmVzcG9uZGlu
-ZyBvcHRpb25zIHRvDQo+ID4gKwkgIGdldCB0ZW1wZXJhdHVyZSBpbmZvcm1hdGlvbiBmcm9tIHRo
-ZXJtYWwgc2Vuc29ycyBvcg0KPiA+ICsJICB0dXJuIG9uIHRocm90dGxlIG1lY2hhaXNtcyBmb3Ig
-dGhlcm1hbCBtaXRpZ2F0aW9uLg0KPiA+ICsNCj4gPiAraWYgTVRLX1RIRVJNQUwNCj4gDQo+IA0K
-PiBeXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXg0KPiANCj4gQWxsIHRoZSBh
-Ym92ZSBub3QgbmVlZGVkLg0KPiANCj4gPiArY29uZmlnIE1US19TT0NfVEhFUk1BTA0KPiA+ICsJ
-dHJpc3RhdGUgIlRlbXBlcmF0dXJlIHNlbnNvciBkcml2ZXIgZm9yIG1lZGlhdGVrIFNvQ3MiDQo+
-ID4gKwlkZXBlbmRzIG9uIEhBU19JT01FTQ0KPiA+ICsJZGVwZW5kcyBvbiBOVk1FTQ0KPiA+ICsJ
-ZGVwZW5kcyBvbiBSRVNFVF9DT05UUk9MTEVSDQo+ID4gKwloZWxwDQo+ID4gKwkgIEVuYWJsZSB0
-aGlzIG9wdGlvbiBpZiB5b3Ugd2FudCB0byBnZXQgU29DIHRlbXBlcmF0dXJlDQo+ID4gKwkgIGlu
-Zm9ybWF0aW9uIGZvciBNZWRpYXRlayBwbGF0Zm9ybXMuIFRoaXMgZHJpdmVyDQo+ID4gKwkgIGNv
-bmZpZ3VyZXMgdGhlcm1hbCBjb250cm9sbGVycyB0byBjb2xsZWN0IHRlbXBlcmF0dXJlDQo+ID4g
-KwkgIHZpYSBBVVhBREMgaW50ZXJmYWNlLg0KPiA+ICsNCj4gPiArZW5kaWYNCj4gPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy90aGVybWFsL21lZGlhdGVrL01ha2VmaWxlDQo+ID4gYi9kcml2ZXJzL3Ro
-ZXJtYWwvbWVkaWF0ZWsvTWFrZWZpbGUNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGlu
-ZGV4IDAwMDAwMDAwMDAwMC4uZjc1MzEzZGRjZTVlDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsr
-KyBiL2RyaXZlcnMvdGhlcm1hbC9tZWRpYXRlay9NYWtlZmlsZQ0KPiA+IEBAIC0wLDAgKzEgQEAN
-Cj4gPiArb2JqLSQoQ09ORklHX01US19TT0NfVEhFUk1BTCkJKz0gc29jX3RlbXAubw0KPiA+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL3RoZXJtYWwvbXRrX3RoZXJtYWwuYw0KPiA+IGIvZHJpdmVycy90
-aGVybWFsL21lZGlhdGVrL3NvY190ZW1wLmMNCj4gPiBzaW1pbGFyaXR5IGluZGV4IDEwMCUNCj4g
-PiByZW5hbWUgZnJvbSBkcml2ZXJzL3RoZXJtYWwvbXRrX3RoZXJtYWwuYw0KPiA+IHJlbmFtZSB0
-byBkcml2ZXJzL3RoZXJtYWwvbWVkaWF0ZWsvc29jX3RlbXAuYw0KPiANCj4gDQo+IA0K
+On 22/04/2021 00:31, Marek Vasut wrote:
+> Add DT binding document for TI SN65DSI83 and SN65DSI84 DSI to LVDS bridge.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Douglas Anderson <dianders@chromium.org>
+> Cc: Jagan Teki <jagan@amarulasolutions.com>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Stephen Boyd <swboyd@chromium.org>
+> Cc: devicetree@vger.kernel.org
+> To: dri-devel@lists.freedesktop.org
+> ---
+> V2: Add compatible string for SN65DSI84, since this is now tested on it
+> ---
+>  .../bindings/display/bridge/ti,sn65dsi83.yaml | 134 ++++++++++++++++++
+>  1 file changed, 134 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> new file mode 100644
+> index 000000000000..42d11b46a1eb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> @@ -0,0 +1,134 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SN65DSI83 and SN65DSI84 DSI to LVDS bridge chip
+> +
+> +maintainers:
+> +  - Marek Vasut <marex@denx.de>
+> +
+> +description: |
+> +  Texas Instruments SN65DSI83 1x Single-link MIPI DSI
+> +  to 1x Single-link LVDS
+> +  https://www.ti.com/lit/gpn/sn65dsi83
+> +  Texas Instruments SN65DSI84 1x Single-link MIPI DSI
+> +  to 1x Dual-link or 2x Single-link LVDS
+> +  https://www.ti.com/lit/gpn/sn65dsi84
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: ti,sn65dsi83
+> +      - const: ti,sn65dsi84
+> +
+> +  reg:
+> +    const: 0x2d
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +    description: GPIO specifier for bridge_en pin (active high).
+> +
+> +  ports:
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +      port@0:
+> +        type: object
+> +        additionalProperties: false
+> +
+> +        description:
+> +          Video port for MIPI DSI input
+> +
+> +        properties:
+> +          reg:
+> +            const: 0
+> +
+> +          endpoint:
+> +            type: object
+> +            additionalProperties: false
+> +            properties:
+> +              remote-endpoint: true
+> +              data-lanes:
+> +                description: array of physical DSI data lane indexes.
+> +
+> +        required:
+> +          - reg
+> +
+> +      port@1:
+> +        type: object
+> +        additionalProperties: false
+> +
+> +        description:
+> +          Video port for LVDS output (panel or bridge).
+> +
+> +        properties:
+> +          reg:
+> +            const: 1
+> +
+> +          endpoint:
+> +            type: object
+> +            additionalProperties: false
+> +            properties:
+> +              remote-endpoint: true
+
+Similar to Jagan's serie, would be great to add bindings for the dual-link LVDS even if not supported
+by the driver (the driver can fails with a verbose error).
+
+Neil
+
+> +
+> +        required:
+> +          - reg
+> +
+> +    required:
+> +      - "#address-cells"
+> +      - "#size-cells"
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - enable-gpios
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      bridge@2d {
+> +        compatible = "ti,sn65dsi83";
+> +        reg = <0x2d>;
+> +
+> +        enable-gpios = <&gpio2 1 GPIO_ACTIVE_HIGH>;
+> +
+> +        ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          port@0 {
+> +            reg = <0>;
+> +            endpoint {
+> +              remote-endpoint = <&dsi0_out>;
+> +              data-lanes = <1 2 3 4>;
+> +            };
+> +          };
+> +
+> +          port@1 {
+> +            reg = <1>;
+> +            endpoint {
+> +              remote-endpoint = <&panel_in_lvds>;
+> +            };
+> +          };
+> +        };
+> +      };
+> +    };
+> 
 
