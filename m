@@ -2,229 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFB9E367BC8
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 10:10:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E922D367BDD
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 10:15:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235252AbhDVILU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 04:11:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37202 "EHLO
+        id S235075AbhDVIPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 04:15:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235099AbhDVILT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 04:11:19 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68EA1C06138D
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 01:10:45 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id t14-20020a05600c198eb029012eeb3edfaeso2701088wmq.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 01:10:45 -0700 (PDT)
+        with ESMTP id S230341AbhDVIPx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 04:15:53 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20104C06138B
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 01:15:19 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id e2so18817342plh.8
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 01:15:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=uhXyqG4ZxdDjqBkhxOQCYD5Nv2NYVdHJqhq6nBUFFjA=;
-        b=peQPash9fIBmLfV68tEd9Ko7OwA7IV6eCox5z+H9i0paF3ymnAUJemE9GMsA41Cvis
-         UAbkuo+BpLfbYpIo5NYpWtv7RoPKn2bcRh0K6rzL267NKx+/892K9Wt//CGf+x1fWPV8
-         QZG+BujQyMxRY+DvGSoV6lSBzcI8uMNMCf4cvrNf1zlAjeJpi8+CGr0+pquPpIchbIAp
-         dBV1ONdjlfWd/ElAKgz/AycD9zrqxux+j0dk51vc2MysITnPA6PL56j8ytE1qgHShdJb
-         Q7vo4aAL+Wz8Ga9HjnpuVotTu0LD+h1iNPBtHig0Gahc77sU7TWuKej4IjIMFLPTy8ok
-         DMiA==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FvJrG6v4LzxdU4oF5EoFjO30pTB4A85M49SYo7WPBCw=;
+        b=AMMWTSQCSdwHsUUdJCOC7YgUNrGXxRc8ufe8ShxXHlWgfWfBk0oS2HBubv7AQuSAMq
+         M0urTLFpK7JN5/zRDUB5Fe/pClBUqpuo+IAb+avdRaxLPwR3C9WYDtIQPHvIq7nNv2DT
+         9Un/y51JxY/e6QYvwfJXjQ/aVxL0I13goxqlM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=uhXyqG4ZxdDjqBkhxOQCYD5Nv2NYVdHJqhq6nBUFFjA=;
-        b=d4Q9h3OFeAIPQNZybPId5OsqyB8zhC63J3S+JX0z0NNy/2ZK3uZzL56U4uHS3yq5h/
-         R4AeB3Wu3rc2YpDUV6T4LF01cWc5mQWmln6+H2R87/tkfO3YhVNPScJjwwJTcf8wj5fS
-         RXwXxb6k1E4LUS+BXmrZXFLr762jVm5Qz8jvH0F8yWkCJeIZLWJqNsm4wPd5WmSpakdM
-         Fui6Pxyug4DZbZ9MWrVz9UWWO7/81aSpx/ngRmnDtmFMhcIrRVoYrPJiZXYsx7x39ZKQ
-         phlQcXZTUHrG/UJgXOGU9cHz7wshUcNnDTDg6e64IRdviUrXYjjCaRJrlXZoto/kAHW6
-         ZgiQ==
-X-Gm-Message-State: AOAM532xgMAi3VZQb04BALmsl3uothRjgY78PsPgLArCItJfTzMLPNda
-        uYm6BtxbEshuPrFL5we+LUT50A==
-X-Google-Smtp-Source: ABdhPJy3MRve6nSvRcYP4R4E/S5ASqa10CVolMkQ95QtOHVjaJKShKsN4+WXAPZX3OX+dWzAqn6YhA==
-X-Received: by 2002:a1c:2646:: with SMTP id m67mr7810522wmm.71.1619079043796;
-        Thu, 22 Apr 2021 01:10:43 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:e88d:2580:c20:b786? ([2a01:e34:ed2f:f020:e88d:2580:c20:b786])
-        by smtp.googlemail.com with ESMTPSA id k11sm5010954wmj.1.2021.04.22.01.10.41
+        bh=FvJrG6v4LzxdU4oF5EoFjO30pTB4A85M49SYo7WPBCw=;
+        b=BmP/A61BsbnR8w2VJLed1WhxguOZ1nPre723sq/yeL88p8oLGmmhIjmSJ2yZv9vUkD
+         SxYXLzzR6ULOQgPkKOvepomfCmhfKCMyOuBPwihebGIKOeald79/LF1sT0La+02jYTMc
+         9DhahHVlbucnA1ab6ltPWHkHvkf03Wc8siG2L6OUDTUyXsbgH8k2HYKVMPtuL7AXPH/y
+         8nQ6HxcOmMfp4yeP3codyuwAQQQ+iVYF4ZAx18Hs1z/1PXfo3xIcnXaDAT8dqHkLVD+2
+         9NqpAo5B7r4W9KKJ+CYn/W8/6aW7KZUQ1p6tpIKFBNkwan/dd4IHLbHDkL9IhMWN/1JX
+         esdA==
+X-Gm-Message-State: AOAM5301jY08DppHqLjfU27m0I48q/D7nfZi/UXxqHydxwL16Bjz0HPg
+        FompJY8Y0AnlF6eTfPx6YngeUQ==
+X-Google-Smtp-Source: ABdhPJyk2JPTp3iko6u7v5EX3M6TzCT5gzjwwnFh5uBqfgtgyUVxzY91nyUWyB+4tQ6Gme84DA/b2g==
+X-Received: by 2002:a17:902:edd5:b029:e9:7477:5f0a with SMTP id q21-20020a170902edd5b02900e974775f0amr2141960plk.81.1619079318644;
+        Thu, 22 Apr 2021 01:15:18 -0700 (PDT)
+Received: from localhost ([2401:fa00:1:10:1a8e:1bde:f79e:c302])
+        by smtp.gmail.com with UTF8SMTPSA id r1sm1538054pjo.26.2021.04.22.01.15.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Apr 2021 01:10:43 -0700 (PDT)
-Subject: Re: [PATCH v8 03/10] thermal: Use generic HW-protection shutdown API
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>, Kees Cook <keescook@chromium.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "agross@kernel.org" <agross@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Matteo Croce <mcroce@microsoft.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Petr Mladek <pmladek@suse.com>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Mike Rapoport <rppt@kernel.org>,
-        Josef Bacik <josef@toxicpanda.com>,
-        Kai-Heng Feng <kai.heng.feng@canonical.com>,
-        linux-pm@vger.kernel.org
-References: <cover.1618832466.git.matti.vaittinen@fi.rohmeurope.com>
- <3b62226e320ab412357e102baf6d628e354a0b61.1618832466.git.matti.vaittinen@fi.rohmeurope.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <c9b61f91-301b-92a2-f5e7-e8b8e2373040@linaro.org>
-Date:   Thu, 22 Apr 2021 10:10:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Thu, 22 Apr 2021 01:15:18 -0700 (PDT)
+From:   Claire Chang <tientzu@chromium.org>
+To:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
+        grant.likely@arm.com, xypron.glpk@gmx.de,
+        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
+        bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>, tfiga@chromium.org,
+        bskeggs@redhat.com, bhelgaas@google.com, chris@chris-wilson.co.uk,
+        tientzu@chromium.org, daniel@ffwll.ch, airlied@linux.ie,
+        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        jani.nikula@linux.intel.com, jxgao@google.com,
+        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
+        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+        nouveau@lists.freedesktop.org, rodrigo.vivi@intel.com,
+        thomas.hellstrom@linux.intel.com
+Subject: [PATCH v5 00/16] Restricted DMA
+Date:   Thu, 22 Apr 2021 16:14:52 +0800
+Message-Id: <20210422081508.3942748-1-tientzu@chromium.org>
+X-Mailer: git-send-email 2.31.1.368.gbe11c130af-goog
 MIME-Version: 1.0
-In-Reply-To: <3b62226e320ab412357e102baf6d628e354a0b61.1618832466.git.matti.vaittinen@fi.rohmeurope.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/04/2021 13:49, Matti Vaittinen wrote:
-> The hardware shutdown function was exported from kernel/reboot for
-> other subsystems to use. Logic is copied from the thermal_core. The
-> protection mutex is replaced by an atomic_t to allow calls also from
-> an IRQ context.
-> 
-> Use the exported API instead of implementing own just for the
-> thermal_core.
+This series implements mitigations for lack of DMA access control on
+systems without an IOMMU, which could result in the DMA accessing the
+system memory at unexpected times and/or unexpected addresses, possibly
+leading to data leakage or corruption.
 
-Can you update the documentation:
+For example, we plan to use the PCI-e bus for Wi-Fi and that PCI-e bus is
+not behind an IOMMU. As PCI-e, by design, gives the device full access to
+system memory, a vulnerability in the Wi-Fi firmware could easily escalate
+to a full system exploit (remote wifi exploits: [1a], [1b] that shows a
+full chain of exploits; [2], [3]).
 
-Documentation/driver-api/thermal/sysfs-api.rst
+To mitigate the security concerns, we introduce restricted DMA. Restricted
+DMA utilizes the existing swiotlb to bounce streaming DMA in and out of a
+specially allocated region and does memory allocation from the same region.
+The feature on its own provides a basic level of protection against the DMA
+overwriting buffer contents at unexpected times. However, to protect
+against general data leakage and system memory corruption, the system needs
+to provide a way to restrict the DMA to a predefined memory region (this is
+usually done at firmware level, e.g. MPU in ATF on some ARM platforms [4]).
 
-5. thermal_emergency_poweroff
+[1a] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_4.html
+[1b] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_11.html
+[2] https://blade.tencent.com/en/advisories/qualpwn/
+[3] https://www.bleepingcomputer.com/news/security/vulnerabilities-found-in-highly-popular-firmware-for-wifi-chips/
+[4] https://github.com/ARM-software/arm-trusted-firmware/blob/master/plat/mediatek/mt8183/drivers/emi_mpu/emi_mpu.c#L132
 
-Thanks
-  -- Daniel
+v5:
+  Rebase on latest linux-next
 
+v4:
+  - Fix spinlock bad magic
+  - Use rmem->name for debugfs entry
+  - Address the comments in v3
 
-> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> 
-> ---
-> Changelog:
-> v8:
->  - new patch (change added in v7, splitted in own patch at v8)
-> 
-> Use the exported API instead
-> ---
->  drivers/thermal/thermal_core.c | 63 +++-------------------------------
->  1 file changed, 4 insertions(+), 59 deletions(-)
-> 
-> diff --git a/drivers/thermal/thermal_core.c b/drivers/thermal/thermal_core.c
-> index 996c038f83a4..b1444845af38 100644
-> --- a/drivers/thermal/thermal_core.c
-> +++ b/drivers/thermal/thermal_core.c
-> @@ -36,10 +36,8 @@ static LIST_HEAD(thermal_governor_list);
->  
->  static DEFINE_MUTEX(thermal_list_lock);
->  static DEFINE_MUTEX(thermal_governor_lock);
-> -static DEFINE_MUTEX(poweroff_lock);
->  
->  static atomic_t in_suspend;
-> -static bool power_off_triggered;
->  
->  static struct thermal_governor *def_governor;
->  
-> @@ -327,70 +325,18 @@ static void handle_non_critical_trips(struct thermal_zone_device *tz, int trip)
->  		       def_governor->throttle(tz, trip);
->  }
->  
-> -/**
-> - * thermal_emergency_poweroff_func - emergency poweroff work after a known delay
-> - * @work: work_struct associated with the emergency poweroff function
-> - *
-> - * This function is called in very critical situations to force
-> - * a kernel poweroff after a configurable timeout value.
-> - */
-> -static void thermal_emergency_poweroff_func(struct work_struct *work)
-> -{
-> -	/*
-> -	 * We have reached here after the emergency thermal shutdown
-> -	 * Waiting period has expired. This means orderly_poweroff has
-> -	 * not been able to shut off the system for some reason.
-> -	 * Try to shut down the system immediately using kernel_power_off
-> -	 * if populated
-> -	 */
-> -	WARN(1, "Attempting kernel_power_off: Temperature too high\n");
-> -	kernel_power_off();
-> -
-> -	/*
-> -	 * Worst of the worst case trigger emergency restart
-> -	 */
-> -	WARN(1, "Attempting emergency_restart: Temperature too high\n");
-> -	emergency_restart();
-> -}
-> -
-> -static DECLARE_DELAYED_WORK(thermal_emergency_poweroff_work,
-> -			    thermal_emergency_poweroff_func);
-> -
-> -/**
-> - * thermal_emergency_poweroff - Trigger an emergency system poweroff
-> - *
-> - * This may be called from any critical situation to trigger a system shutdown
-> - * after a known period of time. By default this is not scheduled.
-> - */
-> -static void thermal_emergency_poweroff(void)
-> +void thermal_zone_device_critical(struct thermal_zone_device *tz)
->  {
-> -	int poweroff_delay_ms = CONFIG_THERMAL_EMERGENCY_POWEROFF_DELAY_MS;
->  	/*
->  	 * poweroff_delay_ms must be a carefully profiled positive value.
-> -	 * Its a must for thermal_emergency_poweroff_work to be scheduled
-> +	 * Its a must for forced_emergency_poweroff_work to be scheduled.
->  	 */
-> -	if (poweroff_delay_ms <= 0)
-> -		return;
-> -	schedule_delayed_work(&thermal_emergency_poweroff_work,
-> -			      msecs_to_jiffies(poweroff_delay_ms));
-> -}
-> +	int poweroff_delay_ms = CONFIG_THERMAL_EMERGENCY_POWEROFF_DELAY_MS;
->  
-> -void thermal_zone_device_critical(struct thermal_zone_device *tz)
-> -{
->  	dev_emerg(&tz->device, "%s: critical temperature reached, "
->  		  "shutting down\n", tz->type);
->  
-> -	mutex_lock(&poweroff_lock);
-> -	if (!power_off_triggered) {
-> -		/*
-> -		 * Queue a backup emergency shutdown in the event of
-> -		 * orderly_poweroff failure
-> -		 */
-> -		thermal_emergency_poweroff();
-> -		orderly_poweroff(true);
-> -		power_off_triggered = true;
-> -	}
-> -	mutex_unlock(&poweroff_lock);
-> +	hw_protection_shutdown("Temperature too high", poweroff_delay_ms);
->  }
->  EXPORT_SYMBOL(thermal_zone_device_critical);
->  
-> @@ -1549,7 +1495,6 @@ static int __init thermal_init(void)
->  	ida_destroy(&thermal_cdev_ida);
->  	mutex_destroy(&thermal_list_lock);
->  	mutex_destroy(&thermal_governor_lock);
-> -	mutex_destroy(&poweroff_lock);
->  	return result;
->  }
->  postcore_initcall(thermal_init);
-> 
+v3:
+  Using only one reserved memory region for both streaming DMA and memory
+  allocation.
+  https://lore.kernel.org/patchwork/cover/1360992/
 
+v2:
+  Building on top of swiotlb.
+  https://lore.kernel.org/patchwork/cover/1280705/
+
+v1:
+  Using dma_map_ops.
+  https://lore.kernel.org/patchwork/cover/1271660/
+
+Claire Chang (16):
+  swiotlb: Fix the type of index
+  swiotlb: Refactor swiotlb init functions
+  swiotlb: Refactor swiotlb_create_debugfs
+  swiotlb: Add DMA_RESTRICTED_POOL
+  swiotlb: Add restricted DMA pool initialization
+  swiotlb: Add a new get_io_tlb_mem getter
+  swiotlb: Update is_swiotlb_buffer to add a struct device argument
+  swiotlb: Update is_swiotlb_active to add a struct device argument
+  swiotlb: Bounce data from/to restricted DMA pool if available
+  swiotlb: Move alloc_size to find_slots
+  swiotlb: Refactor swiotlb_tbl_unmap_single
+  dma-direct: Add a new wrapper __dma_direct_free_pages()
+  swiotlb: Add restricted DMA alloc/free support.
+  dma-direct: Allocate memory from restricted DMA pool if available
+  dt-bindings: of: Add restricted DMA pool
+  of: Add plumbing for restricted DMA pool
+
+ .../reserved-memory/reserved-memory.txt       |  24 ++
+ drivers/gpu/drm/i915/gem/i915_gem_internal.c  |   2 +-
+ drivers/gpu/drm/nouveau/nouveau_ttm.c         |   2 +-
+ drivers/iommu/dma-iommu.c                     |  12 +-
+ drivers/of/address.c                          |  25 ++
+ drivers/of/device.c                           |   3 +
+ drivers/of/of_private.h                       |   5 +
+ drivers/pci/xen-pcifront.c                    |   2 +-
+ drivers/xen/swiotlb-xen.c                     |   2 +-
+ include/linux/device.h                        |   4 +
+ include/linux/swiotlb.h                       |  41 ++-
+ kernel/dma/Kconfig                            |  14 +
+ kernel/dma/direct.c                           |  57 +++--
+ kernel/dma/direct.h                           |   9 +-
+ kernel/dma/swiotlb.c                          | 242 +++++++++++++-----
+ 15 files changed, 347 insertions(+), 97 deletions(-)
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+2.31.1.368.gbe11c130af-goog
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
