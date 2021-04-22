@@ -2,371 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C80673686E3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 21:04:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92E573686EF
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 21:09:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236796AbhDVTEl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 15:04:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41018 "EHLO
+        id S236668AbhDVTJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 15:09:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236459AbhDVTEl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 15:04:41 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1F0EC06174A;
-        Thu, 22 Apr 2021 12:04:04 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id w6so17844943pfc.8;
-        Thu, 22 Apr 2021 12:04:04 -0700 (PDT)
+        with ESMTP id S236058AbhDVTJp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 15:09:45 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51BC4C06174A
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 12:09:09 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id x7so45837956wrw.10
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 12:09:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=wJWD0ypjjTq7fQ8rDgddX7owB8y+VHTM4qMJIH9fCHw=;
-        b=Cin5h4rbv5pmzeuLH/DCXq5IMuHo05dhO7oVG1hDrMwCgq1DvBxxkhVi2y0UJjE/aA
-         8MB1McePiIrkrvYrQIrEKunTV8ooTpDJaKGSp6m2ooTVhzL8RqWzN61yPEfnOnJ2mce6
-         LjHK8KZKZmxPp5wsArK91feNOLD+NVotFYX5c0v94W9bpoV+s2934gq0axgUQiQSJubH
-         pY+aThwzWqNJoyNuC/mrd/WFL7jaP8J4kIqcmhhNmB8UVqz+GIWJaPSBjFDr8aFJJQ1d
-         fjBvjM4VkD+PQMWN+ilaUZ7UtgWyRaIg3SZ/nuk/+5WHrKwO+nk7DHNEV5oeuKO+nwsu
-         PljA==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=2cU5mPNKDtlteNBbk3anMbRMaIXJe5GUHs1/Fqkj1KQ=;
+        b=VJ96Aa08ttSQWQvuzjTA9BlAW0s7jMiF7k6HgXg9hU3VLafoR3wMcWr7+xDBVsB87A
+         uMX+TSFmyrGofHKGh3V08TbN19vwK5PQ3xJsCSr7k+LeNRMR2NdAuPnQ9UCD+z5Hc9vR
+         5L6KJaqBswI+jtkHKtfMZ6N/OqxrvpK2USK9igGWAxJ5wFYpDc8rzF0fzm88FCK6U+Zy
+         srbVT2gRDuUb+CF2ogVkCQ16ntBoqqCZsrLmb6kwatTHRRvDd3EER8Zd+3yfJusRPKfW
+         ckwJFH3EHrSqUXD7uAr2OCs4dz8jkgOIFOiWItCOKAEqXG+UzBRjNujxYhV5+SS9+ilp
+         Zeqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wJWD0ypjjTq7fQ8rDgddX7owB8y+VHTM4qMJIH9fCHw=;
-        b=N5SK5cT1xNeMXVUz1jEsdQXJY2V9qGglOHyXf90L2AO6tD1upSk/6Y2RNUfld5lA2l
-         UOVs3dc/pgVE7v5gFMdg6Mo326ELapWLrhU+ZDyj32Bo3rqJVkCdXhxh7Z0EjVF/dcmY
-         hE6WOaIzy7QifRvHsMJXbrcZRfvDDxH+ko8ypKj8wAJxwgMRRy+GtljDMA2dD/1XRZ5x
-         d89ugb5/MVQrIr8ey45sh0iiK6ynPElf5nR02r59SbFGa8eL5d1NfPec8qrufT6omG/s
-         JL8AghjWQR3gXRMpKoGENgHfV3R02y96ethtLPni6WrryX118HTP1/Aa1cHhxe7z26dZ
-         Ic3A==
-X-Gm-Message-State: AOAM533ZBBRLoBaCMOwruNy6OITrlJ7Oh9q5svhyHNgmrP6jRbPQrva3
-        +1S9H1iXbml3l9Gq6Rs0eJY=
-X-Google-Smtp-Source: ABdhPJxRb14TpJppSAkwxeKcVHLhlrr2Hq1IwkG/+5lK0KcV0Rt1LDlxdCjkX/gXj+GsSpoqGJoJpQ==
-X-Received: by 2002:a65:5c4a:: with SMTP id v10mr119919pgr.73.1619118244074;
-        Thu, 22 Apr 2021 12:04:04 -0700 (PDT)
-Received: from skbuf (5-12-16-165.residential.rdsnet.ro. [5.12.16.165])
-        by smtp.gmail.com with ESMTPSA id n39sm2594911pfv.51.2021.04.22.12.03.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Apr 2021 12:04:03 -0700 (PDT)
-Date:   Thu, 22 Apr 2021 22:03:51 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     andrew@lunn.ch, netdev@vger.kernel.org, robh+dt@kernel.org,
-        UNGLinuxDriver@microchip.com, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 9/9] net: dsa: microchip: add support for
- vlan operations
-Message-ID: <20210422190351.qdv2xlnxghmfpjqj@skbuf>
-References: <20210422094257.1641396-1-prasanna.vengateshan@microchip.com>
- <20210422094257.1641396-10-prasanna.vengateshan@microchip.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=2cU5mPNKDtlteNBbk3anMbRMaIXJe5GUHs1/Fqkj1KQ=;
+        b=IvF7fKafNgyfqQPNoXo3h8OS+d+uTgSvVr8DnenXGN7L3yFsoYyhUZ8iog2wQ9zOy0
+         WURV/62VbjsfxkNJpiuFJwbl18zG+Z/8HM7v5BX1M8ACuEf0592IpNEY2lSnXtqkO5gX
+         D8TdCPCpxwwIGQtqdZA5qnHgWN6FN90R0liIxVagutyX+KeFIUO/AKKEvvOVmB8JFxmm
+         mql0Gu9+eXjGVA3bOOVTJZju14DPAhYQ84cFd/YZuXovGtCkZLHfULKmoP2qa2h6GKCH
+         fVkhOx5JqOgqaB0YVXb8bvXmoxbKck3vja6p62MfXk/Lo/dMzXTKbAiIkMkFlcU9B8gZ
+         wzLg==
+X-Gm-Message-State: AOAM532aeRpT3pp9WncX5HcQi+xMkgyQoAIOqhQdAWxOiN/lToO8XiaY
+        0yDz9xRrmyIsgss1/bAONj2iCQ==
+X-Google-Smtp-Source: ABdhPJx4jRPrEEhqBCLz27LfBVbenxY1/FQ/KIusG0Xm1b6Y8CKEdtdLDoS68KlAng9fcQ0HNMLB7A==
+X-Received: by 2002:adf:eb41:: with SMTP id u1mr5959048wrn.20.1619118547875;
+        Thu, 22 Apr 2021 12:09:07 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:2191:9b4c:c38f:a1a9? ([2a01:e34:ed2f:f020:2191:9b4c:c38f:a1a9])
+        by smtp.googlemail.com with ESMTPSA id i15sm5265426wrr.73.2021.04.22.12.09.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Apr 2021 12:09:06 -0700 (PDT)
+Subject: Re: [PATCH 1/2] dt-bindings: rockchip-thermal: Support the RK3568 SoC
+ compatible
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, Johan Jonker <jbx6244@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Kever Yang <kever.yang@rock-chips.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Finley Xiao <finley.xiao@rock-chips.com>, kernel@collabora.com
+References: <20210421200445.32977-1-ezequiel@collabora.com>
+ <bf0771cec69e11bf4622421a3aa8f2092da42429.camel@collabora.com>
+ <31c2e531-96d0-a1c1-644c-28c60eb40cf4@gmail.com> <4689477.1oUyQt6lIG@diego>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <573a45cc-5821-8731-e9c2-6b817482ac62@linaro.org>
+Date:   Thu, 22 Apr 2021 21:09:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210422094257.1641396-10-prasanna.vengateshan@microchip.com>
+In-Reply-To: <4689477.1oUyQt6lIG@diego>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 22, 2021 at 03:12:57PM +0530, Prasanna Vengateshan wrote:
-> Support for VLAN add, del, prepare and filtering operations.
+On 22/04/2021 20:20, Heiko Stübner wrote:
+> Hi,
 > 
-> It aligns with latest update of removing switchdev
-> transactional logic from VLAN objects
-
-Maybe more in the commit message about what the patch does, as opposed
-to mentioning that you had to rebase it, would be helpful.
-
+> Am Donnerstag, 22. April 2021, 00:12:45 CEST schrieb Johan Jonker:
+>> On 4/21/21 11:56 PM, Ezequiel Garcia wrote:
+>>> On Wed, 2021-04-21 at 23:25 +0200, Johan Jonker wrote:
+>>>> On 4/21/21 11:06 PM, Ezequiel Garcia wrote:
+>>>>> On Wed, 2021-04-21 at 22:46 +0200, Johan Jonker wrote:
+>>>>>> On 4/21/21 10:04 PM, Ezequiel Garcia wrote:
+>>>>>>> Add a new compatible for the thermal sensor device on RK3568 SoCs.
+>>>>>>>
+>>>>>>> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+>>>>>>> ---
+>>>>>>>  Documentation/devicetree/bindings/thermal/rockchip-thermal.txt | 1 +
+>>>>>>>  1 file changed, 1 insertion(+)
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt b/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
+>>>>>>> index 7f94669e9ebe..346e466c2006 100644
+>>>>>>> --- a/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
+>>>>>>> +++ b/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
+>>>>>>> @@ -9,6 +9,7 @@ Required properties:
+>>>>>>>     "rockchip,rk3328-tsadc": found on RK3328 SoCs
+>>>>>>>     "rockchip,rk3368-tsadc": found on RK3368 SoCs
+>>>>>>>     "rockchip,rk3399-tsadc": found on RK3399 SoCs
+>>>>>>
+>>>>>>> +   "rockchip,rk3568-tsadc": found on RK3568 SoCs
+>>>>>>
+>>>>>> This is still a text document.
+>>>>>> rob+dt has now scripts that check for undocumented compatibility
+>>>>>> strings, so first convert rockchip-thermal.txt to YAML and then add this
+>>>>>> in a separated patch.
+>>>>>>
+>>>>>
+>>>>> Is it a showstopper to convert devicetree bindings to YAML for driver submission?
+>>>>
+>>>> You now that hardware best, so try to fix the documents as well.
+>>>
+>>> Well, not really. I'm just forward porting the driver from downstream kernels,
+>>> so we can support this new SoC. Not really a hardware _expert_ for all the
+>>> devices I plan to be pushing.
+>>>
+>>>> The new norm is YAML, so aim for that.
+>>>
+>>> I am aware of that. In fact, at Collabora we encourage all the kernel
+>>> developers to convert to YAML, if/when possible.
+>>>
+>>>> Try to submit a complete package of YAML, driver (and dts nodes) for review.
+>>>
+>>> The devicetree for RK3566 and RK3568 is under discussion, in fact it was submitted today.
+>>> Rockhip is leading that, and doing a great job already :)
+>>>
+>>> Meanwhile, I'd like to merge the small drivers (thermal, pmic, dwmac, io-domains and so on),
+>>> so they are ready when the devicetree lands.
+>>>
+>>
+>>> Most if not all of these devices just need a new compatible string. It would really delay
+>>> things if I aim to convert all those bindings docs to YAML first, so let's please avoid that...
+>>> ... unless it's a new hard-rule that DT maintainers have agreed on.
+>>
+>> Every driver group has it's own delay time, so better do it right in one
+>> run.
+>> Mostly people tend to 'forget' documentation and then someone else has
+>> to clean up the mess. So I propose that the person that submits a new
+>> driver also fixes the documentation. The norm is now YAML, so this serie
+>> has more work then other, so be it. Others can help you with it if you ask.
 > 
-> Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-> ---
->  drivers/net/dsa/microchip/lan937x_main.c | 214 +++++++++++++++++++++++
->  1 file changed, 214 insertions(+)
+> personally I feel this approach being a bit too strict.
 > 
-> diff --git a/drivers/net/dsa/microchip/lan937x_main.c b/drivers/net/dsa/microchip/lan937x_main.c
-> index 7f6183dc0e31..35f3456c3506 100644
-> --- a/drivers/net/dsa/microchip/lan937x_main.c
-> +++ b/drivers/net/dsa/microchip/lan937x_main.c
-> @@ -14,6 +14,103 @@
->  #include "ksz_common.h"
->  #include "lan937x_dev.h"
->  
-> +static int lan937x_wait_vlan_ctrl_ready(struct ksz_device *dev)
-> +{
-> +	unsigned int val;
-> +
-> +	return regmap_read_poll_timeout(dev->regmap[0], REG_SW_VLAN_CTRL,
-> +					val, !(val & VLAN_START), 10, 1000);
-> +}
-> +
-> +static int lan937x_get_vlan_table(struct ksz_device *dev, u16 vid,
-> +				  u32 *vlan_table)
-> +{
-> +	int rc;
-> +
-> +	mutex_lock(&dev->vlan_mutex);
-> +
-> +	rc = ksz_write16(dev, REG_SW_VLAN_ENTRY_INDEX__2, vid & VLAN_INDEX_M);
-> +	if (rc < 0)
-> +		goto exit;
-> +
-> +	rc = ksz_write8(dev, REG_SW_VLAN_CTRL, VLAN_READ | VLAN_START);
-> +	if (rc < 0)
-> +		goto exit;
-> +
-> +	/* wait to be cleared */
-> +	rc = lan937x_wait_vlan_ctrl_ready(dev);
-> +	if (rc < 0)
-> +		goto exit;
-> +
-> +	rc = ksz_read32(dev, REG_SW_VLAN_ENTRY__4, &vlan_table[0]);
-> +	if (rc < 0)
-> +		goto exit;
-> +
-> +	rc = ksz_read32(dev, REG_SW_VLAN_ENTRY_UNTAG__4, &vlan_table[1]);
-> +	if (rc < 0)
-> +		goto exit;
-> +
-> +	rc = ksz_read32(dev, REG_SW_VLAN_ENTRY_PORTS__4, &vlan_table[2]);
-> +	if (rc < 0)
-> +		goto exit;
-> +
-> +	rc = ksz_write8(dev, REG_SW_VLAN_CTRL, 0);
-> +	if (rc < 0)
-> +		goto exit;
-> +
-> +exit:
-> +	mutex_unlock(&dev->vlan_mutex);
-> +
-> +	return rc;
-> +}
-> +
-> +static int lan937x_set_vlan_table(struct ksz_device *dev, u16 vid,
-> +				  u32 *vlan_table)
-> +{
-> +	int rc;
-> +
-> +	mutex_lock(&dev->vlan_mutex);
-> +
-> +	rc = ksz_write32(dev, REG_SW_VLAN_ENTRY__4, vlan_table[0]);
-> +	if (rc < 0)
-> +		goto exit;
-> +
-> +	rc = ksz_write32(dev, REG_SW_VLAN_ENTRY_UNTAG__4, vlan_table[1]);
-> +	if (rc < 0)
-> +		goto exit;
-> +
-> +	rc = ksz_write32(dev, REG_SW_VLAN_ENTRY_PORTS__4, vlan_table[2]);
-> +	if (rc < 0)
-> +		goto exit;
-> +
-> +	rc = ksz_write16(dev, REG_SW_VLAN_ENTRY_INDEX__2, vid & VLAN_INDEX_M);
-> +	if (rc < 0)
-> +		goto exit;
-> +
-> +	rc = ksz_write8(dev, REG_SW_VLAN_CTRL, VLAN_START | VLAN_WRITE);
-> +	if (rc < 0)
-> +		goto exit;
-> +
-> +	/* wait to be cleared */
-> +	rc = lan937x_wait_vlan_ctrl_ready(dev);
-> +	if (rc < 0)
-> +		goto exit;
-> +
-> +	rc = ksz_write8(dev, REG_SW_VLAN_CTRL, 0);
-> +	if (rc < 0)
-> +		goto exit;
-> +
-> +	/* update vlan cache table */
-> +	dev->vlan_cache[vid].table[0] = vlan_table[0];
-> +	dev->vlan_cache[vid].table[1] = vlan_table[1];
-> +	dev->vlan_cache[vid].table[2] = vlan_table[2];
-> +
-> +exit:
-> +	mutex_unlock(&dev->vlan_mutex);
-> +
-> +	return rc;
-> +}
-> +
->  static int lan937x_read_table(struct ksz_device *dev, u32 *table)
->  {
->  	int rc;
-> @@ -190,6 +287,120 @@ static void lan937x_port_stp_state_set(struct dsa_switch *ds, int port,
->  	mutex_unlock(&dev->dev_mutex);
->  }
->  
-> +static int lan937x_port_vlan_filtering(struct dsa_switch *ds, int port,
-> +				       bool flag,
-> +				       struct netlink_ext_ack *extack)
-> +{
-> +	struct ksz_device *dev = ds->priv;
-> +	int rc;
-> +
-> +	if (flag) {
-> +		rc = lan937x_port_cfg(dev, port, REG_PORT_LUE_CTRL,
-> +				      PORT_VLAN_LOOKUP_VID_0, true);
-> +		if (rc < 0)
-> +			return rc;
+> While it is definitly cool to convert everything to a yaml base in a
+> hopefully short time, being overly strict can also stiffle participation.
 
-What does this bit do?
++1
 
-> +
-> +		rc = lan937x_cfg(dev, REG_SW_LUE_CTRL_0, SW_VLAN_ENABLE, true);
 
-How about this bit?
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-I see one bit is per port and the other is global.
-Just FYI, you can have this configuration:
-
-ip link add br0 type bridge vlan_filtering 0
-ip link add br1 type bridge vlan_filtering 1
-ip link set swp0 master br0
-ip link set swp1 master br0
-ip link set swp2 master br1
-ip link set swp3 master br1
-
-Do the swp0 and swp1 ports remain VLAN-unaware after you touch this
-REG_SW_LUE_CTRL_0 bit?
-
-> +	} else {
-> +		rc = lan937x_cfg(dev, REG_SW_LUE_CTRL_0, SW_VLAN_ENABLE, false);
-> +		if (rc < 0)
-> +			return rc;
-> +
-> +		rc = lan937x_port_cfg(dev, port, REG_PORT_LUE_CTRL,
-> +				      PORT_VLAN_LOOKUP_VID_0, false);
-> +	}
-> +
-> +	return rc;
-> +}
-> +
-> +static int lan937x_port_vlan_add(struct dsa_switch *ds, int port,
-> +				 const struct switchdev_obj_port_vlan *vlan,
-> +				 struct netlink_ext_ack *extack)
-> +{
-> +	bool untagged = vlan->flags & BRIDGE_VLAN_INFO_UNTAGGED;
-> +	struct ksz_device *dev = ds->priv;
-> +	u32 vlan_table[3];
-
-Maybe a structure would be nicer to read than an u32 array?
-
-> +	int rc;
-> +
-> +	rc = lan937x_get_vlan_table(dev, vlan->vid, vlan_table);
-> +	if (rc < 0) {
-> +		dev_err(dev->dev, "Failed to get vlan table\n");
-
-One of the reasons for which the extack exists is so that you can report
-errors to user space and not to the console.
-
-		NL_SET_ERR_MSG_MOD(extack, "Failed to get vlan table");
-
-> +		return rc;
-> +	}
-> +
-> +	vlan_table[0] = VLAN_VALID | (vlan->vid & VLAN_FID_M);
-> +
-> +	/* set/clear switch port when updating vlan table registers */
-> +	if (untagged)
-> +		vlan_table[1] |= BIT(port);
-> +	else
-> +		vlan_table[1] &= ~BIT(port);
-> +	vlan_table[1] &= ~(BIT(dev->cpu_port));
-> +
-> +	vlan_table[2] |= BIT(port) | BIT(dev->cpu_port);
-
-What's the business with the CPU port here? Does DSA not call
-.port_vlan_add for the CPU port separately?
-
-> +
-> +	rc = lan937x_set_vlan_table(dev, vlan->vid, vlan_table);
-> +	if (rc < 0) {
-> +		dev_err(dev->dev, "Failed to set vlan table\n");
-> +		return rc;
-> +	}
-> +
-> +	/* change PVID */
-> +	if (vlan->flags & BRIDGE_VLAN_INFO_PVID) {
-> +		rc = lan937x_pwrite16(dev, port, REG_PORT_DEFAULT_VID, vlan->vid);
-> +
-> +		if (rc < 0) {
-> +			dev_err(dev->dev, "Failed to set pvid\n");
-> +			return rc;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int lan937x_port_vlan_del(struct dsa_switch *ds, int port,
-> +				 const struct switchdev_obj_port_vlan *vlan)
-> +{
-> +	bool untagged = vlan->flags & BRIDGE_VLAN_INFO_UNTAGGED;
-> +	struct ksz_device *dev = ds->priv;
-> +	u32 vlan_table[3];
-> +	u16 pvid;
-> +	int rc;
-> +
-> +	lan937x_pread16(dev, port, REG_PORT_DEFAULT_VID, &pvid);
-> +	pvid &= 0xFFF;
-> +
-> +	rc = lan937x_get_vlan_table(dev, vlan->vid, vlan_table);
-> +
-> +	if (rc < 0) {
-> +		dev_err(dev->dev, "Failed to get vlan table\n");
-> +		return rc;
-> +	}
-> +	/* clear switch port number */
-> +	vlan_table[2] &= ~BIT(port);
-> +
-> +	if (pvid == vlan->vid)
-> +		pvid = 1;
-
-According to Documentation/networking/switchdev.rst:
-
-When the bridge has VLAN filtering enabled and a PVID is not configured on the
-ingress port, untagged and 802.1p tagged packets must be dropped. When the bridge
-has VLAN filtering enabled and a PVID exists on the ingress port, untagged and
-priority-tagged packets must be accepted and forwarded according to the
-bridge's port membership of the PVID VLAN. When the bridge has VLAN filtering
-disabled, the presence/lack of a PVID should not influence the packet
-forwarding decision.
-
-So please don't reset the pvid.
-
-> +
-> +	if (untagged)
-> +		vlan_table[1] &= ~BIT(port);
-> +
-> +	rc = lan937x_set_vlan_table(dev, vlan->vid, vlan_table);
-> +	if (rc < 0) {
-> +		dev_err(dev->dev, "Failed to set vlan table\n");
-> +		return rc;
-> +	}
-> +
-> +	rc = lan937x_pwrite16(dev, port, REG_PORT_DEFAULT_VID, pvid);
-> +
-> +	if (rc < 0) {
-> +		dev_err(dev->dev, "Failed to set pvid\n");
-> +		return rc;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static u8 lan937x_get_fid(u16 vid)
->  {
->  	if (vid > ALU_FID_SIZE)
-> @@ -955,6 +1166,9 @@ const struct dsa_switch_ops lan937x_switch_ops = {
->  	.port_bridge_flags	= lan937x_port_bridge_flags,
->  	.port_stp_state_set	= lan937x_port_stp_state_set,
->  	.port_fast_age		= ksz_port_fast_age,
-> +	.port_vlan_filtering	= lan937x_port_vlan_filtering,
-> +	.port_vlan_add		= lan937x_port_vlan_add,
-> +	.port_vlan_del		= lan937x_port_vlan_del,
->  	.port_fdb_dump		= lan937x_port_fdb_dump,
->  	.port_fdb_add		= lan937x_port_fdb_add,
->  	.port_fdb_del		= lan937x_port_fdb_del,
-> -- 
-> 2.27.0
-> 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
