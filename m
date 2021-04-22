@@ -2,110 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6469367BB0
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 10:05:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 712BE367BBE
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 10:10:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230228AbhDVIGF convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 22 Apr 2021 04:06:05 -0400
-Received: from eu-smtp-delivery-151.mimecast.com ([185.58.85.151]:45063 "EHLO
-        eu-smtp-delivery-151.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229655AbhDVIGF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Apr 2021 04:06:05 -0400
-Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) (Using
- TLS) by relay.mimecast.com with ESMTP id
- uk-mta-144-i8bViBFkNvu_lZID7Y2huA-1; Thu, 22 Apr 2021 09:05:27 +0100
-X-MC-Unique: i8bViBFkNvu_lZID7Y2huA-1
-Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
- AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
- Server (TLS) id 15.0.1497.2; Thu, 22 Apr 2021 09:05:27 +0100
-Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
- AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
- 15.00.1497.015; Thu, 22 Apr 2021 09:05:27 +0100
-From:   David Laight <David.Laight@ACULAB.COM>
-To:     'Daniel Axtens' <dja@axtens.net>,
-        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "dan.carpenter@oracle.com" <dan.carpenter@oracle.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>,
-        "bauerman@linux.ibm.com" <bauerman@linux.ibm.com>,
-        "lkp@intel.com" <lkp@intel.com>
-Subject: RE: [PATCH] powerpc: Initialize local variable fdt to NULL in
- elf64_load()
-Thread-Topic: [PATCH] powerpc: Initialize local variable fdt to NULL in
- elf64_load()
-Thread-Index: AQHXNx40L6Jjg9Iqf02Ssp9xJukHBarALKRw
-Date:   Thu, 22 Apr 2021 08:05:27 +0000
-Message-ID: <3e6b31d92d5042d982daeb989e49299e@AcuMS.aculab.com>
-References: <20210415191437.20212-1-nramas@linux.microsoft.com>
- <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
- <87eefag241.fsf@linkitivity.dja.id.au>
- <87r1j3ys8i.fsf@dja-thinkpad.axtens.net>
-In-Reply-To: <87r1j3ys8i.fsf@dja-thinkpad.axtens.net>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+        id S229938AbhDVIKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 04:10:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37088 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229655AbhDVIKw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 04:10:52 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B989AC06138B
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 01:10:17 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id w23so51628046ejb.9
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 01:10:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=h+CMl0wy3Vjr3C3/bC9rZ5K1PCcuzB8i4uU1sLoEz/Q=;
+        b=REWRFzLC60dlqnMXMPEWx38bd5GYmNw56uXhyWHcnMYr3Tv5NpMHovQnA5Bb+5InmN
+         4b+4f0c1dH/bJ06BBd0tlLT9CpiaeANYTqzerfaaKs42oIiIp1kXhG4vlCosi3/d5fu2
+         ElHUSdzzB0d8IjpqH4NOgi+LZkCL7w/YXTu+o=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=h+CMl0wy3Vjr3C3/bC9rZ5K1PCcuzB8i4uU1sLoEz/Q=;
+        b=qLJ+EkiKzy4QqLu97pjHFpzIA8J7u1K4ptVLAm7Z7SGjcb/ARp7VkkodMGCBfHZttb
+         iuFuydb1ujI5FIIZNZsdH6slfmTsyCuUfNmRffgLss0kb8GTT//3hKdJY1bjmN4LU7en
+         CKugfODWyFi5XsHHwgOf7BlDI9sbjgwD1lYx+2gK1wekWNpFLa8xOJnHtJKuhR+MvH+X
+         0HhSx15RSdQq3YCNV4QduAA/KSg8vXYJzgOI22UtAsvkty8g/CPMJR5bxLRtCDaFOV0Q
+         d0Y0oDwGsy1gsPa/HNmhnJ+N4DmBvf+yDXjKZZ9o3YfW9XCmUWzAuNutAejfly/fkBsr
+         xJQw==
+X-Gm-Message-State: AOAM533TZw4Km+Nmz4mIZSe9hinvsxoSplsqw46V/3YleX1koW358/qt
+        roU/8yRDJ+EMab1tte64r8ZfIbDSpiHoWGMoff2NOA==
+X-Google-Smtp-Source: ABdhPJz86iG8pbA8A6dOaF9RURCM9V6vojTjv4f6LyDRLnUH+5yxZV2UZ3/KAwNZFRV4cxKgrwj0Yfx3i4LiRRYoxeY=
+X-Received: by 2002:a17:906:235b:: with SMTP id m27mr2083664eja.336.1619079016529;
+ Thu, 22 Apr 2021 01:10:16 -0700 (PDT)
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
-        auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: aculab.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+References: <20210214174453.104616-1-jagan@amarulasolutions.com>
+ <d7f9b241-3cfc-836a-2519-3b6621899108@denx.de> <CAMty3ZBMt+bx7ZrCQf0b3wrJUtZVe3CS=8-t_wYZ4+=PwP+mbQ@mail.gmail.com>
+ <2d9a88e9-e443-0243-4b68-85fc01d9677b@denx.de>
+In-Reply-To: <2d9a88e9-e443-0243-4b68-85fc01d9677b@denx.de>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Thu, 22 Apr 2021 13:40:05 +0530
+Message-ID: <CAMty3ZAhdOesrEA26_rduEOaxpwScd5Og6biXT5SzULbH6GR6w@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: Add bindings for SN65DSI83/84/85
+To:     Marek Vasut <marex@denx.de>
+Cc:     Claudius Heine <ch@denx.de>, Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Daniel Axtens
-> Sent: 22 April 2021 03:21
-> 
-> > Hi Lakshmi,
+On Thu, Apr 22, 2021 at 4:04 AM Marek Vasut <marex@denx.de> wrote:
+>
+> On 4/8/21 4:45 PM, Jagan Teki wrote:
+> > On Wed, Mar 24, 2021 at 7:26 PM Claudius Heine <ch@denx.de> wrote:
+> >>
+> >> Hi Jagan,
+> >>
+> >> On 2021-02-14 18:44, Jagan Teki wrote:
+> >>> SN65DSI83/84/85 devices are MIPI DSI to LVDS based bridge
+> >>> controller IC's from Texas Instruments.
+> >>>
+> >>> SN65DSI83 - Single Channel DSI to Single-link LVDS bridge
+> >>> SN65DSI84 - Single Channel DSI to Dual-link LVDS bridge
+> >>> SN65DSI85 - Dual Channel DSI to Dual-link LVDS bridge
+> >>>
+> >>> Right now the bridge driver is supporting Channel A with single
+> >>> link, so dt-bindings documented according to it.
+> >>
+> >> Do you know when we can expect a v4 for this?
+> >>
+> >> I am currently working on top of your patch set to setup a dual-link
+> >> LVDS bridge of SN65DSI84.
 > >
-> >> On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
-> >>
-> >> Sorry - missed copying device-tree and powerpc mailing lists.
-> >>
-> >>> There are a few "goto out;" statements before the local variable "fdt"
-> >>> is initialized through the call to of_kexec_alloc_and_setup_fdt() in
-> >>> elf64_load(). This will result in an uninitialized "fdt" being passed
-> >>> to kvfree() in this function if there is an error before the call to
-> >>> of_kexec_alloc_and_setup_fdt().
-> >>>
-> >>> Initialize the local variable "fdt" to NULL.
-> >>>
-> > I'm a huge fan of initialising local variables! But I'm struggling to
-> > find the code path that will lead to an uninit fdt being returned...
-> 
-> OK, so perhaps this was putting it too strongly. I have been bitten
-> by uninitialised things enough in C that I may have taken a slightly
-> overly-agressive view of fixing them in the source rather than the
-> compiler. I do think compiler-level mitigations are better, and I take
-> the point that we don't want to defeat compiler checking.
-> 
-> (Does anyone - and by anyone I mean any large distro - compile with
-> local variables inited by the compiler?)
+> > Yes, I'm planning to send v4 this week. will keep you in CC. thanks!
+>
+> I haven't seen any activity here for over two weeks, so I decided to
+> send V2 of the driver I wrote, now tested on both DSI83 and DSI84.
 
-There are compilers that initialise locals to zero for 'debug' builds
-and leave the 'random' for optimised 'release' builds.
-Lets not test what we are releasing!
+It delayed me since I have considered several comments from the
+Mailing list to wrote Dual Link-LVDS configuration support. I have a
+plan to send v4 in the coming weekend with these changes, I thought it
+would be the possible driver to support 1 and 2 links LVDS.
 
-I also think there is a new option to gcc (or clang?) to initialise
-on-stack structures and arrays to ensure garbage isn't passed.
-That seems to be a horrid performance hit!
-Especially in userspace where large stack allocations are almost free.
-
-Any auto-initialise ought to be with a semi-random value
-(especially not zero) so that it is never right and doesn't
-lead to lazy coding.
-
-	David
-
--
-Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
-Registration No: 1397386 (Wales)
-
+Jagan.
