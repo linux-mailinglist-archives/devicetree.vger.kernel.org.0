@@ -2,109 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6837A368253
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 16:17:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1745368257
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 16:20:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236544AbhDVOS0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 10:18:26 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:57356 "EHLO
+        id S236570AbhDVOUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 10:20:53 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:58106 "EHLO
         fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236092AbhDVOS0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 10:18:26 -0400
+        with ESMTP id S236496AbhDVOUw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 10:20:52 -0400
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13MEHihS073442;
-        Thu, 22 Apr 2021 09:17:44 -0500
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13MEKClj074412;
+        Thu, 22 Apr 2021 09:20:12 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1619101064;
-        bh=+QeFwgSZcZvSnHvwP9NbzZ+9fb3TLz4c9lcf8n/o5+k=;
+        s=ti-com-17Q1; t=1619101212;
+        bh=eLCNEeT9z0g1L4VWRS3pYMec87wOC2TuVWX5CHcWjjc=;
         h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=x1FobscePt3LhRtFpyS7l2/hNpjxoOuSm1MNj+kKlrZFIHyGokye5Esc2+CzV1Ytv
-         VBcrsql3vk8E+kclPFCp0bCcUoS+A/Ad+04OQkwQdRmVv69AIB9cJytm4S9JFSe+uN
-         SPcwBAFuMZ3XnwioR5Xm2WlCCpehtEeYf+B7qym8=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13MEHiqo064493
+        b=JX2Qi2RVy+cgLm4xZG0ELG0EljMsR2mUXfYv3oa+z9aF47wFE+SjUecuwFEDCfDjs
+         dNO0AKFSR98+cG6xBzfyj7/P9Hqx9TLyBW/4dyc+pC+xazht9tuLnGETnlgs0+f3hC
+         Uq6Yj9jzR0cLlz5qf1PW6nAiSFl7DCv5dX9Z7Tek=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13MEKCYg067110
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 22 Apr 2021 09:17:44 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 22 Apr 2021 09:20:12 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 22
- Apr 2021 09:17:44 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2021 09:20:12 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 22 Apr 2021 09:17:44 -0500
+ Frontend Transport; Thu, 22 Apr 2021 09:20:12 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13MEHi9N099695;
-        Thu, 22 Apr 2021 09:17:44 -0500
-Date:   Thu, 22 Apr 2021 09:17:44 -0500
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13MEKCNu104239;
+        Thu, 22 Apr 2021 09:20:12 -0500
+Date:   Thu, 22 Apr 2021 09:20:12 -0500
 From:   Nishanth Menon <nm@ti.com>
 To:     Rob Herring <robh@kernel.org>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Tero Kristo <kristo@kernel.org>, <linux-clk@vger.kernel.org>,
+CC:     Jens Wiklander <jens.wiklander@linaro.org>,
         <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 4/4] dt-bindings: arm: keystone: Convert ti,sci to json
- schema
-Message-ID: <20210422141744.2imrochbzzt26wx4@slush>
-References: <20210416063721.20538-1-nm@ti.com>
- <20210416063721.20538-5-nm@ti.com>
- <20210421224041.GA1740292@robh.at.kernel.org>
+Subject: Re: [PATCH] dt-bindings: arm: firmware: Convert linaro,optee-tz to
+ json schema
+Message-ID: <20210422142012.lcjiy2gaoqllzlna@nervy>
+References: <20210416222518.15801-1-nm@ti.com>
+ <20210421225212.GB1750844@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20210421224041.GA1740292@robh.at.kernel.org>
+In-Reply-To: <20210421225212.GB1750844@robh.at.kernel.org>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17:40-20210421, Rob Herring wrote:
-
-[..]
-
-> > +allOf:
-> > +  - $ref: /schemas/mbox/mbox-consumer.yaml#
+On 17:52-20210421, Rob Herring wrote:
+> On Fri, Apr 16, 2021 at 05:25:18PM -0500, Nishanth Menon wrote:
+> > Convert linaro,optee-tz to json schema format for better documentation
+> > and error checks.
+> > 
+> > NOTE:
+> > 1. This change does introduce a stricter naming convention for
+> >    optee nodes.
+> > 2. We do have false positive checkpatch warning with this patch:
+> >    "DT binding docs and includes should be a separate patch"
 > 
-> Drop.
+> Not really something that needs to be in the commit msg. I'm aware of 
+> the issue, just haven't gotten around to fixing it.
+
+sure, thanks..
+In this patch and my previous patches as well, I will move them all
+to diffstat comment.
+
+> > +properties:
+> > +  $nodename:
+> > +    const: 'optee'
 > 
+> Don't need quotes.
 
-OK.
-
-> > +  reg-names:
-> > +    description: |
-> > +      Specifies the debug messages memory mapped region that is optionally
-> > +      made available from TI-SCI controller.
-> > +      - const: debug_messages
+aarrgh.. yes, ofcourse.
 > 
-> Drop the '-' and fix the indent so it's an actual schema.
-
-OK.
-
-[..]
-> > +patternProperties:
-> > +  # All other properties should be a power, clock or reset controller
-> > +  "^(power-controller|clock-controller|reset-controller)$":
-> > +    type: object
+> > +
+> > +  compatible:
+> > +    const: linaro,optee-tz
+> > +
+> > +  method:
+> > +    description: The method of calling the OP-TEE Trusted OS.
 > > +    oneOf:
-> > +      - $ref: /schemas/soc/ti/sci-pm-domain.yaml#
-> > +      - $ref: /schemas/clock/ti,sci-clk.yaml#
-> > +      - $ref: /schemas/reset/ti,sci-reset.yaml#
+> > +      - description: |
+> > +          SMC #0, with the register assignments specified
+> > +          in drivers/tee/optee/optee_smc.h
+> > +        items:
+> > +          - const: smc
+> > +      - description: |
+> > +          HVC #0, with the register assignments specified
+> > +          in drivers/tee/optee/optee_smc.h
+> > +        items:
+> > +          - const: hvc
 > 
-> I'd prefer you separate these with a property for each node.
+> Please just do 'enum: [ smc, hvc ]' and rework to a single description.
 
-Hmm... I am not sure I completely understand your comment here.
-I assume we dont want to duplicate each of those node yamls, so,
-did you mean something like:
-
-ti,sci-clk as a bool property in the tisci node and if present, then
-expect the node ti,sci-clk node?
-
-Can you give me a hint of similar yaml usage elsewhere that I can refer
-to?
+Sure, will do. thanks for the comments.
 
 -- 
 Regards,
