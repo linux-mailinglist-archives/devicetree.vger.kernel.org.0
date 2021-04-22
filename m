@@ -2,196 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E26B136830F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 17:10:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF178368339
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 17:21:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237674AbhDVPLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 11:11:01 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:54803 "EHLO m43-7.mailgun.net"
+        id S237561AbhDVPVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 11:21:38 -0400
+Received: from mx2.suse.de ([195.135.220.15]:35512 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237663AbhDVPLB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Apr 2021 11:11:01 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1619104226; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=vDB0vKCMD4UXSX/CvhsInRXbDbGVtPaaZh08hxixUcE=;
- b=FhZUlD9LD7c0wt59EniPmevYDrpjSAsTq2JjOC44CGkjIW+j6Z7V/X2CRO4WvRY8VzKj0Nvx
- osq0+zLidmjGJz63ReKsbWvHgtIJTWRA+sEt5rrGJUI/5KDpkiAtMXIKvi3Gxzgm0Lhqa5KU
- UEi0DyXrl1dGXek38VrCFSJ623o=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 608191d5a817abd39a2a4765 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 22 Apr 2021 15:10:13
- GMT
-Sender: rojay=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 9CFA5C43217; Thu, 22 Apr 2021 15:10:12 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: rojay)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id CAF9BC433D3;
-        Thu, 22 Apr 2021 15:10:11 +0000 (UTC)
+        id S237540AbhDVPVh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Apr 2021 11:21:37 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 183F4B172;
+        Thu, 22 Apr 2021 15:21:01 +0000 (UTC)
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 2/2] dt-bindings: gpio: Add devicetree binding for IDT 79RC32434 GPIO controller
+Date:   Thu, 22 Apr 2021 17:20:54 +0200
+Message-Id: <20210422152055.85544-2-tsbogend@alpha.franken.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210422152055.85544-1-tsbogend@alpha.franken.de>
+References: <20210422152055.85544-1-tsbogend@alpha.franken.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 22 Apr 2021 20:40:11 +0530
-From:   rojay@codeaurora.org
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Akash Asthana <akashast@codeaurora.org>,
-        msavaliy@qti.qualcomm.com
-Subject: Re: [PATCH] arm64: dts: sc7280: Add qspi, qupv3_0 and qupv3_1 nodes
-In-Reply-To: <CAD=FV=VuGPvUY8edN+PEuZS_pO+=3WHeJ-4J5tHDAPRnXJs0QA@mail.gmail.com>
-References: <20210311033957.8978-1-rojay@codeaurora.org>
- <CAD=FV=VuGPvUY8edN+PEuZS_pO+=3WHeJ-4J5tHDAPRnXJs0QA@mail.gmail.com>
-Message-ID: <c395cc77aed847dfaa59b0c2eadce6bf@codeaurora.org>
-X-Sender: rojay@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Doug,
+Add YAML devicetree binding for IDT 79RC32434 GPIO controller
 
-On 2021-03-12 03:24, Doug Anderson wrote:
-> Hi,
-> 
-> On Wed, Mar 10, 2021 at 7:41 PM Roja Rani Yarubandi
-> <rojay@codeaurora.org> wrote:
->> 
->> +&qspi_cs0 {
->> +       pinconf {
->> +               pins = "gpio15";
->> +               bias-disable;
->> +       };
-> 
-> The "pinconf" / "pinmux" subnode shouldn't be used for new SoCs. See:
-> 
-> http://lore.kernel.org/r/CAD=FV=UY_AFRrAY0tef5jP698LEng6oN652LcX3B4nG=aWh0gA@mail.gmail.com
-> 
-> ...same feedback for this whole patch.
-> 
+Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+---
+Changes in v3:
+ - renamed to idt,32434-gpio
+ - drop ngpio description
+ - use gpio0: gpio@50004 in example
 
-Ok, will do the changes.
+ .../devicetree/bindings/gpio/idt,32434.yaml   | 71 +++++++++++++++++++
+ 1 file changed, 71 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/idt,32434.yaml
 
->> +                       qup_spi0_default: qup-spi0-default {
->> +                               pinmux {
->> +                                       pins = "gpio0", "gpio1",
->> +                                              "gpio2", "gpio3";
->> +                                       function = "qup00";
->> +                               };
->> +                       };
-> 
-> Please split these SPI nodes as per the thread above, like:
-> 
-> tlmm: pinctrl@... {
->   qup_spi0_data_clk: qup-spi0-data-clk {
->     pins = "gpio0", "gpio1", "gpio2";
->     function = "qup0";
->   };
-> 
->   qup_spi0_cs: qup-spi0-cs {
->     pins = "gpio3";
->     function = "qup0";
->   };
-> 
->   qup_spi0_cs_gpio: qup-spi0-cs-gpio {
->     pins = "gpio3";
->     function = "gpio";
->   };
-> };
-> 
-> 
->> +                       qup_uart0_default: qup-uart0-default {
->> +                               pinmux {
->> +                                       pins = "gpio0", "gpio1",
->> +                                              "gpio2", "gpio3";
->> +                                       function = "qup00";
->> +                               };
->> +                       };
-> 
-> I suspect things would actually be cleaner if we broke the uart lines
-> up since the boards tend to have to adjust pulls differently for each
-> line. With the new "no pinconf / pinmux" world it's pretty clean. It's
-> obviously up to Bjorn, but if it were me I'd request this in the SoC
-> file:
-> 
-> qup_uart0_cts: qup-uart0-cts {
->   pins = "...";
->   function = "qup00";
-> };
-> 
-> qup_uart0_rts: qup-uart0-rts {
->   pins = "...";
->   function = "qup00";
-> };
-> 
-> qup_uart0_rx: qup-uart0-rx {
->   pins = "...";
->   function = "qup00";
-> };
-> 
-> qup_uart0_tx: qup-uart0-tx {
->   pins = "...";
->   function = "qup00";
-> };
-> 
-> ...and now when the board file wants to adjust the pulls they can just
-> reference each one:
-> 
-> /*
->  * Comments about why the UART0 pulls make sense.
->  * Blah blah blah.
->  */
-> 
-> &qup_uart0_cts {
->   bias-pull-down;
-> };
-> 
-> &qup_uart0_rts {
->   drive-strength = <2>;
->   bias-disable;
-> };
-> 
-> &qup_uart0_rx {
->   bias-pull-up;
-> };
-> 
-> &qup_uart0_tx {
->   drive-strength = <2>;
->   bias-disable;
-> };
-> 
-> 
->> +               qspi: spi@88dc000 {
-> 
-> I believe the qspi node is sorted incorrectly. When I apply this to
-> the top of the Qualcomm tree it shows up after the "apps_smmu:
-> iommu@15000000" node. However:
-> 
-> 0x088dc000 < 0x15000000
-> 
-> ...which means it should be _before_.
-> 
+diff --git a/Documentation/devicetree/bindings/gpio/idt,32434.yaml b/Documentation/devicetree/bindings/gpio/idt,32434.yaml
+new file mode 100644
+index 000000000000..bdbbe01855e0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/idt,32434.yaml
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/idt,32434.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: IDT 79RC32434 GPIO controller
++
++maintainers:
++  - Thomas Bogendoerfer <tsbogend@alpha.franken.de>
++
++properties:
++  compatible:
++    const: idt,32434-gpio
++
++  reg:
++    maxItems: 2
++
++  reg-names:
++    items:
++      - const: gpio
++      - const: pic
++
++  gpio-controller: true
++
++  "#gpio-cells":
++    const: 2
++
++  ngpios:
++    minimum: 1
++    maximum: 32
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    const: 2
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - gpio-controller
++  - "#gpio-cells"
++  - ngpios
++  - interrupt-controller
++  - "#interrupt-cells"
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    gpio0: gpio@50004 {
++        compatible = "idt,32434-gpio";
++        reg = <0x50004 0x10>, <0x38030 0x0c>;
++        reg-names = "gpio", "pic";
++
++        interrupt-controller;
++        #interrupt-cells = <2>;
++
++        interrupt-parent = <&cpuintc>;
++        interrupts = <6>;
++
++        gpio-controller;
++        #gpio-cells = <2>;
++
++        ngpios = <14>;
++    };
+-- 
+2.29.2
 
-Sure, will move before apps_smmu
-
-Thanks,
-Roja
-> -Doug
