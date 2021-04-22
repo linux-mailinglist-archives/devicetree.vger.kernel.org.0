@@ -2,70 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 866D9367FAF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 13:39:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A406F3680C3
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 14:45:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230510AbhDVLjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 07:39:39 -0400
-Received: from mail.pqgruber.com ([52.59.78.55]:51892 "EHLO mail.pqgruber.com"
+        id S236206AbhDVMqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 08:46:22 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:35658 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235955AbhDVLji (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Apr 2021 07:39:38 -0400
-Received: from workstation.tuxnet (213-47-165-233.cable.dynamic.surfer.at [213.47.165.233])
-        by mail.pqgruber.com (Postfix) with ESMTPSA id AFBCEC725CF;
-        Thu, 22 Apr 2021 13:39:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pqgruber.com;
-        s=mail; t=1619091542;
-        bh=MMc8JCRyxFdvyYZeG7GEnCEXw7rR9PccoTmcF4kV0r4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=H+J54Wc7PrEMXfoeoCjFhJxxAfeJCivLZ6z5Ojh7TOV8d77gLwNy20U0Nb0G2gu8k
-         1Cp2BVzGmVI1QtiHvHPRThjYvB6evobSZTnH68bI3dW1GzF3HcDCMGTR99bSOYd2ki
-         2FcoTdlESD7EGcuUbODj/pU7vfOkJOcY7wstsLIQ=
-Date:   Thu, 22 Apr 2021 13:39:01 +0200
-From:   Clemens Gruber <clemens.gruber@pqgruber.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     linux-pwm@vger.kernel.org,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Sven Van Asbroeck <TheSven73@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 1/8] pwm: pca9685: Switch to atomic API
-Message-ID: <YIFgVZL4PBcIKvMp@workstation.tuxnet>
-References: <20210415121455.39536-1-clemens.gruber@pqgruber.com>
- <20210417195150.5fdcpxfbasp4y264@pengutronix.de>
+        id S236144AbhDVMqW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Apr 2021 08:46:22 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lZYiD-000UwN-Aq; Thu, 22 Apr 2021 14:45:41 +0200
+Date:   Thu, 22 Apr 2021 14:45:41 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+Cc:     netdev@vger.kernel.org, olteanv@gmail.com, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, hkallweit1@gmail.com,
+        linux@armlinux.org.uk, davem@davemloft.net, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, vivien.didelot@gmail.com,
+        f.fainelli@gmail.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 net-next 2/9] net: phy: Add support for LAN937x T1 phy
+ driver
+Message-ID: <YIFv9Wcp94395Hbb@lunn.ch>
+References: <20210422094257.1641396-1-prasanna.vengateshan@microchip.com>
+ <20210422094257.1641396-3-prasanna.vengateshan@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210417195150.5fdcpxfbasp4y264@pengutronix.de>
+In-Reply-To: <20210422094257.1641396-3-prasanna.vengateshan@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 17, 2021 at 09:51:50PM +0200, Uwe Kleine-König wrote:
-> On Thu, Apr 15, 2021 at 02:14:48PM +0200, Clemens Gruber wrote:
-> > The switch to the atomic API goes hand in hand with a few fixes to
-> > previously experienced issues:
-> > - The duty cycle is no longer lost after disable/enable (previously the
-> >   OFF registers were cleared in disable and the user was required to
-> >   call config to restore the duty cycle settings)
-> > - If one sets a period resulting in the same prescale register value,
-> >   the sleep and write to the register is now skipped
-> > - Previously, only the full ON bit was toggled in GPIO mode (and full
-> >   OFF cleared if set to high), which could result in both full OFF and
-> >   full ON not being set and on=0, off=0, which is not allowed according
-> >   to the datasheet
-> > - The OFF registers were reset to 0 in probe, which could lead to the
-> >   forbidden on=0, off=0. Fixed by resetting to POR default (full OFF)
-> > 
-> > Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
-> 
-> (I sent my ack to v8 before, but indeed this was the version I intended
-> to ack)
-> 
-> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> +#define PORT_T1_PHY_RESET	BIT(15)
+> +#define PORT_T1_PHY_LOOPBACK	BIT(14)
+> +#define PORT_T1_SPEED_100MBIT	BIT(13)
+> +#define PORT_T1_POWER_DOWN	BIT(11)
+> +#define PORT_T1_ISOLATE	BIT(10)
+> +#define PORT_T1_FULL_DUPLEX	BIT(8)
 
-Thierry: Do you think we can get patches 1 to 3 into 5.13-rc1?
+These appear to be standard BMCR_ values. Please don't define your
+own.
 
-Thanks,
-Clemens
+> +
+> +#define REG_PORT_T1_PHY_BASIC_STATUS 0x01
+> +
+> +#define PORT_T1_MII_SUPPRESS_CAPABLE	BIT(6)
+> +#define PORT_T1_LINK_STATUS		BIT(2)
+> +#define PORT_T1_EXTENDED_CAPABILITY	BIT(0)
+> +
+> +#define REG_PORT_T1_PHY_ID_HI 0x02
+> +#define REG_PORT_T1_PHY_ID_LO 0x03
+
+MII_PHYSID1 and MII_PHYSID2
+
+Please go through all these #defines and replace them with the
+standard ones Linux provides. You are obfusticating the code by not
+using what people already know.
+
+      Andrew
