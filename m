@@ -2,87 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68D043675FC
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 02:01:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 648CB367609
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 02:04:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343812AbhDVABV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Apr 2021 20:01:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42718 "EHLO
+        id S244138AbhDVAFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Apr 2021 20:05:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343811AbhDVABU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 20:01:20 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 964D8C06138A
-        for <devicetree@vger.kernel.org>; Wed, 21 Apr 2021 17:00:46 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id u20so49717553lja.13
-        for <devicetree@vger.kernel.org>; Wed, 21 Apr 2021 17:00:46 -0700 (PDT)
+        with ESMTP id S235167AbhDVAFT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Apr 2021 20:05:19 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2430C06174A
+        for <devicetree@vger.kernel.org>; Wed, 21 Apr 2021 17:04:43 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id q22so6914793lfu.8
+        for <devicetree@vger.kernel.org>; Wed, 21 Apr 2021 17:04:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=vP82rZfUtsib5WAxJoWL80HDlGBtl+Yr06vR/s2yI1A=;
-        b=b8KEuQwfbdeJskL9p/vOI78uX4NjwjHug3dN5Ue7OmHjsvKYodnvrpqZrePOxEjpE5
-         v1whTg/4eYEPGolNo+qE8yOy3s01g40WqTbzYlOyCKKsMGtKdMekTlOwg2dkUDzToeJy
-         9tarCQ9Eq7tyAWygFSBzJktoHU7tYcCWBJybY+JRrJ727yzKHnsDMQ/R9dwnEYuKqCFm
-         7iYwGvRxgKCGt8CAC1yhT54syIFkK8doun/ZWKVjg0wTYpFDR0d1iHyUCu2cJuy4U54k
-         mfedzddMQzJqtSLcQbk7KJjEFskhOKq2ddl+T4ZPJbVOE8sIFuTEBlluag5/0U6fKHKB
-         +VIg==
+        bh=Q6eQLFu/iZ23p96P28yxRC3p2GNrQXWzyQQzuio77pc=;
+        b=SPP4om4R4AMTV7IgofXTXIm3i9K8bYuNHWnGTz853l7ml5bkGZLceTQQg3nM6j36+H
+         HR8t6ggUMkXBkiY5E0uiOZ9GAyK4OnQ0+GgyeZVeGfMzV82TccJry/scpZEksIt903jf
+         pbdVZUdDi1+Oq2BKy7Y8DWBpiew+3oS6ED/8T7+YSqiH37Ytgi4/MCuo0iwkTiaBR5gH
+         fUecbzygzr6HxI8EaHApHZs05K9sMa+dBEnYocuYwY38HEOzomlDH3QmsY596kg98vPo
+         fLXDXVX/+Xbei+odWGlZzKXMKWhZbqg/TNlFl3+F1aNmBEJboyzxiC5MQRvoKyOqCoDL
+         V3aQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=vP82rZfUtsib5WAxJoWL80HDlGBtl+Yr06vR/s2yI1A=;
-        b=rr5BuFCyy6H/loMD6rsrAa2ZE8LiyQseW4LdL8SEZvgIwB0WkGLpIAOy9AnJjQHc6N
-         vv91f1FLo+A53JW/oScYWfp1EFcsCrJq3irkaEDRNZSItK4t+ZqG/Ztj3PzVH4Q6dCbi
-         LNIBT/SAzhL5REhYSuCZMVMGTOr9lNcohC+oBasxrhdHha4FHjj/MTDQiL3uqQvCBYo+
-         TtZWIrl5PvrEiExv9VfPz5xoLQcrUtYfxIKz7NjaF9Vik39CTluK6U1p1GsBbRFY7F7p
-         mezYQBnWHCGekV3etr4Ii4vXiytrVY5W8ONJOOn/r3vmyjZTy+Ch1kNk5Rejmdltu7D7
-         oSsg==
-X-Gm-Message-State: AOAM533J2aI9WAWpxKs5QEYUbXSO8IZCkZkjX93vdEQnIWgiOKryQKS1
-        b9cWJ80cY/AI3ioOkTHBmOuibehio+vHjB6ydyYYVg==
-X-Google-Smtp-Source: ABdhPJyukDxnvl+KqgkeR2DwdKiQpsKRoXappdMdqijpppQIzbKoCm6kCuY2SoJuGKoITL7V7AoVQFVljVqGIng7XnA=
-X-Received: by 2002:a2e:555:: with SMTP id 82mr542235ljf.200.1619049645095;
- Wed, 21 Apr 2021 17:00:45 -0700 (PDT)
+        bh=Q6eQLFu/iZ23p96P28yxRC3p2GNrQXWzyQQzuio77pc=;
+        b=JkyCOr7JT/30h79PArpG2MNUwwC8uf0TUbPG9fE0eRHZcMto4oYCWgniC0lJNYOEW5
+         zEfOQBv0sQBx5k9lf8TnsWvUujBi/QnyZIqtFkKNG78WieOc98ZY8AoyfNaC747cNBpj
+         HnRbDeFVsoz3dFtYp/Q1dYPz1OCXSESsb4ZeQUdAAzWuWhT4knBQCUX6RoK8LHSncInd
+         KiW977PlXsm57bT9biyLiB7ImYp0uYWpEUo7CBAhEIQgZyV96w92fH24AzBQw9kaZJji
+         mjYpTMjdUX7zJe+wirx8+lOv3OIeyCHqlBDPdc5zdOsxgyMlaqhfh72FlVQaxH/fW1SS
+         Ue3A==
+X-Gm-Message-State: AOAM532bHc7NXhQghszP+cgQJAkphAwEa2q4nIfpLuyQEZa+wg1JYbus
+        f2BHDRXUdT/HqGdziZkC8piaCELnXWvF9XZbgQnDGoCynNA=
+X-Google-Smtp-Source: ABdhPJwgc/YDtMjvbV7CtzwS7CT4zWpF9qjte+U5TKOZomL/y0KBiiuFLFwV9D+0JXT0kOz2toGEOElNbvV6CUAa3dw=
+X-Received: by 2002:a05:6512:3a85:: with SMTP id q5mr492634lfu.465.1619049882524;
+ Wed, 21 Apr 2021 17:04:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <1618485193-5403-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
-In-Reply-To: <1618485193-5403-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+References: <20210412223617.8634-1-jbx6244@gmail.com> <20210412223617.8634-2-jbx6244@gmail.com>
+In-Reply-To: <20210412223617.8634-2-jbx6244@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 22 Apr 2021 02:00:34 +0200
-Message-ID: <CACRpkdZie6KTqhRJTr14R5KA7hUXUqjiwgO2Am5-gZHN+Je-Gw@mail.gmail.com>
-Subject: Re: [PATCH v5 0/3] Add ZynqMP pinctrl driver
-To:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
+Date:   Thu, 22 Apr 2021 02:04:31 +0200
+Message-ID: <CACRpkdYv2vmFgFaEbQhRUGJ60oGYMdy+Zsbkg+0CQKonRp=7Ew@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] ARM: dts: rockchip: change gpio nodenames
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        git <git@xilinx.com>, saikrishna12468@gmail.com
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 15, 2021 at 1:15 PM Sai Krishna Potthuri
-<lakshmi.sai.krishna.potthuri@xilinx.com> wrote:
+On Tue, Apr 13, 2021 at 12:36 AM Johan Jonker <jbx6244@gmail.com> wrote:
 
-> Add support for Xilinx ZynqMP pinctrl driver and also update
-> the Xilinx firmware driver to support pinctrl functionality.
-> This driver queries the pin information from the firmware and
-> allow configuring the pins as per the request.
+> Currently all gpio nodenames are sort of identical to there label.
+> Nodenames should be of a generic type, so change them all.
 >
-> changes in v5:
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 
-v5 looks fine but does not apply to my tree, I applied patch 2
-(the DT binding) as that is pretty much stand-alone though,
-why not.
-
-Please rebase the code on my "devel" branch in the pinctrl
-tree:
-https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=devel
-and resend.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
