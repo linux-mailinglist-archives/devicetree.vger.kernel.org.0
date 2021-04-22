@@ -2,82 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 862EC367CAD
-	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 10:38:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6A1D367CBE
+	for <lists+devicetree@lfdr.de>; Thu, 22 Apr 2021 10:43:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235503AbhDVIjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 04:39:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43638 "EHLO
+        id S235553AbhDVIn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 04:43:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235498AbhDVIjS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 04:39:18 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18280C06174A
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 01:38:44 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id w7-20020a1cdf070000b0290125f388fb34so2776411wmg.0
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 01:38:44 -0700 (PDT)
+        with ESMTP id S235551AbhDVIn6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 04:43:58 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B459BC06174A
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 01:43:23 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id u21so67595951ejo.13
+        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 01:43:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=e/+oo5NyWhxN8td4aAh9SsnnFirRgQL1gPvUfVwD200=;
-        b=pkB2qIX1usxFoCNOI2x3+oaGnCZE8vB+31MwBTWvuKgbLe/MnyjERza/5A2qeA1Uq0
-         V3N2zi/t/QQI/pG2oTryHaWiivXLOBHUvlnNnSDw6YJftjxQ12Gjt3tZ5PZlSzUvAJa5
-         VIYnP6R/et6DPyl0/5P0H2Yr0KGxruw3lA9ZamlTXYDTwQDOv6gvbJKT3ODOmLHNzMhi
-         QfqC+Z9Qf62l6bwNhxnJxF7/hKpzf3Q4YJRmXbbDvXeshx9tocSleoKc8FMmMy1hHD9t
-         ntlk4YRTzR0saqmXJBuQTJm0lOqQYckvCcwGT7D3XF+Qykwjpks92kH7sln+gv2FWiiE
-         zvTA==
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FqiDNyS4J6V/J3OGwSYhyDd+SOw2Ixt+IYI2Uj7joGs=;
+        b=XMCwYxtYxDNez0T1wLh3FfQDTOBHLoJMqlaCRUHmMyksWtApmS5yNftIcsqWnXI+Ev
+         fqg6LmwZRlfd99zk7JMgmp4BuYEazclymGcfJzQlXmpXZlmXReX9naCh/0o9fm9uIULY
+         HgELs0fzfyQ72dWO7HAZB3eI/TlUf4ToC8g2o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=e/+oo5NyWhxN8td4aAh9SsnnFirRgQL1gPvUfVwD200=;
-        b=cht95HBsO7vcQznFdmuzyyoEtov7hUJTd/2JAqNlvxdgWhA7Btgb8YcxOiU+YNGGa8
-         pS/1tTw36RGT2zQogNi5HCe16lPdD4SwqVcpaoosIvc2RYgU3sEXGMyneD58/k8pWWHS
-         qdE0rc6ptBCXOcc8XE8UPbgjuToIl80buJOwuyl+e2pxh/TshyFTMergfslr0g+u/cV0
-         +KhGuEoauM7YNMAYgUpXrPhX7w2dX06scqLnsiM577AI30I8YryvgPd27forFaPteVfe
-         KWhRC7AaB4kXhJpI4QW0Wv5PQzlIoQYiCuVrilMReRjvZpVHUlMdIuvSfQS6+mW3kQ71
-         ntXg==
-X-Gm-Message-State: AOAM530xdDRtWAzNSLtV99FKoeSZ54gWSDvKI1nk0oAi+QMiIrwlzhol
-        XKteqhK6fNASAOjAynMdKMTiFA==
-X-Google-Smtp-Source: ABdhPJw0qRItyXI0pzjkKJwKn1n4YLbsxzSoq8E70voh0hqRrA92cKUJw89gaQ6iXB6LnwWEdz8dLQ==
-X-Received: by 2002:a7b:c006:: with SMTP id c6mr2507234wmb.129.1619080722686;
-        Thu, 22 Apr 2021 01:38:42 -0700 (PDT)
-Received: from ?IPv6:2a01:e0a:90c:e290:916d:6f7:3c58:6b43? ([2a01:e0a:90c:e290:916d:6f7:3c58:6b43])
-        by smtp.gmail.com with ESMTPSA id u9sm2245828wmc.38.2021.04.22.01.38.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Apr 2021 01:38:42 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FqiDNyS4J6V/J3OGwSYhyDd+SOw2Ixt+IYI2Uj7joGs=;
+        b=lalwBqawz4Bi93Pgc994NBuI7CG/bqcCqh5yXbE0FNApnxZhNx685rGdjmA102xtzE
+         G5TXXOvHasmEyhayQjs7ocR9LtnGP/OMG+Vlz4AUt/w4X8aiG4Ke1zthbIuK3lzhYrPP
+         5OK1d4vCEOPzrfKxFw2+hzlt5PPMXxVJ3thxNqHRxI5+FmeUe+HeVjuGnHL4/VKXcJI4
+         VDl2kn5pHZXiEeyLHX6SwqhgDUPKibbQFvLGgcudcpOICFhEj3SI7g+rMB0fWSV3k3IU
+         oKdnPbnXaijSkSg0c9q8u5ACXNZK+eCPwfLpXeKfvxQ4dEc8XwGdrnNsBfAEqRq+BL5N
+         8e8w==
+X-Gm-Message-State: AOAM5329DAJ5cmY/XGkMc6y0GDQvQEFR4u1NAxeOF7vllKrXgKSHmoY6
+        joPL36XHYp+6lfwi3+CT8SfSeJkpUfzlGB4+3/7VoQ==
+X-Google-Smtp-Source: ABdhPJwf+ZmaxufgGxquqfYcFezshd0co6gU41ZUuLA0rBxCPUZ6oAByg7aIvTPPZ/xyhWDBXOqz3AfiPfDyDW2cHBE=
+X-Received: by 2002:a17:906:3018:: with SMTP id 24mr2229023ejz.186.1619081002490;
+ Thu, 22 Apr 2021 01:43:22 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210421223122.112736-1-marex@denx.de>
+In-Reply-To: <20210421223122.112736-1-marex@denx.de>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Thu, 22 Apr 2021 14:13:11 +0530
+Message-ID: <CAMty3ZB9iHY6-YV7JRrhekR_7yA=m2dgwR=5a+D3=h4hAMi7WQ@mail.gmail.com>
 Subject: Re: [PATCH V2 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add TI
  SN65DSI83 and SN65DSI84 bindings
-To:     Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org, ch@denx.de,
+To:     Marek Vasut <marex@denx.de>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        Claudius Heine <ch@denx.de>,
         Douglas Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
         Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20210421223122.112736-1-marex@denx.de>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <9ffbea6e-c341-4a43-3c9e-0b177cfe98d5@baylibre.com>
-Date:   Thu, 22 Apr 2021 10:38:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
-MIME-Version: 1.0
-In-Reply-To: <20210421223122.112736-1-marex@denx.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        Stephen Boyd <swboyd@chromium.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/04/2021 00:31, Marek Vasut wrote:
+On Thu, Apr 22, 2021 at 4:01 AM Marek Vasut <marex@denx.de> wrote:
+>
 > Add DT binding document for TI SN65DSI83 and SN65DSI84 DSI to LVDS bridge.
-> 
+>
 > Signed-off-by: Marek Vasut <marex@denx.de>
 > Cc: Douglas Anderson <dianders@chromium.org>
 > Cc: Jagan Teki <jagan@amarulasolutions.com>
@@ -94,7 +83,7 @@ On 22/04/2021 00:31, Marek Vasut wrote:
 >  .../bindings/display/bridge/ti,sn65dsi83.yaml | 134 ++++++++++++++++++
 >  1 file changed, 134 insertions(+)
 >  create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> 
+>
 > diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
 > new file mode 100644
 > index 000000000000..42d11b46a1eb
@@ -108,138 +97,8 @@ On 22/04/2021 00:31, Marek Vasut wrote:
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
 > +title: SN65DSI83 and SN65DSI84 DSI to LVDS bridge chip
-> +
-> +maintainers:
-> +  - Marek Vasut <marex@denx.de>
-> +
-> +description: |
-> +  Texas Instruments SN65DSI83 1x Single-link MIPI DSI
-> +  to 1x Single-link LVDS
-> +  https://www.ti.com/lit/gpn/sn65dsi83
-> +  Texas Instruments SN65DSI84 1x Single-link MIPI DSI
-> +  to 1x Dual-link or 2x Single-link LVDS
-> +  https://www.ti.com/lit/gpn/sn65dsi84
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: ti,sn65dsi83
-> +      - const: ti,sn65dsi84
-> +
-> +  reg:
-> +    const: 0x2d
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +    description: GPIO specifier for bridge_en pin (active high).
-> +
-> +  ports:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +      port@0:
-> +        type: object
-> +        additionalProperties: false
-> +
-> +        description:
-> +          Video port for MIPI DSI input
-> +
-> +        properties:
-> +          reg:
-> +            const: 0
-> +
-> +          endpoint:
-> +            type: object
-> +            additionalProperties: false
-> +            properties:
-> +              remote-endpoint: true
-> +              data-lanes:
-> +                description: array of physical DSI data lane indexes.
-> +
-> +        required:
-> +          - reg
-> +
-> +      port@1:
-> +        type: object
-> +        additionalProperties: false
-> +
-> +        description:
-> +          Video port for LVDS output (panel or bridge).
-> +
-> +        properties:
-> +          reg:
-> +            const: 1
-> +
-> +          endpoint:
-> +            type: object
-> +            additionalProperties: false
-> +            properties:
-> +              remote-endpoint: true
 
-Similar to Jagan's serie, would be great to add bindings for the dual-link LVDS even if not supported
-by the driver (the driver can fails with a verbose error).
+Can it possible to wait for my v4 to have dual-link LVDS supported
+which is quite discussing points on previous versions?
 
-Neil
-
-> +
-> +        required:
-> +          - reg
-> +
-> +    required:
-> +      - "#address-cells"
-> +      - "#size-cells"
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - enable-gpios
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      bridge@2d {
-> +        compatible = "ti,sn65dsi83";
-> +        reg = <0x2d>;
-> +
-> +        enable-gpios = <&gpio2 1 GPIO_ACTIVE_HIGH>;
-> +
-> +        ports {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          port@0 {
-> +            reg = <0>;
-> +            endpoint {
-> +              remote-endpoint = <&dsi0_out>;
-> +              data-lanes = <1 2 3 4>;
-> +            };
-> +          };
-> +
-> +          port@1 {
-> +            reg = <1>;
-> +            endpoint {
-> +              remote-endpoint = <&panel_in_lvds>;
-> +            };
-> +          };
-> +        };
-> +      };
-> +    };
-> 
-
+Jagan.
