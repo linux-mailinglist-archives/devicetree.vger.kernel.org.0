@@ -2,226 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A6EE369830
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 19:21:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2DAE36984D
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 19:28:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229957AbhDWRVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 13:21:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52350 "EHLO
+        id S229957AbhDWR2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 13:28:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242335AbhDWRVf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 13:21:35 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D836C061574
-        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 10:20:58 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lZzTz-0003V5-B3; Fri, 23 Apr 2021 19:20:47 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lZzTw-00010E-If; Fri, 23 Apr 2021 19:20:44 +0200
-Date:   Fri, 23 Apr 2021 19:20:41 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
-        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/2] pwm: visconti: Add Toshiba Visconti SoC PWM
- support
-Message-ID: <20210423172041.jwmrrbnv76irmzxz@pengutronix.de>
-References: <20210419000007.1944301-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <YIL+Xwjbk1EE04Sm@orome.fritz.box>
+        with ESMTP id S229549AbhDWR2s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 13:28:48 -0400
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6998EC06174A
+        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 10:28:10 -0700 (PDT)
+Received: by mail-qt1-x82a.google.com with SMTP id z25so14224727qtn.8
+        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 10:28:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AzW8gw/lChay/rLNwhgwlXkUklC1imdiRu5IZJc3UKs=;
+        b=LRP8c9RoAsA+Ug0WokdedrbQa2U05MvwsRm0dqesAWlibw2QdTtvxcvQdUdPS4/R7k
+         Dzzgk/NVhLr39A0/Y+c0E1oIpASUsgWoW44wkizulOIUdGTXJf1TxYOcaOZaGjLiltw5
+         RprsqwrB6ufVd6lQbc1PR4I1cP30CgXdaD1SMVUeTa+CWeuN8MVkcryjdYdsMhZSfvcW
+         q/bEEWQp8ROwYU7YLpQPR3/29AuViizc0bR4USvz2GkjG5ENkcpzr+g9mFWjncMMjEdn
+         cQ8BfK2rAUfr0wNUuQ6115cBIxw5mz2WlRL2LJkboEdvmPFdQjhkkvWM8XnePAToLPEi
+         TZdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AzW8gw/lChay/rLNwhgwlXkUklC1imdiRu5IZJc3UKs=;
+        b=SRDLubf9Bss4NSXvuABNPInqA+DnkyHyTiyhW+PpIU14yKsEHUPyrdfibi45bVTZfZ
+         lpFjgMwuP0Ako2HbzHzOvFTBYP2KxqbtdHQh5XCk0Fx6q2Y0AECr19dp+bNQ7wFqF6gP
+         L3oLhEgDkvgBRAJYOTrE5tclqeQxGbzpZcstsy+1eiDf9s/kniBMGhsIhkm9u2Naac/B
+         vKxJmklPFpViEq+yvPzKUzAYEBfiiHVyYNZwBS7gm0ZuYacgwmwv85b77sEfbRLxsEM3
+         2Q/nlhNvpSAM9I7w3V7JN7e+3JmHsOf5oO8nnmaU415+pISYlHj0ETNaiweoPfv3Lu1O
+         +UGA==
+X-Gm-Message-State: AOAM533zEhN27gTMq17SgELoWinTzHJxtVGoU397pHkYjfJmUBwphLaj
+        9oD8erPogilFK7opjmONtSwVuQ==
+X-Google-Smtp-Source: ABdhPJxdsCxGFuhVZIOZpCiAsDpeoN9/VhBAMMWbtJ2u0oxLiMSQyFyiBW+kjeIGADoDSII06RkhTw==
+X-Received: by 2002:ac8:4d43:: with SMTP id x3mr4954636qtv.326.1619198889461;
+        Fri, 23 Apr 2021 10:28:09 -0700 (PDT)
+Received: from localhost.localdomain (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
+        by smtp.gmail.com with ESMTPSA id y23sm4782627qkb.47.2021.04.23.10.28.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Apr 2021 10:28:09 -0700 (PDT)
+From:   Jonathan Marek <jonathan@marek.ca>
+To:     freedreno@lists.freedesktop.org
+Cc:     Abhinav Kumar <abhinavk@codeaurora.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        dri-devel@lists.freedesktop.org (open list:DRM DRIVER FOR MSM ADRENO
+        GPU), Emil Velikov <emil.velikov@collabora.com>,
+        Jordan Crouse <jordan@cosmicpenguin.net>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        linux-arm-msm@vger.kernel.org (open list:DRM DRIVER FOR MSM ADRENO GPU),
+        linux-kernel@vger.kernel.org (open list),
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Subject: [PATCH v2 0/2] drm/msm/dsi: support CPHY mode for 7nm pll/phy
+Date:   Fri, 23 Apr 2021 13:24:38 -0400
+Message-Id: <20210423172450.4885-1-jonathan@marek.ca>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="obtpyakzbdh7csmz"
-Content-Disposition: inline
-In-Reply-To: <YIL+Xwjbk1EE04Sm@orome.fritz.box>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add the required changes to support 7nm pll/phy in CPHY mode.
 
---obtpyakzbdh7csmz
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This adds a "qcom,dsi-phy-cphy-mode" property for the PHY node to enable
+the CPHY mode.
 
-On Fri, Apr 23, 2021 at 07:05:35PM +0200, Thierry Reding wrote:
-> On Mon, Apr 19, 2021 at 09:00:05AM +0900, Nobuhiro Iwamatsu wrote:
-> > Hi,
-> >=20
-> > This series is the PWM driver for Toshiba's ARM SoC, Visconti[0].
-> > This provides DT binding documentation and device driver.
-> >=20
-> > [0]: https://toshiba.semicon-storage.com/ap-en/semiconductor/product/im=
-age-recognition-processors-visconti.html
-> >=20
-> > Updates:
-> >=20
-> >   dt-bindings: pwm: Add bindings for Toshiba Visconti PWM Controller
-> >     v5 -> v6:
-> >       - No update.
-> >     v4 -> v5:
-> >       - No update.
-> >     v3 -> v4:
-> >       - No update.
-> >     v2 -> v3:
-> >       - Change compatible to toshiba,visconti-pwm
-> >       - Change filename to toshiba,visconti-pwm.yaml.
-> >       - Add Reviewed-by tag from Rob.
-> >     v1 -> v2:
-> >       - Change SPDX-License-Identifier to GPL-2.0-only OR BSD-2-Clause.
-> >       - Set compatible toshiba,pwm-visconti only.
-> >       - Drop unnecessary comments.
-> >=20
-> >   pwm: visconti: Add Toshiba Visconti SoC PWM support
-> >     v5 -> v6:
-> >      - Update year in copyright.
-> >      - Update limitations.
-> >      - Fix coding style, used braces for both branches.
-> >     v4 -> v5:
-> >       - Droped checking PIPGM_PCSR from visconti_pwm_get_state.
-> >       - Changed from to_visconti_chip to visconti_pwm_from_chip.
-> >       - Removed pwmchip_remove return value management.
-> >       - Add limitations of this device.
-> >       - Add 'state->enabled =3D true' to visconti_pwm_get_state().
-> >     v3 -> v4:
-> >       - Sorted alphabetically include files.
-> >       - Changed container_of to using static inline functions.
-> >       - Dropped unnecessary dev_dbg().
-> >       - Drop Initialization of chip.base.
-> >       - Drop commnet "period too small".
-> >       - Rebased for-next.=20
-> >     v2 -> v3:
-> >       - Change compatible to toshiba,visconti-pwm.
-> >       - Fix MODULE_ALIAS to platform:pwm-visconti, again.
-> >       - Align continuation line to the opening parenthesis.
-> >       - Rewrite the contents of visconti_pwm_apply() based on the conte=
-nts suggested by Uwe.
-> >     v1 -> v2:
-> >       - Change SPDX-License-Identifier to GPL-2.0-only.
-> >       - Add prefix for the register defines.
-> >       - Drop struct device from struct visconti_pwm_chip.
-> >       - Use '>>' instead of '/'.
-> >       - Drop error message by devm_platform_ioremap_resource().
-> >       - Use dev_err_probe instead of dev_err.
-> >       - Change dev_info to dev_dbg.
-> >       - Remove some empty lines.
-> >       - Fix MODULE_ALIAS to platform:pwm-visconti.
-> >       - Add .get_state() function.
-> >       - Use the author name and email address to MODULE_AUTHOR.
-> >       - Add more comment to function of the hardware.
-> >       - Support .get_status() function.
-> >       - Use NSEC_PER_USEC instead of 1000.
-> >       - Alphabetically sorted for Makefile and Kconfig.
-> >       - Added check for set value in visconti_pwm_apply().
-> >=20
-> > Nobuhiro Iwamatsu (2):
-> >   dt-bindings: pwm: Add bindings for Toshiba Visconti PWM Controller
-> >   pwm: visconti: Add Toshiba Visconti SoC PWM support
-> >=20
-> >  .../bindings/pwm/toshiba,pwm-visconti.yaml    |  43 ++++
-> >  drivers/pwm/Kconfig                           |   9 +
-> >  drivers/pwm/Makefile                          |   1 +
-> >  drivers/pwm/pwm-visconti.c                    | 189 ++++++++++++++++++
-> >  4 files changed, 242 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pwm/toshiba,pwm-v=
-isconti.yaml
-> >  create mode 100644 drivers/pwm/pwm-visconti.c
->=20
-> Both patches applied, thanks.
->=20
-> checkpatch did complain when I applied:
->=20
-> > WARNING: please write a paragraph that describes the config symbol fully
-> > #9: FILE: drivers/pwm/Kconfig:604:
-> > +config PWM_VISCONTI
->=20
-> That seems a bit excessive. The paragraph is perhaps not a poster child
-> for Kconfig, but there are others that aren't better, so I think that's
-> fine.
->=20
-> > WARNING: added, moved or deleted file(s), does MAINTAINERS need updatin=
-g?
-> > #32:=20
-> > new file mode 100644
->=20
-> Fine, too.
->=20
-> > WARNING: 'loosing' may be misspelled - perhaps 'losing'?
-> > #112: FILE: drivers/pwm/pwm-visconti.c:76:
-> >  +	 * NSEC_PER_SEC / CLKFREQ =3D 1000 without loosing precision.
-> >   	                                         ^^^^^^^
->=20
-> I've fixed that up while applying.
->=20
-> > WARNING: Avoid crashing the kernel - try using WARN_ON & recovery code =
-rather than BUG() or BUG_ON()
-> > #127: FILE: drivers/pwm/pwm-visconti.c:91:
-> > +		BUG_ON(pwmc0 > 3);
->=20
-> I think that one is legit. I've turned that into:
->=20
-> 	if (WARN_ON(pwmc0 > 3))
-> 		return -EINVAL;
+v2:
+ - rebased on DSI PHY reworks
+ - reworked getting cphy_mode in dsi_host.c
+ - documentation change in separate patch
 
->=20
-> so that requests for too big period will be rejected rather than crash
-> the system.
+Jonathan Marek (2):
+  drm/msm/dsi: support CPHY mode for 7nm pll/phy
+  dt-bindings: display: msm/dsi: add qcom,dsi-phy-cphy-mode option
 
-If this BUG_ON (or your if) triggers we have a compiler or memory
-problem. The relevant parts of the code are:
+ .../devicetree/bindings/display/msm/dsi.txt   |   1 +
+ drivers/gpu/drm/msm/dsi/dsi.xml.h             |   2 +
+ drivers/gpu/drm/msm/dsi/dsi_host.c            |  34 +++-
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.c         |  47 ++++++
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.h         |   3 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c     | 147 ++++++++++++------
+ 6 files changed, 186 insertions(+), 48 deletions(-)
 
-	if (state->period > (0xffff << 3) * 1000)
-		period =3D (0xffff << 3) * 1000;
-	else
-		period =3D state->period;
+-- 
+2.26.1
 
-	period /=3D 1000;
-
-	if (period > 0xffff) {
-		pwmc0 =3D ilog2(period >> 16);
-		BUG_ON(pwmc0 > 3);
-
-Given that period is never bigger than 0xffff << 3 when it is used to
-calculate the argument to ilog2, pwmc0 <=3D ilog2(7) =3D 2.
-
-Hmm, I wonder if the formula is wrong given that pwmc0 never becomes 3?!
-Should this better be
-
-	pwmc0 =3D fls(period >> 16);
-
-?
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---obtpyakzbdh7csmz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmCDAeYACgkQwfwUeK3K
-7AnE6wf/VLcp2U0NslNg0ihUaTnXfjF2QFwJu5Z4uXMYtV4FxNluPuIDMrDD25Mx
-rHh+B9HtUwv8AnDza99HcfBnAq3evh9G+FaXptprl1nHpRNykrcFz3aF0ESz6sDS
-oUXO8Ph0qssoheljPBsqBoNlP9tN5ws15eh5Hio0KcrtbmDpBBmKlKB+q43llwIe
-132D/rbKTHT1gnozP8lCdAunthT4fscw+RoZTZ8XrOIQkX5ZinYLsGqbh8LquSqe
-JblXOthvAQ/ptvFo3eS6JQ4ky3BD6IruGOrHOTUTHf+EkdyMtxi6Fq7Y5tyiclk/
-jLNdfWim6WZ+vwlETt12L1Emq+3PpA==
-=8DwE
------END PGP SIGNATURE-----
-
---obtpyakzbdh7csmz--
