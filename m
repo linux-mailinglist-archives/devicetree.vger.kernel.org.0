@@ -2,84 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 861F4368AC3
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 04:09:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1FD1368AC6
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 04:09:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236624AbhDWBxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 21:53:44 -0400
-Received: from mail.loongson.cn ([114.242.206.163]:54684 "EHLO loongson.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S240162AbhDWBxo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Apr 2021 21:53:44 -0400
-Received: from localhost.localdomain (unknown [58.249.121.165])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9AxLcl0KIJg9aoMAA--.16933S2;
-        Fri, 23 Apr 2021 09:52:54 +0800 (CST)
-From:   xiaochuan mao <maoxiaochuan@loongson.cn>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Qing Zhang <zhangqing@loongson.cn>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        xiaochuan mao <maoxiaochuan@loongson.cn>
-Subject: [PATCH] MIPS:DTS:Fix label name and interrupt number of ohci for Loongson-2K
-Date:   Fri, 23 Apr 2021 09:52:34 +0800
-Message-Id: <20210423015234.23870-1-maoxiaochuan@loongson.cn>
-X-Mailer: git-send-email 2.17.1
-X-CM-TRANSID: AQAAf9AxLcl0KIJg9aoMAA--.16933S2
-X-Coremail-Antispam: 1UD129KBjvdXoWrtF13CF4fCr47uw1DWrWkXrb_yoWkKrg_GF
-        929a1kGryfXFZakry7urs8JF13u3y7Ca4fCa42qry093s0vrs3GFWUCFWDGF93Wryjvrs3
-        X395Wr48Cry7KjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-        9fnUUIcSsGvfJTRUUUbcAFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-        6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
-        A2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j
-        6F4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26F
-        4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv
-        7VC0I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r
-        1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwCY02Avz4vE14v_
-        KwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r
-        1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij
-        64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr
-        0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6Fyj6rWUJwCI42IY6I8E87Iv67AKxVWUJVW8JwCI
-        42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUoPEfUUUUU
-X-CM-SenderInfo: xpdr5xxdrfx3ldqnw6o6or00hjvr0hdfq/
+        id S240187AbhDWByY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 21:54:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46026 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240012AbhDWByY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 21:54:24 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5695C061574;
+        Thu, 22 Apr 2021 18:53:48 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id em21-20020a17090b0155b029014e204a81e6so3666206pjb.1;
+        Thu, 22 Apr 2021 18:53:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=3AapXKx/UR2C9m5toXV3NnksmytSDvqetzIlr+4AOIQ=;
+        b=Yq+hWTpyUb5jC2aBPRWWAT+1pNXN/PmmoktnFe3+ZoIKpoi9HD+uuf610lPw33ctPd
+         Pe1o/4yySjl6O6sverUn9FEPzsuL6C956CAdI1JBBryV5WxvxwW8BYCS4akZ+6MGeSrb
+         9LdOLdQGOZbP4+UrfkjrzBsrGPgzVkNXzaPV3ejf7YniWLsyKIucQ3S6RZUQcm7+EwpA
+         BieKb/DD2vCGtesqvFbmIQQ4oiILAZlvW3+d/i4weL1A8EiY1N9s+JKdPMtdQU5uYAWf
+         ixJto0TfgEHUM7JCxkCreznNHG7uapUOrwvD2NYnFK4K5oV8cxUK2NKMU3/QWuysHgdB
+         OjSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=3AapXKx/UR2C9m5toXV3NnksmytSDvqetzIlr+4AOIQ=;
+        b=r8L7XbjuxIrHcR8kYKMt2iCAjY0z++ByGy2VxgmDV1qlYTEZ2J/w3HLK2/1fPHBWv6
+         Hb4/1jOfKZarkOyIZUjBbaQX/MtiVxYuSXYAHipglV/FgiVmJdaU8VkdX8pB5BogkaTG
+         +iHqJJyc4mw/E+O0lr5th7P3oaGHZVYJ2Mgs0VsN1SHiabOiQwdXIqYgOQ8jAIwfUGWX
+         UFG1+3bFzJShWBL+MOGoEZueT00IICtulasZJzviD6S4rgQXcy9eQ61IVLNezah3IA10
+         2XfsOyQOwPvW2uNpFR8MdqoruZ140pnXTWd2hB6yhWrj4pZKCE7UK2UASsyJch7Iwtj1
+         XjrA==
+X-Gm-Message-State: AOAM5310ibpO9KCMpYq2kS6T0kDOL4IB1GXSVmRhj25iYY4PtGwKPkTC
+        l6FkVcjGs4MMBFtQ1io4aLJz3IFajeI=
+X-Google-Smtp-Source: ABdhPJyj2Cq7+PyyT+IF3sUuvDH34b1XSGAshK+VWvD3G8i3BbEhLCS1ZOlNdrNvreOFeU2KJJxVcw==
+X-Received: by 2002:a17:90b:1646:: with SMTP id il6mr3110884pjb.27.1619142828040;
+        Thu, 22 Apr 2021 18:53:48 -0700 (PDT)
+Received: from [10.230.29.202] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id 16sm6073884pjk.15.2021.04.22.18.53.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Apr 2021 18:53:47 -0700 (PDT)
+Subject: Re: [PATCH 02/14] drivers: net: dsa: qca8k: tweak internal delay to
+ oem spec
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210423014741.11858-1-ansuelsmth@gmail.com>
+ <20210423014741.11858-3-ansuelsmth@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <fdddeb1a-33c7-3087-86a1-f3b735a90eb1@gmail.com>
+Date:   Thu, 22 Apr 2021 18:53:45 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.10.0
+MIME-Version: 1.0
+In-Reply-To: <20210423014741.11858-3-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-from Loongson-2K1000 user manual know that under pci bus
-the device num is 4, function number is 2 and register is 0x2200
-is ohci. the ohci interrupt number is 51. because Loongson-2K1000 has
-64 interrupt sources, 0-31 correspond to the device tree liointc0 device
- node, and the other correspond to liointc1 node. so it should be
-number 19 correspon to liointc1.
 
-Signed-off-by: xiaochuan mao <maoxiaochuan@loongson.cn>
----
- arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-index fd0e99bfe57b..89f079097f32 100644
---- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-+++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-@@ -125,14 +125,14 @@
- 				interrupt-parent = <&liointc1>;
- 			};
- 
--			ehci@4,2 {
-+			ohci@4,2 {
- 				compatible = "pci0014,7a24.0",
- 						   "pci0014,7a24",
- 						   "pciclass0c0310",
- 						   "pciclass0c03";
- 
- 				reg = <0x2200 0x0 0x0 0x0 0x0>;
--				interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-+				interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
- 				interrupt-parent = <&liointc1>;
- 			};
- 
+On 4/22/2021 6:47 PM, Ansuel Smith wrote:
+> The original code had the internal dalay set to 1 for tx and 2 for rx.
+> Apply the oem internal dalay to fix some switch communication error.
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> ---
+>  drivers/net/dsa/qca8k.c | 6 ++++--
+>  drivers/net/dsa/qca8k.h | 9 ++++-----
+>  2 files changed, 8 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/net/dsa/qca8k.c b/drivers/net/dsa/qca8k.c
+> index a6d35b825c0e..b8bfc7acf6f4 100644
+> --- a/drivers/net/dsa/qca8k.c
+> +++ b/drivers/net/dsa/qca8k.c
+> @@ -849,8 +849,10 @@ qca8k_phylink_mac_config(struct dsa_switch *ds, int port, unsigned int mode,
+>  		 */
+>  		qca8k_write(priv, reg,
+>  			    QCA8K_PORT_PAD_RGMII_EN |
+> -			    QCA8K_PORT_PAD_RGMII_TX_DELAY(QCA8K_MAX_DELAY) |
+> -			    QCA8K_PORT_PAD_RGMII_RX_DELAY(QCA8K_MAX_DELAY));
+> +			    QCA8K_PORT_PAD_RGMII_TX_DELAY(1) |
+> +			    QCA8K_PORT_PAD_RGMII_RX_DELAY(2) |
+> +			    QCA8K_PORT_PAD_RGMII_TX_DELAY_EN |
+> +			    QCA8K_PORT_PAD_RGMII_RX_DELAY_EN);
+
+There are standard properties in order to configure a specific RX and TX
+delay:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/net/ethernet-controller.yaml#n125
+
+can you use that mechanism and parse that property, or if nothing else,
+allow an user to override delays via device tree using these standard
+properties?
 -- 
-2.17.1
-
+Florian
