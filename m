@@ -2,138 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 140F536903E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 12:20:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 294153690EA
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 13:13:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229961AbhDWKVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 06:21:13 -0400
-Received: from first.geanix.com ([116.203.34.67]:42638 "EHLO first.geanix.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236059AbhDWKVL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Apr 2021 06:21:11 -0400
-Received: from zen.. (unknown [185.17.218.86])
-        by first.geanix.com (Postfix) with ESMTPSA id C101E465313;
-        Fri, 23 Apr 2021 10:20:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=geanix.com; s=first;
-        t=1619173227; bh=yH3nB62gojQ8Bg1V7LeedQ5g6f7Pc2W3CcVgPh99OWo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=IJmmRN0tcV62Jl7bHRQFPxG3vJP8LpltR30KYjFW4ALPQFBqKLR6UAlUHvbufmg4H
-         vrsmgYUjy1tMZCQyRM70v//moiwNsFpAad386KBbBl4gYjgvEqqZHL4Q/Rk32DYUQt
-         pzqK0go0ZUHK9McK/Sc22dR+1m+tCvqXD2CJtCWo1u8mZHQkgRti/AQnkwSBlH4GVF
-         inEVGltFYF7EOaK7eNVVsMMBAMs1gdMHpe2EQqPwZfvcEMWG16Tv+MDRhGeRxii36R
-         HOt3a2paXQBz8dnS36FqCr/pPqXP6iPVc4QkXMEm8yWYuaFNHA5KEFYnIOHfn1fnP5
-         OBbaU3F1TfvDQ==
-From:   Sean Nyekjaer <sean@geanix.com>
-To:     jic23@kernel.org, linux-iio@vger.kernel.org,
-        andy.shevchenko@gmail.com, lars@metafoo.de, Nuno.Sa@analog.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Cc:     Sean Nyekjaer <sean@geanix.com>
-Subject: [PATCH v2 2/2] dt-bindings: iio: accel: fxls8962af: add bindings
-Date:   Fri, 23 Apr 2021 12:19:51 +0200
-Message-Id: <20210423101951.2876009-2-sean@geanix.com>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210423101951.2876009-1-sean@geanix.com>
-References: <20210423101951.2876009-1-sean@geanix.com>
+        id S229928AbhDWLOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 07:14:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55316 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229890AbhDWLOO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 07:14:14 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFA25C061574;
+        Fri, 23 Apr 2021 04:13:35 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id g5so66589162ejx.0;
+        Fri, 23 Apr 2021 04:13:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=YHPMnwS1dURi5l1HSs6lXsnAbBpe7PxogTJiMBTEHvw=;
+        b=oEpBq1Fuo/AIN23HrnGCnNKX5gSh7n0HPo0mODmYYtxzr9Ug6D8ohXWugDTsei9Gdz
+         iCgi5Q+CjmdJ4CV+di6aM6JAitf4mEUPccE8ISW87TwaJYu8Mtsiqttmr+cBOQoUY6CT
+         mHVJuLLG6wmiP/DRq0xg1NOtEHPoSlxJD0uQg/AWRiS+Kw7xVuJ5kuoZYDrp/01G57+K
+         1l8Tz3/pFGyCVageS2m6O29dxm+gr8XR+Akfn6WA97Y4OTG5rLhAB39NQelwkwE75Zov
+         QSSMbHwrBBkTjWiHdlR4BlQ3lKZRENOMC85hiaQqFtT22BoEm7ET3sZC1dIVHbdduiz+
+         CXMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=YHPMnwS1dURi5l1HSs6lXsnAbBpe7PxogTJiMBTEHvw=;
+        b=dvmRcG93J8F4kMhdsq+w+9BznqGur8vNxryhTEl3aGh1AkcF7O0g5kU94MtA8TCCjn
+         OQThz+t1baxZ4Odii0qga8aC7XQFYIgXATmYbgqRQ2IKqZ0tFFgu0zEZZDSUnMyXJVIr
+         nQqC4fbqIPAaGyBINMXF5YND5/NwttI5DzoJHc0koCFrFRDo5SixbbYD/4fXeUOEsDId
+         L00qvKnLOCBfALQTcqQZ1JSYekVGhhTx9Sm7n4lHBrG0MX1eVXlV0BZHsAwPWzIJJ0oL
+         UOYNMwMaVSnSrTMrwcWFQWj6WfUtB/TNjc8h655uVdCZRHTl5CuOnz7ewTuAMRJxkJ4+
+         7p7A==
+X-Gm-Message-State: AOAM531oLPPHqUzAflAa8aDyCRXTBX/jgD86yxV6WDlTKWIfWK2iX+fE
+        VTu2MHhEGcmQ+Yb8nJOkqDE=
+X-Google-Smtp-Source: ABdhPJzZgn3hc4mNrhwnJScJOT2r7t49AdvgebRp7aJZ9kjR/Un/7sPJtoB3t7RWb5jaaIofvaQ1aw==
+X-Received: by 2002:a17:906:c297:: with SMTP id r23mr3731783ejz.48.1619176414380;
+        Fri, 23 Apr 2021 04:13:34 -0700 (PDT)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id g12sm4521920edr.83.2021.04.23.04.13.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Apr 2021 04:13:32 -0700 (PDT)
+Date:   Fri, 23 Apr 2021 13:14:22 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        David Airlie <airlied@linux.ie>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [RFC PATCH 1/3] dt-bindings: display: simple: Add the panel on
+ sc7180-trogdor-pompom
+Message-ID: <YIKsDtjcIHGNvW0u@orome.fritz.box>
+References: <20210316140707.RFC.1.I3a21995726282f1e9fcb70da5eb96f19ed96634f@changeid>
+ <20210326000907.GA1965415@robh.at.kernel.org>
+ <CAD=FV=XqG8oH5HCttKSNYJV2eHwLxq-tm1C+UFLn+cAHUrBaHg@mail.gmail.com>
+ <CAD=FV=VZYOMPwQZzWdhJGh5cjJWw_EcM-wQVEivZ-bdGXjPrEQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.1 required=4.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,URIBL_BLOCKED
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on 93bd6fdb21b5
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="pwwIyjYU7zT6YQlm"
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=VZYOMPwQZzWdhJGh5cjJWw_EcM-wQVEivZ-bdGXjPrEQ@mail.gmail.com>
+User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree binding for the NXP FXLS8962AF/FXLS8964AF
-accelerometer sensor.
 
-Signed-off-by: Sean Nyekjaer <sean@geanix.com>
----
-Changes for v2:
- - removed requirement for interrupt
+--pwwIyjYU7zT6YQlm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- .../bindings/iio/accel/nxp,fxls8962af.yaml    | 72 +++++++++++++++++++
- 1 file changed, 72 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
+On Thu, Apr 22, 2021 at 03:08:48PM -0700, Doug Anderson wrote:
+> Hi,
+>=20
+> On Mon, Mar 29, 2021 at 9:25 AM Doug Anderson <dianders@chromium.org> wro=
+te:
+> >
+> > Hi,
+> >
+> > On Thu, Mar 25, 2021 at 5:09 PM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Tue, Mar 16, 2021 at 02:08:19PM -0700, Douglas Anderson wrote:
+> > > > The sc7180-trogdor-pompom board might be attached to any number of a
+> > > > pile of eDP panels. At the moment I'm told that the list might incl=
+ude:
+> > > > - KD KD116N21-30NV-A010
+> > > > - KD KD116N09-30NH-A016
+> > > > - Starry 2081116HHD028001-51D
+> > > > - Sharp LQ116M1JW10
+> > > >
+> > > > It should be noted that while the EDID programmed in the first 3
+> > > > panels indicates that they should run with exactly the same timing =
+(to
+> > > > keep things simple), the 4th panel not only needs different timing =
+but
+> > > > has a different resolution.
+> > > >
+> > > > As is true in general with eDP panels, we can figure out which panel
+> > > > we have and all the info needed to drive its pixel clock by reading
+> > > > the EDID. However, we can do this only after we've powered the panel
+> > > > on. Powering on the panels requires following the timing diagram in
+> > > > each panel's datasheet which specifies delays between certain
+> > > > actions. This means that, while we can be quite dynamic about handl=
+ing
+> > > > things we can't just totally skip out on describing the panel like =
+we
+> > > > could do if it was connected to an external-facing DP port.
+> > >
+> > > Is this a 'standard' eDP connector? AFAICT, there does seem to be
+> > > such a thing.
+> >
+> > To answer this one: there's not any "standard" physical plug as far as
+> > I can tell. There's a connector on the board side for the LCD that has
+> > a whole hodgepodge of signals on it. Maybe USB for a camera. Some
+> > power signals. Maybe a PWM for a backlight. Maybe some DMIC signals.
+> > eDP signals which might be anywhere from 1 to 4 lanes. HPD (which is
+> > really a "panel ready" signal for eDP). The size / style of connector
+> > and the exact set of signals (and their ordering) is board specific.
+> > You then get a board-specific cable that splits things out. Some might
+> > go to a camera/MIC sub board. Some go to the panel and hook onto a
+> > panel-specific connector which has pin count and orderings defined by
+> > that panel. :-P
+> >
+> >
+> > > I've said in the past I'd be okay with a edp-connector
+> > > node. If that needs just the "HPD absent delay" property, I think that
+> > > would be okay. It's just a never ending stream of new properties with
+> > > each new panel that I don't want to see.
+> >
+> > Thinking about this we'd need at least one other property right now
+> > which is an enable delay. Specifically at least one panel I've
+> > supported recently lied about HPD for a short period after bootup.
+> > Specifically see commit 667d73d72f31 ("drm: panel: simple: Delay HPD
+> > checking on boe_nv133fhm_n61 for 15 ms"). ...and, of course, the
+> > existing power supply / enable signals that "simple-panel" already
+> > has.
+> >
+> > Also: if we weren't going to add the other delay properties in the
+> > device tree, we'd have to add the code right away that used the EDID
+> > to set other delays. That wouldn't be the end of the world, but it
+> > would be code to write.
+> >
+> >
+> > One last thought to add: I've looked at ~10 panels specs recently.
+> > Though they are all a little different from each other, I will say
+> > that almost every one of them seems to have the exact same timing
+> > diagram in it just with different numbers filled in. To me that backs
+> > up the idea that you can/should do the power sequence with a fairly
+> > standard (parameterized) driver. I can't link the datasheets I have
+> > but searching for "edp panel datasheet" finds me this random
+> > datasheet:
+> >
+> > https://www.data-modul.com/sites/default/files/products/NV156QUM-N72_sp=
+ecification_12039472.pdf
+> >
+> > See "8.0 POWER SEQUENCE" in that document. All the panels have a
+> > nearly identical diagram with different numbers filled in. You can
+> > kinda tell it was copied from some other panel since some numbers
+> > (like T4) aren't even defined.
+>=20
+> So this thread has been quiet for a while, but the problem still exists.
+>=20
+> Here's my current plan, but please yell if you disagree:
+>=20
+> 1. See about adding a generic "eDP connector" node. Having stewed on
+> this for a while I think I'm convinced that even though there's not
+> really a single standard physical connector that is used everywhere
+> that there are at least a set of signals that can be collectively
+> thought about as the "eDP signals". Certainly I have a set of very
+> different panels from very different manufacturers that I can
+> "interchange" and they work fine assuming I have the right cable
+> "adapting" them from the connector on my board to the connector on the
+> panel. While different panels have different timings that they care
+> are enforced, there is a way to express it in a relatively common way
+> as evidenced by the fact that all panel datasheet timing diagrams look
+> similar and the fact that panel-simple handles so many different
+> panels (yes, we periodically add more timing constraints to handle
+> there but mostly that's because the code wasn't able to handle every
+> constraint that could be expressed in those standard-looking timing
+> diagrams in the datasheets).
+>=20
+>=20
+> 2. The "eDP connector" node will have all the same properties as
+> today's "panel-simple.yaml" with the addition of:
+>=20
+> enable-delay
+> hpd-absent-delay
+>=20
+> The idea is that you power on the panel, hardcode an enable-delay (to
+> handle early HPD glitches), and then wait for HPD (or wait
+> hpd-absent-delay if HPD isn't provided).
+>=20
+> Note that "ddc-i2c-bus" will be a required node instead of optional.
+>=20
+>=20
+> 3. Once we power the panel on then we will query the EDID and set the
+> rest of the panel timings / modes based on the model specified in the
+> EDID. Potentially it could update the "enable-delay" and
+> "hpd-absent-delay" at this point too.
 
-diff --git a/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-new file mode 100644
-index 000000000000..d8ac25402979
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/accel/nxp,fxls8962af.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP FXLS8962AF/FXLS8964AF Accelerometer driver
-+
-+maintainers:
-+  - Sean Nyekjaer <sean@geanix.com>
-+
-+description: |
-+  NXP FXLS8962AF/FXLS8964AF Accelerometer driver that supports
-+  SPI and I2C interface.
-+    https://www.nxp.com/docs/en/data-sheet/FXLS8962AF.pdf
-+    https://www.nxp.com/docs/en/data-sheet/FXLS8964AF.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nxp,fxls8962af
-+      - nxp,fxls8964af
-+
-+  reg:
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description: phandle to the regulator that provides power to the accelerometer
-+
-+  spi-max-frequency: true
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        /* Example for a I2C device node */
-+        accelerometer@62 {
-+            compatible = "nxp,fxls8962af";
-+            reg = <0x62>;
-+            interrupt-parent = <&gpio0>;
-+            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+    };
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    spi0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        /* Example for a SPI device node */
-+        accelerometer@0 {
-+            compatible = "nxp,fxls8962af";
-+            reg = <0>;
-+            spi-max-frequency = <4000000>;
-+            interrupt-parent = <&gpio0>;
-+            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+    };
--- 
-2.31.0
+I think that sounds good. If ddc-i2c-bus is required, this basically
+implies that EDID needs to be available for these panels, too. If that's
+the case we can identify the panel based on information from the EDID.
+That would make panels "discoverable", so that we can describe them with
+a more generic compatible string that basically describes the interface
+needed to get at the discoverable information, much like we would do for
+a bus like PCI.
 
+I don't know if the manufacturer ID and product code are enough to
+uniquely identify every panel, but maybe something like the DisplayID
+extension can be used to gather more identification data.
+
+Thierry
+
+--pwwIyjYU7zT6YQlm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmCCrAsACgkQ3SOs138+
+s6FPTBAArVUbY8SmP4Hz12t546ddjfozLRZRVqY0+m8gwjjm74D4y6SfGyd47wKI
+Euy1fK+faHgm7J94Wc3e2dqe757ApzBw4vhRxgqGR6AwBIoovRE3MWdvgib+FFuj
+2f+/D9sYfsluGvHkWYUkgrnZ1VPGw9WjGK3L2VfnqE3jC42uZp7GBVaNqeQBDTVN
+vNY7sraJhyy62GLwQ0AWK+MZbDfauMTWJGhby4I2gyQpgID7JWEPiWrz0hEng5Px
+950+BAa0TltM/7aAt+KURkkJmjWGj5+LdKEBweQmyxancmi4vx4LSFQCNe+x0yEg
+G/uWVTH+71C5GJT+PA1JiSNP9ctartxRklIOak7GpBJlkz/aO56iDxbNQBFriFWW
+z/cneIzmi9H+f3zvg2Tq/NUqXZSFHxu2guu5dKJ7voRPyoIWMDQcSCsAI/9dIIxt
+mzc9hSX3wjD2uGB6Q7TGoLRFBrswTjMiMDmig/8xg7O/4evgmok4wWYLVo4dc82C
+C4U/2dxwAYd/Jg7iRQvWdewvCcz7U+T0WXZwuGV4OmQpDTPGf1V7U5m04anpiEXU
+Sk+WeJAdbd/kwo/JM0krqLeUnp28OUzJoTbQFH8aMR9XGPZ+Scu3rAVEG9TmIr9R
+LBKS5GaNib5Gnhmw6X+7NxCm8JZlEA22Qrf3K2BB1r2rX7FmpqQ=
+=XnhE
+-----END PGP SIGNATURE-----
+
+--pwwIyjYU7zT6YQlm--
