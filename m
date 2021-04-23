@@ -2,86 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C691036927B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 14:53:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FB8C369293
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 15:00:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230521AbhDWMxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 08:53:54 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:37942 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230305AbhDWMxy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Apr 2021 08:53:54 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1lZvJ3-000eY8-KB; Fri, 23 Apr 2021 14:53:13 +0200
-Date:   Fri, 23 Apr 2021 14:53:13 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 13/14] drivers: net: dsa: qca8k: protect MASTER busy_wait
- with mdio mutex
-Message-ID: <YILDOX6vhNNTkvun@lunn.ch>
-References: <20210423014741.11858-1-ansuelsmth@gmail.com>
- <20210423014741.11858-14-ansuelsmth@gmail.com>
+        id S230413AbhDWNB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 09:01:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50722 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230305AbhDWNBZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 09:01:25 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88CDCC061574;
+        Fri, 23 Apr 2021 06:00:49 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 1792A1F43BBD
+Subject: Re: [PATCH] arm64: dts: mt8183: add mediatek,gce-events in mutex
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210423065327.1596075-1-hsinyi@chromium.org>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <846d2a7a-d9c2-7d9e-9d7e-843ff604be44@collabora.com>
+Date:   Fri, 23 Apr 2021 15:00:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210423014741.11858-14-ansuelsmth@gmail.com>
+In-Reply-To: <20210423065327.1596075-1-hsinyi@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 23, 2021 at 03:47:39AM +0200, Ansuel Smith wrote:
-> MDIO_MASTER operation have a dedicated busy wait that is not protected
-> by the mdio mutex. This can cause situation where the MASTER operation
-> is done and a normal operation is executed between the MASTER read/write
-> and the MASTER busy_wait. Rework the qca8k_mdio_read/write function to
-> address this issue by binding the lock for the whole MASTER operation
-> and not only the mdio read/write common operation.
+Hi Hsin-Yi,
+
+Thank you for your patch.
+
+On 23/4/21 8:53, Hsin-Yi Wang wrote:
+> mediatek,gce-events is read by mutex node.
 > 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+
+Although I know this property is used and needed I didn't find documentation
+about it. It would be really nice document in the bindings this mediatek property.
+
+In any case this patch LGTM, so
+
+Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+
 > ---
->  drivers/net/dsa/qca8k.c | 59 ++++++++++++++++++++++++++++++++++-------
->  1 file changed, 50 insertions(+), 9 deletions(-)
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/drivers/net/dsa/qca8k.c b/drivers/net/dsa/qca8k.c
-> index 88a0234f1a7b..d2f5e0b1c721 100644
-> --- a/drivers/net/dsa/qca8k.c
-> +++ b/drivers/net/dsa/qca8k.c
-> @@ -609,9 +609,33 @@ qca8k_port_to_phy(int port)
->  	return port - 1;
->  }
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index c5e822b6b77a..cf22d71161e5 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -1250,6 +1250,8 @@ mutex: mutex@14016000 {
+>  			reg = <0 0x14016000 0 0x1000>;
+>  			interrupts = <GIC_SPI 217 IRQ_TYPE_LEVEL_LOW>;
+>  			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
+> +			mediatek,gce-events = <CMDQ_EVENT_MUTEX_STREAM_DONE0>,
+> +					      <CMDQ_EVENT_MUTEX_STREAM_DONE1>;
+>  		};
 >  
-> +static int
-> +qca8k_mdio_busy_wait(struct qca8k_priv *priv, u32 reg, u32 mask)
-> +{
-> +	unsigned long timeout;
-> +	u16 r1, r2, page;
-> +
-> +	qca8k_split_addr(reg, &r1, &r2, &page);
-> +
-> +	timeout = jiffies + msecs_to_jiffies(20);
-> +
-> +	/* loop until the busy flag has cleared */
-> +	do {
-> +		u32 val = qca8k_mii_read32(priv->bus, 0x10 | r2, r1);
-> +		int busy = val & mask;
-> +
-> +		if (!busy)
-> +			break;
-> +		cond_resched();
-> +	} while (!time_after_eq(jiffies, timeout));
-> +
-> +	return time_after_eq(jiffies, timeout);
-
-You should really be returning -ETIMEDOUT here on error.
-
-    Andrew
+>  		larb0: larb@14017000 {
+> 
