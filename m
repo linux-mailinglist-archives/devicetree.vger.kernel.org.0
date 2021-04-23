@@ -2,113 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A82D3698E8
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 20:14:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB8E6369934
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 20:18:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243582AbhDWSOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 14:14:53 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:36631 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243503AbhDWSOo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 14:14:44 -0400
-Received: by mail-ot1-f51.google.com with SMTP id i16-20020a9d68d00000b0290286edfdfe9eso35435805oto.3;
-        Fri, 23 Apr 2021 11:14:06 -0700 (PDT)
+        id S243461AbhDWSS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 14:18:57 -0400
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:44793 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243436AbhDWSSx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 14:18:53 -0400
+Received: by mail-ot1-f52.google.com with SMTP id 5-20020a9d09050000b029029432d8d8c5so20122139otp.11;
+        Fri, 23 Apr 2021 11:18:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=wtMa0ofHsvULRBbfBv4LBMvbBadAF6ckmy4fcrRnOYw=;
-        b=jsZ5VotrVYWSgcPL8clpPQaa2zgQjEVsvdb5EJkBT2RxVguH5/6bpDNxi2CxqIel8a
-         /G11nFfGINtMbX8WLt7kTmkoRHLkc9KSuLYB35dv9zccOtmbTIz82K85vu6j4X3qC5yA
-         Edv6f7mbs++D3Q0dF/ualtKLxE4dtnVFNP/CZ8HYvijbZTBhuhfweqfatexLRlVvucJW
-         9kIvi4VOIilqUaPdt090IA4Tkg3+Jk1Y6fc2+Ww4Oy2ws4gbp247VSocB07lOLudhxqY
-         WpKbPFGB03FlBO7Tz8OqbpiUGsagO9wdhVw1uaiJEbjvaO2x5fJwbeiiMGHaO/ZGrzr1
-         Kr5A==
-X-Gm-Message-State: AOAM531/q6N8pRtzfXzDFgccVj0ykbTlGb7v1X5WAkHmqzNRI4YzgZlt
-        6sVf9e6zvvJbuECCA4xwOQ==
-X-Google-Smtp-Source: ABdhPJzEQ7FOs3zkv/BmeyQzNc1iYSzWSn+0Ia3g8izPCAkQyvYd4VpAPPtq1wkttfDk80uM6b/zFA==
-X-Received: by 2002:a9d:6055:: with SMTP id v21mr4425589otj.49.1619201645615;
-        Fri, 23 Apr 2021 11:14:05 -0700 (PDT)
+        bh=mCcUTIsaap93Zl8PmHJ74KyeOt6DCbHv/vtx3QCdv9s=;
+        b=AxP90qLGn24AV1o9BGVO1sfjI9OqbBFJrWP8sRlppwXUJ3cxlarjeOVIJuDf4gRhC6
+         GdC9p6k5XlSicNXG3L5pWKu/HnQibo/4btEQ9qLZfkKogXKcYLYZISQXYztuza1krf7+
+         suwaPSkkcF6ne8fVe7hRZKgedp5zphVNfLs1u809KsRPmOY3aH12C6+Zm7aMOg4Id3bY
+         uBerjrSqAHHk4IQpS/JRRPSbHGG6xJUfV6YrA8/gBPoiM3p7fTVAZW+FZjRxXdF1pMKH
+         vHTdoWvUZSTVxje8Extez1Y55VmxMG6DeZc3NL3oY8qaCA7oYBWaryuU+zFiQSBs9tLB
+         Pu6w==
+X-Gm-Message-State: AOAM530kqczfSzNjsq7LBo2RWX0fsTV/qpb53GPyWzdXlxZ6dFHpbrEF
+        P7kvvA//NpsGlv8GiqHF2A==
+X-Google-Smtp-Source: ABdhPJy788DxCXQj+WefwbjEQ8Tog8LGXrpVxy7C1OHOiunTLrAiBwawE5xSI6ptUvB8ssR6r8871g==
+X-Received: by 2002:a05:6830:3497:: with SMTP id c23mr4395477otu.344.1619201896039;
+        Fri, 23 Apr 2021 11:18:16 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w24sm1569880otj.33.2021.04.23.11.14.03
+        by smtp.gmail.com with ESMTPSA id c12sm1286998oou.26.2021.04.23.11.18.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Apr 2021 11:14:04 -0700 (PDT)
-Received: (nullmailer pid 1363626 invoked by uid 1000);
-        Fri, 23 Apr 2021 18:14:03 -0000
-Date:   Fri, 23 Apr 2021 13:14:03 -0500
+        Fri, 23 Apr 2021 11:18:14 -0700 (PDT)
+Received: (nullmailer pid 1370216 invoked by uid 1000);
+        Fri, 23 Apr 2021 18:18:14 -0000
+Date:   Fri, 23 Apr 2021 13:18:14 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
         bcm-kernel-feedback-list@broadcom.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH V2] dt-bindings: clock: brcm,iproc-clocks: convert to the
- json-schema
-Message-ID: <20210423181403.GA1344607@robh.at.kernel.org>
-References: <20210421163948.11229-1-zajec5@gmail.com>
- <20210421165633.13299-1-zajec5@gmail.com>
+Subject: Re: [PATCH V2] dt-bindings: pinctrl: convert Broadcom Northstar to
+ the json-schema
+Message-ID: <20210423181814.GA1370156@robh.at.kernel.org>
+References: <20210421082928.26869-1-zajec5@gmail.com>
+ <20210421182041.22636-1-zajec5@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210421165633.13299-1-zajec5@gmail.com>
+In-Reply-To: <20210421182041.22636-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 21, 2021 at 06:56:33PM +0200, Rafał Miłecki wrote:
+On Wed, 21 Apr 2021 20:20:41 +0200, Rafał Miłecki wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> This helps validating DTS files.
+> Important: this change converts the binding as it is. It includes
+> dependency on undocumented CRU that must be refactored. CRU must get
+> documented and offset property has to be reworked.
+> 
+> Above can (and will be) be handled once every CRU MFD subdevice gets
+> documented properly (including the pinmux).
 > 
 > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
-> V2: Fix typo s/clocks/clock-output-names/
+> V2: Add "maxItems" to the "offset"
+>     Add "minItems" & "maxItems" to the "groups"
+>     Drop "DMU" simple-bus node from the example
+>     Improve commit description (mention ugly "offset" property)
+> 
+> CRU ("Clock and Reset Unit" or "Central Resource Unit") binding is being
+> worked on, for details see:
+> [PATCH robh dt/next] dt-bindings: mfd: add Broadcom CRU
+> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210415062839.11713-1-zajec5@gmail.com/
 > ---
->  .../bindings/clock/brcm,iproc-clocks.txt      | 313 --------------
->  .../bindings/clock/brcm,iproc-clocks.yaml     | 398 ++++++++++++++++++
->  2 files changed, 398 insertions(+), 313 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/brcm,iproc-clocks.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
-
-
-> diff --git a/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml b/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
-> new file mode 100644
-> index 000000000000..a1b9613f7c68
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
-> @@ -0,0 +1,398 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/brcm,iproc-clocks.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom iProc Family Clocks
-> +
-> +maintainers:
-> +  - Ray Jui <rjui@broadcom.com>
-> +  - Scott Branden <sbranden@broadcom.com>
-> +
-> +description: |
-> +  This binding uses the common clock binding:
-> +      Documentation/devicetree/bindings/clock/clock-bindings.txt
-
-I think we can drop this statement.
-
-> +
-> +  The iProc clock controller manages clocks that are common to the iProc family.
-> +  An SoC from the iProc family may have several PPLs, e.g., ARMPLL, GENPLL,
-
-s/PPLs/PLLs/
-
-Otherwise,
+>  .../bindings/pinctrl/brcm,bcm4708-pinmux.txt  | 55 -----------
+>  .../bindings/pinctrl/brcm,ns-pinmux.yaml      | 94 +++++++++++++++++++
+>  2 files changed, 94 insertions(+), 55 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm4708-pinmux.txt
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
+> 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
