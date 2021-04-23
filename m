@@ -2,34 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B325368EDB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 10:31:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B05A368EF0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 10:38:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230059AbhDWIcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 04:32:25 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:34622 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230100AbhDWIcY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 04:32:24 -0400
+        id S230007AbhDWIif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 04:38:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49562 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229456AbhDWIif (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 04:38:35 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F040DC061574;
+        Fri, 23 Apr 2021 01:37:58 -0700 (PDT)
 Received: from deskari.lan (91-157-208-71.elisa-laajakaista.fi [91.157.208.71])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9D95F332;
-        Fri, 23 Apr 2021 10:31:46 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CB9E4332;
+        Fri, 23 Apr 2021 10:37:55 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1619166707;
-        bh=8Jm2BhtNQItmGoRHnzkSu1IWqknOaz1Wv9EcOPOdXNI=;
+        s=mail; t=1619167076;
+        bh=0rd+UTx3QxJ9CgU0e/oDrXH8eao+nlDFKoj0BYc9x2Q=;
         h=From:To:Cc:Subject:Date:From;
-        b=JXw71hcjJXcIQCsBFb8G8ZHqz08I9/2hxz8iRtoJJHeAtQPFBiFXXMBDUbWdfvoPm
-         /2vTujzs2LvyKjWkOX5IdvTmSyBR7WzpNNYVNsjGtfcX+G6/5vONRvjExkp/K2Xf7Q
-         FSMrUqrZeAGjRt/77rCBMw+5KnukbAfC+WBmyuI8=
+        b=IGgFWn1nFhFnk3W3q+ojXQAxAzcS0arqV3cfinCN0ZMbB549z/KcQHkklTNhd6VSw
+         eJMuM/K25GTeVVX5LgtSsKUgTJDnTGxeFLnUxAG1ejOV6UeliZFH2kOPRNRK9dS9Rw
+         BhNCxS/VGDHMl2OPUxy7qWX+1icJqP1ScwW9XiRg=
 From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
 Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Subject: [PATCH v2] arm64: dts: ti: k3-am654-base-board: remove ov5640
-Date:   Fri, 23 Apr 2021 11:31:20 +0300
-Message-Id: <20210423083120.73476-1-tomi.valkeinen@ideasonboard.com>
+Subject: [PATCH v2] ARM: dts: dra76-evm: remove ov5640
+Date:   Fri, 23 Apr 2021 11:37:12 +0300
+Message-Id: <20210423083712.74676-1-tomi.valkeinen@ideasonboard.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -37,7 +41,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AM654 EVM boards are not shipped with OV5640 sensor module, it is a
+DRA76 EVM boards are not shipped with OV5640 sensor module, it is a
 separate purchase. OV5640 module is also just one of the possible
 sensors or capture boards you can connect.
 
@@ -48,41 +52,45 @@ Remove the OV5640 from the dts file so that it is easy to use other
 sensors via DT overlays.
 
 Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
 
 Changes in v2:
-- drop empty csi2_0 node
+- Dropped empty i2c5 and csi2_0 nodes
 
 A DT overlay with OV5640 can be found from:
 
-https://git.kernel.org/pub/scm/linux/kernel/git/tomba/linux-dt.git/commit/?h=multistream/work&id=ff7a6469a8c40e1fec14f0a186322ee114892117
+https://git.kernel.org/pub/scm/linux/kernel/git/tomba/linux-dt.git/commit/?h=multistream/work&id=ac6b5065be54bb32322fcb8d04cda9a0eb10610c
 
- .../arm64/boot/dts/ti/k3-am654-base-board.dts | 31 -------------------
- 1 file changed, 31 deletions(-)
+ arch/arm/boot/dts/dra76-evm.dts | 35 ---------------------------------
+ 1 file changed, 35 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-index fe3043943906..7f27ba7e7256 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-@@ -85,12 +85,6 @@ sw6 {
- 			gpios = <&wkup_gpio0 27 GPIO_ACTIVE_LOW>;
- 		};
+diff --git a/arch/arm/boot/dts/dra76-evm.dts b/arch/arm/boot/dts/dra76-evm.dts
+index 9bd01ae40b1d..4508f7ffde0d 100644
+--- a/arch/arm/boot/dts/dra76-evm.dts
++++ b/arch/arm/boot/dts/dra76-evm.dts
+@@ -158,12 +158,6 @@ aic_dvdd: fixedregulator-aic_dvdd {
+ 		regulator-max-microvolt = <1800000>;
  	};
--
+ 
 -	clk_ov5640_fixed: clock {
 -		compatible = "fixed-clock";
 -		#clock-cells = <0>;
 -		clock-frequency = <24000000>;
 -	};
+-
+ 	hdmi0: connector {
+ 		compatible = "hdmi-connector";
+ 		label = "hdmi";
+@@ -406,27 +400,6 @@ tlv320aic3106: tlv320aic3106@19 {
+ 	};
  };
  
- &wkup_pmx0 {
-@@ -287,23 +281,6 @@ &main_i2c1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_i2c1_pins_default>;
- 	clock-frequency = <400000>;
+-&i2c5 {
+-	status = "okay";
+-	clock-frequency = <400000>;
 -
--	ov5640: camera@3c {
+-	ov5640@3c {
 -		compatible = "ovti,ov5640";
 -		reg = <0x3c>;
 -
@@ -97,11 +105,12 @@ index fe3043943906..7f27ba7e7256 100644
 -			};
 -		};
 -	};
+-};
 -
+ &cpu0 {
+ 	vdd-supply = <&buck10_reg>;
  };
- 
- &main_i2c2 {
-@@ -496,14 +473,6 @@ flash@0{
+@@ -573,14 +546,6 @@ can-transceiver {
  	};
  };
  
@@ -113,9 +122,9 @@ index fe3043943906..7f27ba7e7256 100644
 -	};
 -};
 -
- &mcu_cpsw {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_cpsw_pins_default &mcu_mdio_pins_default>;
+ &ipu2 {
+ 	status = "okay";
+ 	memory-region = <&ipu2_cma_pool>;
 -- 
 2.25.1
 
