@@ -2,132 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB1A836983C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 19:25:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7FC9369883
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 19:34:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229549AbhDWR0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 13:26:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53352 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229691AbhDWR0H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 13:26:07 -0400
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB62EC06175F
-        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 10:25:30 -0700 (PDT)
-Received: by mail-yb1-xb2e.google.com with SMTP id z1so56458963ybf.6
-        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 10:25:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=n8hZDL1xA2e2FhQbADX4o3akbnImWISYvJ4gYV4hTDw=;
-        b=QE34o8j979cX1BIZ77fuSaJFJASbd86yY/WiIZf/hGm3zAIrulu11rCYPdXZCPXmJp
-         dw4Xfb99rfN8VIjOVxPvsDQvjqNyOah9xQTh0YB7Rhj9Um+Y31ErWk6WtIpAP/48tZxd
-         KqxWDkBAgxxGs1bIBFnJJ1N7G+96HTwvTX7AZpH1y/hk93dVzZ+J55Ws35QFdWD2dGeG
-         webPu3XuSDc6v0ErYT++1lSCc0+whj212QDZwdkbqFPuPOJKPRiofRQ/LbcZTLRb1Lli
-         CLSIusitAEqZxhsPHFSvAgDovo+HdOl9codXeFbW8mzmsmMP8Kfm2mcytt8DLw7H27DL
-         kAtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=n8hZDL1xA2e2FhQbADX4o3akbnImWISYvJ4gYV4hTDw=;
-        b=JFMkgeOu0GZ0pfxbpv6YDKhqr5lEl2bkwvzEW8ePe6L6XEBgP2eRLo+Qp/ORESCQ1T
-         nTFqM4CD9CMU18a0lbRTvNcv2+hKDhFyDFfvL0mKelJbldVlssmOfdT/VSdbwm0FKrSK
-         g0UeordZ6aMZTsZPnNg97j0WKhPZ5CJtVUmYSUZNmIi+aOQ9Da3xK4fdV/55RN44heY0
-         GkkpLpZqdaVYoxrBQmj/zmLSDjV8ZzdZo8JUfWIjveXIx+lTnJd6IgUiHYU4soPPQi+f
-         P2lt/Rj1IJf1onbxUUeEN+bqO/Mk17qS4ky5Lro5cQSlJZ9PfcvOMU1w857ecse9YQUk
-         H8yw==
-X-Gm-Message-State: AOAM533T4727IzOUelJmXqx+XIlqQk5QG2ftS/5tyMJTblnmtC/d9H/Z
-        xvb/1By4XbSdi7S1Spk3KQZiBgcFfnTqad1qZwD9CA==
-X-Google-Smtp-Source: ABdhPJxFoVAvJGui3UN2oIAvxm+a7sAm6jmg01L2/sYpQx5YwJvUfenhyU0iY9IdZ6Rlj5GY+UENrXQypiXTNdleqKM=
-X-Received: by 2002:a5b:ed2:: with SMTP id a18mr7083028ybs.466.1619198729910;
- Fri, 23 Apr 2021 10:25:29 -0700 (PDT)
+        id S243410AbhDWRfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 13:35:04 -0400
+Received: from linux.microsoft.com ([13.77.154.182]:36878 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243123AbhDWRfD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 13:35:03 -0400
+Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 1900820B8001;
+        Fri, 23 Apr 2021 10:34:26 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 1900820B8001
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1619199266;
+        bh=wauSRbWpWMAp2gLVa1RG3QS9v1f1bggDujvhpEqfnDo=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=kcMCoRktudKFcWP0+SIZ1vixpBadwk75Mgtm8GrSChiUcXV/X24QaUvQl7PligvKP
+         MNqsG96/qR1qk7o/wixGXQXcVexeUVInCV5xCcAE+Vb6gzqPSVC07nepQCcAtPnQzj
+         pRHskL+Ov8mK82/D3cOp0KTIT+B7VqVgNfJshqwM=
+Subject: Re: [PATCH v2 1/2] powerpc: Free fdt on error in elf64_load()
+To:     robh@kernel.org, dan.carpenter@oracle.com, mpe@ellerman.id.au
+Cc:     bauerman@linux.ibm.com, dja@axtens.net,
+        christophe.leroy@csgroup.eu, lkp@intel.com,
+        kbuild-all@lists.01.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+References: <20210421163610.23775-1-nramas@linux.microsoft.com>
+From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Message-ID: <4e434de5-522c-a7fd-3178-d1636cb9bbc1@linux.microsoft.com>
+Date:   Fri, 23 Apr 2021 10:34:25 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210423171335.262316-1-tudor.ambarus@microchip.com> <20210423171335.262316-2-tudor.ambarus@microchip.com>
-In-Reply-To: <20210423171335.262316-2-tudor.ambarus@microchip.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 23 Apr 2021 10:24:54 -0700
-Message-ID: <CAGETcx-81hPTW_EVexMWaxGSOknuK-zESqKdiuQvye=n3TaHkA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] clk: Do not register provider with a NULL dev->of_node
-To:     Tudor Ambarus <tudor.ambarus@microchip.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, nsaenz@kernel.org,
-        maxime@cerno.tech, gregkh@linuxfoundation.org, rafael@kernel.org,
-        khilman@kernel.org, ulf.hansson@linaro.org, len.brown@intel.com,
-        pavel@ucw.cz, robh+dt@kernel.org, frowand.list@gmail.com,
-        maz@kernel.org, tglx@linutronix.de, geert@linux-m68k.org,
-        nsaenzjulienne@suse.de, linux@roeck-us.net,
-        guillaume.tucker@collabora.com, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, corbet@lwn.net,
-        nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
-        linux-doc@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        kernel-team@android.com, linux-rpi-kernel@lists.infradead.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210421163610.23775-1-nramas@linux.microsoft.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 23, 2021 at 10:14 AM Tudor Ambarus
-<tudor.ambarus@microchip.com> wrote:
->
-> commit 6579c8d97ad7 ("clk: Mark fwnodes when their clock provider is added")
-> revealed that clk/bcm/clk-raspberrypi.c driver calls
-> devm_of_clk_add_hw_provider(), with a NULL dev->of_node.
->
-> devm_of_clk_add_hw_provider() should not register the provider with
-> a NULL dev->of_node, as there is no of_node. Apart of the NULL pointer
-> dereference that will result when calling fwnode_dev_initialized() in
-> of_clk_add_hw_provider(), another problem is that when two drivers calling
-> of_clk_add_hw_provider() with np = NULL, their unregistration order is not
-> guaranteed to be correct. Avoid all the problems and just return -ENODEV
-> when the callers of devm_of_clk_add_hw_provider() use a NULL dev->of_node,
-> which seems the natural way to do.
->
-> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> Fixes: 6579c8d97ad7 ("clk: Mark fwnodes when their clock provider is added")
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+On 4/21/21 9:36 AM, Lakshmi Ramasubramanian wrote:
+
+Hi Dan,
+
+> There are a few "goto out;" statements before the local variable "fdt"
+> is initialized through the call to of_kexec_alloc_and_setup_fdt() in
+> elf64_load().  This will result in an uninitialized "fdt" being passed
+> to kvfree() in this function if there is an error before the call to
+> of_kexec_alloc_and_setup_fdt().
+> 
+> If there is any error after fdt is allocated, but before it is
+> saved in the arch specific kimage struct, free the fdt.
+> 
+> Reported-by: kernel test robot <lkp@intel.com>
+> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+> Signed-off-by: Michael Ellerman <mpe@ellerman.id.au>
+> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
 > ---
->  drivers/clk/clk.c | 12 +++++++-----
->  1 file changed, 7 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-> index e2ec1b745243..8b5077cc5e67 100644
-> --- a/drivers/clk/clk.c
-> +++ b/drivers/clk/clk.c
-> @@ -4634,11 +4634,10 @@ static struct device_node *get_clk_provider_node(struct device *dev)
->   * @get: callback for decoding clk_hw
->   * @data: context pointer for @get callback
->   *
-> - * Registers clock provider for given device's node. If the device has no DT
-> - * node or if the device node lacks of clock provider information (#clock-cells)
-> - * then the parent device's node is scanned for this information. If parent node
-> - * has the #clock-cells then it is used in registration. Provider is
-> - * automatically released at device exit.
-> + * Registers clock provider for given device's node. If the device node lacks
-> + * of clock provider information (#clock-cells) then the parent device's node is
-> + * scanned for this information. If parent node has the #clock-cells then it is
-> + * used in registration. Provider is automatically released at device exit.
->   *
->   * Return: 0 on success or an errno on failure.
->   */
-> @@ -4650,6 +4649,9 @@ int devm_of_clk_add_hw_provider(struct device *dev,
->         struct device_node **ptr, *np;
->         int ret;
->
-> +       if (!dev->of_node)
-> +               return -ENODEV;
+>   arch/powerpc/kexec/elf_64.c | 16 ++++++----------
+>   1 file changed, 6 insertions(+), 10 deletions(-)
+> 
+
+Please review this patch and Patch 2/2.
+
+thanks,
+  -lakshmi
+
+> diff --git a/arch/powerpc/kexec/elf_64.c b/arch/powerpc/kexec/elf_64.c
+> index 5a569bb51349..02662e72c53d 100644
+> --- a/arch/powerpc/kexec/elf_64.c
+> +++ b/arch/powerpc/kexec/elf_64.c
+> @@ -114,7 +114,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+>   	ret = setup_new_fdt_ppc64(image, fdt, initrd_load_addr,
+>   				  initrd_len, cmdline);
+>   	if (ret)
+> -		goto out;
+> +		goto out_free_fdt;
+>   
+>   	fdt_pack(fdt);
+>   
+> @@ -125,7 +125,7 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+>   	kbuf.mem = KEXEC_BUF_MEM_UNKNOWN;
+>   	ret = kexec_add_buffer(&kbuf);
+>   	if (ret)
+> -		goto out;
+> +		goto out_free_fdt;
+>   
+>   	/* FDT will be freed in arch_kimage_file_post_load_cleanup */
+>   	image->arch.fdt = fdt;
+> @@ -140,18 +140,14 @@ static void *elf64_load(struct kimage *image, char *kernel_buf,
+>   	if (ret)
+>   		pr_err("Error setting up the purgatory.\n");
+>   
+> +	goto out;
 > +
+> +out_free_fdt:
+> +	kvfree(fdt);
+>   out:
+>   	kfree(modified_cmdline);
+>   	kexec_free_elf_info(&elf_info);
+>   
+> -	/*
+> -	 * Once FDT buffer has been successfully passed to kexec_add_buffer(),
+> -	 * the FDT buffer address is saved in image->arch.fdt. In that case,
+> -	 * the memory cannot be freed here in case of any other error.
+> -	 */
+> -	if (ret && !image->arch.fdt)
+> -		kvfree(fdt);
+> -
+>   	return ret ? ERR_PTR(ret) : NULL;
+>   }
+>   
+> 
 
-Based on the other discussions, for now, just return 0. The error
-might cause other issues in other drivers. We can clean this up later.
-
--Saravana
-
->         ptr = devres_alloc(devm_of_clk_release_provider, sizeof(*ptr),
->                            GFP_KERNEL);
->         if (!ptr)
-> --
-> 2.25.1
->
