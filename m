@@ -2,105 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A653368B16
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 04:35:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 133E0368B1E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 04:37:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235302AbhDWCfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 22:35:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55004 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231261AbhDWCfq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 22:35:46 -0400
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9723C061574
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 19:35:04 -0700 (PDT)
-Received: by mail-yb1-xb34.google.com with SMTP id p126so303627yba.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 19:35:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=b71nI+sXe01LhMN7x+MBgBsL+VShdc2Sy2WppyA0dDg=;
-        b=fjj1fAB5Lcl0PdzNTH6o+dkAWCNIQXBT8fT0iOW2tEwEprlKeyAVGLGlFdhDj1osxF
-         aStXf9IjTGeMshd1k/YsGKgkc0AFGNe/QS+Jf85BJ7TmZbse4cx8pkfe+CupblduQiaF
-         YskLa6d3FE2X4gI15LXOZIQ+pTEwZJP0PW8VF7IUaCYxAbcK8HAZBgMPa+mLil24IXYr
-         yBrGPDlUVejuHlmxTsWqxXZeCFGA9vBYvKxwZqwIdIX/X7r1DUliBlPeXzDGQ0RGR5Bo
-         XD6OJf//Q60Uv5nWsMzwF6+u3g8gWckHZBqoJNZLkPc64bKDlb/bEEORVWJK/I21//Vh
-         KXVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=b71nI+sXe01LhMN7x+MBgBsL+VShdc2Sy2WppyA0dDg=;
-        b=tZH9JWjkU5rzRKYmoTQnXuFyGe+uHhGwDz+8UFYrId1lKW9apE9QuVpjfdTypRg62i
-         0BlaFJ5GzUhFo+wpmDbBYWcaDrJjIrh9t9WWO1DFQQnYD0+hn4a85uexjH4wXnyyYKXL
-         DSxOD79EV9C14WMYyhS8pHWpYiIuIpHEbPPZO22gansJ6pM30O2oPL1mGGl1ZSUbeUjr
-         /0ZI8mNEuJccqPb6N4EnitX3dAgy4rl99ZGiRFwqUE9PraWpvIa/tFqjWC0kOui1etVS
-         5dr2+VQPMQ7qJZ/f7SsCrGhP7Ji/UpYv8u7aG1gWT6/2HFp6kj+kn/iZD59BPxqgObct
-         5VlQ==
-X-Gm-Message-State: AOAM530FkelB0/gjVIsA0pVhMl8zxZkSJXKmKEHG2z4g6ac6mTrtVoPy
-        qLP6b5OSmh1xuD7Zvd7rYeA7+KzuzQhWNqiXKPw=
-X-Google-Smtp-Source: ABdhPJymcFp9iH6SywNWzD2klDMVpKrlqkVupJ2x7SCU0omuqB54XpAoOccLjlc+WfJI/uVJihMnTER1Im5u/zxRtM0=
-X-Received: by 2002:a25:ddc2:: with SMTP id u185mr950650ybg.41.1619145304088;
- Thu, 22 Apr 2021 19:35:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210416195432.24595-1-zajec5@gmail.com> <20210420212008.13174-1-zajec5@gmail.com>
-In-Reply-To: <20210420212008.13174-1-zajec5@gmail.com>
-From:   Brian Norris <computersforpeace@gmail.com>
-Date:   Thu, 22 Apr 2021 19:34:53 -0700
-Message-ID: <CAN8TOE-hMscEyqpZ+mpeZW85izuprxR-HosDgrD0P9o52ATQdQ@mail.gmail.com>
-Subject: Re: [PATCH V3] dt-bindings: mtd: brcm,brcmnand: convert to the json-schema
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        id S231261AbhDWCiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 22:38:10 -0400
+Received: from mail.loongson.cn ([114.242.206.163]:39052 "EHLO loongson.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230367AbhDWCiJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Apr 2021 22:38:09 -0400
+Received: from [10.130.0.98] (unknown [113.200.148.30])
+        by mail.loongson.cn (Coremail) with SMTP id AQAAf9DxX+_lMoJgS7EMAA--.5054S3;
+        Fri, 23 Apr 2021 10:37:26 +0800 (CST)
+Subject: Re: [PATCH] MIPS:DTS:Fix label name and interrupt number of ohci for
+ Loongson-2K
+To:     xiaochuan mao <maoxiaochuan@loongson.cn>,
         Rob Herring <robh+dt@kernel.org>,
-        Kamal Dasu <kdasu.kdev@gmail.com>,
-        linux-mtd@lists.infradead.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>
+References: <20210423015234.23870-1-maoxiaochuan@loongson.cn>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+From:   zhangqing <zhangqing@loongson.cn>
+Message-ID: <1053fddf-479a-6014-ca2c-110c19574f84@loongson.cn>
+Date:   Fri, 23 Apr 2021 10:37:25 +0800
+User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:45.0) Gecko/20100101
+ Thunderbird/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <20210423015234.23870-1-maoxiaochuan@loongson.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID: AQAAf9DxX+_lMoJgS7EMAA--.5054S3
+X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+        VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUYS7AC8VAFwI0_Gr0_Xr1l1xkIjI8I6I8E
+        6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28Cjx
+        kF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW7JVWDJwA2z4x0Y4vE2Ix0cI8I
+        cVCY1x0267AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4
+        A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IE
+        w4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r4j6F4UMc
+        vjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1l
+        c7I2V7IY0VAS07AlzVAYIcxG8wCY02Avz4vE14v_Gr1l42xK82IYc2Ij64vIr41l4I8I3I
+        0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWU
+        GVWUWwC2zVAF1VAY17CE14v26r126r1DMIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI
+        0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0
+        rVWrJr0_WFyUJwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r
+        1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x0JUyxRDUUUUU=
+X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 20, 2021 at 2:20 PM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> =
-wrote:
+
+On 04/23/2021 09:52 AM, xiaochuan mao wrote:
+> from Loongson-2K1000 user manual know that under pci bus
+> the device num is 4, function number is 2 and register is 0x2200
+> is ohci. the ohci interrupt number is 51. because Loongson-2K1000 has
+> 64 interrupt sources, 0-31 correspond to the device tree liointc0 device
+>   node, and the other correspond to liointc1 node. so it should be
+> number 19 correspon to liointc1.
 >
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> Signed-off-by: xiaochuan mao <maoxiaochuan@loongson.cn>
 >
-> This helps validating DTS files.
+Hi, xiaozhuan
 
-I gotta learn how to read this stuff better someday... but I'll give it a s=
-hot:
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-> @@ -0,0 +1,242 @@
-...
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,nand-iproc
-> +    then:
-> +      properties:
-> +        reg-names:
-> +          minItems: 2
-> +          maxItems: 3
-> +          items:
-> +            - const: nand
-> +            - const: iproc-idm
-> +            - const: iproc-ext
+Thanks for the patch, this is my mistake.
 
-Reading the original binding as well as the code, I believe all three
-are required. Wouldn't that be minItems =3D maxItems =3D 3?
+Can you correct the GPL-3.0 of this file to GPL-2.0 by the way?
 
-Other than that, this looks good to me:
+Thanks
 
-Reviewed-by: Brian Norris <computersforpeace@gmail.com>
+-Qing
 
-Thanks!
