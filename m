@@ -2,83 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF1193698D0
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 20:06:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A82D3698E8
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 20:14:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232569AbhDWSH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 14:07:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50814 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229549AbhDWSH2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Apr 2021 14:07:28 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1E34C60FE6;
-        Fri, 23 Apr 2021 18:06:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1619201211;
-        bh=zY8W3QUzcAWl6AFnPYVD24wO4KnCsJRKIXsxHN8wx1c=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=dTiTKJSplBFdws7Z670JSl0N3QnlSoG/MoXHlgmknls69QEaMI4AZS0zAiJVGn6Sn
-         80zKX+YZ7XvG4iXz0s4AVJF7PHczSnd/AQyvbSPpNTLmdAyn5lOtZNTpooK7p/6FC1
-         tYpZxIH9z9nzGB0SI+BfDZ9E2AzLg15qzJrGXI7jqb/mpOpg1Jm17zVT5pVi2O1jwY
-         DMnxOBp4giIJ6ylJop8R/4fT32MRGwUN31+Hqn+yShNjHWYwq9skVN5ws+UvxLITk6
-         WHyYdsAyNQGxXM95V//QHFcNbIjUOm+qm21Uw46Or6ZeP4jSGF8o5Ss30h+6QcdSiP
-         spTh0yeAk27/g==
-From:   Mark Brown <broonie@kernel.org>
-To:     linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        devicetree@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Joseph Chen <chenjh@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Kever Yang <kever.yang@rock-chips.com>, kernel@collabora.com,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Tang Cheng (TCS)
-Date:   Fri, 23 Apr 2021 19:06:17 +0100
-Message-Id: <161920103667.15429.2219995515166264842.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210421210338.43819-1-ezequiel@collabora.com>
-References: <20210421210338.43819-1-ezequiel@collabora.com>
+        id S243582AbhDWSOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 14:14:53 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:36631 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243503AbhDWSOo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 14:14:44 -0400
+Received: by mail-ot1-f51.google.com with SMTP id i16-20020a9d68d00000b0290286edfdfe9eso35435805oto.3;
+        Fri, 23 Apr 2021 11:14:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=wtMa0ofHsvULRBbfBv4LBMvbBadAF6ckmy4fcrRnOYw=;
+        b=jsZ5VotrVYWSgcPL8clpPQaa2zgQjEVsvdb5EJkBT2RxVguH5/6bpDNxi2CxqIel8a
+         /G11nFfGINtMbX8WLt7kTmkoRHLkc9KSuLYB35dv9zccOtmbTIz82K85vu6j4X3qC5yA
+         Edv6f7mbs++D3Q0dF/ualtKLxE4dtnVFNP/CZ8HYvijbZTBhuhfweqfatexLRlVvucJW
+         9kIvi4VOIilqUaPdt090IA4Tkg3+Jk1Y6fc2+Ww4Oy2ws4gbp247VSocB07lOLudhxqY
+         WpKbPFGB03FlBO7Tz8OqbpiUGsagO9wdhVw1uaiJEbjvaO2x5fJwbeiiMGHaO/ZGrzr1
+         Kr5A==
+X-Gm-Message-State: AOAM531/q6N8pRtzfXzDFgccVj0ykbTlGb7v1X5WAkHmqzNRI4YzgZlt
+        6sVf9e6zvvJbuECCA4xwOQ==
+X-Google-Smtp-Source: ABdhPJzEQ7FOs3zkv/BmeyQzNc1iYSzWSn+0Ia3g8izPCAkQyvYd4VpAPPtq1wkttfDk80uM6b/zFA==
+X-Received: by 2002:a9d:6055:: with SMTP id v21mr4425589otj.49.1619201645615;
+        Fri, 23 Apr 2021 11:14:05 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id w24sm1569880otj.33.2021.04.23.11.14.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Apr 2021 11:14:04 -0700 (PDT)
+Received: (nullmailer pid 1363626 invoked by uid 1000);
+        Fri, 23 Apr 2021 18:14:03 -0000
+Date:   Fri, 23 Apr 2021 13:14:03 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V2] dt-bindings: clock: brcm,iproc-clocks: convert to the
+ json-schema
+Message-ID: <20210423181403.GA1344607@robh.at.kernel.org>
+References: <20210421163948.11229-1-zajec5@gmail.com>
+ <20210421165633.13299-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210421165633.13299-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Apr 2021 18:03:36 -0300, Ezequiel Garcia wrote:
-> Shenzhen City Tang Cheng Technology (http://www.tctek.cn/)
-> is a power management IC manufacturer.
+On Wed, Apr 21, 2021 at 06:56:33PM +0200, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> This helps validating DTS files.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+> V2: Fix typo s/clocks/clock-output-names/
+> ---
+>  .../bindings/clock/brcm,iproc-clocks.txt      | 313 --------------
+>  .../bindings/clock/brcm,iproc-clocks.yaml     | 398 ++++++++++++++++++
+>  2 files changed, 398 insertions(+), 313 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/brcm,iproc-clocks.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
 
-Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+> diff --git a/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml b/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
+> new file mode 100644
+> index 000000000000..a1b9613f7c68
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
+> @@ -0,0 +1,398 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/brcm,iproc-clocks.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom iProc Family Clocks
+> +
+> +maintainers:
+> +  - Ray Jui <rjui@broadcom.com>
+> +  - Scott Branden <sbranden@broadcom.com>
+> +
+> +description: |
+> +  This binding uses the common clock binding:
+> +      Documentation/devicetree/bindings/clock/clock-bindings.txt
 
-Thanks!
+I think we can drop this statement.
 
-[1/3] dt-bindings: vendor-prefixes: Add Tang Cheng (TCS)
-      commit: 3007accc39776e0888f7692bd1cb639c51cc29c5
-[2/3] dt-bindings: regulator: Add support for TCS4525
-      commit: f80505fdff771c89c9350895e99140ffc824e564
-[3/3] regulator: fan53555: Add TCS4525 DCDC support
-      commit: 914df8faa7d6fdff7afa1fbde888a2bed8d72fa7
+> +
+> +  The iProc clock controller manages clocks that are common to the iProc family.
+> +  An SoC from the iProc family may have several PPLs, e.g., ARMPLL, GENPLL,
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+s/PPLs/PLLs/
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Otherwise,
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Reviewed-by: Rob Herring <robh@kernel.org>
