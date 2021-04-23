@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 676A7368AAB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 04:09:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 985B5368ABB
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 04:09:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240285AbhDWBtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 21:49:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44718 "EHLO
+        id S236068AbhDWBvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 21:51:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240284AbhDWBsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 21:48:55 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCB4FC06134F;
-        Thu, 22 Apr 2021 18:48:14 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id y3so19423767eds.5;
-        Thu, 22 Apr 2021 18:48:14 -0700 (PDT)
+        with ESMTP id S230367AbhDWBvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 21:51:41 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73AAAC061574;
+        Thu, 22 Apr 2021 18:51:05 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id f11-20020a17090a638bb02901524d3a3d48so349781pjj.3;
+        Thu, 22 Apr 2021 18:51:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=NwdOsfFGN572tvuMPO0PlIKoBZLQUQuSZDjT5WAvEcA=;
-        b=b1+mwV8JDIWlGbXSNE1mmls6BiKWtwR7MHHCEtAyH8PYD37XRz5weNadBRFRTFqOw8
-         Z5aSCnLBmZnf7YRzduurKwNUmZpuE/r6rojvs5UKspUhcE3whp5SnLq7IWj08LS4nzDv
-         RBsi1yTWHIGlNvAxpLnKcD5hYuJ86PybuOCQOvUNl9P9Dt5rJv8MVfFgp5SAg+gPw5Qu
-         I3GGEolw5et6CFg8emdunWALXwBRD308ir1DRv2Swf8MqYfuWuXIfNIIcX15HbwW8G0e
-         il9LNhoWi+qdKxXZ6+xn13pZajfgWYygvyh6/tiPNRG3/LILBEU42fsLbJFQYZL7CyJT
-         hh8g==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=IbrCUvCRE4PwO6vQoYdMCJZi3mAylgPtBh9g8Cx0Ezo=;
+        b=AAx81oBKdtsFsUmecJuhYm5gmCEy84Rp+TyqfHbxsq70SZyv7vlsooDw4QMAABGGvh
+         +ZsHN0TIZikEw/REku/IHBAJau7MODoyNz/6ZkjzCQvlUX+TFo+/VK2OBrZ59Na4ougu
+         Hqq4SAjgr8GjvQYHfIMJdOrDWAWznRMmv8rtwTJCDbnQQzDNx+HVfoDSDTT48Hz/7z8W
+         E5kBd7sloMcK7kSvNrrJFBv3Tjwk3GTVOVIE/zp2AL7yyWp9OKpzcnBoRibv1m9RHYll
+         pmbNGbZiqpt0lbKkIo0a2VlA/s0e8BOKyqGseRVUbaRA/44hNAVQ0BMyTSyvcQYGVQc7
+         7PZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=NwdOsfFGN572tvuMPO0PlIKoBZLQUQuSZDjT5WAvEcA=;
-        b=DcU8aYRI3t7goRnzohfp7xj96cMur0F+xmXOkJk4dAG1O59dv6FMGIk6hTpATzkpnN
-         5rO/Dnbs5xQtk2lKnDhOvteUw5epdibuYne5+3Z7QMq5JC2UusAqbMPTQ/ToE/VrQywt
-         gdLW6aOkH/86IDLEU0GpsfACZWBh1qB2I659qrLo3qUEmKh4WKy9VwXowmmGKXbCjEHi
-         x1EkdogmqJEIYWYNhyM4N1+oHB4q7vsTpYlTW0v5UI2tTm3S/YN77+0cqU/okUTmcDZR
-         oc5nsLWhPr9Sv+2PSFGSz+tzDa0yqXRoVmSsUo0qAsCGBCCiudIBWUMPWzK99l29oDHG
-         7Ozw==
-X-Gm-Message-State: AOAM530EQR3JcEkcMa68LzCBbsfy382OA4qdExbbFvmQWC57cxgAKmEl
-        mcKEK9069Y7i/XongFwKbmY=
-X-Google-Smtp-Source: ABdhPJzby022guZt6fQRlOorR5UZXktbTwwpM7eJ6Sx9483dS0T0RFpcSt8jUiB+boUV0iQGaC5S9A==
-X-Received: by 2002:a05:6402:31f0:: with SMTP id dy16mr1524542edb.161.1619142493491;
-        Thu, 22 Apr 2021 18:48:13 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-35-189-2.ip56.fastwebnet.it. [93.35.189.2])
-        by smtp.googlemail.com with ESMTPSA id t4sm3408635edd.6.2021.04.22.18.48.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Apr 2021 18:48:13 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=IbrCUvCRE4PwO6vQoYdMCJZi3mAylgPtBh9g8Cx0Ezo=;
+        b=rZx/lbLGRWqa+LiaRY4GLY+erVt/l+aIzRn90WI7P9EYtrd1Ulg58XRr2nAdAYTCE9
+         lQsLYSprPf+9VHwzzbubFSf6Om8BM+mf/dF+SSGnqqTNm743WqoDEqzvmxrYV57DGiXf
+         bT8xVyuWAmvqHapkAvo35C4kv0nK28+2bmsnlbusS3W1JYbBPqQcK58D6/BfOnJ9fvt5
+         8EuIdkY5gZ/PpEIQlUAtO54rG6WxJ6Hr+H6SF76/Yi1RrDnP87Estaq6y4yDBRH99Ely
+         rlGIPNQpAg+JfNgbFXs56Bo6DgsmkrcTO97C9N/pMx3N6FEidL0LeACIM2Bji2wK6NV0
+         hSog==
+X-Gm-Message-State: AOAM532/oGwA0guPjK5XUVv0JlCcmG8PVshNt6pQdoFSEZr/lWxmAI9x
+        hxtBHzcgsoiiWQMkrBu42IJpoGN8YIc=
+X-Google-Smtp-Source: ABdhPJz1q8klpD8dvvxoq8YepB5hFB7ppN4Tym0YEP4iQTM7qdAilm6yIvnJm16Wb1i75fCj+sVCPg==
+X-Received: by 2002:a17:90b:e8e:: with SMTP id fv14mr2882853pjb.5.1619142664633;
+        Thu, 22 Apr 2021 18:51:04 -0700 (PDT)
+Received: from [10.230.29.202] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id f20sm3310202pgb.47.2021.04.22.18.51.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Apr 2021 18:51:04 -0700 (PDT)
+Subject: Re: [PATCH 00/14] Multiple improvement to qca8k stability
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
         Vivien Didelot <vivien.didelot@gmail.com>,
         Vladimir Oltean <olteanv@gmail.com>,
         "David S. Miller" <davem@davemloft.net>,
@@ -58,47 +59,78 @@ Cc:     Ansuel Smith <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
         Heiner Kallweit <hkallweit1@gmail.com>,
         Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 14/14] drivers: net: dsa: qca8k: enlarge mdio delay and timeout
-Date:   Fri, 23 Apr 2021 03:47:40 +0200
-Message-Id: <20210423014741.11858-15-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210423014741.11858-1-ansuelsmth@gmail.com>
 References: <20210423014741.11858-1-ansuelsmth@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <e8abff3d-99a8-3ada-9fef-103ce0f7659b@gmail.com>
+Date:   Thu, 22 Apr 2021 18:51:02 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210423014741.11858-1-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-- Enlarge set page delay to QDSK source
-- Enlarge mdio MASTER timeout busy wait
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- drivers/net/dsa/qca8k.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/dsa/qca8k.c b/drivers/net/dsa/qca8k.c
-index d2f5e0b1c721..2ed1d5e283c2 100644
---- a/drivers/net/dsa/qca8k.c
-+++ b/drivers/net/dsa/qca8k.c
-@@ -191,6 +191,7 @@ qca8k_set_page(struct mii_bus *bus, u16 page)
- 	}
- 
- 	qca8k_current_page = page;
-+	usleep_range(1000, 2000);
- }
- 
- static u32
-@@ -617,7 +618,7 @@ qca8k_mdio_busy_wait(struct qca8k_priv *priv, u32 reg, u32 mask)
- 
- 	qca8k_split_addr(reg, &r1, &r2, &page);
- 
--	timeout = jiffies + msecs_to_jiffies(20);
-+	timeout = jiffies + msecs_to_jiffies(2000);
- 
- 	/* loop until the busy flag has cleared */
- 	do {
+On 4/22/2021 6:47 PM, Ansuel Smith wrote:
+> Currently qca8337 switch are widely used on ipq8064 based router.
+> On these particular router it was notice a very unstable switch with
+> port not link detected as link with unknown speed, port dropping
+> randomly and general unreliability. Lots of testing and comparison
+> between this dsa driver and the original qsdk driver showed lack of some
+> additional delay and values. A main difference arised from the original
+> driver and the dsa one. The original driver didn't use MASTER regs to
+> read phy status and the dedicated mdio driver worked correctly. Now that
+> the dsa driver actually use these regs, it was found that these special
+> read/write operation required mutual exclusion to normal
+> qca8k_read/write operation. The add of mutex for these operation fixed
+> the random port dropping and now only the actual linked port randomly
+> dropped. Adding additional delay for set_page operation and fixing a bug
+> in the mdio dedicated driver fixed also this problem. The current driver
+> requires also more time to apply vlan switch. All of these changes and
+> tweak permit a now very stable and reliable dsa driver and 0 port
+> dropping. This series is currently tested by at least 5 user with
+> different routers and all reports positive results and no problems.
+
+Since all of these changes are improvements and not really bug fixes,
+please target them at the net-next tree:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/networking/netdev-FAQ.rst#n40
+
+also, the subject for your patches should just be:
+
+net: dsa: qca8k:
+net: mdio: mdio-ipq8064:
+
+to be consistent with previous submissions in these files.
+
+> 
+> Ansuel Smith (14):
+>   drivers: net: dsa: qca8k: handle error with set_page
+>   drivers: net: dsa: qca8k: tweak internal delay to oem spec
+>   drivers: net: mdio: mdio-ip8064: improve busy wait delay
+>   drivers: net: dsa: qca8k: apply suggested packet priority
+>   drivers: net: dsa: qca8k: add support for qca8327 switch
+>   devicetree: net: dsa: qca8k: Document new compatible qca8327
+>   drivers: net: dsa: qca8k: limit priority tweak to qca8337 switch
+>   drivers: net: dsa: qca8k: add GLOBAL_FC settings needed for qca8327
+>   drivers: net: dsa: qca8k: add support for switch rev
+>   drivers: net: dsa: qca8k: add support for specific QCA access function
+>   drivers: net: dsa: qca8k: apply switch revision fix
+>   drivers: net: dsa: qca8k: clear MASTER_EN after phy read/write
+>   drivers: net: dsa: qca8k: protect MASTER busy_wait with mdio mutex
+>   drivers: net: dsa: qca8k: enlarge mdio delay and timeout
+> 
+>  .../devicetree/bindings/net/dsa/qca8k.txt     |   1 +
+>  drivers/net/dsa/qca8k.c                       | 256 ++++++++++++++++--
+>  drivers/net/dsa/qca8k.h                       |  54 +++-
+>  drivers/net/mdio/mdio-ipq8064.c               |  36 ++-
+>  4 files changed, 304 insertions(+), 43 deletions(-)
+> 
+
 -- 
-2.30.2
-
+Florian
