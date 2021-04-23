@@ -2,88 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8A5636940B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 15:50:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACFD7369413
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 15:53:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229871AbhDWNvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 09:51:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33618 "EHLO
+        id S229454AbhDWNyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 09:54:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbhDWNvc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 09:51:32 -0400
-Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B238C061574
-        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 06:50:55 -0700 (PDT)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4FRbKR0kq4z9sRR;
-        Fri, 23 Apr 2021 23:50:51 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ellerman.id.au;
-        s=201909; t=1619185851;
-        bh=NBR0doxevZcspE7GMPniJrjcztr5jXz2a0JCNWCT7jw=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=bzjegyk9DXvu/3ti2c56HI7OdoN+5+TWGLWWSvKQ052n4AcUgH0UDudeNu8zHVdkX
-         GUpiiO25ILL3aXaVpitzkEtKShm/l0Zq+FAo1x5yvQNUADIx5Pn1hpxEqjv/wY9RAT
-         aEMNwYdu7TMK5kU2x6EpEmElHNWjwdXo2xm+zDcgnyRFQ9qZzhulj5tMEmqi4hHYV9
-         NINnxG2dHpdpoBiP+MI3OQe4b8cRfqZMIWHcJoRVyTpaXR4GyPa7QRJpf1zPPhe5Ns
-         Cqi0PE1gKDaPt+NQH25TZM97GhV/PMe4pLuRiTrbEkJ8+r6DQWMKlxUky8djYGeYIZ
-         nSQcxHYLPUHAw==
-From:   Michael Ellerman <mpe@ellerman.id.au>
-To:     Daniel Axtens <dja@axtens.net>,
-        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
-        robh@kernel.org, dan.carpenter@oracle.com
-Cc:     devicetree@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        kbuild-all@lists.01.org, bauerman@linux.ibm.com, lkp@intel.com
-Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in
- elf64_load()
-In-Reply-To: <87r1j3ys8i.fsf@dja-thinkpad.axtens.net>
-References: <20210415191437.20212-1-nramas@linux.microsoft.com>
- <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
- <87eefag241.fsf@linkitivity.dja.id.au>
- <87r1j3ys8i.fsf@dja-thinkpad.axtens.net>
-Date:   Fri, 23 Apr 2021 23:50:49 +1000
-Message-ID: <875z0daz46.fsf@mpe.ellerman.id.au>
+        with ESMTP id S229871AbhDWNyP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 09:54:15 -0400
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 318CEC061574
+        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 06:53:39 -0700 (PDT)
+Received: by mail-il1-x133.google.com with SMTP id b17so40764366ilh.6
+        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 06:53:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=poorly.run; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=enxA0jDxQH8/90qRuPZ7QUhg+lPFtjYbIroTnbfeeGo=;
+        b=HkKewWUBtZjysoTAN+6Napt2wK6vPpLfXArsR5jUF8bzLiOFZh5DHyYlQurNDqFCbg
+         u9VdeqfbQoUhfKoZTsX9T0nXEybXc3mSuvKFfvsauiLZ8CULjE9pNibAvZAj5NrmlISi
+         XA+qD0bBQqAtclwX8gCV+/RPZFVK1rpb099YEIutnqSfBUOe2WwOFW97MoHURyrShGMe
+         An6gTkGr2o6fFCsLcarHTQF1jxVCQCpLXJSxx69SqflELDov2G3O7APVfjRGDr7u8/D0
+         OO9l4OQ9mpA1HpRAiw2xXnkFZLf4PmelUEIZlZajQ09Y9SXbuvNLH+ENDaj3HHLbmehK
+         2Wlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=enxA0jDxQH8/90qRuPZ7QUhg+lPFtjYbIroTnbfeeGo=;
+        b=PoeH6q9iTlQ0l1J0Vsa2AyZ0eW174F0zATZsQ0DsbbXOMnzO1pBE/Xcj2m13sCXqFD
+         8lbZ8zPQQ76ekuCZVlXmKeFeGXbztSEruJG5QLpwNFS531Ricn3YqS4AXgSTUCFueE6F
+         99O8xK8GrXTe0+0vmV7MKbX0c4zPH0owG8jLYYeD6cVGFXUmlA92fLg0wmKWPt1AV5Zu
+         7B3iWtEDIGexr0SWHg3e1T6t4FAivJo1x8bR2womto0ZEpnLQwo4MQhtG+TodPDOlfY0
+         XSEO/sSlrHY+asPx4UYesVTfLH9vanXCcM8ahX0OIFaVKy/whOEEvAmNwI6aVttzbEHL
+         XzsQ==
+X-Gm-Message-State: AOAM532bXP7iQO8mCPfTC0nzKEWXxS/1i7e0d6Ju9BS4mnneCne7OyL4
+        YHF78DpMqYyoCgp3hhhVHVTXChTwG1bLwuZV0utIfg==
+X-Google-Smtp-Source: ABdhPJyRuOcgN27WEgv2EuvmfXzx9OGUw3RQE4cZsvSCn4IKNCKY5uXhpcMAGC9Jn9ndKqUvOZFtXJwVRcRQywlErEw=
+X-Received: by 2002:a05:6e02:1d06:: with SMTP id i6mr3030247ila.165.1619186018640;
+ Fri, 23 Apr 2021 06:53:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20210409045314.3420733-1-hsinyi@chromium.org>
+In-Reply-To: <20210409045314.3420733-1-hsinyi@chromium.org>
+From:   Sean Paul <sean@poorly.run>
+Date:   Fri, 23 Apr 2021 09:53:02 -0400
+Message-ID: <CAMavQKJUpYP8jo2JDGMYNBGtbPSSO7z9BAComm5JQoty=HPtJg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/mediatek: set panel orientation before drm_dev_register().
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Daniel Axtens <dja@axtens.net> writes:
-> Daniel Axtens <dja@axtens.net> writes:
+On Fri, Apr 9, 2021 at 12:53 AM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
 >
->> Hi Lakshmi,
->>
->>> On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
->>>
->>> Sorry - missed copying device-tree and powerpc mailing lists.
->>>
->>>> There are a few "goto out;" statements before the local variable "fdt"
->>>> is initialized through the call to of_kexec_alloc_and_setup_fdt() in
->>>> elf64_load(). This will result in an uninitialized "fdt" being passed
->>>> to kvfree() in this function if there is an error before the call to
->>>> of_kexec_alloc_and_setup_fdt().
->>>> 
->>>> Initialize the local variable "fdt" to NULL.
->>>>
->> I'm a huge fan of initialising local variables! But I'm struggling to
->> find the code path that will lead to an uninit fdt being returned...
+> drm_dev_register() sets connector->registration_state to
+> DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+> drm_connector_set_panel_orientation() is first called after
+> drm_dev_register(), it will fail several checks and results in following
+> warning. So set panel orientation in dsi before drm_dev_register() is
+> called.
 >
-> OK, so perhaps this was putting it too strongly. I have been bitten
-> by uninitialised things enough in C that I may have taken a slightly
-> overly-agressive view of fixing them in the source rather than the
-> compiler. I do think compiler-level mitigations are better, and I take
-> the point that we don't want to defeat compiler checking.
+> [    4.480976] ------------[ cut here ]------------
+> [    4.485603] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:45 __drm_mode_object_add+0xb4/0xbc
+> <snip>
+> [    4.609772] Call trace:
+> [    4.612208]  __drm_mode_object_add+0xb4/0xbc
+> [    4.616466]  drm_mode_object_add+0x20/0x2c
+> [    4.620552]  drm_property_create+0xdc/0x174
+> [    4.624723]  drm_property_create_enum+0x34/0x98
+> [    4.629241]  drm_connector_set_panel_orientation+0x64/0xa0
+> [    4.634716]  boe_panel_get_modes+0x88/0xd8
+> [    4.638802]  drm_panel_get_modes+0x2c/0x48
+> [    4.642887]  panel_bridge_get_modes+0x1c/0x28
+> [    4.647233]  drm_bridge_connector_get_modes+0xa0/0xd4
+> [    4.652273]  drm_helper_probe_single_connector_modes+0x218/0x700
+> [    4.658266]  drm_mode_getconnector+0x1b4/0x45c
+> [    4.662699]  drm_ioctl_kernel+0xac/0x128
+> [    4.666611]  drm_ioctl+0x268/0x410
+> [    4.670002]  drm_compat_ioctl+0xdc/0xf0
+> [    4.673829]  __arm64_compat_sys_ioctl+0xc8/0x100
+> [    4.678436]  el0_svc_common+0xf4/0x1c0
+> [    4.682174]  do_el0_svc_compat+0x28/0x3c
+> [    4.686088]  el0_svc_compat+0x10/0x1c
+> [    4.689738]  el0_sync_compat_handler+0xa8/0xcc
+> [    4.694171]  el0_sync_compat+0x178/0x180
+> [    4.698082] ---[ end trace b4f2db9d9c88610b ]---
+> [    4.702721] ------------[ cut here ]------------
+> [    4.707329] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:243 drm_object_attach_property+0x48/0xb8
+> <snip>
+> [    4.833830] Call trace:
+> [    4.836266]  drm_object_attach_property+0x48/0xb8
+> [    4.840958]  drm_connector_set_panel_orientation+0x84/0xa0
+> [    4.846432]  boe_panel_get_modes+0x88/0xd8
+> [    4.850516]  drm_panel_get_modes+0x2c/0x48
+> [    4.854600]  panel_bridge_get_modes+0x1c/0x28
+> [    4.858946]  drm_bridge_connector_get_modes+0xa0/0xd4
+> [    4.863984]  drm_helper_probe_single_connector_modes+0x218/0x700
+> [    4.869978]  drm_mode_getconnector+0x1b4/0x45c
+> [    4.874410]  drm_ioctl_kernel+0xac/0x128
+> [    4.878320]  drm_ioctl+0x268/0x410
+> [    4.881711]  drm_compat_ioctl+0xdc/0xf0
+> [    4.885536]  __arm64_compat_sys_ioctl+0xc8/0x100
+> [    4.890142]  el0_svc_common+0xf4/0x1c0
+> [    4.893879]  do_el0_svc_compat+0x28/0x3c
+> [    4.897791]  el0_svc_compat+0x10/0x1c
+> [    4.901441]  el0_sync_compat_handler+0xa8/0xcc
+> [    4.905873]  el0_sync_compat+0x178/0x180
+> [    4.909783] ---[ end trace b4f2db9d9c88610c ]---
 >
-> (Does anyone - and by anyone I mean any large distro - compile with
-> local variables inited by the compiler?)
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dsi.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> index ae403c67cbd9..45a702ee09f3 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> @@ -205,6 +205,7 @@ struct mtk_dsi {
+>         u32 irq_data;
+>         wait_queue_head_t irq_wait_queue;
+>         const struct mtk_dsi_driver_data *driver_data;
+> +       enum drm_panel_orientation orientation;
+>  };
+>
+>  static inline struct mtk_dsi *bridge_to_dsi(struct drm_bridge *b)
+> @@ -966,6 +967,8 @@ static int mtk_dsi_encoder_init(struct drm_device *drm, struct mtk_dsi *dsi)
+>         }
+>         drm_connector_attach_encoder(dsi->connector, &dsi->encoder);
+>
+> +       drm_connector_set_panel_orientation(dsi->connector, dsi->orientation);
+> +
+>         return 0;
+>
+>  err_cleanup_encoder:
+> @@ -1029,6 +1032,12 @@ static int mtk_dsi_probe(struct platform_device *pdev)
+>                         ret = PTR_ERR(dsi->next_bridge);
+>                         goto err_unregister_host;
+>                 }
+> +
+> +               ret = of_drm_get_panel_orientation(panel->dev->of_node, &dsi->orientation);
+> +               if (ret) {
+> +                       dev_err(dev, "failed to get panel orientation %d\n", ret);
+> +                       return ret;
+> +               }
 
-This is where I say, "yes, Android" and you say "ugh no I meant a real
-distro", and I say "well ...".
+I don't think this is the right place to mine orientation since it
+duplicates the call from the panel driver.
 
-But yeah doesn't help us much.
+Instead, how about splitting out
+property_create_enum/attach_orientation_property from
+set_panel_orientation such that you can attach the property (with
+UNKNOWN value) in the connector init and then leave the panel to set
+it properly in get_modes (I kind of disagree with populating this in
+get_modes as well, but I don't think there's anywhere else to stick it
+right now)?
 
-cheers
+AFAICT orientation is the only property which has the create/attach
+calls in the set function which seems like a perfect recipe for this
+type of failure.
+
+
+Sean
+
+>         }
+>
+>         dsi->driver_data = of_device_get_match_data(dev);
+> --
+> 2.31.1.295.g9ea45b61b8-goog
+>
