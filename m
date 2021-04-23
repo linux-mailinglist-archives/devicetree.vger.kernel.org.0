@@ -2,94 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C11143699EB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 20:42:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16486369AC9
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 21:12:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231684AbhDWSmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 14:42:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59804 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229549AbhDWSmq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Apr 2021 14:42:46 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F1C9061139;
-        Fri, 23 Apr 2021 18:42:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1619203330;
-        bh=qIaVUyzdhjBUU7tl3VOejcO6+StJQjKYlePJddUmi7E=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=aWSmmAHDhWfWLE27J7QqAexykU5n2y1GB/omH7zwDOAleNlcEqvO2r1rMfIBOL2q7
-         Lat+X4UwmhBUzghwYL1bKCHRq97nz9BIxbw15E69e7LN1imyo834aKxbQU2BOZKLG7
-         CVyzo1lcmj88d9r6farXjOhA1Rm8GL8AnHsRC8WFMbZJMpPY7B9Lb2pGosTLA2m2+Y
-         5hD67MSNjpt5Ga27/Rf1fRdnUh4QwM/XkMrGxJbCtqqFTEORU7D5sq1QWsLr3YhrpA
-         0+DeEnj573ny/o1tQZWsJCqSMxo1EYPj1CfYZLrcQJi1p9zO9VbWKG1PLpMe59Egvp
-         C5Pgpz85CJBvg==
-Received: by mail-ed1-f51.google.com with SMTP id g17so57822888edm.6;
-        Fri, 23 Apr 2021 11:42:09 -0700 (PDT)
-X-Gm-Message-State: AOAM533dM28BrDcP/pun+4d78kpUgHchAi4Z5zwXS20RVhAa0ChHQU6G
-        hQTudVdZFVr8Hb+LSJlyZz35M0FMW+fxtHwpWQ==
-X-Google-Smtp-Source: ABdhPJxRxWR99r32kKOjtbYRcF+R9SoFCUGOziFQxhTRy7/ub7acC9s4XzQRvki8x3jvmUqBtR/g+HPM9RbFw1VUkOs=
-X-Received: by 2002:a05:6402:34c8:: with SMTP id w8mr6219150edc.194.1619203328426;
- Fri, 23 Apr 2021 11:42:08 -0700 (PDT)
+        id S243699AbhDWTNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 15:13:33 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:38577 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243438AbhDWTNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 15:13:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1619205175; x=1650741175;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=jFuDhHYlk4Hbe7hxXEZVh5/8lcG8Pt1iwjMqBmOsjHo=;
+  b=EreihZ3F704GpceiQ0iv/9JadYDYUR/JhU5nmaFtxxxlEkMQzU60sdT+
+   W7U0KDjJyItQoQXA1h/SE+oGb4xGvqJcapLmT5+Y8VgiFt87xFi4baq1V
+   0SNkLScP0KjkJu4DlFCgahCfo70fv3W00YzMo2Vh83JkubAonn9uFMUb4
+   jU0Qm20SMns+cRenotTnNkWaTbIs8mcBhobQe4TbOQ2v/TWetNr5VFZuQ
+   BmcSxZ11FaVN6YOxFR/DJjmBh6W+gY30HrBxtOeBoaYztIGhDnb3/0ctI
+   FixIcDje7DDpxyoEXnE5398cjJ7pUIO+5g1X9kWjI1SY1axVVQvhQ4jXb
+   g==;
+IronPort-SDR: iswriVtSl3G3gGsMS8xI4euUYDVEiXMH63Y/UlX7oorC41kfc88e3tHpAcX2OzOPGD8yrdhwQf
+ AgOJsG4SCp64VeZ0pZy+SDtnZfLAA3aJlfSWMONdBfBt6uD6b7eAQPFOGAhjpIhlMeI+QPlrLi
+ AXjkenfK8RDewftHsZ4ChzC8ohe5/gJIOL+RkcCoJnqs09BYMNByFA9WktjuxSVUwxlah4JIBa
+ MRmDra2t1zjatZUjQ2FvFlGWQipNP8fNajlUKgQEGj+U/0Gi0s0E/hVpB44fmFjdNzFhZAWkPY
+ cPY=
+X-IronPort-AV: E=Sophos;i="5.82,246,1613458800"; 
+   d="scan'208";a="112001288"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Apr 2021 12:12:53 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Fri, 23 Apr 2021 12:12:46 -0700
+Received: from ROB-ULT-M18064N.mchp-main.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Fri, 23 Apr 2021 12:12:39 -0700
+From:   Tudor Ambarus <tudor.ambarus@microchip.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>, <nsaenz@kernel.org>,
+        <maxime@cerno.tech>, <gregkh@linuxfoundation.org>,
+        <rafael@kernel.org>, <khilman@kernel.org>,
+        <ulf.hansson@linaro.org>, <len.brown@intel.com>, <pavel@ucw.cz>,
+        <robh+dt@kernel.org>, <frowand.list@gmail.com>, <maz@kernel.org>,
+        <tglx@linutronix.de>, <saravanak@google.com>,
+        <geert@linux-m68k.org>, <nsaenzjulienne@suse.de>,
+        <linux@roeck-us.net>, <guillaume.tucker@collabora.com>
+CC:     <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <corbet@lwn.net>, <nicolas.ferre@microchip.com>,
+        <claudiu.beznea@microchip.com>, <linux-doc@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-acpi@vger.kernel.org>, <kernel-team@android.com>,
+        <linux-rpi-kernel@lists.infradead.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: [PATCH] clk: Skip clk provider registration when np is NULL
+Date:   Fri, 23 Apr 2021 22:12:36 +0300
+Message-ID: <20210423191236.265996-1-tudor.ambarus@microchip.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210423171335.262316-1-tudor.ambarus@microchip.com>
+References: <20210423171335.262316-1-tudor.ambarus@microchip.com>
 MIME-Version: 1.0
-References: <20210420024222.101615-1-ilya.lipnitskiy@gmail.com>
- <20210421220302.GA1637795@robh.at.kernel.org> <CALCv0x2oSXBT-6LteYtr9J5XmmDuer_=sbCgB5CBXWe_cKk2sA@mail.gmail.com>
-In-Reply-To: <CALCv0x2oSXBT-6LteYtr9J5XmmDuer_=sbCgB5CBXWe_cKk2sA@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 23 Apr 2021 13:41:56 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+Zhgn53wGdMbZKMjxk2gPQQFpjSsudVso+keonDCd+oQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+Zhgn53wGdMbZKMjxk2gPQQFpjSsudVso+keonDCd+oQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: net: mediatek/ralink: remove unused bindings
-To:     Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        John Crispin <john@phrozen.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 21, 2021 at 5:05 PM Ilya Lipnitskiy
-<ilya.lipnitskiy@gmail.com> wrote:
->
-> Hi Rob,
->
-> On Wed, Apr 21, 2021 at 3:03 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Mon, Apr 19, 2021 at 07:42:22PM -0700, Ilya Lipnitskiy wrote:
-> > > Revert commit 663148e48a66 ("Documentation: DT: net: add docs for
-> > > ralink/mediatek SoC ethernet binding")
-> > >
-> > > No in-tree drivers use the compatible strings present in these bindings,
-> > > and some have been superseded by DSA-capable mtk_eth_soc driver, so
-> > > remove these obsolete bindings.
-> >
-> > Looks like maybe OpenWRT folks are using these. If so, you can't revert
-> > them.
-> Indeed, there are out of tree drivers for some of these. I wasn't sure
-> what the dt-binding policy was for such use cases - can you point me
-> to a definitive reference?
+commit 6579c8d97ad7 ("clk: Mark fwnodes when their clock provider is added")
+revealed that clk/bcm/clk-raspberrypi.c driver calls
+devm_of_clk_add_hw_provider(), with a NULL dev->of_node, which resulted in a
+NULL pointer dereference in of_clk_add_provider() when calling
+fwnode_dev_initialized().
 
-Perhaps we should write that down more explicitly, but I think it is
-pretty rare actually. And really, I'd like to require we have at least
-1 dts user. Though, then we'd just have dead dts files. More
-generally, other projects use the bindings and dts files. The bindings
-and dts files live in the kernel tree for convenience and the simple
-fact that is where the vast majority of both developers and hardware
-support are. There are exceptions of course such as h/w that doesn't
-run Linux.
+Returning 0 is reducing the if conditions in driver code and is being
+consistent with the CONFIG_OF=n inline stub that returns 0 when CONFIG_OF
+is disabled. The downside is that drivers will maybe register clkdev lookups
+when they don't need to and waste some memory.
 
-I'm all for removing this if no one cares (please try to find out) or
-if the existing binding is just bad (doesn't match the h/w or is
-incomplete in an incompatible way). I would have expected in the 5
-years since it was added, a user (either dts file or driver) would
-have appeared.
+Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Fixes: 6579c8d97ad7 ("clk: Mark fwnodes when their clock provider is added")
+Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+---
+This would be the second approach, where we don't return an error when
+one calls devm_of_clk_add_hw_provider with a NULL of_node, but instead
+we just return 0 and skip the logic in the core and the drivers.
 
-Rob
+ drivers/clk/clk.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+index e2ec1b745243..5d10da3519ac 100644
+--- a/drivers/clk/clk.c
++++ b/drivers/clk/clk.c
+@@ -4540,6 +4540,9 @@ int of_clk_add_provider(struct device_node *np,
+ 	struct of_clk_provider *cp;
+ 	int ret;
+ 
++	if (!np)
++		return 0;
++
+ 	cp = kzalloc(sizeof(*cp), GFP_KERNEL);
+ 	if (!cp)
+ 		return -ENOMEM;
+@@ -4579,6 +4582,9 @@ int of_clk_add_hw_provider(struct device_node *np,
+ 	struct of_clk_provider *cp;
+ 	int ret;
+ 
++	if (!np)
++		return 0;
++
+ 	cp = kzalloc(sizeof(*cp), GFP_KERNEL);
+ 	if (!cp)
+ 		return -ENOMEM;
+@@ -4676,6 +4682,9 @@ void of_clk_del_provider(struct device_node *np)
+ {
+ 	struct of_clk_provider *cp;
+ 
++	if (!np)
++		return 0;
++
+ 	mutex_lock(&of_clk_mutex);
+ 	list_for_each_entry(cp, &of_clk_providers, link) {
+ 		if (cp->node == np) {
+-- 
+2.25.1
+
