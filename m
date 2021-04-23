@@ -2,86 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C8D0369B2E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 22:17:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20E1F369C44
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 23:55:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234846AbhDWURm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 16:17:42 -0400
-Received: from foss.arm.com ([217.140.110.172]:38832 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232200AbhDWURl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Apr 2021 16:17:41 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6A89711D4;
-        Fri, 23 Apr 2021 13:17:03 -0700 (PDT)
-Received: from [10.57.2.99] (unknown [10.57.2.99])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1DB0B3F73B;
-        Fri, 23 Apr 2021 13:16:59 -0700 (PDT)
-Subject: Re: [RFC PATCH 0/4] Support for passing runtime state idle time to
- TF-A
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     sudeep.holla@arm.com, souvik.chakravarty@arm.com,
-        thierry.reding@gmail.com, mark.rutland@arm.com,
-        lorenzo.pieralisi@arm.com, daniel.lezcano@linaro.org,
-        robh+dt@kernel.org, jonathanh@nvidia.com, ksitaraman@nvidia.com,
-        sanjayc@nvidia.com, linux-arm-kernel@lists.infradead.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-References: <1619123448-10138-1-git-send-email-skomatineni@nvidia.com>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <064341f7-dce3-5ad4-e69b-9568115035c1@arm.com>
-Date:   Fri, 23 Apr 2021 21:16:57 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <1619123448-10138-1-git-send-email-skomatineni@nvidia.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S232283AbhDWV4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 17:56:24 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:61827 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231881AbhDWV4X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 17:56:23 -0400
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 23 Apr 2021 14:55:46 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 23 Apr 2021 14:55:44 -0700
+X-QCInternal: smtphost
+Received: from rajeevny-linux.qualcomm.com ([10.204.66.121])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 24 Apr 2021 03:25:12 +0530
+Received: by rajeevny-linux.qualcomm.com (Postfix, from userid 2363605)
+        id 7ED1D212C3; Sat, 24 Apr 2021 03:25:11 +0530 (IST)
+From:   Rajeev Nandan <rajeevny@codeaurora.org>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Rajeev Nandan <rajeevny@codeaurora.org>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, mkrishn@codeaurora.org,
+        kalyan_t@codeaurora.org, hoegsberg@chromium.org,
+        abhinavk@codeaurora.org, seanpaul@chromium.org
+Subject: [v2 0/2] drm: Add support for backlight control of eDP panel on ti-sn65dsi86 bridge
+Date:   Sat, 24 Apr 2021 03:25:02 +0530
+Message-Id: <1619214904-10218-1-git-send-email-rajeevny@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sowjanya,
+The backlight level of an eDP panel can be controlled through the AUX
+channel using DPCD registers of the panel.
 
-On 4/22/21 9:30 PM, Sowjanya Komatineni wrote:
-> Tegra194 and Tegra186 platforms use separate MCE firmware for CPUs which is
-> in charge of deciding on state transition based on target state, state idle
-> time, and some other Tegra CPU core cluster states information.
-> 
-> Current PSCI specification don't have function defined for passing runtime
-> state idle time predicted by governor (based on next events and state target
-> residency) to ARM trusted firmware.
+The capability for the Source device to adjust backlight characteristics
+within the panel, using the Sink device DPCD registers is indicated by
+the TCON_BACKLIGHT_ADJUSTMENT_CAPABLE bit in the EDP_GENERAL_CAPABILITY_1
+register (DPCD Address 701h, bit0). In this configuration, the eDP TCON
+receives the backlight level information from the host, through the AUX
+channel.
 
-Do you have some numbers from experiments showing that these idle
-governor prediction values, which are passed from kernel to MCE
-firmware, are making a good 'guess'?
-How much precision (1us? 1ms?) in the values do you need there?
+Anderson's patch series [1] exposed the DDC bus from ti-sn65dsi86 bridge,
+that gives an option to move the backlight control out of the bridge and
+to create a separate backlight driver.
 
-IIRC (probably Rafael's presentations) predicting in the kernel
-something like CPU idle time residency is not a trivial thing.
+Changes in v2:
+- Created a new DisplayPort aux backlight driver and moved the code from
+  drm_dp_aux_backlight.c (v1) to the new driver.
+- Removed the changes done in ti-sn65dsi86 bridge. (Rob Herring)
 
-Another idea (depending on DT structure and PSCI bits):
-Could this be solved differently, but just having a knowledge that if
-the governor requested some C-state, this means governor 'predicted'
-an idle residency to be greater that min_residency attached to this
-C-state?
-Then, when that request shows up in your FW, you know that it must be at
-least min_residency because of this C-state id.
-It would depend on number of available states, max_residency, scale
-that you would choose while assigning values from [0, max_residency]
-to each state.
-IIRC there can be many state IDs for idle, so it would depend on
-number of bits encoding this state, and your needs. Example of
-linear scale:
-4-bits encoding idle state and max predicted residency 10msec,
-that means 10000us / 16 states = 625us/state.
-The max_residency might be split differently, using different than
-linear function, to have some rage more precised.
+[1] https://lore.kernel.org/dri-devel/20210416223950.3586967-1-dianders@chromium.org/
 
-Open question is if these idle states must be all represented
-in DT, or there is a way of describing a 'set of idle states'
-automatically.
+Rajeev Nandan (2):
+  dt-bindings: backlight: add DisplayPort aux backlight
+  backlight: Add DisplayPort aux backlight driver
 
-Regards,
-Lukasz
+ .../bindings/leds/backlight/dp-aux-backlight.yaml  |  49 +++++
+ drivers/video/backlight/Kconfig                    |   7 +
+ drivers/video/backlight/Makefile                   |   1 +
+ drivers/video/backlight/dp_aux_backlight.c         | 245 +++++++++++++++++++++
+ 4 files changed, 302 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+ create mode 100644 drivers/video/backlight/dp_aux_backlight.c
+
+-- 
+2.7.4
+
