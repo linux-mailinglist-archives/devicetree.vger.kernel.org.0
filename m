@@ -2,113 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB24F368EC0
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 10:19:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1279C368EC5
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 10:22:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232153AbhDWIUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 04:20:13 -0400
-Received: from mail.loongson.cn ([114.242.206.163]:58640 "EHLO loongson.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229456AbhDWIUM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Apr 2021 04:20:12 -0400
-Received: from [10.0.2.15] (unknown [58.249.121.165])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9DxL+4Pg4JgZNQMAA--.4973S3;
-        Fri, 23 Apr 2021 16:19:28 +0800 (CST)
-Subject: =?UTF-8?B?UmU6IOWbnuWkje+8miBbUEFUQ0hdIE1JUFM6RFRTOkZpeCBsYWJlbCBu?=
- =?UTF-8?Q?ame_and_interrupt_number_of_ohci_for_Loongson-2K?=
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Qing Zhang <zhangqing@loongson.cn>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-References: <20210423015234.23870-1-maoxiaochuan@loongson.cn>
- <1053fddf-479a-6014-ca2c-110c19574f84@loongson.cn>
- <tencent_A816CB57EADAD19FD3FFC04C3598E81B5608@qq.com>
- <6abcefbe-0e49-4e68-abc1-b9535d5467ea@www.fastmail.com>
-From:   Xiaochuan Mao <maoxiaochuan@loongson.cn>
-Message-ID: <24218389-e2d8-6e91-d72d-f0d961e3f9b8@loongson.cn>
-Date:   Fri, 23 Apr 2021 16:19:26 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S241361AbhDWIWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 04:22:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46128 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241196AbhDWIWw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 04:22:52 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CD5EC061574
+        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 01:22:13 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id r128so49285475lff.4
+        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 01:22:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qWBkgkLzB2qRvLb6AJXGYdWv19iR0S4JnZjEAIUSrBk=;
+        b=LWPq+d2szR6MC/Ahhk1UXiNveVPJTDobHg9JtntjxCeTvsr100pE2nNxi26KPQxFFp
+         FmDKXmznsNFa9/CkBXuwQqwG7QFuvLClN3noH5kKwXGvyjaKTCKU+0yRfPCdIEPtZmHx
+         qLIC3UeqYHzwsowST1oPsBp0aB9U+unmtxLRRVl8co2wXTvba5Gj2mhBa49CRgi/vf3e
+         BruU+fadCo56PRfo8ZdZoBtzRuAe+wDvQLM8NMiNFfMlyV1XRSOCNcMmZJSS4P7wln57
+         9wybHstYmpoM3Dw3AAKSOAMSacqaEBy/w3plpkqv8rXaqlOAfAYhEz/Qtcthszkk6wo/
+         KVZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qWBkgkLzB2qRvLb6AJXGYdWv19iR0S4JnZjEAIUSrBk=;
+        b=IuadWwZL5H4dXUU5dO6Mn2DgEsimnY12cVk3eauSjn7BDfFfpMqtuXvPhiTTkqi1/a
+         cTUTqCQDX+3n1/mO4/XZmv3oT216In4NyLB23S8L3KWHiZKbeCxtoGOL8BTtHup2v+xy
+         ebULXGeSCimV8hvGfFDQWffYfHCj26LijOHb92MpraUGCdg9W6BD/CCnRc4H81wWYpoX
+         VSx5t72PntCfPwqRm8321zLP1gO3L5ZCNDRDoXpSqAqTsc79fo5V+ZqOV42iQshr1fva
+         CvQhrYI/vV+esB4Fy3cKU4rdNkEd2Uwy9iPQLDbd1WPbVCZLQAKSzUm2py7Ac3nBXwd1
+         3n9w==
+X-Gm-Message-State: AOAM5304GScLdj0RDLtBKJZ/zd91HQggSH/Ptt6x6z9c7YaPb5Ge1ZIT
+        AxKj4rr50kuRkWfa3MDrOo2Gkg==
+X-Google-Smtp-Source: ABdhPJwM0N5vJrY4HbRVirs2DUVVbbIs8U2o/3xElJHb03KF6XRyNippWAUA4fbVFLpxkfEEDhuU5w==
+X-Received: by 2002:a19:f018:: with SMTP id p24mr1822876lfc.421.1619166132016;
+        Fri, 23 Apr 2021 01:22:12 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id x74sm484475lff.145.2021.04.23.01.22.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Apr 2021 01:22:11 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Zoltan HERPAI <wigyori@uid0.hu>,
+        Raylynn Knight <rayknight@me.com>, devicetree@vger.kernel.org
+Subject: [PATCH 1/3 net-next v3] net: ethernet: ixp4xx: Add DT bindings
+Date:   Fri, 23 Apr 2021 10:22:06 +0200
+Message-Id: <20210423082208.2244803-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <6abcefbe-0e49-4e68-abc1-b9535d5467ea@www.fastmail.com>
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-CM-TRANSID: AQAAf9DxL+4Pg4JgZNQMAA--.4973S3
-X-Coremail-Antispam: 1UD129KBjvJXoW7AF1xAw48tFW7Zr1xCw1Utrb_yoW8Ww17pr
-        s3Aa1IgF4DJr1Ikw42kr1j9F1jq34UJrn5XFn8Cas5GFWqvwn5Jry8ZrW0qry2qry7Ca1U
-        Zry2qr429as8ArJanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUUvv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-        1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
-        6r4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
-        Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
-        I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r
-        4UM4x0Y48IcVAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwCYjI0SjxkI62AI1cAE67vI
-        Y487MxkIecxEwVAFwVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8Jw
-        C20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAF
-        wI0_JF0_Jw1lIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjx
-        v20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6Fyj6rWUJwCI42IY6I8E
-        87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
-        IFyTuYvjfU0yxRDUUUU
-X-CM-SenderInfo: xpdr5xxdrfx3ldqnw6o6or00hjvr0hdfq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This adds device tree bindings for the IXP4xx ethernet
+controller with optional MDIO bridge.
 
-On 2021/4/23 下午12:02, Jiaxun Yang wrote:
->
-> On Fri, Apr 23, 2021, at 10:47 AM, maoxiaochuan wrote:
->> Ok, I will send a another patch for it.
-> Please correct your email client setup.
->
->
-> https://www.kernel.org/doc/html/latest/process/email-clients.html
-thanks for your suggest.
->>  
->> 祝好
->>  
->>
->>
->> ------------------ 原始邮件 ------------------
->> *发件人:* "zhangqing"<zhangqing@loongson.cn>; 
->> *发送时间:* 2021年4月23日(星期五) 上午10:37
->> *收件人:* "xiaochuan mao"<maoxiaochuan@loongson.cn>; "Rob 
->> Herring"<robh+dt@kernel.org>; "Thomas 
->> Bogendoerfer"<tsbogend@alpha.franken.de>; "Jiaxun 
->> Yang"<jiaxun.yang@flygoat.com>; 
->> *抄送:* "devicetree"<devicetree@vger.kernel.org>; 
->> "linux-mips"<linux-mips@vger.kernel.org>; 
->> "linux-kernel"<linux-kernel@vger.kernel.org>; 
->> *主题:* Re: [PATCH] MIPS:DTS:Fix label name and interrupt number of ohci 
->> for Loongson-2K
->>
->>
->> On 04/23/2021 09:52 AM, xiaochuan mao wrote:
->>> from Loongson-2K1000 user manual know that under pci bus
->>> the device num is 4, function number is 2 and register is 0x2200
->>> is ohci. the ohci interrupt number is 51. because Loongson-2K1000 has
->>> 64 interrupt sources, 0-31 correspond to the device tree liointc0 device
->>>   node, and the other correspond to liointc1 node. so it should be
->>> number 19 correspon to liointc1.
->>>
->>> Signed-off-by: xiaochuan mao <maoxiaochuan@loongson.cn>
->>>
->> Hi, xiaozhuan
->>
->>
->> Thanks for the patch, this is my mistake.
->>
->> Can you correct the GPL-3.0 of this file to GPL-2.0 by the way?
->>
->> Thanks
->>
->> -Qing
->
+Cc: Zoltan HERPAI <wigyori@uid0.hu>
+Cc: Raylynn Knight <rayknight@me.com>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v2->v3:
+- Designate phy nodes with ethernet-phy@
+- Include phy-mode in the schema
+ChangeLog v1->v2:
+- Add schema for the (optional) embedded MDIO bus inside
+  the ethernet controller in an "mdio" node instead of just
+  letting the code randomly populate and present it to
+  the operating system.
+- Reference the standard schemas for ethernet controller and
+  MDIO buses.
+- Add intel,npe to indentify the NPE unit used with each
+  ethernet adapter.
+---
+ .../bindings/net/intel,ixp4xx-ethernet.yaml   | 82 +++++++++++++++++++
+ 1 file changed, 82 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
+
+diff --git a/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml b/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
+new file mode 100644
+index 000000000000..978e7f236f3a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
+@@ -0,0 +1,82 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2018 Linaro Ltd.
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/net/intel,ixp4xx-ethernet.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Intel IXP4xx ethernet
++
++allOf:
++  - $ref: "ethernet-controller.yaml#"
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  The Intel IXP4xx ethernet makes use of the IXP4xx NPE (Network
++  Processing Engine) and the IXP4xx Queue Mangager to process
++  the ethernet frames. It can optionally contain an MDIO bus to
++  talk to PHYs.
++
++properties:
++  compatible:
++    const: intel,ixp4xx-ethernet
++
++  reg:
++    maxItems: 1
++    description: Ethernet MMIO address range
++
++  queue-rx:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the RX queue on the NPE
++
++  queue-txready:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the TX READY queue on the NPE
++
++  phy-mode: true
++
++  phy-handle: true
++
++  intel,npe:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++    description: which NPE (Network Processing Engine) this ethernet
++      instance is using
++
++  mdio:
++    type: object
++    $ref: "mdio.yaml#"
++    description: optional node for embedded MDIO controller
++
++required:
++  - compatible
++  - reg
++  - queue-rx
++  - queue-txready
++
++additionalProperties: false
++
++examples:
++  - |
++    ethernet@c8009000 {
++      compatible = "intel,ixp4xx-ethernet";
++      reg = <0xc8009000 0x1000>;
++      status = "disabled";
++      queue-rx = <&qmgr 3>;
++      queue-txready = <&qmgr 20>;
++      intel,npe = <1>;
++      phy-mode = "rgmii";
++      phy-handle = <&phy1>;
++
++      mdio {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        phy1: ethernet-phy@1 {
++          reg = <1>;
++        };
++      };
++    };
 -- 
---xiaochuan
+2.29.2
 
