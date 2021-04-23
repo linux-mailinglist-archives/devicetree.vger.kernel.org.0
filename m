@@ -2,231 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3764D368A7B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 03:44:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B65F368A81
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 03:47:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236080AbhDWBoz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 21:44:55 -0400
-Received: from lucky1.263xmail.com ([211.157.147.131]:43930 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235302AbhDWBoy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 21:44:54 -0400
-Received: from localhost (unknown [192.168.167.16])
-        by lucky1.263xmail.com (Postfix) with ESMTP id DE00DBA143;
-        Fri, 23 Apr 2021 09:44:03 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P31919T139684250371840S1619142242534325_;
-        Fri, 23 Apr 2021 09:44:03 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <1992614d86c6477ffb7c4ec9c31cbe71>
-X-RL-SENDER: jay.xu@rock-chips.com
-X-SENDER: xjq@rock-chips.com
-X-LOGIN-NAME: jay.xu@rock-chips.com
-X-FST-TO: heiko@sntech.de
-X-RCPT-COUNT: 8
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Jianqun Xu <jay.xu@rock-chips.com>
-To:     heiko@sntech.de, linus.walleij@linaro.org, robh+dt@kernel.org
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Jianqun Xu <jay.xu@rock-chips.com>
-Subject: [PATCH] dt-bindings: pinctrl: rockchip: Convert to json-schema
-Date:   Fri, 23 Apr 2021 09:44:00 +0800
-Message-Id: <20210423014400.1433347-1-jay.xu@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
+        id S235839AbhDWBsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 21:48:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44630 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235302AbhDWBsa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 21:48:30 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C9FC061574;
+        Thu, 22 Apr 2021 18:47:53 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id s15so55735781edd.4;
+        Thu, 22 Apr 2021 18:47:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4Pnkgz0fTAFmO6ZX7bVI46yKfVJfz4qErV1BxeztbGs=;
+        b=ZQMwZwsd9af3osmmbvfui9hh6lA8XlKO3FXDmY9g5a/xIWwlyw0ns+Gjl4C8qoTZOl
+         XgBRxM39NkPozwJ3wArUndj2qZlirdTfF5xFFDsIQQZrv59jsiV35vrSO6lR/kmGOMlh
+         aSPonshqU+R+uGoPTt/4P9XBmn51JGp/jLA30qF9ccFPLpkuXgHsLd0mA7qZUyatrATy
+         54uNCoCtqqf99wYaVkb/G4DnHZWFTxkUeLJiBfy8mdKB0z872i5ECA6AqHp/VmrikoOz
+         nGZd/3Qh2LzVZScWgr+k0p+5uUHcuNEY1ExvvqCBaC4zdPvZn0kwyuo5Y968VxBS//pD
+         02Gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4Pnkgz0fTAFmO6ZX7bVI46yKfVJfz4qErV1BxeztbGs=;
+        b=ZTiOxB0eFPHng+HIUY2Go3cNXNNydvIIOjJdy5lUR8QeQ8dBW8KGL75OHdrkbLow6F
+         iOTqWa9By2L5xpDEFgOVseY/P/DM7fCBBSBdSPBl6qG1HbsXOt9yjM6JxrIffxxcq0/3
+         B+oa2zAa80BCAhKRRcY+LJofh8zpO/ddQFtbzWoLB7MXN1Dcjzl6RKjRmKECDk6FLtLY
+         WHxWt8zCxzJvqD4ecHEEP2UiphGbuvgXOtFr1S7FXE4IKr3BM2xFc+27ra6vJAf8bQPp
+         qXVax/YYo74Yl5qr3h2GAtG4HCFAGtTOLCf9wjymuxtYAVPIsccRJF/INinDbG9n93Fa
+         KZDA==
+X-Gm-Message-State: AOAM531qPBAt07IPszgqugI559Dy73eMWIkcmpYWb5cWlBEkgnzYcaXI
+        gGaQGtkC42uJSKfuZ93K17A=
+X-Google-Smtp-Source: ABdhPJxWfoag/IE8o2tQjxSFph5zTEvS4YZdmJM7L+qYNaIRMwpx3sgCLjRUUxO8KdAwae3TrT1VSA==
+X-Received: by 2002:aa7:cd83:: with SMTP id x3mr1499644edv.373.1619142471646;
+        Thu, 22 Apr 2021 18:47:51 -0700 (PDT)
+Received: from Ansuel-xps.localdomain (93-35-189-2.ip56.fastwebnet.it. [93.35.189.2])
+        by smtp.googlemail.com with ESMTPSA id t4sm3408635edd.6.2021.04.22.18.47.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Apr 2021 18:47:51 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 00/14] Multiple improvement to qca8k stability
+Date:   Fri, 23 Apr 2021 03:47:26 +0200
+Message-Id: <20210423014741.11858-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the pinctrl/rockchip,pinctrl.txt binding document to
-json-schema.
+Currently qca8337 switch are widely used on ipq8064 based router.
+On these particular router it was notice a very unstable switch with
+port not link detected as link with unknown speed, port dropping
+randomly and general unreliability. Lots of testing and comparison
+between this dsa driver and the original qsdk driver showed lack of some
+additional delay and values. A main difference arised from the original
+driver and the dsa one. The original driver didn't use MASTER regs to
+read phy status and the dedicated mdio driver worked correctly. Now that
+the dsa driver actually use these regs, it was found that these special
+read/write operation required mutual exclusion to normal
+qca8k_read/write operation. The add of mutex for these operation fixed
+the random port dropping and now only the actual linked port randomly
+dropped. Adding additional delay for set_page operation and fixing a bug
+in the mdio dedicated driver fixed also this problem. The current driver
+requires also more time to apply vlan switch. All of these changes and
+tweak permit a now very stable and reliable dsa driver and 0 port
+dropping. This series is currently tested by at least 5 user with
+different routers and all reports positive results and no problems.
 
-Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
----
- .../bindings/pinctrl/rockchip,pinctrl.yaml    | 163 ++++++++++++++++++
- 1 file changed, 163 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+Ansuel Smith (14):
+  drivers: net: dsa: qca8k: handle error with set_page
+  drivers: net: dsa: qca8k: tweak internal delay to oem spec
+  drivers: net: mdio: mdio-ip8064: improve busy wait delay
+  drivers: net: dsa: qca8k: apply suggested packet priority
+  drivers: net: dsa: qca8k: add support for qca8327 switch
+  devicetree: net: dsa: qca8k: Document new compatible qca8327
+  drivers: net: dsa: qca8k: limit priority tweak to qca8337 switch
+  drivers: net: dsa: qca8k: add GLOBAL_FC settings needed for qca8327
+  drivers: net: dsa: qca8k: add support for switch rev
+  drivers: net: dsa: qca8k: add support for specific QCA access function
+  drivers: net: dsa: qca8k: apply switch revision fix
+  drivers: net: dsa: qca8k: clear MASTER_EN after phy read/write
+  drivers: net: dsa: qca8k: protect MASTER busy_wait with mdio mutex
+  drivers: net: dsa: qca8k: enlarge mdio delay and timeout
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-new file mode 100644
-index 000000000000..59cddcd30dbc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-@@ -0,0 +1,163 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/rockchip,rockchip-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rockchip Pinmux Controller
-+
-+maintainers:
-+  - Heiko Stuebner <heiko@sntech.de>
-+
-+description: |
-+  The Rockchip Pinmux Controller, enables the IC
-+  to share one PAD to several functional blocks. The sharing is done by
-+  multiplexing the PAD input/output signals. For each PAD there are several
-+  muxing options with option 0 being the use as a GPIO.
-+
-+  Please refer to pinctrl-bindings.txt in this directory for details of the
-+  common pinctrl bindings used by client devices, including the meaning of the
-+  phrase "pin configuration node".
-+
-+  The Rockchip pin configuration node is a node of a group of pins which can be
-+  used for a specific device or function. This node represents both mux and
-+  config of the pins in that group. The 'pins' selects the function mode(also
-+  named pin mode) this pin can work on and the 'config' configures various pad
-+  settings such as pull-up, etc.
-+
-+  The pins are grouped into up to 5 individual pin banks which need to be
-+  defined as gpio sub-nodes of the pinmux controller.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - rockchip,px30-pinctrl
-+      - rockchip,rv1108-pinctrl
-+      - rockchip,rk2928-pinctrl
-+      - rockchip,rk3066a-pinctrl
-+      - rockchip,rk3066b-pinctrl
-+      - rockchip,rk3128-pinctrl
-+      - rockchip,rk3188-pinctrl
-+      - rockchip,rk3228-pinctrl
-+      - rockchip,rk3288-pinctrl
-+      - rockchip,rk3308-pinctrl
-+      - rockchip,rk3328-pinctrl
-+      - rockchip,rk3368-pinctrl
-+      - rockchip,rk3399-pinctrl
-+      - rockchip,rk3568-pinctrl
-+
-+  rockchip,grf:
-+    description: |
-+      phandle referencing a syscon providing the "general register files"
-+    maxItems: 1
-+
-+  rockchip,pmu:
-+    description: |
-+      Optional. Phandle referencing a syscon providing the pmu registers
-+      as some SoCs carry parts of the iomux controller registers there.
-+      Required for at least rk3188 and rk3288. On the rk3368 this should
-+      point to the PMUGRF syscon.
-+    maxItems: 1
-+
-+  ranges: true
-+
-+patternProperties:
-+  "^gpio[0-9]@[0-9a-f]":
-+    type: object
-+    description: gpio sub node
-+
-+    properties:
-+      compatible:
-+        enum:
-+          - rockchip,gpio-bank
-+          - rockchip,rk3188-gpio-bank0
-+
-+      reg:
-+        maxItems: 2
-+
-+      interrupts:
-+        description: Specifies the Rockchip summary IRQ
-+        maxItems: 1
-+
-+      interrupt-controller: true
-+
-+      '#interrupt-cells':
-+        description:
-+          Specifies the PIN numbers and Flags, as defined in defined in
-+          include/dt-bindings/interrupt-controller/irq.h
-+        const: 2
-+
-+      gpio-controller: true
-+
-+      '#gpio-cells':
-+        const: 2
-+
-+      clocks:
-+        description: clock that drives this gpio bank
-+        minItems: 1
-+        maxItems: 2
-+
-+      required:
-+        - compatible
-+        - reg
-+        - interrupts
-+        - interrupt-controller
-+        - '#interrupt-cells'
-+        - gpio-controller
-+        - '#gpio-cells'
-+        - clocks
-+
-+      additionalProperties: false
-+
-+required:
-+  - compatible
-+  - rockchip,grf
-+  - "#address-cells"
-+  - "#size-cells"
-+  - ranges
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+        #include <dt-bindings/pinctrl/rockchip.h>
-+        pcfg_pull_default: pcfg_pull_default {
-+            bias-pull-pin-default
-+        };
-+
-+        pinctrl@20008000 {
-+            compatible = "rockchip,rk3066a-pinctrl";
-+            rockchip,grf = <&grf>;
-+            #address-cells = <1>;
-+            #size-cells = <1>;
-+            ranges;
-+
-+            gpio0: gpio0@20034000 {
-+                compatible = "rockchip,gpio-bank";
-+                reg = <0x20034000 0x100>;
-+                interrupts = <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
-+                interrupt-controller;
-+                #interrupt-cells = <2>;
-+                gpio-controller;
-+                #gpio-cells = <2>;
-+                clocks = <&clk_gates8 9>;
-+            };
-+
-+            uart2 {
-+                uart2_xfer: uart2-xfer {
-+                    rockchip,pins = <1 RK_PB0 1 &pcfg_pull_default>,
-+                                    <1 RK_PB1 1 &pcfg_pull_default>;
-+                };
-+            };
-+        };
-+
-+        uart2: serial@20064000 {
-+            compatible = "snps,dw-apb-uart";
-+                reg = <0x20064000 0x400>;
-+                interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
-+                clocks = <&mux_uart2>;
-+                pinctrl-0 = <&uart2_xfer>;
-+                pinctrl-names = "default";
-+                reg-shift = <2>;
-+                reg-io-width = <1>;
-+        };
+ .../devicetree/bindings/net/dsa/qca8k.txt     |   1 +
+ drivers/net/dsa/qca8k.c                       | 256 ++++++++++++++++--
+ drivers/net/dsa/qca8k.h                       |  54 +++-
+ drivers/net/mdio/mdio-ipq8064.c               |  36 ++-
+ 4 files changed, 304 insertions(+), 43 deletions(-)
+
 -- 
-2.25.1
-
-
+2.30.2
 
