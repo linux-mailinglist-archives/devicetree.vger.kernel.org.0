@@ -2,195 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 538FD369AD1
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 21:16:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31592369B09
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 21:57:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231760AbhDWTRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 15:17:14 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:40156 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbhDWTRN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 15:17:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1619205397; x=1650741397;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=32oVdMCPXgVZgbF3VPpXGl4s/tEdl4jF6EsqV6YiJIk=;
-  b=gsErsuuzw8G0dZAFRevANE8ZMBCZNzx5wS0+w79w3iLt6fOr+EYP5N1h
-   iQ9icc6EYdJ6+f5pooIgw0ilsuTkWaiGQiJ5nfWvEqrLfIIFWdYRQhKFx
-   gWUvGnb7jkOmAR2M+SjCroO8sn9JO51AqCLWY1hVxhEeASg5tgxUi2Nys
-   Myenfm1zDAwn+ZvY1f3Od8lkk9reeMmI6ZvuqW0lqf7VDH6gQvU9xsDP2
-   QenihZC5XaLwuL5lGyqGhrY6dTEW3z/eG4IFQy9l5JfMKhDeuZQXLUww+
-   sqId3aYlelUaUylfBhxA0vxAp/bCNpmP2vZEqW8+6QksaPwJ99S3dD0mB
-   g==;
-IronPort-SDR: /vcA2duPCoVUNBh8fMhoL4fYi9SUw0OWb2oKviHXZTrdGGX/kof5y3X+iWaAZaIs9JjKJB1Q3Y
- 5zcCUZ0kHuLP6jxQ3wafjXYj3YB86WgxmQQwZypRFEGbtUr5nCWIJVu9LirB7H74RJrHZlq+ZF
- jNad3LnPU9kxXsglnLFbs49CO0jP0PTuieJnBOxb7NMuUXKXdlfRY7WL8WkHIj8OrL8IfVC3ga
- I7Ggvqg8XoThhTKUYuGF+elkHgW0ATYC11DUaiW12cvFVWC4HiUSpAgj6PDlfE7kbXV3fivg4v
- /5k=
-X-IronPort-AV: E=Sophos;i="5.82,246,1613458800"; 
-   d="scan'208";a="114703435"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Apr 2021 12:16:36 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Fri, 23 Apr 2021 12:16:35 -0700
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2
- via Frontend Transport; Fri, 23 Apr 2021 12:16:35 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HdPOxYsKkaULLcqjIxArhCeQaPEbDyog7jfUQTOikKiBrllvKYxb6InWZIMrinunuuhurl/F4oD6WsL91xu/CFkQzR8sxe4jFYy+XZfL0t7g7xvnV/dAWsAqMyG2F9zBMBp+7XN5MUcsu9c0salvues7AFkcLgME2IOxo69HpSDQpJTyXPZsz4sYwLh2rpDU54dWWS/PVhAgckPVzyBOxiincHctvUSdaPFYFOVBnXV6XTwX/dS+UfsH9jRFR2ALnfTgfTrI2eO79RODarXRYQ4/4Q055AMFt0ZX+KoN6U3anjM3TOUUUcr8tLaJwaIEgLTVWZIuty3BUGkK+oHA6A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=32oVdMCPXgVZgbF3VPpXGl4s/tEdl4jF6EsqV6YiJIk=;
- b=WvRwjkLREbZ1xk6PiiSPEbD0EgVufo0um34JR8wfz0oCnsF9lTbSrQubxeOX17k2aQWSX5XlxColVhzozY8v+m+AKfGsxfPvRW5GwD0ajGr2GPty1WlCYQdZhfgqel0mkXxWjOMbQJo5dbIORFTlovVrmu6l0mX8mUuBbndw9N6zZfI7JVqxMalaGpPSHp7vT5X+EcNiCCZw5/fCnFXLT+WWK1glORZiVD1PkTmx+ycrpde1WN3YwneReFWnae/ga1d7NtaINsAPMJAR1MEYMDqpdq7ZxLxoRb4ABWsEpuTLxjIm4gR4ycvSjOJfqfuNM1MXUW+2IeidwkNJKP4j9Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        id S232894AbhDWT5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 15:57:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58552 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229691AbhDWT5d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 15:57:33 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFE89C061574
+        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 12:56:56 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id lr7so7511887pjb.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 12:56:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=32oVdMCPXgVZgbF3VPpXGl4s/tEdl4jF6EsqV6YiJIk=;
- b=noNc/ZSew2ta97sm1fBkkTGJdCzd7CD1lCgoZNisiOYwkmlthnvehVWxSf5IRKdXhlJAfGOIzz5TQrthASMDs0rqo64qSHf00Gc5RsPnHie+1TrAi5fMVkaEPwNsaMhS8Zhl9248pyqcs4ChDuK2mbYtAWjtXb7d+QyczHBYTD0=
-Received: from CO1PR11MB4865.namprd11.prod.outlook.com (2603:10b6:303:9c::9)
- by MWHPR1101MB2270.namprd11.prod.outlook.com (2603:10b6:301:54::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.20; Fri, 23 Apr
- 2021 19:16:30 +0000
-Received: from CO1PR11MB4865.namprd11.prod.outlook.com
- ([fe80::4c:25f5:287a:e40d]) by CO1PR11MB4865.namprd11.prod.outlook.com
- ([fe80::4c:25f5:287a:e40d%7]) with mapi id 15.20.4065.021; Fri, 23 Apr 2021
- 19:16:30 +0000
-From:   <Tudor.Ambarus@microchip.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>, <nsaenz@kernel.org>,
-        <maxime@cerno.tech>, <gregkh@linuxfoundation.org>,
-        <rafael@kernel.org>, <khilman@kernel.org>,
-        <ulf.hansson@linaro.org>, <len.brown@intel.com>, <pavel@ucw.cz>,
-        <robh+dt@kernel.org>, <frowand.list@gmail.com>, <maz@kernel.org>,
-        <tglx@linutronix.de>, <saravanak@google.com>,
-        <geert@linux-m68k.org>, <nsaenzjulienne@suse.de>,
-        <linux@roeck-us.net>, <guillaume.tucker@collabora.com>
-CC:     <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <corbet@lwn.net>, <Nicolas.Ferre@microchip.com>,
-        <Claudiu.Beznea@microchip.com>, <linux-doc@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-acpi@vger.kernel.org>, <kernel-team@android.com>,
-        <linux-rpi-kernel@lists.infradead.org>, <m.szyprowski@samsung.com>
-Subject: Re: [PATCH] clk: Skip clk provider registration when np is NULL
-Thread-Topic: [PATCH] clk: Skip clk provider registration when np is NULL
-Thread-Index: AQHXOHSx3OGtyPoatUKROvP5L/gVX6rCeWmA
-Date:   Fri, 23 Apr 2021 19:16:30 +0000
-Message-ID: <1a9f6d35-2c0e-df6b-f759-70edffa9c5b6@microchip.com>
-References: <20210423171335.262316-1-tudor.ambarus@microchip.com>
- <20210423191236.265996-1-tudor.ambarus@microchip.com>
-In-Reply-To: <20210423191236.265996-1-tudor.ambarus@microchip.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
-authentication-results: baylibre.com; dkim=none (message not signed)
- header.d=none;baylibre.com; dmarc=none action=none header.from=microchip.com;
-x-originating-ip: [82.77.80.100]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d8fb2496-6895-4728-24a3-08d9068c4d0d
-x-ms-traffictypediagnostic: MWHPR1101MB2270:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MWHPR1101MB2270B0F1D03E839EDD846106F0459@MWHPR1101MB2270.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: y1DLNP0VEEUV5PWYNzvwLENmls4cm/Zzk3nvhVsM9aHEFWlCRnKnELMgpTd5ngtPEy03ZPT7B1csA3QP2U1fLizGRHwFOfK8Pyg9FlgYtSTSHPKNRkfxhyKk/nwD5/XUTPd6zweeFlwD7T/Cj6XnY+cfMN7yyrKhmpKgcASX0SId0hugmqKqG0PubMW9PX3SDdzS9Vr6dcarOKvm/JHYQDTINC2EkvqCaK+xeMhFEKJtZ6lvftbmjodT8qBMMwpZd91PkvT9+lN7A6/dQcophFwnFMQkAk+NbM23PXqWqeUTC7AxgN9Qf6e4S1y/M7NbNw9y+isMuNQ8ETY5z0SzFF3e3eZoikpLQLjO4Yxhs9bGpf9H2MfswtCXFPaXUHZ1CY3h/MjybIJc8X1FlchmYGYApdhZsCROcaibFdyen4UaxhkWzIzCVjQuiNDySLsPnvYW4RAtQ4s+7IaLpsxrwnSpiI+ShQgG6SGh6hWLu9e3pcIb3TgVVyjOg9o3iPJ1JGa8K7uZfaIuxGaPdpgsIo0nBJdCPwIyKCbpVSc+kDDzTgN0+MwpUOHiQiDOmoWFdBp6jQL5phpCI6S+pAwMlptrjXz9kbzLUtAN66io3y6vQeS32vlrfOwBphBjZ+O99EbJPbXQI8uZDYrq8ibJ0CHI+5GWTwt8Zr3rNSfUYou3prSllsMpGAMs7s1dga74cfgThCLhHJrtTG5VaGxzcw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4865.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(346002)(366004)(136003)(39860400002)(376002)(38100700002)(2616005)(6486002)(478600001)(76116006)(7416002)(64756008)(91956017)(66446008)(4326008)(66946007)(66556008)(66476007)(31686004)(71200400001)(186003)(8676002)(5660300002)(83380400001)(36756003)(122000001)(8936002)(6506007)(6512007)(53546011)(316002)(86362001)(31696002)(26005)(110136005)(54906003)(921005)(2906002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?aGVwT2NFLzM1MkprOGN2QXE4SEgxNE4vSTNpYmM4OHQxUlhHelBrVXBwUHJI?=
- =?utf-8?B?RC9YblFrS3JMei9Ic2pNWHF6bnJXMVByTnpYVGVwUURxbmZ3OFlvNWNHR2tK?=
- =?utf-8?B?cEtIVTRVVHg2cHdRdmlHWHcvRTJwa21jcTRPUFp4Si9YT3FXMStkaG9XUG5x?=
- =?utf-8?B?ZVYrUzVqVVdsTUZnSnpydTlFZ2RhbmRHZHVuQ1c1QTcxU0c2aVZEME9USElv?=
- =?utf-8?B?OStyYU1oSmx1ZFU0VlA5SzBHQm93UnI2aExBeStrak81Q2dRZkRUbm9ST1Nn?=
- =?utf-8?B?VC9ETnB1aUUzTG5rTm1NRnluNThyTG9kNkY5c0E4V2lqSURBazVmeUhwUmxH?=
- =?utf-8?B?ZkRlVWVVMVpOWmQ5anl0SCtzNG5CT2J3QmNLblpWc2NFdEU2QTFlOGZURjVq?=
- =?utf-8?B?aWlZampTQ0ZpUWF0S1lWWFVLU1lkQi8xQWc2blNmNU92ZEo5N0dTTU1tcld0?=
- =?utf-8?B?c2liNzZ1NjBUbVppMDAyQ1N4YjljQVJneEQxMGZObkFSR0tiK0xYQ3FOM0JW?=
- =?utf-8?B?dmh2REg3bTFyYVRoMkFzTjRLRzhZRVpBczhwQUhWMHVYQWxMT0R1OHlrUDFT?=
- =?utf-8?B?YzFrbFZHaDZhNk1UdktzWG9vL29uR3IyZHhyeVloL2psTU1uMS9wOTFBN0pq?=
- =?utf-8?B?Rm5aZ2ZEbTdKZ3F2TzBQNVdEcTlQczl0VW50aUFCdFRhbk04Q2Vrd3c3UlZI?=
- =?utf-8?B?MUszQVArdUFCQU8wcUp1ZGkyRHEvZHNZNXBoZkxiRVlUTzJ1S3FnUTlBRXhK?=
- =?utf-8?B?QVphNm1VK3plU3BkTVVpaDZic1JZRFRxTDdTLy81SFNMWHAzK2d0Mk9ERGY0?=
- =?utf-8?B?T2xCTTVpTUt5d0JwdTRvZmlnQk9KSGlET1Y1Y2RpeHdMTS9qUlpTKy9mN2RS?=
- =?utf-8?B?TjVYR1pkNWhXek5JdnpzcmwraXBrMmZSbW50eGJoK3NJak9OR3BGQmhOZDVC?=
- =?utf-8?B?Z05rT2lCVTNsL2xUWnNIS2RoZEJZbEQ5dS82dGNYbys2NVNoSjZIMUJHSHdo?=
- =?utf-8?B?SDRQd0puT3JiYTZYZzlCSkNub3U5UDNyQ3JiRzgrV2pWMVBUTE9yMWVKMDg2?=
- =?utf-8?B?NXNQb3pIZElscG8wV3hmTGFSZE5xcm9QaVFUWUZuc2J1QnlaWDVYc0hCNGdk?=
- =?utf-8?B?ckwrRjVvYXV1dTdtcWFDRWh2OXFEaGJidi9oVXNIdEg2NGkwRFZlRHZRbDMw?=
- =?utf-8?B?ZFZjZ3VnYUNTVTMrdENzelpEdEY3UkRvWUpOZTB0RllMbXYwUERVbWkxL2M3?=
- =?utf-8?B?Mmg1eTMwNW1uTkFKYnF5dFVQN1FVbDVYaUhEYzZJTTgwRWY0YWpxdFBFbWVR?=
- =?utf-8?B?WUFZR3gvRk14MFZCRm9mUFc4Y0IvM3F5M2lnZkFJT3NqR3p3WmZvYkxoUGdW?=
- =?utf-8?B?WTdzamlRNlhHcDFFeGc5eUhtaW14YlZnczBZcnE4c0Nwc1dnM0NaT0V2OUp2?=
- =?utf-8?B?Qi9IS0JoUFFoTy9pckhjM3VBaGkvYnZWL0c0N0paZ05YRUJCN2F2TFQvODVm?=
- =?utf-8?B?OTBWNkgxQ2doWGdpZUFoKzYvSWVmRzBpajFnY2NPdU1ud3Jqa1ZpTTlLenVC?=
- =?utf-8?B?STg5ZmZiLzcvZXM5ajRIT0IydzdyczNyVWtUdERWVVg5NkUxVXFrVEN1dlB2?=
- =?utf-8?B?TzF2UkxBL2RoR1N5ZTVxMWdvbmI5Y1FrdGc5Ty9XK0F0SFdhZGdsVTB2aFFX?=
- =?utf-8?B?b1BYVkJNdVlaNmFERzVleTVuZ0tqck5IN3NkZGFKd1RlZEVNbEpRZFo2MEkw?=
- =?utf-8?Q?d2dqJ231nkoa/dZ39s=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <3942E3D6A4C41845968B3F243F9D2CD7@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4865.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d8fb2496-6895-4728-24a3-08d9068c4d0d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Apr 2021 19:16:30.6246
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ZnXGJUA1ojzX3TMwD4h8G+0sUCkt1PrPqq++a7FlIU4TgFWxQvTAmOMfQgkWzf35LZX5fevrWcFudhp/raPUiQteZPy2L583xt6MLYcRoCs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1101MB2270
+        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8GuX4Z8MuruzrMbLkQS7cSCk79x3cd4uTb8g9nIPerA=;
+        b=UiO7OJ1czPbBTAt5TyRCbjKQxq+hZWnKkpXQBgfRnVAi8ezgCOESWbeizdW+o4+nVD
+         52YCBowJTUq4+paEVRsGjt0vVadKxLQaoMDAhhgBeYzMGVrE9bNgXDc9FrDY8tGMbqxZ
+         rzBnpBKfiQYPtJ6WxyAAt3JjWyPoXJeFrweZbdyY0cJEkgDT/xxL42c+KnPnDAg4QSiL
+         oNznvqQZnfk5gNqdxkHYkB9EEQ2rrhMVtyRHcdvvkT44f4y5kWzBeY2vLiu3Sbc175iz
+         z37Hx1OdNAFxenDrHTdeDkzTxdO/mO9awtN75lG344GUq64D1cjkx1ln6hzCi/drsOB/
+         ilCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=8GuX4Z8MuruzrMbLkQS7cSCk79x3cd4uTb8g9nIPerA=;
+        b=RJHaD7rkkQweLY5AUuXeXfwqG/uwW1QTDHJUG+DFTGhqkTqmoKfjpCYjlbYDSdMJmK
+         eRRcttFvwZLwaL1rDOIcpX+7kX4GU38dhOySRl3rVKtB06ZaP9qLVY5/J2xOvtDVWgQH
+         3CSkQ2zHTAMTfIPIabZcMuBEI5oUpe7q89ZqpiypJ2PYuSTRL+y32APL2BfQeRuMoVJX
+         MqkfmJ3UpBpLz+GB3FCSHEgGJkRnuI0fS5SCYfKfGs98jQ6fzPA0M4lEW5y7kJZoKGLc
+         jgUWnGylgSUAuprTvVQlXSE8HETqFzvjhS1Dbm0wJxOo9Pkx8vYCRxU76o+Fy9ihS4Uo
+         lCYA==
+X-Gm-Message-State: AOAM532nD087etB5JhQUYEEmeL1sD4uesm2c0Iz/L71qhbyW9k5Jas5F
+        UDUNSBDRgUmMAJ0yl9aBzcm97g==
+X-Google-Smtp-Source: ABdhPJwqqZ+pGlpvK53FAjVOPAtbs5sEYP2BTvKy/DTSdODRRdWQvHqgVcSmp/iAv5K7AbjtWolOog==
+X-Received: by 2002:a17:902:eb53:b029:ec:ce7d:62c8 with SMTP id i19-20020a170902eb53b02900ecce7d62c8mr5328640pli.8.1619207816250;
+        Fri, 23 Apr 2021 12:56:56 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id x22sm5875395pgx.19.2021.04.23.12.56.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Apr 2021 12:56:55 -0700 (PDT)
+Date:   Fri, 23 Apr 2021 12:56:55 -0700 (PDT)
+X-Google-Original-Date: Fri, 23 Apr 2021 12:56:54 PDT (-0700)
+Subject:     Re: [PATCH v4 0/5] Add Microchip PolarFire Soc Support
+In-Reply-To: <CAOnJCUL5tLzk73GJNVXMmJmBKo_kVcAQ7OYwpi9bjKgTbabhyg@mail.gmail.com>
+CC:     Conor.Dooley@microchip.com,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <Anup.Patel@wdc.com>,
+        Atish Patra <Atish.Patra@wdc.com>,
+        Daire.McNamara@microchip.com, Ivan.Griffin@microchip.com,
+        Lewis.Hanly@microchip.com, aou@eecs.berkeley.edu, bjorn@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     atishp@atishpatra.org
+Message-ID: <mhng-ded61de3-071d-4c2d-a0db-122765968c90@palmerdabbelt-glaptop>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gNC8yMy8yMSAxMDoxMiBQTSwgVHVkb3IgQW1iYXJ1cyB3cm90ZToNCj4gY29tbWl0IDY1Nzlj
-OGQ5N2FkNyAoImNsazogTWFyayBmd25vZGVzIHdoZW4gdGhlaXIgY2xvY2sgcHJvdmlkZXIgaXMg
-YWRkZWQiKQ0KPiByZXZlYWxlZCB0aGF0IGNsay9iY20vY2xrLXJhc3BiZXJyeXBpLmMgZHJpdmVy
-IGNhbGxzDQo+IGRldm1fb2ZfY2xrX2FkZF9od19wcm92aWRlcigpLCB3aXRoIGEgTlVMTCBkZXYt
-Pm9mX25vZGUsIHdoaWNoIHJlc3VsdGVkIGluIGENCj4gTlVMTCBwb2ludGVyIGRlcmVmZXJlbmNl
-IGluIG9mX2Nsa19hZGRfcHJvdmlkZXIoKSB3aGVuIGNhbGxpbmcNCnMvb2ZfY2xrX2FkZF9wcm92
-aWRlcigpL29mX2Nsa19hZGRfaHdfcHJvdmlkZXIoKQ0KPiBmd25vZGVfZGV2X2luaXRpYWxpemVk
-KCkuDQo+IA0KPiBSZXR1cm5pbmcgMCBpcyByZWR1Y2luZyB0aGUgaWYgY29uZGl0aW9ucyBpbiBk
-cml2ZXIgY29kZSBhbmQgaXMgYmVpbmcNCj4gY29uc2lzdGVudCB3aXRoIHRoZSBDT05GSUdfT0Y9
-biBpbmxpbmUgc3R1YiB0aGF0IHJldHVybnMgMCB3aGVuIENPTkZJR19PRg0KPiBpcyBkaXNhYmxl
-ZC4gVGhlIGRvd25zaWRlIGlzIHRoYXQgZHJpdmVycyB3aWxsIG1heWJlIHJlZ2lzdGVyIGNsa2Rl
-diBsb29rdXBzDQo+IHdoZW4gdGhleSBkb24ndCBuZWVkIHRvIGFuZCB3YXN0ZSBzb21lIG1lbW9y
-eS4NCj4gDQo+IFJlcG9ydGVkLWJ5OiBNYXJlayBTenlwcm93c2tpIDxtLnN6eXByb3dza2lAc2Ft
-c3VuZy5jb20+DQo+IEZpeGVzOiA2NTc5YzhkOTdhZDcgKCJjbGs6IE1hcmsgZndub2RlcyB3aGVu
-IHRoZWlyIGNsb2NrIHByb3ZpZGVyIGlzIGFkZGVkIikNCj4gU2lnbmVkLW9mZi1ieTogVHVkb3Ig
-QW1iYXJ1cyA8dHVkb3IuYW1iYXJ1c0BtaWNyb2NoaXAuY29tPg0KPiAtLS0NCj4gVGhpcyB3b3Vs
-ZCBiZSB0aGUgc2Vjb25kIGFwcHJvYWNoLCB3aGVyZSB3ZSBkb24ndCByZXR1cm4gYW4gZXJyb3Ig
-d2hlbg0KPiBvbmUgY2FsbHMgZGV2bV9vZl9jbGtfYWRkX2h3X3Byb3ZpZGVyIHdpdGggYSBOVUxM
-IG9mX25vZGUsIGJ1dCBpbnN0ZWFkDQo+IHdlIGp1c3QgcmV0dXJuIDAgYW5kIHNraXAgdGhlIGxv
-Z2ljIGluIHRoZSBjb3JlIGFuZCB0aGUgZHJpdmVycy4NCj4gDQo+ICBkcml2ZXJzL2Nsay9jbGsu
-YyB8IDkgKysrKysrKysrDQo+ICAxIGZpbGUgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCspDQo+IA0K
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9jbGsvY2xrLmMgYi9kcml2ZXJzL2Nsay9jbGsuYw0KPiBp
-bmRleCBlMmVjMWI3NDUyNDMuLjVkMTBkYTM1MTlhYyAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9j
-bGsvY2xrLmMNCj4gKysrIGIvZHJpdmVycy9jbGsvY2xrLmMNCj4gQEAgLTQ1NDAsNiArNDU0MCw5
-IEBAIGludCBvZl9jbGtfYWRkX3Byb3ZpZGVyKHN0cnVjdCBkZXZpY2Vfbm9kZSAqbnAsDQo+ICAJ
-c3RydWN0IG9mX2Nsa19wcm92aWRlciAqY3A7DQo+ICAJaW50IHJldDsNCj4gIA0KPiArCWlmICgh
-bnApDQo+ICsJCXJldHVybiAwOw0KPiArDQo+ICAJY3AgPSBremFsbG9jKHNpemVvZigqY3ApLCBH
-RlBfS0VSTkVMKTsNCj4gIAlpZiAoIWNwKQ0KPiAgCQlyZXR1cm4gLUVOT01FTTsNCj4gQEAgLTQ1
-NzksNiArNDU4Miw5IEBAIGludCBvZl9jbGtfYWRkX2h3X3Byb3ZpZGVyKHN0cnVjdCBkZXZpY2Vf
-bm9kZSAqbnAsDQo+ICAJc3RydWN0IG9mX2Nsa19wcm92aWRlciAqY3A7DQo+ICAJaW50IHJldDsN
-Cj4gIA0KPiArCWlmICghbnApDQo+ICsJCXJldHVybiAwOw0KPiArDQo+ICAJY3AgPSBremFsbG9j
-KHNpemVvZigqY3ApLCBHRlBfS0VSTkVMKTsNCj4gIAlpZiAoIWNwKQ0KPiAgCQlyZXR1cm4gLUVO
-T01FTTsNCj4gQEAgLTQ2NzYsNiArNDY4Miw5IEBAIHZvaWQgb2ZfY2xrX2RlbF9wcm92aWRlcihz
-dHJ1Y3QgZGV2aWNlX25vZGUgKm5wKQ0KPiAgew0KPiAgCXN0cnVjdCBvZl9jbGtfcHJvdmlkZXIg
-KmNwOw0KPiAgDQo+ICsJaWYgKCFucCkNCj4gKwkJcmV0dXJuIDA7DQo+ICsNCj4gIAltdXRleF9s
-b2NrKCZvZl9jbGtfbXV0ZXgpOw0KPiAgCWxpc3RfZm9yX2VhY2hfZW50cnkoY3AsICZvZl9jbGtf
-cHJvdmlkZXJzLCBsaW5rKSB7DQo+ICAJCWlmIChjcC0+bm9kZSA9PSBucCkgew0KPiANCg0K
+On Fri, 23 Apr 2021 05:31:22 PDT (-0700), atishp@atishpatra.org wrote:
+> On Fri, Apr 23, 2021 at 1:44 AM <Conor.Dooley@microchip.com> wrote:
+>
+>> On 23/04/2021 02:37, Palmer Dabbelt wrote:
+>> > EXTERNAL EMAIL: Do not click links or open attachments unless you know
+>> > the content is safe
+>> >
+>> > On Thu, 22 Apr 2021 15:33:39 PDT (-0700), atishp@atishpatra.org wrote:
+>> >> On Sat, Apr 17, 2021 at 8:26 PM Atish Patra <atishp@atishpatra.org>
+>> >> wrote:
+>> >>>
+>> >>> On Mon, Mar 29, 2021 at 9:17 PM Palmer Dabbelt <palmer@dabbelt.com>
+>> >>> wrote:
+>> >>> >
+>> >>> > On Wed, 03 Mar 2021 12:02:48 PST (-0800), Atish Patra wrote:
+>> >>> > > This series adds minimal support for Microchip Polar Fire Soc
+>> >>> Icicle kit.
+>> >>> > > It is rebased on v5.12-rc1 and depends on clock support.
+>> >>> > > Only MMC and ethernet drivers are enabled via this series.
+>> >>> > > The idea here is to add the foundational patches so that other
+>> >>> drivers
+>> >>> > > can be added to on top of this. The device tree may change based on
+>> >>> > > feedback on bindings of individual driver support patches.
+>> >>> > >
+>> >>> > > This series has been tested on Qemu and Polar Fire Soc Icicle kit.
+>> >>> > > It depends on the updated clock-series[2] and macb fix[3].
+>> >>> > > The series is also tested by Lewis from Microchip.
+>> >>> > >
+>> >>> > > The series can also be found at.
+>> >>> > >
+>> >>> https://github.com/atishp04/linux/tree/polarfire_support_upstream_v4
+>> >>> > >
+>> >>> > > [1]
+>> >>> https://lists.nongnu.org/archive/html/qemu-devel/2020-10/msg08582.html
+>> >>> > > [2] https://www.spinics.net/lists/linux-clk/msg54579.html
+>> >>> > >
+>> >>> > > Changes from v3->v4:
+>> >>> > > 1. Fixed few DT specific issues.
+>> >>> > > 2. Rebased on top of new clock driver.
+>> >>> > > 3. SD card functionality is verified.
+>> >>> > >
+>> >>> > > Changes from v2->v3:
+>> >>> > > 1. Fixed a typo in dt binding.
+>> >>> > > 2. Included MAINTAINERS entry for PolarFire SoC.
+>> >>> > > 3. Improved the dts file by using lowercase clock names and
+>> >>> keeping phy
+>> >>> > >    details in board specific dts file.
+>> >>> > >
+>> >>> > > Changes from v1->v2:
+>> >>> > > 1. Modified the DT to match the device tree in U-Boot.
+>> >>> > > 2. Added both eMMC & SDcard entries in DT. However, SD card is
+>> >>> only enabled
+>> >>> > >    as it allows larger storage option for linux distros.
+>> >>> > >
+>> >>> > > Atish Patra (4):
+>> >>> > > RISC-V: Add Microchip PolarFire SoC kconfig option
+>> >>> > > dt-bindings: riscv: microchip: Add YAML documentation for the
+>> >>> > > PolarFire SoC
+>> >>> > > RISC-V: Initial DTS for Microchip ICICLE board
+>> >>> > > RISC-V: Enable Microchip PolarFire ICICLE SoC
+>> >>> > >
+>> >>> > > Conor Dooley (1):
+>> >>> > > MAINTAINERS: add microchip polarfire soc support
+>> >>> > >
+>> >>> > > .../devicetree/bindings/riscv/microchip.yaml  |  27 ++
+>> >>> > > MAINTAINERS                                   |   8 +
+>> >>> > > arch/riscv/Kconfig.socs                       |   7 +
+>> >>> > > arch/riscv/boot/dts/Makefile                  |   1 +
+>> >>> > > arch/riscv/boot/dts/microchip/Makefile        |   2 +
+>> >>> > > .../microchip/microchip-mpfs-icicle-kit.dts   |  72 ++++
+>> >>> > > .../boot/dts/microchip/microchip-mpfs.dtsi    | 329
+>> >>> ++++++++++++++++++
+>> >>> > > arch/riscv/configs/defconfig                  |   4 +
+>> >>> > > 8 files changed, 450 insertions(+)
+>> >>> > > create mode 100644
+>> >>> Documentation/devicetree/bindings/riscv/microchip.yaml
+>> >>> > > create mode 100644 arch/riscv/boot/dts/microchip/Makefile
+>> >>> > > create mode 100644
+>> >>> arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
+>> >>> > > create mode 100644
+>> >>> arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
+>> >>> >
+>> >>> > I had this left in my inbox waiting for either some reviews to
+>> >>> come in or a v2,
+>> >>> > but I don't see any.  Did I miss something?
+>> >>> >
+>> >>> Sorry for the late reply. I am on vacation until May. I think I saw
+>> >>> all the patches have already been reviewed.
+>> >>> Let me know if it is not the case.
+>> >>>
+>> >> I cross checked and all the patches are reviewed-by.
+>> >> @palmer: Is it possible to take this series for 5.13 MW ?
+>> >
+>> > I still don't see any reviews for the mailbox driver, did it just get
+>> > lost on the way to me?
+>>
+>> the mailbox driver has reviewed-by tags on two of the five patches (rob
+>> on the dt-binding entries).
+>> v6 was set on the 23rd but hasn't got any attention on the other three
+>> patches yet
+>> however that's not in this patch set, only depends on it
+>>
+>
+> Thanks Conor.
+>
+> @palmer: This series adds the basic soc support
+> for polarfire SoC. With clock driver, we can now boot.
+>
+> Mailbox driver series provides additional features.  Were you looking for
+> reviewed-by tags for the clock driver ?
+
+Ah, sorry.  I get this one mixed up with "Add support for the PolarFire 
+SoC system controller", which I also had in my inbox because I wanted to 
+make sure it didn't get dropped.  I guess I just didn't read the whole 
+title and dropped this v4 because I thought the v6 was a newer version 
+of the same patch set.
+
+This is now on for-next.
+
+Thanks!
+
+>
+>
+>
+>> >
+>> >>
+>> >>> > _______________________________________________
+>> >>> > linux-riscv mailing list
+>> >>> > linux-riscv@lists.infradead.org
+>> >>> > http://lists.infradead.org/mailman/listinfo/linux-riscv
+>> >>>
+>> >>>
+>> >>>
+>> >>> --
+>> >>> Regards,
+>> >>> Atish
+>>
+>>
+>> --
+> Regards,
+> Atish
