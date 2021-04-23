@@ -2,141 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DD7636972D
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 18:37:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EBF0369755
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 18:46:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230072AbhDWQhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 12:37:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57646 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229957AbhDWQhp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Apr 2021 12:37:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4448D6147D;
-        Fri, 23 Apr 2021 16:37:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1619195828;
-        bh=9IS9zneuy8LMByWB8zTbcL7UU0JhQG+Ou0Dnf6+9DWI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mVgcggccvzb5Q58UbDiH1LkySMqv79Q0ezFdDHa9YV7pgIsYnxGZqfsUJcRJc6QZV
-         ZYSvR6/2IFozhh+DXQhOUmILYWpfvzt4R8iyF0yZhyhulaNj6dFjiKsV8Ndd/qXLmj
-         GW/zvOnb7aOdEj2ES9uE7ITO4X3CmF8RvhaVMgBShq8F4kFHln8tWv861rOgmlvt4Z
-         D2Oi1UzAr1GrTcH3dR3MSQg43Qcm6PFPXoFkffi3cT9tsvVu3W36tckpvHlMHjL4se
-         QV5iCqII5/U1Z/OH7pqiU7b4YNdhJm5Grt1Znz4Y1xKyi4U3GYj+xibZ95aulFox9+
-         oJ9bLrvt7by5g==
-Received: by mail-ej1-f41.google.com with SMTP id w3so74818008ejc.4;
-        Fri, 23 Apr 2021 09:37:08 -0700 (PDT)
-X-Gm-Message-State: AOAM530O961q6oIfPZzBTExEFkX1oJWLZ3GFZBTfSUHxM9kj5+tKTM+n
-        ZtxxACI49NjnNZohBCZ/fkay5cd8Wgl8SHVStQ==
-X-Google-Smtp-Source: ABdhPJyNr2Rj271SQjBJ1jzoPOY6Dqp88cO1kkQkphXe731CRxVMAIBAK4M/UFgprXi5ElqtV9WjSX3y7vxRK5ErxHg=
-X-Received: by 2002:a17:906:2c4a:: with SMTP id f10mr5235234ejh.63.1619195826695;
- Fri, 23 Apr 2021 09:37:06 -0700 (PDT)
+        id S229957AbhDWQqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 12:46:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44604 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229549AbhDWQqn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 12:46:43 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 993C7C061574;
+        Fri, 23 Apr 2021 09:46:04 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id n2so74785193ejy.7;
+        Fri, 23 Apr 2021 09:46:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=AHxWAHKzzgsPEUP1uAuRKRHQkYrg/cUynVsUhlyd7mo=;
+        b=rYRjQ5F+ty+oKYZiIPFM5p9jzk+YE2WFTAxXJ8LeWxmyUVBMRRZObdZvpfSqlRmZaM
+         I+Qo5FFcZ3PNLCfAkPH6HAjRY2xKvuU2N8MNZ2j+l6vicf08vxXkK37kaqsUGKQdHHnN
+         WpUT7wFnBHPMgJemzeP1w5y/gIpDdv/qe11BBTKH6iicU8g1L4px6j/H0wrTim+YCdkl
+         PD2+3bNY8qKP3XUmxWUm/PAyl3hW+DVewZutOiM297aafP5KbabqTpy+8vD1QH2d2tFw
+         7L+mjrmGifZKfP+6MAMi6WC64DmbkAPv71JhWQubC3czDXRKTbzRctvFQFRnAyfKn/Jd
+         wQHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=AHxWAHKzzgsPEUP1uAuRKRHQkYrg/cUynVsUhlyd7mo=;
+        b=T8kcjoRwSeztQXO1EobvxRHPR2TchFBlTnbKNpgW1HJpt/6dMBNfe3xkuPQR6dTKLT
+         VIUOKDZEcAwlpoED76MmHBLnXsd0bnbtAeYehR28emrG951C2vaG6k170Ak5gz1rQqpN
+         0N60+jxMsQY75ltcxXbAzZ3YAsryL7+FpFGCRi1vzshaM58uOFion514B6xzrlvsaZra
+         650nlinp9WKKvhJJ+XwSqZuYNRsboG3/bLk07QDkfkXU6BMdiYS8u4W2wIP4ILNl8bde
+         6ZF7Q3dz2WcdQTtj4I+kbkAgWQxJyaAc3Ift9yQEBcdWZJebOx56BChznwehkCojv0Ob
+         TTlQ==
+X-Gm-Message-State: AOAM530fQwRQdzjBctcTAeT6Alv51lInTFmQvauNa8DZvmZQPnY/oQaG
+        Jzn3yTwvI1BxDiYyhbF2l6A=
+X-Google-Smtp-Source: ABdhPJxq4mSEkj1z4E9JIJao50cbzCfwxiM8izC46qiCMjo6xjReLNrKV6yb7xsQzj3DjeF1Aa5foQ==
+X-Received: by 2002:a17:906:3c45:: with SMTP id i5mr5137885ejg.368.1619196363336;
+        Fri, 23 Apr 2021 09:46:03 -0700 (PDT)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id f7sm4504353ejz.95.2021.04.23.09.46.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Apr 2021 09:46:01 -0700 (PDT)
+Date:   Fri, 23 Apr 2021 18:46:51 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Clemens Gruber <clemens.gruber@pqgruber.com>
+Cc:     linux-pwm@vger.kernel.org,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Sven Van Asbroeck <TheSven73@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v9 1/8] pwm: pca9685: Switch to atomic API
+Message-ID: <YIL5+xq+LP5/YGvO@orome.fritz.box>
+References: <20210415121455.39536-1-clemens.gruber@pqgruber.com>
+ <20210417195150.5fdcpxfbasp4y264@pengutronix.de>
+ <YIFgVZL4PBcIKvMp@workstation.tuxnet>
 MIME-Version: 1.0
-References: <20210420132614.150242-1-jitao.shi@mediatek.com> <20210420132614.150242-3-jitao.shi@mediatek.com>
-In-Reply-To: <20210420132614.150242-3-jitao.shi@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sat, 24 Apr 2021 00:36:55 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-SKcX+4U5hKOgRaip-vk+ofEWe_g4VNUxFjN7LCprq1w@mail.gmail.com>
-Message-ID: <CAAOTY_-SKcX+4U5hKOgRaip-vk+ofEWe_g4VNUxFjN7LCprq1w@mail.gmail.com>
-Subject: Re: [PATCH 3/4] drm/mediatek: fine tune the dsi panel's power sequence
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        huijuan.xie@mediatek.com, stonea168@163.com,
-        Cawa Cheng <cawa.cheng@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, yingjoe.chen@mediatek.com,
-        eddie.huang@mediatek.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ag9QP45o/HG8VKU1"
+Content-Disposition: inline
+In-Reply-To: <YIFgVZL4PBcIKvMp@workstation.tuxnet>
+User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jitao:
 
-Jitao Shi <jitao.shi@mediatek.com> =E6=96=BC 2021=E5=B9=B44=E6=9C=8820=E6=
-=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=889:26=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Add the drm_panel_prepare_power and drm_panel_unprepare_power control.
-> Turn on panel power(drm_panel_prepare_power) and control before dsi
-> enable. And then dsi enable, send dcs cmd in drm_panel_prepare, last
-> turn on backlight.
+--ag9QP45o/HG8VKU1
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Please describe WHY do you need this patch? Fix any bug?
+On Thu, Apr 22, 2021 at 01:39:01PM +0200, Clemens Gruber wrote:
+> On Sat, Apr 17, 2021 at 09:51:50PM +0200, Uwe Kleine-K=C3=B6nig wrote:
+> > On Thu, Apr 15, 2021 at 02:14:48PM +0200, Clemens Gruber wrote:
+> > > The switch to the atomic API goes hand in hand with a few fixes to
+> > > previously experienced issues:
+> > > - The duty cycle is no longer lost after disable/enable (previously t=
+he
+> > >   OFF registers were cleared in disable and the user was required to
+> > >   call config to restore the duty cycle settings)
+> > > - If one sets a period resulting in the same prescale register value,
+> > >   the sleep and write to the register is now skipped
+> > > - Previously, only the full ON bit was toggled in GPIO mode (and full
+> > >   OFF cleared if set to high), which could result in both full OFF and
+> > >   full ON not being set and on=3D0, off=3D0, which is not allowed acc=
+ording
+> > >   to the datasheet
+> > > - The OFF registers were reset to 0 in probe, which could lead to the
+> > >   forbidden on=3D0, off=3D0. Fixed by resetting to POR default (full =
+OFF)
+> > >=20
+> > > Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
+> >=20
+> > (I sent my ack to v8 before, but indeed this was the version I intended
+> > to ack)
+> >=20
+> > Acked-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
+>=20
+> Thierry: Do you think we can get patches 1 to 3 into 5.13-rc1?
 
->
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dsi.c | 12 ++++++++++--
->  1 file changed, 10 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediate=
-k/mtk_dsi.c
-> index a1ff152ef468..455fe582c6b5 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -615,10 +615,13 @@ static int mtk_dsi_poweron(struct mtk_dsi *dsi)
->         dsi->data_rate =3D DIV_ROUND_UP_ULL(dsi->vm.pixelclock * bit_per_=
-pixel,
->                                           dsi->lanes);
->
-> +       if (panel_bridge_prepare_power(dsi->next_bridge))
+Applied patches 1-3, thanks.
 
-ret =3D panel_bridge_prepare_power(dsi->next_bridge);
-if (ret)
+Thierry
 
-> +               DRM_INFO("can't prepare power the panel\n");
+--ag9QP45o/HG8VKU1
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I think you should goto err_refcount;
+-----BEGIN PGP SIGNATURE-----
 
-> +
->         ret =3D clk_set_rate(dsi->hs_clk, dsi->data_rate);
->         if (ret < 0) {
->                 dev_err(dev, "Failed to set data rate: %d\n", ret);
-> -               goto err_refcount;
-> +               goto err_prepare_power;
->         }
->
->         phy_power_on(dsi->phy);
-> @@ -661,7 +664,9 @@ static int mtk_dsi_poweron(struct mtk_dsi *dsi)
->         clk_disable_unprepare(dsi->engine_clk);
->  err_phy_power_off:
->         phy_power_off(dsi->phy);
-> -err_refcount:
-> +err_prepare_power:
-> +       if (panel_bridge_unprepare_power(dsi->next_bridge))
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmCC+fkACgkQ3SOs138+
+s6Fieg//SNVP0ULVNLQOC9hJfKuwl/mEmbgGi2iVUyBEFtfwWeNrUptE9CZJQsz9
+G0ryShgxyEMi17pRNLH62D1p4DDtg0i2diEMrl3Cd+EQfPABMr6l2z67BwNxHfZZ
+MclaFxV/r4pzpOckuWyfPF/bwJXSIZlXvwRUsT3p3D6GFGCeu/PdMzm7/AUznrqJ
+4OqJ9PT2rnAABGpN8/NHLDeGi41j8AR7JbzruVh08TRU8bWu/o1TdxnL/WAlZB/k
+KsSdcCdWk0lNvflUJFiFYx5vpZoqrC85vhS/4ngYzaXiEN702/HY7zhxHd/QNLqZ
+XVsrUTLiIQRT/ypRaQuoUHrcjC/V9J3itiDMAyliev8lUB6CA83KOFMIkwdAh/lM
+JvEKMBon6/AFSvxfmQsFho9ktnKb5ecAw2QXBBI4hOYQiSwVkxS0uOsVSNRGO04s
+FuIBmcxdYpcfajjBzRtSB5TY7oJtMKcgJAPlUYLjEvS4xfr+zTlBVstJr6g5WVs7
+XRmfuyBl9gw6iLd3xnffij+9fru7qqQISB76K6V1df5uOFD90UsYCYJTgcjfBjmo
+hFyPvC5JTWAYrKwN/QkUNuRBKImCVjRlA541K4Xy4ry+A8rGx1V+3lFqZtJHPshT
+FONfZ6X/Qh98UiAMb9h7aw0+6HxCVVHPtdQ0xfiwDllcchMvggM=
+=1JEV
+-----END PGP SIGNATURE-----
 
-ret =3D panel_bridge_unprepare_power(dsi->next_bridge);
-
-> +               DRM_INFO("Can't unprepare power the panel\n");
->         dsi->refcount--;
->         return ret;
->  }
-> @@ -694,6 +699,9 @@ static void mtk_dsi_poweroff(struct mtk_dsi *dsi)
->         clk_disable_unprepare(dsi->digital_clk);
->
->         phy_power_off(dsi->phy);
-> +
-> +       if (panel_bridge_unprepare_power(dsi->next_bridge))
-
-ret =3D panel_bridge_unprepare_power(dsi->next_bridge);
-
-> +               DRM_INFO("Can't unprepare power the panel\n");
->  }
->
->  static void mtk_output_dsi_enable(struct mtk_dsi *dsi)
-> --
-> 2.25.1
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+--ag9QP45o/HG8VKU1--
