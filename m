@@ -2,147 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19173369517
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 16:50:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B41233695C3
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 17:12:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242741AbhDWOvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 10:51:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46742 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231460AbhDWOvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 10:51:06 -0400
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 606D9C061756
-        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 07:50:30 -0700 (PDT)
-Received: by mail-io1-xd2a.google.com with SMTP id b9so1684334iod.13
-        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 07:50:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MMcmdkM2gVl581eh1B9ABdRu1Z5YC42G/lU2iC/THzU=;
-        b=qIlJIcsi0187qWtovyfGsZz8n53uJAkk180sB7FQ42Ul/t11paPOues0+jxUAYj71q
-         z9RsmX6RKBf39KKb9QGFgnqmtQ7PZMoCIpjl9NvVNFTOHDaKm3xNbifQmiPvB3BoKhM9
-         oGed1Yz0Y+WAC5hQh+W1uT6+jX9Lnt6k5z6R2IEEs5a3tP0zSuJ/B9zBKgMHXfcvw1Ky
-         Q+kAkEb73gv+KUaxPZ5cw0mr2D/Y+2KVPp2MmheSH/cAnbOr5Lp49FAvpgMEzl+Wpruo
-         rHjvxIQGw+E2ol8Xcd3waYnlj44uZ/Vxjgrw87E7HxtMO+uKHh4OfOSlNhGpNjLBnsEN
-         UwVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MMcmdkM2gVl581eh1B9ABdRu1Z5YC42G/lU2iC/THzU=;
-        b=byVBOsejlOAOsi4HXGq/Y2sILj7r/E9yEBr58SrkXp8SxfzxZ2PBRApPCzai8Ogtza
-         5nnldp6zfrDrdL+dEASwluzll4VFTjZ1U2lpXcpjMO/cpAzUB+92YEl0JPglwrTrM2tK
-         KfvhtjWql6VVorp0D95F/HZZ3PK7eYpCHwT1lTrJhYouvAJpuRsGeGdODtE7J5pUPAO4
-         wZ8NFqt7p3MrBZWH92t0mO+xszVd0wSnHyzzfFSZdW1dioyV+03dRIYsvdgkV+0EvQRk
-         1zl5Qkh2n/jS0+RpADBXppN3LmuWsjqvkrnCxlnDBfhEf0uEDQW2d4bU8T4YCwhw7Vcr
-         Mq7A==
-X-Gm-Message-State: AOAM5337kd2KpXpraaaGjlBUEJ+IDtZpLsQ8Pu95jpSZGWFny3R0JRJw
-        R7YjjdFsWr9aO+Z3U/ArE7bcW3DqlHyteozvDkhTwGDTStg=
-X-Google-Smtp-Source: ABdhPJxCd6YQlgpzhXf6G9ZW9tJeJzvk3SgMyJj1x3xNVufTbvCo+nBbuDER55PCMLE0EGzTJ070ebIaCle6mrVMvZM=
-X-Received: by 2002:a05:6602:81e:: with SMTP id z30mr3618410iow.90.1619189429739;
- Fri, 23 Apr 2021 07:50:29 -0700 (PDT)
+        id S237232AbhDWPMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 11:12:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48038 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229871AbhDWPMh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Apr 2021 11:12:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E404A61476
+        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 15:12:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1619190720;
+        bh=HiFp+/fV6KtN9LOlfDWZfa9Qoub4g53Rau1i3L8M0IU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=tmtZqCy5UaTNYD8CumrO6wwO32nqomAH5XDbxC8d+XJuiG0w3JIIWDFOPC9w7JVri
+         /SxIZFVy2UlMHtzsFDHMHSBZPGaZvD0kQWDdKSzWScK+04AM7KBahu32DU3Vu/tc3N
+         LkVUUgU5Nyh5LZjO255WY+Sae+g3s7ICLSom8PF+X6d0QCWuPJc4v2xr7xQWtlEwIe
+         uhHH18Sqcb/6YF35t4t2apQROaop0MuvIdOI7rXg/fu9ScdaSb9edQaHUgG46vO+R+
+         qXgqaRNSyXPSejPuV4vmCuceqjoiVDZLuQa/7jt29QLbsVO8Srd2kNNbAPpNNp/uRK
+         YABQ6JW2dnkUA==
+Received: by mail-ej1-f41.google.com with SMTP id r20so24655925ejo.11
+        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 08:12:00 -0700 (PDT)
+X-Gm-Message-State: AOAM531J9aneuJ73AVLiWC5A4/jUuvLlD2E5Yvcmpq/ZftjI92brURim
+        OHCWXCuFYvHzvFm0lCQZACj9kouSoCoDVOfvYw==
+X-Google-Smtp-Source: ABdhPJwHLV5bKd8oToiLGfYb43Jwd+X0+6eCLiTOm00Km5CRO4ct0Ibbh3qk/uaJfBFavcUpQrvE8sEFEmy7HsRtm1M=
+X-Received: by 2002:a17:907:70d3:: with SMTP id yk19mr4800031ejb.108.1619190719409;
+ Fri, 23 Apr 2021 08:11:59 -0700 (PDT)
 MIME-Version: 1.0
-References: <1618971622-30539-1-git-send-email-peng.fan@oss.nxp.com>
- <20210422165634.GD1256950@xps15> <DB6PR0402MB2760E471A0391FF8A31980BA88459@DB6PR0402MB2760.eurprd04.prod.outlook.com>
-In-Reply-To: <DB6PR0402MB2760E471A0391FF8A31980BA88459@DB6PR0402MB2760.eurprd04.prod.outlook.com>
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-Date:   Fri, 23 Apr 2021 08:50:18 -0600
-Message-ID: <CANLsYkwoS+3qYq=FHRLMjrJSr5cj_PiHaU+a+M17C+8-VJ+b9g@mail.gmail.com>
-Subject: Re: [PATCH V5 0/8] remoteproc: imx_rproc: support i.MX7ULP/8MN/8MP
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "ohad@wizery.com" <ohad@wizery.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "o.rempel@pengutronix.de" <o.rempel@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+References: <20210415191437.20212-1-nramas@linux.microsoft.com>
+ <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
+ <87eefag241.fsf@linkitivity.dja.id.au> <87r1j3ys8i.fsf@dja-thinkpad.axtens.net>
+ <875z0daz46.fsf@mpe.ellerman.id.au> <3a6b9c56f81e47d08e6bf70d8222725f@AcuMS.aculab.com>
+In-Reply-To: <3a6b9c56f81e47d08e6bf70d8222725f@AcuMS.aculab.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 23 Apr 2021 10:11:47 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJO51TQbJbvWN65vOGLgdAGP_+VPBnKLZjq_QKMChPdSw@mail.gmail.com>
+Message-ID: <CAL_JsqJO51TQbJbvWN65vOGLgdAGP_+VPBnKLZjq_QKMChPdSw@mail.gmail.com>
+Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in elf64_load()
+To:     David Laight <David.Laight@aculab.com>
+Cc:     Michael Ellerman <mpe@ellerman.id.au>,
+        Daniel Axtens <dja@axtens.net>,
+        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        "dan.carpenter@oracle.com" <dan.carpenter@oracle.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>,
+        "bauerman@linux.ibm.com" <bauerman@linux.ibm.com>,
+        "lkp@intel.com" <lkp@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Apr 2021 at 19:01, Peng Fan <peng.fan@nxp.com> wrote:
+On Fri, Apr 23, 2021 at 9:42 AM David Laight <David.Laight@aculab.com> wrote:
 >
-> Hi Mathieu,
->
-> > Subject: Re: [PATCH V5 0/8] remoteproc: imx_rproc: support
-> > i.MX7ULP/8MN/8MP
+> From: Michael Ellerman
+> > Sent: 23 April 2021 14:51
+> ...
+> > > (Does anyone - and by anyone I mean any large distro - compile with
+> > > local variables inited by the compiler?)
 > >
-> > On Wed, Apr 21, 2021 at 10:20:14AM +0800, peng.fan@oss.nxp.com wrote:
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > V5:
-> > >  Add R-b tag
-> > >  Move the change in detect mode of patch 5 to patch 7 Per Mathieu's
-> > > comments
-> > >
-> > > V4:
-> > >  Typo fix
-> > >  patch 4: take state as a check condition  patch 5: move regmap
-> > > lookup/attach to imx_rproc_detect_mode  patch 6: add
-> > > imx_rproc_clk_enable for optional clk  patch 8: use switch/case in
-> > > imx_rproc_detect_mode
-> > > V3:
-> > >  Add A-b tag for Patch 1/2
-> > >  Fix the checkpatch warning for Patch 6,8
-> > >
-> > > V2:
-> > >  Patch 1/8, use fsl as vendor, typo fix  Because patchset [1] has v2
-> > > version, patch 5,6,7,8 are adapted that  change.
-> > >
-> > > This patchset is to support i.MX7ULP/8MN/8MP, also includes a patch to
-> > > parse fsl,auto-boot
-> > >
+> > This is where I say, "yes, Android" and you say "ugh no I meant a real
+> > distro", and I say "well ...".
 > >
-> > One of the request I had from the last revision was to explicitly list what other
-> > patchset this work depends on and what branch it is based of, something I
-> > can't find here.
+> > But yeah doesn't help us much.
 >
-> Sorry, that patchset has been merged, so I remove that line.
-> I should mention that that patchset has been merged into Linux-next tree.
+> And it doesn't seem to stop my phone crashing either :-)
 >
+> Of course, I've absolutely no way of finding out where it is crashing.
+> Nor where the massive memory leaks are that means it need rebooting
+> every few days.
 
-And what branch this set should be applied to is missing.
+You need a new phone. :) My Pixel3 uptime is sitting at 194 hours
+currently. It would be more, but those annoying security updates
+require reboots. I have had phones that I setup to reboot every night
+though.
 
-> >
-> > As such I am dropping this set and won't look at another revision before May
-> > 22nd.
->
-> Ah. Is it just because that the dependency patchset not been mentioned or you
-> have issue applying the patchset that delay the patchset for one month?
->
-
-Both.
-
-> Thanks,
-> Peng.
->
-> >
-> > > Peng Fan (8):
-> > >   dt-bindings: remoteproc: imx_rproc: add fsl,auto-boot property
-> > >   dt-bindings: remoteproc: imx_rproc: add i.MX7ULP support
-> > >   dt-bindings: remoteproc: imx_rproc: support i.MX8MN/P
-> > >   remoteproc: imx_rproc: parse fsl,auto-boot
-> > >   remoteproc: imx_rproc: initial support for mutilple start/stop method
-> > >   remoteproc: imx_rproc: make clk optional
-> > >   remoteproc: imx_rproc: support i.MX7ULP
-> > >   remoteproc: imx_rproc: support i.MX8MN/P
-> > >
-> > >  .../bindings/remoteproc/fsl,imx-rproc.yaml    |  11 +-
-> > >  drivers/remoteproc/imx_rproc.c                | 196
-> > +++++++++++++++---
-> > >  2 files changed, 173 insertions(+), 34 deletions(-)
-> > >
-> > > --
-> > > 2.30.0
-> > >
+Rob
