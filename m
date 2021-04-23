@@ -2,187 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DBA33693FE
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 15:46:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8A5636940B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 15:50:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231381AbhDWNrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 09:47:12 -0400
-Received: from foss.arm.com ([217.140.110.172]:35194 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236992AbhDWNrL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Apr 2021 09:47:11 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9E1CE1063;
-        Fri, 23 Apr 2021 06:46:34 -0700 (PDT)
-Received: from [10.57.62.63] (unknown [10.57.62.63])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 903A33F73B;
-        Fri, 23 Apr 2021 06:46:27 -0700 (PDT)
-Subject: Re: [PATCH v5 14/16] dma-direct: Allocate memory from restricted DMA
- pool if available
-To:     Claire Chang <tientzu@chromium.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>, tfiga@chromium.org,
-        bskeggs@redhat.com, bhelgaas@google.com, chris@chris-wilson.co.uk,
-        daniel@ffwll.ch, airlied@linux.ie, dri-devel@lists.freedesktop.org,
-        intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
-        jxgao@google.com, joonas.lahtinen@linux.intel.com,
-        linux-pci@vger.kernel.org, maarten.lankhorst@linux.intel.com,
-        matthew.auld@intel.com, nouveau@lists.freedesktop.org,
-        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
-References: <20210422081508.3942748-1-tientzu@chromium.org>
- <20210422081508.3942748-15-tientzu@chromium.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <70b895c2-4a39-bbbd-a719-5c8b6b922026@arm.com>
-Date:   Fri, 23 Apr 2021 14:46:25 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S229871AbhDWNvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 09:51:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33618 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229549AbhDWNvc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 09:51:32 -0400
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B238C061574
+        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 06:50:55 -0700 (PDT)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4FRbKR0kq4z9sRR;
+        Fri, 23 Apr 2021 23:50:51 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ellerman.id.au;
+        s=201909; t=1619185851;
+        bh=NBR0doxevZcspE7GMPniJrjcztr5jXz2a0JCNWCT7jw=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=bzjegyk9DXvu/3ti2c56HI7OdoN+5+TWGLWWSvKQ052n4AcUgH0UDudeNu8zHVdkX
+         GUpiiO25ILL3aXaVpitzkEtKShm/l0Zq+FAo1x5yvQNUADIx5Pn1hpxEqjv/wY9RAT
+         aEMNwYdu7TMK5kU2x6EpEmElHNWjwdXo2xm+zDcgnyRFQ9qZzhulj5tMEmqi4hHYV9
+         NINnxG2dHpdpoBiP+MI3OQe4b8cRfqZMIWHcJoRVyTpaXR4GyPa7QRJpf1zPPhe5Ns
+         Cqi0PE1gKDaPt+NQH25TZM97GhV/PMe4pLuRiTrbEkJ8+r6DQWMKlxUky8djYGeYIZ
+         nSQcxHYLPUHAw==
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     Daniel Axtens <dja@axtens.net>,
+        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        robh@kernel.org, dan.carpenter@oracle.com
+Cc:     devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        kbuild-all@lists.01.org, bauerman@linux.ibm.com, lkp@intel.com
+Subject: Re: [PATCH] powerpc: Initialize local variable fdt to NULL in
+ elf64_load()
+In-Reply-To: <87r1j3ys8i.fsf@dja-thinkpad.axtens.net>
+References: <20210415191437.20212-1-nramas@linux.microsoft.com>
+ <4edb1433-4d1e-5719-ec9c-fd232b7cf71f@linux.microsoft.com>
+ <87eefag241.fsf@linkitivity.dja.id.au>
+ <87r1j3ys8i.fsf@dja-thinkpad.axtens.net>
+Date:   Fri, 23 Apr 2021 23:50:49 +1000
+Message-ID: <875z0daz46.fsf@mpe.ellerman.id.au>
 MIME-Version: 1.0
-In-Reply-To: <20210422081508.3942748-15-tientzu@chromium.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-04-22 09:15, Claire Chang wrote:
-> The restricted DMA pool is preferred if available.
-> 
-> The restricted DMA pools provide a basic level of protection against the
-> DMA overwriting buffer contents at unexpected times. However, to protect
-> against general data leakage and system memory corruption, the system
-> needs to provide a way to lock down the memory access, e.g., MPU.
-> 
-> Signed-off-by: Claire Chang <tientzu@chromium.org>
-> ---
->   kernel/dma/direct.c | 35 ++++++++++++++++++++++++++---------
->   1 file changed, 26 insertions(+), 9 deletions(-)
-> 
-> diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
-> index 7a27f0510fcc..29523d2a9845 100644
-> --- a/kernel/dma/direct.c
-> +++ b/kernel/dma/direct.c
-> @@ -78,6 +78,10 @@ static bool dma_coherent_ok(struct device *dev, phys_addr_t phys, size_t size)
->   static void __dma_direct_free_pages(struct device *dev, struct page *page,
->   				    size_t size)
->   {
-> +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> +	if (swiotlb_free(dev, page, size))
-> +		return;
-> +#endif
->   	dma_free_contiguous(dev, page, size);
->   }
->   
-> @@ -92,7 +96,17 @@ static struct page *__dma_direct_alloc_pages(struct device *dev, size_t size,
->   
->   	gfp |= dma_direct_optimal_gfp_mask(dev, dev->coherent_dma_mask,
->   					   &phys_limit);
-> -	page = dma_alloc_contiguous(dev, size, gfp);
-> +
-> +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> +	page = swiotlb_alloc(dev, size);
-> +	if (page && !dma_coherent_ok(dev, page_to_phys(page), size)) {
-> +		__dma_direct_free_pages(dev, page, size);
-> +		page = NULL;
-> +	}
-> +#endif
-> +
-> +	if (!page)
-> +		page = dma_alloc_contiguous(dev, size, gfp);
->   	if (page && !dma_coherent_ok(dev, page_to_phys(page), size)) {
->   		dma_free_contiguous(dev, page, size);
->   		page = NULL;
-> @@ -148,7 +162,7 @@ void *dma_direct_alloc(struct device *dev, size_t size,
->   		gfp |= __GFP_NOWARN;
->   
->   	if ((attrs & DMA_ATTR_NO_KERNEL_MAPPING) &&
-> -	    !force_dma_unencrypted(dev)) {
-> +	    !force_dma_unencrypted(dev) && !is_dev_swiotlb_force(dev)) {
->   		page = __dma_direct_alloc_pages(dev, size, gfp & ~__GFP_ZERO);
->   		if (!page)
->   			return NULL;
-> @@ -161,8 +175,8 @@ void *dma_direct_alloc(struct device *dev, size_t size,
->   	}
->   
->   	if (!IS_ENABLED(CONFIG_ARCH_HAS_DMA_SET_UNCACHED) &&
-> -	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
-> -	    !dev_is_dma_coherent(dev))
-> +	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) && !dev_is_dma_coherent(dev) &&
-> +	    !is_dev_swiotlb_force(dev))
->   		return arch_dma_alloc(dev, size, dma_handle, gfp, attrs);
->   
->   	/*
-> @@ -172,7 +186,9 @@ void *dma_direct_alloc(struct device *dev, size_t size,
->   	if (IS_ENABLED(CONFIG_DMA_COHERENT_POOL) &&
->   	    !gfpflags_allow_blocking(gfp) &&
->   	    (force_dma_unencrypted(dev) ||
-> -	     (IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) && !dev_is_dma_coherent(dev))))
-> +	     (IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
-> +	      !dev_is_dma_coherent(dev))) &&
-> +	    !is_dev_swiotlb_force(dev))
->   		return dma_direct_alloc_from_pool(dev, size, dma_handle, gfp);
->   
->   	/* we always manually zero the memory once we are done */
-> @@ -253,15 +269,15 @@ void dma_direct_free(struct device *dev, size_t size,
->   	unsigned int page_order = get_order(size);
->   
->   	if ((attrs & DMA_ATTR_NO_KERNEL_MAPPING) &&
-> -	    !force_dma_unencrypted(dev)) {
-> +	    !force_dma_unencrypted(dev) && !is_dev_swiotlb_force(dev)) {
->   		/* cpu_addr is a struct page cookie, not a kernel address */
->   		dma_free_contiguous(dev, cpu_addr, size);
->   		return;
->   	}
->   
->   	if (!IS_ENABLED(CONFIG_ARCH_HAS_DMA_SET_UNCACHED) &&
-> -	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
-> -	    !dev_is_dma_coherent(dev)) {
-> +	    !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) && !dev_is_dma_coherent(dev) &&
-> +	    !is_dev_swiotlb_force(dev)) {
->   		arch_dma_free(dev, size, cpu_addr, dma_addr, attrs);
->   		return;
->   	}
-> @@ -289,7 +305,8 @@ struct page *dma_direct_alloc_pages(struct device *dev, size_t size,
->   	void *ret;
->   
->   	if (IS_ENABLED(CONFIG_DMA_COHERENT_POOL) &&
-> -	    force_dma_unencrypted(dev) && !gfpflags_allow_blocking(gfp))
-> +	    force_dma_unencrypted(dev) && !gfpflags_allow_blocking(gfp) &&
-> +	    !is_dev_swiotlb_force(dev))
->   		return dma_direct_alloc_from_pool(dev, size, dma_handle, gfp);
+Daniel Axtens <dja@axtens.net> writes:
+> Daniel Axtens <dja@axtens.net> writes:
+>
+>> Hi Lakshmi,
+>>
+>>> On 4/15/21 12:14 PM, Lakshmi Ramasubramanian wrote:
+>>>
+>>> Sorry - missed copying device-tree and powerpc mailing lists.
+>>>
+>>>> There are a few "goto out;" statements before the local variable "fdt"
+>>>> is initialized through the call to of_kexec_alloc_and_setup_fdt() in
+>>>> elf64_load(). This will result in an uninitialized "fdt" being passed
+>>>> to kvfree() in this function if there is an error before the call to
+>>>> of_kexec_alloc_and_setup_fdt().
+>>>> 
+>>>> Initialize the local variable "fdt" to NULL.
+>>>>
+>> I'm a huge fan of initialising local variables! But I'm struggling to
+>> find the code path that will lead to an uninit fdt being returned...
+>
+> OK, so perhaps this was putting it too strongly. I have been bitten
+> by uninitialised things enough in C that I may have taken a slightly
+> overly-agressive view of fixing them in the source rather than the
+> compiler. I do think compiler-level mitigations are better, and I take
+> the point that we don't want to defeat compiler checking.
+>
+> (Does anyone - and by anyone I mean any large distro - compile with
+> local variables inited by the compiler?)
 
-Wait, this seems broken for non-coherent devices - in that case we need 
-to return a non-cacheable address, but we can't simply fall through into 
-the remapping path below in GFP_ATOMIC context. That's why we need the 
-atomic pool concept in the first place :/
+This is where I say, "yes, Android" and you say "ugh no I meant a real
+distro", and I say "well ...".
 
-Unless I've overlooked something, we're still using the regular 
-cacheable linear map address of the dma_io_tlb_mem buffer, no?
+But yeah doesn't help us much.
 
-Robin.
-
->   
->   	page = __dma_direct_alloc_pages(dev, size, gfp);
-> 
+cheers
