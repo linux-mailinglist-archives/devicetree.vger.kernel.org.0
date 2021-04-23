@@ -2,152 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B86A83698B2
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 19:53:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5757C3698BD
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 19:58:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231684AbhDWRyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 13:54:35 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:45823 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbhDWRyf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 13:54:35 -0400
-Received: by mail-ot1-f44.google.com with SMTP id f75-20020a9d03d10000b0290280def9ab76so40904558otf.12;
-        Fri, 23 Apr 2021 10:53:58 -0700 (PDT)
+        id S231760AbhDWR64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 13:58:56 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:34437 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231735AbhDWR6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 13:58:55 -0400
+Received: by mail-ot1-f48.google.com with SMTP id k14-20020a9d7dce0000b02901b866632f29so46010978otn.1;
+        Fri, 23 Apr 2021 10:58:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=dUihWGLPf24yxWIoNrNxjcFI5se2ZTXka2u5coVRttU=;
-        b=Phsh3EwFC9jfuWkVt91iwy0InJFMX+o0zTBnaXoBLe/uyMM+CSLRCc4dBlm5fZmFvS
-         mFfoemATGf8HKJWPdT7OJ1tcYxf3xsoFxv42vQ/dp71wd7QQPI/O4Idj3cK+IBHuVqeG
-         QQn6GZpS+UInjEPdSiCMTTwafZ9qAepzgd9GyIegz6OADmJz9+sWnmC4tMXmFj68600k
-         ClIOcKcdfPjT01sYwGWriUNI0fmX/0Afmx7bPPa2TcXOJ/LiBUy34JOv02BW86oqE5yJ
-         64SJdee3QQj9JqKi0dyjPoGcpweSu5Eev/0+tvBMuCcMGq4AemoOcVuFVEmXLP/C8Fi7
-         Lczw==
-X-Gm-Message-State: AOAM533aq5BNNNXypycaXfQ6UYK1b1WayPYFp05vq3hZjoLw1LXXfzzo
-        pmWNmwhvP2iU9q2dre6lDA==
-X-Google-Smtp-Source: ABdhPJy6aIH+uZU6isJc2iw74GcumjNIiTMQJnCm75cP0jIpgE8jq+EmhSDwmopZOb51REdy0pyAGw==
-X-Received: by 2002:a05:6830:1ad8:: with SMTP id r24mr4294433otc.183.1619200438018;
-        Fri, 23 Apr 2021 10:53:58 -0700 (PDT)
+        bh=4aci9N8Ge0QjDAS/mJvl8Fe/7qt/Qhc8QTVGcATfEqk=;
+        b=uVFnP4H7uGi+vWDjBQZW5JKHa45GaxcX3aCpcoltv76dLtjr23yd8v0n20EGbOPadX
+         IoL+czB6yiOXVV5U8RFJTqMKzu9oT/4yfKpTQPQV1eqssbg0lJ6PWqIv3mtOoit3A+lb
+         AL8acVkyuRi2TZvZ3roRL8LLfz1k+50UWLSZlhJIhCNbJVxGQ0q3Of5WAoRFXISTJRfZ
+         2ooqRTpysz0zbfHg6BYqWYzqtfuW9Zz5J5euHfEUyOYgmnM2KQahANvPoJH6RNKn4OGa
+         76ci4779A7fJYCmuvhLxTUJ7Oe5DgvXpS0yXx1tKXCaDCiAy8YX6XNLldZ9ekNOsHeN7
+         ItHw==
+X-Gm-Message-State: AOAM5323HKNzi5B8uDcicQNOO4Ulu8ftlsCu6epsebpy2Wa7WFiDFrht
+        Ho9YT5J+w7o2umTwuuc1fg==
+X-Google-Smtp-Source: ABdhPJwGlPGXFac7obioUMhI2eKiG1eoOtQY8QFtFfiWTOAW8tV34BnJOzEKa8OdLJSdzLfsHojKYA==
+X-Received: by 2002:a05:6830:120a:: with SMTP id r10mr4430301otp.47.1619200698667;
+        Fri, 23 Apr 2021 10:58:18 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c21sm1363930ooa.48.2021.04.23.10.53.56
+        by smtp.gmail.com with ESMTPSA id o64sm1357310oif.50.2021.04.23.10.58.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Apr 2021 10:53:57 -0700 (PDT)
-Received: (nullmailer pid 1331799 invoked by uid 1000);
-        Fri, 23 Apr 2021 17:53:56 -0000
-Date:   Fri, 23 Apr 2021 12:53:56 -0500
+        Fri, 23 Apr 2021 10:58:18 -0700 (PDT)
+Received: (nullmailer pid 1338644 invoked by uid 1000);
+        Fri, 23 Apr 2021 17:58:16 -0000
+Date:   Fri, 23 Apr 2021 12:58:16 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: gpio: Add devicetree binding for IDT
- 79RC32434 GPIO controller
-Message-ID: <20210423175356.GA1329842@robh.at.kernel.org>
-References: <20210422152055.85544-1-tsbogend@alpha.franken.de>
- <20210422152055.85544-2-tsbogend@alpha.franken.de>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Zoltan HERPAI <wigyori@uid0.hu>,
+        Raylynn Knight <rayknight@me.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3 net-next v3] net: ethernet: ixp4xx: Add DT bindings
+Message-ID: <20210423175816.GA1332201@robh.at.kernel.org>
+References: <20210423082208.2244803-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210422152055.85544-2-tsbogend@alpha.franken.de>
+In-Reply-To: <20210423082208.2244803-1-linus.walleij@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 22, 2021 at 05:20:54PM +0200, Thomas Bogendoerfer wrote:
-> Add YAML devicetree binding for IDT 79RC32434 GPIO controller
+On Fri, Apr 23, 2021 at 10:22:06AM +0200, Linus Walleij wrote:
+> This adds device tree bindings for the IXP4xx ethernet
+> controller with optional MDIO bridge.
 > 
-> Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> Cc: Zoltan HERPAI <wigyori@uid0.hu>
+> Cc: Raylynn Knight <rayknight@me.com>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
-> Changes in v3:
->  - renamed to idt,32434-gpio
->  - drop ngpio description
->  - use gpio0: gpio@50004 in example
+> ChangeLog v2->v3:
+> - Designate phy nodes with ethernet-phy@
+> - Include phy-mode in the schema
+> ChangeLog v1->v2:
+> - Add schema for the (optional) embedded MDIO bus inside
+>   the ethernet controller in an "mdio" node instead of just
+>   letting the code randomly populate and present it to
+>   the operating system.
+> - Reference the standard schemas for ethernet controller and
+>   MDIO buses.
+> - Add intel,npe to indentify the NPE unit used with each
+>   ethernet adapter.
+> ---
+>  .../bindings/net/intel,ixp4xx-ethernet.yaml   | 82 +++++++++++++++++++
+>  1 file changed, 82 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
 > 
->  .../devicetree/bindings/gpio/idt,32434.yaml   | 71 +++++++++++++++++++
-
-Not quite: idt,32434-gpio.yaml
-
->  1 file changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/idt,32434.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/idt,32434.yaml b/Documentation/devicetree/bindings/gpio/idt,32434.yaml
+> diff --git a/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml b/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
 > new file mode 100644
-> index 000000000000..bdbbe01855e0
+> index 000000000000..978e7f236f3a
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/idt,32434.yaml
-> @@ -0,0 +1,71 @@
+> +++ b/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
+> @@ -0,0 +1,82 @@
 > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2018 Linaro Ltd.
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/gpio/idt,32434.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +$id: "http://devicetree.org/schemas/net/intel,ixp4xx-ethernet.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 > +
-> +title: IDT 79RC32434 GPIO controller
+> +title: Intel IXP4xx ethernet
+> +
+> +allOf:
+> +  - $ref: "ethernet-controller.yaml#"
 > +
 > +maintainers:
-> +  - Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +
+> +description: |
+> +  The Intel IXP4xx ethernet makes use of the IXP4xx NPE (Network
+> +  Processing Engine) and the IXP4xx Queue Mangager to process
+
+typo
+
+> +  the ethernet frames. It can optionally contain an MDIO bus to
+> +  talk to PHYs.
 > +
 > +properties:
 > +  compatible:
-> +    const: idt,32434-gpio
+> +    const: intel,ixp4xx-ethernet
 > +
 > +  reg:
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: gpio
-> +      - const: pic
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  ngpios:
-> +    minimum: 1
-> +    maximum: 32
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +
-> +  interrupts:
 > +    maxItems: 1
+> +    description: Ethernet MMIO address range
+> +
+> +  queue-rx:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    maxItems: 1
+> +    description: phandle to the RX queue on the NPE
+> +
+> +  queue-txready:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    maxItems: 1
+> +    description: phandle to the TX READY queue on the NPE
+> +
+> +  phy-mode: true
+> +
+> +  phy-handle: true
+> +
+> +  intel,npe:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3]
+> +    description: which NPE (Network Processing Engine) this ethernet
+> +      instance is using
+
+Is there a node for the NPE? If so, make this a phandle.
+
+> +
+> +  mdio:
+> +    type: object
+> +    $ref: "mdio.yaml#"
+> +    description: optional node for embedded MDIO controller
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - reg-names
-> +  - gpio-controller
-> +  - "#gpio-cells"
-> +  - ngpios
-> +  - interrupt-controller
-> +  - "#interrupt-cells"
-> +  - interrupts
+> +  - queue-rx
+> +  - queue-txready
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    gpio0: gpio@50004 {
-> +        compatible = "idt,32434-gpio";
-> +        reg = <0x50004 0x10>, <0x38030 0x0c>;
-> +        reg-names = "gpio", "pic";
+> +    ethernet@c8009000 {
+> +      compatible = "intel,ixp4xx-ethernet";
+> +      reg = <0xc8009000 0x1000>;
+> +      status = "disabled";
+> +      queue-rx = <&qmgr 3>;
+> +      queue-txready = <&qmgr 20>;
+> +      intel,npe = <1>;
+> +      phy-mode = "rgmii";
+> +      phy-handle = <&phy1>;
 > +
-> +        interrupt-controller;
-> +        #interrupt-cells = <2>;
-> +
-> +        interrupt-parent = <&cpuintc>;
-> +        interrupts = <6>;
-> +
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +
-> +        ngpios = <14>;
+> +      mdio {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        phy1: ethernet-phy@1 {
+> +          reg = <1>;
+> +        };
+> +      };
 > +    };
 > -- 
 > 2.29.2
