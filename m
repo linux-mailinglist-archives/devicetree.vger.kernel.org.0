@@ -2,156 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C470336969E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 18:06:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EC743696B5
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 18:16:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242868AbhDWQHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 12:07:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35902 "EHLO
+        id S229945AbhDWQRC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 12:17:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229691AbhDWQH3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 12:07:29 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23157C061574;
-        Fri, 23 Apr 2021 09:06:52 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id g1-20020a17090adac1b0290150d07f9402so1422485pjx.5;
-        Fri, 23 Apr 2021 09:06:52 -0700 (PDT)
+        with ESMTP id S229456AbhDWQRB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 12:17:01 -0400
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42B97C06174A
+        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 09:16:23 -0700 (PDT)
+Received: by mail-oi1-x229.google.com with SMTP id d25so12161931oij.5
+        for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 09:16:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IogqCPyvEvuM6GWvpXpHl19+M+Wj9F934eJ8mKManQw=;
-        b=k2KvuTXUaJRxSWSbxOHfmPWor1BH2QRGJTkOflXnvKePtPb2rFZVAnV+MN3p4+VBYe
-         zqL//K4qzi9xpVeQ27cexC+jwQ/ch6vrLSOfCy+5068m/S7jQ/IIBy3F7XHM89stpaQC
-         5yJgpQs4Mnr1aEsnzaPEtQ+9jQe/OwsvpEY6Ixpxwro+3+0ouzUJJ0iSK5E6348mTBUX
-         VF0LYVKjKY2kxfKpNz0rpjIBGUlLpNDH0nUU4eyxUQVyHAex+/tzHtMY0JJyywMJZbmI
-         q9ZMPZIuenE05lKaPeFwyWP+K0Z0oGZjIk1DkSAy1d8b4eZIAkCPxdStzMDoGFREKBA8
-         6Nig==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1beMU+DaWF7yKuEoNt6I8by7dA1jU8B9WzUrcEqZmfo=;
+        b=qZMZ6z42jx4QzKNiRoYpBwAz4W0vEnC7jY8zKS3N63hCnwyPO6goMHM8UnmQHJibxg
+         o0m/M7kOUcuB9Hg7pNGraR6Bhcm3Xo8W3Fhn6Mbwd+KPUnUQwpAuw0y+UHpIS7xSUXb1
+         WimXdrmQ9MwZ4l3fAm9WOA5ruAtlrkqtbeRcaoWyCgQQQ8adjutRczA3bvB2nZJPmlB6
+         h1ws44ETe3srAA/2lD7j36eOE/e9Ey8B8H6BumsIRVkKMSC8JjXOAXaN4r5WEPuJWX1n
+         vGUsvoGbaqQs/e7jZCvN5yahbDO7Ii2U4hpqy+XJ8MXDKQ5nJzS7MYgPB9mGD2ZWFWuD
+         9kjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IogqCPyvEvuM6GWvpXpHl19+M+Wj9F934eJ8mKManQw=;
-        b=g3HF3dGunErDdOgt/deLUe4+fZybL+7VlA0onvRXnrIly0hJhiYyLkIGWceVP6gN/V
-         AFmZw3oTONGf02Fdw6bOadoz8SRAWAEaH1/kb7H37eHVzZxGiILaCGs8fF2d8ownsq+p
-         i0UV0BdU/G0e+lTH2UPBK8yDCLND+cX4jG35p2rTAH3tlxDEYrph4ULQmrHh0bGt0XxI
-         uZ5hAG5K1aAoqgpNEdFDvz3xpLIaAur0gBnfW+oQpJBrieMIXCuWo4Lt9hgde8XfrCRt
-         437gPpoya+DBOSKkDhCqM3XatReKguPSnmFXaJOHUKABuBJZZNZzFfO7TTfcR/AAyl0K
-         K9ag==
-X-Gm-Message-State: AOAM533CzlOwDzKXuchMp9C51Mx6UFj9BY9Qhu8yM6C8CuPyXdgfZC+D
-        w7wskyzU5CYaBvueNZ4EcsKjYD4TOY02UudxNJ0=
-X-Google-Smtp-Source: ABdhPJyCF5pfkqJvfI/SycPE59PP6Rrzx1x/SiXt/11eiyE8YcxxM3KPBfePw+OrmXFGq3h+2xVTOOJevU9KJV3Hpic=
-X-Received: by 2002:a17:90a:bd13:: with SMTP id y19mr6859715pjr.181.1619194006820;
- Fri, 23 Apr 2021 09:06:46 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1beMU+DaWF7yKuEoNt6I8by7dA1jU8B9WzUrcEqZmfo=;
+        b=PwWp+SLZwS2YPG9fVncBySYKmAa5ByvT3kdeB9yFjZXP8Ufs6e7JH3+5VTVI5oJPc9
+         ybsBceOzjzVXOqYMYnzLFmdW3LMgI9xNZZ+T0cSaPzw6/jZY5sN3WFpY4vYq/S1Y4OSU
+         6q/g/OluUcu1uunjf6/+H94wt2/K7ua9llWn91a768e0yhXpuCQ5AptHddxVv41mULzY
+         IaJVuByJucTl1nDilc0qKhCFc/KyqoGCzbl62QRKGI8QjOpgIAys2dXeih5gJgpzEXRy
+         uVb/0HLI53TO+O3JeVEIvqJJIWjlkSqk9cee65VHo5KaAxkdSIne94cfuHMzf3bPxzy5
+         xc7Q==
+X-Gm-Message-State: AOAM5338qOMJAWhdjdI5VTSQ3qhZx6hRLm+V15TGfubgtEF5q8jcmuFf
+        JJYQteFsbwr+Z6S7FXtCKsnEGw==
+X-Google-Smtp-Source: ABdhPJx8WB+E1jil+D6UMM6kwQmfbL2ZIs2j/TC89e174s2risj+WmXI/IPeTibjmhBXYErASaAYmQ==
+X-Received: by 2002:aca:f2c1:: with SMTP id q184mr4510159oih.29.1619194582719;
+        Fri, 23 Apr 2021 09:16:22 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id t19sm1484007otm.40.2021.04.23.09.16.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Apr 2021 09:16:22 -0700 (PDT)
+Date:   Fri, 23 Apr 2021 11:16:20 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Sam Ravnborg <sam@ravnborg.org>, Wolfram Sang <wsa@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>, robdclark@chromium.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+        Steev Klimaszewski <steev@kali.org>,
+        linux-arm-msm@vger.kernel.org, Linus W <linus.walleij@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 26/27] arm64: dts: qcom: Link the panel to the
+ bridge's DDC bus
+Message-ID: <YILy1L7guo1c3BXu@builder.lan>
+References: <20210416223950.3586967-1-dianders@chromium.org>
+ <20210416153909.v4.26.Ibdb7735fb1844561b902252215a69526a14f9abd@changeid>
 MIME-Version: 1.0
-References: <20210420132333.99886-1-tomas.melin@vaisala.com> <20210420132333.99886-3-tomas.melin@vaisala.com>
-In-Reply-To: <20210420132333.99886-3-tomas.melin@vaisala.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 23 Apr 2021 19:06:30 +0300
-Message-ID: <CAHp75Ve2AEA8yPw5qN+R=K=ovaO8vX53hYU9=knjY_Z+EHDdww@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] iio: accel: Add driver for Murata SCA3300 accelerometer
-To:     Tomas Melin <tomas.melin@vaisala.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210416153909.v4.26.Ibdb7735fb1844561b902252215a69526a14f9abd@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 20, 2021 at 4:24 PM Tomas Melin <tomas.melin@vaisala.com> wrote:
->
-> Add initial support for Murata SCA3300 3-axis industrial
-> accelerometer with digital SPI interface. This device also
-> provides a temperature measurement.
+On Fri 16 Apr 17:39 CDT 2021, Douglas Anderson wrote:
 
-Thanks for an update, my comments below.
+> Adding this link allows the panel code to do things like read the
+> EDID.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
-They can be addressed as followups, but I think regmap API can be
-considered right now.
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-...
+Regards,
+Bjorn
 
-> +static int sca3300_read_reg(struct sca3300_data *sca_data, u8 reg, int *val)
-> +{
-> +       int ret;
-> +
-> +       mutex_lock(&sca_data->lock);
-> +       sca_data->txbuf[0] = reg << 2;
-> +       ret = sca3300_transfer(sca_data, val);
-> +       mutex_unlock(&sca_data->lock);
-> +       if (ret != -EINVAL)
-> +               return ret;
-> +
-> +       return sca3300_error_handler(sca_data);
-> +}
-> +
-> +static int sca3300_write_reg(struct sca3300_data *sca_data, u8 reg, int val)
-> +{
-> +       int reg_val = 0;
-> +       int ret;
-> +
-> +       mutex_lock(&sca_data->lock);
-> +       /* BIT(7) for write operation */
-> +       sca_data->txbuf[0] = BIT(7) | (reg << 2);
-> +       put_unaligned_be16(val, &sca_data->txbuf[1]);
-> +       ret = sca3300_transfer(sca_data, &reg_val);
-> +       mutex_unlock(&sca_data->lock);
-> +       if (ret != -EINVAL)
-> +               return ret;
-> +
-> +       return sca3300_error_handler(sca_data);
-> +}
-
-Okay, BIT(7) for write/read is pretty much standard stuff for such
-sensors. If you transform your driver to use REGMAP_SPI, you will get
-it thru regmap configuration. Also, you will get a locking there, in
-case you don't need to have several I/O in a row atomically.
-
-..
-
-> +       for_each_set_bit(bit, indio_dev->active_scan_mask,
-> +                        indio_dev->masklength) {
-
-One line?
-
-> +               ret = sca3300_read_reg(data, sca3300_channels[bit].address,
-> +                                      &val);
-> +               if (ret) {
-> +                       dev_err_ratelimited(&data->spi->dev,
-> +                               "failed to read register, error: %d\n", ret);
-> +                       /* handled, but bailing out due to errors */
-> +                       goto out;
-> +               }
-> +               data->scan.channels[i++] = val;
-> +       }
-
-...
-
-> +       int ret;
-> +       int value = 0;
-
-Reversed xmas tree ordering?
-
-...
-
-> +       /*
-> +        * Wait 1ms after SW-reset command.
-> +        * Wait 15ms for settling of signal paths.
-> +        */
-> +       usleep_range(16e3, 50e3);
-
-Hmm... Perhaps re-use msleep_range()
-https://elixir.bootlin.com/linux/latest/source/drivers/media/i2c/imx274.c#L601?
-
-...
-
-> +       .debugfs_reg_access = &sca3300_debugfs_reg_access,
-
-Reading of the registers you will get as a bonus when switching over
-to regmap SPI API.
-
--- 
-With Best Regards,
-Andy Shevchenko
+> ---
+> 
+> (no changes since v1)
+> 
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index 24d293ef56d7..96e530594509 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -265,6 +265,7 @@ panel: panel {
+>  		power-supply = <&pp3300_dx_edp>;
+>  		backlight = <&backlight>;
+>  		hpd-gpios = <&sn65dsi86_bridge 2 GPIO_ACTIVE_HIGH>;
+> +		ddc-i2c-bus = <&sn65dsi86_bridge>;
+>  
+>  		ports {
+>  			port {
+> -- 
+> 2.31.1.368.gbe11c130af-goog
+> 
