@@ -2,84 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D026369674
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 17:55:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C470336969E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 18:06:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232024AbhDWPzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 11:55:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33290 "EHLO
+        id S242868AbhDWQHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 12:07:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231445AbhDWPzw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 11:55:52 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A168C061574;
-        Fri, 23 Apr 2021 08:55:15 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id t22so229775pgu.0;
-        Fri, 23 Apr 2021 08:55:15 -0700 (PDT)
+        with ESMTP id S229691AbhDWQH3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 12:07:29 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23157C061574;
+        Fri, 23 Apr 2021 09:06:52 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id g1-20020a17090adac1b0290150d07f9402so1422485pjx.5;
+        Fri, 23 Apr 2021 09:06:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=3+UIkzK9mkfwrs3I5lMZXF8gNHIUH333Map0CEJkPcM=;
-        b=Osa3h5S558fPLVuIaLmVUQpFAyoDPPuCEuhSJ2orTf3vFWwytAyd/QV1ZyQez04Kz/
-         T2J6aUt+3QT/cARsKeRSRj8DbyaXCLk1C0wsCYtFCJxgQVsGt6TZO/hO3Cd6+IYY1Cie
-         yFWajPfceLnHYSmJu7vID16VLOqqRHvIeEX1SzYBnZ+bM7M5GW+7O8A1xWeGy63C7sZz
-         bRlcChS+mRLp1SfAuLEjj9UdsXxzxMH7tj+CWxVaiXy4w//BA8xIAposgR1wYqo9ZF1Z
-         I7JaHBbImI+fOWjY3vdy2awqAOXNqwOAmBmkhZFsJXp2GfoxjV8vEhzNph9aT1jFaTE6
-         xKNw==
+        bh=IogqCPyvEvuM6GWvpXpHl19+M+Wj9F934eJ8mKManQw=;
+        b=k2KvuTXUaJRxSWSbxOHfmPWor1BH2QRGJTkOflXnvKePtPb2rFZVAnV+MN3p4+VBYe
+         zqL//K4qzi9xpVeQ27cexC+jwQ/ch6vrLSOfCy+5068m/S7jQ/IIBy3F7XHM89stpaQC
+         5yJgpQs4Mnr1aEsnzaPEtQ+9jQe/OwsvpEY6Ixpxwro+3+0ouzUJJ0iSK5E6348mTBUX
+         VF0LYVKjKY2kxfKpNz0rpjIBGUlLpNDH0nUU4eyxUQVyHAex+/tzHtMY0JJyywMJZbmI
+         q9ZMPZIuenE05lKaPeFwyWP+K0Z0oGZjIk1DkSAy1d8b4eZIAkCPxdStzMDoGFREKBA8
+         6Nig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=3+UIkzK9mkfwrs3I5lMZXF8gNHIUH333Map0CEJkPcM=;
-        b=jf62RxKR/iEJQ54sdqdCuu1X34tXpqM0JFJJoDWAmE5RbLYvBnpZunfvxX28a2rhFZ
-         v2FEbhsJHVCBfjW6KlxOgWMj5NGoUAuKaYyR6NJG31GGzixxbJmpNIvnjheshM31M56l
-         9jx3Nyv3LW6MFzl5IC38Cnnh8f+ommRnxa2ReXp+s/t77EJMS0WHq7RMOUAZZWLYAlXc
-         WPr9AXwvSoCax0uIaQ6YCPPpu64BaEXRduESti/DpxpcuH6GG8Z0Cnl1DiJ5QKx7ZyiS
-         l/MIMoRLZ7eN/rOYRZA6Y4TZYxPZaj++KbUMQfH7NaaCuPvKXyq42KTtDsubheTLIa/J
-         vPzg==
-X-Gm-Message-State: AOAM5302RGa23PqjN5Uk9sd852RPa7bekdx7FRB80EwCPYxFeDLWEzXp
-        I+1TqqhwybEg2Wx72OFPVrJiuNxEdL6Wul0RKvU=
-X-Google-Smtp-Source: ABdhPJx53ocT19tkO4h4aibYvyEwQmPVytNV6p1QXTOLr8AVIpA3QMBGuj2+pfumrHzfoBfaR6FUDaJKuNqP1VuXFes=
-X-Received: by 2002:a65:5a4d:: with SMTP id z13mr4466384pgs.4.1619193315238;
- Fri, 23 Apr 2021 08:55:15 -0700 (PDT)
+        bh=IogqCPyvEvuM6GWvpXpHl19+M+Wj9F934eJ8mKManQw=;
+        b=g3HF3dGunErDdOgt/deLUe4+fZybL+7VlA0onvRXnrIly0hJhiYyLkIGWceVP6gN/V
+         AFmZw3oTONGf02Fdw6bOadoz8SRAWAEaH1/kb7H37eHVzZxGiILaCGs8fF2d8ownsq+p
+         i0UV0BdU/G0e+lTH2UPBK8yDCLND+cX4jG35p2rTAH3tlxDEYrph4ULQmrHh0bGt0XxI
+         uZ5hAG5K1aAoqgpNEdFDvz3xpLIaAur0gBnfW+oQpJBrieMIXCuWo4Lt9hgde8XfrCRt
+         437gPpoya+DBOSKkDhCqM3XatReKguPSnmFXaJOHUKABuBJZZNZzFfO7TTfcR/AAyl0K
+         K9ag==
+X-Gm-Message-State: AOAM533CzlOwDzKXuchMp9C51Mx6UFj9BY9Qhu8yM6C8CuPyXdgfZC+D
+        w7wskyzU5CYaBvueNZ4EcsKjYD4TOY02UudxNJ0=
+X-Google-Smtp-Source: ABdhPJyCF5pfkqJvfI/SycPE59PP6Rrzx1x/SiXt/11eiyE8YcxxM3KPBfePw+OrmXFGq3h+2xVTOOJevU9KJV3Hpic=
+X-Received: by 2002:a17:90a:bd13:: with SMTP id y19mr6859715pjr.181.1619194006820;
+ Fri, 23 Apr 2021 09:06:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <1619080202-31924-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <CACRpkdaDP+JnCP+go9hZAObnNgmJyJRDFypX2CZGp-UJBh5wNA@mail.gmail.com>
-In-Reply-To: <CACRpkdaDP+JnCP+go9hZAObnNgmJyJRDFypX2CZGp-UJBh5wNA@mail.gmail.com>
+References: <20210420132333.99886-1-tomas.melin@vaisala.com> <20210420132333.99886-3-tomas.melin@vaisala.com>
+In-Reply-To: <20210420132333.99886-3-tomas.melin@vaisala.com>
 From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 23 Apr 2021 18:54:59 +0300
-Message-ID: <CAHp75VfpvPdAAW2JpvdiDtzS3LUF_=Ej7c2LEML_+pOwi6CtWg@mail.gmail.com>
-Subject: Re: [PATCH v6 0/3] Add ZynqMP pinctrl driver
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        git <git@xilinx.com>, saikrishna12468@gmail.com
+Date:   Fri, 23 Apr 2021 19:06:30 +0300
+Message-ID: <CAHp75Ve2AEA8yPw5qN+R=K=ovaO8vX53hYU9=knjY_Z+EHDdww@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] iio: accel: Add driver for Murata SCA3300 accelerometer
+To:     Tomas Melin <tomas.melin@vaisala.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 22, 2021 at 12:14 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+On Tue, Apr 20, 2021 at 4:24 PM Tomas Melin <tomas.melin@vaisala.com> wrote:
 >
-> On Thu, Apr 22, 2021 at 10:30 AM Sai Krishna Potthuri
-> <lakshmi.sai.krishna.potthuri@xilinx.com> wrote:
->
-> > changes in v6:
-> > - Rebased the patche series on 'devel' branch in pinctrl tree and no
-> > functional changes.
->
-> Remaining patches applied! Thanks for working so hard on this!
+> Add initial support for Murata SCA3300 3-axis industrial
+> accelerometer with digital SPI interface. This device also
+> provides a temperature measurement.
 
-Hmm... I have had a bunch of comments. Okay, they may be addressed by
-follow up(s).
+Thanks for an update, my comments below.
+
+They can be addressed as followups, but I think regmap API can be
+considered right now.
+
+...
+
+> +static int sca3300_read_reg(struct sca3300_data *sca_data, u8 reg, int *val)
+> +{
+> +       int ret;
+> +
+> +       mutex_lock(&sca_data->lock);
+> +       sca_data->txbuf[0] = reg << 2;
+> +       ret = sca3300_transfer(sca_data, val);
+> +       mutex_unlock(&sca_data->lock);
+> +       if (ret != -EINVAL)
+> +               return ret;
+> +
+> +       return sca3300_error_handler(sca_data);
+> +}
+> +
+> +static int sca3300_write_reg(struct sca3300_data *sca_data, u8 reg, int val)
+> +{
+> +       int reg_val = 0;
+> +       int ret;
+> +
+> +       mutex_lock(&sca_data->lock);
+> +       /* BIT(7) for write operation */
+> +       sca_data->txbuf[0] = BIT(7) | (reg << 2);
+> +       put_unaligned_be16(val, &sca_data->txbuf[1]);
+> +       ret = sca3300_transfer(sca_data, &reg_val);
+> +       mutex_unlock(&sca_data->lock);
+> +       if (ret != -EINVAL)
+> +               return ret;
+> +
+> +       return sca3300_error_handler(sca_data);
+> +}
+
+Okay, BIT(7) for write/read is pretty much standard stuff for such
+sensors. If you transform your driver to use REGMAP_SPI, you will get
+it thru regmap configuration. Also, you will get a locking there, in
+case you don't need to have several I/O in a row atomically.
+
+..
+
+> +       for_each_set_bit(bit, indio_dev->active_scan_mask,
+> +                        indio_dev->masklength) {
+
+One line?
+
+> +               ret = sca3300_read_reg(data, sca3300_channels[bit].address,
+> +                                      &val);
+> +               if (ret) {
+> +                       dev_err_ratelimited(&data->spi->dev,
+> +                               "failed to read register, error: %d\n", ret);
+> +                       /* handled, but bailing out due to errors */
+> +                       goto out;
+> +               }
+> +               data->scan.channels[i++] = val;
+> +       }
+
+...
+
+> +       int ret;
+> +       int value = 0;
+
+Reversed xmas tree ordering?
+
+...
+
+> +       /*
+> +        * Wait 1ms after SW-reset command.
+> +        * Wait 15ms for settling of signal paths.
+> +        */
+> +       usleep_range(16e3, 50e3);
+
+Hmm... Perhaps re-use msleep_range()
+https://elixir.bootlin.com/linux/latest/source/drivers/media/i2c/imx274.c#L601?
+
+...
+
+> +       .debugfs_reg_access = &sca3300_debugfs_reg_access,
+
+Reading of the registers you will get as a bonus when switching over
+to regmap SPI API.
 
 -- 
 With Best Regards,
