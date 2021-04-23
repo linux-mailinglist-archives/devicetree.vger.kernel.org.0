@@ -2,83 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A31C3368B9D
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 05:32:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 049DE368BA0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 05:34:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235302AbhDWDdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Apr 2021 23:33:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39346 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231552AbhDWDdU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Apr 2021 23:33:20 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37615C06174A
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 20:32:45 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id d124so33143498pfa.13
-        for <devicetree@vger.kernel.org>; Thu, 22 Apr 2021 20:32:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=BzcRr/BEJlxG1MpN8LmOK5QXIGm507wREeeatIRcmts=;
-        b=HjgJfX4AGivc/yz15utqAttjyCo8TXvjXlokGilyhSygKgtXnyvysUjh3O/opPQ41b
-         8W+q43D466oP0P8GXVp1bM+zsLGZ/tvn9XRfNNAqG5a2r/FlkrZiJETcM2cX3vMrBes5
-         spbmOgoPfZfHUNibT56s2tZvv04L9WgFW2tlZb7mGjDgE4syYduOsvMkEFwK95GBCplG
-         5mspC06tvcUxxCiYidGMHgFr8Cbxl3NJGc4pXK+8IBEXq0cNwMTRsDZ4LjEY0JW0V1nA
-         EjvwnB3gl3Wxcw8RF0rE3GmJffXKBvFP27b4aAYKrGUNm+5+wE4I4phyZq1rZuH+AxIc
-         JDVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=BzcRr/BEJlxG1MpN8LmOK5QXIGm507wREeeatIRcmts=;
-        b=Rn7sAyNZ5bGxbifNP0SNl+WutZLOMip1FF+vwEnlyxzmX9jFscaLvyZEYpjTu5YWyS
-         7RrxXJBphqijiP6gSBG7ENUpJsRuZur0iBFd5QtssuEAqVbfANY+WsA3rACPonqHlFJz
-         G73JBjtJ1L1019SeqVSBi6XdCHNA/gjuBeNcgdFG8mCHeXY/+dzD5MQ8LMucp12Dys2O
-         EIQFxJklau0/UDm61UUg9Z94DTKau+dEuaA0FWTR6/LYFsutnGB2QD6klyZuhp9kk1B9
-         evVBE7ZitRxeOkZi7Fq+NI6FnkXX4syloJrrmV7eBBqX1iwCLS4pEpGfFWwrYnJumbjK
-         TdWQ==
-X-Gm-Message-State: AOAM530tvVbX4vRT0k9gaWb5LtcsT94euVni7kUHgoZfOuZTWhgR+eI1
-        hMtJzseNAOTlNnE4nJiXG+390g==
-X-Google-Smtp-Source: ABdhPJy6qJxJ8lRees7PAkjHN4lM1cwhzbiZJmx3wp7by094PXqPDiT6QTymt1lj7cT+q0VRg0zOkA==
-X-Received: by 2002:a05:6a00:23c2:b029:24c:4748:4a80 with SMTP id g2-20020a056a0023c2b029024c47484a80mr1857979pfc.13.1619148764766;
-        Thu, 22 Apr 2021 20:32:44 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id e1sm3493455pgl.25.2021.04.22.20.32.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Apr 2021 20:32:44 -0700 (PDT)
-Date:   Thu, 22 Apr 2021 20:32:44 -0700 (PDT)
-X-Google-Original-Date: Thu, 22 Apr 2021 20:32:42 PDT (-0700)
-Subject:     Re: [RFC] dt-bindings: riscv: enum for riscv,isa
-In-Reply-To: <5385012d-9f09-d7d9-7b6a-cef7de2d4056@gmx.de>
-CC:     robh+dt@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     xypron.glpk@gmx.de
-Message-ID: <mhng-cec1febb-7da2-4d6e-9c38-3b1580b75e19@palmerdabbelt-glaptop>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S235684AbhDWDfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Apr 2021 23:35:20 -0400
+Received: from mail-eopbgr140042.outbound.protection.outlook.com ([40.107.14.42]:28856
+        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231261AbhDWDfU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Apr 2021 23:35:20 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cfC1CZSjQqSHbZtNCTUbOVKJJznYGr6+8bmDCwBA80CJ8EQ34idIy1ByW90a9T1arYOinYCmyeJtpFEQzN9Z29MDnawNHiAX0PbzwrHzcQWLY+WsRlxIljtzlA/cP0BrsiT8RG3CedzwcTjPWjcGi94kCZUMuk7zRid+Vl/yyxBJRwGDOlGsRsM2ADhtNV2grcvvDKvTiVLgsjnGl1QGhB1+m9AGEbC6GhgpjxF2q97z+m+/2e8EE//bokhsd1jV8igad8iXDwxrMo93aUZIEuMtdCq3I8LMweePp0hneuAbZe8VC7ffnNZgNB16jAZXTkgJoapJzuc3H39kBOzfzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1nteAchaYpm1H/MPgQlQ6J9zj6eqDjOuAItGP9fQAt4=;
+ b=hCMeqPvigQW3amXaiPnhjknOX70Y7dnsG0NrFkYAOtbiwmyzoU6lBA/r+VUdoMbuyiZQk6+dWV9WZ6D/uQ9XIjPJU7nIoJoeFgK3Oc5yElieteAIjHo+h02qIsPlZNK3sMrykyQ3SayOMgS7zkOURv+qHnNoQrs9nKaATx8LozH7QDGhMAZYegGwz8FC0Q3l3qqU2zyhaDSNT6AtIzrh1Mbv6e9bhd0i5W93EKKn1GowxLbdrNK1AK+x8IYeS1WLT10EHtUZv3cEwDSM9CJr1n/gJyV7EloQeCLQz46YLQXB3ZIFkX+DQzm6XXkkqipAG1kmWSAwT6E7Ne2MPwwVCA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1nteAchaYpm1H/MPgQlQ6J9zj6eqDjOuAItGP9fQAt4=;
+ b=iKxnYngWk+o+irqnQf6+yUFDJmiRlSCRqnoNpdUVGAD0qTmi3NvfQtFEmY8YHa4wVvs1tFuEK05H74q7BullEhocr7KurwjuP9icGWRx9OzLpnWJk2kfHOQFkgkQms7S8MfHWqLKruNo3geDqmx56II8WJIHbFw5FLyRr/vAKNM=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB4966.eurprd04.prod.outlook.com (2603:10a6:20b:2::14)
+ by AM6PR04MB5079.eurprd04.prod.outlook.com (2603:10a6:20b:4::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.21; Fri, 23 Apr
+ 2021 03:34:40 +0000
+Received: from AM6PR04MB4966.eurprd04.prod.outlook.com
+ ([fe80::b10a:ad0:a6f5:db9b]) by AM6PR04MB4966.eurprd04.prod.outlook.com
+ ([fe80::b10a:ad0:a6f5:db9b%2]) with mapi id 15.20.4065.023; Fri, 23 Apr 2021
+ 03:34:40 +0000
+From:   Dong Aisheng <aisheng.dong@nxp.com>
+To:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     dongas86@gmail.com, kernel@pengutronix.de, shawnguo@kernel.org,
+        linux-imx@nxp.com, abel.vesa@nxp.com, sboyd@kernel.org,
+        Dong Aisheng <aisheng.dong@nxp.com>, devicetree@vger.kernel.org
+Subject: [PATCH 1/6] dt-bindings: arm: imx: scu: fix naming typo of clk compatible string
+Date:   Fri, 23 Apr 2021 11:33:29 +0800
+Message-Id: <20210423033334.3317992-1-aisheng.dong@nxp.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: HK2P15301CA0017.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:202:1::27) To AM6PR04MB4966.eurprd04.prod.outlook.com
+ (2603:10a6:20b:2::14)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by HK2P15301CA0017.APCP153.PROD.OUTLOOK.COM (2603:1096:202:1::27) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.10 via Frontend Transport; Fri, 23 Apr 2021 03:34:37 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9415a7e2-c6bb-478c-3344-08d90608ba2b
+X-MS-TrafficTypeDiagnostic: AM6PR04MB5079:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <AM6PR04MB5079675A55A783FBBDA519A280459@AM6PR04MB5079.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: RpzNYjZO+phtzONyPh+Xh//y3sIMgx98dmpG4cW+mXrIjWsLxI71hlviAUFNFwyrnkFPyS9vWJnQvn8FjnvWwoWxFWt9kUZaqkPexjvRxWu01rCcHRMPspw0KK0iOaBRK8eWHLsB559BzIbf1Q6UiyDHY6esYQqtymdKhfAPsy6OGD3eLB1+2n2ZPFXNAQXq5L93GgmLOfeXr8nTdmMd3g38EHZ1PpJM1334PxXkz0DR4BwODquxlbkn9zxHTDHk8dDSlwhMFuRR8PtsrqKRjymjc+1ooi6Tr1ikYMTnsT2P8jBooZ6Ke7vnJ0EqOJlA90l1Q4oX6MveCYsSSOxx0RD1RTtt7FQRyar614MLnqSclXixn1BHfEb8prqfFuHgtXesv6b4TGqAq5EZ/yVJ5RWxrjflkOd7pcp/Q6TQKwTC7mLCRJChCT+1BGjisnAbx2WERxGTaeI4ScBnkz+ZPC/JF8kPD1x5eSR+ig9UwTKwFC9QpWboknu2Wbqs4gG7tGaQvKlUyst4KyUO/oZZjBJGt+WTP1SS3l2QaCrlItswXc1Nf96bqvNRz9MxPNwFJYtNwYT1E6y4al7ruCVC82pB7gcMf1Yp3kd54cB9VSIouWwBk7faTvw7yY97EezYSlYihwnrZFmUoV9X/dvUHQwcVVEBr7ITqTzSifnfcy6v+He6GpMVHiY6FOraAWSWAYWbgTfIrXp3VXscO8iBcQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4966.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(346002)(366004)(376002)(39860400002)(16526019)(2906002)(8936002)(6512007)(316002)(38350700002)(8676002)(52116002)(38100700002)(4326008)(66556008)(26005)(86362001)(66946007)(478600001)(36756003)(1076003)(2616005)(956004)(6666004)(5660300002)(6486002)(6506007)(186003)(66476007)(83380400001)(69590400013)(21314003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?1sWxzdrWf+le9CZSaDkbyNZBSoeepjNvQGA5DUh99SzIWKlJ+JWxZmVgulXb?=
+ =?us-ascii?Q?0omQNapbi4D35kGnPfOvm4w7N+fjIOXhd0mIOfsPrGk2uUlqJl5pBPbLvwFJ?=
+ =?us-ascii?Q?GGiGZOBHLZ4VUfX9FqiVuwc8VMSp0G7DvJxpomKbxEQoSgsWt9D8EJQEvucH?=
+ =?us-ascii?Q?/1Do9/d/EmAGzNZoWTGhN9Z+Xph3K4zkI2BOCZEb2Co0G6bAGnUkeWTOBR3x?=
+ =?us-ascii?Q?5lYWZ9GnmjBSLhBcfETb8tYFkXgirAC/02zfEGQ7MxfHIPdCXuUlbdk7aPaD?=
+ =?us-ascii?Q?mq8Ko3UPcZBw/VuGvLqlvP5UTGdD4HmO0bfAxDBCNBxdmwjA6LpIYzn3pStu?=
+ =?us-ascii?Q?WHhmsAHbk6j0y25TOZHJ+RMEYMqo38Q3aSSMXjF/onSJLrkepBzllzyUtsHP?=
+ =?us-ascii?Q?FMNE2oQ/OBzY5Qe2+gyYIYbzI9ksDMyou1ZclrtiSROG7xb1Qn1kqW29z29C?=
+ =?us-ascii?Q?FopkWWi7f6ZEA+pSwoFQUBxy8T0aYy+yUBX+e/m9FSTYaYWhTRUDfC/jKIqC?=
+ =?us-ascii?Q?gMiKv3h9DYSgnICIgaFyKjkRAl36kvpdYY7PIxKn+yj7dNgBoRhTdEhezpb3?=
+ =?us-ascii?Q?gDZba8LtsKuR5f0E7nBnvG9zsiMzzegVvIIirNn6zuwy+p/2MkTbzyUKCozO?=
+ =?us-ascii?Q?7OVgGTsK53hFnKSesf3LdR/8JCkLROnq8B0TwaKrqzpmJ5LTOSyeetJ3jAam?=
+ =?us-ascii?Q?HIBbJRcm+7vmAPn4hpD9tpkEvWOEC+l5NhMM5VQnaF6NtNVCqqKPvNw8zhp4?=
+ =?us-ascii?Q?zwIuJi2+h7MMJGQixwYG4vnVVu0oIa6DZwqhl4LRFM8+4tVIFfh9qf6ZCgTc?=
+ =?us-ascii?Q?+Ft8qZuH+wTxFjggriUEgdwjDTBMobTW/si1ttpfQzffCkY1/+IEwLc44RYT?=
+ =?us-ascii?Q?tHaWWeiw7ym6RCiNh4MtRDDDbCRn5NZmk1WYgHznciNzI0ptfWvf3Krgrgyg?=
+ =?us-ascii?Q?xDJENLOLt88qUcAv3vInP+VXyztBCoAmrfMQSuZvZLJiSwQ9w+0nqQfnwOCe?=
+ =?us-ascii?Q?AtT/tPrOwJPx0rzAC57rm8vgvx4geNPgmnNHiyhGPiIgbDTJBYW6PVVYAIkY?=
+ =?us-ascii?Q?grf3LyiyXkmwD8Y8TkMZMx+nY0IiaFXRZTHFaP8ADS/vlw4Xq4p55hKBQ0TG?=
+ =?us-ascii?Q?P90TsckMdUenbVUsyZbv+mF1XkiqNqjBNGNtj0WZz7CIUxsz7uiB9VaFjwTK?=
+ =?us-ascii?Q?baA1vMsVSd/IoHNmOAxtsU5wudGDsnfwT36O3gt3cpBSbiIE5xyhExvZ2d7T?=
+ =?us-ascii?Q?aoXL7iZV8XTkf9x10YhEC2s0hFP3gXcyFfSXd/l6eIpc5T0+i8s3ef2+6uEi?=
+ =?us-ascii?Q?XJSMN8eR24o8rN8q4S8I17U3?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9415a7e2-c6bb-478c-3344-08d90608ba2b
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4966.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2021 03:34:40.6871
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: f3cW2fmHJpsmS1VGZl6unyaAMeg2lS2Bp3l7UQoZSgsPfsIyOh4PTvulaCunSSQsf4DQCJByr4DWrR+APeY7tQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5079
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 06 Apr 2021 12:05:34 PDT (-0700), xypron.glpk@gmx.de wrote:
-> In Documentation/devicetree/bindings/riscv/cpus.yaml I find for riscv,isa:
->
->      enum:
->        - rv64imac
->        - rv64imafdc
->
-> This implies that 'rv64imafc' or 'rv64imafdqc' would be illegal values
-> while these combinations of extensions would be compliant with "The
-> RISC-V Instruction Set Manual".
->
-> To me it does not make much sense to try to enumerate all permissible
-> permutations of RISC-V extensions.
->
-> Shouldn't this enum be removed and replaced by examples?
+There is a typo in binding doc that the name of compatible string of
+scu clock should be "fsl,xxx-clk" rather than "fsl,xxx-clock".
+In reality, both example and dts using "fsl,xxx-clk", so fixing the doc
+is enough.
 
-I'm generally OK with that, but I'm not sure how to do it: won't we fail 
-the scheme checks if we don't have something defined for "riscv,isa"?
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+---
+ Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+index 395359dc94fd..3adf3f6f2beb 100644
+--- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
++++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+@@ -86,8 +86,8 @@ This binding uses the common clock binding[1].
+ 
+ Required properties:
+ - compatible:		Should be one of:
+-			  "fsl,imx8qm-clock"
+-			  "fsl,imx8qxp-clock"
++			  "fsl,imx8qm-clk"
++			  "fsl,imx8qxp-clk"
+ 			followed by "fsl,scu-clk"
+ - #clock-cells:		Should be either
+ 			2: Contains the Resource and Clock ID value.
+-- 
+2.25.1
+
