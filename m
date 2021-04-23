@@ -2,129 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C18B4368F82
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 11:39:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BBC5368FB4
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 11:46:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230374AbhDWJj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 05:39:59 -0400
-Received: from foss.arm.com ([217.140.110.172]:60516 "EHLO foss.arm.com"
+        id S241846AbhDWJrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 05:47:07 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:55148 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230006AbhDWJj7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Apr 2021 05:39:59 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9640111D4;
-        Fri, 23 Apr 2021 02:39:22 -0700 (PDT)
-Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D29A73F774;
-        Fri, 23 Apr 2021 02:39:19 -0700 (PDT)
-Date:   Fri, 23 Apr 2021 10:39:15 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Greentime Hu <greentime.hu@sifive.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>, jh80.chung@samsung.com,
-        Zong Li <zong.li@sifive.com>, robh+dt@kernel.org,
-        vidyas@nvidia.com, alex.dewar90@gmail.com,
-        Erik Danie <erik.danie@sifive.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Stephen Boyd <sboyd@kernel.org>,
-        hayashi.kunihiko@socionext.com, hes@sifive.com,
-        khilman@baylibre.com, Philipp Zabel <p.zabel@pengutronix.de>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Bjorn Helgaas <helgaas@kernel.org>, devicetree@vger.kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>
-Subject: Re: [PATCH v5 0/6] Add SiFive FU740 PCIe host controller driver
- support
-Message-ID: <20210423093915.GA7784@lpieralisi>
-References: <mhng-f3dd2202-8d2b-4e17-9067-c4521aac8125@palmerdabbelt-glaptop>
- <mhng-41850660-4a95-462a-9b1e-33dfc67815a4@palmerdabbelt-glaptop>
- <CAHCEehJHZGEUy2TO6fPg1WyAbQCoVee=AcRrkZE4Zhw+ibYKqQ@mail.gmail.com>
+        id S241876AbhDWJrE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Apr 2021 05:47:04 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1619171187; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=Y4r/sBksddih4An+rVdi9oFleJsyckug23va/2vBzpA=;
+ b=VAGlcgkJjn9IA6RjDTAVTPAXKnS9tfPnN5Y6oiUlZPODLin3ILQUckvU+54zSTNA/PEDWn7t
+ EVgeZRtI1nXEumhxSWBdsq1BGzUypf5/qmrIPXgPNdWMHc0gZMNkbGmWPix47JKWAhuQQ3xW
+ M7/Zbip5lQhSaUm6Dv6SQyNHKSE=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 60829772215b831afb08e8d9 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 23 Apr 2021 09:46:26
+ GMT
+Sender: rojay=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id E0E2EC43143; Fri, 23 Apr 2021 09:46:26 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: rojay)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C3513C433F1;
+        Fri, 23 Apr 2021 09:46:24 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHCEehJHZGEUy2TO6fPg1WyAbQCoVee=AcRrkZE4Zhw+ibYKqQ@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 23 Apr 2021 15:16:24 +0530
+From:   rojay@codeaurora.org
+To:     kernel test robot <lkp@intel.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        kbuild-all@lists.01.org, clang-built-linux@googlegroups.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com
+Subject: Re: [PATCH V2] arm64: dts: sc7280: Add qspi, qupv3_0 and qupv3_1
+ nodes
+In-Reply-To: <202104230503.T7HqjQbJ-lkp@intel.com>
+References: <20210422150556.450-1-rojay@codeaurora.org>
+ <202104230503.T7HqjQbJ-lkp@intel.com>
+Message-ID: <6950c9c7b54892b2a8e81915743431ea@codeaurora.org>
+X-Sender: rojay@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 23, 2021 at 02:00:46PM +0800, Greentime Hu wrote:
-> Palmer Dabbelt <palmer@dabbelt.com> 於 2021年4月23日 週五 下午1:10寫道：
-> >
-> > On Thu, 22 Apr 2021 21:43:03 PDT (-0700), Palmer Dabbelt wrote:
-> > > On Sun, 11 Apr 2021 19:37:50 PDT (-0700), greentime.hu@sifive.com wrote:
-> > >> Lorenzo Pieralisi <lorenzo.pieralisi@arm.com> 於 2021年4月9日 週五 下午4:54寫道：
-> > >>>
-> > >>> On Tue, 6 Apr 2021 17:26:28 +0800, Greentime Hu wrote:
-> > >>> > This patchset includes SiFive FU740 PCIe host controller driver. We also
-> > >>> > add pcie_aux clock and pcie_power_on_reset controller to prci driver for
-> > >>> > PCIe driver to use it.
-> > >>> >
-> > >>> > This is tested with e1000e: Intel(R) PRO/1000 Network Card, AMD Radeon R5
-> > >>> > 230 graphics card and SP M.2 PCIe Gen 3 SSD in SiFive Unmatched based on
-> > >>> > v5.11 Linux kernel.
-> > >>> >
-> > >>> > [...]
-> > >>>
-> > >>> Applied to pci/dwc [dropped patch 6], thanks!
-> > >>>
-> > >>> [1/6] clk: sifive: Add pcie_aux clock in prci driver for PCIe driver
-> > >>>       https://git.kernel.org/lpieralisi/pci/c/f3ce593b1a
-> > >>> [2/6] clk: sifive: Use reset-simple in prci driver for PCIe driver
-> > >>>       https://git.kernel.org/lpieralisi/pci/c/0a78fcfd3d
-> > >>> [3/6] MAINTAINERS: Add maintainers for SiFive FU740 PCIe driver
-> > >>>       https://git.kernel.org/lpieralisi/pci/c/8bb1c66a90
-> > >>> [4/6] dt-bindings: PCI: Add SiFive FU740 PCIe host controller
-> > >>>       https://git.kernel.org/lpieralisi/pci/c/b86d55c107
-> > >>> [5/6] PCI: fu740: Add SiFive FU740 PCIe host controller driver
-> > >>>       https://git.kernel.org/lpieralisi/pci/c/327c333a79
-> > >>>
-> > >>> Thanks,
-> > >>> Lorenzo
-> > >>
-> > >> Hi Palmer,
-> > >>
-> > >> Since the PCIE driver has been applied, would you please pick patch 6
-> > >> to RISC-V for-next tree?
-> > >> Thank you. :)
-> > >
-> > > Sorry, I got this confused between the Linux patch set and the u-boot
-> > > patch set so I thought more versions of this had kept comming.  The DT
-> > > is on for-next now.
-> >
-> > I spoke too soon: this actually dosn't even build for me.  It's the
-> > "clocks = <&prci PRCI_CLK_PCIE_AUX>;" line
-> >
-> >     Error: arch/riscv/boot/dts/sifive/fu740-c000.dtsi:319.20-21 syntax error
-> >     FATAL ERROR: Unable to parse input tree
-> >     make[2]: *** [scripts/Makefile.lib:336: arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dtb] Error 1
-> >     make[1]: *** [scripts/Makefile.build:514: arch/riscv/boot/dts/sifive] Error 2
-> >     make: *** [Makefile:1388: dtbs] Error 2
-> >     make: *** Waiting for unfinished jobs....
-> >
-> > I'm not sure what the issue is, I see an anchor for "prci".  Do you mind
-> > sending along a new version that compiles on top of for-next?  If I need
-> > the definiton of PRCI_CLK_PCIE_AUX from a PCIe tree then it's probably
-> > best to just keep the DTS along with the rest of the patches.  IIRC I
-> > alredy Acked it, but just to be clear
-> >
-> > Acked-by: Palmer Dabbelt <palmerdabbelt@google.com>
-> >
-> > Thanks!
+On 2021-04-23 02:52, kernel test robot wrote:
+> Hi Roja,
 > 
-> Thank you, Palmer.
-> It is defined in the first commit of this patchset. "clk: sifive: Add
-> pcie_aux clock in prci driver for PCIe driver"
-> You can select these whole 6 patches to make sure it can be built.
+> Thank you for the patch! Yet something to improve:
 > 
-> Hi Lorenzo,
-> Would you mind to pick the 6th patch along with the other 5 patches?
-> Thank you.
+> [auto build test ERROR on next-20210422]
+> [cannot apply to robh/for-next v5.12-rc8 v5.12-rc7 v5.12-rc6 v5.12-rc8]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+> 
+> url:
+> https://github.com/0day-ci/linux/commits/Roja-Rani-Yarubandi/arm64-dts-sc7280-Add-qspi-qupv3_0-and-qupv3_1-nodes/20210422-230756
+> base:    c457d9676496f5a895509f9c510278beaaffc829
+> config: arm64-randconfig-r012-20210421 (attached as .config)
+> compiler: clang version 13.0.0 (https://github.com/llvm/llvm-project
+> f5446b769a7929806f72256fccd4826d66502e59)
+> reproduce (this is a W=1 build):
+>         wget
+> https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross
+> -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # install arm64 cross compiling tool for clang build
+>         # apt-get install binutils-aarch64-linux-gnu
+>         #
+> https://github.com/0day-ci/linux/commit/78ed1b1d4c9f34dd06ae4494b78d70334fa8d7c1
+>         git remote add linux-review https://github.com/0day-ci/linux
+>         git fetch --no-tags linux-review
+> Roja-Rani-Yarubandi/arm64-dts-sc7280-Add-qspi-qupv3_0-and-qupv3_1-nodes/20210422-230756
+>         git checkout 78ed1b1d4c9f34dd06ae4494b78d70334fa8d7c1
+>         # save the attached .config to linux build tree
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1
+> ARCH=arm64
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>):
+> 
+>>> Error: arch/arm64/boot/dts/qcom/sc7280.dtsi:325.31-32 syntax error
+>    FATAL ERROR: Unable to parse input tree
+> 
 
-Done, on my pci/dwc branch.
+This error is due to "clk_virt" node parse issue which will be defined 
+in ICC patches
+https://lore.kernel.org/patchwork/project/lkml/list/?series=488429
+I also mentioned the dependency in the patch.
 
-Thanks,
-Lorenzo
+> ---
+> 0-DAY CI Kernel Test Service, Intel Corporation
+> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
