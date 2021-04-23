@@ -2,179 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5757C3698BD
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 19:58:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF1193698D0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 20:06:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231760AbhDWR64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Apr 2021 13:58:56 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:34437 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231735AbhDWR6z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 13:58:55 -0400
-Received: by mail-ot1-f48.google.com with SMTP id k14-20020a9d7dce0000b02901b866632f29so46010978otn.1;
-        Fri, 23 Apr 2021 10:58:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4aci9N8Ge0QjDAS/mJvl8Fe/7qt/Qhc8QTVGcATfEqk=;
-        b=uVFnP4H7uGi+vWDjBQZW5JKHa45GaxcX3aCpcoltv76dLtjr23yd8v0n20EGbOPadX
-         IoL+czB6yiOXVV5U8RFJTqMKzu9oT/4yfKpTQPQV1eqssbg0lJ6PWqIv3mtOoit3A+lb
-         AL8acVkyuRi2TZvZ3roRL8LLfz1k+50UWLSZlhJIhCNbJVxGQ0q3Of5WAoRFXISTJRfZ
-         2ooqRTpysz0zbfHg6BYqWYzqtfuW9Zz5J5euHfEUyOYgmnM2KQahANvPoJH6RNKn4OGa
-         76ci4779A7fJYCmuvhLxTUJ7Oe5DgvXpS0yXx1tKXCaDCiAy8YX6XNLldZ9ekNOsHeN7
-         ItHw==
-X-Gm-Message-State: AOAM5323HKNzi5B8uDcicQNOO4Ulu8ftlsCu6epsebpy2Wa7WFiDFrht
-        Ho9YT5J+w7o2umTwuuc1fg==
-X-Google-Smtp-Source: ABdhPJwGlPGXFac7obioUMhI2eKiG1eoOtQY8QFtFfiWTOAW8tV34BnJOzEKa8OdLJSdzLfsHojKYA==
-X-Received: by 2002:a05:6830:120a:: with SMTP id r10mr4430301otp.47.1619200698667;
-        Fri, 23 Apr 2021 10:58:18 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o64sm1357310oif.50.2021.04.23.10.58.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Apr 2021 10:58:18 -0700 (PDT)
-Received: (nullmailer pid 1338644 invoked by uid 1000);
-        Fri, 23 Apr 2021 17:58:16 -0000
-Date:   Fri, 23 Apr 2021 12:58:16 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Zoltan HERPAI <wigyori@uid0.hu>,
-        Raylynn Knight <rayknight@me.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3 net-next v3] net: ethernet: ixp4xx: Add DT bindings
-Message-ID: <20210423175816.GA1332201@robh.at.kernel.org>
-References: <20210423082208.2244803-1-linus.walleij@linaro.org>
+        id S232569AbhDWSH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Apr 2021 14:07:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50814 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229549AbhDWSH2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Apr 2021 14:07:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1E34C60FE6;
+        Fri, 23 Apr 2021 18:06:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1619201211;
+        bh=zY8W3QUzcAWl6AFnPYVD24wO4KnCsJRKIXsxHN8wx1c=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=dTiTKJSplBFdws7Z670JSl0N3QnlSoG/MoXHlgmknls69QEaMI4AZS0zAiJVGn6Sn
+         80zKX+YZ7XvG4iXz0s4AVJF7PHczSnd/AQyvbSPpNTLmdAyn5lOtZNTpooK7p/6FC1
+         tYpZxIH9z9nzGB0SI+BfDZ9E2AzLg15qzJrGXI7jqb/mpOpg1Jm17zVT5pVi2O1jwY
+         DMnxOBp4giIJ6ylJop8R/4fT32MRGwUN31+Hqn+yShNjHWYwq9skVN5ws+UvxLITk6
+         WHyYdsAyNQGxXM95V//QHFcNbIjUOm+qm21Uw46Or6ZeP4jSGF8o5Ss30h+6QcdSiP
+         spTh0yeAk27/g==
+From:   Mark Brown <broonie@kernel.org>
+To:     linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        devicetree@vger.kernel.org
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Joseph Chen <chenjh@rock-chips.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Kever Yang <kever.yang@rock-chips.com>, kernel@collabora.com,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Tang Cheng (TCS)
+Date:   Fri, 23 Apr 2021 19:06:17 +0100
+Message-Id: <161920103667.15429.2219995515166264842.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210421210338.43819-1-ezequiel@collabora.com>
+References: <20210421210338.43819-1-ezequiel@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210423082208.2244803-1-linus.walleij@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 23, 2021 at 10:22:06AM +0200, Linus Walleij wrote:
-> This adds device tree bindings for the IXP4xx ethernet
-> controller with optional MDIO bridge.
-> 
-> Cc: Zoltan HERPAI <wigyori@uid0.hu>
-> Cc: Raylynn Knight <rayknight@me.com>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> ChangeLog v2->v3:
-> - Designate phy nodes with ethernet-phy@
-> - Include phy-mode in the schema
-> ChangeLog v1->v2:
-> - Add schema for the (optional) embedded MDIO bus inside
->   the ethernet controller in an "mdio" node instead of just
->   letting the code randomly populate and present it to
->   the operating system.
-> - Reference the standard schemas for ethernet controller and
->   MDIO buses.
-> - Add intel,npe to indentify the NPE unit used with each
->   ethernet adapter.
-> ---
->  .../bindings/net/intel,ixp4xx-ethernet.yaml   | 82 +++++++++++++++++++
->  1 file changed, 82 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml b/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
-> new file mode 100644
-> index 000000000000..978e7f236f3a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
-> @@ -0,0 +1,82 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2018 Linaro Ltd.
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/net/intel,ixp4xx-ethernet.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Intel IXP4xx ethernet
-> +
-> +allOf:
-> +  - $ref: "ethernet-controller.yaml#"
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +description: |
-> +  The Intel IXP4xx ethernet makes use of the IXP4xx NPE (Network
-> +  Processing Engine) and the IXP4xx Queue Mangager to process
+On Wed, 21 Apr 2021 18:03:36 -0300, Ezequiel Garcia wrote:
+> Shenzhen City Tang Cheng Technology (http://www.tctek.cn/)
+> is a power management IC manufacturer.
 
-typo
+Applied to
 
-> +  the ethernet frames. It can optionally contain an MDIO bus to
-> +  talk to PHYs.
-> +
-> +properties:
-> +  compatible:
-> +    const: intel,ixp4xx-ethernet
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: Ethernet MMIO address range
-> +
-> +  queue-rx:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> +    maxItems: 1
-> +    description: phandle to the RX queue on the NPE
-> +
-> +  queue-txready:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> +    maxItems: 1
-> +    description: phandle to the TX READY queue on the NPE
-> +
-> +  phy-mode: true
-> +
-> +  phy-handle: true
-> +
-> +  intel,npe:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1, 2, 3]
-> +    description: which NPE (Network Processing Engine) this ethernet
-> +      instance is using
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-Is there a node for the NPE? If so, make this a phandle.
+Thanks!
 
-> +
-> +  mdio:
-> +    type: object
-> +    $ref: "mdio.yaml#"
-> +    description: optional node for embedded MDIO controller
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - queue-rx
-> +  - queue-txready
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    ethernet@c8009000 {
-> +      compatible = "intel,ixp4xx-ethernet";
-> +      reg = <0xc8009000 0x1000>;
-> +      status = "disabled";
-> +      queue-rx = <&qmgr 3>;
-> +      queue-txready = <&qmgr 20>;
-> +      intel,npe = <1>;
-> +      phy-mode = "rgmii";
-> +      phy-handle = <&phy1>;
-> +
-> +      mdio {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        phy1: ethernet-phy@1 {
-> +          reg = <1>;
-> +        };
-> +      };
-> +    };
-> -- 
-> 2.29.2
-> 
+[1/3] dt-bindings: vendor-prefixes: Add Tang Cheng (TCS)
+      commit: 3007accc39776e0888f7692bd1cb639c51cc29c5
+[2/3] dt-bindings: regulator: Add support for TCS4525
+      commit: f80505fdff771c89c9350895e99140ffc824e564
+[3/3] regulator: fan53555: Add TCS4525 DCDC support
+      commit: 914df8faa7d6fdff7afa1fbde888a2bed8d72fa7
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
