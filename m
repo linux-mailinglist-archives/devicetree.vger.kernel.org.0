@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E709C368E43
-	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 10:02:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0B54368E45
+	for <lists+devicetree@lfdr.de>; Fri, 23 Apr 2021 10:02:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241347AbhDWIDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S241358AbhDWIDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 23 Apr 2021 04:03:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41576 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241301AbhDWIDG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 04:03:06 -0400
+        with ESMTP id S241192AbhDWIDH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Apr 2021 04:03:07 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AD15C061344
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0BD0C061574
         for <devicetree@vger.kernel.org>; Fri, 23 Apr 2021 01:02:30 -0700 (PDT)
 Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1lZqlZ-0007aq-CA; Fri, 23 Apr 2021 10:02:21 +0200
+        id 1lZqlZ-0007at-C9; Fri, 23 Apr 2021 10:02:21 +0200
 Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1lZqlX-0006vm-UU; Fri, 23 Apr 2021 10:02:19 +0200
+        id 1lZqlY-0006wD-1E; Fri, 23 Apr 2021 10:02:20 +0200
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Woojung Huh <woojung.huh@microchip.com>,
         UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
@@ -35,9 +35,9 @@ Cc:     Michael Grzeschik <m.grzeschik@pengutronix.de>,
         Oleksij Rempel <o.rempel@pengutronix.de>,
         kernel@pengutronix.de, netdev@vger.kernel.org,
         linux-kernel@vger.kernel.org, Russell King <linux@armlinux.org.uk>
-Subject: [PATCH net-next v6 06/10] dt-bindings: net: dsa: document additional Microchip KSZ8863/8873 switch
-Date:   Fri, 23 Apr 2021 10:02:14 +0200
-Message-Id: <20210423080218.26526-7-o.rempel@pengutronix.de>
+Subject: [PATCH net-next v6 09/10] dt-bindings: net: mdio-gpio: add compatible for microchip,mdio-smi0
+Date:   Fri, 23 Apr 2021 10:02:17 +0200
+Message-Id: <20210423080218.26526-10-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210423080218.26526-1-o.rempel@pengutronix.de>
 References: <20210423080218.26526-1-o.rempel@pengutronix.de>
@@ -53,38 +53,37 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Michael Grzeschik <m.grzeschik@pengutronix.de>
 
-It is a 3-Port 10/100 Ethernet Switch. One CPU-Port and two
-Switch-Ports.
+Microchip SMI0 Mode is a special mode, where the MDIO Read/Write
+commands are part of the PHY Address and the OP Code is always 0. We add
+the compatible for this special mode of the bitbanged mdio driver.
 
 Cc: devicetree@vger.kernel.org
 Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Acked-by: Rob Herring <robh@kernel.org>
 Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Michael Grzeschik <m.grzeschik@pengutronix.de>
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
 ---
-v1 -> v3: - nothing changes
-          - already Acked-by Rob Herring
-v1 -> v4: - nothing changes
-v4 -> v5: - nothing changes
+v1 -> v2: - patch not present
+v2 -> v3: - first patch
+v3 -> v4: - no changes
 ---
- Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/net/mdio-gpio.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-index 9f7d131bbcef..84985f53bffd 100644
---- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-@@ -21,6 +21,8 @@ properties:
-       - microchip,ksz8765
-       - microchip,ksz8794
-       - microchip,ksz8795
-+      - microchip,ksz8863
-+      - microchip,ksz8873
-       - microchip,ksz9477
-       - microchip,ksz9897
-       - microchip,ksz9896
+diff --git a/Documentation/devicetree/bindings/net/mdio-gpio.txt b/Documentation/devicetree/bindings/net/mdio-gpio.txt
+index 8dbcf8295c6c..4d91a36c5cf5 100644
+--- a/Documentation/devicetree/bindings/net/mdio-gpio.txt
++++ b/Documentation/devicetree/bindings/net/mdio-gpio.txt
+@@ -2,6 +2,7 @@ MDIO on GPIOs
+ 
+ Currently defined compatibles:
+ - virtual,gpio-mdio
++- microchip,mdio-smi0
+ 
+ MDC and MDIO lines connected to GPIO controllers are listed in the
+ gpios property as described in section VIII.1 in the following order:
 -- 
 2.29.2
 
