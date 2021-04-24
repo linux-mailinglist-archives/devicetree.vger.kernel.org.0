@@ -2,69 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E0F836A0DA
-	for <lists+devicetree@lfdr.de>; Sat, 24 Apr 2021 13:22:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8B8936A0FA
+	for <lists+devicetree@lfdr.de>; Sat, 24 Apr 2021 13:52:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231387AbhDXLXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Apr 2021 07:23:15 -0400
-Received: from out28-99.mail.aliyun.com ([115.124.28.99]:45245 "EHLO
-        out28-99.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbhDXLXP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Apr 2021 07:23:15 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1138952|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_enroll_verification|0.00821303-0.00137538-0.990412;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047193;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=14;RT=14;SR=0;TI=SMTPD_---.K3KkmOM_1619263351;
-Received: from 192.168.88.128(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.K3KkmOM_1619263351)
-          by smtp.aliyun-inc.com(10.147.43.230);
-          Sat, 24 Apr 2021 19:22:32 +0800
-Subject: Re: [PATCH v6 00/12] Fix bugs and add support for new Ingenic SoCs.
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-mips@vger.kernel.org,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "Dr. H. Nikolaus Schaller" <hns@goldelico.com>, paul@boddie.org.uk,
-        andy.shevchenko@gmail.com, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sernia.zhou@foxmail.com
-References: <1618757073-1724-1-git-send-email-zhouyanjie@wanyeetech.com>
- <CACRpkdY348FQM0TUqmczV96j29WvX4p6QUWajN34N=YF98aLBQ@mail.gmail.com>
-From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Message-ID: <664d8b46-02fd-fca5-e454-968c72ce81a9@wanyeetech.com>
-Date:   Sat, 24 Apr 2021 19:22:31 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S233731AbhDXLxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Apr 2021 07:53:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46014 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231203AbhDXLxI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 24 Apr 2021 07:53:08 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B53D661467;
+        Sat, 24 Apr 2021 11:52:29 +0000 (UTC)
+Date:   Sat, 24 Apr 2021 12:53:09 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Tomas Melin <tomas.melin@vaisala.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 2/2] iio: accel: Add driver for Murata SCA3300
+ accelerometer
+Message-ID: <20210424125309.426d675c@jic23-huawei>
+In-Reply-To: <CAHp75Ve2AEA8yPw5qN+R=K=ovaO8vX53hYU9=knjY_Z+EHDdww@mail.gmail.com>
+References: <20210420132333.99886-1-tomas.melin@vaisala.com>
+        <20210420132333.99886-3-tomas.melin@vaisala.com>
+        <CAHp75Ve2AEA8yPw5qN+R=K=ovaO8vX53hYU9=knjY_Z+EHDdww@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdY348FQM0TUqmczV96j29WvX4p6QUWajN34N=YF98aLBQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+On Fri, 23 Apr 2021 19:06:30 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-On 2021/4/22 上午7:16, Linus Walleij wrote:
-> On Sun, Apr 18, 2021 at 4:44 PM 周琰杰 (Zhou Yanjie)
-> <zhouyanjie@wanyeetech.com> wrote:
->
->> v5->v6:
->> 1.Add the missing lcd-24bit group.
->> 2.Add DMIC pins support for Ingenic SoCs.
->> 3.Adjust and simplify the code.
-> This v6 patch set applied!
->
-> Thanks a lot for your hard work on this Zhou!
+> On Tue, Apr 20, 2021 at 4:24 PM Tomas Melin <tomas.melin@vaisala.com> wrote:
+> >
+> > Add initial support for Murata SCA3300 3-axis industrial
+> > accelerometer with digital SPI interface. This device also
+> > provides a temperature measurement.  
+> 
+> Thanks for an update, my comments below.
+> 
+> They can be addressed as followups, but I think regmap API can be
+> considered right now.
 
+It's not a totally clear cut case of regmap making sense for this particular
+device. I think you'd have do a custom regmap to support
+the cs_change = 1, needed for transfers and once you are going down that
+route the advantages of regmap have to be balanced against needing
+custom callbacks anyway.
 
-Thank you! It's my honor!
+Without actually implementing it I'm not certain whether it would be
+a good thing here or not. It should be fairly easy to try though if
+Tomas wants to.
 
+Jonathan
 
-Best regards!
+> 
+> ...
+> 
+> > +static int sca3300_read_reg(struct sca3300_data *sca_data, u8 reg, int *val)
+> > +{
+> > +       int ret;
+> > +
+> > +       mutex_lock(&sca_data->lock);
+> > +       sca_data->txbuf[0] = reg << 2;
+> > +       ret = sca3300_transfer(sca_data, val);
+> > +       mutex_unlock(&sca_data->lock);
+> > +       if (ret != -EINVAL)
+> > +               return ret;
+> > +
+> > +       return sca3300_error_handler(sca_data);
+> > +}
+> > +
+> > +static int sca3300_write_reg(struct sca3300_data *sca_data, u8 reg, int val)
+> > +{
+> > +       int reg_val = 0;
+> > +       int ret;
+> > +
+> > +       mutex_lock(&sca_data->lock);
+> > +       /* BIT(7) for write operation */
+> > +       sca_data->txbuf[0] = BIT(7) | (reg << 2);
+> > +       put_unaligned_be16(val, &sca_data->txbuf[1]);
+> > +       ret = sca3300_transfer(sca_data, &reg_val);
+> > +       mutex_unlock(&sca_data->lock);
+> > +       if (ret != -EINVAL)
+> > +               return ret;
+> > +
+> > +       return sca3300_error_handler(sca_data);
+> > +}  
+> 
+> Okay, BIT(7) for write/read is pretty much standard stuff for such
+> sensors. If you transform your driver to use REGMAP_SPI, you will get
+> it thru regmap configuration. Also, you will get a locking there, in
+> case you don't need to have several I/O in a row atomically.
+> 
+> ..
+> 
+> > +       for_each_set_bit(bit, indio_dev->active_scan_mask,
+> > +                        indio_dev->masklength) {  
+> 
+> One line?
+> 
+> > +               ret = sca3300_read_reg(data, sca3300_channels[bit].address,
+> > +                                      &val);
+> > +               if (ret) {
+> > +                       dev_err_ratelimited(&data->spi->dev,
+> > +                               "failed to read register, error: %d\n", ret);
+> > +                       /* handled, but bailing out due to errors */
+> > +                       goto out;
+> > +               }
+> > +               data->scan.channels[i++] = val;
+> > +       }  
+> 
+> ...
+> 
+> > +       int ret;
+> > +       int value = 0;  
+> 
+> Reversed xmas tree ordering?
+> 
+> ...
+> 
+> > +       /*
+> > +        * Wait 1ms after SW-reset command.
+> > +        * Wait 15ms for settling of signal paths.
+> > +        */
+> > +       usleep_range(16e3, 50e3);  
+> 
+> Hmm... Perhaps re-use msleep_range()
+> https://elixir.bootlin.com/linux/latest/source/drivers/media/i2c/imx274.c#L601?
+> 
+> ...
+> 
+> > +       .debugfs_reg_access = &sca3300_debugfs_reg_access,  
+> 
+> Reading of the registers you will get as a bonus when switching over
+> to regmap SPI API.
+> 
 
-
->
-> Yours,
-> Linus Walleij
