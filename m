@@ -2,125 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66F4636A166
-	for <lists+devicetree@lfdr.de>; Sat, 24 Apr 2021 15:42:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAFDB36A18A
+	for <lists+devicetree@lfdr.de>; Sat, 24 Apr 2021 16:14:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231836AbhDXNnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Apr 2021 09:43:12 -0400
-Received: from mout.gmx.net ([212.227.17.22]:55445 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230432AbhDXNnM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 24 Apr 2021 09:43:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1619271746;
-        bh=x8wM5P4pxtXqykeKqtUFgAdDsAbTPdRi6CFie1F34X0=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=D31v/g1yF6BZWGFLqeONSOy2M/a3KxMjRgsc5knS+0SnkM0+LF1uSfyCLEPMUrIe4
-         LB9oOr7I4sxsfeQO5bDkmTEf5X+8YPolwKdGJbDml27qZV2YgQOK/URptd6inHtD5i
-         GonAp2u0ww8PBGFdJcZvfnlx8XoR2229mPhuRf1I=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([5.146.195.179]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MaJ81-1m4KPM3oaD-00WB1N; Sat, 24
- Apr 2021 15:42:26 +0200
-Date:   Sat, 24 Apr 2021 15:42:23 +0200
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-Cc:     Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
-        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/4] misc: eeprom_93xx46: Switch based on word size, not
- addrlen
-Message-ID: <YIQgPwtzaEJDprHo@latitude>
-References: <20210424123034.11755-1-linkmauve@linkmauve.fr>
- <20210424123034.11755-5-linkmauve@linkmauve.fr>
+        id S232035AbhDXOOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Apr 2021 10:14:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40350 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232004AbhDXOOn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Apr 2021 10:14:43 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5954CC061574
+        for <devicetree@vger.kernel.org>; Sat, 24 Apr 2021 07:14:03 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id l189-20020a1cbbc60000b0290140319ad207so273911wmf.2
+        for <devicetree@vger.kernel.org>; Sat, 24 Apr 2021 07:14:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=yEV9Vfi6k8yPSdjdFWWfpN6I3p7j7bxmcNzDqwiFJu8=;
+        b=R7dzx1vXGVkZJQ+OC33Rx61kKne3uW3g3wEFwDnewpiBq7erBZuYtcZyc9W2/18h2U
+         /HlfvQ1OGfXD7dUOxFJZHJJ6hqjB8ul/hMH+FVgbuOYkPGBh4wUoe4XxxcNXJ2sLNU5h
+         x1jMLu8Kzf6kZEpqYhxgCqZrvAD4BaHXW2XnyTQfYXbhBQvCQ9yfgvGYTnVKI6NRH/1k
+         vq414mYOQTcAAsAyOQb5ysCFSpK5w7XU1n4wq+NNyEAj0LjAaQhGC+VA8HAKp0UzQwKS
+         3uhdRCJTuI3RAf/SopnoNk3h2nj5gcOmzrPQBss+Noh9kX01zKNwfLYZLO7ghpbf3J8x
+         Ty+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=yEV9Vfi6k8yPSdjdFWWfpN6I3p7j7bxmcNzDqwiFJu8=;
+        b=rPGtn8O2BGLpk6h8CYLiCfrbSjjHMWHRhl/V+cLqfmmkr8kglgDzNk0fedrwpnX26V
+         55tIr2PnRdjFlD/xAwUrnx0heLVt2rzpk0UqNcqx8b02SRGg7hZcnbS+zv3hbQdC7JSR
+         f+Fsy7sG6HxXvymFflSZ4AvPcidwh7TZUxzPdQE/I/xMCFR7VPG3O/CRwFMYQ0P59cBD
+         DOG4EgSZ5TCV3rXJZZjtjuYTmew7/GJScDuP2LO7mBa41KZNx5w9+x9AZreW7F+7qeBl
+         3DVUlDUQPv/CsT0s4LoZNjCRTWyXYHEiSGZFwjyBh5GhRASsgzDy0AbkAq6wvnrHFJyw
+         uJvA==
+X-Gm-Message-State: AOAM533EU/TgzjL4lCQFtfRRHAZO0wbQmBZlESVPX7utk2sEe9ZPO5tH
+        sTS/Hy/Fp09hRMtFtuo3YqLsPw==
+X-Google-Smtp-Source: ABdhPJx8tQzLxxZLKT4GC6X8qAIHKfZGSViRWvK2OFJ1IeSJB7VpLcUdzqefv7/tzNPdoDQvCOzRJg==
+X-Received: by 2002:a1c:f305:: with SMTP id q5mr10916950wmq.96.1619273641796;
+        Sat, 24 Apr 2021 07:14:01 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:85f7:144e:18c:5cfc? ([2a01:e34:ed2f:f020:85f7:144e:18c:5cfc])
+        by smtp.googlemail.com with ESMTPSA id s10sm12546073wrt.23.2021.04.24.07.14.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 24 Apr 2021 07:14:01 -0700 (PDT)
+Subject: Re: [PATCH 2/2] thermal/rockchip: Support RK3568 SoCs in the thermal
+ driver
+To:     Ezequiel Garcia <ezequiel@collabora.com>, linux-pm@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Finley Xiao <finley.xiao@rock-chips.com>, kernel@collabora.com
+References: <20210421200445.32977-1-ezequiel@collabora.com>
+ <20210421200445.32977-2-ezequiel@collabora.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <ef9140da-c996-512a-b459-53461bd8198e@linaro.org>
+Date:   Sat, 24 Apr 2021 16:14:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mF+lD7BQt1FLCE++"
-Content-Disposition: inline
-In-Reply-To: <20210424123034.11755-5-linkmauve@linkmauve.fr>
-X-Provags-ID: V03:K1:GoKrb9UrTWKh4wozJikWV5nuK1jO8DIotg+VbOJZF5DMHSmyiQC
- T2o4SipGqha9LeVr2pEV3RKrB9dGE9kwpe406HacvZW9fu8rInI14Ha8FY2o5JUCkyrgd3z
- IqgmBMNIi2UX2Eo/tq7iMOR4N+11asIic0hRWDY1pNP3OMvhV9cZYV7U0af1xg5aPoFRMZ+
- dlx21BLWyiZ3lwsSaeGmA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:zi44y7ZFSGU=:Q4UNMvYnUixzhcKPl9Gn3F
- yyOND/mOEifLsVg30S/Q+DpxbELCXzBd5OK0f25LA3i7z/+fLZWEtDUypB95C8i8KrlILOOo9
- 44HQx4iWwBTMEFw7z2ApCSjH6uWxBgErCTr3RUBrTMtuKhWS0ddiVN8q3sDxn9U+TVTUAb7Hx
- roA0OdA4qKMTBL9ab9b+HAa/oDYVlO+wlQl96O+WcGnxA6ktESfxeBwwStyP48ADQs5dwQsli
- oD9nH4ud2vKTThIsRkiYAHZv/1v7AB+hYX4TjfxT9xvjRXVlKL0PQ20bzc8EBcDhYuehcw4xu
- yKoJs5X4zLUMomZL6418ZC7IW2PbbOjQhOMPAdJM5WotmiqW4eqeHx/+LGGhRwudX5ONO6Ubt
- 4uEeMCDkodj4Ov08AQ5hNmu4RREXrLFG36eMzg4CdkTRrtOGub/dY/gquVHowkfOVsphlI6nI
- 1FqxAuR2qec+pf9oOgrXuHaloQzrdS17uUA4ptqVHwGCC7EGDpar0M+d4gDBI3YqA+1UJsXfs
- GMKk3yBHMhVP3mg8FBwl1pRhLaj1qtFEWI4QhytRLRLaEBO+GvS+s/EyCb/MnI7Ow7p+/1v0i
- uZ4+H/eKfLOrE3i6G76vLGNZq0t7NBAbanDW7NJeREPmGTI11UVkRueBmElc+fPLp5S06UKsZ
- higMAk6jPngwajtgxL8y+J+GQm2SCy8Xofu2PEhrlXo7uvirG8waezh3wPxTHBOo9tOfov9Gl
- oRIMdnDCt6D9EgNmHje+NXjA5lQhM/xH6TgIzkriRLbpuNz6gb8cZ5BdaAdsGYtjhv6jJCLua
- HG+JgzqmbkCW4dY3fE6TJ75nn1Qw4r8AU82KwqSVQ4nxxGjOfvv4Z7EBBTOxXEwXxRpon00RX
- SHBZIFv9Krr1KWqX/S1NeCkOOX7e6CMLdkGT7P2ntwrDoy9IcQLFuQCrUmOM7fPZO1o5enkEe
- 5UTIMTrzyoLoZbimDGOqmvYX+sqm9lGzsf3Sexbt/XOdwkPfU2bZ711GBFa6oAQZ1INL/z9h+
- MAno2isRA9gn6r8KVHaLZuJ4DtvtwgGh6dFuta4aI39uIoSUSrzK/+LgaaEJ8fT6qm3NMvOvL
- q4QiaJVEETqDOjieyfzR3TDyb6+cQXQxACv5HpjCh52yV2cHeZ2ofCo0tOvQTS0YDwcQDjksW
- /9DAcntHBcTh+U+oPzoG0MtOSS8Z2dxco6+IYys0vQcV2uCC1JT7wgWBNIcWIoHY/NGmZq84X
- imZaMzDXwd8XaILdw
+In-Reply-To: <20210421200445.32977-2-ezequiel@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---mF+lD7BQt1FLCE++
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sat, Apr 24, 2021 at 02:30:33PM +0200, Emmanuel Gil Peyrot wrote:
-> This avoids using magic numbers based on the total size and length of an
-> address, where we only want to differentiate between 8-bit and 16-bit,
-> and finally makes 93c56 and 93c66 usable!
->=20
-> If the two pointer indirections is too much, we could move the flags to
-> the main struct instead, but I doubt it=E2=80=99s going to make any sensi=
-ble
-> difference.
->=20
-> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+On 21/04/2021 22:04, Ezequiel Garcia wrote:
+> From: Finley Xiao <finley.xiao@rock-chips.com>
+> 
+> The RK3568 SoCs have two Temperature Sensors, channel 0 is for CPU,
+> channel 1 is for GPU.
+> 
+> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
+> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
 > ---
+>  drivers/thermal/rockchip_thermal.c | 107 +++++++++++++++++++++++++++++
+>  1 file changed, 107 insertions(+)
+> 
+> diff --git a/drivers/thermal/rockchip_thermal.c b/drivers/thermal/rockchip_thermal.c
+> index aa9e0e31ef98..8e26f2685003 100644
+> --- a/drivers/thermal/rockchip_thermal.c
+> +++ b/drivers/thermal/rockchip_thermal.c
+> @@ -211,7 +211,11 @@ struct rockchip_thermal_data {
+>  #define TSADCV3_AUTO_PERIOD_TIME		1875 /* 2.5ms */
+>  #define TSADCV3_AUTO_PERIOD_HT_TIME		1875 /* 2.5ms */
+>  
+> +#define TSADCV5_AUTO_PERIOD_TIME		1622 /* 2.5ms */
+> +#define TSADCV5_AUTO_PERIOD_HT_TIME		1622 /* 2.5ms */
+> +
+>  #define TSADCV2_USER_INTER_PD_SOC		0x340 /* 13 clocks */
+> +#define TSADCV5_USER_INTER_PD_SOC		0xfc0 /* 97us, at least 90us */
+>  
+>  #define GRF_SARADC_TESTBIT			0x0e644
+>  #define GRF_TSADC_TESTBIT_L			0x0e648
+> @@ -219,6 +223,12 @@ struct rockchip_thermal_data {
+>  
+>  #define PX30_GRF_SOC_CON2			0x0408
+>  
+> +#define RK3568_GRF_TSADC_CON			0x0600
+> +#define RK3568_GRF_TSADC_ANA_REG0		(0x10001 << 0)
+> +#define RK3568_GRF_TSADC_ANA_REG1		(0x10001 << 1)
+> +#define RK3568_GRF_TSADC_ANA_REG2		(0x10001 << 2)
+> +#define RK3568_GRF_TSADC_TSEN			(0x10001 << 8)
+> +
+>  #define GRF_SARADC_TESTBIT_ON			(0x10001 << 2)
+>  #define GRF_TSADC_TESTBIT_H_ON			(0x10001 << 2)
+>  #define GRF_TSADC_VCM_EN_L			(0x10001 << 7)
+> @@ -474,6 +484,45 @@ static const struct tsadc_table rk3399_code_table[] = {
+>  	{TSADCV3_DATA_MASK, 125000},
+>  };
+>  
+> +static const struct tsadc_table rk3568_code_table[] = {
+> +	{0, -40000},
+> +	{1584, -40000},
+> +	{1620, -35000},
+> +	{1652, -30000},
+> +	{1688, -25000},
+> +	{1720, -20000},
+> +	{1756, -15000},
+> +	{1788, -10000},
+> +	{1824, -5000},
+> +	{1856, 0},
+> +	{1892, 5000},
+> +	{1924, 10000},
+> +	{1956, 15000},
+> +	{1992, 20000},
+> +	{2024, 25000},
+> +	{2060, 30000},
+> +	{2092, 35000},
+> +	{2128, 40000},
+> +	{2160, 45000},
+> +	{2196, 50000},
+> +	{2228, 55000},
+> +	{2264, 60000},
+> +	{2300, 65000},
+> +	{2332, 70000},
+> +	{2368, 75000},
+> +	{2400, 80000},
+> +	{2436, 85000},
+> +	{2468, 90000},
+> +	{2500, 95000},
+> +	{2536, 100000},
+> +	{2572, 105000},
+> +	{2604, 110000},
+> +	{2636, 115000},
+> +	{2672, 120000},
+> +	{2704, 125000},
+> +	{TSADCV2_DATA_MASK, 125000},
+> +};
+> +
+>  static u32 rk_tsadcv2_temp_to_code(const struct chip_tsadc_table *table,
+>  				   int temp)
+>  {
+> @@ -701,6 +750,35 @@ static void rk_tsadcv4_initialize(struct regmap *grf, void __iomem *regs,
+>  	regmap_write(grf, PX30_GRF_SOC_CON2, GRF_CON_TSADC_CH_INV);
+>  }
+>  
+> +static void rk_tsadcv7_initialize(struct regmap *grf, void __iomem *regs,
+> +				  enum tshut_polarity tshut_polarity)
+> +{
+> +	writel_relaxed(TSADCV5_USER_INTER_PD_SOC, regs + TSADCV2_USER_CON);
+> +	writel_relaxed(TSADCV5_AUTO_PERIOD_TIME, regs + TSADCV2_AUTO_PERIOD);
+> +	writel_relaxed(TSADCV2_HIGHT_INT_DEBOUNCE_COUNT,
+> +		       regs + TSADCV2_HIGHT_INT_DEBOUNCE);
+> +	writel_relaxed(TSADCV5_AUTO_PERIOD_HT_TIME,
+> +		       regs + TSADCV2_AUTO_PERIOD_HT);
+> +	writel_relaxed(TSADCV2_HIGHT_TSHUT_DEBOUNCE_COUNT,
+> +		       regs + TSADCV2_HIGHT_TSHUT_DEBOUNCE);
+> +
+> +	if (tshut_polarity == TSHUT_HIGH_ACTIVE)
+> +		writel_relaxed(0U | TSADCV2_AUTO_TSHUT_POLARITY_HIGH,
+> +			       regs + TSADCV2_AUTO_CON);
+> +	else
+> +		writel_relaxed(0U & ~TSADCV2_AUTO_TSHUT_POLARITY_HIGH,
+> +			       regs + TSADCV2_AUTO_CON);
+> +
+> +	if (!IS_ERR(grf)) {
 
-Ah, this somewhat addresses my reply to the previous patch.
-I think by rearranging and/or squashing the patches, they could tell a
-more coherent story, and cause less confusion.
+That is strange to do this check with a parameter. Is the sensor
+functional if the regmap failed ?
 
-(Basically: avoid creating conditions where the code is wrong =E2=80=94 if a
- later patch is needed in order to make a previous patch correct, but the
- later patch alone wouldn't make the code incorrect, swap them. If there's
- breakage either way and you can't tease them apart, squash them together.)
+> +		regmap_write(grf, RK3568_GRF_TSADC_CON, RK3568_GRF_TSADC_TSEN);
+> +		udelay(15);
+> +		regmap_write(grf, RK3568_GRF_TSADC_CON, RK3568_GRF_TSADC_ANA_REG0);
+> +		regmap_write(grf, RK3568_GRF_TSADC_CON, RK3568_GRF_TSADC_ANA_REG1);
+> +		regmap_write(grf, RK3568_GRF_TSADC_CON, RK3568_GRF_TSADC_ANA_REG2);
+> +		usleep_range(100, 200);
+
+Is it possible to put a comment on why these delays are necessary (if
+you have the info) ?
+
+> +	}
+> +}
+> +
+>  static void rk_tsadcv2_irq_ack(void __iomem *regs)
+>  {
+>  	u32 val;
+> @@ -1027,6 +1105,31 @@ static const struct rockchip_tsadc_chip rk3399_tsadc_data = {
+>  	},
+>  };
+>  
+> +static const struct rockchip_tsadc_chip rk3568_tsadc_data = {
+> +	.chn_id[SENSOR_CPU] = 0, /* cpu sensor is channel 0 */
+> +	.chn_id[SENSOR_GPU] = 1, /* gpu sensor is channel 1 */
+> +	.chn_num = 2, /* two channels for tsadc */
+> +
+> +	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC */
+> +	.tshut_polarity = TSHUT_LOW_ACTIVE, /* default TSHUT LOW ACTIVE */
+> +	.tshut_temp = 95000,
+> +
+> +	.initialize = rk_tsadcv7_initialize,
+> +	.irq_ack = rk_tsadcv3_irq_ack,
+> +	.control = rk_tsadcv3_control,
+> +	.get_temp = rk_tsadcv2_get_temp,
+> +	.set_alarm_temp = rk_tsadcv2_alarm_temp,
+> +	.set_tshut_temp = rk_tsadcv2_tshut_temp,
+> +	.set_tshut_mode = rk_tsadcv2_tshut_mode,
+> +
+> +	.table = {
+> +		.id = rk3568_code_table,
+> +		.length = ARRAY_SIZE(rk3568_code_table),
+> +		.data_mask = TSADCV2_DATA_MASK,
+> +		.mode = ADC_INCREMENT,
+> +	},
+> +};
+> +
+>  static const struct of_device_id of_rockchip_thermal_match[] = {
+>  	{	.compatible = "rockchip,px30-tsadc",
+>  		.data = (void *)&px30_tsadc_data,
+> @@ -1059,6 +1162,10 @@ static const struct of_device_id of_rockchip_thermal_match[] = {
+>  		.compatible = "rockchip,rk3399-tsadc",
+>  		.data = (void *)&rk3399_tsadc_data,
+>  	},
+> +	{
+> +		.compatible = "rockchip,rk3568-tsadc",
+> +		.data = (void *)&rk3568_tsadc_data,
+> +	},
+>  	{ /* end */ },
+>  };
+>  MODULE_DEVICE_TABLE(of, of_rockchip_thermal_match);
+> 
 
 
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Thanks,
-Jonathan
-
---mF+lD7BQt1FLCE++
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmCEID8ACgkQCDBEmo7z
-X9vTaRAAsXPixWA1V+sKf7bVhbGsOdJmZkLSze1UvUIuAFWJRQVK2hMAjvauN0iJ
-G6Gc572a5qZ4sLK2MEkukWLh9Z4x/aFaxDlcS3w0VABoLUwuvxdfFPaadiyKwtsY
-QLKSRie1J7Q3qEuGtNK1s9Z/+3Qm/1AXd7LdrB8k2FFsaQPAmb6YsgtyxaHcMSux
-asi8irRGxVWhdu7Ez3vxOslfHvu5ijvR3+DBqech2eCWmR7tWGlVYobyLs3dNmtV
-qOmn+NZf9rajkuWc/2FZHKdP4/DU5yXoOQylc9LlkFG4zPCS9dxFkrtJyQuYl6Bx
-IusNHeq+F+XyoIluKkA7gocx3Wr6XgpL0Rq+lTr2abjs0JhDXJPmzTZzo6NgJB9O
-ZrCExHjI4cu3hGGWG/niKR3SkQo+YCzk5AsSkZJt5BZAI2Yy9/N3wncF8PoZ1x+L
-sfHZ7L+DsFNqpRKUGRqAUGbpMilT0yoq+ZfNQ5orrC5inK1mpzQnEpdYTOkk7uBv
-R2IWGXmel9gDjAmXfL7jXsWwGcKV0BF7nlhJVqeNplQpshlHDKtCFYKnFnp25QWI
-ngRzxGyGveW41MocDzrFOwYJuffI0GJNslak+sTl0Y9ZmD/drdUVcs9UWDJIh8iR
-U3C514IBjQVc5NulMA5oVysJTCpw3TJOX2+BOe1frMAqHR4IaFI=
-=UwN5
------END PGP SIGNATURE-----
-
---mF+lD7BQt1FLCE++--
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
