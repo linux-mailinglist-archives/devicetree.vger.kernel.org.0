@@ -2,103 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F8DC36A28A
-	for <lists+devicetree@lfdr.de>; Sat, 24 Apr 2021 20:20:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ABBA36A2B4
+	for <lists+devicetree@lfdr.de>; Sat, 24 Apr 2021 20:58:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233565AbhDXSVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Apr 2021 14:21:25 -0400
-Received: from www381.your-server.de ([78.46.137.84]:54744 "EHLO
-        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231814AbhDXSVY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Apr 2021 14:21:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
-         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=WRizYjuChZVACdbHdKjrYX0xDpwtBjEh0KJUrqKNQs0=; b=LaRh/njDsRJ5+9pWt6/TgP9M3p
-        yfg6eoomPdDSWt9vF+SEB59H+llgdDqG3huvhdts7ZFdsg4Grqx7jdgBCdrqwugrc500JG91wkhLf
-        R4bBTT7rk7/dZbAxec5Hk2tR0k+PRn2h6uRuf1HVXWtzt1ED8ioOHeD5WTB3z9ZB3k5tMvmWl60PX
-        /SPtuUYyHguHEnpUwAn1Hyij1Ohd0zi9VrIuAcuD8OdS3iM5xSmBGirbd1LGw8VkTOpRwOvTDLN/L
-        o5e53mI4FrPqh0vjafGPjgbkorVuAkfQbWC+H7+fADRMMK2yU5M+unr5hgq5VAGRx7Fs8+yEaa1vM
-        hPpXcinw==;
-Received: from sslproxy02.your-server.de ([78.47.166.47])
-        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <lars@metafoo.de>)
-        id 1laMtW-000DLj-2N; Sat, 24 Apr 2021 20:20:42 +0200
-Received: from [2001:a61:2a42:9501:9e5c:8eff:fe01:8578]
-        by sslproxy02.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <lars@metafoo.de>)
-        id 1laMtV-000V8g-Tq; Sat, 24 Apr 2021 20:20:41 +0200
-Subject: Re: [PATCH v3 1/2] iio:adc:ad7476: Handle the different regulators
- used by various parts.
-To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        kernel test robot <lkp@intel.com>
-References: <20210424170346.526242-1-jic23@kernel.org>
- <20210424170346.526242-2-jic23@kernel.org>
-From:   Lars-Peter Clausen <lars@metafoo.de>
-Message-ID: <3780b584-3a94-4fdd-f6d3-b8823a253de7@metafoo.de>
-Date:   Sat, 24 Apr 2021 20:20:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        id S232539AbhDXS6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Apr 2021 14:58:33 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:51686 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231814AbhDXS6c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Apr 2021 14:58:32 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id 260D11F4310A
+Message-ID: <7786c76ae276ee7bb5885592231a8089c9bfbdf9.camel@collabora.com>
+Subject: Re: [PATCH 2/2] thermal/rockchip: Support RK3568 SoCs in the
+ thermal driver
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Finley Xiao <finley.xiao@rock-chips.com>, kernel@collabora.com
+Date:   Sat, 24 Apr 2021 15:57:43 -0300
+In-Reply-To: <ef9140da-c996-512a-b459-53461bd8198e@linaro.org>
+References: <20210421200445.32977-1-ezequiel@collabora.com>
+         <20210421200445.32977-2-ezequiel@collabora.com>
+         <ef9140da-c996-512a-b459-53461bd8198e@linaro.org>
+Organization: Collabora
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.2-1 
 MIME-Version: 1.0
-In-Reply-To: <20210424170346.526242-2-jic23@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Authenticated-Sender: lars@metafoo.de
-X-Virus-Scanned: Clear (ClamAV 0.103.2/26150/Sat Apr 24 13:06:52 2021)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/24/21 7:03 PM, Jonathan Cameron wrote:
-> [...]
->   
-> +	/* Either vcc or vref (below) as appropriate */
-> +	if (!st->chip_info->int_vref_uv)
-> +		st->ref_reg = reg;
-> +
-> +	if (st->chip_info->has_vref) {
-> +
-> +		/* If a device has an internal reference vref is optional */
-> +		if (st->chip_info->int_vref_uv) {
-> +			reg = devm_regulator_get_optional(&spi->dev, "vref");
-> +		} else {
-> +			reg = devm_regulator_get(&spi->dev, "vref");
-> +			if (IS_ERR(reg))
-> +				return PTR_ERR(reg);
-> +		}
-> +
-> +		if (!IS_ERR(reg)) {
-> +			ret = regulator_enable(reg);
-> +			if (ret)
-> +				return ret;
-> +
-> +			ret = devm_add_action_or_reset(&spi->dev,
-> +						       ad7476_reg_disable,
-> +						       reg);
-> +			if (ret)
-> +				return ret;
-> +			st->ref_reg = reg;
-> +		} else {
-We still need to check for errors, e.g. to support EPROBE_DEFER. The 
-only error that can be ignored is ENOENT, which means no regulator is 
-specified.
-> +			/*
-> +			 * Can only get here if device supports both internal
-> +			 * and external reference, but the regulator connected
-> +			 * to the external reference is not connected.
-> +			 * Set the reference regulator pointer to NULL to
-> +			 * indicate this.
-> +			 */
-> +			st->ref_reg = NULL;
-> +		}
-> +	}
+Hi Daniel,
+
+Thanks for the review.
+
+On Sat, 2021-04-24 at 16:14 +0200, Daniel Lezcano wrote:
+> On 21/04/2021 22:04, Ezequiel Garcia wrote:
+> > From: Finley Xiao <finley.xiao@rock-chips.com>
+> > 
+> > The RK3568 SoCs have two Temperature Sensors, channel 0 is for CPU,
+> > channel 1 is for GPU.
+> > 
+> > Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
+> > Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> > ---
+> >  drivers/thermal/rockchip_thermal.c | 107 +++++++++++++++++++++++++++++
+> >  1 file changed, 107 insertions(+)
+> > 
+> > diff --git a/drivers/thermal/rockchip_thermal.c b/drivers/thermal/rockchip_thermal.c
+> > index aa9e0e31ef98..8e26f2685003 100644
+> > --- a/drivers/thermal/rockchip_thermal.c
+> > +++ b/drivers/thermal/rockchip_thermal.c
+> > @@ -211,7 +211,11 @@ struct rockchip_thermal_data {
+> >  #define TSADCV3_AUTO_PERIOD_TIME               1875 /* 2.5ms */
+> >  #define TSADCV3_AUTO_PERIOD_HT_TIME            1875 /* 2.5ms */
+> >  
+> > +#define TSADCV5_AUTO_PERIOD_TIME               1622 /* 2.5ms */
+> > +#define TSADCV5_AUTO_PERIOD_HT_TIME            1622 /* 2.5ms */
+> > +
+> >  #define TSADCV2_USER_INTER_PD_SOC              0x340 /* 13 clocks */
+> > +#define TSADCV5_USER_INTER_PD_SOC              0xfc0 /* 97us, at least 90us */
+> >  
+> >  #define GRF_SARADC_TESTBIT                     0x0e644
+> >  #define GRF_TSADC_TESTBIT_L                    0x0e648
+> > @@ -219,6 +223,12 @@ struct rockchip_thermal_data {
+> >  
+> >  #define PX30_GRF_SOC_CON2                      0x0408
+> >  
+> > +#define RK3568_GRF_TSADC_CON                   0x0600
+> > +#define RK3568_GRF_TSADC_ANA_REG0              (0x10001 << 0)
+> > +#define RK3568_GRF_TSADC_ANA_REG1              (0x10001 << 1)
+> > +#define RK3568_GRF_TSADC_ANA_REG2              (0x10001 << 2)
+> > +#define RK3568_GRF_TSADC_TSEN                  (0x10001 << 8)
+> > +
+> >  #define GRF_SARADC_TESTBIT_ON                  (0x10001 << 2)
+> >  #define GRF_TSADC_TESTBIT_H_ON                 (0x10001 << 2)
+> >  #define GRF_TSADC_VCM_EN_L                     (0x10001 << 7)
+> > @@ -474,6 +484,45 @@ static const struct tsadc_table rk3399_code_table[] = {
+> >         {TSADCV3_DATA_MASK, 125000},
+> >  };
+> >  
+> > +static const struct tsadc_table rk3568_code_table[] = {
+> > +       {0, -40000},
+> > +       {1584, -40000},
+> > +       {1620, -35000},
+> > +       {1652, -30000},
+> > +       {1688, -25000},
+> > +       {1720, -20000},
+> > +       {1756, -15000},
+> > +       {1788, -10000},
+> > +       {1824, -5000},
+> > +       {1856, 0},
+> > +       {1892, 5000},
+> > +       {1924, 10000},
+> > +       {1956, 15000},
+> > +       {1992, 20000},
+> > +       {2024, 25000},
+> > +       {2060, 30000},
+> > +       {2092, 35000},
+> > +       {2128, 40000},
+> > +       {2160, 45000},
+> > +       {2196, 50000},
+> > +       {2228, 55000},
+> > +       {2264, 60000},
+> > +       {2300, 65000},
+> > +       {2332, 70000},
+> > +       {2368, 75000},
+> > +       {2400, 80000},
+> > +       {2436, 85000},
+> > +       {2468, 90000},
+> > +       {2500, 95000},
+> > +       {2536, 100000},
+> > +       {2572, 105000},
+> > +       {2604, 110000},
+> > +       {2636, 115000},
+> > +       {2672, 120000},
+> > +       {2704, 125000},
+> > +       {TSADCV2_DATA_MASK, 125000},
+> > +};
+> > +
+> >  static u32 rk_tsadcv2_temp_to_code(const struct chip_tsadc_table *table,
+> >                                    int temp)
+> >  {
+> > @@ -701,6 +750,35 @@ static void rk_tsadcv4_initialize(struct regmap *grf, void __iomem *regs,
+> >         regmap_write(grf, PX30_GRF_SOC_CON2, GRF_CON_TSADC_CH_INV);
+> >  }
+> >  
+> > +static void rk_tsadcv7_initialize(struct regmap *grf, void __iomem *regs,
+> > +                                 enum tshut_polarity tshut_polarity)
+> > +{
+> > +       writel_relaxed(TSADCV5_USER_INTER_PD_SOC, regs + TSADCV2_USER_CON);
+> > +       writel_relaxed(TSADCV5_AUTO_PERIOD_TIME, regs + TSADCV2_AUTO_PERIOD);
+> > +       writel_relaxed(TSADCV2_HIGHT_INT_DEBOUNCE_COUNT,
+> > +                      regs + TSADCV2_HIGHT_INT_DEBOUNCE);
+> > +       writel_relaxed(TSADCV5_AUTO_PERIOD_HT_TIME,
+> > +                      regs + TSADCV2_AUTO_PERIOD_HT);
+> > +       writel_relaxed(TSADCV2_HIGHT_TSHUT_DEBOUNCE_COUNT,
+> > +                      regs + TSADCV2_HIGHT_TSHUT_DEBOUNCE);
+> > +
+> > +       if (tshut_polarity == TSHUT_HIGH_ACTIVE)
+> > +               writel_relaxed(0U | TSADCV2_AUTO_TSHUT_POLARITY_HIGH,
+> > +                              regs + TSADCV2_AUTO_CON);
+> > +       else
+> > +               writel_relaxed(0U & ~TSADCV2_AUTO_TSHUT_POLARITY_HIGH,
+> > +                              regs + TSADCV2_AUTO_CON);
+> > +
+> > +       if (!IS_ERR(grf)) {
+> 
+> That is strange to do this check with a parameter. Is the sensor
+> functional if the regmap failed ?
+> 
+
+Indeed, it seems it's optional. The same check is in rk_tsadcv3_initialize,
+and also in rockchip_configure_from_dt():
+
+        /* The tsadc wont to handle the error in here since some SoCs didn't     
+         * need this property.                                                   
+         */                                                                      
+        thermal->grf = syscon_regmap_lookup_by_phandle(np, "rockchip,grf");      
+        if (IS_ERR(thermal->grf))                                                
+                dev_warn(dev, "Missing rockchip,grf property\n"); 
+
+But I completely agree it looks strange without a comment,
+might be better to add one.
+
+> > +               regmap_write(grf, RK3568_GRF_TSADC_CON, RK3568_GRF_TSADC_TSEN);
+> > +               udelay(15);
+> > +               regmap_write(grf, RK3568_GRF_TSADC_CON, RK3568_GRF_TSADC_ANA_REG0);
+> > +               regmap_write(grf, RK3568_GRF_TSADC_CON, RK3568_GRF_TSADC_ANA_REG1);
+> > +               regmap_write(grf, RK3568_GRF_TSADC_CON, RK3568_GRF_TSADC_ANA_REG2);
+> > +               usleep_range(100, 200);
+> 
+> Is it possible to put a comment on why these delays are necessary (if
+> you have the info) ?
+> 
+
+Sure, I'll add a comment there. It is described in RK3568 Part1 TRM,
+section 18.5.2.
+
+Thanks,
+Ezequiel
 
