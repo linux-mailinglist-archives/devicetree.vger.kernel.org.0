@@ -2,93 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ECBB369FF7
-	for <lists+devicetree@lfdr.de>; Sat, 24 Apr 2021 09:26:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20ACD36A0A2
+	for <lists+devicetree@lfdr.de>; Sat, 24 Apr 2021 12:28:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbhDXH1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Apr 2021 03:27:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37578 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbhDXH1C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Apr 2021 03:27:02 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 909EFC061574;
-        Sat, 24 Apr 2021 00:26:23 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id u25so19786803ljg.7;
-        Sat, 24 Apr 2021 00:26:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=/pJRpObwgC760iXpBExu4yIVJmUUKVTuscTwMhK6LQU=;
-        b=ufNx7c9rAdtARmP9/JGD2i8irzKzBRSUyNH+9fvRN92zRA0OBFhfjptFeAgu+DuB3q
-         yfX+4Igr2ZTDK9BRrc56DlEvUt+BBNnplt01tCzit9YLV863swcxCrDFmUCr2AxIGVcC
-         CA1deu2tXBGXlYmES7M4hHClqef3U0Z9Cc/5ESgmSCPAuPP+bV0Ejsxuz3yVgliRBNhq
-         l5BHr8X0Lv0ae2Tcj/rgHxe19zUdxI6ucYdDvEo2Cgcmnq1RoX2WrGx7Zp+88tFQ+DRS
-         iiC+cWOgjjaQN4BtP4v067DB6fjKQN6kZkQzdUOd2FMGfmB9Pv2H9LF2GfnYd4Oe/pkg
-         jxIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=/pJRpObwgC760iXpBExu4yIVJmUUKVTuscTwMhK6LQU=;
-        b=d6mIzzsi8RkTpBJEywPKdCo2+CV99ljHcpQUHqXmvCifvTbPFJj7S13Um8voFdjL6D
-         Dp5f/A7hK80CQNAMkTR+QgdEXn9TC2EoiQKbz4xbhcKxplVH60XrENbuXtKZ7qLe/nSD
-         DLSVpLMeARMPRS6Ftr1lfVjFsFm70iGoGfePM3gd0zwbsk3VRe6wIuy+L7pWbupmXJ1C
-         m321DrGpCE9EurauBgOTh4vmcVAYnHcO+Aa6Ief4CB2isurQRYpiFZlWjC2VkCYIFDKn
-         QGE5WbChpYWBwM+EVZF0AJ8nR9WtYZTLXdIEz+ja5jQPciL/qVUoY4b7Rjv/lGOisNGu
-         PXWA==
-X-Gm-Message-State: AOAM530gigHi1VGReaNYMSCMWpiLSh5rDa83JQ6ALbI+Hc8D+aHyVNxb
-        gjzAS+u0WSU2kB/q1hzH9jj6mmVoluo=
-X-Google-Smtp-Source: ABdhPJx3Cw5Vif+11oahK6V5zTzAwV00Iy/2ZrdiZkutRiszn4jYJ2cW57uWFklKK5dsA9oi5EN2hA==
-X-Received: by 2002:a2e:8054:: with SMTP id p20mr5032381ljg.439.1619249181690;
-        Sat, 24 Apr 2021 00:26:21 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-193-103.dynamic.spd-mgts.ru. [109.252.193.103])
-        by smtp.googlemail.com with ESMTPSA id t17sm749859ljd.35.2021.04.24.00.26.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Apr 2021 00:26:21 -0700 (PDT)
-Subject: Re: [PATCH v2 0/5] iommu: Support identity mappings of
- reserved-memory regions
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org
-References: <20210423163234.3651547-1-thierry.reding@gmail.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <869ec3a2-26df-2ce8-bd21-b681d6ef3985@gmail.com>
-Date:   Sat, 24 Apr 2021 10:26:20 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S235758AbhDXK3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Apr 2021 06:29:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48166 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234416AbhDXK3G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 24 Apr 2021 06:29:06 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 70CC1613DB;
+        Sat, 24 Apr 2021 10:28:27 +0000 (UTC)
+Date:   Sat, 24 Apr 2021 11:29:08 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Sean Nyekjaer <sean@geanix.com>
+Cc:     linux-iio@vger.kernel.org, andy.shevchenko@gmail.com,
+        lars@metafoo.de, Nuno.Sa@analog.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: iio: accel: fxls8962af: add
+ bindings
+Message-ID: <20210424112908.2a835f54@jic23-huawei>
+In-Reply-To: <20210423101951.2876009-2-sean@geanix.com>
+References: <20210423101951.2876009-1-sean@geanix.com>
+        <20210423101951.2876009-2-sean@geanix.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20210423163234.3651547-1-thierry.reding@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-23.04.2021 19:32, Thierry Reding пишет:
-> Hi,
+On Fri, 23 Apr 2021 12:19:51 +0200
+Sean Nyekjaer <sean@geanix.com> wrote:
+
+> Add devicetree binding for the NXP FXLS8962AF/FXLS8964AF
+> accelerometer sensor.
 > 
-> this is an updated proposal to solve the problem of passing memory
-> regions that are actively being accessed during boot. The particular
-> use-case that I need this for is when the bootloader has set up the
-> display controller to scan out a boot splash screen. During boot the
-> DMA/IOMMU glue code will attach devices to an IOMMU domain and by
-> doing so enable IOMMU translations. Typically this will be before a
-> device driver has had a chance to either disable the display
-> controller or set up a new framebuffer and map it to the IOMMU.
+> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+Trivial comment inline, but otherwise looks good to me.
 
-Hello Thierry,
+Thanks,
 
-Is it always safe to enable SMMU ASID in a middle of a DMA request made
-by a memory client?
+Jonathan
 
-The memory controller supports blocking DMA requests, which we are
-already using for the memory hot-resetting. A block could be needed
-before ASID is toggled. This needs to be clarified.
+> ---
+> Changes for v2:
+>  - removed requirement for interrupt
+> 
+>  .../bindings/iio/accel/nxp,fxls8962af.yaml    | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
+> new file mode 100644
+> index 000000000000..d8ac25402979
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/accel/nxp,fxls8962af.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP FXLS8962AF/FXLS8964AF Accelerometer driver
+> +
+> +maintainers:
+> +  - Sean Nyekjaer <sean@geanix.com>
+> +
+> +description: |
+> +  NXP FXLS8962AF/FXLS8964AF Accelerometer driver that supports
+> +  SPI and I2C interface.
+> +    https://www.nxp.com/docs/en/data-sheet/FXLS8962AF.pdf
+> +    https://www.nxp.com/docs/en/data-sheet/FXLS8964AF.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,fxls8962af
+> +      - nxp,fxls8964af
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: phandle to the regulator that provides power to the accelerometer
+> +
+> +  spi-max-frequency: true
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        /* Example for a I2C device node */
+> +        accelerometer@62 {
+> +            compatible = "nxp,fxls8962af";
+> +            reg = <0x62>;
+> +            interrupt-parent = <&gpio0>;
+> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +        };
+> +    };
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+
+Fair sure we don't need the gpio.h header here though it does
+no real harm.
+
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        /* Example for a SPI device node */
+> +        accelerometer@0 {
+> +            compatible = "nxp,fxls8962af";
+> +            reg = <0>;
+> +            spi-max-frequency = <4000000>;
+> +            interrupt-parent = <&gpio0>;
+> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +        };
+> +    };
+
