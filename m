@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F63936A14F
-	for <lists+devicetree@lfdr.de>; Sat, 24 Apr 2021 15:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBD1136A156
+	for <lists+devicetree@lfdr.de>; Sat, 24 Apr 2021 15:17:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237218AbhDXNCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Apr 2021 09:02:51 -0400
-Received: from mout.gmx.net ([212.227.15.18]:50793 "EHLO mout.gmx.net"
+        id S231942AbhDXNSM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Apr 2021 09:18:12 -0400
+Received: from mout.gmx.net ([212.227.17.21]:36623 "EHLO mout.gmx.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237214AbhDXNCu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 24 Apr 2021 09:02:50 -0400
+        id S230432AbhDXNSK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 24 Apr 2021 09:18:10 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1619269322;
-        bh=6j87ZiVhbf3L+4QHqB4bt1hhsibj3XfVjHEjvMHhO+o=;
+        s=badeba3b8450; t=1619270240;
+        bh=zbFt1dgDmLg2fkUHe6+fUzd+kp6JVhh4Jhigqnl7tIc=;
         h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=f+9iWSynn3hA8co69brRGW5djtsyzq59Y1vLfYDHZBAWofPl3uGjefu4DlGfih+Tu
-         a0NY/MUU7WmiZGnwEsZ9qjTp+siQecJ4SujPo+bpuyQobjaK4r/jcD3DaFfFZT+5Kb
-         79LXzD0H6L7VHvv3fF8VVCZxpUuxuPKzxrUWhTjQ=
+        b=WgZhFVggT+J3NxVw1vAu/e5Sn9kN2j8xsnJ0Mm/cmCz5j6+TiiT1zodzsj52ULqPX
+         kJaCqx7NxaGpNVB+IOSt1RnoQr48yVSwevV35YE5zDIp+ZljVVybc9b7dgpCkBiUWR
+         I1LEuh6a12m5qJ2FVhUIHaxke7NYOFXIlGfh3XJ0=
 X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([5.146.195.179]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MYNJg-1m5iga2A9i-00VSx2; Sat, 24
- Apr 2021 15:02:02 +0200
-Date:   Sat, 24 Apr 2021 15:02:00 +0200
+Received: from longitude ([5.146.195.179]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mo6qp-1lHSo71Tx5-00pYqh; Sat, 24
+ Apr 2021 15:17:20 +0200
+Date:   Sat, 24 Apr 2021 15:17:19 +0200
 From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
 To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
 Cc:     Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
@@ -32,112 +32,153 @@ Cc:     Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
         Aswath Govindraju <a-govindraju@ti.com>,
         Vadym Kochan <vadym.kochan@plvision.eu>,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/4] misc: eeprom_93xx46: Add new at93c56 and at93c66
- compatible strings
-Message-ID: <YIQWyDuWTfL3Eqp9@latitude>
+Subject: Re: [PATCH 2/4] misc: eeprom_93xx46: set size and addrlen according
+ to the dts
+Message-ID: <YIQaXx9b2fGLOBmI@latitude>
 References: <20210424123034.11755-1-linkmauve@linkmauve.fr>
- <20210424123034.11755-2-linkmauve@linkmauve.fr>
+ <20210424123034.11755-3-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="sopQoswJR2Pf33wk"
+        protocol="application/pgp-signature"; boundary="ly0JB824f729Aq5V"
 Content-Disposition: inline
-In-Reply-To: <20210424123034.11755-2-linkmauve@linkmauve.fr>
-X-Provags-ID: V03:K1:mlOjkZ8S9wLUVtxKvL+Q+w8NBmHDUOzTRX+8jjHnAWBY17clLYH
- cpsw+yPBfN+CitYFoQS6xTku6EpAHr3/u+mIM0Ybej8wVn+dx3y+s+mVafFm+Ozjy/y6CQs
- 8OWIo3/ociojziee2iFFaJ7ZNTcqcC8adSSvHca6ssJH5GXZocP0mSTwb9HQCHjOzRYIS8b
- xQN1oao1dhlih36t5kHnw==
+In-Reply-To: <20210424123034.11755-3-linkmauve@linkmauve.fr>
+X-Provags-ID: V03:K1:FJFY5yrtnU05NYFDOVjWijV9MZiQ3xYQ3lw2U/CQAG16qAyXONR
+ mk/hD/Y9n1j0kYeI932yFtQOCnqUH/POHOGNXWGavHaBX5KE6qaEXkfxAHZhtnLyTL4cUDu
+ wuThWS48WTS8lGw4hhemPRskC1OMLFc66GnoPMNTJAH4Gg2+kMKiG+tl+M54RPKSjLrYWKX
+ OySrWPoW5GybYvs4o85hA==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:RoReX/gfcEA=:bZM76oPEqCpm1XNO98wHF0
- f4+wrmC6TXiCcVokdvkjCLTXZPRW0NM05cGqwAW2YEbiXtjvWWtkzxIwVup7YUt5dDsimKgHA
- Eb3Gmbhj5mxSU66y0/3rk6hfvf9pazTxFGxzZpYlcW+ZYK+OSIudygVhaSDSbOna792LcVMoo
- /xvLTOz5pvnXqfmHvVazPRhI5sE9DQz8gHbbJPBVrJLzD/AMy55h31JNuUV9UK7plUzxN/YQ0
- j3uOWpn/eK9BfUsuAZJaxg24HlrOkwsFAygwd7VvdoxWLqyfeR30mtkwzJsX0BKgWYJd+rqL3
- lZ2LAXrZqF3Fj2g8HtMP1/W2jG756a1A27ADg8Uy9CaYK3AhbqaBK+APA/lTPLwQN3aA1QIIN
- GCoPdiTO55aEhJkS4FOZl+VX9xxFIqaWf0lqRU27Y7lfPr18cvZcGwZkNSHi1UORNfRIkEy+s
- ShzfYoVWWWlrYNCLeqDTs5kiOVXolIL9lhtivuHG7MfvbM8gFzz1lrAseGDaokeKKNdwXQkOf
- Pe/ppYSf5fi6wT4QVaFynO6oAO/vkDP5ml6zaRSy6WBnTjFrpdi0jBvti0dwp/ufCZb6aohtU
- UhBXNUyBwqpFfgkHK039C9yqUaOTIE7xfX4VpirSkVzUlvxmQ1h95X+wfNfR8G1qWtrJ0ktl9
- 1BnyKjCAtEKnUhzRTrz6iESbAH74RCt0Xo4S0r9zjpITRPV9RHMW70pZknAfxzqHm5qfkMigR
- PCGT53RqGntQMs4yMNGa6rZq0DExAV15HPiyYqphHpYuV1VZkGd5ilsbQeNdz/tY0TiQRsg30
- /XVZyog5pUUsx2B3Ga7qx42Apz4rW1fgQBcxDbKFi/P3QHJDOHgDLSiUg/Wfh0fY0o04264w7
- KgKaq2OwhIIJRyFnJ5yOb1Fr21pGvpQR1wcepS3DDVAQ+RR065fbtnElFaxZeqrR03hg6TjXp
- QUDVmgBn/rJ6kyjavq+Nz0j7JLDvJUDlQ6bRUfk7Y9rOMIu+egTabf+iPqL+gOcbDodBLM/to
- wWJEMqtsNYaBWo2eFGkA9ofRW5/Ar1/HjzE7+FvKDcDoXQpyfb/a4BVfZgNJ1GZlJyFiUU1Uu
- AK3NygC1qeQ8A+h3xInDmFAawPHvH2774F2FIbst5n4xrn0gFzuSvTFxpGaglfmTbqVS3MfD2
- t8aXI1f06hdP/CKrIQndWjD5OtPgzZrjCM9Va7rI+r2g5yi21Sx+6yrsFgsJLSZiP8dH1fsma
- V+b+6MJTsOqKVRymq
+X-UI-Out-Filterresults: notjunk:1;V03:K0:ZUq28VjbIHo=:XIcPkzrzI4RKfacPTu9UEl
+ nsXX4+0MWHXUAjw54HhJ9q19JFJV2tQfHV+dDmLvLkOPTkJC1xcDNaQcWhwIqLNh1d1KdNPZE
+ 2Xh9S1UyFEp7HUhCZ22mXfE/XF3FGxS7TBwnn0swf1Vs9x1JVEEHez5JUWgCvX0hlz9jT9Pxs
+ 9x3FBitRxgyZni0C3gbqdlxGkpCatg8rxDAzVOIRac8nqq9Y5fezZCKuQ0d33OSxY7FDtMnYx
+ ejERBPDvQi5qEJ3aU+0wfF466nOlb3PCg9Qgb03B3b1EpgumVKuMEunbGdqC1aiRjoNX7SDso
+ U+cuTXt4ZV4FG4fIQthk2bwXoGhI0Ob5mS2ZfniHwBMIGDkzFgQXe1vrEPFKQIV/LyW1emvNh
+ xZCCDdM/TRIdTija4LpET4Jukkd9xq1O1nIXjhgSmGAnb7jjEkr13O972GBVJfmZc+3sg/52u
+ NLERB6h68CJz8qhENva68LSDT0Hpv3zASC/NR7jceq+cbnHJjkkYSqiBNhN+6+KGs+K8tJDcv
+ ynlh8YE6CzZTUFawo2OUZ40TGzSs1HcS+Hy4T3+AZ3Vt7tLCcIenydxeWdqzGXDZSarPMJ7yu
+ 1esCCxgn4E/MD2w3DpozbbBo/IiLUOTRZ8VVGespXsIzJAYXKsGvn1JZfRcUx7ozfE0+2qJht
+ yFOrIWn7F/QLSr2AMTNu1gV7Cv+OHNYASSp1WSZGkTbyEkfFkIA8ajVqITFmzFISh3tS60bt8
+ wbFXmYyO6KAYqsfxwf9Q59TsCflP/4Wu+SiLmvaA/0lIAZXLWLGyuItE4ArhLE0/hZY0f1SQd
+ GfurVa50uxdCaBSXUI3mEH4HNHUD1haULUaV9EKZZKTOK3TBE1GhCsjrJzuakFQY44CKwn/sJ
+ Bul4vksGe4ylIXjlTdedSvPAAxP3ECniLmydWSbxyj85VfenzRdOAEll/16K6njteb3UlxlhG
+ cvy2S9pVieZfc1DEwzrIWjZ41oX2kvdUIbs9LdJrNYI16Ay+FpA9lPJsj8vlD38zVaKlfSFFi
+ WTukWJus0BakD78i8imHihQ2Adm7rw29/2U6fEdoQweQnNNk8MAGjHsBF9sDmVCYZ7mWQ1ohi
+ sC/b+6cxNLfQRcfodPt91s9kONtJMVsVimWXu7A1ioufRmU1OVNJYibsjwP6t1afwWraPvYhZ
+ DkX2YbDGS6himH0CGeuveDgBv8pJEwUeVwgm8ieRw5yaYdjiM1n4B1EEru6ljva1bfXAUu9XX
+ H+T5YVSin8XuNkqqI
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---sopQoswJR2Pf33wk
+--ly0JB824f729Aq5V
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Apr 24, 2021 at 02:30:30PM +0200, Emmanuel Gil Peyrot wrote:
-> These two devices have respectively 2048 and 4096 bits of storage,
-> compared to 1024 for the 93c46.
+Hi,
+
+
+> [PATCH 2/4] misc: eeprom_93xx46: set size and addrlen according to the dts
+
+This patch doesn't really deal with the devicetree, so this subject line
+seems a bit mismatched.
+
+On Sat, Apr 24, 2021 at 02:30:31PM +0200, Emmanuel Gil Peyrot wrote:
+> This can then be used by the rest of the driver to use the correct
+> commands on 93c56 and 93c66.
 >=20
 > Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
 > ---
->  .../bindings/misc/eeprom-93xx46.txt           |  3 +++
->  drivers/misc/eeprom/eeprom_93xx46.c           | 21 ++++++++++++++++++-
->  include/linux/eeprom_93xx46.h                 |  3 +++
->  3 files changed, 26 insertions(+), 1 deletion(-)
+
+Ah hmmm. Does this mean that with the previous patch, the driver will be
+instanciated for 93c56 and 93c66 but send the wrong commands? I think
+you should avoid this pitfall by rearranging (or squashing) the patches.
+
+>  drivers/misc/eeprom/eeprom_93xx46.c | 21 +++++++++++++++++----
+>  1 file changed, 17 insertions(+), 4 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt b/D=
-ocumentation/devicetree/bindings/misc/eeprom-93xx46.txt
-> index 7b636b7a8311..72ea0af368d4 100644
-> --- a/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
-> +++ b/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
-> @@ -2,7 +2,10 @@ EEPROMs (SPI) compatible with Microchip Technology 93xx4=
-6 family.
-> =20
->  Required properties:
->  - compatible : shall be one of:
-> +    "atmel,at93c46"
->      "atmel,at93c46d"
-> +    "atmel,at93c56"
-> +    "atmel,at93c66"
->      "eeprom-93xx46"
->      "microchip,93lc46b"
->  - data-size : number of data bits per word (either 8 or 16)
-
-The DT binding patch should ideally be separate from the driver patch.
-
 > diff --git a/drivers/misc/eeprom/eeprom_93xx46.c b/drivers/misc/eeprom/ee=
 prom_93xx46.c
-> index 80114f4c80ad..64dd76f66463 100644
+> index 64dd76f66463..39375255e22a 100644
 > --- a/drivers/misc/eeprom/eeprom_93xx46.c
 > +++ b/drivers/misc/eeprom/eeprom_93xx46.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/spi/spi.h>
+>  #include <linux/nvmem-provider.h>
+>  #include <linux/eeprom_93xx46.h>
+> +#include <linux/log2.h>
+> =20
+>  #define OP_START	0x4
+>  #define OP_WRITE	(OP_START | 0x1)
+> @@ -474,10 +475,22 @@ static int eeprom_93xx46_probe(struct spi_device *s=
+pi)
+>  	if (!edev)
+>  		return -ENOMEM;
+> =20
+> +	if (pd->flags & EE_SIZE1K)
+> +		edev->size =3D 128;
+> +	else if (pd->flags & EE_SIZE2K)
+> +		edev->size =3D 256;
+> +	else if (pd->flags & EE_SIZE4K)
+> +		edev->size =3D 512;
+> +	else {
+> +		dev_err(&spi->dev, "unspecified size\n");
+> +		err =3D -EINVAL;
+> +		goto fail;
+> +	}
+> +
+>  	if (pd->flags & EE_ADDR8)
+> -		edev->addrlen =3D 7;
+> +		edev->addrlen =3D ilog2(edev->size);
+>  	else if (pd->flags & EE_ADDR16)
+> -		edev->addrlen =3D 6;
+> +		edev->addrlen =3D ilog2(edev->size) - 1;
+>  	else {
+>  		dev_err(&spi->dev, "unspecified address type\n");
+>  		return -EINVAL;
+> @@ -488,7 +501,6 @@ static int eeprom_93xx46_probe(struct spi_device *spi)
+>  	edev->spi =3D spi;
+>  	edev->pdata =3D pd;
+> =20
+> -	edev->size =3D 128;
+>  	edev->nvmem_config.type =3D NVMEM_TYPE_EEPROM;
+>  	edev->nvmem_config.name =3D dev_name(&spi->dev);
+>  	edev->nvmem_config.dev =3D &spi->dev;
+> @@ -508,8 +520,9 @@ static int eeprom_93xx46_probe(struct spi_device *spi)
+>  	if (IS_ERR(edev->nvmem))
+>  		return PTR_ERR(edev->nvmem);
+> =20
+> -	dev_info(&spi->dev, "%d-bit eeprom %s\n",
+> +	dev_info(&spi->dev, "%d-bit eeprom containing %d bytes %s\n",
+>  		(pd->flags & EE_ADDR8) ? 8 : 16,
+> +		edev->size,
+>  		(pd->flags & EE_READONLY) ? "(readonly)" : "");
 
 
-other than that, the patch looks fine to me, AFAICT.
-
+The logic itself looks good though.
 
 Thanks,
 Jonathan
 
---sopQoswJR2Pf33wk
+--ly0JB824f729Aq5V
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmCEFr8ACgkQCDBEmo7z
-X9uCHQ/+PKHNjXQ9DCtGu0hrrdbXktP6m5IgpDU44oF2VJxcYE0l+Jq2gf0f0yt7
-nUMkH7g2dbX3zHaV+V+4RMPFqSmNWm6ei8IzZY1AuRN7Y1TmTX5ArvEIfHp95G9i
-65cAqOyV8o8wyoXFoc+NSlA3D8py0cqPxg5tygjVqnAJGpnMRqLp/4PhbeQmZlGW
-qbZ1VsNfrxk+jmHEAn7xwJjvrFKaZCR9FY78k0jKPQTiTD8XDlj9OfmsFc+M3I6L
-CPbbp5zpgQeqWTcCNzqwEqw5+A11PLUQfgn6JpHB+cvLDhhhXLH8V1Z65YUguwwJ
-6DkydwQvpayFCWTX7dC2GLkFZzIkFH3B+KWiPbjrXb9WGAO6dYIqTBmkOPS782Ct
-uKOod0i0Fpn6KwPjme9oXUwJZy5I7qPgnwGj8LuTK6kS4bioY0hvvWAIgl3TDgEv
-CrZt0oxic4bMsW88SkWOsemZovJgMZuM/gKXukuR1YOHkBEGK10tmdC6mdVo6ZzZ
-P+hWXyxKhqr+SHUEKbgGrnStJBokjVY7cCe4hbo3aBfz6w7Ri0u0xsIhUcSq74p2
-ghIpj5ZzyATX0M8RAsbrs23dH4p+qsocYiMMPtgVlKirG5u84qnnrPebh7MzYO3v
-dd8EijnBpKh0uP5guXo3JlAG9STOpNs1EEhxldHW+15y1dr6GBE=
-=rQN8
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmCEGlcACgkQCDBEmo7z
+X9tZiA//RQ98peNwYvrBcp2+LWR4f0GsREFO8qgr81278RaviAVdrBl90PhDLDXk
+Gfg1kCA09/2KQW/fQyBxTDbM1iy3/c8FC+XvqP2lF9WkX/cRbOT8bz8aDTCAYFsL
+S9kuIX3TiEdjObNWb7UxQS1pjMlMwlI/eMBI0WhP4Px5A50f/8L+emvzJ7OKa5Lm
+u3DEgtUVekYRw5H3KuCTfwc9AJbNhNGUbVUppm+F9FYqR8s5Q3RdfNKDbnxYY9p4
+YC5W055tOXm5AyAjc8wR/9uD63E1UpWlR73CXXTzUH3bm4plKJwgI/lb0GWmJUbc
+o8J07GSA9MgpfSMIldpF+Hka2BO2T+l9fVXdu7S7w7EFcj+pPAwfbsILa7NIJbeJ
+Xj6AJEn9CHTNdq/7MY9zUyLUbGYBcavgog3DPJxcMuLQk4BYRIpV1ztLOiMQndg7
++vp+FHUCK5aPxd9knQAXz5a4g+9zaKxPkcGwgmYKbBOBEflVbzrWCGU48BkvuIz8
+23oBoKvWEj9+tDedPamCL1RpP+3H+YZ8PJQ2Zd/JQXD/S1V9HWiEe3b1Sm1T5ui+
+F7ps6pWiMYRd9dZonHYWKpovgQZjtBJa7jwuHUeVKT7eLR9Ac/dEaQD2xOi0if4p
+6wjIe6/M57kFdykaLLrGoWH0fbur2iICEvnS4WmSZ6ULAEUnh2w=
+=0v/y
 -----END PGP SIGNATURE-----
 
---sopQoswJR2Pf33wk--
+--ly0JB824f729Aq5V--
