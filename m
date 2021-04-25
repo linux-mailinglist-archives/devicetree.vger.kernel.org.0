@@ -2,85 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E833436A7CD
-	for <lists+devicetree@lfdr.de>; Sun, 25 Apr 2021 16:33:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08ACD36A7E9
+	for <lists+devicetree@lfdr.de>; Sun, 25 Apr 2021 17:16:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230244AbhDYOeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Apr 2021 10:34:21 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:39878 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229906AbhDYOeV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 25 Apr 2021 10:34:21 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1lafpD-000zu0-0c; Sun, 25 Apr 2021 16:33:31 +0200
-Date:   Sun, 25 Apr 2021 16:33:30 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     DENG Qingfang <dqfext@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 11/14] drivers: net: dsa: qca8k: apply switch revision fix
-Message-ID: <YIV9unMmDMROD4sp@lunn.ch>
-References: <20210423014741.11858-1-ansuelsmth@gmail.com>
- <20210423014741.11858-12-ansuelsmth@gmail.com>
- <e644aba9-a092-3825-b55b-e0cca158d28b@gmail.com>
- <YISLHNK8binc9T1N@Ansuel-xps.localdomain>
- <20210425044554.194770-1-dqfext@gmail.com>
- <YIVZl9qbXLcCrqNl@Ansuel-xps.localdomain>
+        id S230293AbhDYPQ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Apr 2021 11:16:56 -0400
+Received: from www381.your-server.de ([78.46.137.84]:51894 "EHLO
+        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230288AbhDYPQ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Apr 2021 11:16:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=rcM1mDotLLM1ehwVHiTLyrx9DdDtiH0Nl6OFkvOnz3I=; b=j06XSWN2CdUw8AT9BTyrSs05Zq
+        OhJ1zyk7vwNxNeEpTYWrzqYyRx05fUsfRbSXbB0nKl63mc+7NGaoodCvshAGSHwsT9AdfpZgyb/Z3
+        eDNiPYe9Z7iOEOOJuuc5Ig8YSVRIsKx7a1fnsvBv5gfUYxvhPHLbF7D1TXA1qJSOMmrYug72aZTqn
+        OjLnuaxaJfe7xgO+43sLfmWofTk6+0OjBZiSy2Y50wek013FhTN0xJGJXnaeA+XPQ4oi9xjsUvbYY
+        PbGw6FZt0WEQJ3cvOmyXvsrCrRemGyl2jlH3hM45knT/NOYHhQO7FyakZmFWReUQrDwKYJNsfJVng
+        0AHLKNSA==;
+Received: from sslproxy06.your-server.de ([78.46.172.3])
+        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92.3)
+        (envelope-from <lars@metafoo.de>)
+        id 1lagUY-0005XR-VX; Sun, 25 Apr 2021 17:16:15 +0200
+Received: from [2001:a61:2a42:9501:9e5c:8eff:fe01:8578]
+        by sslproxy06.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1lagUY-000KyF-Q5; Sun, 25 Apr 2021 17:16:14 +0200
+Subject: Re: [PATCH 1/3] iio: sps30: separate core and interface specific code
+To:     Tomasz Duszynski <tomasz.duszynski@octakon.com>,
+        linux-iio@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        jic23@kernel.org, robh+dt@kernel.org
+References: <20210425135546.57343-1-tomasz.duszynski@octakon.com>
+ <20210425135546.57343-2-tomasz.duszynski@octakon.com>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+Message-ID: <38d5438d-7e00-ed5d-ed33-01ff04e26f33@metafoo.de>
+Date:   Sun, 25 Apr 2021 17:16:14 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YIVZl9qbXLcCrqNl@Ansuel-xps.localdomain>
+In-Reply-To: <20210425135546.57343-2-tomasz.duszynski@octakon.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.103.2/26151/Sun Apr 25 13:05:06 2021)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 25, 2021 at 01:59:19PM +0200, Ansuel Smith wrote:
-> On Sun, Apr 25, 2021 at 12:45:54PM +0800, DENG Qingfang wrote:
-> > Hi Ansuel,
-> > 
-> > On Sat, Apr 24, 2021 at 11:18:20PM +0200, Ansuel Smith wrote:
-> > > 
-> > > I'm starting to do some work with this and a problem arised. Since these
-> > > value are based on the switch revision, how can I access these kind of
-> > > data from the phy driver? It's allowed to declare a phy driver in the
-> > > dsa directory? (The idea would be to create a qca8k dir with the dsa
-> > > driver and the dedicated internal phy driver.) This would facilitate the
-> > > use of normal qca8k_read/write (to access the switch revision from the
-> > > phy driver) using common function?
-> > 
-> > In case of different switch revision, the PHY ID should also be different.
-> > I think you can reuse the current at803x.c PHY driver, as they seem to
-> > share similar registers.
-> >
-> 
-> Is this really necessary? Every PHY has the same ID linked to the switch
-> id but the revision can change across the same switch id. Isn't the phy
-> dev flag enought to differiante one id from another? 
+On 4/25/21 3:55 PM, Tomasz Duszynski wrote:
+> Move code responsible for handling i2c communication to a separate file.
+> Rationale for this change is preparation for adding support for serial
+> communication.
+>
+> Signed-off-by: Tomasz Duszynski <tomasz.duszynski@octakon.com>
 
-Just as general background information: A PHY ID generally consists of
-three parts.
+Hi,
 
-1) OUI - Identifies the manufacture - 22 bits
-2) device - Generally 6 bits
-3) revision - Generally 4 bits
+The whole series looks really great. Couple of small comments inline.
 
-The 22 bits of OUI is standardized. But the last 10 bits the vendor
-can use as they wish. But generally, this is how it is used.
+> [...]
+> diff --git a/drivers/iio/chemical/Kconfig b/drivers/iio/chemical/Kconfig
+> index 10bb431bc3ce..82af5f62fbc6 100644
+> --- a/drivers/iio/chemical/Kconfig
+> +++ b/drivers/iio/chemical/Kconfig
+> @@ -133,8 +133,6 @@ config SENSIRION_SGP30
+>   
+>   config SPS30
+>   	tristate "SPS30 particulate matter sensor"
+> -	depends on I2C
+> -	select CRC8
+>   	select IIO_BUFFER
+>   	select IIO_TRIGGERED_BUFFER
+>   	help
+> @@ -144,6 +142,17 @@ config SPS30
+>   	  To compile this driver as a module, choose M here: the module will
+>   	  be called sps30.
+>   
+> +config SPS30_I2C
+> +	tristate "SPS30 particulate matter sensor I2C driver"
+> +	depends on SPS30 && I2C
+> +	select CRC8
+Since the base module is not very useful without any of the drivers 
+enabled, what you can do here is, make the base module 
+non-user-selectable, e.g. remove the description text after the tristate 
+and then do a `select SPS30` both here from he I2C module and the serial 
+module.
+> +	help
+> +	  Say Y here to build support for the Sensirion SPS30 I2C interface
+> +	  driver.
+> +
+> +	  To compile this driver as a module, choose M here: the module will
+> +	  be called sps30_i2c.
+> +
+>   config VZ89X
+>   	tristate "SGX Sensortech MiCS VZ89X VOC sensor"
+>   	depends on I2C
+> diff --git a/drivers/iio/chemical/Makefile b/drivers/iio/chemical/Makefile
+> index fef63dd5bf92..41c264a229c0 100644
+> --- a/drivers/iio/chemical/Makefile
+> +++ b/drivers/iio/chemical/Makefile
+> @@ -17,4 +17,5 @@ obj-$(CONFIG_SCD30_I2C) += scd30_i2c.o
+>   obj-$(CONFIG_SCD30_SERIAL) += scd30_serial.o
+>   obj-$(CONFIG_SENSIRION_SGP30)	+= sgp30.o
+>   obj-$(CONFIG_SPS30) += sps30.o
+> +obj-$(CONFIG_SPS30_I2C) += sps30_i2c.o
+>   obj-$(CONFIG_VZ89X)		+= vz89x.o
+> diff --git a/drivers/iio/chemical/sps30.c b/drivers/iio/chemical/sps30.c
+> index 7486591588c3..ec9db99e324c 100644
+> --- a/drivers/iio/chemical/sps30.c
+> +++ b/drivers/iio/chemical/sps30.c
+> [...]
+> +EXPORT_SYMBOL(sps30_probe);
+EXPORT_SYMBOL_GPL()
+>   
+>   MODULE_AUTHOR("Tomasz Duszynski <tduszyns@gmail.com>");
+>   MODULE_DESCRIPTION("Sensirion SPS30 particulate matter sensor driver");
+> diff --git a/drivers/iio/chemical/sps30.h b/drivers/iio/chemical/sps30.h
+> new file mode 100644
+> index 000000000000..d2b7140fdeb4
+> --- /dev/null
+> +++ b/drivers/iio/chemical/sps30.h
+> @@ -0,0 +1,73 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef _SPS30_H
+> +#define _SPS30_H
+> +
+> +struct sps30_state;
+> +struct sps30_ops {
+> +	int (*start_meas)(struct sps30_state *state);
+> +	int (*stop_meas)(struct sps30_state *state);
+> +	int (*read_meas)(struct sps30_state *state, int *meas, int num);
+> +	int (*reset)(struct sps30_state *state);
+> +	int (*clean_fan)(struct sps30_state *state);
+> +	int (*read_cleaning_period)(struct sps30_state *state, int *period);
+> +	int (*write_cleaning_period)(struct sps30_state *state, int period);
 
-Loading the PHY driver is generally based on matching the OUI and
-device ID. The revision is ignored. But it is available to the driver
-if needed.
+The interface for {read,write}_cleaning_period() should use __be32, 
+since that is what is being passed around.
 
-It could be, the switch revision is also reflected in the PHY
-revision.
+I was a bit confused when reviewing the uart driver why we can just 
+memcpy an int into the output buffer without endianess problems.
 
-	Andrew
+> +	int (*show_info)(struct sps30_state *state);
+> +};
+> +
+[...]
