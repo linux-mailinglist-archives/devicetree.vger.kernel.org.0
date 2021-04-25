@@ -2,94 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42FF036A4AA
-	for <lists+devicetree@lfdr.de>; Sun, 25 Apr 2021 06:46:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9272036A4ED
+	for <lists+devicetree@lfdr.de>; Sun, 25 Apr 2021 07:28:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229466AbhDYEqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Apr 2021 00:46:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57436 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229460AbhDYEql (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Apr 2021 00:46:41 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DD8AC061574;
-        Sat, 24 Apr 2021 21:46:02 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id f11-20020a17090a638bb02901524d3a3d48so3299415pjj.3;
-        Sat, 24 Apr 2021 21:46:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-disposition:content-transfer-encoding;
-        bh=Bb3hrAQ3mgjurnRTzIUULlD1BFEVkHRxwl8M8mItjrQ=;
-        b=oggnFFV9idkpRCt7FcNhGKC9RnybocZ8P0kLXikG783AsU8AE8TmTdQWFyaxO+VybR
-         Go3FC0YorNRk9QeluQfEDHYxUKkucpE5SydU3MB9O6WpstqsAP7rtnTZ19LQ9IxSJZCk
-         2EhE9T5Ows8/bIWzhc/a8orCdKRK9Nrd5WIKTFBwQx/4Yog9LFsmchNOkosG2ct6oy8c
-         e8nevdrQzRKOepbkVM1h7a0/hE8H4uJA4LcjrvQVs7qL1QbHl90QXhkApFpQxY+fTYG4
-         FmYIYwaq/ALyWuYRqvra4d3DFdMU2JS1H/HTCssPycKTZVa181sfuDDvWUn3xdBwZz69
-         o9zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-disposition
-         :content-transfer-encoding;
-        bh=Bb3hrAQ3mgjurnRTzIUULlD1BFEVkHRxwl8M8mItjrQ=;
-        b=XSms4yGjcti1fkzqV+vOL1jRGYIHDj2dP8c+G3TnyqbvH2J6Z0qZ6xBZgZSM4hFMGK
-         XsgzKi1kVyt47KoXiWxAquY1Lp7fotchSYEUaiJOIbthAWLUaykncOtlmdS1e19hiv/7
-         G70zG+zBlf3WsJKfEzmmK8lwpd8xbPfYe7rHMZIsxgeMMLh8TcSasZRW3R3etAaBWtfj
-         cVqGNUdeQ6WZhNtyTtZwQOpjJbggx975z8u+Z7UG41EcWTar60YeOFvoJGZfvsnD1Qkd
-         JWpxNjMaRWb7WJzvWFpPOvxcpHkLPjoO9Js8BBwKcX9YjkRXUnrMijyKWtke4JGGwIrb
-         k57Q==
-X-Gm-Message-State: AOAM530/UP7NoE9+FUD3gSmlXu+vAEb7ZuBTMYJwAIdeMl/gdOJxEkzj
-        J0mgy/rEkq3bxEw+/wcNOX0=
-X-Google-Smtp-Source: ABdhPJztkKk9E5CJDI97OzcJopV28qazE7KxUgNv0ShAp0I6nMXRojyy25BEka7KMOwyzVnW50KE2Q==
-X-Received: by 2002:a17:90a:8816:: with SMTP id s22mr14283810pjn.25.1619325962000;
-        Sat, 24 Apr 2021 21:46:02 -0700 (PDT)
-Received: from localhost.localdomain ([138.197.212.246])
-        by smtp.gmail.com with ESMTPSA id u13sm1980209pgm.41.2021.04.24.21.45.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 24 Apr 2021 21:46:01 -0700 (PDT)
-From:   DENG Qingfang <dqfext@gmail.com>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 11/14] drivers: net: dsa: qca8k: apply switch revision fix
-Date:   Sun, 25 Apr 2021 12:45:54 +0800
-Message-Id: <20210425044554.194770-1-dqfext@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <YISLHNK8binc9T1N@Ansuel-xps.localdomain>
-References: <20210423014741.11858-1-ansuelsmth@gmail.com> <20210423014741.11858-12-ansuelsmth@gmail.com> <e644aba9-a092-3825-b55b-e0cca158d28b@gmail.com> <YISLHNK8binc9T1N@Ansuel-xps.localdomain>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+        id S229522AbhDYF3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Apr 2021 01:29:36 -0400
+Received: from mail.loongson.cn ([114.242.206.163]:59954 "EHLO loongson.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229466AbhDYF3g (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 25 Apr 2021 01:29:36 -0400
+Received: from localhost.localdomain (unknown [58.249.121.165])
+        by mail.loongson.cn (Coremail) with SMTP id AQAAf9DxP+8M_oRg5Z0NAA--.6147S2;
+        Sun, 25 Apr 2021 13:28:45 +0800 (CST)
+From:   Xiaochuan Mao <maoxiaochuan@loongson.cn>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Xiaochuan Mao <maoxiaochuan@loongson.cn>
+Subject: [PATCH] MIPS:DTS:Correct device id and class code of pcie for Loongnon-2K
+Date:   Sun, 25 Apr 2021 13:28:17 +0800
+Message-Id: <20210425052817.27373-1-maoxiaochuan@loongson.cn>
+X-Mailer: git-send-email 2.17.1
+X-CM-TRANSID: AQAAf9DxP+8M_oRg5Z0NAA--.6147S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7AF18KrykWw1fuF15uFy3Jwb_yoW8Kw4fpF
+        1ak398Cr409F1Syr4rCFZ2vF47GFZ8Ga98t3W3GF10krWqq3yj9r45JF4fJrn8JFWrJw4S
+        9FZ5Wr18tFWIyaUanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUUvE14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+        1l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+        6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+        Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+        I7IYx2IY67AKxVWUXVWUAwAv7VCY1x0262k0Y48FwI0_Jr0_Gr1lYx0Ex4A2jsIE14v26r
+        1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAq
+        YI8I648v4I1lc2xSY4AK67AK6r4rMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r
+        1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CE
+        b7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0x
+        vE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Wr1j6rW3Jr1l
+        IxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVWUJVW8JbIYCTnIWI
+        evJa73UjIFyTuYvjfU50eHDUUUU
+X-CM-SenderInfo: xpdr5xxdrfx3ldqnw6o6or00hjvr0hdfq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ansuel,
+from Loongson-2K user manual know that Loongson-2K have two
+pcie controller pcie0 and pcie1, pcie0 have four port named port0~port3
+and pcie1 have 2 port named port0~port1. the device id of port0 is 7a19
+in each pcie controller and others are 7a09. and their class code is 0b0300.
 
-On Sat, Apr 24, 2021 at 11:18:20PM +0200, Ansuel Smith wrote:
-> 
-> I'm starting to do some work with this and a problem arised. Since these
-> value are based on the switch revision, how can I access these kind of
-> data from the phy driver? It's allowed to declare a phy driver in the
-> dsa directory? (The idea would be to create a qca8k dir with the dsa
-> driver and the dedicated internal phy driver.) This would facilitate the
-> use of normal qca8k_read/write (to access the switch revision from the
-> phy driver) using common function?
+Signed-off-by: Xiaochuan Mao <maoxiaochuan@loongson.cn>
+---
+ .../boot/dts/loongson/loongson64-2k1000.dtsi  | 40 +++++++++----------
+ 1 file changed, 20 insertions(+), 20 deletions(-)
 
-In case of different switch revision, the PHY ID should also be different.
-I think you can reuse the current at803x.c PHY driver, as they seem to
-share similar registers.
+diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+index 569e814def83..a95121359080 100644
+--- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
++++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+@@ -150,8 +150,8 @@
+ 			pci_bridge@9,0 {
+ 				compatible = "pci0014,7a19.0",
+ 						   "pci0014,7a19",
+-						   "pciclass060400",
+-						   "pciclass0604";
++						   "pciclass0b0300",
++						   "pciclass0b03";
+ 
+ 				reg = <0x4800 0x0 0x0 0x0 0x0>;
+ 				#interrupt-cells = <1>;
+@@ -163,10 +163,10 @@
+ 			};
+ 
+ 			pci_bridge@a,0 {
+-				compatible = "pci0014,7a19.0",
+-						   "pci0014,7a19",
+-						   "pciclass060400",
+-						   "pciclass0604";
++				compatible = "pci0014,7a09.0",
++						   "pci0014,7a09",
++						   "pciclass0b0300",
++						   "pciclass0b03";
+ 
+ 				reg = <0x5000 0x0 0x0 0x0 0x0>;
+ 				#interrupt-cells = <1>;
+@@ -178,10 +178,10 @@
+ 			};
+ 
+ 			pci_bridge@b,0 {
+-				compatible = "pci0014,7a19.0",
+-						   "pci0014,7a19",
+-						   "pciclass060400",
+-						   "pciclass0604";
++				compatible = "pci0014,7a09.0",
++						   "pci0014,7a09",
++						   "pciclass0b0300",
++						   "pciclass0b03";
+ 
+ 				reg = <0x5800 0x0 0x0 0x0 0x0>;
+ 				#interrupt-cells = <1>;
+@@ -193,10 +193,10 @@
+ 			};
+ 
+ 			pci_bridge@c,0 {
+-				compatible = "pci0014,7a19.0",
+-						   "pci0014,7a19",
+-						   "pciclass060400",
+-						   "pciclass0604";
++				compatible = "pci0014,7a09.0",
++						   "pci0014,7a09",
++						   "pciclass0b0300",
++						   "pciclass0b03";
+ 
+ 				reg = <0x6000 0x0 0x0 0x0 0x0>;
+ 				#interrupt-cells = <1>;
+@@ -210,8 +210,8 @@
+ 			pci_bridge@d,0 {
+ 				compatible = "pci0014,7a19.0",
+ 						   "pci0014,7a19",
+-						   "pciclass060400",
+-						   "pciclass0604";
++						   "pciclass0b0300",
++						   "pciclass0b03";
+ 
+ 				reg = <0x6800 0x0 0x0 0x0 0x0>;
+ 				#interrupt-cells = <1>;
+@@ -223,10 +223,10 @@
+ 			};
+ 
+ 			pci_bridge@e,0 {
+-				compatible = "pci0014,7a19.0",
+-						   "pci0014,7a19",
+-						   "pciclass060400",
+-						   "pciclass0604";
++				compatible = "pci0014,7a09.0",
++						   "pci0014,7a09",
++						   "pciclass0b0300",
++						   "pciclass0b03";
+ 
+ 				reg = <0x7000 0x0 0x0 0x0 0x0>;
+ 				#interrupt-cells = <1>;
+-- 
+2.17.1
 
-> 
-> > -- 
-> > Florian
