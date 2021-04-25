@@ -2,172 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9723636A704
-	for <lists+devicetree@lfdr.de>; Sun, 25 Apr 2021 14:05:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E68736A738
+	for <lists+devicetree@lfdr.de>; Sun, 25 Apr 2021 14:36:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230159AbhDYMGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Apr 2021 08:06:36 -0400
-Received: from mail.loongson.cn ([114.242.206.163]:60510 "EHLO loongson.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229659AbhDYMGg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 25 Apr 2021 08:06:36 -0400
-Received: from [10.0.2.15] (unknown [58.249.121.165])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dxb8sYW4Vg5LQNAA--.23169S3;
-        Sun, 25 Apr 2021 20:05:45 +0800 (CST)
-Subject: Re: [PATCH] MIPS:DTS:Correct device id and class code of pcie for
- Loongnon-2K
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Qing Zhang <zhangqing@loongson.cn>
-Cc:     devicetree@vger.kernel.org,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        linux-kernel@vger.kernel.org
-References: <20210425052817.27373-1-maoxiaochuan@loongson.cn>
- <8cd60ba7-b0db-450f-8285-eb5429c4f3ec@www.fastmail.com>
-From:   Xiaochuan Mao <maoxiaochuan@loongson.cn>
-Message-ID: <60a86212-d0d4-7c3f-8ccd-20532fbf4b0c@loongson.cn>
-Date:   Sun, 25 Apr 2021 20:05:44 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S229688AbhDYMgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Apr 2021 08:36:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45726 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229659AbhDYMgz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Apr 2021 08:36:55 -0400
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86962C061574;
+        Sun, 25 Apr 2021 05:36:15 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id 10so1734122pfl.1;
+        Sun, 25 Apr 2021 05:36:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ofDoDGVcFXfNp3joLh7XMNbC13RApFLIA9JxH55i0Y0=;
+        b=ho978dngaeW2FEIQa3scJ/CICMwzUU7IeHuEVG2orXxctosukMtyljcMld+Z3DZcFE
+         tV0qCq33sTHRULszHBw+NRHP0z7qpMjxo05YFjBUyIbwncHOevvqMkxcNpSt6uFj414W
+         cnqDJBBcHsVzZwyZQneG5gE4EvF2KYlI8VBRh3jXF5YeKUrZfGS0h3tAwRnodapd58Qm
+         jneZryU38220SExWjZJ3CUmzCXDSkgy4lrGga4hyBSBoZryUHBRRcT9ez5gyLaFp9+2+
+         P9L09nUlajOBqTrCEYKcXfzyzOVa7Q3sWxU3NEX+HcP+H+FBcWW9gLG3q6GBVv/vdFAO
+         kaaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ofDoDGVcFXfNp3joLh7XMNbC13RApFLIA9JxH55i0Y0=;
+        b=WBqS1MfaUIfeKGKxIiE6H/p8+MeVvhMQPpaqVARplUDszV6VsZpwvUKWvPZJfQxVSY
+         lYBRBMIo3oLBGNGSBvcV7bqzXVDiXUT/S+G2aUDMc7Oz12lr/bJ47+ptkLexkhBwviAa
+         KbEQlmGboQ5IQfEjFw6nBf40e6L+J95LWp2Lw55ME/ZeONiFCBlaTAA0xZCdoXbg2FyJ
+         xyeXeUQTU592+mD3nj9/vfsSO2BFtYfAP/kDtlj245jGZlDWPEx3IGiNkamy+HIVUHw1
+         9U7FELfhiFNzdj4iF6yplgXF4g+DdBNEFXIi47sHGDedkB43wHKrga6x8ftXgMfYs+Rf
+         jwgw==
+X-Gm-Message-State: AOAM531/Ij2gSQetwfCF9XeJTr/AzSrCMYJSVPxcX75pidNPN2gvzgEQ
+        3DIYdAZWjfr+5gbvYXH9cIM=
+X-Google-Smtp-Source: ABdhPJzvTzGt/6iZKu7kQTjLwEIo0mfPJxHDGXbyKX019+An346qKSwFlkMUhfSQ4/w35JtQPY9FQQ==
+X-Received: by 2002:aa7:85d7:0:b029:25d:2b00:2c6c with SMTP id z23-20020aa785d70000b029025d2b002c6cmr12837783pfn.3.1619354174935;
+        Sun, 25 Apr 2021 05:36:14 -0700 (PDT)
+Received: from nj08008nbu.spreadtrum.com ([117.18.48.102])
+        by smtp.gmail.com with ESMTPSA id f135sm8767808pfa.102.2021.04.25.05.36.11
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 25 Apr 2021 05:36:14 -0700 (PDT)
+From:   Kevin Tang <kevin3.tang@gmail.com>
+To:     maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, mark.rutland@arm.com, kevin3.tang@gmail.com
+Cc:     orsonzhai@gmail.com, zhang.lyra@gmail.com,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v5 0/6] Add Unisoc's drm kms module
+Date:   Sun, 25 Apr 2021 20:36:01 +0800
+Message-Id: <20210425123607.26537-1-kevin3.tang@gmail.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-In-Reply-To: <8cd60ba7-b0db-450f-8285-eb5429c4f3ec@www.fastmail.com>
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-CM-TRANSID: AQAAf9Dxb8sYW4Vg5LQNAA--.23169S3
-X-Coremail-Antispam: 1UD129KBjvJXoWxCF1Uuw1rZryrWF4rCryUZFb_yoW5ArW8pF
-        13Gayj9r4kuF1Syr43AFWv9F47GrZIkFn5trnYqr1UArWqq3yq9r1UJr4xGrs5JFs8Aw4F
-        vF95XF1xGF1xt3DanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUUvv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-        1l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
-        6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
-        0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
-        jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr
-        1lF7xvr2IY64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7Mxk0xIA0c2IEe2xFo4CEbIxv
-        r21lc2xSY4AK67AK6ryUMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI
-        8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AK
-        xVWUAVWUtwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI
-        8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_WFyUJVCq3wCI42IY6I8E
-        87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
-        IFyTuYvjfU038nUUUUU
-X-CM-SenderInfo: xpdr5xxdrfx3ldqnw6o6or00hjvr0hdfq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+ChangeList:
+RFC v1:
+1. only upstream modeset and atomic at first commit.
+2. remove some unused code;
+3. use alpha and blend_mode properties;
+3. add yaml support;
+4. remove auto-adaptive panel driver;
+5. bugfix
 
-On 2021/4/25 下午6:39, Jiaxun Yang wrote:
->
-> On Sun, Apr 25, 2021, at 1:28 PM, Xiaochuan Mao wrote:
->> from Loongson-2K user manual know that Loongson-2K have two
->> pcie controller pcie0 and pcie1, pcie0 have four port named port0~port3
->> and pcie1 have 2 port named port0~port1. the device id of port0 is 7a19
->> in each pcie controller and others are 7a09. and their class code is 0b0300.
-> The manual is obviously incorrect.
->
-> class0604 is PCI to PCI bridge that matches. hardware. 0b03 is undefined.
->
-> Thanks.
-thanks your suggest ,  is my mistake .
->> Signed-off-by: Xiaochuan Mao <maoxiaochuan@loongson.cn>
->> ---
->>  .../boot/dts/loongson/loongson64-2k1000.dtsi  | 40 +++++++++----------
->>  1 file changed, 20 insertions(+), 20 deletions(-)
->>
->> diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi 
->> b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->> index 569e814def83..a95121359080 100644
->> --- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->> +++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->> @@ -150,8 +150,8 @@
->>  			pci_bridge@9,0 {
->>  				compatible = "pci0014,7a19.0",
->>  						   "pci0014,7a19",
->> -						   "pciclass060400",
->> -						   "pciclass0604";
->> +						   "pciclass0b0300",
->> +						   "pciclass0b03";
->>  
->>  				reg = <0x4800 0x0 0x0 0x0 0x0>;
->>  				#interrupt-cells = <1>;
->> @@ -163,10 +163,10 @@
->>  			};
->>  
->>  			pci_bridge@a,0 {
->> -				compatible = "pci0014,7a19.0",
->> -						   "pci0014,7a19",
->> -						   "pciclass060400",
->> -						   "pciclass0604";
->> +				compatible = "pci0014,7a09.0",
->> +						   "pci0014,7a09",
->> +						   "pciclass0b0300",
->> +						   "pciclass0b03";
->>  
->>  				reg = <0x5000 0x0 0x0 0x0 0x0>;
->>  				#interrupt-cells = <1>;
->> @@ -178,10 +178,10 @@
->>  			};
->>  
->>  			pci_bridge@b,0 {
->> -				compatible = "pci0014,7a19.0",
->> -						   "pci0014,7a19",
->> -						   "pciclass060400",
->> -						   "pciclass0604";
->> +				compatible = "pci0014,7a09.0",
->> +						   "pci0014,7a09",
->> +						   "pciclass0b0300",
->> +						   "pciclass0b03";
->>  
->>  				reg = <0x5800 0x0 0x0 0x0 0x0>;
->>  				#interrupt-cells = <1>;
->> @@ -193,10 +193,10 @@
->>  			};
->>  
->>  			pci_bridge@c,0 {
->> -				compatible = "pci0014,7a19.0",
->> -						   "pci0014,7a19",
->> -						   "pciclass060400",
->> -						   "pciclass0604";
->> +				compatible = "pci0014,7a09.0",
->> +						   "pci0014,7a09",
->> +						   "pciclass0b0300",
->> +						   "pciclass0b03";
->>  
->>  				reg = <0x6000 0x0 0x0 0x0 0x0>;
->>  				#interrupt-cells = <1>;
->> @@ -210,8 +210,8 @@
->>  			pci_bridge@d,0 {
->>  				compatible = "pci0014,7a19.0",
->>  						   "pci0014,7a19",
->> -						   "pciclass060400",
->> -						   "pciclass0604";
->> +						   "pciclass0b0300",
->> +						   "pciclass0b03";
->>  
->>  				reg = <0x6800 0x0 0x0 0x0 0x0>;
->>  				#interrupt-cells = <1>;
->> @@ -223,10 +223,10 @@
->>  			};
->>  
->>  			pci_bridge@e,0 {
->> -				compatible = "pci0014,7a19.0",
->> -						   "pci0014,7a19",
->> -						   "pciclass060400",
->> -						   "pciclass0604";
->> +				compatible = "pci0014,7a09.0",
->> +						   "pci0014,7a09",
->> +						   "pciclass0b0300",
->> +						   "pciclass0b03";
->>  
->>  				reg = <0x7000 0x0 0x0 0x0 0x0>;
->>  				#interrupt-cells = <1>;
->> -- 
->> 2.17.1
->>
->>
->
+RFC v2:
+1. add sprd crtc and plane module for KMS, preparing for multi crtc&encoder
+2. remove gem drivers, use generic CMA handlers
+3. remove redundant "module_init", all the sub modules loading by KMS
+
+RFC v3:
+1. multi crtc&encoder design have problem, so rollback to v1
+
+RFC v4:
+1. update to gcc-linaro-7.5.0
+2. update to Linux 5.6-rc3
+3. remove pm_runtime support
+4. add COMPILE_TEST, remove unused kconfig
+5. "drm_dev_put" on drm_unbind
+6. fix some naming convention issue
+7. remove semaphore lock for crtc flip
+8. remove static variables
+
+RFC v5:
+1. optimize encoder and connector code implementation
+2. use "platform_get_irq" and "platform_get_resource"
+3. drop useless function return type, drop unless debug log
+4. custom properties should be separate, so drop it
+5. use DRM_XXX replase pr_xxx
+6. drop dsi&dphy hal callback ops
+7. drop unless callback ops checking
+8. add comments for sprd dpu structure
+
+RFC v6:
+1. Access registers via readl/writel
+2. Checking for unsupported KMS properties (format, rotation, blend_mode, etc) on plane_check ops
+3. Remove always true checks for dpu core ops
+
+RFC v7:
+1. Fix DTC unit name warnings
+2. Fix the problem of maintainers
+3. Call drmm_mode_config_init to mode config init
+4. Embed drm_device in sprd_drm and use devm_drm_dev_alloc
+5. Replace DRM_XXX with drm_xxx on KMS module, but not suitable for other subsystems
+6. Remove plane_update stuff, dpu handles all the HW update in crtc->atomic_flush
+7. Dsi&Dphy Code structure adjustment, all move to "sprd/"
+
+v0:
+1. Remove dpu_core_ops stuff layer for sprd drtc driver, but dpu_layer need to keeping.
+   Because all the HW update in crtc->atomic_flush, we need temporary storage all layers for
+   the dpu pageflip of atomic_flush.
+2. Add ports subnode with port@X.
+
+v1:
+1. Remove dphy and dsi graph binding, merge the dphy driver into the dsi.
+2. Add commit messages for Unisoc's virtual nodes.
+
+v2:
+1. Use drm_xxx to replace all DRM_XXX.
+2. Use kzalloc to replace devm_kzalloc for sprd_dsi/sprd_dpu structure init.
+3. Remove dpu_core_ops midlayer.
+
+v3:
+1. Remove dpu_layer midlayer and commit layers by aotmic_update
+
+v4:
+1. Move the devm_drm_dev_alloc to master_ops->bind function.
+2. The managed drmm_mode_config_init() it is no longer necessary for drivers to explicitly call drm_mode_config_cleanup, so delete it.
+3. Use drmm_helpers to allocate crtc ,planes and encoder.
+4. Move allocate crtc ,planes, encoder to bind funtion.
+5. Move rotation enum definitions to crtc layer reg bitfields.
+
+v5:
+1. Remove subdir-ccflgas-y for Makefile.
+2. Keep the selects sorted by alphabet for Kconfig.
+3. Fix the checkpatch warnings.
+4. Use mode_set_nofb instead of mode_valid callback.
+5. Follow the OF-Graph bindings, use of_graph_get_port_by_id instead of of_parse_phandle.
+6. Use zpos to represent the layer position.
+7. Rebase to last drm misc branch.
+8. Remove panel_in port for dsi node.
+9. Drop the dsi ip file prefix.
+10. Add Signed-off-by for dsi&dphy patch.
+11. Use the mode_flags of mipi_dsi_device to setup crtc DPI and EDPI mode.
+
+Kevin Tang (6):
+  dt-bindings: display: add Unisoc's drm master bindings
+  drm/sprd: add Unisoc's drm kms master
+  dt-bindings: display: add Unisoc's dpu bindings
+  drm/sprd: add Unisoc's drm display controller driver
+  dt-bindings: display: add Unisoc's mipi dsi controller bindings
+  drm/sprd: add Unisoc's drm mipi dsi&dphy driver
+
+ .../display/sprd/sprd,display-subsystem.yaml  |   64 +
+ .../display/sprd/sprd,sharkl3-dpu.yaml        |   77 +
+ .../display/sprd/sprd,sharkl3-dsi-host.yaml   |   88 +
+ drivers/gpu/drm/Kconfig                       |    2 +
+ drivers/gpu/drm/Makefile                      |    1 +
+ drivers/gpu/drm/sprd/Kconfig                  |   13 +
+ drivers/gpu/drm/sprd/Makefile                 |    8 +
+ drivers/gpu/drm/sprd/dsi_ctrl.c               |  794 +++++++++
+ drivers/gpu/drm/sprd/dsi_ctrl.h               | 1475 +++++++++++++++++
+ drivers/gpu/drm/sprd/dsi_ctrl_ppi.c           |  157 ++
+ drivers/gpu/drm/sprd/dsi_ctrl_ppi.h           |   26 +
+ drivers/gpu/drm/sprd/megacores_pll.c          |  317 ++++
+ drivers/gpu/drm/sprd/megacores_pll.h          |  146 ++
+ drivers/gpu/drm/sprd/sprd_dpu.c               |  956 +++++++++++
+ drivers/gpu/drm/sprd/sprd_dpu.h               |  109 ++
+ drivers/gpu/drm/sprd/sprd_drm.c               |  207 +++
+ drivers/gpu/drm/sprd/sprd_drm.h               |   19 +
+ drivers/gpu/drm/sprd/sprd_dsi.c               | 1124 +++++++++++++
+ drivers/gpu/drm/sprd/sprd_dsi.h               |  107 ++
+ 19 files changed, 5690 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,display-subsystem.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml
+ create mode 100644 drivers/gpu/drm/sprd/Kconfig
+ create mode 100644 drivers/gpu/drm/sprd/Makefile
+ create mode 100644 drivers/gpu/drm/sprd/dsi_ctrl.c
+ create mode 100644 drivers/gpu/drm/sprd/dsi_ctrl.h
+ create mode 100644 drivers/gpu/drm/sprd/dsi_ctrl_ppi.c
+ create mode 100644 drivers/gpu/drm/sprd/dsi_ctrl_ppi.h
+ create mode 100644 drivers/gpu/drm/sprd/megacores_pll.c
+ create mode 100644 drivers/gpu/drm/sprd/megacores_pll.h
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dpu.c
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dpu.h
+ create mode 100644 drivers/gpu/drm/sprd/sprd_drm.c
+ create mode 100644 drivers/gpu/drm/sprd/sprd_drm.h
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dsi.c
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dsi.h
+
 -- 
---xiaochuan
+2.29.0
 
