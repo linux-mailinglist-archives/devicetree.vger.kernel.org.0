@@ -2,82 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23DE136A7AE
-	for <lists+devicetree@lfdr.de>; Sun, 25 Apr 2021 16:05:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E833436A7CD
+	for <lists+devicetree@lfdr.de>; Sun, 25 Apr 2021 16:33:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230239AbhDYOGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Apr 2021 10:06:19 -0400
-Received: from smtpout1.mo528.mail-out.ovh.net ([46.105.34.251]:51773 "EHLO
-        smtpout1.mo528.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229906AbhDYOGT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 25 Apr 2021 10:06:19 -0400
-X-Greylist: delayed 339 seconds by postgrey-1.27 at vger.kernel.org; Sun, 25 Apr 2021 10:06:18 EDT
-Received: from pro2.mail.ovh.net (unknown [10.109.138.141])
-        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id 35422A236485;
-        Sun, 25 Apr 2021 15:59:59 +0200 (CEST)
-Received: from arch.lan (89.70.221.198) by DAG2EX1.emp2.local (172.16.2.11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Sun, 25 Apr
- 2021 15:59:58 +0200
-From:   Tomasz Duszynski <tomasz.duszynski@octakon.com>
-To:     <linux-iio@vger.kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <jic23@kernel.org>, <lars@metafoo.de>, <robh+dt@kernel.org>,
-        Tomasz Duszynski <tomasz.duszynski@octakon.com>
-Subject: [PATCH 3/3] dt-bindings: iio: chemical: sps30: update binding with serial example
-Date:   Sun, 25 Apr 2021 15:55:46 +0200
-Message-ID: <20210425135546.57343-4-tomasz.duszynski@octakon.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210425135546.57343-1-tomasz.duszynski@octakon.com>
-References: <20210425135546.57343-1-tomasz.duszynski@octakon.com>
+        id S230244AbhDYOeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Apr 2021 10:34:21 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:39878 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229906AbhDYOeV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 25 Apr 2021 10:34:21 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lafpD-000zu0-0c; Sun, 25 Apr 2021 16:33:31 +0200
+Date:   Sun, 25 Apr 2021 16:33:30 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     DENG Qingfang <dqfext@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 11/14] drivers: net: dsa: qca8k: apply switch revision fix
+Message-ID: <YIV9unMmDMROD4sp@lunn.ch>
+References: <20210423014741.11858-1-ansuelsmth@gmail.com>
+ <20210423014741.11858-12-ansuelsmth@gmail.com>
+ <e644aba9-a092-3825-b55b-e0cca158d28b@gmail.com>
+ <YISLHNK8binc9T1N@Ansuel-xps.localdomain>
+ <20210425044554.194770-1-dqfext@gmail.com>
+ <YIVZl9qbXLcCrqNl@Ansuel-xps.localdomain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [89.70.221.198]
-X-ClientProxiedBy: DAG3EX2.emp2.local (172.16.2.22) To DAG2EX1.emp2.local
- (172.16.2.11)
-X-Ovh-Tracer-Id: 8493507424671718423
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledrvdduiedgjeefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefhvffufffkofgjfhgggfgtihesthekredtredttdenucfhrhhomhepvfhomhgrshiiucffuhhsiiihnhhskhhiuceothhomhgrshiirdguuhhsiiihnhhskhhisehotghtrghkohhnrdgtohhmqeenucggtffrrghtthgvrhhnpeevjedvkeeuieehveeggeduuddvhfduhffhhedufeejudehkeeuhffgheduffduudenucfkpheptddrtddrtddrtddpkeelrdejtddrvddvuddrudelkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehprhhovddrmhgrihhlrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehtohhmrghsiidrughushiihihnshhkihesohgtthgrkhhonhdrtghomhdprhgtphhtthhopehrohgshhdoughtsehkvghrnhgvlhdrohhrgh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YIVZl9qbXLcCrqNl@Ansuel-xps.localdomain>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-sps30 has gained support for serial communication so add example to the
-binding file. While at it remove reg property from list of required
-properties because it's no-op in case of serial communication.
+On Sun, Apr 25, 2021 at 01:59:19PM +0200, Ansuel Smith wrote:
+> On Sun, Apr 25, 2021 at 12:45:54PM +0800, DENG Qingfang wrote:
+> > Hi Ansuel,
+> > 
+> > On Sat, Apr 24, 2021 at 11:18:20PM +0200, Ansuel Smith wrote:
+> > > 
+> > > I'm starting to do some work with this and a problem arised. Since these
+> > > value are based on the switch revision, how can I access these kind of
+> > > data from the phy driver? It's allowed to declare a phy driver in the
+> > > dsa directory? (The idea would be to create a qca8k dir with the dsa
+> > > driver and the dedicated internal phy driver.) This would facilitate the
+> > > use of normal qca8k_read/write (to access the switch revision from the
+> > > phy driver) using common function?
+> > 
+> > In case of different switch revision, the PHY ID should also be different.
+> > I think you can reuse the current at803x.c PHY driver, as they seem to
+> > share similar registers.
+> >
+> 
+> Is this really necessary? Every PHY has the same ID linked to the switch
+> id but the revision can change across the same switch id. Isn't the phy
+> dev flag enought to differiante one id from another? 
 
-Signed-off-by: Tomasz Duszynski <tomasz.duszynski@octakon.com>
----
- .../devicetree/bindings/iio/chemical/sensirion,sps30.yaml  | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Just as general background information: A PHY ID generally consists of
+three parts.
 
-diff --git a/Documentation/devicetree/bindings/iio/chemical/sensirion,sps30.yaml b/Documentation/devicetree/bindings/iio/chemical/sensirion,sps30.yaml
-index a93d1972a5c2..967500b7e773 100644
---- a/Documentation/devicetree/bindings/iio/chemical/sensirion,sps30.yaml
-+++ b/Documentation/devicetree/bindings/iio/chemical/sensirion,sps30.yaml
-@@ -22,7 +22,6 @@ properties:
- 
- required:
-   - compatible
--  - reg
- 
- additionalProperties: false
- 
-@@ -37,5 +36,11 @@ examples:
-         reg = <0x69>;
-       };
-     };
-+  - |
-+    serial {
-+      air-pollution-sensor {
-+        compatible = "sensirion,sps30";
-+      };
-+    };
- 
- ...
--- 
-2.31.1
+1) OUI - Identifies the manufacture - 22 bits
+2) device - Generally 6 bits
+3) revision - Generally 4 bits
 
+The 22 bits of OUI is standardized. But the last 10 bits the vendor
+can use as they wish. But generally, this is how it is used.
+
+Loading the PHY driver is generally based on matching the OUI and
+device ID. The revision is ignored. But it is available to the driver
+if needed.
+
+It could be, the switch revision is also reflected in the PHY
+revision.
+
+	Andrew
