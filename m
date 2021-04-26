@@ -2,565 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE15A36B1A6
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 12:29:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BED7136B1B1
+	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 12:35:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232716AbhDZKai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 06:30:38 -0400
-Received: from smtpout1.mo528.mail-out.ovh.net ([46.105.34.251]:51871 "EHLO
-        smtpout1.mo528.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232547AbhDZKah (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Apr 2021 06:30:37 -0400
-Received: from pro2.mail.ovh.net (unknown [10.108.16.4])
-        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id 07C07A26112A;
-        Mon, 26 Apr 2021 12:29:42 +0200 (CEST)
-Received: from localhost (89.70.221.198) by DAG2EX1.emp2.local (172.16.2.11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Mon, 26 Apr
- 2021 12:29:41 +0200
-Date:   Mon, 26 Apr 2021 12:25:36 +0200
-From:   Tomasz Duszynski <tomasz.duszynski@octakon.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-CC:     Tomasz Duszynski <tomasz.duszynski@octakon.com>,
-        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <lars@metafoo.de>,
-        <robh+dt@kernel.org>
-Subject: Re: [PATCH 2/3] iio: sps30: add support for serial interface
-Message-ID: <YIaVIKkB8q0MPARM@arch>
-References: <20210425135546.57343-1-tomasz.duszynski@octakon.com>
- <20210425135546.57343-3-tomasz.duszynski@octakon.com>
- <20210425165344.407202fc@jic23-huawei>
+        id S232779AbhDZKgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Apr 2021 06:36:15 -0400
+Received: from mail-eopbgr80109.outbound.protection.outlook.com ([40.107.8.109]:35463
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232194AbhDZKgL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Apr 2021 06:36:11 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZraVheJblfu1BVOIuBJOuOMdLr5OwkQ87uxxXvTT3PkNKZbmTHMdzYsF0l6Aahz8nHMoe4uxsXvI0Qrf6fRtcm1y7vFLOKZi+mYX2jR4sTTDeS3yK7mC4k2txxTkrU/4lcejyvlWO3h92YXaWjX2b0t8454NfXZ2YeZPNCGHVNYB7cU2sd+2JIvWGh3rEyMTWCFU9XBrH1gG6UDKc8a3fCpylhTbEUb0sDZwzgiyD+OqywyX/Dc6dUWW8DNNv5baeL/6LssrTxY0lUpbHPpbIdQrbceEfluD7Hvp1+MTLLAkxRyjCOYK4tf0m8xGq63UknKopn8HUYHtyYO9bJPsGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XmwQwGI2pNIMoFlZrM4gOhh3Vo6+6pEAQ0W13ZCaqNI=;
+ b=GClsrB4I4Tr0wcPzKvmg6Cz/hqiqtnlQw99V9BHd4gcvde4UO7urmjdpHjkCKW/QwZDolU8GA40ShBSP69L3PTkMTBY+bGZf1d16jTTV6VR0QkC62YQSVMWxv8+T2rTYiDRq0kiMIGZtrTMk04uVNlMI0944oWWcDohqbMc4q4NciqCL3jxJJZpQQH2RHgrZNeRWLH7Fk0Yc0ITvpZGLu0phbVAe8ufMk5I/kdTcdS+5mlsQJcGP78sIIWJahXd7WqTjiJvaoMuKm1N/ms4rHX8y7WweZZHWEA1fZtXZmuFTjLW+TuyJehJrzGgnJpYtSXeYx0MoWnPov3Uu+CuLYQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
+ s=selector2-mysnt-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XmwQwGI2pNIMoFlZrM4gOhh3Vo6+6pEAQ0W13ZCaqNI=;
+ b=HFFNqMbBi5H8qDcW16alCpjPEVkqthmeI3aBWHSrCOw+8jZBJxDJXCjoIVwr/9Ued/ZHPywRiNjxisPsz48BovcZV/fiJ7+7vaIQ92Vs9kkFKm08LhereH65qK11O3QOe100iCD/KHa1VzDGHsQ7knK8cMCmoC2LaRz31NE/FT0=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=kontron.de;
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:157::14)
+ by AM0PR10MB2625.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:12e::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.21; Mon, 26 Apr
+ 2021 10:35:28 +0000
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::3d8a:f56b:3a0c:8a87]) by AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::3d8a:f56b:3a0c:8a87%7]) with mapi id 15.20.4065.027; Mon, 26 Apr 2021
+ 10:35:27 +0000
+Subject: Re: [PATCH 00/23] media: imx: imx7-mipi-csis: Add i.MX8MM support
+To:     Tim Harvey <tharvey@gateworks.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media <linux-media@vger.kernel.org>,
+        Rui Miguel Silva <rmfrfs@gmail.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+References: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
+ <CAJ+vNU1bnR+L-QkHAN_Yar0MUTjF+QoxgTHV9ZxQW+VWpM6cpg@mail.gmail.com>
+From:   Frieder Schrempf <frieder.schrempf@kontron.de>
+Message-ID: <e0ac6633-498d-ae9e-5eea-7d7d59742cab@kontron.de>
+Date:   Mon, 26 Apr 2021 12:35:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+In-Reply-To: <CAJ+vNU1bnR+L-QkHAN_Yar0MUTjF+QoxgTHV9ZxQW+VWpM6cpg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [88.130.73.114]
+X-ClientProxiedBy: AM7PR03CA0002.eurprd03.prod.outlook.com
+ (2603:10a6:20b:130::12) To AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:157::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20210425165344.407202fc@jic23-huawei>
-X-Originating-IP: [89.70.221.198]
-X-ClientProxiedBy: CAS2.emp2.local (172.16.1.2) To DAG2EX1.emp2.local
- (172.16.2.11)
-X-Ovh-Tracer-Id: 10814831555318013010
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledrvddukedgfedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpeffhffvuffkfhggtggujghisehttdertddttdejnecuhfhrohhmpefvohhmrghsiicuffhushiihihnshhkihcuoehtohhmrghsiidrughushiihihnshhkihesohgtthgrkhhonhdrtghomheqnecuggftrfgrthhtvghrnheptdehveethfffudetjeeftdekueehjeegjedvteffgfevkefffeegffeugeehgfejnecukfhppedtrddtrddtrddtpdekledrjedtrddvvddurdduleeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhrohdvrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepthhomhgrshiirdguuhhsiiihnhhskhhisehotghtrghkohhnrdgtohhmpdhrtghpthhtoheprhhosghhodgutheskhgvrhhnvghlrdhorhhg
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.10.17] (88.130.73.114) by AM7PR03CA0002.eurprd03.prod.outlook.com (2603:10a6:20b:130::12) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.20 via Frontend Transport; Mon, 26 Apr 2021 10:35:26 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 44a37439-6ae2-4573-36d6-08d9089f0212
+X-MS-TrafficTypeDiagnostic: AM0PR10MB2625:
+X-Microsoft-Antispam-PRVS: <AM0PR10MB26253ADAE07110E3121F8F59E9429@AM0PR10MB2625.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: PHyBiTJaQXhz+l7p1vhB9W3xPXgRd0Ilx698NoCT4N+KOpQ6ENrWXzB7/0QSGTFiwhBYTjRrNt99NnOgir/LfZUUiZ2eipKRb08ZEnxSXTIB5aprzkCMWeNRFMo7vg00XpxXtZZSGhuH6FIAfgF83EpVrNLu7vdQ2zvcjM3yA8r962h32CKsMuk961GJF41ecMERBrkxJCtMmpqPgbAUdFkaoa5txodagPj+33gsm5vdmuxl5jKmv7quxOlCsu3+cj3AoZGPgnexcg469oEMTgWj5nhRudOOpgGyBdRD5DFcGm7ZmlaQgb3Ny39PJHWfvyPVDPn68IVHMs9zZ/9vnnDQRB7TBbZoNWMB5nWnJnJwJ/Z75n85bSh2HxBM0KMlTYD1C+4sNe+SVNjwKBDyz6ptaGprnhIs/RmY6gC42gPRHU2M18AIDXZtfo4tTWf7MT7oipMwTnHfqfk9X/zqE0UrGHmZ3BFUk84qPJwKNHZO/Q6HD3+AmhsLGGVxKLHbk2firtYcUafL5q7gCelYGfrYG4wJ16PJFEwTy53Spv5IvV/vkpS0gVyU1tLrwFxNWG4MWbEcie/ifQvkyrH9W5ET4Vo4N7oEpKeGSm39s1Thz4hsIgCRTJq/dO8QF6VrxoGXFZV5WiKr6n6gPx/dRbcW+f1R/bSuI1v3Jz05rwI5oK3xzIB0UjMTtahzfFmiGbq19eeIYspk/awqYIeAU46jBcm5iavFBHTaGzgnnfNtn+txFbi+pvvRzTjUt+3IebRpWbawzUW61xMLrD8UXXNLO/6RzmDsP163TjhhnmE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(376002)(346002)(366004)(396003)(136003)(2906002)(44832011)(5660300002)(4326008)(26005)(2616005)(31696002)(83380400001)(31686004)(8936002)(52116002)(8676002)(478600001)(66556008)(66946007)(186003)(86362001)(66476007)(16526019)(36756003)(6486002)(7416002)(966005)(54906003)(38350700002)(38100700002)(316002)(53546011)(16576012)(956004)(110136005)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?UCswTnNjanY4RzN5aHc5OGJSeGRNV0Q5QTR1VWVpSWNFN0pnb3RQR1Y4bklj?=
+ =?utf-8?B?YjdUYUpscUFxNi94eWtuWSs4bGFkWFlkdVhjdUdqYW5xSEx6K2MzMEdrVXVn?=
+ =?utf-8?B?bXh4V0t4WVFSaDdMbWorSHJvSHQxT2tkMC8za2FlR2pzSTMyZlBOK0NNTHln?=
+ =?utf-8?B?NWVac1ozQXNhVlVHNnJ6cDVIRUhLRFJ3UENodWFERzA2RkVwWDFuQm8wbDV4?=
+ =?utf-8?B?ZVBuWnVRME5aMTFpQjJma0txM2IrTWNVNHZzZmpyMUFNQ0Y2aVNvK1VGMnM0?=
+ =?utf-8?B?WDBiNCt3bHFrNUdaVDBYcWVPc282ampMUTNNSmo2aHdaRWNuUXlqelY5MHdq?=
+ =?utf-8?B?eG5UWEJwM2VwYWtPaysvOVMvZXlKdkFhb1BteXJmNllPZ1FoMDN2aEswdjVF?=
+ =?utf-8?B?NXVpL014d2VqTVgwazNScnJFNmw1dHVWeUVsVHFJdHNrVWpCUEdnaWNPbDVU?=
+ =?utf-8?B?eGhESWVmeHd2WDhub3BhTEFtaTZ5QU0xeDQ0aWhKc1ZpWUVzRENrZGtqL2Rw?=
+ =?utf-8?B?akwrc3ZDbDdjbVV6NnNNbkFXbnlYZ0hpMUxKL3RXMDA2eUU2MHZtUFpZOUNK?=
+ =?utf-8?B?b2JPcUVsREZUZkZmSkh0KzFocUVGZSsxZlJEclM5bk5VY0hQTGZnZDYzQlhB?=
+ =?utf-8?B?Yk8zUHJlUXpRMHMxa0N2aVVheFI3Ylpkc2NuK1d2a04xOUxpaEFXelMrRzVu?=
+ =?utf-8?B?STBSbWpnOCt2NDlVaHhBNHZ4eUNtZzY4eEw5VjdwMzU4elk2ZXE4TGdjdDJl?=
+ =?utf-8?B?ak9KL1hIVXE3YkFlOE4rbHA0NWFrSjdmclpmU3g1bkN1THBxZVNDd0RJUmNi?=
+ =?utf-8?B?R1hCNWZzbGhHbjA5cFNmUjJQWGNOT3BGVTJ6ODhuZHdsbjB0bGdEU1dYRHg1?=
+ =?utf-8?B?RXFqZUxSY1JYUENwcGRUV1lXOHhCb3M2SEdXWXlTcXVZREI0TUVLREpiaWhZ?=
+ =?utf-8?B?Q2dFZE4vdElqWEFZVkhFV3ZTc25RUWFDVW80MjBSaHlVMkZSZ0lNRmhVQ0l6?=
+ =?utf-8?B?cU5IbVA5bTNvb3orSk44SkYzeThVZS9HYXgyM21pWGVTc05XVFJuSGVaTTA1?=
+ =?utf-8?B?OHdjYjR6TlV3RWhPUjgydG5DakdPRVZ0ZnoyS1NrM2t4MC9tTWJGME1lcG9T?=
+ =?utf-8?B?dUtBQ2ZYMmtTRjB2cTU1cGt3RGlUV0dZbyt3ZFR6dHl2SlZLanhoZTJUUVRV?=
+ =?utf-8?B?VmYxNXI3K0pKN0xQNkhCdTc5cEN6aGFYcUFrY3pDcmMyaGRHZXUzMUhQZ0p3?=
+ =?utf-8?B?TXBKWVJWZ0FraVNKSFIwR1YyaWsyQlB4SnMvS2Z3VzRkb1FKZm9jNzM0UGJl?=
+ =?utf-8?B?SkJJT1Nva2hhcnVtNWV5TGlKdWNOYXF6NDNvR0lGM3FNcDRXT0kyb2VISUUw?=
+ =?utf-8?B?VmlaTng2UzgvSnNWVHZ2RysxTytRaXBMY2gyaDd3OHlISFRFWU5SUkI4WEhG?=
+ =?utf-8?B?ZXhLL1haWEVHd3AxYnZWLzdSckoxa0tOS2lSYXdmZWh1c2pmYjh5WllKVXF3?=
+ =?utf-8?B?Q29wWmhUL1ZrclNYVVBVeHhROGk0QkEwUU9oR2pnL3dzbmxvdGJSRWt5dEJv?=
+ =?utf-8?B?dnJXa0pheUhUbzZidUFKcGxjcGJZUTV1L3dibnRmd1pEUlFrOGhZVEJyWVRa?=
+ =?utf-8?B?aUozS2dSQjN2aEZyMVIyUEVKKzdzZXIzYWpNOHEyTjBXVEtwM3ZUYVVvV3Y0?=
+ =?utf-8?B?anlKczJQYUFveno2aHpJSGJIT0J4VzBialpYQVhuZFhTRTdhdFZTdmZIMDhp?=
+ =?utf-8?Q?304BsTB/UgIz+cI/BFsg23bJpJ4QF0utAvMIvty?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 44a37439-6ae2-4573-36d6-08d9089f0212
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2021 10:35:27.8195
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ++i6zy5QrgKeZFfUAmTebIXWzKTj341jfIutKDTCYJdCReV8oMtZ9eVsxdd28Sgj11cAFTQ2nWCqdGe3RuOnwYKCRCk2iK9TaSUXgLZPVB8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB2625
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 25, 2021 at 04:53:44PM +0100, Jonathan Cameron wrote:
-> On Sun, 25 Apr 2021 15:55:45 +0200
-> Tomasz Duszynski <tomasz.duszynski@octakon.com> wrote:
->
-> > Sensor has support for both i2c and serial communication interfaces.
-> > Both offer very similar set of features. Minor differences don't impact
-> > overall functionality like doing measurements, etc.
-> >
-> > Support for i2c have already been added, this patch adds support
-> > for the latter ie. serial interface.
-> >
-> > Signed-off-by: Tomasz Duszynski <tomasz.duszynski@octakon.com>
->
-> Hi Tomasz,
->
-> A few things inline that need tidying up.
->
-> I'm far from an expert on serdev drivers though so I'm not 100% sure on that
-> side of things.
->
-> Thanks,
->
-> Jonathan
->
-> > ---
-> >  MAINTAINERS                         |   1 +
-> >  drivers/iio/chemical/Kconfig        |  10 +
-> >  drivers/iio/chemical/Makefile       |   1 +
-> >  drivers/iio/chemical/sps30_serial.c | 420 ++++++++++++++++++++++++++++
-> >  4 files changed, 432 insertions(+)
-> >  create mode 100644 drivers/iio/chemical/sps30_serial.c
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 4b39a9c48736..cab9a63ad2cf 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -16138,6 +16138,7 @@ S:	Maintained
-> >  F:	Documentation/devicetree/bindings/iio/chemical/sensirion,sps30.yaml
-> >  F:	drivers/iio/chemical/sps30.c
-> >  F:	drivers/iio/chemical/sps30_i2c.c
-> > +F:	drivers/iio/chemical/sps30_serial.c
-> >
-> >  SERIAL DEVICE BUS
-> >  M:	Rob Herring <robh@kernel.org>
-> > diff --git a/drivers/iio/chemical/Kconfig b/drivers/iio/chemical/Kconfig
-> > index 82af5f62fbc6..6909b4754b9e 100644
-> > --- a/drivers/iio/chemical/Kconfig
-> > +++ b/drivers/iio/chemical/Kconfig
-> > @@ -153,6 +153,16 @@ config SPS30_I2C
-> >  	  To compile this driver as a module, choose M here: the module will
-> >  	  be called sps30_i2c.
-> >
-> > +config SPS30_SERIAL
-> > +	tristate "SPS30 particulate matter sensor serial driver"
-> > +	depends on SPS30 && SERIAL_DEV_BUS
-> > +	help
-> > +	  Say Y here to build support for the Sensirion SPS30 serial interface
-> > +	  driver.
-> > +
-> > +	  To compile this driver as a module, choose M here: the module will
-> > +	  be called sps30_serial.
-> > +
-> >  config VZ89X
-> >  	tristate "SGX Sensortech MiCS VZ89X VOC sensor"
-> >  	depends on I2C
-> > diff --git a/drivers/iio/chemical/Makefile b/drivers/iio/chemical/Makefile
-> > index 41c264a229c0..4898690cc155 100644
-> > --- a/drivers/iio/chemical/Makefile
-> > +++ b/drivers/iio/chemical/Makefile
-> > @@ -18,4 +18,5 @@ obj-$(CONFIG_SCD30_SERIAL) += scd30_serial.o
-> >  obj-$(CONFIG_SENSIRION_SGP30)	+= sgp30.o
-> >  obj-$(CONFIG_SPS30) += sps30.o
-> >  obj-$(CONFIG_SPS30_I2C) += sps30_i2c.o
-> > +obj-$(CONFIG_SPS30_SERIAL) += sps30_serial.o
-> >  obj-$(CONFIG_VZ89X)		+= vz89x.o
-> > diff --git a/drivers/iio/chemical/sps30_serial.c b/drivers/iio/chemical/sps30_serial.c
-> > new file mode 100644
-> > index 000000000000..5adeeed9bc8f
-> > --- /dev/null
-> > +++ b/drivers/iio/chemical/sps30_serial.c
-> > @@ -0,0 +1,420 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Sensirion SPS30 particulate matter sensor serial driver
-> > + *
-> > + * Copyright (c) 2021 Tomasz Duszynski <tomasz.duszynski@octakon.com>
-> > + */
-> > +#include <linux/completion.h>
-> > +#include <linux/device.h>
-> > +#include <linux/errno.h>
-> > +#include <linux/iio/iio.h>
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/module.h>
-> > +#include <linux/serdev.h>
-> > +
-> > +#include "sps30.h"
-> > +
-> > +#define SPS30_SERIAL_SOF_EOF 0x7e
-> > +#define SPS30_SERIAL_TIMEOUT msecs_to_jiffies(20)
-> > +#define SPS30_SERIAL_MAX_BUF_SIZE 263
-> > +#define SPS30_SERIAL_ESCAPE_CHAR 0x7d
-> > +
-> > +#define SPS30_SERIAL_FRAME_MIN_SIZE 7
-> > +#define SPS30_SERIAL_FRAME_ADR_OFFSET 1
-> > +#define SPS30_SERIAL_FRAME_CMD_OFFSET 2
-> > +#define SPS30_SERIAL_FRAME_MOSI_LEN_OFFSET 3
-> > +#define SPS30_SERIAL_FRAME_MISO_STATE_OFFSET 3
-> > +#define SPS30_SERIAL_FRAME_MISO_LEN_OFFSET 4
-> > +#define SPS30_SERIAL_FRAME_MISO_DATA_OFFSET 5
-> > +
-> > +#define SPS30_SERIAL_START_MEAS 0x00
-> > +#define SPS30_SERIAL_STOP_MEAS 0x01
-> > +#define SPS30_SERIAL_READ_MEAS 0x03
-> > +#define SPS30_SERIAL_RESET 0xd3
-> > +#define SPS30_SERIAL_CLEAN_FAN 0x56
-> > +#define SPS30_SERIAL_PERIOD 0x80
-> > +#define SPS30_SERIAL_DEV_INFO 0xd0
-> > +#define SPS30_SERIAL_READ_VERSION 0xd1
-> > +
-> > +struct sps30_serial_priv {
-> > +	struct completion new_frame;
-> > +	char buf[SPS30_SERIAL_MAX_BUF_SIZE];
-> > +	int num;
-> > +	unsigned int chksum;
-> > +	bool escaped;
-> > +	bool done;
-> > +};
-> > +
-> > +static int sps30_serial_xfer(struct sps30_state *state, const char *buf, int size)
-> > +{
-> > +	struct serdev_device *serdev = to_serdev_device(state->dev);
-> > +	struct sps30_serial_priv *priv = state->priv;
-> > +	int ret;
-> > +
-> > +	priv->num = 0;
-> > +	priv->chksum = 0;
-> > +	priv->escaped = false;
-> > +	priv->done = false;
-> > +
-> > +	ret = serdev_device_write(serdev, buf, size, SPS30_SERIAL_TIMEOUT);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +	if (ret != size)
-> > +		return -EIO;
-> > +
-> > +	ret = wait_for_completion_interruptible_timeout(&priv->new_frame, SPS30_SERIAL_TIMEOUT);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +	if (!ret)
-> > +		return -ETIMEDOUT;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static struct {
-> > +	char byte;
-> > +	char byte2;
-> > +} sps30_serial_bytes[] = {
-> > +	{ 0x11, 0x31 },
-> > +	{ 0x13, 0x33 },
-> > +	{ 0x7e, 0x5e },
-> > +	{ 0x7d, 0x5d },
-> > +};
-> > +
-> > +static int sps30_serial_put_byte(char *buf, char byte)
-> > +{
-> > +	int i;
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(sps30_serial_bytes); i++) {
-> > +		if (sps30_serial_bytes[i].byte != byte)
-> > +			continue;
-> > +
-> > +		buf[0] = SPS30_SERIAL_ESCAPE_CHAR;
-> > +		buf[1] = sps30_serial_bytes[i].byte2;
-> > +
-> > +		return 2;
-> > +	}
-> > +
-> > +	buf[0] = byte;
-> > +
-> > +	return 1;
-> > +}
-> > +
-> > +static char sps30_serial_get_byte(bool escaped, char byte2)
-> > +{
-> > +	int i;
-> > +
-> > +	if (!escaped)
-> > +		return byte2;
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(sps30_serial_bytes); i++) {
-> > +		if (sps30_serial_bytes[i].byte2 != byte2)
-> > +			continue;
-> > +
-> > +		return sps30_serial_bytes[i].byte;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int sps30_serial_prep_frame(char *buf, char cmd, const char *arg, int arg_size)
-> > +{
-> > +	unsigned int chksum;
-> > +	unsigned char byte;
-> > +	int i, num = 0;
-> > +
-> > +	buf[num++] = SPS30_SERIAL_SOF_EOF;
-> > +	buf[num++] = 0;
-> > +
-> > +	byte = cmd;
-> > +	num += sps30_serial_put_byte(buf + num, byte);
-> > +	chksum = byte;
-> > +
-> > +	byte = (unsigned char)arg_size;
-> > +	num += sps30_serial_put_byte(buf + num, byte);
-> > +	chksum += byte;
-> > +
-> > +	for (i = 0; i < arg_size; i++) {
-> > +		byte = arg[i];
-> > +		num += sps30_serial_put_byte(buf + num, byte);
-> > +		chksum += byte;
-> > +	}
-> > +
-> > +	byte = (unsigned char)~chksum;
-> > +	num += sps30_serial_put_byte(buf + num, byte);
-> > +
-> > +	buf[num++] = SPS30_SERIAL_SOF_EOF;
-> > +
-> > +	return num;
-> > +}
-> > +
-> > +static bool sps30_serial_frame_valid(struct sps30_state *state, const char *buf)
-> > +{
-> > +	struct sps30_serial_priv *priv = state->priv;
-> > +
-> > +	if ((priv->num < SPS30_SERIAL_FRAME_MIN_SIZE) ||
-> > +	    (priv->num != SPS30_SERIAL_FRAME_MIN_SIZE +
-> > +	     priv->buf[SPS30_SERIAL_FRAME_MISO_LEN_OFFSET])) {
-> > +		dev_err(state->dev, "frame has invalid number of bytes\n");
-> > +		return false;
-> > +	}
-> > +
-> > +	if ((priv->buf[SPS30_SERIAL_FRAME_ADR_OFFSET] != buf[SPS30_SERIAL_FRAME_ADR_OFFSET]) ||
-> > +	    (priv->buf[SPS30_SERIAL_FRAME_CMD_OFFSET] != buf[SPS30_SERIAL_FRAME_CMD_OFFSET])) {
-> > +		dev_err(state->dev, "frame has wrong ADR and CMD bytes\n");
-> > +		return false;
-> > +	}
-> > +
-> > +	if (priv->buf[SPS30_SERIAL_FRAME_MISO_STATE_OFFSET]) {
-> > +		dev_err(state->dev, "frame with non-zero state received (0x%02x)\n",
-> > +			priv->buf[SPS30_SERIAL_FRAME_MISO_STATE_OFFSET]);
-> > +		//return false;
->
-> ?
->
-> > +	}
-> > +
-> > +	if (priv->buf[priv->num - 2] != priv->chksum) {
-> > +		dev_err(state->dev, "frame integrity check failed\n");
-> > +		return false;
-> > +	}
-> > +
-> > +	return true;
-> > +}
-> > +
-> > +static int sps30_serial_command(struct sps30_state *state, char cmd, void *arg, int arg_size,
-> > +				void *rsp, int rsp_size)
-> > +{
-> > +	struct sps30_serial_priv *priv = state->priv;
-> > +	char buf[SPS30_SERIAL_MAX_BUF_SIZE];
-> > +	int ret, size;
-> > +
-> > +	size = sps30_serial_prep_frame(buf, cmd, arg, arg_size);
-> > +	ret = sps30_serial_xfer(state, buf, size);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	if (!sps30_serial_frame_valid(state, buf))
-> > +		return -EIO;
-> > +
-> > +	if (rsp) {
-> > +		rsp_size = clamp((int)priv->buf[SPS30_SERIAL_FRAME_MISO_LEN_OFFSET], 0, rsp_size);
-> > +		memcpy(rsp, &priv->buf[SPS30_SERIAL_FRAME_MISO_DATA_OFFSET], rsp_size);
-> > +	}
-> > +
-> > +	return rsp_size;
-> > +}
-> > +
-> > +static int sps30_serial_receive_buf(struct serdev_device *serdev, const unsigned char *buf,
-> > +				    size_t size)
-> > +{
-> > +	struct iio_dev *indio_dev = dev_get_drvdata(&serdev->dev);
-> > +	struct sps30_serial_priv *priv;
-> > +	struct sps30_state *state;
-> > +	unsigned char byte;
-> > +	int i;
-> > +
-> > +	if (!indio_dev)
-> > +		return 0;
-> > +
-> > +	state = iio_priv(indio_dev);
-> > +	priv = state->priv;
-> > +
-> > +	/* just in case device put some unexpected data on the bus */
-> > +	if (priv->done)
-> > +		return size;
-> > +
-> > +	/* wait for the start of frame */
-> > +	if (!priv->num && size && buf[0] != SPS30_SERIAL_SOF_EOF)
-> > +		return 1;
-> > +
-> > +	if (priv->num + size >= ARRAY_SIZE(priv->buf))
-> > +		size = ARRAY_SIZE(priv->buf) - priv->num;
-> > +
-> > +	for (i = 0; i < size; i++) {
-> > +		byte = buf[i];
-> > +		/* remove stuffed bytes on-the-fly */
-> > +		if (byte == SPS30_SERIAL_ESCAPE_CHAR) {
-> > +			priv->escaped = true;
-> > +			continue;
-> > +		}
-> > +
-> > +		byte = sps30_serial_get_byte(priv->escaped, byte);
-> > +		if (priv->escaped && !byte)
-> > +			dev_warn(state->dev, "unrecognized escaped char (0x%02x)\n", byte);
-> > +		priv->chksum += byte;
-> > +		/* incrementing here would complete rx just after reading SOF */
-> > +		priv->buf[priv->num] = byte;
-> > +
-> > +		if (priv->num++ && !priv->escaped && byte == SPS30_SERIAL_SOF_EOF) {
-> > +			/* SOF, EOF and checksum itself are not checksummed */
-> > +			priv->chksum -= 2 * SPS30_SERIAL_SOF_EOF + priv->buf[priv->num - 2];
-> > +			priv->chksum = (unsigned char)~priv->chksum;
-> > +			priv->done = true;
-> > +			complete(&priv->new_frame);
-> > +			i++;
-> > +			break;
-> > +		}
-> > +
-> > +		priv->escaped = false;
-> > +	}
-> > +
-> > +	return i;
-> > +}
-> > +
-> > +static const struct serdev_device_ops sps30_serial_device_ops = {
-> > +	.receive_buf = sps30_serial_receive_buf,
-> > +	.write_wakeup = serdev_device_write_wakeup,
-> > +};
-> > +
-> > +static int sps30_serial_start_meas(struct sps30_state *state)
-> > +{
-> > +	/* request BE IEEE754 formatted data */
-> > +	char buf[] = { 0x01, 0x03 };
-> > +
-> > +	return sps30_serial_command(state, SPS30_SERIAL_START_MEAS, buf, sizeof(buf), NULL, 0);
-> > +}
-> > +
-> > +static int sps30_serial_stop_meas(struct sps30_state *state)
-> > +{
-> > +	return sps30_serial_command(state, SPS30_SERIAL_STOP_MEAS, NULL, 0, NULL, 0);
-> > +}
-> > +
-> > +static int sps30_serial_reset(struct sps30_state *state)
-> > +{
-> > +	int ret;
-> > +
-> > +	ret = sps30_serial_command(state, SPS30_SERIAL_RESET, NULL, 0, NULL, 0);
-> > +	msleep(500);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int sps30_serial_read_meas(struct sps30_state *state, int *meas, int num)
-> > +{
-> > +	int ret, tries = 3;
-> > +
->
-> For any repeat loops like this, please add a comment to explain why you picked 3
-> retries.  (it works is a valid comment, but obviously datasheet reference is better :)
->
+Hi Tim,
 
-According to the spec sensor spits out data each second but sometimes it
-looks as if they are available in 500ms or so. Picking 3 for the number of
-tries covers two cases.
+On 21.04.21 17:27, Tim Harvey wrote:
+> On Mon, Apr 12, 2021 at 7:31 PM Laurent Pinchart
+> <laurent.pinchart@ideasonboard.com> wrote:
+>>
+>> Hello,
+>>
+>> This patch series adds support for the CSIS found in the NXP i.MX8MM SoC
+>> to the imx7-mipi-csis driver.
+>>
+>> The CSIS is an IP core from Samsung, integrated in different NXP SoCs.
+>> The driver currently supports v3.3 of the CSIS, found in SoCs from the
+>> i.MX6 and i.MX7 families. This series extends the driver to support
+>> v3.6.3 of the IP, found in i.MX8MM and other members of the i.MX8
+>> family.
+>>
+>> The first 21 patches are miscellaneous cleanups and improvements. Please
+>> see individual patches for details.
+>>
+>> Patch 22/23 extends the imx7-mipi-csis DT bindings with i.MX8MM support.
+>> Support for other members of the i.MX8 family will come later, and for
+>> SoCs including an ISI IP core (such as the i.MX8MP) this will require
+>> more work to handle additional glue logic.
+>>
+>> Patch 23/23 finaly extends the imx7-mipi-csis driver accordingly.
+>>
+>> The changes in the integration of the CSIS between i.MX7 and i.MX8, as
+>> described in the DT bindings, have been found through reading of
+>> reference manuals and BSP source code, with different sources of
+>> information contradicting each other. A confirmation from NXP would be
+>> nice (in particular regarding the clocks).
+>>
+>> Laurent Pinchart (23):
+>>    media: imx: imx7_mipi_csis: Fix logging of only error event counters
+>>    media: imx: imx7_mipi_csis: Count the CSI-2 debug interrupts
+>>    media: imx: imx7_mipi_csis: Update ISP_CONFIG macros for quad pixel
+>>      mode
+>>    media: imx: imx7_mipi_csis: Move static data to top of
+>>      mipi_csis_dump_regs()
+>>    media: imx: imx7_mipi_csis: Minimize locking in get/set format
+>>    media: imx: imx7_mipi_csis: Don't set subdev data
+>>    media: imx: imx7-mipi-csis: Reorganize code in sections
+>>    media: imx: imx7_mipi_csis: Set the CLKSETTLE register field
+>>    media: imx: imx7_mipi_csis: Drop unused csis_hw_reset structure
+>>    media: imx: imx7_mipi_csis: Store CSI-2 data type in format structure
+>>    media: imx: imx7_mipi_csis: Drop csi_state phy field
+>>    media: imx: imx7_mipi_csis: Rename mipi_sd to sd
+>>    media: imx: imx7_mipi_csis: Rename csi_state flag field to state
+>>    media: imx: imx7_mipi_csis: Turn csi_state irq field into local
+>>      variable
+>>    media: imx: imx7_mipi_csis: Don't pass pdev to mipi_csis_parse_dt()
+>>    media: imx: imx7_mipi_csis: Pass csi_state to mipi_csis_subdev_init()
+>>    media: imx: imx7_mipi_csis: Drop csi_state pdev field
+>>    media: imx: imx7_mipi_csis: Make csi_state num_clocks field unsigned
+>>    media: imx: imx7_mipi_csis: Reorganize csi_state structure
+>>    media: imx: imx7_mipi_csis: Reorganize mipi_csis_probe()
+>>    media: imx: imx7_mipi_csis: Reject invalid data-lanes settings
+>>    dt-bindings: media: nxp,imx7-mipi-csi2: Add i.MX8MM support
+>>    media: imx: imx7_mipi_csis: Add i.MX8MM support
+>>
+>>   .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 108 +-
+>>   drivers/staging/media/imx/imx7-mipi-csis.c    | 943 ++++++++++--------
+>>   2 files changed, 622 insertions(+), 429 deletions(-)
+>>
+>> --
+>> Regards,
+>>
+>> Laurent Pinchart
+>>
+> 
+> Laurent,
+> 
+> Thank you for your work on this!
+> 
+> I have an IMX8MM board supporting CSI and a couple of devices to test with:
+> - Sony IMX477 12.3MP sensor (do not see any mainline support but there
+> are some hits on the net as this is a RPi camera)
+> - Sony IMX219 8MP sensor (should be supported by drivers/media/i2c/imx219.c)
+> - Auvidea B10x HDMI to CSI-2 bridge (Toshiba TC358743XBG HDMI to CSI-2
+> (MIPI)- 2D+C) (should be supported by drivers/media/i2c/tc358743.c)
+> 
+> Can you summarize the state of IMX8MM CSI capture in mainline? I
+> suppose the MIPI power domain is still an issue? Anything else that
+> would keep me from testing the above devices?
+> 
 
-> > +	do {
-> > +		ret = sps30_serial_command(state, SPS30_SERIAL_READ_MEAS, NULL, 0,
-> > +					   meas, num * sizeof(num));
-> > +		if (ret < 0)
-> > +			return ret;
-> > +		/* if measurements aren't ready sensor returns empty frame */
-> > +		if (ret == num * sizeof(int))
-> > +			break;
-> > +
-> > +		if (msleep_interruptible(500))
-> > +			return -EINTR;
-> > +	} while (--tries);
-> > +
-> > +	return !tries ? -ETIMEDOUT : 0;
-> > +}
-> > +
-> > +static int sps30_serial_clean_fan(struct sps30_state *state)
-> > +{
-> > +	return sps30_serial_command(state, SPS30_SERIAL_CLEAN_FAN, NULL, 0, NULL, 0);
-> > +}
-> > +
-> > +static int sps30_serial_read_cleaning_period(struct sps30_state *state, int *period)
-> > +{
-> > +	char buf[] = { 0x00 };
-> > +	int ret;
-> > +
-> > +	ret = sps30_serial_command(state, SPS30_SERIAL_PERIOD, buf, sizeof(buf),
-> > +				   period, sizeof(*period));
-> > +	if (ret < 0)
-> > +		return ret;
-> > +	if (ret != sizeof(*period))
-> > +		return -EIO;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int sps30_serial_write_cleaning_period(struct sps30_state *state, int period)
-> > +{
-> > +	char buf[5] = { 0x00 };
-> > +
-> > +	memcpy(buf + 1, &period, sizeof(period));
->
-> Same issue with what size period could in theory be. Also should be no problem keeping
-> it in the __be32 type throughout.
->
-> > +
-> > +	return sps30_serial_command(state, SPS30_SERIAL_PERIOD, buf, sizeof(buf), NULL, 0);
-> > +}
-> > +
-> > +static int sps30_serial_show_info(struct sps30_state *state)
-> > +{
-> > +	/* extra nul byte just in case serial number isn't a valid string */
-> > +	char buf[32 + 1] = { 0x00 };
-> > +	struct device *dev = state->dev;
-> > +	int ret;
-> > +
-> > +	/* tell device to return serial number */
-> > +	buf[0] = 0x03;
-> > +	ret = sps30_serial_command(state, SPS30_SERIAL_DEV_INFO, buf, 1, buf, sizeof(buf) - 1);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	dev_info(dev, "serial number: %s\n", buf);
-> > +
-> > +	ret = sps30_serial_command(state, SPS30_SERIAL_READ_VERSION, NULL, 0, buf, sizeof(buf) - 1);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +	if (ret < 2)
-> > +		return -EIO;
-> > +
-> > +	dev_info(dev, "fw version: %u.%u\n", buf[0], buf[1]);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct sps30_ops sps30_serial_ops = {
-> > +	.start_meas = sps30_serial_start_meas,
-> > +	.stop_meas = sps30_serial_stop_meas,
-> > +	.read_meas = sps30_serial_read_meas,
-> > +	.reset = sps30_serial_reset,
-> > +	.clean_fan = sps30_serial_clean_fan,
-> > +	.read_cleaning_period = sps30_serial_read_cleaning_period,
-> > +	.write_cleaning_period = sps30_serial_write_cleaning_period,
-> > +	.show_info = sps30_serial_show_info,
-> > +};
-> > +
-> > +static int sps30_serial_probe(struct serdev_device *serdev)
-> > +{
-> > +	struct device *dev = &serdev->dev;
-> > +	struct sps30_serial_priv *priv;
-> > +	int ret;
-> > +
-> > +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > +	if (!priv)
-> > +		return -ENOMEM;
-> > +
-> > +	init_completion(&priv->new_frame);
-> > +	serdev_device_set_client_ops(serdev, &sps30_serial_device_ops);
-> > +
-> > +	ret = devm_serdev_device_open(dev, serdev);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	serdev_device_set_baudrate(serdev, 115200);
-> > +	serdev_device_set_flow_control(serdev, false);
-> > +
-> > +	ret = serdev_device_set_parity(serdev, SERDEV_PARITY_NONE);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	return sps30_probe(dev, KBUILD_MODNAME, priv, &sps30_serial_ops);
-> > +}
-> > +
-> > +static const struct of_device_id sps30_serial_of_match[] = {
-> > +	{ .compatible = "sensirion,sps30" },
-> > +	{ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, sps30_serial_of_match);
-> > +
-> > +static struct serdev_device_driver sps30_serial_driver = {
-> > +	.driver = {
-> > +		.name = KBUILD_MODNAME,
-> > +		.of_match_table = sps30_serial_of_match,
-> > +	},
-> > +	.probe = sps30_serial_probe,
-> > +};
-> > +module_serdev_device_driver(sps30_serial_driver);
-> > +
-> > +MODULE_AUTHOR("Tomasz Duszynski <tomasz.duszynski@octakon.com>");
-> > +MODULE_DESCRIPTION("Sensirion SPS30 particulate matter sensor serial driver");
-> > +MODULE_LICENSE("GPL v2");
->
+Just in case it might help you: I tested the previous version of 
+Laurent's patches (not on the mailing list) against mainline v5.10 with 
+Lucas' power-domain patches.
+
+It should work fine in general. Here are some notes about the problems I 
+encountered: 
+https://patchwork.kernel.org/project/linux-media/cover/20210215042741.28850-1-laurent.pinchart@ideasonboard.com/
+
+Best regards
+Frieder
