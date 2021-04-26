@@ -2,71 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88C4936AAB4
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 04:40:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E219436AAB6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 04:41:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231839AbhDZCkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Apr 2021 22:40:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46688 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231794AbhDZCkn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 25 Apr 2021 22:40:43 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5BA116137D;
-        Mon, 26 Apr 2021 02:40:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1619404802;
-        bh=1C38oG1HSBJejAMBYNwU/O6KiGcfxVESRrt5c8ueQmA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Js2RC9CWKdYJnY3ElwNNSklCnYVhm/9EBhpysH4vcaOEUToGIpf8VbSJnvVD/7Gje
-         juCHNAPFRj3x/XgjucHUNfQsWeiGQMBhUHcWXtFnWdL4Fn5DB9Te60/8bhdetHX/Lh
-         bTINQ+Y0uFphg4u3Soq5mOPfR8pgCaUbPgbHwcHR/plPUSY3CWHt/0qicKzeFQ5ph/
-         Ud0/YlVxtH2uq0ZWhr808VnvFOKdmYYr0bPdFalc8XQbDfk60FgxFp2Z/T5c+mXDVe
-         5Te3cji5vziOGxHz1/rHudfX+/4RmdgS37K29W8jZDVtlNDRA7tw/wH7ibK1/JzdPJ
-         lFtM6oq6w3ISw==
-Date:   Mon, 26 Apr 2021 10:39:58 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Mian Yousaf Kaukab <ykaukab@suse.de>
-Cc:     leoyang.li@nxp.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: ls1012a: enable PCIe on freeway board
-Message-ID: <20210426023957.GG27585@dragon>
-References: <20210330151920.29146-1-ykaukab@suse.de>
+        id S231583AbhDZCmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Apr 2021 22:42:14 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:37572 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231550AbhDZCmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Apr 2021 22:42:13 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id 0C5051F41EC4
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     netdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     Jose Abreu <joabreu@synopsys.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        David Wu <david.wu@rock-chips.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>, kernel@collabora.com
+Subject: [PATCH 1/3] arm64: dts: rockchip: Remove unnecessary reset in rk3328.dtsi
+Date:   Sun, 25 Apr 2021 23:41:16 -0300
+Message-Id: <20210426024118.18717-1-ezequiel@collabora.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210330151920.29146-1-ykaukab@suse.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 30, 2021 at 05:19:20PM +0200, Mian Yousaf Kaukab wrote:
-> ls1012a-freeway board contains a M.2 2230 slot. Update the status of
-> pcei1 node to okay so that the pcie controller can be probed.
-> 
-> Signed-off-by: Mian Yousaf Kaukab <ykaukab@suse.de>
-> ---
->  arch/arm64/boot/dts/freescale/fsl-ls1012a-frwy.dts | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a-frwy.dts b/arch/arm64/boot/dts/freescale/fsl-ls1012a-frwy.dts
-> index 6290e2f9de6a..e3f371788f85 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1012a-frwy.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a-frwy.dts
-> @@ -38,3 +38,7 @@ w25q16dw0: flash@0 {
->  		spi-tx-bus-width = <2>;
->  	};
->  };
-> +
-> +&pcie1 {
-> +	status = "okay";
-> +};
+Rockchip DWMAC glue driver uses the phy node (phy-handle)
+reset specifier, and not a "mac-phy" reset specifier.
 
-Keep the labeling nodes sort alphabetically.
+Remove it.
 
-Shawn
+Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> -- 
-> 2.26.2
-> 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+index 5bab61784735..3ed69ecbcf3c 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+@@ -916,8 +916,8 @@ gmac2phy: ethernet@ff550000 {
+ 			      "mac_clk_tx", "clk_mac_ref",
+ 			      "aclk_mac", "pclk_mac",
+ 			      "clk_macphy";
+-		resets = <&cru SRST_GMAC2PHY_A>, <&cru SRST_MACPHY>;
+-		reset-names = "stmmaceth", "mac-phy";
++		resets = <&cru SRST_GMAC2PHY_A>;
++		reset-names = "stmmaceth";
+ 		phy-mode = "rmii";
+ 		phy-handle = <&phy>;
+ 		snps,txpbl = <0x4>;
+-- 
+2.30.0
+
