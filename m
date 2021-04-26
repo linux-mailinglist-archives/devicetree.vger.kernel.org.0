@@ -2,206 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AFE636B72E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 18:46:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 476CF36B707
+	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 18:40:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234598AbhDZQqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 12:46:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49462 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234595AbhDZQqs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 12:46:48 -0400
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15034C061574
-        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 09:46:06 -0700 (PDT)
-Received: by mail-qt1-x82a.google.com with SMTP id o1so435458qta.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 09:46:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KlgosoMJOAaR/ET01AhknsNf3mj6gtcliiDg0dLL1e0=;
-        b=FfxC6YTfTyKRjULzScvZeh080rowzObsgfkNkB6PbFU85WK18TorFZb3nTplFpotQN
-         FCzKzeHFiWHC6SAAz0H1ZvobWir4E6RenbNbEqtrFbyTUyimRczwWol0BDixJHUTha+x
-         eXWW6lC9g26ZhTBX/V5pk140gf+3zGj/JaWxQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KlgosoMJOAaR/ET01AhknsNf3mj6gtcliiDg0dLL1e0=;
-        b=t1RmiE5naQgWua4ZDtGC9fu/7Bu4wPCt7+WaBmSGcCmbHdzggJw81QDJc4LizjMMJu
-         vd0wlPKdWp22A/QIKkIsyUbkJzUm5noV11X5D7IlW4nHMs+miTPsk0xHuDRn89n6BhXZ
-         n26LfiOYxFbTnVnhkIGr+WE3b8RbKIBa3lPniWZRB08a2JF7UuLQjmHgo269NMqYVeIh
-         YzOH7f6mNQrDbe1zkPQMrwRae8vEKvC3oHIdTe6IPJg0yYJu7Cx3bDSKnHuWCPp0SaxN
-         VZOaoAAadV28l9Sg31gcFZ//Lbd1IuZLN8APruTFWhwmFp6WCZaUjUcKzHqYnH6iz4c3
-         dEjQ==
-X-Gm-Message-State: AOAM532nMKdp+QJhSSQ9Re2DamO8/pIC+ngeI3I+2F98rYFzIzV735jS
-        HZxukbVAwaK0gyVAoaziCT9VjPmZvAXurA==
-X-Google-Smtp-Source: ABdhPJxoeeisQKdFEhk0mRNa7XX6+At+v/oGvchXVFsN9mVy4qvkM5eAHqAndJCrbT42ssidX09KQA==
-X-Received: by 2002:ac8:5a4f:: with SMTP id o15mr604813qta.383.1619455565094;
-        Mon, 26 Apr 2021 09:46:05 -0700 (PDT)
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com. [209.85.160.178])
-        by smtp.gmail.com with ESMTPSA id 198sm514193qkf.20.2021.04.26.09.46.04
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Apr 2021 09:46:04 -0700 (PDT)
-Received: by mail-qt1-f178.google.com with SMTP id a18so18285392qtj.10
-        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 09:46:04 -0700 (PDT)
-X-Received: by 2002:a05:6638:68b:: with SMTP id i11mr17242768jab.90.1619455099476;
- Mon, 26 Apr 2021 09:38:19 -0700 (PDT)
+        id S233934AbhDZQk6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Apr 2021 12:40:58 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:54216 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234346AbhDZQk6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 12:40:58 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13QGeCgQ107008;
+        Mon, 26 Apr 2021 11:40:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1619455212;
+        bh=0cmvWQtnc0irmIdmwW5bR1wAnKzv1BScw6VBk3yY69w=;
+        h=From:To:CC:Subject:Date;
+        b=U9qBHi/XxzZqaQYd1C5whCzH8aJHK31dxD6lYAZUgwR+zZrg3uZ9GBKoBRQR2xuJi
+         DQuhHXb3hQ29ILXI8KHnnRDwQxzLsJNQzGVDG3X1cI0zLY7ZGPrJ4u0kh5h1NcFD+a
+         8lAyecx02iBDZGxNaGkqE1CQRzkhjjC1KGzluJg4=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13QGeCtv027810
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 26 Apr 2021 11:40:12 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 26
+ Apr 2021 11:40:12 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 26 Apr 2021 11:40:12 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13QGeCQx056249;
+        Mon, 26 Apr 2021 11:40:12 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Jens Wiklander <jens.wiklander@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>
+Subject: [PATCH V2] dt-bindings: arm: firmware: Convert linaro,optee-tz to json schema
+Date:   Mon, 26 Apr 2021 11:40:08 -0500
+Message-ID: <20210426164008.20000-1-nm@ti.com>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-References: <20210422081508.3942748-1-tientzu@chromium.org>
- <20210422081508.3942748-17-tientzu@chromium.org> <03c5bc8a-3965-bf1d-01a4-97d074dfbe2b@arm.com>
-In-Reply-To: <03c5bc8a-3965-bf1d-01a4-97d074dfbe2b@arm.com>
-From:   Claire Chang <tientzu@chromium.org>
-Date:   Tue, 27 Apr 2021 00:38:08 +0800
-X-Gmail-Original-Message-ID: <CALiNf28ExE8OLsuDaN9nC=eAi-iG0rct_TJCCxAcWW4+_pdj2g@mail.gmail.com>
-Message-ID: <CALiNf28ExE8OLsuDaN9nC=eAi-iG0rct_TJCCxAcWW4+_pdj2g@mail.gmail.com>
-Subject: Re: [PATCH v5 16/16] of: Add plumbing for restricted DMA pool
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
-        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
-        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
-        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
-        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
-        nouveau@lists.freedesktop.org, rodrigo.vivi@intel.com,
-        thomas.hellstrom@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 23, 2021 at 9:35 PM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 2021-04-22 09:15, Claire Chang wrote:
-> > If a device is not behind an IOMMU, we look up the device node and set
-> > up the restricted DMA when the restricted-dma-pool is presented.
-> >
-> > Signed-off-by: Claire Chang <tientzu@chromium.org>
-> > ---
-> >   drivers/of/address.c    | 25 +++++++++++++++++++++++++
-> >   drivers/of/device.c     |  3 +++
-> >   drivers/of/of_private.h |  5 +++++
-> >   3 files changed, 33 insertions(+)
-> >
-> > diff --git a/drivers/of/address.c b/drivers/of/address.c
-> > index 54f221dde267..fff3adfe4986 100644
-> > --- a/drivers/of/address.c
-> > +++ b/drivers/of/address.c
-> > @@ -8,6 +8,7 @@
-> >   #include <linux/logic_pio.h>
-> >   #include <linux/module.h>
-> >   #include <linux/of_address.h>
-> > +#include <linux/of_reserved_mem.h>
-> >   #include <linux/pci.h>
-> >   #include <linux/pci_regs.h>
-> >   #include <linux/sizes.h>
-> > @@ -1109,6 +1110,30 @@ bool of_dma_is_coherent(struct device_node *np)
-> >   }
-> >   EXPORT_SYMBOL_GPL(of_dma_is_coherent);
-> >
-> > +int of_dma_set_restricted_buffer(struct device *dev)
-> > +{
-> > +     struct device_node *node;
-> > +     int count, i;
-> > +
-> > +     if (!dev->of_node)
-> > +             return 0;
-> > +
-> > +     count = of_property_count_elems_of_size(dev->of_node, "memory-region",
-> > +                                             sizeof(phandle));
-> > +     for (i = 0; i < count; i++) {
-> > +             node = of_parse_phandle(dev->of_node, "memory-region", i);
-> > +             /* There might be multiple memory regions, but only one
-> > +              * restriced-dma-pool region is allowed.
-> > +              */
->
-> What's the use-case for having multiple regions if the restricted pool
-> is by definition the only one accessible?
+Convert linaro,optee-tz to json schema format for better documentation
+and error checks.
 
-There might be a device coherent pool (shared-dma-pool) and
-dma_alloc_attrs might allocate memory from that pool [1].
-I'm not sure if it makes sense to have another device coherent pool
-while using restricted DMA pool though.
+NOTE: This change does introduce a stricter naming convention for
+optee nodes.
 
-[1] https://elixir.bootlin.com/linux/v5.12/source/kernel/dma/mapping.c#L435
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
 
+Changes since v1:
+* Dropped un-necessary quotes around compatible
+* Converted the method to enum, updated description as well
+* Updated commit message to drop the 'checkpatch warning'
 
->
-> Robin.
->
-> > +             if (of_device_is_compatible(node, "restricted-dma-pool") &&
-> > +                 of_device_is_available(node))
-> > +                     return of_reserved_mem_device_init_by_idx(
-> > +                             dev, dev->of_node, i);
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> >   /**
-> >    * of_mmio_is_nonposted - Check if device uses non-posted MMIO
-> >    * @np:     device node
-> > diff --git a/drivers/of/device.c b/drivers/of/device.c
-> > index c5a9473a5fb1..d8d865223e51 100644
-> > --- a/drivers/of/device.c
-> > +++ b/drivers/of/device.c
-> > @@ -165,6 +165,9 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
-> >
-> >       arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
-> >
-> > +     if (!iommu)
-> > +             return of_dma_set_restricted_buffer(dev);
-> > +
-> >       return 0;
-> >   }
-> >   EXPORT_SYMBOL_GPL(of_dma_configure_id);
-> > diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-> > index d717efbd637d..e9237f5eff48 100644
-> > --- a/drivers/of/of_private.h
-> > +++ b/drivers/of/of_private.h
-> > @@ -163,12 +163,17 @@ struct bus_dma_region;
-> >   #if defined(CONFIG_OF_ADDRESS) && defined(CONFIG_HAS_DMA)
-> >   int of_dma_get_range(struct device_node *np,
-> >               const struct bus_dma_region **map);
-> > +int of_dma_set_restricted_buffer(struct device *dev);
-> >   #else
-> >   static inline int of_dma_get_range(struct device_node *np,
-> >               const struct bus_dma_region **map)
-> >   {
-> >       return -ENODEV;
-> >   }
-> > +static inline int of_dma_get_restricted_buffer(struct device *dev)
-> > +{
-> > +     return -ENODEV;
-> > +}
-> >   #endif
-> >
-> >   #endif /* _LINUX_OF_PRIVATE_H */
-> >
+V1: https://lore.kernel.org/linux-arm-kernel/20210416222518.15801-1-nm@ti.com/
+
+ .../bindings/arm/firmware/linaro,optee-tz.txt | 31 ----------
+ .../arm/firmware/linaro,optee-tz.yaml         | 58 +++++++++++++++++++
+ 2 files changed, 58 insertions(+), 31 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+
+diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.txt b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.txt
+deleted file mode 100644
+index d38834c67dff..000000000000
+--- a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.txt
++++ /dev/null
+@@ -1,31 +0,0 @@
+-OP-TEE Device Tree Bindings
+-
+-OP-TEE is a piece of software using hardware features to provide a Trusted
+-Execution Environment. The security can be provided with ARM TrustZone, but
+-also by virtualization or a separate chip.
+-
+-We're using "linaro" as the first part of the compatible property for
+-the reference implementation maintained by Linaro.
+-
+-* OP-TEE based on ARM TrustZone required properties:
+-
+-- compatible     : should contain "linaro,optee-tz"
+-
+-- method         : The method of calling the OP-TEE Trusted OS. Permitted
+-                   values are:
+-
+-                   "smc" : SMC #0, with the register assignments specified
+-		           in drivers/tee/optee/optee_smc.h
+-
+-                   "hvc" : HVC #0, with the register assignments specified
+-		           in drivers/tee/optee/optee_smc.h
+-
+-
+-
+-Example:
+-	firmware {
+-		optee {
+-			compatible = "linaro,optee-tz";
+-			method = "smc";
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+new file mode 100644
+index 000000000000..c24047c1fdd5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/firmware/linaro,optee-tz.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OP-TEE Device Tree Bindings
++
++maintainers:
++  - Jens Wiklander <jens.wiklander@linaro.org>
++
++description: |
++  OP-TEE is a piece of software using hardware features to provide a Trusted
++  Execution Environment. The security can be provided with ARM TrustZone, but
++  also by virtualization or a separate chip.
++
++  We're using "linaro" as the first part of the compatible property for
++  the reference implementation maintained by Linaro.
++
++properties:
++  $nodename:
++    const: optee
++
++  compatible:
++    const: linaro,optee-tz
++
++  method:
++    enum: [smc, hvc]
++    description: |
++      The method of calling the OP-TEE Trusted OS depending on smc or hvc
++      instruction usage.
++      SMC #0, register assignments
++      or
++      HVC #0, register assignments
++      register assignments are specified in drivers/tee/optee/optee_smc.h
++
++required:
++  - compatible
++  - method
++
++additionalProperties: false
++
++examples:
++  - |
++    firmware  {
++        optee  {
++            compatible = "linaro,optee-tz";
++            method = "smc";
++        };
++    };
++
++  - |
++    firmware  {
++        optee  {
++            compatible = "linaro,optee-tz";
++            method = "hvc";
++        };
++    };
+-- 
+2.31.0
+
