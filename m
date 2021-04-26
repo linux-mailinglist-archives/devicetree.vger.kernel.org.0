@@ -2,111 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 651D436B8B4
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 20:08:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0680736B8CB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 20:18:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234497AbhDZSHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 14:07:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39430 "EHLO
+        id S234207AbhDZSTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Apr 2021 14:19:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234432AbhDZSHT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 14:07:19 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0340FC061574
-        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 11:06:37 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id l2so4496083wrm.9
-        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 11:06:36 -0700 (PDT)
+        with ESMTP id S234192AbhDZSTG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 14:19:06 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0163C061756
+        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 11:18:21 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id z1so66022464ybf.6
+        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 11:18:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=z/Kwipu1y6TOCAmGCH4eBv1sqy5s6UK9+gQOmGBdFDo=;
-        b=tFAA8OM1OMnP4mVo1BUP3TdeKSXg/EB0WafYRtzUUiTKjsWUSQ3QroqS/dybgZJz5x
-         0uistVBTmvOSdV/sjTYDOP5Va1MmX7/WqO0JJj+tBOPk5GLQHczf9D8P5whtygJ67rTY
-         Xn1LpQA4AeN6syvVSQIdFiCAapyOmzrQqelxryNExRsNAUxIlqXMJwYj+ns6o5CwHKK2
-         ylC+cLMlFFWQrWOfS5pjYnUnB/NhnEYOL62/OL4tMLc0yPxaXghMMP4NPRf4+0vQdGOq
-         o/LMILSLqmJbvcyuMj+8GgtaWJZ/8VgNqAKdegca6JMGKy9kxT/rfUr+s3QipNmawIWl
-         iCfQ==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=oxk441iU0wp7QI5uSmMi84qyuJ4uphlRd2RFq20rb5g=;
+        b=fCCr/nw130U0++Z0Ivdh5cPqDkXHWeQsmeWFwQD9nz4NkxrycmLKiQUAFXKoMFlqZx
+         qDEMWDw0v/cbIc0a8goTHlmnrZB6Cn9RHhHgvTC4tYhqM+ZCvQ4MJFU+WNJCkJQnBEW9
+         bsWQ+775cYJ0vHY8ed/UTIu5IqAqc4WiYqbvI+KLqgY/FdIGxj1oiJVUGM10BKBchfnI
+         kyjf9HUzrbLvG6aI2ZJaPstOkNLsVtLlH7F5hzlfXPUJW3W0YFd8UpigyoHMjBIyaTqK
+         F6s2oJeL1xEhoTLvtbYuIMWxtd/vCEbmbEv7s8sR3KPU8q9xHajibhc49Ror8dMvpOl9
+         eRjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=z/Kwipu1y6TOCAmGCH4eBv1sqy5s6UK9+gQOmGBdFDo=;
-        b=GwxjFEON6b53GLBs0kXYhQGKU6qVn13Z9gHkRaoJJSyH2i9RAo08ZLhEvXIrbfy9Ae
-         u/Na/yt7th3aahDbULN69ZOGFnLyz9gvF9rNna0Pif1HtDokAk0rQKGufR6gTdnUzLKY
-         eSVm+WzzvzzCWfk6rrNvsfxWHLg7v3Z/pZEuYdBHwTnI+7zbtH9P9dEUzqWdYuHQXO6X
-         Ayb1PI9UkEhXGmNOvnehjVXnPBIWvfCA99D0Zm8SdyKA0+qzYxzHN0SwRw9SDdUT1w8l
-         h69RKNNeD5pYnfIvr09E79ClMlPgKsB34LZx1v0bQGUgHGer1DB/QKp6tlumPkFCkfG9
-         kk3A==
-X-Gm-Message-State: AOAM533b2H1FlD/S9wiiRmQBpv9hbN1U4QZFSODIz1R16Vz1zCDvJ8Ut
-        zn32TZchSF8BZBGT9FOYDZ5qOg==
-X-Google-Smtp-Source: ABdhPJzgk2IzpTkyCjHJ4GcBEEoXLGQijoX+9t+CrvlLufNwU/zLqVZ2i9U0e2ub5m3mdqW1C5Dt0g==
-X-Received: by 2002:a5d:590a:: with SMTP id v10mr24510931wrd.306.1619460395637;
-        Mon, 26 Apr 2021 11:06:35 -0700 (PDT)
-Received: from ?IPv6:2a01:e0a:90c:e290:b76e:7362:77c0:ddc3? ([2a01:e0a:90c:e290:b76e:7362:77c0:ddc3])
-        by smtp.gmail.com with ESMTPSA id a9sm276663wmj.1.2021.04.26.11.06.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Apr 2021 11:06:33 -0700 (PDT)
-Subject: Re: [PATCH v2 1/3] dt-bindings: serial: amlogic,meson-uart: add
- fifo-size property
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        gregkh@linuxfoundation.org
-References: <20210325152410.1795557-1-narmstrong@baylibre.com>
- <20210325152410.1795557-2-narmstrong@baylibre.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <39c92a23-e009-6bc2-a20b-9b0ab3e01c75@baylibre.com>
-Date:   Mon, 26 Apr 2021 20:06:31 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oxk441iU0wp7QI5uSmMi84qyuJ4uphlRd2RFq20rb5g=;
+        b=efpj5J3hF8DjplJJxevTxOqwPyuJS2+gXNZ7zcNm5eQaKvGUtYnOBwwRWASF1YmdOU
+         EcA73WePuXfvgxmB17UkIqpWvSyYWDL0hYPTsgUfU9t6fcW10QYyuCRoB6tsIBGt9HVV
+         c/M4HzV5Z9lp/JmgC5og5hmk7Ab7ZrCwBjGMF9vbnWSuxsBoQcc1MMpp+M0Lb8inaOVD
+         7mKMiBED7aNjRZqa1B+VEk7OxASATlaquQ/ss8dzKOci0zkITf6oqYi+goTPnNyLgCYq
+         z4NfiLe3JDiF1i7uX2yOvmcE4whqRnLUiogM6pt67U8b0hZBTFLpkyYBBpuCCJ+aJQo4
+         3WXQ==
+X-Gm-Message-State: AOAM532ZYB5zmH/TDMEs6QxtTSpKW3EJtjYlWd/KLvDAjWj1vU2Bkxwo
+        VPaTJZvobcrRRutZ0lbi/s4nYnnGHAT6UOfZ9Rg2jQ==
+X-Google-Smtp-Source: ABdhPJxpKkzlxeFeOtzkL9KcfVeos0Z41kgtlmgxKrzK9GddPMejgPaMIQWIl+pLW3jEJCvWSVSH9ek3FFeVdL0Q7Q0=
+X-Received: by 2002:a25:e7c8:: with SMTP id e191mr24243893ybh.153.1619461100801;
+ Mon, 26 Apr 2021 11:18:20 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210325152410.1795557-2-narmstrong@baylibre.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210426065618.588144-1-tudor.ambarus@microchip.com>
+In-Reply-To: <20210426065618.588144-1-tudor.ambarus@microchip.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 26 Apr 2021 11:17:44 -0700
+Message-ID: <CAGETcx9LgyX-D1E0bb-JW=G6TTvr-KC+1-733uWppzGZnYaoxg@mail.gmail.com>
+Subject: Re: [PATCH v2] clk: Skip clk provider registration when np is NULL
+To:     Tudor Ambarus <tudor.ambarus@microchip.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, nsaenz@kernel.org,
+        maxime@cerno.tech, Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Brown, Len" <len.brown@intel.com>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Guenter Roeck <linux@roeck-us.net>,
+        guillaume.tucker@collabora.com,
+        linux-clk <linux-clk@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS <devicetre
+        e@vger.kernel.org>, ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Android Kernel Team <kernel-team@android.com>, linux-rpi-kernel" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On 25/03/2021 16:24, Neil Armstrong wrote:
-> On most of the Amlogic SoCs, the first UART controller in the "Everything-Else"
-> power domain has 128bytes of RX & TX FIFO, so add an optional property to describe
-> a different FIFO size from the other ports (64bytes).
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Sun, Apr 25, 2021 at 11:56 PM Tudor Ambarus
+<tudor.ambarus@microchip.com> wrote:
+>
+> commit 6579c8d97ad7 ("clk: Mark fwnodes when their clock provider is added")
+> revealed that clk/bcm/clk-raspberrypi.c driver calls
+> devm_of_clk_add_hw_provider(), with a NULL dev->of_node, which resulted in a
+> NULL pointer dereference in of_clk_add_hw_provider() when calling
+> fwnode_dev_initialized().
+>
+> Returning 0 is reducing the if conditions in driver code and is being
+> consistent with the CONFIG_OF=n inline stub that returns 0 when CONFIG_OF
+> is disabled. The downside is that drivers will maybe register clkdev lookups
+> when they don't need to and waste some memory.
+>
+> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> Fixes: 6579c8d97ad7 ("clk: Mark fwnodes when their clock provider is added")
+> Fixes: 3c9ea42802a1 ("clk: Mark fwnodes when their clock provider is added/removed")
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+> Reviewed-by: Stephen Boyd <sboyd@kernel.org>
 > ---
->  .../devicetree/bindings/serial/amlogic,meson-uart.yaml      | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> index 75ebc9952a99..8ece7f420c19 100644
-> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> @@ -55,6 +55,12 @@ properties:
->        - const: pclk
->        - const: baud
->  
+
+Reviewed-by: Saravana Kannan <saravanak@google.com>
+
+-Saravana
+
+> v2:
+> - s/return 0;/return; in void of_clk_del_provider()
+> - add second fixes tag and Stephen's R-b tag
+> The opinions on whether to return an error or zero were split. Returning 0
+> and skipping the logic was considered safer as we don't know for sure if
+> other drivers are affected. See:
+> https://lore.kernel.org/lkml/d24bebc5-0f78-021f-293f-e58defa32531@samsung.com/
+> https://lore.kernel.org/lkml/20210423171335.262316-1-tudor.ambarus@microchip.com/
+>
+>  drivers/clk/clk.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> index a3b30f7de2ef..b47460b40d14 100644
+> --- a/drivers/clk/clk.c
+> +++ b/drivers/clk/clk.c
+> @@ -4552,6 +4552,9 @@ int of_clk_add_provider(struct device_node *np,
+>         struct of_clk_provider *cp;
+>         int ret;
+>
+> +       if (!np)
+> +               return 0;
 > +
-> +  fifo-size:
-> +    description: The fifo size supported by the UART channel.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [64, 128]
+>         cp = kzalloc(sizeof(*cp), GFP_KERNEL);
+>         if (!cp)
+>                 return -ENOMEM;
+> @@ -4591,6 +4594,9 @@ int of_clk_add_hw_provider(struct device_node *np,
+>         struct of_clk_provider *cp;
+>         int ret;
+>
+> +       if (!np)
+> +               return 0;
 > +
->  required:
->    - compatible
->    - reg
-> 
-
-
-Is it ok with the generic fifo-size property ?
-
-Neil
+>         cp = kzalloc(sizeof(*cp), GFP_KERNEL);
+>         if (!cp)
+>                 return -ENOMEM;
+> @@ -4688,6 +4694,9 @@ void of_clk_del_provider(struct device_node *np)
+>  {
+>         struct of_clk_provider *cp;
+>
+> +       if (!np)
+> +               return;
+> +
+>         mutex_lock(&of_clk_mutex);
+>         list_for_each_entry(cp, &of_clk_providers, link) {
+>                 if (cp->node == np) {
+> --
+> 2.25.1
+>
