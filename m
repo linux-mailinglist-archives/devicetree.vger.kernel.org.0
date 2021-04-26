@@ -2,73 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0885136BB2D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 23:26:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B753836BB35
+	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 23:30:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234217AbhDZV0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 17:26:51 -0400
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:46715 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236323AbhDZV0u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 17:26:50 -0400
-Received: by mail-oi1-f170.google.com with SMTP id m13so57779085oiw.13
-        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 14:26:07 -0700 (PDT)
+        id S235559AbhDZVbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Apr 2021 17:31:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56314 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235500AbhDZVbg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 17:31:36 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14B3DC061756
+        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 14:30:53 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id lt13so18892193pjb.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 14:30:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=2ckH4hUfpDdDWwuKa1ZBizdcjSL+I5Wex++8qFAuFSE=;
+        b=XTpFrYb10B3+0YojlYf9ZaXG/ustpKd0v0gQZcJ+WZoXI08GHZoSEWj+LTSV6svoq6
+         UJE3bLsaixQPJp/Wo4LJE11HKmCZk6dEUv2mpD8Nscn27L2WwRT+4aXlWqV+zvFuBAVe
+         8dAIo3/n5zno5DtKrWcGJ+zhmz6PyxcfzCc8k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=M+kfr4IPPCFa5xs3ch/ZaXobs80sSVS0cUKODNu4aNk=;
-        b=LDscx3zilTmuZloCa+nmRKPqJwgXAAx7gruAjKc2b2l/2MSzesB3tppncozqiomWBj
-         T/3rTsLvocAmScthevwnkoJy6qf6u/UzTswWGQAyKBgaAD2c7msucEPFhvmQCzFQYX05
-         xW6PHdhSp2g+DFKZBU/BydfXo9/er3y1WkRYNpcgJJ5VQp8h7j/zhR1+lTdUqQS1j7cG
-         PTnDJVBXnamPw7wBxpESShYOjG804CxzG9vhLQmMpSepxf5R6/0rsMF8SpQdr+EnV+y2
-         CG2nLBmidxNkOyK9kUMjcRrAcmZkQWPQTFXAhUjDCJ8puZ2fcKBY1CUR5Alh1HFzpFlg
-         tPyg==
-X-Gm-Message-State: AOAM531PDJCSa0tX6IgKgmzKdDRMl8pDZiEcXlv2FqrMZEMYfI0xKMg2
-        UBsCooANUDUd3rG1oaygQg==
-X-Google-Smtp-Source: ABdhPJymQOo1uyvNJPBJdLq+1+tIGbTJ76YWtc9yIVl/sqkwqsFLlW1N8Tl5ylMP6eq+Do6LLCOacg==
-X-Received: by 2002:aca:cf12:: with SMTP id f18mr13856265oig.75.1619472366628;
-        Mon, 26 Apr 2021 14:26:06 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g96sm3767686otg.39.2021.04.26.14.26.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Apr 2021 14:26:05 -0700 (PDT)
-Received: (nullmailer pid 4113914 invoked by uid 1000);
-        Mon, 26 Apr 2021 21:26:04 -0000
-Date:   Mon, 26 Apr 2021 16:26:04 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Cc:     mpe@ellerman.id.au, dan.carpenter@oracle.com,
-        christophe.leroy@csgroup.eu, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, kbuild-all@lists.01.org,
-        dja@axtens.net, bauerman@linux.ibm.com, lkp@intel.com
-Subject: Re: [PATCH v2 2/2] powerpc: If kexec_build_elf_info() fails return
- immediately from elf64_load()
-Message-ID: <20210426212604.GA4113688@robh.at.kernel.org>
-References: <20210421163610.23775-1-nramas@linux.microsoft.com>
- <20210421163610.23775-2-nramas@linux.microsoft.com>
+        bh=2ckH4hUfpDdDWwuKa1ZBizdcjSL+I5Wex++8qFAuFSE=;
+        b=YqFi2U01MgqBsMtfuIwtYUuQQZp2aDeS/u0YxA1gdUlcDCiW+zyJvYOEsbtsfuYFxF
+         gusQ9h4xu2ob5VpP5Yh7WYG+b+kQS9u/ywaj1SJV1HkumVYrCNQiw5Ip4aNUlii5Qx2R
+         hTvEs1qdREag5fUuM2Y0zaVmE7s+gnhgJ4RDQOibNFt+Hf426yS3lDlyEmxFIW2jlvtW
+         x9zbVkrtJt7iCmzFcqCvsCu7KQXxaIaRNgvngXC0/kVLbp35un/tlwuLXQP8nOhX4vpF
+         mxl02/8/jOsRxLHJrxUylyYvgvKmoO9YZqaLvsQGdQPToTyuYCZYF8q4CEHBGQktGHBG
+         bEWw==
+X-Gm-Message-State: AOAM530wk+bOTCLa47JiKz1loIrWIdV1OWdaHInk4SyTpz4cl6Q/6zYA
+        lar0O8ZvIMyzBAiQlPHdmpjo6A==
+X-Google-Smtp-Source: ABdhPJwdkPoaHKsUygkQew9U/igE2xVenGFvoPlLdF3molSYalbVJYhicdBMilL4LHv8J0uTQ6LVzg==
+X-Received: by 2002:a17:90a:c7d4:: with SMTP id gf20mr13763967pjb.106.1619472652585;
+        Mon, 26 Apr 2021 14:30:52 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:3a16:de17:8721:d706])
+        by smtp.gmail.com with UTF8SMTPSA id d26sm535416pfq.198.2021.04.26.14.30.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Apr 2021 14:30:52 -0700 (PDT)
+Date:   Mon, 26 Apr 2021 14:30:50 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Dikshita Agarwal <dikshita@codeaurora.org>
+Cc:     andy.gross@linaro.org, david.brown@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        vgarodia@codeaurora.org, stanimir.varbanov@linaro.org
+Subject: Re: [PATCH] dt-bindings: media: venus: Add sc7280 dt schema
+Message-ID: <YIcxCn5ajN8Pu8Vg@google.com>
+References: <1619432515-9060-1-git-send-email-dikshita@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210421163610.23775-2-nramas@linux.microsoft.com>
+In-Reply-To: <1619432515-9060-1-git-send-email-dikshita@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Apr 2021 09:36:10 -0700, Lakshmi Ramasubramanian wrote:
-> Uninitialized local variable "elf_info" would be passed to
-> kexec_free_elf_info() if kexec_build_elf_info() returns an error
-> in elf64_load().
-> 
-> If kexec_build_elf_info() returns an error, return the error
-> immediately.
-> 
-> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-> Reviewed-by: Michael Ellerman <mpe@ellerman.id.au>
-> ---
->  arch/powerpc/kexec/elf_64.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+From a quick glance this looks extremely similar to the venus binding
+for sc7180. Is there really a good reason for a separate binding?
 
-Applied, thanks!
+On Mon, Apr 26, 2021 at 03:51:55PM +0530, Dikshita Agarwal wrote:
+> Add a schema description for the venus video encoder/decoder on the sc7280.
+> 
+> Signed-off-by: Dikshita Agarwal <dikshita@codeaurora.org>
+> ---
+>  .../bindings/media/qcom,sc7280-venus.yaml          | 158 +++++++++++++++++++++
+>  1 file changed, 158 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
+> new file mode 100644
+> index 0000000..a258d97
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
+> @@ -0,0 +1,158 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/media/qcom,sc7280-venus.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Qualcomm Venus video encode and decode accelerators
+> +
+> +maintainers:
+> +  - Stanimir Varbanov <stanimir.varbanov@linaro.org>
+> +
+> +description: |
+> +  The Venus IP is a video encode and decode accelerator present
+> +  on Qualcomm platforms
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sc7280-venus
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    minItems: 2
+> +    maxItems: 3
+> +
+> +  power-domain-names:
+> +    minItems: 2
+> +    maxItems: 3
+> +    items:
+> +      - const: venus
+> +      - const: vcodec0
+> +
+> +  clocks:
+> +    maxItems: 5
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core_clk
+> +      - const: video_cc_mvsc_ctl_axi
+> +      - const: iface_clk
+> +      - const: vcodec_clk
+> +      - const: video_cc_mvs0_ctl_axi
+> +
+> +  iommus:
+> +    maxItems: 2
+> +
+> +  memory-region:
+> +    maxItems: 1
+> +
+> +  interconnects:
+> +    maxItems: 2
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: cpu-cfg
+> +      - const: video-mem
+> +
+> +  video-decoder:
+> +    type: object
+> +
+> +    properties:
+> +      compatible:
+> +        const: venus-decoder
+> +
+> +    required:
+> +      - compatible
+> +
+> +    additionalProperties: false
+> +
+> +  video-encoder:
+> +    type: object
+> +
+> +    properties:
+> +      compatible:
+> +        const: venus-encoder
+> +
+> +    required:
+> +      - compatible
+> +
+> +    additionalProperties: false
+> +
+> +  video-firmware:
+> +    type: object
+> +
+> +    description: |
+> +      Firmware subnode is needed when the platform does not
+> +      have TrustZone.
+> +
+> +    properties:
+> +      iommus:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - iommus
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - power-domains
+> +  - power-domain-names
+> +  - clocks
+> +  - clock-names
+> +  - iommus
+> +  - memory-region
+> +  - video-decoder
+> +  - video-encoder
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +        #include <dt-bindings/clock/qcom,videocc-sc7280.h>
+> +
+> +        venus: video-codec@aa00000 {
+> +                compatible = "qcom,sc7280-venus";
+> +                reg = <0x0aa00000 0xd0600>;
+> +                interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +                clocks = <&videocc VIDEO_CC_MVSC_CORE_CLK>,
+> +                         <&videocc VIDEO_CC_MVSC_CTL_AXI_CLK>,
+> +                         <&videocc VIDEO_CC_VENUS_AHB_CLK>,
+> +                         <&videocc VIDEO_CC_MVS0_CORE_CLK>,
+> +                         <&videocc VIDEO_CC_MVS0_AXI_CLK>;
+> +                clock-names = "core_clk", "video_cc_mvsc_ctl_axi",
+> +                              "iface_clk", "vcodec_clk",
+> +                              "video_cc_mvs0_ctl_axi";
+> +
+> +                power-domains = <&videocc MVSC_GDSC>,
+> +                                <&videocc MVS0_GDSC>;
+> +                power-domain-names = "venus", "vcodec0";
+> +
+> +                interconnects = <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_VENUS_CFG 0>
+> +                                <&mmss_noc MASTER_VIDEO_P0 0 &mc_virt SLAVE_EBI1 0>;
+> +                interconnect-names = "cpu-cfg", "video-mem";
+> +
+> +                iommus = <&apps_smmu 0x2180 0x20>,
+> +                         <&apps_smmu 0x2184 0x20>;
+> +
+> +                memory-region = <&video_mem>;
+> +
+> +                video-decoder {
+> +                        compatible = "venus-decoder";
+> +                };
+> +
+> +                video-encoder {
+> +                        compatible = "venus-encoder";
+> +                };
+> +
+> +                video-firmware {
+> +                        iommus = <&apps_smmu 0x21a2 0x0>;
+> +                };
+> +        };
+> -- 
+> 2.7.4
+> 
