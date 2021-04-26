@@ -2,135 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A41EF36AC80
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 08:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6DBF36ACAD
+	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 09:07:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232062AbhDZG5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 02:57:12 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:23292 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231616AbhDZG5L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 02:57:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1619420190; x=1650956190;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=uhDMDx6U8lKJACDDMg5wJ1xGShyMkk8ZFuePWaxHS1A=;
-  b=I4NZFXczk40EQQ/Nhzl1I86VCKQr30BOqZ7Yd6HdL+tmHgFqi2S4iRg2
-   Jdd1ubPhMpCigXqHdGxDpi95Dt6UPX04yu6gw/7Du3wv0HGvfEbFQdaaW
-   J95xJALTAQD3GzuxkUJ2j42dAITlaXIVllyioECvofvpzIUbCl0tH8+c+
-   mFCBR/mopW+CTS+8a3sluYkQtDlqBeDoy1qHwUVxU7UUlgvS8FxgXpdgO
-   0shaefzdjS5nTI1O8PXVyPF0FTuGy5aNjSAyacu1QALLLqz5kywUMd36X
-   RzA6FcDQRJiZjV3E/8eqdLAcUKkqLfG1dH6DlnY+OugJsGRZ8KfQ4xvz5
-   w==;
-IronPort-SDR: eQx0XRS0qdgNtEscfcMgNylm24Yn6OdQCsMYQ/JM+r0a2OLPJWPoIAGuTJkX2E7JJ4azYberSY
- pTbQTH3KHNSQBuPHfR3uiIZ0ECAkZsAOLTnDm1rUpmG16AOf/oXI1Cs3iuuhuXANXlgHO5C2LI
- qGON2LKbum09IQQUT62FJeOo5mxoQKMiFq7fDViWaZXqT9uTgxAsu6vSJGOwb9Zm72sova0vMf
- 5qecgKuyfyeYMMhpsZway34KiQkqBgdq2xm881kQvgLvvktY53qH52eq/Au5msKIZ0Q2KCbK5l
- kCs=
-X-IronPort-AV: E=Sophos;i="5.82,251,1613458800"; 
-   d="scan'208";a="118343164"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Apr 2021 23:56:27 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Sun, 25 Apr 2021 23:56:27 -0700
-Received: from ROB-ULT-M18064N.mchp-main.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Sun, 25 Apr 2021 23:56:20 -0700
-From:   Tudor Ambarus <tudor.ambarus@microchip.com>
-To:     <gregkh@linuxfoundation.org>, <rafael@kernel.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>, <nsaenz@kernel.org>,
-        <maxime@cerno.tech>, <khilman@kernel.org>,
-        <ulf.hansson@linaro.org>, <len.brown@intel.com>, <pavel@ucw.cz>,
-        <robh+dt@kernel.org>, <frowand.list@gmail.com>, <maz@kernel.org>,
-        <tglx@linutronix.de>, <saravanak@google.com>,
-        <geert@linux-m68k.org>, <nsaenzjulienne@suse.de>,
-        <linux@roeck-us.net>, <guillaume.tucker@collabora.com>
-CC:     <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <corbet@lwn.net>, <nicolas.ferre@microchip.com>,
-        <claudiu.beznea@microchip.com>, <linux-doc@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-acpi@vger.kernel.org>, <kernel-team@android.com>,
-        <linux-rpi-kernel@lists.infradead.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: [PATCH v2] clk: Skip clk provider registration when np is NULL
-Date:   Mon, 26 Apr 2021 09:56:18 +0300
-Message-ID: <20210426065618.588144-1-tudor.ambarus@microchip.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S232100AbhDZHHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Apr 2021 03:07:32 -0400
+Received: from mail-db8eur05on2047.outbound.protection.outlook.com ([40.107.20.47]:35169
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232112AbhDZHHP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Apr 2021 03:07:15 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mD7fKjt9UDZPmDMwaFA5P3jhTdDQlhhvve6f9zxeALfFdqz7rG0dXuTjKwSR42ziDme7+qkHE0H44pzHtmUh62Tq8R0UcLoxG+vatOEJi1xD5gPHM36Y2p2AArYUkM6n74HBxUInyEv/1xUcg6WAc+EQquY+f+E2h7dN2T2/yyuDEJf/9N1QPTI3q2e7XBpydgaexzl7fPnXNaKy29o7qvhEqOE0YwuDhJkM4LLESCzZfpUH+vhTWmjNZCgL46xsqxMAUdgfzItdo6zYFw/7LtQyB9cqnDOBqWiiZXsmnXx+XBHR/Tc+Ly/2rJ9OPMVqjle0xZvwAEdXfSV+Xy/0mg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6C2TNyPO4NppXOXiVJCKWIPtaGZSdrI7aBsa2J06XvI=;
+ b=GC7tj7D1PQKgKujhbj8qBYmxbZ3OpgJkPhSF+ZfegDYY7jX/IAcqKmG4H7udnpVh3hL+gRtigfCEJDtYy0jGdTZyAMjSphXYZfZDHHviSArFzkv2YHKS2sAfcLTarRAoXZIeIm+xP4gPpnPLYaw3SvwIYC0Of5xSxajoyDu+ggJhfswhRocVQtKUd+FzsRATuhPBRNZqIW/93k21TmWocXI+QLgO/tI9nPXQJ0PDC3KoEvPxvBl8jm9KP0+nKr8ItIaSyn7Kj6HbRmKnlQXZk3TthriHXwu/KNGhYbhgChb08+l+jNMdLjyL/AX3zygkpGacG2IzAFo2dCkbxt4ppg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6C2TNyPO4NppXOXiVJCKWIPtaGZSdrI7aBsa2J06XvI=;
+ b=p8p8FVklNmokpUNmNnzB6qrjGuLziUviHlzmSi9BCqwkSUwrnfB359hCKBT/g29FBUZIYM+m+IMn34zG5EdnB1eEm3pTSfxUNBeHyz/GDNc1ljLGmVKAOIcnsUO/WTNICeCqIvkpucYZ23C/u+nn1DFRvUYovDVvlu3UFBnp6LA=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
+ by DB7PR04MB4282.eurprd04.prod.outlook.com (2603:10a6:5:19::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.16; Mon, 26 Apr
+ 2021 07:06:32 +0000
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::3400:b139:f681:c8cf]) by DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::3400:b139:f681:c8cf%7]) with mapi id 15.20.4065.027; Mon, 26 Apr 2021
+ 07:06:32 +0000
+From:   Joakim Zhang <qiangqing.zhang@nxp.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        festevam@gmail.com
+Cc:     linux-imx@nxp.com, kernel@pengutronix.de,
+        devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mp-evk: enable EQOS ethernet
+Date:   Mon, 26 Apr 2021 15:06:54 +0800
+Message-Id: <20210426070654.8703-1-qiangqing.zhang@nxp.com>
+X-Mailer: git-send-email 2.17.1
 Content-Type: text/plain
+X-Originating-IP: [119.31.174.71]
+X-ClientProxiedBy: HK0PR01CA0071.apcprd01.prod.exchangelabs.com
+ (2603:1096:203:a6::35) To DB8PR04MB6795.eurprd04.prod.outlook.com
+ (2603:10a6:10:fa::15)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.71) by HK0PR01CA0071.apcprd01.prod.exchangelabs.com (2603:1096:203:a6::35) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.22 via Frontend Transport; Mon, 26 Apr 2021 07:06:30 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2ae27949-6cac-4aad-247b-08d90881d275
+X-MS-TrafficTypeDiagnostic: DB7PR04MB4282:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB7PR04MB42821E87EB8BC6BFD6EDCEAEE6429@DB7PR04MB4282.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:267;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: fQLDCNca/2eulkn3KLB4BzVRoMpnmLglyYLgwiJVWDUjgTUIgK4UAqk7FY8pEQ4OJy48DsZTvQo2oEmzI7/VpmOwtlJ/qICTH3u76cWxj0lUG/bnMFIq6PtesDieGUvj2XbkA1SV4m8fh5OTEm5Mve3JtTncgfeThYxB1BMd1xcvK2GJ2HGPy3q2D2p1B3SzomycDt8EhVbXIM62W/fqZ/vfSDsuHEKe8mHykE/rq7UY9GcpxehGr98MfSOHEJncIJgo5R5d+OsjhD1Dk/ZPQMKIlW6uaTLpblkf3FZkcsJKL5+cIeT95cDWu6HhaVDxYvvwVuulsH6Yi0x9XnlQip4le05j0Lyc0aOAo1tSABbUkq8x90j7v4se5OOykyq/7h3j6OJi8S7NsTX6/pcL6rx2IJmwqor+GkapioUtwjlJ/tfbuuqqh9UjvmOQp537cUJkUjn1LCtdcvb6X5kkqLppuIP336TRvZNj3U6CLMQE3hQLgU56dMhRgXJ6jk9OEuT5nWoMvoOhq6hC7kDEiJiANjmE1/oywjgP8cxNQ6z1tXFkPYoQgNOUFoFTzSkhSXhriaHnp6k+Stg6s0/zhV1xiM9Zp0IoeliOIuHWjEW2Jqxmxi1nNJNYYlipx9/pFLob/947xaxemKIRtBAQmdHbGRcgj7xAWepTBuFYVhmX46WwrQ901xBynJIKfdrNnsgTimiobn4/YEebnb7c2H+vpAok9qUSWV4k9dldloc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(39860400002)(366004)(136003)(376002)(396003)(26005)(66946007)(2906002)(38350700002)(38100700002)(8676002)(6666004)(316002)(2616005)(8936002)(83380400001)(52116002)(16526019)(186003)(478600001)(956004)(66476007)(66556008)(6512007)(6506007)(1076003)(4326008)(36756003)(6486002)(86362001)(5660300002)(69590400013)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?JgHg1PuxtcgKS2klIVv7NuNhO7h4WWQMDl+VZep0IzXyFt6/3wp4cpbnrPgE?=
+ =?us-ascii?Q?MtrkEmndQKuWtRy0dwHoscl29cB95eVffwGnthWlgLL65ihROu50xqaSpXqb?=
+ =?us-ascii?Q?oG9UkU8zUKjNG+qM4xN6kBHPXkBztKvkzKB3maRONEP7wTbHQVs/OfUAg7OK?=
+ =?us-ascii?Q?wp4zgYK2zelPkz1HYthXrtbSGuj53WJ4Cq38ONdwsezRbN2QBLQna9h3HQSV?=
+ =?us-ascii?Q?M64nrOUHr+/+Pg6W3r1Obklecp6EPDi+kDl66ufXUQ77naVTna0uwM8MGGP2?=
+ =?us-ascii?Q?s2I+sTQ86Bm6XK7ihjiK3WJY1f2MSnvaBqPQjIcz2igD7OpYVBhiUPPN/W5M?=
+ =?us-ascii?Q?yN0Fq/vcopG/HovQ09j+soO21FY/R0UpLqXETc4zhDEOPC0r2TrEpJ5PwxA4?=
+ =?us-ascii?Q?6VnGn/j3/wqDjm3AU+eqUXZ/SLBzQk8/4Eu4pCdmOQvcTM/7iATpzpuGaAKc?=
+ =?us-ascii?Q?N/iZReH4Ib6SJhtw1hyrVKALPyzHe1A+GNXHiJmYLy0+HXxCotgwbFVYArkm?=
+ =?us-ascii?Q?CDLKlkQke8VawHyGcJd2z5I3uB3e75kUzyMIJUSDMJwTqc1F6XNGJCUF54WZ?=
+ =?us-ascii?Q?SJJ0nl2JE/ocnwy2wh0O732fA8DadK++a5x8Pc/HfJ/HaXNxLtpg2HfnXgpx?=
+ =?us-ascii?Q?aU0impmlVE+rrWghzzsYsdy/A4C5YAQtflWBvNTavP4HYfqUS18FIOXXuZns?=
+ =?us-ascii?Q?1oTB8NbhFIccJvJAJmLFAN2j6b1oCvBajU+LEp29thI258j5OlL/S3jLMED/?=
+ =?us-ascii?Q?SVN7/lv9ZpoUL+8K634PTLVLwWjWLA54JXTVwp/MTR+lY9z1mNJCdpQ8PK5t?=
+ =?us-ascii?Q?bp5mn3q09hKfOuG89Pgd4TvTQdltn7uoPMIQw80pt9Hhwd/+A7tq+LbVUAyi?=
+ =?us-ascii?Q?X7b7vXRUq2bEWX2asyRcDyzIRcfYsBYD8yC2cyGFTFUMKx/tFtpXN7lJfA54?=
+ =?us-ascii?Q?zJwGyq6guscYDmG6G76EWUYeqegH9Qwc73c6jXfbej5jcoSPsN3WbrJjIU0N?=
+ =?us-ascii?Q?zUtGkOLKXQ7QPwOVo3yO32hr6MBTcmiTzGO/c09ZuzN86lV9YRx2Y7IO7nbV?=
+ =?us-ascii?Q?jCDQnDhwth0O6i/DJBuw1jwceG+2qqdqLnDWnCjQ6nyYYQTouf5LA1wXzHDY?=
+ =?us-ascii?Q?7hy5w9vrYB3kvGBy3elE4D/1E5DzA4EoMa21u8fjwxDBy3ZA6Ij0bnFiAlOA?=
+ =?us-ascii?Q?ZRwn0y9KZDG+n+eWeZL7kqHK5JNcGML/vPF+Qv/wlJhCpOlhlQCIg3cRJwnQ?=
+ =?us-ascii?Q?mo7U/jkbH09k6fc77DhN08QJOLCt9wUfNP4AgABerv+3hUBwlGJQoE6V35Xt?=
+ =?us-ascii?Q?NnR1sqb5WuuZ2SHHMzPa+Q2q?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ae27949-6cac-4aad-247b-08d90881d275
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2021 07:06:32.7228
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: trDU9YYWAYurwojXZ+dq4pdPZlfI8QA7Py0A0rxfPdXz+5erSTqOH8wEZdvFau38SVc/G0TZisGgZnC5t6sRpw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4282
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-commit 6579c8d97ad7 ("clk: Mark fwnodes when their clock provider is added")
-revealed that clk/bcm/clk-raspberrypi.c driver calls
-devm_of_clk_add_hw_provider(), with a NULL dev->of_node, which resulted in a
-NULL pointer dereference in of_clk_add_hw_provider() when calling
-fwnode_dev_initialized().
+Enable EQOS ethernet on i.MX8MP EVK board.
 
-Returning 0 is reducing the if conditions in driver code and is being
-consistent with the CONFIG_OF=n inline stub that returns 0 when CONFIG_OF
-is disabled. The downside is that drivers will maybe register clkdev lookups
-when they don't need to and waste some memory.
-
-Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
-Fixes: 6579c8d97ad7 ("clk: Mark fwnodes when their clock provider is added")
-Fixes: 3c9ea42802a1 ("clk: Mark fwnodes when their clock provider is added/removed")
-Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
-Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
 ---
-v2:
-- s/return 0;/return; in void of_clk_del_provider()
-- add second fixes tag and Stephen's R-b tag
-The opinions on whether to return an error or zero were split. Returning 0
-and skipping the logic was considered safer as we don't know for sure if
-other drivers are affected. See:
-https://lore.kernel.org/lkml/d24bebc5-0f78-021f-293f-e58defa32531@samsung.com/
-https://lore.kernel.org/lkml/20210423171335.262316-1-tudor.ambarus@microchip.com/
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 40 ++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
- drivers/clk/clk.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index a3b30f7de2ef..b47460b40d14 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -4552,6 +4552,9 @@ int of_clk_add_provider(struct device_node *np,
- 	struct of_clk_provider *cp;
- 	int ret;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+index 2c28e589677e..fae6aa4c6b7b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+@@ -81,6 +81,26 @@
+ 	status = "disabled";/* can2 pin conflict with pdm */
+ };
  
-+	if (!np)
-+		return 0;
++&eqos {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_eqos>;
++	phy-mode = "rgmii-id";
++	phy-handle = <&ethphy0>;
++	status = "okay";
 +
- 	cp = kzalloc(sizeof(*cp), GFP_KERNEL);
- 	if (!cp)
- 		return -ENOMEM;
-@@ -4591,6 +4594,9 @@ int of_clk_add_hw_provider(struct device_node *np,
- 	struct of_clk_provider *cp;
- 	int ret;
++	mdio {
++		compatible = "snps,dwmac-mdio";
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethphy0: ethernet-phy@1 {
++			compatible = "ethernet-phy-ieee802.3-c22";
++			reg = <1>;
++			eee-broken-1000t;
++		};
++	};
++};
++
+ &fec {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_fec>;
+@@ -177,6 +197,26 @@
+ };
  
-+	if (!np)
-+		return 0;
+ &iomuxc {
++	pinctrl_eqos: eqosgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x3
++			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO				0x3
++			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0			0x91
++			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1			0x91
++			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2			0x91
++			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3			0x91
++			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x91
++			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL			0x91
++			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0			0x1f
++			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1			0x1f
++			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x1f
++			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x1f
++			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL			0x1f
++			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x1f
++			MX8MP_IOMUXC_SAI2_RXC__GPIO4_IO22				0x19
++		>;
++	};
 +
- 	cp = kzalloc(sizeof(*cp), GFP_KERNEL);
- 	if (!cp)
- 		return -ENOMEM;
-@@ -4688,6 +4694,9 @@ void of_clk_del_provider(struct device_node *np)
- {
- 	struct of_clk_provider *cp;
- 
-+	if (!np)
-+		return;
-+
- 	mutex_lock(&of_clk_mutex);
- 	list_for_each_entry(cp, &of_clk_providers, link) {
- 		if (cp->node == np) {
+ 	pinctrl_fec: fecgrp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC		0x3
 -- 
-2.25.1
+2.17.1
 
