@@ -2,325 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1909836ACDC
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 09:19:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 459A536ACE8
+	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 09:27:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232204AbhDZHTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 03:19:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35166 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232172AbhDZHTS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 03:19:18 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D47A2C061574;
-        Mon, 26 Apr 2021 00:18:33 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id s20so12600741plr.13;
-        Mon, 26 Apr 2021 00:18:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=aNe+3A3fR9ErXpEX7+SEfiaWTuDgeUeDk5z1TRFa6UM=;
-        b=O5UlCKW17P6pxA9Dw1S2dIRBZUYHigAz4QEBWplo7z3bRx2urDnUebwVjDT0IESPnQ
-         5QRQvcTBg3kEGpRZTO9OTk/8ZxUNFjLnH3RMP1qtsbB8HA6GwH8mDTYqteo5z6IsGsbh
-         jbQ4Xo87pKOgbGrd2qGAjqfVtqtEbibD/zqgfBXa3XFBPExPrn3khcwyE2qp5WW2bzVX
-         V6ZO0fyBIvCmof6w+RyHYz0FobXbwuTP9iNLtBgmRq9BWwP5nBTLeFkmU1Q8op+9/YIW
-         6beQ3DN81fIQ/AG9z6Xz6Eyq+GIFe/Ug/YmgFxNsMd5pvUp4afxzpq6/xANSg22ITPUH
-         e1ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=aNe+3A3fR9ErXpEX7+SEfiaWTuDgeUeDk5z1TRFa6UM=;
-        b=T5eYAPAMYFGWEKgif++AqRh6jqamQCf6Einbqf7/DMBBcaabhPOcpLtsPishQBpVCa
-         F/KRO8fRPMroMBFrGxyZRM61h3EzxiGx1TxnDIrRAkIFb8fAOxwG8eI83nTz8mlanZ0V
-         u3sBI+PIJRTOnWfbgFoFoWxU16y7u+i2lipIwhFphMUtGnHVP9TAw/O2SxETYtjpE6Tu
-         r1M3SI5St5zJYufoM0MQdBpCRN+lU+zbsSn2rdPcHbWUk70QY3MnVUjY3YMOcOhleftR
-         R7twSgvqtYV1MboQsIrHQk/kWdom490mHc8+5wooHQ4WCxCiJwZW23jaEnlgOy6JAPk3
-         KMiA==
-X-Gm-Message-State: AOAM531luUHh69awWLGH4+WM5gujl8uw9Cgi6u2mnAw0lSM0C0g7dKYs
-        vT77DoEpUUfW1YAnjqhyg4bFO36iNs5VaA==
-X-Google-Smtp-Source: ABdhPJxYf6jZhmaLTBYcYM6+YrtaZjxdCeO+w9A6RR1leuZcgp/O43c5eT1YVlTxdI389nSeHU5J5A==
-X-Received: by 2002:a17:90a:7e02:: with SMTP id i2mr12832281pjl.58.1619421513411;
-        Mon, 26 Apr 2021 00:18:33 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:492:3af5:75cd:677a:81f7:a9fe])
-        by smtp.gmail.com with ESMTPSA id u21sm9848952pfm.89.2021.04.26.00.18.29
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 26 Apr 2021 00:18:32 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     lee.jones@linaro.org, lgirdwood@gmail.com, broonie@kernel.org,
-        daniel.thompson@linaro.org, jingoohan1@gmail.com,
-        b.zolnierkie@samsung.com, pavel@ucw.cz, robh+dt@kernel.org
-Cc:     dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, cy_huang@richtek.com
-Subject: [RESEND PATCH v6 4/4] backlight: rt4831: Adds support for Richtek RT4831 backlight
-Date:   Mon, 26 Apr 2021 15:18:11 +0800
-Message-Id: <1619421491-31494-4-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1619421491-31494-1-git-send-email-u0084500@gmail.com>
-References: <1619421491-31494-1-git-send-email-u0084500@gmail.com>
+        id S232127AbhDZH1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Apr 2021 03:27:48 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:43372 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232122AbhDZH1r (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Apr 2021 03:27:47 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1619422027; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=BC2MMd53B//K++4/ykJz6cgdkp+Imiep2wNxZdBiFMQ=;
+ b=DIIQ0wCjANDRJCx81UpGt6PzNEn4xFM+kDXhzvbjGU9ebali+ND5KIwBCJwH3WYgcWUqVOQS
+ nmhJAMS6GvwkTUvzl8GHRkDnG1BbTamY6eJ3thAdtQdOL70duselvyy2pnrLa9kyNYAJ9lTw
+ QgVEcWnquqkH3RRF7+fj4sm8DJ8=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 60866b3b853c0a2c465ed847 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 26 Apr 2021 07:26:51
+ GMT
+Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 657D4C4338A; Mon, 26 Apr 2021 07:26:50 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 487C3C433D3;
+        Mon, 26 Apr 2021 07:26:48 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 26 Apr 2021 12:56:48 +0530
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Jassi Brar <jaswinder.singh@linaro.org>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCHv2] dt-bindings: mailbox: qcom-ipcc: Add compatible for
+ SC7280
+In-Reply-To: <20210324182436.GA3378168@robh.at.kernel.org>
+References: <20210315184410.21063-1-saiprakash.ranjan@codeaurora.org>
+ <20210324182436.GA3378168@robh.at.kernel.org>
+Message-ID: <c10499263a557d65c868dc7305d445f4@codeaurora.org>
+X-Sender: saiprakash.ranjan@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+Hi Jassi,
 
-Adds support for Richtek RT4831 backlight.
+On 2021-03-24 23:54, Rob Herring wrote:
+> On Tue, 16 Mar 2021 00:14:10 +0530, Sai Prakash Ranjan wrote:
+>> Add IPCC compatible for SC7280 SoC.
+>> 
+>> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>> Cc: Jassi Brar <jaswinder.singh@linaro.org>
+>> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+>> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+>> ---
+>>  Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml | 1 +
+>>  1 file changed, 1 insertion(+)
+>> 
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
----
-Resend this v6 patch series to loop devicetree reviewers.
+Could you please pick this up?
 
-For next, if the typo in Kconfig 'common' to 'commonly' can be added the below line
-Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
----
- drivers/video/backlight/Kconfig            |   8 ++
- drivers/video/backlight/Makefile           |   1 +
- drivers/video/backlight/rt4831-backlight.c | 203 +++++++++++++++++++++++++++++
- 3 files changed, 212 insertions(+)
- create mode 100644 drivers/video/backlight/rt4831-backlight.c
-
-diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
-index d83c87b..de96441 100644
---- a/drivers/video/backlight/Kconfig
-+++ b/drivers/video/backlight/Kconfig
-@@ -289,6 +289,14 @@ config BACKLIGHT_QCOM_WLED
- 	  If you have the Qualcomm PMIC, say Y to enable a driver for the
- 	  WLED block. Currently it supports PM8941 and PMI8998.
- 
-+config BACKLIGHT_RT4831
-+	tristate "Richtek RT4831 Backlight Driver"
-+	depends on MFD_RT4831
-+	help
-+	  This enables support for Richtek RT4831 Backlight driver.
-+	  It's common used to drive the display WLED. There're four channels
-+	  inisde, and each channel can provide up to 30mA current.
-+
- config BACKLIGHT_SAHARA
- 	tristate "Tabletkiosk Sahara Touch-iT Backlight Driver"
- 	depends on X86
-diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
-index 685f3f1..cae2c83 100644
---- a/drivers/video/backlight/Makefile
-+++ b/drivers/video/backlight/Makefile
-@@ -49,6 +49,7 @@ obj-$(CONFIG_BACKLIGHT_PANDORA)		+= pandora_bl.o
- obj-$(CONFIG_BACKLIGHT_PCF50633)	+= pcf50633-backlight.o
- obj-$(CONFIG_BACKLIGHT_PWM)		+= pwm_bl.o
- obj-$(CONFIG_BACKLIGHT_QCOM_WLED)	+= qcom-wled.o
-+obj-$(CONFIG_BACKLIGHT_RT4831)		+= rt4831-backlight.o
- obj-$(CONFIG_BACKLIGHT_SAHARA)		+= kb3886_bl.o
- obj-$(CONFIG_BACKLIGHT_SKY81452)	+= sky81452-backlight.o
- obj-$(CONFIG_BACKLIGHT_TOSA)		+= tosa_bl.o
-diff --git a/drivers/video/backlight/rt4831-backlight.c b/drivers/video/backlight/rt4831-backlight.c
-new file mode 100644
-index 00000000..42155c7
---- /dev/null
-+++ b/drivers/video/backlight/rt4831-backlight.c
-@@ -0,0 +1,203 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include <dt-bindings/leds/rt4831-backlight.h>
-+#include <linux/backlight.h>
-+#include <linux/bitops.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+
-+#define RT4831_REG_BLCFG	0x02
-+#define RT4831_REG_BLDIML	0x04
-+#define RT4831_REG_ENABLE	0x08
-+
-+#define RT4831_BLMAX_BRIGHTNESS	2048
-+
-+#define RT4831_BLOVP_MASK	GENMASK(7, 5)
-+#define RT4831_BLOVP_SHIFT	5
-+#define RT4831_BLPWMEN_MASK	BIT(0)
-+#define RT4831_BLEN_MASK	BIT(4)
-+#define RT4831_BLCH_MASK	GENMASK(3, 0)
-+#define RT4831_BLDIML_MASK	GENMASK(2, 0)
-+#define RT4831_BLDIMH_MASK	GENMASK(10, 3)
-+#define RT4831_BLDIMH_SHIFT	3
-+
-+struct rt4831_priv {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	struct backlight_device *bl;
-+};
-+
-+static int rt4831_bl_update_status(struct backlight_device *bl_dev)
-+{
-+	struct rt4831_priv *priv = bl_get_data(bl_dev);
-+	int brightness = backlight_get_brightness(bl_dev);
-+	unsigned int enable = brightness ? RT4831_BLEN_MASK : 0;
-+	u8 v[2];
-+	int ret;
-+
-+	if (brightness) {
-+		v[0] = (brightness - 1) & RT4831_BLDIML_MASK;
-+		v[1] = ((brightness - 1) & RT4831_BLDIMH_MASK) >> RT4831_BLDIMH_SHIFT;
-+
-+		ret = regmap_raw_write(priv->regmap, RT4831_REG_BLDIML, v, sizeof(v));
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return regmap_update_bits(priv->regmap, RT4831_REG_ENABLE, RT4831_BLEN_MASK, enable);
-+
-+}
-+
-+static int rt4831_bl_get_brightness(struct backlight_device *bl_dev)
-+{
-+	struct rt4831_priv *priv = bl_get_data(bl_dev);
-+	unsigned int val;
-+	u8 v[2];
-+	int ret;
-+
-+	ret = regmap_read(priv->regmap, RT4831_REG_ENABLE, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (!(val & RT4831_BLEN_MASK))
-+		return 0;
-+
-+	ret = regmap_raw_read(priv->regmap, RT4831_REG_BLDIML, v, sizeof(v));
-+	if (ret)
-+		return ret;
-+
-+	ret = (v[1] << RT4831_BLDIMH_SHIFT) + (v[0] & RT4831_BLDIML_MASK) + 1;
-+
-+	return ret;
-+}
-+
-+static const struct backlight_ops rt4831_bl_ops = {
-+	.options = BL_CORE_SUSPENDRESUME,
-+	.update_status = rt4831_bl_update_status,
-+	.get_brightness = rt4831_bl_get_brightness,
-+};
-+
-+static int rt4831_parse_backlight_properties(struct rt4831_priv *priv,
-+					     struct backlight_properties *bl_props)
-+{
-+	struct device *dev = priv->dev;
-+	u8 propval;
-+	u32 brightness;
-+	unsigned int val = 0;
-+	int ret;
-+
-+	/* common properties */
-+	ret = device_property_read_u32(dev, "max-brightness", &brightness);
-+	if (ret)
-+		brightness = RT4831_BLMAX_BRIGHTNESS;
-+
-+	bl_props->max_brightness = min_t(u32, brightness, RT4831_BLMAX_BRIGHTNESS);
-+
-+	ret = device_property_read_u32(dev, "default-brightness", &brightness);
-+	if (ret)
-+		brightness = bl_props->max_brightness;
-+
-+	bl_props->brightness = min_t(u32, brightness, bl_props->max_brightness);
-+
-+	/* vendor properties */
-+	if (device_property_read_bool(dev, "richtek,pwm-enable"))
-+		val = RT4831_BLPWMEN_MASK;
-+
-+	ret = regmap_update_bits(priv->regmap, RT4831_REG_BLCFG, RT4831_BLPWMEN_MASK, val);
-+	if (ret)
-+		return ret;
-+
-+	ret = device_property_read_u8(dev, "richtek,bled-ovp-sel", &propval);
-+	if (ret)
-+		propval = RT4831_BLOVPLVL_21V;
-+
-+	propval = min_t(u8, propval, RT4831_BLOVPLVL_29V);
-+	ret = regmap_update_bits(priv->regmap, RT4831_REG_BLCFG, RT4831_BLOVP_MASK,
-+				 propval << RT4831_BLOVP_SHIFT);
-+	if (ret)
-+		return ret;
-+
-+	ret = device_property_read_u8(dev, "richtek,channel-use", &propval);
-+	if (ret) {
-+		dev_err(dev, "richtek,channel-use DT property missing\n");
-+		return ret;
-+	}
-+
-+	if (!(propval & RT4831_BLCH_MASK)) {
-+		dev_err(dev, "No channel specified\n");
-+		return -EINVAL;
-+	}
-+
-+	return regmap_update_bits(priv->regmap, RT4831_REG_ENABLE, RT4831_BLCH_MASK, propval);
-+}
-+
-+static int rt4831_bl_probe(struct platform_device *pdev)
-+{
-+	struct rt4831_priv *priv;
-+	struct backlight_properties bl_props = { .type = BACKLIGHT_RAW,
-+						 .scale = BACKLIGHT_SCALE_LINEAR };
-+	int ret;
-+
-+	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->dev = &pdev->dev;
-+
-+	priv->regmap = dev_get_regmap(pdev->dev.parent, NULL);
-+	if (!priv->regmap) {
-+		dev_err(&pdev->dev, "Failed to init regmap\n");
-+		return -ENODEV;
-+	}
-+
-+	ret = rt4831_parse_backlight_properties(priv, &bl_props);
-+	if (ret) {
-+		dev_err(&pdev->dev, "Failed to parse backlight properties\n");
-+		return ret;
-+	}
-+
-+	priv->bl = devm_backlight_device_register(&pdev->dev, pdev->name, &pdev->dev, priv,
-+						  &rt4831_bl_ops, &bl_props);
-+	if (IS_ERR(priv->bl)) {
-+		dev_err(&pdev->dev, "Failed to register backlight\n");
-+		return PTR_ERR(priv->bl);
-+	}
-+
-+	backlight_update_status(priv->bl);
-+	platform_set_drvdata(pdev, priv);
-+
-+	return 0;
-+}
-+
-+static int rt4831_bl_remove(struct platform_device *pdev)
-+{
-+	struct rt4831_priv *priv = platform_get_drvdata(pdev);
-+	struct backlight_device *bl_dev = priv->bl;
-+
-+	bl_dev->props.brightness = 0;
-+	backlight_update_status(priv->bl);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id __maybe_unused rt4831_bl_of_match[] = {
-+	{ .compatible = "richtek,rt4831-backlight", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, rt4831_bl_of_match);
-+
-+static struct platform_driver rt4831_bl_driver = {
-+	.driver = {
-+		.name = "rt4831-backlight",
-+		.of_match_table = rt4831_bl_of_match,
-+	},
-+	.probe = rt4831_bl_probe,
-+	.remove = rt4831_bl_remove,
-+};
-+module_platform_driver(rt4831_bl_driver);
-+
-+MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-+MODULE_LICENSE("GPL v2");
+Thanks,
+Sai
 -- 
-2.7.4
-
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+member
+of Code Aurora Forum, hosted by The Linux Foundation
