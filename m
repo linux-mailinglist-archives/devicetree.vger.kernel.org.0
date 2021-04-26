@@ -2,121 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D109636B227
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 13:14:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A675236B24D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 13:20:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233060AbhDZLO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 07:14:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59764 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232861AbhDZLO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 07:14:58 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9BD9C061574;
-        Mon, 26 Apr 2021 04:14:15 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id b23so5107756lfv.8;
-        Mon, 26 Apr 2021 04:14:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=52Uf4pbv7Be7r8HttTVBFMD00su27oeNctOk9bOo0UY=;
-        b=WZbwdqoQ3ErwD7gH9wCfRSN2wCxbqy8q/m56bvnvzvN9lyi7BddE5JwwX950cIl3Uj
-         8QfUE5nHiaVx/uXzgdphq+fbOICZIs+FFar5Qcb5PWfvrmhHzLWJWbxjH82UJMKtdztO
-         rdAtmyDcCsB/N991TcZH9jHv9u6dpKMWxIaD7Ufm1scRSArbj2sXGO8Y1CioQ4DS016B
-         z1Veh3w95ezVgOmhNzReTF8+CCduRwIRbVCB5BEdwKSM/AYV81jIi60uf6N9xcKCiF3k
-         tzlw8M/E9Co6758w7cnjuDdYMsIEuADqGinzpBy1QXXAIfdZXGkP9ajLuI4SyHOmmUwM
-         8s8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=52Uf4pbv7Be7r8HttTVBFMD00su27oeNctOk9bOo0UY=;
-        b=C2opcYDW833usyzxgRQ353qM5lr8SzXTlNCcB2A8l0vCjUgGQaBrRVTXDcXph3LxmK
-         2iAxdi1K1Rb/jDw3IMPDebMi+DxtYBHYfE1lw7Q+veR3BGB2uDOOzo852/LKT/7Q3d3b
-         mw0La+iMAZMW16dgZSWZrKlYp89BH6ytIammFZWDwqDjp2I1furteRJkBIftLfdjqbUq
-         BmVLsNIIHOvQ8uJ4KA8WKOpjDg4BK1k4V5cUxD/lcU+86S89QDLWug5kM2x88c7HCzr0
-         9gf88gwawkgZV2uTPCdJfb2ZKfI0d4QmaWJhjgSxftJfnXhIaCdc8GpD1Y0r1h/N441i
-         FEgg==
-X-Gm-Message-State: AOAM531RYfCCoD2ROL1J2rHy2bQWV3gYHNHBE5MiDvSnoLvSq/4L1d+K
-        xrlaLOEp71O/wGlRYTh3uZcEpslej7scOkOX2J8=
-X-Google-Smtp-Source: ABdhPJxXN+68YbSNClsnO/fCPEyWZI/DyXI7kHstDwSzwjedC7Xg9vSTmr7z44uw6hw6V1vrUlP4rpfz71JTDG/eGkE=
-X-Received: by 2002:a05:6512:3b92:: with SMTP id g18mr12306758lfv.646.1619435654269;
- Mon, 26 Apr 2021 04:14:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210319051627.814-1-cnsztl@gmail.com> <161640742725.808893.3666594351389773587.b4-ty@sntech.de>
- <20210425213321.GF10996@amd> <CAOP2_ThcRMkgSm872q2By=gALoK-qAjq92FtNQkDO999pZR8kg@mail.gmail.com>
- <20210426110316.GA13974@duo.ucw.cz>
-In-Reply-To: <20210426110316.GA13974@duo.ucw.cz>
-From:   Tianling Shen <cnsztl@gmail.com>
-Date:   Mon, 26 Apr 2021 19:14:03 +0800
-Message-ID: <CAOP2_Tixnza0w8x7-viZAgV1fSysuJ5ht_Ri1kyMEgZ9yabOhQ@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: Add doc for FriendlyARM NanoPi R4S
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Marty Jones <mj8263788@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <uwe@kleine-koenig.org>,
-        Jensen Huang <jensenhuang@friendlyarm.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        id S232626AbhDZLVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Apr 2021 07:21:39 -0400
+Received: from smtpcmd01-sp1.aruba.it ([62.149.158.218]:34244 "EHLO
+        smtpcmd01-sp1.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232490AbhDZLVj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 07:21:39 -0400
+Received: from [192.168.1.128] ([79.0.204.227])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id azINl1D3hkdBBazINlskVa; Mon, 26 Apr 2021 13:20:56 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1619436056; bh=frTJMNMpm+Hv7Zbg5xN209kUss8MSNY4dnId4BDsBNE=;
+        h=Subject:To:From:Date:MIME-Version:Content-Type;
+        b=bFFh/2KL45c8CGWmt9sRveoyvfUz0ty7k/7UBAbkcxezThKHgh9qoXMUjCmCvp1sm
+         7a1xSJe0fv1AOqtVTP65DFHR75SvqrNoT509dhHekd7TJIIo68HxqDUM2YvNvRlZnZ
+         GLM7X6PWYVQH96o6kz2nfrdSNy0ExSZEX8XW5Jh5jjERi0rj8d5KfosAOXr+sNDsRj
+         T2CAFO/WgAsLjwRG7fM/MW2UKyxjD+r90kkrGfBhY0+qUfl8kjhBNAU09WGCu74rxy
+         unfzO3ZWq8FUajr+IKMOW/5d2Ifq2HWeIqi1sYXIsOvbbtt+m0Y+d3L2CoSknLZKVE
+         PS972Zifwnhzw==
+Subject: Re: [RFC v2 GPIO lines [was: GPIO User I/O]
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
         Geert Uytterhoeven <geert@linux-m68k.org>,
-        David Bauer <mail@david-bauer.net>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        <devicetree@vger.kernel.org>
+References: <01afcac0-bd34-3fd0-b991-a8b40d4b4561@enneenne.com>
+ <CAMuHMdUght0hkJT1N8ub5xR5GB+U18MAhAg+zDmAAuxoRSRaYg@mail.gmail.com>
+ <d30e64c9-ad7f-7cd5-51a4-3f37d6f1e3d8@enneenne.com>
+ <070fa558-6e20-0fbf-d3e4-0a0eca4fe82c@enneenne.com>
+ <CACRpkdYFAW2bcB53M3_b2LsveJO_PWZJhprGhdTtfmW11B1WmQ@mail.gmail.com>
+ <f66dc9c4-b164-c934-72a8-d4aca063fca5@enneenne.com>
+ <CACRpkdbjc6vvpHVjnJNGisRw6LiLZd-95aHWJJORwvaRNigPcw@mail.gmail.com>
+ <cb6e208b-446e-eba4-b324-d88aec94a69b@enneenne.com>
+ <CACRpkdZBUw5UPyZB-aeVwh8-GiCifbwABZ9mOsyK90t3cdMQ+w@mail.gmail.com>
+ <80bf1236-aacd-1044-b0e5-5b5718b7e9f0@enneenne.com>
+ <CAHp75Vc1ezuW9m8OCQUmEJoNVoD-Z3eWF=Lzcr2v32Br8Gr60w@mail.gmail.com>
+ <CACRpkdY+amtrDE4gaSU5Du2CUivxo6gnUV5zZOcaJJ8=md-4Kg@mail.gmail.com>
+ <87207962-5848-3e5c-4d8d-f4a66c864413@enneenne.com>
+ <CACRpkdYCdhi_Vb_+0cfD02WRzOhvenoFt5tbowe91RMjQBfeug@mail.gmail.com>
+ <474f975d-3fb6-8345-cfbf-79ee313c0850@enneenne.com>
+ <CACRpkdZn4+jM1K=UyowOkmax5aP35ao2JtGSy96apOd+_fOp3A@mail.gmail.com>
+From:   Rodolfo Giometti <giometti@enneenne.com>
+Message-ID: <4d9e5b2f-ab84-1f42-b40e-e5a124717948@enneenne.com>
+Date:   Mon, 26 Apr 2021 13:20:54 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+MIME-Version: 1.0
+In-Reply-To: <CACRpkdZn4+jM1K=UyowOkmax5aP35ao2JtGSy96apOd+_fOp3A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfN+llEglKLcfC7p6xqL5O9h4h/1LCf3ZFU8Ddb2aeueR3wYx8F1n6VZVLjVJuToU7PKXsUTrRXNqyCYqGghKVhhhfMAbsMyVIVi95MtrAoAC88UouhRt
+ B6EJ0sdexTeipf5q8l62N4pxGpSm7GnhmdQsifkvFhxLQ46wP1iBzXzkrbYHOan/5YY0kuJZUplqtcvCBfwwqNZDoPhGF58h3HQ8zePjLNNHAJGRL+bQSnzy
+ F9uL3wqY2C2woLbUTTWkffyfcV/klDqJA1/Dfwt+HhXvR/DK2YPfmBKttgCUYKRGJ1SeXRkIpblcQFQLYw5YE5/POKYdx4BmHkTbUxW2+v9xz890/r7IbVfr
+ tdnTn5MBHqlyijyKrerLkzWmyHsz4yV+Oq1mQ8Fm0jFzP9SPghpq37PMDC7PDGCLXsmvvRoAl7JPYW/pWbUaoeJI0Dtk8Q==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 26/04/21 12:12, Linus Walleij wrote:
+> On Mon, Apr 26, 2021 at 11:44 AM Rodolfo Giometti <giometti@enneenne.com> wrote:
+>> On 26/04/21 11:31, Linus Walleij wrote:
+>>> On Mon, Apr 26, 2021 at 10:44 AM Rodolfo Giometti <giometti@enneenne.com> wrote:
+> 
+>>> I would send an RFC of the proposed DT bindings there.
+>>
+>> I agree. Please, let me know if you need some help.
+> 
+> I [general tense] would, implied [if I were you].
+> 
+> What I mean is that whoever wants to drive this should send
+> proposed DT bindings there.
 
-On Mon, Apr 26, 2021 at 7:03 PM Pavel Machek <pavel@ucw.cz> wrote:
->
-> Hi!
-> > > > > - Fixed format of LED nodes
-> > > > >
-> > > > > Changes in v5:
-> > > > > - Dropped the empty PCIe node
-> > > > > - Dropped useless `/delete-property/`
-> > > > > - Renamed LED nodes
-> > > > >
-> > > > > [...]
-> > > >
-> > > > Applied, thanks!
-> > > >
-> > > > [1/2] dt-bindings: Add doc for FriendlyARM NanoPi R4S
-> > > >       commit: 1003888415e83e15ddb63d1d96189b4f2c5f1d48
-> > > > [2/2] rockchip: rk3399: Add support for FriendlyARM NanoPi R4S
-> > > >       commit: db792e9adbf85ffc9d6b0b060ac3c8e3148c8992
-> > >
-> > > Sorry for late review, but:
-> > >
-> > >
-> > > +                       label = "red:sys";
-> > >
-> > > This should be red:power based on the discussion in earlier threads.
-> >
-> > However based on the introduction from FriendlyELEC[1], this is not
-> > the "power" lamp...
-> > "LEDs: 1 x power LED and 3 x GPIO Controlled LED (SYS, LAN, WAN)"
->
-> It is always on, and "sys" is not a valid function.
->
-> I'd suggest labeling it as "red:power". Feel free to make other
-> suggestion but lets keep existing functions.
+:)
 
-I see, thank you very much!
-I'll submit a patch later.
+> I am not volunteering to drive the project. It needs to be driven
+> by those who have the need and can verify that it is fulfils the
+> needs they have.
 
-Thanks,
-Tianling.
+OK, I'm going to re-propose my patch to the devicetree@vger.kernel.org mailing
+list putting you on Cc.
 
->                                                                 Pavel
-> --
-> http://www.livejournal.com/~pavelmachek
+Thanks a lot for your suggestions.
+
+Ciao,
+
+Rodolfo
+
+-- 
+GNU/Linux Solutions                  e-mail: giometti@enneenne.com
+Linux Device Driver                          giometti@linux.it
+Embedded Systems                     phone:  +39 349 2432127
+UNIX programming                     skype:  rodolfo.giometti
