@@ -2,138 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D98F036B006
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 10:54:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B440336B055
+	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 11:16:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232114AbhDZIzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 04:55:24 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:28387 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232068AbhDZIzX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 04:55:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1619427282; x=1650963282;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=AP8/vgZMLgLTPp4GWhqQOQD8yMyWeBlrSVvf3le8gkA=;
-  b=QWv06zjcnKUmaP+DSGX0pHU6tE/eY7jj2aJKBrNngPoqzszPJTC6ANR5
-   wXCskYPCZmCmutKgTRyCLPj0tFoLZ5gEi0YrBv7HjYZ7Y9QvFdkGfJJ/h
-   DOr2ISUqeHHseiFqJQb5tHCeuJZBrsjUmjM2wSvtTtd83zcKkZzWyDLbf
-   5eL+ekCNN6lIQukRSu6XS24ua82xaLJjDndmniKfGWVmhfXxQganfFfQV
-   a4fkPqDQs8tV5RWGIHRGetOUJ3wWiPAc3JkWmwA19He/lAKAtC0uUirN+
-   Jbzt0GAr7uaVVkmhiJGwf8d//OofJVWQT/wV8Nl8/lDPdTr/ykGWMFYGr
-   g==;
-IronPort-SDR: JQ55O2INFhmho3QO97hCvnd34s2JtzUVQRmYpgGVywThJiLibiI47yGkrUIDjgKKIaAlcRB9mo
- mHZuijgt0RCpsGfAn3M0VUeA59KGiOb1aRpSv21xut9hT2ybzlvnTHuG2un2TQgaDX/GI2Cqmv
- +aYnKN9GjXqtpW8RZfW0elnqkWmv85WcUXr4MdeqQnn5Gr/00nEHYQb201T5d2frahYX7/6enS
- cmDDQIwCyk5Xbp+gh+7gbgjduIWGsii/ZAAt9rrWG8xt/7L2smKOjPMOLBt1zebgl7gp/OabGT
- BOc=
-X-IronPort-AV: E=Sophos;i="5.82,252,1613458800"; 
-   d="scan'208";a="112169190"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Apr 2021 01:54:41 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Mon, 26 Apr 2021 01:54:41 -0700
-Received: from INB-LOAN0158.mchp-main.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Mon, 26 Apr 2021 01:54:37 -0700
-Message-ID: <291ac605fe404b90c571f23f457f7f855eebf970.camel@microchip.com>
-Subject: Re: [PATCH v2 net-next 4/9] net: dsa: microchip: add DSA support
- for microchip lan937x
-From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-To:     Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>
-CC:     <netdev@vger.kernel.org>, <robh+dt@kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <hkallweit1@gmail.com>,
-        <linux@armlinux.org.uk>, <davem@davemloft.net>, <kuba@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
-        <f.fainelli@gmail.com>, <devicetree@vger.kernel.org>
-Date:   Mon, 26 Apr 2021 14:24:35 +0530
-In-Reply-To: <YIIGmpea6Mf0yzYS@lunn.ch>
-References: <20210422094257.1641396-1-prasanna.vengateshan@microchip.com>
-         <20210422094257.1641396-5-prasanna.vengateshan@microchip.com>
-         <20210422195921.utxdh5dn4ddltxkf@skbuf> <YIIGmpea6Mf0yzYS@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.1-1 
+        id S232103AbhDZJRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Apr 2021 05:17:35 -0400
+Received: from smtpcmd01-g.aruba.it ([62.149.158.217]:51428 "EHLO
+        smtpcmd01-g.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232068AbhDZJRf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 05:17:35 -0400
+Received: from [192.168.1.128] ([79.0.204.227])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id axMElxVEPkdBBaxMHlqa4B; Mon, 26 Apr 2021 11:16:52 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1619428612; bh=xngmwhFikqISVkfo/nez+Zdkk/XeKXm3Q0dY+3DmJkk=;
+        h=Subject:To:From:Date:MIME-Version:Content-Type;
+        b=dOR9TkTYRv86CyXVyyqY7JYUaYt+7bXDml7pceUL4HMWdziUY8X6nBbCqiHB7Seti
+         qzkgbQ6G8EPmhHko2ayDLx42u7frrIqyKaU6bGvSgYgz4L2MzZ5ifwrDBWWLz+q9+k
+         qWnOMwBnGT/M+VTb7bQBwAjwyOkABcYo4YY23gzDYTgU62jkg3kYHwiycAnhYTf77l
+         FPzfl/q9MVFpa/4dgjkSzco/IQ1BPNw9gp8dFiYCl578nWPSx5YFZjOvJnxoUTGklq
+         JyTAmZfZjrhPDH1aWgSX+cay4lWCcrme2d7SaxDggDMqWSCx4BzwdrnSAaCSP4f1PE
+         +tGf/cIKMMmEw==
+Subject: Re: [RFC v2 GPIO lines [was: GPIO User I/O]
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <01afcac0-bd34-3fd0-b991-a8b40d4b4561@enneenne.com>
+ <CAMuHMdUtguuu4FWU4nRS=pBUyEwKM1JZ8DYPdCQHXBYN0i_Frg@mail.gmail.com>
+ <87efe96c-3679-14d5-4d79-569b6c047b00@enneenne.com>
+ <CAMuHMdUght0hkJT1N8ub5xR5GB+U18MAhAg+zDmAAuxoRSRaYg@mail.gmail.com>
+ <d30e64c9-ad7f-7cd5-51a4-3f37d6f1e3d8@enneenne.com>
+ <070fa558-6e20-0fbf-d3e4-0a0eca4fe82c@enneenne.com>
+ <CACRpkdYFAW2bcB53M3_b2LsveJO_PWZJhprGhdTtfmW11B1WmQ@mail.gmail.com>
+ <f66dc9c4-b164-c934-72a8-d4aca063fca5@enneenne.com>
+ <CACRpkdbjc6vvpHVjnJNGisRw6LiLZd-95aHWJJORwvaRNigPcw@mail.gmail.com>
+ <cb6e208b-446e-eba4-b324-d88aec94a69b@enneenne.com>
+ <CACRpkdZBUw5UPyZB-aeVwh8-GiCifbwABZ9mOsyK90t3cdMQ+w@mail.gmail.com>
+ <80bf1236-aacd-1044-b0e5-5b5718b7e9f0@enneenne.com>
+ <CAHp75Vc1ezuW9m8OCQUmEJoNVoD-Z3eWF=Lzcr2v32Br8Gr60w@mail.gmail.com>
+ <CACRpkdY+amtrDE4gaSU5Du2CUivxo6gnUV5zZOcaJJ8=md-4Kg@mail.gmail.com>
+ <87207962-5848-3e5c-4d8d-f4a66c864413@enneenne.com>
+ <CAHp75VdrRx7kc9OfRuGjqHHvM9akvzsHYSJgWKfr783wvTdhuA@mail.gmail.com>
+From:   Rodolfo Giometti <giometti@enneenne.com>
+Message-ID: <0de973db-daa7-4dde-161f-a6f477b06e9b@enneenne.com>
+Date:   Mon, 26 Apr 2021 11:16:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHp75VdrRx7kc9OfRuGjqHHvM9akvzsHYSJgWKfr783wvTdhuA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfDMiSpx6Dh918brawoQwREDxs+0AibdOJu8qz9Vi20pa8xDQVPEB9jegQW+O3sTniwHogHQzPTkeZrO1kwcOfm7Ex5zt0Md2DNPVocOccwzTBD1hLbZc
+ TS1LvbrVzH2aDFTnbR8LCTAM10+DR+ehCi350uZ9YLRlpDotCJCKj13ZLXxrCr3HY6QSz3mIODl1jtNskrc5lk1Jd0c6Ryp2X1n5DeRtBTAInlcqiCLSHUmi
+ fB05Qh5qSEkmj+xSv+z/6ylgIx7dDMo2jTSPRfCjfC0vr046X1T2fz8sSxR9OfBOFrpx+um4tkV6X0cdr8Lb0wLK7yMZwOMCQ05AhJDbNLZ3hy319evjZuoN
+ 1Np1Gupk4My2xRI5BIfeVrn9aLi5YmLSBfjirP4JjYW13FBgsIBczjeAd2gAXtW6gov3Ca+cWQCmn3+IIEVN6/c3ngV4Ew==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2021-04-23 at 01:28 +0200, Andrew Lunn wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the
-> content is safe
+On 26/04/21 10:48, Andy Shevchenko wrote:
+> On Mon, Apr 26, 2021 at 11:44 AM Rodolfo Giometti <giometti@enneenne.com> wrote:
+>>
+>> On 20/07/20 10:17, Linus Walleij wrote:
+>>> IIUC Rodolfo's idea is to provide this with a DT compatible.
+>>> The use case will be industrial automation-ish tasks from userspace.
+>>>
+>>> Currently the only mechanism we have in the device tree to
+>>> assign a use for a line is the "gpio-line-names" property,
+>>> which creates a name that is reported upward to the character
+>>> device.
+>>>
+>>> Rodolfo's patch is for scripting use cases, assigning some lines
+>>> for some cases to be handled by scripts, not the character device.
+>>>
+>>> What I am a bit worried about is if this would be a Linuxism, as DT
+>>> should be OS neutral.
 > 
-> > > +
-> > > +           lan937x_pread8(dev, port, REG_PORT_XMII_CTRL_1, &data8);
-> > > +
-> > > +           /* clear MII selection & set it based on interface later */
-> > > +           data8 &= ~PORT_MII_SEL_M;
-> > > +
-> > > +           /* configure MAC based on p->interface */
-> > > +           switch (p->interface) {
-> > > +           case PHY_INTERFACE_MODE_MII:
-> > > +                   lan937x_set_gbit(dev, false, &data8);
-> > > +                   data8 |= PORT_MII_SEL;
-> > > +                   break;
-> > > +           case PHY_INTERFACE_MODE_RMII:
-> > > +                   lan937x_set_gbit(dev, false, &data8);
-> > > +                   data8 |= PORT_RMII_SEL;
-> > > +                   break;
-> > > +           default:
-> > > +                   lan937x_set_gbit(dev, true, &data8);
-> > > +                   data8 |= PORT_RGMII_SEL;
-> > > +
-> > > +                   data8 &= ~PORT_RGMII_ID_IG_ENABLE;
-> > > +                   data8 &= ~PORT_RGMII_ID_EG_ENABLE;
-> > > +
-> > > +                   if (p->interface == PHY_INTERFACE_MODE_RGMII_ID ||
-> > > +                       p->interface == PHY_INTERFACE_MODE_RGMII_RXID)
-> > > +                           data8 |= PORT_RGMII_ID_IG_ENABLE;
-> > > +
-> > > +                   if (p->interface == PHY_INTERFACE_MODE_RGMII_ID ||
-> > > +                       p->interface == PHY_INTERFACE_MODE_RGMII_TXID)
-> > > +                           data8 |= PORT_RGMII_ID_EG_ENABLE;
-> > 
-> > This is interesting. If you have an RGMII port connected to an external
-> > PHY, how do you ensure that either the lan937x driver, or the PHY driver,
-> > but not both, enable RGMII delays?
+> Not only neutral but be software'isms free!
+> It's only about hardware.
 > 
-> What generally happens is the MAC adds no delays, and the PHY acts
-> upon the interface mode, inserting delays as requested.
-> 
-> There are a very small number of exceptions to this, for boards which
-> have a PHY which cannot do delays, and the MAC can. If i remember
-> correctly, this pretty much limited to one MAC vendor. In that case,
-> the MAC adds delays, if the interface mode requests it, and it always
-> passes PHY_INTERFACE_MODE_RGMII to the PHY so it does not add delays.
-> 
-> So what needs to be looked at here is what is passed to the phy
-> connect call? passing p->interface is definitely wrong if the MAC is
-> acting on it.
-> 
-> If even if the connect is correct, i would still prefer the MAC not do
-> the delays, let the PHY do it, like nearly every other setup.
-> 
->         Andrew
-It comes here only if the port is not internal phy which means for MII
-interface. As Andrew said, let the phy driver handles the delay if it has the
-associated phy vendor driver, otherwise can still be added by MAC if required
-(like for cpu port)?
+> What I understand here is that we have missed the intermediate layer
+> (let's call it 'platform abstraction') where it's related to the
+> platform and neither strictly speaking hardware, nor software per se.
 
-What do you think on the following code?
+Maybe I don't well understand the-problem(TM), but why people are currently
+using led and uinput layers to describes their output or input lines?
 
-	struct dsa_port *dp = dsa_to_port(dev->ds, port);
-	struct phy_device *phy_dev = dp->slave->phydev;
-	.
-	.
-	.
+Why don't providing a dedicated layer for this special scope?
 
-    	if (!phydev || phy_driver_is_genphy(phydev)) {
-		/*Add RGMII internal delay*/
-    	}
+My two cents,
 
+Rodolfo
 
+-- 
+GNU/Linux Solutions                  e-mail: giometti@enneenne.com
+Linux Device Driver                          giometti@linux.it
+Embedded Systems                     phone:  +39 349 2432127
+UNIX programming                     skype:  rodolfo.giometti
