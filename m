@@ -2,138 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D431A36AF66
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 10:03:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C94E936AF7E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 10:11:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232348AbhDZIDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 04:03:47 -0400
-Received: from mout.gmx.net ([212.227.17.22]:37751 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232278AbhDZIDk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Apr 2021 04:03:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1619424167;
-        bh=dZ2uOtsx9E3If2h5+xZ+eF7qzov0115q7dr5zXfhyec=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=Eq16TZ1yg1ckzOWM7vtc/0xvME3JEXwcEc+sJEqbSNsWoqd1R9n9eaVBW2xc0kJAb
-         zaze5qbivCPulwAIvN7qcdmEnt9yYet3pbQXnrXaDcK2vzcP2M7BAwy1UNrytqdgjW
-         0eZzx+7VRZZDTuFZwztsnWDe3ixP+wvC/r6Lu2Bs=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([5.146.195.179]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1N1wpt-1lUeeS3INd-012EXM; Mon, 26
- Apr 2021 10:02:45 +0200
-Date:   Mon, 26 Apr 2021 10:02:45 +0200
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>,
-        linux-kernel@vger.kernel.org,
-        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] dts: eeprom-93xx46: Add support for 93C46, 93C56
- and 93C66
-Message-ID: <YIZzpbhJpRqt7HLs@latitude>
-References: <20210424212543.13929-1-linkmauve@linkmauve.fr>
- <20210424212543.13929-4-linkmauve@linkmauve.fr>
+        id S232486AbhDZILn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Apr 2021 04:11:43 -0400
+Received: from mail-eopbgr80047.outbound.protection.outlook.com ([40.107.8.47]:10563
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232181AbhDZILl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Apr 2021 04:11:41 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JAf+rBJVRYcsfMasfTwmhRDVZFreZJh4HM+R2/+J58Uz2Jh8BzFhKW0PoYakNDhT8vz9iHgUIWFrL5VYSXp3lxrGQ0rqXUJiT9JC2YN7rYY19Pw2t+YPpqs7m/Bbt1hBAms5QYDT8oMBZUL/GX7VnzCfsrNr6hJLumGuK/W5ToqrzP7DWHao+gFOeSPxcN1jKdee7NvDI9Sjnx2VGZBZgJQopBHXnD9If90fxpxWl96Kki/ZjjxjhHu09RtC0z1IR1X0Zh6g353otOpMbW+JCUzLWHu7lp9HWaMv0xHOWJifomtgd1b8KKX/zMzMhNAGb0Gdu0V9jPu0M3ELXgHR0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+AkaWbsal2xSqkH6y8IacLyb6aueTq1eZihvFCkrx4Y=;
+ b=N4fhSrnlOPe+k5oyYekTKYq+9nnFVjovsyiZBGOe8fu/onykg3KsbwdXGa3HuEFAGiHzus1ECSfcDbEt0remce9x+EiCa6m9gqzCRVA29pcxDTiz1uzBly7Fp4TY9+S07OaN00+N2M9/N+ii+S21z7rCWTxwzDO+C+RFmJAWPKZ9mG9CeqNtwoMIgz3m0CK3SOoBBOPrVa4CR2YGeEkuMWLvrZ0pqZ7csBSB2/I/O1j4X5zspfcH620kFHjFqsF+4MrW8GzGjkmln3BHq+onXr4m/EetPB23EZJW0zUUERIITm0m3uIeXfu5XM67ZDVL/a4XHt6K8RYCngV+eoix6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vaisala.com; dmarc=pass action=none header.from=vaisala.com;
+ dkim=pass header.d=vaisala.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vaisala.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+AkaWbsal2xSqkH6y8IacLyb6aueTq1eZihvFCkrx4Y=;
+ b=CbAluBnf5kvROqbe8TmFmdYZKgEqAxa6UVmQwWDYkeA7qM0n4839EH9MxfagagzDXiWDGvXSK5ayyqN4ANd7NuU/BDyTPFzCXiFjI4K8d/NJ2VTcHEo0N4LiQykx7zNEXSQcs5jxFuxc8V3dsbVCBrW4HV8jtjUQdbUMeeiyzlL0lGxRLjnGJUt7Rm9cxkood5PiACssjrfoMnSAneRvpOQNc07amzIAaPSqn3gTkysiTmlmOLr8oBL2nJEbgoQWto5gJfExMiXDW93Y3DXX8qP9aQjMHWVfW99Pd0FciJfkgiiJHp3sLukqZY3C7k+zfpkzU41/Xk23+yG2fXdL1A==
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=vaisala.com;
+Received: from VI1PR0602MB3568.eurprd06.prod.outlook.com
+ (2603:10a6:803:10::31) by VI1PR06MB5888.eurprd06.prod.outlook.com
+ (2603:10a6:803:d8::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.22; Mon, 26 Apr
+ 2021 08:10:57 +0000
+Received: from VI1PR0602MB3568.eurprd06.prod.outlook.com
+ ([fe80::4ca5:d9e1:61cc:8113]) by VI1PR0602MB3568.eurprd06.prod.outlook.com
+ ([fe80::4ca5:d9e1:61cc:8113%5]) with mapi id 15.20.4065.027; Mon, 26 Apr 2021
+ 08:10:57 +0000
+From:   Tomas Melin <tomas.melin@vaisala.com>
+To:     jic23@kernel.org, devicetree@vger.kernel.org
+Cc:     andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Tomas Melin <tomas.melin@vaisala.com>
+Subject: [PATCH v5 0/2] iio: accel: sca3300: Accelerometer support and binding doc
+Date:   Mon, 26 Apr 2021 11:10:39 +0300
+Message-Id: <20210426081041.59807-1-tomas.melin@vaisala.com>
+X-Mailer: git-send-email 2.21.3
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [85.156.166.106]
+X-ClientProxiedBy: HE1PR07CA0025.eurprd07.prod.outlook.com
+ (2603:10a6:7:66::11) To VI1PR0602MB3568.eurprd06.prod.outlook.com
+ (2603:10a6:803:10::31)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vKo+Jxg2MG6O7TAF"
-Content-Disposition: inline
-In-Reply-To: <20210424212543.13929-4-linkmauve@linkmauve.fr>
-X-Provags-ID: V03:K1:S2cqWoll9RtEDDdTygExONVJv47EGOvXrnDgeXhfGF8Lx8/nodM
- ryFlaZauZGxobcyso2QGZFEGL02dz+2H3EP3JcEvT2ssX9uLA9BI4DJEHtZww3V3lJT4rUZ
- jeagvzMUt+/8VOdEIM0unJEBgd8+8FIdtD4eWBok8I9SFeUPlHE06QkjHJoJ9QsIxxkO+bJ
- aWxqkGvpBptv4FCzQXdWw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:FpR/1zzxpDY=:P5fJYWbro+eh28o7ZuEvhD
- I0QJr2ImMYSXNmca7I0GGirhQNdoDGk0ndLFXHl61TAAutMDkEgCPUUU6KAVGZrp4I1xA+P++
- wdeeSS9N8VnhQW5Iwve0UHFVOwxcFp4UazzdMfilKc8CFBChvFVGfeGEyBcleVtsWcudwiJtV
- 5DNLDBYCwlrhKHQRSfmcDNnvh0GIfFIEJ3udhO2leOe4U6GGGHDhxJQwyv2LTfmhhl/xeuhWL
- lZn8dObtwbW+73D/ZG6RjIIDMLcT4VBK8JAS0VlkYvcoeAW8qi3/265ZG+rTyYxMGzG1G7YC2
- l0KrdBBCMejSokOsU8/yIv4PHaUJl5XSuktN6k4I8zOwhd/MfxAtuli3kECqYc5yxrbNsPiek
- QhfttKekqXefdbuYPqSmk8ymdARiTePsnwbX0R9KBEimIpU9hYrfjGrYbgTol0HeWe5TXezEV
- vNgbh241WeAfVCvrNrNf3UeDoJwSf8WsHNRBXgmF6dYIIYnIGqSEw/6CNKHl8Yl8gzLmzAGUc
- 7DXLLaJ4o+c0/4j/Vl+2pydwrEjBQRrR9Myzc02UxiCGzwZqJ2pVf1FjY7fKmbhyvrZvmLJ+K
- HXph2qraVQwr11lZpGiuTRjLFqifJTqZepJNdvJVqiSfs/IKDHsQu6iKTfPpylKeAQwQAjY9d
- HkqY5Ui2/F3DhkOQEHtaTNGLEmh5ZZ+5pMDAt22lcTRmIrGKReP4rIvX5URh62eRMNKscQGlY
- 3MEGsTFqmGLR3RM3T/X0OuzpYOK28y2OafuLwPPzwBBuV6DWUv89nl9ps20Y5iEi02BfDsDE2
- 2jGW6Ma5fSVwejKUCOKVek7DwVauNADZviwBvfqPC94Xa9dFOW/WRlsgnpR0N1OJ3XhcEgMGB
- kEw4nuyk+lsqpOFgPW1zjGx39d+KuD8kuaX149XRJAy9C7c1MCbZ4TJNhYXxc+iir0KJ7kIUu
- OuJeBjnOMxJashTGn0dNTxpZTB37Mp/TEUI4GS/GOy3N7z/W1rBqb1CPO+yelmlXax8Uq0gfJ
- f+oUU8TozklDAM81CPjS5e2WS70QYx2lbFR+fSZgrm7Uz6/75CvKhNHdUdjyl+FOrBUpeiBnA
- FYc861Xf2ZtnMIxP0uXC45oga/RbY14EfIfQyu2ivxqDt4PRuiSGblrcfxGzNoxzuL0kEgBXp
- bJ6A78rauhtk58koiwFiwZfqurJwIeIzQEnuPalocn07v6Pk6ATnuao2wST5MXQSHpk+2ClxT
- n99MArQmxQAyS1TZGcetoAu5p5ygkCezJnlOF5E/RXgwvkJbnsUhlAPHTOa6N/s9wbvHChGak
- 45Xuy1/XBk+V+1qnmPPbii/cJvb4TA==
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from fedora-vm.vaisala.com (85.156.166.106) by HE1PR07CA0025.eurprd07.prod.outlook.com (2603:10a6:7:66::11) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.15 via Frontend Transport; Mon, 26 Apr 2021 08:10:56 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4fc53f07-5402-4910-e681-08d9088ad228
+X-MS-TrafficTypeDiagnostic: VI1PR06MB5888:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR06MB5888B67CE53625586A2806F8FD429@VI1PR06MB5888.eurprd06.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: PgaWK6gwcj9uzOSrp7DKsUu3gcg4C1vLYqvEEVu+2on+YD4Sa0UVTbsCiFHcvDx6/ALLl8Mcqinr/FLtR9+BbmDVDBu8jbaxg6vLxC0k/Lw9yBbtTaIJq8gcVhJAMrfaiYg5AqZg8yrBGqDrfe9YOvcuKZJysCJd7XwGbEhL/R6p0ZaArGLavgM3SSRSazlWIxNKMB78xeuky8DymvrpsEDwbRbmUkyw+W8wIVgUKWHcohvLYkH2h0I8jbo8kGl6/6cwbPbEyRVUFWFTZD49DLmdByf2NTbiUCLdZQqe485gbE9yaZ+/F7alfrLSfdEDyTZRjNuE6NkqkW+WyQHHpQLueI8sBA2hMW06C/OAla/kmp+vFtOT37hZMe4EFGzj4PfMWliWgWZhD9sRa9KEKMV7kFZ6HPbgLzoexPoKyvMNGx7b5BCrho+ccyKYj+Cg76MLf6Sp7KoLQI1vofM6KDpu5hwI3VeRNBJvw0IR6vpujJCbiUg2lK+1q//MCyTrrlqDkFYTAZC0bDZdkpYOv3ftk62OQxkf1WrcSJwBOlQZ5wzGbCJwV1kJXN592QM5wqokGQSMgV0jUNQ9zrJ8LhuWEDc4STHJBiNOHH9x25cXS27PsHQr0V4XYTlExlGfm4HnFo+hykfFZfaOIku4HSXVC8fH4X3I4037J4q/AcQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0602MB3568.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39850400004)(136003)(376002)(346002)(366004)(396003)(1076003)(6666004)(956004)(2616005)(86362001)(2906002)(16526019)(26005)(186003)(66476007)(4326008)(8676002)(478600001)(66556008)(66946007)(6486002)(83380400001)(8936002)(44832011)(5660300002)(107886003)(38100700002)(38350700002)(52116002)(7696005)(36756003)(316002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?6+P7KYIcwkE3xutX6wM/I97tUj4wrsY+3c2xpL8j0Ez1kmrBT98UQ+v5/rUk?=
+ =?us-ascii?Q?mODC8QM0opN9A1rKCDV1y1VHX8p/ewuU0pDJMNip2d6NZ6BbLJNl1/qfrl29?=
+ =?us-ascii?Q?9JkIescYwxJPb6RM5Lp6k8rauhHheYlj0BOF00I6fDtgyA3+AUF6V5FynXZK?=
+ =?us-ascii?Q?LkM6apXmFm2S/DcLAvIqF0eKkI7msBf5tijJhtccRVDo1VRK9ge2aMQUqt8R?=
+ =?us-ascii?Q?HIhH00sVHDnXL6PfYtEwPG/WsnzgAaNSYcSW+EGzbipUdeWPlF96lB05twkg?=
+ =?us-ascii?Q?WTaSFQwridI5JZC/ca6mYbO8tGO6zRhlcLdkg1c7F6PBZdmQvVTLpljpIUB/?=
+ =?us-ascii?Q?ag86T02GQVvBLqz5p+pyV5Q4eIjfW1Lb4yvnEfVLJK4sVwBuEc6teWWbxw1b?=
+ =?us-ascii?Q?OnvU/YsCNeUBjWRvX0msjROwvvgFhteiwKv1Qo+oO17bMc/J1K/jLo8kSWe6?=
+ =?us-ascii?Q?l/I5kcYiUQnaNzCMmZAwCG7FzVF01+NHBaQndF2TkbxGM1s/iP6S3XewkJ7K?=
+ =?us-ascii?Q?r5Q5gptEZA6hYxJN+ciT72xY27UCJyrbabQoEh1kPcN6x9RCS7LwLA989hHS?=
+ =?us-ascii?Q?3NZMYm15nXHXNifXztfGBAqk5M+4Eb1cDCutmdxXCPn+lNA6B36I7GhR6XZp?=
+ =?us-ascii?Q?1+hE6Y2WcHgyfJo3dEsRVgun/GkMH6/HqLlfeAPRW9A68bA+1O/hGxKoswpF?=
+ =?us-ascii?Q?wMhF2jceQgPXZMkG7NmDU/p8S19VIvkdJ07oN80HFvpmU2+F/IkMwceaRxOn?=
+ =?us-ascii?Q?n17C9AqYCB3ufGAoxuPGWA0/1HAkosjsIRNxAOaXLMJHkUWQlevHpd3CB8xx?=
+ =?us-ascii?Q?EKVl+S35uN+4igw4BE25ACr/GvzL3ymFsxg85USJNZSKVVxJCA2SfwhXNqG0?=
+ =?us-ascii?Q?9ugOvYJQdiWUuZOUzs9UZOG3tkY1xq0rK2wA0LB8L31iWpBzn8ShvsKpfGCh?=
+ =?us-ascii?Q?fZdzNNugHvdeOyGNM6LS0Fa2wDhQkg1B6GOsDrhKJMV5d5+3KpgT1HmH0sEv?=
+ =?us-ascii?Q?HkceAXtXiiVkX+xeaA9I6zCtgtZVCIhUnzGrPjq0MHOGYvL2ORYjYjb93wN/?=
+ =?us-ascii?Q?J6sjgsPQahndctl3XKYb8qGwwOkN9w39+7sZTi23kKKH/gjttHPNl2ELGUAb?=
+ =?us-ascii?Q?W3fqaLEQeLhW4KAZMlMldAYY84qeBltxosmh9Uugou4x5fkJ8+N4GaaU5LRq?=
+ =?us-ascii?Q?RujJKH7uwo4GLuotHePqDtuNILsXtRM7sY2zpm9B+Ts0ivoPa84rAbYNgK8d?=
+ =?us-ascii?Q?LM21yrbfXtWR3xf2c4RoXYBTNDeGIaKtLUfnAgEemZcOoaETQ/h/kbabnA5d?=
+ =?us-ascii?Q?6IqiVnomU6aEKjgVm8a0UZrO?=
+X-OriginatorOrg: vaisala.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4fc53f07-5402-4910-e681-08d9088ad228
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0602MB3568.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2021 08:10:57.6099
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 6d7393e0-41f5-4c2e-9b12-4c2be5da5c57
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +G2GHULnCOvbXQq5OKv2+b3PrUpjqb6SAPGFTtnCty790vGYaw80iSMpxW4+qbMa8Wj8FFwvCL3lxtNR7dE9MQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR06MB5888
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Patch series adds driver and dt-binding for Murata SCA3300 accelerometer.
 
---vKo+Jxg2MG6O7TAF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Device is a 3-axis Accelerometer with digital SPI interface.
 
-> [PATCH v2 3/3] dts: eeprom-93xx46: Add support for 93C46, 93C56 and 93C66
+Patches are tested and based on linux-next.
 
-The usual prefix for devicetree binding patches is "dt-bindings", not
-"dts".
+Changes V5:
+Addressed comments from Andy Shevchenko
+- Reversed xtree declaration fix
+- Add clarifying comment and spacing
 
-Other than that, I think the patch looks good.
+Changes V4:
+Addressed comments from Andy Shevchenko
+- Regrouped and renamed #define statements
+- Added cacheline alignment for tx/rx buffers
+- Changed irq handler print to be ratelimited
+- Commented use of goto in irq handler
+- Removed redundant 0x0 value
+- Spacing errors fixed
+- Removed redundant return statement
 
-Thanks,
-Jonathan
+Changes V3:
+Addressed comments from Jonathan Cameron and Andy Shevchenko
+- Grouped include statements
+- Revised SCA* define naming and grouped statements
+- Changed to GENMASK() for masks
+- Indentation fix for ACCEL_CHANNEL define
+- Remove field declarations using default values
+- Change to if(ret) style for checking return values
+- Add defined mask value SCA3300_MASK_STATUS for return status
+- Remove redundant casts
+- Clarify comment wording
+- Refactor to remove variable idx and redundant else branches
+- Unify sleep in device init, separate sleeps not needed since operation mode change dropped
+- Drop redundant memory allocation error message in probe
+- dev.parent is set by iio core, removed from driver probe
+- Drop of_match_ptr()
 
-On Sat, Apr 24, 2021 at 11:25:43PM +0200, Emmanuel Gil Peyrot wrote:
-> These devices differ by the size of their storage, which is why they
-> have different compatible strings.
->=20
-> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-> ---
->  Documentation/devicetree/bindings/misc/eeprom-93xx46.txt | 3 +++
->  1 file changed, 3 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt b/D=
-ocumentation/devicetree/bindings/misc/eeprom-93xx46.txt
-> index 7b636b7a8311..72ea0af368d4 100644
-> --- a/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
-> +++ b/Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
-> @@ -2,7 +2,10 @@ EEPROMs (SPI) compatible with Microchip Technology 93xx4=
-6 family.
-> =20
->  Required properties:
->  - compatible : shall be one of:
-> +    "atmel,at93c46"
->      "atmel,at93c46d"
-> +    "atmel,at93c56"
-> +    "atmel,at93c66"
->      "eeprom-93xx46"
->      "microchip,93lc46b"
->  - data-size : number of data bits per word (either 8 or 16)
 
---vKo+Jxg2MG6O7TAF
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes V2:
+Addressed comments from Jonathan Cameron
+- Add manufacturer name to dt-binding file
+- Update spdx license statement for dt-bindings
+- Remove murata,opmode devicetree property in favor of driver scale + frequency properties
+- Add copyright year for driver
+- Remove X_READ and X_WRITE defines
+- Add _available sysfs attributes
+- Fix errors in documentation formatting
+- Use ARRAY_SIZE where applicable
+- Use get/put_unaligned_be16() helpers where applicable
+- Factor out error handling to separate function
+- Return only negative values from transfer function
+- Fix INFO_SCALE to return multiplier instead of inverted value
+- Change INFO_SCALE values to be actual scale instead of mode value
+- Do not provide INFO_PROCESSED values for user space
+- Add error message for failed data read in irq handler
+- Move trigger handler timestamping as part of pushing data to buffers
+- Document startup sequence, providing reference to data sheet section
+- Convert iio_triggered_buffer_setup to devm_iio_triggered_buffer_setup,
+making remove() obsolete
 
------BEGIN PGP SIGNATURE-----
+Tomas Melin (2):
+  dt-bindings: iio: accel: Add SCA3300 documentation
+  iio: accel: Add driver for Murata SCA3300 accelerometer
 
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmCGc6QACgkQCDBEmo7z
-X9spSg//cVDNhUfS5Fu75lQbMwTNKKHJDWTHx5x4wPuYc4eJ6/J09xkGqvavpHwt
-q7G/1cUUxKS2gKp7f3nx2OohQ7YqG7IPsQxzknnbYFpvzhAjJLJFyqda2M5mQj7p
-Flgj9y7OD6DuspK+Rsa35MRh8BadYbCYbuaADXCURBO/5rrYPVdFDVWZl4Zj+Aur
-Cu8zICJ9TXWNxHN/yodMNLsTWJFbxVahwdyxirlx/copZ3PMDxvaN+W/zCKOCu30
-d3iMus8e0y5AYWRjyPc38zICSi/T4t+oSFb27yjOwSICe2OIJY5ZiEIYsal7o+Q1
-FfBPctghG+eMFdYZOV4MKkannqfx1A+dkE350RO8Yf+mB6+x6g5k/Ew8WvY2G32L
-0H0HT8Tl32V5aJB/7E+oD65zFNO+AbLKa8Zn/Jbh0t+UtDMPqsCO8mtV/AvMqnk9
-ik6OG0urBlzkNNlO5gEm3dpuWK6hKxwp090Hsg7IrzYe7aq7t/lknBeQUEQdXX5R
-wICH8VZM4/CJTkfrXKfWZ1nzcQ0/iNNRNxbFba1akwZphNRG8xsbbsXypn9Wv+Pi
-HW88BgsJSHrkzTlxmRSy1iAlJyG2YVlQ8v3VJdJZtKPzpI2fIJx69WdZZzGqoKeD
-2itno8oY7gmLi4Iw7uW09Pfw3ib7ty8XtDa26V36BgBUTPsxpfk=
-=xGd5
------END PGP SIGNATURE-----
+ .../bindings/iio/accel/murata,sca3300.yaml    |  44 ++
+ drivers/iio/accel/Kconfig                     |  13 +
+ drivers/iio/accel/Makefile                    |   1 +
+ drivers/iio/accel/sca3300.c                   | 472 ++++++++++++++++++
+ 4 files changed, 530 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/murata,sca3300.yaml
+ create mode 100644 drivers/iio/accel/sca3300.c
 
---vKo+Jxg2MG6O7TAF--
+-- 
+2.21.3
+
