@@ -2,201 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3345636ABA9
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 06:34:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E69CF36ABC8
+	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 07:18:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbhDZEew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 00:34:52 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:43540 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbhDZEew (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 00:34:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1619411652; x=1650947652;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=waRlw9pfu8PFrlVj4Ow3lPiMZiLtQJObTByWWoeyO6o=;
-  b=eeNpzuQagXFCyCAGvdNgoJ0I7SUwnBDj2wolqklFySfP02HMFhRYF9cM
-   2a+XA5fjJ2gHvwiJD71E3hQTr6KgTKD3wfKvoFPpengHSxL+I4+AXAU13
-   vO0FGXSBufmeuGjZafezbepQBugH1oLL4u6eTv2ZzoetY2o08WMRBQXTX
-   pCDjl5UUUYVoJtI+8KW+KSOErUJlz/DqbC3XCHTRFKmX0pjONpZ20MV5M
-   mtPipCy7GaT4Jrm8+JZbfqO2FnQdHiOQhZIX9yWdHB3sn9xJMhBSAPsDr
-   FesrxMDlsgmYOtUHl0UKE3koDcp+W14mY0dgjPv8P0Hp9eJXxr3suJb73
-   g==;
-IronPort-SDR: M/57nWY0I+6MOvEU216SGDfVYpSN8KTmWI+alyI8ndXhWapYShl8IyExxP89IkNfEr/EL2sOat
- rKj8JaWCXxpbJnxJxr8+Fqn4zuw/s2uSMLTh4wH8nC0945q7cSoKlf6n/d9UkssK/hzOLyhF4D
- b/GD0RIVyvz5TrsHj7AQ74uOPo7KMbznnUvkzCkTXCLzTF7OqB6o+ZntaE0iQ9YKf5eKPGAEHF
- sZPGVi8a5mqxZ78+fXRthc2CTMNcJVKeicuFqD6LyBpYx/b9IvNQ13xMNZl/MVQhcEYmyByE+1
- Nz8=
-X-IronPort-AV: E=Sophos;i="5.82,251,1613458800"; 
-   d="scan'208";a="114842862"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Apr 2021 21:34:11 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Sun, 25 Apr 2021 21:33:58 -0700
-Received: from INB-LOAN0158.mchp-main.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Sun, 25 Apr 2021 21:33:53 -0700
-Message-ID: <c5f4e12beb6381c5ae08322f1316efcecf292e12.camel@microchip.com>
-Subject: Re: [PATCH v2 net-next 3/9] net: dsa: tag_ksz: add tag handling for
- Microchip LAN937x
-From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-To:     Vladimir Oltean <olteanv@gmail.com>
-CC:     <andrew@lunn.ch>, <netdev@vger.kernel.org>, <robh+dt@kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <hkallweit1@gmail.com>,
-        <linux@armlinux.org.uk>, <davem@davemloft.net>, <kuba@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
-        <f.fainelli@gmail.com>, <devicetree@vger.kernel.org>
-Date:   Mon, 26 Apr 2021 10:03:52 +0530
-In-Reply-To: <20210422191853.luobzcuqsouubr7d@skbuf>
-References: <20210422094257.1641396-1-prasanna.vengateshan@microchip.com>
-         <20210422094257.1641396-4-prasanna.vengateshan@microchip.com>
-         <20210422191853.luobzcuqsouubr7d@skbuf>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.1-1 
+        id S230287AbhDZFTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Apr 2021 01:19:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37390 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229554AbhDZFTg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 01:19:36 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DD3CC061756
+        for <devicetree@vger.kernel.org>; Sun, 25 Apr 2021 22:18:54 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id c19so2266517pfv.2
+        for <devicetree@vger.kernel.org>; Sun, 25 Apr 2021 22:18:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rywd4hnCU7/9HbcJL7DvcHVAqfAUpeGMenv4sbpVbPg=;
+        b=CMuN3mkwvDeBeo432fJqHbMLRzEVmCttlBmiosgZBn6YtxAtX3SdqsA/L1SMRjW9ur
+         9XWuMBU85KPQFbaIp9agcRrNzYz+6GDBENoGt+eLtSlOGlCVX7M/PgZ9Ubulq3afmzix
+         hqgf+PNXSL2SsYA+i4P1wf/yD2MUmmz5/AgHM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rywd4hnCU7/9HbcJL7DvcHVAqfAUpeGMenv4sbpVbPg=;
+        b=X9uJInTgbYGPghpDoJ4NnQ5YVdkJujCeTL6iSJTD6MVnBB2buihgQbes3IDJHbn2rU
+         W8SpMDPxnDirB3KUfjh0KsW4G/tabclaZ33CSiN1BLhx5qOAftnInBLpvhN4u/AMRMtQ
+         re0ElqKEmll99JvMeSFUrw9RwIHfB2x/AFOCHvqmq/FcdINTDBz3gUffl1o+cjqkBzI4
+         w+Xza2YOi0c7OFY+E5dafAKJb8pCDv/IfkYen7DVhDmjcF4SlyYHW054PoEFZzDzpY0+
+         IpUKGrJ9lKppC8U9x89yXFOU7uVvaV8YbOZLg5U/HX/7zHDmuUmfi7zdBGVmSkwRkUgD
+         TNHQ==
+X-Gm-Message-State: AOAM532Aq7318oSdO7pmVEB173Q/fMozWBxbTvSyTKSdDlNH8TVP1RGo
+        x1Pq3AYK3Ym6bD1qqz65re4jbQ==
+X-Google-Smtp-Source: ABdhPJxFS+sK39f/LfL1MlXA47wSW7gVZjlZJquRa9ML43FqezaUaeqZhJtTKM3L+YRD6QTNPxsgbg==
+X-Received: by 2002:aa7:860f:0:b029:265:4428:3104 with SMTP id p15-20020aa7860f0000b029026544283104mr15822916pfn.75.1619414333766;
+        Sun, 25 Apr 2021 22:18:53 -0700 (PDT)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:49dc:8519:4648:67e])
+        by smtp.gmail.com with ESMTPSA id h9sm9928420pgl.67.2021.04.25.22.18.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 25 Apr 2021 22:18:53 -0700 (PDT)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Sean Paul <sean@poorly.run>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v2 1/2] gpu: drm: init set panel orientation property earlier
+Date:   Mon, 26 Apr 2021 13:18:47 +0800
+Message-Id: <20210426051848.2600890-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.31.1.498.g6c1eba8ee3d-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-04-22 at 22:18 +0300, Vladimir Oltean wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the
-> content is safe
-> 
-> On Thu, Apr 22, 2021 at 03:12:51PM +0530, Prasanna Vengateshan wrote:
-> > The Microchip LAN937X switches have a tagging protocol which is
-> > very similar to KSZ tagging. So that the implementation is added to
-> > tag_ksz.c and reused common APIs
-> > 
-> > Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-> > ---
-> >  include/net/dsa.h |  2 ++
-> >  net/dsa/Kconfig   |  4 ++--
-> >  net/dsa/tag_ksz.c | 58 +++++++++++++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 62 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/include/net/dsa.h b/include/net/dsa.h
-> > index 507082959aa4..98c1ab6dc4dc 100644
-> > --- a/include/net/dsa.h
-> > +++ b/include/net/dsa.h
-> > @@ -50,6 +50,7 @@ struct phylink_link_state;
-> >  #define DSA_TAG_PROTO_OCELOT_8021Q_VALUE     20
-> >  #define DSA_TAG_PROTO_SEVILLE_VALUE          21
-> >  #define DSA_TAG_PROTO_BRCM_LEGACY_VALUE              22
-> > +#define DSA_TAG_PROTO_LAN937X_VALUE          23
-> > 
-> >  enum dsa_tag_protocol {
-> >       DSA_TAG_PROTO_NONE              = DSA_TAG_PROTO_NONE_VALUE,
-> > @@ -75,6 +76,7 @@ enum dsa_tag_protocol {
-> >       DSA_TAG_PROTO_XRS700X           = DSA_TAG_PROTO_XRS700X_VALUE,
-> >       DSA_TAG_PROTO_OCELOT_8021Q      = DSA_TAG_PROTO_OCELOT_8021Q_VALUE,
-> >       DSA_TAG_PROTO_SEVILLE           = DSA_TAG_PROTO_SEVILLE_VALUE,
-> > +     DSA_TAG_PROTO_LAN937X           = DSA_TAG_PROTO_LAN937X_VALUE,
-> >  };
-> > 
-> >  struct packet_type;
-> > diff --git a/net/dsa/Kconfig b/net/dsa/Kconfig
-> > index cbc2bd643ab2..888eb79a85f2 100644
-> > --- a/net/dsa/Kconfig
-> > +++ b/net/dsa/Kconfig
-> > @@ -97,10 +97,10 @@ config NET_DSA_TAG_MTK
-> >         Mediatek switches.
-> > 
-> >  config NET_DSA_TAG_KSZ
-> > -     tristate "Tag driver for Microchip 8795/9477/9893 families of
-> > switches"
-> > +     tristate "Tag driver for Microchip 8795/937x/9477/9893 families of
-> > switches"
-> >       help
-> >         Say Y if you want to enable support for tagging frames for the
-> > -       Microchip 8795/9477/9893 families of switches.
-> > +       Microchip 8795/937x/9477/9893 families of switches.
-> > 
-> >  config NET_DSA_TAG_RTL4_A
-> >       tristate "Tag driver for Realtek 4 byte protocol A tags"
-> > diff --git a/net/dsa/tag_ksz.c b/net/dsa/tag_ksz.c
-> > index 4820dbcedfa2..a67f21bdab8f 100644
-> > --- a/net/dsa/tag_ksz.c
-> > +++ b/net/dsa/tag_ksz.c
-> > @@ -190,10 +190,68 @@ static const struct dsa_device_ops ksz9893_netdev_ops
-> > = {
-> >  DSA_TAG_DRIVER(ksz9893_netdev_ops);
-> >  MODULE_ALIAS_DSA_TAG_DRIVER(DSA_TAG_PROTO_KSZ9893);
-> > 
-> > +/* For xmit, 2 bytes are added before FCS.
-> > + * ------------------------------------------------------------------------
-> > ---
-> > + *
-> > DA(6bytes)|SA(6bytes)|....|Data(nbytes)|tag0(1byte)|tag1(1byte)|FCS(4bytes)
-> > + * ------------------------------------------------------------------------
-> > ---
-> > + * tag0 : represents tag override, lookup and valid
-> > + * tag1 : each bit represents port (eg, 0x01=port1, 0x02=port2, 0x80=port8)
-> > + *
-> > + * For rcv, 1 byte is added before FCS.
-> > + * ------------------------------------------------------------------------
-> > ---
-> > + * DA(6bytes)|SA(6bytes)|....|Data(nbytes)|tag0(1byte)|FCS(4bytes)
-> > + * ------------------------------------------------------------------------
-> > ---
-> > + * tag0 : zero-based value represents port
-> > + *     (eg, 0x00=port1, 0x02=port3, 0x07=port8)
-> > + */
-> > +#define LAN937X_INGRESS_TAG_LEN              2
-> > +
-> > +#define LAN937X_TAIL_TAG_OVERRIDE    BIT(11)
-> 
-> I had to look up the datasheet, to see what this is, because "override"
-> can mean many things, not all of them are desirable.
-> 
-> Port Blocking Override
-> When set, packets will be sent from the specified port(s) regardless, and any
-> port
-> blocking (see Port Transmit Enable in Port MSTP State Register) is ignored.
-> 
-> Do you think you can name it LAN937X_TAIL_TAG_BLOCKING_OVERRIDE? I know
-> it's longer, but it's also more suggestive.
-Thanks for reviewing the patch series. Suggestion looks meaningful. Noted for
-next rev.
+drm_dev_register() sets connector->registration_state to
+DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+drm_connector_set_panel_orientation() is first called after
+drm_dev_register(), it will fail several checks and results in following
+warning.
 
-> 
-> > +#define LAN937X_TAIL_TAG_LOOKUP              BIT(12)
-> > +#define LAN937X_TAIL_TAG_VALID               BIT(13)
-> > +#define LAN937X_TAIL_TAG_PORT_MASK   7
-> > +
-> > +static struct sk_buff *lan937x_xmit(struct sk_buff *skb,
-> > +                                 struct net_device *dev)
-> > +{
-> > +     struct dsa_port *dp = dsa_slave_to_port(dev);
-> > +     __be16 *tag;
-> > +     u8 *addr;
-> > +     u16 val;
-> > +r
-> > +     tag = skb_put(skb, LAN937X_INGRESS_TAG_LEN);
-> 
-> Here we go again.. why is it called INGRESS_TAG_LEN if it is used during
-> xmit, and only during xmit?
-Definition is ingress to the LAN937x since it has different tag length for
-ingress and egress of LAN937x. Do you think should it be changed? 
+Create panel orientation property in drm_connector_init()
+and set default value to UNKNOWN. Let the panel set the real value
+later.
 
+[    4.480976] ------------[ cut here ]------------
+[    4.485603] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:45 __drm_mode_object_add+0xb4/0xbc
+<snip>
+[    4.609772] Call trace:
+[    4.612208]  __drm_mode_object_add+0xb4/0xbc
+[    4.616466]  drm_mode_object_add+0x20/0x2c
+[    4.620552]  drm_property_create+0xdc/0x174
+[    4.624723]  drm_property_create_enum+0x34/0x98
+[    4.629241]  drm_connector_set_panel_orientation+0x64/0xa0
+[    4.634716]  boe_panel_get_modes+0x88/0xd8
+[    4.638802]  drm_panel_get_modes+0x2c/0x48
+[    4.642887]  panel_bridge_get_modes+0x1c/0x28
+[    4.647233]  drm_bridge_connector_get_modes+0xa0/0xd4
+[    4.652273]  drm_helper_probe_single_connector_modes+0x218/0x700
+[    4.658266]  drm_mode_getconnector+0x1b4/0x45c
+[    4.662699]  drm_ioctl_kernel+0xac/0x128
+[    4.666611]  drm_ioctl+0x268/0x410
+[    4.670002]  drm_compat_ioctl+0xdc/0xf0
+[    4.673829]  __arm64_compat_sys_ioctl+0xc8/0x100
+[    4.678436]  el0_svc_common+0xf4/0x1c0
+[    4.682174]  do_el0_svc_compat+0x28/0x3c
+[    4.686088]  el0_svc_compat+0x10/0x1c
+[    4.689738]  el0_sync_compat_handler+0xa8/0xcc
+[    4.694171]  el0_sync_compat+0x178/0x180
+[    4.698082] ---[ end trace b4f2db9d9c88610b ]---
+[    4.702721] ------------[ cut here ]------------
+[    4.707329] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:243 drm_object_attach_property+0x48/0xb8
+<snip>
+[    4.833830] Call trace:
+[    4.836266]  drm_object_attach_property+0x48/0xb8
+[    4.840958]  drm_connector_set_panel_orientation+0x84/0xa0
+[    4.846432]  boe_panel_get_modes+0x88/0xd8
+[    4.850516]  drm_panel_get_modes+0x2c/0x48
+[    4.854600]  panel_bridge_get_modes+0x1c/0x28
+[    4.858946]  drm_bridge_connector_get_modes+0xa0/0xd4
+[    4.863984]  drm_helper_probe_single_connector_modes+0x218/0x700
+[    4.869978]  drm_mode_getconnector+0x1b4/0x45c
+[    4.874410]  drm_ioctl_kernel+0xac/0x128
+[    4.878320]  drm_ioctl+0x268/0x410
+[    4.881711]  drm_compat_ioctl+0xdc/0xf0
+[    4.885536]  __arm64_compat_sys_ioctl+0xc8/0x100
+[    4.890142]  el0_svc_common+0xf4/0x1c0
+[    4.893879]  do_el0_svc_compat+0x28/0x3c
+[    4.897791]  el0_svc_compat+0x10/0x1c
+[    4.901441]  el0_sync_compat_handler+0xa8/0xcc
+[    4.905873]  el0_sync_compat+0x178/0x180
+[    4.909783] ---[ end trace b4f2db9d9c88610c ]---
 
-> 
-> > +     addr = skb_mac_header(skb);
-> 
-> My personal choice would have been:
-> 
->         const struct ethhdr *hdr = eth_hdr(skb);
-> 
->         if (is_link_local_ether_addr(hdr->h_dest))
-It makes more understandable since h_dest is passed. Noted.
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+---
+v1:
+https://patchwork.kernel.org/project/linux-mediatek/patch/20210409045314.3420733-1-hsinyi@chromium.org/
+---
+ drivers/gpu/drm/drm_connector.c | 28 +++++++++++++++-------------
+ 1 file changed, 15 insertions(+), 13 deletions(-)
 
-> 
-> > 
-> > 2.27.0
-> > 
-
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index 7631f76e7f34..a1acb4af0ef4 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -303,6 +303,10 @@ int drm_connector_init(struct drm_device *dev,
+ 				   config->tile_property,
+ 				   0);
+ 
++	drm_object_attach_property(&connector->base,
++				   config->panel_orientation_property,
++				   DRM_MODE_PANEL_ORIENTATION_UNKNOWN);
++
+ 	if (drm_core_check_feature(dev, DRIVER_ATOMIC)) {
+ 		drm_object_attach_property(&connector->base, config->prop_crtc_id, 0);
+ 	}
+@@ -1210,7 +1214,7 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
+  *	INPUT_PROP_DIRECT) will still map 1:1 to the actual LCD panel
+  *	coordinates, so if userspace rotates the picture to adjust for
+  *	the orientation it must also apply the same transformation to the
+- *	touchscreen input coordinates. This property is initialized by calling
++ *	touchscreen input coordinates. This property value is set by calling
+  *	drm_connector_set_panel_orientation() or
+  *	drm_connector_set_panel_orientation_with_quirk()
+  *
+@@ -1298,6 +1302,14 @@ int drm_connector_create_standard_properties(struct drm_device *dev)
+ 		return -ENOMEM;
+ 	dev->mode_config.hdr_output_metadata_property = prop;
+ 
++	prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
++					"panel orientation",
++					drm_panel_orientation_enum_list,
++					ARRAY_SIZE(drm_panel_orientation_enum_list));
++	if (!prop)
++		return -ENOMEM;
++	dev->mode_config.panel_orientation_property = prop;
++
+ 	return 0;
+ }
+ 
+@@ -2205,19 +2217,9 @@ int drm_connector_set_panel_orientation(
+ 	info->panel_orientation = panel_orientation;
+ 
+ 	prop = dev->mode_config.panel_orientation_property;
+-	if (!prop) {
+-		prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
+-				"panel orientation",
+-				drm_panel_orientation_enum_list,
+-				ARRAY_SIZE(drm_panel_orientation_enum_list));
+-		if (!prop)
+-			return -ENOMEM;
+-
+-		dev->mode_config.panel_orientation_property = prop;
+-	}
+ 
+-	drm_object_attach_property(&connector->base, prop,
+-				   info->panel_orientation);
++	drm_object_property_set_value(&connector->base, prop,
++				      info->panel_orientation);
+ 	return 0;
+ }
+ EXPORT_SYMBOL(drm_connector_set_panel_orientation);
+-- 
+2.31.1.498.g6c1eba8ee3d-goog
 
