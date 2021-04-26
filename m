@@ -2,118 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DD6936B1B6
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 12:39:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F326D36B1C0
+	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 12:40:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232266AbhDZKj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 06:39:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52044 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232194AbhDZKj7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 06:39:59 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A9EAC061574;
-        Mon, 26 Apr 2021 03:39:15 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id r128so60549943lff.4;
-        Mon, 26 Apr 2021 03:39:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hiUwGg544H+HpznYYXJv68XSHdlUYpy5D+8CQkUlj0U=;
-        b=qNnxpBlS2UY6t+013G1lfx4Z4IYDbYK1qSBayYhJ0rWUUigAidudrl5Hao04sR4Qiv
-         2tEuDkxpY1D5hWmx/f7npFZA068qtEZu0VIWMt6BXlHiWEOTM8yO7GP50o77cZTiI5cB
-         Vrc0WHumBQJjSRbu8dt98YxMdrj+iYGYbxE7C5PApceYxB4+E85yisYG6LkXFcVQVYZ8
-         JfYnvXuX7vCP+Hnd54uOblrUUzo1g2ZA6RTcVDnvod47+VblmU+z2w7TKkdAbRxxXLf2
-         4VtIWm7DPP9pURGmWKr/VQUdGiLxPuGD+47yra9ZQj3X3TgjRDG4ugE/qtcynceWHBaQ
-         517A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hiUwGg544H+HpznYYXJv68XSHdlUYpy5D+8CQkUlj0U=;
-        b=mqm1+pE6ATGEaCF8zR47DL3waJNb5ntLXpGEHewW7+YtxB8a4TfdT7Gsjr/FjM1vXQ
-         EoT4GwaFTNmc575atqyTkxEcoy6qy5WFrybAR7KV62yDBbz6G7CYt/V8nR+YSxRW4D7c
-         zKs8+9D9s+DrxCs7Z3uhpyrLzHbO2DLeMvsvzK71ttDs0Z155I34FS9cCHacTGDaJmrZ
-         Ln2b3qSa6nemHnUTCZI4EnwdlUkty+HJE+ySB6w787gRfmnbgSK63eAemSpLuDVlTALV
-         wDSJgHYbyD1OtJPl0NuOM4VY6gR/U1/6UlnrdGxRKOca8jTcLe/73KorWkKkeAVauX/B
-         pBAw==
-X-Gm-Message-State: AOAM530ZBDzygfFYepQR9A2MVrnvC6fOvL+trYuCibhwsshRTarWbGUC
-        mQojy79rVBFwZ9iEefHnSyBUw9n/k1iNrYfvWqc=
-X-Google-Smtp-Source: ABdhPJxP0wgBv+BXU3aQlZWWWwAZg71hs0fFXOXF55vd+8peBeYGKvnojsRq/fmLNFf2geu6+Mge6SXeoEzR5mf+kHA=
-X-Received: by 2002:a19:b81:: with SMTP id 123mr12252945lfl.553.1619433553826;
- Mon, 26 Apr 2021 03:39:13 -0700 (PDT)
+        id S232278AbhDZKl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Apr 2021 06:41:27 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:50798 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233088AbhDZKl1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Apr 2021 06:41:27 -0400
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13QAaO1A016416;
+        Mon, 26 Apr 2021 12:40:27 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=LuAAV+vjbVeIX0jQ7jUT9/6qq5AEdw86+P+dHuRWAoo=;
+ b=Vv7l4zgb+uiXjRegQs+5B5SVFa55bmdS6x9ygVSokM4UB7MTxBBFdPhtASq/mNybIXSC
+ GGY+5kjt5Tx+ftEdouRtaZ4bmvmUMAyJotNs5LmKKXRHZzbpWf1qUz7sMavjDIc+bat1
+ lgpY+At+n4HDZQ0ANSRTQxMnlO2WgP4o4Zf5i3lSxxiZ8wjYZISp0IUWhZmhnmsV4g46
+ 6UtDsrWQ9BoOo22bUTnEw9GmGosu0XTRWKiPnK2T8AeiNbpMZgJfOK7zDDJDBUlJ2VM3
+ J8Obllg7bG23Dw/mVzLHkfSTRNi7V0/5doCsfH+mZgPQQAf5DmCVP+qL2hrLrVwcE4Su hg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 385gb2b78j-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 26 Apr 2021 12:40:27 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id CD7CD10002A;
+        Mon, 26 Apr 2021 12:40:24 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 99B5E20B11F;
+        Mon, 26 Apr 2021 12:40:24 +0200 (CEST)
+Received: from localhost (10.75.127.51) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 26 Apr 2021 12:40:24
+ +0200
+From:   <patrice.chotard@foss.st.com>
+To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <alexandre.torgue@foss.st.com>
+CC:     <mcoquelin.stm32@gmail.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux@armlinux.org.uk>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Christophe Kerello <christophe.kerello@st.com>
+Subject: [1/1] ARM: dts: stm32: Configure qspi's mdma transfer to block for stm32mp151
+Date:   Mon, 26 Apr 2021 12:39:56 +0200
+Message-ID: <20210426103956.29007-1-patrice.chotard@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20210319051627.814-1-cnsztl@gmail.com> <161640742725.808893.3666594351389773587.b4-ty@sntech.de>
- <20210425213321.GF10996@amd>
-In-Reply-To: <20210425213321.GF10996@amd>
-From:   Tianling Shen <cnsztl@gmail.com>
-Date:   Mon, 26 Apr 2021 18:39:03 +0800
-Message-ID: <CAOP2_ThcRMkgSm872q2By=gALoK-qAjq92FtNQkDO999pZR8kg@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: Add doc for FriendlyARM NanoPi R4S
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Marty Jones <mj8263788@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <uwe@kleine-koenig.org>,
-        Jensen Huang <jensenhuang@friendlyarm.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        David Bauer <mail@david-bauer.net>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-04-26_03:2021-04-26,2021-04-26 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pavel,
+From: Patrice Chotard <patrice.chotard@foss.st.com>
 
-On Mon, Apr 26, 2021 at 5:33 AM Pavel Machek <pavel@ucw.cz> wrote:
->
-> Hi!
->
-> > > Changes in v6:
-> > > - Fixed format of LED nodes
-> > >
-> > > Changes in v5:
-> > > - Dropped the empty PCIe node
-> > > - Dropped useless `/delete-property/`
-> > > - Renamed LED nodes
-> > >
-> > > [...]
-> >
-> > Applied, thanks!
-> >
-> > [1/2] dt-bindings: Add doc for FriendlyARM NanoPi R4S
-> >       commit: 1003888415e83e15ddb63d1d96189b4f2c5f1d48
-> > [2/2] rockchip: rk3399: Add support for FriendlyARM NanoPi R4S
-> >       commit: db792e9adbf85ffc9d6b0b060ac3c8e3148c8992
->
-> Sorry for late review, but:
->
->
-> +                       label = "red:sys";
->
-> This should be red:power based on the discussion in earlier threads.
+Configure qspi's mdma from buffer transfer (max 128 bytes) to
+block transfer (max 64K bytes).
 
-However based on the introduction from FriendlyELEC[1], this is not
-the "power" lamp...
-"LEDs: 1 x power LED and 3 x GPIO Controlled LED (SYS, LAN, WAN)"
+mtd_speedtest shows that write throughtput increases :
+  - from 734 to 782 KiB/s (~6.5%) with s25fl512s SPI-NOR.
+  - from 4848 to 5319 KiB/s (~9.72%) with Micron SPI-NAND.
 
-1. https://wiki.friendlyarm.com/wiki/index.php/NanoPi_R4S#Hardware_Spec
+Signed-off-by: Christophe Kerello <christophe.kerello@st.com>
+Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+---
+ arch/arm/boot/dts/stm32mp151.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Thanks,
-Tianling.
+diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+index 4b8031782555..cb326c1e12bc 100644
+--- a/arch/arm/boot/dts/stm32mp151.dtsi
++++ b/arch/arm/boot/dts/stm32mp151.dtsi
+@@ -1358,8 +1358,8 @@
+ 			reg = <0x58003000 0x1000>, <0x70000000 0x10000000>;
+ 			reg-names = "qspi", "qspi_mm";
+ 			interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
+-			dmas = <&mdma1 22 0x2 0x100002 0x0 0x0>,
+-			       <&mdma1 22 0x2 0x100008 0x0 0x0>;
++			dmas = <&mdma1 22 0x2 0x10100002 0x0 0x0>,
++			       <&mdma1 22 0x2 0x10100008 0x0 0x0>;
+ 			dma-names = "tx", "rx";
+ 			clocks = <&rcc QSPI_K>;
+ 			resets = <&rcc QSPI_R>;
+-- 
+2.17.1
 
->
-> Thanks,
->                                                                         Pavel
-> --
-> http://www.livejournal.com/~pavelmachek
