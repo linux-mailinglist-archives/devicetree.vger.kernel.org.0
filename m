@@ -2,91 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0787536B671
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 18:05:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66AC336B72A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 18:45:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234287AbhDZQFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 12:05:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39924 "EHLO
+        id S234583AbhDZQqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Apr 2021 12:46:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234198AbhDZQFf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 12:05:35 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E59F0C061574;
-        Mon, 26 Apr 2021 09:04:53 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id e15so2478366pfv.10;
-        Mon, 26 Apr 2021 09:04:53 -0700 (PDT)
+        with ESMTP id S233736AbhDZQqH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 12:46:07 -0400
+Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B82E9C061574
+        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 09:45:24 -0700 (PDT)
+Received: by mail-io1-xd2b.google.com with SMTP id k25so13621998iob.6
+        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 09:45:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=kkYraJwnloN5E+mP22oPH515xvEP/CtcwIjfN1GMSTI=;
-        b=AZsIWnVgPQWJr8dUtS6g7rNhE9ykXSWt7u2xvRVVgHMO4x43wZ9JH18MEt3U+LfS4F
-         YrPks18+BgAq+bCi8NY5WsKX7YKJLf1B6TOZgkQ8y0/g3nT6gs+5KkD5NivyXvleMZGD
-         fxR33goSkfuSGy6gJoq+keZYkOJpAcN8Fk1PuLxeRczhaLJcxK2v2j6Zinuy/0lp/gHl
-         raeLb0UhSZupfN2Tn3CwlF0nS0idcCShmhxWGV/wKJZkOwUHvkolSim48Z4FrYUZK9HM
-         vXxnhoKa7Gz9gTFePK4EE6SO9Xzvvl1HAXN+UdkpWA2hkHIAdfHNhc0rWr+4geODfoOL
-         H6uQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=w+xLIOm1aUR+ojar7SxT7aE31iJaS6lTTL9NFfLTdqs=;
+        b=ctSitjX8LR7O2ZMk4lsR8Irz6egx7wTYNYpP5lwZVohPuAIjgk70gq0rLgnAswDS5J
+         OwrGL0fnjKjd/25GMaUPOEt1BY6NfF//O6cQPXnTolYLDRghV+Gs0xVvNzh51W3LGUxd
+         u8ZH2pOBpUkLUeomCja6RAPBZaNGl3ag01nF0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=kkYraJwnloN5E+mP22oPH515xvEP/CtcwIjfN1GMSTI=;
-        b=pB4jMmGxBOoMa9BbRonpY7ps/Jo52NoXGmK2I+FoKcyjwbfNLLw3OXkSqeHqYCgC0d
-         xvncMPR1e/GK74kKmMPHL3mpDLe/Kj+Xz+uEmF6IV2o+KSJ2Kxh4yWR2OwlEAU2YD58j
-         VppbVJPZHxD2dN9KsNwq1CEbb9GhCHDI523DNNdq5aDNkPKJXjJVMTRtj3hi2cJE+o5Z
-         cxDgFrit2KkW4N1SeGuBesX8agHjsnZeJHHcYUnyZ27/rY1XDpnJfYKmqmZj+eCDwEVF
-         q9e00stJ0YQtC9MqGzs3IHC82K1DK9R1EW3jTzBJ7GdNFVL78B/spO0pyNv1JYWsSyeU
-         RMiQ==
-X-Gm-Message-State: AOAM5334k/zMjGkFqy25jtIHoBEChGB40WJiuLAI4lCJiFY1PzCYhAG4
-        QTgj0l9NDDhHUYDfpZbtorEydOnmSUY=
-X-Google-Smtp-Source: ABdhPJyS4OcVwmNQzxzB//76dVCBsULGTCSqezd5fDPXmAt1kGKqYLtjmTTOQZOupvHXKKX7XcSD7g==
-X-Received: by 2002:a63:1b0a:: with SMTP id b10mr17612766pgb.68.1619453093083;
-        Mon, 26 Apr 2021 09:04:53 -0700 (PDT)
-Received: from [10.67.49.104] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id ml19sm255995pjb.2.2021.04.26.09.04.50
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=w+xLIOm1aUR+ojar7SxT7aE31iJaS6lTTL9NFfLTdqs=;
+        b=FtYheNwgZlBdA0fpOt7vLIvw6OujLGoNUeRjo/ktLwghCME/RwOm13Y+jDdZ+zcFKr
+         nOCTenb68ao+/oU/3J3jNYFVLUHJ0NZpxjOvLfHxSNxbX+2Z/aTcIfgEeQ3EDE41QZg4
+         bqgVZSemg5UKPi9WkCskWgMhCJ2xE3WEzpB8K+A93EgdC7esLlE+EqfpHyXT1Hgx+Wsg
+         8GczHqM0K8RsPnatzBl2T/OFbphU856rOkDo19whvOO4HeT97E7Q3o3Ibi3xvXd2Sjjh
+         J8qDcvpFTl5jGTcuPscy7CHujYgA99uZc09LO8k+/KTjFanf4xw7HUy6ddVIBdYoJtYV
+         mYCA==
+X-Gm-Message-State: AOAM533mdQTs+44YYczLmdj7XVKRI9AoQQXawgOSXt4iXjaomKA8I/R+
+        sZuQfBsnvN3fSJqzwtcu4FlvWEQi5GX67A==
+X-Google-Smtp-Source: ABdhPJzIIANBRpg9903kqOBORN/KjE+eXcDocv9g0+Uag8AyUVQ/OgXelrlcWtT9f/irBxWCZj+64Q==
+X-Received: by 2002:a05:6638:381e:: with SMTP id i30mr5698514jav.61.1619455523859;
+        Mon, 26 Apr 2021 09:45:23 -0700 (PDT)
+Received: from mail-il1-f173.google.com (mail-il1-f173.google.com. [209.85.166.173])
+        by smtp.gmail.com with ESMTPSA id b12sm176786iln.58.2021.04.26.09.45.23
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Apr 2021 09:04:52 -0700 (PDT)
-Subject: Re: [PATCH v2 net-next 1/9] dt-bindings: net: dsa: dt bindings for
- microchip lan937x
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     andrew@lunn.ch, netdev@vger.kernel.org, olteanv@gmail.com,
-        UNGLinuxDriver@microchip.com, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, vivien.didelot@gmail.com,
-        devicetree@vger.kernel.org
-References: <20210422094257.1641396-1-prasanna.vengateshan@microchip.com>
- <20210422094257.1641396-2-prasanna.vengateshan@microchip.com>
- <20210422173844.GA3227277@robh.at.kernel.org>
- <2f1e011ba458d493f34ea38c9e7e9753226ccab2.camel@microchip.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <7b291e79-fd4b-13e8-797d-7f3dd04c8895@gmail.com>
-Date:   Mon, 26 Apr 2021 09:04:49 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        Mon, 26 Apr 2021 09:45:23 -0700 (PDT)
+Received: by mail-il1-f173.google.com with SMTP id c15so47179988ilj.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 09:45:23 -0700 (PDT)
+X-Received: by 2002:a5d:8c82:: with SMTP id g2mr15143365ion.34.1619455049397;
+ Mon, 26 Apr 2021 09:37:29 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <2f1e011ba458d493f34ea38c9e7e9753226ccab2.camel@microchip.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210422081508.3942748-1-tientzu@chromium.org>
+ <20210422081508.3942748-6-tientzu@chromium.org> <c9abca62-328d-d0d6-a8a6-a67475171f92@arm.com>
+In-Reply-To: <c9abca62-328d-d0d6-a8a6-a67475171f92@arm.com>
+From:   Claire Chang <tientzu@chromium.org>
+Date:   Tue, 27 Apr 2021 00:37:18 +0800
+X-Gmail-Original-Message-ID: <CALiNf2_tffc65PhLxCr3-+gmVYKGO2HjYiJVkBNa5U5HYdi9pg@mail.gmail.com>
+Message-ID: <CALiNf2_tffc65PhLxCr3-+gmVYKGO2HjYiJVkBNa5U5HYdi9pg@mail.gmail.com>
+Subject: Re: [PATCH v5 05/16] swiotlb: Add restricted DMA pool initialization
+To:     Steven Price <steven.price@arm.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
+        grant.likely@arm.com, xypron.glpk@gmx.de,
+        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
+        bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
+        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
+        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
+        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
+        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
+        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+        nouveau@lists.freedesktop.org, rodrigo.vivi@intel.com,
+        thomas.hellstrom@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/25/21 9:05 PM, Prasanna Vengateshan wrote:
->>> +          port@4 {
->>> +            reg = <4>;
->>> +            phy-mode = "rgmii";
->>> +            ethernet = <&ethernet>;
->>
->> You are missing 'ethernet' label.
-> This is the cpu port and label is not used anywhere. i received this feedback in
-> last patch version. 
+On Fri, Apr 23, 2021 at 7:34 PM Steven Price <steven.price@arm.com> wrote:
+>
+> On 22/04/2021 09:14, Claire Chang wrote:
+> > Add the initialization function to create restricted DMA pools from
+> > matching reserved-memory nodes.
+> >
+> > Signed-off-by: Claire Chang <tientzu@chromium.org>
+> > ---
+> >   include/linux/device.h  |  4 +++
+> >   include/linux/swiotlb.h |  3 +-
+> >   kernel/dma/swiotlb.c    | 80 +++++++++++++++++++++++++++++++++++++++++
+> >   3 files changed, 86 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/include/linux/device.h b/include/linux/device.h
+> > index 38a2071cf776..4987608ea4ff 100644
+> > --- a/include/linux/device.h
+> > +++ b/include/linux/device.h
+> > @@ -416,6 +416,7 @@ struct dev_links_info {
+> >    * @dma_pools:      Dma pools (if dma'ble device).
+> >    * @dma_mem:        Internal for coherent mem override.
+> >    * @cma_area:       Contiguous memory area for dma allocations
+> > + * @dma_io_tlb_mem: Internal for swiotlb io_tlb_mem override.
+> >    * @archdata:       For arch-specific additions.
+> >    * @of_node:        Associated device tree node.
+> >    * @fwnode: Associated device node supplied by platform firmware.
+> > @@ -521,6 +522,9 @@ struct device {
+> >   #ifdef CONFIG_DMA_CMA
+> >       struct cma *cma_area;           /* contiguous memory area for dma
+> >                                          allocations */
+> > +#endif
+> > +#ifdef CONFIG_DMA_RESTRICTED_POOL
+> > +     struct io_tlb_mem *dma_io_tlb_mem;
+> >   #endif
+> >       /* arch specific additions */
+> >       struct dev_archdata     archdata;
+> > diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
+> > index 216854a5e513..03ad6e3b4056 100644
+> > --- a/include/linux/swiotlb.h
+> > +++ b/include/linux/swiotlb.h
+> > @@ -72,7 +72,8 @@ extern enum swiotlb_force swiotlb_force;
+> >    *          range check to see if the memory was in fact allocated by this
+> >    *          API.
+> >    * @nslabs: The number of IO TLB blocks (in groups of 64) between @start and
+> > - *           @end. This is command line adjustable via setup_io_tlb_npages.
+> > + *           @end. For default swiotlb, this is command line adjustable via
+> > + *           setup_io_tlb_npages.
+> >    * @used:   The number of used IO TLB block.
+> >    * @list:   The free list describing the number of free entries available
+> >    *          from each index.
+> > diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
+> > index 57a9adb920bf..ffbb8724e06c 100644
+> > --- a/kernel/dma/swiotlb.c
+> > +++ b/kernel/dma/swiotlb.c
+> > @@ -39,6 +39,13 @@
+> >   #ifdef CONFIG_DEBUG_FS
+> >   #include <linux/debugfs.h>
+> >   #endif
+> > +#ifdef CONFIG_DMA_RESTRICTED_POOL
+> > +#include <linux/io.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_fdt.h>
+> > +#include <linux/of_reserved_mem.h>
+> > +#include <linux/slab.h>
+> > +#endif
+> >
+> >   #include <asm/io.h>
+> >   #include <asm/dma.h>
+> > @@ -681,3 +688,76 @@ static int __init swiotlb_create_default_debugfs(void)
+> >   late_initcall(swiotlb_create_default_debugfs);
+> >
+> >   #endif
+> > +
+> > +#ifdef CONFIG_DMA_RESTRICTED_POOL
+> > +static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
+> > +                                 struct device *dev)
+> > +{
+> > +     struct io_tlb_mem *mem = rmem->priv;
+> > +     unsigned long nslabs = rmem->size >> IO_TLB_SHIFT;
+> > +
+> > +     if (dev->dma_io_tlb_mem)
+> > +             return 0;
+> > +
+> > +     /* Since multiple devices can share the same pool, the private data,
+> > +      * io_tlb_mem struct, will be initialized by the first device attached
+> > +      * to it.
+> > +      */
+> > +     if (!mem) {
+> > +             mem = kzalloc(struct_size(mem, slots, nslabs), GFP_KERNEL);
+> > +             if (!mem)
+> > +                     return -ENOMEM;
+> > +#ifdef CONFIG_ARM
+> > +             if (!PageHighMem(pfn_to_page(PHYS_PFN(rmem->base)))) {
+> > +                     kfree(mem);
+> > +                     return -EINVAL;
+> > +             }
+> > +#endif /* CONFIG_ARM */
+> > +             swiotlb_init_io_tlb_mem(mem, rmem->base, nslabs, false);
+> > +
+> > +             rmem->priv = mem;
+> > +     }
+> > +
+> > +#ifdef CONFIG_DEBUG_FS
+> > +     if (!io_tlb_default_mem->debugfs)
+> > +             io_tlb_default_mem->debugfs =
+> > +                     debugfs_create_dir("swiotlb", NULL);
+>
+> At this point it's possible for io_tlb_default_mem to be NULL, leading
+> to a splat.
 
-Your example of a CPU port node is valid here, we need an 'ethernet'
-phandle to know this is a CPU port, otherwise it is just a regular
-user-facing port.
--- 
-Florian
+Thanks for pointing this out.
+
+>
+> But even then if it's not and we have the situation where debugfs==NULL
+> then the debugfs_create_dir() here will cause a subsequent attempt in
+> swiotlb_create_debugfs() to fail (directory already exists) leading to
+> mem->debugfs being assigned an error value. I suspect the creation of
+> the debugfs directory needs to be separated from io_tlb_default_mem
+> being set.
+
+debugfs creation should move into the if (!mem) {...} above to avoid
+duplication.
+I think having a separated struct dentry pointer for the default
+debugfs should be enough?
+
+if (!debugfs)
+    debugfs = debugfs_create_dir("swiotlb", NULL);
+swiotlb_create_debugfs(mem, rmem->name, debugfs);
+
+>
+> Other than that I gave this series a go with our prototype of Arm's
+> Confidential Computer Architecture[1] - since the majority of the
+> guest's memory is protected from the host the restricted DMA pool allows
+> (only) a small area to be shared with the host.
+>
+> After fixing (well hacking round) the above it all seems to be working
+> fine with virtio drivers.
+>
+> Thanks,
+>
+> Steve
+>
+> [1]
+> https://www.arm.com/why-arm/architecture/security-features/arm-confidential-compute-architecture
