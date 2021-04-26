@@ -2,355 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C99536BB5E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 23:54:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A146436BB7F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 00:13:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233289AbhDZVym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 17:54:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33118 "EHLO
+        id S232295AbhDZWNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Apr 2021 18:13:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232161AbhDZVyl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 17:54:41 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53A6EC061756
-        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 14:53:59 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id e2so25383163plh.8
-        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 14:53:59 -0700 (PDT)
+        with ESMTP id S232161AbhDZWNy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 18:13:54 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 254FBC061756
+        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 15:13:11 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id a22-20020a05600c2256b029014294520f18so1453175wmm.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 15:13:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bJ+bkQkkFIHNQ8ewII3gykBkkUI5D3+ukJbqU/0p8Is=;
-        b=nrQsUTJ/ZIwSnTKw5vzlpiPB1FuRZNR/6BfB4JI2TH/XsUDo7qhzwq8U5I7HsAk8Us
-         dEEb/bQHV9Xrz4LkZOzMTI/dladeZY9E9MfPoJHHCLyhy3gRx5Z1S/Mcz/5UQ3Y4ar1B
-         1HU33d4wn7T0Uku5lw19chE15nzEg5l6hT77w=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rALIGRiBfkY3zLGEHGN+z0aJ6zoBl9h/Q3t595VB0VI=;
+        b=IbKVhu1C1PhwNnMaX8Kmb+sjm0Y890GztYm8ZJHOtTzkwt4BtuVta0YPjDM0nCusyE
+         sQQH03XChu5FPTrv7IzIgM3/JIJhYBbqqEXhDTHx/hqxP/djL7EL18txQNawd1I4VHeP
+         0Ryt6Erc+2RTPoIlzH0QiYxmv4oDWudHhMGEHQRLvOvrciUJeVBJ72JqmGkEAyXmNOT/
+         JOsvl2y8JiRT9/CQAO08IZ3+/y/TylLRPil2pnPD2pwvbIH1lsMiyQrYLIFSHtfSgf4o
+         BOp01bopP6NBZqmcGnxUL44LDwvWsO+oLHfBrX7sqP/xbqpoED0XarakuGdmY4pCtNut
+         E42Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bJ+bkQkkFIHNQ8ewII3gykBkkUI5D3+ukJbqU/0p8Is=;
-        b=gCBUtUFNHfaYoocIV8CKu2IL+ctQqyl1v7pQ6AY5EMpyQ5a5soyidrJ2dGLHFOkUL+
-         9FWOJ6fzASb+RmC+XXz4abAM5x2dr7DwdRXuxYE21UblCWYH0+Z+6qIcZ6YwfeQ1QFXH
-         6s9DgLCJHUSFKTIzh8yIfiPSANd2j6qWp9A9RYm69ynXbWZveboe6kH/726DSOarJ1/E
-         gOEFES+OLJj48fXPq+Cyh8jP6mLaSiPQWZJeS45Va0JEM1A8Vf5CcZYPlaXRAxCww1ML
-         Hz7EfpYkT/rYEj/Tw6Rfr8+Yq+y1YTUs73PTcjwlprkjMMORLyumTh+HJueZEXrBuUVy
-         KSWA==
-X-Gm-Message-State: AOAM531xQZRFXhlCUsOx2qzpZA8muaRKQkXNvuMc+5JJJj8bFJNK5IWg
-        vKD3o8T5zoJZ2AjXvdx1frQ5ww==
-X-Google-Smtp-Source: ABdhPJy36UqSsa6HM/KqdjU5Cqyj9rxIawAzV2euNJOgEHBD9xeCO147Kqq4VR8VmXAi1DCplRWUTA==
-X-Received: by 2002:a17:902:8bcb:b029:ec:a192:21cf with SMTP id r11-20020a1709028bcbb02900eca19221cfmr21027809plo.71.1619474038714;
-        Mon, 26 Apr 2021 14:53:58 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:3a16:de17:8721:d706])
-        by smtp.gmail.com with UTF8SMTPSA id 31sm11793802pgw.3.2021.04.26.14.53.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Apr 2021 14:53:58 -0700 (PDT)
-Date:   Mon, 26 Apr 2021 14:53:56 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rajeshwari <rkambl@codeaurora.org>
-Cc:     amitk@kernel.org, thara.gopinath@linaro.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, rui.zhang@intel.com,
-        daniel.lezcano@linaro.org, robh+dt@kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sanm@codeaurora.org, manafm@codeaurora.org
-Subject: Re: [PATCH V2 3/3] ARM: dts: qcom: Add Thermal zone support in
- SC7280.
-Message-ID: <YIc2dJlhXtb7NWU2@google.com>
-References: <1619202177-13485-1-git-send-email-rkambl@codeaurora.org>
- <1619202177-13485-4-git-send-email-rkambl@codeaurora.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rALIGRiBfkY3zLGEHGN+z0aJ6zoBl9h/Q3t595VB0VI=;
+        b=MnosK0dddQvTh5z7SPMmie4q56WWGD9mqCtWBMmxXo/WQDfsWlewpR8zQWbC/SAxMg
+         ew32E8D2Aj/6tw4RslqXt7EDKA1xS3gHWcI5kymNDCFGzsK1qBST2n2GZGKNh++446Rq
+         mbXUhjbfAqwFbl3D/WBjKqrnZY8Jwq8Uq3fQsNCp67UHqe14rdPqO1AzQwMzFPS2cVV7
+         wdPxYH4yTYUZBeSwWdoZzB8+SnLZM8BlcbokgrvFnPxG+/p62WIOCIZSjV2V0cMarbu5
+         X5eMDZkws2bXvBLIokO2UBCw8UcOPai0iT14QrdQ/VFryiIUpxjkzVHmFzMwKkgb9SnB
+         l2jw==
+X-Gm-Message-State: AOAM5304uX9OrOWgf77W3y7Hf3fj5GfFMcOHIZxA2aGPn+hTI9ud5Y3P
+        H2G8StzKnXH0uMQWBQxU6Bd0fA==
+X-Google-Smtp-Source: ABdhPJzLfgFXaydFM2Z3e0XnA/fXKcOBeb6LALR75pdfJDdq2sTVgiRCiTvNJRflVBrcT37N2Rb0Ng==
+X-Received: by 2002:a1c:7315:: with SMTP id d21mr21899639wmb.155.1619475189766;
+        Mon, 26 Apr 2021 15:13:09 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id x9sm1756042wrt.13.2021.04.26.15.13.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Apr 2021 15:13:09 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+Cc:     wcheng@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        dmitry.baryshkov@linaro.org, bryan.odonoghue@linaro.org
+Subject: [PATCH v2 0/2] Enable VBUS current boost on pm8150b platforms
+Date:   Mon, 26 Apr 2021 23:14:44 +0100
+Message-Id: <20210426221446.1852572-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1619202177-13485-4-git-send-email-rkambl@codeaurora.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 23, 2021 at 11:52:57PM +0530, Rajeshwari wrote:
+The first version of this patch set the current limit to 3 amps as was done
+in downstream. Mark indicated a preference to set this on a per-system
+basis instead of blitzing it, as in downstream.
 
-> Subject: ARM: dts: qcom: Add Thermal zone support in SC7280
+Looking at what was upstream versus what was in my working tree I saw that
+in fact the VBUS boost driver had been upstreamed minus accompanying DTS in
+pm8150b.
 
-s/ARM/arm64/
+So there's no need for a fixes as this driver doesn't appear to be in use.
+A subsequent patchset will enable the VBUS boost for the two relevant
+upstream platforms.
 
-same for patch [2/2]
+First thing though, is the driver + dts change.
 
-nit: s/Thermal/thermal/
+- Use regulator_set_current_limit_regmap/regulator_get_current_limit_regmap
+  with a relevant current-to-bitmap lookup.
 
->
-> Added Thermal zone support, cooling maps and added hysteresis as zero as
-> it is not needed as system is supposed to shut down when critical trip point
-> is reached.
+- Add a parallel DTS entry to the pm8150b
+  It looks like this was submitted upstream but not followed up on
 
-nit: s/Thermal/thermal/
+  I've add regulator-min-microamp/regulator-max-microamp to Wesley's
+  original work.
 
-I don't think it's necessary to explain the hysteresis values unless
-they are really uncommon.
+I've made sure to test that its possible to set the current to anything in
+the range of 500 mA to 3 A and confirmed the output on a scope.
 
-> Signed-off-by: Rajeshwari <rkambl@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 844 +++++++++++++++++++++++++++++++++++
->  1 file changed, 844 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 275113c..80f4ecb 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -12,6 +12,7 @@
->  #include <dt-bindings/power/qcom-aoss-qmp.h>
->  #include <dt-bindings/power/qcom-rpmpd.h>
->  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> +#include <dt-bindings/thermal/thermal.h>
->  
->  / {
->  	interrupt-parent = <&intc>;
-> @@ -1140,6 +1141,849 @@
->  		};
->  	};
->  
-> +	thermal_zones: thermal-zones {
-> +		cpu0-thermal {
-> +			polling-delay-passive = <250>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&tsens0 1>;
-> +
-> +			trips {
-> +				cpu0_alert0: trip-point0 {
-> +					temperature = <90000>;
-> +					hysteresis = <0>;
-> +					type = "passive";
-> +				};
-> +
-> +				cpu0_alert1: trip-point1 {
-> +					temperature = <95000>;
-> +					hysteresis = <0>;
-> +					type = "passive";
-> +				};
-> +
-> +				cpu0_crit: cpu_crit {
-> +					temperature = <110000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
+Once these two patches are in, I'll send out board enablement for the
+sm8150-mtp and qrb5165-rb5.
 
-In the review of v1 (https://patchwork.kernel.org/project/linux-arm-msm/patch/1619005442-16485-2-git-send-email-rkambl@codeaurora.org/)
-I suggested that a hysteresis isn't needed for the critical trip
-points, but this patch also also gets rid of the hysteresis values
-for the passive and hot trip points, which isn't correct.
+https://lore.kernel.org/linux-arm-msm/8687acdb-75e9-5fc5-dd3e-9a19615676b5@linaro.org/T/#t
 
-> +			};
-> +
-> +			cooling-maps {
-> +				map0 {
-> +					trip = <&cpu0_alert0>;
-> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +				map1 {
-> +					trip = <&cpu0_alert1>;
-> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +			};
-> +		};
->
-> ...
->
-> +		aoss0-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&tsens0 0>;
-> +
-> +			trips {
-> +				aoss0_alert0: trip-point0 {
-> +					temperature = <90000>;
-> +					hysteresis = <0>;
-> +					type = "hot";
-> +				};
-> +
-> +				aoss0_crit: aoss0_crit {
-> +					temperature = <110000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		aoss1-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&tsens1 0>;
-> +
-> +			trips {
-> +				aoss1_alert0: trip-point0 {
-> +					temperature = <90000>;
-> +					hysteresis = <0>;
-> +					type = "hot";
-> +				};
-> +
-> +				aoss1_crit: aoss1_crit {
-> +					temperature = <110000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		cpuss0-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&tsens0 5>;
-> +
-> +			trips {
-> +				cpuss0_alert0: trip-point0 {
-> +					temperature = <90000>;
-> +					hysteresis = <0>;
-> +					type = "hot";
-> +				};
-> +				cpuss0_crit: cluster0_crit {
-> +					temperature = <110000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		cpuss1-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&tsens0 6>;
-> +
-> +			trips {
-> +				cpuss1_alert0: trip-point0 {
-> +					temperature = <90000>;
-> +					hysteresis = <0>;
-> +					type = "hot";
-> +				};
-> +				cpuss1_crit: cluster0_crit {
-> +					temperature = <110000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		gpuss0-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&tsens1 1>;
-> +
-> +			trips {
-> +				gpuss0_alert0: trip-point0 {
-> +					temperature = <90000>;
-> +					hysteresis = <0>;
-> +					type = "hot";
-> +				};
-> +
-> +				gpuss0_crit: gpuss0_crit {
-> +					temperature = <110000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		gpuss1-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&tsens1 2>;
-> +
-> +			trips {
-> +				gpuss1_alert0: trip-point0 {
-> +					temperature = <90000>;
-> +					hysteresis = <0>;
-> +					type = "hot";
-> +				};
-> +
-> +				gpuss1_crit: gpuss1_crit {
-> +					temperature = <110000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		nspss0-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&tsens1 3>;
-> +
-> +			trips {
-> +				nspss0_alert0: trip-point0 {
-> +					temperature = <90000>;
-> +					hysteresis = <0>;
-> +					type = "hot";
-> +				};
-> +
-> +				nspss0_crit: nspss0_crit {
-> +					temperature = <110000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		nspss1-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&tsens1 4>;
-> +
-> +			trips {
-> +				nspss1_alert0: trip-point0 {
-> +					temperature = <90000>;
-> +					hysteresis = <0>;
-> +					type = "hot";
-> +				};
-> +
-> +				nspss1_crit: nspss1_crit {
-> +					temperature = <110000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		video-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&tsens1 5>;
-> +
-> +			trips {
-> +				video_alert0: trip-point0 {
-> +					temperature = <90000>;
-> +					hysteresis = <0>;
-> +					type = "hot";
-> +				};
-> +
-> +				video_crit: video_crit {
-> +					temperature = <110000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		ddr-thermal {
+Bryan O'Donoghue (1):
+  regulator: Add a routine to set the current limit for QCOM PMIC VBUS
 
-uber-nit: I still think an alphabetical order would be preferable, it
-makes it easy to locate the zones, whereas the indices of the TSENS
-sensor are mostly irrelevant for the order. Anyway, AFAIK there are
-no clear rules or conventions regarding this, so it's ok if yo
-prefer to leave it as is.
+Wesley Cheng (1):
+  arm64: boot: dts: qcom: pm8150b: Add DTS node for PMIC VBUS booster
+
+ arch/arm64/boot/dts/qcom/pm8150b.dtsi       |  8 ++++++++
+ drivers/regulator/qcom_usb_vbus-regulator.c | 12 ++++++++++++
+ 2 files changed, 20 insertions(+)
+
+-- 
+2.30.1
+
