@@ -2,107 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B440336B055
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 11:16:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FAED36B074
+	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 11:21:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232103AbhDZJRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 05:17:35 -0400
-Received: from smtpcmd01-g.aruba.it ([62.149.158.217]:51428 "EHLO
-        smtpcmd01-g.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232068AbhDZJRf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 05:17:35 -0400
-Received: from [192.168.1.128] ([79.0.204.227])
-        by Aruba Outgoing Smtp  with ESMTPSA
-        id axMElxVEPkdBBaxMHlqa4B; Mon, 26 Apr 2021 11:16:52 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-        t=1619428612; bh=xngmwhFikqISVkfo/nez+Zdkk/XeKXm3Q0dY+3DmJkk=;
-        h=Subject:To:From:Date:MIME-Version:Content-Type;
-        b=dOR9TkTYRv86CyXVyyqY7JYUaYt+7bXDml7pceUL4HMWdziUY8X6nBbCqiHB7Seti
-         qzkgbQ6G8EPmhHko2ayDLx42u7frrIqyKaU6bGvSgYgz4L2MzZ5ifwrDBWWLz+q9+k
-         qWnOMwBnGT/M+VTb7bQBwAjwyOkABcYo4YY23gzDYTgU62jkg3kYHwiycAnhYTf77l
-         FPzfl/q9MVFpa/4dgjkSzco/IQ1BPNw9gp8dFiYCl578nWPSx5YFZjOvJnxoUTGklq
-         JyTAmZfZjrhPDH1aWgSX+cay4lWCcrme2d7SaxDggDMqWSCx4BzwdrnSAaCSP4f1PE
-         +tGf/cIKMMmEw==
-Subject: Re: [RFC v2 GPIO lines [was: GPIO User I/O]
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <01afcac0-bd34-3fd0-b991-a8b40d4b4561@enneenne.com>
- <CAMuHMdUtguuu4FWU4nRS=pBUyEwKM1JZ8DYPdCQHXBYN0i_Frg@mail.gmail.com>
- <87efe96c-3679-14d5-4d79-569b6c047b00@enneenne.com>
- <CAMuHMdUght0hkJT1N8ub5xR5GB+U18MAhAg+zDmAAuxoRSRaYg@mail.gmail.com>
- <d30e64c9-ad7f-7cd5-51a4-3f37d6f1e3d8@enneenne.com>
- <070fa558-6e20-0fbf-d3e4-0a0eca4fe82c@enneenne.com>
- <CACRpkdYFAW2bcB53M3_b2LsveJO_PWZJhprGhdTtfmW11B1WmQ@mail.gmail.com>
- <f66dc9c4-b164-c934-72a8-d4aca063fca5@enneenne.com>
- <CACRpkdbjc6vvpHVjnJNGisRw6LiLZd-95aHWJJORwvaRNigPcw@mail.gmail.com>
- <cb6e208b-446e-eba4-b324-d88aec94a69b@enneenne.com>
- <CACRpkdZBUw5UPyZB-aeVwh8-GiCifbwABZ9mOsyK90t3cdMQ+w@mail.gmail.com>
- <80bf1236-aacd-1044-b0e5-5b5718b7e9f0@enneenne.com>
- <CAHp75Vc1ezuW9m8OCQUmEJoNVoD-Z3eWF=Lzcr2v32Br8Gr60w@mail.gmail.com>
- <CACRpkdY+amtrDE4gaSU5Du2CUivxo6gnUV5zZOcaJJ8=md-4Kg@mail.gmail.com>
- <87207962-5848-3e5c-4d8d-f4a66c864413@enneenne.com>
- <CAHp75VdrRx7kc9OfRuGjqHHvM9akvzsHYSJgWKfr783wvTdhuA@mail.gmail.com>
-From:   Rodolfo Giometti <giometti@enneenne.com>
-Message-ID: <0de973db-daa7-4dde-161f-a6f477b06e9b@enneenne.com>
-Date:   Mon, 26 Apr 2021 11:16:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+        id S232640AbhDZJWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Apr 2021 05:22:37 -0400
+Received: from regular1.263xmail.com ([211.150.70.205]:59360 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232161AbhDZJWg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 05:22:36 -0400
+Received: from localhost (unknown [192.168.167.235])
+        by regular1.263xmail.com (Postfix) with ESMTP id 6A2857D3;
+        Mon, 26 Apr 2021 17:21:37 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+Received: from [172.16.12.151] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P2752T140649347385088S1619428893484164_;
+        Mon, 26 Apr 2021 17:21:35 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <0b6518d01a4b44141c73aba3d00c4597>
+X-RL-SENDER: cl@rock-chips.com
+X-SENDER: cl@rock-chips.com
+X-LOGIN-NAME: cl@rock-chips.com
+X-FST-TO: linux-watchdog@vger.kernel.org
+X-RCPT-COUNT: 30
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Cc:     cl@rock-chips.com, heiko@sntech.de, robh+dt@kernel.org,
+        jagan@amarulasolutions.com, wens@csie.org, uwe@kleine-koenig.org,
+        mail@david-bauer.net, jbx6244@gmail.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
+        cnsztl@gmail.com, devicetree@vger.kernel.org,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
+        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
+        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
+        zhangqing@rock-chips.com, huangtao@rock-chips.com,
+        wim@linux-watchdog.org, linux@roeck-us.net, jamie@jamieiles.com,
+        linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v2 6/7] arm64: dts: rockchip: add core dtsi for RK3568 SoC
+To:     Marc Zyngier <maz@kernel.org>
+References: <20210425094216.25724-1-cl@rock-chips.com>
+ <20210425094439.25895-1-cl@rock-chips.com> <87mttmslni.wl-maz@kernel.org>
+From:   =?UTF-8?B?6ZmI5Lqu?= <cl@rock-chips.com>
+Message-ID: <ee4172da-13a4-2a94-446f-cfdd937574c3@rock-chips.com>
+Date:   Mon, 26 Apr 2021 17:21:33 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <CAHp75VdrRx7kc9OfRuGjqHHvM9akvzsHYSJgWKfr783wvTdhuA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <87mttmslni.wl-maz@kernel.org>
+Content-Type: text/plain; charset=gbk; format=flowed
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfDMiSpx6Dh918brawoQwREDxs+0AibdOJu8qz9Vi20pa8xDQVPEB9jegQW+O3sTniwHogHQzPTkeZrO1kwcOfm7Ex5zt0Md2DNPVocOccwzTBD1hLbZc
- TS1LvbrVzH2aDFTnbR8LCTAM10+DR+ehCi350uZ9YLRlpDotCJCKj13ZLXxrCr3HY6QSz3mIODl1jtNskrc5lk1Jd0c6Ryp2X1n5DeRtBTAInlcqiCLSHUmi
- fB05Qh5qSEkmj+xSv+z/6ylgIx7dDMo2jTSPRfCjfC0vr046X1T2fz8sSxR9OfBOFrpx+um4tkV6X0cdr8Lb0wLK7yMZwOMCQ05AhJDbNLZ3hy319evjZuoN
- 1Np1Gupk4My2xRI5BIfeVrn9aLi5YmLSBfjirP4JjYW13FBgsIBczjeAd2gAXtW6gov3Ca+cWQCmn3+IIEVN6/c3ngV4Ew==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/04/21 10:48, Andy Shevchenko wrote:
-> On Mon, Apr 26, 2021 at 11:44 AM Rodolfo Giometti <giometti@enneenne.com> wrote:
+Hi Marc,
+
+ÔÚ 2021/4/25 ÏÂÎç6:28, Marc Zyngier Ð´µÀ:
+> As I reviewed a previous version of this series, please have the
+> courtesy of cc'ing me on further revisions of this series.
+I am really sorry, i will add you to the cc list on further revisions.
+>
+> On Sun, 25 Apr 2021 10:44:39 +0100,
+> <cl@rock-chips.com> wrote:
+>> From: Liang Chen <cl@rock-chips.com>
 >>
->> On 20/07/20 10:17, Linus Walleij wrote:
->>> IIUC Rodolfo's idea is to provide this with a DT compatible.
->>> The use case will be industrial automation-ish tasks from userspace.
->>>
->>> Currently the only mechanism we have in the device tree to
->>> assign a use for a line is the "gpio-line-names" property,
->>> which creates a name that is reported upward to the character
->>> device.
->>>
->>> Rodolfo's patch is for scripting use cases, assigning some lines
->>> for some cases to be handled by scripts, not the character device.
->>>
->>> What I am a bit worried about is if this would be a Linuxism, as DT
->>> should be OS neutral.
-> 
-> Not only neutral but be software'isms free!
-> It's only about hardware.
-> 
-> What I understand here is that we have missed the intermediate layer
-> (let's call it 'platform abstraction') where it's related to the
-> platform and neither strictly speaking hardware, nor software per se.
+>> RK3568 is a high-performance and low power quad-core application processor
+>> designed for personal mobile internet device and AIoT equipments. This patch
+>> add basic core dtsi file for it.
+>>
+>> We use scmi_clk for cortex-a55 instead of standard ARMCLK, so that
+>> kernel/uboot/rtos can change cpu clk with the same code in ATF, and we will
+>> enalbe a special high-performacne PLL when high frequency is required. The
+>> smci_clk code is in ATF, and clkid for cpu is 0, as below:
+>>
+>>      cpu0: cpu@0 {
+>>          device_type = "cpu";
+>>          compatible = "arm,cortex-a55";
+>>          reg = <0x0 0x0>;
+>>          clocks = <&scmi_clk 0>;
+>>      };
+>>
+>> Signed-off-by: Liang Chen <cl@rock-chips.com>
+>> ---
+>>   .../boot/dts/rockchip/rk3568-pinctrl.dtsi     | 3119 +++++++++++++++++
+>>   arch/arm64/boot/dts/rockchip/rk3568.dtsi      |  812 +++++
+>>   2 files changed, 3931 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi
+>>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> [...]
+>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+>> new file mode 100644
+>> index 000000000000..66cb50218ca1
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+>> @@ -0,0 +1,812 @@
+> [...]
+>
+>> +	timer {
+>> +		compatible = "arm,armv8-timer";
+>> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>,
+>> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>,
+>> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>,
+>> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>;
+>> +		arm,no-tick-in-suspend;
+> My questions on this property still stand [1].
 
-Maybe I don't well understand the-problem(TM), but why people are currently
-using led and uinput layers to describes their output or input lines?
+Yes, rk3568 will lose the system counter in suspend mode, we must 
+retrieve system time from RTC.
 
-Why don't providing a dedicated layer for this special scope?
+rk3588 will fix this issue.
 
-My two cents,
+>
+>> +	};
+>> +
+>> +	xin24m: xin24m {
+>> +		compatible = "fixed-clock";
+>> +		clock-frequency = <24000000>;
+>> +		clock-output-names = "xin24m";
+>> +		#clock-cells = <0>;
+>> +	};
+>> +
+>> +	xin32k: xin32k {
+>> +		compatible = "fixed-clock";
+>> +		clock-frequency = <32768>;
+>> +		clock-output-names = "xin32k";
+>> +		pinctrl-0 = <&clk32k_out0>;
+>> +		pinctrl-names = "default";
+>> +		#clock-cells = <0>;
+>> +	};
+>> +
+>> +	gic: interrupt-controller@fd400000 {
+>> +		compatible = "arm,gic-v3";
+>> +		reg = <0x0 0xfd400000 0 0x10000>, /* GICD */
+>> +		      <0x0 0xfd460000 0 0xc0000>; /* GICR */
+>> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+>> +		interrupt-controller;
+>> +		#interrupt-cells = <3>;
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+> My request for a full description of the GICA region still stands [1].
+Thanks, i will test MSIs with "mbi-alias", then add relative property in 
+the next version.
+>
+> Thanks,
+>
+> 	M.
+>
+> [1] https://lore.kernel.org/r/87o8e2sm1u.wl-maz@kernel.org
+>
 
-Rodolfo
 
--- 
-GNU/Linux Solutions                  e-mail: giometti@enneenne.com
-Linux Device Driver                          giometti@linux.it
-Embedded Systems                     phone:  +39 349 2432127
-UNIX programming                     skype:  rodolfo.giometti
