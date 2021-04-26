@@ -2,72 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86EE136B570
-	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 17:10:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C714A36B5DF
+	for <lists+devicetree@lfdr.de>; Mon, 26 Apr 2021 17:34:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234011AbhDZPLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 11:11:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43752 "EHLO mail.kernel.org"
+        id S234102AbhDZPeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Apr 2021 11:34:31 -0400
+Received: from mga09.intel.com ([134.134.136.24]:44102 "EHLO mga09.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233973AbhDZPLM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Apr 2021 11:11:12 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 819DD61289;
-        Mon, 26 Apr 2021 15:10:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1619449831;
-        bh=TFq7kiQdjGAQzF36BJ2uF0+GQaNJWuVwyE3Ppyv4z2M=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=vP/q0mM7spKtvBRV8gEuxRGV9D5TusU6QS94HuYTmwyJQ4x2AItGMdNDFVrXhrTnr
-         7TYKDWbpEAlK43oOLpsntGMkj60+ORP7XoFuR3URuzaET909meZe8mvJYmF8FPETug
-         j9Syib1JKoSPRIuBWisMRV2f/98KV7+mSb6Ba2Y2Xxe+EafXnw1EPd05Z1/b45yg5k
-         eFSIOJKmXz1z4AFzGofcZyyzXfm+Emc22sxsspoCtnZRKJ4FV/0ZetYCCRxuNRvTJM
-         elbEGkh5YKLbzhIY0ZtaYeuARnhOwoO/1uF1tWCluEY5bI03sBsrLfwAzP9+tGH3os
-         YNfg9svEjobCw==
-From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        Kuldeep Singh <kuldeep.singh@nxp.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>, Han Xu <han.xu@nxp.com>
-Subject: Re: [PATCH] dt-bindings: spi: Convert Freescale QSPI binding to json schema
-Date:   Mon, 26 Apr 2021 16:09:58 +0100
-Message-Id: <161944978786.15099.9857213915602715493.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210312054038.3586706-1-kuldeep.singh@nxp.com>
-References: <20210312054038.3586706-1-kuldeep.singh@nxp.com>
+        id S233736AbhDZPea (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Apr 2021 11:34:30 -0400
+IronPort-SDR: u2IsGgyGKFQZjpCDoik9CR54xrxM2bNZt7HDWedYU6ILdj74G1cE08DI3NwndMfSfogsc2DyDC
+ JjHxWvT2QB3A==
+X-IronPort-AV: E=McAfee;i="6200,9189,9966"; a="196464386"
+X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; 
+   d="scan'208";a="196464386"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Apr 2021 08:33:23 -0700
+IronPort-SDR: u5UbAlc/iLH+5DnGDngndvxBpa4w15K1qC8094iscTGEiRcuExLiQ8FOfd5rw/QS5eNkvOgY45
+ 8HH//XYxDYXQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; 
+   d="scan'208";a="457220251"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+  by fmsmga002.fm.intel.com with SMTP; 26 Apr 2021 08:33:19 -0700
+Received: by stinkbox (sSMTP sendmail emulation); Mon, 26 Apr 2021 18:33:18 +0300
+Date:   Mon, 26 Apr 2021 18:33:18 +0300
+From:   Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     dri-devel@lists.freedesktop.org,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Paul <sean@poorly.run>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] gpu: drm: init set panel orientation property
+ earlier
+Message-ID: <YIbdPqolop6cBnYH@intel.com>
+References: <20210426051848.2600890-1-hsinyi@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210426051848.2600890-1-hsinyi@chromium.org>
+X-Patchwork-Hint: comment
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 12 Mar 2021 11:10:38 +0530, Kuldeep Singh wrote:
-> Convert the Freescale QSPI binding to DT schema format using json-schema.
+On Mon, Apr 26, 2021 at 01:18:47PM +0800, Hsin-Yi Wang wrote:
+> drm_dev_register() sets connector->registration_state to
+> DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+> drm_connector_set_panel_orientation() is first called after
+> drm_dev_register(), it will fail several checks and results in following
+> warning.
+> 
+> Create panel orientation property in drm_connector_init()
+> and set default value to UNKNOWN. Let the panel set the real value
+> later.
+> 
+> [    4.480976] ------------[ cut here ]------------
+> [    4.485603] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:45 __drm_mode_object_add+0xb4/0xbc
+> <snip>
+> [    4.609772] Call trace:
+> [    4.612208]  __drm_mode_object_add+0xb4/0xbc
+> [    4.616466]  drm_mode_object_add+0x20/0x2c
+> [    4.620552]  drm_property_create+0xdc/0x174
+> [    4.624723]  drm_property_create_enum+0x34/0x98
+> [    4.629241]  drm_connector_set_panel_orientation+0x64/0xa0
+> [    4.634716]  boe_panel_get_modes+0x88/0xd8
+> [    4.638802]  drm_panel_get_modes+0x2c/0x48
+> [    4.642887]  panel_bridge_get_modes+0x1c/0x28
+> [    4.647233]  drm_bridge_connector_get_modes+0xa0/0xd4
+> [    4.652273]  drm_helper_probe_single_connector_modes+0x218/0x700
+> [    4.658266]  drm_mode_getconnector+0x1b4/0x45c
+> [    4.662699]  drm_ioctl_kernel+0xac/0x128
+> [    4.666611]  drm_ioctl+0x268/0x410
+> [    4.670002]  drm_compat_ioctl+0xdc/0xf0
+> [    4.673829]  __arm64_compat_sys_ioctl+0xc8/0x100
+> [    4.678436]  el0_svc_common+0xf4/0x1c0
+> [    4.682174]  do_el0_svc_compat+0x28/0x3c
+> [    4.686088]  el0_svc_compat+0x10/0x1c
+> [    4.689738]  el0_sync_compat_handler+0xa8/0xcc
+> [    4.694171]  el0_sync_compat+0x178/0x180
+> [    4.698082] ---[ end trace b4f2db9d9c88610b ]---
+> [    4.702721] ------------[ cut here ]------------
+> [    4.707329] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:243 drm_object_attach_property+0x48/0xb8
+> <snip>
+> [    4.833830] Call trace:
+> [    4.836266]  drm_object_attach_property+0x48/0xb8
+> [    4.840958]  drm_connector_set_panel_orientation+0x84/0xa0
+> [    4.846432]  boe_panel_get_modes+0x88/0xd8
+> [    4.850516]  drm_panel_get_modes+0x2c/0x48
+> [    4.854600]  panel_bridge_get_modes+0x1c/0x28
+> [    4.858946]  drm_bridge_connector_get_modes+0xa0/0xd4
+> [    4.863984]  drm_helper_probe_single_connector_modes+0x218/0x700
+> [    4.869978]  drm_mode_getconnector+0x1b4/0x45c
+> [    4.874410]  drm_ioctl_kernel+0xac/0x128
+> [    4.878320]  drm_ioctl+0x268/0x410
+> [    4.881711]  drm_compat_ioctl+0xdc/0xf0
+> [    4.885536]  __arm64_compat_sys_ioctl+0xc8/0x100
+> [    4.890142]  el0_svc_common+0xf4/0x1c0
+> [    4.893879]  do_el0_svc_compat+0x28/0x3c
+> [    4.897791]  el0_svc_compat+0x10/0x1c
+> [    4.901441]  el0_sync_compat_handler+0xa8/0xcc
+> [    4.905873]  el0_sync_compat+0x178/0x180
+> [    4.909783] ---[ end trace b4f2db9d9c88610c ]---
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+> v1:
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20210409045314.3420733-1-hsinyi@chromium.org/
+> ---
+>  drivers/gpu/drm/drm_connector.c | 28 +++++++++++++++-------------
+>  1 file changed, 15 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> index 7631f76e7f34..a1acb4af0ef4 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -303,6 +303,10 @@ int drm_connector_init(struct drm_device *dev,
+>  				   config->tile_property,
+>  				   0);
+>  
+> +	drm_object_attach_property(&connector->base,
+> +				   config->panel_orientation_property,
+> +				   DRM_MODE_PANEL_ORIENTATION_UNKNOWN);
+> +
 
-Applied to
+A bit silly to add this to every connector. I think you should just
+fix the driver/bridge stuff to set up the orientaion earlier.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+>  	if (drm_core_check_feature(dev, DRIVER_ATOMIC)) {
+>  		drm_object_attach_property(&connector->base, config->prop_crtc_id, 0);
+>  	}
+> @@ -1210,7 +1214,7 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
+>   *	INPUT_PROP_DIRECT) will still map 1:1 to the actual LCD panel
+>   *	coordinates, so if userspace rotates the picture to adjust for
+>   *	the orientation it must also apply the same transformation to the
+> - *	touchscreen input coordinates. This property is initialized by calling
+> + *	touchscreen input coordinates. This property value is set by calling
+>   *	drm_connector_set_panel_orientation() or
+>   *	drm_connector_set_panel_orientation_with_quirk()
+>   *
+> @@ -1298,6 +1302,14 @@ int drm_connector_create_standard_properties(struct drm_device *dev)
+>  		return -ENOMEM;
+>  	dev->mode_config.hdr_output_metadata_property = prop;
+>  
+> +	prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
+> +					"panel orientation",
+> +					drm_panel_orientation_enum_list,
+> +					ARRAY_SIZE(drm_panel_orientation_enum_list));
+> +	if (!prop)
+> +		return -ENOMEM;
+> +	dev->mode_config.panel_orientation_property = prop;
+> +
+>  	return 0;
+>  }
+>  
+> @@ -2205,19 +2217,9 @@ int drm_connector_set_panel_orientation(
+>  	info->panel_orientation = panel_orientation;
+>  
+>  	prop = dev->mode_config.panel_orientation_property;
+> -	if (!prop) {
+> -		prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
+> -				"panel orientation",
+> -				drm_panel_orientation_enum_list,
+> -				ARRAY_SIZE(drm_panel_orientation_enum_list));
+> -		if (!prop)
+> -			return -ENOMEM;
+> -
+> -		dev->mode_config.panel_orientation_property = prop;
+> -	}
+>  
+> -	drm_object_attach_property(&connector->base, prop,
+> -				   info->panel_orientation);
+> +	drm_object_property_set_value(&connector->base, prop,
+> +				      info->panel_orientation);
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL(drm_connector_set_panel_orientation);
+> -- 
+> 2.31.1.498.g6c1eba8ee3d-goog
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
-Thanks!
-
-[1/1] dt-bindings: spi: Convert Freescale QSPI binding to json schema
-      commit: 9ec2a73f0b09f5a5070a0092f08b1531b2cb0d8d
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+Ville Syrjälä
+Intel
