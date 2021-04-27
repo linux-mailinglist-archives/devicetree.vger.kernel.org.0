@@ -2,72 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1119D36C18A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 11:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB5D736C20D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 11:48:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbhD0JVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Apr 2021 05:21:01 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:43286 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230354AbhD0JUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Apr 2021 05:20:48 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id CE3671C0B79; Tue, 27 Apr 2021 11:11:33 +0200 (CEST)
-Date:   Tue, 27 Apr 2021 11:11:33 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Tianling Shen <cnsztl@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>,
-        Marty Jones <mj8263788@gmail.com>,
-        Jensen Huang <jensenhuang@friendlyarm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: rename LED label for NanoPi R4S
-Message-ID: <20210427091132.GA9373@amd>
-References: <20210426114652.29542-1-cnsztl@gmail.com>
+        id S235132AbhD0JtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Apr 2021 05:49:25 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:11869 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235249AbhD0JtY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Apr 2021 05:49:24 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1619516921; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=8AsmZyBIhvhaE3uaf1AcLPrkdQJjpoWFs7gTSVdvoi0=; b=hWvZ+xfWRhBOTpIhso6iM9iNAhASRMyzJxBdv7vh2MwR0svayzVh+V2HpZE9TBSPKMysw4zL
+ GvRjcOZy16hLs69A1lsobxZJAJ0Tz96YXS1407NMQ7rgw28T8v5cW6I7QZOIBVHm/U3BON2g
+ BHGeZPzmN9E18gMYqldHS5goWy8=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 6087ddea2cc44d3aeac4ddf8 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 27 Apr 2021 09:48:26
+ GMT
+Sender: tdas=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B28D0C4338A; Tue, 27 Apr 2021 09:48:26 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [192.168.0.102] (unknown [49.204.181.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 666EDC433D3;
+        Tue, 27 Apr 2021 09:48:23 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 666EDC433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=tdas@codeaurora.org
+Subject: Re: [PATCH v1 4/6] clk: qcom: Add graphics clock controller driver
+ for SC7280
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org
+References: <1615944142-12171-1-git-send-email-tdas@codeaurora.org>
+ <1615944142-12171-5-git-send-email-tdas@codeaurora.org>
+ <161786654585.3790633.12597782416303763853@swboyd.mtv.corp.google.com>
+From:   Taniya Das <tdas@codeaurora.org>
+Message-ID: <575a9235-7753-d589-2173-050a16063b71@codeaurora.org>
+Date:   Tue, 27 Apr 2021 15:18:20 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="nFreZHaLTZJo0R7j"
-Content-Disposition: inline
-In-Reply-To: <20210426114652.29542-1-cnsztl@gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <161786654585.3790633.12597782416303763853@swboyd.mtv.corp.google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Stephen,
 
---nFreZHaLTZJo0R7j
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for your review.
 
-On Mon 2021-04-26 19:46:52, Tianling Shen wrote:
-> However "sys" is not a valid function, and it is always on.
-> Let's keep existing functions.
->=20
-> Fixes: db792e9adbf85f ("rockchip: rk3399: Add support for FriendlyARM Nan=
-oPi R4S")
->=20
+On 4/8/2021 12:52 PM, Stephen Boyd wrote:
+> Quoting Taniya Das (2021-03-16 18:22:20)
+>> +static struct clk_regmap_div gpu_cc_hub_ahb_div_clk_src = {
+>> +       .reg = 0x11c0,
+>> +       .shift = 0,
+>> +       .width = 4,
+>> +       .clkr.hw.init = &(struct clk_init_data) {
+>> +               .name = "gpu_cc_hub_ahb_div_clk_src",
+>> +               .parent_data = &(const struct clk_parent_data){
+>> +                       .hw = &gpu_cc_hub_clk_src.clkr.hw,
+> 
+> Can you follow what Dmitry has done and use .hws instead of
+> clk_parent_data when the whole array is clk_hw pointers?
+> 
 
-Acked-by: Pavel Machek <pavel@ucw.cz>
+Will update them in the next patch.
 
---=20
-http://www.livejournal.com/~pavelmachek
+>> +               },
+>> +               .num_parents = 1,
+>> +               .flags = CLK_SET_RATE_PARENT,
+>> +               .ops = &clk_regmap_div_ro_ops,
+>> +       },
+>> +};
+>> +
 
---nFreZHaLTZJo0R7j
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation.
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAmCH1UQACgkQMOfwapXb+vIytgCgsvCEfJXxZS5O2ixhW9KWCWq2
-w3wAn0V4RXIAUDnRv0twwb9Uy9EseOV2
-=DyY8
------END PGP SIGNATURE-----
-
---nFreZHaLTZJo0R7j--
+--
