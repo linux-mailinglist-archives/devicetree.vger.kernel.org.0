@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC20E36C5ED
-	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 14:17:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00EB936C623
+	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 14:35:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235435AbhD0MSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Apr 2021 08:18:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43660 "EHLO mail.kernel.org"
+        id S235428AbhD0Mf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Apr 2021 08:35:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52418 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235410AbhD0MSb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Apr 2021 08:18:31 -0400
+        id S235410AbhD0Mf4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Apr 2021 08:35:56 -0400
 Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 66C3861131;
-        Tue, 27 Apr 2021 12:17:48 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 16CF9613C1;
+        Tue, 27 Apr 2021 12:35:13 +0000 (UTC)
 Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why.misterjones.org)
         by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94)
         (envelope-from <maz@kernel.org>)
-        id 1lbMew-009fzR-4n; Tue, 27 Apr 2021 13:17:46 +0100
-Date:   Tue, 27 Apr 2021 13:17:45 +0100
-Message-ID: <87mttjor9y.wl-maz@kernel.org>
+        id 1lbMvm-009g6L-VJ; Tue, 27 Apr 2021 13:35:11 +0100
+Date:   Tue, 27 Apr 2021 13:35:10 +0100
+Message-ID: <87lf93oqgx.wl-maz@kernel.org>
 From:   Marc Zyngier <maz@kernel.org>
 To:     Anirudha Sarangi <anirudha.sarangi@xilinx.com>
 Cc:     Thomas Gleixner <tglx@linutronix.de>,
@@ -37,10 +37,10 @@ Cc:     Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
         <devicetree@vger.kernel.org>, <git@xilinx.com>
-Subject: Re: [PATCH 1/3] irqchip: xilinx: Avoid __init macro usage for xilinx_intc_of_init
-In-Reply-To: <20210427113136.12469-2-anirudha.sarangi@xilinx.com>
+Subject: Re: [PATCH 2/3] irqchip: Add support to remove irqchip driver modules.
+In-Reply-To: <20210427113136.12469-3-anirudha.sarangi@xilinx.com>
 References: <20210427113136.12469-1-anirudha.sarangi@xilinx.com>
-        <20210427113136.12469-2-anirudha.sarangi@xilinx.com>
+        <20210427113136.12469-3-anirudha.sarangi@xilinx.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
  (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -54,71 +54,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Apr 2021 12:31:34 +0100,
+On Tue, 27 Apr 2021 12:31:35 +0100,
 Anirudha Sarangi <anirudha.sarangi@xilinx.com> wrote:
 > 
-> This patch ensures that xilinx_intc_of_init API is not allocated into
-> the .init.text section. Since this API calls the API set_handle_irq
-> which uses __init macro to be put into .init.text section, this patch
-> makes changes to ensure that set_handle_irq also does not stay in
-> .init.text section.
-> This patch is in preparation for the patch through which the xilinx
-> intc driver will be loaded and unloaded as a module.
+> The existing irqchip implementation does not fully support use cases
+> where an irqchip driver has to be used as a module. In particular there
+> is no support to remove an irqchip driver module.
+> The use cases where an irqchip driver has to be loaded and then removed
+> as a module are really relevant in fpga world. A user can decide to
+> have a irqchip as part of a removable partial fpga region. In such cases
+> not only the corresponding irqchip driver has to be loaded as a module,
+> but must also be removed when the removable partial region is removed.
+> 
+> The existing implementation updates the existing framework to achieve
+> the above said goal.
 > 
 > Signed-off-by: Anirudha Sarangi <anirudha.sarangi@xilinx.com>
-> ---
->  drivers/irqchip/irq-xilinx-intc.c | 4 ++--
->  include/linux/irq.h               | 2 +-
->  kernel/irq/handle.c               | 2 +-
->  3 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/irqchip/irq-xilinx-intc.c b/drivers/irqchip/irq-xilinx-intc.c
-> index 1d3d273309bd..642733a6cbdf 100644
-> --- a/drivers/irqchip/irq-xilinx-intc.c
-> +++ b/drivers/irqchip/irq-xilinx-intc.c
-> @@ -177,8 +177,8 @@ static void xil_intc_irq_handler(struct irq_desc *desc)
->  	chained_irq_exit(chip, desc);
->  }
->  
-> -static int __init xilinx_intc_of_init(struct device_node *intc,
-> -					     struct device_node *parent)
-> +static int xilinx_intc_of_init(struct device_node *intc,
-> +			       struct device_node *parent)
->  {
->  	struct xintc_irq_chip *irqc;
->  	int ret, irq;
-> diff --git a/include/linux/irq.h b/include/linux/irq.h
-> index 2efde6a79b7e..252fab8074de 100644
-> --- a/include/linux/irq.h
-> +++ b/include/linux/irq.h
-> @@ -1250,7 +1250,7 @@ int ipi_send_mask(unsigned int virq, const struct cpumask *dest);
->   * Returns 0 on success, or -EBUSY if an IRQ handler has already been
->   * registered.
->   */
-> -int __init set_handle_irq(void (*handle_irq)(struct pt_regs *));
-> +int set_handle_irq(void (*handle_irq)(struct pt_regs *));
->  
->  /*
->   * Allows interrupt handlers to find the irqchip that's been registered as the
-> diff --git a/kernel/irq/handle.c b/kernel/irq/handle.c
-> index 762a928e18f9..a0b18e8f5af0 100644
-> --- a/kernel/irq/handle.c
-> +++ b/kernel/irq/handle.c
-> @@ -218,7 +218,7 @@ irqreturn_t handle_irq_event(struct irq_desc *desc)
->  }
->  
->  #ifdef CONFIG_GENERIC_IRQ_MULTI_HANDLER
-> -int __init set_handle_irq(void (*handle_irq)(struct pt_regs *))
-> +int set_handle_irq(void (*handle_irq)(struct pt_regs *))
->  {
->  	if (handle_arch_irq)
->  		return -EBUSY;
 
-No, never.
+There is absolutely no way we can entertain the removal of an
+interrupt controller based on *this*.
 
-This function is for a root interrupt controller. You will never be
-able to use this from a module. If you are calling this from something
-that isn't marked __init, this is a terrible bug.
+What happen to the irqdesc structures? What happen when a client
+driver decides to do a disable_irq(), or any other interaction with
+the interrupt controller that now has dangling pointers everywhere (if
+your third patch is supposed to be an example of how to use this
+functionality)?
+
+So no, you can't do that until you figure out all the dependencies
+that need to be accounted for to safely remove an interrupt
+controller.
 
 	M.
 
