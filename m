@@ -2,83 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 149FC36C6B4
-	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 15:08:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD36336C6AD
+	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 15:05:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235517AbhD0NIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Apr 2021 09:08:44 -0400
-Received: from hel-mailgw-01.vaisala.com ([193.143.230.17]:53914 "EHLO
-        hel-mailgw-01.vaisala.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235446AbhD0NIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Apr 2021 09:08:43 -0400
-X-Greylist: delayed 501 seconds by postgrey-1.27 at vger.kernel.org; Tue, 27 Apr 2021 09:08:43 EDT
-Received: from HEL-SMTP.corp.vaisala.com (HEL-SMTP.corp.vaisala.com [172.24.1.225])
-        by hel-mailgw-01.vaisala.com (Postfix) with ESMTP id D6AF8601EE1A;
-        Tue, 27 Apr 2021 15:59:30 +0300 (EEST)
-Received: from localhost.localdomain ([172.24.253.155]) by HEL-SMTP.corp.vaisala.com over TLS secured channel with Microsoft SMTPSVC(8.5.9600.16384);
-         Tue, 27 Apr 2021 15:59:37 +0300
-Subject: Re: [PATCH 1/4] dt-bindings: nvmem: Add bootcount-nvmem
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, srinivas.kandagatla@linaro.org
-References: <cover.1619511801.git.nandor.han@vaisala.com>
- <942aacf1c51861e5a09db6a6d322666709695df2.1619511801.git.nandor.han@vaisala.com>
- <1619528221.583004.1346444.nullmailer@robh.at.kernel.org>
-From:   Nandor Han <nandor.han@vaisala.com>
-Message-ID: <e7b2fb04-4c36-3e09-5d62-e1bfd38e134e@vaisala.com>
-Date:   Tue, 27 Apr 2021 15:59:31 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S235489AbhD0NGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Apr 2021 09:06:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36098 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235875AbhD0NGU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Apr 2021 09:06:20 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC4CC061756
+        for <devicetree@vger.kernel.org>; Tue, 27 Apr 2021 06:05:36 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id k4-20020a7bc4040000b02901331d89fb83so6808809wmi.5
+        for <devicetree@vger.kernel.org>; Tue, 27 Apr 2021 06:05:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hyHZv2pQIe4zPxW3vUkDBiN3woZzeIjWNkh06b5/QZk=;
+        b=jXG5blgAAZiTK1GhlpNoq1nRmEE4uJb4C/YPMsZAGEqdr2ZyD5+Wr2HJZvjaQZeGKo
+         ZvLQvfBL09yuGlRhYcx9Ld1ualcpXa8HBm9Zsnoa5MeDUgWa8c3T3UHFd8KRbeGjfn4v
+         OOHxWilyyakFyx5GgPdC54T2kCzSgJ6US4Nt5SRMHSx6Buo9ZFFuxEP25QTVQbFD9ztS
+         XOxKg3kmvF9PSA3kWbTfEvGKSZwsMNe3xQzoamfSpkOMEVP80bw3/JPwwGeanpQW9LJc
+         30cDyFSe0kW1FpzdfGNT8g2U1eWNsfxLQq33GA8+tPsCHSxTbI5VFNhrRHy/GwaXH6y+
+         AMLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hyHZv2pQIe4zPxW3vUkDBiN3woZzeIjWNkh06b5/QZk=;
+        b=AQvntZxgsVrwCxeGaNTXBZ0nkyTpSYNuOjKX1DvmiIB2DNEPh2Yc6iA/bHFKVu2U4l
+         T00KIjstCRA3HQM0cZV0f/uEbi/ipLSvnpvxgshqOwENwtnEJJ6F+UTHWh5HadTmgAgc
+         VmFOYVPWk+N0S/FW4G3I5w5zwNUpgZo3METnYxWsHTb0oDM0+fqOec8mbL+fW4mKdQYc
+         Yx1/AR7UrQTVFErHoRACn5b5iNJhQyKD3T/xewoFh1tUrq6eV6g9Kb3wTrI8stLTzmpw
+         plCXT4EW0MYxRUiIGgR7e76o0ZWhZorJH16sg4W5TcgMJIY7QEQPgYBtHYN9KG/79nWF
+         lSEg==
+X-Gm-Message-State: AOAM533dtIh3rJ+NcFxJHKPL2znZP2Ov6jOvQqaY7vG9hSn3Bzm38pun
+        tvMs9CV6ZWrJKVdH/Q/l4EsFpA==
+X-Google-Smtp-Source: ABdhPJw5Hmu5Szk5Y3EV/jnChUIyhNYAeAguL/ydFympBaDt9Z9Buyek7RHSCXK4c3uqxmn0gpOPCw==
+X-Received: by 2002:a1c:4c15:: with SMTP id z21mr4223939wmf.54.1619528734303;
+        Tue, 27 Apr 2021 06:05:34 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id y19sm2488118wmj.28.2021.04.27.06.05.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Apr 2021 06:05:33 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+Cc:     wcheng@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        dmitry.baryshkov@linaro.org, bryan.odonoghue@linaro.org
+Subject: [PATCH v3 0/2] Enable VBUS current boost on pm8150b platforms
+Date:   Tue, 27 Apr 2021 14:07:10 +0100
+Message-Id: <20210427130712.2005456-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-In-Reply-To: <1619528221.583004.1346444.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-OriginalArrivalTime: 27 Apr 2021 12:59:37.0710 (UTC) FILETIME=[2DD098E0:01D73B65]
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On Tue, 27 Apr 2021 11:26:31 +0300, Nandor Han wrote:
->> Documents the device tree bindings for `bootcount-nvmem` driver.
->>
->> Signed-off-by: Nandor Han <nandor.han@vaisala.com>
->> ---
->>   .../bindings/nvmem/bootcount-nvmem.yaml       | 72 +++++++++++++++++++
->>   1 file changed, 72 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/nvmem/bootcount-nvmem.yaml
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Error: Documentation/devicetree/bindings/nvmem/bootcount-nvmem.example.dts:34.1-2 syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[1]: *** [scripts/Makefile.lib:377: Documentation/devicetree/bindings/nvmem/bootcount-nvmem.example.dt.yaml] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1414: dt_binding_check] Error 2
-> 
-> See https://patchwork.ozlabs.org/patch/1470591
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+V3:
+- Drop the SoC regulator constraints for
+  regulator-min-microamp
+  regulator-max-microamp
+  These will be applied on a per-board basis - Mark Brown
 
-Thanks for the quick feedback Rob.
+V2:
+The first version of this patch set the current limit to 3 amps as was done
+in downstream. Mark indicated a preference to set this on a per-system
+basis instead of blitzing it, as in downstream.
 
-I did run some checks, maybe not well enough.
-I will have a look to your suggestions.
+Looking at what was upstream versus what was in my working tree I saw that
+in fact the VBUS boost driver had been upstreamed minus accompanying DTS in
+pm8150b.
 
-Regards,
-    Nandor
+So there's no need for a fixes as this driver doesn't appear to be in use.
+A subsequent patchset will enable the VBUS boost for the two relevant
+upstream platforms.
+
+First thing though, is the driver + dts change.
+
+- Use regulator_set_current_limit_regmap/regulator_get_current_limit_regmap
+  with a relevant current-to-bitmap lookup.
+
+- Add a parallel DTS entry to the pm8150b
+  It looks like this was submitted upstream but not followed up on
+
+  I've add regulator-min-microamp/regulator-max-microamp to Wesley's
+  original work.
+
+I've made sure to test that its possible to set the current to anything in
+the range of 500 mA to 3 A and confirmed the output on a scope.
+
+Once these two patches are in, I'll send out board enablement for the
+sm8150-mtp and qrb5165-rb5.
+
+https://lore.kernel.org/linux-arm-msm/8687acdb-75e9-5fc5-dd3e-9a19615676b5@linaro.org/T/#t
+
+Bryan O'Donoghue (1):
+  regulator: Add a routine to set the current limit for QCOM PMIC VBUS
+
+Wesley Cheng (1):
+  arm64: boot: dts: qcom: pm8150b: Add DTS node for PMIC VBUS booster
+
+ arch/arm64/boot/dts/qcom/pm8150b.dtsi       |  6 ++++++
+ drivers/regulator/qcom_usb_vbus-regulator.c | 12 ++++++++++++
+ 2 files changed, 18 insertions(+)
+
+-- 
+2.30.1
+
