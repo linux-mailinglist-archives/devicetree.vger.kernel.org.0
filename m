@@ -2,89 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00EB936C623
-	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 14:35:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C456B36C689
+	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 14:57:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235428AbhD0Mf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Apr 2021 08:35:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52418 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235410AbhD0Mf4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Apr 2021 08:35:56 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 16CF9613C1;
-        Tue, 27 Apr 2021 12:35:13 +0000 (UTC)
-Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1lbMvm-009g6L-VJ; Tue, 27 Apr 2021 13:35:11 +0100
-Date:   Tue, 27 Apr 2021 13:35:10 +0100
-Message-ID: <87lf93oqgx.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Anirudha Sarangi <anirudha.sarangi@xilinx.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Valentin Schneider <valentin.schneider@arm.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Maulik Shah <mkshah@codeaurora.org>,
-        Zhen Lei <thunder.leizhen@huawei.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
+        id S236288AbhD0M5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Apr 2021 08:57:55 -0400
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:36641 "EHLO
+        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236225AbhD0M5v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Apr 2021 08:57:51 -0400
+Received: by mail-oi1-f172.google.com with SMTP id i26so4290683oii.3;
+        Tue, 27 Apr 2021 05:57:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=rFoPXvGb1JtyBzu9l/r6cY4fSMekVIRELQco4ayK1NI=;
+        b=CNAc+/18BknFkSuBWnSev6GhO9S8IyMddNeRoqD7gW8rQpnnqxCnFtXMfBBm0tvXC6
+         nB/OI90Kc4EUydXwQGWHMObpX6c3NKjWwZUFM+uEmTIIKlOpZlQ5ZE1PKYMzbYztVTxr
+         2an9WYy8C6d5UTpqICndG687WxS4nOmYcOEh58du8zTUN338pagbKu+YYzInb/fZQSaX
+         N/mPQM6wWaIC+25S29pftAH03WsyLMHSkC1gbQhnr94KaHyA6jB2cItHyU3KS8oP0DJ+
+         BUoFLAWNPzGfTbhwp1R5P9xfrJcqjG1eiW/I4Wb5C0TY5p8SEHsQ4hZb2UDJPIOVPk0u
+         UiZw==
+X-Gm-Message-State: AOAM533eAikCl54RpfNzx9VAxep5BFP7N2OW4SYvQPGk7ygJN4Dkfchj
+        bpRYjg/t28eFOkkgyphVXw==
+X-Google-Smtp-Source: ABdhPJwM44JxerROpT3ApIxLaKblGtdBJU69E/VgkkOIh7U3tZybzktLqkK+0Ia1ylvgSnPtle4f+w==
+X-Received: by 2002:a05:6808:1cc:: with SMTP id x12mr3296849oic.114.1619528226258;
+        Tue, 27 Apr 2021 05:57:06 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id z197sm3737837oia.3.2021.04.27.05.57.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Apr 2021 05:57:05 -0700 (PDT)
+Received: (nullmailer pid 1346448 invoked by uid 1000);
+        Tue, 27 Apr 2021 12:57:01 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Fenglin Wu <fenglinw@codeaurora.org>
+Cc:     collinsd@codeaurora.org, linux-pwm@vger.kernel.org,
+        subbaram@codeaurora.org, linux-kernel@vger.kernel.org,
+        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, <git@xilinx.com>
-Subject: Re: [PATCH 2/3] irqchip: Add support to remove irqchip driver modules.
-In-Reply-To: <20210427113136.12469-3-anirudha.sarangi@xilinx.com>
-References: <20210427113136.12469-1-anirudha.sarangi@xilinx.com>
-        <20210427113136.12469-3-anirudha.sarangi@xilinx.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 62.31.163.78
-X-SA-Exim-Rcpt-To: anirudha.sarangi@xilinx.com, tglx@linutronix.de, michal.simek@xilinx.com, valentin.schneider@arm.com, dianders@chromium.org, hdegoede@redhat.com, mkshah@codeaurora.org, thunder.leizhen@huawei.com, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org, frowand.list@gmail.com, devicetree@vger.kernel.org, git@xilinx.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        linux-arm-msm@vger.kernel.org, aghayal@codeaurora.org,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>
+In-Reply-To: <20210427102247.822-2-fenglinw@codeaurora.org>
+References: <20210427102247.822-1-fenglinw@codeaurora.org> <20210427102247.822-2-fenglinw@codeaurora.org>
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: add bindings for PWM modules inside QCOM PMICs
+Date:   Tue, 27 Apr 2021 07:57:01 -0500
+Message-Id: <1619528221.595166.1346447.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Apr 2021 12:31:35 +0100,
-Anirudha Sarangi <anirudha.sarangi@xilinx.com> wrote:
+On Tue, 27 Apr 2021 18:22:09 +0800, Fenglin Wu wrote:
+> Add bindings for QCOM PMIC PWM modules which are accessed through SPMI
+> bus.
 > 
-> The existing irqchip implementation does not fully support use cases
-> where an irqchip driver has to be used as a module. In particular there
-> is no support to remove an irqchip driver module.
-> The use cases where an irqchip driver has to be loaded and then removed
-> as a module are really relevant in fpga world. A user can decide to
-> have a irqchip as part of a removable partial fpga region. In such cases
-> not only the corresponding irqchip driver has to be loaded as a module,
-> but must also be removed when the removable partial region is removed.
+> Signed-off-by: Fenglin Wu <fenglinw@codeaurora.org>
+> ---
+>  .../devicetree/bindings/pwm/pwm-qcom.yaml          | 51 ++++++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-qcom.yaml
 > 
-> The existing implementation updates the existing framework to achieve
-> the above said goal.
-> 
-> Signed-off-by: Anirudha Sarangi <anirudha.sarangi@xilinx.com>
 
-There is absolutely no way we can entertain the removal of an
-interrupt controller based on *this*.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-What happen to the irqdesc structures? What happen when a client
-driver decides to do a disable_irq(), or any other interaction with
-the interrupt controller that now has dangling pointers everywhere (if
-your third patch is supposed to be an example of how to use this
-functionality)?
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/pwm/pwm-qcom.yaml:29:6: [warning] wrong indentation: expected 4 but found 5 (indentation)
 
-So no, you can't do that until you figure out all the dependencies
-that need to be accounted for to safely remove an interrupt
-controller.
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pwm/pwm-qcom.yaml: Additional properties are not allowed ('Properties' was unexpected)
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pwm/pwm-qcom.yaml: Additional properties are not allowed ('Properties' was unexpected)
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pwm/pwm-qcom.yaml: 'anyOf' conditional failed, one must be fixed:
+	'properties' is a required property
+	'patternProperties' is a required property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pwm/pwm-qcom.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/pwm/pwm-qcom.yaml
+Documentation/devicetree/bindings/pwm/pwm-qcom.example.dts:21.13-28: Warning (reg_format): /example-0/pwms@e800:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/pwm/pwm-qcom.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/pwm/pwm-qcom.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/pwm/pwm-qcom.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/pwm/pwm-qcom.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/pwm/pwm-qcom.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pwm/pwm-qcom.example.dt.yaml: example-0: pwms@e800:reg:0: [59392] is too short
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+Documentation/devicetree/bindings/pwm/pwm-qcom.example.dt.yaml:0:0: /example-0/pwms@e800: failed to match any schema with compatible: ['qcom,pwm']
 
-	M.
+See https://patchwork.ozlabs.org/patch/1470623
 
--- 
-Without deviation from the norm, progress is not possible.
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
