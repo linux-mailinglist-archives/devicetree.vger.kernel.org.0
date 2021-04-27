@@ -2,145 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFA2836BF29
-	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 08:15:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59BBF36BF45
+	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 08:27:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231835AbhD0GQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Apr 2021 02:16:32 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:59694 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231475AbhD0GQb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Apr 2021 02:16:31 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1619504148; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=iIaFHsC2q3y5q2pnS4HpSRkWmVmG0nqVEnAYVg4o9xA=;
- b=wHBg71tzSKjgcdeaU8V09OpwSTeQxaNjacvq85Q4n+/iz9nLeCE6upnB0qyCQ23/IGt2l7dm
- m3n9xh1yppbMfXx7QQ/znR0dF6Nj2G3dTFRJ9OjLI4i6dyWnFdoEmK1AwsaCmihNX+Llid/A
- Tb2y5aSjaWQsA6AJ9NlE/MarRlU=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 6087ac122cc44d3aea15661a (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 27 Apr 2021 06:15:46
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id BFFD8C4323A; Tue, 27 Apr 2021 06:15:45 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id F2B30C433F1;
-        Tue, 27 Apr 2021 06:15:44 +0000 (UTC)
+        id S232971AbhD0G1r convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 27 Apr 2021 02:27:47 -0400
+Received: from de-smtp-delivery-1.mimecast.com ([62.140.7.241]:43375 "EHLO
+        de-smtp-1.mimecast.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229977AbhD0G1r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Apr 2021 02:27:47 -0400
+X-Greylist: delayed 303 seconds by postgrey-1.27 at vger.kernel.org; Tue, 27 Apr 2021 02:27:46 EDT
+Received: from GBR01-CWL-obe.outbound.protection.outlook.com
+ (mail-cwlgbr01lp2058.outbound.protection.outlook.com [104.47.20.58]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ de-mta-37-d_heKhvxNyiHn5gO4bEfJQ-1; Tue, 27 Apr 2021 08:20:45 +0200
+X-MC-Unique: d_heKhvxNyiHn5gO4bEfJQ-1
+Received: from CWXP265MB2680.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:89::10)
+ by CWXP265MB1782.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:31::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.25; Tue, 27 Apr
+ 2021 06:20:44 +0000
+Received: from CWXP265MB2680.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::a91f:361d:5554:3958]) by CWXP265MB2680.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::a91f:361d:5554:3958%5]) with mapi id 15.20.4065.027; Tue, 27 Apr 2021
+ 06:20:44 +0000
+From:   =?iso-8859-1?Q?Christian_L=F6hle?= <CLoehle@hyperstone.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "heiko@sntech.de" <heiko@sntech.de>,
+        "jbx6244@gmail.com" <jbx6244@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-rockchip@lists.infradead.org" 
+        <linux-rockchip@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: [PATCH] arm64: dts: rockchip: include uhs support for rockpro64
+Thread-Topic: [PATCH] arm64: dts: rockchip: include uhs support for rockpro64
+Thread-Index: AQHXOyz+Y+++fPZwnUCCEHYwxF4ENA==
+Date:   Tue, 27 Apr 2021 06:20:44 +0000
+Message-ID: <CWXP265MB2680938B222248792AC205F9C4419@CWXP265MB2680.GBRP265.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [185.80.168.10]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: db886a9f-25e4-401f-8c16-08d9094496fd
+x-ms-traffictypediagnostic: CWXP265MB1782:
+x-microsoft-antispam-prvs: <CWXP265MB178252640054C134136511F0C4419@CWXP265MB1782.GBRP265.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:580
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0
+x-microsoft-antispam-message-info: tI5cR32TYqY6iDAioP2nCl509xqgr8+EV9You1i0FfKnb4OH2M+/OxS2k8FgvUc84UpH1cdGcCWUHwGFS82Dwd+Aui9vPzgyq/R94q8xTOBFZdpAqOZhXWAujJbCnTo8C245v3BH2XxynWbzsPNwiBrXDES/XSTKzrhhMIegE7ibTJmUG8sbtHovf4XO6HSJTS0rhjrte3Otd2DVvTmavvgIWO93cQwG3kAYIfhDfgC+8z5T9zJsWwSpeSoSp9EMtdtOynEwGAMIidVTif4LITa/p44DHEMAh0DV8R3KvX2wCwBuayc2nzbrxfnesHLpTJK1Ub30CyL92igoxT9NFt+FKViA5Fr4URd82PlELSvAF4yzbUxkPVwjp5sAIC2IdMHkHA2vuVkBOmSwbk6SwOnj4txu9jGHgpYOMu4e/jTa0XFJir3W1X/RAP06ynrWbYexZR5jFqpZrdjJ5sCBJaLlES/QojIP2NGTrxICIjlaLa7weLEdklTLbVgw8R9mE/q7MTEsmceva4UjFhXbDqv/s0et9wFexYKzsnT+Lt2KznWH8hRWCfqPrDF/poIeyehXMCGvMu8/9UrGpSukMgyyHzAIFMsXG4stvJ5p4Yo=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWXP265MB2680.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(376002)(366004)(346002)(136003)(396003)(39830400003)(478600001)(38100700002)(55016002)(9686003)(33656002)(8676002)(122000001)(86362001)(2906002)(26005)(316002)(66446008)(71200400001)(76116006)(66946007)(6506007)(91956017)(186003)(7696005)(66476007)(64756008)(4744005)(110136005)(66556008)(8936002)(52536014)(5660300002);DIR:OUT;SFP:1101
+x-ms-exchange-antispam-messagedata: =?iso-8859-1?Q?OuWTbE2yJTeHHGT6JJX6xMAyD+CogABqu6CBA1XPWau8yHnBtOHwX/xKwZ?=
+ =?iso-8859-1?Q?8KKI1xdkzzNcOXW1lO0jyg1GFDeUDdvzeFsZoNWF8loIK4ACv1GZe9yFwd?=
+ =?iso-8859-1?Q?vx/KZapNgqgtZV0p/Mc5XzAGHIbHj2fGQWaiQybFwSjEKPSjzqBur3m22m?=
+ =?iso-8859-1?Q?kEdzZeghIixXfjSUno6/y6fKVQfiE5feJrAC8aLwDZY8gHBrXhwZMUPLCU?=
+ =?iso-8859-1?Q?0BuBtIfMN6lxuwmtj1gjrOTH6P2zo7JGFhI3CnNF54unJQarMRyEjANrqD?=
+ =?iso-8859-1?Q?6rpLNmaPLtrhi0Fpgkea2LJKGK/bx6tqR1vitxZZGow8n8m1DWChPHVTP5?=
+ =?iso-8859-1?Q?99llk77tX0uZWcaDZvdVEN3DG81vapQ/LTcXLB+Ef1JX1GzBfLmsK7ddLl?=
+ =?iso-8859-1?Q?u5phSLJ2LWiw3qtD0tefwj3HCeFWH8ZVj2LuIUKT0ZUor6Gi5GFDuk1qvq?=
+ =?iso-8859-1?Q?1n3YKQLo+SkK1abo6Yf52LEvZHIa57HcvDlmxsW4xSRYXVdkNgXr4gjug6?=
+ =?iso-8859-1?Q?Evzh/aVthZof2PuIZEMoZTZmv3d8h/orVAdnB73OkaWqYSNwx6Fhj/EFrm?=
+ =?iso-8859-1?Q?X3/bOmpZ8fDaVy17z96eM3tF4/Ynp30ez86DPKgwqmf+e5JVLG2dHHEktX?=
+ =?iso-8859-1?Q?ha3lM/oCXhDBjiesEyRxRO4WDs+wmeLc3hWD0Cqwz08ZQyCWKp6sAJxQIn?=
+ =?iso-8859-1?Q?/Po0BrkcPBEAy00mdOr/gfcYLJuHwAUq25WuG/hPDc0XEwfaE9mxfjpNN0?=
+ =?iso-8859-1?Q?bM0USJjb06zOqpDJ5BWXkBznXMbjKSCJxvtu8LvZjp2+234sKaoZY9OtYw?=
+ =?iso-8859-1?Q?mUc0qLd0mZcuFXCI8fvyZqcRlR7BGmog95mwy6Kv+EOgXLCSE6S6I6+e+c?=
+ =?iso-8859-1?Q?13pBCbXHcZVfH2j4zlNKkSxTFAXv6yR6Zq+wVON8rOa4r7TXBEi+5U0/xw?=
+ =?iso-8859-1?Q?YMx74qTztfptHB5E9juAOlW+8y4CBdLrR1n/kXppyeyW4KjzTfRVfsI5HT?=
+ =?iso-8859-1?Q?IYGTRc2QyLnV7wxZa1+5+cVoGJHxk8ADnqpXV3oaY7x7RyG6S/Ze6fMd3u?=
+ =?iso-8859-1?Q?5nYw5/GpFFEhiX8PtL0luLRy8QfP0DjBoYzMXe/p6ItFlDm/sxxHMWh9eT?=
+ =?iso-8859-1?Q?G4I8V3D4LHp24Q7OglGTqGmd3+kLLZ2E6jy6z17fu1hOevftqxJjQ5igx/?=
+ =?iso-8859-1?Q?kOFW+e2VWphL1/5HdDApxSiTGyFpacSwZLgj+yXGtnScWkN6gzRYz+RwzQ?=
+ =?iso-8859-1?Q?hmp7gyf7L23WRmpmQuw5SizRQllIGhflggRjRaNu7YcWuMSQL71TlS+cPS?=
+ =?iso-8859-1?Q?IAXm3eQU53uqO4MXoURxjShXhpe4L5eidmieG5VT4uQ5ZGo=3D?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 27 Apr 2021 11:45:44 +0530
-From:   skakit@codeaurora.org
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
-        Vinod Koul <vkoul@kernel.org>,
-        Courtney Cavin <courtney.cavin@sonymobile.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH V2 3/4] dt-bindings: power: reset: qcom-pon: Convert qcom
- PON binding to yaml
-In-Reply-To: <0cb9b3503000ac7206f4a3ef5fd16c17@codeaurora.org>
-References: <1617881469-31965-1-git-send-email-skakit@codeaurora.org>
- <1617881469-31965-4-git-send-email-skakit@codeaurora.org>
- <20210408130001.k3qbq3vvwkiyykzv@earth.universe>
- <0cb9b3503000ac7206f4a3ef5fd16c17@codeaurora.org>
-Message-ID: <322cbdbb022fec3f43c1cbe13c532dd3@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+X-OriginatorOrg: hyperstone.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CWXP265MB2680.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: db886a9f-25e4-401f-8c16-08d9094496fd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Apr 2021 06:20:44.4593
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 86f203eb-e878-4188-b297-34c118c18b11
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cDVPSSfFRyEYHVkSwQz6QW8u1yUsFQAnLyuL11lr3rP2NQ9ocBRonZf6xrU629MSCUi7Fh/h0takmmKZhE1gYA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP265MB1782
+Authentication-Results: relay.mimecast.com;
+        auth=pass smtp.auth=CDE5A68 smtp.mailfrom=cloehle@hyperstone.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: hyperstone.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
+The DesignWare Host Controller has full UHS-I support, so use it.
 
-On 2021-04-09 13:48, skakit@codeaurora.org wrote:
-> Hi Sebastian,
-> 
-> On 2021-04-08 18:30, Sebastian Reichel wrote:
->> Hi,
->> 
->> On Thu, Apr 08, 2021 at 05:01:08PM +0530, satya priya wrote:
->>> Convert qcom PON binding from .txt to .yaml format.
->>> 
->>> Signed-off-by: satya priya <skakit@codeaurora.org>
->>> ---
->> 
->> Thanks for doing this.
->> 
->>> Changes in V2:
->>>  - As per Rob's comments, converted the main PON binding and added in 
->>> V2.
->>> 
-[...]
->>> +  reg:
->>> +    description: Specifies the physical address of the pon register
->> 
->> That description is obvious and pointless. Instead add
->> 
->> maxItems: 1
->> 
-> 
-> Okay.
-> 
->>> +  pwrkey:
->>> +    type: object
->>> +    $ref: "../../input/qcom,pm8941-pwrkey.yaml#"
->>> +
->>> +  resin:
->>> +    type: object
->>> +    $ref: "../../input/qcom,pm8941-pwrkey.yaml#"
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +additionalProperties: true
->> 
->> Instead of allowing arbitrary properties, only valid modes
->> should be allowed. So drop additionalProperties and do this
->> instead:
->> 
->> allOf:
->>   - $ref: reboot-mode.yaml#
->> 
->> unevaluatedProperties: false
->> 
-> 
-> Okay.
-> 
+Signed-off-by: Christian Loehle <cloehle@hyperstone.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-I am not able to use 'allOf' to refer reboot-mode.yaml as some of the 
-properties do not match with reboot-mode.yaml properties. Can we use 
-oneOf like below?
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+index 6bff8db7d33e..d22a489ec214 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+@@ -722,6 +722,7 @@ &sdmmc {
+ 	max-frequency = <150000000>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_bus4>;
++	sd-uhs-sdr104;
+ 	vmmc-supply = <&vcc3v0_sd>;
+ 	vqmmc-supply = <&vcc_sdio>;
+ 	status = "okay";
+-- 
+2.31.1
+Hyperstone GmbH | Line-Eid-Strasse 3 | 78467 Konstanz
+Managing Directors: Dr. Jan Peter Berns.
+Commercial register of local courts: Freiburg HRB381782
 
-oneOf:
-   - $ref: "reboot-mode.yaml#"
-   - $ref: "../../input/qcom,pm8941-pwrkey.yaml#"
-
-Also, If I drop additionalProperties I am getting below error.
-
-kernel/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml: 
-'additionalProperties' is a required property
-
-Thanks,
-Satya Priya
