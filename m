@@ -2,80 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B6C536CACD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 20:03:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA26636CAFF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 20:18:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230219AbhD0SDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Apr 2021 14:03:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33726 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235505AbhD0SDx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Apr 2021 14:03:53 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 455EC613EA;
-        Tue, 27 Apr 2021 18:03:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1619546590;
-        bh=vy3k35Bj6stbxNOye/Cejf2BSEz1ql5Q4SsDkq7RzRw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QYvhWproMfI79Q64smdMt9GcN8s23TFQNoLs72QQLe1HKheGnyjRZozAbInICP2jN
-         0SScjfwSjsgmRD1prnDIZl1tOsC8XQQ0rfot7rJOcYkUU+qtZiIcUUPV2nkHv6Sesm
-         Ds4OJDJIWypq3I8mqJ9pljpr1AhNPUpQJdcUiX64m8HAgd6bK6nLN4kXgeYatq0vO4
-         VR3nSjuNq9F9kYPT3BOa3oBZ2qzYUdw/HsRyrrsYvj4uxpBO1213iMFzU4MFj5mNFg
-         JiCj0wNVDOduMuvQDO0cwGRz7hQkXiEUtAVQ0jVVRlGNhUYKYrIdhfLqbg5YvFSRR2
-         w7y6hEQ1F3mog==
-Received: by mail-ed1-f46.google.com with SMTP id y3so34773023eds.5;
-        Tue, 27 Apr 2021 11:03:10 -0700 (PDT)
-X-Gm-Message-State: AOAM532iWMO2Pn0qSAO9hL4ORDKOPf8bOgEG6VT/4YDVce4MXsGjo3TX
-        815qU3RUj7VZLbs0c7Xur7qIxAC6JWiCbf148A==
-X-Google-Smtp-Source: ABdhPJw9TV7O3DokH5AG0Ubo8wdmQp0AN5FyiL06VAdwCqc0TDmeBw9QKLyu0QE2TUTo6gHULbCLwJ/ScDO8tZ04rUA=
-X-Received: by 2002:a05:6402:34c8:: with SMTP id w8mr6123543edc.194.1619546588848;
- Tue, 27 Apr 2021 11:03:08 -0700 (PDT)
+        id S238665AbhD0STW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Apr 2021 14:19:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49578 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238516AbhD0STW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Apr 2021 14:19:22 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A09D1C061574;
+        Tue, 27 Apr 2021 11:18:37 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id o16so69256853ljp.3;
+        Tue, 27 Apr 2021 11:18:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=e37rDx7ngrrX1XPOlWKvyTs3z4dJ4MqXCHjL33sYDUA=;
+        b=WEfVwlO1yAJjRfPz4Xqle/vpvHa0ZX9wuLtXBZ8lic2yvIPlmRtyaAFrVtztcawhsr
+         8VdCOSAkWdzZHXLXVuiysajrnnt4o5qvSGi2BY5vqE3bx5jusysvfU27+1RYP3jCEh5t
+         9HAQcBct0VyxhqwoVIC8Ah1eARLuRJocJtubrtVxYqXSzscfV/hwWIR7DUj/uNWSMjDw
+         3hPOWO4SUnbpPkKt1ASG3WbDNtuljf/95s9h5ZO/srursBteV2WSuDo/CT/q5Njo+Hm+
+         usy/1p7TCWQ3ncKGBcrq/ZJYAMrBy6lcPPnWug47/nv9v8Yzia+yq0P6N55J92UO78l6
+         1x2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=e37rDx7ngrrX1XPOlWKvyTs3z4dJ4MqXCHjL33sYDUA=;
+        b=f+TmdHXbOCr95v/uQEJRcRDzoHsMobqECIDuDYCTjwI+h5pRUeBVvpo0M5KCo2TRj0
+         yT0osiNeUwG2FNYhNFbhw1XSolLTvcV1w80U38jZxSlq/LlBBDOXf2o2QoF4UjVRmN81
+         0w/QKQ3YOSGBR4HTPr1lsSPgXh7m13SlJHFZibP0G48os/IC0/IM4TsexMkhlxdAvdvF
+         v385tfGroveQ7yCQ76v+KkpfuYtp0nT6OynKMW8LC79q0NNUf0KmYEJjPYzvqYde8zPY
+         VzbS9FFvPoCRoLsQUT89W1TIy+eWzXmwLJ04ehPG6non1FLPv4zQxDqbCkgO4QzAiKIX
+         WQ4Q==
+X-Gm-Message-State: AOAM531iGRKt3bWn6U61ydBxGVa4GdoaB/gUfxaWhQSk10hBscALcoVZ
+        0nfUbpRtjOPwg0aFDAJ2hqg+QTL2qksWPbCY
+X-Google-Smtp-Source: ABdhPJwtRB7eR6JvGQeJoEsu5oYccpzwjVSVv3xW1f36oyUfQNiZmOHemOZqB1KcQda60Xv9SohMSQ==
+X-Received: by 2002:a2e:6a05:: with SMTP id f5mr17264434ljc.23.1619547515667;
+        Tue, 27 Apr 2021 11:18:35 -0700 (PDT)
+Received: from [10.0.0.42] (91-155-111-71.elisa-laajakaista.fi. [91.155.111.71])
+        by smtp.gmail.com with ESMTPSA id m4sm133279lfc.127.2021.04.27.11.18.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Apr 2021 11:18:34 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: ti: j7200-main: Mark Main NAVSS as
+ dma-coherent
+To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210427175130.29451-1-vigneshr@ti.com>
+From:   =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+Message-ID: <d36f0be0-3358-971c-e385-f920cfa333cd@gmail.com>
+Date:   Tue, 27 Apr 2021 21:19:54 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-References: <20210408202436.3706-1-fabrizio.castro.jz@renesas.com> <20210409185420.GA3955417@robh.at.kernel.org>
-In-Reply-To: <20210409185420.GA3955417@robh.at.kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 27 Apr 2021 13:02:57 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL5tzJhMzTyyTDnVh=doDknepkk8R0McKsj4U2aqSMFAw@mail.gmail.com>
-Message-ID: <CAL_JsqL5tzJhMzTyyTDnVh=doDknepkk8R0McKsj4U2aqSMFAw@mail.gmail.com>
-Subject: Re: [PATCH] media: dt-bindings: media: renesas,drif: Fix fck definition
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Ramesh Shanmugasundaram <rashanmu@gmail.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210427175130.29451-1-vigneshr@ti.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 9, 2021 at 1:54 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, 08 Apr 2021 21:24:36 +0100, Fabrizio Castro wrote:
-> > dt_binding_check reports the below error with the latest schema:
-> >
-> > Documentation/devicetree/bindings/media/renesas,drif.yaml:
-> >   properties:clock-names:maxItems: False schema does not allow 1
-> > Documentation/devicetree/bindings/media/renesas,drif.yaml:
-> >   ignoring, error in schema: properties: clock-names: maxItems
-> >
-> > This patch fixes the problem.
-> >
-> > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > ---
-> >  Documentation/devicetree/bindings/media/renesas,drif.yaml | 4 +---
-> >  1 file changed, 1 insertion(+), 3 deletions(-)
-> >
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Still failing in linux-next...
 
-Rob
+On 4/27/21 8:51 PM, Vignesh Raghavendra wrote:
+> Traffic through main NAVSS interconnect is coherent wrt ARM caches on
+> J7200 SoC.  Add missing dma-coherent property to main_navss node.
+> 
+> Also add dma-ranges to be consistent with mcu_navss node.
+
+and with am65, j721e main and mcu navss...
+
+Reviewed-by: Peter Ujfalusi <peter.ujfalusi@gmail.com>
+
+> Fixes: d361ed88455fe ("arm64: dts: ti: Add support for J7200 SoC")
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> index f86c493a44f1c..a6826f1888ef0 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> @@ -85,6 +85,8 @@ main_navss: bus@30000000 {
+>  		#size-cells = <2>;
+>  		ranges = <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>;
+>  		ti,sci-dev-id = <199>;
+> +		dma-coherent;
+> +		dma-ranges;
+>  
+>  		main_navss_intr: interrupt-controller1 {
+>  			compatible = "ti,sci-intr";
+> 
+
+-- 
+Péter
