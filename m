@@ -2,127 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59BBF36BF45
-	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 08:27:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E04C436BF3B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 08:25:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232971AbhD0G1r convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 27 Apr 2021 02:27:47 -0400
-Received: from de-smtp-delivery-1.mimecast.com ([62.140.7.241]:43375 "EHLO
-        de-smtp-1.mimecast.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229977AbhD0G1r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Apr 2021 02:27:47 -0400
-X-Greylist: delayed 303 seconds by postgrey-1.27 at vger.kernel.org; Tue, 27 Apr 2021 02:27:46 EDT
-Received: from GBR01-CWL-obe.outbound.protection.outlook.com
- (mail-cwlgbr01lp2058.outbound.protection.outlook.com [104.47.20.58]) (Using
- TLS) by relay.mimecast.com with ESMTP id
- de-mta-37-d_heKhvxNyiHn5gO4bEfJQ-1; Tue, 27 Apr 2021 08:20:45 +0200
-X-MC-Unique: d_heKhvxNyiHn5gO4bEfJQ-1
-Received: from CWXP265MB2680.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:89::10)
- by CWXP265MB1782.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:31::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.25; Tue, 27 Apr
- 2021 06:20:44 +0000
-Received: from CWXP265MB2680.GBRP265.PROD.OUTLOOK.COM
- ([fe80::a91f:361d:5554:3958]) by CWXP265MB2680.GBRP265.PROD.OUTLOOK.COM
- ([fe80::a91f:361d:5554:3958%5]) with mapi id 15.20.4065.027; Tue, 27 Apr 2021
- 06:20:44 +0000
-From:   =?iso-8859-1?Q?Christian_L=F6hle?= <CLoehle@hyperstone.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "heiko@sntech.de" <heiko@sntech.de>,
-        "jbx6244@gmail.com" <jbx6244@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-rockchip@lists.infradead.org" 
-        <linux-rockchip@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: rockchip: include uhs support for rockpro64
-Thread-Topic: [PATCH] arm64: dts: rockchip: include uhs support for rockpro64
-Thread-Index: AQHXOyz+Y+++fPZwnUCCEHYwxF4ENA==
-Date:   Tue, 27 Apr 2021 06:20:44 +0000
-Message-ID: <CWXP265MB2680938B222248792AC205F9C4419@CWXP265MB2680.GBRP265.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [185.80.168.10]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: db886a9f-25e4-401f-8c16-08d9094496fd
-x-ms-traffictypediagnostic: CWXP265MB1782:
-x-microsoft-antispam-prvs: <CWXP265MB178252640054C134136511F0C4419@CWXP265MB1782.GBRP265.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:580
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0
-x-microsoft-antispam-message-info: tI5cR32TYqY6iDAioP2nCl509xqgr8+EV9You1i0FfKnb4OH2M+/OxS2k8FgvUc84UpH1cdGcCWUHwGFS82Dwd+Aui9vPzgyq/R94q8xTOBFZdpAqOZhXWAujJbCnTo8C245v3BH2XxynWbzsPNwiBrXDES/XSTKzrhhMIegE7ibTJmUG8sbtHovf4XO6HSJTS0rhjrte3Otd2DVvTmavvgIWO93cQwG3kAYIfhDfgC+8z5T9zJsWwSpeSoSp9EMtdtOynEwGAMIidVTif4LITa/p44DHEMAh0DV8R3KvX2wCwBuayc2nzbrxfnesHLpTJK1Ub30CyL92igoxT9NFt+FKViA5Fr4URd82PlELSvAF4yzbUxkPVwjp5sAIC2IdMHkHA2vuVkBOmSwbk6SwOnj4txu9jGHgpYOMu4e/jTa0XFJir3W1X/RAP06ynrWbYexZR5jFqpZrdjJ5sCBJaLlES/QojIP2NGTrxICIjlaLa7weLEdklTLbVgw8R9mE/q7MTEsmceva4UjFhXbDqv/s0et9wFexYKzsnT+Lt2KznWH8hRWCfqPrDF/poIeyehXMCGvMu8/9UrGpSukMgyyHzAIFMsXG4stvJ5p4Yo=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWXP265MB2680.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(376002)(366004)(346002)(136003)(396003)(39830400003)(478600001)(38100700002)(55016002)(9686003)(33656002)(8676002)(122000001)(86362001)(2906002)(26005)(316002)(66446008)(71200400001)(76116006)(66946007)(6506007)(91956017)(186003)(7696005)(66476007)(64756008)(4744005)(110136005)(66556008)(8936002)(52536014)(5660300002);DIR:OUT;SFP:1101
-x-ms-exchange-antispam-messagedata: =?iso-8859-1?Q?OuWTbE2yJTeHHGT6JJX6xMAyD+CogABqu6CBA1XPWau8yHnBtOHwX/xKwZ?=
- =?iso-8859-1?Q?8KKI1xdkzzNcOXW1lO0jyg1GFDeUDdvzeFsZoNWF8loIK4ACv1GZe9yFwd?=
- =?iso-8859-1?Q?vx/KZapNgqgtZV0p/Mc5XzAGHIbHj2fGQWaiQybFwSjEKPSjzqBur3m22m?=
- =?iso-8859-1?Q?kEdzZeghIixXfjSUno6/y6fKVQfiE5feJrAC8aLwDZY8gHBrXhwZMUPLCU?=
- =?iso-8859-1?Q?0BuBtIfMN6lxuwmtj1gjrOTH6P2zo7JGFhI3CnNF54unJQarMRyEjANrqD?=
- =?iso-8859-1?Q?6rpLNmaPLtrhi0Fpgkea2LJKGK/bx6tqR1vitxZZGow8n8m1DWChPHVTP5?=
- =?iso-8859-1?Q?99llk77tX0uZWcaDZvdVEN3DG81vapQ/LTcXLB+Ef1JX1GzBfLmsK7ddLl?=
- =?iso-8859-1?Q?u5phSLJ2LWiw3qtD0tefwj3HCeFWH8ZVj2LuIUKT0ZUor6Gi5GFDuk1qvq?=
- =?iso-8859-1?Q?1n3YKQLo+SkK1abo6Yf52LEvZHIa57HcvDlmxsW4xSRYXVdkNgXr4gjug6?=
- =?iso-8859-1?Q?Evzh/aVthZof2PuIZEMoZTZmv3d8h/orVAdnB73OkaWqYSNwx6Fhj/EFrm?=
- =?iso-8859-1?Q?X3/bOmpZ8fDaVy17z96eM3tF4/Ynp30ez86DPKgwqmf+e5JVLG2dHHEktX?=
- =?iso-8859-1?Q?ha3lM/oCXhDBjiesEyRxRO4WDs+wmeLc3hWD0Cqwz08ZQyCWKp6sAJxQIn?=
- =?iso-8859-1?Q?/Po0BrkcPBEAy00mdOr/gfcYLJuHwAUq25WuG/hPDc0XEwfaE9mxfjpNN0?=
- =?iso-8859-1?Q?bM0USJjb06zOqpDJ5BWXkBznXMbjKSCJxvtu8LvZjp2+234sKaoZY9OtYw?=
- =?iso-8859-1?Q?mUc0qLd0mZcuFXCI8fvyZqcRlR7BGmog95mwy6Kv+EOgXLCSE6S6I6+e+c?=
- =?iso-8859-1?Q?13pBCbXHcZVfH2j4zlNKkSxTFAXv6yR6Zq+wVON8rOa4r7TXBEi+5U0/xw?=
- =?iso-8859-1?Q?YMx74qTztfptHB5E9juAOlW+8y4CBdLrR1n/kXppyeyW4KjzTfRVfsI5HT?=
- =?iso-8859-1?Q?IYGTRc2QyLnV7wxZa1+5+cVoGJHxk8ADnqpXV3oaY7x7RyG6S/Ze6fMd3u?=
- =?iso-8859-1?Q?5nYw5/GpFFEhiX8PtL0luLRy8QfP0DjBoYzMXe/p6ItFlDm/sxxHMWh9eT?=
- =?iso-8859-1?Q?G4I8V3D4LHp24Q7OglGTqGmd3+kLLZ2E6jy6z17fu1hOevftqxJjQ5igx/?=
- =?iso-8859-1?Q?kOFW+e2VWphL1/5HdDApxSiTGyFpacSwZLgj+yXGtnScWkN6gzRYz+RwzQ?=
- =?iso-8859-1?Q?hmp7gyf7L23WRmpmQuw5SizRQllIGhflggRjRaNu7YcWuMSQL71TlS+cPS?=
- =?iso-8859-1?Q?IAXm3eQU53uqO4MXoURxjShXhpe4L5eidmieG5VT4uQ5ZGo=3D?=
-x-ms-exchange-transport-forked: True
+        id S231792AbhD0G03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Apr 2021 02:26:29 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:62985 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229578AbhD0G02 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Apr 2021 02:26:28 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1619504746; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=/5CO6kyKiMLSUDsUJcNBx75sAEKt3Nx/B9KxXAfbB5c=;
+ b=cm4Qu794K+njHdVxj7f/6+zjPBuW1b9ANeeFRt6B02lf21XZuw97baUf8nlRonCehqkcOOGx
+ o/OAo+Mgg4GbpcGbx8d5qAL0qYA1KEsSboOC20UHbCMXT5tFdEy+fJ1WINoSLycFaCqQLJzZ
+ 1QOvpE4nHSD0RTWzBkPn8xXhVQQ=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 6087ae6afebcffa80f4922c2 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 27 Apr 2021 06:25:46
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 0181DC43217; Tue, 27 Apr 2021 06:25:45 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1E859C433D3;
+        Tue, 27 Apr 2021 06:25:45 +0000 (UTC)
 MIME-Version: 1.0
-X-OriginatorOrg: hyperstone.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CWXP265MB2680.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: db886a9f-25e4-401f-8c16-08d9094496fd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Apr 2021 06:20:44.4593
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 86f203eb-e878-4188-b297-34c118c18b11
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cDVPSSfFRyEYHVkSwQz6QW8u1yUsFQAnLyuL11lr3rP2NQ9ocBRonZf6xrU629MSCUi7Fh/h0takmmKZhE1gYA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP265MB1782
-Authentication-Results: relay.mimecast.com;
-        auth=pass smtp.auth=CDE5A68 smtp.mailfrom=cloehle@hyperstone.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: hyperstone.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 27 Apr 2021 11:55:45 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        robh+dt@kernel.org, ulf.hansson@linaro.org, rjw@rjwysocki.net,
+        agross@kernel.org, ohad@wizery.com, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        rishabhb@codeaurora.org, sidgup@codeaurora.org
+Subject: Re: [PATCH 02/12] soc: qcom: aoss: Drop power domain support
+In-Reply-To: <161871128938.46595.8658084266884500136@swboyd.mtv.corp.google.com>
+References: <1618574638-5117-1-git-send-email-sibis@codeaurora.org>
+ <1618574638-5117-3-git-send-email-sibis@codeaurora.org>
+ <161871128938.46595.8658084266884500136@swboyd.mtv.corp.google.com>
+Message-ID: <7adff8e58784bb85ea844ad338bfb19c@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DesignWare Host Controller has full UHS-I support, so use it.
+On 2021-04-18 07:31, Stephen Boyd wrote:
+> Quoting Sibi Sankar (2021-04-16 05:03:48)
+>> The load state resources are expected to follow the life cycle of the
+>> remote processor it tracks. However, modeling load state resources as
+>> power-domains result in them getting turned off during system suspend
+>> and thereby falling out of sync with the remote processors that are 
+>> still
+>> on. Fix this by replacing load state resource control through the 
+>> generic
+>> qmp message send interface instead.
+>> 
+>> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+>> ---
+> 
+> Is it possible to keep this code around for a cycle so that there isn't
+> the chance that someone is using the deprecated DT bindings with a new
+> kernel? I worry that ripping the code out will cause them angst.
 
-Signed-off-by: Christian Loehle <cloehle@hyperstone.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+deprecated bindings with a newer kernel
+shouldn't cause any problems since it is
+the driver changes that make AOSS PD
+mandatory or not. So the newer kernel will
+just use qmp_send and leave the PD unused.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-index 6bff8db7d33e..d22a489ec214 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-@@ -722,6 +722,7 @@ &sdmmc {
- 	max-frequency = <150000000>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_bus4>;
-+	sd-uhs-sdr104;
- 	vmmc-supply = <&vcc3v0_sd>;
- 	vqmmc-supply = <&vcc_sdio>;
- 	status = "okay";
+> Certainly we have to keep the code in place until DT is updated, so 
+> this
+> patch should come last?
+
+sure I don't mind, as long as it simplifies
+the merge process.
+
 -- 
-2.31.1
-Hyperstone GmbH | Line-Eid-Strasse 3 | 78467 Konstanz
-Managing Directors: Dr. Jan Peter Berns.
-Commercial register of local courts: Freiburg HRB381782
-
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
