@@ -2,187 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25C9036C041
-	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 09:38:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74FD336C051
+	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 09:41:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235028AbhD0HjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Apr 2021 03:39:06 -0400
-Received: from mail-dm6nam12on2070.outbound.protection.outlook.com ([40.107.243.70]:32594
-        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S235185AbhD0Hi6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Apr 2021 03:38:58 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UbqOYGhi8BKQJSbG8J/pb5t3ix4xVr/DwyE2gst2IWt0eNImp8fT6W5+sSWjdu2k7QjuMH/DmLv7zllIXt+u6uGq3yAZyQVyjn27MEYYymccgPMZ5B33JONB7F65C4S9c8N6Fak3uuwjTVeApSmY2uM3SSggf+5EoIAWf1o42DmckTO0GL6dbvRXZKuodnoWqv3UqNbnBfDKDfWI9dmgHSYV0qCOPNgT6xad+bSLQVe8m8e8IkBuV5dqt+7DM4omikdSvDZbT6JmdE8KHwM2vhMnAXOM3yU+xroUdotiy1/iyfV1tHcmQcOLLaFkLrBXONsKrRDGc5pGoR68tjHzYg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dYBjNKcwG1M+7PJwl9raJnwT7lvaC2HHcmV6KeAcivg=;
- b=PYgvwg/sN6Uwn8QS9wWf0ceUHqPRNekJO6Vm7MZdVARJ6qgPZY8SufAOGRdKLUnssbHCxdHtZtiWsraXUJffz1CLdMJyLy8AQqwwgApv6qm8Dv6RiGbTrltZpoFunckW2X+E96+aPGit0DzXeHne2p6USpg2zsPA+bi93dlFlMpdyKfPHW/Dij8gkLh6JoG7rcKw/frCjbhwCGxOxnW/Fj9AxhVdV4GKwMyhLM0bWxf0unPWUpaxtHpklw+fs3aRn3nb/1r5A8onnVgvncw1nO6ZtoTvl0niacFoaoxGyPOV7VDsD+ZEb9jWB2L6iiYiIHG5L2mpQ3k9UG6rVYYMnQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=gmail.com smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+        id S229988AbhD0Hmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Apr 2021 03:42:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49126 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235054AbhD0Hmd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Apr 2021 03:42:33 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03F5BC06175F;
+        Tue, 27 Apr 2021 00:41:46 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id s15so68806286edd.4;
+        Tue, 27 Apr 2021 00:41:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dYBjNKcwG1M+7PJwl9raJnwT7lvaC2HHcmV6KeAcivg=;
- b=lHmkKKXvryN/PUK81oii/pP/hfZ5uw7G1R2yzTFN/YN17yixv76svb62nQgoYx4T2fwYjFEBF3c1zYlNozrdoA7UytgqBGvRU05PjfOojBsR+M8sUuqg32Gn3zAkRnRcZiC15BUcr7+reKQS8lIOp1O6BFZrbfE+IU8eBG1Dez4=
-Received: from CY4PR15CA0023.namprd15.prod.outlook.com (2603:10b6:910:14::33)
- by DM6PR02MB5497.namprd02.prod.outlook.com (2603:10b6:5:7a::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.25; Tue, 27 Apr
- 2021 07:38:13 +0000
-Received: from CY1NAM02FT006.eop-nam02.prod.protection.outlook.com
- (2603:10b6:910:14:cafe::db) by CY4PR15CA0023.outlook.office365.com
- (2603:10b6:910:14::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.25 via Frontend
- Transport; Tue, 27 Apr 2021 07:38:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- CY1NAM02FT006.mail.protection.outlook.com (10.152.74.104) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4065.21 via Frontend Transport; Tue, 27 Apr 2021 07:38:13 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 27 Apr 2021 00:38:05 -0700
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Tue, 27 Apr 2021 00:38:05 -0700
-Envelope-to: git@xilinx.com,
- saikrishna12468@gmail.com,
- linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- gregkh@linuxfoundation.org,
- robh+dt@kernel.org,
- linus.walleij@linaro.org,
- andy.shevchenko@gmail.com
-Received: from [172.30.17.109] (port=40496)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1lbIIG-0003Qq-El; Tue, 27 Apr 2021 00:38:04 -0700
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Michal Simek <michal.simek@xilinx.com>
-CC:     Sai Krishna Potthuri <lakshmis@xilinx.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        git <git@xilinx.com>,
-        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>
-References: <1619080202-31924-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <1619080202-31924-4-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <CAHp75VfCbbnN-TBJiYFb=6Rhf30jA-Hz1p1UORsubF7UG6-ATw@mail.gmail.com>
- <DM5PR02MB3877B234F85F3B4887DF3A95BD429@DM5PR02MB3877.namprd02.prod.outlook.com>
- <CAHp75VfugGqLNU8LKJ_K3dPr=-eh6LHx75eV=33jH9OnryBoGA@mail.gmail.com>
- <d1220d39-4be4-a375-042f-e7bb0264ed35@xilinx.com>
- <CAHp75Vejqe3r6s5eoOfza0DjXEwN-hK73FWkxx6VNpx0y1ms2w@mail.gmail.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Subject: Re: [PATCH v6 3/3] pinctrl: Add Xilinx ZynqMP pinctrl driver support
-Message-ID: <180ca47b-d627-2d7b-1d18-5557bfcf5875@xilinx.com>
-Date:   Tue, 27 Apr 2021 09:38:00 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=jOHpNKh1HTjasyN4XJNLgqTp4hVmVQAAzXgA0kDhz08=;
+        b=XilaRLgG4z7jtAP1K1nwwywk6vXmjxVmuHvxQCk5mSk7JfDFK5iAJ4qw9YJyYZVPE4
+         B4CUsFEuFGWCMoxYDIcR1R+oDjYn/rxp/yyde8qWZ2y8BujKLm/rvudYRc1T43br5eEE
+         GA5lNbbCMExfmHzyBLJ4d5+yVpW2O5X6U30g/JDZ4ykGqiHgwnlQfU4pQTshEBNI3HAi
+         /R+7X0wl1D7iF5IU5TwIKJC5UQ8ebt69G/JvzuSH1A6pkZj6j9s0bJOxFlTKA97IBs0J
+         7R32IZUy0KLSxDipYeyUrb1jUDXXjHf1jBN+PzuXadJxH/5Dzp/M8rm0x2BWEVw19WUI
+         YoOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jOHpNKh1HTjasyN4XJNLgqTp4hVmVQAAzXgA0kDhz08=;
+        b=FHhj1aMuk4/1/1RfH/pQ4elePnX02q6s/qv6P302yPOgrCFmRooQud/1o89Y7LV4kQ
+         s5i2eTx0NeRmC0nifUqHVVeWiaNr0Q3/eryhYDHzfIS3SyRDuUe8nm+dEAquVcfGwLfb
+         rnYcXxmQW+X4NAjsw3J4fs8kWlhdQUpzssThXOQBsgKJV7LXjZNx8goN6YD7FYPaVu6g
+         7HQXmqQ3U+uHAi1Ha4nsAzhB+NYNM2UHAUEHgSdrzsK0TklTO4iddwhKM2hHhAvpDQtc
+         vrZ4eBeXUVbyuqKaC0rmzBK25noZoV/2hFk3mnQnZxLl3nhlmk5vvOaymVPsXFg0zfAO
+         GWUw==
+X-Gm-Message-State: AOAM532Q/uHzLz8WmOg/ZbDaqZsMYO9Cahc2j5BV5BSbofATzDOiQBus
+        95xtQKinqVNeWuE3KbkmFJJJSe8QBLAH+aTi
+X-Google-Smtp-Source: ABdhPJxxYgiGZAbNM0IERzUdIhVwLuzii5Ng242BVgzibHt+OJkKlsutNVXxDRLTuGvg6x5UDfJ0nw==
+X-Received: by 2002:a05:6402:51cd:: with SMTP id r13mr2786656edd.116.1619509304721;
+        Tue, 27 Apr 2021 00:41:44 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id t1sm12922627eju.88.2021.04.27.00.41.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Apr 2021 00:41:44 -0700 (PDT)
+Subject: Re: [PATCH v2 6/7] arm64: dts: rockchip: add core dtsi for RK3568 SoC
+To:     cl@rock-chips.com, heiko@sntech.de
+Cc:     robh+dt@kernel.org, jagan@amarulasolutions.com, wens@csie.org,
+        uwe@kleine-koenig.org, mail@david-bauer.net,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
+        cnsztl@gmail.com, devicetree@vger.kernel.org,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
+        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
+        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
+        zhangqing@rock-chips.com, huangtao@rock-chips.com,
+        wim@linux-watchdog.org, linux@roeck-us.net, jamie@jamieiles.com,
+        linux-watchdog@vger.kernel.org
+References: <20210425094216.25724-1-cl@rock-chips.com>
+ <20210425094439.25895-1-cl@rock-chips.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <16908f63-4e20-ba1b-3b5c-39b4c4db242b@gmail.com>
+Date:   Tue, 27 Apr 2021 09:41:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
  Thunderbird/78.10.0
 MIME-Version: 1.0
-In-Reply-To: <CAHp75Vejqe3r6s5eoOfza0DjXEwN-hK73FWkxx6VNpx0y1ms2w@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20210425094439.25895-1-cl@rock-chips.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b48e05b5-5196-40a8-e640-08d9094f69df
-X-MS-TrafficTypeDiagnostic: DM6PR02MB5497:
-X-Microsoft-Antispam-PRVS: <DM6PR02MB54974247DF1224E89D36E2DCC6419@DM6PR02MB5497.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DCyT4lelql/jZHOq0YD4vd8GfSC2zDK4PmvbmITLiOiOizVioEWGWrQkOptyQnTQc7B4BcFuazMGYnGLdwVC6wF4j81Trnt/e7kx4KSdfFlsAmVYKt6uL/exDB721RABOGV3EAE/dkVeE5ZzQ+T0o7QyrwgCUWGBANM10z0hq16k2VOemXJNBpuso7CMJLFVPVS2wGT/yuVYVO2mO1kk1AqwtYGcjFs5wM4jr3AfeOf+GJpMVKKOb2ACLKjHDZBKTSs0a+eAIaih//6JS65CY72DbzBEHPlYZJ1KIUhoZ19H4awV6U89GsmNTfV0jlCdWHEBx1jpF95d2nWix523qpboDDfKJ3L3yy2rlLHRYf1bmI7kVN4OjEwRccc37v7SB3U7MJzOyzQypzt9kNrq4iL0H5ZWYj0Rj7kjk/MBTPu4BBxM1YAaEODthqVUVuB4VEoZVyGTlwgZ54cz+lNcCogG3VeYDWcjh1zeXMJSYUbLnj2/dMRsYloh6LJKT7uTFqHdimbBh6I7JzVifLctzXEM/5/ZfTTT0W7WEgPz7JSPJjUTr5TI+skF8rISROSiGdDeRgv4ngVho9ihw5ESjulM2lG/NSspQQfEhjfWeDb+NA1XcQG/3OHBYqZ6pre6qpLG51NiD1Gg+uCcVYdqr5/A7TCuyLhGbivwwdLEhqn5e/2eClJj1i/3OBviJM5kt2kubf4ON+Ij5KygSX8usg==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(136003)(396003)(39850400004)(346002)(376002)(36840700001)(46966006)(9786002)(478600001)(316002)(31696002)(82740400003)(82310400003)(8936002)(426003)(336012)(54906003)(186003)(26005)(70586007)(70206006)(53546011)(4326008)(8676002)(110136005)(44832011)(36906005)(31686004)(83380400001)(2906002)(2616005)(36756003)(5660300002)(36860700001)(47076005)(6666004)(7636003)(356005)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2021 07:38:13.2344
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b48e05b5-5196-40a8-e640-08d9094f69df
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY1NAM02FT006.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB5497
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On 4/27/21 9:31 AM, Andy Shevchenko wrote:
-> On Tue, Apr 27, 2021 at 10:23 AM Michal Simek <michal.simek@xilinx.com> wrote:
->>
->> Hi Andy,
->>
->> On 4/26/21 4:04 PM, Andy Shevchenko wrote:
->>> On Mon, Apr 26, 2021 at 4:20 PM Sai Krishna Potthuri
->>> <lakshmis@xilinx.com> wrote:
->>>>> From: Andy Shevchenko <andy.shevchenko@gmail.com>
->>>>> Sent: Friday, April 23, 2021 9:24 PM
->>>>> On Thu, Apr 22, 2021 at 11:31 AM Sai Krishna Potthuri
->>>>> <lakshmi.sai.krishna.potthuri@xilinx.com> wrote:
->>>
->>> ...
->>>
->>>>>> +config PINCTRL_ZYNQMP
->>>>>> +       tristate "Pinctrl driver for Xilinx ZynqMP"
->>>>>> +       depends on ZYNQMP_FIRMWARE
->>>>>> +       select PINMUX
->>>>>> +       select GENERIC_PINCONF
->>>>>> +       default ZYNQMP_FIRMWARE
->>>>>> +       help
->>>>>> +         This selects the pinctrl driver for Xilinx ZynqMP platform.
->>>>>> +         This driver will query the pin information from the firmware
->>>>>> +         and allow configuring the pins.
->>>>>> +         Configuration can include the mux function to select on those
->>>>>> +         pin(s)/group(s), and various pin configuration parameters
->>>>>> +         such as pull-up, slew rate, etc.
->>>>>
->>>>> Missed module name.
->>>> Is this (module name) a configuration option in Kconfig?
->>>
->>> It's a text in a free form that sheds light on how the module will be
->>> named in case the user will choose "m".
->>
->> Is this described somewhere in documentation that module name should be
->> the part of symbol description? I was looking at pinctrl Kconfig and I
->> can't see any description like this there that's why I want to double
->> check.
+
+On 4/25/21 11:44 AM, cl@rock-chips.com wrote:
+> From: Liang Chen <cl@rock-chips.com>
 > 
-> I dunno if it is described, the group of maintainers require that for some time.
-> I personally found this as a good practice.
-
-I don't think it is a big deal to add it but it is a question if this
-information is useful because module names should correspond target in
-Makefile which can be considered as additional information.
-
+> RK3568 is a high-performance and low power quad-core application processor
+> designed for personal mobile internet device and AIoT equipments. This patch
+> add basic core dtsi file for it.
 > 
->> Also if this is a rule checkpatch should be extended to checking this.
+> We use scmi_clk for cortex-a55 instead of standard ARMCLK, so that
+> kernel/uboot/rtos can change cpu clk with the same code in ATF, and we will
+> enalbe a special high-performacne PLL when high frequency is required. The
+> smci_clk code is in ATF, and clkid for cpu is 0, as below:
 > 
-> There was a discussion at some point to add a check that help
-> description shouldn't be less than 3 lines. Not sure what the outcome
-> of it.
+>     cpu0: cpu@0 {
+>         device_type = "cpu";
+>         compatible = "arm,cortex-a55";
+>         reg = <0x0 0x0>;
+>         clocks = <&scmi_clk 0>;
+>     };
+> 
+> Signed-off-by: Liang Chen <cl@rock-chips.com>
+> ---
+>  .../boot/dts/rockchip/rk3568-pinctrl.dtsi     | 3119 +++++++++++++++++
+>  arch/arm64/boot/dts/rockchip/rk3568.dtsi      |  812 +++++
+>  2 files changed, 3931 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi
+> new file mode 100644
+> index 000000000000..94ee3c2c38af
+> --- /dev/null
 
-This check is likely there because I have definitely seen these messages
-coming but never seen any name checking.
+[..]
 
-Thanks,
-Michal
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> new file mode 100644
+> index 000000000000..66cb50218ca1
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> @@ -0,0 +1,812 @@
 
+[..]
+
+> +
+> +	pmugrf: syscon@fdc20000 {
+
+> +		compatible = "rockchip,rk3568-pmugrf", "syscon", "simple-mfd";
+
+TODO:
+
+> +		reg = <0x0 0xfdc20000 0x0 0x10000>;
+> +
+> +		reboot_mode: reboot-mode {
+> +			compatible = "syscon-reboot-mode";
+> +			mode-bootloader = <BOOT_BL_DOWNLOAD>;
+> +			mode-fastboot = <BOOT_FASTBOOT>;
+> +			mode-loader = <BOOT_BL_DOWNLOAD>;
+> +			mode-normal = <BOOT_NORMAL>;
+> +			mode-recovery = <BOOT_RECOVERY>;
+> +			offset = <0x200>;
+> +		};
+> +	};
+> +
+> +	grf: syscon@fdc60000 {
+
+> +		compatible = "rockchip,rk3568-grf", "syscon", "simple-mfd";
+
+TODO:
+
+> +		reg = <0x0 0xfdc60000 0x0 0x10000>;
+> +	};
+> +
+> +	pmucru: clock-controller@fdd00000 {
+> +		compatible = "rockchip,rk3568-pmucru";
+> +		reg = <0x0 0xfdd00000 0x0 0x1000>;
+
+> +		rockchip,grf = <&grf>;
+> +		rockchip,pmugrf = <&pmugrf>;
+
+clock-controller@fdd00000: 'rockchip,grf', 'rockchip,pmugrf' do not
+match any of the regexes: 'pinctrl-[0-9]+'
+
+Currently clk.c has only support for:
+
+	ctx->grf = syscon_regmap_lookup_by_phandle(ctx->cru_node,
+						   "rockchip,grf");
+
+Manufacturer tree:
+
+	ctx->pmugrf = syscon_regmap_lookup_by_phandle(ctx->cru_node,
+						   "rockchip,pmugrf");
+		case branch_muxpmugrf:
+			clk = rockchip_clk_register_muxgrf(list->name,
+				list->parent_names, list->num_parents,
+				flags, ctx->pmugrf, list->muxdiv_offset,
+				list->mux_shift, list->mux_width,
+				list->mux_flags);
+			break;
+
+
+	MUXPMUGRF(SCLK_32K_IOE, "clk_32k_ioe", clk_32k_ioe_p,  0,
+			RK3568_PMU_GRF_SOC_CON0, 0, 1, MFLAGS)
+
+Do we need a fix?
+
+> +		#clock-cells = <1>;
+> +		#reset-cells = <1>;
+> +	};
+> +
+> +	cru: clock-controller@fdd20000 {
+> +		compatible = "rockchip,rk3568-cru";
+> +		reg = <0x0 0xfdd20000 0x0 0x1000>;
+
+> +		rockchip,grf = <&grf>;
+
+clock-controller@fdd20000: 'assigned-clock-parents',
+'assigned-clock-rates', 'assigned-clocks', 'rockchip,grf' do not match
+any of the regexes:
+
+Add more properties to rockchip,rk3568-cru.yaml
+
+> +		#clock-cells = <1>;
+> +		#reset-cells = <1>;
+> +
+> +		assigned-clocks =
+> +			<&pmucru CLK_RTC_32K>, <&pmucru PLL_PPLL>,
+> +			<&pmucru PCLK_PMU>, <&cru PLL_CPLL>,
+> +			<&cru PLL_GPLL>, <&cru ACLK_BUS>,
+> +			<&cru PCLK_BUS>, <&cru ACLK_TOP_HIGH>,
+> +			<&cru ACLK_TOP_LOW>, <&cru HCLK_TOP>,
+> +			<&cru PCLK_TOP>, <&cru ACLK_PERIMID>,
+> +			<&cru HCLK_PERIMID>, <&cru PLL_NPLL>,
+> +			<&cru ACLK_PIPE>, <&cru PCLK_PIPE>,
+> +			<&cru ACLK_VOP>;
+> +		assigned-clock-rates =
+> +			<32768>, <200000000>,
+> +			<100000000>, <1000000000>,
+> +			<1188000000>, <150000000>,
+> +			<100000000>, <500000000>,
+> +			<400000000>, <150000000>,
+> +			<100000000>, <300000000>,
+> +			<150000000>, <1200000000>,
+> +			<400000000>, <100000000>,
+> +			<500000000>;
+> +		assigned-clock-parents =
+> +			<&pmucru CLK_RTC32K_FRAC>;
+> +	};
