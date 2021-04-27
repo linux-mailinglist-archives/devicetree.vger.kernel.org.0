@@ -2,379 +2,305 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7C9236BF83
-	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 08:54:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4763036BFC4
+	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 09:08:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234721AbhD0GzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Apr 2021 02:55:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38424 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233421AbhD0GzI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Apr 2021 02:55:08 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A6E2C06175F
-        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 23:54:26 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id lp8so316573pjb.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 23:54:26 -0700 (PDT)
+        id S230062AbhD0HIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Apr 2021 03:08:31 -0400
+Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:6146 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229547AbhD0HIa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Apr 2021 03:08:30 -0400
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+        by mx0b-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13R770Di023926;
+        Tue, 27 Apr 2021 00:07:25 -0700
+Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2104.outbound.protection.outlook.com [104.47.55.104])
+        by mx0b-0016f401.pphosted.com with ESMTP id 385tvvkby2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 27 Apr 2021 00:07:25 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=f8KY6h7F+7i6U0Y2JYBMC4VZrR1qFXyeYz8Iskc7ElBq4dSztQezeT9/MYrHb+9HjCeY4GWkvfpyni2hhAc/2TTUKXH9uwReYah7IHB1pNdG81Yi3YdQmn78WvRQpvVB5nYw9HtBMedVkHqF//2eUch6cScZ3ozlNG/sJbgbAH0hVbHRf+7+fwo7rdQmwlywOeBGRw3Zwp5MbAC+oTL9QSqsB/3b2c6j9f2Rit7/sCyBbC48IsL7rKhR6oD11bjlWo6n6QhnESvnAZ3z7yKvp8iFnNZp8K0DZsVAT4qAykCeGgbjtumHyrqlPPRF6KeoTZHck8VI0DpWwp4tsI/g0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=S22nnT+5FpFE2zyYZ801HvBF2BL/foB/jy6MFrDLbLs=;
+ b=mZm6F+MNd1/Xeq9NCyh14IYFeHSdXuTcKs03mgH5VfPO/jHxQh9oDo/JG1Vp9P3E5CgA2HOG3eTmo7T1Odjsv9kuqMtjBvVUuXIvpLUAjpL2c+gv1RL76epRnZBGVHO8HL6hiOA5uyz8n6IpxX8RUW6ri82S+XEV9LX4SHlJQgo5keFHswDRzv2hiVxTZ6xzqzDfj4uhM9b6uup3KANm++cxm2YiRUA/UJe20Au2+lcE7QrNKszK2Qz6k3TJsF501qBCboNGw19UrdKFV99JE2U1FBKNBGajavwo2Ethq97WhkMhZw8xOahxFoBpB530N+06q20Cda2jnfMRq3gg1g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
+ dkim=pass header.d=marvell.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=eoy6Ekq5jH9Tw9gGr9lOGa5VhJ1MFtvj5t8kolnOQas=;
-        b=yby5o42Jpw0hWsMTehYovn8yfKTZcga75OQnLp4wS7e4turDKnxaSkZnIulOj+qv6o
-         FOzvroMdnEqf02+iP/0vnpSvu8hGmNRLWRDeGhz//+RrWNR1OnApQM2kobcGZsB0P3DC
-         D4gsn3+vDzBHlzgrR8OE5+gdrbNEj1tXajcTC5xU0gCVUUD0KbCq+B89df6IUgpIwdzy
-         OQOJ7fw58CHUfc+60Ur32Q30X60ziVJ5DPvyUJd6inAZZM46e7cVana7fCH/vFGl7pMh
-         GQOJRAYy+QL8LIYydGqQFmotkwSWICcrh1wLTuSlAUzqLznrzfadJZjwZLWi2pA5Or92
-         sACA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=eoy6Ekq5jH9Tw9gGr9lOGa5VhJ1MFtvj5t8kolnOQas=;
-        b=Bwhr8W/his8t/B1waXZDgzYGzv9kddrH/wEV1fnASK657YOgW2DOJgoztqSOERegfM
-         AAB98kg+xRyqd/uzXftEq+yT5qziKGpHdeRrKnEfNM4ssDxW9ECPNeZTHNNA0d7ReQ5b
-         fNQyVjCd6Idgk63Vhvtqp0BU6iOJKtCl0UMqlzDO+bpqpPFmNxqC1HHVYMESV8+A5CC2
-         eyvZK4S6RHIusC/k3demOrDG13YPCuRGZKnMSNjBSiqrRCrV8VjiObmBslg/hYhGJHnl
-         MkpuF5egpO1Fmd6egidxxE4lcbF65rWphtGKZuB0GgRN50sd+hImJzl/YrieTxdpDtMF
-         4McQ==
-X-Gm-Message-State: AOAM533RwI/YhJ9BIVRtI/Q6a9X2wYtJ7dhf2Ba9V5g8lvV2ePytvqa9
-        d5Pf7qqKhbQVcZQSSI20Zluq
-X-Google-Smtp-Source: ABdhPJz6PvbY+Wb9LSwJNg40wpVVV0GYrUui0TQPF72A0gGl33SZHADW8pgy61kaTV9DX4hvl2Hm7g==
-X-Received: by 2002:a17:90b:4a04:: with SMTP id kk4mr26941859pjb.68.1619506465632;
-        Mon, 26 Apr 2021 23:54:25 -0700 (PDT)
-Received: from localhost.localdomain ([2409:4072:6d89:3c72:ece6:56fb:d9ac:583c])
-        by smtp.gmail.com with ESMTPSA id x22sm13391986pgx.19.2021.04.26.23.54.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Apr 2021 23:54:25 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     vkoul@kernel.org, kishon@ti.com, robh+dt@kernel.org
-Cc:     bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 3/3] phy: qcom-qmp: Add support for SDX55 QMP PCIe PHY
-Date:   Tue, 27 Apr 2021 12:24:00 +0530
-Message-Id: <20210427065400.18958-4-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210427065400.18958-1-manivannan.sadhasivam@linaro.org>
-References: <20210427065400.18958-1-manivannan.sadhasivam@linaro.org>
+ d=marvell.onmicrosoft.com; s=selector1-marvell-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=S22nnT+5FpFE2zyYZ801HvBF2BL/foB/jy6MFrDLbLs=;
+ b=Kov5PiBPTBPomQZZYy1Yjw/nFAWlk3YVe6WP4XftIAKykkvZRYXZGVCRU8bsYOEFVCCfRCPxpKDLZO0Ek2fnlcHRjnakxbyHw5PRp/FCyXD5zBG6XNvgXy45enMPm6ieh4JeLJ3+SY8YLJgH1BoBq9zffd14BKmW/X73EUVsZ+c=
+Received: from MW2PR18MB2217.namprd18.prod.outlook.com (2603:10b6:907:7::33)
+ by CO6PR18MB4033.namprd18.prod.outlook.com (2603:10b6:5:34d::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.23; Tue, 27 Apr
+ 2021 07:07:21 +0000
+Received: from MW2PR18MB2217.namprd18.prod.outlook.com
+ ([fe80::3811:5dde:7523:bb7d]) by MW2PR18MB2217.namprd18.prod.outlook.com
+ ([fe80::3811:5dde:7523:bb7d%3]) with mapi id 15.20.4065.027; Tue, 27 Apr 2021
+ 07:07:21 +0000
+From:   Ben Peled <bpeled@marvell.com>
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+CC:     "thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mw@semihalf.com" <mw@semihalf.com>,
+        "jaz@semihalf.com" <jaz@semihalf.com>,
+        Kostya Porotchkin <kostap@marvell.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        Stefan Chulski <stefanc@marvell.com>,
+        Ofer Heifetz <oferh@marvell.com>
+Subject: =?Windows-1252?Q?RE:_[EXT]_Re:_[=94PATCH=94_2/5]_PCI:_armada8k:_Add_link-?=
+ =?Windows-1252?Q?down_handle?=
+Thread-Topic: =?Windows-1252?Q?[EXT]_Re:_[=94PATCH=94_2/5]_PCI:_armada8k:_Add_link-down?=
+ =?Windows-1252?Q?_handle?=
+Thread-Index: AQHXL7Dz+S99QhJ6zUeoX2ZX7SJU4aqz9+0AgBMS6gA=
+Date:   Tue, 27 Apr 2021 07:07:20 +0000
+Message-ID: <MW2PR18MB2217E007583257709A026553C2419@MW2PR18MB2217.namprd18.prod.outlook.com>
+References: <1618241456-27200-1-git-send-email-bpeled@marvell.com>
+        <1618241456-27200-3-git-send-email-bpeled@marvell.com>
+ <20210414134240.000057b4@Huawei.com>
+In-Reply-To: <20210414134240.000057b4@Huawei.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: Huawei.com; dkim=none (message not signed)
+ header.d=none;Huawei.com; dmarc=none action=none header.from=marvell.com;
+x-originating-ip: [93.173.98.221]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e24b211a-36af-4655-980b-08d9094b19df
+x-ms-traffictypediagnostic: CO6PR18MB4033:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CO6PR18MB4033C187B85A9FA5175AE24FC2419@CO6PR18MB4033.namprd18.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2582;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: +Ol/7J/NMy5G7NI6CRuGK4DMZxDSmMtuxmwAhIGhHRIhPsC4SiLl+VgvGwQO64t1b9IG9cnCJ/KrUHlSIu8nD0INfZWqxlIyx5W/TcsQ/CEllUSJ68xfbdWoXTBUlDuPGqmM7jghGji5XB86SUMXn46x5lxIcI6Skv8hBEShIYmVNaidenkmbOXx4X2NYxJ2Si2lsPEZE6J4G8Q4mw70s2R8mjtVxiu6aRTSB2H9XBG6/dND3lZGAGMBf+45mc04D3ccQruMV6DCU2BmMpAlo4T9J3kndOFF6W1LLssGfjpwpcUuz5YJwVkTYdwYDwDh7SkokpvjT4xZ6U0uAa40YBXBIQa1JgqHOIuj1EoZl2r8/FA/9RD04HbZO2/89yu7BvVU0gHNWshbPThb1F20pC+vXoFQ5uqIwNrBzmQFvwvJmk6W+qzz4aldaypKtGLUz82DsXDr318YHlpLkFL6ITQ0XsGs1KeSH0hcvWfXyvWkxKU9Iv4aQJDHdWBsU+Jl2ndsdWvPGU3v4qbqyOu40SscmWQvgChK7T7m0dxWiXxfrjihMkIi+gvOjCkVRJ/bWTs4wrSsjxXHiWTSI9YE1/f0IgnWBaJxJ59xwix3tzeNbpah/J/0gmluQpTo64mvY/GiPTacM8LDlY93v0ZbpQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW2PR18MB2217.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(366004)(376002)(136003)(346002)(396003)(478600001)(64756008)(122000001)(26005)(66556008)(316002)(76116006)(66446008)(71200400001)(7416002)(5660300002)(52536014)(107886003)(66476007)(54906003)(83380400001)(4326008)(8936002)(9686003)(7696005)(186003)(2906002)(6916009)(33656002)(55016002)(66946007)(38100700002)(6506007)(86362001)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: =?Windows-1252?Q?u8gRh1kI2TvDq6AY9axeKcGF7dXAwcOFPoRVyGtZ1FG4i2RLD71kzd0d?=
+ =?Windows-1252?Q?shLG2nsZIXtpIgaXh5ivXTEg8Z54NyWSU7F43MfBZq6hyiKhRis2qy9N?=
+ =?Windows-1252?Q?tADuOJQhxGF5hRa710xbvw1oNNncoWovZwvgjBF9pbTPZ+IDfnNDWgzd?=
+ =?Windows-1252?Q?abTk9znHU8WJXVm1UZ2vLTlBz1vTJ3BTtNjv0ZPN6cuTq5TkxqlRoaR0?=
+ =?Windows-1252?Q?Et5nXmAZ/NJJodcPwCnr6iUDridc4U7HtoK3wkdjpamjocgQnXDwX2vb?=
+ =?Windows-1252?Q?UHgR2FKJQds3m04dib4XnFA6xLB2XnIpVqjTC7pZip7uwIrNSriUp2oV?=
+ =?Windows-1252?Q?zJEe9Zxh4rmX6rGTSB4vtoGyLuElbr2cbco+Buut2pe8CiN7haILI32Y?=
+ =?Windows-1252?Q?xpGUJGzyelsOluFXuYmnYRWo5kKb9+fDEo2dZflwtHW0zA79dejAP5Vl?=
+ =?Windows-1252?Q?NGXWUwtCbNKmTjIM0n2Jxc1bq632i2oL2p8cSgcAQFgP9gMZ8zv1pxtO?=
+ =?Windows-1252?Q?eIpN9DTPRssk91F0KkX2PxdeKokMeXySnScu3Tfd7jeruz6X2JVXKJ22?=
+ =?Windows-1252?Q?vuCwqV04Lhpf1HRViqMd2qm07QWnd4crZfBSKMsqwH1tm4/n74Wvig9M?=
+ =?Windows-1252?Q?AODGRjRqxO1xnucmRMSnnBs1uZN+dlql14+NRDRU8XtoQtyVI/zvFMNy?=
+ =?Windows-1252?Q?MJxLpHAEVPuQp3DTithRkBa+J8QQN0Xl0q/bE3/Ws4CQxrNy7Ep55Lag?=
+ =?Windows-1252?Q?KjrBwKmK7voHgMSzVKY6adCuNW1DlpGjkr5EU/YlV/7+IoKcOLQo42wb?=
+ =?Windows-1252?Q?HH8IBzr1CX+Nc+1Mog22PMaXB9x9ddlEge2GudgBxDtdDy+cP3rQSTAC?=
+ =?Windows-1252?Q?F2QJV0UAnoF9Iw3/R/YoMv1tTTcU7IrKW0XfflLxNkFE3IhtAsU7k/2H?=
+ =?Windows-1252?Q?j+PcsBr7phfHAl2w+rqdIp/YBrIx1e0ebbPyljLQ1WyosbEn38Crgn4/?=
+ =?Windows-1252?Q?ZWIt2iaJMAa7nU5G/LNQq/byLUtr55jYI8Kc2NJU/Do2zACvfWhFRZ13?=
+ =?Windows-1252?Q?Xc6ofOQGgzr1bG8CVUaz+JZVF882eUgo+7lR/VvKmaosaIvjgwn1ArGc?=
+ =?Windows-1252?Q?YC8R2mfidKY4E0x0bjL+A73LEx8OT+pl4YGdke4Qb/PttJIo97DHZ5H+?=
+ =?Windows-1252?Q?UCSsd1De6bh6LZyGxfpxTMYroZ78iwtrdM+Et+iS0p5RQ84tQeqMY6VG?=
+ =?Windows-1252?Q?OIF25FHn8IVdWwHDip6Ks1++afYuTpMgf0UzrdzkfK++mVwLkLD0OQA/?=
+ =?Windows-1252?Q?wiNKky5ytOtS9N4ckb81BwPP+VcebZ6nyK4ucn0gykHX/M0SOb+W+tym?=
+ =?Windows-1252?Q?tA3FP6UhYKs9XRJV9ZxB/iUpO3+gyqon6JnPfxmqD7Fu65cYRMOhGyB5?=
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: marvell.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW2PR18MB2217.namprd18.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e24b211a-36af-4655-980b-08d9094b19df
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Apr 2021 07:07:20.8328
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VzrfKdW6jyvC0EHvztMWO5/xQa/RKxExR8KWvl/o28MvKhBdcyEAbaOu6ju+p0yDrIwOCOtIUF/p9+s2i/r7sw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR18MB4033
+X-Proofpoint-GUID: TQnYQ9MAHeyI7OKZ59zdyxRKsIEqvbrG
+X-Proofpoint-ORIG-GUID: TQnYQ9MAHeyI7OKZ59zdyxRKsIEqvbrG
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-04-27_02:2021-04-27,2021-04-27 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PCIe PHY version used in SDX55 is v4.20 which has different register
-offsets compared to the v4.0x PHYs. So separate register defines are
-used for init sequence and PHY status.
+Hi Jonathan,
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- drivers/phy/qualcomm/phy-qcom-qmp.c | 131 ++++++++++++++++++++++++++++
- drivers/phy/qualcomm/phy-qcom-qmp.h |  64 +++++++++++++-
- 2 files changed, 194 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-index c9934b2407c4..bf4d8f22475c 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-@@ -35,6 +35,7 @@
- #define PLL_READY_GATE_EN			BIT(3)
- /* QPHY_PCS_STATUS bit */
- #define PHYSTATUS				BIT(6)
-+#define PHYSTATUS_4_20				BIT(7)
- /* QPHY_PCS_READY_STATUS & QPHY_COM_PCS_READY_STATUS bit */
- #define PCS_READY				BIT(0)
- 
-@@ -2030,6 +2031,101 @@ static const struct qmp_phy_init_tbl sdx55_usb3_uniphy_rx_tbl[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_V4_RX_GM_CAL, 0x1f),
- };
- 
-+static const struct qmp_phy_init_tbl sdx55_qmp_pcie_serdes_tbl[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_BG_TIMER, 0x02),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_BIAS_EN_CLKBUFLR_EN, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_SYS_CLK_CTRL, 0x07),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_PLL_IVCO, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_CP_CTRL_MODE0, 0x0a),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_CP_CTRL_MODE1, 0x0a),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_PLL_RCTRL_MODE0, 0x19),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_PLL_RCTRL_MODE1, 0x19),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_PLL_CCTRL_MODE0, 0x03),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_PLL_CCTRL_MODE1, 0x03),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_SYSCLK_EN_SEL, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_LOCK_CMP_EN, 0x46),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_LOCK_CMP_CFG, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_LOCK_CMP1_MODE0, 0x7f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_LOCK_CMP2_MODE0, 0x02),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_LOCK_CMP1_MODE1, 0xff),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_LOCK_CMP2_MODE1, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_DEC_START_MODE0, 0x4b),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_DEC_START_MODE1, 0x50),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_DIV_FRAC_START3_MODE0, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_INTEGLOOP_GAIN0_MODE0, 0xfb),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_INTEGLOOP_GAIN1_MODE0, 0x01),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_INTEGLOOP_GAIN0_MODE1, 0xfb),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_INTEGLOOP_GAIN1_MODE1, 0x01),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_VCO_TUNE_MAP, 0x02),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_HSCLK_SEL, 0x12),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_HSCLK_HS_SWITCH_SEL, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_CORECLK_DIV_MODE0, 0x05),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_CORECLK_DIV_MODE1, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_CMN_CONFIG, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_CMN_MISC1, 0x88),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_INTERNAL_DIG_CORECLK_DIV, 0x03),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_CMN_MODE, 0x17),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_VCO_DC_LEVEL_CTRL, 0x0b),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_BIN_VCOCAL_CMP_CODE1_MODE0, 0x56),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_BIN_VCOCAL_CMP_CODE2_MODE0, 0x1d),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_BIN_VCOCAL_CMP_CODE1_MODE1, 0x4b),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_BIN_VCOCAL_CMP_CODE2_MODE1, 0x1f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_COM_BIN_VCOCAL_HSCLK_SEL, 0x22),
-+};
-+
-+static const struct qmp_phy_init_tbl sdx55_qmp_pcie_tx_tbl[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_TX_LANE_MODE_1, 0x05),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_TX_LANE_MODE_2, 0xf6),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_TX_LANE_MODE_3, 0x13),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_TX_VMODE_CTRL1, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_TX_PI_QEC_CTRL, 0x00),
-+};
-+
-+static const struct qmp_phy_init_tbl sdx55_qmp_pcie_rx_tbl[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_FO_GAIN_RATE2, 0x0c),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_UCDR_PI_CONTROLS, 0x16),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_AUX_DATA_TCOARSE_TFINE, 0x7f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_DFE_3, 0x55),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_DFE_DAC_ENABLE1, 0x0c),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_DFE_DAC_ENABLE2, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_VGA_CAL_CNTRL2, 0x08),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_RX_EQ_OFFSET_ADAPTOR_CNTRL1, 0x27),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_RX_MODE_RATE_0_1_B1, 0x1a),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_RX_MODE_RATE_0_1_B2, 0x5a),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_RX_MODE_RATE_0_1_B3, 0x09),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_RX_MODE_RATE_0_1_B4, 0x37),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_RX_MODE_RATE2_B0, 0xbd),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_RX_MODE_RATE2_B1, 0xf9),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_RX_MODE_RATE2_B2, 0xbf),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_RX_MODE_RATE2_B3, 0xce),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_RX_MODE_RATE2_B4, 0x62),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_RX_MODE_RATE3_B0, 0xbf),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_RX_MODE_RATE3_B1, 0x7d),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_RX_MODE_RATE3_B2, 0xbf),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_RX_MODE_RATE3_B3, 0xcf),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_RX_MODE_RATE3_B4, 0xd6),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_PHPRE_CTRL, 0xa0),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_DFE_CTLE_POST_CAL_OFFSET, 0x38),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_20_RX_MARG_COARSE_CTRL2, 0x12),
-+};
-+
-+static const struct qmp_phy_init_tbl sdx55_qmp_pcie_pcs_tbl[] = {
-+	QMP_PHY_INIT_CFG(QPHY_V4_20_PCS_RX_SIGDET_LVL, 0x77),
-+	QMP_PHY_INIT_CFG(QPHY_V4_20_PCS_EQ_CONFIG2, 0x01),
-+	QMP_PHY_INIT_CFG(QPHY_V4_20_PCS_EQ_CONFIG4, 0x16),
-+	QMP_PHY_INIT_CFG(QPHY_V4_20_PCS_EQ_CONFIG5, 0x02),
-+};
-+
-+static const struct qmp_phy_init_tbl sdx55_qmp_pcie_pcs_misc_tbl[] = {
-+	QMP_PHY_INIT_CFG(QPHY_V4_20_PCS_PCIE_EQ_CONFIG1, 0x17),
-+	QMP_PHY_INIT_CFG(QPHY_V4_20_PCS_PCIE_G3_RXEQEVAL_TIME, 0x13),
-+	QMP_PHY_INIT_CFG(QPHY_V4_20_PCS_PCIE_G4_RXEQEVAL_TIME, 0x13),
-+	QMP_PHY_INIT_CFG(QPHY_V4_20_PCS_PCIE_G4_EQ_CONFIG2, 0x01),
-+	QMP_PHY_INIT_CFG(QPHY_V4_20_PCS_PCIE_G4_EQ_CONFIG5, 0x02),
-+	QMP_PHY_INIT_CFG(QPHY_V4_20_PCS_LANE1_INSIG_SW_CTRL2, 0x00),
-+	QMP_PHY_INIT_CFG(QPHY_V4_20_PCS_LANE1_INSIG_MX_CTRL2, 0x00),
-+};
-+
- static const struct qmp_phy_init_tbl sm8350_ufsphy_serdes_tbl[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_V5_COM_SYSCLK_EN_SEL, 0xd9),
- 	QMP_PHY_INIT_CFG(QSERDES_V5_COM_HSCLK_SEL, 0x11),
-@@ -3175,6 +3271,38 @@ static const struct qmp_phy_cfg sdx55_usb3_uniphy_cfg = {
- 	.pwrdn_delay_max	= POWER_DOWN_DELAY_US_MAX,
- };
- 
-+static const struct qmp_phy_cfg sdx55_qmp_pciephy_cfg = {
-+	.type = PHY_TYPE_PCIE,
-+	.nlanes = 2,
-+
-+	.serdes_tbl		= sdx55_qmp_pcie_serdes_tbl,
-+	.serdes_tbl_num		= ARRAY_SIZE(sdx55_qmp_pcie_serdes_tbl),
-+	.tx_tbl			= sdx55_qmp_pcie_tx_tbl,
-+	.tx_tbl_num		= ARRAY_SIZE(sdx55_qmp_pcie_tx_tbl),
-+	.rx_tbl			= sdx55_qmp_pcie_rx_tbl,
-+	.rx_tbl_num		= ARRAY_SIZE(sdx55_qmp_pcie_rx_tbl),
-+	.pcs_tbl		= sdx55_qmp_pcie_pcs_tbl,
-+	.pcs_tbl_num		= ARRAY_SIZE(sdx55_qmp_pcie_pcs_tbl),
-+	.pcs_misc_tbl		= sdx55_qmp_pcie_pcs_misc_tbl,
-+	.pcs_misc_tbl_num	= ARRAY_SIZE(sdx55_qmp_pcie_pcs_misc_tbl),
-+	.clk_list		= sdm845_pciephy_clk_l,
-+	.num_clks		= ARRAY_SIZE(sdm845_pciephy_clk_l),
-+	.reset_list		= sdm845_pciephy_reset_l,
-+	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
-+	.vreg_list		= qmp_phy_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-+	.regs			= sm8250_pcie_regs_layout,
-+
-+	.start_ctrl		= PCS_START | SERDES_START,
-+	.pwrdn_ctrl		= SW_PWRDN,
-+	.phy_status		= PHYSTATUS_4_20,
-+
-+	.is_dual_lane_phy	= true,
-+	.has_pwrdn_delay	= true,
-+	.pwrdn_delay_min	= 995,		/* us */
-+	.pwrdn_delay_max	= 1005,		/* us */
-+};
-+
- static const struct qmp_phy_cfg sm8350_ufsphy_cfg = {
- 	.type			= PHY_TYPE_UFS,
- 	.nlanes			= 2,
-@@ -4619,6 +4747,9 @@ static const struct of_device_id qcom_qmp_phy_of_match_table[] = {
- 	}, {
- 		.compatible = "qcom,sm8250-qmp-modem-pcie-phy",
- 		.data = &sm8250_qmp_gen3x2_pciephy_cfg,
-+	}, {
-+		.compatible = "qcom,sdx55-qmp-pcie-phy",
-+		.data = &sdx55_qmp_pciephy_cfg,
- 	}, {
- 		.compatible = "qcom,sdx55-qmp-usb3-uni-phy",
- 		.data = &sdx55_usb3_uniphy_cfg,
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.h b/drivers/phy/qualcomm/phy-qcom-qmp.h
-index 71ce3aa174ae..27de9749560a 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp.h
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp.h
-@@ -396,6 +396,7 @@
- #define QSERDES_V3_DP_PHY_STATUS			0x0c0
- 
- /* Only for QMP V4 PHY - QSERDES COM registers */
-+#define QSERDES_V4_COM_BG_TIMER				0x00c
- #define QSERDES_V4_COM_SSC_EN_CENTER			0x010
- #define QSERDES_V4_COM_SSC_PER1				0x01c
- #define QSERDES_V4_COM_SSC_PER2				0x020
-@@ -403,7 +404,9 @@
- #define QSERDES_V4_COM_SSC_STEP_SIZE2_MODE0		0x028
- #define QSERDES_V4_COM_SSC_STEP_SIZE1_MODE1		0x030
- #define QSERDES_V4_COM_SSC_STEP_SIZE2_MODE1		0x034
-+#define QSERDES_V4_COM_BIAS_EN_CLKBUFLR_EN		0x044
- #define QSERDES_V4_COM_CLK_ENABLE1			0x048
-+#define QSERDES_V4_COM_SYS_CLK_CTRL			0x04c
- #define QSERDES_V4_COM_SYSCLK_BUF_ENABLE		0x050
- #define QSERDES_V4_COM_PLL_IVCO				0x058
- #define QSERDES_V4_COM_CMN_IPTRIM			0x060
-@@ -415,6 +418,7 @@
- #define QSERDES_V4_COM_PLL_CCTRL_MODE1			0x088
- #define QSERDES_V4_COM_SYSCLK_EN_SEL			0x094
- #define QSERDES_V4_COM_LOCK_CMP_EN			0x0a4
-+#define QSERDES_V4_COM_LOCK_CMP_CFG			0x0a8
- #define QSERDES_V4_COM_LOCK_CMP1_MODE0			0x0ac
- #define QSERDES_V4_COM_LOCK_CMP2_MODE0			0x0b0
- #define QSERDES_V4_COM_LOCK_CMP1_MODE1			0x0b4
-@@ -427,6 +431,10 @@
- #define QSERDES_V4_COM_DIV_FRAC_START1_MODE1		0x0d8
- #define QSERDES_V4_COM_DIV_FRAC_START2_MODE1		0x0dc
- #define QSERDES_V4_COM_DIV_FRAC_START3_MODE1		0x0e0
-+#define QSERDES_V4_COM_INTEGLOOP_GAIN0_MODE0		0x0ec
-+#define QSERDES_V4_COM_INTEGLOOP_GAIN1_MODE0		0x0f0
-+#define QSERDES_V4_COM_INTEGLOOP_GAIN0_MODE1		0x0f4
-+#define QSERDES_V4_COM_INTEGLOOP_GAIN1_MODE1		0x0f8
- #define QSERDES_V4_COM_VCO_TUNE_MAP			0x10c
- #define QSERDES_V4_COM_VCO_TUNE1_MODE0			0x110
- #define QSERDES_V4_COM_VCO_TUNE2_MODE0			0x114
-@@ -436,13 +444,19 @@
- #define QSERDES_V4_COM_CLK_SELECT			0x154
- #define QSERDES_V4_COM_HSCLK_SEL			0x158
- #define QSERDES_V4_COM_HSCLK_HS_SWITCH_SEL		0x15c
-+#define QSERDES_V4_COM_CORECLK_DIV_MODE0		0x168
- #define QSERDES_V4_COM_CORECLK_DIV_MODE1		0x16c
-+#define QSERDES_V4_COM_CMN_CONFIG			0x17c
- #define QSERDES_V4_COM_SVS_MODE_CLK_SEL			0x184
-+#define QSERDES_V4_COM_CMN_MISC1			0x19c
-+#define QSERDES_V4_COM_INTERNAL_DIG_CORECLK_DIV		0x1a0
-+#define QSERDES_V4_COM_CMN_MODE				0x1a4
-+#define QSERDES_V4_COM_VCO_DC_LEVEL_CTRL		0x1a8
- #define QSERDES_V4_COM_BIN_VCOCAL_CMP_CODE1_MODE0	0x1ac
- #define QSERDES_V4_COM_BIN_VCOCAL_CMP_CODE2_MODE0	0x1b0
- #define QSERDES_V4_COM_BIN_VCOCAL_CMP_CODE1_MODE1	0x1b4
--#define QSERDES_V4_COM_BIN_VCOCAL_HSCLK_SEL		0x1bc
- #define QSERDES_V4_COM_BIN_VCOCAL_CMP_CODE2_MODE1	0x1b8
-+#define QSERDES_V4_COM_BIN_VCOCAL_HSCLK_SEL		0x1bc
- 
- /* Only for QMP V4 PHY - TX registers */
- #define QSERDES_V4_TX_RES_CODE_LANE_TX			0x34
-@@ -459,6 +473,13 @@
- #define QSERDES_V4_TX_TRAN_DRVR_EMP_EN			0xb8
- #define QSERDES_V4_TX_PI_QEC_CTRL		0x104
- 
-+/* Only for QMP V4_20 PHY - TX registers */
-+#define QSERDES_V4_20_TX_LANE_MODE_1			0x88
-+#define QSERDES_V4_20_TX_LANE_MODE_2			0x8c
-+#define QSERDES_V4_20_TX_LANE_MODE_3			0x90
-+#define QSERDES_V4_20_TX_VMODE_CTRL1			0xc4
-+#define QSERDES_V4_20_TX_PI_QEC_CTRL			0xe0
-+
- /* Only for QMP V4 PHY - RX registers */
- #define QSERDES_V4_RX_UCDR_FO_GAIN			0x008
- #define QSERDES_V4_RX_UCDR_SO_GAIN			0x014
-@@ -514,6 +535,33 @@
- #define QSERDES_V4_RX_DCC_CTRL1				0x1bc
- #define QSERDES_V4_RX_VTH_CODE				0x1c4
- 
-+/* Only for QMP V4_20 PHY - RX registers */
-+#define QSERDES_V4_20_RX_FO_GAIN_RATE2			0x008
-+#define QSERDES_V4_20_RX_UCDR_PI_CONTROLS		0x058
-+#define QSERDES_V4_20_RX_AUX_DATA_TCOARSE_TFINE		0x0ac
-+#define QSERDES_V4_20_RX_DFE_3				0x110
-+#define QSERDES_V4_20_RX_DFE_DAC_ENABLE1		0x134
-+#define QSERDES_V4_20_RX_DFE_DAC_ENABLE2		0x138
-+#define QSERDES_V4_20_RX_VGA_CAL_CNTRL2			0x150
-+#define QSERDES_V4_20_RX_RX_EQ_OFFSET_ADAPTOR_CNTRL1	0x178
-+#define QSERDES_V4_20_RX_RX_MODE_RATE_0_1_B1		0x1c8
-+#define QSERDES_V4_20_RX_RX_MODE_RATE_0_1_B2		0x1cc
-+#define QSERDES_V4_20_RX_RX_MODE_RATE_0_1_B3		0x1d0
-+#define QSERDES_V4_20_RX_RX_MODE_RATE_0_1_B4		0x1d4
-+#define QSERDES_V4_20_RX_RX_MODE_RATE2_B0		0x1d8
-+#define QSERDES_V4_20_RX_RX_MODE_RATE2_B1		0x1dc
-+#define QSERDES_V4_20_RX_RX_MODE_RATE2_B2		0x1e0
-+#define QSERDES_V4_20_RX_RX_MODE_RATE2_B3		0x1e4
-+#define QSERDES_V4_20_RX_RX_MODE_RATE2_B4		0x1e8
-+#define QSERDES_V4_20_RX_RX_MODE_RATE3_B0		0x1ec
-+#define QSERDES_V4_20_RX_RX_MODE_RATE3_B1		0x1f0
-+#define QSERDES_V4_20_RX_RX_MODE_RATE3_B2		0x1f4
-+#define QSERDES_V4_20_RX_RX_MODE_RATE3_B3		0x1f8
-+#define QSERDES_V4_20_RX_RX_MODE_RATE3_B4		0x1fc
-+#define QSERDES_V4_20_RX_PHPRE_CTRL			0x200
-+#define QSERDES_V4_20_RX_DFE_CTLE_POST_CAL_OFFSET	0x20c
-+#define QSERDES_V4_20_RX_MARG_COARSE_CTRL2		0x23c
-+
- /* Only for QMP V4 PHY - UFS PCS registers */
- #define QPHY_V4_PCS_UFS_PHY_START				0x000
- #define QPHY_V4_PCS_UFS_POWER_DOWN_CONTROL			0x004
-@@ -799,6 +847,12 @@
- #define QPHY_V4_PCS_USB3_SIGDET_STARTUP_TIMER_VAL	0x354
- #define QPHY_V4_PCS_USB3_TEST_CONTROL			0x358
- 
-+/* Only for QMP V4_20 PHY - USB/PCIe PCS registers */
-+#define QPHY_V4_20_PCS_RX_SIGDET_LVL			0x188
-+#define QPHY_V4_20_PCS_EQ_CONFIG2			0x1d8
-+#define QPHY_V4_20_PCS_EQ_CONFIG4			0x1e0
-+#define QPHY_V4_20_PCS_EQ_CONFIG5			0x1e4
-+
- /* Only for QMP V4 PHY - UNI has 0x300 offset for PCS_USB3 regs */
- #define QPHY_V4_PCS_USB3_UNI_LFPS_DET_HIGH_COUNT_VAL	0x618
- #define QPHY_V4_PCS_USB3_UNI_RXEQTRAINING_DFE_TIME_S2	0x638
-@@ -824,6 +878,14 @@
- #define QPHY_V4_PCS_PCIE_PRESET_P10_PRE			0xbc
- #define QPHY_V4_PCS_PCIE_PRESET_P10_POST		0xe0
- 
-+#define QPHY_V4_20_PCS_PCIE_EQ_CONFIG1			0x0a0
-+#define QPHY_V4_20_PCS_PCIE_G3_RXEQEVAL_TIME		0x0f0
-+#define QPHY_V4_20_PCS_PCIE_G4_RXEQEVAL_TIME		0x0f4
-+#define QPHY_V4_20_PCS_PCIE_G4_EQ_CONFIG2		0x0fc
-+#define QPHY_V4_20_PCS_PCIE_G4_EQ_CONFIG5		0x108
-+#define QPHY_V4_20_PCS_LANE1_INSIG_SW_CTRL2		0x824
-+#define QPHY_V4_20_PCS_LANE1_INSIG_MX_CTRL2		0x828
-+
- /* Only for QMP V5 PHY - QSERDES COM registers */
- #define QSERDES_V5_COM_PLL_IVCO				0x058
- #define QSERDES_V5_COM_CP_CTRL_MODE0			0x074
--- 
-2.25.1
+> > In PCIE ISR routine caused by RST_LINK_DOWN we schedule work to handle
+> > the link-down procedure.
+> > Link-down procedure will:
+> > 1. Remove PCIe bus
+> > 2. Reset the MAC
+> > 3. Reconfigure link back up
+> > 4. Rescan PCIe bus
+> >
+> > Signed-off-by: Ben Peled <bpeled@marvell.com>
+>=20
+> Trivial comment inline.
+>=20
+> Also, something odd with quotes around PATCH in the title you probably
+> want to clean up.
+>=20
+
+I'll change the comment to more informative comments
+
+> > ---
+> >  drivers/pci/controller/dwc/pcie-armada8k.c | 68 ++++++++++++++++++++
+> >  1 file changed, 68 insertions(+)
+> >
+> > diff --git a/drivers/pci/controller/dwc/pcie-armada8k.c
+> > b/drivers/pci/controller/dwc/pcie-armada8k.c
+> > index b2278b1..4eb8607 100644
+> > --- a/drivers/pci/controller/dwc/pcie-armada8k.c
+> > +++ b/drivers/pci/controller/dwc/pcie-armada8k.c
+> > @@ -22,6 +22,8 @@
+> >  #include <linux/resource.h>
+> >  #include <linux/of_pci.h>
+> >  #include <linux/of_irq.h>
+> > +#include <linux/mfd/syscon.h>
+> > +#include <linux/regmap.h>
+> >
+> >  #include "pcie-designware.h"
+> >
+> > @@ -33,6 +35,9 @@ struct armada8k_pcie {
+> >  	struct clk *clk_reg;
+> >  	struct phy *phy[ARMADA8K_PCIE_MAX_LANES];
+> >  	unsigned int phy_count;
+> > +	struct regmap *sysctrl_base;
+> > +	u32 mac_rest_bitmask;
+> > +	struct work_struct recover_link_work;
+> >  };
+> >
+> >  #define PCIE_VENDOR_REGS_OFFSET		0x8000
+> > @@ -73,6 +78,8 @@ struct armada8k_pcie {
+> >  #define AX_USER_DOMAIN_MASK		0x3
+> >  #define AX_USER_DOMAIN_SHIFT		4
+> >
+> > +#define UNIT_SOFT_RESET_CONFIG_REG	0x268
+> > +
+> >  #define to_armada8k_pcie(x)	dev_get_drvdata((x)->dev)
+> >
+> >  static void armada8k_pcie_disable_phys(struct armada8k_pcie *pcie) @@
+> > -224,6 +231,49 @@ static int armada8k_pcie_host_init(struct pcie_port
+> > *pp)
+> >
+> >  	return 0;
+> >  }
+> > +static void armada8k_pcie_recover_link(struct work_struct *ws) {
+> > +	struct armada8k_pcie *pcie =3D container_of(ws, struct
+> armada8k_pcie, recover_link_work);
+> > +	struct pcie_port *pp =3D &pcie->pci->pp;
+> > +	struct pci_bus *bus =3D pp->bridge->bus;
+> > +	struct pci_dev *root_port;
+> > +	int ret;
+> > +
+> > +	root_port =3D pci_get_slot(bus, 0);
+> > +	if (!root_port) {
+> > +		dev_err(pcie->pci->dev, "failed to get root port\n");
+> > +		return;
+> > +	}
+> > +	pci_lock_rescan_remove();
+> > +	pci_stop_and_remove_bus_device(root_port);
+> > +	/*
+> > +	 * Sleep needed to make sure all pcie transactions and access
+> > +	 * are flushed before resetting the mac
+> > +	 */
+> > +	msleep(100);
+> > +
+> > +	/* Reset mac */
+> > +	regmap_update_bits_base(pcie->sysctrl_base,
+> UNIT_SOFT_RESET_CONFIG_REG,
+> > +				pcie->mac_rest_bitmask, 0, NULL, false, true);
+> > +	udelay(1);
+> > +	regmap_update_bits_base(pcie->sysctrl_base,
+> UNIT_SOFT_RESET_CONFIG_REG,
+> > +				pcie->mac_rest_bitmask, pcie-
+> >mac_rest_bitmask,
+> > +				NULL, false, true);
+> > +	udelay(1);
+> > +	ret =3D armada8k_pcie_host_init(pp);
+> > +	if (ret) {
+> > +		dev_err(pcie->pci->dev, "failed to initialize host: %d\n", ret);
+> > +		pci_unlock_rescan_remove();
+> > +		pci_dev_put(root_port);
+> > +		return;
+> > +	}
+> > +
+> > +	bus =3D NULL;
+> > +	while ((bus =3D pci_find_next_bus(bus)) !=3D NULL)
+> > +		pci_rescan_bus(bus);
+> > +	pci_unlock_rescan_remove();
+> > +	pci_dev_put(root_port);
+> > +}
+> >
+> >  static irqreturn_t armada8k_pcie_irq_handler(int irq, void *arg)  {
+> > @@ -262,6 +312,9 @@ static irqreturn_t armada8k_pcie_irq_handler(int
+> irq, void *arg)
+> >  		 * initiate a link retrain. If link retrains were
+> >  		 * possible, that is.
+> >  		 */
+> > +		if (pcie->sysctrl_base && pcie->mac_rest_bitmask)
+> > +			schedule_work(&pcie->recover_link_work);
+> > +
+> >  		dev_dbg(pci->dev, "%s: link went down\n", __func__);
+> >  	}
+> >
+> > @@ -330,6 +383,8 @@ static int armada8k_pcie_probe(struct
+> > platform_device *pdev)
+> >
+> >  	pcie->pci =3D pci;
+> >
+> > +	INIT_WORK(&pcie->recover_link_work,
+> armada8k_pcie_recover_link);
+> > +
+> >  	pcie->clk =3D devm_clk_get(dev, NULL);
+> >  	if (IS_ERR(pcie->clk))
+> >  		return PTR_ERR(pcie->clk);
+> > @@ -357,6 +412,19 @@ static int armada8k_pcie_probe(struct
+> platform_device *pdev)
+> >  		goto fail_clkreg;
+> >  	}
+> >
+> > +	pcie->sysctrl_base =3D syscon_regmap_lookup_by_phandle(pdev-
+> >dev.of_node,
+> > +						       "marvell,system-
+> controller");
+> > +	if (IS_ERR(pcie->sysctrl_base)) {
+> > +		dev_warn(dev, "failed to find marvell,system-controller\n");
+> > +		pcie->sysctrl_base =3D 0x0;
+>=20
+> =3D NULL; ?
+>=20
+I will change this to NULL in v3
+> > +	}
+> > +
+> > +	ret =3D of_property_read_u32(pdev->dev.of_node, "marvell,mac-reset-
+> bit-mask",
+> > +				   &pcie->mac_rest_bitmask);
+> > +	if (ret < 0) {
+> > +		dev_warn(dev, "couldn't find mac reset bit mask: %d\n", ret);
+> > +		pcie->mac_rest_bitmask =3D 0x0;
+> > +	}
+> >  	ret =3D armada8k_pcie_setup_phys(pcie);
+> >  	if (ret)
+> >  		goto fail_clkreg;
+
+Thanks,
+Ben
+
+
 
