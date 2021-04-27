@@ -2,100 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E04C436BF3B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 08:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4BF036BF7A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 08:54:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231792AbhD0G03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Apr 2021 02:26:29 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:62985 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbhD0G02 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Apr 2021 02:26:28 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1619504746; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=/5CO6kyKiMLSUDsUJcNBx75sAEKt3Nx/B9KxXAfbB5c=;
- b=cm4Qu794K+njHdVxj7f/6+zjPBuW1b9ANeeFRt6B02lf21XZuw97baUf8nlRonCehqkcOOGx
- o/OAo+Mgg4GbpcGbx8d5qAL0qYA1KEsSboOC20UHbCMXT5tFdEy+fJ1WINoSLycFaCqQLJzZ
- 1QOvpE4nHSD0RTWzBkPn8xXhVQQ=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 6087ae6afebcffa80f4922c2 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 27 Apr 2021 06:25:46
- GMT
-Sender: sibis=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 0181DC43217; Tue, 27 Apr 2021 06:25:45 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1E859C433D3;
-        Tue, 27 Apr 2021 06:25:45 +0000 (UTC)
+        id S232855AbhD0Gyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Apr 2021 02:54:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38338 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230008AbhD0Gyx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Apr 2021 02:54:53 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 575CDC061574
+        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 23:54:11 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id d124so40672026pfa.13
+        for <devicetree@vger.kernel.org>; Mon, 26 Apr 2021 23:54:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4ErHb2UxiQfgQZ/ewBfhdnjrWohZ6K0IW4TbbehTLjM=;
+        b=z8FINm7JzZ7mOIY207onvpiJiRHsqMx3cgxfVTWFDeYAOxZD6NZTiZfNuQix4h8GLq
+         qlfQgRxGlV2amtvUxeWhQ0lHKR5URWBq8eqpgm5cyFoEtqf7Nh+rzxnZbDKIZYDSuP66
+         CKMf5TD6+OJSY4aNvZZ731quzwXWBRiFM86YtIcUB2e6CkwBrr+oRvBOaMt8vAO8MZji
+         xY32Ycz9ab6mEgcPt41aTA9jsCYBLi8BX5ga/iX31JNY+5zsaBKvGji9YyGLS/wLlt7D
+         g2l0++gQ4vE6m2CpYIPl8mGdocH7D8hyfXxmvGdmKkix51Dx/LXaFx8mY4oWgm/Z11mg
+         zG4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4ErHb2UxiQfgQZ/ewBfhdnjrWohZ6K0IW4TbbehTLjM=;
+        b=NwNbl0FDvy35GaWpQTbxRhltiwYrUOOhsRaBhLNAO4v4WQGbxfsr0yZQB0+f5taIy2
+         yrid8UUaWS6X5PmAP4nLKxmWAcP0ROtgjBLCyPg2akn5pAtAHltv/nNTIVVh1CPJrCLI
+         4J9VjiwWb0lYqzVRaebFVhqizzE1tZsItTl5zPin0YJWgw7A70WuOLcGJkK9Vh3GLa8n
+         hPI+Zq/lYJ1pBWABZ6wX4xnJ1rjL8rmhTmJJb/Z6ek/dpWeavto6VzKDZjbKxDS+D8f+
+         6SPkm+s9aTuXeOQJF1Dtm1xqT1U8W9/mJeE4ox59yYNsPeWs3gTouw9V5le+ac6IQ1t+
+         RdNw==
+X-Gm-Message-State: AOAM533olBfJ0wrqowEZVC0XdmYgPznCR8hpIL4/op2xVeAaiSCLAdO0
+        IJ3/acexag0bqxVw8QqeacW7
+X-Google-Smtp-Source: ABdhPJyN/iMyGzYhoKtt2AZ6j9sSZ2wGju5d+9jIOuwLSOVH+gsKreOKWYuwn/wxUXipbt6BkIXA+g==
+X-Received: by 2002:a62:2cb:0:b029:259:feaa:75e7 with SMTP id 194-20020a6202cb0000b0290259feaa75e7mr21289983pfc.24.1619506450351;
+        Mon, 26 Apr 2021 23:54:10 -0700 (PDT)
+Received: from localhost.localdomain ([2409:4072:6d89:3c72:ece6:56fb:d9ac:583c])
+        by smtp.gmail.com with ESMTPSA id x22sm13391986pgx.19.2021.04.26.23.54.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Apr 2021 23:54:09 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     vkoul@kernel.org, kishon@ti.com, robh+dt@kernel.org
+Cc:     bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 0/3] Add support for PCIe PHY in SDX55
+Date:   Tue, 27 Apr 2021 12:23:57 +0530
+Message-Id: <20210427065400.18958-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 27 Apr 2021 11:55:45 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
-        robh+dt@kernel.org, ulf.hansson@linaro.org, rjw@rjwysocki.net,
-        agross@kernel.org, ohad@wizery.com, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org,
-        rishabhb@codeaurora.org, sidgup@codeaurora.org
-Subject: Re: [PATCH 02/12] soc: qcom: aoss: Drop power domain support
-In-Reply-To: <161871128938.46595.8658084266884500136@swboyd.mtv.corp.google.com>
-References: <1618574638-5117-1-git-send-email-sibis@codeaurora.org>
- <1618574638-5117-3-git-send-email-sibis@codeaurora.org>
- <161871128938.46595.8658084266884500136@swboyd.mtv.corp.google.com>
-Message-ID: <7adff8e58784bb85ea844ad338bfb19c@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-04-18 07:31, Stephen Boyd wrote:
-> Quoting Sibi Sankar (2021-04-16 05:03:48)
->> The load state resources are expected to follow the life cycle of the
->> remote processor it tracks. However, modeling load state resources as
->> power-domains result in them getting turned off during system suspend
->> and thereby falling out of sync with the remote processors that are 
->> still
->> on. Fix this by replacing load state resource control through the 
->> generic
->> qmp message send interface instead.
->> 
->> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
->> ---
-> 
-> Is it possible to keep this code around for a cycle so that there isn't
-> the chance that someone is using the deprecated DT bindings with a new
-> kernel? I worry that ripping the code out will cause them angst.
+Hi,
 
-deprecated bindings with a newer kernel
-shouldn't cause any problems since it is
-the driver changes that make AOSS PD
-mandatory or not. So the newer kernel will
-just use qmp_send and leave the PD unused.
+This series adds support for PCIe PHY found in Qualcomm SDX55 platform.
+The PHY version is v4.20 which has different register offsets compared with
+previous v4.0x versions. So separate defines are introducted to handle the
+differences.
 
-> Certainly we have to keep the code in place until DT is updated, so 
-> this
-> patch should come last?
+This series has been tested on Telit FN980 EVB with an out of tree PCIe Endpoint
+driver.
 
-sure I don't mind, as long as it simplifies
-the merge process.
+Thanks,
+Mani
+
+Manivannan Sadhasivam (3):
+  dt-bindings: phy: qcom,qmp: Add binding for SDX55 PCIe PHY
+  phy: qcom-qmp: Use phy_status field for the status bit offset
+  phy: qcom-qmp: Add support for SDX55 QMP PCIe PHY
+
+ .../devicetree/bindings/phy/qcom,qmp-phy.yaml |   2 +
+ drivers/phy/qualcomm/phy-qcom-qmp.c           | 160 +++++++++++++++++-
+ drivers/phy/qualcomm/phy-qcom-qmp.h           |  64 ++++++-
+ 3 files changed, 224 insertions(+), 2 deletions(-)
 
 -- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+2.25.1
+
