@@ -2,90 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63ACF36BE06
-	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 05:52:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38E4236BE14
+	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 05:59:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232618AbhD0Dwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Apr 2021 23:52:46 -0400
-Received: from regular1.263xmail.com ([211.150.70.198]:58494 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231363AbhD0Dwq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Apr 2021 23:52:46 -0400
-X-Greylist: delayed 386 seconds by postgrey-1.27 at vger.kernel.org; Mon, 26 Apr 2021 23:52:44 EDT
-Received: from localhost (unknown [192.168.167.172])
-        by regular1.263xmail.com (Postfix) with ESMTP id C28E3821;
-        Tue, 27 Apr 2021 11:45:06 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-Received: from [172.16.12.120] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P18449T140669945366272S1619495102882982_;
-        Tue, 27 Apr 2021 11:45:04 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <22259d9076cbe0cb39d4db175022df51>
-X-RL-SENDER: kever.yang@rock-chips.com
-X-SENDER: yk@rock-chips.com
-X-LOGIN-NAME: kever.yang@rock-chips.com
-X-FST-TO: linux-watchdog@vger.kernel.org
-X-RCPT-COUNT: 29
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-Subject: Re: [PATCH v2 6/7] arm64: dts: rockchip: add core dtsi for RK3568 SoC
-To:     Johan Jonker <jbx6244@gmail.com>, cl@rock-chips.com,
-        heiko@sntech.de
-Cc:     robh+dt@kernel.org, jagan@amarulasolutions.com, wens@csie.org,
-        uwe@kleine-koenig.org, mail@david-bauer.net,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
-        cnsztl@gmail.com, devicetree@vger.kernel.org,
-        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
-        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
-        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
-        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
-        zhangqing@rock-chips.com, huangtao@rock-chips.com,
-        wim@linux-watchdog.org, linux@roeck-us.net, jamie@jamieiles.com,
-        linux-watchdog@vger.kernel.org
-References: <20210425094216.25724-1-cl@rock-chips.com>
- <20210425094439.25895-1-cl@rock-chips.com>
- <3d584cdc-020e-5aae-cae3-59ef45e64a9f@gmail.com>
-From:   Kever Yang <kever.yang@rock-chips.com>
-Message-ID: <c2e96d99-3af5-3f22-78de-f6eff18b9c24@rock-chips.com>
-Date:   Tue, 27 Apr 2021 11:45:03 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <3d584cdc-020e-5aae-cae3-59ef45e64a9f@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+        id S229498AbhD0EAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Apr 2021 00:00:30 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:34037 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229455AbhD0EA3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Apr 2021 00:00:29 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 78E3E5C019E;
+        Mon, 26 Apr 2021 23:59:46 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Mon, 26 Apr 2021 23:59:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=eZfNkGx2BMSMQ83oloGLPtdwxAJCowu
+        oCAnvMoQdjj8=; b=bCVM03l4/97d497QZGfYgytoNBX+T1CreC0zTE0q6c0+9wZ
+        mEGA4RTEYR+eTwIllHD5sJ3k1BsNcy4B7NDmvbtYqm+gd2nbsE+RU4/xD96BnD9j
+        LGzCxHzTYCQQTk2NONoSTkzzIh+x8DwvuQ/xJ4wGTVkr0tjXi8CSwovp6oZXW7wm
+        sk08hWJfC09ydM3Pwqf9YEIJP+qYDUvOUaNLXI4rnHvjrSDrwN1RHww1wH9ZxdWe
+        R8OBPUy78pvC8TktsOLmV06fOIyQ7kyoK3BwjMNWKQ9Tmse9YVHQn9UcojbsHoa+
+        6N40imzKpA6fk6x6jKdfgrbK0zcHpiyxKoDkmyQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=eZfNkG
+        x2BMSMQ83oloGLPtdwxAJCowuoCAnvMoQdjj8=; b=X0aOk0FLR+JJ2vqD5oDaKr
+        Uritv7xfbgFrUCSGTg+8bCS+WsyTL0rMyPLn0u1IehKhwBRKFsNp4oGvthlkXj9/
+        3afjivUZqn3NOVqvUL9o4BgmIQsx7OAdDx0z8He8SOux9HPnvBQHUsR6/w6C1Uv1
+        pCVuWd+JB0wC4Y6dWvZtfHAP2SFgVzwlqkNN6QAvHU5m5rJj4ftfuo0+n9B2L1+N
+        ez8Ts7Jt93j38xNFOotRSbbk869kTAesLvUiQOsVBuarMTieipjT7qGD1Vq1lMoB
+        YIkf/u3+VVmnpE8xxZtQKrbTDJ0papDJYtZ/3GD9vcbORF9mJdoVLYVEHdLMmyxQ
+        ==
+X-ME-Sender: <xms:MIyHYLL89azaxFjwekkmWWjoOpLxc6CMprgVNyoDI2-YsdQmcd0dKA>
+    <xme:MIyHYPKf0j0_tyVmd5aE9W-mXaJVVmM-xuD0VBMcSpCtl_Px32EoQXF354BbC8daP
+    M0XJ36L0nrO6NTUnw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdduledguddtkecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehn
+    ughrvgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtf
+    frrghtthgvrhhnpeehhfefkefgkeduveehffehieehudejfeejveejfedugfefuedtuedv
+    hefhveeuffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpegrnhgurhgvfiesrghjrdhiugdrrghu
+X-ME-Proxy: <xmx:MIyHYDve2dQUlUboid9PDA4PTLOVOpqrsBANN4bmZnGbUYjbFAbx9Q>
+    <xmx:MIyHYEYNtKviYmJndPX21uzTgIpm88701W5ffmOjJA8wwv9r3nhrgw>
+    <xmx:MIyHYCZPYgw7pKFv6K6MIP8smjnu8oJ7lbaazwKspQpqRjadZ0MjXw>
+    <xmx:MoyHYJzbJlkBhIZImGFb55oIa0jpv7oSRBAyowe0jM_AtAXkQ1yvyg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 07EF0A0007A; Mon, 26 Apr 2021 23:59:44 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-403-gbc3c488b23-fm-20210419.005-gbc3c488b
+Mime-Version: 1.0
+Message-Id: <201d989f-882f-4b73-ab06-5085f99301ed@www.fastmail.com>
+In-Reply-To: <20210416075113.18047-1-zev@bewilderbeest.net>
+References: <20210416075113.18047-1-zev@bewilderbeest.net>
+Date:   Tue, 27 Apr 2021 13:29:22 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Zev Weiss" <zev@bewilderbeest.net>,
+        "Joel Stanley" <joel@jms.id.au>
+Cc:     openbmc@lists.ozlabs.org, "Rob Herring" <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: aspeed: update e3c246d4i vuart properties
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Johan, Heiko,
-
-On 2021/4/26 下午8:16, Johan Jonker wrote:
-> ===
->
-> compatible = "rockchip,rk3568";
-> Maybe add this together with other rkXXXX SoCs to rockchip.yaml on top
-> of board list ???
-> Please advise.
-This rockchip.yaml is now describe boards without any sort, it would be 
-better to refactor and sort in two level:
-- soc level
-- board level base on the same soc.
-
-This will need a separate patch to do the clean up, maybe goes after the 
-rk3568.dtsi?
 
 
-Thanks,
-- Kever
+On Fri, 16 Apr 2021, at 17:21, Zev Weiss wrote:
+> This device-tree was merged with a provisional vuart IRQ-polarity
+> property that was still under review and ended up taking a somewhat
+> different form.  This patch updates it to match the final form of the
+> new vuart properties, which additionally allow specifying the SIRQ
+> number and LPC address.
+> 
+> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
 
-
+Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
