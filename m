@@ -2,220 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 103A836C08B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 10:07:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2C3436C0C3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 10:26:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230348AbhD0IIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Apr 2021 04:08:06 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:51336 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234669AbhD0IIE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Apr 2021 04:08:04 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1lbIkH-0002Lv-B0; Tue, 27 Apr 2021 10:07:01 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     cl@rock-chips.com, Johan Jonker <jbx6244@gmail.com>
-Cc:     robh+dt@kernel.org, jagan@amarulasolutions.com, wens@csie.org,
-        uwe@kleine-koenig.org, mail@david-bauer.net,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
-        cnsztl@gmail.com, devicetree@vger.kernel.org,
-        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
-        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
-        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
-        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
-        zhangqing@rock-chips.com, huangtao@rock-chips.com,
-        wim@linux-watchdog.org, linux@roeck-us.net, jamie@jamieiles.com,
-        linux-watchdog@vger.kernel.org, zhangqing@rock-chips.com
-Subject: Re: [PATCH v2 6/7] arm64: dts: rockchip: add core dtsi for RK3568 SoC
-Date:   Tue, 27 Apr 2021 10:07:00 +0200
-Message-ID: <6618564.gtipl9YmvM@diego>
-In-Reply-To: <16908f63-4e20-ba1b-3b5c-39b4c4db242b@gmail.com>
-References: <20210425094216.25724-1-cl@rock-chips.com> <20210425094439.25895-1-cl@rock-chips.com> <16908f63-4e20-ba1b-3b5c-39b4c4db242b@gmail.com>
+        id S230354AbhD0I1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Apr 2021 04:27:37 -0400
+Received: from mail-db8eur05on2089.outbound.protection.outlook.com ([40.107.20.89]:21985
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230324AbhD0I1g (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Apr 2021 04:27:36 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Q5rB4Flx22fxhafBBU9kMN/GRcDW2XuWUKUlmQKbq48QkCFcXLI366R2UxHFiLepb7iV5i294Tp1/wAVPwNdjpJHWfcTGiSuJpTelPdpHqo3043ir+i1fwF1tnM44SqWFk6sHvGWXb4YyYdCrHtBRZz5Pvl45kLuikHEBDPJ+dLVHtUM7GwWa+xYc/Bt3QYd4uvFs1t6Szmuy7QZ9qejLu5K4V3hOqS2Rg46Lwdam0xLa7o8oet6eQeo5vGMLVS0pE+OX8v+WYMfmdHKDqhFPqwJaeN1c6olLio4+loCYSpdNOuzVKa855Lwchgg6ytQCVj94mPrYDv5tNK7ikU98w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aiFpmGQv6ssOxyII0dTmJ3GPv5LBSLVLvTOGyMNvaGw=;
+ b=N4ifkC5A+BdGiNx9kt6RJYtFc73k8CW+sED3gEOl0cfk6D5H8Mltg5N1xC527vgQb1eJIHRk1cYtSwNlAluEemJXCqeFsGN3qfhYdcCQayU9s82oNsTl999WXhEqEi3t5YblLWbNosKV0xdGiwRGrQCiCtMFIRjtoF1Of8ZU71AmRNsAqN8Mey3z5oKkUXI5qUN2yPegF9I6662qtD006Sj9UkA8jtOFKcdIYjkx+YhIEZ0v+znGJKFQrWGnlPMIwFa6FVHzju3envFvXNZpWIORQmcNVukpM7s8U1IbfASWvfE3EHIXyIh1+z9E6sF4I5AkgzhFgrI/oLJUF4vwxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vaisala.com; dmarc=pass action=none header.from=vaisala.com;
+ dkim=pass header.d=vaisala.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vaisala.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aiFpmGQv6ssOxyII0dTmJ3GPv5LBSLVLvTOGyMNvaGw=;
+ b=xpY4w9vqoVcXUN3wraIrPUQ2Xjwhfy7Mj3O2XHexuVf0ZlhfPK29d7X1mGLnR4XTxGrAW/y6qBnOn2uSBeeX8n8RrNUh/aKc23ojcW28B4j9yVkdzhBKFNCmhra2zP0DlVXydC/ffja1X4Golwud74Wfcsvud1/2Y1ylojkXiMcNE7l301EWRIkLDfI+I0EDU7w+JPzUhdv/w9WXXRZDpwPM3Kg02TWf2kg7kJwvlQeQdADWs3dZQX9JUq8KAa1lOa0L1GjsIHA6aOaNwZUp/9vU/ySlmk5kmhWqGbRUKqrekiXZ7b9EgRSzclHkt9tB6+79+RHWes0gGizBP6i3PQ==
+Authentication-Results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=vaisala.com;
+Received: from HE1PR0602MB3449.eurprd06.prod.outlook.com (2603:10a6:7:8a::22)
+ by HE1PR0601MB2315.eurprd06.prod.outlook.com (2603:10a6:3:93::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.24; Tue, 27 Apr
+ 2021 08:26:51 +0000
+Received: from HE1PR0602MB3449.eurprd06.prod.outlook.com
+ ([fe80::3969:c39b:252e:ae3d]) by HE1PR0602MB3449.eurprd06.prod.outlook.com
+ ([fe80::3969:c39b:252e:ae3d%5]) with mapi id 15.20.4065.027; Tue, 27 Apr 2021
+ 08:26:51 +0000
+From:   Nandor Han <nandor.han@vaisala.com>
+To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Nandor Han <nandor.han@vaisala.com>
+Subject: [PATCH 0/4] Bootcount driver using NVMEM cell as backend.
+Date:   Tue, 27 Apr 2021 11:26:30 +0300
+Message-Id: <cover.1619511801.git.nandor.han@vaisala.com>
+X-Mailer: git-send-email 2.26.3
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [37.136.150.171]
+X-ClientProxiedBy: HE1PR05CA0162.eurprd05.prod.outlook.com
+ (2603:10a6:7:28::49) To HE1PR0602MB3449.eurprd06.prod.outlook.com
+ (2603:10a6:7:8a::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.vaisala.com (37.136.150.171) by HE1PR05CA0162.eurprd05.prod.outlook.com (2603:10a6:7:28::49) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.18 via Frontend Transport; Tue, 27 Apr 2021 08:26:50 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 39675a23-0848-45f1-b335-08d9095634a8
+X-MS-TrafficTypeDiagnostic: HE1PR0601MB2315:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <HE1PR0601MB2315C89CE70308DA9273A3CF85419@HE1PR0601MB2315.eurprd06.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HzQV41Svrj63/3UhCe+qd/E3LEnyn/bKPTwxvHesakH1pViHZsgu61+wxlz1oww3iyn93e/2dOTh1+N8PAWA8ZDVKlJJoRYfNMdJBCw5vqNA4Cbum5hHo5z6/uw5VDAUhbmx/ayu8dV1gF2uRt0QahEZlWFR/gK/WZVdPhkTOj8k08/twn89yxCisYaLcDKCwLJyG4cLYOqadOkQgzI7BI4mSu4qrm5COGFep29S/FNEsVPfKYfckWhc5GSQJY/6HBWE7q0sIrICZ8k5zGE/suGrUblAGaHqZ48gXxDyc4x8zWuzx0Y7lYNW7ijmlvEox1/OPYppDGBcIG345umqjDroGTxkirjl/JDLZNJpmc8Z9mfivNCO+/qVIVmYhgOe4+aSC00lj2TOWAQRKruOF8clk2iU0QGZHdcy1Rem6sK7kJReCfgu0wPyWOj/s9yssfHbFSHtDhDYRfyUajUQTmOORUO0iHkoft00soPT/YZk15B3k+8Ku5G3hfGxIyyFhC3vUet5NX9WOGkiU9DoitHilu/eoguEfgUufW4M7yi6bSShzKglAoIU70x9GY6QlFqZPyKN+2M+tHbJ1jHcZ/nqHqSCWWspjy+m4dGiHAv2jEeQgwiaRGh3rAnNxRbOg4bYCldfPCtCKswIeA9Fk5KCoxsigz5K3S62ulZ/AbuLcbNagQzeQUpicWV8So7PMlqg/UtEkpszagF6t7RBCWJQvgPyXIMSY+NvtUeoKA0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0602MB3449.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(376002)(396003)(39850400004)(346002)(136003)(966005)(66556008)(66476007)(5660300002)(44832011)(478600001)(26005)(6486002)(107886003)(16526019)(186003)(6666004)(2616005)(316002)(36756003)(956004)(2906002)(4326008)(83380400001)(38350700002)(38100700002)(8676002)(8936002)(52116002)(66946007)(86362001)(7696005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?UFl0dFNrenJRZ2E5cDQrcTJTVjFPcWFjdEhOVVk0THJTZkROMGJ1aUdOUkgv?=
+ =?utf-8?B?aER6d0I3bXVBcmh2TnI0aW1ROERCbUtIa1c2Y3pCQU5tVGJ4eDJJSk9zdzRN?=
+ =?utf-8?B?TFM5SEJJTnR6Qi94U29LT0J3cXNrYTExNDNTd29xL3JtbUZBaERHNWpIZEl0?=
+ =?utf-8?B?eHV2eDUxU0pWbGEvdys3bndRTGN3cEJZMUJKb2hVTmhiWXhxbXk1Si9sUSti?=
+ =?utf-8?B?bUdrWVYyNXlLbzdHekFFYm8zS2dtdzFOMGFEVE12dWV2ZzJtU3VKNUE2Rkhp?=
+ =?utf-8?B?M1VSMGVsUXRzdFp2UENoc0VPSmxTTWdSMlFxMitzbXAzcEdlWVpJcWxNcjR6?=
+ =?utf-8?B?bDkvR25IbkYvY1ROSGJUcDRQNkpobEg2OHZIZXNNTk9Salk4YjJJMUpUNWFO?=
+ =?utf-8?B?WVk5TWhFSUpnR1NGNzdkQzViUVA3S1BMKzY1T3dnUXNaQ2NOaktGOURtclFX?=
+ =?utf-8?B?N2tjZWhsQWJ6eTNTNjVGdVl0Z3EzWURRS1UyaFdFenBWUVhVSnhqVWJiejhI?=
+ =?utf-8?B?enFVekNFbVdMN1lTTDlFMUJ6ZXVLVVY2WE5ieUNZM1Q0RDdGNEY5TXo4MnRY?=
+ =?utf-8?B?SW1lZkRiUjNZbXl6QzNITUNBczJqcDBIbUtXT000TmV2bGZlRjhqdEhtbGNM?=
+ =?utf-8?B?bzJpMm5OKzVNL0RuR0FzamJPb0d0cXFZS0l6SmVmL2Y4SHRWQkJ4ZWh0RXZk?=
+ =?utf-8?B?MWphdC9uU2I1aWUwQUM1NU44YytEUUJnbm1lZEtkSDFJSVF1NEJPRGM5c21G?=
+ =?utf-8?B?UlFWV3dGQUVIdHRIZGl4V05oV3I5M3owQTkvWWMxb2R3VkpiOC9HNWcxRTE0?=
+ =?utf-8?B?aG04KzB2UERWRTV2Vkg1WWNSY1Z0SlFBcWYzd05pbnArQXc0R3JUWTEwMTZr?=
+ =?utf-8?B?L3FUaklFWmJnNUUrRUNSU0tLLzV3Y0k5ZzBJaXc2ZXFJTkMzVXYzaUhYRFBC?=
+ =?utf-8?B?TWhjMlNOTHQxTVMzcy95RTYxZU9PSHF3bFk4S3VVL0Rma29nWHYrWlg5djdu?=
+ =?utf-8?B?aVVFSllvaWlWQXh1VEE3TTdSMTRGZ05XZTh0V2lIUEN6QmVxSm9kMHZlRFVI?=
+ =?utf-8?B?YWovLzRJLzF3THdMdHBSZVIzUElwdXRja2xZYlJhOXNTR1dSb0JlSFNybFR3?=
+ =?utf-8?B?RzRyN0c5U3JWUG1UNnZLMElJRG1Xbkd5dHR2cWRuOUFCUU5CSEVuN3NWbURI?=
+ =?utf-8?B?bmx3YTJha0EvOEI2THJOa1owbnpnN3NJUkZRWHp6WExkU1JRMHdlZlFiWmpx?=
+ =?utf-8?B?ZE5ieWpzTXJZSEpMZjVsRmMramtIZVJCYzY0S00rWHNIeFN5aTcvaHpZTHdW?=
+ =?utf-8?B?eHJZaUpwRUJaQzBzZWhidFZJWk1pb2E0ZHBQd0kwcUxnbU1yVTZHZVFCMzV0?=
+ =?utf-8?B?TXl5WTZ2VGtCWUdYbTIzbVU5bDB5c2ZQRzNOb1pXMi81NDhFWDNQSzdwOXhR?=
+ =?utf-8?B?bjV1Y0Y3RGtNbUpKNHFRZWVIb21GNkwvVXBWVktJaDBaVFI0RDZPN0Rjem9i?=
+ =?utf-8?B?UlF3bnpEa1JidUtvWEhvOG5TT09hRHI0V3JudThwZUVXSGxzMXBzeWREK3da?=
+ =?utf-8?B?NC85U1B2TTdNbCs1ZlB4dTRiTGt5ZTF0WU9jKzNaZ3ZVWEJ4eHZOUUZNVkl2?=
+ =?utf-8?B?dTltM2lPcDBjbmlCZFM0UXNSMDJYQW9iRjN0VklOdXN3bGJCa05TNnBhbGk5?=
+ =?utf-8?B?RTlRcGFIbkY3bEs1bGdJQjVSVzBlc2YramNaT0M0MjNsUjBFcGFpY1R5SWRC?=
+ =?utf-8?Q?OMTt6s/37Tz/WdATLBp9uypN5Sw7TcdIUC5I588?=
+X-OriginatorOrg: vaisala.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 39675a23-0848-45f1-b335-08d9095634a8
+X-MS-Exchange-CrossTenant-AuthSource: HE1PR0602MB3449.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2021 08:26:50.9671
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 6d7393e0-41f5-4c2e-9b12-4c2be5da5c57
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7TLuUUvO8ejkLlBLnLjMiiMpYJpOTgYBq+/ywlepEpGEORRK+ih9gvhedKcqUXrJEK5ZrnvGrxKo72+FUld7Sg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0601MB2315
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 27. April 2021, 09:41:40 CEST schrieb Johan Jonker:
-> 
-> On 4/25/21 11:44 AM, cl@rock-chips.com wrote:
-> > From: Liang Chen <cl@rock-chips.com>
-> > 
-> > RK3568 is a high-performance and low power quad-core application processor
-> > designed for personal mobile internet device and AIoT equipments. This patch
-> > add basic core dtsi file for it.
-> > 
-> > We use scmi_clk for cortex-a55 instead of standard ARMCLK, so that
-> > kernel/uboot/rtos can change cpu clk with the same code in ATF, and we will
-> > enalbe a special high-performacne PLL when high frequency is required. The
-> > smci_clk code is in ATF, and clkid for cpu is 0, as below:
-> > 
-> >     cpu0: cpu@0 {
-> >         device_type = "cpu";
-> >         compatible = "arm,cortex-a55";
-> >         reg = <0x0 0x0>;
-> >         clocks = <&scmi_clk 0>;
-> >     };
-> > 
-> > Signed-off-by: Liang Chen <cl@rock-chips.com>
-> > ---
-> >  .../boot/dts/rockchip/rk3568-pinctrl.dtsi     | 3119 +++++++++++++++++
-> >  arch/arm64/boot/dts/rockchip/rk3568.dtsi      |  812 +++++
-> >  2 files changed, 3931 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi
-> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi
-> > new file mode 100644
-> > index 000000000000..94ee3c2c38af
-> > --- /dev/null
-> 
-> [..]
-> 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> > new file mode 100644
-> > index 000000000000..66cb50218ca1
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> > @@ -0,0 +1,812 @@
-> 
-> [..]
-> 
-> > +
-> > +	pmugrf: syscon@fdc20000 {
-> 
-> > +		compatible = "rockchip,rk3568-pmugrf", "syscon", "simple-mfd";
-> 
-> TODO:
-> 
-> > +		reg = <0x0 0xfdc20000 0x0 0x10000>;
-> > +
-> > +		reboot_mode: reboot-mode {
-> > +			compatible = "syscon-reboot-mode";
-> > +			mode-bootloader = <BOOT_BL_DOWNLOAD>;
-> > +			mode-fastboot = <BOOT_FASTBOOT>;
-> > +			mode-loader = <BOOT_BL_DOWNLOAD>;
-> > +			mode-normal = <BOOT_NORMAL>;
-> > +			mode-recovery = <BOOT_RECOVERY>;
-> > +			offset = <0x200>;
-> > +		};
-> > +	};
-> > +
-> > +	grf: syscon@fdc60000 {
-> 
-> > +		compatible = "rockchip,rk3568-grf", "syscon", "simple-mfd";
-> 
-> TODO:
-> 
-> > +		reg = <0x0 0xfdc60000 0x0 0x10000>;
-> > +	};
-> > +
-> > +	pmucru: clock-controller@fdd00000 {
-> > +		compatible = "rockchip,rk3568-pmucru";
-> > +		reg = <0x0 0xfdd00000 0x0 0x1000>;
-> 
-> > +		rockchip,grf = <&grf>;
-> > +		rockchip,pmugrf = <&pmugrf>;
-> 
-> clock-controller@fdd00000: 'rockchip,grf', 'rockchip,pmugrf' do not
-> match any of the regexes: 'pinctrl-[0-9]+'
-> 
-> Currently clk.c has only support for:
-> 
-> 	ctx->grf = syscon_regmap_lookup_by_phandle(ctx->cru_node,
-> 						   "rockchip,grf");
-> 
-> Manufacturer tree:
-> 
-> 	ctx->pmugrf = syscon_regmap_lookup_by_phandle(ctx->cru_node,
-> 						   "rockchip,pmugrf");
-> 		case branch_muxpmugrf:
-> 			clk = rockchip_clk_register_muxgrf(list->name,
-> 				list->parent_names, list->num_parents,
-> 				flags, ctx->pmugrf, list->muxdiv_offset,
-> 				list->mux_shift, list->mux_width,
-> 				list->mux_flags);
-> 			break;
-> 
-> 
-> 	MUXPMUGRF(SCLK_32K_IOE, "clk_32k_ioe", clk_32k_ioe_p,  0,
-> 			RK3568_PMU_GRF_SOC_CON0, 0, 1, MFLAGS)
+Description
+-----------
+Implement a bootcount (1) related driver that uses
+NVMEM as a backend. The patchset will also update the
+`snvs_lpgpr` driver to support 2 bytes NVMEM cells.
 
-(1) drop the rockchip,pmugrf property please
-(2) as I see it, we will only need the rockchip,grf property.
+1. https://www.denx.de/wiki/view/DULG/UBootBootCountLimit
 
-For main clock controller grf points to main grf
-For pmu clock controller grf points to pmugrf
+Testing
+-------
+Hardware: i.MX6sx evaluation board
+Kernel: linux-imx-5.4.24
 
-Each clock controller has its own associated grf.
+1. Configure the bootcount hardware in DT to use a NVMEM cell provided
+by `snvs_lpgpr` driver as backend.
+e.g. This will configure a 4 bytes long NVMEM cell
+```
+  bootcount_regs: bootcount-snvs-regs@0 {
+      reg = <0x0 0x04>;
+  };
+```
 
-I really see no case where main-clk would need to access the pmugrf
-same as pmu-clk would should not need to access the main grf, as the
-split into main-{clk,grf} + pmu-{clk,grf} is probably a for power-management
-reasons to separate different power-areas, the driver should also not
-cross this barrier anyway ;-) .
+2. Record the current NVMEM cell content:
+```
+~ # hexdump -C
+/sys/devices/soc0/soc/2000000.aips-bus/20cc000.snvs/20cc000.snvs:snvs-lpgpr/20cc000.snvs:snvs-lpgpr0/nvmem
+00000000  00 00 01 b0                                       |....|
+00000004
+```
 
-Same as, if a clk uses the pmugrf it is a pmu-based clock, if it uses the
-main grf, it should live in the main clock driver.
+3. Write the bootcount and check that is successful: PASS
+```
+~ # echo 1 > /sys/bus/platform/drivers/bootcount-nvmem/bootcount/value
+bootcount: Write regval: 0xb0010001
+~ # hexdump -C
+/sys/devices/soc0/soc/2000000.aips-bus/20cc000.snvs/20cc000.snvs:snvs-lpgpr/20cc000.snvs:snvs-lpgpr0/nvmem
+00000000  01 00 01 b0                                       |....|
+00000004
+``` 
 
-And as expected the clk_32k_ioe is already defined in the pmuclk
-part of the driver ;-)
+Note: similar tests were done also for 2 bytes NVMEM cell size.
+
+Kernel: linux-next, tag: next-20210322
+1. Enable bootcount and snvs_lpgpr drivers
+2. Verify that they compile succesfully: PASS
+```
+kernel-master> make -j2 drivers/nvmem/
+  DESCEND  objtool
+  CALL    scripts/atomic/check-atomics.sh
+  CC      arch/x86/kernel/asm-offsets.s
+  CALL    scripts/checksyscalls.sh
+  CC      drivers/nvmem/core.o
+  CC      drivers/nvmem/bootcount-nvmem.o
+  CC      drivers/nvmem/snvs_lpgpr.o
+  AR      drivers/nvmem/built-in.
+```
 
 
-Heiko
+Nandor Han (4):
+  dt-bindings: nvmem: Add bootcount-nvmem
+  nvmem: bootcount: add bootcount driver
+  nvmem: snvs_lpgpr: use cell stride for regmap size calculation
+  nvmem: snvs_lpgpr: support two bytes NVMEM cell size
 
+ .../bindings/nvmem/bootcount-nvmem.yaml       |  72 +++++++
+ drivers/nvmem/Kconfig                         |  10 +
+ drivers/nvmem/Makefile                        |   1 +
+ drivers/nvmem/bootcount-nvmem.c               | 195 ++++++++++++++++++
+ drivers/nvmem/snvs_lpgpr.c                    |  67 +++++-
+ 5 files changed, 339 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/bootcount-nvmem.yaml
+ create mode 100644 drivers/nvmem/bootcount-nvmem.c
 
-> > +		#clock-cells = <1>;
-> > +		#reset-cells = <1>;
-> > +	};
-> > +
-> > +	cru: clock-controller@fdd20000 {
-> > +		compatible = "rockchip,rk3568-cru";
-> > +		reg = <0x0 0xfdd20000 0x0 0x1000>;
-> 
-> > +		rockchip,grf = <&grf>;
-> 
-> clock-controller@fdd20000: 'assigned-clock-parents',
-> 'assigned-clock-rates', 'assigned-clocks', 'rockchip,grf' do not match
-> any of the regexes:
-> 
-> Add more properties to rockchip,rk3568-cru.yaml
-> 
-> > +		#clock-cells = <1>;
-> > +		#reset-cells = <1>;
-> > +
-> > +		assigned-clocks =
-> > +			<&pmucru CLK_RTC_32K>, <&pmucru PLL_PPLL>,
-> > +			<&pmucru PCLK_PMU>, <&cru PLL_CPLL>,
-> > +			<&cru PLL_GPLL>, <&cru ACLK_BUS>,
-> > +			<&cru PCLK_BUS>, <&cru ACLK_TOP_HIGH>,
-> > +			<&cru ACLK_TOP_LOW>, <&cru HCLK_TOP>,
-> > +			<&cru PCLK_TOP>, <&cru ACLK_PERIMID>,
-> > +			<&cru HCLK_PERIMID>, <&cru PLL_NPLL>,
-> > +			<&cru ACLK_PIPE>, <&cru PCLK_PIPE>,
-> > +			<&cru ACLK_VOP>;
-> > +		assigned-clock-rates =
-> > +			<32768>, <200000000>,
-> > +			<100000000>, <1000000000>,
-> > +			<1188000000>, <150000000>,
-> > +			<100000000>, <500000000>,
-> > +			<400000000>, <150000000>,
-> > +			<100000000>, <300000000>,
-> > +			<150000000>, <1200000000>,
-> > +			<400000000>, <100000000>,
-> > +			<500000000>;
-> > +		assigned-clock-parents =
-> > +			<&pmucru CLK_RTC32K_FRAC>;
-> > +	};
-> 
-
-
-
+-- 
+2.26.3
 
