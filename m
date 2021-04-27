@@ -2,486 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2CBA36C42A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 12:35:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1B8B36C48C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Apr 2021 13:00:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238041AbhD0Kf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Apr 2021 06:35:57 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:41699 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239180AbhD0KfQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Apr 2021 06:35:16 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1619519673; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=nC4C2IB5erzBJVqHDdraduo6HP21TniBpJNuGOb1cIQ=; b=hof4wBmwcHgnhVhfdTxnuJAoX5rsMHxElf/Tynjl+8OLR6g8yEIQA++GLw8J1nBCoh6aqpVl
- hlsc+nLH+BVrRaPAEBLquWi/CrDmUOuRVvv1/E6W748V4rykV9+sAkb0F7FmzFmiCAMzSZlm
- wrULTjtTTmh4IHBvKSjVRlY+vcc=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 6087e898215b831afb430e8e (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 27 Apr 2021 10:34:00
- GMT
-Sender: tdas=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id BEEE8C43149; Tue, 27 Apr 2021 10:33:59 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from tdas-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tdas)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 10C13C43217;
-        Tue, 27 Apr 2021 10:33:51 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 10C13C43217
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=tdas@codeaurora.org
-From:   Taniya Das <tdas@codeaurora.org>
-To:     Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
-        Taniya Das <tdas@codeaurora.org>
-Subject: [PATCH v2 6/6] clk: qcom: Add video clock controller driver for SC7280
-Date:   Tue, 27 Apr 2021 16:03:10 +0530
-Message-Id: <1619519590-3019-7-git-send-email-tdas@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1619519590-3019-1-git-send-email-tdas@codeaurora.org>
-References: <1619519590-3019-1-git-send-email-tdas@codeaurora.org>
+        id S235370AbhD0LBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Apr 2021 07:01:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36502 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230365AbhD0LBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Apr 2021 07:01:33 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5E09C061574
+        for <devicetree@vger.kernel.org>; Tue, 27 Apr 2021 04:00:50 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1lbLSP-00071d-Qw; Tue, 27 Apr 2021 13:00:45 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1lbLSP-0007iP-1Z; Tue, 27 Apr 2021 13:00:45 +0200
+Date:   Tue, 27 Apr 2021 13:00:45 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc:     Tim Harvey <tharvey@gateworks.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Marek Vasut <marex@denx.de>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rui Miguel Silva <rmfrfs@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-media <linux-media@vger.kernel.org>
+Subject: Re: [PATCH 00/23] media: imx: imx7-mipi-csis: Add i.MX8MM support
+Message-ID: <20210427110045.4cl3w7ij3w6x7rtg@pengutronix.de>
+References: <20210413023014.28797-1-laurent.pinchart@ideasonboard.com>
+ <CAJ+vNU1bnR+L-QkHAN_Yar0MUTjF+QoxgTHV9ZxQW+VWpM6cpg@mail.gmail.com>
+ <e0ac6633-498d-ae9e-5eea-7d7d59742cab@kontron.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e0ac6633-498d-ae9e-5eea-7d7d59742cab@kontron.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 12:59:56 up 146 days,  1:06, 47 users,  load average: 0.08, 0.10,
+ 0.09
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the video clock controller found on SC7280
-based devices. This would allow video drivers to probe and
-control their clocks.
+Hi,
 
-Signed-off-by: Taniya Das <tdas@codeaurora.org>
----
- drivers/clk/qcom/Kconfig          |   8 +
- drivers/clk/qcom/Makefile         |   1 +
- drivers/clk/qcom/videocc-sc7280.c | 372 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 381 insertions(+)
- create mode 100644 drivers/clk/qcom/videocc-sc7280.c
+On 21-04-26 12:35, Frieder Schrempf wrote:
+> Hi Tim,
+> 
+> On 21.04.21 17:27, Tim Harvey wrote:
+> > On Mon, Apr 12, 2021 at 7:31 PM Laurent Pinchart
+> > <laurent.pinchart@ideasonboard.com> wrote:
+> > > 
+> > > Hello,
+> > > 
+> > > This patch series adds support for the CSIS found in the NXP i.MX8MM SoC
+> > > to the imx7-mipi-csis driver.
+> > > 
+> > > The CSIS is an IP core from Samsung, integrated in different NXP SoCs.
+> > > The driver currently supports v3.3 of the CSIS, found in SoCs from the
+> > > i.MX6 and i.MX7 families. This series extends the driver to support
+> > > v3.6.3 of the IP, found in i.MX8MM and other members of the i.MX8
+> > > family.
+> > > 
+> > > The first 21 patches are miscellaneous cleanups and improvements. Please
+> > > see individual patches for details.
+> > > 
+> > > Patch 22/23 extends the imx7-mipi-csis DT bindings with i.MX8MM support.
+> > > Support for other members of the i.MX8 family will come later, and for
+> > > SoCs including an ISI IP core (such as the i.MX8MP) this will require
+> > > more work to handle additional glue logic.
+> > > 
+> > > Patch 23/23 finaly extends the imx7-mipi-csis driver accordingly.
+> > > 
+> > > The changes in the integration of the CSIS between i.MX7 and i.MX8, as
+> > > described in the DT bindings, have been found through reading of
+> > > reference manuals and BSP source code, with different sources of
+> > > information contradicting each other. A confirmation from NXP would be
+> > > nice (in particular regarding the clocks).
+> > > 
+> > > Laurent Pinchart (23):
+> > >    media: imx: imx7_mipi_csis: Fix logging of only error event counters
+> > >    media: imx: imx7_mipi_csis: Count the CSI-2 debug interrupts
+> > >    media: imx: imx7_mipi_csis: Update ISP_CONFIG macros for quad pixel
+> > >      mode
+> > >    media: imx: imx7_mipi_csis: Move static data to top of
+> > >      mipi_csis_dump_regs()
+> > >    media: imx: imx7_mipi_csis: Minimize locking in get/set format
+> > >    media: imx: imx7_mipi_csis: Don't set subdev data
+> > >    media: imx: imx7-mipi-csis: Reorganize code in sections
+> > >    media: imx: imx7_mipi_csis: Set the CLKSETTLE register field
+> > >    media: imx: imx7_mipi_csis: Drop unused csis_hw_reset structure
+> > >    media: imx: imx7_mipi_csis: Store CSI-2 data type in format structure
+> > >    media: imx: imx7_mipi_csis: Drop csi_state phy field
+> > >    media: imx: imx7_mipi_csis: Rename mipi_sd to sd
+> > >    media: imx: imx7_mipi_csis: Rename csi_state flag field to state
+> > >    media: imx: imx7_mipi_csis: Turn csi_state irq field into local
+> > >      variable
+> > >    media: imx: imx7_mipi_csis: Don't pass pdev to mipi_csis_parse_dt()
+> > >    media: imx: imx7_mipi_csis: Pass csi_state to mipi_csis_subdev_init()
+> > >    media: imx: imx7_mipi_csis: Drop csi_state pdev field
+> > >    media: imx: imx7_mipi_csis: Make csi_state num_clocks field unsigned
+> > >    media: imx: imx7_mipi_csis: Reorganize csi_state structure
+> > >    media: imx: imx7_mipi_csis: Reorganize mipi_csis_probe()
+> > >    media: imx: imx7_mipi_csis: Reject invalid data-lanes settings
+> > >    dt-bindings: media: nxp,imx7-mipi-csi2: Add i.MX8MM support
+> > >    media: imx: imx7_mipi_csis: Add i.MX8MM support
+> > > 
+> > >   .../bindings/media/nxp,imx7-mipi-csi2.yaml    | 108 +-
+> > >   drivers/staging/media/imx/imx7-mipi-csis.c    | 943 ++++++++++--------
+> > >   2 files changed, 622 insertions(+), 429 deletions(-)
+> > > 
+> > > --
+> > > Regards,
+> > > 
+> > > Laurent Pinchart
+> > > 
+> > 
+> > Laurent,
+> > 
+> > Thank you for your work on this!
+> > 
+> > I have an IMX8MM board supporting CSI and a couple of devices to test with:
+> > - Sony IMX477 12.3MP sensor (do not see any mainline support but there
+> > are some hits on the net as this is a RPi camera)
+> > - Sony IMX219 8MP sensor (should be supported by drivers/media/i2c/imx219.c)
+> > - Auvidea B10x HDMI to CSI-2 bridge (Toshiba TC358743XBG HDMI to CSI-2
+> > (MIPI)- 2D+C) (should be supported by drivers/media/i2c/tc358743.c)
+> > 
+> > Can you summarize the state of IMX8MM CSI capture in mainline? I
+> > suppose the MIPI power domain is still an issue? Anything else that
+> > would keep me from testing the above devices?
+> > 
+> 
+> Just in case it might help you: I tested the previous version of Laurent's
+> patches (not on the mailing list) against mainline v5.10 with Lucas'
+> power-domain patches.
+> 
+> It should work fine in general. Here are some notes about the problems I
+> encountered: https://patchwork.kernel.org/project/linux-media/cover/20210215042741.28850-1-laurent.pinchart@ideasonboard.com/
 
-diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-index 13fb381..ad85e6d 100644
---- a/drivers/clk/qcom/Kconfig
-+++ b/drivers/clk/qcom/Kconfig
-@@ -403,6 +403,14 @@ config SC_VIDEOCC_7180
- 	  Say Y if you want to support video devices and functionality such as
- 	  video encode and decode.
- 
-+config SC_VIDEOCC_7280
-+	tristate "SC7280 Video Clock Controller"
-+	select SC_GCC_7280
-+	help
-+	  Support for the video clock controller on SC7280 devices.
-+	  Say Y if you want to support video devices and functionality such as
-+	  video encode and decode.
-+
- config SDM_CAMCC_845
- 	tristate "SDM845 Camera Clock Controller"
- 	select SDM_GCC_845
-diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-index c84a31d..d87c2ed 100644
---- a/drivers/clk/qcom/Makefile
-+++ b/drivers/clk/qcom/Makefile
-@@ -65,6 +65,7 @@ obj-$(CONFIG_SC_GPUCC_7280) += gpucc-sc7280.o
- obj-$(CONFIG_SC_LPASS_CORECC_7180) += lpasscorecc-sc7180.o
- obj-$(CONFIG_SC_MSS_7180) += mss-sc7180.o
- obj-$(CONFIG_SC_VIDEOCC_7180) += videocc-sc7180.o
-+obj-$(CONFIG_SC_VIDEOCC_7280) += videocc-sc7280.o
- obj-$(CONFIG_SDM_CAMCC_845) += camcc-sdm845.o
- obj-$(CONFIG_SDM_DISPCC_845) += dispcc-sdm845.o
- obj-$(CONFIG_SDM_GCC_660) += gcc-sdm660.o
-diff --git a/drivers/clk/qcom/videocc-sc7280.c b/drivers/clk/qcom/videocc-sc7280.c
-new file mode 100644
-index 0000000..3387154
---- /dev/null
-+++ b/drivers/clk/qcom/videocc-sc7280.c
-@@ -0,0 +1,372 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#include <dt-bindings/clock/qcom,videocc-sc7280.h>
-+
-+#include "clk-alpha-pll.h"
-+#include "clk-branch.h"
-+#include "clk-rcg.h"
-+#include "common.h"
-+#include "reset.h"
-+#include "gdsc.h"
-+
-+enum {
-+	P_BI_TCXO,
-+	P_SLEEP_CLK,
-+	P_VIDEO_PLL0_OUT_EVEN,
-+};
-+
-+static struct pll_vco lucid_vco[] = {
-+	{ 249600000, 2000000000, 0 },
-+};
-+
-+/* 400MHz Configuration */
-+static const struct alpha_pll_config video_pll0_config = {
-+	.l = 0x14,
-+	.alpha = 0xD555,
-+	.config_ctl_val = 0x20485699,
-+	.config_ctl_hi_val = 0x00002261,
-+	.config_ctl_hi1_val = 0x329A299C,
-+	.user_ctl_val = 0x00000001,
-+	.user_ctl_hi_val = 0x00000805,
-+	.user_ctl_hi1_val = 0x00000000,
-+};
-+
-+static struct clk_alpha_pll video_pll0 = {
-+	.offset = 0x0,
-+	.vco_table = lucid_vco,
-+	.num_vco = ARRAY_SIZE(lucid_vco),
-+	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID],
-+	.clkr = {
-+		.hw.init = &(struct clk_init_data){
-+			.name = "video_pll0",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "bi_tcxo",
-+			},
-+			.num_parents = 1,
-+			.ops = &clk_alpha_pll_lucid_ops,
-+		},
-+	},
-+};
-+
-+static const struct parent_map video_cc_parent_map_0[] = {
-+	{ P_BI_TCXO, 0 },
-+	{ P_VIDEO_PLL0_OUT_EVEN, 3 },
-+};
-+
-+static const struct clk_parent_data video_cc_parent_data_0[] = {
-+	{ .fw_name = "bi_tcxo" },
-+	{ .hw = &video_pll0.clkr.hw },
-+};
-+
-+static const struct parent_map video_cc_parent_map_1[] = {
-+	{ P_SLEEP_CLK, 0 },
-+};
-+
-+static const struct clk_parent_data video_cc_parent_data_1[] = {
-+	{ .fw_name = "sleep_clk" },
-+};
-+
-+static const struct parent_map video_cc_parent_map_2[] = {
-+	{ P_BI_TCXO, 0 },
-+};
-+
-+static const struct clk_parent_data video_cc_parent_data_2_ao[] = {
-+	{ .fw_name = "bi_tcxo_ao" },
-+};
-+
-+static const struct freq_tbl ftbl_video_cc_iris_clk_src[] = {
-+	F(133333333, P_VIDEO_PLL0_OUT_EVEN, 3, 0, 0),
-+	F(240000000, P_VIDEO_PLL0_OUT_EVEN, 2, 0, 0),
-+	F(335000000, P_VIDEO_PLL0_OUT_EVEN, 2, 0, 0),
-+	F(424000000, P_VIDEO_PLL0_OUT_EVEN, 2, 0, 0),
-+	F(460000000, P_VIDEO_PLL0_OUT_EVEN, 2, 0, 0),
-+	{ }
-+};
-+
-+static struct clk_rcg2 video_cc_iris_clk_src = {
-+	.cmd_rcgr = 0x1000,
-+	.mnd_width = 0,
-+	.hid_width = 5,
-+	.parent_map = video_cc_parent_map_0,
-+	.freq_tbl = ftbl_video_cc_iris_clk_src,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "video_cc_iris_clk_src",
-+		.parent_data = video_cc_parent_data_0,
-+		.num_parents = ARRAY_SIZE(video_cc_parent_data_0),
-+		.flags = CLK_SET_RATE_PARENT,
-+		.ops = &clk_rcg2_shared_ops,
-+	},
-+};
-+
-+static const struct freq_tbl ftbl_video_cc_sleep_clk_src[] = {
-+	F(32000, P_SLEEP_CLK, 1, 0, 0),
-+	{ }
-+};
-+
-+static struct clk_rcg2 video_cc_sleep_clk_src = {
-+	.cmd_rcgr = 0x701c,
-+	.mnd_width = 0,
-+	.hid_width = 5,
-+	.parent_map = video_cc_parent_map_1,
-+	.freq_tbl = ftbl_video_cc_sleep_clk_src,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "video_cc_sleep_clk_src",
-+		.parent_data = video_cc_parent_data_1,
-+		.num_parents = ARRAY_SIZE(video_cc_parent_data_1),
-+		.ops = &clk_rcg2_ops,
-+	},
-+};
-+
-+static const struct freq_tbl ftbl_video_cc_xo_clk_src[] = {
-+	F(19200000, P_BI_TCXO, 1, 0, 0),
-+	{ }
-+};
-+
-+static struct clk_rcg2 video_cc_xo_clk_src = {
-+	.cmd_rcgr = 0x7000,
-+	.mnd_width = 0,
-+	.hid_width = 5,
-+	.parent_map = video_cc_parent_map_2,
-+	.freq_tbl = ftbl_video_cc_xo_clk_src,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "video_cc_xo_clk_src",
-+		.parent_data = video_cc_parent_data_2_ao,
-+		.num_parents = ARRAY_SIZE(video_cc_parent_data_2_ao),
-+		.ops = &clk_rcg2_ops,
-+	},
-+};
-+
-+static struct clk_branch video_cc_iris_ahb_clk = {
-+	.halt_reg = 0x5004,
-+	.halt_check = BRANCH_HALT_VOTED,
-+	.clkr = {
-+		.enable_reg = 0x5004,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "video_cc_iris_ahb_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&video_cc_iris_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch video_cc_mvs0_axi_clk = {
-+	.halt_reg = 0x800c,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x800c,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "video_cc_mvs0_axi_clk",
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch video_cc_mvs0_core_clk = {
-+	.halt_reg = 0x3010,
-+	.halt_check = BRANCH_HALT_VOTED,
-+	.hwcg_reg = 0x3010,
-+	.hwcg_bit = 1,
-+	.clkr = {
-+		.enable_reg = 0x3010,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "video_cc_mvs0_core_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&video_cc_iris_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch video_cc_mvsc_core_clk = {
-+	.halt_reg = 0x2014,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x2014,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "video_cc_mvsc_core_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&video_cc_iris_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch video_cc_mvsc_ctl_axi_clk = {
-+	.halt_reg = 0x8004,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x8004,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "video_cc_mvsc_ctl_axi_clk",
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch video_cc_sleep_clk = {
-+	.halt_reg = 0x7034,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x7034,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "video_cc_sleep_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&video_cc_sleep_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch video_cc_venus_ahb_clk = {
-+	.halt_reg = 0x801c,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x801c,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "video_cc_venus_ahb_clk",
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch video_cc_xo_clk = {
-+	.halt_reg = 0x7018,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x7018,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "video_cc_xo_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&video_cc_xo_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_IS_CRITICAL | CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct gdsc mvs0_gdsc = {
-+	.gdscr = 0x3004,
-+	.pd = {
-+		.name = "mvs0_gdsc",
-+	},
-+	.pwrsts = PWRSTS_OFF_ON,
-+	.flags = HW_CTRL | RETAIN_FF_ENABLE,
-+};
-+
-+static struct gdsc mvsc_gdsc = {
-+	.gdscr = 0x2004,
-+	.pd = {
-+		.name = "mvsc_gdsc",
-+	},
-+	.flags = RETAIN_FF_ENABLE,
-+	.pwrsts = PWRSTS_OFF_ON,
-+};
-+
-+static struct clk_regmap *video_cc_sc7280_clocks[] = {
-+	[VIDEO_CC_IRIS_AHB_CLK] = &video_cc_iris_ahb_clk.clkr,
-+	[VIDEO_CC_IRIS_CLK_SRC] = &video_cc_iris_clk_src.clkr,
-+	[VIDEO_CC_MVS0_AXI_CLK] = &video_cc_mvs0_axi_clk.clkr,
-+	[VIDEO_CC_MVS0_CORE_CLK] = &video_cc_mvs0_core_clk.clkr,
-+	[VIDEO_CC_MVSC_CORE_CLK] = &video_cc_mvsc_core_clk.clkr,
-+	[VIDEO_CC_MVSC_CTL_AXI_CLK] = &video_cc_mvsc_ctl_axi_clk.clkr,
-+	[VIDEO_CC_SLEEP_CLK] = &video_cc_sleep_clk.clkr,
-+	[VIDEO_CC_SLEEP_CLK_SRC] = &video_cc_sleep_clk_src.clkr,
-+	[VIDEO_CC_VENUS_AHB_CLK] = &video_cc_venus_ahb_clk.clkr,
-+	[VIDEO_CC_XO_CLK] = &video_cc_xo_clk.clkr,
-+	[VIDEO_CC_XO_CLK_SRC] = &video_cc_xo_clk_src.clkr,
-+	[VIDEO_PLL0] = &video_pll0.clkr,
-+};
-+
-+static struct gdsc *video_cc_sc7280_gdscs[] = {
-+	[MVS0_GDSC] = &mvs0_gdsc,
-+	[MVSC_GDSC] = &mvsc_gdsc,
-+};
-+
-+static const struct regmap_config video_cc_sc7280_regmap_config = {
-+	.reg_bits = 32,
-+	.reg_stride = 4,
-+	.val_bits = 32,
-+	.max_register = 0xb000,
-+	.fast_io = true,
-+};
-+
-+static const struct qcom_cc_desc video_cc_sc7280_desc = {
-+	.config = &video_cc_sc7280_regmap_config,
-+	.clks = video_cc_sc7280_clocks,
-+	.num_clks = ARRAY_SIZE(video_cc_sc7280_clocks),
-+	.gdscs = video_cc_sc7280_gdscs,
-+	.num_gdscs = ARRAY_SIZE(video_cc_sc7280_gdscs),
-+};
-+
-+static const struct of_device_id video_cc_sc7280_match_table[] = {
-+	{ .compatible = "qcom,sc7280-videocc" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, video_cc_sc7280_match_table);
-+
-+static int video_cc_sc7280_probe(struct platform_device *pdev)
-+{
-+	struct regmap *regmap;
-+
-+	regmap = qcom_cc_map(pdev, &video_cc_sc7280_desc);
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	clk_lucid_pll_configure(&video_pll0, regmap, &video_pll0_config);
-+
-+	return qcom_cc_really_probe(pdev, &video_cc_sc7280_desc, regmap);
-+}
-+
-+static struct platform_driver video_cc_sc7280_driver = {
-+	.probe = video_cc_sc7280_probe,
-+	.driver = {
-+		.name = "video_cc-sc7280",
-+		.of_match_table = video_cc_sc7280_match_table,
-+	},
-+};
-+
-+static int __init video_cc_sc7280_init(void)
-+{
-+	return platform_driver_register(&video_cc_sc7280_driver);
-+}
-+subsys_initcall(video_cc_sc7280_init);
-+
-+static void __exit video_cc_sc7280_exit(void)
-+{
-+	platform_driver_unregister(&video_cc_sc7280_driver);
-+}
-+module_exit(video_cc_sc7280_exit);
-+
-+MODULE_DESCRIPTION("QTI VIDEO_CC sc7280 Driver");
-+MODULE_LICENSE("GPL v2");
--- 
-Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
-of the Code Aurora Forum, hosted by the  Linux Foundation.
+Is there also any ongoing work for the DPHY driver?
 
+Regards,
+  Marco
