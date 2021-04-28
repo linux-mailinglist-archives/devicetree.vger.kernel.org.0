@@ -2,238 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1ED036DD37
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 18:40:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55AFF36DD43
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 18:42:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230243AbhD1QlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 12:41:23 -0400
-Received: from smtp-35.italiaonline.it ([213.209.10.35]:38414 "EHLO libero.it"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S240504AbhD1QlW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Apr 2021 12:41:22 -0400
-Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
- ([95.244.94.151])
-        by smtp-35.iol.local with ESMTPA
-        id bnEil0NgapK9wbnEnlqKzT; Wed, 28 Apr 2021 18:40:35 +0200
-x-libjamoibt: 1601
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
-        t=1619628035; bh=5EzwQ8wDyu4NNZkujPWLuYuQh2j9ORLX5Bbez0/68EU=;
-        h=From;
-        b=GYCQ3OWWB/DPwk+e0HdxN9dc8RL7+7HVR1IwNVGfJosz8gjrF7Dt512JQBksH9193
-         +ZRF4vBMkPIRyEFnVK7vGBhnv+TcdR5qCsW6Wbv6D95NeJt4u2jSJybuGN8LRg1Xgv
-         8Kr3Dxm7tVEZpwOczgnNowqfIodVcIEGMITMH3FRMm7Hy46x0NF6uWDfnzmeuS5VPZ
-         Z1E363Yy6LT2FsmuYkgLD+1QRTis6cCUAw6pKVeiWXppV4rpPRvkQiVhy8/c6wq2K8
-         xUvvgxsgFxDztzlOsILDjxhP6YkmZIi0nHJA+8xUsP7rP1hqMiKGqbRydXWwaVAetg
-         fHTukzRZwfnvQ==
-X-CNFS-Analysis: v=2.4 cv=A9ipg4aG c=1 sm=1 tr=0 ts=60899003 cx=a_exe
- a=ugxisoNCKEotYwafST++Mw==:117 a=ugxisoNCKEotYwafST++Mw==:17
- a=1V40iZmrItF9WluOpicA:9
-From:   Dario Binacchi <dariobin@libero.it>
-To:     linux-kernel@vger.kernel.org
-Cc:     Dario Binacchi <dariobin@libero.it>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        id S241154AbhD1QnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 12:43:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35562 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241129AbhD1QnQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 12:43:16 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69AB6C06138B
+        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 09:42:30 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id d11so5914627wrw.8
+        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 09:42:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=4iBEXnR1nc8SuK9x0RI0HjJCZgNJ4KQ0iJTuPJeZHB8=;
+        b=Rq3J38Zqc6gI2+zGNcT7zWRQ3/6wkLaHH1GGf4GEoRqnzFASs7CFrP1Wl6jtxARL9i
+         3aj23YNgSI3EhVwxyms52vAUEQpyh4ze9anBmJ+Q5V3CahksOV0j6GN/AcTVzP2RqaYI
+         wyi9JoFEQ/WNvw4tR2ifYYBpuQxd//Xs5iNbxGIhZZZcJPib+HdGBlmtbLOVkiPMt7Bo
+         /JEv+93o3OsoP4IdJqHymAfa2Cb9ani1n1MKEPZKL2CwJrmlWcuGZpZz/p01H0MspOya
+         ULpfKTHN06cenKhTc8jYQqtDRVZcQxCkEJ1zxYVrHfNk6WyV9iBi38nwEggGi3unmtjn
+         mhIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=4iBEXnR1nc8SuK9x0RI0HjJCZgNJ4KQ0iJTuPJeZHB8=;
+        b=idWU4gyHRx2JdjKYAWAHams1YG/bQextX1t/IFwSCe+hBn5gCM9zWfM+DeNs8Er/CF
+         2KdWUj38iAFWk/lwuvEEdcJ62sLagDCu+psRkPbJOsdvs4sHDZzW6zJ861AQSBekxFTw
+         VKfxnpNVkl3ek9ZS0Hiat12Vp7vQTPoLl7zW0Y5Qwov2J5tDIh93a4ZtkjYo5IFj6t/s
+         fjmLXpKRfkPHak/phhBmMTd/JStorBOFl3xeQOIMR1szUxR7UtIF+5mJXUyKwoO75HpI
+         RMAS4TP/NPv23MSAieYLEC3aOf21g4FJe+MlhW6m2dcpEcuCC7n1edmE9v5DQ4HIkLNj
+         rBnQ==
+X-Gm-Message-State: AOAM5305aLByw9FGgH6O3P9tMWVMUOdgFnc7WFpk4NFu78HObI7WOpGi
+        ni6OBX5XA8FTNQNogq7sZcj//w==
+X-Google-Smtp-Source: ABdhPJyWEwmUF9T2p2cho3eW1dDUOfY2IOjaly14N2nUuESPRrAaxGB0L8uVg8DlnkNWW8vpNPDdaQ==
+X-Received: by 2002:a5d:6648:: with SMTP id f8mr16158946wrw.396.1619628149075;
+        Wed, 28 Apr 2021 09:42:29 -0700 (PDT)
+Received: from groot.home ([2a01:cb19:826e:8e00:5864:ddd1:d623:f912])
+        by smtp.gmail.com with ESMTPSA id o10sm351299wrx.35.2021.04.28.09.42.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Apr 2021 09:42:28 -0700 (PDT)
+From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: [PATCH] ARM: dts: osd3358-sm-red: group in the same phandle all its properties
-Date:   Wed, 28 Apr 2021 18:40:25 +0200
-Message-Id: <20210428164026.17850-1-dariobin@libero.it>
-X-Mailer: git-send-email 2.17.1
-X-CMAE-Envelope: MS4xfA/DI/HRz2n13VFXaL0Wpn2Vt8zQTbmZf9abaU6otvVHUR8m1qvKADAJw+QS7lIlTWMpZ2p4Az2Oa2vsCROoeekvRvAXrt3S4yIuxDeDJY/DXSLAU0qd
- iyQvyTFxbsb/x/VZyXLXssc4Ghx8Ocy1gHFdoMqtAa100ykrE/rYbZfgyKu4WBUOkEUCJ+MFR6Ms4hg6a6tSZMxQK3QxOmW1xJZwM+R2X/VxkD2Ru3lZs/uN
- dYxQYT5sLe4fQIJfYRySKct5tBq394A8rx+GernqvebJIW0gJjUQyD0LgkBrXSwX6M7ri/DPntdgparkyqNSz5xKSgL8OrLINYy9tH4pqcGH44KQqvE3fuOL
- uj1pvk7u+rCRPdTWwDCJv+6JxXTx0EgFguU2Bdu4FtjenPUkVZQGRroJFfyCKris3XupivhrWq9tSHuvB5hyyMPwSfOuwg==
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     fparent@baylibre.com,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 4/7] dt-bindings: input: mtk-pmic-keys: add MT6358 binding definition
+Date:   Wed, 28 Apr 2021 18:42:16 +0200
+Message-Id: <20210428164219.1115537-5-mkorpershoek@baylibre.com>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210428164219.1115537-1-mkorpershoek@baylibre.com>
+References: <20210428164219.1115537-1-mkorpershoek@baylibre.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Having a single phandle reference for rtc0, mmc0 and am335x_pinmux makes
-the DTS well-ordered and therefore more readable.
+Add the binding documentation of the mtk-pmic-keys for the MT6358 PMICs.
 
-Signed-off-by: Dario Binacchi <dariobin@libero.it>
+MT6358 is a little different since it used separate IRQs for the
+release key (_r) event
+
+Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
 ---
+ Documentation/devicetree/bindings/input/mtk-pmic-keys.txt | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
- arch/arm/boot/dts/am335x-osd3358-sm-red.dts | 132 +++++++++-----------
- 1 file changed, 62 insertions(+), 70 deletions(-)
-
-diff --git a/arch/arm/boot/dts/am335x-osd3358-sm-red.dts b/arch/arm/boot/dts/am335x-osd3358-sm-red.dts
-index f841afb27844..5403e47c07e2 100644
---- a/arch/arm/boot/dts/am335x-osd3358-sm-red.dts
-+++ b/arch/arm/boot/dts/am335x-osd3358-sm-red.dts
-@@ -25,10 +25,6 @@
- 	regulator-always-on;
- };
+diff --git a/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt b/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
+index 535d92885372..9d00f2a8e13a 100644
+--- a/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
++++ b/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
+@@ -9,7 +9,10 @@ For MT6397/MT6323 MFD bindings see:
+ Documentation/devicetree/bindings/mfd/mt6397.txt
  
--&mmc1 {
--	vmmc-supply = <&vmmcsd_fixed>;
--};
--
- &mmc2 {
- 	vmmc-supply = <&vmmcsd_fixed>;
- 	pinctrl-names = "default";
-@@ -37,68 +33,6 @@
- 	status = "okay";
- };
+ Required properties:
+-- compatible: "mediatek,mt6397-keys" or "mediatek,mt6323-keys"
++- compatible: Should be one of:
++	- "mediatek,mt6397-keys"
++	- "mediatek,mt6323-keys"
++	- "mediatek,mt6358-keys"
+ - linux,keycodes: See Documentation/devicetree/bindings/input/input.yaml
  
--&am33xx_pinmux {
--	nxp_hdmi_bonelt_pins: nxp-hdmi-bonelt-pins {
--		pinctrl-single,pins = <
--			AM33XX_PADCONF(AM335X_PIN_XDMA_EVENT_INTR0, PIN_OUTPUT_PULLDOWN, MUX_MODE3)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA0, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA1, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA2, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA3, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA4, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA5, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA6, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA7, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA8, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA9, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA10, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA11, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA12, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA13, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA14, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA15, PIN_OUTPUT, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_VSYNC, PIN_OUTPUT_PULLDOWN, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_HSYNC, PIN_OUTPUT_PULLDOWN, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_PCLK, PIN_OUTPUT_PULLDOWN, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_LCD_AC_BIAS_EN, PIN_OUTPUT_PULLDOWN, MUX_MODE0)
--		>;
--	};
--
--	nxp_hdmi_bonelt_off_pins: nxp-hdmi-bonelt-off-pins {
--		pinctrl-single,pins = <
--			AM33XX_PADCONF(AM335X_PIN_XDMA_EVENT_INTR0, PIN_OUTPUT_PULLDOWN, MUX_MODE3)
--		>;
--	};
--
--	mcasp0_pins: mcasp0-pins {
--		pinctrl-single,pins = <
--			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKX, PIN_INPUT_PULLUP, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKR, PIN_OUTPUT_PULLDOWN, MUX_MODE2) /* mcasp0_ahclkr.mcasp0_axr2*/
--			AM33XX_PADCONF(AM335X_PIN_MCASP0_FSX, PIN_OUTPUT_PULLUP, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_MCASP0_ACLKX, PIN_OUTPUT_PULLDOWN, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_GPMC_A11, PIN_OUTPUT_PULLDOWN, MUX_MODE7) /* gpmc_a11.GPIO1_27 */
--		>;
--	};
--
--	flash_enable: flash-enable {
--		pinctrl-single,pins = <
--			AM33XX_PADCONF(AM335X_PIN_RMII1_REF_CLK, PIN_OUTPUT_PULLDOWN, MUX_MODE7) 	/* rmii1_ref_clk.gpio0_29 */
--		>;
--	};
--
--	imu_interrupt: imu-interrupt {
--		pinctrl-single,pins = <
--			AM33XX_PADCONF(AM335X_PIN_MII1_RX_ER, PIN_INPUT_PULLDOWN, MUX_MODE7) 		/* mii1_rx_er.gpio3_2 */
--		>;
--	};
--
--	ethernet_interrupt: ethernet-interrupt{
--		pinctrl-single,pins = <
--			AM33XX_PADCONF(AM335X_PIN_MII1_COL, PIN_INPUT_PULLDOWN, MUX_MODE7) 		/* mii1_col.gpio3_0 */
--		>;
--	};
--};
--
- &lcdc {
- 	status = "okay";
- 
-@@ -167,10 +101,6 @@
- 	};
- };
- 
--&rtc {
--	system-power-controller;
--};
--
- &mcasp0 {
- 	#sound-dai-cells = <0>;
- 	pinctrl-names = "default";
-@@ -267,6 +197,66 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&clkout2_pin>;
- 
-+	nxp_hdmi_bonelt_pins: nxp-hdmi-bonelt-pins {
-+		pinctrl-single,pins = <
-+			AM33XX_PADCONF(AM335X_PIN_XDMA_EVENT_INTR0, PIN_OUTPUT_PULLDOWN, MUX_MODE3)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA0, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA1, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA2, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA3, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA4, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA5, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA6, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA7, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA8, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA9, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA10, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA11, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA12, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA13, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA14, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA15, PIN_OUTPUT, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_VSYNC, PIN_OUTPUT_PULLDOWN, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_HSYNC, PIN_OUTPUT_PULLDOWN, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_PCLK, PIN_OUTPUT_PULLDOWN, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_LCD_AC_BIAS_EN, PIN_OUTPUT_PULLDOWN, MUX_MODE0)
-+		>;
-+	};
-+
-+	nxp_hdmi_bonelt_off_pins: nxp-hdmi-bonelt-off-pins {
-+		pinctrl-single,pins = <
-+			AM33XX_PADCONF(AM335X_PIN_XDMA_EVENT_INTR0, PIN_OUTPUT_PULLDOWN, MUX_MODE3)
-+		>;
-+	};
-+
-+	mcasp0_pins: mcasp0-pins {
-+		pinctrl-single,pins = <
-+			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKX, PIN_INPUT_PULLUP, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKR, PIN_OUTPUT_PULLDOWN, MUX_MODE2) /* mcasp0_ahclkr.mcasp0_axr2*/
-+			AM33XX_PADCONF(AM335X_PIN_MCASP0_FSX, PIN_OUTPUT_PULLUP, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_MCASP0_ACLKX, PIN_OUTPUT_PULLDOWN, MUX_MODE0)
-+			AM33XX_PADCONF(AM335X_PIN_GPMC_A11, PIN_OUTPUT_PULLDOWN, MUX_MODE7) /* gpmc_a11.GPIO1_27 */
-+		>;
-+	};
-+
-+	flash_enable: flash-enable {
-+		pinctrl-single,pins = <
-+			AM33XX_PADCONF(AM335X_PIN_RMII1_REF_CLK, PIN_OUTPUT_PULLDOWN, MUX_MODE7)	/* rmii1_ref_clk.gpio0_29 */
-+		>;
-+	};
-+
-+	imu_interrupt: imu-interrupt {
-+		pinctrl-single,pins = <
-+			AM33XX_PADCONF(AM335X_PIN_MII1_RX_ER, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* mii1_rx_er.gpio3_2 */
-+		>;
-+	};
-+
-+	ethernet_interrupt: ethernet-interrupt{
-+		pinctrl-single,pins = <
-+			AM33XX_PADCONF(AM335X_PIN_MII1_COL, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* mii1_col.gpio3_0 */
-+		>;
-+	};
-+
- 	user_leds_s0: user-leds-s0 {
- 		pinctrl-single,pins = <
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_A5, PIN_OUTPUT_PULLDOWN, MUX_MODE7)	/* gpmc_a5.gpio1_21 */
-@@ -427,6 +417,7 @@
- 
- &mmc1 {
- 	status = "okay";
-+	vmmc-supply = <&vmmcsd_fixed>;
- 	bus-width = <0x4>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mmc1_pins>;
-@@ -434,6 +425,7 @@
- };
- 
- &rtc {
-+	system-power-controller;
- 	clocks = <&clk_32768_ck>, <&clk_24mhz_clkctrl AM3_CLK_24MHZ_CLKDIV32K_CLKCTRL 0>;
- 	clock-names = "ext-clk", "int-clk";
- };
+ Optional Properties:
 -- 
-2.17.1
+2.27.0
 
