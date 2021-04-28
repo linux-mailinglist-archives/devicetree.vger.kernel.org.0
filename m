@@ -2,228 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B21CF36E158
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 00:01:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89A7B36E161
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 00:15:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231380AbhD1WCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 18:02:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49526 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbhD1WCh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 18:02:37 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B224DC06138B;
-        Wed, 28 Apr 2021 15:01:51 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 97B2F88C;
-        Thu, 29 Apr 2021 00:01:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1619647307;
-        bh=Nz/QCYzL43LScDYgeQKxcDJY4uD2js/djdZrQQeHo84=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=H84+64d1WUnNometHHZSbNj+0vMMhDpdJRCDGnCXU550CmVlpVVMmjnj3AbiZnvuc
-         ZS9RH7owFxNKuJr1MUkWb13DJP3q3IZkw1WFNXzPC+RCKDnB2qrM8Hl+J3kBAZmje6
-         IRipDvI/njnNnIM4VjIEq6RaDLk6Aa37IgmuJ1Nw=
-Date:   Thu, 29 Apr 2021 01:01:41 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Nelson Costa <Nelson.Costa@synopsys.com>
-Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jose Abreu <Jose.Abreu@synopsys.com>
-Subject: Re: [RFC 1/8] dt-bindings: media: Document Synopsys DesignWare HDMI
- RX
-Message-ID: <YInbRfg14YVyeuEB@pendragon.ideasonboard.com>
-References: <cover.1618937288.git.nelson.costa@synopsys.com>
- <21bdecce9dd0a8035d906af2242bc7e3495cc1b0.1618937288.git.nelson.costa@synopsys.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <21bdecce9dd0a8035d906af2242bc7e3495cc1b0.1618937288.git.nelson.costa@synopsys.com>
+        id S231600AbhD1WP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 18:15:59 -0400
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:36811 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229965AbhD1WP7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 18:15:59 -0400
+Received: by mail-ot1-f44.google.com with SMTP id n32-20020a9d1ea30000b02902a53d6ad4bdso4760907otn.3;
+        Wed, 28 Apr 2021 15:15:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=zAF2toXP87sFaO/+ZlCZr0PxBU8uD3XenCS7obOMCiU=;
+        b=D1xsbvMX197MMIu3n89ynUm9ryufvnZ136iMSuf/2ByUY6TfGFm659oOfalnZMYXkk
+         p2Gimu4M37dFp1xHdt5flgQr8rM/0Y7o6Glb5vvxc0Z4WvpicSClYtrLU29MeM0/tLB2
+         vYjFvm93J0+V5GALV224irBJ/OCTF9ndpVmOIgbMeEyvhZZlvl42+l2ZW3CYvUNLwJe3
+         NP7kPx9T+B2/5vknrm/WPaHmhrOI18sBK8C/a7OHS/moPn44Wyu4v37fWzc4fuo9qznd
+         10KRELSOO81mC+T4XqqkhmxIP7dsB/eW2q1bzoIP8X7YYVm0o152fGbW79i00KEes9P6
+         IxwQ==
+X-Gm-Message-State: AOAM5308CU/WjFg/dPzEvXOSPXH/Bn1120MXuc+R+fr4qzLYdOECeYXQ
+        zCFAx1MCmF9yXaz3+uk+FFQHoPWmuQ==
+X-Google-Smtp-Source: ABdhPJwdPNXNSpudUFX5xImDtn8XEwOZU/5rOoBkiWPuMoZQH9BChGgxsWK8gHDGHj/eAt4JRncnWw==
+X-Received: by 2002:a05:6830:149a:: with SMTP id s26mr26474841otq.349.1619648112129;
+        Wed, 28 Apr 2021 15:15:12 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id j8sm268455otj.49.2021.04.28.15.15.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Apr 2021 15:15:11 -0700 (PDT)
+Received: (nullmailer pid 4061026 invoked by uid 1000);
+        Wed, 28 Apr 2021 22:15:09 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20210427224201.32285-1-tsbogend@alpha.franken.de>
+References: <20210427224201.32285-1-tsbogend@alpha.franken.de>
+Subject: Re: [PATCH] dt-binding: interrupt-controller: Add missing interrupts property
+Date:   Wed, 28 Apr 2021 17:15:09 -0500
+Message-Id: <1619648109.762240.4061025.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nelson and Jose,
-
-Thank you for the patch.
-
-On Wed, Apr 28, 2021 at 05:25:04PM +0200, Nelson Costa wrote:
-> Document the bindings for the Synopsys DesignWare HDMI RX.
+On Wed, 28 Apr 2021 00:42:00 +0200, Thomas Bogendoerfer wrote:
+> Interrupts property is required, so add it.
 > 
-> Signed-off-by: Jose Abreu <jose.abreu@synopsys.com>
-> Signed-off-by: Nelson Costa <nelson.costa@synopsys.com>
+> Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
 > ---
->  .../devicetree/bindings/media/snps,dw-hdmi-rx.yaml | 149 +++++++++++++++++++++
->  1 file changed, 149 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+>  .../bindings/interrupt-controller/idt,32434-pic.yaml          | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
-> new file mode 100644
-> index 0000000..19c7dd4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
-> @@ -0,0 +1,149 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/snps,dw-hdmi-rx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synopsys DesignWare HDMI RX Controller and PHYs e405/e406 Device Tree Bindings
-> +
-> +maintainers:
-> +  - Jose Abreu <jose.abreu@synopsys.com>
-> +  - Nelson Costa <nelson.costa@synopsys.com>
-> +
-> +description: |
-> +  The Synopsys DesignWare HDMI RX Controller and PHYs e405/e406 is an HDMI 2.0
-> +  Receiver solution that is able to decode video and audio.
-> +
-> +properties:
-> +  compatible:
-> +    const: snps,dw-hdmi-rx
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description: phandle to the configuration clock
-> +
-> +  clock-names:
-> +    const: cfg
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  phys:
-> +    maxItems: 1
-> +    description: phandle for the HDMI RX PHY
-> +
-> +  phy-names:
-> +    const: hdmi-phy
-> +
-> +  hdmi-phy@fc:
-> +    type: object
-> +    description: connection point for HDMI PHY
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      compatible:
-> +        oneOf:
-> +          - const: snps,dw-hdmi-phy-e405
-> +          - const: snps,dw-hdmi-phy-e406
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      clocks:
-> +        maxItems: 1
-> +        description: phandle to the configuration clock
-> +
-> +      clock-names:
-> +        const: cfg
-> +
-> +      "#phy-cells":
-> +        const: 0
-> +
-> +      input-count:
-> +        description: Number of PHY input ports
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        enum: [1, 2, 3, 4]
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - clocks
-> +      - clock-names
-> +      - "#phy-cells"
-> +      - input-count
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - phys
-> +  - phy-names
 
-THe bindings should be using OF graph (ports) to model the connection
-between the HDMI source (usually a connector) and the HDMI RX, and
-between the HDMI RX and the downstream IP core in the pipeline.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    hdmi_rx0: hdmi-rx@0 {
-> +        compatible = "snps,dw-hdmi-rx";
-> +        reg = <0x0 0x10000>;
-> +        interrupts = <1 2>;
-> +
-> +        clocks = <&dw_hdmi_refclk>;
-> +        clock-names = "cfg";
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        phys = <&hdmi_e405_phy>;
-> +        phy-names = "hdmi-phy";
-> +
-> +        hdmi_e405_phy: hdmi-phy@fc {
-> +                compatible = "snps,dw-hdmi-phy-e405";
-> +                reg = <0xfc>;
-> +
-> +                clocks = <&dw_hdmi_refclk>;
-> +                clock-names = "cfg";
-> +
-> +                #phy-cells = <0>;
-> +                input-count = <4>;
-> +        };
-> +    };
-> +  - |
-> +    hdmi_rx1: hdmi-rx@1 {
-> +        compatible = "snps,dw-hdmi-rx";
-> +        reg = <0x0 0x10000>;
-> +        interrupts = <1 2>;
-> +
-> +        clocks = <&dw_hdmi_refclk>;
-> +        clock-names = "cfg";
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        phys = <&hdmi_e406_phy>;
-> +        phy-names = "hdmi-phy";
-> +
-> +        hdmi_e406_phy: hdmi-phy@fc {
-> +                compatible = "snps,dw-hdmi-phy-e406";
-> +                reg = <0xfc>;
-> +
-> +                clocks = <&dw_hdmi_refclk>;
-> +                clock-names = "cfg";
-> +
-> +                #phy-cells = <0>;
-> +                input-count = <4>;
-> +        };
-> +    };
+yamllint warnings/errors:
 
--- 
-Regards,
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-a10-ic.example.dt.yaml: interrupt-controller@1c20400: 'oneOf' conditional failed, one must be fixed:
+	'interrupts' is a required property
+	'interrupts-extended' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-a10-ic.yaml
 
-Laurent Pinchart
+See https://patchwork.ozlabs.org/patch/1470883
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
