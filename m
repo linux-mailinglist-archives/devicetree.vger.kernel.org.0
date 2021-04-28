@@ -2,235 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0E9336DF1D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 20:42:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1565036DF3D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 20:55:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243755AbhD1Smb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 14:42:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33696 "EHLO
+        id S240330AbhD1Szv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 14:55:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243731AbhD1Sma (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 14:42:30 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B55AC061574
-        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 11:41:45 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id b15so91833pfl.4
-        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 11:41:45 -0700 (PDT)
+        with ESMTP id S231315AbhD1Szu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 14:55:50 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F07EC061574
+        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 11:55:04 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id a22-20020a05600c2256b029014294520f18so5062585wmm.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 11:55:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=E3bpmI3ij+s4Bn917zTcmrlUif0swDwuIuphF3U3VDI=;
-        b=mJltSIgnOlY8jLNsmR3q0qoNz5zbGh2PeZiJJflAqGaYQkmIg7eyIm8uHAkTHiYII2
-         cG5sOc/yl8pAStdkUTqBP85TcrWInHkCbr3TMf3IJ57MILFa3noyDD3DNPWO/+1oIM8X
-         Yc914H56Hd8eDJyHtklkPVyKFG3FECjx/DaX4=
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4rAdk4nkjhG0XC7p2QVsAF6u5cBc2uukGOWp5W5vsvQ=;
+        b=ZVO2HFrqRPs2AAGZVVJlCfWHKnyzTidrOnphxeQ14+GCXLPePCO59ANH4Mw7Vt3wwJ
+         LUL2gCW0hZChYjy9qzyV99nX/+Gf1gdLJ534ksdKJxY+EE0UReaegfjK8erp5L/wTI3t
+         /odDHTR+ZEu16yqb0iLeWrAAv25GTDQh52/kRXZXhBUCtvSEm0rUBdpb/zQ2wnl0px1L
+         bUoASHQocvg9nsKPyWEplP96n0F7R3Rw3itFcwxalxypK9g638pi4LWEWW/4fkkFKUUf
+         5Bdjemnd81P+4/SSJo9Et9cID/dA8Fqp5MaWxV2iftVXteQL5vqy+Mu64SrFrfHPytqW
+         DPMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=E3bpmI3ij+s4Bn917zTcmrlUif0swDwuIuphF3U3VDI=;
-        b=KIaT1Al4tkViRnQzkfO4JBaw3epbaarO55WzE7EIYQeVDZE/hQepOZfuaSKfG1auI7
-         cVyVuT2VgzSdnCGGmglqsZSJvH/shTN/bzueliVwc4Jz4w3Y8naGaouKS7MrKuBcIC2S
-         McWDNDDL1hZwZqKV6wXXzQCYOvC4fTHLeMXg7Fa1Eb4WuEszHfpkZ08RJiG8xAHo61eG
-         ixdclOoFKzeUT+rCnULVG1wJ1Bwb9AzpPgm55M/ZV1HgqFWvUzPHEP4o8Sh61re6SMSB
-         56546JushSISYB3x2nHa8nOijvuq7ISnoQUcGylLQ7F7EIpyTsWl8/js5ELfDbltGdGG
-         jX/Q==
-X-Gm-Message-State: AOAM531GkqA29ggS0GjVcxfT0szHdTd8xRNjxEQJ0j4xK8AM2vwI3IwA
-        9D/KLQT+a+KVs1CRuycwfr3YdQ==
-X-Google-Smtp-Source: ABdhPJzO/ZL8GUEuiu6USQy5QNLHChSc/k+S58EwJyltGsWyN+qBWrDGtCfP3AbEt2xtO1CbY8WfBA==
-X-Received: by 2002:a63:4550:: with SMTP id u16mr28341245pgk.440.1619635305127;
-        Wed, 28 Apr 2021 11:41:45 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:4c1a:a0a7:2b43:81b0])
-        by smtp.gmail.com with UTF8SMTPSA id t9sm373402pgg.6.2021.04.28.11.41.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Apr 2021 11:41:44 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Bastien Nocera <hadess@hadess.net>, linux-usb@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>, devicetree@vger.kernel.org,
-        Peter Chen <peter.chen@nxp.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v8 5/5] arm64: dts: qcom: sc7180-trogdor: Add nodes for onboard USB hub
-Date:   Wed, 28 Apr 2021 11:41:32 -0700
-Message-Id: <20210428114109.v8.5.Ie0d2c1214b767bb5551dd4cad38398bd40e4466f@changeid>
-X-Mailer: git-send-email 2.31.1.498.g6c1eba8ee3d-goog
-In-Reply-To: <20210428184132.2184997-1-mka@chromium.org>
-References: <20210428184132.2184997-1-mka@chromium.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4rAdk4nkjhG0XC7p2QVsAF6u5cBc2uukGOWp5W5vsvQ=;
+        b=SLWhUMpB+bu1ktAFD8PVKpog3U3sNhf7ivXoJuY9jisMFNVWZX7JDGPqh6Nb2pJNLw
+         x8dwjTCs1NsD0SdSLl4T6uZ1SsYYTMITIWVRvxAqJOUFWRedAmYN9Aje+rD51etD5o4F
+         RpcGucRkRlEcqMVVOIENvhteiQ1FROjwkoJS7QCfHhgCJN+BS6fE7I6HfQGOBAmSDmJB
+         vBrf4uj9spbUVG7dMDgJX8g1FNhKmEMWLcyWxx6gRcrLFq4jwpaZfJDTw/pepX1P6jde
+         2dQzipCjr/GE9G7wSRqW97k+7MLhUvfK4o5EPwdXUuwFMsAz2Ox9G8XBcgyM664CiX5u
+         tiYA==
+X-Gm-Message-State: AOAM531Ji4V5Bn6gwnZHqM2fTa+qJ1rx5WCoZdYty6GmGkpo3A+Hk6nf
+        KRtJyIufu9RkhocNp5LY/+L/9Q==
+X-Google-Smtp-Source: ABdhPJyi36gCKOg8zClGfRbCs06dLWzYQm+FXkbhE/ruc+AN6PAbCEVKEnN4BhhAprFMRcbV25i6Nw==
+X-Received: by 2002:a1c:f302:: with SMTP id q2mr6209998wmq.85.1619636102706;
+        Wed, 28 Apr 2021 11:55:02 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id k10sm10769302wmf.0.2021.04.28.11.55.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Apr 2021 11:55:02 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        ulli.kroll@googlemail.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH] ARM: dts: gemini-rut1xx: remove duplicate ethernet node
+Date:   Wed, 28 Apr 2021 18:54:57 +0000
+Message-Id: <20210428185457.3719842-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for the onboard USB hub on trogdor devices. Remove the
-'always-on' and 'boot-on' properties from the hub regulator, since
-the regulator is now managed by the onboard_usb_hub driver.
+Two ethernet node was added by
+commit 95220046a62c ("ARM: dts: Add ethernet to a bunch of platforms")
+and commit d6d0cef55e5b ("ARM: dts: Add the FOTG210 USB host to Gemini boards")
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+This patch removes the duplicate one.
+
+Fixes: d6d0cef55e5b ("ARM: dts: Add the FOTG210 USB host to Gemini boards")
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 ---
+ arch/arm/boot/dts/gemini-rut1xx.dts | 12 ------------
+ 1 file changed, 12 deletions(-)
 
-Changes in v8:
-- none
-
-Changes in v7:
-- rebased on qcom/arm64-for-5.13 (with the rest of the series)
-
-Changes in v6:
-- added 'companion-hub' entry to both USB devices
-- added 'vdd-supply' also to hub@2
-
-Changes in v5:
-- patch added to the series
-
- .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts | 19 +++++++----------
- .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts | 11 ++++------
- .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts | 19 +++++++----------
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 21 ++++++++++++++++---
- 4 files changed, 38 insertions(+), 32 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-index 5c997cd90069..bae85f6b2bfa 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-@@ -23,17 +23,6 @@ &charger_thermal {
- 	status = "disabled";
- };
+diff --git a/arch/arm/boot/dts/gemini-rut1xx.dts b/arch/arm/boot/dts/gemini-rut1xx.dts
+index 9611ddf06792..08091d2a64e1 100644
+--- a/arch/arm/boot/dts/gemini-rut1xx.dts
++++ b/arch/arm/boot/dts/gemini-rut1xx.dts
+@@ -125,18 +125,6 @@ ethernet-port@1 {
+ 			};
+ 		};
  
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
--};
+-		ethernet@60000000 {
+-			status = "okay";
 -
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
--};
+-			ethernet-port@0 {
+-				phy-mode = "rgmii";
+-				phy-handle = <&phy0>;
+-			};
+-			ethernet-port@1 {
+-				/* Not used in this platform */
+-			};
+-		};
 -
- &sn65dsi86_out {
- 	/*
- 	 * Lane 0 was incorrectly mapped on the cable, but we've now decided
-@@ -42,3 +31,11 @@ &sn65dsi86_out {
- 	 */
- 	lane-polarities = <1 0>;
- };
-+
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-+
-+&usb_hub_3_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-index d9fbcc7bc5bd..45f014c3539d 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-@@ -23,13 +23,10 @@ &charger_thermal {
- 	status = "disabled";
- };
- 
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
- };
- 
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
-+&usb_hub_3_0 {
-+	 vdd-supply = <&pp3300_l7c>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-index 2b522f9e0d8f..2f5263e3d1b9 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-@@ -42,17 +42,6 @@ &panel {
- 	compatible = "auo,b116xa01";
- };
- 
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
--};
--
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
--};
--
- &sdhc_2 {
- 	status = "okay";
- };
-@@ -61,6 +50,14 @@ &trackpad {
- 	interrupts = <58 IRQ_TYPE_EDGE_FALLING>;
- };
- 
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-+
-+&usb_hub_3_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-+
- /* PINCTRL - modifications to sc7180-trogdor.dtsi */
- 
- &trackpad_int_1v8_odl {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 192e2e424fde..54f9da9af376 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -206,9 +206,6 @@ pp3300_hub: pp3300-hub {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&en_pp3300_hub>;
- 
--		regulator-always-on;
--		regulator-boot-on;
--
- 		vin-supply = <&pp3300_a>;
- 	};
- 
-@@ -848,6 +845,24 @@ &usb_1 {
- 
- &usb_1_dwc3 {
- 	dr_mode = "host";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* 2.0 hub on port 1 */
-+	usb_hub_2_0: hub@1 {
-+		compatible = "usbbda,5411";
-+		reg = <1>;
-+		vdd-supply = <&pp3300_hub>;
-+		companion-hub = <&usb_hub_3_0>;
-+	};
-+
-+	/* 3.0 hub on port 2 */
-+	usb_hub_3_0: hub@2 {
-+		compatible = "usbbda,411";
-+		reg = <2>;
-+		vdd-supply = <&pp3300_hub>;
-+		companion-hub = <&usb_hub_2_0>;
-+	};
- };
- 
- &usb_1_hsphy {
+ 		usb@68000000 {
+ 			status = "okay";
+ 		};
 -- 
-2.31.1.498.g6c1eba8ee3d-goog
+2.26.3
 
