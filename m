@@ -2,60 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2320936E204
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 01:13:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43FBB36E243
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 01:45:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230470AbhD1XNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 19:13:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51502 "EHLO mail.kernel.org"
+        id S229718AbhD1XqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 19:46:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41532 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230312AbhD1XNw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Apr 2021 19:13:52 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id 503686144F;
-        Wed, 28 Apr 2021 23:13:07 +0000 (UTC)
+        id S229624AbhD1XqD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Apr 2021 19:46:03 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 51A9D61447;
+        Wed, 28 Apr 2021 23:45:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1619651587;
-        bh=G3y5HO0w94sSt5lQmESJNZvHDrukpCVeE/ZMc9CGwf4=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=HE9UN07kdigfZwAYczZlj/MxDsNwGPiS6qF0OZBEGizTTPriNsJjIec2adUYS3iiE
-         7bTVzthJaD15GhsWWrHEvgK5H27/uez+M78RbcJUsenO2uBl+fEBB/uxNK42/xzbtd
-         flJanT39lkB0tV92fVPkoPorFB69V/w73LMQFdd7WMoqy+ikL1gk/2cp/Iw7MKeJqX
-         9afyAdALVKAuVZFPelyF2TvNK+FuUTmaiJazlOitvRc0X6KyoJ2/zb4I2dn7ry42dI
-         +yRgpL8jfyk1NpJ+PDTkiSNPy1HtTiMUAOgRgzMzso5LINfR44eGZTZmExEeIYRtbJ
-         5Dx0kgzjVpLgQ==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 4A2F460A36;
-        Wed, 28 Apr 2021 23:13:07 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree updates for v5.13
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <20210427214944.GA2052002@robh.at.kernel.org>
-References: <20210427214944.GA2052002@robh.at.kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20210427214944.GA2052002@robh.at.kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.13
-X-PR-Tracked-Commit-Id: 031cc263c037a95e5d1249cbd3d55b77021f1eb8
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 0080665fbd0e6a771aee366bb2aa208626e43def
-Message-Id: <161965158729.11634.8822885761642229292.pr-tracker-bot@kernel.org>
-Date:   Wed, 28 Apr 2021 23:13:07 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
+        s=k20201202; t=1619653518;
+        bh=I79ZC7AZVIIkS9ShL3T6gNk53VBIdRm+AdopwB8OBG4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=aRE8FVRNlA2wtlfDV75WqxlLFT6t+ZEtq796cuyX6sJHA6dQ8aIp95XbcfUGWP3EL
+         dSg5ZLyelQEZKYi6S9glgS8bXsEExGaMeBvLFiCdFdglRi0YrR/f12JGRbE3INz4xF
+         S1IYSlQbRf5SvLK6lw3mEwnsFfNGsj3pXLU13vxpnZeuNrNgEXEQrf36y3Yi4u4Ybz
+         595R53ZSXA5KiUqT04j45WNfbyK1OirOVBRHSVPmft1TLppvr5N9iaKYm1ahkbLEab
+         36OXezAbGJs8DxVyLcgVPImqpWQeGRnM6cc/Uhzr8c9Y204cwvby3EBUAqALk+urua
+         6iru2b/5SGJRw==
+Received: by mail-ej1-f43.google.com with SMTP id n2so97094081ejy.7;
+        Wed, 28 Apr 2021 16:45:18 -0700 (PDT)
+X-Gm-Message-State: AOAM531SjVCA/Qr050FE89XS5ER3eR310MTloDbyTrbRYL27KTQKaWpQ
+        fTyaVj1BofiFrIa7DVSefIGWx7zHdj16KyI9ng==
+X-Google-Smtp-Source: ABdhPJyUXDPrPkP95AbaN8U5c6px341NM0LbXe54TEstmADdjI3CJ+D969j3oZSk3Ru76SChDWWyoYeliTNHJDWzXlE=
+X-Received: by 2002:a17:906:1984:: with SMTP id g4mr31197846ejd.525.1619653516979;
+ Wed, 28 Apr 2021 16:45:16 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210427224201.32285-1-tsbogend@alpha.franken.de>
+ <1619648109.762240.4061025.nullmailer@robh.at.kernel.org> <20210428224153.GA15709@alpha.franken.de>
+In-Reply-To: <20210428224153.GA15709@alpha.franken.de>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 28 Apr 2021 18:45:03 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKvL0tT=NG6nu1uuzzF_2ce2RNTJxR5iz4VmfTq3iTz2g@mail.gmail.com>
+Message-ID: <CAL_JsqKvL0tT=NG6nu1uuzzF_2ce2RNTJxR5iz4VmfTq3iTz2g@mail.gmail.com>
+Subject: Re: [PATCH] dt-binding: interrupt-controller: Add missing interrupts property
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Tue, 27 Apr 2021 16:49:44 -0500:
+On Wed, Apr 28, 2021 at 5:42 PM Thomas Bogendoerfer
+<tsbogend@alpha.franken.de> wrote:
+>
+> On Wed, Apr 28, 2021 at 05:15:09PM -0500, Rob Herring wrote:
+> > On Wed, 28 Apr 2021 00:42:00 +0200, Thomas Bogendoerfer wrote:
+> > > Interrupts property is required, so add it.
+> > >
+> > > Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> > > ---
+> > >  .../bindings/interrupt-controller/idt,32434-pic.yaml          | 4 ++++
+> > >  1 file changed, 4 insertions(+)
+> > >
+> >
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-a10-ic.example.dt.yaml: interrupt-controller@1c20400: 'oneOf' conditional failed, one must be fixed:
+> >       'interrupts' is a required property
+> >       'interrupts-extended' is a required property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-a10-ic.yaml
+>
+> now I'm confused... is this a problem of your test ? make dt_binding_check
+> was ok with that change...
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.13
+You and me both. I'll look into it when I apply.
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/0080665fbd0e6a771aee366bb2aa208626e43def
-
-Thank you!
-
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+Rob
