@@ -2,100 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E34F36D37D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 09:55:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62C8C36D382
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 09:56:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230317AbhD1H4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 03:56:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58752 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229643AbhD1H4G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 03:56:06 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFDBEC061574;
-        Wed, 28 Apr 2021 00:55:19 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id y4so57482758lfl.10;
-        Wed, 28 Apr 2021 00:55:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=WX2C9K/rZGHrnBX7tVRG+YyxtUpYTpR2TMwA0fbv/YQ=;
-        b=X7DecJEnfQCN6j7lFWalCGADJ5DMcXgZOXSrOWDhTGfeJAFrIaYhaK/OoOmXXb3viP
-         nVVHfu0sp49azDATLr6KZN9vCOdPgrca4af4zjpQii73wn3ltXPiKVdYpxIRly1ZcUiJ
-         6209Ec6GCFxIbLapSPvySt+E6FVC+skrW92D9KxTsKbUGUHdIKx7A1PVlZSHHqR4v14d
-         HCQRmiePwL4Q6H6g6RQZQhi6J/PZV+mg7e3V6HovhHso/PUOM9LaM0QWVfiijYIagKqy
-         szvfN2qhUWpdOLOBRxNOUZeHWrj7vdyuutZh6/zHLDr2tO7PGX+/AwU4Sgg+LWsly6Nn
-         YmMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=WX2C9K/rZGHrnBX7tVRG+YyxtUpYTpR2TMwA0fbv/YQ=;
-        b=n/zznj6GWw8ZnmTpTGuB4jhp7nJzmPOg6o4jPqMrMX0tu5KGs1v9z9sj2tYhlAH7WG
-         kCdu+srdVdyN7y/rWyErDE8g4R53wuZMmenffBG3/qUHUHFGEYhOxB5d+05+59uwtkmj
-         lwRdX1kcLqpubrc7qF17UJOGQeFbps7uPj77BIS9G95qn4cL6fwq16djQYHoQ9MJlu6c
-         j+BMwj1fiUao1dhXiYoGpnDE+RhsFHQn5XugcCzlQll+5m9/QA0IwXyiv11P/+Z8SHKv
-         pVCRRH/vnTBxTeN8ki8FHJLuwBcAcUfI23FngLfmsf/Pm8+npejCQRJwvf3DGp5bAe90
-         LajQ==
-X-Gm-Message-State: AOAM533U5pecIzq1CdyjLM8Q3Bk+JqhBADBP/IArDF5aFzUFuF1q9nF/
-        nJ2gaGKPC/5p4lBKds4feAVEH0e+XfY=
-X-Google-Smtp-Source: ABdhPJweelqtW2hogGjJZKd3oZnRCoIBKRJHLxWfIJ42VERqo76+YhHyMix7AffEADMEcwEHqohMxQ==
-X-Received: by 2002:a19:7119:: with SMTP id m25mr7026270lfc.511.1619596518315;
-        Wed, 28 Apr 2021 00:55:18 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-193-102.dynamic.spd-mgts.ru. [109.252.193.102])
-        by smtp.googlemail.com with ESMTPSA id b6sm526314lff.15.2021.04.28.00.55.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Apr 2021 00:55:17 -0700 (PDT)
-Subject: Re: [PATCH v2 0/5] iommu: Support identity mappings of
- reserved-memory regions
-To:     Mikko Perttunen <cyndis@kapsi.fi>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org
-References: <20210423163234.3651547-1-thierry.reding@gmail.com>
- <b6d323e1-2e90-b031-60a0-3460644ea7a0@gmail.com>
- <ea842576-8967-03b5-6d6c-9e655d11b46b@kapsi.fi>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <8fb43dff-1fd8-3bbb-86e9-19fb3064ec54@gmail.com>
-Date:   Wed, 28 Apr 2021 10:55:17 +0300
+        id S236955AbhD1H5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 03:57:16 -0400
+Received: from mail-vi1eur05on2115.outbound.protection.outlook.com ([40.107.21.115]:4804
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S236824AbhD1H5P (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Apr 2021 03:57:15 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LyPYVstVD+jN3QbMdSfjs4LRcToLBBUinwrF9DhS9gSknacUDHbL2W88PXaUqi2z8pbx2iJQClcEYMWpG5LuKT/bFMbestDAgPyTToX/f9tu43EsDAuG704HClPL8Lqu9ObCge8/rY2MQEgi9eJFfPe9CZVnpU5kG8b9AG+jRk27nh6yca7UD5l0gQoISa8rKbMejq6jKmPDbJKAfHbd46XlJCGlsu3RVioGZiZ3AULpUaMNCON0x0Scby3ZJiSX3MRSpcHvPj8fPo2fXKnpx1ObvkouiYd2sKYDpdnGJenz+Xg61y8USMuQR/V4Zg8TMZYPPj+KGRPg9UiWxN7p7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E3LMBJQ9u+gAqEqUKR8Ivsd2NonCGu4UPdlBL+YastA=;
+ b=f2IpeG88OtB/BM2YPaelFXGzr16g2xIMmrQloXj13caMutIAWnz2i+P3nZEf8tHxfgLiTiz9ie9QOtUgZPeF5gT6FPwzYrq3yChtAdYfz02/egnvushyENvUTtEzqjHCCbBG+rVyCalGKY2jZjhvQNh7CjS19MgaS/H8tQfARKNJO/8UvhKQ+hztxSaRutnBKbPN3n1TNS77DeJKMjjm6L3pQ5Y+1Gu54G3Tl0O+BM0GAu/wu8zfYB28CDeOo4FO2KJo7bhrwRZR4xvY9Pfny7mp56sqP58YepNIU/Ydu+2TYuv7BMLSip3wov7NkWHFalspTvkQxjA90gOs9XDtNw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
+ s=selector2-mysnt-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E3LMBJQ9u+gAqEqUKR8Ivsd2NonCGu4UPdlBL+YastA=;
+ b=SWwSChkpids469Ilwig8puGEsvFOhORFNEqmAJs2BM/61GGAYI+DS5Ws1xurDEZnij3Y2Np2FWEqkA2HHJUuc14RVmRVsDyPEWm056BWgKGSVh3NbyJFuYAU3Nls4tH997fP/dt2RZqUQvaSVuRxd0/m6SABf92251y/cQLmy8Q=
+Authentication-Results: ideasonboard.com; dkim=none (message not signed)
+ header.d=none;ideasonboard.com; dmarc=none action=none
+ header.from=kontron.de;
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:157::14)
+ by AM0PR10MB3252.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:17f::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.21; Wed, 28 Apr
+ 2021 07:56:29 +0000
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::3d8a:f56b:3a0c:8a87]) by AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::3d8a:f56b:3a0c:8a87%7]) with mapi id 15.20.4065.027; Wed, 28 Apr 2021
+ 07:56:29 +0000
+Subject: Re: [PATCH V2 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add TI
+ SN65DSI83 and SN65DSI84 bindings
+To:     Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org
+Cc:     devicetree@vger.kernel.org, ch@denx.de,
+        Douglas Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20210421223122.112736-1-marex@denx.de>
+From:   Frieder Schrempf <frieder.schrempf@kontron.de>
+Message-ID: <a39a107e-284d-2f4a-8b69-ff507a6a0d62@kontron.de>
+Date:   Wed, 28 Apr 2021 09:56:26 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
-MIME-Version: 1.0
-In-Reply-To: <ea842576-8967-03b5-6d6c-9e655d11b46b@kapsi.fi>
-Content-Type: text/plain; charset=utf-8
+ Thunderbird/78.7.1
+In-Reply-To: <20210421223122.112736-1-marex@denx.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [89.244.188.238]
+X-ClientProxiedBy: AM4PR07CA0009.eurprd07.prod.outlook.com
+ (2603:10a6:205:1::22) To AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:157::14)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.10.27] (89.244.188.238) by AM4PR07CA0009.eurprd07.prod.outlook.com (2603:10a6:205:1::22) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.8 via Frontend Transport; Wed, 28 Apr 2021 07:56:27 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 246c390d-e393-4262-42f6-08d90a1b210e
+X-MS-TrafficTypeDiagnostic: AM0PR10MB3252:
+X-Microsoft-Antispam-PRVS: <AM0PR10MB325220AF627996549A235406E9409@AM0PR10MB3252.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: krdsOGLEvqq8Lbz1oiUt2TAK+xU9eYFRy0bzknDJ77B7NuzTFYpd3zEM10GtLuKNQjEUItAcBFl6fT0tOUJAa6/pQ2ME4XQB3OvSUX2ucfjv9vZrgZ1Q6WFHIlU3zkvP1+JiAp0edOipilzqaPxzs82gEiGERKCK+G/qmUE/VQ+ULGRqwKW3V9eCg9TaJeKyyJebvP/zp4Ln9+mbfinv3Je6zaujLJWrDf5WXvZVqLSoA3UYAnNuSCejmIMKVHh7+pZnlODa9pQnvtilkndm+rxdlVFHVBWum9YBr7BdmgV6DegYmyhsY5qoYQi9ei5OfxWiYx8kHY2f9PwbG0mH4NQwmYGm6xX4r7ooiEDBs+70Zzka33q93hlRCyg8nBCZMVGU6JmU0KlveykgxlNVRN9JiOo7JElNJoLioydehSxLhCDaI8t9O6/tvm7B+QcJKeiHB+wi96i/guR/MwGa11CtOu5lSAL0Xq84Ig5zHnjzIojCAldJLMoNEiSNrjd3RMYSvyaKxHF1UW6Wbars3SNHLU7LFwlTrCp5CYVBp7v0tyoTUmYz/zd1d9gP+rRrXIhYZRtFPSNUKdMjELkJEvGUagf1b71vLOwjxiIz8vDveCYCC7LnghezNWQeJDVwDfOyzR8Vke2r7TXNVniU8sijS1mGaHwN+K7HEe5C/Uz4AyzdKsCF6MjndiT7VWfyXiSKldtIo2S9vD0Tw08ujgwS7AGJ7PQFfkWwC3n4892/XWhxrjOvrncBQNb2UM33SbUetXYPFYchOpmfAtAXBg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(396003)(136003)(366004)(376002)(346002)(956004)(316002)(5660300002)(2616005)(16576012)(86362001)(6486002)(2906002)(4326008)(8676002)(54906003)(478600001)(31696002)(966005)(53546011)(8936002)(31686004)(186003)(26005)(7416002)(16526019)(66946007)(66476007)(36756003)(38100700002)(66556008)(44832011)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?UjVydWN0TEpXNDRWaWlHb3k2eDFvSWo4eCt3VDd2UkFaaEEvRHVYWWhiWWRO?=
+ =?utf-8?B?djFJOFdkNEd0cUdFc3k4SHo2QkV6MUZqWld4THZ4YUgxNEVmSXZmK0dhZE4z?=
+ =?utf-8?B?UTFHR3J5dVIzZXB2VmVnWU8wTzFtYWxKd3VjM2tMVC9yNExldWtWc1Y4aGpq?=
+ =?utf-8?B?VWRUUU5ncVZTdVdLdnlONlc4WllObmRaenVhZEYrc05DSzJMUE1pMURZNkFF?=
+ =?utf-8?B?dGtDSW5HdHJNSURqUEZTYXN3WU5SVlZnT3hLTXBuN2MxNm1SZ2RqeG9kYTI5?=
+ =?utf-8?B?SEFvd2h4VzFiV0EvV3p0UndUUFFhQkNZYjc3YmxDY05jbmNMcWVBakx0ZjRV?=
+ =?utf-8?B?MFlzaDJSVFNJOWNSTDQ2ZjFUemd5NXdJT0diM1dRbzBwcFBvd3hJTmNjbFFT?=
+ =?utf-8?B?bjlpUktlUmV5VnpBdXN1cHJWZDZXQzFMYjlnYTZJUU1wREFoc0pGSEowQ1VU?=
+ =?utf-8?B?Q0haVEdMQWloYkhnN2tXM2t3M1JlNjNWcVNyQWdjS0VDVWFHa3I2SHpPbGNk?=
+ =?utf-8?B?UnZzR25qMitlMTFtYURybkVOVGZHZExudHp1RWgzblB0WlpsZVlPVGRac2tI?=
+ =?utf-8?B?enpDWXFmNEFWL0pPR2lMV01DUUJFd2U4V29yV1hxVzNJcnVKNThwVmwrcWxK?=
+ =?utf-8?B?Q3pKMXlPd1kxQTZIU281cndOdG5WaVJmSnNEemk4bVF0OStwOU1sWGtKVjgx?=
+ =?utf-8?B?cWRLenVkM0MrMlZCNTl2VkFDdVhHMG9NcWxUM3k2azZad1pTVGN4OG9uNFFw?=
+ =?utf-8?B?d0V4T041bGRDSzlNb1Rkc2pyU2NqUklWb0RMeU4vVy9FZkgrMk5xNndtdjVx?=
+ =?utf-8?B?ZFNWSERCcXpYV0hXZ0lUUXRITzZyVm9sTFd0RHEwanU4bkpNWHhYUmVGQjA5?=
+ =?utf-8?B?UGNnQTFaWG9HUTdSVHRHcTE5SVQyNjZwbkkxQzVxTFoxNUs3UzkrTXdtSVg3?=
+ =?utf-8?B?NzFkYzhpdVlDYktycEhaSzJvTS8rS0hiK1dLUmp1ck5odmtzUXlVMzI3blgr?=
+ =?utf-8?B?TG1jb25RTGcrTUFYcnNMbUdhQVNFcHlBV3phZER2YWkxcWkrclp6NTFxaHcy?=
+ =?utf-8?B?MGkvbDQxOVFTZ3VoTkR1ZVpNUSswNnNBSWhBNndpeVo1ZytlSjRWTWIyQVd4?=
+ =?utf-8?B?YnowVGJ5SW9RU3FqdEdRMU81bytHUmYxVGZHcnBHV1FXTHlmY3pZT2JUZGhF?=
+ =?utf-8?B?Q3VPMXdIdzh2UUtFNU00cnNnaytWWmVYZ0VSRFNiSkZad0NkcFo0cDVUNW1q?=
+ =?utf-8?B?M3JrNEZ3OWtScGVWQUE1MUs1OERaWVUzejdZbUxXNXdTZW9oMXhmMlJVdlRU?=
+ =?utf-8?B?LytBTzJGV01zMDhDNTRjY3dDUUxCMkgzNU5jMVFTaFRqY29MM0k5cG82WFNt?=
+ =?utf-8?B?V2QzQUpKakI3cEhuNGtRVThPZTRkY25taVFyZjlXY1RoWVZqUytTZnBoK3U5?=
+ =?utf-8?B?RDVlMlQ5bHc0ckRkZC9tSmZMRjJKeHZSOG1jSHNGUEprODRmaDJCeU1RZkMr?=
+ =?utf-8?B?Qm1pY29MWGU5T0FmaTF1YnNQUUhRbFNQZE5NY0wzbytsSllQcXlpUmxnVEJ5?=
+ =?utf-8?B?MFBqbTh6Y0tCc3dDVHJNcXFYSVFYMFJ3bDlaeVF4R3NXTHBSU3NWajN5OThB?=
+ =?utf-8?B?WGlDaWw5ajdmcUFsa2lDTkpIdmlPaG9yQjFRcERZWGoxRGUwbzYwc2R0MjdM?=
+ =?utf-8?B?T0NEUEJtdG9uVTZkQmRLaUVJaEdhb0xjWTdnZ05wbzZzUkpkdFk4VUFRWU5G?=
+ =?utf-8?Q?7CI+RffEBgJCqcyx+lAB18NsaRx/0igNRasKfnV?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 246c390d-e393-4262-42f6-08d90a1b210e
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2021 07:56:29.0489
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6X6gTnvs+bZxTJwpGpLGEx3WkRO3hqZjjnmaElxto6s+sMTl2TGMoyIMvaA3OZeq8wVkxBsA3+0nu5BcX53rswMB7Ltc7UhbVwhirC+hCgM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3252
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-28.04.2021 08:57, Mikko Perttunen пишет:
-> On 4/28/21 8:51 AM, Dmitry Osipenko wrote:
->> 23.04.2021 19:32, Thierry Reding пишет:
->>> Note that there will be no new releases of the bootloader for earlier
->>> devices, so adding support for these new DT bindings will not be
->>> practical. The bootloaders on those devices do pass information about
->>> the active framebuffer via the kernel command-line, so we may want to
->>> add code to create reserved regions in the IOMMU based on that.
->>
->> Since this change requires a bootloader update anyways, why it's not
->> possible to fix the bootloader properly, making it to stop all the DMA
->> activity before jumping into kernel?
->>
+On 22.04.21 00:31, Marek Vasut wrote:
+> Add DT binding document for TI SN65DSI83 and SN65DSI84 DSI to LVDS bridge.
 > 
-> That is not desirable, as then we couldn't have seamless
-> bootloader-kernel boot splash transition.
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Douglas Anderson <dianders@chromium.org>
+> Cc: Jagan Teki <jagan@amarulasolutions.com>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Stephen Boyd <swboyd@chromium.org>
+> Cc: devicetree@vger.kernel.org
+> To: dri-devel@lists.freedesktop.org
+> ---
+> V2: Add compatible string for SN65DSI84, since this is now tested on it
+> ---
+>   .../bindings/display/bridge/ti,sn65dsi83.yaml | 134 ++++++++++++++++++
+>   1 file changed, 134 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> new file mode 100644
+> index 000000000000..42d11b46a1eb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> @@ -0,0 +1,134 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SN65DSI83 and SN65DSI84 DSI to LVDS bridge chip
+> +
+> +maintainers:
+> +  - Marek Vasut <marex@denx.de>
+> +
+> +description: |
+> +  Texas Instruments SN65DSI83 1x Single-link MIPI DSI
+> +  to 1x Single-link LVDS
+> +  https://www.ti.com/lit/gpn/sn65dsi83
+> +  Texas Instruments SN65DSI84 1x Single-link MIPI DSI
+> +  to 1x Dual-link or 2x Single-link LVDS
+> +  https://www.ti.com/lit/gpn/sn65dsi84
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: ti,sn65dsi83
+> +      - const: ti,sn65dsi84
+> +
+> +  reg:
+> +    const: 0x2d
 
-The seamless transition should be more complicated since it should
-require to read out the hardware state in order to convert it into DRM
-state + display panel needs to stay ON. It's a bit questionable whether
-this is really needed, so far this is not achievable in mainline.
+There is a strapping pin to select the last bit of the address, so apart 
+from 0x2d also 0x2c is valid here.
 
-Nevertheless, it will be good to have an early simple-framebuffer, which
-I realized only after sending out the message.
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +    description: GPIO specifier for bridge_en pin (active high).
+> +
+> +  ports:
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +      port@0:
+> +        type: object
+> +        additionalProperties: false
+> +
+> +        description:
+> +          Video port for MIPI DSI input
+> +
+> +        properties:
+> +          reg:
+> +            const: 0
+> +
+> +          endpoint:
+> +            type: object
+> +            additionalProperties: false
+> +            properties:
+> +              remote-endpoint: true
+> +              data-lanes:
+> +                description: array of physical DSI data lane indexes.
+> +
+> +        required:
+> +          - reg
+> +
+> +      port@1:
+> +        type: object
+> +        additionalProperties: false
+> +
+> +        description:
+> +          Video port for LVDS output (panel or bridge).
+> +
+> +        properties:
+> +          reg:
+> +            const: 1
+> +
+> +          endpoint:
+> +            type: object
+> +            additionalProperties: false
+> +            properties:
+> +              remote-endpoint: true
+> +
+> +        required:
+> +          - reg
+> +
+> +    required:
+> +      - "#address-cells"
+> +      - "#size-cells"
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - enable-gpios
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      bridge@2d {
+> +        compatible = "ti,sn65dsi83";
+> +        reg = <0x2d>;
+> +
+> +        enable-gpios = <&gpio2 1 GPIO_ACTIVE_HIGH>;
+> +
+> +        ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          port@0 {
+> +            reg = <0>;
+> +            endpoint {
+> +              remote-endpoint = <&dsi0_out>;
+> +              data-lanes = <1 2 3 4>;
+> +            };
+> +          };
+> +
+> +          port@1 {
+> +            reg = <1>;
+> +            endpoint {
+> +              remote-endpoint = <&panel_in_lvds>;
+> +            };
+> +          };
+> +        };
+> +      };
+> +    };
+> 
