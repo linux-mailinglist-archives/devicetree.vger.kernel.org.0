@@ -2,239 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4102E36D998
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 16:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0298336DB2D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 17:24:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229520AbhD1O3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 10:29:19 -0400
-Received: from frasgout.his.huawei.com ([185.176.79.56]:2943 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234102AbhD1O3S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 10:29:18 -0400
-Received: from fraeml706-chm.china.huawei.com (unknown [172.18.147.207])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4FVgld2LV9z6wj3N;
-        Wed, 28 Apr 2021 22:20:45 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml706-chm.china.huawei.com (10.206.15.55) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.2; Wed, 28 Apr 2021 16:28:31 +0200
-Received: from localhost (10.52.123.69) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Wed, 28 Apr
- 2021 15:28:31 +0100
-Date:   Wed, 28 Apr 2021 15:26:57 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Sean Nyekjaer <sean@geanix.com>
-CC:     <jic23@kernel.org>, <linux-iio@vger.kernel.org>,
-        <andy.shevchenko@gmail.com>, <lars@metafoo.de>,
-        <Nuno.Sa@analog.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [RFC PATCH 2/4] iio: accel: fxls8962af: add interrupt support
-Message-ID: <20210428152657.00004199@Huawei.com>
-In-Reply-To: <20210428082203.3587022-2-sean@geanix.com>
-References: <20210428082203.3587022-1-sean@geanix.com>
-        <20210428082203.3587022-2-sean@geanix.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
-MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.52.123.69]
-X-ClientProxiedBy: lhreml751-chm.china.huawei.com (10.201.108.201) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+        id S231381AbhD1PHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 11:07:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58224 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229890AbhD1PHV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Apr 2021 11:07:21 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A44FE613B1;
+        Wed, 28 Apr 2021 15:06:36 +0000 (UTC)
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1lbllq-009sXy-H3; Wed, 28 Apr 2021 16:06:34 +0100
+Date:   Wed, 28 Apr 2021 16:06:33 +0100
+Message-ID: <87h7jqo3d2.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     <cl@rock-chips.com>
+Cc:     heiko@sntech.de, robh+dt@kernel.org, jagan@amarulasolutions.com,
+        wens@csie.org, uwe@kleine-koenig.org, mail@david-bauer.net,
+        jbx6244@gmail.com, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
+        cnsztl@gmail.com, devicetree@vger.kernel.org,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
+        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
+        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
+        zhangqing@rock-chips.com, huangtao@rock-chips.com,
+        wim@linux-watchdog.org, linux@roeck-us.net, jamie@jamieiles.com,
+        linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v3 09/10] arm64: dts: rockchip: add core dtsi for RK3568 SoC
+In-Reply-To: <20210428135002.22528-1-cl@rock-chips.com>
+References: <20210428134759.22076-1-cl@rock-chips.com>
+        <20210428135002.22528-1-cl@rock-chips.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: cl@rock-chips.com, heiko@sntech.de, robh+dt@kernel.org, jagan@amarulasolutions.com, wens@csie.org, uwe@kleine-koenig.org, mail@david-bauer.net, jbx6244@gmail.com, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, jensenhuang@friendlyarm.com, michael@amarulasolutions.com, cnsztl@gmail.com, devicetree@vger.kernel.org, ulf.hansson@linaro.org, linux-mmc@vger.kernel.org, gregkh@linuxfoundation.org, linux-serial@vger.kernel.org, linux-i2c@vger.kernel.org, jay.xu@rock-chips.com, shawn.lin@rock-chips.com, david.wu@rock-chips.com, zhangqing@rock-chips.com, huangtao@rock-chips.com, wim@linux-watchdog.org, linux@roeck-us.net, jamie@jamieiles.com, linux-watchdog@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Apr 2021 10:22:01 +0200
-Sean Nyekjaer <sean@geanix.com> wrote:
-
-> Preparation commit for the next that adds hw buffered sampling
+On Wed, 28 Apr 2021 14:50:02 +0100,
+<cl@rock-chips.com> wrote:
 > 
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-
-Entirely trivial comment inline.  Otherwise looks good.
-
+> From: Liang Chen <cl@rock-chips.com>
+> 
+> RK3568 is a high-performance and low power quad-core application processor
+> designed for personal mobile internet device and AIoT equipment. This patch
+> add basic core dtsi file for it.
+> 
+> We use scmi_clk for cortex-a55 instead of standard ARMCLK, so that
+> kernel/uboot/rtos can change cpu clk with the same code in ATF, and we will
+> enalbe a special high-performance PLL when high frequency is required. The
+> smci_clk code is in ATF, and clkid for cpu is 0, as below:
+> 
+>     cpu0: cpu@0 {
+>         device_type = "cpu";
+>         compatible = "arm,cortex-a55";
+>         reg = <0x0 0x0>;
+>         clocks = <&scmi_clk 0>;
+>     };
+> 
+> Signed-off-by: Liang Chen <cl@rock-chips.com>
 > ---
-> This series depends on "iio: accel: add support for
-> FXLS8962AF/FXLS8964AF accelerometers"
-> 
->  drivers/iio/accel/fxls8962af-core.c | 116 ++++++++++++++++++++++++++++
->  1 file changed, 116 insertions(+)
-> 
-> diff --git a/drivers/iio/accel/fxls8962af-core.c b/drivers/iio/accel/fxls8962af-core.c
-> index b47d81bebf43..848f3d68f5d4 100644
-> --- a/drivers/iio/accel/fxls8962af-core.c
-> +++ b/drivers/iio/accel/fxls8962af-core.c
-> @@ -15,6 +15,7 @@
->  #include <linux/bits.h>
->  #include <linux/bitfield.h>
->  #include <linux/module.h>
-> +#include <linux/of_irq.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/regmap.h>
-> @@ -54,6 +55,10 @@
->  #define FXLS8962AF_SC3_WAKE_ODR_PREP(x)		FIELD_PREP(FXLS8962AF_SC3_WAKE_ODR_MASK, x)
->  #define FXLS8962AF_SC3_WAKE_ODR_GET(x)		FIELD_GET(FXLS8962AF_SC3_WAKE_ODR_MASK, x)
->  #define FXLS8962AF_SENS_CONFIG4			0x18
-> +#define FXLS8962AF_SC4_INT_PP_OD_MASK		BIT(1)
-> +#define FXLS8962AF_SC4_INT_PP_OD_PREP(x)	FIELD_PREP(FXLS8962AF_SC4_INT_PP_OD_MASK, x)
-> +#define FXLS8962AF_SC4_INT_POL_MASK		BIT(0)
-> +#define FXLS8962AF_SC4_INT_POL_PREP(x)		FIELD_PREP(FXLS8962AF_SC4_INT_POL_MASK, x)
->  #define FXLS8962AF_SENS_CONFIG5			0x19
->  
->  #define FXLS8962AF_WAKE_IDLE_LSB		0x1b
-> @@ -62,6 +67,9 @@
->  
->  #define FXLS8962AF_INT_EN			0x20
->  #define FXLS8962AF_INT_PIN_SEL			0x21
-> +#define FXLS8962AF_INT_PIN_SEL_MASK		GENMASK(7, 0)
-> +#define FXLS8962AF_INT_PIN_SEL_INT1		0x00
-> +#define FXLS8962AF_INT_PIN_SEL_INT2		GENMASK(7, 0)
->  
->  #define FXLS8962AF_OFF_X			0x22
->  #define FXLS8962AF_OFF_Y			0x23
-> @@ -142,6 +150,11 @@ enum {
->  	fxls8962af_idx_ts,
->  };
->  
-> +enum fxls8962af_int_pin {
-> +	FXLS8962AF_PIN_INT1,
-> +	FXLS8962AF_PIN_INT2,
-> +};
-> +
->  static int fxls8962af_drdy(struct fxls8962af_data *data)
->  {
->  	struct device *dev = regmap_get_device(data->regmap);
-> @@ -559,6 +572,20 @@ static int fxls8962af_reset(struct fxls8962af_data *data)
->  	return ret;
->  }
->  
-> +static irqreturn_t fxls8962af_interrupt(int irq, void *p)
-> +{
-> +	struct iio_dev *indio_dev = p;
-> +	struct fxls8962af_data *data = iio_priv(indio_dev);
-> +	unsigned int reg;
-> +	int ret;
-> +
-> +	ret = regmap_read(data->regmap, FXLS8962AF_INT_STATUS, &reg);
-> +	if (ret < 0)
-> +		return IRQ_NONE;
-> +
-> +	return IRQ_NONE;
-> +}
-> +
->  static void fxls8962af_regulator_disable(void *data_ptr)
->  {
->  	struct fxls8962af_data *data = data_ptr;
-> @@ -578,6 +605,89 @@ static void fxls8962af_pm_disable(void *dev_ptr)
->  	fxls8962af_standby(iio_priv(indio_dev));
->  }
->  
-> +static void fxls8962af_get_irq(struct device_node *of_node, enum fxls8962af_int_pin *pin)
-> +{
-> +	int irq;
-> +
-> +	irq = of_irq_get_byname(of_node, "INT2");
-> +	if (irq > 0) {
-> +		*pin = FXLS8962AF_PIN_INT2;
-> +		return;
-> +	}
-> +
-> +	*pin = FXLS8962AF_PIN_INT1;
-> +}
-> +
-> +static int fxls8962af_irq_setup(struct iio_dev *indio_dev, int irq)
-> +{
-> +	struct fxls8962af_data *data = iio_priv(indio_dev);
-> +	struct device *dev = regmap_get_device(data->regmap);
-> +	unsigned long irq_type;
-> +	bool irq_active_high;
-> +	enum fxls8962af_int_pin int_pin;
-> +	u8 int_pin_sel;
-> +	int ret;
-> +
-> +	fxls8962af_get_irq(dev->of_node, &int_pin);
-> +	switch (int_pin) {
-> +	case FXLS8962AF_PIN_INT1:
-> +		int_pin_sel = FXLS8962AF_INT_PIN_SEL_INT1;
-> +		break;
-> +	case FXLS8962AF_PIN_INT2:
-> +		int_pin_sel = FXLS8962AF_INT_PIN_SEL_INT2;
-> +		break;
-> +	default:
-> +		dev_err(dev, "unsupported int pin selected\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = regmap_update_bits(data->regmap, FXLS8962AF_INT_PIN_SEL,
-> +				 FXLS8962AF_INT_PIN_SEL_MASK,
-> +				 int_pin_sel);
-> +	if (ret)
-> +		return ret;
-> +
-> +	irq_type = irqd_get_trigger_type(irq_get_irq_data(irq));
-> +
-> +	switch (irq_type) {
-> +	case IRQF_TRIGGER_HIGH:
-> +	case IRQF_TRIGGER_RISING:
-> +		irq_active_high = true;
-> +		break;
-> +	case IRQF_TRIGGER_LOW:
-> +	case IRQF_TRIGGER_FALLING:
-> +		irq_active_high = false;
-> +		break;
-> +	default:
-> +		dev_info(dev, "mode %lx unsupported\n", irq_type);
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = regmap_update_bits(data->regmap, FXLS8962AF_SENS_CONFIG4,
-> +				 FXLS8962AF_SC4_INT_POL_MASK,
-> +				 FXLS8962AF_SC4_INT_POL_PREP(irq_active_high));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (device_property_read_bool(dev, "drive-open-drain")) {
-> +		ret = regmap_update_bits(data->regmap, FXLS8962AF_SENS_CONFIG4,
-> +					 FXLS8962AF_SC4_INT_PP_OD_MASK,
-> +					 FXLS8962AF_SC4_INT_PP_OD_PREP(1));
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		irq_type |= IRQF_SHARED;
-> +	}
-> +
-> +	ret = devm_request_threaded_irq(dev,
-> +					irq,
-> +					NULL, fxls8962af_interrupt,
-> +					irq_type | IRQF_ONESHOT,
-> +					indio_dev->name, indio_dev);
-> +
-> +	return ret;
+>  .../boot/dts/rockchip/rk3568-pinctrl.dtsi     | 3111 +++++++++++++++++
+>  arch/arm64/boot/dts/rockchip/rk3568.dtsi      |  779 +++++
+>  2 files changed, 3890 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568.dtsi
 
-Combine these last two lines into 
-return devm_request_threaded_irq(...)
+[...]
 
+> +	gic: interrupt-controller@fd400000 {
+> +		compatible = "arm,gic-v3";
+> +		reg = <0x0 0xfd400000 0 0x10000>, /* GICD */
+> +		      <0x0 0xfd460000 0 0xc0000>; /* GICR */
 
-> +}
-> +
->  int fxls8962af_core_probe(struct device *dev, struct regmap *regmap, int irq)
->  {
->  	struct fxls8962af_data *data;
-> @@ -637,6 +747,12 @@ int fxls8962af_core_probe(struct device *dev, struct regmap *regmap, int irq)
->  	if (ret < 0)
->  		return ret;
->  
-> +	if (irq) {
-> +		ret = fxls8962af_irq_setup(indio_dev, irq);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
->  	ret = pm_runtime_set_active(dev);
->  	if (ret < 0)
->  		return ret;
+If this SoC has 4 CPUs, that's 4 redistributors. Given that GIC600
+doesn't implement VLPIs, that's 128kB per redistributors. Why is GICR
+large enough for 6 CPUs here? Is that copy-pasted from another SoC?
 
+> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <3>;
+> +		mbi-alias = <0x0 0xfd400000>;
+> +		mbi-ranges = <296 24>;
+> +		msi-controller;
+> +	};
+
+Glad to see that you found some spare SPIs to get MSIs going
+
+However, the whole point of mbi-alias (aka GICA in GIC600) is to be
+different from GICD and provide some isolation via an IOMMU.  If I
+trust the TRM, if should be at 0xfd10000 in your implementation.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
