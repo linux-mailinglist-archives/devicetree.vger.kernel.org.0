@@ -2,67 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B9B836D7D6
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 14:58:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8919136D89F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 15:50:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239604AbhD1M7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 08:59:06 -0400
-Received: from mx2.suse.de ([195.135.220.15]:36176 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239201AbhD1M7F (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Apr 2021 08:59:05 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id D6429B170;
-        Wed, 28 Apr 2021 12:58:19 +0000 (UTC)
-From:   Mian Yousaf Kaukab <ykaukab@suse.de>
-To:     shawnguo@kernel.org, leoyang.li@nxp.com, robh+dt@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Mian Yousaf Kaukab <ykaukab@suse.de>
-Subject: [PATCH] arm64: dts: ls208xa: remove bus-num from dspi node
-Date:   Wed, 28 Apr 2021 14:58:07 +0200
-Message-Id: <20210428125807.29553-1-ykaukab@suse.de>
-X-Mailer: git-send-email 2.26.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S239934AbhD1Ntb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 09:49:31 -0400
+Received: from lucky1.263xmail.com ([211.157.147.131]:41978 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239304AbhD1Nta (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 09:49:30 -0400
+Received: from localhost (unknown [192.168.167.235])
+        by lucky1.263xmail.com (Postfix) with ESMTP id EDA42B9FF2;
+        Wed, 28 Apr 2021 21:48:03 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P2750T140649007400704S1619617681633012_;
+        Wed, 28 Apr 2021 21:48:03 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <9f4b7bf97fe250e292465ec654eab734>
+X-RL-SENDER: cl@rock-chips.com
+X-SENDER: cl@rock-chips.com
+X-LOGIN-NAME: cl@rock-chips.com
+X-FST-TO: heiko@sntech.de
+X-RCPT-COUNT: 30
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   <cl@rock-chips.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, jagan@amarulasolutions.com, wens@csie.org,
+        uwe@kleine-koenig.org, mail@david-bauer.net, jbx6244@gmail.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
+        cnsztl@gmail.com, devicetree@vger.kernel.org,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
+        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
+        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
+        zhangqing@rock-chips.com, huangtao@rock-chips.com,
+        cl@rock-chips.com, wim@linux-watchdog.org, linux@roeck-us.net,
+        jamie@jamieiles.com, linux-watchdog@vger.kernel.org, maz@kernel.org
+Subject: [PATCH v3 00/10] arm64: dts: rockchip: add basic dtsi/dts files for RK3568 SoC
+Date:   Wed, 28 Apr 2021 21:47:49 +0800
+Message-Id: <20210428134759.22076-1-cl@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On LS2088A-RDB board, if the spi-fsl-dspi driver is built as module
-then its probe fails with the following warning:
+From: Liang Chen <cl@rock-chips.com>
 
-[   10.471363] couldn't get idr
-[   10.471381] WARNING: CPU: 4 PID: 488 at drivers/spi/spi.c:2689 spi_register_controller+0x73c/0x8d0
-...
-[   10.471651] fsl-dspi 2100000.spi: Problem registering DSPI ctlr
-[   10.471708] fsl-dspi: probe of 2100000.spi failed with error -16
+v1:
+1. add some dt-bindings for RK3568 devices.
+2. add core dtsi for RK3568 SoC.
+3. add basic dts for RK3568 EVB
 
-Reason for the failure is that bus-num property is set for dspi node.
-However, bus-num property is not set for the qspi node. If probe for
-spi-fsl-qspi happens first then id 0 is dynamically allocated to it.
-Call to spi_register_controller() from spi-fsl-dspi driver then fails.
-Since commit 29d2daf2c33c ("spi: spi-fsl-dspi: Make bus-num property
-optional") bus-num property is optional. Remove bus-num property from
-dspi node to fix the issue.
+v2:
+1. sort device nodes by some rules.
 
-Signed-off-by: Mian Yousaf Kaukab <ykaukab@suse.de>
----
- arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+v3:
+1. make ARCH=arm64 dtbs_check, then fix some errors and add some documents.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-index 135ac8210871..801ba9612d36 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-@@ -929,7 +929,6 @@ dspi: spi@2100000 {
- 					    QORIQ_CLK_PLL_DIV(4)>;
- 			clock-names = "dspi";
- 			spi-num-chipselects = <5>;
--			bus-num = <0>;
- 		};
- 
- 		esdhc: esdhc@2140000 {
+Liang Chen (10):
+  dt-bindings: i2c: i2c-rk3x: add description for rk3568
+  dt-bindings: serial: snps-dw-apb-uart: add description for rk3568
+  dt-bindings: mmc: rockchip-dw-mshc: add description for rk3568
+  dt-bindings: watchdog: dw-wdt: add description for rk3568
+  dt-bindings: pwm: rockchip: add description for rk3568
+  dt-bindings: gpio: change items restriction of clock for
+    rockchip,gpio-bank
+  dt-bindings: soc: rockchip: Convert grf.txt to YAML
+  arm64: dts: rockchip: add generic pinconfig settings used by most
+    Rockchip socs
+  arm64: dts: rockchip: add core dtsi for RK3568 SoC
+  arm64: dts: rockchip: add basic dts for RK3568 EVB
+
+ .../devicetree/bindings/arm/rockchip.yaml     |    5 +
+ .../bindings/gpio/rockchip,gpio-bank.yaml     |    3 +-
+ .../devicetree/bindings/i2c/i2c-rk3x.yaml     |    1 +
+ .../bindings/mmc/rockchip-dw-mshc.yaml        |    9 +-
+ .../devicetree/bindings/pwm/pwm-rockchip.yaml |    1 +
+ .../bindings/serial/snps-dw-apb-uart.yaml     |    1 +
+ .../devicetree/bindings/soc/rockchip/grf.txt  |   61 -
+ .../devicetree/bindings/soc/rockchip/grf.yaml |   58 +
+ .../bindings/watchdog/snps,dw-wdt.yaml        |    1 +
+ arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+ .../boot/dts/rockchip/rk3568-evb1-v10.dts     |   80 +
+ .../boot/dts/rockchip/rk3568-pinctrl.dtsi     | 3111 +++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      |  789 +++++
+ .../boot/dts/rockchip/rockchip-pinconf.dtsi   |  344 ++
+ 14 files changed, 4395 insertions(+), 70 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3568.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rockchip-pinconf.dtsi
+
 -- 
-2.26.2
+2.17.1
+
+
 
