@@ -2,128 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2226D36E033
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 22:21:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B21CF36E158
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 00:01:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240539AbhD1UWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 16:22:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55750 "EHLO
+        id S231380AbhD1WCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 18:02:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240515AbhD1UWS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 16:22:18 -0400
-Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C224C06138B
-        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 13:21:33 -0700 (PDT)
-Received: by mail-il1-x132.google.com with SMTP id y10so12144029ilv.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 13:21:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=poorly.run; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3FlfJuCO/i0lHXz9Yi8JuX0LHEp/FCSt5EvXf/XQhbw=;
-        b=Twe/v+kPHslIBdnujIpFoTmjqKiXz3Qw86igYBt6JKw9MRVlLASnJezyH+2HX0D5/y
-         1S+ZoIf/DhA5jzqOmWyOdNWhi372TPnKzo2U1odOVbpIh9peetD1cWRUTXNOuHiur8RF
-         CTAf8QNFFktBK+T6i7jMTFhiGslZ/9XyFimZ73V5HSutx9tH2bKP85o42syoYOj9MinU
-         N7vUUXLASROmijnkzZEYDKhs1CIZcc88YyxWOpDVZ46m4dn3JJAqyEJPLohCA9ebVbju
-         OYL1e2aCMN1Gi1lP9HTfavKkJuXnOqd3N6Tdd5CHP0iPUiI120LMpSdC1aXMgJjhs6dD
-         oW4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3FlfJuCO/i0lHXz9Yi8JuX0LHEp/FCSt5EvXf/XQhbw=;
-        b=XEaqVFUny211Hmya0pTgYLOWqqIEOFlwBvfhnLxlZoD1ZLZhv4SEocGSBFIftYPYc8
-         ikm02ngbyg4Z5uetDcrk/QKirqhrwCkZ8yyOLla+9CEWpNnS0zeK9EyLjAjOQ3QpJhlw
-         AyRhHmYINP3mSk1IRlyz9X8aoIWYghKrul4ig6xyuPTH3YbQS/T8brYUyW7v2sVcmUze
-         xD2jKNUcneffz5DuxDN1mdzc3Nb44Se3zWv0ZLjD+W8QISRDHtPxbuHiUBzHFm8suE1G
-         IJvmfdw09p2hG8Rkfe5YHScHQqCFLMrO+36rrpXBS8qFD86TQCMSi6vHqmui0OKrZG9X
-         NWAw==
-X-Gm-Message-State: AOAM533IhQqAZAWqiC4tyQRn2FaeOtcAd7rywV0hhjzyWkexSCIdYgi5
-        CA3cMWpGEsS22z8WSSSps1xJKxKrMKwAaoZrbis01Q==
-X-Google-Smtp-Source: ABdhPJxW0HbA94ewF7F3weEGbYhyR1USNUWGh56KyTn6uWBkUkN9dCEH3OgkE9YeiRwCBSERhbC4leLYiC4JNncqOlo=
-X-Received: by 2002:a05:6e02:1d06:: with SMTP id i6mr24290849ila.165.1619641292908;
- Wed, 28 Apr 2021 13:21:32 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210428170416.1027484-1-hsinyi@chromium.org> <20210428170416.1027484-3-hsinyi@chromium.org>
-In-Reply-To: <20210428170416.1027484-3-hsinyi@chromium.org>
-From:   Sean Paul <sean@poorly.run>
-Date:   Wed, 28 Apr 2021 16:20:56 -0400
-Message-ID: <CAMavQK+RJATzOVfgRhpU5i3kGsYM2-y4whgZMTdwNnK=z63nYA@mail.gmail.com>
-Subject: Re: [PATCH v5 3/4] drm/i915: init panel orientation property
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        LKML <linux-kernel@vger.kernel.org>,
+        with ESMTP id S229488AbhD1WCh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 18:02:37 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B224DC06138B;
+        Wed, 28 Apr 2021 15:01:51 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 97B2F88C;
+        Thu, 29 Apr 2021 00:01:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1619647307;
+        bh=Nz/QCYzL43LScDYgeQKxcDJY4uD2js/djdZrQQeHo84=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=H84+64d1WUnNometHHZSbNj+0vMMhDpdJRCDGnCXU550CmVlpVVMmjnj3AbiZnvuc
+         ZS9RH7owFxNKuJr1MUkWb13DJP3q3IZkw1WFNXzPC+RCKDnB2qrM8Hl+J3kBAZmje6
+         IRipDvI/njnNnIM4VjIEq6RaDLk6Aa37IgmuJ1Nw=
+Date:   Thu, 29 Apr 2021 01:01:41 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Nelson Costa <Nelson.Costa@synopsys.com>
+Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Jose Abreu <Jose.Abreu@synopsys.com>
+Subject: Re: [RFC 1/8] dt-bindings: media: Document Synopsys DesignWare HDMI
+ RX
+Message-ID: <YInbRfg14YVyeuEB@pendragon.ideasonboard.com>
+References: <cover.1618937288.git.nelson.costa@synopsys.com>
+ <21bdecce9dd0a8035d906af2242bc7e3495cc1b0.1618937288.git.nelson.costa@synopsys.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <21bdecce9dd0a8035d906af2242bc7e3495cc1b0.1618937288.git.nelson.costa@synopsys.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 28, 2021 at 1:04 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
->
-> Creating the panel orientation property first since we separate the
-> property creating and value setting.
+Hi Nelson and Jose,
 
-This should probably be included in patch 1 so you don't regress i915
-in between patches.
+Thank you for the patch.
 
-Sean
-
->
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+On Wed, Apr 28, 2021 at 05:25:04PM +0200, Nelson Costa wrote:
+> Document the bindings for the Synopsys DesignWare HDMI RX.
+> 
+> Signed-off-by: Jose Abreu <jose.abreu@synopsys.com>
+> Signed-off-by: Nelson Costa <nelson.costa@synopsys.com>
 > ---
->  drivers/gpu/drm/i915/display/icl_dsi.c  | 1 +
->  drivers/gpu/drm/i915/display/intel_dp.c | 1 +
->  drivers/gpu/drm/i915/display/vlv_dsi.c  | 1 +
->  3 files changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 9282978060b0..162fb3cf0f5a 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1903,6 +1903,7 @@ static void icl_dsi_add_properties(struct intel_connector *connector)
->
->         connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
->
-> +       drm_connector_attach_scaling_mode_property(&connector->base);
->         drm_connector_set_panel_orientation_with_quirk(&connector->base,
->                                 intel_dsi_get_panel_orientation(connector),
->                                 connector->panel.fixed_mode->hdisplay,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index a5231ac3443a..f1d664e5abb2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5263,6 +5263,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
->         intel_panel_setup_backlight(connector, pipe);
->
->         if (fixed_mode) {
-> +               drm_connector_init_panel_orientation_property(connector);
->                 drm_connector_set_panel_orientation_with_quirk(connector,
->                                 dev_priv->vbt.orientation,
->                                 fixed_mode->hdisplay, fixed_mode->vdisplay);
-> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> index 9bee99fe5495..853855482af1 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> @@ -1632,6 +1632,7 @@ static void vlv_dsi_add_properties(struct intel_connector *connector)
->
->                 connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
->
-> +               drm_connector_init_panel_orientation_property(&connector->base);
->                 drm_connector_set_panel_orientation_with_quirk(
->                                 &connector->base,
->                                 intel_dsi_get_panel_orientation(connector),
-> --
-> 2.31.1.498.g6c1eba8ee3d-goog
->
+>  .../devicetree/bindings/media/snps,dw-hdmi-rx.yaml | 149 +++++++++++++++++++++
+>  1 file changed, 149 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+> new file mode 100644
+> index 0000000..19c7dd4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+> @@ -0,0 +1,149 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/snps,dw-hdmi-rx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synopsys DesignWare HDMI RX Controller and PHYs e405/e406 Device Tree Bindings
+> +
+> +maintainers:
+> +  - Jose Abreu <jose.abreu@synopsys.com>
+> +  - Nelson Costa <nelson.costa@synopsys.com>
+> +
+> +description: |
+> +  The Synopsys DesignWare HDMI RX Controller and PHYs e405/e406 is an HDMI 2.0
+> +  Receiver solution that is able to decode video and audio.
+> +
+> +properties:
+> +  compatible:
+> +    const: snps,dw-hdmi-rx
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: phandle to the configuration clock
+> +
+> +  clock-names:
+> +    const: cfg
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  phys:
+> +    maxItems: 1
+> +    description: phandle for the HDMI RX PHY
+> +
+> +  phy-names:
+> +    const: hdmi-phy
+> +
+> +  hdmi-phy@fc:
+> +    type: object
+> +    description: connection point for HDMI PHY
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      compatible:
+> +        oneOf:
+> +          - const: snps,dw-hdmi-phy-e405
+> +          - const: snps,dw-hdmi-phy-e406
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +      clocks:
+> +        maxItems: 1
+> +        description: phandle to the configuration clock
+> +
+> +      clock-names:
+> +        const: cfg
+> +
+> +      "#phy-cells":
+> +        const: 0
+> +
+> +      input-count:
+> +        description: Number of PHY input ports
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        enum: [1, 2, 3, 4]
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - clocks
+> +      - clock-names
+> +      - "#phy-cells"
+> +      - input-count
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - phys
+> +  - phy-names
+
+THe bindings should be using OF graph (ports) to model the connection
+between the HDMI source (usually a connector) and the HDMI RX, and
+between the HDMI RX and the downstream IP core in the pipeline.
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    hdmi_rx0: hdmi-rx@0 {
+> +        compatible = "snps,dw-hdmi-rx";
+> +        reg = <0x0 0x10000>;
+> +        interrupts = <1 2>;
+> +
+> +        clocks = <&dw_hdmi_refclk>;
+> +        clock-names = "cfg";
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        phys = <&hdmi_e405_phy>;
+> +        phy-names = "hdmi-phy";
+> +
+> +        hdmi_e405_phy: hdmi-phy@fc {
+> +                compatible = "snps,dw-hdmi-phy-e405";
+> +                reg = <0xfc>;
+> +
+> +                clocks = <&dw_hdmi_refclk>;
+> +                clock-names = "cfg";
+> +
+> +                #phy-cells = <0>;
+> +                input-count = <4>;
+> +        };
+> +    };
+> +  - |
+> +    hdmi_rx1: hdmi-rx@1 {
+> +        compatible = "snps,dw-hdmi-rx";
+> +        reg = <0x0 0x10000>;
+> +        interrupts = <1 2>;
+> +
+> +        clocks = <&dw_hdmi_refclk>;
+> +        clock-names = "cfg";
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        phys = <&hdmi_e406_phy>;
+> +        phy-names = "hdmi-phy";
+> +
+> +        hdmi_e406_phy: hdmi-phy@fc {
+> +                compatible = "snps,dw-hdmi-phy-e406";
+> +                reg = <0xfc>;
+> +
+> +                clocks = <&dw_hdmi_refclk>;
+> +                clock-names = "cfg";
+> +
+> +                #phy-cells = <0>;
+> +                input-count = <4>;
+> +        };
+> +    };
+
+-- 
+Regards,
+
+Laurent Pinchart
