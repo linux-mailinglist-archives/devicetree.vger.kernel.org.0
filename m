@@ -2,118 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7E0536D729
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 14:21:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F94E36D746
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 14:27:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233738AbhD1MWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 08:22:05 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:62319 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234553AbhD1MWF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Apr 2021 08:22:05 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1619612480; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=itp3bO0rSXlRMnGotgyM/EUgRDm0AtM7sGQbojFcAGA=;
- b=uujJg+sI/Gug9Tll3gKa1WWQOkShSj+HJSb3YoRXuE6+HUtN3SRDOPWHqlKU3fN+4mgs2YuN
- 3aS7wIr2M1j68a9wijraZEljudQ991bok1Q3zSmckSB9AN8bwllJOaHDG8Cvd2tFQM5toZtf
- O5iZrO/4AdM8fNZXnEqG8YkkTOA=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 6089517c74f773a664ac27ed (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 28 Apr 2021 12:13:48
- GMT
-Sender: dikshita=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id BED7DC43460; Wed, 28 Apr 2021 12:13:47 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: dikshita)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6ED9FC433F1;
-        Wed, 28 Apr 2021 12:13:46 +0000 (UTC)
+        id S236306AbhD1M2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 08:28:01 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:35667 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230406AbhD1M2A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 08:28:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1619612836; x=1651148836;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=VoFsEu7IMLrs18H6cW8rTtXU3e6cDl6EGGrU3y282fA=;
+  b=jsPWeBtgoCdZ07xZihHmLxkQUZBBRKYEYzIUzdGQRd5/sNiIbG8zbKkL
+   ab5nOrWcFuTnucjd02wqXUNJ02lLlNVTABw34+B+t3Mt0+wgc93RUwlh4
+   jCIY708ilapt1V2niaFZDn8mi4sPoJlVkoH4uNw/SdqZabK0q7OTuwc3F
+   88aQg3rkKv4ylPbF5pso6nVD9eM2t7JpQBxxsphULeWfjCu8X/0WaNgV4
+   GB7mVzmCFb1eAAOCiKwvcThyNUpjkR2DMxczG20ljohGeikmiRQ2B6/kk
+   J3YxoIk5qvuvUUpxvPLsL9paWkV+R+9DOFYDgfeI5m5AT1J4oxDdSgo/A
+   w==;
+IronPort-SDR: litlxQYwX3iGcA4rS9fSUtmkzAZL4pvVt0OTsjDVAJ5XuU5Izg82HVsz77iWFs/4atNUdxzjiv
+ PDLK3SKyJUmjLbRy6sgSymSPWfxoQc6B8zF7XEp/QQdRPvowdvAZcc3XIVkVTwjcfPTEIn5Alx
+ DtIaJLIOkcFLwaX2zVi85yT8FwbL31s7KoG60OxaNQGO4Y9MV79VQHKZyLd3Qtf+UNOV2cSnhb
+ H5NeI5ioNjLwnPKbYI4FSC0FnFdmKgg8ZzgXv2l/6/6744M8uVMZklZ4qrft7t8qEchHV0STG8
+ Ecs=
+X-IronPort-AV: E=Sophos;i="5.82,258,1613458800"; 
+   d="scan'208";a="115190394"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Apr 2021 05:27:15 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Wed, 28 Apr 2021 05:27:15 -0700
+Received: from daire-ubuntu.school.villiers.net (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Wed, 28 Apr 2021 05:27:12 -0700
+From:   <daire.mcnamara@microchip.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <linux-clk@vger.kernel.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <palmer@dabbelt.com>, <cyril.jean@microchip.com>,
+        <padmarao.begari@microchip.com>, <lewis.hanly@microchip.com>,
+        <conor.dooley@microchip.com>, <david.abdurachmanov@gmail.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>
+Subject: [PATCH v4 0/2] CLK: microchip: Add clkcfg driver for Microchip PolarFire SoC
+Date:   Wed, 28 Apr 2021 13:27:09 +0100
+Message-ID: <20210428122711.2136467-1-daire.mcnamara@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 28 Apr 2021 17:43:46 +0530
-From:   dikshita@codeaurora.org
-To:     Rob Herring <robh@kernel.org>
-Cc:     andy.gross@linaro.org, vgarodia@codeaurora.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, stanimir.varbanov@linaro.org,
-        robh+dt@kernel.org, mark.rutland@arm.com, david.brown@linaro.org
-Subject: Re: [PATCH] dt-bindings: media: venus: Add sc7280 dt schema
-In-Reply-To: <1619471083.458228.4086059.nullmailer@robh.at.kernel.org>
-References: <1619432515-9060-1-git-send-email-dikshita@codeaurora.org>
- <1619471083.458228.4086059.nullmailer@robh.at.kernel.org>
-Message-ID: <d41482571e1ec6326d3f3ad665f18c81@codeaurora.org>
-X-Sender: dikshita@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-Thanks for your comment.
+From: Daire McNamara <daire.mcnamara@microchip.com>
 
-Actually, this change depends on 
-https://patchwork.kernel.org/project/linux-arm-msm/list/?series=473809
-which adds the file dt-bindings/clock/qcom,videocc-sc7280.h (v2 5/6)
-Missed adding the dependency in commit text.
+This patchset adds support for the Microchip PolarFire clkcfg
+hardware block.
 
-Thanks,
-Dikshita
+Major changes since v3:
+* Patch reformatted so microchip,mpfs-clock.h is part of device-tree patch
 
-On 2021-04-27 02:34, Rob Herring wrote:
-> On Mon, 26 Apr 2021 15:51:55 +0530, Dikshita Agarwal wrote:
->> Add a schema description for the venus video encoder/decoder on the 
->> sc7280.
->> 
->> Signed-off-by: Dikshita Agarwal <dikshita@codeaurora.org>
->> ---
->>  .../bindings/media/qcom,sc7280-venus.yaml          | 158 
->> +++++++++++++++++++++
->>  1 file changed, 158 insertions(+)
->>  create mode 100644 
->> Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
->> 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/media/qcom,sc7280-venus.example.dts:19:18:
-> fatal error: dt-bindings/clock/qcom,videocc-sc7280.h: No such file or
-> directory
->    19 |         #include <dt-bindings/clock/qcom,videocc-sc7280.h>
->       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> compilation terminated.
-> make[1]: *** [scripts/Makefile.lib:377:
-> Documentation/devicetree/bindings/media/qcom,sc7280-venus.example.dt.yaml]
-> Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1414: dt_binding_check] Error 2
-> 
-> See https://patchwork.ozlabs.org/patch/1470241
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
+Major changes since v2:
+* In mpfs_cfg_clk_set_rate, return immediately if divider_get_val
+    returns <0 
+* rebased to v5.12-rc1
+
+Major changes since v1:
+ * Dependency on SOC_MICROCHIP_POLARFIRE
+ * All references to PFSOC/pfsoc changed to MPFS/mpfs
+ * Cleaned error handling in _probe
+ * Re-ordered code to place structs et al at top
+
+Daire McNamara (2):
+  dt-bindings: clk: microchip: Add Microchip PolarFire host binding
+  clk: microchip: Add driver for Microchip PolarFire SoC
+
+ .../bindings/clock/microchip,mpfs.yaml        |  73 +++
+ drivers/clk/Kconfig                           |   1 +
+ drivers/clk/Makefile                          |   2 +-
+ drivers/clk/microchip/Kconfig                 |   7 +
+ drivers/clk/microchip/Makefile                |   6 +-
+ drivers/clk/microchip/clk-mpfs.c              | 444 ++++++++++++++++++
+ .../dt-bindings/clock/microchip,mpfs-clock.h  |  45 ++
+ 7 files changed, 575 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/microchip,mpfs.yaml
+ create mode 100644 drivers/clk/microchip/Kconfig
+ create mode 100644 drivers/clk/microchip/clk-mpfs.c
+ create mode 100644 include/dt-bindings/clock/microchip,mpfs-clock.h
+
+
+base-commit: 4a0225c3d208cfa6e4550f2210ffd9114a952a81
+-- 
+2.25.1
+
