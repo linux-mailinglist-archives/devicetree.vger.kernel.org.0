@@ -2,162 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1004636D3DB
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 10:22:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C734E36D428
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 10:44:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237162AbhD1IXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 04:23:13 -0400
-Received: from first.geanix.com ([116.203.34.67]:54930 "EHLO first.geanix.com"
+        id S237532AbhD1Iou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 04:44:50 -0400
+Received: from mout.web.de ([217.72.192.78]:32805 "EHLO mout.web.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237049AbhD1IXN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Apr 2021 04:23:13 -0400
-Received: from zen.. (unknown [185.17.218.86])
-        by first.geanix.com (Postfix) with ESMTPSA id 65CE946624B;
-        Wed, 28 Apr 2021 08:22:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=geanix.com; s=first;
-        t=1619598146; bh=hOssXQoLqitONDdAWpjsYfSVVVTOP07FajOYAZWHqFU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=fsWcUK+m4N4DZ4m/XI9yVqs92xfHiiWNlSgDezEFZeNu5MHWpDg3LRCQCTLwxS7A9
-         HG65NA9YE+iS3JbLSXeAsTvSqrEnMH8+tvyay+yJ9yUHcC+LMsfaHrwRo6Xnz8hDnK
-         tktBzeTJu0Nw37N83RehoQP7ZYzmOk7r++83FdNxEUheBBTYKOr7jHoYUXGRg+x7sq
-         CPHWq/zM59dzVeeCqmXG/zMG/2DwjLIACMUmRYfArOvZxqlnT1G550Jnz3qHiQgLDh
-         gmt2kMk50pU4YL0eWbnH3GHLA08d70pNGg1XRvoHpak50B5/xyIrz910lolVgJr2qT
-         YBjQ4s8emvAJw==
-From:   Sean Nyekjaer <sean@geanix.com>
-To:     jic23@kernel.org, linux-iio@vger.kernel.org,
-        andy.shevchenko@gmail.com, lars@metafoo.de, Nuno.Sa@analog.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Cc:     Sean Nyekjaer <sean@geanix.com>
-Subject: [RFC PATCH 4/4] iio: accel: fxls8962af: fix errata bug E3 - I2C burst reads
-Date:   Wed, 28 Apr 2021 10:22:03 +0200
-Message-Id: <20210428082203.3587022-4-sean@geanix.com>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210428082203.3587022-1-sean@geanix.com>
-References: <20210428082203.3587022-1-sean@geanix.com>
+        id S229643AbhD1Ios (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Apr 2021 04:44:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+        s=dbaedf251592; t=1619599419;
+        bh=6oyXuRc/HyaQOUAoGH4BzDn08qL8+bPGEAEzFtgQee8=;
+        h=X-UI-Sender-Class:Subject:To:References:From:Date:In-Reply-To;
+        b=PSe8w6+iPdNb9pSML6dkoGWEONTrwTkVhRTNHqSXhblL2u2IBifLvn9TUzZ1rzZa2
+         gh5CE8fl/DCFtLiRU2E8wBh/cF8UB1Ao9IDL76ghRo7v+MaZunECFBxUYtRP4ws3HP
+         bf6iumkBTgUB00UZGGL8eGfW1aLDHpTyLcWhbYRw=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from [192.168.70.1] ([46.114.137.249]) by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MgibW-1l5wXP28dQ-00h9An; Wed, 28
+ Apr 2021 10:43:39 +0200
+Subject: Re: [PATCH] arm64: dts: rockchip: include uhs support for rockpro64
+To:     =?UTF-8?Q?Christian_L=c3=b6hle?= <CLoehle@hyperstone.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "heiko@sntech.de" <heiko@sntech.de>,
+        "jbx6244@gmail.com" <jbx6244@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-rockchip@lists.infradead.org" 
+        <linux-rockchip@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <CWXP265MB2680938B222248792AC205F9C4419@CWXP265MB2680.GBRP265.PROD.OUTLOOK.COM>
+ <97bcbcde-9ccf-f9cc-ef10-36cbd582825a@web.de>
+ <CWXP265MB2680159B5F44B014FA544E89C4409@CWXP265MB2680.GBRP265.PROD.OUTLOOK.COM>
+From:   Soeren Moch <smoch@web.de>
+Message-ID: <8466ba81-7334-d23c-8496-b3d11adcd595@web.de>
+Date:   Wed, 28 Apr 2021 10:43:36 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.1 required=4.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,URIBL_BLOCKED
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on 93bd6fdb21b5
+In-Reply-To: <CWXP265MB2680159B5F44B014FA544E89C4409@CWXP265MB2680.GBRP265.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-GB
+X-Provags-ID: V03:K1:rI5NXxMS8vc1KqOWBuSEaRYXQILgcVXz4XXWfSf7usOe+o2UYL/
+ 32svAj4SutZK2NxYNKw1sudZOr7ZxroEgtTHyl7Tqn/0ui1PbL/UFv7SVuvXxF3jaDZM2S+
+ BOQV/C+lyJ8SyZisVPBFSz4nt0YTtlgHLXAvxWflWskCjndUjw2ynMaYEjwKJXWdkAtfBuD
+ MAU0eS0O+TDZxkcbvednQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Xjfoxz2hrlU=:NMfVgpSc3Ihcp8cpoROheQ
+ lZyJMrT9pvTsMigU48ZOJWkDkyH35UxgribY2Wd0KVLIHsu821/cy5EFPPpa1Cm0LjlwUpw6U
+ le88EZNz2UytA66V+U7TUWobPAP3rWSarpU1kc7BXqwgdHInQRlnwGTRaHIHsXo1dQcQL7fWy
+ m/jB0vBk1FT79RKU58c8G8V3XHydczZzTQO4+1Zagp+TLimkkCstuxoJIXC1KRqX1jTcWkYUP
+ hlrvLl1vxEd/PiQZzkS65CfUfz/aDi+0iuNiqj7BtfsT2i0JqlHGb+NKfZn2BJvjrvQI21Fja
+ kesDVlSYjeJMfjjoLsbnDEOthjN6HA15QHXfkbbVIjtABBSIPnsBnlPwLuiw6vnje5ZdOqtyS
+ Bmoj7l6FZZq8kTFg1oTNozqJVktD6lCWxjNdMCnHyOd/0lh7AVra4rJXJ8oxK83DyJN58FIOe
+ KhcwxVSDri+/IFwKImwKAoctJBjqXLq69loj97h6DwVMePLrsldoya31O4bUGXFyBiuNzeaUa
+ csuJK8CiLAOITfTSib4Aja/0087FJebnhrnEkG5vR7pBx9dVQJnZrwWFSVkfdQqdYR1DC9Pi2
+ 9JrsJFltSStnguzU20sT2eIIsGq8crD3D7UQUITbJ5QB6Dxo2sPPsBFVTr1aBSggWmiQoBjUf
+ svnSjxZtwsyxEkJZ045ydXHhFSPT/x/XFHnNIVr3CIg+Z5hF4XcMqpihKCmtavHgAT4wERtfT
+ 6prwK/JvQ0MeDL1D3JDGqk8vhfKKQinxjh9stnMeUIhVjHgsPBZCnjD8YDJy0d0+2jxZgzFAi
+ XVmsPe7anqwjcH8x/mUlAykhVS/l2xTz0O8wihDq9fYlLmxgQYhH9O60r/zeGT/1eQs7sUOhh
+ dnBzVi1GhPS/A4BfOYecsIi6r7RZo9I8Zhhxh2y3addgAFTgkPNOqfrcvjphuBaTj8ctiQgNV
+ +mDfuFmObZ3B6pZfE4PguPYaKzx9tZxVe7vy+7SVZjxccxytbvvmTfvVCKXxU3+OAutW49mO9
+ HkM9LqaQi2p7XCiJuLkLz3bv1gyKRIqRZJPfJ7Wa+zZSXmcmoUACoJkyQv6Z96AOblGDwUj98
+ M6vYH8S3zbh9WAEuHf6jJN0YMhH/RTkMFZPpzsL+IV+LirXQYsrnd1/9ALiMOxfmEQ14NJDb1
+ Rub+ZGF0L10IXDcc4G1xUVf/OaF4ybQJq2DIgIMU2EXMXiOBIUY8reSQHSrc2lELu0cYs=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When flushing the hw fifo there is a bug in the I2C that prevents burst
-reads of more than one sample pair.
+On 28.04.21 08:28, Christian L=C3=B6hle wrote:
+> Oh okay, I was not aware of this issue
+> and have not encountered it yet.
+> But wouldn't it be more appropriate
+> to get u-boot to power cycle the host controller at boot?
+This is not about power-cycling the host controller. We have to
+power-cycle the SD card itself to switch it back to default speed and
+3.3V operation. This is the mode the boot ROM expects.
 
-Signed-off-by: Sean Nyekjaer <sean@geanix.com>
----
-This series depends on "iio: accel: add support for
-FXLS8962AF/FXLS8964AF accelerometers"
+Unfortunately there is no separate power switch for SD card power on
+RockPro64. So we have to power-cycle the whole SoC. This obviously
+cannot be done easily after reboot in u-boot, but can be done in trusted
+firmware (TF-A, was called ATF before) at reboot. This is what I use on
+my boards, see the hack in [1]. Rockchip seems to prefer soft reset,
+maybe someone from Rockchip can comment on the exact reasons.
 
- drivers/iio/accel/fxls8962af-core.c | 27 +++++++++++++++++++++++----
- drivers/iio/accel/fxls8962af-i2c.c  |  2 +-
- drivers/iio/accel/fxls8962af-spi.c  |  2 +-
- drivers/iio/accel/fxls8962af.h      |  2 +-
- 4 files changed, 26 insertions(+), 7 deletions(-)
+Regards,
+Soeren
 
-diff --git a/drivers/iio/accel/fxls8962af-core.c b/drivers/iio/accel/fxls8962af-core.c
-index 2bd5c6d76b63..fad9e756d313 100644
---- a/drivers/iio/accel/fxls8962af-core.c
-+++ b/drivers/iio/accel/fxls8962af-core.c
-@@ -149,6 +149,7 @@ struct fxls8962af_data {
- 		__le16 channels[3];
- 		s64 ts __aligned(8);
- 	} scan;
-+	bool i2c_device;
- 	int64_t timestamp, old_timestamp; /* Only used in hw fifo mode. */
- 	struct iio_mount_matrix orientation;
- };
-@@ -684,11 +685,27 @@ static int fxls8962af_fifo_transfer(struct fxls8962af_data *data,
- {
- 	struct device *dev = regmap_get_device(data->regmap);
- 	int sample_length = 3 * 2;
--	int ret;
-+	int ret, i;
- 	int total_length = samples * sample_length;
- 
--	ret = regmap_raw_read(data->regmap, FXLS8962AF_BUF_X_LSB, buffer,
--			      total_length);
-+	if (data->i2c_device) {
-+		/* Due to errata bug:
-+		 * E3: FIFO burst read operation error using I2C interface
-+		 * We have to avoid burst reads on I2C..
-+		 */
-+		for (i = 0; i < samples; i++) {
-+			ret = regmap_raw_read(data->regmap, FXLS8962AF_BUF_X_LSB,
-+					      &buffer[i * sample_length],
-+					      sample_length);
-+			if (ret < 0)
-+				goto out;
-+		}
-+	} else {
-+		ret = regmap_raw_read(data->regmap, FXLS8962AF_BUF_X_LSB, buffer,
-+				      total_length);
-+	}
-+
-+ out:
- 	if (ret < 0)
- 		dev_err(dev, "Error transferring data from fifo: %d\n", ret);
- 
-@@ -899,7 +916,8 @@ static int fxls8962af_irq_setup(struct iio_dev *indio_dev, int irq)
- 	return ret;
- }
- 
--int fxls8962af_core_probe(struct device *dev, struct regmap *regmap, int irq)
-+int fxls8962af_core_probe(struct device *dev, struct regmap *regmap, int irq,
-+			  bool i2c_device)
- {
- 	struct fxls8962af_data *data;
- 	struct iio_dev *indio_dev;
-@@ -913,6 +931,7 @@ int fxls8962af_core_probe(struct device *dev, struct regmap *regmap, int irq)
- 	data = iio_priv(indio_dev);
- 	dev_set_drvdata(dev, indio_dev);
- 	data->regmap = regmap;
-+	data->i2c_device = i2c_device;
- 
- 	ret = iio_read_mount_matrix(dev, "mount-matrix", &data->orientation);
- 	if (ret)
-diff --git a/drivers/iio/accel/fxls8962af-i2c.c b/drivers/iio/accel/fxls8962af-i2c.c
-index cba12160a714..03bd7ef285d0 100644
---- a/drivers/iio/accel/fxls8962af-i2c.c
-+++ b/drivers/iio/accel/fxls8962af-i2c.c
-@@ -24,7 +24,7 @@ static int fxls8962af_probe(struct i2c_client *client)
- 		return PTR_ERR(regmap);
- 	}
- 
--	return fxls8962af_core_probe(&client->dev, regmap, client->irq);
-+	return fxls8962af_core_probe(&client->dev, regmap, client->irq, true);
- }
- 
- static const struct i2c_device_id fxls8962af_id[] = {
-diff --git a/drivers/iio/accel/fxls8962af-spi.c b/drivers/iio/accel/fxls8962af-spi.c
-index cb971b76d135..77186220f6dc 100644
---- a/drivers/iio/accel/fxls8962af-spi.c
-+++ b/drivers/iio/accel/fxls8962af-spi.c
-@@ -24,7 +24,7 @@ static int fxls8962af_probe(struct spi_device *spi)
- 		return PTR_ERR(regmap);
- 	}
- 
--	return fxls8962af_core_probe(&spi->dev, regmap, spi->irq);
-+	return fxls8962af_core_probe(&spi->dev, regmap, spi->irq, false);
- }
- 
- static const struct of_device_id fxls8962af_spi_of_match[] = {
-diff --git a/drivers/iio/accel/fxls8962af.h b/drivers/iio/accel/fxls8962af.h
-index b67572c3ef06..e428163926b7 100644
---- a/drivers/iio/accel/fxls8962af.h
-+++ b/drivers/iio/accel/fxls8962af.h
-@@ -13,7 +13,7 @@ enum {
- 	fxls8964af,
- };
- 
--int fxls8962af_core_probe(struct device *dev, struct regmap *regmap, int irq);
-+int fxls8962af_core_probe(struct device *dev, struct regmap *regmap, int irq, bool i2c_device);
- int fxls8962af_core_remove(struct device *dev);
- 
- extern const struct dev_pm_ops fxls8962af_pm_ops;
--- 
-2.31.0
+
+[1] https://github.com/s-moch/arm-trusted-firmware-rockpro64
+>
+>
+> From: Soeren Moch <smoch@web.de>
+> Sent: Tuesday, April 27, 2021 5:07 PM
+> To: Christian L=C3=B6hle <CLoehle@hyperstone.com>; robh+dt@kernel.org <r=
+obh+dt@kernel.org>; heiko@sntech.de <heiko@sntech.de>; jbx6244@gmail.com <=
+jbx6244@gmail.com>; devicetree@vger.kernel.org <devicetree@vger.kernel.org=
+>; linux-arm-kernel@lists.infradead.org <linux-arm-kernel@lists.infradead.=
+org>; linux-rockchip@lists.infradead.org <linux-rockchip@lists.infradead.o=
+rg>; linux-kernel@vger.kernel.org <linux-kernel@vger.kernel.org>
+> Subject: Re: [PATCH] arm64: dts: rockchip: include uhs support for rockp=
+ro64
+> =C2=A0
+> On 27.04.21 08:20, Christian L?hle wrote:
+>> The DesignWare Host Controller has full UHS-I support, so use it.
+> Enabling this UHS support makes 'reboot' hang when booting the RockPro64
+> from SD card. It would work when booting from eMMC, or with a modified
+> ATF which does a power cycle on reboot.
+>
+> But for general use it is not save to enable UHS support, or did I miss
+> some recent changes?
+>
+> Regards,
+> Soeren
+>> Signed-off-by: Christian Loehle <cloehle@hyperstone.com>
+>> ---
+>> =C2=A0 arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 1 +
+>> =C2=A0 1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/=
+arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+>> index 6bff8db7d33e..d22a489ec214 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+>> @@ -722,6 +722,7 @@ &sdmmc {
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 max-frequency =3D <150000000=
+>;
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pinctrl-names =3D "default";
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pinctrl-0 =3D <&sdmmc_clk &s=
+dmmc_cmd &sdmmc_bus4>;
+>> +=C2=A0=C2=A0=C2=A0=C2=A0 sd-uhs-sdr104;
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vmmc-supply =3D <&vcc3v0_sd>=
+;
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vqmmc-supply =3D <&vcc_sdio>=
+;
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "okay";
+> Hyperstone GmbH | Line-Eid-Strasse 3 | 78467 Konstanz
+> Managing Directors: Dr. Jan Peter Berns.
+> Commercial register of local courts: Freiburg HRB381782
+>
 
