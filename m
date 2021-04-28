@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E32EE36DDCE
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 19:04:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D18CC36DDCF
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 19:04:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241376AbhD1RFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 13:05:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40578 "EHLO
+        id S241446AbhD1RF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 13:05:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241449AbhD1RFR (ORCPT
+        with ESMTP id S241451AbhD1RFR (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 13:05:17 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ABC4C06138B
-        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 10:04:27 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id t13so7084348pji.4
-        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 10:04:27 -0700 (PDT)
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9634C06138E
+        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 10:04:29 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id d10so6807407pgf.12
+        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 10:04:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=fUBR0WopHj0WR6JMHf2d83zcvjlEdxgAs9fymIBITzo=;
-        b=CZh4ewpebCFcAjzU4EibSFFnrvhXZVPNRc4wOzEuTvrh0wTnh9QHrTxtcPEp03msf7
-         p7qFTJYHHFvKYz9uDrzBQ+Qy+3fq16YM4Kqd8u0m6gWqZLA9Q5vHC5ZZ5f6tWNAMjifU
-         mPdOOxsXHBf119G0QvEHwNweX9sC3c6CawxkM=
+        bh=gt4pb5bT5mW/MToENIuo4Jt8VqUlSnyGRgKvmw6yKp0=;
+        b=ZBABP32kAKUkL73RzLrs/VZTLUwl6tRRR4kreJjVivIQnqrLTx++PGkZdghCv6A51h
+         i5wfgs4sj08UJWCJZAhmuB1UPJXH2+qBGrDT9VrYMuWAyEi9ipQ4WYYmOIrBtCW1JSTT
+         xZT0g/d1wPha/HFRrZyfSi4R5Ae53TxzQP2kU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=fUBR0WopHj0WR6JMHf2d83zcvjlEdxgAs9fymIBITzo=;
-        b=CdwCBaspRHMH5CHyH+xXvCDtqZdvKpUdfT/d242llIxIIelUu4FqKxvP24c1z2zZlU
-         OP3KO2KPo2qd8iQgau1GpIEo3c+Y39vP+DUOmexB2TNk6SpNqLphtoHHlN6Mk2d6eUg5
-         Mw+a5dc8axst1LHY8snxzwRxMSamG/2pD9iDuO3tRNGXKHqul9Ib6pBPVzXPhlptXOnl
-         TsoJoqla1V9NkGLQUgc3p0dOox7dLXwThXIP5eyBFX9EwAE+ofkEGdT0abUnJf5d4LCL
-         PKvbxbQePdbp/u7zXDvbplHpf/A3JnQW4unkojuTc9ljMkX+7oy+9ZelhDigCBoDjw4v
-         GBZQ==
-X-Gm-Message-State: AOAM531qqrWKCthHN2uCXqK1sWuQ/RJG149Ijl2FV5/0/u+EySpujQLv
-        QJUu98MsQnXdiMjpvd7dmBIkmA==
-X-Google-Smtp-Source: ABdhPJxVuaBy5Crg4238Rnf+mjDK9f2leKWDPf3f+mhW2AoCjVsaiScJhXB+4Y2JkeULZDYrLebEmA==
-X-Received: by 2002:a17:90a:e298:: with SMTP id d24mr10097975pjz.144.1619629466765;
-        Wed, 28 Apr 2021 10:04:26 -0700 (PDT)
+        bh=gt4pb5bT5mW/MToENIuo4Jt8VqUlSnyGRgKvmw6yKp0=;
+        b=IPYOYXxMNeecTaSBFpnBYGv/wuKECOMkhPDp4pHK8T8W1reciDEkJlr6/RDy3y7LGE
+         77GaL4B0ftyvwSkcoZVjYQESLurX5H4jGj29evexVk5i2NX6p5cNse68cW4spLtUqpyo
+         6ybI/TAmZkM8dRiYWrV1YR/P5AAadSlF8lM5iXchfainxXnFQWVtE0exvO/cZt5I0fka
+         IXpyz9slBX7x/q/q3bBIGISw2AgMW+bxAr87DTECJYMhiocdZ0F2zfDRmFyiBvDbAFgw
+         hutGxyHz7x5DQIfu7EM/ObXScG8tezmwlMh7T10rNhXr8txESdXUxMxZidlAikYCkxxq
+         RBUQ==
+X-Gm-Message-State: AOAM532uS+QRBR73D1mpS0PsxB+6Ska6xU1MGt0EXerBxtQyH3AXCKQo
+        Z/DmN9YEJiCiQW2D5K99BShxow==
+X-Google-Smtp-Source: ABdhPJxmrYhCyqvJ9YcpCKMIp11Js7eA8QUCI7vGyyUeKC4ER8oO8PiDoUeETkQrLQ/8pN+UBHWhJg==
+X-Received: by 2002:aa7:92cb:0:b029:1f1:542f:2b2b with SMTP id k11-20020aa792cb0000b02901f1542f2b2bmr28418795pfa.31.1619629469280;
+        Wed, 28 Apr 2021 10:04:29 -0700 (PDT)
 Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:1faf:c32e:8742:d913])
-        by smtp.gmail.com with ESMTPSA id c8sm244351pfp.160.2021.04.28.10.04.24
+        by smtp.gmail.com with ESMTPSA id c8sm244351pfp.160.2021.04.28.10.04.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Apr 2021 10:04:26 -0700 (PDT)
+        Wed, 28 Apr 2021 10:04:28 -0700 (PDT)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
 To:     dri-devel@lists.freedesktop.org
 Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
@@ -57,9 +57,9 @@ Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-Subject: [PATCH v5 3/4] drm/i915: init panel orientation property
-Date:   Thu, 29 Apr 2021 01:04:15 +0800
-Message-Id: <20210428170416.1027484-3-hsinyi@chromium.org>
+Subject: [PATCH v5 4/4] arm64: dts: mt8183: Add panel rotation
+Date:   Thu, 29 Apr 2021 01:04:16 +0800
+Message-Id: <20210428170416.1027484-4-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.31.1.498.g6c1eba8ee3d-goog
 In-Reply-To: <20210428170416.1027484-1-hsinyi@chromium.org>
 References: <20210428170416.1027484-1-hsinyi@chromium.org>
@@ -69,52 +69,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Creating the panel orientation property first since we separate the
-property creating and value setting.
+krane, kakadu, and kodama boards have a default panel rotation.
 
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c  | 1 +
- drivers/gpu/drm/i915/display/intel_dp.c | 1 +
- drivers/gpu/drm/i915/display/vlv_dsi.c  | 1 +
- 3 files changed, 3 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 9282978060b0..162fb3cf0f5a 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1903,6 +1903,7 @@ static void icl_dsi_add_properties(struct intel_connector *connector)
- 
- 	connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
- 
-+	drm_connector_attach_scaling_mode_property(&connector->base);
- 	drm_connector_set_panel_orientation_with_quirk(&connector->base,
- 				intel_dsi_get_panel_orientation(connector),
- 				connector->panel.fixed_mode->hdisplay,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index a5231ac3443a..f1d664e5abb2 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5263,6 +5263,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 	intel_panel_setup_backlight(connector, pipe);
- 
- 	if (fixed_mode) {
-+		drm_connector_init_panel_orientation_property(connector);
- 		drm_connector_set_panel_orientation_with_quirk(connector,
- 				dev_priv->vbt.orientation,
- 				fixed_mode->hdisplay, fixed_mode->vdisplay);
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index 9bee99fe5495..853855482af1 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -1632,6 +1632,7 @@ static void vlv_dsi_add_properties(struct intel_connector *connector)
- 
- 		connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
- 
-+		drm_connector_init_panel_orientation_property(&connector->base);
- 		drm_connector_set_panel_orientation_with_quirk(
- 				&connector->base,
- 				intel_dsi_get_panel_orientation(connector),
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index ff56bcfa3370..793cc9501337 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -263,6 +263,7 @@ panel: panel@0 {
+ 		avee-supply = <&ppvarp_lcd>;
+ 		pp1800-supply = <&pp1800_lcd>;
+ 		backlight = <&backlight_lcd0>;
++		rotation = <270>;
+ 		port {
+ 			panel_in: endpoint {
+ 				remote-endpoint = <&dsi_out>;
 -- 
 2.31.1.498.g6c1eba8ee3d-goog
 
