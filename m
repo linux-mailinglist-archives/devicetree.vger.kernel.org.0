@@ -2,141 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 772EF36D5FA
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 12:54:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3FE536D613
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 13:05:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238487AbhD1KzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 06:55:17 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:29767 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbhD1KzR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 06:55:17 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1619607272; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=wM+iIS9aBiosy9WN+kXt89fq97297X7zgtANmIQf60U=;
- b=rED5Tr1miy3ELBh6ZAyeDs176XqLd5Gq1HMvpwTP4kx5bHE2oGvVwRCYQrERLxw0ddZabMXA
- 5IQBjhTR6I1KartBmOPvMZ7nb638Bzm+flFaGHFlaKF3RONhhAluAVCZ7TVjagKWXl8D6/uP
- FM1g8D9cJcDg2aziMZi/xJug3eU=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 60893eda87ce1fbb56353cf7 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 28 Apr 2021 10:54:18
- GMT
-Sender: fenglinw=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 0A4F0C433D3; Wed, 28 Apr 2021 10:54:18 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: fenglinw)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 13AF5C433F1;
-        Wed, 28 Apr 2021 10:54:17 +0000 (UTC)
+        id S239554AbhD1LG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 07:06:27 -0400
+Received: from first.geanix.com ([116.203.34.67]:36360 "EHLO first.geanix.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238997AbhD1LG0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Apr 2021 07:06:26 -0400
+Received: from [192.168.64.189] (unknown [185.17.218.86])
+        by first.geanix.com (Postfix) with ESMTPSA id 38A1B466030;
+        Wed, 28 Apr 2021 11:05:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=geanix.com; s=first;
+        t=1619607939; bh=aFMfEnlUEnd5TUNCfKoBaXBxYMlU0Il7i9gQLT3zy/U=;
+        h=Subject:To:References:From:Date:In-Reply-To;
+        b=mifhXFFnZI4mCuN70nZxAzyIH0610QTWm9EaVdxkXsrjHkY55eyJLJ2QPjUhV3mWx
+         k0N9+s4HB34STwKVGeFdpljoHpEM2t3sNUFCykijGDMGaA/uwyNVdAJvxdJg7O55Kj
+         dp88V3ldAtC3W4lttD3onXLNxY37Nm05D0yRl1tJ6DMlf/F56zgDig52BQq8xzgAqB
+         hjjEwBh3qQFnL9eI2Xc4ZCQJLZIU+IJKpPPePX5uYnerMUufQ4b6nYWoxPb7XZvW6j
+         IuSGyQCQRyfQ9Z4HhC1ZnqK1aief9pUeL9n2Dlq8I9wMLRRNUg1CUQ4pdEavya46OA
+         F7DVCP4pGXfQQ==
+Subject: Re: [RFC PATCH 3/4] iio: accel: fxls8962af: add hw buffered sampling
+To:     jic23@kernel.org, linux-iio@vger.kernel.org,
+        andy.shevchenko@gmail.com, lars@metafoo.de, Nuno.Sa@analog.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+References: <20210428082203.3587022-1-sean@geanix.com>
+ <20210428082203.3587022-3-sean@geanix.com>
+From:   Sean Nyekjaer <sean@geanix.com>
+Message-ID: <d536b4ab-eaa5-5411-9b68-266b7a8a56b6@geanix.com>
+Date:   Wed, 28 Apr 2021 13:05:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+In-Reply-To: <20210428082203.3587022-3-sean@geanix.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Date:   Wed, 28 Apr 2021 18:54:16 +0800
-From:   fenglinw@codeaurora.org
-To:     Rob Herring <robh@kernel.org>
-Cc:     collinsd@codeaurora.org, linux-pwm@vger.kernel.org,
-        subbaram@codeaurora.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?Q?Uwe_K?= =?UTF-8?Q?leine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, aghayal@codeaurora.org,
-        devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: add bindings for PWM modules inside
- QCOM PMICs
-In-Reply-To: <1619528221.595166.1346447.nullmailer@robh.at.kernel.org>
-References: <20210427102247.822-1-fenglinw@codeaurora.org>
- <20210427102247.822-2-fenglinw@codeaurora.org>
- <1619528221.595166.1346447.nullmailer@robh.at.kernel.org>
-Message-ID: <9f8c304696d12250293f88b3d6718eee@codeaurora.org>
-X-Sender: fenglinw@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Language: en-US
+X-Spam-Status: No, score=-3.1 required=4.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        URIBL_BLOCKED autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on 93bd6fdb21b5
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-04-27 20:57, Rob Herring wrote:
-> On Tue, 27 Apr 2021 18:22:09 +0800, Fenglin Wu wrote:
->> Add bindings for QCOM PMIC PWM modules which are accessed through SPMI
->> bus.
->> 
->> Signed-off-by: Fenglin Wu <fenglinw@codeaurora.org>
->> ---
->>  .../devicetree/bindings/pwm/pwm-qcom.yaml          | 51 
->> ++++++++++++++++++++++
->>  1 file changed, 51 insertions(+)
->>  create mode 100644 
->> Documentation/devicetree/bindings/pwm/pwm-qcom.yaml
->> 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/pwm/pwm-qcom.yaml:29:6: [warning]
-> wrong indentation: expected 4 but found 5 (indentation)
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pwm/pwm-qcom.yaml:
-> Additional properties are not allowed ('Properties' was unexpected)
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pwm/pwm-qcom.yaml:
-> Additional properties are not allowed ('Properties' was unexpected)
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pwm/pwm-qcom.yaml:
-> 'anyOf' conditional failed, one must be fixed:
-> 	'properties' is a required property
-> 	'patternProperties' is a required property
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pwm/pwm-qcom.yaml:
-> ignoring, error in schema:
-> warning: no schema found in file:
-> ./Documentation/devicetree/bindings/pwm/pwm-qcom.yaml
-> Documentation/devicetree/bindings/pwm/pwm-qcom.example.dts:21.13-28:
-> Warning (reg_format): /example-0/pwms@e800:reg: property has invalid
-> length (4 bytes) (#address-cells == 1, #size-cells == 1)
-> Documentation/devicetree/bindings/pwm/pwm-qcom.example.dt.yaml:
-> Warning (pci_device_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/pwm/pwm-qcom.example.dt.yaml:
-> Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/pwm/pwm-qcom.example.dt.yaml:
-> Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/pwm/pwm-qcom.example.dt.yaml:
-> Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/pwm/pwm-qcom.example.dt.yaml:
-> Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pwm/pwm-qcom.example.dt.yaml:
-> example-0: pwms@e800:reg:0: [59392] is too short
-> 	From schema: 
-> /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-> Documentation/devicetree/bindings/pwm/pwm-qcom.example.dt.yaml:0:0:
-> /example-0/pwms@e800: failed to match any schema with compatible:
-> ['qcom,pwm']
-> 
-> See https://patchwork.ozlabs.org/patch/1470623
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
 
-Thanks for the information. It's my 1st time to write binding using yaml 
-format, I hadn't noticed there was a checker can be used for sanity 
-test. I will update and run the dt_binding_check at my side before 
-uploading new patchset.
+
+On 28/04/2021 10.22, Sean Nyekjaer wrote:
+> |@@ -433,7 +450,10 @@ static int fxls8962af_read_raw(struct iio_dev 
+> *indio_dev, ret = fxls8962af_get_temp(data, val); break; case 
+> IIO_ACCEL: - ret = fxls8962af_get_axis(data, chan, val); + if 
+> (iio_buffer_enabled(indio_dev))|
+|Seeing the iio_device_claim_direct_mode() is doing exactly the same 
+check :)|
+> |+ ret = -EBUSY; + else + ret = fxls8962af_get_axis(data, chan, val); 
+> break; default: ret = -EINVAL;|
+
