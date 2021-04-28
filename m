@@ -2,164 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E826936DE6D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 19:37:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F65F36DEA5
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 19:49:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242359AbhD1Rii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 13:38:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47964 "EHLO
+        id S242775AbhD1Rui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 13:50:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242350AbhD1Rig (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 13:38:36 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7631DC061573;
-        Wed, 28 Apr 2021 10:37:51 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id i24so15671314edy.8;
-        Wed, 28 Apr 2021 10:37:51 -0700 (PDT)
+        with ESMTP id S242970AbhD1RtZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 13:49:25 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6DA4C061573
+        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 10:48:37 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id n127so22489840wmb.5
+        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 10:48:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=AIfsZgg1HsW4TEdEIVvWGsH3VIdwHBCrm9xAObzp+6Y=;
-        b=mbHQDZo6h6K68IduuZ+vV7kkpYkYvrrL5oTweDxhKVAxVWF8WJqA9mUvsTwCpoujHk
-         8DCVNFCfinaIZN5iKfGF6LFmCZyBQ3FRms333RjyvwWrrqNlHZ9edBqMnEAMOsGxOfVN
-         R4v0hpsPs9Hr8RYrrV8DsvdUE4s5B9/oeRQqECF8VonOTRsluB3SozhGvYsBcDtcddBr
-         9Lbqyu/Yg1NoMLDvDdDQ0jbi5RCmNO1p5rVJipUp7zyyL+PS2bkUVQ/oXrWriM9LDzFw
-         2g7tD/TJnHaQAHNaBva+gk5BegDnCtAfc22fP3ukE5EbPGlO5urcM8UkNA/9VVel3PxH
-         d8Jw==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BfhAdhK/r3r1BKx7meKoyyIgz0VOdlbmjxJARvRxoxE=;
+        b=RG+3PiXxka9dJ0Dd5hAAzjKtZxfAqghjfSsItaLbyZ2J1QvB4vqsVhR6dxzm1HuO5K
+         fuXgtHlmcg6dSlEm+9NRJxTWWKd8DA+VALJP1b0VejK8NJ3RaG6xn8G2Ez7F55q1Z4ZP
+         +UBMMheQryYpY0Rcdc9CW4zz+BiJKHSk+XUD7/v+v9LkjTUv5pY7zlkgNZsGqfymvdzV
+         NaCmov5IaBWX0FAdI7gylDi/GThEI8EhteKXtaA7o1jtPwR0x2Z9nIBncwzaG+scDN+k
+         6dRv+B5BzYj2lBtEWuQb1BCKtkqSA8aXb9AynD+Ec6M7aZ04NoK++fhPYBd24R4qnWKw
+         g4AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=AIfsZgg1HsW4TEdEIVvWGsH3VIdwHBCrm9xAObzp+6Y=;
-        b=UR1gs7+NSg2n7Yzao6fU+WwOP45aHCtR8/xesuTXnw/AuhU9Z9AoxpO+/OhtEyggmB
-         oKWor11ozn8u4rgEAMkMGDCXCF+WlX8ImGrGyZC8r+5Hs6wDdF7ujcFa2HormKIuK1wx
-         DkD+LWvUFLHNNuGZGBvGW5rOQ1i6tN2KyjqO911A2pnGoalq/uvQCSh0MJIBn6Jqw665
-         XuWBZXXoBZoS3pGwh42y3D5e+JyHk2FeqEodCHRbUnwOlKl6zeTlpHmo0SwyK2nh5R9a
-         /ZV9fqyyODjP0xvoFMe3G+CQ8aME0jC4Q8BYxSKFYf3x8cC6gpLk/tI9RVBEk4EM4RIw
-         w4JQ==
-X-Gm-Message-State: AOAM533gAQ/V8C7LsRWJfIeyoZ6vU+axnI3I3zSY21Mg3DX0fZZYj5th
-        7SQPHnx1iJMyHcEMGXn9YhY=
-X-Google-Smtp-Source: ABdhPJz0FFFGi7jX+jI6NILR3UI/RdjFLnbXjAlV3rcJ6kNfEy3twP0XAaW7XcPEI18wKNHJiI9pLQ==
-X-Received: by 2002:aa7:d915:: with SMTP id a21mr739775edr.357.1619631470262;
-        Wed, 28 Apr 2021 10:37:50 -0700 (PDT)
-Received: from localhost (p2e5be10e.dip0.t-ipconnect.de. [46.91.225.14])
-        by smtp.gmail.com with ESMTPSA id j10sm296682ejk.93.2021.04.28.10.37.49
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BfhAdhK/r3r1BKx7meKoyyIgz0VOdlbmjxJARvRxoxE=;
+        b=FnoDz0hBUYGIAWsiPjttQruP7bbyT1RD9F0keqxaVH9GvZsquClRGW0p65YWrXBLFK
+         NYRwPNhVrl++kxrjdRIdDfqlEqsHPX6Ydvhfn+w+UJcn482jUXapvlS3spuJb0teC2P8
+         ar+/VgdK/fxM8NPYCZ3g1bmsQrhBb6HQNLs2iLSefnO1gFG0aiXZ0oWvLk59FA/gXhb3
+         MRHYymWXoVGQRlTFhln3WvdrmZVeXysSxoIAn//YqEBjlp/R2VcW4u2/6FEpfainbm1A
+         yqYunTW7iYYZY/LtIwwR2fL+Mb1G/iboD2sojYjaVhS6syCOoBdzRRFJqVV0dyVBo7JN
+         kQhg==
+X-Gm-Message-State: AOAM531c9sGVmDjZ3CP+Z2OKox/BR+Q9iJjMyvfya1o3LrA5PECqljLc
+        yZQn2CdHv/eZAiSOUothvN5aeANJ2dFwxlKX
+X-Google-Smtp-Source: ABdhPJxr9azJjkaqN6JaVQ3hmflVUbCsm/I7tonHOcP5X9t0TTDBiAorDOluCAAX+DsBz0biXCKN5g==
+X-Received: by 2002:a05:600c:ac2:: with SMTP id c2mr33620732wmr.23.1619632116588;
+        Wed, 28 Apr 2021 10:48:36 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id c16sm616207wrt.83.2021.04.28.10.48.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Apr 2021 10:37:49 -0700 (PDT)
-Date:   Wed, 28 Apr 2021 19:38:44 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Fenglin Wu <fenglinw@codeaurora.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, subbaram@codeaurora.org,
-        collinsd@codeaurora.org, aghayal@codeaurora.org
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: add bindings for PWM modules
- inside QCOM PMICs
-Message-ID: <YImdpBE+8LIu9rIq@orome.fritz.box>
-References: <20210427102247.822-1-fenglinw@codeaurora.org>
- <20210427102247.822-2-fenglinw@codeaurora.org>
+        Wed, 28 Apr 2021 10:48:35 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        ulli.kroll@googlemail.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH] ARM: dts: gemini: rename mdio to the right name
+Date:   Wed, 28 Apr 2021 17:48:30 +0000
+Message-Id: <20210428174830.3691034-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Rl6xxuSZCAayz1wt"
-Content-Disposition: inline
-In-Reply-To: <20210427102247.822-2-fenglinw@codeaurora.org>
-User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+ethernet-phy is not the right name for mdio, fix it.
 
---Rl6xxuSZCAayz1wt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+ arch/arm/boot/dts/gemini-dlink-dns-313.dts | 2 +-
+ arch/arm/boot/dts/gemini-nas4220b.dts      | 2 +-
+ arch/arm/boot/dts/gemini-rut1xx.dts        | 2 +-
+ arch/arm/boot/dts/gemini-wbd111.dts        | 2 +-
+ arch/arm/boot/dts/gemini-wbd222.dts        | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-On Tue, Apr 27, 2021 at 06:22:09PM +0800, Fenglin Wu wrote:
-> Add bindings for QCOM PMIC PWM modules which are accessed through SPMI
-> bus.
->=20
-> Signed-off-by: Fenglin Wu <fenglinw@codeaurora.org>
-> ---
->  .../devicetree/bindings/pwm/pwm-qcom.yaml          | 51 ++++++++++++++++=
-++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-qcom.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-qcom.yaml b/Docume=
-ntation/devicetree/bindings/pwm/pwm-qcom.yaml
-> new file mode 100644
-> index 0000000..e8d8ed6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-qcom.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/pwm-qcom.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. PMIC PWM bindings
-> +
-> +maintainers:
-> +  - Fenglin Wu <fenglinw@codeaurora.org>
-> +
-> +description:
-> +  PWM modules inside Qualcomm Technologies, Inc. PMICs can be accessed t=
-hrough
-> +  SPMI bus and normally one PMIC would have multiple PWM modules with ad=
-jacent
-> +  SPMI address space.
-> +
-> +Properties:
-> +  compatible:
-> +    const: qcom,pwm
+diff --git a/arch/arm/boot/dts/gemini-dlink-dns-313.dts b/arch/arm/boot/dts/gemini-dlink-dns-313.dts
+index 1b2bb3beaccb..f5313f6be956 100644
+--- a/arch/arm/boot/dts/gemini-dlink-dns-313.dts
++++ b/arch/arm/boot/dts/gemini-dlink-dns-313.dts
+@@ -140,7 +140,7 @@ map1 {
+ 		};
+ 	};
+ 
+-	mdio0: ethernet-phy {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		/* Uses MDC and MDIO */
+ 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+diff --git a/arch/arm/boot/dts/gemini-nas4220b.dts b/arch/arm/boot/dts/gemini-nas4220b.dts
+index 77776c371ce0..da4ce90eec22 100644
+--- a/arch/arm/boot/dts/gemini-nas4220b.dts
++++ b/arch/arm/boot/dts/gemini-nas4220b.dts
+@@ -62,7 +62,7 @@ led-green-os {
+ 		};
+ 	};
+ 
+-	mdio0: ethernet-phy {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+ 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
+diff --git a/arch/arm/boot/dts/gemini-rut1xx.dts b/arch/arm/boot/dts/gemini-rut1xx.dts
+index f8826a3b774f..6cea953150b5 100644
+--- a/arch/arm/boot/dts/gemini-rut1xx.dts
++++ b/arch/arm/boot/dts/gemini-rut1xx.dts
+@@ -56,7 +56,7 @@ led-power {
+ 		};
+ 	};
+ 
+-	mdio0: ethernet-phy {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+ 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
+diff --git a/arch/arm/boot/dts/gemini-wbd111.dts b/arch/arm/boot/dts/gemini-wbd111.dts
+index 4f3e097d784b..00ea66f4788f 100644
+--- a/arch/arm/boot/dts/gemini-wbd111.dts
++++ b/arch/arm/boot/dts/gemini-wbd111.dts
+@@ -68,7 +68,7 @@ led-greeb-l3 {
+ 		};
+ 	};
+ 
+-	mdio0: ethernet-phy {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+ 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
+diff --git a/arch/arm/boot/dts/gemini-wbd222.dts b/arch/arm/boot/dts/gemini-wbd222.dts
+index e6fe59ee65b6..6dfb61b8d133 100644
+--- a/arch/arm/boot/dts/gemini-wbd222.dts
++++ b/arch/arm/boot/dts/gemini-wbd222.dts
+@@ -67,7 +67,7 @@ led-green-l3 {
+ 		};
+ 	};
+ 
+-	mdio0: ethernet-phy {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+ 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
+-- 
+2.26.3
 
-This seems a bit vague. What if Qualcomm ever designs a different PWM?
-How are you going to tell them apart? Typically this would include some
-sort of ID for the SoC family, or the first SoC that this was introduced
-on. That way you can more easily distinguish between different designs
-later on.
-
-> +
-> +  reg:
-> +    description:
-> +      The SPMI address base of the PWM module, if there are multiple PWM
-> +      modules present with adjacent SPMI address space, only need to spe=
-cify
-> +      the address base of the 1st PWM module.
-
-That seems like an odd way to define these. It looks like this is a bus
-with #address-cells =3D <1> and #size-cells =3D <0>. Such busses are usually
-assumed to have a single address per device (see for example I2C). How
-does the SPMI addressing work? Is there a specification somewhere?
-
-Actually, Documentation/devicetree/bindings/spmi/spmi.yaml says that
-SPMI child devices should have two address cells, so this seesm to be at
-odds with that specification.
-
-Thierry
-
---Rl6xxuSZCAayz1wt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmCJnaIACgkQ3SOs138+
-s6FgmQ//VuVwjokE9jtiAEimFWqqanQrH1hywO01eTDIxCdIo7U+KPepZb4d90bp
-/+MbVGE8IKcwbFV+a00v9PP0vEzeJR8hpGTxt1k52M/ht/lTfc5iS8UAapTISlZR
-9keuykMewiBvZSzdkTcv+2Q4wsH8JTKud2t4coeMTT8AVEoutHBc12eke7rui4SH
-373cBqMp2JLrMtz9oWYp1bFXUDluqthaSWWjzvb71Y7wFk7LUE2Md7swgEmo97zo
-D6dUiX4khZ6H3Do/cvTIAf4V4yROvZDecPq17AZsi/Zun1JBG4KkJkInz8536tV0
-qJ3Iv8YgrqJ9f0rqZQq/1jW+NQj9PE/jYph4HqJzVH3M7VHYvlrkiUbxxl8BkSDm
-i6D5Sfi+i2GKa7cWg7HMO9NRaME6jArFADsT50DYAbbk7JjonccNmpR5lfqPC3Wl
-kM7nA0ldAzXIv7EgCwtkc50XKD3J6HLx5T87YHurZpAPhH6D54Xf7Fto8UQjyHxF
-sXsAhxG0xxJZl1ZdXD9kTn4OjE1OwPafCILlmihX/ynsrbg+ahvR4xMbvhO6weDl
-QubqdgDjXu4+L5pPQ9LrO4rWRdrwAfUItKm9VEb2/7945hQPtrEaAJMwpZBT9lja
-LKtFqt1qCkiAF4GNwgeLb00Dq4MSAyVOkxNitNcT/KhT4ec+kus=
-=UZeF
------END PGP SIGNATURE-----
-
---Rl6xxuSZCAayz1wt--
