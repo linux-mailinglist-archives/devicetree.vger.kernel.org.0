@@ -2,63 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55AFF36DD43
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 18:42:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40C2136DD45
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 18:42:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241154AbhD1QnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 12:43:19 -0400
+        id S240871AbhD1QnU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 12:43:20 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241129AbhD1QnQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 12:43:16 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69AB6C06138B
-        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 09:42:30 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id d11so5914627wrw.8
-        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 09:42:30 -0700 (PDT)
+        with ESMTP id S241146AbhD1QnT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 12:43:19 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C78E1C061344
+        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 09:42:33 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id p6-20020a05600c3586b029014131bbe5c7so6398672wmq.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 09:42:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=4iBEXnR1nc8SuK9x0RI0HjJCZgNJ4KQ0iJTuPJeZHB8=;
-        b=Rq3J38Zqc6gI2+zGNcT7zWRQ3/6wkLaHH1GGf4GEoRqnzFASs7CFrP1Wl6jtxARL9i
-         3aj23YNgSI3EhVwxyms52vAUEQpyh4ze9anBmJ+Q5V3CahksOV0j6GN/AcTVzP2RqaYI
-         wyi9JoFEQ/WNvw4tR2ifYYBpuQxd//Xs5iNbxGIhZZZcJPib+HdGBlmtbLOVkiPMt7Bo
-         /JEv+93o3OsoP4IdJqHymAfa2Cb9ani1n1MKEPZKL2CwJrmlWcuGZpZz/p01H0MspOya
-         ULpfKTHN06cenKhTc8jYQqtDRVZcQxCkEJ1zxYVrHfNk6WyV9iBi38nwEggGi3unmtjn
-         mhIg==
+        bh=rEhU8Um5f0JiN5UeHBJI5GyHDmhvUyYTxNlEBkR3UOo=;
+        b=VANfQzQ0qON+/3vbMLMeo4ASaKFeXcGWMD6nIW0LD8DjR1bqi4cUiu4gKKeaLke52p
+         qIEKuNpnOiXnFStis487cvxwy75vIEhnZF79j6c+Q5ahIwL+kzfAT7nTBXd5/HxTSdZi
+         QqgCB138YLKciSWvIYZjC7A0qhuIk30UR5sjlYySEmRH1PrnbMdP9YSkE+V9amPfgN7R
+         AXkAk5vkO9Ium1n1CU3J6s8MQTXDVaaN7pxpwVAZJnt8+UfamsBUWFB/DswEgxNwaSHV
+         aQtt21fZi05Tu0+0dIIOpug4QInjppHkAZ7KtIueLir5KFpei5pMLKyBuRUKPElfOmzU
+         +U0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=4iBEXnR1nc8SuK9x0RI0HjJCZgNJ4KQ0iJTuPJeZHB8=;
-        b=idWU4gyHRx2JdjKYAWAHams1YG/bQextX1t/IFwSCe+hBn5gCM9zWfM+DeNs8Er/CF
-         2KdWUj38iAFWk/lwuvEEdcJ62sLagDCu+psRkPbJOsdvs4sHDZzW6zJ861AQSBekxFTw
-         VKfxnpNVkl3ek9ZS0Hiat12Vp7vQTPoLl7zW0Y5Qwov2J5tDIh93a4ZtkjYo5IFj6t/s
-         fjmLXpKRfkPHak/phhBmMTd/JStorBOFl3xeQOIMR1szUxR7UtIF+5mJXUyKwoO75HpI
-         RMAS4TP/NPv23MSAieYLEC3aOf21g4FJe+MlhW6m2dcpEcuCC7n1edmE9v5DQ4HIkLNj
-         rBnQ==
-X-Gm-Message-State: AOAM5305aLByw9FGgH6O3P9tMWVMUOdgFnc7WFpk4NFu78HObI7WOpGi
-        ni6OBX5XA8FTNQNogq7sZcj//w==
-X-Google-Smtp-Source: ABdhPJyWEwmUF9T2p2cho3eW1dDUOfY2IOjaly14N2nUuESPRrAaxGB0L8uVg8DlnkNWW8vpNPDdaQ==
-X-Received: by 2002:a5d:6648:: with SMTP id f8mr16158946wrw.396.1619628149075;
-        Wed, 28 Apr 2021 09:42:29 -0700 (PDT)
+        bh=rEhU8Um5f0JiN5UeHBJI5GyHDmhvUyYTxNlEBkR3UOo=;
+        b=rUIGsZffpLYyp5l0kZhqSSdF5FHtZT4Ytfa3zWLSkG5NzJyGMCZfLGrZKIA+PZdrWW
+         owfdmAUJ96oTkflPHt4ncTtY8qwhctgvEfA2EiTCKCGVm3KNloQdxQtwJAve5KEVcvDn
+         687V+qyVkGFanok6Qg4QA7s7fpGgUGwdJvaJYz39a2oEHOp4gix1gNM2qgOOjIh0mSFv
+         rVkHz69ktff/mcfDo4++4fYuMc67KLGzxHIfogRehEuoZqli/dQQI6FHl/ZlKxhvdKkQ
+         vn9KZiGuDIpxmLz/lHIs+W8UgmzGInhI3/10UTph+SabNca/BLH0uE3JJOEBJXpaB2II
+         V3eg==
+X-Gm-Message-State: AOAM531Z29TuFb4Vp76JwDUCOP6ylMyndtZg/j0RtC0t1DzagbMKwe1x
+        oY1EMcVkRhxC3VlV4gB/K42Q3g==
+X-Google-Smtp-Source: ABdhPJxng5RPhsw/McvY8XrJYzLmH7UXgx8AS7ZgIpJmZ5h8u3Ww/Ds6Rad8TOErgiFInrsHrO7P3g==
+X-Received: by 2002:a05:600c:2cd6:: with SMTP id l22mr25791567wmc.160.1619628152274;
+        Wed, 28 Apr 2021 09:42:32 -0700 (PDT)
 Received: from groot.home ([2a01:cb19:826e:8e00:5864:ddd1:d623:f912])
-        by smtp.gmail.com with ESMTPSA id o10sm351299wrx.35.2021.04.28.09.42.28
+        by smtp.gmail.com with ESMTPSA id o10sm351299wrx.35.2021.04.28.09.42.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Apr 2021 09:42:28 -0700 (PDT)
+        Wed, 28 Apr 2021 09:42:31 -0700 (PDT)
 From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>
 Cc:     fparent@baylibre.com,
         Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 4/7] dt-bindings: input: mtk-pmic-keys: add MT6358 binding definition
-Date:   Wed, 28 Apr 2021 18:42:16 +0200
-Message-Id: <20210428164219.1115537-5-mkorpershoek@baylibre.com>
+Subject: [PATCH 7/7] arm64: dts: mt6358: add mt6358-keys node
+Date:   Wed, 28 Apr 2021 18:42:19 +0200
+Message-Id: <20210428164219.1115537-8-mkorpershoek@baylibre.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210428164219.1115537-1-mkorpershoek@baylibre.com>
 References: <20210428164219.1115537-1-mkorpershoek@baylibre.com>
@@ -68,32 +66,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the binding documentation of the mtk-pmic-keys for the MT6358 PMICs.
-
-MT6358 is a little different since it used separate IRQs for the
-release key (_r) event
+This enables the power,home keys on MediaTek boards with a mt6358 pmic.
 
 Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
 ---
- Documentation/devicetree/bindings/input/mtk-pmic-keys.txt | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/mediatek/mt6358.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt b/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
-index 535d92885372..9d00f2a8e13a 100644
---- a/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
-+++ b/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
-@@ -9,7 +9,10 @@ For MT6397/MT6323 MFD bindings see:
- Documentation/devicetree/bindings/mfd/mt6397.txt
+diff --git a/arch/arm64/boot/dts/mediatek/mt6358.dtsi b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
+index fa159b20379e..a1b017a6a751 100644
+--- a/arch/arm64/boot/dts/mediatek/mt6358.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright (c) 2020 MediaTek Inc.
+  */
++#include <dt-bindings/input/input.h>
  
- Required properties:
--- compatible: "mediatek,mt6397-keys" or "mediatek,mt6323-keys"
-+- compatible: Should be one of:
-+	- "mediatek,mt6397-keys"
-+	- "mediatek,mt6323-keys"
-+	- "mediatek,mt6358-keys"
- - linux,keycodes: See Documentation/devicetree/bindings/input/input.yaml
- 
- Optional Properties:
+ &pwrap {
+ 	pmic: mt6358 {
+@@ -356,5 +357,16 @@ mt6358_vsim2_reg: ldo_vsim2 {
+ 		mt6358rtc: mt6358rtc {
+ 			compatible = "mediatek,mt6358-rtc";
+ 		};
++
++		mt6358keys: mt6358keys {
++			compatible = "mediatek,mt6358-keys";
++			power {
++				linux,keycodes = <KEY_POWER>;
++				wakeup-source;
++			};
++			home {
++				linux,keycodes = <KEY_HOME>;
++			};
++		};
+ 	};
+ };
 -- 
 2.27.0
 
