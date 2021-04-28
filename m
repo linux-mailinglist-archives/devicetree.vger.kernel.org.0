@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F65F36DEA5
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 19:49:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8082F36DEAC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 19:55:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242775AbhD1Rui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 13:50:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50406 "EHLO
+        id S243352AbhD1Rz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 13:55:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242970AbhD1RtZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 13:49:25 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6DA4C061573
-        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 10:48:37 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id n127so22489840wmb.5
-        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 10:48:37 -0700 (PDT)
+        with ESMTP id S243351AbhD1Rz4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 13:55:56 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ADB2C061574
+        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 10:55:11 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id x5so13717411wrv.13
+        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 10:55:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=BfhAdhK/r3r1BKx7meKoyyIgz0VOdlbmjxJARvRxoxE=;
-        b=RG+3PiXxka9dJ0Dd5hAAzjKtZxfAqghjfSsItaLbyZ2J1QvB4vqsVhR6dxzm1HuO5K
-         fuXgtHlmcg6dSlEm+9NRJxTWWKd8DA+VALJP1b0VejK8NJ3RaG6xn8G2Ez7F55q1Z4ZP
-         +UBMMheQryYpY0Rcdc9CW4zz+BiJKHSk+XUD7/v+v9LkjTUv5pY7zlkgNZsGqfymvdzV
-         NaCmov5IaBWX0FAdI7gylDi/GThEI8EhteKXtaA7o1jtPwR0x2Z9nIBncwzaG+scDN+k
-         6dRv+B5BzYj2lBtEWuQb1BCKtkqSA8aXb9AynD+Ec6M7aZ04NoK++fhPYBd24R4qnWKw
-         g4AQ==
+        bh=ccJ5CKh5Fm2jcqyeUGgDKmg/mfobdGyfWxQa0j/XJgY=;
+        b=jo3w+WThsU+itLe68rxjwmCfIa0oZ5elmUOfF/KpYZ8pmbrIsshEpkCEaShcIa0B+L
+         pTwkM08whlEM5I4QLNGvdjx6szEhmWKInp6WjfTDyD2eNQSVh74u1SiPjLotpvgkJJKy
+         /l7a7uFlKzdKW1mTxXnHcF5o0gHh+B8oQ/hNrQCOybtxgvTFDxT50IUrMZDZjmXsO6PB
+         eaPhbfliU5QNlcmnLPLmFWm4KDOp3fjiw/o0VlyzStrKbs4BWdY9UNrC9rBPf9nuObPO
+         pM/J1iolzYdHrJpkUY4wn/6kJM99tRSVWOOGpihvgtEDFckEwVdS04/jHjMPGuQzo8ac
+         z6+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=BfhAdhK/r3r1BKx7meKoyyIgz0VOdlbmjxJARvRxoxE=;
-        b=FnoDz0hBUYGIAWsiPjttQruP7bbyT1RD9F0keqxaVH9GvZsquClRGW0p65YWrXBLFK
-         NYRwPNhVrl++kxrjdRIdDfqlEqsHPX6Ydvhfn+w+UJcn482jUXapvlS3spuJb0teC2P8
-         ar+/VgdK/fxM8NPYCZ3g1bmsQrhBb6HQNLs2iLSefnO1gFG0aiXZ0oWvLk59FA/gXhb3
-         MRHYymWXoVGQRlTFhln3WvdrmZVeXysSxoIAn//YqEBjlp/R2VcW4u2/6FEpfainbm1A
-         yqYunTW7iYYZY/LtIwwR2fL+Mb1G/iboD2sojYjaVhS6syCOoBdzRRFJqVV0dyVBo7JN
-         kQhg==
-X-Gm-Message-State: AOAM531c9sGVmDjZ3CP+Z2OKox/BR+Q9iJjMyvfya1o3LrA5PECqljLc
-        yZQn2CdHv/eZAiSOUothvN5aeANJ2dFwxlKX
-X-Google-Smtp-Source: ABdhPJxr9azJjkaqN6JaVQ3hmflVUbCsm/I7tonHOcP5X9t0TTDBiAorDOluCAAX+DsBz0biXCKN5g==
-X-Received: by 2002:a05:600c:ac2:: with SMTP id c2mr33620732wmr.23.1619632116588;
-        Wed, 28 Apr 2021 10:48:36 -0700 (PDT)
+        bh=ccJ5CKh5Fm2jcqyeUGgDKmg/mfobdGyfWxQa0j/XJgY=;
+        b=aphjNiYJH1RWC3CBQVL2CAAxKOIQkwzBo5X875975CIRGdA+yruClXJCsuP1I55KpK
+         0r69z15ye9kTWrs1TW0EM/28hm2ZLHqppW35BCIg5TAvMsL6xWvdBAcPPHL59k7I/hPE
+         er9zvT9s7VXvvMhjrWhwXyhWsJk6CCO2TmP458i/Lb1BG2yeoYdFL2jHNeJSPgtj09X1
+         Xx/EZREdAYp0+3sQlNo60IZPyswu0dV9ZPYcAuppMayssCzl/XKjNwkcHWLkWXe1cDp9
+         nCk+x59SdPSwkqBbGAmrlzVSNQZUsdirQqfoU5HxH2KP3H/1e2f1UNcVBcNGoN9rHCC1
+         mVlA==
+X-Gm-Message-State: AOAM532K/jcg8cUr/bTwOLoHuDYZNzN2hld9vUko9P1xsKmhMyVNm5qw
+        wDCFgctMYjsnYa1CVhxHo7qoYA==
+X-Google-Smtp-Source: ABdhPJyStKAHRYiMqqdwTQdM6FHQZW5EDJ82J7Avnp9VngvDTL9jiKJU0CHc4/9XO8r0jjBx6v1s2Q==
+X-Received: by 2002:a5d:590b:: with SMTP id v11mr28163078wrd.415.1619632509812;
+        Wed, 28 Apr 2021 10:55:09 -0700 (PDT)
 Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id c16sm616207wrt.83.2021.04.28.10.48.35
+        by smtp.googlemail.com with ESMTPSA id o10sm616526wrx.35.2021.04.28.10.55.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Apr 2021 10:48:35 -0700 (PDT)
+        Wed, 28 Apr 2021 10:55:09 -0700 (PDT)
 From:   Corentin Labbe <clabbe@baylibre.com>
 To:     linus.walleij@linaro.org, robh+dt@kernel.org,
         ulli.kroll@googlemail.com
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH] ARM: dts: gemini: rename mdio to the right name
-Date:   Wed, 28 Apr 2021 17:48:30 +0000
-Message-Id: <20210428174830.3691034-1-clabbe@baylibre.com>
+Subject: [PATCH] ARM: dts: gemini: rename to nand-controller
+Date:   Wed, 28 Apr 2021 17:55:03 +0000
+Message-Id: <20210428175503.3692090-1-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -62,82 +62,132 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ethernet-phy is not the right name for mdio, fix it.
+We must use nand-controller instead of flash.
 
 Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 ---
- arch/arm/boot/dts/gemini-dlink-dns-313.dts | 2 +-
+ arch/arm/boot/dts/gemini-dlink-dir-685.dts | 2 +-
  arch/arm/boot/dts/gemini-nas4220b.dts      | 2 +-
- arch/arm/boot/dts/gemini-rut1xx.dts        | 2 +-
+ arch/arm/boot/dts/gemini-rut1xx.dts        | 3 +--
+ arch/arm/boot/dts/gemini-sl93512r.dts      | 2 +-
+ arch/arm/boot/dts/gemini-sq201.dts         | 2 +-
  arch/arm/boot/dts/gemini-wbd111.dts        | 2 +-
  arch/arm/boot/dts/gemini-wbd222.dts        | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/gemini.dtsi              | 2 +-
+ 8 files changed, 8 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm/boot/dts/gemini-dlink-dns-313.dts b/arch/arm/boot/dts/gemini-dlink-dns-313.dts
-index 1b2bb3beaccb..f5313f6be956 100644
---- a/arch/arm/boot/dts/gemini-dlink-dns-313.dts
-+++ b/arch/arm/boot/dts/gemini-dlink-dns-313.dts
-@@ -140,7 +140,7 @@ map1 {
- 		};
+diff --git a/arch/arm/boot/dts/gemini-dlink-dir-685.dts b/arch/arm/boot/dts/gemini-dlink-dir-685.dts
+index cc39289e99dd..5e205bb53e5a 100644
+--- a/arch/arm/boot/dts/gemini-dlink-dir-685.dts
++++ b/arch/arm/boot/dts/gemini-dlink-dir-685.dts
+@@ -281,7 +281,7 @@ phy4: phy@4 {
  	};
  
--	mdio0: ethernet-phy {
-+	mdio0: mdio {
- 		compatible = "virtual,mdio-gpio";
- 		/* Uses MDC and MDIO */
- 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+ 	soc {
+-		flash@30000000 {
++		nand-controller@30000000 {
+ 			/*
+ 			 * Flash access collides with the Chip Enable signal for
+ 			 * the display panel, that reuse the parallel flash Chip
 diff --git a/arch/arm/boot/dts/gemini-nas4220b.dts b/arch/arm/boot/dts/gemini-nas4220b.dts
-index 77776c371ce0..da4ce90eec22 100644
+index 43c45f7e1e0a..1e2d3162d9c1 100644
 --- a/arch/arm/boot/dts/gemini-nas4220b.dts
 +++ b/arch/arm/boot/dts/gemini-nas4220b.dts
-@@ -62,7 +62,7 @@ led-green-os {
- 		};
+@@ -76,7 +76,7 @@ phy0: ethernet-phy@1 {
  	};
  
--	mdio0: ethernet-phy {
-+	mdio0: mdio {
- 		compatible = "virtual,mdio-gpio";
- 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
- 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
+ 	soc {
+-		flash@30000000 {
++		nand-controller@30000000 {
+ 			status = "okay";
+ 			/* 16MB of flash */
+ 			reg = <0x30000000 0x01000000>;
 diff --git a/arch/arm/boot/dts/gemini-rut1xx.dts b/arch/arm/boot/dts/gemini-rut1xx.dts
-index f8826a3b774f..6cea953150b5 100644
+index 08091d2a64e1..f8826a3b774f 100644
 --- a/arch/arm/boot/dts/gemini-rut1xx.dts
 +++ b/arch/arm/boot/dts/gemini-rut1xx.dts
-@@ -56,7 +56,7 @@ led-power {
- 		};
+@@ -70,7 +70,7 @@ phy0: ethernet-phy@1 {
  	};
  
--	mdio0: ethernet-phy {
-+	mdio0: mdio {
- 		compatible = "virtual,mdio-gpio";
- 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
- 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
+ 	soc {
+-		flash@30000000 {
++		nand-controller@30000000 {
+ 			status = "okay";
+ 			/* 8MB of flash */
+ 			reg = <0x30000000 0x00800000>;
+@@ -124,7 +124,6 @@ ethernet-port@1 {
+ 				/* Not used in this platform */
+ 			};
+ 		};
+-
+ 		usb@68000000 {
+ 			status = "okay";
+ 		};
+diff --git a/arch/arm/boot/dts/gemini-sl93512r.dts b/arch/arm/boot/dts/gemini-sl93512r.dts
+index a0916d3c1059..995be04425b7 100644
+--- a/arch/arm/boot/dts/gemini-sl93512r.dts
++++ b/arch/arm/boot/dts/gemini-sl93512r.dts
+@@ -138,7 +138,7 @@ fixed-link {
+ 
+ 
+ 	soc {
+-		flash@30000000 {
++		nand-controller@30000000 {
+ 			status = "okay";
+ 			/* 16MB of flash */
+ 			reg = <0x30000000 0x01000000>;
+diff --git a/arch/arm/boot/dts/gemini-sq201.dts b/arch/arm/boot/dts/gemini-sq201.dts
+index 0c6e6d35bfaa..df6146aaff4b 100644
+--- a/arch/arm/boot/dts/gemini-sq201.dts
++++ b/arch/arm/boot/dts/gemini-sq201.dts
+@@ -123,7 +123,7 @@ fixed-link {
+ 
+ 
+ 	soc {
+-		flash@30000000 {
++		nand-controller@30000000 {
+ 			status = "okay";
+ 			pinctrl-names = "enabled", "disabled";
+ 			pinctrl-0 = <&pflash_default_pins>;
 diff --git a/arch/arm/boot/dts/gemini-wbd111.dts b/arch/arm/boot/dts/gemini-wbd111.dts
-index 4f3e097d784b..00ea66f4788f 100644
+index 0c47b2b9811c..f253743b1c55 100644
 --- a/arch/arm/boot/dts/gemini-wbd111.dts
 +++ b/arch/arm/boot/dts/gemini-wbd111.dts
-@@ -68,7 +68,7 @@ led-greeb-l3 {
- 		};
+@@ -82,7 +82,7 @@ phy0: ethernet-phy@1 {
  	};
  
--	mdio0: ethernet-phy {
-+	mdio0: mdio {
- 		compatible = "virtual,mdio-gpio";
- 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
- 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
+ 	soc {
+-		flash@30000000 {
++		nand-controller@30000000 {
+ 			status = "okay";
+ 			/* 8MB of flash */
+ 			reg = <0x30000000 0x00800000>;
 diff --git a/arch/arm/boot/dts/gemini-wbd222.dts b/arch/arm/boot/dts/gemini-wbd222.dts
-index e6fe59ee65b6..6dfb61b8d133 100644
+index 52b4dbc0c072..76b6faaf806e 100644
 --- a/arch/arm/boot/dts/gemini-wbd222.dts
 +++ b/arch/arm/boot/dts/gemini-wbd222.dts
-@@ -67,7 +67,7 @@ led-green-l3 {
- 		};
+@@ -86,7 +86,7 @@ phy1: ethernet-phy@3 {
  	};
  
--	mdio0: ethernet-phy {
-+	mdio0: mdio {
- 		compatible = "virtual,mdio-gpio";
- 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
- 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
+ 	soc {
+-		flash@30000000 {
++		nand-controller@30000000 {
+ 			status = "okay";
+ 			/* 8MB of flash */
+ 			reg = <0x30000000 0x00800000>;
+diff --git a/arch/arm/boot/dts/gemini.dtsi b/arch/arm/boot/dts/gemini.dtsi
+index 38671523dec5..5c8c5179c944 100644
+--- a/arch/arm/boot/dts/gemini.dtsi
++++ b/arch/arm/boot/dts/gemini.dtsi
+@@ -16,7 +16,7 @@ soc {
+ 		compatible = "simple-bus";
+ 		interrupt-parent = <&intcon>;
+ 
+-		flash@30000000 {
++		nand: nand-controller@30000000 {
+ 			compatible = "cortina,gemini-flash", "cfi-flash";
+ 			syscon = <&syscon>;
+ 			pinctrl-names = "default";
 -- 
 2.26.3
 
