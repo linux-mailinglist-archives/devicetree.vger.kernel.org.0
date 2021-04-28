@@ -2,226 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EED3236DB5A
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 17:24:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98AA036DB84
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 17:25:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231881AbhD1POU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 11:14:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43674 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239827AbhD1POR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 11:14:17 -0400
-Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E297C061574
-        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 08:13:32 -0700 (PDT)
-Received: by mail-vs1-xe35.google.com with SMTP id 66so32006607vsk.9
-        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 08:13:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=va17hEIN1gMI5572/Bu5U8n1TthGJNzz9MlZ0qjXfQ8=;
-        b=FOvCAHtdrpa64fWJjd2v8zhbrkxe2XjDlU8BFhSO+gr1TeRV8kbnzathFB0byuVTmR
-         JcfKaygmgp4SXfmNo5T2JVNViCAbS9k9C9RtAmufWpKDeqh6BVZiuGN2tic9W1V19bbr
-         7b+j3+4IRbOolxOeedhwnIa/VVQd2Z6KjHe4ePfGt8QJc6/VvxWcDG4jeOvQP/UDSe+2
-         sDbIZ4wdD+I0mfhb4ZKVUQ5tO4E8LpPspFniSY2oxEPqWmlfebUm+bj+J1vsXrSnp31S
-         IDWTMIuOOnjbs/l3MRn0x5I2u6x+LlCmdw341+JLwNzvmcdz8NXz5jMDYG/fIQMj+HuW
-         qdCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=va17hEIN1gMI5572/Bu5U8n1TthGJNzz9MlZ0qjXfQ8=;
-        b=nkNg4fxjP4Nujow7zq3JXX4BNQS92ZYe3x7CGr6UIBF0ENI9Ki20LriYFrCPR4QM9o
-         dlcj/qhCPWvXkpjouXEvr+Y47KJKI2vbOrAvP+dz9ifEJiimNC4g9RDT/uBJ/YaZxurB
-         4HFNK39i8ZBt3/CouRv76XiSOKpdg6PL+y30asUUtFEC+O24CJTVwPRHnb2B60o1CVW0
-         bJzgQPN67d7o7P9Yocn1lQJy10YdMCy70YIElapI4z08PCJyQtFOVT40YCT4rWdMCFqi
-         xc1rbay8TnGnRrSrXfyEyqpO18G4cYUAjx3MrDqpZ9Ca2JsGJgiYNTZo/RwgPfF67o35
-         eVhg==
-X-Gm-Message-State: AOAM5334jFCXzzQiIcmqMxi+0EKc8DsAlxP/0WhR+GDZqv86/wv5ccJ0
-        KeFEhPhGnM7Ib8HeBXB9sVJw8su0hfrVVz8WZohVfA==
-X-Google-Smtp-Source: ABdhPJzWCsSOiCbEfusfgq4XxUrrYUu6eiejQ1dbIOPGeJVq5NDbusaXUpTSUd+FBBrrZ7R4t66BAiFanTN3I3naU+o=
-X-Received: by 2002:a67:bb0f:: with SMTP id m15mr24995139vsn.43.1619622810897;
- Wed, 28 Apr 2021 08:13:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <1616264220-25825-1-git-send-email-sbhanu@codeaurora.org>
- <CAD=FV=WLZCSd6D5VFyD+1KBp5n1qyszER2EVaEMwYjQfPSSDnA@mail.gmail.com>
- <b77f207b-2d90-3c8b-857f-625bd3867ed1@codeaurora.org> <6fdf704c4716f5873d413229ca8adc57@codeaurora.org>
- <CAD=FV=Wa4fT5wZgd0==8kLy_tzTLgdZ-HwdfOEAM9pMeMjjFyg@mail.gmail.com>
- <8126e130e5c0ea1e7ea867414f0510c0@codeaurora.org> <CAD=FV=XavWbf_b7-=JT6V5_RNA8CjdK4oRu7H719AaPDJ5tsqQ@mail.gmail.com>
- <32096a375966e1fcc149016df012c445@codeaurora.org> <CAD=FV=U0zEDi1Xn3OmVFA3h3maVWS_o2FXOW9qDEzTf1Moja=A@mail.gmail.com>
- <7c6805abf9c1f590bc4d66d625152f22@codeaurora.org>
-In-Reply-To: <7c6805abf9c1f590bc4d66d625152f22@codeaurora.org>
-From:   Doug Anderson <dianders@google.com>
-Date:   Wed, 28 Apr 2021 08:13:18 -0700
-Message-ID: <CAD=FV=W8z2VgbP6mepVNXJ8ZO_Enb+ftwG1HQhq8HtEyG1ppOA@mail.gmail.com>
-Subject: Re: [PATCH V2] arm64: dts: qcom: sc7280: Add nodes for eMMC and SD card
-To:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
-        Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        id S239958AbhD1P0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 11:26:05 -0400
+Received: from smtprelay-out1.synopsys.com ([149.117.73.133]:56568 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236041AbhD1P0D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Apr 2021 11:26:03 -0400
+Received: from mailhost.synopsys.com (mdc-mailhost2.synopsys.com [10.225.0.210])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id F22F44049B;
+        Wed, 28 Apr 2021 15:25:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1619623518; bh=/FsFt3YQfo6DCcNtW/ASlkRbsL2GitSBFgKA9SLZMNU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=H799ahYFLSlsayG9eJ0jrQ7PQWUvFVTkg3SwN+d3SQdBHwoONP3KYirPdExCmQOK7
+         vJpuoqEF442pf8/tSgWCS327XswSQLrDvrN70z1jrmQHIIbcjiV2IAHxe2knCb0EvK
+         zz/aO8N/sY1guwj9ZNL2I+jtELiM+WQdPBPUD6y01f6XjeWMaQ17U9gdiSmU+h3S5Y
+         CY2y+7Bnek5RVbS77ZS7YpIbNvj0anrPgxHhfEefoSMsMBWlBWDXnqEfqElmm8pUIm
+         cwWoV6rBX9Ru8Na0ZHlf08fkpBh5zs3ZEz8NuIzginSmCucIsSjFf4An/YB8ASw4Da
+         fHlFlhpcEWVCw==
+Received: from de02dwvm009.internal.synopsys.com (de02dwvm009.internal.synopsys.com [10.225.17.73])
+        by mailhost.synopsys.com (Postfix) with ESMTP id BCF39A005E;
+        Wed, 28 Apr 2021 15:25:15 +0000 (UTC)
+X-SNPS-Relay: synopsys.com
+From:   Nelson Costa <Nelson.Costa@synopsys.com>
+To:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Sahitya Tummala <stummala@codeaurora.org>,
-        Ram Prakash Gupta <rampraka@codeaurora.org>,
-        Sayali Lokhande <sayalil@codeaurora.org>,
-        sartgarg@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>, cang@codeaurora.org,
-        pragalla@codeaurora.org, nitirawa@codeaurora.org,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        Odelu Kukatla <okukatla@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+        Jose Abreu <Jose.Abreu@synopsys.com>,
+        Nelson Costa <Nelson.Costa@synopsys.com>
+Subject: [RFC 0/8] Add Synopsys DesignWare HDMI RX Controller and PHY drivers
+Date:   Wed, 28 Apr 2021 17:25:03 +0200
+Message-Id: <cover.1618937288.git.nelson.costa@synopsys.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This series implements support for the Synopsys DesignWare HDMI RX Controller
+and PHYs e405/e406 drivers, being compliant with standard HDMI 1.4 and
+HDMI 2.0.
 
-On Wed, Apr 28, 2021 at 3:47 AM <sbhanu@codeaurora.org> wrote:
->
-> On 2021-04-21 01:44, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Tue, Apr 20, 2021 at 10:21 AM <sbhanu@codeaurora.org> wrote:
-> >>
-> >> On 2021-04-15 01:55, Doug Anderson wrote:
-> >> > Hi,
-> >> >
-> >> > On Tue, Apr 13, 2021 at 3:59 AM <sbhanu@codeaurora.org> wrote:
-> >> >>
-> >> >> >> >>> +                                       required-opps =
-> >> >> >> >>> <&rpmhpd_opp_low_svs>;
-> >> >> >> >>> +                                       opp-peak-kBps = <1200000
-> >> >> >> >>> 76000>;
-> >> >> >> >>> +                                       opp-avg-kBps = <1200000
-> >> >> >> >>> 50000>;
-> >> >> >> >> Why are the kBps numbers so vastly different than the ones on sc7180
-> >> >> >> >> for the same OPP point. That implies:
-> >> >> >> >>
-> >> >> >> >> a) sc7180 is wrong.
-> >> >> >> >>
-> >> >> >> >> b) This patch is wrong.
-> >> >> >> >>
-> >> >> >> >> c) The numbers are essentially random and don't really matter.
-> >> >> >> >>
-> >> >> >> >> Can you identify which of a), b), or c) is correct, or propose an
-> >> >> >> >> alternate explanation of the difference?
-> >> >> >> >>
-> >> >> >>
-> >> >> >> We calculated bus votes values for both sc7180 and sc7280 with ICB
-> >> >> >> tool,
-> >> >> >> above mentioned values we got for sc7280.
-> >> >> >
-> >> >> > I don't know what an ICB tool is. Please clarify.
-> >> >> >
-> >> >> > Also: just because a tool spits out numbers that doesn't mean it's
-> >> >> > correct. Presumably the tool could be wrong or incorrectly configured.
-> >> >> > We need to understand why these numbers are different.
-> >> >> >
-> >> >> we checked with ICB tool team on this they conformed as Rennell &
-> >> >> Kodiak
-> >> >> are different chipsets,
-> >> >> we might see delta in ib/ab values due to delta in scaling factors.
-> >> >
-> >> > ...but these numbers are in kbps, aren't they? As I understand it
-> >> > these aren't supposed to be random numbers spit out by a tool but are
-> >> > supposed to be understandable by how much bandwidth an IP block (like
-> >> > MMC) needs from the busses it's connected to. Since the MMC IP block
-> >> > on sc7180 and sc7280 is roughly the same there shouldn't be a big
-> >> > difference in numbers.
-> >> >
-> >> > Something smells wrong.
-> >> >
-> >> > Adding a few people who understand interconnects better than I do,
-> >> > though.
-> >> >
-> >>
-> >> ICB team has re-checked the Rennell ICB tool and they confirmed that
-> >> some configs were wrong in Rennell ICB tool and they corrected it.With
-> >> the new updated Rennell ICB tool below are the values :
-> >>
-> >>
-> >> Rennell LC:(Sc7180)
-> >>
-> >> opp-384000000 {
-> >>               opp-hz = /bits/ 64 <384000000>;
-> >>               required-opps = <&rpmhpd_opp_nom>;
-> >>               opp-peak-kBps = <5400000 490000>;
-> >>               opp-avg-kBps = <6600000 300000>;
-> >> };
-> >>
-> >>
-> >> And now, these values are near to Kodaik LC values:
-> >>
-> >> Kodaik LC:(SC7280)
-> >>
-> >> opp-384000000 {
-> >>             opp-hz = /bits/ 64 <384000000>;
-> >>             required-opps = <&rpmhpd_opp_nom>;
-> >>             opp-peak-kBps = <5400000 399000>;
-> >>             opp-avg-kBps = <6000000 300000>;
-> >> };
-> >
-> > This still isn't making sense to me.
-> >
-> > * sc7180 and sc7280 are running at the same speed. I'm glad the
-> > numbers are closer now, but I would have thought they'd be exactly the
-> > same.
-> >
-> > * Aren't these supposed to be sensible? This is eMMC that does max
-> > transfer rates of 400 megabytes / second to the external device. You
-> > have bandwidths listed here of 5,400,000 kBps = 5,400,000 kilobytes /
-> > second = 5400 megabytes / second. I can imagine there being some
-> > overhead where an internal bus might need to be faster but that seems
-> > excessive. This is 13.5x!
-> >
->
-> These numbers are not related to SDCC bandwidth, these are the values
-> needed for the NOC's to run in nominal voltage corners (internal to
-> hardware) and
-> thus it helps SDCC to run in nominal to get required through put
-> (384MBps).So above calculation mentioned by you is not applicable here.
+The Controller + PHY pipeline can be integrated into a fully featured
+system that can be able to receive video up to 4k@60Hz with basic audio.
 
-OK. I guess if everyone else understands this and it's just me that
-doesn't then I won't stand in the way. In general, though, the device
-tree is supposed to be describing the hardware in a way that makes
-sense on its own. It's not a place to just dump in magic numbers.
-These numbers must be somehow related to the transfer rate of the SD
-card since otherwise they wouldn't scale up with faster card clocks.
-Given that these numbers are expressed in "kBps" (since you're storing
-them in a property that has "kBps" in the name), I would expect that
-these numbers are expressing some type of bandwidth. I still haven't
-really understood why you have to scale some bandwidth at over 10x the
-card clock speed.
+This solution is mainly composed by two modules: phy-dw-hdmi-e40x and
+dw-hdmi-rx.
 
-Said another way: you're saying that you need these numbers because
-they make a whole bunch of math work out. I'm saying that these aren't
-just supposed to be magic numbers. They're supposed to make sense on
-their own and you should be able to describe to me how you arrived at
-these numbers in a way that I could do the math on my own. Saying "we
-plugged this into some program and it spit out these numbers" isn't
-good enough.
+phy-dw-hdmi-e40x: it's the PHY (Physical Layer) driver that implements
+support for Synopsys DesignWare e405 and e406 PHYs. It is responsible to
+configure the PHY and equalize it for the best settings, in order to
+receive and decode video to be delivered to the Controller.
+This driver is integrated in the PHY subsystem.
+The main features of this module are:
+ - Equalizer algorithm that chooses the phy best settings
+ according to the detected HDMI cable characteristics
+ - Support for scrambling
+ - Support for color depth up to 48bpp
+ - Support for HDMI 2.0 modes up to 6G (HDMI 4k@60Hz).
 
+dw-hdmi-rx: it's the Controller driver that implements support for
+Synopsys DesignWare HDMI RX Controller. It is responsible to manage and
+handle the PHY (through the PHY API) and the Controller configurations in
+order to configure the video and audio pipeline.
+This driver is implemented as a standard V4L2 subdevice.
+The main features of this module are:
+ - Support for scrambling
+ - Support for color depth up to 48bpp
+ - Support for HDMI 2.0 modes up to 6G (HDMI 4k@60Hz)
+ - Support for RGB, YCC444, YCC422 and YCC420
+ - Support for basic audio (LPCM 2ch, 32KHz/44.1KHz/48KHz, 16bit)
+ - Support for Aspect Ratio
+ - Support for CEC
+ - Internal state machine that reconfigures phy and controller
+ - JTAG communication with phy
+ - Inter-module communication with phy driver:
+   * through the PHY API using the phy reference "hdmi-phy"
+   * through the callbacks that phy dwc driver needs.
+ - Debug write/read ioctls
 
-> > * I can't see how it can make sense that "average" values are higher
-> > than "peak" values.
->
->
-> Here actual peak = peak number * 2
-> actual average = average number
->
-> and this multiplication is taken care by ICC driver, so technically
-> actual peak is still high than average.
+NOTES: This patch series has two specific patches (Patch [3/8] and [6/8])
+one for the PHY API and the other for v4l2-dv-timings.
 
-Sorry, but that is really counter-intuitive. Georgi: is that how this
-is normally expected to work?
+Patch [3/8] adds phy standard HDMI opts to the phy API that contributes
+for the PHY subsystem, which allows to integrate the PHY driver in the
+PHY subsystem using this new HDMI opts structure, because there are hdmi
+options that are needed to pass between the Controller and PHY drivers
+using the standard API.
 
--Doug
+Patch [6/8] adds more CEA/CTA-861 video format timings that contributes
+to the v4l2 media subsystem, which in our case is needed to provide
+information about the Aspect Ratio.
+
+Nelson Costa (8):
+  dt-bindings: media: Document Synopsys DesignWare HDMI RX
+  MAINTAINERS: Add entry for Synopsys DesignWare HDMI drivers
+  phy: Add PHY standard HDMI opts to the PHY API
+  phy: dwc: Add Synopsys DesignWare HDMI RX PHYs e405 and e406 Driver
+  media: platform: Add Synopsys DesignWare HDMI RX Controller Driver
+  media: v4l2-dv-timings: Add more CEA/CTA-861 video format timings
+  media: dwc: dw-hdmi-rx: Add support for Aspect Ratio
+  media: dwc: dw-hdmi-rx: Add support for CEC
+
+ .../devicetree/bindings/media/snps,dw-hdmi-rx.yaml |  149 +
+ MAINTAINERS                                        |   11 +
+ drivers/media/platform/Kconfig                     |    2 +
+ drivers/media/platform/Makefile                    |    1 +
+ drivers/media/platform/dwc/Kconfig                 |   20 +
+ drivers/media/platform/dwc/Makefile                |    3 +
+ drivers/media/platform/dwc/dw-hdmi-rx.c            | 3544 ++++++++++++++++++++
+ drivers/media/platform/dwc/dw-hdmi-rx.h            |  533 +++
+ drivers/media/v4l2-core/v4l2-dv-timings.c          |  139 +
+ drivers/phy/Kconfig                                |    1 +
+ drivers/phy/Makefile                               |    1 +
+ drivers/phy/dwc/Kconfig                            |   20 +
+ drivers/phy/dwc/Makefile                           |    9 +
+ drivers/phy/dwc/phy-dw-hdmi-e405.c                 |  497 +++
+ drivers/phy/dwc/phy-dw-hdmi-e406.c                 |  475 +++
+ drivers/phy/dwc/phy-dw-hdmi-e40x-core.c            |  514 +++
+ drivers/phy/dwc/phy-dw-hdmi-e40x.h                 |  219 ++
+ include/linux/phy/dwc/dw-hdmi-phy-pdata.h          |   73 +
+ include/linux/phy/phy-hdmi.h                       |  102 +
+ include/linux/phy/phy.h                            |    7 +-
+ include/media/dwc/dw-hdmi-rx-pdata.h               |  126 +
+ include/uapi/linux/v4l2-dv-timings.h               | 1595 ++++++++-
+ 22 files changed, 8039 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+ create mode 100644 drivers/media/platform/dwc/Kconfig
+ create mode 100644 drivers/media/platform/dwc/Makefile
+ create mode 100644 drivers/media/platform/dwc/dw-hdmi-rx.c
+ create mode 100644 drivers/media/platform/dwc/dw-hdmi-rx.h
+ create mode 100644 drivers/phy/dwc/Kconfig
+ create mode 100644 drivers/phy/dwc/Makefile
+ create mode 100644 drivers/phy/dwc/phy-dw-hdmi-e405.c
+ create mode 100644 drivers/phy/dwc/phy-dw-hdmi-e406.c
+ create mode 100644 drivers/phy/dwc/phy-dw-hdmi-e40x-core.c
+ create mode 100644 drivers/phy/dwc/phy-dw-hdmi-e40x.h
+ create mode 100644 include/linux/phy/dwc/dw-hdmi-phy-pdata.h
+ create mode 100644 include/linux/phy/phy-hdmi.h
+ create mode 100644 include/media/dwc/dw-hdmi-rx-pdata.h
+
+-- 
+2.7.4
+
