@@ -2,116 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9444E36D1E1
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 07:58:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64BA836D1E7
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 07:59:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235922AbhD1F6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 01:58:53 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:59735 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbhD1F6x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 01:58:53 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1619589489; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=Rg1gpg/qMf5ZwfvDkM6GsImfatwM0n65u9QW2Zdxhjs=;
- b=UpoOKX5bqdFoXCdTgoYEeG6Z9GROMr15IEy7ZSGRuvD3fhfnHQJnki7clSz3cMWvL7TxHmqv
- +s60xg0ORD5eoywUanQS0BjWqgashK0OxRqCUl/EYftw3ZhBbEVHYQY7wTewKUDLx0fvtss5
- eOrd7a8Wr01mCDdhKazuSwLFt2c=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 6088f97074f773a6649c054f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 28 Apr 2021 05:58:08
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id D4BB3C433F1; Wed, 28 Apr 2021 05:58:07 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 27094C433D3;
-        Wed, 28 Apr 2021 05:58:07 +0000 (UTC)
+        id S235911AbhD1F76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 01:59:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60984 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235809AbhD1F76 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 01:59:58 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D99E2C061574;
+        Tue, 27 Apr 2021 22:59:13 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id z13so16277340lft.1;
+        Tue, 27 Apr 2021 22:59:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=xzsNPh8QJ6rpsJx8qwIaGMl2EdqborjifVRsL559zII=;
+        b=CPcR0MoJChypavoUphSD8hGQFZU4QOt7bP+noLN+UIescw+eezNc/5HJ9ZLpzJSsQl
+         vKbO76KN4pryjdUPLwxbrW+7svnNq515fHMf3OwCl4i/c9Dh/tQRzl3XNPmtfeVhdxxC
+         l72eCxG857HLpk/8yyoUH8m0tg/+rXviICqfkAoYBECNoSFvLEXReUVQryFg516nc7ra
+         ZNntlFWga7kct/i/fkJGoUqmbjOAYDP3cCtJkOTfe08j2CUo7qyvziQOOAQpSWv1ZZHx
+         oSnFVVep1FE2vDsXn+8F4HjNQSzCKNQgVkyB5NkjWyPxhtaLP/UfCIWr3+tKIFhW3AQH
+         n9ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=xzsNPh8QJ6rpsJx8qwIaGMl2EdqborjifVRsL559zII=;
+        b=EnwXIJQQGjPJcX4ogpzPCGRb3GS1ek7ZxtM+ER09tncG1xvHuuu5uEhw2UhsYS21aq
+         N+2GmO44cJiBK4JNpiiLmjm1Iu/A9jLcPmghqP/aTC77QMeqpou0tRdAf29I+0RUdBzY
+         WbSvZSOoF4LWk/ZXCmjH5GOHAHXxG67og6SAB21AnmiVThBVtS2auua/ioppLErYCOJj
+         NEa/WSLTkWSnWOiW8X1P4hz55Ysc9JsVh77uCwFo7razSmRjdl2fvjogQNRKBqRsqbPv
+         h2rEreU7tJXv5J3w51ifdKXcXxjkmjTZSfS5MUM0+pG+cMfwe5CuQwdONrlmkwHPatpG
+         5lDw==
+X-Gm-Message-State: AOAM532nmDNrJDq1R8jMXn//7FqM0y5NIiQ2u77DQ+VDSDBtrt2Jg8ZR
+        RnnLGZk7aVUYoKXgzXdTWBOFDYSjD+g=
+X-Google-Smtp-Source: ABdhPJwsJ1Jsc5Axp48FVR/3lWWuUQbuDEtjYM5zGB1C8ohK+lxiIL9cMk1ms9SHkd0hBC/ccjCAgA==
+X-Received: by 2002:a19:5517:: with SMTP id n23mr5471964lfe.554.1619589552307;
+        Tue, 27 Apr 2021 22:59:12 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-193-102.dynamic.spd-mgts.ru. [109.252.193.102])
+        by smtp.googlemail.com with ESMTPSA id i7sm469674lfv.258.2021.04.27.22.59.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Apr 2021 22:59:11 -0700 (PDT)
+Subject: Re: [PATCH v2 0/5] iommu: Support identity mappings of
+ reserved-memory regions
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org
+References: <20210423163234.3651547-1-thierry.reding@gmail.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <8032d476-8104-1218-30c6-9fd670c3e7b5@gmail.com>
+Date:   Wed, 28 Apr 2021 08:59:11 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 28 Apr 2021 11:28:07 +0530
-From:   skakit@codeaurora.org
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kgunda@codeaurora.org
-Subject: Re: [RESEND PATCH V3 4/5] arm64: dts: qcom: pmk8350: Add PMIC
- peripherals for pmk8350
-In-Reply-To: <YH8PjqhZtiNhNv8h@google.com>
-References: <1618398783-7834-1-git-send-email-skakit@codeaurora.org>
- <1618398783-7834-3-git-send-email-skakit@codeaurora.org>
- <YH8PjqhZtiNhNv8h@google.com>
-Message-ID: <1853cf98592b092cba25542b91c89d9c@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+In-Reply-To: <20210423163234.3651547-1-thierry.reding@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-04-20 22:59, Matthias Kaehlcke wrote:
-> On Wed, Apr 14, 2021 at 04:43:00PM +0530, satya priya wrote:
-> 
->> Subject: arm64: dts: qcom: pmk8350: Add PMIC peripherals for pmk8350
-> 
-> nit: why 'PMIC peripherals', are these peripherals somehow specific
-> to PMICs?
-> 
+23.04.2021 19:32, Thierry Reding пишет:
+> Note that an earlier proposal was to use the existing simple-framebuffer
+> device tree bindings to transport this information. Unfortunately there
+> are cases where this is not enough. On Tegra SoCs, for example, the
+> bootloader will also set up a color space correction lookup table in the
+> system memory that the display controller will access during boot,
+> alongside the framebuffer. The simple-framebuffer DT bindings have no
+> way of describing this (and I guess one could argue that this particular
+> setup no longer is a "simple" framebuffer), so the above, more flexible
+> proposal was implemented.
 
-Okay will change it.
+Will simple-framebuffer be able to use that reserved region
+transparently? Or will it require a custom simple-framebuffer driver?
 
->> Add PON, RTC and other PMIC infra modules support for PMK8350.
-> 
-> nit: it seems somewhat arbitrary to specifically mention PON and RTC,
-> and then treat the ADC and the thermal monitor as 'others'. You could
-> just spell them out too.
-> 
-
-Okay.
-
->> 
->> Signed-off-by: satya priya <skakit@codeaurora.org>
->> ---
->>  arch/arm64/boot/dts/qcom/pmk8350.dtsi | 55 
->> ++++++++++++++++++++++++++++++++++-
->>  1 file changed, 54 insertions(+), 1 deletion(-)
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/pmk8350.dtsi 
->> b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
->> index 1530b8f..bbd9fa7 100644
->> --- a/arch/arm64/boot/dts/qcom/pmk8350.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
->> @@ -3,6 +3,12 @@
->>   * Copyright (c) 2021, Linaro Limited
->>   */
->> 
->> +#include <dt-bindings/iio/qcom,spmi-adc7-pm8350.h>
->> +#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
->> +#include <dt-bindings/iio/qcom,spmi-adc7-pmr735a.h>
->> +#include <dt-bindings/iio/qcom,spmi-adc7-pmr735b.h>
-> 
-> the includes of the constants for the other PMICs seems to be an
-> remainder from older vesions, which included nodes for the on die
-> temperatures of these PMICs.
-
-As I have added on die temp nodes for these pmics in sc7280-idp file, 
-will add these header files also there.
-
-Thanks,
-Satya Priya
+Could we make simple-framebuffer support a part of this series?
