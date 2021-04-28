@@ -2,60 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89A7B36E161
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 00:15:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB6D536E165
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 00:15:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231600AbhD1WP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 18:15:59 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:36811 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229965AbhD1WP7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 18:15:59 -0400
-Received: by mail-ot1-f44.google.com with SMTP id n32-20020a9d1ea30000b02902a53d6ad4bdso4760907otn.3;
-        Wed, 28 Apr 2021 15:15:12 -0700 (PDT)
+        id S231935AbhD1WQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 18:16:02 -0400
+Received: from mail-oo1-f52.google.com ([209.85.161.52]:33780 "EHLO
+        mail-oo1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231881AbhD1WQC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 18:16:02 -0400
+Received: by mail-oo1-f52.google.com with SMTP id e9-20020a4ada090000b02901f91091e5acso2162618oou.0;
+        Wed, 28 Apr 2021 15:15:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=zAF2toXP87sFaO/+ZlCZr0PxBU8uD3XenCS7obOMCiU=;
-        b=D1xsbvMX197MMIu3n89ynUm9ryufvnZ136iMSuf/2ByUY6TfGFm659oOfalnZMYXkk
-         p2Gimu4M37dFp1xHdt5flgQr8rM/0Y7o6Glb5vvxc0Z4WvpicSClYtrLU29MeM0/tLB2
-         vYjFvm93J0+V5GALV224irBJ/OCTF9ndpVmOIgbMeEyvhZZlvl42+l2ZW3CYvUNLwJe3
-         NP7kPx9T+B2/5vknrm/WPaHmhrOI18sBK8C/a7OHS/moPn44Wyu4v37fWzc4fuo9qznd
-         10KRELSOO81mC+T4XqqkhmxIP7dsB/eW2q1bzoIP8X7YYVm0o152fGbW79i00KEes9P6
-         IxwQ==
-X-Gm-Message-State: AOAM5308CU/WjFg/dPzEvXOSPXH/Bn1120MXuc+R+fr4qzLYdOECeYXQ
-        zCFAx1MCmF9yXaz3+uk+FFQHoPWmuQ==
-X-Google-Smtp-Source: ABdhPJwdPNXNSpudUFX5xImDtn8XEwOZU/5rOoBkiWPuMoZQH9BChGgxsWK8gHDGHj/eAt4JRncnWw==
-X-Received: by 2002:a05:6830:149a:: with SMTP id s26mr26474841otq.349.1619648112129;
-        Wed, 28 Apr 2021 15:15:12 -0700 (PDT)
+        bh=gYgk6AJrAYzNx39r/XzjJt1ApfnhLWc9A/uBhzNpze4=;
+        b=H6ZLOvmWBwqKmzA/ixZNzWc2BLcpYJg7abevlAGzxXqk0OdCdOT4x4BD7G/ma8MgN2
+         AnGEhS91OV/33bJ07WFU0ZCr9Eo6T1fibilt6eMQlwPcscQ04pWDpL7TWma1nFl3fnp3
+         RN/nX/AqxtyzJXOGV5nRoiXcV8H2YCXrRKz4i93N+KGuK3coHORarQva+DOOr9JTeS3I
+         1qex8m8VAt+i7DFASSXXQ1oOv3GT5RT2+pGBs5PXTnsa227N27CmoZmq1iOxGqihYJ/S
+         ksGfNJMj7DA/F1XTFwsjTQ8CJu1mvMjeWSbATZ6cDgbrtpI3jUJwy0+DJAfrDyA9XDiy
+         /hdQ==
+X-Gm-Message-State: AOAM530gJeLwg0+tLMGodeqHothMBCxFRHO2YGwckVLj00pvdRsnSMZf
+        DLiWvOAMK2FOxybebZdtjkAyjShLZw==
+X-Google-Smtp-Source: ABdhPJxZArFwbVeIF8l00TfdHEC2VcZYpSALlJgxSt21DhqXruJlYIhnGLdMAytU4YnTNvOcFrdcCw==
+X-Received: by 2002:a05:6820:381:: with SMTP id r1mr24594188ooj.79.1619648115937;
+        Wed, 28 Apr 2021 15:15:15 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j8sm268455otj.49.2021.04.28.15.15.10
+        by smtp.gmail.com with ESMTPSA id w2sm284666oov.23.2021.04.28.15.15.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Apr 2021 15:15:11 -0700 (PDT)
-Received: (nullmailer pid 4061026 invoked by uid 1000);
+        Wed, 28 Apr 2021 15:15:15 -0700 (PDT)
+Received: (nullmailer pid 4061033 invoked by uid 1000);
         Wed, 28 Apr 2021 22:15:09 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20210427224201.32285-1-tsbogend@alpha.franken.de>
-References: <20210427224201.32285-1-tsbogend@alpha.franken.de>
-Subject: Re: [PATCH] dt-binding: interrupt-controller: Add missing interrupts property
+To:     cl@rock-chips.com
+Cc:     david.wu@rock-chips.com, jagan@amarulasolutions.com,
+        linux-kernel@vger.kernel.org, jay.xu@rock-chips.com,
+        jamie@jamieiles.com, ulf.hansson@linaro.org,
+        jensenhuang@friendlyarm.com, linux-serial@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        gregkh@linuxfoundation.org, huangtao@rock-chips.com,
+        mail@david-bauer.net, linux@roeck-us.net,
+        devicetree@vger.kernel.org, heiko@sntech.de, cnsztl@gmail.com,
+        wim@linux-watchdog.org, michael@amarulasolutions.com,
+        zhangqing@rock-chips.com, maz@kernel.org, robh+dt@kernel.org,
+        uwe@kleine-koenig.org, shawn.lin@rock-chips.com,
+        linux-mmc@vger.kernel.org, jbx6244@gmail.com,
+        linux-arm-kernel@lists.infradead.org, wens@csie.org,
+        linux-rockchip@lists.infradead.org
+In-Reply-To: <20210428134938.22383-1-cl@rock-chips.com>
+References: <20210428134759.22076-1-cl@rock-chips.com> <20210428134938.22383-1-cl@rock-chips.com>
+Subject: Re: [PATCH v3 07/10] dt-bindings: soc: rockchip: Convert grf.txt to YAML
 Date:   Wed, 28 Apr 2021 17:15:09 -0500
-Message-Id: <1619648109.762240.4061025.nullmailer@robh.at.kernel.org>
+Message-Id: <1619648109.786418.4061032.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Apr 2021 00:42:00 +0200, Thomas Bogendoerfer wrote:
-> Interrupts property is required, so add it.
+On Wed, 28 Apr 2021 21:49:38 +0800, cl@rock-chips.com wrote:
+> From: Liang Chen <cl@rock-chips.com>
 > 
-> Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> Current dts files with 'grf' nodes are manually verified. In order to
+> automate this process grf.txt has to be converted to YAML.
+> 
+> Signed-off-by: Liang Chen <cl@rock-chips.com>
 > ---
->  .../bindings/interrupt-controller/idt,32434-pic.yaml          | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../devicetree/bindings/soc/rockchip/grf.txt  | 61 -------------------
+>  .../devicetree/bindings/soc/rockchip/grf.yaml | 61 +++++++++++++++++++
+>  2 files changed, 61 insertions(+), 61 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.txt
+>  create mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -64,12 +81,18 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-a10-ic.example.dt.yaml: interrupt-controller@1c20400: 'oneOf' conditional failed, one must be fixed:
-	'interrupts' is a required property
-	'interrupts-extended' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-a10-ic.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/rockchip/grf.example.dt.yaml: example-0: syscon@ff320000:reg:0: [0, 4281466880, 0, 4096] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/rockchip/grf.example.dt.yaml: example-0: syscon@ff770000:reg:0: [0, 4285988864, 0, 65536] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/rockchip/grf.example.dt.yaml: syscon@ff320000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3399-pmugrf', 'syscon'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/rockchip/grf.example.dt.yaml: syscon@ff770000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3399-grf', 'syscon'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
 
-See https://patchwork.ozlabs.org/patch/1470883
+See https://patchwork.ozlabs.org/patch/1471171
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
