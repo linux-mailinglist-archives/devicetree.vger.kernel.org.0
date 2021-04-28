@@ -2,271 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3C7036DDA3
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 18:56:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3DFC36DDB6
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 18:58:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241276AbhD1Q5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 12:57:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38800 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241217AbhD1Q5L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 12:57:11 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AC67C061573;
-        Wed, 28 Apr 2021 09:56:26 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id l4so95627842ejc.10;
-        Wed, 28 Apr 2021 09:56:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=RgwWWzRArBvsITzP0MfXSJen41tdFEmAecGMN7HXGzM=;
-        b=CD9OPZyNfgFGI1NgZH3L4ac7J6xtx0nRn0yCF9Ru5HQXe8xkpJu2ueURt4b/Jt3C+4
-         sJP5CcxTzW+WFlqMGgHlsHQQeSpvDQFPjjU8sb2wvXOVFRBiuZNEDStdwHayk5YxlIbq
-         U5ce1Cdc4oyrKZ5VSyuPi3RyKHbJm2gJH8KnKBWrNiO0P5DJYwbANyIHpgfWCRKhX5n1
-         Nemsuksq+bYfvq4rUNCM9IzCrL3Y5ZOpz4sdt60XZIBB6qJrQ75bU36pKXI/UzDmEYw5
-         SJM8JKGgpHZbMEBzUTARWf8uwvvZ/v1LVjTM2ya5hfcyOPeeOI/YNFAs/zMdyVQ0z3JP
-         NPqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=RgwWWzRArBvsITzP0MfXSJen41tdFEmAecGMN7HXGzM=;
-        b=gB4VO1VWBGvdITCB14TO7pgk0J+szqVrxETiUUKHZ3I4B2juW69m/vVjz8zxNL4sOE
-         Dqv9LSojj3ShBAHKLnd3DlAtgw6v6Q9SFGaefN5MS1AzQ4gGk4dYW5xth+0GhCXfh1z9
-         YWJMo1mSfv4zZW4qw9+Ro5uNzAB84/SXpV0Pn1kAvI8zJs+g40enKVUAAxKomK1/Z54U
-         JWNS3fWCOYtUXGtXqySRmYoOg9oh2FstVzi+6CNR6PAeNkYpszHqtbHmSRqzE3YNDjjm
-         uD6NNbzi3NnZF6OKBWhF/tZ1UAUeBJ4OfnIhzOa3fnrTCSyTv7PtCAAP3bAZTSMDaxF0
-         ++Bw==
-X-Gm-Message-State: AOAM5331FltKsdJre26Q4QRagkWjNsK8ptOaqCYFp/L+x0OcnFEeuZBr
-        D5sgA+tPAMIlNRl84h5qHuw=
-X-Google-Smtp-Source: ABdhPJz8H2DAXvH8nsp6SM9J7kvnquRhbADOKtm5XWb3DJsquBPoPAQXmESbPx9RIg2yvtGofRuq5Q==
-X-Received: by 2002:a17:906:4153:: with SMTP id l19mr29859824ejk.109.1619628984762;
-        Wed, 28 Apr 2021 09:56:24 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id n10sm241125ejg.124.2021.04.28.09.56.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Apr 2021 09:56:24 -0700 (PDT)
-Subject: Re: [PATCH v3 07/10] dt-bindings: soc: rockchip: Convert grf.txt to
- YAML
-To:     cl@rock-chips.com, heiko@sntech.de
-Cc:     robh+dt@kernel.org, jagan@amarulasolutions.com, wens@csie.org,
-        uwe@kleine-koenig.org, mail@david-bauer.net,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
-        cnsztl@gmail.com, devicetree@vger.kernel.org,
-        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
-        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
-        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
-        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
-        zhangqing@rock-chips.com, huangtao@rock-chips.com,
-        wim@linux-watchdog.org, linux@roeck-us.net, jamie@jamieiles.com,
-        linux-watchdog@vger.kernel.org, maz@kernel.org
-References: <20210428134759.22076-1-cl@rock-chips.com>
- <20210428134938.22383-1-cl@rock-chips.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <1f0ddd45-98a0-1e9d-f228-3c58f88fb76d@gmail.com>
-Date:   Wed, 28 Apr 2021 18:56:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S241311AbhD1Q7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 12:59:00 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:2946 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241257AbhD1Q67 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 12:58:59 -0400
+Received: from fraeml704-chm.china.huawei.com (unknown [172.18.147.200])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4FVl4J3mPXz6896L;
+        Thu, 29 Apr 2021 00:50:24 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml704-chm.china.huawei.com (10.206.15.53) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2176.2; Wed, 28 Apr 2021 18:58:11 +0200
+Received: from localhost (10.52.123.69) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Wed, 28 Apr
+ 2021 17:58:10 +0100
+Date:   Wed, 28 Apr 2021 17:56:36 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        "Robin van der Gracht" <robin@protonic.nl>,
+        <linux-iio@vger.kernel.org>,
+        "Lars-Peter Clausen" <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: Re: [PATCH v6 3/3] iio: adc: add ADC driver for the TI TSC2046
+ controller
+Message-ID: <20210428175636.00001170@Huawei.com>
+In-Reply-To: <20210428073208.19570-4-o.rempel@pengutronix.de>
+References: <20210428073208.19570-1-o.rempel@pengutronix.de>
+        <20210428073208.19570-4-o.rempel@pengutronix.de>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
 MIME-Version: 1.0
-In-Reply-To: <20210428134938.22383-1-cl@rock-chips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.52.123.69]
+X-ClientProxiedBy: lhreml751-chm.china.huawei.com (10.201.108.201) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liang,
+On Wed, 28 Apr 2021 09:32:08 +0200
+Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 
-Check example with:
-make ARCH=arm64 dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-
-Build log:
-https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210428134938.22383-1-cl@rock-chips.com/
-
-On 4/28/21 3:49 PM, cl@rock-chips.com wrote:
-> From: Liang Chen <cl@rock-chips.com>
+> Basically the TI TSC2046 touchscreen controller is 8 channel ADC optimized for
+> the touchscreen use case. By implementing it as an IIO ADC device, we can
+> make use of resistive-adc-touch and iio-hwmon drivers.
 > 
-> Current dts files with 'grf' nodes are manually verified. In order to
-> automate this process grf.txt has to be converted to YAML.
-
-Add new descriptions for:
-"rockchip,rk3399-pmugrf", "syscon", "simple-mfd"
-"rockchip,rk3399-grf", "syscon", "simple-mfd"
-
+> Polled readings are currently not implemented to keep this patch small, so
+> iio-hwmon will not work out of the box for now.
 > 
-> Signed-off-by: Liang Chen <cl@rock-chips.com>
-> ---
->  .../devicetree/bindings/soc/rockchip/grf.txt  | 61 -------------------
->  .../devicetree/bindings/soc/rockchip/grf.yaml | 61 +++++++++++++++++++
->  2 files changed, 61 insertions(+), 61 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.txt
->  create mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> So far, this driver was tested with a custom version of resistive-adc-touch driver,
+> since it needs to be extended to make use of Z1 and Z2 channels. The X/Y
+> are working without additional changes.
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.txt b/Documentation/devicetree/bindings/soc/rockchip/grf.txt
-> deleted file mode 100644
-> index f96511aa3897..000000000000
-> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.txt
-> +++ /dev/null
-> @@ -1,61 +0,0 @@
-> -* Rockchip General Register Files (GRF)
-> -
-> -The general register file will be used to do static set by software, which
-> -is composed of many registers for system control.
-> -
-> -From RK3368 SoCs, the GRF is divided into two sections,
-> -- GRF, used for general non-secure system,
-> -- SGRF, used for general secure system,
-> -- PMUGRF, used for always on system
-> -
-> -On RK3328 SoCs, the GRF adds a section for USB2PHYGRF,
-> -
-> -ON RK3308 SoC, the GRF is divided into four sections:
-> -- GRF, used for general non-secure system,
-> -- SGRF, used for general secure system,
-> -- DETECTGRF, used for audio codec system,
-> -- COREGRF, used for pvtm,
-> -
-> -Required Properties:
-> -
-> -- compatible: GRF should be one of the following:
-> -   - "rockchip,px30-grf", "syscon": for px30
-> -   - "rockchip,rk3036-grf", "syscon": for rk3036
-> -   - "rockchip,rk3066-grf", "syscon": for rk3066
-> -   - "rockchip,rk3188-grf", "syscon": for rk3188
-> -   - "rockchip,rk3228-grf", "syscon": for rk3228
-> -   - "rockchip,rk3288-grf", "syscon": for rk3288
-> -   - "rockchip,rk3308-grf", "syscon": for rk3308
-> -   - "rockchip,rk3328-grf", "syscon": for rk3328
-> -   - "rockchip,rk3368-grf", "syscon": for rk3368
-> -   - "rockchip,rk3399-grf", "syscon": for rk3399
-> -   - "rockchip,rv1108-grf", "syscon": for rv1108
-> -- compatible: DETECTGRF should be one of the following:
-> -   - "rockchip,rk3308-detect-grf", "syscon": for rk3308
-> -- compatilbe: COREGRF should be one of the following:
-> -   - "rockchip,rk3308-core-grf", "syscon": for rk3308
-> -- compatible: PMUGRF should be one of the following:
-> -   - "rockchip,px30-pmugrf", "syscon": for px30
-> -   - "rockchip,rk3368-pmugrf", "syscon": for rk3368
-> -   - "rockchip,rk3399-pmugrf", "syscon": for rk3399
-> -- compatible: SGRF should be one of the following:
-> -   - "rockchip,rk3288-sgrf", "syscon": for rk3288
-> -- compatible: USB2PHYGRF should be one of the following:
-> -   - "rockchip,px30-usb2phy-grf", "syscon": for px30
-> -   - "rockchip,rk3328-usb2phy-grf", "syscon": for rk3328
-> -- compatible: USBGRF should be one of the following:
-> -   - "rockchip,rv1108-usbgrf", "syscon": for rv1108
-> -- reg: physical base address of the controller and length of memory mapped
-> -  region.
-> -
-> -Example: GRF and PMUGRF of RK3399 SoCs
-> -
-> -	pmugrf: syscon@ff320000 {
-> -		compatible = "rockchip,rk3399-pmugrf", "syscon";
-> -		reg = <0x0 0xff320000 0x0 0x1000>;
-> -	};
-> -
-> -	grf: syscon@ff770000 {
-> -		compatible = "rockchip,rk3399-grf", "syscon";
-> -		reg = <0x0 0xff770000 0x0 0x10000>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> new file mode 100644
-> index 000000000000..61ce5b4c9ed0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+
+A few really small things inline that I'm happy to clean up whilst applying,
+or can get rolled into a v7 if you have to do one due to review from others.
+
+...
+
 > +
-> +title: Rockchip General Register Files
+> +static int tsc2046_adc_read_one(struct tsc2046_adc_priv *priv, int ch_idx,
+> +				u32 *effective_speed_hz)
+> +{
+> +	struct spi_transfer xfer;
+> +	struct spi_message msg;
+> +	int ret;
 > +
-> +maintainers:
-> +  - Heiko Stuebner <heiko@sntech.de>
+> +	memset(&xfer, 0, sizeof(xfer));
+> +	priv->tx_one->cmd = tsc2046_adc_get_cmd(priv, ch_idx, false);
+> +	priv->tx_one->data = 0;
+> +	xfer.tx_buf = priv->tx_one;
+> +	xfer.rx_buf = priv->rx_one;
+> +	xfer.len = sizeof(*priv->tx_one);
+> +	spi_message_init(&msg);
+> +	spi_message_add_tail(&xfer, &msg);
+
+Slight preference for 
+	spi_message_init_with_transfers(&msg, &xfer, 1);
+
+Same elsewhere where we get this pattern.
+
 > +
-> +properties:
-> +  compatible:
-
-> +    oneOf:
-> +      - items:
-
-items:
-
-When there are no other combinations then with syscon and simple-mfd
-then there's no need for "oneOf".
-
-
-> +          - enum:
-> +              - rockchip,px30-grf
-> +              - rockchip,px30-pmugrf
-> +              - rockchip,px30-usb2phy-grf
-> +              - rockchip,rk3036-grf
-> +              - rockchip,rk3066-grf
-> +              - rockchip,rk3188-grf
-> +              - rockchip,rk3228-grf
-> +              - rockchip,rk3288-grf
-> +              - rockchip,rk3288-sgrf
-> +              - rockchip,rk3308-core-grf
-> +              - rockchip,rk3308-detect-grf
-> +              - rockchip,rk3308-grf
-> +              - rockchip,rk3328-grf
-> +              - rockchip,rk3328-usb2phy-grf
-> +              - rockchip,rk3368-grf
-> +              - rockchip,rk3368-pmugrf
-> +              - rockchip,rk3399-grf
-> +              - rockchip,rk3399-pmugrf
-
-> +              - rockchip,rk3568-grf
-> +              - rockchip,rk3568-pmugrf
-
-Conversion and new properties are two separate actions.
-Must add that to the commit message.
-
-> +              - rockchip,rv1108-grf
-> +              - rockchip,rv1108-usbgrf
-> +          - const: syscon
-> +          - const: simple-mfd
+> +	/*
+> +	 * We aren't using spi_write_then_read() because we need to be able
+> +	 * to get hold of the effective_speed_hz from the xfer
+> +	 */
+> +	ret = spi_sync(priv->spi, &msg);
+> +	if (ret) {
+> +		dev_err_ratelimited(&priv->spi->dev, "SPI transfer failed %pe\n",
+> +				    ERR_PTR(ret));
+> +		return ret;
+> +	}
 > +
-> +  reg:
-> +    maxItems: 1
+> +	if (effective_speed_hz)
+> +		*effective_speed_hz = xfer.effective_speed_hz;
 > +
-> +required:
-> +  - compatible
-> +  - reg
+> +	return tsc2046_adc_get_value(priv->rx_one);
+> +}
 > +
-> +additionalProperties: false
+...
+
+> +static int tsc2046_adc_setup_spi_msg(struct tsc2046_adc_priv *priv)
+> +{
+> +	unsigned int ch_idx;
+> +	size_t size;
+> +	int ret;
 > +
-> +examples:
-> +  - |
-> +    pmugrf: syscon@ff320000 {
-
-> +       compatible = "rockchip,rk3399-pmugrf", "syscon";
-
-compatible = "rockchip,rk3399-pmugrf", "syscon", "simple-mfd";
-
-> +       reg = <0x0 0xff320000 0x0 0x1000>;
-
-This is for 64 bit, normal examples use 32 bit.
-
-> +    };
+> +	priv->tx_one = devm_kzalloc(&priv->spi->dev, sizeof(*priv->tx_one),
+> +				    GFP_KERNEL);
+> +	if (!priv->tx_one)
+> +		return -ENOMEM;
 > +
-> +    grf: syscon@ff770000 {
+> +	priv->rx_one = devm_kzalloc(&priv->spi->dev, sizeof(*priv->rx_one),
+> +				    GFP_KERNEL);
+> +	if (!priv->rx_one)
+> +		return -ENOMEM;
+> +
+> +	/*
+> +	 * Make dummy read to set initial power state and get real SPI clock
+> +	 * freq. It seems to be not important which channel is used for this
+> +	 * case.
+> +	 */
+> +	ret = tsc2046_adc_read_one(priv, TI_TSC2046_ADDR_TEMP0,
+> +				   &priv->effective_speed_hz);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/*
+> +	 * In case SPI controller do not report effective_speed_hz, use
+> +	 * configure value and hope it will match.
+> +	 */
+> +	if (!priv->effective_speed_hz)
+> +		priv->effective_speed_hz = priv->spi->max_speed_hz;
+> +
+> +
+> +	priv->scan_interval_us = TI_TSC2046_SAMPLE_INTERVAL_US;
+> +	priv->time_per_bit_ns = DIV_ROUND_UP(NSEC_PER_SEC,
+> +					     priv->effective_speed_hz);
+> +
+> +	/*
+> +	 * Calculate and allocate maximal size buffer if all channels are
+> +	 * enabled.
+> +	 */
+> +	size = 0;
+> +	for (ch_idx = 0; ch_idx < priv->dcfg->num_channels; ch_idx++)
+> +		size += tsc2046_adc_group_set_layout(priv, ch_idx, ch_idx);
+> +
+> +	priv->tx = devm_kzalloc(&priv->spi->dev, size, GFP_KERNEL);
+> +	if (!priv->tx)
+> +		return -ENOMEM;
+> +
+> +	priv->rx = devm_kzalloc(&priv->spi->dev, size, GFP_KERNEL);
+> +	if (!priv->rx)
+> +		return -ENOMEM;
+> +
+> +	spi_message_init(&priv->msg);
+> +	priv->msg.context = priv;
 
-> +       compatible = "rockchip,rk3399-grf", "syscon";
+Why is this set as we never set priv->msg.complete?
+I can drop this whilst merging if we aren't going around again.
+> +
+> +	priv->xfer.tx_buf = priv->tx;
+> +	priv->xfer.rx_buf = priv->rx;
+> +	priv->xfer.len = size;
+> +	spi_message_add_tail(&priv->xfer, &priv->msg);
 
-compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
+Having dropped the above, can also change to
+spi_message_init_with_transfers()
 
-> +       reg = <0x0 0xff770000 0x0 0x10000>;
+> +
+> +	return 0;
+> +}
+> +
+...
 
-use 32 bit
+> +static int tsc2046_adc_probe(struct spi_device *spi)
+> +{
+> +	const struct tsc2046_adc_dcfg *dcfg;
+> +	struct device *dev = &spi->dev;
+> +	struct tsc2046_adc_priv *priv;
+> +	struct iio_dev *indio_dev;
+> +	struct iio_trigger *trig;
+> +	int ret;
+> +
+> +	if (spi->max_speed_hz > TI_TSC2046_MAX_CLK_FREQ) {
+> +		dev_err(dev, "SPI max_speed_hz is too high: %d Hz. Max supported freq is %zu Hz\n",
+> +			spi->max_speed_hz, TI_TSC2046_MAX_CLK_FREQ);
+> +		return -EINVAL;
+> +	}
+> +
+> +	dcfg = device_get_match_data(dev);
+> +	if (!dcfg)
+> +		return -EINVAL;
+> +
+> +	spi->bits_per_word = 8;
+> +	spi->mode &= ~SPI_MODE_X_MASK;
+> +	spi->mode |= SPI_MODE_0;
+> +	ret = spi_setup(spi);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "Error in SPI setup\n");
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*priv));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	priv = iio_priv(indio_dev);
+> +	priv->dcfg = dcfg;
+> +
+> +	spi_set_drvdata(spi, indio_dev);
+> +
+> +	priv->spi = spi;
+> +
+> +	indio_dev->name = TI_TSC2046_NAME;
+> +	indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_TRIGGERED;
+> +	indio_dev->channels = dcfg->channels;
+> +	indio_dev->num_channels = dcfg->num_channels;
+> +	indio_dev->info = &tsc2046_adc_info;
+> +
+> +	tsc2046_adc_parse_fwnode(priv);
+> +
+> +	ret = tsc2046_adc_setup_spi_msg(priv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	mutex_init(&priv->slock);
+> +
+> +	/* TODO: remove IRQ_NOAUTOEN after needed patches are mainline */
+> +	irq_set_status_flags(spi->irq, IRQ_NOAUTOEN);
 
-> +    };
-> 
+They are now but I can do this whilst merging if that's all we have to change.
+
+> +	ret = devm_request_irq(dev, spi->irq, &tsc2046_adc_irq,
+> +			       0, indio_dev->name, indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	trig = devm_iio_trigger_alloc(dev, "touchscreen-%s", indio_dev->name);
+> +	if (!trig)
+> +		return -ENOMEM;
+> +
+> +	priv->trig = trig;
+> +	iio_trigger_set_drvdata(trig, indio_dev);
+> +	trig->ops = &tsc2046_adc_trigger_ops;
+> +
+> +	spin_lock_init(&priv->trig_lock);
+> +	hrtimer_init(&priv->trig_timer, CLOCK_MONOTONIC,
+> +		     HRTIMER_MODE_REL_SOFT);
+> +	priv->trig_timer.function = tsc2046_adc_trig_more;
+> +
+> +	ret = devm_iio_trigger_register(dev, trig);
+> +	if (ret) {
+> +		dev_err(dev, "failed to register trigger\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
+> +					      &tsc2046_adc_trigger_handler, NULL);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to setup triggered buffer\n");
+> +		return ret;
+> +	}
+> +
+> +	/* set default trigger */
+> +	indio_dev->trig = iio_trigger_get(priv->trig);
+> +
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
+> +
+
+thanks,
+
+J
