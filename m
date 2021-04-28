@@ -2,90 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BEB936D6E8
-	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 14:01:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C8C236D6FA
+	for <lists+devicetree@lfdr.de>; Wed, 28 Apr 2021 14:06:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230380AbhD1MCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 08:02:03 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:44618 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229790AbhD1MCC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 08:02:02 -0400
-Received: from [IPv6:2a02:810a:880:f54:fc4d:ab2d:afcb:a61c] (unknown [IPv6:2a02:810a:880:f54:fc4d:ab2d:afcb:a61c])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: dafna)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id ACE881F41DBB;
-        Wed, 28 Apr 2021 13:01:15 +0100 (BST)
-Subject: Re: [PATCH v6 0/2] Add support for ANX7688
-To:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Cc:     megous@megous.com, linux-usb@vger.kernel.org, a.hajda@samsung.com,
-        narmstrong@baylibre.com, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@siol.net, airlied@linux.ie,
-        daniel@ffwll.ch, chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
-        enric.balletbo@collabora.com, drinkcat@chromium.org,
-        hsinyi@chromium.org, kernel@collabora.com, dafna3@gmail.com,
-        robh+dt@kernel.org
-References: <20210409161951.12365-1-dafna.hirschfeld@collabora.com>
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Message-ID: <503fc44c-10e4-d4f4-a746-3fe3e6066b80@collabora.com>
-Date:   Wed, 28 Apr 2021 14:01:12 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210409161951.12365-1-dafna.hirschfeld@collabora.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S231218AbhD1MHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 08:07:36 -0400
+Received: from mail.loongson.cn ([114.242.206.163]:37774 "EHLO loongson.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229645AbhD1MHg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Apr 2021 08:07:36 -0400
+Received: from localhost.localdomain (unknown [58.249.121.165])
+        by mail.loongson.cn (Coremail) with SMTP id AQAAf9CxCcrST4lgjv8OAA--.2615S2;
+        Wed, 28 Apr 2021 20:06:43 +0800 (CST)
+From:   Xiaochuan Mao <maoxiaochuan@loongson.cn>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Qing Zhang <zhangqing@loongson.cn>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Xiaochuan Mao <maoxiaochuan@loongson.cn>
+Subject: [PATCH v2] MIPS:DTS:Correct device id of pcie for Loongnon-2K
+Date:   Wed, 28 Apr 2021 20:06:28 +0800
+Message-Id: <20210428120628.21041-1-maoxiaochuan@loongson.cn>
+X-Mailer: git-send-email 2.17.1
+X-CM-TRANSID: AQAAf9CxCcrST4lgjv8OAA--.2615S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7AF18KrWfXFWDuFy7Jw4DCFg_yoW8XFWxpF
+        1akayDKr1ruF1S9w4rCFyv9F47GFZxJa98tF47tryjyFWqqayUur1fJFZ3JF45XF4rJayF
+        vry0gFy8GFs7CrUanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUUkq14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+        1l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+        6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
+        0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
+        jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr
+        1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7MxkIecxEwVAFwVW5JwCF
+        04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r
+        18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vI
+        r41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr
+        1lIxAIcVCF04k26cxKx2IYs7xG6rW3Jr0E3s1lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAI
+        cVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUjsjjDUUUUU==
+X-CM-SenderInfo: xpdr5xxdrfx3ldqnw6o6or00hjvr0hdfq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, pinging here, can one of the kernel bridge maintainers review this patchset?
+from Loongson-2K user manual know that Loongson-2K have two
+pcie controller pcie0 and pcie1, pcie0 have four port named port0~port3
+and pcie1 have 2 port named port0~port1. the device id of port0 is 7a19
+in each pcie controller and others are 7a09.
 
-Thanks,
-Dafna
+Signed-off-by: Xiaochuan Mao <maoxiaochuan@loongson.cn>
+---
+v1:
+revert class code
+---
+ .../boot/dts/loongson/loongson64-2k1000.dtsi     | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-On 09.04.21 18:19, Dafna Hirschfeld wrote:
-> ANX7688 is a typec port controller that also converts HDMI to DP.
-> ANX7688 is found on Acer Chromebook R13 (elm) and on Pine64 PinePhone.
-> 
-> On Acer Chromebook R13 (elm), the device is powered-up and controller by the
-> Embedded Controller. Therefore its operation is transparent
-> to the SoC. It is used in elm only as a display bridge driver.
-> The bridge driver only reads some values using i2c and use them to
-> implement the mode_fixup cb.
-> 
-> On v5 we added the full dt-binding of the generic Analogix anx7688 device.
-> The problem is that for elm, most of the fields are not needed since
-> the anx7688 sits behind the EC. After a discussion on v5 (see [1])
-> we decided to go back to the original approach and send the dt binding
-> as specific to the elm. So in this version we rename the device to cros_ec_anx7688
-> and use the compatible 'google,cros-ec-anx7688'.
-> 
-> [1] https://patchwork.kernel.org/project/dri-devel/patch/20210305124351.15079-3-dafna.hirschfeld@collabora.com/
-> 
-> Changes since v5:
-> * treat the device as a specific combination of an ANX7688 behind the EC and
-> call it 'cros-ec-anx7688'
-> 
-> Changes since v4:
-> In v4 of this set, the device was added as an 'mfd' device
-> and an additional 'bridge' device for the HDMI-DP conversion, see [2].
-> 
-> [2] https://lkml.org/lkml/2020/3/18/64
-> 
-> Dafna Hirschfeld (1):
->    dt-bindings: display: add google,cros-ec-anx7688.yaml
-> 
-> Enric Balletbo i Serra (1):
->    drm/bridge: Add ChromeOS EC ANX7688 bridge driver support
-> 
->   .../bridge/google,cros-ec-anx7688.yaml        |  82 ++++++++
->   drivers/gpu/drm/bridge/Kconfig                |  12 ++
->   drivers/gpu/drm/bridge/Makefile               |   1 +
->   drivers/gpu/drm/bridge/cros-ec-anx7688.c      | 191 ++++++++++++++++++
->   4 files changed, 286 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml
->   create mode 100644 drivers/gpu/drm/bridge/cros-ec-anx7688.c
-> 
+diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+index 569e814def83..912dcad361ef 100644
+--- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
++++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+@@ -163,8 +163,8 @@
+ 			};
+ 
+ 			pci_bridge@a,0 {
+-				compatible = "pci0014,7a19.0",
+-						   "pci0014,7a19",
++				compatible = "pci0014,7a09.0",
++						   "pci0014,7a09",
+ 						   "pciclass060400",
+ 						   "pciclass0604";
+ 
+@@ -178,8 +178,8 @@
+ 			};
+ 
+ 			pci_bridge@b,0 {
+-				compatible = "pci0014,7a19.0",
+-						   "pci0014,7a19",
++				compatible = "pci0014,7a09.0",
++						   "pci0014,7a09",
+ 						   "pciclass060400",
+ 						   "pciclass0604";
+ 
+@@ -193,8 +193,8 @@
+ 			};
+ 
+ 			pci_bridge@c,0 {
+-				compatible = "pci0014,7a19.0",
+-						   "pci0014,7a19",
++				compatible = "pci0014,7a09.0",
++						   "pci0014,7a09",
+ 						   "pciclass060400",
+ 						   "pciclass0604";
+ 
+@@ -223,8 +223,8 @@
+ 			};
+ 
+ 			pci_bridge@e,0 {
+-				compatible = "pci0014,7a19.0",
+-						   "pci0014,7a19",
++				compatible = "pci0014,7a09.0",
++						   "pci0014,7a09",
+ 						   "pciclass060400",
+ 						   "pciclass0604";
+ 
+-- 
+2.17.1
+
