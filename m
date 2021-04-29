@@ -2,83 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4C7736F238
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 23:44:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FB4536F243
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 23:46:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237472AbhD2Vow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 17:44:52 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:39930 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237337AbhD2Vov (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 17:44:51 -0400
-Received: by mail-ot1-f53.google.com with SMTP id 65-20020a9d03470000b02902808b4aec6dso57951010otv.6;
-        Thu, 29 Apr 2021 14:44:04 -0700 (PDT)
+        id S237297AbhD2Vre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 17:47:34 -0400
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:38597 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237299AbhD2Vrd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 17:47:33 -0400
+Received: by mail-oi1-f178.google.com with SMTP id d25so30482681oij.5;
+        Thu, 29 Apr 2021 14:46:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=NUjEHeIYS+Jp7nmJYchYeYeVG/hrdkNydZypiWccS9s=;
-        b=kOY/RVEysATDvVco7+Esy/gTMSrzLFnSxaEoshvzDZvGDfsQrxq2og7SCvjue2k/5W
-         YWLyIbS3C08pQLFVHPuKM1s7BwydxlQij3ULFQwxev3StMzp2r/YWgWONPd7kMD02vm6
-         esTkH2pThrXHn9mCJLKR5xwIlOkiyQdHQa5edLieg2taRowmjEdQw/tXfS2xPceKRBxq
-         hDcWQTBpCrC1Mp0FThjIKR4Irt6pXa3irGx9nLi82Uni5N3K1LSCuO68JtlSRatb1U1w
-         AIosgjTuoQQXvucBV71fWWsYHhKJsMThpqc3DOpIdCUEXF9xDAnadAM/wodL0wMLT5LR
-         8bKg==
-X-Gm-Message-State: AOAM530ZkyUd3iiaxddJ41btOOjhlhShzutaorPYXcxOyAZG76e47FMo
-        q6N4P95djq5KxNUNGrQWtA==
-X-Google-Smtp-Source: ABdhPJygXojSe2J50XKBCo08TPZKWp/owhJaMfn7/8jv8UHyFyjpFTCS737KNSxaEN0EW0zI7vvFRw==
-X-Received: by 2002:a9d:46f:: with SMTP id 102mr1145972otc.218.1619732644218;
-        Thu, 29 Apr 2021 14:44:04 -0700 (PDT)
+        bh=6G39G1xHQA9UdkOOBrGZrs5TTQa10r2qAl5rnu62VAg=;
+        b=scQziS9990snOEiqSnnnTgpIz4kuVFfO2MNIvOxsQMIkT96Qvlyv4YDw5C3/zVdwmf
+         pt+SVuwPLp9wMyGK/hFSKcmV11WhREWjDMx1vxfZrJLMMpMptOYwiHyUOESjn+/VpWKN
+         NFTiRqS8cE/tdm2lSVDh2XxpTePsmsaVktlk9316VR34cS4StO/SJ9Ck+OZ+U//y3+UB
+         fzsi7qtU4YujLUemmZpvlj8W51biv4bRF/ZRFz66Im5cLpYs4VaGAgMHU848ppH7xa4O
+         Zw27etOBQgQNcJXiSA7/03Z/Rq/rLuHTCfPI/sY7KqUtGpirbl7hDYuvcfjzrnu59jpv
+         Envg==
+X-Gm-Message-State: AOAM533G5HlRr9hWOAHIJgkhf36fWA1UbwUdm/dqhDEpAUgHgTc2cEEd
+        TYzeVtxpT3oxMjtNylHspw==
+X-Google-Smtp-Source: ABdhPJz6DS0O37UozfkVTmi9KY8rpR2H+AZid6mjNopmy+3v+KVTMdbrNkKvueY2vCJmTd1xdVxyHQ==
+X-Received: by 2002:aca:b05:: with SMTP id 5mr1534812oil.113.1619732805676;
+        Thu, 29 Apr 2021 14:46:45 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q130sm276601oif.40.2021.04.29.14.44.02
+        by smtp.gmail.com with ESMTPSA id k8sm265270oig.6.2021.04.29.14.46.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Apr 2021 14:44:03 -0700 (PDT)
-Received: (nullmailer pid 1828784 invoked by uid 1000);
-        Thu, 29 Apr 2021 21:44:02 -0000
-Date:   Thu, 29 Apr 2021 16:44:02 -0500
+        Thu, 29 Apr 2021 14:46:44 -0700 (PDT)
+Received: (nullmailer pid 1833518 invoked by uid 1000);
+        Thu, 29 Apr 2021 21:46:43 -0000
+Date:   Thu, 29 Apr 2021 16:46:43 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     patchwork-bot+netdevbpf@kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>, netdev@vger.kernel.org,
-        davem@davemloft.net, andrew@lunn.ch, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, wigyori@uid0.hu, rayknight@me.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3 net-next v4] net: ethernet: ixp4xx: Add DT bindings
-Message-ID: <20210429214402.GA1823812@robh.at.kernel.org>
-References: <20210425003038.2937498-1-linus.walleij@linaro.org>
- <161940061597.7794.15882879498463210620.git-patchwork-notify@kernel.org>
+To:     Wang Qing <wangqing@vivo.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-watchdog@vger.kernel.org,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH V9 2/2] doc: mtk-wdt: support pre-timeout when the bark
+ irq is available
+Message-ID: <20210429214643.GA1833375@robh.at.kernel.org>
+References: <1619315527-8171-1-git-send-email-wangqing@vivo.com>
+ <1619315527-8171-3-git-send-email-wangqing@vivo.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <161940061597.7794.15882879498463210620.git-patchwork-notify@kernel.org>
+In-Reply-To: <1619315527-8171-3-git-send-email-wangqing@vivo.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 26, 2021 at 01:30:15AM +0000, patchwork-bot+netdevbpf@kernel.org wrote:
-> Hello:
+On Sun, 25 Apr 2021 09:52:07 +0800, Wang Qing wrote:
+> Add description of pre-timeout in mtk-wdt.
 > 
-> This series was applied to netdev/net-next.git (refs/heads/master):
+> Signed-off-by: Wang Qing <wangqing@vivo.com>
+> ---
+>  Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> On Sun, 25 Apr 2021 02:30:36 +0200 you wrote:
-> > This adds device tree bindings for the IXP4xx ethernet
-> > controller with optional MDIO bridge.
-> > 
-> > Cc: Zoltan HERPAI <wigyori@uid0.hu>
-> > Cc: Raylynn Knight <rayknight@me.com>
-> > Cc: devicetree@vger.kernel.org
-> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> > 
-> > [...]
-> 
-> Here is the summary with links:
->   - [1/3,net-next,v4] net: ethernet: ixp4xx: Add DT bindings
->     https://git.kernel.org/netdev/net-next/c/48ac0b5805dd
->   - [2/3,net-next,v4] net: ethernet: ixp4xx: Retire ancient phy retrieveal
->     https://git.kernel.org/netdev/net-next/c/3e8047a98553
->   - [3/3,net-next,v4] net: ethernet: ixp4xx: Support device tree probing
->     https://git.kernel.org/netdev/net-next/c/95aafe911db6
 
-What happened to net-next being closed during the merge window? Oh 
-well, I'm sure someone is checking the schemas...
 
-Rob
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
