@@ -2,123 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C97C836F17F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 23:00:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A13F36F186
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 23:03:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233176AbhD2VBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 17:01:32 -0400
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:31117 "EHLO
-        mx0b-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233097AbhD2VBb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Apr 2021 17:01:31 -0400
-Received: from pps.filterd (m0098421.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13TKYBIG012993;
-        Thu, 29 Apr 2021 17:00:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : subject :
- from : to : cc : date : in-reply-to : references : content-type :
- mime-version : content-transfer-encoding; s=pp1;
- bh=Xgqqc0RPhCoOpnWlWCwPmBpEcrWbP+4/YtDT9h+84WE=;
- b=daMUzyfwboJizTbJkpzvmPxGrAyfI5R8fI0kWcyNbVKXxD4z9n44aX2IRVvnUI9CvOI7
- TaxfI7AKK+ugc1j6SUOZiq/K/wEEM2a1h0rd47lUpKTbQ6co35HeejOnJ1LaIB7dTMeJ
- 5Uhjcb+yvA2qIqjd58VUCAiWpR3bb75kuw3YuzuHelbFcCmuOyEfNAlG+Tk0hrVzz18u
- F/fWH8CXf10Sw2pQesZFF/R67nH56cG0Md6+RMiY2ayAmSYmMSMVb2MZuse5Hp8UYq3w
- roaRRsYj4+qipujFb1EBHXCjsHWLm//k9AeBz7cB2/3hVETIagyI7j+IFCjrakhkv+VR MA== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 3883txrqm6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 29 Apr 2021 17:00:41 -0400
-Received: from m0098421.ppops.net (m0098421.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 13TKYupe018418;
-        Thu, 29 Apr 2021 17:00:40 -0400
-Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com [169.55.85.253])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 3883txrqky-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 29 Apr 2021 17:00:40 -0400
-Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
-        by ppma01wdc.us.ibm.com (8.16.0.43/8.16.0.43) with SMTP id 13TKjnVi020093;
-        Thu, 29 Apr 2021 21:00:40 GMT
-Received: from b03cxnp07028.gho.boulder.ibm.com (b03cxnp07028.gho.boulder.ibm.com [9.17.130.15])
-        by ppma01wdc.us.ibm.com with ESMTP id 384ay9y2u9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 29 Apr 2021 21:00:40 +0000
-Received: from b03ledav006.gho.boulder.ibm.com (b03ledav006.gho.boulder.ibm.com [9.17.130.237])
-        by b03cxnp07028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 13TL0dec22806998
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 29 Apr 2021 21:00:39 GMT
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 138F9C605D;
-        Thu, 29 Apr 2021 21:00:39 +0000 (GMT)
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id B4472C6057;
-        Thu, 29 Apr 2021 21:00:38 +0000 (GMT)
-Received: from v0005c16 (unknown [9.211.73.43])
-        by b03ledav006.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Thu, 29 Apr 2021 21:00:38 +0000 (GMT)
-Message-ID: <5e55a124f57186e95498e30d54ef6f9d7d671dbe.camel@linux.ibm.com>
-Subject: Re: [PATCH 1/5] dt-bindings: leds: Add retain-state-shutdown boolean
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-leds@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, pavel@ucw.cz,
-        jacek.anaszewski@gmail.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, vishwa@linux.ibm.com
-Date:   Thu, 29 Apr 2021 16:00:38 -0500
-In-Reply-To: <20210429205002.70245-2-eajames@linux.ibm.com>
-References: <20210429205002.70245-1-eajames@linux.ibm.com>
-         <20210429205002.70245-2-eajames@linux.ibm.com>
-Organization: IBM
+        id S233317AbhD2VEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 17:04:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43070 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233293AbhD2VEW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 17:04:22 -0400
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44E8DC06138D
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 14:03:33 -0700 (PDT)
+Received: by mail-qv1-xf33.google.com with SMTP id h3so32581290qve.13
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 14:03:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xRU2yBtauvlwmgJ+pf3kg4KpnBtBpDuxDmDITGaelXM=;
+        b=MxcB5px72C8+5vJCXXHc+ftOlbOvLaOIZCcSYXwDudiJ5T6uRWCF3IbA/q7i0v05H4
+         b5+Xhyg/FMAavwP1EiO0TTX+zk0MdwRoYHVLZbsieoDElYIszlwp9kC2cL2arlNwdmht
+         5eSBc+Cb7eohKUohNBZmGo0StBZWqhQKL+4x4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xRU2yBtauvlwmgJ+pf3kg4KpnBtBpDuxDmDITGaelXM=;
+        b=N8V+u59BuwMLCQGHm759XCI1EXnB4YP0Pe6ZMLrWRbZ2XCAay5RJSF42T5UPHPwEQm
+         wnIo57L73ZPZErCBon1qwrc93R5ua6e1SylAUVtc6mFM7DDjtKF5H7uX7IJxmQBSmTRr
+         xo1G6Oa//1wZmp4Uo2ATijBZbNOnI+Y/B0k1dX9fo+MBJjTMh+5R8Wo/8pQoqwmfSo8k
+         3irxpol3X67968Uq4ey0gJY+PRhm1ZLE5Reu0x60a5cRj2TBQLzET8Bw+KqtNvN7k755
+         i8tLBASuEeSBKFQVUChqbGJ768e0JNSLHmrTNwLyFJA8TpNpZF78BFUZz1wpLOowECQp
+         VCDw==
+X-Gm-Message-State: AOAM530NjVOlAraHU5i/xkqGVrtSI1iUc+9eEmwyx2EMRG1tU6e+1BjN
+        N7g54axkT6EqYOiSCZXMiVn3I0swswsr9w==
+X-Google-Smtp-Source: ABdhPJy6OhzLTm+L5LFMOMmxGrp6F1uS6M4gbPFXEcfAR3WqZa/KdrcoQOpF6mYtL0wfc4A4VRy3vA==
+X-Received: by 2002:a05:6214:2268:: with SMTP id gs8mr1767592qvb.35.1619730212126;
+        Thu, 29 Apr 2021 14:03:32 -0700 (PDT)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id 69sm3150349qkk.58.2021.04.29.14.03.30
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Apr 2021 14:03:31 -0700 (PDT)
+Received: by mail-yb1-f175.google.com with SMTP id z1so80292597ybf.6
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 14:03:30 -0700 (PDT)
+X-Received: by 2002:a05:6902:4e2:: with SMTP id w2mr2101815ybs.79.1619730210214;
+ Thu, 29 Apr 2021 14:03:30 -0700 (PDT)
+MIME-Version: 1.0
+References: <1619416756-3533-1-git-send-email-rajeevny@codeaurora.org>
+ <1619416756-3533-2-git-send-email-rajeevny@codeaurora.org> <20210429180435.GA1385465@robh.at.kernel.org>
+In-Reply-To: <20210429180435.GA1385465@robh.at.kernel.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 29 Apr 2021 14:03:18 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=V-kdySH5Pp-Fb-PRYk60Ha_UOTXJHcvMp+uV3P1oo7Uw@mail.gmail.com>
+Message-ID: <CAD=FV=V-kdySH5Pp-Fb-PRYk60Ha_UOTXJHcvMp+uV3P1oo7Uw@mail.gmail.com>
+Subject: Re: [v3 1/2] dt-bindings: backlight: add DisplayPort aux backlight
+To:     Rob Herring <robh@kernel.org>
+Cc:     Rajeev Nandan <rajeevny@codeaurora.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>, mkrishn@codeaurora.org,
+        Kalyan Thota <kalyan_t@codeaurora.org>,
+        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        Sean Paul <seanpaul@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5 (3.28.5-14.el8) 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: RNlEDZJ-x_SsVUGbqKGQTpIvRA_D9wvN
-X-Proofpoint-ORIG-GUID: nMfFNRqmol6F8UuVLIiP7ElskYE-8wjk
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
- definitions=2021-04-29_11:2021-04-28,2021-04-29 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- phishscore=0 adultscore=0 impostorscore=0 mlxlogscore=999 suspectscore=0
- bulkscore=0 priorityscore=1501 clxscore=1015 spamscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104060000
- definitions=main-2104290133
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-04-29 at 15:49 -0500, Eddie James wrote:
-> Document the retain-state-shutdown property that indicates that a LED
-> should not be turned off or changed during system shutdown.
+Hi,
 
-Lost a character of Rob's email, so bumping this one with the right
-address.
+On Thu, Apr 29, 2021 at 11:04 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Mon, Apr 26, 2021 at 11:29:15AM +0530, Rajeev Nandan wrote:
+> > Add bindings for DisplayPort aux backlight driver.
+> >
+> > Changes in v2:
+> > - New
+> >
+> > Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
+> > ---
+> >  .../bindings/leds/backlight/dp-aux-backlight.yaml  | 49 ++++++++++++++++++++++
+> >  1 file changed, 49 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+> > new file mode 100644
+> > index 00000000..0fa8bf0
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+> > @@ -0,0 +1,49 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/leds/backlight/dp-aux-backlight.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: DisplayPort aux backlight driver bindings
+> > +
+> > +maintainers:
+> > +  - Rajeev Nandan <rajeevny@codeaurora.org>
+> > +
+> > +description:
+> > +  Backlight driver to control the brightness over DisplayPort aux channel.
+> > +
+> > +allOf:
+> > +  - $ref: common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: dp-aux-backlight
+> > +
+> > +  ddc-i2c-bus:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      A phandle to the system I2C controller connected to the DDC bus used
+> > +      for the DisplayPort AUX channel.
+> > +
+> > +  enable-gpios:
+> > +    maxItems: 1
+> > +    description: GPIO specifier for backlight enable pin.
+> > +
+> > +  max-brightness: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - ddc-i2c-bus
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    backlight {
+> > +        compatible = "dp-aux-backlight";
+> > +        ddc-i2c-bus = <&sn65dsi86_bridge>;
+> > +        enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
+>
+> So the DDC bus is connected to a backlight and also a panel? This
+> binding is not reflecting the h/w, but rather what you want for some
+> driver.
+>
+> There's only one thing here and that's an eDP panel which supports
+> backlight control via DP aux channel. You can figure all that out from
+> the panel's compatible and/or reading the EDID.
+>
+> You might also be interested in this thread:
+>
+> https://lore.kernel.org/lkml/YIKsDtjcIHGNvW0u@orome.fritz.box/
 
-Sorry,
-Eddie
+I think Rajeev needs to rework everything anyway as per:
 
-> 
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> ---
->  Documentation/devicetree/bindings/leds/common.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/common.yaml
-> b/Documentation/devicetree/bindings/leds/common.yaml
-> index b1f363747a62..697102707703 100644
-> --- a/Documentation/devicetree/bindings/leds/common.yaml
-> +++ b/Documentation/devicetree/bindings/leds/common.yaml
-> @@ -128,6 +128,12 @@ properties:
->        as a panic indicator.
->      type: boolean
->  
-> +  retain-state-shutdown:
-> +    description:
-> +      This property specifies that the LED should not be turned off
-> or changed
-> +      when the system shuts down.
-> +    type: boolean
-> +
->    trigger-sources:
->      description: |
->        List of devices which should be used as a source triggering
-> this LED
+https://lore.kernel.org/r/87zgxl5qar.fsf@intel.com
 
+...but you're right that it makes sense not to model the backlight as
+a separate node in the device tree. The panel driver can handle
+setting up the backlight.
+
+-Doug
