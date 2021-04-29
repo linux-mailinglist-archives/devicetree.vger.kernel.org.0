@@ -2,200 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CBB736F250
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 23:52:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8E7436F286
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 00:20:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232519AbhD2VxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 17:53:21 -0400
-Received: from mga09.intel.com ([134.134.136.24]:58865 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232441AbhD2VxU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Apr 2021 17:53:20 -0400
-IronPort-SDR: GeosTOk14O0h+EkRSOTyPhoavMjN0cBiTX4f7+K5KTVdjqwkcQqrxXS+XPc1QUyLK8x7f/1AzU
- IT8aZVL78QwQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9969"; a="197224489"
-X-IronPort-AV: E=Sophos;i="5.82,260,1613462400"; 
-   d="scan'208";a="197224489"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2021 14:52:25 -0700
-IronPort-SDR: 46V0asdCDALhPllsOsHbz05WtwjuoFslPyG8AhGxHPrmVFYAGVcUrKTnGC19t17ztSxD4OPxam
- i5GS7KDHP5RQ==
-X-IronPort-AV: E=Sophos;i="5.82,260,1613462400"; 
-   d="scan'208";a="466516486"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2021 14:52:22 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 460F7201A6;
-        Fri, 30 Apr 2021 00:51:50 +0300 (EEST)
-Date:   Fri, 30 Apr 2021 00:51:50 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Martina Krasteva <martinax.krasteva@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        daniele.alessandrelli@linux.intel.com,
-        paul.j.murphy@linux.intel.com, gjorgjix.rosikopulos@linux.intel.com
-Subject: Re: [PATCH 2/6] media: i2c: Add imx335 camera sensor driver
-Message-ID: <20210429215150.GA3@paasikivi.fi.intel.com>
-References: <20210330142023.141-1-martinax.krasteva@linux.intel.com>
- <20210330142023.141-3-martinax.krasteva@linux.intel.com>
+        id S229595AbhD2WVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 18:21:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60268 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229578AbhD2WVD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 18:21:03 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E60FC06138B;
+        Thu, 29 Apr 2021 15:20:16 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 741622224D;
+        Fri, 30 Apr 2021 00:20:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1619734813;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=la6VLsxOJVtAExCAynbfZPh1rnm5vHPZ1THtd/hTHcY=;
+        b=U1hNdI7EaTGjYM4poaPfhkmA5c76axn4jj3YiAyBX56MOJQoXCvwx/44i8od6G5H/YKUum
+        lHdmylGQ99VQvHC/vqZj3663T77p2LReCJzpgTtY8fHUJWF8AEGfuccJwg5sklLtzTuXgy
+        hUu31FWHRAF9cKaEdUhINy1f5hlLAnI=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210330142023.141-3-martinax.krasteva@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 30 Apr 2021 00:20:13 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Tudor.Ambarus@microchip.com, nm@ti.com, kristo@kernel.org,
+        robh+dt@kernel.org, miquel.raynal@bootlin.com, richard@nod.at,
+        vigneshr@ti.com, broonie@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-spi@vger.kernel.org, lokeshvutla@ti.com
+Subject: Re: [RFC PATCH 4/6] spi: cadence-qspi: Use PHY for DAC reads if
+ possible
+In-Reply-To: <20210429181908.bwb45eljn5nxscf6@ti.com>
+References: <20210311191216.7363-1-p.yadav@ti.com>
+ <20210311191216.7363-5-p.yadav@ti.com>
+ <2f26456e-59ff-2625-5d65-c1537052839d@microchip.com>
+ <20210312101757.sqeyledbwjnpqdoy@ti.com>
+ <ee2b753b16e76ecbede4c1373b6f2d77@walle.cc>
+ <20210429181908.bwb45eljn5nxscf6@ti.com>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <e17722c30deb7f2dcb94a9aa43bbc6dd@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martina,
+Am 2021-04-29 20:19, schrieb Pratyush Yadav:
+> On 29/04/21 06:28PM, Michael Walle wrote:
+>> Am 2021-03-12 11:17, schrieb Pratyush Yadav:
+>> > On 12/03/21 09:13AM, Tudor.Ambarus@microchip.com wrote:
+>> > > On 3/11/21 9:12 PM, Pratyush Yadav wrote:
+>> > > > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>> > > >
+>> > > > Check if a read is eligible for PHY and if it is, enable PHY and DQS.
+>> > >
+>> > > DQS as in data strobe? Shouldn't the upper layer inform the QSPI
+>> > > controller
+>> > > whether DS is required or not?
+>> >
+>> > Yes, DQS as in data strobe. I need to check this again, but IIRC the
+>> > controller cannot run in PHY mode unless DS is used. Ideally the upper
+>> > layer should indeed inform the controller whether DS is supported/in-use
+>> > or not. That can be used to decide whether PHY mode (and consequently
+>> > the DS line) is to be used or not.
+>> >
+>> > Currently there are only two flashes that use 8D-8D-8D mode (S28HS512T
+>> > and MT35XU512ABA), and both of them drive the DS line.
+>> 
+>> The LS1028A datasheet explicitly states that the calibration is only
+>> used for non-DQS flashes. Which makes sense, because it just determine 
+>> at
+>> which point the input data is sampled. And if the flash provides a 
+>> data
+>> strobe, it already know when to sample it. What I am missing here?
+> 
+> If there was 0 delay in transferring the signals from flash to
+> SoC/controller, you would be right. But in practice there is a small 
+> but
+> noticeable delay from when the flash launches the signal and when it is
+> received by the device. So by the time the DQS signal reaches the SoC 
+> it
+> might already be too late and the data lines might not be valid any
+> more. The calibration accounts for these (and some others) delays.
 
-Thanks for the a of new drivers. Also my apologies for reviewing them so
-late.
+DQS and the data signals are trace length matched, so for data reads
+they will end up on the IO pad of the SoC at the same time. This is
+also mentioned in [1] (Fig 1.1, point 4 and 5). So while there needs
+to be a delay on the clock line for the receiving FF, the best value
+for this should be half the SCK clock period.
 
-On Tue, Mar 30, 2021 at 03:20:19PM +0100, Martina Krasteva wrote:
+Does this work without DQS? That should be the main purpose for a
+calibration, no? Because in this case, you'll have to determine
+the delay between SCK and the data signals (for reads).
 
-...
-> +static int imx335_probe(struct i2c_client *client)
-> +{
-> +	struct imx335 *imx335;
-> +	int ret;
-> +
-> +	imx335 = devm_kzalloc(&client->dev, sizeof(*imx335), GFP_KERNEL);
-> +	if (!imx335)
-> +		return -ENOMEM;
-> +
-> +	imx335->dev = &client->dev;
-> +
-> +	/* Initialize subdev */
-> +	v4l2_i2c_subdev_init(&imx335->sd, client, &imx335_subdev_ops);
-> +
-> +	ret = imx335_parse_hw_config(imx335);
-> +	if (ret) {
-> +		dev_err(imx335->dev, "HW configuration is not supported");
-> +		return ret;
-> +	}
-> +
-> +	mutex_init(&imx335->mutex);
-> +
-> +	ret = imx335_power_on(imx335->dev);
-> +	if (ret) {
-> +		dev_err(imx335->dev, "failed to power-on the sensor");
-> +		goto error_mutex_destroy;
-> +	}
-> +
-> +	/* Check module identity */
-> +	ret = imx335_detect(imx335);
-> +	if (ret) {
-> +		dev_err(imx335->dev, "failed to find sensor: %d", ret);
-> +		goto error_power_off;
-> +	}
-> +
-> +	/* Set default mode to max resolution */
-> +	imx335->cur_mode = &supported_mode;
-> +	imx335->vblank = imx335->cur_mode->vblank;
-> +
-> +	ret = imx335_init_controls(imx335);
-> +	if (ret) {
-> +		dev_err(imx335->dev, "failed to init controls: %d", ret);
-> +		goto error_power_off;
-> +	}
-> +
-> +	/* Initialize subdev */
-> +	imx335->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> +	imx335->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
-> +
-> +	/* Initialize source pad */
-> +	imx335->pad.flags = MEDIA_PAD_FL_SOURCE;
-> +	ret = media_entity_pads_init(&imx335->sd.entity, 1, &imx335->pad);
-> +	if (ret) {
-> +		dev_err(imx335->dev, "failed to init entity pads: %d", ret);
-> +		goto error_handler_free;
-> +	}
-> +
-> +	ret = v4l2_async_register_subdev_sensor_common(&imx335->sd);
-> +	if (ret < 0) {
-> +		dev_err(imx335->dev,
-> +			"failed to register async subdev: %d", ret);
-> +		goto error_media_entity;
-> +	}
-> +
-> +	pm_runtime_set_active(imx335->dev);
-> +	pm_runtime_enable(imx335->dev);
-> +	pm_runtime_idle(imx335->dev);
-> +
-> +	return 0;
-> +
-> +error_media_entity:
-> +	media_entity_cleanup(&imx335->sd.entity);
-> +error_handler_free:
-> +	v4l2_ctrl_handler_free(imx335->sd.ctrl_handler);
-> +error_power_off:
-> +	imx335_power_off(imx335->dev);
-> +error_mutex_destroy:
-> +	mutex_destroy(&imx335->mutex);
-> +
-> +	return ret;
-> +}
-> +
-> +/**
-> + * imx335_remove() - I2C client device unbinding
-> + * @client: pointer to I2C client device
-> + *
-> + * Return: 0 if successful, error code otherwise.
-> + */
-> +static int imx335_remove(struct i2c_client *client)
-> +{
-> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-> +	struct imx335 *imx335 = to_imx335(sd);
-> +
-> +	v4l2_async_unregister_subdev(sd);
-> +	media_entity_cleanup(&sd->entity);
-> +	v4l2_ctrl_handler_free(sd->ctrl_handler);
-> +
-> +	pm_runtime_disable(&client->dev);
-> +	pm_runtime_suspended(&client->dev);
+Btw. I can't get my head around how the TX delay search would work.
+Basically you shift the SCK to the command / data to the flash. So
+the flash will either recognize a valid read command or if the delay
+is too short/too long the flash will (hopefully) ignore the wrong
+command, correct? Might there be any misinterpreted commands which
+might be harmful? Are there any flashes which actually need a delay
+between data out and SCK?
 
-The sensor will be powered off here only if runtime PM is enabled.
+Of course, the calibration might help with broken hardware where the
+SCK/DQ/DQS traces are not length matched.
 
-Could you use pm_runtime_status_suspended() to check whether the device is
-still powered on, as e.g. the CCS driver (drivers/media/i2c/ccs/ccs-core.c)
-does?
+-michael
 
-I think I'll merge these when this and Rob's comments have been addressed.
+> 
+> See [0] for a somewhat similar discussion I had with Tudor.
+> 
+> [0] 
+> https://lore.kernel.org/linux-mtd/20210312181447.dlecnw2oed7jtxe7@ti.com/
 
-> +
-> +	mutex_destroy(&imx335->mutex);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dev_pm_ops imx335_pm_ops = {
-> +	SET_RUNTIME_PM_OPS(imx335_power_off, imx335_power_on, NULL)
-> +};
-> +
-> +static const struct of_device_id imx335_of_match[] = {
-> +	{ .compatible = "sony,imx335" },
-> +	{ }
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, imx335_of_match);
-> +
-> +static struct i2c_driver imx335_driver = {
-> +	.probe_new = imx335_probe,
-> +	.remove = imx335_remove,
-> +	.driver = {
-> +		.name = "imx335",
-> +		.pm = &imx335_pm_ops,
-> +		.of_match_table = imx335_of_match,
-> +	},
-> +};
-> +
-> +module_i2c_driver(imx335_driver);
-> +
-> +MODULE_DESCRIPTION("Sony imx335 sensor driver");
-> +MODULE_LICENSE("GPL");
-
--- 
-Kind regards,
-
-Sakari Ailus
+[1] https://www.ti.com/lit/an/spract2/spract2.pdf
