@@ -2,186 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D00EE36E6E4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 10:17:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98DB136E729
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 10:40:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240138AbhD2IPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 04:15:00 -0400
-Received: from lucky1.263xmail.com ([211.157.147.135]:56822 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240071AbhD2IOw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 04:14:52 -0400
-Received: from localhost (unknown [192.168.167.235])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 2D3FBAB07F;
-        Thu, 29 Apr 2021 16:14:03 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P2750T140649173088000S1619684039890516_;
-        Thu, 29 Apr 2021 16:14:02 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <8be1fc234b6a271c6098fd643acf5a13>
-X-RL-SENDER: cl@rock-chips.com
-X-SENDER: cl@rock-chips.com
-X-LOGIN-NAME: cl@rock-chips.com
-X-FST-TO: heiko@sntech.de
-X-RCPT-COUNT: 30
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   <cl@rock-chips.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, jagan@amarulasolutions.com, wens@csie.org,
-        uwe@kleine-koenig.org, mail@david-bauer.net, jbx6244@gmail.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
-        cnsztl@gmail.com, devicetree@vger.kernel.org,
-        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
-        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
-        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
-        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
-        zhangqing@rock-chips.com, huangtao@rock-chips.com,
-        cl@rock-chips.com, wim@linux-watchdog.org, linux@roeck-us.net,
-        jamie@jamieiles.com, linux-watchdog@vger.kernel.org, maz@kernel.org
-Subject: [PATCH v4 10/10] arm64: dts: rockchip: add basic dts for RK3568 EVB
-Date:   Thu, 29 Apr 2021 16:13:58 +0800
-Message-Id: <20210429081358.18057-1-cl@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210429081151.17558-1-cl@rock-chips.com>
-References: <20210429081151.17558-1-cl@rock-chips.com>
+        id S233104AbhD2IkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 04:40:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47578 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231405AbhD2IkQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 04:40:16 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B1DCC06138B
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 01:39:30 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1lc2Ca-0007uh-7v; Thu, 29 Apr 2021 10:39:16 +0200
+Subject: Re: [PATCH 15/16] soc: imx: gpcv2: support reset defer probe
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     marex@denx.de, devicetree@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>, kernel@pengutronix.de,
+        abel.vesa@nxp.com, andrew.smirnov@gmail.com, aford173@gmail.com,
+        agx@sigxcpu.org, linux-kernel@vger.kernel.org, krzk@kernel.org,
+        frieder.schrempf@kontron.de, ping.bai@nxp.com, linux-imx@nxp.com,
+        p.zabel@pengutronix.de, festevam@gmail.com,
+        linux-arm-kernel@lists.infradead.org, l.stach@pengutronix.de
+References: <20210429073050.21039-1-peng.fan@oss.nxp.com>
+ <20210429073050.21039-16-peng.fan@oss.nxp.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <bc5793e4-5d43-1ca9-7a12-9b58806c1856@pengutronix.de>
+Date:   Thu, 29 Apr 2021 10:39:14 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
+MIME-Version: 1.0
+In-Reply-To: <20210429073050.21039-16-peng.fan@oss.nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Liang Chen <cl@rock-chips.com>
+Hi,
 
-This patch add rk3568-evb1-v10.dts for RK3568 evaluation board.
-add uart/emmc/i2c/rk809 node for basic function.
+On 29.04.21 09:30, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> When gpcv2 probe, the reset controller might not be ready, so we need
+> defer probe
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/soc/imx/gpcv2.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
+> index 072f519462a5..49dd137f6b94 100644
+> --- a/drivers/soc/imx/gpcv2.c
+> +++ b/drivers/soc/imx/gpcv2.c
+> @@ -784,9 +784,12 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
+>  				     "Failed to get domain's clocks\n");
+>  
+>  	domain->reset = devm_reset_control_array_get_optional_exclusive(domain->dev);
+> -	if (IS_ERR(domain->reset))
+> +	if (IS_ERR(domain->reset)) {
+> +		if (PTR_ERR(domain->reset) == -EPROBE_DEFER)
+> +			return -EPROBE_DEFER;
+>  		return dev_err_probe(domain->dev, PTR_ERR(domain->reset),
+>  				     "Failed to get domain's resets\n");
 
-Signed-off-by: Liang Chen <cl@rock-chips.com>
----
- .../devicetree/bindings/arm/rockchip.yaml     |  5 ++
- arch/arm64/boot/dts/rockchip/Makefile         |  1 +
- .../boot/dts/rockchip/rk3568-evb1-v10.dts     | 79 +++++++++++++++++++
- 3 files changed, 85 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+dev_err_probe already propagates the error code in its second argument.
+Seems to me this patch's only effect is to disable deferred probe reason tracking?
 
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index 4a6f772c1043..6546b015fc62 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -600,6 +600,11 @@ properties:
-           - const: zkmagic,a95x-z2
-           - const: rockchip,rk3318
- 
-+      - description: Rockchip RK3568 Evaluation board
-+        items:
-+          - const: rockchip,rk3568-evb1-v10
-+          - const: rockchip,rk3568
-+
- additionalProperties: true
- 
- ...
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index c3e00c0e2db7..7fdb41de01ec 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -51,3 +51,4 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-sapphire.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-sapphire-excavator.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399pro-rock-pi-n10.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-evb1-v10.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-new file mode 100644
-index 000000000000..69786557093d
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-@@ -0,0 +1,79 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
-+ *
-+ */
-+
-+/dts-v1/;
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include "rk3568.dtsi"
-+
-+/ {
-+	model = "Rockchip RK3568 EVB1 DDR4 V10 Board";
-+	compatible = "rockchip,rk3568-evb1-v10", "rockchip,rk3568";
-+
-+	chosen: chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	dc_12v: dc-12v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "dc_12v";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
-+	vcc3v3_sys: vcc3v3-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&dc_12v>;
-+	};
-+
-+	vcc5v0_sys: vcc5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&dc_12v>;
-+	};
-+
-+	vcc3v3_lcd0_n: vcc3v3-lcd0-n {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_lcd0_n";
-+		regulator-boot-on;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+
-+	vcc3v3_lcd1_n: vcc3v3-lcd1-n {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_lcd1_n";
-+		regulator-boot-on;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
-+&sdhci {
-+	bus-width = <8>;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
+> +	}
+>  
+>  	pm_runtime_enable(domain->dev);
+>  
+> 
+
 -- 
-2.17.1
-
-
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
