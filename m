@@ -2,248 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0261436E92F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 12:52:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 937F236E971
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 13:16:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240641AbhD2KxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 06:53:07 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:34065 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240441AbhD2KxF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 06:53:05 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1619693539; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=WzJnp8VEXAhB4PThXi7uYPcdyz7y9A0/UMUBJTxOg7o=; b=KTy7HbJv9Xobppz3RCJW5lG+gmIbw8CBq+pkzurgs1IL9FmbLJ4m21nsgIRsfni0F0JclXcc
- ivNsE8ziv0upX+MiY+/9NsxxBxlwsn6DvztvZTDKEl+FSj6WO7iSwQtn5j9pECvGXVGycfRb
- kJiQflkq1oXf9l60IC1VSf7a4fg=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 608a8fcc853c0a2c46482086 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 29 Apr 2021 10:51:56
- GMT
-Sender: sibis=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 44AF9C4160D; Thu, 29 Apr 2021 10:51:54 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id BF04FC43217;
-        Thu, 29 Apr 2021 10:51:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org BF04FC43217
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=sibis@codeaurora.org
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     p.zabel@pengutronix.de, bjorn.andersson@linaro.org,
-        sboyd@kernel.org
-Cc:     agross@kernel.org, robh+dt@kernel.org, mani@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sibi Sankar <sibis@codeaurora.org>
-Subject: [PATCH v3 5/5] arm64: dts: qcom: sc7280: Add nodes to boot WPSS
-Date:   Thu, 29 Apr 2021 16:21:05 +0530
-Message-Id: <1619693465-5724-6-git-send-email-sibis@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1619693465-5724-1-git-send-email-sibis@codeaurora.org>
-References: <1619693465-5724-1-git-send-email-sibis@codeaurora.org>
+        id S231135AbhD2LQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 07:16:50 -0400
+Received: from lb1-smtp-cloud9.xs4all.net ([194.109.24.22]:35451 "EHLO
+        lb1-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229792AbhD2LQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Apr 2021 07:16:50 -0400
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud9.xs4all.net with ESMTPA
+        id c4eDlaqJQk1MGc4eHlQHFU; Thu, 29 Apr 2021 13:16:02 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1619694962; bh=YrojQE9ERQiZNfb7RIe79VsZbxw01qfhdFXpj3i6hGo=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=DHumpr44aBiQWb/UXwg5d1PH+wSzzQYZO1aj12K0q8l43CJ5Lcl87dEE3T4JnVD5/
+         aIZSwVdGjryRoPBcW9EBxKUYjZuEvCSwhxKYP/ChX1qAcd/FuTIMNXlaGDKjYHD3vF
+         pvRTY4D8OWvmzbeuCJDy9C/2tb/wDbzMBOjhUt20fpuP5I4X4mJRmPB8frvH6ZolB+
+         I0o8PCFcnvGI08Y/QIjxRv4GtAhgL1hBmltgKGpSAK8gVzaybrcgWn4gC5R/kHV0ZL
+         9YNVISsL4EVHug9iviScgXMZBgDJoMtPmq/rJvIlTn2MxkV4MwXtKMGlljVl/DaBWn
+         HFJ/Ku8i1mQeA==
+Subject: Re: [PATCH 1/5] dt-bindings: media: mtk-vcodec: Add dma-ranges
+ property
+To:     Irui Wang <irui.wang@mediatek.com>, Rob Herring <robh@kernel.org>
+Cc:     Alexandre Courbot <acourbot@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org
+References: <20210203083752.12586-1-irui.wang@mediatek.com>
+ <20210203083752.12586-2-irui.wang@mediatek.com>
+ <20210210225323.GA2961490@robh.at.kernel.org>
+ <1614581129.14457.0.camel@mhfsdcap03>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Message-ID: <2b97b41c-d5d8-ac32-a9cf-c7bef09ed8ef@xs4all.nl>
+Date:   Thu, 29 Apr 2021 13:15:57 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.9.0
+MIME-Version: 1.0
+In-Reply-To: <1614581129.14457.0.camel@mhfsdcap03>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfNrow+hJPzbDwnSzPIM2iA7/r7UP/AhJJatUskZ25uvvarllQW6GBPr2wazwYt9NN71N3GOTusnxmHuukAG4ZvotrrHOVv1QJzl+rOcQ51QRhCgUM1Qn
+ M4Anh50GGMSX3hNWob2kxFFJsFPAt+QRqVAJoTwjo7smyyOLDcMJtGyaZ3TgMhtN9V6x+ebu/AQDYYpRyVjeAmaBRIs8OaBe6M3Ab0jMcfr/oGd3yqbFLsWq
+ HAB7BJyvNa8uX2DVXaJ40NKBPLSSq9pShFG/Y88QJHXwJo2fQdBA3zT29ORmDgvVbXfP4I73uwejQ09AVB+xnIhm+RchvJ0zHMhP+7OhGw95BY2EeX7WpNk2
+ lwkDpd//gfTKnAmrkm7w9Rhc0tidSRMyjq2gOdPGEkSen8s+9g2y+CHUAyGZIUBUOONXTPywleMtQr/7mgCu7NSR3qhyHlTr/WOOrAg5FF+KD9u5vnakyqa9
+ Ng89ajdZgRZytq9Cs2obvrBfEVWcZtUQaQ0WU8khZ07re67MwdIcQU9MLMYDn6gfF6SCKbWSZRyMtwJ2mtcEbHF3XFJ9ika1R8Vjr0mLa4fcrl1y6AmZLyal
+ l/W8Abl+tyKVObjfMUZdge6lgAIAH9pRUUVJo/qHo8RE4xfCtgF2H5vx2MFNfUVTkYLkaZdrqkN6wbPJB7iEu6FuhQpkR+e2tbeZHRxDk2oRu+bqOjhcC4f/
+ 5glUCzyJmy9H0WJ8wq4b9D963MgjdPedHi39frvMKOj4nih7X3vR3OdbBj8W7CVBSUAZKz28DHp1oYjFrbnI1cyos4GfvEy1rKm4vuGf53t6bDic+iyrfTYo
+ ndwfDRFZZdYSu/jln5U=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add miscellaneous nodes to boot the Wireless Processor Subsystem (WPSS) on
-SC7280 SoCs.
+Hi Rob,
 
-Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 138 +++++++++++++++++++++++++++++++++++
- 1 file changed, 138 insertions(+)
+On 01/03/2021 07:45, Irui Wang wrote:
+> On Wed, 2021-02-10 at 16:53 -0600, Rob Herring wrote:
+>> On Wed, Feb 03, 2021 at 04:37:48PM +0800, Irui Wang wrote:
+>>> Adds dma-ranges property for DMA addresses translation.
+>>>
+>>> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/media/mediatek-vcodec.txt | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/media/mediatek-vcodec.txt b/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
+>>> index f85276e629bf..e4644f8caee9 100644
+>>> --- a/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
+>>> +++ b/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
+>>> @@ -23,6 +23,8 @@ Required properties:
+>>>  - iommus : should point to the respective IOMMU block with master port as
+>>>    argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
+>>>    for details.
+>>> +- dma-ranges : describes how the physical address space of the IOMMU maps
+>>> +  to memory.
+>>
+>> dma-ranges is supposed to be in a bus/parent node.
+> Dear Rob,
+> 
+> The mt8192 iommu support 0~16GB iova. We separate it to four banks:
+> 0~4G; 4G~8G; 8G~12G; 12G~16G.
+> 
+> The "dma-ranges" could be used to adjust the bank we locate.
+> If we don't set this property. The default range always is 0~4G.
+> 
+> Here we don't have actual bus/parent concept here.  And the iova
+> requirement is for our HW. Thus put the property in our node.
+> 
+> Is this OK? If this is ok for you, I will put this message in the commit
+> message and binding in next version.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 2cc478553935..5e0ae4a1c433 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -11,6 +11,8 @@
- #include <dt-bindings/mailbox/qcom-ipcc.h>
- #include <dt-bindings/power/qcom-aoss-qmp.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
-+#include <dt-bindings/reset/qcom,sdm845-aoss.h>
-+#include <dt-bindings/reset/qcom,sdm845-pdc.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
- 
- / {
-@@ -51,6 +53,11 @@
- 			no-map;
- 		};
- 
-+		smem_mem: memory@80900000 {
-+			reg = <0x0 0x80900000 0x0 0x200000>;
-+			no-map;
-+		};
-+
- 		cpucp_mem: memory@80b00000 {
- 			no-map;
- 			reg = <0x0 0x80b00000 0x0 0x100000>;
-@@ -251,6 +258,119 @@
- 		};
- 	};
- 
-+	smem {
-+		compatible = "qcom,smem";
-+		memory-region = <&smem_mem>;
-+		hwlocks = <&tcsr_mutex 3>;
-+	};
-+
-+	smp2p-adsp {
-+		compatible = "qcom,smp2p";
-+		qcom,smem = <443>, <429>;
-+		interrupts-extended = <&ipcc IPCC_CLIENT_LPASS
-+					     IPCC_MPROC_SIGNAL_SMP2P
-+					     IRQ_TYPE_EDGE_RISING>;
-+		mboxes = <&ipcc IPCC_CLIENT_LPASS
-+				IPCC_MPROC_SIGNAL_SMP2P>;
-+
-+		qcom,local-pid = <0>;
-+		qcom,remote-pid = <2>;
-+
-+		adsp_smp2p_out: master-kernel {
-+			qcom,entry-name = "master-kernel";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		adsp_smp2p_in: slave-kernel {
-+			qcom,entry-name = "slave-kernel";
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
-+	smp2p-cdsp {
-+		compatible = "qcom,smp2p";
-+		qcom,smem = <94>, <432>;
-+		interrupts-extended = <&ipcc IPCC_CLIENT_CDSP
-+					     IPCC_MPROC_SIGNAL_SMP2P
-+					     IRQ_TYPE_EDGE_RISING>;
-+		mboxes = <&ipcc IPCC_CLIENT_CDSP
-+				IPCC_MPROC_SIGNAL_SMP2P>;
-+
-+		qcom,local-pid = <0>;
-+		qcom,remote-pid = <5>;
-+
-+		cdsp_smp2p_out: master-kernel {
-+			qcom,entry-name = "master-kernel";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		cdsp_smp2p_in: slave-kernel {
-+			qcom,entry-name = "slave-kernel";
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
-+	smp2p-mpss {
-+		compatible = "qcom,smp2p";
-+		qcom,smem = <435>, <428>;
-+		interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
-+					     IPCC_MPROC_SIGNAL_SMP2P
-+					     IRQ_TYPE_EDGE_RISING>;
-+		mboxes = <&ipcc IPCC_CLIENT_MPSS
-+				IPCC_MPROC_SIGNAL_SMP2P>;
-+
-+		qcom,local-pid = <0>;
-+		qcom,remote-pid = <1>;
-+
-+		modem_smp2p_out: master-kernel {
-+			qcom,entry-name = "master-kernel";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		modem_smp2p_in: slave-kernel {
-+			qcom,entry-name = "slave-kernel";
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+
-+		ipa_smp2p_out: ipa-ap-to-modem {
-+			qcom,entry-name = "ipa";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		ipa_smp2p_in: ipa-modem-to-ap {
-+			qcom,entry-name = "ipa";
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
-+	smp2p-wpss {
-+		compatible = "qcom,smp2p";
-+		qcom,smem = <617>, <616>;
-+		interrupts-extended = <&ipcc IPCC_CLIENT_WPSS
-+					     IPCC_MPROC_SIGNAL_SMP2P
-+					     IRQ_TYPE_EDGE_RISING>;
-+		mboxes = <&ipcc IPCC_CLIENT_WPSS
-+				IPCC_MPROC_SIGNAL_SMP2P>;
-+
-+		qcom,local-pid = <0>;
-+		qcom,remote-pid = <13>;
-+
-+		wpss_smp2p_out: master-kernel {
-+			qcom,entry-name = "master-kernel";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		wpss_smp2p_in: slave-kernel {
-+			qcom,entry-name = "slave-kernel";
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
- 	pmu {
- 		compatible = "arm,armv8-pmuv3";
- 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-@@ -812,6 +932,12 @@
- 			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		tcsr_mutex: hwlock@1f40000 {
-+			compatible = "qcom,tcsr-mutex", "syscon";
-+			reg = <0 0x01f40000 0 0x40000>;
-+			#hwlock-cells = <1>;
-+		};
-+
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sc7280-pdc", "qcom,pdc";
- 			reg = <0 0x0b220000 0 0x30000>;
-@@ -825,6 +951,18 @@
- 			interrupt-controller;
- 		};
- 
-+		pdc_reset: reset-controller@b5e0000 {
-+			compatible = "qcom,sc7280-pdc-global";
-+			reg = <0 0x0b5e0000 0 0x20000>;
-+			#reset-cells = <1>;
-+		};
-+
-+		aoss_reset: reset-controller@c2a0000 {
-+			compatible = "qcom,sc7280-aoss-cc", "qcom,sdm845-aoss-cc";
-+			reg = <0 0x0c2a0000 0 0x31000>;
-+			#reset-cells = <1>;
-+		};
-+
- 		aoss_qmp: power-controller@c300000 {
- 			compatible = "qcom,sc7280-aoss-qmp";
- 			reg = <0 0x0c300000 0 0x100000>;
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Can you answer Irui's question? Just a reminder...
+
+Much appreciated!
+
+Regards,
+
+	Hans
+
+> 
+> Regards
+>>
+>>>  One of the two following nodes:
+>>>  - mediatek,vpu : the node of the video processor unit, if using VPU.
+>>>  - mediatek,scp : the node of the SCP unit, if using SCP.
+>>> -- 
+>>> 2.25.1
+>>>
+> 
 
