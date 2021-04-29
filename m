@@ -2,82 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D55136E77B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 10:59:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDA1636E7A1
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 11:10:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232924AbhD2I7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 04:59:42 -0400
-Received: from www381.your-server.de ([78.46.137.84]:53950 "EHLO
-        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232714AbhD2I7l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 04:59:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
-         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:Reply-To:Cc:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=wkI6VedDBhz3elMdASecoXfk2atYi4oo78R8rslH5Gg=; b=B8kfdHQfwdcgOTXwbHnHpFnHc3
-        hPGZXTOmeX3AEe5RpdKJfeqac/SjEsSCyQzyj555BNavwlGMicAOywKqC13LrwCitazWNqk7itYZk
-        Caf9Yp7W3vmruBDUbSPU/6tizq3RsP0eOuq6Vk7DV4BA7Oi5xueF/vKO6zdbKfYobpS4S3E5BLQxK
-        jkaZ4XTBXxxCQFudxCGDQJXs5/j/pF8SJtxbO4Pq6qWHkPE2gnyaH8nQeUUkmvhQK9ndDM73HpE0S
-        mvXwAwuCZ3BnIYCr542kRcZ6Tl1sQNGq008cWuA0zWi7K1rI87Yz3gRqiC0U7Hfksp2BwgF0ILxYh
-        1BmpFPVA==;
-Received: from sslproxy06.your-server.de ([78.46.172.3])
-        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <lars@metafoo.de>)
-        id 1lc2VY-0006nY-1z; Thu, 29 Apr 2021 10:58:52 +0200
-Received: from [2001:a61:2bd3:3c01:9e5c:8eff:fe01:8578]
-        by sslproxy06.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <lars@metafoo.de>)
-        id 1lc2VX-000KsX-M6; Thu, 29 Apr 2021 10:58:51 +0200
-Subject: Re: [RFC PATCH 2/4] iio: accel: fxls8962af: add interrupt support
-To:     Sean Nyekjaer <sean@geanix.com>, jic23@kernel.org,
-        linux-iio@vger.kernel.org, andy.shevchenko@gmail.com,
-        Nuno.Sa@analog.com, robh+dt@kernel.org, devicetree@vger.kernel.org
-References: <20210428082203.3587022-1-sean@geanix.com>
- <20210428082203.3587022-2-sean@geanix.com>
-From:   Lars-Peter Clausen <lars@metafoo.de>
-Message-ID: <28f1e2a4-b2fa-5e4a-954f-92d90966eaf7@metafoo.de>
-Date:   Thu, 29 Apr 2021 10:58:51 +0200
+        id S232741AbhD2JK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 05:10:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54436 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231883AbhD2JK4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 05:10:56 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93164C06138C
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 02:10:09 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id e5so37404185wrg.7
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 02:10:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jjn7ofrdjd1TnkYur2KtlSXqsC+58JHrPfTq02YwB5M=;
+        b=su4cjFGi5+kn1HkDFEXCytoV9WXF2o51AZFXnN7J60XFatV7b0G480EAPDFoa0ljdx
+         GTni/HiMLYx7p2q1HaVPXlCusW4oCh55p7p12ftlg5UYiGVDQT18qAtTvXMZ2GUzgpCD
+         mTZOJK0F5SVWygJYXiaqq08TEGzcFpfDtDKsHj3dv8GqxV/wCT0dc6GpxXzSGKR+DvI0
+         cXL3KNBzoMgVlOs7VcNqJF7xtBsxT2biXRH0fE10HAl3P0CPiAJuJbOjmAO9cTWJQOFZ
+         gK70joRmwtU5UKgtSJ9QHPJ6HVi3rdTU3iL0kFGzt20ocp2nZtTA1GfOAVRcfO9GDcBF
+         b+2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=jjn7ofrdjd1TnkYur2KtlSXqsC+58JHrPfTq02YwB5M=;
+        b=Cqteavqjuo6V3kO0k+/tgO00XANYKPISJhVIZiZEreYSPWxUW+qMWJ8fKCpH1Nhr6i
+         Q0zaG1t7V0LCNd21cIB37uPXXaMA3AbhFVqfdqLXkJzKNAsEhE1WIEsOxvHjrPppK5fO
+         NlpkiVencppgz21UloMlYKeFuAf2TiPL+nBmN7b0A2UNoM123lq+sP4ve9A1s+MgO9Ir
+         fDe4XahpO6sFSgM4N89pG9v4z1uhNlBOOGevxfYksNJysBwKQRT+T5axmshKuRE7kPKe
+         anD0B9phuyrT71JEaYdnuoSBGHMl9nvLk0hPmFCU24XmmZKIjcftjrv/D3Vtzh6MU/Gp
+         Ogeg==
+X-Gm-Message-State: AOAM5303j8W3B02+DBGokF2i0bOqMjkZqGOa8hXfv1DXMsFT3KxxYP1d
+        wkH3HahfmbNzMkeLmcZhIFroBQxAmd3GsnMy
+X-Google-Smtp-Source: ABdhPJxxe5ErG/v5x7LmLALpFiu8uZN2sGOtEQkXtdLvfxipLv3O+0/hat2t8+GWnA/F4dBqzzS54A==
+X-Received: by 2002:a5d:568f:: with SMTP id f15mr42616599wrv.346.1619687402526;
+        Thu, 29 Apr 2021 02:10:02 -0700 (PDT)
+Received: from ?IPv6:2a01:e0a:90c:e290:c304:4b2b:4a79:1da9? ([2a01:e0a:90c:e290:c304:4b2b:4a79:1da9])
+        by smtp.gmail.com with ESMTPSA id a15sm4582835wrx.9.2021.04.29.02.10.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Apr 2021 02:10:01 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: meson: vim3: enable hdmi audio loopback
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20210429084253.59692-1-jbrunet@baylibre.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <3f85bc7a-aebc-cac6-11f9-5e18528c5e7f@baylibre.com>
+Date:   Thu, 29 Apr 2021 11:10:00 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <20210428082203.3587022-2-sean@geanix.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20210429084253.59692-1-jbrunet@baylibre.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-X-Authenticated-Sender: lars@metafoo.de
-X-Virus-Scanned: Clear (ClamAV 0.103.2/26154/Wed Apr 28 13:07:51 2021)
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/28/21 10:22 AM, Sean Nyekjaer wrote:
-> Preparation commit for the next that adds hw buffered sampling
->
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+On 29/04/2021 10:42, Jerome Brunet wrote:
+> Enable audio capture frontends and a tdm decoder.
+> This makes it possible to loopback the audio played on the hdmi codec,
+> which is the only output interface at the moment.
+> 
+> Of course, one TODDR device would be enough to do that but since
+> the 3 FRDDRs are enabled on the playback side, let's do the same on the
+> capture side.
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
-> [...]
->   
-> +static void fxls8962af_get_irq(struct device_node *of_node, enum fxls8962af_int_pin *pin)
-> +{
-> +	int irq;
+>  .../boot/dts/amlogic/meson-khadas-vim3.dtsi   | 41 +++++++++++++++++--
+>  .../dts/amlogic/meson-sm1-khadas-vim3l.dts    | 13 ++++++
+>  2 files changed, 50 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> index 66d67524b031..3cf4ecb6d52e 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> @@ -171,11 +171,16 @@ hdmi_connector_in: endpoint {
+>  	sound {
+>  		compatible = "amlogic,axg-sound-card";
+>  		model = "KHADAS-VIM3";
+> -		audio-aux-devs = <&tdmout_a>;
+> +		audio-aux-devs = <&tdmin_a>, <&tdmout_a>;
+>  		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
+>  				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
+>  				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
+> -				"TDM_A Playback", "TDMOUT_A OUT";
+> +				"TDM_A Playback", "TDMOUT_A OUT",
+> +				"TDMIN_A IN 0", "TDM_A Capture",
+> +				"TDMIN_A IN 3", "TDM_A Loopback",
+> +				"TODDR_A IN 0", "TDMIN_A OUT",
+> +				"TODDR_B IN 0", "TDMIN_A OUT",
+> +				"TODDR_C IN 0", "TDMIN_A OUT";
+>  
+>  		assigned-clocks = <&clkc CLKID_MPLL2>,
+>  				  <&clkc CLKID_MPLL0>,
+> @@ -198,8 +203,20 @@ dai-link-2 {
+>  			sound-dai = <&frddr_c>;
+>  		};
+>  
+> -		/* 8ch hdmi interface */
+>  		dai-link-3 {
+> +			sound-dai = <&toddr_a>;
+> +		};
 > +
-> +	irq = of_irq_get_byname(of_node, "INT2");
-
-For this I'd use device_property_match_string(dev, "interrupt-names", 
-"INT2"). Means it won't try to map the interrupt again, and also this is 
-the only place where the driver directly depends on OF, everything else 
-already uses the device_ API.
-
-
-> +	if (irq > 0) {
-> +		*pin = FXLS8962AF_PIN_INT2;
-> +		return;
-> +	}
+> +		dai-link-4 {
+> +			sound-dai = <&toddr_b>;
+> +		};
 > +
-> +	*pin = FXLS8962AF_PIN_INT1;
-> +}
+> +		dai-link-5 {
+> +			sound-dai = <&toddr_c>;
+> +		};
+> +
+> +		/* 8ch hdmi interface */
+> +		dai-link-6 {
+>  			sound-dai = <&tdmif_a>;
+>  			dai-format = "i2s";
+>  			dai-tdm-slot-tx-mask-0 = <1 1>;
+> @@ -214,7 +231,7 @@ codec {
+>  		};
+>  
+>  		/* hdmi glue */
+> -		dai-link-4 {
+> +		dai-link-7 {
+>  			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
+>  
+>  			codec {
+> @@ -454,10 +471,26 @@ &tdmif_a {
+>  	status = "okay";
+>  };
+>  
+> +&tdmin_a {
+> +	status = "okay";
+> +};
+> +
+>  &tdmout_a {
+>  	status = "okay";
+>  };
+>  
+> +&toddr_a {
+> +	status = "okay";
+> +};
+> +
+> +&toddr_b {
+> +	status = "okay";
+> +};
+> +
+> +&toddr_c {
+> +	status = "okay";
+> +};
+> +
+>  &tohdmitx {
+>  	status = "okay";
+>  };
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> index 06de0b1ce726..f2c098143594 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> @@ -32,6 +32,19 @@ vddcpu: regulator-vddcpu {
+>  		regulator-boot-on;
+>  		regulator-always-on;
+>  	};
+> +
+> +	sound {
+> +		model = "G12B-KHADAS-VIM3L";
+> +		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
+> +				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
+> +				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
+> +				"TDM_A Playback", "TDMOUT_A OUT",
+> +				"TDMIN_A IN 0", "TDM_A Capture",
+> +				"TDMIN_A IN 13", "TDM_A Loopback",
+> +				"TODDR_A IN 0", "TDMIN_A OUT",
+> +				"TODDR_B IN 0", "TDMIN_A OUT",
+> +				"TODDR_C IN 0", "TDMIN_A OUT";
+> +	};
+>  };
+>  
+>  &cpu0 {
+> 
+
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
