@@ -2,63 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E40D436E383
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 05:08:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BB3236E3DC
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 06:00:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229762AbhD2DJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Apr 2021 23:09:04 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:59258 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230072AbhD2DJD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Apr 2021 23:09:03 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id B60691A11E2;
-        Thu, 29 Apr 2021 05:08:16 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 7ADCF1A11FB;
-        Thu, 29 Apr 2021 05:08:12 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 26C3C402FC;
-        Thu, 29 Apr 2021 05:08:07 +0200 (CEST)
-From:   Shengjiu Wang <shengjiu.wang@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, shengjiu.wang@gmail.com
-Subject: [PATCH] ARM: dts: imx7d-sdb: Add HDMI audio sound card
-Date:   Thu, 29 Apr 2021 10:52:35 +0800
-Message-Id: <1619664755-12631-1-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S237273AbhD2Dqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Apr 2021 23:46:42 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:38552 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S237116AbhD2Dql (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Apr 2021 23:46:41 -0400
+X-UUID: 6237e3a9ae3040b8ba946f44d9de7c69-20210429
+X-UUID: 6237e3a9ae3040b8ba946f44d9de7c69-20210429
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 388143764; Thu, 29 Apr 2021 11:45:52 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 29 Apr 2021 11:45:50 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 29 Apr 2021 11:45:50 +0800
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     <chunkuang.hu@kernel.org>, <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>
+Subject: [v3,PATCH 0/3] mt8183 dpi supports dual edge
+Date:   Thu, 29 Apr 2021 11:45:45 +0800
+Message-ID: <20210429034548.28030-1-rex-bc.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add HDMI audio sound card, the interface is sii902x.
+v3:
+Modify clock rate for dual edge setting.
+Add more bridge function.
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- arch/arm/boot/dts/imx7d-sdb.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
+v2:
+Modify unused code
 
-diff --git a/arch/arm/boot/dts/imx7d-sdb.dts b/arch/arm/boot/dts/imx7d-sdb.dts
-index ac0751bc1177..4a0d83784d7d 100644
---- a/arch/arm/boot/dts/imx7d-sdb.dts
-+++ b/arch/arm/boot/dts/imx7d-sdb.dts
-@@ -164,6 +164,13 @@ sound {
- 			"LINPUT1", "AMIC",
- 			"AMIC", "MICB";
- 	};
-+
-+	sound-hdmi {
-+		compatible = "fsl,imx-audio-sii902x";
-+		model = "sii902x-audio";
-+		audio-cpu = <&sai3>;
-+		hdmi-out;
-+	};
- };
- 
- &adc1 {
+v1:
+DPI can sample on falling, rising or both edge.
+When DPI sample the data both rising and falling edge.
+It can reduce half data io pins.
+
+Rex-BC Chen (3):
+  drm/mediatek: dpi dual edge sample mode support
+  drm/mediatek: config mt8183 driver data to support dual edge sample
+  drm/mediatek: dpi: add bus format negotiation
+
+ drivers/gpu/drm/mediatek/mtk_dpi.c | 107 +++++++++++++++++++++++++++--
+ 1 file changed, 101 insertions(+), 6 deletions(-)
+
 -- 
-2.27.0
+2.18.0
 
