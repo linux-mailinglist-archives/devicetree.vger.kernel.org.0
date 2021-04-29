@@ -2,69 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1849936F1FF
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 23:26:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32FCC36F205
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 23:29:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234795AbhD2V1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 17:27:15 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:46716 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233293AbhD2V1P (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Apr 2021 17:27:15 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1lcEAg-001iK5-7t; Thu, 29 Apr 2021 23:26:06 +0200
-Date:   Thu, 29 Apr 2021 23:26:06 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     DENG Qingfang <dqfext@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-staging@lists.linux.dev, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, Weijie Gao <weijie.gao@mediatek.com>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-Subject: Re: [PATCH net-next 1/4] net: phy: add MediaTek PHY driver
-Message-ID: <YIskbqKwhZA3n1Av@lunn.ch>
-References: <20210429062130.29403-1-dqfext@gmail.com>
- <20210429062130.29403-2-dqfext@gmail.com>
+        id S237248AbhD2VaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 17:30:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49052 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237190AbhD2VaK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 17:30:10 -0400
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC4A8C06138D
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 14:29:23 -0700 (PDT)
+Received: by mail-oo1-xc29.google.com with SMTP id h9-20020a4a94090000b02901f9d4f64172so746536ooi.5
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 14:29:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=WhhONAZwNzu7RDX2cDI/rhUVfkGXZp4VrgDkc/V9nE0=;
+        b=rolBt33kBJCjxeIakyKhz/Gip1+9Uo2EHF1vWufZ92pl5fRIbslUFAWDDYzhNXgJam
+         rhjYNWTmx33OH2khbneUteVz45t61tNYVcNiKqxbL+EmJhTYOxIk5XotNknOrznoECi9
+         fhFjnab/0iDOSns9OiNJZBNmglCgAQXrx+/lUacoyHhteFOdu2tq0Z9c0AwjwG9xkdhF
+         qbyDSy9uOsEeEw8qUxMQA5bio8FRAv9/WIcKskzEAa6rT8LtSITMaclZVbt9c2xiMXDa
+         rmb7k6DplgNBHqyB4V41x6DXjGClF68imnGohkiZfHdxRuGvxADIQknHmjBU9oEYc1Ze
+         9F9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=WhhONAZwNzu7RDX2cDI/rhUVfkGXZp4VrgDkc/V9nE0=;
+        b=YRiU06FLA5935bt2jkOB8n7NDdyUBZ41UOrI6UFwAUGAZ/MSFn3cw4jgj0KxkXl4jg
+         wV/MXB6gHZ3jR7O0+WGFdqHg4QoM5RhNFyOv1vEGkBhtUKHpL37M+VLEQd+hUqWy8m+b
+         365wEadXpx5O/LMuxUVzBg3c4gK95jkcIHHRaIgnP93Ok05UOcmeNTrP6eJXS7oqjbyX
+         dURIPoVo5YWlmawFZwXfZlxVPaoqmxAKacKRKJ8HSdfLJVGZT7+QXkIfjljqee8F+l9V
+         wH/lMZiY4b+3+7S+K3f+TuC/TrHU0ca8/wyP4WJwZhgOhW+wv1bWwoufpLDw+57zdTbr
+         husA==
+X-Gm-Message-State: AOAM5311JmxiE31KecCSsZHkS/mAA6SVcte+FVshemUxZ5p6Y8B8qXXz
+        GEPxN+/gVJJhc1Cke6cr9vLtVg==
+X-Google-Smtp-Source: ABdhPJzLm11eI5oXFElIQk+iRw+WNzVXt+SVzWtna5FYQ9mG7PG3szIK7ZDFh9i57aUdp+Uo7I2thg==
+X-Received: by 2002:a4a:765c:: with SMTP id w28mr1682235ooe.8.1619731763058;
+        Thu, 29 Apr 2021 14:29:23 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id h184sm278354oia.1.2021.04.29.14.29.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Apr 2021 14:29:22 -0700 (PDT)
+Date:   Thu, 29 Apr 2021 16:29:20 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Martin Botka <martin.botka1@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v6 2/4] leds: Add driver for Qualcomm LPG
+Message-ID: <20210429212920.GB2484@yoga>
+References: <20201021201224.3430546-1-bjorn.andersson@linaro.org>
+ <20201021201224.3430546-3-bjorn.andersson@linaro.org>
+ <20201029181357.GE26053@duo.ucw.cz>
+ <YIn50NW+Pimqfsih@builder.lan>
+ <20210429211223.GA5480@amd>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210429062130.29403-2-dqfext@gmail.com>
+In-Reply-To: <20210429211223.GA5480@amd>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 29, 2021 at 02:21:27PM +0800, DENG Qingfang wrote:
-> Add support for MediaTek PHYs found in MT7530 and MT7531 switches.
-> The initialization procedure is from the vendor driver, but due to lack
-> of documentation, the function of some register values remains unknown.
+On Thu 29 Apr 16:12 CDT 2021, Pavel Machek wrote:
+
+> Hi!
 > 
-> Signed-off-by: DENG Qingfang <dqfext@gmail.com>
+> > > > +static int lpg_add_pwm(struct lpg *lpg)
+> > > > +{
+> > > > +	int ret;
+> > > > +
+> > > > +	lpg->pwm.base = -1;
+> > > > +	lpg->pwm.dev = lpg->dev;
+> > > > +	lpg->pwm.npwm = lpg->num_channels;
+> > > > +	lpg->pwm.ops = &lpg_pwm_ops;
+> > > > +
+> > > > +	ret = pwmchip_add(&lpg->pwm);
+> > > > +	if (ret)
+> > > > +		dev_err(lpg->dev, "failed to add PWM chip: ret %d\n", ret);
+> > > > +
+> > > > +	return ret;
+> > > > +}
+> > > 
+> > > Do we need to do this? I'd rather have LED driver, than LED+PWM
+> > > driver...
+> > > 
+> > 
+> > Yes, I believe we need to do this.
+> > 
+> > Because each piece of hardware has N channels, which can be wired to
+> > LEDs, grouped with other channels and wired to multicolor LEDs or be
+> > used as PWM signals. And this configuration is board specific.
+> > 
+> > One such example is the laptop in front of me, which has 3 channels
+> > wired to an RGB LED and 1 channel wired as a backlight control signal
+> > (i.e. using pwm-backlight).  Another example is a devboard where the
+> > 4 channels are wired to 4 LEDs.
+> 
+> Ok, so this is actually important. In this case you should have PWM
+> layer, exporting PWMs, and then rgb-LED driver that takes three of
+> those PWMs and turns them into LED, no?
+> 
+> And ... surprise ... that is likely to help other people, as LEDs
+> connected to PWMs are quite common.
+> 
+> Hmm.?
+> 
+> If you can't do this for some reason, you should probably explain in
+> the changelog, because this is going to be FAQ.
+> 
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+This is exactly what the downstream implementation does and in the case
+of a solid color LED this works fine.
 
-> +
-> +	/* Enable HW auto downshift */
-> +	phy_modify_paged(phydev, MTK_PHY_PAGE_EXTENDED, 0x14, 0, BIT(4));
+But the hardware has a shared chunk of memory where you can write
+duty-cycle values, then for each PWM channel you can specify the
+start/stop index and pace for the PWM to read and update the configured
+duty-cycle. This is how the hardware implements pattern support.
 
-As a follow up patch, you could add support for controlling this via a
-PHY tunable.
 
-    Andrew
+So downstream they have (last time I looked at the code) an addition in
+the PWM API where the LED driver can inform the PWM driver part about
+the indices to use. Naturally I don't think that's a good idea.
+
+
+Additionally, representing this as individual PWM channels means we're
+loosing the grouping that now comes from the description of multicolor
+LEDs, which serves the basis for synchronizing the pattern traversal
+between the involved channels.
+
+
+I just posted v7, but I'd be happy to incorporate such reasoning in the
+commit message (or do you really mean changelog in the email?) when we
+agree on a solution.
+
+Regards,
+Bjorn
