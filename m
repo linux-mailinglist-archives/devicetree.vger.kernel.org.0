@@ -2,307 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A3B936F28A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 00:23:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4EFA36F2B3
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 00:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229595AbhD2WXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 18:23:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60866 "EHLO
+        id S229609AbhD2WrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 18:47:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbhD2WXt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 18:23:49 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F92BC06138B;
-        Thu, 29 Apr 2021 15:23:02 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id z20-20020a0568301294b02902a52ecbaf18so10444327otp.8;
-        Thu, 29 Apr 2021 15:23:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:references:from:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=y/dh3xIKSWKWI3UZIKoQ5GqY1MGMaSfcmsOXMLuCmUQ=;
-        b=dAsZd/yk5QzUquUfs85vKVW905qMZTKW9s6nVilgxzO2es+d4KGXVRrHYjC5RfMP35
-         TTWegMsPxm0xUl7Mc96dSF7/Qi1vVtiN47cx7ChcNSVuhMpPmbyzoxy5BhW/l0Fhx/PK
-         u8kl1H7w8yvHgNCj3njSJ7e345pBXFvqUeQwYr125Ittr9hZW5JpiidwjfG0AuIW13t7
-         1j6EIQAktDlt6FnPpPmx8clHe68UASsCAADWNOKjOLa/SsmBjj1c1iqbWLd0wjPBKiPW
-         +DAEv6hU8I5sd9cgv/ZaWsox6WKUi4vqlt9fnzoQmSUlxyUUQnr2KloJzHLWEgYes9Ui
-         nOQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=y/dh3xIKSWKWI3UZIKoQ5GqY1MGMaSfcmsOXMLuCmUQ=;
-        b=KBjHRQ/wMLUxG98bonSXjo881OIP5Cn884ajE2IcytpsOaAPBxO6mispgsGU2C48mF
-         QSMD+3tfXdek96Zq8ulV3/YJOrGUyGCgH/Dzun618XbAUbNzuM67P0PyvWK05VLjhVJ5
-         4S2geVGCMgh1a5ZtqDlT4fptz/Jl0S9O25J0yXprbuD/qulJCBqsr6WSo/RHV0J5QKYP
-         ZaxsqYZVS/UQi+mVClpRVj0vHKuAvZnl0G1IclYmm7r4BhU3CArX4RPS6wUYtwjxrbqE
-         22/JgSan6HwwKEtKQiAUnqZmCjXas6c3lf2M3H2x4fN02K7qZPqiWWqU3Xp3elSruHa2
-         TqRw==
-X-Gm-Message-State: AOAM532a34zJteS8F+8pZTiW4kyvqPFBYO0Ik/dlXblvtRW1G7Sbntm/
-        tDb9/PRM1R2uh67rbkTgOap2v55gsQg=
-X-Google-Smtp-Source: ABdhPJz3WGra1OmP3aqS/B/ab1uJM8iUaD9L6Vd7U1l/rskxuuAmvPzmWgOqO08sVQEZB7xS8deQFA==
-X-Received: by 2002:a05:6830:2159:: with SMTP id r25mr1015600otd.313.1619734981071;
-        Thu, 29 Apr 2021 15:23:01 -0700 (PDT)
-Received: from server.roeck-us.net (108-223-40-66.lightspeed.sntcca.sbcglobal.net. [108.223.40.66])
-        by smtp.gmail.com with ESMTPSA id n37sm282774otn.9.2021.04.29.15.22.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Apr 2021 15:23:00 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH V9 1/2] watchdog: mtk: support pre-timeout when the bark
- irq is available
-To:     Wang Qing <wangqing@vivo.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <1619315527-8171-1-git-send-email-wangqing@vivo.com>
- <1619315527-8171-2-git-send-email-wangqing@vivo.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-Message-ID: <45ff044d-80ff-9001-1d4f-d39d0ae63060@roeck-us.net>
-Date:   Thu, 29 Apr 2021 15:22:57 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        with ESMTP id S229591AbhD2Wq7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 18:46:59 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F177C06138B;
+        Thu, 29 Apr 2021 15:46:12 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 8F18422239;
+        Fri, 30 Apr 2021 00:46:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1619736370;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=S2l6YZvxOM9B91GZzRwiNDNIKI1R5n/pf9yHC+ysRqE=;
+        b=RAL8GgCuIWCgRFv3OE5uRyqcDDSv0O0Uxpic3XN5Crzp/YesK7qwhtMxzVViz3OBKLXmga
+        pbfRTZT+vVhcpyI+rq3pI+9A8sY/sSnK2779ed7ppwYB30YwJNEDi5X0Q+M4JkD/44Iaq2
+        6K2hhk5wznd2q4057Z2OO9JHiEkDn8A=
 MIME-Version: 1.0
-In-Reply-To: <1619315527-8171-2-git-send-email-wangqing@vivo.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Date:   Fri, 30 Apr 2021 00:46:10 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-spi@vger.kernel.org, Lokesh Vutla <lokeshvutla@ti.com>
+Subject: Re: [RFC PATCH 1/6] spi: spi-mem: Tell controller when device is
+ ready for calibration
+In-Reply-To: <20210429184109.f2pf3iyaiylumoyp@ti.com>
+References: <20210311191216.7363-1-p.yadav@ti.com>
+ <20210311191216.7363-2-p.yadav@ti.com>
+ <934c8c6f7bb71729bfdaefd39c63a262@walle.cc>
+ <20210324080804.x7oemmpt2khi72mp@ti.com>
+ <6dfbb3e4107887dc9ee3e19e4940e87c@walle.cc>
+ <20210429184109.f2pf3iyaiylumoyp@ti.com>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <2c3461f38c93871fbc715a19aeecdd2a@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/24/21 6:52 PM, Wang Qing wrote:
-> Use the bark interrupt as the pretimeout notifier if available.
+Am 2021-04-29 20:41, schrieb Pratyush Yadav:
+> On 29/04/21 06:23PM, Michael Walle wrote:
+>> I've had a look at the LS1028A FlexSPI calibration feature. The
+>> reference manual is very sparse on details, though. What you need to
+>> do there is to program a special read command sequence (the whole
+>> controller is made of these lookup table entries, where you can
+>> have a short sequence of operations for read/write/program and so
+>> on). Therefore, for data learning you'll take the read operation
+>> and insert a LEARN op in between and read a specific data pattern.
+>> Then the hardware will automatically figure out the correct sample
+>> phase for the read data pins.
+>> 
+>> Unfortunately, it does not mention how often you have to do it. It
+>> might be the case that is has to be calibrated more than once.
 > 
-> When the watchdog timer expires in dual mode, an interrupt will be
-> triggered first, then the timing restarts. The reset signal will be
-> initiated when the timer expires again.
-> 
-> The pretimeout notification shall occur at timeout-sec/2.
-> 
-> V2:
-> - panic() by default if WATCHDOG_PRETIMEOUT_GOV is not enabled.
-> 
-> V3:
-> - Modify the pretimeout behavior, manually reset after the pretimeout
-> - is processed and wait until timeout.
-> 
-> V4:
-> - Remove pretimeout related processing. 
-> - Add dual mode control separately.
-> 
-> V5:
-> - Fix some formatting and printing problems.
-> 
-> V6:
-> - Realize pretimeout processing through dualmode.
-> 
-> V7:
-> - Add set_pretimeout().
-> 
-> V8/V9:
-> - Fix some formatting problems.
-> 
-> Signed-off-by: Wang Qing <wangqing@vivo.com>
+> I haven't read the datasheet, I wonder how long this calibration takes.
+> If it is too long then the overhead might not even be worth the extra
+> read throughput. Especially when using a file system on top which
+> generally don't do very large reads in one go.
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+I was just thinking of compensating a possible temperature drift. You
+wouldn't have to do it on every read.
 
-Note that the version history should be after "---".
+There is a second mode, where it is actually done on every read. But
+that will be used where the flash supports a read preamble, where
+dummy bytes after the read opcode are replaced by a calibration pattern.
+If the pattern has the same length as the dummy bytes there is no 
+penalty.
+IIRC the controller just supports a pattern of max 32 bits.
 
-Guenter
+Oh I forgot to mention, this doesn't need to be repeated. I guess
+the hardware already captures all possible phases (there are only
+16) and compares each one with a predefined pattern.
 
-> ---
->  drivers/watchdog/mtk_wdt.c | 77 +++++++++++++++++++++++++++++++++++++++++++---
->  1 file changed, 72 insertions(+), 5 deletions(-)
+> Anyway, when the do_calibration() is called the controller can save the
+> calibration op and use it later as needed. It knows when an exec_op()
+> will result in a read since it has access to the whole op.
 > 
-> diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
-> index 97ca993..7bb0774
-> --- a/drivers/watchdog/mtk_wdt.c
-> +++ b/drivers/watchdog/mtk_wdt.c
-> @@ -25,9 +25,10 @@
->  #include <linux/reset-controller.h>
->  #include <linux/types.h>
->  #include <linux/watchdog.h>
-> +#include <linux/interrupt.h>
->  
->  #define WDT_MAX_TIMEOUT		31
-> -#define WDT_MIN_TIMEOUT		1
-> +#define WDT_MIN_TIMEOUT		2
->  #define WDT_LENGTH_TIMEOUT(n)	((n) << 5)
->  
->  #define WDT_LENGTH		0x04
-> @@ -187,12 +188,19 @@ static int mtk_wdt_set_timeout(struct watchdog_device *wdt_dev,
->  	u32 reg;
->  
->  	wdt_dev->timeout = timeout;
-> +	/*
-> +	 * In dual mode, irq will be triggered at timeout / 2
-> +	 * the real timeout occurs at timeout
-> +	 */
-> +	if (wdt_dev->pretimeout)
-> +		wdt_dev->pretimeout = timeout / 2;
->  
->  	/*
->  	 * One bit is the value of 512 ticks
->  	 * The clock has 32 KHz
->  	 */
-> -	reg = WDT_LENGTH_TIMEOUT(timeout << 6) | WDT_LENGTH_KEY;
-> +	reg = WDT_LENGTH_TIMEOUT((timeout - wdt_dev->pretimeout) << 6)
-> +			| WDT_LENGTH_KEY;
->  	iowrite32(reg, wdt_base + WDT_LENGTH);
->  
->  	mtk_wdt_ping(wdt_dev);
-> @@ -239,13 +247,48 @@ static int mtk_wdt_start(struct watchdog_device *wdt_dev)
->  		return ret;
->  
->  	reg = ioread32(wdt_base + WDT_MODE);
-> -	reg &= ~(WDT_MODE_IRQ_EN | WDT_MODE_DUAL_EN);
-> +	if (wdt_dev->pretimeout)
-> +		reg |= (WDT_MODE_IRQ_EN | WDT_MODE_DUAL_EN);
-> +	else
-> +		reg &= ~(WDT_MODE_IRQ_EN | WDT_MODE_DUAL_EN);
->  	reg |= (WDT_MODE_EN | WDT_MODE_KEY);
->  	iowrite32(reg, wdt_base + WDT_MODE);
->  
->  	return 0;
->  }
->  
-> +static int mtk_wdt_set_pretimeout(struct watchdog_device *wdd,
-> +				  unsigned int timeout)
-> +{
-> +	struct mtk_wdt_dev *mtk_wdt = watchdog_get_drvdata(wdd);
-> +	void __iomem *wdt_base = mtk_wdt->wdt_base;
-> +	u32 reg = ioread32(wdt_base + WDT_MODE);
-> +
-> +	if (timeout && !wdd->pretimeout) {
-> +		wdd->pretimeout = wdd->timeout / 2;
-> +		reg |= (WDT_MODE_IRQ_EN | WDT_MODE_DUAL_EN);
-> +	} else if (!timeout && wdd->pretimeout) {
-> +		wdd->pretimeout = 0;
-> +		reg &= ~(WDT_MODE_IRQ_EN | WDT_MODE_DUAL_EN);
-> +	} else {
-> +		return 0;
-> +	}
-> +
-> +	reg |= WDT_MODE_KEY;
-> +	iowrite32(reg, wdt_base + WDT_MODE);
-> +
-> +	return mtk_wdt_set_timeout(wdd, wdd->timeout);
-> +}
-> +
-> +static irqreturn_t mtk_wdt_isr(int irq, void *arg)
-> +{
-> +	struct watchdog_device *wdd = arg;
-> +
-> +	watchdog_notify_pretimeout(wdd);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
->  static const struct watchdog_info mtk_wdt_info = {
->  	.identity	= DRV_NAME,
->  	.options	= WDIOF_SETTIMEOUT |
-> @@ -253,12 +296,21 @@ static const struct watchdog_info mtk_wdt_info = {
->  			  WDIOF_MAGICCLOSE,
->  };
->  
-> +static const struct watchdog_info mtk_wdt_pt_info = {
-> +	.identity	= DRV_NAME,
-> +	.options	= WDIOF_SETTIMEOUT |
-> +			  WDIOF_PRETIMEOUT |
-> +			  WDIOF_KEEPALIVEPING |
-> +			  WDIOF_MAGICCLOSE,
-> +};
-> +
->  static const struct watchdog_ops mtk_wdt_ops = {
->  	.owner		= THIS_MODULE,
->  	.start		= mtk_wdt_start,
->  	.stop		= mtk_wdt_stop,
->  	.ping		= mtk_wdt_ping,
->  	.set_timeout	= mtk_wdt_set_timeout,
-> +	.set_pretimeout	= mtk_wdt_set_pretimeout,
->  	.restart	= mtk_wdt_restart,
->  };
->  
-> @@ -267,7 +319,7 @@ static int mtk_wdt_probe(struct platform_device *pdev)
->  	struct device *dev = &pdev->dev;
->  	struct mtk_wdt_dev *mtk_wdt;
->  	const struct mtk_wdt_data *wdt_data;
-> -	int err;
-> +	int err, irq;
->  
->  	mtk_wdt = devm_kzalloc(dev, sizeof(*mtk_wdt), GFP_KERNEL);
->  	if (!mtk_wdt)
-> @@ -279,7 +331,22 @@ static int mtk_wdt_probe(struct platform_device *pdev)
->  	if (IS_ERR(mtk_wdt->wdt_base))
->  		return PTR_ERR(mtk_wdt->wdt_base);
->  
-> -	mtk_wdt->wdt_dev.info = &mtk_wdt_info;
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq > 0) {
-> +		err = devm_request_irq(&pdev->dev, irq, mtk_wdt_isr, 0, "wdt_bark",
-> +				       &mtk_wdt->wdt_dev);
-> +		if (err)
-> +			return err;
-> +
-> +		mtk_wdt->wdt_dev.info = &mtk_wdt_pt_info;
-> +		mtk_wdt->wdt_dev.pretimeout = WDT_MAX_TIMEOUT / 2;
-> +	} else {
-> +		if (irq == -EPROBE_DEFER)
-> +			return -EPROBE_DEFER;
-> +
-> +		mtk_wdt->wdt_dev.info = &mtk_wdt_info;
-> +	}
-> +
->  	mtk_wdt->wdt_dev.ops = &mtk_wdt_ops;
->  	mtk_wdt->wdt_dev.timeout = WDT_MAX_TIMEOUT;
->  	mtk_wdt->wdt_dev.max_hw_heartbeat_ms = WDT_MAX_TIMEOUT * 1000;
+>> 
+>> I'm just mentioning this so it won't be lost. If needed, it can
+>> be added later.
+>> 
+>> Am 2021-03-24 09:08, schrieb Pratyush Yadav:
+>> > On 24/03/21 12:07AM, Michael Walle wrote:
+>> > > Am 2021-03-11 20:12, schrieb Pratyush Yadav:
+>> > > > Some controllers like the Cadence OSPI controller need to perform a
+>> > > > calibration sequence to operate at high clock speeds. This calibration
+>> > > > should happen after the flash is fully initialized otherwise the
+>> > > > calibration might happen in a different SPI mode from the one the flash
+>> > > > is finally set to. Add a hook that can be used to tell the controller
+>> > > > when the flash is ready for calibration. Whether calibration is needed
+>> > > > depends on the controller.
+>> > > >
+>> > > > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+>> > > > ---
+>> > > >  drivers/spi/spi-mem.c       | 12 ++++++++++++
+>> > > >  include/linux/spi/spi-mem.h |  8 ++++++++
+>> > > >  2 files changed, 20 insertions(+)
+>> > > >
+>> > > > diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
+>> > > > index dc713b0c3c4d..e2f05ad3f4dc 100644
+>> > > > --- a/drivers/spi/spi-mem.c
+>> > > > +++ b/drivers/spi/spi-mem.c
+>> > > > @@ -464,6 +464,18 @@ int spi_mem_adjust_op_size(struct spi_mem *mem,
+>> > > > struct spi_mem_op *op)
+>> > > >  }
+>> > > >  EXPORT_SYMBOL_GPL(spi_mem_adjust_op_size);
+>> > > >
+>> > > > +int spi_mem_do_calibration(struct spi_mem *mem, struct spi_mem_op *op)
+>> > > > +{
+>> > > > +	struct spi_controller *ctlr = mem->spi->controller;
+>> > > > +
+>> > > > +	if (!ctlr->mem_ops || !ctlr->mem_ops->do_calibration)
+>> > > > +		return -EOPNOTSUPP;
+>> > > > +
+>> > > > +	ctlr->mem_ops->do_calibration(mem, op);
+>> > >
+>> > > Can't a calibration fail?
+>> >
+>> > It can. If it does, the controller falls back to lower speed transfers.
+>> > There is not much the upper layer can do about this. That's why it is
+>> > not informed whether it succeeded or not.
+>> 
+>> Ok, if needed, that should be an easy change.
+>> 
+>> op is there to decide if we need a calibration at all, correct?
 > 
+> Yes. It can also be used to choose which calibration algorithm to use.
+> For example on the Cadence controller, there are different algorithms
+> for 8S and 8D operations.
+> 
+>> What if there are different factors, like frequency? For example
+>> on the LS1028A its just a matter of the SCK frequency. It seems
+>> that this parameter is tailored to the OPHY.
+> 
+> As of now there is no way in SPI MEM to tell the controller the 
+> expected
+> speed of the operation. AFAIK most controllers get the speed via device
+> tree. So in the current case, the controller already knows the speed it
+> should run at, and can decide if calibration is needed or not.
+> 
+> But if operation speed is eventually added to SPI MEM, I would assume 
+> it
+> would be part of struct spi_mem_op. The op passed in would have this
+> information filled, and the controller can use that information to
+> decide if it needs to perform the calibration or not.
+> 
+> I am all for making this API flexible, but with very few controllers
+> supporting this feature in the wild, it is difficult to predict all the
+> information that might be needed. In the current state, I think the API
+> provides a fair bit of information to the controller about how a read
+> operation would look like.
 
+Sure, and its also quite hard to review without any other hardware
+which supports that ;) I was thinking about letting the spi driver
+call into spi-mem to retrieve the information it needs instead of
+having that second argument. Anyway, if we need any changes in the
+future this isn't set in stone.
+
+-michael
