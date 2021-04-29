@@ -2,88 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C444A36EC4A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 16:22:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D99C036EC54
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 16:26:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235277AbhD2OXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 10:23:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38798 "EHLO
+        id S239669AbhD2O0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 10:26:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240244AbhD2OW7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 10:22:59 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C365C06138B
-        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 07:22:12 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id s9so18701511ljj.6
-        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 07:22:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+8pq1Kqgoz6ZHvHL1zhX2LjB8GHuu5vWdNBGM6IWtfM=;
-        b=mc/mJJ0M5BjWs+AjcEuzQcK+z3rfCbbAjE+T3jWnBcpqDFrDa8zY1c2Qpfo3Ty2Agt
-         lUsvYrGyB0mYE3+D+skpru7sgUnAF9hNnodvw+M3+CHBrEN9LdA1pDtjXCNhcrU9T70V
-         LdPqecJEy55gdmVPNaCM1SFW6rwT4DGmkCaSN/nrWDXiIyEi1jnydnLTnf/jI3W7qr1M
-         ptbrsV8UGkuYacdZhx6szz1DJBINrGOTp5rcmDH9bjND3duVEgoGey5gIj+7OpychOK4
-         XeKR5SnCCKLL3T84Rh+4tnCrZsUaEOH4Yp7N5xECrNLp5ZdYJBe8tjCp/96ixUp9K0wd
-         8okg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+8pq1Kqgoz6ZHvHL1zhX2LjB8GHuu5vWdNBGM6IWtfM=;
-        b=Xg0QZKkncn31wd1T/4KGniH7penMGYgnFFy3gGEemxzAWwPovvlcdp9v/f/bhiZhjQ
-         O1HPqS9JU2xpEhQ/Ri3A2xX7DWGwn8dVNYlwoqLzpGyr8jfn4EeivEH0tNlt0xPmLEPc
-         2zw5HAEdAtvUo/ejmHfWwb2tV0KTklrQ26GmiTeJGZC1m9vr7jggbB1fT1eI0m15mSzj
-         jp5Q/eubVJYLCNUF9xJ5ShHhVtJNJrrllykDFXngksqoqvBqK3RO/rQxccTdOcEpxcj3
-         iM5PKr45OCcQTldhNu9qFb0KQO6AcTQJxtvxXQYPpKf+JYAsqpyKovbkkWDQDL+fYGlt
-         lAEg==
-X-Gm-Message-State: AOAM530IkMmb0MOen98wxYKvW2LyG4bBLWQjrIx7t5FED3EVbVpYhLnz
-        AP7lj/rSzC41kMc7rwwCtndU3NSrWoK/owd+fMtf69m4vcY=
-X-Google-Smtp-Source: ABdhPJzO35dKKTFRnT/r8hEfK4HSyi7SS5FjyS1L0dYZ1L4/ErLt2jFnCudZRuNqvaW0hAT3ICWgwi1ERk6Jn5gjP4M=
-X-Received: by 2002:a05:651c:c1:: with SMTP id 1mr23822611ljr.467.1619706130628;
- Thu, 29 Apr 2021 07:22:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <1619080202-31924-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <CACRpkdaDP+JnCP+go9hZAObnNgmJyJRDFypX2CZGp-UJBh5wNA@mail.gmail.com> <CAHp75VfpvPdAAW2JpvdiDtzS3LUF_=Ej7c2LEML_+pOwi6CtWg@mail.gmail.com>
-In-Reply-To: <CAHp75VfpvPdAAW2JpvdiDtzS3LUF_=Ej7c2LEML_+pOwi6CtWg@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 29 Apr 2021 16:21:59 +0200
-Message-ID: <CACRpkdaxTxCz=LJuGL_wCNTZESK0opixBzLass0w0n8A6P7mfA@mail.gmail.com>
-Subject: Re: [PATCH v6 0/3] Add ZynqMP pinctrl driver
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        git <git@xilinx.com>, saikrishna12468@gmail.com
+        with ESMTP id S238957AbhD2O0x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 10:26:53 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C279C06138B
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 07:26:06 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1lc7c6-0002Ta-RG; Thu, 29 Apr 2021 16:25:58 +0200
+Message-ID: <08d8573e7395b341cdec55ee4f92d8cd3da7d0d3.camel@pengutronix.de>
+Subject: Re: [PATCH 13/16] soc: imx: gpcv2: correct pm_runtime_get_sync usage
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        p.zabel@pengutronix.de, krzk@kernel.org, agx@sigxcpu.org,
+        marex@denx.de, andrew.smirnov@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, ping.bai@nxp.com,
+        frieder.schrempf@kontron.de, aford173@gmail.com, abel.vesa@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+Date:   Thu, 29 Apr 2021 16:25:56 +0200
+In-Reply-To: <20210429073050.21039-14-peng.fan@oss.nxp.com>
+References: <20210429073050.21039-1-peng.fan@oss.nxp.com>
+         <20210429073050.21039-14-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 23, 2021 at 5:55 PM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Thu, Apr 22, 2021 at 12:14 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > On Thu, Apr 22, 2021 at 10:30 AM Sai Krishna Potthuri
-> > <lakshmi.sai.krishna.potthuri@xilinx.com> wrote:
-> >
-> > > changes in v6:
-> > > - Rebased the patche series on 'devel' branch in pinctrl tree and no
-> > > functional changes.
-> >
-> > Remaining patches applied! Thanks for working so hard on this!
->
-> Hmm... I have had a bunch of comments. Okay, they may be addressed by
-> follow up(s).
+Am Donnerstag, dem 29.04.2021 um 15:30 +0800 schrieb Peng Fan (OSS):
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> When the return value is negative, there is error, otherwise it is
+> expected.
 
-Sai: can you please address Andy's comments with replies and/or
-follow-up patches?
+Good catch! As the runtime pm handling is added in this series, this
+should be squashed into patch 06/16 to not add broken code and then fix
+it in the same series. Change looks good to me.
 
-Yours,
-Linus Walleij
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/soc/imx/gpcv2.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
+> index 42b9be05e1f2..d2ce47a5ebad 100644
+> --- a/drivers/soc/imx/gpcv2.c
+> +++ b/drivers/soc/imx/gpcv2.c
+> @@ -197,7 +197,7 @@ static int imx_pgc_power_up(struct generic_pm_domain *genpd)
+>  	int ret;
+>  
+> 
+> 
+> 
+>  	ret = pm_runtime_get_sync(domain->dev);
+> -	if (ret) {
+> +	if (ret < 0) {
+>  		pm_runtime_put_noidle(domain->dev);
+>  		return ret;
+>  	}
+
+
