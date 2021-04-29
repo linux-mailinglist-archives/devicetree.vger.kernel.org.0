@@ -2,99 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A781536EC75
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 16:34:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82ACE36EC77
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 16:34:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239032AbhD2Of2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 10:35:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41630 "EHLO
+        id S239817AbhD2Ofn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 10:35:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237406AbhD2Of0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 10:35:26 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5D1AC06138B
-        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 07:34:39 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1lc7kO-0003XE-T9; Thu, 29 Apr 2021 16:34:32 +0200
-Message-ID: <abde5337ac265287f8e1225846e140e8df370f47.camel@pengutronix.de>
-Subject: Re: [PATCH 16/16] soc: imx: gpcv2: remove waiting handshake in
- power up
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        p.zabel@pengutronix.de, krzk@kernel.org, agx@sigxcpu.org,
-        marex@denx.de, andrew.smirnov@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, ping.bai@nxp.com,
-        frieder.schrempf@kontron.de, aford173@gmail.com, abel.vesa@nxp.com,
-        Peng Fan <peng.fan@nxp.com>
-Date:   Thu, 29 Apr 2021 16:34:31 +0200
-In-Reply-To: <20210429073050.21039-17-peng.fan@oss.nxp.com>
-References: <20210429073050.21039-1-peng.fan@oss.nxp.com>
-         <20210429073050.21039-17-peng.fan@oss.nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+        with ESMTP id S234862AbhD2Ofn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 10:35:43 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12388C06138B
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 07:34:55 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id u23so4295311ljk.5
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 07:34:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1JY1YQAciLBg2SXCK38LTLT1Il7RxDxbwi4rPhLOMIU=;
+        b=vGokkhrLWkftxs9CXzLZUdzyBzjMN+7lJmlAV3A0Q9Qr0f45z49OjbjQPSPDvVGnH9
+         lUhmmV8MFmqaeVRkZAxUdysNw0UpFBTkC4DLJgKZviIwIVJiblLonYnrSb3kadnZaLge
+         71+9E0bfNRr2wnfF0t1E8JaBIQkGrF8GikHiXrUAitTZ+0uCtZvLo+/0SiNjOGI2hymg
+         8bxyGnRt68l0LfOFwrRkNBH+cX5cPrFtP+8DCgLL/XtdrPuIzfvjV3fit9EBVNS13xFE
+         NjxodrUoQgQi5SiEGqou85DyDQIo4nCKsaF/c933fj0+C7RjAxj+VX94ut/kLWff+SAN
+         b16Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1JY1YQAciLBg2SXCK38LTLT1Il7RxDxbwi4rPhLOMIU=;
+        b=NncF2LlttJ7RCqk9WDGhAuiauLJ6GVG2wwat1IrJ14K/6EU4we6Y4lIN/9eZAcHwLr
+         aduwA1vGrM5wGR1rjSzT3kwdA4nwZ5ye7eEYrDFSNOLihtM/sdtFZh1VKCvPwEIfmF1h
+         CfNVPuBNSxsa1hQfgxlwS4raMhXaXd8N1Oo6u8v7m5eN4C4x/ZwA1mt3vh5A8+BwmlRz
+         L92bkWYDZsb4wO5yd1LyiGk+z26AmIP6rC/7apQiyoZGf+oqTEXiFHCgXINgtmEtkk/i
+         Ps3jLjpQEWaG1FuKycsOpPXTJk73HXRBLXSetk1jqTtqmsXoPET1VPuC8cZ3eLbN4N+w
+         u3jw==
+X-Gm-Message-State: AOAM533NvpwUzr8FHYXAANhtQwtcgL+e1rK7zajkuwKa+fRVjfA9VipG
+        1rW6IC4Kh517KOBzzyfWo/Fg7rfXLP3vs1GjLdp09TevHKc=
+X-Google-Smtp-Source: ABdhPJzpAtvS8SvpH5ijGaUyYzuFfu/GqADQI5kuGerH21whrN7qZWKTmJRI1VlfQqqj4SZDgZJ68ZS5/4yUqL/zZjg=
+X-Received: by 2002:a05:651c:503:: with SMTP id o3mr24655828ljp.368.1619706893639;
+ Thu, 29 Apr 2021 07:34:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210405234713.3190693-1-linus.walleij@linaro.org>
+In-Reply-To: <20210405234713.3190693-1-linus.walleij@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 29 Apr 2021 16:34:42 +0200
+Message-ID: <CACRpkdZVDN2tGLiVT2sZKAT7PKYi-Opk2Gzop3DAj5Lm0OVdzw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/panel: Add DT bindings for Samsung LMS397KF04
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Doug Anderson <dianders@chromium.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, dem 29.04.2021 um 15:30 +0800 schrieb Peng Fan (OSS):
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> i.MX8MM has blk ctl module, the handshake can only finish after setting
-> blk ctl. The blk ctl driver will set the bus clk bit and the handshake
-> will finish there. we just add a delay and suppose the handshake will
-> finish after that.
+On Tue, Apr 6, 2021 at 1:47 AM Linus Walleij <linus.walleij@linaro.org> wrote:
 
-Instead of this patch, just drop patch 05/16 from this series. I think
-we should leave a comment in the code on why we aren't waiting for the
-handshake ack, as this is non-obvious from looking at the driver code. 
+> This adds device tree bindings for the Samsung LMS397KF04
+> RGB DPI display panel.
+>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 
-Basically add a polished version of the commit log from this patch into
-the driver code.
+Someone on DRM misc up to review and/or apply these two
+patches?
 
-Regards,
-Lucas
+Doug? I bet you have some patch(es) you can toss back at me to
+review in return.
 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/soc/imx/gpcv2.c | 8 --------
->  1 file changed, 8 deletions(-)
-> 
-> diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-> index 49dd137f6b94..04564017bfe9 100644
-> --- a/drivers/soc/imx/gpcv2.c
-> +++ b/drivers/soc/imx/gpcv2.c
-> @@ -251,14 +251,6 @@ static int imx_pgc_power_up(struct generic_pm_domain *genpd)
->  		regmap_update_bits(domain->regmap, GPC_PU_PWRHSK,
->  				   domain->bits.hskreq, domain->bits.hskreq);
->  
-> 
-> 
-> 
-> -		ret = regmap_read_poll_timeout(domain->regmap, GPC_PU_PWRHSK,
-> -					       reg_val,
-> -					       (reg_val & domain->bits.hskack),
-> -					       0, USEC_PER_MSEC);
-> -		if (ret) {
-> -			dev_err(domain->dev, "failed to power up ADB400\n");
-> -			goto out_clk_disable;
-> -		}
->  	}
->  
-> 
-> 
-> 
->  	/* Disable reset clocks for all devices in the domain */
-
-
+Yours,
+Linus Walleij
