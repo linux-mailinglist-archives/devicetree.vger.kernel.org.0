@@ -2,68 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93B7D36EAB4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 14:43:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B054B36EAB8
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 14:43:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235751AbhD2Mnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 08:43:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44936 "EHLO
+        id S237081AbhD2Mo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 08:44:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231490AbhD2Mnu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 08:43:50 -0400
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEAA1C06138D
-        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 05:43:03 -0700 (PDT)
-Received: by mail-pg1-x529.google.com with SMTP id q10so47042947pgj.2
-        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 05:43:03 -0700 (PDT)
+        with ESMTP id S233731AbhD2Mo3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 08:44:29 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D259CC06138B;
+        Thu, 29 Apr 2021 05:43:42 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id n138so104745025lfa.3;
+        Thu, 29 Apr 2021 05:43:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=crS9ky0D82Wt0+fljR8qv3pG4hOh+6EKRJ+LxnWrSUM=;
-        b=Xi9/ECHF1kiL4sZQf8ePRrM4sFvJothu07czMfM7+0rwkeT5dz/ETyQhkXAU5BFSQ8
-         0dkUq2GFrQNUGjO3JTGEikhD+BcmDJ1rRkFvQ2sfpG5mJTu4idtkCnYXLlIKP+inBLP0
-         xGd59D2SvVU6Q7vhQ3ckga/4AVopXB+jq3ntU=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=PVk9gFFvxbCFJvq/YZ1h5eGtLwfb3YoRJmsi5P9iLGQ=;
+        b=V30khvUcy3G7kkRwcPcty+E0gg+up+FNSU+ErmcG5jIB+OgEjb0Xg9xSRVbJOsTfaH
+         roMqHqnATraO5DGjYsiUiuScVtAxsEaHPLkNH+Y5vqzFD1GZqPWF+PH6u0TnXAGuIJzT
+         608dkIX/0f6dE0jUjTTBonZS2ZVnRuOH0r8Ua+41fW0jmlo1H9zg8VnrjMHwjSlCEe2X
+         tYitcBqCEdNuy9KPrBjDBeQ8mNk6lNsIXC697ntk/4UgikkNMHij9hXZvWT6zgjDsKr4
+         SINUR9ntBh5EKeSy/yuIP29l7OMmAeXkBcGoHyUjU2h1ewNXNMwfkaY7Nn5lP65cfv94
+         MteQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=crS9ky0D82Wt0+fljR8qv3pG4hOh+6EKRJ+LxnWrSUM=;
-        b=hZfCM1uEhEy8ggIrbam/GnLa8YQFnIWvPd4XtjgxyN+5/UblLVxlOfBtkahOzuBR0u
-         oZlxfUOI1oDpaQoMt8BaB7AewO/5oB4FQNhkJGcAZ8UIy2sqGTkHzyfRDAVJ3mdrXIuz
-         JvWckgeHm1AeW1mZ76a/obq+Bq/ZVqNqzFPV4D9xiEhPTIY6IwRTi3WO4ucAxlGzfyBL
-         JyZCsZtML9mhrV/X5eRQ/8lhN+y2rRT2fO7/ndMdWoGPkZ/qe0WkmVHS1LR8kZRKq+4P
-         WQ/dD88OPmpCTVjnPz3s/DN+Xj2LRJMbQR07frh7zdQ4rQ0Nl+136gVIY4xGEtJ1gL22
-         z2IQ==
-X-Gm-Message-State: AOAM53190Cjub+MxZtalKoukPnhSTaYGSvXWEdbf8idXBeg+BjIr/8Fr
-        tQKP/flE9cEgUGuIRxeZb/zQgQ==
-X-Google-Smtp-Source: ABdhPJz2MzWWnfUD0vMOFMEvRNGbWDQvlbTZcrSRb22eap40StYH4HAhvSDiQFk31bfH/TttXMOHyg==
-X-Received: by 2002:a63:5458:: with SMTP id e24mr31905415pgm.170.1619700183382;
-        Thu, 29 Apr 2021 05:43:03 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:59f:ddfb:1a03:fe23])
-        by smtp.gmail.com with UTF8SMTPSA id k17sm2467759pfa.68.2021.04.29.05.43.02
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=PVk9gFFvxbCFJvq/YZ1h5eGtLwfb3YoRJmsi5P9iLGQ=;
+        b=dYdMI1cObYPQGbjrpLpg9R0SriHX/C2Yct78LnYDUiyoMr+zPMHQxKvT2okBCoxQgS
+         Q06FjDj+PK3vJ90NcbDyjWIq3cH49l5fuHenLjZjL0jhmKZjy08n0eNoRJmp99+VrHPo
+         Li+DX8d5PFSM4UhWAbeO6JWbNiWudk+/VwNTrRccS1vRD1mlBXu9f32005iYWTR6Y5FR
+         nvW05alS6nLxV9tEUbDMmRsRn1HeI4AjVtx5QhfAYOQE8wqE/sZbi1pzhkg7XUB7aKnf
+         bXlt/3E8oXQxylkueFgHpp+UatPS4GvIHnSuJT490a6SxNHr+8RLcL7a+P47MuIGYVbO
+         HsDQ==
+X-Gm-Message-State: AOAM533ZcnxevzpcmfVZkGZnUL3f/xoVrV6oF6NzYp1OUevfHLiX3Txz
+        p7CT+ITfmaExm/5PyVzZYx3K31/nDzo=
+X-Google-Smtp-Source: ABdhPJzTUmASQ+X8zCC4YvyqwA/DDAdCGKp2SuYQuR5grWh5yLV0nDvs/9BMEEM1CAb0LKenZPmotQ==
+X-Received: by 2002:a05:6512:108c:: with SMTP id j12mr12271573lfg.403.1619700221262;
+        Thu, 29 Apr 2021 05:43:41 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-193-102.dynamic.spd-mgts.ru. [109.252.193.102])
+        by smtp.googlemail.com with ESMTPSA id a26sm517283ljk.55.2021.04.29.05.43.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Apr 2021 05:43:03 -0700 (PDT)
-Date:   Thu, 29 Apr 2021 05:43:02 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Document google,senor board
-Message-ID: <YIqp1g//jV7gxepo@google.com>
-References: <1619674827-26650-1-git-send-email-rnayak@codeaurora.org>
+        Thu, 29 Apr 2021 05:43:40 -0700 (PDT)
+Subject: Re: [PATCH v2 0/5] iommu: Support identity mappings of
+ reserved-memory regions
+To:     Krishna Reddy <vdumpa@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+References: <20210423163234.3651547-1-thierry.reding@gmail.com>
+ <869ec3a2-26df-2ce8-bd21-b681d6ef3985@gmail.com>
+ <BY5PR12MB3764DFDEA8125650799DC76CB3419@BY5PR12MB3764.namprd12.prod.outlook.com>
+ <bbcf6dbe-367b-38b2-91bf-9d5f4cd2c57c@gmail.com>
+ <BY5PR12MB3764DC583BC2AFE0CA674DDFB35F9@BY5PR12MB3764.namprd12.prod.outlook.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <ea07db7b-e932-8d7d-0240-625b6e5aa765@gmail.com>
+Date:   Thu, 29 Apr 2021 15:43:40 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
+In-Reply-To: <BY5PR12MB3764DC583BC2AFE0CA674DDFB35F9@BY5PR12MB3764.namprd12.prod.outlook.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1619674827-26650-1-git-send-email-rnayak@codeaurora.org>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 29, 2021 at 11:10:26AM +0530, Rajendra Nayak wrote:
-> Document the google,senor board based on sc7280 SoC
+29.04.2021 08:51, Krishna Reddy пишет:
+> Hi Dmitry,
 > 
-> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+>> Thank you for the answer. Could you please give more information about:
+>> 1) Are you on software or hardware team, or both?
+> 
+> I am in the software team and has contributed to initial Tegra SMMU driver in the downstream along with earlier team member Hiroshi Doyu.
+> 
+>> 2) Is SMMU a third party IP or developed in-house?
+> 
+> Tegra SMMU is developed in-house. 
+> 
+>> 3) Do you have a direct access to HDL sources? Are you 100% sure that
+>> hardware does what you say?
+> 
+> It was discussed with Hardware team before and again today as well.
+> Enabling ASID for display engine while it continues to access the buffer memory is a safe operation.
+> As per HW team, The only side-effect that can happen is additional latency to transaction as SMMU caches get warmed up.
+> 
+>> 4) What happens when CPU writes to ASID register? Does SMMU state machine
+>> latch ASID status (making it visible) only at a single "safe" point?
+> 
+> MC makes a decision on routing transaction through either SMMU page tables or bypassing based on the ASID register value.  It
+> checks the ASID register only once per transaction in the pipeline.
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Thank you very much for the clarification.
