@@ -2,188 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7151E36F105
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 22:28:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9347536F137
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 22:39:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237046AbhD2U3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 16:29:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36446 "EHLO mail.kernel.org"
+        id S236677AbhD2Ujq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 16:39:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39822 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237043AbhD2U3X (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Apr 2021 16:29:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 551276140C
-        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 20:28:36 +0000 (UTC)
+        id S236675AbhD2Ujp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Apr 2021 16:39:45 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8BA9B61424;
+        Thu, 29 Apr 2021 20:38:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1619728116;
-        bh=0BnoRIh0x+jKrYCuNgZfUDseDnW+A57IwCVmCuujmSU=;
+        s=k20201202; t=1619728738;
+        bh=7fpzpOV4zd0vGWk7Nig3KUb6uMJJYVewdGFJlgXV4LY=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LfQ1WNOTUvIsaLP7uwKGMXeQDdupD5sDiiuZ88DP1HAfLkUMuqMVYSKpnsJ3+7a8i
-         F2kB4NUp5FxTxbZ4v3mC4XybiEeO7A6huS0ssS/X8/6t1Q3+Ywm8RkHjxoNQLc3/gB
-         oyq5f0KXzjUCyI1PozXgd+MxT2eMVj6b/NJgt4HTcf9MpbL/KJiMcOsddzO8lk3bKy
-         RgvOtedDK7HLq/hbyEC/tlsTzLhngv5BDHyevDq4dX8oo2K8kJnEdrn+IWlS9p1UVg
-         BjtJD+hNtUK0KAsBPx2/1E0ggEbOQdt4/lNDzxYf+p75GI3wY1dkcvc01RAS+0PuFe
-         aApK+lBzJqJbg==
-Received: by mail-ed1-f42.google.com with SMTP id c22so16475108edn.7
-        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 13:28:36 -0700 (PDT)
-X-Gm-Message-State: AOAM530BpTT0KDF43wmpVTJ6G3bBCOMTSqR2LpqD1eAK+wyq9Z4JhuMs
-        P5TdLtGTjz8yHNdoYOhlq2/51xM4ygCri5lMnw==
-X-Google-Smtp-Source: ABdhPJxMOUN64eXk3XGGtS2y8xfmwijWD3hopeTGvoXOCZbF0i4U0b0yB/FzcEwhUmrbaj/ZKMa2hoKcH1qqqwtX2Tw=
-X-Received: by 2002:a05:6402:212:: with SMTP id t18mr1709820edv.165.1619728114787;
- Thu, 29 Apr 2021 13:28:34 -0700 (PDT)
+        b=cNpYsunI00J2o1O4QCg8osIK8v04uOc/PbHjS4Y4zu2D5I/+eqeyDYZrSDU5FmVbj
+         0G2UtVVjmkkt7WxU0uOMKAIfa9rCWwxpSk2y+3dzNPILqIfhtjNwcx6KHa8n0yrs4j
+         EIy/9Z/KXE1a9BkIase6egfGDf4n2W1Unuq/blldVABxfty4wFUyic5bpwpV/CWX9Z
+         qXc3yWEVsuARaZlVG2rSZ0iaEREf2ZQXxLwGMF0lVmcd/iM+G6oJvWCjFuCCHTFv3o
+         dWTNZVh6/wys/RkO3Nh53WIzySBYPLGlkIkXRXOa47KiGmzKj58HAMX75D7xGcALL0
+         uZglbRslGJl/g==
+Received: by mail-ej1-f51.google.com with SMTP id n2so101854491ejy.7;
+        Thu, 29 Apr 2021 13:38:58 -0700 (PDT)
+X-Gm-Message-State: AOAM531M9hk9YIVsbscfLwQET38f16VfFIHjBkTmSFCSxs/1K3OFQmOJ
+        jxoqjAtLaR7z+w+QA1+aO4IlzorpKMbSHjhyPA==
+X-Google-Smtp-Source: ABdhPJys+AHIA7g0Hb9LngctVWlxApTbTRNaemN0NP5iP2Mprf+bpox8GRotpdVwoHfbA6KYjOGY7O7u2wDHKbJNX7I=
+X-Received: by 2002:a17:906:7806:: with SMTP id u6mr393550ejm.130.1619728737129;
+ Thu, 29 Apr 2021 13:38:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210424191946.69978-1-ezequiel@collabora.com>
- <20210424191946.69978-2-ezequiel@collabora.com> <20210429162542.GA1372880@robh.at.kernel.org>
- <7ecf337931cbd16432311d24397ae4506fc7fd1f.camel@collabora.com>
-In-Reply-To: <7ecf337931cbd16432311d24397ae4506fc7fd1f.camel@collabora.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 29 Apr 2021 15:28:23 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLDPXmZ9hxJjPK1n6qhPEoRB80=4PBsRD0HE3LLktbtWQ@mail.gmail.com>
-Message-ID: <CAL_JsqLDPXmZ9hxJjPK1n6qhPEoRB80=4PBsRD0HE3LLktbtWQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: timer: convert rockchip,rk-timer.txt to YAML
-To:     Ezequiel Garcia <ezequiel@collabora.com>
-Cc:     "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Collabora Kernel ML <kernel@collabora.com>
+References: <20210429192504.1148842-1-clabbe@baylibre.com>
+In-Reply-To: <20210429192504.1148842-1-clabbe@baylibre.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 29 Apr 2021 15:38:45 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJqFGU5EG+7GuRKFBaYZkB+Af41ZvqZH=54PH7qCQoMEg@mail.gmail.com>
+Message-ID: <CAL_JsqJqFGU5EG+7GuRKFBaYZkB+Af41ZvqZH=54PH7qCQoMEg@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: dma: convert arm-pl08x to yaml
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     Vinod <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
+        <dmaengine@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 29, 2021 at 12:03 PM Ezequiel Garcia <ezequiel@collabora.com> wrote:
+On Thu, Apr 29, 2021 at 2:25 PM Corentin Labbe <clabbe@baylibre.com> wrote:
 >
-> On Thu, 2021-04-29 at 11:25 -0500, Rob Herring wrote:
-> > On Sat, Apr 24, 2021 at 04:19:46PM -0300, Ezequiel Garcia wrote:
-> > > Convert Rockchip Timer dt-bindings to YAML.
-> > >
-> > > Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> > > ---
-> > >  .../bindings/timer/rockchip,rk-timer.txt      | 27 --------
-> > >  .../bindings/timer/rockchip,rk-timer.yaml     | 67 +++++++++++++++++++
-> > >  2 files changed, 67 insertions(+), 27 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/timer/rockchip,rk-timer.txt
-> > >  create mode 100644 Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/timer/rockchip,rk-timer.txt b/Documentation/devicetree/bindings/timer/rockchip,rk-timer.txt
-> > > deleted file mode 100644
-> > > index d65fdce7c7f0..000000000000
-> > > --- a/Documentation/devicetree/bindings/timer/rockchip,rk-timer.txt
-> > > +++ /dev/null
-> > > @@ -1,27 +0,0 @@
-> > > -Rockchip rk timer
-> > > -
-> > > -Required properties:
-> > > -- compatible: should be:
-> > > -  "rockchip,rv1108-timer", "rockchip,rk3288-timer": for Rockchip RV1108
-> > > -  "rockchip,rk3036-timer", "rockchip,rk3288-timer": for Rockchip RK3036
-> > > -  "rockchip,rk3066-timer", "rockchip,rk3288-timer": for Rockchip RK3066
-> > > -  "rockchip,rk3188-timer", "rockchip,rk3288-timer": for Rockchip RK3188
-> > > -  "rockchip,rk3228-timer", "rockchip,rk3288-timer": for Rockchip RK3228
-> > > -  "rockchip,rk3229-timer", "rockchip,rk3288-timer": for Rockchip RK3229
-> > > -  "rockchip,rk3288-timer": for Rockchip RK3288
-> > > -  "rockchip,rk3368-timer", "rockchip,rk3288-timer": for Rockchip RK3368
-> > > -  "rockchip,rk3399-timer": for Rockchip RK3399
-> > > -- reg: base address of the timer register starting with TIMERS CONTROL register
-> > > -- interrupts: should contain the interrupts for Timer0
-> > > -- clocks : must contain an entry for each entry in clock-names
-> > > -- clock-names : must include the following entries:
-> > > -  "timer", "pclk"
-> > > -
-> > > -Example:
-> > > -       timer: timer@ff810000 {
-> > > -               compatible = "rockchip,rk3288-timer";
-> > > -               reg = <0xff810000 0x20>;
-> > > -               interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-> > > -               clocks = <&xin24m>, <&cru PCLK_TIMER>;
-> > > -               clock-names = "timer", "pclk";
-> > > -       };
-> > > diff --git a/Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml b/Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml
-> > > new file mode 100644
-> > > index 000000000000..f1bc3ac7abc8
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml
-> > > @@ -0,0 +1,67 @@
-> > > +# SPDX-License-Identifier: GPL-2.0
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/timer/rockchip,rk-timer.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Rockchip Timer Device Tree Bindings
-> > > +
-> > > +maintainers:
-> > > +  - Daniel Lezcano <daniel.lezcano@linaro.org>
-> >
-> > This should be someone that knows the h/w and cares about Rockchip.
-> >
+> Converts dma/arm-pl08x.txt to yaml.
+> In the process, I add an example for the faraday variant.
 >
-> Daniel wrote the driver, so I figured he'd care :)
-
-Ah, then that's fine I guess. Given he is also the subsystem
-maintainer I was confused.
-
-> If not, perhaps Heiko (if he agrees)?
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> ---
+> Changes since v1:
+> - fixes yamllint warning about indent
+> - added select
+> - fixed example (needed includes)
 >
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - const: rockchip,rk3288-timer
-> > > +      - const: rockchip,rk3399-timer
-> > > +      - items:
-> > > +          - enum:
-> > > +            - rockchip,rv1108-timer
-> > > +            - rockchip,rk3036-timer
-> > > +            - rockchip,rk3066-timer
-> > > +            - rockchip,rk3188-timer
-> > > +            - rockchip,rk3228-timer
-> > > +            - rockchip,rk3229-timer
-> > > +            - rockchip,rk3288-timer
-> > > +            - rockchip,rk3368-timer
-> > > +            - rockchip,px30-timer
-> > > +          - const: rockchip,rk3288-timer
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    minItems: 2
-> > > +    maxItems: 2
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      enum:
-> > > +        - timer
-> > > +        - pclk
-> >
-> > We can't define the order here? We should fix dts files if they are
-> > inconsistent.
-> >
+>  .../devicetree/bindings/dma/arm-pl08x.txt     |  59 --------
+>  .../devicetree/bindings/dma/arm-pl08x.yaml    | 141 ++++++++++++++++++
+>  2 files changed, 141 insertions(+), 59 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/dma/arm-pl08x.txt
+>  create mode 100644 Documentation/devicetree/bindings/dma/arm-pl08x.yaml
+
+> diff --git a/Documentation/devicetree/bindings/dma/arm-pl08x.yaml b/Documentation/devicetree/bindings/dma/arm-pl08x.yaml
+> new file mode 100644
+> index 000000000000..06dec6f3e9a8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/arm-pl08x.yaml
+> @@ -0,0 +1,141 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ARM PrimeCells PL080 and PL081 and derivatives DMA controller
+> +
+> +maintainers:
+> +  - Vinod Koul <vkoul@kernel.org>
+> +
+> +allOf:
+> +  - $ref: "dma-controller.yaml#"
+> +
+> +# We need a select here so we don't match all nodes with 'arm,primecell'
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - arm,pl080
+> +          - arm,pl081
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: "arm,pl080"
+> +          - const: "arm,primecell"
+> +      - items:
+> +          - const: "arm,pl081"
+> +          - const: "arm,primecell"
+
+The first 2 oneOf entries can be combined into one.
+
+And you don't need quotes.
+
+> +      - items:
+> +          - const: faraday,ftdma020
+> +          - const: arm,pl080
+> +          - const: arm,primecell
+
+blank line between each DT property
+
+> +  arm,primecell-periphid:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+This already has a type in the common definition, so drop.
+
+> +    description: on the FTDMAC020 the primecell ID is not hard-coded
+> +                 in the hardware and must be specified here as <0x0003b080>. This number
+> +                 follows the PrimeCell standard numbering using the JEP106 vendor code 0x38
+> +                 for Faraday Technology.
+> +  reg:
+> +    minItems: 1
+
+Convention is 'maxItems: 1'.
+
+> +    description: Address range of the PL08x registers
+> +  interrupts:
+> +    minItems: 1
+> +    description: The PL08x interrupt number
+> +  clocks:
+> +    minItems: 1
+> +    description: The clock running the IP core clock
+> +  clock-names:
+> +    const: "apb_pclk"
+
+primecell.yaml already covers this IIRC. Just 'maxItems: 1' is fine here.
+
+> +  lli-bus-interface-ahb1:
+> +    type: boolean
+> +    description: if AHB master 1 is eligible for fetching LLIs
+> +  lli-bus-interface-ahb2:
+> +    type: boolean
+> +    description: if AHB master 2 is eligible for fetching LLIs
+> +  mem-bus-interface-ahb1:
+> +    type: boolean
+> +    description: if AHB master 1 is eligible for fetching memory contents
+> +  mem-bus-interface-ahb2:
+> +    type: boolean
+> +    description: if AHB master 2 is eligible for fetching memory contents
+> +  "#dma-cells":
+> +    const: 2
+> +    description: must be <2>. First cell should contain the DMA request,
+
+'must be <2>' is already stated by the schema.
+
+> +                 second cell should contain either 1 or 2 depending on
+> +                 which AHB master that is used.
+> +
+> +  memcpy-burst-size:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum:
+> +      - 1
+> +      - 4
+> +      - 8
+> +      - 16
+> +      - 32
+> +      - 64
+> +      - 128
+> +      - 256
+> +    description: the size of the bursts for memcpy
+> +  memcpy-bus-width:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum:
+> +      - 8
+> +      - 16
+> +      - 32
+> +      - 64
+> +    description: |
+
+Don't need '|' unless you need to preserve formatting.
+
+> +                 the bus width used for memcpy in bits: 8, 16 or 32 are legal
+> +                 values, the Faraday FTDMAC020 can also accept 64 bits
+> +
+> +required:
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - "#dma-cells"
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    dmac0: dma-controller@10130000 {
+> +      compatible = "arm,pl080", "arm,primecell";
+> +      reg = <0x10130000 0x1000>;
+> +      interrupt-parent = <&vica>;
+> +      interrupts = <15>;
+> +      clocks = <&hclkdma0>;
+> +      clock-names = "apb_pclk";
+> +      lli-bus-interface-ahb1;
+> +      lli-bus-interface-ahb2;
+> +      mem-bus-interface-ahb2;
+> +      memcpy-burst-size = <256>;
+> +      memcpy-bus-width = <32>;
+> +      #dma-cells = <2>;
+> +    };
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/reset/cortina,gemini-reset.h>
+> +    #include <dt-bindings/clock/cortina,gemini-clock.h>
+> +    dma-controller@67000000 {
+> +      compatible = "faraday,ftdma020", "arm,pl080", "arm,primecell";
+> +      /* Faraday Technology FTDMAC020 variant */
+> +      arm,primecell-periphid = <0x0003b080>;
+> +      reg = <0x67000000 0x1000>;
+> +      interrupts = <9 IRQ_TYPE_EDGE_RISING>;
+> +      resets = <&syscon GEMINI_RESET_DMAC>;
+> +      clocks = <&syscon GEMINI_CLK_AHB>;
+> +      clock-names = "apb_pclk";
+> +      /* Bus interface AHB1 (AHB0) is totally tilted */
+> +      lli-bus-interface-ahb2;
+> +      mem-bus-interface-ahb2;
+> +      memcpy-burst-size = <256>;
+> +      memcpy-bus-width = <32>;
+> +      #dma-cells = <2>;
+> +    };
+> --
+> 2.26.3
 >
-> The driver requests the clocks by name, and unfortunately DTS
-> rely on that.
-
-That's good, then the OS doesn't care if you change it. Of course, I
-didn't have to look to tell that. If the order varied, the OS would
-have to use the names.
-
-> We can change all the DTSI, but wouldn't that
-> be too much trouble for something that is currently working fine?
-
-It's not *all*. At least half are correct. Pick the order that's the majority.
-
-> Why is the order important?
-
-Because that's the DT convention. Why is random order important?
-
-I don't really care so much on an individual binding, but overall if
-defining the order doesn't cost anything then we should. The more
-order is not defined, the more people are going to copy those
-examples. Yes, there's a cost on fixing dts files, but if we're
-writing schema to pass on existing dts files, what's the point of
-schema?
-
-Rob
