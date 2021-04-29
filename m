@@ -2,91 +2,747 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC0CB36EDBF
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 17:59:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B1F436EDEF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 18:13:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233480AbhD2P7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 11:59:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60592 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233132AbhD2P7v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 11:59:51 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA08FC06138B;
-        Thu, 29 Apr 2021 08:59:04 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 77A6DDA8;
-        Thu, 29 Apr 2021 17:59:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1619711942;
-        bh=QIfftPY1sAFeNytxhpmbLCj4pubEk0HHHZHxg2SPokI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=frjgc9LFHaXmW2dvdaoBwI4cL0FtZzvu3bbLRIAk56rXByzV4/BUt5liLVqu9s9R3
-         3yKh5EFjhc0IrkOfmlM+Jjhmb2+o/hrRMCihRI+Am2fzuVa+CRILwtRyfR9RsoXliX
-         rv1pgJKAukiSSDJxC+hiT9NJMWkxOJBtVrs4IM/g=
-Date:   Thu, 29 Apr 2021 18:59:01 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: renesas,du: Add missing
- power-domains property
-Message-ID: <YIrXxWbJ2LmcoQn1@pendragon.ideasonboard.com>
-References: <600d42256515f180bc84b72e8bdb5c5d9126ab62.1619700459.git.geert+renesas@glider.be>
+        id S233302AbhD2QNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 12:13:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51510 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232004AbhD2QNq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Apr 2021 12:13:46 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C38F1613C2;
+        Thu, 29 Apr 2021 16:12:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1619712780;
+        bh=CeU1zHS8DwjOrjo2ckGZGFL1lDq+9OkSGhxgiVtgB8w=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=EDjSoeJwA/9e1f1XCfg6WIMQ8fbdLHXcp+t+1neXQ8FORsNw2DkKqoljg+4ftqezr
+         lSlK7UlkQcRafEaHKQs+xzEnqXAJAnb4zdj0G0OgJmTSRxgEMMEPMjP/09oRxLIr6u
+         wJW6y+QkHJIKK+sTiOnoQybC1AIyXsFAFW9jNjL923pK+vnuWB6rXMjvGtj0hFWKoZ
+         hTCUZ3T/KYe5FaXZAvbk5OVbCWLDrowPRNbDN37K1ME2tjF5YWLWU42qMtOiStgW/h
+         Ck4r6Td5hSYuPEEliyImVyVD9zYMUDYZ5k6T/HElD4gQcrRbWP5gfPITQuv2MF3aqu
+         c7QZq10ym06nQ==
+Received: by mail-ed1-f42.google.com with SMTP id s15so79295452edd.4;
+        Thu, 29 Apr 2021 09:12:59 -0700 (PDT)
+X-Gm-Message-State: AOAM533lA9zxlX4wv1JPyEJWRuKDGUJGmYKIYJs5w+kj7kBcvV/cADW1
+        jTjPiKbBvIPy2SvtGNunoX7cUOuDMyN/b500LA==
+X-Google-Smtp-Source: ABdhPJyrThtSbOXd6GBoD9oPLfIbPZGQWpMuyy/fKwK5NVHtm3TmAdITYovf24U5Vzo46Oww75+6zcsClC5louU78xE=
+X-Received: by 2002:a05:6402:1e4:: with SMTP id i4mr432230edy.62.1619712777963;
+ Thu, 29 Apr 2021 09:12:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <600d42256515f180bc84b72e8bdb5c5d9126ab62.1619700459.git.geert+renesas@glider.be>
+References: <20210428055750.683963-1-clabbe@baylibre.com> <1619648109.771241.4061028.nullmailer@robh.at.kernel.org>
+ <YIrJTycPqfP0UnEz@Red>
+In-Reply-To: <YIrJTycPqfP0UnEz@Red>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 29 Apr 2021 11:12:45 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJab4wmfDSyz-uQpp24Qcus8j=Vks8Yfk472rgXyd5U6g@mail.gmail.com>
+Message-ID: <CAL_JsqJab4wmfDSyz-uQpp24Qcus8j=Vks8Yfk472rgXyd5U6g@mail.gmail.com>
+Subject: Re: [PATCH RFC] dt-bindings: dma: convert arm-pl08x to yaml
+To:     LABBE Corentin <clabbe@baylibre.com>
+Cc:     devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
+        <dmaengine@vger.kernel.org>, Vinod <vkoul@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On Thu, Apr 29, 2021 at 9:57 AM LABBE Corentin <clabbe@baylibre.com> wrote:
+>
+> Le Wed, Apr 28, 2021 at 05:15:09PM -0500, Rob Herring a =C3=A9crit :
+> > On Wed, 28 Apr 2021 05:57:50 +0000, Corentin Labbe wrote:
+> > > Converts dma/arm-pl08x.txt to yaml.
+> > > In the process, I add an example for the faraday variant.
+> > >
+> > > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> > > ---
+> > >  .../devicetree/bindings/dma/arm-pl08x.txt     |  59 --------
+> > >  .../devicetree/bindings/dma/arm-pl08x.yaml    | 127 ++++++++++++++++=
+++
+> > >  2 files changed, 127 insertions(+), 59 deletions(-)
+> > >  delete mode 100644 Documentation/devicetree/bindings/dma/arm-pl08x.t=
+xt
+> > >  create mode 100644 Documentation/devicetree/bindings/dma/arm-pl08x.y=
+aml
+> > >
+> >
+> > My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_chec=
+k'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> > ./Documentation/devicetree/bindings/dma/arm-pl08x.yaml:19:9: [warning] =
+wrong indentation: expected 10 but found 8 (indentation)
+> > ./Documentation/devicetree/bindings/dma/arm-pl08x.yaml:22:9: [warning] =
+wrong indentation: expected 10 but found 8 (indentation)
+> > ./Documentation/devicetree/bindings/dma/arm-pl08x.yaml:25:9: [warning] =
+wrong indentation: expected 10 but found 8 (indentation)
+> > ./Documentation/devicetree/bindings/dma/arm-pl08x.yaml:66:9: [warning] =
+wrong indentation: expected 6 but found 8 (indentation)
+> > ./Documentation/devicetree/bindings/dma/arm-pl08x.yaml:78:9: [warning] =
+wrong indentation: expected 6 but found 8 (indentation)
+> >
+>
+> Hello
+>
+> I have installed yamllint, so this kind of error should no happen again
+>
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/wa=
+tchdog/arm,sp805.example.dt.yaml: watchdog@66090000: '#dma-cells' is a requ=
+ired property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/wa=
+tchdog/arm,sp805.example.dt.yaml: watchdog@66090000: $nodename:0: 'watchdog=
+@66090000' does not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/wa=
+tchdog/arm,sp805.example.dt.yaml: watchdog@66090000: compatible: 'oneOf' co=
+nditional failed, one must be fixed:
+> >       ['arm,sp805', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/wa=
+tchdog/arm,sp805.example.dt.yaml: watchdog@66090000: clocks: [[4294967295],=
+ [4294967295]] is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/wa=
+tchdog/arm,sp805.example.dt.yaml: watchdog@66090000: clock-names:0: 'apb_pc=
+lk' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/wa=
+tchdog/arm,sp805.example.dt.yaml: watchdog@66090000: clock-names: ['wdog_cl=
+k', 'apb_pclk'] is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/wa=
+tchdog/arm,sp805.example.dt.yaml: watchdog@66090000: clock-names: Additiona=
+l items are not allowed ('apb_pclk' was unexpected)
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/wa=
+tchdog/arm,sp805.example.dt.yaml: watchdog@66090000: '#dma-cells' is a requ=
+ired property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sp=
+i/spi-pl022.example.dt.yaml: spi@e0100000: '#dma-cells' is a required prope=
+rty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sp=
+i/spi-pl022.example.dt.yaml: spi@e0100000: $nodename:0: 'spi@e0100000' does=
+ not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sp=
+i/spi-pl022.example.dt.yaml: spi@e0100000: compatible: 'oneOf' conditional =
+failed, one must be fixed:
+> >       ['arm,pl022', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sp=
+i/spi-pl022.example.dt.yaml: spi@e0100000: 'clocks' is a required property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sp=
+i/spi-pl022.example.dt.yaml: spi@e0100000: 'clock-names' is a required prop=
+erty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sp=
+i/spi-pl022.example.dt.yaml: spi@e0100000: '#dma-cells' is a required prope=
+rty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/se=
+rial/pl011.example.dt.yaml: serial@80120000: '#dma-cells' is a required pro=
+perty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/se=
+rial/pl011.example.dt.yaml: serial@80120000: $nodename:0: 'serial@80120000'=
+ does not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/se=
+rial/pl011.example.dt.yaml: serial@80120000: compatible: 'oneOf' conditiona=
+l failed, one must be fixed:
+> >       ['arm,pl011', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/se=
+rial/pl011.example.dt.yaml: serial@80120000: clocks: [[4294967295], [429496=
+7295]] is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/se=
+rial/pl011.example.dt.yaml: serial@80120000: clock-names:0: 'apb_pclk' was =
+expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/se=
+rial/pl011.example.dt.yaml: serial@80120000: clock-names: ['uartclk', 'apb_=
+pclk'] is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/se=
+rial/pl011.example.dt.yaml: serial@80120000: clock-names: Additional items =
+are not allowed ('apb_pclk' was unexpected)
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/se=
+rial/pl011.example.dt.yaml: serial@80120000: '#dma-cells' is a required pro=
+perty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@20020000: '#dma-cells' is a required p=
+roperty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@20020000: $nodename:0: 'cti@20020000' =
+does not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@20020000: compatible: 'oneOf' conditio=
+nal failed, one must be fixed:
+> >       ['arm,coresight-cti', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@20020000: '#dma-cells' is a required p=
+roperty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@20020000: 'oneOf' conditional failed, =
+one must be fixed:
+> >       'interrupts' is a required property
+> >       'interrupts-extended' is a required property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@859000: '#dma-cells' is a required pro=
+perty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@859000: $nodename:0: 'cti@859000' does=
+ not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@859000: compatible: 'oneOf' conditiona=
+l failed, one must be fixed:
+> >       ['arm,coresight-cti-v8-arch', 'arm,coresight-cti', 'arm,primecell=
+'] is too long
+> >       Additional items are not allowed ('arm,primecell' was unexpected)
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       'arm,primecell' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@859000: '#dma-cells' is a required pro=
+perty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@859000: 'oneOf' conditional failed, on=
+e must be fixed:
+> >       'interrupts' is a required property
+> >       'interrupts-extended' is a required property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@858000: '#dma-cells' is a required pro=
+perty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@858000: $nodename:0: 'cti@858000' does=
+ not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@858000: compatible: 'oneOf' conditiona=
+l failed, one must be fixed:
+> >       ['arm,coresight-cti', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@858000: '#dma-cells' is a required pro=
+perty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@858000: 'oneOf' conditional failed, on=
+e must be fixed:
+> >       'interrupts' is a required property
+> >       'interrupts-extended' is a required property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@20110000: '#dma-cells' is a required p=
+roperty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@20110000: $nodename:0: 'cti@20110000' =
+does not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@20110000: compatible: 'oneOf' conditio=
+nal failed, one must be fixed:
+> >       ['arm,coresight-cti', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@20110000: '#dma-cells' is a required p=
+roperty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/coresight-cti.example.dt.yaml: cti@20110000: 'oneOf' conditional failed, =
+one must be fixed:
+> >       'interrupts' is a required property
+> >       'interrupts-extended' is a required property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@5000: '#dma-cells' is a required property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@5000: $nodename:0: 'mmc@5000' does not mat=
+ch '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@5000: compatible: 'oneOf' conditional fail=
+ed, one must be fixed:
+> >       ['arm,pl180', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@5000: clocks: [[4294967295], [4294967295]]=
+ is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@5000: clock-names:0: 'apb_pclk' was expect=
+ed
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@5000: clock-names: ['mclk', 'apb_pclk'] is=
+ too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@5000: clock-names: Additional items are no=
+t allowed ('apb_pclk' was unexpected)
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@5000: '#dma-cells' is a required property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@80126000: '#dma-cells' is a required prope=
+rty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@80126000: $nodename:0: 'mmc@80126000' does=
+ not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@80126000: compatible: 'oneOf' conditional =
+failed, one must be fixed:
+> >       ['arm,pl18x', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@80126000: clocks: [[4294967295, 1, 5], [42=
+94967295, 1, 5]] is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@80126000: clock-names:0: 'apb_pclk' was ex=
+pected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@80126000: clock-names: ['sdi', 'apb_pclk']=
+ is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@80126000: clock-names: Additional items ar=
+e not allowed ('apb_pclk' was unexpected)
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@80126000: '#dma-cells' is a required prope=
+rty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@101f6000: '#dma-cells' is a required prope=
+rty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@101f6000: $nodename:0: 'mmc@101f6000' does=
+ not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@101f6000: compatible: 'oneOf' conditional =
+failed, one must be fixed:
+> >       ['arm,pl18x', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@101f6000: clocks: [[4294967295], [42949672=
+95]] is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@101f6000: clock-names:0: 'apb_pclk' was ex=
+pected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@101f6000: clock-names: ['mclk', 'apb_pclk'=
+] is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@101f6000: clock-names: Additional items ar=
+e not allowed ('apb_pclk' was unexpected)
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@101f6000: '#dma-cells' is a required prope=
+rty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@52007000: '#dma-cells' is a required prope=
+rty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@52007000: $nodename:0: 'mmc@52007000' does=
+ not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@52007000: compatible: 'oneOf' conditional =
+failed, one must be fixed:
+> >       ['arm,pl18x', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mm=
+c/arm,pl18x.example.dt.yaml: mmc@52007000: '#dma-cells' is a required prope=
+rty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ti=
+mer/arm,sp804.example.dt.yaml: timer@fc800000: '#dma-cells' is a required p=
+roperty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ti=
+mer/arm,sp804.example.dt.yaml: timer@fc800000: $nodename:0: 'timer@fc800000=
+' does not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ti=
+mer/arm,sp804.example.dt.yaml: timer@fc800000: compatible: 'oneOf' conditio=
+nal failed, one must be fixed:
+> >       ['arm,sp804', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ti=
+mer/arm,sp804.example.dt.yaml: timer@fc800000: interrupts: [[0, 0, 4], [0, =
+1, 4]] is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ti=
+mer/arm,sp804.example.dt.yaml: timer@fc800000: clocks: [[4294967295], [4294=
+967295], [4294967295]] is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ti=
+mer/arm,sp804.example.dt.yaml: timer@fc800000: clock-names:0: 'apb_pclk' wa=
+s expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ti=
+mer/arm,sp804.example.dt.yaml: timer@fc800000: clock-names: ['timer1', 'tim=
+er2', 'apb_pclk'] is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ti=
+mer/arm,sp804.example.dt.yaml: timer@fc800000: clock-names: Additional item=
+s are not allowed ('timer2', 'apb_pclk' were unexpected)
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ti=
+mer/arm,sp804.example.dt.yaml: timer@fc800000: '#dma-cells' is a required p=
+roperty
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhu.example.dt.yaml: mailbox@2b1f0000: '#dma-cells' is a required=
+ property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhu.example.dt.yaml: mailbox@2b1f0000: $nodename:0: 'mailbox@2b1f=
+0000' does not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhu.example.dt.yaml: mailbox@2b1f0000: compatible: 'oneOf' condit=
+ional failed, one must be fixed:
+> >       ['arm,mhu', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhu.example.dt.yaml: mailbox@2b1f0000: interrupts: [[0, 36, 4], [=
+0, 35, 4], [0, 37, 4]] is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhu.example.dt.yaml: mailbox@2b1f0000: '#dma-cells' is a required=
+ property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhu.example.dt.yaml: mailbox@2b2f0000: '#dma-cells' is a required=
+ property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhu.example.dt.yaml: mailbox@2b2f0000: $nodename:0: 'mailbox@2b2f=
+0000' does not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhu.example.dt.yaml: mailbox@2b2f0000: compatible: 'oneOf' condit=
+ional failed, one must be fixed:
+> >       ['arm,mhu-doorbell', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhu.example.dt.yaml: mailbox@2b2f0000: interrupts: [[0, 36, 4], [=
+0, 35, 4], [0, 37, 4]] is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhu.example.dt.yaml: mailbox@2b2f0000: '#dma-cells' is a required=
+ property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhuv2.example.dt.yaml: mailbox@2b1f0000: '#dma-cells' is a requir=
+ed property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhuv2.example.dt.yaml: mailbox@2b1f0000: $nodename:0: 'mailbox@2b=
+1f0000' does not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhuv2.example.dt.yaml: mailbox@2b1f0000: compatible: 'oneOf' cond=
+itional failed, one must be fixed:
+> >       ['arm,mhuv2-tx', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhuv2.example.dt.yaml: mailbox@2b1f0000: '#dma-cells' is a requir=
+ed property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhuv2.example.dt.yaml: mailbox@2b1f1000: '#dma-cells' is a requir=
+ed property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhuv2.example.dt.yaml: mailbox@2b1f1000: $nodename:0: 'mailbox@2b=
+1f1000' does not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhuv2.example.dt.yaml: mailbox@2b1f1000: compatible: 'oneOf' cond=
+itional failed, one must be fixed:
+> >       ['arm,mhuv2-rx', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ma=
+ilbox/arm,mhuv2.example.dt.yaml: mailbox@2b1f1000: '#dma-cells' is a requir=
+ed property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bu=
+s/arm,integrator-ap-lm.example.dt.yaml: serial@100000: '#dma-cells' is a re=
+quired property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bu=
+s/arm,integrator-ap-lm.example.dt.yaml: serial@100000: $nodename:0: 'serial=
+@100000' does not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bu=
+s/arm,integrator-ap-lm.example.dt.yaml: serial@100000: compatible: 'oneOf' =
+conditional failed, one must be fixed:
+> >       ['arm,pl011', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bu=
+s/arm,integrator-ap-lm.example.dt.yaml: serial@100000: 'clocks' is a requir=
+ed property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bu=
+s/arm,integrator-ap-lm.example.dt.yaml: serial@100000: 'clock-names' is a r=
+equired property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bu=
+s/arm,integrator-ap-lm.example.dt.yaml: serial@100000: '#dma-cells' is a re=
+quired property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ne=
+t/wireless/brcm,bcm4329-fmac.example.dt.yaml: mmc@80118000: '#dma-cells' is=
+ a required property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ne=
+t/wireless/brcm,bcm4329-fmac.example.dt.yaml: mmc@80118000: $nodename:0: 'm=
+mc@80118000' does not match '^dma-controller(@.*)?$'
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ne=
+t/wireless/brcm,bcm4329-fmac.example.dt.yaml: mmc@80118000: compatible: 'on=
+eOf' conditional failed, one must be fixed:
+> >       ['arm,pl18x', 'arm,primecell'] is too short
+> >       'arm,pl080' was expected
+> >       'arm,pl081' was expected
+> >       'faraday,ftdma020' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ne=
+t/wireless/brcm,bcm4329-fmac.example.dt.yaml: mmc@80118000: clocks: [[42949=
+67295, 0], [4294967295, 1]] is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ne=
+t/wireless/brcm,bcm4329-fmac.example.dt.yaml: mmc@80118000: clock-names:0: =
+'apb_pclk' was expected
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ne=
+t/wireless/brcm,bcm4329-fmac.example.dt.yaml: mmc@80118000: clock-names: ['=
+mclk', 'apb_pclk'] is too long
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ne=
+t/wireless/brcm,bcm4329-fmac.example.dt.yaml: mmc@80118000: clock-names: Ad=
+ditional items are not allowed ('apb_pclk' was unexpected)
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ne=
+t/wireless/brcm,bcm4329-fmac.example.dt.yaml: mmc@80118000: '#dma-cells' is=
+ a required property
+> >       From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/dma/arm-pl08x.yaml
+> > Error: Documentation/devicetree/bindings/dma/arm-pl08x.example.dts:56.2=
+7-28 syntax error
+> > FATAL ERROR: Unable to parse input tree
+> > make[1]: *** [scripts/Makefile.lib:377: Documentation/devicetree/bindin=
+gs/dma/arm-pl08x.example.dt.yaml] Error 1
+> > make[1]: *** Waiting for unfinished jobs....
+> > make: *** [Makefile:1414: dt_binding_check] Error 2
+> >
+>
+> Most of thoses error came from the fact the compatible end with "arm,prim=
+ecell".
+> So it try to match against the wrong dt-binding.
+>
+> Does there is any correct way to limit/prevent this ?
 
-Thank you for the patch.
+You need a custom 'select' schema. Look at the 'select' schema for
+other users of "arm,primecell".
 
-On Thu, Apr 29, 2021 at 02:47:56PM +0200, Geert Uytterhoeven wrote:
-> "make dtbs_check" complains:
-> 
->     arch/arm/boot/dts/r8a7779-marzen.dt.yaml: display@fff80000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
->     arch/arm64/boot/dts/renesas/r8a77970-v3msk.dt.yaml: display@feb00000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
->     arch/arm64/boot/dts/renesas/r8a77970-eagle.dt.yaml: display@feb00000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
->     arch/arm64/boot/dts/renesas/r8a77980-condor.dt.yaml: display@feb00000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
->     arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dt.yaml: display@feb00000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 
-> Fix this by documenting the power-domains property.
-> 
-> Fixes: 99d66127fad25ebb ("dt-bindings: display: renesas,du: Convert binding to YAML")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  Documentation/devicetree/bindings/display/renesas,du.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/renesas,du.yaml b/Documentation/devicetree/bindings/display/renesas,du.yaml
-> index e955034da53b86e2..0dad87cdd8735542 100644
-> --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
-> +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
-> @@ -51,6 +51,9 @@ properties:
->    resets: true
->    reset-names: true
->  
-> +  power-domains:
-> +    maxItems: 1
-> +
-
-Mind if I move this just before resets: ? I can handle it when applying.
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
->    ports:
->      $ref: /schemas/graph.yaml#/properties/port
->      description: |
-
--- 
-Regards,
-
-Laurent Pinchart
+Rob
