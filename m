@@ -2,121 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35D8E36EAAA
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 14:39:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93B7D36EAB4
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 14:43:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234525AbhD2Mkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 08:40:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44212 "EHLO
+        id S235751AbhD2Mnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 08:43:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233614AbhD2Mkg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 08:40:36 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE775C06138B;
-        Thu, 29 Apr 2021 05:39:48 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id h10so78343859edt.13;
-        Thu, 29 Apr 2021 05:39:48 -0700 (PDT)
+        with ESMTP id S231490AbhD2Mnu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 08:43:50 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEAA1C06138D
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 05:43:03 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id q10so47042947pgj.2
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 05:43:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nJyu5lztcvSNUMTwJMAPSqsY6Cxtw5hApErHFGbx1HU=;
-        b=jldSeqrJV5ZbOrHdTDJQMFbhKbAWMiFSHoZ7U0KOfZr12HaxvOiLh7/Mg8N0U6ock4
-         hB8UgP82MD3wsbfDgHWsmAq2nAacBjZX7GmrTpAg9iCxgo9yDw+11rANFtbyXKaQb9yH
-         NHWksqUQveHODCl77RcYZ+VaQ0TQ1c+6+MzdtEFgo2eoJYvjtEs36SKrDl7YuTzorRp2
-         3WZIJfyplJxpizb0UiMHoWEWsIFqiCyc9+mf90ty8TA8bV6YGBUsls539rd0MVjyBBUs
-         KihGZdxgADqcW2oTQNhc1dUO3vWh9p/D5DAqDpYsGaTUxFlloyqvCUW6lsJVm0t8hwcD
-         k2wQ==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=crS9ky0D82Wt0+fljR8qv3pG4hOh+6EKRJ+LxnWrSUM=;
+        b=Xi9/ECHF1kiL4sZQf8ePRrM4sFvJothu07czMfM7+0rwkeT5dz/ETyQhkXAU5BFSQ8
+         0dkUq2GFrQNUGjO3JTGEikhD+BcmDJ1rRkFvQ2sfpG5mJTu4idtkCnYXLlIKP+inBLP0
+         xGd59D2SvVU6Q7vhQ3ckga/4AVopXB+jq3ntU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nJyu5lztcvSNUMTwJMAPSqsY6Cxtw5hApErHFGbx1HU=;
-        b=b9YrQAGyTBxTxHhDkUVpWnbrJQH04mRKi8N2yr9DPaDUHwtugIVvyhIzlgSTJp6mn0
-         DlrTMX5Slt1kNGZ8AxcHX7rB7WW0WajNKzwMOhWu9r23sU7QcEgM+LhwB5vWUtiTODTp
-         qACl/dRVxed2iC4Tz+WjjUlO2oU/hIa8+2VJBC7x+LYMUFGTvFkuayYNdyreHvuDJpKj
-         bxQOjZHfogj6DOby6Ie2N0ZfB+wKb7uQ6iUlWnBJTHZ6wLKbXBfdC3xXWMHvzFYsE5Ps
-         43d6cSeNARBR6S287pxVkeM+BEzfyY4XLHbjjNAxNUPawnbC2g3fmYN3RCxUE2ZGYSTr
-         +Oaw==
-X-Gm-Message-State: AOAM530eZgTurJ3yarUY5f621mcNtGooE2uwbG0itSMJoG4lUNO65V6e
-        3jQFUvKllOvNOuJQ/hIO4fpoNWJPpoLIfPRy/5cjA6ghSRo=
-X-Google-Smtp-Source: ABdhPJzCk4affIPGYmtCQiONLDStcDuXuPaTQfOC9jfRI7kIkq5uQtMppWQHyXlx7sJQD2nlIr/E28WwT4Mr3VpnBKQ=
-X-Received: by 2002:a50:9e0b:: with SMTP id z11mr18134061ede.228.1619699987286;
- Thu, 29 Apr 2021 05:39:47 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=crS9ky0D82Wt0+fljR8qv3pG4hOh+6EKRJ+LxnWrSUM=;
+        b=hZfCM1uEhEy8ggIrbam/GnLa8YQFnIWvPd4XtjgxyN+5/UblLVxlOfBtkahOzuBR0u
+         oZlxfUOI1oDpaQoMt8BaB7AewO/5oB4FQNhkJGcAZ8UIy2sqGTkHzyfRDAVJ3mdrXIuz
+         JvWckgeHm1AeW1mZ76a/obq+Bq/ZVqNqzFPV4D9xiEhPTIY6IwRTi3WO4ucAxlGzfyBL
+         JyZCsZtML9mhrV/X5eRQ/8lhN+y2rRT2fO7/ndMdWoGPkZ/qe0WkmVHS1LR8kZRKq+4P
+         WQ/dD88OPmpCTVjnPz3s/DN+Xj2LRJMbQR07frh7zdQ4rQ0Nl+136gVIY4xGEtJ1gL22
+         z2IQ==
+X-Gm-Message-State: AOAM53190Cjub+MxZtalKoukPnhSTaYGSvXWEdbf8idXBeg+BjIr/8Fr
+        tQKP/flE9cEgUGuIRxeZb/zQgQ==
+X-Google-Smtp-Source: ABdhPJz2MzWWnfUD0vMOFMEvRNGbWDQvlbTZcrSRb22eap40StYH4HAhvSDiQFk31bfH/TttXMOHyg==
+X-Received: by 2002:a63:5458:: with SMTP id e24mr31905415pgm.170.1619700183382;
+        Thu, 29 Apr 2021 05:43:03 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:59f:ddfb:1a03:fe23])
+        by smtp.gmail.com with UTF8SMTPSA id k17sm2467759pfa.68.2021.04.29.05.43.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Apr 2021 05:43:03 -0700 (PDT)
+Date:   Thu, 29 Apr 2021 05:43:02 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Document google,senor board
+Message-ID: <YIqp1g//jV7gxepo@google.com>
+References: <1619674827-26650-1-git-send-email-rnayak@codeaurora.org>
 MIME-Version: 1.0
-References: <20210429073050.21039-1-peng.fan@oss.nxp.com>
-In-Reply-To: <20210429073050.21039-1-peng.fan@oss.nxp.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Thu, 29 Apr 2021 07:39:36 -0500
-Message-ID: <CAHCN7xL11GUSVB3PThsfhxXPtgu1nm1LWSzkJYqj4MHf-aLbVw@mail.gmail.com>
-Subject: Re: [PATCH 00/16] soc: imx: gpcv2: support i.MX8MM
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        Marek Vasut <marex@denx.de>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Abel Vesa <abel.vesa@nxp.com>, Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1619674827-26650-1-git-send-email-rnayak@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 29, 2021 at 1:59 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
->
-> From: Peng Fan <peng.fan@nxp.com>
->
-> This patchset is a pick up Lucas's gpcv2 work for i.MX8MM and several
-> minor changes from me to make it could work with i.MX BLK-CTL driver.
->
-> Thanks for Lucas's work and suggestion, Frieder Schrempf for collecting
-> all the patches, Jacky Bai on help debug issues.
+On Thu, Apr 29, 2021 at 11:10:26AM +0530, Rajendra Nayak wrote:
+> Document the google,senor board based on sc7280 SoC
+> 
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
 
-Thank for you all the work.  I have an i.MX8M Nano that I'll work to
-add support for gpcv2 unless NXP has started this already.  At one
-time, I posted some patches for Nano based on Lucas' work, but since
-that work wasn't accepted, mine wasn't either.
-
-adam
->
-> Lucas Stach (12):
->   soc: imx: gpcv2: move to more ideomatic error handling in probe
->   soc: imx: gpcv2: move domain mapping to domain driver probe
->   soc: imx: gpcv2: switch to clk_bulk_* API
->   soc: imx: gpcv2: split power up and power down sequence control
->   soc: imx: gpcv2: wait for ADB400 handshake
->   soc: imx: gpcv2: add runtime PM support for power-domains
->   soc: imx: gpcv2: allow domains without power-sequence control
->   dt-bindings: imx: gpcv2: add support for optional resets
->   soc: imx: gpcv2: add support for optional resets
->   dt-bindings: power: add defines for i.MX8MM power domains
->   soc: imx: gpcv2: add support for i.MX8MM power domains
->   soc: imx: gpcv2: Add support for missing i.MX8MM VPU/DISPMIX power
->     domains
->
-> Peng Fan (4):
->   soc: imx: gpcv2: correct pm_runtime_get_sync usage
->   soc: imx: gpcv2: move reset assert after requesting domain power up
->   soc: imx: gpcv2: support reset defer probe
->   soc: imx: gpcv2: remove waiting handshake in power up
->
->  .../bindings/power/fsl,imx-gpcv2.yaml         |   9 +
->  drivers/soc/imx/gpcv2.c                       | 534 ++++++++++++++----
->  include/dt-bindings/power/imx8mm-power.h      |  22 +
->  3 files changed, 450 insertions(+), 115 deletions(-)
->  create mode 100644 include/dt-bindings/power/imx8mm-power.h
->
-> --
-> 2.30.0
->
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
