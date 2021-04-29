@@ -2,72 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 847BD36F2B7
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 00:48:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 942FD36F2E0
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 01:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbhD2WtM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 18:49:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38356 "EHLO
+        id S229557AbhD2XcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 19:32:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229853AbhD2WtK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 18:49:10 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6FD9C06138B;
-        Thu, 29 Apr 2021 15:48:23 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id ED2C722239;
-        Fri, 30 Apr 2021 00:48:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1619736502;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=xpz2vUSKO6/55m06O1O//fMXB/R8r80PGS4qvX8VdOA=;
-        b=KOaVJvx2SFj3w7VND+/8f0UbPBoIs2iOrXTSKfUdMbbBF3dPXNTB4A1VqL7QJYYmKKv5ky
-        JiwTmts0NWMc0U7gYZ1q3tjXUtQ60O0yxgExMiq7EL/t9vkM8HRlAx4FUN8UepmmCTxszc
-        QmHd5ITnUhYuaOPla46NvkRpgmApDiY=
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 30 Apr 2021 00:48:21 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Pratyush Yadav <p.yadav@ti.com>
-Cc:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S229519AbhD2XcP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 19:32:15 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 974B4C06138B;
+        Thu, 29 Apr 2021 16:31:28 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id v13so22032624ple.9;
+        Thu, 29 Apr 2021 16:31:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=fzrD8zY4T8i1Ckg0kK2XoOEO/bZAqdILp4zvyRz37iw=;
+        b=b43WsVVuC1Pa50Rdjt8xEgtfv2ddcX3sBZP9uXpmXZei6HzUJv6Kb2Zx3106FHcadr
+         tuH3onKSd8k5gRaJ3cWKe3cqJJkF2m+lgoeLAo5PJft50r0MAKLTTHFS57FWn6QPh8h5
+         TbsEva+ro8/iG0OiPU2uu4GLupnkow4ERibmjggcbM4DqWPcLDiAFryJ2slFzdxtgqUu
+         ltgIbphu5kWu2oV7c4it4iISb7LgvHIiS6vTYWoRQzhYvrtfHRMkbcc+6vCeK6SdvpaK
+         DQIX+pVPkP8Rsh2/J3AGRbn4/+KkCYendHKmUrwt5TQZOJ7ZwipRT8v/HgWJzTv28vME
+         8pEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=fzrD8zY4T8i1Ckg0kK2XoOEO/bZAqdILp4zvyRz37iw=;
+        b=ECVmz6hVKw+MJimgePenTcpgRJGSgYz3LYNsj8nWm3H7I908dqFttAR/rf6AzJ81Pp
+         f4ItHpRNscHrUEE0HaM4a+ruHm0JwLGoLYZ+d+jvW+G60GZMktogVnUbZv2X3gcoeF0q
+         bdFowHoUMuUSn1UZj6qUdcctIyI10W6y5ZUdf4Jm6xdZHfFjeCfeuQm58vezNAr0dbi0
+         UwUYiGn0pdTfhP5t4lEyakM6DFMJnns5VjHhHdWWSMqjckbzHcNZzlrDS43lAyuZPNT1
+         /rshL3Luiy4j4E3DT1gyK8G+bH4fBkz0uz5BD1cuM6dmTrVWNT87pghsONnBB4kFayU1
+         T6Ag==
+X-Gm-Message-State: AOAM533hlV2P9lOHTX8t/VMMrAk0e4QXtFkEAhS5F9L1E/IqT8qtjRyW
+        XPLVqSRI6CbPO5PiU6bZlHM=
+X-Google-Smtp-Source: ABdhPJxQFWHd9h1MRuUh+9kk8UbYLL3eHDb36/Y5upxqrmZxsITxtsK/7ISTVNxcSJgTeLL+/GEDmg==
+X-Received: by 2002:a17:90b:3686:: with SMTP id mj6mr12127837pjb.116.1619739087898;
+        Thu, 29 Apr 2021 16:31:27 -0700 (PDT)
+Received: from [192.168.1.67] (99-44-17-11.lightspeed.irvnca.sbcglobal.net. [99.44.17.11])
+        by smtp.gmail.com with ESMTPSA id q19sm101794pfl.171.2021.04.29.16.31.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Apr 2021 16:31:27 -0700 (PDT)
+Subject: Re: [PATCH net-next 4/4] staging: mt7621-dts: enable MT7530 interrupt
+ controller
+To:     DENG Qingfang <dqfext@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, Lokesh Vutla <lokeshvutla@ti.com>
-Subject: Re: [RFC PATCH 5/6] spi: cadence-qspi: Tune PHY to allow running at
- higher frequencies
-In-Reply-To: <20210311191216.7363-6-p.yadav@ti.com>
-References: <20210311191216.7363-1-p.yadav@ti.com>
- <20210311191216.7363-6-p.yadav@ti.com>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <143b24c61109823f6e616cf91d28d16c@walle.cc>
-X-Sender: michael@walle.cc
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-staging@lists.linux.dev, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+Cc:     Weijie Gao <weijie.gao@mediatek.com>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+References: <20210429062130.29403-1-dqfext@gmail.com>
+ <20210429062130.29403-5-dqfext@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <f397c8e2-7ee0-f67c-6ea0-412fc671d418@gmail.com>
+Date:   Thu, 29 Apr 2021 16:31:22 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.10.0
+MIME-Version: 1.0
+In-Reply-To: <20210429062130.29403-5-dqfext@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2021-03-11 20:12, schrieb Pratyush Yadav:
-> +	if (of_property_read_u32(np, "cdns,phy-tx-start", 
-> &f_pdata->phy_tx_start))
-> +		f_pdata->phy_tx_start = 16;
-> +
-> +	if (of_property_read_u32(np, "cdns,phy-tx-end", 
-> &f_pdata->phy_tx_end))
-> +		f_pdata->phy_tx_end = 48;
-> +
 
-I didn't see a dt-bindings patch for these.
 
--michael
+On 4/28/2021 11:21 PM, DENG Qingfang wrote:
+> Enable MT7530 interrupt controller in the MT7621 SoC.
+> 
+> Signed-off-by: DENG Qingfang <dqfext@gmail.com>
+
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
