@@ -2,85 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28EFD36E4B5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 08:08:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A47C736E4C4
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 08:25:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230423AbhD2GJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 02:09:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49818 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229814AbhD2GJa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Apr 2021 02:09:30 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D5FF261434;
-        Thu, 29 Apr 2021 06:08:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1619676524;
-        bh=9dFSVbrkwUxIsVzVumyBgih3vCXCrFXuL4F7lB86YGk=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Ix5mLXnNpkc19hshwNUZ+Il5Sd+D9IPVhzhUmSfY9R7tim4tl9dV7fd0rnh5pOXoT
-         NLoKwJxcZCgXmgQcusLd6OKQ+UZcysyXzvcdl+KefM7dVDVeZdUwOX0zLhsdG/aqcq
-         ngn2mHoyhOJiQd4g4kCPTVKL71byo5g2eXhT8/HuChYeVm0Ctr/oKnRtlu0Tujc8N2
-         XkH/GqU4Qs2MGiIYVJ5T2Bi1WlMH7ZVLq0FSC5MkPAIuW445G/jZ/nFGEPTBs0pQLG
-         W4jl1PQKdsNwmxSdY/1X/xDYWBM2kOyy5Qptb3l+tV+ZsUGLP9LECfzum+ioYfiOzK
-         8y+8Q0wA4xlrA==
-Received: by wens.tw (Postfix, from userid 1000)
-        id 18AD15FBA4; Thu, 29 Apr 2021 14:08:41 +0800 (CST)
-From:   Chen-Yu Tsai <wens@kernel.org>
-To:     Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson-gxbb: nanopi-k2: Enable Bluetooth
-Date:   Thu, 29 Apr 2021 14:08:30 +0800
-Message-Id: <20210429060830.6266-1-wens@kernel.org>
-X-Mailer: git-send-email 2.31.1
-MIME-Version: 1.0
+        id S238629AbhD2GVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 02:21:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44666 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238621AbhD2GVL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 02:21:11 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D4ADC06138F
+        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 23:20:24 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id m12so5673606pgr.9
+        for <devicetree@vger.kernel.org>; Wed, 28 Apr 2021 23:20:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eGhjBR4zaGeybot+MbINCHNH51ifDbBua1uieBHnQ+w=;
+        b=rJYMvlNW0fPvxvkYd8FjRM4Rdya30nobauOKU5eomIqlua9RCqZy2kemhwj/tlmusI
+         ZH5t5+k65DhuxHSAkSkRmyLebc8MWUmMEoy/hbB+O0EzD9paXqz82uwPOPRbavXLAqTH
+         tP3iciC+ifk12Sp3lywAImJ2bh9r3LaVXsz/ilGkwtXoJ7JkP818L9+3rpU63N6zpSkW
+         EurSraYBmOUcSjGNe7iMcl0GoqCw+SsBg7wc5x1+U9MUlAbS4nYTSB36bi7BsSkErVZe
+         qSbpxIwq/pS/Ob5j91lRHIqvYy4V+T04ceumU0Hp6Zb4t9j/1Mzr7716LVqn5syThfN2
+         WSMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=eGhjBR4zaGeybot+MbINCHNH51ifDbBua1uieBHnQ+w=;
+        b=KXaGajV1xnNivYpPWDCEAU0Olznl5zLJHv5a6JBEQXeVrgrHj92ufvnI1gP/zeM9uG
+         ECQXLPHCU9YgnnuG1cp649Ns8DWk77wXUh3Y/l9inVVUXj5ZGYxtiw3XL/VbfH8Qfb28
+         Ym+98e+6DppG/4Mvq4Vb0Uo44YwGSuCo4sWYcyfG3ddSE0vIEDCLQFH7XBIFIT49kGdD
+         QHQHs+IEMtlQOfRtZ/h4cTmVpOg4pRde9lp6+DqF4retgTZGiT6e79eZE4ePlqOd7zHY
+         Ujntv74uT2JPOcIlceX4PQwerldEaTo8KjWVhgiQJAiw7qqdfc/Apg6KfD9V9UphBLnH
+         w6Hg==
+X-Gm-Message-State: AOAM531quuSpc4nevb4UbrmEfhCfVe0GrXu6EBKnJypxFqi7Ghk9nEdF
+        HJM85nV0iMU21LWdN22dTfGbcg==
+X-Google-Smtp-Source: ABdhPJxZ/f8l0Cp6+Li7MVzuJ9EGWthR4rmgkLzMcO9VW1vgGn5YwwFBEEqAsNeYqnVTeZpPOOximA==
+X-Received: by 2002:a63:1708:: with SMTP id x8mr3202869pgl.266.1619677224052;
+        Wed, 28 Apr 2021 23:20:24 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id y29sm1440377pfq.29.2021.04.28.23.20.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Apr 2021 23:20:23 -0700 (PDT)
+Date:   Wed, 28 Apr 2021 23:20:23 -0700 (PDT)
+X-Google-Original-Date: Wed, 28 Apr 2021 23:19:16 PDT (-0700)
+Subject:     Re: MAINTAINERS section RISC-V/MICROCHIP POLARFIRE SOC SUPPORT with invalid file references
+In-Reply-To: <CAOnJCUKrqOXGY7ePLEqxtAk39_fbhxt0wVhEtrv5m6X2wwuUpw@mail.gmail.com>
+CC:     lukas.bulwahn@gmail.com, Atish Patra <Atish.Patra@wdc.com>,
+        Conor.Dooley@microchip.com, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     atishp@atishpatra.org
+Message-ID: <mhng-cb6aa290-2314-480a-ac89-743a2d5f95bc@palmerdabbelt-glaptop>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chen-Yu Tsai <wens@csie.org>
+On Tue, 27 Apr 2021 23:31:17 PDT (-0700), atishp@atishpatra.org wrote:
+> On Tue, Apr 27, 2021 at 9:15 PM Lukas Bulwahn <lukas.bulwahn@gmail.com> wrote:
+>>
+>> Dear Patish, dear Conor, dear Palmer,
+>>
+>> Commit df29598aaf5c ("MAINTAINERS: add microchip polarfire soc
+>> support") adds the new section RISC-V/MICROCHIP POLARFIRE SOC SUPPORT,
+>> but that section solely refers to files that do not exist in the
+>> repository.
+>>
+>> Hence, ./scripts/get_maintainer.pl --self-test=patterns complains:
+>>
+>>   warning: no file matches    F:    drivers/soc/microchip/
+>>   warning: no file matches    F:    include/soc/microchip/mpfs.h
+>>
+>> The patch series, [PATCH v4 0/5] Add Microchip PolarFire Soc Support,
+>> never adds those files, though. Are they coming through a different
+>> patch series into Linus' tree or do you intend to refer to other files
+>> instead?
+>>
+>
+> The actual files are added as a part of the following series.
+> https://patchwork.kernel.org/project/linux-riscv/list/?series=467187
+>
+> As the "Add Microchip PolarFire Soc Support" series added the basic SoC support,
+> we thought it is better to update the maintainers file in this series
+> to provide the information about
+> the maintainers for the PolarFire Soc.
+>
+> Should we just remove the Files section or update the maintainers in
+> the SoC system controller series ?
 
-The NanoPi K2 has a AP6212 WiFi+BT combo module. The WiFi portion is
-already enabled. The BT part is connected via UART and I2S.
-
-Enable the UART and add a device node describing the Bluetooth portion
-of the module.
-
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-index 7273eed5292c..10f48fb1af61 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-@@ -385,9 +385,19 @@ &uart_AO {
- 
- /* Bluetooth on AP6212 */
- &uart_A {
--	status = "disabled";
-+	status = "okay";
- 	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
- 	pinctrl-names = "default";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		clocks = <&wifi_32k>;
-+		clock-names = "lpo";
-+		vbat-supply = <&vddio_ao3v3>;
-+		vddio-supply = <&vddio_ao18>;
-+		host-wakeup-gpios = <&gpio GPIOX_21 GPIO_ACTIVE_HIGH>;
-+		shutdown-gpios = <&gpio GPIOX_20 GPIO_ACTIVE_HIGH>;
-+	};
- };
- 
- /* 40-pin CON1 */
--- 
-2.31.1
-
+I've just dropped this from my tree, it's best to keep it along with the 
+drivers.
