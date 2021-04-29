@@ -2,248 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD76236F13D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 22:44:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7930636F14E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 22:50:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236820AbhD2UpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 16:45:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38708 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236769AbhD2UpA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 16:45:00 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D90C06138C
-        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 13:44:10 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id d11so10390686wrw.8
-        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 13:44:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=3FNuWJ2V7SfgCjlrVjDv7aIGD8kBMXXDl/W+oAPOJA4=;
-        b=OyuX2tpPaz5ft1BDTP29/+tNris6Wwgw6buwhXO2lpHIHsmHQrt+xYV6hrSSXWwEwt
-         MEHp5FBTaoENvty+71TT+qFnYfT3NmOTdjmIbH2PRpLpEbfIbBBo+Xn8YAFfmb+igWwW
-         1IywC4XZKP5NTRCLaOh8fcrfK0vv+qF5ETNFaNVzJZuUeuhB/PYW47MpPcUFYSvGLYhR
-         fOlIXdF6MKVyiicC+UQ5LaDARmluCcoEnOTv+tICqdj+pZb5thqlZ4/nroF08/I7Q4oW
-         qiPRC8P7mlyyHHKPEl2PCEf2RPE/4HgrHSFP+gqL+hTZWYr5CnCFo+w7uGZFxfBcc9Fp
-         xTnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=3FNuWJ2V7SfgCjlrVjDv7aIGD8kBMXXDl/W+oAPOJA4=;
-        b=dCj3SJokeBvj93pFT0dSrTW/3GCRTXISpg5E1KUZvFBmCKjbt+CM3W5aS5S5BH9vNw
-         T+gUSsqN/h7pn2Ai0opuNUA4JfPumWxy4PPCLKIEODmdxTqPiYfRjrlgyWfk1uGrufQJ
-         DULvF0OCAO18LQbT3Mg/BtgKon/y/pbtfF6C1Tdodg3YjnHMFAbFpW3jTn4QqGqPygrJ
-         /JgLel/EczkX8PYc8iMcTr6RqJ3YWxzwxbP+/xcKm4gnsTcEqC4ckdHr8Q2/0lVn5Bf1
-         h+ELLjDZ1BnOExoz7ZCebmCu/mNFilWdJ8Vyr0iORXt4e3QrDUcoY5acEZgJZ7+icwIO
-         iSSQ==
-X-Gm-Message-State: AOAM532uHcASHknbJPMO1eW1JAz2a9k5dn+mG/wioudWdEcEXgk7WXLz
-        ElY5nwCog7nm86XW2R9wnX7p3g==
-X-Google-Smtp-Source: ABdhPJwM/TzhB6JI4B+qHqyCFekjx9ZQ8GTcztQCOnd//DnP+WtU7WxVfF2pWrUkNS+XUGJcgSuFzg==
-X-Received: by 2002:adf:d223:: with SMTP id k3mr1807817wrh.99.1619729049177;
-        Thu, 29 Apr 2021 13:44:09 -0700 (PDT)
-Received: from macbook.lan ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id o13sm6187484wrf.91.2021.04.29.13.44.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Apr 2021 13:44:08 -0700 (PDT)
-Subject: Re: [PATCH V2] arm64: dts: qcom: sc7280: Add nodes for eMMC and SD
- card
-To:     Doug Anderson <dianders@google.com>,
-        Shaik Sajida Bhanu <sbhanu@codeaurora.org>
-Cc:     Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Sahitya Tummala <stummala@codeaurora.org>,
-        Ram Prakash Gupta <rampraka@codeaurora.org>,
-        Sayali Lokhande <sayalil@codeaurora.org>,
-        sartgarg@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>, cang@codeaurora.org,
-        pragalla@codeaurora.org, nitirawa@codeaurora.org,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        Odelu Kukatla <okukatla@codeaurora.org>
-References: <1616264220-25825-1-git-send-email-sbhanu@codeaurora.org>
- <CAD=FV=WLZCSd6D5VFyD+1KBp5n1qyszER2EVaEMwYjQfPSSDnA@mail.gmail.com>
- <b77f207b-2d90-3c8b-857f-625bd3867ed1@codeaurora.org>
- <6fdf704c4716f5873d413229ca8adc57@codeaurora.org>
- <CAD=FV=Wa4fT5wZgd0==8kLy_tzTLgdZ-HwdfOEAM9pMeMjjFyg@mail.gmail.com>
- <8126e130e5c0ea1e7ea867414f0510c0@codeaurora.org>
- <CAD=FV=XavWbf_b7-=JT6V5_RNA8CjdK4oRu7H719AaPDJ5tsqQ@mail.gmail.com>
- <32096a375966e1fcc149016df012c445@codeaurora.org>
- <CAD=FV=U0zEDi1Xn3OmVFA3h3maVWS_o2FXOW9qDEzTf1Moja=A@mail.gmail.com>
- <7c6805abf9c1f590bc4d66d625152f22@codeaurora.org>
- <CAD=FV=W8z2VgbP6mepVNXJ8ZO_Enb+ftwG1HQhq8HtEyG1ppOA@mail.gmail.com>
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-Message-ID: <43fa4053-09e9-0d90-3b19-879ef94c9ec3@linaro.org>
-Date:   Thu, 29 Apr 2021 23:44:06 +0300
+        id S236866AbhD2Uu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 16:50:59 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:12190 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229966AbhD2Uu7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Apr 2021 16:50:59 -0400
+Received: from pps.filterd (m0098413.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13TKX6H0109356;
+        Thu, 29 Apr 2021 16:50:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=+lJW8sqJwEI0hybZTWZ3M//scidWBU0FxTTtQxAz4OU=;
+ b=U8Cc+Mt2iQpf/jV5+VsC0La9aZpMB3f8VLdEtRF6XjATymTHvjctNoBPqdO52Zs1DyWK
+ w8B4wChWGDZMsQ6HezxYeXYvK022vrzrk+of8+LhOoqrIgwzv2R4B4UhulzaB1H1Rdtd
+ aasZvn7BL8d9fNKESzvh+tIQ9rVGPnGMFJbTANDaOVMmuR+OB9bDL/1JawXLUSuoESrT
+ spErf1ZlniYuyKVPo6PQkMuXE43ELPVMNS/kXaWtNuvU+qtz6WMhycJQWFlaNSV3K5HN
+ KiDQriS38qNpufe6nthorgGz1e6bu7LKSzV2XvUvd/smqxoz7Xw3TfuU7NPfJi1zth4P Sw== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 3883ech61j-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 29 Apr 2021 16:50:08 -0400
+Received: from m0098413.ppops.net (m0098413.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 13TKXR0n113357;
+        Thu, 29 Apr 2021 16:50:08 -0400
+Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com [169.53.41.122])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 3883ech614-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 29 Apr 2021 16:50:08 -0400
+Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
+        by ppma04dal.us.ibm.com (8.16.0.43/8.16.0.43) with SMTP id 13TKfGuD020477;
+        Thu, 29 Apr 2021 20:50:07 GMT
+Received: from b01cxnp22035.gho.pok.ibm.com (b01cxnp22035.gho.pok.ibm.com [9.57.198.25])
+        by ppma04dal.us.ibm.com with ESMTP id 384aya8mwt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 29 Apr 2021 20:50:07 +0000
+Received: from b01ledav001.gho.pok.ibm.com (b01ledav001.gho.pok.ibm.com [9.57.199.106])
+        by b01cxnp22035.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 13TKo69B34537976
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 29 Apr 2021 20:50:06 GMT
+Received: from b01ledav001.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id C1B2C2806A;
+        Thu, 29 Apr 2021 20:50:06 +0000 (GMT)
+Received: from b01ledav001.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id D469F2805A;
+        Thu, 29 Apr 2021 20:50:05 +0000 (GMT)
+Received: from v0005c16.aus.stglabs.ibm.com (unknown [9.211.73.43])
+        by b01ledav001.gho.pok.ibm.com (Postfix) with ESMTP;
+        Thu, 29 Apr 2021 20:50:05 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-leds@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, pavel@ucw.cz,
+        jacek.anaszewski@gmail.com, robh+dt@kernel.or,
+        devicetree@vger.kernel.org, vishwa@linux.ibm.com,
+        Eddie James <eajames@linux.ibm.com>
+Subject: [PATCH 0/5] leds: Support retaining state for the PCA955x
+Date:   Thu, 29 Apr 2021 15:49:57 -0500
+Message-Id: <20210429205002.70245-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <CAD=FV=W8z2VgbP6mepVNXJ8ZO_Enb+ftwG1HQhq8HtEyG1ppOA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: Y81GTJAsVYS11NcwUa07wx8gz-D9_sV1
+X-Proofpoint-ORIG-GUID: P6gmtKGH4EmS0flePYnG7Vr8zbG4_9po
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-04-29_11:2021-04-28,2021-04-29 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
+ phishscore=0 clxscore=1011 lowpriorityscore=0 suspectscore=0
+ impostorscore=0 malwarescore=0 adultscore=0 mlxlogscore=939 spamscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104060000 definitions=main-2104290133
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28.04.21 18:13, Doug Anderson wrote:
-> Hi,
-> 
-> On Wed, Apr 28, 2021 at 3:47 AM <sbhanu@codeaurora.org> wrote:
->>
->> On 2021-04-21 01:44, Doug Anderson wrote:
->>> Hi,
->>>
->>> On Tue, Apr 20, 2021 at 10:21 AM <sbhanu@codeaurora.org> wrote:
->>>>
->>>> On 2021-04-15 01:55, Doug Anderson wrote:
->>>>> Hi,
->>>>>
->>>>> On Tue, Apr 13, 2021 at 3:59 AM <sbhanu@codeaurora.org> wrote:
->>>>>>
->>>>>>>>>>> +                                       required-opps =
->>>>>>>>>>> <&rpmhpd_opp_low_svs>;
->>>>>>>>>>> +                                       opp-peak-kBps = <1200000
->>>>>>>>>>> 76000>;
->>>>>>>>>>> +                                       opp-avg-kBps = <1200000
->>>>>>>>>>> 50000>;
->>>>>>>>>> Why are the kBps numbers so vastly different than the ones on sc7180
->>>>>>>>>> for the same OPP point. That implies:
->>>>>>>>>>
->>>>>>>>>> a) sc7180 is wrong.
->>>>>>>>>>
->>>>>>>>>> b) This patch is wrong.
->>>>>>>>>>
->>>>>>>>>> c) The numbers are essentially random and don't really matter.
->>>>>>>>>>
->>>>>>>>>> Can you identify which of a), b), or c) is correct, or propose an
->>>>>>>>>> alternate explanation of the difference?
->>>>>>>>>>
->>>>>>>>
->>>>>>>> We calculated bus votes values for both sc7180 and sc7280 with ICB
->>>>>>>> tool,
->>>>>>>> above mentioned values we got for sc7280.
->>>>>>>
->>>>>>> I don't know what an ICB tool is. Please clarify.
->>>>>>>
->>>>>>> Also: just because a tool spits out numbers that doesn't mean it's
->>>>>>> correct. Presumably the tool could be wrong or incorrectly configured.
->>>>>>> We need to understand why these numbers are different.
->>>>>>>
->>>>>> we checked with ICB tool team on this they conformed as Rennell &
->>>>>> Kodiak
->>>>>> are different chipsets,
->>>>>> we might see delta in ib/ab values due to delta in scaling factors.
->>>>>
->>>>> ...but these numbers are in kbps, aren't they? As I understand it
->>>>> these aren't supposed to be random numbers spit out by a tool but are
->>>>> supposed to be understandable by how much bandwidth an IP block (like
->>>>> MMC) needs from the busses it's connected to. Since the MMC IP block
->>>>> on sc7180 and sc7280 is roughly the same there shouldn't be a big
->>>>> difference in numbers.
->>>>>
->>>>> Something smells wrong.
->>>>>
->>>>> Adding a few people who understand interconnects better than I do,
->>>>> though.
->>>>>
->>>>
->>>> ICB team has re-checked the Rennell ICB tool and they confirmed that
->>>> some configs were wrong in Rennell ICB tool and they corrected it.With
->>>> the new updated Rennell ICB tool below are the values :
->>>>
->>>>
->>>> Rennell LC:(Sc7180)
->>>>
->>>> opp-384000000 {
->>>>                opp-hz = /bits/ 64 <384000000>;
->>>>                required-opps = <&rpmhpd_opp_nom>;
->>>>                opp-peak-kBps = <5400000 490000>;
->>>>                opp-avg-kBps = <6600000 300000>;
->>>> };
->>>>
->>>>
->>>> And now, these values are near to Kodaik LC values:
->>>>
->>>> Kodaik LC:(SC7280)
->>>>
->>>> opp-384000000 {
->>>>              opp-hz = /bits/ 64 <384000000>;
->>>>              required-opps = <&rpmhpd_opp_nom>;
->>>>              opp-peak-kBps = <5400000 399000>;
->>>>              opp-avg-kBps = <6000000 300000>;
->>>> };
->>>
->>> This still isn't making sense to me.
->>>
->>> * sc7180 and sc7280 are running at the same speed. I'm glad the
->>> numbers are closer now, but I would have thought they'd be exactly the
->>> same.
->>>
->>> * Aren't these supposed to be sensible? This is eMMC that does max
->>> transfer rates of 400 megabytes / second to the external device. You
->>> have bandwidths listed here of 5,400,000 kBps = 5,400,000 kilobytes /
->>> second = 5400 megabytes / second. I can imagine there being some
->>> overhead where an internal bus might need to be faster but that seems
->>> excessive. This is 13.5x!
->>>
->>
->> These numbers are not related to SDCC bandwidth, these are the values
->> needed for the NOC's to run in nominal voltage corners (internal to
->> hardware) and
->> thus it helps SDCC to run in nominal to get required through put
->> (384MBps).So above calculation mentioned by you is not applicable here.
-> 
-> OK. I guess if everyone else understands this and it's just me that
-> doesn't then I won't stand in the way. In general, though, the device
-> tree is supposed to be describing the hardware in a way that makes
-> sense on its own. It's not a place to just dump in magic numbers.
-> These numbers must be somehow related to the transfer rate of the SD
-> card since otherwise they wouldn't scale up with faster card clocks.
-> Given that these numbers are expressed in "kBps" (since you're storing
-> them in a property that has "kBps" in the name), I would expect that
-> these numbers are expressing some type of bandwidth. I still haven't
-> really understood why you have to scale some bandwidth at over 10x the
-> card clock speed.
-> 
-> Said another way: you're saying that you need these numbers because
-> they make a whole bunch of math work out. I'm saying that these aren't
-> just supposed to be magic numbers. They're supposed to make sense on
-> their own and you should be able to describe to me how you arrived at
-> these numbers in a way that I could do the math on my own. Saying "we
-> plugged this into some program and it spit out these numbers" isn't
-> good enough.
+This series implements the ability to retain the state of the LEDs
+controlled by the PCA955x across system reboots. This includes a
+change to the LED core driver to respect the retain-state-shutdown
+device tree property. It also cleans up the PCA955x driver and adds
+the ability to query the hardware LED brightness.
 
-Agree.
+Eddie James (5):
+  dt-bindings: leds: Add retain-state-shutdown boolean
+  leds: leds-core: Implement the retain-state-shutdown property
+  leds: pca955x: Clean up code formatting
+  leds: pca955x: Add brightness_get function
+  leds: pca955x: Implement the default-state property
 
->>> * I can't see how it can make sense that "average" values are higher
->>> than "peak" values.
->>
->>
->> Here actual peak = peak number * 2
->> actual average = average number
->>
->> and this multiplication is taken care by ICC driver, so technically
->> actual peak is still high than average.
-> 
-> Sorry, but that is really counter-intuitive. Georgi: is that how this
-> is normally expected to work?
+ .../devicetree/bindings/leds/common.yaml      |   6 +
+ drivers/leds/led-class.c                      |  10 +-
+ drivers/leds/leds-pca955x.c                   | 169 +++++++++++++-----
+ 3 files changed, 142 insertions(+), 43 deletions(-)
 
-Average bandwidth being higher than peak does not make sense to me.
-The numbers in DT should reflect the real bandwidth that is being
-requested. If some links between nodes consist of multiple channels,
-or there is anything specific to the topology or the hardware platform
-(scaling factors, buswidth, etc), this should be handled in the
-interconnect provider driver. The goal is to use bandwidth values and
-not magic numbers.
+-- 
+2.27.0
 
-Thanks,
-Georgi
