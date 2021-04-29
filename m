@@ -2,180 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE46236EE89
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 19:03:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51F4D36EE8C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 19:04:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236036AbhD2REe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 13:04:34 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:37310 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233302AbhD2REe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 13:04:34 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id C33D81F43502
-Message-ID: <7ecf337931cbd16432311d24397ae4506fc7fd1f.camel@collabora.com>
-Subject: Re: [PATCH 2/2] dt-bindings: timer: convert rockchip,rk-timer.txt
- to YAML
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        kernel@collabora.com
-Date:   Thu, 29 Apr 2021 14:03:39 -0300
-In-Reply-To: <20210429162542.GA1372880@robh.at.kernel.org>
-References: <20210424191946.69978-1-ezequiel@collabora.com>
-         <20210424191946.69978-2-ezequiel@collabora.com>
-         <20210429162542.GA1372880@robh.at.kernel.org>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.2-1 
+        id S240938AbhD2RE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 13:04:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46794 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233302AbhD2RE6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 13:04:58 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D7FFC06138B
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 10:04:11 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id m5so9518649wmf.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 10:04:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=tHdvLci4AjeWueXRfl+ywrg6Pi3jWbPlIYdsAlZWirA=;
+        b=Go+ktUieE1y5w7VouhAHT1nD6iJ2PflfhXDn4lVlwCWRDuTPfj1Pj7Gb2Vj5UJlqgr
+         exf6TD4FxTUx/CO9TbYzJZytkkEXFL5szCsoKMi5FzFPq7wljOwqnZskqgr22eehdTDZ
+         ONxHAa4hJeQWhzu05HfPFy55aL1RwnWuIynQ2Cjh2Gjfi89Q26ty1+TSDrRa6QQcGWnn
+         aF0qD9ggCwsyo20pV1n7hm+iVS0up6RiApRND31g9B3Fv0sAjxD2xc24Oy7a/vfU1/C1
+         oQYwFQGFjXx+d/vtFbOKUmeAn30SLRhfmvrSyNW4uQ4Kt/IvW+azzydwks5k0r6sAvqo
+         hRKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=tHdvLci4AjeWueXRfl+ywrg6Pi3jWbPlIYdsAlZWirA=;
+        b=T6m4A2l5eel9V4LULi4ceYKzQU6ET7859Spcn9qkCouyF+rwybeTEBzzuITdlN/Lku
+         HCgVK20QKUJ9l4G/v5nSDSpYyNCCUuOGJHawegAVfFvqSRmlHLRs15T96kp+NYXm4df8
+         9YPcovdXPDz+ahNx3Rgwk2VazjbarssOKcb1V1jcs+e7+XUDjMISwDcVt+xoRGU5vO7b
+         mPH+CykZgpWlqwizgjovT5Jt5t/LO5r2dRPNJfcFifSen+Y5Jt9XScMMhV5jxs8ONwdc
+         3KvByB+qE2VpXgDyORZCJ+TxAK+ZCn1eu0P9aVtCPjVq+ouJHUiv59SueXoM3ELUcEMk
+         jFNQ==
+X-Gm-Message-State: AOAM530/e4EWwsWy6Zw80soiBWVLHGw1imXQogGyWxAzTdbpNsdMKc03
+        h8ZunhkjqjhlQF6lOekNzDKvQw==
+X-Google-Smtp-Source: ABdhPJyHu2ZQXATO3CS2wDNOUAsdz6c46NgNdi4tAh5px8nKSJfYM5xbkZOG7QhbTBvsfFdUviDJtA==
+X-Received: by 2002:a1c:3505:: with SMTP id c5mr11492526wma.169.1619715849941;
+        Thu, 29 Apr 2021 10:04:09 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:90c:e290:c304:4b2b:4a79:1da9])
+        by smtp.gmail.com with ESMTPSA id 18sm11041275wmo.47.2021.04.29.10.04.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Apr 2021 10:04:09 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     khilman@baylibre.com, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org
+Cc:     linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH 2/3] dt-bindings: arm: amlogic: add Banana PI M5 bindings
+Date:   Thu, 29 Apr 2021 19:04:03 +0200
+Message-Id: <20210429170404.3616111-3-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210429170404.3616111-1-narmstrong@baylibre.com>
+References: <20210429170404.3616111-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-04-29 at 11:25 -0500, Rob Herring wrote:
-> On Sat, Apr 24, 2021 at 04:19:46PM -0300, Ezequiel Garcia wrote:
-> > Convert Rockchip Timer dt-bindings to YAML.
-> > 
-> > Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> > ---
-> >  .../bindings/timer/rockchip,rk-timer.txt      | 27 --------
-> >  .../bindings/timer/rockchip,rk-timer.yaml     | 67 +++++++++++++++++++
-> >  2 files changed, 67 insertions(+), 27 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/timer/rockchip,rk-timer.txt
-> >  create mode 100644 Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/timer/rockchip,rk-timer.txt b/Documentation/devicetree/bindings/timer/rockchip,rk-timer.txt
-> > deleted file mode 100644
-> > index d65fdce7c7f0..000000000000
-> > --- a/Documentation/devicetree/bindings/timer/rockchip,rk-timer.txt
-> > +++ /dev/null
-> > @@ -1,27 +0,0 @@
-> > -Rockchip rk timer
-> > -
-> > -Required properties:
-> > -- compatible: should be:
-> > -  "rockchip,rv1108-timer", "rockchip,rk3288-timer": for Rockchip RV1108
-> > -  "rockchip,rk3036-timer", "rockchip,rk3288-timer": for Rockchip RK3036
-> > -  "rockchip,rk3066-timer", "rockchip,rk3288-timer": for Rockchip RK3066
-> > -  "rockchip,rk3188-timer", "rockchip,rk3288-timer": for Rockchip RK3188
-> > -  "rockchip,rk3228-timer", "rockchip,rk3288-timer": for Rockchip RK3228
-> > -  "rockchip,rk3229-timer", "rockchip,rk3288-timer": for Rockchip RK3229
-> > -  "rockchip,rk3288-timer": for Rockchip RK3288
-> > -  "rockchip,rk3368-timer", "rockchip,rk3288-timer": for Rockchip RK3368
-> > -  "rockchip,rk3399-timer": for Rockchip RK3399
-> > -- reg: base address of the timer register starting with TIMERS CONTROL register
-> > -- interrupts: should contain the interrupts for Timer0
-> > -- clocks : must contain an entry for each entry in clock-names
-> > -- clock-names : must include the following entries:
-> > -  "timer", "pclk"
-> > -
-> > -Example:
-> > -       timer: timer@ff810000 {
-> > -               compatible = "rockchip,rk3288-timer";
-> > -               reg = <0xff810000 0x20>;
-> > -               interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-> > -               clocks = <&xin24m>, <&cru PCLK_TIMER>;
-> > -               clock-names = "timer", "pclk";
-> > -       };
-> > diff --git a/Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml b/Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml
-> > new file mode 100644
-> > index 000000000000..f1bc3ac7abc8
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml
-> > @@ -0,0 +1,67 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/timer/rockchip,rk-timer.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Rockchip Timer Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Daniel Lezcano <daniel.lezcano@linaro.org>
-> 
-> This should be someone that knows the h/w and cares about Rockchip.
-> 
+Add bindings for the Banana PI M5 board.
 
-Daniel wrote the driver, so I figured he'd care :)
-If not, perhaps Heiko (if he agrees)?
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - const: rockchip,rk3288-timer
-> > +      - const: rockchip,rk3399-timer
-> > +      - items:
-> > +          - enum:
-> > +            - rockchip,rv1108-timer
-> > +            - rockchip,rk3036-timer
-> > +            - rockchip,rk3066-timer
-> > +            - rockchip,rk3188-timer
-> > +            - rockchip,rk3228-timer
-> > +            - rockchip,rk3229-timer
-> > +            - rockchip,rk3288-timer
-> > +            - rockchip,rk3368-timer
-> > +            - rockchip,px30-timer
-> > +          - const: rockchip,rk3288-timer
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    minItems: 2
-> > +    maxItems: 2
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      enum:
-> > +        - timer
-> > +        - pclk
-> 
-> We can't define the order here? We should fix dts files if they are 
-> inconsistent.
-> 
-
-The driver requests the clocks by name, and unfortunately DTS
-rely on that. We can change all the DTSI, but wouldn't that
-be too much trouble for something that is currently working fine?
-
-Why is the order important?
-
-> > +    minItems: 2
-> > +    maxItems: 2
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - clock-names
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/clock/rk3288-cru.h>
-> > +
-> > +    timer: timer@ff810000 {
-> > +        compatible = "rockchip,rk3288-timer";
-> > +        reg = <0xff810000 0x20>;
-> > +        interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-> > +        clocks = <&xin24m>, <&cru PCLK_TIMER>;
-> > +        clock-names = "timer", "pclk";
-> > +    };
-> > -- 
-> > 2.30.0
-> > 
-
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 5f6769bf45bd..4eaf400c3522 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -164,6 +164,7 @@ properties:
+       - description: Boards with the Amlogic Meson SM1 S905X3/D3/Y3 SoC
+         items:
+           - enum:
++	      - bananapi,bpi-m5
+               - hardkernel,odroid-c4
+               - hardkernel,odroid-hc4
+               - khadas,vim3l
+-- 
+2.25.1
 
