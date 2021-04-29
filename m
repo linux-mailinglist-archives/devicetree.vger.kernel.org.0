@@ -2,70 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D12B36F246
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 23:47:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CBB736F250
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 23:52:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237299AbhD2VsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 17:48:21 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:40797 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237290AbhD2VsV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 17:48:21 -0400
-Received: by mail-ot1-f51.google.com with SMTP id g4-20020a9d6b040000b029029debbbb3ecso29757033otp.7;
-        Thu, 29 Apr 2021 14:47:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iYZ5oLoZi7uuBa979InSeVYHoomOJVsY8rXA4rSMPA8=;
-        b=evbOQB5Z4XZEWjH0luau964eOdzT59Ei9Vd/GxMqro5KX4W5ONwR3kq4SXAe8y6frj
-         EoT1g/lC9nEJRQrEd7A4/OVn3to8AR5LR/++bqq5M7qfkmdw2/UvNk4CS3XnCQcoYDUp
-         sf5Iaf5YpvHCuESXiQZk/VxiLTeVmwVoP3zS7+74DQ95c8Zngr9nmRNQJVkC1gCAnZI3
-         xVJYCIwRNarcS4Gt0sel6VR3zIqcPSyK7un9zGGAjm5EtdsoPfLhdafcMJD7OjwX5BEb
-         pr85kxPcHcYMoYcqeP+/QDtwj24ALbe0gDVoPX5O24pDiQxg9dbtG8qgu3Ga/6kfgSbP
-         CBEg==
-X-Gm-Message-State: AOAM532dOhPT6UeJSzvEk92p2doK9z6In7JZ1oI+fY2XTh0VcOad3rjG
-        E1k0TM7xNH8DuWQNWX54qQ==
-X-Google-Smtp-Source: ABdhPJx4wCmWDLWm7Ngn2tC6FiabHokxGnCA74FpvlurPyQTesW0f/fL5N4VMAHmuTDCDVktu1v+sA==
-X-Received: by 2002:a9d:2de3:: with SMTP id g90mr1152246otb.274.1619732852477;
-        Thu, 29 Apr 2021 14:47:32 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j3sm265634oie.13.2021.04.29.14.47.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Apr 2021 14:47:31 -0700 (PDT)
-Received: (nullmailer pid 1835596 invoked by uid 1000);
-        Thu, 29 Apr 2021 21:47:30 -0000
-Date:   Thu, 29 Apr 2021 16:47:30 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Odelu Kukatla <okukatla@codeaurora.org>
-Cc:     Georgi Djakov <djakov@kernel.org>,
-        Sibi Sankar <sibis@codeaurora.org>, devicetree@vger.kernel.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        seansw@qti.qualcomm.com, elder@linaro.org,
-        georgi.djakov@linaro.org, linux-arm-msm-owner@vger.kernel.org,
-        ilina@codeaurora.org, evgreen@google.com, sboyd@kernel.org
-Subject: Re: [1/3] dt-bindings: interconnect: Add EPSS L3 DT binding on SC7280
-Message-ID: <20210429214730.GA1835549@robh.at.kernel.org>
-References: <1618556290-28303-1-git-send-email-okukatla@codeaurora.org>
- <1618556290-28303-2-git-send-email-okukatla@codeaurora.org>
+        id S232519AbhD2VxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 17:53:21 -0400
+Received: from mga09.intel.com ([134.134.136.24]:58865 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232441AbhD2VxU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Apr 2021 17:53:20 -0400
+IronPort-SDR: GeosTOk14O0h+EkRSOTyPhoavMjN0cBiTX4f7+K5KTVdjqwkcQqrxXS+XPc1QUyLK8x7f/1AzU
+ IT8aZVL78QwQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9969"; a="197224489"
+X-IronPort-AV: E=Sophos;i="5.82,260,1613462400"; 
+   d="scan'208";a="197224489"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2021 14:52:25 -0700
+IronPort-SDR: 46V0asdCDALhPllsOsHbz05WtwjuoFslPyG8AhGxHPrmVFYAGVcUrKTnGC19t17ztSxD4OPxam
+ i5GS7KDHP5RQ==
+X-IronPort-AV: E=Sophos;i="5.82,260,1613462400"; 
+   d="scan'208";a="466516486"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Apr 2021 14:52:22 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 460F7201A6;
+        Fri, 30 Apr 2021 00:51:50 +0300 (EEST)
+Date:   Fri, 30 Apr 2021 00:51:50 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Martina Krasteva <martinax.krasteva@linux.intel.com>
+Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        daniele.alessandrelli@linux.intel.com,
+        paul.j.murphy@linux.intel.com, gjorgjix.rosikopulos@linux.intel.com
+Subject: Re: [PATCH 2/6] media: i2c: Add imx335 camera sensor driver
+Message-ID: <20210429215150.GA3@paasikivi.fi.intel.com>
+References: <20210330142023.141-1-martinax.krasteva@linux.intel.com>
+ <20210330142023.141-3-martinax.krasteva@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1618556290-28303-2-git-send-email-okukatla@codeaurora.org>
+In-Reply-To: <20210330142023.141-3-martinax.krasteva@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Apr 2021 12:28:08 +0530, Odelu Kukatla wrote:
-> Add Epoch Subsystem (EPSS) L3 interconnect provider binding on SC7280
-> SoCs.
-> 
-> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
-> ---
->  Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Hi Martina,
 
-Acked-by: Rob Herring <robh@kernel.org>
+Thanks for the a of new drivers. Also my apologies for reviewing them so
+late.
+
+On Tue, Mar 30, 2021 at 03:20:19PM +0100, Martina Krasteva wrote:
+
+...
+> +static int imx335_probe(struct i2c_client *client)
+> +{
+> +	struct imx335 *imx335;
+> +	int ret;
+> +
+> +	imx335 = devm_kzalloc(&client->dev, sizeof(*imx335), GFP_KERNEL);
+> +	if (!imx335)
+> +		return -ENOMEM;
+> +
+> +	imx335->dev = &client->dev;
+> +
+> +	/* Initialize subdev */
+> +	v4l2_i2c_subdev_init(&imx335->sd, client, &imx335_subdev_ops);
+> +
+> +	ret = imx335_parse_hw_config(imx335);
+> +	if (ret) {
+> +		dev_err(imx335->dev, "HW configuration is not supported");
+> +		return ret;
+> +	}
+> +
+> +	mutex_init(&imx335->mutex);
+> +
+> +	ret = imx335_power_on(imx335->dev);
+> +	if (ret) {
+> +		dev_err(imx335->dev, "failed to power-on the sensor");
+> +		goto error_mutex_destroy;
+> +	}
+> +
+> +	/* Check module identity */
+> +	ret = imx335_detect(imx335);
+> +	if (ret) {
+> +		dev_err(imx335->dev, "failed to find sensor: %d", ret);
+> +		goto error_power_off;
+> +	}
+> +
+> +	/* Set default mode to max resolution */
+> +	imx335->cur_mode = &supported_mode;
+> +	imx335->vblank = imx335->cur_mode->vblank;
+> +
+> +	ret = imx335_init_controls(imx335);
+> +	if (ret) {
+> +		dev_err(imx335->dev, "failed to init controls: %d", ret);
+> +		goto error_power_off;
+> +	}
+> +
+> +	/* Initialize subdev */
+> +	imx335->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+> +	imx335->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
+> +
+> +	/* Initialize source pad */
+> +	imx335->pad.flags = MEDIA_PAD_FL_SOURCE;
+> +	ret = media_entity_pads_init(&imx335->sd.entity, 1, &imx335->pad);
+> +	if (ret) {
+> +		dev_err(imx335->dev, "failed to init entity pads: %d", ret);
+> +		goto error_handler_free;
+> +	}
+> +
+> +	ret = v4l2_async_register_subdev_sensor_common(&imx335->sd);
+> +	if (ret < 0) {
+> +		dev_err(imx335->dev,
+> +			"failed to register async subdev: %d", ret);
+> +		goto error_media_entity;
+> +	}
+> +
+> +	pm_runtime_set_active(imx335->dev);
+> +	pm_runtime_enable(imx335->dev);
+> +	pm_runtime_idle(imx335->dev);
+> +
+> +	return 0;
+> +
+> +error_media_entity:
+> +	media_entity_cleanup(&imx335->sd.entity);
+> +error_handler_free:
+> +	v4l2_ctrl_handler_free(imx335->sd.ctrl_handler);
+> +error_power_off:
+> +	imx335_power_off(imx335->dev);
+> +error_mutex_destroy:
+> +	mutex_destroy(&imx335->mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * imx335_remove() - I2C client device unbinding
+> + * @client: pointer to I2C client device
+> + *
+> + * Return: 0 if successful, error code otherwise.
+> + */
+> +static int imx335_remove(struct i2c_client *client)
+> +{
+> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> +	struct imx335 *imx335 = to_imx335(sd);
+> +
+> +	v4l2_async_unregister_subdev(sd);
+> +	media_entity_cleanup(&sd->entity);
+> +	v4l2_ctrl_handler_free(sd->ctrl_handler);
+> +
+> +	pm_runtime_disable(&client->dev);
+> +	pm_runtime_suspended(&client->dev);
+
+The sensor will be powered off here only if runtime PM is enabled.
+
+Could you use pm_runtime_status_suspended() to check whether the device is
+still powered on, as e.g. the CCS driver (drivers/media/i2c/ccs/ccs-core.c)
+does?
+
+I think I'll merge these when this and Rob's comments have been addressed.
+
+> +
+> +	mutex_destroy(&imx335->mutex);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dev_pm_ops imx335_pm_ops = {
+> +	SET_RUNTIME_PM_OPS(imx335_power_off, imx335_power_on, NULL)
+> +};
+> +
+> +static const struct of_device_id imx335_of_match[] = {
+> +	{ .compatible = "sony,imx335" },
+> +	{ }
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, imx335_of_match);
+> +
+> +static struct i2c_driver imx335_driver = {
+> +	.probe_new = imx335_probe,
+> +	.remove = imx335_remove,
+> +	.driver = {
+> +		.name = "imx335",
+> +		.pm = &imx335_pm_ops,
+> +		.of_match_table = imx335_of_match,
+> +	},
+> +};
+> +
+> +module_i2c_driver(imx335_driver);
+> +
+> +MODULE_DESCRIPTION("Sony imx335 sensor driver");
+> +MODULE_LICENSE("GPL");
+
+-- 
+Kind regards,
+
+Sakari Ailus
