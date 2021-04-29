@@ -2,302 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C8CD36EC09
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 16:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8B8236EC11
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 16:07:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240483AbhD2OHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 10:07:53 -0400
-Received: from mail-mw2nam10on2075.outbound.protection.outlook.com ([40.107.94.75]:6828
-        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
+        id S238982AbhD2OIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 10:08:25 -0400
+Received: from mail-db8eur05on2062.outbound.protection.outlook.com ([40.107.20.62]:22880
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S240427AbhD2OHw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Apr 2021 10:07:52 -0400
+        id S237419AbhD2OIY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Apr 2021 10:08:24 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=O/6z4gG/ocwCUSQy/6BizQeZOj1iTQHF0i/F+Fb6SCsXq+hlMBK2I9yLVW6dNthp2qx7XQJAiKtcEprUvJxrTDNBftruKUvNn6RJ/r7XYVq7xma686rKs/9Cz9SOA9xEB37L5d4GYnr4ObprDcgv1qjGC/0hitOZ2JoaI0UYPc4EoY96NTMOr7c63O2wKRFk5NPQTA8yViAzb+IehqZJc93Eu9nLlZf90MMlPCMJbsYOVA6DcRf/N8OCJY/9cc0/ODe66GaJcizEPdOsLFopxMLqLQ4YdQf4HNxlakSHkkeANi3xdKQYFt9vvEBm2VihgaKeqgNtWXLlZ61J8wNZQQ==
+ b=DM0Mma6aTwJ6h+asU/y9o5uf8P788SBKXYdIyuVEqqWL3437ZZDkqwz8+ejw4W2VAttrD8Y+8UlgoMi4uDAMU/231VxOCsQ5v1H0c+fgq2hzo4bmT9efx1z10dnCsBfrRNIUfnfSKRgpH4TWnmA7Q6VFGbx8/vvhHsmsTyOE18vyfftdzsPh21xN1+aIXOFBbx+V9YBDRb37+9Okpk8iCxlurQPylHAdunlE+HXtnd66ICfo9L9tSgErgQ04+uL5bzlcbnEWzzcEsZEv5kxIjHP8kKlB1bL+1GBrA23ByK1Wk/yOjC9n7AF5ndc80A9/ijsMeqWKbvGdfTd3Or8Yaw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kK/W8ClThT2KQ4y8WmSuevdQQbvCAxLy3mUuZHRgYPE=;
- b=LwixIiZpUYDO6AqclRQz6BKMKbaDJ4MrNom0/FQ2edplOaWf4w9I76/XO+f/KxEaPUXiHpBX089B3hD93vGLsKX0jq6zJzPbAbqCKXHMFH4a901f3I+4vShvDqCKmKWl1OMYhx8N4Y8HYM1AjLK7Afgp66MIascitYoWvnfZiIOhmzaIxoBDNZySLRK1z0te45w7I4fHJtBxYmQ0HurNO/rAr3ceTp6MKbZtvDH0KXunwZir8LqyH52U3sN9UuREB5HdY3P6ul06UW5WrtgAr/dYayJFj5c1OJfMcun7GsfaxkWjGo3YOfdvtMLiLy0mp3gsSStT7cedbkA52NZT+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ bh=KJbkIqpa/7UyK8VfxfhXVymsh4K+w+N3MIyjg6yIceM=;
+ b=MoG6yY93qzTKJvCCxtyBciXdfuCFBaBhiUSIougWcjBaCeTvm/0+XNNOH9GhwPJrEVFIrzkdX7Qm4C2loqeM5RYM2Dd3ijrU/dibkge2oCW9XB8OTwK7daw+QNgS1/VoXqgXLlCEPPCK2S/iTnQPtWHwVYOD2ayte0zYfmRCRe2eZXHQNrNErwKED61Wiq5EbPIcUsRRODDRoanIbql4eJpqOW0Uh0fzXvTtAP2Ep4s09ANgyJZfY9uKqrchT7SIZDb1HmheTjhohzkOq804IFEkJ7pdLqpDxYGayHBEO30v5eVE2DmESWaZ8iUR2Yck0keYH9uHUp59bGl0hX1uBA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vaisala.com; dmarc=pass action=none header.from=vaisala.com;
+ dkim=pass header.d=vaisala.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vaisala.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kK/W8ClThT2KQ4y8WmSuevdQQbvCAxLy3mUuZHRgYPE=;
- b=IHBejnvCX7sIckbKgAbC4/Ex6aPkUKZLsUSH2BYmdkatVJT5xVnbczWoZ1+ojokNo5Ld5ggABkDrU6Fh3UppO37Y5wHkjALFAPZcDa+9uAZd9EpkF8N4JkoG2o1K4lzBi5TEM3KxH1Gor69btj25u1CidMWvZaaj6JFqGxqIjKg=
-Received: from BL1PR13CA0123.namprd13.prod.outlook.com (2603:10b6:208:2bb::8)
- by DM6PR02MB4939.namprd02.prod.outlook.com (2603:10b6:5:18::15) with
+ bh=KJbkIqpa/7UyK8VfxfhXVymsh4K+w+N3MIyjg6yIceM=;
+ b=A8vhcqZMIXesLCBfIoQLFv4tz+iQfr3o+V7Mf7WyT65x/uqsFZcYXmstXcGM3b+yh07Y5VdBE5bcvFr9yNSdRPsU6JURnm+wMlNcCMv09Zm2ilooMY3CYn9+00pxGLib5vr5ENTKPuiPoBHYSmBSovVlxT/5DzhziE7qN1tbuYPcSoVYWL2HN504TyxFPpC7dppEZ/Up1DBL/bMTx9mUVBGbC7rBPUvNRv3BgZDpXXlQSivwb+UxLIax2gBWb8IrpQFd+r1NZJsxq+PcsbyDceHPNYl2BylSOf+q2mjEwdo/8BMQf79n2g4ysi7QM2cOYoEYEm+stV6qqcC65Z5tPA==
+Authentication-Results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=vaisala.com;
+Received: from HE1PR0602MB3449.eurprd06.prod.outlook.com (2603:10a6:7:8a::22)
+ by HE1PR0601MB2315.eurprd06.prod.outlook.com (2603:10a6:3:93::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.21; Thu, 29 Apr
- 2021 14:07:04 +0000
-Received: from BL2NAM02FT018.eop-nam02.prod.protection.outlook.com
- (2603:10b6:208:2bb:cafe::12) by BL1PR13CA0123.outlook.office365.com
- (2603:10b6:208:2bb::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.8 via Frontend
- Transport; Thu, 29 Apr 2021 14:07:03 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- BL2NAM02FT018.mail.protection.outlook.com (10.152.77.170) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4065.21 via Frontend Transport; Thu, 29 Apr 2021 14:07:03 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 29 Apr 2021 07:04:39 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Thu, 29 Apr 2021 07:04:39 -0700
-Envelope-to: git@xilinx.com,
- robh+dt@kernel.org,
- mdf@kernel.org,
- trix@redhat.com,
- gregkh@linuxfoundation.org,
- arnd@arndb.de,
- zou_wei@huawei.com,
- iwamatsu@nigauri.org,
- linus.walleij@linaro.org,
- devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- linux-fpga@vger.kernel.org,
- chinnikishore369@gmail.com
-Received: from [10.140.6.60] (port=60740 helo=xhdnavam40.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <nava.manne@xilinx.com>)
-        id 1lc7HS-0004zS-0O; Thu, 29 Apr 2021 07:04:38 -0700
-From:   Nava kishore Manne <nava.manne@xilinx.com>
-To:     <robh+dt@kernel.org>, <michal.simek@xilinx.com>, <mdf@kernel.org>,
-        <trix@redhat.com>, <nava.manne@xilinx.com>,
-        <gregkh@linuxfoundation.org>, <arnd@arndb.de>,
-        <rajan.vaja@xilinx.com>, <amit.sunil.dhamne@xilinx.com>,
-        <manish.narani@xilinx.com>, <zou_wei@huawei.com>,
-        <lakshmi.sai.krishna.potthuri@xilinx.com>, <iwamatsu@nigauri.org>,
-        <wendy.liang@xilinx.com>, <linus.walleij@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-fpga@vger.kernel.org>,
-        <chinnikishore369@gmail.com>, <git@xilinx.com>
-CC:     Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-Subject: [PATCH v4 4/4] fpga: versal-fpga: Add versal fpga manager driver
-Date:   Thu, 29 Apr 2021 19:34:08 +0530
-Message-ID: <20210429140408.23194-5-nava.manne@xilinx.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210429140408.23194-1-nava.manne@xilinx.com>
-References: <20210429140408.23194-1-nava.manne@xilinx.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.24; Thu, 29 Apr
+ 2021 14:07:33 +0000
+Received: from HE1PR0602MB3449.eurprd06.prod.outlook.com
+ ([fe80::3969:c39b:252e:ae3d]) by HE1PR0602MB3449.eurprd06.prod.outlook.com
+ ([fe80::3969:c39b:252e:ae3d%5]) with mapi id 15.20.4065.027; Thu, 29 Apr 2021
+ 14:07:33 +0000
+From:   Nandor Han <nandor.han@vaisala.com>
+To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Nandor Han <nandor.han@vaisala.com>
+Subject: [PATCH v3 0/4] Bootcount driver using NVMEM cell as backend.
+Date:   Thu, 29 Apr 2021 17:07:21 +0300
+Message-Id: <cover.1619704986.git.nandor.han@vaisala.com>
+X-Mailer: git-send-email 2.26.3
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [176.93.24.30]
+X-ClientProxiedBy: HE1PR0902CA0016.eurprd09.prod.outlook.com
+ (2603:10a6:3:e5::26) To HE1PR0602MB3449.eurprd06.prod.outlook.com
+ (2603:10a6:7:8a::22)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.vaisala.com (176.93.24.30) by HE1PR0902CA0016.eurprd09.prod.outlook.com (2603:10a6:3:e5::26) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.25 via Frontend Transport; Thu, 29 Apr 2021 14:07:33 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 82a60b18-d3d2-4238-be40-08d90b1810dc
-X-MS-TrafficTypeDiagnostic: DM6PR02MB4939:
-X-Microsoft-Antispam-PRVS: <DM6PR02MB49394250E6DCFC2D3A2E5435C25F9@DM6PR02MB4939.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Office365-Filtering-Correlation-Id: 9babc316-88f3-4c41-4fdd-08d90b182287
+X-MS-TrafficTypeDiagnostic: HE1PR0601MB2315:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <HE1PR0601MB2315AC82E3AFEC68FB166ED0855F9@HE1PR0601MB2315.eurprd06.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: awuDfaIJcWA1IiVHQbnTPSjbwzxmr8q6LsCPn4UW5C3lwx6NO9Vu7C42i1ZHhUN/6BkNIgO3cXmPstas4AmWHUO1llVylhfJL84E2W6LE0J1/xd/T8kPeeo/z9KioLvVG6oii06Z+jhiRee5qLt268TPBAn4SF1mvHG50jD1bOUeBbMQYcNowEIorEVFZvz8OytCLlbnb9wP9NrMD/xowjMYDbaRvv02mQ0Y1Y/L0RXqlPyp6NaB+Ce9INqXmE4LLQ2dUfuMATiWCN4nuQSz/2Ckp6cYQ16yxa8GnDrSljJwXPmg6RoIAhXBmdFdgt+WWNW/9nxyLn0kL/YCWlyaDaKNo6hqXxDtHelspU7uDv/mj4NFoM1/eR1z23PIGfGj/JY6pO43R1NszfqeLklit0gZAy8/yN/PsaQLc25wM8M07dY0YmnfErgGTaJYc10wUHMWTsS0iMWwlRbhHAuIMWVA7Kz1G0yigzWr5h6YztvqhTC5H76oBzWpxIAoDGd7J1qpv8INoG+95d4tc4ii5MALmAzaALI/8hkcDBcDoWjJ+KGwHpcV+RxouyqwILLHUHlBphmaav4wKKHcYcpWaxX20I9b/Gadh7d9+DiqkK7w8LLoFMxAZEyDP87GOLhgXHVvonGU08jOP4AiDRtVpMRIVP8SN5eTGVYI/Z616Fpa4K31MdoQwU21rk/gWHI75atz/6dbQWSwkN3C9n678yriM5zbrMPWDUF0XWYZ+gk4RMPN/MW1igZUes/cMQNR
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(136003)(396003)(346002)(376002)(39860400002)(36840700001)(46966006)(70586007)(36756003)(8936002)(82740400003)(70206006)(8676002)(5660300002)(2906002)(7696005)(83380400001)(356005)(6666004)(107886003)(186003)(47076005)(9786002)(110136005)(36906005)(478600001)(2616005)(36860700001)(921005)(336012)(82310400003)(316002)(4326008)(1076003)(7636003)(426003)(6636002)(7416002)(26005)(102446001)(2101003)(83996005);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2021 14:07:03.8269
+X-Microsoft-Antispam-Message-Info: 7cNUDBsuJIf3o73CscdTFldFsL2qNN7mj4t5i8B16lmQwsJNmpPbFO6jRMgoxu8lNfdtKq+2CImzru4PGbU+AXzX8D/Sp4mU/Is230MdHjITha+kTTwzlzFxWOghXwF/jZRdnEixcy+IUit0nlGB1nJ6SYTiiKpWQwf2AysqqOHZDkARX9Ds6Iw+FbHJJIaT+2RPDJT2WzGUzUf/FeiLYLZgTfM4j02DkMyOEQiRPvTtVDFy/u4QbqtC5T6Nrpyd47zDppI77Vhm7Qt+OwEc+NKZiSzWUueUDVoX85/YLmaZ+bZQhi/M3ZzkfTyeqxiUWUjBGVrq9RHbuEmiPwCXWGpXhWf7o5qAvIg1lxnDM4qHLyQKULkqCFW/DvPDwS677gQOi35PsYyw25hzki6NS25aovmO2416tj5mFcELHoIKafb0pYeLWJenFyza6m2pBjodWfhlRthkJ8+8kWAgLTd/JTCYyGv2L6RngGWg51fwTU37dXBBtXF2iBpwjCHZauf69zGZm8O9sRTzbdRXZZJw2njCQHqxeMeCDjjule41RenFEcipBATzf37UyAE8VsKIonNZFA9uEvhV9Rsc1+E7I6d2aBK4/EPGAAHIyQQaiNAiiNYLvZE1oJSPCj7ZOOxlR7f+PmYLHitEz4dYLUynk2auwu50HeBHkrkP55fGFF2zpYKJeFGRPI6TtJQdQqsyRsDTtB/Y9cyOsM0K25tvbTU+e/2mDiYtdXCRqaQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0602MB3449.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(136003)(396003)(39850400004)(366004)(83380400001)(86362001)(6486002)(36756003)(4326008)(2906002)(956004)(38350700002)(52116002)(38100700002)(8676002)(107886003)(44832011)(7696005)(2616005)(6666004)(16526019)(26005)(5660300002)(66476007)(316002)(966005)(66946007)(186003)(66556008)(478600001)(8936002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?MitRaUpodzRFRDVyREcyWWZHRzNtWkd5RTN3dDNLNDRhYzNocnpMK21LRmNX?=
+ =?utf-8?B?Si9jRlBUVWFEbXcvRWd6MmpIMWttVHQvYVNjWDdLc0Y2ZGNwc2NTNkNmcGN4?=
+ =?utf-8?B?OUV1N1pKZXNKOGFtamdmT0owSHFqVWgreEpkMEVJZTNVbDlIWjlBbVFUSFpV?=
+ =?utf-8?B?MlNkdVVQSEpRRXlJWklKMTJsZUdnZU14SGRNK0ZWaDA0d2NJN3FRbU9iMFJT?=
+ =?utf-8?B?WTJYaUtpcDMyT0pNbjJYZ1BieGtSSWVxcnE1VUMwSG1rc3JCV2RkUzd2d2lh?=
+ =?utf-8?B?YUREVU5HV1g5S3dBKzZqN1VJTmxwREtucmh4aUFHR3VTOHFycm9UNWZvRG80?=
+ =?utf-8?B?ZE9Lc2w3QUJJZnh2aHQyb21MbWZPMlU4Y1BYV1VwRElySWtiQ2pQVVBuTk0v?=
+ =?utf-8?B?U3BZZ0JOVzBRV1RyeEVCUm5NUU1iUW41OHE0TjY0NWFNRXdvSzZzNEVGS2p0?=
+ =?utf-8?B?QlplRFlZWUZNM3Nnd05XL2NSWjBlaDdpVmJSQ0I2K1FHN0NGallMV2YwYWU1?=
+ =?utf-8?B?cUp0b1J3ODlVRGllZGovZXd0dk0rOGwySzJJcjVkbkNBN015am5aNCtwdS9l?=
+ =?utf-8?B?VmlFQ3hDRXB1R1RmbVU1ZnpiS2FiT1FvK2wyL0NJRUFuR29BdE9HYjNUbEh2?=
+ =?utf-8?B?anUvc1FQR3dDcDdNeVB1NmptQnF4aXFuV29lcWZNbzY4U0RJR0lTeVhFaFo1?=
+ =?utf-8?B?UTIxYmpwemRjdWlocUc2akJqS3NTWTkzZjVXTnRiYjJEWmFhK2QxVE5xalpv?=
+ =?utf-8?B?ZGQ5YVU0OWo3NWFMTW1aZVBKOTlUYlBiY3RKcGt1Q3dpQlJvVCszRUd2dGNy?=
+ =?utf-8?B?bzlrUHhrVXFHbFZmZU9ZVXc5NThuRmZ1U0xoRTFSMlpJekVLNTMyT3VpcS9y?=
+ =?utf-8?B?cGIrLzZwaW5OdURYWjJnaFJZK2RSUU5QN2N2ZERGVUFrcGZ2N3diMU1jTTAy?=
+ =?utf-8?B?Qnh5eTRScHdSUHdHOXI0aFo1dENZS3A1dTFkLzRNVGdLYjZ6SHd2M1gxYXZO?=
+ =?utf-8?B?K01HL2xmTWtIVUE0bjY0U3VDdmxLeUI3cFc4UURKUjBMc3gwT1R3bEZxTU02?=
+ =?utf-8?B?OStiOXE1cVh1cEYvN05oUGg1Wi83cVBzNEFzcG01WHBoOHZGMFB0N2RaWWlm?=
+ =?utf-8?B?R0F4aGtMbThHVUFYYUdkUS9tREE3YlduZzJxSUJMOXNMbXh0Y21jazJtYUFk?=
+ =?utf-8?B?QlhoLzNMaTV2U2ZPUmpPVElwd0tDaEhydUtsODcydkZhRGRheTU0M21Pd3hE?=
+ =?utf-8?B?NTYxNVQ4Qi9zVFNDa284c3pRTktUTWdXQjFvQ0pvbTArcmp1Ri9IemlOSVVw?=
+ =?utf-8?B?TmJsS3FmaXhMNjZSUktHNmFxdDF0dGg1U0ZhR3plcEczVU9wYm5ZTjZsTmhv?=
+ =?utf-8?B?bmsvNHA0R3d4bklnM0dHUGFCck9acDNPdUw5Z0N0VFRtM3hWY3oyV20wNnlr?=
+ =?utf-8?B?b001TGJYZExwVE01WDUxaVRnZm5CSVRwZ2V5Uy9adjg4SW94ZTZyTjdaRm9P?=
+ =?utf-8?B?MDU4M05XOSt0b09RM3JQQ2M2dFZmQUFrZjFBODB3OGFSZmJ6S3o5ajRyclVP?=
+ =?utf-8?B?aWVNNVNOcmUrMWdiRGFNSlpCZXZId0RwcVUrWHhSUzc5c3R4RkE0TWJQcE9V?=
+ =?utf-8?B?ckJLVW84VzQ0cDFUMUpHUlJJb1NvRDBURzVqVFg5ZGJ4WTZmYy9mSWc4RWVU?=
+ =?utf-8?B?L1lPL0VwaVZrQ0RUQ1lScVh0UERadFhubU1EeEpzdXd2S3gvamp6Zmd4dll6?=
+ =?utf-8?Q?KF1DMFpzzxgje72JBVEVoHfq5d/YeAsudIwVmkg?=
+X-OriginatorOrg: vaisala.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9babc316-88f3-4c41-4fdd-08d90b182287
+X-MS-Exchange-CrossTenant-AuthSource: HE1PR0602MB3449.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2021 14:07:33.8008
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 82a60b18-d3d2-4238-be40-08d90b1810dc
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL2NAM02FT018.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB4939
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 6d7393e0-41f5-4c2e-9b12-4c2be5da5c57
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UWB+DVXD4vHzYRIS+0NyJtGYTyG9hOV0wzGBUNp4K2qFmsain19UKD5clSWsTipcVXk7Os22YE+grslMDQBbWw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0601MB2315
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for Xilinx Versal FPGA manager.
+Description
+-----------
+Implement a bootcount (1) related driver that uses
+NVMEM as a backend. The patchset will also update the
+`snvs_lpgpr` driver to support 2 bytes NVMEM cells.
 
-PDI source type can be DDR, OCM, QSPI flash etc..
-But driver allocates memory always from DDR, Since driver supports only
-DDR source type.
+1. https://www.denx.de/wiki/view/DULG/UBootBootCountLimit
 
-Signed-off-by: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
----
-Changes for v2:
-                -Updated the Fpga Mgr registrations call's
-                 to 5.11
-                -Fixed some minor coding issues as suggested by
-                 Moritz.
-Changes for v3:
-                -Rewritten the Versal fpga Kconfig contents.
-Changes for v4:
-                -Rebased the changes on linux-next.
-                 No functional changes.
+Testing
+-------
+Hardware: i.MX6sx evaluation board
+Kernel: linux-imx-5.4.24
 
- drivers/fpga/Kconfig       |   9 +++
- drivers/fpga/Makefile      |   1 +
- drivers/fpga/versal-fpga.c | 117 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 127 insertions(+)
- create mode 100644 drivers/fpga/versal-fpga.c
+1. Configure the bootcount hardware in DT to use a NVMEM cell provided
+by `snvs_lpgpr` driver as backend.
+e.g. This will configure a 4 bytes long NVMEM cell
+```
+  bootcount_regs: bootcount-snvs-regs@0 {
+      reg = <0x0 0x04>;
+  };
+```
 
-diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
-index 33e15058d0dc..92c20b92357a 100644
---- a/drivers/fpga/Kconfig
-+++ b/drivers/fpga/Kconfig
-@@ -234,4 +234,13 @@ config FPGA_MGR_ZYNQMP_FPGA
- 	  to configure the programmable logic(PL) through PS
- 	  on ZynqMP SoC.
- 
-+config FPGA_MGR_VERSAL_FPGA
-+	tristate "Xilinx Versal FPGA"
-+	depends on ARCH_ZYNQMP || COMPILE_TEST
-+	help
-+	  Select this option to enable FPGA manager driver support for
-+	  Xilinx Versal SoC. This driver uses the firmware interface to
-+	  configure the programmable logic(PL).
-+
-+	  To compile this as a module, choose M here.
- endif # FPGA
-diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
-index 18dc9885883a..0bff783d1b61 100644
---- a/drivers/fpga/Makefile
-+++ b/drivers/fpga/Makefile
-@@ -18,6 +18,7 @@ obj-$(CONFIG_FPGA_MGR_TS73XX)		+= ts73xx-fpga.o
- obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+= xilinx-spi.o
- obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+= zynq-fpga.o
- obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+= zynqmp-fpga.o
-+obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)      += versal-fpga.o
- obj-$(CONFIG_ALTERA_PR_IP_CORE)         += altera-pr-ip-core.o
- obj-$(CONFIG_ALTERA_PR_IP_CORE_PLAT)    += altera-pr-ip-core-plat.o
- 
-diff --git a/drivers/fpga/versal-fpga.c b/drivers/fpga/versal-fpga.c
-new file mode 100644
-index 000000000000..5744e44f981d
---- /dev/null
-+++ b/drivers/fpga/versal-fpga.c
-@@ -0,0 +1,117 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2019-2021 Xilinx, Inc.
-+ */
-+
-+#include <linux/dma-mapping.h>
-+#include <linux/fpga/fpga-mgr.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_address.h>
-+#include <linux/string.h>
-+#include <linux/firmware/xlnx-zynqmp.h>
-+
-+/**
-+ * struct versal_fpga_priv - Private data structure
-+ * @dev:	Device data structure
-+ */
-+struct versal_fpga_priv {
-+	struct device *dev;
-+};
-+
-+static int versal_fpga_ops_write_init(struct fpga_manager *mgr,
-+				      struct fpga_image_info *info,
-+				      const char *buf, size_t size)
-+{
-+	return 0;
-+}
-+
-+static int versal_fpga_ops_write(struct fpga_manager *mgr,
-+				 const char *buf, size_t size)
-+{
-+	struct versal_fpga_priv *priv;
-+	dma_addr_t dma_addr = 0;
-+	char *kbuf;
-+	int ret;
-+
-+	priv = mgr->priv;
-+
-+	kbuf = dma_alloc_coherent(priv->dev, size, &dma_addr, GFP_KERNEL);
-+	if (!kbuf)
-+		return -ENOMEM;
-+
-+	memcpy(kbuf, buf, size);
-+
-+	wmb(); /* ensure all writes are done before initiate FW call */
-+
-+	ret = zynqmp_pm_load_pdi(PDI_SRC_DDR, dma_addr);
-+
-+	dma_free_coherent(priv->dev, size, kbuf, dma_addr);
-+
-+	return ret;
-+}
-+
-+static int versal_fpga_ops_write_complete(struct fpga_manager *mgr,
-+					  struct fpga_image_info *info)
-+{
-+	return 0;
-+}
-+
-+static enum fpga_mgr_states versal_fpga_ops_state(struct fpga_manager *mgr)
-+{
-+	return FPGA_MGR_STATE_UNKNOWN;
-+}
-+
-+static const struct fpga_manager_ops versal_fpga_ops = {
-+	.state = versal_fpga_ops_state,
-+	.write_init = versal_fpga_ops_write_init,
-+	.write = versal_fpga_ops_write,
-+	.write_complete = versal_fpga_ops_write_complete,
-+};
-+
-+static int versal_fpga_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct versal_fpga_priv *priv;
-+	struct fpga_manager *mgr;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->dev = dev;
-+	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(32));
-+	if (ret < 0) {
-+		dev_err(dev, "no usable DMA configuration\n");
-+		return ret;
-+	}
-+
-+	mgr = devm_fpga_mgr_create(dev, "Xilinx Versal FPGA Manager",
-+				   &versal_fpga_ops, priv);
-+	if (!mgr)
-+		return -ENOMEM;
-+
-+	return devm_fpga_mgr_register(dev, mgr);
-+}
-+
-+static const struct of_device_id versal_fpga_of_match[] = {
-+	{ .compatible = "xlnx,versal-fpga", },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, versal_fpga_of_match);
-+
-+static struct platform_driver versal_fpga_driver = {
-+	.probe = versal_fpga_probe,
-+	.driver = {
-+		.name = "versal_fpga_manager",
-+		.of_match_table = of_match_ptr(versal_fpga_of_match),
-+	},
-+};
-+module_platform_driver(versal_fpga_driver);
-+
-+MODULE_AUTHOR("Nava kishore Manne <nava.manne@xilinx.com>");
-+MODULE_AUTHOR("Appana Durga Kedareswara rao <appanad.durga.rao@xilinx.com>");
-+MODULE_DESCRIPTION("Xilinx Versal FPGA Manager");
-+MODULE_LICENSE("GPL");
+2. Record the current NVMEM cell content:
+```
+~ # hexdump -C
+/sys/devices/soc0/soc/2000000.aips-bus/20cc000.snvs/20cc000.snvs:snvs-lpgpr/20cc000.snvs:snvs-lpgpr0/nvmem
+00000000  00 00 01 b0                                       |....|
+00000004
+```
+
+3. Write the bootcount and check that is successful: PASS
+```
+~ # echo 1 > /sys/bus/platform/drivers/bootcount-nvmem/bootcount/value
+bootcount: Write regval: 0xb0010001
+~ # hexdump -C
+/sys/devices/soc0/soc/2000000.aips-bus/20cc000.snvs/20cc000.snvs:snvs-lpgpr/20cc000.snvs:snvs-lpgpr0/nvmem
+00000000  01 00 01 b0                                       |....|
+00000004
+``` 
+
+Note: similar tests were done also for 2 bytes NVMEM cell size.
+
+Kernel: linux-next, tag: next-20210322
+1. Enable bootcount and snvs_lpgpr drivers
+2. Verify that they compile succesfully: PASS
+```
+kernel-master> make -j2 drivers/nvmem/
+  DESCEND  objtool
+  CALL    scripts/atomic/check-atomics.sh
+  CC      arch/x86/kernel/asm-offsets.s
+  CALL    scripts/checksyscalls.sh
+  CC      drivers/nvmem/core.o
+  CC      drivers/nvmem/bootcount-nvmem.o
+  CC      drivers/nvmem/snvs_lpgpr.o
+  AR      drivers/nvmem/built-in.
+```
+
+Testing the bootcount YAML document:
+1. Check the document by running the command:
+`make DT_CHECKER_FLAGS=-m dt_binding_check`
+2. Verify that is successful: PASS
+3. Verify that no warnings are generated by bootcount related yaml file: PASS
+```
+...
+CHECK Documentation/devicetree/bindings/nvmem/brcm,nvram.example.dt.yaml                                                                      DTC Documentation/devicetree/bindings/nvmem/bootcount-nvmem.example.dt.yaml
+CHECK Documentation/devicetree/bindings/nvmem/bootcount-nvmem.example.dt.yaml
+DTC Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.example.dt.yaml
+...
+```
+
+Changes since v1
+----------------
+- Fix the dt-bindings YAML document.
+
+Changes since v2
+----------------
+- Fix the dt-bindings YAML document warnings.
+
+
+Nandor Han (4):
+  dt-bindings: nvmem: Add bootcount-nvmem
+  nvmem: bootcount: add bootcount driver
+  nvmem: snvs_lpgpr: use cell stride for regmap size calculation
+  nvmem: snvs_lpgpr: support two bytes NVMEM cell size
+
+ .../bindings/nvmem/bootcount-nvmem.yaml       |  74 +++++++
+ drivers/nvmem/Kconfig                         |  10 +
+ drivers/nvmem/Makefile                        |   1 +
+ drivers/nvmem/bootcount-nvmem.c               | 195 ++++++++++++++++++
+ drivers/nvmem/snvs_lpgpr.c                    |  67 +++++-
+ 5 files changed, 341 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/bootcount-nvmem.yaml
+ create mode 100644 drivers/nvmem/bootcount-nvmem.c
+
 -- 
-2.17.1
+2.26.3
 
