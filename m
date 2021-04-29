@@ -2,117 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A2B336E573
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 09:02:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 277E736E59A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 09:09:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239697AbhD2HDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 03:03:06 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:21553 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231343AbhD2HDE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Apr 2021 03:03:04 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1619679738; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=qpzpGKT4MyOa6zZRIZKS8uAlvV/UNPjibYLAdYfWu/8=;
- b=X58fppStAsP+5YEawgMwbErJc3VJkEA4bKt8k8uthiCO7xlMypQb47NPtgXgup8Ti0bKn9Jq
- Zi/9E3WwarRYmA5T1GGpa9o5UuW5tSa6mWQv7C7xdGA2H7gxMfJ5YWPqyfiBolwJ/eEMm7zL
- rus6+vmfuIOMBKU+xlVHAsrAogQ=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 608a59f52cc44d3aeabc1cc6 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 29 Apr 2021 07:02:13
- GMT
-Sender: rojay=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id E753BC4479C; Thu, 29 Apr 2021 07:02:12 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: rojay)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 99B8AC43143;
-        Thu, 29 Apr 2021 07:02:11 +0000 (UTC)
+        id S233230AbhD2HKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 03:10:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55822 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232753AbhD2HKN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 03:10:13 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85515C06138C
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 00:09:20 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 82-20020a1c01550000b0290142562ff7c9so6015680wmb.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 00:09:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=lGQKcvz7hC4nUFEHdDadJU+QZacItzjYP+ScbOMh1Aw=;
+        b=1E9n8OGXToC0MSju3Flt6bn5DIN3r1e1ekVoS9QnDIDsM7q9vgo6IIPwARbyDobdkZ
+         DYzkqOzRpL/vSgZ66x5I3136OTtUE31feFT+8G5FxPJAwVQFjUikVImrBWBo3M5troG8
+         MsHv3psM9NMtq3CNZgSaufEbg53GGNIgERZEavlQP9Q6tjFzyEJ93YbrKHeoJeBVP5Tu
+         IbZi+bRyFeTziY3IUIF2Kbd1Aw6fFvihOy2rRu0r5JP/xzG4tuCyHLiDVRctI6/qAwDT
+         vJZuzSWMGkxvEqNkKvDyInlXBC7nhORgrSdaYPmc+Ta91SGxZFttYb+IMKqese66fZ9q
+         JYiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=lGQKcvz7hC4nUFEHdDadJU+QZacItzjYP+ScbOMh1Aw=;
+        b=gSN6bHE/qLttb8OvUVwQEUYiGSVPP8MjwpdoMHz2Htog1xBih4cN3hjCMpjK6z0EJl
+         KGuuzK2Lmosr/ZP934CQkV73NcOFB7UbajNSJ5Kb0hNvCn21q/aiyd7ZjTa1TLi5zQvi
+         vjG1ewz5T/qsyLOkCEDvXxjbv5T/kG0PybMdviuKlZyLwZ6YJbSome5KArxp/Fz8HAq/
+         KKUgaa9KoPq0kUgWqaED1izvYK/61nDaWx73R4m26HhGBDK8Papyfn7GeIn6w4msO2RI
+         gbUit1bPfFjhQOnyIngzl9g21Tq7YRcjTxF+mH4jjhEUHCdA3i/9xQTXhjJghtIBqO7I
+         uTxg==
+X-Gm-Message-State: AOAM530llKF8JKSwbaQdSXURliGSLzUBwsKUUTqpapr8qXFhxzql37HM
+        2bbNDvc6s5G4GAUX5i79q5iSJw==
+X-Google-Smtp-Source: ABdhPJzJCsoIlJD/C9JSCk3Ow6k2ys4QaWLWVgm6T6H5RWE8KSBa8ZvwFssGIDpCX3oPdWkMPE+efw==
+X-Received: by 2002:a1c:f20d:: with SMTP id s13mr35571333wmc.92.1619680159135;
+        Thu, 29 Apr 2021 00:09:19 -0700 (PDT)
+Received: from ?IPv6:2a01:e0a:90c:e290:c304:4b2b:4a79:1da9? ([2a01:e0a:90c:e290:c304:4b2b:4a79:1da9])
+        by smtp.gmail.com with ESMTPSA id e12sm3171283wrt.51.2021.04.29.00.09.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Apr 2021 00:09:18 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: meson-gxbb: nanopi-k2: Enable Bluetooth
+To:     Chen-Yu Tsai <wens@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210429060830.6266-1-wens@kernel.org>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <509d541c-a91a-a1f0-e37f-b239f1d3219b@baylibre.com>
+Date:   Thu, 29 Apr 2021 09:09:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+In-Reply-To: <20210429060830.6266-1-wens@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Date:   Thu, 29 Apr 2021 12:32:11 +0530
-From:   rojay@codeaurora.org
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Matthias Kaehlcke <mka@chromium.org>, akashast@codeaurora.org,
-        msavaliy@qti.qualcomm.com, parashar@codeaurora.org,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-i2c@vger.kernel.org
-Subject: Re: [PATCH 3/3] i2c: i2c-qcom-geni: Add support for
- 'assigned-performance-states'
-In-Reply-To: <cfd90d2a05aa0411ee7a976a89a361af@codeaurora.org>
-References: <20201224111210.1214-1-rojay@codeaurora.org>
- <20201224111210.1214-4-rojay@codeaurora.org> <YAGqKfDfB7EEuZVn@builder.lan>
- <6bfec3e6-3d26-7ade-d836-032273856ce2@codeaurora.org>
- <CAPDyKFqF0NE3QRAEfiqj5QOXXH2om4CpyyeudeqoovANfvjsaQ@mail.gmail.com>
- <20210119110516.fgbbllyg7lxwwfdz@vireshk-i7>
- <CAPDyKFogrWt=K3VtEZVH5bPL_fYt7rgdm5wGgq+QHtzX-n0z7g@mail.gmail.com>
- <29b30a2c0c4d7292747a073d23daaa70@codeaurora.org>
- <cfd90d2a05aa0411ee7a976a89a361af@codeaurora.org>
-Message-ID: <594e3849329abcacb69bef0901fef607@codeaurora.org>
-X-Sender: rojay@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-04-01 12:09, rojay@codeaurora.org wrote:
-> On 2021-02-12 14:51, rojay@codeaurora.org wrote:
->> On 2021-01-20 19:01, Ulf Hansson wrote:
->>> On Tue, 19 Jan 2021 at 12:05, Viresh Kumar <viresh.kumar@linaro.org> 
->>> wrote:
->>>> 
->>>> On 19-01-21, 12:02, Ulf Hansson wrote:
->>>> > As a matter of fact this was quite recently discussed [1], which also
->>>> > pointed out some issues when using the "required-opps" in combination,
->>>> > but perhaps that got resolved? Viresh?
->>>> 
->>>> Perhaps we never did anything there ..
->>> 
->>> Okay. Looks like we should pick up that discussion again, to conclude
->>> on how to move forward.
->>> 
->> 
->> Soft Reminder!
->> 
+On 29/04/2021 08:08, Chen-Yu Tsai wrote:
+> From: Chen-Yu Tsai <wens@csie.org>
 > 
-> Request Viresh, Uffe to discuss on the way forward.
+> The NanoPi K2 has a AP6212 WiFi+BT combo module. The WiFi portion is
+> already enabled. The BT part is connected via UART and I2S.
+> 
+> Enable the UART and add a device node describing the Bluetooth portion
+> of the module.
+> 
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 12 +++++++++++-
+>  1 file changed, 11 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+> index 7273eed5292c..10f48fb1af61 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+> @@ -385,9 +385,19 @@ &uart_AO {
+>  
+>  /* Bluetooth on AP6212 */
+>  &uart_A {
+> -	status = "disabled";
+> +	status = "okay";
+>  	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
+>  	pinctrl-names = "default";
+> +
+> +	bluetooth {
+> +		compatible = "brcm,bcm43438-bt";
+> +		clocks = <&wifi_32k>;
+> +		clock-names = "lpo";
+> +		vbat-supply = <&vddio_ao3v3>;
+> +		vddio-supply = <&vddio_ao18>;
+> +		host-wakeup-gpios = <&gpio GPIOX_21 GPIO_ACTIVE_HIGH>;
+> +		shutdown-gpios = <&gpio GPIOX_20 GPIO_ACTIVE_HIGH>;
+> +	};
+>  };
+>  
+>  /* 40-pin CON1 */
 > 
 
-Hi Viresh, Uffe, looking forward for your discussion/updates.
+Thanks !
 
-Thanks,
-Roja
-
->>>> 
->>>> --
->>>> viresh
->>> 
->>> Kind regards
->>> Uffe
->> 
->> - Roja
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
