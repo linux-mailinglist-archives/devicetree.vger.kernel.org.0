@@ -2,91 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98DB136E729
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 10:40:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B38FC36E736
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 10:43:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233104AbhD2IkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 04:40:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47578 "EHLO
+        id S233264AbhD2Ino (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 04:43:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231405AbhD2IkQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 04:40:16 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B1DCC06138B
-        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 01:39:30 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1lc2Ca-0007uh-7v; Thu, 29 Apr 2021 10:39:16 +0200
-Subject: Re: [PATCH 15/16] soc: imx: gpcv2: support reset defer probe
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     marex@denx.de, devicetree@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>, kernel@pengutronix.de,
-        abel.vesa@nxp.com, andrew.smirnov@gmail.com, aford173@gmail.com,
-        agx@sigxcpu.org, linux-kernel@vger.kernel.org, krzk@kernel.org,
-        frieder.schrempf@kontron.de, ping.bai@nxp.com, linux-imx@nxp.com,
-        p.zabel@pengutronix.de, festevam@gmail.com,
-        linux-arm-kernel@lists.infradead.org, l.stach@pengutronix.de
-References: <20210429073050.21039-1-peng.fan@oss.nxp.com>
- <20210429073050.21039-16-peng.fan@oss.nxp.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Message-ID: <bc5793e4-5d43-1ca9-7a12-9b58806c1856@pengutronix.de>
-Date:   Thu, 29 Apr 2021 10:39:14 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+        with ESMTP id S232455AbhD2Ino (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 04:43:44 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAFF0C06138B
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 01:42:57 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id w3so98707543ejc.4
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 01:42:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=caSZIsnAQyTh4yU5NXoNe4Iv3Mgw3V9GFqN8gWGL8Gw=;
+        b=lxiug90+yt5JjRhNJkn7Iu2J4iI88r4aaS7h4CRaO3LLN5p9p1mhgw6U27vgIfln73
+         kxyzxt1ng9yEDa1GHMN+DuTjxbzbHy7hv+bPbTdN/poU7r9wIK04f8CXHjSoRwGHumu2
+         GTkfSQPEf8K/s7SLZIXsq5Mbqii18MkUsK4zoJ+F21qdFMHHmZc74ys7k9TKbTEcMX7+
+         9r59AGgku7DqvMpZFbJlMN/0uAX5Rv7zKQpVVOn/J9BbZVOSiH5vgyprDrpj7zG/Hii+
+         k3m87dS/rEJkjXYHlp5LdSTMGJ6y6LZDabJp9ZW/SCI0VTlYHiUIfimuW8uQBnunBUob
+         6AFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=caSZIsnAQyTh4yU5NXoNe4Iv3Mgw3V9GFqN8gWGL8Gw=;
+        b=tPO1ml1S6ZcXdK6olcNcntFs9Rep2uRDMMZgCyJQhXsJhY8kjtRO/3v60cjaE3Xdl/
+         Y3r/aGU9Z63BJU3eObHbAMsw6k+rHciAcRsmDBlgpiLeHJx6IQKMN6cQAL6YSt7FDprY
+         7iMSoOiosWZephhaHzcPtnQtyuy4VdEP60n50Z3nWFx9U6GsDycwtf9x0OUhk3Wv1dRt
+         JTOjEJWWZq32ZSe7p+ClG5ziEjsVAAcBCbE6THEG5VWipLHd8eM5dxb6hJvyEPsecqaf
+         LgvxKZWJ8y89riM+iAPmFIk2UttpP5X9Ej19GPlmO1YrqCSp4AiM1C7wYRqvJt5Ink9b
+         lRQw==
+X-Gm-Message-State: AOAM533fHn8U8mPn3IMLWkn10USk8NxEUbGpTo1sEhjS8kckX0eQoe3Z
+        k0W83Z8lH5kiuHGycrgM6UFqkg==
+X-Google-Smtp-Source: ABdhPJwiUHLs2mMBYuedWUxl21/X9b7CdLNPsi0Z9Z1kRvKBsSabtpssEPSDA/aYG4wYvc7dVRi1Jg==
+X-Received: by 2002:a17:906:414d:: with SMTP id l13mr21127861ejk.527.1619685776575;
+        Thu, 29 Apr 2021 01:42:56 -0700 (PDT)
+Received: from localhost.localdomain (82-65-169-74.subs.proxad.net. [82.65.169.74])
+        by smtp.googlemail.com with ESMTPSA id n17sm1758930eds.72.2021.04.29.01.42.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Apr 2021 01:42:56 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: meson: vim3: enable hdmi audio loopback
+Date:   Thu, 29 Apr 2021 10:42:53 +0200
+Message-Id: <20210429084253.59692-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210429073050.21039-16-peng.fan@oss.nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Enable audio capture frontends and a tdm decoder.
+This makes it possible to loopback the audio played on the hdmi codec,
+which is the only output interface at the moment.
 
-On 29.04.21 09:30, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> When gpcv2 probe, the reset controller might not be ready, so we need
-> defer probe
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/soc/imx/gpcv2.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-> index 072f519462a5..49dd137f6b94 100644
-> --- a/drivers/soc/imx/gpcv2.c
-> +++ b/drivers/soc/imx/gpcv2.c
-> @@ -784,9 +784,12 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
->  				     "Failed to get domain's clocks\n");
->  
->  	domain->reset = devm_reset_control_array_get_optional_exclusive(domain->dev);
-> -	if (IS_ERR(domain->reset))
-> +	if (IS_ERR(domain->reset)) {
-> +		if (PTR_ERR(domain->reset) == -EPROBE_DEFER)
-> +			return -EPROBE_DEFER;
->  		return dev_err_probe(domain->dev, PTR_ERR(domain->reset),
->  				     "Failed to get domain's resets\n");
+Of course, one TODDR device would be enough to do that but since
+the 3 FRDDRs are enabled on the playback side, let's do the same on the
+capture side.
 
-dev_err_probe already propagates the error code in its second argument.
-Seems to me this patch's only effect is to disable deferred probe reason tracking?
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ .../boot/dts/amlogic/meson-khadas-vim3.dtsi   | 41 +++++++++++++++++--
+ .../dts/amlogic/meson-sm1-khadas-vim3l.dts    | 13 ++++++
+ 2 files changed, 50 insertions(+), 4 deletions(-)
 
-> +	}
->  
->  	pm_runtime_enable(domain->dev);
->  
-> 
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+index 66d67524b031..3cf4ecb6d52e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+@@ -171,11 +171,16 @@ hdmi_connector_in: endpoint {
+ 	sound {
+ 		compatible = "amlogic,axg-sound-card";
+ 		model = "KHADAS-VIM3";
+-		audio-aux-devs = <&tdmout_a>;
++		audio-aux-devs = <&tdmin_a>, <&tdmout_a>;
+ 		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
+ 				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
+ 				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
+-				"TDM_A Playback", "TDMOUT_A OUT";
++				"TDM_A Playback", "TDMOUT_A OUT",
++				"TDMIN_A IN 0", "TDM_A Capture",
++				"TDMIN_A IN 3", "TDM_A Loopback",
++				"TODDR_A IN 0", "TDMIN_A OUT",
++				"TODDR_B IN 0", "TDMIN_A OUT",
++				"TODDR_C IN 0", "TDMIN_A OUT";
+ 
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+@@ -198,8 +203,20 @@ dai-link-2 {
+ 			sound-dai = <&frddr_c>;
+ 		};
+ 
+-		/* 8ch hdmi interface */
+ 		dai-link-3 {
++			sound-dai = <&toddr_a>;
++		};
++
++		dai-link-4 {
++			sound-dai = <&toddr_b>;
++		};
++
++		dai-link-5 {
++			sound-dai = <&toddr_c>;
++		};
++
++		/* 8ch hdmi interface */
++		dai-link-6 {
+ 			sound-dai = <&tdmif_a>;
+ 			dai-format = "i2s";
+ 			dai-tdm-slot-tx-mask-0 = <1 1>;
+@@ -214,7 +231,7 @@ codec {
+ 		};
+ 
+ 		/* hdmi glue */
+-		dai-link-4 {
++		dai-link-7 {
+ 			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
+ 
+ 			codec {
+@@ -454,10 +471,26 @@ &tdmif_a {
+ 	status = "okay";
+ };
+ 
++&tdmin_a {
++	status = "okay";
++};
++
+ &tdmout_a {
+ 	status = "okay";
+ };
+ 
++&toddr_a {
++	status = "okay";
++};
++
++&toddr_b {
++	status = "okay";
++};
++
++&toddr_c {
++	status = "okay";
++};
++
+ &tohdmitx {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+index 06de0b1ce726..f2c098143594 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+@@ -32,6 +32,19 @@ vddcpu: regulator-vddcpu {
+ 		regulator-boot-on;
+ 		regulator-always-on;
+ 	};
++
++	sound {
++		model = "G12B-KHADAS-VIM3L";
++		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
++				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
++				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
++				"TDM_A Playback", "TDMOUT_A OUT",
++				"TDMIN_A IN 0", "TDM_A Capture",
++				"TDMIN_A IN 13", "TDM_A Loopback",
++				"TODDR_A IN 0", "TDMIN_A OUT",
++				"TODDR_B IN 0", "TDMIN_A OUT",
++				"TODDR_C IN 0", "TDMIN_A OUT";
++	};
+ };
+ 
+ &cpu0 {
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.31.1
+
