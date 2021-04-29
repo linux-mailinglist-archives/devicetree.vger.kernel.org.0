@@ -2,134 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E96636EF4D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 20:04:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A22536EF6A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 20:19:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241078AbhD2SFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 14:05:25 -0400
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:35513 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232572AbhD2SFY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 14:05:24 -0400
-Received: by mail-oi1-f177.google.com with SMTP id e25so37390916oii.2;
-        Thu, 29 Apr 2021 11:04:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BGXc8n8dJgWIvZ1rgn/mp/0YVMWp8ZgJFpSUhA1n/t0=;
-        b=VUmbolxsdBR7g59BJIa4Uxubh8AAezLYzNq8glcT3Szq0vGl3jmNQ7lGsOV7MeRWBl
-         Nr7FTDSvq90swnqtEQYQhU9hoh+OYIpOhlQUyvitwYoa6P2Pv0VxuhUxQWI/GLdo/6sQ
-         ulgRTMiCYMvCAtaLq0xp/JYTzB+AaLz1PyKw5uAHgXajwlJKskxoV19RZQdD2POaM595
-         qKiYwhk7xH4Rjs+2uyyywRF0ZWJp+/mQBwnR6t1imTybpMKAqk2dDHqGwmY7UgSFmNeo
-         TbP25PaYggqNksYU1aaXi9flUKqYG6w6RoRaIwhl9+v1HvYJSrQeyT2OtALS7sUxAtQt
-         lhlg==
-X-Gm-Message-State: AOAM531wWt+5M60u/at6fBBvtpUk1j9JQ3pQl8T9rZlTAHCyRp8hgP6Q
-        iWBhB3dUjTS+IIpPjhUPQw==
-X-Google-Smtp-Source: ABdhPJxsvgDl4cmyGSZAjcy3TO96h2Gk37C2SsrChdAtgKojOCkhhcJuqRmLaS8oiHIGCS+V5p6asA==
-X-Received: by 2002:aca:ed12:: with SMTP id l18mr7861083oih.24.1619719477238;
-        Thu, 29 Apr 2021 11:04:37 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q1sm114127otm.26.2021.04.29.11.04.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Apr 2021 11:04:36 -0700 (PDT)
-Received: (nullmailer pid 1505463 invoked by uid 1000);
-        Thu, 29 Apr 2021 18:04:35 -0000
-Date:   Thu, 29 Apr 2021 13:04:35 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Rajeev Nandan <rajeevny@codeaurora.org>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, mkrishn@codeaurora.org,
-        kalyan_t@codeaurora.org, hoegsberg@chromium.org,
-        abhinavk@codeaurora.org, seanpaul@chromium.org
-Subject: Re: [v3 1/2] dt-bindings: backlight: add DisplayPort aux backlight
-Message-ID: <20210429180435.GA1385465@robh.at.kernel.org>
-References: <1619416756-3533-1-git-send-email-rajeevny@codeaurora.org>
- <1619416756-3533-2-git-send-email-rajeevny@codeaurora.org>
+        id S233706AbhD2SUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 14:20:21 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:57176 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241181AbhD2SUU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 14:20:20 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13TIJB2E064801;
+        Thu, 29 Apr 2021 13:19:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1619720351;
+        bh=qn9kzRdRLypsLGuwsWHINLPGN27LGJ4D1oTG14gSrhQ=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=XxMhfy7DhE9uwt78+5kErww92qqIjMvt17+diJMmsltgv+9LOtJwyenI4lwnJy9SL
+         DBcZyt75V1rWchPr+n4ecd8EbenekLHTf8Qg1CY7jTIT9c2zbhAvCIxF2tIahtcjQ0
+         2CGHGv6FbOa4ql+DcvCpP53SmH2zY5TTOYS9Wh9o=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13TIJBdB131020
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 29 Apr 2021 13:19:11 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 29
+ Apr 2021 13:19:11 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Thu, 29 Apr 2021 13:19:11 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13TIJAWs025236;
+        Thu, 29 Apr 2021 13:19:11 -0500
+Date:   Thu, 29 Apr 2021 23:49:10 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Michael Walle <michael@walle.cc>
+CC:     <Tudor.Ambarus@microchip.com>, <nm@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <miquel.raynal@bootlin.com>,
+        <richard@nod.at>, <vigneshr@ti.com>, <broonie@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mtd@lists.infradead.org>, <linux-spi@vger.kernel.org>,
+        <lokeshvutla@ti.com>
+Subject: Re: [RFC PATCH 4/6] spi: cadence-qspi: Use PHY for DAC reads if
+ possible
+Message-ID: <20210429181908.bwb45eljn5nxscf6@ti.com>
+References: <20210311191216.7363-1-p.yadav@ti.com>
+ <20210311191216.7363-5-p.yadav@ti.com>
+ <2f26456e-59ff-2625-5d65-c1537052839d@microchip.com>
+ <20210312101757.sqeyledbwjnpqdoy@ti.com>
+ <ee2b753b16e76ecbede4c1373b6f2d77@walle.cc>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <1619416756-3533-2-git-send-email-rajeevny@codeaurora.org>
+In-Reply-To: <ee2b753b16e76ecbede4c1373b6f2d77@walle.cc>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 26, 2021 at 11:29:15AM +0530, Rajeev Nandan wrote:
-> Add bindings for DisplayPort aux backlight driver.
+On 29/04/21 06:28PM, Michael Walle wrote:
+> Am 2021-03-12 11:17, schrieb Pratyush Yadav:
+> > On 12/03/21 09:13AM, Tudor.Ambarus@microchip.com wrote:
+> > > On 3/11/21 9:12 PM, Pratyush Yadav wrote:
+> > > > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > > >
+> > > > Check if a read is eligible for PHY and if it is, enable PHY and DQS.
+> > > 
+> > > DQS as in data strobe? Shouldn't the upper layer inform the QSPI
+> > > controller
+> > > whether DS is required or not?
+> > 
+> > Yes, DQS as in data strobe. I need to check this again, but IIRC the
+> > controller cannot run in PHY mode unless DS is used. Ideally the upper
+> > layer should indeed inform the controller whether DS is supported/in-use
+> > or not. That can be used to decide whether PHY mode (and consequently
+> > the DS line) is to be used or not.
+> > 
+> > Currently there are only two flashes that use 8D-8D-8D mode (S28HS512T
+> > and MT35XU512ABA), and both of them drive the DS line.
 > 
-> Changes in v2:
-> - New
-> 
-> Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
-> ---
->  .../bindings/leds/backlight/dp-aux-backlight.yaml  | 49 ++++++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
-> new file mode 100644
-> index 00000000..0fa8bf0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/backlight/dp-aux-backlight.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: DisplayPort aux backlight driver bindings
-> +
-> +maintainers:
-> +  - Rajeev Nandan <rajeevny@codeaurora.org>
-> +
-> +description:
-> +  Backlight driver to control the brightness over DisplayPort aux channel.
-> +
-> +allOf:
-> +  - $ref: common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: dp-aux-backlight
-> +
-> +  ddc-i2c-bus:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      A phandle to the system I2C controller connected to the DDC bus used
-> +      for the DisplayPort AUX channel.
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +    description: GPIO specifier for backlight enable pin.
-> +
-> +  max-brightness: true
-> +
-> +required:
-> +  - compatible
-> +  - ddc-i2c-bus
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    backlight {
-> +        compatible = "dp-aux-backlight";
-> +        ddc-i2c-bus = <&sn65dsi86_bridge>;
-> +        enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
+> The LS1028A datasheet explicitly states that the calibration is only
+> used for non-DQS flashes. Which makes sense, because it just determine at
+> which point the input data is sampled. And if the flash provides a data
+> strobe, it already know when to sample it. What I am missing here?
 
-So the DDC bus is connected to a backlight and also a panel? This 
-binding is not reflecting the h/w, but rather what you want for some 
-driver.
+If there was 0 delay in transferring the signals from flash to 
+SoC/controller, you would be right. But in practice there is a small but 
+noticeable delay from when the flash launches the signal and when it is 
+received by the device. So by the time the DQS signal reaches the SoC it 
+might already be too late and the data lines might not be valid any 
+more. The calibration accounts for these (and some others) delays.
 
-There's only one thing here and that's an eDP panel which supports 
-backlight control via DP aux channel. You can figure all that out from 
-the panel's compatible and/or reading the EDID. 
+See [0] for a somewhat similar discussion I had with Tudor.
 
-You might also be interested in this thread:
+[0] https://lore.kernel.org/linux-mtd/20210312181447.dlecnw2oed7jtxe7@ti.com/
 
-https://lore.kernel.org/lkml/YIKsDtjcIHGNvW0u@orome.fritz.box/
-
-Rob
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
