@@ -2,87 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 345CB36E773
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 10:55:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D55136E77B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 10:59:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239890AbhD2IzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 04:55:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50958 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239982AbhD2IzI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 04:55:08 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15A46C06138B
-        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 01:54:22 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id t4so15417638ejo.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 01:54:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Okh7SCTJDi6w4nnu7QO5qBG/v+E7WIC+sY8y8/WILM0=;
-        b=u8Vd2oGaTMPpqhwHEz69+5zFmMPmIW3Xe+oOdNQOxMxVkTrl+SeLoyuD0sKuN5RD2l
-         u9MVW+trx+Evc55frr7/kM0Jc+c5ICqksesG26zRL8EzYE6hWhF1lujGIqCgmJTGJ7yv
-         7KQkm/Z/HxbwntAviIeZVJZ4OJ/2HUalcwNFUpfL/5tPLKGmyjZY2RxsIVJq9az/0jdc
-         3gGWYlvf9GwqQbJbg1fTQDlBjWzYe0kO9lhBGQQ/O9yBSgNqwSj4ShtlKxQy205ti5Lq
-         d0KLW9gNA62xYvdWammNPJP7+crCLRDXbFhQlRrQBzpIfqrsjn3DYm6W+SD303KGUmxK
-         tBiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Okh7SCTJDi6w4nnu7QO5qBG/v+E7WIC+sY8y8/WILM0=;
-        b=DymMjcexXsWrCA2gU/q5sOeFDC5L3aLHQtA0sCvRqIbDRM0XRoP8AhGgcx/1Z/HTXr
-         lI9ZyuRxBdaAz4RvCknOKVqjzTfkMpErH3NA6D0MNifwQ4O2EVYEHySNEqYgYPiubteg
-         vYzIbVPBKXwh8XBXUviu3U2kCI0J1BHVXNLfijq3P7CT2M2PTCQswgeldMOuIvmdtT6I
-         MdESRHT1YKxRZZsdTi6R2Z1PDxWc4rQOuRXqrW48oihRR9Z9OEHJ2+Um2M4IUq+60Bpd
-         7itnQCAEIl3GW7jfncl7d6lRxQ68eN/m67TM0roRBa56ilqJHWV9p8x6In9fWTo+YUoz
-         1B5Q==
-X-Gm-Message-State: AOAM531DCMOr7zkJ6Tf1tcRXU7Y8Cx0+Xrv+4W9Ot+VvWy4sRu8Ez6wH
-        5pDqa86PDM7MSl7/XKhE6q59CQ==
-X-Google-Smtp-Source: ABdhPJwJoIa+rgy+CBsStAafFHpT7XKNSzhMNvbJHyz88GZFb+n1fhDg1aSkROswvEIgI77W9+pK7A==
-X-Received: by 2002:a17:906:2bd1:: with SMTP id n17mr22869220ejg.371.1619686459979;
-        Thu, 29 Apr 2021 01:54:19 -0700 (PDT)
-Received: from localhost.localdomain (82-65-169-74.subs.proxad.net. [82.65.169.74])
-        by smtp.googlemail.com with ESMTPSA id x9sm1835847edv.22.2021.04.29.01.54.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Apr 2021 01:54:19 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson: vim2: enable highspeed on wifi sdio
-Date:   Thu, 29 Apr 2021 10:54:13 +0200
-Message-Id: <20210429085413.60368-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.31.1
+        id S232924AbhD2I7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 04:59:42 -0400
+Received: from www381.your-server.de ([78.46.137.84]:53950 "EHLO
+        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232714AbhD2I7l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 04:59:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:Reply-To:Cc:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=wkI6VedDBhz3elMdASecoXfk2atYi4oo78R8rslH5Gg=; b=B8kfdHQfwdcgOTXwbHnHpFnHc3
+        hPGZXTOmeX3AEe5RpdKJfeqac/SjEsSCyQzyj555BNavwlGMicAOywKqC13LrwCitazWNqk7itYZk
+        Caf9Yp7W3vmruBDUbSPU/6tizq3RsP0eOuq6Vk7DV4BA7Oi5xueF/vKO6zdbKfYobpS4S3E5BLQxK
+        jkaZ4XTBXxxCQFudxCGDQJXs5/j/pF8SJtxbO4Pq6qWHkPE2gnyaH8nQeUUkmvhQK9ndDM73HpE0S
+        mvXwAwuCZ3BnIYCr542kRcZ6Tl1sQNGq008cWuA0zWi7K1rI87Yz3gRqiC0U7Hfksp2BwgF0ILxYh
+        1BmpFPVA==;
+Received: from sslproxy06.your-server.de ([78.46.172.3])
+        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92.3)
+        (envelope-from <lars@metafoo.de>)
+        id 1lc2VY-0006nY-1z; Thu, 29 Apr 2021 10:58:52 +0200
+Received: from [2001:a61:2bd3:3c01:9e5c:8eff:fe01:8578]
+        by sslproxy06.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1lc2VX-000KsX-M6; Thu, 29 Apr 2021 10:58:51 +0200
+Subject: Re: [RFC PATCH 2/4] iio: accel: fxls8962af: add interrupt support
+To:     Sean Nyekjaer <sean@geanix.com>, jic23@kernel.org,
+        linux-iio@vger.kernel.org, andy.shevchenko@gmail.com,
+        Nuno.Sa@analog.com, robh+dt@kernel.org, devicetree@vger.kernel.org
+References: <20210428082203.3587022-1-sean@geanix.com>
+ <20210428082203.3587022-2-sean@geanix.com>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+Message-ID: <28f1e2a4-b2fa-5e4a-954f-92d90966eaf7@metafoo.de>
+Date:   Thu, 29 Apr 2021 10:58:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210428082203.3587022-2-sean@geanix.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.103.2/26154/Wed Apr 28 13:07:51 2021)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable highspeed mode for vim2 sdio. In theory, the vim2 SDIO bus is
-capable of handling SDR50 mode but this needs to thoroughly tested.
+On 4/28/21 10:22 AM, Sean Nyekjaer wrote:
+> Preparation commit for the next that adds hw buffered sampling
+>
+> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+> ---
+> [...]
+>   
+> +static void fxls8962af_get_irq(struct device_node *of_node, enum fxls8962af_int_pin *pin)
+> +{
+> +	int irq;
+> +
+> +	irq = of_irq_get_byname(of_node, "INT2");
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 1 +
- 1 file changed, 1 insertion(+)
+For this I'd use device_property_match_string(dev, "interrupt-names", 
+"INT2"). Means it won't try to map the interrupt again, and also this is 
+the only place where the driver directly depends on OF, everything else 
+already uses the device_ API.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-index 18a4b7a6c5df..217f9d6d470e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-@@ -307,6 +307,7 @@ &sd_emmc_a {
- 	#size-cells = <0>;
- 
- 	bus-width = <4>;
-+	cap-sd-highspeed;
- 	max-frequency = <60000000>;
- 
- 	non-removable;
--- 
-2.31.1
+
+> +	if (irq > 0) {
+> +		*pin = FXLS8962AF_PIN_INT2;
+> +		return;
+> +	}
+> +
+> +	*pin = FXLS8962AF_PIN_INT1;
+> +}
 
