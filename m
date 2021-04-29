@@ -2,240 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9347536F137
-	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 22:39:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD76236F13D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Apr 2021 22:44:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236677AbhD2Ujq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 16:39:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39822 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236675AbhD2Ujp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Apr 2021 16:39:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8BA9B61424;
-        Thu, 29 Apr 2021 20:38:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1619728738;
-        bh=7fpzpOV4zd0vGWk7Nig3KUb6uMJJYVewdGFJlgXV4LY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=cNpYsunI00J2o1O4QCg8osIK8v04uOc/PbHjS4Y4zu2D5I/+eqeyDYZrSDU5FmVbj
-         0G2UtVVjmkkt7WxU0uOMKAIfa9rCWwxpSk2y+3dzNPILqIfhtjNwcx6KHa8n0yrs4j
-         EIy/9Z/KXE1a9BkIase6egfGDf4n2W1Unuq/blldVABxfty4wFUyic5bpwpV/CWX9Z
-         qXc3yWEVsuARaZlVG2rSZ0iaEREf2ZQXxLwGMF0lVmcd/iM+G6oJvWCjFuCCHTFv3o
-         dWTNZVh6/wys/RkO3Nh53WIzySBYPLGlkIkXRXOa47KiGmzKj58HAMX75D7xGcALL0
-         uZglbRslGJl/g==
-Received: by mail-ej1-f51.google.com with SMTP id n2so101854491ejy.7;
-        Thu, 29 Apr 2021 13:38:58 -0700 (PDT)
-X-Gm-Message-State: AOAM531M9hk9YIVsbscfLwQET38f16VfFIHjBkTmSFCSxs/1K3OFQmOJ
-        jxoqjAtLaR7z+w+QA1+aO4IlzorpKMbSHjhyPA==
-X-Google-Smtp-Source: ABdhPJys+AHIA7g0Hb9LngctVWlxApTbTRNaemN0NP5iP2Mprf+bpox8GRotpdVwoHfbA6KYjOGY7O7u2wDHKbJNX7I=
-X-Received: by 2002:a17:906:7806:: with SMTP id u6mr393550ejm.130.1619728737129;
- Thu, 29 Apr 2021 13:38:57 -0700 (PDT)
+        id S236820AbhD2UpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 16:45:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38708 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236769AbhD2UpA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 16:45:00 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D90C06138C
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 13:44:10 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id d11so10390686wrw.8
+        for <devicetree@vger.kernel.org>; Thu, 29 Apr 2021 13:44:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=3FNuWJ2V7SfgCjlrVjDv7aIGD8kBMXXDl/W+oAPOJA4=;
+        b=OyuX2tpPaz5ft1BDTP29/+tNris6Wwgw6buwhXO2lpHIHsmHQrt+xYV6hrSSXWwEwt
+         MEHp5FBTaoENvty+71TT+qFnYfT3NmOTdjmIbH2PRpLpEbfIbBBo+Xn8YAFfmb+igWwW
+         1IywC4XZKP5NTRCLaOh8fcrfK0vv+qF5ETNFaNVzJZuUeuhB/PYW47MpPcUFYSvGLYhR
+         fOlIXdF6MKVyiicC+UQ5LaDARmluCcoEnOTv+tICqdj+pZb5thqlZ4/nroF08/I7Q4oW
+         qiPRC8P7mlyyHHKPEl2PCEf2RPE/4HgrHSFP+gqL+hTZWYr5CnCFo+w7uGZFxfBcc9Fp
+         xTnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=3FNuWJ2V7SfgCjlrVjDv7aIGD8kBMXXDl/W+oAPOJA4=;
+        b=dCj3SJokeBvj93pFT0dSrTW/3GCRTXISpg5E1KUZvFBmCKjbt+CM3W5aS5S5BH9vNw
+         T+gUSsqN/h7pn2Ai0opuNUA4JfPumWxy4PPCLKIEODmdxTqPiYfRjrlgyWfk1uGrufQJ
+         DULvF0OCAO18LQbT3Mg/BtgKon/y/pbtfF6C1Tdodg3YjnHMFAbFpW3jTn4QqGqPygrJ
+         /JgLel/EczkX8PYc8iMcTr6RqJ3YWxzwxbP+/xcKm4gnsTcEqC4ckdHr8Q2/0lVn5Bf1
+         h+ELLjDZ1BnOExoz7ZCebmCu/mNFilWdJ8Vyr0iORXt4e3QrDUcoY5acEZgJZ7+icwIO
+         iSSQ==
+X-Gm-Message-State: AOAM532uHcASHknbJPMO1eW1JAz2a9k5dn+mG/wioudWdEcEXgk7WXLz
+        ElY5nwCog7nm86XW2R9wnX7p3g==
+X-Google-Smtp-Source: ABdhPJwM/TzhB6JI4B+qHqyCFekjx9ZQ8GTcztQCOnd//DnP+WtU7WxVfF2pWrUkNS+XUGJcgSuFzg==
+X-Received: by 2002:adf:d223:: with SMTP id k3mr1807817wrh.99.1619729049177;
+        Thu, 29 Apr 2021 13:44:09 -0700 (PDT)
+Received: from macbook.lan ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id o13sm6187484wrf.91.2021.04.29.13.44.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Apr 2021 13:44:08 -0700 (PDT)
+Subject: Re: [PATCH V2] arm64: dts: qcom: sc7280: Add nodes for eMMC and SD
+ card
+To:     Doug Anderson <dianders@google.com>,
+        Shaik Sajida Bhanu <sbhanu@codeaurora.org>
+Cc:     Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Sahitya Tummala <stummala@codeaurora.org>,
+        Ram Prakash Gupta <rampraka@codeaurora.org>,
+        Sayali Lokhande <sayalil@codeaurora.org>,
+        sartgarg@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>, cang@codeaurora.org,
+        pragalla@codeaurora.org, nitirawa@codeaurora.org,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Evan Green <evgreen@chromium.org>,
+        Odelu Kukatla <okukatla@codeaurora.org>
+References: <1616264220-25825-1-git-send-email-sbhanu@codeaurora.org>
+ <CAD=FV=WLZCSd6D5VFyD+1KBp5n1qyszER2EVaEMwYjQfPSSDnA@mail.gmail.com>
+ <b77f207b-2d90-3c8b-857f-625bd3867ed1@codeaurora.org>
+ <6fdf704c4716f5873d413229ca8adc57@codeaurora.org>
+ <CAD=FV=Wa4fT5wZgd0==8kLy_tzTLgdZ-HwdfOEAM9pMeMjjFyg@mail.gmail.com>
+ <8126e130e5c0ea1e7ea867414f0510c0@codeaurora.org>
+ <CAD=FV=XavWbf_b7-=JT6V5_RNA8CjdK4oRu7H719AaPDJ5tsqQ@mail.gmail.com>
+ <32096a375966e1fcc149016df012c445@codeaurora.org>
+ <CAD=FV=U0zEDi1Xn3OmVFA3h3maVWS_o2FXOW9qDEzTf1Moja=A@mail.gmail.com>
+ <7c6805abf9c1f590bc4d66d625152f22@codeaurora.org>
+ <CAD=FV=W8z2VgbP6mepVNXJ8ZO_Enb+ftwG1HQhq8HtEyG1ppOA@mail.gmail.com>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Message-ID: <43fa4053-09e9-0d90-3b19-879ef94c9ec3@linaro.org>
+Date:   Thu, 29 Apr 2021 23:44:06 +0300
 MIME-Version: 1.0
-References: <20210429192504.1148842-1-clabbe@baylibre.com>
-In-Reply-To: <20210429192504.1148842-1-clabbe@baylibre.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 29 Apr 2021 15:38:45 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJqFGU5EG+7GuRKFBaYZkB+Af41ZvqZH=54PH7qCQoMEg@mail.gmail.com>
-Message-ID: <CAL_JsqJqFGU5EG+7GuRKFBaYZkB+Af41ZvqZH=54PH7qCQoMEg@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: dma: convert arm-pl08x to yaml
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     Vinod <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
-        <dmaengine@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAD=FV=W8z2VgbP6mepVNXJ8ZO_Enb+ftwG1HQhq8HtEyG1ppOA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 29, 2021 at 2:25 PM Corentin Labbe <clabbe@baylibre.com> wrote:
->
-> Converts dma/arm-pl08x.txt to yaml.
-> In the process, I add an example for the faraday variant.
->
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
-> Changes since v1:
-> - fixes yamllint warning about indent
-> - added select
-> - fixed example (needed includes)
->
->  .../devicetree/bindings/dma/arm-pl08x.txt     |  59 --------
->  .../devicetree/bindings/dma/arm-pl08x.yaml    | 141 ++++++++++++++++++
->  2 files changed, 141 insertions(+), 59 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/dma/arm-pl08x.txt
->  create mode 100644 Documentation/devicetree/bindings/dma/arm-pl08x.yaml
+On 28.04.21 18:13, Doug Anderson wrote:
+> Hi,
+> 
+> On Wed, Apr 28, 2021 at 3:47 AM <sbhanu@codeaurora.org> wrote:
+>>
+>> On 2021-04-21 01:44, Doug Anderson wrote:
+>>> Hi,
+>>>
+>>> On Tue, Apr 20, 2021 at 10:21 AM <sbhanu@codeaurora.org> wrote:
+>>>>
+>>>> On 2021-04-15 01:55, Doug Anderson wrote:
+>>>>> Hi,
+>>>>>
+>>>>> On Tue, Apr 13, 2021 at 3:59 AM <sbhanu@codeaurora.org> wrote:
+>>>>>>
+>>>>>>>>>>> +                                       required-opps =
+>>>>>>>>>>> <&rpmhpd_opp_low_svs>;
+>>>>>>>>>>> +                                       opp-peak-kBps = <1200000
+>>>>>>>>>>> 76000>;
+>>>>>>>>>>> +                                       opp-avg-kBps = <1200000
+>>>>>>>>>>> 50000>;
+>>>>>>>>>> Why are the kBps numbers so vastly different than the ones on sc7180
+>>>>>>>>>> for the same OPP point. That implies:
+>>>>>>>>>>
+>>>>>>>>>> a) sc7180 is wrong.
+>>>>>>>>>>
+>>>>>>>>>> b) This patch is wrong.
+>>>>>>>>>>
+>>>>>>>>>> c) The numbers are essentially random and don't really matter.
+>>>>>>>>>>
+>>>>>>>>>> Can you identify which of a), b), or c) is correct, or propose an
+>>>>>>>>>> alternate explanation of the difference?
+>>>>>>>>>>
+>>>>>>>>
+>>>>>>>> We calculated bus votes values for both sc7180 and sc7280 with ICB
+>>>>>>>> tool,
+>>>>>>>> above mentioned values we got for sc7280.
+>>>>>>>
+>>>>>>> I don't know what an ICB tool is. Please clarify.
+>>>>>>>
+>>>>>>> Also: just because a tool spits out numbers that doesn't mean it's
+>>>>>>> correct. Presumably the tool could be wrong or incorrectly configured.
+>>>>>>> We need to understand why these numbers are different.
+>>>>>>>
+>>>>>> we checked with ICB tool team on this they conformed as Rennell &
+>>>>>> Kodiak
+>>>>>> are different chipsets,
+>>>>>> we might see delta in ib/ab values due to delta in scaling factors.
+>>>>>
+>>>>> ...but these numbers are in kbps, aren't they? As I understand it
+>>>>> these aren't supposed to be random numbers spit out by a tool but are
+>>>>> supposed to be understandable by how much bandwidth an IP block (like
+>>>>> MMC) needs from the busses it's connected to. Since the MMC IP block
+>>>>> on sc7180 and sc7280 is roughly the same there shouldn't be a big
+>>>>> difference in numbers.
+>>>>>
+>>>>> Something smells wrong.
+>>>>>
+>>>>> Adding a few people who understand interconnects better than I do,
+>>>>> though.
+>>>>>
+>>>>
+>>>> ICB team has re-checked the Rennell ICB tool and they confirmed that
+>>>> some configs were wrong in Rennell ICB tool and they corrected it.With
+>>>> the new updated Rennell ICB tool below are the values :
+>>>>
+>>>>
+>>>> Rennell LC:(Sc7180)
+>>>>
+>>>> opp-384000000 {
+>>>>                opp-hz = /bits/ 64 <384000000>;
+>>>>                required-opps = <&rpmhpd_opp_nom>;
+>>>>                opp-peak-kBps = <5400000 490000>;
+>>>>                opp-avg-kBps = <6600000 300000>;
+>>>> };
+>>>>
+>>>>
+>>>> And now, these values are near to Kodaik LC values:
+>>>>
+>>>> Kodaik LC:(SC7280)
+>>>>
+>>>> opp-384000000 {
+>>>>              opp-hz = /bits/ 64 <384000000>;
+>>>>              required-opps = <&rpmhpd_opp_nom>;
+>>>>              opp-peak-kBps = <5400000 399000>;
+>>>>              opp-avg-kBps = <6000000 300000>;
+>>>> };
+>>>
+>>> This still isn't making sense to me.
+>>>
+>>> * sc7180 and sc7280 are running at the same speed. I'm glad the
+>>> numbers are closer now, but I would have thought they'd be exactly the
+>>> same.
+>>>
+>>> * Aren't these supposed to be sensible? This is eMMC that does max
+>>> transfer rates of 400 megabytes / second to the external device. You
+>>> have bandwidths listed here of 5,400,000 kBps = 5,400,000 kilobytes /
+>>> second = 5400 megabytes / second. I can imagine there being some
+>>> overhead where an internal bus might need to be faster but that seems
+>>> excessive. This is 13.5x!
+>>>
+>>
+>> These numbers are not related to SDCC bandwidth, these are the values
+>> needed for the NOC's to run in nominal voltage corners (internal to
+>> hardware) and
+>> thus it helps SDCC to run in nominal to get required through put
+>> (384MBps).So above calculation mentioned by you is not applicable here.
+> 
+> OK. I guess if everyone else understands this and it's just me that
+> doesn't then I won't stand in the way. In general, though, the device
+> tree is supposed to be describing the hardware in a way that makes
+> sense on its own. It's not a place to just dump in magic numbers.
+> These numbers must be somehow related to the transfer rate of the SD
+> card since otherwise they wouldn't scale up with faster card clocks.
+> Given that these numbers are expressed in "kBps" (since you're storing
+> them in a property that has "kBps" in the name), I would expect that
+> these numbers are expressing some type of bandwidth. I still haven't
+> really understood why you have to scale some bandwidth at over 10x the
+> card clock speed.
+> 
+> Said another way: you're saying that you need these numbers because
+> they make a whole bunch of math work out. I'm saying that these aren't
+> just supposed to be magic numbers. They're supposed to make sense on
+> their own and you should be able to describe to me how you arrived at
+> these numbers in a way that I could do the math on my own. Saying "we
+> plugged this into some program and it spit out these numbers" isn't
+> good enough.
 
-> diff --git a/Documentation/devicetree/bindings/dma/arm-pl08x.yaml b/Documentation/devicetree/bindings/dma/arm-pl08x.yaml
-> new file mode 100644
-> index 000000000000..06dec6f3e9a8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/arm-pl08x.yaml
-> @@ -0,0 +1,141 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/arm-pl08x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM PrimeCells PL080 and PL081 and derivatives DMA controller
-> +
-> +maintainers:
-> +  - Vinod Koul <vkoul@kernel.org>
-> +
-> +allOf:
-> +  - $ref: "dma-controller.yaml#"
-> +
-> +# We need a select here so we don't match all nodes with 'arm,primecell'
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - arm,pl080
-> +          - arm,pl081
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - const: "arm,pl080"
-> +          - const: "arm,primecell"
-> +      - items:
-> +          - const: "arm,pl081"
-> +          - const: "arm,primecell"
+Agree.
 
-The first 2 oneOf entries can be combined into one.
+>>> * I can't see how it can make sense that "average" values are higher
+>>> than "peak" values.
+>>
+>>
+>> Here actual peak = peak number * 2
+>> actual average = average number
+>>
+>> and this multiplication is taken care by ICC driver, so technically
+>> actual peak is still high than average.
+> 
+> Sorry, but that is really counter-intuitive. Georgi: is that how this
+> is normally expected to work?
 
-And you don't need quotes.
+Average bandwidth being higher than peak does not make sense to me.
+The numbers in DT should reflect the real bandwidth that is being
+requested. If some links between nodes consist of multiple channels,
+or there is anything specific to the topology or the hardware platform
+(scaling factors, buswidth, etc), this should be handled in the
+interconnect provider driver. The goal is to use bandwidth values and
+not magic numbers.
 
-> +      - items:
-> +          - const: faraday,ftdma020
-> +          - const: arm,pl080
-> +          - const: arm,primecell
-
-blank line between each DT property
-
-> +  arm,primecell-periphid:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-This already has a type in the common definition, so drop.
-
-> +    description: on the FTDMAC020 the primecell ID is not hard-coded
-> +                 in the hardware and must be specified here as <0x0003b080>. This number
-> +                 follows the PrimeCell standard numbering using the JEP106 vendor code 0x38
-> +                 for Faraday Technology.
-> +  reg:
-> +    minItems: 1
-
-Convention is 'maxItems: 1'.
-
-> +    description: Address range of the PL08x registers
-> +  interrupts:
-> +    minItems: 1
-> +    description: The PL08x interrupt number
-> +  clocks:
-> +    minItems: 1
-> +    description: The clock running the IP core clock
-> +  clock-names:
-> +    const: "apb_pclk"
-
-primecell.yaml already covers this IIRC. Just 'maxItems: 1' is fine here.
-
-> +  lli-bus-interface-ahb1:
-> +    type: boolean
-> +    description: if AHB master 1 is eligible for fetching LLIs
-> +  lli-bus-interface-ahb2:
-> +    type: boolean
-> +    description: if AHB master 2 is eligible for fetching LLIs
-> +  mem-bus-interface-ahb1:
-> +    type: boolean
-> +    description: if AHB master 1 is eligible for fetching memory contents
-> +  mem-bus-interface-ahb2:
-> +    type: boolean
-> +    description: if AHB master 2 is eligible for fetching memory contents
-> +  "#dma-cells":
-> +    const: 2
-> +    description: must be <2>. First cell should contain the DMA request,
-
-'must be <2>' is already stated by the schema.
-
-> +                 second cell should contain either 1 or 2 depending on
-> +                 which AHB master that is used.
-> +
-> +  memcpy-burst-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum:
-> +      - 1
-> +      - 4
-> +      - 8
-> +      - 16
-> +      - 32
-> +      - 64
-> +      - 128
-> +      - 256
-> +    description: the size of the bursts for memcpy
-> +  memcpy-bus-width:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum:
-> +      - 8
-> +      - 16
-> +      - 32
-> +      - 64
-> +    description: |
-
-Don't need '|' unless you need to preserve formatting.
-
-> +                 the bus width used for memcpy in bits: 8, 16 or 32 are legal
-> +                 values, the Faraday FTDMAC020 can also accept 64 bits
-> +
-> +required:
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - "#dma-cells"
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    dmac0: dma-controller@10130000 {
-> +      compatible = "arm,pl080", "arm,primecell";
-> +      reg = <0x10130000 0x1000>;
-> +      interrupt-parent = <&vica>;
-> +      interrupts = <15>;
-> +      clocks = <&hclkdma0>;
-> +      clock-names = "apb_pclk";
-> +      lli-bus-interface-ahb1;
-> +      lli-bus-interface-ahb2;
-> +      mem-bus-interface-ahb2;
-> +      memcpy-burst-size = <256>;
-> +      memcpy-bus-width = <32>;
-> +      #dma-cells = <2>;
-> +    };
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/reset/cortina,gemini-reset.h>
-> +    #include <dt-bindings/clock/cortina,gemini-clock.h>
-> +    dma-controller@67000000 {
-> +      compatible = "faraday,ftdma020", "arm,pl080", "arm,primecell";
-> +      /* Faraday Technology FTDMAC020 variant */
-> +      arm,primecell-periphid = <0x0003b080>;
-> +      reg = <0x67000000 0x1000>;
-> +      interrupts = <9 IRQ_TYPE_EDGE_RISING>;
-> +      resets = <&syscon GEMINI_RESET_DMAC>;
-> +      clocks = <&syscon GEMINI_CLK_AHB>;
-> +      clock-names = "apb_pclk";
-> +      /* Bus interface AHB1 (AHB0) is totally tilted */
-> +      lli-bus-interface-ahb2;
-> +      mem-bus-interface-ahb2;
-> +      memcpy-burst-size = <256>;
-> +      memcpy-bus-width = <32>;
-> +      #dma-cells = <2>;
-> +    };
-> --
-> 2.26.3
->
+Thanks,
+Georgi
