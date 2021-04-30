@@ -2,380 +2,438 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 648C03700A4
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 20:41:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30D793700C0
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 20:49:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbhD3SmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 14:42:08 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:52608 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbhD3SmF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 14:42:05 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: krisman)
-        with ESMTPSA id 7EAB51F43B85
-From:   Gabriel Krisman Bertazi <krisman@collabora.com>
-To:     Masahiro Yamada <masahiroy@kernel.org>
-Cc:     linux-kbuild@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Andra Paraschiv <andraprs@amazon.com>,
-        Alexandru Ciobotaru <alcioa@amazon.com>,
-        Alexandru Vasile <lexnv@amazon.com>,
-        Alexei Starovoitov <ast@kernel.org>,
-        Andrii Nakryiko <andrii@kernel.org>,
-        Christian Brauner <christian@brauner.io>,
-        Daniel Borkmann <daniel@iogearbox.net>,
-        David Howells <dhowells@redhat.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        John Fastabend <john.fastabend@gmail.com>,
-        KP Singh <kpsingh@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Martin KaFai Lau <kafai@fb.com>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Song Liu <songliubraving@fb.com>,
-        Tomas Winkler <tomas.winkler@intel.com>,
-        Yonghong Song <yhs@fb.com>, bpf@vger.kernel.org,
-        devicetree@vger.kernel.org, keyrings@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-hardening@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH v2] .gitignore: prefix local generated files with a slash
-Organization: Collabora
-References: <20210430020308.66792-1-masahiroy@kernel.org>
-Date:   Fri, 30 Apr 2021 14:41:08 -0400
-In-Reply-To: <20210430020308.66792-1-masahiroy@kernel.org> (Masahiro Yamada's
-        message of "Fri, 30 Apr 2021 11:03:08 +0900")
-Message-ID: <87wnsj4nuj.fsf@collabora.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.1 (gnu/linux)
+        id S231698AbhD3SuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 14:50:04 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:35088 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229954AbhD3SuD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Apr 2021 14:50:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1619808554;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=o4W3uHI/TSMtIHR2pKx1tXQUyM0k5SEiQbBVnlOEz1E=;
+        b=a9bWkxR4jXH5QerZw37EVbzBncGKRDh79O+aFAZ7GCATX5XepdUZoNlLKdTbw3WMSw4WLA
+        Ezh2HmBcnsmookzGLwUDeay5JpvICVA6oWjHL8DN9fzVOVy1Fd0eSiOdN430Xbvi/r3wHm
+        pcuALULi1ksfKbxHoexm2T265dMEGW4=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-330-18oRVsOiMIipMuTLYlIeNg-1; Fri, 30 Apr 2021 14:49:12 -0400
+X-MC-Unique: 18oRVsOiMIipMuTLYlIeNg-1
+Received: by mail-qv1-f71.google.com with SMTP id p20-20020a0ce1940000b02901be3272e620so8694627qvl.10
+        for <devicetree@vger.kernel.org>; Fri, 30 Apr 2021 11:49:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:organization:user-agent:mime-version
+         :content-transfer-encoding;
+        bh=o4W3uHI/TSMtIHR2pKx1tXQUyM0k5SEiQbBVnlOEz1E=;
+        b=iIHehwiB/gdoy7/SYfIMqgvmHM6FhibNkDEQ9/R4d5MvDQtiYhCsLqEYoA8voQZB2z
+         pT+AiTtfHJX4eUOYLsp2Jgih4MLrVZ34yKqU+eMG3k3JCiNcCxGGzTlbaeZu0QId/9Rh
+         JMS8MoaI/y/UDSeOy8fP/oKWCnrg68TTVMMY3uCpd0eXlrzn8u+yLJZaLAomF+92T1Yo
+         Jnkg7ezazMdMskhs95tejjkYPMRFsp62mAd+40hP+4vKEHc6qHKhTs91/e5keSuHN3fv
+         VUOdkHCXfOm5rQqfJNh4lWepafTQidOZpQA4WiqqND/ySCZJ2Tk1/hd0+znDkAHhe+lq
+         qBrw==
+X-Gm-Message-State: AOAM531nD4u3wcQlyAnbAcpiVfFV7YQ2irEqFv+erCw8IfX1Iof6U9R1
+        6I7NMD+wVYSx089z9VEcJVhCr6XDKQ2j8nt0WjrfjlLCvD58CDHvmd2J7bo6GswvFZORpD+ywEu
+        j7jjfJvqZvSEGVoBVlE94WQ==
+X-Received: by 2002:a37:e50e:: with SMTP id e14mr6769314qkg.117.1619808540655;
+        Fri, 30 Apr 2021 11:49:00 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyQVA0GuQ9l6xfkw/t9YDKKCRQA2gevKWrmoK9jxO3LYBgavuD80FgZBR1aQ0mb0j/ttroXvQ==
+X-Received: by 2002:a37:e50e:: with SMTP id e14mr6769278qkg.117.1619808540364;
+        Fri, 30 Apr 2021 11:49:00 -0700 (PDT)
+Received: from Ruby.lyude.net (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
+        by smtp.gmail.com with ESMTPSA id l71sm2227890qke.27.2021.04.30.11.48.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Apr 2021 11:49:00 -0700 (PDT)
+Message-ID: <7a200cc05d75be9d802d64458b753c35578e84af.camel@redhat.com>
+Subject: Re: [v3 2/2] backlight: Add DisplayPort aux backlight driver
+From:   Lyude Paul <lyude@redhat.com>
+To:     Jani Nikula <jani.nikula@linux.intel.com>,
+        Rajeev Nandan <rajeevny@codeaurora.org>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     mkrishn@codeaurora.org, linux-kernel@vger.kernel.org,
+        abhinavk@codeaurora.org, dianders@chromium.org,
+        seanpaul@chromium.org, kalyan_t@codeaurora.org,
+        hoegsberg@chromium.org,
+        "Lankhorst, Maarten" <maarten.lankhorst@intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Dave Airlie <airlied@gmail.com>,
+        intel-gfx@lists.freedesktop.org
+Date:   Fri, 30 Apr 2021 14:48:58 -0400
+In-Reply-To: <87zgxl5qar.fsf@intel.com>
+References: <1619416756-3533-1-git-send-email-rajeevny@codeaurora.org>
+         <1619416756-3533-3-git-send-email-rajeevny@codeaurora.org>
+         <87zgxl5qar.fsf@intel.com>
+Organization: Red Hat
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Masahiro Yamada <masahiroy@kernel.org> writes:
+JFYI for anyone who is interested, I will be respinning my patches for adding
+backlight helpers very soon since we've got pretty much all of the prep work
+for it upstream now
 
-> The pattern prefixed with '/' matches files in the same directory,
-> but not ones in sub-directories.
->
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> Acked-by: Miguel Ojeda <ojeda@kernel.org>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Acked-by: Andra Paraschiv <andraprs@amazon.com>
-
-Acked-by: Gabriel Krisman Bertazi <krisman@collabora.com>
-
-> ---
->
-> Changes in v2:
->   - rebase
->
->  Documentation/devicetree/bindings/.gitignore |  4 ++--
->  arch/.gitignore                              |  4 ++--
->  certs/.gitignore                             |  4 ++--
->  drivers/memory/.gitignore                    |  2 +-
->  drivers/tty/vt/.gitignore                    |  6 +++---
->  fs/unicode/.gitignore                        |  4 ++--
->  kernel/.gitignore                            |  2 +-
->  lib/.gitignore                               | 10 +++++-----
->  samples/auxdisplay/.gitignore                |  2 +-
->  samples/binderfs/.gitignore                  |  3 ++-
->  samples/connector/.gitignore                 |  2 +-
->  samples/hidraw/.gitignore                    |  2 +-
->  samples/mei/.gitignore                       |  2 +-
->  samples/nitro_enclaves/.gitignore            |  2 +-
->  samples/pidfd/.gitignore                     |  2 +-
->  samples/seccomp/.gitignore                   |  8 ++++----
->  samples/timers/.gitignore                    |  2 +-
->  samples/vfs/.gitignore                       |  4 ++--
->  samples/watch_queue/.gitignore               |  3 ++-
->  samples/watchdog/.gitignore                  |  2 +-
->  scripts/.gitignore                           | 18 +++++++++---------
->  scripts/basic/.gitignore                     |  2 +-
->  scripts/dtc/.gitignore                       |  4 ++--
->  scripts/gcc-plugins/.gitignore               |  2 +-
->  scripts/genksyms/.gitignore                  |  2 +-
->  scripts/mod/.gitignore                       |  8 ++++----
->  usr/.gitignore                               |  4 ++--
->  27 files changed, 56 insertions(+), 54 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/.gitignore b/Documentation/devicetree/bindings/.gitignore
-> index 3a05b99bfa26..a77719968a7e 100644
-> --- a/Documentation/devicetree/bindings/.gitignore
-> +++ b/Documentation/devicetree/bindings/.gitignore
-> @@ -1,4 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  *.example.dts
-> -processed-schema*.yaml
-> -processed-schema*.json
-> +/processed-schema*.yaml
-> +/processed-schema*.json
-> diff --git a/arch/.gitignore b/arch/.gitignore
-> index 4191da401dbb..756c19c34f99 100644
-> --- a/arch/.gitignore
-> +++ b/arch/.gitignore
-> @@ -1,3 +1,3 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -i386
-> -x86_64
-> +/i386/
-> +/x86_64/
-> diff --git a/certs/.gitignore b/certs/.gitignore
-> index 6cbd1f1a5837..8c3763f80be3 100644
-> --- a/certs/.gitignore
-> +++ b/certs/.gitignore
-> @@ -1,3 +1,3 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -x509_certificate_list
-> -x509_revocation_list
-> +/x509_certificate_list
-> +/x509_revocation_list
-> diff --git a/drivers/memory/.gitignore b/drivers/memory/.gitignore
-> index caedc4c7d2db..5e84bee05ef8 100644
-> --- a/drivers/memory/.gitignore
-> +++ b/drivers/memory/.gitignore
-> @@ -1,2 +1,2 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -ti-emif-asm-offsets.h
-> +/ti-emif-asm-offsets.h
-> diff --git a/drivers/tty/vt/.gitignore b/drivers/tty/vt/.gitignore
-> index 3ecf42234d89..0221709b177d 100644
-> --- a/drivers/tty/vt/.gitignore
-> +++ b/drivers/tty/vt/.gitignore
-> @@ -1,4 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0
-> -conmakehash
-> -consolemap_deftbl.c
-> -defkeymap.c
-> +/conmakehash
-> +/consolemap_deftbl.c
-> +/defkeymap.c
-> diff --git a/fs/unicode/.gitignore b/fs/unicode/.gitignore
-> index 9b2467e77b2d..361294571ab0 100644
-> --- a/fs/unicode/.gitignore
-> +++ b/fs/unicode/.gitignore
-> @@ -1,3 +1,3 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -mkutf8data
-> -utf8data.h
-> +/mkutf8data
-> +/utf8data.h
-> diff --git a/kernel/.gitignore b/kernel/.gitignore
-> index 4abc4e033ed8..4dc1ffe9770b 100644
-> --- a/kernel/.gitignore
-> +++ b/kernel/.gitignore
-> @@ -1,2 +1,2 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -kheaders.md5
-> +/kheaders.md5
-> diff --git a/lib/.gitignore b/lib/.gitignore
-> index 327cb2c7f2c9..5e7fa54c4536 100644
-> --- a/lib/.gitignore
-> +++ b/lib/.gitignore
-> @@ -1,6 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -gen_crc32table
-> -gen_crc64table
-> -crc32table.h
-> -crc64table.h
-> -oid_registry_data.c
-> +/crc32table.h
-> +/crc64table.h
-> +/gen_crc32table
-> +/gen_crc64table
-> +/oid_registry_data.c
-> diff --git a/samples/auxdisplay/.gitignore b/samples/auxdisplay/.gitignore
-> index 2ed744c0e741..d023816849bd 100644
-> --- a/samples/auxdisplay/.gitignore
-> +++ b/samples/auxdisplay/.gitignore
-> @@ -1,2 +1,2 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -cfag12864b-example
-> +/cfag12864b-example
-> diff --git a/samples/binderfs/.gitignore b/samples/binderfs/.gitignore
-> index eb60241e8087..8fa415a3640b 100644
-> --- a/samples/binderfs/.gitignore
-> +++ b/samples/binderfs/.gitignore
-> @@ -1 +1,2 @@
-> -binderfs_example
-> +# SPDX-License-Identifier: GPL-2.0
-> +/binderfs_example
-> diff --git a/samples/connector/.gitignore b/samples/connector/.gitignore
-> index d86f2ff9c947..0e26039f39b5 100644
-> --- a/samples/connector/.gitignore
-> +++ b/samples/connector/.gitignore
-> @@ -1,2 +1,2 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -ucon
-> +/ucon
-> diff --git a/samples/hidraw/.gitignore b/samples/hidraw/.gitignore
-> index d7a6074ebcf9..5233ab63262e 100644
-> --- a/samples/hidraw/.gitignore
-> +++ b/samples/hidraw/.gitignore
-> @@ -1,2 +1,2 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -hid-example
-> +/hid-example
-> diff --git a/samples/mei/.gitignore b/samples/mei/.gitignore
-> index db5e802f041e..fe894bcb6a62 100644
-> --- a/samples/mei/.gitignore
-> +++ b/samples/mei/.gitignore
-> @@ -1,2 +1,2 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -mei-amt-version
-> +/mei-amt-version
-> diff --git a/samples/nitro_enclaves/.gitignore b/samples/nitro_enclaves/.gitignore
-> index 827934129c90..6a718eec71f4 100644
-> --- a/samples/nitro_enclaves/.gitignore
-> +++ b/samples/nitro_enclaves/.gitignore
-> @@ -1,2 +1,2 @@
->  # SPDX-License-Identifier: GPL-2.0
-> -ne_ioctl_sample
-> +/ne_ioctl_sample
-> diff --git a/samples/pidfd/.gitignore b/samples/pidfd/.gitignore
-> index eea857fca736..d4cfa3176b1b 100644
-> --- a/samples/pidfd/.gitignore
-> +++ b/samples/pidfd/.gitignore
-> @@ -1,2 +1,2 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -pidfd-metadata
-> +/pidfd-metadata
-> diff --git a/samples/seccomp/.gitignore b/samples/seccomp/.gitignore
-> index 4a5a5b7db30b..a6df0da77c5d 100644
-> --- a/samples/seccomp/.gitignore
-> +++ b/samples/seccomp/.gitignore
-> @@ -1,5 +1,5 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -bpf-direct
-> -bpf-fancy
-> -dropper
-> -user-trap
-> +/bpf-direct
-> +/bpf-fancy
-> +/dropper
-> +/user-trap
-> diff --git a/samples/timers/.gitignore b/samples/timers/.gitignore
-> index 40510c33cf08..cd9ff7b95383 100644
-> --- a/samples/timers/.gitignore
-> +++ b/samples/timers/.gitignore
-> @@ -1,2 +1,2 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -hpet_example
-> +/hpet_example
-> diff --git a/samples/vfs/.gitignore b/samples/vfs/.gitignore
-> index 8fdabf7e5373..79212d91285b 100644
-> --- a/samples/vfs/.gitignore
-> +++ b/samples/vfs/.gitignore
-> @@ -1,3 +1,3 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -test-fsmount
-> -test-statx
-> +/test-fsmount
-> +/test-statx
-> diff --git a/samples/watch_queue/.gitignore b/samples/watch_queue/.gitignore
-> index 2aa3c7e56a1a..823b351d3db9 100644
-> --- a/samples/watch_queue/.gitignore
-> +++ b/samples/watch_queue/.gitignore
-> @@ -1 +1,2 @@
-> -watch_test
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +/watch_test
-> diff --git a/samples/watchdog/.gitignore b/samples/watchdog/.gitignore
-> index 74153b831244..a70a0150ed9f 100644
-> --- a/samples/watchdog/.gitignore
-> +++ b/samples/watchdog/.gitignore
-> @@ -1,2 +1,2 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -watchdog-simple
-> +/watchdog-simple
-> diff --git a/scripts/.gitignore b/scripts/.gitignore
-> index a6c11316c969..e83c620ef52c 100644
-> --- a/scripts/.gitignore
-> +++ b/scripts/.gitignore
-> @@ -1,11 +1,11 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -bin2c
-> -kallsyms
-> -unifdef
-> -recordmcount
-> -sorttable
-> -asn1_compiler
-> -extract-cert
-> -sign-file
-> -insert-sys-cert
-> +/asn1_compiler
-> +/bin2c
-> +/extract-cert
-> +/insert-sys-cert
-> +/kallsyms
->  /module.lds
-> +/recordmcount
-> +/sign-file
-> +/sorttable
-> +/unifdef
-> diff --git a/scripts/basic/.gitignore b/scripts/basic/.gitignore
-> index 98ae1f509592..961c91c8a884 100644
-> --- a/scripts/basic/.gitignore
-> +++ b/scripts/basic/.gitignore
-> @@ -1,2 +1,2 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -fixdep
-> +/fixdep
-> diff --git a/scripts/dtc/.gitignore b/scripts/dtc/.gitignore
-> index 8a8b62bf3d3c..e0b5c1d2464a 100644
-> --- a/scripts/dtc/.gitignore
-> +++ b/scripts/dtc/.gitignore
-> @@ -1,3 +1,3 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -dtc
-> -fdtoverlay
-> +/dtc
-> +/fdtoverlay
-> diff --git a/scripts/gcc-plugins/.gitignore b/scripts/gcc-plugins/.gitignore
-> index b04e0f0f033e..5cc385b9eb97 100644
-> --- a/scripts/gcc-plugins/.gitignore
-> +++ b/scripts/gcc-plugins/.gitignore
-> @@ -1,2 +1,2 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -randomize_layout_seed.h
-> +/randomize_layout_seed.h
-> diff --git a/scripts/genksyms/.gitignore b/scripts/genksyms/.gitignore
-> index 999af710f83d..0b275abf9405 100644
-> --- a/scripts/genksyms/.gitignore
-> +++ b/scripts/genksyms/.gitignore
-> @@ -1,2 +1,2 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -genksyms
-> +/genksyms
-> diff --git a/scripts/mod/.gitignore b/scripts/mod/.gitignore
-> index 07e4a39f90a6..ed2e13b708ce 100644
-> --- a/scripts/mod/.gitignore
-> +++ b/scripts/mod/.gitignore
-> @@ -1,5 +1,5 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -elfconfig.h
-> -mk_elfconfig
-> -modpost
-> -devicetable-offsets.h
-> +/elfconfig.h
-> +/mk_elfconfig
-> +/modpost
-> +/devicetable-offsets.h
-> diff --git a/usr/.gitignore b/usr/.gitignore
-> index 935442ed1eb2..8996e7a88902 100644
-> --- a/usr/.gitignore
-> +++ b/usr/.gitignore
-> @@ -1,4 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -gen_init_cpio
-> -initramfs_data.cpio
-> +/gen_init_cpio
-> +/initramfs_data.cpio
->  /initramfs_inc_data
+On Mon, 2021-04-26 at 12:49 +0300, Jani Nikula wrote:
+> On Mon, 26 Apr 2021, Rajeev Nandan <rajeevny@codeaurora.org> wrote:
+> > Add backlight driver for the panels supporting backlight control
+> > using DPCD registers on the DisplayPort aux channel.
+> 
+> No, please don't do this.
+> 
+> I wrote you last week in reply to v1 why I thought merging this would
+> not be a good idea [1]. Why have you sent two versions since then
+> without replying to me, or Cc'ing me or Lyude?
+> 
+> I think it's an even worse idea to merge this to
+> drivers/video/backlight. With DP AUX backlight you can't pretend it's
+> just an independent aux interface for backlight without everything else
+> around it. It's not independent of eDP, and exposing it as a direct
+> backlight sysfs interface bypasses the encoder.
+> 
+> And it still remains that there is existing DP AUX backlight code in
+> use, in the tree, with more features than this, with plans and
+> previously submitted patches to lift from one driver to drm core, and
+> with patches to add support to another driver.
+> 
+> I don't say this lightly, or very often at all, but,
+> 
+> NAK.
+> 
+> 
+> BR,
+> Jani.
+> 
+> 
+> [1] https://lore.kernel.org/dri-devel/871rb5bcf9.fsf@intel.com/
+> 
+> > 
+> > Changes in v2:
+> > - New (most of the code reused from drm_dp_aux_backlight.c of v1)
+> > 
+> > Changes in v3:
+> > - Add missing ';' to fix module compilation (kernel test bot)
+> > 
+> > Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
+> > ---
+> >  drivers/video/backlight/Kconfig            |   7 +
+> >  drivers/video/backlight/Makefile           |   1 +
+> >  drivers/video/backlight/dp_aux_backlight.c | 245
+> > +++++++++++++++++++++++++++++
+> >  3 files changed, 253 insertions(+)
+> >  create mode 100644 drivers/video/backlight/dp_aux_backlight.c
+> > 
+> > diff --git a/drivers/video/backlight/Kconfig
+> > b/drivers/video/backlight/Kconfig
+> > index d83c87b..82c88f0 100644
+> > --- a/drivers/video/backlight/Kconfig
+> > +++ b/drivers/video/backlight/Kconfig
+> > @@ -456,6 +456,13 @@ config BACKLIGHT_LED
+> >           If you have a LCD backlight adjustable by LED class driver, say
+> > Y
+> >           to enable this driver.
+> >  
+> > +config BACKLIGHT_DP_AUX
+> > +       tristate "DisplayPort aux backlight driver"
+> > +       depends on DRM && DRM_KMS_HELPER
+> > +       help
+> > +         If you have a panel backlight controlled by DPCD registers
+> > +         on the DisplayPort aux channel, say Y to enable this driver.
+> > +
+> >  endif # BACKLIGHT_CLASS_DEVICE
+> >  
+> >  endmenu
+> > diff --git a/drivers/video/backlight/Makefile
+> > b/drivers/video/backlight/Makefile
+> > index 685f3f1..ba23c7c 100644
+> > --- a/drivers/video/backlight/Makefile
+> > +++ b/drivers/video/backlight/Makefile
+> > @@ -57,3 +57,4 @@ obj-$(CONFIG_BACKLIGHT_WM831X)                +=
+> > wm831x_bl.o
+> >  obj-$(CONFIG_BACKLIGHT_ARCXCNN)        += arcxcnn_bl.o
+> >  obj-$(CONFIG_BACKLIGHT_RAVE_SP)                += rave-sp-backlight.o
+> >  obj-$(CONFIG_BACKLIGHT_LED)            += led_bl.o
+> > +obj-$(CONFIG_BACKLIGHT_DP_AUX)         += dp_aux_backlight.o
+> > diff --git a/drivers/video/backlight/dp_aux_backlight.c
+> > b/drivers/video/backlight/dp_aux_backlight.c
+> > new file mode 100644
+> > index 00000000..3398383
+> > --- /dev/null
+> > +++ b/drivers/video/backlight/dp_aux_backlight.c
+> > @@ -0,0 +1,245 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Backlight driver to control the brightness over DisplayPort aux
+> > channel.
+> > + */
+> > +
+> > +#include <linux/backlight.h>
+> > +#include <linux/err.h>
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/module.h>
+> > +#include <linux/platform_device.h>
+> > +#include <drm/drm_dp_helper.h>
+> > +
+> > +#define DP_AUX_MAX_BRIGHTNESS          0xffff
+> > +
+> > +/**
+> > + * struct dp_aux_backlight - DisplayPort aux backlight data
+> > + * @dev: pointer to our device.
+> > + * @aux: the DisplayPort aux channel.
+> > + * @enable_gpio: the backlight enable gpio.
+> > + * @enabled: true if backlight is enabled else false.
+> > + */
+> > +struct dp_aux_backlight {
+> > +       struct device *dev;
+> > +       struct drm_dp_aux *aux;
+> > +       struct gpio_desc *enable_gpio;
+> > +       bool enabled;
+> > +};
+> > +
+> > +static struct drm_dp_aux *i2c_to_aux(struct i2c_adapter *i2c)
+> > +{
+> > +       return container_of(i2c, struct drm_dp_aux, ddc);
+> > +}
+> > +
+> > +static int dp_aux_backlight_enable(struct dp_aux_backlight *aux_bl)
+> > +{
+> > +       u8 val = 0;
+> > +       int ret;
+> > +
+> > +       if (aux_bl->enabled)
+> > +               return 0;
+> > +
+> > +       /* Set backlight control mode */
+> > +       ret = drm_dp_dpcd_readb(aux_bl->aux,
+> > DP_EDP_BACKLIGHT_MODE_SET_REGISTER,
+> > +                               &val);
+> > +       if (ret < 0)
+> > +               return ret;
+> > +
+> > +       val &= ~DP_EDP_BACKLIGHT_CONTROL_MODE_MASK;
+> > +       val |= DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD;
+> > +       ret = drm_dp_dpcd_writeb(aux_bl->aux,
+> > DP_EDP_BACKLIGHT_MODE_SET_REGISTER,
+> > +                                val);
+> > +       if (ret < 0)
+> > +               return ret;
+> > +
+> > +       /* Enable backlight */
+> > +       ret = drm_dp_dpcd_readb(aux_bl->aux,
+> > DP_EDP_DISPLAY_CONTROL_REGISTER,
+> > +                               &val);
+> > +       if (ret < 0)
+> > +               return ret;
+> > +
+> > +       val |= DP_EDP_BACKLIGHT_ENABLE;
+> > +       ret = drm_dp_dpcd_writeb(aux_bl->aux,
+> > DP_EDP_DISPLAY_CONTROL_REGISTER,
+> > +                                val);
+> > +       if (ret < 0)
+> > +               return ret;
+> > +
+> > +       if (aux_bl->enable_gpio)
+> > +               gpiod_set_value(aux_bl->enable_gpio, 1);
+> > +
+> > +       aux_bl->enabled = true;
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static int dp_aux_backlight_disable(struct dp_aux_backlight *aux_bl)
+> > +{
+> > +       u8 val = 0;
+> > +       int ret;
+> > +
+> > +       if (!aux_bl->enabled)
+> > +               return 0;
+> > +
+> > +       if (aux_bl->enable_gpio)
+> > +               gpiod_set_value(aux_bl->enable_gpio, 0);
+> > +
+> > +       ret = drm_dp_dpcd_readb(aux_bl->aux,
+> > DP_EDP_DISPLAY_CONTROL_REGISTER,
+> > +                               &val);
+> > +       if (ret < 0)
+> > +               return ret;
+> > +
+> > +       val &= ~DP_EDP_BACKLIGHT_ENABLE;
+> > +       ret = drm_dp_dpcd_writeb(aux_bl->aux,
+> > DP_EDP_DISPLAY_CONTROL_REGISTER,
+> > +                                val);
+> > +       if (ret < 0)
+> > +               return ret;
+> > +
+> > +       aux_bl->enabled = false;
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static int dp_aux_backlight_update_status(struct backlight_device *bd)
+> > +{
+> > +       struct dp_aux_backlight *aux_bl = bl_get_data(bd);
+> > +       u16 brightness = backlight_get_brightness(bd);
+> > +       u8 val[2] = { 0x0 };
+> > +       int ret = 0;
+> > +
+> > +       if (brightness > 0) {
+> > +               val[0] = brightness >> 8;
+> > +               val[1] = brightness & 0xff;
+> > +               ret = drm_dp_dpcd_write(aux_bl->aux,
+> > DP_EDP_BACKLIGHT_BRIGHTNESS_MSB,
+> > +                                       val, sizeof(val));
+> > +               if (ret < 0)
+> > +                       return ret;
+> > +
+> > +               dp_aux_backlight_enable(aux_bl);
+> > +       } else {
+> > +               dp_aux_backlight_disable(aux_bl);
+> > +       }
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static int dp_aux_backlight_get_brightness(struct backlight_device *bd)
+> > +{
+> > +       struct dp_aux_backlight *aux_bl = bl_get_data(bd);
+> > +       u8 val[2] = { 0x0 };
+> > +       int ret = 0;
+> > +
+> > +       if (backlight_is_blank(bd))
+> > +               return 0;
+> > +
+> > +       ret = drm_dp_dpcd_read(aux_bl->aux,
+> > DP_EDP_BACKLIGHT_BRIGHTNESS_MSB,
+> > +                              &val, sizeof(val));
+> > +       if (ret < 0)
+> > +               return ret;
+> > +
+> > +       return (val[0] << 8 | val[1]);
+> > +}
+> > +
+> > +static const struct backlight_ops aux_bl_ops = {
+> > +       .update_status = dp_aux_backlight_update_status,
+> > +       .get_brightness = dp_aux_backlight_get_brightness,
+> > +};
+> > +
+> > +
+> > +static int dp_aux_backlight_probe(struct platform_device *pdev)
+> > +{
+> > +       struct dp_aux_backlight *aux_bl;
+> > +       struct backlight_device *bd;
+> > +       struct backlight_properties bl_props = { 0 };
+> > +       struct device_node *np;
+> > +       struct i2c_adapter *ddc;
+> > +       int ret = 0;
+> > +       u32 val;
+> > +
+> > +       aux_bl = devm_kzalloc(&pdev->dev, sizeof(*aux_bl), GFP_KERNEL);
+> > +       if (!aux_bl)
+> > +               return -ENOMEM;
+> > +
+> > +       aux_bl->dev = &pdev->dev;
+> > +
+> > +       np = of_parse_phandle(pdev->dev.of_node, "ddc-i2c-bus", 0);
+> > +       if (!np) {
+> > +               dev_err(&pdev->dev, "failed to get aux ddc I2C bus\n");
+> > +               return -ENODEV;
+> > +       }
+> > +
+> > +       ddc = of_find_i2c_adapter_by_node(np);
+> > +       of_node_put(np);
+> > +       if (!ddc)
+> > +               return -EPROBE_DEFER;
+> > +
+> > +       aux_bl->aux = i2c_to_aux(ddc);
+> > +       dev_dbg(&pdev->dev, "using dp aux %s\n", aux_bl->aux->name);
+> > +
+> > +       aux_bl->enable_gpio = devm_gpiod_get_optional(&pdev->dev,
+> > "enable",
+> > +                                            GPIOD_OUT_LOW);
+> > +       if (IS_ERR(aux_bl->enable_gpio)) {
+> > +               ret = PTR_ERR(aux_bl->enable_gpio);
+> > +               goto free_ddc;
+> > +       }
+> > +
+> > +       val = DP_AUX_MAX_BRIGHTNESS;
+> > +       of_property_read_u32(pdev->dev.of_node, "max-brightness", &val);
+> > +       if (val > DP_AUX_MAX_BRIGHTNESS)
+> > +               val = DP_AUX_MAX_BRIGHTNESS;
+> > +
+> > +       bl_props.max_brightness = val;
+> > +       bl_props.brightness = val;
+> > +       bl_props.type = BACKLIGHT_RAW;
+> > +       bd = devm_backlight_device_register(&pdev->dev, dev_name(&pdev-
+> > >dev),
+> > +                                           &pdev->dev, aux_bl,
+> > +                                           &aux_bl_ops, &bl_props);
+> > +       if (IS_ERR(bd)) {
+> > +               ret = PTR_ERR(bd);
+> > +               dev_err(&pdev->dev,
+> > +                             "failed to register backlight (%d)\n", ret);
+> > +               goto free_ddc;
+> > +       }
+> > +
+> > +       platform_set_drvdata(pdev, bd);
+> > +
+> > +       return 0;
+> > +
+> > +free_ddc:
+> > +       if (ddc)
+> > +               put_device(&ddc->dev);
+> > +
+> > +       return ret;
+> > +}
+> > +
+> > +static int dp_aux_backlight_remove(struct platform_device *pdev)
+> > +{
+> > +       struct backlight_device *bd = platform_get_drvdata(pdev);
+> > +       struct dp_aux_backlight *aux_bl = bl_get_data(bd);
+> > +       struct i2c_adapter *ddc = &aux_bl->aux->ddc;
+> > +
+> > +       if (ddc)
+> > +               put_device(&ddc->dev);
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static const struct of_device_id dp_aux_bl_of_match_table[] = {
+> > +       { .compatible = "dp-aux-backlight"},
+> > +       {},
+> > +};
+> > +MODULE_DEVICE_TABLE(of, dp_aux_bl_of_match_table);
+> > +
+> > +static struct platform_driver dp_aux_backlight_driver = {
+> > +       .driver = {
+> > +               .name = "dp-aux-backlight",
+> > +               .of_match_table = dp_aux_bl_of_match_table,
+> > +       },
+> > +       .probe = dp_aux_backlight_probe,
+> > +       .remove = dp_aux_backlight_remove,
+> > +
+> > +};
+> > +module_platform_driver(dp_aux_backlight_driver);
+> > +
+> > +MODULE_DESCRIPTION("DisplayPort aux backlight driver");
+> > +MODULE_LICENSE("GPL v2");
+> 
 
 -- 
-Gabriel Krisman Bertazi
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
+
