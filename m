@@ -2,97 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7CB036F768
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 10:54:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFD2336F76A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 10:56:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229598AbhD3Izp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 04:55:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57616 "EHLO
+        id S229657AbhD3I4t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 04:56:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbhD3Izp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 04:55:45 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2AE2C06174A;
-        Fri, 30 Apr 2021 01:54:57 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id j6so8637906pfh.5;
-        Fri, 30 Apr 2021 01:54:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=amPt7GENecI5RZIuIegdl9lEK8dib9aTLCmx2zlJxqc=;
-        b=Pj9PtB+mOxG5qnAs2g84MDbWlrI3JxpSGfEnVjm3jKxNPTwScLjgubZREBWewJPNPC
-         +o6txmu05Gm0BOFz2/2tyU73eKWtMaAi3vor3auwbU8NZBDhdcHnjQ1AZEFwvEwtayEL
-         HThSkIUSa/2ixPlxDChzHcp71b42vGMWIqs2xAHm8Ml3EwwNI9IrI2Oc3rLx39IyEy5H
-         +OPTKWnjPorjLy3NbVw8XuW+ah+dl+wX1ZYb8D0/8eKRTEoA9sNV68YZUIpxvU6f3x6O
-         /ncNYyZAyqK4yMxcd5N+NnkRvts1DpsLTgLTdhwOs7ynVgkOReGa9XrL5ArHIsgrodiF
-         B0IA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=amPt7GENecI5RZIuIegdl9lEK8dib9aTLCmx2zlJxqc=;
-        b=VCupngHPfEKUxUvI+wqZv8adYsGZKXMKJoduUZkE27m3jNzK6fxBp85RZHzRBbFWA8
-         +E3dpl9bBUf9VZJu6vtPGscDsbeXZ+6WozuAKtP6QUaPPkqL2hH/We+RiGediYvBgsf4
-         JFppngZ5QFekB68SMxv/tfnsS+XT+J+kez824jShOImwy47FpMuHlchdwPVWhHPz5gea
-         orW/0kMIs4Yc8qIaLHKldQQhtLnSaxiPI6p6rkzyoQrmr+uAJ1lxiNe8tHSY0+TEyLRq
-         i82zsjMa4mlo4Ge9eo+pTnM/0x0DtYZ4hEGLC4+eYIRO8G5tiyEQNIYIBrECnyGDlm7v
-         UYXA==
-X-Gm-Message-State: AOAM533xzyxxPyvRlLFLheLmEdF3JUmZR1781QDy0Kb2Ema3RmSTjKhM
-        WabgTfQSFT3eh59elOCfurB/sRsZ3b6R1zTPQHRR2g3YqOPwrA==
-X-Google-Smtp-Source: ABdhPJw4FZ/DlItoOrzKjOiieaLEOQz40U4pteDPNNLHlAEydjA8bAEApTSsRokhPBg36wiB9KrsgcXOFxGFGb3JTSg=
-X-Received: by 2002:a62:528e:0:b029:1f5:c5ee:a487 with SMTP id
- g136-20020a62528e0000b02901f5c5eea487mr4159308pfb.7.1619772897114; Fri, 30
- Apr 2021 01:54:57 -0700 (PDT)
+        with ESMTP id S229601AbhD3I4t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 04:56:49 -0400
+X-Greylist: delayed 100386 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 30 Apr 2021 01:56:01 PDT
+Received: from mout-u-107.mailbox.org (mout-u-107.mailbox.org [IPv6:2001:67c:2050:1::465:107])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C777C06174A;
+        Fri, 30 Apr 2021 01:56:01 -0700 (PDT)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [80.241.60.240])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-u-107.mailbox.org (Postfix) with ESMTPS id 4FWmRx73FvzQjp3;
+        Fri, 30 Apr 2021 10:55:57 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+Received: from smtp1.mailbox.org ([80.241.60.240])
+        by hefe.heinlein-support.de (hefe.heinlein-support.de [91.198.250.172]) (amavisd-new, port 10030)
+        with ESMTP id Tl5rxeJGiWZH; Fri, 30 Apr 2021 10:55:53 +0200 (CEST)
+Subject: Re: [PATCH v4 1/2] dt-bindings: dma: add schema for altr,msgdma
+To:     Olivier Dautricourt <olivier.dautricourt@orolia.com>,
+        Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <YIq/qObuYw+8ikxg@orolia.com>
+From:   Stefan Roese <sr@denx.de>
+Message-ID: <1c112356-ebfd-bcf0-6cee-60903c171b9b@denx.de>
+Date:   Fri, 30 Apr 2021 10:55:52 +0200
 MIME-Version: 1.0
-References: <20210428082203.3587022-1-sean@geanix.com> <20210428082203.3587022-2-sean@geanix.com>
- <28f1e2a4-b2fa-5e4a-954f-92d90966eaf7@metafoo.de> <CAHp75Vd1j=rqmzEuo9fQMYDc+Y1=8kfyVJq6VR4Oip-O918Xow@mail.gmail.com>
- <2cc54acd-1de2-b462-0f77-145244580999@metafoo.de> <CAHp75VdptykxXy3dOR4sAZfzezt+7Fdk9yeWczFa1tGCZfzF+Q@mail.gmail.com>
- <1abf8476-e1e3-5c0e-e480-daa7c291b4c8@metafoo.de>
-In-Reply-To: <1abf8476-e1e3-5c0e-e480-daa7c291b4c8@metafoo.de>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 30 Apr 2021 11:54:40 +0300
-Message-ID: <CAHp75VdBxVbPnxk1uh_DaCw56x0qCn9CgcrLt0uvJp-hFUyiRQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 2/4] iio: accel: fxls8962af: add interrupt support
-To:     Lars-Peter Clausen <lars@metafoo.de>
-Cc:     Sean Nyekjaer <sean@geanix.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        =?UTF-8?B?TnVubyBTw6E=?= <Nuno.Sa@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <YIq/qObuYw+8ikxg@orolia.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: de-DE
+Content-Transfer-Encoding: 8bit
+X-MBO-SPAM-Probability: 
+X-Rspamd-Score: -7.83 / 15.00 / 15.00
+X-Rspamd-Queue-Id: 761031882
+X-Rspamd-UID: a3f292
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 29, 2021 at 10:19 PM Lars-Peter Clausen <lars@metafoo.de> wrote:
-> On 4/29/21 1:35 PM, Andy Shevchenko wrote:
-> > On Thu, Apr 29, 2021 at 12:37 PM Lars-Peter Clausen <lars@metafoo.de> wrote:
-> >> On 4/29/21 11:35 AM, Andy Shevchenko wrote:
-> >>> On Thu, Apr 29, 2021 at 11:58 AM Lars-Peter Clausen <lars@metafoo.de> wrote:
-> >>>> On 4/28/21 10:22 AM, Sean Nyekjaer wrote:
-> >>>>> Preparation commit for the next that adds hw buffered sampling
-> >>> ...
-> >>>
-> >>>>> +     irq = of_irq_get_byname(of_node, "INT2");
-> >>>> For this I'd use device_property_match_string(dev, "interrupt-names",
-> >>>> "INT2"). Means it won't try to map the interrupt again, and also this is
-> >>>> the only place where the driver directly depends on OF, everything else
-> >>>> already uses the device_ API.
-> >>> Why not platform_get_irq_byname_optional() ?
-> >> Because it is not a platform device :)
-> > Then device_property reading like this isn't really needed.
-> Why?
+On 29.04.21 16:16, Olivier Dautricourt wrote:
+> - add schema for Altera mSGDMA bindings in devicetree.
+> - add myself as 'Odd fixes' maintainer for this driver
+> 
+> Signed-off-by: Olivier Dautricourt <olivier.dautricourt@orolia.com>
 
-Because it doesn't bring any value in this case and actually makes
-readers confused. ACPI doesn't have properties started with # (they
-are special for OF and hiding it behind device property API is not
-correct).
+Reviewed-by: Stefan Roese <sr@denx.de>
 
-So, either leave it OF, or introduce the above API (or use existing
-fwnode_get_irq() by index).
+Thanks,
+Stefan
+
+> ---
+> 
+> Notes:
+>      Changes in v2:
+>       - fix reg size in dt example
+>       - fix dt_binding check warning
+>       - add list in MAINTAINERS entry
+> 
+>      Changes from v2 to v3:
+>       none
+> 
+>      Changes from v3 to v4:
+>       none
+> 
+>   .../devicetree/bindings/dma/altr,msgdma.yaml  | 62 +++++++++++++++++++
+>   MAINTAINERS                                   |  7 +++
+>   2 files changed, 69 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/dma/altr,msgdma.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/altr,msgdma.yaml b/Documentation/devicetree/bindings/dma/altr,msgdma.yaml
+> new file mode 100644
+> index 000000000000..295e46c84bf9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/altr,msgdma.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/altr,msgdma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Altera mSGDMA IP core
+> +
+> +maintainers:
+> +  - Olivier Dautricourt <olivier.dautricourt@orolia.com>
+> +
+> +description: |
+> +  Altera / Intel modular Scatter-Gather Direct Memory Access (mSGDMA)
+> +  intellectual property (IP)
+> +
+> +allOf:
+> +  - $ref: "dma-controller.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    const: altr,msgdma
+> +
+> +  reg:
+> +    description:
+> +      csr, desc, resp resgisters
+> +    maxItems: 3
+> +    minItems: 3
+> +
+> +  reg-names:
+> +    items:
+> +      - const: csr
+> +      - const: desc
+> +      - const: resp
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  "#dma-cells":
+> +    description: |
+> +      The dma controller discards the argument but one must be specified
+> +      to keep compatibility with dma-controller schema.
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    msgdma_controller: dma-controller@ff200b00 {
+> +        compatible = "altr,msgdma";
+> +        reg = <0xff200b00 0x100>, <0xff200c00 0x100>, <0xff200d00 0x100>;
+> +        reg-names = "csr", "desc", "resp";
+> +        interrupts = <0 67 IRQ_TYPE_LEVEL_HIGH>;
+> +        #dma-cells = <1>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 5c90148f0369..359ab4877024 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -782,6 +782,13 @@ M:	Ley Foon Tan <ley.foon.tan@intel.com>
+>   S:	Maintained
+>   F:	drivers/mailbox/mailbox-altera.c
+> 
+> +ALTERA MSGDMA IP CORE DRIVER
+> +M:	Olivier Dautricourt <olivier.dautricourt@orolia.com>
+> +L:	dmaengine@vger.kernel.org
+> +S:	Odd Fixes
+> +F:	Documentation/devicetree/bindings/dma/altr,msgdma.yaml
+> +F:	drivers/dma/altera-msgdma.c
+> +
+>   ALTERA PIO DRIVER
+>   M:	Joyce Ooi <joyce.ooi@intel.com>
+>   L:	linux-gpio@vger.kernel.org
+> --
+> 2.31.0.rc2
+> 
+
+
+Viele Grüße,
+Stefan
 
 -- 
-With Best Regards,
-Andy Shevchenko
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-51 Fax: (+49)-8142-66989-80 Email: sr@denx.de
