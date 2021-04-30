@@ -2,170 +2,386 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BC6836F3B6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 03:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02A1B36F3F3
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 04:08:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbhD3BfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 21:35:00 -0400
-Received: from mail-eopbgr80073.outbound.protection.outlook.com ([40.107.8.73]:43655
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229519AbhD3Be7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Apr 2021 21:34:59 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ABoqVSMr96SvqtvO7vD6cuhc/+8wNHIbQ/XXMitjJPNwJG0XCQLuCYlK2RLEcFbBg3TA9tKYmd9GQWn6mtgxSFKHeVnXU75NvPI9V5t9n5xuzHuX84BQsDqEaG+/Hpp1Q9GkvhyMNQlW6eOXV9Bq4uUOYC68ReBTsjLvYnsYIfOHfIa1X1rhlu9NeecYYiJUwLq7KB+V7XeEbgBKQmNqZTK2+xwZuzOwwg5tzmAOmB+N2E4cFepFfFK3QEQTsMpzaO8RBudxUYez7O/Q1CiICGkx45dOqxJz87ka+P4NKAQbXg0vZz/5gJySCPBLKtrOFg6GZzUJfnvxyqjexsJq4w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L/akEEyiwzTbLA85YtMLSaT14HkRhEDPaVCZUvG1iN0=;
- b=gkNNiXkI5Pv9qcIS2bWyd59lHtH5fj2o3vTYP8kHq3s92pGDvt7Jvm/BsFAZVNjoF7tMIt1MRk4jF1MdU0hn7sn/e2Qx/lhF1Q4xYsEr0e7DWxsFD2LkpWbne6C8YVFTlID0Xl+yHQZoID9lLnYFG23+b8YL01FeDQzWeCePITrjIqUBMlY6BAfcAIF66phoDJDlDLehustK0IMnlYzxYf0wealTsF10MnfCZRWdXKHkU5KHXduG55WXLOClbM/2UPdyQ9C+XZDAYL3JiPPqcP0SNFtG3UkcPk1zFPlVaVuz6ZpPIsj+5lOSd3dKW1yIMR7egFYQ2U3MSCQNkD64mg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L/akEEyiwzTbLA85YtMLSaT14HkRhEDPaVCZUvG1iN0=;
- b=cZmg+HbRRkpYY6pC5ygwn+XcxUaRBX+l9CyqGAVWbWghe2Jmj2NbtPyGrMOD9RDQGv2dsX6/8YiHw7gFPmgzYEGiwUVB6SSBriyBFu+xBvYmo2w9vgqHSEnKE70Lj6Bi/U4xt2CZvLCHKp+lsll0aMxrsJbVigVVC15xm/7ZkAA=
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
- by DB8PR04MB6858.eurprd04.prod.outlook.com (2603:10a6:10:113::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.24; Fri, 30 Apr
- 2021 01:34:00 +0000
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::45b9:c993:87ec:9a64]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::45b9:c993:87ec:9a64%8]) with mapi id 15.20.4065.023; Fri, 30 Apr 2021
- 01:34:00 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Adam Ford <aford173@gmail.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        =?utf-8?B?R3VpZG8gR8O8bnRoZXI=?= <agx@sigxcpu.org>,
-        Marek Vasut <marex@denx.de>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Abel Vesa <abel.vesa@nxp.com>
-Subject: RE: [PATCH 00/16] soc: imx: gpcv2: support i.MX8MM
-Thread-Topic: [PATCH 00/16] soc: imx: gpcv2: support i.MX8MM
-Thread-Index: AQHXPMUjgiaegUodmkmDlRRxrgvZXarLb+IAgADYIQA=
-Date:   Fri, 30 Apr 2021 01:33:59 +0000
-Message-ID: <DB6PR0402MB276065DF476EBEDABF312CF9885E9@DB6PR0402MB2760.eurprd04.prod.outlook.com>
-References: <20210429073050.21039-1-peng.fan@oss.nxp.com>
- <CAHCN7xL11GUSVB3PThsfhxXPtgu1nm1LWSzkJYqj4MHf-aLbVw@mail.gmail.com>
-In-Reply-To: <CAHCN7xL11GUSVB3PThsfhxXPtgu1nm1LWSzkJYqj4MHf-aLbVw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.71]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bd30216d-162b-46d0-4f37-08d90b780797
-x-ms-traffictypediagnostic: DB8PR04MB6858:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB8PR04MB6858A873DCBA0CAB3B3848FE885E9@DB8PR04MB6858.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: NDoJhm16F9LSXWVq+1JFg7BLFlir3fghlEZY8Wp+pwFUK0ug3wQajxAxDEfGWasjIz1FFJWLO9oD1u1V85LjeIYnzgvIiq6k/VUSVCFYnu/5BQtzkJ1j3dRWN+njEgmw03tPG8WG36wyNElnPWklN6YL57Vt/q8HPXnjFEGYF+oqvjyL36CS6+HpD03GyCRuR1mYZCr6niPGuYUxommZNxJB7zXgi0qTSNa7NBARK/t6vjdXWzPsGCki6jK6zSFtSJJu8K0pLVSByIKAZWNML7W5WcjX18XARZF1AggDElCER3i/OiusVdvq51iLapPwKa4vsrX4pmQZghyrDJqCuDXl9WQYTIYs3AsoDGMg6MJEaTPommQ/BBo6y5ineMqpjcD/Mgr9IEuMQEH4XR3J4H6R+VBcoGagBrSLqs/aUlRcVamO40UETZrrTxNidoQ+W/Mev4jyMp85UFn8F0YfCVPmtAQZG5mVsxDv2kAfny4zVUnDgAil1wWmAcMD821pNlV6fPyCuafXT5qWSxLtI7byEPb1BG+QgZMaPlwLlTsGdiCNVzDBqa5PFy3eoiydFgqvbkWXb8UFlod0HWNC3Ve1Rn/vSBusbuDmmBQ77KM=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(346002)(396003)(366004)(376002)(136003)(8936002)(478600001)(66946007)(76116006)(5660300002)(64756008)(110136005)(6506007)(71200400001)(66446008)(66476007)(8676002)(55016002)(9686003)(26005)(83380400001)(33656002)(2906002)(4326008)(44832011)(52536014)(53546011)(54906003)(38100700002)(122000001)(86362001)(316002)(7416002)(7696005)(186003)(66556008);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?TEw2T0g4dHBOM1JmV01yMlFlUnVKU3dZNkRlSklzSFBRZ21NdXg1alFCYXM0?=
- =?utf-8?B?QTJMOHh3MjVHOG50aXphU3k1ZUFSaTFjeEVPeGVzZEZ6S0hUbFBYejJvL3Ex?=
- =?utf-8?B?Z1pJS1RYUTBqQnNKTTB0andrSENEVmRRYzBjT2R2ODFBM2pTd29BZHhZSlZL?=
- =?utf-8?B?ekd5L2lIYVBKbVFPd3hURnd5eEFvYXI4ajhOQmppNncyQ29hWll1b05DZzdG?=
- =?utf-8?B?Mjk3SksyK1FXeU1GbXVSMHlKYU0ybUdmZFJXQUJDRk53VlE4eE4rTGRwMlJI?=
- =?utf-8?B?dDdkM1FtOXZqYVFqL2p6SmlZUnZySFFiNWh5cjkwUWs0SE1tamd5UXlDU0tL?=
- =?utf-8?B?UVhKK25pZTUwU2VlNXFGSnBuUlRsQ0FEVjk0TzBIK1I2aXhyc0pqdmxBYkt4?=
- =?utf-8?B?VFAzK1pFVXo5WE5sYndvVlNnOS9ZRytEbFV0Rzd1ZFhFNEJ1bWcyYXhqQkVw?=
- =?utf-8?B?b2lzYW5yaVpuaFJkRjY1NlVXWlc3QzZzamtvaTcvaWZuL09BV0hmSlRLYkFJ?=
- =?utf-8?B?b0ZnNU9WajFsSzRsdzBsT2pMWjFZRHBSTjlONFlnTloyTXc3Vm9zYmdGS0ZQ?=
- =?utf-8?B?c29zSGE1TkpEQnBNVk1VZVkyME96RStLMDUySmpLZUprczFqZTlhU1JZZGla?=
- =?utf-8?B?YnhoZVdSTE56VWJJaXVTbTdUc1Rldm5DaUlrTDBMU08xd1hTdFF0U3ZtbGN4?=
- =?utf-8?B?bStjbUVUY1VLYjJnT29iQ2tTWnRSKzhNVkZialk3ZzdEU2dIVForL25ZTko4?=
- =?utf-8?B?clNiSkIyVldZNUdnelhUeVJRMHJNK0UxaXpWRkZJZDAwNGVDOHMydVdVclN1?=
- =?utf-8?B?WWpBckZIRWZPVFNhb25nVS9HbHVPRFdkWDVkSm5UMFpIT2QxYUs3UWhGNURa?=
- =?utf-8?B?NFM4VStTdmZiOSszM09jOWtEbVh1MHpkTVpYU3cydUt2T2JNbFhReDRNNDVI?=
- =?utf-8?B?MWQycWxLUU1JQkdMZmpER3Q4Q2hCQmtPdDMwN3crUFRIMEpKVlVhSlZXb1VS?=
- =?utf-8?B?eXZ0TTdPcmZwR2xja1Y0bzBZTDNQRENxcVdMZWVtczZ6cHJmWjc5QlNaYTMr?=
- =?utf-8?B?OHVkL3FxcC9LeUdYL3VoTkFydjFjdUhBbmVldTdON2ozRkljWFN4WWsvQzhD?=
- =?utf-8?B?dmV3K21FRDVoUWlLa0NUOGNGM3Fhb3dPVUNHSWJMTy93RUZkU1VGcXRsNVJj?=
- =?utf-8?B?TDJWK0h0WnFFSHVwL3k4NjJNellVNCtZdVdQUTE2dW5KOU04Z05HMXloRlU3?=
- =?utf-8?B?RWhTMENaNjQ5bEhxSHk1eHlqRkNtYnNaeXlseUVQRzIzMmtwQnpaeW80V2U1?=
- =?utf-8?B?ZmVmWVJDZFNVelpGZjA1Vm5TREFYRmQ4KzZ6QjBscEN1Ym1SbzdnSGlsMkJS?=
- =?utf-8?B?QWxGcGpBVVdFaktkc09RUEtHTTIzWlFYYlBaTEplOENqVVUremFSeUpzbmRo?=
- =?utf-8?B?ZGFUVTJVYm5OYkVMbUJRaThsTG9Kd0FUVlNBTWlIa0hBbWZaUmhGZ21LZEMv?=
- =?utf-8?B?MGd3bTFxYjJlRUNYNTZxZjc4TkNGT0JVUVpuM3ExNzI3U2dhYUlQbXBkdElx?=
- =?utf-8?B?N3QwVWM5STY0czUxczk3eDRHU05WQm9LUFFnb1lSVmJQa04rQVF2YUdlUWdQ?=
- =?utf-8?B?ZDVKNmovSFRtZ2FvM2FLSElDYnYybDJBa2xSZUx6anZjZnNtaFV0eElTeDBF?=
- =?utf-8?B?b21ISVU0RVhOUEtiMXhCQmxyUWNmSi9JTkVOaHJDN0tkdDk0NVpGR1Y3dlkv?=
- =?utf-8?Q?CK5d9E8zrTilU6ieKrY9SMdfruGzTcfLxOE4BKD?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S229577AbhD3CJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 22:09:40 -0400
+Received: from condef-08.nifty.com ([202.248.20.73]:51611 "EHLO
+        condef-08.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229637AbhD3CJj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 22:09:39 -0400
+Received: from conuserg-12.nifty.com ([10.126.8.75])by condef-08.nifty.com with ESMTP id 13U25rrG013305;
+        Fri, 30 Apr 2021 11:05:53 +0900
+Received: from localhost.localdomain (133-32-232-101.west.xps.vectant.ne.jp [133.32.232.101]) (authenticated)
+        by conuserg-12.nifty.com with ESMTP id 13U23Dpm021584;
+        Fri, 30 Apr 2021 11:03:14 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-12.nifty.com 13U23Dpm021584
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1619748196;
+        bh=gbda8k1gb5QKS5gh8B4B++CHlzzHQAOwdbtFLQCvdLk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Orr5vE45Xt9/3ihl6udKavMFU8B0yC8PfRCPS77DbaTQQFSrrT7E78T7ShFNzASEN
+         YIpzxwW6Yyklep/hYCuQm8MzIdE9HA8sOC/KC9vnzFesHX0H6Kmv9SLt+IwTkg3gd7
+         BlOLD5KrX9EZvhz22hhkivGM9w8EFyt3SjVNoSOVzbOtMGg/AQbh986225wsqj0EAD
+         3ORBPvk3OvzFyNIjqEbMrgfyZ5gdwBQpGiZtF8V5Zvgw0tUJa/T3kQnZ4q5LAwRsAv
+         BAFZWLFCpNjn4sVhrdxp8C5t0mFQMLeFt1hqQwlWu0TfTONUi25KD3aVShb2gFbUKT
+         KPICiVelmpKiA==
+X-Nifty-SrcIP: [133.32.232.101]
+From:   Masahiro Yamada <masahiroy@kernel.org>
+To:     linux-kbuild@vger.kernel.org
+Cc:     Masahiro Yamada <masahiroy@kernel.org>,
+        Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh@kernel.org>,
+        Andra Paraschiv <andraprs@amazon.com>,
+        Alexandru Ciobotaru <alcioa@amazon.com>,
+        Alexandru Vasile <lexnv@amazon.com>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Andrii Nakryiko <andrii@kernel.org>,
+        Christian Brauner <christian@brauner.io>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        David Howells <dhowells@redhat.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Gabriel Krisman Bertazi <krisman@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        John Fastabend <john.fastabend@gmail.com>,
+        KP Singh <kpsingh@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Martin KaFai Lau <kafai@fb.com>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Song Liu <songliubraving@fb.com>,
+        Tomas Winkler <tomas.winkler@intel.com>,
+        Yonghong Song <yhs@fb.com>, bpf@vger.kernel.org,
+        devicetree@vger.kernel.org, keyrings@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-hardening@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: [PATCH v2] .gitignore: prefix local generated files with a slash
+Date:   Fri, 30 Apr 2021 11:03:08 +0900
+Message-Id: <20210430020308.66792-1-masahiroy@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd30216d-162b-46d0-4f37-08d90b780797
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Apr 2021 01:33:59.9644
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JeUcnHIr7Tejjod/zVNzSASg0hqF7MNaZANKR9+s6z7nUjR3kdeNw40qQEZA8Pibm6y38eNNWKHmbYc+scOVnA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6858
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBTdWJqZWN0OiBSZTogW1BBVENIIDAwLzE2XSBzb2M6IGlteDogZ3BjdjI6IHN1cHBvcnQgaS5N
-WDhNTQ0KPiANCj4gT24gVGh1LCBBcHIgMjksIDIwMjEgYXQgMTo1OSBBTSBQZW5nIEZhbiAoT1NT
-KSA8cGVuZy5mYW5Ab3NzLm54cC5jb20+DQo+IHdyb3RlOg0KPiA+DQo+ID4gRnJvbTogUGVuZyBG
-YW4gPHBlbmcuZmFuQG54cC5jb20+DQo+ID4NCj4gPiBUaGlzIHBhdGNoc2V0IGlzIGEgcGljayB1
-cCBMdWNhcydzIGdwY3YyIHdvcmsgZm9yIGkuTVg4TU0gYW5kIHNldmVyYWwNCj4gPiBtaW5vciBj
-aGFuZ2VzIGZyb20gbWUgdG8gbWFrZSBpdCBjb3VsZCB3b3JrIHdpdGggaS5NWCBCTEstQ1RMIGRy
-aXZlci4NCj4gPg0KPiA+IFRoYW5rcyBmb3IgTHVjYXMncyB3b3JrIGFuZCBzdWdnZXN0aW9uLCBG
-cmllZGVyIFNjaHJlbXBmIGZvcg0KPiA+IGNvbGxlY3RpbmcgYWxsIHRoZSBwYXRjaGVzLCBKYWNr
-eSBCYWkgb24gaGVscCBkZWJ1ZyBpc3N1ZXMuDQo+IA0KPiBUaGFuayBmb3IgeW91IGFsbCB0aGUg
-d29yay4gIEkgaGF2ZSBhbiBpLk1YOE0gTmFubyB0aGF0IEknbGwgd29yayB0byBhZGQNCj4gc3Vw
-cG9ydCBmb3IgZ3BjdjIgdW5sZXNzIE5YUCBoYXMgc3RhcnRlZCB0aGlzIGFscmVhZHkuICBBdCBv
-bmUgdGltZSwgSSBwb3N0ZWQNCj4gc29tZSBwYXRjaGVzIGZvciBOYW5vIGJhc2VkIG9uIEx1Y2Fz
-JyB3b3JrLCBidXQgc2luY2UgdGhhdCB3b3JrIHdhc24ndA0KPiBhY2NlcHRlZCwgbWluZSB3YXNu
-J3QgZWl0aGVyLg0KDQpQbGVhc2UgY29udGludWUgeW91ciB3b3JrIG9uIGkuTVg4TU4sIEkgbm90
-IHdvcmsgb24gdGhpcy4gVGhlIGZvbGxvd2luZw0Kd29yayBmcm9tIG1lIGlzIGkuTVg4TVAuDQoN
-ClRoYW5rcywNClBlbmcuDQoNCj4gDQo+IGFkYW0NCj4gPg0KPiA+IEx1Y2FzIFN0YWNoICgxMik6
-DQo+ID4gICBzb2M6IGlteDogZ3BjdjI6IG1vdmUgdG8gbW9yZSBpZGVvbWF0aWMgZXJyb3IgaGFu
-ZGxpbmcgaW4gcHJvYmUNCj4gPiAgIHNvYzogaW14OiBncGN2MjogbW92ZSBkb21haW4gbWFwcGlu
-ZyB0byBkb21haW4gZHJpdmVyIHByb2JlDQo+ID4gICBzb2M6IGlteDogZ3BjdjI6IHN3aXRjaCB0
-byBjbGtfYnVsa18qIEFQSQ0KPiA+ICAgc29jOiBpbXg6IGdwY3YyOiBzcGxpdCBwb3dlciB1cCBh
-bmQgcG93ZXIgZG93biBzZXF1ZW5jZSBjb250cm9sDQo+ID4gICBzb2M6IGlteDogZ3BjdjI6IHdh
-aXQgZm9yIEFEQjQwMCBoYW5kc2hha2UNCj4gPiAgIHNvYzogaW14OiBncGN2MjogYWRkIHJ1bnRp
-bWUgUE0gc3VwcG9ydCBmb3IgcG93ZXItZG9tYWlucw0KPiA+ICAgc29jOiBpbXg6IGdwY3YyOiBh
-bGxvdyBkb21haW5zIHdpdGhvdXQgcG93ZXItc2VxdWVuY2UgY29udHJvbA0KPiA+ICAgZHQtYmlu
-ZGluZ3M6IGlteDogZ3BjdjI6IGFkZCBzdXBwb3J0IGZvciBvcHRpb25hbCByZXNldHMNCj4gPiAg
-IHNvYzogaW14OiBncGN2MjogYWRkIHN1cHBvcnQgZm9yIG9wdGlvbmFsIHJlc2V0cw0KPiA+ICAg
-ZHQtYmluZGluZ3M6IHBvd2VyOiBhZGQgZGVmaW5lcyBmb3IgaS5NWDhNTSBwb3dlciBkb21haW5z
-DQo+ID4gICBzb2M6IGlteDogZ3BjdjI6IGFkZCBzdXBwb3J0IGZvciBpLk1YOE1NIHBvd2VyIGRv
-bWFpbnMNCj4gPiAgIHNvYzogaW14OiBncGN2MjogQWRkIHN1cHBvcnQgZm9yIG1pc3NpbmcgaS5N
-WDhNTSBWUFUvRElTUE1JWCBwb3dlcg0KPiA+ICAgICBkb21haW5zDQo+ID4NCj4gPiBQZW5nIEZh
-biAoNCk6DQo+ID4gICBzb2M6IGlteDogZ3BjdjI6IGNvcnJlY3QgcG1fcnVudGltZV9nZXRfc3lu
-YyB1c2FnZQ0KPiA+ICAgc29jOiBpbXg6IGdwY3YyOiBtb3ZlIHJlc2V0IGFzc2VydCBhZnRlciBy
-ZXF1ZXN0aW5nIGRvbWFpbiBwb3dlciB1cA0KPiA+ICAgc29jOiBpbXg6IGdwY3YyOiBzdXBwb3J0
-IHJlc2V0IGRlZmVyIHByb2JlDQo+ID4gICBzb2M6IGlteDogZ3BjdjI6IHJlbW92ZSB3YWl0aW5n
-IGhhbmRzaGFrZSBpbiBwb3dlciB1cA0KPiA+DQo+ID4gIC4uLi9iaW5kaW5ncy9wb3dlci9mc2ws
-aW14LWdwY3YyLnlhbWwgICAgICAgICB8ICAgOSArDQo+ID4gIGRyaXZlcnMvc29jL2lteC9ncGN2
-Mi5jICAgICAgICAgICAgICAgICAgICAgICB8IDUzNA0KPiArKysrKysrKysrKysrKy0tLS0NCj4g
-PiAgaW5jbHVkZS9kdC1iaW5kaW5ncy9wb3dlci9pbXg4bW0tcG93ZXIuaCAgICAgIHwgIDIyICsN
-Cj4gPiAgMyBmaWxlcyBjaGFuZ2VkLCA0NTAgaW5zZXJ0aW9ucygrKSwgMTE1IGRlbGV0aW9ucygt
-KSAgY3JlYXRlIG1vZGUNCj4gPiAxMDA2NDQgaW5jbHVkZS9kdC1iaW5kaW5ncy9wb3dlci9pbXg4
-bW0tcG93ZXIuaA0KPiA+DQo+ID4gLS0NCj4gPiAyLjMwLjANCj4gPg0K
+The pattern prefixed with '/' matches files in the same directory,
+but not ones in sub-directories.
+
+Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+Acked-by: Miguel Ojeda <ojeda@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
+Acked-by: Andra Paraschiv <andraprs@amazon.com>
+---
+
+Changes in v2:
+  - rebase
+
+ Documentation/devicetree/bindings/.gitignore |  4 ++--
+ arch/.gitignore                              |  4 ++--
+ certs/.gitignore                             |  4 ++--
+ drivers/memory/.gitignore                    |  2 +-
+ drivers/tty/vt/.gitignore                    |  6 +++---
+ fs/unicode/.gitignore                        |  4 ++--
+ kernel/.gitignore                            |  2 +-
+ lib/.gitignore                               | 10 +++++-----
+ samples/auxdisplay/.gitignore                |  2 +-
+ samples/binderfs/.gitignore                  |  3 ++-
+ samples/connector/.gitignore                 |  2 +-
+ samples/hidraw/.gitignore                    |  2 +-
+ samples/mei/.gitignore                       |  2 +-
+ samples/nitro_enclaves/.gitignore            |  2 +-
+ samples/pidfd/.gitignore                     |  2 +-
+ samples/seccomp/.gitignore                   |  8 ++++----
+ samples/timers/.gitignore                    |  2 +-
+ samples/vfs/.gitignore                       |  4 ++--
+ samples/watch_queue/.gitignore               |  3 ++-
+ samples/watchdog/.gitignore                  |  2 +-
+ scripts/.gitignore                           | 18 +++++++++---------
+ scripts/basic/.gitignore                     |  2 +-
+ scripts/dtc/.gitignore                       |  4 ++--
+ scripts/gcc-plugins/.gitignore               |  2 +-
+ scripts/genksyms/.gitignore                  |  2 +-
+ scripts/mod/.gitignore                       |  8 ++++----
+ usr/.gitignore                               |  4 ++--
+ 27 files changed, 56 insertions(+), 54 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/.gitignore b/Documentation/devicetree/bindings/.gitignore
+index 3a05b99bfa26..a77719968a7e 100644
+--- a/Documentation/devicetree/bindings/.gitignore
++++ b/Documentation/devicetree/bindings/.gitignore
+@@ -1,4 +1,4 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ *.example.dts
+-processed-schema*.yaml
+-processed-schema*.json
++/processed-schema*.yaml
++/processed-schema*.json
+diff --git a/arch/.gitignore b/arch/.gitignore
+index 4191da401dbb..756c19c34f99 100644
+--- a/arch/.gitignore
++++ b/arch/.gitignore
+@@ -1,3 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-i386
+-x86_64
++/i386/
++/x86_64/
+diff --git a/certs/.gitignore b/certs/.gitignore
+index 6cbd1f1a5837..8c3763f80be3 100644
+--- a/certs/.gitignore
++++ b/certs/.gitignore
+@@ -1,3 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-x509_certificate_list
+-x509_revocation_list
++/x509_certificate_list
++/x509_revocation_list
+diff --git a/drivers/memory/.gitignore b/drivers/memory/.gitignore
+index caedc4c7d2db..5e84bee05ef8 100644
+--- a/drivers/memory/.gitignore
++++ b/drivers/memory/.gitignore
+@@ -1,2 +1,2 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-ti-emif-asm-offsets.h
++/ti-emif-asm-offsets.h
+diff --git a/drivers/tty/vt/.gitignore b/drivers/tty/vt/.gitignore
+index 3ecf42234d89..0221709b177d 100644
+--- a/drivers/tty/vt/.gitignore
++++ b/drivers/tty/vt/.gitignore
+@@ -1,4 +1,4 @@
+ # SPDX-License-Identifier: GPL-2.0
+-conmakehash
+-consolemap_deftbl.c
+-defkeymap.c
++/conmakehash
++/consolemap_deftbl.c
++/defkeymap.c
+diff --git a/fs/unicode/.gitignore b/fs/unicode/.gitignore
+index 9b2467e77b2d..361294571ab0 100644
+--- a/fs/unicode/.gitignore
++++ b/fs/unicode/.gitignore
+@@ -1,3 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-mkutf8data
+-utf8data.h
++/mkutf8data
++/utf8data.h
+diff --git a/kernel/.gitignore b/kernel/.gitignore
+index 4abc4e033ed8..4dc1ffe9770b 100644
+--- a/kernel/.gitignore
++++ b/kernel/.gitignore
+@@ -1,2 +1,2 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-kheaders.md5
++/kheaders.md5
+diff --git a/lib/.gitignore b/lib/.gitignore
+index 327cb2c7f2c9..5e7fa54c4536 100644
+--- a/lib/.gitignore
++++ b/lib/.gitignore
+@@ -1,6 +1,6 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-gen_crc32table
+-gen_crc64table
+-crc32table.h
+-crc64table.h
+-oid_registry_data.c
++/crc32table.h
++/crc64table.h
++/gen_crc32table
++/gen_crc64table
++/oid_registry_data.c
+diff --git a/samples/auxdisplay/.gitignore b/samples/auxdisplay/.gitignore
+index 2ed744c0e741..d023816849bd 100644
+--- a/samples/auxdisplay/.gitignore
++++ b/samples/auxdisplay/.gitignore
+@@ -1,2 +1,2 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-cfag12864b-example
++/cfag12864b-example
+diff --git a/samples/binderfs/.gitignore b/samples/binderfs/.gitignore
+index eb60241e8087..8fa415a3640b 100644
+--- a/samples/binderfs/.gitignore
++++ b/samples/binderfs/.gitignore
+@@ -1 +1,2 @@
+-binderfs_example
++# SPDX-License-Identifier: GPL-2.0
++/binderfs_example
+diff --git a/samples/connector/.gitignore b/samples/connector/.gitignore
+index d86f2ff9c947..0e26039f39b5 100644
+--- a/samples/connector/.gitignore
++++ b/samples/connector/.gitignore
+@@ -1,2 +1,2 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-ucon
++/ucon
+diff --git a/samples/hidraw/.gitignore b/samples/hidraw/.gitignore
+index d7a6074ebcf9..5233ab63262e 100644
+--- a/samples/hidraw/.gitignore
++++ b/samples/hidraw/.gitignore
+@@ -1,2 +1,2 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-hid-example
++/hid-example
+diff --git a/samples/mei/.gitignore b/samples/mei/.gitignore
+index db5e802f041e..fe894bcb6a62 100644
+--- a/samples/mei/.gitignore
++++ b/samples/mei/.gitignore
+@@ -1,2 +1,2 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-mei-amt-version
++/mei-amt-version
+diff --git a/samples/nitro_enclaves/.gitignore b/samples/nitro_enclaves/.gitignore
+index 827934129c90..6a718eec71f4 100644
+--- a/samples/nitro_enclaves/.gitignore
++++ b/samples/nitro_enclaves/.gitignore
+@@ -1,2 +1,2 @@
+ # SPDX-License-Identifier: GPL-2.0
+-ne_ioctl_sample
++/ne_ioctl_sample
+diff --git a/samples/pidfd/.gitignore b/samples/pidfd/.gitignore
+index eea857fca736..d4cfa3176b1b 100644
+--- a/samples/pidfd/.gitignore
++++ b/samples/pidfd/.gitignore
+@@ -1,2 +1,2 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-pidfd-metadata
++/pidfd-metadata
+diff --git a/samples/seccomp/.gitignore b/samples/seccomp/.gitignore
+index 4a5a5b7db30b..a6df0da77c5d 100644
+--- a/samples/seccomp/.gitignore
++++ b/samples/seccomp/.gitignore
+@@ -1,5 +1,5 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-bpf-direct
+-bpf-fancy
+-dropper
+-user-trap
++/bpf-direct
++/bpf-fancy
++/dropper
++/user-trap
+diff --git a/samples/timers/.gitignore b/samples/timers/.gitignore
+index 40510c33cf08..cd9ff7b95383 100644
+--- a/samples/timers/.gitignore
++++ b/samples/timers/.gitignore
+@@ -1,2 +1,2 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-hpet_example
++/hpet_example
+diff --git a/samples/vfs/.gitignore b/samples/vfs/.gitignore
+index 8fdabf7e5373..79212d91285b 100644
+--- a/samples/vfs/.gitignore
++++ b/samples/vfs/.gitignore
+@@ -1,3 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-test-fsmount
+-test-statx
++/test-fsmount
++/test-statx
+diff --git a/samples/watch_queue/.gitignore b/samples/watch_queue/.gitignore
+index 2aa3c7e56a1a..823b351d3db9 100644
+--- a/samples/watch_queue/.gitignore
++++ b/samples/watch_queue/.gitignore
+@@ -1 +1,2 @@
+-watch_test
++# SPDX-License-Identifier: GPL-2.0-only
++/watch_test
+diff --git a/samples/watchdog/.gitignore b/samples/watchdog/.gitignore
+index 74153b831244..a70a0150ed9f 100644
+--- a/samples/watchdog/.gitignore
++++ b/samples/watchdog/.gitignore
+@@ -1,2 +1,2 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-watchdog-simple
++/watchdog-simple
+diff --git a/scripts/.gitignore b/scripts/.gitignore
+index a6c11316c969..e83c620ef52c 100644
+--- a/scripts/.gitignore
++++ b/scripts/.gitignore
+@@ -1,11 +1,11 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-bin2c
+-kallsyms
+-unifdef
+-recordmcount
+-sorttable
+-asn1_compiler
+-extract-cert
+-sign-file
+-insert-sys-cert
++/asn1_compiler
++/bin2c
++/extract-cert
++/insert-sys-cert
++/kallsyms
+ /module.lds
++/recordmcount
++/sign-file
++/sorttable
++/unifdef
+diff --git a/scripts/basic/.gitignore b/scripts/basic/.gitignore
+index 98ae1f509592..961c91c8a884 100644
+--- a/scripts/basic/.gitignore
++++ b/scripts/basic/.gitignore
+@@ -1,2 +1,2 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-fixdep
++/fixdep
+diff --git a/scripts/dtc/.gitignore b/scripts/dtc/.gitignore
+index 8a8b62bf3d3c..e0b5c1d2464a 100644
+--- a/scripts/dtc/.gitignore
++++ b/scripts/dtc/.gitignore
+@@ -1,3 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-dtc
+-fdtoverlay
++/dtc
++/fdtoverlay
+diff --git a/scripts/gcc-plugins/.gitignore b/scripts/gcc-plugins/.gitignore
+index b04e0f0f033e..5cc385b9eb97 100644
+--- a/scripts/gcc-plugins/.gitignore
++++ b/scripts/gcc-plugins/.gitignore
+@@ -1,2 +1,2 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-randomize_layout_seed.h
++/randomize_layout_seed.h
+diff --git a/scripts/genksyms/.gitignore b/scripts/genksyms/.gitignore
+index 999af710f83d..0b275abf9405 100644
+--- a/scripts/genksyms/.gitignore
++++ b/scripts/genksyms/.gitignore
+@@ -1,2 +1,2 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-genksyms
++/genksyms
+diff --git a/scripts/mod/.gitignore b/scripts/mod/.gitignore
+index 07e4a39f90a6..ed2e13b708ce 100644
+--- a/scripts/mod/.gitignore
++++ b/scripts/mod/.gitignore
+@@ -1,5 +1,5 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-elfconfig.h
+-mk_elfconfig
+-modpost
+-devicetable-offsets.h
++/elfconfig.h
++/mk_elfconfig
++/modpost
++/devicetable-offsets.h
+diff --git a/usr/.gitignore b/usr/.gitignore
+index 935442ed1eb2..8996e7a88902 100644
+--- a/usr/.gitignore
++++ b/usr/.gitignore
+@@ -1,4 +1,4 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-gen_init_cpio
+-initramfs_data.cpio
++/gen_init_cpio
++/initramfs_data.cpio
+ /initramfs_inc_data
+-- 
+2.27.0
+
