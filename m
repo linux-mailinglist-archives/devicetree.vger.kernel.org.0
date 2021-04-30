@@ -2,108 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05E9F36FED5
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 18:44:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B1AB36FF01
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 18:57:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229720AbhD3Qpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 12:45:30 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:1293 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S229712AbhD3Qpa (ORCPT
+        id S231147AbhD3Q5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 12:57:43 -0400
+Received: from ms11p00im-qufo17291901.me.com ([17.58.38.48]:47116 "EHLO
+        ms11p00im-qufo17291901.me.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230195AbhD3Q5m (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Apr 2021 12:45:30 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13UGg75S027242;
-        Fri, 30 Apr 2021 18:44:26 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=selector1; bh=leoHlgkF/ftolIMzLKhMrrl72r2iOxgjIvSScbSBRN8=;
- b=P2xA66nm+lyPghzA1IvbW3luuYOcb7CKSQjbDDx02reWWoY19bCbuSoXdxk3JK0C1SxF
- Blj+Enak4P5kvjGqg1T5+DhAjAd4Wh/jc+/KDf2JX8RDJgFX2mSQBmuPOwV8609z2eeu
- TBHX0pb+bM6cqT8gdtyKDU+g8KSnn8EQxIKg8eGKztmsHVbUNz/+xXYcmqg2FAd5purF
- 6x8BJtSkr6WOFa8IWCq/Sjh+re3oR97iqQRbf25LI+rFIg6C2mmmTbtm3D4nYDY4B5b5
- J+B/LQBl2BZocKZ0FNSs0w7kN2wfiyVja4zgnEmUChoClE3CxM+AiN+W53w/FvaJ17SF kQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3881rpqb4m-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 30 Apr 2021 18:44:26 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 89B8910002A;
-        Fri, 30 Apr 2021 18:44:25 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6AC1C2C4205;
-        Fri, 30 Apr 2021 18:44:25 +0200 (CEST)
-Received: from gnbcxd0016.gnb.st.com (10.75.127.44) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 30 Apr
- 2021 18:44:25 +0200
-Date:   Fri, 30 Apr 2021 18:44:13 +0200
-From:   Alain Volmat <alain.volmat@foss.st.com>
-To:     <wsa@kernel.org>, <robh+dt@kernel.org>
-CC:     <mark.rutland@arm.com>, <pierre-yves.mordret@foss.st.com>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@foss.st.com>
-Subject: Re: [PATCH v3 0/2] i2c: stm32f7: add SMBus-Alert support
-Message-ID: <20210430164413.GA3426@gnbcxd0016.gnb.st.com>
-Mail-Followup-To: wsa@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        pierre-yves.mordret@foss.st.com, mcoquelin.stm32@gmail.com,
-        alexandre.torgue@foss.st.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        fabrice.gasnier@foss.st.com
-References: <1616998145-28278-1-git-send-email-alain.volmat@foss.st.com>
+        Fri, 30 Apr 2021 12:57:42 -0400
+X-Greylist: delayed 490 seconds by postgrey-1.27 at vger.kernel.org; Fri, 30 Apr 2021 12:57:42 EDT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
+        t=1619801323; bh=gKPg4laKAZy+RHF+D3ii19N0LJXtiXVtOwEzgUk8ws8=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=0fMvPTXZl/U10xLNN7Azbfa6h2gCnmFs8IsrXw2Kzg3a8g8MkG7EfFbtpbvfASNGp
+         Q3D2O3XLBT3f42D6QQI8/JinbPlES5tAtXr2OL+hT5fh+fMPcg4oO2kfqOwMbpHUjI
+         gtnfS00rfXjqUWOLl8/I1BdFuwnloSemHH8qIoAH4vFWUzlJAjRNTA8wkdNSrageYh
+         DvOIRJyaYfgdiuZtp6G4I+NlHvw0h4tZ31ZhOtUY2L/YwrJKTGvP/F3GDJFlC5OGKJ
+         F/x5z0ezR4GRhovArt2CqpmtlTm5iVy8k2sCcD5P1OurUlUT5p92UBZHRAoUAjfW38
+         l4ysE6hag5A8A==
+Received: from gnbcxl0029.gnb.st.com (101.220.150.77.rev.sfr.net [77.150.220.101])
+        by ms11p00im-qufo17291901.me.com (Postfix) with ESMTPSA id 3E7B3CA0477;
+        Fri, 30 Apr 2021 16:48:40 +0000 (UTC)
+Date:   Fri, 30 Apr 2021 18:48:31 +0200
+From:   Alain Volmat <avolmat@me.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 0/7] clk: st: embed clock outputs within drivers
+Message-ID: <20210430164830.GA6248@gnbcxl0029.gnb.st.com>
+Mail-Followup-To: Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20210331201632.24530-1-avolmat@me.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1616998145-28278-1-git-send-email-alain.volmat@foss.st.com>
-X-Disclaimer: ce message est personnel / this message is private
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
- definitions=2021-04-30_10:2021-04-30,2021-04-30 signatures=0
+In-Reply-To: <20210331201632.24530-1-avolmat@me.com>
+X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
+ =?UTF-8?Q?2903e8d5c8f:6.0.391,18.0.761,17.0.607.475.0000000_definitions?=
+ =?UTF-8?Q?=3D2021-04-30=5F08:2021-04-30=5F02,2021-04-30=5F08,2020-04-07?=
+ =?UTF-8?Q?=5F01_signatures=3D0?=
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=862 mlxscore=0 phishscore=0
+ bulkscore=0 suspectscore=0 spamscore=0 adultscore=0 malwarescore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2104300110
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+Hi,
 
-Gentle reminder about this serie about SMBus-Alert. Could you have
-a look at it ?
+Gentle reminder about this serie concerning STi platform clock drivers.
+Could you have a look at them ?
 
-Thanks
+Thanks.
 Alain
 
-On Mon, Mar 29, 2021 at 08:09:03AM +0200, Alain Volmat wrote:
-> This serie adds support for SMBus Alert on the STM32F7.
-> A new binding st,smbus-alert is added in order to differenciate
-> with the existing smbus binding.
+On Wed, Mar 31, 2021 at 10:16:25PM +0200, Alain Volmat wrote:
+> Most of ST clock drivers used by STi platform are updated in
+> order to introduce clock outputs informations within each drivers
+> and thus allow to avoid having to rely on clock-output-names properties
+> within DT clock nodes.
+> For that purpose, drivers are updated to allow handling both modes
+> (with or without clock-output-names).
+> Once all DT will have been updated, the legacy mode could be removed
+> from the drivers.
+> This will also allow, once all STi DT will be corrected, to remove the
+> of_clk_detect_critical API from clk core code since STi clock drivers
+> are the only drivers using this API.
 > 
-> SMBA alert control and status logic must be enabled along with
-> SMBALERT# pin configured via pinctrl in the device tree. This is the
-> rational for adding "st,smbus-alert" property.
+> Alain Volmat (7):
+>   clk: st: clkgen-pll: remove unused variable of struct clkgen_pll
+>   clk: st: flexgen: embed soc clock outputs within compatible data
+>   dt-bindings: clock: st: flexgen: add new introduced compatible
+>   clk: st: clkgen-pll: embed soc clock outputs within compatible data
+>   dt-bindings: clock: st: clkgen-pll: add new introduced compatible
+>   clk: st: clkgen-fsyn: embed soc clock outputs within compatible data
+>   dt-bindings: clock: st: clkgen-fsyn: add new introduced compatible
+> 
+>  .../bindings/clock/st/st,clkgen-pll.txt       |   3 +
+>  .../bindings/clock/st/st,flexgen.txt          |  10 +
+>  .../bindings/clock/st/st,quadfs.txt           |   3 +
+>  drivers/clk/st/clk-flexgen.c                  | 367 +++++++++++++++++-
+>  drivers/clk/st/clkgen-fsyn.c                  | 113 +++++-
+>  drivers/clk/st/clkgen-pll.c                   | 121 +++++-
+>  6 files changed, 576 insertions(+), 41 deletions(-)
 > 
 > ---
-> v3:
-> use lore.kernel.org links instead of marc.info
-> 
-> v2:
-> When SMBUS alert isn't available on the board (SMBA unused), this
-> logic musn't be enabled. Enabling it unconditionally wrongly lead to get
-> SMBA interrupts.
-> So, add "st,smbus-alert" dedicated binding to have a smbus alert with a
-> consistent pin configuration in DT.
-> 
-> Alain Volmat (2):
->   dt-bindings: i2c: stm32f7: add st,smbus-alert binding for SMBus Alert
->   i2c: stm32f7: add SMBus-Alert support
-> 
->  .../devicetree/bindings/i2c/st,stm32-i2c.yaml |  5 ++
->  drivers/i2c/busses/i2c-stm32f7.c              | 73 +++++++++++++++++++
->  2 files changed, 78 insertions(+)
+> v4: - add an additional CLK_IS_CRITICAL within flexgen driver
+> v3: - removal some useless CLK_IS_CRITICAL and add some comments
+>     - only keep clk drivers/binding patches within the serie
 > 
 > -- 
 > 2.17.1
