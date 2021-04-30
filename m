@@ -2,438 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30D793700C0
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 20:49:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA1A6370160
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 21:40:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231698AbhD3SuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 14:50:04 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:35088 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229954AbhD3SuD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Apr 2021 14:50:03 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1619808554;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=o4W3uHI/TSMtIHR2pKx1tXQUyM0k5SEiQbBVnlOEz1E=;
-        b=a9bWkxR4jXH5QerZw37EVbzBncGKRDh79O+aFAZ7GCATX5XepdUZoNlLKdTbw3WMSw4WLA
-        Ezh2HmBcnsmookzGLwUDeay5JpvICVA6oWjHL8DN9fzVOVy1Fd0eSiOdN430Xbvi/r3wHm
-        pcuALULi1ksfKbxHoexm2T265dMEGW4=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-330-18oRVsOiMIipMuTLYlIeNg-1; Fri, 30 Apr 2021 14:49:12 -0400
-X-MC-Unique: 18oRVsOiMIipMuTLYlIeNg-1
-Received: by mail-qv1-f71.google.com with SMTP id p20-20020a0ce1940000b02901be3272e620so8694627qvl.10
-        for <devicetree@vger.kernel.org>; Fri, 30 Apr 2021 11:49:09 -0700 (PDT)
+        id S232960AbhD3Tkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 15:40:52 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:41925 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232813AbhD3Tkw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 15:40:52 -0400
+Received: by mail-oi1-f171.google.com with SMTP id i11so9116038oig.8;
+        Fri, 30 Apr 2021 12:40:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:organization:user-agent:mime-version
-         :content-transfer-encoding;
-        bh=o4W3uHI/TSMtIHR2pKx1tXQUyM0k5SEiQbBVnlOEz1E=;
-        b=iIHehwiB/gdoy7/SYfIMqgvmHM6FhibNkDEQ9/R4d5MvDQtiYhCsLqEYoA8voQZB2z
-         pT+AiTtfHJX4eUOYLsp2Jgih4MLrVZ34yKqU+eMG3k3JCiNcCxGGzTlbaeZu0QId/9Rh
-         JMS8MoaI/y/UDSeOy8fP/oKWCnrg68TTVMMY3uCpd0eXlrzn8u+yLJZaLAomF+92T1Yo
-         Jnkg7ezazMdMskhs95tejjkYPMRFsp62mAd+40hP+4vKEHc6qHKhTs91/e5keSuHN3fv
-         VUOdkHCXfOm5rQqfJNh4lWepafTQidOZpQA4WiqqND/ySCZJ2Tk1/hd0+znDkAHhe+lq
-         qBrw==
-X-Gm-Message-State: AOAM531nD4u3wcQlyAnbAcpiVfFV7YQ2irEqFv+erCw8IfX1Iof6U9R1
-        6I7NMD+wVYSx089z9VEcJVhCr6XDKQ2j8nt0WjrfjlLCvD58CDHvmd2J7bo6GswvFZORpD+ywEu
-        j7jjfJvqZvSEGVoBVlE94WQ==
-X-Received: by 2002:a37:e50e:: with SMTP id e14mr6769314qkg.117.1619808540655;
-        Fri, 30 Apr 2021 11:49:00 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyQVA0GuQ9l6xfkw/t9YDKKCRQA2gevKWrmoK9jxO3LYBgavuD80FgZBR1aQ0mb0j/ttroXvQ==
-X-Received: by 2002:a37:e50e:: with SMTP id e14mr6769278qkg.117.1619808540364;
-        Fri, 30 Apr 2021 11:49:00 -0700 (PDT)
-Received: from Ruby.lyude.net (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
-        by smtp.gmail.com with ESMTPSA id l71sm2227890qke.27.2021.04.30.11.48.59
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=oRTCLLrLVLX1YzXLCpau0W/3eis7qio3LTfXUrFMGeA=;
+        b=YVKiR0XqczB9ByD1FQJRlGrqOh2QoSeBWG2db4p0E6HHTbexbzmU2LqDJV0/X2D7q3
+         ZExC2BthHh4U2+MEJBfwB6ikmZo+7o/lN7Q7Y9rS5CeHn+chSx9vyv+gotp4KOWmJcFn
+         Oi1lKFMe01x/R/xnUnWsYwJ0vwoeoubqKl6fJ5eScXjjE69lA/8B9sxm0BkurIYiFgVC
+         izT0K7oXY0QY5BhgxBln1pBjz7poRzCBtul+sQ2qLDsftXWoqmhuuHtceTsTk28xCfb1
+         bZmzVyaWECbKl4ebWiaEh5t9nu9xhdDOa9BmFIQ7qiYBAZ3uzqGvWOi2LYk2YJUwYQV/
+         tC6A==
+X-Gm-Message-State: AOAM531N/OEGO87lNOvlQC3dyv1J003G8mPCVdfRJsaX020yEZNKVM+p
+        OoWXbLScfCfS/5X8Gc+pdA==
+X-Google-Smtp-Source: ABdhPJx6E2XvFlAmdZxj8E8iaeTBP64l5MeiyFxM/eFPrfNxlgKWgdl2oMxZphJvRjvi30v4ahnJig==
+X-Received: by 2002:aca:4056:: with SMTP id n83mr12485002oia.47.1619811603100;
+        Fri, 30 Apr 2021 12:40:03 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t84sm983409oih.35.2021.04.30.12.40.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Apr 2021 11:49:00 -0700 (PDT)
-Message-ID: <7a200cc05d75be9d802d64458b753c35578e84af.camel@redhat.com>
-Subject: Re: [v3 2/2] backlight: Add DisplayPort aux backlight driver
-From:   Lyude Paul <lyude@redhat.com>
-To:     Jani Nikula <jani.nikula@linux.intel.com>,
-        Rajeev Nandan <rajeevny@codeaurora.org>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     mkrishn@codeaurora.org, linux-kernel@vger.kernel.org,
-        abhinavk@codeaurora.org, dianders@chromium.org,
-        seanpaul@chromium.org, kalyan_t@codeaurora.org,
-        hoegsberg@chromium.org,
-        "Lankhorst, Maarten" <maarten.lankhorst@intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Dave Airlie <airlied@gmail.com>,
-        intel-gfx@lists.freedesktop.org
-Date:   Fri, 30 Apr 2021 14:48:58 -0400
-In-Reply-To: <87zgxl5qar.fsf@intel.com>
-References: <1619416756-3533-1-git-send-email-rajeevny@codeaurora.org>
-         <1619416756-3533-3-git-send-email-rajeevny@codeaurora.org>
-         <87zgxl5qar.fsf@intel.com>
-Organization: Red Hat
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+        Fri, 30 Apr 2021 12:40:02 -0700 (PDT)
+Received: (nullmailer pid 3752697 invoked by uid 1000);
+        Fri, 30 Apr 2021 19:40:00 -0000
+Date:   Fri, 30 Apr 2021 14:40:00 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Nava kishore Manne <nava.manne@xilinx.com>
+Cc:     michal.simek@xilinx.com, mdf@kernel.org, trix@redhat.com,
+        gregkh@linuxfoundation.org, arnd@arndb.de, rajan.vaja@xilinx.com,
+        amit.sunil.dhamne@xilinx.com, manish.narani@xilinx.com,
+        zou_wei@huawei.com, lakshmi.sai.krishna.potthuri@xilinx.com,
+        iwamatsu@nigauri.org, wendy.liang@xilinx.com,
+        linus.walleij@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-fpga@vger.kernel.org, chinnikishore369@gmail.com,
+        git@xilinx.com
+Subject: Re: [PATCH v4 1/4] dt-bindings: firmware: Add bindings for xilinx
+ firmware
+Message-ID: <20210430194000.GA3742101@robh.at.kernel.org>
+References: <20210429140408.23194-1-nava.manne@xilinx.com>
+ <20210429140408.23194-2-nava.manne@xilinx.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210429140408.23194-2-nava.manne@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-JFYI for anyone who is interested, I will be respinning my patches for adding
-backlight helpers very soon since we've got pretty much all of the prep work
-for it upstream now
+On Thu, Apr 29, 2021 at 07:34:05PM +0530, Nava kishore Manne wrote:
+> Add documentation to describe Xilinx firmware driver bindings.
+> Firmware driver provides an interface to firmware APIs.
+> Interface APIs can be used by any driver to communicate
+> to Platform Management Unit.
+> 
+> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> ---
+> Changes for v4:
+>                 -Added new yaml file for xilinx firmware
+>                  as suggested by Rob.
+> 
+>  .../firmware/xilinx/xlnx,zynqmp-firmware.yaml | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
 
-On Mon, 2021-04-26 at 12:49 +0300, Jani Nikula wrote:
-> On Mon, 26 Apr 2021, Rajeev Nandan <rajeevny@codeaurora.org> wrote:
-> > Add backlight driver for the panels supporting backlight control
-> > using DPCD registers on the DisplayPort aux channel.
-> 
-> No, please don't do this.
-> 
-> I wrote you last week in reply to v1 why I thought merging this would
-> not be a good idea [1]. Why have you sent two versions since then
-> without replying to me, or Cc'ing me or Lyude?
-> 
-> I think it's an even worse idea to merge this to
-> drivers/video/backlight. With DP AUX backlight you can't pretend it's
-> just an independent aux interface for backlight without everything else
-> around it. It's not independent of eDP, and exposing it as a direct
-> backlight sysfs interface bypasses the encoder.
-> 
-> And it still remains that there is existing DP AUX backlight code in
-> use, in the tree, with more features than this, with plans and
-> previously submitted patches to lift from one driver to drm core, and
-> with patches to add support to another driver.
-> 
-> I don't say this lightly, or very often at all, but,
-> 
-> NAK.
-> 
-> 
-> BR,
-> Jani.
-> 
-> 
-> [1] https://lore.kernel.org/dri-devel/871rb5bcf9.fsf@intel.com/
-> 
-> > 
-> > Changes in v2:
-> > - New (most of the code reused from drm_dp_aux_backlight.c of v1)
-> > 
-> > Changes in v3:
-> > - Add missing ';' to fix module compilation (kernel test bot)
-> > 
-> > Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
-> > ---
-> >  drivers/video/backlight/Kconfig            |   7 +
-> >  drivers/video/backlight/Makefile           |   1 +
-> >  drivers/video/backlight/dp_aux_backlight.c | 245
-> > +++++++++++++++++++++++++++++
-> >  3 files changed, 253 insertions(+)
-> >  create mode 100644 drivers/video/backlight/dp_aux_backlight.c
-> > 
-> > diff --git a/drivers/video/backlight/Kconfig
-> > b/drivers/video/backlight/Kconfig
-> > index d83c87b..82c88f0 100644
-> > --- a/drivers/video/backlight/Kconfig
-> > +++ b/drivers/video/backlight/Kconfig
-> > @@ -456,6 +456,13 @@ config BACKLIGHT_LED
-> >           If you have a LCD backlight adjustable by LED class driver, say
-> > Y
-> >           to enable this driver.
-> >  
-> > +config BACKLIGHT_DP_AUX
-> > +       tristate "DisplayPort aux backlight driver"
-> > +       depends on DRM && DRM_KMS_HELPER
-> > +       help
-> > +         If you have a panel backlight controlled by DPCD registers
-> > +         on the DisplayPort aux channel, say Y to enable this driver.
-> > +
-> >  endif # BACKLIGHT_CLASS_DEVICE
-> >  
-> >  endmenu
-> > diff --git a/drivers/video/backlight/Makefile
-> > b/drivers/video/backlight/Makefile
-> > index 685f3f1..ba23c7c 100644
-> > --- a/drivers/video/backlight/Makefile
-> > +++ b/drivers/video/backlight/Makefile
-> > @@ -57,3 +57,4 @@ obj-$(CONFIG_BACKLIGHT_WM831X)                +=
-> > wm831x_bl.o
-> >  obj-$(CONFIG_BACKLIGHT_ARCXCNN)        += arcxcnn_bl.o
-> >  obj-$(CONFIG_BACKLIGHT_RAVE_SP)                += rave-sp-backlight.o
-> >  obj-$(CONFIG_BACKLIGHT_LED)            += led_bl.o
-> > +obj-$(CONFIG_BACKLIGHT_DP_AUX)         += dp_aux_backlight.o
-> > diff --git a/drivers/video/backlight/dp_aux_backlight.c
-> > b/drivers/video/backlight/dp_aux_backlight.c
-> > new file mode 100644
-> > index 00000000..3398383
-> > --- /dev/null
-> > +++ b/drivers/video/backlight/dp_aux_backlight.c
-> > @@ -0,0 +1,245 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Backlight driver to control the brightness over DisplayPort aux
-> > channel.
-> > + */
-> > +
-> > +#include <linux/backlight.h>
-> > +#include <linux/err.h>
-> > +#include <linux/gpio/consumer.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/platform_device.h>
-> > +#include <drm/drm_dp_helper.h>
-> > +
-> > +#define DP_AUX_MAX_BRIGHTNESS          0xffff
-> > +
-> > +/**
-> > + * struct dp_aux_backlight - DisplayPort aux backlight data
-> > + * @dev: pointer to our device.
-> > + * @aux: the DisplayPort aux channel.
-> > + * @enable_gpio: the backlight enable gpio.
-> > + * @enabled: true if backlight is enabled else false.
-> > + */
-> > +struct dp_aux_backlight {
-> > +       struct device *dev;
-> > +       struct drm_dp_aux *aux;
-> > +       struct gpio_desc *enable_gpio;
-> > +       bool enabled;
-> > +};
-> > +
-> > +static struct drm_dp_aux *i2c_to_aux(struct i2c_adapter *i2c)
-> > +{
-> > +       return container_of(i2c, struct drm_dp_aux, ddc);
-> > +}
-> > +
-> > +static int dp_aux_backlight_enable(struct dp_aux_backlight *aux_bl)
-> > +{
-> > +       u8 val = 0;
-> > +       int ret;
-> > +
-> > +       if (aux_bl->enabled)
-> > +               return 0;
-> > +
-> > +       /* Set backlight control mode */
-> > +       ret = drm_dp_dpcd_readb(aux_bl->aux,
-> > DP_EDP_BACKLIGHT_MODE_SET_REGISTER,
-> > +                               &val);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       val &= ~DP_EDP_BACKLIGHT_CONTROL_MODE_MASK;
-> > +       val |= DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD;
-> > +       ret = drm_dp_dpcd_writeb(aux_bl->aux,
-> > DP_EDP_BACKLIGHT_MODE_SET_REGISTER,
-> > +                                val);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       /* Enable backlight */
-> > +       ret = drm_dp_dpcd_readb(aux_bl->aux,
-> > DP_EDP_DISPLAY_CONTROL_REGISTER,
-> > +                               &val);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       val |= DP_EDP_BACKLIGHT_ENABLE;
-> > +       ret = drm_dp_dpcd_writeb(aux_bl->aux,
-> > DP_EDP_DISPLAY_CONTROL_REGISTER,
-> > +                                val);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       if (aux_bl->enable_gpio)
-> > +               gpiod_set_value(aux_bl->enable_gpio, 1);
-> > +
-> > +       aux_bl->enabled = true;
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static int dp_aux_backlight_disable(struct dp_aux_backlight *aux_bl)
-> > +{
-> > +       u8 val = 0;
-> > +       int ret;
-> > +
-> > +       if (!aux_bl->enabled)
-> > +               return 0;
-> > +
-> > +       if (aux_bl->enable_gpio)
-> > +               gpiod_set_value(aux_bl->enable_gpio, 0);
-> > +
-> > +       ret = drm_dp_dpcd_readb(aux_bl->aux,
-> > DP_EDP_DISPLAY_CONTROL_REGISTER,
-> > +                               &val);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       val &= ~DP_EDP_BACKLIGHT_ENABLE;
-> > +       ret = drm_dp_dpcd_writeb(aux_bl->aux,
-> > DP_EDP_DISPLAY_CONTROL_REGISTER,
-> > +                                val);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       aux_bl->enabled = false;
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static int dp_aux_backlight_update_status(struct backlight_device *bd)
-> > +{
-> > +       struct dp_aux_backlight *aux_bl = bl_get_data(bd);
-> > +       u16 brightness = backlight_get_brightness(bd);
-> > +       u8 val[2] = { 0x0 };
-> > +       int ret = 0;
-> > +
-> > +       if (brightness > 0) {
-> > +               val[0] = brightness >> 8;
-> > +               val[1] = brightness & 0xff;
-> > +               ret = drm_dp_dpcd_write(aux_bl->aux,
-> > DP_EDP_BACKLIGHT_BRIGHTNESS_MSB,
-> > +                                       val, sizeof(val));
-> > +               if (ret < 0)
-> > +                       return ret;
-> > +
-> > +               dp_aux_backlight_enable(aux_bl);
-> > +       } else {
-> > +               dp_aux_backlight_disable(aux_bl);
-> > +       }
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static int dp_aux_backlight_get_brightness(struct backlight_device *bd)
-> > +{
-> > +       struct dp_aux_backlight *aux_bl = bl_get_data(bd);
-> > +       u8 val[2] = { 0x0 };
-> > +       int ret = 0;
-> > +
-> > +       if (backlight_is_blank(bd))
-> > +               return 0;
-> > +
-> > +       ret = drm_dp_dpcd_read(aux_bl->aux,
-> > DP_EDP_BACKLIGHT_BRIGHTNESS_MSB,
-> > +                              &val, sizeof(val));
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       return (val[0] << 8 | val[1]);
-> > +}
-> > +
-> > +static const struct backlight_ops aux_bl_ops = {
-> > +       .update_status = dp_aux_backlight_update_status,
-> > +       .get_brightness = dp_aux_backlight_get_brightness,
-> > +};
-> > +
-> > +
-> > +static int dp_aux_backlight_probe(struct platform_device *pdev)
-> > +{
-> > +       struct dp_aux_backlight *aux_bl;
-> > +       struct backlight_device *bd;
-> > +       struct backlight_properties bl_props = { 0 };
-> > +       struct device_node *np;
-> > +       struct i2c_adapter *ddc;
-> > +       int ret = 0;
-> > +       u32 val;
-> > +
-> > +       aux_bl = devm_kzalloc(&pdev->dev, sizeof(*aux_bl), GFP_KERNEL);
-> > +       if (!aux_bl)
-> > +               return -ENOMEM;
-> > +
-> > +       aux_bl->dev = &pdev->dev;
-> > +
-> > +       np = of_parse_phandle(pdev->dev.of_node, "ddc-i2c-bus", 0);
-> > +       if (!np) {
-> > +               dev_err(&pdev->dev, "failed to get aux ddc I2C bus\n");
-> > +               return -ENODEV;
-> > +       }
-> > +
-> > +       ddc = of_find_i2c_adapter_by_node(np);
-> > +       of_node_put(np);
-> > +       if (!ddc)
-> > +               return -EPROBE_DEFER;
-> > +
-> > +       aux_bl->aux = i2c_to_aux(ddc);
-> > +       dev_dbg(&pdev->dev, "using dp aux %s\n", aux_bl->aux->name);
-> > +
-> > +       aux_bl->enable_gpio = devm_gpiod_get_optional(&pdev->dev,
-> > "enable",
-> > +                                            GPIOD_OUT_LOW);
-> > +       if (IS_ERR(aux_bl->enable_gpio)) {
-> > +               ret = PTR_ERR(aux_bl->enable_gpio);
-> > +               goto free_ddc;
-> > +       }
-> > +
-> > +       val = DP_AUX_MAX_BRIGHTNESS;
-> > +       of_property_read_u32(pdev->dev.of_node, "max-brightness", &val);
-> > +       if (val > DP_AUX_MAX_BRIGHTNESS)
-> > +               val = DP_AUX_MAX_BRIGHTNESS;
-> > +
-> > +       bl_props.max_brightness = val;
-> > +       bl_props.brightness = val;
-> > +       bl_props.type = BACKLIGHT_RAW;
-> > +       bd = devm_backlight_device_register(&pdev->dev, dev_name(&pdev-
-> > >dev),
-> > +                                           &pdev->dev, aux_bl,
-> > +                                           &aux_bl_ops, &bl_props);
-> > +       if (IS_ERR(bd)) {
-> > +               ret = PTR_ERR(bd);
-> > +               dev_err(&pdev->dev,
-> > +                             "failed to register backlight (%d)\n", ret);
-> > +               goto free_ddc;
-> > +       }
-> > +
-> > +       platform_set_drvdata(pdev, bd);
-> > +
-> > +       return 0;
-> > +
-> > +free_ddc:
-> > +       if (ddc)
-> > +               put_device(&ddc->dev);
-> > +
-> > +       return ret;
-> > +}
-> > +
-> > +static int dp_aux_backlight_remove(struct platform_device *pdev)
-> > +{
-> > +       struct backlight_device *bd = platform_get_drvdata(pdev);
-> > +       struct dp_aux_backlight *aux_bl = bl_get_data(bd);
-> > +       struct i2c_adapter *ddc = &aux_bl->aux->ddc;
-> > +
-> > +       if (ddc)
-> > +               put_device(&ddc->dev);
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static const struct of_device_id dp_aux_bl_of_match_table[] = {
-> > +       { .compatible = "dp-aux-backlight"},
-> > +       {},
-> > +};
-> > +MODULE_DEVICE_TABLE(of, dp_aux_bl_of_match_table);
-> > +
-> > +static struct platform_driver dp_aux_backlight_driver = {
-> > +       .driver = {
-> > +               .name = "dp-aux-backlight",
-> > +               .of_match_table = dp_aux_bl_of_match_table,
-> > +       },
-> > +       .probe = dp_aux_backlight_probe,
-> > +       .remove = dp_aux_backlight_remove,
-> > +
-> > +};
-> > +module_platform_driver(dp_aux_backlight_driver);
-> > +
-> > +MODULE_DESCRIPTION("DisplayPort aux backlight driver");
-> > +MODULE_LICENSE("GPL v2");
-> 
+What about the old doc?:
 
--- 
-Cheers,
- Lyude Paul (she/her)
- Software Engineer at Red Hat
+Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.txt
 
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> new file mode 100644
+> index 000000000000..4b97f005bed7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/firmware/xilinx/xlnx,zynqmp-firmware.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx firmware driver
+> +
+> +maintainers:
+> +  - Nava kishore Manne <nava.manne@xilinx.com>
+> +
+> +description:
+> +  The zynqmp-firmware node describes the interface to platform firmware.
+> +  ZynqMP has an interface to communicate with secure firmware. Firmware
+> +  driver provides an interface to firmware APIs. Interface APIs can be
+> +  used by any driver to communicate to PMUFW(Platform Management Unit).
+> +  These requests include clock management, pin control, device control,
+> +  power management service, FPGA service and other platform management
+> +  services.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - description:
+> +          For implementations complying for Zynq Ultrascale+ MPSoC.
+> +        const: xlnx,zynqmp-firmware
+> +
+> +      - description:
+> +          For implementations complying for Versal.
+> +        const: xlnx,versal-firmware
+> +
+> +  method:
+> +    description: The method of calling the PM-API firmware layer.
+> +                #  Permitted values are:
+> +                #  - "smc" : SMC #0, following the SMCCC
+> +                #  - "hvc" : HVC #0, following the SMCCC
+
+Drop the '#'. If you want to maintain the formatting, then use '|' after 
+'description:' for a literal block.
+
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +    enum:
+> +      - smc
+> +      - hvc
+> +
+> +patternProperties:
+> +  "fpga":
+
+So 'foofpgabar' is valid?
+
+> +    description: Compatible of the FPGA device.
+> +    type: object
+> +
+> +    required:
+> +      - compatible
+
+This belongs in the fpga schema which should have a $ref here. (Which 
+means this patch needs to come 2nd.)
+
+> +
+> +required:
+> +  - compatible
+> +
+> +examples:
+> +  - |
+> +    versal-firmware {
+> +      compatible = "xlnx,versal-firmware";
+> +      method = "smc";
+> +      fpga {
+> +        compatible = "xlnx,versal-fpga";
+> +      };
+> +    };
+> +
+> +additionalProperties: false
+> -- 
+> 2.17.1
+> 
