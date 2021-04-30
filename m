@@ -2,109 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B672D36FDB6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 17:25:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A04636FDB3
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 17:24:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229759AbhD3PZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 11:25:46 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:44826 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230105AbhD3PZq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 11:25:46 -0400
-Received: by mail-ot1-f46.google.com with SMTP id z25-20020a9d65d90000b02902a560806ca7so6022241oth.11;
-        Fri, 30 Apr 2021 08:24:58 -0700 (PDT)
+        id S229797AbhD3PZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 11:25:45 -0400
+Received: from mail-oo1-f42.google.com ([209.85.161.42]:33478 "EHLO
+        mail-oo1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229759AbhD3PZo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 11:25:44 -0400
+Received: by mail-oo1-f42.google.com with SMTP id e9-20020a4ada090000b02901f91091e5acso3502220oou.0;
+        Fri, 30 Apr 2021 08:24:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=5FfXtxbf2+1RT69S9AA6R5xDes94gPxdY4zFREGjPU4=;
-        b=WOt+IL0LHraVcxQOdGW2R25jZxIoCRCNC36S+Addb5j4Ke6repENJFe+3+vpCNz+zo
-         /9fl2UomzrisMaTBkY2T+c97Fa41xbQ24ZubldKNEhFOIpXC7zyT/kzHGsV1oLeRi31d
-         AjMEcXo/iz9vyyK8OAJrTnD2oxdoSLNPtO5sQfrFOKPDhlCGTA7A39Ssqe4lWRAuhedj
-         411H3pVr7QfNvbVLZYzzvixCN/BYuZFVw4XNfhY5qlIU9XjGWpdw54hKLkiR9NuHVDXK
-         ulSC02pKUUH7SyzGIO1Pgm28RiBF9O7nTwY9OtkwSqIhODrYVXt9hpNi3/nkZoGl9nXL
-         MWTA==
-X-Gm-Message-State: AOAM532Vza9eSge13PHGBC7LeKvn8hSdLAk/dw3q1r711EmGpLT8l73a
-        HnBwu4yalFhFHJQOfyo35Q==
-X-Google-Smtp-Source: ABdhPJzl7TZAjS/JHU4Kn3ojk7o8O0fWkXJU/cjLK3k6oupxy5IcPcWakw/i3Ek1NYI6k+ruJyHyyw==
-X-Received: by 2002:a05:6830:4111:: with SMTP id w17mr4111512ott.99.1619796297875;
-        Fri, 30 Apr 2021 08:24:57 -0700 (PDT)
+        bh=O++0IJzSQB4iNoVIxshkaBPDcmxCVjUNe7XgEw3Js0o=;
+        b=QpHLSaw8J6YnvmWgV6r3sF1n6wy/gtfm5tyusgROh+q/R2TYleTX5vlts9GgifMINU
+         0IMBiQC5n/bc5S7KPWnjuHm4ZUts3OFoJTa7m8Ts605+ny/AfETe31G1OcysJYpwzl+U
+         lnaAMKuXbwPhWlqynOXdlhDUnt9xfwZYW7DymPJpAdTusyvbjNqLbdAIzAOqTgWKCnkA
+         u5TZ3p1Lgy2HPyChicTs+FwfDMx1AVs9y+jR6iiXA9IxnnwbsW2k37+dBpSIhyBSYCT9
+         SSs0vQ4W6+kG5l/ptxOgi+zdES5O1I2YHHFKcwxlXBcny+sxDl9FeZ8qOxBaQ0ROvpWN
+         98Fw==
+X-Gm-Message-State: AOAM532u6Pwu38o5OFYB0HEYL+xFTSOpzRa5CUXLkOvWaiyTforbXq3E
+        0STy2rumbI8wtlpi7b1Ztw==
+X-Google-Smtp-Source: ABdhPJwbb7zE35ajWhOlf/ed6tkFszx1FfE8AvqSHAXlK4IAj7JZBJqZEG3kmn1PD3AcwDFVB7rpEQ==
+X-Received: by 2002:a4a:aa41:: with SMTP id y1mr3783129oom.52.1619796296223;
+        Fri, 30 Apr 2021 08:24:56 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c7sm803077oot.42.2021.04.30.08.24.56
+        by smtp.gmail.com with ESMTPSA id s131sm838180oib.14.2021.04.30.08.24.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Apr 2021 08:24:57 -0700 (PDT)
-Received: (nullmailer pid 3353973 invoked by uid 1000);
+        Fri, 30 Apr 2021 08:24:55 -0700 (PDT)
+Received: (nullmailer pid 3353970 invoked by uid 1000);
         Fri, 30 Apr 2021 15:24:53 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     linux-kernel@vger.kernel.org, martin.blumenstingl@googlemail.com,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        khilman@baylibre.com, jbrunet@baylibre.com,
-        linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20210429170404.3616111-3-narmstrong@baylibre.com>
-References: <20210429170404.3616111-1-narmstrong@baylibre.com> <20210429170404.3616111-3-narmstrong@baylibre.com>
-Subject: Re: [PATCH 2/3] dt-bindings: arm: amlogic: add Banana PI M5 bindings
+To:     Nava kishore Manne <nava.manne@xilinx.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        rajan.vaja@xilinx.com, lakshmi.sai.krishna.potthuri@xilinx.com,
+        git@xilinx.com, gregkh@linuxfoundation.org,
+        amit.sunil.dhamne@xilinx.com, mdf@kernel.org,
+        linus.walleij@linaro.org, manish.narani@xilinx.com,
+        iwamatsu@nigauri.org, trix@redhat.com, arnd@arndb.de,
+        michal.simek@xilinx.com, wendy.liang@xilinx.com,
+        linux-fpga@vger.kernel.org, robh+dt@kernel.org,
+        chinnikishore369@gmail.com, zou_wei@huawei.com,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20210429140408.23194-2-nava.manne@xilinx.com>
+References: <20210429140408.23194-1-nava.manne@xilinx.com> <20210429140408.23194-2-nava.manne@xilinx.com>
+Subject: Re: [PATCH v4 1/4] dt-bindings: firmware: Add bindings for xilinx firmware
 Date:   Fri, 30 Apr 2021 10:24:53 -0500
-Message-Id: <1619796293.730307.3353972.nullmailer@robh.at.kernel.org>
+Message-Id: <1619796293.713078.3353969.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Apr 2021 19:04:03 +0200, Neil Armstrong wrote:
-> Add bindings for the Banana PI M5 board.
+On Thu, 29 Apr 2021 19:34:05 +0530, Nava kishore Manne wrote:
+> Add documentation to describe Xilinx firmware driver bindings.
+> Firmware driver provides an interface to firmware APIs.
+> Interface APIs can be used by any driver to communicate
+> to Platform Management Unit.
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
 > ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Changes for v4:
+>                 -Added new yaml file for xilinx firmware
+>                  as suggested by Rob.
+> 
+>  .../firmware/xilinx/xlnx,zynqmp-firmware.yaml | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/arm/amlogic.yaml:167:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
 dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/arm/amlogic.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 421, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 109, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 850, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 850, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 731, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.scanner.ScannerError: while scanning for the next token
-found character that cannot start any token
-  in "<unicode string>", line 167, column 1
-make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/arm/amlogic.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/arm/amlogic.yaml:  while scanning for the next token
-found character that cannot start any token
-  in "<unicode string>", line 167, column 1
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/amlogic.yaml: ignoring, error parsing file
-warning: no schema found in file: ./Documentation/devicetree/bindings/arm/amlogic.yaml
-make: *** [Makefile:1414: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/xlnx,versal-clk.example.dt.yaml: zynqmp-firmware: 'clock-controller' does not match any of the regexes: 'fpga', 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/crypto/xlnx,zynqmp-aes.example.dt.yaml: zynqmp-firmware: 'zynqmp-aes' does not match any of the regexes: 'fpga', 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dt.yaml:0:0: /example-0/versal-firmware/fpga: failed to match any schema with compatible: ['xlnx,versal-fpga']
 
-See https://patchwork.ozlabs.org/patch/1471788
+See https://patchwork.ozlabs.org/patch/1471741
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
