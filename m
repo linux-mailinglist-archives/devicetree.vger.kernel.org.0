@@ -2,94 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CB8336F413
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 04:29:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 606AD36F418
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 04:39:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229623AbhD3C3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 22:29:47 -0400
-Received: from mail-pg1-f175.google.com ([209.85.215.175]:41803 "EHLO
-        mail-pg1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229582AbhD3C3r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 22:29:47 -0400
-Received: by mail-pg1-f175.google.com with SMTP id m37so5894688pgb.8;
-        Thu, 29 Apr 2021 19:28:58 -0700 (PDT)
+        id S229637AbhD3Cji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 22:39:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60300 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229577AbhD3Cji (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 22:39:38 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30193C06138B;
+        Thu, 29 Apr 2021 19:38:51 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id a11so4946627plh.3;
+        Thu, 29 Apr 2021 19:38:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-disposition:content-transfer-encoding;
+        bh=jaCub1Sk5luNFcSj2KyJUdoWo/o9f4mzXOf2bkFAbRc=;
+        b=gCndhTw3ouP0rMi0uKkO4yYmc7jRf0minwRX/Kisp3zUqWh+ygE+h+/Me3vzKPW66S
+         nO3Noa7whRSWeksIenMTgmXEprywhUOgoI7ThvhzlAAp5eMieV9d8pBAEIUANrSYLOiN
+         lLb9anH74xTH5vPl/wiZIEtVCCJBTHnSrAKAFtT8KaO4jhs5GhWSXOMXnpR34jHTJ0JQ
+         kV8/2E1wanSSCO7GynRJ9qM612MP4GV5g6WkEw5jv8+4d9uqlzAX2HHHAuej2E7wZE+S
+         +vx9UHNFM0+exkUHL0O9GBKUaYps8YtKhvBsS+DVaBSdTuH/pFyomWBmfCpBD4NdzoT2
+         PzUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=f+ym5C8nmqZrN2w3SYa5W8yqg1cWBbeVoLyKOwLUktI=;
-        b=nVYt6bssRYJC82ldO+QIBAroiHGEDl4Wb0KBE8DII1TEKw48SvhL0AiaKBEWGfdzYO
-         srFGWJ06wmbYyEBGZ1nNpmsZj0J1RyF8+2CQMDlMi4B92YMaUpB/TZ9Mvbdqzlc+02MB
-         MnlLkfW6NMK3IrDpSLFm3QEmKO8bPKIv/sOI6eUTHr2qr/Vqy/uZud08TUKiL8BWo6ER
-         JfbiiYW5kKVvYL528EuP5fHwa4mKQtMrRm4OdMVvsnUJKnGiEvKnhQVWnjCnGb/GfR4K
-         bU2IzduqNJY5u9UqIN7UbbpCfemQmo+ARsoTHF0W8GLPLVFEGjEbNyPMz6Mh8U6c+YuX
-         vcww==
-X-Gm-Message-State: AOAM533qRLCKS4u6duSbkhbYy8TLrixb/lOL0DVaQ7PIPx0mRAvP1Icl
-        LLvDEc9tJEUAp9AI0TUsCLg=
-X-Google-Smtp-Source: ABdhPJxnLTLpdi8/3E6ZaxS32CAhEd9s6DMoRtD4Tu9WfyoAvQHiPKSN3EEDM+h0e9j2wKlI/oqgtw==
-X-Received: by 2002:a63:8c4a:: with SMTP id q10mr2622178pgn.106.1619749738122;
-        Thu, 29 Apr 2021 19:28:58 -0700 (PDT)
-Received: from localhost ([2601:647:5b00:1161:a4cc:eef9:fbc0:2781])
-        by smtp.gmail.com with ESMTPSA id fa17sm3898730pjb.17.2021.04.29.19.28.56
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-disposition
+         :content-transfer-encoding;
+        bh=jaCub1Sk5luNFcSj2KyJUdoWo/o9f4mzXOf2bkFAbRc=;
+        b=XhnPUfzHoi1CTWfCRk0u5607JkdVeGKISd/B0aTdOd7JdsqVGLF0NOTL0S7BA/FWdR
+         nZS2/UChpHViHZIRQBgMFeXudblC0yrHj/8eMKG6RMbEU0PUA1/Vyu+u+DIsW5MKqkPa
+         cxPTMYA5lXxjTXq6V3S1jwRDjy7cZCM31QpIFg5kCQcaEV36qu/O8gUERIc/a9CRbF1A
+         XUK/PM2N85nyEDlUin3DPeHTeUbb/iPz7ubxrunvu9nxBbM+q1h/xTsoZkMj98tTzurS
+         DvdJYrBLFwELnj9daBw0bVJVfTsiU6LxQ9/JfkJgqG79rnj1kBRwwklaxCE37tbgdnvd
+         lyIg==
+X-Gm-Message-State: AOAM5324IiUtm4A7w7fSHKGkWplXjDM6exqHr07D5aGcaImez75vnsno
+        8dlLmRuehixyg81rh0lpOZ4=
+X-Google-Smtp-Source: ABdhPJxoY/Hw8IXQtiW/BgUbYJZMs3c7bERLbztAkvCoMex1EAzOXh7z4+LBt9CcfYAY9pz/zdslhg==
+X-Received: by 2002:a17:90a:a389:: with SMTP id x9mr12546207pjp.232.1619750330653;
+        Thu, 29 Apr 2021 19:38:50 -0700 (PDT)
+Received: from localhost.localdomain ([138.197.212.246])
+        by smtp.gmail.com with ESMTPSA id in1sm8765736pjb.23.2021.04.29.19.38.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Apr 2021 19:28:57 -0700 (PDT)
-Date:   Thu, 29 Apr 2021 19:28:55 -0700
-From:   Moritz Fischer <mdf@kernel.org>
-To:     Nava kishore Manne <nava.manne@xilinx.com>
-Cc:     robh+dt@kernel.org, michal.simek@xilinx.com, mdf@kernel.org,
-        trix@redhat.com, gregkh@linuxfoundation.org, arnd@arndb.de,
-        rajan.vaja@xilinx.com, amit.sunil.dhamne@xilinx.com,
-        manish.narani@xilinx.com, zou_wei@huawei.com,
-        lakshmi.sai.krishna.potthuri@xilinx.com, iwamatsu@nigauri.org,
-        wendy.liang@xilinx.com, linus.walleij@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-fpga@vger.kernel.org,
-        chinnikishore369@gmail.com, git@xilinx.com
-Subject: Re: [PATCH v4 0/4] Add Bitstream configuration support for Versal
-Message-ID: <YItrZ/XTk8Ha0pAZ@epycbox.lan>
-References: <20210429140408.23194-1-nava.manne@xilinx.com>
+        Thu, 29 Apr 2021 19:38:49 -0700 (PDT)
+From:   DENG Qingfang <dqfext@gmail.com>
+To:     David Miller <davem@davemloft.net>
+Cc:     andrew@lunn.ch, f.fainelli@gmail.com, hkallweit1@gmail.com,
+        kuba@kernel.org, Landen.Chao@mediatek.com, matthias.bgg@gmail.com,
+        linux@armlinux.org.uk, sean.wang@mediatek.com,
+        vivien.didelot@gmail.com, olteanv@gmail.com, robh+dt@kernel.org,
+        linus.walleij@linaro.org, gregkh@linuxfoundation.org,
+        sergio.paracuellos@gmail.com, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-staging@lists.linux.dev,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        weijie.gao@mediatek.com, gch981213@gmail.com,
+        opensource@vdorst.com, frank-w@public-files.de, tglx@linutronix.de,
+        maz@kernel.org
+Subject: Re: [PATCH net-next 0/4] MT7530 interrupt support
+Date:   Fri, 30 Apr 2021 10:38:39 +0800
+Message-Id: <20210430023839.246447-1-dqfext@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210429.170815.956010543291313915.davem@davemloft.net>
+References: <20210429062130.29403-1-dqfext@gmail.com> <20210429.170815.956010543291313915.davem@davemloft.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210429140408.23194-1-nava.manne@xilinx.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, Apr 29, 2021 at 05:08:15PM -0700, David Miller wrote:
+> 
+> Please fix this:
+> 
+> error: the following would cause module name conflict:
+>   drivers/net/phy/mediatek.ko
+>   drivers/usb/musb/mediatek.ko
 
-On Thu, Apr 29, 2021 at 07:34:04PM +0530, Nava kishore Manne wrote:
-> This series Adds FPGA manager driver support for Xilinx Versal SoC.
-> it uses the firmware interface to configure the programmable logic.
-> 
-> Changes for v4:
-> 		-Rebase the patch series on linux-next.
-> 		https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-> 
-> Appana Durga Kedareswara rao (1):
->   dt-bindings: fpga: Add binding doc for versal fpga manager
-> 
-> Nava kishore Manne (3):
->   dt-bindings: firmware: Add bindings for xilinx firmware
->   drivers: firmware: Add PDI load API support
->   fpga: versal-fpga: Add versal fpga manager driver
-> 
->  .../firmware/xilinx/xlnx,zynqmp-firmware.yaml |  63 ++++++++++
->  .../bindings/fpga/xlnx,versal-fpga.yaml       |  33 +++++
->  drivers/firmware/xilinx/zynqmp.c              |  17 +++
->  drivers/fpga/Kconfig                          |   9 ++
->  drivers/fpga/Makefile                         |   1 +
->  drivers/fpga/versal-fpga.c                    | 117 ++++++++++++++++++
->  include/linux/firmware/xlnx-zynqmp.h          |  10 ++
->  7 files changed, 250 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
->  create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml
->  create mode 100644 drivers/fpga/versal-fpga.c
-> 
-> -- 
-> 2.17.1
-> 
-Series looks good, will wait for Rob's Acks on the DT part.
+So I still have to rename the PHY driver..
+Andrew, what is your suggestion? Is mediatek_phy.c okay?
 
-Thanks,
-Moritz
+> 
+> 
+> Thanks.
