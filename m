@@ -2,121 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A33836F779
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 11:02:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF2D536F797
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 11:10:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230484AbhD3JDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 05:03:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59374 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbhD3JDm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 05:03:42 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BF74C06174A;
-        Fri, 30 Apr 2021 02:02:53 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id m11so4858779pfc.11;
-        Fri, 30 Apr 2021 02:02:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BfGbSMZc7bvjVY6nx1HPF1pRepvP5IrlXq3RZS+72MY=;
-        b=pz8Tc/MBWdz5VC1p7aLi42FHnVMNJs3NPJ2adbMjhFR2Zzs/aTW1U4L1dfZWNqyJYK
-         MKO7iMs57DpAilXlC4ywIVRs9yA9CGIff6s/jvY/L9swib7pYvOxlsCkgEYBYWXgFBxR
-         zktT/pk5pQXucYSR5DfLOp4o7guK6T8p+kAdI7AVLfshQEbe2DiloOYFWeF2aoBaEn0U
-         4eeAVzxCHUmgF4pByfxpc+/LQPG6vBE3e6KH2fzUG28kX1NWRCXjppFZu5DxqfIEIKP+
-         ooB49gkVdVvSAidHKXX8kQJ/CTTG18Ug5s1QRVqraOGtKWurhecXnSWXVo9wWMJTBEhI
-         BGAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BfGbSMZc7bvjVY6nx1HPF1pRepvP5IrlXq3RZS+72MY=;
-        b=CdwVhx5YTpxvWG4sSjWKY8KdOWjvkU01xnAZQMmZuL48+016qdYOD/oR0tj+9sKN0U
-         Zl1u7Sd38TZU5Wr6ONbo/V/c9+gVrwz2fGnnE6WRbqeT6gUaZGKMWkfEjiwdLKBeIeeO
-         evsCriLgfg1isSjgQdGjldW/yopvJHwBIHK21mIk4X2sz+EDWlVkqkXHgAPQ9zGvCbCm
-         JtshJEaYvuO3s0z2am45BMctf8WK52JZ7vZCSHhxyWsS1VUvmb0QbbODUHAIZRd6g+/O
-         /4S+quOMg/9+HqyzkrmD7xnB7CFwDZttm/XMP7rGf60ATAMky2F+N3hsNlFhOP5E5Qeh
-         dW/Q==
-X-Gm-Message-State: AOAM533CgbwgX2yvFchD79D3FXQBs/FtH3D6NrDkv0fkC3D2jRF8uWFf
-        cCVoUL4hp4JfQxJAEfHZ2tUhDEMGfhXrsJUqV7U=
-X-Google-Smtp-Source: ABdhPJz72seNM8qiGKE4ZlJrRuJfr9QGEGlAlFoa0eNUUgXz/SZALqMGcniYzRfjPFox5XdFo3teVG2gNVcyunQjHVs=
-X-Received: by 2002:a65:5a4d:: with SMTP id z13mr3766067pgs.4.1619773372827;
- Fri, 30 Apr 2021 02:02:52 -0700 (PDT)
+        id S229524AbhD3JL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 05:11:26 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:58945 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229522AbhD3JL0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Apr 2021 05:11:26 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id 875515C0032;
+        Fri, 30 Apr 2021 05:10:38 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Fri, 30 Apr 2021 05:10:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=DgPXkCNwhuM1PvuNpQB5vO85GXk
+        9IVTLv4pIOEkACM8=; b=v3lFalLS2TrtaF/aAKRNtCRKo3X9KKsTJPpbZDbALtO
+        TBZfUyMeRdDSnVkzhYJ0hTaRqiK1la++4dg3x/o/lFAZJjWKEjouSxHiXjpp/7V3
+        GcZtuH7Jz0vb+aK9kQO1NpHjdSqA5NXZLm98uz0dE+LLfiWsso+BoBulMdGJ/BCg
+        NLCkTemN9sdyyOjFIoYRBoi6CmjhlsZtIEreEnIiXVY1XbP512vkemu76JtmQG+T
+        soYufUFwf6paOCwAS1zu4aYfjUlf9YzruiIRIHy/If8w/vi2uH6E7PsDslYx2T5v
+        3dtGpNGWPDK9N/b2IdfhOtXKPuoPtRKbRukx/PplrCA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=DgPXkC
+        NwhuM1PvuNpQB5vO85GXk9IVTLv4pIOEkACM8=; b=sFY/ECTsNNXUjSfwBt6lFu
+        BJfDhttISlFO4bU/nzfmphsiTRMvkRfPRdPP3Sdy7C557AhTifO5usvA7iVzrPLM
+        PPbR9noGUEONxwEuDcYz4ok5Nv30zc5qOZ1xsdmqn5H5dzBHHZSSMupZrqZ/EI+h
+        WOwfJ/agiVqE4OYuviOXyC5Sc9/x8NvvZvG4uPV2ompJWuIW8s767yW0+NRj+lrD
+        wm2W/SQ9YVQAoF7jfGN9bf+ORVQ+hE3IZRw79eCSw9Jebt31hDV5XQ2bTYaEiB8b
+        GMyxricEnXr5+kmywZ7x/VpkKnJLij8chr3yWx10Ol+dvSTGsHCpUO1Ai8AvC74Q
+        ==
+X-ME-Sender: <xms:jcmLYIv46PFH2I-yNC0GBVVTHo1wtbmhmYsub_r28nDlmmxaw0tsAw>
+    <xme:jcmLYFfRmEELpEAy70HCBIzKVxE80lyJz2ULLpqLaoXCz8BOPoxox3Ox7ouChhBym
+    R-ddg5bofsDlBhBMog>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvddviedguddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:jcmLYDykuZ_CP5JV8lF6npKjNeBo-VDdNnCaVq7GS4m2DlyhlQkQbQ>
+    <xmx:jcmLYLNBzH8upGuc3c63EbYnRSgWC2Mo3kPlHuKBOb_f6LF8dW91Ew>
+    <xmx:jcmLYI-PRvTdFHdebQ7onUcahcQaSSxSIq1af5ejZkNGAoWQECaG0A>
+    <xmx:jsmLYHl0OezGXOTggnNmAyoPAE5wTh9EwOZg8wVI6WS3gXwxvSkBsg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA;
+        Fri, 30 Apr 2021 05:10:37 -0400 (EDT)
+Date:   Fri, 30 Apr 2021 11:10:35 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@lists.linux.dev,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 0/2] sunxi: Enforce consistent MMC numbering
+Message-ID: <20210430091035.i4zoyzb4c2l22msb@gilmour>
+References: <20210419025246.21722-1-samuel@sholland.org>
+ <CAGb2v642Z3iH7fUWa31Rb5j+nWdZ=sXn2BYw3_dyE9P6iuL0Cg@mail.gmail.com>
+ <20210419095443.1548432e@slackpad.fritz.box>
 MIME-Version: 1.0
-References: <20210429122806.3814330-1-sean@geanix.com> <20210429122806.3814330-4-sean@geanix.com>
-In-Reply-To: <20210429122806.3814330-4-sean@geanix.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 30 Apr 2021 12:02:36 +0300
-Message-ID: <CAHp75Vf7-5EOpsP8u4rfcjceoKFwQH+U90+JazsLJvmARXmEBQ@mail.gmail.com>
-Subject: Re: [PATCH v4 4/6] iio: accel: fxls8962af: add interrupt support
-To:     Sean Nyekjaer <sean@geanix.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        =?UTF-8?B?TnVubyBTw6E=?= <Nuno.Sa@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="5enpgdo5lledv3vf"
+Content-Disposition: inline
+In-Reply-To: <20210419095443.1548432e@slackpad.fritz.box>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 29, 2021 at 3:28 PM Sean Nyekjaer <sean@geanix.com> wrote:
->
-> Preparation commit for the next that adds hw buffered sampling
 
-It misses a better description of what's going on here.
-It misses the period at the end of the line.
+--5enpgdo5lledv3vf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-...
+On Mon, Apr 19, 2021 at 09:54:43AM +0100, Andre Przywara wrote:
+> On Mon, 19 Apr 2021 11:17:19 +0800
+> Chen-Yu Tsai <wens@csie.org> wrote:
+>=20
+> Hi,
+>=20
+> > On Mon, Apr 19, 2021 at 10:52 AM Samuel Holland <samuel@sholland.org> w=
+rote:
+> > >
+> > > Dealing with the inconsistent numbering has been a major pain, and
+> > > there is a solution with (as far as I can tell) no tangible downsides.
+> > > So let's use it.
+>=20
+> Thanks Samuel for sending this!
+>=20
+> > > Yes, I know the kernel supports UUIDs for root=3D. But UUIDs do not h=
+elp
+> > > when referencing the whole, unpartitioned device, like is needed for
+> > > updating the bootloader and firmware. So for the use case of "write a
+> > > bootloader to the SD card, regardless of where the board is currently
+> > > booted from", I know of two options:
+> > >   - Dig around in sysfs to find the mmc number from the MMIO address,
+> > >     which means I have to know the MMIO addresses for every SoC, or
+> > >   - Apply patches like these.
+> > >
+> > > Samuel Holland (2):
+> > >   ARM: dts: sunxi: h3/h5: Enforce consistent MMC numbering
+> > >   arm64: dts: allwinner: Enforce consistent MMC numbering
+> > >
+> > >  arch/arm/boot/dts/sunxi-h3-h5.dtsi            | 6 ++++++
+> > >  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 6 ++++++
+> > >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 6 ++++++ =20
+> >=20
+> > At least with Rockchip this is now done at the board level. IIRC it was
+> > a request from other people to not do it at the SoC level. I don't reca=
+ll
+> > exactly who though.
+>=20
+> FWIW, I am very much in favour of these patches, at a SoC level:
+> The *SoC* BootROM imposes an order, by probing the first (by MMIO
+> address order) MMC controller first for boot devices. IIRC that's a
+> different story for Rockchip?
+> And if people really don't care about the order, then having a certain
+> order doesn't hurt, so we could as well use the "natural" order, as it
+> was before.
 
-> +#include <linux/of_irq.h>
+This doesn't have anything to do with the BootRom though but what we
+provide to the userspace? The userspace has no guarantee about the
+kernel enumeration order for any bus (but UART for some reason), I'm not
+really sure why MMC would be an exception. Especially since the kernel
+will not try to catch up, this will be bound to be broken on a regular
+basis.
 
-See below.
+And that aside, assuming that a device only has an eMMC this would
+create the mmc2 device, which is completely weird and inconsistent with
+how any other bus behaves.
 
-...
+> Also UUIDs only help if you boot with an initramfs to resolve them,
+> which proves to be extra pain if you don't compile kernels on the
+> device, or not inside a distribution environment.
 
-> +static irqreturn_t fxls8962af_interrupt(int irq, void *p)
-> +{
-> +       struct iio_dev *indio_dev = p;
-> +       struct fxls8962af_data *data = iio_priv(indio_dev);
-> +       unsigned int reg;
-> +       int ret;
-> +
-> +       ret = regmap_read(data->regmap, FXLS8962AF_INT_STATUS, &reg);
-> +       if (ret < 0)
-> +               return IRQ_NONE;
-> +
-> +       return IRQ_NONE;
+I'm not sure what you mean? The kernel is perfectly able to resolve
+them. You can also use PARTLABEL if you want something more user
+friendly.
 
-And how is it handled?
+Maxime
 
-> +}
+--5enpgdo5lledv3vf
+Content-Type: application/pgp-signature; name="signature.asc"
 
-...
+-----BEGIN PGP SIGNATURE-----
 
-> +static void fxls8962af_get_irq(struct device *dev, enum fxls8962af_int_pin *pin)
-> +{
-> +       if (!device_property_match_string(dev, "interrupt-names", "INT2")) {
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYIvJiwAKCRDj7w1vZxhR
+xezdAQDIY6qe0cw/YeAwFhjlA5dAKEDjlxwmNTpj6ztkqfs/4wD/ckzHAVsRq/tR
+KkQbbJcdqKeAzIEY1dSy+rvOusXqqAA=
+=DXm6
+-----END PGP SIGNATURE-----
 
-This doesn't feel right.
-You should use fwnode_get_irq() or introduce fwnode_get_irq_by_name().
-
-Since ACPI has no given names for Interrupt resources (and moreover
-there are two types of them), it also needs a support from the
-software like we have for GPIOs with struct acpi_gpio_table (luckily
-it's part of _DSD() nowadays, but in general it's not required by the
-spec).
-
-> +               *pin = FXLS8962AF_PIN_INT2;
-> +               return;
-> +       }
-> +
-> +       *pin = FXLS8962AF_PIN_INT1;
-> +}
-
-
--- 
-With Best Regards,
-Andy Shevchenko
+--5enpgdo5lledv3vf--
