@@ -2,111 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CBD636F70A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 10:21:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6224A36F74E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 10:47:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229567AbhD3IVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 04:21:50 -0400
-Received: from hel-mailgw-01.vaisala.com ([193.143.230.17]:33010 "EHLO
-        hel-mailgw-01.vaisala.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbhD3IVu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 04:21:50 -0400
-Received: from HEL-SMTP.corp.vaisala.com (HEL-SMTP.corp.vaisala.com [172.24.1.225])
-        by hel-mailgw-01.vaisala.com (Postfix) with ESMTP id A277A601F34D;
-        Fri, 30 Apr 2021 11:20:55 +0300 (EEST)
-Received: from localhost.localdomain ([172.24.252.69]) by HEL-SMTP.corp.vaisala.com over TLS secured channel with Microsoft SMTPSVC(8.5.9600.16384);
-         Fri, 30 Apr 2021 11:21:00 +0300
-Subject: Re: [PATCH v2 1/4] dt-bindings: nvmem: Add bootcount-nvmem
-To:     Rob Herring <robh@kernel.org>
-Cc:     srinivas.kandagatla@linaro.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <cover.1619617498.git.nandor.han@vaisala.com>
- <e0f9c2629ad651817a4726cd4f2d8e1775201595.1619617498.git.nandor.han@vaisala.com>
- <20210429205310.GA1729011@robh.at.kernel.org>
-From:   Nandor Han <nandor.han@vaisala.com>
-Message-ID: <48fc2a6c-9c4d-d858-5ab5-c10c590d8345@vaisala.com>
-Date:   Fri, 30 Apr 2021 11:21:00 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S229553AbhD3IsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 04:48:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55878 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229529AbhD3IsI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 04:48:08 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69CD4C06174A
+        for <devicetree@vger.kernel.org>; Fri, 30 Apr 2021 01:47:20 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1lcOnm-0002EN-QZ; Fri, 30 Apr 2021 10:47:10 +0200
+Message-ID: <914b4e28b1313fc3b0293faa60a21cb6afb83e40.camel@pengutronix.de>
+Subject: Re: [PATCH 16/16] soc: imx: gpcv2: remove waiting handshake in
+ power up
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        p.zabel@pengutronix.de, krzk@kernel.org, agx@sigxcpu.org,
+        marex@denx.de, andrew.smirnov@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, ping.bai@nxp.com,
+        frieder.schrempf@kontron.de, aford173@gmail.com, abel.vesa@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+Date:   Fri, 30 Apr 2021 10:47:08 +0200
+In-Reply-To: <e5a94506-7bd3-93b6-b331-1cf04672a459@oss.nxp.com>
+References: <20210429073050.21039-1-peng.fan@oss.nxp.com>
+         <20210429073050.21039-17-peng.fan@oss.nxp.com>
+         <abde5337ac265287f8e1225846e140e8df370f47.camel@pengutronix.de>
+         <e5a94506-7bd3-93b6-b331-1cf04672a459@oss.nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
-In-Reply-To: <20210429205310.GA1729011@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-OriginalArrivalTime: 30 Apr 2021 08:21:00.0548 (UTC) FILETIME=[C0D95C40:01D73D99]
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-Thanks for your feedback.
-
-<snip>
-
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - linux,bootcount-nvmem
+Am Freitag, dem 30.04.2021 um 15:14 +0800 schrieb Peng Fan (OSS):
 > 
-> What makes this Linux specific? IIRC, u-boot has boot counting function
-> too.
+> On 2021/4/29 22:34, Lucas Stach wrote:
+> > Am Donnerstag, dem 29.04.2021 um 15:30 +0800 schrieb Peng Fan (OSS):
+> > > From: Peng Fan <peng.fan@nxp.com>
+> > > 
+> > > i.MX8MM has blk ctl module, the handshake can only finish after setting
+> > > blk ctl. The blk ctl driver will set the bus clk bit and the handshake
+> > > will finish there. we just add a delay and suppose the handshake will
+> > > finish after that.
+> > 
+> > Instead of this patch, just drop patch 05/16 from this series. I think
+> > we should leave a comment in the code on why we aren't waiting for the
+> > handshake ack, as this is non-obvious from looking at the driver code.
+> > 
+> > Basically add a polished version of the commit log from this patch into
+> > the driver code.
 > 
-
-U-Boot has indeed the counterpart functionality of bootcount feature, 
-however, in this particularly case is not called `u-boot,bootcount-nvmem`.
-If you have any suggestions I'm happy to change it.
-Should I remove the `linux` prefix?
-
-<snip>
-
->> +
->> +  linux,bootcount-magic:
->> +    description: Override default mask value.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
+> After thinking more, for power down, we need wait handshake. For power 
+> up, we could ignore handshake, because BLK-CTL setting bus clk en
+> will auto trigger handshake.
 > 
-> I don't understand what this is. Is it magic or a mask?
-
-It's the magic value. Seems to be a mistake in the description.
-I'll correct this.
-
+> For power down, the bus clk en already set, and we need wait, otherwise
+> we need add delay there.
 > 
->> +
->> +dependencies:
->> +  nvmem-cell-names: [ nvmem-cells ]
-> 
-> Core schema takes care of this.
-> 
+> So I would only drop the power up waiting and add some comments there.
 
-Ok. I will remove it in that case.
-
-<snip>
-
->> +examples:
->> +  # example with 16 bit nvram cell:
->> +  - |
->> +    bootcount {
->> +        compatible = "linux,bootcount-nvmem";
->> +        nvmem-cells = <&bootcount_regs>;
->> +        nvmem-cell-names = "bootcount-regs";
->> +    };
->> +
->> +    rtc: rtc@68 {
->> +        bootcount_regs: bootcount_nvmem_regs@e {
->> +            reg = <0x0e 0x2>;
-> 
-> It would be simpler to just add a compatible here and get rid of the
-> 'bootcount' node here.
-> 
-
-This is the configuration for NVMEM cell provider and is done according 
-to bindings/nvmem.yaml document.
-Is here something that I'm missing?
-
-At least this method of declaring NVMEM cells providers are decoupling 
-the code from hardware declaration resulting in a more robust code.
+Ah, right. This way makes a lot of sense.
 
 Regards,
-    Nandor
+Lucas
 
