@@ -2,75 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7511936FD9D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 17:21:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A9E336FDB8
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 17:25:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230355AbhD3PWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 11:22:19 -0400
-Received: from mail-oo1-f42.google.com ([209.85.161.42]:37845 "EHLO
-        mail-oo1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230202AbhD3PWT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 11:22:19 -0400
-Received: by mail-oo1-f42.google.com with SMTP id c12-20020a4ae24c0000b02901bad05f40e4so15574057oot.4;
-        Fri, 30 Apr 2021 08:21:30 -0700 (PDT)
+        id S230303AbhD3PZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 11:25:49 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:44830 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229750AbhD3PZt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 11:25:49 -0400
+Received: by mail-ot1-f47.google.com with SMTP id z25-20020a9d65d90000b02902a560806ca7so6022324oth.11;
+        Fri, 30 Apr 2021 08:25:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZMrBb+tonK4C7ZQJJhThBMIvVmtzwjHeZsvtLG9/Lns=;
-        b=DuaYrRL9BmLeh6OcNWLOZXKujL8YnBy6pDSWwzbFtRx2L5pd92SFp0SowR/eE5Y02C
-         2Lg/kQD+PDNmbulJ2qvBjk8rfdyDYMxv5Qkx7lwse5QKDGvJqIQQoHb/2DEbt/cZioD+
-         HjdL39Nrf4CaxtVAwtfT/AAaMQ5NRKqrpuV0qpzSIZ/ZdshAw+HJyc6+utQbfQFMjO5O
-         NgwqVLjRZXa9ntq4/UqkfxcxlbxzXxrDQl7rNs0j6rAJ1mKGN2IO84qwuWxw24zbYQJl
-         TsRbAsHbi1/8rMGjI7JjPPkNLETEemxTbSGfCu3IQjt7BEAAo9MGcfExQCuEFlNDfoZV
-         DMVQ==
-X-Gm-Message-State: AOAM530S7GPzDfsaOM3fnD1sY/4Y1PN7lsp9X69EYvFApsoxNuPFhEoH
-        OUiN0OR3B0/pSLUMbWtTNQ==
-X-Google-Smtp-Source: ABdhPJz38Dif49kTy37ORLjuv1xqCNKcn2lg+G6Yye7xxuKfDvQRKsHgOQ2l0uv7/lVqzEUkgmnzoQ==
-X-Received: by 2002:a4a:e386:: with SMTP id l6mr4859797oov.81.1619796090477;
-        Fri, 30 Apr 2021 08:21:30 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=/7eEsvMEZJ47hg8IvqdZUreNggO3ds++/YXgQWY8CIw=;
+        b=niAvB/c9IgNCggQ/BnVzrOxIJsznXPRS5X62PR/alpd4NIQLJ/xrucfgHWK3LPqXwj
+         M5gRT15N0DhT5SR9b/nohPeq+uqAWDqQRj5trtqliS7tVnIM0ND5Z4+GScfzZ301v/ib
+         cgfyzZ0HM0jMHwHcEXMA/2Qqhr/9GTZjFovG2ssjFLUyx5F9vRkCStdR214iN7AfVntf
+         MC7cNwXPGFy/ghTx6xmFQySBhNs+wrB768PRJzAH+L8nW7l8DJSH25H3/ma2tO1sJMTw
+         YR9uw8x4i2Fd7OdbuVoa8awoUHW4Yp27wru9Bsf+fBfvWvVhhLb3PwjC6oi84DvD0EoM
+         RzMQ==
+X-Gm-Message-State: AOAM531u4bJDMSFOe52eebHrHHIyiu/C+dt4/dxOewsDnGRleTImh6mX
+        iMJy3QaL4C5E9ajBSAtYEw==
+X-Google-Smtp-Source: ABdhPJzgxL4fyp7PZwgduyI/n2iPxYyF0MKR4LhThPwz/lhf1+JZjnF5p7RzxxJWkyZbMwnq+hbgMg==
+X-Received: by 2002:a9d:615a:: with SMTP id c26mr4037878otk.54.1619796299799;
+        Fri, 30 Apr 2021 08:24:59 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v14sm767013oto.48.2021.04.30.08.21.29
+        by smtp.gmail.com with ESMTPSA id u185sm837557oie.12.2021.04.30.08.24.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Apr 2021 08:21:29 -0700 (PDT)
-Received: (nullmailer pid 3348575 invoked by uid 1000);
-        Fri, 30 Apr 2021 15:21:28 -0000
-Date:   Fri, 30 Apr 2021 10:21:28 -0500
+        Fri, 30 Apr 2021 08:24:59 -0700 (PDT)
+Received: (nullmailer pid 3353975 invoked by uid 1000);
+        Fri, 30 Apr 2021 15:24:53 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-serial <linux-serial@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 3/3] dt-bindings: serial: Add label property in
- serial.yaml
-Message-ID: <20210430152128.GA3348522@robh.at.kernel.org>
-References: <20210422085837.513-1-thunder.leizhen@huawei.com>
- <20210422085837.513-4-thunder.leizhen@huawei.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210422085837.513-4-thunder.leizhen@huawei.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Ripard <mripard@kernel.org>, linux-usb@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-sunxi@lists.linux.dev,
+        Felipe Balbi <balbi@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+In-Reply-To: <20210430031912.42252-2-samuel@sholland.org>
+References: <20210430031912.42252-1-samuel@sholland.org> <20210430031912.42252-2-samuel@sholland.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Document the Allwinner H6 DWC3 glue
+Date:   Fri, 30 Apr 2021 10:24:53 -0500
+Message-Id: <1619796293.743748.3353974.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Apr 2021 16:58:37 +0800, Zhen Lei wrote:
-> When there is more than one serial port present, the property 'label'
-> allows a custom name to be used for briefly describe the usage or position
-> of each serial port.
+On Thu, 29 Apr 2021 22:19:11 -0500, Samuel Holland wrote:
+> The RST_BUS_XHCI reset line in the H6 affects both the DWC3 core and the
+> USB3 PHY. This suggests the reset line controls the USB3 IP as a whole.
+> Represent this by attaching the reset line to a glue layer device.
 > 
-> Without this "label" property, many dtbs_check warnings similar to the
-> following are reported:
-> arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dt.yaml: \
-> serial@ffd74000: Additional properties are not allowed ('label' was unexpected)
->         From schema: Documentation/devicetree/bindings/serial/pl011.yaml
-> 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
->  Documentation/devicetree/bindings/serial/serial.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../usb/allwinner,sun50i-h6-dwc3.yaml         | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.yaml
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.example.dts:23.27-50.11: Warning (unit_address_vs_reg): /example-0/usb@5200000: node has a unit name, but no reg or ranges property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.example.dt.yaml: usb@5200000: usb@5200000:phy-names:0: 'usb2-phy' was expected
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.example.dt.yaml: usb@5200000: phy-names:0: 'usb2-phy' was expected
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+
+See https://patchwork.ozlabs.org/patch/1471948
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
