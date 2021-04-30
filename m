@@ -2,71 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4520036FBCA
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 15:54:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1164836FC6F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 16:30:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229932AbhD3NzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 09:55:12 -0400
-Received: from uho.ysoft.cz ([81.19.3.130]:43282 "EHLO uho.ysoft.cz"
+        id S230297AbhD3OaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 10:30:13 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:26499 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229688AbhD3NzM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Apr 2021 09:55:12 -0400
-Received: from iota-build.ysoft.local (unknown [10.1.5.151])
-        by uho.ysoft.cz (Postfix) with ESMTP id 929BDA4CC5;
-        Fri, 30 Apr 2021 15:54:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-        s=20160406-ysoft-com; t=1619790861;
-        bh=SXlFiufzZxGFnc3q9XNjWC73WdXnlKAFExbpvizwEUE=;
-        h=From:To:Cc:Subject:Date:From;
-        b=YCqxA0BRAMBg30HlA/T2Qi8/BMfbSQD7HLybpu8gaPcPKbJYCqXzjQpX0SE8Qynii
-         uuQm7W1ayT8yBmX01jgmBCWgB/hACjekrwTFzddv0EpMOdwLClwo3cvEP4ESTuHjyE
-         fuq0Nz9MaW9bG+mh2vdnyVmDNitL9yLwx6FqUm0k=
-From:   =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-Subject: [PATCH] ARM: dts: imx6dl-yapp4: Use aliases to set custom MMC device indexes
-Date:   Fri, 30 Apr 2021 15:53:15 +0200
-Message-Id: <1619790795-8375-1-git-send-email-michal.vokac@ysoft.com>
-X-Mailer: git-send-email 2.1.4
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S233361AbhD3OaJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Apr 2021 10:30:09 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1619792961; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=9zi1Tsu0QMPHkbhFNxaXa6idnL/BacHLa+H3Pmpe8Ck=; b=hCPyjNWHKywgmcUnACJ8EP+jz2SwD6XWNmJVKYZQRO+m3I4LDclFeG2UcZXhrQc9xDqdhXzC
+ Nqihy6jF0v61Bi8LZd9WKwrNQsD4h3BoekUM3uHrYfuZH7xOO3uOq4vyK71SgbdlOyLfR2dC
+ +/pKCYp5XkXQ19J7lfYs3zjkU9E=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 608c142d2cc44d3aea555f45 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 30 Apr 2021 14:29:01
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id C2586C43217; Fri, 30 Apr 2021 14:29:01 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 66BDFC433D3;
+        Fri, 30 Apr 2021 14:28:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 66BDFC433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=sibis@codeaurora.org
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     bjorn.andersson@linaro.org
+Cc:     viresh.kumar@linaro.org, swboyd@chromium.org, agross@kernel.org,
+        robh+dt@kernel.org, rjw@rjwysocki.net,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        dianders@chromium.org, mka@chromium.org,
+        Sibi Sankar <sibis@codeaurora.org>
+Subject: [PATCH 0/2] DDR/L3 Scaling support on SC7280 SoCs
+Date:   Fri, 30 Apr 2021 19:58:19 +0530
+Message-Id: <1619792901-32701-1-git-send-email-sibis@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Until commit fa2d0aa96941 ("mmc: core: Allow setting slot index via
-device tree alias") was introduced, our usdhc3 and usdhc4 devices
-were enumerated as mmc0 and mmc1. The mmc1 device is used to boot/update
-the board and its name must be fixed.
+The patch series adds support for DDR/L3 Scaling on SC7280 SoCs.
 
-With the referenced commit, aliases from imx6qdl.dtsi took effect.
-Override the aliases to get back the original device indexes.
+Depends on the following patch series:
+L3 Provider Support: https://lore.kernel.org/lkml/1618556290-28303-1-git-send-email-okukatla@codeaurora.org/
+CPUfreq Support: https://lore.kernel.org/lkml/1618020280-5470-2-git-send-email-tdas@codeaurora.org/
+RPMH Provider Support: https://lore.kernel.org/lkml/1619517059-12109-1-git-send-email-okukatla@codeaurora.org/
 
-Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
----
- arch/arm/boot/dts/imx6dl-yapp4-common.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+It also depends on L3 and cpufreq dt nodes from the ^^ series to not have
+overlapping memory regions.
 
-diff --git a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
-index 686dab57a1e4..ff8d335ee482 100644
---- a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
-+++ b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
-@@ -11,6 +11,8 @@
- 	aliases: aliases {
- 		ethernet1 = &eth1;
- 		ethernet2 = &eth2;
-+		mmc0 = &usdhc3;
-+		mmc1 = &usdhc4;
- 	};
- 
- 	backlight: backlight {
+Sibi Sankar (2):
+  cpufreq: blacklist SC7280 in cpufreq-dt-platdev
+  arm64: dts: qcom: sc7280: Add cpu OPP tables
+
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 135 +++++++++++++++++++++++++++++++++++
+ drivers/cpufreq/cpufreq-dt-platdev.c |   1 +
+ 2 files changed, 136 insertions(+)
+
 -- 
-2.1.4
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
