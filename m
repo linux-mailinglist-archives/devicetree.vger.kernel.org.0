@@ -2,106 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C53836F7A6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 11:15:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1E1D36F7C3
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 11:24:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229524AbhD3JQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 05:16:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33870 "EHLO
+        id S229543AbhD3JY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 05:24:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbhD3JQC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 05:16:02 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E40A3C06174A;
-        Fri, 30 Apr 2021 02:15:14 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id y30so3859760pgl.7;
-        Fri, 30 Apr 2021 02:15:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=odFquSkZkEYnzN5QXrnzra+3Uu24KSIbK3o19Um7C3M=;
-        b=aXHI415P7aenNqjEYlrkQmDpRtJNDcKX3vRMx1OgbQeadNK8lLmKKaUvPSRaGPc/Pj
-         kOdaHo3wHEdvQv2IXXleo7tTXnRQQsG6sds0eIKz9yiR6xsG0MYsguK1GNCFvY0rAbXC
-         tOML3ugzJK4iJyDzfk7lQYPoJTsQwoBWPY6XgbmTSngO5QrGo/iADjH12tBmb5vcHBP7
-         OST5F7L+2sfqMIrwIjLHi+zf86amGHXO4oL7ON9k2LVujC791sjyqJrFEkQMDV3Tk4Tg
-         GYsmlwOAXyQ3yrAw1Y3CkWOcBiB/I147s+9Nlg06CzvrLvLA7znnJHvmJM+uTE87GqKR
-         rPeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=odFquSkZkEYnzN5QXrnzra+3Uu24KSIbK3o19Um7C3M=;
-        b=gs02Wi+iNDaQz7L//blLvW1/ivHrnfh7N5l9DDdcQS8AySGNBpm7cwFI3MBa9y7HmX
-         4NLbfo4SdACmlQnC+H/qhJti1TrDDXBSKkh2I/4Y1ukKHFyFP8NEP7bzYcVr2hQaIF9E
-         D9CTXCujX73WpaKG+p30SqtHvMrpcYCr6PEDHig8RaNho7K81PuqS+lUnAPGBi/F9ajd
-         Uf97V0VdvtUpx0U6iv4sdwYVN0GdZ6krQ+ZRFaKje1J1NQlctlJwVs1yXPE7keEYo/+8
-         UE9RBMJz9wqbKfwKwib2TQFvuBNA/6stmfekeKbGZq3kuY25/heh+CWSmGFVj1ULZ9xQ
-         MLSQ==
-X-Gm-Message-State: AOAM533x+4ePlyYehwBgDsVpcw7zSU6CVGIcPE6rQWDx4K3oJn7aE/zl
-        qZtKdcacKUuhi5qtzbvVIHhIEs1EydyVFWMzSAY=
-X-Google-Smtp-Source: ABdhPJwbjUnQTDeseSftAAm1ijrV3IAlPjabUj21Eyr7zp9p7lpSajQ2Ya2ZGHixVk0ZInRqqvW+OI0JHyjCrl9awGw=
-X-Received: by 2002:a65:5a4d:: with SMTP id z13mr3804058pgs.4.1619774114336;
- Fri, 30 Apr 2021 02:15:14 -0700 (PDT)
+        with ESMTP id S229507AbhD3JYz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 05:24:55 -0400
+X-Greylist: delayed 513 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 30 Apr 2021 02:24:07 PDT
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CBB0C06174A;
+        Fri, 30 Apr 2021 02:24:07 -0700 (PDT)
+Received: from mail-internal.denx.de (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: noc@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 53DD282AA1;
+        Fri, 30 Apr 2021 11:15:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1619774132;
+        bh=7jNtsVgB4SG/t7bVzmOnoK100qiLWUCRQWcjzl5Jnro=;
+        h=From:To:Cc:Subject:Date:From;
+        b=dhAWD3CMigfxaPjPtnR6dgkRRX4J3p1QbGZjOVg5lFpBHwbclSLul3+nsA/k5jWq4
+         Jg+DhUMo4TVvavS1zggLNQleYTt+ND8IbaFkSa4ahqWvBZLcUK61dJ41s7mua4FQYb
+         o3UNdRIk7i6tRdjwiIBYr/4JbY/S22v+A8l08IGp01007Lfu7hf5tLK8P3bJ4zDOAd
+         HlOjuJM0yrsGGhZDzwwA4elNzzTqt539/sIbu3COi1A9KfqZuzM3gfo9fFCNltlC9q
+         4IU/B/QlEZ+NjHTrN3FmwHyUmDdddnyQmsKQaRWxDcEl5Cbt/20TijADMzFSurYkiK
+         9vQbuc4K/GyXw==
+Received: from pollux.denx.de (pollux [192.168.1.1])
+        by mail-internal.denx.de (Postfix) with ESMTP id 93C91182B81;
+        Fri, 30 Apr 2021 11:15:16 +0200 (CEST)
+Received: by pollux.denx.de (Postfix, from userid 515)
+        id 58BCD1A8BAD; Fri, 30 Apr 2021 11:15:16 +0200 (CEST)
+From:   Heiko Schocher <hs@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Heiko Schocher <hs@denx.de>, Fabio Estevam <festevam@gmail.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Teresa Remmet <t.remmet@phytec.de>,
+        Zhen Lei <thunder.leizhen@huawei.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: [PATCH] usb: dwc3: imx8mp: detect dwc3 child nodes with name "usb*"
+Date:   Fri, 30 Apr 2021 11:15:12 +0200
+Message-Id: <20210430091512.1026996-1-hs@denx.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20210429122806.3814330-1-sean@geanix.com> <20210429122806.3814330-6-sean@geanix.com>
-In-Reply-To: <20210429122806.3814330-6-sean@geanix.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 30 Apr 2021 12:14:58 +0300
-Message-ID: <CAHp75VcLusrQ0+4DcXf4o0sS=Jc031LDJT4ReMOhVt0U0-jMWQ@mail.gmail.com>
-Subject: Re: [PATCH v4 6/6] iio: accel: fxls8962af: fix errata bug E3 - I2C
- burst reads
-To:     Sean Nyekjaer <sean@geanix.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        =?UTF-8?B?TnVubyBTw6E=?= <Nuno.Sa@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.102.4 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 29, 2021 at 3:28 PM Sean Nyekjaer <sean@geanix.com> wrote:
->
-> When flushing the hw fifo there is a bug in the I2C that prevents burst
-> reads of more than one sample pair.
+commit:
+d1689cd3c0f4: ("arm64: dts: imx8mp: Use the correct name for child node "snps, dwc3")
 
-...
+renamed "dwc3@3*" nodes in imx8mp.dtsi to "usb@3*"
 
-> -       ret = regmap_raw_read(data->regmap, FXLS8962AF_BUF_X_LSB, buffer,
-> -                             total_length);
-> +       if (i2c_verify_client(dev)) {
-> +               /*
-> +                * Due to errata bug:
-> +                * E3: FIFO burst read operation error using I2C interface
-> +                * We have to avoid burst reads on I2C..
-> +                */
-> +               for (i = 0; i < samples; i++) {
-> +                       ret = regmap_raw_read(data->regmap, FXLS8962AF_BUF_X_LSB,
-> +                                             &buffer[i],
-> +                                             sample_length);
-> +                       if (ret < 0)
-> +                               goto out;
-> +               }
+glue layer dwc3-imx8mp.c searches for "dwc3" and so drop failure
+on boot:
+imx8mp-dwc3 32f10100.usb: failed to find dwc3 core child
+imx8mp-dwc3: probe of 32f10100.usb failed with error 1
+imx8mp-dwc3 32f10108.usb: failed to find dwc3 core child
+imx8mp-dwc3: probe of 32f10108.usb failed with error 1
 
-Can you rather create a separate function called
-fxls8962af_i2c_raw_read_errata3() and use it here by simply
+now. Fix this (and allow old style too)
 
-  if (i2c)
-    ret = fxls8962af_i2c_raw_read_errata3();
-  else
-    ret = regmap_raw_read();
+Tested on "PHYTEC phyBOARD-Pollux i.MX8MP" board.
 
-?
+fixes: d1689cd3c0f4: ("arm64: dts: imx8mp: Use the correct name for child node "snps, dwc3")
+Signed-off-by: Heiko Schocher <hs@denx.de>
+---
 
-> +       } else {
-> +               ret = regmap_raw_read(data->regmap, FXLS8962AF_BUF_X_LSB, buffer,
-> +                                     total_length);
-> +       }
+ drivers/usb/dwc3/dwc3-imx8mp.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-
+diff --git a/drivers/usb/dwc3/dwc3-imx8mp.c b/drivers/usb/dwc3/dwc3-imx8mp.c
+index b13cfab89d532..eb85ddc50f7c7 100644
+--- a/drivers/usb/dwc3/dwc3-imx8mp.c
++++ b/drivers/usb/dwc3/dwc3-imx8mp.c
+@@ -165,7 +165,8 @@ static int dwc3_imx8mp_probe(struct platform_device *pdev)
+ 	if (err < 0)
+ 		goto disable_rpm;
+ 
+-	dwc3_np = of_get_child_by_name(node, "dwc3");
++	dwc3_np = of_get_child_by_name(node, "usb") ? :
++		  of_get_child_by_name(node, "dwc3");
+ 	if (!dwc3_np) {
+ 		dev_err(dev, "failed to find dwc3 core child\n");
+ 		goto disable_rpm;
 -- 
-With Best Regards,
-Andy Shevchenko
+2.30.2
+
