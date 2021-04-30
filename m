@@ -2,208 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42796370214
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 22:31:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BBC43702AC
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 23:10:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235958AbhD3U37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 16:29:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42322 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234471AbhD3U37 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 16:29:59 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C31EC06174A;
-        Fri, 30 Apr 2021 13:29:10 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id n2so107086455ejy.7;
-        Fri, 30 Apr 2021 13:29:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Wrp/1A4Vx3OcbB2pr/PEDNHt/zuDZ0QGymHwI8CKIHg=;
-        b=EY+IEzBUu9oW5ND5WvGXq8irviGV51BVZB/O3Zuztl09Q1rCW+7Ytf+kbvQ8J/IONX
-         sa5FRjyjdK7CfM7edv5v87pTGvSmtSQhm/I9n/IFA6ydKhNL6Pdy4S7zNIWx3F5XKMh4
-         QqQYDMQ4KB08czfy3KaNmEagCc92tSObszTsL7tWA9k1Rm/bt/u17BnmBG3fF2J1dwok
-         rDWwmQvPFWagsI4tIfva00Jqe4fYsPb56e+ZqYE/EDGbUVI0Pd0mayzLN8H4j3z7lFKg
-         H3PpdOHA4dygCIzqWgRCYQBdIVQTC1H7N0gtUv0BcKjlu+mONsymqkgR3tItKiXoHXVg
-         tKKA==
+        id S231278AbhD3VK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 17:10:59 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:41932 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231328AbhD3VK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 17:10:59 -0400
+Received: by mail-ot1-f41.google.com with SMTP id z20-20020a0568301294b02902a52ecbaf18so13276321otp.8;
+        Fri, 30 Apr 2021 14:10:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Wrp/1A4Vx3OcbB2pr/PEDNHt/zuDZ0QGymHwI8CKIHg=;
-        b=S5e4j6QPspDYeebRDfUVCXhIZrafdnzM1W0f6G0F74ZQNc/icg2uP6+IMUEoBhj0gR
-         HQBvvP9HA92BSM3sfBvYlAv6gyJ01EcBZJOT1QAhXyFVZy5ReZY+piwsigz06Iq+iWwF
-         /jxPkBW+ly0zuqVD0SInTn9FZduuAEJR+PBAYDU3zVMljPt+rSJscgWvNWX/R4PlDv0S
-         T8ywuSIFgLsZB++qDe/daIDs/Lc7GEOSdvdO23vnL4wercWjvSya3/JelyAZSQym+Thr
-         uGoiIY+5C0JTVbGTRi5YHzMB2OuOBlNPEco4p6b3wylAhyah5509jcE7+q5NyG9vO2Dq
-         LbCg==
-X-Gm-Message-State: AOAM5315eIWAar515tg8lUgM3NUM4lxpwuCZXKwcX1fJub2Oyezc+EKW
-        bHsPZ2tw8KBPa5Lj2rgMXk8=
-X-Google-Smtp-Source: ABdhPJzx0kI7Y5mCHmBcgoMkoXDcdMXPnCoSKVhqyWYiLS59obUrogmNsVukVf6Nz96RySLz4B/BRQ==
-X-Received: by 2002:a17:907:1b1e:: with SMTP id mp30mr6448680ejc.532.1619814548930;
-        Fri, 30 Apr 2021 13:29:08 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id da25sm2568034edb.38.2021.04.30.13.29.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Apr 2021 13:29:08 -0700 (PDT)
-Subject: Re: [PATCH v4 07/10] dt-bindings: soc: rockchip: Convert grf.txt to
- YAML
-To:     Rob Herring <robh@kernel.org>, cl@rock-chips.com
-Cc:     heiko@sntech.de, jagan@amarulasolutions.com, wens@csie.org,
-        uwe@kleine-koenig.org, mail@david-bauer.net,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
-        cnsztl@gmail.com, devicetree@vger.kernel.org,
-        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
-        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
-        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
-        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
-        zhangqing@rock-chips.com, huangtao@rock-chips.com,
-        wim@linux-watchdog.org, linux@roeck-us.net, jamie@jamieiles.com,
-        linux-watchdog@vger.kernel.org, maz@kernel.org
-References: <20210429081151.17558-1-cl@rock-chips.com>
- <20210429081321.17855-1-cl@rock-chips.com>
- <20210429212413.GA1794356@robh.at.kernel.org>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <c4130ba7-5f28-57e9-f391-89b6539fb29c@gmail.com>
-Date:   Fri, 30 Apr 2021 22:29:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=sswChY2P0nqjxXFrW42RNty2PYxS8JkopFLHAkVrfB0=;
+        b=R2OaDe+1CLgEZdocsTfcSczovHE8su5hguewrnFgLB64Dz1fnscUxLCT3QyrOXDtKw
+         h4Nv+zxmxIfwHnU/GNppsttUu22NjaIVHdVxLkPBRWUoVmfw7juEHObjAYNOZzVzMlMD
+         79on+B9qpCTv4eMIO5O6CT61pXAh/IbiQKPLAY6/BUWP4L3JRKD9R0onPsxDe2JBvlmO
+         +CZeJ58a9mI0L3ku1W+0QFMY0VBx5Xm3D4plSo4ed5+lQLG691NQ1IPXMkZMkAKVnWhE
+         nLt58dp1KRdrOkcXglw2kRxzvEFJrBj+IcF/wYriFBRs744Oh51lC73zXxRXaX1oITiB
+         LFPA==
+X-Gm-Message-State: AOAM530MpXjtdvER8R6+tkZmlokICiftxuSNEoF1uZ85O1N2bhI9LzzM
+        r3WdlibCEGx92OyDM/Gm6A==
+X-Google-Smtp-Source: ABdhPJxX6Rb9ZzLj2PQQ9tOwDld+yMQzmYvHHxuqicc8mlUmSISqX0kULKcMPfdiI30ctxndufi4pQ==
+X-Received: by 2002:a9d:5c11:: with SMTP id o17mr5164707otk.178.1619817009304;
+        Fri, 30 Apr 2021 14:10:09 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v3sm1049855oov.47.2021.04.30.14.10.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Apr 2021 14:10:08 -0700 (PDT)
+Received: (nullmailer pid 3898621 invoked by uid 1000);
+        Fri, 30 Apr 2021 21:10:07 -0000
+Date:   Fri, 30 Apr 2021 16:10:07 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     daire.mcnamara@microchip.com
+Cc:     mturquette@baylibre.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        palmer@dabbelt.com, cyril.jean@microchip.com,
+        padmarao.begari@microchip.com, lewis.hanly@microchip.com,
+        conor.dooley@microchip.com, david.abdurachmanov@gmail.com
+Subject: Re: [PATCH v4 1/2] dt-bindings: clk: microchip: Add Microchip
+ PolarFire host binding
+Message-ID: <20210430211007.GA3819778@robh.at.kernel.org>
+References: <20210428122711.2136467-1-daire.mcnamara@microchip.com>
+ <20210428122711.2136467-2-daire.mcnamara@microchip.com>
 MIME-Version: 1.0
-In-Reply-To: <20210429212413.GA1794356@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210428122711.2136467-2-daire.mcnamara@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/29/21 11:24 PM, Rob Herring wrote:
-> On Thu, Apr 29, 2021 at 04:13:21PM +0800, cl@rock-chips.com wrote:
->> From: Liang Chen <cl@rock-chips.com>
->>
->> Current dts files with 'grf' nodes are manually verified. In order to
->> automate this process grf.txt has to be converted to YAML.
->>
->> Add new descriptions for:
->> "rockchip,rk3568-grf", "syscon", "simple-mfd"
->> "rockchip,rk3568-pmugrf", "syscon", "simple-mfd"
->>
->> Signed-off-by: Liang Chen <cl@rock-chips.com>
->> ---
-
-[..]
-
->> +properties:
->> +  compatible:
->> +    - items:
+On Wed, Apr 28, 2021 at 01:27:10PM +0100, daire.mcnamara@microchip.com wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
 > 
-> The '-' is the source of your error.
+> Add device tree bindings for the Microchip PolarFire system
+> clock controller
 > 
->> +        - enum:
->> +            - rockchip,px30-grf
->> +            - rockchip,px30-pmugrf
->> +            - rockchip,px30-usb2phy-grf
->> +            - rockchip,rk3036-grf
->> +            - rockchip,rk3066-grf
->> +            - rockchip,rk3188-grf
->> +            - rockchip,rk3228-grf
->> +            - rockchip,rk3288-grf
->> +            - rockchip,rk3288-sgrf
->> +            - rockchip,rk3308-core-grf
->> +            - rockchip,rk3308-detect-grf
->> +            - rockchip,rk3308-grf
->> +            - rockchip,rk3328-grf
->> +            - rockchip,rk3328-usb2phy-grf
->> +            - rockchip,rk3368-grf
->> +            - rockchip,rk3368-pmugrf
->> +            - rockchip,rk3399-grf
->> +            - rockchip,rk3399-pmugrf
->> +            - rockchip,rk3568-grf
->> +            - rockchip,rk3568-pmugrf
->> +            - rockchip,rv1108-grf
->> +            - rockchip,rv1108-usbgrf
->> +        - const: syscon
->> +        - const: simple-mfd
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> ---
+>  .../bindings/clock/microchip,mpfs.yaml        | 73 +++++++++++++++++++
+>  .../dt-bindings/clock/microchip,mpfs-clock.h  | 45 ++++++++++++
+>  2 files changed, 118 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/microchip,mpfs.yaml
+>  create mode 100644 include/dt-bindings/clock/microchip,mpfs-clock.h
 > 
+> diff --git a/Documentation/devicetree/bindings/clock/microchip,mpfs.yaml b/Documentation/devicetree/bindings/clock/microchip,mpfs.yaml
+> new file mode 100644
+> index 000000000000..a4756480a8ec
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/microchip,mpfs.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/microchip,mpfs.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip PolarFire Clock Control Module Binding
+> +
+> +maintainers:
+> +  - Daire McNamara <daire.mcnamara@microchip.com>
+> +
+> +description: |
+> +  Microchip PolarFire clock control (CLKCFG) is an integrated clock controller,
+> +  which gates and enables all peripheral clocks.
+> +
+> +  This device tree binding describes 32 gate clocks.  Clocks are referenced by
+> +  user nodes by the CLKCFG node phandle and the clock index in the group, from
+> +  0 to 31.
+> +
+> +properties:
+> +  compatible:
+> +    const: microchip,mpfs-clkcfg
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +    description: |
+> +      The clock consumer should specify the desired clock by having the clock
+> +      ID in its "clocks" phandle cell. See include/dt-bindings/clock/microchip,mpfs-clock.h
+> +      for the full list of PolarFire clock IDs.
+> +
+> +  clock-output-names:
+> +    maxItems: 32
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - '#clock-cells'
+> +  - clock-output-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # Clock Config node:
+> +  - |
+> +    #include <dt-bindings/clock/microchip,mpfs-clock.h>
+> +    soc {
+> +            #address-cells = <2>;
+> +            #size-cells = <2>;
+> +            ref: refclk {
+> +                compatible = "fixed-clock";
+> +                #clock-cells = <0>;
+> +                clock-frequency = <600000000>;
+> +                clock-output-names = "msspllclk";
+> +            };
 
-> 'simple-mfd' was not in the old binding. That implies you have child 
-> nodes, and if so, they need to be documented. I imagine that will mean 
-> splitting this into multiple schemas if that's the case.
+This belongs at the top level. Or just omit it.
+
+> +            clkcfg: clock-controller@20002000 {
+> +                compatible = "microchip,mpfs-clkcfg";
+> +                reg = <0x0 0x20002000 0x0 0x1000>;
+> +                clocks = <&ref>;
+> +                #clock-cells = <1>;
+> +                clock-output-names = "cpu", "axi", "ahb", "envm", "mac0", "mac1", "mmc", "timer",
+> +                                     "mmuart0", "mmuart1", "mmuart2", "mmuart3", "mmuart4",
+> +                                     "spi0", "spi1", "i2c0", "i2c1", "can0", "can1", "usb", "rtc",
+> +                                     "qspi", "gpio0", "gpio1", "gpio2", "ddrc",
+> +                                     "fic0", "fic1", "fic2", "fic3", "athena", "cfm";
+> +        };
+> +    };
+> diff --git a/include/dt-bindings/clock/microchip,mpfs-clock.h b/include/dt-bindings/clock/microchip,mpfs-clock.h
+> new file mode 100644
+> index 000000000000..d217b039a873
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/microchip,mpfs-clock.h
+> @@ -0,0 +1,45 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+
+Dual license please.
+
+> +/*
+> + * Daire McNamara,<daire.mcnamara@microchip.com>
+> + * Copyright (C) 2020 Microchip Technology Inc.  All rights reserved.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLK_MICROCHIP_MPFS_H_
+> +#define _DT_BINDINGS_CLK_MICROCHIP_MPFS_H_
+> +
+> +#define CLK_CPU	0
+> +#define CLK_AXI	1
+> +#define CLK_AHB	2
+> +
+> +#define CLK_ENVM	3
+> +#define CLK_MAC0	4
+> +#define CLK_MAC1	5
+> +#define CLK_MMC	6
+> +#define CLK_TIMER	7
+> +#define CLK_MMUART0	8
+> +#define CLK_MMUART1	9
+> +#define CLK_MMUART2	10
+> +#define CLK_MMUART3	11
+> +#define CLK_MMUART4	12
+> +#define CLK_SPI0	13
+> +#define CLK_SPI1	14
+> +#define CLK_I2C0	15
+> +#define CLK_I2C1	16
+> +#define CLK_CAN0	17
+> +#define CLK_CAN1	18
+> +#define CLK_USB	19
+> +#define CLK_RESERVED	20
+> +#define CLK_RTC	21
+> +#define CLK_QSPI	22
+> +#define CLK_GPIO0	23
+> +#define CLK_GPIO1	24
+> +#define CLK_GPIO2	25
+> +#define CLK_DDRC	26
+> +#define CLK_FIC0	27
+> +#define CLK_FIC1	28
+> +#define CLK_FIC2	29
+> +#define CLK_FIC3	30
+> +#define CLK_ATHENA	31
+> +#define CLK_CFM	32
+
+I thought it was 0-31 clocks?
+
+> +
+> +#endif	/* _DT_BINDINGS_CLK_MICROCHIP_MPFS_H_ */
+> -- 
+> 2.25.1
 > 
-
-Hi,
-
-Question for rob+dt:
-
-Given that a number of txt documents still are in need for YAML
-conversion. Which is a bit beyond the author of this serie.
-The core rk3568.dtsi is needed for other series to base on.
-
-To speed things up a bit and reduce the work load:
-Is it possible to add the grf compatibles in use first and do the rest
-of the subnodes for various SoCs later?
-
-Is it possible to add for now to reduce notification output:
-
-additionalProperties: true
-
-and then later:
-
-additionalProperties: false
-
-
-===
-
-From build log:
-
-#address-cells
-#size-cells
-reboot-mode
-io-domains
-usb2-phy@100
-mipi-dphy-rx0
-pcie-phy
-phy@f780
-edp-phy
-usbphy
-lvds
-power-controller
-grf-gpio
-
-===
-
-Example for rk3399:
-
-	grf: syscon@ff770000 {
-		compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
-
-		io_domains: io-domains {
-			compatible = "rockchip,rk3399-io-voltage-domain"; //
-rockchip-io-domain.txt
-		};
-
-		mipi_dphy_rx0: mipi-dphy-rx0 {
-			compatible = "rockchip,rk3399-mipi-dphy-rx0"; //
-rockchip-mipi-dphy-rx0.yaml
-		};
-
-		u2phy0: usb2-phy@e450 {
-			compatible = "rockchip,rk3399-usb2phy"; // phy-rockchip-inno-usb2.yaml
-		};
-
-		u2phy1: usb2-phy@e460 {
-			compatible = "rockchip,rk3399-usb2phy"; // phy-rockchip-inno-usb2.yaml
-		};
-
-		emmc_phy: phy@f780 {
-			compatible = "rockchip,rk3399-emmc-phy"; // rockchip-emmc-phy.txt
-		};
-
-		pcie_phy: pcie-phy {
-			compatible = "rockchip,rk3399-pcie-phy"; // rockchip-pcie-phy.txt
-		};
-	};
