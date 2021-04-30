@@ -2,108 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C575D36F4AF
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 05:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54B5636F4D5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 06:19:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230128AbhD3D75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 23:59:57 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:43291 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230126AbhD3D74 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Apr 2021 23:59:56 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 3C889580990;
-        Thu, 29 Apr 2021 23:59:08 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Thu, 29 Apr 2021 23:59:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=klNuigViCSgbY
-        D+5aBtDCyvX8D0xhoqYJ1AnG3UNN20=; b=IcstK0OjpRCuhXgy7ZrYLs7PAfnh5
-        kcFslzfniNLl2h6DBc7yB/5r8KrnogIgp4gKzHDBs5R7DlCJzfTh//HLsNMHFnNt
-        9eqq5lg9f93FNAzx3y4OpZKEB847yJLOtN2+vYcM4nnNKxfMaAQGZO8vMxliiUNk
-        TScITXLCCdc5b4ojEqaMJTvxgSE1LjeBddNktHX8nknoqQYwn/PLeMgxzg/87+om
-        rmwFQ0R0hyjcComgiRrq9AnnwPJr1dkrJ3WcFYEmZYdtD8POg2nPKPa5kInIaRs+
-        aNV0yuTKVSemigTG9FEplSC4tVYZzjCs9YaT03Ft3VS/xG37Z36we6IUQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; bh=klNuigViCSgbYD+5aBtDCyvX8D0xhoqYJ1AnG3UNN20=; b=QjgomTaU
-        T8TMiLB8al919KfDxK7JRc+HXeI6UEjlqw7q9XV1rpI/v/a8GaCpd2HPE4Db7UmT
-        fWN4Aef+CU3tCtmcWOeFp/g+mfBuy0/o32QcwugKJKlkTbp03If18R9IuoPIL2nw
-        UhrGkfwrlLilgh76+tJ+WBqmQNU14bsu8dd7iLq7XrHUd6OqLJ59fiCl7z4oWYLs
-        RZBFccvWVvSXGzpS/abVuffDY/P0Cyw6HMAB01/1vS2AbXZAy1G8N1dxGvCBtn80
-        Wo1Rt02MJPCegiSIvJH3vp/53Ajs3wKK+SqHzZSRvrvA9T7mInlBz6btjAl9MUlO
-        YcfVlM+9xOkysQ==
-X-ME-Sender: <xms:jICLYCKQZ9WQguAyA8jjxD2de3IoXXL8O3LfMxU_zhhT83SA0-6MIg>
-    <xme:jICLYKIG5YsWWPNi5-lEVO9MWIwwa-MNQ3uvn-gUWY0MwRa7137uH51FVMEV2LwYs
-    _qyIiLV_I0rDHrsTg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvddvhedgjeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpeduhfejfedvhffgfeehtefghfeiiefgfeehgfdvvdevfeegjeehjedv
-    gfejheeuieenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghn
-    ugdrohhrgh
-X-ME-Proxy: <xmx:jICLYCu3MeVrAyzwhGIoU1cGXn-GN3wABYMem_FrU1wHvxGeqXC5gQ>
-    <xmx:jICLYHYLQ6tc-5f36XJsa9VqYvcqLx5cX6ocItkvL0jMwa50tbhZmw>
-    <xmx:jICLYJap40hc3S2tyvn6_fA0e23G1Ivlhgpf3FOuHpZ4joiMIQN4wQ>
-    <xmx:jICLYGTNf_EaLVt6Ao7Zt7rmxs2yAUwjFdO9_pDFzAJooiRQFl6fhQ>
-Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA;
-        Thu, 29 Apr 2021 23:59:07 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, Samuel Holland <samuel@sholland.org>,
-        Arnaud Ferraris <arnaud.ferraris@collabora.com>
-Subject: [PATCH v3 7/7] arm64: dts: allwinner: pinephone: Set audio card name
-Date:   Thu, 29 Apr 2021 22:58:59 -0500
-Message-Id: <20210430035859.3487-8-samuel@sholland.org>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210430035859.3487-1-samuel@sholland.org>
-References: <20210430035859.3487-1-samuel@sholland.org>
+        id S229634AbhD3EUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 00:20:37 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:28032 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229448AbhD3EUg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Apr 2021 00:20:36 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1619756389; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=p96M617M0cLXWMwRYD86v31l/3RAtWy/K/4ZMBXEbpM=; b=Q4ZcWv7uUbuNLqJNKs4HOHWIyH4F5r5mvJAdOlerrK7+aYDeZk+TfcjPJ/t8N/XpmlFtPrJm
+ ExMAEEKbzKwuXEcHkSV767rLD/i3SZhoPiU+0qJrkjEzLMxyeyb8z26jFHLQyydyPMeg4XzO
+ 8j49U3PDlozAgGrav8BiPg7DQTU=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 608b8551a817abd39a570271 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 30 Apr 2021 04:19:29
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id F271BC4323A; Fri, 30 Apr 2021 04:19:28 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.1.15] (unknown [61.3.17.29])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8A251C433D3;
+        Fri, 30 Apr 2021 04:19:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8A251C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7280: Add "google,senor" to the
+ compatible
+To:     "Robert P. J. Day" <rpjday@crashcourse.ca>,
+        Doug Anderson <dianders@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+References: <1619674827-26650-1-git-send-email-rnayak@codeaurora.org>
+ <1619674827-26650-2-git-send-email-rnayak@codeaurora.org>
+ <CAD=FV=UUowpvn_2uPrOQG9hOCdX6GYZDojBdW+w8hg5q6PfvAQ@mail.gmail.com>
+ <a26e7152-208e-3343-a9f8-8dfdeb222aeb@crashcourse.ca>
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+Message-ID: <8391f7e4-b727-f369-2494-86609438012c@codeaurora.org>
+Date:   Fri, 30 Apr 2021 09:49:18 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <a26e7152-208e-3343-a9f8-8dfdeb222aeb@crashcourse.ca>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Arnaud Ferraris <arnaud.ferraris@collabora.com>
 
-Add the "PinePhone" name to the sound card: this will make
-upstreaming an ALSA UCM config easier as we can use a unique name.
+On 4/29/2021 7:13 PM, Robert P. J. Day wrote:
+> On Thu, 29 Apr 2021, Doug Anderson wrote:
+> 
+>> Hi,
+>>
+>> On Wed, Apr 28, 2021 at 10:40 PM Rajendra Nayak <rnayak@codeaurora.org> wrote:
+>>>
+>>> The sc7280 IDP board is also called senor in the Chrome OS builds.
+>>> Add the "google,senor" compatible so coreboot/depthcharge knows what
+>>> device tree blob to pick
+>>>
+>>> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/sc7280-idp.dts | 2 +-
+>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> 
+>    subject line contains "google,senor"
 
-It also avoids an issue where the default card name is truncated.
+are you suggesting it should not?
 
-Signed-off-by: Arnaud Ferraris <arnaud.ferraris@collabora.com>
-[Samuel: Split out change, updated commit message]
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
- arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+> 
+> rday
+> 
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-index 51cbfdc12936..02712f85f6bd 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-@@ -433,6 +433,7 @@ &reg_rtc_ldo {
- 
- &sound {
- 	status = "okay";
-+	simple-audio-card,name = "PinePhone";
- 	simple-audio-card,aux-devs = <&codec_analog>, <&speaker_amp>;
- 	simple-audio-card,widgets = "Microphone", "Headset Microphone",
- 				    "Microphone", "Internal Microphone",
 -- 
-2.26.3
-
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
