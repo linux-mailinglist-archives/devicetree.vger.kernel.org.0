@@ -2,102 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C4833702D6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 23:16:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 522C437030F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 23:38:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236139AbhD3VQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 17:16:07 -0400
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:34331 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231136AbhD3VQH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 17:16:07 -0400
-Received: by mail-ot1-f50.google.com with SMTP id x54-20020a05683040b6b02902a527443e2fso14548307ott.1;
-        Fri, 30 Apr 2021 14:15:17 -0700 (PDT)
+        id S230290AbhD3Vje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 17:39:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57548 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230195AbhD3Vje (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 17:39:34 -0400
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5A35C06174A
+        for <devicetree@vger.kernel.org>; Fri, 30 Apr 2021 14:38:44 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id a2so2447921qkh.11
+        for <devicetree@vger.kernel.org>; Fri, 30 Apr 2021 14:38:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=O+NCC185GvVdiBCa7+Pd+oKQFpxMk0PeHhw7on/LJY0=;
+        b=EwcYXa4w+hFOwVcOG79Z1xFiI0pBpKJ5X2X980Q7KB/i0nON6cxaQ52synEx6n8OMm
+         6eigW5MUkaQK1NfJcoKnLyG6JQBTYIQ2uBFeWDyjhqOnznt1s5ubxm1zdvYB5wO+TvJF
+         P1bSP2R62bPtFDeRMklaQWNRq7DdjgKeGkFSg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=VxUW5OdCWJGNzSLfVlPjiWNNaJCqr+3fTpTcrVSH4ZY=;
-        b=PZZB09/iegdW85PRkrkiqjtGX4AXDr1XX1zxIxa6thIjfelTqKu0M8cY9nKtS2s3Za
-         lqG14U0YXLU9yVIzXoCxFKtQA+szX4+EJSMhg7309YQXazVLfmjO3SXPU2YS2UNPJD8y
-         yaFxbkUn0rKk1VNIOCLRhQTBIhTBKrBB521n6poDpcK08G/JbOKKO8we99EWAaVuS0TA
-         v3ampVwcxGwmH3YTLeFH4nDibqRgpaylALNTILt9DpidEs3DgOqPTyg5sUoNQMZx4UFL
-         QDLVHBWwUCqTzHGXoRUP5TSMtQ2Yv1C7bdXgVFOg1S6djNCdsvUMp6LRkV+5X5jIx9MP
-         wDGA==
-X-Gm-Message-State: AOAM531SERGEv8iIEZCEgaucm1vR304QJoXq2OUpEDFPaZSyi3Lj3MOW
-        iXMW1rE4vCW+5FzfrMNyow==
-X-Google-Smtp-Source: ABdhPJw7SRe7qPCQI/wcVuiwivDcq25XvfKU7E097UGMjVGG4wUzYEUfjYOOtZwSlRM3zkSLsuyZFQ==
-X-Received: by 2002:a9d:630e:: with SMTP id q14mr5179477otk.69.1619817317126;
-        Fri, 30 Apr 2021 14:15:17 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w140sm1098248oif.42.2021.04.30.14.15.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Apr 2021 14:15:16 -0700 (PDT)
-Received: (nullmailer pid 3907199 invoked by uid 1000);
-        Fri, 30 Apr 2021 21:15:14 -0000
-Date:   Fri, 30 Apr 2021 16:15:14 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     cl@rock-chips.com
-Cc:     heiko@sntech.de, jagan@amarulasolutions.com, wens@csie.org,
-        uwe@kleine-koenig.org, mail@david-bauer.net, jbx6244@gmail.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
-        cnsztl@gmail.com, devicetree@vger.kernel.org,
-        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
-        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
-        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
-        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
-        zhangqing@rock-chips.com, huangtao@rock-chips.com,
-        wim@linux-watchdog.org, linux@roeck-us.net, jamie@jamieiles.com,
-        linux-watchdog@vger.kernel.org, maz@kernel.org
-Subject: Re: [PATCH v4 06/10] dt-bindings: gpio: change items restriction of
- clock for rockchip,gpio-bank
-Message-ID: <20210430211514.GA3905898@robh.at.kernel.org>
-References: <20210429081151.17558-1-cl@rock-chips.com>
- <20210429081306.17784-1-cl@rock-chips.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=O+NCC185GvVdiBCa7+Pd+oKQFpxMk0PeHhw7on/LJY0=;
+        b=MqJ7nMuG2t4dKa+wnKL3N3aDthWrbSMA/QBaI3pyPVL33ZEh9Q1Ch7UfG3jPL3J0mL
+         l2kkczhtHteQmNOEriTOOgUzz7M9CQcw0tK3640vAsmDqAHzprx2pHeVans0BeiezmNJ
+         KE39TLmuBao7g+dRHn+7DxYyvvMsA696pYuc5VVMxuu1Oa7fb9BPjKwzc24H6gv8SmO4
+         mkL7I2TgBTCjnkUnV5ua5Eq5wUZ67LMskPA2vcnpnede5HQBtxeSpZArdNa/VDrwIaxZ
+         AclbzjM1xUKD4xJeHxZ3U/+3jCfxQ//pnvOC0tS4h9KV/ebdBWXOOE2CKOdDeoBVQvtB
+         VW0g==
+X-Gm-Message-State: AOAM533Kos4LpHie1TtxB2znusM45OpujghVkcSRqxotj7UG67HfQFmt
+        kgbb015i7KSgR9owIRskRXzHBoGJxCcXnQ==
+X-Google-Smtp-Source: ABdhPJwzsWVHamnOAHFdwKSZl2r5L2J6FWg8v8xzs5PjTlVnocnvYP9U3zgVj9Se6n8JtgRHITWG6A==
+X-Received: by 2002:ae9:ec1a:: with SMTP id h26mr7622473qkg.238.1619818723603;
+        Fri, 30 Apr 2021 14:38:43 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id k5sm1332591qtm.17.2021.04.30.14.38.41
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Apr 2021 14:38:42 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id t94so31710383ybi.3
+        for <devicetree@vger.kernel.org>; Fri, 30 Apr 2021 14:38:41 -0700 (PDT)
+X-Received: by 2002:a25:80d4:: with SMTP id c20mr10228081ybm.345.1619818721319;
+ Fri, 30 Apr 2021 14:38:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210429081306.17784-1-cl@rock-chips.com>
+References: <1619416756-3533-1-git-send-email-rajeevny@codeaurora.org>
+ <1619416756-3533-2-git-send-email-rajeevny@codeaurora.org>
+ <20210429180435.GA1385465@robh.at.kernel.org> <CAD=FV=V-kdySH5Pp-Fb-PRYk60Ha_UOTXJHcvMp+uV3P1oo7Uw@mail.gmail.com>
+ <78c4bd291bd4a17ae2a1d02d0217de43@codeaurora.org>
+In-Reply-To: <78c4bd291bd4a17ae2a1d02d0217de43@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 30 Apr 2021 14:38:29 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XW90L6or8NKA-Rjjp3s3fRno1xSkD+X0PA1rTyeKgpMw@mail.gmail.com>
+Message-ID: <CAD=FV=XW90L6or8NKA-Rjjp3s3fRno1xSkD+X0PA1rTyeKgpMw@mail.gmail.com>
+Subject: Re: [v3 1/2] dt-bindings: backlight: add DisplayPort aux backlight
+To:     Rajeev Nandan <rajeevny@codeaurora.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>, mkrishn@codeaurora.org,
+        Kalyan Thota <kalyan_t@codeaurora.org>,
+        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        Sean Paul <seanpaul@chromium.org>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Lyude Paul <lyude@redhat.com>,
+        "Lankhorst, Maarten" <maarten.lankhorst@intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <a.hajda@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 29, 2021 at 04:13:06PM +0800, cl@rock-chips.com wrote:
-> From: Liang Chen <cl@rock-chips.com>
-> 
-> The clock property need 2 items on some rockchip chips.
-> 
-> Signed-off-by: Liang Chen <cl@rock-chips.com>
-> ---
->  Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
-> index d993e002cebe..7b3fd2975c74 100644
-> --- a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
-> @@ -22,7 +22,8 @@ properties:
->      maxItems: 1
->  
->    clocks:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
+Hi,
 
-Need to define what they are:
+On Fri, Apr 30, 2021 at 8:10 AM <rajeevny@codeaurora.org> wrote:
+>
+> On 30-04-2021 02:33, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Thu, Apr 29, 2021 at 11:04 AM Rob Herring <robh@kernel.org> wrote:
+> >>
+> >> On Mon, Apr 26, 2021 at 11:29:15AM +0530, Rajeev Nandan wrote:
+> >> > Add bindings for DisplayPort aux backlight driver.
+> >> >
+> >> > Changes in v2:
+> >> > - New
+> >> >
+> >> > Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
+> >> > ---
+> >> >  .../bindings/leds/backlight/dp-aux-backlight.yaml  | 49 ++++++++++++++++++++++
+> >> >  1 file changed, 49 insertions(+)
+> >> >  create mode 100644 Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+> >> >
+> >> > diff --git a/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+> >> > new file mode 100644
+> >> > index 00000000..0fa8bf0
+> >> > --- /dev/null
+> >> > +++ b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
+> >> > @@ -0,0 +1,49 @@
+> >> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> > +%YAML 1.2
+> >> > +---
+> >> > +$id: http://devicetree.org/schemas/leds/backlight/dp-aux-backlight.yaml#
+> >> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> > +
+> >> > +title: DisplayPort aux backlight driver bindings
+> >> > +
+> >> > +maintainers:
+> >> > +  - Rajeev Nandan <rajeevny@codeaurora.org>
+> >> > +
+> >> > +description:
+> >> > +  Backlight driver to control the brightness over DisplayPort aux channel.
+> >> > +
+> >> > +allOf:
+> >> > +  - $ref: common.yaml#
+> >> > +
+> >> > +properties:
+> >> > +  compatible:
+> >> > +    const: dp-aux-backlight
+> >> > +
+> >> > +  ddc-i2c-bus:
+> >> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> >> > +    description:
+> >> > +      A phandle to the system I2C controller connected to the DDC bus used
+> >> > +      for the DisplayPort AUX channel.
+> >> > +
+> >> > +  enable-gpios:
+> >> > +    maxItems: 1
+> >> > +    description: GPIO specifier for backlight enable pin.
+> >> > +
+> >> > +  max-brightness: true
+> >> > +
+> >> > +required:
+> >> > +  - compatible
+> >> > +  - ddc-i2c-bus
+> >> > +
+> >> > +additionalProperties: false
+> >> > +
+> >> > +examples:
+> >> > +  - |
+> >> > +    backlight {
+> >> > +        compatible = "dp-aux-backlight";
+> >> > +        ddc-i2c-bus = <&sn65dsi86_bridge>;
+> >> > +        enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
+> >>
+> >> So the DDC bus is connected to a backlight and also a panel? This
+> >> binding is not reflecting the h/w, but rather what you want for some
+> >> driver.
+> >>
+> >> There's only one thing here and that's an eDP panel which supports
+> >> backlight control via DP aux channel. You can figure all that out from
+> >> the panel's compatible and/or reading the EDID.
+> >>
+> >> You might also be interested in this thread:
+> >>
+> >> https://lore.kernel.org/lkml/YIKsDtjcIHGNvW0u@orome.fritz.box/
+> >
+> > I think Rajeev needs to rework everything anyway as per:
+> >
+> > https://lore.kernel.org/r/87zgxl5qar.fsf@intel.com
+> >
+> > ...but you're right that it makes sense not to model the backlight as
+> > a separate node in the device tree. The panel driver can handle
+> > setting up the backlight.
+> >
+> > -Doug
+>
+> It was not a good idea to create a separate backlight driver and use
+> ddc-i2c-bus to get access to DP aux. I am working to move the code
+> to the panel driver and to utilize the new DRM helper functions
+> (drm_edp_backlight_*) Lyude has added [1].
+>
+> To use these helper functions, the panel driver should have access to
+> the
+> "struct drm_dp_aux *". The simple-panel has a "ddc-i2c-bus" property
+> to give the panel access to the DDC bus and is currently being used to
+> get the EDID from the panel. Can I use the same ddc bus i2c_adapter to
+> get
+> the "struct drm_dp_aux *"?
+>
+> As per the suggestion [2], I get the "struct drm_dp_aux *" from the
+> i2c_adapter of ddc bus (maybe I didn't understand the suggestion
+> correctly),
+> and, it turned out, the way I have implemented is not the right way [3].
+> So, I am afraid to use the same method in the panel driver.
+>
+>
+> [1] https://lore.kernel.org/dri-devel/871rb5bcf9.fsf@intel.com/
+> [2] https://www.spinics.net/lists/dri-devel/msg295429.html
+> [3]
+> https://lore.kernel.org/dri-devel/20210426111116.4lc3ekxjugjr3oho@maple.lan/
 
-minItems: 1
-items:
-  - description: ...
-  - description: ...
+So it's definitely up to maintainers, not me. ...but I guess I would
+have expected something like a new property called "ddc-aux-bus". Then
+you'd have to create a new API call called something like
+"of_find_ddc_aux_adapter_by_node()" that would allow you to find it.
 
->  
->    gpio-controller: true
->  
-> -- 
-> 2.17.1
-> 
-> 
-> 
+I guess an alternate way to solve this (I'm not totally sure whether
+it's better or worse) would be to add a function that would walk up
+the chain of parent bridges and ask them for a pointer to the aux bus.
+I definitely haven't thought it all the way through, but I'd imagine
+something like drm_bridge_chain_get_ddc_aux(). This is _probably_
+better than adding the "ddc-aux-bus" property but it assumes that the
+aux bus is provided by one of our parents. Hrm, looking at this
+briefly, though, I'm not sure how to do it. It doesn't seem possible
+to get the parent bridges from the panel structure. Even if you assume
+that your parent is wrapping you with a panel_bridge it still doesn't
+seem possible?
+
+This probably needs more drm-expertise.
+
+-Doug
