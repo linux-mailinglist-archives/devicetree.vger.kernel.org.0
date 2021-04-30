@@ -2,157 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D86936F437
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 05:05:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7AE636F45E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 05:19:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229582AbhD3DGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Apr 2021 23:06:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37932 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbhD3DGe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Apr 2021 23:06:34 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C74CC06138B;
-        Thu, 29 Apr 2021 20:05:47 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id c22so17302849edn.7;
-        Thu, 29 Apr 2021 20:05:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+teXO3nFNlWI1PW484JBXgFP/en9bwQPRWXtW1e1gls=;
-        b=Bm7GWNfj+xfSofAANTYyA6/3xFqCCw/acTZAcQKyU/TbSfCEiL0YpIOan5XLLAZw9C
-         OSj6dqrAtXa9nw/ivJmZbff6lJz5GlYJPf5rNy6bqsdLU6YQ5yT2mzthH9nW4RIlUi2N
-         KQWff7dC8StwEUhbhDGjuRypXY9GQp1ejVSivUAahVm55HfyGZh319KZrJHi35ooOLFY
-         CfGsBGY85Mq83z86LaIgHEDH3khXDSYt3xiAfmd5ad46EhePOlBpByse2/G31Z8z+C0d
-         mmleJMSMwK9e7eblsHqpBzxktnPAWrzp4Uwl+y3IZarp4JFDFHmEvMylJuRdA9p3OwXl
-         ySwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+teXO3nFNlWI1PW484JBXgFP/en9bwQPRWXtW1e1gls=;
-        b=ttDPfCSxDoFQrYyTlwJ0Nh4BOR9mwcbwl3uaornW9jhPOceiw56bJxnCCHr+PtjzdV
-         cIGhDF6C4lxaN8YezFAGRGx1Uja9TgxJj/t7arJ01PfkS/sEcW1X/KvJOaw8Cztjcvp6
-         FWSgGqVRgszpHB6J807lC00HjMU5q4ll2wsQ4aqcRdo7IDQB0xjpvB55JpZW4YTmC9XY
-         +Eosa57M0vbydJYq/lS6ErdQl7EAfbcMoeJawOarcxUXXGrDjL+s25dBYt5CN6DUIUu9
-         sKXYlRI+/bFS6sy2jo5tzJBMY9Q8N5AnBCknrdR3u/U3lYnPSzecckSRYIeZLusfH7e9
-         XcsQ==
-X-Gm-Message-State: AOAM533v6I7PUhnBrJMhL6/PKUpVbCPUmc7Kc9+dRtUQQK11CYVM0eV8
-        KJA1ERE3f0ae7BwNYUsdiMhjexwCGG+kMr2FU/M=
-X-Google-Smtp-Source: ABdhPJzE3tN+vPT4JoRO1U/cas6Z9ORtvt9xImbsxFf3ps5mnHjGI4/2VgXXD2tTL1/FA7ZVpRua7H634GSjKkudOUw=
-X-Received: by 2002:a05:6402:27d3:: with SMTP id c19mr3164137ede.129.1619751945745;
- Thu, 29 Apr 2021 20:05:45 -0700 (PDT)
+        id S229778AbhD3DUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Apr 2021 23:20:08 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:45429 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229582AbhD3DUD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Apr 2021 23:20:03 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.nyi.internal (Postfix) with ESMTP id DD4CA5809A7;
+        Thu, 29 Apr 2021 23:19:14 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Thu, 29 Apr 2021 23:19:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm2; bh=7a3B4rcYlKzes6Q1o/O33ZK9lp
+        KHHVnQxsvgMFUEdxc=; b=B5qp+eO0DskdaIxSYZIKB/GwTM8+gaEYMI2eWpmXFQ
+        XKh623relchjKSnt/H/q5WHOk4YdrumJ/YK4/nwdhFZuh9yCb04gxZynuA95wntG
+        B/kjQwfvIZ1EOmKzSyL7wDaEioelOj5BrX05LQp1t5Pm0phEkvx+TCG2kf0hORcI
+        UmtRxIYgn8MDCFVb+PT9nDVzxGJhrKQZ1q72QsQX63V9eG5Bj/iZ5vwNurRUoiY7
+        YYhM04mVRSA2CNbp59eudQk0rWZeTCBz6xpQQFmKThbHVatvephk+jc5Os091vwg
+        1n74ISYJAU8ylSoZiFaoHEQRJwsV3YjBfFI5tkrLkXsA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=7a3B4rcYlKzes6Q1o
+        /O33ZK9lpKHHVnQxsvgMFUEdxc=; b=imaUocYJKYptSmtmViFFsmMU1+4FKRnjB
+        YD0Y1wlVeW77YNI5RKLpJFVVN9DmDzS8rWs7bLzseLqhwgrYVDDTyDR1ypvt5lui
+        n+aNrrhzLkaYastnN2lqFpeH8+mn8HBgPvwJpXAtAECF+UB0CRWBi39qjWuVR8Jh
+        cnTCEiyTVjeSROtFuN6DAhH80u/d0GXD0yZn7R8zR7HH6cINi5sLgrWrbjbshRY7
+        s+1pVvcCxR5nSlurxtSt11Z0YAXrpRmEvt3bIO8shWA3ZTaDXRWlA5DEdC5CXTI9
+        lL25HSxN3bFULeFZjGfKC+D1wEA8+KxghfWDefX7kLmdmdNkDDAAg==
+X-ME-Sender: <xms:MneLYB6hHTawAtddmHnvxlCxcYUpQmVPfXkrfIz9vDlEx1NXueNKNQ>
+    <xme:MneLYO6p_HwnnZGopI4Y9N32wYXAQ4e3otZ8M9vgYtdcowBuaURpiF897x6qXhoC1
+    Rl4Dy0lVTRAk4_lMw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvddvhedgieelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
+    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrg
+    htthgvrhhnpeeiteekhfehuddugfeltddufeejjeefgeevheekueffhffhjeekheeiffdt
+    vedtveenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdr
+    ohhrgh
+X-ME-Proxy: <xmx:MneLYIeGCDtqjOJfRqJKFq0mpnHvcjJVE8nFcZ5OL3wTnJ_xjJmYLw>
+    <xmx:MneLYKL91SYbwWwMEcXDdguCEk0_fqyrz955zQzVIIU2w9qJ0jHG5g>
+    <xmx:MneLYFJOmFTYxRP7cKcQrNoC_Cyzf-K2Pswc6vxiwIzBtUjbv2_eGA>
+    <xmx:MneLYOXKzVJekHmPMeU0ThoQFXVwdhtjRWu_C0SsVJ8RtX4jxujggA>
+Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA;
+        Thu, 29 Apr 2021 23:19:13 -0400 (EDT)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Samuel Holland <samuel@sholland.org>
+Subject: [PATCH v2 0/2] Allwinner H6 USB3 device tree updates
+Date:   Thu, 29 Apr 2021 22:19:10 -0500
+Message-Id: <20210430031912.42252-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-References: <20210429073050.21039-1-peng.fan@oss.nxp.com> <CAHCN7xL11GUSVB3PThsfhxXPtgu1nm1LWSzkJYqj4MHf-aLbVw@mail.gmail.com>
- <DB6PR0402MB276065DF476EBEDABF312CF9885E9@DB6PR0402MB2760.eurprd04.prod.outlook.com>
-In-Reply-To: <DB6PR0402MB276065DF476EBEDABF312CF9885E9@DB6PR0402MB2760.eurprd04.prod.outlook.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Thu, 29 Apr 2021 22:05:34 -0500
-Message-ID: <CAHCN7x+zauc-8knQCGsvFB=YDrBB3T7bEHisdNEvQYgVnFsNGA@mail.gmail.com>
-Subject: Re: [PATCH 00/16] soc: imx: gpcv2: support i.MX8MM
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        Marek Vasut <marex@denx.de>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Abel Vesa <abel.vesa@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 29, 2021 at 8:34 PM Peng Fan <peng.fan@nxp.com> wrote:
->
-> > Subject: Re: [PATCH 00/16] soc: imx: gpcv2: support i.MX8MM
-> >
-> > On Thu, Apr 29, 2021 at 1:59 AM Peng Fan (OSS) <peng.fan@oss.nxp.com>
-> > wrote:
-> > >
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > This patchset is a pick up Lucas's gpcv2 work for i.MX8MM and several
-> > > minor changes from me to make it could work with i.MX BLK-CTL driver.
-> > >
-> > > Thanks for Lucas's work and suggestion, Frieder Schrempf for
-> > > collecting all the patches, Jacky Bai on help debug issues.
-> >
-> > Thank for you all the work.  I have an i.MX8M Nano that I'll work to add
-> > support for gpcv2 unless NXP has started this already.  At one time, I posted
-> > some patches for Nano based on Lucas' work, but since that work wasn't
-> > accepted, mine wasn't either.
->
-> Please continue your work on i.MX8MN, I not work on this. The following
-> work from me is i.MX8MP.
+While implementing support for this USB controller in U-Boot, I noticed
+that the reset line alsp affects they PHY. It looks like most platforms
+use a separate glue node to represent this, and in fact there is already
+a compatible for the H6 listed in drivers/usb/dwc3/dwc3-of-simple.c.
 
-No problem.  I thought the focus would be on the 8MP,m so I went ahead
-and posted a series [1] for enabling the gpcv2 for the Nano and the
-power domains which don't require blk-ctl for now which include the
-USB OTG, and the GPU.
+Since this layout matches the usual way of modeling this hardware, it
+allows using the existing drivers without adding platform-specific code.
 
-If you and/or your colleagues have time to review it, it would be
-appreciated.  I was able to suspend and resume with USB attached, and
-it continued to operate.  I didn't do extensive testing yet.
-I'm starting on the blk-ctl stuff now.  It seems to have changed quite
-a bit since the initial submission from Abel, so I'll have to spend a
-bit more time porting what I had before.
 
-Thanks again for this series.  It will be nice to have the Mini, Nano
-and Plus domains functional.
+I tried to follow the existing DWC3 glue bindings (most of which are
+still .txt). With this version, `make dt_binding_check` still raises a
+couple of issues, which I do not know how best to fix:
 
-adam
+  - Warning (unit_address_vs_reg): /example-0/usb@5200000: node has a
+    unit name, but no reg or ranges property
+    => Since there is no MMIO translation, an empty `ranges;` seemed
+       appropriate, but it causes this warning.
 
-[1] - https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210429211625.1835702-2-aford173@gmail.com/
+  - usb@5200000: usb@5200000:phy-names:0: 'usb2-phy' was expected
+    => This may be an issue with the snps,dwc3 binding, where the
+       `items` list overrides `minItems`. I believe the intention is
+       that both PHY references are optional. This implementation has
+       only one PHY.
 
->
-> Thanks,
-> Peng.
->
-> >
-> > adam
-> > >
-> > > Lucas Stach (12):
-> > >   soc: imx: gpcv2: move to more ideomatic error handling in probe
-> > >   soc: imx: gpcv2: move domain mapping to domain driver probe
-> > >   soc: imx: gpcv2: switch to clk_bulk_* API
-> > >   soc: imx: gpcv2: split power up and power down sequence control
-> > >   soc: imx: gpcv2: wait for ADB400 handshake
-> > >   soc: imx: gpcv2: add runtime PM support for power-domains
-> > >   soc: imx: gpcv2: allow domains without power-sequence control
-> > >   dt-bindings: imx: gpcv2: add support for optional resets
-> > >   soc: imx: gpcv2: add support for optional resets
-> > >   dt-bindings: power: add defines for i.MX8MM power domains
-> > >   soc: imx: gpcv2: add support for i.MX8MM power domains
-> > >   soc: imx: gpcv2: Add support for missing i.MX8MM VPU/DISPMIX power
-> > >     domains
-> > >
-> > > Peng Fan (4):
-> > >   soc: imx: gpcv2: correct pm_runtime_get_sync usage
-> > >   soc: imx: gpcv2: move reset assert after requesting domain power up
-> > >   soc: imx: gpcv2: support reset defer probe
-> > >   soc: imx: gpcv2: remove waiting handshake in power up
-> > >
-> > >  .../bindings/power/fsl,imx-gpcv2.yaml         |   9 +
-> > >  drivers/soc/imx/gpcv2.c                       | 534
-> > ++++++++++++++----
-> > >  include/dt-bindings/power/imx8mm-power.h      |  22 +
-> > >  3 files changed, 450 insertions(+), 115 deletions(-)  create mode
-> > > 100644 include/dt-bindings/power/imx8mm-power.h
-> > >
-> > > --
-> > > 2.30.0
-> > >
+Changes from v1 to v2:
+  - Updated the binding to reference the PHY binding by path correctly
+  - Dropped DT updates for Pine H64
+
+Samuel Holland (2):
+  dt-bindings: usb: Document the Allwinner H6 DWC3 glue
+  arm64: dts: allwinner: h6: Wrap DWC3 and PHY in glue layer
+
+ .../usb/allwinner,sun50i-h6-dwc3.yaml         | 75 +++++++++++++++++++
+ .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  6 +-
+ .../dts/allwinner/sun50i-h6-orangepi-3.dts    |  6 +-
+ .../dts/allwinner/sun50i-h6-tanix-tx6.dts     |  6 +-
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 60 ++++++++-------
+ 5 files changed, 111 insertions(+), 42 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/allwinner,sun50i-h6-dwc3.yaml
+
+-- 
+2.26.3
+
