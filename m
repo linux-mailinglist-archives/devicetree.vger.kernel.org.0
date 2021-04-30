@@ -2,193 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8319536FD60
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 17:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED27436FD74
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 17:15:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229750AbhD3PLM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 11:11:12 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:35317 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229712AbhD3PLL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 11:11:11 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1619795423; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=+dVI3NdaeABnN/N1/ZkuDIQzB1RFAa3KmXh7BK9pWbs=;
- b=V/Q4gqVWK+c2lRA9LORaY0x/wvxI7Ujai87Me6srZLNTmDf9NGYYggcKS6pPFjlbIJ1c0y2R
- 9zMhdjUjMGrV70g30LXmWkp3SjLc7dDea3EsNgmFfqXhT9zQPDMei+Vi/jxMkI1o+T/ApzoP
- UnpgOUfKq5sDUe20U/EwPLuRDBo=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 608c1dd92cc44d3aeaa0c0b3 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 30 Apr 2021 15:10:17
- GMT
-Sender: rajeevny=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id D38A0C43143; Fri, 30 Apr 2021 15:10:16 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: rajeevny)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 90E85C433D3;
-        Fri, 30 Apr 2021 15:10:15 +0000 (UTC)
+        id S229720AbhD3PPb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 11:15:31 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:43740 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229750AbhD3PPb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 11:15:31 -0400
+Received: by mail-ot1-f48.google.com with SMTP id g7-20020a9d5f870000b02902a5831ad705so1497433oti.10;
+        Fri, 30 Apr 2021 08:14:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bA+0wXYd5n62CVpjXh163QzxzPQitWk+KG3sz2AcuGk=;
+        b=d2/gMBmfDJYXC6dF6bgCO7cCFU9A2ps1Y9HULSHqOQYO77oJhqj8OzAZhPUD58cIbs
+         nNqAPL032bEZK6bD7HPwIAN0N4un1tJ7+2u4be85Tjs99mKnMQss9ussLVFwviaVwnsl
+         mACKEYnQ0xXDj3+mO8Lczm4nXVYTaRDLuMuRBb44lX4maJhGkRBn5Mbvn/XSo8CgXmw8
+         J3Dq8w8wAMnQi4Jb/hFNO42qkYddnZoTuq0CNQko5zP8IgxuJhs0Q2Ea1KAqx+7p5nq6
+         73NWYPnvCgSEMswtjQeJ5wLsCJnQBrPEpVMpuqp9V/pNpXaiPKEMRLstaGESTmrL/TCq
+         YVKw==
+X-Gm-Message-State: AOAM532weE/UvTV8YeBiXo3ibTeeW7ftabyYx01w8jpuL+juNVUze9OU
+        ZlzL1kqZTuPoWNs5cuqa9w==
+X-Google-Smtp-Source: ABdhPJz7mv+WLnYokc1iKTOjYu+Sps0+GW+VV4HnXfSL+BcYqE0Bmak8+kqq5/xMCkcLRGKywhN9FA==
+X-Received: by 2002:a9d:6007:: with SMTP id h7mr4179722otj.200.1619795682500;
+        Fri, 30 Apr 2021 08:14:42 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id y11sm846063oiv.19.2021.04.30.08.14.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Apr 2021 08:14:41 -0700 (PDT)
+Received: (nullmailer pid 3337579 invoked by uid 1000);
+        Fri, 30 Apr 2021 15:14:40 -0000
+Date:   Fri, 30 Apr 2021 10:14:40 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     Ezequiel Garcia <ezequiel@collabora.com>, linux-pm@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Finley Xiao <finley.xiao@rock-chips.com>, kernel@collabora.com
+Subject: Re: [PATCH 1/2] dt-bindings: rockchip-thermal: Support the RK3568
+ SoC compatible
+Message-ID: <20210430151440.GA3323801@robh.at.kernel.org>
+References: <20210421200445.32977-1-ezequiel@collabora.com>
+ <557ae27c-1d62-69e0-7ae6-921571059f9f@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 30 Apr 2021 20:40:15 +0530
-From:   rajeevny@codeaurora.org
-To:     Doug Anderson <dianders@chromium.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Rob Clark <robdclark@gmail.com>, mkrishn@codeaurora.org,
-        Kalyan Thota <kalyan_t@codeaurora.org>,
-        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Lyude Paul <lyude@redhat.com>,
-        "Lankhorst, Maarten" <maarten.lankhorst@intel.com>
-Subject: Re: [v3 1/2] dt-bindings: backlight: add DisplayPort aux backlight
-In-Reply-To: <CAD=FV=V-kdySH5Pp-Fb-PRYk60Ha_UOTXJHcvMp+uV3P1oo7Uw@mail.gmail.com>
-References: <1619416756-3533-1-git-send-email-rajeevny@codeaurora.org>
- <1619416756-3533-2-git-send-email-rajeevny@codeaurora.org>
- <20210429180435.GA1385465@robh.at.kernel.org>
- <CAD=FV=V-kdySH5Pp-Fb-PRYk60Ha_UOTXJHcvMp+uV3P1oo7Uw@mail.gmail.com>
-Message-ID: <78c4bd291bd4a17ae2a1d02d0217de43@codeaurora.org>
-X-Sender: rajeevny@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <557ae27c-1d62-69e0-7ae6-921571059f9f@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30-04-2021 02:33, Doug Anderson wrote:
-> Hi,
+On Wed, Apr 21, 2021 at 10:46:37PM +0200, Johan Jonker wrote:
+> On 4/21/21 10:04 PM, Ezequiel Garcia wrote:
+> > Add a new compatible for the thermal sensor device on RK3568 SoCs.
+> > 
+> > Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> > ---
+> >  Documentation/devicetree/bindings/thermal/rockchip-thermal.txt | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt b/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
+> > index 7f94669e9ebe..346e466c2006 100644
+> > --- a/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
+> > +++ b/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
+> > @@ -9,6 +9,7 @@ Required properties:
+> >     "rockchip,rk3328-tsadc": found on RK3328 SoCs
+> >     "rockchip,rk3368-tsadc": found on RK3368 SoCs
+> >     "rockchip,rk3399-tsadc": found on RK3399 SoCs
 > 
-> On Thu, Apr 29, 2021 at 11:04 AM Rob Herring <robh@kernel.org> wrote:
->> 
->> On Mon, Apr 26, 2021 at 11:29:15AM +0530, Rajeev Nandan wrote:
->> > Add bindings for DisplayPort aux backlight driver.
->> >
->> > Changes in v2:
->> > - New
->> >
->> > Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
->> > ---
->> >  .../bindings/leds/backlight/dp-aux-backlight.yaml  | 49 ++++++++++++++++++++++
->> >  1 file changed, 49 insertions(+)
->> >  create mode 100644 Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
->> >
->> > diff --git a/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
->> > new file mode 100644
->> > index 00000000..0fa8bf0
->> > --- /dev/null
->> > +++ b/Documentation/devicetree/bindings/leds/backlight/dp-aux-backlight.yaml
->> > @@ -0,0 +1,49 @@
->> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> > +%YAML 1.2
->> > +---
->> > +$id: http://devicetree.org/schemas/leds/backlight/dp-aux-backlight.yaml#
->> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> > +
->> > +title: DisplayPort aux backlight driver bindings
->> > +
->> > +maintainers:
->> > +  - Rajeev Nandan <rajeevny@codeaurora.org>
->> > +
->> > +description:
->> > +  Backlight driver to control the brightness over DisplayPort aux channel.
->> > +
->> > +allOf:
->> > +  - $ref: common.yaml#
->> > +
->> > +properties:
->> > +  compatible:
->> > +    const: dp-aux-backlight
->> > +
->> > +  ddc-i2c-bus:
->> > +    $ref: /schemas/types.yaml#/definitions/phandle
->> > +    description:
->> > +      A phandle to the system I2C controller connected to the DDC bus used
->> > +      for the DisplayPort AUX channel.
->> > +
->> > +  enable-gpios:
->> > +    maxItems: 1
->> > +    description: GPIO specifier for backlight enable pin.
->> > +
->> > +  max-brightness: true
->> > +
->> > +required:
->> > +  - compatible
->> > +  - ddc-i2c-bus
->> > +
->> > +additionalProperties: false
->> > +
->> > +examples:
->> > +  - |
->> > +    backlight {
->> > +        compatible = "dp-aux-backlight";
->> > +        ddc-i2c-bus = <&sn65dsi86_bridge>;
->> > +        enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
->> 
->> So the DDC bus is connected to a backlight and also a panel? This
->> binding is not reflecting the h/w, but rather what you want for some
->> driver.
->> 
->> There's only one thing here and that's an eDP panel which supports
->> backlight control via DP aux channel. You can figure all that out from
->> the panel's compatible and/or reading the EDID.
->> 
->> You might also be interested in this thread:
->> 
->> https://lore.kernel.org/lkml/YIKsDtjcIHGNvW0u@orome.fritz.box/
+> > +   "rockchip,rk3568-tsadc": found on RK3568 SoCs
 > 
-> I think Rajeev needs to rework everything anyway as per:
-> 
-> https://lore.kernel.org/r/87zgxl5qar.fsf@intel.com
-> 
-> ...but you're right that it makes sense not to model the backlight as
-> a separate node in the device tree. The panel driver can handle
-> setting up the backlight.
-> 
-> -Doug
+> This is still a text document.
+> rob+dt has now scripts that check for undocumented compatibility
+> strings, so first convert rockchip-thermal.txt to YAML and then add this
+> in a separated patch.
 
-It was not a good idea to create a separate backlight driver and use
-ddc-i2c-bus to get access to DP aux. I am working to move the code
-to the panel driver and to utilize the new DRM helper functions
-(drm_edp_backlight_*) Lyude has added [1].
+Thanks for pushing on this, but for now at least, simple compatible 
+additions are fine. If changes would complicate the conversion to 
+schema, then we should convert it first. For example, if the new 
+compatible was accompanied with differing clocks, irqs, resets, etc., 
+then we should convert (or consider a separate schema).
 
-To use these helper functions, the panel driver should have access to 
-the
-"struct drm_dp_aux *". The simple-panel has a "ddc-i2c-bus" property
-to give the panel access to the DDC bus and is currently being used to
-get the EDID from the panel. Can I use the same ddc bus i2c_adapter to 
-get
-the "struct drm_dp_aux *"?
+In parallel though, we do want to get platforms to 0 undocumented (by 
+schema) compatibles. And then 0 warnings after that...
 
-As per the suggestion [2], I get the "struct drm_dp_aux *" from the
-i2c_adapter of ddc bus (maybe I didn't understand the suggestion 
-correctly),
-and, it turned out, the way I have implemented is not the right way [3].
-So, I am afraid to use the same method in the panel driver.
-
-
-[1] https://lore.kernel.org/dri-devel/871rb5bcf9.fsf@intel.com/
-[2] https://www.spinics.net/lists/dri-devel/msg295429.html
-[3] 
-https://lore.kernel.org/dri-devel/20210426111116.4lc3ekxjugjr3oho@maple.lan/
-
-Thanks,
-Rajeev
+Rob
