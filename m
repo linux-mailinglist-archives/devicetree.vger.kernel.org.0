@@ -2,259 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7652A36F706
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 10:20:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CBD636F70A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 10:21:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229538AbhD3IVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 04:21:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49904 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbhD3IVI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 04:21:08 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CF0FC06174A
-        for <devicetree@vger.kernel.org>; Fri, 30 Apr 2021 01:20:20 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id t11-20020a05600c198bb02901476e13296aso602524wmq.0
-        for <devicetree@vger.kernel.org>; Fri, 30 Apr 2021 01:20:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=k3V7PIJt4df52x4EhJvQyNhxcs7GT3vwtzimn9FSBpE=;
-        b=JOFR5P4z2JgXwIzzvzUuxVUDGInvtmF/Ji0eODgv9me7xLvxYX+/YftiHdCIkMxwcq
-         dX8QUfX37saKnVR26QTbhiDI33H1uwjT+Zf5GCdFyvDHMdEC/KQKBSfp+4JEFjg6VQze
-         PUFoyG3opZ5Gh+E8Z3C3UR73y5Imz7ESWVqq0xMYlod7fMrRemuftXs9t3pvUUBPQYHS
-         JXp1kp8dMxWRjJfpwHMjEkJLT3Rati3hr/cF6k+npMbB9reFWiOPrpJXsIcmStFW4IjG
-         AR7FzIdL74nsE9HDPO4dHz5rxND0LRGh+Gueeu/OS+Yoe5xIz901CYyw06AT+AJht8ai
-         RSmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=k3V7PIJt4df52x4EhJvQyNhxcs7GT3vwtzimn9FSBpE=;
-        b=JagykpOVEkwHzjAXr4GAqYfg2njRPZm9kIqs3tZ4YFt0cKjO85mERtjoPtanou0Io4
-         hQrA/7vHJx2XXAXRpEdq1QqZcr7JanbbmThuZWoELtIeUP4OCUobGEu/pxdkbhhFnxe7
-         7UvL1z9/AdphcBVLS6ptlSsW5Jfl3bwuQu38rmUJu1dRP9dMAyaGUWB0oeT7YFzx8N1x
-         s5En0p39l+Pj5deqPsxJNeZo7kYz3oTH1pyzHdOi97Z+P+jMD0XEIR8fIGmt9GEt6/zf
-         IFG33cQ2mKOvvNtU72iTx2wwE8Xv/wkOKDj/EQhmhVCGIpAEUvC6s4S1gXRMiSj9Ai3J
-         HNYg==
-X-Gm-Message-State: AOAM533zyH6jyr8LgL2Wme6h/A91Kfs9GnClhaQMciv0bA4GQ3ulGktZ
-        uGVQmF87i+QZg6G3cgnDlYqNxw==
-X-Google-Smtp-Source: ABdhPJwj2Jtz4lfgLVo8vX67xmuo0x4uN8Ad9r42TOq6WHEsTP+wOyClRvouTstm8/Iy4PJPH0I2JQ==
-X-Received: by 2002:a7b:c05a:: with SMTP id u26mr14890660wmc.172.1619770818847;
-        Fri, 30 Apr 2021 01:20:18 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id 18sm12705810wmo.47.2021.04.30.01.20.17
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 30 Apr 2021 01:20:18 -0700 (PDT)
-Subject: Re: [PATCH v4 1/9] ASoC: dt-bindings: wcd938x: add bindings for
- wcd938x
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+        id S229567AbhD3IVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 04:21:50 -0400
+Received: from hel-mailgw-01.vaisala.com ([193.143.230.17]:33010 "EHLO
+        hel-mailgw-01.vaisala.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229553AbhD3IVu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 04:21:50 -0400
+Received: from HEL-SMTP.corp.vaisala.com (HEL-SMTP.corp.vaisala.com [172.24.1.225])
+        by hel-mailgw-01.vaisala.com (Postfix) with ESMTP id A277A601F34D;
+        Fri, 30 Apr 2021 11:20:55 +0300 (EEST)
+Received: from localhost.localdomain ([172.24.252.69]) by HEL-SMTP.corp.vaisala.com over TLS secured channel with Microsoft SMTPSVC(8.5.9600.16384);
+         Fri, 30 Apr 2021 11:21:00 +0300
+Subject: Re: [PATCH v2 1/4] dt-bindings: nvmem: Add bootcount-nvmem
 To:     Rob Herring <robh@kernel.org>
-Cc:     broonie@kernel.org, devicetree@vger.kernel.org, perex@perex.cz,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        lgirdwood@gmail.com
-References: <20210414154845.21964-1-srinivas.kandagatla@linaro.org>
- <20210414154845.21964-2-srinivas.kandagatla@linaro.org>
- <20210415162947.GA1511094@robh.at.kernel.org>
- <96e7c752-a962-cb5b-c936-8151fd4c32ea@linaro.org>
-Message-ID: <22bab947-e760-be72-084b-41059bf02d19@linaro.org>
-Date:   Fri, 30 Apr 2021 09:20:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+Cc:     srinivas.kandagatla@linaro.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <cover.1619617498.git.nandor.han@vaisala.com>
+ <e0f9c2629ad651817a4726cd4f2d8e1775201595.1619617498.git.nandor.han@vaisala.com>
+ <20210429205310.GA1729011@robh.at.kernel.org>
+From:   Nandor Han <nandor.han@vaisala.com>
+Message-ID: <48fc2a6c-9c4d-d858-5ab5-c10c590d8345@vaisala.com>
+Date:   Fri, 30 Apr 2021 11:21:00 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <96e7c752-a962-cb5b-c936-8151fd4c32ea@linaro.org>
+In-Reply-To: <20210429205310.GA1729011@robh.at.kernel.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-OriginalArrivalTime: 30 Apr 2021 08:21:00.0548 (UTC) FILETIME=[C0D95C40:01D73D99]
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi,
 
-On 15/04/2021 17:53, Srinivas Kandagatla wrote:
-> Thanks Rob for quick review,
+Thanks for your feedback.
+
+<snip>
+
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - linux,bootcount-nvmem
 > 
-> On 15/04/2021 17:29, Rob Herring wrote:
->> On Wed, Apr 14, 2021 at 04:48:37PM +0100, Srinivas Kandagatla wrote:
->>> Qualcomm WCD9380/WCD9385 Codec is a standalone Hi-Fi audio codec IC
->>> connected over SoundWire. This device has two SoundWire device RX and
->>> TX respectively, supporting 4 x ADCs, ClassH, Ear, Aux PA, 2xHPH,
->>> 7 x TX diff inputs, 8 DMICs, MBHC.
->>>
->>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>> ---
->>>   .../bindings/sound/qcom,wcd938x.yaml          | 176 ++++++++++++++++++
->>>   1 file changed, 176 insertions(+)
->>>   create mode 100644 
->>> Documentation/devicetree/bindings/sound/qcom,wcd938x.yaml
->>>
->>> diff --git 
->>> a/Documentation/devicetree/bindings/sound/qcom,wcd938x.yaml 
->>> b/Documentation/devicetree/bindings/sound/qcom,wcd938x.yaml
->>> new file mode 100644
->>> index 000000000000..4c8fa8290af0
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/sound/qcom,wcd938x.yaml
->>> @@ -0,0 +1,176 @@
-> 
-> ...
-> 
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    codec {
->>> +        compatible = "qcom,wcd9380-codec";
->>> +        reset-gpios = <&tlmm 32 0>;
->>> +        #sound-dai-cells = <1>;
->>> +        qcom,tx-device = <&wcd938x_tx>;
->>> +        qcom,rx-device = <&wcd938x_rx>;
->>> +        qcom,micbias1-microvolt = <1800000>;
->>> +        qcom,micbias2-microvolt = <1800000>;
->>> +        qcom,micbias3-microvolt = <1800000>;
->>> +        qcom,micbias4-microvolt = <1800000>;
->>> +        qcom,mbhc-hphl-switch;
->>> +        qcom,mbhc-ground-switch;
->>> +        qcom,mbhc-button0-vthreshold-microvolt = <75000>;
->>> +        qcom,mbhc-button1-vthreshold-microvolt = <150000>;
->>> +        qcom,mbhc-button2-vthreshold-microvolt = <237000>;
->>> +        qcom,mbhc-button3-vthreshold-microvolt = <500000>;
->>> +        qcom,mbhc-button5-vthreshold-microvolt = <500000>;
->>> +        qcom,mbhc-button6-vthreshold-microvolt = <500000>;
->>> +        qcom,mbhc-button7-vthreshold-microvolt = <500000>;
->>> +    };
->>> +
->>> +    /* ... */
->>> +
->>> +    soundwire@3230000 {
->>> +        #address-cells = <2>;
->>> +        #size-cells = <0>;
->>> +        reg = <0x03230000 0x2000>;
->>> +        wcd938x_tx: codec@0,3 {
->>> +            compatible = "sdw20217010d00";
->>> +            reg  = <0 3>;
->>> +            qcom,direction = "tx";
->>> +            qcom,port-mapping = <2 3 4 5>;
->>> +        };
->>> +
->>> +        wcd938x_rx: codec@0,4 {
->>> +            compatible = "sdw20217010d00";
->>> +            reg  = <0 4>;
->>> +            qcom,direction = "rx";
->>> +            qcom,port-mapping = <1 2 3 4 5>;
->>> +        };
->>
->> This is a single device, right? We shouldn't need 3 nodes to describe
->> it. I think this should all be a single node like this:
->>
-> No, WCD938x is a Audio Codec which has two SoundWire Slave device (TX 
-> and RX). WCD938X reset lines and supplies are common for both TX and RX 
-> SoundWire devices.
-> 
-> However TX SoundWire device only has register access to codec 
-> CSR(Control Status registers).
-> 
-> So there are two SoundWire devices and a WCD938X common parts. Now 
-> making the common Codec part as a separate device made more sense here.
-> So we ended with total 3 devices.
-> 
-> 1 . WCD938x Codec which deals with all the codec side including Common 
-> parts.
-> 2. TX SoundWire device to configure TX SoundWire ports/interface and 
-> provide CSR access.
-> 3. RX SoundWire device to configure RX Soundwire ports/interface
+> What makes this Linux specific? IIRC, u-boot has boot counting function
+> too.
 > 
 
+U-Boot has indeed the counterpart functionality of bootcount feature, 
+however, in this particularly case is not called `u-boot,bootcount-nvmem`.
+If you have any suggestions I'm happy to change it.
+Should I remove the `linux` prefix?
 
-Are you okay with the existing device layout after providing the above 
-information?
+<snip>
 
+>> +
+>> +  linux,bootcount-magic:
+>> +    description: Override default mask value.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> 
+> I don't understand what this is. Is it magic or a mask?
 
-  codec {
-         compatible = "qcom,wcd9380-codec";
-         reset-gpios = <&tlmm 32 0>;
-         #sound-dai-cells = <1>;
-         qcom,tx-device = <&wcd938x_tx>;
-         qcom,rx-device = <&wcd938x_rx>;
-         qcom,micbias1-microvolt = <1800000>;
-         qcom,micbias2-microvolt = <1800000>;
-         qcom,micbias3-microvolt = <1800000>;
-         qcom,micbias4-microvolt = <1800000>;
-         qcom,mbhc-hphl-switch;
-         qcom,mbhc-ground-switch;
-         qcom,mbhc-button0-vthreshold-microvolt = <75000>;
-         qcom,mbhc-button1-vthreshold-microvolt = <150000>;
-         qcom,mbhc-button2-vthreshold-microvolt = <237000>;
-         qcom,mbhc-button3-vthreshold-microvolt = <500000>;
-         qcom,mbhc-button5-vthreshold-microvolt = <500000>;
-         qcom,mbhc-button6-vthreshold-microvolt = <500000>;
-         qcom,mbhc-button7-vthreshold-microvolt = <500000>;
-     };
-
-
-soundwire-controller@3230000 {
-     reg = <0 0x3230000 0 0x2000>;
-     compatible = "qcom,soundwire-v1.5.1";
-     wcd938x_tx: codec@0,3 {
-         compatible = "sdw20217010d00";
-         reg  = <0 3>;
-         qcom,direction = "tx";
-         qcom,port-mapping = <2 3 4 5>;
-     };
-};
-
-
-soundwire-controller@3210000 {
-     reg = <0 0x3210000 0 0x2000>;
-     compatible = "qcom,soundwire-v1.5.1";
-      wcd938x_rx: codec@0,4 {
-         compatible = "sdw20217010d00";
-         reg  = <0 4>;
-         qcom,direction = "rx";
-         qcom,port-mapping = <1 2 3 4 5>;
-     };
-};
-
-
-thanks,
-srini
-
+It's the magic value. Seems to be a mistake in the description.
+I'll correct this.
 
 > 
->> codec@0,3 {
->>          reg = <0 3>, <0 4>;
+>> +
+>> +dependencies:
+>> +  nvmem-cell-names: [ nvmem-cells ]
 > 
-> We can't have this, as these two SoundWire devices hang on different 
-> SoundWire bus instances.
+> Core schema takes care of this.
 > 
->>     compatible = "sdw20217010d00";
->>
->>          reset-gpios = <&tlmm 32 0>;
->>          #sound-dai-cells = <1>;
->>          qcom,micbias1-microvolt = <1800000>;
->>          qcom,micbias2-microvolt = <1800000>;
->>          qcom,micbias3-microvolt = <1800000>;
->>          qcom,micbias4-microvolt = <1800000>;
->>          qcom,mbhc-hphl-switch;
->>          qcom,mbhc-ground-switch;
->>          qcom,mbhc-button0-vthreshold-microvolt = <75000>;
->>          qcom,mbhc-button1-vthreshold-microvolt = <150000>;
->>          qcom,mbhc-button2-vthreshold-microvolt = <237000>;
->>          qcom,mbhc-button3-vthreshold-microvolt = <500000>;
->>          qcom,mbhc-button5-vthreshold-microvolt = <500000>;
->>          qcom,mbhc-button6-vthreshold-microvolt = <500000>;
->>          qcom,mbhc-button7-vthreshold-microvolt = <500000>;
->> };
->>
->> You'll have to figure out the qcom,direction and qcom,port-mapping parts
->> though.
+
+Ok. I will remove it in that case.
+
+<snip>
+
+>> +examples:
+>> +  # example with 16 bit nvram cell:
+>> +  - |
+>> +    bootcount {
+>> +        compatible = "linux,bootcount-nvmem";
+>> +        nvmem-cells = <&bootcount_regs>;
+>> +        nvmem-cell-names = "bootcount-regs";
+>> +    };
+>> +
+>> +    rtc: rtc@68 {
+>> +        bootcount_regs: bootcount_nvmem_regs@e {
+>> +            reg = <0x0e 0x2>;
 > 
-> That is the reason why we ended up with 3 devices here.
+> It would be simpler to just add a compatible here and get rid of the
+> 'bootcount' node here.
 > 
-> --srini
->>
->> Rob
->>
+
+This is the configuration for NVMEM cell provider and is done according 
+to bindings/nvmem.yaml document.
+Is here something that I'm missing?
+
+At least this method of declaring NVMEM cells providers are decoupling 
+the code from hardware declaration resulting in a more robust code.
+
+Regards,
+    Nandor
+
