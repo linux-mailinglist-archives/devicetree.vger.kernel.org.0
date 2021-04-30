@@ -2,108 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2D9C36F657
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 09:21:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7652A36F706
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 10:20:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229768AbhD3HWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 03:22:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37126 "EHLO
+        id S229538AbhD3IVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 04:21:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbhD3HWg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 03:22:36 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00A9DC06174A;
-        Fri, 30 Apr 2021 00:21:47 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id j28so17421982edy.9;
-        Fri, 30 Apr 2021 00:21:47 -0700 (PDT)
+        with ESMTP id S229532AbhD3IVI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 04:21:08 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CF0FC06174A
+        for <devicetree@vger.kernel.org>; Fri, 30 Apr 2021 01:20:20 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id t11-20020a05600c198bb02901476e13296aso602524wmq.0
+        for <devicetree@vger.kernel.org>; Fri, 30 Apr 2021 01:20:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=HpxUMjyXbZkzEt83poK9Tqo10qlhUK6WE4i1dvnGncw=;
-        b=ZsHFvBVbicZVJzVSsqNQid4JAMFYeUIOyZkOT+udNp/f2A7H3Ir3UKS53jJytqxmv8
-         iJG2ptyRSUGte9cJhvHEHulQvv7oUkBSztznpLxf2vnpsCQ1sne0057OgdNPYLDB/NsA
-         yXSWowl3PYQpJRyTe9JppcrjzdDsShy6T79ti+2NEPRIpcy+fy5SAAMmo/6W6tb04euY
-         HymDgJeREiYV1PeQxBcBiILvEIgwZpkIqexAR+AM+S+3uTKXXm3zZifVPM1F+Fxoo7Oz
-         ahqqY704luqoKc5s8jniTuMFq/z8a6qRykKvsn/rVTzpmoeMleaQ7qhtp0JuA9j9cA3a
-         PSfA==
+        d=linaro.org; s=google;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=k3V7PIJt4df52x4EhJvQyNhxcs7GT3vwtzimn9FSBpE=;
+        b=JOFR5P4z2JgXwIzzvzUuxVUDGInvtmF/Ji0eODgv9me7xLvxYX+/YftiHdCIkMxwcq
+         dX8QUfX37saKnVR26QTbhiDI33H1uwjT+Zf5GCdFyvDHMdEC/KQKBSfp+4JEFjg6VQze
+         PUFoyG3opZ5Gh+E8Z3C3UR73y5Imz7ESWVqq0xMYlod7fMrRemuftXs9t3pvUUBPQYHS
+         JXp1kp8dMxWRjJfpwHMjEkJLT3Rati3hr/cF6k+npMbB9reFWiOPrpJXsIcmStFW4IjG
+         AR7FzIdL74nsE9HDPO4dHz5rxND0LRGh+Gueeu/OS+Yoe5xIz901CYyw06AT+AJht8ai
+         RSmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=HpxUMjyXbZkzEt83poK9Tqo10qlhUK6WE4i1dvnGncw=;
-        b=XocVrZnguNp/dhH4ZoMu0jKV2FTakvZsDd2BYY/DbNWYvpjUG0SjqT27bJcW40xOf6
-         0T8BWth2kZAparHRMbfcCEVkvh4UjtVI/J+ROqcZxDgyHKMirYbdtyCHOixa7OokyjlK
-         2dkDCO7BNzwHvyA5P0wlpA9xijQB+u/AXlpW8/Ezi0IuQT3SbPFDvN8uuXyRq09q4vG3
-         WBizpg1YRoqf5rLN1QvoOC0KCmIRd8sCG0z/e1mP02wWx4+08y2MLr8mGwTaAzRn8LDd
-         BRKGgMje/RJGEBuZOL+nT6gEowvqPFOJVHmvUx3TqHhJiksu0WkYKZaElhd0FiRxIsjV
-         a88A==
-X-Gm-Message-State: AOAM533B/VjgsUigVNR/T0NNL+4T0IpRJiUZdSGMNLQWO7OYPtnfATSL
-        +6vi9mCFNcfRmEjaYr1eOks=
-X-Google-Smtp-Source: ABdhPJxdQhNnPfC5GJPB2i3YmP+3TesomiWl9A9y9B69mHJpWDPDlaPa7tM76eTnXZ2arO7+qw1GHw==
-X-Received: by 2002:a50:eb47:: with SMTP id z7mr2208979edp.68.1619767306753;
-        Fri, 30 Apr 2021 00:21:46 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id cw13sm1378858ejb.113.2021.04.30.00.21.45
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=k3V7PIJt4df52x4EhJvQyNhxcs7GT3vwtzimn9FSBpE=;
+        b=JagykpOVEkwHzjAXr4GAqYfg2njRPZm9kIqs3tZ4YFt0cKjO85mERtjoPtanou0Io4
+         hQrA/7vHJx2XXAXRpEdq1QqZcr7JanbbmThuZWoELtIeUP4OCUobGEu/pxdkbhhFnxe7
+         7UvL1z9/AdphcBVLS6ptlSsW5Jfl3bwuQu38rmUJu1dRP9dMAyaGUWB0oeT7YFzx8N1x
+         s5En0p39l+Pj5deqPsxJNeZo7kYz3oTH1pyzHdOi97Z+P+jMD0XEIR8fIGmt9GEt6/zf
+         IFG33cQ2mKOvvNtU72iTx2wwE8Xv/wkOKDj/EQhmhVCGIpAEUvC6s4S1gXRMiSj9Ai3J
+         HNYg==
+X-Gm-Message-State: AOAM533zyH6jyr8LgL2Wme6h/A91Kfs9GnClhaQMciv0bA4GQ3ulGktZ
+        uGVQmF87i+QZg6G3cgnDlYqNxw==
+X-Google-Smtp-Source: ABdhPJwj2Jtz4lfgLVo8vX67xmuo0x4uN8Ad9r42TOq6WHEsTP+wOyClRvouTstm8/Iy4PJPH0I2JQ==
+X-Received: by 2002:a7b:c05a:: with SMTP id u26mr14890660wmc.172.1619770818847;
+        Fri, 30 Apr 2021 01:20:18 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id 18sm12705810wmo.47.2021.04.30.01.20.17
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 30 Apr 2021 00:21:46 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     shawn.lin@rock-chips.com, robh+dt@kernel.org,
-        ulf.hansson@linaro.org, Jisheng.Zhang@synaptics.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [RFC PATCH v1] dt-bindings: mmc: snps,dwcmshc-sdhci: fix rockchip,txclk-tapnum
-Date:   Fri, 30 Apr 2021 09:21:38 +0200
-Message-Id: <20210430072138.6537-1-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
+        Fri, 30 Apr 2021 01:20:18 -0700 (PDT)
+Subject: Re: [PATCH v4 1/9] ASoC: dt-bindings: wcd938x: add bindings for
+ wcd938x
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     broonie@kernel.org, devicetree@vger.kernel.org, perex@perex.cz,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com
+References: <20210414154845.21964-1-srinivas.kandagatla@linaro.org>
+ <20210414154845.21964-2-srinivas.kandagatla@linaro.org>
+ <20210415162947.GA1511094@robh.at.kernel.org>
+ <96e7c752-a962-cb5b-c936-8151fd4c32ea@linaro.org>
+Message-ID: <22bab947-e760-be72-084b-41059bf02d19@linaro.org>
+Date:   Fri, 30 Apr 2021 09:20:17 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <96e7c752-a962-cb5b-c936-8151fd4c32ea@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A test with the command below gives this error:
-mmc@fe310000: rockchip,txclk-tapnum: missing size tag in [[8]]
+Hi Rob,
 
-With this added to a dts file:
-rockchip,txclk-tapnum = <0x8>;
+On 15/04/2021 17:53, Srinivas Kandagatla wrote:
+> Thanks Rob for quick review,
+> 
+> On 15/04/2021 17:29, Rob Herring wrote:
+>> On Wed, Apr 14, 2021 at 04:48:37PM +0100, Srinivas Kandagatla wrote:
+>>> Qualcomm WCD9380/WCD9385 Codec is a standalone Hi-Fi audio codec IC
+>>> connected over SoundWire. This device has two SoundWire device RX and
+>>> TX respectively, supporting 4 x ADCs, ClassH, Ear, Aux PA, 2xHPH,
+>>> 7 x TX diff inputs, 8 DMICs, MBHC.
+>>>
+>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>> ---
+>>>   .../bindings/sound/qcom,wcd938x.yaml          | 176 ++++++++++++++++++
+>>>   1 file changed, 176 insertions(+)
+>>>   create mode 100644 
+>>> Documentation/devicetree/bindings/sound/qcom,wcd938x.yaml
+>>>
+>>> diff --git 
+>>> a/Documentation/devicetree/bindings/sound/qcom,wcd938x.yaml 
+>>> b/Documentation/devicetree/bindings/sound/qcom,wcd938x.yaml
+>>> new file mode 100644
+>>> index 000000000000..4c8fa8290af0
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/sound/qcom,wcd938x.yaml
+>>> @@ -0,0 +1,176 @@
+> 
+> ...
+> 
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    codec {
+>>> +        compatible = "qcom,wcd9380-codec";
+>>> +        reset-gpios = <&tlmm 32 0>;
+>>> +        #sound-dai-cells = <1>;
+>>> +        qcom,tx-device = <&wcd938x_tx>;
+>>> +        qcom,rx-device = <&wcd938x_rx>;
+>>> +        qcom,micbias1-microvolt = <1800000>;
+>>> +        qcom,micbias2-microvolt = <1800000>;
+>>> +        qcom,micbias3-microvolt = <1800000>;
+>>> +        qcom,micbias4-microvolt = <1800000>;
+>>> +        qcom,mbhc-hphl-switch;
+>>> +        qcom,mbhc-ground-switch;
+>>> +        qcom,mbhc-button0-vthreshold-microvolt = <75000>;
+>>> +        qcom,mbhc-button1-vthreshold-microvolt = <150000>;
+>>> +        qcom,mbhc-button2-vthreshold-microvolt = <237000>;
+>>> +        qcom,mbhc-button3-vthreshold-microvolt = <500000>;
+>>> +        qcom,mbhc-button5-vthreshold-microvolt = <500000>;
+>>> +        qcom,mbhc-button6-vthreshold-microvolt = <500000>;
+>>> +        qcom,mbhc-button7-vthreshold-microvolt = <500000>;
+>>> +    };
+>>> +
+>>> +    /* ... */
+>>> +
+>>> +    soundwire@3230000 {
+>>> +        #address-cells = <2>;
+>>> +        #size-cells = <0>;
+>>> +        reg = <0x03230000 0x2000>;
+>>> +        wcd938x_tx: codec@0,3 {
+>>> +            compatible = "sdw20217010d00";
+>>> +            reg  = <0 3>;
+>>> +            qcom,direction = "tx";
+>>> +            qcom,port-mapping = <2 3 4 5>;
+>>> +        };
+>>> +
+>>> +        wcd938x_rx: codec@0,4 {
+>>> +            compatible = "sdw20217010d00";
+>>> +            reg  = <0 4>;
+>>> +            qcom,direction = "rx";
+>>> +            qcom,port-mapping = <1 2 3 4 5>;
+>>> +        };
+>>
+>> This is a single device, right? We shouldn't need 3 nodes to describe
+>> it. I think this should all be a single node like this:
+>>
+> No, WCD938x is a Audio Codec which has two SoundWire Slave device (TX 
+> and RX). WCD938X reset lines and supplies are common for both TX and RX 
+> SoundWire devices.
+> 
+> However TX SoundWire device only has register access to codec 
+> CSR(Control Status registers).
+> 
+> So there are two SoundWire devices and a WCD938X common parts. Now 
+> making the common Codec part as a separate device made more sense here.
+> So we ended with total 3 devices.
+> 
+> 1 . WCD938x Codec which deals with all the codec side including Common 
+> parts.
+> 2. TX SoundWire device to configure TX SoundWire ports/interface and 
+> provide CSR access.
+> 3. RX SoundWire device to configure RX Soundwire ports/interface
+> 
 
-A look at the driver shows that:
-DLL_TXCLK_TAPNUM_DEFAULT	0x8
 
-Adding the default value to the dts files is not needed.
-Every clock is divided into 32 taps equally and
-the max value is 31.
+Are you okay with the existing device layout after providing the above 
+information?
 
-Fix rockchip,txclk-tapnum property in snps,dwcmshc-sdhci.yaml by
-adding a minimum, maximum and default.
 
-In the driver the function of_property_read_u8() is used,
-but with dtbs_check the notifications only disappear in YAML
-by changing uint8 to uint32.
-The driver has no limit check for rockchip,txclk-tapnum.
+  codec {
+         compatible = "qcom,wcd9380-codec";
+         reset-gpios = <&tlmm 32 0>;
+         #sound-dai-cells = <1>;
+         qcom,tx-device = <&wcd938x_tx>;
+         qcom,rx-device = <&wcd938x_rx>;
+         qcom,micbias1-microvolt = <1800000>;
+         qcom,micbias2-microvolt = <1800000>;
+         qcom,micbias3-microvolt = <1800000>;
+         qcom,micbias4-microvolt = <1800000>;
+         qcom,mbhc-hphl-switch;
+         qcom,mbhc-ground-switch;
+         qcom,mbhc-button0-vthreshold-microvolt = <75000>;
+         qcom,mbhc-button1-vthreshold-microvolt = <150000>;
+         qcom,mbhc-button2-vthreshold-microvolt = <237000>;
+         qcom,mbhc-button3-vthreshold-microvolt = <500000>;
+         qcom,mbhc-button5-vthreshold-microvolt = <500000>;
+         qcom,mbhc-button6-vthreshold-microvolt = <500000>;
+         qcom,mbhc-button7-vthreshold-microvolt = <500000>;
+     };
 
-make ARCH=arm64 dtbs_check
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+soundwire-controller@3230000 {
+     reg = <0 0x3230000 0 0x2000>;
+     compatible = "qcom,soundwire-v1.5.1";
+     wcd938x_tx: codec@0,3 {
+         compatible = "sdw20217010d00";
+         reg  = <0 3>;
+         qcom,direction = "tx";
+         qcom,port-mapping = <2 3 4 5>;
+     };
+};
 
-diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-index e6c9a2f77..f43d8d829 100644
---- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-+++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-@@ -48,7 +48,10 @@ properties:
- 
-   rockchip,txclk-tapnum:
-     description: Specify the number of delay for tx sampling.
--    $ref: /schemas/types.yaml#/definitions/uint8
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 31
-+    default: 8
- 
- 
- required:
--- 
-2.11.0
 
+soundwire-controller@3210000 {
+     reg = <0 0x3210000 0 0x2000>;
+     compatible = "qcom,soundwire-v1.5.1";
+      wcd938x_rx: codec@0,4 {
+         compatible = "sdw20217010d00";
+         reg  = <0 4>;
+         qcom,direction = "rx";
+         qcom,port-mapping = <1 2 3 4 5>;
+     };
+};
+
+
+thanks,
+srini
+
+
+> 
+>> codec@0,3 {
+>>          reg = <0 3>, <0 4>;
+> 
+> We can't have this, as these two SoundWire devices hang on different 
+> SoundWire bus instances.
+> 
+>>     compatible = "sdw20217010d00";
+>>
+>>          reset-gpios = <&tlmm 32 0>;
+>>          #sound-dai-cells = <1>;
+>>          qcom,micbias1-microvolt = <1800000>;
+>>          qcom,micbias2-microvolt = <1800000>;
+>>          qcom,micbias3-microvolt = <1800000>;
+>>          qcom,micbias4-microvolt = <1800000>;
+>>          qcom,mbhc-hphl-switch;
+>>          qcom,mbhc-ground-switch;
+>>          qcom,mbhc-button0-vthreshold-microvolt = <75000>;
+>>          qcom,mbhc-button1-vthreshold-microvolt = <150000>;
+>>          qcom,mbhc-button2-vthreshold-microvolt = <237000>;
+>>          qcom,mbhc-button3-vthreshold-microvolt = <500000>;
+>>          qcom,mbhc-button5-vthreshold-microvolt = <500000>;
+>>          qcom,mbhc-button6-vthreshold-microvolt = <500000>;
+>>          qcom,mbhc-button7-vthreshold-microvolt = <500000>;
+>> };
+>>
+>> You'll have to figure out the qcom,direction and qcom,port-mapping parts
+>> though.
+> 
+> That is the reason why we ended up with 3 devices here.
+> 
+> --srini
+>>
+>> Rob
+>>
