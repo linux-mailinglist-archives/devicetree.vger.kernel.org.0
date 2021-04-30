@@ -2,106 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B1AB36FF01
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 18:57:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E59037007A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 20:29:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231147AbhD3Q5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 12:57:43 -0400
-Received: from ms11p00im-qufo17291901.me.com ([17.58.38.48]:47116 "EHLO
-        ms11p00im-qufo17291901.me.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230195AbhD3Q5m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Apr 2021 12:57:42 -0400
-X-Greylist: delayed 490 seconds by postgrey-1.27 at vger.kernel.org; Fri, 30 Apr 2021 12:57:42 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-        t=1619801323; bh=gKPg4laKAZy+RHF+D3ii19N0LJXtiXVtOwEzgUk8ws8=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=0fMvPTXZl/U10xLNN7Azbfa6h2gCnmFs8IsrXw2Kzg3a8g8MkG7EfFbtpbvfASNGp
-         Q3D2O3XLBT3f42D6QQI8/JinbPlES5tAtXr2OL+hT5fh+fMPcg4oO2kfqOwMbpHUjI
-         gtnfS00rfXjqUWOLl8/I1BdFuwnloSemHH8qIoAH4vFWUzlJAjRNTA8wkdNSrageYh
-         DvOIRJyaYfgdiuZtp6G4I+NlHvw0h4tZ31ZhOtUY2L/YwrJKTGvP/F3GDJFlC5OGKJ
-         F/x5z0ezR4GRhovArt2CqpmtlTm5iVy8k2sCcD5P1OurUlUT5p92UBZHRAoUAjfW38
-         l4ysE6hag5A8A==
-Received: from gnbcxl0029.gnb.st.com (101.220.150.77.rev.sfr.net [77.150.220.101])
-        by ms11p00im-qufo17291901.me.com (Postfix) with ESMTPSA id 3E7B3CA0477;
-        Fri, 30 Apr 2021 16:48:40 +0000 (UTC)
-Date:   Fri, 30 Apr 2021 18:48:31 +0200
-From:   Alain Volmat <avolmat@me.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 0/7] clk: st: embed clock outputs within drivers
-Message-ID: <20210430164830.GA6248@gnbcxl0029.gnb.st.com>
-Mail-Followup-To: Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20210331201632.24530-1-avolmat@me.com>
+        id S231140AbhD3Sai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 14:30:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44178 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230462AbhD3Sai (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 14:30:38 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E021FC06138C
+        for <devicetree@vger.kernel.org>; Fri, 30 Apr 2021 11:29:49 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id g65so9199243wmg.2
+        for <devicetree@vger.kernel.org>; Fri, 30 Apr 2021 11:29:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Q48xkUDL5m0902EezKV/zpsj/dv/vtHcGNdT7vBOQFE=;
+        b=eqXDxMpbRa9jxeP0xddMNS/VK8JhDK1dDygXovckB/aNwJHyMlZZ02qEl2n+hmR34a
+         dVC0bJL1Y88pO2Y6ztJdct1gVYbQMOvr737SYFvHvAP21HnK2GmbDMY/ENHn9xqyRqtD
+         2c/04x0Fimpr0MnQgWwdDbthYxUJhNwqFGdc5MWNyFu1JHkDuJveWa/Ym6x5TBPLqMnR
+         ipxbkHmldGzDmcPlV9ENRsII59r5RLj9/FAbk8cIGB1FDq5nJm+x9wTEeT92WeJli5hL
+         F58PUrNLEn7ZFC0HBri4xhR6xQDyFys/woJYehoB0VN/mO/iPML/+BrZunq5ugWw6Xjr
+         j/bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Q48xkUDL5m0902EezKV/zpsj/dv/vtHcGNdT7vBOQFE=;
+        b=YNrmbehr6ce/hAP+Nw3vrrev+PJHtEOz5chP7ZIqIDE0VF7f0+mtTGZJnA/Lknu6Q2
+         oeLDoUwbKTUZRgUCuZsjSecct0rX+KWt0vzdKXS9TVVhGZBg14aFOUSKe704qDBz0+aS
+         WsXnlbq2QhoxhP6cWrH4x9d08j49nWM+mzFZDQXiTL9anOai528z18XI/Mv0quW64Dyb
+         /vQsoaCfCpmW62AwmRr4vo7HXaXck2tX38cA2KM6bzTKKzxe6MpocrcszmukvdLbR7Be
+         TU3Y4jlsTZa0LdWTLBeQhdzxEkv6qox1XfBgdw1yd/8SFDjZ+HMsZsjITCCfGaxWTBhB
+         fE1w==
+X-Gm-Message-State: AOAM5333PwBf+wp3eeuW66MR9neygW1eZCnIvbheFvl74ICKS192OBTJ
+        dMyze1z7Y+XRQ2KZ38ngQu9pEQ==
+X-Google-Smtp-Source: ABdhPJzMFnNGAoNGZMtImg3i628rWxsx0wXh6Crp1xU/mWChiYzXhXro1NPHLaUNpQKhB9itUvxxlA==
+X-Received: by 2002:a7b:c145:: with SMTP id z5mr3857911wmi.77.1619807388561;
+        Fri, 30 Apr 2021 11:29:48 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id z7sm3059783wrl.11.2021.04.30.11.29.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Apr 2021 11:29:47 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v3] dt-bindings: net: Convert mdio-gpio to yaml
+Date:   Fri, 30 Apr 2021 18:29:41 +0000
+Message-Id: <20210430182941.915101-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210331201632.24530-1-avolmat@me.com>
-X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
- =?UTF-8?Q?2903e8d5c8f:6.0.391,18.0.761,17.0.607.475.0000000_definitions?=
- =?UTF-8?Q?=3D2021-04-30=5F08:2021-04-30=5F02,2021-04-30=5F08,2020-04-07?=
- =?UTF-8?Q?=5F01_signatures=3D0?=
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=862 mlxscore=0 phishscore=0
- bulkscore=0 suspectscore=0 spamscore=0 adultscore=0 malwarescore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2104300110
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Converts net/mdio-gpio.txt to yaml
 
-Gentle reminder about this serie concerning STi platform clock drivers.
-Could you have a look at them ?
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+Changes since v1:
+- fixes yamllint warning about indent
+- added maxItems 3
 
-Thanks.
-Alain
+Changes since v2:
+- fixed example (gpios need 2 entries)
 
-On Wed, Mar 31, 2021 at 10:16:25PM +0200, Alain Volmat wrote:
-> Most of ST clock drivers used by STi platform are updated in
-> order to introduce clock outputs informations within each drivers
-> and thus allow to avoid having to rely on clock-output-names properties
-> within DT clock nodes.
-> For that purpose, drivers are updated to allow handling both modes
-> (with or without clock-output-names).
-> Once all DT will have been updated, the legacy mode could be removed
-> from the drivers.
-> This will also allow, once all STi DT will be corrected, to remove the
-> of_clk_detect_critical API from clk core code since STi clock drivers
-> are the only drivers using this API.
-> 
-> Alain Volmat (7):
->   clk: st: clkgen-pll: remove unused variable of struct clkgen_pll
->   clk: st: flexgen: embed soc clock outputs within compatible data
->   dt-bindings: clock: st: flexgen: add new introduced compatible
->   clk: st: clkgen-pll: embed soc clock outputs within compatible data
->   dt-bindings: clock: st: clkgen-pll: add new introduced compatible
->   clk: st: clkgen-fsyn: embed soc clock outputs within compatible data
->   dt-bindings: clock: st: clkgen-fsyn: add new introduced compatible
-> 
->  .../bindings/clock/st/st,clkgen-pll.txt       |   3 +
->  .../bindings/clock/st/st,flexgen.txt          |  10 +
->  .../bindings/clock/st/st,quadfs.txt           |   3 +
->  drivers/clk/st/clk-flexgen.c                  | 367 +++++++++++++++++-
->  drivers/clk/st/clkgen-fsyn.c                  | 113 +++++-
->  drivers/clk/st/clkgen-pll.c                   | 121 +++++-
->  6 files changed, 576 insertions(+), 41 deletions(-)
-> 
-> ---
-> v4: - add an additional CLK_IS_CRITICAL within flexgen driver
-> v3: - removal some useless CLK_IS_CRITICAL and add some comments
->     - only keep clk drivers/binding patches within the serie
-> 
-> -- 
-> 2.17.1
-> 
+ .../devicetree/bindings/net/mdio-gpio.txt     | 27 ---------
+ .../devicetree/bindings/net/mdio-gpio.yaml    | 57 +++++++++++++++++++
+ 2 files changed, 57 insertions(+), 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/mdio-gpio.txt
+ create mode 100644 Documentation/devicetree/bindings/net/mdio-gpio.yaml
+
+diff --git a/Documentation/devicetree/bindings/net/mdio-gpio.txt b/Documentation/devicetree/bindings/net/mdio-gpio.txt
+deleted file mode 100644
+index 4d91a36c5cf5..000000000000
+--- a/Documentation/devicetree/bindings/net/mdio-gpio.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-MDIO on GPIOs
+-
+-Currently defined compatibles:
+-- virtual,gpio-mdio
+-- microchip,mdio-smi0
+-
+-MDC and MDIO lines connected to GPIO controllers are listed in the
+-gpios property as described in section VIII.1 in the following order:
+-
+-MDC, MDIO.
+-
+-Note: Each gpio-mdio bus should have an alias correctly numbered in "aliases"
+-node.
+-
+-Example:
+-
+-aliases {
+-	mdio-gpio0 = &mdio0;
+-};
+-
+-mdio0: mdio {
+-	compatible = "virtual,mdio-gpio";
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	gpios = <&qe_pio_a 11
+-		 &qe_pio_c 6>;
+-};
+diff --git a/Documentation/devicetree/bindings/net/mdio-gpio.yaml b/Documentation/devicetree/bindings/net/mdio-gpio.yaml
+new file mode 100644
+index 000000000000..183cf248d597
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/mdio-gpio.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/mdio-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MDIO on GPIOs
++
++maintainers:
++  - Andrew Lunn <andrew@lunn.ch>
++  - Florian Fainelli <f.fainelli@gmail.com>
++  - Heiner Kallweit <hkallweit1@gmail.com>
++
++allOf:
++  - $ref: "mdio.yaml#"
++
++properties:
++  compatible:
++    enum:
++      - virtual,mdio-gpio
++      - microchip,mdio-smi0
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  gpios:
++    minItems: 2
++    maxItems: 3
++    description: |
++      MDC and MDIO lines connected to GPIO controllers are listed in
++      the gpios property as described in section VIII.1 in the
++      following order: MDC, MDIO.
++
++#Note: Each gpio-mdio bus should have an alias correctly numbered in "aliases"
++#node.
++unevaluatedProperties: false
++
++examples:
++  - |
++    aliases {
++        mdio-gpio0 = &mdio0;
++    };
++
++    mdio0: mdio {
++      compatible = "virtual,mdio-gpio";
++      #address-cells = <1>;
++      #size-cells = <0>;
++      gpios = <&qe_pio_a 11>,
++              <&qe_pio_c 6>;
++      ethphy0: ethernet-phy@0 {
++        reg = <0>;
++      };
++    };
++...
+-- 
+2.26.3
+
