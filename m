@@ -2,154 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E8FC36F76C
-	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 10:56:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A33836F779
+	for <lists+devicetree@lfdr.de>; Fri, 30 Apr 2021 11:02:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229838AbhD3I46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Apr 2021 04:56:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57884 "EHLO
+        id S230484AbhD3JDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Apr 2021 05:03:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbhD3I45 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 04:56:57 -0400
-Received: from mout-u-204.mailbox.org (mout-u-204.mailbox.org [IPv6:2001:67c:2050:1::465:204])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68A80C06174A;
-        Fri, 30 Apr 2021 01:56:09 -0700 (PDT)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [80.241.60.240])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-u-204.mailbox.org (Postfix) with ESMTPS id 4FWmS75rt0zQjwd;
-        Fri, 30 Apr 2021 10:56:07 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp1.mailbox.org ([80.241.60.240])
-        by spamfilter03.heinlein-hosting.de (spamfilter03.heinlein-hosting.de [80.241.56.117]) (amavisd-new, port 10030)
-        with ESMTP id 9F8beDW6lYQs; Fri, 30 Apr 2021 10:56:04 +0200 (CEST)
-Subject: Re: [PATCH v4 2/2] drivers: dma: altera-msgdma: add OF support
-To:     Olivier Dautricourt <olivier.dautricourt@orolia.com>,
-        Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <YIrAJce3Ej8hNbkA@orolia.com>
-From:   Stefan Roese <sr@denx.de>
-Message-ID: <5377361b-5602-1c03-04be-384f06150240@denx.de>
-Date:   Fri, 30 Apr 2021 10:56:04 +0200
+        with ESMTP id S229522AbhD3JDm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Apr 2021 05:03:42 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BF74C06174A;
+        Fri, 30 Apr 2021 02:02:53 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id m11so4858779pfc.11;
+        Fri, 30 Apr 2021 02:02:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BfGbSMZc7bvjVY6nx1HPF1pRepvP5IrlXq3RZS+72MY=;
+        b=pz8Tc/MBWdz5VC1p7aLi42FHnVMNJs3NPJ2adbMjhFR2Zzs/aTW1U4L1dfZWNqyJYK
+         MKO7iMs57DpAilXlC4ywIVRs9yA9CGIff6s/jvY/L9swib7pYvOxlsCkgEYBYWXgFBxR
+         zktT/pk5pQXucYSR5DfLOp4o7guK6T8p+kAdI7AVLfshQEbe2DiloOYFWeF2aoBaEn0U
+         4eeAVzxCHUmgF4pByfxpc+/LQPG6vBE3e6KH2fzUG28kX1NWRCXjppFZu5DxqfIEIKP+
+         ooB49gkVdVvSAidHKXX8kQJ/CTTG18Ug5s1QRVqraOGtKWurhecXnSWXVo9wWMJTBEhI
+         BGAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BfGbSMZc7bvjVY6nx1HPF1pRepvP5IrlXq3RZS+72MY=;
+        b=CdwVhx5YTpxvWG4sSjWKY8KdOWjvkU01xnAZQMmZuL48+016qdYOD/oR0tj+9sKN0U
+         Zl1u7Sd38TZU5Wr6ONbo/V/c9+gVrwz2fGnnE6WRbqeT6gUaZGKMWkfEjiwdLKBeIeeO
+         evsCriLgfg1isSjgQdGjldW/yopvJHwBIHK21mIk4X2sz+EDWlVkqkXHgAPQ9zGvCbCm
+         JtshJEaYvuO3s0z2am45BMctf8WK52JZ7vZCSHhxyWsS1VUvmb0QbbODUHAIZRd6g+/O
+         /4S+quOMg/9+HqyzkrmD7xnB7CFwDZttm/XMP7rGf60ATAMky2F+N3hsNlFhOP5E5Qeh
+         dW/Q==
+X-Gm-Message-State: AOAM533CgbwgX2yvFchD79D3FXQBs/FtH3D6NrDkv0fkC3D2jRF8uWFf
+        cCVoUL4hp4JfQxJAEfHZ2tUhDEMGfhXrsJUqV7U=
+X-Google-Smtp-Source: ABdhPJz72seNM8qiGKE4ZlJrRuJfr9QGEGlAlFoa0eNUUgXz/SZALqMGcniYzRfjPFox5XdFo3teVG2gNVcyunQjHVs=
+X-Received: by 2002:a65:5a4d:: with SMTP id z13mr3766067pgs.4.1619773372827;
+ Fri, 30 Apr 2021 02:02:52 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <YIrAJce3Ej8hNbkA@orolia.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: de-DE
-Content-Transfer-Encoding: 8bit
-X-MBO-SPAM-Probability: 
-X-Rspamd-Score: -5.03 / 15.00 / 15.00
-X-Rspamd-Queue-Id: CAD9E1857
-X-Rspamd-UID: f04d74
+References: <20210429122806.3814330-1-sean@geanix.com> <20210429122806.3814330-4-sean@geanix.com>
+In-Reply-To: <20210429122806.3814330-4-sean@geanix.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 30 Apr 2021 12:02:36 +0300
+Message-ID: <CAHp75Vf7-5EOpsP8u4rfcjceoKFwQH+U90+JazsLJvmARXmEBQ@mail.gmail.com>
+Subject: Re: [PATCH v4 4/6] iio: accel: fxls8962af: add interrupt support
+To:     Sean Nyekjaer <sean@geanix.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        =?UTF-8?B?TnVubyBTw6E=?= <Nuno.Sa@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29.04.21 16:18, Olivier Dautricourt wrote:
-> This driver had no device tree support.
-> 
-> - add compatible field "altr,msgdma"
-> - define msgdma_of_xlate, with no argument
-> - register dma controller with of_dma_controller_register
-> 
-> Signed-off-by: Olivier Dautricourt <olivier.dautricourt@orolia.com>
+On Thu, Apr 29, 2021 at 3:28 PM Sean Nyekjaer <sean@geanix.com> wrote:
+>
+> Preparation commit for the next that adds hw buffered sampling
 
-Reviewed-by: Stefan Roese <sr@denx.de>
+It misses a better description of what's going on here.
+It misses the period at the end of the line.
 
-Thanks,
-Stefan
+...
 
-> ---
-> 
-> Notes:
->      Changes in v2:
->      	none
-> 
->      Changes from v2 to v3:
->      	Removed CONFIG_OF #ifdef's and use if (IS_ENABLED(CONFIG_OF))
->      	only once.
-> 
->      Changes from v3 to v4
->      	Reintroduce #ifdef CONFIG_OF for msgdma_match
->      	as it produces a unused variable warning
-> 
->   drivers/dma/altera-msgdma.c | 29 +++++++++++++++++++++++++++++
->   1 file changed, 29 insertions(+)
-> 
-> diff --git a/drivers/dma/altera-msgdma.c b/drivers/dma/altera-msgdma.c
-> index 9a841ce5f0c5..7e58385facef 100644
-> --- a/drivers/dma/altera-msgdma.c
-> +++ b/drivers/dma/altera-msgdma.c
-> @@ -19,6 +19,7 @@
->   #include <linux/module.h>
->   #include <linux/platform_device.h>
->   #include <linux/slab.h>
-> +#include <linux/of_dma.h>
-> 
->   #include "dmaengine.h"
-> 
-> @@ -784,6 +785,14 @@ static int request_and_map(struct platform_device *pdev, const char *name,
->   	return 0;
->   }
-> 
-> +static struct dma_chan *msgdma_of_xlate(struct of_phandle_args *dma_spec,
-> +					struct of_dma *ofdma)
+> +#include <linux/of_irq.h>
+
+See below.
+
+...
+
+> +static irqreturn_t fxls8962af_interrupt(int irq, void *p)
 > +{
-> +	struct msgdma_device *d = ofdma->of_dma_data;
+> +       struct iio_dev *indio_dev = p;
+> +       struct fxls8962af_data *data = iio_priv(indio_dev);
+> +       unsigned int reg;
+> +       int ret;
 > +
-> +	return dma_get_any_slave_channel(&d->dmadev);
+> +       ret = regmap_read(data->regmap, FXLS8962AF_INT_STATUS, &reg);
+> +       if (ret < 0)
+> +               return IRQ_NONE;
+> +
+> +       return IRQ_NONE;
+
+And how is it handled?
+
 > +}
-> +
->   /**
->    * msgdma_probe - Driver probe function
->    * @pdev: Pointer to the platform_device structure
-> @@ -888,6 +897,16 @@ static int msgdma_probe(struct platform_device *pdev)
->   	if (ret)
->   		goto fail;
-> 
-> +	if (IS_ENABLED(CONFIG_OF)) {
-> +		ret = of_dma_controller_register(pdev->dev.of_node,
-> +						 msgdma_of_xlate, mdev);
-> +		if (ret) {
-> +			dev_err(&pdev->dev,
-> +				"failed to register dma controller");
-> +			goto fail;
-> +		}
-> +	}
-> +
->   	dev_notice(&pdev->dev, "Altera mSGDMA driver probe success\n");
-> 
->   	return 0;
-> @@ -916,9 +935,19 @@ static int msgdma_remove(struct platform_device *pdev)
->   	return 0;
->   }
-> 
-> +#ifdef CONFIG_OF
-> +static const struct of_device_id msgdma_match[] = {
-> +	{ .compatible = "altr,msgdma",},
-> +	{ }
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, msgdma_match);
-> +#endif
-> +
->   static struct platform_driver msgdma_driver = {
->   	.driver = {
->   		.name = "altera-msgdma",
-> +		.of_match_table = of_match_ptr(msgdma_match),
->   	},
->   	.probe = msgdma_probe,
->   	.remove = msgdma_remove,
-> --
-> 2.31.0.rc2
-> 
 
+...
 
-Viele Grüße,
-Stefan
+> +static void fxls8962af_get_irq(struct device *dev, enum fxls8962af_int_pin *pin)
+> +{
+> +       if (!device_property_match_string(dev, "interrupt-names", "INT2")) {
+
+This doesn't feel right.
+You should use fwnode_get_irq() or introduce fwnode_get_irq_by_name().
+
+Since ACPI has no given names for Interrupt resources (and moreover
+there are two types of them), it also needs a support from the
+software like we have for GPIOs with struct acpi_gpio_table (luckily
+it's part of _DSD() nowadays, but in general it's not required by the
+spec).
+
+> +               *pin = FXLS8962AF_PIN_INT2;
+> +               return;
+> +       }
+> +
+> +       *pin = FXLS8962AF_PIN_INT1;
+> +}
+
 
 -- 
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-51 Fax: (+49)-8142-66989-80 Email: sr@denx.de
+With Best Regards,
+Andy Shevchenko
