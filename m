@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A8DC370538
-	for <lists+devicetree@lfdr.de>; Sat,  1 May 2021 06:06:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30CB937053E
+	for <lists+devicetree@lfdr.de>; Sat,  1 May 2021 06:13:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229546AbhEAEHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 May 2021 00:07:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48150 "EHLO mail.kernel.org"
+        id S229908AbhEAEOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 May 2021 00:14:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53390 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229379AbhEAEHS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 1 May 2021 00:07:18 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 38948613F4;
-        Sat,  1 May 2021 04:06:29 +0000 (UTC)
+        id S229733AbhEAEOD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 1 May 2021 00:14:03 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C33EB6143D;
+        Sat,  1 May 2021 04:13:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1619841989;
-        bh=F+isvP/CISEBur6+0efALgnBlYarHdry2+xf4t13CSQ=;
+        s=k20201202; t=1619842393;
+        bh=rZkUEmWuORYzrFh3ZGN+u1VrkOvfZ6ioX1N/wXlRhT8=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Laf32isseyoxoRlwVduDmzQloyXdmi8KFQvzoQbIpm//+nG2tKgMZKOTmZw8KhEws
-         h6wXYysAUKvIXNy263+Fvjl8rRAFB4laVwWX1qKIHBMo/SjncrB4+CTzUTB7S6y627
-         DxhBXP5/UnFst/UMWoLRlmOegqns5crpye1SjT/hWXaVMYxLsfi5bUELL+6AfbJb4d
-         NGk15pJuP75yQG5eDN+1RqAtDA4yDmdjB9IlB2pB4arlDX0rqtLqoChA2GTNzlAjvR
-         d+85ImFDiGyEBKS5WQGChN3HEOpOXgRquTqTWP/mIZcXoAwWEf1P+34T4T8tBkYGtn
-         HjSucjlZ8y8EA==
-Received: by mail-ed1-f49.google.com with SMTP id g10so394407edb.0;
-        Fri, 30 Apr 2021 21:06:29 -0700 (PDT)
-X-Gm-Message-State: AOAM5320yRVZJv41J5MRrONIxI4DC5f3kYAraCZDp866lI4TXCVIviq5
-        Ar8MBkJ2J2DU7Lz2pfKhyPULT3xium+/e92tUA==
-X-Google-Smtp-Source: ABdhPJy/xB9YH6r0sZIkUz5zI/CnVQBqFHcrCzYVGkRITeICDiq17pGJWls+d/u9iH8uBuq2/DCSh3jzzV+xhxEq6C0=
-X-Received: by 2002:aa7:db0c:: with SMTP id t12mr9503414eds.72.1619841987818;
- Fri, 30 Apr 2021 21:06:27 -0700 (PDT)
+        b=fYqkKVidNSEWrYSre3relENB+/LhNBGJTFBZG0V7qwT7V9I6AUdgUvl881k9Tmr/r
+         3wP0q6aQFpqTLz6VohS2ChhmdM5qBzWktugErRjplKuvnPzalaH+vcRsy28OVOXT9w
+         1y0dkp+DqEuElbHKIcpuEvB142eH2QyhjeR5muV4WiJ50J/IEm/G/5Yr+huuLWZM9a
+         fB96SJayqWxpvnAzNvq74ulOcZmYASHYXDcpIAWiV4oaZbuYCfO4KVFI0P71fNn0oa
+         nLdjGxkWY6l2NpoJGdNqzsRuA0kcEuizDPP4SfPoZmbAiRkJgva3heD81FzyWtLTQR
+         J4EjN8gm2Hb6A==
+Received: by mail-ej1-f48.google.com with SMTP id f24so136758ejc.6;
+        Fri, 30 Apr 2021 21:13:13 -0700 (PDT)
+X-Gm-Message-State: AOAM530TKugI21ZRiZ7Po9ITTZuvODXhkJQKoeAD11IMNBQomwb8b8fN
+        kLZBWAFbuSeVfIyJ2HipbJGsNrubklVQUjNfKQ==
+X-Google-Smtp-Source: ABdhPJxnC6UDbmKBHF8gvCRW9YTLGWrnRCI6f7HVRl4NQ9Fnv7HEZ7PTr7+e4xfWR+t0j874t8lbSwZFwtkzb60aqLk=
+X-Received: by 2002:a17:906:3da9:: with SMTP id y9mr7566517ejh.303.1619842392342;
+ Fri, 30 Apr 2021 21:13:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <1619838819-11309-1-git-send-email-yongqiang.niu@mediatek.com> <1619838819-11309-2-git-send-email-yongqiang.niu@mediatek.com>
-In-Reply-To: <1619838819-11309-2-git-send-email-yongqiang.niu@mediatek.com>
+References: <1619838819-11309-1-git-send-email-yongqiang.niu@mediatek.com> <1619838819-11309-3-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1619838819-11309-3-git-send-email-yongqiang.niu@mediatek.com>
 From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sat, 1 May 2021 12:06:15 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_93Ym8yg1rmTVSqG5XCCkkGTWE4HBqiUWCRYk-Af4WKNg@mail.gmail.com>
-Message-ID: <CAAOTY_93Ym8yg1rmTVSqG5XCCkkGTWE4HBqiUWCRYk-Af4WKNg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] drm/mediatek: move page flip handle into cmdq cb
+Date:   Sat, 1 May 2021 12:13:00 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-hQ=6TbbL+usSUd+ygxBVK+xzD2Q1zL_SvoGx2s7hyWQ@mail.gmail.com>
+Message-ID: <CAAOTY_-hQ=6TbbL+usSUd+ygxBVK+xzD2Q1zL_SvoGx2s7hyWQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/mediatek: clear pending flag when cmdq packet is done.
 To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
 Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -53,7 +53,8 @@ Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
         <linux-mediatek@lists.infradead.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
         Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Chun-Hung Wu <chun-hung.wu@mediatek.com>
+        Chun-Hung Wu <chun-hung.wu@mediatek.com>,
+        CK Hu <ck.hu@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
@@ -66,126 +67,136 @@ Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B45=E6=9C=
 =881=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=8811:13=E5=AF=AB=E9=81=93=
 =EF=BC=9A
 >
-> move page flip handle into cmdq cb
-> irq callback will before cmdq flush ddp register
-> into hardware, that will cause the display frame page
-> flip event before it realy display out time
+> In cmdq mode, packet may be flushed before it is executed, so
+> the pending flag should be cleared after cmdq packet is done.
+>
+> Signed-off-by: CK Hu <ck.hu@mediatek.com>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_drm_crtc.c | 57 +++++++++++++++++++++++++++=
++++---
+>  1 file changed, 52 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c b/drivers/gpu/drm/me=
+diatek/mtk_drm_crtc.c
+> index c37881b..6a3cf47 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> @@ -231,18 +231,57 @@ static void ddp_cmdq_cb(struct cmdq_cb_data data)
+>  {
+>         struct mtk_cmdq_cb_data *cb_data =3D data.data;
+>         struct mtk_drm_crtc *mtk_crtc;
+> +       struct mtk_crtc_state *state;
+> +       unsigned int i;
+>
+>         if (!cb_data) {
+>                 DRM_ERROR("cmdq callback data is null pointer!\n");
+>                 return;
+>         }
+>
+> +       if (data.sta =3D=3D CMDQ_CB_ERROR) {
 
-After apply patch [1], we don't need to care about which one (irq or
-cmdq_cb) come first. Even though cmdq_cb come later, GCE would have
-already write register in vblank.
+I would like this patch to depend on [1].
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/com=
-mit/?h=3Dnext-20210430&id=3D368166ec7600ba83587cfcb31d817cf6479cf006
+[1] https://patchwork.kernel.org/project/linux-mediatek/patch/2021031423332=
+3.23377-2-chunkuang.hu@kernel.org/
 
 Regards,
 Chun-Kuang.
 
->
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_crtc.c | 46 +++++++++++++++++++++++++++=
-+++---
->  1 file changed, 43 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c b/drivers/gpu/drm/me=
-diatek/mtk_drm_crtc.c
-> index 8b0de90..c37881b 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-> @@ -72,6 +72,13 @@ struct mtk_crtc_state {
->         unsigned int                    pending_vrefresh;
->  };
->
-> +#if IS_REACHABLE(CONFIG_MTK_CMDQ)
-> +struct mtk_cmdq_cb_data {
-> +       struct cmdq_pkt                 *cmdq_handle;
-> +       struct mtk_drm_crtc             *mtk_crtc;
-> +};
-> +#endif
-> +
->  static inline struct mtk_drm_crtc *to_mtk_crtc(struct drm_crtc *c)
->  {
->         return container_of(c, struct mtk_drm_crtc, base);
-> @@ -96,7 +103,6 @@ static void mtk_drm_crtc_finish_page_flip(struct mtk_d=
-rm_crtc *mtk_crtc)
->
->  static void mtk_drm_finish_page_flip(struct mtk_drm_crtc *mtk_crtc)
->  {
-> -       drm_crtc_handle_vblank(&mtk_crtc->base);
->         if (mtk_crtc->pending_needs_vblank) {
->                 mtk_drm_crtc_finish_page_flip(mtk_crtc);
->                 mtk_crtc->pending_needs_vblank =3D false;
-> @@ -223,7 +229,27 @@ struct mtk_ddp_comp *mtk_drm_ddp_comp_for_plane(stru=
-ct drm_crtc *crtc,
->  #if IS_REACHABLE(CONFIG_MTK_CMDQ)
->  static void ddp_cmdq_cb(struct cmdq_cb_data data)
->  {
-> -       cmdq_pkt_destroy(data.data);
-> +       struct mtk_cmdq_cb_data *cb_data =3D data.data;
-> +       struct mtk_drm_crtc *mtk_crtc;
-> +
-> +       if (!cb_data) {
-> +               DRM_ERROR("cmdq callback data is null pointer!\n");
-> +               return;
-> +       }
-> +
-> +       mtk_crtc =3D cb_data->mtk_crtc;
-> +       if (!mtk_crtc) {
-> +               DRM_ERROR("cmdq callback mtk_crtc is null pointer!\n");
+> +               DRM_WARN("cmdq callback error!!\n");
 > +               goto destroy_pkt;
 > +       }
 > +
-> +       mtk_drm_finish_page_flip(mtk_crtc);
-> +
-> +destroy_pkt:
-> +       if (cb_data->cmdq_handle)
-> +               cmdq_pkt_destroy(cb_data->cmdq_handle);
-> +
-> +       kfree(cb_data);
->  }
->  #endif
->
-> @@ -463,13 +489,20 @@ static void mtk_drm_crtc_hw_config(struct mtk_drm_c=
-rtc *mtk_crtc)
+>         mtk_crtc =3D cb_data->mtk_crtc;
+>         if (!mtk_crtc) {
+>                 DRM_ERROR("cmdq callback mtk_crtc is null pointer!\n");
+>                 goto destroy_pkt;
 >         }
->  #if IS_REACHABLE(CONFIG_MTK_CMDQ)
->         if (mtk_crtc->cmdq_client) {
-> +               struct mtk_cmdq_cb_data *cb_data;
-> +
->                 mbox_flush(mtk_crtc->cmdq_client->chan, 2000);
->                 cmdq_handle =3D cmdq_pkt_create(mtk_crtc->cmdq_client, PA=
-GE_SIZE);
->                 cmdq_pkt_clear_event(cmdq_handle, mtk_crtc->cmdq_event);
->                 cmdq_pkt_wfe(cmdq_handle, mtk_crtc->cmdq_event, false);
->                 mtk_crtc_ddp_config(crtc, cmdq_handle);
->                 cmdq_pkt_finalize(cmdq_handle);
-> -               cmdq_pkt_flush_async(cmdq_handle, ddp_cmdq_cb, cmdq_handl=
-e);
-> +
-> +               cb_data =3D kmalloc(sizeof(*cb_data), GFP_KERNEL);
-> +               cb_data->cmdq_handle =3D cmdq_handle;
-> +               cb_data->mtk_crtc =3D mtk_crtc;
-> +
-> +               cmdq_pkt_flush_async(cmdq_handle, ddp_cmdq_cb, cb_data);
->         }
->  #endif
->         mutex_unlock(&mtk_crtc->hw_lock);
-> @@ -488,7 +521,14 @@ static void mtk_crtc_ddp_irq(void *data)
->  #endif
->                 mtk_crtc_ddp_config(crtc, NULL);
 >
-> +       drm_crtc_handle_vblank(&mtk_crtc->base);
+> +       state =3D to_mtk_crtc_state(mtk_crtc->base.state);
 > +
-> +#if IS_REACHABLE(CONFIG_MTK_CMDQ)
-> +       if (!priv->data->shadow_register && !mtk_crtc->cmdq_client)
-> +               mtk_drm_finish_page_flip(mtk_crtc);
-> +#else
+> +       if (state->pending_config) {
+> +               state->pending_config =3D false;
+> +       }
+> +
+> +       if (mtk_crtc->pending_planes) {
+> +               for (i =3D 0; i < mtk_crtc->layer_nr; i++) {
+> +                       struct drm_plane *plane =3D &mtk_crtc->planes[i];
+> +                       struct mtk_plane_state *plane_state;
+> +
+> +                       plane_state =3D to_mtk_plane_state(plane->state);
+> +
+> +                       if (plane_state->pending.config)
+> +                               plane_state->pending.config =3D false;
+> +               }
+> +               mtk_crtc->pending_planes =3D false;
+> +       }
+> +
+> +       if (mtk_crtc->pending_async_planes) {
+> +               for (i =3D 0; i < mtk_crtc->layer_nr; i++) {
+> +                       struct drm_plane *plane =3D &mtk_crtc->planes[i];
+> +                       struct mtk_plane_state *plane_state;
+> +
+> +                       plane_state =3D to_mtk_plane_state(plane->state);
+> +
+> +                       if (plane_state->pending.async_config)
+> +                               plane_state->pending.async_config =3D fal=
+se;
+> +               }
+> +               mtk_crtc->pending_async_planes =3D false;
+> +       }
+> +
 >         mtk_drm_finish_page_flip(mtk_crtc);
-> +#endif
+>
+>  destroy_pkt:
+> @@ -403,7 +442,8 @@ static void mtk_crtc_ddp_config(struct drm_crtc *crtc=
+,
+>                                     state->pending_vrefresh, 0,
+>                                     cmdq_handle);
+>
+> -               state->pending_config =3D false;
+> +               if (!cmdq_handle)
+> +                       state->pending_config =3D false;
+>         }
+>
+>         if (mtk_crtc->pending_planes) {
+> @@ -423,9 +463,12 @@ static void mtk_crtc_ddp_config(struct drm_crtc *crt=
+c,
+>                                 mtk_ddp_comp_layer_config(comp, local_lay=
+er,
+>                                                           plane_state,
+>                                                           cmdq_handle);
+> -                       plane_state->pending.config =3D false;
+> +                       if (!cmdq_handle)
+> +                               plane_state->pending.config =3D false;
+>                 }
+> -               mtk_crtc->pending_planes =3D false;
+> +
+> +               if (!cmdq_handle)
+> +                       mtk_crtc->pending_planes =3D false;
+>         }
+>
+>         if (mtk_crtc->pending_async_planes) {
+> @@ -445,9 +488,13 @@ static void mtk_crtc_ddp_config(struct drm_crtc *crt=
+c,
+>                                 mtk_ddp_comp_layer_config(comp, local_lay=
+er,
+>                                                           plane_state,
+>                                                           cmdq_handle);
+> -                       plane_state->pending.async_config =3D false;
+> +
+> +                       if (!cmdq_handle)
+> +                               plane_state->pending.async_config =3D fal=
+se;
+>                 }
+> -               mtk_crtc->pending_async_planes =3D false;
+> +
+> +               if (!cmdq_handle)
+> +                       mtk_crtc->pending_async_planes =3D false;
+>         }
 >  }
 >
->  static int mtk_drm_crtc_enable_vblank(struct drm_crtc *crtc)
 > --
 > 1.8.1.1.dirty
 >
