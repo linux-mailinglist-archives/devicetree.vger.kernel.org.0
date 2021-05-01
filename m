@@ -2,942 +2,435 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37D2B3708E8
-	for <lists+devicetree@lfdr.de>; Sat,  1 May 2021 22:20:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F7A63708ED
+	for <lists+devicetree@lfdr.de>; Sat,  1 May 2021 22:35:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229912AbhEAUVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 May 2021 16:21:06 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:40027 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231934AbhEAUVF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 May 2021 16:21:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1619900415;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Q60tqfg4fdIm7GRAU3xhOEgwTaYFCXW1R3U9LnjMTaw=;
-        b=PWe1uXx/3faSoBVTJVklXqYKNUp+R0tDzEr8R11QXs3QC425TyvMiKLjh2JvalsKq+DNo3
-        opULUaoB/G3AHj+3dGtPD7UOoYYtnCs2o8g+9kKWhwfIFhJW3qxXXzzQAWt3visvu0vgI1
-        z66ZDA+Y/I9PLFBlepeGyZJQXea6kK4=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-426-cdAEGpuQMlmGsu2FW5Q2pA-1; Sat, 01 May 2021 16:20:11 -0400
-X-MC-Unique: cdAEGpuQMlmGsu2FW5Q2pA-1
-Received: by mail-qk1-f199.google.com with SMTP id h190-20020a3785c70000b02902e022511825so1743836qkd.7
-        for <devicetree@vger.kernel.org>; Sat, 01 May 2021 13:20:11 -0700 (PDT)
+        id S231593AbhEAUgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 May 2021 16:36:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42980 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231547AbhEAUgX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 May 2021 16:36:23 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74523C06174A;
+        Sat,  1 May 2021 13:35:31 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id zg3so2136584ejb.8;
+        Sat, 01 May 2021 13:35:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=sVBwFT5onhZh1pPgvteGEsjGuLXW4VAnp9XDwPRr8XM=;
+        b=dJ15BV8+vFs5dm1H/U38HR28CAdhUfnhpiyEBqxIcyQOXNtb0zW4FW5aIgWJpd0pAY
+         oU8wuVE+SCbxqkvF2ujYvs251ZdSoo0LMU7ceOxEf79gNC6gsW2xinp//oCtoKL66x9G
+         LMIMfFWvM0FiyJy+PnewiJNtY1rzwZbiZZBJYUZ/aF7F3M0cuFj9o2He1rm9CAsu7iop
+         /zBEVaCy24WonMAcUFeTXH0+g53AiWTvAzv6EEwE1mNU3ElHsWfDwZphDUGug8vbWtAr
+         5Vlmr6Nf1K0nZncztn2ef2agxasl2VNd+cM9tTcc8DQp03Ke2/1lyrZflit9rMSOWYAo
+         xxOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=Q60tqfg4fdIm7GRAU3xhOEgwTaYFCXW1R3U9LnjMTaw=;
-        b=QuFkZvf7XGIyTtzeAanciTluLnI3++uYSeQF7uK3bN1u8YzgWlgkLelcWblfUTyZl8
-         89TtD2jm8kMPTesapBRqYL4sdLSXyw3P4MoXiPjC5mb0Z2vmOBcflI5Q8umWaIsxcHy7
-         SsGYJGk7vbssF1TH00zp0K8V01rq5F1y6Gto4UL/IPRAK2HLdCo29F83owHF2eNoNq+1
-         RCHxxMWn1Cn6HI7GFMeRSWnEvsebc+ia05f3RlmD9ZPgYmSpLXS7aAp/tcV6sukgIn+8
-         td24TDxJdwQpHuGV1RHWnGbcJkN53emtUTF6Bg0BC2tglGSgmOxcTAOhC0tKPsGXQ4Qp
-         7hrw==
-X-Gm-Message-State: AOAM531QDp6FOGh+DcwkJDctoCr/xlj6aDTYv3D41yZ7FAaKdAzYFQMw
-        qa8c9tYkRxRy+A31n3wR7h36Whf241LFSciIb/O31pkkp1sCt62zGTsb6Xi/dMIj6ntUBcGzjDt
-        hbzx+0pgIkbQHo1RNY87xeQ==
-X-Received: by 2002:a0c:bd96:: with SMTP id n22mr12013402qvg.44.1619900411057;
-        Sat, 01 May 2021 13:20:11 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzxR2ZJovfssxkoVIRrC7VdRfjGzSFatDeg3elg7o/HL49Kcmo8pna0xaAaJ6iNCqI7+v80yw==
-X-Received: by 2002:a0c:bd96:: with SMTP id n22mr12013377qvg.44.1619900410685;
-        Sat, 01 May 2021 13:20:10 -0700 (PDT)
-Received: from localhost.localdomain (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id d68sm4614799qkf.93.2021.05.01.13.20.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 May 2021 13:20:10 -0700 (PDT)
-Subject: Re: [PATCH V5 XRT Alveo 02/20] fpga: xrt: driver metadata helper
- functions
-To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
-Cc:     linux-fpga@vger.kernel.org, maxz@xilinx.com,
-        sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
-        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
-        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
-References: <20210427205431.23896-1-lizhi.hou@xilinx.com>
- <20210427205431.23896-3-lizhi.hou@xilinx.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <2bcad1bc-e294-45af-18a9-2cad3f8778bc@redhat.com>
-Date:   Sat, 1 May 2021 13:19:59 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
-MIME-Version: 1.0
-In-Reply-To: <20210427205431.23896-3-lizhi.hou@xilinx.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=sVBwFT5onhZh1pPgvteGEsjGuLXW4VAnp9XDwPRr8XM=;
+        b=R0UZFEX15G6xZuib6mX+477LqMACYu2RPnDIKOl4/ZmCvJGTkAdtMrn01Fc0MDgApG
+         H+KyczVeq1EQSiwAmsdMJWRbkfzvnmtXdRJvX0USxi/a2jPjT3KfY8eWCPrD3LfkpzLf
+         aHbAtUZahOPdfkF1YG44rIGgFMMa4Olr5Azxi0/ue7sA9B/zqE3Zizp3/wKkKQ0BAPAk
+         z/qY/xzIA5R4y/aNRE+h85a8FvloLBgyRenQXmQ/1D/9FSt45U1h3VvwBX9sVcYGC6/7
+         BQdhoHmdHJuNgWyblSW8OIDiOk6Uq7r5XGQUIg2CW+S+PwBds1l+59VUsG5OUwB9Uwkk
+         neTA==
+X-Gm-Message-State: AOAM531rbvQ44VfJBBWImoooiVzEON1hBETD8WcLtN5eD27B/CSByTmh
+        lULqVu1ulGS/akXX87YAUnNVwvll2Gtqfg==
+X-Google-Smtp-Source: ABdhPJy4LdyuSiVPNUwPXSRlECLyxXF4eqBop7mU0VCHgv5gvLkeKNNuqyQ5O7I8X/a0aj1lDF5i7A==
+X-Received: by 2002:a17:906:3e97:: with SMTP id a23mr10210952ejj.440.1619901330225;
+        Sat, 01 May 2021 13:35:30 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id 9sm6607544ejv.73.2021.05.01.13.35.27
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 01 May 2021 13:35:29 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     cl@rock-chips.com, jay.xu@rock-chips.com, david.wu@rock-chips.com,
+        zhangqing@rock-chips.com, huangtao@rock-chips.com,
+        shawn.lin@rock-chips.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 1/2] dt-bindings: soc: rockchip: convert grf.txt to YAML
+Date:   Sat,  1 May 2021 22:35:19 +0200
+Message-Id: <20210501203520.5465-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Current dts files with 'grf' nodes are manually verified.
+In order to automate this process grf.txt has to be
+converted to YAML.
 
-On 4/27/21 1:54 PM, Lizhi Hou wrote:
-> XRT drivers use device tree as metadata format to discover HW subsystems
-> behind PCIe BAR. Thus libfdt functions are called for the driver to parse
-> the device tree blob.
->
-> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
-> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
-> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
-> ---
->   drivers/fpga/xrt/include/metadata.h  | 236 +++++++++++
->   drivers/fpga/xrt/metadata/metadata.c | 578 +++++++++++++++++++++++++++
->   2 files changed, 814 insertions(+)
->   create mode 100644 drivers/fpga/xrt/include/metadata.h
->   create mode 100644 drivers/fpga/xrt/metadata/metadata.c
->
-> diff --git a/drivers/fpga/xrt/include/metadata.h b/drivers/fpga/xrt/include/metadata.h
-> new file mode 100644
-> index 000000000000..387424acc0ae
-> --- /dev/null
-> +++ b/drivers/fpga/xrt/include/metadata.h
-> @@ -0,0 +1,236 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2020-2021 Xilinx, Inc.
-> + *
-> + * Authors:
-> + *      Lizhi Hou <Lizhi.Hou@xilinx.com>
-> + */
-> +
-> +#ifndef _XRT_METADATA_H
-> +#define _XRT_METADATA_H
-> +
-> +#include <linux/device.h>
-> +#include <linux/vmalloc.h>
-> +#include <linux/uuid.h>
-> +
-> +#define XRT_MD_INVALID_LENGTH (~0U)
-> +
-> +/* metadata properties */
-> +#define XRT_MD_PROP_BAR_IDX "pcie_bar_mapping"
-> +#define XRT_MD_PROP_COMPATIBLE "compatible"
-> +#define XRT_MD_PROP_HWICAP "axi_hwicap"
-> +#define XRT_MD_PROP_INTERFACE_UUID "interface_uuid"
-> +#define XRT_MD_PROP_INTERRUPTS "interrupts"
-> +#define XRT_MD_PROP_IO_OFFSET "reg"
-> +#define XRT_MD_PROP_LOGIC_UUID "logic_uuid"
-> +#define XRT_MD_PROP_PDI_CONFIG "pdi_config_mem"
-> +#define XRT_MD_PROP_PF_NUM "pcie_physical_function"
-> +#define XRT_MD_PROP_VERSION_MAJOR "firmware_version_major"
-> +
-> +/* non IP nodes */
-> +#define XRT_MD_NODE_ENDPOINTS "addressable_endpoints"
-> +#define XRT_MD_NODE_FIRMWARE "firmware"
-> +#define XRT_MD_NODE_INTERFACES "interfaces"
-> +#define XRT_MD_NODE_PARTITION_INFO "partition_info"
-> +
-> +/*
-> + * IP nodes
-> + * AF:  AXI Firewall
-> + * CMC: Card Management Controller
-> + * ERT: Embedded Runtime
-> + * EP:  End Point
-ok
-> + * PLP: Provider Reconfigurable Partition
-> + * ULP: User Reconfigurable Partition
-> + */
-> +#define XRT_MD_NODE_ADDR_TRANSLATOR "ep_remap_data_c2h_00"
-> +#define XRT_MD_NODE_AF_BLP_CTRL_MGNT "ep_firewall_blp_ctrl_mgmt_00"
-> +#define XRT_MD_NODE_AF_BLP_CTRL_USER "ep_firewall_blp_ctrl_user_00"
-> +#define XRT_MD_NODE_AF_CTRL_DEBUG "ep_firewall_ctrl_debug_00"
-> +#define XRT_MD_NODE_AF_CTRL_MGNT "ep_firewall_ctrl_mgmt_00"
-> +#define XRT_MD_NODE_AF_CTRL_USER "ep_firewall_ctrl_user_00"
-> +#define XRT_MD_NODE_AF_DATA_C2H "ep_firewall_data_c2h_00" /* c2h: card to host */
-ok
-> +#define XRT_MD_NODE_AF_DATA_H2C "ep_firewall_data_h2c_00" /* h2c: host to card */
-> +#define XRT_MD_NODE_AF_DATA_M2M "ep_firewall_data_m2m_00"
-> +#define XRT_MD_NODE_AF_DATA_P2P "ep_firewall_data_p2p_00"
-> +#define XRT_MD_NODE_CLKFREQ_HBM "ep_freq_cnt_aclk_hbm_00" /* hbm: High Bandwidth Memory */
-ok
-> +#define XRT_MD_NODE_CLKFREQ_K1 "ep_freq_cnt_aclk_kernel_00"
-> +#define XRT_MD_NODE_CLKFREQ_K2 "ep_freq_cnt_aclk_kernel_01"
-> +#define XRT_MD_NODE_CLK_KERNEL1 "ep_aclk_kernel_00"
-> +#define XRT_MD_NODE_CLK_KERNEL2 "ep_aclk_kernel_01"
-> +#define XRT_MD_NODE_CLK_KERNEL3 "ep_aclk_hbm_00"
-> +#define XRT_MD_NODE_CLK_SHUTDOWN "ep_aclk_shutdown_00"
-> +#define XRT_MD_NODE_CMC_FW_MEM "ep_cmc_firmware_mem_00"
-> +#define XRT_MD_NODE_CMC_MUTEX "ep_cmc_mutex_00"
-> +#define XRT_MD_NODE_CMC_REG "ep_cmc_regmap_00"
-> +#define XRT_MD_NODE_CMC_RESET "ep_cmc_reset_00"
-> +#define XRT_MD_NODE_DDR_CALIB "ep_ddr_mem_calib_00"
-> +#define XRT_MD_NODE_DDR4_RESET_GATE "ep_ddr_mem_srsr_gate_00"
-> +#define XRT_MD_NODE_ERT_BASE "ep_ert_base_address_00"
-> +#define XRT_MD_NODE_ERT_CQ_MGNT "ep_ert_command_queue_mgmt_00"
-> +#define XRT_MD_NODE_ERT_CQ_USER "ep_ert_command_queue_user_00"
-> +#define XRT_MD_NODE_ERT_FW_MEM "ep_ert_firmware_mem_00"
-> +#define XRT_MD_NODE_ERT_RESET "ep_ert_reset_00"
-> +#define XRT_MD_NODE_ERT_SCHED "ep_ert_sched_00"
-> +#define XRT_MD_NODE_FLASH "ep_card_flash_program_00"
-> +#define XRT_MD_NODE_FPGA_CONFIG "ep_fpga_configuration_00"
-> +#define XRT_MD_NODE_GAPPING "ep_gapping_demand_00"
-> +#define XRT_MD_NODE_GATE_PLP "ep_pr_isolate_plp_00"
-> +#define XRT_MD_NODE_GATE_ULP "ep_pr_isolate_ulp_00"
-> +#define XRT_MD_NODE_KDMA_CTRL "ep_kdma_ctrl_00"
-> +#define XRT_MD_NODE_MAILBOX_MGNT "ep_mailbox_mgmt_00"
-> +#define XRT_MD_NODE_MAILBOX_USER "ep_mailbox_user_00"
-> +#define XRT_MD_NODE_MAILBOX_XRT "ep_mailbox_user_to_ert_00"
-> +#define XRT_MD_NODE_MSIX "ep_msix_00"
-> +#define XRT_MD_NODE_P2P "ep_p2p_00"
-> +#define XRT_MD_NODE_PCIE_MON "ep_pcie_link_mon_00"
-> +#define XRT_MD_NODE_PMC_INTR   "ep_pmc_intr_00"
-> +#define XRT_MD_NODE_PMC_MUX    "ep_pmc_mux_00"
-> +#define XRT_MD_NODE_QDMA "ep_qdma_00"
-> +#define XRT_MD_NODE_QDMA4 "ep_qdma4_00"
-> +#define XRT_MD_NODE_REMAP_P2P "ep_remap_p2p_00"
-> +#define XRT_MD_NODE_STM "ep_stream_traffic_manager_00"
-> +#define XRT_MD_NODE_STM4 "ep_stream_traffic_manager4_00"
-> +#define XRT_MD_NODE_SYSMON "ep_cmp_sysmon_00"
-> +#define XRT_MD_NODE_XDMA "ep_xdma_00"
-> +#define XRT_MD_NODE_XVC_PUB "ep_debug_bscan_user_00"
-> +#define XRT_MD_NODE_XVC_PRI "ep_debug_bscan_mgmt_00"
-> +#define XRT_MD_NODE_UCS_CONTROL_STATUS "ep_ucs_control_status_00"
-> +
-> +/* endpoint compatible string */
-> +#define XRT_MD_COMPAT_DDR_SRSR "drv_ddr_srsr"
-> +#define XRT_MD_COMPAT_CLKFREQ "freq_cnt"
-> +
-> +/* driver defined endpoints */
-> +#define XRT_MD_NODE_BLP_ROM "drv_ep_blp_rom_00"
-> +#define XRT_MD_NODE_DDR_SRSR "drv_ep_ddr_srsr"
-> +#define XRT_MD_NODE_FLASH_VSEC "drv_ep_card_flash_program_00"
-> +#define XRT_MD_NODE_GOLDEN_VER "drv_ep_golden_ver_00"
-> +#define XRT_MD_NODE_MAILBOX_VSEC "drv_ep_mailbox_vsec_00"
-> +#define XRT_MD_NODE_MGNT_MAIN "drv_ep_mgmt_main_00"
-> +#define XRT_MD_NODE_PLAT_INFO "drv_ep_platform_info_mgmt_00"
-> +#define XRT_MD_NODE_PARTITION_INFO_BLP "partition_info_0"
-> +#define XRT_MD_NODE_PARTITION_INFO_PLP "partition_info_1"
-> +#define XRT_MD_NODE_TEST "drv_ep_test_00"
-> +#define XRT_MD_NODE_VSEC "drv_ep_vsec_00"
-> +#define XRT_MD_NODE_VSEC_GOLDEN "drv_ep_vsec_golden_00"
-> +
-> +/* driver defined properties */
-> +#define XRT_MD_PROP_OFFSET "drv_offset"
-> +#define XRT_MD_PROP_CLK_FREQ "drv_clock_frequency"
-> +#define XRT_MD_PROP_CLK_CNT "drv_clock_frequency_counter"
-> +#define XRT_MD_PROP_VBNV "vbnv"
-> +#define XRT_MD_PROP_VROM "vrom"
-> +#define XRT_MD_PROP_PARTITION_LEVEL "partition_level"
-> +
-> +struct xrt_md_endpoint {
-> +	const char	*ep_name;
-> +	u32		bar_index;
-ok
-> +	u64		bar_off;
-> +	u64		size;
-> +	char		*compat;
-ok
-> +	char		*compat_ver;
-> +};
-> +
-> +/* Note: res_id is defined by leaf driver and must start with 0. */
-> +struct xrt_iores_map {
-> +	char		*res_name;
-> +	int		res_id;
-> +};
-> +
-> +static inline int xrt_md_res_name2id(const struct xrt_iores_map *res_map,
-> +				     int entry_num, const char *res_name)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < entry_num; i++) {
-> +		if (!strncmp(res_name, res_map->res_name, strlen(res_map->res_name) + 1))
-> +			return res_map->res_id;
-> +		res_map++;
-> +	}
-> +	return -1;
-> +}
-> +
-> +static inline const char *
-> +xrt_md_res_id2name(const struct xrt_iores_map *res_map, int entry_num, int id)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < entry_num; i++) {
-> +		if (res_map->res_id == id)
-> +			return res_map->res_name;
-> +		res_map++;
-> +	}
-> +	return NULL;
-> +}
-> +
-> +u32 xrt_md_size(struct device *dev, const char *blob);
-> +int xrt_md_create(struct device *dev, char **blob);
-> +char *xrt_md_dup(struct device *dev, const char *blob);
-> +int xrt_md_add_endpoint(struct device *dev, char *blob,
-> +			struct xrt_md_endpoint *ep);
-> +int xrt_md_del_endpoint(struct device *dev, char *blob, const char *ep_name,
-> +			const char *compat);
-> +int xrt_md_get_prop(struct device *dev, const char *blob, const char *ep_name,
-> +		    const char *compat, const char *prop,
-> +		    const void **val, int *size);
-> +int xrt_md_set_prop(struct device *dev, char *blob, const char *ep_name,
-> +		    const char *compat, const char *prop,
-> +		    const void *val, int size);
-> +int xrt_md_copy_endpoint(struct device *dev, char *blob, const char *src_blob,
-> +			 const char *ep_name, const char *compat,
-> +			 const char *new_ep_name);
-> +int xrt_md_get_next_endpoint(struct device *dev, const char *blob,
-> +			     const char *ep_name,  const char *compat,
-> +			     char **next_ep, char **next_compat);
-> +int xrt_md_get_compatible_endpoint(struct device *dev, const char *blob,
-> +				   const char *compat, const char **ep_name);
-> +int xrt_md_find_endpoint(struct device *dev, const char *blob,
-> +			 const char *ep_name, const char *compat,
-> +			 const char **epname);
-> +int xrt_md_pack(struct device *dev, char *blob);
-> +int xrt_md_get_interface_uuids(struct device *dev, const char *blob,
-> +			       u32 num_uuids, uuid_t *intf_uuids);
-> +
-> +/*
-> + * The firmware provides a 128 bit hash string as a unique id to the
-> + * partition/interface.
-> + * Existing hw does not yet use the cononical form, so it is necessary to
-> + * use a translation function.
-> + */
-> +static inline void xrt_md_trans_uuid2str(const uuid_t *uuid, char *uuidstr)
-ok on reducing string len
-> +{
-> +	int i, p;
-> +	u8 tmp[UUID_SIZE];
-> +
-> +	BUILD_BUG_ON(UUID_SIZE != 16);
-> +	export_uuid(tmp, uuid);
-> +	for (p = 0, i = UUID_SIZE - 1; i >= 0; p++, i--)
-> +		snprintf(&uuidstr[p * 2], 3, "%02x", tmp[i]);
-> +}
-> +
-> +static inline int xrt_md_trans_str2uuid(struct device *dev, const char *uuidstr, uuid_t *p_uuid)
-> +{
-> +	u8 p[UUID_SIZE];
-> +	const char *str;
-> +	char tmp[3] = { 0 };
-> +	int i, ret;
-> +
-ok
-> +	if (strlen(uuidstr) != UUID_SIZE * 2)
-> +		return -EINVAL;
-> +
-> +	str = uuidstr + strlen(uuidstr) - 2;
-> +
-> +	for (i = 0; i < sizeof(*p_uuid) && str >= uuidstr; i++) {
-> +		tmp[0] = *str;
-> +		tmp[1] = *(str + 1);
-> +		ret = kstrtou8(tmp, 16, &p[i]);
-> +		if (ret)
-> +			return -EINVAL;
-> +		str -= 2;
-> +	}
-> +	import_uuid(p_uuid, p);
-> +
-> +	return 0;
-> +}
-> +
-> +#endif
-> diff --git a/drivers/fpga/xrt/metadata/metadata.c b/drivers/fpga/xrt/metadata/metadata.c
-> new file mode 100644
-> index 000000000000..6f67490a3ab1
-> --- /dev/null
-> +++ b/drivers/fpga/xrt/metadata/metadata.c
-> @@ -0,0 +1,578 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Xilinx Alveo FPGA Metadata parse APIs
-> + *
-> + * Copyright (C) 2020-2021 Xilinx, Inc.
-> + *
-> + * Authors:
-> + *      Lizhi Hou <Lizhi.Hou@xilinx.com>
-> + */
-> +
-> +#include <linux/libfdt_env.h>
-> +#include "libfdt.h"
-> +#include "metadata.h"
-> +
-> +#define XRT_MAX_BLOB_SIZE	(4096 * 25)
-> +#define XRT_MAX_DEPTH 5
-ok
-> +
-> +static int xrt_md_setprop(struct device *dev, char *blob, int offset,
-> +			  const char *prop, const void *val, int size)
-> +{
-> +	int ret;
-> +
-> +	ret = fdt_setprop(blob, offset, prop, val, size);
-> +	if (ret) {
-> +		ret = -EINVAL;
-> +		dev_err(dev, "failed to set prop %d", ret);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int xrt_md_add_node(struct device *dev, char *blob, int parent_offset,
-> +			   const char *ep_name)
-> +{
-> +	int ret;
-> +
-> +	ret = fdt_add_subnode(blob, parent_offset, ep_name);
-> +	if (ret < 0 && ret != -FDT_ERR_EXISTS) {
-> +		ret = -EINVAL;
-> +		dev_err(dev, "failed to add node %s. %d", ep_name, ret);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int xrt_md_get_endpoint(struct device *dev, const char *blob,
-> +			       const char *ep_name, const char *compat,
-> +			       int *ep_offset)
-> +{
-> +	const char *name;
-> +	int offset;
-> +
-> +	if (compat) {
-ok
-> +		for (offset = fdt_next_node((blob), -1, NULL);
-> +		     offset >= 0;
-> +		     offset = fdt_next_node((blob), offset, NULL)) {
-> +			name = fdt_get_name(blob, offset, NULL);
-> +			if (!name || strncmp(name, ep_name, strlen(ep_name) + 1))
-> +				continue;
-> +			if (!fdt_node_check_compatible(blob, offset, compat))
-> +				break;
-> +		}
-> +	} else {
-> +		for (offset = fdt_next_node((blob), -1, NULL);
-> +		     offset >= 0;
-> +		     offset = fdt_next_node((blob), offset, NULL)) {
-> +			name = fdt_get_name(blob, offset, NULL);
-> +			if (name && !strncmp(name, ep_name, strlen(ep_name) + 1))
-> +				break;
-> +		}
-> +	}
-> +
-> +	if (offset < 0)
-> +		return -ENODEV;
-> +
-> +	*ep_offset = offset;
-> +
-> +	return 0;
-> +}
-> +
-> +static inline int xrt_md_get_node(struct device *dev, const char *blob,
-> +				  const char *name, const char *compat,
-> +				  int *offset)
-> +{
-> +	int ret = 0;
-> +
-> +	if (name) {
-> +		ret = xrt_md_get_endpoint(dev, blob, name, compat,
-> +					  offset);
-> +		if (ret) {
-> +			if (compat) {
-ok
-> +				dev_err(dev, "cannot get node %s compat %s, ret %d",
-> +					name, compat, ret);
-> +			} else {
-> +				dev_err(dev, "cannot get node %s, ret %d", name, ret);
-> +			}
-> +			return -EINVAL;
-> +		}
-> +	} else {
-> +		ret = fdt_next_node(blob, -1, NULL);
-> +		if (ret < 0) {
-> +			dev_err(dev, "internal error, ret = %d", ret);
-> +			return -EINVAL;
-> +		}
-> +		*offset = ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int xrt_md_overlay(struct device *dev, char *blob, int target,
-> +			  const char *overlay_blob, int overlay_offset,
-> +			  int depth)
-> +{
-> +	int property, subnode;
-> +	int ret;
-> +
-> +	if (!blob || !overlay_blob) {
-> +		dev_err(dev, "blob is NULL");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (depth > XRT_MAX_DEPTH) {
-> +		dev_err(dev, "meta data depth beyond %d", XRT_MAX_DEPTH);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (target < 0) {
-> +		target = fdt_next_node(blob, -1, NULL);
-> +		if (target < 0) {
-> +			dev_err(dev, "invalid target");
-> +			return -EINVAL;
-> +		}
-> +	}
-> +	if (overlay_offset < 0) {
-> +		overlay_offset = fdt_next_node(overlay_blob, -1, NULL);
-> +		if (overlay_offset < 0) {
-> +			dev_err(dev, "invalid overlay");
-> +			return -EINVAL;
-> +		}
-> +	}
-> +
-> +	fdt_for_each_property_offset(property, overlay_blob, overlay_offset) {
-> +		const char *name;
-> +		const void *prop;
-> +		int prop_len;
-> +
-> +		prop = fdt_getprop_by_offset(overlay_blob, property, &name,
-> +					     &prop_len);
-> +		if (!prop || prop_len >= XRT_MAX_BLOB_SIZE || prop_len < 0) {
-> +			dev_err(dev, "internal error");
-> +			return -EINVAL;
-> +		}
-> +
-> +		ret = xrt_md_setprop(dev, blob, target, name, prop,
-> +				     prop_len);
-> +		if (ret) {
-> +			dev_err(dev, "setprop failed, ret = %d", ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	fdt_for_each_subnode(subnode, overlay_blob, overlay_offset) {
-> +		const char *name = fdt_get_name(overlay_blob, subnode, NULL);
-> +		int nnode;
-> +
-> +		nnode = xrt_md_add_node(dev, blob, target, name);
-> +		if (nnode == -FDT_ERR_EXISTS)
-> +			nnode = fdt_subnode_offset(blob, target, name);
-> +		if (nnode < 0) {
-> +			dev_err(dev, "add node failed, ret = %d", nnode);
-> +			return -EINVAL;
-ok
-> +		}
-> +
-> +		ret = xrt_md_overlay(dev, blob, nnode, overlay_blob, subnode, depth + 1);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +u32 xrt_md_size(struct device *dev, const char *blob)
-> +{
-> +	u32 len = fdt_totalsize(blob);
-ok
-> +
-> +	if (len > XRT_MAX_BLOB_SIZE)
-> +		return XRT_MD_INVALID_LENGTH;
-> +
-> +	return len;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_md_size);
-> +
-> +int xrt_md_create(struct device *dev, char **blob)
-> +{
-> +	int ret = 0;
-> +
-> +	if (!blob) {
-> +		dev_err(dev, "blob is NULL");
-> +		return -EINVAL;
-> +	}
-> +
-> +	*blob = vzalloc(XRT_MAX_BLOB_SIZE);
-> +	if (!*blob)
-> +		return -ENOMEM;
-> +
-> +	ret = fdt_create_empty_tree(*blob, XRT_MAX_BLOB_SIZE);
-> +	if (ret) {
-> +		ret = -EINVAL;
-> +		dev_err(dev, "format blob failed, ret = %d", ret);
-> +		goto failed;
-> +	}
-> +
-> +	ret = fdt_next_node(*blob, -1, NULL);
-> +	if (ret < 0) {
-> +		ret = -EINVAL;
-> +		dev_err(dev, "No Node, ret = %d", ret);
-> +		goto failed;
-> +	}
-> +
-> +	ret = fdt_add_subnode(*blob, 0, XRT_MD_NODE_ENDPOINTS);
-> +	if (ret < 0) {
-> +		ret = -EINVAL;
-ok
-> +		dev_err(dev, "add node failed, ret = %d", ret);
-> +		goto failed;
-> +	}
-> +
-> +	return 0;
-> +
-> +failed:
-> +	vfree(*blob);
-> +	*blob = NULL;
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_md_create);
-> +
-> +char *xrt_md_dup(struct device *dev, const char *blob)
-> +{
-> +	char *dup_blob;
-> +	int ret;
-> +
-> +	ret = xrt_md_create(dev, &dup_blob);
-> +	if (ret)
-> +		return NULL;
-> +	ret = xrt_md_overlay(dev, dup_blob, -1, blob, -1, 0);
-> +	if (ret) {
-> +		vfree(dup_blob);
-> +		return NULL;
-> +	}
-> +
-> +	return dup_blob;
-> +}
-ok not doing the memcpy
-> +EXPORT_SYMBOL_GPL(xrt_md_dup);
-> +
-> +int xrt_md_del_endpoint(struct device *dev, char *blob, const char *ep_name,
-> +			const char *compat)
-> +{
-> +	int ep_offset;
-> +	int ret;
-> +
-> +	ret = xrt_md_get_endpoint(dev, blob, ep_name, compat, &ep_offset);
-> +	if (ret) {
-> +		dev_err(dev, "can not find ep %s", ep_name);
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = fdt_del_node(blob, ep_offset);
-> +	if (ret) {
-> +		ret = -EINVAL;
-ok
-> +		dev_err(dev, "delete node %s failed, ret %d", ep_name, ret);
-> +	}
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_md_del_endpoint);
-> +
-> +static int __xrt_md_add_endpoint(struct device *dev, char *blob,
-> +				 struct xrt_md_endpoint *ep, int *offset,
-> +				 const char *parent)
-> +{
-> +	int parent_offset = 0;
-> +	u32 val, count = 0;
-> +	int ep_offset = 0;
-> +	u64 io_range[2];
-> +	char comp[128];
-> +	int ret = 0;
-> +
-> +	if (!ep->ep_name) {
-> +		dev_err(dev, "empty name");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (parent) {
-> +		ret = xrt_md_get_endpoint(dev, blob, parent, NULL, &parent_offset);
-> +		if (ret) {
-> +			dev_err(dev, "invalid blob, ret = %d", ret);
-> +			return -EINVAL;
-> +		}
-> +	}
-> +
-> +	ep_offset = xrt_md_add_node(dev, blob, parent_offset, ep->ep_name);
-> +	if (ep_offset < 0) {
-> +		dev_err(dev, "add endpoint failed, ret = %d", ret);
-> +		return -EINVAL;
-> +	}
-> +	if (offset)
-> +		*offset = ep_offset;
-> +
-> +	if (ep->size != 0) {
-> +		val = cpu_to_be32(ep->bar_index);
-> +		ret = xrt_md_setprop(dev, blob, ep_offset, XRT_MD_PROP_BAR_IDX,
-> +				     &val, sizeof(u32));
-> +		if (ret) {
-> +			dev_err(dev, "set %s failed, ret %d",
-> +				XRT_MD_PROP_BAR_IDX, ret);
-> +			goto failed;
-> +		}
-> +		io_range[0] = cpu_to_be64((u64)ep->bar_off);
-> +		io_range[1] = cpu_to_be64((u64)ep->size);
-> +		ret = xrt_md_setprop(dev, blob, ep_offset, XRT_MD_PROP_IO_OFFSET,
-> +				     io_range, sizeof(io_range));
-> +		if (ret) {
-> +			dev_err(dev, "set %s failed, ret %d",
-> +				XRT_MD_PROP_IO_OFFSET, ret);
-> +			goto failed;
-> +		}
-> +	}
-> +
-> +	if (ep->compat) {
-> +		if (ep->compat_ver) {
-> +			count = snprintf(comp, sizeof(comp) - 1,
-> +					 "%s-%s", ep->compat, ep->compat_ver);
-> +			count++;
-> +		}
-> +		if (count >= sizeof(comp)) {
-> +			ret = -EINVAL;
-ok
-> +			goto failed;
-> +		}
-> +
-> +		count += snprintf(comp + count, sizeof(comp) - count - 1,
-> +				  "%s", ep->compat);
-> +		count++;
-> +		if (count >= sizeof(comp)) {
-> +			ret = -EINVAL;
-> +			goto failed;
-> +		}
-> +
-> +		ret = xrt_md_setprop(dev, blob, ep_offset, XRT_MD_PROP_COMPATIBLE,
-> +				     comp, count);
-> +		if (ret) {
-> +			dev_err(dev, "set %s failed, ret %d",
-> +				XRT_MD_PROP_COMPATIBLE, ret);
-> +			goto failed;
-> +		}
-> +	}
-> +
-> +failed:
-> +	if (ret)
-> +		xrt_md_del_endpoint(dev, blob, ep->ep_name, NULL);
-> +
-> +	return ret;
-> +}
-> +
-> +int xrt_md_add_endpoint(struct device *dev, char *blob,
-> +			struct xrt_md_endpoint *ep)
-> +{
-> +	return __xrt_md_add_endpoint(dev, blob, ep, NULL, XRT_MD_NODE_ENDPOINTS);
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_md_add_endpoint);
-> +
-> +int xrt_md_find_endpoint(struct device *dev, const char *blob,
-> +			 const char *ep_name, const char *compat,
-> +			 const char **epname)
-> +{
-> +	int offset;
-> +	int ret;
-> +
-> +	ret = xrt_md_get_endpoint(dev, blob, ep_name, compat,
-> +				  &offset);
-> +	if (ret)
-> +		return ret;
-> +
-ok
-> +	if (epname) {
-> +		*epname = fdt_get_name(blob, offset, NULL);
-> +		if (!*epname)
-> +			return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_md_find_endpoint);
-> +
-> +int xrt_md_get_prop(struct device *dev, const char *blob, const char *ep_name,
-> +		    const char *compat, const char *prop,
-> +		    const void **val, int *size)
-> +{
-> +	int offset;
-> +	int ret;
-> +
-> +	if (!val) {
-> +		dev_err(dev, "val is null");
-> +		return -EINVAL;
-> +	}
-> +
-> +	*val = NULL;
-> +	ret = xrt_md_get_node(dev, blob, ep_name, compat, &offset);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val = fdt_getprop(blob, offset, prop, size);
-> +	if (!*val) {
-> +		dev_dbg(dev, "get ep %s, prop %s failed", ep_name, prop);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_md_get_prop);
-> +
-> +int xrt_md_set_prop(struct device *dev, char *blob,
-> +		    const char *ep_name, const char *compat,
-> +		    const char *prop, const void *val, int size)
-> +{
-> +	int offset;
-> +	int ret;
-> +
-> +	ret = xrt_md_get_node(dev, blob, ep_name, compat, &offset);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = xrt_md_setprop(dev, blob, offset, prop, val, size);
-> +	if (ret)
-> +		dev_err(dev, "set prop %s failed, ret = %d", prop, ret);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_md_set_prop);
-> +
-> +int xrt_md_copy_endpoint(struct device *dev, char *blob, const char *src_blob,
-> +			 const char *ep_name, const char *compat,
-> +			 const char *new_ep_name)
-> +{
-> +	const char *newepnm = new_ep_name ? new_ep_name : ep_name;
-> +	struct xrt_md_endpoint ep = {0};
-> +	int offset, target;
-> +	const char *parent;
-> +	int ret;
-> +
-> +	ret = xrt_md_get_endpoint(dev, src_blob, ep_name, compat,
-> +				  &offset);
-> +	if (ret)
-> +		return -EINVAL;
-> +
-> +	ret = xrt_md_get_endpoint(dev, blob, newepnm, compat, &target);
-> +	if (ret) {
-> +		ep.ep_name = newepnm;
-> +		parent = fdt_parent_offset(src_blob, offset) == 0 ? NULL : XRT_MD_NODE_ENDPOINTS;
-> +		ret = __xrt_md_add_endpoint(dev, blob, &ep, &target, parent);
-> +		if (ret)
-> +			return -EINVAL;
-> +	}
-> +
-> +	ret = xrt_md_overlay(dev, blob, target, src_blob, offset, 0);
-> +	if (ret)
-> +		dev_err(dev, "overlay failed, ret = %d", ret);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_md_copy_endpoint);
-> +
-> +int xrt_md_get_next_endpoint(struct device *dev, const char *blob,
-> +			     const char *ep_name, const char *compat,
-> +			     char **next_ep, char **next_compat)
-> +{
-> +	int offset, ret;
-> +
-> +	*next_ep = NULL;
-> +	*next_compat = NULL;
-> +	if (!ep_name) {
-> +		ret = xrt_md_get_endpoint(dev, blob, XRT_MD_NODE_ENDPOINTS, NULL,
-> +					  &offset);
-> +	} else {
-> +		ret = xrt_md_get_endpoint(dev, blob, ep_name, compat,
-> +					  &offset);
-> +	}
-> +
-> +	if (ret)
-> +		return -EINVAL;
-> +
-> +	if (ep_name)
-> +		offset = fdt_next_subnode(blob, offset);
-> +	else
-> +		offset = fdt_first_subnode(blob, offset);
-> +	if (offset < 0)
-> +		return -EINVAL;
+Most compatibility strings are in use with "simple-mfd" added.
 
-ok.
+Add description already in use:
+"rockchip,rv1108-pmugrf", "syscon"
 
-Thanks for the changes.
+Add new descriptions for:
+"rockchip,rk3568-grf", "syscon", "simple-mfd"
+"rockchip,rk3568-pmugrf", "syscon", "simple-mfd"
 
-Reviewed-by: Tom Rix <trix@redhat.com>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ .../devicetree/bindings/soc/rockchip/grf.txt       |  61 -----
+ .../devicetree/bindings/soc/rockchip/grf.yaml      | 277 +++++++++++++++++++++
+ 2 files changed, 277 insertions(+), 61 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/rockchip/grf.yaml
 
-> +
-> +	*next_ep = (char *)fdt_get_name(blob, offset, NULL);
-> +	*next_compat = (char *)fdt_stringlist_get(blob, offset, XRT_MD_PROP_COMPATIBLE,
-> +						  0, NULL);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_md_get_next_endpoint);
-> +
-> +int xrt_md_get_compatible_endpoint(struct device *dev, const char *blob,
-> +				   const char *compat, const char **ep_name)
-> +{
-> +	int ep_offset;
-> +
-> +	ep_offset = fdt_node_offset_by_compatible(blob, -1, compat);
-> +	if (ep_offset < 0) {
-> +		*ep_name = NULL;
-> +		return -ENOENT;
-> +	}
-> +
-> +	*ep_name = fdt_get_name(blob, ep_offset, NULL);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_md_get_compatible_endpoint);
-> +
-> +int xrt_md_pack(struct device *dev, char *blob)
-> +{
-> +	int ret;
-> +
-> +	ret = fdt_pack(blob);
-> +	if (ret) {
-> +		ret = -EINVAL;
-> +		dev_err(dev, "pack failed %d", ret);
-> +	}
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_md_pack);
-> +
-> +int xrt_md_get_interface_uuids(struct device *dev, const char *blob,
-> +			       u32 num_uuids, uuid_t *interface_uuids)
-> +{
-> +	int offset, count = 0;
-> +	const char *uuid_str;
-> +	int ret;
-> +
-> +	ret = xrt_md_get_endpoint(dev, blob, XRT_MD_NODE_INTERFACES, NULL, &offset);
-> +	if (ret)
-> +		return -ENOENT;
-> +
-> +	for (offset = fdt_first_subnode(blob, offset);
-> +	    offset >= 0;
-> +	    offset = fdt_next_subnode(blob, offset), count++) {
-> +		uuid_str = fdt_getprop(blob, offset, XRT_MD_PROP_INTERFACE_UUID,
-> +				       NULL);
-> +		if (!uuid_str) {
-> +			dev_err(dev, "empty interface uuid node");
-> +			return -EINVAL;
-> +		}
-> +
-> +		if (!num_uuids)
-> +			continue;
-> +
-> +		if (count == num_uuids) {
-> +			dev_err(dev, "too many interface uuid in blob");
-> +			return -EINVAL;
-> +		}
-> +
-> +		if (interface_uuids && count < num_uuids) {
-> +			ret = xrt_md_trans_str2uuid(dev, uuid_str,
-> +						    &interface_uuids[count]);
-> +			if (ret)
-> +				return -EINVAL;
-> +		}
-> +	}
-> +	if (!count)
-> +		count = -ENOENT;
-> +
-> +	return count;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_md_get_interface_uuids);
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.txt b/Documentation/devicetree/bindings/soc/rockchip/grf.txt
+deleted file mode 100644
+index f96511aa3..000000000
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.txt
++++ /dev/null
+@@ -1,61 +0,0 @@
+-* Rockchip General Register Files (GRF)
+-
+-The general register file will be used to do static set by software, which
+-is composed of many registers for system control.
+-
+-From RK3368 SoCs, the GRF is divided into two sections,
+-- GRF, used for general non-secure system,
+-- SGRF, used for general secure system,
+-- PMUGRF, used for always on system
+-
+-On RK3328 SoCs, the GRF adds a section for USB2PHYGRF,
+-
+-ON RK3308 SoC, the GRF is divided into four sections:
+-- GRF, used for general non-secure system,
+-- SGRF, used for general secure system,
+-- DETECTGRF, used for audio codec system,
+-- COREGRF, used for pvtm,
+-
+-Required Properties:
+-
+-- compatible: GRF should be one of the following:
+-   - "rockchip,px30-grf", "syscon": for px30
+-   - "rockchip,rk3036-grf", "syscon": for rk3036
+-   - "rockchip,rk3066-grf", "syscon": for rk3066
+-   - "rockchip,rk3188-grf", "syscon": for rk3188
+-   - "rockchip,rk3228-grf", "syscon": for rk3228
+-   - "rockchip,rk3288-grf", "syscon": for rk3288
+-   - "rockchip,rk3308-grf", "syscon": for rk3308
+-   - "rockchip,rk3328-grf", "syscon": for rk3328
+-   - "rockchip,rk3368-grf", "syscon": for rk3368
+-   - "rockchip,rk3399-grf", "syscon": for rk3399
+-   - "rockchip,rv1108-grf", "syscon": for rv1108
+-- compatible: DETECTGRF should be one of the following:
+-   - "rockchip,rk3308-detect-grf", "syscon": for rk3308
+-- compatilbe: COREGRF should be one of the following:
+-   - "rockchip,rk3308-core-grf", "syscon": for rk3308
+-- compatible: PMUGRF should be one of the following:
+-   - "rockchip,px30-pmugrf", "syscon": for px30
+-   - "rockchip,rk3368-pmugrf", "syscon": for rk3368
+-   - "rockchip,rk3399-pmugrf", "syscon": for rk3399
+-- compatible: SGRF should be one of the following:
+-   - "rockchip,rk3288-sgrf", "syscon": for rk3288
+-- compatible: USB2PHYGRF should be one of the following:
+-   - "rockchip,px30-usb2phy-grf", "syscon": for px30
+-   - "rockchip,rk3328-usb2phy-grf", "syscon": for rk3328
+-- compatible: USBGRF should be one of the following:
+-   - "rockchip,rv1108-usbgrf", "syscon": for rv1108
+-- reg: physical base address of the controller and length of memory mapped
+-  region.
+-
+-Example: GRF and PMUGRF of RK3399 SoCs
+-
+-	pmugrf: syscon@ff320000 {
+-		compatible = "rockchip,rk3399-pmugrf", "syscon";
+-		reg = <0x0 0xff320000 0x0 0x1000>;
+-	};
+-
+-	grf: syscon@ff770000 {
+-		compatible = "rockchip,rk3399-grf", "syscon";
+-		reg = <0x0 0xff770000 0x0 0x10000>;
+-	};
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+new file mode 100644
+index 000000000..3f66328a3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -0,0 +1,277 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip General Register Files (GRF)
++
++maintainers:
++  - Heiko Stuebner <heiko@sntech.de>
++
++select:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - rockchip,px30-grf
++          - rockchip,px30-pmugrf
++          - rockchip,px30-usb2phy-grf
++          - rockchip,rk3036-grf
++          - rockchip,rk3066-grf
++          - rockchip,rk3188-grf
++          - rockchip,rk3228-grf
++          - rockchip,rk3288-grf
++          - rockchip,rk3288-sgrf
++          - rockchip,rk3308-core-grf
++          - rockchip,rk3308-detect-grf
++          - rockchip,rk3308-grf
++          - rockchip,rk3328-grf
++          - rockchip,rk3328-usb2phy-grf
++          - rockchip,rk3368-grf
++          - rockchip,rk3368-pmugrf
++          - rockchip,rk3399-grf
++          - rockchip,rk3399-pmugrf
++          - rockchip,rk3568-grf
++          - rockchip,rk3568-pmugrf
++          - rockchip,rv1108-grf
++          - rockchip,rv1108-pmugrf
++          - rockchip,rv1108-usbgrf
++
++  required:
++    - compatible
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - rockchip,rk3066-grf
++              - rockchip,rk3188-grf
++              - rockchip,rk3288-sgrf
++              - rockchip,rv1108-pmugrf
++              - rockchip,rv1108-usbgrf
++          - const: syscon
++      - items:
++          - enum:
++              - rockchip,px30-grf
++              - rockchip,px30-pmugrf
++              - rockchip,px30-usb2phy-grf
++              - rockchip,rk3036-grf
++              - rockchip,rk3228-grf
++              - rockchip,rk3288-grf
++              - rockchip,rk3308-core-grf
++              - rockchip,rk3308-detect-grf
++              - rockchip,rk3308-grf
++              - rockchip,rk3328-grf
++              - rockchip,rk3328-usb2phy-grf
++              - rockchip,rk3368-grf
++              - rockchip,rk3368-pmugrf
++              - rockchip,rk3399-grf
++              - rockchip,rk3399-pmugrf
++              - rockchip,rk3568-grf
++              - rockchip,rk3568-pmugrf
++              - rockchip,rv1108-grf
++          - const: syscon
++          - const: simple-mfd
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: true
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: rockchip,px30-grf
++
++    then:
++      properties:
++        lvds:
++          description:
++            Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: rockchip,rk3288-grf
++
++    then:
++      properties:
++        edp-phy:
++          description:
++            Documentation/devicetree/bindings/phy/rockchip-dp-phy.txt
++
++        usbphy:
++          description:
++            Documentation/devicetree/bindings/phy/rockchip-usb-phy.txt
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: rockchip,rk3328-grf
++
++    then:
++      properties:
++        grf-gpio:
++          description:
++            Documentation/devicetree/bindings/gpio/rockchip,rk3328-grf-gpio.txt
++
++        power-controller:
++          type: object
++
++          $ref: "/schemas/power/rockchip,power-controller.yaml#"
++
++          unevaluatedProperties: false
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: rockchip,rk3399-grf
++
++    then:
++      properties:
++        mipi-dphy-rx0:
++          type: object
++
++          $ref: "/schemas/phy/rockchip-mipi-dphy-rx0.yaml#"
++
++          unevaluatedProperties: false
++
++        pcie-phy:
++          description:
++            Documentation/devicetree/bindings/phy/rockchip-pcie-phy.txt
++
++      patternProperties:
++        "phy@[0-9a-f]+$":
++          description:
++            Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - rockchip,px30-pmugrf
++              - rockchip,rk3036-grf
++              - rockchip,rk3308-grf
++              - rockchip,rk3368-pmugrf
++
++    then:
++      properties:
++        reboot-mode:
++          type: object
++
++          $ref: "/schemas/power/reset/syscon-reboot-mode.yaml#"
++
++          unevaluatedProperties: false
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - rockchip,px30-usb2phy-grf
++              - rockchip,rk3228-grf
++              - rockchip,rk3328-usb2phy-grf
++              - rockchip,rk3399-grf
++              - rockchip,rv1108-grf
++
++    then:
++      properties:
++        "#address-cells":
++          const: 1
++
++        "#size-cells":
++          const: 1
++
++      required:
++        - "#address-cells"
++        - "#size-cells"
++
++      patternProperties:
++        "usb2-phy@[0-9a-f]+$":
++          type: object
++
++          $ref: "/schemas/phy/phy-rockchip-inno-usb2.yaml#"
++
++          unevaluatedProperties: false
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - rockchip,px30-pmugrf
++              - rockchip,px30-grf
++              - rockchip,rk3228-grf
++              - rockchip,rk3288-grf
++              - rockchip,rk3328-grf
++              - rockchip,rk3368-pmugrf
++              - rockchip,rk3368-grf
++              - rockchip,rk3399-pmugrf
++              - rockchip,rk3399-grf
++
++    then:
++      properties:
++        io-domains:
++          description:
++            Documentation/devicetree/bindings/power/rockchip-io-domain.txt
++
++          unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/rk3399-cru.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/power/rk3399-power.h>
++    grf: syscon@ff770000 {
++      compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
++      reg = <0xff770000 0x10000>;
++      #address-cells = <1>;
++      #size-cells = <1>;
++
++      mipi_dphy_rx0: mipi-dphy-rx0 {
++        compatible = "rockchip,rk3399-mipi-dphy-rx0";
++        clocks = <&cru SCLK_MIPIDPHY_REF>,
++                 <&cru SCLK_DPHY_RX0_CFG>,
++                 <&cru PCLK_VIO_GRF>;
++        clock-names = "dphy-ref", "dphy-cfg", "grf";
++        power-domains = <&power RK3399_PD_VIO>;
++        #phy-cells = <0>;
++      };
++
++      u2phy0: usb2-phy@e450 {
++        compatible = "rockchip,rk3399-usb2phy";
++        reg = <0xe450 0x10>;
++        clocks = <&cru SCLK_USB2PHY0_REF>;
++        clock-names = "phyclk";
++        #clock-cells = <0>;
++        clock-output-names = "clk_usbphy0_480m";
++        #phy-cells = <0>;
++
++        u2phy0_host: host-port {
++          #phy-cells = <0>;
++          interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH 0>;
++          interrupt-names = "linestate";
++         };
++
++        u2phy0_otg: otg-port {
++          #phy-cells = <0>;
++          interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH 0>,
++                       <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH 0>,
++                       <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH 0>;
++          interrupt-names = "otg-bvalid", "otg-id",
++                            "linestate";
++        };
++      };
++    };
+-- 
+2.11.0
 
