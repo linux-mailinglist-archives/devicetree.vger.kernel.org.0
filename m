@@ -2,97 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 525E6370726
-	for <lists+devicetree@lfdr.de>; Sat,  1 May 2021 14:14:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49A79370730
+	for <lists+devicetree@lfdr.de>; Sat,  1 May 2021 14:32:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232053AbhEAMOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 May 2021 08:14:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47958 "EHLO
+        id S231990AbhEAMc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 May 2021 08:32:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231972AbhEAMOh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 May 2021 08:14:37 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 938FDC06174A
-        for <devicetree@vger.kernel.org>; Sat,  1 May 2021 05:13:47 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id b21so1283039ljf.11
-        for <devicetree@vger.kernel.org>; Sat, 01 May 2021 05:13:47 -0700 (PDT)
+        with ESMTP id S231969AbhEAMc6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 May 2021 08:32:58 -0400
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4C78C06174A;
+        Sat,  1 May 2021 05:32:08 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id u7so381723qvv.12;
+        Sat, 01 May 2021 05:32:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CRiIei4iU9eOLt+6VGICqdff4yVs7VnZIcLiYMXSOVg=;
-        b=NmP4LrlfqgqiXwoaAwml0at2WV7mraCZbNWddlk2q8oVvLaaM2j2605TzOqQ0VpkSc
-         84zavwow6Bc+rZ/+pp2zIe+o/KUolwWY9HQSpVHZqcu5TWm2sMaI3T9ZbkkK6TleHuz5
-         9ZiqpJQ+NGPLbImFS6DByNVCoCYAT1hFulLMBGuTmSfkEmkVasPg07OoguODib13kIZQ
-         Q4TAzL/B9P3mhNNZSBhu869XzyUur3wKoBkv8xKfbmypHrEEm0D48lH2yhYx2WSBfwyv
-         LgWwjECwAIF7vpGKJb0dn07j9XxaT5XJgLzDDblA+ucT+Msy2fER1Y4gzpqwoEBFTe21
-         OXvg==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
+        bh=treFpCv/v2Up3Fln8SQMygcym9zynmOgjODNUoZBh7Y=;
+        b=EnUZ7riT4JWee6GBFwnxL60Eg3YS8vImImJbcAKTJZZOyX+J3q898X54RhMpQnvvER
+         K9xEdHR+IoP+kcgIpn+1W5pxfnTheXNn43XvvnGlTmMd1mdWQwD7QtuFdpbjAlarzz58
+         5KhJ3dCNpLpwRuP5hfVmEOIKZqGTVet0IHIoz+7JsgfSUHvSDNzcdzp0SRtS75nwGt3i
+         4+neWC84viSooU5sznw/kqs1YOjDLvm63TMXzWi08H6chn+MLh2Dawl6OAwhoaOk04dk
+         xJ+oN8+CNtGBCZ2F3pKj9YqvUQmGyFycaVGumsHBhGBE9I4pOrFtUt1RSUcJ0SEjZIRv
+         Lsgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CRiIei4iU9eOLt+6VGICqdff4yVs7VnZIcLiYMXSOVg=;
-        b=KfI9i3vQIKH47150XnbX8bfTsZiR33NLn7J3lP3Zsm2cWg83C94nHkmUTXNHqZGZaM
-         eenF3PeuomvHHf5gYmEG/9vRbhQODYFv40wrCtOxQKl2r9qekQapFDKL7KRkWPr4sx5A
-         ye9f0KJphAIax+rcP3cysPayWTtE5z2hS3Nq0L2M1pE8xG3CUnYk1CMxskpIOgj7Jl+B
-         WI4o9QO07Hzw+QLR5IahE1njXuKby0XSmzmWKnODWf8Q3Wv9AnwSK2O5gbE39/wN9Sq7
-         p0fhi8ylfEu96TFQmIon05n8bomxY+9MrWsqtNazS3Pq6xf0DUz2XN+wgJDhM9UiOFeK
-         lWJA==
-X-Gm-Message-State: AOAM530/ngJSucprftKx2FRq1803YnPtUcFN88grDyZNEK6Qv3wTagYs
-        7NkJM2qsjYL++WWxgDz2XwVu2tFFGWDT1NtEhOrLSA==
-X-Google-Smtp-Source: ABdhPJwEvZiVUzjL5fiCUWcltqWrkyBzoejxaPSLl+jQo2XqeGW/AGSuOCc28BFe9PZw7LiIvB9x5RqEvOhmPwnPW1M=
-X-Received: by 2002:a05:651c:1316:: with SMTP id u22mr184428lja.438.1619871226159;
- Sat, 01 May 2021 05:13:46 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=treFpCv/v2Up3Fln8SQMygcym9zynmOgjODNUoZBh7Y=;
+        b=YTVCHKuq1NjAGuBhMdKzjzsAzN9Qs3tmlwVlnqg28bE/YWY1Uyn7+GNcQV3h37BGaZ
+         KtvMXrV9oBGQU3rOq8cZl6TV9eJcUcj9XV9QLqqAj64d+gaCtJQ2BoDtyv4SzgD5MVOx
+         2rNtgs0imlh+iiWzq2A4JzPvBx5DWGCXKzmo+l6S/kzpXwK/NmaE67QJYMASnOK3YuvL
+         voJGx5Fu/xSYLM2274tlTijtjguccaqPVuMkNblPgT13TEw2mN/v1yj+UPWhPlnbMTyP
+         s1s1LeIzy0KdXOxG0S+E3HolClGJZJ74U/FUfOQnjbP++eyqZ88qwJ+SO8BZKsAnd7fj
+         7RJA==
+X-Gm-Message-State: AOAM530O1UiTUoLS+Ey+H/RdMbKGXkbtgqUXdvZ+/qYePe5+ScaCT6er
+        0ZzqE3bH7LACv8OrBdZnG88=
+X-Google-Smtp-Source: ABdhPJzQGOi9neP1JQlUMpp5sFSrdNJjuKLCUypWdg2BTyr6Fd8L4ZOlmoq984GrtzjuuxmcIXcahA==
+X-Received: by 2002:ad4:4109:: with SMTP id i9mr10536417qvp.30.1619872327611;
+        Sat, 01 May 2021 05:32:07 -0700 (PDT)
+Received: from smtp.gmail.com ([2804:14c:73:9a01::1001])
+        by smtp.gmail.com with ESMTPSA id g185sm3898165qkf.62.2021.05.01.05.32.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 01 May 2021 05:32:07 -0700 (PDT)
+Date:   Sat, 1 May 2021 09:32:03 -0300
+From:   Lucas Stankus <lucas.p.stankus@gmail.com>
+To:     lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+        gregkh@linuxfoundation.org
+Cc:     linux-iio@vger.kernel.org, linux-staging@lists.linux.dev,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v3 0/2] staging: iio: cdc: ad7746: add dt properties for
+ capacitive channel setup
+Message-ID: <cover.1619841953.git.lucas.p.stankus@gmail.com>
 MIME-Version: 1.0
-References: <20210426095426.118356-1-tsbogend@alpha.franken.de> <20210426095426.118356-2-tsbogend@alpha.franken.de>
-In-Reply-To: <20210426095426.118356-2-tsbogend@alpha.franken.de>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 1 May 2021 14:13:35 +0200
-Message-ID: <CACRpkda7n3VL-EpwdXDxt47azFo8Wkp67-urUy7--3D6TJs7iA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] dt-bindings: gpio: Add devicetree binding for IDT
- 79RC32434 GPIO controller
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 26, 2021 at 11:54 AM Thomas Bogendoerfer
-<tsbogend@alpha.franken.de> wrote:
+This patch series aims to replace the platform_struct for the ad7746 driver
+in favor of device tree bindings, creating the dt-binding documentation in
+the process.
 
-> Add YAML devicetree binding for IDT 79RC32434 GPIO controller
->
-> Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> ---
-> Changes in v4:
->  - renamed to idt,32434-gpio this time for real
+Since the header file was only used to define the struct and the excitation
+level values, it was possible to remove the file entirely.
 
-Overall looks good to me.
+Changelog v2 -> v3:
+- Add application reference note for the inverted EXCX dt bindings
+- Replace macro with lookup table for setting the capacitive channel
+  excitation voltage
 
-> +required:
-(...)
-> +  - ngpios
+Lucas Stankus (2):
+  dt-bindings: staging: iio: cdc: ad7746: add binding documentation for
+    AD7746
+  staging: iio: cdc: ad7746: use dt for capacitive channel setup.
 
-Is there a *technical* reason why this is required?
+ .../bindings/iio/cdc/adi,ad7746.yaml          | 77 +++++++++++++++++++
+ drivers/staging/iio/cdc/ad7746.c              | 54 ++++++++-----
+ drivers/staging/iio/cdc/ad7746.h              | 28 -------
+ 3 files changed, 110 insertions(+), 49 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/cdc/adi,ad7746.yaml
+ delete mode 100644 drivers/staging/iio/cdc/ad7746.h
 
-Can't the driver just default to 32 gpios when not specified?
+-- 
+2.31.1
 
-> +  - interrupt-controller
-> +  - "#interrupt-cells"
-> +  - interrupts
-
-Why can't interrupt support be made optional?
-
-It is fine if the driver errors out if not provided, but
-for the bindings this feels optional.
-
-Or does the thing break unless you handle the IRQs?
-
-Yours,
-Linus Walleij
