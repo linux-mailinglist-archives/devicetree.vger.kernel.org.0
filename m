@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0C6E370996
-	for <lists+devicetree@lfdr.de>; Sun,  2 May 2021 03:42:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3154E37099D
+	for <lists+devicetree@lfdr.de>; Sun,  2 May 2021 03:43:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231736AbhEBBnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 May 2021 21:43:45 -0400
-Received: from mail2.protonmail.ch ([185.70.40.22]:64143 "EHLO
-        mail2.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231593AbhEBBnp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 May 2021 21:43:45 -0400
-Date:   Sun, 02 May 2021 01:42:46 +0000
+        id S232267AbhEBBn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 May 2021 21:43:58 -0400
+Received: from mail1.protonmail.ch ([185.70.40.18]:43742 "EHLO
+        mail1.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232225AbhEBBn5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 May 2021 21:43:57 -0400
+Date:   Sun, 02 May 2021 01:42:57 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1619919772;
-        bh=CvSw3JV9plNu6EjH386w84c2cwf+Awbm2otRgqsgPUQ=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=dN9RVqZmJBfWMbwKnGI8IWWQSBc7pf0hJTyjnWhFx2GuAZQ6vg+y9J/+NMXvX8nIa
-         KmAUg79QR0PnzaZEkbLFDl7wzpiQHGP2OUIGddVT0rZfc/5sxc3g56UXbe4LnJ6CY6
-         jd2Ab0D3Wra74E+jua9Q6ZHiQjof45bqyG3f9fIY=
+        s=protonmail; t=1619919785;
+        bh=7t4+OnZ/tHUs6smHDPvOJLoDoNjQoDuPdjhxhLCKuwI=;
+        h=Date:To:From:Cc:Reply-To:Subject:From;
+        b=WKodFOfNITQ7HtUCzgYbMZNvGTvs1bG4ekvk/oLjmNn56ydlgXB5qhp5u5YAC69ce
+         257C8u0IoYIuhQ+6OhUBXeZA+K6e5/DJ/QI8yI3yYgZXu3nP4PtgrhrhW9ZjE262my
+         8Blacmbo8DcHPaJJO5cSJAGT9gtHLrx5cpU55Nvg=
 To:     caleb@connolly.tech, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>
@@ -27,10 +27,8 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: [PATCH 1/4] arm64: dts: qcom: sdm845-oneplus-common: remove panel reset gpio
-Message-ID: <20210502014146.85642-2-caleb@connolly.tech>
-In-Reply-To: <20210502014146.85642-1-caleb@connolly.tech>
-References: <20210502014146.85642-1-caleb@connolly.tech>
+Subject: [PATCH 3/4] dts: qcom: sdm845-oneplus-common: guard rmtfs-mem
+Message-ID: <20210502014146.85642-4-caleb@connolly.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -43,28 +41,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Resetting the panel causes issues on fajita, it is also completely
-unnecessary for normal use so lets just not bother.
+The rmtfs_mem region is a weird one, downstream allocates it
+dynamically, and supports a "qcom,guard-memory" property which when set
+will reserve 4k above and below the rmtfs memory.
+
+A common from qcom 4.9 kernel msm_sharedmem driver:
+
+/*
+ * If guard_memory is set, then the shared memory region
+ * will be guarded by SZ_4K at the start and at the end.
+ * This is needed to overcome the XPU limitation on few
+ * MSM HW, so as to make this memory not contiguous with
+ * other allocations that may possibly happen from other
+ * clients in the system.
+*/
+
+When the kernel tries to touch memory that is too close the
+rmtfs region it may cause an XPU violation. Such is the case on the
+OnePlus 6 where random crashes would occur usually after boot.
+
+Reserve 4k above and below the rmtfs_mem to avoid hitting these XPU
+Violations.
+
+This doesn't entirely solve the random crashes on the OnePlus 6/6T but
+it does seem to prevent the ones which happen shortly after modem
+bringup.
 
 Signed-off-by: Caleb Connolly <caleb@connolly.tech>
 ---
- arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm=
 64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-index 8f617f7b6d34..8f3f5c687b4a 100644
+index 8f3f5c687b4a..96c370b90550 100644
 --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-@@ -314,8 +314,6 @@ display_panel: panel@0 {
+@@ -46,6 +46,14 @@ vol-up {
+ =09};
 =20
- =09=09vddio-supply =3D <&vreg_l14a_1p88>;
+ =09reserved-memory {
++=09=09/* The rmtfs_mem needs to be guarded due to "XPU limitations"
++=09=09 * it is otherwise possible for an allocation adjacent to the
++=09=09 * rmtfs_mem region to trigger an XPU violation, causing a crash.
++=09=09 */
++=09=09rmtfs_lower_guard: memory@f5b00000 {
++=09=09=09no-map;
++=09=09=09reg =3D <0 0xf5b00000 0 0x1000>;
++=09=09};
+ =09=09/*
+ =09=09 * The rmtfs memory region in downstream is 'dynamically allocated'
+ =09=09 * but given the same address every time. Hard code it as this addre=
+ss is
+@@ -59,6 +67,10 @@ rmtfs_mem: memory@f5b01000 {
+ =09=09=09qcom,client-id =3D <1>;
+ =09=09=09qcom,vmid =3D <15>;
+ =09=09};
++=09=09rmtfs_upper_guard: memory@f5d01000 {
++=09=09=09no-map;
++=09=09=09reg =3D <0 0xf5d01000 0 0x2000>;
++=09=09};
 =20
--=09=09reset-gpios =3D <&tlmm 6 GPIO_ACTIVE_LOW>;
--
- =09=09pinctrl-names =3D "default";
- =09=09pinctrl-0 =3D <&panel_reset_pins &panel_te_pin &panel_esd_pin>;
-=20
+ =09=09/*
+ =09=09 * It seems like reserving the old rmtfs_mem region is also needed t=
+o prevent
 --=20
 2.30.2
 
