@@ -2,222 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 050D5370900
-	for <lists+devicetree@lfdr.de>; Sat,  1 May 2021 23:09:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0C6E370996
+	for <lists+devicetree@lfdr.de>; Sun,  2 May 2021 03:42:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231736AbhEAVKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 May 2021 17:10:15 -0400
-Received: from relay02.th.seeweb.it ([5.144.164.163]:50917 "EHLO
-        relay02.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231758AbhEAVKO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 May 2021 17:10:14 -0400
-Received: from [10.0.20.3] (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id BBD591F50B;
-        Sat,  1 May 2021 23:09:21 +0200 (CEST)
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-Subject: Re: [PATCH v7 2/6] leds: Add driver for Qualcomm LPG
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Subbaraman Narayanamurthy <subbaram@codeaurora.org>
-References: <20210429211517.312792-1-bjorn.andersson@linaro.org>
- <20210429211517.312792-3-bjorn.andersson@linaro.org>
-Message-ID: <55b56fd9-0ba5-58d9-2be8-98aa639e4496@somainline.org>
-Date:   Sat, 1 May 2021 23:09:21 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S231736AbhEBBnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 May 2021 21:43:45 -0400
+Received: from mail2.protonmail.ch ([185.70.40.22]:64143 "EHLO
+        mail2.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231593AbhEBBnp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 May 2021 21:43:45 -0400
+Date:   Sun, 02 May 2021 01:42:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1619919772;
+        bh=CvSw3JV9plNu6EjH386w84c2cwf+Awbm2otRgqsgPUQ=;
+        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+        b=dN9RVqZmJBfWMbwKnGI8IWWQSBc7pf0hJTyjnWhFx2GuAZQ6vg+y9J/+NMXvX8nIa
+         KmAUg79QR0PnzaZEkbLFDl7wzpiQHGP2OUIGddVT0rZfc/5sxc3g56UXbe4LnJ6CY6
+         jd2Ab0D3Wra74E+jua9Q6ZHiQjof45bqyG3f9fIY=
+To:     caleb@connolly.tech, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Reply-To: Caleb Connolly <caleb@connolly.tech>
+Subject: [PATCH 1/4] arm64: dts: qcom: sdm845-oneplus-common: remove panel reset gpio
+Message-ID: <20210502014146.85642-2-caleb@connolly.tech>
+In-Reply-To: <20210502014146.85642-1-caleb@connolly.tech>
+References: <20210502014146.85642-1-caleb@connolly.tech>
 MIME-Version: 1.0
-In-Reply-To: <20210429211517.312792-3-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+Resetting the panel causes issues on fajita, it is also completely
+unnecessary for normal use so lets just not bother.
 
-On 4/29/21 11:15 PM, Bjorn Andersson wrote:
-> The Light Pulse Generator (LPG) is a PWM-block found in a wide range of
-> PMICs from Qualcomm. It can operate on fixed parameters or based on a
-> lookup-table, altering the duty cycle over time - which provides the
-> means for e.g. hardware assisted transitions of LED brightness.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
-> 
-> Changes since v6:
-> - Moved code into drivers/leds/rgb/
-> - Reverted to earlier qcom,dtest handling to support routing pwm signals
->    through dtest lines.
-> - Remember the duration of each step of the pattern, rather than adding up and
->    then dividing when the value is used.
-> - Added missing error prints on DT parse errors.
-> - Added sm8150[lb] and made led source and atc presence optional
-> - Added missing parenthesis around (len + 1) / 2 in search for hi_pause in the
->    pattern.
-> 
->   drivers/leds/Kconfig             |    3 +
->   drivers/leds/Makefile            |    3 +
->   drivers/leds/rgb/leds-qcom-lpg.c | 1286 ++++++++++++++++++++++++++++++
->   3 files changed, 1292 insertions(+)
->   create mode 100644 drivers/leds/rgb/leds-qcom-lpg.c
-> 
-> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-> index 49d99cb084db..8ab06b3f162d 100644
-> --- a/drivers/leds/Kconfig
-> +++ b/drivers/leds/Kconfig
-> @@ -933,6 +933,9 @@ source "drivers/leds/blink/Kconfig"
->   comment "Flash and Torch LED drivers"
->   source "drivers/leds/flash/Kconfig"
->   
-> +comment "RGB LED drivers"
-> +source "drivers/leds/rgb/Kconfig"
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+---
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm=
+64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index 8f617f7b6d34..8f3f5c687b4a 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -314,8 +314,6 @@ display_panel: panel@0 {
+=20
+ =09=09vddio-supply =3D <&vreg_l14a_1p88>;
+=20
+-=09=09reset-gpios =3D <&tlmm 6 GPIO_ACTIVE_LOW>;
+-
+ =09=09pinctrl-names =3D "default";
+ =09=09pinctrl-0 =3D <&panel_reset_pins &panel_te_pin &panel_esd_pin>;
+=20
+--=20
+2.30.2
 
 
-It looks like this file is not included in any of the patches.
-
-> +
->   comment "LED Triggers"
->   source "drivers/leds/trigger/Kconfig"
->   
-> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-> index 7e604d3028c8..8cad0465aae0 100644
-> --- a/drivers/leds/Makefile
-> +++ b/drivers/leds/Makefile
-> @@ -106,6 +106,9 @@ obj-$(CONFIG_LEDS_USER)			+= uleds.o
->   # Flash and Torch LED Drivers
->   obj-$(CONFIG_LEDS_CLASS_FLASH)		+= flash/
->   
-> +# RGB LED Drivers
-> +obj-$(CONFIG_LEDS_CLASS_MULTICOLOR)	+= rgb/
-
-
-This file appears to be missing from this patch(set), too.
-
-> +static int lpg_lut_store(struct lpg *lpg, struct led_pattern *pattern,
-> +			 size_t len, unsigned int *lo_idx, unsigned int *hi_idx)
-> +{
-> +	unsigned int idx;
-> +	u16 val;
-> +	int i;
-> +
-> +	/* Hardware does not behave when LO_IDX == HI_IDX */
-> +	if (len == 1)
-> +		return -EINVAL;
-> +
-> +	idx = bitmap_find_next_zero_area(lpg->lut_bitmap, lpg->lut_size,
-> +					 0, len, 0);
-> +	if (idx >= lpg->lut_size)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < len; i++) {
-> +		val = pattern[i].brightness;
-> +
-> +		regmap_bulk_write(lpg->map, lpg->lut_base + LPG_LUT_REG(idx + i), &val, 1);
-
-
-This and the other regmap_bulk_write in lpg_apply_pwm_value used 
-sizeof(val) before.  As far as I'm aware qcom-spmi-pmic specifies 16-bit 
-addresses (.reg_bits) but 8-bit register sizes (.val_bits).  Writing one 
-register means only 8 out of 16 bits in u16 val are written?
-
-> +static void lpg_apply_lut_control(struct lpg_channel *chan)
-> +{
-> +	struct lpg *lpg = chan->lpg;
-> +	unsigned int hi_pause;
-> +	unsigned int lo_pause;
-> +	unsigned int step;
-> +	unsigned int conf = 0;
-> +	unsigned int lo_idx = chan->pattern_lo_idx;
-> +	unsigned int hi_idx = chan->pattern_hi_idx;
-> +	int pattern_len;
-> +
-> +	if (!chan->ramp_enabled || chan->pattern_lo_idx == chan->pattern_hi_idx)
-> +		return;
-> +
-> +	pattern_len = hi_idx - lo_idx + 1 > +
-> +	step = chan->ramp_tick_ms;
-
-
-Since this is not dividing a full pattern duration by pattern_len 
-anymore, that variable is now never read and best removed.
-
-> +static int lpg_parse_channel(struct lpg *lpg, struct device_node *np,
-> +			     struct lpg_channel **channel)
-> +{
-> +	struct lpg_channel *chan;
-> +	u32 color = LED_COLOR_ID_GREEN;
-> +	u32 reg;
-> +	int ret;
-> +
-> +	ret = of_property_read_u32(np, "reg", &reg);
-> +	if (ret || !reg || reg > lpg->num_channels) {
-> +		dev_err(lpg->dev, "invalid reg of %pOFn\n", np);
-
-
-Like \"color\" below, escape reg with \"reg\"?
-
-> +static int lpg_add_led(struct lpg *lpg, struct device_node *np)
-> +{
-> +	struct led_classdev *cdev;
-> +	struct device_node *child;
-> +	struct mc_subled *info;
-> +	struct lpg_led *led;
-> +	const char *state;
-> +	int num_channels;
-> +	u32 color = 0;
-> +	int ret;
-> +	int i;
-> +
-> +	ret = of_property_read_u32(np, "color", &color);
-> +	if (ret < 0 && ret != -EINVAL) {
-> +		dev_err(lpg->dev, "failed to parse \"color\" of %pOF\n", np);
-> +		return ret;
-> +	}
-> +
-> +	if (color == LED_COLOR_ID_MULTI)
-
-
-Since this driver now lives under rgb/, and is specifically for RGB leds 
-(afaik), should this and the rest of the code use LED_COLOR_ID_RGB 
-instead?  There was a patch floating around on (if I remember correctly) 
-##linux-msm by Luca Weiss that performs the conversion, with some 
-related changes.
-
-> +static int lpg_init_lut(struct lpg *lpg)
-> +{
-> +	const struct lpg_data *data = lpg->data;
-> +	size_t bitmap_size;
-> +
-> +	if (!data->lut_base)
-> +		return 0;
-> +
-> +	lpg->lut_base = data->lut_base;
-> +	lpg->lut_size = data->lut_size;
-> +
-> +	bitmap_size = BITS_TO_BYTES(lpg->lut_size);
-> +	lpg->lut_bitmap = devm_kzalloc(lpg->dev, bitmap_size, GFP_KERNEL);
-> +	if (!lpg->lut_bitmap)
-> +		return -ENOMEM;
-> +
-> +	bitmap_clear(lpg->lut_bitmap, 0, lpg->lut_size);
-
-
-devm_kzalloc already zeroes the bitmap.  Is it necessary to clear it 
-again (assuming a "cleared" bitmap is implementation-dependent and does 
-not imply zeroed memory) or could the memory be allocated with 
-devm_kalloc instead?
-
-Thanks!
-Marijn
