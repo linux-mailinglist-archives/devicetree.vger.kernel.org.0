@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7064370B71
-	for <lists+devicetree@lfdr.de>; Sun,  2 May 2021 14:20:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E044370B75
+	for <lists+devicetree@lfdr.de>; Sun,  2 May 2021 14:20:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231788AbhEBMVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 May 2021 08:21:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47372 "EHLO
+        id S232047AbhEBMVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 May 2021 08:21:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231598AbhEBMVe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 May 2021 08:21:34 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27A23C06138B
-        for <devicetree@vger.kernel.org>; Sun,  2 May 2021 05:20:42 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id e7so3182180edu.10
-        for <devicetree@vger.kernel.org>; Sun, 02 May 2021 05:20:42 -0700 (PDT)
+        with ESMTP id S231982AbhEBMVh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 May 2021 08:21:37 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE033C06138C
+        for <devicetree@vger.kernel.org>; Sun,  2 May 2021 05:20:45 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id gx5so3785343ejb.11
+        for <devicetree@vger.kernel.org>; Sun, 02 May 2021 05:20:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=snejp.pl; s=gmail;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=erZ/hSW11kcsKCRUIcvxSo7XKXnXb+kosLOsAnmkOzw=;
-        b=Ws0bt+uQoQN7Aluocnt+DgdjAWfSG1h6rZbzpSAxR5aUxp0ERuIT1boLotdE10yBnp
-         4EUKg2dwLpTeQgubVTT55x3sdt0SeaYtS2LjY8XF2lekkxRECH3bEYn4df3fuXt6ZD9U
-         lDcqMe+8FAm1i3rLcz94BlgqcsZo3SHVEugjEearoi8rWtFfFJD4qr+7mWg7K6xwCgVN
-         l9cw/b5PQlVgEA9vjRXLQ3y7iYuFllpLa4YvtLKjBoyWBtupQo5FVWt9Q4yqkbQ50Fa5
-         zE3P7ViieSoCXZ40h8hAZwN8CXfCO5ZaheEuH0UB5aqOwn953yvxEReaz9nBbHcIVOfm
-         Czhw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Qqcj0BqgNgc1kx4Ifq3fIk2WlqX2X6sfrX0+upPU08M=;
+        b=JpKUjkb4rKj3rHgTE7xBziJ6MrZrt2O2FBGJEL1wUMLwt5Xu471qz3yd1HD3CaSV5E
+         ySdRvgC+gKModoCBMnPS+4OCYmtakK/2MOlzR0AeTMWsyVC8ImXHFRZjHO9HXtihyve1
+         zJquBj4geX1T5Tsxc+w+ebBM/nUYn6qIOm26jqhXUKpcfx9WtDZwRyk1PoEnOX2hyJvA
+         yyI2GVU8HUH5zEtb4XnQr4D2w48JaWKoaB7acUvBpdfIgYXBxBoTQ+3NHv1XLFNqgOMd
+         sBfoj7Ni/Lo87KvYbn6mnLueKgd7dZxR3RSFFtT35/v2z0f/N7dspn3ep3vHr2Rrt9F/
+         cQJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=erZ/hSW11kcsKCRUIcvxSo7XKXnXb+kosLOsAnmkOzw=;
-        b=FR0KSxH/08J4IIVWuR3OE8vD6CnmXpLrsa3ShCPzecNHY3/36vlonLEegML85KRpZX
-         CxaYc5UTUXmyhZjffC+72/iInEdVMRLdrq25M7a20f6UWpEfTH9mfkSz1mI0/TPTrjUc
-         ExsCJgekiv7C3ZtE0ANpzBDR6ASoEqgA+XTAdMusFZHqKew8cMQDHWlaUgGcXv8QD5jS
-         Kwk7YvMkofKR4t/T7TRlIrSeuv9wB5WRg6WkV+yYgdgGuftSOymStqSK9d35RJtXrjr5
-         4V4k4VsMqhvliWylH9Uxq1/MUSOxtJKskuHeqh6Ni5clocZH9wolC5IsxXK+TGbJKPxf
-         llRw==
-X-Gm-Message-State: AOAM531U9k3ZabGNq1htetarCQTjSh5QCfR3TeVScwqfc6Q8BHA3cMV/
-        R3o69yfgET06QMnXF1qYR3JM9A==
-X-Google-Smtp-Source: ABdhPJy/A/Q/5vxcW51k03G3qPNBSej8IUlSSrS7fpXBaxvcyWoUAHUn79q6oRLgARpl0HpzT1BwfA==
-X-Received: by 2002:a05:6402:b48:: with SMTP id bx8mr14981979edb.157.1619958040801;
-        Sun, 02 May 2021 05:20:40 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Qqcj0BqgNgc1kx4Ifq3fIk2WlqX2X6sfrX0+upPU08M=;
+        b=Xx7YnrJTD54paaaBvUKHen9EjigbR6ni56cKLtqFJm42ijpZ4bu/0445Q27/lQ5Cxr
+         RFAeNd4EVnJ/D/1STiW+lYLezOyx8q1vW4YCJeZNQ3+hE0TS4Y+aM5NACTqhyUtuIw67
+         tr9++ndzf27t5VsdGs3pmPpjnUop3RCadJxsIbFQ6qdwpbWzQwf/1VHcnmf2nlvRHGFq
+         HAI7CnId1jX41ODBLiV3LERI3i+qWyQbd4iXlJkCnJYjxhxaNMbQdiYqQFflHnGwYzFa
+         ZKwPC1FxpzHy3cjGQ6h6NYOJh7B7mciPUB3BbUUb35FN7Nk9r+ecKxxGHAMF/oVw0Q+s
+         nOJw==
+X-Gm-Message-State: AOAM532iuqv3xs3u0qo5U7WD0R4KrW6TTfupiUc1Kq355n9cKULN4dhJ
+        ZCqaUyKBa6zm32Biw8oxYHT3lA==
+X-Google-Smtp-Source: ABdhPJw2r3QVd9qc44rIT86Cb/Gz6aXvVaQaubc7oCSkq1yyExPbVDNfjHCjgz1jdCiXkX7ulg+lPg==
+X-Received: by 2002:a17:906:1e44:: with SMTP id i4mr12410533ejj.61.1619958044723;
+        Sun, 02 May 2021 05:20:44 -0700 (PDT)
 Received: from PackardBell (192038133011.mbb.telenor.dk. [192.38.133.11])
-        by smtp.googlemail.com with ESMTPSA id p21sm10064085edw.18.2021.05.02.05.20.35
+        by smtp.googlemail.com with ESMTPSA id b8sm9866238edu.41.2021.05.02.05.20.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 May 2021 05:20:40 -0700 (PDT)
+        Sun, 02 May 2021 05:20:44 -0700 (PDT)
 Received: from localhost (PackardBell [local])
-        by PackardBell (OpenSMTPD) with ESMTPA id 92da083f;
+        by PackardBell (OpenSMTPD) with ESMTPA id 74b6daf4;
         Sun, 2 May 2021 12:20:32 +0000 (UTC)
 From:   Bartosz Dudziak <bartosz.dudziak@snejp.pl>
 To:     Andy Gross <agross@kernel.org>,
@@ -60,31 +60,37 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-Subject: [PATCH 0/4] soc: qcom: Add support for MSM8226 RPM
-Date:   Sun,  2 May 2021 14:20:23 +0200
-Message-Id: <20210502122027.9351-1-bartosz.dudziak@snejp.pl>
+Subject: [PATCH 1/4] dt-bindings: soc: qcom: smd-rpm: Add MSM8226 compatible
+Date:   Sun,  2 May 2021 14:20:24 +0200
+Message-Id: <20210502122027.9351-2-bartosz.dudziak@snejp.pl>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210502122027.9351-1-bartosz.dudziak@snejp.pl>
+References: <20210502122027.9351-1-bartosz.dudziak@snejp.pl>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for Resource Power Manager (RPM) and RPM Clock Controller
-(RPMCC) in MSM8226 SoC.
+Add the dt-binding for the rpm on the Qualcomm MSM8226 SoC platform.
 
-Bartosz Dudziak (4):
-  dt-bindings: soc: qcom: smd-rpm: Add MSM8226 compatible
-  soc: qcom: smd-rpm: Add MSM8226 compatible
-  dt-bindings: clock: qcom: rpmcc: Document MSM8226 compatible
-  clk: qcom: smd-rpmcc: Add support for MSM8226 rpm clocks
+Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+---
+ Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
- .../devicetree/bindings/clock/qcom,rpmcc.txt  |  1 +
- .../bindings/soc/qcom/qcom,smd-rpm.yaml       |  1 +
- drivers/clk/qcom/clk-smd-rpm.c                | 74 +++++++++++++++++++
- drivers/soc/qcom/smd-rpm.c                    |  1 +
- 4 files changed, 77 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
+index 2684f22a1d..e6e4cb3d0d 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
+@@ -32,6 +32,7 @@ properties:
+     enum:
+       - qcom,rpm-apq8084
+       - qcom,rpm-ipq6018
++      - qcom,rpm-msm8226
+       - qcom,rpm-msm8916
+       - qcom,rpm-msm8974
+       - qcom,rpm-msm8976
 -- 
 2.25.1
 
