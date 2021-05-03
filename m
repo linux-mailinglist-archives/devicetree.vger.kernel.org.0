@@ -2,61 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C50037151A
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 14:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FDF1371533
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 14:23:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230009AbhECMPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 08:15:22 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:50796 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229594AbhECMPW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 May 2021 08:15:22 -0400
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1ldXSt-002Hrd-A5; Mon, 03 May 2021 14:14:19 +0200
-Date:   Mon, 3 May 2021 14:14:19 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     LABBE Corentin <clabbe@baylibre.com>
-Cc:     Rob Herring <robh@kernel.org>, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: net: Convert mdio-gpio to yaml
-Message-ID: <YI/pG3GSIpse+OEo@lunn.ch>
-References: <20210430182941.915101-1-clabbe@baylibre.com>
- <20210430215325.GA3957879@robh.at.kernel.org>
- <YI+WPRAAbtmP9LC0@Red>
+        id S231551AbhECMYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 08:24:37 -0400
+Received: from mout.kundenserver.de ([212.227.126.130]:35475 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230009AbhECMYh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 08:24:37 -0400
+Received: from mail-wm1-f48.google.com ([209.85.128.48]) by
+ mrelayeu.kundenserver.de (mreue011 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MoOMq-1lFBEF0XXs-00oqS5; Mon, 03 May 2021 14:23:43 +0200
+Received: by mail-wm1-f48.google.com with SMTP id n84so3214099wma.0;
+        Mon, 03 May 2021 05:23:42 -0700 (PDT)
+X-Gm-Message-State: AOAM532NwSq0D+aEyIxLMg9dn5d6OWQSgaF5k5uTffxH/k48X/4oacd5
+        TOXvCphPR9OuRTRbdgfLMyoKQaey57mSSHQod0s=
+X-Google-Smtp-Source: ABdhPJzgZnWYW+fOuChQUPyL8ctUyHMhpQ7+njGfdV1G5yVqSA4zSIMSXjfnegUMZYYWLAeOIA1tvONv3koPAKICOxk=
+X-Received: by 2002:a7b:c846:: with SMTP id c6mr31174650wml.75.1620044622642;
+ Mon, 03 May 2021 05:23:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YI+WPRAAbtmP9LC0@Red>
+References: <20210430153225.3366000-1-robh@kernel.org>
+In-Reply-To: <20210430153225.3366000-1-robh@kernel.org>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Mon, 3 May 2021 14:22:58 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a16ZRoisiQeubTJz6E=w-=34BPHtPRYiwwnFWiEUnew2Q@mail.gmail.com>
+Message-ID: <CAK8P3a16ZRoisiQeubTJz6E=w-=34BPHtPRYiwwnFWiEUnew2Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Remove unused Sigma Designs Tango bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Marc Gonzalez <marc.w.gonzalez@free.fr>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-mtd <linux-mtd@lists.infradead.org>,
+        linux-pci <linux-pci@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:0TxYnDn7eQxPX//6HofUo4blLorfJxjtBEFLegC1X9h8nknrAuA
+ J6gJCzDJuQZqxzSQT+GnO5YCPyLA1/7UjIOoYQfdgx3Wm+sNh9kBy6XXyT3drx2y3TJlCzm
+ scyQXB5k+R6J1mZQ95F+ghAfvt8dEtqeqJAWBjLKGol4H1VTcOdHLEyM4CB+L4aDuHiggfc
+ lg185+ohLXPmNko6TvY0A==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:KeW5nA4WIdM=:9C58HFElrTXlhUn97m8kCw
+ OKe7/amK75bTKqHbbjbfximjdlgcRwMwBacYl5wbT/rZe6hGQQ5BqNnlM1mATWAPCDCH4oKTz
+ nUTFSRCTwbKYRIB/r1OzYAD9iJOsFVygV9XRrXIl7vY9bd81XNs+aamPE+CJANqdJuVc45ygl
+ XFjrh/W2f1nSMQZPLrlMXA3c2CuTFfuZ8HbXoYwQRVUcSVU1b4Tkpz4koqLSvRD9XKRDIGnyZ
+ slL0XhD4n9ZON8w3mHMPn7zSRrdGJQJLxnJ7nspkKwes3HrmFJNEQ5BCun+0WV5qgYPqwFMLJ
+ 9ybrMS1Yzf0p6PBXAbLW2qepcerXrYz0JesC/IDrakN35i2TSb3rkirnG1EMhzovqzDricAC5
+ oomy2C1dufvdoC+NZSPna+8Zek879+6gg0tx2JSBhcpOiIVbJmmFo2NjIGDYt1OomFrlGqYV+
+ CA2pEGIzHyZq+zN8/KIcKL5eVy+h1NcD4oJUBx4JEdyiITzDhoc6c5BO4Vnp2vnL4SinbFybr
+ sx2vG0hz6vZIEhjqWaU0T8aWblRHhdGbiGbyT+4ERLNw1vqcbChnb9ZzTamL5KsSF7Ua6lnTl
+ 5n4Uzp3QtVlDBcL8VmMmJ2DbSls5B+vLBzZxGXQd9VCIIG2IQefa8RS53J9z2eCQTnaA7tfYz
+ VaEc=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > What's the order with 3 lines? In any case, define the order with 
-> > schema:
-> > 
-> > minItems:
-> > items:
-> >   - description: MDC signal
-> >   - description: MDIO or ?? signal
-> >   - description: ?? signal
-> > 
-> 
-> I dont know what to write in the third line, I added the "maxItems: 3" by request of Andrew Lunn.
-> But I have no example at hand.
-> 
-> Andrew could you give me an example of:	"You often find with x86 machines you don't have GPIOs, just GPI
-> and GPO, and you need to combine two to form the MDIO line of the MDIO bus."
-> Or could I drop the "maxItems: 3" until a board need it.
+On Fri, Apr 30, 2021 at 5:33 PM Rob Herring <robh@kernel.org> wrote:
+>
+> The Sigma Designs Tango support has been removed, but 2 binding docs
+> for NAND and PCIe were missed. Remove them.
+>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: Marc Gonzalez <marc.w.gonzalez@free.fr>
+> Cc: Miquel Raynal <miquel.raynal@bootlin.com>
+> Cc: Richard Weinberger <richard@nod.at>
+> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: linux-mtd@lists.infradead.org
+> Cc: linux-pci@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-The code gets the GPIOs via index. The index are defined in
-include/linux/gpio-mdio.h as:
-
-#define MDIO_GPIO_MDC	0
-#define MDIO_GPIO_MDIO	1
-#define MDIO_GPIO_MDO	2
-
-So you can describe them MDC, MDIO, MDO.
-
-   Andrew
+Acked-by: Arnd Bergmann <arnd@arndb.de>
