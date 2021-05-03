@@ -2,69 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25A08371BFB
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 18:50:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 338A0371DC6
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 19:10:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232582AbhECQvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 12:51:00 -0400
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:42663 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232179AbhECQsP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 12:48:15 -0400
-Received: by mail-oi1-f171.google.com with SMTP id v24so5972457oiv.9;
-        Mon, 03 May 2021 09:47:22 -0700 (PDT)
+        id S234953AbhECRDK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 13:03:10 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:37421 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232549AbhECRB2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 13:01:28 -0400
+Received: by mail-ot1-f47.google.com with SMTP id c8-20020a9d78480000b0290289e9d1b7bcso5700093otm.4;
+        Mon, 03 May 2021 10:00:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=FZniUUahTWZ1gHJuDlztknakv+Y1D1uukL0qFU35ff0=;
-        b=kmQku92mXOphBsSi1HVZasWRcoqvGT8+h/x+7d9PxG4/BSgaFdC3AwzglEgttZ1MfZ
-         uO6QZKygRVd5fmt9w/F+WDWHgLgHCVJu19RaZe/dcObHsxreDrMcLjtdCH4Fwoe/vN2c
-         3VUjalZWnvbmWP5BA5J35V41uDm9rsIeB/zVDfL2wlJkiF+ZtCXumCZXqyQYKuKTY8Mw
-         wA3DeX3qyUGWcTTo8Zg0Cqbdya+pKb6fhRvCHj0oaVSnihZh/9AbpqoNG3VFkENIpaHC
-         KX13OFSQeNQc0xpX49PyWD13Yzaz7q0mo5zw9hTN70VJOjrOHQAMgcb8iptfU5J1yP/i
-         4Dsg==
-X-Gm-Message-State: AOAM5313xRIxJSr7hwf/TFxJn1H09bn2qa2hQ+jGWJI12e9MeIq4MAI5
-        /uibsIhJaehwaKmesjEMBg==
-X-Google-Smtp-Source: ABdhPJxknYuxl9mXk7CK9WkA6mZSKILDuCUBdJXCfPYTG+JezGHjq3O4OMuQDQOr6o20c+a3hRN6jA==
-X-Received: by 2002:aca:bc42:: with SMTP id m63mr20900017oif.96.1620060442141;
-        Mon, 03 May 2021 09:47:22 -0700 (PDT)
+        bh=MpWS97nnXbRs49r1fForFBwiCI3FlCAOFGO2IucCbgI=;
+        b=jKXIcz2msfofi3MX/6abqXQg7sXsaHLO/ycEbBYga/2/Odtv1sltaZlGi8kO5tdCto
+         LtAUkU7cJkjm/PHxpInb60pU8NVT5GnpAnhutVjR/FLgw/khNtPFyJZg+IiLEy27HuI7
+         kdM5breokilINsN0PzKOthGlxF9vgDTGsR2Ie67JPMJvimxdE9Fsl/ng4N9zfpVV6vnV
+         YSdJpBFoWVKneu32IahclfUnM61YAPYkJ4aVdJ/miq//gPfY5nuF0Lwy3kq1FwN18nbU
+         xIMA0vZmB2vkZ41wt07Z325ReCz/AiYU4Fxe9JEqQ4XyW8Yq1v6wTUZ8ZtO3pm15K1up
+         mgyA==
+X-Gm-Message-State: AOAM533lsExUoUJtSPlHxtpnQEiazPNJkaeyy36OqOjYco6SOFeYQNNT
+        pX69mHD4zKMBSeu/9mA+uw==
+X-Google-Smtp-Source: ABdhPJz3axdorHwGCwuPSEqF9Bw80gZAqMDgQOmNpRuGn93hjcvSZSCtx5vibHriB9CdGrpMOJJZig==
+X-Received: by 2002:a9d:7085:: with SMTP id l5mr15416541otj.345.1620061233291;
+        Mon, 03 May 2021 10:00:33 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h2sm50440oop.47.2021.05.03.09.47.21
+        by smtp.gmail.com with ESMTPSA id t25sm71651oic.23.2021.05.03.10.00.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 May 2021 09:47:21 -0700 (PDT)
-Received: (nullmailer pid 1987723 invoked by uid 1000);
-        Mon, 03 May 2021 16:47:21 -0000
-Date:   Mon, 3 May 2021 11:47:21 -0500
+        Mon, 03 May 2021 10:00:32 -0700 (PDT)
+Received: (nullmailer pid 2008247 invoked by uid 1000);
+        Mon, 03 May 2021 17:00:30 -0000
+Date:   Mon, 3 May 2021 12:00:30 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Dong Aisheng <aisheng.dong@nxp.com>
-Cc:     linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
-        kernel@pengutronix.de, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, dongas86@gmail.com, shawnguo@kernel.org,
-        abel.vesa@nxp.com, sboyd@kernel.org
-Subject: Re: [PATCH 2/6] dt-bindings: arm: imx: scu: drop deprecated legacy
- clock binding
-Message-ID: <20210503164721.GA1987669@robh.at.kernel.org>
-References: <20210423033334.3317992-1-aisheng.dong@nxp.com>
- <20210423033334.3317992-2-aisheng.dong@nxp.com>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, timur@kernel.org, nicoleotsuka@gmail.com,
+        Xiubo.Lee@gmail.com, festevam@gmail.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] ASoC: dt-bindings: imx-akcodec: Add binding doc for
+ akcodec machine driver
+Message-ID: <20210503170030.GA1987906@robh.at.kernel.org>
+References: <1619157107-3734-1-git-send-email-shengjiu.wang@nxp.com>
+ <1619157107-3734-2-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210423033334.3317992-2-aisheng.dong@nxp.com>
+In-Reply-To: <1619157107-3734-2-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Apr 2021 11:33:30 +0800, Dong Aisheng wrote:
-> The legacy clock binding are not maintained anymore. It has only
-> a very preliminary supported clocks during initial upstream and
-> meaningless for users. So drop it from binding doc now.
+On Fri, Apr 23, 2021 at 01:51:47PM +0800, Shengjiu Wang wrote:
+> Imx-akcodec is a new added machine driver for supporting
+> ak4458/ak5558/ak5552/ak4497 codec on i.MX platforms.
 > 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 > ---
->  Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
+>  .../bindings/sound/imx-audio-akcodec.yaml     | 60 +++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/imx-audio-akcodec.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/sound/imx-audio-akcodec.yaml b/Documentation/devicetree/bindings/sound/imx-audio-akcodec.yaml
+> new file mode 100644
+> index 000000000000..7419bf7224e9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/imx-audio-akcodec.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/imx-audio-akcodec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX audio complex with AK4458/AK5558/AK5552/AK4497 codec
 
-Acked-by: Rob Herring <robh@kernel.org>
+Looks like the existing fsl-asoc-card.txt? You should convert to schema 
+and use that. Otherwise, my comments are based on this all being 'new'.
+
+> +
+> +maintainers:
+> +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx8mq-audio-ak4458
+> +      - fsl,imx8mq-audio-ak4497
+> +      - fsl,imx8mq-audio-ak5558
+> +      - fsl,imx-audio-ak4497
+> +      - fsl,imx-audio-ak4458
+> +      - fsl,imx-audio-ak5558
+> +      - fsl,imx-audio-ak5552
+
+I continue to not understand why audio bindings need the codec(s) in the 
+compatible strings. Can't you look up the codec thru the audio-codec 
+property?
+
+> +
+> +  model:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: User specified audio sound card name
+> +
+> +  audio-cpu:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: The phandle of a CPU DAI controller
+> +
+> +  audio-codec:
+> +    description: The phandle of Codec DAI controllers, there are two
+> +                 controllers maximum.
+
+We have the common 'sound-dai' property. See the simple-card.yaml 
+binding. 
+
+> +
+> +  audio-asrc:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: The phandle of ASRC. It can be absent if there's no
+> +                 need to add ASRC support via DPCM.
+
+Needs a vendor prefix.
+
+> +
+> +  fsl,tdm:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      This is a boolean property. If present, the TDM mode is enabled.
+
+But this one seems like something that could or should be common.
+
+> +
+> +required:
+> +  - compatible
+> +  - model
+> +  - audio-cpu
+> +  - audio-codec
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    sound-ak4458 {
+> +        compatible = "fsl,imx-audio-ak4458";
+> +        model = "ak4458-audio";
+> +        audio-cpu = <&sai1>;
+> +        audio-codec = <&ak4458_1>, <&ak4458_2>;
+> +    };
+> -- 
+> 2.17.1
+> 
