@@ -2,90 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A74043720E5
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 21:50:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B973372109
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 22:01:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229637AbhECTvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 15:51:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37668 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229615AbhECTvv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 15:51:51 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E78FC06138B
-        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 12:50:57 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id z6so6849008wrm.4
-        for <devicetree@vger.kernel.org>; Mon, 03 May 2021 12:50:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Va5A8z7PqFlkwfDk4kcsvQKqbabXZRIQXNsljjdIaqw=;
-        b=xqVxhScZp596UM4htSphTSlY3zRx5yDFdaIkRITEqc475ieyb9LxSsrsDPHoYMUnf+
-         J1WGabgf/7hv/mVdHz0Imo+v21P0/VxKPjJVyiJpBOt9S0j8fmBM2+qVnS6pXAnswCPz
-         JfT6NW9B7Na0qYlN/bG3cgdD+dGWRge0h2AeVW72f3O2Rq97D1nMrsy8aqEE/xcvlgcV
-         JMCbUujONc6vdts4afBPhvPCdYC2F2w1O8Kg6zHEt+0iSYdV9wxL4ypsETkqT7aDgcAk
-         2//Lw7/9fqfDGzmDGTKVAFZvwizAxksxEDzM4vRqMRY7hvEjDBP8fPm7UkMbOxCh8Y/y
-         c50w==
+        id S229607AbhECUCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 16:02:01 -0400
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:45660 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229499AbhECUCA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 16:02:00 -0400
+Received: by mail-oi1-f169.google.com with SMTP id n184so6537975oia.12;
+        Mon, 03 May 2021 13:01:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Va5A8z7PqFlkwfDk4kcsvQKqbabXZRIQXNsljjdIaqw=;
-        b=jrtk5fwdCdVZC21bYhXfuXYCcDgXRopVZxh7fNASPhC+DvQps8lRF1h1NXOOfaaLbm
-         MdT11ixB35xHCJ9069sPh0Fqqm0KBLHE+GhMNl2UozzIwuSCkCjRY1g71tq8NhrbdP8G
-         LPT7BORxjISFUchS5NlOyOHu2yGEPLgzkeRViyZevXkFPnuE7fiugMzByweNszAo7xWd
-         aUGnFWgnUipEQh3vwAgI76ij6zULEMURntxnTaHaz0pHCc9Fd05VEjnxvRdgYdmhevy0
-         +4MWDO2xbIM5ez0CByub5W04yiGW7Dhg6Q5Zzk5rhu5C5oZB9E+Y92foJ/gFPHPemrWM
-         8gjg==
-X-Gm-Message-State: AOAM532oVn1V1Ro1035vQvTIYFNNJANyKNa3L7VQLEIuDoReKux6UIP5
-        rlyk4EZQeV0EwT23BDThPcfhjg==
-X-Google-Smtp-Source: ABdhPJwiRQQddS1SJSJ2r9Ir8k3r0m9m1WZOKg2f4l5A7JI5A0NqQTU9a5ajuyiydOr8Dx3ZVep8mg==
-X-Received: by 2002:adf:fd0c:: with SMTP id e12mr3671044wrr.324.1620071456216;
-        Mon, 03 May 2021 12:50:56 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id d5sm13989429wrv.43.2021.05.03.12.50.55
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=X4KlkqE3016HoNlp0LRojABlkrGtR4P8b0/UN4z4Wws=;
+        b=WQe8S8gFdatf+c9SuwP4GO1FlqylxGWN/GDG+t+y7iXax5dWe1vhFQ0FFweui31xl3
+         SjLhTvLiomSPLuNaKfrj4BAYpjMpQN6M9aThQoj0l2k0rZ0343uWGPfb1oDt6mmXSgfW
+         YlhMrxJ6SEdvzxKBI4lOs1j0AEg5b/G9MUBVKRKcytgphUIlqFFQsFJNl5izp5UFUJGC
+         hAAumypXPon4qCtzofx8Cfwi7/PYTE/WLFCPOVqfZchGFDTsrmMuRQX+neOJr6zjXCHr
+         nYOzK9+aXBiFmYuXas7jtfD+criT/3bOke0I5UT4OKiO2poajR9MQr5GIk8V/VJGC9Y0
+         MFlw==
+X-Gm-Message-State: AOAM532vBxe2V+wCJ2NHgbDENuJM4itjneQuGcDbrha0QWFPsxtOcOhJ
+        pmnsPz+KIwv4969bEeKQSQ==
+X-Google-Smtp-Source: ABdhPJw/z/Vth2Mtu621HryVgzw1JKr612CTsqcBJJAY8Yx4T9tFrlIVUWKKxSx4SxYC3g+Bx2HX+w==
+X-Received: by 2002:a54:4184:: with SMTP id 4mr199285oiy.72.1620072066668;
+        Mon, 03 May 2021 13:01:06 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id a4sm204369oib.17.2021.05.03.13.01.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 May 2021 12:50:55 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     alexandre.belloni@bootlin.com, a.zummo@towertech.it,
-        linus.walleij@linaro.org, robh+dt@kernel.org,
-        ulli.kroll@googlemail.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH 2/2] ARM: dts: gemini: use the right rtc compatible
-Date:   Mon,  3 May 2021 19:50:48 +0000
-Message-Id: <20210503195048.1575007-2-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210503195048.1575007-1-clabbe@baylibre.com>
-References: <20210503195048.1575007-1-clabbe@baylibre.com>
+        Mon, 03 May 2021 13:01:05 -0700 (PDT)
+Received: (nullmailer pid 2295442 invoked by uid 1000);
+        Mon, 03 May 2021 20:01:04 -0000
+Date:   Mon, 3 May 2021 15:01:04 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     linux-pci@vger.kernel.org,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: Re: [PATCH] dt-bindings: PCI: rcar-pci-host: Document missing R-Car
+ H1 support
+Message-ID: <20210503200104.GA2295387@robh.at.kernel.org>
+References: <fb0bb969cd0e5872ab5eac70e070242c0d8a5b81.1619700202.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fb0bb969cd0e5872ab5eac70e070242c0d8a5b81.1619700202.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The rtc compatible was not following the dt-binding.
+On Thu, 29 Apr 2021 14:44:09 +0200, Geert Uytterhoeven wrote:
+> scripts/checkpatch.pl -f drivers/pci/controller/pcie-rcar-host.c:
+> 
+>     WARNING: DT compatible string "renesas,pcie-r8a7779" appears un-documented -- check ./Documentation/devicetree/bindings/
+>     #853: FILE: drivers/pci/controller/pcie-rcar-host.c:853:
+>     +	{ .compatible = "renesas,pcie-r8a7779",
+> 
+> Re-add the compatible value for R-Car H1, which was lost during the
+> json-schema conversion.  Make the "resets" property optional on R-Car
+> H1, as it is not present yet on R-Car Gen1 SoCs.
+> 
+> Fixes: 0d69ce3c2c63d4db ("dt-bindings: PCI: rcar-pci-host: Convert bindings to json-schema")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> This was never enabled in the upstream r8a7779.dtsi, but the Linux
+> driver does support it.
+> ---
+>  .../devicetree/bindings/pci/rcar-pci-host.yaml       | 12 +++++++++++-
+>  1 file changed, 11 insertions(+), 1 deletion(-)
+> 
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- arch/arm/boot/dts/gemini.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/gemini.dtsi b/arch/arm/boot/dts/gemini.dtsi
-index 9b4e5cf0ff5c..46071b46418a 100644
---- a/arch/arm/boot/dts/gemini.dtsi
-+++ b/arch/arm/boot/dts/gemini.dtsi
-@@ -191,7 +191,7 @@ timer@43000000 {
- 		};
- 
- 		rtc@45000000 {
--			compatible = "cortina,gemini-rtc";
-+			compatible = "cortina,gemini-rtc", "faraday,ftrtc010";
- 			reg = <0x45000000 0x100>;
- 			interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
- 			resets = <&syscon GEMINI_RESET_RTC>;
--- 
-2.26.3
-
+Applied, thanks!
