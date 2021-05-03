@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94362371680
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 16:18:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DA34371685
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 16:21:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229497AbhECOTn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 10:19:43 -0400
-Received: from mail-eopbgr40110.outbound.protection.outlook.com ([40.107.4.110]:28633
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        id S229549AbhECOWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 10:22:37 -0400
+Received: from mail-vi1eur05on2095.outbound.protection.outlook.com ([40.107.21.95]:30113
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229472AbhECOTl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 May 2021 10:19:41 -0400
+        id S229472AbhECOWh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 May 2021 10:22:37 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dHSOamusZzuh9BNNm00skl+zym4nQFlDejrK/IZrwiYRqY6u5/H1wR5ackICuR/S8bUZCSNXuL9a9i6tjvShz8J3gYrKVk/E2mkqAzib/UwHgElrDJFN5aSc4owkTBmp4lsS1dfNG0pYK0ZlFUclKQqEBiZlXd3EnVngK/kqv+KT7SC+2m96WvQcyLO8ttHpj/d4iUA7r2c/PVdbHVj+4c3rimtyjpAFAdEILWgaMDJiuBltQ+B4UziXdSt9VeHmUalod5UHdvyP9mHeaO6c0A8Bh4UtcHjTNZQGgts1KmBfR9So6orDvuFWeinJLJg02OnEdjLWO1iPgygsb3pxoA==
+ b=a1wEnFidN9APUuJWbODDDKJJDCK4YyTRQYCkiz0jcDBI0H/umVWyu5TJHkJXY30hGjk9p/AcSTj6Wgbpd2e01dODNdMR2t8wVlBfNx3nuWtDldUYZTDlnosOmCow11GjqFSmW5RRvjXgVUmNzp0cnzzJ2IJafrbGpPaeuxArrvUD4Vy2YKSQjxXGuvad3dswfgfNku0t70J79mpfiMpYkUrBKAnOA0U/SOj4pWae9Mhda5d6S473ccpi7Z1FQ6fIPGICm+QcDcr/ywhuuhyfyGPDiEvhMSD0XnTm9rZnxdoPYxTSGbmQDxWD79xt9Xu0HvvFgRlyB5K0zSR8BZdG+A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zynJJBTcenqp3PDoRtQOW6Ocd0GrOsKVNMUvsbHXUCk=;
- b=m4kCXJdhLtidK70tZP9Im/g/ie7oZORZSFicAwWGaXVhp7dI13LRmYkt8rwfj/V4TqDvgnn7Bld5dkEHpkfYlIBlFuiNsoi0OIswfYwYfPexfzK5z2toBBhA9GDWwkM2WDaaBtGiVpbtFcfhdxij2X1P2O0tVWfxlPe6zhoB4NwlqhEWKK010AMLGznpoCpWqqHS+rvjzJWDDymjcP3hysJ5ddegBy1q2+hTPCEXdhICRtQr6X2A0VI3lWdUL0oYwG7T/EQ+S5uKOHSZwriVodfDvwH2PnB+8l0AnpeZTve/ql6st3e6J4uCHFDHfUH8xGSCnACec7VPWYpuzkLAiQ==
+ bh=YljL4jirMf+LgBeP8qwBakVFfKPHd3e5hA0fS0GmseM=;
+ b=QASQTGBsvw0vTvkIa7B73GNYiavb+KOXNgvA1oDXgD+t56dvx1OI2EaHDUSrqKIEos6dCdbHaIY4RAi0GUJM7jQjnps0f/emUDhSbRYVs9rm36xvFesnKms4DXD0N4yoGWQQzobs4hLagr4yi1qpMEpIx0OhT2ykJVUrZy55DJpSq2COmDEFSP1Dqbyoz3cAualHx48yGPH3FTgr/IK5N6sbdWKUXx1BPB640zSzogLrI6/b9LGWLLPaqG5dP3xvKPCC2N1YcwD9x0ZD1UTBlYAAMzo+FnKP31A/NL0AOR8RBAzHQbWUnYFEiOWfKYdThADE5eshqfr77T0m71hLFQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
  dkim=pass header.d=kontron.de; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
  s=selector2-mysnt-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zynJJBTcenqp3PDoRtQOW6Ocd0GrOsKVNMUvsbHXUCk=;
- b=K9xH2DevKKKtBT4Hvw2O99SbFkUt2QgoEvHF7eyKLL/o9WJrkYLfB1hzLwJFY28qJYaJUpXB0ACTShhXmrpp9iyeMnESSQKJIXMTssZkry3GxmUF+45nFXjOtEqaCyjBMfIRK062pnFfcYqTumQjOLu54Of3ugAwj4JLzGBgIbI=
+ bh=YljL4jirMf+LgBeP8qwBakVFfKPHd3e5hA0fS0GmseM=;
+ b=QLAW+iT5S7MFOHpPFeS4k1dlp5DohqDMG/eGmXt+4qE1y7b8k8CtmAv0/8Z57AzCxVOhDXw4j5JzEPnyTbq2UA6ymwz1SI6N1ISQPcJ95K9F9xgq6b8lEIUzs1saEUYIDmBtnAIcXdCN7r1PRe6TWT9K7+Hmt7t2ipYDab0uZlA=
 Authentication-Results: nxp.com; dkim=none (message not signed)
  header.d=none;nxp.com; dmarc=none action=none header.from=kontron.de;
 Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:157::14)
- by AM0PR10MB3521.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:159::24) with
+ by AM8PR10MB4658.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:357::9) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.25; Mon, 3 May
- 2021 14:18:46 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.38; Mon, 3 May
+ 2021 14:21:41 +0000
 Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
  ([fe80::3d8a:f56b:3a0c:8a87]) by AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
  ([fe80::3d8a:f56b:3a0c:8a87%7]) with mapi id 15.20.4087.044; Mon, 3 May 2021
- 14:18:46 +0000
-Subject: Re: [PATCH 06/16] soc: imx: gpcv2: add runtime PM support for
- power-domains
+ 14:21:41 +0000
+Subject: Re: [PATCH 07/16] soc: imx: gpcv2: allow domains without
+ power-sequence control
 To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
         shawnguo@kernel.org, s.hauer@pengutronix.de
 Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
@@ -49,73 +49,73 @@ Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
         linux-kernel@vger.kernel.org, ping.bai@nxp.com, aford173@gmail.com,
         abel.vesa@nxp.com
 References: <20210429073050.21039-1-peng.fan@oss.nxp.com>
- <20210429073050.21039-7-peng.fan@oss.nxp.com>
+ <20210429073050.21039-8-peng.fan@oss.nxp.com>
 From:   Frieder Schrempf <frieder.schrempf@kontron.de>
-Message-ID: <450c97d8-a7c1-fcf0-2485-529ff702989e@kontron.de>
-Date:   Mon, 3 May 2021 16:18:44 +0200
+Message-ID: <f384f461-fac4-5423-619f-e35a4abea7f5@kontron.de>
+Date:   Mon, 3 May 2021 16:21:39 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.7.1
-In-Reply-To: <20210429073050.21039-7-peng.fan@oss.nxp.com>
+In-Reply-To: <20210429073050.21039-8-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [109.250.134.29]
-X-ClientProxiedBy: AM5PR0101CA0026.eurprd01.prod.exchangelabs.com
- (2603:10a6:206:16::39) To AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+X-ClientProxiedBy: AM6P194CA0012.EURP194.PROD.OUTLOOK.COM
+ (2603:10a6:209:90::25) To AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
  (2603:10a6:208:157::14)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.10.27] (109.250.134.29) by AM5PR0101CA0026.eurprd01.prod.exchangelabs.com (2603:10a6:206:16::39) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.27 via Frontend Transport; Mon, 3 May 2021 14:18:45 +0000
+Received: from [192.168.10.27] (109.250.134.29) by AM6P194CA0012.EURP194.PROD.OUTLOOK.COM (2603:10a6:209:90::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.25 via Frontend Transport; Mon, 3 May 2021 14:21:40 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b82bf9c3-70a1-4cdf-80e1-08d90e3e5d0e
-X-MS-TrafficTypeDiagnostic: AM0PR10MB3521:
-X-Microsoft-Antispam-PRVS: <AM0PR10MB352112A2F53D955185A0C7FEE95B9@AM0PR10MB3521.EURPRD10.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:529;
+X-MS-Office365-Filtering-Correlation-Id: 1d613b50-8488-4ca8-ca19-08d90e3ec58b
+X-MS-TrafficTypeDiagnostic: AM8PR10MB4658:
+X-Microsoft-Antispam-PRVS: <AM8PR10MB465828D92D92E9E936802511E95B9@AM8PR10MB4658.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RrIvfVclTuJVtyOoJNUPhZ2SEMbR7NYX/Qw3sLioesArQHm7bpYmQYd7j9goFLw2RHE+/d199Fp9XlIOpohytjO9boaOyAA3Is/9TUTjrGq9AHpL1M16rUsQpX8rWwJHFqAek3+Xps6KY7/4+vME7nXuJJZ2xG75U9jfvt1jA0MuojtBi95owwFVevtnEJwBSj2Psx72UFsoQJzdyCWy6f1MNdAOfgkAaU4jvbh5wldrIRcOFe7LBuz/NIhzdnbh9EcHsX8mjzC+NvIs9KTVSRD7O2NE7MoPLl4lqXwAhDn5obOq6HKV8u4vmW55A0f7dc6n0tSZJ/N2HoTAqy6lZNbCGdy6KN8PKYPHPXv6gbzdQLoeL3kpBoQecGxFLOhSQRXAsk3nasNQPT6OnveR1Db17ZDN2jv1sp4cXXGCes2I3mSQuFXZF5tWRCJtsMYo8DikUmcngaHPdfs/y1mX/7mPphoDzLIVTD7GPDpWsIGwkSgWY1iddPqCKH7Kt2PNE08j4+0gcG7sBtUQDR1pgqpJm429SHVlkI/McNnpjyegTzVvNNsP4AUSi6NZjIuYHNla0i/XvJGGkBw4T6oYQB3Gg6YSJCWW7w6OmurP4bf4Nc8wU+vofnyVQJg8T30+z0pgJM6ziAqzlqN/EC0h/lL/87sYC60v5A9ObNZUjh0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(346002)(366004)(376002)(396003)(136003)(39850400004)(7416002)(83380400001)(36756003)(31696002)(26005)(66946007)(6486002)(4326008)(478600001)(16526019)(186003)(53546011)(66556008)(66476007)(16576012)(5660300002)(8936002)(316002)(38100700002)(2906002)(86362001)(956004)(2616005)(8676002)(31686004)(44832011)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?NE5yVnJFcUJVbzdaUU5xQlNVaUcwUmgwZlFhSXBnOGlJcVp4eENlYWFFeGFh?=
- =?utf-8?B?WGpXZE9IMW91WU1kMWN5VlFFL0lSSi9OWlZpenFKSVRHa29kV2VENzVDUHdS?=
- =?utf-8?B?WlhSQmNicnJSV25wWEhpMUZvOTd0WFhpeDRQUXdzNzNmVHF3NmkvSVY0Mzd4?=
- =?utf-8?B?WGZ5YXMvK1dUSTMrTUIvVyt5WmpJaFpxRUZ4Ri9kblFWZldwVXJvL25GRkwy?=
- =?utf-8?B?TUVOZXI4a2dTajNQczl1dmNyM0piZDNkcWxJVHNsQXN3ZXZReVMvQjhQQ2Y0?=
- =?utf-8?B?YUcrNjVrN3o0eUJNeXpTMmlBNHYwZGVnQ2o3eDJ6UE0yaTFDc1RzUzBlME96?=
- =?utf-8?B?VWh3aStOUVUrbzFzZkxET3A1WFB1UUZsS1VoYktsUWh1bDdvVk1VTzhnU3d6?=
- =?utf-8?B?YnA3Z2dzVDVuTDlITzN0bnErSndUTzlVdVRGTnZ2VnR2d3hkUTRDSk8xeFFi?=
- =?utf-8?B?KzBMMVUvNE9uUDV5TDMxTS9HeHZ3S1ViWXY3aWNkem8vUGk3TUJ6Vmxsak5Q?=
- =?utf-8?B?c3hZWkdWMjRXelhyb1NubklPdG1OZUo0cFhVcTBxUlo2WHBsd0lIQXlVZ2xB?=
- =?utf-8?B?ZnVVdEovcDVoekxtMDNPNzdxNlV2TmRuMkVRTTlJdm50WW0wNStEbTFXdkx5?=
- =?utf-8?B?QjdYZ0JOYlZQOEtOcDFNZytYLy9yM3pZeEdBc3R3OGVkeWl0WnJZWmVhTk9w?=
- =?utf-8?B?NkVnbXJKSUhJRko4WUxXYjhjUDdsaXVRWlRyVUhNajZvNVhnZWFmelkxK09L?=
- =?utf-8?B?ZCtjcDMwREhpVEdJR0xHTnM5cHBuZ0JYaGNvblFIcDBXRFNlalpYcjVERVB0?=
- =?utf-8?B?bTRUT1JPMEtIaUVlVnRuYlpONldJV3hTcWhLcXRZY3E1K2JvVTgzTGdjd29H?=
- =?utf-8?B?YytXRllWY29kREN0bndxdWtUZ1FGMFJVNlZQdUxOYlVKUzF1SkQzcU9mUEM0?=
- =?utf-8?B?d3JHQm5RTnJOS3BMRGNKRUYzTjhYT2xiNEVqZjlqM254S2ZwVWZwOVlZUnFh?=
- =?utf-8?B?ZWtrb0crdWxWcTkzNmlyQmJiTDBMLzlNejVldG9scDZFUDQyLzhVSkFwRFJw?=
- =?utf-8?B?UjFNSFhrZXBrSzlVdG9VSVRoMTFxaXdUOTFTWW04bUZOb1pkWFY0VmxDRDlC?=
- =?utf-8?B?VktjNzV2MGkzOHBZVnVXd0NCSHYzQ0o5c0IwODFoUUdBaUwxeEw5VldqWEtx?=
- =?utf-8?B?SUFJcGtkK25YU3FiNnl4QjVLRnZqRXY4MkVTZ3FQV05hV0Vya0Q3T2xNNEFR?=
- =?utf-8?B?RW9MSmFVbmVEUDVMUUdheFREOVNkd1lFZFJOZGxUU3ozVE1Yek0yYitkTy90?=
- =?utf-8?B?VkxMV1FDaitxWVpRajVRVHJpcW8rbDYzWUdzcmt4ZWhOaWkrUEtKTDlKT0dG?=
- =?utf-8?B?Uk1xNjU5K0VRbCsvUW5Mc21MK21hWHVxbVRSTlVJejdhcjB4NVNOU3lzN3p1?=
- =?utf-8?B?U3VwUGhnaGcxNW9jdG96RjI0V3pCMEZ2V2dRZlRTVFY1WmFLTktpV2JybGFQ?=
- =?utf-8?B?YllrR2djekp0T0pZa3l6MWNjQXVkbTNXNDNEdnlsMmJiRnVrZ2xrTzVUN09Z?=
- =?utf-8?B?SnVzRFVMWE1hSlY2OGRjVlFDaWQ3bnZXSXN2OU5TSUQ0Wjl1RzdheXZjdU1L?=
- =?utf-8?B?cE15c3k4TW1JeThlcFVKQ2g1K2F3bFBadzAvUmhNWVVvZDVULzNLOC9RT3hX?=
- =?utf-8?B?OFR1WllZL2h2eEpQYmg0cE91ZFRvUUxXU2FKemJnMVJWTG85RlBnRHlyQ0Uv?=
- =?utf-8?Q?/XCD4hnkieQoBtvpFBaEzxuAzoTQd+j2NhneSrj?=
+X-Microsoft-Antispam-Message-Info: kZyPawfVRiaEXpKtH007vj45dwz68NBv0j36K8t6gBvDvHlClFUKuq7n1Z4+O4BZQeJD9CC7MeQYGI+4Fo1YedRuybtJQ/04gkWKCIAbZkH6vIFhp2sXoEVPeHTOX9LVPQl6aDObBc4aRCFlP007v1Jc+6eAAYK0NXnL66AL8MNTd4v8nDQiCC/TL8Q339jlVLtCwAJZAarTeHZtOClPC76dJOXVfWNeUZJb6oZJW1f5ZCyK2qwzIq4D3t9vI1ADK4ovEJ4pZCXVXw5ySomggh2owmFQpHSllJLGDVfqh8mMaLFcd/8yx6B0ziMo/hzDG8iMnaK7cy+BRHIEOZ7e0ZfXpdohIUHwy83fbZB1waq2sCI+RlUUdMP5jrX3oY8N2aVJleqgUwB1n+tGf1ln+hg/BolQj6n7WqpvahHSCQ4KHcfdL6U4YHAm+oYQXqo/0/Y23Lh19+CCZlsz3wo/R2RaS+EH0s3jz52CG6Zy3TnBl1zxlsr5aIJHttuEVTT3Q2DDH3+iJOpKCOFzhK8jhH0YmqfRDhufZGjJLxyRHdYjy9PMU39hOEGY7O/ma3ww5zIKPg4MgmYgOszkA8c3fw6RJJbELXrqgh+FDrdf0FvsNL1u8vNFWPYSs+drhugBSYYPSNViWhlqbk7oq2+xNdJ1bIDwRylLbYZ9B5gQHkEJBQGa1uOMDCEiimIR7mcw
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(366004)(396003)(376002)(346002)(39850400004)(136003)(8676002)(186003)(66476007)(53546011)(478600001)(26005)(31696002)(31686004)(4326008)(316002)(38100700002)(66556008)(7416002)(2616005)(86362001)(956004)(6486002)(8936002)(36756003)(83380400001)(66946007)(2906002)(44832011)(16576012)(5660300002)(16526019)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?ckdHb2RxbTM2ZURMZkFnN3RvZlBpdzVLUU1sYmdoTDc2TG54SG9ZTzI1T1hz?=
+ =?utf-8?B?Q0NvTGU5ZkNQdmZKYTNMU1pNSkROWmNNMVlyRWVBdmpzbGZJenpteFFyU0RT?=
+ =?utf-8?B?YUdVWXhTbSt1c0tKYmJwVVUvOGRCbG50c25SMFM4NXUxZEd4enZIQVpCWEwx?=
+ =?utf-8?B?RThRdUNwWGppd1ZUanA3YlVWaVFLUkM1c0xuY1V5TXFOcEhDRm0yVU9zUVFh?=
+ =?utf-8?B?NUhsdmFIMFFrMHplTHVFUW1kRStCOERpVEpDS2NPNlBOQWVRMTRDVmRzcmdB?=
+ =?utf-8?B?TmJEdGxUSHkrL09ITGlDeERZTjJrTlE3UkZ5eEk5YWQ0bW1EOGZFaGtUdUFY?=
+ =?utf-8?B?MHVEUnN4aFFUQnMzS2NkL09jSXNxaEU4c2l1TWtVZFF0R0hPS0dKMmxCZzJi?=
+ =?utf-8?B?YTh6R2VyRGdvZVAwUEJ2bElEZ0NPek82dEtOQWxZM2I4N0M0RFJKMXl5NWVO?=
+ =?utf-8?B?NWEwU3piNEErRnRFQy9jTnQ2dTdEK2VRNi9JWVhZUHFJWUorNXVncllaM1B3?=
+ =?utf-8?B?eVlONGpKYlQ0a2RJVXRiM3ZzMkhwS1F6ZmFkekhxSjJhQ29pY2dmSURHK1lB?=
+ =?utf-8?B?emJkRlBYLzRUOVFIMkloTVpieWhVRTdHeUtwaGpiRFA0YVpDSkZqRHYrSitn?=
+ =?utf-8?B?aytBRXB3YlRBL3QyNGhTR2UrdFFVU2VkdXVNdUhvR1ZRK2JNeGR2Q3BqNzFw?=
+ =?utf-8?B?aVdqeWRpVXI2YngxYnBVSGdVQmxlYm1ibjFKK0FURVVLWklyeGx5emVTRmY5?=
+ =?utf-8?B?STY1ZDlpZVBXUkIrejNrRnRaVERFR2VTbFpSTEhSNmNyNnIzNWpJdkdPa0RN?=
+ =?utf-8?B?RHMyd3FwM2NaRDNYRTFkd2ZYZzlmakg4anVEVVRsUktHYWxJampkdHhqRVVD?=
+ =?utf-8?B?S0FhbDF1TDJJd1FVZnUrVFlVQWhSaVZTci9pL0lHaTlsOW9OWXBKN3NQVng4?=
+ =?utf-8?B?TGdQM05JV2RBeXA3L3hoMGZuYkVINFFnMU1JaW1aNS9NSGJnd3dRL1Y2U2VG?=
+ =?utf-8?B?c3h5VHNjbmdHaERUeUp1VWx6SUd1dGxqTG9weG9ldUlJWTdLMTEwanZPZkM2?=
+ =?utf-8?B?blkzTmlrOHY4N3NpczQ1ck9EL3U3UlhnL1EzNjlRdEN1WVhnVWlhTzQrRGdN?=
+ =?utf-8?B?Yk9wT0lRMXltb3ZiOC9tcGZTS2t5OGNNd09mOXBJSTgveDUzcmZydWRpYTEw?=
+ =?utf-8?B?a0RnQTBSSmF4L1BCZFVSWDJ1dUlBUmEvbjFOY3lKTVQ5aHppRDNqeVpCNUZ4?=
+ =?utf-8?B?WXZSOFVWdEhoL1dSNEI1SkJEMzExKzFLdDAxY25qVEtRMkxLek9xR1FmWlIy?=
+ =?utf-8?B?cjY2RmxPVkZoUkJYbWh2S2pZejJYRmNpaUhSM0N4bkUzeXJXSHNOWFZ3WWZI?=
+ =?utf-8?B?MGVaekltLzJjWk1RQkQ4N2J2WGlQL0FjMkZyQVd4NVVSVDE4UmowK01RQTNW?=
+ =?utf-8?B?Qnk3OVBMallSNmhPZmFTbzhRUUlDZTlLczMyM0twc2xuQmRXcUJiZWhweWR4?=
+ =?utf-8?B?aFNuRE1PSmdGenB3cDRiZyt5MHlNQkluM2xIbm9EZHQvclJWemQvbzdTa3lr?=
+ =?utf-8?B?UG00OHFmR3lFUWtSeWZwbk5uakpWODRLTTRTSXhIQmlvS01rQVRKZ1N0VnRZ?=
+ =?utf-8?B?dnlndDJLbkZqNGxNN0ROOGFoK3BZZWJxamlETjF6ZWpieFRycGNwVzRqdGpR?=
+ =?utf-8?B?OGlCYkd3UGE3S2lHUXRrWWh5QWY4YitMbThLQmZ2TnMzdU94bk44SEE3bFEr?=
+ =?utf-8?Q?eVf9ke6YlsVlsO+XLZJM89qoz8w9Anv5izr0LbK?=
 X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: b82bf9c3-70a1-4cdf-80e1-08d90e3e5d0e
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1d613b50-8488-4ca8-ca19-08d90e3ec58b
 X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 May 2021 14:18:46.3147
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 May 2021 14:21:41.6228
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Yxtp4V/VR5cpklX/8AUFvsRIYH07LsY+5gRZJztkwYjSxFGmc6U5vBAFO8g2MDyu3J11QsK+QAz2frDam/tP3w+HRoTP3FS9UKGbiVgyTOY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3521
+X-MS-Exchange-CrossTenant-UserPrincipalName: JoRfNypJfByoxMandMVZCeTS7fMHmwrWdALZhxp7WTFoPmI5WTpQ04mxN/LCeVuVrrE4QbiNExV1mGVK7Ir823wJRTM+0zhPvfQ14RK13q4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR10MB4658
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
@@ -123,92 +123,146 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 29.04.21 09:30, Peng Fan (OSS) wrote:
 > From: Lucas Stach <l.stach@pengutronix.de>
 > 
-> This allows to nest domains into other power domains and have the
-> parent domain powered up/down as required by the child domains.
+> Some of the PGC domains only control the handshake with the ADB400
+> and don't have any power sequence controls. Make such domains work
+> by allowing the pxx and map bits to be empty and skip all actions
+> using those controls.
 > 
 > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-
-With the fix from patch 13/16 squashed:
 
 Reviewed-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 
 > ---
->   drivers/soc/imx/gpcv2.c | 18 +++++++++++++++++-
->   1 file changed, 17 insertions(+), 1 deletion(-)
+>   drivers/soc/imx/gpcv2.c | 89 +++++++++++++++++++++++------------------
+>   1 file changed, 49 insertions(+), 40 deletions(-)
 > 
 > diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-> index d27025e37a9e..87165619a689 100644
+> index 87165619a689..640f4165cfba 100644
 > --- a/drivers/soc/imx/gpcv2.c
 > +++ b/drivers/soc/imx/gpcv2.c
-> @@ -12,6 +12,7 @@
->   #include <linux/of_device.h>
->   #include <linux/platform_device.h>
->   #include <linux/pm_domain.h>
-> +#include <linux/pm_runtime.h>
->   #include <linux/regmap.h>
->   #include <linux/regulator/consumer.h>
->   #include <linux/sizes.h>
-> @@ -141,11 +142,17 @@ static int imx_pgc_power_up(struct generic_pm_domain *genpd)
->   	u32 reg_val;
->   	int ret;
+> @@ -163,24 +163,27 @@ static int imx_pgc_power_up(struct generic_pm_domain *genpd)
+>   		goto out_regulator_disable;
+>   	}
 >   
-> +	ret = pm_runtime_get_sync(domain->dev);
-> +	if (ret) {
-> +		pm_runtime_put_noidle(domain->dev);
-> +		return ret;
+> -	/* request the domain to power up */
+> -	regmap_update_bits(domain->regmap, GPC_PU_PGC_SW_PUP_REQ,
+> -			   domain->bits.pxx, domain->bits.pxx);
+> -	/*
+> -	 * As per "5.5.9.4 Example Code 4" in IMX7DRM.pdf wait
+> -	 * for PUP_REQ/PDN_REQ bit to be cleared
+> -	 */
+> -	ret = regmap_read_poll_timeout(domain->regmap, GPC_PU_PGC_SW_PUP_REQ,
+> -				       reg_val, !(reg_val & domain->bits.pxx),
+> -				       0, USEC_PER_MSEC);
+> -	if (ret) {
+> -		dev_err(domain->dev, "failed to command PGC\n");
+> -		goto out_clk_disable;
+> -	}
+> +	if (domain->bits.pxx) {
+> +		/* request the domain to power up */
+> +		regmap_update_bits(domain->regmap, GPC_PU_PGC_SW_PUP_REQ,
+> +				   domain->bits.pxx, domain->bits.pxx);
+> +		/*
+> +		 * As per "5.5.9.4 Example Code 4" in IMX7DRM.pdf wait
+> +		 * for PUP_REQ/PDN_REQ bit to be cleared
+> +		 */
+> +		ret = regmap_read_poll_timeout(domain->regmap,
+> +					       GPC_PU_PGC_SW_PUP_REQ, reg_val,
+> +					       !(reg_val & domain->bits.pxx),
+> +					       0, USEC_PER_MSEC);
+> +		if (ret) {
+> +			dev_err(domain->dev, "failed to command PGC\n");
+> +			goto out_clk_disable;
+> +		}
+>   
+> -	/* disable power control */
+> -	regmap_update_bits(domain->regmap, GPC_PGC_CTRL(domain->pgc),
+> -			   GPC_PGC_CTRL_PCR, 0);
+> +		/* disable power control */
+> +		regmap_update_bits(domain->regmap, GPC_PGC_CTRL(domain->pgc),
+> +				   GPC_PGC_CTRL_PCR, 0);
 > +	}
-> +
->   	if (!IS_ERR(domain->regulator)) {
->   		ret = regulator_enable(domain->regulator);
->   		if (ret) {
->   			dev_err(domain->dev, "failed to enable regulator\n");
-> -			return ret;
-> +			goto out_put_pm;
+>   
+>   	/* request the ADB400 to power up */
+>   	if (domain->bits.hskreq) {
+> @@ -241,23 +244,26 @@ static int imx_pgc_power_down(struct generic_pm_domain *genpd)
 >   		}
 >   	}
 >   
-> @@ -200,6 +207,8 @@ static int imx_pgc_power_up(struct generic_pm_domain *genpd)
->   out_regulator_disable:
->   	if (!IS_ERR(domain->regulator))
->   		regulator_disable(domain->regulator);
-> +out_put_pm:
-> +	pm_runtime_put(domain->dev);
->   
->   	return ret;
->   }
-> @@ -262,6 +271,8 @@ static int imx_pgc_power_down(struct generic_pm_domain *genpd)
->   		}
+> -	/* enable power control */
+> -	regmap_update_bits(domain->regmap, GPC_PGC_CTRL(domain->pgc),
+> -			   GPC_PGC_CTRL_PCR, GPC_PGC_CTRL_PCR);
+> -
+> -	/* request the domain to power down */
+> -	regmap_update_bits(domain->regmap, GPC_PU_PGC_SW_PDN_REQ,
+> -			   domain->bits.pxx, domain->bits.pxx);
+> -	/*
+> -	 * As per "5.5.9.4 Example Code 4" in IMX7DRM.pdf wait
+> -	 * for PUP_REQ/PDN_REQ bit to be cleared
+> -	 */
+> -	ret = regmap_read_poll_timeout(domain->regmap, GPC_PU_PGC_SW_PDN_REQ,
+> -				       reg_val, !(reg_val & domain->bits.pxx),
+> -				       0, USEC_PER_MSEC);
+> -	if (ret) {
+> -		dev_err(domain->dev, "failed to command PGC\n");
+> -		goto out_clk_disable;
+> +	if (domain->bits.pxx) {
+> +		/* enable power control */
+> +		regmap_update_bits(domain->regmap, GPC_PGC_CTRL(domain->pgc),
+> +				   GPC_PGC_CTRL_PCR, GPC_PGC_CTRL_PCR);
+> +
+> +		/* request the domain to power down */
+> +		regmap_update_bits(domain->regmap, GPC_PU_PGC_SW_PDN_REQ,
+> +				   domain->bits.pxx, domain->bits.pxx);
+> +		/*
+> +		 * As per "5.5.9.4 Example Code 4" in IMX7DRM.pdf wait
+> +		 * for PUP_REQ/PDN_REQ bit to be cleared
+> +		 */
+> +		ret = regmap_read_poll_timeout(domain->regmap,
+> +					       GPC_PU_PGC_SW_PDN_REQ, reg_val,
+> +					       !(reg_val & domain->bits.pxx),
+> +					       0, USEC_PER_MSEC);
+> +		if (ret) {
+> +			dev_err(domain->dev, "failed to command PGC\n");
+> +			goto out_clk_disable;
+> +		}
 >   	}
 >   
-> +	pm_runtime_put(domain->dev);
-> +
->   	return 0;
+>   	/* Disable reset clocks for all devices in the domain */
+> @@ -532,8 +538,9 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
 >   
->   out_clk_disable:
-> @@ -519,6 +530,8 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
->   		return dev_err_probe(domain->dev, domain->num_clks,
->   				     "Failed to get domain's clocks\n");
+>   	pm_runtime_enable(domain->dev);
 >   
-> +	pm_runtime_enable(domain->dev);
-> +
->   	regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
->   			   domain->bits.map, domain->bits.map);
+> -	regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
+> -			   domain->bits.map, domain->bits.map);
+> +	if (domain->bits.map)
+> +		regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
+> +				   domain->bits.map, domain->bits.map);
 >   
-> @@ -542,6 +555,7 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
+>   	ret = pm_genpd_init(&domain->genpd, NULL, true);
+>   	if (ret) {
+> @@ -553,8 +560,9 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
+>   out_genpd_remove:
+>   	pm_genpd_remove(&domain->genpd);
 >   out_domain_unmap:
->   	regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
->   			   domain->bits.map, 0);
-> +	pm_runtime_disable(domain->dev);
+> -	regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
+> -			   domain->bits.map, 0);
+> +	if (domain->bits.map)
+> +		regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
+> +				   domain->bits.map, 0);
+>   	pm_runtime_disable(domain->dev);
 >   
 >   	return ret;
->   }
-> @@ -556,6 +570,8 @@ static int imx_pgc_domain_remove(struct platform_device *pdev)
->   	regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
->   			   domain->bits.map, 0);
+> @@ -567,8 +575,9 @@ static int imx_pgc_domain_remove(struct platform_device *pdev)
+>   	of_genpd_del_provider(domain->dev->of_node);
+>   	pm_genpd_remove(&domain->genpd);
 >   
-> +	pm_runtime_disable(domain->dev);
-> +
->   	return 0;
->   }
+> -	regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
+> -			   domain->bits.map, 0);
+> +	if (domain->bits.map)
+> +		regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
+> +				   domain->bits.map, 0);
+>   
+>   	pm_runtime_disable(domain->dev);
 >   
 > 
