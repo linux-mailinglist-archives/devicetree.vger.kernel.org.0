@@ -2,80 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B84AC371170
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 08:04:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F6BA37117F
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 08:11:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232853AbhECGFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 02:05:34 -0400
-Received: from smtpout1.mo528.mail-out.ovh.net ([46.105.34.251]:49801 "EHLO
-        smtpout1.mo528.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231531AbhECGFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 02:05:33 -0400
-Received: from pro2.mail.ovh.net (unknown [10.108.1.33])
-        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id 042C5A3C2AFA;
-        Mon,  3 May 2021 08:04:39 +0200 (CEST)
-Received: from arch.lan (89.70.221.198) by DAG2EX1.emp2.local (172.16.2.11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Mon, 3 May 2021
- 08:04:38 +0200
-From:   Tomasz Duszynski <tomasz.duszynski@octakon.com>
-To:     <linux-iio@vger.kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <jic23@kernel.org>, <lars@metafoo.de>, <robh+dt@kernel.org>,
-        Tomasz Duszynski <tomasz.duszynski@octakon.com>
-Subject: [PATCH v3 3/3] dt-bindings: iio: chemical: sps30: update binding with serial example
-Date:   Mon, 3 May 2021 08:00:14 +0200
-Message-ID: <20210503060014.7632-4-tomasz.duszynski@octakon.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210503060014.7632-1-tomasz.duszynski@octakon.com>
-References: <20210503060014.7632-1-tomasz.duszynski@octakon.com>
+        id S229992AbhECGMF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 02:12:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52782 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229560AbhECGME (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 02:12:04 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C878FC06174A
+        for <devicetree@vger.kernel.org>; Sun,  2 May 2021 23:11:11 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1ldRnM-0005hJ-Cw; Mon, 03 May 2021 08:11:04 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1ldRnI-0004Ec-38; Mon, 03 May 2021 08:11:00 +0200
+Date:   Mon, 3 May 2021 08:10:59 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        BMC-SW <BMC-SW@aspeedtech.com>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [v2 2/2] pwm: Add Aspeed ast2600 PWM support
+Message-ID: <20210503061059.xrcpuyouga4z5nno@pengutronix.de>
+References: <20210414104939.1093-1-billy_tsai@aspeedtech.com>
+ <20210414104939.1093-3-billy_tsai@aspeedtech.com>
+ <20210426204333.gzqke6td33dtugnh@pengutronix.de>
+ <A89B45FD-FD3D-43F2-A850-8A7FBB1AF165@aspeedtech.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [89.70.221.198]
-X-ClientProxiedBy: CAS2.emp2.local (172.16.1.2) To DAG2EX1.emp2.local
- (172.16.2.11)
-X-Ovh-Tracer-Id: 10553904252065111063
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduledrvdeffedgvdegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefhvffufffkofgjfhgggfgtihesthekredtredttdenucfhrhhomhepvfhomhgrshiiucffuhhsiiihnhhskhhiuceothhomhgrshiirdguuhhsiiihnhhskhhisehotghtrghkohhnrdgtohhmqeenucggtffrrghtthgvrhhnpeevjedvkeeuieehveeggeduuddvhfduhffhhedufeejudehkeeuhffgheduffduudenucfkpheptddrtddrtddrtddpkeelrdejtddrvddvuddrudelkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehprhhovddrmhgrihhlrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehtohhmrghsiidrughushiihihnshhkihesohgtthgrkhhonhdrtghomhdprhgtphhtthhopehrohgshhdoughtsehkvghrnhgvlhdrohhrgh
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="5iy7kxz67qvpu36y"
+Content-Disposition: inline
+In-Reply-To: <A89B45FD-FD3D-43F2-A850-8A7FBB1AF165@aspeedtech.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-sps30 has gained support for serial communication so add example to the
-binding file. While at it remove reg property from list of required
-properties because it's no-op in case of serial communication.
 
-Signed-off-by: Tomasz Duszynski <tomasz.duszynski@octakon.com>
----
- .../devicetree/bindings/iio/chemical/sensirion,sps30.yaml  | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+--5iy7kxz67qvpu36y
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/iio/chemical/sensirion,sps30.yaml b/Documentation/devicetree/bindings/iio/chemical/sensirion,sps30.yaml
-index a93d1972a5c2..967500b7e773 100644
---- a/Documentation/devicetree/bindings/iio/chemical/sensirion,sps30.yaml
-+++ b/Documentation/devicetree/bindings/iio/chemical/sensirion,sps30.yaml
-@@ -22,7 +22,6 @@ properties:
- 
- required:
-   - compatible
--  - reg
- 
- additionalProperties: false
- 
-@@ -37,5 +36,11 @@ examples:
-         reg = <0x69>;
-       };
-     };
-+  - |
-+    serial {
-+      air-pollution-sensor {
-+        compatible = "sensirion,sps30";
-+      };
-+    };
- 
- ...
--- 
-2.31.1
+Hello,
 
+On Mon, May 03, 2021 at 04:42:59AM +0000, Billy Tsai wrote:
+> On 2021/4/27, 4:44 AM,Uwe Kleine-K=F6nigwrote:
+>     >> +/* PWM fixed value */
+>     >> +#define PWM_FIXED_PERIOD 0xff
+>     >> +
+>     >> +struct aspeed_pwm_data {
+>     >> +	struct pwm_chip chip;
+>     >> +	struct clk *clk;
+>     >> +	struct regmap *regmap;
+>     >> +	struct reset_control *reset;
+>     >> +};
+>     >> +
+>     >> +static void aspeed_set_pwm_channel_enable(struct regmap *regmap, =
+u8 pwm_channel,
+>     >> +					  bool enable)
+>     >> +{
+>     >> +	regmap_update_bits(regmap, PWM_ASPEED_CTRL_CH(pwm_channel),
+>     >> +			   (PWM_CLK_ENABLE | PWM_PIN_ENABLE),
+>     >> +			   enable ? (PWM_CLK_ENABLE | PWM_PIN_ENABLE) : 0);
+>=20
+>     > What is the semantic difference between CLK_ENABLE and PIN_ENABLE? =
+Does
+>     > the pin stay at it's inactive level if PIN_ENABLE is unset? Does the
+>     > output just freeze at it's current level if CLK_ENABLE is unset?
+>=20
+> Yes.=20
+> When PIN_ENABLE is unset the pwm controller will always output low to the=
+ extern.
+> When CLK_ENABLE is unset the pwm controller will freeze at it's current l=
+evel.
+
+These two are relevant to mention at the top of the driver.
+
+>     > The intended goal is to provide the biggest possible period not big=
+ger
+>     > than the requested value.
+>    =20
+> So, did you mean that if the request period is 100ns and our divide can r=
+each 100.1ns or 95ns
+> the user prefer 95ns to 100.1ns?
+
+Yes. It's unclear if the user really prefers 95ns, but to get a
+consistent behaviour among the different drivers, that's what I ask you
+to implement.
+
+Currently there is no way that allows a consumer to specify which
+setting they prefer, I have an idea for a fix though. For that it is
+also important that .apply() doesn't yield 100.1 ns.
+
+>     >> +	dev_dbg(dev, "freq: %d, duty_pt: %d", freq, duty_pt);
+>     >> +	if (state->enabled) {
+>     >> +		aspeed_set_pwm_freq(priv, pwm, freq);
+>     >> +		aspeed_set_pwm_duty(priv, pwm, duty_pt);
+>     >> +		aspeed_set_pwm_polarity(priv, pwm, state->polarity);
+>=20
+>     > How does the hardware behave in between these calls? If for example=
+ the
+>     > polarity is changed, does this affect the output immediately? Does =
+this
+>     > start a new period?
+>=20
+> The pwm output will inverse immediately. The period will not change.
+
+Please mention that at the top of the driver.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--5iy7kxz67qvpu36y
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmCPk/EACgkQwfwUeK3K
+7Anp8Af/Z+uYW/3/GCvR2oftIQAZuwphFiTi35Xsodu+DFT3+XSHD43eTtMlcicY
+hImlVwznE+vf/Jvv8L6uIhxf9AZqPGs37mxCgPKi6bNrYd7KVBLnT1PFepDNVec+
+RbI3RX16fdsXIuv1UMubsbG98NrlUDEmCNxXwDx6oHbobk7FBnvw/5Mg0xiDT1ci
+XnSkgFe2HhKYGwfmAEIREQr2JsaNiOwBDFqOZhiVxUKyAn6cPB0+UUIm0ZCXblCR
+SWtzhJ6LC26jdoqUWtL+h3+LhsxKJkGW6YMoFI1Vj2pO75woHGq+DAKB5KuPwwQ4
+tqP5L4yGmD/CIZEHg9o3L5cgMm9AXw==
+=XsrH
+-----END PGP SIGNATURE-----
+
+--5iy7kxz67qvpu36y--
