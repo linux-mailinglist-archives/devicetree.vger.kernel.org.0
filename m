@@ -2,78 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93AC8371512
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 14:09:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C50037151A
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 14:14:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233508AbhECMKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 08:10:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41506 "EHLO mail.kernel.org"
+        id S230009AbhECMPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 08:15:22 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:50796 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233852AbhECMJg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 May 2021 08:09:36 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7491061185;
-        Mon,  3 May 2021 12:08:40 +0000 (UTC)
-Date:   Mon, 3 May 2021 13:09:31 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        =?UTF-8?B?R2HDq3RhbiBB?= =?UTF-8?B?bmRyw6k=?= 
-        <rvlander@gaetanandre.eu>,
-        Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
-        Denis Ciocca <denis.ciocca@st.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v1 7/7] dt-bindings: iio: st,st-sensors: Add LSM9DS0
- compatible string
-Message-ID: <20210503130931.0940aa8b@jic23-huawei>
-In-Reply-To: <20210414195454.84183-7-andriy.shevchenko@linux.intel.com>
-References: <20210414195454.84183-1-andriy.shevchenko@linux.intel.com>
-        <20210414195454.84183-7-andriy.shevchenko@linux.intel.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S229594AbhECMPW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 May 2021 08:15:22 -0400
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1ldXSt-002Hrd-A5; Mon, 03 May 2021 14:14:19 +0200
+Date:   Mon, 3 May 2021 14:14:19 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     LABBE Corentin <clabbe@baylibre.com>
+Cc:     Rob Herring <robh@kernel.org>, hkallweit1@gmail.com,
+        linux@armlinux.org.uk, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: net: Convert mdio-gpio to yaml
+Message-ID: <YI/pG3GSIpse+OEo@lunn.ch>
+References: <20210430182941.915101-1-clabbe@baylibre.com>
+ <20210430215325.GA3957879@robh.at.kernel.org>
+ <YI+WPRAAbtmP9LC0@Red>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YI+WPRAAbtmP9LC0@Red>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Apr 2021 22:54:54 +0300
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-
-> Enumerate LSM9DS0 (accelerometer and magnetometer parts) via
-> 'st,lsm9ds0-imu' compatible string.
+> > What's the order with 3 lines? In any case, define the order with 
+> > schema:
+> > 
+> > minItems:
+> > items:
+> >   - description: MDC signal
+> >   - description: MDIO or ?? signal
+> >   - description: ?? signal
+> > 
 > 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-This one crossed with a cleanup set from Linus so I've adjusted it to match
-the new style of that file.
-
-Series applied to togreg branch of iio.git and pushed out as testing for
-the autobuilders to see if we missed anything.
-
-Thanks,
-
-Jonathan
-
-> ---
->  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> I dont know what to write in the third line, I added the "maxItems: 3" by request of Andrew Lunn.
+> But I have no example at hand.
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> index db291a9390b7..43d29a7d46f1 100644
-> --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> @@ -74,6 +74,8 @@ properties:
->        - st,lps33hw
->        - st,lps35hw
->        - st,lps22hh
-> +        # IMU
-> +      - st,lsm9ds0-imu
->  
->    reg:
->      maxItems: 1
+> Andrew could you give me an example of:	"You often find with x86 machines you don't have GPIOs, just GPI
+> and GPO, and you need to combine two to form the MDIO line of the MDIO bus."
+> Or could I drop the "maxItems: 3" until a board need it.
 
+The code gets the GPIOs via index. The index are defined in
+include/linux/gpio-mdio.h as:
+
+#define MDIO_GPIO_MDC	0
+#define MDIO_GPIO_MDIO	1
+#define MDIO_GPIO_MDO	2
+
+So you can describe them MDC, MDIO, MDO.
+
+   Andrew
