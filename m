@@ -2,177 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87E1B37135F
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 12:08:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9F59371380
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 12:15:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233247AbhECKIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 06:08:51 -0400
-Received: from userp2130.oracle.com ([156.151.31.86]:43082 "EHLO
-        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233245AbhECKIt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 06:08:49 -0400
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 143A3lX6097332;
-        Mon, 3 May 2021 10:07:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=corp-2020-01-29;
- bh=0m6CZKMKH0CXm0dLQ0wuv9R6uvsrR8sLUyperFhMgWQ=;
- b=XUMu9wd9V9A+Uoz4d0UJUDQ2Ww8J1dRk//bZ+A2Q4fvYe9lR+Po9sMG/MT6cN7eqmAy6
- SetGbtUJdTaQ30DLGjPxfDGPAYRfq765WbFGFEEzdMZ9lDLOWYbf0WImEgjqEf9OVE6q
- YGHwNdfQ4tRR8gilOqDN0Pha1onnllAxMrYgFOgVhT1gUuEvPbmfXnHFvRr/4IDEL2ZE
- hDlsOFZFSMCko9TvnviEjkmyNM6EzaEW8dFyQq9Xmx3rGuoH/Rfir351BZVt2wUr8q8A
- zaAi5KdNg8KQAq5L/47y+jOPk4tZJ7UtygfrlVeZfo98mK3GTTcLqQXHfVsJ8GbkBy4R Fg== 
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
-        by userp2130.oracle.com with ESMTP id 388xdru5yf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 03 May 2021 10:07:31 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
-        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 143A5EXH145104;
-        Mon, 3 May 2021 10:07:30 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by userp3020.oracle.com with ESMTP id 389grqgd7w-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 03 May 2021 10:07:30 +0000
-Received: from userp3020.oracle.com (userp3020.oracle.com [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 143A7Ulg151722;
-        Mon, 3 May 2021 10:07:30 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
-        by userp3020.oracle.com with ESMTP id 389grqgd7n-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 03 May 2021 10:07:30 +0000
-Received: from abhmp0007.oracle.com (abhmp0007.oracle.com [141.146.116.13])
-        by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 143A7S4w017140;
-        Mon, 3 May 2021 10:07:28 GMT
-Received: from kadam (/102.36.221.92)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Mon, 03 May 2021 03:07:27 -0700
-Date:   Mon, 3 May 2021 13:07:20 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     Lucas Stankus <lucas.p.stankus@gmail.com>
-Cc:     lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-        gregkh@linuxfoundation.org, linux-iio@vger.kernel.org,
-        linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org,
+        id S233062AbhECKQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 06:16:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49576 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233025AbhECKQV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 06:16:21 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B470CC06174A;
+        Mon,  3 May 2021 03:15:27 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id b14-20020a17090a6e0eb0290155c7f6a356so8443601pjk.0;
+        Mon, 03 May 2021 03:15:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=wzwTcAoDsk0QX/rqj4skJEpuI5KakKUFrzAoXVFoChY=;
+        b=CM9IwLyLULeABtzFH+NLmD5aBisGrjKNPdXzMaQrc6P+NB6xOkkOoooPyagCI8OvvF
+         mai+sJCtaagopGIliRbwTsLDFI4nFNqH2dNaMIGoHit32gKp1PjWl1gicFJjhkXjikgs
+         wrRh6jL25ZE9uz18HThj+ToP5Avhwn6C9uwgzaQ768LVsh1PfQ/uaGtrMMu0BivfPoXz
+         ZP45oqOOhO0yD3d0E/82li+l5KWT/qmTqZhaxw9ASzGN5WL7zv+s58l1aHpBP63ZYa4g
+         r97QBd6RW1160ZuCHW1ipkAvI0XCoKj3MuAI/35/sH8tentpv+eQ0EAVbM3UvzzQTN77
+         B/cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=wzwTcAoDsk0QX/rqj4skJEpuI5KakKUFrzAoXVFoChY=;
+        b=btTefX35pwQY0rex7zoDx7FW44O7n3asxkuFl3ByizLJRzv2i2NeQ2JQ5FU5wfnFoh
+         jz3MLnCQkFIFOgP7BfGfJid2C05hKMLU5VUS/tSOQVdLf9UX621Js04QiBKqGEjEvgNr
+         LWDKEFsALCyPpO3s92xjtGaw70ZSzejyfmQV3yuu0I9x8r3lEDlmY1NYOt8kCSCZC7NG
+         r+YyEnzi7mL05I8fXYT4kdU4mP/zyhKL0APuT9EtCGX3aLx5JahY+T4/pAAZGKbQhSsH
+         tDTYLILhjA3StDCOm5hKEei7ZwxpvzvZoTBEtlmMBEIstEOR421O10C0wV6Eg4JciGnt
+         3P2A==
+X-Gm-Message-State: AOAM532UD6AiZjA1rRXP+fd6ntIGxA071I04uUSb1qj3POlIGFyV5w2B
+        49R7lyqWi5wQFNr4qjlM+y4=
+X-Google-Smtp-Source: ABdhPJyePc69yjbC1SmKmOohiDA3KWHdMT+h2UUBF/jEhM8fq9HO2/KKWS5zhMe0tUljj3OAauMSNQ==
+X-Received: by 2002:a17:90a:6e45:: with SMTP id s5mr30604604pjm.125.1620036927128;
+        Mon, 03 May 2021 03:15:27 -0700 (PDT)
+Received: from localhost.localdomain ([2402:7500:477:481e:dda5:8dca:2bc5:e1a9])
+        by smtp.gmail.com with ESMTPSA id a1sm2840579pfi.22.2021.05.03.03.15.23
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 03 May 2021 03:15:26 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, cy_huang@richtek.com,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] staging: iio: cdc: ad7746: use dt for capacitive
- channel setup.
-Message-ID: <20210503100720.GP1981@kadam>
-References: <cover.1619841953.git.lucas.p.stankus@gmail.com>
- <3e7f2a0a8960cece185f518ff2b7ceb87891edcd.1619841953.git.lucas.p.stankus@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3e7f2a0a8960cece185f518ff2b7ceb87891edcd.1619841953.git.lucas.p.stankus@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-ORIG-GUID: hZadFzO0eJeomz8GQTOutIhakF-cZ0Dr
-X-Proofpoint-GUID: hZadFzO0eJeomz8GQTOutIhakF-cZ0Dr
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9972 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 impostorscore=0 clxscore=1011
- lowpriorityscore=0 adultscore=0 spamscore=0 priorityscore=1501
- mlxlogscore=999 bulkscore=0 mlxscore=0 suspectscore=0 malwarescore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104060000 definitions=main-2105030066
+Subject: [PATCH v1 1/2] regulator: rt6160: Add DT binding documet for Richtek RT6160
+Date:   Mon,  3 May 2021 18:15:16 +0800
+Message-Id: <1620036917-19040-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 01, 2021 at 09:32:53AM -0300, Lucas Stankus wrote:
-> diff --git a/drivers/staging/iio/cdc/ad7746.c b/drivers/staging/iio/cdc/ad7746.c
-> index dfd71e99e872..531f1b96dea2 100644
-> --- a/drivers/staging/iio/cdc/ad7746.c
-> +++ b/drivers/staging/iio/cdc/ad7746.c
-> @@ -18,8 +18,6 @@
->  #include <linux/iio/iio.h>
->  #include <linux/iio/sysfs.h>
->  
-> -#include "ad7746.h"
-> -
->  /*
->   * AD7746 Register Definition
->   */
-> @@ -676,10 +674,11 @@ static const struct iio_info ad7746_info = {
->  static int ad7746_probe(struct i2c_client *client,
->  			const struct i2c_device_id *id)
->  {
-> -	struct ad7746_platform_data *pdata = client->dev.platform_data;
-> +	struct device *dev = &client->dev;
->  	struct ad7746_chip_info *chip;
->  	struct iio_dev *indio_dev;
->  	unsigned char regval = 0;
-> +	unsigned int vdd_permille;
->  	int ret = 0;
->  
->  	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*chip));
-> @@ -703,26 +702,39 @@ static int ad7746_probe(struct i2c_client *client,
->  	indio_dev->num_channels = ARRAY_SIZE(ad7746_channels);
->  	indio_dev->modes = INDIO_DIRECT_MODE;
->  
-> -	if (pdata) {
-> -		if (pdata->exca_en) {
-> -			if (pdata->exca_inv_en)
-> -				regval |= AD7746_EXCSETUP_NEXCA;
-> -			else
-> -				regval |= AD7746_EXCSETUP_EXCA;
-> -		}
-> +	if (device_property_read_bool(dev, "adi,exca-output-en")) {
-> +		if (device_property_read_bool(dev, "adi,exca-output-invert"))
-> +			regval |= AD7746_EXCSETUP_NEXCA;
-> +		else
-> +			regval |= AD7746_EXCSETUP_EXCA;
-> +	}
->  
-> -		if (pdata->excb_en) {
-> -			if (pdata->excb_inv_en)
-> -				regval |= AD7746_EXCSETUP_NEXCB;
-> -			else
-> -				regval |= AD7746_EXCSETUP_EXCB;
-> -		}
-> +	if (device_property_read_bool(dev, "adi,excb-output-en")) {
-> +		if (device_property_read_bool(dev, "adi,excb-output-invert"))
-> +			regval |= AD7746_EXCSETUP_NEXCB;
-> +		else
-> +			regval |= AD7746_EXCSETUP_EXCB;
-> +	}
->  
-> -		regval |= AD7746_EXCSETUP_EXCLVL(pdata->exclvl);
-> -	} else {
-> -		dev_warn(&client->dev, "No platform data? using default\n");
-> -		regval = AD7746_EXCSETUP_EXCA | AD7746_EXCSETUP_EXCB |
-> -			AD7746_EXCSETUP_EXCLVL(3);
-> +	ret = device_property_read_u32(dev, "adi,excitation-vdd-permille",
-> +				       &vdd_permille);
-> +	if (!ret) {
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-This test is reversed.  I wonder if the static checkers can catch the
-uninitialized variable bug...  It's probably better to write it as:
+Add the DT binding document for Richtek RT6160 voltage regulator.
 
-	if (device_property_read_u32(dev, "adi,excitation-vdd-permille",
-				     &vdd_permille) {
+Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+---
+ .../regulator/richtek,rt6160-regulator.yaml        | 68 ++++++++++++++++++++++
+ 1 file changed, 68 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml
 
-So it matches the others.
-
-regards,
-dan carpenter;
-
-> +		switch (vdd_permille) {
-> +		case 125:
-> +			regval |= AD7746_EXCSETUP_EXCLVL(0);
-> +			break;
-> +		case 250:
-> +			regval |= AD7746_EXCSETUP_EXCLVL(1);
-> +			break;
-> +		case 375:
-> +			regval |= AD7746_EXCSETUP_EXCLVL(2);
-> +			break;
-> +		case 500:
-> +			regval |= AD7746_EXCSETUP_EXCLVL(3);
-> +			break;
-> +		default:
-> +			break;
-> +		}
->  	}
->  
->  	ret = i2c_smbus_write_byte_data(chip->client,
-
-
+diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml
+new file mode 100644
+index 00000000..fe7b168
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/richtek,rt6160-regulator.yaml
+@@ -0,0 +1,68 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/richtek,rt6160-regulator.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Richtek RT6160 BuckBoost converter
++
++maintainers:
++  - ChiYuan Huang <cy_huang@richtek.com>
++
++description: |
++  The RT6160 is a high-efficiency buck-boost converter that can provide
++  up to 3A output current from 2025mV to 5200mV. And it support the wide
++  input voltage range from 2200mV to 5500mV.
++
++  Datasheet is available at
++  https://www.richtek.com/assets/product_file/RT6160A/DS6160A-00.pdf
++
++properties:
++  compatible:
++    enum:
++      - richtek,rt6160
++
++  reg:
++    maxItems: 1
++
++  enable-gpios:
++    description: A connection of the 'enable' gpio line.
++    maxItems: 1
++
++  richtek,vsel_active_low:
++    description: |
++      Used to indicate the 'vsel' pin active level. if not specified, use
++      high active level as the default.
++    type: boolean
++
++patternProperties:
++  buckboost:
++    description: BuckBoost converter regulator description.
++    type: object
++    $ref: regulator.yaml#
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      rt6160@75 {
++        compatible = "richtek,rt6160";
++        reg = <0x75>;
++        enable-gpios = <&gpio26 2 0>;
++
++        buckboost {
++          regulator-name = "rt6160-buckboost";
++          regulator-min-microvolt = <2025000>;
++          regulator-max-microvolt = <5200000>;
++          regulator-allowed-modes = <0 1>;
++        };
++      };
++    };
+-- 
+2.7.4
 
