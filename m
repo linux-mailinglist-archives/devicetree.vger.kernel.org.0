@@ -2,87 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5586372089
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 21:35:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68F0B372090
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 21:37:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbhECTgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 15:36:41 -0400
-Received: from mail-oo1-f50.google.com ([209.85.161.50]:34710 "EHLO
-        mail-oo1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbhECTgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 15:36:40 -0400
-Received: by mail-oo1-f50.google.com with SMTP id m25-20020a4abc990000b02901ed4500e31dso1501212oop.1;
-        Mon, 03 May 2021 12:35:46 -0700 (PDT)
+        id S229570AbhECTiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 15:38:02 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:34317 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229620AbhECTh7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 15:37:59 -0400
+Received: by mail-ot1-f46.google.com with SMTP id x54-20020a05683040b6b02902a527443e2fso6163770ott.1;
+        Mon, 03 May 2021 12:37:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=JBWBNxVimdXrI5+KU0cFX5vZU2z6L9qx8BxSHFKVFus=;
-        b=X0aIwVXz4bxVRcHQqvDQZ1YkkBrJ9XY3UsVOcKbi7D8i+YdoEEv6W2z1XbOcolDuAT
-         AbBUWFa+g7usYXIeFxPRnTll8sjN6fUUbaCGXuSYjuHwhhX4kOVoNLugwsNTnLQbRZdh
-         /I2qlrv+TLD5lMA9DofMVtwCGHiOnGAQoGhsZKy8LKlTwOZANzvpGsdhxfVMrhKR0FD8
-         PDXvshFQ3Gs0Rz0CZKA6rHNJOFgmv8kpQbvXdJzvVw9njvZ7dzc506HWQQZRKAComAb8
-         co722AWVqR1XiZ3b+Ij1qmDom89UOQHVYv++hFIw2K/GIyR8Ur0rRSHKXoPpkHtCe86b
-         slTQ==
-X-Gm-Message-State: AOAM532eyjzP79DiMVl2uO09dY0UGP3iQKVyQHOU072IVeBmEqEevSv9
-        S+0O70qPM7l25NBQGI6o0w==
-X-Google-Smtp-Source: ABdhPJy/V6F3DccyF7xGWdj8eRMoURIuuJIGusacpBLZ1d5VgTJTuNBh1PnHECTqQEI5m6aTgsVEzA==
-X-Received: by 2002:a4a:aa41:: with SMTP id y1mr15483387oom.52.1620070544325;
-        Mon, 03 May 2021 12:35:44 -0700 (PDT)
+        bh=VVa0fUuOB94Lc2UIyCQjDIzOvyUXsFk+sUnwlSh+cfA=;
+        b=V+cWfnr3TIhLOYh3EdkbzOWBcMxOynUavI9aVVy/BYoYUChxj+zvgSkQ9I66VhRvfX
+         YcbHHjvFOzepjinhsB2YBpdZk+fZg2zNlrKiaMLdrgX61eEzlQ5jZ55T//fIuBLyfeik
+         qRMsUkB1weKxX54r8q+R7iOp33Y32UzjCyzz3O+yKupuTJa4gEhEo/Z+vpR6c7vzfQyR
+         imHIOg2PdxnaItrEad/tpUXezFOmeb76P8FxREmZlY7AzyWOUjKx3giJAcQOl/aB6DBs
+         /RUJP635rw/gssx6vV98gEx7hP9kCk282AjjQIH56ybVNeGchu5Ggy4Vrg6zixoEyTF9
+         uK3w==
+X-Gm-Message-State: AOAM533DHQsSlIAyKQTGOvp+DRyv806NVDulx63G0d7Em5qu6wvnzOLR
+        VBand19AjR4KDN4qaOa2Pg==
+X-Google-Smtp-Source: ABdhPJzA1HCJL+A2dQXp2m00XSuOUFiKEAV5ng5KSLNkbEIzoooPFoMP1lqjAkcwJWmXTPRwVtSbNw==
+X-Received: by 2002:a9d:4795:: with SMTP id b21mr16696049otf.197.1620070625384;
+        Mon, 03 May 2021 12:37:05 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a4sm188470oib.17.2021.05.03.12.35.42
+        by smtp.gmail.com with ESMTPSA id m13sm170497otp.71.2021.05.03.12.37.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 May 2021 12:35:43 -0700 (PDT)
-Received: (nullmailer pid 2253889 invoked by uid 1000);
-        Mon, 03 May 2021 19:35:41 -0000
-Date:   Mon, 3 May 2021 14:35:41 -0500
+        Mon, 03 May 2021 12:37:04 -0700 (PDT)
+Received: (nullmailer pid 2256170 invoked by uid 1000);
+        Mon, 03 May 2021 19:37:03 -0000
+Date:   Mon, 3 May 2021 14:37:03 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     DENG Qingfang <dqfext@gmail.com>
-Cc:     Russell King <linux@armlinux.org.uk>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        linux-kernel@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
-        Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
-        Chuanhong Guo <gch981213@gmail.com>,
-        linux-staging@lists.linux.dev, Sean Wang <sean.wang@mediatek.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        netdev@vger.kernel.org, Frank Wunderlich <frank-w@public-files.de>,
-        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
-        Weijie Gao <weijie.gao@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next 3/4] dt-bindings: net: dsa: add MT7530 interrupt
- controller binding
-Message-ID: <20210503193541.GA2253835@robh.at.kernel.org>
-References: <20210429062130.29403-1-dqfext@gmail.com>
- <20210429062130.29403-4-dqfext@gmail.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org,
+        abel.vesa@nxp.com, kernel@pengutronix.de, marex@denx.de,
+        andrew.smirnov@gmail.com, p.zabel@pengutronix.de,
+        linux-imx@nxp.com, s.hauer@pengutronix.de,
+        linux-kernel@vger.kernel.org, festevam@gmail.com, agx@sigxcpu.org,
+        robh+dt@kernel.org, aford173@gmail.com,
+        frieder.schrempf@kontron.de, krzk@kernel.org, ping.bai@nxp.com,
+        l.stach@pengutronix.de, devicetree@vger.kernel.org
+Subject: Re: [PATCH 10/16] dt-bindings: power: add defines for i.MX8MM power
+ domains
+Message-ID: <20210503193703.GA2256113@robh.at.kernel.org>
+References: <20210429073050.21039-1-peng.fan@oss.nxp.com>
+ <20210429073050.21039-11-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210429062130.29403-4-dqfext@gmail.com>
+In-Reply-To: <20210429073050.21039-11-peng.fan@oss.nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Apr 2021 14:21:29 +0800, DENG Qingfang wrote:
-> Add device tree binding to support MT7530 interrupt controller.
+On Thu, 29 Apr 2021 15:30:44 +0800, Peng Fan (OSS) wrote:
+> From: Lucas Stach <l.stach@pengutronix.de>
 > 
-> Signed-off-by: DENG Qingfang <dqfext@gmail.com>
+> Adding defines for i.MX8MM GPC power domains.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 > ---
-> RFC v4 -> PATCH v1:
-> - No changes.
-> 
->  Documentation/devicetree/bindings/net/dsa/mt7530.txt | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../bindings/power/fsl,imx-gpcv2.yaml         |  2 ++
+>  include/dt-bindings/power/imx8mm-power.h      | 22 +++++++++++++++++++
+>  2 files changed, 24 insertions(+)
+>  create mode 100644 include/dt-bindings/power/imx8mm-power.h
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
