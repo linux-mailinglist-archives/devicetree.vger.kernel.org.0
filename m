@@ -2,128 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B6B437223B
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 23:06:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8494C372253
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 23:16:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229497AbhECVHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 17:07:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54470 "EHLO
+        id S229499AbhECVRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 17:17:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbhECVHL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 17:07:11 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93757C061573
-        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 14:06:17 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ldfle-0005z9-2B; Mon, 03 May 2021 23:06:14 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ldfld-00041C-Oj; Mon, 03 May 2021 23:06:13 +0200
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-gpio@vger.kernel.org, kernel@pengutronix.de,
+        with ESMTP id S229628AbhECVRw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 17:17:52 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65679C061573
+        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 14:16:58 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id d15so8561676ljo.12
+        for <devicetree@vger.kernel.org>; Mon, 03 May 2021 14:16:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Wxi/xMMGJqV7UoX2rYd8j1MY3pfk8Gq2PEylFD9T6K8=;
+        b=y7OupY+e/6RARMk8sDxPGtRVk6ynzzdFqYm2m1/mY4BxU3ro2OoGuUSR5v/w/OVBn+
+         Mf2gvXkPu73yfswkN88T/C/BgM2exaZZdCnSNQGkYQwfW0GccjkA8reli01dhVYaF69Q
+         DZWWAhOupzAxw3Qe6vCHZ4MWvCtvWkduTB+R764WB7mwnQLzkzk0axwaoPQK6WQZwrKo
+         /l1tBbz1Rpm9Gu3WVJBFEkJluT5rG++JypiqwEfJqx+cRUqQt/kE2JPEGxnag9vHNge+
+         cVZvHUw75XOm3mc+lACHPldlH5lIyak0wd+t2uoebVRacFr62ZNfQFLYUyPI7WraDMLt
+         W+bA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Wxi/xMMGJqV7UoX2rYd8j1MY3pfk8Gq2PEylFD9T6K8=;
+        b=L0IKd6B594yfL4wp1izHmkLTxDtORgBcVwPqxjMax8+MIGmP8f3yXMsGQ44GPqExmL
+         wzskyz/LCcXhu4UN7mamOisASMQBZZbHnm1Ht6jDcndA/UB9ybBppN9QAkfqvi1u0TOl
+         ZMTTkKYqcRo+mjeWZaVOd229NQpRltFScalkDi2wiRL6NaMkf7tNXoWr0UtnbW/VIBc5
+         y/iGQ6+UGxPM5jTWc23Kw7DwemwpU1ahWLPIGoLBcGDb0n6KVsU2PzX4XRbn/KABFdq8
+         iid/MpPmDXuFT62rBYsTXLYvZNbCmkJyqDiwsCEQkRLQGCBdna2TK6q9tnxtLiN8FmGi
+         WETQ==
+X-Gm-Message-State: AOAM531L6FyXAhfeAytHHuFnuw/CBCEB0wz+qzuknTr7i6SIBndHP5+l
+        yTZLlQvi7emTTuovb2XFEQ/1bw==
+X-Google-Smtp-Source: ABdhPJwjJ5v6IlL9XgEILDChrs9KXqs6ohxsuU/GUL291m3kpFUU7tdOIHuPKVxPNwEjZqp7MscLrg==
+X-Received: by 2002:a2e:bc22:: with SMTP id b34mr14776708ljf.392.1620076616829;
+        Mon, 03 May 2021 14:16:56 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id m12sm67676lfb.72.2021.05.03.14.16.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 May 2021 14:16:56 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Bjorn Helgaas <bhelgaas@google.com>
+Cc:     linux-pci@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Imre Kaloz <kaloz@openwrt.org>,
+        Krzysztof Halasa <khalasa@piap.pl>,
+        Zoltan HERPAI <wigyori@uid0.hu>,
+        Raylynn Knight <rayknight@me.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         devicetree@vger.kernel.org
-Subject: [PATCH 2/2] gpio: use "asserted" and "deasserted" instead of "high" and "low"
-Date:   Mon,  3 May 2021 23:05:28 +0200
-Message-Id: <20210503210526.43455-2-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210503210526.43455-1-u.kleine-koenig@pengutronix.de>
-References: <20210503210526.43455-1-u.kleine-koenig@pengutronix.de>
+Subject: [PATCH 3/4] PCI: ixp4xx: Add device tree bindings for IXP4xx
+Date:   Mon,  3 May 2021 23:16:48 +0200
+Message-Id: <20210503211649.4109334-4-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210503211649.4109334-1-linus.walleij@linaro.org>
+References: <20210503211649.4109334-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For active-low GPIOs the currently available nomenclature requires
-regular explaination to the non-enlightened folks, e.g. because a hog
-defined as:
+This adds device tree bindings for the Intel IXP4xx
+PCI controller which can be used as both host and
+option.
 
-	someline {
-		gpio-hog;
-		gpios = <24 GPIO_ACTIVE_LOW>;
-		output-high;
-	}
-
-results in the line being set to the physical low level.
-
-So use the terms "asserted" and "deasserted" which are less ambigous and
-keep the old names as synonyms. The above example can now be written as:
-
-	someline {
-		gpio-hog;
-		gpios = <24 GPIO_ACTIVE_LOW>;
-		output-asserted;
-	}
-
-where it is less surprising that the output is set to a low level.
-
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+Cc: devicetree@vger.kernel.org
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Imre Kaloz <kaloz@openwrt.org>
+Cc: Krzysztof Halasa <khalasa@piap.pl>
+Cc: Zoltan HERPAI <wigyori@uid0.hu>
+Cc: Raylynn Knight <rayknight@me.com>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- drivers/gpio/gpiolib-of.c     | 10 ++++++++--
- include/linux/gpio/consumer.h | 14 ++++++++++----
- 2 files changed, 18 insertions(+), 6 deletions(-)
+PCI maintainers: mainly looking for a review and ACK (if
+you care about DT bindings) the patch will be merged
+through ARM SoC.
+---
+ .../bindings/pci/intel,ixp4xx-pci.yaml        | 96 +++++++++++++++++++
+ 1 file changed, 96 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
 
-diff --git a/drivers/gpio/gpiolib-of.c b/drivers/gpio/gpiolib-of.c
-index baf0153b7bca..89e852da6a61 100644
---- a/drivers/gpio/gpiolib-of.c
-+++ b/drivers/gpio/gpiolib-of.c
-@@ -624,10 +624,16 @@ static struct gpio_desc *of_parse_own_gpio(struct device_node *np,
- 
- 	if (of_property_read_bool(np, "input"))
- 		*dflags |= GPIOD_IN;
-+	else if (of_property_read_bool(np, "output-deasserted"))
-+		*dflags |= GPIOD_OUT_DEASSERTED;
-+	else if (of_property_read_bool(np, "output-asserted"))
-+		*dflags |= GPIOD_OUT_ASSERTED;
- 	else if (of_property_read_bool(np, "output-low"))
--		*dflags |= GPIOD_OUT_LOW;
-+		/* misleading alias for output-deasserted */
-+		*dflags |= GPIOD_OUT_DEASSERTED;
- 	else if (of_property_read_bool(np, "output-high"))
--		*dflags |= GPIOD_OUT_HIGH;
-+		/* misleading alias for output-asserted */
-+		*dflags |= GPIOD_OUT_ASSERTED;
- 	else {
- 		pr_warn("GPIO line %d (%pOFn): no hogging state specified, bailing out\n",
- 			desc_to_gpio(desc), np);
-diff --git a/include/linux/gpio/consumer.h b/include/linux/gpio/consumer.h
-index c73b25bc9213..b40cc19cf419 100644
---- a/include/linux/gpio/consumer.h
-+++ b/include/linux/gpio/consumer.h
-@@ -49,11 +49,17 @@ struct gpio_descs {
- enum gpiod_flags {
- 	GPIOD_ASIS	= 0,
- 	GPIOD_IN	= GPIOD_FLAGS_BIT_DIR_SET,
--	GPIOD_OUT_LOW	= GPIOD_FLAGS_BIT_DIR_SET | GPIOD_FLAGS_BIT_DIR_OUT,
--	GPIOD_OUT_HIGH	= GPIOD_FLAGS_BIT_DIR_SET | GPIOD_FLAGS_BIT_DIR_OUT |
-+	GPIOD_OUT_DEASSERTED = GPIOD_FLAGS_BIT_DIR_SET | GPIOD_FLAGS_BIT_DIR_OUT,
-+	GPIOD_OUT_ASSERTED = GPIOD_FLAGS_BIT_DIR_SET | GPIOD_FLAGS_BIT_DIR_OUT |
- 			  GPIOD_FLAGS_BIT_DIR_VAL,
--	GPIOD_OUT_LOW_OPEN_DRAIN = GPIOD_OUT_LOW | GPIOD_FLAGS_BIT_OPEN_DRAIN,
--	GPIOD_OUT_HIGH_OPEN_DRAIN = GPIOD_OUT_HIGH | GPIOD_FLAGS_BIT_OPEN_DRAIN,
-+	GPIOD_OUT_DEASSERTED_OPEN_DRAIN = GPIOD_OUT_DEASSERTED | GPIOD_FLAGS_BIT_OPEN_DRAIN,
-+	GPIOD_OUT_ASSERTED_OPEN_DRAIN = GPIOD_OUT_ASSERTED | GPIOD_FLAGS_BIT_OPEN_DRAIN,
+diff --git a/Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml b/Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
+new file mode 100644
+index 000000000000..5b6af2f5c2a5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
+@@ -0,0 +1,96 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/intel,ixp4xx-pci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	/* old names that are confusing in combination with active-low GPIOs */
-+	GPIOD_OUT_LOW = GPIOD_OUT_DEASSERTED,
-+	GPIOD_OUT_HIGH = GPIOD_OUT_ASSERTED,
-+	GPIOD_OUT_LOW_OPEN_DRAIN = GPIOD_OUT_DEASSERTED_OPEN_DRAIN,
-+	GPIOD_OUT_HIGH_OPEN_DRAIN = GPIOD_OUT_ASSERTED_OPEN_DRAIN,
- };
- 
- #ifdef CONFIG_GPIOLIB
++title: Intel IXP4xx PCI controller
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: PCI host controller found in the Intel IXP4xx SoC series.
++
++allOf:
++  - $ref: /schemas/pci/pci-bus.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - intel,ixp42x-pci
++          - intel,ixp43x-pci
++    description: The two supported variants are ixp42x and ixp43x,
++      though more variants may exist.
++
++  reg:
++    items:
++      - description: IXP4xx-specific registers
++
++  ranges:
++    maxItems: 2
++    description: Typically one memory range of 64MB and one IO
++      space range of 64KB.
++
++  dma-ranges:
++    maxItems: 1
++    description: The DMA range tells the PCI host which addresses
++      the RAM is at. It can map only 64MB so if the RAM is bigger
++      than 64MB the DMA access has to be restricted to these
++      addresses.
++
++  "#interrupt-cells": true
++
++  interrupt-map: true
++
++  interrupt-map-mask:
++    items:
++      - const: 0xf800
++      - const: 0
++      - const: 0
++      - const: 7
++
++required:
++  - compatible
++  - reg
++  - ranges
++  - dma-ranges
++  - "#interrupt-cells"
++  - interrupt-map
++  - interrupt-map-mask
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    pci@c0000000 {
++      compatible = "intel,ixp43x-pci";
++      reg = <0xc0000000 0x1000>;
++      #address-cells = <3>;
++      #size-cells = <2>;
++      device_type = "pci";
++      bus-range = <0x00 0xff>;
++      status = "disabled";
++
++      ranges =
++        <0x02000000 0 0x48000000 0x48000000 0 0x04000000>,
++        <0x01000000 0 0x00000000 0x4c000000 0 0x00010000>;
++      dma-ranges =
++        <0x02000000 0 0x00000000 0x00000000 0 0x04000000>;
++
++      #interrupt-cells = <1>;
++      interrupt-map-mask = <0xf800 0 0 7>;
++      interrupt-map =
++        <0x0800 0 0 1 &gpio0 11 3>, /* INT A on slot 1 is irq 11 */
++        <0x0800 0 0 2 &gpio0 10 3>, /* INT B on slot 1 is irq 10 */
++        <0x0800 0 0 3 &gpio0 9  3>, /* INT C on slot 1 is irq 9 */
++        <0x0800 0 0 4 &gpio0 8  3>, /* INT D on slot 1 is irq 8 */
++        <0x1000 0 0 1 &gpio0 10 3>, /* INT A on slot 2 is irq 10 */
++        <0x1000 0 0 2 &gpio0 9  3>, /* INT B on slot 2 is irq 9 */
++        <0x1000 0 0 3 &gpio0 8  3>, /* INT C on slot 2 is irq 8 */
++        <0x1000 0 0 4 &gpio0 11 3>, /* INT D on slot 2 is irq 11 */
++        <0x1800 0 0 1 &gpio0 9  3>, /* INT A on slot 3 is irq 9 */
++        <0x1800 0 0 2 &gpio0 8  3>, /* INT B on slot 3 is irq 8 */
++        <0x1800 0 0 3 &gpio0 11 3>, /* INT C on slot 3 is irq 11 */
++        <0x1800 0 0 4 &gpio0 10 3>; /* INT D on slot 3 is irq 10 */
++    };
 -- 
-2.30.2
+2.29.2
 
