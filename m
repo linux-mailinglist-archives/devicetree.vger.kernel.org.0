@@ -2,194 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8494C372253
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 23:16:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7F1837229E
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 23:44:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229499AbhECVRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 17:17:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56844 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229628AbhECVRw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 17:17:52 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65679C061573
-        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 14:16:58 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id d15so8561676ljo.12
-        for <devicetree@vger.kernel.org>; Mon, 03 May 2021 14:16:58 -0700 (PDT)
+        id S229576AbhECVpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 17:45:25 -0400
+Received: from mail-db8eur05on2041.outbound.protection.outlook.com ([40.107.20.41]:41569
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229497AbhECVpZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 May 2021 17:45:25 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=c21WAG5J4sojpbKuu6jyBb5CjNOI8psc8DW5WiD2eq6wVGwTq3q0cGNyoLf133U6jNz+IPqUJDcOxgKvJ7OI201xfOWb3qIkmwIn4dsFo1WVe1cEGiFrQynfV5RfB3Qy3pzxicE6ulNmdpVMvYYBsWIExWoZv0WdMnpYS1BhkUveLPtanrCpleoVpbfJ7Sdd1gtQ8ZYIVdYvMyAxyUxiWTshlE1sTP9n+kh1dXqyfVlYxfNIK3EQHZAsJ1t+ZfMYIrHW+Od+JcpFcQLyg62zkwwKba87JNpe4HhTRZM6AoW442lTFH6Du8xcozDn/V+d0uKtxoFzr1dJ6iEf78nytg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AzPQDyCMH518s+mK0FoyEHPTnQITD9ElOssQ5MZVz44=;
+ b=DC2CVhP3ke9k6CrngtHV/3cEfp+OCSxjeaIDrNOPZGtbYS64zfUYzsDQXBeLlbqie6cM5kaW9fg7KmkyaJWIgksfgnI5J9tA/DkRLItp2e8zbdPT2VzHpcwlqKVRoZvCQLl5mNk+82nXLUVerg1WqhogzVul0N+Nd8PQfe4GV7RZkRpKrHoAVXq1HlEXlQjQGmzfhULxw6PGfVadctyZHbz5ho4kzxt3WvRYOL2t0QWagsWmqbSaW0T0AyXLsTgk6zfwyf1l5gs4xkhui7KnTAelncTNPClj1nju+RCioxny3ITUXdvZRNhoVtIytmbC8R+EI7HMIDH/nAUCJwvMuQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Wxi/xMMGJqV7UoX2rYd8j1MY3pfk8Gq2PEylFD9T6K8=;
-        b=y7OupY+e/6RARMk8sDxPGtRVk6ynzzdFqYm2m1/mY4BxU3ro2OoGuUSR5v/w/OVBn+
-         Mf2gvXkPu73yfswkN88T/C/BgM2exaZZdCnSNQGkYQwfW0GccjkA8reli01dhVYaF69Q
-         DZWWAhOupzAxw3Qe6vCHZ4MWvCtvWkduTB+R764WB7mwnQLzkzk0axwaoPQK6WQZwrKo
-         /l1tBbz1Rpm9Gu3WVJBFEkJluT5rG++JypiqwEfJqx+cRUqQt/kE2JPEGxnag9vHNge+
-         cVZvHUw75XOm3mc+lACHPldlH5lIyak0wd+t2uoebVRacFr62ZNfQFLYUyPI7WraDMLt
-         W+bA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Wxi/xMMGJqV7UoX2rYd8j1MY3pfk8Gq2PEylFD9T6K8=;
-        b=L0IKd6B594yfL4wp1izHmkLTxDtORgBcVwPqxjMax8+MIGmP8f3yXMsGQ44GPqExmL
-         wzskyz/LCcXhu4UN7mamOisASMQBZZbHnm1Ht6jDcndA/UB9ybBppN9QAkfqvi1u0TOl
-         ZMTTkKYqcRo+mjeWZaVOd229NQpRltFScalkDi2wiRL6NaMkf7tNXoWr0UtnbW/VIBc5
-         y/iGQ6+UGxPM5jTWc23Kw7DwemwpU1ahWLPIGoLBcGDb0n6KVsU2PzX4XRbn/KABFdq8
-         iid/MpPmDXuFT62rBYsTXLYvZNbCmkJyqDiwsCEQkRLQGCBdna2TK6q9tnxtLiN8FmGi
-         WETQ==
-X-Gm-Message-State: AOAM531L6FyXAhfeAytHHuFnuw/CBCEB0wz+qzuknTr7i6SIBndHP5+l
-        yTZLlQvi7emTTuovb2XFEQ/1bw==
-X-Google-Smtp-Source: ABdhPJwjJ5v6IlL9XgEILDChrs9KXqs6ohxsuU/GUL291m3kpFUU7tdOIHuPKVxPNwEjZqp7MscLrg==
-X-Received: by 2002:a2e:bc22:: with SMTP id b34mr14776708ljf.392.1620076616829;
-        Mon, 03 May 2021 14:16:56 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id m12sm67676lfb.72.2021.05.03.14.16.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 May 2021 14:16:56 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Bjorn Helgaas <bhelgaas@google.com>
-Cc:     linux-pci@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        Zoltan HERPAI <wigyori@uid0.hu>,
-        Raylynn Knight <rayknight@me.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 3/4] PCI: ixp4xx: Add device tree bindings for IXP4xx
-Date:   Mon,  3 May 2021 23:16:48 +0200
-Message-Id: <20210503211649.4109334-4-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210503211649.4109334-1-linus.walleij@linaro.org>
-References: <20210503211649.4109334-1-linus.walleij@linaro.org>
-MIME-Version: 1.0
+ d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AzPQDyCMH518s+mK0FoyEHPTnQITD9ElOssQ5MZVz44=;
+ b=hi2WG3JZjJwBek/fgiQrRoxnZrzf11veXky50BY4IXQpIwcuRZwLgFTHf8SfstgTuzXkYENmRJBBz6JOMLdQiS5gAxRVX3nodR+9ZUByUiBS2fDO9ZuVfTTbIMyvrYRgRMeN4fUdcP9g1mgG6Vvp4caIjFNN+4c4hDci0AGHhZo=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=seco.com;
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
+ by DB8PR03MB6201.eurprd03.prod.outlook.com (2603:10a6:10:13f::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.39; Mon, 3 May
+ 2021 21:44:29 +0000
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::40d5:3554:c709:6b1b]) by DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::40d5:3554:c709:6b1b%5]) with mapi id 15.20.4087.044; Mon, 3 May 2021
+ 21:44:29 +0000
+From:   Sean Anderson <sean.anderson@seco.com>
+To:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        michal.simek@xilinx.com, Sean Anderson <sean.anderson@seco.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH 1/2] dt-bindings: pwm: Add Xilinx AXI Timer
+Date:   Mon,  3 May 2021 17:44:12 -0400
+Message-Id: <20210503214413.3145015-1-sean.anderson@seco.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [50.195.82.171]
+X-ClientProxiedBy: MN2PR15CA0023.namprd15.prod.outlook.com
+ (2603:10b6:208:1b4::36) To DB7PR03MB4523.eurprd03.prod.outlook.com
+ (2603:10a6:10:19::27)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from plantagenet.inhand.com (50.195.82.171) by MN2PR15CA0023.namprd15.prod.outlook.com (2603:10b6:208:1b4::36) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.27 via Frontend Transport; Mon, 3 May 2021 21:44:28 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8d44367f-a112-4e84-86ab-08d90e7ca11b
+X-MS-TrafficTypeDiagnostic: DB8PR03MB6201:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB8PR03MB6201E673CED36B54F0E67F61965B9@DB8PR03MB6201.eurprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1265;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xkQ4h/mJC40UvlXNp+ECJpwp8s8haKREY0BHmLVZIlVR5Kf054WJWuFVhvo+RUidZ5TmepPivyUxsMgxSFKRgbB1UBNmSCvX88/O3CzS8SlTybUSBw2gaWv19o5LtPGpeRjh6D8tyI/qZG0btBwOmJcqPAShPYKqNSAY9mUu+HPRMlKOBioqiiqejAkO8O8SWoHuvT+6npzQjdnr2cHjqXBivrvyqerl6aO1OimJUClr5YfPlV2ZoTzAYmSJSFujj0tsm3stdYkCLE+v/8ZilS6k4CuN+C1oWIO6OwBHVSWW7REbliDiaRYcNLPprF/KazHSsmwXw9Hs/OKbFdZc4mW6ef7UptwJkl807fFO0DlQTDf5JEf7aXSjF8QZHeEHbr9KL+RbhdllC8p5Z0dVMBPGeIiYTr7mhOL9N7w6tiYkgUDz5nGwt/4/nuOxsXCYL7gWydvtYtsvv4GHeZhwz/n76F5f6DDq/4w28eJB9NLbpBee8UetZBfXgJNT5JJWJGvDeDQaTbj7C933dSDi+8fAzxmc6fsIotUANMLymtG3s8EQskvaWg1FWMFeUXr62kgN4P820hSst6VSaU5WuFvpL0nyPkcOIhW4My0uemaQgqT4MmTBewoPWXi0ZjV1hAnRTJ2GyJQ9yoS04cnmLycjQ75x2IGalLXY4glpZrzMz+/Nk4ihossswxdA9eyGR58dAoC8hxvaomMoiYsSh7GiyfGvzk90ob6SEEbkiB8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(366004)(376002)(136003)(8676002)(44832011)(1076003)(66556008)(66946007)(2906002)(54906003)(186003)(38350700002)(66476007)(38100700002)(83380400001)(6512007)(36756003)(26005)(16526019)(52116002)(5660300002)(4326008)(6506007)(6486002)(8936002)(508600001)(6666004)(956004)(86362001)(2616005)(966005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?x77N5C/t3titHSPmyinjgNXWCZirL8gZPUeirwTtjb0T2GVEgFpW3BFLgEn0?=
+ =?us-ascii?Q?YCXyrK34UVhrP6bdrEPbQM9/sDLVkGjEhB4xZXEKl65v++U9JgP9tJ9TsloX?=
+ =?us-ascii?Q?FSVYaJDAJ9QbmF+JlI7B2/lCTei70lS/Tj7MEBfClcyxb+zw2YAoUSo/FRpI?=
+ =?us-ascii?Q?V9s917z/KhCYyzNpSH8T29qNW4r/lCU9BT41JWzItVDLuIXAkAnGUXjUS/dI?=
+ =?us-ascii?Q?loIqvHzVxTV8zxGVl3Unb1RtYMqeH/J92HFTBO5Isf6jpeHTJ1i9DFogIXqT?=
+ =?us-ascii?Q?8s/PlU3M2txjaMMIMPkRggydqAhK9i9WdiW/oq4GtWUNTk7qALAg1i5Ia2ZF?=
+ =?us-ascii?Q?/wDmwdhqS2Rq4nqS8Wq27aV8mDKn21pi/lr3a6n7C08AYLR/NFwdbMl1dYrE?=
+ =?us-ascii?Q?+QSXkJW3khcp0XkQO0BOhkT8PS3f1/MsTyj7JZQnuuSVCZq2oe6mp81p1Ddd?=
+ =?us-ascii?Q?AGGRN1pm13rdoKFq1GFxdS+9ZhiGdViRrhQc8EOs3W3BHQxM06iSSjRfxYQP?=
+ =?us-ascii?Q?F4DvQMZ6EA5KawjM4wdX9cys9M3ForSDqTMBQkrhOgrYktMxVf+/X0Nx7Zvc?=
+ =?us-ascii?Q?28b7a1kGZGpUXLyOZYD0SH9b478CRz2IfbZ1rQrWELFU58gKHrFRusBCDr4J?=
+ =?us-ascii?Q?GLSuHs6zUqq9FDX7wABiYWxC5nKSCeHu2HbsGMyQ8lQ/ZKxdoFTRgnckEwFE?=
+ =?us-ascii?Q?LvSEKX6LckoXHJE2yf2vBZMYtMCf+fer7MZvfGYY/WRymw8KqoaBmJndCT7E?=
+ =?us-ascii?Q?6lOgw2S1vjltdvBZqNwgRF53IR8x4aMxQ+jA9DSMux870JvhtooEzbgEsUNo?=
+ =?us-ascii?Q?ZD9jp10rdsuLG9HMSG6EmLXFBsWSAoZLeKgVSSU4rOyRmisdM9JmxSL59+oJ?=
+ =?us-ascii?Q?2AI2/krPBeHn6wBjDTeMX8Pew3iOMPsajqo0eZJFA1/TxiShe4loaqZaidlZ?=
+ =?us-ascii?Q?wLYNdkAciQq5WWAM/L8EnWwGMFkT+nYQAnj/3+CY6+u1NAycHS9lTtwpk8/H?=
+ =?us-ascii?Q?K9SnJ1Zb2SQBIh+vZeglHD3CtFBCCJ68uhYSLvjgoYc4YH73WUmTfEoTVcAI?=
+ =?us-ascii?Q?TCnHpNoj+Q1AQK+1j7ELIWhsBLI9ZPQ4DHTIwDMZtvqNOztbgA8lj981mnlS?=
+ =?us-ascii?Q?hjAHRD8xah7P47TJxtYV6pdje4Bcb8TMtb3lrB5hj240cT4lY3KflnD/xS9d?=
+ =?us-ascii?Q?xl9Wxx86KVkUFg898cCOURXhB+pGc8IXk/cTyRuntQEg4QMFNgokZWqMoNy/?=
+ =?us-ascii?Q?OuOjpVxQaD91LAgZRRWwunhcryKLSDDukuFQyXUI+0QPZGb79kM0Q0k5to0A?=
+ =?us-ascii?Q?6DQpNeV4fVZ9E8CyQ0cPRrjC?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d44367f-a112-4e84-86ab-08d90e7ca11b
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 May 2021 21:44:29.2794
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ooQ4oz3XCDvPWnlSDoOweUv3IiDhNdVsm53YVTuEPCqeD7v0/dgvivVPWUGqrYVqdc1BC46VcXCPpqf1BhpFhg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR03MB6201
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the Intel IXP4xx
-PCI controller which can be used as both host and
-option.
+This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is
+a "soft" block, so it has many parameters which would not be
+configurable in most hardware. This binding is usually automatically
+generated by Xilinx's tools, so the names and values of properties
+must be kept as they are.
 
-Cc: devicetree@vger.kernel.org
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Imre Kaloz <kaloz@openwrt.org>
-Cc: Krzysztof Halasa <khalasa@piap.pl>
-Cc: Zoltan HERPAI <wigyori@uid0.hu>
-Cc: Raylynn Knight <rayknight@me.com>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Sean Anderson <sean.anderson@seco.com>
 ---
-PCI maintainers: mainly looking for a review and ACK (if
-you care about DT bindings) the patch will be merged
-through ARM SoC.
----
- .../bindings/pci/intel,ixp4xx-pci.yaml        | 96 +++++++++++++++++++
- 1 file changed, 96 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
 
-diff --git a/Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml b/Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
+ .../bindings/pwm/xlnx,axi-timer.yaml          | 91 +++++++++++++++++++
+ 1 file changed, 91 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
+
+diff --git a/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml b/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
 new file mode 100644
-index 000000000000..5b6af2f5c2a5
+index 000000000000..3a0abd940336
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
-@@ -0,0 +1,96 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
+@@ -0,0 +1,91 @@
++# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/pci/intel,ixp4xx-pci.yaml#
++$id: http://devicetree.org/schemas/pwm/xlnx,axi-timer.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Intel IXP4xx PCI controller
++title: Xilinx LogiCORE IP AXI Timer Device Tree Binding
 +
 +maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: PCI host controller found in the Intel IXP4xx SoC series.
-+
-+allOf:
-+  - $ref: /schemas/pci/pci-bus.yaml#
++  - Sean Anderson <sean.anderson@seco.com>
 +
 +properties:
 +  compatible:
 +    items:
-+      - enum:
-+          - intel,ixp42x-pci
-+          - intel,ixp43x-pci
-+    description: The two supported variants are ixp42x and ixp43x,
-+      though more variants may exist.
++      - const: xlnx,axi-timer-2.0
++      - const: xlnx,xps-timer-1.00.a
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: s_axi_aclk
 +
 +  reg:
-+    items:
-+      - description: IXP4xx-specific registers
-+
-+  ranges:
-+    maxItems: 2
-+    description: Typically one memory range of 64MB and one IO
-+      space range of 64KB.
-+
-+  dma-ranges:
 +    maxItems: 1
-+    description: The DMA range tells the PCI host which addresses
-+      the RAM is at. It can map only 64MB so if the RAM is bigger
-+      than 64MB the DMA access has to be restricted to these
-+      addresses.
 +
-+  "#interrupt-cells": true
++  xlnx,count-width:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 8
++    maximum: 32
++    description:
++      The width of the counters, in bits.
 +
-+  interrupt-map: true
++  xlnx,gen0-assert:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [ 0, 1 ]
++    description:
++      The polarity of the generateout0 signal. 0 for active-low, 1 for active-high.
 +
-+  interrupt-map-mask:
-+    items:
-+      - const: 0xf800
-+      - const: 0
-+      - const: 0
-+      - const: 7
++  xlnx,gen1-assert:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [ 0, 1 ]
++    description:
++      The polarity of the generateout1 signal. 0 for active-low, 1 for active-high.
++
++  xlnx,one-timer-only:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [ 0, 1 ]
++    description:
++      Whether only one timer is present in this block.
++
++  xlnx,trig0-assert:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [ 0, 1 ]
++    description:
++      The polarity of the capturetrig0 signal. 0 for active-low, 1 for active-high.
++
++  xlnx,trig1-assert:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [ 0, 1 ]
++    description:
++      The polarity of the capturetrig1 signal. 0 for active-low, 1 for active-high.
 +
 +required:
 +  - compatible
++  - clocks
 +  - reg
-+  - ranges
-+  - dma-ranges
-+  - "#interrupt-cells"
-+  - interrupt-map
-+  - interrupt-map-mask
++  - xlnx,count-width
++  - xlnx,gen0-assert
++  - xlnx,gen1-assert
++  - xlnx,one-timer-only
++  - xlnx,trig0-assert
++  - xlnx,trig1-assert
 +
-+unevaluatedProperties: false
++additionalProperties: true
 +
 +examples:
 +  - |
-+    pci@c0000000 {
-+      compatible = "intel,ixp43x-pci";
-+      reg = <0xc0000000 0x1000>;
-+      #address-cells = <3>;
-+      #size-cells = <2>;
-+      device_type = "pci";
-+      bus-range = <0x00 0xff>;
-+      status = "disabled";
-+
-+      ranges =
-+        <0x02000000 0 0x48000000 0x48000000 0 0x04000000>,
-+        <0x01000000 0 0x00000000 0x4c000000 0 0x00010000>;
-+      dma-ranges =
-+        <0x02000000 0 0x00000000 0x00000000 0 0x04000000>;
-+
-+      #interrupt-cells = <1>;
-+      interrupt-map-mask = <0xf800 0 0 7>;
-+      interrupt-map =
-+        <0x0800 0 0 1 &gpio0 11 3>, /* INT A on slot 1 is irq 11 */
-+        <0x0800 0 0 2 &gpio0 10 3>, /* INT B on slot 1 is irq 10 */
-+        <0x0800 0 0 3 &gpio0 9  3>, /* INT C on slot 1 is irq 9 */
-+        <0x0800 0 0 4 &gpio0 8  3>, /* INT D on slot 1 is irq 8 */
-+        <0x1000 0 0 1 &gpio0 10 3>, /* INT A on slot 2 is irq 10 */
-+        <0x1000 0 0 2 &gpio0 9  3>, /* INT B on slot 2 is irq 9 */
-+        <0x1000 0 0 3 &gpio0 8  3>, /* INT C on slot 2 is irq 8 */
-+        <0x1000 0 0 4 &gpio0 11 3>, /* INT D on slot 2 is irq 11 */
-+        <0x1800 0 0 1 &gpio0 9  3>, /* INT A on slot 3 is irq 9 */
-+        <0x1800 0 0 2 &gpio0 8  3>, /* INT B on slot 3 is irq 8 */
-+        <0x1800 0 0 3 &gpio0 11 3>, /* INT C on slot 3 is irq 11 */
-+        <0x1800 0 0 4 &gpio0 10 3>; /* INT D on slot 3 is irq 10 */
++    axi_timer_0: timer@800e0000 {
++        clock-frequency = <99999001>;
++        clock-names = "s_axi_aclk";
++        clocks = <&zynqmp_clk 71>;
++        compatible = "xlnx,axi-timer-2.0", "xlnx,xps-timer-1.00.a";
++        reg = <0x0 0x800e0000 0x0 0x10000>;
++        xlnx,count-width = <0x20>;
++        xlnx,gen0-assert = <0x1>;
++        xlnx,gen1-assert = <0x1>;
++        xlnx,one-timer-only = <0x0>;
++        xlnx,trig0-assert = <0x1>;
++        xlnx,trig1-assert = <0x1>;
 +    };
 -- 
-2.29.2
+2.25.1
 
