@@ -2,173 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 558D8371B4B
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 18:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC09F371BFD
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 18:50:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231775AbhECQpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 12:45:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50164 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232657AbhECQmN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 12:42:13 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 707A9C06134C;
-        Mon,  3 May 2021 09:37:54 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id e7so6993845edu.10;
-        Mon, 03 May 2021 09:37:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=IL37xkHGbQoMcjdiJ4z5sJEMMG7cxWpY9a1c3V2dhxE=;
-        b=FqlmSywn+OJAdFN6KiAIpND+PnOSnF5VOvVtz+lMdLLFeNoo4VOTgrtHkc75y86ARJ
-         oslREnCvNNuPUc+7UR1EaIcYniEgYX3tMOoH80ahTa/YWyLkGJGvSv490Hg+X4mCGPwf
-         gMDfqdLwRbRA+y55EuVD36ceuWU4ZH8QzxtM4lpswVgL6j1pt/HC98adtmhU5dhZpipE
-         GRyPowOXVHeeEFIkuvPtYQ7obN4TZX+Y/cr3zy2Cn9SKsv3vUpmyjRtmbNjSSbfijvCl
-         IGRMKJswo7Cn+seNsBRk/aQLG7567zzEubqzWTaRkzCqkdz9Bijj9QcjBIOf+4guxXYK
-         RTJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=IL37xkHGbQoMcjdiJ4z5sJEMMG7cxWpY9a1c3V2dhxE=;
-        b=cctzOmtS91IgaHbIMRQwfMJSlst45I+6p0i26LTEXbRp3uWi7tB20BUKNeG3bPGP1O
-         GrboMykYSKpy7Q+qYWiCFjB1zY7DwoDh0owGGoW5w/ihawTrCvzmXji9/0MJy8ATO/BW
-         QsjjQfWtCU42CmsoN7Ij/IR1pWq3PJFIyBh4c7pFZAhAapy5q8p/F+onmmYG2ni3Blzp
-         zG9+vM5WT8zYA1Y3ra8nZ4hEU5W8Pj3x7V1Ii0l1EE53+oOxjUKDUYdaR/Cm1mWfTpfP
-         oZEycZO1PIH06sUBtejOW1O7T239SNnGAv5TihNcDYk1c1p9nGP3mCf2wANM0hea3rOe
-         F0hw==
-X-Gm-Message-State: AOAM531RXKnEWiFlfU0am4PL/cnOtsnaz2UQGEAVZ2nhshJfpDZz41f2
-        mA7bLiNYk6ejJSJqn4fsirbmnON48Q04UMvvdEn7/x5GwoFDQg==
-X-Google-Smtp-Source: ABdhPJz/AJv7RCcIWBDMKm3Gdsyf6wf0BUHiYion0nCe5BuMFjFUqoEZ3N8K441OnP/cmQR9EgeCXvCJgLSxYp9g4SU=
-X-Received: by 2002:a05:6402:11ca:: with SMTP id j10mr16719655edw.184.1620059872356;
- Mon, 03 May 2021 09:37:52 -0700 (PDT)
+        id S232654AbhECQvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 12:51:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32838 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233843AbhECQtc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 May 2021 12:49:32 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F1AD06191F;
+        Mon,  3 May 2021 16:40:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620060025;
+        bh=tHYHD0jT1jG1itD5UPajDk4y8ocfKR79gQ2CjG/pTbE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=JLcFn19J2apAX5K6ef/KUYrOmvgNsunQdt63eKOmDkGhDnGLgDFdRB28ot7D5pyH1
+         h7FjPDwLxcv/lBZoRCqschRbNQJyuaUlQEvu6LAdC3EPK6IB3XuPpz/haaWUPJoqRA
+         178OmpJBsTkGhHwdI7FrX7de02BLp77vbKCE4zWBQBHUaTZ0T+UfPOnhSEXca2f50h
+         VFgjuxVEQafjC+uGCmls8vfTGrwMsu4HVWLvww0OzwbF4wsLh4+NBwIIg+WMwqGw9r
+         Ao/8VK+gu4mPYmjitl2EcyaxWahhfbK+p7wOpx881wxfeiSp1TOv+tMN1sGNYOhwxj
+         JWfD4/WsFmLiQ==
+Date:   Mon, 3 May 2021 11:40:23 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Greentime Hu <greentime.hu@sifive.com>
+Cc:     paul.walmsley@sifive.com, hes@sifive.com, erik.danie@sifive.com,
+        zong.li@sifive.com, bhelgaas@google.com, robh+dt@kernel.org,
+        aou@eecs.berkeley.edu, mturquette@baylibre.com, sboyd@kernel.org,
+        lorenzo.pieralisi@arm.com, p.zabel@pengutronix.de,
+        alex.dewar90@gmail.com, khilman@baylibre.com,
+        hayashi.kunihiko@socionext.com, vidyas@nvidia.com,
+        jh80.chung@samsung.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v5 0/6] Add SiFive FU740 PCIe host controller driver
+ support
+Message-ID: <20210503164023.GA919777@bjorn-Precision-5520>
 MIME-Version: 1.0
-References: <20210503145503.1477-1-linux.amoon@gmail.com> <20210503145503.1477-4-linux.amoon@gmail.com>
- <CAFBinCCxMvomKt9E0jT_XXpyL1_-qXH4=zVDMNdbDCnZCsnT=A@mail.gmail.com>
- <CANAwSgTdFHwtKd-sgQq0Jp8WP55fZG3wsn7feCGo257yqiFkpw@mail.gmail.com> <CAFBinCDUc7VG7T9c8snP4ujMMViS0GRdztP6QGJvF9LNESHHCw@mail.gmail.com>
-In-Reply-To: <CAFBinCDUc7VG7T9c8snP4ujMMViS0GRdztP6QGJvF9LNESHHCw@mail.gmail.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Mon, 3 May 2021 22:07:41 +0530
-Message-ID: <CANAwSgSrQnBs06+DG6x+GMvyjvu-hPFX0J5MQ0yKPBvNaNu98w@mail.gmail.com>
-Subject: Re: [PATCHv1 3/9] soc: amlogic: meson-ee-pwrc: Add hdmi power domain
- Meson g12a SoCs
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210406092634.50465-1-greentime.hu@sifive.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-hi Martin
+On Tue, Apr 06, 2021 at 05:26:28PM +0800, Greentime Hu wrote:
+> This patchset includes SiFive FU740 PCIe host controller driver. We also
+> add pcie_aux clock and pcie_power_on_reset controller to prci driver for
+> PCIe driver to use it.
 
-On Mon, 3 May 2021 at 21:05, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Anand,
->
-> On Mon, May 3, 2021 at 5:29 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> [...]
-> > > > +static struct meson_ee_pwrc_mem_domain meson_pwrc_mem_hdmi[] =3D {
-> > > > +       { HHI_MEM_PD_REG0, GENMASK(15, 8) },
-> > > > +};
-> > > > +
-> > > the VPU power domain already includes:
-> > >   VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
-> > > whereas VPU_HHI_MEMPD is bits[15:8]
-> > >
-> > > Having two power domains which are managing the same registers sounds
-> > > like it'll be causing some trouble
-> > > So for now this is (as I am not even sure what the goal here is):
-> > > NACKed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > >
-> >
-> > Ok, thanks. On the line of Ethernet PD, I tried to add this accordingly=
-.
-> From what I understand the VPU power domain is special because the
-> display pipeline consists of multiple components (HDMI, VPU, ...)
-> that's why the handling currently is special
->
-> > whenever I try something new it fails. Please ignore this series.
-> if the VPU and HDMI power domains were separate (from hardware
-> perspective, not from driver perspective) then your change is a good
-> step forward.
-> in that case VPU_HHI_MEMPD would need to be removed from wherever it's
-> currently used -> that means we need to also decide if we want to
-> break compatibility with older (before this series) .dtbs
->
->
+I dropped this series because of the build problem I mentioned [1].
+It will not be included in v5.13 unless the build problem is fixed
+ASAP.
 
-As per the datasheet S922X Datasheet, HDMI and VPU are different
-reg controller and they are independent of each other.
+[1] https://lore.kernel.org/r/20210428194713.GA314975@bjorn-Precision-5520
 
-*HHI_MEM_PD_REG0 0x40*
-
-17~16  R/W 0x3 DDR memory PD
-*15~8 R/W 0xFF HDMI memory PD*
-7~6 R/W 0x3 Reserved
-5~4 R/W 0x3 Audio mem PD
-3~2 R/W 0x3 Ethernet memory PD
-1~0 R/W 0x3 resved
-
-Note: HDMI and AUDIO and Ethernet are also independent of each other.
-
-*HHI_VPU_MEM_PD_REG0 0x41 *
-
-31~30 R/W 0x3 sharp
-29~28 R/W 0x3 Deinterlacer =E2=80=93 di_post: 11 =3D power down. 00 =3D nor=
-mal operation
-27~26 R/W 0x3 Deinterlacer =E2=80=93 di_pre 25~24 R/W 0x3 Vi_di_scaler
-23~22 R/W 0x3 afbc_dec1
-21~20 R/W 0x3 Srscl super scaler
-19~18 R/W 0x3 Vdin1 memory
-17~16 R/W 0x3 Vdin0 memory
-15~14 R/W 0x3 Osd_scaler memory
-13~12 R/W 0x3 Scaler memory
-11~10 R/W 0x3 Vpp output fifo
-9~8 R/W 0x3 Color management module
-7~6 R/W 0x3 Vd2 memory
-5~4 R/W 0x3 Vd1 memory
-3~2 R/W 0x3 Osd2 memory
-1~0 R/W 0x3 Osd1 memory
-
-Below is the output on Odroid N2.
-
-[alarm@archl-on2 ~]$ sudo cat /sys/kernel/debug/pm_genpd/pm_genpd_summary
-domain                          status          children
-            performance
-    /device                                             runtime status
----------------------------------------------------------------------------=
--------------------
-HDMI                            on
-            0
-    /devices/platform/soc/ff600000.bus/ff600000.hdmi-tx  unsupported
-             0
-AUDIO                           on
-            0
-    /devices/platform/sound                             unsupported
-            0
-ETH                             on
-            0
-    /devices/platform/soc/ff3f0000.ethernet             active
-            0
-VPU                             on
-            0
-    /devices/platform/soc/ff900000.vpu                  unsupported
-            0
-
-HDMI power domain is ON.
-Audio is wrongly mapped.
-
-> Best regards,
-> Martin
-
--Anand
+> This is tested with e1000e: Intel(R) PRO/1000 Network Card, AMD Radeon R5
+> 230 graphics card and SP M.2 PCIe Gen 3 SSD in SiFive Unmatched based on
+> v5.11 Linux kernel.
+> 
+> Changes in v5:
+>  - Fix typo in comments
+>  - Keep comments style consistent
+>  - Refine some error handling codes
+>  - Remove unneeded header file including
+>  - Merge fu740_pcie_ltssm_enable implementation to fu740_pcie_start_link
+> 
+> Changes in v4:
+>  - Fix Wunused-but-set-variable warning in prci driver
+> 
+> Changes in v3:
+>  - Remove items that has been defined
+>  - Refine format of sifive,fu740-pcie.yaml
+>  - Replace perstn-gpios with the common one
+>  - Change DBI mapping space to 2GB from 4GB
+>  - Refine drivers/reset/Kconfig
+> 
+> Changes in v2:
+>  - Refine codes based on reviewers' feedback
+>  - Remove define and use the common one
+>  - Replace __raw_writel with writel_relaxed
+>  - Split fu740_phyregreadwrite to write function
+>  - Use readl_poll_timeout in stead of while loop checking
+>  - Use dwc common codes
+>  - Use gpio descriptors and the gpiod_* api.
+>  - Replace devm_ioremap_resource with devm_platform_ioremap_resource_byname
+>  - Replace devm_reset_control_get with devm_reset_control_get_exclusive
+>  - Add more comments for delay and sleep
+>  - Remove "phy ? x : y" expressions
+>  - Refine code logic to remove possible infinite loop
+>  - Replace magic number with meaningful define
+>  - Remove fu740_pcie_pm_ops
+>  - Use builtin_platform_driver
+> 
+> Greentime Hu (5):
+>   clk: sifive: Add pcie_aux clock in prci driver for PCIe driver
+>   clk: sifive: Use reset-simple in prci driver for PCIe driver
+>   MAINTAINERS: Add maintainers for SiFive FU740 PCIe driver
+>   dt-bindings: PCI: Add SiFive FU740 PCIe host controller
+>   riscv: dts: Add PCIe support for the SiFive FU740-C000 SoC
+> 
+> Paul Walmsley (1):
+>   PCI: fu740: Add SiFive FU740 PCIe host controller driver
+> 
+>  .../bindings/pci/sifive,fu740-pcie.yaml       | 113 +++++++
+>  MAINTAINERS                                   |   8 +
+>  arch/riscv/boot/dts/sifive/fu740-c000.dtsi    |  33 ++
+>  drivers/clk/sifive/Kconfig                    |   2 +
+>  drivers/clk/sifive/fu740-prci.c               |  11 +
+>  drivers/clk/sifive/fu740-prci.h               |   2 +-
+>  drivers/clk/sifive/sifive-prci.c              |  54 +++
+>  drivers/clk/sifive/sifive-prci.h              |  13 +
+>  drivers/pci/controller/dwc/Kconfig            |   9 +
+>  drivers/pci/controller/dwc/Makefile           |   1 +
+>  drivers/pci/controller/dwc/pcie-fu740.c       | 308 ++++++++++++++++++
+>  drivers/reset/Kconfig                         |   1 +
+>  include/dt-bindings/clock/sifive-fu740-prci.h |   1 +
+>  13 files changed, 555 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
+>  create mode 100644 drivers/pci/controller/dwc/pcie-fu740.c
+> 
+> -- 
+> 2.30.2
+> 
