@@ -2,228 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3539371692
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 16:26:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E13C37169B
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 16:27:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbhECO1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 10:27:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48542 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbhECO1U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 10:27:20 -0400
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55AAAC06174A
-        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 07:26:27 -0700 (PDT)
-Received: by mail-io1-xd2b.google.com with SMTP id a11so4240820ioo.0
-        for <devicetree@vger.kernel.org>; Mon, 03 May 2021 07:26:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ELcNibbwxopbe4wnzShPTb7xRMLVvYpqQ8un28QQp9U=;
-        b=nOyrfh2thpmQagEkzKEHJkMTgRy+3FJJdT9Oo6MZndwooAl8msGQ2IZHFMeS6aJ6Md
-         +OeRGM111zl+0t7XmNgYC8WpP2ka9OwZM9VN//prTwlXpUXb+Muztthx/dt4YfUeTqwD
-         ene0+k2RSvchnHpwNfAnGfkLV6l7GmkYIbRvE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ELcNibbwxopbe4wnzShPTb7xRMLVvYpqQ8un28QQp9U=;
-        b=XNNHoTXAv25qo+a0S9W/p/GssNm9PIvkp7lkg/ZMUd+uJHQPgq2NFuj6ACfsvs0aAC
-         /kD3kfhXMfzMPvfFqeecaCj1exdxuSw2jN2Zl0NQV0cflnH0QSmBcGf8vbKIzegrYdtI
-         Hb9jlg9OhY1PSN0hBb3agDSg7VIpgMy25nzg5QQayq7B3Su3GWbYHZK3vOWYAWHOrHuE
-         tnBAsVoOB2II+grWh+b20RW3JRD+C3gI92z3SWJj/OdSDkNyizCnl55+HXo6Vbp/goGS
-         8Yto5NbZB2fZMLsoGWZIavMPWhrkg57PI91Zdnbg/TE1o1x4gkgxz89xu4CGzHQESXnl
-         xPNA==
-X-Gm-Message-State: AOAM532A8Hy19brFb+7B1y/1uKj69UfaQ5fYKfczAgQSzQyzAe76u7fl
-        /Z0k6zCZCPyJoABFbBoCHiDiiS/qpie94g==
-X-Google-Smtp-Source: ABdhPJx3/glDljk8k9ch98ngbQfUqlbrrKJSozXZub5XLv+2MmjlgZ5gQ1uXZCcVFyEjzBe1IHQqxg==
-X-Received: by 2002:a05:6638:379c:: with SMTP id w28mr18961689jal.81.1620051984990;
-        Mon, 03 May 2021 07:26:24 -0700 (PDT)
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com. [209.85.166.176])
-        by smtp.gmail.com with ESMTPSA id k2sm5723031ilq.71.2021.05.03.07.26.23
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 May 2021 07:26:24 -0700 (PDT)
-Received: by mail-il1-f176.google.com with SMTP id j20so3799065ilo.10
-        for <devicetree@vger.kernel.org>; Mon, 03 May 2021 07:26:23 -0700 (PDT)
-X-Received: by 2002:a05:6e02:f4e:: with SMTP id y14mr3397094ilj.18.1620051971892;
- Mon, 03 May 2021 07:26:11 -0700 (PDT)
+        id S229637AbhECO2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 10:28:04 -0400
+Received: from mail-db8eur05on2133.outbound.protection.outlook.com ([40.107.20.133]:47040
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229697AbhECO2D (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 May 2021 10:28:03 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VDbXMc4QaatA+bROo/jZY1Vb3BiSlPyC6rsC7S0hwCYw5WwJ5euzWhA5qGTyKiF8YJ0KE/7aX6x0dwUeRsC/nCYcskeD2b93IX8soslXZNSy64kar9pUKmW7n44qv08zfPJh0XU+UT3dlu2pwvIzDcnDh5Xam3vVEcX+afpLgtLFbSAPRL2hU7sOHBCEOpeqTKwHrfCIVVY5V8wSBX2wFPsFqbUV45HMnZ98pVCfDdlprnyV2pvxdHBEyrdOrrijNa5SOe2jVud65i0sxgcVHvcox9P7imrpgXS4m5SSd1N/tzLv9HaLtdUHVWKXhu/yUoozYt60ngOuE7/pyaLdBg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cPT2rUtJHU0XM51ZFLjueYvGOPZA+Jrpe/d3EMMTBzA=;
+ b=oW/DJNeLSnufHHsVrPJMLt3VWXjddAaw2sQRA/4ZeiUsNmXw/UiarOthdQng/ITGYtBmoeoFNcj5U8dcyyUgW2+mI4wNNGYQs76FvvnTZh/kaaady3cPwJXkWLYlSOv8QFbtILkfyvlCstwzGCwKCDUCtpxOi6JaiJ/sEVb9DX7wBUoIha6WMG+wkOQpZo7Uf6Trot9fXFmv2LzK2RaA72ktd0zf62xulbqZZAQidxhBjMbgxacL3047cdg9x6P6OrRkbu7hjafkiB3hL8vniZGIxv0l6lXyCnvMzq0dFlJs22niscD7rUdpMiogjAV9/HWzQCvEn5iejvLdVcwDcA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
+ s=selector2-mysnt-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cPT2rUtJHU0XM51ZFLjueYvGOPZA+Jrpe/d3EMMTBzA=;
+ b=I7ZZMnXfjp0lNCZNTcs7+bW+NeIt0h4MqIIbF+EPJqKhlLGo9YoG5LmHU+9A8Vs4ekjeAPvPzeA4TZQC+XfOFDyzjTp3tc5yoms5RScHp1EuOSy4l6udfjX2f8kiQCCX3G2iwinpa4Ud4iUfp2mLOFz/wbL0MKFegO/smSnR2Ak=
+Authentication-Results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=kontron.de;
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:157::14)
+ by AM0PR10MB2578.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:12a::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.40; Mon, 3 May
+ 2021 14:27:07 +0000
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::3d8a:f56b:3a0c:8a87]) by AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::3d8a:f56b:3a0c:8a87%7]) with mapi id 15.20.4087.044; Mon, 3 May 2021
+ 14:27:07 +0000
+Subject: Re: [PATCH 08/16] dt-bindings: imx: gpcv2: add support for optional
+ resets
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        p.zabel@pengutronix.de, l.stach@pengutronix.de, krzk@kernel.org,
+        agx@sigxcpu.org, marex@denx.de, andrew.smirnov@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, ping.bai@nxp.com, aford173@gmail.com,
+        abel.vesa@nxp.com
+References: <20210429073050.21039-1-peng.fan@oss.nxp.com>
+ <20210429073050.21039-9-peng.fan@oss.nxp.com>
+From:   Frieder Schrempf <frieder.schrempf@kontron.de>
+Message-ID: <b8f26561-e69a-0d23-f369-be3b183c9c0e@kontron.de>
+Date:   Mon, 3 May 2021 16:27:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+In-Reply-To: <20210429073050.21039-9-peng.fan@oss.nxp.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [109.250.134.29]
+X-ClientProxiedBy: AM6PR08CA0016.eurprd08.prod.outlook.com
+ (2603:10a6:20b:b2::28) To AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:157::14)
 MIME-Version: 1.0
-References: <20210422081508.3942748-1-tientzu@chromium.org>
- <20210422081508.3942748-15-tientzu@chromium.org> <70b895c2-4a39-bbbd-a719-5c8b6b922026@arm.com>
-In-Reply-To: <70b895c2-4a39-bbbd-a719-5c8b6b922026@arm.com>
-From:   Claire Chang <tientzu@chromium.org>
-Date:   Mon, 3 May 2021 22:26:00 +0800
-X-Gmail-Original-Message-ID: <CALiNf28cc5T-cMZxNPZnrTQvqu2Ge_MmZj-teN4mE_-E-6_6XQ@mail.gmail.com>
-Message-ID: <CALiNf28cc5T-cMZxNPZnrTQvqu2Ge_MmZj-teN4mE_-E-6_6XQ@mail.gmail.com>
-Subject: Re: [PATCH v5 14/16] dma-direct: Allocate memory from restricted DMA
- pool if available
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
-        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
-        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
-        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
-        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
-        nouveau@lists.freedesktop.org, rodrigo.vivi@intel.com,
-        thomas.hellstrom@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.10.27] (109.250.134.29) by AM6PR08CA0016.eurprd08.prod.outlook.com (2603:10a6:20b:b2::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.27 via Frontend Transport; Mon, 3 May 2021 14:27:06 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: eb78a54a-b4ff-4145-db9a-08d90e3f87f7
+X-MS-TrafficTypeDiagnostic: AM0PR10MB2578:
+X-Microsoft-Antispam-PRVS: <AM0PR10MB2578E1CDE1B794C35E77DBCCE95B9@AM0PR10MB2578.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 80036lTspmYFuS//bteRr3CHs8xpVY1cAxwK8G9ndAtqYjbPpkf+V6AW/IFKkCHMLekYKB8i3+cujkE+FLKFiWu5Qv6aXoHHzUp8AzRQMrEiv50mIYq08716zq8BFq0OZcyX8u6rWsSfSkiLwmTWQ5AqECiqDs8WzVIIB0961rWnoJp5cs8m9PQpAZ6DvtVbpnT+ZaoBo/cDLZL4dvnZG7uZVi9AdWC4FciRcBD4fB68w6Q/spB7RN6JJFuzqzM5HPHkUBOOOcBM3Z3Od43DJgE/MePBsp5nebRlUj5E7dYZ89tsefOdrltldqBAbUoS91fIa4tvMoPnRYKsjazPNrsQWNuN9i4lrU+0SWhBURINYTYo/sH/UD+dvX6GP8bGsw6jY0bznGY+T1nrDJ37f/sotjAgTpTjHI1Dg9QEBvXsh9xF/iZfa4/ILDLXZzp2MM36P5G3yfroOjQ6T+M9buiaLtEL9aWFnByixPBcSmu6bHkhy4NIRcTkm5fuRfQyYVBGlEdvpSsNpbs20hP6g4M5GhNVc80DkPjMYiFLlz9ZgCUCi48yykAreyUykPF9D/Foh0zJaxeoxqXkPLZCvyiaS0PJ2CNRAzczazZTf2WLS+l55hh60kgFxQyQXDqSej+gd+pQ/pu66cyIU+sdx0iGy8T8Ia9bDcPYNDiqel7H6xG/GcaJllolUmASNHv/JQm38lowxVHdzBhhednInOOUDW5vTgS/cssA8MRc4uc+DyV12/8lnelVWqBMs8aDPag+oHLbKhMzlOrrvzsw0g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(396003)(136003)(346002)(376002)(39850400004)(366004)(2906002)(186003)(26005)(16526019)(31696002)(7416002)(6486002)(53546011)(31686004)(8676002)(66556008)(966005)(66476007)(478600001)(38100700002)(86362001)(4326008)(44832011)(2616005)(36756003)(956004)(16576012)(5660300002)(8936002)(66946007)(316002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?TEFoZG05ZExyemZFcFhNRng1YU5tOGU0RjhScjNINWtYSUc2WndXbEczMmtP?=
+ =?utf-8?B?cU5Da0F0cXU3am5wQmpRTWNSUlMvM2JMTFpjWDJ0U2U3SmZuMUtvcXRHczQz?=
+ =?utf-8?B?VDk2VmY5U2htakZEUnpraGxuRStxYm40b29mSU9UamRldmZuQWQ5ZDl4WFhR?=
+ =?utf-8?B?MGgrb2pCZnJKQXBuYS9XT3FEYmVUMHJwd3RQWG9hQ0FqSUR1bTkrV2J5N3pI?=
+ =?utf-8?B?eUlZUHpjaldJS2lRalQ4V3NTNExwbzdnNG1hNFZKRVMyZS9oRmhjVjNKVjUw?=
+ =?utf-8?B?TzJGNGZLTC9mY2EvdnhNZ1FKdTQyZDlzVDRCVFI5Mm1mQ0Urc244VGdyUFpC?=
+ =?utf-8?B?Rjk1alRneERSTzJRNjdpMXJ1S3o4aVRFbGNxQy9oM2oyUVBMaW9ZMG8wb2Rz?=
+ =?utf-8?B?MlpnR1pXTUkzL3lBT1hIV0Rhdm9tZ0FFNWU2S05nbDlVdVhSS1VVTFpCL1VF?=
+ =?utf-8?B?MTA1M2RDa2F4dkV3ZHd0MldVaEpJSC9MMU83WVdtYlhCUkdKOG5OVkZ0SHUr?=
+ =?utf-8?B?ZzRONmlaL2VSblhaQWMwTzA4ekI3MjliUGh1WjZDV1ZxZ2FSamp3Wnp6OVZo?=
+ =?utf-8?B?OHpEOTVpd0tFNHlxRUp3Zk8zRS8xUWM0akFpa2xwdktwOEI5UG9RR1RXYjBF?=
+ =?utf-8?B?clpIeXByeUMweHl6dEtGbVFsYmtIbFdVUEx0SVVmZEdDVzVRbllGOE0zQnpC?=
+ =?utf-8?B?WVpVOThwUEx0NWxhbkFleHRaRno2Y2JkRjdZZGQvaFFKaFIxaXo0YzZGMEkv?=
+ =?utf-8?B?Z3I4WjhLQWIvZittTUw0TzFacE12WVZIK2J1MTBlT0JxVm40ZDNmOHZlQ1dp?=
+ =?utf-8?B?aGp4Ymx6NVNmQjNMZTJsRnN1d0ZoTklGZWR4UWNadG9pZzF3cFVDMVN1bU94?=
+ =?utf-8?B?cVE5MFg1VmZNODB0Tkplbnh2UTdYMFBYazFKMUUzNFZLR2Q5akIrL3kvdS81?=
+ =?utf-8?B?MFBJV1IwazRGMVpjd256V0pNZVh5UVFoUDFIWDVCWUFWWG5uaGpHS3llVEtC?=
+ =?utf-8?B?WThNeWt3WW15cTZlSVZxcC8vREsvRjBiWDJ2dVJwWHoveE9WM2EzeWxIMSsy?=
+ =?utf-8?B?M2phMVFzMW9DTlVEc2ZPRkpuTVBKeVdOeG1XYU5WL2FmYlhSK21BVjlIZnRV?=
+ =?utf-8?B?VFl2RWJHdXhrSDRRdmd6LzZuSnI4L1k5NElHdk5QeGN0dk5DK0tWYUpxRmIz?=
+ =?utf-8?B?Z0ZzVG0vbENqVEFKN3VWaHE5RVczM1B5Y1NsTkw5MWNJNEcwODhPVU1CazYw?=
+ =?utf-8?B?czRFcnFsTzJNejdPczhwS0dFQTlQRVVZTm1MSzRHYzRzYTZYUmxmZkZHRHNC?=
+ =?utf-8?B?S2s1a1JLY1pvbGFrR0F1UFUyNyt2YWc5SmlDQVEwQUdXcmNuRHJaTUFLbTgw?=
+ =?utf-8?B?MEhkaCtsbzY2TVh2bHFEWC9zcEJaU0dyR01KSjZuSGlqK0hVaWZ5L1hlSGJX?=
+ =?utf-8?B?Y0JIeTUrMi9Hb3plR2QzZTJwbDNQa1YvZnZQZFFPM3NRL0dhaUVOZmNHT01i?=
+ =?utf-8?B?Rmpqa29OQ2hwMm14dGdzWHNIclNuNmpOdkxQWGFBMkU1T3UyREx2TXRUcGdP?=
+ =?utf-8?B?OFZIL2Npc0F5Vmd4d2taWktzajdzcnFYNzRVblZVU3E2RmIzM1VzdW5QcHhM?=
+ =?utf-8?B?RU9Nc1c1SmdKb1pKdVVJV0VZNWhIWEVJVDNob2sxT2Jqa3JKeGkyaXRJdzZT?=
+ =?utf-8?B?YzFCczlUY3ZTYTFPeEZha1p1RG8rZk9BeFpwV3d4TDl1ejByRjZ1ZHlnSGpr?=
+ =?utf-8?Q?ewYOMt3+EN8hDl+hFWP1rfUOpW+5Jrp6yZHHMFU?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb78a54a-b4ff-4145-db9a-08d90e3f87f7
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 May 2021 14:27:07.8650
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: R7VQqCINrGZ5V/vve35FE8gSXWHG8q0a7urg6FaJq05NIcDDrmpkpXrC4In+DpJKZWpnfU17UeKGiqNYToBYeyi2m1FhgCoGZYkdQlP6Fp8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB2578
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 23, 2021 at 9:46 PM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 2021-04-22 09:15, Claire Chang wrote:
-> > The restricted DMA pool is preferred if available.
-> >
-> > The restricted DMA pools provide a basic level of protection against the
-> > DMA overwriting buffer contents at unexpected times. However, to protect
-> > against general data leakage and system memory corruption, the system
-> > needs to provide a way to lock down the memory access, e.g., MPU.
-> >
-> > Signed-off-by: Claire Chang <tientzu@chromium.org>
-> > ---
-> >   kernel/dma/direct.c | 35 ++++++++++++++++++++++++++---------
-> >   1 file changed, 26 insertions(+), 9 deletions(-)
-> >
-> > diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
-> > index 7a27f0510fcc..29523d2a9845 100644
-> > --- a/kernel/dma/direct.c
-> > +++ b/kernel/dma/direct.c
-> > @@ -78,6 +78,10 @@ static bool dma_coherent_ok(struct device *dev, phys_addr_t phys, size_t size)
-> >   static void __dma_direct_free_pages(struct device *dev, struct page *page,
-> >                                   size_t size)
-> >   {
-> > +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> > +     if (swiotlb_free(dev, page, size))
-> > +             return;
-> > +#endif
-> >       dma_free_contiguous(dev, page, size);
-> >   }
-> >
-> > @@ -92,7 +96,17 @@ static struct page *__dma_direct_alloc_pages(struct device *dev, size_t size,
-> >
-> >       gfp |= dma_direct_optimal_gfp_mask(dev, dev->coherent_dma_mask,
-> >                                          &phys_limit);
-> > -     page = dma_alloc_contiguous(dev, size, gfp);
-> > +
-> > +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> > +     page = swiotlb_alloc(dev, size);
-> > +     if (page && !dma_coherent_ok(dev, page_to_phys(page), size)) {
-> > +             __dma_direct_free_pages(dev, page, size);
-> > +             page = NULL;
-> > +     }
-> > +#endif
-> > +
-> > +     if (!page)
-> > +             page = dma_alloc_contiguous(dev, size, gfp);
-> >       if (page && !dma_coherent_ok(dev, page_to_phys(page), size)) {
-> >               dma_free_contiguous(dev, page, size);
-> >               page = NULL;
-> > @@ -148,7 +162,7 @@ void *dma_direct_alloc(struct device *dev, size_t size,
-> >               gfp |= __GFP_NOWARN;
-> >
-> >       if ((attrs & DMA_ATTR_NO_KERNEL_MAPPING) &&
-> > -         !force_dma_unencrypted(dev)) {
-> > +         !force_dma_unencrypted(dev) && !is_dev_swiotlb_force(dev)) {
-> >               page = __dma_direct_alloc_pages(dev, size, gfp & ~__GFP_ZERO);
-> >               if (!page)
-> >                       return NULL;
-> > @@ -161,8 +175,8 @@ void *dma_direct_alloc(struct device *dev, size_t size,
-> >       }
-> >
-> >       if (!IS_ENABLED(CONFIG_ARCH_HAS_DMA_SET_UNCACHED) &&
-> > -         !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
-> > -         !dev_is_dma_coherent(dev))
-> > +         !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) && !dev_is_dma_coherent(dev) &&
-> > +         !is_dev_swiotlb_force(dev))
-> >               return arch_dma_alloc(dev, size, dma_handle, gfp, attrs);
-> >
-> >       /*
-> > @@ -172,7 +186,9 @@ void *dma_direct_alloc(struct device *dev, size_t size,
-> >       if (IS_ENABLED(CONFIG_DMA_COHERENT_POOL) &&
-> >           !gfpflags_allow_blocking(gfp) &&
-> >           (force_dma_unencrypted(dev) ||
-> > -          (IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) && !dev_is_dma_coherent(dev))))
-> > +          (IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
-> > +           !dev_is_dma_coherent(dev))) &&
-> > +         !is_dev_swiotlb_force(dev))
-> >               return dma_direct_alloc_from_pool(dev, size, dma_handle, gfp);
-> >
-> >       /* we always manually zero the memory once we are done */
-> > @@ -253,15 +269,15 @@ void dma_direct_free(struct device *dev, size_t size,
-> >       unsigned int page_order = get_order(size);
-> >
-> >       if ((attrs & DMA_ATTR_NO_KERNEL_MAPPING) &&
-> > -         !force_dma_unencrypted(dev)) {
-> > +         !force_dma_unencrypted(dev) && !is_dev_swiotlb_force(dev)) {
-> >               /* cpu_addr is a struct page cookie, not a kernel address */
-> >               dma_free_contiguous(dev, cpu_addr, size);
-> >               return;
-> >       }
-> >
-> >       if (!IS_ENABLED(CONFIG_ARCH_HAS_DMA_SET_UNCACHED) &&
-> > -         !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) &&
-> > -         !dev_is_dma_coherent(dev)) {
-> > +         !IS_ENABLED(CONFIG_DMA_DIRECT_REMAP) && !dev_is_dma_coherent(dev) &&
-> > +         !is_dev_swiotlb_force(dev)) {
-> >               arch_dma_free(dev, size, cpu_addr, dma_addr, attrs);
-> >               return;
-> >       }
-> > @@ -289,7 +305,8 @@ struct page *dma_direct_alloc_pages(struct device *dev, size_t size,
-> >       void *ret;
-> >
-> >       if (IS_ENABLED(CONFIG_DMA_COHERENT_POOL) &&
-> > -         force_dma_unencrypted(dev) && !gfpflags_allow_blocking(gfp))
-> > +         force_dma_unencrypted(dev) && !gfpflags_allow_blocking(gfp) &&
-> > +         !is_dev_swiotlb_force(dev))
-> >               return dma_direct_alloc_from_pool(dev, size, dma_handle, gfp);
->
-> Wait, this seems broken for non-coherent devices - in that case we need
-> to return a non-cacheable address, but we can't simply fall through into
-> the remapping path below in GFP_ATOMIC context. That's why we need the
-> atomic pool concept in the first place :/
+On 29.04.21 09:30, Peng Fan (OSS) wrote:
+> From: Lucas Stach <l.stach@pengutronix.de>
+> 
+> For some domains the resets of the devices in the domain are not
+> automatically triggered. Add an optional resets property to allow
+> the GPC driver to trigger those resets explicitly.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 
-Sorry for the late reply. I'm not very familiar with this. I wonder if
-the memory returned here must be coherent. If yes, could we say for
-this case, one must set up another device coherent pool
-(shared-dma-pool) and go with dma_alloc_from_dev_coherent()[1]?
+Rob has approved this if it includes a proper explanation on why the 
+resets are not defined. See: 
+https://patchwork.kernel.org/project/linux-arm-kernel/patch/20201105174434.1817539-9-l.stach@pengutronix.de/#24147743.
 
-[1] https://elixir.bootlin.com/linux/v5.12/source/kernel/dma/mapping.c#L435
+Can you add an explanation to the bindings in the next version?
 
->
-> Unless I've overlooked something, we're still using the regular
-> cacheable linear map address of the dma_io_tlb_mem buffer, no?
->
-> Robin.
->
-> >
-> >       page = __dma_direct_alloc_pages(dev, size, gfp);
-> >
+> ---
+>   Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml | 7 +++++++
+>   1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
+> index a96e6dbf1858..4330c73a2c30 100644
+> --- a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
+> +++ b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
+> @@ -66,6 +66,13 @@ properties:
+>   
+>             power-supply: true
+>   
+> +          resets:
+> +            description: |
+> +              A number of phandles to resets that need to be asserted during
+> +              power-up sequencing of the domain.
+> +            minItems: 1
+> +            maxItems: 4
+> +
+>           required:
+>             - '#power-domain-cells'
+>             - reg
+> 
