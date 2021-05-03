@@ -2,162 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8F9C3716E0
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 16:45:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6F64371741
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 16:57:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229657AbhECOqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 10:46:02 -0400
-Received: from userp2120.oracle.com ([156.151.31.85]:43078 "EHLO
-        userp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbhECOqA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 10:46:00 -0400
-Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
-        by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 143EiLvb002715;
-        Mon, 3 May 2021 14:44:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=corp-2020-01-29;
- bh=F5Gq3RM9SXS/0D9/JJvhMbztWLCjlhpTmu0PVituFkg=;
- b=n5SZwk9VPKMb6VRhgWH8tRyrPDOriKliiP9LQhMCHCIkXsRis+xK1qJ1G8Kxs18EXzql
- 6HqqTyM+xVwhlxekyd4jxS6Z7WQGv1gjgYESfqz43qYutP/RzTCvMuejADVUmQCnUPRh
- vnt5ocMiFR8SsWqnmQkoq1Rs7dZBFJzwY9rcvZovI9SxW1RjDweZjM8ijCA71FJO+bgG
- txnLxLh4MBHpOwE/2G9/RSqqOu4U4uuSjIqVqwVgrRIioX8nFJK3Xs2Adni8qLdUNtes
- fUTKMHXWZ6cKYnoxaT+Od5MpTq9MKWmvRvUbwBrobMrN78oGhvW5CRtTKOjhXavLqVre iQ== 
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
-        by userp2120.oracle.com with ESMTP id 389h13tr6t-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 03 May 2021 14:44:41 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
-        by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 143EeBep028546;
-        Mon, 3 May 2021 14:44:40 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by aserp3020.oracle.com with ESMTP id 388xt2gdb6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 03 May 2021 14:44:40 +0000
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 143EieId101156;
-        Mon, 3 May 2021 14:44:40 GMT
-Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
-        by aserp3020.oracle.com with ESMTP id 388xt2gdb1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 03 May 2021 14:44:40 +0000
-Received: from abhmp0017.oracle.com (abhmp0017.oracle.com [141.146.116.23])
-        by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 143Eicdl031343;
-        Mon, 3 May 2021 14:44:38 GMT
-Received: from kadam (/102.36.221.92)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Mon, 03 May 2021 07:44:38 -0700
-Date:   Mon, 3 May 2021 17:44:29 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     Lucas Stankus <lucas.p.stankus@gmail.com>
-Cc:     lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-        gregkh@linuxfoundation.org, linux-iio@vger.kernel.org,
-        linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] staging: iio: cdc: ad7746: use dt for capacitive
- channel setup.
-Message-ID: <20210503144429.GN21598@kadam>
-References: <cover.1619841953.git.lucas.p.stankus@gmail.com>
- <3e7f2a0a8960cece185f518ff2b7ceb87891edcd.1619841953.git.lucas.p.stankus@gmail.com>
- <20210503100720.GP1981@kadam>
+        id S229650AbhECO6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 10:58:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55624 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229953AbhECO6Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 10:58:16 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D297C06174A;
+        Mon,  3 May 2021 07:57:22 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id k3-20020a17090ad083b0290155b934a295so5906147pju.2;
+        Mon, 03 May 2021 07:57:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ik3wrzpwnYSSTSQFdegvdMidUhrImlyxHbi+NVAFZeQ=;
+        b=ns82hHHVmswbQv/3kS/nuzUsBa5rE6zd8LmLEbZifQd9bSi3KrQ3kjSCjhierzMpzl
+         otGRj+tNg6qFybAWjewmxAIJD7r0DZfjIUyFjG1byU34s9E4XMt2baDRJJbi1bb+jlnY
+         fH/U9QiQ0mFK3D8XziD6FA6SefOhO5hGWZ5IlT+YMlGLgKQix9CsWlOHCDf7tVkAu7dh
+         PO4wqHzHKyJUNa/UrKZc0nOIFIFjeD5jD43TIiJ4VMnkGc7idCf0EXo2u6oai72Y2Jrk
+         h3CYHQ2DuMER1EqZfICCLBDURQuKxbMYgvJIT4GIN/lGITXCRbXZYoY0NcDH2jxRacrd
+         U9tA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ik3wrzpwnYSSTSQFdegvdMidUhrImlyxHbi+NVAFZeQ=;
+        b=SRyd0Swy/7Ad/9W2EEZiQZRpmPlUUaoOMrwOlk/dPeM4KxwGYvsUMoSruubFCcBHct
+         xfimmTeaGGNKT8gMw5HDTNCVx9PHgSkMNglcGE+7ioGwZWdxyZpjUCHSfTX1EVAOpf1h
+         CdoithIzhqt9FvXAC8sdJX+OzbZIv185gYFC0+kU+71qV+PAsyu75ihvMu2jDg/Q/7l0
+         6cEkhqIeQbE7F116IF2nTqotuj6B1ZczAIdHB7BJWM6RyoXhI71O2t/heP4U2MaG91xc
+         mzrinMTzFaFzaYS2nQBYVc8epbI1HDBy5aaahua5t2kZKuNEcHAsy8uoRRUF6JJ3PlGu
+         jSdA==
+X-Gm-Message-State: AOAM5321ST6cUHHLSFkZ+Dqtx7RylU/vc0AelPhf5iH0yQv8EjOjAFwU
+        sPRVckGgzg0BgvbQkoEAow6fhLVnMvc=
+X-Google-Smtp-Source: ABdhPJxx8FIdxq1RnQpNlYcMei/6iy1SFOPobT/FRMctCUBqtt8agD26AIUyd8SxUiJ/z05VmIdMBA==
+X-Received: by 2002:a17:90a:6e45:: with SMTP id s5mr31851971pjm.125.1620053841612;
+        Mon, 03 May 2021 07:57:21 -0700 (PDT)
+Received: from archl-on2.. ([103.51.75.154])
+        by smtp.gmail.com with ESMTPSA id k38sm3593983pgi.73.2021.05.03.07.57.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 May 2021 07:57:21 -0700 (PDT)
+From:   Anand Moon <linux.amoon@gmail.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Anand Moon <linux.amoon@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCHv1 0/9] Added Audio and HDMI power domain for Amlogic SoC
+Date:   Mon,  3 May 2021 14:54:33 +0000
+Message-Id: <20210503145503.1477-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210503100720.GP1981@kadam>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-ORIG-GUID: j3GYA5SgvROSBYTLZ60Q1c1N67ftKOHO
-X-Proofpoint-GUID: j3GYA5SgvROSBYTLZ60Q1c1N67ftKOHO
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9973 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1015 spamscore=0 mlxscore=0
- phishscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0
- priorityscore=1501 mlxlogscore=999 malwarescore=0 impostorscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104060000 definitions=main-2105030102
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 03, 2021 at 01:07:20PM +0300, Dan Carpenter wrote:
-> On Sat, May 01, 2021 at 09:32:53AM -0300, Lucas Stankus wrote:
-> > diff --git a/drivers/staging/iio/cdc/ad7746.c b/drivers/staging/iio/cdc/ad7746.c
-> > index dfd71e99e872..531f1b96dea2 100644
-> > --- a/drivers/staging/iio/cdc/ad7746.c
-> > +++ b/drivers/staging/iio/cdc/ad7746.c
-> > @@ -18,8 +18,6 @@
-> >  #include <linux/iio/iio.h>
-> >  #include <linux/iio/sysfs.h>
-> >  
-> > -#include "ad7746.h"
-> > -
-> >  /*
-> >   * AD7746 Register Definition
-> >   */
-> > @@ -676,10 +674,11 @@ static const struct iio_info ad7746_info = {
-> >  static int ad7746_probe(struct i2c_client *client,
-> >  			const struct i2c_device_id *id)
-> >  {
-> > -	struct ad7746_platform_data *pdata = client->dev.platform_data;
-> > +	struct device *dev = &client->dev;
-> >  	struct ad7746_chip_info *chip;
-> >  	struct iio_dev *indio_dev;
-> >  	unsigned char regval = 0;
-> > +	unsigned int vdd_permille;
-> >  	int ret = 0;
-> >  
-> >  	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*chip));
-> > @@ -703,26 +702,39 @@ static int ad7746_probe(struct i2c_client *client,
-> >  	indio_dev->num_channels = ARRAY_SIZE(ad7746_channels);
-> >  	indio_dev->modes = INDIO_DIRECT_MODE;
-> >  
-> > -	if (pdata) {
-> > -		if (pdata->exca_en) {
-> > -			if (pdata->exca_inv_en)
-> > -				regval |= AD7746_EXCSETUP_NEXCA;
-> > -			else
-> > -				regval |= AD7746_EXCSETUP_EXCA;
-> > -		}
-> > +	if (device_property_read_bool(dev, "adi,exca-output-en")) {
-> > +		if (device_property_read_bool(dev, "adi,exca-output-invert"))
-> > +			regval |= AD7746_EXCSETUP_NEXCA;
-> > +		else
-> > +			regval |= AD7746_EXCSETUP_EXCA;
-> > +	}
-> >  
-> > -		if (pdata->excb_en) {
-> > -			if (pdata->excb_inv_en)
-> > -				regval |= AD7746_EXCSETUP_NEXCB;
-> > -			else
-> > -				regval |= AD7746_EXCSETUP_EXCB;
-> > -		}
-> > +	if (device_property_read_bool(dev, "adi,excb-output-en")) {
-> > +		if (device_property_read_bool(dev, "adi,excb-output-invert"))
-> > +			regval |= AD7746_EXCSETUP_NEXCB;
-> > +		else
-> > +			regval |= AD7746_EXCSETUP_EXCB;
-> > +	}
-> >  
-> > -		regval |= AD7746_EXCSETUP_EXCLVL(pdata->exclvl);
-> > -	} else {
-> > -		dev_warn(&client->dev, "No platform data? using default\n");
-> > -		regval = AD7746_EXCSETUP_EXCA | AD7746_EXCSETUP_EXCB |
-> > -			AD7746_EXCSETUP_EXCLVL(3);
-> > +	ret = device_property_read_u32(dev, "adi,excitation-vdd-permille",
-> > +				       &vdd_permille);
-> > +	if (!ret) {
-> 
-> This test is reversed.  I wonder if the static checkers can catch the
-> uninitialized variable bug...  It's probably better to write it as:
-> 
-> 	if (device_property_read_u32(dev, "adi,excitation-vdd-permille",
-> 				     &vdd_permille) {
-> 
-> So it matches the others.
+Patch series add Audio and Hdmi power domain for Amlogic SoC.
 
-Oops.  Sorry for the noise.  I was wrong on this.  I looked at the
-device_property_read_bool() code instead of the device_property_read_u32().
+Tested on GXBB - Odroid C2
+          SM1  - Odroid C4
+          G12B - Odroid N2
+-Anand
 
-It's disappointing that the returns are reversed.
+Anand Moon (9):
+  soc: amlogic: meson-ee-pwrc: Add audio power domain Meson g12a and
+    g12b SoCs
+  arm64: dts: amlogic: Add audio power domain for g12a and g12b
+  soc: amlogic: meson-ee-pwrc: Add hdmi power domain Meson g12a SoCs
+  arm64: dts: amlogic: Add hdmi power domain for g12a and g12b
+  soc: amlogic: meson-ee-pwrc: Add hdmi power domain Meson sm1 SoCs
+  arm64: dts: amlogic: Add audio power domain for sm1 SoC
+  arm64: dts: amlogic: Add hdmi power domain for sm1 sbc
+  soc: amlogic: meson-ee-pwrc: Add hdmi power domain Meson gxbb and gxl
+    SoCs
+  arm64: dts: amlogic: Add hdmi power domain for gxbb and gxl
 
-regards,
-dan carpenter
+ arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts    |  2 ++
+ arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts      |  1 +
+ arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts   |  2 ++
+ arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts  |  1 +
+ .../arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts |  1 +
+ arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts    |  1 +
+ .../arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi |  2 ++
+ arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts |  1 +
+ arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi     |  1 +
+ .../boot/dts/amlogic/meson-gx-libretech-pc.dtsi      |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi  |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts |  1 +
+ .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts      |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts  |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi     |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi    |  1 +
+ .../dts/amlogic/meson-gxl-s805x-libretech-ac.dts     |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts |  1 +
+ .../boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts  |  1 +
+ .../dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts  |  1 +
+ .../dts/amlogic/meson-gxl-s905x-libretech-cc.dts     |  1 +
+ .../boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts |  1 +
+ .../arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts  |  1 +
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi    |  2 ++
+ arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts     |  2 ++
+ drivers/soc/amlogic/meson-ee-pwrc.c                  | 12 ++++++++++++
+ include/dt-bindings/power/meson-g12a-power.h         |  2 ++
+ include/dt-bindings/power/meson-gxbb-power.h         |  1 +
+ include/dt-bindings/power/meson-sm1-power.h          |  1 +
+ 33 files changed, 50 insertions(+)
+
+-- 
+2.31.1
 
