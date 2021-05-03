@@ -2,77 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03DC4371EB0
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 19:33:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 276D9371EB5
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 19:34:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231715AbhECReH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 13:34:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34652 "EHLO
+        id S231407AbhECRf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 13:35:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231459AbhECReG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 13:34:06 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A405C06138B
-        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 10:33:12 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id q2so4645394pfh.13
-        for <devicetree@vger.kernel.org>; Mon, 03 May 2021 10:33:12 -0700 (PDT)
+        with ESMTP id S231305AbhECRf1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 13:35:27 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50F9AC06174A;
+        Mon,  3 May 2021 10:34:34 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id l6so6163841oii.1;
+        Mon, 03 May 2021 10:34:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=goLJCN+tVpRnsloCO4BzWri3mHAjhnXDbA+9rFX7OwQ=;
-        b=LDExJFl7/vTDsnpyNdQuz7mXKjdjYpD2g4DWhdZgPDn6/GhxU66KamRhPkrQVigLYW
-         CBbR7CSB/cwuAoh/Rfe1nCP/FNElAz/vfArcKB6MPks7xHMCejplBS/xH5+pO523qcP+
-         Hc6RPXMQVGK8IjlVGImwO291ZV0a37OzZntAw=
+        d=gmail.com; s=20161025;
+        h=sender:to:cc:references:from:subject:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=u+NbrtD9anNLIJ+4wcRSHygXIWUqi8H+m/3cio5BNfo=;
+        b=VyNNGv3UB2Sit0slDQ3i1FOhEY+XAWxLmZqILEc4OhfOOCYsuPJ4q8X60A5+kOvf2G
+         rpE8aIRp+w2cfJ3b8B69U7aMQmaP8jlbv5XOT9IikoK7FeLXkG7H40akgkTaR4Mm8GAZ
+         B+lruG9xbyySuse0SxXmko59f4nXO6zLew1Vc93o2KuzjwIiO5KzcxjutYwmr8T012yX
+         ebM1NkU7rQ7r8Iq8fdjdGYUP4c/t3JhHMyPp7Xs6CBR94Je1oso9Fq9LFbLQJA586nLG
+         APd0kgP5l8SkZpezzzU7tNfl7RrNVKBZ5qQ1Wu1o07XL+/gr/E2pXMK+GPI1VDx3zqXP
+         37Yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=goLJCN+tVpRnsloCO4BzWri3mHAjhnXDbA+9rFX7OwQ=;
-        b=rznKQCTPVHghrWyI1A7WHurdfabI8vt2p8t5v0tCaLju2T0HTgEWSqpmyf+w3u9DCS
-         htIR1kWKpvIr9F9EWapph5vbzKA6UG8LxDzPVd/VXC400L1YS/HOXq+YKYDTTVjP53/G
-         To7Xo5a+Q/8AU4bmNzRiCcPkIaTfN1tNYehIbRiJKC/Ew3eK0Ru/mjPS1jYIaGWyL+FH
-         r1BAAo6sfnlEIpANc6vCYwJ69f4iXk1jXDWHrMun1Qokqpqk5vbIAudBXQiaOoa1k2GU
-         Im2GXofb5r62HOTEH+z3RQ5CZLW/t/JTaNv1fCEN+FPTK5DSjXDkzsS4C5SEEAnYJQ0T
-         pd/Q==
-X-Gm-Message-State: AOAM533wrf4wWUUrSdewf5ej7WgaEcpyVwaUDY16ctZV2KWpKafVuwHN
-        zXxDAHxo1zDtFYIX4GETSZVDnA==
-X-Google-Smtp-Source: ABdhPJyT8qZQOSGWp1wZ94G/D8SGFvDBPGXndxli48bCW0OZ03jcC+Nb+AT0ZqLAKzbtV75ZNVhIJQ==
-X-Received: by 2002:a63:7503:: with SMTP id q3mr19659576pgc.435.1620063191652;
-        Mon, 03 May 2021 10:33:11 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:8584:3fd:2adf:a655])
-        by smtp.gmail.com with UTF8SMTPSA id u17sm9306041pfm.113.2021.05.03.10.33.10
+        h=x-gm-message-state:sender:to:cc:references:from:subject:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=u+NbrtD9anNLIJ+4wcRSHygXIWUqi8H+m/3cio5BNfo=;
+        b=Kend2F74grL4+BgtZtqmBQi4km2WK4iDMo86V4fOwXKOvAY9NwQEBAs+YVls+3l3qV
+         89Tpx27WnZklCaCfaHhjwvoXkpvrg3+JiobXCgAUsHoMjMj8bOeMJCJD3R929ml5hvA3
+         bJKrag/01ipp+weEGVYNGKJp/X4bfwas7kBrjpmueKrUgVQ1u8v4d2CpoVWMF9CmioKb
+         nAYElTsltgJr0RkRkqDl3F0bOmZ2I/T+JqrCob37As1MQrNgi5J3/7VgPtSlB3P81Ggp
+         6dVocy6fL28zNAWVJ1WJLSAtGq91jE6xp7Q3QT344awnC8dhbFJf0/xPpTz+8pxzwKay
+         g6mQ==
+X-Gm-Message-State: AOAM530ubLbcwQAGrrKSe2Jb7bGc3Nq/E2N2dZ7OSp+J+4vxLI2CWlhp
+        Svy8ghvJjp19BwpfeE5YlerN4VpbP5M=
+X-Google-Smtp-Source: ABdhPJx/YRQJjNh95hdl4q3HSS3EG4x37nLgH2WX0Kg4cNVLaKeSjELio2IcVA1HC33UvABvz2MXOA==
+X-Received: by 2002:a54:410a:: with SMTP id l10mr21390458oic.15.1620063273388;
+        Mon, 03 May 2021 10:34:33 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d185sm97893oib.25.2021.05.03.10.34.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 May 2021 10:33:11 -0700 (PDT)
-Date:   Mon, 3 May 2021 10:33:10 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rajeshwari <rkambl@codeaurora.org>
-Cc:     amitk@kernel.org, thara.gopinath@linaro.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, rui.zhang@intel.com,
-        daniel.lezcano@linaro.org, robh+dt@kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sanm@codeaurora.org, manafm@codeaurora.org
-Subject: Re: [PATCH V3 2/3] arm64: dts: qcom: SC7280:  Add device node
- support for TSENS
-Message-ID: <YJAz1iDM+cNAAcCX@google.com>
-References: <1619778592-8112-1-git-send-email-rkambl@codeaurora.org>
- <1619778592-8112-3-git-send-email-rkambl@codeaurora.org>
+        Mon, 03 May 2021 10:34:32 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+To:     Vadim Pasternak <vadimp@nvidia.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc:     "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20210426221731.1718613-1-vadimp@nvidia.com>
+ <20210426221731.1718613-3-vadimp@nvidia.com>
+ <6bb0e063-66b4-b7bb-3f7d-0d563390bcfb@roeck-us.net>
+ <DM6PR12MB389893AC33FCFC7073C41F77AF5B9@DM6PR12MB3898.namprd12.prod.outlook.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH hwmon-next v3 2/3] hwmon: (pmbus) Add support for MPS
+ Multi-phase mp2888 controller
+Message-ID: <c03c6c3b-0aab-6668-b032-f5869ff69bef@roeck-us.net>
+Date:   Mon, 3 May 2021 10:34:30 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
+In-Reply-To: <DM6PR12MB389893AC33FCFC7073C41F77AF5B9@DM6PR12MB3898.namprd12.prod.outlook.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1619778592-8112-3-git-send-email-rkambl@codeaurora.org>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 30, 2021 at 03:59:51PM +0530, Rajeshwari wrote:
-> Adding device node for TSENS controller and critical interrupt support in SC7280.
+On 5/3/21 9:11 AM, Vadim Pasternak wrote:
+> Hi Guenter!
 > 
-> Signed-off-by: Rajeshwari <rkambl@codeaurora.org>
+...
+>>> +	case PMBUS_VIN_OV_FAULT_LIMIT:
+>>> +	case PMBUS_VIN_UV_WARN_LIMIT:
+>>> +		ret = pmbus_read_word_data(client, page, phase, reg);
+>>> +		if (ret <= 0)
+>>> +			return ret;
+>>> +
+>>> +		val = mp2888_reg2data_linear11(ret, PSC_VOLTAGE_IN);
+>>> +		ret = val * MP2888_VIN_MANTISSA;
+>>> +		break;
+>>
+>> Unless I am missing something, this is linear11 with, for some reason, bit 10
+>> erroneously set for PMBUS_READ_VIN. That means that setting the format
+>> for PSC_VOLTAGE_IN and clearing bit 10 for PMBUS_READ_VIN should work
+>> without local conversion. Am I missing something ?
+> 
+> On board I have vin 12V.
+> From register I am getting 0xed80.
+> If I am masking bit 10, 0xe980, it gives me 48.12 V, masking bits 11,10 gives 24.00.
+> For getting 12, I should mask bits 11, 10 and shift left bits 8 - 0.
+> But I it doesn't look right things to do. 
+> 
+Turns out that is because the data format for READ_VIN is not linear11,
+it is something like linear10. The mantissa is 10 bit (unsigned), the
+exponent is 6 bit. So the exponent is -5, not -6 as one would assume.
 
-Please add tags from previous versions, like my 'Reviewed-by' from v2,
-unless a patch underwent major changes.
+With that in mind, I'd still prefer to fix up READ_VIN to linear11
+instead of converting the limits to direct mode.
 
-Please also add a change log for v > 1, even if it just says 'no changes'
-for some patches in the series.
+Thanks,
+Guenter
