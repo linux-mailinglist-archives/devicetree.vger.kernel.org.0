@@ -2,123 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C763371F0A
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 19:56:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88801371FCF
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 20:41:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231406AbhECR5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 13:57:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39968 "EHLO
+        id S229835AbhECSmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 14:42:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231379AbhECR5F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 13:57:05 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02823C06138B
-        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 10:56:11 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id d29so3393728pgd.4
-        for <devicetree@vger.kernel.org>; Mon, 03 May 2021 10:56:10 -0700 (PDT)
+        with ESMTP id S229703AbhECSmC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 14:42:02 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99B38C06174A
+        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 11:41:07 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id l2so6626753wrm.9
+        for <devicetree@vger.kernel.org>; Mon, 03 May 2021 11:41:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bPGNoffuv19YjjXYP1WFdfb1qoKP5Lg1nHaK0QpjVVw=;
-        b=eyW8g2e77jYlYs5whvg43H5Ssak7Pr+zzh9QLq6e12BTjGDwXEpALVoYYYlIytZbaI
-         EvBD9PTRKMXoNbS3g5vg+yttyvz5cvL4b8DJlGruJbr5Eg1I4G+Ak5plqIYK+0IIpdBR
-         pRU6GW5kqk4DspHWi8juBxW6bABk7gODouTpw=
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=n8/Px2QFYE/jiv5S56bnSLpfOUhvhXNDZdvfzZY71CM=;
+        b=w8YxWHm/DNz+izh8bKyu/dKy3r7hK6/lDO3huz8+7707XiMuyX5tRSv4YT9b+mYrks
+         t8T6RHCWlqEXT5bIZv1xKSHnjhXDEEA8WRR3g/ZSuO3VvnamtrvM23m58mY+Cg30YlZD
+         d5Ai46bGMTR2do/v2hfoh+sM6OOFGPl3W5CZzic8Ilx2G7pz++10Jv8a74ENZWiOlRN+
+         SaDAirERPcw0BvM434bvf3KjtO+GJBTsc259L/O99+c4RBIgGO4tlQrRRm3manK5VcA6
+         xPj8qjpakytXagK+GTH2yruaSdev0xUffZ7QZ16KoOt/86PLKvpwCg/pNB89flfQqHFS
+         V//A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bPGNoffuv19YjjXYP1WFdfb1qoKP5Lg1nHaK0QpjVVw=;
-        b=Y2rpNJk/CYwxGkfwPeKZ71I2HfDQkMUd8U35G4TwmB5idXbnYlW71CjryfddYWR4LT
-         jCSN3meIN0HXdbeo4qBUeDs+ZATqTKZovQV7rmRUmpYtibKSxGz5bD/5SsxCjXpE5qL9
-         P+EzL/xYS4nfx02AL7I0sBDrGRTYFMIueLGu0iGemJITjerk5PAOTuXzFEQzY5CRsOHX
-         +yzFFH9bNSUGS5tbP6tFkGnIEdpqc31RKhf4nAs+nsddFxUSpr5+Svp3hSVC0A2rRgmk
-         IJygOxyZ24Pg92pAd81GZam7Ug1WOfz8N7xNAQFL0jZcB/cC18GcWTtJsR1IDfAg8dkM
-         cz+Q==
-X-Gm-Message-State: AOAM532N+RHkmHztt7mwTWAJTY03dAR3h+IvqrG/eZNwS3INEtoXVrOX
-        iDv1jnKTj+laDQ3eTCxpoSEuWA==
-X-Google-Smtp-Source: ABdhPJzeuUMnOHQFQXipHo229NVknh0suN/NWgkQfOVNZtfwuJ4AH5TVUs80cJ6BaBLtaFRBf/hnkA==
-X-Received: by 2002:a63:1b5c:: with SMTP id b28mr19048190pgm.444.1620064570539;
-        Mon, 03 May 2021 10:56:10 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:8584:3fd:2adf:a655])
-        by smtp.gmail.com with UTF8SMTPSA id 76sm9557600pfw.58.2021.05.03.10.56.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 May 2021 10:56:10 -0700 (PDT)
-Date:   Mon, 3 May 2021 10:56:09 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rajeshwari <rkambl@codeaurora.org>
-Cc:     amitk@kernel.org, thara.gopinath@linaro.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, rui.zhang@intel.com,
-        daniel.lezcano@linaro.org, robh+dt@kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sanm@codeaurora.org, manafm@codeaurora.org
-Subject: Re: [PATCH V3 3/3] arm64: dts: qcom: SC7280: Add thermal zone support
-Message-ID: <YJA5ORG5eR5f5nXc@google.com>
-References: <1619778592-8112-1-git-send-email-rkambl@codeaurora.org>
- <1619778592-8112-4-git-send-email-rkambl@codeaurora.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=n8/Px2QFYE/jiv5S56bnSLpfOUhvhXNDZdvfzZY71CM=;
+        b=DOEl1qpHvY/V/mNTiVFAmBZDduhoSW6IUYgqMWVYJLGxCvUEbq2/OhPNFqorRmV54J
+         x/kEUfxvNdESfc1J/ApvdzGFk8fLn9dBhw/pAhDiYrXvZ5ZPdQY160LMQvwv8qR2BIMl
+         tmCRoB1aef17+Noh3PzlMnhYN94z+prIByPWYbj65BN523BsjnpmKqPfGFepg1mJtaYP
+         qyELGb+/N/X7XnM/ujVwgFN7IQEQ22JvpRup89/YtbYthdnW5metbnGgmI8WypLWytzT
+         wB8izc9g1QD5jkOCNQotz2+4vcDZwn8QqVjA+yxGSkCb4j6hLrT1BqEx6yj8p/yIivjm
+         mGug==
+X-Gm-Message-State: AOAM533ACsLY4dVYilvsrvBXCiBQlZdQ3qIO+6lKF7UBQHC6Oc1H5rMw
+        0E9qwTlMgWm12PrH9TmCqpTMFA==
+X-Google-Smtp-Source: ABdhPJxp0ZPitqCUNRt3lroqfpwL6dMh/fQvnk7GiUU091Jx0DOk5sMffsvcRsfeAAY5aumNBF2T9w==
+X-Received: by 2002:adf:fc42:: with SMTP id e2mr5034212wrs.302.1620067266290;
+        Mon, 03 May 2021 11:41:06 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id o62sm647647wmo.3.2021.05.03.11.41.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 May 2021 11:41:05 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v4] dt-bindings: net: Convert mdio-gpio to yaml
+Date:   Mon,  3 May 2021 18:41:00 +0000
+Message-Id: <20210503184100.1503307-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1619778592-8112-4-git-send-email-rkambl@codeaurora.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 30, 2021 at 03:59:52PM +0530, Rajeshwari wrote:
-> Adding thermal zone, cooling maps support and changing hysteresis value for critical trip point in SC7280.
-> Hysteresis is not needed for critical trip point, when it reaches critical threshold system
-> will go for shutdown.
+Converts net/mdio-gpio.txt to yaml
 
-This patch doesn't change any hysteresis values, it adds them. As
-commented on v2, the sentence about the hysteresis doesn't add any
-value IMO, just remove it, or at least explain in a reply why you
-think it is valuable.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+Changes since v1:
+- fixes yamllint warning about indent
+- added maxItems 3
 
-> 
-> Signed-off-by: Rajeshwari <rkambl@codeaurora.org>
-> ---
+Changes since v2:
+- fixed example (gpios need 2 entries)
 
-patches with v > 1 should include a changelog
+Changes since v3:
+- fixed gpios description
+- added additionalProperties/type: object
 
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 852 +++++++++++++++++++++++++++++++++++
->  1 file changed, 852 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 275113c..d722081 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -12,6 +12,7 @@
->  #include <dt-bindings/power/qcom-aoss-qmp.h>
->  #include <dt-bindings/power/qcom-rpmpd.h>
->  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> +#include <dt-bindings/thermal/thermal.h>
->  
->  / {
->
-> ...
->
-> +	thermal_zones: thermal-zones {
-> +		cpu0-thermal {
-> +			polling-delay-passive = <250>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&tsens0 1>;
-> +
-> +			trips {
-> +				cpu0_alert0: trip-point0 {
-> +					temperature = <90000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				cpu0_alert1: trip-point1 {
-> +					temperature = <95000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				cpu0_crit: cpu_crit {
+ .../devicetree/bindings/net/mdio-gpio.txt     | 27 ---------
+ .../devicetree/bindings/net/mdio-gpio.yaml    | 58 +++++++++++++++++++
+ 2 files changed, 58 insertions(+), 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/mdio-gpio.txt
+ create mode 100644 Documentation/devicetree/bindings/net/mdio-gpio.yaml
 
-The node name should use dashes as separator, not underscores, i.e. it
-should be 'cpu-crit'. Applicable to all critical trip points.
+diff --git a/Documentation/devicetree/bindings/net/mdio-gpio.txt b/Documentation/devicetree/bindings/net/mdio-gpio.txt
+deleted file mode 100644
+index 4d91a36c5cf5..000000000000
+--- a/Documentation/devicetree/bindings/net/mdio-gpio.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-MDIO on GPIOs
+-
+-Currently defined compatibles:
+-- virtual,gpio-mdio
+-- microchip,mdio-smi0
+-
+-MDC and MDIO lines connected to GPIO controllers are listed in the
+-gpios property as described in section VIII.1 in the following order:
+-
+-MDC, MDIO.
+-
+-Note: Each gpio-mdio bus should have an alias correctly numbered in "aliases"
+-node.
+-
+-Example:
+-
+-aliases {
+-	mdio-gpio0 = &mdio0;
+-};
+-
+-mdio0: mdio {
+-	compatible = "virtual,mdio-gpio";
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	gpios = <&qe_pio_a 11
+-		 &qe_pio_c 6>;
+-};
+diff --git a/Documentation/devicetree/bindings/net/mdio-gpio.yaml b/Documentation/devicetree/bindings/net/mdio-gpio.yaml
+new file mode 100644
+index 000000000000..236a8c4768e2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/mdio-gpio.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/mdio-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MDIO on GPIOs
++
++maintainers:
++  - Andrew Lunn <andrew@lunn.ch>
++  - Florian Fainelli <f.fainelli@gmail.com>
++  - Heiner Kallweit <hkallweit1@gmail.com>
++
++allOf:
++  - $ref: "mdio.yaml#"
++
++properties:
++  compatible:
++    enum:
++      - virtual,mdio-gpio
++      - microchip,mdio-smi0
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  gpios:
++    minItems: 2
++    maxItems: 3
++    items:
++      - description: MDC
++      - description: MDIO
++      - description: MDO
++
++#Note: Each gpio-mdio bus should have an alias correctly numbered in "aliases"
++#node.
++additionalProperties:
++  type: object
++
++examples:
++  - |
++    aliases {
++        mdio-gpio0 = &mdio0;
++    };
++
++    mdio0: mdio {
++      compatible = "virtual,mdio-gpio";
++      #address-cells = <1>;
++      #size-cells = <0>;
++      gpios = <&qe_pio_a 11>,
++              <&qe_pio_c 6>;
++      ethphy0: ethernet-phy@0 {
++        reg = <0>;
++      };
++    };
++...
+-- 
+2.26.3
+
