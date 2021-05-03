@@ -2,297 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B718E3713A4
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 12:31:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 838F23713A9
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 12:33:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233108AbhECKcZ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 3 May 2021 06:32:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57870 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229823AbhECKcZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 May 2021 06:32:25 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AE8E8610C9;
-        Mon,  3 May 2021 10:25:09 +0000 (UTC)
-Date:   Mon, 3 May 2021 11:26:00 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     =?UTF-8?B?SsOzenNlZiBIb3J2w6F0aA==?= <info@ministro.hu>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Alex Dewar <alex.dewar90@gmail.com>,
-        Gene Chen <gene_chen@richtek.com>,
-        Saravanan Sekar <sravanhome@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] iio: adc: driver for texas instruments ads7142
-Message-ID: <20210503112600.35c4016e@jic23-huawei>
-In-Reply-To: <20210502204846.GA32610@dev>
-References: <bffbc2b24a869dc42307adf8e3fc71f08fcff6dd.1619892171.git.info@ministro.hu>
-        <20210502181423.1712130b@jic23-huawei>
-        <20210502204846.GA32610@dev>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+        id S229823AbhECKeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 06:34:13 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:46249 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233410AbhECKeM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 06:34:12 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 053F4580B6A;
+        Mon,  3 May 2021 06:33:19 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Mon, 03 May 2021 06:33:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=rlPCJINeTm8HbuRWm6UlVXdByMgTHzf
+        VXScCOKr52eM=; b=WUGzwoN3ttDsOqa0YjNkiO+a2r8/soQqFvzwb2h/iuRM4aa
+        fo+q9bpWTHDvOcxVsG11UDnFkhLuFODcY/YGfTYLi+tBJFU4CnjQc43BuD/C2h6r
+        gz3MJupqfXlQDHuKiLAo2tohFRwSyOJNMNvAU2xo87PV2kT1NEHk9zE2g4u9BDND
+        i2IPwAARb+rWPOuZW7Xk3znIeAkfHR7QCE8X2eqhLUiTSDeNNipgYtN1JdMado9n
+        CvwpxarO+SrUbes+uhxU497Ijv5ifeYramx+/WV/CCp9wm421BRDhZCHlMNVeP4H
+        eWNGEYeX4wF2Pw5Ncng81lXhRt1ceRj5mzidBPQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=rlPCJI
+        NeTm8HbuRWm6UlVXdByMgTHzfVXScCOKr52eM=; b=q1o7ZTA86GPxBmIR5uAGGP
+        UMmpG+Oz6SnP0KkZoENxSJXdr/QNQTVs3XswNGt8xZHGRTG9OlQTuCASoFxzoSPl
+        2OGZI7Xv40ZBARV9oGcggYpT4QwGK5RmkFR/HgZ1qWL+cEtP6H5655j4ZRTdOKws
+        wqPMopT811MeOgMckGGYSpAvX6kWhN72O85UhFFYTaKNNVhL8I478qREUrVzFXl2
+        VWvfDmH+SNFuEXMLEfbohVvJdbL06D8iTU8ay3K/0H8j0L2noY5CxhM64GrlPza0
+        rR1WcAmAa8xIQTWYuz9GKz2Kkg8BPfqnX+bRTJjHbgl+jxfyYbj6IglqaNzP1vAA
+        ==
+X-ME-Sender: <xms:bdGPYJB0o07yb4liJbPzhn_9Geoz6ezKjP1RBtcjWwEGHIq_yjhbHA>
+    <xme:bdGPYHgdCPNWNLPPv6FIYMLV-f2stpo5BliCPffSzTvGC2k8251qjt-c_uI7Z2F4f
+    UiiIfvTWVUpQmFytQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdefgedgfedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhepvefhgfffffejudetffdtffeiudfgleduudehheehvedvleetgfevvdek
+    vefhgffhnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdphigrmhhlrdhorhhgnecuve
+    hluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghnughrvgif
+    segrjhdrihgurdgruh
+X-ME-Proxy: <xmx:bdGPYEm07vbJhkZhNDSQ9IbWdZe2qeKObsSTyyLuq6AjiTT62lRKug>
+    <xmx:bdGPYDzFy1_Z2W2E761fgjQR4JR0CDZA4atTCDuxNl1pY0K7SmdxKQ>
+    <xmx:bdGPYOSmivSYUjqddPmKlWfpOWpnSoNq3kj2Lyx1PJg24KeHGq7kEA>
+    <xmx:b9GPYKY7BvK6FtV3eh1F1qJ8c1RoGdAMb8BYJ7zBsZQaj7goKR79Cg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id D5486A00079; Mon,  3 May 2021 06:33:17 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-403-gbc3c488b23-fm-20210419.005-gbc3c488b
+Mime-Version: 1.0
+Message-Id: <6678be60-d078-4eaa-8fef-37a60473f1cc@www.fastmail.com>
+In-Reply-To: <20210503094054.GA12520@aspeedtech.com>
+References: <20210503014336.20256-1-steven_lee@aspeedtech.com>
+ <20210503014336.20256-2-steven_lee@aspeedtech.com>
+ <75226402-503c-4e9b-96dc-e4bd74cf20ac@www.fastmail.com>
+ <20210503094054.GA12520@aspeedtech.com>
+Date:   Mon, 03 May 2021 20:02:56 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Steven Lee" <steven_lee@aspeedtech.com>
+Cc:     "Ulf Hansson" <ulf.hansson@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>,
+        "Ryan Chen" <ryanchen.aspeed@gmail.com>,
+        "moderated list:ASPEED SD/MMC DRIVER" <linux-aspeed@lists.ozlabs.org>,
+        "moderated list:ASPEED SD/MMC DRIVER" <openbmc@lists.ozlabs.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list" <linux-kernel@vger.kernel.org>,
+        "Hongwei Zhang" <Hongweiz@ami.com>,
+        "Ryan Chen" <ryan_chen@aspeedtech.com>,
+        "Chin-Ting Kuo" <chin-ting_kuo@aspeedtech.com>
+Subject: =?UTF-8?Q?Re:_[PATCH_v2_1/3]_dt-bindings:_mmc:_sdhci-of-aspeed:_Add_desc?=
+ =?UTF-8?Q?ription_for_AST2600_EVB.?=
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 2 May 2021 20:48:47 +0000
-József Horváth <info@ministro.hu> wrote:
-
-> On Sun, May 02, 2021 at 06:14:23PM +0100, Jonathan Cameron wrote:
-> > On Sat, 1 May 2021 18:24:28 +0000
-> > Jozsef Horvath <info@ministro.hu> wrote:
-> >   
-> > > This is an iio driver for
-> > >  Texas Instruments ADS7142 dual-channel, programmable sensor monitor.
+On Mon, 3 May 2021, at 19:10, Steven Lee wrote:
+> The 05/03/2021 12:19, Andrew Jeffery wrote:
+> > Hi Steven,
+> > 
+> > On Mon, 3 May 2021, at 11:13, Steven Lee wrote:
+> > > Add the description for describing the AST 2600 EVB reference design of
+> > > GPIO regulators and provide the example in the document.
 > > > 
-> > > Operation modes supportedby the driver:
-> > >   When the 'ti,monitoring-mode' property is not present
-> > >     in the devicetree node definition, the driver initiates a single
-> > >     conversion in the device for each read request
-> > >     (/sys/bus/iio/devices/iio:deviceX/in_voltageY_raw).
-> > >     This is a one-shot conversion, and it is called
-> > >     "Manual Mode" in the datasheet.
+> > > AST2600-A2 EVB has the reference design for enabling SD bus
+> > > power and toggling SD bus signal voltage by GPIO pins.
 > > > 
-> > >   When the 'ti,monitoring-mode' property is present
-> > >     in the devicetree node definition, the driver configures
-> > >     the device's digital window comparator and sets the device's
-> > >     data buffer operation mode to pre alert data mode.
-> > >     The driver reads the conversion result when the BUSY/RDY interrupt
-> > >     fires, and keeps the value until the next BUSY/RDY interrupt
-> > >     or the first read request
-> > >     (/sys/bus/iio/devices/iio:deviceX/in_voltageY_raw).  
-> > 
-> > Hi Jozsef.
-> > 
-> > Interesting device - somewhat like an impact sensor, but on a general
-> > purpose ADC.  
-> 
-> Yes, but now I'm using as an ADC in my project.
-> In my point of view this is a general purpose ADC with monitoring features.
-> 
-> > 
-> > Hmm. This sounds rather unintuitive and also very much like a policy
-> > decision rather than anything to do with the hardware.  Hence it
-> > should almost certainly be in control of userspace and no via
-> > dt parameters.
-> >   
-> 
-> I think that, this operation modes are not generic enough to bring it to sysfs.
-
-That just means you need to figure out how to do it, not make it a
-boot time, or board flash time based control.
-
-> 
-> > The interrupt driven nature of the device implies that a polled interface
-> > such as sysfs is not appropriate to support this mode.
-> > 
-> > Based on the description you have given here and a quick look
-> > at the flow charts in the datasheet I would suggest.
-> > 1) Enable sysfs reads as manual mode only.
-> > 2) Implement the buffered part of an IIO driver.  This is what we use
-> >    for data where autonomous clocking is going on.  
-> 
-> I'll check the buffered api.
-> 
-> > 3) Add triggers to represent the different autonomous modes.  In some
-> >    sense all the modes present can be considered be a series of
-> >    'capture now' signals that are being generated by the hardware in
-> >    response to some event'.
-> > 
-> > So you'd have a pre_alert_tigger, post_alert_trigger
-> > Stop_burst and start_burst are more interesting to handle because you
-> > will need something to actually start/stop them.  These could be done
-> > via a sysfs attribute for the trigger, or more complex schemes exist
-> > such as triggering them off another trigger... one or two of the SoC
-> > ADCs do that sort of thing.
-> > 
-> >    
-> > >     The digital window comparator and hysteresis parameters
-> > >     can be controlled by:
-> > >       - the devicetree definition of channel node
-> > >       - iio sysfs interfaces
-> > >     This is event driven conversion, and is called
-> > >     "Autonomous Mode with Pre Alert Data" in the datasheet.
-> > >     This mode can be used to wake up the system with the ALERT pin,
-> > >     in case when the monitored voltage level is out of the configured range.  
-> > 
-> > Whilst it's fine to only enable the modes you want, we should think about how
-> > to ensure other modes can be supported.
-> >   
-> 
-> As I described above, I would keep the operation modes in dt, and
->  'ti,monitoring-mode' can be an enum.
-
-Sorry but no.  Unless you can make a 'very' strong argument of the
-fact that this a characteristic of the hardware setup (wiring etc) then
-it needs to be userspace controlled.
-
-> 
+> > > In the reference design, GPIOV0 of AST2600-A2 EVB is connected to
+> > > power load switch that providing 3.3v to SD1 bus vdd. GPIOV1 is
+> > > connected to a 1.8v and a 3.3v power load switch that providing
+> > > signal voltage to
+> > > SD1 bus.
 > > > 
-> > > Datasheet: https://www.ti.com/lit/ds/symlink/ads7142.pdf
+> > > If GPIOV0 is active high, SD1 bus is enabled. Otherwise, SD1 bus is
+> > > disabled.
+> > > If GPIOV1 is active high, 3.3v power load switch is enabled, SD1
+> > > signal voltage is 3.3v. Otherwise, 1.8v power load switch will be
+> > > enabled, SD1 signal voltage becomes 1.8v.
 > > > 
-> > > Signed-off-by: Jozsef Horvath <info@ministro.hu>
-> > > ---  
-
-...
-
-> 
+> > > AST2600-A2 EVB also support toggling signal voltage for SD2 bus.
+> > > The design is the same as SD1 bus. It uses GPIOV2 as power-gpio and
+> > > GPIOV3 as power-switch-gpio.
+> > > 
+> > > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> > > ---
+> > >  .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 99 +++++++++++++++++++
+> > >  1 file changed, 99 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml 
+> > > b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> > > index 987b287f3bff..dd894aba0bb7 100644
+> > > --- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> > > +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> > > @@ -20,6 +20,19 @@ description: |+
+> > >    the slots are dependent on the common configuration area, they are 
+> > > described
+> > >    as child nodes.
+> > >  
+> > > +  The signal voltage of SDHCIs on AST2600-A2 EVB is able to be toggled 
+> > > by GPIO
+> > > +  pins. In the reference design, GPIOV0 of AST2600-A2 EVB is connected 
+> > > to the
+> > > +  power load switch that providing 3.3v to SD1 bus vdd, GPIOV1 is 
+> > > connected to
+> > > +  a 1.8v and a 3.3v power load switch that providing signal voltage to
+> > > +  SD1 bus.
+> > > +  If GPIOV0 is active high, SD1 bus is enabled. Otherwise, SD1 bus is
+> > > +  disabled. If GPIOV1 is active high, 3.3v power load switch is 
+> > > enabled, SD1
+> > > +  signal voltage is 3.3v. Otherwise, 1.8v power load switch will be 
+> > > enabled, SD1
+> > > +  signal voltage becomes 1.8v.
+> > > +  AST2600-A2 EVB also support toggling signal voltage for SD2 bus.
+> > > +  The design is the same as SD1 bus. It uses GPIOV2 as power-gpio and 
+> > > GPIOV3
+> > > +  as power-switch-gpio.
 > > 
-> >   
-> > > +
-> > > +	return ret >= 0 ? 0 : ret;  
+> > I don't think we should be describing design-specific details in the 
+> > binding document. However, I think this would be a great comment in the 
+> > AST2600 EVB devicetree. Can you please move it there?
 > > 
-> > if ret == 0 then something went wrong and we should report that.  
 > 
-> You are right
+> Ok, I will move it to the device tree.
 > 
-> > > +				channel->data.value = value;
-> > > +				*channel_collected |= 1 << channel_address;
-> > > +			}
-> > > +		}
-> > > +	} while (--data_buffer_status);
+> I was wondering if the following place is a good place to put the
+> comment
+> 
+> at line 534 of aspeed-g6.dtsi
+
+What you're describing is specific to the AST2600 EVB, so I suggest you 
+put it in the EVB dts, e.g. at:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/aspeed-ast2600-evb.dts#n103
+
+> sdc: sdc@1e740000 {
+> 	// Comment here...
+> 
+> 	compatible = "aspeed,ast2600-sd-controller";
+> 	reg = <0x1e740000 0x100>;
+> 
+> 	sdhci0: sdhci@1e740100 {
+> 		compatible = "aspeed,ast2600-sdhci", "sdhci";
+> 		reg = <0x100 0x100>;
+> 		interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> ...
+> }
+> 
 > > > +
-> > > +	return ret;
-> > > +}
+> > >  properties:
+> > >    compatible:
+> > >      enum:
+> > > @@ -78,6 +91,7 @@ required:
+> > >    - clocks
+> > >  
+> > >  examples:
+> > > +  //Example 1
+> > >    - |
+> > >      #include <dt-bindings/clock/aspeed-clock.h>
+> > >      sdc@1e740000 {
+> > > @@ -104,3 +118,88 @@ examples:
+> > >                      clocks = <&syscon ASPEED_CLK_SDIO>;
+> > >              };
+> > >      };
 > > > +
-> > > +static int ti_ads7142_do_work(struct iio_dev *indio_dev)  
+> > > +  //Example 2 (AST2600EVB with GPIO regulator)
 > > 
-> > As mentioned below, these function needs a more informative name.  
-> 
-> I'll change it to ..._do_monitoring_work, and create something like
->  start_pre_alert_monitoring, start_post_alert_monitoring, etc
-
-Maybe, but I'd expect 'work' to imply it was the function called on
-each cycle of monitoring.  This is more monitoring_setup()
-
-
-...
-
->  
-> > > +static int ti_ads7142_read_event_config(struct iio_dev *indio_dev,
-> > > +					const struct iio_chan_spec *chan,
-> > > +					enum iio_event_type type,
-> > > +					enum iio_event_direction dir)
-> > > +{
-> > > +	struct ti_ads7142_priv *priv = iio_priv(indio_dev);
-> > > +	struct ti_ads7142_channel *channel;
-> > > +	int ret;
-> > > +
-> > > +	if (!priv->config.monitoring_mode)
-> > > +		return -EINVAL;
-> > > +
-> > > +	if (type != IIO_EV_TYPE_THRESH)
-> > > +		return -EINVAL;
-> > > +
-> > > +	ret = ti_ads7142_address2channel(indio_dev, chan->address,
-> > > +					 &channel);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	if (dir == IIO_EV_DIR_RISING)
-> > > +		ret = channel->config.alert_high ? 1 : 0;  
+> > I feel you didn't test this with `make dt_binding_check` as `//` isn't
+> > a valid YAML comment token. You need to use `#` for comments (
+> > https://yaml.org/spec/1.2/spec.html#id2780069 ).
 > > 
-> > Not fine using ret = channel->config.alert_high; directly?
-> >   
 > 
-> alert_high is bool, ret is int.
->  I know, the 'true' value is 1, and its autmatically casted,
->  but who knows the future...I would keep this, if possible.
+> Sorry, I don't know that there is a binding check command for valiating
+> YAML document.
 
-Ok.  Assuming the c spec will change to make this invalid is a bit implausible,
-but it's not too bad I guess.
+No worries! There's also `make dtbs_check` to validate the devicetree files
+against the bindings. It's useful to run both, as usually when you're adding to
+the binding you're modifying a devicetree as well.
 
+Unfortunately we need to do a bit of a cleanup of the Aspeed dts files, they
+generate a number of warnings right now.
+
+> Regardless, thanks for the reference link.
+> I will test with dt_binding_check.
 > 
-...
-
-> 
-> >   
-> > > +					   &ads_channel->config.high_threshold);
-> > > +		ads_channel->config.alert_high = !ret;
-> > > +		ret = of_property_read_u32(channel_node, "ti,threshold-falling",
-> > > +					   &ads_channel->config.low_threshold);
-> > > +		ads_channel->config.alert_low = !ret;
-> > > +		ret = of_property_read_u32(channel_node, "ti,hysteresis",
-> > > +					   &ads_channel->config.hysteresis);
-> > > +		channel_index++;
-> > > +	}
+> > > +  - |
+> > > +    #include <dt-bindings/clock/aspeed-clock.h>
+> > > +    #include <dt-bindings/gpio/aspeed-gpio.h>
+> > > +    vcc_sdhci0: regulator-vcc-sdhci0 {
+> > > +            compatible = "regulator-fixed";
 > > > +
-> > > +	return 0;
-> > > +err:
-> > > +	of_node_put(channel_node);
-> > > +	return ret;
-> > > +}
+> > > +            regulator-name = "SDHCI0 Vcc";
+> > > +            regulator-min-microvolt = <3300000>;
+> > > +            regulator-max-microvolt = <3300000>;
+> > > +            gpios = <&gpio0 ASPEED_GPIO(V, 0)
+> > > +                            GPIO_ACTIVE_HIGH>;
+> > > +            enable-active-high;
+> > > +    };
 > > > +
-> > > +static int ti_ads7142_parse_config_of(struct device *dev,
-> > > +				      struct iio_dev *indio_dev)
-> > > +{
-> > > +	struct ti_ads7142_priv *priv = iio_priv(indio_dev);
+> > > +    vccq_sdhci0: regulator-vccq-sdhci0 {
+> > > +            compatible = "regulator-gpio";
 > > > +
-> > > +	priv->config.osc_sel = of_property_read_bool(dev->of_node,
-> > > +						     "ti,osc-sel");  
+> > > +            regulator-name = "SDHCI0 VccQ";
+> > > +            regulator-min-microvolt = <1800000>;
+> > > +            regulator-max-microvolt = <3300000>;
+> > > +            gpios = <&gpio0 ASPEED_GPIO(V, 1)
+> > > +                            GPIO_ACTIVE_HIGH>;
+> > > +            gpios-states = <1>;
+> > > +            states = <3300000 1
+> > > +                      1800000 0>;
+> > > +    };
+> > > +
+> > > +    vcc_sdhci1: regulator-vcc-sdhci1 {
+> > > +            compatible = "regulator-fixed";
+> > > +
+> > > +            regulator-name = "SDHCI1 Vcc";
+> > > +            regulator-min-microvolt = <3300000>;
+> > > +            regulator-max-microvolt = <3300000>;
+> > > +            gpios = <&gpio0 ASPEED_GPIO(V, 2)
+> > > +                            GPIO_ACTIVE_HIGH>;
+> > > +            enable-active-high;
+> > > +    };
+> > > +
+> > > +    vccq_sdhci1: regulator-vccq-sdhci1 {
+> > > +            compatible = "regulator-gpio";
+> > > +
+> > > +            regulator-name = "SDHCI1 VccQ";
+> > > +            regulator-min-microvolt = <1800000>;
+> > > +            regulator-max-microvolt = <3300000>;
+> > > +            gpios = <&gpio0 ASPEED_GPIO(V, 3)
+> > > +                            GPIO_ACTIVE_HIGH>;
+> > > +            gpios-states = <1>;
+> > > +            states = <3300000 1
+> > > +                      1800000 0>;
+> > > +    };
+> > > +
+> > > +    sdc@1e740000 {
+> > > +            compatible = "aspeed,ast2600-sd-controller";
+> > > +            reg = <0x1e740000 0x100>;
+> > > +            #address-cells = <1>;
+> > > +            #size-cells = <1>;
+> > > +            ranges = <0 0x1e740000 0x20000>;
+> > > +            clocks = <&syscon ASPEED_CLK_GATE_SDCLK>;
+> > > +
+> > > +            sdhci0: sdhci@100 {
+> > > +                    compatible = "aspeed,ast2600-sdhci", "sdhci";
+> > > +                    reg = <0x100 0x100>;
+> > > +                    interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> > > +                    sdhci,auto-cmd12;
+> > > +                    clocks = <&syscon ASPEED_CLK_SDIO>;
+> > > +                    vmmc-supply = <&vcc_sdhci0>;
+> > > +                    vqmmc-supply = <&vccq_sdhci0>;
+> > > +                    sd-uhs-sdr104;
+> > > +                    clk-phase-uhs-sdr104 = <180>, <180>;
+> > > +            };
+> > > +
+> > > +            sdhci1: sdhci@200 {
+> > > +                    compatible = "aspeed,ast2600-sdhci", "sdhci";
+> > > +                    reg = <0x200 0x100>;
+> > > +                    interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> > > +                    sdhci,auto-cmd12;
+> > > +                    clocks = <&syscon ASPEED_CLK_SDIO>;
+> > > +                    vmmc-supply = <&vcc_sdhci1>;
+> > > +                    vqmmc-supply = <&vccq_sdhci1>;
+> > > +                    sd-uhs-sdr104;
+> > > +                    clk-phase-uhs-sdr104 = <0>, <0>;
+> > > +            };
+> > > +    };
 > > 
-> > Please use generic device property access functions where possible.
-> > That basically gives us support on non OF based platforms for free.  
+> > This is a good example, so can we keep this and just drop the comment 
+> > from the binding document?
 > 
-> Could you please explain this, I dont understand.
+> Ok, I will remove the comment.
 
-See include/linux/property.h
+Thanks.
 
-That provides firmware type agnostic property accessors - so they will work
-whether the property is provided via ACPI or via DT (or a number of other
-options though those are less common).
-
-ACPI DSDT tables can use a special device type PRP0001 which basically is a
-wrapper for device tree properties.  So the properties are all the same
-(including compatible) but you need to use the generic accessors to be able to
-read them. 
-
-
-> 
-> >   
-> > > +	of_property_read_u32(dev->of_node, "ti,n-clk", &priv->config.n_clk);
-> > > +	priv->config.monitoring_mode = of_property_read_bool(dev->of_node,
-> > > +							     "ti,monitoring-mode");
-> > > +
-> > > +	return ti_ads7142_parse_channel_config_of(dev, indio_dev);
-> > > +}
->
-...
-> Thank you for the review and suggestions.
-
-You are welcome.
-
-Thanks,
-
-Jonathan
-
-> 
-> Best regards
-> Jozsef
-
-> 
-> >   
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +module_i2c_driver(ti_ads7142_driver);
-> > > +
-> > > +MODULE_LICENSE("GPL");
-> > > +MODULE_AUTHOR("Jozsef Horvath <info@ministro.hu>");
-> > > +MODULE_DESCRIPTION("Texas Instruments TI_ADS7142 ADC driver");  
-> > 
-> >   
-> 
-
+Andrew
