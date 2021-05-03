@@ -2,74 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78DAE372227
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 22:59:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C760B372239
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 23:06:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229594AbhECVAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 17:00:07 -0400
-Received: from elvis.franken.de ([193.175.24.41]:33736 "EHLO elvis.franken.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229576AbhECVAH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 May 2021 17:00:07 -0400
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1ldfep-0008CS-00; Mon, 03 May 2021 22:59:11 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id E9A48C0DC3; Mon,  3 May 2021 22:58:58 +0200 (CEST)
-Date:   Mon, 3 May 2021 22:58:58 +0200
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] dt-bindings: ata: Add device tree binding fir
- Mikrotik RB532 PATA controller
-Message-ID: <20210503205858.GA14364@alpha.franken.de>
-References: <20210428163336.73125-1-tsbogend@alpha.franken.de>
- <20210428163336.73125-3-tsbogend@alpha.franken.de>
- <20210503192805.GA2232229@robh.at.kernel.org>
+        id S229590AbhECVHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 17:07:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54440 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229497AbhECVHE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 17:07:04 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6B20C061573
+        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 14:06:10 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1ldflV-0005uv-9g; Mon, 03 May 2021 23:06:05 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1ldflU-000417-Hh; Mon, 03 May 2021 23:06:04 +0200
+From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-gpio@vger.kernel.org, kernel@pengutronix.de,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: gpio: introduce hog properties with less ambiguity
+Date:   Mon,  3 May 2021 23:05:26 +0200
+Message-Id: <20210503210526.43455-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210503192805.GA2232229@robh.at.kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 03, 2021 at 02:28:05PM -0500, Rob Herring wrote:
-> On Wed, Apr 28, 2021 at 06:33:36PM +0200, Thomas Bogendoerfer wrote:
-> > Add YAML devicetree binding for Mikrotik RB532 PATA controller.
-> > 
-> > Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> > ---
-> >  .../bindings/ata/mikrotek,rb532-pata.yaml     | 43 +++++++++++++++++++
-> >  1 file changed, 43 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/ata/mikrotek,rb532-pata.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/ata/mikrotek,rb532-pata.yaml b/Documentation/devicetree/bindings/ata/mikrotek,rb532-pata.yaml
-> > new file mode 100644
-> > index 000000000000..f74880c4fd82
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/ata/mikrotek,rb532-pata.yaml
-> > @@ -0,0 +1,43 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/ata/mikrotek,rb532-pata.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Mikrotek RB532 PATA Controller bindings
-> 
-> We have a common binding for this (ata/pata-common.yaml). Really, all 
-> you'd gain is how to support 2 devices is defined. Should you use that? 
-> Is CompactFlash only a single device, I don't remember. If so, is that a 
-> limitation for the board or could 2 devices be supported?
+For active low lines the semantic of output-low and output-high is hard
+to grasp because there is a double negation involved and so output-low
+is actually a request to drive the line high (aka inactive).
 
-there is only one device possible. So what do I need to put into the
-yaml file for the driver ?  
+So introduce output-inactive and output-active with the same semantic as
+output-low and output-high respectively have today, but with a more
+sensible name.
 
-Thomas.
+Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+---
+Hello,
 
+I already sent this patch back in July and Linus (Walleij) liked the
+patch but asked for an implementation. For that I added the second patch
+now.
+
+Best regards
+Uwe
+
+ Documentation/devicetree/bindings/gpio/gpio.txt | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/gpio/gpio.txt b/Documentation/devicetree/bindings/gpio/gpio.txt
+index a8895d339bfe..1061c346a619 100644
+--- a/Documentation/devicetree/bindings/gpio/gpio.txt
++++ b/Documentation/devicetree/bindings/gpio/gpio.txt
+@@ -196,11 +196,16 @@ Only one of the following properties scanned in the order shown below.
+ This means that when multiple properties are present they will be searched
+ in the order presented below and the first match is taken as the intended
+ configuration.
+-- input:      A property specifying to set the GPIO direction as input.
+-- output-low  A property specifying to set the GPIO direction as output with
+-	      the value low.
+-- output-high A property specifying to set the GPIO direction as output with
+-	      the value high.
++- input:             A property specifying to set the GPIO direction as input.
++- output-deasserted: A property specifying to set the GPIO direction as output
++		     with the inactive value (depending on the line's polarity,
++		     which is active-high by default)
++- output-asserted:   A property specifying to set the GPIO direction as output
++		     with the active value.
++
++For backwards compatibility "output-low" and "output-high" should be supported
++as aliases for "output-deasserted" and "output-asserted" respectively. Their
++usage is misleading for active-low outputs, so their use is discouraged.
+ 
+ Optional properties:
+ - line-name:  The GPIO label name. If not present the node name is used.
 -- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+2.30.2
+
