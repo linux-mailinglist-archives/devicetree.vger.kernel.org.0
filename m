@@ -2,183 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BB493722DD
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 00:06:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AE83372316
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 00:41:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229595AbhECWHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 18:07:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39554 "EHLO mail.kernel.org"
+        id S229603AbhECWlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 18:41:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40602 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229497AbhECWHa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 May 2021 18:07:30 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2A3B4610FC;
-        Mon,  3 May 2021 22:06:37 +0000 (UTC)
+        id S229497AbhECWlz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 May 2021 18:41:55 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 61CC461177;
+        Mon,  3 May 2021 22:41:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620079597;
-        bh=6b/U8Seq5uofAuhoy2eEbBzUlcdWBAkxOW6Z/HujxnU=;
+        s=k20201202; t=1620081661;
+        bh=LdKcAT7K/DkFCaR8C88qu25r0RUNHy4L1uLPd9vMTLI=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=J6/TxQDzklxOuba6XTDFeoj8ulloUfn4K1aTn3IW2+FLy/oPa58LESNqOH9oYxeX7
-         eFxIw8tkCMjAybbPPaDOKl0rIl7NqSkJggLUZ2NuWa0UsbjZ6AQobDlsOPYox8bcmH
-         jTMv0wr0lUAXSz0r1B63FiUp17r5t6/4yG5PQodYcPdBu14c2RcfeYbakoNEy/RbSr
-         sG8gLw7+E4R0bs1ko8PWhws8mTQJLjx7M4I7E8OYEeiWDUNRNt3Lnt/BeCFv2Egm2M
-         R+9QeZ+IxVeRNIU8ABxZDrQWurIYbIHFoGJQyDNxL4DrzHz34UEaFF/SlXb/i8ZXyc
-         kl+FVIjEuk8pw==
-Received: by mail-ed1-f43.google.com with SMTP id e7so8132636edu.10;
-        Mon, 03 May 2021 15:06:37 -0700 (PDT)
-X-Gm-Message-State: AOAM532cwYXuKpunaNfJIOoD8GiOZL7sUsiwk53LVHVCCMgOPgArAMNx
-        8opbbAweUzdwcGlFN9v2AEOcTTGs3rBMoSMWPg==
-X-Google-Smtp-Source: ABdhPJw+i4aK04IeE/ccNTgCMAXtyvNb57tOJTCXaITCldFzEumSKUvT2WxfUUabDek/J0g022bwANQtx03q0z4KFg0=
-X-Received: by 2002:a05:6402:84b:: with SMTP id b11mr22728486edz.289.1620079595815;
- Mon, 03 May 2021 15:06:35 -0700 (PDT)
+        b=fMOxt4XTJq8QaONd21MjjLpWV5DQlfdSxxAV2eXl8FbyHRkeJvO56XumU3XpRXF52
+         HCr7aVusik/ed/f22iZeKCNMOge1hSJ1T575aWlK43zXUfWcXxieF6EMwaANifIFF3
+         MOy8nRIh7V0YNi14Q6o2QnJUMnt1qCU2l9fIn0mL6oxaxjJ0V82WvAgqlsCVnBsW4t
+         Vtph0NE+/Hh/ZgQn+qMteKZA8RpusiMn8Ad8w4s/qMvZkjfbO5m4pUCP9CdniQNJHG
+         9DkBQCdF9DwlrcLoI/1K3nJKh6vF+PrPB8h77x8YBQhwPRYTHm0vaGhc7jTslAyzWo
+         BxzDfLtMt4A5w==
+Received: by mail-ed1-f53.google.com with SMTP id g14so8226030edy.6;
+        Mon, 03 May 2021 15:41:01 -0700 (PDT)
+X-Gm-Message-State: AOAM532dxrh92hkkNBPj1NdRQ3Ryk08EEHatzWOSYbZ1CARXlkKzTWuf
+        ATeVNU/wNdnO4RtpjfoHjyFtsdIX3/sds5wuKg==
+X-Google-Smtp-Source: ABdhPJyjJlgMbAtLNrpOWXXUCdw8kmlr4Vuzf1SyEuSlHgUsi/v06FB7HcrfsvgPMlZb6Hd+aFb75+cVfhZiRbfIRi8=
+X-Received: by 2002:a05:6402:234b:: with SMTP id r11mr22579121eda.137.1620081659993;
+ Mon, 03 May 2021 15:40:59 -0700 (PDT)
 MIME-Version: 1.0
-References: <YIq/qObuYw+8ikxg@orolia.com>
-In-Reply-To: <YIq/qObuYw+8ikxg@orolia.com>
+References: <20210430072138.6537-1-jbx6244@gmail.com>
+In-Reply-To: <20210430072138.6537-1-jbx6244@gmail.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 3 May 2021 17:06:23 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJc=EDhXNcb4QZbmD1Ukh94hqLhk4YvN4SoCdt32TGMSg@mail.gmail.com>
-Message-ID: <CAL_JsqJc=EDhXNcb4QZbmD1Ukh94hqLhk4YvN4SoCdt32TGMSg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: dma: add schema for altr,msgdma
-To:     Olivier Dautricourt <olivier.dautricourt@orolia.com>
-Cc:     Vinod Koul <vkoul@kernel.org>, Stefan Roese <sr@denx.de>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+Date:   Mon, 3 May 2021 17:40:48 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKnD1t7oRDY5sTi3TjJ0vbFK0tQcVj1qCw_jiOfOQh=mA@mail.gmail.com>
+Message-ID: <CAL_JsqKnD1t7oRDY5sTi3TjJ0vbFK0tQcVj1qCw_jiOfOQh=mA@mail.gmail.com>
+Subject: Re: [RFC PATCH v1] dt-bindings: mmc: snps,dwcmshc-sdhci: fix rockchip,txclk-tapnum
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     heiko@sntech.de, shawn.lin@rock-chips.com, ulf.hansson@linaro.org,
+        Jisheng.Zhang@synaptics.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 29, 2021 at 9:16 AM Olivier Dautricourt
-<olivier.dautricourt@orolia.com> wrote:
+On Fri, Apr 30, 2021 at 2:21 AM Johan Jonker <jbx6244@gmail.com> wrote:
 >
-> - add schema for Altera mSGDMA bindings in devicetree.
-> - add myself as 'Odd fixes' maintainer for this driver
+> A test with the command below gives this error:
+> mmc@fe310000: rockchip,txclk-tapnum: missing size tag in [[8]]
+>
+> With this added to a dts file:
+> rockchip,txclk-tapnum = <0x8>;
+>
+> A look at the driver shows that:
+> DLL_TXCLK_TAPNUM_DEFAULT        0x8
+>
+> Adding the default value to the dts files is not needed.
+> Every clock is divided into 32 taps equally and
+> the max value is 31.
+>
+> Fix rockchip,txclk-tapnum property in snps,dwcmshc-sdhci.yaml by
+> adding a minimum, maximum and default.
+>
+> In the driver the function of_property_read_u8() is used,
+> but with dtbs_check the notifications only disappear in YAML
+> by changing uint8 to uint32.
 
-While I guess valid, the tools (b4) don't like the '/' in your
-message-id. Lore will escape it fine, but then you have to escape the
-url. Would be nice to avoid all that, but maybe this is Exchange's
-doing?
+Did you check what value the driver sees when you put 8 in the dts. I
+expect it will be 0 because you are reading the 1st byte in big
+endian.
 
-> Signed-off-by: Olivier Dautricourt <olivier.dautricourt@orolia.com>
+> The driver has no limit check for rockchip,txclk-tapnum.
+>
+> make ARCH=arm64 dtbs_check
+>
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
+>  Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 >
-> Notes:
->     Changes in v2:
->      - fix reg size in dt example
->      - fix dt_binding check warning
->      - add list in MAINTAINERS entry
+> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> index e6c9a2f77..f43d8d829 100644
+> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> @@ -48,7 +48,10 @@ properties:
 >
->     Changes from v2 to v3:
->      none
+>    rockchip,txclk-tapnum:
+>      description: Specify the number of delay for tx sampling.
+> -    $ref: /schemas/types.yaml#/definitions/uint8
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 31
+> +    default: 8
 >
->     Changes from v3 to v4:
->      none
 >
->  .../devicetree/bindings/dma/altr,msgdma.yaml  | 62 +++++++++++++++++++
->  MAINTAINERS                                   |  7 +++
->  2 files changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/altr,msgdma.yaml
->
-> diff --git a/Documentation/devicetree/bindings/dma/altr,msgdma.yaml b/Documentation/devicetree/bindings/dma/altr,msgdma.yaml
-> new file mode 100644
-> index 000000000000..295e46c84bf9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/altr,msgdma.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/altr,msgdma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Altera mSGDMA IP core
-> +
-> +maintainers:
-> +  - Olivier Dautricourt <olivier.dautricourt@orolia.com>
-> +
-> +description: |
-> +  Altera / Intel modular Scatter-Gather Direct Memory Access (mSGDMA)
-> +  intellectual property (IP)
-> +
-> +allOf:
-> +  - $ref: "dma-controller.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    const: altr,msgdma
-
-Needs an SoC specific compatible.
-
-> +
-> +  reg:
-> +    description:
-> +      csr, desc, resp resgisters
-
-Expand what each region is:
-
-reg:
-  items:
-    - description: ...
-    - description: ...
-    - description: ...
-
-> +    maxItems: 3
-> +    minItems: 3
-
-And then drop this.
-
-> +
-> +  reg-names:
-> +    items:
-> +      - const: csr
-> +      - const: desc
-> +      - const: resp
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#dma-cells":
-> +    description: |
-> +      The dma controller discards the argument but one must be specified
-> +      to keep compatibility with dma-controller schema.
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    msgdma_controller: dma-controller@ff200b00 {
-> +        compatible = "altr,msgdma";
-> +        reg = <0xff200b00 0x100>, <0xff200c00 0x100>, <0xff200d00 0x100>;
-> +        reg-names = "csr", "desc", "resp";
-> +        interrupts = <0 67 IRQ_TYPE_LEVEL_HIGH>;
-> +        #dma-cells = <1>;
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5c90148f0369..359ab4877024 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -782,6 +782,13 @@ M: Ley Foon Tan <ley.foon.tan@intel.com>
->  S:     Maintained
->  F:     drivers/mailbox/mailbox-altera.c
->
-> +ALTERA MSGDMA IP CORE DRIVER
-> +M:     Olivier Dautricourt <olivier.dautricourt@orolia.com>
-> +L:     dmaengine@vger.kernel.org
-> +S:     Odd Fixes
-> +F:     Documentation/devicetree/bindings/dma/altr,msgdma.yaml
-> +F:     drivers/dma/altera-msgdma.c
-> +
->  ALTERA PIO DRIVER
->  M:     Joyce Ooi <joyce.ooi@intel.com>
->  L:     linux-gpio@vger.kernel.org
+>  required:
 > --
-> 2.31.0.rc2
+> 2.11.0
 >
