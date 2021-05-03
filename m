@@ -2,77 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF5FF371E3B
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 19:15:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3F0A371E9B
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 19:30:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232174AbhECRQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 13:16:24 -0400
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:34551 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232274AbhECRPl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 13:15:41 -0400
-Received: by mail-oi1-f170.google.com with SMTP id l6so6103809oii.1;
-        Mon, 03 May 2021 10:14:47 -0700 (PDT)
+        id S231781AbhECRbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 13:31:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33908 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231739AbhECRbB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 13:31:01 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B77DFC06138E
+        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 10:30:06 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id z34so300751pgl.13
+        for <devicetree@vger.kernel.org>; Mon, 03 May 2021 10:30:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=jWzhi2zJ8QN9mSWyZTkhFGCiJ3B7Eli+Yq7rhPsrtl8=;
+        b=YWivDl/2rA5CzZXn7pjub/QE14DiLxcR2lzR4bqsictGqmYq10rQFiRyuSQck+u6aq
+         fXF0x3iFDVJO1LQZiJCrvgSiFz0sJkX2zzdPeVL0Rg5bX9M2EUBJvTvFbCW3+Ard7yac
+         FHBkuIJ5ECMQDLx6EX3rl/iMfN2moe1jPEJQY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=MqiyjQ3EFs8Wrezz9jJ5DYGiprpcVkpW5pMHmRup4lE=;
-        b=ZNvHv7D1RBm/VjLFu09hTOPVEl3hmJ1QjNDvbhjzUkQ4ZScVtD2jgmLRmu45ety6bZ
-         UOM2/wYQX3kycr2TAwpGQTi8n4gEG8cjUJYnywJJPsxrwLa6+Kf2simxmm/jxzV/CBwj
-         4HnU2QObu8HOS8gvZO2bypdDahIi1GFqjh/G5Vw3/s6y+Ylz8VA5aVei7lFDCTbEY+2n
-         5ddWSSgQmvZaoD3f2t48KcJZOnnQAucAP99/twVDkZG3B8zranXv8Z1t9hoYHO0xZKR+
-         fuAVBNQsmCuNwH+yDmjpTsEQjH+CHkfGf9ledIp0uhTkgluT2dUY7trrd6uc7DG79jlL
-         tyGQ==
-X-Gm-Message-State: AOAM532ms8B+7ZDq6lTR5bEH9ZHXOhGhPa+caP9cEllzX2sPfVFUqQKK
-        9rT3RS6CPf+qHd9MbqEnyA==
-X-Google-Smtp-Source: ABdhPJxSur5zijA8cVwbE+9gC2tArkuzNARf5pBR8meCpZPjawUQpnZfnH9jc2edK6U2BFd+/JNZmw==
-X-Received: by 2002:aca:1211:: with SMTP id 17mr14468967ois.20.1620062087296;
-        Mon, 03 May 2021 10:14:47 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h59sm93019otb.29.2021.05.03.10.14.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 May 2021 10:14:46 -0700 (PDT)
-Received: (nullmailer pid 2030975 invoked by uid 1000);
-        Mon, 03 May 2021 17:14:45 -0000
-Date:   Mon, 3 May 2021 12:14:45 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Sean Nyekjaer <sean.nyekjaer@prevas.dk>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2] dt-bindings:iio:dac:ad5755: txt to yaml format
- conversion.
-Message-ID: <20210503171445.GA2030945@robh.at.kernel.org>
-References: <20210424173015.534941-1-jic23@kernel.org>
+        bh=jWzhi2zJ8QN9mSWyZTkhFGCiJ3B7Eli+Yq7rhPsrtl8=;
+        b=G5e47geY3W6EkahQc8vATAHy2iUO/acP8TYSWZM9qtb15Nf06RUPD390yC9hVvxy8X
+         pwwQ3fBVebqlYf+qeNsAnwVf8UD/UPQ1IzH5x52AKraX1Nl3nFXh+JpTOYM8XUzrenO4
+         SY3Ph1Ex7w14BGERB84g7qUG/b1MXqWrjdAZZBx9Rd9gsV/m/LNibJyFgfGtVXfPeCoI
+         /sgZfFJ1haQ6tNna33/j+/L+ztKC9TejwtVKK0c8rKqPn1pV5V4+LTSGhlPSF/IgEsJe
+         ptczIcYfAEWv5Fv3xYhM0beB63P3lucFi60tqtlR3y1rZSn0ncLkNPFId67O3czx2c6A
+         TAzw==
+X-Gm-Message-State: AOAM533mRs9f2yjC2QelwWgA0zfC1m6f7HFYxrvjNSQriqPUgYo/pj2d
+        hTW0/cm9P5z/ZL5qEnUp1Hu71Q==
+X-Google-Smtp-Source: ABdhPJzh+lAXWgJbbdyJimK23CcnkdklMj5z5T0uqClRFOn+OZr4spX76DButcID3DsU/TAff1GaWA==
+X-Received: by 2002:a63:86c7:: with SMTP id x190mr19614887pgd.194.1620063005716;
+        Mon, 03 May 2021 10:30:05 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:8584:3fd:2adf:a655])
+        by smtp.gmail.com with UTF8SMTPSA id n6sm155198pgq.72.2021.05.03.10.30.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 May 2021 10:30:05 -0700 (PDT)
+Date:   Mon, 3 May 2021 10:30:04 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rajeshwari <rkambl@codeaurora.org>
+Cc:     amitk@kernel.org, thara.gopinath@linaro.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sanm@codeaurora.org, manafm@codeaurora.org
+Subject: Re: [PATCH V3 1/3] dt-bindings: thermal: tsens: Add compatible
+ string to TSENS binding for SC7280
+Message-ID: <YJAzHEdRYQ4FX0e1@google.com>
+References: <1619778592-8112-1-git-send-email-rkambl@codeaurora.org>
+ <1619778592-8112-2-git-send-email-rkambl@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210424173015.534941-1-jic23@kernel.org>
+In-Reply-To: <1619778592-8112-2-git-send-email-rkambl@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 24 Apr 2021 18:30:15 +0100, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On Fri, Apr 30, 2021 at 03:59:50PM +0530, Rajeshwari wrote:
+> Adding compatible string in TSENS dt-bindings for SC7280.
 > 
-> Straight forward conversion.  Only fiddly bit is the XOR of
-> spi-cpol and spi-cpha.
-> 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: Sean Nyekjaer <sean.nyekjaer@prevas.dk>
-> Link: https://lore.kernel.org/r/20201031184854.745828-40-jic23@kernel.org
-> ---
-> This has been in a few different series, so version numbering is a bit
-> scrambled.  Let's just call it v2.
-> V2:
-> * Drop unnecessary refs where units in naming
-> * Drop unnecessary brackets in child node naming
-> 
->  .../devicetree/bindings/iio/dac/ad5755.txt    | 124 -------------
->  .../bindings/iio/dac/adi,ad5755.yaml          | 169 ++++++++++++++++++
->  2 files changed, 169 insertions(+), 124 deletions(-)
-> 
+> Signed-off-by: Rajeshwari <rkambl@codeaurora.org>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Please make sure to cc reviewers from earlier revisions and to
+add tags like my 'Reviewed-by' from v2.
+
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+
