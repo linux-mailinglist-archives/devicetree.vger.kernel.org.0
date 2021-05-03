@@ -2,95 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAB1B3713C6
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 12:49:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6AD53713EA
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 12:59:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233411AbhECKuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 06:50:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47054 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230246AbhECKua (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 May 2021 06:50:30 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A4153610A5;
-        Mon,  3 May 2021 10:49:35 +0000 (UTC)
-Date:   Mon, 3 May 2021 11:50:26 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Tomasz Duszynski <tomasz.duszynski@octakon.com>
-Cc:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <lars@metafoo.de>,
-        <robh+dt@kernel.org>
-Subject: Re: [PATCH v3 0/3] iio: sps30: add support for serial interface
-Message-ID: <20210503115026.06ee3d04@jic23-huawei>
-In-Reply-To: <20210503060014.7632-1-tomasz.duszynski@octakon.com>
-References: <20210503060014.7632-1-tomasz.duszynski@octakon.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S233483AbhECLAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 07:00:03 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:17850 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233342AbhECLAD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 07:00:03 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 143Akm0o036864;
+        Mon, 3 May 2021 18:46:48 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 3 May
+ 2021 18:58:27 +0800
+Date:   Mon, 3 May 2021 18:58:19 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Andrew Jeffery <andrew@aj.id.au>
+CC:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Hongwei Zhang <Hongweiz@ami.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+Subject: Re: [PATCH v2 2/3] ARM: dts: aspeed: ast2600evb: Add timing-phase
+ property for eMMC controller
+Message-ID: <20210503105819.GC12520@aspeedtech.com>
+References: <20210503014336.20256-1-steven_lee@aspeedtech.com>
+ <20210503014336.20256-3-steven_lee@aspeedtech.com>
+ <f237a53e-ad61-469a-a19f-8a1e52c6cfba@www.fastmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <f237a53e-ad61-469a-a19f-8a1e52c6cfba@www.fastmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 143Akm0o036864
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 3 May 2021 08:00:11 +0200
-Tomasz Duszynski <tomasz.duszynski@octakon.com> wrote:
-
-> One can communicate with sensor either over i2c or serial interface.
-> This series add support for the latter. And in order to do that existing
-> codebase needs to be separated into core and interface specific
-> components.
-
-I've taken the view the dt binding change is trivial enough I don't 'need'
-to wait for Rob to take a look (though of course any comments are welcome!)
-
-As such, I've applied the series to the togreg branch of iio.git and pushed
-it out as testing for the autobuilders to see if we missed anything.
-
-Thanks,
-
-Jonathan
-
+The 05/03/2021 13:07, Andrew Jeffery wrote:
+> Hi Steven,
 > 
-> v3:
-> - add i2c device matching based on id table
-> - constify structure
-> - rephrase comment regarding reading serial number
-> - check serial number length
+> On Mon, 3 May 2021, at 11:13, Steven Lee wrote:
+> > Set eMMC input clock phase to 3, which is more stable on AST2600 EVBs.
+> > 
+> > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> > ---
+> >  arch/arm/boot/dts/aspeed-ast2600-evb.dts | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/aspeed-ast2600-evb.dts 
+> > b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+> > index 2772796e215e..7a93317e27dc 100644
+> > --- a/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+> > +++ b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+> > @@ -102,6 +102,7 @@
+> >  
+> >  &emmc_controller {
+> >  	status = "okay";
+> > +	timing-phase = <0x300FF>;
 > 
-> v2:
-> - simplify Kconfig by hiding core component selection
-> - export symbols as GPL compatible
-> - drop excessive ops wrappers
-> - rework ops to use __be32
-> - rework polling for measurements, sensor produces measurements within
->   1s so instead of polling just wait 1s
-> - simplify frame ready condition (serial)
-> - don't mix char with unsigned version
-> - calculate checksum during frame validation (serial)
-> - uncomment return status in frame validation (serial)
-> - pass part name to probe instead of KBUILD_MODNAME
-> 
-> Tomasz Duszynski (3):
->   iio: sps30: separate core and interface specific code
->   iio: sps30: add support for serial interface
->   dt-bindings: iio: chemical: sps30: update binding with serial example
-> 
->  .../iio/chemical/sensirion,sps30.yaml         |   7 +-
->  MAINTAINERS                                   |   2 +
->  drivers/iio/chemical/Kconfig                  |  27 +-
->  drivers/iio/chemical/Makefile                 |   2 +
->  drivers/iio/chemical/sps30.c                  | 269 ++---------
->  drivers/iio/chemical/sps30.h                  |  35 ++
->  drivers/iio/chemical/sps30_i2c.c              | 258 +++++++++++
->  drivers/iio/chemical/sps30_serial.c           | 431 ++++++++++++++++++
->  8 files changed, 804 insertions(+), 227 deletions(-)
->  create mode 100644 drivers/iio/chemical/sps30.h
->  create mode 100644 drivers/iio/chemical/sps30_i2c.c
->  create mode 100644 drivers/iio/chemical/sps30_serial.c
-> 
-> --
-> 2.31.1
+> Please use the existing binding for phase corrections. The existing 
+> binding is already supported by the driver (added in v5.12).
 > 
 
+Hi Andrew,
+
+Thanks for the review.
+I will add the following settings from aspeed-bmc-ibm-rainier.dts
+instead of adding timing-phase in device tree.
+
+        clk-phase-mmc-hs200 = <N> <N>;
+
+> Andrew
