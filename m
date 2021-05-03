@@ -2,73 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DEADE37200A
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 20:58:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C14C6372014
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 21:01:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229650AbhECS6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 14:58:54 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:42883 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbhECS6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 14:58:54 -0400
-Received: by mail-oi1-f178.google.com with SMTP id v24so6368020oiv.9;
-        Mon, 03 May 2021 11:58:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LKIBq+EuRXvOGhymbU5xpmDcLOErCQK9vT+5hztdLcs=;
-        b=ByBy2vnks+nrT8RvBzuIbo44etuxFxNzlipgS5ZZRLqrl/8/aQb33OZ1afgjsAT6Jm
-         jJQtyfsqaoH4rB0+J+vvlysDRcmgfKqTWYfpKNc3OLP8ND/H+E83zy5LXAnRUr22dK03
-         Z87dwuNdEZLaap32rFLz+pmXKb/aLZaRYnJJGQxpqOlj3cmKQLHSyQ3e+tuiPUbtF5cT
-         1TlDEZ4TXcCtQgI6Y9JNCYe1zvVNnNhXXuVpPr/HPCbuaNnaF6h2NFsRAfIiprvgukAm
-         AJejlgFEjkZG5a0yqlbfHDxabPAob+76DcBVEKYlJ8o9Vyd8TxmC1EVOUjz2sWUPizVM
-         JhKA==
-X-Gm-Message-State: AOAM5323orsIZfvnJ+FzvA7s5WUBWDS4NnYI20oX9zpEk69lMZZaOC1k
-        3XV6tV17Cfso7JjNBAgxtxX26AsuaA==
-X-Google-Smtp-Source: ABdhPJw/k0barMDJb4NTC9PDoj5BmRX+6Xc3euPhePDc+cCOlt5n2ycwZQHQCjPtsmeJQ4XA1NeZeA==
-X-Received: by 2002:aca:f156:: with SMTP id p83mr14855164oih.91.1620068280037;
-        Mon, 03 May 2021 11:58:00 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d25sm149125otp.72.2021.05.03.11.57.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 May 2021 11:57:59 -0700 (PDT)
-Received: (nullmailer pid 2192163 invoked by uid 1000);
-        Mon, 03 May 2021 18:57:58 -0000
-Date:   Mon, 3 May 2021 13:57:58 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-Cc:     frowand.list@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH] of: overlay: Remove redundant assignment to ret
-Message-ID: <20210503185758.GA2192105@robh.at.kernel.org>
-References: <1619347258-55002-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+        id S229594AbhECTCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 15:02:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54728 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229497AbhECTCL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 15:02:11 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86D4BC06174A;
+        Mon,  3 May 2021 12:01:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=k22Zy/shsfwRPA4ryfJwN4pDqvGPyLUP/ez8Z8mw1Eg=; b=tKJQhJG25b0ClsHVwy2I2Q6/x
+        9OtaID4On9aCvyv9y/9v5CBFfGzSE68WzNwqXYnBgKeFjzfIAU8KWeKfBTP24pmcBMAMy48TZP2Ju
+        73+uypiXth+FG5CBK1K0OADl6uAq7Pnzm6gJ10MCc5fSarjaIZnUGtu3VqiKtXfxDa4IJEAlIX4gp
+        pibqgbpuaSqeDQvqgSOfjrkVRuw/x20hZMvgXYoC+KmLOqO3oZKVuhXyFHEcPS6sSQfE6mA+cUN7e
+        K0TqvalL0lQXkiuNf8hc7KPWd4Og8kuLCbDDN3NUjknx6YyKfVKjYYZhkj0Wx0opiiyE7LF6QrPnl
+        h5VWWoXCA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:43614)
+        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1lddoU-0002Ea-3y; Mon, 03 May 2021 20:01:02 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1lddoT-0001PH-9a; Mon, 03 May 2021 20:01:01 +0100
+Date:   Mon, 3 May 2021 20:01:01 +0100
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     andrew@lunn.ch, hkallweit1@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH v4] dt-bindings: net: Convert mdio-gpio to yaml
+Message-ID: <20210503190101.GB1336@shell.armlinux.org.uk>
+References: <20210503184100.1503307-1-clabbe@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1619347258-55002-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+In-Reply-To: <20210503184100.1503307-1-clabbe@baylibre.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 25 Apr 2021 18:40:58 +0800, Jiapeng Chong wrote:
-> Variable ret is set to zero but this value is never read as it is
-> overwritten with a new value later on, hence it is a redundant
-> assignment and can be removed.
+On Mon, May 03, 2021 at 06:41:00PM +0000, Corentin Labbe wrote:
+> Converts net/mdio-gpio.txt to yaml
 > 
-> Cleans up the following clang-analyzer warning:
-> 
-> drivers/of/overlay.c:1197:2: warning: Value stored to 'ret' is never
-> read [clang-analyzer-deadcode.DeadStores].
-> 
-> drivers/of/overlay.c:1026:2: warning: Value stored to 'ret' is never
-> read [clang-analyzer-deadcode.DeadStores].
-> 
-> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-> Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 > ---
->  drivers/of/overlay.c | 3 ---
->  1 file changed, 3 deletions(-)
+> Changes since v1:
+> - fixes yamllint warning about indent
+> - added maxItems 3
+> 
+> Changes since v2:
+> - fixed example (gpios need 2 entries)
+> 
+> Changes since v3:
+> - fixed gpios description
+> - added additionalProperties/type: object
+> 
+>  .../devicetree/bindings/net/mdio-gpio.txt     | 27 ---------
+>  .../devicetree/bindings/net/mdio-gpio.yaml    | 58 +++++++++++++++++++
+>  2 files changed, 58 insertions(+), 27 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/mdio-gpio.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/mdio-gpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/mdio-gpio.txt b/Documentation/devicetree/bindings/net/mdio-gpio.txt
+> deleted file mode 100644
+> index 4d91a36c5cf5..000000000000
+> --- a/Documentation/devicetree/bindings/net/mdio-gpio.txt
+> +++ /dev/null
+> @@ -1,27 +0,0 @@
+> -MDIO on GPIOs
+> -
+> -Currently defined compatibles:
+> -- virtual,gpio-mdio
+> -- microchip,mdio-smi0
+> -
+> -MDC and MDIO lines connected to GPIO controllers are listed in the
+> -gpios property as described in section VIII.1 in the following order:
+> -
+> -MDC, MDIO.
+> -
+> -Note: Each gpio-mdio bus should have an alias correctly numbered in "aliases"
+> -node.
+> -
+> -Example:
+> -
+> -aliases {
+> -	mdio-gpio0 = &mdio0;
+> -};
+> -
+> -mdio0: mdio {
+> -	compatible = "virtual,mdio-gpio";
+> -	#address-cells = <1>;
+> -	#size-cells = <0>;
+> -	gpios = <&qe_pio_a 11
+> -		 &qe_pio_c 6>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/net/mdio-gpio.yaml b/Documentation/devicetree/bindings/net/mdio-gpio.yaml
+> new file mode 100644
+> index 000000000000..236a8c4768e2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/mdio-gpio.yaml
+> @@ -0,0 +1,58 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/mdio-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MDIO on GPIOs
+> +
+> +maintainers:
+> +  - Andrew Lunn <andrew@lunn.ch>
+> +  - Florian Fainelli <f.fainelli@gmail.com>
+> +  - Heiner Kallweit <hkallweit1@gmail.com>
+
+I think your information is outdated here. As the original does not
+contain this information, and maintainers no longer lists Florian,
+I can only guess that this patch was created some time ago?
+
+Please update this with the latest from MAINTAINERS, thanks.
+
+> +
+> +allOf:
+> +  - $ref: "mdio.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - virtual,mdio-gpio
+> +      - microchip,mdio-smi0
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  gpios:
+> +    minItems: 2
+> +    maxItems: 3
+> +    items:
+> +      - description: MDC
+> +      - description: MDIO
+> +      - description: MDO
+> +
+> +#Note: Each gpio-mdio bus should have an alias correctly numbered in "aliases"
+> +#node.
+> +additionalProperties:
+> +  type: object
+> +
+> +examples:
+> +  - |
+> +    aliases {
+> +        mdio-gpio0 = &mdio0;
+> +    };
+> +
+> +    mdio0: mdio {
+> +      compatible = "virtual,mdio-gpio";
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      gpios = <&qe_pio_a 11>,
+> +              <&qe_pio_c 6>;
+> +      ethphy0: ethernet-phy@0 {
+> +        reg = <0>;
+> +      };
+> +    };
+> +...
+> -- 
+> 2.26.3
+> 
 > 
 
-Applied, thanks!
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
