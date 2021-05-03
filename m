@@ -2,101 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8B97371816
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 17:35:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD2A3371826
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 17:40:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230122AbhECPgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 11:36:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36242 "EHLO
+        id S230322AbhECPlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 11:41:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229588AbhECPgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 11:36:22 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B35C06174A;
-        Mon,  3 May 2021 08:35:28 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id y7so8492483ejj.9;
-        Mon, 03 May 2021 08:35:28 -0700 (PDT)
+        with ESMTP id S230410AbhECPlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 11:41:11 -0400
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BA6FC061763;
+        Mon,  3 May 2021 08:40:17 -0700 (PDT)
+Received: by mail-oi1-x235.google.com with SMTP id v24so5761949oiv.9;
+        Mon, 03 May 2021 08:40:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=W1PWtzVUy7B6825OBB8ZeJD50r7eCh8stJaf1S2Tnn8=;
-        b=DPd6o4YVw63v43ugoINIMP0Ns66RGzJvKqhUadTCA8FuU/iB9p2ZqNQq62YrKsHTvT
-         9AEj5CDTQ3gwQrkc1EVmBqlveECEMlVraM3rNteXlGjPJ1TTNImot4LuY1rYljRU1gZM
-         Qz0Wc7DPGfQqMktWYey9kXh+z8ZRzBwWrsEL6SSdtw5EumTgv/HJwsJtWNxJbi2U2Rit
-         nlpkrraMLBWwsIUCLNZIDZsoQwMZU9A5OIyXExN95FsRvZ6pBUBF+KEMA0dJRuj7bj/V
-         m02Bqgu8sVJ1C+SoB2ri07UumjMy7hWw2haLuaWykF6fCtwQlgG4+yMm9SJ2EqhwEGkB
-         zHAA==
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=34dF5ctgfAlTAtJG1sBGWWovdOzk0i2UvPd5qj/cqpI=;
+        b=s1q2l3fIsBxw/CGvfRSuij4fe4Vmoz7TTllOMPiOehTJaQJGWpP2fPT+pywJInE1k0
+         bJA+A77zq7zS4dlrOVUqZaS6Ac6siu9uUV6xXZtfAHDzF0qAs655gI7lbfGXgmNovjcy
+         ydvMzq/Nq3DsWlSbg1ZH+RMPGbrPwVSNObKbG2+I0KfOSWoJV5PU4HIlUh68oD8+8rb8
+         D0EoL5i1j0eCEQSWJ4tbM8nvgnJUis7XF7O8BHmCiiHKRENp9n0KHqYFDnNt2Vgj+Bys
+         aFvwAdcHT5fOQtfxq9ZqigUc4Q+m7DQ/nyDCJnJxy8Ef4vMSm/XW0p5mb5BQWTt+hZ3m
+         oTtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=W1PWtzVUy7B6825OBB8ZeJD50r7eCh8stJaf1S2Tnn8=;
-        b=kJFfNryaRz9VeNa/EvAKJv0fNJQ8pc1c1Rf5tkrul7N/1OpiJnYW2WXFvErrMMTr8K
-         YLocCzeQMA1D2AYC1ny5VJuDWrWtg5xR0L0jCz3eIRR5W0gYvffJk9HbHI6LIHNEsB2K
-         lxSaLL8U1zGBomw1M4Mv6nT4bmV2p4taIjs7j4XEZBRnaJ+TdwTp5KKdmX30FsXHB3mV
-         zwU/mee7MLfr5rkR0SZpndCFQAI/CMPgHn6JV9buHvLeEToJ8QdCbyZ6/Gr6z6F8MFFy
-         cp4Ai+DrQEHwfqtOBXfyBbnJNjt3LcYCQi+FqD8xmZWylq0yjBorkTEDZryGLlASH9s0
-         ofjw==
-X-Gm-Message-State: AOAM530FZHUi1EdobUTmIU6gISWVr888SGhi3o34v7SZCRX725QQivYl
-        afY1ojKWKhynDqRWnJw82V/b1ug1OJQvUmJff3A=
-X-Google-Smtp-Source: ABdhPJxxcjijY0bRqQKCJgp4M/RuYW0jeM1Agfsa6Rq7dQx5YhS78mT2TIp017G6Mw3vCdMTOaIH+XJquptSAP1NzyY=
-X-Received: by 2002:a17:907:2bc7:: with SMTP id gv7mr17236354ejc.187.1620056126503;
- Mon, 03 May 2021 08:35:26 -0700 (PDT)
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=34dF5ctgfAlTAtJG1sBGWWovdOzk0i2UvPd5qj/cqpI=;
+        b=EfLR5FDSj+xmyGwy4gYOe7XTE0o4EIH7c2Nkjl6M7V81OO5dI0k3yHXQGZl1goEfGB
+         YErbWLq5mAnW1p9rKPfvE2qrT86HvIPS3wjQ87TccqbTZoCPBeQt24i89ZRtwGA1HviK
+         W2wFvtaytzUGvy2L+KYdXCjvUuEBXRMqCX6oR8WrCFeXHz5GAOmXOwmg9U8bZRdIswaj
+         1nNUIF81HG7hXN0Kwg1OtNXxtQEzavFUAWZZxpBDkkU4YVyRqZuZHdv+ZoUl2RhNgwd9
+         su6S4A/GNcQj9vW0FLFOoC6W5a/ASvYrs8Kwpzdv19xAJC7wyLZ+f0gVFM/20Cf2uzZa
+         ESbw==
+X-Gm-Message-State: AOAM530wTqN7ixQajHTMl1CXRwxTaW5c/uFb4043Vo4UKCkFThN9sUfB
+        8qZPHuNmc7LtXs+ckDnojD0pGrto8jg=
+X-Google-Smtp-Source: ABdhPJwhgY8mAkiNQqXi8RJjNt6DUyL9CyMDozpn646jH6IenhF6zuK8dzqQ/adVJOxzH4K4GLA24A==
+X-Received: by 2002:aca:409:: with SMTP id 9mr1462933oie.179.1620056416894;
+        Mon, 03 May 2021 08:40:16 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 88sm31956ott.51.2021.05.03.08.40.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 May 2021 08:40:16 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Mon, 3 May 2021 08:40:15 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Robert Marko <robert.marko@sartura.hr>
+Cc:     jdelvare@suse.com, corbet@lwn.net, linux-hwmon@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] hwmon: lm75: Add TI TMP1075 support
+Message-ID: <20210503154015.GA707775@roeck-us.net>
+References: <20210429121150.106804-1-robert.marko@sartura.hr>
 MIME-Version: 1.0
-References: <20210503145503.1477-1-linux.amoon@gmail.com> <20210503145503.1477-4-linux.amoon@gmail.com>
- <CAFBinCCxMvomKt9E0jT_XXpyL1_-qXH4=zVDMNdbDCnZCsnT=A@mail.gmail.com> <CANAwSgTdFHwtKd-sgQq0Jp8WP55fZG3wsn7feCGo257yqiFkpw@mail.gmail.com>
-In-Reply-To: <CANAwSgTdFHwtKd-sgQq0Jp8WP55fZG3wsn7feCGo257yqiFkpw@mail.gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Mon, 3 May 2021 17:35:15 +0200
-Message-ID: <CAFBinCDUc7VG7T9c8snP4ujMMViS0GRdztP6QGJvF9LNESHHCw@mail.gmail.com>
-Subject: Re: [PATCHv1 3/9] soc: amlogic: meson-ee-pwrc: Add hdmi power domain
- Meson g12a SoCs
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210429121150.106804-1-robert.marko@sartura.hr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anand,
+On Thu, Apr 29, 2021 at 02:11:49PM +0200, Robert Marko wrote:
+> TI TMP1075 is a LM75 compatible sensor, so lets
+> add support for it.
+> 
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 
-On Mon, May 3, 2021 at 5:29 PM Anand Moon <linux.amoon@gmail.com> wrote:
-[...]
-> > > +static struct meson_ee_pwrc_mem_domain meson_pwrc_mem_hdmi[] = {
-> > > +       { HHI_MEM_PD_REG0, GENMASK(15, 8) },
-> > > +};
-> > > +
-> > the VPU power domain already includes:
-> >   VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
-> > whereas VPU_HHI_MEMPD is bits[15:8]
-> >
-> > Having two power domains which are managing the same registers sounds
-> > like it'll be causing some trouble
-> > So for now this is (as I am not even sure what the goal here is):
-> > NACKed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> >
->
-> Ok, thanks. On the line of Ethernet PD, I tried to add this accordingly.
-From what I understand the VPU power domain is special because the
-display pipeline consists of multiple components (HDMI, VPU, ...)
-that's why the handling currently is special
+Applied to hwmon-next.
 
-> whenever I try something new it fails. Please ignore this series.
-if the VPU and HDMI power domains were separate (from hardware
-perspective, not from driver perspective) then your change is a good
-step forward.
-in that case VPU_HHI_MEMPD would need to be removed from wherever it's
-currently used -> that means we need to also decide if we want to
-break compatibility with older (before this series) .dtbs
+Thanks,
+Guenter
 
-
-Best regards,
-Martin
+> ---
+>  Documentation/hwmon/lm75.rst |  6 ++++--
+>  drivers/hwmon/lm75.c         | 13 +++++++++++++
+>  2 files changed, 17 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/hwmon/lm75.rst b/Documentation/hwmon/lm75.rst
+> index 81257d5fc48f..8d0ab4ad5fb5 100644
+> --- a/Documentation/hwmon/lm75.rst
+> +++ b/Documentation/hwmon/lm75.rst
+> @@ -93,9 +93,9 @@ Supported chips:
+>  
+>  	       https://www.st.com/resource/en/datasheet/stlm75.pdf
+>  
+> -  * Texas Instruments TMP100, TMP101, TMP105, TMP112, TMP75, TMP75B, TMP75C, TMP175, TMP275
+> +  * Texas Instruments TMP100, TMP101, TMP105, TMP112, TMP75, TMP75B, TMP75C, TMP175, TMP275, TMP1075
+>  
+> -    Prefixes: 'tmp100', 'tmp101', 'tmp105', 'tmp112', 'tmp175', 'tmp75', 'tmp75b', 'tmp75c', 'tmp275'
+> +    Prefixes: 'tmp100', 'tmp101', 'tmp105', 'tmp112', 'tmp175', 'tmp75', 'tmp75b', 'tmp75c', 'tmp275', 'tmp1075'
+>  
+>      Addresses scanned: none
+>  
+> @@ -119,6 +119,8 @@ Supported chips:
+>  
+>  	       https://www.ti.com/product/tmp275
+>  
+> +         https://www.ti.com/product/TMP1075
+> +
+>    * NXP LM75B, PCT2075
+>  
+>      Prefix: 'lm75b', 'pct2075'
+> diff --git a/drivers/hwmon/lm75.c b/drivers/hwmon/lm75.c
+> index e447febd121a..afdbb63237b9 100644
+> --- a/drivers/hwmon/lm75.c
+> +++ b/drivers/hwmon/lm75.c
+> @@ -50,6 +50,7 @@ enum lm75_type {		/* keep sorted in alphabetical order */
+>  	tmp75,
+>  	tmp75b,
+>  	tmp75c,
+> +	tmp1075,
+>  };
+>  
+>  /**
+> @@ -293,6 +294,13 @@ static const struct lm75_params device_params[] = {
+>  		.clr_mask = 1 << 5,	/*not one-shot mode*/
+>  		.default_resolution = 12,
+>  		.default_sample_time = MSEC_PER_SEC / 12,
+> +	},
+> +	[tmp1075] = { /* not one-shot mode, 27.5 ms sample rate */
+> +		.clr_mask = 1 << 5 | 1 << 6 | 1 << 7,
+> +		.default_resolution = 12,
+> +		.default_sample_time = 28,
+> +		.num_sample_times = 4,
+> +		.sample_times = (unsigned int []){ 28, 55, 110, 220 },
+>  	}
+>  };
+>  
+> @@ -662,6 +670,7 @@ static const struct i2c_device_id lm75_ids[] = {
+>  	{ "tmp75", tmp75, },
+>  	{ "tmp75b", tmp75b, },
+>  	{ "tmp75c", tmp75c, },
+> +	{ "tmp1075", tmp1075, },
+>  	{ /* LIST END */ }
+>  };
+>  MODULE_DEVICE_TABLE(i2c, lm75_ids);
+> @@ -771,6 +780,10 @@ static const struct of_device_id __maybe_unused lm75_of_match[] = {
+>  		.compatible = "ti,tmp75c",
+>  		.data = (void *)tmp75c
+>  	},
+> +	{
+> +		.compatible = "ti,tmp1075",
+> +		.data = (void *)tmp1075
+> +	},
+>  	{ },
+>  };
+>  MODULE_DEVICE_TABLE(of, lm75_of_match);
