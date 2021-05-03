@@ -2,296 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91575371A1B
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 18:38:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 558D8371B4B
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 18:45:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231536AbhECQiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 12:38:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50148 "EHLO
+        id S231775AbhECQpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 12:45:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231787AbhECQhx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 12:37:53 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05C73C06134E
-        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 09:36:07 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id y30so4017259pgl.7
-        for <devicetree@vger.kernel.org>; Mon, 03 May 2021 09:36:07 -0700 (PDT)
+        with ESMTP id S232657AbhECQmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 12:42:13 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 707A9C06134C;
+        Mon,  3 May 2021 09:37:54 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id e7so6993845edu.10;
+        Mon, 03 May 2021 09:37:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hoFXqCDljrfPhl8OhWKYJabFe89kk859lQwWFfRV5jk=;
-        b=J3mqNlu08uQn6JHtmGGJHnbH8eZlpqF1kBLHF5cwjptJynYRHpCNuVXFXQBX0QTf1j
-         5ylil1BnEQo8BGqUzCtCVzxq0A+wQ/xGaJ/+oz0FAyFi38mySvPu+3T1c/TeVLTwchcM
-         kSQdt0sznP4JQ3vzgKnBO9hwsXzt8xrUwzVrA=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=IL37xkHGbQoMcjdiJ4z5sJEMMG7cxWpY9a1c3V2dhxE=;
+        b=FqlmSywn+OJAdFN6KiAIpND+PnOSnF5VOvVtz+lMdLLFeNoo4VOTgrtHkc75y86ARJ
+         oslREnCvNNuPUc+7UR1EaIcYniEgYX3tMOoH80ahTa/YWyLkGJGvSv490Hg+X4mCGPwf
+         gMDfqdLwRbRA+y55EuVD36ceuWU4ZH8QzxtM4lpswVgL6j1pt/HC98adtmhU5dhZpipE
+         GRyPowOXVHeeEFIkuvPtYQ7obN4TZX+Y/cr3zy2Cn9SKsv3vUpmyjRtmbNjSSbfijvCl
+         IGRMKJswo7Cn+seNsBRk/aQLG7567zzEubqzWTaRkzCqkdz9Bijj9QcjBIOf+4guxXYK
+         RTJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hoFXqCDljrfPhl8OhWKYJabFe89kk859lQwWFfRV5jk=;
-        b=sSE6p/cYC+34jsBTT/kKTSm6k3BZQaQfjhyGxhE2/mrvF4i3cszlXQAVnAbfrQHshU
-         n6Xq/uSlKvB9jPzd++HNmsCcU/I/fQtdBmMq7tn0TBbypezBBtCSSyQXwpN7PUj/TDC3
-         mD6qc3TSUnekx+DLhYTcDNdahBksBMB2M+d2BIpQhkCDie5Whb8iSGx/v//At2KGATDk
-         CfMdNl9+DKbgZeFs34+ix9jPyNRIzJczXFNQhIqOow0jojw05alohvtp7oPFguYIZzGb
-         +67kpvPFx1sRqb97DHcNMT01KyL8yu9TY30/Cj4kV7H/0xiULT4n90nYjiFy5F9H0+tE
-         bF7w==
-X-Gm-Message-State: AOAM530/rknbi/oMspCN640MY2AkSDcLQ+vZimvJUtVXT02MS3IcEmJq
-        whw9s6LpMfGb0ErbtxajX80OeQ==
-X-Google-Smtp-Source: ABdhPJz+6dpRIGYp+Fw0tZpohAELYLQRBoCCWBf3dIvf4VKQmprsU/2G9hHoAVG9ZDRHCcH9eNAwog==
-X-Received: by 2002:a65:6a08:: with SMTP id m8mr19082771pgu.146.1620059766601;
-        Mon, 03 May 2021 09:36:06 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:8584:3fd:2adf:a655])
-        by smtp.gmail.com with UTF8SMTPSA id n20sm10038260pjq.45.2021.05.03.09.36.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 May 2021 09:36:06 -0700 (PDT)
-Date:   Mon, 3 May 2021 09:36:04 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     bjorn.andersson@linaro.org, viresh.kumar@linaro.org,
-        swboyd@chromium.org, agross@kernel.org, robh+dt@kernel.org,
-        rjw@rjwysocki.net, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, dianders@chromium.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7280: Add cpu OPP tables
-Message-ID: <YJAmdIHYl0DKsKyq@google.com>
-References: <1619792901-32701-1-git-send-email-sibis@codeaurora.org>
- <1619792901-32701-3-git-send-email-sibis@codeaurora.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=IL37xkHGbQoMcjdiJ4z5sJEMMG7cxWpY9a1c3V2dhxE=;
+        b=cctzOmtS91IgaHbIMRQwfMJSlst45I+6p0i26LTEXbRp3uWi7tB20BUKNeG3bPGP1O
+         GrboMykYSKpy7Q+qYWiCFjB1zY7DwoDh0owGGoW5w/ihawTrCvzmXji9/0MJy8ATO/BW
+         QsjjQfWtCU42CmsoN7Ij/IR1pWq3PJFIyBh4c7pFZAhAapy5q8p/F+onmmYG2ni3Blzp
+         zG9+vM5WT8zYA1Y3ra8nZ4hEU5W8Pj3x7V1Ii0l1EE53+oOxjUKDUYdaR/Cm1mWfTpfP
+         oZEycZO1PIH06sUBtejOW1O7T239SNnGAv5TihNcDYk1c1p9nGP3mCf2wANM0hea3rOe
+         F0hw==
+X-Gm-Message-State: AOAM531RXKnEWiFlfU0am4PL/cnOtsnaz2UQGEAVZ2nhshJfpDZz41f2
+        mA7bLiNYk6ejJSJqn4fsirbmnON48Q04UMvvdEn7/x5GwoFDQg==
+X-Google-Smtp-Source: ABdhPJz/AJv7RCcIWBDMKm3Gdsyf6wf0BUHiYion0nCe5BuMFjFUqoEZ3N8K441OnP/cmQR9EgeCXvCJgLSxYp9g4SU=
+X-Received: by 2002:a05:6402:11ca:: with SMTP id j10mr16719655edw.184.1620059872356;
+ Mon, 03 May 2021 09:37:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1619792901-32701-3-git-send-email-sibis@codeaurora.org>
+References: <20210503145503.1477-1-linux.amoon@gmail.com> <20210503145503.1477-4-linux.amoon@gmail.com>
+ <CAFBinCCxMvomKt9E0jT_XXpyL1_-qXH4=zVDMNdbDCnZCsnT=A@mail.gmail.com>
+ <CANAwSgTdFHwtKd-sgQq0Jp8WP55fZG3wsn7feCGo257yqiFkpw@mail.gmail.com> <CAFBinCDUc7VG7T9c8snP4ujMMViS0GRdztP6QGJvF9LNESHHCw@mail.gmail.com>
+In-Reply-To: <CAFBinCDUc7VG7T9c8snP4ujMMViS0GRdztP6QGJvF9LNESHHCw@mail.gmail.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Mon, 3 May 2021 22:07:41 +0530
+Message-ID: <CANAwSgSrQnBs06+DG6x+GMvyjvu-hPFX0J5MQ0yKPBvNaNu98w@mail.gmail.com>
+Subject: Re: [PATCHv1 3/9] soc: amlogic: meson-ee-pwrc: Add hdmi power domain
+ Meson g12a SoCs
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 30, 2021 at 07:58:21PM +0530, Sibi Sankar wrote:
-> Add OPP tables required to scale DDR/L3 per freq-domain on SC7280 SoCs.
-> 
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 135 +++++++++++++++++++++++++++++++++++
->  1 file changed, 135 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 0bb835aeae33..90220cecb368 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -7,6 +7,7 @@
->  
->  #include <dt-bindings/clock/qcom,gcc-sc7280.h>
->  #include <dt-bindings/clock/qcom,rpmh.h>
-> +#include <dt-bindings/interconnect/qcom,osm-l3.h>
->  #include <dt-bindings/interconnect/qcom,sc7280.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/mailbox/qcom-ipcc.h>
-> @@ -71,6 +72,9 @@
->  					   &LITTLE_CPU_SLEEP_1
->  					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_0>;
-> +			operating-points-v2 = <&cpu0_opp_table>;
-> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
+hi Martin
 
-This patch seems to depend on the 'Add SC7280 interconnect provider
-driver' series (https://patchwork.kernel.org/project/linux-arm-msm/list/?series=473747)
-and 'Add L3 provider support for SC7280' (https://patchwork.kernel.org/project/linux-arm-msm/list/?series=468285),
-none of them has landed yet. The dependencies should be mentioned in the
-commit notes (under '---').
+On Mon, 3 May 2021 at 21:05, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Hi Anand,
+>
+> On Mon, May 3, 2021 at 5:29 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> [...]
+> > > > +static struct meson_ee_pwrc_mem_domain meson_pwrc_mem_hdmi[] =3D {
+> > > > +       { HHI_MEM_PD_REG0, GENMASK(15, 8) },
+> > > > +};
+> > > > +
+> > > the VPU power domain already includes:
+> > >   VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
+> > > whereas VPU_HHI_MEMPD is bits[15:8]
+> > >
+> > > Having two power domains which are managing the same registers sounds
+> > > like it'll be causing some trouble
+> > > So for now this is (as I am not even sure what the goal here is):
+> > > NACKed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > >
+> >
+> > Ok, thanks. On the line of Ethernet PD, I tried to add this accordingly=
+.
+> From what I understand the VPU power domain is special because the
+> display pipeline consists of multiple components (HDMI, VPU, ...)
+> that's why the handling currently is special
+>
+> > whenever I try something new it fails. Please ignore this series.
+> if the VPU and HDMI power domains were separate (from hardware
+> perspective, not from driver perspective) then your change is a good
+> step forward.
+> in that case VPU_HHI_MEMPD would need to be removed from wherever it's
+> currently used -> that means we need to also decide if we want to
+> break compatibility with older (before this series) .dtbs
+>
+>
 
->  			qcom,freq-domain = <&cpufreq_hw 0>;
->  			L2_0: l2-cache {
->  				compatible = "cache";
-> @@ -90,6 +94,9 @@
->  					   &LITTLE_CPU_SLEEP_1
->  					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_100>;
-> +			operating-points-v2 = <&cpu0_opp_table>;
-> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
->  			qcom,freq-domain = <&cpufreq_hw 0>;
->  			L2_100: l2-cache {
->  				compatible = "cache";
-> @@ -106,6 +113,9 @@
->  					   &LITTLE_CPU_SLEEP_1
->  					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_200>;
-> +			operating-points-v2 = <&cpu0_opp_table>;
-> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
->  			qcom,freq-domain = <&cpufreq_hw 0>;
->  			L2_200: l2-cache {
->  				compatible = "cache";
-> @@ -122,6 +132,9 @@
->  					   &LITTLE_CPU_SLEEP_1
->  					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_300>;
-> +			operating-points-v2 = <&cpu0_opp_table>;
-> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
->  			qcom,freq-domain = <&cpufreq_hw 0>;
->  			L2_300: l2-cache {
->  				compatible = "cache";
-> @@ -138,6 +151,9 @@
->  					   &BIG_CPU_SLEEP_1
->  					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_400>;
-> +			operating-points-v2 = <&cpu4_opp_table>;
-> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
->  			qcom,freq-domain = <&cpufreq_hw 1>;
->  			L2_400: l2-cache {
->  				compatible = "cache";
-> @@ -154,6 +170,9 @@
->  					   &BIG_CPU_SLEEP_1
->  					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_500>;
-> +			operating-points-v2 = <&cpu4_opp_table>;
-> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
->  			qcom,freq-domain = <&cpufreq_hw 1>;
->  			L2_500: l2-cache {
->  				compatible = "cache";
-> @@ -170,6 +189,9 @@
->  					   &BIG_CPU_SLEEP_1
->  					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_600>;
-> +			operating-points-v2 = <&cpu4_opp_table>;
-> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
->  			qcom,freq-domain = <&cpufreq_hw 1>;
->  			L2_600: l2-cache {
->  				compatible = "cache";
-> @@ -186,6 +208,9 @@
->  					   &BIG_CPU_SLEEP_1
->  					   &CLUSTER_SLEEP_0>;
->  			next-level-cache = <&L2_700>;
-> +			operating-points-v2 = <&cpu4_opp_table>;
-> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> +					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
->  			qcom,freq-domain = <&cpufreq_hw 2>;
->  			L2_700: l2-cache {
->  				compatible = "cache";
-> @@ -248,6 +273,116 @@
->  		};
->  	};
->  
-> +	cpu0_opp_table: cpu0_opp_table {
+As per the datasheet S922X Datasheet, HDMI and VPU are different
+reg controller and they are independent of each other.
 
-the node name should use dashes as separators instead of underscores, i.e.
-it should be 'cpu0-opp-table'.
+*HHI_MEM_PD_REG0 0x40*
 
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		cpu0_opp1: opp-300000000 {
-> +			opp-hz = /bits/ 64 <300000000>;
-> +			opp-peak-kBps = <800000 9600000>;
-> +		};
-> +
-> +		cpu0_opp2: opp-691200000 {
-> +			opp-hz = /bits/ 64 <691200000>;
-> +			opp-peak-kBps = <800000 17817600>;
-> +		};
-> +
-> +		cpu0_opp3: opp-806400000 {
-> +			opp-hz = /bits/ 64 <806400000>;
-> +			opp-peak-kBps = <800000 20889600>;
-> +		};
-> +
-> +		cpu0_opp4: opp-940800000 {
-> +			opp-hz = /bits/ 64 <940800000>;
-> +			opp-peak-kBps = <1804000 24576000>;
-> +		};
-> +
-> +		cpu0_opp5: opp-1152000000 {
-> +			opp-hz = /bits/ 64 <1152000000>;
-> +			opp-peak-kBps = <2188000 27033600>;
-> +		};
-> +
-> +		cpu0_opp6: opp-1324800000 {
-> +			opp-hz = /bits/ 64 <1324800000>;
-> +			opp-peak-kBps = <2188000 33792000>;
-> +		};
-> +
-> +		cpu0_opp7: opp-1516800000 {
-> +			opp-hz = /bits/ 64 <1516800000>;
-> +			opp-peak-kBps = <3072000 38092800>;
-> +		};
-> +
-> +		cpu0_opp8: opp-1651200000 {
-> +			opp-hz = /bits/ 64 <1651200000>;
-> +			opp-peak-kBps = <3072000 41779200>;
-> +		};
-> +
-> +		cpu0_opp9: opp-1804800000 {
-> +			opp-hz = /bits/ 64 <1804800000>;
-> +			opp-peak-kBps = <4068000 48537600>;
-> +		};
-> +
-> +		cpu0_opp10: opp-1958400000 {
-> +			opp-hz = /bits/ 64 <1958400000>;
-> +			opp-peak-kBps = <4068000 48537600>;
-> +		};
-> +	};
-> +
-> +	cpu4_opp_table: cpu4_opp_table {
+17~16  R/W 0x3 DDR memory PD
+*15~8 R/W 0xFF HDMI memory PD*
+7~6 R/W 0x3 Reserved
+5~4 R/W 0x3 Audio mem PD
+3~2 R/W 0x3 Ethernet memory PD
+1~0 R/W 0x3 resved
 
-node name should be 'cpu4-opp-table'
+Note: HDMI and AUDIO and Ethernet are also independent of each other.
 
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		cpu4_opp1: opp-691200000 {
-> +			opp-hz = /bits/ 64 <691200000>;
-> +			opp-peak-kBps = <1804000 9600000>;
-> +		};
-> +
-> +		cpu4_opp2: opp-940800000 {
-> +			opp-hz = /bits/ 64 <940800000>;
-> +			opp-peak-kBps = <2188000 17817600>;
-> +		};
-> +
-> +		cpu4_opp3: opp-1228800000 {
-> +			opp-hz = /bits/ 64 <1228800000>;
-> +			opp-peak-kBps = <4068000 24576000>;
-> +		};
-> +
-> +		cpu4_opp4: opp-1344000000 {
-> +			opp-hz = /bits/ 64 <1344000000>;
-> +			opp-peak-kBps = <4068000 24576000>;
-> +		};
-> +
-> +		cpu4_opp5: opp-1516800000 {
-> +			opp-hz = /bits/ 64 <1516800000>;
-> +			opp-peak-kBps = <4068000 24576000>;
-> +		};
-> +
-> +		cpu4_opp6: opp-1651200000 {
-> +			opp-hz = /bits/ 64 <1651200000>;
-> +			opp-peak-kBps = <6220000 38092800>;
-> +		};
-> +
-> +		cpu4_opp7: opp-1900800000 {
-> +			opp-hz = /bits/ 64 <1900800000>;
-> +			opp-peak-kBps = <6220000 44851200>;
-> +		};
-> +
-> +		cpu4_opp8: opp-2054400000 {
-> +			opp-hz = /bits/ 64 <2054400000>;
-> +			opp-peak-kBps = <6220000 44851200>;
-> +		};
-> +
-> +		cpu4_opp9: opp-2131200000 {
-> +			opp-hz = /bits/ 64 <2131200000>;
-> +			opp-peak-kBps = <6220000 44851200>;
-> +		};
-> +
-> +		cpu4_opp10: opp-2400000000 {
-> +			opp-hz = /bits/ 64 <2400000000>;
-> +			opp-peak-kBps = <6832000 48537600>;
-> +		};
-> +	};
-> +
->  	memory@80000000 {
->  		device_type = "memory";
->  		/* We expect the bootloader to fill in the size */
+*HHI_VPU_MEM_PD_REG0 0x41 *
+
+31~30 R/W 0x3 sharp
+29~28 R/W 0x3 Deinterlacer =E2=80=93 di_post: 11 =3D power down. 00 =3D nor=
+mal operation
+27~26 R/W 0x3 Deinterlacer =E2=80=93 di_pre 25~24 R/W 0x3 Vi_di_scaler
+23~22 R/W 0x3 afbc_dec1
+21~20 R/W 0x3 Srscl super scaler
+19~18 R/W 0x3 Vdin1 memory
+17~16 R/W 0x3 Vdin0 memory
+15~14 R/W 0x3 Osd_scaler memory
+13~12 R/W 0x3 Scaler memory
+11~10 R/W 0x3 Vpp output fifo
+9~8 R/W 0x3 Color management module
+7~6 R/W 0x3 Vd2 memory
+5~4 R/W 0x3 Vd1 memory
+3~2 R/W 0x3 Osd2 memory
+1~0 R/W 0x3 Osd1 memory
+
+Below is the output on Odroid N2.
+
+[alarm@archl-on2 ~]$ sudo cat /sys/kernel/debug/pm_genpd/pm_genpd_summary
+domain                          status          children
+            performance
+    /device                                             runtime status
+---------------------------------------------------------------------------=
+-------------------
+HDMI                            on
+            0
+    /devices/platform/soc/ff600000.bus/ff600000.hdmi-tx  unsupported
+             0
+AUDIO                           on
+            0
+    /devices/platform/sound                             unsupported
+            0
+ETH                             on
+            0
+    /devices/platform/soc/ff3f0000.ethernet             active
+            0
+VPU                             on
+            0
+    /devices/platform/soc/ff900000.vpu                  unsupported
+            0
+
+HDMI power domain is ON.
+Audio is wrongly mapped.
+
+> Best regards,
+> Martin
+
+-Anand
