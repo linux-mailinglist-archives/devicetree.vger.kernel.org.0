@@ -2,88 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A6C0371FF0
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 20:52:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A867B371FFC
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 20:56:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229596AbhECSxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 14:53:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52816 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbhECSxg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 14:53:36 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32914C06174A
-        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 11:52:43 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id n84so3944380wma.0
-        for <devicetree@vger.kernel.org>; Mon, 03 May 2021 11:52:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=82HDXXG46Pyy1GhCwdYUJ5WCmL9ABh3Q4FDg8vtMbgU=;
-        b=P2kULaZjG8+ReQlLuLNzUohHBVbqvoYQUTHmhAZ2ZJbUdaoheXKqMpy+plTvx0edQL
-         Wum4dgUq/ymQNvXoCdZ9T3GuDDpr0DQRrz7NTVC+nXxqHvLqz7RQF08rn8FiQyEXH0kb
-         edmn9JKZFVyKSqDts/cTWf5iq/2HDnsRIqhDtchEsYnnEH6Hex6H5e443OWd5/4c6Dlu
-         dzlD/z7y4OfZQ+X3DIUCZ+GPQcQey2I07PejXmf8fNFPiIyk1sL3xAxiysU+bq662LO6
-         xJ2g3SOXJDdV6OmEhYxgvgBOHLFXt1tcokVYW3qI2lK6BTOk0sMbLBxIrasJfDuDu+1J
-         /qdw==
+        id S229522AbhECS5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 14:57:31 -0400
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:44680 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229472AbhECS5a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 14:57:30 -0400
+Received: by mail-oi1-f170.google.com with SMTP id d21so4293896oic.11;
+        Mon, 03 May 2021 11:56:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=82HDXXG46Pyy1GhCwdYUJ5WCmL9ABh3Q4FDg8vtMbgU=;
-        b=NVrA6/fRy+TTgigCRB01lyf4GTIPiXQtECrw6+Zxsg6ltLm2vqWWXfGLrLRxCMkbGj
-         YauPDN9+0a91y/N6jWYCf2QWXRlZDsmgSeBzb2Ls0JCTUbvcsT/DHxH9ObFdiT+xPRjx
-         Zdpg2OQqnvHu3oVfz7P/6WbGzgdv7yyZSNwE2GIt8XnbuAYwGd3me3Da/RJwKUy8VUJI
-         iwKS4WhpZeT0z7Myvj9byMhAffcKskMdpz4KdMtZq9WVoPZDTYJLDTa1y1jD52g1XY4A
-         K2hmRo/EIiPKrKzF2xbq/K+c/3gI+iJzV+fqLTCTdP2JGzu/8/MhLyWco0lWAhdDt2K2
-         ArwA==
-X-Gm-Message-State: AOAM533KV8wLAA+mTw4zHkjKlfMWBfsZj6DVrMrTojHm4+KVh1BWu/4v
-        CQbh4dGbiOSsnXxP04vsNIvA3A==
-X-Google-Smtp-Source: ABdhPJx+/FD+vQb71g+hkJ2DiRJnMCIxM5J6rNPMIeuaRRwtKuOzARhkNPbNrzczU+8vkNPFkAR5SQ==
-X-Received: by 2002:a1c:3:: with SMTP id 3mr9895wma.32.1620067961929;
-        Mon, 03 May 2021 11:52:41 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id i14sm711228wmq.1.2021.05.03.11.52.41
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jAmi3yu7iN8x9wHQ1W+DfMb4hWuQ7Nqu4KrAIFsRcJw=;
+        b=qu5Uw/qeSyPeJuw2s0pRphf5y94y9t/RUKIQLgMLqzmFPQFzw3M3VZubxFQFGXcV2R
+         AVXDQH7SEI3KC96f6E4tnLHh8M9NLjeH0T65itqgfzBj/bUCFOpQI93d3M4eQ+B7jCqn
+         DGvRoXZckDhvpfazYi346EUG02ecaUXd7nQNUVQfVlYKRSQjm8eHNeQXUi1EfMFd2hNb
+         dKL9hB7Za4kbfJz6c8DCuwzZjWZodYJu66NvTkKLSJdms+ZFHmUrdREDwiC4h0XPui2r
+         315Pc1KlkSQnEFEbbJvBWcQXDYN7bIcVRqc5JXcbiygtYX/d3LzoWeWHEg2uiRpKGxHj
+         9J/A==
+X-Gm-Message-State: AOAM532Ymqvhd9KTpxZwAfKjXdkX/Fubl4f6JIvWRBXfbP0PHGz5rVpQ
+        PaVStNZw0qsMcIgWqPQywg==
+X-Google-Smtp-Source: ABdhPJwzQdY+6BT+qgyIG5QB4U6xDrMPhVmHd/CCaQDtNBP1xWtbQRTFooAHvGujV0I5nUHTB2vM3w==
+X-Received: by 2002:aca:2813:: with SMTP id 19mr15070039oix.80.1620068196545;
+        Mon, 03 May 2021 11:56:36 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id r20sm162938otd.70.2021.05.03.11.56.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 May 2021 11:52:41 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     bhelgaas@google.com, linus.walleij@linaro.org, robh+dt@kernel.org,
-        ulli.kroll@googlemail.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH 2/2] ARM: dts: gemini: add device_type on pci
-Date:   Mon,  3 May 2021 18:52:28 +0000
-Message-Id: <20210503185228.1518131-2-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210503185228.1518131-1-clabbe@baylibre.com>
-References: <20210503185228.1518131-1-clabbe@baylibre.com>
+        Mon, 03 May 2021 11:56:35 -0700 (PDT)
+Received: (nullmailer pid 2189800 invoked by uid 1000);
+        Mon, 03 May 2021 18:56:33 -0000
+Date:   Mon, 3 May 2021 13:56:33 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+Cc:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.ne@posteo.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vadym Kochan <vadym.kochan@plvision.eu>,
+        devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        linux-kernel@vger.kernel.org,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
+Subject: Re: [PATCH v2 3/3] dts: eeprom-93xx46: Add support for 93C46, 93C56
+ and 93C66
+Message-ID: <20210503185633.GA2189748@robh.at.kernel.org>
+References: <20210424123034.11755-1-linkmauve@linkmauve.fr>
+ <20210424212543.13929-1-linkmauve@linkmauve.fr>
+ <20210424212543.13929-4-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210424212543.13929-4-linkmauve@linkmauve.fr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixes DT warning on pci node by adding the missing device_type.
+On Sat, 24 Apr 2021 23:25:43 +0200, Emmanuel Gil Peyrot wrote:
+> These devices differ by the size of their storage, which is why they
+> have different compatible strings.
+> 
+> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> ---
+>  Documentation/devicetree/bindings/misc/eeprom-93xx46.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- arch/arm/boot/dts/gemini.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/gemini.dtsi b/arch/arm/boot/dts/gemini.dtsi
-index 1833b6590d76..31db0be7ec67 100644
---- a/arch/arm/boot/dts/gemini.dtsi
-+++ b/arch/arm/boot/dts/gemini.dtsi
-@@ -287,6 +287,7 @@ pci@50000000 {
- 			clock-names = "PCLK", "PCICLK";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pci_default_pins>;
-+			device_type = "pci";
- 			#address-cells = <3>;
- 			#size-cells = <2>;
- 			#interrupt-cells = <1>;
--- 
-2.26.3
-
+Acked-by: Rob Herring <robh@kernel.org>
