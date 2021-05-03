@@ -2,291 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 806D23720AC
-	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 21:43:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9A453720B2
+	for <lists+devicetree@lfdr.de>; Mon,  3 May 2021 21:44:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229577AbhECToU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 15:44:20 -0400
-Received: from bmail1.ministro.hu ([5.249.150.236]:44926 "EHLO
-        bmail1.ministro.hu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229499AbhECToT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 15:44:19 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTP id 70AA7123F7A;
-        Mon,  3 May 2021 21:43:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1620071004;
-        bh=W4pSnJmrTdMmaZVCxMuLWZblyVXvDee6tR3+LqjgMf8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WzkscEMuE59PYkZ+ozqndYTFkAWRWNzZmA5nSScJn/gCYZx8CqfP/kkeExz4/Qbn9
-         HYcjCYAUc25tqFeGhEYML8RcsA5DZNEIH8UOLVllUK2yS6B3I+P0MYDn4sCJcdPM5s
-         eVT0QovnisMDQkVvwn9qXEn/Vg5e7MV0Hku2ARIz/XNbxpy36eA1MnpjrvBoqw1a3V
-         6Ahmw5tId7PCwpDzXJdUKJRw6daWgEanNfVmXrL9K3vboJ1qVjeTJiccmGGZdz+66j
-         uRc2R2DJHa+2mWskzTIlsjAKiMhjMpy/PlQ0bPgksPhrWz+c1sePGtd4Fb99nKI12m
-         eJCXG2xfTdq0A==
-X-Virus-Scanned: Debian amavisd-new at ministro.hu
-Received: from bmail1.ministro.hu ([127.0.0.1])
-        by localhost (bmail1.ministro.hu [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id fzefVMeEZzt0; Mon,  3 May 2021 21:42:44 +0200 (CEST)
-Received: from dev (localhost [127.0.0.1])
-        by bmail1.ministro.hu (Postfix) with ESMTPSA id E63DB123F6B;
-        Mon,  3 May 2021 21:42:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ministro.hu;
-        s=201804; t=1620070963;
-        bh=W4pSnJmrTdMmaZVCxMuLWZblyVXvDee6tR3+LqjgMf8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TAg8BrIIES3iZ5XC17vKL0OrVUvG9iwSrFF/uz/O71ZEappqGCDrNd8JCyKQ1/FMF
-         LOcoaJz2ieGN0S4pnxpZh9sdut45LgIf7jkN22t06kmvXXwCGARyhjFH5SPcL8KeIA
-         be7+HqMEle+IbhEm1UoDapLxdkUZoPbV5N63AUu1lXaDIpsw9IAE2d8johVrg37lwP
-         qPse/fcJAyPzPgpSLaA4CUZQCCTGYB5dYz7Dq7sFLw8bzqt/gfDsAfCwpExzXgVHgu
-         fOSfm1Asr6unpLgT/jEUJWD0vJvR0EbyoEl9LLDmnS2iu2qz1/fZmnTvwesWwy7iC2
-         z4J6Z/M0GfrwA==
-Date:   Mon, 3 May 2021 19:42:41 +0000
-From:   =?iso-8859-1?Q?J=F3zsef_Horv=E1th?= <info@ministro.hu>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        id S229628AbhECTpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 15:45:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36218 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229499AbhECTph (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 15:45:37 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24B9DC061761
+        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 12:44:44 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id v20so3433029plo.10
+        for <devicetree@vger.kernel.org>; Mon, 03 May 2021 12:44:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5n7PRrkxFyYY/DUpP4RV9Z9dMh8zqGU+uSvPh8xSPyk=;
+        b=OUOflD4NStTCK/6H2DEIARGnIGZAmcL/Z72NN4loGh0CSVLyx/bMPq/3ahPBAL0JS+
+         0GkyafMf6uMX382ZzdPCDy3i5tneU/8PkXEIChz5+kkKqziuu93p2NRxv+nQ7TVp0jOS
+         JrSBoFHkgTPZJKCJqgf6uoXk15UL5v9xpHsy8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5n7PRrkxFyYY/DUpP4RV9Z9dMh8zqGU+uSvPh8xSPyk=;
+        b=Ln6ZieJUSon5ogLa5SYkQp8EWnAlBPmAdTHxwElbr9KCHVpxz7rYGEFdoxv5OkOBmA
+         JIUA1XOIPHHgEdwTju9axG5RLrsV9e5DticAj257xZGWOCOxV2d46hkbTEmA2hNgA2V7
+         vPWjOVolb2ARc/ExYY/EWUM1WqpNEkN078Dj6gPKDgi3XQOomFXedlaa1DZBISQ7Bv2y
+         Xs6fyckENF8J/YHijVRP3koWDlmhwvC8vcm8gbIsnf50B9DwRHZmOc4wmk4C2cHEqefU
+         hMvKE31H187JdiHPphkfcqR9dtXtP5yZuU0TxKdu7yb912YCkSLrneO/9KXVpVZlXGD9
+         C8WA==
+X-Gm-Message-State: AOAM530y+2YF/PG0N7evzHhuPth39+2+fwO5seHQaXrDrPkJiI86aItD
+        upbbc8GPHPV1i+/qL+my4kXDNA==
+X-Google-Smtp-Source: ABdhPJySStTfI0medBoSVcDYbV74l0ZWhhmSx+mPrsDib5O667sC85u598aJHGyb0VWPBevldrq0Mg==
+X-Received: by 2002:a17:902:b18c:b029:ed:631f:63ca with SMTP id s12-20020a170902b18cb02900ed631f63camr22320772plr.40.1620071083748;
+        Mon, 03 May 2021 12:44:43 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:8584:3fd:2adf:a655])
+        by smtp.gmail.com with UTF8SMTPSA id k15sm10309033pfi.0.2021.05.03.12.44.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 May 2021 12:44:43 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Alex Dewar <alex.dewar90@gmail.com>,
-        Gene Chen <gene_chen@richtek.com>,
-        Saravanan Sekar <sravanhome@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: devicetree bindings for texas
- instruments ads7142 iio driver
-Message-ID: <20210503194241.GB1714@dev>
-References: <bffbc2b24a869dc42307adf8e3fc71f08fcff6dd.1619892171.git.info@ministro.hu>
- <69205d4de46dd21c82b31ca1c35cbf12fbce629b.1619892171.git.info@ministro.hu>
- <20210502182255.6bed8afa@jic23-huawei>
- <20210502211020.GB32610@dev>
- <20210503113008.751560b1@jic23-huawei>
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Peter Chen <peter.chen@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>, linux-usb@vger.kernel.org,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Michal Simek <michal.simek@xilinx.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Al Cooper <alcooperx@gmail.com>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Christian Lamparter <chunkeey@googlemail.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org
+Subject: [PATCH v9 0/5] USB: misc: Add onboard_usb_hub driver
+Date:   Mon,  3 May 2021 12:44:34 -0700
+Message-Id: <20210503194439.3289065-1-mka@chromium.org>
+X-Mailer: git-send-email 2.31.1.527.g47e6f16901-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210503113008.751560b1@jic23-huawei>
-User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 03, 2021 at 11:30:08AM +0100, Jonathan Cameron wrote:
+This series adds:
+- the onboard_usb_hub_driver
+- glue in the xhci-plat driver to create the onboard_usb_hub
+  platform device if needed
+- a device tree binding for the Realtek RTS5411 USB hub controller
+- device tree changes that add RTS5411 entries for the QCA SC7180
+  based boards trogdor and lazor
+- a couple of stubs for platform device functions to avoid
+  unresolved symbols with certain kernel configs
 
-Hi Jonathan,
+The main issue the driver addresses is that a USB hub needs to be
+powered before it can be discovered. For discrete onboard hubs (an
+example for such a hub is the Realtek RTS5411) this is often solved
+by supplying the hub with an 'always-on' regulator, which is kind
+of a hack. Some onboard hubs may require further initialization
+steps, like changing the state of a GPIO or enabling a clock, which
+requires even more hacks. This driver creates a platform device
+representing the hub which performs the necessary initialization.
+Currently it only supports switching on a single regulator, support
+for multiple regulators or other actions can be added as needed.
+Different initialization sequences can be supported based on the
+compatible string.
 
-> On Sun, 2 May 2021 21:10:20 +0000
-> József Horváth <info@ministro.hu> wrote:
-> 
-> Hi József,
-> 
-> > >   
-> > > > +
-> > > > +  "#address-cells":
-> > > > +    const: 1
-> > > > +
-> > > > +  "#size-cells":
-> > > > +    const: 0
-> > > > +
-> > > > +  "#io-channel-cells":
-> > > > +    const: 1
-> > > > +
-> > > > +  ti,osc-sel:
-> > > > +    description: |
-> > > > +      If present, the driver selects the high speed oscillator.
-> > > > +      See chapter 7.3.5 Oscillator and Timing Control in datasheet.
-> > > > +    type: boolean  
-> > > 
-> > > This looks connected to the possible sampling frequencies when in various autonomous modes.
-> > > Should it be controlled by userspace?  
-> > 
-> > The sampling frequency is controlled with the osc-sel and n-clk.
-> > I'll remove n-clk from sysfs.
-> 
-> Not sure I follow that.  I think we should only have these controlled via
-> sysfs.  It will be a bit complex as two related controls, but that is a common situation
-> and there is usually a sensible combination of options that makes sense.
-> 
-> For example, if we can meet the sampling frequency requested with the lower
-> power oscillator we go for that.
-> 
+Besides performing the initialization the driver can be configured
+to power the hub off during system suspend. This can help to extend
+battery life on battery powered devices which have no requirements
+to keep the hub powered during suspend. The driver can also be
+configured to leave the hub powered when a wakeup capable USB device
+is connected when suspending, and power it off otherwise.
 
-Ok, I'll do that.
+Changes in v9:
+- added dependency on ONBOARD_USB_HUB (or !!ONBOARD_USB_HUB) to
+  USB_PLATFORM_XHCI
 
-> > 
-> > >   
-> > > > +
-> > > > +  ti,n-clk:
-> > > > +    description: |
-> > > > +      nCLK is number of clocks in one conversion cycle.
-> > > > +      See chapter 7.3.5 Oscillator and Timing Control in datasheet.  
-> > > 
-> > > Sounds like a policy decision for userspace.
-> > >   
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > +    maximum: 255
-> > > > +    minimum: 0
-> > > > +
-> > > > +  ti,monitoring-mode:
-> > > > +    description: |
-> > > > +      If present, the driver selects the autonomous monitoring mode with pre alert data.
-> > > > +      See chapter 7.4 Device Functional Modes in datasheet.  
-> > > 
-> > > As mentioned in the driver review, this looks like something we should control from userspace
-> > > not dt to me.
-> > >   
-> > 
-> > I would keep this here, but it will be an enum.
-> 
-> Sorry, but no.  As mentioned in the driver thread, this doesn't sound like
-> a characteristic of the hardware (board etc) so it doesn't belong in DT.
-> It may be challenging to implement an interface that makes sense, but
-> that doesn't mean we can avoid doing it.
+Changes in v7:
+- updated DT binding
+- series rebased on qcom/arm64-for-5.13
 
-Ok, I'll bring it to sysfs.
+Changes in v6:
+- updated summary
 
-> 
-> > 
-> > > > +    type: boolean
-> > > > +
-> > > > +patternProperties:
-> > > > +  "^channel@[0-1]$":
-> > > > +    $ref: "adc.yaml"
-> > > > +    type: object
-> > > > +    description: |
-> > > > +      Represents the external channels which are connected to the ADC.
-> > > > +    properties:
-> > > > +      reg:
-> > > > +        description: |
-> > > > +          The channel number.
-> > > > +        items:
-> > > > +          minimum: 0
-> > > > +          maximum: 1
-> > > > +      "ti,threshold-falling":
-> > > > +        description: The low threshold for channel  
-> > > 
-> > > For these, we need a strong argument presented in this doc for why they are not
-> > > a question of policy (and hence why they should be in dt at all).  
-> > 
-> > I'll remove all threshold and hysteresys from dt.
-> > 
-> > >   
-> > > > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > > > +        maximum: 4095
-> > > > +        minimum: 0
-> > > > +      "ti,threshold-rising":
-> > > > +        description: The high threshold for channel
-> > > > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > > > +        maximum: 4095
-> > > > +        minimum: 0
-> > > > +      "ti,hysteresis":
-> > > > +        description: The hysteresis for both comparators for channel
-> > > > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > > > +        maximum: 63
-> > > > +        minimum: 0
-> > > > +
-> > > > +    required:
-> > > > +      - reg
-> > > > +
-> > > > +    additionalProperties: false
-> > > > +
-> > > > +allOf:
-> > > > +  - if:
-> > > > +      required:
-> > > > +        - ti,monitoring-mode
-> > > > +    then:
-> > > > +      required:
-> > > > +        - interrupts
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - "#io-channel-cells"
-> > > > +
-> > > > +additionalProperties: false
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    i2c {
-> > > > +      #address-cells = <1>;
-> > > > +      #size-cells = <0>;
-> > > > +      adc@18 {  
-> > > 
-> > > I would not bother having two examples.  The second one covers more things afterall
-> > > and the binding makes it clear what is required.
-> > >   
-> > 
-> > I do this because of the conditional requirement of interrupts.
-> 
-> Understood, but that is clearly expressed by the 'required' above.
-> It's easy enough to understand how to not have parts that aren't
-> required without an example.
+Changes in v5:
+- cover letter added
 
-I'll bring the monitoring mode to sysfs, and in that case, the conditional requirement
- will be pointless, and interrupt property will be optional, so you are right, one example
- will be enough.
+Matthias Kaehlcke (5):
+  dt-bindings: usb: Add binding for Realtek RTS5411 hub controller
+  USB: misc: Add onboard_usb_hub driver
+  of/platform: Add stubs for of_platform_device_create/destroy()
+  usb: host: xhci-plat: Create platform device for onboard hubs in
+    probe()
+  arm64: dts: qcom: sc7180-trogdor: Add nodes for onboard USB hub
 
-> 
-> > 
-> > > > +        compatible = "ti,ads7142";
-> > > > +        reg = <0x18>;
-> > > > +        #address-cells = <1>;
-> > > > +        #size-cells = <0>;
-> > > > +        #io-channel-cells = <1>;
-> > > > +
-> > > > +        vref-supply = <&vdd_3v3_reg>;
-> > > > +        power-supply = <&vdd_1v8_reg>;
-> > > > +
-> > > > +        channel@0 {
-> > > > +          reg = <0>;
-> > > > +        };
-> > > > +
-> > > > +        channel@1 {
-> > > > +          reg = <1>;
-> > > > +        };
-> > > > +      };
-> > > > +    };
-> > > > +  - |
-> > > > +    i2c {
-> > > > +      #address-cells = <1>;
-> > > > +      #size-cells = <0>;
-> > > > +      adc@1f {
-> > > > +        compatible = "ti,ads7142";
-> > > > +        reg = <0x1f>;
-> > > > +        #address-cells = <1>;
-> > > > +        #size-cells = <0>;
-> > > > +
-> > > > +        #io-channel-cells = <1>;
-> > > > +
-> > > > +        vref-supply = <&vdd_3v3_reg>;
-> > > > +        power-supply = <&vdd_1v8_reg>;
-> > > > +
-> > > > +        interrupt-parent = <&gpio>;
-> > > > +        interrupts = <7 2>;
-> > > > +
-> > > > +        ti,monitoring-mode;
-> > > > +
-> > > > +        channel@0 {
-> > > > +          reg = <0>;
-> > > > +          ti,threshold-falling = <1000>;
-> > > > +          ti,threshold-rising = <2000>;
-> > > > +          ti,hysteresis = <20>;
-> > > > +        };
-> > > > +
-> > > > +        channel@1 {
-> > > > +          reg = <1>;
-> > > > +          ti,threshold-falling = <100>;
-> > > > +          ti,threshold-rising = <2500>;
-> > > > +          ti,hysteresis = <0>;
-> > > > +        };
-> > > > +      };
-> > > > +    };
-> > > > +...
-> > > > +  
-> > >   
-> 
+ .../sysfs-bus-platform-onboard-usb-hub        |   8 +
+ .../bindings/usb/realtek,rts5411.yaml         |  62 +++
+ MAINTAINERS                                   |   7 +
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts |  19 +-
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts |  11 +-
+ .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |  19 +-
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |  21 +-
+ drivers/usb/host/Kconfig                      |   1 +
+ drivers/usb/host/xhci-plat.c                  |  16 +
+ drivers/usb/misc/Kconfig                      |  17 +
+ drivers/usb/misc/Makefile                     |   1 +
+ drivers/usb/misc/onboard_usb_hub.c            | 415 ++++++++++++++++++
+ include/linux/of_platform.h                   |  22 +-
+ include/linux/usb/hcd.h                       |   2 +
+ include/linux/usb/onboard_hub.h               |  15 +
+ 15 files changed, 600 insertions(+), 36 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-onboard-usb-hub
+ create mode 100644 Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+ create mode 100644 drivers/usb/misc/onboard_usb_hub.c
+ create mode 100644 include/linux/usb/onboard_hub.h
 
-Best regards
-Jozsef
+-- 
+2.31.1.527.g47e6f16901-goog
+
