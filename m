@@ -2,287 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 053033728B2
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 12:20:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78E2F3728BC
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 12:22:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230218AbhEDKU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 06:20:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59336 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230251AbhEDKUy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 06:20:54 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26DEBC06174A
-        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 03:20:00 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id l2so8759608wrm.9
-        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 03:20:00 -0700 (PDT)
+        id S230267AbhEDKXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 06:23:43 -0400
+Received: from mail-bn8nam12on2065.outbound.protection.outlook.com ([40.107.237.65]:63841
+        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230153AbhEDKXl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 May 2021 06:23:41 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dnWtwXGdOSCuJFZKZA6jZ3I012iFrzMVzhK/fPZp5fhEvyYe7+R5h2j79StVq/M4axipRQdr7VkG+fE/cW+j++p9JXPj52dtNCtdFxMMn6rCMjg0M/tFiZ6wYjGvc2WDUmRle4gQkT/bLSV0WdWOIzEVQOe8kzPcTSnTiPVWujCDD4Trb4zRql0dRBvWMXR+GBcDL4/Dt3n35xgzrxWGCFfooWxqxTaJSbbgbapvHnK0qoq4n3jEpHM0s0tPftdeMA5LPqMM/fglZyPIHsV6MuSnfSmsXun+KR56vsOE4ETKgeQktTYzc4DExiusFDIO7oG1ovY6YJctJhs/IBEtQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gvYFb+CxhUBn7Qj3wKU6yp2ZATWNaPZZhODtcKPyoCQ=;
+ b=CtGIcpasPgkqG9SXb9yRbKlw3JdN11BfQFhCJW6quThTt6gdMSVdZN82hrS3FeoDoLmsKeSVh13acAdyiIJfmXA/crybk7HDmdz5jCb4G0iG43CS8au1l5dcKpcJ/qYXAWNG7X04V+iOc6ChqU4+YVSKLRS1NPQ6eUChDersvNi2B5rnxzNgI2GWanQA0XoPoukuGSnAHy6M6bgj37EY/mUQltd2UBMHtlyhBxuVkX0+dhDZhSsYhtH3OWifMtIXHfA7yww9YKB4KjIqlDGCCgKirZeqDr7Zhl5EySMU4i875RBSZe4yOW5+nWTZxe9hbOV0Nu7WFSRfoSZsK2g17w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=CCzoY1ZXOUmx6n7n3wk/SPRI356JRF97/LdAV2fm9lE=;
-        b=SGtOHSJX2vOepxhUR4Ad8B6bwpO0g9aIAH5vmzVlDUaeevIzJmwBs2rvSA0RtclLT6
-         QB+1nUQvyQZ9OxnWwDtm+BS1GOdk9ogUcX4obTCjD+BE7pZLh2M/prrzG6OA2G5WY5QE
-         RHBrUGAXVGVVkf4CnpGLsp106DnY+VCmDtDnF9yzgRKOyQEEVzjB7+iuxg/4oNlJHqOR
-         YTrz02YmwbLBnxsl8lAmObmdVARn7Ct3eE+eBmrQgcDTSX8lmRW9o53syLk7A90vfsBt
-         aRM44V0O1XDQZ7b9P0Ytcsl0Fd3A4tLD+4qtzxvTy3qj9PtkNUcOMdXk1sJqkETDM6ie
-         KRZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=CCzoY1ZXOUmx6n7n3wk/SPRI356JRF97/LdAV2fm9lE=;
-        b=GiI5XTaZ12UHW1Too+HyOdOvxiWsoG1xDum8bYKdJqzvUNG/AMR61TVQmob8izOuth
-         od/VZKCnebLPr7Xne9H5uqtN1yEp3gr8fRFISWgQNdn7a2WHZFU4I3ND/zmUYU79sjHV
-         N/c2qGBGmRViqspv55rh7LjKvTcP51HemGtguGwxnVMQqhyMqLYuO2lwTq55GG9pFuMB
-         HpQyqqzD+qA9JmLFLHXtKcLPZMv8qo/qFs2GNBjDxDVI/91KttgSul8APqO5vZWU2ntv
-         tGfSOG5Im028uMC8ZLMH2XsViTqtbWs3dusyvdAIQPXi4e+Uib6h/30shN+SWVtGjOHb
-         wuxA==
-X-Gm-Message-State: AOAM533gKdFZ4o+Xz4swZXKJIjlGN/izYMtXPYUA+67MwPfJqnbBAykO
-        AfoTYmXi2P2CASS0thsERRgbMg==
-X-Google-Smtp-Source: ABdhPJyHFx/oI8gug2CQr+9dINXbbG3Tmk9YXx/SFkK4eSHETEE5BT5R1jD3DGZLq5xcM+wPMWPx2A==
-X-Received: by 2002:adf:f28c:: with SMTP id k12mr30140824wro.272.1620123598707;
-        Tue, 04 May 2021 03:19:58 -0700 (PDT)
-Received: from arch-thunder.local (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
-        by smtp.gmail.com with ESMTPSA id d5sm16293789wrv.43.2021.05.04.03.19.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 May 2021 03:19:58 -0700 (PDT)
-From:   Rui Miguel Silva <rui.silva@linaro.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sebastian Siewior <bigeasy@linutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        Rui Miguel Silva <rui.silva@linaro.org>
-Subject: [PATCH 7/7] usb: isp1763: add peripheral mode
-Date:   Tue,  4 May 2021 11:19:10 +0100
-Message-Id: <20210504101910.18619-8-rui.silva@linaro.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210504101910.18619-1-rui.silva@linaro.org>
-References: <20210504101910.18619-1-rui.silva@linaro.org>
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gvYFb+CxhUBn7Qj3wKU6yp2ZATWNaPZZhODtcKPyoCQ=;
+ b=K4iuRcA5UfHNcLl94km0GMH/3XujOcsxxrJIY6BGuVpH1Y2VUcS9iG67NRXXK8JQCp7uWnhUz6+PTDmUAExrQZUvuf4IWWtHVy6mxJvz50WGH5Hm5ZyCdWlL9mvklj3Or/CIJRC4+uQCQewIlQyh3CZej3YID9/Tm+u2vb9H9IQ=
+Received: from SN4PR0501CA0103.namprd05.prod.outlook.com
+ (2603:10b6:803:42::20) by PH0PR02MB7799.namprd02.prod.outlook.com
+ (2603:10b6:510:5d::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.40; Tue, 4 May
+ 2021 10:22:43 +0000
+Received: from SN1NAM02FT042.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:803:42:cafe::a9) by SN4PR0501CA0103.outlook.office365.com
+ (2603:10b6:803:42::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.8 via Frontend
+ Transport; Tue, 4 May 2021 10:22:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT042.mail.protection.outlook.com (10.152.73.149) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4065.21 via Frontend Transport; Tue, 4 May 2021 10:22:43 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 4 May 2021 03:22:36 -0700
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Tue, 4 May 2021 03:22:36 -0700
+Envelope-to: git@xilinx.com,
+ mdf@kernel.org,
+ trix@redhat.com,
+ robh+dt@kernel.org,
+ arnd@arndb.de,
+ gregkh@linuxfoundation.org,
+ linus.walleij@linaro.org,
+ zou_wei@huawei.com,
+ linux-fpga@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ chinnikishore369@gmail.com
+Received: from [10.140.6.60] (port=35290 helo=xhdnavam40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <nava.manne@xilinx.com>)
+        id 1ldsCJ-000192-HZ; Tue, 04 May 2021 03:22:35 -0700
+From:   Nava kishore Manne <nava.manne@xilinx.com>
+To:     <mdf@kernel.org>, <trix@redhat.com>, <robh+dt@kernel.org>,
+        <michal.simek@xilinx.com>, <arnd@arndb.de>,
+        <rajan.vaja@xilinx.com>, <gregkh@linuxfoundation.org>,
+        <linus.walleij@linaro.org>, <amit.sunil.dhamne@xilinx.com>,
+        <tejas.patel@xilinx.com>, <zou_wei@huawei.com>,
+        <manish.narani@xilinx.com>,
+        <lakshmi.sai.krishna.potthuri@xilinx.com>, <nava.manne@xilinx.com>,
+        <wendy.liang@xilinx.com>, <linux-fpga@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <git@xilinx.com>,
+        <chinnikishore369@gmail.com>
+Subject: [RFC PATCH 0/4]Fpga: adds support to load the user-key encrypted FPGA Image loading
+Date:   Tue, 4 May 2021 15:52:23 +0530
+Message-ID: <20210504102227.15475-1-nava.manne@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7f550406-5945-4804-1f10-08d90ee68dcf
+X-MS-TrafficTypeDiagnostic: PH0PR02MB7799:
+X-Microsoft-Antispam-PRVS: <PH0PR02MB77999187901B814955732F44C25A9@PH0PR02MB7799.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:2449;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: DorDjRf7dK3OAdMtyENUVhvmZKmEQZW1jk5kAyr+v4oqim9oYZWKc68Sabc4LC2KSHYW6UF7CdaH700S8EzfzqdaR9DL9yKSMtuJSt62TJ0PYMK5/eQ0fbJFAg0gFGzcK3bj9zXo/aIenp8kfof5f5KBgIH+ts5v1KVPXlxn306L/AUNHxwTRgN6cJx9jvR2I14pxUCZ2+76GWaEpjIThjpDsXkl+ryUen9gJmiIHEoDqRud/Z84kN3vQyEf9tgqzJ3huFxrXBxg1oQ9nQBcrjb8mDyOgRVR9Mw+jMcJGLf6DHtRCiO5Cf5Ud/XtxhH0yD6PnLBhMH2s+2PBQCWXGkfIaYHKGBCQsR5UPduCs+VCQhLhkl3Z3xVtDtKgQrap4Cv9EEsNU9ksjeLs0ytN6wgQo20FNpgjFrKgq00PJRZaY9xdH3I9MxOTmKEkK1+gvcYwRGHnxawjUHMcY5yru8n/plDPhR542NlEOPITy27iaOoyo4xh8TU5KofT0LpRyio5th3Gu+avmiAEiearoCNhs478A+PH2hBuO2+i4MBrC8mEbPeOYX9NrecLa1CmP9a2nBe7PdY052M+JSEEcQc1CcwD7d/EjKBShVV4MyUv38UyhFbFUvO1GkXS4MvlI2XcEvhtZth2QTJyWaGfCNouH1W1FGOR4RFM0v4p6I8E7ttymIB8KYPUlYioI6K6v7bq29FivHFKjciDNQjwiUU5BUZYLWtOWimxn/L/e/4NOOjVq5g1xwthy6E6r/aA
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(346002)(396003)(39860400002)(136003)(376002)(36840700001)(46966006)(7416002)(336012)(5660300002)(8676002)(82310400003)(7636003)(36860700001)(8936002)(26005)(1076003)(4744005)(36906005)(2906002)(316002)(2616005)(356005)(36756003)(70206006)(47076005)(478600001)(9786002)(7696005)(110136005)(82740400003)(186003)(70586007)(83380400001)(921005)(426003)(6666004)(102446001)(83996005)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2021 10:22:43.3260
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f550406-5945-4804-1f10-08d90ee68dcf
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT042.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB7799
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Besides the already host mode support add peripheral mode support for
-the isp1763 IP from the isp1760 family.
+This patch series adds supports user-key encrypted FPGA Image loading using
+FPGA Manager framework.
 
-Signed-off-by: Rui Miguel Silva <rui.silva@linaro.org>
----
- drivers/usb/isp1760/isp1760-core.c | 34 +++++++++---
- drivers/usb/isp1760/isp1760-regs.h | 87 ++++++++++++++++++++++++++++++
- drivers/usb/isp1760/isp1760-udc.c  |  3 +-
- 3 files changed, 115 insertions(+), 9 deletions(-)
+Nava kishore Manne (4):
+  drivers: firmware: Add user encrypted key load API support
+  fpga: Add new properties to support user-key encrypted bitstream
+    loading
+  drivers: fpga: Add user-key encrypted FPGA Image loading support
+  fpga: zynqmp: Add user-key encrypted FPGA Image loading support
 
-diff --git a/drivers/usb/isp1760/isp1760-core.c b/drivers/usb/isp1760/isp1760-core.c
-index 31de1064aa23..f9f77099b8ae 100644
---- a/drivers/usb/isp1760/isp1760-core.c
-+++ b/drivers/usb/isp1760/isp1760-core.c
-@@ -82,7 +82,8 @@ static int isp1760_init_core(struct isp1760_device *isp)
- 	 *
- 	 * TODO: Really support OTG. For now we configure port 1 in device mode
- 	 */
--	if ((isp->devflags & ISP1760_FLAG_ISP1761) &&
-+	if (((isp->devflags & ISP1760_FLAG_ISP1761) ||
-+	     (isp->devflags & ISP1760_FLAG_ISP1763)) &&
- 	    (isp->devflags & ISP1760_FLAG_PERIPHERAL_EN)) {
- 		isp1760_field_set(hcd->fields, HW_DM_PULLDOWN);
- 		isp1760_field_set(hcd->fields, HW_DP_PULLDOWN);
-@@ -185,16 +186,28 @@ static struct regmap_config isp1761_dc_regmap_conf = {
- 	.volatile_table = &isp176x_dc_volatile_table,
- };
- 
-+static struct regmap_config isp1763_dc_regmap_conf = {
-+	.name = "isp1763-dc",
-+	.reg_bits = 8,
-+	.reg_stride = 4,
-+	.val_bits = 16,
-+	.fast_io = true,
-+	.max_register = ISP176x_DC_TESTMODE,
-+	.volatile_table = &isp176x_dc_volatile_table,
-+};
-+
- int isp1760_register(struct resource *mem, int irq, unsigned long irqflags,
- 		     struct device *dev, unsigned int devflags)
- {
--	bool udc_disabled = !(devflags & ISP1760_FLAG_ISP1761);
- 	const struct regmap_config *hc_regmap;
- 	const struct reg_field *hc_reg_fields;
-+	const struct regmap_config *dc_regmap;
-+	const struct reg_field *dc_reg_fields;
- 	struct isp1760_device *isp;
- 	struct isp1760_hcd *hcd;
- 	struct isp1760_udc *udc;
- 	struct regmap_field *f;
-+	bool udc_enabled;
- 	int ret;
- 	int i;
- 
-@@ -202,8 +215,11 @@ int isp1760_register(struct resource *mem, int irq, unsigned long irqflags,
- 	 * If neither the HCD not the UDC is enabled return an error, as no
- 	 * device would be registered.
- 	 */
-+	udc_enabled = ((devflags & ISP1760_FLAG_ISP1763) ||
-+		       (devflags & ISP1760_FLAG_ISP1761));
-+
- 	if ((!IS_ENABLED(CONFIG_USB_ISP1760_HCD) || usb_disabled()) &&
--	    (!IS_ENABLED(CONFIG_USB_ISP1761_UDC) || udc_disabled))
-+	    (!IS_ENABLED(CONFIG_USB_ISP1761_UDC) || !udc_enabled))
- 		return -ENODEV;
- 
- 	isp = devm_kzalloc(dev, sizeof(*isp), GFP_KERNEL);
-@@ -233,9 +249,13 @@ int isp1760_register(struct resource *mem, int irq, unsigned long irqflags,
- 	if (hcd->is_isp1763) {
- 		hc_regmap = &isp1763_hc_regmap_conf;
- 		hc_reg_fields = &isp1763_hc_reg_fields[0];
-+		dc_regmap = &isp1763_dc_regmap_conf;
-+		dc_reg_fields = &isp1763_dc_reg_fields[0];
- 	} else {
- 		hc_regmap = &isp1760_hc_regmap_conf;
- 		hc_reg_fields = &isp1760_hc_reg_fields[0];
-+		dc_regmap = &isp1761_dc_regmap_conf;
-+		dc_reg_fields = &isp1761_dc_reg_fields[0];
- 	}
- 
- 	isp->rst_gpio = devm_gpiod_get_optional(dev, NULL, GPIOD_OUT_HIGH);
-@@ -258,14 +278,12 @@ int isp1760_register(struct resource *mem, int irq, unsigned long irqflags,
- 		hcd->fields[i] = f;
- 	}
- 
--	udc->regs = devm_regmap_init_mmio(dev, hcd->base,
--					  &isp1761_dc_regmap_conf);
-+	udc->regs = devm_regmap_init_mmio(dev, hcd->base, dc_regmap);
- 	if (IS_ERR(udc->regs))
- 		return PTR_ERR(udc->regs);
- 
- 	for (i = 0; i < DC_FIELD_MAX; i++) {
--		f = devm_regmap_field_alloc(dev, udc->regs,
--					    isp1761_dc_reg_fields[i]);
-+		f = devm_regmap_field_alloc(dev, udc->regs, dc_reg_fields[i]);
- 		if (IS_ERR(f))
- 			return PTR_ERR(f);
- 
-@@ -288,7 +306,7 @@ int isp1760_register(struct resource *mem, int irq, unsigned long irqflags,
- 			return ret;
- 	}
- 
--	if (IS_ENABLED(CONFIG_USB_ISP1761_UDC) && !udc_disabled) {
-+	if (IS_ENABLED(CONFIG_USB_ISP1761_UDC) && udc_enabled) {
- 		ret = isp1760_udc_register(isp, irq, irqflags);
- 		if (ret < 0) {
- 			isp1760_hcd_unregister(hcd);
-diff --git a/drivers/usb/isp1760/isp1760-regs.h b/drivers/usb/isp1760/isp1760-regs.h
-index c98466f66cb6..a66f77edb814 100644
---- a/drivers/usb/isp1760/isp1760-regs.h
-+++ b/drivers/usb/isp1760/isp1760-regs.h
-@@ -465,4 +465,91 @@ static const struct reg_field isp1761_dc_reg_fields[] = {
- 	[DC_FRAMENUM]		= REG_FIELD(ISP176x_DC_FRAMENUM, 0, 10),
- };
- 
-+/* ISP1763 */
-+/* Initialization Registers */
-+#define ISP1763_DC_ADDRESS		0x00
-+#define ISP1763_DC_MODE			0x0c
-+#define ISP1763_DC_INTCONF		0x10
-+#define ISP1763_DC_INTENABLE		0x14
-+
-+/* Data Flow Registers */
-+#define ISP1763_DC_EPMAXPKTSZ		0x04
-+#define ISP1763_DC_EPTYPE		0x08
-+
-+#define ISP1763_DC_BUFLEN		0x1c
-+#define ISP1763_DC_BUFSTAT		0x1e
-+#define ISP1763_DC_DATAPORT		0x20
-+
-+#define ISP1763_DC_CTRLFUNC		0x28
-+#define ISP1763_DC_EPINDEX		0x2c
-+
-+/* DMA Registers */
-+#define ISP1763_DC_DMACMD		0x30
-+#define ISP1763_DC_DMATXCOUNT		0x34
-+#define ISP1763_DC_DMACONF		0x38
-+#define ISP1763_DC_DMAHW		0x3c
-+#define ISP1763_DC_DMAINTREASON		0x50
-+#define ISP1763_DC_DMAINTEN		0x54
-+#define ISP1763_DC_DMAEP		0x58
-+#define ISP1763_DC_DMABURSTCOUNT	0x64
-+
-+/* General Registers */
-+#define ISP1763_DC_INTERRUPT		0x18
-+#define ISP1763_DC_CHIPID		0x70
-+#define ISP1763_DC_FRAMENUM		0x74
-+#define ISP1763_DC_SCRATCH		0x78
-+#define ISP1763_DC_UNLOCKDEV		0x7c
-+#define ISP1763_DC_INTPULSEWIDTH	0x80
-+#define ISP1763_DC_TESTMODE		0x84
-+
-+static const struct regmap_range isp1763_dc_volatile_ranges[] = {
-+	regmap_reg_range(ISP1763_DC_EPMAXPKTSZ, ISP1763_DC_EPTYPE),
-+	regmap_reg_range(ISP1763_DC_BUFLEN, ISP1763_DC_EPINDEX),
-+};
-+
-+static const struct regmap_access_table isp1763_dc_volatile_table = {
-+	.yes_ranges	= isp1763_dc_volatile_ranges,
-+	.n_yes_ranges	= ARRAY_SIZE(isp1763_dc_volatile_ranges),
-+};
-+
-+static const struct reg_field isp1763_dc_reg_fields[] = {
-+	[DC_DEVEN]		= REG_FIELD(ISP1763_DC_ADDRESS, 7, 7),
-+	[DC_DEVADDR]		= REG_FIELD(ISP1763_DC_ADDRESS, 0, 6),
-+	[DC_VBUSSTAT]		= REG_FIELD(ISP1763_DC_MODE, 8, 8),
-+	[DC_SFRESET]		= REG_FIELD(ISP1763_DC_MODE, 4, 4),
-+	[DC_GLINTENA]		= REG_FIELD(ISP1763_DC_MODE, 3, 3),
-+	[DC_CDBGMOD_ACK]	= REG_FIELD(ISP1763_DC_INTCONF, 6, 6),
-+	[DC_DDBGMODIN_ACK]	= REG_FIELD(ISP1763_DC_INTCONF, 4, 4),
-+	[DC_DDBGMODOUT_ACK]	= REG_FIELD(ISP1763_DC_INTCONF, 2, 2),
-+	[DC_INTPOL]		= REG_FIELD(ISP1763_DC_INTCONF, 0, 0),
-+	[DC_IEPRXTX_7]		= REG_FIELD(ISP1763_DC_INTENABLE, 25, 25),
-+	[DC_IEPRXTX_6]		= REG_FIELD(ISP1763_DC_INTENABLE, 23, 23),
-+	[DC_IEPRXTX_5]		= REG_FIELD(ISP1763_DC_INTENABLE, 21, 21),
-+	[DC_IEPRXTX_4]		= REG_FIELD(ISP1763_DC_INTENABLE, 19, 19),
-+	[DC_IEPRXTX_3]		= REG_FIELD(ISP1763_DC_INTENABLE, 17, 17),
-+	[DC_IEPRXTX_2]		= REG_FIELD(ISP1763_DC_INTENABLE, 15, 15),
-+	[DC_IEPRXTX_1]		= REG_FIELD(ISP1763_DC_INTENABLE, 13, 13),
-+	[DC_IEPRXTX_0]		= REG_FIELD(ISP1763_DC_INTENABLE, 11, 11),
-+	[DC_IEP0SETUP]		= REG_FIELD(ISP1763_DC_INTENABLE, 8, 8),
-+	[DC_IEVBUS]		= REG_FIELD(ISP1763_DC_INTENABLE, 7, 7),
-+	[DC_IEHS_STA]		= REG_FIELD(ISP1763_DC_INTENABLE, 5, 5),
-+	[DC_IERESM]		= REG_FIELD(ISP1763_DC_INTENABLE, 4, 4),
-+	[DC_IESUSP]		= REG_FIELD(ISP1763_DC_INTENABLE, 3, 3),
-+	[DC_IEBRST]		= REG_FIELD(ISP1763_DC_INTENABLE, 0, 0),
-+	[DC_EP0SETUP]		= REG_FIELD(ISP1763_DC_EPINDEX, 5, 5),
-+	[DC_ENDPIDX]		= REG_FIELD(ISP1763_DC_EPINDEX, 1, 4),
-+	[DC_EPDIR]		= REG_FIELD(ISP1763_DC_EPINDEX, 0, 0),
-+	[DC_CLBUF]		= REG_FIELD(ISP1763_DC_CTRLFUNC, 4, 4),
-+	[DC_VENDP]		= REG_FIELD(ISP1763_DC_CTRLFUNC, 3, 3),
-+	[DC_DSEN]		= REG_FIELD(ISP1763_DC_CTRLFUNC, 2, 2),
-+	[DC_STATUS]		= REG_FIELD(ISP1763_DC_CTRLFUNC, 1, 1),
-+	[DC_STALL]		= REG_FIELD(ISP1763_DC_CTRLFUNC, 0, 0),
-+	[DC_BUFLEN]		= REG_FIELD(ISP1763_DC_BUFLEN, 0, 15),
-+	[DC_FFOSZ]		= REG_FIELD(ISP1763_DC_EPMAXPKTSZ, 0, 10),
-+	[DC_EPENABLE]		= REG_FIELD(ISP1763_DC_EPTYPE, 3, 3),
-+	[DC_ENDPTYP]		= REG_FIELD(ISP1763_DC_EPTYPE, 0, 1),
-+	[DC_UFRAMENUM]		= REG_FIELD(ISP1763_DC_FRAMENUM, 11, 13),
-+	[DC_FRAMENUM]		= REG_FIELD(ISP1763_DC_FRAMENUM, 0, 10),
-+};
-+
- #endif
-diff --git a/drivers/usb/isp1760/isp1760-udc.c b/drivers/usb/isp1760/isp1760-udc.c
-index 980d51bff65e..1eff029c4158 100644
---- a/drivers/usb/isp1760/isp1760-udc.c
-+++ b/drivers/usb/isp1760/isp1760-udc.c
-@@ -1503,7 +1503,8 @@ static int isp1760_udc_init(struct isp1760_udc *udc)
- 		return -ENODEV;
- 	}
- 
--	if (chipid != 0x00011582 && chipid != 0x00158210) {
-+	if (chipid != 0x00011582 && chipid != 0x00158210 &&
-+	    chipid != 0x00006320) {
- 		dev_err(udc->isp->dev, "udc: invalid chip ID 0x%08x\n", chipid);
- 		return -ENODEV;
- 	}
+ .../devicetree/bindings/fpga/fpga-region.txt  |  5 ++++
+ drivers/firmware/xilinx/zynqmp.c              | 17 +++++++++++++
+ drivers/fpga/fpga-mgr.c                       | 15 ++++++++++++
+ drivers/fpga/of-fpga-region.c                 | 13 ++++++++++
+ drivers/fpga/zynqmp-fpga.c                    | 24 +++++++++++++++++--
+ include/linux/firmware/xlnx-zynqmp.h          |  9 +++++++
+ include/linux/fpga/fpga-mgr.h                 |  7 ++++++
+ 7 files changed, 88 insertions(+), 2 deletions(-)
+
 -- 
-2.31.1
+2.17.1
 
