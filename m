@@ -2,146 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B75BC37293B
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 12:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D93F4372941
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 12:59:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230152AbhEDK5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 06:57:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39188 "EHLO
+        id S230284AbhEDK77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 06:59:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229903AbhEDK5u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 06:57:50 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A744CC061574
-        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 03:56:55 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ldsjW-0003Ey-25; Tue, 04 May 2021 12:56:54 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ldsjV-0004Wn-GB; Tue, 04 May 2021 12:56:53 +0200
-Date:   Tue, 4 May 2021 12:56:53 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Kent Gibson <warthog618@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de
-Subject: Re: [PATCH 1/2] dt-bindings: gpio: introduce hog properties with
- less ambiguity
-Message-ID: <20210504105653.bfhtqd7ildoipcqu@pengutronix.de>
-References: <20210503210526.43455-1-u.kleine-koenig@pengutronix.de>
- <20210504025546.GA13356@sol>
- <20210504091459.clb5nkwgrgg43ixq@pengutronix.de>
- <20210504102454.GA21266@sol>
+        with ESMTP id S230261AbhEDK76 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 06:59:58 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A527C061574
+        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 03:59:02 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id g13so4656871qts.4
+        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 03:59:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=r3B/fNK84CltMBPJVMASlwyz4bmYLgsBN7IeNMwteLY=;
+        b=fYjOBRjkNxcEFYH/GZC2GUibotMx4lt0t8HlvtRV1msaEy7HFSquKGnQjm5nusthRn
+         asH48V14SWbn9KKpIV7x79gyKtTtx5SV2TDrHeUht9ZNlL7fDB3jhCDMSpIyuJGgofvN
+         XVGO6+ASgsfEvIW9UvfflNpPfhGX6mNfwxUhauKEopZJ4RsRCwjrz6Mux0toZgPaD1lA
+         RZ5cMsWNiuGgX/WxCkNmv+ieg2nsRj4tymChF1frw8bEuI0/Wch04C4CFJlB5AUcDeb5
+         yd65HZpxzvU5JwVqj9NXYkxJdUeF+dmwbfxEWRwpbExLEqBRM9XjIxOL9/CKzg3LL6ll
+         j+tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=r3B/fNK84CltMBPJVMASlwyz4bmYLgsBN7IeNMwteLY=;
+        b=BwgHcxKnbDY1CBJydWcN0XOsO5WLd3jy2vSr6kWodcOx77bx0bWpMbixe//6/aNF12
+         QSwRfFTl/j4Xa0svrCQYKC7q1ViUJ6/UNxl7UFyMmN/riBsjNUmNhJ/GmGaZw0rVmxFV
+         dW74Io+OeMaZbMBMZ+IEP4C055lMvPJy7LqAe6cCYOK4+qvme63Kq3k4UTboDy/oLyg+
+         ZpQ1PAqNlV5ZbD7tonHD0Eky6qZivMVY0epsSBcQrsEAoe7Pu6nWiXlXsvCUZj5OIlXa
+         gzdgMumELBn31M1eASedVKPY6LH/N9sQErpDxpcK0+HY3we4hyCLLW2SJjGb/ynBbhi7
+         o9eA==
+X-Gm-Message-State: AOAM5329v3n5zIrGyZuh/MKrwI3xDN4sr95rfa6vuDcTTkQ01PGzukJ5
+        oy+JMpd0mXEieDJCDwpGpRyuPo9LYzNV5tfA6a1wsw==
+X-Google-Smtp-Source: ABdhPJziNqv7NZ3RvX7OYxfEOn3d+D7csr2IH8GytFp9h9C3he0BUgktsCt8o1F76/bufM6qWmtrJwFoilBmBTj9qg4=
+X-Received: by 2002:ac8:48d4:: with SMTP id l20mr21419522qtr.113.1620125941473;
+ Tue, 04 May 2021 03:59:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="o22xqn4tcf5ikogd"
-Content-Disposition: inline
-In-Reply-To: <20210504102454.GA21266@sol>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210406092634.50465-1-greentime.hu@sifive.com>
+ <20210503164023.GA919777@bjorn-Precision-5520> <CAHCEeh+cMrEnHNG3W3ZNzdgT-m7BMorDawF6D8qkFYGg=RJMOw@mail.gmail.com>
+ <20210504101201.GA20729@lpieralisi>
+In-Reply-To: <20210504101201.GA20729@lpieralisi>
+From:   Greentime Hu <greentime.hu@sifive.com>
+Date:   Tue, 4 May 2021 18:58:48 +0800
+Message-ID: <CAHCEehJsUFxs71MuY5f4VbDT-NroCzJ=mnbbYYa4VwT-QWcQNw@mail.gmail.com>
+Subject: Re: [PATCH v5 0/6] Add SiFive FU740 PCIe host controller driver support
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     Bjorn Helgaas <helgaas@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>, hes@sifive.com,
+        Erik Danie <erik.danie@sifive.com>,
+        Zong Li <zong.li@sifive.com>,
+        Bjorn Helgaas <bhelgaas@google.com>, robh+dt@kernel.org,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, alex.dewar90@gmail.com,
+        khilman@baylibre.com, hayashi.kunihiko@socionext.com,
+        vidyas@nvidia.com, jh80.chung@samsung.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Lorenzo Pieralisi <lorenzo.pieralisi@arm.com> =E6=96=BC 2021=E5=B9=B45=E6=
+=9C=884=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=886:12=E5=AF=AB=E9=81=
+=93=EF=BC=9A
 
---o22xqn4tcf5ikogd
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+>
+> On Tue, May 04, 2021 at 03:20:00PM +0800, Greentime Hu wrote:
+> > Bjorn Helgaas <helgaas@kernel.org> =E6=96=BC 2021=E5=B9=B45=E6=9C=884=
+=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=8812:40=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+> > >
+> > > On Tue, Apr 06, 2021 at 05:26:28PM +0800, Greentime Hu wrote:
+> > > > This patchset includes SiFive FU740 PCIe host controller driver. We=
+ also
+> > > > add pcie_aux clock and pcie_power_on_reset controller to prci drive=
+r for
+> > > > PCIe driver to use it.
+> > >
+> > > I dropped this series because of the build problem I mentioned [1].
+> > > It will not be included in v5.13 unless the build problem is fixed
+> > > ASAP.
+> > >
+> > > [1] https://lore.kernel.org/r/20210428194713.GA314975@bjorn-Precision=
+-5520
+> > >
+> >
+> > Hi all,
+> >
+> > This build failed in x86_64 is because CONFIG_GPIOLIB is disabled in
+> > the testing config.
+> >
+> > diff --git a/drivers/pci/controller/dwc/Kconfig
+> > b/drivers/pci/controller/dwc/Kconfig
+> > index 0a37d21ed64e..56b66e1fed53 100644
+> > --- a/drivers/pci/controller/dwc/Kconfig
+> > +++ b/drivers/pci/controller/dwc/Kconfig
+> > @@ -323,6 +323,7 @@ config PCIE_FU740
+> >         depends on PCI_MSI_IRQ_DOMAIN
+> >         depends on SOC_SIFIVE || COMPILE_TEST
+> >         select PCIE_DW_HOST
+> > +       select GPIOLIB
+>
+> I think that an include:
+>
+> #include <linux/gpio/consumer.h>
+>
+> in the driver would do. Still, I believe we should also add a
+> "depends on" in the Kconfig entry rather than a "select".
+>
+> Please let me know as soon as possible.
+>
 
-Hello,
+Hi Lorenzo,
 
-On Tue, May 04, 2021 at 06:24:54PM +0800, Kent Gibson wrote:
-> On Tue, May 04, 2021 at 11:14:59AM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Tue, May 04, 2021 at 10:55:46AM +0800, Kent Gibson wrote:
-> > > On Mon, May 03, 2021 at 11:05:26PM +0200, Uwe Kleine-K=F6nig wrote:
-> > > > For active low lines the semantic of output-low and output-high is =
-hard
-> > > > to grasp because there is a double negation involved and so output-=
-low
-> > > > is actually a request to drive the line high (aka inactive).
-> > >=20
-> > > +1 on clarifying the naming.
-> > >=20
-> > > > So introduce output-inactive and output-active with the same semant=
-ic as
-> > > > output-low and output-high respectively have today, but with a more
-> > > > sensible name.
-> > > >=20
-> > >=20
-> > > You use active/inactive here, but then asserted/deasserted in the pat=
-ch.
-> >=20
-> > oops, this is an oversight.
-> >=20
-> > > My preference would be the active/inactive, which has more of a level
-> > > feel, over the asserted/deasserted which feels more like an edge.
-> > >=20
-> > > And you still use active/inactive in the descriptions, so now we have=
- all
-> > > three naming schemes in the mix. =20
-> > >=20
-> > > What made you change?
-> >=20
-> > I had active/inactive first, but Linux Walleij requested
-> > asserted/deasserted:
-> >=20
-> > https://lore.kernel.org/r/CACRpkdbccHbhYcCyPiSoA7+zGXBtbL_LwLkPB3vQDyOq=
-kTA7EQ@mail.gmail.com
->=20
-> Thanks - I'd missed that.
->=20
-> I don't suppose you happen to have a link to the gpiod_set_value()
-> discussion that Linus mentions?
+Thank you for suggesting this.
+I'll add the include and use "depends on" rather than a "select" and
+send the v6 patch.
 
-I found https://lore.kernel.org/linux-gpio/CACRpkdZAm5AML6cfrX_VrzyADASj1rs=
-VXC3zwtfdo+aRSgX7fQ@mail.gmail.com/
-but not that other thread Linus mentions there. I would have expected
-https://lore.kernel.org/linux-gpio/?q=3DGPIO_OUT_ASSERTED to find it, but
-it doesn't.
-
-> > While I like active/inactive better than asserted/deasserted, the latter
-> > is still way better than high/low, so I didn't discuss.
-> >=20
->=20
-> As a native English speaker, I find deasserted to be awkward - though it
-> is the appropriate negative of asserted in this context.
->=20
-> And there is no escaping the naming of the active-low, so I'm curious to
-
-Ack, we shouldn't rename that to assert-low :-)
-
-> know if there is a good reason not to go with active/inactive.
-
-Linus: So we're already 3 out of 3 who would like active/inactive better
-than asserted/deasserted. I'm curious about your preference, too.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---o22xqn4tcf5ikogd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmCRKHIACgkQwfwUeK3K
-7AlH9gf8DdMVtiC0OrBbdXaee6k89fVOdJ3UwusEmnNTp1wLZvio4mHFiDF3VZBM
-7LHuaUJUO5B4dJ230CLlh+7DWB9fto2iurOuyRv7+sOaxWRFfdI7YW0V18BhQ6sF
-SmIfDoEzki4h9fSV7H7j5R2zASlHFJTSv8oxygXXnBl2uCFuls6AebvFcTDMVC6X
-8c9G8mbJoZzDCZrR53PZfwnheAA4eUaZF10AdIbDMAM+YdO8uJXtpMWCI7rlMIDR
-+ssBiNsef4rOUE43SkU0B+yuaBuMjY11rmsZxGuP5zPJFlS17kYshogeo3gkm4eh
-5EfJQpw8AdI/8ThabQstBVZ7ihf5ng==
-=kd8L
------END PGP SIGNATURE-----
-
---o22xqn4tcf5ikogd--
+> Lorenzo
+>
+> >         help
+> >           Say Y here if you want PCIe controller support for the SiFive
+> >           FU740.
+> >
+> > After applying this change, it can build pass.
+> >
+> > > > This is tested with e1000e: Intel(R) PRO/1000 Network Card, AMD Rad=
+eon R5
+> > > > 230 graphics card and SP M.2 PCIe Gen 3 SSD in SiFive Unmatched bas=
+ed on
+> > > > v5.11 Linux kernel.
+> > > >
+> > > > Changes in v5:
+> > > >  - Fix typo in comments
+> > > >  - Keep comments style consistent
+> > > >  - Refine some error handling codes
+> > > >  - Remove unneeded header file including
+> > > >  - Merge fu740_pcie_ltssm_enable implementation to fu740_pcie_start=
+_link
+> > > >
+> > > > Changes in v4:
+> > > >  - Fix Wunused-but-set-variable warning in prci driver
+> > > >
+> > > > Changes in v3:
+> > > >  - Remove items that has been defined
+> > > >  - Refine format of sifive,fu740-pcie.yaml
+> > > >  - Replace perstn-gpios with the common one
+> > > >  - Change DBI mapping space to 2GB from 4GB
+> > > >  - Refine drivers/reset/Kconfig
+> > > >
+> > > > Changes in v2:
+> > > >  - Refine codes based on reviewers' feedback
+> > > >  - Remove define and use the common one
+> > > >  - Replace __raw_writel with writel_relaxed
+> > > >  - Split fu740_phyregreadwrite to write function
+> > > >  - Use readl_poll_timeout in stead of while loop checking
+> > > >  - Use dwc common codes
+> > > >  - Use gpio descriptors and the gpiod_* api.
+> > > >  - Replace devm_ioremap_resource with devm_platform_ioremap_resourc=
+e_byname
+> > > >  - Replace devm_reset_control_get with devm_reset_control_get_exclu=
+sive
+> > > >  - Add more comments for delay and sleep
+> > > >  - Remove "phy ? x : y" expressions
+> > > >  - Refine code logic to remove possible infinite loop
+> > > >  - Replace magic number with meaningful define
+> > > >  - Remove fu740_pcie_pm_ops
+> > > >  - Use builtin_platform_driver
+> > > >
+> > > > Greentime Hu (5):
+> > > >   clk: sifive: Add pcie_aux clock in prci driver for PCIe driver
+> > > >   clk: sifive: Use reset-simple in prci driver for PCIe driver
+> > > >   MAINTAINERS: Add maintainers for SiFive FU740 PCIe driver
+> > > >   dt-bindings: PCI: Add SiFive FU740 PCIe host controller
+> > > >   riscv: dts: Add PCIe support for the SiFive FU740-C000 SoC
+> > > >
+> > > > Paul Walmsley (1):
+> > > >   PCI: fu740: Add SiFive FU740 PCIe host controller driver
+> > > >
+> > > >  .../bindings/pci/sifive,fu740-pcie.yaml       | 113 +++++++
+> > > >  MAINTAINERS                                   |   8 +
+> > > >  arch/riscv/boot/dts/sifive/fu740-c000.dtsi    |  33 ++
+> > > >  drivers/clk/sifive/Kconfig                    |   2 +
+> > > >  drivers/clk/sifive/fu740-prci.c               |  11 +
+> > > >  drivers/clk/sifive/fu740-prci.h               |   2 +-
+> > > >  drivers/clk/sifive/sifive-prci.c              |  54 +++
+> > > >  drivers/clk/sifive/sifive-prci.h              |  13 +
+> > > >  drivers/pci/controller/dwc/Kconfig            |   9 +
+> > > >  drivers/pci/controller/dwc/Makefile           |   1 +
+> > > >  drivers/pci/controller/dwc/pcie-fu740.c       | 308 ++++++++++++++=
+++++
+> > > >  drivers/reset/Kconfig                         |   1 +
+> > > >  include/dt-bindings/clock/sifive-fu740-prci.h |   1 +
+> > > >  13 files changed, 555 insertions(+), 1 deletion(-)
+> > > >  create mode 100644 Documentation/devicetree/bindings/pci/sifive,fu=
+740-pcie.yaml
+> > > >  create mode 100644 drivers/pci/controller/dwc/pcie-fu740.c
+> > > >
+> > > > --
+> > > > 2.30.2
+> > > >
