@@ -2,170 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55758372710
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 10:19:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A5E2372757
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 10:39:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229975AbhEDIUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 04:20:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60966 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229848AbhEDIUQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 04:20:16 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A592C061574;
-        Tue,  4 May 2021 01:19:21 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id t4so11874172ejo.0;
-        Tue, 04 May 2021 01:19:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jFYxxE/Ai61oQCqbk8ib70Q6yklWPzwYT//bt7eipoQ=;
-        b=PQsB/zeXbufsBRfumImBtGFOi4EbfyiEQq5+qZDzRL6EhpH8bcfUuuTC0UeF36vX+f
-         Lovgh0fM6kGsl8gMaWO0cRPkRrvGnitQJJrx01HlFX9FDP0OlnNJ8ZZ8j42bjLIZPqsS
-         htXhTkc7MLmWrMUCXRf6FON1PW+DVg6Q3iPiIlAuRVF0sZnWGw/kbhY3bhRHs5gTq73E
-         XaR7TMWoNWupzuVxoTzgeGV9MBsbCGlm+MOfbv/Jqb+ssbhyV0HPsu4cQVk5CcVT1gMQ
-         OLp4yYpjzBHPHWdNILPMAyRk4OtLPLoTgfKr7MV5ibuReAovyqQOmcet3yMeNweCbFrN
-         4mvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jFYxxE/Ai61oQCqbk8ib70Q6yklWPzwYT//bt7eipoQ=;
-        b=IwoRiiU+JFNNbzs74ZqIc6e/pAcFq/dxILesr3/rYJCxipjLL+q/w2calguitm3Bj8
-         k4NEqQ2hYC3y+oUifkNe+VIMOnqU6kQnpGhQ5g6ucSvdKSAMMZakz/3ExFsscx4VfpLU
-         Ftfn+v8g+lOovPdiqDfAi0gCjlq8iocPEgr7My4V8lA5R4aZN0GHgX0FLqCb9i2lEMij
-         jKfrGzoaAdrpCm9nOxB4TWIFWUOU89l0hhnnJfLTu5JV1nN9N9GMrDmfYkJGd7jqq3jK
-         Ur+mHtCoXn7SEAA5Ok+wYDo/KVDACloXAuDjm96+zRy71uRx8jWQ+U7Ru/AReYaDvXn2
-         NC8A==
-X-Gm-Message-State: AOAM5309VvnxX6jHs1IAlTqIWC1sSiWPHFA5Ns9R0la+aBvb2Ci2jYKo
-        JGmcV8fovUtOaTWIegrZWYL2KSMApSccWaWCLZSAh+FQ3g421A==
-X-Google-Smtp-Source: ABdhPJxrfkJv9gNQ+qTu/TrExlQlnYNHOczojGBxK9lx7BvpZiX2BxSk3Wu3w6SGImnypoxi5TrlwEVehxkbRq9PUrE=
-X-Received: by 2002:a17:906:f1d4:: with SMTP id gx20mr20558733ejb.108.1620116359971;
- Tue, 04 May 2021 01:19:19 -0700 (PDT)
+        id S230130AbhEDIkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 04:40:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40334 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230061AbhEDIhT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 May 2021 04:37:19 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 52435613B3;
+        Tue,  4 May 2021 08:36:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620117385;
+        bh=P4R0wIusFfi+tbxKIZS7tgEnt8ABZzayysHovlokyMo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=bIPqeI8pW4RBFXUepre+PYKq1BHhmvJ8C6VpOjZxh6kF+0XT6h8eqrIvVbE/eQfhQ
+         DpqV+H2if46G4y+VWTPXKdUdvyoephpaqXzg3O+hvkhTJH3AvfpjtPHlcwSMmXkehY
+         4KH/zPjsTHKa5MImDS81sei29P9hyeYRSiqAdFgYSFOEp3sNzXxC06kr/eOBBONFY9
+         INf71MfINptRxTHQk+e0XvfqiwbXMu8zXAItR9rGfwBHn8qAG6jGtPeD9ErfF9478W
+         bDg3r5cI6UyBQv42V9jjT0ZWTCcfuL9BEnXDo52lj1fjemB+Sl6zlrwgy8VkRO7Onp
+         I/BenehoI9oSw==
+Received: by wens.tw (Postfix, from userid 1000)
+        id 2BA645FBFA; Tue,  4 May 2021 16:36:23 +0800 (CST)
+From:   Chen-Yu Tsai <wens@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc:     Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] arm64: dts: rockchip: rk3328: Enable USB3 on some SBCs
+Date:   Tue,  4 May 2021 16:36:12 +0800
+Message-Id: <20210504083616.9654-1-wens@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20210503145503.1477-1-linux.amoon@gmail.com> <20210503145503.1477-4-linux.amoon@gmail.com>
- <CAFBinCCxMvomKt9E0jT_XXpyL1_-qXH4=zVDMNdbDCnZCsnT=A@mail.gmail.com>
- <CANAwSgTdFHwtKd-sgQq0Jp8WP55fZG3wsn7feCGo257yqiFkpw@mail.gmail.com>
- <CAFBinCDUc7VG7T9c8snP4ujMMViS0GRdztP6QGJvF9LNESHHCw@mail.gmail.com>
- <CANAwSgSrQnBs06+DG6x+GMvyjvu-hPFX0J5MQ0yKPBvNaNu98w@mail.gmail.com> <CAFBinCDMTmZ5ifii8rW=6qSdNngx3Gz1tZPd7aubDkmqNYD_og@mail.gmail.com>
-In-Reply-To: <CAFBinCDMTmZ5ifii8rW=6qSdNngx3Gz1tZPd7aubDkmqNYD_og@mail.gmail.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Tue, 4 May 2021 13:49:09 +0530
-Message-ID: <CANAwSgTTvPRJW8G1g4gzaSvud2YVf_bPP3QZdYMtL-CuSvosAA@mail.gmail.com>
-Subject: Re: [PATCHv1 3/9] soc: amlogic: meson-ee-pwrc: Add hdmi power domain
- Meson g12a SoCs
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin
+From: Chen-Yu Tsai <wens@csie.org>
 
-On Mon, 3 May 2021 at 23:22, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Anand,
->
-> On Mon, May 3, 2021 at 6:37 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> [...]
-> > > > whenever I try something new it fails. Please ignore this series.
-> > > if the VPU and HDMI power domains were separate (from hardware
-> > > perspective, not from driver perspective) then your change is a good
-> > > step forward.
-> > > in that case VPU_HHI_MEMPD would need to be removed from wherever it's
-> > > currently used -> that means we need to also decide if we want to
-> > > break compatibility with older (before this series) .dtbs
-> > >
-> > >
-> >
-> > As per the datasheet S922X Datasheet, HDMI and VPU are different
-> > reg controller and they are independent of each other.
-> [...]
-> > Note: HDMI and AUDIO and Ethernet are also independent of each other.
-> let me say it this way: I've seen cases where the information from the
-> datasheet is not correct
->
-> Also to me it doesn't explicitly state that the bits are independent
-> of each other (at the same time it also doesn't state that they belong
-> together).
->
-> In the same datasheet you also find the HHI_HDMI_PLL_CNTL0 register
-> hdmi_dpll_M, hdmi_dpll_N and hdmi_dpll_od are listed in there.
-> The PLL output depends on hdmi_dpll_M and hdmi_dpll_N while
-> hdmi_dpll_od is taking the output of the two and dividing it.
-> This relation is nowhere described in the datasheet either so you
-> "just have to know it".
->
-> Unfortunately I don't know of any good way to check the relationship
-> of the power domain registers other than someone from Amlogic
-> explaining to us how it works internally.
->
+Hi everyone,
 
-I should have sought more details on this feature before posting something.
-Thanks for the detailed explanation of this feature,
+Here are some patches that enable USB3 on RK3328 SBCs that I own. The
+changes are quite straightforward, except for the NanoPi R2S, which
+has a USB3 Ethernet chip attached. I am aware that there's already a
+patch [1] for that. This is my spin on things using the USB device
+binding, with comments on how the USB ports are arranged, that I had
+done but couldn't find the time to send out.
 
-So in order for this feature to work the final state should be *active*
-for each power domain.
+The last patch also results in some warnings from checkpatch.pl:
 
-> [...]
-> > Below is the output on Odroid N2.
-> >
-> > [alarm@archl-on2 ~]$ sudo cat /sys/kernel/debug/pm_genpd/pm_genpd_summary
-> > domain                          status          children
-> >             performance
-> >     /device                                             runtime status
-> > ----------------------------------------------------------------------------------------------
-> > HDMI                            on
-> >             0
-> >     /devices/platform/soc/ff600000.bus/ff600000.hdmi-tx  unsupported
-> >              0
-> > AUDIO                           on
-> >             0
-> >     /devices/platform/sound                             unsupported
-> >             0
-> > ETH                             on
-> >             0
-> >     /devices/platform/soc/ff3f0000.ethernet             active
-> >             0
-> > VPU                             on
-> >             0
-> >     /devices/platform/soc/ff900000.vpu                  unsupported
-> >             0
-> This describes what Linux sees (based on how you configured the device-tree).
-> The output confirms what you are expecting to see (I think), but based
-> on that we can't tell what's right or wrong in terms of the actual
-> hardware.
->
-> To make another example: I could edit meson-g12b-odroid-n2.dtsi and
-> change the vin-supply of "VDDAO_3V3" to &usb_pwr_en
-> Then /sys/kernel/debug/regulator/regulator_summary would show that
-> VDDAO_3V3 is taking the voltage from USB_PWR_EN as input.
-> But from a hardware (schematics) perspective this is not correct.
-> Since the schematics describe the relation (input, output) between the
-> regulators we know how they are connected to each other.
-> If this relation was not described in the schematics then we'd be in
-> the same situation as with the power do
->
+    WARNING: DT compatible string "usbbda,8153" appears un-documented -- 
+	check ./Documentation/devicetree/bindings/
+    #88: FILE: arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts:398:
+    +               compatible = "usbbda,8153";
 
-On Amlogic SBC, I think VDDAO_3V3 and VDDIO_AO1V8 share the power with
-SD card and USB.
-so can we add these as optional regulators to enable/disable within
-the usb driver if needed?
+    WARNING: DT compatible string vendor "usbbda" appears un-documented -- 
+	check ./Documentation/devicetree/bindings/vendor-prefixes.yaml
+    #88: FILE: arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts:398:
+    +               compatible = "usbbda,8153";
 
-I am facing some issues to fix the power on Odroid C1+ and C2 board as well.
+At least the first warning should be covered by the USB device binding
 
-> Best regards,
-> Martin
+    Documentation/devicetree/bindings/usb/usb-device.yaml
 
-Thanks
--Anand
+while we probably should add an exception to vendor-prefixes.yaml for
+the second warning.
+
+Please let me know what you think.
+
+
+Regards
+ChenYu
+
+[1] https://lore.kernel.org/linux-rockchip/20210405093423.16149-1-cnsztl@gmail.com/
+
+
+Cameron Nemo (1):
+  arm64: dts: rockchip: rk3328: Enable USB3 for Rock64
+
+Chen-Yu Tsai (3):
+  arm64: dts: rockchip: rk3328: Enable USB3 for ROC-RK3328-CC
+  arm64: dts: rockchip: rk3328: Enable USB3 for Rock Pi E
+  arm64: dts: rockchip: rk3328: Enable USB3 Ethernet on NanoPi R2S
+
+ .../boot/dts/rockchip/rk3328-nanopi-r2s.dts   | 32 +++++++++++++++++++
+ .../arm64/boot/dts/rockchip/rk3328-roc-cc.dts |  5 +++
+ .../boot/dts/rockchip/rk3328-rock-pi-e.dts    |  5 +++
+ .../arm64/boot/dts/rockchip/rk3328-rock64.dts |  5 +++
+ 4 files changed, 47 insertions(+)
+
+-- 
+2.31.1
+
