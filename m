@@ -2,80 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E698C3729D2
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 14:07:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EB1E372A03
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 14:24:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230149AbhEDMIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 08:08:43 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:40996 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230110AbhEDMIm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 08:08:42 -0400
-Received: from mail-qt1-f197.google.com ([209.85.160.197])
-        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.86_2)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1ldtq7-0008SX-99
-        for devicetree@vger.kernel.org; Tue, 04 May 2021 12:07:47 +0000
-Received: by mail-qt1-f197.google.com with SMTP id c12-20020ac8660c0000b02901cca95615b9so661802qtp.13
-        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 05:07:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=UVesYaENPQnmH0Y+0cgUhUAMs63SA+oD/fSsjdC26ig=;
-        b=OfKuC3uVQ5SE1I3+zEbGhYL5Qra0flQWlxvhHBYQjTxOcYQ0mzUYYw4BfyqLTnch8W
-         x66jKKOF7xBZqmRb1RH0MDqyGmLOMANYaA7qqqF49sbQ5iYbinci+PZi+W2tw5tYKYCz
-         rGREfkPVv+nbf3v+ovCYX7ZoAWUpw/lYt69vGLe+1XMoK3R1Bm1QEruMykHusDFAEqxv
-         FGqqWFaA+PgcX9zK9+Wr4VmJgTtdKRC3Dw/nELlsqLnkbBr/nbz+t4QG9wWsqyQrArps
-         tvB8vEyNqiRCUDC1hMFGtrFYc66VRLGBsLPXHzMk0dJodIxB/38MCt6W4QYKXEcvNtYc
-         0lIg==
-X-Gm-Message-State: AOAM533PgfYfyjW3A0AerkKArRxinNR9a7+1UlGmdmW81XInMxNwAlOo
-        iKaEascxPxz0sP7B4pqM4mHqdqi8rdgdnnf3y3bpME6cIfnBw0L9ssLCWViT1HjL3zaZ8jSL8V4
-        Tym5B2EMn9zdxeW//oJQUoTwdWKs+J5eXF6sbNfM=
-X-Received: by 2002:ac8:4d92:: with SMTP id a18mr22604002qtw.312.1620130065895;
-        Tue, 04 May 2021 05:07:45 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxoYrnnQOO1oFrRDt4NmqosElKRk+sv3Q4DZYT7DYboiQ2X0BbNl4S/vdfqvGbVcXiuckPC/A==
-X-Received: by 2002:ac8:4d92:: with SMTP id a18mr22603979qtw.312.1620130065684;
-        Tue, 04 May 2021 05:07:45 -0700 (PDT)
-Received: from localhost.localdomain ([45.237.49.5])
-        by smtp.gmail.com with ESMTPSA id d68sm10805112qkf.93.2021.05.04.05.07.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 May 2021 05:07:44 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: add vendor prefix for Insignal Ltd
-Date:   Tue,  4 May 2021 08:07:42 -0400
-Message-Id: <20210504120742.12922-1-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.25.1
+        id S230086AbhEDMZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 08:25:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54138 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230110AbhEDMZS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 May 2021 08:25:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 54735613B4;
+        Tue,  4 May 2021 12:24:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620131064;
+        bh=vArYzEMEwRqDbMRFkfiHNa4Cgeb/07wrYgojfXEM6ig=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=f8ApvRPhpj1ghZ3GYlONwF21yByVn6tOlm5gExHU9CgVbE38i4gVlkktgw2fcqEBT
+         2BI1Kc+8aoqMzhiK+LgMM/mkS/TOu4WchUA47NAZFl56Od8RreTRfQOpguR2XoJgc2
+         0ojolL9ZtF/h6+OfVzabe/ChOlHh35FJ8K09aqkFtpcDgj6RQm88Axlyp5z1fqHelY
+         S7CNTilkyJ2Cgs79Vz8LRogTJt2ixK1EkztsdanK089ZE6wdtQB/Kj5eplasCOxeGc
+         y7osxn+gPLsTO5KkTVn073nXPICN6pUipqsNZOOte8gfA4ULES81Kz9N2FB/7R1JP/
+         bHMrKkSRsKxBw==
+Date:   Tue, 4 May 2021 15:24:19 +0300
+From:   Leon Romanovsky <leon@kernel.org>
+To:     Greentime Hu <greentime.hu@sifive.com>
+Cc:     paul.walmsley@sifive.com, hes@sifive.com, erik.danie@sifive.com,
+        zong.li@sifive.com, bhelgaas@google.com, robh+dt@kernel.org,
+        aou@eecs.berkeley.edu, mturquette@baylibre.com, sboyd@kernel.org,
+        lorenzo.pieralisi@arm.com, p.zabel@pengutronix.de,
+        alex.dewar90@gmail.com, khilman@baylibre.com,
+        hayashi.kunihiko@socionext.com, vidyas@nvidia.com,
+        jh80.chung@samsung.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        helgaas@kernel.org
+Subject: Re: [PATCH v6 1/6] clk: sifive: Add pcie_aux clock in prci driver
+ for PCIe driver
+Message-ID: <YJE886bhppqes5LQ@unreal>
+References: <20210504105940.100004-1-greentime.hu@sifive.com>
+ <20210504105940.100004-2-greentime.hu@sifive.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210504105940.100004-2-greentime.hu@sifive.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add vendor prefix for Insignal Ltd (http://www.insignal.co.kr).
+On Tue, May 04, 2021 at 06:59:35PM +0800, Greentime Hu wrote:
+> We add pcie_aux clock in this patch so that pcie driver can use
+> clk_prepare_enable() and clk_disable_unprepare() to enable and disable
+> pcie_aux clock.
+> 
+> Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
+> Acked-by: Stephen Boyd <sboyd@kernel.org>
+> ---
+>  drivers/clk/sifive/fu740-prci.c               | 11 +++++
+>  drivers/clk/sifive/fu740-prci.h               |  2 +-
+>  drivers/clk/sifive/sifive-prci.c              | 41 +++++++++++++++++++
+>  drivers/clk/sifive/sifive-prci.h              |  9 ++++
+>  include/dt-bindings/clock/sifive-fu740-prci.h |  1 +
+>  5 files changed, 63 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/sifive/fu740-prci.c b/drivers/clk/sifive/fu740-prci.c
+> index 764d1097aa51..53f6e00a03b9 100644
+> --- a/drivers/clk/sifive/fu740-prci.c
+> +++ b/drivers/clk/sifive/fu740-prci.c
+> @@ -72,6 +72,12 @@ static const struct clk_ops sifive_fu740_prci_hfpclkplldiv_clk_ops = {
+>  	.recalc_rate = sifive_prci_hfpclkplldiv_recalc_rate,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+<...>
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index b868cefc7c55..92fa427d2a80 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -533,6 +533,8 @@ patternProperties:
-     description: Innolux Corporation
-   "^inside-secure,.*":
-     description: INSIDE Secure
-+  "^insignal,.*":
-+    description: Insignal Ltd.
-   "^inspur,.*":
-     description: Inspur Corporation
-   "^intel,.*":
--- 
-2.25.1
+> +/* PCIE AUX clock APIs for enable, disable. */
+> +int sifive_prci_pcie_aux_clock_is_enabled(struct clk_hw *hw)
 
+It should be bool
+
+> +{
+> +	struct __prci_clock *pc = clk_hw_to_prci_clock(hw);
+> +	struct __prci_data *pd = pc->pd;
+> +	u32 r;
+> +
+> +	r = __prci_readl(pd, PRCI_PCIE_AUX_OFFSET);
+> +
+> +	if (r & PRCI_PCIE_AUX_EN_MASK)
+> +		return 1;
+> +	else
+> +		return 0;
+> +}
+
+and here simple "return r & PRCI_PCIE_AUX_EN_MASK;"
+
+> +
+> +int sifive_prci_pcie_aux_clock_enable(struct clk_hw *hw)
+> +{
+> +	struct __prci_clock *pc = clk_hw_to_prci_clock(hw);
+> +	struct __prci_data *pd = pc->pd;
+> +	u32 r __maybe_unused;
+> +
+> +	if (sifive_prci_pcie_aux_clock_is_enabled(hw))
+> +		return 0;
+
+You actually call to this new function only once, put your
+__prci_readl() here.
+
+Thanks
