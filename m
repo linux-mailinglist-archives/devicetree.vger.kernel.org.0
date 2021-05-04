@@ -2,172 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25BA23730DE
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 21:35:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F358F373105
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 21:48:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232549AbhEDTgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 15:36:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42364 "EHLO
+        id S232580AbhEDTtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 15:49:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232559AbhEDTgI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 15:36:08 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84B87C06138A
-        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 12:35:09 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id x5so10604751wrv.13
-        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 12:35:09 -0700 (PDT)
+        with ESMTP id S232456AbhEDTs7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 15:48:59 -0400
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FCBEC061574
+        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 12:48:03 -0700 (PDT)
+Received: by mail-qv1-xf2b.google.com with SMTP id jm10so66289qvb.5
+        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 12:48:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=OUE6T8d/N4f3Mv0jX1DZW932G/DmWRKc7vhygQ2jwlM=;
-        b=iY+VQNDWOqV/CG0cFNr9CjtsFJKTTbCm/lkfOwHdVMCGDyal0uZ2C50CTS43njVgTz
-         OnOVf/G0AOan8QKQdzXf4eiQbi4MwhQayhKyfYUKV3vzFALPV3HQFcP5zfa0UYE58kgW
-         b5RtPat4w1Sb/6LGKFS7o9zYw4SKH0OjDoU8mGUva0X3eh2KOutn3cS2aS2jSZw8gOhw
-         Y8gFyh+2JkGDKYGsSoRAbegD6y1CvVaym3vVi+Z3WjBSyuvlfkO2bgQcnMac/Rue+jm0
-         S3BZNYVA5+pBIOM5uoredT4nnMp3r7vMIp/VsAnvoH5JUg47Nd5/i3j6fhOQZ63Yeae4
-         /7UA==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dLRKtbyO50ZwLbGZ3RGT/lGz35DJJd92L3sxN1YsG2k=;
+        b=laSCr644OH3wrJ6rLbeSdBIYes8vO3VEwMCv+BerwVh5PMGVlK4rSZhtFDngmFMKgb
+         jQ4U1Vdqq5qHLpzHYR0T+qBvogRxh5xcqorNf2qL7f7J7An22P2JA3wMWzEP7CT0G00c
+         pvFBnSmuf7bR3zp+CdBeEbVr//XxFhekeVjM4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=OUE6T8d/N4f3Mv0jX1DZW932G/DmWRKc7vhygQ2jwlM=;
-        b=i/HqnOlSDt7OOmB1u0CUVQ/X6PlAfvIqM4lFl59aX5Kc9Ucu/0dFO2EvPAUbFZ9rg6
-         RLT05hio9sxOsWof19nxamD6rdpG5Yh6litlOgO8KiRib2iLiqDXQRR+dzSPCFSUOJlA
-         WYd0rpQNTrYoh6rsm3EKUbOmRhIiLm+y6X4vda/d0nfKGnt2iR1lVL1dmb2sX7Z4q/7l
-         CkOdU6PhpIEUL8eDNEQTZ1o1wEgiX9FR4E4GjfHAUG1QHkLzw12/tqXxB4XLmMIA/KK4
-         UnYB2ci+0vGjqA67KqbcTXTguIdqFGsrDcvrUt4fD4JHeU0Y3+Uirw8NFHguViN8sFyM
-         9MjQ==
-X-Gm-Message-State: AOAM532koBjBiHuuQ4zd6Wo54zBq+ancafNjgAD9p1G2TPDXitTF6Ra8
-        0kbXYwZfv4eQWCNukqvDClNDtg==
-X-Google-Smtp-Source: ABdhPJyTc2cvByzqBL/z0VWYE9grFLrwGOUQgAq6tWjFmTXdEdBZNW+9YhAcr6eeRxF8kc5ORG5rEQ==
-X-Received: by 2002:a5d:5741:: with SMTP id q1mr33553742wrw.212.1620156908233;
-        Tue, 04 May 2021 12:35:08 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id x8sm17072136wru.70.2021.05.04.12.35.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 May 2021 12:35:07 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     arnd@arndb.de, kaloz@openwrt.org, khalasa@piap.pl,
-        linusw@kernel.org, linux@armlinux.org.uk, olof@lixom.net,
-        robh+dt@kernel.org, soc@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH 5/5] ARM: dts: add intel-ixp42x-welltech-epbx100
-Date:   Tue,  4 May 2021 19:34:57 +0000
-Message-Id: <20210504193457.4008384-6-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210504193457.4008384-1-clabbe@baylibre.com>
-References: <20210504193457.4008384-1-clabbe@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dLRKtbyO50ZwLbGZ3RGT/lGz35DJJd92L3sxN1YsG2k=;
+        b=YmOuwdeuALhZPvcBn2O8vsPyRGbzoLCYEH4feZU4RNBERC+IKU/mPuG63AzHRGVV5q
+         FVLYfdaEqh72Wy8ZkbklyTShdSMkveMzxlb7/OAR/4i09sTKjytvJsfBrnvQBi57+La9
+         Iyur6zAJPSg6OC1ic+bOJ8OWbZVsxvUAiSatYJz7jbPrNHtdbDh5ECQ0H2UIFQyWJysP
+         i5bA3A0oT+IxX6OUvLs2XTmbnLdLruv1006ZOoQI9oYPcJiq1RHCcmmtz06e1R4aEPe9
+         UbI81lX05GnmLXHoyag9N8s8El51UZ2uuaPaJCnpJia9WI5LK1eUPFP3mZlGESF+4WOe
+         O4Ng==
+X-Gm-Message-State: AOAM532PU+tqQ7foWttlGOdVnjuSL8B/Z7S7cS9HLKuvYD3HZyx4n2hF
+        801I1A9uvtBBIVkLqv9AzMO+P4+PGDEisg==
+X-Google-Smtp-Source: ABdhPJxpgDUpp0cGmQMz+s9QfWmwblqV4FG/TTwVlCaa8KNBJmicen46J69xG/xQMLHIKNEev5zZ8Q==
+X-Received: by 2002:a0c:da8d:: with SMTP id z13mr27214048qvj.17.1620157682345;
+        Tue, 04 May 2021 12:48:02 -0700 (PDT)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id l188sm11929685qkd.77.2021.05.04.12.48.01
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 May 2021 12:48:01 -0700 (PDT)
+Received: by mail-yb1-f171.google.com with SMTP id 15so13815385ybc.0
+        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 12:48:01 -0700 (PDT)
+X-Received: by 2002:a25:9c86:: with SMTP id y6mr36946496ybo.405.1620157681041;
+ Tue, 04 May 2021 12:48:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1620111510-31455-1-git-send-email-sibis@codeaurora.org> <1620111510-31455-2-git-send-email-sibis@codeaurora.org>
+In-Reply-To: <1620111510-31455-2-git-send-email-sibis@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 4 May 2021 12:47:49 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XNh63TTtCEO4gbRm3s6mJ0C9jiN=B58f5+5n1KZeAOng@mail.gmail.com>
+Message-ID: <CAD=FV=XNh63TTtCEO4gbRm3s6mJ0C9jiN=B58f5+5n1KZeAOng@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] cpufreq: blacklist SC7280 in cpufreq-dt-platdev
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds devicetree for intel-ixp42x-welltech-epbx100.
+Hi,
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- arch/arm/boot/dts/Makefile                    |  1 +
- .../dts/intel-ixp42x-welltech-epbx100.dts     | 76 +++++++++++++++++++
- 2 files changed, 77 insertions(+)
- create mode 100644 arch/arm/boot/dts/intel-ixp42x-welltech-epbx100.dts
+On Mon, May 3, 2021 at 11:58 PM Sibi Sankar <sibis@codeaurora.org> wrote:
+>
+> Add SC7280 to cpufreq-dt-platdev blacklist since the actual scaling is
+> handled by the 'qcom-cpufreq-hw' driver.
+>
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> ---
+>  drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
+>  1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 1580313eb372..7d0c94b9108d 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -242,6 +242,7 @@ dtb-$(CONFIG_ARCH_INTEGRATOR) += \
- 	integratorcp.dtb
- dtb-$(CONFIG_ARCH_IXP4XX) += \
- 	intel-ixp42x-linksys-nslu2.dtb \
-+	intel-ixp42x-welltech-epbx100.dtb \
- 	intel-ixp43x-gateworks-gw2358.dtb
- dtb-$(CONFIG_ARCH_KEYSTONE) += \
- 	keystone-k2hk-evm.dtb \
-diff --git a/arch/arm/boot/dts/intel-ixp42x-welltech-epbx100.dts b/arch/arm/boot/dts/intel-ixp42x-welltech-epbx100.dts
-new file mode 100644
-index 000000000000..84158503be2a
---- /dev/null
-+++ b/arch/arm/boot/dts/intel-ixp42x-welltech-epbx100.dts
-@@ -0,0 +1,76 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2021 Corentin Labbe <clabbe@baylibre.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "intel-ixp42x.dtsi"
-+
-+/ {
-+	model = "Welltech EPBX100";
-+	compatible = "welltech,epbx100", "intel,ixp42x";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	memory@0 {
-+		/* 64 MB SDRAM */
-+		device_type = "memory";
-+		reg = <0x00000000 0x4000000>;
-+	};
-+
-+	chosen {
-+		bootargs = "console=ttyS0,115200n8 root=/dev/ram0 initrd=0x00800000,9M";
-+		stdout-path = "uart0:115200n8";
-+	};
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	flash@50000000 {
-+		compatible = "intel,ixp4xx-flash", "cfi-flash";
-+		bank-width = <2>;
-+		/*
-+		 * 16 MB of Flash
-+		 */
-+		reg = <0x50000000 0x1000000>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "RedBoot";
-+				reg = <0x00000000 0x00080000>;
-+				read-only;
-+			};
-+			partition@80000 {
-+				label = "zImage";
-+				reg = <0x00080000 0x00100000>;
-+				read-only;
-+			};
-+			partition@180000 {
-+				label = "ramdisk";
-+				reg = <0x00180000 0x00300000>;
-+				read-only;
-+			};
-+			partition@480000 {
-+				label = "User";
-+				reg = <0x00480000 0x00b60000>;
-+				read-only;
-+			};
-+			partition@fe0000 {
-+				label = "FIS directory";
-+				reg = <0x00fe0000 0x001f000>;
-+				read-only;
-+			};
-+			partition@fff000 {
-+				label = "RedBoot config";
-+				reg = <0x00fff000 0x0001000>;
-+				read-only;
-+			};
-+		};
-+	};
-+};
--- 
-2.26.3
-
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
