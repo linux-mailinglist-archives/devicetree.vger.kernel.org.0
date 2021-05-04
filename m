@@ -2,138 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4711372CAB
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 17:03:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3A08372CBC
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 17:08:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230360AbhEDPEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 11:04:37 -0400
-Received: from mail-eopbgr10040.outbound.protection.outlook.com ([40.107.1.40]:64481
-        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230352AbhEDPEg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 May 2021 11:04:36 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lyj3FDIUcG8MFLvuL7Wq1iJTcbuZC5qwsh/PcjUwlwjHtK6/7q0sy4EgacM0iMp7bu25Y0jB1fAKGaXk1hugxhkM8XfTPXJT88scdxNWCcyaAAesF512iF3hm7qL8DFTztRbRGTZgoeA8snk+Wsxc7WXx1yuWmQ/R0x9MHCWTZ7Oc8ia+gWAWFvJLXJPp/T66yzhnbaUt8TGIVySDf7thMjflYCawZhGr6NiW8J/9nw6Gogx34kqvdTyLCP/C4FtB6D5CH89qtl6ESYSBgxw6MYaOKGsX67eT+UzhbaxC0bMPo5amTx+AhIV9Yf8JsKuQ9Sdeno249aVeDxyjPyAjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aoG+GpJ/o8vvRlO9FsRefqF8+YMvZnAbjYLO8BY6bq8=;
- b=GDZrPZfQ4TKOsXPtZrL0p6aq+1m0r3yuQYX1uypGML25B5qCO6ToFiEouaNVJUSRNhMtzUqhj/xeKqR7UV/KktBZ3k+BaIEntP/ifht/XDZ4/sVR5rdlo6xkUNod8Fccjt7mKJi6eDN4AJ6BoxT374DzKPc+Rsc8y4AP2tF08YZpHZBDIuk95WQF5nuvGtgafSDsx8r6B6mIv/txo/4bEbVYEZCvXf2K7Z58I/Sz5T3FfjxNCXnQ1xhIaZHETKVhVJGWFwuUJTpLyBtginJ6jRQQdpZvxsinvpz4zncytZtmatKrfr8aBiKGWPbOMSTagAtSvDaVpG0TdNVVLaLfQQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aoG+GpJ/o8vvRlO9FsRefqF8+YMvZnAbjYLO8BY6bq8=;
- b=igtoe+DOzA4FQN0+og2r2H1xiM1s42zKAltlLnSCICZvTrHoo82DEJX/N3N8qUtu7OGNHeZRtKWW3MYckxlyfeL8aUurqG5SvVAiz+rywRawHswGDvJEog29csGmKQF6AMIjVnuMERyQEhucurDgZ8LzbPj6hIHtFDF7+db/fuY=
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
- by DB9PR03MB7418.eurprd03.prod.outlook.com (2603:10a6:10:22e::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.38; Tue, 4 May
- 2021 15:03:38 +0000
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::40d5:3554:c709:6b1b]) by DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::40d5:3554:c709:6b1b%5]) with mapi id 15.20.4087.044; Tue, 4 May 2021
- 15:03:38 +0000
-Subject: Re: [PATCH 2/2] pwm: Add support for Xilinx AXI Timer
-From:   Sean Anderson <sean.anderson@seco.com>
-To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        michal.simek@xilinx.com, Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-References: <20210503214413.3145015-1-sean.anderson@seco.com>
- <20210503214413.3145015-2-sean.anderson@seco.com>
- <20210504085112.edyy6loprfzejrjl@pengutronix.de>
- <2ef7de6f-4d17-e81a-11bc-27eb382577a7@seco.com>
-Message-ID: <70fa97ba-ea32-e734-acd5-5f5de3c03348@seco.com>
-Date:   Tue, 4 May 2021 11:03:34 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <2ef7de6f-4d17-e81a-11bc-27eb382577a7@seco.com>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [50.195.82.171]
-X-ClientProxiedBy: MN2PR05CA0034.namprd05.prod.outlook.com
- (2603:10b6:208:c0::47) To DB7PR03MB4523.eurprd03.prod.outlook.com
- (2603:10a6:10:19::27)
+        id S230193AbhEDPJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 11:09:51 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:40801 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230086AbhEDPJu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 11:09:50 -0400
+Received: from localhost (lfbn-lyo-1-1676-55.w90-65.abo.wanadoo.fr [90.65.108.55])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 07D82240003;
+        Tue,  4 May 2021 15:08:52 +0000 (UTC)
+Date:   Tue, 4 May 2021 17:08:52 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Colin Foster <colin.foster@in-advantage.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        "supporter:OCELOT ETHERNET SWITCH DRIVER" 
+        <UNGLinuxDriver@microchip.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:OCELOT ETHERNET SWITCH DRIVER" <netdev@vger.kernel.org>
+Subject: Re: [RFC PATCH vN net-next 2/2] net: mscc: ocelot: add support for
+ VSC75XX SPI control
+Message-ID: <YJFjhH+HmVc/tLDI@piout.net>
+References: <20210504051130.1207550-1-colin.foster@in-advantage.com>
+ <20210504051130.1207550-2-colin.foster@in-advantage.com>
+ <YJE+prMCIMiQm26Z@lunn.ch>
+ <20210504125942.nx5b6j2cy34qyyhm@skbuf>
+ <YJFST3Q13Kp/Eqa1@piout.net>
+ <20210504143633.gju4sgjntihndpy6@skbuf>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.27.1.65] (50.195.82.171) by MN2PR05CA0034.namprd05.prod.outlook.com (2603:10b6:208:c0::47) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.8 via Frontend Transport; Tue, 4 May 2021 15:03:37 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 45279a33-66d4-4cd9-d3c4-08d90f0dcc2d
-X-MS-TrafficTypeDiagnostic: DB9PR03MB7418:
-X-Microsoft-Antispam-PRVS: <DB9PR03MB74184A3C4B4DD51714155872965A9@DB9PR03MB7418.eurprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3173;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3JZpjcv159YiWR3ujWQnavuyABc5SHBv+SRm9+JXteH2K0ukCHiikWxv7T7ORCxzMBm2fYqSaE7U8JTJl7eWfY1SS28VNkR5RJKkaYMIFgrbTL8viGqGJ6V8cc8HWZH3dWiJBy5laMjOE5615vhnj8ruQbF7Jn/bsR1ZJULc4GKuQCXgAYRG3GPdev3jzpun304eKx454t7ZNR8YAyP0KrjdOagW0QPDtMqahX9Dw5+8xGN8vRTKshYS3bfIYIR7Gmyhwnb/AfxNTBZQ82tm7yE7twko6Iqqe+/VegnGdTwntpNPYdIIVekW2KO1SE+s90j2i/kcHBhuQiNZKiuzPnjEXqz+TCA0/KKq0HX0jOLKfXOtahdHBobF3DZjW9xtHzGJw+cGxWCUFrGME4Lfvdj9n9CC+mlfiLmABgh2b/EImJnX7Pl4UQb8CJ62FVeNTYBX594oXT0kDH0GRe9HzCEn05Gs8pEGoJDbOiBls23Xczb70T6xfH+/vaMJvepSD2xiZh0sR8Oqxhw6Frazq45MQ8i60gODbjLQTqPhVpqwjtbxi0qi/cvW8Hsnx3o9q72+YfjDhVNC1rp9KQscVB6Ef5lAlhifnCvGxDw5603MExqSoQ729w6z7LKDUBMnHFqjbJdJQORsN+EsSIpBfnHGUQLsxD2Eu2Q+gBQN6fvX+tFIysVfCCW6OXE62La8985aybku0Jow89wfbec7QmzNjmJvc/oYNxV3z7Xur0A=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(39840400004)(376002)(346002)(136003)(366004)(396003)(66946007)(66556008)(8936002)(66476007)(186003)(8676002)(956004)(54906003)(16576012)(6486002)(86362001)(36756003)(38350700002)(16526019)(2616005)(6666004)(6916009)(5660300002)(316002)(31696002)(52116002)(26005)(38100700002)(53546011)(66574015)(478600001)(31686004)(4326008)(44832011)(4744005)(2906002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?Windows-1252?Q?/KtioLL6dsIUjVREVsWq4q69H/ju0josa+i/lvq5PMusmxd9NNGh1peP?=
- =?Windows-1252?Q?VZ85YxkSlIb76eXMktzlIQT9CyBATMevzvGG42yxJczUfBlQr3A2EkSM?=
- =?Windows-1252?Q?B7NbcIqss4Yf7JSRkjb0fn6ckKaYVg9oQ6bnTNDVbuISWU53eNkG6/0i?=
- =?Windows-1252?Q?mcKO6CQvC1Y+fouHsovWvSEdzefnrgt2/g0BaB8lhDrc9OAdP4yUGj7G?=
- =?Windows-1252?Q?Iu3HJlnDOsG6kULvG6eg+8/7u2Q3MyTqsrfv1ruUMpBKAjPpCTUoAh+E?=
- =?Windows-1252?Q?HUzSYODOZi8C15xXWL7LQIoOU6Ty+S09XZhhn6mmedpVBMYZ4oPRPPbE?=
- =?Windows-1252?Q?eTA/rPgRWK9cqhoKDt/Np/8WzmxxKYYBoHDYv4RJptr5mvsvL7OHjgAh?=
- =?Windows-1252?Q?X3c46ywpCt2lQptfupNvOlgqJlXJgj/L81PhB5okg6pLpnmQEMm/nDDb?=
- =?Windows-1252?Q?DzMa1iwZE+QuurJDzpISnR9a0hVLOmSGDqU9yGXDogwP5gHtHA+I82TZ?=
- =?Windows-1252?Q?aJCJl57/gds/w21uaDM86B/yftM/FJJKKv5sJhIwU/Vxwn2Gw3BzuYT5?=
- =?Windows-1252?Q?3Wuvv6jpXF1sEmENHhkegiv6NDDGwyiJhiBO++KcNeiotbQTucZdDXFy?=
- =?Windows-1252?Q?V9LV+ex1tHslKEQDviBRmMEr2AeiICcCkV8+kQ+O2m2Nt5raESLB77Aq?=
- =?Windows-1252?Q?JiJRMpZU+veBufsCTkxJoXYZ9UrvmFW2QixUYL1MCIgagidfENnXU5p/?=
- =?Windows-1252?Q?TlAGwDs/s9EUcWhcPoocxc3S7ShMakLoOsZPnBp2fUNiiJd7JLOyZj7T?=
- =?Windows-1252?Q?s5hrcPPMZ0oUSRA2nboDNjmV38WJ5U4fH5NZGsOXTM1/9UlwegAKF44Z?=
- =?Windows-1252?Q?6rw1OWeqTfR12EL6/E8CQpkgzDaq7U9INcUTEGsti/BMT8UXqZp66U5T?=
- =?Windows-1252?Q?sy78saVJkrQ0S7uSwDQPR8fTgN3eLyRj798gDKNQ5Sd5gYVy1JjzY7BW?=
- =?Windows-1252?Q?Dh1j2aLpNrAbqpR+msaPIMEQJaeMAuiGINXVYTy62/ZdDcQgYFjfTffI?=
- =?Windows-1252?Q?fbYuqwfvq7L/FZWE6KprPfUGnAAoRFeFSsYuccLD57Jfmhp19tL/fRqc?=
- =?Windows-1252?Q?kdDWKqIHM+OrbwtIgSOWf/IYpN2HwMoFnOgPmAJsoRzUUqKqkONZ3v6A?=
- =?Windows-1252?Q?+WK9iHorlEX10M8SMTgTantv8GNQxLTQyKG8SsW9bwKm32Qu8XapavXM?=
- =?Windows-1252?Q?8u5zwSrwgHYd1AXB8W+xxZ1L2ICDNyzk0+2pV2J332IDYHgICUtZZbY9?=
- =?Windows-1252?Q?0mPcC2t4dNIWJ3rMiJb3j00ZNAvZmntntVdUTdK5ymxG9MwJEZIIpXOX?=
- =?Windows-1252?Q?udHBF5GQVTcQstrn1V6L/+YWWbe8F4Hn8Iq34+c9COGMu3UfPrBObdhw?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45279a33-66d4-4cd9-d3c4-08d90f0dcc2d
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2021 15:03:38.5292
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xuMsO6PGmrMInpVJ4dkcLt2HU+Ubb14nrrffc0y4VWhelhd/GglqslZdapX3qN9whGpBfm8Ifh6Z2bgn1/HDDw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR03MB7418
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210504143633.gju4sgjntihndpy6@skbuf>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/4/21 10:46 AM, Sean Anderson wrote:
- > On 5/4/21 4:51 AM, Uwe Kleine-König wrote:
- >  >> +static int xilinx_pwm_remove(struct platform_device *pdev)
- >  >> +{
- >  >> +    struct xilinx_pwm_device *pwm = platform_get_drvdata(pdev);
- >  >> +    bool enabled = xilinx_pwm_is_enabled(readl(pwm->regs + TCSR0),
- >  >> +                         readl(pwm->regs + TCSR1));
- >  >> +
- >  >> +    if (enabled)
- >  >> +        clk_rate_exclusive_put(pwm->clk);
- >  >
- >  > This looks wrong. You should rely on the consumer that they disable the
- >  > PWM.
- >
- > What about a PWM regulator with always-on?
- >
- > This is mostly to match the exclusive_get in probe, in case there are
- > misbehaving consumers.
 
-Since we always get the rate exclusively, we must always put the rate
-exclusively here. So if the PWM is probed, but no one ever does anything
-with it (and therefore no one turns it off), we must release the
-exclusive rate in remove.
 
---Sean
+On 04/05/2021 14:36:34+0000, Vladimir Oltean wrote:
+> On Tue, May 04, 2021 at 03:55:27PM +0200, Alexandre Belloni wrote:
+> > On 04/05/2021 12:59:43+0000, Vladimir Oltean wrote:
+> > > > > +static void vsc7512_phylink_validate(struct ocelot *ocelot, int port,
+> > > > > +				     unsigned long *supported,
+> > > > > +				     struct phylink_link_state *state)
+> > > > > +{
+> > > > > +	struct ocelot_port *ocelot_port = ocelot->ports[port];
+> > > > > +	__ETHTOOL_DECLARE_LINK_MODE_MASK(mask) = {
+> > > > > +		0,
+> > > > > +	};
+> > > > 
+> > > > This function seems out of place. Why would SPI access change what the
+> > > > ports are capable of doing? Please split this up into more
+> > > > patches. Keep the focus of this patch as being adding SPI support.
+> > > 
+> > > What is going on is that this is just the way in which the drivers are
+> > > structured. Colin is not really "adding SPI support" to any of the
+> > > existing DSA switches that are supported (VSC9953, VSC9959) as much as
+> > > "adding support for a new switch which happens to be controlled over
+> > > SPI" (VSC7512).
+> > 
+> > Note that this should not only be about vsc7512 as the whole ocelot
+> > family (vsc7511, vsc7512, vsc7513 and vsc7514) can be connected over
+> > spi. Also, they can all be used in a DSA configuration, over PCIe, just
+> > like Felix.
+> 
+> I see. From the Linux device driver model's perspective, a SPI driver
+> for VSC7512 is still different than an MMIO driver for the same hardware
+> is, and that is working a bit against us. I don't know much about regmap
+> for SPI, specifically how are the protocol buffers constructed, and if
+> it's easy or not to have a driver-specified hook in which the memory
+> address for the SPI reads and writes is divided by 4. If I understand
+> correctly, that's about the only major difference between a VSC7512
+> driver for SPI vs MMIO, and would allow reusing the same regmaps as e.g.
+> the ones in drivers/net/ethernet/ocelot_vsc7514.c. Avoiding duplication
+> for the rest could be handled with a lot of EXPORT_SYMBOL, although
+> right now, I am not sure that is quite mandated yet. I know that the
+> hardware is capable of a lot more flexibility than what the Linux
+> drivers currently make of, but let's not think of overly complex ways of
+> managing that entire complexity space unless somebody actually needs it.
+> 
+
+I've been thinking about defining the .reg_read and .reg_write functions
+of the regmap_config to properly abstract accesses and leave the current
+ocelot core as it is.
+
+> As to phylink, I had some old patches converting ocelot to phylink in
+> the blind, but given the fact that I don't have any vsc7514 board and I
+> was relying on Horatiu to test them, those patches didn't land anywhere
+> and would be quite obsolete now.
+> I don't know how similar VSC7512 (Colin's chip) and VSC7514 (the chip
+> supported by the switchdev ocelot) are in terms of hardware interfaces.
+> If the answer is "not very", then this is a bit of a moot point, but if
+> they are, then ocelot might first have to be converted to phylink, and
+> then its symbols exported such that DSA can use them too.
+> 
+
+VSC7512 and VSC7514 are exactly the same chip. VSC7514 has the MIPS
+CPU enabled.
+
+> What Colin appears to be doing differently to all other Ocelot/Felix
+> drivers is that he has a single devm_regmap_init_spi() in felix_spi_probe.
+> Whereas everyone else uses a separate devm_regmap_init_mmio() per each
+> memory region, tucked away in ocelot_regmap_init(). I still haven't
+> completely understood why that is, but this is the reason why he needs
+> the "offset" passed to all I/O accessors: since he uses a single regmap,
+> the offset is what accesses one memory region or another in his case.
+> 
+
+Yes, this is the main pain point. You only have one chip select so from
+the regmap point of view, there is only one region. I'm wondering
+whether we could actually register multiple regmap for a single SPI
+device (and then do the offsetting in .reg_read/.reg_write) which would
+help.
+
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
