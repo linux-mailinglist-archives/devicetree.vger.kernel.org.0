@@ -2,210 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D60F83728C9
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 12:23:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 507273728CE
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 12:25:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230213AbhEDKYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 06:24:16 -0400
-Received: from mail-dm6nam12on2079.outbound.protection.outlook.com ([40.107.243.79]:39124
-        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230338AbhEDKYM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 May 2021 06:24:12 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PkwCri5PqRDrxZMN0hlEb1IbtCoN0yu4Tvn2fw5cUbk+BXA55zFrTT0iki2gynoScpkGpfDouLpjCYBn7W26MGSape+p4SpxkkWXtB2TCoDSJtuLHjvNwceKHA+z++EzbMkFtXeOluCydqTHFydmvFW5iliHiNjwWLlB3szay1jtMECWVctSlvH2xoAHQEO6sw+eYyi7f36SWTcsDSgfwwXG2NVDl0nr36HXvckn3PkLdgla7u79eUPBIfRS9g+aLIR8hQrGDJu5NlPJJ7yqjwes47gnTRpDPhPn0NnFq92KQutgFgsFgxbP5Haqm8u6eNlKMpT/5Y2J87yZAjF+bw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BbSIYtBiWGmu7mZvmS/YkpSyVRIFytYBz9fMtp0Mn1Q=;
- b=FPOPYk3M/ubhsFQ4ZFJfEGB9Tm8oRz75BqIW3qE6HPChkIzp9bGvoo6PASXUpS5p16Y7D7Q4h5VWyj+e7MVxutnYDohwWMcXVATW8Ky2Vs02lout0mtqt/aI5WJAsyGeHgxCdBFNkbbqphR2iK50Zbq6DaR1a8yimlEojiN22SeOjNE0rZRmamXltqRZ6xXYrI/4eDE1NqiD2fmUwftXQBMp7kUB3NJplrC+Q+stp1vvYvi1D/Yn31X4Nd0WX+AK9G4hn8vfg4yf+hJNu/047HqETb7tVAqZonvyeJooU1vDYQt8uhZRMN1w2LDYW3GL1duoyHfKLeBky4WyXDf7Dg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+        id S230296AbhEDKZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 06:25:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60472 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230284AbhEDKZz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 06:25:55 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18ACEC061574;
+        Tue,  4 May 2021 03:25:00 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id t21so4602853plo.2;
+        Tue, 04 May 2021 03:25:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BbSIYtBiWGmu7mZvmS/YkpSyVRIFytYBz9fMtp0Mn1Q=;
- b=VO9QrQWavTW0HDHZapK8Q4qP3+8TCo4tptcZ17qQ4Mc9A1wadmIxPAjSte2WrvApC9eLuCxEdVgPPe0VeeCcU0vC7Xkv6TiP8jjyAs25D/tpz/2ZhROVS5yA5FyJuI2V0qrV0DKHpKjBn5LbuurFKw/dDRXqXOv50AIQK+Usm14=
-Received: from BN8PR12CA0011.namprd12.prod.outlook.com (2603:10b6:408:60::24)
- by BN6PR02MB2417.namprd02.prod.outlook.com (2603:10b6:404:52::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.41; Tue, 4 May
- 2021 10:23:12 +0000
-Received: from BN1NAM02FT015.eop-nam02.prod.protection.outlook.com
- (2603:10b6:408:60:cafe::43) by BN8PR12CA0011.outlook.office365.com
- (2603:10b6:408:60::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.24 via Frontend
- Transport; Tue, 4 May 2021 10:23:12 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- BN1NAM02FT015.mail.protection.outlook.com (10.13.2.132) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4065.21 via Frontend Transport; Tue, 4 May 2021 10:23:12 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 4 May 2021 03:22:58 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Tue, 4 May 2021 03:22:58 -0700
-Envelope-to: git@xilinx.com,
- mdf@kernel.org,
- trix@redhat.com,
- robh+dt@kernel.org,
- arnd@arndb.de,
- gregkh@linuxfoundation.org,
- linus.walleij@linaro.org,
- zou_wei@huawei.com,
- linux-fpga@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- chinnikishore369@gmail.com
-Received: from [10.140.6.60] (port=35290 helo=xhdnavam40.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <nava.manne@xilinx.com>)
-        id 1ldsCe-000192-OU; Tue, 04 May 2021 03:22:57 -0700
-From:   Nava kishore Manne <nava.manne@xilinx.com>
-To:     <mdf@kernel.org>, <trix@redhat.com>, <robh+dt@kernel.org>,
-        <michal.simek@xilinx.com>, <arnd@arndb.de>,
-        <rajan.vaja@xilinx.com>, <gregkh@linuxfoundation.org>,
-        <linus.walleij@linaro.org>, <amit.sunil.dhamne@xilinx.com>,
-        <tejas.patel@xilinx.com>, <zou_wei@huawei.com>,
-        <manish.narani@xilinx.com>,
-        <lakshmi.sai.krishna.potthuri@xilinx.com>, <nava.manne@xilinx.com>,
-        <wendy.liang@xilinx.com>, <linux-fpga@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <git@xilinx.com>,
-        <chinnikishore369@gmail.com>
-Subject: [RFC PATCH 4/4] fpga: zynqmp: Add user-key encrypted FPGA Image loading support
-Date:   Tue, 4 May 2021 15:52:27 +0530
-Message-ID: <20210504102227.15475-5-nava.manne@xilinx.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210504102227.15475-1-nava.manne@xilinx.com>
-References: <20210504102227.15475-1-nava.manne@xilinx.com>
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=ma4EiObMBquMsz2PddchRyGnFpOxTXtAB3JuHu0TlJw=;
+        b=DzvfvxOdUFuXg+fhdCWxmvr43CrjzAyrafo6t8SSvLAO6U5HjdIgMQoxE3hJ+4tEyO
+         2Rmkxgg1Ibnu86NRPP1hWV3XlzUpnzw6c+dkzjPMu0R6Aq6fYPq66kbOeb4k7UjXHZgJ
+         Emk/Qa1Ab7rxiU45OwvdjKz22/Rq8Pkp74ArsGVbgQQFwdnGzIC7yNepOXsGw8fpwgZ8
+         hpmOQBHWXqPkKTaA6/5o04c3/vyOr5TzfY7pfcQLXicSV+GXmhe19WYHWDTnqnZLn0wI
+         lJ+nD4FpKlfA/fajKfb3FlN8EMFjHc9wlVDeww6CfjRKfgzxc+gPME/LG3NEn41yfMsI
+         v1fA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=ma4EiObMBquMsz2PddchRyGnFpOxTXtAB3JuHu0TlJw=;
+        b=Clc8HAg7SNW0kIunuPoSa67A63fXhvm9d3TNZkRMSqxuuebzFNDaz2uXuSQ3J6NmxT
+         b/zR9uY/WXOCUQuMuoQX75BRGWSTob4tKZYNHYm+9Di8Q0O/2296XbgybLA8gweKmZ3c
+         HbHdbxQyAKHCi4/SEOHBYQjs1VpgKRIIKzOzTFe0ekEV4hPj5GmALUr9EUelh15hbr+d
+         e1jt93a6oPQnmpHOekP6iIacsUx+uH2UnWCv4+eBo+KbUY0i5/fkXuFhId+EozjoV6R4
+         Yr1I+yK5yXlk0mgz4tb8Un808zJbZeAWmEoqsCkteQVhdkZf3U+zZH6QXQmtL3nrE4ec
+         RljQ==
+X-Gm-Message-State: AOAM530xewUysm4tYiR+apwOKwe/PbfYIPPBO+TZC5mSuxeTkRBNi5J8
+        NEnpBSs8ont6psYVolTQotk=
+X-Google-Smtp-Source: ABdhPJzME6ZWPWxPuechAs1rXqqcdw9f+bRITo/lyjxDSQ/RjGcVrTEftDosM4WnyGlepgZuVhN57Q==
+X-Received: by 2002:a17:902:8d98:b029:eb:43c2:d294 with SMTP id v24-20020a1709028d98b02900eb43c2d294mr25680394plo.49.1620123899597;
+        Tue, 04 May 2021 03:24:59 -0700 (PDT)
+Received: from sol (106-69-187-97.dyn.iinet.net.au. [106.69.187.97])
+        by smtp.gmail.com with ESMTPSA id u14sm3191930pjy.6.2021.05.04.03.24.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 May 2021 03:24:58 -0700 (PDT)
+Date:   Tue, 4 May 2021 18:24:54 +0800
+From:   Kent Gibson <warthog618@gmail.com>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de
+Subject: Re: [PATCH 1/2] dt-bindings: gpio: introduce hog properties with
+ less ambiguity
+Message-ID: <20210504102454.GA21266@sol>
+References: <20210503210526.43455-1-u.kleine-koenig@pengutronix.de>
+ <20210504025546.GA13356@sol>
+ <20210504091459.clb5nkwgrgg43ixq@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6502a95d-6585-4c42-f0d4-08d90ee69f6d
-X-MS-TrafficTypeDiagnostic: BN6PR02MB2417:
-X-Microsoft-Antispam-PRVS: <BN6PR02MB2417E900891B558AFAFB7095C25A9@BN6PR02MB2417.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:480;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BY2VTevOB0UE3h8aS0r32qgPMCvPm09pu3KBqCDERd0o8RKd6wVbMfpvqyf5uR1P3IvdysrHIklzCUkp4GkbDB6lbheSxkFydLHPF4pgAfjaPDnR6cVWdQTtEJ74CkRThSFjnuilV+W3IF1NsPd9+UEFivXoFatgwJrFlqN8TK7ZF2trUVGhhW9DDruFLA7svAp8H1rKjsA/ZWCCKNwzELBZdVHpWzEr+YxrpMp48cDMxztEarwnqQMAaS0PvnKR7D34Db9UJg3C8MtY07pVKv0frDbrMSeolTAGwhtIarPR8d/FeKanSCE7u7XhvKA7gmtRGrGNKBWMJgEzEOlNaUHOejoMUUcw1yP+XICrvPQ3ZaEadvVhdu5k8LweEHJBD2/O/OG81NI5s4pXt375jiMEU8cwFY2WFzMZYql4UTXO3qS9IiAFzVu27wGRPkT9xSEryEgzgZGynwx12u16uvEjneIJMMmNvO18kyheNy5XU12q5YrMwxuEiO7DO7fMU7ekrQaBBTLCF3HjxH438os4kTTznozQ/5J9RLcc0C7emznVkUuFIi6kY1UKGGWF3QZMiTOSE5J0AemMeUy8tCLtu5/ZsJBYvBuSjJ6Se2KB5taG68J9yLjNGcrbOVFccm4YKTF3Grsrb8hobNfEhkRqVpjA9QoxVzngQ7TYRiVHiAtcgUTmZNrGp5znl+e6pkHartMlCUeJcnT8oFAgPXaueeDWeWtGhE4z698dTqaz81RaCpPLtlO+iyFWAl94
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(396003)(39850400004)(136003)(376002)(346002)(46966006)(36840700001)(47076005)(921005)(7696005)(2616005)(316002)(82310400003)(6666004)(70586007)(8936002)(70206006)(82740400003)(7416002)(356005)(5660300002)(36906005)(26005)(478600001)(110136005)(36756003)(7636003)(83380400001)(1076003)(426003)(36860700001)(186003)(2906002)(9786002)(336012)(8676002)(102446001)(2101003)(83996005);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2021 10:23:12.8275
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6502a95d-6585-4c42-f0d4-08d90ee69f6d
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT015.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR02MB2417
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210504091459.clb5nkwgrgg43ixq@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support to load the user-key encrypted FPGA
-Image loading to the Xilinx ZynqMP Soc.
+On Tue, May 04, 2021 at 11:14:59AM +0200, Uwe Kleine-König wrote:
+> Hello,
+> 
+> On Tue, May 04, 2021 at 10:55:46AM +0800, Kent Gibson wrote:
+> > On Mon, May 03, 2021 at 11:05:26PM +0200, Uwe Kleine-König wrote:
+> > > For active low lines the semantic of output-low and output-high is hard
+> > > to grasp because there is a double negation involved and so output-low
+> > > is actually a request to drive the line high (aka inactive).
+> > 
+> > +1 on clarifying the naming.
+> > 
+> > > So introduce output-inactive and output-active with the same semantic as
+> > > output-low and output-high respectively have today, but with a more
+> > > sensible name.
+> > > 
+> > 
+> > You use active/inactive here, but then asserted/deasserted in the patch.
+> 
+> oops, this is an oversight.
+> 
+> > My preference would be the active/inactive, which has more of a level
+> > feel, over the asserted/deasserted which feels more like an edge.
+> > 
+> > And you still use active/inactive in the descriptions, so now we have all
+> > three naming schemes in the mix.  
+> > 
+> > What made you change?
+> 
+> I had active/inactive first, but Linux Walleij requested
+> asserted/deasserted:
+> 
+> https://lore.kernel.org/r/CACRpkdbccHbhYcCyPiSoA7+zGXBtbL_LwLkPB3vQDyOqkTA7EQ@mail.gmail.com
+> 
 
-Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
----
- drivers/fpga/zynqmp-fpga.c           | 24 ++++++++++++++++++++++--
- include/linux/firmware/xlnx-zynqmp.h |  2 ++
- 2 files changed, 24 insertions(+), 2 deletions(-)
+Thanks - I'd missed that.
 
-diff --git a/drivers/fpga/zynqmp-fpga.c b/drivers/fpga/zynqmp-fpga.c
-index 125743c9797f..565ebe9e1610 100644
---- a/drivers/fpga/zynqmp-fpga.c
-+++ b/drivers/fpga/zynqmp-fpga.c
-@@ -22,6 +22,8 @@
-  */
- struct zynqmp_fpga_priv {
- 	struct device *dev;
-+	const char *key_buf;
-+	size_t key_size;
- 	u32 flags;
- };
- 
-@@ -33,6 +35,8 @@ static int zynqmp_fpga_ops_write_init(struct fpga_manager *mgr,
- 
- 	priv = mgr->priv;
- 	priv->flags = info->flags;
-+	priv->key_buf = info->enc_key_buf;
-+	priv->key_size = info->enc_key_buf_size;
- 
- 	return 0;
- }
-@@ -41,9 +45,9 @@ static int zynqmp_fpga_ops_write(struct fpga_manager *mgr,
- 				 const char *buf, size_t size)
- {
- 	struct zynqmp_fpga_priv *priv;
--	dma_addr_t dma_addr;
-+	dma_addr_t dma_addr, key_addr;
- 	u32 eemi_flags = 0;
--	char *kbuf;
-+	char *kbuf, *key_kbuf;
- 	int ret;
- 
- 	priv = mgr->priv;
-@@ -54,13 +58,29 @@ static int zynqmp_fpga_ops_write(struct fpga_manager *mgr,
- 
- 	memcpy(kbuf, buf, size);
- 
-+	if (priv->flags & FPGA_MGR_ENCRYPTED_USER_KEY_BITSTREAM) {
-+		eemi_flags |= XILINX_ZYNQMP_PM_FPGA_ENC_USER_KEY;
-+		key_kbuf = dma_alloc_coherent(priv->dev, size, &key_addr,
-+					      GFP_KERNEL);
-+		if (!key_kbuf)
-+			return -ENOMEM;
-+		memcpy(key_kbuf, priv->key_buf, priv->key_size);
-+	}
-+
- 	wmb(); /* ensure all writes are done before initiate FW call */
- 
- 	if (priv->flags & FPGA_MGR_PARTIAL_RECONFIG)
- 		eemi_flags |= XILINX_ZYNQMP_PM_FPGA_PARTIAL;
- 
-+	if (priv->flags & FPGA_MGR_ENCRYPTED_USER_KEY_BITSTREAM)
-+		ret = zynqmp_pm_fpga_enc_key_load(key_addr, priv->key_size);
-+
- 	ret = zynqmp_pm_fpga_load(dma_addr, size, eemi_flags);
- 
-+	if (priv->flags & FPGA_MGR_ENCRYPTED_USER_KEY_BITSTREAM)
-+		dma_free_coherent(priv->dev, priv->key_size,
-+				  key_kbuf, key_addr);
-+
- 	dma_free_coherent(priv->dev, size, kbuf, dma_addr);
- 
- 	return ret;
-diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
-index 7aa9ad40ff53..a767386d930a 100644
---- a/include/linux/firmware/xlnx-zynqmp.h
-+++ b/include/linux/firmware/xlnx-zynqmp.h
-@@ -56,9 +56,11 @@
-  * Firmware FPGA Manager flags
-  * XILINX_ZYNQMP_PM_FPGA_FULL:	FPGA full reconfiguration
-  * XILINX_ZYNQMP_PM_FPGA_PARTIAL: FPGA partial reconfiguration
-+ * XILINX_ZYNQMP_PM_FPGA_ENC_USER_KEY: User-key Encrypted FPGA reconfiguration
-  */
- #define XILINX_ZYNQMP_PM_FPGA_FULL	0x0U
- #define XILINX_ZYNQMP_PM_FPGA_PARTIAL	BIT(0)
-+#define XILINX_ZYNQMP_PM_FPGA_ENC_USER_KEY	BIT(3)
- 
- enum pm_api_id {
- 	PM_GET_API_VERSION = 1,
--- 
-2.17.1
+I don't suppose you happen to have a link to the gpiod_set_value()
+discussion that Linus mentions?
+
+> While I like active/inactive better than asserted/deasserted, the latter
+> is still way better than high/low, so I didn't discuss.
+> 
+
+As a native English speaker, I find deasserted to be awkward - though it
+is the appropriate negative of asserted in this context.
+
+And there is no escaping the naming of the active-low, so I'm curious to
+know if there is a good reason not to go with active/inactive.
+
+Cheers,
+Kent.
 
