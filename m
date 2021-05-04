@@ -2,92 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4897372B70
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 15:55:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92DE3372B75
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 15:55:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231270AbhEDN41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 09:56:27 -0400
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:51499 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231216AbhEDN41 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 09:56:27 -0400
-X-Originating-IP: 90.65.108.55
-Received: from localhost (lfbn-lyo-1-1676-55.w90-65.abo.wanadoo.fr [90.65.108.55])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 9FD541BF20B;
-        Tue,  4 May 2021 13:55:27 +0000 (UTC)
-Date:   Tue, 4 May 2021 15:55:27 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        "supporter:OCELOT ETHERNET SWITCH DRIVER" 
-        <UNGLinuxDriver@microchip.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:OCELOT ETHERNET SWITCH DRIVER" <netdev@vger.kernel.org>
-Subject: Re: [RFC PATCH vN net-next 2/2] net: mscc: ocelot: add support for
- VSC75XX SPI control
-Message-ID: <YJFST3Q13Kp/Eqa1@piout.net>
-References: <20210504051130.1207550-1-colin.foster@in-advantage.com>
- <20210504051130.1207550-2-colin.foster@in-advantage.com>
- <YJE+prMCIMiQm26Z@lunn.ch>
- <20210504125942.nx5b6j2cy34qyyhm@skbuf>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210504125942.nx5b6j2cy34qyyhm@skbuf>
+        id S231394AbhEDN4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 09:56:37 -0400
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:43613 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231384AbhEDN4g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 09:56:36 -0400
+Received: by mail-oi1-f180.google.com with SMTP id j75so3082388oih.10;
+        Tue, 04 May 2021 06:55:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=rQFhCZYzph1mceFaGalojF2yLBMlfUBMUhT1foehHNQ=;
+        b=eLLlgRAxVoEaWzWDHbxzqH8gBhU517rblXuQ97cS0fQLEX2jUx8aRckI1Fvbs3MFvW
+         ds/GUOKMIIn27jYCXBi+0qXVseZAib20vs4kAJr2gT/r0R16UJskEQboAZQmW68AwwNl
+         Y8L6pUlFigBuqCX/bfhlO9le2HKauPN8IURVLqz7YkqMDmXEOcrDQq7G9gu5S4zTrk0E
+         9XLOd2tf6CViqVYsZcwVDAPpsDAaE++coK3MbL83jRZ+SfT/y0tys99zeHst6AeJE/8u
+         CfHJNaRz/LeSTrwr51r+uRDtKLz/ywyaZYIPSyMV0oFhhiYzkiHQu++WX+czcpaRb9ek
+         HlVw==
+X-Gm-Message-State: AOAM533PUcXbCYJauLzCetNlXM4T6A+yoMw8GvYH3uvyxwhlTyM/wV7B
+        W0LpbQ2s0duPDEaC0DP0Nw==
+X-Google-Smtp-Source: ABdhPJwignls2NPcOmlRV7U4yQ6VJWDOA5xFv92/Je0QP+cKNJIathAuEiFyp/BLzgi4MyBo2cyTyQ==
+X-Received: by 2002:aca:4acf:: with SMTP id x198mr11097354oia.111.1620136541101;
+        Tue, 04 May 2021 06:55:41 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id g26sm291616otr.37.2021.05.04.06.55.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 May 2021 06:55:40 -0700 (PDT)
+Received: (nullmailer pid 4044733 invoked by uid 1000);
+        Tue, 04 May 2021 13:55:37 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Rui Miguel Silva <rui.silva@linaro.org>
+Cc:     devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sebastian Siewior <bigeasy@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20210504101910.18619-7-rui.silva@linaro.org>
+References: <20210504101910.18619-1-rui.silva@linaro.org> <20210504101910.18619-7-rui.silva@linaro.org>
+Subject: Re: [PATCH 6/7] dt-bindings: usb: nxp,isp1760: add bindings
+Date:   Tue, 04 May 2021 08:55:37 -0500
+Message-Id: <1620136537.094458.4044732.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/05/2021 12:59:43+0000, Vladimir Oltean wrote:
-> > > +static void vsc7512_phylink_validate(struct ocelot *ocelot, int port,
-> > > +				     unsigned long *supported,
-> > > +				     struct phylink_link_state *state)
-> > > +{
-> > > +	struct ocelot_port *ocelot_port = ocelot->ports[port];
-> > > +	__ETHTOOL_DECLARE_LINK_MODE_MASK(mask) = {
-> > > +		0,
-> > > +	};
-> > 
-> > This function seems out of place. Why would SPI access change what the
-> > ports are capable of doing? Please split this up into more
-> > patches. Keep the focus of this patch as being adding SPI support.
+On Tue, 04 May 2021 11:19:09 +0100, Rui Miguel Silva wrote:
+> The nxp,isp1760 driver is old in the tree, but did not had a bindings
+> entry, since I am extend it to support isp1763 in the same family, use
+> this to add a proper yaml bindings file.
 > 
-> What is going on is that this is just the way in which the drivers are
-> structured. Colin is not really "adding SPI support" to any of the
-> existing DSA switches that are supported (VSC9953, VSC9959) as much as
-> "adding support for a new switch which happens to be controlled over
-> SPI" (VSC7512).
-
-Note that this should not only be about vsc7512 as the whole ocelot
-family (vsc7511, vsc7512, vsc7513 and vsc7514) can be connected over
-spi. Also, they can all be used in a DSA configuration, over PCIe, just
-like Felix.
-
-> The layering is as follows:
-> - drivers/net/dsa/ocelot/felix_vsc7512_spi.c: deals with the most
->   hardware specific SoC support. The regmap is defined here, so are the
->   port capabilities.
-> - drivers/net/dsa/ocelot/felix.c: common integration with DSA
-> - drivers/net/ethernet/mscc/ocelot*.c: the SoC-independent hardware
->   support.
+> Signed-off-by: Rui Miguel Silva <rui.silva@linaro.org>
+> ---
+>  .../devicetree/bindings/usb/nxp,isp1760.yaml  | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/nxp,isp1760.yaml
 > 
-> I'm not actually sure that splitting the port PHY mode support in a
-> separate patch is possible while keeping functional intermediate
-> results. But I do agree about the rest, splitting the device tree
-> changes, etc.
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/usb/nxp,isp1760.example.dt.yaml:0:0: /example-0/usb@40200000: failed to match any schema with compatible: ['nxp,usb-isp1763']
+
+See https://patchwork.ozlabs.org/patch/1473757
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
