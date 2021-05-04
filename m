@@ -2,138 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 170CD372490
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 04:55:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AEE53724D0
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 06:11:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229687AbhEDC4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 22:56:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45566 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229665AbhEDC4r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 22:56:47 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D113C061574;
-        Mon,  3 May 2021 19:55:53 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id p12so5409003pgj.10;
-        Mon, 03 May 2021 19:55:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=plxuiWjREPBGYzhCFdcJhcsHK+v+FpYSlzvBlR1/nm4=;
-        b=WoHmLOXu/aELN4S8l/5TBVI4YrhNCvzfwIzzDOVVDA80qIda8YC+33JefeGLPPDzys
-         vzcfZAvwQ3/lYUzY9POSdlMA7d0ifN4rvb7D2+1Zlnru0jUsbXFdhXE7xqz4NPbGgpYa
-         C/8st6sSZoZGqYZc21S9nVR6VRfpGbobUdp5r4TRLYFR/lA8Iy4Pr1Wa7rtfFybjUjWS
-         tIBqKCR/B5ASsasi1jb14eOqjlNg9ec3F5+uDgrMibrmdtXhIEAYRnxMu3e9mN4XGOhd
-         uG/zclNI+tEmqu8InKfYlt1zenByxVppkt1QxB1sOGlOuAyEYwmprmdxaar2k7ZIgKFo
-         ILBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=plxuiWjREPBGYzhCFdcJhcsHK+v+FpYSlzvBlR1/nm4=;
-        b=iiU7oOmIsMKs0b5GtUGLJyBVwiHIJVQlVSB6p79m6nqEwwpnE/tAUsrq2tpBZa5tqR
-         Emzp5VnZuJT4brEhBFJ+KcSFDkfBBPN9ujPqRXKoRCPwnePnmnEnqHHtJGqFEA0sr8rH
-         Noa4GGizoWZ0IfzxSJv8mnV75Z7ZUGnNj4UGcaoYxWsNFSM2qHDkbvUoMUCaHg1bzciR
-         NQYHV5yLKyunkzXdilc1PigMF56bc3EMGbTfwr+tAdr7Da+n20hj/pKShw7mc92J+OLO
-         7mQiKmngDJjmVgHCyuKnH1ln291wpq3MCo0i5Xm81XQqaPWT5VewArOv+OAG3Ts8y966
-         kzJw==
-X-Gm-Message-State: AOAM530pW99KQ2mMVwFDTAqDCangpkJElyiuR9P6QxPkeCMunZvPAt8y
-        /liqitoR9XPKhk7rYm1rsY0=
-X-Google-Smtp-Source: ABdhPJyR06EKXkyNorNbglP6maAzAnEoRxWZkrxwZICmhIEkn1WaUgseY9d/BhorQ7z+u3xLcIk+sg==
-X-Received: by 2002:a17:90a:ba16:: with SMTP id s22mr25180758pjr.12.1620096951889;
-        Mon, 03 May 2021 19:55:51 -0700 (PDT)
-Received: from sol (106-69-187-97.dyn.iinet.net.au. [106.69.187.97])
-        by smtp.gmail.com with ESMTPSA id f15sm1251807pgv.5.2021.05.03.19.55.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 May 2021 19:55:51 -0700 (PDT)
-Date:   Tue, 4 May 2021 10:55:46 +0800
-From:   Kent Gibson <warthog618@gmail.com>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        kernel@pengutronix.de, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: gpio: introduce hog properties with
- less ambiguity
-Message-ID: <20210504025546.GA13356@sol>
-References: <20210503210526.43455-1-u.kleine-koenig@pengutronix.de>
+        id S229721AbhEDEL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 00:11:58 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:41147 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229499AbhEDEL6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 00:11:58 -0400
+X-UUID: ba70794388d84390b8715bdd006084f9-20210504
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=/cbVo2HXM2EBR6+XgYLdg2qe+Xrids+DQpIfN0W+BU8=;
+        b=nW5JXRJR4HBHHZUE7Cd/pIt2oHMIw8AMNsx/SU2FuutBl6KpISLn3GkCfaxZCtDNBczMeTcsw4Pz77JEo0LAy5K72plc2ilItC8HZYo8ATxc7cYlULk5RpSB1qi3EYO/YvkbDO1PtDBT4Zy6G9/tH5rz4bGxJ+CEmhftMqQBjgw=;
+X-UUID: ba70794388d84390b8715bdd006084f9-20210504
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 100049445; Tue, 04 May 2021 12:11:01 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 4 May 2021 12:10:59 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by mtkcas07.mediatek.inc
+ (172.21.101.84) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 4 May
+ 2021 12:10:59 +0800
+Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 4 May 2021 12:10:59 +0800
+Message-ID: <1620101459.15918.4.camel@mtksdaap41>
+Subject: Re: [PATCH v2 2/2] dt-bindings: mediatek: Add optional mediatek,
+ gce-events property
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Date:   Tue, 4 May 2021 12:10:59 +0800
+In-Reply-To: <20210503050523.2571758-2-hsinyi@chromium.org>
+References: <20210503050523.2571758-1-hsinyi@chromium.org>
+         <20210503050523.2571758-2-hsinyi@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210503210526.43455-1-u.kleine-koenig@pengutronix.de>
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 03, 2021 at 11:05:26PM +0200, Uwe Kleine-König wrote:
-> For active low lines the semantic of output-low and output-high is hard
-> to grasp because there is a double negation involved and so output-low
-> is actually a request to drive the line high (aka inactive).
-> 
+SGksIEhzaW4teWk6DQoNCk9uIE1vbiwgMjAyMS0wNS0wMyBhdCAxMzowNSArMDgwMCwgSHNpbi1Z
+aSBXYW5nIHdyb3RlOg0KPiBtZWRpYXRlayxnY2UtZXZlbnRzIHByb3BlcnR5IGlzIHVzZWQgYnkg
+Z2NlIGNsaWVudHMuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBIc2luLVlpIFdhbmcgPGhzaW55aUBj
+aHJvbWl1bS5vcmc+DQo+IC0tLQ0KPiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9t
+ZWRpYXRlay9tZWRpYXRlayxkaXNwLnR4dCAgfCA2ICsrKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQs
+IDYgaW5zZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGRpc3AudHh0IGIvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWssZGlz
+cC50eHQNCj4gaW5kZXggZmJiNTljOWRkZGE2Li45MzliMmRhM2JkYzUgMTAwNjQ0DQo+IC0tLSBh
+L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlh
+dGVrLGRpc3AudHh0DQo+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9k
+aXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGRpc3AudHh0DQo+IEBAIC03NSw2ICs3NSwxMCBAQCBP
+cHRpb25hbCBwcm9wZXJ0aWVzIChSRE1BIGZ1bmN0aW9uIGJsb2Nrcyk6DQo+ICAgIG1lZGlhdGVr
+LHJkbWEtZmlmby1zaXplIG9mIG10ODE4My1yZG1hMCBpcyA1Sw0KPiAgICBtZWRpYXRlayxyZG1h
+LWZpZm8tc2l6ZSBvZiBtdDgxODMtcmRtYTEgaXMgMksNCj4gIA0KPiArT3B0aW9uYWwgcHJvcGVy
+dGllcyBmb3IgZGlzcGxheSBtdXRleDoNCj4gKy0gbWVkaWF0ZWssZ2NlLWV2ZW50czogR0NFIGV2
+ZW50cyB1c2VkIGJ5IGNsaWVudHMuIFRoZSBldmVudCBudW1iZXJzIGFyZQ0KPiArICBkZWZpbmVk
+IGluICdkdC1iaW5kaW5ncy9nY2UvPGNoaXA+LWdjZS5oJy4NCg0KSSB0aGluayBtZWRpYXRlayxn
+Y2UtZXZlbnRzIHNob3VsZCBiZSBmaXJzdCBkZWZpbmVkIGluIFsxXSwgYW5kIGhlcmUNCnJlZmVy
+IHRvIFsxXS4NCg0KSW4gYWRkaXRpb24sIG10ay1tdXRleCBkcml2ZXIgaXMgbW92ZWQgaW50byBz
+b2MgZm9sZGVyLCBzbyBJIHdvdWxkIGxpa2UNCnRvIG1vdmUgbXRrLW11dGV4IGJpbmRpbmcgb3V0
+IG9mIGRpc3BsYXkgYmluZGluZy4gSXQncyB1cCB0byB5b3UuDQoNClsxXSBEb2N1bWVudGF0aW9u
+L2RldmljZXRyZWUvYmluZGluZ3MvbWFpbGJveC9tdGstZ2NlLnR4dA0KDQpSZWdhcmRzLA0KQ0sN
+Cg0KPiArDQo+ICBFeGFtcGxlczoNCj4gIA0KPiAgbW1zeXM6IGNsb2NrLWNvbnRyb2xsZXJAMTQw
+MDAwMDAgew0KPiBAQCAtMjA5LDYgKzIxMyw4IEBAIG11dGV4OiBtdXRleEAxNDAyMDAwMCB7DQo+
+ICAJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE2OSBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiAgCXBv
+d2VyLWRvbWFpbnMgPSA8JnNjcHN5cyBNVDgxNzNfUE9XRVJfRE9NQUlOX01NPjsNCj4gIAljbG9j
+a3MgPSA8Jm1tc3lzIENMS19NTV9NVVRFWF8zMks+Ow0KPiArCW1lZGlhdGVrLGdjZS1ldmVudHMg
+PSA8Q01EUV9FVkVOVF9NVVRFWDBfU1RSRUFNX0VPRj4sDQo+ICsJCQkgICAgICA8Q01EUV9FVkVO
+VF9NVVRFWDFfU1RSRUFNX0VPRj47DQo+ICB9Ow0KPiAgDQo+ICBvZEAxNDAyMzAwMCB7DQoNCg==
 
-+1 on clarifying the naming.
-
-> So introduce output-inactive and output-active with the same semantic as
-> output-low and output-high respectively have today, but with a more
-> sensible name.
-> 
-
-You use active/inactive here, but then asserted/deasserted in the patch.
-My preference would be the active/inactive, which has more of a level
-feel, over the asserted/deasserted which feels more like an edge.
-
-And you still use active/inactive in the descriptions, so now we have all
-three naming schemes in the mix.  
-
-What made you change?
-
-Cheers,
-Kent.
-
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> ---
-> Hello,
-> 
-> I already sent this patch back in July and Linus (Walleij) liked the
-> patch but asked for an implementation. For that I added the second patch
-> now.
-> 
-> Best regards
-> Uwe
-> 
->  Documentation/devicetree/bindings/gpio/gpio.txt | 15 ++++++++++-----
->  1 file changed, 10 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio.txt b/Documentation/devicetree/bindings/gpio/gpio.txt
-> index a8895d339bfe..1061c346a619 100644
-> --- a/Documentation/devicetree/bindings/gpio/gpio.txt
-> +++ b/Documentation/devicetree/bindings/gpio/gpio.txt
-> @@ -196,11 +196,16 @@ Only one of the following properties scanned in the order shown below.
->  This means that when multiple properties are present they will be searched
->  in the order presented below and the first match is taken as the intended
->  configuration.
-> -- input:      A property specifying to set the GPIO direction as input.
-> -- output-low  A property specifying to set the GPIO direction as output with
-> -	      the value low.
-> -- output-high A property specifying to set the GPIO direction as output with
-> -	      the value high.
-> +- input:             A property specifying to set the GPIO direction as input.
-> +- output-deasserted: A property specifying to set the GPIO direction as output
-> +		     with the inactive value (depending on the line's polarity,
-> +		     which is active-high by default)
-> +- output-asserted:   A property specifying to set the GPIO direction as output
-> +		     with the active value.
-> +
-> +For backwards compatibility "output-low" and "output-high" should be supported
-> +as aliases for "output-deasserted" and "output-asserted" respectively. Their
-> +usage is misleading for active-low outputs, so their use is discouraged.
->  
->  Optional properties:
->  - line-name:  The GPIO label name. If not present the node name is used.
-> -- 
-> 2.30.2
-> 
