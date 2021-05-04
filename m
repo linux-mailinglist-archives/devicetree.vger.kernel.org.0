@@ -2,254 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66BC3372B92
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 16:04:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2E79372B95
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 16:05:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231303AbhEDOFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 10:05:04 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:40649 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231216AbhEDOFD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 10:05:03 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1620137048;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=bz/BkFEzKDbiiUHKmQk0KfMal+Y8kXEU5J61wg99LZs=;
-        b=FkISEHmrlr7eJszGyz6L/pKCQTeDDlEbdkY0TwkSXOQJD7kIbFr0kZLJGx35n9RcO6QDQF
-        9hqCPq5ign5mA/tkir+I4H+tvSYTaDz+Hq/LWfTpRC09aOSaDzR4BjOeYwO9iaZIBWKM0G
-        rHYousSEm78aZGWqTB9pxVaEiuB+lKw=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-184-a_6tFs9ZOwupPgDLc1kvOQ-1; Tue, 04 May 2021 10:03:23 -0400
-X-MC-Unique: a_6tFs9ZOwupPgDLc1kvOQ-1
-Received: by mail-qk1-f199.google.com with SMTP id e4-20020a37b5040000b02902df9a0070efso7555483qkf.18
-        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 07:03:22 -0700 (PDT)
+        id S231350AbhEDOGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 10:06:39 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:44966 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231270AbhEDOGj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 10:06:39 -0400
+Received: from mail-qt1-f198.google.com ([209.85.160.198])
+        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.86_2)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1ldvgF-0002j4-JC
+        for devicetree@vger.kernel.org; Tue, 04 May 2021 14:05:43 +0000
+Received: by mail-qt1-f198.google.com with SMTP id i12-20020ac860cc0000b02901cb6d022744so2039908qtm.20
+        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 07:05:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=bz/BkFEzKDbiiUHKmQk0KfMal+Y8kXEU5J61wg99LZs=;
-        b=CHx2FAzedJCgYbLoevAjDNbczmVE4bOrIllYKa4mYHjMooXgY83KEwzvC8ZZkZThag
-         u6M+dvIXgaqyPxCxZ/J+JO9I++3BCnlT6uLEEef50/mViWlN9s75nQHjoWDui+nq2oYL
-         yhy5SoBoJTqOTF9N5p3GnF0yqB1eURLyfVgdPoKb1k+s0s0gfXV8rHd2mK9SBooQiOvs
-         IQZL8QgTLh8jEOId/zqZJxGErbJxLbTjDlsnCRZTkAeoxUYWGhoN4KPjApqjHn1MHR0F
-         eFtM1d+YOmOFbP04LciPQ9WRUcphuBS/Q+t2Ywcwp9eK/7ViCMaV0UTkoTgINNZXANHd
-         CRxA==
-X-Gm-Message-State: AOAM530pDWe1WW1xToKQys/pp/L2AtRx0T9JGXfCKq7Z4y8sQQVUcpSu
-        +TpQFmj1JtOxC98hW9TttxH2lNPQMemxpKp44HmQsHQowCkhqpBURcOBlNppkJ9cY+hPgy90BdH
-        c6DOWObu3qTWhKX9WJgmXdQ==
-X-Received: by 2002:ac8:7104:: with SMTP id z4mr6143942qto.379.1620137002101;
-        Tue, 04 May 2021 07:03:22 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJykiyODZIs0Ud1Rjfp7ZhCcxvdYEGlWvM38PJysFh2RXQCvQxCTt4KNkwpPVMEp1xEIlZlFSA==
-X-Received: by 2002:ac8:7104:: with SMTP id z4mr6143924qto.379.1620137001849;
-        Tue, 04 May 2021 07:03:21 -0700 (PDT)
-Received: from localhost.localdomain (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id 11sm4888213qkk.31.2021.05.04.07.03.19
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=d1Bg21TA2Y/XVBe2Xz6NvEf8Q9YHqIlZi+voDC9dIkU=;
+        b=EeyJ9gwzhxbw0NQPUSZ5JQIdqr/wN1NqtUaWPg2AHLr0IHJBAVlKVJB8GeCsDCDy/a
+         GWZZc0LnSvIkg3XmGiUmz+B5/d1rPnMTuqWh+NzB9788tVZqDrmWwexoKhkZmtKWKaE8
+         OCLiTSIyVN5vdgaJuamZMLWXDVQW33pblLX2BCQGRwG+xcaNMPhdZ+eWthMSG3wVXQmK
+         v3F51FbCAT/mrVGftKSPkvdhMF6EMraeUOwfi4Oz6gL/YR+GHaNL16XPnbJ6xpqKvMic
+         hSNSzBFaFHG00QmgbcdclSd/KhylmoAFfzcMIisbZIAEOA8ldP8TXWPCpukT3OILGIGf
+         NvfA==
+X-Gm-Message-State: AOAM532TkI/Lez/7aWeTMFJ2oMjvQz/d4kDHR9Ph5BFb456n/VkYuvGf
+        uWFqLPRU1PL87SUAYfPCEwkD53b3CwxPpOPKoL17yq+GKNkKrDF5AgpM8WQhfeaWHqLaSN7tU0l
+        hkpmiGveM8GfrpjT+sMwt7JAx1haO5LTLmKl35jc=
+X-Received: by 2002:a05:620a:12f3:: with SMTP id f19mr24609805qkl.214.1620137142629;
+        Tue, 04 May 2021 07:05:42 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxV4MzmdYFEJ07rYueLywhsQ0lTRCYL70XhmxTt9vr5KUOS3gbBkBykA4ex5zwtjWF0SpRwvg==
+X-Received: by 2002:a05:620a:12f3:: with SMTP id f19mr24609778qkl.214.1620137142398;
+        Tue, 04 May 2021 07:05:42 -0700 (PDT)
+Received: from [192.168.1.4] ([45.237.49.3])
+        by smtp.gmail.com with ESMTPSA id h65sm11173774qkd.112.2021.05.04.07.05.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 May 2021 07:03:21 -0700 (PDT)
-Subject: Re: [PATCH V5 XRT Alveo 13/20] fpga: xrt: User Clock Subsystem driver
-To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
-Cc:     linux-fpga@vger.kernel.org, maxz@xilinx.com,
-        sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
-        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
-        robh@kernel.org, Max Zhen <max.zhen@xilinx.com>
-References: <20210427205431.23896-1-lizhi.hou@xilinx.com>
- <20210427205431.23896-14-lizhi.hou@xilinx.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <041b113b-a613-fd1e-54f5-3506426c8ff7@redhat.com>
-Date:   Tue, 4 May 2021 07:03:18 -0700
+        Tue, 04 May 2021 07:05:41 -0700 (PDT)
+Subject: Re: [PATCH v2 2/4] memory: mediatek: add DRAM controller driver
+To:     Po-Kai Chi <pk.chi@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, wsd_upstream@mediatek.com,
+        CC Hwang <cc.hwang@mediatek.com>
+References: <1618565538-6972-1-git-send-email-pk.chi@mediatek.com>
+ <1618565538-6972-3-git-send-email-pk.chi@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <6f7472a2-3be2-e1dc-8e0f-83f6b1cdf61f@canonical.com>
+Date:   Tue, 4 May 2021 10:05:40 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <20210427205431.23896-14-lizhi.hou@xilinx.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <1618565538-6972-3-git-send-email-pk.chi@mediatek.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 4/27/21 1:54 PM, Lizhi Hou wrote:
-> Add User Clock Subsystem (UCS) driver. UCS is a hardware function
-> discovered by walking xclbin metadata. A xrt device node will be
-> created for it.  UCS enables/disables the dynamic region clocks.
->
-> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
-> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
-> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
-
-v4 was ok, please add my Reviewed-by line here, under yours.
-
-Do for the others I have also ok-ed.
-
-Reviewed-by: Tom Rix <trix@redhat.com>
-
+On 16/04/2021 05:32, Po-Kai Chi wrote:
+> MediaTek DRAM controller (DRAMC) driver provides cross-platform features
+> as below:
+> 
+> 1. provide APIs for low power feature queries
+> 2. create sysfs to pass the DRAM information to user-space
+> 
+> Signed-off-by: Po-Kai Chi <pk.chi@mediatek.com>
 > ---
->   drivers/fpga/xrt/lib/xleaf/ucs.c | 152 +++++++++++++++++++++++++++++++
->   1 file changed, 152 insertions(+)
->   create mode 100644 drivers/fpga/xrt/lib/xleaf/ucs.c
->
-> diff --git a/drivers/fpga/xrt/lib/xleaf/ucs.c b/drivers/fpga/xrt/lib/xleaf/ucs.c
+>  drivers/memory/Kconfig              |    1 +
+>  drivers/memory/Makefile             |    1 +
+>  drivers/memory/mediatek/Kconfig     |    9 +
+>  drivers/memory/mediatek/Makefile    |    3 +
+>  drivers/memory/mediatek/mtk-dramc.c |  711 +++++++++++++++++++++++++++++++++++
+>  include/memory/mediatek/dramc.h     |   18 +
+>  6 files changed, 743 insertions(+)
+>  create mode 100644 drivers/memory/mediatek/Kconfig
+>  create mode 100644 drivers/memory/mediatek/Makefile
+>  create mode 100644 drivers/memory/mediatek/mtk-dramc.c
+>  create mode 100644 include/memory/mediatek/dramc.h
+> 
+> diff --git a/drivers/memory/Kconfig b/drivers/memory/Kconfig
+> index 72c0df1..056e906 100644
+> --- a/drivers/memory/Kconfig
+> +++ b/drivers/memory/Kconfig
+> @@ -225,6 +225,7 @@ config STM32_FMC2_EBI
+>  	  devices (like SRAM, ethernet adapters, FPGAs, LCD displays, ...) on
+>  	  SOCs containing the FMC2 External Bus Interface.
+>  
+> +source "drivers/memory/mediatek/Kconfig"
+
+Please first group existing Mediatek driver there. It's messy.
+
+>  source "drivers/memory/samsung/Kconfig"
+>  source "drivers/memory/tegra/Kconfig"
+>  
+> diff --git a/drivers/memory/Makefile b/drivers/memory/Makefile
+> index bc7663e..cd4f8cf 100644
+> --- a/drivers/memory/Makefile
+> +++ b/drivers/memory/Makefile
+> @@ -25,6 +25,7 @@ obj-$(CONFIG_PL353_SMC)		+= pl353-smc.o
+>  obj-$(CONFIG_RENESAS_RPCIF)	+= renesas-rpc-if.o
+>  obj-$(CONFIG_STM32_FMC2_EBI)	+= stm32-fmc2-ebi.o
+>  
+> +obj-$(CONFIG_MTK_DRAMC)		+= mediatek/
+>  obj-$(CONFIG_SAMSUNG_MC)	+= samsung/
+>  obj-$(CONFIG_TEGRA_MC)		+= tegra/
+>  obj-$(CONFIG_TI_EMIF_SRAM)	+= ti-emif-sram.o
+> diff --git a/drivers/memory/mediatek/Kconfig b/drivers/memory/mediatek/Kconfig
 > new file mode 100644
-> index 000000000000..a7a96ddde44f
+> index 0000000..a1618b0
 > --- /dev/null
-> +++ b/drivers/fpga/xrt/lib/xleaf/ucs.c
-> @@ -0,0 +1,152 @@
+> +++ b/drivers/memory/mediatek/Kconfig
+> @@ -0,0 +1,9 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +config MTK_DRAMC
+> +	tristate "MediaTek DRAMC driver"
+> +	help
+> +	  This selects the MediaTek(R) DRAMC driver.
+> +	  Provide the API for DRAMC low power scenario, and the interface
+> +	  for reporting DRAM information, e.g. DRAM mode register (MR) for
+> +	  DRAM vendor ID, temperature, and density.
+> diff --git a/drivers/memory/mediatek/Makefile b/drivers/memory/mediatek/Makefile
+> new file mode 100644
+> index 0000000..632be48
+> --- /dev/null
+> +++ b/drivers/memory/mediatek/Makefile
+> @@ -0,0 +1,3 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +obj-$(CONFIG_MTK_DRAMC)	+= mtk-dramc.o
+> diff --git a/drivers/memory/mediatek/mtk-dramc.c b/drivers/memory/mediatek/mtk-dramc.c
+> new file mode 100644
+> index 0000000..155b3b7
+> --- /dev/null
+> +++ b/drivers/memory/mediatek/mtk-dramc.c
+> @@ -0,0 +1,711 @@
 > +// SPDX-License-Identifier: GPL-2.0
 > +/*
-> + * Xilinx Alveo FPGA UCS Driver
-> + *
-> + * Copyright (C) 2020-2021 Xilinx, Inc.
-> + *
-> + * Authors:
-> + *      Lizhi Hou<Lizhi.Hou@xilinx.com>
+> + * Copyright (c) 2021 MediaTek Inc.
 > + */
 > +
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/delay.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
 > +#include <linux/device.h>
-> +#include <linux/regmap.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_device.h>
+> +#include <linux/printk.h>
+> +#include <linux/slab.h>
 > +#include <linux/io.h>
-> +#include "metadata.h"
-> +#include "xleaf.h"
-> +#include "xleaf/clock.h"
+> +#include <memory/mediatek/dramc.h>
 > +
-> +#define UCS_ERR(ucs, fmt, arg...)   \
-> +	xrt_err((ucs)->xdev, fmt "\n", ##arg)
-> +#define UCS_WARN(ucs, fmt, arg...)  \
-> +	xrt_warn((ucs)->xdev, fmt "\n", ##arg)
-> +#define UCS_INFO(ucs, fmt, arg...)  \
-> +	xrt_info((ucs)->xdev, fmt "\n", ##arg)
-> +#define UCS_DBG(ucs, fmt, arg...)   \
-> +	xrt_dbg((ucs)->xdev, fmt "\n", ##arg)
+> +#define DRAMC_DRV_NAME	"mtk-dramc"
+
+What does this define bring? What's the benefit?
+
 > +
-> +#define XRT_UCS		"xrt_ucs"
-> +
-> +#define XRT_UCS_CHANNEL1_REG			0
-> +#define XRT_UCS_CHANNEL2_REG			8
-> +
-> +#define CLK_MAX_VALUE			6400
-> +
-> +XRT_DEFINE_REGMAP_CONFIG(ucs_regmap_config);
-> +
-> +struct xrt_ucs {
-> +	struct xrt_device	*xdev;
-> +	struct regmap		*regmap;
-> +	struct mutex		ucs_lock; /* ucs dev lock */
+> +struct mr_info_t {
+> +	unsigned int mr_index;
+> +	unsigned int mr_value;
 > +};
 > +
-> +static void xrt_ucs_event_cb(struct xrt_device *xdev, void *arg)
-> +{
-> +	struct xrt_event *evt = (struct xrt_event *)arg;
-> +	enum xrt_events e = evt->xe_evt;
-> +	struct xrt_device *leaf;
-> +	enum xrt_subdev_id id;
-> +	int instance;
+> +/*
+
+(...)
+
 > +
-> +	id = evt->xe_subdev.xevt_subdev_id;
-> +	instance = evt->xe_subdev.xevt_subdev_instance;
+> +static struct platform_driver dramc_drv = {
+> +	.probe = dramc_probe,
+> +	.remove = dramc_remove,
+> +	.driver = {
+> +		.name = DRAMC_DRV_NAME,
+> +		.owner = THIS_MODULE,
+
+NAK, this is so old mistake... No point to review - run Smatch, sparse,
+checkpatch and coccinelle. Fix all the errors and then resubmit.
+
+> +		.of_match_table = mtk_dramc_of_ids,
+> +	},
+> +};
 > +
-> +	if (e != XRT_EVENT_POST_CREATION) {
-> +		xrt_dbg(xdev, "ignored event %d", e);
-> +		return;
-> +	}
-> +
-> +	if (id != XRT_SUBDEV_CLOCK)
-> +		return;
-> +
-> +	leaf = xleaf_get_leaf_by_id(xdev, XRT_SUBDEV_CLOCK, instance);
-> +	if (!leaf) {
-> +		xrt_err(xdev, "does not get clock subdev");
-> +		return;
-> +	}
-> +
-> +	xleaf_call(leaf, XRT_CLOCK_VERIFY, NULL);
-> +	xleaf_put_leaf(xdev, leaf);
-> +}
-> +
-> +static int ucs_enable(struct xrt_ucs *ucs)
+> +static int __init dramc_drv_init(void)
 > +{
 > +	int ret;
 > +
-> +	mutex_lock(&ucs->ucs_lock);
-> +	ret = regmap_write(ucs->regmap, XRT_UCS_CHANNEL2_REG, 1);
-> +	mutex_unlock(&ucs->ucs_lock);
+> +	ret = platform_driver_register(&dramc_drv);
+> +	if (ret) {
+> +		pr_info("%s: init fail, ret 0x%x\n", __func__, ret);
+> +		return ret;
+> +	}
 > +
 > +	return ret;
 > +}
 > +
-> +static int
-> +xrt_ucs_leaf_call(struct xrt_device *xdev, u32 cmd, void *arg)
+> +static void __exit dramc_drv_exit(void)
 > +{
-> +	switch (cmd) {
-> +	case XRT_XLEAF_EVENT:
-> +		xrt_ucs_event_cb(xdev, arg);
-> +		break;
-> +	default:
-> +		xrt_err(xdev, "unsupported cmd %d", cmd);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
+> +	platform_driver_unregister(&dramc_drv);
 > +}
 > +
-> +static int ucs_probe(struct xrt_device *xdev)
-> +{
-> +	struct xrt_ucs *ucs = NULL;
-> +	void __iomem *base = NULL;
-> +	struct resource *res;
+> +module_init(dramc_drv_init);
+> +module_exit(dramc_drv_exit);
 > +
-> +	ucs = devm_kzalloc(&xdev->dev, sizeof(*ucs), GFP_KERNEL);
-> +	if (!ucs)
-> +		return -ENOMEM;
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_DESCRIPTION("MediaTek DRAMC Driver");
+> +MODULE_AUTHOR("Po-Kai Chi <pk.chi@mediatek.com>");
+> diff --git a/include/memory/mediatek/dramc.h b/include/memory/mediatek/dramc.h
+> new file mode 100644
+> index 0000000..c8d200f
+> --- /dev/null
+> +++ b/include/memory/mediatek/dramc.h
+> @@ -0,0 +1,18 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2021 MediaTek Inc.
+> + */
 > +
-> +	xrt_set_drvdata(xdev, ucs);
-> +	ucs->xdev = xdev;
-> +	mutex_init(&ucs->ucs_lock);
-> +
-> +	res = xrt_get_resource(xdev, IORESOURCE_MEM, 0);
-> +	if (!res)
-> +		return -EINVAL;
-> +
-> +	base = devm_ioremap_resource(&xdev->dev, res);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	ucs->regmap = devm_regmap_init_mmio(&xdev->dev, base, &ucs_regmap_config);
-> +	if (IS_ERR(ucs->regmap)) {
-> +		UCS_ERR(ucs, "map base %pR failed", res);
-> +		return PTR_ERR(ucs->regmap);
-> +	}
-> +	ucs_enable(ucs);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct xrt_dev_endpoints xrt_ucs_endpoints[] = {
-> +	{
-> +		.xse_names = (struct xrt_dev_ep_names[]) {
-> +			{ .ep_name = XRT_MD_NODE_UCS_CONTROL_STATUS },
-> +			{ NULL },
-> +		},
-> +		.xse_min_ep = 1,
-> +	},
-> +	{ 0 },
-> +};
-> +
-> +static struct xrt_driver xrt_ucs_driver = {
-> +	.driver = {
-> +		.name = XRT_UCS,
-> +	},
-> +	.subdev_id = XRT_SUBDEV_UCS,
-> +	.endpoints = xrt_ucs_endpoints,
-> +	.probe = ucs_probe,
-> +	.leaf_call = xrt_ucs_leaf_call,
-> +};
-> +
-> +XRT_LEAF_INIT_FINI_FUNC(ucs);
+> +#ifndef __DRAMC_H__
 
+Extend the header guard - MEMORY_MEDIATEK_DRAMC
+
+> +#define __DRAMC_H__
+
+
+
+Best regards,
+Krzysztof
