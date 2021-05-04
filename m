@@ -2,82 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 014503723C7
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 02:05:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A8AD3723DD
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 02:21:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbhEDAGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 May 2021 20:06:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37288 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229582AbhEDAGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 20:06:50 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CECEC06174A
-        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 17:05:56 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id v13so3808490ple.9
-        for <devicetree@vger.kernel.org>; Mon, 03 May 2021 17:05:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=kDzDiZKgkuBIzy2dA89gX09XTeJ0XvlvWikD1ZLB35M=;
-        b=BYhlbG9htRgrcm+j6xb+5irs8Y2dtX5BPN5vT5dthFFmdc2wdcqYLSvoBiQPgxhkdY
-         HoVp94XBkH6mPX4rCVCDF+zBm45SWZtY8IWGXZNTNrmLvCavxTjNeQzFv8T8TmB9wVA2
-         7888+TcYr5UOpB+lvNwW85F0nGc6AYEEZu+ujGZM+YpgLVZBKY1PU0BtwXu1l5bUCYB0
-         8OCyyxQfF7OLxOe1pCS9xGID8DbETrBqZofbsGwN2eKv3Nla4gx6WzK7/j5lMFwGete8
-         wf2zgsy3Td3kI5HUP+SDTfiY778dus1rTEXM4kkj8qnIr+hrf/cxm5gaBwBiXvasAy/t
-         UgbA==
+        id S229602AbhEDAW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 May 2021 20:22:26 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:34645 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229497AbhEDAW0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 May 2021 20:22:26 -0400
+Received: by mail-ot1-f47.google.com with SMTP id x54-20020a05683040b6b02902a527443e2fso6782252ott.1;
+        Mon, 03 May 2021 17:21:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=kDzDiZKgkuBIzy2dA89gX09XTeJ0XvlvWikD1ZLB35M=;
-        b=Gj18jZkE9TGto4ri63ad7EDNJgRPomXGv/vKSUxfR8DKaiHDXgA1BMhgRc0aGWqvrW
-         7ANIZVQzoLgTrTdQMHrBuc+Pv0aRQh+4xKKTy82/VJwk3r3uwbUUII+C7lZ2TZ2Ky60Q
-         Ft8J1XEolx5GaFDsfVkHqesohExTBgiQFe6vfRvDV+0Dk/RT2JmQ4a3XqGobXStJE26I
-         A7OJNJYIv4+rJOhl4WH6SDX0zMNd+rHbTzuNkkQxI6GS4aTh0qihixDm6XKYXHl8tjGc
-         9oCcAZixYuUmpvTSyEB5bQxpFOpkNIw+2v7YfSVl6QtgPL45CXvA9Wn69C5IKd1X6tvn
-         OUuw==
-X-Gm-Message-State: AOAM533lPFsxc/xu09o6cC5QLqUWVXCNx5EjKzv4mKKP8VRJLnvtCwCD
-        KoVE02CkgO8wgfHkoOYMxV7B5A==
-X-Google-Smtp-Source: ABdhPJz5KY4WXvst87q3waruwTbClvq21tHkxMG77SNnVmypEkEmefQ2ACx56GjiUXnBm9I1L+fwcg==
-X-Received: by 2002:a17:902:b68c:b029:e6:bb9f:7577 with SMTP id c12-20020a170902b68cb02900e6bb9f7577mr23126893pls.0.1620086756012;
-        Mon, 03 May 2021 17:05:56 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id gm17sm10499510pjb.11.2021.05.03.17.05.55
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=qk17av8ylT7nTRT/OdFPJlBQ48CwuoHsabscyy4bQjE=;
+        b=kNwgyXv/qB5SgstY/9J1rM9+5fEXxpwDsEHsdVLkLm+bKDeJra6SoZYXtMaN81MNsa
+         uxcSBVvT7PWvWlLFBr3S9LCx3u7LdJVqcjdw7Y+WRWN1wQzM3KG8IOlAfFFrRIBuqdEm
+         JNMyJZ+MqCvkYPy92lXCUPiFKsA1pC6clrsqPvm/Lrn42qhqKRnIDJTIgrc+S5HNH6U0
+         mBa1GlfJcRYZvnEuqsGpxjn/KHzV4OFD3O3n6sccY/ckGVvaIHQnvVxTcTC8QBBEoRk7
+         no017lh4aPDgYDIlnXOZ3k7gd20M0j6jKUVD1QHSKTpNUMqUGo5rfGyvEUICwFdB0sO/
+         jjDg==
+X-Gm-Message-State: AOAM533n1MssxoVamK1YvaMxjG3nPIIJNZ7fc1jH/yt/hDRKK8wW71lZ
+        m4cIo+LTY27DfnLjA3OzbZ6dBQHi/Q==
+X-Google-Smtp-Source: ABdhPJzR7C4zsTJkn3epaX40FJyeTmbpmbGNlu4sfQGUmspSrTLSv9tXZ/Tv1qfRVkb5aNf4pJoXhQ==
+X-Received: by 2002:a9d:6e97:: with SMTP id a23mr17287778otr.280.1620087691123;
+        Mon, 03 May 2021 17:21:31 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id q14sm370834ota.12.2021.05.03.17.21.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 May 2021 17:05:55 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: meson: vim3: enable hdmi audio loopback
-Date:   Mon,  3 May 2021 17:05:52 -0700
-Message-Id: <162008674673.40672.13568672227710431914.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210429084253.59692-1-jbrunet@baylibre.com>
-References: <20210429084253.59692-1-jbrunet@baylibre.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        Mon, 03 May 2021 17:21:30 -0700 (PDT)
+Received: (nullmailer pid 2706595 invoked by uid 1000);
+        Tue, 04 May 2021 00:21:29 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     michal.simek@xilinx.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org
+In-Reply-To: <20210503214413.3145015-1-sean.anderson@seco.com>
+References: <20210503214413.3145015-1-sean.anderson@seco.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: Add Xilinx AXI Timer
+Date:   Mon, 03 May 2021 19:21:29 -0500
+Message-Id: <1620087689.365270.2706594.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Apr 2021 10:42:53 +0200, Jerome Brunet wrote:
-> Enable audio capture frontends and a tdm decoder.
-> This makes it possible to loopback the audio played on the hdmi codec,
-> which is the only output interface at the moment.
+On Mon, 03 May 2021 17:44:12 -0400, Sean Anderson wrote:
+> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is
+> a "soft" block, so it has many parameters which would not be
+> configurable in most hardware. This binding is usually automatically
+> generated by Xilinx's tools, so the names and values of properties
+> must be kept as they are.
 > 
-> Of course, one TODDR device would be enough to do that but since
-> the 3 FRDDRs are enabled on the playback side, let's do the same on the
-> capture side.
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> ---
+> 
+>  .../bindings/pwm/xlnx,axi-timer.yaml          | 91 +++++++++++++++++++
+>  1 file changed, 91 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
+> 
 
-Applied, thanks!
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-[1/1] arm64: dts: meson: vim3: enable hdmi audio loopback
-      commit: ed678d85ab2ebb75d23b68c1b4af4dd068f14edd
+yamllint warnings/errors:
 
-Best regards,
--- 
-Kevin Hilman <khilman@baylibre.com>
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.example.dt.yaml: example-0: timer@800e0000:reg:0: [0, 2148401152, 0, 65536] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+
+See https://patchwork.ozlabs.org/patch/1473421
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
