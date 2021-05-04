@@ -2,91 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCAB03730D6
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 21:35:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F4543730D7
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 21:35:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232145AbhEDTgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 15:36:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42328 "EHLO
+        id S232387AbhEDTgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 15:36:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbhEDTgA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 15:36:00 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28D15C061574
-        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 12:35:05 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id n2so10675987wrm.0
-        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 12:35:05 -0700 (PDT)
+        with ESMTP id S232183AbhEDTgB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 15:36:01 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12913C061761
+        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 12:35:06 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id x7so10638229wrw.10
+        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 12:35:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/wlkno7pRty5OfZRb8J5gIbUcerkat2d/Bw1XsvXcxA=;
-        b=cQwuhcRbcCqXF84od/9QObdaYeQP08k05+eaYKRXsWjfB8+uK8p0Rew0weWkCYskXA
-         XzJPK2gWVgMfQu81aw7g1F1FHwOtP3iU8hguoWKm1B2zpiIt7kAxrA5UHLZYaBxk9zri
-         DUO5XmmmZ1drzcHgZhgOVFXZAXJ3MDqPUrsp2qoatan9C8w8qk81YqOOuNkvGWf8eNtq
-         f8gU/gXLdCurvwLOqLHQVU5Z91fWQAaZHsgv67KDPM90OyZBdSQN0QmIGCLoeUHRc5Cz
-         HV3I7445/U9WHR8/VUINZHiG8nk0q53HEI+sL4Me54akckuGl2dbb3+ijnefVdPaQ/YF
-         hISg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=LfKwDo8azWN0Gbc7/pIjGO8T4exsCKBX4Y2Y1QqmWes=;
+        b=05o7ReA7rAKHmkd0VqX0nWa4Encxngxhb46pr43kojkbSgBP0EaRdX+231RbnE7zwV
+         s4y9y+xh22lXXGpOg43Ruv9YkwYPEsdd2QJWzd2BjIAk4Bz1rvU6vJG0Rzi5t4iHdgZl
+         oP1ALyF3di75NUU8tOAsdX0b8BlG+etuwHXMISnRlIUis5NNI5YPGRp3YYHM+vq2tMoa
+         q8mWAOCNZ737fuPJY73g+re2opNW22UsDdP341L8hgxvL3UQWhWIpjwQp6HzQcvjPOr6
+         0TBNYVrTFUr4iXI80KvYUV4zDsnoZ4ba5hOHpo+PABpIVXlej1HeH/SxnF8u7zxP1Qyh
+         V8eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/wlkno7pRty5OfZRb8J5gIbUcerkat2d/Bw1XsvXcxA=;
-        b=Dj6gE7Y1rwWyR+E0DtC1A8uzj5puUbxnC1Fio8rEU+uvniRXQ3Wx4mCYFz37Tse+HE
-         K/2VOEJygRsLYMd99ABBwi9BCBjqEKacDFwTyao43odRJnFu6xDaRJcnUlqikkkvHe92
-         90EW91oIfa/gPZYfN3TpkCkvlrR/NfDGB8gTJ+mGysqzjPOs5MjWFaDcfM+Kwn4Zpj9G
-         VJvXJ3kbgjlAO8FVQDVp4FbCXU/JPaG0vmrvv69UJMmfxl8iaKEJupT1CRVFX4dL7bhQ
-         yLzU+hVgALLn0uRMB6eoiLDyd8Pp3CYVtEulkfHz2vBMSiiso/JU0jKj+5RRfeeB2xNo
-         JBTw==
-X-Gm-Message-State: AOAM530GOsQE45wJdUxOnYm3qoT3J3/2gAn8t36dqYZ1keHhZHTdjndX
-        lUw69g5/RvmnBN/5BIM4cA4/Tw==
-X-Google-Smtp-Source: ABdhPJyRqQn35aDMtuJzXmdCWQFefsfXBopf6kCEyTozbNmoBqhTRobePV2+CeNp53C7ihebxE0Leg==
-X-Received: by 2002:adf:e3c6:: with SMTP id k6mr10179868wrm.236.1620156903866;
-        Tue, 04 May 2021 12:35:03 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=LfKwDo8azWN0Gbc7/pIjGO8T4exsCKBX4Y2Y1QqmWes=;
+        b=WGYzs7z5qz/F7yH0Xc69sXx1Cx4itQcEOVK7P8j00fxoUm6Gdk6dQdvtvlXtcUOTjq
+         +pFw0r8cP/hvZs/swUnMYYRp7KSvU1JLbc6CnmL1UaGdo5E1GqdKu69gegBYluGtJtNH
+         F6Po7ZhQKtjETlsRnOHCItPqKorShLvkL0tlaQgyqWa1QMnIvJEf5BesO6nPYRYsbfXX
+         8pqbt+Gkpmj5Z4LEmIZb5YQP7FlcVTsyTBEqANBYulxjkbOppgRd0uLvSr+8RZUno5Xq
+         qEnc66+/v6uSYyiAelXqx2mub6QfEmr3peBfGKnWGOrkzU6L583FbCccvmuZfpGt8Kx/
+         NsFg==
+X-Gm-Message-State: AOAM530oUK4oJOv/o2bhWu2sWD4GPcs3eDpbrkCdSbhNBft0FZZum/aL
+        E6wWWnvjP7HVxTl2PhyxvdlX+w==
+X-Google-Smtp-Source: ABdhPJxWg+HSorQvF2RrlLM+c8v0lSWRGO+IpTTDPUTnfP8IIx/z6CvDhSGW889Qo1o4XqTfgq0yNA==
+X-Received: by 2002:adf:ef90:: with SMTP id d16mr34040195wro.359.1620156904727;
+        Tue, 04 May 2021 12:35:04 -0700 (PDT)
 Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id x8sm17072136wru.70.2021.05.04.12.35.02
+        by smtp.googlemail.com with ESMTPSA id x8sm17072136wru.70.2021.05.04.12.35.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 May 2021 12:35:03 -0700 (PDT)
+        Tue, 04 May 2021 12:35:04 -0700 (PDT)
 From:   Corentin Labbe <clabbe@baylibre.com>
 To:     arnd@arndb.de, kaloz@openwrt.org, khalasa@piap.pl,
         linusw@kernel.org, linux@armlinux.org.uk, olof@lixom.net,
         robh+dt@kernel.org, soc@kernel.org
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH 0/5] ixp4xx: add welltech-epbx100
-Date:   Tue,  4 May 2021 19:34:52 +0000
-Message-Id: <20210504193457.4008384-1-clabbe@baylibre.com>
+Subject: [PATCH 1/5] ARM: ixp4xx_defconfig: add CONFIG_SERIAL_OF_PLATFORM
+Date:   Tue,  4 May 2021 19:34:53 +0000
+Message-Id: <20210504193457.4008384-2-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210504193457.4008384-1-clabbe@baylibre.com>
+References: <20210504193457.4008384-1-clabbe@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The welltech epbx100 is a small IP PBX board.
-It ship an Intel IXDPG425 Network Gateway Reference (IXP42X 533MHz) SoC.
-Original image ran an old 2.4.31 but upgrading to recent kernel was
-easy.
-It misses a working network interfaces but its current state is
-sufficient to work on my interest, its crypto device.
+My ixp42x-welltech-epbx100 does not print anything on console without
+CONFIG_SERIAL_OF_PLATFORM.
 
-More information on the board could be found on http://kernel.montjoie.ovh/welltech-epbx100.html
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+ arch/arm/configs/ixp4xx_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-Corentin Labbe (5):
-  ARM: ixp4xx_defconfig: add CONFIG_SERIAL_OF_PLATFORM
-  ARM: ixp4xx_defconfig: add MTD_PHYSMAP
-  dt-bindings: add vendor prefix for welltech
-  dt-bindings: arm: intel-ixp4xx: add welltech,epbx100
-  ARM: dts: add intel-ixp42x-welltech-epbx100
-
- .../devicetree/bindings/arm/intel-ixp4xx.yaml |  1 +
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
- arch/arm/boot/dts/Makefile                    |  1 +
- .../dts/intel-ixp42x-welltech-epbx100.dts     | 76 +++++++++++++++++++
- arch/arm/configs/ixp4xx_defconfig             |  3 +
- 5 files changed, 83 insertions(+)
- create mode 100644 arch/arm/boot/dts/intel-ixp42x-welltech-epbx100.dts
-
+diff --git a/arch/arm/configs/ixp4xx_defconfig b/arch/arm/configs/ixp4xx_defconfig
+index 0d6edeb27659..e3bcf2bed25c 100644
+--- a/arch/arm/configs/ixp4xx_defconfig
++++ b/arch/arm/configs/ixp4xx_defconfig
+@@ -152,6 +152,7 @@ CONFIG_INPUT_IXP4XX_BEEPER=y
+ CONFIG_SERIAL_8250=y
+ CONFIG_SERIAL_8250_CONSOLE=y
+ CONFIG_SERIAL_8250_NR_UARTS=2
++CONFIG_SERIAL_OF_PLATFORM=y
+ CONFIG_I2C=y
+ CONFIG_I2C_CHARDEV=y
+ CONFIG_SENSORS_W83781D=y
 -- 
 2.26.3
 
