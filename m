@@ -2,163 +2,357 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BB9C372C6F
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 16:51:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0253372C7B
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 16:51:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231158AbhEDOwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 10:52:12 -0400
-Received: from mail-eopbgr30056.outbound.protection.outlook.com ([40.107.3.56]:38742
-        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230246AbhEDOwK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 May 2021 10:52:10 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LnNAY7uI1fF+ETnU204WTS+MONTblk9K2Vs5rmNEOy4umJ3x6IBD2j5gPCQd++vczy9xYodNBQi00/Ir01usAW+iW2QeVEr+6rg4wgZa5iL9EuRV87r7ebc0JWKSDB9witIQmzFQ5dChynLFqTiDNWzhH2l8RSRjxJabyMCH8Xpu9cDzul9/dnd5Xajp1NbdNIihOdZYgcqpy2KPFgT331HOzjPbu5k57nKRXfpS4B+Tek/cdl0iz1tY0nWBqTl9rNxJy72C6pdwgluohNaJwtP3hUiXKWyOxvZL3l17iHeEgKjfM4XziHHi/Vz0yjWYD4vL8uZGMmO0ad428yaFiA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3VLI0QMWnt3yq1DZkZcCCO8qi7SPRDwDUumhibCC3QI=;
- b=FanOXTDPuwo5NgF6pwhUd2s8i26dbE76x0q8MRQOhoPANzzvto0alvfFD00qs52lyJx+EeNEzuljtPXuwJM9KmKkEAixqRUp9pOukzRY4fG7euxGDYCgkxbK72PhtnPHRHkpoOkzzZe7GdB4Q9DUT76cj3PoigmtIVWduLROpj76RDAOxrIvExFN7SgL9uliFp1OpWr+rnx4HJ/yLTXUpBccKxOyertT9pzyBzihmBzISQXkdKuk4qF7XTtDBIGVt/34SJdswj8lb5wsuNnOIdwwTF/Qn7f9UlAXOvgE2y0+iOEHuWy9QBjsBpzwaqF1GMzQMwbsetBb2J3t4jcUjw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3VLI0QMWnt3yq1DZkZcCCO8qi7SPRDwDUumhibCC3QI=;
- b=s7QQ1uiZUFNqUKGWpc0Prj5aPQrCC1wUY7Nwt+LPjFVizd2Z67rzPS1N3nvlexXcnXz7HLaE8Y21GD7OEAR2fbHsHVs8x8+VaJsCJJfQHlfzezgfw6yp0eINxetsQDTnbtyokAoB20y+5dyzezzIjCU7MyBH01B1aw81N8Xfiqk=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
- by DBBPR03MB5368.eurprd03.prod.outlook.com (2603:10a6:10:d6::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.42; Tue, 4 May
- 2021 14:51:14 +0000
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::40d5:3554:c709:6b1b]) by DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::40d5:3554:c709:6b1b%5]) with mapi id 15.20.4087.044; Tue, 4 May 2021
- 14:51:14 +0000
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: Add Xilinx AXI Timer
-To:     Rob Herring <robh@kernel.org>
-Cc:     michal.simek@xilinx.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org
-References: <20210503214413.3145015-1-sean.anderson@seco.com>
- <1620087689.365270.2706594.nullmailer@robh.at.kernel.org>
-From:   Sean Anderson <sean.anderson@seco.com>
-Message-ID: <cbb18e39-434b-0d67-12a9-6db943fe2bf5@seco.com>
-Date:   Tue, 4 May 2021 10:51:10 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <1620087689.365270.2706594.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [50.195.82.171]
-X-ClientProxiedBy: BLAPR03CA0005.namprd03.prod.outlook.com
- (2603:10b6:208:32b::10) To DB7PR03MB4523.eurprd03.prod.outlook.com
- (2603:10a6:10:19::27)
+        id S231673AbhEDOw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 10:52:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34872 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231602AbhEDOwU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 10:52:20 -0400
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2D42C06138C
+        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 07:51:17 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:1ca1:e52f:3ec5:3ac5])
+        by baptiste.telenet-ops.be with bizsmtp
+        id 0erG250093aEpPb01erGMj; Tue, 04 May 2021 16:51:16 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1ldwOJ-002nxg-Mc; Tue, 04 May 2021 16:51:15 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1ldwOJ-00HQUi-7b; Tue, 04 May 2021 16:51:15 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Chris Brandt <chris.brandt@renesas.com>
+Cc:     devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH/RFC 4/6] dt-bindings: i2c: renesas,iic: Convert to json-schema
+Date:   Tue,  4 May 2021 16:51:11 +0200
+Message-Id: <ecfaf6be5e8c285db2bcc823bb1dd89931fa5c29.1620138454.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <cover.1620138454.git.geert+renesas@glider.be>
+References: <cover.1620138454.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.27.1.65] (50.195.82.171) by BLAPR03CA0005.namprd03.prod.outlook.com (2603:10b6:208:32b::10) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25 via Frontend Transport; Tue, 4 May 2021 14:51:13 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: afc1b352-acf8-4d4c-3388-08d90f0c1060
-X-MS-TrafficTypeDiagnostic: DBBPR03MB5368:
-X-Microsoft-Antispam-PRVS: <DBBPR03MB53681E0E81EF25A9B72A663B965A9@DBBPR03MB5368.eurprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZUVWBumS2zyGCMTTCwrlYQsvbS03EQh6Un122uwyrmsd1w9lNat84a0uQaBFXDvLbJmduOUUXEDl8A1GGevQQFg1ZClyuTFYbwqVvWxbVHKFkbP0Bp9jWpLTjcuUmAn2W6LqcoNTF/KVQWx+1dCbBIIky/YgxkisiH+Bo0qst4BSij8KkKovRJRHnD82TX9jThdqSnLr3VKvjG9vYVawaBMfcqLiXMCrJD6qVWUnlzS7foGL1P1+o1M1a8xkYngR2eJPhGhjDdo3rm/tVgg8+13Ehp1wFV55SKYAorthmK4JQcO77KiG+dN1m3DMbZcDGECFHOnJo/hSChtoPRuo6czy/Z6bUuuwCsotpwOZDEu9zx5jaWMWZ23mEHAhdow5Nar96VKyGrYIrddHpL6LHuOAC7EYD+1lOyH94f4RIfEirhVED5vsjnYC6ODQX5Ioj7u9U1iWv16eZUpQm1F5USKGcvqhaGDgmcU3n78b/8dlomSJCGJCvRLnybSDcp9JXY4QNb5picgA6GgcFdxxdCALPhRk3QcG0tfcWA4wmeWT1JQxTNustSDxMaCS4zgNGI4/9JGn27RFLSnf8KNq3DY0DD0niZnmZn4L/RIgN3yfYbXQRaHCVqmvnocQ8dcityikYxeqZnkzsvjYpMM/3VsTK8uIEaXzkN0RN2k0oNNFg/j13iM0Ft5NDQYYTeezTH2OAgvqWLfws/mxyiN9wm0TM7HM4zeH9BOGVrFydyEMAPMmifRMkLS9dcCvherDTH9FcpcsRMmg6KpwnzwXxyg7xYV10uXnKR/FzS9UaiQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(366004)(39840400004)(376002)(136003)(396003)(36756003)(5660300002)(4326008)(6916009)(26005)(66476007)(53546011)(44832011)(66946007)(66556008)(2616005)(966005)(6486002)(478600001)(16526019)(52116002)(956004)(31686004)(316002)(86362001)(8676002)(31696002)(8936002)(83380400001)(16576012)(2906002)(38100700002)(38350700002)(186003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?NDF1N3ZSQlN3WU0zckQwTFM5Qm5td2RvSW5pRHhjdU1OVjhVR2RjL1hkajJC?=
- =?utf-8?B?enh5Zk8xOUlzNVl5TEpseEN2MUlHajJlbVhWQVk0ZVRqeGVYQnUybG9ab1NZ?=
- =?utf-8?B?R2NrNmUvRjNLeVVIVW41alFqZUVzWC9JTWpIYzJGbkRaMVNlRjNTNVc4cHBL?=
- =?utf-8?B?cHpOb1JOMHpEeWFLNGE0VU9XSWNQQnRBaWoxbHlGUWZyc0psdzlmYzkyYnhI?=
- =?utf-8?B?WUlMekFCZVpSZWlyT0ZOdDJxVVVUa2FCMnZsTDd3V2tuaFZZdW1hUDVwQTB5?=
- =?utf-8?B?Z2llZFhaNGdDV2hXcUdnVXQ5RE5mQUNrY1JnTkdNUU5yUWhaYzMvdTJEM2ZY?=
- =?utf-8?B?cm1iQ3h1bDhqK1ByM053cjNYeVNLWGkrTEp2aHZxNDI0TkIvNVRtb2VrN2VD?=
- =?utf-8?B?Zm9uVHF2b004UmxOT0RDdkFCakloYzdZUjZpdmdkRGJVWXNlUTZUV0tscHNR?=
- =?utf-8?B?S2ZUb2VXOFNML0lBeGRSa0QvYUVPN1dkMEtMYk9MSTJUTm1UcU8wdzY1MXl2?=
- =?utf-8?B?amJVY1VGbjNERXhXSHBjdXljVGVSOEVLTGd5Y3BXZzBkY01WSXYwR1ZUeG1q?=
- =?utf-8?B?QzdISnZpYlJIMnFMUENncGdaSkFtMnhDOU9JZkFVZnhPK0tmWkFkSy9IWjlM?=
- =?utf-8?B?WUlFb3dEVlBhaEd0Wno3WW84TDhseXlwQXlOZFlZR3RVZ0w3QURRa1pCcTJj?=
- =?utf-8?B?NVphNDlkcW9Kd1AwQzJTTzdUVCtBd2ZLR3lTZEYxeWJOc0lCbnNrMnBYM0lj?=
- =?utf-8?B?Z1NmemtwMVpEMFJVOWtSajBqWE11Z0huMmdXWlhGeUViaEpkcFZiT2ptMHFy?=
- =?utf-8?B?TFJKS281RFVSc1RQNzh4aGxXYWdCVk9UWGNwZ2tWd21VV0tBbHpqRm5yYWxM?=
- =?utf-8?B?QWNaUFBoTkFsdCtkUmM5eGc4MXo4Ukkwb1FleXBwSVQwb0h2MlFQVm83ZnBB?=
- =?utf-8?B?bkRyUlduSklVQUFEOWd6RTd2cUJFVnI1SEE1Qks3cDNXc1FVckdUTFBaeHBX?=
- =?utf-8?B?ZDczNTZWdENTdVVrTzhSQ0ZCVjZuQ1AyNS9ta0t3K0RPU245enVzM2xsSTFh?=
- =?utf-8?B?TkRRMnFwUVlOMmkyREJoQ09haW40Y0JjZE80Tk1LaHRkWlZlSXhtanluL3pt?=
- =?utf-8?B?QlF0QnkrWjZYVm9jaDlBRjN5a200VjZ2VzBMd3lKZk1GVURWUmk4d1lxYVhk?=
- =?utf-8?B?cWpXcHJ4K3Y5bWNhV3NPOWxUOVBReWkwOGg4WTRleUkvek1WOHViTEJaK0gr?=
- =?utf-8?B?ZVlHWlpYZUp0bTUwV0JnNWlmajNlODhRcmRENndlNWE4VGZ2RGhmQkl2dEVj?=
- =?utf-8?B?ZWpwdG12Wk1tcFVRRDNTNkxMdnp5eHd4a2xhS3hrYjVibXdOOWsyc3VtTE5w?=
- =?utf-8?B?eWd2aFJKQzNyMThxczlENGhOUU0vaTBZVXNzQ0M2YXpDVzdyTDExZFhvemxz?=
- =?utf-8?B?dkdDNTFtN1BNWXBsSkx3TGkvRGhLZnhCUHlrcU9xOXVNRkxGeVYwam9Zd2Fw?=
- =?utf-8?B?b2FFVEl4K09rOWx4WThnQUdUNGZhaENiOXB0R0VMYVJxMG9jOXJBNFIyTHFF?=
- =?utf-8?B?bDQzVG1SaGVzcFNRWXk2TDk2SDVNWTg4eEk2eUk2YU9IdzlqQ1pSd29tWGtv?=
- =?utf-8?B?YkVzcGJoWGJxbTlTZzFST0NwSHJHbjdWWmtYdDFqRVBOSjBxbzltWFM5L0hp?=
- =?utf-8?B?UmtVelloYXhTT1l3VzFmUXM5VmdCQlpHUWdKNnkycitqUk13RXdkRVYwdVpB?=
- =?utf-8?Q?ehiXhQV8W+mWk8byHgJ2B43OSnpMxNgLbmWL6yh?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: afc1b352-acf8-4d4c-3388-08d90f0c1060
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2021 14:51:13.9449
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: P5dUbLg78UYqTNRmUZ4+I5TQRRJt1THwtPRaPQWcoZ6OtLSc9i1umqdnQaZfYi9vBsZAD5jVnrDxQecx5ek/Ig==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR03MB5368
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert the Renesas R-Mobile I2C Bus Interface (IIC) Device Tree binding
+documentation to json-schema.
 
+Document missing properties.
+R-Mobile A1 and SH-Mobile have multiple interrupts.
+Update the example to match reality.
 
-On 5/3/21 8:21 PM, Rob Herring wrote:
- > On Mon, 03 May 2021 17:44:12 -0400, Sean Anderson wrote:
- >> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is
- >> a "soft" block, so it has many parameters which would not be
- >> configurable in most hardware. This binding is usually automatically
- >> generated by Xilinx's tools, so the names and values of properties
- >> must be kept as they are.
- >>
- >> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
- >> ---
- >>
- >>   .../bindings/pwm/xlnx,axi-timer.yaml          | 91 +++++++++++++++++++
- >>   1 file changed, 91 insertions(+)
- >>   create mode 100644 Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
- >>
- >
- > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
- > on your patch (DT_CHECKER_FLAGS is new in v5.13):
- >
- > yamllint warnings/errors:
- >
- > dtschema/dtc warnings/errors:
- > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.example.dt.yaml: example-0: timer@800e0000:reg:0: [0, 2148401152, 0, 65536] is too long
- > 	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+It is still not clear to me which instances on R-Car Gen2 and RZ/G1
+support automatic transmission, cfr. this note for the IIC3 instance in
+the Hardware User's Manual:
 
-What is the correct way to specify the 'reg' property? I see many
-schemas doing what I did here which is 'reg: maxItems: 1'. Should I
-instead use 'reg: true'?
+    Automatic transmission for PMIC control (DVFS) is not available
+    because the second generation R-Car series and RZ/G series products
+    do not support the DVFS function (automatic transmission can be used
+    as a hardware function, but this is not meaningful for actual use
+    cases).
 
---Sean
+The only thing that's clear is that R-Car E2 and RZ/G1E do not have the
+automatic transmission registers.  Note that current r8a7745.dtsi and
+r8a7794.dtsi do not reflect that.
 
- >
- > See https://patchwork.ozlabs.org/patch/1473421
- >
- > This check can fail if there are any dependencies. The base for a patch
- > series is generally the most recent rc1.
- >
- > If you already ran 'make dt_binding_check' and didn't see the above
- > error(s), then make sure 'yamllint' is installed and dt-schema is up to
- > date:
- >
- > pip3 install dtschema --upgrade
- >
- > Please check and re-submit.
- >
+This binding interpretes the note as that IIC3 does not support
+automatic transmission on R-Car H2, M2-W, M2-N, and V2H, and RZ/G1H,
+RZ/H1M, RZ/G1N, while the other (if any) IIC instances on these SoCs do
+support automatic transmission.  This matches with the current
+r8a774[234].dtsi, which do not declare compatibility with the
+family-specific and generic versions.  Note that the current
+r8a779[0123].dtsi still do, and thus should be updated!
+
+Possible alternative interpretations of the note are:
+  - Only IIC3 has the automatic transmission registers.  But the
+    automatic transmission feature is not useful as the SoCs lack DVFS
+    support.
+  - All IIC instances have the automatic transmission registers, and
+    IIC3 is traditionally used to control the PMIC.  But as the SoCs
+    lack DVFS support, the automatic transmission feature is not useful.
+    As R-Car V2H has only instance IIC3, and is documented to have
+    automatic transmissiong registers, this might be the correct
+    interpration?
+  - Anything else?
+
+Thanks for your comments!
+---
+ .../devicetree/bindings/i2c/renesas,iic.txt   |  72 --------
+ .../bindings/i2c/renesas,rmobile-iic.yaml     | 160 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 161 insertions(+), 73 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/renesas,iic.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/renesas,rmobile-iic.yaml
+
+diff --git a/Documentation/devicetree/bindings/i2c/renesas,iic.txt b/Documentation/devicetree/bindings/i2c/renesas,iic.txt
+deleted file mode 100644
+index 93d412832e66b682..0000000000000000
+--- a/Documentation/devicetree/bindings/i2c/renesas,iic.txt
++++ /dev/null
+@@ -1,72 +0,0 @@
+-Device tree configuration for Renesas IIC (sh_mobile) driver
+-
+-Required properties:
+-- compatible      :
+-			- "renesas,iic-r8a73a4" (R-Mobile APE6)
+-			- "renesas,iic-r8a7740" (R-Mobile A1)
+-			- "renesas,iic-r8a7742" (RZ/G1H)
+-			- "renesas,iic-r8a7743" (RZ/G1M)
+-			- "renesas,iic-r8a7744" (RZ/G1N)
+-			- "renesas,iic-r8a7745" (RZ/G1E)
+-			- "renesas,iic-r8a774a1" (RZ/G2M)
+-			- "renesas,iic-r8a774b1" (RZ/G2N)
+-			- "renesas,iic-r8a774c0" (RZ/G2E)
+-			- "renesas,iic-r8a774e1" (RZ/G2H)
+-			- "renesas,iic-r8a7790" (R-Car H2)
+-			- "renesas,iic-r8a7791" (R-Car M2-W)
+-			- "renesas,iic-r8a7792" (R-Car V2H)
+-			- "renesas,iic-r8a7793" (R-Car M2-N)
+-			- "renesas,iic-r8a7794" (R-Car E2)
+-			- "renesas,iic-r8a7795" (R-Car H3)
+-			- "renesas,iic-r8a7796" (R-Car M3-W)
+-			- "renesas,iic-r8a77961" (R-Car M3-W+)
+-			- "renesas,iic-r8a77965" (R-Car M3-N)
+-			- "renesas,iic-r8a77990" (R-Car E3)
+-			- "renesas,iic-sh73a0" (SH-Mobile AG5)
+-			- "renesas,rcar-gen2-iic" (generic R-Car Gen2 or RZ/G1
+-							compatible device)
+-			- "renesas,rcar-gen3-iic" (generic R-Car Gen3 or RZ/G2
+-							compatible device)
+-			- "renesas,rmobile-iic" (generic device)
+-
+-			When compatible with a generic R-Car version, nodes
+-			must list the SoC-specific version corresponding to
+-			the platform first followed by the generic R-Car
+-			version.
+-
+-			When compatible with "renesas,rmobile-iic" it should
+-			be the last compatibility string listed.
+-
+-			The r8a77990 (R-Car E3) and r8a774c0 (RZ/G2E)
+-			controllers are not considered compatible with
+-			"renesas,rcar-gen3-iic" or "renesas,rmobile-iic"
+-			due to the absence of automatic transmission registers.
+-
+-- reg             : address start and address range size of device
+-- interrupts      : interrupt of device
+-- clocks          : clock for device
+-- #address-cells  : should be <1>
+-- #size-cells     : should be <0>
+-
+-Optional properties:
+-- clock-frequency : frequency of bus clock in Hz. Default 100kHz if unset.
+-- dmas            : Must contain a list of two references to DMA
+-		    specifiers, one for transmission, and one for
+-		    reception.
+-- dma-names       : Must contain a list of two DMA names, "tx" and "rx".
+-
+-
+-Pinctrl properties might be needed, too. See there.
+-
+-Example:
+-
+-	iic0: i2c@e6500000 {
+-		compatible = "renesas,iic-r8a7790", "renesas,rcar-gen2-iic",
+-			     "renesas,rmobile-iic";
+-		reg = <0 0xe6500000 0 0x425>;
+-		interrupts = <0 174 IRQ_TYPE_LEVEL_HIGH>;
+-		clocks = <&mstp3_clks R8A7790_CLK_IIC0>;
+-		clock-frequency = <400000>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-	};
+diff --git a/Documentation/devicetree/bindings/i2c/renesas,rmobile-iic.yaml b/Documentation/devicetree/bindings/i2c/renesas,rmobile-iic.yaml
+new file mode 100644
+index 0000000000000000..7aa87f64922c0fd2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/renesas,rmobile-iic.yaml
+@@ -0,0 +1,160 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i2c/renesas,rmobile-iic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas R-Mobile I2C Bus Interface (IIC)
++
++maintainers:
++  - Wolfram Sang <wsa+renesas@sang-engineering.com>
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - renesas,iic-r8a73a4      # R-Mobile APE6
++              - renesas,iic-r8a7740      # R-Mobile A1
++              - renesas,iic-sh73a0       # SH-Mobile AG5
++          - const: renesas,rmobile-iic   # Generic
++
++      - items:
++          - enum:
++              - renesas,iic-r8a7742      # RZ/G1H IIC[012]
++              - renesas,iic-r8a7743      # RZ/G1M IIC[01]
++              - renesas,iic-r8a7744      # RZ/G1N IIC[01]
++              - renesas,iic-r8a7790      # R-Car H2 IIC[012]
++              - renesas,iic-r8a7791      # R-Car M2-W IIC[01]
++              - renesas,iic-r8a7793      # R-Car M2-N IIC[01]
++          - const: renesas,rcar-gen2-iic # R-Car Gen2 and RZ/G1
++          - const: renesas,rmobile-iic   # Generic
++
++      - items:
++          - enum:
++              - renesas,iic-r8a774a1     # RZ/G2M
++              - renesas,iic-r8a774b1     # RZ/G2N
++              - renesas,iic-r8a774e1     # RZ/G2H
++              - renesas,iic-r8a7795      # R-Car H3
++              - renesas,iic-r8a7796      # R-Car M3-W
++              - renesas,iic-r8a77961     # R-Car M3-W+
++              - renesas,iic-r8a77965     # R-Car M3-N
++          - const: renesas,rcar-gen3-iic # R-Car Gen3 and RZ/G2
++          - const: renesas,rmobile-iic   # Generic
++
++      - items:
++            # Instances lacking automatic transmission registers are not
++            # considered compatible with family-specific or generic versions
++          - enum:
++              - renesas,iic-r8a7742      # RZ/G1H IIC3
++              - renesas,iic-r8a7743      # RZ/G1M IIC3
++              - renesas,iic-r8a7744      # RZ/G1N IIC3
++              - renesas,iic-r8a7745      # RZ/G1E
++              - renesas,iic-r8a774c0     # RZ/G2E
++              - renesas,iic-r8a7790      # R-Car H2 IIC3
++              - renesas,iic-r8a7791      # R-Car M2-W IIC3
++              - renesas,iic-r8a7792      # R-Car V2H IIC3
++              - renesas,iic-r8a7793      # R-Car M2-N IIC3
++              - renesas,iic-r8a7794      # R-Car E2
++              - renesas,iic-r8a77990     # R-Car E3
++
++  reg:
++    maxItems: 1
++
++  interrupts: true
++
++  clock-frequency:
++    description:
++      Desired I2C bus clock frequency in Hz. The absence of this property
++      indicates the default frequency 100 kHz.
++
++  clocks:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  dmas:
++    minItems: 2
++    maxItems: 4
++    description:
++      Must contain a list of pairs of references to DMA specifiers, one for
++      transmission, and one for reception.
++
++  dma-names:
++    minItems: 2
++    maxItems: 4
++    items:
++      enum:
++        - tx
++        - rx
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - power-domains
++  - '#address-cells'
++  - '#size-cells'
++
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml#
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - renesas,iic-r8a7740
++              - renesas,iic-sh73a0
++    then:
++      properties:
++        interrupts:
++          items:
++            - description: Arbitration Lost Interrupt (ALI)
++            - description: Non-acknowledge Detection Interrupt (TACKI)
++            - description: Wait Interrupt (WAITI)
++            - description: Data Transmit Enable interrupt (DTEI)
++    else:
++      properties:
++        interrupts:
++          items:
++            - description: Single combined interrupt
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - renesas,rcar-gen2-iic
++              - renesas,rcar-gen3-iic
++    then:
++      required:
++        - resets
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/power/r8a7790-sysc.h>
++
++    iic0: i2c@e6500000 {
++            compatible = "renesas,iic-r8a7790", "renesas,rcar-gen2-iic",
++                         "renesas,rmobile-iic";
++            reg = <0xe6500000 0x425>;
++            interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
++            clocks = <&cpg CPG_MOD 318>;
++            clock-frequency = <400000>;
++            dmas = <&dmac0 0x61>, <&dmac0 0x62>, <&dmac1 0x61>, <&dmac1 0x62>;
++            dma-names = "tx", "rx", "tx", "rx";
++            power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
++            resets = <&cpg 318>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 8a7ca33961d49daa..c8834d7a1aac0efd 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -15453,7 +15453,7 @@ RENESAS R-CAR I2C DRIVERS
+ M:	Wolfram Sang <wsa+renesas@sang-engineering.com>
+ S:	Supported
+ F:	Documentation/devicetree/bindings/i2c/renesas,rcar-i2c.yaml
+-F:	Documentation/devicetree/bindings/i2c/renesas,iic.txt
++F:	Documentation/devicetree/bindings/i2c/renesas,rmobile-iic.yaml
+ F:	drivers/i2c/busses/i2c-rcar.c
+ F:	drivers/i2c/busses/i2c-sh_mobile.c
+ 
+-- 
+2.25.1
+
