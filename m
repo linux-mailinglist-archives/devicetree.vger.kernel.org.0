@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADD2D3728A8
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 12:19:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D79B23728AB
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 12:19:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230153AbhEDKUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 06:20:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59250 "EHLO
+        id S230233AbhEDKUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 06:20:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230218AbhEDKUm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 06:20:42 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05BD6C061574
-        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 03:19:47 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id t18so8778255wry.1
-        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 03:19:47 -0700 (PDT)
+        with ESMTP id S230202AbhEDKUq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 06:20:46 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D63A1C06174A
+        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 03:19:50 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id s82so5032576wmf.3
+        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 03:19:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=DNxyhq7WYEH0U4TtHXig9vqQWs7OAdf1s4tgVO034Ek=;
-        b=yjup6vOr7ANovXMF+OcFojfm0IMlyo4McjymWvbZA4sptaudPdI1tvwuyARppoEFLY
-         T/fBVmuv+nVQPrslP0dhPF8i9CvU6SlL1487T+9TcGPuGxokcanpJy878Rjuxwh3HtRJ
-         aZC5GWpBYbgynAul17qnUEMNK07Uefk88an4KGH2y60B5GKjYqAps4+dkoGM4WNZHzJ8
-         72WvatqVsk7qsNSKEiDriCeofTTJHUULMgkzbdrEq5+cQtmlNkEyfslc3HGoXkB3b0MI
-         RPXU7JVNm+RA1u/JMFgWLViUN07xipnNBqyvCv5smgJhUeW+EurkCyLeOQoWVXlkJw7J
-         27qw==
+        bh=hk9Gd+5/8RE+K/gLPk812X6CX0GDWqCKP04kdgIV3rE=;
+        b=GzSbNNWdgous2Ejay22LFFym1ha4mDMwNzHjb3cBBWGP5LdIi1hOX3Do9G7cskcw8+
+         3lxvDB9H5T6Ef5HdiwjTeAm6DaZQihbdcMxzKApMixhf7LAQxD0rdHlaPIbBQ1dc5tWc
+         wWhFCVjGEXhbHnrWhdJkopHwPu4LEssEYMH55ATq25hTnQ2ld41Kbziw9muKayVB8xXt
+         1XY3kOLKWwAOWtQYwQKEwhYoU0INIansVulO8yy/hsejej9Aa4B4FXof7Vn9u250cDHR
+         OIy6mBGpPLUvuJwZFGxP11GH9+HZxH7B7XyRNteb8AkbosmtgPY+uG544TwzodjezMEG
+         EpWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=DNxyhq7WYEH0U4TtHXig9vqQWs7OAdf1s4tgVO034Ek=;
-        b=TCqKkBJfezrskg+SQTaSFphPv8YF0ikvjd8b0ruRL7fuz5GIGcd6dCTU8xZYVdSdiM
-         t+sun1h9UlmzH+qJ4jIffygrYsElmw7ZtB4rE6aZ3pxTmMrmWL6hvyVF71KXcRHpdhIK
-         U5Q1c90211FFed/yM4Qd6t9R8kkVKtm62BTLVX0mfWNRjLeOfV/DDyeNLlrgemWHcrkd
-         NwOOa4+GL/1Vm471hFw9ykpAo/VVibWiTfD8s215G3EL7Y+TGq3kE+n9xluSWQnouZtT
-         SD0QjYDHgq3R5Q6Do9YDwU7dsIa2GyqvS1Bw6ECd1SUj2JHteFzBYHJR6je5xzdeGUzv
-         aJxA==
-X-Gm-Message-State: AOAM532r3eI8mK1EeF4lLBAz5H9hUljT/JlDkeJN5R7O8KHMn4T/1dRG
-        Mre+EzI/AJKvHNpTjrftv3ObCw==
-X-Google-Smtp-Source: ABdhPJy02d6PuLqzgAq/C7WYQ4o20b9EkdSeKjOtKyX9RsnbBO2crRtsnX8iROEMiTfrNV01u4ebFg==
-X-Received: by 2002:a5d:63cb:: with SMTP id c11mr30752734wrw.49.1620123586669;
-        Tue, 04 May 2021 03:19:46 -0700 (PDT)
+        bh=hk9Gd+5/8RE+K/gLPk812X6CX0GDWqCKP04kdgIV3rE=;
+        b=O8C5Wz5Hysn5u2cQKmwZsIqocyZG86kwFXmOqoBoV9VQ+PBIORf2BTLW0khg+O7Wnj
+         PhSavc8zuSpq0z5TTJk9mEQKaazlrBLwVQKeE+/dppahHMWUDSEJJSsIvcCNpLQsUD7N
+         EcoU9BlAl/a3okx27yG9l9idXwkE+KhoBe8NlRrDMlaaiqsDceHJhqD866AeELhYjJ8f
+         o4iARzAv72kWc7n6xj0KhcVO/SExQuceghpPNyQxL13vscexZA8covoZ72yNiuKbDYB0
+         m5fxQa1y38ypIKPMRS8jo08BhLJ6GFEIsEWBw55hoe650ZmDE+p+R2oENB08CzVEeLKt
+         940g==
+X-Gm-Message-State: AOAM532YrdjInpNN5FEbh9ZcCwGWLfEitm9WU+y+xI+FZyX3skilHoJm
+        yxWlsjbmX0pV986FeAAKR0UeEw==
+X-Google-Smtp-Source: ABdhPJyeR9YGxSniC64GxcD7QCoKTC/GBfzjrhrB8Ry0CQRcAhdPjKdRDQDgwBHwqvnU6Cvn24TYow==
+X-Received: by 2002:a05:600c:4242:: with SMTP id r2mr3080401wmm.140.1620123589347;
+        Tue, 04 May 2021 03:19:49 -0700 (PDT)
 Received: from arch-thunder.local (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
-        by smtp.gmail.com with ESMTPSA id d5sm16293789wrv.43.2021.05.04.03.19.45
+        by smtp.gmail.com with ESMTPSA id d5sm16293789wrv.43.2021.05.04.03.19.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 May 2021 03:19:46 -0700 (PDT)
+        Tue, 04 May 2021 03:19:49 -0700 (PDT)
 From:   Rui Miguel Silva <rui.silva@linaro.org>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Sebastian Siewior <bigeasy@linutronix.de>,
@@ -54,9 +54,9 @@ To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
         Rui Miguel Silva <rui.silva@linaro.org>
-Subject: [PATCH 2/7] usb: isp1760: remove platform data struct and code
-Date:   Tue,  4 May 2021 11:19:05 +0100
-Message-Id: <20210504101910.18619-3-rui.silva@linaro.org>
+Subject: [PATCH 3/7] usb: isp1760: hcd: refactor mempool config and setup
+Date:   Tue,  4 May 2021 11:19:06 +0100
+Message-Id: <20210504101910.18619-4-rui.silva@linaro.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210504101910.18619-1-rui.silva@linaro.org>
 References: <20210504101910.18619-1-rui.silva@linaro.org>
@@ -66,82 +66,297 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the removal of the Blackfin port with:
-commit 4ba66a976072 ("arch: remove blackfin port")
-
-No one is using or referencing this header and platform data struct.
-Remove them.
+In preparation to support other family member IP, which may have
+different memory layout. Drop macros and setup a configuration
+struct.
 
 Signed-off-by: Rui Miguel Silva <rui.silva@linaro.org>
 ---
- drivers/usb/isp1760/isp1760-if.c | 20 +++-----------------
- include/linux/usb/isp1760.h      | 19 -------------------
- 2 files changed, 3 insertions(+), 36 deletions(-)
- delete mode 100644 include/linux/usb/isp1760.h
+ drivers/usb/isp1760/isp1760-core.c | 21 ++++++++
+ drivers/usb/isp1760/isp1760-hcd.c  | 83 ++++++++++++++++++++----------
+ drivers/usb/isp1760/isp1760-hcd.h  | 37 ++++++-------
+ 3 files changed, 92 insertions(+), 49 deletions(-)
 
-diff --git a/drivers/usb/isp1760/isp1760-if.c b/drivers/usb/isp1760/isp1760-if.c
-index abfba9f5ec23..fb6701608cd8 100644
---- a/drivers/usb/isp1760/isp1760-if.c
-+++ b/drivers/usb/isp1760/isp1760-if.c
-@@ -16,7 +16,6 @@
- #include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/slab.h>
--#include <linux/usb/isp1760.h>
- #include <linux/usb/hcd.h>
+diff --git a/drivers/usb/isp1760/isp1760-core.c b/drivers/usb/isp1760/isp1760-core.c
+index f78e637d3b9a..2f16adbc7624 100644
+--- a/drivers/usb/isp1760/isp1760-core.c
++++ b/drivers/usb/isp1760/isp1760-core.c
+@@ -100,6 +100,25 @@ void isp1760_set_pullup(struct isp1760_device *isp, bool enable)
+ 		isp1760_field_set(udc->fields, HW_DP_PULLUP_CLEAR);
+ }
  
- #include "isp1760-core.h"
-@@ -225,22 +224,9 @@ static int isp1760_plat_probe(struct platform_device *pdev)
- 
- 		if (of_property_read_bool(dp, "dreq-polarity"))
- 			devflags |= ISP1760_FLAG_DREQ_POL_HIGH;
--	} else if (dev_get_platdata(&pdev->dev)) {
--		struct isp1760_platform_data *pdata =
--			dev_get_platdata(&pdev->dev);
--
--		if (pdata->is_isp1761)
--			devflags |= ISP1760_FLAG_ISP1761;
--		if (pdata->bus_width_16)
--			devflags |= ISP1760_FLAG_BUS_WIDTH_16;
--		if (pdata->port1_otg)
--			devflags |= ISP1760_FLAG_OTG_EN;
--		if (pdata->analog_oc)
--			devflags |= ISP1760_FLAG_ANALOG_OC;
--		if (pdata->dack_polarity_high)
--			devflags |= ISP1760_FLAG_DACK_POL_HIGH;
--		if (pdata->dreq_polarity_high)
--			devflags |= ISP1760_FLAG_DREQ_POL_HIGH;
-+	} else {
-+		pr_err("isp1760: no platform data\n");
-+		return -ENXIO;
++/*
++ * 60kb divided in:
++ * - 32 blocks @ 256  bytes
++ * - 20 blocks @ 1024 bytes
++ * -  4 blocks @ 8192 bytes
++ */
++static const struct isp1760_memory_layout isp176x_memory_conf = {
++	.blocks[0]		= 32,
++	.blocks_size[0]		= 256,
++	.blocks[1]		= 20,
++	.blocks_size[1]		= 1024,
++	.blocks[2]		= 4,
++	.blocks_size[2]		= 8192,
++
++	.ptd_num		= 32,
++	.payload_blocks		= 32 + 20 + 4,
++	.payload_area_size	= 0xf000,
++};
++
+ static struct regmap_config isp1760_hc_regmap_conf = {
+ 	.name = "isp1760-hc",
+ 	.reg_bits = 16,
+@@ -186,6 +205,8 @@ int isp1760_register(struct resource *mem, int irq, unsigned long irqflags,
+ 		udc->fields[i] = f;
  	}
  
- 	ret = isp1760_register(mem_res, irq_res->start, irqflags, &pdev->dev,
-diff --git a/include/linux/usb/isp1760.h b/include/linux/usb/isp1760.h
-deleted file mode 100644
-index b75ded28db81..000000000000
---- a/include/linux/usb/isp1760.h
-+++ /dev/null
-@@ -1,19 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0 */
++	hcd->memory_layout = &isp176x_memory_conf;
++
+ 	isp1760_init_core(isp);
+ 
+ 	if (IS_ENABLED(CONFIG_USB_ISP1760_HCD) && !usb_disabled()) {
+diff --git a/drivers/usb/isp1760/isp1760-hcd.c b/drivers/usb/isp1760/isp1760-hcd.c
+index 0601b1a4bd42..147ca437fc55 100644
+--- a/drivers/usb/isp1760/isp1760-hcd.c
++++ b/drivers/usb/isp1760/isp1760-hcd.c
+@@ -355,39 +355,29 @@ static void ptd_write(void __iomem *base, u32 ptd_offset, u32 slot,
+ /* memory management of the 60kb on the chip from 0x1000 to 0xffff */
+ static void init_memory(struct isp1760_hcd *priv)
+ {
+-	int i, curr;
++	const struct isp1760_memory_layout *mem = priv->memory_layout;
++	int i, j, curr;
+ 	u32 payload_addr;
+ 
+ 	payload_addr = PAYLOAD_OFFSET;
+-	for (i = 0; i < BLOCK_1_NUM; i++) {
+-		priv->memory_pool[i].start = payload_addr;
+-		priv->memory_pool[i].size = BLOCK_1_SIZE;
+-		priv->memory_pool[i].free = 1;
+-		payload_addr += priv->memory_pool[i].size;
+-	}
+-
+-	curr = i;
+-	for (i = 0; i < BLOCK_2_NUM; i++) {
+-		priv->memory_pool[curr + i].start = payload_addr;
+-		priv->memory_pool[curr + i].size = BLOCK_2_SIZE;
+-		priv->memory_pool[curr + i].free = 1;
+-		payload_addr += priv->memory_pool[curr + i].size;
+-	}
+ 
+-	curr = i;
+-	for (i = 0; i < BLOCK_3_NUM; i++) {
+-		priv->memory_pool[curr + i].start = payload_addr;
+-		priv->memory_pool[curr + i].size = BLOCK_3_SIZE;
+-		priv->memory_pool[curr + i].free = 1;
+-		payload_addr += priv->memory_pool[curr + i].size;
++	for (i = 0, curr = 0; i < ARRAY_SIZE(mem->blocks); i++) {
++		for (j = 0; j < mem->blocks[i]; j++, curr++) {
++			priv->memory_pool[curr + j].start = payload_addr;
++			priv->memory_pool[curr + j].size = mem->blocks_size[i];
++			priv->memory_pool[curr + j].free = 1;
++			payload_addr += priv->memory_pool[curr + j].size;
++		}
+ 	}
+ 
+-	WARN_ON(payload_addr - priv->memory_pool[0].start > PAYLOAD_AREA_SIZE);
++	WARN_ON(payload_addr - priv->memory_pool[0].start >
++		mem->payload_area_size);
+ }
+ 
+ static void alloc_mem(struct usb_hcd *hcd, struct isp1760_qtd *qtd)
+ {
+ 	struct isp1760_hcd *priv = hcd_to_priv(hcd);
++	const struct isp1760_memory_layout *mem = priv->memory_layout;
+ 	int i;
+ 
+ 	WARN_ON(qtd->payload_addr);
+@@ -395,7 +385,7 @@ static void alloc_mem(struct usb_hcd *hcd, struct isp1760_qtd *qtd)
+ 	if (!qtd->length)
+ 		return;
+ 
+-	for (i = 0; i < BLOCKS; i++) {
++	for (i = 0; i < mem->payload_blocks; i++) {
+ 		if (priv->memory_pool[i].size >= qtd->length &&
+ 				priv->memory_pool[i].free) {
+ 			priv->memory_pool[i].free = 0;
+@@ -408,12 +398,13 @@ static void alloc_mem(struct usb_hcd *hcd, struct isp1760_qtd *qtd)
+ static void free_mem(struct usb_hcd *hcd, struct isp1760_qtd *qtd)
+ {
+ 	struct isp1760_hcd *priv = hcd_to_priv(hcd);
++	const struct isp1760_memory_layout *mem = priv->memory_layout;
+ 	int i;
+ 
+ 	if (!qtd->payload_addr)
+ 		return;
+ 
+-	for (i = 0; i < BLOCKS; i++) {
++	for (i = 0; i < mem->payload_blocks; i++) {
+ 		if (priv->memory_pool[i].start == qtd->payload_addr) {
+ 			WARN_ON(priv->memory_pool[i].free);
+ 			priv->memory_pool[i].free = 1;
+@@ -1404,8 +1395,6 @@ static int qtd_fill(struct isp1760_qtd *qtd, void *databuffer, size_t len)
+ {
+ 	qtd->data_buffer = databuffer;
+ 
+-	if (len > MAX_PAYLOAD_SIZE)
+-		len = MAX_PAYLOAD_SIZE;
+ 	qtd->length = len;
+ 
+ 	return qtd->length;
+@@ -1429,6 +1418,8 @@ static void qtd_list_free(struct list_head *qtd_list)
+ static void packetize_urb(struct usb_hcd *hcd,
+ 		struct urb *urb, struct list_head *head, gfp_t flags)
+ {
++	struct isp1760_hcd *priv = hcd_to_priv(hcd);
++	const struct isp1760_memory_layout *mem = priv->memory_layout;
+ 	struct isp1760_qtd *qtd;
+ 	void *buf;
+ 	int len, maxpacketsize;
+@@ -1481,6 +1472,10 @@ static void packetize_urb(struct usb_hcd *hcd,
+ 		qtd = qtd_alloc(flags, urb, packet_type);
+ 		if (!qtd)
+ 			goto cleanup;
++
++		if (len > mem->blocks_size[ISP176x_BLOCK_NUM - 1])
++			len = mem->blocks_size[ISP176x_BLOCK_NUM - 1];
++
+ 		this_qtd_len = qtd_fill(qtd, buf, len);
+ 		list_add_tail(&qtd->qtd_list, head);
+ 
+@@ -2209,6 +2204,7 @@ int isp1760_hcd_register(struct isp1760_hcd *priv, struct resource *mem,
+ 			 int irq, unsigned long irqflags,
+ 			 struct device *dev)
+ {
++	const struct isp1760_memory_layout *mem_layout = priv->memory_layout;
+ 	struct usb_hcd *hcd;
+ 	int ret;
+ 
+@@ -2220,6 +2216,28 @@ int isp1760_hcd_register(struct isp1760_hcd *priv, struct resource *mem,
+ 
+ 	priv->hcd = hcd;
+ 
++	priv->memory_pool = kcalloc(mem_layout->payload_blocks,
++				    sizeof(struct isp1760_memory_chunk),
++				    GFP_KERNEL);
++	if (!priv->memory_pool) {
++		ret = -ENOMEM;
++		goto put_hcd;
++	}
++
++	priv->atl_slots = kcalloc(mem_layout->ptd_num,
++				  sizeof(struct isp1760_slotinfo), GFP_KERNEL);
++	if (!priv->atl_slots) {
++		ret = -ENOMEM;
++		goto free_mem_pool;
++	}
++
++	priv->int_slots = kcalloc(mem_layout->ptd_num,
++				  sizeof(struct isp1760_slotinfo), GFP_KERNEL);
++	if (!priv->int_slots) {
++		ret = -ENOMEM;
++		goto free_atl_slots;
++	}
++
+ 	init_memory(priv);
+ 
+ 	hcd->irq = irq;
+@@ -2231,13 +2249,19 @@ int isp1760_hcd_register(struct isp1760_hcd *priv, struct resource *mem,
+ 
+ 	ret = usb_add_hcd(hcd, irq, irqflags);
+ 	if (ret)
+-		goto error;
++		goto free_int_slots;
+ 
+ 	device_wakeup_enable(hcd->self.controller);
+ 
+ 	return 0;
+ 
+-error:
++free_int_slots:
++	kfree(priv->int_slots);
++free_atl_slots:
++	kfree(priv->atl_slots);
++free_mem_pool:
++	kfree(priv->memory_pool);
++put_hcd:
+ 	usb_put_hcd(hcd);
+ 	return ret;
+ }
+@@ -2249,4 +2273,7 @@ void isp1760_hcd_unregister(struct isp1760_hcd *priv)
+ 
+ 	usb_remove_hcd(priv->hcd);
+ 	usb_put_hcd(priv->hcd);
++	kfree(priv->atl_slots);
++	kfree(priv->int_slots);
++	kfree(priv->memory_pool);
+ }
+diff --git a/drivers/usb/isp1760/isp1760-hcd.h b/drivers/usb/isp1760/isp1760-hcd.h
+index 34e1899e52c4..9d2427ce3f1a 100644
+--- a/drivers/usb/isp1760/isp1760-hcd.h
++++ b/drivers/usb/isp1760/isp1760-hcd.h
+@@ -12,24 +12,6 @@ struct isp1760_qtd;
+ struct resource;
+ struct usb_hcd;
+ 
 -/*
-- * board initialization should put one of these into dev->platform_data
-- * and place the isp1760 onto platform_bus named "isp1760-hcd".
+- * 60kb divided in:
+- * - 32 blocks @ 256  bytes
+- * - 20 blocks @ 1024 bytes
+- * -  4 blocks @ 8192 bytes
 - */
 -
--#ifndef __LINUX_USB_ISP1760_H
--#define __LINUX_USB_ISP1760_H
+-#define BLOCK_1_NUM 32
+-#define BLOCK_2_NUM 20
+-#define BLOCK_3_NUM 4
 -
--struct isp1760_platform_data {
--	unsigned is_isp1761:1;			/* Chip is ISP1761 */
--	unsigned bus_width_16:1;		/* 16/32-bit data bus width */
--	unsigned port1_otg:1;			/* Port 1 supports OTG */
--	unsigned analog_oc:1;			/* Analog overcurrent */
--	unsigned dack_polarity_high:1;		/* DACK active high */
--	unsigned dreq_polarity_high:1;		/* DREQ active high */
--};
+-#define BLOCK_1_SIZE 256
+-#define BLOCK_2_SIZE 1024
+-#define BLOCK_3_SIZE 8192
+-#define BLOCKS (BLOCK_1_NUM + BLOCK_2_NUM + BLOCK_3_NUM)
+-#define MAX_PAYLOAD_SIZE BLOCK_3_SIZE
+-#define PAYLOAD_AREA_SIZE 0xf000
 -
--#endif /* __LINUX_USB_ISP1760_H */
+ struct isp1760_slotinfo {
+ 	struct isp1760_qh *qh;
+ 	struct isp1760_qtd *qtd;
+@@ -37,6 +19,17 @@ struct isp1760_slotinfo {
+ };
+ 
+ /* chip memory management */
++#define ISP176x_BLOCK_NUM 3
++
++struct isp1760_memory_layout {
++	unsigned int blocks[ISP176x_BLOCK_NUM];
++	unsigned int blocks_size[ISP176x_BLOCK_NUM];
++
++	unsigned int ptd_num;
++	unsigned int payload_blocks;
++	unsigned int payload_area_size;
++};
++
+ struct isp1760_memory_chunk {
+ 	unsigned int start;
+ 	unsigned int size;
+@@ -58,12 +51,14 @@ struct isp1760_hcd {
+ 	struct regmap		*regs;
+ 	struct regmap_field	*fields[HC_FIELD_MAX];
+ 
++	const struct isp1760_memory_layout	*memory_layout;
++
+ 	spinlock_t		lock;
+-	struct isp1760_slotinfo	atl_slots[32];
++	struct isp1760_slotinfo	*atl_slots;
+ 	int			atl_done_map;
+-	struct isp1760_slotinfo	int_slots[32];
++	struct isp1760_slotinfo	*int_slots;
+ 	int			int_done_map;
+-	struct isp1760_memory_chunk memory_pool[BLOCKS];
++	struct isp1760_memory_chunk *memory_pool;
+ 	struct list_head	qh_list[QH_END];
+ 
+ 	/* periodic schedule support */
 -- 
 2.31.1
 
