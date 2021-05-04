@@ -2,131 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 902B237295A
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 13:00:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 338E9372973
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 13:14:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230326AbhEDLBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 07:01:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40096 "EHLO
+        id S229903AbhEDLOz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 07:14:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230361AbhEDLBg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 07:01:36 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3AA2C06138B
-        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 04:00:37 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id k19so4076221pfu.5
-        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 04:00:37 -0700 (PDT)
+        with ESMTP id S229953AbhEDLOy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 07:14:54 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 382F9C061574;
+        Tue,  4 May 2021 04:13:51 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id n138so12733905lfa.3;
+        Tue, 04 May 2021 04:13:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Bd4fUtUUCN/HpB11MmfQQGuVzm8gcsXHLL3mbp/tsMI=;
-        b=gxf7CzRhIEg7zRxAYGfW3O9gQpoV2/SC9xkdYvQf3t+rCcVcsEqdhkegYCDClL06IQ
-         nNCvHtQnt2tAtCMP/3gx3r/XxbYswP6vnXZO7suvBW7X1mwBvhXuau0m/XuWNLv38/9N
-         eN2AN9ttEI4gDJ29x+0pSaSXv9wc6K3vB9XcRHoBhtLXHIvV0LRs8BVDfsScBrgeZPeM
-         UkHPGcCTozEn+KaHV4WeUqZ/IVdH4zhep8U4PtnPDLCrTNih8FfDVVXd4Olpfl6YQIZg
-         1rKIEmXBw6aeSdAIgAfCF2wCnbsGLCur1hSjinLYVbLNDDxRlcn86lav+MEPJfQknkDK
-         hbuw==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pB5B5vGNh7JfHcktCPrIN1oKnZroXbXhhazB4fhfugs=;
+        b=oNSPNdRDAz8qH2TjdHNrrOZBUXHAk1AW+N8S5H5ogqryWPMQi9KOocAneEwqXpTVXs
+         ylKiI0NgwCfGfIoXSWwQdH4/AOTIOkG100mic0aTxvilePSoeJN+/tqw33mqhTyqhLWr
+         pUexxleUqI4xWy9RMKG0S2uYGTthjNBPanajP/2M4fW96bUFRAtz+Rjr68oh8jc0+pt5
+         8GmTHFMcqtxZ43bdxsjmrIZYmXc4i2gyZrND40eG3FqwmI/m5l1lX+OYHNv8RK7HTqB+
+         C2QIafQceFabyo4Qh8nP1M+aTYm9WIZiL3QaA6EL6rkPIGen1YyNWFWhTXZTppFMas3/
+         l99A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Bd4fUtUUCN/HpB11MmfQQGuVzm8gcsXHLL3mbp/tsMI=;
-        b=tvbm0nN78C6BumOcn3mDVA+5FWDent66AUxv9/GfBKE1cUoOXe2h03HRvFry8UTnCc
-         VBll8QRJMmkSnpFZG8vxN81jf/7GEfU9rhmI4m+Bb5R3uE9zafQnxMnRauT/56MkZ0Ir
-         MDe5S4cm18KHAYDA7kPt3/TmGuRfiNpN7YYubywVzY0LxZw7yFTMKVmbXksvDxZkAYwm
-         xHQU8Nusxehbk6CjFfeOTZ4meM7uKxeFfrAfEWhHRpZM48iOKgm0DRv8y57UaXu990cF
-         4NOHq6m2wPE9TpsTG1IOpVag2SfGlbGizJ+HRR8SpnTyFmg7wDsOJEc7+80V9V74eKD+
-         QUxg==
-X-Gm-Message-State: AOAM5317d8MUGF0XB/gBgu3ah8/L1yv9f0hQEynTCOgdvvh9697ftAOv
-        ILsWDI9g2mbcTA9xU3tXzk9k8A8X5vGNiQ==
-X-Google-Smtp-Source: ABdhPJz46MtHcSpwQA7kaeKNf5SD74WureuuZMKtrRm8c5ReJSIREFjLSWxpGsBIBtCzVJDkaWsUTg==
-X-Received: by 2002:a63:1d19:: with SMTP id d25mr22535208pgd.169.1620126037434;
-        Tue, 04 May 2021 04:00:37 -0700 (PDT)
-Received: from hsinchu02.internal.sifive.com (114-34-229-221.HINET-IP.hinet.net. [114.34.229.221])
-        by smtp.gmail.com with ESMTPSA id k17sm11762529pfa.68.2021.05.04.04.00.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 May 2021 04:00:37 -0700 (PDT)
-From:   Greentime Hu <greentime.hu@sifive.com>
-To:     greentime.hu@sifive.com, paul.walmsley@sifive.com, hes@sifive.com,
-        erik.danie@sifive.com, zong.li@sifive.com, bhelgaas@google.com,
-        robh+dt@kernel.org, aou@eecs.berkeley.edu, mturquette@baylibre.com,
-        sboyd@kernel.org, lorenzo.pieralisi@arm.com,
-        p.zabel@pengutronix.de, alex.dewar90@gmail.com,
-        khilman@baylibre.com, hayashi.kunihiko@socionext.com,
-        vidyas@nvidia.com, jh80.chung@samsung.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, helgaas@kernel.org
-Cc:     Palmer Dabbelt <palmerdabbelt@google.com>
-Subject: [PATCH v6 6/6] riscv: dts: Add PCIe support for the SiFive FU740-C000 SoC
-Date:   Tue,  4 May 2021 18:59:40 +0800
-Message-Id: <20210504105940.100004-7-greentime.hu@sifive.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210504105940.100004-1-greentime.hu@sifive.com>
-References: <20210504105940.100004-1-greentime.hu@sifive.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pB5B5vGNh7JfHcktCPrIN1oKnZroXbXhhazB4fhfugs=;
+        b=cKQYisWozTlupnipSQHDh761ubUMlw81F/v25IdZhs5d9imzmXVy37FuiJGtLpxahX
+         Dp/Lwp5Wf67NxpYhkmlJzKs56YXkbF2P+C35HcmvlsO47xPEidKZwBCkUSsxZwUyrYM6
+         SxFuVhGLKKeM7Rltj7kWieqwjzyLLY1Kxp/KIZwFA9l7AHjiLKHbKymZA0VALBspYYEk
+         rm0wLBntzVqP4CTXn16mcz6Ys8eYrafLXmzItw/ZdZkyxRfiyEX2V6hzetAFuIYua93T
+         je81Px1NPqgy4NsD3qFcbupQkTKj0R7k40JasaQvIiILJ+qmMoDzcYUDedvaaawBHw3b
+         KzWw==
+X-Gm-Message-State: AOAM530yLQxObyndB/uhpOpa2odtuH5lbp1OcqTa0TrzlcJ0O/aky9JF
+        nQIFklRJZcgUPHou4Z2SII5sbLl5InYTVU0a1pY=
+X-Google-Smtp-Source: ABdhPJwino+fPpYKDcNU5mJ2NOppWmanyJi54pdQ9f4VBW0ZqjvyHhzOM6wB4bkRrL+B73I+G1rGBG1feXbg2jYRiMQ=
+X-Received: by 2002:ac2:4308:: with SMTP id l8mr15510685lfh.223.1620126829233;
+ Tue, 04 May 2021 04:13:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210430052746.10815-1-peng.fan@oss.nxp.com> <20210430052746.10815-5-peng.fan@oss.nxp.com>
+In-Reply-To: <20210430052746.10815-5-peng.fan@oss.nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 4 May 2021 08:13:37 -0300
+Message-ID: <CAOMZO5A4JOP0zST75bO9Ww7pxJjJSYHE9HmWCJb7DjYYd-Y80Q@mail.gmail.com>
+Subject: Re: [PATCH V2 4/4] soc: imx: Add blk-ctl driver for i.MX8MM
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        Marek Vasut <marex@denx.de>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Ping Bai <ping.bai@nxp.com>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Adam Ford <aford173@gmail.com>, Abel Vesa <abel.vesa@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
-Acked-by: Palmer Dabbelt <palmerdabbelt@google.com>
----
- arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 33 ++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+Hi Peng,
 
-diff --git a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-index eeb4f8c3e0e7..8eef82e4199f 100644
---- a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-@@ -159,6 +159,7 @@ prci: clock-controller@10000000 {
- 			reg = <0x0 0x10000000 0x0 0x1000>;
- 			clocks = <&hfclk>, <&rtcclk>;
- 			#clock-cells = <1>;
-+			#reset-cells = <1>;
- 		};
- 		uart0: serial@10010000 {
- 			compatible = "sifive,fu740-c000-uart", "sifive,uart0";
-@@ -289,5 +290,37 @@ gpio: gpio@10060000 {
- 			clocks = <&prci PRCI_CLK_PCLK>;
- 			status = "disabled";
- 		};
-+		pcie@e00000000 {
-+			compatible = "sifive,fu740-pcie";
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			#interrupt-cells = <1>;
-+			reg = <0xe 0x00000000 0x0 0x80000000>,
-+			      <0xd 0xf0000000 0x0 0x10000000>,
-+			      <0x0 0x100d0000 0x0 0x1000>;
-+			reg-names = "dbi", "config", "mgmt";
-+			device_type = "pci";
-+			dma-coherent;
-+			bus-range = <0x0 0xff>;
-+			ranges = <0x81000000  0x0 0x60080000  0x0 0x60080000 0x0 0x10000>,      /* I/O */
-+				 <0x82000000  0x0 0x60090000  0x0 0x60090000 0x0 0xff70000>,    /* mem */
-+				 <0x82000000  0x0 0x70000000  0x0 0x70000000 0x0 0x1000000>,    /* mem */
-+				 <0xc3000000 0x20 0x00000000 0x20 0x00000000 0x20 0x00000000>;  /* mem prefetchable */
-+			num-lanes = <0x8>;
-+			interrupts = <56>, <57>, <58>, <59>, <60>, <61>, <62>, <63>, <64>;
-+			interrupt-names = "msi", "inta", "intb", "intc", "intd";
-+			interrupt-parent = <&plic0>;
-+			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-+			interrupt-map = <0x0 0x0 0x0 0x1 &plic0 57>,
-+					<0x0 0x0 0x0 0x2 &plic0 58>,
-+					<0x0 0x0 0x0 0x3 &plic0 59>,
-+					<0x0 0x0 0x0 0x4 &plic0 60>;
-+			clock-names = "pcie_aux";
-+			clocks = <&prci PRCI_CLK_PCIE_AUX>;
-+			pwren-gpios = <&gpio 5 0>;
-+			reset-gpios = <&gpio 8 0>;
-+			resets = <&prci 4>;
-+			status = "okay";
-+		};
- 	};
- };
--- 
-2.31.1
+On Fri, Apr 30, 2021 at 1:56 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
 
+> +static int imx8mm_blk_ctl_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       const struct imx_blk_ctl_dev_data *dev_data = of_device_get_match_data(dev);
+> +       struct regmap *regmap;
+> +       struct resource *res;
+> +       struct imx_blk_ctl *ctl;
+> +       void __iomem *base;
+> +
+> +       ctl = devm_kzalloc(dev, sizeof(*ctl), GFP_KERNEL);
+> +       if (!ctl)
+> +               return -ENOMEM;
+> +
+> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +       base = devm_ioremap_resource(dev, res);
+> +       if (IS_ERR(base))
+> +               return PTR_ERR(base);
+> +
+> +       regmap = devm_regmap_init_mmio(dev, base, &dev_data->config);
+> +       if (IS_ERR(regmap))
+> +               return PTR_ERR(regmap);
+> +
+> +       ctl->regmap = regmap;
+> +       ctl->dev = dev;
+> +       atomic_set(&ctl->power_count, 0);
+> +
+> +       ctl->num_clks = devm_clk_bulk_get_all(dev, &ctl->clks);
+> +       if (ctl->num_clks < 0)
+> +               return ctl->num_clks;
+> +
+> +       dev_set_drvdata(dev, ctl);
+> +       ctl->dev_data = of_device_get_match_data(dev);
+
+No need to call of_device_get_match_data() twice. You could do:
+
+ctl->dev_data = dev_data;
