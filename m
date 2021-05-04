@@ -2,124 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22709372DF5
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 18:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02FDC372E13
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 18:29:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231691AbhEDQY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 12:24:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42038 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231523AbhEDQY1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 May 2021 12:24:27 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 46957611AD;
-        Tue,  4 May 2021 16:23:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1620145412;
-        bh=OjTM3wjN3EUalqu7VP3gGcczRSciVlWRIKa7hPRIbmw=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=WIKvK7ezck0cLI8tML9ClP7dOnYY3ZnzY+99TcsSBkwttohmLHSOaNFDPxgXTtm4l
-         MCCyZGfCB1d7PDTDQkNlGwWzvGoBIjS4Z3f9Db7z3BPDACcnQGeZJCYHdAK34Phl08
-         Mjq6MzT1qYp/lhNeSSDoI/Z8bkQ2/bLgdhfkzz26WUiDgmrxI26epnFeYXlKJ0FqBN
-         AMzj+om8OFAuNGpGPLvueA7ZPG0d/sxoEIDQDa9LPMguAUi1BxVEzIWWBUJQz6RHa2
-         wQQsFGF5VzcOo82pFVJ0tEztkbiOLkBz8KDblQnjpCc5UR/axyx09GrkN5Xditg7W5
-         rYjg5Ugi4kpng==
-Date:   Tue, 4 May 2021 11:23:31 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Leon Romanovsky <leon@kernel.org>
-Cc:     Greentime Hu <greentime.hu@sifive.com>, paul.walmsley@sifive.com,
-        hes@sifive.com, erik.danie@sifive.com, zong.li@sifive.com,
-        bhelgaas@google.com, robh+dt@kernel.org, aou@eecs.berkeley.edu,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        lorenzo.pieralisi@arm.com, p.zabel@pengutronix.de,
-        alex.dewar90@gmail.com, khilman@baylibre.com,
-        hayashi.kunihiko@socionext.com, vidyas@nvidia.com,
-        jh80.chung@samsung.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v6 1/6] clk: sifive: Add pcie_aux clock in prci driver
- for PCIe driver
-Message-ID: <20210504162331.GA1122904@bjorn-Precision-5520>
+        id S231810AbhEDQaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 12:30:20 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:49422 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231781AbhEDQaR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 12:30:17 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1620145762; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=oH1tHohc/rqxGsngrqjYmA2CbkVcO2iqa+XuJaeCoJg=; b=P7r+mzSBVQe76iGlufmO/fJKUpnjVFHhbAzS15aw/WzaEVMkz37UJyIV+LUjoAIvcNwThWKb
+ xWeRiqHmVq7HRaeT4suOHnNcIli1gCCEh77duJKP+tHItz8g7P0JVYrZGO02sPbOcuXKumj/
+ UuCHfICIMu1SCJPRrGj7beTe/80=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 609176598166b7eff7ccf925 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 04 May 2021 16:29:13
+ GMT
+Sender: subbaram=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 8F7CFC433F1; Tue,  4 May 2021 16:29:12 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [10.46.162.93] (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: subbaram)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id DE532C4338A;
+        Tue,  4 May 2021 16:29:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org DE532C4338A
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=subbaram@codeaurora.org
+Subject: Re: [PATCH v7 1/6] dt-bindings: leds: Add Qualcomm Light Pulse
+ Generator binding
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe Kleine-K??nig <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>
+References: <20210429211517.312792-1-bjorn.andersson@linaro.org>
+ <20210429211517.312792-2-bjorn.andersson@linaro.org>
+ <635d3f2c-d3a8-c0d6-7659-c22e44103901@codeaurora.org>
+ <YJFcsRnki3XT3isk@mobian>
+From:   Subbaraman Narayanamurthy <subbaram@codeaurora.org>
+Message-ID: <8e2bdc31-2259-08c6-b50c-2b464bbc86bf@codeaurora.org>
+Date:   Tue, 4 May 2021 09:29:09 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YJE886bhppqes5LQ@unreal>
+In-Reply-To: <YJFcsRnki3XT3isk@mobian>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 04, 2021 at 03:24:19PM +0300, Leon Romanovsky wrote:
-> On Tue, May 04, 2021 at 06:59:35PM +0800, Greentime Hu wrote:
-> > We add pcie_aux clock in this patch so that pcie driver can use
-> > clk_prepare_enable() and clk_disable_unprepare() to enable and disable
-> > pcie_aux clock.
-> > 
-> > Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
-> > Acked-by: Stephen Boyd <sboyd@kernel.org>
-> > ---
-> >  drivers/clk/sifive/fu740-prci.c               | 11 +++++
-> >  drivers/clk/sifive/fu740-prci.h               |  2 +-
-> >  drivers/clk/sifive/sifive-prci.c              | 41 +++++++++++++++++++
-> >  drivers/clk/sifive/sifive-prci.h              |  9 ++++
-> >  include/dt-bindings/clock/sifive-fu740-prci.h |  1 +
-> >  5 files changed, 63 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/clk/sifive/fu740-prci.c b/drivers/clk/sifive/fu740-prci.c
-> > index 764d1097aa51..53f6e00a03b9 100644
-> > --- a/drivers/clk/sifive/fu740-prci.c
-> > +++ b/drivers/clk/sifive/fu740-prci.c
-> > @@ -72,6 +72,12 @@ static const struct clk_ops sifive_fu740_prci_hfpclkplldiv_clk_ops = {
-> >  	.recalc_rate = sifive_prci_hfpclkplldiv_recalc_rate,
-> 
-> <...>
-> 
-> > +/* PCIE AUX clock APIs for enable, disable. */
-> > +int sifive_prci_pcie_aux_clock_is_enabled(struct clk_hw *hw)
-> 
-> It should be bool
+On 5/4/21 7:39 AM, Pavel Machek wrote:
+> Hi!
+> On Mon 2021-05-03 18:01:09, Subbaraman Narayanamurthy wrote:
+>> On 4/29/21 2:15 PM, Bjorn Andersson wrote:
+>>> This adds the binding document describing the three hardware blocks
+>>> related to the Light Pulse Generator found in a wide range of Qualcomm
+>>> PMICs.
+>>>
+>>> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ...
+>>> +      "^led@[0-9a-f]$":
+>>> +        type: object
+>>> +        $ref: common.yaml#
+>>> +
+>>
+>> Just a question more than a comment. From what I can see, when this device is specified as a multi-color device or an individual device (e.g. "red", "green" and "blue"), the user can only set "pattern" and "repeat" under the corresponding device after setting "pattern" to "trigger". Would you be planning to add a way (e.g. another set of DT properties) for the user to specify such patterns via the devicetree itself?
+>>
+> Please trim your replies and format emails to 72 columns or so.
 
-It's used via this function pointer:
+Sure noted.
 
-  struct clk_ops {
-    int             (*is_enabled)(struct clk_hw *hw);
+> If you need patterns in DTS that can be discussed, but it should be
+> generic functionality not tied to one driver.
 
-so I think "int" is actually appropriate here.
+I agree. It's not tied up just with this driver but wanted to see whether
+it's feasible/acceptable.
 
-There are some weird/interesting bool vs int usages nearby, though:
+>
+> Best regards,
+>
+>        	    	 	     	    	      	 	 Pavel
 
-  "bool __is_clk_gate_enabled()" goes to some trouble to convert
-  int to bool ("return (reg_val & bit_mask) != 0;"), and then
-  kona_peri_clk_is_enabled() converts the bool back to int ("return
-  is_clk_gate_enabled(bcm_clk->ccu, gate) ? 1 : 0;").
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, a Linux Foundation Collaborative Project
 
-  "int lpc32xx_clk_gate_is_enabled()" actually returns a bool that is
-  implicitly converted to int.
-
-  Many *_is_enabled() functions return !!(...) where !! is an
-  int-to-bool conversion that is arguably unnecessary and again
-  results in an implicit conversion to int.
-
-I don't see any *problems* with any of these; it just seems like a
-little more mental effort to think about all the explicit and implicit
-conversions going on.
-
-> > +int sifive_prci_pcie_aux_clock_enable(struct clk_hw *hw)
-> > +{
-> > +	struct __prci_clock *pc = clk_hw_to_prci_clock(hw);
-> > +	struct __prci_data *pd = pc->pd;
-> > +	u32 r __maybe_unused;
-> > +
-> > +	if (sifive_prci_pcie_aux_clock_is_enabled(hw))
-> > +		return 0;
-> 
-> You actually call to this new function only once, put your
-> __prci_readl() here.
-
-Both sifive_prci_pcie_aux_clock_enable() and
-sifive_prci_pcie_aux_clock_is_enabled() are used via the clk_ops
-function pointers.
-
-Maybe sifive_prci_pcie_aux_clock_is_enabled() could be replaced by the
-__prci_readl() here, but I don't know enough about clk_ops internals
-to know.
-
-Bjorn
