@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5577837257D
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 07:29:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C8C5372580
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 07:29:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229813AbhEDFaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 01:30:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50320 "EHLO
+        id S229823AbhEDFaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 01:30:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229807AbhEDFaA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 01:30:00 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AE2AC061761
-        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 22:29:06 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id e15so6276865pfv.10
-        for <devicetree@vger.kernel.org>; Mon, 03 May 2021 22:29:06 -0700 (PDT)
+        with ESMTP id S229802AbhEDFaD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 01:30:03 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C07FC061761
+        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 22:29:09 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id h11so6344745pfn.0
+        for <devicetree@vger.kernel.org>; Mon, 03 May 2021 22:29:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=RjDDEQHznq8kml6OFuSumxrNRPKtAVnBXfVZoTIOBJk=;
-        b=edgEPWYjMfQl/NgTn+F1VvmFuUMWGV24gxVRojOLOPXRI+FlPOHqeNJk/nxxslIspB
-         TJT0B4FJFt+m1zV05deFvgTn2PptV4eK+ipoUViTipPkBLXOVw7BU0iYqlOQ5vjQ0n/G
-         O8L6u8vTTQIHh5GORy2FZtAGt6Y6JQT49QaOgCKiunlUSu13Y+id5bQJVs7YmGohvrBv
-         uOdFcmOIlydzqv3O7kBgZ28ZqGdMPAsmuvURkRZRXTqN6mFbEwxp3aYiJHjS2wt/nnN7
-         brmHt2hnwcS4XkeFTGE8NJZ1GcpfY05IXCAIG2+3uKxHDbAqxT+I8TcLtpkQVfOp2+kn
-         3cwA==
+        bh=aNWYHyF10Ocv0rGRJlTBLbyA6sxWZ+weiafnUhBtEKk=;
+        b=H16lLhHBiZ9W/Un4AkE6jMkWBw2frgqbf7Eg/+/OqK0hiBEKl4VgMUPRdXXJH1KIT/
+         p7N2P75kCYNBGS4+kG259a+H/Q207cyygXepskuVu/jHb7QXptY8Irnr3720q2qI8SE7
+         4SRPDC1HdmfAMkgO1QjxSrYDiqNXJGGHlgqFfepy3q8kdgNZgL8Tl38Fq7D0fdadyg4Z
+         KVgGWxmNY1A6537b+G1tUHWUXGAziNpeDDwtq3InYmY4lCCKHFixy4Yp7ntqVoHw2WwB
+         jU+5UkeFfwIwNKYVwyTH6T3UWJ3zIzizk8WW2LqRdHXpZg/8FJn1/NQlNsosF4KzDZzn
+         LYYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=RjDDEQHznq8kml6OFuSumxrNRPKtAVnBXfVZoTIOBJk=;
-        b=EQ3Canszw+hPf9e1fRrKHzYyxRuSvdG000uUDMbbHqsEOeZuOvUusHUy4x1u5vHfqD
-         VqlIMFD3BdQaYdZXu4MyeE1BCBKZTjmuk9hwh5ftBWp6LmuPTrPdrFqVgx17oXRcpcCH
-         vPpqNYsyLicm+hQWfg3uqfXqcOymHnOidodkY+swRnPc8EXsKr/BMzzje0o4puD+8xeW
-         3OtbnRmX25GsfL37tcq72INR1z00jZiD72UPgNGDwS+mBpV7afmSg8SMyxz1Uout0oHw
-         Y9c+BtG8VsuN31aGmXo4P1mxIckDzSfOHB49VFTh5JGQhz6py7u/c1hHDfTz+OaDVfnW
-         xpvA==
-X-Gm-Message-State: AOAM533SbcCW8WrMw7Y6Wpv4lGebujDDP4KR9wCFW0jaYWKyoBYo76Bs
-        aJ9r+vOMjpD9YiOYnSzEOs66sw==
-X-Google-Smtp-Source: ABdhPJyQHi+h5z1UsGXu0JcsoQBIaP/LrwblVbl8irJnlRnS5Cqr67mEdBNahxnnd8zVmQvGXU+iLQ==
-X-Received: by 2002:a17:90b:4b45:: with SMTP id mi5mr3000570pjb.197.1620106145767;
-        Mon, 03 May 2021 22:29:05 -0700 (PDT)
+        bh=aNWYHyF10Ocv0rGRJlTBLbyA6sxWZ+weiafnUhBtEKk=;
+        b=TzciBEamIR04FdYUjusPoC3CwEzTcQd4WEaGAp8B5R1ZkYvmMSc4brg03b4f19oGj0
+         9VrFdctX1RSOFHLzc+pthaTWlzqM2/l43K1NJwF1SD/SJXsBW4hcsnUjk0FfroukMbSf
+         3jIXlp/5XilSTWYMg6edqScyHldrOuZU29lwJT7hR+o8hnQR306bbNqv8eaZF23RlYq9
+         Jj496I73AYIa3UIh54AHkMhXAKjVcM0Ggp/ILDelta/abmsR6PGadbEg7dNvbR9kRnAT
+         oc88B+lH0tpIAZyKoONz6TCVKvwsqLQXCYimDb/aORsk+QVR1nXfsjLvyO5c0rQfsGlc
+         kYbA==
+X-Gm-Message-State: AOAM531kKtFaDto4Q09/gJbsbi8pXzyfuhiCEPGjoh1DT2RIYcZXAykW
+        SD6Bt83nVoSw/tC1RkOpxRknKE4710ZUHw==
+X-Google-Smtp-Source: ABdhPJw6gk+A/ek8Ww3yAM10K+9EaBpiqvwqGmfhQYxlE90ziBHkIsISurjqFpCvB0me3kWn6Hj5vw==
+X-Received: by 2002:a05:6a00:138b:b029:27f:179f:2c20 with SMTP id t11-20020a056a00138bb029027f179f2c20mr21803788pfg.37.1620106148803;
+        Mon, 03 May 2021 22:29:08 -0700 (PDT)
 Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id 145sm5933229pfv.196.2021.05.03.22.29.02
+        by smtp.gmail.com with ESMTPSA id 145sm5933229pfv.196.2021.05.03.22.29.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 May 2021 22:29:05 -0700 (PDT)
+        Mon, 03 May 2021 22:29:08 -0700 (PDT)
 From:   Shawn Guo <shawn.guo@linaro.org>
 To:     Stephen Boyd <sboyd@kernel.org>
 Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -54,9 +54,9 @@ Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Benjamin Li <benl@squareup.com>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH 4/5] clk: qcom: a53-pll: Pass freq_tbl via match data
-Date:   Tue,  4 May 2021 13:28:43 +0800
-Message-Id: <20210504052844.21096-5-shawn.guo@linaro.org>
+Subject: [PATCH 5/5] clk: qcom: a53-pll: Add MSM8939 a53pll clocks
+Date:   Tue,  4 May 2021 13:28:44 +0800
+Message-Id: <20210504052844.21096-6-shawn.guo@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210504052844.21096-1-shawn.guo@linaro.org>
 References: <20210504052844.21096-1-shawn.guo@linaro.org>
@@ -64,57 +64,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The frequency table is SoC specific.  Instead of hard coding, pass it
-via match data, so that the driver can work for more than just MSM8916.
-This is a preparation change for adding MSM8939 A53PLL support.
+It adds support for MSM8939 a53pll clock of Cluster0, Cluster1 and CCI
+(Cache Coherent Interconnect).  The frequency data comes from vendor
+kernel.
 
 Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
 ---
- drivers/clk/qcom/a53-pll.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+ drivers/clk/qcom/a53-pll.c | 42 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
 diff --git a/drivers/clk/qcom/a53-pll.c b/drivers/clk/qcom/a53-pll.c
-index 964f5ab7d02f..bfa048dc01ec 100644
+index bfa048dc01ec..8c6f8bcc6128 100644
 --- a/drivers/clk/qcom/a53-pll.c
 +++ b/drivers/clk/qcom/a53-pll.c
-@@ -15,7 +15,7 @@
- #include "clk-pll.h"
- #include "clk-regmap.h"
+@@ -26,6 +26,45 @@ static const struct pll_freq_tbl msm8916_freq[] = {
+ 	{ }
+ };
  
--static const struct pll_freq_tbl a53pll_freq[] = {
-+static const struct pll_freq_tbl msm8916_freq[] = {
- 	{  998400000, 52, 0x0, 0x1, 0 },
- 	{ 1094400000, 57, 0x0, 0x1, 0 },
- 	{ 1152000000, 62, 0x0, 0x1, 0 },
-@@ -43,8 +43,13 @@ static int qcom_a53pll_probe(struct platform_device *pdev)
- 	void __iomem *base;
- 	struct clk_init_data init = { };
- 	const char *clk_name = NULL;
-+	const struct pll_freq_tbl *freq_tbl;
- 	int ret;
- 
-+	freq_tbl = device_get_match_data(&pdev->dev);
-+	if (!freq_tbl)
-+		return -ENODEV;
++static const struct pll_freq_tbl msm8939_c0_freq[] = {
++	{  998400000,  52, 0x0, 0x1, 0 },
++	{ 1113600000,  58, 0x0, 0x1, 0 },
++	{ 1209600000,  63, 0x0, 0x1, 0 },
++};
 +
- 	pll = devm_kzalloc(dev, sizeof(*pll), GFP_KERNEL);
- 	if (!pll)
- 		return -ENOMEM;
-@@ -65,7 +70,7 @@ static int qcom_a53pll_probe(struct platform_device *pdev)
- 	pll->mode_reg = 0x00;
- 	pll->status_reg = 0x1c;
- 	pll->status_bit = 16;
--	pll->freq_tbl = a53pll_freq;
-+	pll->freq_tbl = freq_tbl;
- 
- 	of_property_read_string(pdev->dev.of_node, "clock-output-names",
- 				&clk_name);
-@@ -92,7 +97,7 @@ static int qcom_a53pll_probe(struct platform_device *pdev)
- }
++static const struct pll_freq_tbl msm8939_c1_freq[] = {
++	{  652800000, 34, 0x0, 0x1, 0 },
++	{  691200000, 36, 0x0, 0x1, 0 },
++	{  729600000, 38, 0x0, 0x1, 0 },
++	{  806400000, 42, 0x0, 0x1, 0 },
++	{  844800000, 44, 0x0, 0x1, 0 },
++	{  883200000, 46, 0x0, 0x1, 0 },
++	{  960000000, 50, 0x0, 0x1, 0 },
++	{  998400000, 52, 0x0, 0x1, 0 },
++	{ 1036800000, 54, 0x0, 0x1, 0 },
++	{ 1113600000, 58, 0x0, 0x1, 0 },
++	{ 1209600000, 63, 0x0, 0x1, 0 },
++	{ 1190400000, 62, 0x0, 0x1, 0 },
++	{ 1267200000, 66, 0x0, 0x1, 0 },
++	{ 1344000000, 70, 0x0, 0x1, 0 },
++	{ 1363200000, 71, 0x0, 0x1, 0 },
++	{ 1420800000, 74, 0x0, 0x1, 0 },
++	{ 1459200000, 76, 0x0, 0x1, 0 },
++	{ 1497600000, 78, 0x0, 0x1, 0 },
++	{ 1536000000, 80, 0x0, 0x1, 0 },
++	{ 1574400000, 82, 0x0, 0x1, 0 },
++	{ 1612800000, 84, 0x0, 0x1, 0 },
++	{ 1632000000, 85, 0x0, 0x1, 0 },
++	{ 1651200000, 86, 0x0, 0x1, 0 },
++	{ 1689600000, 88, 0x0, 0x1, 0 },
++	{ 1708800000, 89, 0x0, 0x1, 0 },
++};
++
++static const struct pll_freq_tbl msm8939_cci_freq[] = {
++	{ 403200000, 21, 0x0, 0x1, 0 },
++	{ 595200000, 31, 0x0, 0x1, 0 },
++};
++
+ static const struct regmap_config a53pll_regmap_config = {
+ 	.reg_bits		= 32,
+ 	.reg_stride		= 4,
+@@ -98,6 +137,9 @@ static int qcom_a53pll_probe(struct platform_device *pdev)
  
  static const struct of_device_id qcom_a53pll_match_table[] = {
--	{ .compatible = "qcom,msm8916-a53pll" },
-+	{ .compatible = "qcom,msm8916-a53pll", .data = msm8916_freq },
+ 	{ .compatible = "qcom,msm8916-a53pll", .data = msm8916_freq },
++	{ .compatible = "qcom,msm8939-a53pll-c0", .data = &msm8939_c0_freq },
++	{ .compatible = "qcom,msm8939-a53pll-c1", .data = &msm8939_c1_freq },
++	{ .compatible = "qcom,msm8939-a53pll-cci", .data = &msm8939_cci_freq },
  	{ }
  };
  
