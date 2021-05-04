@@ -2,185 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 637B3372676
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 09:20:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13DBC3726BF
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 09:45:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230007AbhEDHVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 03:21:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48090 "EHLO
+        id S229786AbhEDHqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 03:46:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229977AbhEDHVI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 03:21:08 -0400
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62188C061763
-        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 00:20:13 -0700 (PDT)
-Received: by mail-qk1-x72a.google.com with SMTP id v20so7643070qkv.5
-        for <devicetree@vger.kernel.org>; Tue, 04 May 2021 00:20:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=JggnRH2z+C5c6q5fwkNF9u7IZivIlxcnTgChvJQFvSA=;
-        b=csBKU8aJUh6TfQKqWkRRJuwzqfCx/gxbV1DQ6d4id1eoGXBhg76xsbhY2fA34UDX22
-         sZhPa7vaekhSABqSq3q7znGNkTGTxRXlf8Kiac//bM/Z3oVYKoZXXB9zyWWTH7tsAue2
-         1B3yweWVmqGH2oSfzokpJ9flNMRRfs9Ch/TZUvIWlFbtChX6zJmSSKrgWOdoAyamxI4t
-         MWCSaYfX4b6HMUDdhbJ98JhjtDEInNQGjQWG3kd5N5U5xZzC2NZbKSwi8I2ED9rQfmrz
-         7UAGrCn8PAB1iTBuS+TzkQAplICSN9l3apNNyz3X/NdhP+azrqtYr3WMCOS/YtBXCUbQ
-         fB6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=JggnRH2z+C5c6q5fwkNF9u7IZivIlxcnTgChvJQFvSA=;
-        b=LVn4ZU0LGxIQKKTlKIrouEVvxr0LxCrArmu0cx2IuU7ohhveE3+QT3vwp1U6Ir9BVi
-         qhXefkc9ncCslJXyQ8UBu/745BPdY7oeG1WbeI0Fj+9dZNkAJ27TmadTbrXl1KkZJwXJ
-         lbwujaCuPQeQr+74PeTsXDSrwXpyno5/qsWj3CLJr80ts1jm41ZyisMgVuJklU9RmJH2
-         2swDqOKYEpVx9oKrABw1qwUV1V2rrHv6v4LjuYeQz0Eph8ikJl0hhxgG5LUjbFSyvaD5
-         hD67d//ui8vvlt4srT3+3dZi630bKyRh6DICLPeXrPSabnW1EO7qn/U1Pl2rvCLTQX2p
-         Zt3A==
-X-Gm-Message-State: AOAM531eWodFbgSj9+IuKT23nS7EOSJfvhgCeaLYuB7F68ppwPex6akz
-        LSiaL2WJp2JIN7c5AjyPkkjYdjXqWLBKvNUQPE6gom9Ldz4IKw==
-X-Google-Smtp-Source: ABdhPJwSV0cJLUMNNy0lL94PwJnsWKOoPmVIkjaGTOqFfwKqrXom5YgkvcZWXnSt5nztkk0zIFsVQOCkdjO4/mVSk1Q=
-X-Received: by 2002:a05:620a:29c4:: with SMTP id s4mr20672337qkp.401.1620112812489;
- Tue, 04 May 2021 00:20:12 -0700 (PDT)
+        with ESMTP id S229601AbhEDHqT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 03:46:19 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 260E6C061574;
+        Tue,  4 May 2021 00:45:25 -0700 (PDT)
+Received: from [IPv6:2a01:e0a:4cb:a870:3951:839d:24c0:e20d] (unknown [IPv6:2a01:e0a:4cb:a870:3951:839d:24c0:e20d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: benjamin.gaignard)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 6BE641F420E7;
+        Tue,  4 May 2021 08:45:21 +0100 (BST)
+Subject: Re: [PATCH v2 1/4] dt-bindings: iommu: rockchip: Convert IOMMU to DT
+ schema
+To:     Rob Herring <robh@kernel.org>,
+        Ezequiel Garcia <ezequiel@collabora.com>
+Cc:     joro@8bytes.org, will@kernel.org, heiko@sntech.de,
+        xxm@rock-chips.com, iommu@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, Kever Yang <kever.yang@rock-chips.com>
+References: <20210422141602.350746-1-benjamin.gaignard@collabora.com>
+ <20210422141602.350746-2-benjamin.gaignard@collabora.com>
+ <7557bc8aaaa1924ad39676b32ba6a3f6474a3722.camel@collabora.com>
+ <20210430221442.GA3970483@robh.at.kernel.org>
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Message-ID: <28edc185-6aa9-a657-0f2d-4ed2e3b9ddd4@collabora.com>
+Date:   Tue, 4 May 2021 09:45:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-References: <20210406092634.50465-1-greentime.hu@sifive.com> <20210503164023.GA919777@bjorn-Precision-5520>
-In-Reply-To: <20210503164023.GA919777@bjorn-Precision-5520>
-From:   Greentime Hu <greentime.hu@sifive.com>
-Date:   Tue, 4 May 2021 15:20:00 +0800
-Message-ID: <CAHCEeh+cMrEnHNG3W3ZNzdgT-m7BMorDawF6D8qkFYGg=RJMOw@mail.gmail.com>
-Subject: Re: [PATCH v5 0/6] Add SiFive FU740 PCIe host controller driver support
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>, hes@sifive.com,
-        Erik Danie <erik.danie@sifive.com>,
-        Zong Li <zong.li@sifive.com>,
-        Bjorn Helgaas <bhelgaas@google.com>, robh+dt@kernel.org,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>, alex.dewar90@gmail.com,
-        khilman@baylibre.com, hayashi.kunihiko@socionext.com,
-        vidyas@nvidia.com, jh80.chung@samsung.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210430221442.GA3970483@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bjorn Helgaas <helgaas@kernel.org> =E6=96=BC 2021=E5=B9=B45=E6=9C=884=E6=97=
-=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=8812:40=E5=AF=AB=E9=81=93=EF=BC=9A
+
+Le 01/05/2021 à 00:14, Rob Herring a écrit :
+> On Thu, Apr 22, 2021 at 02:16:53PM -0300, Ezequiel Garcia wrote:
+>> (Adding Kever)
+>>
+>> Hi Benjamin,
+>>
+>> Thanks a lot for working on this, it looks amazing. Together with the great work
+>> that Rockchip is doing, it seems RK3566/RK3568 will have decent support very soon.
+>>
+>> One comment here:
+>>
+>> On Thu, 2021-04-22 at 16:15 +0200, Benjamin Gaignard wrote:
+>>> Convert Rockchip IOMMU to DT schema
+>>>
+>>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>>> ---
+>>> version 2:
+>>>   - Change maintainer
+>>>   - Change reg maxItems
+>>>   - Change interrupt maxItems
+>>>
+>>>   .../bindings/iommu/rockchip,iommu.txt         | 38 ---------
+>>>   .../bindings/iommu/rockchip,iommu.yaml        | 79 +++++++++++++++++++
+>>>   2 files changed, 79 insertions(+), 38 deletions(-)
+>>>   delete mode 100644 Documentation/devicetree/bindings/iommu/rockchip,iommu.txt
+>>>   create mode 100644 Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/iommu/rockchip,iommu.txt b/Documentation/devicetree/bindings/iommu/rockchip,iommu.txt
+>>> deleted file mode 100644
+>>> index 6ecefea1c6f9..000000000000
+>>> --- a/Documentation/devicetree/bindings/iommu/rockchip,iommu.txt
+>>> +++ /dev/null
+>>> @@ -1,38 +0,0 @@
+>>> -Rockchip IOMMU
+>>> -==============
+>>> -
+>>> -A Rockchip DRM iommu translates io virtual addresses to physical addresses for
+>>> -its master device.  Each slave device is bound to a single master device, and
+>>> -shares its clocks, power domain and irq.
+>>> -
+>>> -Required properties:
+>>> -- compatible      : Should be "rockchip,iommu"
+>>> -- reg             : Address space for the configuration registers
+>>> -- interrupts      : Interrupt specifier for the IOMMU instance
+>>> -- interrupt-names : Interrupt name for the IOMMU instance
+>>> -- #iommu-cells    : Should be <0>.  This indicates the iommu is a
+>>> -                    "single-master" device, and needs no additional information
+>>> -                    to associate with its master device.  See:
+>>> -                    Documentation/devicetree/bindings/iommu/iommu.txt
+>>> -- clocks          : A list of clocks required for the IOMMU to be accessible by
+>>> -                    the host CPU.
+>>> -- clock-names     : Should contain the following:
+>>> -       "iface" - Main peripheral bus clock (PCLK/HCL) (required)
+>>> -       "aclk"  - AXI bus clock (required)
+>>> -
+>>> -Optional properties:
+>>> -- rockchip,disable-mmu-reset : Don't use the mmu reset operation.
+>>> -                              Some mmu instances may produce unexpected results
+>>> -                              when the reset operation is used.
+>>> -
+>>> -Example:
+>>> -
+>>> -       vopl_mmu: iommu@ff940300 {
+>>> -               compatible = "rockchip,iommu";
+>>> -               reg = <0xff940300 0x100>;
+>>> -               interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+>>> -               interrupt-names = "vopl_mmu";
+>>> -               clocks = <&cru ACLK_VOP1>, <&cru HCLK_VOP1>;
+>>> -               clock-names = "aclk", "iface";
+>>> -               #iommu-cells = <0>;
+>>> -       };
+>>> diff --git a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+>>> new file mode 100644
+>>> index 000000000000..0db208cf724a
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+>>> @@ -0,0 +1,79 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/iommu/rockchip,iommu.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Rockchip IOMMU
+>>> +
+>>> +maintainers:
+>>> +  - Heiko Stuebner <heiko@sntech.de>
+>>> +
+>>> +description: |+
+>>> +  A Rockchip DRM iommu translates io virtual addresses to physical addresses for
+>>> +  its master device. Each slave device is bound to a single master device and
+>>> +  shares its clocks, power domain and irq.
+>>> +
+>>> +  For information on assigning IOMMU controller to its peripheral devices,
+>>> +  see generic IOMMU bindings.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: rockchip,iommu
+>>> +
+>>> +  reg:
+>>> +    minItems: 1
+>>> +    maxItems: 2
+>>> +
+>>> +  interrupts:
+>>> +    minItems: 1
+>>> +    maxItems: 2
+>>> +
+>>> +  interrupt-names:
+>>> +    minItems: 1
+>>> +    maxItems: 2
+>>> +
+>> AFAICS, the driver supports handling multiple MMUs, and there's one reg and
+>> interrupt cell for each MMU. IOW, there's no requirement that maxItems is 2.
+>>
+>> Is there any way we can describe that? Or maybe just allow a bigger maximum?
+> With #iommu-cells == 0, how would one distinguish which IOMMU is
+> associated with a device? IOW, is more that 1 really usable?
 >
-> On Tue, Apr 06, 2021 at 05:26:28PM +0800, Greentime Hu wrote:
-> > This patchset includes SiFive FU740 PCIe host controller driver. We als=
-o
-> > add pcie_aux clock and pcie_power_on_reset controller to prci driver fo=
-r
-> > PCIe driver to use it.
+> If you need more just pick a maxItems value that's either the most seen
+> or 'should be enough'TM. If the entries are just multiple instances of
+> the same thing, please note that here.
+
+In current dts files it is up to two interruptions per IOMMU hardware blocks
+so I will keep it to this value.
+
+Benjamin
+
 >
-> I dropped this series because of the build problem I mentioned [1].
-> It will not be included in v5.13 unless the build problem is fixed
-> ASAP.
+> Rob
 >
-> [1] https://lore.kernel.org/r/20210428194713.GA314975@bjorn-Precision-552=
-0
->
-
-Hi all,
-
-This build failed in x86_64 is because CONFIG_GPIOLIB is disabled in
-the testing config.
-
-diff --git a/drivers/pci/controller/dwc/Kconfig
-b/drivers/pci/controller/dwc/Kconfig
-index 0a37d21ed64e..56b66e1fed53 100644
---- a/drivers/pci/controller/dwc/Kconfig
-+++ b/drivers/pci/controller/dwc/Kconfig
-@@ -323,6 +323,7 @@ config PCIE_FU740
-        depends on PCI_MSI_IRQ_DOMAIN
-        depends on SOC_SIFIVE || COMPILE_TEST
-        select PCIE_DW_HOST
-+       select GPIOLIB
-        help
-          Say Y here if you want PCIe controller support for the SiFive
-          FU740.
-
-After applying this change, it can build pass.
-
-> > This is tested with e1000e: Intel(R) PRO/1000 Network Card, AMD Radeon =
-R5
-> > 230 graphics card and SP M.2 PCIe Gen 3 SSD in SiFive Unmatched based o=
-n
-> > v5.11 Linux kernel.
-> >
-> > Changes in v5:
-> >  - Fix typo in comments
-> >  - Keep comments style consistent
-> >  - Refine some error handling codes
-> >  - Remove unneeded header file including
-> >  - Merge fu740_pcie_ltssm_enable implementation to fu740_pcie_start_lin=
-k
-> >
-> > Changes in v4:
-> >  - Fix Wunused-but-set-variable warning in prci driver
-> >
-> > Changes in v3:
-> >  - Remove items that has been defined
-> >  - Refine format of sifive,fu740-pcie.yaml
-> >  - Replace perstn-gpios with the common one
-> >  - Change DBI mapping space to 2GB from 4GB
-> >  - Refine drivers/reset/Kconfig
-> >
-> > Changes in v2:
-> >  - Refine codes based on reviewers' feedback
-> >  - Remove define and use the common one
-> >  - Replace __raw_writel with writel_relaxed
-> >  - Split fu740_phyregreadwrite to write function
-> >  - Use readl_poll_timeout in stead of while loop checking
-> >  - Use dwc common codes
-> >  - Use gpio descriptors and the gpiod_* api.
-> >  - Replace devm_ioremap_resource with devm_platform_ioremap_resource_by=
-name
-> >  - Replace devm_reset_control_get with devm_reset_control_get_exclusive
-> >  - Add more comments for delay and sleep
-> >  - Remove "phy ? x : y" expressions
-> >  - Refine code logic to remove possible infinite loop
-> >  - Replace magic number with meaningful define
-> >  - Remove fu740_pcie_pm_ops
-> >  - Use builtin_platform_driver
-> >
-> > Greentime Hu (5):
-> >   clk: sifive: Add pcie_aux clock in prci driver for PCIe driver
-> >   clk: sifive: Use reset-simple in prci driver for PCIe driver
-> >   MAINTAINERS: Add maintainers for SiFive FU740 PCIe driver
-> >   dt-bindings: PCI: Add SiFive FU740 PCIe host controller
-> >   riscv: dts: Add PCIe support for the SiFive FU740-C000 SoC
-> >
-> > Paul Walmsley (1):
-> >   PCI: fu740: Add SiFive FU740 PCIe host controller driver
-> >
-> >  .../bindings/pci/sifive,fu740-pcie.yaml       | 113 +++++++
-> >  MAINTAINERS                                   |   8 +
-> >  arch/riscv/boot/dts/sifive/fu740-c000.dtsi    |  33 ++
-> >  drivers/clk/sifive/Kconfig                    |   2 +
-> >  drivers/clk/sifive/fu740-prci.c               |  11 +
-> >  drivers/clk/sifive/fu740-prci.h               |   2 +-
-> >  drivers/clk/sifive/sifive-prci.c              |  54 +++
-> >  drivers/clk/sifive/sifive-prci.h              |  13 +
-> >  drivers/pci/controller/dwc/Kconfig            |   9 +
-> >  drivers/pci/controller/dwc/Makefile           |   1 +
-> >  drivers/pci/controller/dwc/pcie-fu740.c       | 308 ++++++++++++++++++
-> >  drivers/reset/Kconfig                         |   1 +
-> >  include/dt-bindings/clock/sifive-fu740-prci.h |   1 +
-> >  13 files changed, 555 insertions(+), 1 deletion(-)
-> >  create mode 100644 Documentation/devicetree/bindings/pci/sifive,fu740-=
-pcie.yaml
-> >  create mode 100644 drivers/pci/controller/dwc/pcie-fu740.c
-> >
-> > --
-> > 2.30.2
-> >
