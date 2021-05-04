@@ -2,176 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21A74372DCE
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 18:14:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71690372DE5
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 18:19:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231947AbhEDQOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 12:14:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53156 "EHLO
+        id S231683AbhEDQUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 12:20:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231958AbhEDQOg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 12:14:36 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77852C06138E
-        for <devicetree@vger.kernel.org>; Tue,  4 May 2021 09:13:40 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ldxg0-0003NR-2y; Tue, 04 May 2021 18:13:36 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ldxfz-0004c0-6D; Tue, 04 May 2021 18:13:35 +0200
-Date:   Tue, 4 May 2021 18:13:34 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Sean Anderson <sean.anderson@seco.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Michal Simek <michal.simek@xilinx.com>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH 2/2] pwm: Add support for Xilinx AXI Timer
-Message-ID: <20210504161334.tzylwyiz4k2tcztq@pengutronix.de>
-References: <20210503214413.3145015-1-sean.anderson@seco.com>
- <20210503214413.3145015-2-sean.anderson@seco.com>
- <20210504085112.edyy6loprfzejrjl@pengutronix.de>
- <dc6d9f40-a913-90c4-9675-0f84f789ab61@xilinx.com>
- <71694d6a-21d8-2b31-0e66-2dfea52a6390@seco.com>
+        with ESMTP id S231523AbhEDQUP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 12:20:15 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E13C061574;
+        Tue,  4 May 2021 09:19:20 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id i24so11108460edy.8;
+        Tue, 04 May 2021 09:19:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=60fjmSbWautEiAXXZ/arvBTCpd67qkAETXpwdXksLGM=;
+        b=qFthUpilO16l5BBY7830dFNGPY803Hw8e+Eye/onLP8kMF/PyMLQVAglHZ/BRoZpUy
+         8Zy9hEVal3Hu63EPztEAlNQhEkOdTpz3qtqsgegeTfzwfyJgphG/hgv9h1X/dVsvZgaD
+         aCiIAJuYjbGOs1xv0FXP9BeBQTHfyCsI4Mz9Re+mtGsmPNcZK4B65VysSNebcz1n4P6F
+         MtbWl29/mpRg0uW7w7mFE3RxIYduBBt7pRm77TGEYzRhCoSoULZkV0k/64huszWwPxn8
+         MGpuMX4hrUPy4YdXFpLj5LViNUsROaAnWr1g6fbHIZUbTtQVAvnkTqr7CPJWXMkAutRW
+         MMrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=60fjmSbWautEiAXXZ/arvBTCpd67qkAETXpwdXksLGM=;
+        b=eLbQJYahVj9890nNrHhfEU/2ZYrKS6D5fEkkXKlgHHnSBZJNW4IqirD3uKYeKn+Yfe
+         C7c4z+CLKzEbziGygeIeVdbE034VXX92vzYGkYy9Y0gkhe19bFN/X5NnQYlYEl62BWU9
+         hy68P7LLMbr8nYgxM0aCU/XU/eXShTqvEWszYyz2L3aIHZ5K9cSd0Qe4knmeZ909NL2q
+         nFHSfw9gJsPXcrmXHLAjDyolRHfxNZPww5r+eU0kCAEtf2NB7nGgYEU4EUR0VwuWRj0u
+         4h/kwS+rB4zsBZlZTD5mLInS54NAO65VzelQLnr+kn6BXv8MxutB5Nz4kZY58JoTqo+x
+         cYQQ==
+X-Gm-Message-State: AOAM532n+vTw1O5Vr563/HugM1ge0SGQxCdRuBnBgskfesZkfaZXoCXQ
+        kq2pbZsGn11UYfdlIFSpEkaMSCyNR1VXnA==
+X-Google-Smtp-Source: ABdhPJxhAo3H1iYkoqJEJEahFcx35MkC2p0i2yMzVazAbR2jkzD9gR8K9ooHj8koXp2JKDOUamMMPQ==
+X-Received: by 2002:aa7:d594:: with SMTP id r20mr26285506edq.242.1620145159294;
+        Tue, 04 May 2021 09:19:19 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id h15sm1618678ejs.72.2021.05.04.09.19.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 May 2021 09:19:18 -0700 (PDT)
+Subject: Re: [RFC PATCH v1] dt-bindings: mmc: snps,dwcmshc-sdhci: fix
+ rockchip,txclk-tapnum
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     heiko@sntech.de, shawn.lin@rock-chips.com, ulf.hansson@linaro.org,
+        Jisheng.Zhang@synaptics.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210430072138.6537-1-jbx6244@gmail.com>
+ <CAL_JsqKnD1t7oRDY5sTi3TjJ0vbFK0tQcVj1qCw_jiOfOQh=mA@mail.gmail.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <4b67c50e-558a-ab76-b8df-531691129837@gmail.com>
+Date:   Tue, 4 May 2021 18:19:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fsu5b2qmawl4p2fd"
-Content-Disposition: inline
-In-Reply-To: <71694d6a-21d8-2b31-0e66-2dfea52a6390@seco.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <CAL_JsqKnD1t7oRDY5sTi3TjJ0vbFK0tQcVj1qCw_jiOfOQh=mA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---fsu5b2qmawl4p2fd
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hello Sean,
+On 5/4/21 12:40 AM, Rob Herring wrote:
+> On Fri, Apr 30, 2021 at 2:21 AM Johan Jonker <jbx6244@gmail.com> wrote:
+>>
+>> A test with the command below gives this error:
+>> mmc@fe310000: rockchip,txclk-tapnum: missing size tag in [[8]]
+>>
+>> With this added to a dts file:
+>> rockchip,txclk-tapnum = <0x8>;
+>>
+>> A look at the driver shows that:
+>> DLL_TXCLK_TAPNUM_DEFAULT        0x8
+>>
+>> Adding the default value to the dts files is not needed.
+>> Every clock is divided into 32 taps equally and
+>> the max value is 31.
+>>
+>> Fix rockchip,txclk-tapnum property in snps,dwcmshc-sdhci.yaml by
+>> adding a minimum, maximum and default.
+>>
+>> In the driver the function of_property_read_u8() is used,
+>> but with dtbs_check the notifications only disappear in YAML
+>> by changing uint8 to uint32.
+> 
 
-[Adding Rob to the list of recipents, as he for sure has a valuable
-opinion on this matter.]
+> Did you check what value the driver sees when you put 8 in the dts. I
+> expect it will be 0 because you are reading the 1st byte in big
+> endian.
+> 
 
-On Tue, May 04, 2021 at 11:57:20AM -0400, Sean Anderson wrote:
-> On 5/4/21 8:32 AM, Michal Simek wrote:
-> > On 5/4/21 10:51 AM, Uwe Kleine-K=F6nig wrote:
-> >> On Mon, May 03, 2021 at 05:44:13PM -0400, Sean Anderson wrote:
-> >>> This adds PWM support for Xilinx LogiCORE IP AXI soft timers commonly
-> >>> found on Xilinx FPGAs. There is another driver for this device located
-> >>> at arch/microblaze/kernel/timer.c, but it is only used for timekeepin=
-g.
-> >>> This driver was written with reference to Xilinx DS764 for v1.03.a [1=
-].
-> >>>
-> >>> [1] https://www.xilinx.com/support/documentation/ip_documentation/axi=
-_timer/v1_03_a/axi_timer_ds764.pdf
-> >>>
-> >>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> >>> ---
-> >>>
-> >>>   arch/arm64/configs/defconfig |   1 +
-> >>>   drivers/pwm/Kconfig          |  11 ++
-> >>>   drivers/pwm/Makefile         |   1 +
-> >>>   drivers/pwm/pwm-xilinx.c     | 322 ++++++++++++++++++++++++++++++++=
-+++
-> >>>   4 files changed, 335 insertions(+)
-> >>>   create mode 100644 drivers/pwm/pwm-xilinx.c
-> >>>
-> >>> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defcon=
-fig
-> >>> index 08c6f769df9a..81794209f287 100644
-> >>> --- a/arch/arm64/configs/defconfig
-> >>> +++ b/arch/arm64/configs/defconfig
-> >>> @@ -1083,6 +1083,7 @@ CONFIG_PWM_SAMSUNG=3Dy
-> >>>   CONFIG_PWM_SL28CPLD=3Dm
-> >>>   CONFIG_PWM_SUN4I=3Dm
-> >>>   CONFIG_PWM_TEGRA=3Dm
-> >>> +CONFIG_PWM_XILINX=3Dm
-> >>>   CONFIG_SL28CPLD_INTC=3Dy
-> >>>   CONFIG_QCOM_PDC=3Dy
-> >>>   CONFIG_RESET_IMX7=3Dy
-> >>
-> >> I think this should go into a separate patch once this driver is
-> >> accepted. This can then go via the ARM people.
-> >>
-> >>> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> >>> index d3371ac7b871..01e62928f4bf 100644
-> >>> --- a/drivers/pwm/Kconfig
-> >>> +++ b/drivers/pwm/Kconfig
-> >>> @@ -628,4 +628,15 @@ config PWM_VT8500
-> >>>   	  To compile this driver as a module, choose M here: the module
-> >>>   	  will be called pwm-vt8500.
-> >>>
-> >>> +config PWM_XILINX
-> >>> +	tristate "Xilinx AXI Timer PWM support"
-> >>> +	depends on !MICROBLAZE
-> >>
-> >> I don't understand this dependency.
-> >
-> > The dependency is clear here because microblaze has already driver for
-> > this timer here arch/microblaze/kernel/timer.c.
+Hi,
 
-Then at least add a comment.
+Thanks for info.
+A test with a dummy module shows that of_property_read_u8() read a 0
+instead of 8.
+There are approx 23 of_property_read_u8() functions in use in the
+mainline kernel. Do they need a recheck?
 
-> > And that's exactly pointing to the way how this should be done.
-> > IP itself is single or dual timer and in case of dual timer you can
-> > select if there is pwm output and use it for PWM generation.
-> >
-> > It means it is timer with PMW together.
-> > I didn't have a time but Uwe likely knows this better how to design it.
-> >
-> > I see that gpio-mvebu driver instantiate pwm driver. Maybe that's the
-> > way to go.
->=20
-> I think drivers/clocksource/samsung_pwm_timer.c and
-> drivers/pwm/pwm-samsung.c provide another example for how to go about
-> this.
+Johan
 
-I recently had a similar problem (with code that isn't (yet) in
-mainline), where a timer can be used as a counter. I chose to change the
-compatible. Transferred to this example this would mean to use e.g.
+=== other Rockchip recheck examples
 
-	static const struct of_device_id xilinx_pwm_of_match[] =3D {
-		{ .compatible =3D "xlnx,xps-timer-pwm-1.00.a" },
-		...
+drivers/mmc/host/sdhci-of-dwcmshc.c
+
+	if (of_property_read_u8(mmc_dev(host->mmc)->of_node,
+"rockchip,txclk-tapnum",
+				&priv->txclk_tapnum))
+
+drivers/pci/controller/pcie-rockchip-ep.c
+
+	err = of_property_read_u8(dev->of_node, "max-functions",
+				  &ep->epc->max_functions);
+
+=== dts test
+	dummy {
+		compatible = "dummy";
+		rockchip,dummy0x8 =        <0x8>;
+		rockchip,dummy0x11223344 = <0x11223344>;
 	};
 
-and if you want to use the hardware as a PWM, you overwrite the
-compatible in your machine.dts.
+=== driver probe
+	of_property_read_u8(np,  "rockchip,dummy0x8", &tmp8);
+	printk("u8 : 0x%08x\n", tmp8);
+	of_property_read_u32(np, "rockchip,dummy0x8", &tmp32);
+	printk("u32: 0x%08x\n", tmp32);
 
-Not sure however that this is nice enough to be accepted by the dt
-people?!
+	of_property_read_u8(np,  "rockchip,dummy0x11223344", &tmp8);
+	printk("u8 : 0x%08x\n", tmp8);
+	of_property_read_u32(np, "rockchip,dummy0x11223344", &tmp32);
+	printk("u32: 0x%08x\n", tmp32);
 
-Best regards
-Uwe
+=== dmesg
+[   18.089694] u8 : 0x00000000
+[   18.090123] u32: 0x00000008
+[   18.090494] u8 : 0x00000011
+[   18.090865] u32: 0x11223344
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
---fsu5b2qmawl4p2fd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmCRcqsACgkQwfwUeK3K
-7AntOwf/anwLjThveWM2RlDIDXOZhGyF/r12T+TxL+rYZV0ZVE4hAVwbdCeLY93X
-+hqUjyyoDbzhgbQm+4HmZ1NDOA3SfcAB9yszmf619NPTW+gPnEo/a6EDPwsWkbKB
-gRtCKV4i5wMkpP2RpvkoCE7rFoQFjfvQc4TboS1Zv6gUw7PLtK1UsVY1SRfwu8kG
-+ZGO5CEST71AelWYpAVB5g6Z3a8mgPT55k6JI4GsFJ/93y6Uhd/fBHxLwEU9GzO1
-48cXF50tBjWYfqxFfNsWpuUOiAYa/mLiy7uQ0LtnGWF1LVruEY9L8oA1PgeVUwL+
-fRrQvlWGbXoC1eitrWwTr5Z8Si+A6A==
-=0mp3
------END PGP SIGNATURE-----
-
---fsu5b2qmawl4p2fd--
+>> The driver has no limit check for rockchip,txclk-tapnum.
+>>
+>> make ARCH=arm64 dtbs_check
+>>
+>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>> ---
+>>  Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml | 5 ++++-
+>>  1 file changed, 4 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+>> index e6c9a2f77..f43d8d829 100644
+>> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+>> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+>> @@ -48,7 +48,10 @@ properties:
+>>
+>>    rockchip,txclk-tapnum:
+>>      description: Specify the number of delay for tx sampling.
+>> -    $ref: /schemas/types.yaml#/definitions/uint8
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 0
+>> +    maximum: 31
+>> +    default: 8
+>>
+>>
+>>  required:
+>> --
+>> 2.11.0
+>>
