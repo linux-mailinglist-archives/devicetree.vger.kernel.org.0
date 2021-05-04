@@ -2,87 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AEE53724D0
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 06:11:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B15653724D7
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 06:17:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbhEDEL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 00:11:58 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:41147 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229499AbhEDEL6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 00:11:58 -0400
-X-UUID: ba70794388d84390b8715bdd006084f9-20210504
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=/cbVo2HXM2EBR6+XgYLdg2qe+Xrids+DQpIfN0W+BU8=;
-        b=nW5JXRJR4HBHHZUE7Cd/pIt2oHMIw8AMNsx/SU2FuutBl6KpISLn3GkCfaxZCtDNBczMeTcsw4Pz77JEo0LAy5K72plc2ilItC8HZYo8ATxc7cYlULk5RpSB1qi3EYO/YvkbDO1PtDBT4Zy6G9/tH5rz4bGxJ+CEmhftMqQBjgw=;
-X-UUID: ba70794388d84390b8715bdd006084f9-20210504
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 100049445; Tue, 04 May 2021 12:11:01 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 4 May 2021 12:10:59 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by mtkcas07.mediatek.inc
- (172.21.101.84) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 4 May
- 2021 12:10:59 +0800
-Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 4 May 2021 12:10:59 +0800
-Message-ID: <1620101459.15918.4.camel@mtksdaap41>
-Subject: Re: [PATCH v2 2/2] dt-bindings: mediatek: Add optional mediatek,
- gce-events property
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Date:   Tue, 4 May 2021 12:10:59 +0800
-In-Reply-To: <20210503050523.2571758-2-hsinyi@chromium.org>
-References: <20210503050523.2571758-1-hsinyi@chromium.org>
-         <20210503050523.2571758-2-hsinyi@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S229742AbhEDER6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 00:17:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47248 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229499AbhEDER5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 May 2021 00:17:57 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3980E61186;
+        Tue,  4 May 2021 04:17:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1620101823;
+        bh=o6bzGyR/7bsRfnO0+aNVpGB5YWfLgC/3PIVf/41nDM0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Q+1PwRv70pQbWWpiebMnyXuxFP4Rl6TJAj0zZR4swW8eTU7D+e03Zu5RhRU8Ooq2C
+         HZhviqCvI3JNE48XdbT1ZE1kAdn8/iLwPhjvzhLm1PfPwsuRhXKE4Vu6UcaHYza97N
+         0LlhOZR0w6goBXHP7zDa+L47wIEwbYhQwdPREt3myftotS3h0DqLxlWF967sooTRPd
+         r7OMRZoSCX9q3xnX8VMHlRFaDE+tHwArqvT1lDZtQiciP0KlnPSBkXtyAVRCFkgclZ
+         Lt4IzEwUAWSGtmwqefHaeryKPywJYHqz3IzI1mZI7ExRdi+HBDevZQos/h5pQW1SkP
+         iNbzJRD0Nvc3A==
+Received: by wens.tw (Postfix, from userid 1000)
+        id 4B92D5FBFA; Tue,  4 May 2021 12:17:00 +0800 (CST)
+From:   Chen-Yu Tsai <wens@kernel.org>
+To:     Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: meson-gxbb: nanopi-k2: Enable Bluetooth
+Date:   Tue,  4 May 2021 12:16:59 +0800
+Message-Id: <20210504041659.22495-1-wens@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIEhzaW4teWk6DQoNCk9uIE1vbiwgMjAyMS0wNS0wMyBhdCAxMzowNSArMDgwMCwgSHNpbi1Z
-aSBXYW5nIHdyb3RlOg0KPiBtZWRpYXRlayxnY2UtZXZlbnRzIHByb3BlcnR5IGlzIHVzZWQgYnkg
-Z2NlIGNsaWVudHMuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBIc2luLVlpIFdhbmcgPGhzaW55aUBj
-aHJvbWl1bS5vcmc+DQo+IC0tLQ0KPiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9t
-ZWRpYXRlay9tZWRpYXRlayxkaXNwLnR4dCAgfCA2ICsrKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQs
-IDYgaW5zZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGRpc3AudHh0IGIvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWssZGlz
-cC50eHQNCj4gaW5kZXggZmJiNTljOWRkZGE2Li45MzliMmRhM2JkYzUgMTAwNjQ0DQo+IC0tLSBh
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlh
-dGVrLGRpc3AudHh0DQo+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9k
-aXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGRpc3AudHh0DQo+IEBAIC03NSw2ICs3NSwxMCBAQCBP
-cHRpb25hbCBwcm9wZXJ0aWVzIChSRE1BIGZ1bmN0aW9uIGJsb2Nrcyk6DQo+ICAgIG1lZGlhdGVr
-LHJkbWEtZmlmby1zaXplIG9mIG10ODE4My1yZG1hMCBpcyA1Sw0KPiAgICBtZWRpYXRlayxyZG1h
-LWZpZm8tc2l6ZSBvZiBtdDgxODMtcmRtYTEgaXMgMksNCj4gIA0KPiArT3B0aW9uYWwgcHJvcGVy
-dGllcyBmb3IgZGlzcGxheSBtdXRleDoNCj4gKy0gbWVkaWF0ZWssZ2NlLWV2ZW50czogR0NFIGV2
-ZW50cyB1c2VkIGJ5IGNsaWVudHMuIFRoZSBldmVudCBudW1iZXJzIGFyZQ0KPiArICBkZWZpbmVk
-IGluICdkdC1iaW5kaW5ncy9nY2UvPGNoaXA+LWdjZS5oJy4NCg0KSSB0aGluayBtZWRpYXRlayxn
-Y2UtZXZlbnRzIHNob3VsZCBiZSBmaXJzdCBkZWZpbmVkIGluIFsxXSwgYW5kIGhlcmUNCnJlZmVy
-IHRvIFsxXS4NCg0KSW4gYWRkaXRpb24sIG10ay1tdXRleCBkcml2ZXIgaXMgbW92ZWQgaW50byBz
-b2MgZm9sZGVyLCBzbyBJIHdvdWxkIGxpa2UNCnRvIG1vdmUgbXRrLW11dGV4IGJpbmRpbmcgb3V0
-IG9mIGRpc3BsYXkgYmluZGluZy4gSXQncyB1cCB0byB5b3UuDQoNClsxXSBEb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvbWFpbGJveC9tdGstZ2NlLnR4dA0KDQpSZWdhcmRzLA0KQ0sN
-Cg0KPiArDQo+ICBFeGFtcGxlczoNCj4gIA0KPiAgbW1zeXM6IGNsb2NrLWNvbnRyb2xsZXJAMTQw
-MDAwMDAgew0KPiBAQCAtMjA5LDYgKzIxMyw4IEBAIG11dGV4OiBtdXRleEAxNDAyMDAwMCB7DQo+
-ICAJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE2OSBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiAgCXBv
-d2VyLWRvbWFpbnMgPSA8JnNjcHN5cyBNVDgxNzNfUE9XRVJfRE9NQUlOX01NPjsNCj4gIAljbG9j
-a3MgPSA8Jm1tc3lzIENMS19NTV9NVVRFWF8zMks+Ow0KPiArCW1lZGlhdGVrLGdjZS1ldmVudHMg
-PSA8Q01EUV9FVkVOVF9NVVRFWDBfU1RSRUFNX0VPRj4sDQo+ICsJCQkgICAgICA8Q01EUV9FVkVO
-VF9NVVRFWDFfU1RSRUFNX0VPRj47DQo+ICB9Ow0KPiAgDQo+ICBvZEAxNDAyMzAwMCB7DQoNCg==
+From: Chen-Yu Tsai <wens@csie.org>
+
+The NanoPi K2 has a AP6212 WiFi+BT combo module. The WiFi portion is
+already enabled. The BT part is connected via UART and I2S.
+
+Enable the UART and add a device node describing the Bluetooth portion
+of the module.
+
+Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+---
+Changes since v1:
+  - added uart-has-rtscts property
+  - added alias for uart_A
+
+Hi Neil, Martin,
+
+I dropped your review-bys since I added the UART alias and I'm not sure
+what the policy for those are.
+
+ChenYu
+---
+ .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts      | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+index 7273eed5292c..f017a263784f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+@@ -15,6 +15,7 @@ / {
+ 
+ 	aliases {
+ 		serial0 = &uart_AO;
++		serial1 = &uart_A;
+ 		ethernet0 = &ethmac;
+ 	};
+ 
+@@ -385,9 +386,20 @@ &uart_AO {
+ 
+ /* Bluetooth on AP6212 */
+ &uart_A {
+-	status = "disabled";
++	status = "okay";
+ 	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
+ 	pinctrl-names = "default";
++	uart-has-rtscts;
++
++	bluetooth {
++		compatible = "brcm,bcm43438-bt";
++		clocks = <&wifi_32k>;
++		clock-names = "lpo";
++		vbat-supply = <&vddio_ao3v3>;
++		vddio-supply = <&vddio_ao18>;
++		host-wakeup-gpios = <&gpio GPIOX_21 GPIO_ACTIVE_HIGH>;
++		shutdown-gpios = <&gpio GPIOX_20 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ /* 40-pin CON1 */
+-- 
+2.31.1
 
