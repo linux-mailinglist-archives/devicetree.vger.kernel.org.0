@@ -2,66 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2428372608
-	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 08:58:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15F4137260D
+	for <lists+devicetree@lfdr.de>; Tue,  4 May 2021 08:58:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbhEDG7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 May 2021 02:59:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43200 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229872AbhEDG7V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 02:59:21 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA960C06174A
-        for <devicetree@vger.kernel.org>; Mon,  3 May 2021 23:58:25 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ldozz-0001j3-Or; Tue, 04 May 2021 08:57:39 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ldozw-0002H7-Il; Tue, 04 May 2021 08:57:36 +0200
-Date:   Tue, 4 May 2021 08:57:36 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, timur@kernel.org, nicoleotsuka@gmail.com,
-        Xiubo.Lee@gmail.com, festevam@gmail.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] ASoC: imx-akcodec: Add imx-akcodec machine driver
-Message-ID: <20210504065736.bcnatgmy2gczynsr@pengutronix.de>
-References: <1619157107-3734-1-git-send-email-shengjiu.wang@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1619157107-3734-1-git-send-email-shengjiu.wang@nxp.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:56:25 up 152 days, 21:02, 38 users,  load average: 0.06, 0.15,
- 0.09
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S229900AbhEDG7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 May 2021 02:59:48 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:11403 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229843AbhEDG7r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 May 2021 02:59:47 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1620111533; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=SP4OX5V85Stf/3lWPp2l71R2s4ZE0w97l0D80tD7ZOk=; b=dk3EDp/YiI3n/qLbS4Z4OR3dFtnwiejXiUseg7C/xKo+CxNK+bsRlDOOtXlvTOhOl8AFyUEI
+ z9nSOc0+FKRcGQVVkzSR9cxLplLmGO+fG8dNTFcRRFOqnduYJMewgg7WFf/I3+QwBpfl0ytV
+ PNHrpBhqVb7X8+4AkgLoVndu4oc=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 6090f0ac2cbba88980bdcae3 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 04 May 2021 06:58:52
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 19C26C4323A; Tue,  4 May 2021 06:58:52 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id DAC77C4338A;
+        Tue,  4 May 2021 06:58:47 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org DAC77C4338A
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=sibis@codeaurora.org
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     bjorn.andersson@linaro.org, dianders@chromium.org, mka@chromium.org
+Cc:     viresh.kumar@linaro.org, sboyd@kernel.org, agross@kernel.org,
+        robh+dt@kernel.org, rjw@rjwysocki.net,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Sibi Sankar <sibis@codeaurora.org>
+Subject: [PATCH v2 0/2] DDR/L3 Scaling support on SC7280 SoCs
+Date:   Tue,  4 May 2021 12:28:28 +0530
+Message-Id: <1620111510-31455-1-git-send-email-sibis@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-04-23 13:51, Shengjiu Wang wrote:
-> Add machine driver for i.MX boards that have
-> AK4458/AK5558/AK4497/AK5552 DAC/ADC attached to
-> SAI interface.
+The patch series adds support for DDR/L3 Scaling on SC7280 SoCs.
 
-Why? Does simple-audio-card don't fit?
+V2:
+ * Add a new opp table for cpu 7 to account for the additional frequencies
+   supported by it.
 
-Regards,
-  Marco
+Depends on the following patch series:
+L3 Provider Support: https://lore.kernel.org/lkml/1618556290-28303-1-git-send-email-okukatla@codeaurora.org/
+CPUfreq Support: https://lore.kernel.org/lkml/1618020280-5470-2-git-send-email-tdas@codeaurora.org/
+RPMH Provider Support: https://lore.kernel.org/lkml/1619517059-12109-1-git-send-email-okukatla@codeaurora.org/
+
+It also depends on L3 and cpufreq dt nodes from the ^^ series to not have
+overlapping memory regions.
+
+Sibi Sankar (2):
+  cpufreq: blacklist SC7280 in cpufreq-dt-platdev
+  arm64: dts: qcom: sc7280: Add cpu OPP tables
+
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 215 +++++++++++++++++++++++++++++++++++
+ drivers/cpufreq/cpufreq-dt-platdev.c |   1 +
+ 2 files changed, 216 insertions(+)
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
